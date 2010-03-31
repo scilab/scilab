@@ -29,9 +29,13 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Diagram compilation management
  */
 public class CompileAction extends SimulationNotRunningAction {
+	/** Name of the action */
 	public static final String NAME = XcosMessages.COMPILE;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = 0;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = 0;
 
 	/**

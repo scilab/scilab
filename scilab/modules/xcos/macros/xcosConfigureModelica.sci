@@ -11,7 +11,7 @@
 //
 
 function xcosConfigureModelica()
-  
+
 // We need to define {modelica_libs} variable
 // was :
 //  [scicos_pal, %scicos_menu, %scicos_short, modelica_libs, scicos_pal_libs,...
@@ -53,7 +53,7 @@ function xcosConfigureModelica()
   if compile then 
     %Modelica_Init=%t
 // in order to generate *_im.mo -> *_im_f.mo -> *_im.xml 
-    [bllst,connectmat,clkconnect,cor,corinv,ok]=c_pass1(scs_m);    
+    [bllst,connectmat,clkconnect,cor,corinv,ok]=c_pass1(scs_m); 
     %Modelica_Init=%f
   end
   [info,err1]=fileinfo(xmlfile);
@@ -66,12 +66,15 @@ function xcosConfigureModelica()
   sciGUI_init();
   
   // Load Modelica configuration GUI
-  TCL_EvalFile(SCI+"/modules/scicos/macros/scicos_scicos/MIHM.tcl")
+  TCL_EvalFile(SCI+"/modules/scicos/tcl/MIHM.tcl")
   
   if err1==0 then 
     scimihm xmlfile
   end  
 
+  // variables needed by compile_init_modelica
+  [modelica_libs,bllst,connectmat,clkconnect,cor,corinv]=resume(modelica_libs,bllst,connectmat,clkconnect,cor,corinv); 
+  
 endfunction
 
 function  Doubleclick(name,last_name)

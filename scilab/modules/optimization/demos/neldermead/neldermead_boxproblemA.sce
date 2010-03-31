@@ -163,6 +163,7 @@ mprintf("Searching (please wait)...\n");
 nm = neldermead_search(nm);
 mprintf("...Done\n");
 neldermead_display(nm);
+mprintf("==========================\n");
 xcomp = neldermead_get(nm,"-xopt");
 mprintf("x computed=%s\n",strcat(string(xcomp)," "));
 mprintf("x expected=%s\n",strcat(string(xopt)," "));

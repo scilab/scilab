@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg id="svg11300" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="44.822" width="41.062" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/">
+ <metadata id="metadata39">
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <title id="title3289">base scilan</title>
+ <defs id="defs3">
+  <radialGradient id="radialGradient20899" gradientUnits="userSpaceOnUse" cy="32.267" cx="23.994" gradientTransform="matrix(2.2986117,0,0,1.8027614,-75.446386,-24.554065)" r="19.089">
+   <stop id="stop2224" stop-color="#5187d6" offset="0"/>
+   <stop id="stop2227" stop-color="#1e4580" offset="1"/>
+  </radialGradient>
+  <linearGradient id="linearGradient2854" y2="24.238" gradientUnits="userSpaceOnUse" x2="12.499" gradientTransform="matrix(0,-5.2061514,2.5688251,0,-79.265723,164.6207)" y1="12.538" x1="8.8208">
+   <stop id="stop2182" stop-color="#FFF" offset="0"/>
+   <stop id="stop2184" stop-color="#FFF" stop-opacity="0" offset="1"/>
+  </linearGradient>
+ </defs>
+ <g id="layer1" transform="translate(-2.8842799e-7,-3.1783548)">
+  <g id="layer1-0" transform="matrix(0,0.68137179,-0.68137179,0,39.302853,7.826163)">
+   <g id="g9544" transform="translate(-2.0023665,2.2530854)">
+    <g id="g9570" transform="translate(0.34662852,-1.7289484)">
+     <g id="g28489" transform="translate(2.3098495,0.12996954)">
+      <g id="g20882" transform="translate(51.47752,-82.884097)">
+       <rect id="rect1314" stroke-linejoin="round" style="stroke-dasharray:none;" transform="matrix(0,-0.99999997,0.99999997,0,-49.042742,89.574337)" fill-rule="evenodd" stroke-dashoffset="0" rx="2.2025" ry="2.2025" height="37.631" width="48.319" stroke="#173562" stroke-linecap="round" stroke-miterlimit="4" y="2.4454" x="-44.453" stroke-width="1.4676" fill="url(#radialGradient20899)"/>
+       <path id="path28138" stroke-linejoin="round" d="M8.6382,35.758c27.557-0.173,27.904-0.173,27.904-0.173l0.17331-33.97" transform="translate(-49.042742,89.574337)" stroke="#000" stroke-linecap="round" stroke-width="1.46762753px" fill="none"/>
+       <path id="rect2178" opacity="0.43181817" d="m-45.868,133.4,12.954,0c1.0099-5.0153,1.5849-10.576,1.5849-16.442,0-12.211-2.4433-23.147-6.2788-30.45h-8.2599v46.892z" fill-rule="evenodd" fill="url(#linearGradient2854)"/>
+      </g>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+ <path id="path2188" stroke-linejoin="round" style="stroke-dasharray:none;" d="m13.665,29.974,4.7566-10.919,5.7799,10.589,6.8184-5.8677,0.06242-4.1123-6.3304,5.6237-6.5406-11.928-6.0101,14.643,1.4637,1.9713z" fill-rule="evenodd" stroke="#8ae234" stroke-linecap="round" stroke-miterlimit="10" stroke-width="0.91817689" fill="#73d216"/>
+</svg>

@@ -20,6 +20,10 @@
 //
 
 function hilite_obj(k,win)
+
+    xcosShowBlockWarning(k); //** new
+	return;
+
 //
 //** WARNING: I changed mechanism AND input values:
 //**          from:

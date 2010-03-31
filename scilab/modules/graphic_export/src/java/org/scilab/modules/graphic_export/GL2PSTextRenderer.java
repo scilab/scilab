@@ -21,6 +21,16 @@ import org.scilab.modules.renderer.textDrawing.SpecialTextObjectGL;
 import org.scilab.modules.renderer.textDrawing.TeXObjectGL;
 import org.scilab.modules.renderer.textDrawing.MathMLObjectGL;
 
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+
+import org.apache.batik.svggen.SVGGraphics2D;
+import org.apache.batik.svggen.SVGGraphics2DIOException;
+import org.apache.batik.dom.GenericDOMImplementation;
+
+import org.w3c.dom.DOMImplementation;
+
 import com.sun.opengl.util.j2d.TextRenderer;
 
 
@@ -56,28 +66,27 @@ public class GL2PSTextRenderer extends SciTextRenderer {
 		
 		GL2PS gl2ps = new GL2PS();
 		gl.glRasterPos3d(x, y, z);
-		/* Modified by Calixte to handle LaTeX and MathML labels */
 		if (str.length() > 0 && (str.charAt(0) == '<' || str.charAt(0) == '$')) {
 		        SpecialTextObjectGL spe = getSpeRenderer().getContent(str);
 			if (spe == null) {
-			        gl2ps.gl2psTextOpt(str, getFontPSName(getFont()),
+			    gl2ps.gl2psTextOpt(convertInSVGString(str), getFontPSName(getFont()),
 						   (short) getFont().getSize(), GL2PS.GL2PS_TEXT_BL,
 						   (float) Math.toDegrees(angle));
 			} else {
-			    String SVGcode;
+			    String svgCode;
 			    if (str.charAt(0) == '<') {
-				    SVGcode = new MathMLObjectSVG((MathMLObjectGL) spe).getCode();
+				    svgCode = new MathMLObjectSVG((MathMLObjectGL) spe).getCode();
 			    } else {
-				    SVGcode = new TeXObjectSVG((TeXObjectGL) spe).getCode();
+				    svgCode = new TeXObjectSVG((TeXObjectGL) spe).getCode();
 			    }
 			    /* the fontsize is set to 0 to include directly the svg code (see gl2ps.c) */
-			    gl2ps.gl2psTextOpt(SVGcode, getFontPSName(getFont()), (short) 0, GL2PS.GL2PS_SVG, (float) Math.toDegrees(angle));
+			    gl2ps.gl2psTextOpt(svgCode, getFontPSName(getFont()), (short) 0, GL2PS.GL2PS_SVG, (float) Math.toDegrees(angle));
 			}
 		    
 			return;
 		}
 		
-		gl2ps.gl2psTextOpt(str, getFontPSName(getFont()),
+		gl2ps.gl2psTextOpt(convertInSVGString(str), getFontPSName(getFont()),
 				   (short) getFont().getSize(), GL2PS.GL2PS_TEXT_BL,
 				   (float) Math.toDegrees(angle));
 	}
@@ -110,5 +119,33 @@ public class GL2PSTextRenderer extends SciTextRenderer {
 		return res;
 	}
 
+        /** 
+	 * Convert a string into a another one where special
+	 * characters are replaced by HTML entities/
+	 * @param str the string to convert
+	 * @return the converted string.
+	 */
+        private String convertInSVGString(String str) {
+	        /* Fix bug 6718 */
+	        DOMImplementation dom = GenericDOMImplementation.getDOMImplementation();
+		SVGGraphics2D g2d = new SVGGraphics2D(dom.createDocument("", "svg", null));
+		ByteArrayOutputStream buf = new ByteArrayOutputStream();
+	       
+		g2d.drawString(str, 0, 0);
+		
+		try {
+		    g2d.stream(new OutputStreamWriter(buf, "UTF-8"), true, true);
+		} catch (SVGGraphics2DIOException e) {
+			System.err.println(e.toString());
+		} catch (UnsupportedEncodingException e) {
+		        System.err.println(e.toString());
+		}
+		
+		String code = buf.toString();
+		int pos = code.indexOf("</text");
+		code = code.substring(code.lastIndexOf(">", pos) + 1, pos);
+		g2d.dispose();
 
+		return code;
+	}
 }

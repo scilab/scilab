@@ -80,7 +80,7 @@ function [palettes,windows] = do_load_as_palette(palettes, windows,scs_m)
   h = %zoom * %wsiz(2) ;
   w = %zoom * %wsiz(1) ;
 
-  if ~MSDOS then 
+  if getos() <> 'Windows' then 
     h1 = h + 50 ;
   else
     h1 = h

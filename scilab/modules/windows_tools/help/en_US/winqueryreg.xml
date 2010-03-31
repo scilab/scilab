@@ -43,7 +43,7 @@ value = winqueryreg('rootkey','subkey')</synopsis>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
-if MSDOS then
+if getos() == 'Windows' then
   winqueryreg 'HKEY_LOCAL_MACHINE' 'HARDWARE\DESCRIPTION\System\CentralProcessor\0\' 'ProcessorNameString'
   lines(-1);
   mousechar = winqueryreg('name', 'HKEY_CURRENT_USER','control panel\mouse');

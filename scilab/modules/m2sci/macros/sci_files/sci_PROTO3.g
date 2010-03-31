@@ -89,13 +89,6 @@ opt=list(),if tree.name=="randn" then opt=Cste("normal"),end
 if rhs==1 then
   n = getrhs(tree)
   n=convert2double(n)
-  if is_complex(n) then
-    n=Funcall("real",1,list(n),list(Variable("",n.infer)))
-  elseif ~is_real(n) then
-    newn=Funcall("real",1,list(n),list(Variable("",n.infer)))
-    repl_poss(newn,n,n,gettext("is Real."));
-    n=newn
-  end
   if is_a_scalar(n) then 
     if typeof(n)=="cste" then
       dim=n.value
@@ -146,13 +139,6 @@ if rhs==1 then
 else
   for k=1:size(tree.rhs)
     tree.rhs(k)=convert2double(tree.rhs(k))
-    if is_complex(tree.rhs(k)) then
-      tree.rhs(k)=Funcall("real",1,list(tree.rhs(k)),list()) 
-    elseif ~is_real(tree.rhs(k)) then
-      newn=Funcall("real",1,list(tree.rhs(k)),list())
-      repl_poss(newn,tree.rhs(k),tree.rhs(k),gettext("is Real."));
-      tree.rhs(k)=newn
-    end
   end
   if opt<>list() then
     tree.rhs($+1)=opt

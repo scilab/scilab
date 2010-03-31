@@ -22,8 +22,9 @@
 
 function   [ok]=compile_init_modelica(xmlmodel,paremb,jaco)  
 
+
   MODELICAC_FILENAME = 'modelicac';
-  if MSDOS then
+  if getos() == 'Windows' then
     MODELICAC_FILENAME = MODELICAC_FILENAME + '.exe'; 
   end
 
@@ -66,7 +67,7 @@ function   [ok]=compile_init_modelica(xmlmodel,paremb,jaco)
          FlatCi + '"" > ""' + tmpdir + 'imodelicac.err""';
 
 
- if MSDOS then
+ if getos() == 'Windows' then
    mputl(instr, tmpdir + 'igenm.bat');
    instr = tmpdir + 'igenm.bat';
  end

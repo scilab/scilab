@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include "AddFunctionInTable.h"
+#include "GetFunctionByName.h"
 #include "feval.h"
 /***********************************
 * feval (ffeval)
@@ -48,6 +48,6 @@ void C2F(ffeval)(int *nn, double *x1, double *x2, double *xres, int *itype, char
 
 void C2F(setfeval)(char *name, int *rep)
 {
-	fevalfonc = (ffevalf) AddFunctionInTable(name,rep,FTab_ffeval);
+	fevalfonc = (ffevalf) GetFunctionByName(name,rep,FTab_ffeval);
 }
 

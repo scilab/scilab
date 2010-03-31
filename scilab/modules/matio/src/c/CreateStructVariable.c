@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent COUVERT 
+ * Copyright (C) 2010 - DIGITEO - Yann COLLETTE
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,26 +15,32 @@
 #ifdef _MSC_VER
 #include "strdup_Windows.h"
 #endif
-int CreateStructVariable(int stkPos, matvar_t *matVariable)
+
+#include "freeArrayOfString.h"
+
+#include "api_scilab.h"
+
+#define MATIO_ERROR if(_SciErr.iErr) \
+    {				     \
+      printError(&_SciErr, 0);	     \
+      return 0;			     \
+    }
+
+int CreateStructVariable(int iVar, matvar_t *matVariable, int * parent, int item_position)
 {
   char **fieldNames = NULL;
   int nbFields = 0;
-  int nbRow = 0;
   int fieldIndex = 0;
   int K = 0;
   int prodDims = 0;
-  int listAdr = 0;
   int valueIndex = 0;
   matvar_t *fieldMatVar = NULL;
-  int sizeOfList = 0;
-
-  int ilStruct = 0;
-  int il = 0;
-
-  SciIntMat integerMatrix; /* Used for dimensions */
-
   matvar_t ** allData = NULL;
-
+  int * cell_addr = NULL;
+  int * cell_entry_addr = NULL;
+  int type;
+  SciErr _SciErr;
+    
   /* Fields of the struct */
   nbFields = 2; /* "st" "dims" */
   nbFields += Mat_VarGetNumberOfFields(matVariable);
@@ -70,47 +77,36 @@ int CreateStructVariable(int stkPos, matvar_t *matVariable)
     }
   
   /* Returned mlist initialization */
-  stkPos = stkPos + Top - Rhs; 
+  if (parent==NULL)
+    {
+      _SciErr = createMList(pvApiCtx, iVar, nbFields, &cell_addr); MATIO_ERROR;
+    }
+  else
+    {
+      _SciErr = createMListInList(pvApiCtx, iVar, parent, item_position, nbFields, &cell_addr); MATIO_ERROR;
+    }
 
-  ilStruct = iadr(*Lstk(stkPos));
-  *istk(ilStruct) = 17;
-  *istk(ilStruct+1) = nbFields;
-  *istk(ilStruct+2) = 1;
-  
-  *Lstk(stkPos+1) = sadr(ilStruct+2+nbFields+1); /* Address of the first list entry */
- 
   /* FIRST LIST ENTRY: fieldnames */
-  nbRow = 1;
-  CreateVarFromPtr(stkPos + 1 + Rhs - Top, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbFields, fieldNames);
-  /* Update the list "pointers" */
-  *istk(ilStruct+3) = *istk(ilStruct+2) + *Lstk(stkPos + 2) - *Lstk(stkPos + 1);
-  /* Reinit current variable address */
-  *Lstk(stkPos + 1) = *Lstk(stkPos + 2);
+  _SciErr = createMatrixOfStringInList(pvApiCtx, iVar, cell_addr, 1, 1, nbFields, fieldNames); MATIO_ERROR;
   
   /* SECOND LIST ENTRY: Dimensions (int32 type) */
-  integerMatrix.it = I_INT32;
-  integerMatrix.m = 1;
-  integerMatrix.n = matVariable->rank;
   if (nbFields==2) /* Empty struct must have size 0x0 in Scilab */
     {
       matVariable->dims[0] = 0;
       matVariable->dims[1] = 0;
     }
-  integerMatrix.D = matVariable->dims;
 
   if(matVariable->rank==2) /* Two dimensions */
     {
-      CreateVarFromPtr(stkPos + 1 + Rhs - Top, MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &integerMatrix.m, &integerMatrix.n, &integerMatrix);
+      _SciErr = createMatrixOfInteger32InList(pvApiCtx, iVar, cell_addr, 2, 1, matVariable->rank, matVariable->dims); MATIO_ERROR;
     }
   else /* 3 or more dimensions -> Scilab HyperMatrix */
     {
-      CreateHyperMatrixVariable(stkPos + 1 + Rhs - Top, MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,  &integerMatrix.it, &matVariable->rank, matVariable->dims, matVariable->data, NULL);
+      type = I_INT32;
+      CreateHyperMatrixVariable(iVar, MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, 
+				&type, &matVariable->rank, matVariable->dims, matVariable->data,
+				NULL, cell_addr, 2);
     }
-
-  /* Update the list "pointers" */
-  *istk(ilStruct+4) = *istk(ilStruct+3) + *Lstk(stkPos + 2) - *Lstk(stkPos + 1);
-  /* Reinit current variable address */
-  *Lstk(stkPos + 1) = *Lstk(stkPos + 2);
 
   /* ALL OTHER ENTRIES: Fields data */
   prodDims = 1;
@@ -123,69 +119,39 @@ int CreateStructVariable(int stkPos, matvar_t *matVariable)
 
   if (prodDims == 1) /* Scalar struct */
     {
-      listAdr = stkPos + 1;
-
       for (fieldIndex = 0; fieldIndex < nbFields - 2; fieldIndex++)
         {
           /* Create list entry in the stack */
-          if (!CreateMatlabVariable(listAdr + Rhs - Top, allData[fieldIndex])) /* Could not Create Variable */
+          if (!CreateMatlabVariable(iVar, allData[fieldIndex], cell_addr, fieldIndex+3)) /* Could not Create Variable */
             {
               if (allData[fieldIndex]->class_type != 0) /* class is 0 for not initialized fields */
                 {
                   sciprint("Do not know how to read a variable of class %d.\n", allData[fieldIndex]->class_type);
                 }
             }
-          
-          /* Update the returned list "pointers" */
-          *istk(ilStruct+5+fieldIndex) = *istk(ilStruct+4+fieldIndex) + *Lstk(listAdr + 1) - *Lstk(listAdr);
-          /* Reinit current variable address */
-          *Lstk(listAdr) = *Lstk(listAdr + 1);
         }
     }
   else
     {
-      listAdr = stkPos + 1;
-      
-      for (fieldIndex = 1; fieldIndex < nbFields - 1; fieldIndex++)
+      for (fieldIndex = 0; fieldIndex < nbFields - 2; fieldIndex++)
         {
-          sizeOfList = prodDims;
-
-          il = iadr(*Lstk(listAdr));
-          *istk(il) = 15;
-          *istk(il+1) = sizeOfList;
-          *istk(il+2) = 1;
-
-          *Lstk(listAdr+1) = sadr(il+2+sizeOfList+1);
+	  _SciErr = createListInList(pvApiCtx, iVar, cell_addr, fieldIndex+3, prodDims, &cell_entry_addr); MATIO_ERROR;
           
           for (valueIndex = 0; valueIndex < prodDims; valueIndex++)
             {
               /* Create list entry in the stack */
-              if (!CreateMatlabVariable(listAdr + 1 + Rhs - Top, allData[(fieldIndex-1) + (nbFields-2)*valueIndex])) /* Could not Create Variable */
+              if (!CreateMatlabVariable(iVar, allData[(fieldIndex) + (nbFields-2)*valueIndex], cell_entry_addr, valueIndex+1)) /* Could not Create Variable */
                 {
-                  if (allData[(fieldIndex-1) + (nbFields-2)*valueIndex]->class_type != 0) /* class is 0 for not initialized fields */
+                  if (allData[(fieldIndex) + (nbFields-2)*valueIndex]->class_type != 0) /* class is 0 for not initialized fields */
                     {
-                      sciprint("Do not know how to read a variable of class %d.\n", allData[(fieldIndex-1) + (nbFields-2)*valueIndex]->class_type);
+                      sciprint("Do not know how to read a variable of class %d.\n", allData[(fieldIndex) + (nbFields-2)*valueIndex]->class_type);
                     }
                 }
-
-              /* Update the list "pointers" */
-              *istk(il+2+valueIndex+1) = *istk(il+1+valueIndex+1) + *Lstk(listAdr + 2) - *Lstk(listAdr + 1);
-              /* Reinit current variable address */
-              *Lstk(listAdr + 1) = *Lstk(listAdr + 2);
             }
-
-          /* Update the returned list "pointers" */
-          *istk(ilStruct+4+fieldIndex) = *istk(ilStruct+3+fieldIndex) + *Lstk(stkPos + 2) - *Lstk(stkPos + 1);
-          /* Reinit current variable address */
-          *Lstk(stkPos + 1) = *Lstk(stkPos + 2);
-          
         }
     }
-  /* Emulate stack2.c returned values management */
-  C2F(intersci).ntypes[stkPos - Top + Rhs - 1] = '$';
-  C2F(intersci).lad[stkPos - Top + Rhs - 1] = ilStruct + 2 + nbFields + 1;
 
-  //freeArrayOfString(fieldNames); /* TODO why is this line commented out ? */
+  freeArrayOfString(fieldNames, nbFields);
 
   return TRUE;
 }

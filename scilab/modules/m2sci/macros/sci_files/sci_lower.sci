@@ -11,7 +11,7 @@ function [tree]=sci_lower(tree)
 // M2SCI function
 // Conversion function for Matlab lower()
 // Input: tree = Matlab funcall tree
-// Ouput: tree = Scilab equivalent for tree
+// Output: tree = Scilab equivalent for tree
 // Emulation function: mtlb_lower()
 
 opt=part("lower",1)

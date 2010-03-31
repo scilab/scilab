@@ -36,7 +36,7 @@ if exists("m2ssci_fileslib")==0 then load("SCI/modules/m2sci/macros/sci_files/li
 // Convert paths so that they can be used according to the platform
 
 sep = filesep();
-if MSDOS then 
+if getos() == 'Windows' then 
   Paths=strsubst(Paths,'/',sep)
   res_path=strsubst(res_path,'/',sep)
 else
@@ -75,7 +75,7 @@ end
 mfiles=[]
 for k=1:size(Paths,'*')
   path = Paths(k);
-  mfiles = [mfiles; ls('*.m')];
+  mfiles = [mfiles; ls(path+'*.m')];
 end
 
 // fnamvect is a vector which contains all M-files names (just the names) found in Paths

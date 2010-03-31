@@ -200,4 +200,32 @@ public class ScilabWindowBridge {
 		window.getAsSimpleWindow().updateDimensions();
 	}
 	
+	/**
+	* Deiconified Window
+	*/
+	public static void windowDeiconified(Window window) {
+		window.getAsSimpleWindow().windowDeiconified();
+	}
+	
+	/**
+	* Iconified Window
+	*/
+	public static void windowIconified(Window window) {
+		window.getAsSimpleWindow().windowIconified();
+	}
+	
+	/**
+	* Maximized Window
+	*/
+	public static void windowMaximized(Window window) {
+		window.getAsSimpleWindow().windowMaximized();
+	}
+	
+	/**
+	* Window is in the "normal" state.
+	*/
+	public static void windowNormal(Window window) {
+		window.getAsSimpleWindow().windowNormal();
+	}
+
 }

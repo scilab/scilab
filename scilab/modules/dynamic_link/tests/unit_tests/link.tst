@@ -11,7 +11,7 @@
 
 ilib_verbose(0);
 
-if MSDOS then
+if getos() == 'Windows' then
   TMP_OS_DIR = getenv('TMP','err');
   if (TMP_OS_DIR == 'err') then pause,end;
 else

@@ -41,9 +41,13 @@ import com.mxgraph.util.mxUtils;
  * Generate code for the current graph.
  */
 public class CodeGenerationAction extends SuperBlockSelectedAction {
+	/** Name of the action */
 	public static final String NAME = XcosMessages.CODE_GENERATION;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = 0;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = 0;
 	
     /**
@@ -131,7 +135,6 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
 	    block.setInterfaceFunctionName(modifiedBlock.getInterfaceFunctionName());
 	    block.setSimulationFunctionName(modifiedBlock.getSimulationFunctionName());
 	    block.setSimulationFunctionType(modifiedBlock.getSimulationFunctionType());
-	    block.setStyle("blockWithLabel");
 	    mxUtils.setCellStyles(block.getParentDiagram().getModel(),
 		    new Object[] {block} , mxConstants.STYLE_SHAPE, mxConstants.SHAPE_RECTANGLE);
 	    block.setValue(block.getSimulationFunctionName());

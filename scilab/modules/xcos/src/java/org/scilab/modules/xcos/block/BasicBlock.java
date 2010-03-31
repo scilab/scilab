@@ -24,7 +24,10 @@ import java.util.Map;
 
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.ScilabGraphUniqueObject;
 import org.scilab.modules.graph.actions.CopyAction;
 import org.scilab.modules.graph.actions.CutAction;
 import org.scilab.modules.graph.actions.DeleteAction;
@@ -46,11 +49,11 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 import org.scilab.modules.hdf5.write.H5Write;
 import org.scilab.modules.xcos.Xcos;
-import org.scilab.modules.xcos.XcosUIDObject;
 import org.scilab.modules.xcos.actions.ShowHideShadowAction;
 import org.scilab.modules.xcos.block.actions.BlockDocumentationAction;
 import org.scilab.modules.xcos.block.actions.BlockParametersAction;
 import org.scilab.modules.xcos.block.actions.BorderColorAction;
+import org.scilab.modules.xcos.block.actions.EditBlockFormatAction;
 import org.scilab.modules.xcos.block.actions.FilledColorAction;
 import org.scilab.modules.xcos.block.actions.FlipAction;
 import org.scilab.modules.xcos.block.actions.MirrorAction;
@@ -83,19 +86,25 @@ import com.mxgraph.model.mxGeometry;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxUtils;
 
-public class BasicBlock extends XcosUIDObject {
-	private static final long serialVersionUID = 2189690915516168262L;
+public class BasicBlock extends ScilabGraphUniqueObject {
+	private static final double DEFAULT_POSITION_X = 10.0;
+	private static final double DEFAULT_POSITION_Y = 10.0;
+	private static final double DEFAULT_WIDTH = 40.0;
+	private static final double DEFAULT_HEIGHT = 40.0;
+	
 	private static final String INTERNAL_FILE_PREFIX = "xcos";
 	private static final String INTERNAL_FILE_EXTENSION = ".h5";
+	
+	private static final Log LOG = LogFactory.getLog(BasicBlock.class);
 	
     private String interfaceFunctionName = "xcos_block";
     private String simulationFunctionName = "xcos_simulate";
     private SimulationFunctionType simulationFunctionType = SimulationFunctionType.DEFAULT;
     private transient XcosDiagram parentDiagram;
     
-    private transient int angle;
-    private transient boolean isFlipped;
-    private transient boolean isMirrored;
+    private int angle;
+    private boolean isFlipped;
+    private boolean isMirrored;
     
 
     // TODO : Must make this types evolve, but for now keep a strong link to Scilab
@@ -210,7 +219,8 @@ public class BasicBlock extends XcosUIDObject {
 		setVisible(true);
 		setVertex(true);
 		setConnectable(false);
-		setGeometry(new mxGeometry(0, 0, 40, 40));
+		setGeometry(new mxGeometry(DEFAULT_POSITION_X, DEFAULT_POSITION_Y,
+				DEFAULT_WIDTH, DEFAULT_HEIGHT));
 		setValue("");
 		setStyle("");
 	}
@@ -241,7 +251,16 @@ public class BasicBlock extends XcosUIDObject {
      * @param interfaceFunctionName interface function name
      */
     public void setInterfaceFunctionName(String interfaceFunctionName) {
-	this.interfaceFunctionName = interfaceFunctionName;
+    	String interfunction = getInterfaceFunctionName();
+    	this.interfaceFunctionName = interfaceFunctionName;
+    	
+    	/*
+    	 * Update style
+    	 */
+    	StyleMap style = new StyleMap(getStyle());
+    	style.remove(interfunction);
+    	style.put(interfaceFunctionName, null);
+    	setStyle(style.toString());
     }
 
     /**
@@ -615,7 +634,6 @@ public class BasicBlock extends XcosUIDObject {
 	final File tempContext;
 	try {
 	    tempInput = File.createTempFile(INTERNAL_FILE_PREFIX, INTERNAL_FILE_EXTENSION, XcosConstants.TMPDIR);
-	    tempInput.deleteOnExit();
 
 	    // Write scs_m
 	    tempOutput = exportBlockStruct();
@@ -634,12 +652,23 @@ public class BasicBlock extends XcosUIDObject {
 	    try {
 			ScilabInterpreterManagement.asynchronousScilabExec(cmd, new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+					if (tempInput.exists()) {
+						LOG.trace("Updating data.");
+						
 					// Now read new Block
 				    BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());
 				    updateBlockSettings(modifiedBlock);
+				    
 				    getParentDiagram().fireEvent(new mxEventObject(XcosEvent.ADD_PORTS, XcosConstants.EVENT_BLOCK_UPDATED, 
 					    currentBlock));
+					} else {
+						LOG.trace("No needs to update data.");
+					}
+					
 				    setLocked(false);
+				    tempInput.delete();
+				    tempOutput.delete();
+				    tempContext.delete();
 				}
 			});
 		} catch (InterpreterException e) {
@@ -682,7 +711,7 @@ public class BasicBlock extends XcosUIDObject {
 
 	// Write context
 	try {
-	    File tempContext = File.createTempFile(INTERNAL_FILE_PREFIX, INTERNAL_FILE_EXTENSION);
+	    File tempContext = File.createTempFile(INTERNAL_FILE_PREFIX, INTERNAL_FILE_EXTENSION, new File(System.getenv("TMPDIR")));
 	    tempContext.deleteOnExit();
 	    int contextFileId = H5Write.createFile(tempContext.getAbsolutePath());
 	    H5Write.writeInDataSet(contextFileId, "context", new ScilabString(context));
@@ -771,8 +800,7 @@ public class BasicBlock extends XcosUIDObject {
 		    BasicBlock block = (BasicBlock) BlockFactory.createClone(BasicBlock.this);
 		    theDiagram.getModel().add(theDiagram.getDefaultParent(), block, 0);
 		    mxGeometry geom = BasicBlock.this.getGeometry();
-		    geom.setX(10);
-		    geom.setY(10);
+		    setDefaultPosition(geom);
 		    theDiagram.getModel().setGeometry(block, geom);
 		    BlockPositioning.updateBlockView(block);
 		}
@@ -793,8 +821,7 @@ public class BasicBlock extends XcosUIDObject {
 		    BasicBlock block = (BasicBlock) BlockFactory.createClone(BasicBlock.this);
 		    theDiagram.getModel().add(theDiagram.getDefaultParent(), block, 0);
 		    mxGeometry geom = BasicBlock.this.getGeometry();
-		    geom.setX(10);
-		    geom.setY(10);
+		    setDefaultPosition(geom);
 		    theDiagram.getModel().setGeometry(block, geom);
 		    BlockPositioning.updateBlockView(block);
 		    block.setParentDiagram(theDiagram);
@@ -820,8 +847,7 @@ public class BasicBlock extends XcosUIDObject {
 			BasicBlock block = (BasicBlock) BlockFactory.createClone(BasicBlock.this);
 			theDiagram.getModel().add(theDiagram.getDefaultParent(), block, 0);
 			mxGeometry geom = BasicBlock.this.getGeometry();
-			geom.setX(10);
-			geom.setY(10);
+		    setDefaultPosition(geom);
 			theDiagram.getModel().setGeometry(block, geom);
 			BlockPositioning.updateBlockView(block);
 		    }
@@ -883,11 +909,6 @@ public class BasicBlock extends XcosUIDObject {
 		value = RegionToSuperblockAction.createMenu(graph);
 		menuList.put(RegionToSuperblockAction.class, value);
 		menu.add(value);
-//		Menu mask = ScilabMenu.createMenu();
-//		mask.setText(XcosMessages.SUPERBLOCK_MASK);
-//		menu.add(mask);
-//		mask.add(SuperblockMaskCreateAction.createMenu(graph));
-//		mask.add(SuperblockMaskRemoveAction.createMenu(graph));
 		/*--- */
 		menu.getAsSimpleContextMenu().addSeparator();
 		/*--- */
@@ -923,8 +944,12 @@ public class BasicBlock extends XcosUIDObject {
 		/*--- */
 		format.addSeparator();
 		/*--- */
-		format.add(BorderColorAction.createMenu(graph));
-		format.add(FilledColorAction.createMenu(graph));
+		if (graph.getSelectionCells().length > 1) {
+			format.add(BorderColorAction.createMenu(graph));
+			format.add(FilledColorAction.createMenu(graph));
+		} else {
+			format.add(EditBlockFormatAction.createMenu(graph));
+		}
 		/*--- */
 		menu.getAsSimpleContextMenu().addSeparator();
 		/*--- */
@@ -1047,5 +1072,14 @@ public class BasicBlock extends XcosUIDObject {
 		
 		isFlipped = Boolean.parseBoolean(map.get(XcosConstants.STYLE_FLIP));
 		isMirrored = Boolean.parseBoolean(map.get(XcosConstants.STYLE_MIRROR));
+	}
+
+	/**
+	 * Set the default block position on the geom
+	 * @param geom the current geom
+	 */
+	private void setDefaultPosition(mxGeometry geom) {
+		geom.setX(DEFAULT_POSITION_X);
+		geom.setY(DEFAULT_POSITION_Y);
 	}
 }

@@ -12,13 +12,16 @@
 
 package org.scilab.modules.xcos;
 
-import java.io.File;
-import java.util.ArrayList;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.CopyAction;
 import org.scilab.modules.graph.actions.CutAction;
@@ -59,9 +62,6 @@ import org.scilab.modules.xcos.actions.DiagramBackgroundAction;
 import org.scilab.modules.xcos.actions.ExportAction;
 import org.scilab.modules.xcos.actions.FitDiagramToViewAction;
 import org.scilab.modules.xcos.actions.InitModelicaAction;
-import org.scilab.modules.xcos.actions.LinkStyleHorizontalAction;
-import org.scilab.modules.xcos.actions.LinkStyleStraightAction;
-import org.scilab.modules.xcos.actions.LinkStyleVerticalAction;
 import org.scilab.modules.xcos.actions.NewDiagramAction;
 import org.scilab.modules.xcos.actions.NormalViewAction;
 import org.scilab.modules.xcos.actions.OpenAction;
@@ -96,10 +96,16 @@ import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionLeft;
 import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionMiddle;
 import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionRight;
 import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionTop;
+import org.scilab.modules.xcos.configuration.ConfigurationManager;
+import org.scilab.modules.xcos.configuration.model.DocumentType;
+import org.scilab.modules.xcos.configuration.model.PositionType;
+import org.scilab.modules.xcos.configuration.utils.ConfigurationConstants;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.link.actions.StyleHorizontalAction;
+import org.scilab.modules.xcos.link.actions.StyleStraightAction;
+import org.scilab.modules.xcos.link.actions.StyleVerticalAction;
 import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.actions.ViewPaletteBrowserAction;
-import org.scilab.modules.xcos.utils.ConfigXcosManager;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.swing.mxGraphOutline;
@@ -117,8 +123,6 @@ public class XcosTab extends ScilabTab {
      */
     private static List<XcosDiagram> diagrams = new Vector<XcosDiagram>();
     private static Map<Integer, AfficheBlock> afficheBlocks = new HashMap<Integer, AfficheBlock>();
-
-    private static List<Menu> recentsMenus = new ArrayList<Menu>();
     
     /*
      * Instance fields
@@ -163,7 +167,7 @@ public class XcosTab extends ScilabTab {
 	this.diagram = diagram;
 
 	initComponents();
-
+	
 	// No SimpleTab.addMember(ScilabComponent ...) so perform a raw association.
 	((SwingScilabTab) getAsSimpleTab()).setContentPane(diagram.getAsComponent());
 	
@@ -257,26 +261,6 @@ public class XcosTab extends ScilabTab {
 	assert xcosDiagram.isOpened();
 	xcosDiagram.setVisible(true);
     }
-    
-    /**
-     * Update menu displaying recent opened files
-     * @param scilabGraph graph
-     */
-    public static void updateRecentOpenedFilesMenu(ScilabGraph scilabGraph) {
-	List<File> recentFiles = ConfigXcosManager
-		.getAllRecentOpenedFiles();
-
-	for (int j = 0; j < recentsMenus.size(); j++) {
-	    ((SwingScilabMenu) recentsMenus.get(j).getAsSimpleMenu())
-		    .removeAll();
-
-	    for (int i = 0; i < recentFiles.size(); i++) {
-		recentsMenus.get(j).add(
-			RecentFileAction.createMenu(scilabGraph, recentFiles
-				.get(i)));
-	    }
-	}
-    }
 
     /**
      * Close the current diagram 
@@ -297,7 +281,12 @@ public class XcosTab extends ScilabTab {
      */
     private void initComponents() {
     	Window window = ScilabWindow.createWindow();
-		window.setDims(WIN_SIZE);
+    	
+		final ConfigurationManager manager = ConfigurationManager.getInstance();
+		final PositionType p = manager.getSettings().getWindows().getDiagram();
+		
+		window.setDims(new Size(p.getWidth(), p.getHeight()));
+		window.setPosition(new Position(p.getX(), p.getY()));
 		
 		/* Create the menu bar */
 		menuBar = createMenuBar();
@@ -317,9 +306,7 @@ public class XcosTab extends ScilabTab {
      * Create the windows menu bar
      */
     private MenuBar createMenuBar() {
-	List<File> recentFiles = ConfigXcosManager
-		.getAllRecentOpenedFiles();
-
+	
 	menuBar = ScilabMenuBar.createMenuBar();
 
 	/** FILE MENU */
@@ -337,11 +324,47 @@ public class XcosTab extends ScilabTab {
 
 	recentsMenu = ScilabMenu.createMenu();
 	recentsMenu.setText(XcosMessages.RECENT_FILES);
+	
+	final ConfigurationManager manager = ConfigurationManager.getInstance();
+	final List<DocumentType> recentFiles = manager.getSettings().getRecentFiles().getDocument();
 	for (int i = 0; i < recentFiles.size(); i++) {
-	    recentsMenu.add(RecentFileAction.createMenu(diagram,
-		    recentFiles.get(i)));
+		URL url;
+		try {
+			url = new URL(recentFiles.get(i).getUrl());
+		} catch (MalformedURLException e) {
+			LogFactory.getLog(XcosTab.class).error(e);
+			break;
+		}
+	    recentsMenu.add(RecentFileAction.createMenu(url));
 	}
-	recentsMenus.add(recentsMenu);
+	
+	ConfigurationManager.getInstance().addPropertyChangeListener(ConfigurationConstants.RECENT_FILES_CHANGED, new PropertyChangeListener() {
+		@Override
+		public void propertyChange(PropertyChangeEvent evt) {
+			assert evt.getPropertyName().equals(ConfigurationConstants.RECENT_FILES_CHANGED);
+			
+			/*
+			 * We only handle menu creation there. Return when this is not the case.
+			 */
+			if (evt.getOldValue() != null) {
+				return;
+			}
+			
+			URL url;
+			try {
+				url = new URL(((DocumentType)evt.getNewValue()).getUrl());
+			} catch (MalformedURLException e) {
+				LogFactory.getLog(XcosTab.class).error(e);
+				return;
+			}
+			
+			((SwingScilabMenu) recentsMenu.getAsSimpleMenu()).add(
+					(SwingScilabMenu) RecentFileAction.createMenu(
+							url).getAsSimpleMenu(), 0);
+		}
+	});
+	
+	
 	fileMenu.add(recentsMenu);
 
 	fileMenu.add(PrintAction.createMenu(diagram));
@@ -439,9 +462,9 @@ public class XcosTab extends ScilabTab {
 
 	linkStyle = ScilabMenu.createMenu();
 	linkStyle.setText(XcosMessages.LINK_STYLE);
-	linkStyle.add(LinkStyleHorizontalAction.createMenu(diagram));
-	linkStyle.add(LinkStyleStraightAction.createMenu(diagram));
-	linkStyle.add(LinkStyleVerticalAction.createMenu(diagram));
+	linkStyle.add(StyleHorizontalAction.createMenu(diagram));
+	linkStyle.add(StyleStraightAction.createMenu(diagram));
+	linkStyle.add(StyleVerticalAction.createMenu(diagram));
 	format.add(linkStyle);
 	format.addSeparator();
 

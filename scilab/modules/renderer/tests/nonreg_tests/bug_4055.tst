@@ -13,7 +13,7 @@
 // <-- Short Description -->
 // From time to time, when I plot a graphic, scilab displays a blank graphic windows.
 
-if MSDOS then
+if getos() == 'Windows' then
 
 if fileinfo(SCI+'\bin\jogl.dll') == [] then pause,end
 if fileinfo(SCI+'\bin\jogl_awt.dll') == [] then pause,end

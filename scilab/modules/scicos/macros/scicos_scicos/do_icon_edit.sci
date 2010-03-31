@@ -76,7 +76,7 @@ function scs_m = do_icon_edit(%pt,scs_m)
   end
   clearfun('xstringb3')
   ///remove unused default menus
-  if ~MSDOS then
+  if getos() <> 'Windows' then
     emen='Edit'
   else
     global LANGUAGE

@@ -17,6 +17,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.io.BasicBlockInfo;
 import org.scilab.modules.xcos.port.BasicPort;
@@ -24,6 +25,7 @@ import org.scilab.modules.xcos.port.Orientation;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxIGraphModel;
+import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxUtils;
 
 /**
@@ -31,6 +33,11 @@ import com.mxgraph.util.mxUtils;
  */
 public final class BlockPositioning {
 
+	/**
+	 * The default grid size. This value is used when the grid size isn't 
+	 * accessible (on the palette). 
+	 */
+	public static final double DEFAULT_GRIDSIZE = 10.0;
 	/** The rotation step of the clockwise and anticlockwise rotation */
 	public static final int ROTATION_STEP = 90;
 	/** The max valid rotation value (always 360°) */
@@ -44,21 +51,94 @@ public final class BlockPositioning {
      * @param block The block we have to work on.
      * @param ports The ports we have to move on the side.
      */
-    public static void updateWestPortsPosition(BasicBlock block, List< ? extends BasicPort> ports) {
-	final mxGeometry blockGeom = block.getGeometry();
-	final int portsSize = ports.size();
-	
-	assert blockGeom != null;
-	
-	beginUpdate(block);
-	for (int i = 0; i < portsSize; ++i) {
-	    mxGeometry portGeom = ((BasicPort) ports.get(i)).getGeometry();
-	    portGeom.setX(-portGeom.getWidth());
-	    portGeom.setY((i + 1.0) * (blockGeom.getHeight() / (portsSize + 1.0))
-		    - (portGeom.getHeight() / 2.0));
+	public static void updateWestPortsPosition(BasicBlock block,
+			List< ? extends BasicPort> ports) {
+		
+		double gridSize;
+		if (block.getParentDiagram() == null) {
+			gridSize = DEFAULT_GRIDSIZE;
+		} else {
+			gridSize = block.getParentDiagram().getGridSize();
+		}
+		
+		final mxGeometry blockGeom = block.getGeometry();
+		assert blockGeom != null;
+		final int portsSize = ports.size();
+		final double blockLength = blockGeom.getHeight();
+		final double segLength = blockLength / portsSize;
+
+		beginUpdate(block);
+		for (int i = 0; i < portsSize; ++i) {
+			mxGeometry portGeom = ((BasicPort) ports.get(i)).getGeometry();
+			
+			double nonVariantPosition = -portGeom.getWidth();
+			double alignedPosition = calculateAlignedPosition(gridSize,
+					segLength, i);
+			
+			portGeom.setX(nonVariantPosition);
+			portGeom.setY(alignedPosition);
+		}
+		endUpdate(block);
 	}
-	endUpdate(block);
-    }
+
+	/**
+	 * Calculate an aligned port position.
+	 * 
+	 * @param gridSize the grid size
+	 * @param segLength the side length
+	 * @param i the current working index
+	 * @return the aligned position on the grid.
+	 */
+	private static double calculateAlignedPosition(final double gridSize,
+			final double segLength, int i) {
+		/*
+		 * The base position is the origin of the port geometry. It is the
+		 * upper-left corner position. 
+		 */
+		final double basePosition = i * segLength + (segLength / 2.0);
+		
+		/*
+		 * The aligned base position is the base position aligned on the grid.
+		 */
+		final double alignedBasePosition = basePosition
+				- Math.IEEEremainder(basePosition, gridSize);
+		
+		/*
+		 * The aligned position is the base position translated from origin to
+		 * the middle of the port. 
+		 */
+		final double alignedPosition = alignedBasePosition
+				- (BasicPort.DEFAULT_PORTSIZE / 2.0);
+		
+		return alignedPosition;
+	}
+	
+	/**
+	 * Align the point on the grid (assuming the grid is rectangular).
+	 * 
+	 * @param p the point
+	 * @param gridSize the gridSize
+	 * @param increment the increment to apply on x and y (typically block size / 2).
+	 */
+	public static void alignPoint(mxPoint p, final double gridSize, final double increment) {
+		double x = p.getX();
+		double y = p.getY();
+		
+		/*
+		 * Align the base point
+		 */
+		x = x - Math.IEEEremainder(x, gridSize);
+		y = y - Math.IEEEremainder(y, gridSize);
+		
+		/*
+		 * Translate from increment
+		 */
+		x = x - increment;
+		y = y - increment;
+		
+		p.setX(x);
+		p.setY(y);
+	}
 
     /**
      * Dispatch ports on Block's _NORTH_ side.
@@ -66,19 +146,31 @@ public final class BlockPositioning {
      * @param ports The ports we have to move on the side.
      */
     public static void updateNorthPortsPosition(BasicBlock block, List< ? extends BasicPort> ports) {
-	final mxGeometry blockGeom = block.getGeometry();
-	final int portsSize = ports.size();
-	
-	assert blockGeom != null;
-	
-	beginUpdate(block);
-	for (int i = 0; i < portsSize; ++i) {
-	    mxGeometry portGeom = ((BasicPort) ports.get(i)).getGeometry();
-	    portGeom.setX((i + 1.0) * (blockGeom.getWidth() / (portsSize + 1.0))
-		    - (portGeom.getWidth() / 2.0));
-	    portGeom.setY(-portGeom.getHeight());
-	}
-	endUpdate(block);
+		double gridSize;
+		if (block.getParentDiagram() == null) {
+			gridSize = DEFAULT_GRIDSIZE;
+		} else {
+			gridSize = block.getParentDiagram().getGridSize();
+		}
+		
+		final mxGeometry blockGeom = block.getGeometry();
+		assert blockGeom != null;
+		final int portsSize = ports.size();
+		final double blockLength = blockGeom.getWidth();
+		final double segLength = blockLength / portsSize;
+
+		beginUpdate(block);
+		for (int i = 0; i < portsSize; ++i) {
+			mxGeometry portGeom = ((BasicPort) ports.get(i)).getGeometry();
+			
+			double nonVariantPosition = -portGeom.getHeight();
+			double alignedPosition = calculateAlignedPosition(gridSize,
+					segLength, i);
+			
+			portGeom.setX(alignedPosition);
+			portGeom.setY(nonVariantPosition);
+		}
+		endUpdate(block);
     }
 
     /**
@@ -87,19 +179,31 @@ public final class BlockPositioning {
      * @param ports The ports we have to move on the side.
      */
     public static void updateEastPortsPosition(BasicBlock block, List< ? extends BasicPort> ports) {
-	final mxGeometry blockGeom = block.getGeometry();
-	final int portsSize = ports.size();
-	
-	assert blockGeom != null;
-	
-	beginUpdate(block);
-	for (int i = 0; i < portsSize; ++i) {
-	    mxGeometry portGeom = ((BasicPort) ports.get(i)).getGeometry();
-	    portGeom.setX(blockGeom.getWidth());
-	    portGeom.setY((i + 1.0) * (blockGeom.getHeight() / (portsSize + 1.0))
-		    - (portGeom.getHeight() / 2.0));
-	}
-	endUpdate(block);
+		double gridSize;
+		if (block.getParentDiagram() == null) {
+			gridSize = DEFAULT_GRIDSIZE;
+		} else {
+			gridSize = block.getParentDiagram().getGridSize();
+		}
+		
+		final mxGeometry blockGeom = block.getGeometry();
+		assert blockGeom != null;
+		final int portsSize = ports.size();
+		final double blockLength = blockGeom.getHeight();
+		final double segLength = blockLength / portsSize;
+
+		beginUpdate(block);
+		for (int i = 0; i < portsSize; ++i) {
+			mxGeometry portGeom = ((BasicPort) ports.get(i)).getGeometry();
+			
+			double nonVariantPosition = blockGeom.getWidth();
+			double alignedPosition = calculateAlignedPosition(gridSize,
+					segLength, i);
+			
+			portGeom.setX(nonVariantPosition);
+			portGeom.setY(alignedPosition);
+		}
+		endUpdate(block);
     }
 
     /**
@@ -108,19 +212,31 @@ public final class BlockPositioning {
      * @param ports The ports we have to move on the side.
      */
     public static void updateSouthPortsPosition(BasicBlock block, List< ? extends BasicPort> ports) {
-	final mxGeometry blockGeom = block.getGeometry();
-	final int portsSize = ports.size();
-	
-	assert blockGeom != null;
-	
-	beginUpdate(block);
-	for (int i = 0; i < portsSize; ++i) {
-	    mxGeometry portGeom = ((BasicPort) ports.get(i)).getGeometry();
-	    portGeom.setX((i + 1.0) * (blockGeom.getWidth() / (portsSize + 1.0))
-		    - (portGeom.getWidth() / 2.0));
-	    portGeom.setY(blockGeom.getHeight());
-	}
-	endUpdate(block);
+		double gridSize;
+		if (block.getParentDiagram() == null) {
+			gridSize = DEFAULT_GRIDSIZE;
+		} else {
+			gridSize = block.getParentDiagram().getGridSize();
+		}
+		
+		final mxGeometry blockGeom = block.getGeometry();
+		assert blockGeom != null;
+		final int portsSize = ports.size();
+		final double blockLength = blockGeom.getWidth();
+		final double segLength = blockLength / portsSize;
+
+		beginUpdate(block);
+		for (int i = 0; i < portsSize; ++i) {
+			mxGeometry portGeom = ((BasicPort) ports.get(i)).getGeometry();
+			
+			double nonVariantPosition = blockGeom.getHeight();
+			double alignedPosition = calculateAlignedPosition(gridSize,
+					segLength, i);
+			
+			portGeom.setX(alignedPosition);
+			portGeom.setY(nonVariantPosition);
+		}
+		endUpdate(block);
     }
 
     /**
@@ -276,8 +392,13 @@ public final class BlockPositioning {
 			/* Apply angle */
 			if (block.getParentDiagram() != null) {
 				final mxIGraphModel model = block.getParentDiagram().getModel();
-				mxUtils.setCellStyles(model, new Object[] {port}, XcosConstants.STYLE_ROTATION, Integer.toString(orientation.getAngle(
-						angle, flipped, mirrored)));
+				final String rot = Integer.toString(orientation.getRelativeAngle(angle, port.getClass(), flipped, mirrored));
+				mxUtils.setCellStyles(model, new Object[] {port}, XcosConstants.STYLE_ROTATION, rot);
+			} else {
+				final StyleMap m = new StyleMap(block.getStyle());
+				final int rot = orientation.getRelativeAngle(angle, port.getClass(), flipped, mirrored);
+				m.put(XcosConstants.STYLE_ROTATION, Integer.toString(rot));
+				block.setStyle(m.toString());
 			}
 
 			endUpdate(block);
@@ -293,6 +414,14 @@ public final class BlockPositioning {
 			updatePortsPosition(block);
 			rotateAllPorts(block);
 		endUpdate(block);
+		
+		/*
+		 * FIXME: #6705; This placement trick doesn't work on the first block
+		 * Dnd as the view is not revalidated.
+		 * 
+		 * On block loading, parentDiagram is null thus placement is not
+		 * performed.
+		 */
 	}
 
     /**

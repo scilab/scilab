@@ -60,12 +60,13 @@ public final class BasicBlockInfo {
 	private static final int GRAPHICS_INSTRUCTION_SIZE = 8;
 	
     /**
-     * Default constructor
+     * This class is a static singleton.
      */
     private BasicBlockInfo() { }
 
     /**
-     * @param ports : list of links
+     * Get all the ids.
+     * @param ports the ports
      * @return array of links id
      */
     public static ScilabDouble getAllLinkId(List< ? extends BasicPort> ports) {
@@ -83,8 +84,8 @@ public final class BasicBlockInfo {
 
 
     /**
-	 * @param ports
-	 *            the ports we are working on
+     * Get all the port data lines.
+     * @param ports the ports
      * @return array of ports data lines
      */
     public static ScilabDouble getAllPortsDataLines(List< ? extends BasicPort> ports) {
@@ -100,8 +101,8 @@ public final class BasicBlockInfo {
     }
 
     /**
-	 * @param ports
-	 *            the ports we are working on
+     * Get all the port data columns
+     * @param ports the ports
      * @return array of ports data columns
      */
     public static ScilabDouble getAllPortsDataColumns(List< ? extends BasicPort> ports) {
@@ -126,8 +127,8 @@ public final class BasicBlockInfo {
     }
 
     /**
-	 * @param ports
-	 *            the ports we are working on
+     * Get all the port data type.
+     * @param ports the ports
      * @return array of ports data type
      */
     public static ScilabType getAllPortsDataType(List< ? extends BasicPort> ports) {
@@ -143,8 +144,8 @@ public final class BasicBlockInfo {
     }
 
     /**
-	 * @param ports
-	 *            the ports we are working on
+     * Get all the ports types
+     * @param ports the ports
      * @return array of ports type
      */
     public static ScilabType getAllPortsType(List< ? extends BasicPort> ports) {
@@ -160,8 +161,8 @@ public final class BasicBlockInfo {
     }
 
     /**
-	 * @param block
-	 *            the block we are working on
+     * Create a graphic property from block parameters.
+     * @param block the current block.
      * @return graphic structure of given block
      */
     public static ScilabMList createScilabGraphicsProperties(BasicBlock block) {
@@ -211,8 +212,8 @@ public final class BasicBlockInfo {
 
 
     /**
-	 * @param block
-	 *            the block we are working on
+     * Create a graphic property from block parameters.
+     * @param block the current block
      * @return model structure of given block
      */
     public static ScilabMList createScilabModelProperties(BasicBlock block) {
@@ -276,8 +277,8 @@ public final class BasicBlockInfo {
     }
 
     /**
-	 * @param block
-	 *            the block we are working on
+     * Create the Scilab gui properties from block parameters
+     * @param block the current block
      * @return gui structure of given block
      */
     public static ScilabString createScilabGuiProperties(BasicBlock block) {
@@ -285,8 +286,8 @@ public final class BasicBlockInfo {
     }
 
     /**
-	 * @param block
-	 *            the block we are working on
+     * Create the Scilab doc properties from block parameters
+     * @param block the current block
      * @return doc structure of given block
      */
     public static ScilabList createScilabDocProperties(BasicBlock block) {
@@ -298,8 +299,8 @@ public final class BasicBlockInfo {
     }
 
     /**
-	 * @param block
-	 *            the block we are working on
+     * Create the Scilab block representation
+     * @param block the current block
      * @return Scilab structure of given block
      */
     public static ScilabMList getAsScilabObj(BasicBlock block) {

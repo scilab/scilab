@@ -10,7 +10,7 @@
 
 function cmd = gencompilationflags_unix(ldflags, cflags, fflags, cc)
   // This function is restricted to Linux/Unix user only
-	if MSDOS then
+	if getos() == 'Windows' then
 	  error(msprintf(gettext("%s: Feature not available under Microsoft Windows.\n"),'gencompilationflags_unix'));
 	  return;
 	end
@@ -33,9 +33,10 @@ function cmd = gencompilationflags_unix(ldflags, cflags, fflags, cc)
 	end
 	
 	// LDFLAGS
-	if ldflags <> '' then
-		cmd = cmd +" LDFLAGS="""+ldflags+""""
-	end
+	// Do not set the LDFLAGS See bug #4787
+	//	if ldflags <> '' then
+	//		cmd = cmd +" LDFLAGS="""+ldflags+""""
+	//	end
 	
 	// FFLAGS
 	if fflags <> '' then

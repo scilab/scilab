@@ -96,7 +96,7 @@ public class XpadPrintPreviewWindow extends JDialog {
 		};
 		printButton.addActionListener(actionListener);
 		printButton.setAlignmentY(0.5f);
-		printButton.setMargin(new Insets(4,6,4,6));
+		printButton.setMargin(new Insets(4, 6, 4, 6));
 		toolbar.add(printButton);
 
 		// Close the preview window
@@ -108,7 +108,7 @@ public class XpadPrintPreviewWindow extends JDialog {
 		};
 		printButton.addActionListener(actionListener);
 		printButton.setAlignmentY(0.5f);
-		printButton.setMargin(new Insets(2,6,2,6));
+		printButton.setMargin(new Insets(2, 6, 2, 6));
 		toolbar.add(printButton);
 
 		// Scale of the preview

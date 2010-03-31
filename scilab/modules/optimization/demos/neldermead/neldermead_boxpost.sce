@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
+// Copyright (C) 2010 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -14,70 +15,51 @@
 //   Rosenbrock's Post Office
 //
 
-mprintf("Illustrates Box'' algorithm on Box problem A.\n");
-mprintf("Defining Box Problem A function...\n");
+mprintf("Illustrates Box'' algorithm on Rosenbrock''s Post Office Problem.\n");
+mprintf("Defining Rosenbrock Post Office function...\n");
 
 //
 //  Reference:
 //
-//   M.J.Box, 
-//   "A new method of constrained optimization 
-//   and a comparison with other methods".
-//   The Computer Journal, Volume 8, Number 1, 1965, 42--52
-//   Problem A
+//    Algorithm 454
+//    The complex method for constrained
+//    optimization
+//    Richardson, Kuester
+//    1971
 //
-//   Algorithm 454: the complex method for constrained optimization [E4]
-//   Communications of the ACM, Volume 16 ,  Issue 8  (August 1973)
-//   Pages: 487 - 489   
+//    An automatic method for finding the
+//    greatest or least value of a function
+//    Rosenbrock
+//    1960
 //
 //   Richardson and Kuester Results :
-//   F=1.0000
-//   X1 = 3.0000
-//   X2 = 1.7320
-//   Iterations : 68
+//   F=3456
+//   X1 = 24.01
+//   X2 = 12.00
+//   X3 = 12.00
+//   Iterations : 72
 //
 //
-// Note 
-//    The maximum bound for the parameter x1
-//    is not indicated in Box's paper, but indicated in "Algo 454".
-//    The maximum bound for x2 is set to 100/sqrt(3) and satisfies the constraint on x2.
-//    The original problem was to maximize the cost function.
-//    Here, the problem is to minimize the cost function.
 
 //
-// boxproblemB --
-//   Computes the Box problem B cost function and 
+// fpostoffice --
+//   Computes the Post Office cost function and 
 //   inequality constraints.
 //
 // Arguments
 //   x: the point where to compute the function
 //   index : the stuff to compute
-//   data : the parameters of Box cost function
-// Note
-//  The following protocol is used
-//  * if index=1, or no index, returns the value of the cost 
-//    function (default case)
-//  * if index=2, returns the value of the nonlinear inequality 
-//    constraints, as a row array
-//  * if index=3, returns an array which contains
-//    at index #0, the value of the cost function  
-//    at index #1 to the end is the list of the values of the nonlinear 
-//    constraints
-//  The inequality constraints are expected to be positive.
 //
-function [ f , c , index ] = boxproblemB ( x , index )
-  if (~isdef('index','local')) then
-    index = 1
+function [ f , c , index ] = fpostoffice ( x , index )
+  f = []
+  c = []
+  if ( index==2 | index==6 ) then
+    f = -x(1) * x(2) * x(3)
   end
-  x3 = x(1) + sqrt(3.0) * x(2)
-  if ( index==1 | index==3 ) then
-    f = -(9.0 - (x(1) - 3.0) ^ 2) * x(2) ^ 3 / 27.0 / sqrt(3.0)
-  end
-  if ( index==2 | index==3 ) then
-      c1 = x(1) / sqrt(3.0) - x(2)
-      c2 = x3
-      c3 = 6.0 - x3
-      c = [c1 c2 c3]
+  if ( index==5 | index==6 ) then
+      c1 = x(1) + 2 * x(2) + 2 * x(3)
+      c2 = 72 - c1
+      c = [c1 c2]
   end
 endfunction
 
@@ -88,25 +70,25 @@ endfunction
 //
 rand("seed" , 0)
 
-x0 = [1.0 0.5].';
-// Compute f(x0) : should be close to -0.0133645895646
-[ fx0 , c, index ] = boxproblemB ( x0 , 1 );
-mprintf("Computed fx0 = %e (expected = %e)\n",fx0 , -0.0133645895646 );
-result = boxproblemB ( x0 , 2 );
-mprintf("Computed Constraints(x0) = [%e %e %e]\n", ...
-  result(1), result(2), result(3) );
-mprintf("Expected Constraints(x0) = [%e %e %e]\n", ...
-  0.0773503 , 1.8660254 , 4.1339746 );
+x0 = [1.0 1.0 1.0].';
+// Compute f(x0) : should be close to -1
+fx0 = fpostoffice ( x0 , 2 );
+mprintf("Computed fx0 = %e (expected = %e)\n",fx0 , -1 );
+[ fx0 , cx0, index ] = fpostoffice ( x0 , 6 );
+mprintf("Computed Constraints(x0) = [%e %e]\n", ...
+  cx0(1), cx0(2) );
+mprintf("Expected Constraints(x0) = [%e %e]\n", ...
+  5 , 67 );
 
 
-xopt = [3.0 1.7320508075688774].';
-// Compute f(xopt) : should be -1.0
-fopt = boxproblemB ( xopt );
-mprintf("Computed fopt = %e (expected = %e)\n", fopt , -1.0 );
+xopt = [24 12 12].';
+// Compute f(xopt) : should be 3456
+fopt = fpostoffice ( xopt );
+mprintf("Computed fopt = %e (expected = %e)\n", fopt , -3456 );
 
 nm = neldermead_new ();
-nm = neldermead_configure(nm,"-numberofvariables",2);
-nm = neldermead_configure(nm,"-function",boxproblemB);
+nm = neldermead_configure(nm,"-numberofvariables",3);
+nm = neldermead_configure(nm,"-function",fpostoffice);
 nm = neldermead_configure(nm,"-x0",x0);
 nm = neldermead_configure(nm,"-maxiter",300);
 nm = neldermead_configure(nm,"-maxfunevals",300);
@@ -115,11 +97,11 @@ nm = neldermead_configure(nm,"-verbose",1);
 logfile = TMPDIR + "\postoffice.txt";
 nm = neldermead_configure(nm,"-logfile" , logfile );
 nm = neldermead_configure(nm,"-verbosetermination",1);
-nm = neldermead_configure(nm,"-boundsmin",[0.0 0.0]);
-nm = neldermead_configure(nm,"-boundsmax",[100.0 57.735026918962582]);
+nm = neldermead_configure(nm,"-boundsmin",[0.0 0.0 0.0]);
+nm = neldermead_configure(nm,"-boundsmax",[42.0 42.0 42.0]);
 // Configure like Box
 nm = neldermead_configure(nm,"-simplex0method","randbounds");
-nm = neldermead_configure(nm,"-nbineqconst",3);
+nm = neldermead_configure(nm,"-nbineqconst",2);
 nm = neldermead_configure(nm,"-tolxmethod" , %f );
 nm = neldermead_configure(nm,"-tolsimplexizemethod",%f);
 nm = neldermead_configure(nm,"-boxtermination" , %t );
@@ -128,15 +110,15 @@ nm = neldermead_configure(nm,"-boxboundsalpha" , 0.0001 );
 
 //
 // Check that the cost function is correctly connected.
-// The index must be provided, because the additionnal argument "data"
-// comes after.
 //
-[ nm , result ] = neldermead_function ( nm , x0 , 1 );
+[ nm , result ] = neldermead_function ( nm , x0 );
 //
 // Perform optimization
 //
+mprintf("Searching (please wait)...\n");
 nm = neldermead_search(nm);
 neldermead_display(nm);
+mprintf("==========================\n");
 xcomp = neldermead_get(nm,"-xopt");
 mprintf("x computed=%s\n",strcat(string(xcomp)," "));
 mprintf("x expected=%s\n",strcat(string(xopt)," "));

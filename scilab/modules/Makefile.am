@@ -82,8 +82,9 @@ parameters \
 matio \
 atoms \
 hdf5 \
+graph\
 xcos \
-xpad
+xpad 
 
 #umfpack
 
@@ -138,7 +139,6 @@ GUI_LIBS += $(top_builddir)/modules/hdf5/libscihdf5-forceload.la
 endif
 
 NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
-	$(top_builddir)/modules/renderer/libscirenderer-disable.la \
 	$(top_builddir)/modules/graphics/libscigraphics-disable.la \
 	$(top_builddir)/modules/graphic_export/libscigraphic_export-disable.la \
 	$(top_builddir)/modules/console/libsciconsole-disable.la \

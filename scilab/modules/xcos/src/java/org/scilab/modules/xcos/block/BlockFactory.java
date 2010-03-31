@@ -19,9 +19,12 @@ import org.scilab.modules.xcos.block.io.ExplicitOutBlock;
 import org.scilab.modules.xcos.block.io.ImplicitInBlock;
 import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
 import org.scilab.modules.xcos.block.positionning.GroundBlock;
+import org.scilab.modules.xcos.block.positionning.RoundBlock;
 import org.scilab.modules.xcos.block.positionning.VoltageSensorBlock;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.utils.XcosMessages;
+
+import com.mxgraph.model.mxICell;
 
 /**
  * Ease the creation of blocks
@@ -43,10 +46,21 @@ public final class BlockFactory {
 		DSUPER(new SuperBlock(true)),
 		/** @see ConstBlock */
 		CONST_m(new ConstBlock()),
-		/** @see ConstBlock */
 		CONST(CONST_m.getSharedInstance()),
 		/** @see ConstBlock */
 		CONST_f(CONST_m.getSharedInstance()),
+		/** @see PrintBlock */
+		FROM(new PrintBlock(XcosMessages.BLOCK_FROM)),
+		/** @see PrintBlock */
+		GOTO(new PrintBlock(XcosMessages.BLOCK_GOTO)),
+		/** @see PrintBlock */
+		CLKFROM(FROM.getSharedInstance()),
+		/** @see PrintBlock */
+		CLKGOTO(GOTO.getSharedInstance()),
+		/** @see PrintBlock */
+		FROMMO(FROM.getSharedInstance()),
+		/** @see PrintBlock */
+		GOTOMO(GOTO.getSharedInstance()),
 		/** @see AfficheBlock */
 		AFFICH_m(new AfficheBlock()),
 		/** @see AfficheBlock */
@@ -80,7 +94,14 @@ public final class BlockFactory {
 		/** @see GroundBlock */
 		Ground(new GroundBlock()),
 		/** @see VoltageSensorBlock */
-		VoltageSensor(new VoltageSensorBlock());
+		VoltageSensor(new VoltageSensorBlock()),
+		/** @see RoundBlock */
+		SUM_f(new RoundBlock("SUM_f")),
+		/** @see RoundBlock */
+		PROD_f(new RoundBlock("PROD_f")),
+		/** @see RoundBlock */
+		CLKSOMV_f(new RoundBlock("CLKSOMV_f")),
+		;
 		
 		private BasicBlock block;
 		/**
@@ -164,7 +185,8 @@ public final class BlockFactory {
 
 			/* Clone children */
 			for (int i = 0; i < block.getChildCount(); i++) {
-				clone.addPort((BasicPort) block.getChildAt(i).clone());
+				mxICell port = block.getChildAt(i);
+				clone.insert((mxICell) port.clone());
 			}
 
 			return clone;

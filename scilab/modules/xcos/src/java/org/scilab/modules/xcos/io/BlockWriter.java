@@ -26,25 +26,33 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabTList;
 import org.scilab.modules.hdf5.write.H5Write;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.TextBlock;
+import org.scilab.modules.xcos.graph.ScicosParameters;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.link.BasicLink;
 
 /**
  * Class used to write a diagram contents into an HDF5 file
- * @author Vincent COUVERT
- *
  */
 public final class BlockWriter {
+	/** Diagram MList header (scs_m) */
 	private static final String[] DIAGRAM_FIELDS = {"diagram", "props", "objs", "version"};
+	/** Diagram properties MList header (scs_m.props) */
 	private static final String[] PROPS_FIELDS = {"params", "wpar", "title", "tol", "tf", "context", "void1", "options", "void2", "void3", "doc"};
+	/** Diagram options MList header (scs_m.props.options) */
+	private static final String[] OPTS_FIELDS = {"scsopt", "3D", "Background", "Link", "ID", "Cmap"};
+	/**
+	 * Window properties (scs_m.props.wpar).
+	 * 
+	 * This property has no impact among simulation
+	 */
+	private static final double[][] WPAR = {{600, 450, 0, 0, 600, 450}};
 	
 	// The window parameters and diagram options are not used in the simulation
 	// thus we set it to default values.
 	// As the values are scicos dependent we avoid using constant references.
 	// CSOFF: MagicNumber
-	private static final double[][] WPAR = {{600, 450, 0, 0, 600, 450}}; 
 	private static final ScilabTList DIAGRAM_OPTIONS = new ScilabTList(
-			new String[] {"scsopt", "3D", "Background", "Link", "ID", "Cmap"}) {
+			OPTS_FIELDS) {
 		{
 			add(new ScilabList() { // 3D
 				{
@@ -64,23 +72,22 @@ public final class BlockWriter {
 		}
 	};
 	// CSON: MagicNumber
-
+	
     /**
-     * Constructor (MUST NOT BE USED !!!)
+     * This class is a static singleton thus constructor must not be used.
      */
-    private BlockWriter() {
-
-    }
+    private BlockWriter() { }
 
     /**
-     * Main writing function
+     * Write a diagram to any file.
+     * 
      * @param hdf5File file to create
      * @param diagram diagram to save
      * @return true if file created successfully
      */
     public static boolean writeDiagramToFile(String hdf5File, XcosDiagram diagram)	{
 
-	boolean isSuccess = true; // TODO error management
+	boolean isSuccess = true;
 
 	int fileId = H5Write.createFile(hdf5File);
 	
@@ -90,6 +97,7 @@ public final class BlockWriter {
 	    H5Write.writeInDataSet(fileId, "scs_m", data);
 	} catch (HDF5Exception e) {
 	    e.printStackTrace();
+	    isSuccess = false;
 	}
 	H5Write.closeFile(fileId);
 
@@ -97,8 +105,10 @@ public final class BlockWriter {
     }
 
     /**
-     * @param diagram The diagram to convert
-     * @return The diagram formatted as an mlist
+     * Convert a diagram to a ScilabType.
+     * 
+     * @param diagram the diagram to be converted
+     * @return the scilab formatted datas
      */
     public static ScilabMList convertDiagramToMList(XcosDiagram diagram) {
 	ScilabMList data = new ScilabMList(DIAGRAM_FIELDS);
@@ -117,12 +127,11 @@ public final class BlockWriter {
      */
     private static ScilabTList getDiagramProps(XcosDiagram diagram) {
 	ScilabTList data = new ScilabTList(PROPS_FIELDS);
-	// This propertie has no impact among simulation
 	data.add(new ScilabDouble(WPAR)); // wpar
 	data.add(new ScilabString(diagram.getTitle())); // title
 	data.add(new ScilabDouble(createTol(diagram))); // tol
-	data.add(new ScilabDouble(diagram.getFinalIntegrationTime())); // tf
-	data.add(new ScilabString(diagram.getContext())); // context
+	data.add(new ScilabDouble(diagram.getScicosParameters().getFinalIntegrationTime())); // tf
+	data.add(new ScilabString(diagram.getScicosParameters().getContext())); // context
 	data.add(new ScilabDouble()); // void1
 	data.add(DIAGRAM_OPTIONS); // options
 	data.add(new ScilabDouble()); // void2
@@ -138,13 +147,14 @@ public final class BlockWriter {
      * @return a matrix of values
      */
     private static double[][] createTol(XcosDiagram diagram) {
-	double[][] tol = {{diagram.getIntegratorAbsoluteTolerance(), 
-	    diagram.getIntegratorRelativeTolerance(),
-	    diagram.getToleranceOnTime(),
-	    diagram.getMaxIntegrationTimeinterval(),
-	    diagram.getRealTimeScaling(),
-	    diagram.getSolver(),
-	    diagram.getMaximumStepSize()}};
+    	ScicosParameters parameters = diagram.getScicosParameters();
+	double[][] tol = {{parameters.getIntegratorAbsoluteTolerance(), 
+	    parameters.getIntegratorRelativeTolerance(),
+	    parameters.getToleranceOnTime(),
+	    parameters.getMaxIntegrationTimeinterval(),
+	    parameters.getRealTimeScaling(),
+	    parameters.getSolver(),
+	    parameters.getMaximumStepSize()}};
 	return tol;
     }
 
@@ -206,7 +216,7 @@ public final class BlockWriter {
      * @return the Scilab String
      */
     private static ScilabString getDiagramVersion(XcosDiagram diagram) {
-	return new ScilabString(diagram.getVersion());
+	return new ScilabString(diagram.getScicosParameters().getVersion());
     }
 
 

@@ -10,7 +10,7 @@
 a = chdir(TMPDIR);
 if(a <> %T) then pause, end
 
-if MSDOS then
+if getos() == 'Windows' then
 	unix_w(jre_path()+"\bin\java.exe -cp "+SCI+"\modules\localization\tests\unit_tests CreateDir");
 else
 	unix_w(jre_path()+"/bin/java -classpath "+SCI+"/modules/localization/tests/unit_tests CreateDir");

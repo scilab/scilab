@@ -36,35 +36,35 @@ public interface Tree extends Widget {
 	 * Get the label of a tree node
 	 * @return label of a node
 	 */
-	public String getLabel();
+	String getLabel();
 	
 	/**
 	 * Get the icon image of a tree node
 	 * @return icon of a node
 	 */
-	public Icon getIcon();
+	Icon getIcon();
 	
 	/**
 	 * Get the callback of a tree node
 	 * @return callback of a node
 	 */
-	public CallBack getCallback();
+	CallBack getCallback();
 	
 	/**
 	 * Add child to a tree
 	 * @param firstChild to add
 	 */
-	public void addChild(Tree firstChild);
+	void addChild(Tree firstChild);
 	
 	/**
 	 * Get children of a tree
 	 * @return vector of children
 	 */
-	public Vector<Tree> getChildren();
+	Vector<Tree> getChildren();
 
 	/**
 	 * Display a tree
 	 */
-	public void showTree();
+	void showTree();
 	
 }

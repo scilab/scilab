@@ -7,6 +7,10 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function b=%hm_isreal(M)
-  b=isreal(M.entries)
+function b=%hm_isreal(M,eps)
+  if argn(2)==1 then
+    b=isreal(M.entries)
+  else
+    b=isreal(M.entries,eps)
+  end
 endfunction

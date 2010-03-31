@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -392,6 +392,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\io.rc"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_file.c"
 				>
 			</File>
@@ -493,6 +497,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\resource.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\setenvc.h"
 				>
 			</File>
@@ -524,6 +532,10 @@
 					>
 				</File>
 			</Filter>
+		</Filter>
+		<Filter
+			Name="Resource File"
+			>
 		</Filter>
 		<File
 			RelativePath="..\..\io.iss"

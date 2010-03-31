@@ -6,7 +6,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- JVM NOT MANDATORY -->
-if MSDOS then
+if getos() == 'Windows' then
   txt = ['message:',
 	    '  @echo ------------------------------------------',
         '  @echo From Makefile.mak',

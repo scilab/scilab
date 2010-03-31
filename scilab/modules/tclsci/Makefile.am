@@ -81,8 +81,7 @@ libscitclsci_la_etc_DATA = etc/tclsci.quit etc/tclsci.start
 
 ### TCL macros ###
 libscitclsci_la_tcldir = $(mydatadir)
-nobase_libscitclsci_la_tcl_DATA = tcl/utils/tk_choose.tcl \
-tcl/utils/Notebook.tcl \
+nobase_libscitclsci_la_tcl_DATA = tcl/utils/Notebook.tcl \
 tcl/utils/Balloon.tcl \
 tcl/utils/Combobox.tcl \
 tcl/sciGUI/data/initial.help \

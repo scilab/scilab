@@ -27,9 +27,13 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * New Diagram creation
  */
 public final class NewDiagramAction extends DefaultAction {
+	/** Name of the action */
 	public static final String NAME = XcosMessages.NEW_DIAGRAM;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "document-new.png";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = KeyEvent.VK_N;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
 	/**

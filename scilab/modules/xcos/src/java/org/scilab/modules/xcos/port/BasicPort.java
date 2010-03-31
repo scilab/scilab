@@ -12,7 +12,7 @@
 
 package org.scilab.modules.xcos.port;
 
-import org.scilab.modules.xcos.XcosUIDObject;
+import org.scilab.modules.graph.ScilabGraphUniqueObject;
 import org.scilab.modules.xcos.utils.XcosConstants;
 
 import com.mxgraph.model.mxGeometry;
@@ -20,13 +20,16 @@ import com.mxgraph.model.mxGeometry;
 /**
  * Common implementation of any Port.
  */
-public abstract class BasicPort extends XcosUIDObject {
+public abstract class BasicPort extends ScilabGraphUniqueObject {
 
+	/**
+     * The side-size of any port. All ports must have the same size.
+     */
+    public static final int DEFAULT_PORTSIZE = 8;
+	
 	private static final long serialVersionUID = -5022701071026919015L;
     private static final int DEFAULT_DATALINES = -1;
     private static final int DEFAULT_DATACOLUMNS = -2;
-    
-    private static final int DEFAULT_PORTSIZE = 8;
     
     private int ordering;
     private int connectedLinkId;
@@ -37,8 +40,10 @@ public abstract class BasicPort extends XcosUIDObject {
     private transient String typeName;
 
     /** Type of any dataport */
-    public enum Type { 
+    public enum Type {
+    /** The link direction as no impact on simulation */
 	IMPLICIT,
+	/** The link keep its direction on simulation */
 	EXPLICIT;
 
 	/**
@@ -58,14 +63,23 @@ public abstract class BasicPort extends XcosUIDObject {
 
     /** Type of any data on any dataport */
     public enum DataType {
+    	/** A not specific type */
     	UNKNOW_TYPE,
+    	/** Data is real (double) numbers */
     	REAL_MATRIX,
+    	/** Data is complex (double + i * double) numbers */
     	COMPLEX_MATRIX,
+    	/** Data is int32 (32 bits) numbers */
     	INT32_MATRIX,
+    	/** Data is int16 (16 bits) numbers */
     	INT16_MATRIX,
+    	/** Data is int8 (8bits) numbers */
     	INT8_MATRIX,
+    	/** Data is uint32 (unsigned 32 bits) numbers */
     	UINT32_MATRIX,
+    	/** Data is uint16 (unsigned 16 bits) numbers */
     	UINT16_MATRIX,
+    	/** Data is uint8 (unsigned 8 bits) numbers */
     	UINT8_MATRIX;
 
     	/**

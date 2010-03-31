@@ -16,7 +16,7 @@
 // <-- Short Description -->
 // ilib_for_link fails with lcc-win32
 
-if MSDOS then
+if getos() == 'Windows' then
   if with_lcc() then
     if fileinfo(SCIHOME + '/lcclib/blaspluslcc.lib') <> [] then pause,end
     if fileinfo(SCIHOME + '/lcclib/blasplus.lib') == [] then pause,end

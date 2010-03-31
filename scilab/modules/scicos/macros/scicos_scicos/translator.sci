@@ -29,7 +29,7 @@ function [ok]=translator(filemo,Mblocks,_Modelica_libs,Flat)
 
   // TO DO : rename filename too generic
   TRANSLATOR_FILENAME = 'modelicat';
-  if MSDOS then
+  if getos() == 'Windows' then
     TRANSLATOR_FILENAME = TRANSLATOR_FILENAME + '.exe';
   end
 
@@ -63,7 +63,7 @@ function [ok]=translator(filemo,Mblocks,_Modelica_libs,Flat)
   translator_libs = strcat(' -lib '+ molibs);
   
   // build the sequence of -lib arguments for translator
-  if MSDOS then, Limit=1000;else, Limit=3500;end
+  if getos() == 'Windows' then, Limit=1000;else, Limit=3500;end
   if (length(translator_libs)>Limit) then 
     // OS limitation may restrict the length of shell command line
     // arguments. If there are to many .mo file we catenate them into a
@@ -95,7 +95,7 @@ function [ok]=translator(filemo,Mblocks,_Modelica_libs,Flat)
   // with the with-init option 
   instr = exe + translator_libs + out + ' -with-init -command ""' + name + ' ' + namef + ';"" >""' + Errfile
   
- if MSDOS then
+ if getos() == 'Windows' then
    mputl(instr,outpath+'/gent.bat')
    instr = outpath + '/gent.bat';
  end

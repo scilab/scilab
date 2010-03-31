@@ -18,7 +18,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.base.VertexSelectionDependantAction;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -26,10 +26,14 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Show the parent graph (only installed on a {@link SuperBlockDiagram})
  */
-public class ShowParentAction extends VertexSelectionDependantAction {
+public class ShowParentAction extends DefaultAction {
+	/** Name of the action */
 	public static final String NAME = XcosMessages.SHOW_PARENT;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = KeyEvent.VK_HOME;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 	
 	/**

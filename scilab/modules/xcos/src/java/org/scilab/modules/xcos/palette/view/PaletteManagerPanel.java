@@ -14,16 +14,18 @@ package org.scilab.modules.xcos.palette.view;
 
 import java.awt.Color;
 
+import javax.swing.DropMode;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTree;
+import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreeSelectionModel;
 
 import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.listener.PaletteManagerMouseListener;
 import org.scilab.modules.xcos.palette.listener.PaletteManagerTreeSelectionListener;
-import org.scilab.modules.xcos.palette.model.PaletteManagerModel;
+import org.scilab.modules.xcos.palette.listener.PaletteTreeTransferHandler;
 import org.scilab.modules.xcos.utils.XcosConstants;
 
 /**
@@ -31,7 +33,6 @@ import org.scilab.modules.xcos.utils.XcosConstants;
  */
 public class PaletteManagerPanel extends JSplitPane {
 
-	private static final double DEFAULT_WEIGHT = 0;
 	private PaletteManager controller;
 	
 	/**
@@ -55,8 +56,8 @@ public class PaletteManagerPanel extends JSplitPane {
 		// Set default left component
 		JPanel rootPalette = new JPanel();
 		
-		PaletteManagerModel model = controller.getModel();
-		JTree tree = new JTree(model.getTreeModel());
+		TreeNode root = controller.getRoot();
+		JTree tree = new JTree(new PaletteTreeModel(root));
 		
 		/** Setup tree */
 		tree.getSelectionModel().setSelectionMode(
@@ -64,7 +65,12 @@ public class PaletteManagerPanel extends JSplitPane {
 		tree.addMouseListener(new PaletteManagerMouseListener());
 		tree.addTreeSelectionListener(new PaletteManagerTreeSelectionListener(panel));
 		
-		setLeftComponent(tree);
+		tree.setEditable(false);
+		tree.setDragEnabled(true);
+		tree.setDropMode(DropMode.INSERT);
+		tree.setTransferHandler(new PaletteTreeTransferHandler());
+		
+		setLeftComponent(new JScrollPane(tree));
 		panel.setViewportView(rootPalette);
 		setRightComponent(panel);
 	}
@@ -94,16 +100,16 @@ public class PaletteManagerPanel extends JSplitPane {
 	 * Setup the default layout 
 	 */
 	public void performStartUpLayout() {
-		JTree tree = (JTree) getLeftComponent();
+		JTree tree = (JTree) ((JScrollPane) getLeftComponent()).getViewport()
+				.getView();
 		
 		/* Tree layout*/
-		tree.expandRow(0);
-		tree.setMinimumSize(tree.getPreferredSize());
-		tree.setSelectionRow(1);
-		tree.setRootVisible(true);
+		tree.expandRow(1);
+		tree.setSelectionRow(2);
+		tree.setRootVisible(false);
+		tree.setScrollsOnExpand(true);
 		
 		/* Global layout */
-		setResizeWeight(DEFAULT_WEIGHT);
 		setContinuousLayout(true);
 	}
 }

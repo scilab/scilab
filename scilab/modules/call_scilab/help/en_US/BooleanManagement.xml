@@ -55,9 +55,15 @@
 int B[]={0,0,0,0,1,0,0,1};   /* Declare the matrix */
 int rowB=2, colB=4; /* Size of the matrix */
 char variableNameB[] = "B";
+SciErr sciErr;
 
 /* Write it into Scilab's memory */
-createNamedMatrixOfBoolean(pvApiCtx, variableNameB, rowB, colB, B);
+sciErr = createNamedMatrixOfBoolean(pvApiCtx, variableNameB, rowB, colB, B);
+if(sciErr.iErr)
+{
+	printError(&sciErr, 0);
+}
+
 /*
  * Prior to Scilab 5.2:
  * C2F(cwritebmat)(variableNameB, &rowB, &colB, B, strlen(variableNameB)); 
@@ -74,9 +80,14 @@ int i = 0, j = 0;
 int *matrixOfBooleanB = NULL; /* Int instead of double */
 
 char variableToBeRetrievedB[] = "B";
-
+SciErr sciErr;
 /* First, retrieve the size of the matrix */
-readNamedMatrixOfBoolean(pvApiCtx, variableToBeRetrievedB, &rowB_, &colB_, NULL);
+sciErr = readNamedMatrixOfBoolean(pvApiCtx, variableToBeRetrievedB, &rowB_, &colB_, NULL);
+if(sciErr.iErr)
+{
+	printError(&sciErr, 0);
+}
+
 /*
  * Prior to Scilab 5.2:
  * C2F(cmatbptr)(variableToBeRetrievedB, &rowB_, &colB_, &lp_, strlen(variableToBeRetrievedB));
@@ -86,7 +97,12 @@ readNamedMatrixOfBoolean(pvApiCtx, variableToBeRetrievedB, &rowB_, &colB_, NULL)
 matrixOfBooleanB=(int*)malloc((rowB_*colB_)*sizeof(int));
 
 /* Load the matrix */
-readNamedMatrixOfBoolean(pvApiCtx, variableToBeRetrievedB, &rowB_, &colB_, matrixOfBooleanB);
+sciErr = readNamedMatrixOfBoolean(pvApiCtx, variableToBeRetrievedB, &rowB_, &colB_, matrixOfBooleanB);
+if(sciErr.iErr)
+{
+	printError(&sciErr, 0);
+}
+
 /*
  * Prior to Scilab 5.2:
  * C2F(creadbmat)(variableToBeRetrievedB,&rowB_,&colB_,matrixOfBooleanB,strlen(variableToBeRetrievedB) );

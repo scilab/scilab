@@ -17,13 +17,6 @@ function [tree]=sci_repmat(tree)
 // repmat(A,m)
 if rhs==2 then
   [A,m] = getrhs(tree)
-  if is_complex(m) then
-    m=Funcall("real",1,list(m),list(Variable("",m.infer)))
-  elseif ~is_real(m) then
-    newm=Funcall("real",1,list(m),list(Variable("",m.infer)))
-    repl_poss(newm,m,m,gettext("is Real."));
-    m=newm
-  end
   vtype=A.vtype
   if A.vtype==Unknown then
     tree.name="mtlb_repmat"
@@ -87,20 +80,6 @@ if rhs==2 then
 // repmat(A,m,n)
 else
   [A,m,n] = getrhs(tree)
-  if is_complex(m) then
-    m=Funcall("real",1,list(m),list(Variable("",m.infer)))
-  elseif ~is_real(m) then
-    newm=Funcall("real",1,list(m),list(Variable("",m.infer)))
-    repl_poss(newm,m,m,gettext("is Real."));
-    m=newm
-  end
-  if is_complex(n) then
-    n=Funcall("real",1,list(n),list(Variable("",n.infer)))
-  elseif ~is_real(n) then
-    newn=Funcall("real",1,list(n),list(Variable("",n.infer)))
-    repl_poss(newn,n,n,gettext("is Real."));
-    n=newn
-  end
   vtype=A.vtype
   if A.vtype==Unknown then
     tree.name="mtlb_repmat"

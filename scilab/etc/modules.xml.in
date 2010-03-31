@@ -83,4 +83,6 @@
 <module name="xpad" activate="@GUI_ENABLE@"/>
 <module name="api_scilab" activate="yes"/>
 <module name="helptools" activate="@HELP_ENABLE@"/>
+<module name="graph" activate="@JAVA_ENABLE@"/>
 </modules>
+

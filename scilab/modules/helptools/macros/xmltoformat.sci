@@ -235,7 +235,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 		end
 		
 		chdir(dirs(k));
-		if MSDOS then
+		if getos() == 'Windows' then
 			dirs(k) = getlongpathname(pwd());
 		else
 			dirs(k) = pwd();
@@ -251,7 +251,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 				error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",dirs_m(k)));
 			end
 			chdir(dirs_m(k));
-			if MSDOS then
+			if getos() == 'Windows' then
 				dirs_m(k) = getlongpathname(pwd());
 			else
 				dirs_m(k) = pwd();
@@ -264,7 +264,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 				error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",dirs_c(k)));
 			end
 			chdir(dirs_c(k));
-			if MSDOS then
+			if getos() == 'Windows' then
 				dirs_c(k) = getlongpathname(pwd());
 			else
 				dirs_c(k) = pwd();
@@ -965,7 +965,7 @@ function tree = x2f_dir_to_tree(directory,level)
 	
 	// Get the default title
 	
-	if MSDOS then
+	if getos() == 'Windows' then
 		tmpdirectory = strsubst(directory,"/\\$/","","r");
 	else
 		tmpdirectory = strsubst(directory,"/\/$/","","r");
@@ -1071,6 +1071,13 @@ function xmlfiles = x2f_get_xml_files(directory)
 		lmt   = string(infos(:,7));
 	else
 		lmt   = [];
+	end
+	
+	// xmlfiles => md5sum
+	// =========================================================================
+	
+	if xmlfiles <> [] then
+		xmlfiles = "a" + getmd5(xmlpaths,"string");
 	end
 	
 	// Build the final matrix
@@ -1382,7 +1389,7 @@ function master_document = x2f_tree_to_master( tree )
 	tree_xmllist = x2f_cat_xmllist( tree , [] )
 	
 	// Process the path if under windows
-	if MSDOS then
+	if getos() == 'Windows' then
 		tree_xmllist(:,2) = "file:///"+ getshortpathname(tree_xmllist(:,2));
 	end
 	
