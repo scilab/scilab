@@ -73,7 +73,7 @@ public class InitModelicaAction extends DefaultAction {
 	    temp = File.createTempFile("xcos", ".h5", XcosConstants.TMPDIR);
 	    ((XcosDiagram) getGraph(e)).getRootDiagram().dumpToHdf5File(temp.getAbsolutePath());
 
-	    String command = "import_from_hdf5(\"" + temp.getAbsolutePath() + "\");"
+	    String command = "import_from_hdf5(\"" + temp.getAbsolutePath() + "\"); "
 	    + "xcosConfigureModelica();"
 	    + "deletefile(\"" + temp.getAbsolutePath() + "\");";
 	    try {
