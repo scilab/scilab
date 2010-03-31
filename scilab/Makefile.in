@@ -1729,9 +1729,6 @@ uninstall-am: uninstall-binPROGRAMS uninstall-binSCRIPTS \
 	uninstall-infofilesDATA uninstall-pkgconfigDATA \
 	uninstall-rootDATA uninstall-valgrindDATA
 
-#						-I$(top_srcdir)/modules/operations/includes/ \
-#						-I$(top_srcdir)/modules/elementary_functions/includes/ \
-#						-I$(top_srcdir)/modules/console/includes/
 
 # Don't do it for scilab_cli_bin. We want to be able to call it without
 # the java libs
