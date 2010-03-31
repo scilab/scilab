@@ -220,7 +220,6 @@ int C2F(in2str)(int *n, int *line, char *str, unsigned long str_len);
 int C2F(callscifun)(char *string, unsigned long string_len);
 int C2F(scifunction)(int *number, int *ptr, int *mlhs, int *mrhs);
 int C2F(scistring)(int *ifirst, char *thestring, int *mlhs, int *mrhs, unsigned long thestring_len);
-int C2F(getopcode)(char *string, unsigned long string_len);
 int C2F(scibuiltin)(int *number, int *ifun, int *ifin, int *mlhs, int *mrhs);
 int C2F(sciops)(int *number, int *op, int *mlhs, int *mrhs);
 int C2F(getrhssys)(int *lw, int *n, int *m, int *p, int *ptra, int *ptrb, int *ptrc, int *ptrd, int *ptrx0, double *h__);

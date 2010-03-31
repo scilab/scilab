@@ -183,3 +183,6 @@ Bug fixes:
 * bug 6740 fixed - It was not possible to launch Scilab as Minimized 
                    or Maximized Window.
 
+* bug 6830 fixed - C2F(scistring) in stack2.c was broken for macro names of 
+                   exactly 2 characters.
+
