@@ -22,9 +22,9 @@ ACLOCAL_AMFLAGS = -I m4/
 
 changelogs = CHANGES CHANGES_5.1.X
 
-bin_PROGRAMS		= scilab-bin scilab-cli-bin scilab6-bin
+bin_PROGRAMS		= scilab-bin scilab-cli-bin
 
-bin_SCRIPTS			= bin/scilab bin/scilab-adv-cli bin/scilab-cli bin/scilab6
+bin_SCRIPTS			= bin/scilab bin/scilab-adv-cli bin/scilab-cli
 
 
 scilab_bin_LDFLAGS 		=
@@ -52,16 +52,30 @@ SCILAB_LIB=$(top_builddir)/modules/libscilab.la
 SCILAB_CLI_LIB=$(top_builddir)/modules/libscilab-cli.la
 
 
-scilab_bin_SOURCES		= $(top_srcdir)/modules/shell/src/c/others/mainscic.c
+scilab_bin_SOURCES		= 	$(top_srcdir)/modules/core/src/cpp/scilab.cpp \
+							$(top_srcdir)/modules/core/src/cpp/tasks.cpp
 
 scilab_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_LIB)
 
+scilab_bin_CPPFLAGS		= $(scilab_cli_bin_CPPFLAGS)
+
 # Match scilab -nwni (ie command line without graphics)
-scilab_cli_bin_SOURCES	= $(top_srcdir)/modules/shell/src/c/others/mainscic.c
+scilab_cli_bin_SOURCES	=	$(top_srcdir)/modules/core/src/cpp/scilab.cpp \
+							$(top_srcdir)/modules/core/src/cpp/tasks.cpp
 
 scilab_cli_bin_CFLAGS 		= -DWITHOUT_GUI
 scilab_cli_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_CLI_LIB)
 
+scilab_cli_bin_CPPFLAGS	= \
+						-I$(top_srcdir)/modules/shell/includes/ \
+						-I$(top_srcdir)/modules/console/includes/ \
+						-I$(top_srcdir)/modules/output_stream/includes/ \
+						-I$(top_srcdir)/modules/parse/includes/ \
+						-I$(top_srcdir)/modules/abstractSyntaxTree/includes/ \
+						-I$(top_srcdir)/modules/symbol/includes/ \
+						-I$(top_srcdir)/modules/functions_manager/includes/ \
+						-I$(top_srcdir)/modules/types/includes/ \
+						-I$(top_srcdir)/modules/system_env/includes/ 
 
 if NEED_JAVA
 # Don't do it for scilab_cli_bin. We want to be able to call it without
@@ -84,38 +98,6 @@ scilab_static_bin_LDADD = $(top_builddir)/modules/libscilab.la
 
 scilab_static_bin_SOURCES = $(scilab_bin_SOURCES)
 endif
-
-scilab6_bin_SOURCES		= 	$(top_srcdir)/modules/core/src/cpp/scilab.cpp \
-					$(top_srcdir)/modules/core/src/cpp/tasks.cpp
-
-#					$(top_srcdir)/modules/core/src/cpp/yaspio.cpp
-scilab6_bin_CPPFLAGS	= \
-						-I$(top_srcdir)/modules/parse/includes/ \
-						-I$(top_srcdir)/modules/abstractSyntaxTree/includes/ \
-						-I$(top_srcdir)/modules/symbol/includes/ \
-						-I$(top_srcdir)/modules/operations/includes/ \
-						-I$(top_srcdir)/modules/elementary_functions/includes/ \
-						-I$(top_srcdir)/modules/types/includes/ \
-						-I$(top_srcdir)/modules/system_env/includes/ \
-						-I$(top_srcdir)/modules/functions_manager/includes/ \
-						-I$(top_srcdir)/modules/shell/includes/ \
-						-I$(top_srcdir)/modules/output_stream/includes/ \
-						-I$(top_srcdir)/modules/console/includes/
-
-# Workaround. Was causing some undefined symbols on gfortran
-scilab6_bin_LDFLAGS =  $(FLIBS)
-
-scilab6_bin_LDADD = $(top_builddir)/modules/libscilab.la \
-$(top_builddir)/modules/abstractSyntaxTree/libsciabstractSyntaxTree.la \
-$(top_builddir)/modules/symbol/libscisymbol.la \
-$(top_builddir)/modules/parse/libsciparse.la \
-$(top_builddir)/modules/types/libscitypes.la \
-$(top_builddir)/modules/system_env/libscisystem_env.la \
-$(top_builddir)/modules/functions_manager/libscifunctions_manager.la \
-$(top_builddir)/modules/core/libscicore.la \
-$(top_builddir)/modules/output_stream/libscioutput_stream.la
-
-
 
 LANG_DOMAIN=scilab
 

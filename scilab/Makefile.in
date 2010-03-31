@@ -60,7 +60,7 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 bin_PROGRAMS = scilab-bin$(EXEEXT) scilab-cli-bin$(EXEEXT) \
-	scilab6-bin$(EXEEXT) $(am__EXEEXT_1)
+	$(am__EXEEXT_1)
 @IS_MACOSX_TRUE@am__append_1 = -framework Cocoa
 
 #-static
@@ -187,7 +187,8 @@ call_scilab_readwritestring_LINK = $(LIBTOOL) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(call_scilab_readwritestring_CFLAGS) $(CFLAGS) \
 	$(call_scilab_readwritestring_LDFLAGS) $(LDFLAGS) -o $@
-am_scilab_bin_OBJECTS = scilab_bin-mainscic.$(OBJEXT)
+am_scilab_bin_OBJECTS = scilab_bin-scilab.$(OBJEXT) \
+	scilab_bin-tasks.$(OBJEXT)
 scilab_bin_OBJECTS = $(am_scilab_bin_OBJECTS)
 am__DEPENDENCIES_1 =
 am__DEPENDENCIES_2 = $(top_builddir)/modules/shell/libscishell.la \
@@ -197,41 +198,27 @@ am__DEPENDENCIES_2 = $(top_builddir)/modules/shell/libscishell.la \
 	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 	$(top_builddir)/modules/io/libsciio.la $(am__DEPENDENCIES_1)
 scilab_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) $(SCILAB_LIB)
-scilab_bin_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(scilab_bin_CFLAGS) \
-	$(CFLAGS) $(scilab_bin_LDFLAGS) $(LDFLAGS) -o $@
-am_scilab_cli_bin_OBJECTS = scilab_cli_bin-mainscic.$(OBJEXT)
+scilab_bin_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
+	$(CXXFLAGS) $(scilab_bin_LDFLAGS) $(LDFLAGS) -o $@
+am_scilab_cli_bin_OBJECTS = scilab_cli_bin-scilab.$(OBJEXT) \
+	scilab_cli_bin-tasks.$(OBJEXT)
 scilab_cli_bin_OBJECTS = $(am_scilab_cli_bin_OBJECTS)
 scilab_cli_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) $(SCILAB_CLI_LIB)
-scilab_cli_bin_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(scilab_cli_bin_CFLAGS) \
-	$(CFLAGS) $(scilab_cli_bin_LDFLAGS) $(LDFLAGS) -o $@
+scilab_cli_bin_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
+	$(CXXFLAGS) $(scilab_cli_bin_LDFLAGS) $(LDFLAGS) -o $@
 am__scilab_static_bin_SOURCES_DIST =  \
-	$(top_srcdir)/modules/shell/src/c/others/mainscic.c
-am__objects_1 = scilab_static_bin-mainscic.$(OBJEXT)
+	$(top_srcdir)/modules/core/src/cpp/scilab.cpp \
+	$(top_srcdir)/modules/core/src/cpp/tasks.cpp
+am__objects_1 = scilab.$(OBJEXT) tasks.$(OBJEXT)
 @ENABLE_STATIC_TRUE@am_scilab_static_bin_OBJECTS = $(am__objects_1)
 scilab_static_bin_OBJECTS = $(am_scilab_static_bin_OBJECTS)
 @ENABLE_STATIC_TRUE@scilab_static_bin_DEPENDENCIES =  \
 @ENABLE_STATIC_TRUE@	$(top_builddir)/modules/libscilab.la
-scilab_static_bin_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
-	$(scilab_static_bin_CFLAGS) $(CFLAGS) \
-	$(scilab_static_bin_LDFLAGS) $(LDFLAGS) -o $@
-am_scilab6_bin_OBJECTS = scilab6_bin-scilab.$(OBJEXT) \
-	scilab6_bin-tasks.$(OBJEXT)
-scilab6_bin_OBJECTS = $(am_scilab6_bin_OBJECTS)
-scilab6_bin_DEPENDENCIES = $(top_builddir)/modules/libscilab.la \
-	$(top_builddir)/modules/abstractSyntaxTree/libsciabstractSyntaxTree.la \
-	$(top_builddir)/modules/symbol/libscisymbol.la \
-	$(top_builddir)/modules/parse/libsciparse.la \
-	$(top_builddir)/modules/types/libscitypes.la \
-	$(top_builddir)/modules/system_env/libscisystem_env.la \
-	$(top_builddir)/modules/functions_manager/libscifunctions_manager.la \
-	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la
-scilab6_bin_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
+scilab_static_bin_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
-	$(CXXFLAGS) $(scilab6_bin_LDFLAGS) $(LDFLAGS) -o $@
+	$(CXXFLAGS) $(scilab_static_bin_LDFLAGS) $(LDFLAGS) -o $@
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
 am__vpath_adj = case $$p in \
     $(srcdir)/*) f=`echo "$$p" | sed "s|^$$srcdirstrip/||"`;; \
@@ -284,8 +271,7 @@ SOURCES = $(call_scilab_c_SOURCES) \
 	$(call_scilab_readwritecomplexmatrix_SOURCES) \
 	$(call_scilab_readwritematrix_SOURCES) \
 	$(call_scilab_readwritestring_SOURCES) $(scilab_bin_SOURCES) \
-	$(scilab_cli_bin_SOURCES) $(scilab_static_bin_SOURCES) \
-	$(scilab6_bin_SOURCES)
+	$(scilab_cli_bin_SOURCES) $(scilab_static_bin_SOURCES)
 DIST_SOURCES = $(call_scilab_c_SOURCES) \
 	$(call_scilab_c_DisableInteractiveMode_SOURCES) \
 	$(call_scilab_c_getlastjob_SOURCES) \
@@ -295,7 +281,7 @@ DIST_SOURCES = $(call_scilab_c_SOURCES) \
 	$(call_scilab_readwritematrix_SOURCES) \
 	$(call_scilab_readwritestring_SOURCES) $(scilab_bin_SOURCES) \
 	$(scilab_cli_bin_SOURCES) \
-	$(am__scilab_static_bin_SOURCES_DIST) $(scilab6_bin_SOURCES)
+	$(am__scilab_static_bin_SOURCES_DIST)
 RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
 	html-recursive info-recursive install-data-recursive \
 	install-dvi-recursive install-exec-recursive \
@@ -601,7 +587,7 @@ SUBDIRS = libs \
 
 ACLOCAL_AMFLAGS = -I m4/
 changelogs = CHANGES CHANGES_5.1.X
-bin_SCRIPTS = bin/scilab bin/scilab-adv-cli bin/scilab-cli bin/scilab6
+bin_SCRIPTS = bin/scilab bin/scilab-adv-cli bin/scilab-cli
 scilab_bin_LDFLAGS = $(am__append_1)
 scilab_cli_bin_LDFLAGS = 
 scilab_bin_CFLAGS = 
@@ -620,48 +606,33 @@ $(LTLIBINTL)
 
 SCILAB_LIB = $(top_builddir)/modules/libscilab.la
 SCILAB_CLI_LIB = $(top_builddir)/modules/libscilab-cli.la
-scilab_bin_SOURCES = $(top_srcdir)/modules/shell/src/c/others/mainscic.c
+scilab_bin_SOURCES = $(top_srcdir)/modules/core/src/cpp/scilab.cpp \
+							$(top_srcdir)/modules/core/src/cpp/tasks.cpp
+
 scilab_bin_LDADD = $(COMMON_LIBS) $(SCILAB_LIB)
+scilab_bin_CPPFLAGS = $(scilab_cli_bin_CPPFLAGS)
 
 # Match scilab -nwni (ie command line without graphics)
-scilab_cli_bin_SOURCES = $(top_srcdir)/modules/shell/src/c/others/mainscic.c
+scilab_cli_bin_SOURCES = $(top_srcdir)/modules/core/src/cpp/scilab.cpp \
+							$(top_srcdir)/modules/core/src/cpp/tasks.cpp
+
 scilab_cli_bin_CFLAGS = -DWITHOUT_GUI
 scilab_cli_bin_LDADD = $(COMMON_LIBS) $(SCILAB_CLI_LIB)
+scilab_cli_bin_CPPFLAGS = \
+						-I$(top_srcdir)/modules/shell/includes/ \
+						-I$(top_srcdir)/modules/console/includes/ \
+						-I$(top_srcdir)/modules/output_stream/includes/ \
+						-I$(top_srcdir)/modules/parse/includes/ \
+						-I$(top_srcdir)/modules/abstractSyntaxTree/includes/ \
+						-I$(top_srcdir)/modules/symbol/includes/ \
+						-I$(top_srcdir)/modules/functions_manager/includes/ \
+						-I$(top_srcdir)/modules/types/includes/ \
+						-I$(top_srcdir)/modules/system_env/includes/ 
+
 @ENABLE_STATIC_TRUE@scilab_static_bin_LDFLAGS = -static -static-libgcc --start-group
 @ENABLE_STATIC_TRUE@scilab_static_bin_CFLAGS = -Wl,--start-group `$(CXX) -print-file-name=libstdc++.a`
 @ENABLE_STATIC_TRUE@scilab_static_bin_LDADD = $(top_builddir)/modules/libscilab.la
 @ENABLE_STATIC_TRUE@scilab_static_bin_SOURCES = $(scilab_bin_SOURCES)
-scilab6_bin_SOURCES = $(top_srcdir)/modules/core/src/cpp/scilab.cpp \
-					$(top_srcdir)/modules/core/src/cpp/tasks.cpp
-
-
-#					$(top_srcdir)/modules/core/src/cpp/yaspio.cpp
-scilab6_bin_CPPFLAGS = \
-						-I$(top_srcdir)/modules/parse/includes/ \
-						-I$(top_srcdir)/modules/abstractSyntaxTree/includes/ \
-						-I$(top_srcdir)/modules/symbol/includes/ \
-						-I$(top_srcdir)/modules/operations/includes/ \
-						-I$(top_srcdir)/modules/elementary_functions/includes/ \
-						-I$(top_srcdir)/modules/types/includes/ \
-						-I$(top_srcdir)/modules/system_env/includes/ \
-						-I$(top_srcdir)/modules/functions_manager/includes/ \
-						-I$(top_srcdir)/modules/shell/includes/ \
-						-I$(top_srcdir)/modules/output_stream/includes/ \
-						-I$(top_srcdir)/modules/console/includes/
-
-
-# Workaround. Was causing some undefined symbols on gfortran
-scilab6_bin_LDFLAGS = $(FLIBS)
-scilab6_bin_LDADD = $(top_builddir)/modules/libscilab.la \
-$(top_builddir)/modules/abstractSyntaxTree/libsciabstractSyntaxTree.la \
-$(top_builddir)/modules/symbol/libscisymbol.la \
-$(top_builddir)/modules/parse/libsciparse.la \
-$(top_builddir)/modules/types/libscitypes.la \
-$(top_builddir)/modules/system_env/libscisystem_env.la \
-$(top_builddir)/modules/functions_manager/libscifunctions_manager.la \
-$(top_builddir)/modules/core/libscicore.la \
-$(top_builddir)/modules/output_stream/libscioutput_stream.la
-
 LANG_DOMAIN = scilab
 TARGETS_ALL = macros $(am__append_3)
 rootdir = $(pkgdatadir)/etc/
@@ -902,9 +873,6 @@ scilab-cli-bin$(EXEEXT): $(scilab_cli_bin_OBJECTS) $(scilab_cli_bin_DEPENDENCIES
 scilab-static-bin$(EXEEXT): $(scilab_static_bin_OBJECTS) $(scilab_static_bin_DEPENDENCIES) 
 	@rm -f scilab-static-bin$(EXEEXT)
 	$(scilab_static_bin_LINK) $(scilab_static_bin_OBJECTS) $(scilab_static_bin_LDADD) $(LIBS)
-scilab6-bin$(EXEEXT): $(scilab6_bin_OBJECTS) $(scilab6_bin_DEPENDENCIES) 
-	@rm -f scilab6-bin$(EXEEXT)
-	$(scilab6_bin_LINK) $(scilab6_bin_OBJECTS) $(scilab6_bin_LDADD) $(LIBS)
 install-binSCRIPTS: $(bin_SCRIPTS)
 	@$(NORMAL_INSTALL)
 	test -z "$(bindir)" || $(MKDIR_P) "$(DESTDIR)$(bindir)"
@@ -954,11 +922,12 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/call_scilab_readwritematrix-readwritematrix.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/call_scilab_readwritestring-readwritestring.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/scilab6_bin-scilab.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/scilab6_bin-tasks.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/scilab_bin-mainscic.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/scilab_cli_bin-mainscic.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/scilab_static_bin-mainscic.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/scilab.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/scilab_bin-scilab.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/scilab_bin-tasks.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/scilab_cli_bin-scilab.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/scilab_cli_bin-tasks.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/tasks.Po@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -1093,48 +1062,6 @@ call_scilab_readwritestring-readwritestring.obj: $(top_srcdir)/modules/call_scil
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_readwritestring_CFLAGS) $(CFLAGS) -c -o call_scilab_readwritestring-readwritestring.obj `if test -f '$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritestring.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritestring.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritestring.c'; fi`
 
-scilab_bin-mainscic.o: $(top_srcdir)/modules/shell/src/c/others/mainscic.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(scilab_bin_CFLAGS) $(CFLAGS) -MT scilab_bin-mainscic.o -MD -MP -MF $(DEPDIR)/scilab_bin-mainscic.Tpo -c -o scilab_bin-mainscic.o `test -f '$(top_srcdir)/modules/shell/src/c/others/mainscic.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/shell/src/c/others/mainscic.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/scilab_bin-mainscic.Tpo $(DEPDIR)/scilab_bin-mainscic.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$(top_srcdir)/modules/shell/src/c/others/mainscic.c' object='scilab_bin-mainscic.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(scilab_bin_CFLAGS) $(CFLAGS) -c -o scilab_bin-mainscic.o `test -f '$(top_srcdir)/modules/shell/src/c/others/mainscic.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/shell/src/c/others/mainscic.c
-
-scilab_bin-mainscic.obj: $(top_srcdir)/modules/shell/src/c/others/mainscic.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(scilab_bin_CFLAGS) $(CFLAGS) -MT scilab_bin-mainscic.obj -MD -MP -MF $(DEPDIR)/scilab_bin-mainscic.Tpo -c -o scilab_bin-mainscic.obj `if test -f '$(top_srcdir)/modules/shell/src/c/others/mainscic.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/shell/src/c/others/mainscic.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/shell/src/c/others/mainscic.c'; fi`
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/scilab_bin-mainscic.Tpo $(DEPDIR)/scilab_bin-mainscic.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$(top_srcdir)/modules/shell/src/c/others/mainscic.c' object='scilab_bin-mainscic.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(scilab_bin_CFLAGS) $(CFLAGS) -c -o scilab_bin-mainscic.obj `if test -f '$(top_srcdir)/modules/shell/src/c/others/mainscic.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/shell/src/c/others/mainscic.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/shell/src/c/others/mainscic.c'; fi`
-
-scilab_cli_bin-mainscic.o: $(top_srcdir)/modules/shell/src/c/others/mainscic.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(scilab_cli_bin_CFLAGS) $(CFLAGS) -MT scilab_cli_bin-mainscic.o -MD -MP -MF $(DEPDIR)/scilab_cli_bin-mainscic.Tpo -c -o scilab_cli_bin-mainscic.o `test -f '$(top_srcdir)/modules/shell/src/c/others/mainscic.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/shell/src/c/others/mainscic.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/scilab_cli_bin-mainscic.Tpo $(DEPDIR)/scilab_cli_bin-mainscic.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$(top_srcdir)/modules/shell/src/c/others/mainscic.c' object='scilab_cli_bin-mainscic.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(scilab_cli_bin_CFLAGS) $(CFLAGS) -c -o scilab_cli_bin-mainscic.o `test -f '$(top_srcdir)/modules/shell/src/c/others/mainscic.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/shell/src/c/others/mainscic.c
-
-scilab_cli_bin-mainscic.obj: $(top_srcdir)/modules/shell/src/c/others/mainscic.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(scilab_cli_bin_CFLAGS) $(CFLAGS) -MT scilab_cli_bin-mainscic.obj -MD -MP -MF $(DEPDIR)/scilab_cli_bin-mainscic.Tpo -c -o scilab_cli_bin-mainscic.obj `if test -f '$(top_srcdir)/modules/shell/src/c/others/mainscic.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/shell/src/c/others/mainscic.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/shell/src/c/others/mainscic.c'; fi`
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/scilab_cli_bin-mainscic.Tpo $(DEPDIR)/scilab_cli_bin-mainscic.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$(top_srcdir)/modules/shell/src/c/others/mainscic.c' object='scilab_cli_bin-mainscic.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(scilab_cli_bin_CFLAGS) $(CFLAGS) -c -o scilab_cli_bin-mainscic.obj `if test -f '$(top_srcdir)/modules/shell/src/c/others/mainscic.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/shell/src/c/others/mainscic.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/shell/src/c/others/mainscic.c'; fi`
-
-scilab_static_bin-mainscic.o: $(top_srcdir)/modules/shell/src/c/others/mainscic.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(scilab_static_bin_CFLAGS) $(CFLAGS) -MT scilab_static_bin-mainscic.o -MD -MP -MF $(DEPDIR)/scilab_static_bin-mainscic.Tpo -c -o scilab_static_bin-mainscic.o `test -f '$(top_srcdir)/modules/shell/src/c/others/mainscic.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/shell/src/c/others/mainscic.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/scilab_static_bin-mainscic.Tpo $(DEPDIR)/scilab_static_bin-mainscic.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$(top_srcdir)/modules/shell/src/c/others/mainscic.c' object='scilab_static_bin-mainscic.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(scilab_static_bin_CFLAGS) $(CFLAGS) -c -o scilab_static_bin-mainscic.o `test -f '$(top_srcdir)/modules/shell/src/c/others/mainscic.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/shell/src/c/others/mainscic.c
-
-scilab_static_bin-mainscic.obj: $(top_srcdir)/modules/shell/src/c/others/mainscic.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(scilab_static_bin_CFLAGS) $(CFLAGS) -MT scilab_static_bin-mainscic.obj -MD -MP -MF $(DEPDIR)/scilab_static_bin-mainscic.Tpo -c -o scilab_static_bin-mainscic.obj `if test -f '$(top_srcdir)/modules/shell/src/c/others/mainscic.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/shell/src/c/others/mainscic.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/shell/src/c/others/mainscic.c'; fi`
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/scilab_static_bin-mainscic.Tpo $(DEPDIR)/scilab_static_bin-mainscic.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$(top_srcdir)/modules/shell/src/c/others/mainscic.c' object='scilab_static_bin-mainscic.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(scilab_static_bin_CFLAGS) $(CFLAGS) -c -o scilab_static_bin-mainscic.obj `if test -f '$(top_srcdir)/modules/shell/src/c/others/mainscic.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/shell/src/c/others/mainscic.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/shell/src/c/others/mainscic.c'; fi`
-
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
@@ -1156,33 +1083,89 @@ scilab_static_bin-mainscic.obj: $(top_srcdir)/modules/shell/src/c/others/mainsci
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
 
-scilab6_bin-scilab.o: $(top_srcdir)/modules/core/src/cpp/scilab.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab6_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT scilab6_bin-scilab.o -MD -MP -MF $(DEPDIR)/scilab6_bin-scilab.Tpo -c -o scilab6_bin-scilab.o `test -f '$(top_srcdir)/modules/core/src/cpp/scilab.cpp' || echo '$(srcdir)/'`$(top_srcdir)/modules/core/src/cpp/scilab.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/scilab6_bin-scilab.Tpo $(DEPDIR)/scilab6_bin-scilab.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/modules/core/src/cpp/scilab.cpp' object='scilab6_bin-scilab.o' libtool=no @AMDEPBACKSLASH@
+scilab_bin-scilab.o: $(top_srcdir)/modules/core/src/cpp/scilab.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT scilab_bin-scilab.o -MD -MP -MF $(DEPDIR)/scilab_bin-scilab.Tpo -c -o scilab_bin-scilab.o `test -f '$(top_srcdir)/modules/core/src/cpp/scilab.cpp' || echo '$(srcdir)/'`$(top_srcdir)/modules/core/src/cpp/scilab.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/scilab_bin-scilab.Tpo $(DEPDIR)/scilab_bin-scilab.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/modules/core/src/cpp/scilab.cpp' object='scilab_bin-scilab.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab6_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o scilab6_bin-scilab.o `test -f '$(top_srcdir)/modules/core/src/cpp/scilab.cpp' || echo '$(srcdir)/'`$(top_srcdir)/modules/core/src/cpp/scilab.cpp
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o scilab_bin-scilab.o `test -f '$(top_srcdir)/modules/core/src/cpp/scilab.cpp' || echo '$(srcdir)/'`$(top_srcdir)/modules/core/src/cpp/scilab.cpp
 
-scilab6_bin-scilab.obj: $(top_srcdir)/modules/core/src/cpp/scilab.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab6_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT scilab6_bin-scilab.obj -MD -MP -MF $(DEPDIR)/scilab6_bin-scilab.Tpo -c -o scilab6_bin-scilab.obj `if test -f '$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; then $(CYGPATH_W) '$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/scilab6_bin-scilab.Tpo $(DEPDIR)/scilab6_bin-scilab.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/modules/core/src/cpp/scilab.cpp' object='scilab6_bin-scilab.obj' libtool=no @AMDEPBACKSLASH@
+scilab_bin-scilab.obj: $(top_srcdir)/modules/core/src/cpp/scilab.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT scilab_bin-scilab.obj -MD -MP -MF $(DEPDIR)/scilab_bin-scilab.Tpo -c -o scilab_bin-scilab.obj `if test -f '$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; then $(CYGPATH_W) '$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/scilab_bin-scilab.Tpo $(DEPDIR)/scilab_bin-scilab.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/modules/core/src/cpp/scilab.cpp' object='scilab_bin-scilab.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab6_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o scilab6_bin-scilab.obj `if test -f '$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; then $(CYGPATH_W) '$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o scilab_bin-scilab.obj `if test -f '$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; then $(CYGPATH_W) '$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; fi`
 
-scilab6_bin-tasks.o: $(top_srcdir)/modules/core/src/cpp/tasks.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab6_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT scilab6_bin-tasks.o -MD -MP -MF $(DEPDIR)/scilab6_bin-tasks.Tpo -c -o scilab6_bin-tasks.o `test -f '$(top_srcdir)/modules/core/src/cpp/tasks.cpp' || echo '$(srcdir)/'`$(top_srcdir)/modules/core/src/cpp/tasks.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/scilab6_bin-tasks.Tpo $(DEPDIR)/scilab6_bin-tasks.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/modules/core/src/cpp/tasks.cpp' object='scilab6_bin-tasks.o' libtool=no @AMDEPBACKSLASH@
+scilab_bin-tasks.o: $(top_srcdir)/modules/core/src/cpp/tasks.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT scilab_bin-tasks.o -MD -MP -MF $(DEPDIR)/scilab_bin-tasks.Tpo -c -o scilab_bin-tasks.o `test -f '$(top_srcdir)/modules/core/src/cpp/tasks.cpp' || echo '$(srcdir)/'`$(top_srcdir)/modules/core/src/cpp/tasks.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/scilab_bin-tasks.Tpo $(DEPDIR)/scilab_bin-tasks.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/modules/core/src/cpp/tasks.cpp' object='scilab_bin-tasks.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab6_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o scilab6_bin-tasks.o `test -f '$(top_srcdir)/modules/core/src/cpp/tasks.cpp' || echo '$(srcdir)/'`$(top_srcdir)/modules/core/src/cpp/tasks.cpp
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o scilab_bin-tasks.o `test -f '$(top_srcdir)/modules/core/src/cpp/tasks.cpp' || echo '$(srcdir)/'`$(top_srcdir)/modules/core/src/cpp/tasks.cpp
 
-scilab6_bin-tasks.obj: $(top_srcdir)/modules/core/src/cpp/tasks.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab6_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT scilab6_bin-tasks.obj -MD -MP -MF $(DEPDIR)/scilab6_bin-tasks.Tpo -c -o scilab6_bin-tasks.obj `if test -f '$(top_srcdir)/modules/core/src/cpp/tasks.cpp'; then $(CYGPATH_W) '$(top_srcdir)/modules/core/src/cpp/tasks.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/core/src/cpp/tasks.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/scilab6_bin-tasks.Tpo $(DEPDIR)/scilab6_bin-tasks.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/modules/core/src/cpp/tasks.cpp' object='scilab6_bin-tasks.obj' libtool=no @AMDEPBACKSLASH@
+scilab_bin-tasks.obj: $(top_srcdir)/modules/core/src/cpp/tasks.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT scilab_bin-tasks.obj -MD -MP -MF $(DEPDIR)/scilab_bin-tasks.Tpo -c -o scilab_bin-tasks.obj `if test -f '$(top_srcdir)/modules/core/src/cpp/tasks.cpp'; then $(CYGPATH_W) '$(top_srcdir)/modules/core/src/cpp/tasks.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/core/src/cpp/tasks.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/scilab_bin-tasks.Tpo $(DEPDIR)/scilab_bin-tasks.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/modules/core/src/cpp/tasks.cpp' object='scilab_bin-tasks.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab6_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o scilab6_bin-tasks.obj `if test -f '$(top_srcdir)/modules/core/src/cpp/tasks.cpp'; then $(CYGPATH_W) '$(top_srcdir)/modules/core/src/cpp/tasks.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/core/src/cpp/tasks.cpp'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o scilab_bin-tasks.obj `if test -f '$(top_srcdir)/modules/core/src/cpp/tasks.cpp'; then $(CYGPATH_W) '$(top_srcdir)/modules/core/src/cpp/tasks.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/core/src/cpp/tasks.cpp'; fi`
+
+scilab_cli_bin-scilab.o: $(top_srcdir)/modules/core/src/cpp/scilab.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT scilab_cli_bin-scilab.o -MD -MP -MF $(DEPDIR)/scilab_cli_bin-scilab.Tpo -c -o scilab_cli_bin-scilab.o `test -f '$(top_srcdir)/modules/core/src/cpp/scilab.cpp' || echo '$(srcdir)/'`$(top_srcdir)/modules/core/src/cpp/scilab.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/scilab_cli_bin-scilab.Tpo $(DEPDIR)/scilab_cli_bin-scilab.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/modules/core/src/cpp/scilab.cpp' object='scilab_cli_bin-scilab.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o scilab_cli_bin-scilab.o `test -f '$(top_srcdir)/modules/core/src/cpp/scilab.cpp' || echo '$(srcdir)/'`$(top_srcdir)/modules/core/src/cpp/scilab.cpp
+
+scilab_cli_bin-scilab.obj: $(top_srcdir)/modules/core/src/cpp/scilab.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT scilab_cli_bin-scilab.obj -MD -MP -MF $(DEPDIR)/scilab_cli_bin-scilab.Tpo -c -o scilab_cli_bin-scilab.obj `if test -f '$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; then $(CYGPATH_W) '$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/scilab_cli_bin-scilab.Tpo $(DEPDIR)/scilab_cli_bin-scilab.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/modules/core/src/cpp/scilab.cpp' object='scilab_cli_bin-scilab.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o scilab_cli_bin-scilab.obj `if test -f '$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; then $(CYGPATH_W) '$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; fi`
+
+scilab_cli_bin-tasks.o: $(top_srcdir)/modules/core/src/cpp/tasks.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT scilab_cli_bin-tasks.o -MD -MP -MF $(DEPDIR)/scilab_cli_bin-tasks.Tpo -c -o scilab_cli_bin-tasks.o `test -f '$(top_srcdir)/modules/core/src/cpp/tasks.cpp' || echo '$(srcdir)/'`$(top_srcdir)/modules/core/src/cpp/tasks.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/scilab_cli_bin-tasks.Tpo $(DEPDIR)/scilab_cli_bin-tasks.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/modules/core/src/cpp/tasks.cpp' object='scilab_cli_bin-tasks.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o scilab_cli_bin-tasks.o `test -f '$(top_srcdir)/modules/core/src/cpp/tasks.cpp' || echo '$(srcdir)/'`$(top_srcdir)/modules/core/src/cpp/tasks.cpp
+
+scilab_cli_bin-tasks.obj: $(top_srcdir)/modules/core/src/cpp/tasks.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT scilab_cli_bin-tasks.obj -MD -MP -MF $(DEPDIR)/scilab_cli_bin-tasks.Tpo -c -o scilab_cli_bin-tasks.obj `if test -f '$(top_srcdir)/modules/core/src/cpp/tasks.cpp'; then $(CYGPATH_W) '$(top_srcdir)/modules/core/src/cpp/tasks.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/core/src/cpp/tasks.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/scilab_cli_bin-tasks.Tpo $(DEPDIR)/scilab_cli_bin-tasks.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/modules/core/src/cpp/tasks.cpp' object='scilab_cli_bin-tasks.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o scilab_cli_bin-tasks.obj `if test -f '$(top_srcdir)/modules/core/src/cpp/tasks.cpp'; then $(CYGPATH_W) '$(top_srcdir)/modules/core/src/cpp/tasks.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/core/src/cpp/tasks.cpp'; fi`
+
+scilab.o: $(top_srcdir)/modules/core/src/cpp/scilab.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT scilab.o -MD -MP -MF $(DEPDIR)/scilab.Tpo -c -o scilab.o `test -f '$(top_srcdir)/modules/core/src/cpp/scilab.cpp' || echo '$(srcdir)/'`$(top_srcdir)/modules/core/src/cpp/scilab.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/scilab.Tpo $(DEPDIR)/scilab.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/modules/core/src/cpp/scilab.cpp' object='scilab.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o scilab.o `test -f '$(top_srcdir)/modules/core/src/cpp/scilab.cpp' || echo '$(srcdir)/'`$(top_srcdir)/modules/core/src/cpp/scilab.cpp
+
+scilab.obj: $(top_srcdir)/modules/core/src/cpp/scilab.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT scilab.obj -MD -MP -MF $(DEPDIR)/scilab.Tpo -c -o scilab.obj `if test -f '$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; then $(CYGPATH_W) '$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/scilab.Tpo $(DEPDIR)/scilab.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/modules/core/src/cpp/scilab.cpp' object='scilab.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o scilab.obj `if test -f '$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; then $(CYGPATH_W) '$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; fi`
+
+tasks.o: $(top_srcdir)/modules/core/src/cpp/tasks.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT tasks.o -MD -MP -MF $(DEPDIR)/tasks.Tpo -c -o tasks.o `test -f '$(top_srcdir)/modules/core/src/cpp/tasks.cpp' || echo '$(srcdir)/'`$(top_srcdir)/modules/core/src/cpp/tasks.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/tasks.Tpo $(DEPDIR)/tasks.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/modules/core/src/cpp/tasks.cpp' object='tasks.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o tasks.o `test -f '$(top_srcdir)/modules/core/src/cpp/tasks.cpp' || echo '$(srcdir)/'`$(top_srcdir)/modules/core/src/cpp/tasks.cpp
+
+tasks.obj: $(top_srcdir)/modules/core/src/cpp/tasks.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT tasks.obj -MD -MP -MF $(DEPDIR)/tasks.Tpo -c -o tasks.obj `if test -f '$(top_srcdir)/modules/core/src/cpp/tasks.cpp'; then $(CYGPATH_W) '$(top_srcdir)/modules/core/src/cpp/tasks.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/core/src/cpp/tasks.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/tasks.Tpo $(DEPDIR)/tasks.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/modules/core/src/cpp/tasks.cpp' object='tasks.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o tasks.obj `if test -f '$(top_srcdir)/modules/core/src/cpp/tasks.cpp'; then $(CYGPATH_W) '$(top_srcdir)/modules/core/src/cpp/tasks.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/core/src/cpp/tasks.cpp'; fi`
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -1746,6 +1729,9 @@ uninstall-am: uninstall-binPROGRAMS uninstall-binSCRIPTS \
 	uninstall-infofilesDATA uninstall-pkgconfigDATA \
 	uninstall-rootDATA uninstall-valgrindDATA
 
+#						-I$(top_srcdir)/modules/operations/includes/ \
+#						-I$(top_srcdir)/modules/elementary_functions/includes/ \
+#						-I$(top_srcdir)/modules/console/includes/
 
 # Don't do it for scilab_cli_bin. We want to be able to call it without
 # the java libs

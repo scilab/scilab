@@ -142,10 +142,6 @@ detect_type_of_scilab(){
 		SCILABBIN="scilab-cli-bin"
 		DISABLE_JAVA_DETECTION=1
 	fi
-	if echo "$progname"|grep "scilab6$" 2>&1 > /dev/null; then
-		SCILABBIN="scilab6-bin"
-#		DISABLE_JAVA_DETECTION=1
-	fi
 	if test $SCIVERBOSE -ne 0; then
 		echo "SCILABBIN : $SCILABBIN"
 		echo "DISABLE_JAVA_DETECTION : $DISABLE_JAVA_DETECTION"
@@ -627,12 +623,6 @@ do_lib()
 MORE_OPT=""
 if test "$SCILAB_MODE" = "nw"; then
 	MORE_OPT="-nw"
-fi
-
-# For scilab6 
-# @TODO cleanup here (should be removed to match the old previous behaviour)
-if test "$SCILAB_MODE" = "nwni"; then
-	MORE_OPT="-nwni"
 fi
 
 # calling Scilab with no argument or special cases of calling Scilab
