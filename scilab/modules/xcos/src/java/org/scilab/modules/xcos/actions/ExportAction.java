@@ -78,6 +78,7 @@ public final class ExportAction extends DefaultAction {
 	}
 
 	/**
+	 * Action !!!
 	 * @param e parameter
 	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -85,7 +86,6 @@ public final class ExportAction extends DefaultAction {
 	public void actionPerformed(ActionEvent e) {
 
 	    XcosDiagram graph = (XcosDiagram) getGraph(null);
-		mxGraphComponent graphComponent = graph.getAsComponent();
 		String filename = null;
 
 		FileChooser fc = ScilabFileChooser.createFileChooser();
@@ -133,9 +133,21 @@ public final class ExportAction extends DefaultAction {
 			return;
 		}
 
-		try {
-			String extension = filename.substring(filename.lastIndexOf('.') + 1);
+		export(graph, filename);
+	}
 
+	/**
+	 * Export the graph into the filename.
+	 * 
+	 * The filename extension is used find export format.
+	 * 
+	 * @param graph the current graph
+	 * @param filename the filename
+	 */
+	private void export(XcosDiagram graph, String filename) {
+		final String extension = filename.substring(filename.lastIndexOf('.') + 1);
+		
+		try {
 			if (extension.equalsIgnoreCase("svg")) {
 			    ScilabGraphRenderer.createSvgDocument(graph, null, 1, null, null, filename);
 			} else if (extension.equalsIgnoreCase("vml")) {
@@ -149,25 +161,40 @@ public final class ExportAction extends DefaultAction {
 				mxUtils.writeFile(mxUtils.getXml(doc.getDocumentElement()), filename);
 			    }
 			} else 	{
-				Color bg = null;
-
-				if ((!extension.equalsIgnoreCase("gif") && !extension.equalsIgnoreCase("png"))
-					|| ScilabModalDialog.show(graph.getParentTab(), XcosMessages.TRANSPARENT_BACKGROUND, XcosMessages.XCOS, 
-						IconType.QUESTION_ICON, ButtonType.YES_NO) != AnswerOption.YES_OPTION) {
-					bg = graphComponent.getBackground();
-				}
-
-				BufferedImage image = mxCellRenderer.createBufferedImage(
-						graph, null, 1, bg, graphComponent.isAntiAlias(), null, graphComponent.getCanvas());
-
-				if (image != null) {
-					ImageIO.write(image, extension, new File(filename));
-				} else  {
-					JOptionPane.showMessageDialog(graphComponent, XcosMessages.NO_IMAGE_DATA);
-				}
+				exportBufferedImage(graph, filename);
 			}
 		} catch (IOException e1) {
 			e1.printStackTrace();
+		}
+	}
+
+	/**
+	 * Use the Java image capabilities to export the diagram
+	 * 
+	 * @param graph the current diagram
+	 * @param filename the current filename
+	 * @throws IOException when an error occurs
+	 */
+	private void exportBufferedImage(XcosDiagram graph, String filename)
+			throws IOException {
+		final mxGraphComponent graphComponent = graph.getAsComponent();
+		final String extension = filename.substring(filename.lastIndexOf('.') + 1);
+		
+		Color bg = null;
+
+		if ((!extension.equalsIgnoreCase("gif") && !extension.equalsIgnoreCase("png"))
+			|| ScilabModalDialog.show(graph.getParentTab(), XcosMessages.TRANSPARENT_BACKGROUND, XcosMessages.XCOS, 
+				IconType.QUESTION_ICON, ButtonType.YES_NO) != AnswerOption.YES_OPTION) {
+			bg = graphComponent.getBackground();
+		}
+
+		BufferedImage image = mxCellRenderer.createBufferedImage(
+				graph, null, 1, bg, graphComponent.isAntiAlias(), null, graphComponent.getCanvas());
+
+		if (image != null) {
+			ImageIO.write(image, extension, new File(filename));
+		} else  {
+			JOptionPane.showMessageDialog(graphComponent, XcosMessages.NO_IMAGE_DATA);
 		}
 	}
 }

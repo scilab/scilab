@@ -70,7 +70,7 @@ public final class ViewDiagramBrowserAction extends OneBlockDependantAction {
 			try {
 				ScilabInterpreterManagement
 						.synchronousScilabExec("import_from_hdf5(\""
-								+ temp.getAbsolutePath() + "\");"
+								+ temp.getAbsolutePath() + "\"); "
 								+ "tree_show(scs_m);" + "deletefile(\""
 								+ temp.getAbsolutePath() + "\");");
 			} catch (InterpreterException e2) {

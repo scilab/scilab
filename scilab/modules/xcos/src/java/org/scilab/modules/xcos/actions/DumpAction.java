@@ -75,7 +75,7 @@ public class DumpAction extends DefaultAction {
 	    ((XcosDiagram) getGraph(e)).dumpToHdf5File(temp.getAbsolutePath());
 	    try {
 			ScilabInterpreterManagement.synchronousScilabExec("import_from_hdf5(\"" + temp.getAbsolutePath() + "\");"
-				+ "deletefile(\"" + temp.getAbsolutePath() + "\");");
+				+ "deletefile(\"" + temp.getAbsolutePath() + "\"); ");
 		} catch (InterpreterException e1) {
 			e1.printStackTrace();
 		}

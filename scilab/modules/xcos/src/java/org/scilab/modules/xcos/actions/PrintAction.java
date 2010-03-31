@@ -42,6 +42,9 @@ public final class PrintAction extends DefaultAction {
 	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
+	/** The default page margin */
+	private static final int DEFAULT_MARGIN = 36;
+	
 	/** Constructor
 	 * @param scilabGraph associated diagram
 	 */
@@ -79,7 +82,7 @@ public final class PrintAction extends DefaultAction {
 		if (pj.printDialog()) {
 			PageFormat pf = graphComponent.getPageFormat();
 			Paper paper = new Paper();
-			double margin = 36;
+			double margin = DEFAULT_MARGIN;
 			paper.setImageableArea(margin, margin, paper.getWidth()	- margin * 2, paper.getHeight() - margin * 2);
 			pf.setPaper(paper);
 			pj.setPrintable(graphComponent, pf);

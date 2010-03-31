@@ -446,6 +446,15 @@ public class XcosDiagram extends ScilabGraph {
 	engine = new CompilationEngineStatus();
 	setScicosParameters(new ScicosParameters());
 	
+	// Add a default listener to update the modification status when
+	// something has changed on the ScicosParameters
+	scicosParameters.addPropertyChangeListener(new PropertyChangeListener() {
+		@Override
+		public void propertyChange(PropertyChangeEvent evt) {
+			setModified(true);
+		}
+	});
+	
 	
 	getUndoManager().addListener(mxEvent.UNDO, deleteLinkOnMultiPointLinkCreation);
 	
