@@ -42,7 +42,14 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * Dialog associated with the {@link SetupAction}.
+ * 
+ * Note that this dialog break the Data Abstraction Coupling metric because of
+ * the numbers of graphical components involved in the GUI creation. For the
+ * same reason (GUI class), constants are not used on this code.
  */
+//CSOFF: ClassDataAbstractionCoupling
+//CSOFF: ClassFanOutComplexity
+//CSOFF: MagicNumber
 public class SetupDialog extends JDialog {
 	private static final DecimalFormatSymbols FORMAT_SYMBOL = new DecimalFormatSymbols();
 	private static final DecimalFormat CURRENT_FORMAT = new DecimalFormat("0.0####E00;0", FORMAT_SYMBOL);
@@ -113,8 +120,11 @@ public class SetupDialog extends JDialog {
 	}
 
 	/**
-	 * Initialize the dialog components
+	 * Initialize the dialog components.
+	 * 
+	 * As this method perform a complex initialization, It doesn't pass NCSS. 
 	 */
+	//CSOFF: JavaNCSS
 	private void initComponents() {
 		JLabel integrationLabel = new JLabel(XcosMessages.FINAL_INTEGRATION_TIME);
 		integration = new JFormattedTextField(CURRENT_FORMAT);
@@ -156,8 +166,6 @@ public class SetupDialog extends JDialog {
 			solverChoice.select(1);
 		}
 
-
-
 		JLabel maxStepSizeLabel = new JLabel(XcosMessages.MAXIMUN_STEP_SIZE);
 		SpinnerNumberModel spinnerModel = new SpinnerNumberModel((int) parameters.getMaximumStepSize(), 0, null, 1);
 		maxStepSize = new JSpinner();
@@ -177,8 +185,6 @@ public class SetupDialog extends JDialog {
 		gbc.gridheight = 1;
 		gbc.gridwidth = 1;
 		gbc.insets = new Insets(0, 10, 0, 0);
-
-
 
 
 		gbc.gridx = 0;
@@ -247,7 +253,8 @@ public class SetupDialog extends JDialog {
 
 		gbc.gridx = 1;
 		gbc.gridy = 14;
-		gbc.gridheight = gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.gridwidth = 1;
 		gbc.weightx = 1.;
 		gbc.fill = GridBagConstraints.NONE;
 		gbc.insets = new Insets(5, 0, 10, 5);
@@ -265,7 +272,21 @@ public class SetupDialog extends JDialog {
 		gbc.insets = new Insets(5, 0, 10, 10);
 		add(defaultButton, gbc);
 
+		installActionListeners(cancelButton, okButton, defaultButton,
+				setContextButton);
+	}
+	//CSON: JavaNCSS
 
+	/**
+	 * Install the action listeners on the buttons
+	 * 
+	 * @param cancelButton the cancel button (Cancel)
+	 * @param okButton the OK button (Validate)
+	 * @param defaultButton the default button (Reset)
+	 * @param setContextButton the context button (Shortcut to set context)
+	 */
+	private void installActionListeners(JButton cancelButton, JButton okButton,
+			JButton defaultButton, JButton setContextButton) {
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -325,3 +346,6 @@ public class SetupDialog extends JDialog {
 		});
 	}
 }
+//CSON: ClassDataAbstractionCoupling
+//CSON: ClassFanOutComplexity
+//CSON: MagicNumber

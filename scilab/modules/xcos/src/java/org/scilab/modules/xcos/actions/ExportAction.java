@@ -28,6 +28,7 @@ import java.util.TreeSet;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.utils.ScilabGraphRenderer;
@@ -133,7 +134,11 @@ public final class ExportAction extends DefaultAction {
 			return;
 		}
 
-		export(graph, filename);
+		try {
+			export(graph, filename);
+		} catch (IOException e1) {
+			LogFactory.getLog(ExportAction.class).error(e1);
+		}
 	}
 
 	/**
@@ -143,28 +148,25 @@ public final class ExportAction extends DefaultAction {
 	 * 
 	 * @param graph the current graph
 	 * @param filename the filename
+	 * @throws IOException when a write problem occurs. 
 	 */
-	private void export(XcosDiagram graph, String filename) {
+	private void export(XcosDiagram graph, String filename) throws IOException {
 		final String extension = filename.substring(filename.lastIndexOf('.') + 1);
 		
-		try {
-			if (extension.equalsIgnoreCase("svg")) {
-			    ScilabGraphRenderer.createSvgDocument(graph, null, 1, null, null, filename);
-			} else if (extension.equalsIgnoreCase("vml")) {
-			    Document doc = mxCellRenderer.createVmlDocument(graph, null, 1, null, null);
-			    if (doc != null) {
-				mxUtils.writeFile(mxUtils.getXml(doc.getDocumentElement()), filename);
-			    }
-			} else if (extension.equalsIgnoreCase("html")) {
-			    Document doc = mxCellRenderer.createHtmlDocument(graph, null, 1, null, null);
-			    if (doc != null) {
-				mxUtils.writeFile(mxUtils.getXml(doc.getDocumentElement()), filename);
-			    }
-			} else 	{
-				exportBufferedImage(graph, filename);
-			}
-		} catch (IOException e1) {
-			e1.printStackTrace();
+		if (extension.equalsIgnoreCase("svg")) {
+		    ScilabGraphRenderer.createSvgDocument(graph, null, 1, null, null, filename);
+		} else if (extension.equalsIgnoreCase("vml")) {
+		    Document doc = mxCellRenderer.createVmlDocument(graph, null, 1, null, null);
+		    if (doc != null) {
+			mxUtils.writeFile(mxUtils.getXml(doc.getDocumentElement()), filename);
+		    }
+		} else if (extension.equalsIgnoreCase("html")) {
+		    Document doc = mxCellRenderer.createHtmlDocument(graph, null, 1, null, null);
+		    if (doc != null) {
+			mxUtils.writeFile(mxUtils.getXml(doc.getDocumentElement()), filename);
+		    }
+		} else 	{
+			exportBufferedImage(graph, filename);
 		}
 	}
 

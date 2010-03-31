@@ -46,7 +46,14 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * Dialog associated with the {@link SetContextAction}.
+ * 
+ * Note that this dialog break the Data Abstraction Coupling metric because of
+ * the numbers of graphical components involved in the GUI creation. For the
+ * same reason (GUI class), constants are not used on this code.
  */
+//CSOFF: ClassDataAbstractionCoupling
+//CSOFF: ClassFanOutComplexity
+//CSOFF: MagicNumber
 public class SetContextDialog extends JDialog {
 	private final ScicosParameters parameters;
 	
@@ -78,6 +85,9 @@ public class SetContextDialog extends JDialog {
 	private void initComponents() {
 		JLabel textLabel = new JLabel(XcosMessages.SET_CONTEXT_LABEL_TEXT);
 		
+		/*
+		 * Construct a text from a String array context
+		 */
         StringBuilder contextBuilder = new StringBuilder();
         for (int i = 0; i < parameters.getContext().length; i++) {
         	contextBuilder.append(parameters.getContext()[i]);
@@ -100,6 +110,9 @@ public class SetContextDialog extends JDialog {
 		buttonPane.add(Box.createRigidArea(new Dimension(10, 0)));
 		buttonPane.add(cancelButton);
 		
+		/*
+		 * Perform layout
+		 */
 		GridBagConstraints gbc = new GridBagConstraints();
 		
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
@@ -127,13 +140,28 @@ public class SetContextDialog extends JDialog {
 		gbc.insets = new Insets(5, 0, 10, 10);
 		add(buttonPane, gbc);
 		
-		
+		installActionListeners(cancelButton, okButton);	
+	}
+
+	/**
+	 * Install the action listener on the buttons
+	 * @param cancelButton the cancel button
+	 * @param okButton the OK button
+	 */
+	private void installActionListeners(JButton cancelButton, JButton okButton) {
+		/*
+		 * The cancel button just exit without doing anything
+		 */
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
-        
+
+		/*
+		 * The ok button parse the contextArea, reconstruct the real context and
+		 * set the scicosParameters before exiting.
+		 */
 		okButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -164,8 +192,9 @@ public class SetContextDialog extends JDialog {
 					LogFactory.getLog(SetContextAction.class).error(e2);
 				}
 			}
-		});	
-	}
-	
-	
+		});
+	}	
 }
+//CSON: ClassDataAbstractionCoupling
+//CSON: ClassFanOutComplexity
+//CSON: MagicNumber
