@@ -11,7 +11,7 @@
 */
 
 #include "conditionvisitor.hxx"
-#include "execvisitor.hxx"
+#include "originalvisitor.hxx"
 #include "timer.hxx"
 #include "localization.h"
 #include "context.hxx"
@@ -26,8 +26,8 @@ namespace ast
 	{
 		bool bResult					= false;
 
-		ExecVisitor execMeL;
-		ExecVisitor execMeR;
+		OriginalVisitor execMeL;
+		OriginalVisitor execMeR;
 
 		symbol::Context* pContext = symbol::Context::getInstance();
 		/*getting what to assign*/
@@ -428,7 +428,7 @@ namespace ast
 			}
 			break;
 		default :
-			ExecVisitor exec;
+			OriginalVisitor exec;
 			e.accept(exec);
 			vector<types::InternalType*>* vect = exec.result_list_get();
 			for(int i = 0 ; i < vect->size() ; i++)

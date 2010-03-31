@@ -196,7 +196,7 @@ void origAstTask(bool timed)
 
 	if(timed)
 	{
-		_timer.check("Execute AST");
+		_timer.check("Execute original AST");
 	}
 }
 

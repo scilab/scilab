@@ -17,7 +17,7 @@
 #include <string>
 #include "types.hxx"
 
-#include "runvisitor.hxx"
+#include "visitor.hxx"
 
 using namespace ast;
 namespace types
