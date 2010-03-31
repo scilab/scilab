@@ -21,6 +21,7 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyVetoException;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -34,6 +35,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.ListSelectionModel;
 
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
 import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
@@ -178,14 +180,15 @@ public class DebugLevelAction extends SimulationNotRunningAction {
 
 			public void actionPerformed(ActionEvent e) {
 				int value = ((DebugLevel) debugList.getSelectedValue()).getValue();
-				diagram.setDebugLevel(value);
 				try {
+					diagram.setDebugLevel(value);
 					ScilabInterpreterManagement.synchronousScilabExec("scicos_debug(" + value + ");");
+					mainFrame.dispose();
 				} catch (InterpreterException e1) {
-					e1.printStackTrace();
+					LogFactory.getLog(DebugLevelAction.class).error(e1);
+				} catch (PropertyVetoException e2) {
+					LogFactory.getLog(DebugLevelAction.class).error(e2);
 				}
-		
-				mainFrame.dispose();
 			}
 		});
 

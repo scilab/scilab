@@ -12,6 +12,8 @@
 
 package org.scilab.modules.xcos.graph;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -25,7 +27,7 @@ import com.mxgraph.util.mxEventSource.mxIEventListener;
 /**
  * Contains the current Scicos engine status.
  */
-public class CompilationEngineStatus implements mxIEventListener {
+public class CompilationEngineStatus implements mxIEventListener, PropertyChangeListener {
 	private static final Log LOG = LogFactory.getLog(CompilationEngineStatus.class);
 	
 	private boolean compilationNeeded;
@@ -52,16 +54,6 @@ public class CompilationEngineStatus implements mxIEventListener {
 	 */
 	public boolean isCompilationNeeded() {
 		return compilationNeeded;
-	}
-
-	/**
-	 * @param sender the associated diagram
-	 * @param evt the current event.
-	 * @see com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object, com.mxgraph.util.mxEventObject)
-	 */
-	@Override
-	public void invoke(Object sender, mxEventObject evt) {
-		setCompilationNeeded(true);
 	}
 
 	/**
@@ -146,5 +138,33 @@ public class CompilationEngineStatus implements mxIEventListener {
 		command.append("import_from_hdf5(path); ");
 		
 		return command.toString();
+	}
+
+	/*
+	 * Property change listener
+	 */
+	
+	/**
+	 * Listener used for any interesting diagram change. 
+	 * 
+	 * @param sender the associated diagram
+	 * @param evt the current event.
+	 * @see com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object, com.mxgraph.util.mxEventObject)
+	 */
+	@Override
+	public void invoke(Object sender, mxEventObject evt) {
+		setCompilationNeeded(true);
+	}
+
+	/**
+	 * Property change listener used to update compilation status when the
+	 * context has changed.
+	 * 
+	 * @param evt the current event
+	 * @see java.beans.PropertyChangeListener#propertyChange(java.beans.PropertyChangeEvent)
+	 */
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		setCompilationNeeded(true);
 	}
 }

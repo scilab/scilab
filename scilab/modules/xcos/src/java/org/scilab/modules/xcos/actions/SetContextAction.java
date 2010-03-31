@@ -20,6 +20,7 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyVetoException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
@@ -37,13 +38,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
-
-import com.mxgraph.util.mxEventObject;
 
 /**
  * Opens context settings Window
@@ -187,38 +186,23 @@ public class SetContextAction extends SimulationNotRunningAction {
 					while ((nextLine = bufferReader.readLine()) != null) {
 						contextList.add(nextLine);
 						i++;
-					}
-
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-				/** Test for modifications */
-				String[] oldContext = diagram.getScicosParameters().getContext();
-				boolean modified = false;
-				/* If more or less lines --> modified */
-				if (oldContext.length != i) {
-					modified = true;
-				} else {
-					/* Compare line to line */
-					for (int lineNumber = 0; lineNumber < oldContext.length; lineNumber++) {
-						if (!oldContext[lineNumber].equals(contextList.get(lineNumber))) {
-							modified = true;
-						}
-					}
-				}
-				if (modified) {
-					if (i == 0) { /* Empty context */
-						context = new String[]{""};
-					} else {
-						context = contextList.toArray(new String[i]);
+					} 
+					
+					if (i == 0) {
+						contextList.add("");
 					}
 					
+					context = contextList.toArray(new String[i]);
 					diagram.setContext(context);
-					diagram.fireEvent(new mxEventObject(XcosEvent.DIAGRAM_UPDATED));
-					diagram.setModified(true);
+					
+					windowAlreadyExist = false;
+					mainFrame.dispose();
+					
+				} catch (IOException e1) {
+					LogFactory.getLog(SetContextAction.class).error(e1);
+				} catch (PropertyVetoException e2) {
+					LogFactory.getLog(SetContextAction.class).error(e2);
 				}
-				windowAlreadyExist = false;
-				mainFrame.dispose();
 			}
 		});
 		
