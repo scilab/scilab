@@ -20,6 +20,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyVetoException;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -42,6 +43,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 import ncsa.hdf.hdf5lib.exceptions.HDF5LibraryException;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabCanvas;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.PasteAction;
@@ -134,6 +137,8 @@ import com.mxgraph.view.mxMultiplicity;
  * The base class for a diagram. This class contains jgraphx + Scicos data.
  */
 public class XcosDiagram extends ScilabGraph {
+	private static final Log LOG = LogFactory.getLog(XcosDiagram.class);
+	
 	// the associated parameters
 	private ScicosParameters scicosParameters;
 	
@@ -438,8 +443,8 @@ public class XcosDiagram extends ScilabGraph {
 	super();
 	
 	// Scicos related setup
-	scicosParameters = new ScicosParameters();
 	engine = new CompilationEngineStatus();
+	setScicosParameters(new ScicosParameters());
 	
 	
 	getUndoManager().addListener(mxEvent.UNDO, deleteLinkOnMultiPointLinkCreation);
@@ -515,7 +520,7 @@ public class XcosDiagram extends ScilabGraph {
 	((mxCell) getDefaultParent()).setId((new UID()).toString());
 	((mxCell) getModel().getRoot()).setId((new UID()).toString());
     }
-
+    
     /**
      * Install the multiplicities (use for link checking)
      */
@@ -1473,6 +1478,8 @@ public class XcosDiagram extends ScilabGraph {
 	 */
 	public void setScicosParameters(ScicosParameters scicosParameters) {
 		this.scicosParameters = scicosParameters;
+		
+		scicosParameters.addPropertyChangeListener(getEngine());
 	}
 	
 	/**
@@ -1484,65 +1491,73 @@ public class XcosDiagram extends ScilabGraph {
 
 	/**
      * @param finalIntegrationTime set integration time
+	 * @throws PropertyVetoException when the value is invalid
      * @category XMLCompatibility
      */
-    public void setFinalIntegrationTime(double finalIntegrationTime) {
+    public void setFinalIntegrationTime(double finalIntegrationTime) throws PropertyVetoException {
     	scicosParameters.setFinalIntegrationTime(finalIntegrationTime);
     }
 
     /**
      * @param integratorAbsoluteTolerance set integrator absolute tolerance
+     * @throws PropertyVetoException when the value is invalid
      * @category XMLCompatibility
      */
-    public void setIntegratorAbsoluteTolerance(double integratorAbsoluteTolerance) {
+    public void setIntegratorAbsoluteTolerance(double integratorAbsoluteTolerance) throws PropertyVetoException {
 		scicosParameters.setIntegratorAbsoluteTolerance(integratorAbsoluteTolerance);
     }
 
     /**
      * @param integratorRelativeTolerance integrator relative tolerance
+     * @throws PropertyVetoException when the value is invalid
      * @category XMLCompatibility
      */
-    public void setIntegratorRelativeTolerance(double integratorRelativeTolerance) {
+    public void setIntegratorRelativeTolerance(double integratorRelativeTolerance) throws PropertyVetoException {
     	scicosParameters.setIntegratorRelativeTolerance(integratorRelativeTolerance);
     }
 
     /**
      * @param maximumStepSize set max step size
+     * @throws PropertyVetoException when the value is invalid
      * @category XMLCompatibility
      */
-    public void setMaximumStepSize(double maximumStepSize) {
+    public void setMaximumStepSize(double maximumStepSize) throws PropertyVetoException {
     	scicosParameters.setMaximumStepSize(maximumStepSize);
     }
 
     /**
      * @param maxIntegrationTimeinterval set max integration time
+     * @throws PropertyVetoException when the value is invalid
      * @category XMLCompatibility
      */
-    public void setMaxIntegrationTimeinterval(double maxIntegrationTimeinterval) {
-	 scicosParameters.setMaxIntegrationTimeinterval(maxIntegrationTimeinterval);
+    public void setMaxIntegrationTimeinterval(double maxIntegrationTimeinterval) throws PropertyVetoException {
+	 scicosParameters.setMaxIntegrationTimeInterval(maxIntegrationTimeinterval);
     }
 
     /**
      * @param realTimeScaling set real time scaling
+     * @throws PropertyVetoException when the value is invalid
      * @category XMLCompatibility
      */
-    public void setRealTimeScaling(double realTimeScaling) {
+    public void setRealTimeScaling(double realTimeScaling) throws PropertyVetoException {
     	scicosParameters.setRealTimeScaling(realTimeScaling);
     }
 
     /**
      * @param solver set solver
+     * @throws PropertyVetoException when the value is invalid
      * @category XMLCompatibility
      */
-    public void setSolver(double solver) {
+    public void setSolver(double solver) throws PropertyVetoException {
     	scicosParameters.setSolver(solver);
     }
 
     /**
      * @param toleranceOnTime set tolerance time
+     * @throws PropertyVetoException when the value is invalid
      * @category XMLCompatibility
      */
-    public void setToleranceOnTime(double toleranceOnTime) {
+    public void setToleranceOnTime(double toleranceOnTime) throws PropertyVetoException {
 		scicosParameters.setToleranceOnTime(toleranceOnTime);
     }
 
@@ -1772,9 +1787,11 @@ public class XcosDiagram extends ScilabGraph {
     
     /**
      * @param context set context
+     * @throws PropertyVetoException when the new value is invalid 
      */
-    public void setContext(String[] context) {
+    public void setContext(String[] context) throws PropertyVetoException {
     	scicosParameters.setContext(context);
+    	fireEvent(new mxEventObject(XcosEvent.DIAGRAM_UPDATED));
 	updateCellsContext();
     }
 
@@ -1815,8 +1832,9 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * @param debugLevel change debug level
      * @category XMLCompatibility
+     * @throws PropertyVetoException when the new value is invalid
      */
-    public void setDebugLevel(int debugLevel) {
+    public void setDebugLevel(int debugLevel) throws PropertyVetoException {
     	scicosParameters.setDebugLevel(debugLevel);
     }
 
@@ -1852,7 +1870,7 @@ public class XcosDiagram extends ScilabGraph {
 	List<TextBlock> allTextBlocks = (List<TextBlock>) diagramm.get("TextBlocks");
 	Map<String, Object> allLinks = (Map<String, Object>) diagramm.get("Links");
 	Map<String, Object> properties = (Map<String, Object>) diagramm.get("Properties");
-
+	try {
 	setFinalIntegrationTime((Double) properties.get("finalIntegrationTime"));
 	setIntegratorAbsoluteTolerance((Double) properties.get("integratorAbsoluteTolerance"));
 	setIntegratorRelativeTolerance((Double) properties.get("integratorRelativeTolerance"));
@@ -1862,6 +1880,9 @@ public class XcosDiagram extends ScilabGraph {
 	setSolver((Double) properties.get("solver"));
 	setMaximumStepSize((Double) properties.get("maximumStepSize"));
 	setContext((String[]) properties.get("context"));
+	} catch (PropertyVetoException e) {
+		LOG.error(e);
+	}
 
 	List<BasicPort[]> linkPorts = (List<BasicPort[]>) allLinks.get("Ports");
 	List<double[][]> linkPoints = (List<double[][]>) allLinks.get("Points");

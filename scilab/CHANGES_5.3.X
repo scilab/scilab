@@ -153,6 +153,10 @@ Removed functions (previously declared as obsolete):
 Bug fixes:
 ==========
 
+* bug 4672 fixed - Internal function AddFunctionInTable renamed to 
+                   getFunctionByName to avoid confusions on the actual usage
+                   of this function. Thanks to Yuvraj Tomar.
+
 * bug 6419 fixed - gstacksize() There was no way to retrieve minimum 
                    from Scilab.
 
