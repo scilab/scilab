@@ -22,6 +22,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.beans.PropertyVetoException;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -36,6 +37,7 @@ import javax.swing.JLabel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.ScicosParameters;
@@ -173,7 +175,7 @@ public class SetupAction extends SimulationNotRunningAction {
 		JLabel maxIntegrationTimeLabel = new JLabel(XcosMessages.MAX_INTEGRATION_TIME_INTERVAL);
 		maxIntegrationTime = new JFormattedTextField(CURRENT_FORMAT);
 		maxIntegrationTime.setInputVerifier(VALIDATE_POSITIVE_DOUBLE);
-		maxIntegrationTime.setValue(new BigDecimal(parameters.getMaxIntegrationTimeinterval()));
+		maxIntegrationTime.setValue(new BigDecimal(parameters.getMaxIntegrationTimeInterval()));
 
 		JLabel solverLabel = new JLabel(XcosMessages.SOLVER_CHOICE);
 		solverChoice = new Choice();
@@ -307,12 +309,12 @@ public class SetupAction extends SimulationNotRunningAction {
 			public void actionPerformed(ActionEvent e) {
 				integration.setValue(new BigDecimal(ScicosParameters.FINAL_INTEGRATION_TIME));
 				rts.setValue(new BigDecimal(ScicosParameters.REAL_TIME_SCALING));
-				integrator.setValue(new BigDecimal(ScicosParameters.INTEGRATOR_ABS_TOLERANCE));
+				integrator.setValue(new BigDecimal(ScicosParameters.INTEGRATOR_ABSOLUTE_TOLERANCE));
 				integratorRel.setValue(new BigDecimal(ScicosParameters.INTEGRATOR_RELATIVE_TOLERANCE));
 				toleranceOnTime.setValue(new BigDecimal(ScicosParameters.TOLERANCE_ON_TIME));
 				maxIntegrationTime.setValue(new BigDecimal(ScicosParameters.MAX_INTEGRATION_TIME_INTERVAL));
 				solverChoice.select((int) ScicosParameters.SOLVER);
-				maxStepSize.setValue((int) ScicosParameters.MAX_STEP_SIZE);
+				maxStepSize.setValue((int) ScicosParameters.MAXIMUM_STEP_SIZE);
 			}
 		});
 
@@ -320,7 +322,11 @@ public class SetupAction extends SimulationNotRunningAction {
 			public void actionPerformed(ActionEvent e) {
 			    if (((JButton) e.getSource()).hasFocus()) {
 			    	ScicosParameters parameters = diagram.getScicosParameters();
-			    	
+			    
+			    try {
+			    /*
+			     * FIXME This logic must be deported to a vetoable handler
+			     */
 				if (solverChoice.getSelectedItem().equals(XcosMessages.CVODE)) {
 					if (parameters.getSolver() != 0) {
 						diagram.setSolver(0);
@@ -353,7 +359,7 @@ public class SetupAction extends SimulationNotRunningAction {
 					diagram.setToleranceOnTime(((BigDecimal) toleranceOnTime.getValue()).doubleValue());
 					diagram.setModified(true);
 				}
-				if (parameters.getMaxIntegrationTimeinterval() != ((BigDecimal) maxIntegrationTime.getValue()).doubleValue()) {
+				if (parameters.getMaxIntegrationTimeInterval() != ((BigDecimal) maxIntegrationTime.getValue()).doubleValue()) {
 					diagram.setMaxIntegrationTimeinterval(((BigDecimal) maxIntegrationTime.getValue()).doubleValue());
 					diagram.setModified(true);
 				}
@@ -364,6 +370,10 @@ public class SetupAction extends SimulationNotRunningAction {
 
 				windowAlreadyExist = false;
 				mainFrame.dispose();
+				
+			    } catch (PropertyVetoException ex) {
+					LogFactory.getLog(SetupAction.class).error(ex);
+				}
 			    }
 			}
 		});
