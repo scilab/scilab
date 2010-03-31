@@ -189,14 +189,16 @@ Bug Fixes:
 * bug 6719 fixed - Error fixed in example of root_properties help page
                    (French version only).
 
-* bug 6720 fiwed - "caption" function doesn't handled properly polylines
+* bug 6720 fixed - "caption" function doesn't handled properly polylines
                    handles.
 
-*  bug 6720 fiwed - "lib" function didn't print the same thing when it was 
-                    entered several times.
+* bug 6720 fixed - "lib" function didn't print the same thing when it was 
+                   entered several times.
 
 * bug 6792 fixed - Wrong interpretation of macro arguments when the macro call
                    appeared in an list extraction.
+
+* bug 6796 fixed - test_run() crashed if SCI directory was read-only.
 
 * bug 6798 fixed - About Matlab to Scilab tools help page updated.
 
@@ -204,11 +206,13 @@ Bug Fixes:
 
 * bug 6817 fixed - The "xstring" function shifted the start position of the 
                    string relative to the string length.
-
+ 
 * bug 6829 fixed - kpure fails to compute  when applied to an high degree 
                    system.
 
 * bug 6834 fixed - The rotation formula in the rotate help page was incorrect.
+
+* bug 6841 fixed - fun2string failed on simple examples containing variable extraction.
 
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab
