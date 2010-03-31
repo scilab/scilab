@@ -18,12 +18,12 @@
 #include <iostream>
 #include <sstream>
 
-#include "execvisitor.hxx"
+#include "originalvisitor.hxx"
 #include "all.hxx"
 
 namespace ast
 {
-	class EXTERN_AST ShortCutVisitor : public ExecVisitor
+	class EXTERN_AST ShortCutVisitor : public OriginalVisitor
 	{
 	public:
 		ShortCutVisitor(){}

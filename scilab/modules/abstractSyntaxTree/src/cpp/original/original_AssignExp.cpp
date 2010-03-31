@@ -18,12 +18,10 @@
 #include "yaspio.hxx"
 
 using std::string;
-using ast::Exp;
-using ast::RunVisitor;
 
 namespace ast
 {
-	void OriginalVisitor::visit(const AssignExp  &e)
+	void OriginalVisitor::visit (const AssignExp  &e)
 	{
 		symbol::Context *pcontext = symbol::Context::getInstance();
 		/*Create local exec visitor*/
@@ -244,40 +242,3 @@ namespace ast
 	}
 }
 
-/*
-std::vector<std::vector<int>> ExpandList(std::vector<std::vector<int>> *_List)
-{
-	std::vector<std::vector<int> > ReturnList;
-	if(_List->size() == 1)
-	{
-		for(unsigned int i = 0 ; i< (*_List)[0].size() ; i++)
-		{
-			std::vector<int> SubList;
-			SubList.push_back((*_List)[0][i]);
-			ReturnList.push_back(SubList);
-		}
-	}
-	else
-	{
-		std::vector<int> SubList;
-		std::vector<std::vector<int> > TempList;
-		SubList = *(_List->begin());
-		_List->erase(_List->begin());
-		TempList = ExpandList(_List);
-		for(unsigned int k = 0 ; k < SubList.size() ; k++)
-		{
-			for(unsigned int j = 0 ; j < TempList.size() ; j++)
-			{
-				std::vector<int> SubList2;
-				SubList2.push_back(SubList[k]);
-				for(unsigned int i = 0 ; i < TempList[j].size() ; i++)
-				{
-					SubList2.push_back(TempList[j][i]);
-				}
-				ReturnList.push_back(SubList2);
-			}
-		}
-	}
-	return ReturnList;
-}
-*/

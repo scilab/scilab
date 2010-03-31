@@ -35,70 +35,69 @@ using std::string;
 
 namespace ast
 {
-	void OriginalVisitor::visit(const MatrixLineExp &e)
+	void OriginalVisitor::visit (const MatrixLineExp &e)
 	{
-		/*
+	/*
 		All processes are done in MatrixExp
-		*/
+	*/
 	}
 
-	void OriginalVisitor::visit(const CellExp &e)
+	void OriginalVisitor::visit (const CellExp &e)
 	{
 		/*
-		FIXME : container type
+			FIXME : container type
 		*/
 	}
 
 	/** \name Visit Constant Expressions nodes.
 	** \{ */
-	void OriginalVisitor::visit(const StringExp &e)
+	void OriginalVisitor::visit (const StringExp &e)
 	{
 		String *psz = new String(e.value_get().c_str());
 		result_set(psz);
 	}
 
-
-	void OriginalVisitor::visit(const CommentExp &e)
+	void OriginalVisitor::visit (const CommentExp &e)
 	{
 		/*
 		Nothing to do
 		*/
 	}
 
-	void OriginalVisitor::visit(const IntExp  &e)
+	void OriginalVisitor::visit (const IntExp  &e)
 	{
 		/*
 		Int does not exist, Int8 - 16 - 32 - 64 functions
 		*/
 	}
 
-	void OriginalVisitor::visit(const FloatExp  &e)
+	void OriginalVisitor::visit (const FloatExp  &e)
 	{
 		/*
 		Float does not exist, float function
 		*/
 	}
 
-	void OriginalVisitor::visit(const DoubleExp  &e)
+	void OriginalVisitor::visit (const DoubleExp  &e)
 	{
 		Double *pdbl = new Double(e.value_get());
 		result_set(pdbl);
 	}
 
-	void OriginalVisitor::visit(const BoolExp  &e)
+	void OriginalVisitor::visit (const BoolExp  &e)
 	{
 		Bool *pb = new Bool(e.value_get());
 		result_set(pb);
 	}
 
-	void OriginalVisitor::visit(const NilExp &e)
+	void OriginalVisitor::visit (const NilExp &e)
 	{
 		/*
 		FIXME :
 		*/
 	}
 
-	void OriginalVisitor::visit(const SimpleVar &e)
+	void OriginalVisitor::visit (const SimpleVar &e)
 	{
 		InternalType *pI = symbol::Context::getInstance()->get(e.name_get());
 		if(pI != NULL)
@@ -106,11 +105,11 @@ namespace ast
 			result_set(pI);
 			if(pI != NULL && pI->getAsCallable() == false && e.is_verbose())
 			{
-				std::ostringstream ostr;
+			  std::ostringstream ostr;
 				ostr << e.name_get() << " = " << "(" << pI->getRef() << ")"<< std::endl;
-				ostr << std::endl;
-				ostr << pI->toString(10,75) << std::endl;
-				YaspWrite((char *) ostr.str().c_str());
+			  ostr << std::endl;
+			  ostr << pI->toString(10,75) << std::endl;
+			  YaspWrite((char *) ostr.str().c_str());
 			}
 		}
 		else
@@ -126,7 +125,7 @@ namespace ast
 		}
 	}
 
-	void OriginalVisitor::visit(const ColonVar &e)
+	void OriginalVisitor::visit (const ColonVar &e)
 	{
 		int pRank[1] = {2};
 		Double dblCoef(1,2);
@@ -147,7 +146,7 @@ namespace ast
 		*/
 	}
 
-	void OriginalVisitor::visit(const DollarVar &e)
+	void OriginalVisitor::visit (const DollarVar &e)
 	{
 		int pRank[1] = {2};
 		Double dblCoef(1,2);
@@ -160,73 +159,73 @@ namespace ast
 		result_set(pVar);
 	}
 
-	void OriginalVisitor::visit(const ArrayListVar &e)
+	void OriginalVisitor::visit (const ArrayListVar &e)
 	{
 		/*
 
 		*/
 	}
 
-	void OriginalVisitor::visit(const FieldExp &e)
+	void OriginalVisitor::visit (const FieldExp &e)
 	{
 		/*
 		a.b
 		*/
-		OriginalVisitor execHead;
-		try
+	  OriginalVisitor execHead;
+	 	try
 		{
-			e.head_get()->accept(execHead);
+		  e.head_get()->accept(execHead);
 		}
 		catch (string sz) 
-		{
-			throw sz;
-		} 
+		  {
+		    throw sz;
+		  } 
 		if (execHead.result_get() != NULL && !execHead.result_get()->isStruct())
-		{
+		  {
+		    char szError[bsiz];
+#ifdef _MSC_VER
+		    sprintf_s(szError, bsiz, _("Attempt to reference field of non-structure array.\n"));
+#else
+		    sprintf(szError, _("Attempt to reference field of non-structure array.\n"));
+#endif
+		    throw string(szError);
+		  }
+		else
+		  {
+		    // Manage 3 cases
+		    // head.ID
+		    // head.variable
+		    // head.functionCall
+		    SimpleVar *psvRightMember = dynamic_cast<SimpleVar *>(const_cast<Exp *>(e.tail_get()));
+		    if (psvRightMember != NULL)
+		      {
+			Struct* psValue = execHead.result_get()->getAsStruct();
+			if ( psValue->exists(psvRightMember->name_get()) )
+			  {
+			    result_set(psValue->get(psvRightMember->name_get())->clone());
+			  }
+			else 
+			  {
+			    char szError[bsiz];
+#ifdef _MSC_VER
+			    sprintf_s(szError, bsiz, _("Unknown field : %s.\n"), psvRightMember->name_get().c_str());
+#else
+			    sprintf(szError, _("Unknown field : %s.\n"), psvRightMember->name_get().c_str());
+#endif
+			    throw string(szError);
+			  }
+		      }
+		    else
+		      {
 			char szError[bsiz];
 #ifdef _MSC_VER
-			sprintf_s(szError, bsiz, _("Attempt to reference field of non-structure array.\n"));
+			sprintf_s(szError, bsiz, _("/!\\ Unmanaged FieldExp.\n"));
 #else
-			sprintf(szError, _("Attempt to reference field of non-structure array.\n"));
+			sprintf(szError, _("/!\\ Unmanaged FieldExp.\n"));
 #endif
 			throw string(szError);
-		}
-		else
-		{
-			// Manage 3 cases
-			// head.ID
-			// head.variable
-			// head.functionCall
-			SimpleVar *psvRightMember = dynamic_cast<SimpleVar *>(const_cast<Exp *>(e.tail_get()));
-			if (psvRightMember != NULL)
-			{
-				Struct* psValue = execHead.result_get()->getAsStruct();
-				if ( psValue->exists(psvRightMember->name_get()) )
-				{
-					result_set(psValue->get(psvRightMember->name_get())->clone());
-				}
-				else 
-				{
-					char szError[bsiz];
-#ifdef _MSC_VER
-					sprintf_s(szError, bsiz, _("Unknown field : %s.\n"), psvRightMember->name_get().c_str());
-#else
-					sprintf(szError, _("Unknown field : %s.\n"), psvRightMember->name_get().c_str());
-#endif
-					throw string(szError);
-				}
-			}
-			else
-			{
-				char szError[bsiz];
-#ifdef _MSC_VER
-				sprintf_s(szError, bsiz, _("/!\\ Unmanaged FieldExp.\n"));
-#else
-				sprintf(szError, _("/!\\ Unmanaged FieldExp.\n"));
-#endif
-				throw string(szError);
-			}
-		}
+		      }
+		  }
 	}
 
 	void OriginalVisitor::visit(const CallExp &e)
@@ -242,7 +241,7 @@ namespace ast
 			types::typed_list in;
 
 			//get function arguments
-			OriginalVisitor *execVar = new OriginalVisitor[e.args_get().size()]();
+			OriginalVisitor *execVar = new ast::OriginalVisitor[e.args_get().size()]();
 			int j = 0;
 			for (j = 0, i = e.args_get().begin (); i != e.args_get().end (); ++i,j++)
 			{
@@ -253,11 +252,11 @@ namespace ast
 					execVar[j].result_set(pIL->extract_matrix());
 					delete pIL;
 				}
-
+				
 				if(execVar[j].is_single_result())
 				{
-					in.push_back(execVar[j].result_get());
-					execVar[j].result_get()->IncreaseRef();
+						in.push_back(execVar[j].result_get());
+						execVar[j].result_get()->IncreaseRef();
 				}
 				else
 				{
@@ -268,12 +267,11 @@ namespace ast
 					}
 				}
 			}
-
+			
 			int iRetCount = Max(1, expected_size_get());
-
-			ExecVisitor execCall;
+			OriginalVisitor execCall;
 			Function::ReturnValue Ret = pCall->call(in, iRetCount, out, &execCall);
-
+			
 			if(Ret == Callable::OK)
 			{
 				if(expected_size_get() == 1 && out.size() == 0) //to manage ans
@@ -310,15 +308,15 @@ namespace ast
 				throw string(szError);
 			}
 
-
+			
 			for (j = 0; j < e.args_get().size(); j++)
 			{
 				execVar[j].result_get()->DecreaseRef();
 			}
-
-			//			std::cout << "before delete[]" << std::endl;
+			
+//			std::cout << "before delete[]" << std::endl;
 			delete[] execVar;
-			//			std::cout << "after delete[]" << std::endl;
+//			std::cout << "after delete[]" << std::endl;
 		}
 		else if(execFunc.result_get() != NULL)
 		{//a(xxx) with a variable, extraction
@@ -398,7 +396,7 @@ namespace ast
 					throw os.str();
 				}
 			}
-
+			
 			delete[] piDimSize;
 			delete[] piIndexSeq;
 			delete[] piMaxDim;
@@ -416,7 +414,7 @@ namespace ast
 		}
 	}
 
-	void OriginalVisitor::visit(const IfExp  &e)
+	void OriginalVisitor::visit (const IfExp  &e)
 	{
 		//Create local exec visitor
 		ConditionVisitor execMeTest;
@@ -477,11 +475,11 @@ namespace ast
 		}
 	}
 
-	void OriginalVisitor::visit(const TryCatchExp  &e)
+	void OriginalVisitor::visit (const TryCatchExp  &e)
 	{
 	}
 
-	void OriginalVisitor::visit(const WhileExp  &e)
+	void OriginalVisitor::visit (const WhileExp  &e)
 	{
 		ConditionVisitor execMeTest;
 		OriginalVisitor execMeAction;
@@ -514,7 +512,7 @@ namespace ast
 		}
 	}
 
-	void OriginalVisitor::visit(const ForExp  &e)
+	void OriginalVisitor::visit (const ForExp  &e)
 	{
 		OriginalVisitor execVar;
 		e.vardec_get().accept(execVar);
@@ -531,7 +529,7 @@ namespace ast
 		{
 			OriginalVisitor execBody;
 			ImplicitList* pVar = (ImplicitList*)execVar.result_get();
-			//			std::cout << "ImplicitList references : " << pVar->getRef() << std::endl;
+//			std::cout << "ImplicitList references : " << pVar->getRef() << std::endl;
 
 			InternalType *pIT = NULL;
 			pIT = pVar->extract_value(0);
@@ -568,7 +566,7 @@ namespace ast
 					break;
 				}
 			}
-
+			
 			pVar->DecreaseRef();
 		}
 		else
@@ -594,18 +592,18 @@ namespace ast
 		}
 	}
 
-	void OriginalVisitor::visit(const BreakExp &e)
+	void OriginalVisitor::visit (const BreakExp &e)
 	{
 		((BreakExp*)&e)->break_set();
 	}
 
-	void OriginalVisitor::visit(const ReturnExp &e)
+	void OriginalVisitor::visit (const ReturnExp &e)
 	{
 		if(e.is_global() == false)
 		{//return(x)
 			OriginalVisitor execVar;
 			e.exp_get().accept(execVar);
-
+			
 			for(int i = 0 ; i < execVar.result_size_get() ; i++)
 			{
 				result_set(i, execVar.result_get(i)->clone());
@@ -614,14 +612,14 @@ namespace ast
 		((Exp*)&e)->return_set();
 	}
 
-	void OriginalVisitor::visit(const SelectExp &e)
+	void OriginalVisitor::visit (const SelectExp &e)
 	{
-		// FIXME : exec select ... case ... else ... end
+	  // FIXME : exec select ... case ... else ... end
 		OriginalVisitor execMe;
 		e.select_get()->accept(execMe);
 		bool bCase = false;
 
-
+		
 		if(execMe.result_get() != NULL)
 		{//find good case
 			cases_t::iterator it;
@@ -654,11 +652,12 @@ namespace ast
 
 	void OriginalVisitor::visit(const CaseExp &e)
 	{
+	  // FIXME : case ... 
 	}
 
-	void OriginalVisitor::visit(const SeqExp  &e)
+
+	void OriginalVisitor::visit (const SeqExp  &e)
 	{
-		OriginalVisitor execMe;
 		std::list<Exp *>::const_iterator	i;
 
 		for (i = e.exps_get().begin (); i != e.exps_get().end (); ++i)
@@ -749,7 +748,7 @@ namespace ast
 		}
 	}
 
-	void OriginalVisitor::visit(const ArrayListExp  &e)
+	void OriginalVisitor::visit (const ArrayListExp  &e)
 	{
 		std::list<Exp *>::const_iterator it;
 		int i = 0;
@@ -762,14 +761,14 @@ namespace ast
 		}
 	}
 
-	void OriginalVisitor::visit(const AssignListExp  &e)
+	void OriginalVisitor::visit (const AssignListExp  &e)
 	{
 	}
 	/** \} */
 
 	/** \name Visit Single Operation nodes.
 	** \{ */
-	void OriginalVisitor::visit(const NotExp &e)
+	void OriginalVisitor::visit (const NotExp &e)
 	{
 		/*
 		@ or ~= !
@@ -804,7 +803,7 @@ namespace ast
 		}
 	}
 
-	void OriginalVisitor::visit(const TransposeExp &e)
+	void OriginalVisitor::visit (const TransposeExp &e)
 	{
 		/*
 		'
@@ -892,13 +891,13 @@ namespace ast
 
 			result_set(pReturn);
 		}
-	}
+}
 	/** \} */
 
 	/** \name Visit Declaration nodes.
 	** \{ */
 	/** \brief Visit Var declarations. */
-	void OriginalVisitor::visit(const VarDec  &e)
+	void OriginalVisitor::visit (const VarDec  &e)
 	{
 		/*Create local exec visitor*/
 		OriginalVisitor execMe;
@@ -915,7 +914,7 @@ namespace ast
 		}
 	}
 
-	void OriginalVisitor::visit(const FunctionDec  &e)
+	void OriginalVisitor::visit (const FunctionDec  &e)
 	{
 		/*
 		function foo
@@ -949,9 +948,9 @@ namespace ast
 	** \{ */
 	void OriginalVisitor::visit(const ListExp &e)
 	{
-		OriginalVisitor execMeStart;
-		OriginalVisitor execMeStep;
-		OriginalVisitor execMeEnd;
+		OriginalVisitor	execMeStart;
+		OriginalVisitor	execMeStep;
+		OriginalVisitor	execMeEnd;
 
 		try
 		{
@@ -1065,6 +1064,7 @@ namespace ast
 	}
 	/** \} */
 
+			
 	int OriginalVisitor::GetIndexList(std::list<ast::Exp *>const& _plstArg, int** _piIndexSeq, int** _piMaxDim, InternalType *_pRefVar, int *_iDimSize)
 	{
 		//Create list of indexes
@@ -1233,3 +1233,5 @@ namespace ast
 		return iTotalCombi;
 	}
 }
+
+
