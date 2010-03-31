@@ -1608,7 +1608,7 @@ endfunction
 function setLineStyle(sty)
   global ged_handle; h=ged_handle
   h.line_style=find(sty==[ "solid" "dash" "dash dot" "longdash dot" ..
-		    "bigdash dot" "bigdash longdash"])
+		    "bigdash dot" "bigdash longdash" "dot" "double dot"])
   
 endfunction
 function setMarkStyle(sty)
