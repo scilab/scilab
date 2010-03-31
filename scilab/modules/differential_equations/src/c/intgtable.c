@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include "AddFunctionInTable.h"
+#include "GetFunctionByName.h"
 #include "machine.h"
 #define ARGS_fintg double *
 
@@ -49,5 +49,5 @@ double *C2F(fintg)(double *x)
 
 void C2F(setfintg)(char *name, int *rep)
 {
-	fintgfonc = (fintgf) AddFunctionInTable(name,rep,FTab_fintg);
+	fintgfonc = (fintgf) GetFunctionByName(name,rep,FTab_fintg);
 }

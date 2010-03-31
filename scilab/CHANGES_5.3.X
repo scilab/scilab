@@ -153,6 +153,10 @@ Removed functions (previously declared as obsolete):
 Bug fixes:
 ==========
 
+* bug 4672 fixed - Internal function AddFunctionInTable renamed to 
+                   getFunctionByName to avoid confusions on the actual usage
+                   of this function. Thanks to Yuvraj Tomar.
+
 * bug 6419 fixed - gstacksize() There was no way to retrieve minimum 
                    from Scilab.
 
@@ -182,4 +186,7 @@ Bug fixes:
 
 * bug 6740 fixed - It was not possible to launch Scilab as Minimized 
                    or Maximized Window.
+
+* bug 6830 fixed - C2F(scistring) in stack2.c was broken for macro names of 
+                   exactly 2 characters.
 

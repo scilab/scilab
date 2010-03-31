@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include "AddFunctionInTable.h"
+#include "GetFunctionByName.h"
 #include "machine.h"
 /***********************************
 * Search Table for int3d
@@ -51,5 +51,5 @@ void C2F(fint3d)(double *xyz, int *numfun, double *v)
 
 void C2F(setfint3d)(char *name, int *rep)
 {
-	fint3dfonc = (fint3df) AddFunctionInTable(name,rep,FTab_fint3d);
+	fint3dfonc = (fint3df) GetFunctionByName(name,rep,FTab_fint3d);
 }
