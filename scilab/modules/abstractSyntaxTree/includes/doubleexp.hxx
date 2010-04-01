@@ -11,62 +11,62 @@
  */
 
 #ifndef AST_DOUBLEEXP_HXX
-# define AST_DOUBLEEXP_HXX
+#define AST_DOUBLEEXP_HXX
 
-# include "constexp.hxx"
+#include "constexp.hxx"
 
-# include "visitor.hxx"
+#include "visitor.hxx"
 
 namespace ast
 {
-  /** \brief Abstract an Double Expression node.
-   **
-   ** \b Example:  42.51 */
-  class DoubleExp : public ConstExp
-  {
-  public:
-    DoubleExp (const Location& location, double value) :
-      ConstExp (location),
-      _value (value)
-    {
-    }
-    /** \brief Destroy an Double Expression node.
+    /** \brief Abstract an Double Expression node.
      **
-     ** Delete size et init (exp) (see constructor). */
-    virtual ~DoubleExp ()
+     ** \b Example:  42.51 */
+    class DoubleExp : public ConstExp
     {
-    }
-    /** \} */
+    public:
+        DoubleExp (const Location& location, double value) :
+            ConstExp (location),
+            _value (value)
+            {
+            }
+        /** \brief Destroy an Double Expression node.
+         **
+         ** Delete size et init (exp) (see constructor). */
+        virtual ~DoubleExp ()
+            {
+            }
+        /** \} */
 
-    /** \name Visitors entry point.
-     ** \{ */
-  public:
-    /** \brief Accept a const visitor \a v. */
-    virtual void accept (Visitor& v)
-    {
-      v.visit (*this);
-    }
-    /** \brief Accept a non-const visitor \a v. */
-    virtual void accept (ConstVisitor& v) const
-    {
-      v.visit (*this);
-    }
-    /** \} */
+        /** \name Visitors entry point.
+         ** \{ */
+    public:
+        /** \brief Accept a const visitor \a v. */
+        virtual void accept (Visitor& v)
+            {
+                v.visit (*this);
+            }
+        /** \brief Accept a non-const visitor \a v. */
+        virtual void accept (ConstVisitor& v) const
+            {
+                v.visit (*this);
+            }
+        /** \} */
 
 
-    /** \name Accessors.
-     ** \{ */
-  public:
-    /** \brief Return the value */
-    const double value_get() const
-    {
-      return _value;
-    }
-    /** \} */
+        /** \name Accessors.
+         ** \{ */
+    public:
+        /** \brief Return the value */
+        double value_get() const
+            {
+                return _value;
+            }
+        /** \} */
 
-  protected:
-    double     _value;
-  };
+    protected:
+        double     _value;
+    };
 
 } // namespace ast
 #endif
