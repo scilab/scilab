@@ -13,81 +13,81 @@
 #ifndef AST_INTEXP_HXX
 # define AST_INTEXP_HXX
 
-# include "constexp.hxx"
+#include "constexp.hxx"
 
 namespace ast
 {
-  /** \brief Abstract an Int Expression node.
-   **
-   ** \b Example:  25 */
-  class IntExp : public ConstExp
-  {
-  public :
-    /** \brief Precision qualifier */
-    enum Prec
-      {
-	/** \brief 8-bit Integer */	_8_,
-	/** \brief 16-bit Integer */	_16_,
-	/** \brief 32-bit Integer */	_32_,
-	/** \brief 64-bit Integer */	_64_
-      };
-  public:
-    IntExp (const Location& location, Prec prec, int value) :
-      ConstExp (location),
-      _prec (prec),
-      _value (value)
-    {
-    }
-
-    IntExp (const Location& location, int value) :
-      ConstExp (location),
-      _prec (_32_),
-      _value (value)
-    {
-    }
-
-    /** \brief Destroy an Int Expression node.
+    /** \brief Abstract an Int Expression node.
      **
-     ** Delete size et init (exp) (see constructor). */
-    virtual ~IntExp ()
+     ** \b Example:  25 */
+    class IntExp : public ConstExp
     {
-    }
-    /** \} */
+    public :
+        /** \brief Precision qualifier */
+        enum Prec
+        {
+            /** \brief 8-bit Integer */	 _8_,
+            /** \brief 16-bit Integer */ _16_,
+            /** \brief 32-bit Integer */ _32_,
+            /** \brief 64-bit Integer */ _64_
+        };
+    public:
+        IntExp (const Location& location, Prec prec, int value) :
+            ConstExp (location),
+            _prec (prec),
+            _value (value)
+            {
+            }
+        
+        IntExp (const Location& location, int value) :
+            ConstExp (location),
+            _prec (_32_),
+            _value (value)
+            {
+            }
 
-    /** \name Visitors entry point.
-     ** \{ */
-  public:
-    /** \brief Accept a const visitor \a v. */
-    virtual void accept (Visitor& v)
-    {
-      v.visit (*this);
-    }
-    /** \brief Accept a non-const visitor \a v. */
-    virtual void accept (ConstVisitor& v) const
-    {
-      v.visit (*this);
-    }
-    /** \} */
+        /** \brief Destroy an Int Expression node.
+         **
+         ** Delete size et init (exp) (see constructor). */
+        virtual ~IntExp ()
+            {
+            }
+        /** \} */
 
+        /** \name Visitors entry point.
+         ** \{ */
+    public:
+        /** \brief Accept a const visitor \a v. */
+        virtual void accept (Visitor& v)
+            {
+                v.visit (*this);
+            }
+        /** \brief Accept a non-const visitor \a v. */
+        virtual void accept (ConstVisitor& v) const
+            {
+                v.visit (*this);
+            }
+        /** \} */
 
-    /** \name Accessors.
-     ** \{ */
-  public:
-    /** \brief Return the value */
-    const int value_get() const
-    {
-      return _value;
-    }
-    Prec prec_get() const
-    {
-      return _prec;
-    }
-    /** \} */
-
-  protected:
-    Prec	_prec;
-    int		_value;
-  };
+        /** \name Accessors.
+         ** \{ */
+    public:
+        /** \brief Return the value */
+        int value_get() const
+            {
+                return _value;
+            }
+        
+        Prec prec_get() const
+            {
+                return _prec;
+            }
+        /** \} */
+    
+    protected:
+        Prec	_prec;
+        int		_value;
+    };
 
 } // namespace ast
 #endif
