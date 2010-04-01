@@ -83,6 +83,7 @@ parameters \
 matio \
 atoms \
 hdf5 \
+graph \
 xcos \
 xpad \
 system_env \
