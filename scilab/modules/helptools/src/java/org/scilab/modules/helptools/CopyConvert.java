@@ -911,7 +911,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
 	    try {
 		tf = new TeXFormula(LaTeX);
 	    } catch (ParseException e) {
-		throw new SAXParseException("There was a problem in parsing the LaTeX' formula : ", locator);
+		throw new SAXParseException("\nThere was a problem in parsing the LaTeX' formula : \n" + e.getMessage(), locator);
 	    }
 	    File f = new File(outDir, "graphics-" + (++graphicsCounter) + "_latex.png");
 	    reportInfo("Converting LaTeX formula to " + f + "'...");

@@ -50,6 +50,11 @@ call_scilab:
 
 * Examples added to show how to manage returned error.
 
+Graphics:
+=========
+
+* Adding two new line style : "dot" and "double dot". See bug 6840.
+
 Compilation:
 ============
 
