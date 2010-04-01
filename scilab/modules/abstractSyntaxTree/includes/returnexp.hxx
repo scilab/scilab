@@ -16,92 +16,92 @@
  */
 
 #ifndef AST_RETURNEXP_HXX
-# define AST_RETURNEXP_HXX
+#define AST_RETURNEXP_HXX
 
-# include "controlexp.hxx"
+#include "controlexp.hxx"
 
 namespace ast
 {
 
-  /** \brief Abstract a Return Expression node.
-   **
-   ** \b Example: return or return plop */
-  class ReturnExp : public ControlExp
-  {
-    /** \name Ctor & dtor.
-     ** \{ */
-  public:
-    /** \brief Construct a Return Expression node.
-     ** \param location scanner position informations
-     ** \param exp the returned exp
-     */
-    ReturnExp (const Location& location,
-	       Exp  *exp) :
-      ControlExp (location),
-      _exp (exp),
-      _is_global(false)
+    /** \brief Abstract a Return Expression node.
+     **
+     ** \b Example: return or return plop */
+    class ReturnExp : public ControlExp
     {
-			if(exp)
-			{
-				_is_global = false;
-			}
-    }
+        /** \name Ctor & dtor.
+         ** \{ */
+    public:
+        /** \brief Construct a Return Expression node.
+         ** \param location scanner position informations
+         ** \param exp the returned exp
+         */
+        ReturnExp (const Location& location,
+                   Exp  *exp) :
+            ControlExp (location),
+            _exp (exp),
+            _is_global(false)
+            {
+                if(exp)
+                {
+                    _is_global = false;
+                }
+            }
 
-    ReturnExp (const Location& location) :
-      ControlExp (location),
-      _exp (NULL),
-      _is_global(true)
-    {
-    }
+        ReturnExp (const Location& location) :
+            ControlExp (location),
+            _exp (NULL),
+            _is_global(true)
+            {
+            }
 
-    virtual ~ReturnExp ()
-    {
-			if(_exp != NULL)
-			{
-				delete _exp;
-			}
-    }
+        virtual ~ReturnExp ()
+            {
+                if(_exp != NULL)
+                {
+                    delete _exp;
+                }
+            }
 
-    /** \name Visitors entry point.
-     ** \{ */
-  public:
-    /** \brief Accept a const visitor \a v. */
-    virtual void accept (Visitor& v)
-    {
-      v.visit (*this);
-    }
-    /** \brief Accept a non-const visitor \a v. */
-    virtual void accept (ConstVisitor& v) const
-    {
-      v.visit (*this);
-    }
-    /** \} */
-
-
-    /** \name Accessors.
-     ** \{ */
-  public:
-    const Exp &	exp_get() const
-    {
-      return *_exp;
-    }
-
-    Exp &	exp_get()
-    {
-      return *_exp;
-    }
-
-    const bool is_global() const
-    {
-      return _is_global;
-    }
-    /** \} */
+        /** \name Visitors entry point.
+         ** \{ */
+    public:
+        /** \brief Accept a const visitor \a v. */
+        virtual void accept (Visitor& v)
+            {
+                v.visit (*this);
+            }
+        /** \brief Accept a non-const visitor \a v. */
+        virtual void accept (ConstVisitor& v) const
+            {
+                v.visit (*this);
+            }
+        /** \} */
 
 
-  protected:
-    Exp		*_exp;
-    bool	_is_global;
-  };
+        /** \name Accessors.
+         ** \{ */
+    public:
+        const Exp &	exp_get() const
+            {
+                return *_exp;
+            }
+
+        Exp &	exp_get()
+            {
+                return *_exp;
+            }
+
+        bool is_global() const
+            {
+                return _is_global;
+            }
+        /** \} */
+
+
+    protected:
+        Exp		*_exp;
+        bool	_is_global;
+    };
 
 } // namespace ast
 
