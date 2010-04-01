@@ -44,7 +44,13 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * Dialog for the {@link DebugLevelAction}.
+ * 
+ * Note that this dialog break the Data Abstraction Coupling metric because of
+ * the numbers of graphical components involved in the GUI creation. For the
+ * same reason (GUI class), constants are not used on this code.
  */
+// CSOFF: ClassDataAbstractionCoupling
+// CSOFF: MagicNumber
 public class DebugLevelDialog extends JDialog {
 	private final ScicosParameters parameters;
 	
@@ -137,3 +143,5 @@ public class DebugLevelDialog extends JDialog {
 		});
 	}
 }
+//CSON: ClassDataAbstractionCoupling
+//CSON: MagicNumber

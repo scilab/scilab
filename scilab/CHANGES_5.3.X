@@ -30,6 +30,8 @@ Documentation:
 * bug 6630 fixed - JavaHelp does not update existing image files when 
                    building help.
 
+* bug 6852 fixed - JavaHelp did not center the LaTeX formulas containing an
+      	   	   attribute align="center" 
 
 Xcos:
 =====
