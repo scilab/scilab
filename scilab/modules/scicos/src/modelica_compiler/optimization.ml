@@ -1,23 +1,24 @@
-
-(*  Scicos *)
-(* *)
-(*  Copyright (C) INRIA - METALAU Project <scicos@inria.fr> *)
-(* *)
-(* This program is free software; you can redistribute it and/or modify *)
-(* it under the terms of the GNU General Public License as published by *)
-(* the Free Software Foundation; either version 2 of the License, or *)
-(* (at your option) any later version. *)
-(* *)
-(* This program is distributed in the hope that it will be useful, *)
-(* but WITHOUT ANY WARRANTY; without even the implied warranty of *)
-(* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the *)
-(* GNU General Public License for more details. *)
-(* *) 
-(* You should have received a copy of the GNU General Public License *)
-(* along with this program; if not, write to the Free Software *)
-(* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA. *)
-(*  *)
-(* See the file ./license.txt *)
+(*
+ *  Modelicac
+ *
+ *  Copyright (C) 2005 - 2007 Imagine S.A.
+ *  For more information or commercial use please contact us at www.amesim.com
+ *
+ *  This program is free software; you can redistribute it and/or
+ *  modify it under the terms of the GNU General Public License
+ *  as published by the Free Software Foundation; either version 2
+ *  of the License, or (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program; if not, write to the Free Software
+ *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ *)
 
 open SymbolicExpression
 
@@ -68,10 +69,13 @@ type identifier_maps =
 and parameter =
   {
     parameter_kind: Instantiation.parameter_kind;
+    parameter_type: parameter_type;
     parameter_id: int;
     parameter_comment: string;
     parameter_start: t Lazy.t
   }
+
+and parameter_type = IntegerType | StringType | RealType
 
 and input =
   {
@@ -97,13 +101,18 @@ and model =
     mutable reinitializable_variables: t list;
     mutable when_clauses: (t * when_expression list) list;
     mutable io_dependency: bool;
-    mutable external_functions: (string list * int) list;
-    trace: string option
+    mutable external_functions:
+      (string list *
+      Instantiation.expression_type list *
+      Instantiation.expression_type list) list;
+    trace: string option;
+    variables_infos: (string * Compilation.variable_infos) list
   }
 
 and parameter_description =
   {
     mutable main: bool;
+    mutable p_type: parameter_type;
     mutable p_name: string;
     mutable p_comment: string;
     mutable value: t
@@ -122,6 +131,7 @@ and variable_description =
     mutable output: int option;
     mutable state: bool;
     mutable v_name: string;
+    mutable depth_in_hierarchy: int;
     mutable v_comment: string;
     mutable start_value: t option
   }
@@ -141,6 +151,12 @@ and when_expression =
 
 
 let scaling_factor = Num.power_num (Num.Int 10) (Num.Int 16)
+
+let exists_array p xs =
+  let l = Array.length xs in
+  let rec exists_array_from i =
+    i < l && (p xs.(i) || exists_array_from (i + 1)) in
+  exists_array_from 0
 
 let num_of_float f =
   let num_of_positive_float f =
@@ -178,7 +194,13 @@ let get_start_value id variables_map =
     | Some lexpr -> Lazy.force lexpr
 
 let rec symbolic_expression_of_expression inl_par maps iexpr =
-  let rec symbolic_expression_of_expression' iexpr =
+  let rec symbolic_argument_of_argument = function
+      | Instantiation.ScalarArgument iexpr ->
+          ScalarArgument (symbolic_expression_of_expression' iexpr)
+      | Instantiation.ArrayArgument (dims, iexprs) ->
+          ArrayArgument
+            (dims, Array.map symbolic_expression_of_expression' iexprs)
+  and symbolic_expression_of_expression' iexpr =
     match iexpr.Instantiation.tex_expression with
       | None -> assert false
       | Some expr -> symbolic_expression_of_expression'' expr
@@ -186,9 +208,13 @@ let rec symbolic_expression_of_expression inl_par maps iexpr =
       | Instantiation.Abs iexpr ->
           let expr = symbolic_expression_of_expression' iexpr in
           symbolic_if
-            (symbolic_gt expr zero)
+            (symbolic_ge expr zero)
             expr
             (symbolic_minus expr)
+      | Instantiation.Acos iexpr ->
+          symbolic_acos (symbolic_expression_of_expression' iexpr)
+      | Instantiation.Acosh iexpr ->
+          symbolic_acosh (symbolic_expression_of_expression' iexpr)
       | Instantiation.Addition (iexpr, iexpr') ->
           symbolic_add
             (symbolic_expression_of_expression' iexpr)
@@ -197,6 +223,14 @@ let rec symbolic_expression_of_expression inl_par maps iexpr =
           symbolic_and
             (symbolic_expression_of_expression' iexpr)
             (symbolic_expression_of_expression' iexpr')
+      | Instantiation.Asin iexpr ->
+          symbolic_asin (symbolic_expression_of_expression' iexpr)
+      | Instantiation.Asinh iexpr ->
+          symbolic_asinh (symbolic_expression_of_expression' iexpr)
+      | Instantiation.Atan iexpr ->
+          symbolic_atan (symbolic_expression_of_expression' iexpr)
+      | Instantiation.Atanh iexpr ->
+          symbolic_atanh (symbolic_expression_of_expression' iexpr)
       | Instantiation.Boolean false -> false_value
       | Instantiation.Boolean true -> true_value
       | Instantiation.Cardinality _ ->
@@ -205,6 +239,8 @@ let rec symbolic_expression_of_expression inl_par maps iexpr =
           invalid_arg "symbolic_expression_of_expression'"
       | Instantiation.Cos iexpr ->
           symbolic_cos (symbolic_expression_of_expression' iexpr)
+      | Instantiation.Cosh iexpr ->
+          symbolic_cosh (symbolic_expression_of_expression' iexpr)
       | Instantiation.Der iexpr ->
           symbolic_derivative (symbolic_expression_of_expression' iexpr)
       | Instantiation.Division (iexpr, iexpr') ->
@@ -217,10 +253,10 @@ let rec symbolic_expression_of_expression inl_par maps iexpr =
             (symbolic_expression_of_expression' iexpr')
       | Instantiation.Exp iexpr ->
           symbolic_exp (symbolic_expression_of_expression' iexpr)
-      | Instantiation.ExternalFunctionCall (path, iexprs) ->
+      | Instantiation.ExternalFunctionCall (path, _, _, iargs) ->
           symbolic_blackBox
             (function_name_of path)
-            (List.map symbolic_expression_of_expression' iexprs)
+            (List.map symbolic_argument_of_argument iargs)
       | Instantiation.Floor iexpr ->
           symbolic_floor (symbolic_expression_of_expression' iexpr)
       | Instantiation.GreaterEqualThan (iexpr, iexpr') ->
@@ -240,14 +276,7 @@ let rec symbolic_expression_of_expression inl_par maps iexpr =
                 expr)
             iif_exprs
             (symbolic_expression_of_expression' iexpr)
-      | Instantiation.Integer i ->
-          let i1 = Int32.to_int (Int32.shift_right i 16)
-          and i2 = Int32.to_int (Int32.logand i (Int32.of_int 0xffff)) in
-          let num =
-            Num.add_num
-              (Num.mult_num (Num.num_of_int i1) (Num.num_of_int 65536))
-              (Num.num_of_int i2)
-          in create_number num
+      | Instantiation.Integer i -> create_integer i
       | Instantiation.Log iexpr ->
           symbolic_log (symbolic_expression_of_expression' iexpr)
       | Instantiation.Max (iexpr, iexpr') ->
@@ -272,7 +301,9 @@ let rec symbolic_expression_of_expression inl_par maps iexpr =
             (symbolic_expression_of_expression' iexpr)
             (symbolic_expression_of_expression' iexpr')
       | Instantiation.NoEvent iexpr ->
-          create_blackBox "noEvent" [symbolic_expression_of_expression' iexpr]
+          create_blackBox
+            "noEvent"
+            [ScalarArgument (symbolic_expression_of_expression' iexpr)]
       | Instantiation.Not iexpr ->
           symbolic_not (symbolic_expression_of_expression' iexpr)
       | Instantiation.NotEquals (iexpr, iexpr') ->
@@ -298,12 +329,16 @@ let rec symbolic_expression_of_expression inl_par maps iexpr =
           symbolic_power
             (symbolic_expression_of_expression' iexpr)
             (symbolic_expression_of_expression' iexpr')
+      | Instantiation.Pre iexpr ->
+          symbolic_pre (symbolic_expression_of_expression' iexpr)
       | Instantiation.Real f -> create_number (num_of_float f)
       | Instantiation.Sin iexpr ->
           symbolic_sin (symbolic_expression_of_expression' iexpr)
+      | Instantiation.Sinh iexpr ->
+          symbolic_sinh (symbolic_expression_of_expression' iexpr)
       | Instantiation.Sqrt iexpr ->
           symbolic_sqrt (symbolic_expression_of_expression' iexpr)
-      | Instantiation.String s -> create_constant s
+      | Instantiation.String s -> create_string s
       | Instantiation.Subtraction (iexpr, iexpr') ->
           symbolic_sub
             (symbolic_expression_of_expression' iexpr)
@@ -349,11 +384,13 @@ let rec symbolic_expression_of_expression inl_par maps iexpr =
   in symbolic_expression_of_expression' iexpr
 
 let collect_external_function_names iequs =
-  let rec add_if_not_in (name, arity) = function
-    | [] -> [name, arity]
-    | ((name', _) :: _) as names when name = name' -> names
-    | name'_arity :: names -> name'_arity :: add_if_not_in (name, arity) names
-  in
+  let rec add_if_not_in (name, in_types, out_types) = function
+    | [] -> [name, in_types, out_types]
+    | ((name', _, _) :: _) as name_and_types when name = name' ->
+        name_and_types
+    | name_and_type :: name_and_types ->
+        name_and_type ::
+        add_if_not_in (name, in_types, out_types) name_and_types in
   let rec collect_in_equations funcalls = function
     | [] -> funcalls
     | Instantiation.Equation (iexpr, iexpr') :: iequs' ->
@@ -409,9 +446,9 @@ let collect_external_function_names iequs =
         Instantiation.Subtraction (iexpr, iexpr') ->
           let funcalls = collect_in_expressions funcalls iexpr in
           collect_in_expressions funcalls iexpr'
-      | Instantiation.ExternalFunctionCall (name, iexprs) ->
-          let funcalls = add_if_not_in (name, List.length iexprs) funcalls in
-          List.fold_left collect_in_expressions funcalls iexprs
+      | Instantiation.ExternalFunctionCall (name, in_types, out_types, iargs) ->
+          let funcalls = add_if_not_in (name, in_types, out_types) funcalls in
+          List.fold_left collect_in_arguments funcalls iargs
       | Instantiation.If (iif_exprs, iexpr) ->
           let funcalls =
             List.fold_left
@@ -423,11 +460,16 @@ let collect_external_function_names iequs =
           in collect_in_expressions funcalls iexpr
       | Instantiation.Minus iexpr | Instantiation.NoEvent iexpr |
         Instantiation.Not iexpr | Instantiation.Abs iexpr |
-        Instantiation.Cos iexpr | Instantiation.Exp iexpr |
+        Instantiation.Acos iexpr | Instantiation.Acosh iexpr |
+        Instantiation.Cos iexpr | Instantiation.Cosh iexpr |
+        Instantiation.Exp iexpr |
         Instantiation.Floor iexpr | Instantiation.Log iexpr |
-        Instantiation.Sin iexpr | Instantiation.Sqrt iexpr |
-        Instantiation.Tan iexpr | Instantiation.Tanh iexpr ->
-          collect_in_expressions funcalls iexpr
+        Instantiation.Asin iexpr | Instantiation.Asinh iexpr |
+        Instantiation.Sin iexpr | Instantiation.Sinh iexpr |
+        Instantiation.Sqrt iexpr |
+        Instantiation.Atan iexpr | Instantiation.Atanh iexpr |
+        Instantiation.Tan iexpr | Instantiation.Tanh iexpr |
+        Instantiation.Pre iexpr -> collect_in_expressions funcalls iexpr
       | Instantiation.ParameterValue _ | Instantiation.Real _ |
         Instantiation.String _ | Instantiation.Time |
         Instantiation.VariableStart _ | Instantiation.VariableValue _ |
@@ -435,6 +477,11 @@ let collect_external_function_names iequs =
           funcalls
       | Instantiation.Cardinality _ | Instantiation.CompoundElement _ |
         Instantiation.Vector _ -> assert false
+  and collect_in_arguments funcalls = function
+    | Instantiation.ScalarArgument iexpr ->
+        collect_in_expressions funcalls iexpr
+    | Instantiation.ArrayArgument (_, iexprs) ->
+        Array.fold_left collect_in_expressions funcalls iexprs
   in collect_in_equations [] iequs
 
 let separate_parameters_from_variables icpnts =
@@ -445,10 +492,18 @@ let separate_parameters_from_variables icpnts =
 
 let separate_inputs_from_others icpnts =
   let is_input = function
-    | Instantiation.InstantiatedDiscreteVariable (_, Compilation.Input, _) |
-      Instantiation.InstantiatedRealVariable (_, Compilation.Input, _, _) ->
+    | Instantiation.InstantiatedIntegerVariable
+        (_, Compilation.Input, _, _) |
+      Instantiation.InstantiatedStringVariable
+        (_, Compilation.Input, _, _) |
+      Instantiation.InstantiatedDiscreteVariable
+        (_, Compilation.Input, _, _) |
+      Instantiation.InstantiatedRealVariable
+        (_, Compilation.Input, _, _, _) ->
         true
-    | Instantiation.InstantiatedDiscreteVariable _ |
+    | Instantiation.InstantiatedIntegerVariable _ |
+      Instantiation.InstantiatedStringVariable _ |
+      Instantiation.InstantiatedDiscreteVariable _ |
       Instantiation.InstantiatedRealVariable _ |
       Instantiation.InstantiatedCompoundVariable _ -> false
   in
@@ -460,7 +515,9 @@ let separate_inputs_from_others icpnts =
 let separate_discrete_variables_from_others icpnts =
   let is_discrete = function
     | Instantiation.InstantiatedDiscreteVariable _ -> true
-    | Instantiation.InstantiatedRealVariable _ |
+    | Instantiation.InstantiatedIntegerVariable _ |
+      Instantiation.InstantiatedStringVariable _ |
+      Instantiation.InstantiatedRealVariable _ |
       Instantiation.InstantiatedCompoundVariable _ -> false
   in
   let filter_variable = function
@@ -470,10 +527,18 @@ let separate_discrete_variables_from_others icpnts =
 
 let separate_outputs_from_others icpnts =
   let is_output = function
-    | Instantiation.InstantiatedDiscreteVariable (_, Compilation.Output, _) |
-      Instantiation.InstantiatedRealVariable (_, Compilation.Output, _, _) ->
+    | Instantiation.InstantiatedIntegerVariable
+        (_, Compilation.Output, _, _) |
+      Instantiation.InstantiatedStringVariable
+        (_, Compilation.Output, _, _) |
+      Instantiation.InstantiatedDiscreteVariable
+        (_, Compilation.Output, _, _) |
+      Instantiation.InstantiatedRealVariable
+        (_, Compilation.Output, _, _, _) ->
         true
-    | Instantiation.InstantiatedDiscreteVariable _ |
+    | Instantiation.InstantiatedIntegerVariable _ |
+      Instantiation.InstantiatedStringVariable _ |
+      Instantiation.InstantiatedDiscreteVariable _ |
       Instantiation.InstantiatedRealVariable _ |
       Instantiation.InstantiatedCompoundVariable _ -> false
   in
@@ -503,6 +568,73 @@ let separate_whens_from_equations iequs =
       Instantiation.FlowConnection _ :: _ -> assert false
   in separate_whens_from_equations' [] [] iequs
 
+let rewrite_when_condition expr =
+  let rec contains_time expr = match nature expr with
+    | BooleanValue _  | Constant _ | DiscreteVariable _ | Number _ |
+      Parameter _ | Variable _ | Integer _ | String _ -> false
+    | TimeVariable  -> true
+    | ArcCosine node | ArcHyperbolicCosine node |
+      ArcHyperbolicSine node | ArcHyperbolicTangent node | ArcSine node |
+      ArcTangent node | Cosine node | Derivative (node, _) |
+      Exponential node | Floor node | HyperbolicCosine node |
+      HyperbolicSine node | HyperbolicTangent node | Logarithm node |
+      Not node | Pre node | RationalPower (node, _) | Sign node | Sine node |
+      Tangent node -> contains_time node
+    | Equality (node1, node2) | Greater (node1, node2) |
+      GreaterEqual (node1, node2) | PartialDerivative (node1, node2) ->
+        contains_time node1 || contains_time node2
+    | If (node1, node2, node3) ->
+        contains_time node1 || contains_time node2 || contains_time node3
+    | And nodes | Addition nodes | Multiplication nodes | Or nodes ->
+        List.exists contains_time nodes
+    | BlackBox (_, args) -> List.exists contains_time_argument args
+  and contains_time_argument = function
+    | ScalarArgument node -> contains_time node
+    | ArrayArgument (_, nodes) -> exists_array contains_time nodes in
+  let is_primary_condition expr =
+    assignable_variables_of expr <> [] || contains_time expr in
+  let rec rewrite expr = match nature expr with
+    | Addition nodes -> apply_addition (List.map rewrite nodes)
+    | And nodes -> apply_and (List.map rewrite nodes)
+    | ArcCosine node -> symbolic_acos (rewrite node)
+    | ArcHyperbolicCosine node -> symbolic_acosh (rewrite node)
+    | ArcHyperbolicSine node -> symbolic_asinh (rewrite node)
+    | ArcHyperbolicTangent node -> symbolic_atanh (rewrite node)
+    | ArcSine node -> symbolic_asin (rewrite node)
+    | ArcTangent node -> symbolic_atan (rewrite node)
+    | BlackBox (s, args) -> apply_blackBox s (List.map rewrite_argument args)
+    | Cosine node -> symbolic_cos (rewrite node)
+    | Derivative (node, num) -> symbolic_derive (rewrite node) num
+    | Equality (node, node') -> symbolic_eq (rewrite node) (rewrite node')
+    | Exponential node -> symbolic_exp (rewrite node)
+    | Floor node -> symbolic_floor (rewrite node)
+    | Greater (node, node') -> symbolic_gt (rewrite node) (rewrite node')
+    | GreaterEqual (node, node') -> symbolic_ge (rewrite node) (rewrite node')
+    | HyperbolicCosine node -> symbolic_cosh (rewrite node)
+    | HyperbolicSine node -> symbolic_sinh (rewrite node)
+    | HyperbolicTangent node -> symbolic_tanh (rewrite node)
+    | If (node, node', node'') ->
+        symbolic_if (rewrite node) (rewrite node') (rewrite node'')
+    | Logarithm node -> symbolic_log (rewrite node)
+    | Multiplication nodes -> apply_multiplication (List.map rewrite nodes)
+    | Not node -> symbolic_not (rewrite node)
+    | Or nodes -> apply_or (List.map rewrite nodes)
+    | PartialDerivative (node, node') ->
+        create_partialDerivative (rewrite node) (rewrite node')
+    | Pre node -> symbolic_pre (rewrite node)
+    | RationalPower (node, num) -> symbolic_rationalPower (rewrite node) num
+    | Sign node -> symbolic_sgn (rewrite node)
+    | Sine node -> symbolic_sin (rewrite node)
+    | Tangent node -> symbolic_tan (rewrite node)
+    | BooleanValue _ | Constant _ | Number _ | Parameter _ |
+      TimeVariable | Variable _ | Integer _ | String _ -> expr
+    | DiscreteVariable _ -> symbolic_pre expr
+  and rewrite_argument = function
+    | ScalarArgument expr -> ScalarArgument (rewrite expr)
+    | ArrayArgument (dims, exprs) ->
+        ArrayArgument (dims, Array.map rewrite exprs) in
+  if is_primary_condition expr then rewrite expr else expr
+
 let symbolic_equation inl_par maps = function
   | Instantiation.Equation (iexpr, iexpr') ->
       let expr =
@@ -522,7 +654,8 @@ let symbolic_equation inl_par maps = function
 let symbolic_surfaces inl_par maps when_clauses =
   List.map
     (fun (iexpr, surfaces) ->
-      symbolic_expression_of_expression inl_par maps iexpr,
+      let expr = symbolic_expression_of_expression inl_par maps iexpr in
+      rewrite_when_condition expr,
       List.map
         (function
           | Instantiation.Reinit (iexpr, iexpr') ->
@@ -537,6 +670,8 @@ let symbolic_surfaces inl_par maps when_clauses =
             begin match nature var with
               | DiscreteVariable i ->
                   Assign (var, symbolic_expression_of_expression inl_par maps iexpr')
+              | Variable i ->
+                  Reinit (var, symbolic_expression_of_expression inl_par maps iexpr')
               | _ -> assert false
             end)
         surfaces)
@@ -570,6 +705,10 @@ let propagate_noEvent expr =
         create_greater
           (propagate_noEvent' no_event expr')
           (propagate_noEvent' no_event expr'')
+    | GreaterEqual (expr', expr'') ->
+        create_greater_equal
+          (propagate_noEvent' no_event expr')
+          (propagate_noEvent' no_event expr'')
     | HyperbolicCosine expr' ->
         create_hyperbolicCosine (propagate_noEvent' no_event expr')
     | HyperbolicSine expr' ->
@@ -577,6 +716,7 @@ let propagate_noEvent expr =
     | HyperbolicTangent expr' ->
         create_hyperbolicTangent (propagate_noEvent' no_event expr')
     | Logarithm expr' -> create_logarithm (propagate_noEvent' no_event expr')
+    | Pre expr' -> create_pre (propagate_noEvent' no_event expr')
     | RationalPower (expr', num) ->
         create_rationalPower (propagate_noEvent' no_event expr') num
     | Sign expr' -> create_sign (propagate_noEvent' no_event expr')
@@ -584,9 +724,11 @@ let propagate_noEvent expr =
     | Tangent expr' -> create_tangent (propagate_noEvent' no_event expr')
     | Addition exprs' ->
         create_addition (sort (List.map (propagate_noEvent' no_event) exprs'))
-    | BlackBox ("noEvent", [expr']) -> propagate_noEvent' true expr'
-    | BlackBox (name, exprs') ->
-        create_blackBox name (List.map (propagate_noEvent' no_event) exprs')
+    | BlackBox ("noEvent", [ScalarArgument expr']) -> propagate_noEvent' true expr'
+    | BlackBox (name, args) ->
+        create_blackBox
+          name
+          (List.map (propagate_noEvent_into_argument no_event) args)
     | Multiplication exprs' ->
         create_multiplication
           (sort (List.map (propagate_noEvent' no_event) exprs'))
@@ -600,13 +742,20 @@ let propagate_noEvent expr =
     | If (expr', expr'', expr''') ->
         propagate_noEvent_into_if no_event expr' expr'' expr'''
     | BooleanValue _ | Constant _ | DiscreteVariable _ | Number _ |
-      Parameter _ | TimeVariable | Variable _ -> expr
+      Parameter _ | TimeVariable | Variable _ | Integer _ | String _ -> expr
+  and propagate_noEvent_into_argument no_event = function
+    | ScalarArgument expr -> ScalarArgument (propagate_noEvent' no_event expr)
+    | ArrayArgument (dims, exprs) ->
+        ArrayArgument (dims, Array.map (propagate_noEvent' no_event) exprs)
   and propagate_noEvent_into_if no_event expr expr' expr'' =
     let cond =
-      if no_event then create_blackBox "noEvent" [propagate_noEvent' false expr]
+      if no_event then
+        create_blackBox "noEvent" [ScalarArgument (propagate_noEvent' false expr)]
       else begin match nature expr with
-        | BlackBox ("noEvent", [expr']) ->
-            create_blackBox "noEvent" [propagate_noEvent' false expr]
+        | BlackBox ("noEvent", [ScalarArgument expr']) ->
+            create_blackBox
+              "noEvent"
+              [ScalarArgument (propagate_noEvent' false expr)]
         | _ -> propagate_noEvent' false expr
       end
     in
@@ -617,27 +766,49 @@ let propagate_noEvent expr =
   in propagate_noEvent' false expr
 
 let create_model' trace inl_par iexpr =
-  let lazy_symbolic_expression_of_expression maps iexpr = match iexpr.Instantiation.tex_expression with
+  let lazy_symbolic_expression_of_expression maps iexpr =
+    match iexpr.Instantiation.tex_expression with
     | None -> None
-    | Some _ -> Some (lazy (symbolic_expression_of_expression inl_par maps iexpr))
+    | Some _ ->
+        Some (lazy (symbolic_expression_of_expression inl_par maps iexpr))
   in
   let get_parameter_info maps s i = function
     | Instantiation.InstantiatedParameter (
-        Instantiation.InstantiatedIntegerParameter (s', kind, iexpr)) |
-      Instantiation.InstantiatedParameter (
-        Instantiation.InstantiatedRealParameter (s', kind, iexpr)) ->
+        Instantiation.InstantiatedIntegerParameter (s', kind, iexpr, _)) ->
         {
           parameter_kind = kind;
+          parameter_type = IntegerType;
           parameter_id = i;
           parameter_comment = s';
-          parameter_start = lazy (symbolic_expression_of_expression inl_par maps iexpr)
+          parameter_start = lazy
+            (symbolic_expression_of_expression inl_par maps iexpr)
+        }
+    | Instantiation.InstantiatedParameter (
+        Instantiation.InstantiatedStringParameter (s', kind, iexpr, _)) ->
+        {
+          parameter_kind = kind;
+          parameter_type = StringType;
+          parameter_id = i;
+          parameter_comment = s';
+          parameter_start = lazy
+            (symbolic_expression_of_expression inl_par maps iexpr)
+        }
+    | Instantiation.InstantiatedParameter (
+        Instantiation.InstantiatedRealParameter (s', kind, iexpr, _)) ->
+        {
+          parameter_kind = kind;
+          parameter_type = RealType;
+          parameter_id = i;
+          parameter_comment = s';
+          parameter_start = lazy
+            (symbolic_expression_of_expression inl_par maps iexpr)
         }
     | _ -> assert false
   and get_input_info maps s i = function
     | Instantiation.InstantiatedVariable (
-        Instantiation.InstantiatedDiscreteVariable (s', _, _)) |
+        Instantiation.InstantiatedDiscreteVariable (s', _, _, _)) |
       Instantiation.InstantiatedVariable (
-        Instantiation.InstantiatedRealVariable (s', _, _, _)) ->
+        Instantiation.InstantiatedRealVariable (s', _, _, _, _)) ->
         {
           input_id = i;
           input_name = s;
@@ -646,9 +817,9 @@ let create_model' trace inl_par iexpr =
     | _ -> assert false
   and get_variable_info maps s i = function
     | Instantiation.InstantiatedVariable (
-        Instantiation.InstantiatedDiscreteVariable (s', _, iexpr)) |
+        Instantiation.InstantiatedDiscreteVariable (s', _, iexpr, _)) |
       Instantiation.InstantiatedVariable (
-        Instantiation.InstantiatedRealVariable (s', _, _, iexpr)) ->
+        Instantiation.InstantiatedRealVariable (s', _, _, iexpr, _)) ->
         {
           variable_id = i;
           variable_comment = s';
@@ -669,17 +840,28 @@ let create_model' trace inl_par iexpr =
       []
       ders
   in
+  let add_variable_infos acc (id, icpnt) = match icpnt with
+    | Instantiation.InstantiatedVariable
+        (Instantiation.InstantiatedDiscreteVariable (_, _, _, var_infos) |
+         Instantiation.InstantiatedRealVariable (_, _, _, _, var_infos)) ->
+        (id, var_infos) :: acc
+    | Instantiation.InstantiatedParameter
+        (Instantiation.InstantiatedIntegerParameter (_, _, _, pat_infos) |
+         Instantiation.InstantiatedRealParameter (_, _, _, pat_infos)) ->
+        (id, pat_infos) :: acc
+    | _ -> acc
+  in
   let icpnts, iinit_equs, iequs = Instantiation.expand_class iexpr in
+  let variables_infos =
+    List.fold_left add_variable_infos [] icpnts in
   let parameters, variables = separate_parameters_from_variables icpnts in
   let inputs, non_inputs = separate_inputs_from_others variables in
   let discrete_variables, others =
-    separate_discrete_variables_from_others non_inputs
-  in
+    separate_discrete_variables_from_others non_inputs in
   let outputs, _ = separate_outputs_from_others non_inputs in
-  let function_names =
+  let name_and_types =
     collect_external_function_names iequs @
-    collect_external_function_names iinit_equs
-  in
+    collect_external_function_names iinit_equs in
   let rec maps =
     {
       parameters_map =
@@ -710,6 +892,7 @@ let create_model' trace inl_par iexpr =
         (fun _ ->
           {
             main = false;
+            p_type = IntegerType;
             p_name = "";
             p_comment = "";
             value = zero
@@ -733,6 +916,7 @@ let create_model' trace inl_par iexpr =
             output = None;
             state = true;
             v_name = "";
+            depth_in_hierarchy = 0;
             v_comment = "";
             start_value = Some zero
           })
@@ -755,6 +939,13 @@ let create_model' trace inl_par iexpr =
         | _ :: outputs' -> output_index' (i + 1) outputs'
       in output_index' 0 outputs
     in
+    let number_of_dots s =
+      let count = ref 0 in
+      for i = 0 to String.length s - 1 do
+        if s.[i] = '.' then incr count;
+      done;
+      !count
+    in
     let _ =
       List.fold_left
         (fun i equ ->
@@ -775,6 +966,7 @@ let create_model' trace inl_par iexpr =
         assert (param.parameter_id < Array.length parameters_array);
         let parameter = parameters_array.(param.parameter_id) in
         parameter.main <- param.parameter_kind = Instantiation.Main;
+        parameter.p_type <- param.parameter_type;
         parameter.p_name <- s;
         parameter.p_comment <- param.parameter_comment;
         parameter.value <- Lazy.force param.parameter_start)
@@ -804,6 +996,7 @@ let create_model' trace inl_par iexpr =
         variable.state <-
           List.memq (create_variable var.variable_id) derived_variables;
         variable.v_name <- s;
+        variable.depth_in_hierarchy <- number_of_dots s;
         variable.v_comment <- var.variable_comment;
         variable.start_value <-
           match var.variable_start with
@@ -835,8 +1028,9 @@ let create_model' trace inl_par iexpr =
       reinitializable_variables = reinitializable_variables;
       when_clauses = when_clauses_list;
       io_dependency = false;
-      external_functions = function_names;
-      trace = trace
+      external_functions = name_and_types;
+      trace = trace;
+      variables_infos = variables_infos
     }
 
 let create_model_with_parameters trace iexpr = create_model' trace false iexpr
@@ -887,6 +1081,15 @@ let create_index_array a p =
   Array.iteri (fun i x -> if p x then begin indexes.(i) <- !j; incr j end) a;
   indexes
 
+let final_index_of_integer_parameters model =
+  create_index_array model.parameters (fun par -> par.p_type = IntegerType)
+
+let final_index_of_string_parameters model =
+  create_index_array model.parameters (fun par -> par.p_type = StringType)
+
+let final_index_of_real_parameters model =
+  create_index_array model.parameters (fun par -> par.p_type = RealType)
+
 let final_index_of_variables model =
   create_index_array model.equations (fun equation -> not equation.solved)
 
@@ -917,7 +1120,7 @@ let perform_then_propagate_inversion model i =
   and equation = model.equations.(i) in
   let expr = equation.expression in
   try match invert_if_possible_with_respect_to var expr zero with
-    | None -> ()
+    | None -> false
     | Some expr' ->
         if not (List.memq var model.reinitializable_variables) then begin
           equation.expression <- expr';
@@ -933,6 +1136,7 @@ let perform_then_propagate_inversion model i =
             model.equations;
           model.when_clauses <- update_clauses var expr' model.when_clauses
         end;
+        true
   with Invalid_argument _ -> raise Can't_perform_inversion
 
 let compute_io_dependency model =
@@ -980,11 +1184,18 @@ let perform_hungarian_method model =
     let m = table.(i)
     and n = table.(j) in
     let var = create_variable m in
+    let discontinuous_state () =
+      let not_derivative_of_current_variable e = match nature e with
+        | Derivative (var', _) -> var' != var
+        | _ -> true in
+      List.for_all
+        not_derivative_of_current_variable
+        model.equations.(n).inner_derivatives &&
+      List.memq var model.reinitializable_variables in
     if not (List.memq var model.equations.(n).assignable_variables) then
       IntegerElement.Infinity
-    else if model.variables.(m).start_value <> None then
-      IntegerElement.Int (size * size + 1)
-      (* The user wants to see the variable in the generated code *)
+    else if discontinuous_state () then
+      IntegerElement.Int (size + 1)
     else match inversion_difficulty var model.equations.(n).expression zero with
         | 0 -> IntegerElement.zero
         | 1 -> IntegerElement.Int 1
@@ -1020,15 +1231,19 @@ let eliminate_trivial_relations max_simplifs model =
   let max_simplifs_ref = ref max_simplifs in
   let choose_variable i j =
     let sti = model.variables.(i).state
-    and stj = model.variables.(j).state in
+    and depi = model.variables.(i).depth_in_hierarchy
+    and stj = model.variables.(j).state
+    and depj = model.variables.(j).depth_in_hierarchy in
     match sti, stj with
-      | true, false -> i
-      | false, true -> j
-      | _ ->
+      | true, false -> j
+      | false, true -> i
+      | true, true | false, false ->
           let svi = model.variables.(i).start_value
           and svj = model.variables.(j).start_value in
           begin match svi, svj with
-            | _, None -> i
+            | None, Some _ -> i
+            | Some _, None -> j
+            | _ when depj > depi -> i
             | _ -> j
           end
   in
@@ -1040,19 +1255,10 @@ let eliminate_trivial_relations max_simplifs model =
   let update_variable_attributes i j =
     let svi = model.variables.(i).start_value
     and svj = model.variables.(j).start_value in
-    let sti = model.variables.(i).state
-    and stj = model.variables.(j).state in
-    let state = sti || stj in
-    model.variables.(i).state <- state;
-    model.variables.(j).state <- state;
-    match sti, stj with
-      | true, false -> model.variables.(j).start_value <- svi
-      | false, true -> model.variables.(i).start_value <- svj
-      | _ ->
-          begin match svi, svj with
-            | _, None -> model.variables.(j).start_value <- svi
-            | _ -> model.variables.(i).start_value <- svj
-          end
+    match svi, svj with
+      | None, _ -> model.variables.(i).start_value <- svj
+      | _, None -> model.variables.(j).start_value <- svi
+      | _ -> ()
   in
   let simplify_trivial_relation n =
     match nature model.equations.(n).expression with
@@ -1060,7 +1266,7 @@ let eliminate_trivial_relations max_simplifs model =
           begin match nature node, nature node' with
             | Variable i, Number _ | Number _, Variable i ->
                 permute_equations i n;
-                perform_then_propagate_inversion model i;
+                ignore (perform_then_propagate_inversion model i);
                 decr max_simplifs_ref
             | Variable i, Multiplication [node; node'] |
               Multiplication [node; node'], Variable i ->
@@ -1070,7 +1276,7 @@ let eliminate_trivial_relations max_simplifs model =
                       let k = choose_variable i j in
                       update_variable_attributes i j;
                       permute_equations k n;
-                      perform_then_propagate_inversion model k;
+                      ignore (perform_then_propagate_inversion model k);
                       decr max_simplifs_ref
                   | _ -> ()
                 end
@@ -1084,6 +1290,23 @@ let eliminate_trivial_relations max_simplifs model =
   !max_simplifs_ref
 
 let eliminate_explicit_variables max_simplifs model =
+  let is_continuous_state var =
+    not (List.memq var model.reinitializable_variables) in
+  let is_state_variable expr = match nature expr with
+    | Variable j -> model.variables.(j).state
+    | _ -> false in
+  let try_reducing_state var i =
+    let vars = model.equations.(i).assignable_variables
+    and ders = model.equations.(i).inner_derivatives in
+    if not (List.memq (symbolic_derive var (Num.Int 1)) ders) then begin
+      Printf.eprintf "\nTrying to reduce state...";
+      match ders with
+      | [] when List.for_all is_state_variable vars ->
+          let success = perform_then_propagate_inversion model i in
+          if success then Printf.eprintf " One state variable removed.%!"
+          else Printf.eprintf " Failed.%!"
+      | _ ->  Printf.eprintf " Failed.%!"
+    end in
   let rec eliminate_explicit_variables' simplifs =
     let assocs = perform_hungarian_method model in
     permute_equations model assocs;
@@ -1091,11 +1314,15 @@ let eliminate_explicit_variables max_simplifs model =
       List.fold_left
         (fun (bad_variable_choice, success, simplifs) assoc ->
           match assoc with
-            | (_, None) -> assert false
+            | _, None -> assert false
             | i, Some j when simplifs >= 0 ->
                 begin try
                   if not model.variables.(i).state then
-                    perform_then_propagate_inversion model i;
+                    ignore (perform_then_propagate_inversion model i)
+                  else begin
+                    let var = create_variable i in
+                    if is_continuous_state var then try_reducing_state var i
+                  end;
                   bad_variable_choice, model.equations.(i).solved, simplifs - 1
                 with
                   | Can't_perform_inversion -> true, success, simplifs
@@ -1108,86 +1335,74 @@ let eliminate_explicit_variables max_simplifs model =
       eliminate_explicit_variables' simplifs
   in eliminate_explicit_variables' max_simplifs
 
-let rec is_greater_equal expr = match nature expr with
-  | BlackBox ("noEvent", [expr']) -> is_greater_equal expr'
-  | Or [expr1; expr2] ->
-      begin match nature expr1, nature expr2 with
-        | Equality (expr11, expr12), Greater (expr21, expr22)
-          when expr11 == expr21 && expr12 == expr22 ||
-          expr11 == expr22 && expr12 == expr21 -> true
-        | Greater (expr11, expr12), Equality (expr21, expr22)
-          when expr11 == expr21 && expr12 == expr22 ||
-          expr11 == expr22 && expr12 == expr21 -> true
-        | _ -> false
-      end
-  | _ -> false
-
 let rec rewrite_conditions_in no_event expr =
-  let rec rewrite_if no_event expr expr' expr'' =
-    let no_event_if_necessary expr =
-      if no_event then create_blackBox "noEvent" [expr] else expr
-    in match nature expr with
-    | BlackBox ("noEvent", [expr1]) when nature expr1 = BooleanValue true ->
-        rewrite_conditions_in no_event expr'
-    | BlackBox ("noEvent", [expr1]) when nature expr1 = BooleanValue false ->
-        rewrite_conditions_in no_event expr''
-    | BlackBox ("noEvent", [expr1]) ->
+  let rec remove_no_event expr = match nature expr with
+    | ArcCosine expr' -> create_arcCosine (remove_no_event expr')
+    | ArcHyperbolicCosine expr' ->
+        create_arcHyperbolicCosine (remove_no_event expr')
+    | ArcHyperbolicSine expr' ->
+        create_arcHyperbolicSine (remove_no_event expr')
+    | ArcHyperbolicTangent expr' ->
+        create_arcHyperbolicTangent (remove_no_event expr')
+    | ArcSine expr' -> create_arcSine (remove_no_event expr')
+    | ArcTangent expr' -> create_arcTangent (remove_no_event expr')
+    | Cosine expr' -> create_cosine (remove_no_event expr')
+    | Derivative (expr', num) ->
+        create_derivative (remove_no_event expr') num
+    | Exponential expr' -> create_exponential (remove_no_event expr')
+    | Floor expr' -> create_floor (remove_no_event expr')
+    | HyperbolicCosine expr' ->
+        create_hyperbolicCosine (remove_no_event expr')
+    | HyperbolicSine expr' ->
+        create_hyperbolicSine (remove_no_event expr')
+    | HyperbolicTangent expr' ->
+        create_hyperbolicTangent (remove_no_event expr')
+    | Logarithm expr' -> create_logarithm (remove_no_event expr')
+    | Pre expr' -> create_pre (remove_no_event expr')
+    | RationalPower (expr', num) ->
+        create_rationalPower (remove_no_event expr') num
+    | Sign expr' -> create_sign (remove_no_event expr')
+    | Sine expr' -> create_sine (remove_no_event expr')
+    | Tangent expr' -> create_tangent (remove_no_event expr')
+    | Addition exprs' ->
+        create_addition (sort (List.map remove_no_event exprs'))
+    | BlackBox ("noEvent", [ScalarArgument expr']) ->
+        rewrite_conditions_in true expr'
+    | BlackBox (name, args) ->
+        create_blackBox name (List.map remove_no_event_in_argument args)
+    | Multiplication exprs' ->
+        create_multiplication (sort (List.map remove_no_event exprs'))
+    | PartialDerivative (expr', expr'') ->
+        create_partialDerivative
+          (remove_no_event expr')
+          (remove_no_event expr'')
+    | If (expr', expr'', expr''') ->
         create_if
-          (create_blackBox "noEvent" [rewrite_conditions_in true expr1])
-          (rewrite_conditions_in no_event expr')
-          (rewrite_conditions_in no_event expr'')
-    | Equality (expr1, expr2) ->
-        create_if
-          (no_event_if_necessary
-            (create_equality
-              (rewrite_conditions_in no_event expr1)
-              (rewrite_conditions_in no_event expr2)))
-          (rewrite_conditions_in no_event expr')
-          (rewrite_conditions_in no_event expr'')
-    | Greater (expr1, expr2) ->
-        create_if
-          (no_event_if_necessary
-            (create_greater
-              (rewrite_conditions_in no_event expr1)
-              (rewrite_conditions_in no_event expr2)))
-          (rewrite_conditions_in no_event expr')
-          (rewrite_conditions_in no_event expr'')
-    | And [] -> rewrite_conditions_in no_event expr'
-    | And [expr] ->
-        create_if
-          (no_event_if_necessary expr)
-          (rewrite_conditions_in no_event expr')
-          (rewrite_conditions_in no_event expr'')
-    | And (expr :: exprs) ->
-        rewrite_if no_event expr (create_if (create_and exprs) expr' expr'') expr''
-    | Or [] -> rewrite_conditions_in no_event expr''
-    | Or [expr] ->
-        create_if
-          (no_event_if_necessary expr)
-          (rewrite_conditions_in no_event expr')
-          (rewrite_conditions_in no_event expr'')
-    | Or [expr1; expr2] when is_greater_equal expr ->
-        begin match nature expr1, nature expr2 with
-          | Greater (expr1, expr2), _ | _, Greater (expr1, expr2) ->
-              let expr1' = rewrite_conditions_in no_event expr1
-              and expr2' = rewrite_conditions_in no_event expr2 in
-              create_if
-                (no_event_if_necessary
-                  (create_or
-                    [create_greater expr1' expr2'; create_equality expr1' expr2']))
-                (rewrite_conditions_in no_event expr')
-                (rewrite_conditions_in no_event expr'')
-          | _ -> assert false
-        end
-    | Or (expr :: exprs) ->
-        rewrite_if no_event expr expr' (create_if (create_or exprs) expr' expr'')
-    | Not expr ->
-        create_if
-          (no_event_if_necessary expr)
-          (rewrite_conditions_in no_event expr'')
-          (rewrite_conditions_in no_event expr')
-    | _ -> assert false
-  in match nature expr with
+          (remove_no_event expr')
+          (remove_no_event expr'')
+          (remove_no_event expr''')
+    | Equality (expr', expr'') ->
+        create_equality
+          (remove_no_event expr')
+          (remove_no_event expr'')
+    | Greater (expr', expr'') ->
+        create_greater
+          (remove_no_event expr')
+          (remove_no_event expr'')
+    | GreaterEqual (expr', expr'') ->
+        create_greater_equal
+          (remove_no_event expr')
+          (remove_no_event expr'')
+    | And exprs -> create_and (List.map remove_no_event exprs)
+    | Or exprs ->  create_or (List.map remove_no_event exprs)
+    | Not expr' -> create_not (remove_no_event expr')
+    | BooleanValue _ | Constant _ | DiscreteVariable _ | Number _ |
+      Parameter _ | TimeVariable | Variable _ | Integer _ | String _ -> expr
+  and remove_no_event_in_argument = function
+    | ScalarArgument expr -> ScalarArgument (remove_no_event expr)
+    | ArrayArgument (dims, exprs) ->
+        ArrayArgument (dims, Array.map remove_no_event exprs) in
+  match nature expr with
     | ArcCosine expr' -> create_arcCosine (rewrite_conditions_in no_event expr')
     | ArcHyperbolicCosine expr' ->
         create_arcHyperbolicCosine (rewrite_conditions_in no_event expr')
@@ -1209,39 +1424,87 @@ let rec rewrite_conditions_in no_event expr =
     | HyperbolicTangent expr' ->
         create_hyperbolicTangent (rewrite_conditions_in no_event expr')
     | Logarithm expr' -> create_logarithm (rewrite_conditions_in no_event expr')
-    | Not expr' -> create_not (rewrite_conditions_in no_event expr')    
+    | Pre expr' -> create_pre (rewrite_conditions_in no_event expr')
     | RationalPower (expr', num) ->
         create_rationalPower (rewrite_conditions_in no_event expr') num
     | Sign expr' -> create_sign (rewrite_conditions_in no_event expr')
     | Sine expr' -> create_sine (rewrite_conditions_in no_event expr')
     | Tangent expr' -> create_tangent (rewrite_conditions_in no_event expr')
-    | Equality (expr1, expr2) ->
-        create_equality
-          (rewrite_conditions_in no_event expr1)
-          (rewrite_conditions_in no_event expr2)
-    | Greater (expr1, expr2) ->
-        create_greater
-          (rewrite_conditions_in no_event expr1)
-          (rewrite_conditions_in no_event expr2)
     | Addition exprs' ->
         create_addition (sort (List.map (rewrite_conditions_in no_event) exprs'))
-    | And exprs' ->
-        create_and (sort (List.map (rewrite_conditions_in no_event) exprs'))
-    | BlackBox ("noEvent", [expr']) -> rewrite_conditions_in true expr'
-    | BlackBox (name, exprs') ->
-        create_blackBox name (List.map (rewrite_conditions_in no_event) exprs')
+    | BlackBox ("noEvent", [ScalarArgument expr']) ->
+        rewrite_conditions_in true expr'
+    | BlackBox (name, args) ->
+        create_blackBox
+          name
+          (List.map (rewrite_conditions_in_argument no_event) args)
     | Multiplication exprs' ->
         create_multiplication (sort (List.map (rewrite_conditions_in no_event) exprs'))
-    | Or exprs' ->
-        create_or (sort (List.map (rewrite_conditions_in no_event) exprs'))
     | PartialDerivative (expr', expr'') ->
         create_partialDerivative
           (rewrite_conditions_in no_event expr')
           (rewrite_conditions_in no_event expr'')
-    | If (expr', expr'', expr''') -> rewrite_if no_event expr' expr'' expr'''
-    | Constant _ | DiscreteVariable _ | Number _ | Parameter _ | TimeVariable |
-      Variable _ -> expr
-    | _ -> assert false
+    | If (expr', expr'', expr''') ->
+        create_if
+          (rewrite_conditions_in no_event expr')
+          (rewrite_conditions_in no_event expr'')
+          (rewrite_conditions_in no_event expr''')
+    | Equality (expr', expr'') when no_event ->
+        create_blackBox
+          "noEvent"
+          [ScalarArgument
+            (create_equality
+              (remove_no_event expr')
+              (remove_no_event expr''))]
+    | Equality (expr', expr'') ->
+        create_equality
+          (remove_no_event expr')
+          (remove_no_event expr'')
+    | Greater (expr', expr'') when no_event ->
+        create_blackBox
+          "noEvent"
+          [ScalarArgument
+            (create_greater
+              (remove_no_event expr')
+              (remove_no_event expr''))]
+    | Greater (expr', expr'') ->
+        create_greater
+          (remove_no_event expr')
+          (remove_no_event expr'')
+    | GreaterEqual (expr', expr'') when no_event ->
+        create_blackBox
+          "noEvent"
+          [ScalarArgument
+            (create_greater_equal
+              (remove_no_event expr')
+              (remove_no_event expr''))]
+    | GreaterEqual (expr', expr'') ->
+        create_greater_equal
+          (remove_no_event expr')
+          (remove_no_event expr'')
+    | And exprs when no_event ->
+        create_blackBox
+          "noEvent"
+          [ScalarArgument (create_and (List.map remove_no_event exprs))]
+    | And exprs -> create_and (List.map remove_no_event exprs)
+    | Or exprs when no_event ->
+        create_blackBox
+          "noEvent"
+          [ScalarArgument (create_or (List.map remove_no_event exprs))]
+    | Or exprs -> create_or (List.map remove_no_event exprs)
+    | Not expr' when no_event ->
+        create_blackBox
+          "noEvent"
+          [ScalarArgument (create_not (remove_no_event expr'))]
+    | Not expr' -> create_not (remove_no_event expr')
+    | BooleanValue _ | Constant _ | DiscreteVariable _ | Number _ |
+      Parameter _ | TimeVariable | Variable _ | Integer _ | String _ -> expr
+  and rewrite_conditions_in_argument no_event = function
+    | ScalarArgument expr ->
+        ScalarArgument (rewrite_conditions_in no_event expr)
+    | ArrayArgument (dims, exprs) ->
+        ArrayArgument
+          (dims, Array.map (rewrite_conditions_in no_event) exprs)
 
 let perform_simplifications max_simplifs model =
   Array.iter
@@ -1250,9 +1513,6 @@ let perform_simplifications max_simplifs model =
     model.equations;
   eliminate_explicit_variables max_simplifs model;
   compute_io_dependency model
-
-let compute_structural_index model =
-  failwith "compute_structural_index: not yet implemented"
 
 let find_submodels model =
   let final_index_of_variables = final_index_of_variables model in

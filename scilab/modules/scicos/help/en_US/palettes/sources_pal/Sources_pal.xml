@@ -93,12 +93,22 @@ The blocks of that palette doesn't have regular input ports.
       </listitem>
       <listitem>
         <para>
+          <link linkend="GEN_SQR">GEN_SQR - Square Wave Generator</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           <link linkend="GENSIN_f">GENSIN_f - Sin generator</link>
         </para>
       </listitem>
       <listitem>
         <para>
           <link linkend="GENSQR_f">GENSQR_f - Square wave generator</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="Ground_g">Ground_g - Ground (zero constant block)</link>
         </para>
       </listitem>
       <listitem>
@@ -114,6 +124,11 @@ The blocks of that palette doesn't have regular input ports.
       <listitem>
         <para>
           <link linkend="Modulo_Count">Modulo_Count - Modulo counter</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="PULSE_SC">PULSE_SC - Pulse Generator</link>
         </para>
       </listitem>
       <listitem>

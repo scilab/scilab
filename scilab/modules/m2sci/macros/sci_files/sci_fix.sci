@@ -12,7 +12,7 @@ function [tree]=sci_fix(tree)
 // M2SCI function
 // Conversion function for Matlab fix()
 // Input: tree = Matlab funcall tree
-// Ouput: tree = Scilab equivalent for tree
+// Output: tree = Scilab equivalent for tree
 
 A=getrhs(tree)
 A=convert2double(A)

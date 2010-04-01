@@ -48,9 +48,9 @@ if %diagram_open then //** %diagram_open is a global variable that signal if the
 
   Cmenu = check_edge(o, Cmenu, %pt);
 
-  if Cmenu==("Link") then
+  if Cmenu=="XcosMenuLink" then
     //we have clicked near a port
-    [Cmenu] = resume("Link") ; //** EXIT with Link operation
+    [Cmenu] = resume("XcosMenuLink") ; //** EXIT with Link operation
   end
 
 end
@@ -61,7 +61,7 @@ if typeof(o)=="Block" then
   //** ----------------------------- Block ------------------------------
 
   //**----------------Look for a SuperBlock ----------------------------
-  if o.model.sim=="super" then
+  if o.model.sim(1)=="super" | o('gui') == 'PAL_f' then
 
       lastwin = curwin ; // save the current window
 
@@ -91,11 +91,18 @@ if typeof(o)=="Block" then
         gh_curwin = scf(curwin); //** recover the handle
       end                        //**
 
-      ierr = execstr('[o_n,needcompile,newparameters]='+o.gui+'(''set'',o)','errcatch') ;
-      // the errcatch here is introduced to get around the bug #2553
+      
+      if o.model.sim(1)=="super" then //## superblock
+	ierr=execstr('[o_n,needcompile,newparameters]='+o.gui+'(''set'',o)','errcatch');
+      else //## palette block
+	ierr=execstr('[o_n,y,typ]='+o.gui+'(''set'',o)','errcatch');
+      end
+    
 
-      if ierr<>0 then //** if any erros is detected
-        disp('Error in GUI of block '+o.gui)
+      if ierr<>0 then //** if any error is detected
+
+        disp('Error in GUI of block '+o.gui)//%%%%%
+	pause
         edited = %f ;
         return ; //** EXIT point
     end
@@ -117,7 +124,7 @@ if typeof(o)=="Block" then
 
     curwin = lastwin ;
     if (~(or(curwin==winsid()))) then
-          Cmenu = resume("Open/Set"); //** if the curwin is not present
+          Cmenu = resume("XcosMenuOpenSet"); //** if the curwin is not present
     end
 
     gh_curwin = scf(curwin);
@@ -159,13 +166,14 @@ if typeof(o)=="Block" then
       return ; //** EXIT point
     end
     modified = prod(size(newparameters))>0
-    edited = modified  // Not sure it is correct.
+    edited = ~isequalbitwise(o,o_n) 
     if edited then
       o = o_n ;
     end
-
-
-
+  //**-------------------- atomic superblock (asuper) -----------------------------  
+  elseif (o.model.sim(1)=="asuper") then
+  	 messagebox(['This is an atomic superblock';..
+	 	   'To edite it, you must first remove the atomicity'],'modal');
   //**--------------------- Standard block -------------------------------
   else
 
@@ -174,10 +182,6 @@ if typeof(o)=="Block" then
 
     //** ierr = execstr('o_n='+o.gui+'(''set'',o)'); //** DEBUG ONLY : no error catch :(
 
-    //** Added to unset the last upper left point
-    //** of the dialog box
-    //-- TCL_UnsetVar('numx')
-    //-- TCL_UnsetVar('numy')
 
     if ierr<>0 then
       disp('Error in GUI of block '+o.gui)
@@ -264,6 +268,37 @@ if typeof(o)=="Block" then
 	  needcompile=4
 	end
 
+	//## if a parameters have change in a modelica block then force
+        //## the recompilation
+        if ~isequal(eq.parameters,eqn.parameters) then
+          param_name   = eq.parameters(1);
+          param_name_n = eqn.parameters(1);
+
+          if ~isequal(param_name,param_name_n) then
+            needcompile=4
+          else
+	    for i=1:length(model.equations.parameters(2))
+              if or((eq.parameters(2)(i))<> (eqn.parameters(2)(i))) then
+                needcompile=0
+		
+		// the initialization XML files is re-created by translator if needed
+		// XML=TMPDIR+'/'+stripblanks(scs_m.props.title(1))+'_imf_init.xml';     
+		// if ~deletefile(XML) then
+		//   messagebox(msprintf(_('Unable to delete the file: %s'),XML),'error','modal');
+		// end
+		
+		// the XML simulation file title_imSim is no more created with Xcos
+		// XMLTMP=TMPDIR+'/'+stripblanks(scs_m.props.title(1))+'_imSim.xml'
+		// if ~deletefile(XMLTMP) then
+		  // messagebox(msprintf(_('Unable to delete the file: %s'),XMLTMP),'error','modal');
+		// end
+		
+                break;
+              end
+            end
+          end
+        end
+
         if (size(o.model.sim)>1) then
 	  if (o.model.sim(2)==30004) then // only if it is the Modelica generic block
 	    if or(o.graphics.exprs<>o_n.graphics.exprs) then  // if equation in generic Modelica Mblock change
@@ -283,18 +318,12 @@ if typeof(o)=="Block" then
 //**---------------------- Link -------------------------------------------------
 elseif typeof(o)=="Link" then
 
-  [Cmenu] = resume("Link")
+  [Cmenu] = resume("XcosMenuLink")
 
 //**---------------------- Text -------------------------------------------------
 elseif typeof(o)=="Text" then
 
   ierr=execstr('o_n='+o.gui+'(''set'',o)','errcatch') ;
-
-  //** Added to unset the last upper left point
-  //** of the dialog box
-  //-- TCL_UnsetVar('numx')
-  //-- TCL_UnsetVar('numy')
-
   if ierr<>0 then
     disp('Error in GUI of block '+o.gui)
     edited=%f

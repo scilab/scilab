@@ -102,7 +102,7 @@ The C structure of a Scicos block defines all the fields to handle data provided
 such inputs/outputs, parameters, states, ...
 </para>
     <para>
-That structure of type  is defined in the file , and user must include that header in each computational functions in the form :
+That structure of type  is defined in the file <link linkend="scicos_block4_rout">scicos_block4.h</link>, and user must include that header in each computational functions in the form :
 </para>
     <para>
 
@@ -331,7 +331,7 @@ you can retrieve the previous data in the C computational function with :
  
 You can also use the C macro  to get the pointer of the
                     real parameter register. For i.e., if we define the following
-                    
+                    <link linkend="scicos_model">scicos_model</link>
 in an interfacing function of a
                     scicos block :
  
@@ -365,7 +365,7 @@ You can also use the C macro  to get the pointer of the
         <para>
 Most of time in the scicos C block libraries, the integer register is used to
                     parametrize the length of real parameters. For i.e. if you define the following
-                    
+                    <link linkend="scicos_model">scicos_model</link>
 in a block :
  
 

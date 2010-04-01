@@ -15,7 +15,7 @@
           xmlns:db="http://docbook.org/ns/docbook">
 
   <info>
-    <pubdate>$LastChangedDate: 19-Oct-2008 $</pubdate>
+    <pubdate>$LastChangedDate: March-2010 $</pubdate>
   </info>
 
   <refnamediv>
@@ -30,7 +30,7 @@
 help_from_sci() // generate an empty function template
 help_from_sci(funname,helpdir) // generate helpdir/funname.xml from funname.sci
 help_from_sci(dirname,helpdir) // process dirname/*.sci and create helpdir/*.xml help files.
-help_from_sci(dirname,helpdir,helpdir) // as above but also creating helpdir/*.dem.sce demo files.
+help_from_sci(dirname,helpdir,demodir) // as above but also creating demodir/*.dem.sce demo files.
 [helptxt,demotxt]=help_from_sci(funname) // return funname.xml and funname.dem.sce code as two text matrixes.
    </synopsis>
 </refsynopsisdiv>

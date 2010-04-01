@@ -7,8 +7,6 @@
 
 thispath = get_absolute_file_path("cont_sys_disc_cont.dem.sce");
 // scicos_demostration(thispath+"/Cont.Disc-Observer.cosf");
-
 // Open the cosf file with xcos
 xcos(thispath+"/Cont.Disc-Observer.cosf");
-
 clear thispath;

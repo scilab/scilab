@@ -50,6 +50,28 @@ namespace sciGraphics
 		destroyBox();
 	}
 	/*---------------------------------------------------------------------------------*/
+	void ConcreteDrawableLegend::familyHasChanged(void)
+	{
+		int nbLegends = getNbLegend();
+		DrawableObject::familyHasChanged();
+
+		if (m_aBox) {
+			getHandleDrawer(m_aBox)->familyHasChanged();
+		}
+
+		if (m_pNames) {
+			getHandleDrawer(m_pNames)->familyHasChanged();
+		}
+
+		if (m_aLines) {
+			for (int i = 0; i < nbLegends; i++)
+			{
+				getHandleDrawer(m_aLines[i])->familyHasChanged();
+			}
+		}
+
+	}
+	/*---------------------------------------------------------------------------------*/
 	void ConcreteDrawableLegend::drawLegend(void)
 	{
 		createBox();
@@ -97,20 +119,31 @@ namespace sciGraphics
 	{
 		//check if all legended objects still exist and update Legend object if necessary
 		int i1 = 0;
+
 		StringMatrix * Text=pLEGEND_FEATURE(m_pDrawed)->text.pStrings ;
 
 		int nblegends = getNbLegend();
+
+		/* The line handles and text data arrays are in reverse order of one another, which requires them
+		to be searched and updated in reverse directions */
 		for (int i = 0; i < nblegends; i++) {
 			sciPointObj * legendedObject = sciGetPointerFromHandle((long)(pLEGEND_FEATURE(m_pDrawed)->tabofhandles[i]));
 			if (legendedObject != NULL) {
 				if (i != i1) {
 					pLEGEND_FEATURE(m_pDrawed)->tabofhandles[i1]= pLEGEND_FEATURE(m_pDrawed)->tabofhandles[i];
-					Text->data[i1]=Text->data[i];
+					Text->data[nblegends-1-i1]=Text->data[nblegends-1-i];
 				}
+
 				i1++;
 			}
 
 		}
+
+		/* Shift the text data array remaining elements in order to finish updating it */
+		for (int i = 0; i < i1; i++) {
+			Text->data[i] = Text->data[i+nblegends-i1];
+		}
+
 		//at least one legended object has been destroyed, update Legend object and recreate display
 		if (i1 < nblegends) {
 			destroyText();

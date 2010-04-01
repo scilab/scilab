@@ -114,14 +114,13 @@ libscitclsci_la_DEPENDENCIES = $(top_builddir)/modules/action_binding/libsciacti
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__libscitclsci_la_SOURCES_DIST = src/notclsci/notclsci.c \
-	src/c/GedManagement.c src/c/TCL_Global.c src/c/InitTclTk.c \
-	src/c/ScilabEval.c src/c/setenvtcl.c src/c/InitializeTclTk.c \
-	src/c/TerminateTclTk.c src/c/withtk.c src/c/setvar.c \
-	src/c/TCL_ArrayDim.c src/c/TCL_ArrayExist.c \
-	src/c/TCL_ArrayGetVar.c src/c/TCL_ArraySize.c \
-	src/c/TCL_Command.c src/c/GlobalTclInterp.c \
-	src/c/TCL_getErrorLine.c sci_gateway/c/sci_opentk.c \
-	sci_gateway/c/sci_TCL_SetVar.c \
+	src/c/TCL_Global.c src/c/InitTclTk.c src/c/ScilabEval.c \
+	src/c/setenvtcl.c src/c/InitializeTclTk.c \
+	src/c/TerminateTclTk.c src/c/setvar.c src/c/TCL_ArrayDim.c \
+	src/c/TCL_ArrayExist.c src/c/TCL_ArrayGetVar.c \
+	src/c/TCL_ArraySize.c src/c/TCL_Command.c \
+	src/c/GlobalTclInterp.c src/c/TCL_getErrorLine.c \
+	sci_gateway/c/sci_opentk.c sci_gateway/c/sci_TCL_SetVar.c \
 	sci_gateway/c/sci_TCL_ExistVar.c \
 	sci_gateway/c/sci_TCL_DoOneEvent.c \
 	sci_gateway/c/sci_TCL_UnsetVar.c \
@@ -134,14 +133,12 @@ am__libscitclsci_la_SOURCES_DIST = src/notclsci/notclsci.c \
 	sci_gateway/c/sci_TCL_ExistArray.c \
 	sci_gateway/c/sci_TCL_UpVar.c
 @TCLTK_FALSE@am__objects_1 = libscitclsci_la-notclsci.lo
-@TCLTK_TRUE@am__objects_1 = libscitclsci_la-GedManagement.lo \
-@TCLTK_TRUE@	libscitclsci_la-TCL_Global.lo \
+@TCLTK_TRUE@am__objects_1 = libscitclsci_la-TCL_Global.lo \
 @TCLTK_TRUE@	libscitclsci_la-InitTclTk.lo \
 @TCLTK_TRUE@	libscitclsci_la-ScilabEval.lo \
 @TCLTK_TRUE@	libscitclsci_la-setenvtcl.lo \
 @TCLTK_TRUE@	libscitclsci_la-InitializeTclTk.lo \
 @TCLTK_TRUE@	libscitclsci_la-TerminateTclTk.lo \
-@TCLTK_TRUE@	libscitclsci_la-withtk.lo \
 @TCLTK_TRUE@	libscitclsci_la-setvar.lo \
 @TCLTK_TRUE@	libscitclsci_la-TCL_ArrayDim.lo \
 @TCLTK_TRUE@	libscitclsci_la-TCL_ArrayExist.lo \
@@ -273,6 +270,7 @@ JGRAPHX = @JGRAPHX@
 JHALL = @JHALL@
 JHDF5 = @JHDF5@
 JLATEXMATH = @JLATEXMATH@
+JLATEXMATH_FOP = @JLATEXMATH_FOP@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
@@ -436,14 +434,12 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 @TCLTK_FALSE@TCLSCI_C_SOURCES = src/notclsci/notclsci.c
-@TCLTK_TRUE@TCLSCI_C_SOURCES = src/c/GedManagement.c \
-@TCLTK_TRUE@src/c/TCL_Global.c \
+@TCLTK_TRUE@TCLSCI_C_SOURCES = src/c/TCL_Global.c \
 @TCLTK_TRUE@src/c/InitTclTk.c \
 @TCLTK_TRUE@src/c/ScilabEval.c \
 @TCLTK_TRUE@src/c/setenvtcl.c \
 @TCLTK_TRUE@src/c/InitializeTclTk.c \
 @TCLTK_TRUE@src/c/TerminateTclTk.c \
-@TCLTK_TRUE@src/c/withtk.c \
 @TCLTK_TRUE@src/c/setvar.c \
 @TCLTK_TRUE@src/c/TCL_ArrayDim.c \
 @TCLTK_TRUE@src/c/TCL_ArrayExist.c \
@@ -504,8 +500,7 @@ libscitclsci_la_etc_DATA = etc/tclsci.quit etc/tclsci.start
 
 ### TCL macros ###
 libscitclsci_la_tcldir = $(mydatadir)
-nobase_libscitclsci_la_tcl_DATA = tcl/utils/tk_choose.tcl \
-tcl/utils/Notebook.tcl \
+nobase_libscitclsci_la_tcl_DATA = tcl/utils/Notebook.tcl \
 tcl/utils/Balloon.tcl \
 tcl/utils/Combobox.tcl \
 tcl/sciGUI/data/initial.help \
@@ -806,7 +801,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-GedManagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-GlobalTclInterp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-InitTclTk.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-InitializeTclTk.Plo@am__quote@
@@ -836,7 +830,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-sci_opentk.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-setenvtcl.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-setvar.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-withtk.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -865,13 +858,6 @@ libscitclsci_la-notclsci.lo: src/notclsci/notclsci.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/notclsci/notclsci.c' object='libscitclsci_la-notclsci.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-notclsci.lo `test -f 'src/notclsci/notclsci.c' || echo '$(srcdir)/'`src/notclsci/notclsci.c
-
-libscitclsci_la-GedManagement.lo: src/c/GedManagement.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-GedManagement.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-GedManagement.Tpo -c -o libscitclsci_la-GedManagement.lo `test -f 'src/c/GedManagement.c' || echo '$(srcdir)/'`src/c/GedManagement.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitclsci_la-GedManagement.Tpo $(DEPDIR)/libscitclsci_la-GedManagement.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/GedManagement.c' object='libscitclsci_la-GedManagement.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-GedManagement.lo `test -f 'src/c/GedManagement.c' || echo '$(srcdir)/'`src/c/GedManagement.c
 
 libscitclsci_la-TCL_Global.lo: src/c/TCL_Global.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-TCL_Global.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-TCL_Global.Tpo -c -o libscitclsci_la-TCL_Global.lo `test -f 'src/c/TCL_Global.c' || echo '$(srcdir)/'`src/c/TCL_Global.c
@@ -914,13 +900,6 @@ libscitclsci_la-TerminateTclTk.lo: src/c/TerminateTclTk.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/TerminateTclTk.c' object='libscitclsci_la-TerminateTclTk.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-TerminateTclTk.lo `test -f 'src/c/TerminateTclTk.c' || echo '$(srcdir)/'`src/c/TerminateTclTk.c
-
-libscitclsci_la-withtk.lo: src/c/withtk.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-withtk.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-withtk.Tpo -c -o libscitclsci_la-withtk.lo `test -f 'src/c/withtk.c' || echo '$(srcdir)/'`src/c/withtk.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitclsci_la-withtk.Tpo $(DEPDIR)/libscitclsci_la-withtk.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/withtk.c' object='libscitclsci_la-withtk.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-withtk.lo `test -f 'src/c/withtk.c' || echo '$(srcdir)/'`src/c/withtk.c
 
 libscitclsci_la-setvar.lo: src/c/setvar.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-setvar.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-setvar.Tpo -c -o libscitclsci_la-setvar.lo `test -f 'src/c/setvar.c' || echo '$(srcdir)/'`src/c/setvar.c

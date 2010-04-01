@@ -141,5 +141,25 @@ public interface SimpleWindow {
 	 * Only useful when the window is not yet visible
 	 */
 	void updateDimensions();
+	
+	/**
+	* Deiconified Window
+	*/
+	void windowDeiconified();
+	
+	/**
+	* Iconified Window
+	*/
+	void windowIconified();
+	
+	/**
+	* Maximized Window
+	*/
+	void windowMaximized();
+
+	/**
+	* Window is in the "normal" state.
+	*/
+	void windowNormal();
 
 }

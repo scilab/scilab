@@ -18,7 +18,7 @@ function getd(path,option)
     path='./';
   end
   
-  // convert path according to MSDOS flag
+  // convert path according to getos() == 'Windows' flag
   // and with env var substitutions
   path = pathconvert(path,%t,%t);
   

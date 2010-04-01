@@ -47,7 +47,7 @@
       <varlistentry>
         <term>only-double</term>
         <listitem>
-          <para>Flag booléen, si il vaut %T mfile2sci considère que les fonctions de calcul numériques ont été utilisées uniquement avec des données numériques (Aucune fonction de surcharge Scilab est requise). Valeur par défaut : %F</para>
+          <para>Flag booléen, si il vaut %T mfile2sci considère que les fonctions de calcul numériques ont été utilisées uniquement avec des données numériques (Aucune fonction de surcharge Scilab est requise). Valeur par défaut : %T</para>
         </listitem>
       </varlistentry>
       <varlistentry>

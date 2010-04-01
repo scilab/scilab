@@ -84,7 +84,7 @@
     <title>Examples</title>
 
     <programlisting role="example"><![CDATA[ 
-if MSDOS then
+if getos() == 'Windows' then
   filename = SCI+'\bin\libscilab.dll';
 
   dllinfolist = dllinfo(filename,'machine');

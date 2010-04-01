@@ -20,11 +20,12 @@
 //
 
 function scs_m=do_version(scs_m,version)
+// Copyright INRIA
 //translate scicos data structure to new version
 if version<>'scicos2.2'&version<>'scicos2.3'&version<>'scicos2.3.1'&..
    version<>'scicos2.4'&version<>'scicos2.5.1'&version<>'scicos2.7'&..
    version<>'scicos2.7.1'&version<>'scicos2.7.3'&version<>'scicos4'&..
-   version<>'scicos4.0.1'&version<>'scicos4.0.2' then
+   version<>'scicos4.0.1'&version<>'scicos4.0.2'&version<>'scicos4.2' then
    error('No version update defined to '+version+' version')
 end
 
@@ -51,21 +52,731 @@ if version=='scicos2.7.1' then scs_m=do_version272(scs_m),version='scicos2.7.2';
 if version=='scicos2.7.2' then scs_m=do_version273(scs_m),version='scicos2.7.3';end
 if version=='scicos2.7.3' | version=='scicos4' |...
    version=='scicos4.0.1' | version=='scicos4.0.2' then
-  //********************************//
-  ncl=lines()
-  lines(0)
-  //printf("Update old scicos diagram. Please wait... ")
-  //tic;
   version='scicos4.2';
   //*** do certification ***//
-  scs_m=update_scs_m(scs_m);
+  scs_m=update_scs_m(scs_m,version);
   //*** update scope ***//
   scs_m=do_version42(scs_m);
-  //printf("Done ! (%s s)\n",string(toc()))
-  lines(ncl(2))
   //*********************************//
 end
+if version=='scicos4.2' then
+  ncl=lines(); lines(0);
+  version='scicos4.3';
+  //*** do certification ***//
+  scs_m=update_scs_m(scs_m,version);
+  scs_m=do_version43(scs_m);
+  lines(ncl(2))
+end
 endfunction
+
+function scs_m_new=do_version43(scs_m)
+  //disp('do_version43');
+  scs_m_new=scs_m;
+
+  //@@ adjust ID.fonts
+  scs_m_new.props.options.ID(1)=[scs_m.props.options.ID(1)(1),scs_m.props.options.ID(1)(2),2,1]
+  scs_m_new.props.options.ID(2)=[scs_m.props.options.ID(2)(1),scs_m.props.options.ID(2)(2),10,1]
+
+  n=size(scs_m.objs);
+  for j=1:n //loop on objects
+    o=scs_m.objs(j);
+    if typeof(o)=='Block' then
+      omod=o.model;
+
+      //@@ sbloc
+      if omod.sim=='super'|omod.sim=='csuper' then
+        rpar=do_version43(omod.rpar)
+        scs_m_new.objs(j).model.rpar=rpar
+      end
+
+      //@@ Change gr_i of MUX if needed
+      if o.gui=='MUX' then
+        gr_i=['txt=''Mux'';'
+              'style=5;'
+              'rectstr=stringbox(txt,orig(1),orig(2),0,style,1);'
+              'if ~exists(''%zoom'') then %zoom=1, end;'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+sz(1)/2-w/2,orig(2)-h-4,txt,w,h,''fill'');'
+              'e=gce();'
+              'e.font_style=style;']
+        id=o.graphics.id
+        if id=='Mux' then id='',end
+        scs_m_new.objs(j).graphics.id=id
+        if (type(scs_m_new.objs(j).graphics.gr_i)==15) then
+          if scs_m_new.objs(j).graphics.gr_i(1) == ' ' then
+            scs_m_new.objs(j).graphics.gr_i=list(gr_i,scs_m_new.objs(j).graphics.gr_i(2))
+          end
+        else
+          if scs_m_new.objs(j).graphics.gr_i == ' ' then
+            scs_m_new.objs(j).graphics.gr_i=gr_i
+          end
+        end
+
+      //@@ Change gr_i of DEMUX if needed
+      elseif o.gui=='DEMUX' then
+        gr_i=['txt=''Demux'';'
+              'style=5;'
+              'rectstr=stringbox(txt,orig(1),orig(2),0,style,1);'
+              'if ~exists(''%zoom'') then %zoom=1, end;'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+sz(1)/2-w/2,orig(2)-h-4,txt,w,h,''fill'');'
+              'e=gce();'
+              'e.font_style=style;']
+        id=o.graphics.id
+        if id=='Demux' then id='',end
+        scs_m_new.objs(j).graphics.id=id
+        if (type(scs_m_new.objs(j).graphics.gr_i)==15) then
+          if scs_m_new.objs(j).graphics.gr_i(1) == '' then
+            scs_m_new.objs(j).graphics.gr_i=list(gr_i,scs_m_new.objs(j).graphics.gr_i(2))
+          end
+        else
+          if scs_m_new.objs(j).graphics.gr_i == '' then
+            scs_m_new.objs(j).graphics.gr_i=gr_i
+          end
+        end
+
+      //@@ Change gr_i of FROMWSB
+      elseif o.gui=='FROMWSB' then
+        gr_i=['xstringb(orig(1),orig(2),''From workspace'',sz(1),sz(2),''fill'')'
+              'txt=varnam;'
+              'style=5;'
+              'rectstr=stringbox(txt,orig(1),orig(2),0,style,1);'
+              'if ~exists(''%zoom'') then %zoom=1, end;'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+sz(1)/2-w/2,orig(2)-h-4,txt,w,h,''fill'');'
+              'e=gce();'
+              'e.font_style=style;']
+        id=''
+        scs_m_new.objs(j).graphics.id=id
+        if (type(scs_m_new.objs(j).graphics.gr_i)==15) then
+          scs_m_new.objs(j).graphics.gr_i=list(gr_i,scs_m_new.objs(j).graphics.gr_i(2))
+        else
+          scs_m_new.objs(j).graphics.gr_i=gr_i
+        end
+
+      //@@ Change gr_i of TOWS_c
+      elseif o.gui=='TOWS_c' then
+        gr_i=['xstringb(orig(1),orig(2),''To workspace'',sz(1),sz(2),''fill'')'
+              'txt=varnam;'
+              'style=5;'
+              'rectstr=stringbox(txt,orig(1),orig(2),0,style,1);'
+              'if ~exists(''%zoom'') then %zoom=1, end;'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+sz(1)/2-w/2,orig(2)-h-4,txt,w,h,''fill'');'
+              'e=gce();'
+              'e.font_style=style;']
+        id=''
+        scs_m_new.objs(j).graphics.id=id
+        if (type(scs_m_new.objs(j).graphics.gr_i)==15) then
+          scs_m_new.objs(j).graphics.gr_i=list(gr_i,scs_m_new.objs(j).graphics.gr_i(2))
+        else
+          scs_m_new.objs(j).graphics.gr_i=gr_i
+        end
+
+      //@@ Change gr_i of INTEGRAL_m if needed
+      elseif o.gui=='INTEGRAL_m' | o.gui=='INTEGRAL' then
+        gr_i=['thick=xget(''thickness'')'
+              'pat=xget(''pattern'')'
+              'fnt=xget(''font'')'
+              'xpoly(orig(1)+[0.7;0.62;0.549;0.44;0.364;0.291]*sz(1),orig(2)+[0.947;0.947;0.884;0.321;0.255;0.255]*sz(2),"'lines"')'
+              'txt=''1/s'';'
+              'style=5;'
+              'rectstr=stringbox(txt,orig(1),orig(2),0,style,1);'
+              'if ~exists(''%zoom'') then %zoom=1, end;'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+sz(1)/2-w/2,orig(2)-h-4,txt,w,h,''fill'');'
+              'e=gce();'
+              'e.font_style=style;'
+              'xset(''thickness'',thick)'
+              'xset(''pattern'',pat)'
+              'xset(''font'',fnt(1),fnt(2))']
+        old_gri=['thick=xget(''thickness'')'
+                 'pat=xget(''pattern'')'
+                 'fnt=xget(''font'')'
+                 'xpoly(orig(1)+[0.7;0.62;0.549;0.44;0.364;0.291]*sz(1),orig(2)+[0.947;0.947;0.884;0.321;0.255;0.255]*sz(2),"'lines"')'
+                 'xset(''thickness'',thick)'
+                 'xset(''pattern'',pat)'
+                 'xset(''font'',fnt(1),fnt(2))'
+                ]
+        id=o.graphics.id
+        if id=='1/s' then id='',end
+        scs_m_new.objs(j).graphics.id=id
+        if (type(scs_m_new.objs(j).graphics.gr_i)==15) then
+          if scs_m_new.objs(j).graphics.gr_i(1) == old_gri then
+            scs_m_new.objs(j).graphics.gr_i=list(gr_i,scs_m_new.objs(j).graphics.gr_i(2))
+          end
+        else
+          if scs_m_new.objs(j).graphics.gr_i == old_gri then
+            scs_m_new.objs(j).graphics.gr_i=gr_i
+          end
+        end
+
+      //@@ Change gr_i of PRODUCT if needed
+      elseif o.gui=='PRODUCT' then
+        gr_i=['[x,y,typ]=standard_inputs(o) ';
+              'dd=sz(1)/8,de=0,'
+              'if ~arg1.graphics.flip then dd=6*sz(1)/8,de=-sz(1)/8,end'
+              'for k=1:size(x,''*'')';
+              'if size(sgn,1)>1 then'
+              '  if sgn(k)>0 then';
+              '    xstring(orig(1)+dd,y(k)-4,''*'')';
+              '  else';
+              '    xstring(orig(1)+dd,y(k)-4,''/'')';
+              '  end';
+              'end';
+              'end';
+              'xx=sz(1)*[.8 .8 .4  .4]+orig(1)+de';
+              'yy=sz(2)*[.2 .8 .8  .2]+orig(2)';
+              'xpoly(xx,yy,''lines'')'
+              'txt=''Product'';'
+              'style=5;'
+              'rectstr=stringbox(txt,orig(1),orig(2),0,style,1);'
+              'if ~exists(''%zoom'') then %zoom=1, end;'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+sz(1)/2-w/2,orig(2)-h-4,txt,w,h,''fill'');'
+              'e=gce();'
+              'e.font_style=style;']
+        old_gri=['[x,y,typ]=standard_inputs(o) ';
+                 'dd=sz(1)/8,de=0,'
+                 'if ~arg1.graphics.flip then dd=6*sz(1)/8,de=-sz(1)/8,end'
+                 'for k=1:size(x,''*'')';
+                 'if size(sgn,1)>1 then'
+                 '  if sgn(k)>0 then';
+                 '    xstring(orig(1)+dd,y(k)-4,''*'')';
+                 '  else';
+                 '    xstring(orig(1)+dd,y(k)-4,''/'')';
+                 '  end';
+                 'end';
+                 'end';
+                 'xx=sz(1)*[.8 .8 .4  .4]+orig(1)+de';
+                 'yy=sz(2)*[.2 .8 .8  .2]+orig(2)';
+                 'xpoly(xx,yy,''lines'')']
+        id=o.graphics.id
+        if id=='1/s' then id='',end
+        scs_m_new.objs(j).graphics.id=id
+        if (type(scs_m_new.objs(j).graphics.gr_i)==15) then
+          if scs_m_new.objs(j).graphics.gr_i(1) == old_gri then
+            scs_m_new.objs(j).graphics.gr_i=list(gr_i,scs_m_new.objs(j).graphics.gr_i(2))
+          end
+        else
+          if scs_m_new.objs(j).graphics.gr_i == old_gri then
+            scs_m_new.objs(j).graphics.gr_i=gr_i
+          end
+        end
+
+      //@@ Change gr_i of DERIV if needed
+      elseif o.gui=='DERIV' then
+         gr_i=['xstringb(orig(1),orig(2),'' du/dt   '',sz(1),sz(2),''fill'');'
+               'txt=''s'';'
+               'style=5;'
+               'rectstr=stringbox(txt,orig(1),orig(2),0,style,1);'
+               'if ~exists(''%zoom'') then %zoom=1, end;'
+               'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+               'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+               'xstringb(orig(1)+sz(1)/2-w/2,orig(2)-h-4,txt,w,h,''fill'');'
+               'e=gce();'
+               'e.font_style=style;']
+        old_gri=['xstringb(orig(1),orig(2),''  du/dt  '',sz(1),sz(2),''fill'');']
+        id=o.graphics.id
+        if id=='s' then id='',end
+        scs_m_new.objs(j).graphics.id=id
+        if (type(scs_m_new.objs(j).graphics.gr_i)==15) then
+          if scs_m_new.objs(j).graphics.gr_i(1) == old_gri then
+            scs_m_new.objs(j).graphics.gr_i=list(gr_i,scs_m_new.objs(j).graphics.gr_i(2))
+          end
+        else
+          if scs_m_new.objs(j).graphics.gr_i(1) == old_gri then
+            scs_m_new.objs(j).graphics.gr_i=gr_i
+          end
+        end
+
+      //@@ Change gr_i of JKFLIPFLOP if needed
+      elseif o.gui=='JKFLIPFLOP' then
+        gr_i=['[x,y,typ]=standard_inputs(o) ';
+              'dd=sz(1)/8,de=5.5*sz(1)/8';
+              'txt=''J'';'
+              'if ~exists(''%zoom'') then %zoom=1, end;'
+              'rectstr=stringbox(txt,orig(1)+dd,y(1)-4,0,1,1);'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+dd,y(1)-4,txt,w,h,''fill'')';
+              'txt=''clk'';'
+              'rectstr=stringbox(txt,orig(1)+dd,y(2)-4,0,1,1);'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+dd,y(2)-4,txt,w,h,''fill'')';
+              'txt=''K'';'
+              'rectstr=stringbox(txt,orig(1)+dd,y(3)-4,0,1,1);'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+dd,y(3)-4,txt,w,h,''fill'')';
+              '[x,y,typ]=standard_outputs(o) ';
+              'txt=''Q'';'
+              'rectstr=stringbox(txt,orig(1)+de,y(1)-4,0,1,1);'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+de,y(1)-4,txt,w,h,''fill'')';
+              'txt=''!Q'';'
+              'rectstr=stringbox(txt,orig(1)+4.5*dd,y(2)-4,0,1,1);'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+4.5*dd,y(2)-4,txt,w,h,''fill'')';
+              'txt=''JK FLIP-FLOP'';'
+              'style=5;'
+              'rectstr=stringbox(txt,orig(1),orig(2),0,style,1);'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+sz(1)/2-w/2,orig(2)-h-4,txt,w,h,''fill'');'
+              'e=gce();'
+              'e.font_style=style;']
+        old_gri=['[x,y,typ]=standard_inputs(o) ';
+                 'dd=sz(1)/8,de=6*sz(1)/8';
+                 'xstring(orig(1)+dd,y(1)-4,''J'')';
+                 'xstring(orig(1)+dd,y(2)-4,''clk'')';
+                 'xstring(orig(1)+dd,y(3)-4,''K'')';
+                 '[x,y,typ]=standard_outputs(o) ';
+                 'xstring(orig(1)+de,y(1)-4,''Q'')';
+                 'xstring(orig(1)+5*dd,y(2)-4,''!Q'')']
+        id=o.graphics.id
+        if id=='JK FLIP-FLOP' then id='',end
+        scs_m_new.objs(j).graphics.id=id
+        if (type(scs_m_new.objs(j).graphics.gr_i)==15) then
+          if scs_m_new.objs(j).graphics.gr_i(1) == old_gri then
+            scs_m_new.objs(j).graphics.gr_i=list(gr_i,scs_m_new.objs(j).graphics.gr_i(2))
+          end
+        else
+          if scs_m_new.objs(j).graphics.gr_i(1) == old_gri then
+            scs_m_new.objs(j).graphics.gr_i=gr_i
+          end
+        end
+
+      //@@ Change gr_i of SRFLIPFLOP if needed
+      elseif o.gui=='SRFLIPFLOP' then
+        gr_i=['[x,y,typ]=standard_inputs(o) ';
+              'dd=sz(1)/8,de=5.5*sz(1)/8';
+              'txt=''S'';'
+              'if ~exists(''%zoom'') then %zoom=1, end;'
+              'rectstr=stringbox(txt,orig(1)+dd,y(1)-4,0,1,1);'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+dd,y(1)-4,txt,w,h,''fill'')';
+              'txt=''R'';'
+              'rectstr=stringbox(txt,orig(1)+dd,y(2)-4,0,1,1);'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+dd,y(2)-4,txt,w,h,''fill'')';
+              '[x,y,typ]=standard_outputs(o) ';
+              'txt=''Q'';'
+              'rectstr=stringbox(txt,orig(1)+de,y(1)-4,0,1,1);'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+de,y(1)-4,txt,w,h,''fill'')';
+              'txt=''!Q'';'
+              'rectstr=stringbox(txt,orig(1)+4.5*dd,y(2)-4,0,1,1);'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+4.5*dd,y(2)-4,txt,w,h,''fill'')';
+              'txt=''SR FLIP-FLOP'';'
+              'style=5;'
+              'rectstr=stringbox(txt,orig(1),orig(2),0,style,1);'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+sz(1)/2-w/2,orig(2)-h-4,txt,w,h,''fill'');'
+              'e=gce();'
+              'e.font_style=style;']
+        old_gri=['[x,y,typ]=standard_inputs(o) ';
+                 'dd=sz(1)/8,de=6*sz(1)/8';
+                 'xstring(orig(1)+dd,y(1)-4,''S'')';
+                 'xstring(orig(1)+dd,y(2)-4,''R'')';
+                 '[x,y,typ]=standard_outputs(o) ';
+                 'xstring(orig(1)+de,y(1)-4,''Q'')';
+                 'xstring(orig(1)+5*dd,y(2)-4,''!Q'')']
+        id=o.graphics.id
+        if id=='SR FLIP-FLOP' then id='',end
+        scs_m_new.objs(j).graphics.id=id
+        if (type(scs_m_new.objs(j).graphics.gr_i)==15) then
+          if scs_m_new.objs(j).graphics.gr_i(1) == old_gri then
+            scs_m_new.objs(j).graphics.gr_i=list(gr_i,scs_m_new.objs(j).graphics.gr_i(2))
+          end
+        else
+          if scs_m_new.objs(j).graphics.gr_i(1) == old_gri then
+            scs_m_new.objs(j).graphics.gr_i=gr_i
+          end
+        end
+
+      //@@ Change gr_i of DLATCH if needed
+      elseif o.gui=='DLATCH' then
+        gr_i=['[x,y,typ]=standard_inputs(o) ';
+              'dd=sz(1)/8,de=5.5*sz(1)/8';
+              'txt=''D'';'
+              'if ~exists(''%zoom'') then %zoom=1, end;'
+              'rectstr=stringbox(txt,orig(1)+dd,y(1)-4,0,1,1);'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+dd,y(1)-4,txt,w,h,''fill'')';
+              'txt=''C'';'
+              'rectstr=stringbox(txt,orig(1)+dd,y(2)-4,0,1,1);'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+dd,y(2)-4,txt,w,h,''fill'')';
+              'txt=''Q'';'
+              'rectstr=stringbox(txt,orig(1)+de,y(1)-4,0,1,1);'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+de,y(1)-4,txt,w,h,''fill'')';
+              'txt=''!Q'';'
+              'rectstr=stringbox(txt,orig(1)+4.5*dd,y(2)-4,0,1,1);'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+4.5*dd,y(2)-4,txt,w,h,''fill'')';
+              'txt=''DLATCH'';'
+              'style=5;'
+              'rectstr=stringbox(txt,orig(1),orig(2),0,style,1);'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+sz(1)/2-w/2,orig(2)-h-4,txt,w,h,''fill'');'
+              'e=gce();'
+              'e.font_style=style;']
+        old_gri=['[x,y,typ]=standard_inputs(o) ';
+                 'dd=sz(1)/8,de=6*sz(1)/8';
+                 'xstring(orig(1)+dd,y(1)-4,''D'')';
+                 'xstring(orig(1)+dd,y(2)-4,''C'')';
+                 'xstring(orig(1)+de,y(1)-4,''Q'')';
+                 'xstring(orig(1)+5*dd,y(2)-4,''!Q'')']
+        id=o.graphics.id
+        if id=='DLATCH' then id='',end
+        scs_m_new.objs(j).graphics.id=id
+        if (type(scs_m_new.objs(j).graphics.gr_i)==15) then
+          if scs_m_new.objs(j).graphics.gr_i(1) == old_gri then
+            scs_m_new.objs(j).graphics.gr_i=list(gr_i,scs_m_new.objs(j).graphics.gr_i(2))
+          end
+        else
+          if scs_m_new.objs(j).graphics.gr_i(1) == old_gri then
+            scs_m_new.objs(j).graphics.gr_i=gr_i
+          end
+        end
+
+      //@@ Change gr_i of DFLIPFLOP if needed
+      elseif o.gui=='DFLIPFLOP' then
+        gr_i=['[x,y,typ]=standard_inputs(o) ';
+              'dd=sz(1)/8,de=5.5*sz(1)/8';
+              'txt=''D'';'
+              'if ~exists(''%zoom'') then %zoom=1, end;'
+              'rectstr=stringbox(txt,orig(1)+dd,y(1)-4,0,1,1);'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+dd,y(1)-4,txt,w,h,''fill'')';
+              'txt=''clk'';'
+              'rectstr=stringbox(txt,orig(1)+dd,y(2)-4,0,1,1);'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+dd,y(2)-4,txt,w,h,''fill'')';
+              'txt=''en'';'
+              'rectstr=stringbox(txt,orig(1)+dd,y(3)-4,0,1,1);'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+dd,y(3)-4,txt,w,h,''fill'')';
+              '[x,y,typ]=standard_outputs(o) ';
+              'txt=''Q'';'
+              'rectstr=stringbox(txt,orig(1)+de,y(1)-4,0,1,1);'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+de,y(1)-4,txt,w,h,''fill'')';
+              'txt=''!Q'';'
+              'rectstr=stringbox(txt,orig(1)+4.5*dd,y(2)-4,0,1,1);'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+4.5*dd,y(2)-4,txt,w,h,''fill'')';
+              'txt=''D FLIP-FLOP'';'
+              'style=5;'
+              'rectstr=stringbox(txt,orig(1),orig(2),0,style,1);'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+sz(1)/2-w/2,orig(2)-h-4,txt,w,h,''fill'');'
+              'e=gce();'
+              'e.font_style=style;']
+        old_gri=['[x,y,typ]=standard_inputs(o) ';
+                 'dd=sz(1)/8,de=6*sz(1)/8';
+                 'xstring(orig(1)+dd,y(1)-4,''D'')';
+                 'xstring(orig(1)+dd,y(2)-4,''clk'')';
+                 'xstring(orig(1)+dd,y(3)-4,''en'')';
+                 '[x,y,typ]=standard_outputs(o) ';
+                 'xstring(orig(1)+de,y(1)-4,''Q'')';
+                 'xstring(orig(1)+5*dd,y(2)-4,''!Q'')']
+        id=o.graphics.id
+        if id=='D FLIP-FLOP' then id='',end
+        scs_m_new.objs(j).graphics.id=id
+        if (type(scs_m_new.objs(j).graphics.gr_i)==15) then
+          if scs_m_new.objs(j).graphics.gr_i(1) == old_gri then
+            scs_m_new.objs(j).graphics.gr_i=list(gr_i,scs_m_new.objs(j).graphics.gr_i(2))
+          end
+        else
+          if scs_m_new.objs(j).graphics.gr_i(1) == old_gri then
+            scs_m_new.objs(j).graphics.gr_i=gr_i
+          end
+        end
+
+      //@@ Change gr_i of CLKGotoTagVisibility if needed
+      elseif o.gui=='CLKGotoTagVisibility' then
+        gr_i=['xstringb(orig(1),orig(2),[''{''+arg1.graphics.exprs(1)+''}''],sz(1),sz(2),''fill'');';
+              'wd=xget(''wdim'').*[1.016,1.12];';
+              'thick=xget(''thickness'');xset(''thickness'',2);';
+              'p=wd(2)/wd(1);p=1;';
+              'xarcs([orig(1)+0.05*sz(1);';
+              'orig(2)+0.95*sz(2);';
+              '0.9*sz(1)*p;';
+              '0.9*sz(2);';
+              '0;';
+              '360*64],scs_color(5));';
+              'txt=[''Goto Tag'';''Visibility'' ];'
+              'style=5;'
+              'gh_axes = gca();'
+              'axes_font_style = gh_axes.font_style ;'
+              'axes_font_size  = gh_axes.font_size  ;'
+              'gh_axes.font_style = 5;'
+              'gh_axes.font_size  = 1;'
+              'rectstr=stringbox(txt,orig(1),orig(2),0,style,1);'
+              'if ~exists(''%zoom'') then %zoom=1, end;'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+sz(1)/2-w/2,orig(2)-h-5,txt,w,h,''fill'');'
+              'gh_axes.font_style = axes_font_style ;'
+              'gh_axes.font_size  = axes_font_size  ;'
+              'xset(''thickness'',thick)']
+        old_gri=['xstringb(orig(1),orig(2),[''{''+arg1.graphics.exprs(1)+''}''],sz(1),sz(2),''fill'');';
+                 'wd=xget(''wdim'').*[1.016,1.12];';
+                 'thick=xget(''thickness'');xset(''thickness'',2);';
+                 'p=wd(2)/wd(1);p=1;';
+                 'xarcs([orig(1)+0.05*sz(1);';
+                 'orig(2)+0.95*sz(2);';
+                 '0.9*sz(1)*p;';
+                 '0.9*sz(2);';
+                 '0;';
+                 '360*64],scs_color(5));';
+                 'xset(''thickness'',thick)']
+        id=o.graphics.id
+        if id==["Goto Tag";"Visibility"] then id='',end
+        scs_m_new.objs(j).graphics.id=id
+        if (type(scs_m_new.objs(j).graphics.gr_i)==15) then
+          if scs_m_new.objs(j).graphics.gr_i(1) == old_gri then
+            scs_m_new.objs(j).graphics.gr_i=list(gr_i,scs_m_new.objs(j).graphics.gr_i(2))
+          end
+        else
+          if scs_m_new.objs(j).graphics.gr_i(1) == old_gri then
+            scs_m_new.objs(j).graphics.gr_i=gr_i
+          end
+        end
+
+      //@@ Change gr_i of GotoTagVisibilityMO if needed
+      elseif o.gui=='GotoTagVisibilityMO' then
+        gr_i=['xstringb(orig(1),orig(2),[''{''+arg1.graphics.exprs(1)+''}''],sz(1),sz(2),''fill'');';
+              'wd=xget(''wdim'').*[1.016,1.12];';
+              'thick=xget(''thickness'');xset(''thickness'',2);';
+              'p=wd(2)/wd(1);p=1;';
+              'xarcs([orig(1)+0.05*sz(1);';
+              'orig(2)+0.95*sz(2);';
+              '0.9*sz(1)*p;';
+              '0.9*sz(2);';
+              '0;';
+              '360*64],scs_color(3));';
+              'txt=[''Goto Tag'';''Visibility'' ];'
+              'style=5;'
+              'gh_axes = gca();'
+              'axes_font_style = gh_axes.font_style ;'
+              'axes_font_size  = gh_axes.font_size  ;'
+              'gh_axes.font_style = 5;'
+              'gh_axes.font_size  = 1;'
+              'rectstr=stringbox(txt,orig(1),orig(2),0,style,1);'
+              'if ~exists(''%zoom'') then %zoom=1, end;'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+sz(1)/2-w/2,orig(2)-h-5,txt,w,h,''fill'');'
+              'gh_axes.font_style = axes_font_style ;'
+              'gh_axes.font_size  = axes_font_size  ;'
+              'xset(''thickness'',thick)']
+        old_gri=['xstringb(orig(1),orig(2),[''{''+arg1.graphics.exprs(1)+''}''],sz(1),sz(2),''fill'');';
+                 'wd=xget(''wdim'').*[1.016,1.12];';
+                 'thick=xget(''thickness'');xset(''thickness'',2);';
+                 'p=wd(2)/wd(1);p=1;';
+                 'xarcs([orig(1)+0.05*sz(1);';
+                 'orig(2)+0.95*sz(2);';
+                 '0.9*sz(1)*p;';
+                 '0.9*sz(2);';
+                 '0;';
+                 '360*64],scs_color(3));';
+                 'xset(''thickness'',thick)']
+        id=o.graphics.id
+        if id==["Goto Tag";"Visibility"] then id='',end
+        scs_m_new.objs(j).graphics.id=id
+        if (type(scs_m_new.objs(j).graphics.gr_i)==15) then
+          if scs_m_new.objs(j).graphics.gr_i(1) == old_gri then
+            scs_m_new.objs(j).graphics.gr_i=list(gr_i,scs_m_new.objs(j).graphics.gr_i(2))
+          end
+        else
+          if scs_m_new.objs(j).graphics.gr_i(1) == old_gri then
+            scs_m_new.objs(j).graphics.gr_i=gr_i
+          end
+        end
+
+      //@@ Change gr_i of GotoTagVisibility if needed
+      elseif o.gui=='GotoTagVisibility' then
+        gr_i=['xstringb(orig(1),orig(2),[''{''+arg1.graphics.exprs(1)+''}''],sz(1),sz(2),''fill'');'
+              'txt=[''Goto Tag'';''Visibility'' ];'
+              'style=5;'
+              'gh_axes = gca();'
+              'axes_font_style = gh_axes.font_style ;'
+              'axes_font_size  = gh_axes.font_size  ;'
+              'gh_axes.font_style = 5;'
+              'gh_axes.font_size  = 1;'
+              'rectstr=stringbox(txt,orig(1),orig(2),0,style,1);'
+              'if ~exists(''%zoom'') then %zoom=1, end;'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+sz(1)/2-w/2,orig(2)-h-5,txt,w,h,''fill'');'
+              'gh_axes.font_style = axes_font_style ;'
+              'gh_axes.font_size  = axes_font_size  ;']
+        old_gri=['xstringb(orig(1),orig(2),[''{''+arg1.graphics.exprs(1)+''}''],sz(1),sz(2),''fill'');']
+        id=o.graphics.id
+        if id==["Goto Tag";"Visibility"] then id='',end
+        scs_m_new.objs(j).graphics.id=id
+        if (type(scs_m_new.objs(j).graphics.gr_i)==15) then
+          if scs_m_new.objs(j).graphics.gr_i(1) == old_gri then
+            scs_m_new.objs(j).graphics.gr_i=list(gr_i,scs_m_new.objs(j).graphics.gr_i(2))
+          end
+        else
+          if scs_m_new.objs(j).graphics.gr_i(1) == old_gri then
+            scs_m_new.objs(j).graphics.gr_i=gr_i
+          end
+        end
+
+      //@@ Change gr_i of Inductor if needed
+      elseif o.gui=='Inductor' then
+        gr_i=['tt=linspace(0.04,0.96,100)'';'
+              'xpoly(tt*sz(1)+orig(1),+orig(2)+abs(sin(18*(tt-0.04)))*sz(2),""lines"");';
+              'xx=orig(1)+[0 0.04 0.04 0.04 0]*sz(1);';
+              'yy=orig(2)+[1/2 1/2 0  1/2 1/2]*sz(2);';
+              'xpoly(xx,yy) ';
+              'xx=orig(1)+[0.96 0.96 1   0.96 0.96 ]*sz(1);';
+              'yy=orig(2)+[abs(sin(18*0.92))   1/2   1/2 1/2 abs(sin(18*0.92))]*sz(2);';
+              'xpoly(xx,yy) ';
+              'txt=''L= ''+L;'
+              'style=2;'
+              'rectstr=stringbox(txt,orig(1),orig(2),0,style,1);'
+              'if ~exists(''%zoom'') then %zoom=1, end;'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+sz(1)/2-w/2,orig(2)-h-4,txt,w,h,''fill'');'
+              'e=gce();']
+        old_gri=['tt=linspace(0.04,0.96,100)'';'
+                 'xpoly(tt*sz(1)+orig(1),+orig(2)+abs(sin(18*(tt-0.04)))*sz(2),""lines"");';
+                 'xx=orig(1)+[0 0.04 0.04 0.04 0]*sz(1);';
+                 'yy=orig(2)+[1/2 1/2 0  1/2 1/2]*sz(2);';
+                 'xpoly(xx,yy) ';
+                 'xx=orig(1)+[0.96 0.96 1   0.96 0.96 ]*sz(1);';
+                 'yy=orig(2)+[abs(sin(18*0.92))   1/2   1/2 1/2 abs(sin(18*0.92))]*sz(2);';
+                 'xpoly(xx,yy) ';
+                 'rect=xstringl(0,0,''L=''+L)'
+                 'xstring(orig(1)+(sz(1)-rect(3))/2,orig(2)-rect(4)*1.2,''L=''+L)']
+        if (type(scs_m_new.objs(j).graphics.gr_i)==15) then
+          if scs_m_new.objs(j).graphics.gr_i(1) == old_gri then
+            scs_m_new.objs(j).graphics.gr_i=list(gr_i,scs_m_new.objs(j).graphics.gr_i(2))
+          end
+        else
+          if scs_m_new.objs(j).graphics.gr_i(1) == old_gri then
+            scs_m_new.objs(j).graphics.gr_i=gr_i
+          end
+        end
+
+      //@@ Change gr_i of Capacitor if needed
+      elseif o.gui=='Capacitor' then
+        gr_i=['xset(''thickness'',2)'
+              'xx=orig(1)+[0 1/3 1/3 1/3 ]*sz(1);';
+              'yy=orig(2)+[1/2 1/2 1 0]*sz(2);';
+              'xpoly(xx,yy);'
+              'xsegs(orig(1)+ sz(1)*2/3*[1 1 1 3/2],orig(2)+(sz(2)*1/2)*[2 0 1 1],0);';
+              'if orient then'
+              '  xrects([orig(1)+sz(1)*1/2;orig(2)+sz(2);sz(1)*1/6;sz(2)],scs_color(33));'
+              '  xstring(orig(1)+sz(1)*1/12,orig(2)+sz(2)*3/4,''+'');';
+              '  xstring(orig(1)+sz(1)*7/8,orig(2)+sz(2)*3/4,''-'');';
+              'else'
+              '  xrects([orig(1)+sz(1)*1/3;orig(2)+sz(2);sz(1)*1/6;sz(2)],scs_color(33));'
+              '  xstring(orig(1)+sz(1)*1/12,orig(2)+sz(2)*3/4,''-'');';
+              '  xstring(orig(1)+sz(1)*7/8,orig(2)+sz(2)*3/4,''+'');';
+              'end'
+              'txt=''C= ''+C;'
+              'style=2;'
+              'rectstr=stringbox(txt,orig(1),orig(2),0,style,1);'
+              'if ~exists(''%zoom'') then %zoom=1, end;'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+sz(1)/2-w/2,orig(2)-h-4,txt,w,h,''fill'');'
+              'e=gce();'
+              'e.font_style=style;']
+        old_gri=['xset(''thickness'',2)'
+                 'xx=orig(1)+[0 1/3 1/3 1/3 ]*sz(1);';
+                 'yy=orig(2)+[1/2 1/2 1 0]*sz(2);';
+                 'xpoly(xx,yy);'
+                 'xsegs(orig(1)+ sz(1)*2/3*[1 1 1 3/2],orig(2)+(sz(2)*1/2)*[2 0 1 1],0);';
+                 'if orient then'
+                 '  xrects([orig(1)+sz(1)*1/2;orig(2)+sz(2);sz(1)*1/6;sz(2)],scs_color(33));'
+                 '  xstring(orig(1)+sz(1)*1/12,orig(2)+sz(2)*3/4,''+'');';
+                 '  xstring(orig(1)+sz(1)*7/8,orig(2)+sz(2)*3/4,''-'');';
+                 'else'
+                 '  xrects([orig(1)+sz(1)*1/3;orig(2)+sz(2);sz(1)*1/6;sz(2)],scs_color(33));'
+                 '  xstring(orig(1)+sz(1)*1/12,orig(2)+sz(2)*3/4,''-'');';
+                 '  xstring(orig(1)+sz(1)*7/8,orig(2)+sz(2)*3/4,''+'');';
+                 'end'
+                 'rect=xstringl(0,0,''C=''+C)'
+                 'xstring(orig(1)+(sz(1)-rect(3))/2,orig(2)-rect(4)*1.2,''C= ''+C);']
+        if (type(scs_m_new.objs(j).graphics.gr_i)==15) then
+          if scs_m_new.objs(j).graphics.gr_i(1) == old_gri then
+            scs_m_new.objs(j).graphics.gr_i=list(gr_i,scs_m_new.objs(j).graphics.gr_i(2))
+          end
+        else
+          if scs_m_new.objs(j).graphics.gr_i(1) == old_gri then
+            scs_m_new.objs(j).graphics.gr_i=gr_i
+          end
+        end
+
+      //@@ Change gr_i of Resistor if needed
+      elseif o.gui=='Resistor' then
+        gr_i=['xx=[0,1,1,7,7,8,7,7,1,1]/8;';
+              'yy=[1,1,0,0,1,1,1,2,2,1]/2;';
+              'xpoly(orig(1)+xx*sz(1),orig(2)+yy*sz(2)); '
+              'txt=''R= ''+R;'
+              'style=2;'
+              'rectstr=stringbox(txt,orig(1),orig(2),0,style,1);'
+              'if ~exists(''%zoom'') then %zoom=1, end;'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+sz(1)/2-w/2,orig(2)-h-4,txt,w,h,''fill'');'
+              'e=gce();']
+        old_gri=['xx=[0,1,1,7,7,8,7,7,1,1]/8;';
+                 'yy=[1,1,0,0,1,1,1,2,2,1]/2;';
+                 'xpoly(orig(1)+xx*sz(1),orig(2)+yy*sz(2)); '
+                 'rect=xstringl(0,0,''R=''+R)'
+                 'xstring(orig(1)+(sz(1)-rect(3))/2,orig(2)-rect(4)*1.2,''R=''+R);']
+        if (type(scs_m_new.objs(j).graphics.gr_i)==15) then
+          if scs_m_new.objs(j).graphics.gr_i(1) == old_gri then
+            scs_m_new.objs(j).graphics.gr_i=list(gr_i,scs_m_new.objs(j).graphics.gr_i(2))
+          end
+        else
+          if scs_m_new.objs(j).graphics.gr_i(1) == old_gri then
+            scs_m_new.objs(j).graphics.gr_i=gr_i
+          end
+        end
+
+      end
+    end
+  end
+endfunction
+
 
 //*** update scope ***//
 function scs_m_new=do_version42(scs_m)
@@ -225,249 +936,6 @@ function scs_m_new=do_version42(scs_m)
   end
 endfunction
 
-// update_scs_m : function to do certification of
-//                main data structure of
-//                a scicos diagram (scs_m)
-//                for current version of scicos
-//
-//   certification is done through initial value of fields in :
-//      scicos_diagram()
-//         scicos_params()
-//         scicos_block()
-//            scicos_graphics()
-//            scicos_model()
-//         scicos_link()
-//
-// Initial rev 12/05/07 : Alan
-//
-function scs_m_new = update_scs_m(scs_m,version)
-  rhs = argn(2)
-  if rhs<2 then
-    version=get_scicos_version();
-  end
-
-  scs_m_new = scicos_diagram();
-
-  F = getfield(1,scs_m);
-
-  for i=2:size(F,2)
-
-    select F(i)
-
-      //******************* props *******************//
-      case 'props' then
-
-        sprops = scs_m.props;
-        T = getfield(1,scs_m.props);
-        T_txt = [];
-        for j=2:size(T,2)
-          T_txt = T_txt + strsubst(T(1,j),'title','Title') + ...
-                  "=" + "sprops." + T(1,j);
-          if j<>size(T,2) then
-             T_txt = T_txt + ',';
-          end
-        end
-        T_txt = 'sprops=scicos_params(' + T_txt + ')';
-        ierr  = execstr(T_txt,'errcatch')
-        if ierr<>0 then
-           error("Problem in convertion of props in diagram.")
-        end
-        scs_m_new.props = sprops;
-      //*********************************************//
-
-      //******************** objs *******************//
-      case 'objs' then
-
-        for j=1:lstsize(scs_m.objs) //loop on objects
-
-          o=scs_m.objs(j);
-
-          select typeof(o)
-
-            //************** Block ***************//
-            case 'Block' then
-
-              o_new=scicos_block();
-              T = getfield(1,o);
-
-              for k=2:size(T,2)
-                select T(k)
-                  //*********** graphics **********//
-                  case 'graphics' then
-                    ogra  = o.graphics;
-                    G     = getfield(1,ogra);
-                    G_txt = [];
-                    for l=2:size(G,2)
-                      G_txt = G_txt + G(1,l) + ...
-                              "=" + "ogra." + G(1,l);
-                      if l<>size(G,2) then
-                        G_txt = G_txt + ',';
-                      end
-                    end
-                    G_txt = 'ogra=scicos_graphics(' + G_txt + ')';
-                    ierr  = execstr(G_txt,'errcatch')
-                    if ierr<>0 then
-                      error("Problem in convertion of graphics in block.")
-                    end
-                    o_new.graphics = ogra;
-                  //*******************************//
-
-                  //************* model ***********//
-                  case 'model' then
-                    omod  = o.model;
-                    M     = getfield(1,o.model);
-                    M_txt = [];
-                    for l=2:size(M,2)
-                      M_txt = M_txt + M(1,l) + ...
-                              "=" + "omod." + M(1,l);
-                      if l<>size(M,2) then
-                        M_txt = M_txt + ',';
-                      end
-                    end
-                    M_txt = 'omod=scicos_model(' + M_txt + ')';
-                    ierr  = execstr(M_txt,'errcatch')
-                    if ierr<>0 then
-                      error("Problem in convertion of model in block.")
-                    end
-                    //******** super block case ********//
-                    if omod.sim=='super'|omod.sim=='csuper' then
-                      rpar=update_scs_m(omod.rpar,version)
-                      omod.rpar=rpar
-                    end
-                    o_new.model = omod;
-                  //*******************************//
-
-                  //************* other ***********//
-                  else
-                    T_txt = "o."+T(k);
-                    T_txt = "o_new." + T(k) + "=" + T_txt;
-                    ierr  = execstr(T_txt,'errcatch')
-                    if ierr<>0 then
-                      error("Problem in convertion in objs.")
-                    end
-                  //*******************************//
-
-                end  //end of select T(k)
-              end  //end of for k=
-              scs_m_new.objs(j) = o_new;
-            //************************************//
-
-            //************** Link ****************//
-            case 'Link' then
-
-              T     = getfield(1,o);
-              T_txt = [];
-              for k=2:size(T,2)
-                T_txt = T_txt + T(1,k) + ...
-                        "=" + "o." + T(1,k);
-                if k<>size(T,2) then
-                  T_txt = T_txt + ',';
-                end
-              end
-              T_txt = 'o_new=scicos_link(' + T_txt + ')';
-              ierr  = execstr(T_txt,'errcatch')
-              if ierr<>0 then
-                error("Problem in convertion of link in objs.")
-              end
-              scs_m_new.objs(j) = o_new;
-            //************************************//
-
-            //************** Text ****************//
-            case 'Text' then
-              o_new = mlist(['Text','graphics','model','void','gui'],...
-                            scicos_graphics(),scicos_model(),' ','TEXT_f')
-
-              T     = getfield(1,o);
-              T_txt = [];
-              for k=2:size(T,2)
-                select T(k)
-                  //*********** graphics **********//
-                  case 'graphics' then
-                    ogra  = o.graphics;
-                    G     = getfield(1,ogra);
-                    G_txt = [];
-                    for l=2:size(G,2)
-                      G_txt = G_txt + G(1,l) + ...
-                              "=" + "ogra." + G(1,l);
-                      if l<>size(G,2) then
-                        G_txt = G_txt + ',';
-                      end
-                    end
-                    G_txt = 'ogra=scicos_graphics(' + G_txt + ')';
-                    ierr  = execstr(G_txt,'errcatch')
-                    if ierr<>0 then
-                      error("Problem in convertion of graphics in text.")
-                    end
-                    o_new.graphics = ogra;
-                  //*******************************//
-
-                  //************* model ***********//
-                  case 'model' then
-                    omod  = o.model;
-                    M     = getfield(1,o.model);
-                    M_txt = [];
-                    for l=2:size(M,2)
-                      M_txt = M_txt + M(1,l) + ...
-                              "=" + "omod." + M(1,l);
-                      if l<>size(M,2) then
-                        M_txt = M_txt + ',';
-                      end
-                    end
-                    M_txt = 'omod=scicos_model(' + M_txt + ')';
-                    ierr  = execstr(M_txt,'errcatch')
-                    if ierr<>0 then
-                      error("Problem in convertion of model in text.")
-                    end
-                    //******** super block case ********//
-                    if omod.sim=='super'|omod.sim=='csuper' then
-                      rpar=update_scs_m(omod.rpar,version)
-                      omod.rpar=rpar
-                    end
-                    o_new.model = omod;
-                  //*******************************//
-
-                  //************* other ***********//
-                  else
-                    T_txt = "o."+T(k);
-                    T_txt = "o_new." + T(k) + "=" + T_txt;
-                    ierr  = execstr(T_txt,'errcatch')
-                    if ierr<>0 then
-                      error("Problem in convertion in objs.")
-                    end
-                  //*******************************//
-
-                end  //end of select T(k)
-              end  //end of for k=
-              scs_m_new.objs(j) = o_new;
-            //************************************//
-
-            //************* other ***********//
-            else  // ??
-                  // Alan : JESAISPASIYADAUTRESOBJS
-                  // QUEDESBLOCKSDESLINKETDUTEXTESDANSSCICOS
-                  // ALORSICIJEFAISRIEN
-              scs_m_new.objs(j) = o;
-            //************************************//
-
-          end //end of select typeof(o)
-
-        end //end of for j=
-       //*********************************************//
-
-      //** version **//
-      case 'version' then
-          //do nothing here
-          //this should be done later
-
-    end  //end of select  F(i)
-
-  end //end of for i=
-
-  //**update version **//
-  scs_m_new.version = version;
-
-endfunction
-
 function scs_m_new=do_version273(scs_m)
   scs_m_new=scs_m;
   n=size(scs_m.objs);
@@ -620,9 +1088,9 @@ for k=2:nx
   end
 end
 if obsolete then
-  message(['Diagram contains obsolete signed blocks sum'
+  messagebox(['Diagram contains obsolete signed blocks sum'
       'They are drawn in brown, they work as before but,'
-      'please replace them with the new block sum'])
+      'please replace them with the new block sum'],'modal')
 end  
 
 endfunction

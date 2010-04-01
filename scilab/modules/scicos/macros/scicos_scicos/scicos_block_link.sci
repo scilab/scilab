@@ -29,13 +29,13 @@ function ok = scicos_block_link(funam, txt, flag)
  
   if (flag<>"c")&(flag<>"f") then
      ok = %f;
-     message("Sorry: Only C or FORTRAN languages are supported");
+     messagebox("Sorry: Only C or FORTRAN languages are supported",'modal');
      return; 
   end
   
   if stripblanks(funam)==emptystr() then 
     ok = %f;
-    message("Sorry file name not defined in "+flag+" block");
+    messagebox("Sorry file name not defined in "+flag+" block",'modal');
     return; 
   end
 
@@ -56,15 +56,7 @@ function ok = scicos_block_link(funam, txt, flag)
   loadername = "loader.sce" ;
   libname = "" ;
   ldflags = "" ;
-  //** BEWARE:
-  //**     1 - Remember to use WSCI for the Windows version
-  //**     2 - This setting OVERRIDE the original one 
-  // source tree
-  cflags = "-I"+SCI+"/modules/scicos_blocks/includes/"; //** look for standard Scicos include 
-  if isdir(SCI+"/../../include/scilab/scicos_blocks/") then
-    // Binary version	
-	cflags = "-I"+SCI+"/../../include/scilab/scicos_blocks/"; //** look for standard Scicos include 
-  end
+  cflags = strcat("-I"+scicos_include_paths(),' ')
   fflags = ""; //** no Fortran 
   cc = ""; //** default "C" compiler 
   

@@ -1,0 +1,43 @@
+/*  Scicos
+*
+*  Copyright (C) DIGITEO - Allan CORNET
+*
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 2 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program; if not, write to the Free Software
+* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+*
+* See the file ./license.txt
+*/
+/*--------------------------------------------------------------------------*/
+
+#ifndef __EXTRACTBLKLIST_H__
+#define __EXTRACTBLKLIST_H__
+
+#include "scicos_block4.h"
+
+/* extractblklist : create a scicos_block C structure from
+* a scicos_block scilab structure.
+*
+* Input : il : the ptr of the scicos_block scilab structure
+*              in the stack
+*
+* Output : Block : C scicos_block structure
+*          ierr  : an error number (ifany)
+*
+* initial rev 13/11/07, Alan Layec
+*/
+
+int extractblklist(int *il, scicos_block *Block, int *ierr);
+
+#endif /* __EXTRACTBLKLIST_H__ */
+/*--------------------------------------------------------------------------*/

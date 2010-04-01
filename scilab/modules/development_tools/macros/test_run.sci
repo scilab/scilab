@@ -24,6 +24,9 @@
 //   These are the available tags :
 //     <-- INTERACTIVE TEST -->
 //       This test will be skipped because it is interactive.
+//     <-- LONG TIME EXECUTION -->
+//       This test will be skipped because it needs long-time duration. It will
+//       launched if the optional argument "enable_lt" is called
 //     <-- NOT FIXED -->
 //       This test will be skipped because it is a known, but unfixed bug.
 //     <-- TEST WITH GRAPHIC -->
@@ -47,6 +50,9 @@
 //       If the operating system isn't Linux, the test is skipped.
 //     <-- MACOSX ONLY -->
 //       If the operating system isn't MacOSX, the test is skipped.
+//     <-- XCOS TEST -->
+//       This test will launch all the necessary Xcos libs. This test
+//       will be launched in nw mode.
 //
 //   Each test is executed in a separated process, created with the "host" command.
 //   That enables the current command to continue, even if the test as
@@ -126,7 +132,7 @@ function test_run(varargin)
 	global MACOSX;
 	global LINUX;
 	
-	if ~MSDOS then
+	if getos() <> 'Windows' then
 		OSNAME = unix_g('uname');
 		MACOSX = (strcmpi(OSNAME,"darwin") == 0);
 		LINUX  = (strcmpi(OSNAME,"linux") == 0);
@@ -356,6 +362,16 @@ function test_run(varargin)
 		
 		if grep(option_mat,"no_check_error_output") <> [] then
 			testsuite = testsuite_set_EO(testsuite,"skip")
+		end
+		
+		// Enable long-time tests
+		
+		if grep(option_mat,"disable_lt") <> [] then
+			testsuite = testsuite_set_LT(testsuite,"skip")
+		end
+		
+		if grep(option_mat,"enable_lt") <> [] then
+			testsuite = testsuite_set_LT(testsuite,"enable")
 		end
 		
 	end
@@ -612,6 +628,7 @@ function st = st_new()
 				 "content"        ..
 				 "interactive"    ..
 				 "notyetfixed"    ..
+				 "longtime"       ..    // needs long-time duration 
 				 "reopened"       ..
 				 "platform"       ..
 				 "language"       ..
@@ -628,6 +645,7 @@ function st = st_new()
 				 "tmp_res"        ..    // diary file
 				 "tmp_err"        ..    // reference file
 				 "status"         ..    // status
+				 "xcos"           ..    // xcos test ?
 				 "cmd"            ..    // command to launch
 				 ] );
 				 
@@ -635,6 +653,7 @@ function st = st_new()
 	st.skip          = %F;
 	st.interactive   = %F;
 	st.notyetfixed   = %F;
+	st.longtime      = %F;
 	st.reopened      = %F;
 	st.jvm_mandatory = %T;
 	st.graphic       = %F;
@@ -658,6 +677,8 @@ function st = st_new()
 	st.content       = "";
 	
 	st.status        = status_new();
+
+	st.xcos          = %F;
 	
 endfunction
 
@@ -668,11 +689,11 @@ function st = st_set_name(st,name)
 	
 	st.name = name;
 	
-	st.tmp_tst       = pathconvert( TMPDIR + "/" + name + ".tst" , %F);
-	st.tmp_dia       = pathconvert( TMPDIR + "/" + name + ".dia" , %F);
-	st.tmp_res       = pathconvert( TMPDIR + "/" + name + ".res" , %F);
-	st.tmp_err       = pathconvert( TMPDIR + "/" + name + ".err" , %F);
-	
+	st.tmp_tst       = pathconvert( TMPDIR + "/" + name + ".tst"     , %F);
+	st.tmp_dia       = pathconvert( TMPDIR + "/" + name + ".dia.tmp" , %F);
+	st.tmp_res       = pathconvert( TMPDIR + "/" + name + ".res"     , %F);
+	st.tmp_err       = pathconvert( TMPDIR + "/" + name + ".err"     , %F);
+	st.path_dia      = pathconvert( TMPDIR + "/" + name + ".dia"     , %F);
 endfunction
 
 function st = st_set_type(st,sttype)
@@ -681,14 +702,12 @@ endfunction
 
 function st = st_set_path(st,path)
 	
-	st.path     = path;
-	basepath    = strsubst(path,"/\.tst$/","","r");
-	st.path_dia = basepath + ".dia";
-	
+	st.path         = path;
+	basepath        = strsubst(path,"/\.tst$/","","r");
 	st.path_dia_ref = basepath + ".dia.ref";
 	
 	// Reference file management OS by OS
-	if MSDOS then
+	if getos() == 'Windows' then
 		altreffile = [ basepath+".win.dia.ref" ];
 	elseif MACOSX then
 		altreffile = [ basepath+".unix.dia.ref" ; basepath+".macosx.dia.ref" ];
@@ -724,6 +743,10 @@ endfunction
 
 function st = st_set_notyetfixed(st,notyetfixed)
 	st.notyetfixed = notyetfixed;
+endfunction
+
+function st = st_set_longtime(st,longtime)
+	st.longtime = longtime;
 endfunction
 
 function st = st_set_reopened(st,reopened)
@@ -770,6 +793,10 @@ function st = st_set_mode(st,smode)
 	st.mode = smode;
 endfunction
 
+function st = st_set_xcos(st,xmode)
+	st.xcos = xmode;
+endfunction
+
 // show
 // -----------------------------------------------------------------------------
 
@@ -778,11 +805,13 @@ function st_show(st)
 	if st.skip           then st_skip           = "Yes"; else st_skip           = "No"; end
 	if st.interactive    then st_interactive    = "Yes"; else st_interactive    = "No"; end
 	if st.notyetfixed    then st_notyetfixed    = "Yes"; else st_notyetfixed    = "No"; end
+	if st.longtime       then st_longtime       = "Yes"; else st_longtime       = "No"; end
 	if st.reopened       then st_reopened       = "Yes"; else st_reopened       = "No"; end
 	if st.jvm_mandatory  then st_jvm_mandatory  = "Yes"; else st_jvm_mandatory  = "No"; end
 	if st.graphic        then st_graphic        = "Yes"; else st_graphic        = "No"; end
 	if st.try_catch      then st_try_catch      = "Yes"; else st_try_catch      = "No"; end
-	
+	if st.xcos           then st_xcos           = "Yes"; else st_xcos           = "No"; end
+
 	mprintf("Test :\n");
 	mprintf("  name           = %s\n"   ,st.name);
 	mprintf("  type           = %s\n"   ,st.type);
@@ -803,6 +832,7 @@ function st_show(st)
 	mprintf("  skip           = %s\n"   ,st_skip);
 	mprintf("  interactive    = %s\n"   ,st_interactive);
 	mprintf("  notyetfixed    = %s\n"   ,st_notyetfixed);
+	mprintf("  longtime       = %s\n"   ,st_longtime);
 	mprintf("  reopened       = %s\n"   ,st_reopened);
 	mprintf("  platform       = %s\n"   ,st.platform);
 	mprintf("  jvm_mandatory  = %s\n"   ,st_interactive);
@@ -811,6 +841,7 @@ function st_show(st)
 	mprintf("  reference      = %s\n"   ,st.reference);
 	mprintf("  error_output   = %s\n"   ,st.error_output);
 	mprintf("  try_catch      = %s\n"   ,st_try_catch);
+	mprintf("  xcos           = %s\n"   ,st_xcos);
 	mprintf("\n");
 	
 	mprintf("Test scilab cmd :\n");
@@ -875,6 +906,10 @@ function st = st_analyse(st)
 		st = st_set_interactive(st,%T);
 	end
 	
+	if ~ isempty( grep(st.content,"<-- LONG TIME EXECUTION -->") ) then
+		st = st_set_longtime(st,%T);
+	end
+	
 	if ~ isempty( grep(st.content,"<-- TEST WITH GRAPHIC -->") ) then
 		st = st_set_graphic(st,%T);
 		st = st_set_jvm_mandatory(st,%T);
@@ -886,6 +921,10 @@ function st = st_analyse(st)
 		st = st_set_mode(st,"NWNI");
 	end
 	
+	if ~ isempty( grep(st.content,"<-- XCOS TEST -->") ) then
+		st = st_set_xcos(st,%T);
+		st = st_set_jvm_mandatory(st,%T);
+	end
 	// Language
 	// =========================================================================
 	
@@ -952,6 +991,14 @@ function st = st_run(st)
 		return;
 	end
 	
+	// The test needs long-time duration
+	
+	if st.longtime & (testsuite.longtime == "skip") then
+		st.status = status_set_id(st.status,10);
+		st.status = status_set_message(st.status,"skipped : Long time duration");
+		return;
+	end
+	
 	// The bug is not yet fixed
 	
 	if st.notyetfixed then
@@ -970,13 +1017,13 @@ function st = st_run(st)
 	
 	// The test cannot be launched on this platform
 	
-	if (st.platform=="windows") & (~MSDOS) then
+	if (st.platform=="windows") & (getos() <> 'Windows') then
 		st.status = status_set_id(st.status,10);
 		st.status = status_set_message(st.status,"skipped : Windows only");
 		return;
 	end
 	
-	if (st.platform=="unix") & MSDOS then
+	if (st.platform=="unix") & getos() == 'Windows' then
 		st.status = status_set_id(st.status,10);
 		st.status = status_set_message(st.status,"skipped : Unix only");
 		return;
@@ -1030,6 +1077,10 @@ function st = st_run(st)
 		"tmpdirToPrint = msprintf(''TMPDIR1=''''%s''''\n'',TMPDIR);"            ...
 	]
 	
+	if st.xcos then
+		head = [ head ; "loadScicosLibs();"];
+	end
+	
 	if st.try_catch then
 		head = [ head ; "try" ];
 	end
@@ -1075,7 +1126,7 @@ function st = st_run(st)
 	// Gestion de l'emplacement de bin/scilab
 	// -------------------------------------------------------------------------
 	
-	if (~MSDOS) & (fileinfo(SCI+"/bin/scilab")==[]) then
+	if (getos() <> 'Windows') & (fileinfo(SCI+"/bin/scilab")==[]) then
 		SCI_BIN = strsubst(SCI,'share/scilab','');
 	else
 		SCI_BIN = SCI;
@@ -1105,7 +1156,7 @@ function st = st_run(st)
 	
 	if st.language == "any" then
 		language_arg = "";
-	elseif MSDOS then
+	elseif getos() == 'Windows' then
 		language_arg = "-l "+ st.language;
 	else
 		language_arg = "LANG=" + st.language + " ; ";
@@ -1114,7 +1165,7 @@ function st = st_run(st)
 	// Assembly
 	// -------------------------------------------------------------------------
 	
-	if MSDOS then
+	if getos() == 'Windows' then
 		test_cmd = "( """+SCI_BIN+"\bin\scilex.exe"+""""+" "+mode_arg+" "+language_arg+" -nb -f """+st.tmp_tst+""" > """+st.tmp_res+""" ) 2> """+st.tmp_err+"""";
 	else
 		test_cmd = "( "+language_arg+" "+SCI_BIN+"/bin/scilab "+mode_arg+" -nb -f "+st.tmp_tst+" > "+st.tmp_res+" ) 2> "+st.tmp_err;
@@ -1247,7 +1298,7 @@ function st = st_run(st)
 		dia = strsubst(dia,TMPDIR ,"TMPDIR");
 		dia = strsubst(dia,TMPDIR1,"TMPDIR");
 		
-		if MSDOS then
+		if getos() == 'Windows' then
 			dia = strsubst(dia,strsubst(TMPDIR ,"\","/"),"TMPDIR");
 			dia = strsubst(dia,strsubst(TMPDIR1,"\","/"),"TMPDIR");
 			dia = strsubst(dia,strsubst(TMPDIR ,"/","\"),"TMPDIR");
@@ -1260,7 +1311,7 @@ function st = st_run(st)
 		
 		dia = strsubst(dia,SCI,"SCI");
 	
-		if MSDOS then
+		if getos() == 'Windows' then
 			dia = strsubst(dia,strsubst(SCI ,"\","/"),"SCI");
 			dia = strsubst(dia,strsubst(SCI ,"/","\"),"SCI");
 			dia = strsubst(dia,strsubst(getshortpathname(SCI) ,"\","/"),"SCI");
@@ -1468,6 +1519,7 @@ function testsuite = testsuite_new()
 				 "wanted_mode"     ..    // NW, NWNI, GUI
 				 "reference"       ..    // check, create, skip
 				 "error_output"    ..    // check, skip
+				 "longtime"        ..    // enable, skip
 				 ]);
 	
 	testsuite.items = list();
@@ -1483,6 +1535,7 @@ function testsuite = testsuite_new()
 	testsuite.wanted_mode  = "";
 	testsuite.reference    = "check";
 	testsuite.error_output = "check";
+	testsuite.longtime     = "skip";
 	
 endfunction
 
@@ -1517,6 +1570,11 @@ endfunction
 
 function testsuite = testsuite_set_EO(testsuite,error_output)
 	testsuite.error_output = error_output;
+endfunction
+
+// Enable/Disable Long Time Execution tests
+function testsuite = testsuite_set_LT(testsuite,lt)
+	testsuite.longtime = lt;
 endfunction
 
 // List tests

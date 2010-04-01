@@ -36,8 +36,8 @@ tt=["set BWpath [file dirname '"$env(SCIPATH)/modules/tclsci/tcl/BWidget-1.8.0'"
     "}" 
     "package require BWidget 1.8.0"
     'set wyy .palettes'
-    'proc ppxs {label} {global blko; set blko $label;ScilabEval '"Cmenu=''PlaceinDiagram'''"}'
-    'proc qqxs {label} {global blko; set blko $label;ScilabEval '"Cmenu=''TkPopup'''"}'
+    'proc ppxs {label} {global blko; set blko $label;ScilabEval '"Cmenu=''XcosMenuPlaceinDiagram'''"}'
+    'proc qqxs {label} {global blko; set blko $label;ScilabEval '"Cmenu=''XcosMenuTkPopup'''"}'
     'catch {destroy $wyy}'
     'toplevel $wyy'
     'Tree $wyy.t -xscrollcommand {$wyy.xsb set} -yscrollcommand {$wyy.ysb set} "+...

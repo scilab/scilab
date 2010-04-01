@@ -20,7 +20,6 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -29,9 +28,13 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * @author Vincent COUVERT
  */
 public final class SaveAsAction extends DefaultAction {
+	/** Name of the action */
 	public static final String NAME = XcosMessages.SAVE_AS;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "document-save-as.png";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = KeyEvent.VK_S;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = KeyEvent.SHIFT_DOWN_MASK
 			| Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
@@ -69,7 +72,6 @@ public final class SaveAsAction extends DefaultAction {
 	public void actionPerformed(ActionEvent e) {
 		if (((XcosDiagram) getGraph(null)).saveDiagramAs(null)) {
 			((XcosDiagram) getGraph(null)).setModified(false);
-			XcosTab.updateRecentOpenedFilesMenu(((XcosDiagram) getGraph(null)));
 		}
 		
 	}

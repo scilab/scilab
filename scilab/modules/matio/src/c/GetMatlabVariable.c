@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent COUVERT 
+ * Copyright (C) 2010 - DIGITEO - Yann COLLETTE
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,23 +13,56 @@
 
 #include "GetMatlabVariable.h"
 
-matvar_t *GetMatlabVariable(int stkPos, const char *name, int matfile_version)
+#include "api_scilab.h"
+
+#define MATIO_ERROR if(_SciErr.iErr) \
+    {				     \
+      printError(&_SciErr, 0);	     \
+      return 0;			     \
+    }
+
+matvar_t *GetMatlabVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position)
 {
-  
-  switch(VarType(stkPos))
+  int * var_addr = NULL;
+  int var_type;
+  SciErr _SciErr;
+  matvar_t * tmp_res = NULL;
+
+  if (parent==NULL)
+    {
+      _SciErr = getVarAddressFromPosition(pvApiCtx, iVar, &var_addr); MATIO_ERROR;
+      _SciErr = getVarType(pvApiCtx, var_addr, &var_type); MATIO_ERROR;
+    }
+  else
+    {
+      _SciErr = getListItemAddress(pvApiCtx, parent, item_position, &var_addr); MATIO_ERROR;
+      _SciErr = getVarType(pvApiCtx, var_addr, &var_type); MATIO_ERROR;
+    }
+
+  switch(var_type)
     {
     case sci_matrix:
-      return GetDoubleVariable(stkPos, name, matfile_version);
+      tmp_res = GetDoubleVariable(pvApiCtx, iVar, name, matfile_version, parent, item_position);
+      break;
     case sci_strings:
-      return GetCharVariable(stkPos, name);
+      tmp_res = GetCharVariable(pvApiCtx, iVar, name, parent, item_position);
+      break;
     case sci_ints:
-      return GetIntegerVariable(stkPos, name);
-    case sci_mlist: /* Only cells structs and hypermatrices are managed */
-      return GetMlistVariable(stkPos, name, matfile_version);
+      tmp_res = GetIntegerVariable(pvApiCtx, iVar, name, parent, item_position);
+      break;
+    case sci_mlist: 
+      /* Only cells structs and hypermatrices are managed */
+      //tmp_res = GetMlistVariable(iVar, name, matfile_version, parent, item_position);
+      tmp_res = GetMlistVariable(pvApiCtx, iVar, name, matfile_version, parent, -1);
+      break;
     case sci_sparse:
-      return GetSparseVariable(stkPos, name);
+      //tmp_res = GetSparseVariable(iVar, name, parent, item_position);
+      tmp_res = GetSparseVariable(pvApiCtx, iVar, name, parent, -1);
+      break;
     default:
-      sciprint("Do not known how to get variable of type %d\n", VarType(stkPos));
-      return NULL;
+      sciprint("Do not known how to get variable of type %d\n", var_type);
+      tmp_res = NULL;
     }
+
+  return tmp_res;
 }

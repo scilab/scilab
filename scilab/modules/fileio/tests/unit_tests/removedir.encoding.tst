@@ -18,7 +18,7 @@ a = createdir("test_removedir");
 if(a <> %T) then pause, end
 
 cd("test_removedir");
-if MSDOS then
+if getos() == 'Windows' then
 	unix_w(jre_path()+"\bin\java.exe -cp "+SCI+"\modules\localization\tests\unit_tests CreateDir");
 else
 	unix_w(jre_path()+"/bin/java -classpath "+SCI+"/modules/localization/tests/unit_tests CreateDir");

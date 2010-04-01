@@ -23,8 +23,6 @@ Source: modules\{#SIGPROC}\sci_gateway\signal_processing_gateway.xml; DestDir: {
 Source: modules\{#SIGPROC}\etc\{#SIGPROC}.quit; DestDir: {app}\modules\{#SIGPROC}\etc; Components: {#COMPN_SIGPROC}
 Source: modules\{#SIGPROC}\etc\{#SIGPROC}.start; DestDir: {app}\modules\{#SIGPROC}\etc; Components: {#COMPN_SIGPROC}
 ;
-Source: modules\{#SIGPROC}\help\addchapter.sce; DestDir: {app}\modules\{#SIGPROC}\help; Flags: recursesubdirs; Components: {#COMPN_SIGPROC}
-;
 Source: modules\{#SIGPROC}\macros\lib; DestDir: {app}\modules\{#SIGPROC}\macros; Components: {#COMPN_SIGPROC}
 Source: modules\{#SIGPROC}\macros\names; DestDir: {app}\modules\{#SIGPROC}\macros; Components: {#COMPN_SIGPROC}
 Source: modules\{#SIGPROC}\macros\*.bin; DestDir: {app}\modules\{#SIGPROC}\macros; Components: {#COMPN_SIGPROC}

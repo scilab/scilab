@@ -19,12 +19,16 @@
 // See the file ../license.txt
 //
 
-function [%vv_list,%ierr_vec]=context_evstr(%str,%scicos_context)
+function [%vv_list,%ierr_vec,err_mess,%ok]=context_evstr(%str,%scicos_context,%typ)
+// Copyright INRIA
 // Evaluate Scicos Context utility function
+ %ok=%t
+ err_mess=[];lasterror();
  %mm=getfield(1,%scicos_context)
  for %mi=%mm(3:$)
    if execstr(%mi+'=%scicos_context(%mi)','errcatch')<>0 then
-     disp(lasterror())
+     err_mess=lasterror()
+     if err_mess==[] then err_mess='Error in evaluating '+%mi,end
      %ok=%f
      return
    end
@@ -33,6 +37,14 @@ function [%vv_list,%ierr_vec]=context_evstr(%str,%scicos_context)
  %ierr_vec=zeros(%nn,1)
  %vv_list=list()
  for %kk=1:%nn
-   [%vv_list(%kk),%ierr_vec(%kk)]=evstr(%str(%kk))
+   if %typ(2*%kk-1)(1)<>'str' then
+     [%vv_list(%kk),%ierr_vec(%kk)]=evstr(%str(%kk));
+     %err_mes=lasterror()
+     if %err_mes<>[] then
+       err_mess(%kk)=%err_mes;%ok=%f;
+     end
+   else
+     %vv_list(%kk)=%str(%kk);
+   end
  end
 endfunction

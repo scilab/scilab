@@ -72,7 +72,7 @@
     given in files.</para>
 
     <para>If <literal>flag</literal> is true the files are first converted to
-    the target type given by the <literal>MSDOS</literal> variable. Moreover,
+    the target type given by the <literal>getos() == 'Windows'</literal> variable. Moreover,
     if <literal>flagexpand</literal> is true leading strings like
     <literal>HOME</literal>, <literal>SCI</literal> or <literal>~</literal>
     are expanded using environment variables.</para>

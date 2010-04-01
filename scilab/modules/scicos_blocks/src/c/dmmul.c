@@ -18,20 +18,27 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #if _MSC_VER
 #include <stdio.h> /* printf */
 #endif
+#include "scicos_math.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
 /* Table of constant values */
-
 static double c_b4 = 1.;
 static double c_b5 = 0.;
-
-#define max(a,b) ((a) >= (b) ? (a) : (b))
-int dgemm();
-int dmmul(double *a, int *na, double *b, int *nb, double *c__, 
+/*--------------------------------------------------------------------------*/ 
+static int dgemm(char *transa, char *transb, int *m, int *n, int *k, double *alpha, 
+		  double *a, int *lda, double *b, int *ldb,double *beta, double *c, 
+		  int *ldc);
+static long int lsame(char *ca, char *cb);
+static int xerbla(char *srname, int *info);
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP int dmmul(double *a, int *na, double *b, int *nb, double *c__, 
 	  int *nc, int *l, int *m, int *n)
 {
-  int a_dim1, a_offset, b_dim1, b_offset, c_dim1, c_offset;
+  int a_dim1 = 0, a_offset = 0, b_dim1 = 0, b_offset = 0, c_dim1 = 0, c_offset = 0;
     
 /*     PURPOSE */
 /*        computes the matrix product C = A * B */
@@ -69,21 +76,20 @@ int dmmul(double *a, int *na, double *b, int *nb, double *c__,
 	    c_b5, &c__[c_offset], nc);
 	return 0;
 } /* dmmul */
-
-int dgemm(char *transa, char *transb, int *m, int *n, int *k, double *alpha, 
+/*--------------------------------------------------------------------------*/ 
+static int dgemm(char *transa, char *transb, int *m, int *n, int *k, double *alpha, 
 	  double *a, int *lda, double *b, int *ldb,double *beta, double *c, 
 	  int *ldc)
 {
   /* System generated locals */
   int i__1, i__2, i__3;
   /* Local variables */
-  static int info;
-  static long int nota, notb;
-  static double temp;
-  static int i, j, l, ncola;
-  long int lsame(char *, char *);
-  static int nrowa, nrowb;  
-  int xerbla(char *, int *);
+  static int info = 0;
+  static long int nota = 0, notb = 0;
+  static double temp = 0.;
+  static int i = 0, j = 0, l = 0, ncola = 0;
+  static int nrowa = 0, nrowb = 0;  
+
   
   /*     .. Scalar Arguments .. */
   /*     .. Array Arguments .. */
@@ -423,14 +429,14 @@ int dgemm(char *transa, char *transb, int *m, int *n, int *k, double *alpha,
   /*     End of DGEMM . */
   
 } /* dgemm */
-
-long int lsame(char *ca, char *cb)
+/*--------------------------------------------------------------------------*/ 
+static long int lsame(char *ca, char *cb)
 {
   /* System generated locals */
-  long int ret_val;
+  long int ret_val = 0;
 
   /* Local variables */
-  static int inta, intb, zcode;
+  static int inta = 0, intb = 0, zcode = 0;
   
 
   /*  -- LAPACK auxiliary routine (version 2.0) -- */
@@ -527,8 +533,8 @@ long int lsame(char *ca, char *cb)
   
   return ret_val;
 } /* lsame */
-
-int xerbla(char *srname, int *info)
+/*--------------------------------------------------------------------------*/ 
+static int xerbla(char *srname, int *info)
 {
   
   /*  -- LAPACK auxiliary routine (version 3.0) -- */
@@ -568,4 +574,4 @@ int xerbla(char *srname, int *info)
   /*     End of XERBLA */
   return 0; 
 } /* xerbla */
-
+/*--------------------------------------------------------------------------*/ 

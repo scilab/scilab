@@ -19,19 +19,23 @@ import java.io.File;
 import java.io.IOException;
 
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
 
 /**
  * Diagram compilation management
  */
 public class CompileAction extends SimulationNotRunningAction {
+	/** Name of the action */
 	public static final String NAME = XcosMessages.COMPILE;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = 0;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = 0;
 
 	/**
@@ -69,7 +73,7 @@ public class CompileAction extends SimulationNotRunningAction {
 						String command = "import_from_hdf5(\"" + temp.getAbsolutePath() + "\");"
 						               + "xcos_compile(scs_m);";
 						try {
-							XcosInterpreterManagement.asynchronousScilabExec(command, new ActionListener() {
+							ScilabInterpreterManagement.asynchronousScilabExec(command, new ActionListener() {
 								public void actionPerformed(ActionEvent arg0) {
 									((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);	
 								}

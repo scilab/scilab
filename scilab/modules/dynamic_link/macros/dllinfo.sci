@@ -125,7 +125,7 @@ endfunction
     
   dllinfolist = list();
   
-  if MSDOS then
+  if getos() == 'Windows' then
     if findmsvccompiler() <> 'unknown' then
       if strcmpi(options,'imports')== 0 then
         dllinfolist = dllinfoimports(dllname);

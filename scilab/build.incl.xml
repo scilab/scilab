@@ -63,7 +63,7 @@
 
 
 	<path id="compile.classpath">
-	
+		<pathelement location="${library.graph.dir}/${library.graph.name}"/>
 		<pathelement location="${library.xcos.dir}/${library.xcos.name}"/>
 		<pathelement location="${library.hdf5.dir}/${library.hdf5.name}"/>
 		<pathelement location="${library.xpad.dir}/${library.xpad.name}"/>
@@ -104,6 +104,8 @@
 		<pathelement location="${saxon.jar}"/>
 
 		<pathelement location="${fop.jar}"/>
+
+		<pathelement location="${jlatexmath-fop.jar}"/>
 
 		<pathelement location="${avalon-framework.jar}"/>
 
@@ -156,14 +158,15 @@
 	</target>
 
 	<target name="test" depends="compile-test">
-	<taskdef name="testng" classpathref="unittest.classpath" classname="org.testng.TestNGAntTask" />
+        <taskdef name="testng" classpathref="unittest.classpath" classname="org.testng.TestNGAntTask" />
 	    <testng verbose="2"  haltonfailure="true">
 		  <classpath>
 		      <path refid="unittest.classpath" />
 		      <path refid="compile.classpath" />
 		      <pathelement location="${classes.test.dir}" />
 		    </classpath>
-    			 <classfileset dir="${build.test.dir}" includes="**/*.class"/>
+		  <classfileset dir="${build.test.dir}" includes="**/*.class"/>
+          <jvmarg value="-DdisableLoadJNIScilab=1"/>
 	   </testng>
 	 </target>
 

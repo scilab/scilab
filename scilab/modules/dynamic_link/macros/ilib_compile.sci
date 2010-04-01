@@ -57,7 +57,7 @@ function libn = ilib_compile(lib_name,makename,files, ..
   
    
   // first try to build each file step by step 
-  if MSDOS then
+  if getos() == 'Windows' then
     //** ----------- Windows section  -----------------
     msgs_make = '';
     nf = size(files,'*');
@@ -121,7 +121,8 @@ function libn = ilib_compile(lib_name,makename,files, ..
 	   mprintf(gettext("%s: Warning: Scilab has not been able to find where the Scilab sources are. Please submit a bug report on http://bugzilla.scilab.org/\n"),"ilib_compile");	
 	end
 
-      oldPath = pwd();
+	  oldPath = pwd();
+
 	  // Switch back to the TMPDIR where the mandatory files are
 	  chdir(TMPDIR);
 	  cmd = "make "
@@ -193,7 +194,7 @@ function [make_command,lib_name_make,lib_name,path,makename,files] = ilib_compil
   lib_name = lib_name+getdynlibext();
   lib_name_make = lib_name;
   
-  if MSDOS then // WINDOWS
+  if getos() == 'Windows' then // WINDOWS
     FILES = [];
     for x = files(:)' 
       [ptmp,ftmp,fext] = fileparts(x);

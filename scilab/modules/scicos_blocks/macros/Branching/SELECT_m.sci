@@ -41,7 +41,7 @@ case 'set' then
     if ~ok then break,end
     if z0>nin|z0<=0 then
       message('initial connected input is not a valid input port number')
-    elseif ((typ<1)|(typ>8)) message("Datatype is not supported");ok=%f;
+    elseif ((typ<1)|(typ>8))& (typ<>-1) message("Datatype is not supported");ok=%f;
     else
       it=typ*ones(1,nin)
       ot=typ

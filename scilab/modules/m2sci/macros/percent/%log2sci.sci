@@ -15,8 +15,8 @@ function [tree]=%log2sci(tree)
 // Emulation function: mtlb_logic()
 
 [A,B]=getoperands(tree)
-//A=convert2double(A)
-//B=convert2double(B)
+A=convert2double(A)
+B=convert2double(B)
 
 // Special case for nargout
 if typeof(A)=="variable" & typeof(B)=="cste" then
@@ -34,21 +34,26 @@ tree.operands=list(A,B)
 
 tree.out(1).type=Type(Boolean,Real)
 
-
+// Scilab operators >, <, >= and <= do not work with complex values
+if or(tree.operator==["<", ">", "<=", ">="]) & (~is_real(A) | ~is_real(B)) then
+    tree=Funcall("mtlb_logic",1,list(A,Cste(tree.operator),B),tree.out)
+    tree.lhs(1).dims=A.dims
+else
   // Cases with empty matrix
-if is_empty(A) | is_empty(B) then 
+  if is_empty(A) | is_empty(B) then 
     // For >, <, >= and <= : Scilab gives an error message if both operands are []
     // For == and ~= : Scilab returns %T or %F
     set_infos(msprintf(gettext("At least one operand is an empty matrix for operator: %s, result set to []."),expression2code(tree)),1);
     tree=Cste([])
-elseif is_a_scalar(A) & not_empty(B) then
+  elseif is_a_scalar(A) & not_empty(B) then
     tree.out(1).dims=B.dims
-elseif is_a_scalar(B) & not_empty(A) then
+  elseif is_a_scalar(B) & not_empty(A) then
     tree.out(1).dims=A.dims
-elseif not_empty(A) & not_empty(B) then
+  elseif not_empty(A) & not_empty(B) then
     tree.out(1).dims=A.dims
-else
+  else
     tree=Funcall("mtlb_logic",1,list(A,Cste(tree.operator),B),tree.out)
     tree.lhs(1).dims=A.dims
+  end
 end
 endfunction

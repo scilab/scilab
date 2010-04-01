@@ -16,10 +16,6 @@ if type(M)==10 then
   M=asciimat(M)
 end
 
-if ~isreal(m) then
-  m=real(m)
-end
-
 if or(type(M)==[4,6]) then
   M=bool2s(M)
 end
@@ -39,9 +35,6 @@ if rhs==2 & size(m,"*")<>1 then
   repm=ones(tmp(1:$)).*.M
 // repmat(M,m,n)
 else
-  if ~isreal(n) then
-    n=real(n)
-  end
   if or(type(n)==[4,6]) then
     n=bool2s(n)
   end

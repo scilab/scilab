@@ -20,8 +20,6 @@ Source: modules\{#CORE}\sci_gateway\core_gateway.xml; DestDir: {app}\modules\{#C
 Source: modules\{#CORE}\etc\{#CORE}.quit; DestDir: {app}\modules\{#CORE}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\etc\{#CORE}.start; DestDir: {app}\modules\{#CORE}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#CORE}\help\addchapter.sce; DestDir: {app}\modules\{#CORE}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
-;
 ;Source: modules\{#CORE}\includes\*.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\BOOL.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\core_math.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}

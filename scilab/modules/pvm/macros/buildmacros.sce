@@ -12,7 +12,7 @@ if (isdef('genlib') == %f) then
   exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
 end
 //------------------------------------
-if %pvm then
+if with_module('pvm') then
 genlib('pvmlib','SCI/modules/pvm/macros',%f,%t);
 end
 //------------------------------------

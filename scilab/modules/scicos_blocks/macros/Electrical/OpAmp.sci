@@ -78,8 +78,15 @@ case 'define' then
     'end';
     'yy=orig(2)+[35,35,12,24,24,24,48,48,48,60,35,35]*(sz(2)/70);';
     'xpoly(xx,yy);';
-    'xstring(orig(1)+13*(sz(1)/32),orig(2)+30*(sz(2)/70),''OP'');';
-	''];
+    'txt=''OP'';'
+    'style=2;'
+    'rectstr=stringbox(txt,orig(1)+13*(sz(1)/32),orig(2)+30*(sz(2)/70),0,style,0);'
+    'if ~exists(''%zoom'') then %zoom=1, end;'
+    'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+    'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+    'xstringb(orig(1)+13*(sz(1)/32),orig(2)+30*(sz(2)/70),txt,w,h,''fill'');'
+    'e=gce();'
+    'e.font_style=style;']
   x=standard_define([2 2],model,exprs,gr_i)
   x.graphics.in_implicit=['I';'I']
   x.graphics.out_implicit=['I']

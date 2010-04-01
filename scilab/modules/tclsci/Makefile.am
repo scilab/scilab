@@ -5,14 +5,12 @@
 
 if TCLTK
 
-TCLSCI_C_SOURCES = src/c/GedManagement.c \
-src/c/TCL_Global.c \
+TCLSCI_C_SOURCES = src/c/TCL_Global.c \
 src/c/InitTclTk.c \
 src/c/ScilabEval.c \
 src/c/setenvtcl.c \
 src/c/InitializeTclTk.c \
 src/c/TerminateTclTk.c \
-src/c/withtk.c \
 src/c/setvar.c \
 src/c/TCL_ArrayDim.c \
 src/c/TCL_ArrayExist.c \
@@ -83,8 +81,7 @@ libscitclsci_la_etc_DATA = etc/tclsci.quit etc/tclsci.start
 
 ### TCL macros ###
 libscitclsci_la_tcldir = $(mydatadir)
-nobase_libscitclsci_la_tcl_DATA = tcl/utils/tk_choose.tcl \
-tcl/utils/Notebook.tcl \
+nobase_libscitclsci_la_tcl_DATA = tcl/utils/Notebook.tcl \
 tcl/utils/Balloon.tcl \
 tcl/utils/Combobox.tcl \
 tcl/sciGUI/data/initial.help \

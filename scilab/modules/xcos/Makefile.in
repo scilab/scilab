@@ -259,6 +259,7 @@ JGRAPHX = @JGRAPHX@
 JHALL = @JHALL@
 JHDF5 = @JHDF5@
 JLATEXMATH = @JLATEXMATH@
+JLATEXMATH_FOP = @JLATEXMATH_FOP@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
@@ -434,7 +435,11 @@ libscixcos_la_etcdir = $(mydatadir)/etc
 libscixcos_la_etc_DATA = etc/xcos.quit \
 				etc/xcos.start \
 				etc/Xcos-style.xml \
-				etc/xcosConfiguration.xml
+				etc/XcosFile.xsd \
+				etc/xcos.xml \
+				etc/XcosConfiguration.xsd \
+				etc/palettes.xml \
+				etc/PaletteConfiguration.xsd
 
 XCOS_C_SOURCES = 
 XCOS_CPP_SOURCES = src/cpp/callxcos.cpp \
@@ -505,60 +510,57 @@ libscixcos_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscixcos_la_sci_gateway_DATA = sci_gateway/xcos_gateway.xml
 
 #### xcos : images files ####
+#
+# Generated with:
+#   $ find images/ -type f -printf "%p \\ \n" -name *.svg -or -name *.gif -or -name *.jpg -or -name *.png -not -name *_pal.jpg -not -name gui |sort |awk '{sub(/[ \t]+$/, "")};1' |awk '$0 !~ /gui/{print;}' |awk '$0 !~ /_pal.jpg/ {print;}'
 libscixcos_la_imagesdir = $(mydatadir)/
-nobase_libscixcos_la_images_DATA = images/blocks/Bache.gif \
-images/blocks/BIGSOM_f.gif \
-images/blocks/BOUNCEXY.gif \
-images/blocks/BPLATFORM.gif \
-images/blocks/CANIMXY.gif \
-images/blocks/CANIMXY3D.gif \
-images/blocks/CCS.gif \
-images/blocks/CEVENTSCOPE.gif \
-images/blocks/CFSCOPE.gif \
-images/blocks/CLKSOMV_f.gif \
-images/blocks/CLOCK_c.gif \
-images/blocks/CLOCK_f.gif \
-images/blocks/CSCOPE.gif \
-images/blocks/CSCOPXY.gif \
-images/blocks/CSCOPXY3D.gif \
-images/blocks/CVS.gif \
-images/blocks/Capacitor.gif \
-images/blocks/ConstantVoltage.gif \
-images/blocks/CurrentSensor.gif \
-images/blocks/DEADBAND.gif \
-images/blocks/Diode.gif \
-images/blocks/Ground.gif \
-images/blocks/Gyrator.gif \
-images/blocks/HYSTHERESIS.gif \
-images/blocks/INTEGRAL_m.gif \
-images/blocks/IdealTransformer.gif \
-images/blocks/Inductor.gif \
-images/blocks/LOOKUP_f.gif \
-images/blocks/NMOS.gif \
-images/blocks/NPN.gif \
-images/blocks/PMOS.gif \
-images/blocks/PNP.gif \
-images/blocks/PRODUCT.gif \
-images/blocks/PROD_f.gif \
-images/blocks/PerteDP.gif \
-images/blocks/PotentialSensor.gif \
-images/blocks/PuitsP.gif \
-images/blocks/QUANT_f.gif \
-images/blocks/RAMP.gif \
-images/blocks/Resistor.gif \
-images/blocks/SATURATION.gif \
-images/blocks/SAT_f.gif \
-images/blocks/STEP_FUNCTION.gif \
-images/blocks/SUMMATION.gif \
-images/blocks/SUM_f.gif \
-images/blocks/SUPER_f.gif \
-images/blocks/SampleCLK.gif \
-images/blocks/SourceP.gif \
-images/blocks/Switch.gif \
-images/blocks/TIME_f.gif \
-images/blocks/VanneReglante.gif \
-images/blocks/VariableResistor.gif \
-images/blocks/VoltageSensor.gif \
+nobase_libscixcos_la_images_DATA = images/blocks/3DSCOPE.svg \
+images/blocks/ANDBLK.svg \
+images/blocks/ASCOPE.svg \
+images/blocks/BACHE.svg \
+images/blocks/background.svg \
+images/blocks/BPLATFORM.svg \
+images/blocks/Capacitor.svg \
+images/blocks/CCS.svg \
+images/blocks/CLOCK_c.svg \
+images/blocks/CLOCK_f.svg \
+images/blocks/ConstantVoltage.svg \
+images/blocks/CSCOPXY.svg \
+images/blocks/CurrentSensor.svg \
+images/blocks/DEADBAND.svg \
+images/blocks/Diode.svg \
+images/blocks/DSCOPE.svg \
+images/blocks/empty.svg \
+images/blocks/Ground.svg \
+images/blocks/Gyrator.svg \
+images/blocks/HYSTHERESIS.svg \
+images/blocks/IdealTransformer.svg \
+images/blocks/Inductor.svg \
+images/blocks/INTEGRAL.svg \
+images/blocks/NMOS.svg \
+images/blocks/NPN.svg \
+images/blocks/PerteDP.svg \
+images/blocks/PMOS.svg \
+images/blocks/PNP.svg \
+images/blocks/PotentialSensor.svg \
+images/blocks/PROD_f.svg \
+images/blocks/PRODUCT.svg \
+images/blocks/PuitP.svg \
+images/blocks/QUANT_f.svg \
+images/blocks/RAMP.svg \
+images/blocks/Resistor.svg \
+images/blocks/SampleCLK.svg \
+images/blocks/SATURATION.svg \
+images/blocks/SourceP.svg \
+images/blocks/STEP_FUNCTION.svg \
+images/blocks/SUM_f.svg \
+images/blocks/SUM.svg \
+images/blocks/SUPER.svg \
+images/blocks/SWITCH.svg \
+images/blocks/VanneReglante.svg \
+images/blocks/VariableResistor.svg \
+images/blocks/VoltageSensor.svg \
+images/icons/applications-system.png \
 images/icons/document-new.png \
 images/icons/document-open.png \
 images/icons/document-print.png \
@@ -569,14 +571,19 @@ images/icons/edit-delete.png \
 images/icons/edit-paste.png \
 images/icons/edit-redo.png \
 images/icons/edit-undo.png \
+images/icons/go-bottom.png \
+images/icons/go-center.png \
+images/icons/go-first.png \
+images/icons/go-last.png \
+images/icons/go-middle.png \
+images/icons/go-top.png \
+images/icons/help-browser.png \
 images/icons/list-add.png \
 images/icons/list-remove.png \
 images/icons/media-floppy.png \
 images/icons/media-playback-start.png \
 images/icons/process-stop.png \
 images/icons/view-fullscreen.png \
-images/icons/applications-system.png \
-images/icons/help-browser.png \
 images/palettes/ABS_VALUE.jpg \
 images/palettes/AFFICH_m.jpg \
 images/palettes/ANDBLK.jpg \
@@ -590,10 +597,10 @@ images/palettes/BITSET.jpg \
 images/palettes/BOUNCE.jpg \
 images/palettes/BOUNCEXY.jpg \
 images/palettes/BPLATFORM.jpg \
-images/palettes/c_block.jpg \
-images/palettes/CANIMXY.jpg \
 images/palettes/CANIMXY3D.jpg \
+images/palettes/CANIMXY.jpg \
 images/palettes/Capacitor.jpg \
+images/palettes/c_block.jpg \
 images/palettes/CBLOCK.jpg \
 images/palettes/CCS.jpg \
 images/palettes/CEVENTSCOPE.jpg \
@@ -611,15 +618,15 @@ images/palettes/CLSS.jpg \
 images/palettes/CMAT3D.jpg \
 images/palettes/CMATVIEW.jpg \
 images/palettes/CMSCOPE.jpg \
-images/palettes/CONST_m.jpg \
 images/palettes/ConstantVoltage.jpg \
+images/palettes/CONST_m.jpg \
 images/palettes/CONSTRAINT_f.jpg \
 images/palettes/CONVERT.jpg \
 images/palettes/COSBLK_f.jpg \
 images/palettes/Counter.jpg \
 images/palettes/CSCOPE.jpg \
-images/palettes/CSCOPXY.jpg \
 images/palettes/CSCOPXY3D.jpg \
+images/palettes/CSCOPXY.jpg \
 images/palettes/CUMSUM.jpg \
 images/palettes/CurrentSensor.jpg \
 images/palettes/CURV_f.jpg \
@@ -631,10 +638,11 @@ images/palettes/DELAYV_f.jpg \
 images/palettes/DEMUX.jpg \
 images/palettes/DERIV.jpg \
 images/palettes/DFLIPFLOP.jpg \
+images/palettes/DIFF_f.jpg \
 images/palettes/Diode.jpg \
 images/palettes/DLATCH.jpg \
-images/palettes/DLR.jpg \
 images/palettes/DLRADAPT_f.jpg \
+images/palettes/DLR.jpg \
 images/palettes/DLSS.jpg \
 images/palettes/DOLLAR_f.jpg \
 images/palettes/EDGE_TRIGGER.jpg \
@@ -646,9 +654,9 @@ images/palettes/EVTGEN_f.jpg \
 images/palettes/EVTVARDLY.jpg \
 images/palettes/EXPBLK_m.jpg \
 images/palettes/EXPRESSION.jpg \
-images/palettes/EXTRACT.jpg \
 images/palettes/Extract_Activation.jpg \
 images/palettes/EXTRACTBITS.jpg \
+images/palettes/EXTRACT.jpg \
 images/palettes/EXTRACTOR.jpg \
 images/palettes/EXTTRI.jpg \
 images/palettes/fortran_block.jpg \
@@ -671,8 +679,8 @@ images/palettes/HALT_f.jpg \
 images/palettes/HYSTHERESIS.jpg \
 images/palettes/IdealTransformer.jpg \
 images/palettes/IFTHEL_f.jpg \
-images/palettes/IN_f.jpg \
 images/palettes/Inductor.jpg \
+images/palettes/IN_f.jpg \
 images/palettes/INIMPL_f.jpg \
 images/palettes/INTEGRAL_f.jpg \
 images/palettes/INTEGRAL_m.jpg \
@@ -683,11 +691,9 @@ images/palettes/INVBLK.jpg \
 images/palettes/ISELECT_m.jpg \
 images/palettes/JKFLIPFLOP.jpg \
 images/palettes/LOGBLK_f.jpg \
-images/palettes/LOGIC.jpg \
 images/palettes/LOGICAL_OP.jpg \
+images/palettes/LOGIC.jpg \
 images/palettes/LOOKUP_f.jpg \
-images/palettes/M_freq.jpg \
-images/palettes/M_SWITCH.jpg \
 images/palettes/MATBKSL.jpg \
 images/palettes/MATCATH.jpg \
 images/palettes/MATCATV.jpg \
@@ -712,8 +718,10 @@ images/palettes/MAXMIN.jpg \
 images/palettes/MBLOCK.jpg \
 images/palettes/MCLOCK_f.jpg \
 images/palettes/MFCLCK_f.jpg \
+images/palettes/M_freq.jpg \
 images/palettes/MIN_f.jpg \
 images/palettes/Modulo_Count.jpg \
+images/palettes/M_SWITCH.jpg \
 images/palettes/MUX.jpg \
 images/palettes/NEGTOPOS_f.jpg \
 images/palettes/NMOS.jpg \
@@ -765,9 +773,9 @@ images/palettes/SUBMAT.jpg \
 images/palettes/SUM_f.jpg \
 images/palettes/SUMMATION.jpg \
 images/palettes/SUPER_f.jpg \
-images/palettes/Switch.jpg \
 images/palettes/SWITCH2_m.jpg \
 images/palettes/SWITCH_f.jpg \
+images/palettes/Switch.jpg \
 images/palettes/TANBLK_f.jpg \
 images/palettes/TCLSS.jpg \
 images/palettes/TEXT_f.jpg \

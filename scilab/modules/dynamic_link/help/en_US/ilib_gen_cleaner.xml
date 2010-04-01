@@ -68,6 +68,7 @@
       <member>
         <link linkend="ilib_for_link">ilib_for_link</link>
       </member>
+      <member><link linkend="api_scilab">api_scilab</link></member>
     </simplelist>
   </refsection>
 </refentry>

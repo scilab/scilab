@@ -24,8 +24,6 @@ Source: modules\{#UMFPACK}\sci_gateway\umfpack_gateway.xml; DestDir: {app}\modul
 Source: modules\{#UMFPACK}\etc\{#UMFPACK}.quit; DestDir: {app}\modules\{#UMFPACK}\etc; Components: {#COMPN_UMFPACK}
 Source: modules\{#UMFPACK}\etc\{#UMFPACK}.start; DestDir: {app}\modules\{#UMFPACK}\etc; Components: {#COMPN_UMFPACK}
 ;
-Source: modules\{#UMFPACK}\help\addchapter.sce; DestDir: {app}\modules\{#UMFPACK}\help; Flags: recursesubdirs; Components:  {#COMPN_UMFPACK}
-;
 ;Source: modules\{#UMFPACK}\includes\*.h; DestDir: {app}\modules\{#UMFPACK}\includes; Components: {#COMPN_UMFPACK}
 ;
 Source: modules\{#UMFPACK}\macros\buildmacros.sce; DestDir: {app}\modules\{#UMFPACK}\macros; Components: {#COMPN_UMFPACK}

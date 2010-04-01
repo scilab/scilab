@@ -20,10 +20,10 @@ if size(tree.operands)==2 then
   // Convert all inputs to double because Matlab also accept Strings...
   [A,B] = getoperands(tree)
  
-  if A.vtype<>10
+  if A.vtype<>String then
     A = convert2double(A)
   end
-  if B.vtype<>10
+  if B.vtype<>String then
     B = convert2double(B)
   end
   tree.operands=list(A,B)
@@ -33,15 +33,15 @@ if size(tree.operands)==2 then
     tree=Cste([])
     tree.dims=list(1,0)
   elseif not_empty(A) & not_empty(B) then
-  
-    if and([A.vtype,B.vtype]==10) then
+    tree.out(1).type=Type(Double,Real)
+    if and([A.vtype,B.vtype]==String) then
       tree.out(1).dims=list(1,size(asciimat(A.value):asciimat(B.value),"*"))
+      tree.out(1).type=Type(String,Real)
     elseif and([typeof(A),typeof(B)]=="cste") then
       tree.out(1).dims=list(1,size(A.value:B.value,"*"))
     else
       tree.out(1).dims=list(1,Unknown)
     end
-    tree.out(1).type=Type(Double,Real)
   else
     tree=Funcall("mtlb_imp",1,list(A,B),tree.out)
     tree.lhs(1).dims=list(1,Unknown)
@@ -52,13 +52,13 @@ else
 
   // Convert all inputs to double because Matlab also accept Strings...
   [A,inc,B]=getoperands(tree)
-  if A.vtype<>10 then
+  if A.vtype<>String then
     A = convert2double(A)
   end
-  if B.vtype<>10 then
+  if B.vtype<>String then
     B = convert2double(B)
   end
-  if inc.vtype<>10 then
+  if inc.vtype<>String then
     inc = convert2double(inc)
   end
   tree.operands=list(A,inc,B)
@@ -74,6 +74,9 @@ else
     tree=Funcall("mtlb_imp",1,list(A,inc,B),tree.out)
     tree.lhs(1).dims=list(1,Unknown)
     tree.lhs(1).type=Type(Double,Real)
+  end
+  if and([A.vtype,B.vtype]==String) then
+    tree.out(1).type=Type(String,Real)
   end
 end
 endfunction

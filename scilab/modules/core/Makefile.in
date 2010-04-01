@@ -150,9 +150,9 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/c/predef.c src/c/transposeMatrix.c \
 	src/c/recursionFunction.c src/c/typename.c \
 	src/c/inittypenames.c src/c/funcprot.c src/c/eqid.c \
-	src/c/scimem64.c src/fortran/clunit.f src/fortran/getlin.f \
-	src/fortran/allowptr.f src/fortran/isany.f \
-	src/fortran/hmcreate.f src/fortran/nextj.f \
+	src/c/dynamic_tclsci.c src/c/scimem64.c src/fortran/clunit.f \
+	src/fortran/getlin.f src/fortran/allowptr.f \
+	src/fortran/isany.f src/fortran/hmcreate.f src/fortran/nextj.f \
 	src/fortran/setgetmode.f src/fortran/showstack.f \
 	src/fortran/misops.f src/fortran/iseye.f src/fortran/chkvar.f \
 	src/fortran/setippty.f src/fortran/compil.f \
@@ -282,7 +282,8 @@ am__objects_2 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-transposeMatrix.lo \
 	libscicore_la-recursionFunction.lo libscicore_la-typename.lo \
 	libscicore_la-inittypenames.lo libscicore_la-funcprot.lo \
-	libscicore_la-eqid.lo $(am__objects_1)
+	libscicore_la-eqid.lo libscicore_la-dynamic_tclsci.lo \
+	$(am__objects_1)
 @USE_DYNAMIC_STACK_TRUE@am__objects_3 = relocstack.lo
 am__objects_4 = clunit.lo getlin.lo allowptr.lo isany.lo hmcreate.lo \
 	nextj.lo setgetmode.lo showstack.lo misops.lo iseye.lo \
@@ -467,6 +468,7 @@ JGRAPHX = @JGRAPHX@
 JHALL = @JHALL@
 JHDF5 = @JHDF5@
 JLATEXMATH = @JLATEXMATH@
+JLATEXMATH_FOP = @JLATEXMATH_FOP@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
@@ -657,7 +659,7 @@ CORE_C_SOURCES = src/c/inffic.c src/c/cs2st.c src/c/tmpdir.c \
 	src/c/predef.c src/c/transposeMatrix.c \
 	src/c/recursionFunction.c src/c/typename.c \
 	src/c/inittypenames.c src/c/funcprot.c src/c/eqid.c \
-	$(am__append_1)
+	src/c/dynamic_tclsci.c $(am__append_1)
 CORE_FORTRAN_SOURCES = src/fortran/clunit.f src/fortran/getlin.f \
 	src/fortran/allowptr.f src/fortran/isany.f \
 	src/fortran/hmcreate.f src/fortran/nextj.f \
@@ -1033,6 +1035,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-cs2st.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-csignal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-dynamic_gateways.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-dynamic_tclsci.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-eqid.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-expr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-freeArrayOfString.Plo@am__quote@
@@ -1685,6 +1688,13 @@ libscicore_la-eqid.lo: src/c/eqid.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/eqid.c' object='libscicore_la-eqid.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-eqid.lo `test -f 'src/c/eqid.c' || echo '$(srcdir)/'`src/c/eqid.c
+
+libscicore_la-dynamic_tclsci.lo: src/c/dynamic_tclsci.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-dynamic_tclsci.lo -MD -MP -MF $(DEPDIR)/libscicore_la-dynamic_tclsci.Tpo -c -o libscicore_la-dynamic_tclsci.lo `test -f 'src/c/dynamic_tclsci.c' || echo '$(srcdir)/'`src/c/dynamic_tclsci.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-dynamic_tclsci.Tpo $(DEPDIR)/libscicore_la-dynamic_tclsci.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/dynamic_tclsci.c' object='libscicore_la-dynamic_tclsci.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-dynamic_tclsci.lo `test -f 'src/c/dynamic_tclsci.c' || echo '$(srcdir)/'`src/c/dynamic_tclsci.c
 
 libscicore_la-scimem64.lo: src/c/scimem64.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-scimem64.lo -MD -MP -MF $(DEPDIR)/libscicore_la-scimem64.Tpo -c -o libscicore_la-scimem64.lo `test -f 'src/c/scimem64.c' || echo '$(srcdir)/'`src/c/scimem64.c

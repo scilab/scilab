@@ -19,6 +19,8 @@ import java.awt.Image;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.Frame;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.Iterator;
 import java.util.Set;
@@ -467,4 +469,32 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 		pack();
 	}
 	
+	/**
+	* DeIconify Window
+	*/
+	public void windowDeiconified() {
+		super.setState(Frame.NORMAL);
+	}
+	
+	/**
+	* Iconify Window
+	*/
+	public void windowIconified() {
+		super.setState(Frame.ICONIFIED);
+	}
+	
+	/**
+	* Maximized Window
+	*/
+	public void windowMaximized() {
+		super.setExtendedState(Frame.MAXIMIZED_BOTH);
+	}
+
+  /**
+  * Window is in the "normal" state.
+  */
+	public void windowNormal() {
+		super.setState(Frame.NORMAL);
+	}
+
 }

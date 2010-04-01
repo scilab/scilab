@@ -98,10 +98,7 @@ function scs_m = changeports(scs_m, path, o_n)
     //** quick update for new graphics
     drawlater() ;
     update_gr(gr_k, o_n)    ;
-    //** draw(gh_curwin.children); //** redraw the graphic data structure 
     drawnow();
-    //** show_pixmap() ; //** not useful on Scilab 5 
-
   end
   //**-------- Scicos -----------------
   //** update block in scicos structure
@@ -115,8 +112,7 @@ endfunction
 
 function [scs_m, o_n, LinkToDel] = match_ports(scs_m, path, o_n)
 //** ---- INITIALIZATION ----
-  //**
-  //**
+
 
   //** isolate the object that will be substituited 
   o = scs_m(path) ;

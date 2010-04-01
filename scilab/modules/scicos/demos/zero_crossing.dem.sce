@@ -10,4 +10,5 @@ thispath = get_absolute_file_path("zero_crossing.dem.sce");
 
 // Open the cosf file with xcos
 xcos(thispath+"/Threshold_ZeroCrossing.cosf");
+
 clear thispath;

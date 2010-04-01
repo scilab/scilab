@@ -21,27 +21,27 @@
 
 function [flag_type,rdnom,DF_type,Code]=translate(CI,CI1,CLa_type,CLa_exp,CLb_type,CLb_exp,oper,..
           type_meth,degre,a,b,N,a1,b1,a2,b2,a3,b3,a4,b4,a5,b5,a6,b6,a7,b7,nom,mesures)
-// Cette fonction contient les diff�rents algrithme de discritisation spaciale, ainnsi que la        //
-// g�n�ration du code du bloc EDP. Elle est appel�e par la fonction graphic du bloc EDP.Sci          // 
+// Cette fonction contient les différents algrithme de discritisation spaciale, ainnsi que la        //
+// génération du code du bloc EDP. Elle est appelée par la fonction graphic du bloc EDP.Sci          // 
 // Sorties:                                                                                          //
-//    - flag_type (Entier) : renvoi le type des �quations g�n�r�es, ( 1 pour l'explicite,            //
+//    - flag_type (Entier) : renvoi le type des équations générées, ( 1 pour l'explicite,            //
 //      2 pour l'implicite)                                                                          //
 //    - rdnom (String) : renvoie le nom du bloc plus "_explicite" si le bloc est explicite,          //
 //      "_implicite" si le bloc est implicite                                                        //
 //    - DF_type (Entier) : 0 pour les differences finies centrees, 1 pour les decentrees a gauche    //
-//      et 2 pour les decentrees � droite                                                            //
+//      et 2 pour les decentrees à droite                                                            //
 //    - Code (String) : vecteur qui contient le code C du bloc                                       //
-// Entr�es:                                                                                          //
+// Entrées:                                                                                          //
 //    - CI, CI1(String) : expressions des conditions initiales resp u(t0,x) et du/dt|t=0             // 
 //    - CLa_type, CLb_type(entiers) : types des conditions aux limites (0 : Dirichlet, 1 : Neumann)  //
 //    - CLb_exp, CLa_exp (String) :  expressions des conditions aux limites resp en a et en b        //   
-//    - oper (vecteur des entiers) : code les op�rateurs selectionnes de 1 � 7                       //      
+//    - oper (vecteur des entiers) : code les opérateurs selectionnes de 1 à 7                       //      
 //    - type_meth (entier) : type de la methode de discretisation (type_meth=1 : DF, 2 : EF, 3 : VF) // 
 //    - degre (entier) : le degre de la methode de discretisation)                                   //
 //    - a, b (doubles) : correspondant resp aux valeurs des bords du domaine a et b                  //
 //    - N (entier) : nombre de noeuds ave les noeuds aux limmites                                    //
 //    - ai, bi (String) : avec i=1:7 : expressions des coefficients des differents operateurs        // 
-//    - nom (String) : correspond au nom du bloc a generer choisis par l'utilisateur dans la fen�tre //
+//    - nom (String) : correspond au nom du bloc a generer choisis par l'utilisateur dans la fenêtre //
 //      SCILAB "GIVE US BLOCK's NAME"                                                                // 
 //    - mesures (vecteur des doubles) : renvoi la liste des points de mesures                        //  
 //---------------------------------------------------------------------------------------------------//
@@ -64,8 +64,8 @@ function [flag_type,rdnom,DF_type,Code]=translate(CI,CI1,CLa_type,CLa_exp,CLb_ty
   // FEM 
   timer();
   if (type_meth == 2) then
-    //dans les �l�ments finis on g�n�re de l'implicite
-    flag_type=2; // 1 pour les syst�mes explicites, 2 pour l'implicite
+    //dans les éléments finis on génère de l'implicite
+    flag_type=2; // 1 pour les systèmes explicites, 2 pour l'implicite
     
     nnode=N;
     [xi,w] = setint(); // Get Gaussian points and weights.
@@ -80,30 +80,31 @@ function [flag_type,rdnom,DF_type,Code]=translate(CI,CI1,CLa_type,CLa_exp,CLb_ty
     // intepolation de la solution aux points de mesures par le polynomme de Lagrange
     [eq_pts_mes]=eval_pts_EF(a,b,nelem,kind,nint,nodes,x,xi,w,nnode,mesures);
     
-    // g�n�ration des �quations
+    // génération des équations
 
     [equations,impl_type]=gen_code_FEM(A,B1,B2,C1,C2,C3,F3,oper,N,a,b,..
-     b1,b2,b3,b4,b5,b6,b7,vbc,kbc);
-    disp('Le temps de discr�tisation par �l�ments finis est '+string(timer())+'s');
-  // FDM
+				       b1,b2,b3,b4,b5,b6,b7,vbc,kbc);
+    mprintf(_('The finite element discrétization takes %.2f seconds'),timer());
+    // FDM
   elseif (type_meth == 1) then
-    //dans les diff�rences finies on g�n�re de l'implicite
+    //dans les différences finies on génère de l'implicite
      flag_type=2; // 1 : explicie, 2 : implicite
      
-    //centr� ou decentr� qui viendera du syst�me expert apres
+    //centré ou decentré qui viendera du système expert après
     if (degre == 2) then
-      DF_type=0; //centr� 
+      DF_type=0; //centré 
     elseif (degre == 1)
-      DF_type=1; //decentr� 
+      DF_type=1; //decentré 
     end
 
     // intercalage de la solution aux points de mesures aux points les plus proches
     [eq_pts_mes]=eval_pts_df(a,h,N,mesures);
     
-    // g�n�ration des �quations
+    // génération des équations
     [equations,impl_type,Nfictif]=gen_code_FDM(a1,b1,a2,b2,a3,b3,a4,b4,..
      a5,b5,a6,b6,a7,b7,a,b,N,oper,vbc,kbc,DF_type,h)
-    disp('Le temps de discr�tisation par diff�rences finies est '+string(timer())+'s');
+    mprintf(_('The finite differences discrétization takes %.2f seconds'),timer());
+
   // FVM
   else 
     // maillage
@@ -112,11 +113,11 @@ function [flag_type,rdnom,DF_type,Code]=translate(CI,CI1,CLa_type,CLa_exp,CLb_ty
      // intercalage de la solution aux points de mesures aux points les plus proches
     [eq_pts_mes]=eval_pts_vf(a,h,N,mesures);
     
-    // g�n�ration des �quations
+    // génération des équations
 
     [equations,flag_type,impl_type]=gen_code_FVM(a1,b1,a2,b2,a3,b3,a4,b4,a5,b5,a6,b6,..
      a7,b7,N,oper,vbc,xn,xc);
-     disp('Le temps de discr�tisation par volumes finis est '+string(timer())+'s');
+     mprintf(_('The finite volume discrétization takes %.2f seconds'),timer());
   end
   // Assemblage de code
   if (flag_type == 1) then
@@ -125,7 +126,9 @@ function [flag_type,rdnom,DF_type,Code]=translate(CI,CI1,CLa_type,CLa_exp,CLb_ty
     rdnom = nom+'_implicite';
   end
  
-  Code=code_generation(rdnom,equations,eq_pts_mes,flag_type,h,CI,CI1,a,Nfictif,N,impl_type,type_meth,oper);
-  disp('Le temps de la g�n�ration, compilation et linkage du code est '+string(timer())+'s');
+  Code=code_generation(rdnom,equations,eq_pts_mes,flag_type,h,CI,CI1,a, ...
+		       Nfictif,N,impl_type,type_meth,oper);
+  mprintf(_('The code generation, the compilation and link takes %.2f seconds'),timer());
+
 endfunction
 

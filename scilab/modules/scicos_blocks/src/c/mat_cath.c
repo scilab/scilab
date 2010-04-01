@@ -18,32 +18,35 @@
 *
 * See the file ./license.txt
 */
-# include "scicos_block4.h"
-# include "machine.h"
+/*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
-
-void mat_cath(scicos_block *block,int flag)
+#include "scicos_block4.h"
+#include "matz_cath.h"
+#include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void mat_cath(scicos_block *block,int flag)
 {
- double *u;
- double *y;
- int mu,nu;
- int i,j,ij,k,bk;
- 
- mu =GetInPortRows(block,1);
- y=GetRealOutPortPtrs(block,1);
-if ((flag==1) || (flag==6))
-   {for(j=0;j<mu;j++)
-        {k=j;
-	 for (bk=1;bk<GetNin(block)+1;bk++) 
-   	     {u=GetRealInPortPtrs(block,bk);
-	     nu=GetInPortCols(block,bk);
-     	     for(i=0;i<nu;i++)
-		{ij=j+i*mu;
-	 	 y[k]=u[ij];
- 		 k+= mu;
+	int mu = 0,nu = 0,nin = 0,so = 0,pointerposition = 0,ot = 0,i = 0;
+	ot=GetOutType(block,1);
+	mu =GetInPortRows(block,1);
+	if (ot== SCSCOMPLEX_N){
+		matz_cath(block,flag);
+	} 
+	else{
+		void *u,*y;
+		y=GetOutPortPtrs(block,1);
+		nin=GetNin(block);
+		if ((flag==1) || (flag==6)) {
+			pointerposition=0;
+			for (i=0;i<nin;i++) { 
+				u=GetInPortPtrs(block,i+1);
+				nu=GetInPortCols(block,i+1);
+				so=GetSizeOfIn(block,i+1);
+				memcpy((char*)y+pointerposition,u,mu*nu*so);
+				pointerposition=pointerposition+mu*nu*so;
+			}
 		}
- 	     }
 	}
-    }
 }
-
+/*--------------------------------------------------------------------------*/ 

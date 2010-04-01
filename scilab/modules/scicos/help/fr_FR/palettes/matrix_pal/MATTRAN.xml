@@ -218,7 +218,7 @@ Ce bloc fait la transposition d'une matrice de taille MxN en matrice de taille N
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/mattran_m.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/mattran_m.c (Type 4)</para>
       </listitem>
       <listitem>
         <para> SCI/modules/scicos_blocks/src/c/matztran_m.c</para>

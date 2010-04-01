@@ -10,4 +10,5 @@ thispath = get_absolute_file_path("temp_controller.dem.sce");
 
 // Open the cosf file with xcos
 xcos(thispath+"/Temperature_Controller.cosf");
+
 clear thispath;

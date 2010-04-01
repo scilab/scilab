@@ -206,7 +206,7 @@ void C2F(userlk)(int *k)
 		{
 			Scierror(999,_("Error: Not a valid internal routine number %d.\n"), *k);
 		}
-		C2F(error)(&imes);
+		SciError(imes);
 		return;
 	}
 
@@ -232,7 +232,7 @@ void C2F(userlk)(int *k)
 	else 
 	{
 		if (getWarningMode()) sciprint(_("Interface %s not linked.\n"),DynInterf[k1].name);
-		C2F(error)(&imes);
+		SciError(imes);
 		return;
 	}
 }

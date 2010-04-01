@@ -1,6 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent COUVERT 
+ * Copyright (C) 2010 - DIGITEO - Yann COLLETTE
+ * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,65 +14,76 @@
 
 #include "CreateMatlabVariable.h"
 
-int CreateMatlabVariable(int stkPos, matvar_t *matVariable)
+#include "api_scilab.h"
+
+int CreateMatlabVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position)
 {
-  int nbRow = 0, nbCol = 0;
-  int valueAdr = 0;
-  
+  SciErr _SciErr;
+
   /* To be sure isComplex is 0 or 1 */
   matVariable->isComplex =  matVariable->isComplex != 0;
 
   switch(matVariable->class_type)
     {
     case MAT_C_CELL: /* 1 */
-      CreateCellVariable(stkPos, matVariable);
+      CreateCellVariable(pvApiCtx, iVar, matVariable, parent, item_position);
       break;
     case MAT_C_STRUCT: /* 2 */
-      CreateStructVariable(stkPos, matVariable);
+      CreateStructVariable(pvApiCtx, iVar, matVariable, parent, item_position);
       break;
     case MAT_C_CHAR: /* 4 */
-      CreateCharVariable(stkPos, matVariable);
+      CreateCharVariable(pvApiCtx, iVar, matVariable, parent, item_position);
       break;
     case MAT_C_SPARSE: /* 5 */
-      CreateSparseVariable(stkPos, matVariable);
+      CreateSparseVariable(pvApiCtx, iVar, matVariable, parent, item_position);
       break;
     case MAT_C_DOUBLE: /* 6 */
     case MAT_C_SINGLE: /* 7 */
-      CreateDoubleVariable(stkPos, matVariable);
+      CreateDoubleVariable(pvApiCtx, iVar, matVariable, parent, item_position);
       break;
     case MAT_C_INT8: /* 8 */
-      CreateIntegerVariable(stkPos, I_CHAR, matVariable);
+      CreateIntegerVariable(pvApiCtx, iVar, SCI_INT8, matVariable, parent, item_position);
       break;
     case MAT_C_UINT8: /* 9 */
       if (matVariable->isLogical != 0)
         {
-          CreateBooleanVariable(stkPos, matVariable);
+          CreateBooleanVariable(pvApiCtx, iVar, matVariable, parent, item_position);
         }
       else
         {
-          CreateIntegerVariable(stkPos, I_UCHAR, matVariable);
+          CreateIntegerVariable(pvApiCtx, iVar, SCI_UINT8, matVariable, parent, item_position);
         }
       break;
     case MAT_C_INT16: /* 10 */
-      CreateIntegerVariable(stkPos, I_INT16, matVariable);
+      CreateIntegerVariable(pvApiCtx, iVar, SCI_INT16, matVariable, parent, item_position);
       break;
     case MAT_C_UINT16: /* 11 */
-      CreateIntegerVariable(stkPos, I_UINT16, matVariable);
+      CreateIntegerVariable(pvApiCtx, iVar, SCI_UINT16, matVariable, parent, item_position);
       break;
     case MAT_C_INT32: /* 12 */
-      CreateIntegerVariable(stkPos, I_INT32, matVariable);
+      CreateIntegerVariable(pvApiCtx, iVar, SCI_INT32, matVariable, parent, item_position);
       break;
     case MAT_C_UINT32: /* 13 */
-      CreateIntegerVariable(stkPos, I_UINT32, matVariable);
+      CreateIntegerVariable(pvApiCtx, iVar, SCI_UINT32, matVariable, parent, item_position);
       break;
     case MAT_C_OBJECT: /* 3 to be written */
-    case MAT_C_INT64: /* 14: no Scilab equivalent */
-    case MAT_C_UINT64: /* 15: no Scilab equivalent */
+    case MAT_C_INT64: /* 14 */
+      CreateIntegerVariable(pvApiCtx, iVar, SCI_INT64, matVariable, parent, item_position);
+      break;
+    case MAT_C_UINT64: /* 15 */
+      CreateIntegerVariable(pvApiCtx, iVar, SCI_UINT64, matVariable, parent, item_position);
+      break;
     case MAT_C_FUNCTION: /* 16 to be written */
     default:
       /* Empty matrix returned */
-      nbRow = 0; nbCol = 0;
-      CreateVar(stkPos, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &valueAdr);
+      if (parent==NULL)
+	{
+	  createEmptyMatrix(pvApiCtx, iVar);
+	}
+      else
+	{
+	  _SciErr = createMatrixOfDoubleInList(pvApiCtx, iVar, parent, item_position, 0, 0, NULL);
+	}
       return FALSE;
     }
 

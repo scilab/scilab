@@ -117,7 +117,7 @@ It performs logical comparison of its two inputs.
     <itemizedlist>
       <listitem>
         <para>
-          <emphasis role="bold">Operator: == </emphasis>
+          <emphasis role="bold">Operator: </emphasis>
         </para>
         <para> Designate the relational operator used to compare the two inputs.</para>
         <para> Properties : Type 'vec' of size 1 </para>
@@ -200,25 +200,7 @@ It performs logical comparison of its two inputs.
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/relational_op.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/relational_op_i32.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/relational_op_i16.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/relational_op_i8.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/relational_op_ui32.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/relational_op_ui16.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/relational_op_ui8.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/relationalop.c (Type 4)</para>
       </listitem>
     </itemizedlist>
   </refsection>

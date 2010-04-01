@@ -1,0 +1,21 @@
+LIBRARY    scicos.dll
+
+
+EXPORTS
+;
+; SEP 35
+scicos_malloc
+scicos_free
+scicos_
+callf
+get_phase_simulation
+set_block_error
+get_scicos_time
+set_pointer_xproperty
+do_cold_restart
+get_block_number
+end_scicos_sim
+Coserror
+Set_Jacobian_flag
+Get_Jacobian_parameter
+write_xml_states

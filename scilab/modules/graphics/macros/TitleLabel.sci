@@ -71,13 +71,6 @@ current_figure=gcf();
 cur_draw_mode = current_figure.immediate_drawing;
 current_figure.immediate_drawing = 'off';
 
-
-// set some defaults here
-// current_figure=gcf(); // already init. before
-// current_figure.color_map=jetcolormap(64); // bad choice -> init must be done somewhere else.
-
-colormap_size = size(current_figure.color_map,1);
-
 ///////////////////////////////////
 //Global Property treatment      //
 //PropertyName and PropertyValue //
@@ -86,11 +79,7 @@ colormap_size = size(current_figure.color_map,1);
 // P1 is the position of the first PropertyName field.
 Property = P1;
 
-current_surface = gce(); // get the newly created fac3d
-
 current_titlelabel=get(monaxe,titlelabel)
-monaxe.axes_visible = ["on","on","on"]
-//current_surface.mark_size_unit='point';
 
 while ((Property <> 0) & (Property <= nv-1))
   setTitleLabelProperty(ListArg(Property),ListArg(Property+1),current_titlelabel,current_figure,cur_draw_mode)

@@ -63,10 +63,9 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@GUI_TRUE@am__append_1 = libscirenderer.la
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_2 = java
+@NEED_JAVA_TRUE@am__append_1 = java
 subdir = modules/renderer
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -114,15 +113,6 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscirenderer_la_etcdir)" \
 	"$(DESTDIR)$(libscirenderer_la_rootdir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscirenderer_disable_la_LIBADD =
-am_libscirenderer_disable_la_OBJECTS =  \
-	libscirenderer_disable_la-norenderer.lo
-libscirenderer_disable_la_OBJECTS =  \
-	$(am_libscirenderer_disable_la_OBJECTS)
-libscirenderer_disable_la_LINK = $(LIBTOOL) --tag=CC \
-	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
-	$(AM_CFLAGS) $(CFLAGS) $(libscirenderer_disable_la_LDFLAGS) \
-	$(LDFLAGS) -o $@
 libscirenderer_la_DEPENDENCIES = $(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
@@ -380,8 +370,7 @@ am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 	libscirenderer_la-SubwinBackgroundDrawerGL.lo \
 	libscirenderer_la-SubwinBackgroundDrawerJavaMapper.lo \
 	libscirenderer_la-SubwinBackgroundDrawerJoGL.lo
-am__objects_2 = libscirenderer_la-gw_renderer.lo
-am_libscirenderer_la_OBJECTS = $(am__objects_1) $(am__objects_2)
+am_libscirenderer_la_OBJECTS = $(am__objects_1)
 libscirenderer_la_OBJECTS = $(am_libscirenderer_la_OBJECTS)
 libscirenderer_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
@@ -409,10 +398,8 @@ CXXLD = $(CXX)
 CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libscirenderer_disable_la_SOURCES) \
-	$(libscirenderer_la_SOURCES)
-DIST_SOURCES = $(libscirenderer_disable_la_SOURCES) \
-	$(libscirenderer_la_SOURCES)
+SOURCES = $(libscirenderer_la_SOURCES)
+DIST_SOURCES = $(libscirenderer_la_SOURCES)
 DATA = $(libscirenderer_la_etc_DATA) $(libscirenderer_la_root_DATA)
 ETAGS = etags
 CTAGS = ctags
@@ -500,6 +487,7 @@ JGRAPHX = @JGRAPHX@
 JHALL = @JHALL@
 JHDF5 = @JHDF5@
 JLATEXMATH = @JLATEXMATH@
+JLATEXMATH_FOP = @JLATEXMATH_FOP@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
@@ -933,9 +921,6 @@ src/cpp/subwinDrawing/SubwinBackgroundDrawerJavaMapper.cpp \
 src/cpp/subwinDrawing/SubwinBackgroundDrawerJoGL.cpp
 
 
-# List of the gateway c files
-GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c
-
 # Includes need for the compilation
 libscirenderer_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 				-I$(srcdir)/includes/ \
@@ -1014,16 +999,8 @@ src/jni/SubwinBackgroundDrawerGL.giws.xml
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, added USEANT=1
 @GIWS_TRUE@BUILT_SOURCES = giws
-
-# All the sources needed by libscirenderer.la
-libscirenderer_disable_la_SOURCES = src/norenderer/norenderer.c
-libscirenderer_disable_la_CPPFLAGS = -I$(top_srcdir)/modules/output_stream/includes
-libscirenderer_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
-
-# Name of the future library (.la will be replace by .so, .a, etc regarding
-# the system)
-pkglib_LTLIBRARIES = libscirenderer-disable.la $(am__append_1)
 @GUI_TRUE@USEANT = 1
+@GUI_TRUE@pkglib_LTLIBRARIES = libscirenderer.la
 libscirenderer_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 # Where all the Scilab stuff is installed (macros, help, ...)
@@ -1037,7 +1014,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_2)
+TARGETS_ALL = $(am__append_1)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -1154,8 +1131,6 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
-libscirenderer-disable.la: $(libscirenderer_disable_la_OBJECTS) $(libscirenderer_disable_la_DEPENDENCIES) 
-	$(libscirenderer_disable_la_LINK) -rpath $(pkglibdir) $(libscirenderer_disable_la_OBJECTS) $(libscirenderer_disable_la_LIBADD) $(LIBS)
 libscirenderer.la: $(libscirenderer_la_OBJECTS) $(libscirenderer_la_DEPENDENCIES) 
 	$(libscirenderer_la_LINK) $(am_libscirenderer_la_rpath) $(libscirenderer_la_OBJECTS) $(libscirenderer_la_LIBADD) $(LIBS)
 
@@ -1165,7 +1140,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_disable_la-norenderer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ArcFillDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ArcFillDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ArcFillDrawerJoGL.Plo@am__quote@
@@ -1420,7 +1394,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ZGridDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ZLabelPositioner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-getHandleDrawer.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-gw_renderer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-rendererBasicAlgos.Plo@am__quote@
 
 .c.o:
@@ -1444,26 +1417,12 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-libscirenderer_disable_la-norenderer.lo: src/norenderer/norenderer.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscirenderer_disable_la-norenderer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_disable_la-norenderer.Tpo -c -o libscirenderer_disable_la-norenderer.lo `test -f 'src/norenderer/norenderer.c' || echo '$(srcdir)/'`src/norenderer/norenderer.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_disable_la-norenderer.Tpo $(DEPDIR)/libscirenderer_disable_la-norenderer.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/norenderer/norenderer.c' object='libscirenderer_disable_la-norenderer.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscirenderer_disable_la-norenderer.lo `test -f 'src/norenderer/norenderer.c' || echo '$(srcdir)/'`src/norenderer/norenderer.c
-
 libscirenderer_la-FigureScilabCall_wrap.lo: src/jni/FigureScilabCall_wrap.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(libscirenderer_la_CFLAGS) $(CFLAGS) -MT libscirenderer_la-FigureScilabCall_wrap.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-FigureScilabCall_wrap.Tpo -c -o libscirenderer_la-FigureScilabCall_wrap.lo `test -f 'src/jni/FigureScilabCall_wrap.c' || echo '$(srcdir)/'`src/jni/FigureScilabCall_wrap.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-FigureScilabCall_wrap.Tpo $(DEPDIR)/libscirenderer_la-FigureScilabCall_wrap.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/FigureScilabCall_wrap.c' object='libscirenderer_la-FigureScilabCall_wrap.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(libscirenderer_la_CFLAGS) $(CFLAGS) -c -o libscirenderer_la-FigureScilabCall_wrap.lo `test -f 'src/jni/FigureScilabCall_wrap.c' || echo '$(srcdir)/'`src/jni/FigureScilabCall_wrap.c
-
-libscirenderer_la-gw_renderer.lo: sci_gateway/c/gw_renderer.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(libscirenderer_la_CFLAGS) $(CFLAGS) -MT libscirenderer_la-gw_renderer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-gw_renderer.Tpo -c -o libscirenderer_la-gw_renderer.lo `test -f 'sci_gateway/c/gw_renderer.c' || echo '$(srcdir)/'`sci_gateway/c/gw_renderer.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-gw_renderer.Tpo $(DEPDIR)/libscirenderer_la-gw_renderer.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_renderer.c' object='libscirenderer_la-gw_renderer.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(libscirenderer_la_CFLAGS) $(CFLAGS) -c -o libscirenderer_la-gw_renderer.lo `test -f 'sci_gateway/c/gw_renderer.c' || echo '$(srcdir)/'`sci_gateway/c/gw_renderer.c
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

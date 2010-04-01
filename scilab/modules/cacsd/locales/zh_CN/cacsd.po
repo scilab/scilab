@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -388,12 +388,6 @@ msgstr "%s:输入参数#%d的大小错误：应该为square system。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: Square system expected.\n"
-"'),"
-msgstr "%s: 错误大小的输入参数#%d:个Square system expected."
-
-#, c-format
-msgid ""
 "%s: Wrong size for input argument #%d: row dimension must be equal to %d.\n"
 msgstr "%s：输入参数#%d的大小错误：行的维数必须等于%d。\n"
 
@@ -443,10 +437,6 @@ msgid ""
 msgstr "%s：输入参数#%d的类型错误：应该为线性动态系统。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Linear dynamical system .\n"
-msgstr "%s：输入参数#%d的类型错误：线性动态系统。\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"
 msgstr "%s：输入参数#%d类型错误：应该为线性动态系统。\n"
@@ -456,11 +446,6 @@ msgid ""
 "%s: Wrong type for input argument #%d: Linear dynamical system or row vector "
 "of floats expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为线性动态系统或者浮点的行向量。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Linear state space  expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为线性状态系统。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Linear state space expected.\n"
@@ -547,11 +532,6 @@ msgstr "%s：输入参数#%d的值错误：应该为正确的系统。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Pure imaginary  poles unexpected.\n"
-msgstr "%s：输入参数#%d值错误：应该为纯虚数坐标。\n"
-
-#, c-format
-msgid ""
 "%s: Wrong value for input argument #%d: Pure imaginary poles unexpected.\n"
 msgstr "%s：输入参数#%d的值错误：应该为纯虚数坐标。\n"
 
@@ -585,8 +565,8 @@ msgid ""
 msgstr "%s：输入参数的值错误：If %s and %s nothing to identify。\n"
 
 #, c-format
-msgid "%s: Wrong value for of input argument %d: Proper system expected.\n"
-msgstr "%s：输入参数%d的值错误：应该为正确系统。\n"
+msgid "%s: Wrong value of input argument %d: Proper system expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d:  %s is not full rank.\n"

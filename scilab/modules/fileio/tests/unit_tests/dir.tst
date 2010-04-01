@@ -11,14 +11,14 @@
 d=dir('SCI/modules/core/macros/*.sci');
 if d(2) == [] then pause,end
 //===============================
-if MSDOS then
+if getos() == 'Windows' then
   d = dir('c:\');
 else
   d = dir('/');
 end
 if d(2) == [] then pause,end
 //===============================
-if MSDOS then
+if getos() == 'Windows' then
  TMP = getenv('TMP');
 else
  if isdir('/tmp') then 

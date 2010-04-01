@@ -15,25 +15,65 @@ package org.scilab.modules.xcos.utils;
 import com.mxgraph.util.mxEvent;
 
 /**
- * Add Xcos specialized events to mxGraph 
+ * Add Xcos specialized events to mxGraph
  */
 public final class XcosEvent extends mxEvent {
+
+	/**
+	 * Fired when a port as been added by the user
+	 */
+	public static final String ADD_PORTS = "addPorts";
+
+	/**
+	 * Fired when something as been done and the cell need to be updated
+	 */
+	public static final String FORCE_CELL_VALUE_UPDATE = "ForceCellValueUpdate";
+
+	/**
+	 * Fired when an {@link EventInputPort} as been updated by the user
+	 */
+	public static final String IN_EVENT_VALUE_UPDATED = "InEventValueUpdated";
+
+	/**
+	 * Fired when an
+	 * {@link org.scilab.modules.xcos.port.input.ExplicitInputPort} as been
+	 * updated by the user
+	 */
+	public static final String IN_EXPLICIT_VALUE_UPDATED = "InExplicitValueUpdated";
+	/**
+	 * Fired when an
+	 * {@link org.scilab.modules.xcos.port.input.ImplicitInputPort} as been
+	 * updated by the user
+	 */
+	public static final String IN_IMPLICIT_VALUE_UPDATED = "InImplicitValueUpdated";
+	/**
+	 * Fired when an {@link EventOutputPort} as been updated by the user
+	 */
+	public static final String OUT_EVENT_VALUE_UPDATED = "OutEventValueUpdated";
+
+	/**
+	 * Fired when an
+	 * {@link org.scilab.modules.xcos.port.output.ExplicitOutputPort} as been
+	 * updated by the user
+	 */
+	public static final String OUT_EXPLICIT_VALUE_UPDATED = "OutExplicitValueUpdated";
+	/**
+	 * Fired when an
+	 * {@link org.scilab.modules.xcos.port.output.ImplicitOutputPort} as been
+	 * updated by the user
+	 */
+	public static final String OUT_IMPLICIT_VALUE_UPDATED = "OutImplicitValueUpdated";
+	/**
+	 * Fired when an {@link org.scilab.modules.xcos.block.SuperBlock} as been
+	 * updated by the user
+	 */
+	public static final String SUPER_BLOCK_UPDATED = "superBlockUpdated";
+
+	/**
+	 * Fired when the diagram has been updated since previous execution
+	 */
+	public static final String DIAGRAM_UPDATED = "DiagramUpdated";
 	
-	public static final String ADD_PORTS 			= "addPorts";
-
-    public static final String FORCE_CELL_VALUE_UPDATE 		= "ForceCellValueUpdate";
-    
-    public static final String IN_EVENT_VALUE_UPDATED 		= "InEventValueUpdated";
-    public static final String IN_EXPLICIT_VALUE_UPDATED 	= "InExplicitValueUpdated";
-    public static final String IN_IMPLICIT_VALUE_UPDATED 	= "InImplicitValueUpdated";
-    
-    public static final String OUT_EVENT_VALUE_UPDATED		= "OutEventValueUpdated";
-    public static final String OUT_EXPLICIT_VALUE_UPDATED 	= "OutExplicitValueUpdated";
-    public static final String OUT_IMPLICIT_VALUE_UPDATED 	= "OutImplicitValueUpdated";
-
-    public static final String SUPER_BLOCK_UPDATED		= "superBlockUpdated";
-
-    /** This class is a static singleton, thus it must not be instantiated */
+	/** This class is a static singleton, thus it must not be instantiated */
 	private XcosEvent() { }
-    
 }

@@ -469,6 +469,14 @@
 				</File>
 			</Filter>
 		</Filter>
+		<Filter
+			Name="Resource File"
+			>
+			<File
+				RelativePath=".\xcos.rc"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath="..\..\Makefile.am"
 			>

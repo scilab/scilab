@@ -8,7 +8,7 @@
 // <-- NO CHECK ERROR OUTPUT -->
 // <-- NEED JVM -->
 // xmltochm
-if MSDOS then 
+if getos() == 'Windows' then 
 // TEST 1 (french help and english help are complete)
 // =============================================================================
 my_module_path = pathconvert(SCI+"/modules/helptools/examples/example_1",%f,%f);
@@ -158,4 +158,4 @@ clean_help(my_english_help_dir);
 
 ...
 
-end // if MSDOS
+end // if getos() == 'Windows'

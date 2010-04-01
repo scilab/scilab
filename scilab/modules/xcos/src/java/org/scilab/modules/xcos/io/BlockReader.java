@@ -16,11 +16,13 @@ package org.scilab.modules.xcos.io;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 import ncsa.hdf.hdf5lib.exceptions.HDF5JavaException;
 import ncsa.hdf.hdf5lib.exceptions.HDF5LibraryException;
 
+import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.hdf5.read.H5Read;
@@ -48,13 +50,33 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGeometry;
 
+/**
+ * Utility class used to load Scicos diagram data. 
+ */
 public class BlockReader {
 
-    public static HashMap<String, Object> convertMListToDiagram(ScilabMList data) {
+	/**
+	 * Convert a Scicos MList (scs_m) to a map data.
+	 * 
+	 * @param data
+	 *            the scs_m Scicos main structure
+	 * @return the data
+	 */
+    public static Map<String, Object> convertMListToDiagram(ScilabMList data) {
 	return convertMListToDiagram(data, true);
     }
-    
-    public static HashMap<String, Object> convertMListToDiagram(ScilabMList data, boolean checkVersion) {
+
+	/**
+	 * Validate the scs_m structure and convert it to a map data.
+	 * 
+	 * @param data
+	 *            the raw Scicos structure
+	 * @param checkVersion
+	 *            true, if the version checking has to be performed; false
+	 *            otherwise.
+	 * @return the data
+	 */
+    public static Map<String, Object> convertMListToDiagram(ScilabMList data, boolean checkVersion) {
 
 	try {
 	    isAValidScs_mStructure(data, checkVersion);
@@ -72,12 +94,12 @@ public class BlockReader {
 		    XcosMessages.FAIL_LOADING_DIAGRAM, IconType.ERROR_ICON);
 	}
 
-	HashMap<String, Object> result = new HashMap<String, Object>();
-	HashMap<Integer, BasicBlock> indexedBlock = new HashMap<Integer, BasicBlock>();
+	Map<String, Object> result = new HashMap<String, Object>();
+	Map<Integer, BasicBlock> indexedBlock = new HashMap<Integer, BasicBlock>();
 
 	List<BasicBlock> blocks = new ArrayList<BasicBlock>();
 	List<TextBlock> textBlocks = new ArrayList<TextBlock>();
-	HashMap<String, Object> links = new HashMap<String, Object>();
+	Map<String, Object> links = new HashMap<String, Object>();
 
 	double minX = Double.MAX_VALUE;
 	double minY = Double.MAX_VALUE;
@@ -85,7 +107,7 @@ public class BlockReader {
 	int nbObjs = getNbObjs(data);
 
 	// Read diagrams properties
-	HashMap<String, Object> properties = null;
+	Map<String, Object> properties = null;
 	try {
 	    properties = fillDiagrammProperties((ScilabTList) data.get(1));
 	} catch (WrongStructureException e1) {
@@ -107,7 +129,7 @@ public class BlockReader {
 
 		    // tips to set block direction at load
 		    // "BLOCK_f;direction=east"
-		    currentBlock.setStyle("blockWithLabel;" + currentBlock.getInterfaceFunctionName() + ";" + currentBlock.getStyle());
+		    currentBlock.setStyle(currentBlock.getInterfaceFunctionName() + ";" + currentBlock.getStyle());
 		    // currentBlock.setValue(currentBlock.getInterfaceFunctionName());
 
 		    blocks.add(currentBlock);
@@ -231,10 +253,12 @@ public class BlockReader {
     }
 
     /**
+     * Read diagram from a file.
+     * 
      * @param hdf5File hdf5 file
      * @return diagram structure
      */
-    public static HashMap<String, Object> readDiagramFromFile(String hdf5File) {
+    public static Map<String, Object> readDiagramFromFile(String hdf5File) {
 	ScilabMList data = new ScilabMList();
 
 	try {
@@ -259,7 +283,9 @@ public class BlockReader {
     }
 
     /**
-     * @param link link
+     * The first index of the block list.
+     * 
+     * @param link link structure
      * @return block index
      * @throws WrongTypeException wrong type
      */
@@ -272,6 +298,14 @@ public class BlockReader {
 	return (int) ((ScilabDouble) link.get(6)).getRealPart()[0][0];
     }
 
+    /**
+     * Get the link point at the current index.
+     * 
+     * @param link link structure
+     * @param index the current index
+     * @return Java native link point descriptor
+     * @throws WrongTypeException 
+     */
     private static double[] getLinkPoint(ScilabMList link, int index)
 	    throws WrongTypeException {
 	if (!(link.get(1) instanceof ScilabDouble)) {
@@ -292,6 +326,13 @@ public class BlockReader {
 	return null;
     }
 
+    /**
+     * The first index of the port list.
+     * 
+     * @param link link structure
+     * @return port index
+     * @throws WrongTypeException wrong type
+     */
     private static int getStartPortIndex(ScilabMList link)
 	    throws WrongTypeException {
 	if (!(link.get(6) instanceof ScilabDouble)) {
@@ -301,6 +342,13 @@ public class BlockReader {
 	return (int) ((ScilabDouble) link.get(6)).getRealPart()[0][1];
     }
 
+    /**
+     * The port type on the link
+     * 
+     * @param link link structure
+     * @return port type
+     * @throws WrongTypeException wrong type
+     */
     private static PortType getStartPortType(ScilabMList link)
 	    throws WrongTypeException {
 	if (!(link.get(5) instanceof ScilabDouble)) {
@@ -325,6 +373,13 @@ public class BlockReader {
 	return getPortType(type, io);
     }
 
+    /**
+     * Get the last block index
+     * 
+     * @param link link structure
+     * @return the last index.
+     * @throws WrongTypeException wrong type
+     */
     private static int getEndBlockIndex(ScilabMList link)
 	    throws WrongTypeException {
 	if (!(link.get(7) instanceof ScilabDouble)) {
@@ -334,6 +389,13 @@ public class BlockReader {
 	return (int) ((ScilabDouble) link.get(7)).getRealPart()[0][0];
     }
 
+    /**
+     * Get the last port index
+     * 
+     * @param link link structure
+     * @return the last index.
+     * @throws WrongTypeException wrong type
+     */
     private static int getEndPortIndex(ScilabMList link)
 	    throws WrongTypeException {
 	if (!(link.get(7) instanceof ScilabDouble)) {
@@ -343,6 +405,13 @@ public class BlockReader {
 	return (int) ((ScilabDouble) link.get(7)).getRealPart()[0][1];
     }
 
+    /**
+     * Get the last port type
+     * 
+     * @param link link structure
+     * @return the last type.
+     * @throws WrongTypeException wrong type
+     */
     private static PortType getEndPortType(ScilabMList link)
 	    throws WrongTypeException {
 	if (!(link.get(5) instanceof ScilabDouble)) {
@@ -391,6 +460,11 @@ public class BlockReader {
 	throw new WrongTypeException();
     }
 
+    /**
+     * Read a block data from a file
+     * @param hdf5file the file
+     * @return the read block instance
+     */
     public static BasicBlock readBlockFromFile(String hdf5file) {
 	ScilabMList data = new ScilabMList();
 	BasicBlock newBlock;
@@ -401,8 +475,9 @@ public class BlockReader {
 	    H5Read.readDataFromFile(fileId, data);
 	    H5Read.closeFile(fileId);
 	    newBlock = fillBlockStructure(data);
-	    newBlock.setStyle(newBlock.getInterfaceFunctionName()
-		    + newBlock.getStyle());
+	    StyleMap style = new StyleMap(newBlock.getStyle());
+	    style.put(newBlock.getInterfaceFunctionName(), null);
+	    newBlock.setStyle(style.toString());
 	    newBlock.setGeometry(new mxGeometry(newBlock.getGeometry().getX(),
 		    newBlock.getGeometry().getY(), newBlock.getGeometry()
 			    .getWidth(), newBlock.getGeometry().getHeight()));
@@ -413,6 +488,11 @@ public class BlockReader {
 	return newBlock;
     }
 
+    /**
+     * Get the number of objects stored on the data.
+     * @param data the data
+     * @return the number of objects
+     */
     public static int getNbObjs(ScilabMList data) {
 	return ((ScilabList) data.get(2)).size();
     }
@@ -429,6 +509,12 @@ public class BlockReader {
 	return false;
     }
 
+    /**
+     * Check if the block at the index is a label.
+     * @param data the data
+     * @param index the index
+     * @return true, if data(index) is a label; false otherwise. 
+     */
     public static boolean isLabel(ScilabMList data, int index) {
 	ScilabMList object = (ScilabMList) ((ScilabList) data.get(2))
 		.get(index);
@@ -455,14 +541,31 @@ public class BlockReader {
 	return false;
     }
 
+    /**
+     * Get the block at the index.
+     * @param data the data
+     * @param index the index
+     * @return virtually data(index).
+     */
     public static ScilabMList getBlockAt(ScilabMList data, int index) {
 	return (ScilabMList) ((ScilabList) data.get(2)).get(index);
     }
 
+    /**
+     * Get the link at the index.
+     * @param data the data
+     * @param index the index
+     * @return virtually data(index).
+     */
     public static ScilabMList getLinkAt(ScilabMList data, int index) {
 	return (ScilabMList) ((ScilabList) data.get(2)).get(index);
     }
 
+    /**
+     * Get the name field array
+     * @param structure the data.
+     * @return all the fields name
+     */
     public static String[] getNameOfFieldsInStructure(ScilabMList structure) {
 	return ((ScilabString) structure.get(0)).getData()[0];
     }
@@ -539,10 +642,10 @@ public class BlockReader {
 	return false;
     }
 
-    private static HashMap<String, Object> fillDiagrammProperties(
+    private static Map<String, Object> fillDiagrammProperties(
 	    ScilabTList params) throws WrongStructureException,
 	    WrongTypeException {
-	HashMap<String, Object> diagramProperties = new HashMap<String, Object>();
+	Map<String, Object> diagramProperties = new HashMap<String, Object>();
 
 	String[] propsFields = { "params", "wpar", "title", "tol", "tf",
 		"context", "void1", "options", "void2", "void3", "doc" };
@@ -790,12 +893,20 @@ public class BlockReader {
 		    newBlock.setId(uid.getData()[0][0]);
 		}
 	    } else {
-		newBlock.setId();
+		newBlock.generateId();
 	    }
 	}
 	return newBlock;
     }
 
+    /**
+     * Customize the block with the graphics fields
+     * 
+     * @param blockFields the raw data
+     * @param newBlock the block to customize
+     * @throws WrongTypeException when any type is not valid
+     * @throws WrongStructureException when the structure is not valid
+     */
     public static void fillGraphicsStructure(ScilabMList blockFields,
 	    BasicBlock newBlock) throws WrongTypeException,
 	    WrongStructureException {
@@ -984,6 +1095,14 @@ public class BlockReader {
 	}
     }
 
+    /**
+     * Customize the block with the text model fields
+     * 
+     * @param blockFields the raw data
+     * @param newBlock the block to customize
+     * @throws WrongTypeException when any type is not valid
+     * @throws WrongStructureException when the structure is not valid
+     */
     public static void fillTextModelStructure(ScilabMList blockFields,
 	    BasicBlock newBlock) throws WrongTypeException,
 	    WrongStructureException {
@@ -1302,6 +1421,14 @@ public class BlockReader {
 	newBlock.setEquations(modelFields.get(20));
     }
 
+    /**
+     * Customize the block with the model fields
+     * 
+     * @param blockFields the raw data
+     * @param newBlock the block to customize
+     * @throws WrongTypeException when any type is not valid
+     * @throws WrongStructureException when the structure is not valid
+     */
     public static void fillModelStructure(ScilabMList blockFields,
 	    BasicBlock newBlock) throws WrongTypeException,
 	    WrongStructureException {

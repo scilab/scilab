@@ -17,18 +17,21 @@
 * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 *
 * See the file ./license.txt
-*/#include "scicos_block.h"
+*/
+/*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
-
-void invblk4(scicos_block *block,int flag)
+#include "scicos_block.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void invblk4(scicos_block *block,int flag)
 {
   /* Copyright INRIA
      
   Scicos block simulator
   Outputs the inverse of the input */
   
-  int i;
-  double ww;
+  int i = 0;
+  double ww = 0.;
   if (flag == 6){
     for(i=0;i< block->insz[0];i++){
       ww=block->inptr[0][i];
@@ -48,3 +51,4 @@ void invblk4(scicos_block *block,int flag)
     }
   } 
 }
+/*--------------------------------------------------------------------------*/ 

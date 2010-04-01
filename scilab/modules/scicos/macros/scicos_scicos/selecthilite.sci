@@ -27,7 +27,7 @@ function selecthilite(Select, flag)
   gh_winback = gcf() ; //** save the active window
   
   // Important assumption: all Selected object are in the same window
-  [junk, win, o] = get_selection(Select(1,:))
+  [win, o] = get_selection(Select(1,:))
   
   gh_curwin = scf(win); //** select current window 
   gh_axes = gca(); 
@@ -36,7 +36,7 @@ function selecthilite(Select, flag)
 
   for i=1:size(Select,1)
 
-    [junk, win, o] = get_selection(Select(i,:))
+    [win, o] = get_selection(Select(i,:))
 
     o_size = size ( gh_axes.children ) ;
     //** initial size

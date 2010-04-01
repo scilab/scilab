@@ -18,7 +18,7 @@
 #include <string.h>
 #include "stack-def.h"
 #include "setenvc.h"
-#include "../../tclsci/includes/setenvtcl.h"
+#include "../../../core/src/c/dynamic_tclsci.h"
 #include "MALLOC.h" /* MALLOC */
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
@@ -85,7 +85,7 @@ BOOL setenvc(char *stringIn,char *valueIn)
 
 	if(ret)
 	{
-		setenvtcl(stringIn,valueIn);
+		dynamic_setenvtcl(stringIn,valueIn);
 	}
 
 	return ret;

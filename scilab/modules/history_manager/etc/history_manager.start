@@ -16,8 +16,3 @@ if sciargs()<>"-nouserstartup" then
 	loadhistory();
 end
 
-// Add help chapter
-// =============================================================================
-if WITH_HELPTOOLS then
-	add_module_help_chapter("history_manager");
-end

@@ -407,6 +407,10 @@
 				RelativePath="..\jni\Xpad.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\xpad.rc"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -464,6 +468,10 @@
 				RelativePath="..\jni\ScilabKeywords.i"
 				>
 			</File>
+		</Filter>
+		<Filter
+			Name="Resource File"
+			>
 		</Filter>
 		<File
 			RelativePath="..\..\Makefile.am"

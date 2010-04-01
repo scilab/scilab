@@ -18,15 +18,18 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
-
-void expblk_m(scicos_block *block,int flag)
+#include "scicos_block4.h"
+#include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void expblk_m(scicos_block *block,int flag)
 {
-  double *u;
-  double *y;
-  double *rpar;
-  int nu,mu,i;
+  double *u = NULL;
+  double *y = NULL;
+  double *rpar = NULL;
+  int nu = 0,mu = 0,i = 0;
 
   mu=GetInPortRows(block,1);
   nu=GetInPortCols(block,1);
@@ -37,3 +40,4 @@ void expblk_m(scicos_block *block,int flag)
   for(i=0;i<mu*nu;i++) y[i]=exp(log(*rpar)*u[i]);
   }
 }
+/*--------------------------------------------------------------------------*/ 

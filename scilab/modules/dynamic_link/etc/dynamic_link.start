@@ -12,7 +12,7 @@
 load('SCI/modules/dynamic_link/macros/lib');
 
 // Configure Environment Variables for Ms Visual C ====================
-if MSDOS then
+if getos() == 'Windows' then
 	if (~isdef('WSCI')) then
 	 WSCI = getlongpathname( pathconvert(SCI, %f, %f, 'w') );
 	end
@@ -34,12 +34,6 @@ if MSDOS then
     clear findlcccompiler
   end
   clear findmsvccompiler
-end
-
-// Add help chapter
-// =============================================================================
-if WITH_HELPTOOLS then
-	add_module_help_chapter("dynamic_link");
 end
 
 // Add demos

@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent COUVERT 
+ * Copyright (C) 2010 - DIGITEO - Yann COLLETTE
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,39 +13,54 @@
 
 #include "GetMatlabVariable.h"
 
-matvar_t *GetCellVariable(int stkPos, const char *name, int matfile_version)
-{
-  int newStkPos = 0;
-  int ilCell = 0;
-  int nbFields = 0;
-  int firstItemAdr = 0;
-  int firstEntryAdr = 0;
-  int ilListEntries = 0;
+#include "api_scilab.h"
 
-  int K = 0;
+#include "freeArrayOfString.h"
+#include "MALLOC.h"
 
-  int prodDims = 1;
-
-  matvar_t *dimensionsVariable = NULL;
-  matvar_t **cellEntries = NULL;
-
-  newStkPos = stkPos + Top - Rhs; 
-  
-  ilCell = iadr(*Lstk(newStkPos));
-  if (*istk(ilCell) < 0) /* Reference */
-    {
-      ilCell = iadr(*istk(ilCell + 1));
+#define MATIO_ERROR if(_SciErr.iErr) \
+    {				     \
+      printError(&_SciErr, 0);	     \
+      return 0;			     \
     }
 
-  nbFields = *istk(ilCell+1);
-  
-  firstItemAdr = sadr(ilCell+2+nbFields+1);
-  
+matvar_t *GetCellVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position)
+{
+  int nbFields = 0;
+  int K = 0;
+  int prodDims = 1;
+  matvar_t *dimensionsVariable = NULL;
+  matvar_t **cellEntries = NULL;
+  int * var_addr = NULL;
+  int var_type;
+  SciErr _SciErr;
+
+  if ((parent==NULL)&&(item_position==-1))
+    {
+      _SciErr = getVarAddressFromPosition(pvApiCtx, iVar, &var_addr); MATIO_ERROR;
+    }
+  else if ((parent!=NULL)&&(item_position==-1))
+    {
+      var_addr = parent;
+    }
+  else
+    {
+      _SciErr = getListItemAddress(pvApiCtx, parent, item_position, &var_addr); MATIO_ERROR;
+    }
+
+  _SciErr = getVarType(pvApiCtx, var_addr, &var_type); MATIO_ERROR;
+  if (var_type != sci_mlist)
+    {
+      Scierror(999, _("%s: Wrong type for first input argument: Mlist expected.\n"), "GetCellVariable");
+      return FALSE;
+    }
+
+  _SciErr = getListItemNumber(pvApiCtx, var_addr, &nbFields); MATIO_ERROR;
+
   /* FIRST LIST ENTRY: fieldnames --> NO NEED TO BE READ */
   
   /* SECOND LIST ENTRY: dimensions */
-  *Lstk(newStkPos) = firstItemAdr + *istk(ilCell + 3) - 1; /* Address of the second list entry */
-  dimensionsVariable = GetMatlabVariable(stkPos, "data", /* Do not need to give the format because this variable is just temp */ 0);
+  dimensionsVariable = GetMatlabVariable(pvApiCtx, iVar, "data", 0, var_addr, 2);
 
   /* OTHERS LIST ENTRIES: ALL CELL VALUES */
 
@@ -62,19 +78,16 @@ matvar_t *GetCellVariable(int stkPos, const char *name, int matfile_version)
 
   if (prodDims == 1) /* Scalar cell array */
     {
-      *Lstk(newStkPos) = firstItemAdr + *istk(ilCell + 4) - 1;
-      cellEntries[0] = GetMatlabVariable(stkPos ,"data", matfile_version);
+      cellEntries[0] = GetMatlabVariable(pvApiCtx, iVar ,"data", matfile_version, var_addr, 3);
     }
   else
     {
       /* Read all entries */
-      ilListEntries = iadr(firstItemAdr + *istk(ilCell + 4) - 1);
-      firstEntryAdr = sadr(ilListEntries + 2 + prodDims + 1);
       for (K=0; K<prodDims; K++)
         {
-          *Lstk(newStkPos) = firstEntryAdr + *istk(ilListEntries + 2 + K) - 1;
-          cellEntries[K] = GetMatlabVariable(stkPos ,"data", matfile_version);
+          cellEntries[K] = GetMatlabVariable(pvApiCtx, iVar ,"data", matfile_version, var_addr, 3+K);
         }
     }
+
   return Mat_VarCreate(name, MAT_C_CELL, MAT_T_CELL, dimensionsVariable->rank, dimensionsVariable->data, cellEntries, 0);
 }

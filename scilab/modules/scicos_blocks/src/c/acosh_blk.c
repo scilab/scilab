@@ -18,21 +18,22 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block.h"
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
-
+#include "dynlib_scicos_blocks.h"
+#include "scicos_block.h"
+/*--------------------------------------------------------------------------*/ 
 #if _MSC_VER
-extern double asinh(double x);
 extern double acosh(double x);
-extern double atanh(double x);
 #endif
-
-void acosh_blk(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void acosh_blk(scicos_block *block,int flag)
 {
-  int j;
+  int j = 0;
   if(flag==1){
     for (j=0;j<block->insz[0];j++) {
       block->outptr[0][j]=acosh(block->inptr[0][j]);
     }
   }
 }
+/*--------------------------------------------------------------------------*/ 

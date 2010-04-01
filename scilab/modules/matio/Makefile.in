@@ -257,6 +257,7 @@ JGRAPHX = @JGRAPHX@
 JHALL = @JHALL@
 JHDF5 = @JHDF5@
 JLATEXMATH = @JLATEXMATH@
+JLATEXMATH_FOP = @JLATEXMATH_FOP@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
@@ -519,7 +520,8 @@ libscimatio_la_CFLAGS = -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/matio/ \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
 			-I$(top_srcdir)/modules/string/includes/ \
-			-I$(top_srcdir)/modules/operations/includes/ \
+			-I$(top_srcdir)/modules/api_scilab/includes \
+			-I$(top_srcdir)/modules/operations/includes \
 			$(MATIO_CFLAGS)
 
 pkglib_LTLIBRARIES = libscimatio.la

@@ -12,42 +12,47 @@
 
 package org.scilab.modules.hdf5.scilabTypes;
 
+/**
+ * This class provides a wrapping on the Scilab String datatype
+ */
 public class ScilabString implements ScilabType {
 
+	private String[][] data;
+
     public ScilabString() {
-	data = null;
+		data = null;
     }
     
     public ScilabString(String[][] data) {
-	this.data = data;
+		this.data = data;
     }
     
     public ScilabString(String[] data) {
-	if(data == null || data.length == 0) {
-	    this.data = new String[1][1];
-	    this.data[0][0] = "";
-	} else {
-	    this.data = new String[1][data.length];
-	    for (int i = 0 ; i < data.length ; i++){
-		this.data[0][i] = data[i] ;
-	    }
-	}
+		if(data == null || data.length == 0) {
+			this.data = new String[1][1];
+			this.data[0][0] = "";
+		} else {
+			this.data = new String[1][data.length];
+			for (int i = 0 ; i < data.length ; i++){
+				this.data[0][i] = data[i] ;
+			}
+		}
     }
     
     public ScilabString(String string) {
-	if(string == null) {
-	    System.err.println("string == null");
-	}
-	this.data = new String[1][1];
-	this.data[0][0] = string;
+		if(string == null) {
+			System.err.println("string == null");
+		}
+		this.data = new String[1][1];
+		this.data[0][0] = string;
     }
 
     public void setData(String[][] data) {
-	this.data = data;
+		this.data = data;
     }
 
     public String[][] getData() {
-	return data;
+		return data;
     }
     
     public int getHeight() {
@@ -64,8 +69,6 @@ public class ScilabString implements ScilabType {
 		return data[0].length;
 	}
     
-	private String[][] data;
-	
     public boolean isEmpty(){
     	return (data == null);
     }

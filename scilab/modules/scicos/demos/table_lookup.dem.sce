@@ -10,4 +10,5 @@ thispath = get_absolute_file_path("table_lookup.dem.sce");
 
 // Open the cosf file with xcos
 xcos(thispath+"/Table_Lookup.cosf");
+
 clear thispath;

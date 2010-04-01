@@ -254,6 +254,7 @@ JGRAPHX = @JGRAPHX@
 JHALL = @JHALL@
 JHDF5 = @JHDF5@
 JLATEXMATH = @JLATEXMATH@
+JLATEXMATH_FOP = @JLATEXMATH_FOP@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
@@ -484,7 +485,7 @@ libsciarnoldi_la_CFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/ \
 
 libsciarnoldi_la_FFLAGS = -I$(srcdir)/src/arpack/
 pkglib_LTLIBRARIES = libsciarnoldi.la
-libsciarnoldi_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libsciarnoldi_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LAPACK_LIBS)
 libsciarnoldi_la_SOURCES = $(ARNOLDI_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 
 # For the code check (splint)

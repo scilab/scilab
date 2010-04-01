@@ -1,4 +1,4 @@
-## Macros "stolen" from jacl (http://tcljava.sourceforge.net/)
+## Macros "stolen" from jacl (http://tcljava.sourceforge.net/)
 ## They made a great job on this part !
 
 #------------------------------------------------------------------------
@@ -68,7 +68,9 @@ AC_DEFUN([AC_PROG_JAVAC], [
 	case "$host_os" in
 	     *darwin* ) 
 	     # Don't follow the symlink since Java under MacOS is messy
-		JAVAC="/System/Library/Frameworks/JavaVM.framework/Home/bin/javac"
+	     # Uses the wrapper providing by Apple to retrieve the path
+	     # See: http://developer.apple.com/mac/library/qa/qa2001/qa1170.html
+		JAVAC=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)/bin/javac
 		DONT_FOLLOW_SYMLINK=yes
 		;;
 	esac
@@ -224,7 +226,8 @@ Maybe JAVA_HOME is pointing to a JRE (Java Runtime Environment) instead of a JDK
 		case "$host_os" in
 		     *darwin* ) 
 			AC_MSG_RESULT([Darwin (Mac OS X) found. Use the standard paths.])
-			ac_java_jvm_dir="/System/Library/Frameworks/JavaVM.framework/Home/"
+			# See: http://developer.apple.com/mac/library/qa/qa2001/qa1170.html
+			ac_java_jvm_dir=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)
 			JAVAC=$ac_java_jvm_dir/bin/javac
 			;;
 		esac
@@ -433,7 +436,7 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
 		# Solaris 10 x86
           machine=i386
           ;;
-		sun*)
+		sun*|sparc64)
        # Sun
           machine=sparc
           ;;
@@ -445,6 +448,9 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
 		  ;;
 		  s390x) # s390 arch can also returns s390x
 		  machine=s390
+		  ;;
+	    sh*)
+	  	  machine=sh
 		  ;;
     esac
 

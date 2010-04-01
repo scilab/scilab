@@ -214,6 +214,13 @@
           <para>if object is function library.</para>
         </listitem>
       </varlistentry>
+      <varlistentry>
+        <term>"int8" or "uint8" or "int16" or "uint16" or "int32" or "uint32"</term>
+        <listitem>
+          <para>if object is a matrix of [unsigned] integers stored on 8, 16 or 32 bits. See <link
+          linkend="int8">int8</link>)</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsection>
 

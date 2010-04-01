@@ -18,37 +18,42 @@
 *
 * See the file ./license.txt
 */
-# include "scicos_block4.h"
-# include "machine.h"
+/*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
-
-#if _MSC_VER
-#define NULL    0
-#endif
-
+#include "machine.h"
+#include "MALLOC.h"
+#include "scicos.h"
+#include "scicos_block4.h"
+#include "scicos_malloc.h"
+#include "scicos_free.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
 extern int C2F(dgetrf)();
+/*--------------------------------------------------------------------------*/ 
 typedef struct
-{         int *ipiv;
-          double *wrk;
+{         
+	int *ipiv;
+    double *wrk;
 } mat_det_struct ;
-void mat_det(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void mat_det(scicos_block *block,int flag)
 {
- double *u;
- double *y;
- int nu;
- int info;
- int i;
- double D,l;
- mat_det_struct *mdet;
+ double *u = NULL;
+ double *y = NULL;
+ int nu = 0;
+ int info = 0;
+ int i = 0;
+ double D = 0., l = 0.;
+ mat_det_struct *mdet = NULL;
  
- nu =GetInPortRows(block,1);
- u=GetRealInPortPtrs(block,1);
- y=GetRealOutPortPtrs(block,1);
+ nu = GetInPortRows(block,1);
+ u = GetRealInPortPtrs(block,1);
+ y = GetRealOutPortPtrs(block,1);
 
-             /*init : initialization*/
+/*init : initialization*/
 if (flag==4)
-
-   {if((*(block->work)=(mat_det_struct*) scicos_malloc(sizeof(mat_det_struct)))==NULL)
+   {
+	   if((*(block->work)=(mat_det_struct*) scicos_malloc(sizeof(mat_det_struct)))==NULL)
 	{set_block_error(-16);
 	 return;}
     mdet=*(block->work);
@@ -91,3 +96,4 @@ else
      *y=D;
     }
  }
+/*--------------------------------------------------------------------------*/ 

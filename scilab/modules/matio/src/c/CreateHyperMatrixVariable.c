@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent COUVERT 
+ * Copyright (C) 2010 - DIGITEO - Yann COLLETTE
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,31 +13,37 @@
 
 #include "CreateMatlabVariable.h"
 
-int CreateHyperMatrixVariable(int number, const char *type, int *iscomplex, int * rank, int *dims, double *realdata, double *complexdata)
+#include "api_scilab.h"
+
+#define MATIO_ERROR if(_SciErr.iErr) \
+    {				     \
+      printError(&_SciErr, 0);	     \
+      return 0;			     \
+    }
+
+int CreateHyperMatrixVariable(void *pvApiCtx, int number, const char *type, int *iscomplex, int * rank, int *dims, double *realdata, double *complexdata, int * parent, int item_position)
 {
   static const char *tlistFields[] = {"hm", "dims","entries"};
-
-  int tlistSize = 3;
-
   int nbRow = 0, nbCol = 0;
+  int K = 0, i;
+  int * hm_addr = NULL;
+  SciErr _SciErr;
 
-  int K = 0;
-
-  SciIntMat integerMatrix;
+  if (parent==NULL)
+    {
+      _SciErr = createMList(pvApiCtx, number, 3, &hm_addr); MATIO_ERROR;
+    }
+  else
+    {
+      _SciErr = createMListInList(pvApiCtx, number, parent, item_position, 3, &hm_addr); MATIO_ERROR;
+    }
 
   /* mlist fields */
-  nbRow = 1;
-  nbCol = 3;
-  CreateVarFromPtr(number, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, &tlistFields);
+  nbRow = 1; nbCol = 3;
+  _SciErr = createMatrixOfStringInList(pvApiCtx, number, hm_addr, 1, nbRow, nbCol, (char **)tlistFields); MATIO_ERROR;
 
   /* hm dimensions */
-  integerMatrix.it = I_INT32;
-  integerMatrix.m = 1;
-  integerMatrix.n = *rank;
-  integerMatrix.D = dims;
-
-  CreateVarFromPtr(number + 1, MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &integerMatrix.m, &integerMatrix.n, &integerMatrix);
-
+  _SciErr = createMatrixOfInteger32InList(pvApiCtx, number, hm_addr, 2, 1, *rank, dims);
 
   /* hm entries */
   nbRow = 1;
@@ -49,29 +56,32 @@ int CreateHyperMatrixVariable(int number, const char *type, int *iscomplex, int 
   
   if (strcmp(type,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE) == 0)
     {
-      integerMatrix.D = realdata;
-      integerMatrix.it = *iscomplex;
-      integerMatrix.m = nbRow;
-      integerMatrix.n = nbCol;
-      CreateVarFromPtr(number + 2, MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &nbRow, &nbCol, &integerMatrix);
+      int * tmp_int32 = (int *)MALLOC(nbRow*nbCol*sizeof(int));
+      if (tmp_int32==NULL)
+	{
+	  Scierror(999, _("%s: No more memory.\n"), "CreateHyperMatrixVariable");
+	  
+	  return FALSE;
+	}
+      for(i=0;i<nbRow*nbCol; i++) tmp_int32[i] = (int)realdata[i];
+      _SciErr = createMatrixOfInteger32InList(pvApiCtx, number, hm_addr, 3, nbRow, nbCol, tmp_int32); MATIO_ERROR;
+      FREE(tmp_int32);
     }
   else if (strcmp(type, MATRIX_OF_BOOLEAN_DATATYPE) == 0)
     {
-      CreateVarFromPtr(number + 2, MATRIX_OF_BOOLEAN_DATATYPE, &nbRow, &nbCol, &realdata);
+      _SciErr = createMatrixOfDoubleInList(pvApiCtx, number, hm_addr, 3, nbRow, nbCol, realdata); MATIO_ERROR;
     }
   else
     {
-       if (iscomplex == 0)
+       if (*iscomplex == 0)
         {
-          CreateVarFromPtr(number + 2, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &realdata);
+	  _SciErr = createMatrixOfDoubleInList(pvApiCtx, number, hm_addr, 3, nbRow, nbCol, realdata); MATIO_ERROR;
         }
       else
         {
-          CreateCVarFromPtr(number + 2, MATRIX_OF_DOUBLE_DATATYPE, iscomplex, &nbRow, &nbCol, &realdata, &complexdata);
+	  _SciErr = createComplexMatrixOfDoubleInList(pvApiCtx, number, hm_addr, 3, nbRow, nbCol, realdata, complexdata); MATIO_ERROR;
         }
     }
-
-  C2F(mkmlistfromvars)(&number, &tlistSize);
 
   return TRUE;
 }

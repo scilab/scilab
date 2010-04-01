@@ -26,6 +26,8 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.utils.SciFileFilter;
 import org.scilab.modules.xcos.palette.PaletteManager;
+import org.scilab.modules.xcos.palette.model.Custom;
+import org.scilab.modules.xcos.palette.model.VariablePath;
 import org.scilab.modules.xcos.utils.XcosFileType;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -36,9 +38,13 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * similar to {@link XcosPalette}.
  */
 public final class LoadAsPalAction extends DefaultAction {
+	/** Name of the action */
 	public static final String NAME = XcosMessages.OPEN;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "document-open.png";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = KeyEvent.VK_O;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
     /**
@@ -96,6 +102,15 @@ public final class LoadAsPalAction extends DefaultAction {
 	    return;
 	}
 
-	PaletteManager.getInstance().loadUserPalette(fc.getSelection()[0]);
+	final String file = fc.getSelection()[0];
+	Custom c = new Custom();
+	c.setName(file);
+	c.setEnable(true);
+	VariablePath v = new VariablePath();
+	v.setPath(file);
+	c.setPath(v);
+	
+	PaletteManager.getInstance().getRoot().getNode().add(c);
+	PaletteManager.getInstance().saveConfig();
     }
 }

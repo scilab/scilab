@@ -18,13 +18,14 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block.h"
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
-
-
-void  absolute_value(scicos_block *block,int flag)
+#include "dynlib_scicos_blocks.h"
+#include "scicos_block.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void  absolute_value(scicos_block *block,int flag)
 {
-  int i,j;
+  int i = 0,j = 0;
   if (flag==1){
     if( block->ng>0){
       for(i=0;i<block->insz[0];++i){
@@ -65,3 +66,4 @@ void  absolute_value(scicos_block *block,int flag)
     }
   }
 }
+/*--------------------------------------------------------------------------*/ 
