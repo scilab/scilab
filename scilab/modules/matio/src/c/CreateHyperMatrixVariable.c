@@ -21,7 +21,7 @@
       return 0;			     \
     }
 
-int CreateHyperMatrixVariable(int number, const char *type, int *iscomplex, int * rank, int *dims, double *realdata, double *complexdata, int * parent, int item_position)
+int CreateHyperMatrixVariable(void *pvApiCtx, int number, const char *type, int *iscomplex, int * rank, int *dims, double *realdata, double *complexdata, int * parent, int item_position)
 {
   static const char *tlistFields[] = {"hm", "dims","entries"};
   int nbRow = 0, nbCol = 0;

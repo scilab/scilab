@@ -24,13 +24,13 @@
       return 0;				     \
     }
 
-int CreateCharVariable(int iVar, matvar_t *matVariable, int * parent, int item_position)
+int CreateCharVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position)
 {
   int nbRow = 0, nbCol = 0;
   char **charData = NULL;
   int K = 0, L = 0;
   SciErr _SciErr;
-  
+
   if(matVariable->rank==2) /* 2-D array */
     {
       nbRow = matVariable->dims[0];

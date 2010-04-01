@@ -30,7 +30,7 @@
       return 0;				     \
     }
 
-int sci_matfile_listvar(char *fname,unsigned long fname_len)
+int sci_matfile_listvar(void *pvApiCtx, char *fname,unsigned long fname_len)
 {
   int nbRow = 0, nbCol = 0, stkAdr = 0;
   mat_t *matfile = NULL;

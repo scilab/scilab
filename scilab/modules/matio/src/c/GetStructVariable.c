@@ -23,7 +23,7 @@
       return 0;			     \
     }
 
-matvar_t *GetStructVariable(int iVar, const char *name, int matfile_version, char **fieldNames, int nbFields, int * parent, int item_position)
+matvar_t *GetStructVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, char **fieldNames, int nbFields, int * parent, int item_position)
 {
   int fieldIndex = 0;
   int valueIndex = 0;
@@ -52,7 +52,7 @@ matvar_t *GetStructVariable(int iVar, const char *name, int matfile_version, cha
   /* FIRST LIST ENTRY: fieldnames --> NO NEED TO BE READ */
   
   /* SECOND LIST ENTRY: dimensions */
-  dimensionsVariable = GetMatlabVariable(iVar, 
+  dimensionsVariable = GetMatlabVariable(pvApiCtx, iVar, 
 					 "data", /* Do not need to give the format because this variable is just temp */ 
 					 0, 
 					 var_addr, 
@@ -82,7 +82,7 @@ matvar_t *GetStructVariable(int iVar, const char *name, int matfile_version, cha
     {
       for (fieldIndex = 2; fieldIndex < nbFields; fieldIndex++)
         {
-          structEntries[fieldIndex - 2] = GetMatlabVariable(iVar ,fieldNames[fieldIndex], matfile_version, var_addr, fieldIndex+1);
+          structEntries[fieldIndex - 2] = GetMatlabVariable(pvApiCtx, iVar ,fieldNames[fieldIndex], matfile_version, var_addr, fieldIndex+1);
         }
     }
   else
@@ -96,7 +96,7 @@ matvar_t *GetStructVariable(int iVar, const char *name, int matfile_version, cha
           
           for (valueIndex = 0; valueIndex < prodDims; valueIndex++)
             {
-              structEntries[(fieldIndex-1) + (nbFields-2)*valueIndex] = GetMatlabVariable(iVar ,fieldNames[fieldIndex], 
+              structEntries[(fieldIndex-1) + (nbFields-2)*valueIndex] = GetMatlabVariable(pvApiCtx, iVar ,fieldNames[fieldIndex], 
 											  matfile_version, list_addr, valueIndex+1);
             }
         }

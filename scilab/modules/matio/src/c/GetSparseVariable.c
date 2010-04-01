@@ -20,7 +20,7 @@
       return 0;			     \
     }
 
-matvar_t *GetSparseVariable(int iVar, const char *name, int * parent, int item_position)
+matvar_t *GetSparseVariable(void *pvApiCtx, int iVar, const char *name, int * parent, int item_position)
 {
   int K = 0;
   int rank = 0;

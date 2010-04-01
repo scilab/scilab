@@ -21,7 +21,7 @@
       return 0;			     \
     }
 
-matvar_t *GetMatlabVariable(int iVar, const char *name, int matfile_version, int * parent, int item_position)
+matvar_t *GetMatlabVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position)
 {
   int * var_addr = NULL;
   int var_type;
@@ -42,22 +42,22 @@ matvar_t *GetMatlabVariable(int iVar, const char *name, int matfile_version, int
   switch(var_type)
     {
     case sci_matrix:
-      tmp_res = GetDoubleVariable(iVar, name, matfile_version, parent, item_position);
+      tmp_res = GetDoubleVariable(pvApiCtx, iVar, name, matfile_version, parent, item_position);
       break;
     case sci_strings:
-      tmp_res = GetCharVariable(iVar, name, parent, item_position);
+      tmp_res = GetCharVariable(pvApiCtx, iVar, name, parent, item_position);
       break;
     case sci_ints:
-      tmp_res = GetIntegerVariable(iVar, name, parent, item_position);
+      tmp_res = GetIntegerVariable(pvApiCtx, iVar, name, parent, item_position);
       break;
     case sci_mlist: 
       /* Only cells structs and hypermatrices are managed */
       //tmp_res = GetMlistVariable(iVar, name, matfile_version, parent, item_position);
-      tmp_res = GetMlistVariable(iVar, name, matfile_version, parent, -1);
+      tmp_res = GetMlistVariable(pvApiCtx, iVar, name, matfile_version, parent, -1);
       break;
     case sci_sparse:
       //tmp_res = GetSparseVariable(iVar, name, parent, item_position);
-      tmp_res = GetSparseVariable(iVar, name, parent, -1);
+      tmp_res = GetSparseVariable(pvApiCtx, iVar, name, parent, -1);
       break;
     default:
       sciprint("Do not known how to get variable of type %d\n", var_type);

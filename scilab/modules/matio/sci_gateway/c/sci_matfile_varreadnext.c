@@ -31,7 +31,7 @@ enum matfile_errors {
   UNKNOWN_VARIABLE_TYPE = 0
 };
 
-int sci_matfile_varreadnext(char *fname,unsigned long fname_len)
+int sci_matfile_varreadnext(void *pvApiCtx, char *fname,unsigned long fname_len)
 {
   mat_t *matfile = NULL;
   matvar_t *matvar = NULL;
@@ -106,7 +106,7 @@ int sci_matfile_varreadnext(char *fname,unsigned long fname_len)
   if (Lhs >= 2)
     {
       /* Return the values */
-      if (!CreateMatlabVariable(Rhs+2, matvar, NULL, -1)) /* Could not Create Variable */
+      if (!CreateMatlabVariable(pvApiCtx, Rhs+2, matvar, NULL, -1)) /* Could not Create Variable */
 	{
 	  sciprint("Do not know how to read a variable of class %d.\n", matvar->class_type);
 	  returnedClass = UNKNOWN_VARIABLE_TYPE;

@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent COUVERT 
  * Copyright (C) 2010 - INRIA - Vincent COUVERT 
+ * Copyright (C) 2010 - INRIA - Bruno JOFRET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -21,7 +22,7 @@
       return 0;			     \
     }
 
-int CreateIntegerVariable(int iVar, int integerType, matvar_t *matVariable, int * parent, int item_position)
+int CreateIntegerVariable(void *pvApiCtx, int iVar, int integerType, matvar_t *matVariable, int * parent, int item_position)
 {
   int nbRow, nbCol, i;
   SciErr _SciErr;
@@ -44,7 +45,7 @@ int CreateIntegerVariable(int iVar, int integerType, matvar_t *matVariable, int 
     {
       switch(integerType)
 	{
-	case I_CHAR:
+	case SCI_INT8:
 	  tmp_int8 = (char *)MALLOC(nbRow*nbCol*sizeof(char));
 	  if (tmp_int8 == NULL)
             {
@@ -64,7 +65,7 @@ int CreateIntegerVariable(int iVar, int integerType, matvar_t *matVariable, int 
 
 	  FREE(tmp_int8);
 	  break;
-	case I_INT16:
+	case SCI_INT16:
 	  tmp_int16 = (short *)MALLOC(nbRow*nbCol*sizeof(short));
 	  if (tmp_int16 == NULL)
             {
@@ -84,7 +85,7 @@ int CreateIntegerVariable(int iVar, int integerType, matvar_t *matVariable, int 
 
 	  FREE(tmp_int16);
 	  break;
-	case I_INT32:
+	case SCI_INT32:
 	  tmp_int32 = (int *)MALLOC(nbRow*nbCol*sizeof(int));
 	  if (tmp_int32 == NULL)
             {
@@ -105,7 +106,7 @@ int CreateIntegerVariable(int iVar, int integerType, matvar_t *matVariable, int 
 	  FREE(tmp_int32);
 	  break;
 #ifdef __SCILAB_INT64__
-	case I_INT64:
+	case SCI_INT64:
 	  tmp_int64 = (long long *)MALLOC(nbRow*nbCol*sizeof(long long));
 	  if (tmp_int64 == NULL)
             {
@@ -126,7 +127,7 @@ int CreateIntegerVariable(int iVar, int integerType, matvar_t *matVariable, int 
 	  FREE(tmp_int64);
 	  break;
 #endif
-	case I_UCHAR:
+	case SCI_UINT8:
 	  tmp_uint8 = (unsigned char *)MALLOC(nbRow*nbCol*sizeof(unsigned char));
 	  if (tmp_uint8 == NULL)
             {
@@ -146,7 +147,7 @@ int CreateIntegerVariable(int iVar, int integerType, matvar_t *matVariable, int 
 
 	  FREE(tmp_uint8);
 	  break;
-	case I_UINT16:
+	case SCI_UINT16:
 	  tmp_uint16 = (unsigned short *)MALLOC(nbRow*nbCol*sizeof(unsigned short));
 	  if (tmp_uint16 == NULL)
             {
@@ -166,7 +167,7 @@ int CreateIntegerVariable(int iVar, int integerType, matvar_t *matVariable, int 
 
 	  FREE(tmp_uint16);
 	  break;
-	case I_UINT32:
+	case SCI_UINT32:
 	  tmp_uint32 = (unsigned int *)MALLOC(nbRow*nbCol*sizeof(unsigned int));
 	  if (tmp_uint32 == NULL)
             {
@@ -187,7 +188,7 @@ int CreateIntegerVariable(int iVar, int integerType, matvar_t *matVariable, int 
 	  FREE(tmp_uint32);
 	  break;
 #ifdef __SCILAB_INT64__
-	case I_UINT64:
+	case SCI_UINT64:
 	  tmp_uint64 = (unsigned long long *)MALLOC(nbRow*nbCol*sizeof(unsigned long long));
 	  if (tmp_uint64 == NULL)
             {
@@ -212,7 +213,7 @@ int CreateIntegerVariable(int iVar, int integerType, matvar_t *matVariable, int 
     }
   else /* Multi-dimension array -> Scilab HyperMatrix */
     {
-      CreateHyperMatrixVariable(iVar, MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,  &integerType, &matVariable->rank, 
+      CreateHyperMatrixVariable(pvApiCtx, iVar, MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,  &integerType, &matVariable->rank, 
 				matVariable->dims, matVariable->data, NULL, parent, item_position);
     }
   

@@ -21,7 +21,7 @@
       return 0;			     \
     }
 
-int CreateDoubleVariable(int iVar, matvar_t *matVariable, int * parent, int item_position)
+int CreateDoubleVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position)
 {
   int nbRow = 0, nbCol = 0;
   struct ComplexSplit *mat5ComplexData = NULL;
@@ -61,13 +61,13 @@ int CreateDoubleVariable(int iVar, matvar_t *matVariable, int * parent, int item
     {
       if (matVariable->isComplex == 0)
         {
-          CreateHyperMatrixVariable(iVar, MATRIX_OF_DOUBLE_DATATYPE, &matVariable->isComplex, &matVariable->rank, 
+          CreateHyperMatrixVariable(pvApiCtx, iVar, MATRIX_OF_DOUBLE_DATATYPE, &matVariable->isComplex, &matVariable->rank, 
 				    matVariable->dims, matVariable->data, NULL, parent, item_position);
         }
       else
         {
           mat5ComplexData = matVariable->data;
-          CreateHyperMatrixVariable(iVar, MATRIX_OF_DOUBLE_DATATYPE, &matVariable->isComplex, &matVariable->rank, 
+          CreateHyperMatrixVariable(pvApiCtx, iVar, MATRIX_OF_DOUBLE_DATATYPE, &matVariable->isComplex, &matVariable->rank, 
 				    matVariable->dims, mat5ComplexData->Re, mat5ComplexData->Im, parent, item_position);
         }
     }

@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent COUVERT 
+ * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -20,10 +21,10 @@ MATIO_IMPEXP int gw_matio(void);
 /*-----------------------------------------------------------------------------------*/
 /* interface for the previous function Table */ 
 /*-----------------------------------------------------------------------------------*/ 
-MATIO_IMPEXP int sci_matfile_open(char *fname,unsigned long fname_len);
-MATIO_IMPEXP int sci_matfile_close(char *fname,unsigned long fname_len);
-MATIO_IMPEXP int sci_matfile_listvar(char *fname,unsigned long fname_len);
-MATIO_IMPEXP int sci_matfile_varreadnext(char *fname,unsigned long fname_len);
-MATIO_IMPEXP int sci_matfile_varwrite(char *fname,unsigned long fname_len);
+MATIO_IMPEXP int sci_matfile_open(void *pvApiCtx, char *fname,unsigned long fname_len);
+MATIO_IMPEXP int sci_matfile_close(void *pvApiCtx, char *fname,unsigned long fname_len);
+MATIO_IMPEXP int sci_matfile_listvar(void *pvApiCtx, char *fname,unsigned long fname_len);
+MATIO_IMPEXP int sci_matfile_varreadnext(void *pvApiCtx, char *fname,unsigned long fname_len);
+MATIO_IMPEXP int sci_matfile_varwrite(void *pvApiCtx, char *fname,unsigned long fname_len);
 /*-----------------------------------------------------------------------------------*/
 #endif /* __GW_MATIO_H__ */

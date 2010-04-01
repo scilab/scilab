@@ -26,7 +26,7 @@
 
 #define DEBUG 1
 
-matvar_t *GetMlistVariable(int iVar, const char *name, int matfile_version, int * parent, int item_position)
+matvar_t *GetMlistVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position)
 {
   char **fieldNames = NULL;
   int * pilen = NULL;
@@ -68,11 +68,11 @@ matvar_t *GetMlistVariable(int iVar, const char *name, int matfile_version, int 
       if (strcmp(fieldNames[0], "ce")==0)
         {
           freeArrayOfString(fieldNames, nbRow * nbFields);
-          return GetCellVariable(iVar, name, matfile_version, parent, item_position);
+          return GetCellVariable(pvApiCtx, iVar, name, matfile_version, parent, item_position);
         }
       else if (strcmp(fieldNames[0], "st")==0)
         {
-          tmp_res = GetStructVariable(iVar, name, matfile_version, fieldNames, nbFields, parent, item_position);
+          tmp_res = GetStructVariable(pvApiCtx, iVar, name, matfile_version, fieldNames, nbFields, parent, item_position);
           freeArrayOfString(fieldNames, nbRow * nbFields);
 	  return tmp_res;
         }

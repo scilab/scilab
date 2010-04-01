@@ -21,7 +21,7 @@
       return 0;			     \
     }
 
-int CreateBooleanVariable(int iVar, matvar_t *matVariable, int * parent, int item_position)
+int CreateBooleanVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position)
 {
   int nbRow = 0, nbCol = 0;
   int * intPtr = NULL;
@@ -86,7 +86,7 @@ int CreateBooleanVariable(int iVar, matvar_t *matVariable, int * parent, int ite
     }
   else /* Multi-dimension array -> Scilab HyperMatrix */
     {
-      CreateHyperMatrixVariable(iVar, MATRIX_OF_BOOLEAN_DATATYPE,  NULL, &matVariable->rank, matVariable->dims, matVariable->data, NULL, parent, item_position);
+      CreateHyperMatrixVariable(pvApiCtx, iVar, MATRIX_OF_BOOLEAN_DATATYPE,  NULL, &matVariable->rank, matVariable->dims, matVariable->data, NULL, parent, item_position);
     }
   
   return TRUE;

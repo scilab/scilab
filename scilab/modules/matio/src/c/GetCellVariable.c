@@ -24,7 +24,7 @@
       return 0;			     \
     }
 
-matvar_t *GetCellVariable(int iVar, const char *name, int matfile_version, int * parent, int item_position)
+matvar_t *GetCellVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position)
 {
   int nbFields = 0;
   int K = 0;
@@ -60,7 +60,7 @@ matvar_t *GetCellVariable(int iVar, const char *name, int matfile_version, int *
   /* FIRST LIST ENTRY: fieldnames --> NO NEED TO BE READ */
   
   /* SECOND LIST ENTRY: dimensions */
-  dimensionsVariable = GetMatlabVariable(iVar, "data", 0, var_addr, 2);
+  dimensionsVariable = GetMatlabVariable(pvApiCtx, iVar, "data", 0, var_addr, 2);
 
   /* OTHERS LIST ENTRIES: ALL CELL VALUES */
 
@@ -78,14 +78,14 @@ matvar_t *GetCellVariable(int iVar, const char *name, int matfile_version, int *
 
   if (prodDims == 1) /* Scalar cell array */
     {
-      cellEntries[0] = GetMatlabVariable(iVar ,"data", matfile_version, var_addr, 3);
+      cellEntries[0] = GetMatlabVariable(pvApiCtx, iVar ,"data", matfile_version, var_addr, 3);
     }
   else
     {
       /* Read all entries */
       for (K=0; K<prodDims; K++)
         {
-          cellEntries[K] = GetMatlabVariable(iVar ,"data", matfile_version, var_addr, 3+K);
+          cellEntries[K] = GetMatlabVariable(pvApiCtx, iVar ,"data", matfile_version, var_addr, 3+K);
         }
     }
 

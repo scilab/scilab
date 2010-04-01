@@ -30,7 +30,7 @@
    Interface for MATIO function called Mat_Open
    Scilab function name : matfile_open
 *******************************************************************************/
-int sci_matfile_open(char *fname,unsigned long fname_len)
+int sci_matfile_open(void *pvApiCtx, char *fname,unsigned long fname_len)
 {
   int nbRow = 0, nbCol = 0;
   mat_t *matfile;

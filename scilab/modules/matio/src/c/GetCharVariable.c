@@ -24,7 +24,7 @@
       return 0;				     \
     }
 
-matvar_t *GetCharVariable(int iVar, const char *name, int * parent, int item_position)
+matvar_t *GetCharVariable(void *pvApiCtx, int iVar, const char *name, int * parent, int item_position)
 {
   char * dataAdr = NULL;
   int rank = 0, i;

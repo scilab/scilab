@@ -21,7 +21,7 @@
       return 0;			     \
     }
 
-matvar_t * GetDoubleVariable(int iVar, const char* name, int matfile_version, int * parent, int item_position)
+matvar_t * GetDoubleVariable(void *pvApiCtx, int iVar, const char* name, int matfile_version, int * parent, int item_position)
 {
   double * realDataAdr = NULL, * complexDataAdr = NULL;
   int rank = 0;

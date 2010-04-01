@@ -26,7 +26,7 @@
       return 0;			     \
     }
 
-int CreateStructVariable(int iVar, matvar_t *matVariable, int * parent, int item_position)
+int CreateStructVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position)
 {
   char **fieldNames = NULL;
   int nbFields = 0;
@@ -103,7 +103,7 @@ int CreateStructVariable(int iVar, matvar_t *matVariable, int * parent, int item
   else /* 3 or more dimensions -> Scilab HyperMatrix */
     {
       type = I_INT32;
-      CreateHyperMatrixVariable(iVar, MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, 
+      CreateHyperMatrixVariable(pvApiCtx, iVar, MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, 
 				&type, &matVariable->rank, matVariable->dims, matVariable->data,
 				NULL, cell_addr, 2);
     }
@@ -122,7 +122,7 @@ int CreateStructVariable(int iVar, matvar_t *matVariable, int * parent, int item
       for (fieldIndex = 0; fieldIndex < nbFields - 2; fieldIndex++)
         {
           /* Create list entry in the stack */
-          if (!CreateMatlabVariable(iVar, allData[fieldIndex], cell_addr, fieldIndex+3)) /* Could not Create Variable */
+          if (!CreateMatlabVariable(pvApiCtx, iVar, allData[fieldIndex], cell_addr, fieldIndex+3)) /* Could not Create Variable */
             {
               if (allData[fieldIndex]->class_type != 0) /* class is 0 for not initialized fields */
                 {
@@ -140,7 +140,7 @@ int CreateStructVariable(int iVar, matvar_t *matVariable, int * parent, int item
           for (valueIndex = 0; valueIndex < prodDims; valueIndex++)
             {
               /* Create list entry in the stack */
-              if (!CreateMatlabVariable(iVar, allData[(fieldIndex) + (nbFields-2)*valueIndex], cell_entry_addr, valueIndex+1)) /* Could not Create Variable */
+              if (!CreateMatlabVariable(pvApiCtx, iVar, allData[(fieldIndex) + (nbFields-2)*valueIndex], cell_entry_addr, valueIndex+1)) /* Could not Create Variable */
                 {
                   if (allData[(fieldIndex) + (nbFields-2)*valueIndex]->class_type != 0) /* class is 0 for not initialized fields */
                     {

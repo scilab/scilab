@@ -31,7 +31,7 @@ enum matfile_errors {
   UNKNOWN_VARIABLE_TYPE = 0
 };
 
-int sci_matfile_varwrite(char *fname,unsigned long fname_len)
+int sci_matfile_varwrite(void *pvApiCtx, char *fname,unsigned long fname_len)
 {
   int nbRow = 0, nbCol = 0;
   mat_t *matfile = NULL;
@@ -100,7 +100,7 @@ int sci_matfile_varwrite(char *fname,unsigned long fname_len)
     }
   
   /* Third argument is the variable data */
-  matvar = GetMatlabVariable(3, varname, matfile->version, NULL, -1);
+  matvar = GetMatlabVariable(pvApiCtx, 3, varname, matfile->version, NULL, -1);
   
   /* Fourth argument is the compression flag */
   

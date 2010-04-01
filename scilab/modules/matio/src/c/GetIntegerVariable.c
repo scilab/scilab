@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent COUVERT 
  * Copyright (C) 2010 - DIGITEO - Yann COLLETTE
+ * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -20,7 +21,7 @@
       return 0;			     \
     }
 
-matvar_t *GetIntegerVariable(int iVar, const char *name, int * parent, int item_position)
+matvar_t *GetIntegerVariable(void *pvApiCtx, int iVar, const char *name, int * parent, int item_position)
 {
   int rank = 0;
   int *dims = NULL;
@@ -105,6 +106,17 @@ matvar_t *GetIntegerVariable(int iVar, const char *name, int * parent, int item_
 	    }
 	  createdVar = Mat_VarCreate(name, MAT_C_INT32, MAT_T_INT32, rank, dims, tmp_int32, 0);
 	  break;
+	case SCI_INT64: /* INT64 */
+	  if (parent==NULL)
+	    {
+	      _SciErr = getMatrixOfInteger64(pvApiCtx, var_addr, &dims[0], &dims[1], &tmp_int64);
+	    }
+	  else
+	    {
+	      _SciErr = getMatrixOfInteger64InList(pvApiCtx, parent, item_position, &dims[0], &dims[1], &tmp_int64);
+	    }
+	  createdVar = Mat_VarCreate(name, MAT_C_INT64, MAT_T_INT64, rank, dims, tmp_int64, 0);
+	  break;
         case SCI_UINT8: /* UINT8 */
 	  if (parent==NULL)
 	    {
@@ -138,7 +150,17 @@ matvar_t *GetIntegerVariable(int iVar, const char *name, int * parent, int item_
 	    }
 	  createdVar = Mat_VarCreate(name, MAT_C_UINT32, MAT_T_UINT32, rank, dims, tmp_uint32, 0);
 	  break;
-        default:
+ 	case SCI_UINT64: /* UINT64 */
+	  if (parent==NULL)
+	    {
+	      _SciErr = getMatrixOfUnsignedInteger64(pvApiCtx, var_addr, &dims[0], &dims[1], &tmp_uint64);
+	    }
+	  else
+	    {
+	      _SciErr = getMatrixOfUnsignedInteger64InList(pvApiCtx, parent, item_position, &dims[0], &dims[1], &tmp_uint64);
+	    }
+	  createdVar = Mat_VarCreate(name, MAT_C_UINT64, MAT_T_UINT64, rank, dims, tmp_uint64, 0);
+	  break;       default:
           createdVar = NULL;
           break;
         }

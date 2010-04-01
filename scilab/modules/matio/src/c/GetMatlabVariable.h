@@ -34,7 +34,7 @@
  *
  * @return Matlab variable (See MATIO library)
  */
-matvar_t *GetMatlabVariable(int iVar, const char *name, int matfile_version, int * parent, int item_position);
+matvar_t *GetMatlabVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position);
 
 /*
  * Get a Matlab Integer variable from stack
@@ -46,7 +46,7 @@ matvar_t *GetMatlabVariable(int iVar, const char *name, int matfile_version, int
  *
  * @return Matlab variable (See MATIO library)
  */
-matvar_t *GetIntegerVariable(int iVar, const char *name, int * parent, int item_position);
+matvar_t *GetIntegerVariable(void *pvApiCtx, int iVar, const char *name, int * parent, int item_position);
 
 /*
  * Get a Matlab Mlist-equivalent variable from stack
@@ -59,7 +59,7 @@ matvar_t *GetIntegerVariable(int iVar, const char *name, int * parent, int item_
  *
  * @return Matlab variable (See MATIO library)
  */
-matvar_t *GetMlistVariable(int iVar, const char *name, int matfile_version, int * parent, int item_position);
+matvar_t *GetMlistVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position);
 
 /*
  * Get a Matlab Struct variable from stack
@@ -74,7 +74,7 @@ matvar_t *GetMlistVariable(int iVar, const char *name, int matfile_version, int 
  *
  * @return Matlab variable (See MATIO library)
  */
-matvar_t *GetStructVariable(int iVar, const char *name, int matfile_version, char **fieldNames, int nbFields, int * parent, int item_position);
+matvar_t *GetStructVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, char **fieldNames, int nbFields, int * parent, int item_position);
 
 /*
  * Get a Matlab Cell variable from stack
@@ -87,7 +87,7 @@ matvar_t *GetStructVariable(int iVar, const char *name, int matfile_version, cha
  *
  * @return Matlab variable (See MATIO library)
  */
-matvar_t *GetCellVariable(int iVar, const char *name, int matfile_version, int * parent, int item_position);
+matvar_t *GetCellVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position);
 
 /*
  * Get a Matlab Char variable from stack
@@ -99,7 +99,7 @@ matvar_t *GetCellVariable(int iVar, const char *name, int matfile_version, int *
  *
  * @return Matlab variable (See MATIO library)
  */
-matvar_t *GetCharVariable(int iVar, const char *name, int * parent, int item_position);
+matvar_t *GetCharVariable(void *pvApiCtx, int iVar, const char *name, int * parent, int item_position);
 
 /*
  * Get a Matlab Sparse variable from stack
@@ -111,7 +111,7 @@ matvar_t *GetCharVariable(int iVar, const char *name, int * parent, int item_pos
  *
  * @return Matlab variable (See MATIO library)
  */
-matvar_t *GetSparseVariable(int iVar, const char *name, int * parent, int item_position);
+matvar_t *GetSparseVariable(void *pvApiCtx, int iVar, const char *name, int * parent, int item_position);
 
 /*
  * Get a Matlab Double variable from stack
@@ -124,6 +124,6 @@ matvar_t *GetSparseVariable(int iVar, const char *name, int * parent, int item_p
  *
  * @return Matlab variable (See MATIO library)
  */
-matvar_t *GetDoubleVariable(int iVar, const char *name, int matfile_version, int * parent, int item_position);
+matvar_t *GetDoubleVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position);
 
 #endif /* !__GETMATLABVARIABLE_H__ */

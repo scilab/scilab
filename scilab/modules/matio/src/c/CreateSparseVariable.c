@@ -26,7 +26,7 @@ extern int C2F(spt)(int *m, int *n, int *nel, int *it, int *workArray,
 		    double *A_R, double *A_I, int *A_mnel, int *A_icol,
 		    double *At_R, double *At_I, int *At_mnel, int *At_icol);
 		   
-int CreateSparseVariable(int iVar, matvar_t *matVariable, int * parent, int item_position)
+int CreateSparseVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position)
 {
   int K = 0;
   sparse_t *sparseData = NULL;
