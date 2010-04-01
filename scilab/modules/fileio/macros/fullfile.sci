@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Vincent COUVERT
-// ...
+// Copyright (C) DIGITEO - 2010 - Allan CORNET
 // 
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -8,28 +8,64 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function f=fullfile(varargin)
+function f = fullfile(varargin)
 // Build a full filename from parts
 
-if lstsize(varargin)<2 then
-  error("Wrong number of inputs!");
+if lstsize(varargin) < 2 then
+  error(msprintf("%s: Wrong number of input argument(s).\n", "fullfile"));
 end
 
 fs = ["/" "\"];
 f = varargin(1);
-for k=2:lstsize(varargin)
+
+if ~isempty(f) then
+  if type(f) <> 10 then
+    error(msprintf("%s: Wrong type for input argument #%d: a string expected.\n", "fullfile", 1));
+  end
+
+  if size(f,'*') <> 1 then
+    error(msprintf("%s: Wrong size for input argument #%d: a string expected.\n", "fullfile", 1));
+  end
+  f = stripblanks(f);
+end  
+
+for k = 2 : lstsize(varargin)
   arg = varargin(k);
   if isempty(f) | isempty(arg)
-    f = f+arg;
+    if ~isempty(arg) then
+    
+      if type(arg) <> 10 then
+        error(msprintf("%s: Wrong type for input argument #%d: a string expected.\n", "fullfile", k));
+      end
+      
+      if size(arg,'*') <> 1 then
+        error(msprintf("%s: Wrong size for input argument #%d: a string expected.\n", "fullfile", k));
+      end
+      
+    end
+    f = f + arg;
   else
-    if or(part(f,length(f))==fs) & or(part(arg,1)==fs)
-      f = f+part(arg,2:length(arg));
-    elseif or(part(f,length(f))==fs) | or(part(arg,1)==fs)
-      f = f+arg;
+  
+    if type(arg) <> 10 then
+      error(msprintf("%s: Wrong type for input argument #%d: a string expected.\n", "fullfile", k));
+    end
+
+    if size(arg,'*') <> 1 then
+      error(msprintf("%s: Wrong size for input argument #%d: a string expected.\n", "fullfile", k));
+    end
+
+    if or(part(f, length(f)) == fs) & or(part(arg, 1) == fs)
+      f = f + stripblanks(part(arg, 2:length(arg)));
+      
+    elseif or(part(f, length(f))==fs) | or(part(arg, 1)==fs)
+      f = f + stripblanks(arg);
+      
     else
-      f = f+pathconvert("/")+arg;
+      f = f + pathconvert("/") + stripblanks(arg);
     end
   end
 end
-f=pathconvert(f,%f,%f);
+
+f = pathconvert(f, %f, %f);
+
 endfunction

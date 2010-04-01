@@ -42,7 +42,7 @@
 tcl_dir = getenv('SCI')+"/modules/tclsci/tcl";
 if ~(isdir(tcl_dir)) then pause,end
 
-if isdir(tcl_dir) & MSDOS then
+if isdir(tcl_dir) & (getos() == 'Windows') then
 	// si oui rechercher l'existance du fichier init.tcl sous un repertoire de tcl
 	tcl_list = basename(listfiles(listfiles(tcl_dir+"/tcl*")+"/init.*"));
 	if (grep ( tcl_list , "init") == []) & ( grep ( tcl_list , "INIT") == []) then pause,end

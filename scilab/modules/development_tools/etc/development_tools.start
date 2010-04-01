@@ -11,8 +11,3 @@
 // =============================================================================
 load('SCI/modules/development_tools/macros/lib');
 
-// Add help chapter
-// =============================================================================
-if WITH_HELPTOOLS then
-	add_module_help_chapter("development_tools");
-end

@@ -372,7 +372,7 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath=".\AddFunctionInTable.c"
+				RelativePath=".\GetFunctionByName.c"
 				>
 			</File>
 			<File
@@ -389,6 +389,10 @@
 			</File>
 			<File
 				RelativePath=".\dynamic_link.c"
+				>
+			</File>
+			<File
+				RelativePath=".\dynamic_link.rc"
 				>
 			</File>
 			<File
@@ -433,7 +437,7 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath="..\..\includes\AddFunctionInTable.h"
+				RelativePath="..\..\includes\GetFunctionByName.h"
 				>
 			</File>
 			<File
@@ -458,6 +462,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\ilib_verbose.h"
+				>
+			</File>
+			<File
+				RelativePath=".\resource.h"
 				>
 			</File>
 		</Filter>

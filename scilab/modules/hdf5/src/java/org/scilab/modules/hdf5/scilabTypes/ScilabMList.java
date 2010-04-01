@@ -14,17 +14,20 @@ package org.scilab.modules.hdf5.scilabTypes;
 
 import java.util.ArrayList;
 
+/**
+ * This class provides a wrapping on the Scilab Mlist datatype
+ */
 public class ScilabMList extends ArrayList<ScilabType> implements ScilabType {
    
     public ScilabMList() {
-	super();
+		super();
     }
     
     public ScilabMList(String []types) {
-	super();
-	String [][] typesData = new String[1][types.length];
-	typesData[0] = types;
-	add(new ScilabString(typesData));
+		super();
+		String [][] typesData = new String[1][types.length];
+		typesData[0] = types;
+		add(new ScilabString(typesData));
     }
     
 	public int getHeight() {

@@ -9,19 +9,13 @@
 
 if %fftw then
 
-	if MSDOS then
+	if getos() == 'Windows' then
 		librarynamefftw = SCI+"/bin/fftw/libfftw3-3"+getdynlibext();
 		librarynamefftw3 = '';
 	else
 		librarynamefftw = "libfftw3"+getdynlibext();
 		// Some distribs/os are not adding the .3 extension...
 		librarynamefftw3 = librarynamefftw+".3";
-	end
-	
-	// Add help chapter
-	// =============================================================================
-	if WITH_HELPTOOLS then
-		add_module_help_chapter("fftw");
 	end
 	
 	if ( loadfftwlibrary(librarynamefftw3) | loadfftwlibrary(librarynamefftw)) then

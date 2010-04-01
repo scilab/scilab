@@ -10,7 +10,7 @@
  *
  */
 
-#include "AddFunctionInTable.h"
+#include "GetFunctionByName.h"
 #include "dynlib_signal_processing.h"
 #include "machine.h"
 /***********************************
@@ -67,7 +67,7 @@ void C2F(dgetx)(double *x, int *incr, int *istart)
 
 void C2F(setdgetx)(char *name, int *rep)
 {
-	dgetxfonc = (dgetxf) AddFunctionInTable(name,rep,FTab_dgetx);
+	dgetxfonc = (dgetxf) GetFunctionByName(name,rep,FTab_dgetx);
 }
 
 
@@ -85,6 +85,6 @@ void C2F(dgety)(double *y, int *incr, int *istart)
 
 void C2F(setdgety)(char *name, int *rep)
 {
-	dgetyfonc = (dgetyf) AddFunctionInTable(name,rep,FTab_dgety);
+	dgetyfonc = (dgetyf) GetFunctionByName(name,rep,FTab_dgety);
 }
 

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 16:29+0100\n"
-"PO-Revision-Date: 2009-10-23 07:16+0000\n"
-"Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
+"PO-Revision-Date: 2009-12-29 22:16+0000\n"
+"Last-Translator: cos <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid "   M      Tu     W      Th     F     Sat     Sun"
@@ -38,7 +38,7 @@ msgstr "%s: falsche Anzahl von Eingangsargumenten: %d erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments.\n"
-msgstr "%s: falsche Anzahl von EIngangsargumenten.\n"
+msgstr "%s: falsche Anzahl von Eingangsargumenten.\\n\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"

@@ -14,12 +14,13 @@
 #ifndef _AFFICH_H_
 #define _AFFICH_H_
 
+#include "dynlib_scicos_blocks.h"
 #include "machine.h" /* C2F */
 
 /**
 * Update of one element of the text object used by Affich2 block.
 */
-void C2F(settxtel)(int * numRow, 
+SCICOS_BLOCKS_IMPEXP void C2F(settxtel)(int * numRow, 
 				   int * numCol,
 				   double * winNum,
 				   double * textIndex,
@@ -29,13 +30,13 @@ void C2F(settxtel)(int * numRow,
 /**
 * Printing of the text object element used by Affich2 routine
 */
-void C2F(affup2)( double * winNum, 
+SCICOS_BLOCKS_IMPEXP void C2F(affup2)( double * winNum, 
 				 double * textIndex);
 /**
 * Printing of the text object element used by affich.f routine
 */
 
-void C2F(affichup)( double * textIndex,
+SCICOS_BLOCKS_IMPEXP void C2F(affichup)( double * textIndex,
                     double * winNum,
                     char * value,
                     int valueLength);

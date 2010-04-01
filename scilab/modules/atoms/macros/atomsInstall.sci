@@ -111,24 +111,20 @@ function result = atomsInstall(packages,section)
 	// =========================================================================
 	atoms_system_directory  = atomsPath("system" ,section);
 	atoms_install_directory = atomsPath("install",section);
+	atoms_session_directory = atomsPath("system","session");
 	atoms_tmp_directory     = pathconvert( atomsPath("system" ,section) + "tmp_" + sprintf("%d\n",getdate("s")) );
 	
-	if ~ isdir( atoms_system_directory ) & (mkdir( atoms_system_directory ) <> 1) then
-		error(msprintf( ..
-			gettext("%s: The directory ''%s'' cannot been created, please check if you have write access on this directory.\n"),..
-			atoms_system_directory));
-	end
+	directories2create = [  atoms_system_directory ;   ..
+							atoms_install_directory ;  ..
+							atoms_session_directory ;  ..
+							atoms_tmp_directory ];
 	
-	if ~ isdir( atoms_install_directory ) & (mkdir( atoms_install_directory ) <> 1) then
-		error(msprintf( ..
-			gettext("%s: The directory ''%s'' cannot been created, please check if you have write access on this directory.\n"),..
-			atoms_install_directory));
-	end
-	
-	if ~ isdir(atoms_tmp_directory) & (mkdir(atoms_tmp_directory) <> 1) then
-		error(msprintf( ..
-			gettext("%s: The directory ''%s'' cannot been created, please check if you have write access on this directory.\n"),..
-			atoms_tmp_directory));
+	for i=1:size(directories2create,"*")
+		if ~ isdir( directories2create(i) ) & (mkdir( directories2create(i) ) <> 1) then
+			error(msprintf( ..
+				gettext("%s: The directory ''%s'' cannot been created, please check if you have write access on this directory.\n"),..
+				directories2create(i)));
+		end
 	end
 	
 	// Define the "archives" directory path
@@ -307,7 +303,7 @@ function result = atomsInstall(packages,section)
 		// Rename the created directory
 		// =====================================================================
 		
-		if MSDOS then
+		if getos() == 'Windows' then
 			rename_cmd = "rename """+this_package_details("extractedDirectory")+""" """+this_package_version+"""";
 		else
 			rename_cmd = "mv """+this_package_details("extractedDirectory")+""" """+this_package_directory+this_package_version+"""";
@@ -320,7 +316,7 @@ function result = atomsInstall(packages,section)
 			// Second try after a sleep
 			// This is needed on windows platforms
 			
-			if MSDOS then
+			if getos() == 'Windows' then
 				sleep(2000);
 				[rep,stat,err]=unix_g(rename_cmd);
 			end
@@ -339,7 +335,7 @@ function result = atomsInstall(packages,section)
 		// → Only if it's a local package
 		// =====================================================================
 		
-		if MSDOS & (this_package_details("fromRepository") == "0") then
+		if getos() == 'Windows' & (this_package_details("fromRepository") == "0") then
 			
 			move_cmd = "move """+atoms_tmp_directory+this_package_version+""" """+pathconvert(this_package_directory,%F)+"""";
 			
@@ -350,7 +346,7 @@ function result = atomsInstall(packages,section)
 				// Second try after a sleep
 				// This is needed on windows platforms
 				
-				if MSDOS then
+				if getos() == 'Windows' then
 					sleep(2000);
 					[rep,stat,err]=unix_g(move_cmd);
 				end

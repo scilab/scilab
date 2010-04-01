@@ -18,12 +18,14 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block.h"
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
-
-void logicalop(scicos_block *block,int flag)
+#include "scicos_block.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void logicalop(scicos_block *block,int flag)
 {
-  int i,j,k,l;
+  int i = 0,j = 0,k = 0,l = 0;
   i=block->ipar[0];
   switch (i)
     {
@@ -160,3 +162,4 @@ void logicalop(scicos_block *block,int flag)
       }
     }
 }
+/*--------------------------------------------------------------------------*/ 

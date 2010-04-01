@@ -61,21 +61,6 @@
       </listitem>
       <listitem>
         <para>
-          <link linkend="c_block">c_block - Language C</link>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <link linkend="CBLOCK">CBLOCK - New C</link>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <link linkend="CONSTRAINT_f">CONSTRAINT_f - Constraint</link>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
           <link linkend="DEADBAND">DEADBAND - Zone morte</link>
         </para>
       </listitem>

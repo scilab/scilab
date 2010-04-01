@@ -18,18 +18,22 @@ import java.awt.event.KeyEvent;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * View Xcos documentation
  */
 public final class XcosDocumentationAction extends DefaultAction {
+	/** Name of the action */
 	public static final String NAME = XcosMessages.XCOS_DOCUMENTATION;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "help-browser.png";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = KeyEvent.VK_F1;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = 0;
 
 	/**
@@ -64,7 +68,7 @@ public final class XcosDocumentationAction extends DefaultAction {
 	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	public void actionPerformed(ActionEvent e) {
-		XcosInterpreterManagement.requestScilabExec("help xcos");
+		ScilabInterpreterManagement.requestScilabExec("help xcos");
 	}
 
 }

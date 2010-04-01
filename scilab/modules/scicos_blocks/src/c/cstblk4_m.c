@@ -18,20 +18,23 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <memory.h>
-#include "scicos_block4.h"
 #include<stdio.h>
-
-void cstblk4_m(scicos_block *block,int flag)
+#include "scicos_block4.h"
+#include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void cstblk4_m(scicos_block *block,int flag)
 { 
   /* Copyright INRIA
 
   Scicos block simulator
   output a vector of constants out(i)=opar(i)
   opar(1:nopar) : given constants */
-  int nopar,mo,no,so;
-  void *y;
-  void *opar;
+  int nopar = 0,mo = 0,no = 0,so = 0;
+  void *y = NULL;
+  void *opar = NULL;
   nopar = GetNopar(block);
   y=GetOutPortPtrs(block,1);
   opar=GetOparPtrs(block,1);
@@ -40,3 +43,4 @@ void cstblk4_m(scicos_block *block,int flag)
   so=GetSizeOfOpar(block,1);
   memcpy(y,opar,mo*no*so);
 }
+/*--------------------------------------------------------------------------*/ 

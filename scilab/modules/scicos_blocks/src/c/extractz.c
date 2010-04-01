@@ -18,16 +18,19 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include "scicos_block4.h"
-
-void extractz(scicos_block *block,int flag)
+#include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void extractz(scicos_block *block,int flag)
 {
-  double *ur;
-  double *ui;
-  double *yr;
-  double *yi;
-  int *r;
-  int nu,mu,nr,i,j,ij,k,nc,nl;
+  double *ur = NULL;
+  double *ui = NULL;
+  double *yr = NULL;
+  double *yi = NULL;
+  int *r = NULL;
+  int nu = 0,mu = 0,nr = 0,i = 0,j = 0,ij = 0,k = 0,nc = 0,nl = 0;
 
   mu=GetInPortRows(block,1);
   nu=GetInPortCols(block,1);
@@ -47,3 +50,4 @@ void extractz(scicos_block *block,int flag)
 		 *(yi+k)=*(ui+ij);
 		 k++;}}
 }
+/*--------------------------------------------------------------------------*/ 

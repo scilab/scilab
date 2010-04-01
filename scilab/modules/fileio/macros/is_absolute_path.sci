@@ -20,7 +20,7 @@ function status = is_absolute_path(pathname)
 	// Strips leading and trailing blanks and tabs of the path
 	pathname = stripblanks(pathname,%T);
 	
-	if MSDOS then
+	if getos() == 'Windows' then
 		
 		// Windows Case
 		

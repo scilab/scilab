@@ -376,6 +376,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\functions.rc"
+				>
+			</File>
+			<File
 				RelativePath=".\getmacroslist.c"
 				>
 			</File>
@@ -434,6 +438,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\libraryinfo.h"
+				>
+			</File>
+			<File
+				RelativePath=".\resource.h"
 				>
 			</File>
 			<File

@@ -34,8 +34,6 @@ Source: modules\{#SPREADSHEET}\sci_gateway\spreadsheet_gateway.xml; DestDir: {ap
 Source: modules\{#SPREADSHEET}\etc\{#SPREADSHEET}.quit; DestDir: {app}\modules\{#SPREADSHEET}\etc; Components: {#COMPN_SPREADSHEET}
 Source: modules\{#SPREADSHEET}\etc\{#SPREADSHEET}.start; DestDir: {app}\modules\{#SPREADSHEET}\etc; Components: {#COMPN_SPREADSHEET}
 ;
-Source: modules\{#SPREADSHEET}\help\addchapter.sce; DestDir: {app}\modules\{#SPREADSHEET}\help; Flags: recursesubdirs; Components:  {#COMPN_SPREADSHEET}
-;
 Source: modules\{#SPREADSHEET}\macros\buildmacros.sce; DestDir: {app}\modules\{#SPREADSHEET}\macros; Components: {#COMPN_SPREADSHEET}
 Source: modules\{#SPREADSHEET}\macros\buildmacros.bat; DestDir: {app}\modules\{#SPREADSHEET}\macros; Components: {#COMPN_SPREADSHEET}
 Source: modules\{#SPREADSHEET}\macros\cleanmacros.bat; DestDir: {app}\modules\{#SPREADSHEET}\macros; Components: {#COMPN_SPREADSHEET}

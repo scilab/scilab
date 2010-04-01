@@ -25,7 +25,6 @@ import java.util.Iterator;
 import java.util.Set;
 
 import javax.swing.Action;
-import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 
 import org.flexdock.docking.DockingConstants;
@@ -166,7 +165,9 @@ public class SwingScilabTab extends View implements SimpleTab {
     			while (it.hasNext()) {
     				SwingScilabTab dock = (SwingScilabTab) it.next();
     				if (((SwingScilabTab) dock).isActive()) {
-    					BarUpdater.updateBars(getParentWindowId(), dock.getMenuBar(), dock.getToolBar(), dock.getInfoBar(), dock.getName());
+    					BarUpdater.updateBars(
+    							getParentWindowId(), dock.getMenuBar(), dock.getToolBar(), 
+    							dock.getInfoBar(), dock.getName());
     					return;
     				}
     			}
@@ -833,8 +834,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	if (callback != null) {
 	    callback.putValue(Action.NAME, DockingConstants.CLOSE_ACTION);
 	    this.addAction(callback);
-	}
-	else {
+	} else {
 	    this.addAction(DockingConstants.CLOSE_ACTION);
 	}
 	/* Undock button */
@@ -1014,6 +1014,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 
     /**
      * Redefine paint children to be sure that AWT components are well painted.
+     *  @param g a Graphics
      */
     public void paintChildren(Graphics g) {
 	Component[] children = getComponents();

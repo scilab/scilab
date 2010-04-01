@@ -26,8 +26,6 @@ Source: modules\{#INTERSCI}\changelog.txt; DestDir: {app}\modules\{#INTERSCI}; C
 Source: modules\{#INTERSCI}\etc\{#INTERSCI}.quit; DestDir: {app}\modules\{#INTERSCI}\etc; Components: {#COMPN_INTERSCI}
 Source: modules\{#INTERSCI}\etc\{#INTERSCI}.start; DestDir: {app}\modules\{#INTERSCI}\etc; Components: {#COMPN_INTERSCI}
 ;
-Source: modules\{#INTERSCI}\help\addchapter.sce; DestDir: {app}\modules\{#INTERSCI}\help; Flags: recursesubdirs; Components:  {#COMPN_INTERSCI}
-;
 Source: modules\{#INTERSCI}\includes\*.h; DestDir: {app}\modules\{#INTERSCI}\includes; Components: {#COMPN_INTERSCI}
 ;
 ;Source: modules\{#INTERSCI}\macros\lib; DestDir: {app}\modules\{#INTERSCI}\macros; Components: {#COMPN_INTERSCI}

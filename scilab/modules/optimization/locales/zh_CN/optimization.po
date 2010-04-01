@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid ""
@@ -79,19 +79,24 @@ msgid "%s: Empty function (use -function option)."
 msgstr ""
 
 #, c-format
-msgid "%s: Expected boolean but got %s instead"
+msgid ""
+"%s: Expected boolean but for variable %s at input #%d, got %s instead."
 msgstr ""
 
 #, c-format
-msgid "%s: Expected function but got %s instead"
+msgid ""
+"%s: Expected function but for variable %s at input #%d, got %s instead."
 msgstr ""
 
 #, c-format
-msgid "%s: Expected real variable but got %s instead"
+msgid ""
+"%s: Expected real variable for variable %s at input #%d, but got %s instead."
 msgstr ""
 
 #, c-format
-msgid "%s: Expected string variable but got %s instead"
+msgid ""
+"%s: Expected string variable for variable %s at input #%d, but got %s "
+"instead."
 msgstr ""
 
 #, c-format
@@ -216,7 +221,19 @@ msgstr ""
 
 #, c-format
 msgid ""
+"%s: The boundsmax vector is expected to have %d columns, but current shape "
+"is %d x %d"
+msgstr ""
+
+#, c-format
+msgid ""
 "%s: The boundsmin vector is expected to be a row matrix, but current shape "
+"is %d x %d"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The boundsmin vector is expected to have %d columns, but current shape "
 "is %d x %d"
 msgstr ""
 
@@ -241,12 +258,18 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: The len vector is expected to be a row matrix, but current shape is %d x "
-"%d"
+"%d."
 msgstr ""
 
 #, c-format
 msgid ""
 "%s: The len vector is expected to be a scalar, but current shape is %d x %d"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The len vector is not consistent with the x0 point. Current shape of x0 "
+"is %d x %d while current shape of len is %d x %d."
 msgstr ""
 
 #, c-format
@@ -321,6 +344,12 @@ msgstr ""
 msgid ""
 "%s: The x0 vector is expected to be a row matrix, but current shape is %d x "
 "%d"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The x0 vector is expected to be a row matrix, but current shape is %d x "
+"%d."
 msgstr ""
 
 #, c-format

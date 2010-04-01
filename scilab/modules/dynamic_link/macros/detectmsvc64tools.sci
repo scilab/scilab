@@ -13,7 +13,7 @@
 function bOK = detectmsvc64tools()
 
  bOK = %F;
- if MSDOS & win64() then
+ if getos() == 'Windows' & win64() then
    compiler = findmsvccompiler();
    if ( (compiler == 'msvc90pro') | ..
         (compiler == 'msvc90std') | ..

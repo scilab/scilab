@@ -8,7 +8,7 @@
 
 // <-- JVM NOT MANDATORY -->
 
-if MSDOS then
+if getos() == 'Windows' then
   txt = ['message:',
 	    '  @echo ------------------------------------------',
         '  @echo From Makefile.mak',

@@ -18,6 +18,7 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 /**
    \file cmat3d.c
    \author Benoit Bayol
@@ -26,6 +27,7 @@
    \brief CMAT3D is a scope which connect a matrix to a plot3d. Values of the matrix are the values at the nodes.
    \see CMAT3D.sci in macros/scicos_blocks/Sinks/
 */
+/*--------------------------------------------------------------------------*/ 
 #include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
 #include "scoMemoryScope.h"
@@ -34,28 +36,33 @@
 #include "scoGetProperty.h"
 #include "scoSetProperty.h"
 #include "scicos_block4.h"
-
+#include "scicos_malloc.h"
+#include "scicos_free.h"
+#include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
 /** \fn cmat3d_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
 */
-void cmat3d_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
+SCICOS_BLOCKS_IMPEXP void cmat3d_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
 {
   /*Declarations*/
-  int i; //As usual
-  int * ipar; //Integer Parameters
+  int i = 0; //As usual
+  int * ipar = NULL; //Integer Parameters
   int win_pos[2]; //Position of the Window
   int win_dim[2]; //Dimension of the Window
   int dimension = 3;
-  double * rpar; //Reals parameters
-  double  ymin, ymax; //Ymin and Ymax are vectors here
-  double  xmin, xmax;
-  double zmin, zmax;
-  int number_of_curves_by_subwin;
-  int number_of_subwin;
-  double * mat;
-  int size_mat;
-  int size_in_x;
-  int size_in_y;
+  double * rpar = NULL; //Reals parameters
+  double  ymin = 0., ymax = 0.; //Ymin and Ymax are vectors here
+  double  xmin = 0., xmax = 0.;
+  double zmin = 0., zmax = 0.;
+  int number_of_curves_by_subwin = 0;
+  int number_of_subwin = 0;
+  double * mat = NULL;
+  int size_mat = 0;
+  int size_in_x = 0;
+  int size_in_y = 0;
+  char *label = NULL;
   scoGraphicalObject pShortDraw;
 
   /*Retrieve parameters from the scicos_model() which has been created thanks to the interfacing function*/
@@ -95,6 +102,7 @@ void cmat3d_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdra
   zmin = ipar[0];
   zmax = ipar[1];
   number_of_curves_by_subwin = 1;
+  label = GetLabelPtrs(block);
 
   /*Allocating memory for scope only if the window has to be created and not redraw*/
   if(firstdraw == 1)
@@ -138,26 +146,26 @@ void cmat3d_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdra
 	      pSURFACE_FEATURE(pShortDraw)->pvecy[i] = ymin + i*h_y;
 	    } 
 	}
-      scoAddTitlesScope(*pScopeMemory,"x","y","z");
+      scoAddTitlesScope(*pScopeMemory,label,"x","y","z");
     }
   /*Dont forget to free your scicos_malloc or MALLOC*/
   scicos_free(mat);
 
 }
-
+/*--------------------------------------------------------------------------*/ 
 /** \fn void cmat3d(scicos_block * block, int flag)
     \brief the computational function
     \param block A pointer to a scicos_block
     \param flag An int which indicates the state of the block (init, update, ending)
 */
-void cmat3d(scicos_block * block, int flag)
+SCICOS_BLOCKS_IMPEXP void cmat3d(scicos_block * block, int flag)
 {
   /* Declarations */
-  ScopeMemory * pScopeMemory;
+  ScopeMemory * pScopeMemory = NULL;
   scoGraphicalObject pShortDraw;
-  double * u1;
-  int i,j;
-  int dim_i, dim_j;
+  double * u1 = NULL;
+  int i = 0, j = 0;
+  int dim_i = 0, dim_j = 0;
  
   /* State Machine Control */
   switch(flag)
@@ -237,3 +245,4 @@ void cmat3d(scicos_block * block, int flag)
       }
     }
 }
+/*--------------------------------------------------------------------------*/ 

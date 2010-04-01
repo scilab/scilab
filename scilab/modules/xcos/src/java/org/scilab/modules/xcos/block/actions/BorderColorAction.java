@@ -15,6 +15,8 @@ package org.scilab.modules.xcos.block.actions;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JColorChooser;
 
@@ -31,9 +33,13 @@ import com.mxgraph.util.mxUtils;
  * Change the color of multiple blocks
  */
 public final class BorderColorAction extends VertexSelectionDependantAction {
+	/** Name of the action */
 	public static final String NAME = XcosMessages.BORDER_COLOR;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = 0;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = 0;
 	
     /**
@@ -62,8 +68,31 @@ public final class BorderColorAction extends VertexSelectionDependantAction {
 	
 	//if no cells are selected : Do nothing
 	if (selectedCells.length == 0) { return; }
-
-	Color newColor = JColorChooser.showDialog(getGraph(null).getAsComponent(), NAME, null);
+	
+	// Get the selected cells statistics values
+	Map<String, Integer> colorStats = new HashMap<String, Integer>();
+	for (Object object : selectedCells) {
+		String color = (String) graph.getCellStyle(object).get(mxConstants.STYLE_STROKECOLOR);
+		if (colorStats.containsKey(color)) {
+			colorStats.put(color, colorStats.get(color) + 1);
+		} else {
+			colorStats.put(color, 1);
+		}
+	}
+	
+	// Getting the most present color
+	String color = "#FF0000";
+	int max = 0;
+	for (String key : colorStats.keySet()) {
+		int current = colorStats.get(key);
+		if (current > max) {
+			color = key;
+			max = current;
+		}
+	}
+	
+	// Apply the most common color as the default color
+	Color newColor = JColorChooser.showDialog(getGraph(null).getAsComponent(), NAME, mxUtils.parseColor(color));
 
 	if (newColor != null) {
 	    graph.setCellStyles(mxConstants.STYLE_STROKECOLOR, mxUtils.hexString(newColor));

@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function %zoom = restore(gh_curwin)
+function %zoom = restore(gh_curwin,scicos_menus,isMainDiagram)
 // Copyright INRIA
   gh_current_window = gh_curwin ;
   gh_curwin.pixmap = "off"
@@ -52,18 +52,6 @@ function %zoom = restore(gh_curwin)
     window_set_size(gh_curwin)  ;
   end
 
-  menu_stuff() ;
-
-  if ~super_block then
-    delmenu(curwin,'Stop')
-    //** Bruno/Simone
-    //** the Devil is hidden in the follwing line
-    //** "haltscicos" is just a Scilab dummy function that does
-    //** almost nothing ;)
-    addmenu(curwin,'Stop',list(2,'haltscicos'));
-    //**
-    unsetmenu(curwin,'Stop')
-  else
-    unsetmenu(curwin,'Simulate')
-  end
+  scicos_menubar(gh_current_window,scicos_menus,isMainDiagram )
+ 
 endfunction

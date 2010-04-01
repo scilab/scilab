@@ -42,7 +42,7 @@ function scitest(tstfile,force,error_check,keep_prompt,postscript_graphics)
 	//Reset standard globals
 	rand('seed',0);rand('uniform');
 	
-	if MSDOS then
+	if getos() == 'Windows' then
 		tmpfiles=strsubst(TMPDIR,'/','\')+'\tmp.';
 	else
 		tmpfiles=TMPDIR+'/tmp.';
@@ -141,7 +141,7 @@ function scitest(tstfile,force,error_check,keep_prompt,postscript_graphics)
 		ref=strsubst(ref,' ','')
 		
 		if or(ref<>dia) then
-		if MSDOS then
+		if getos() == 'Windows' then
 		mydisp(msprintf(gettext("Test Failed. See : fc /L /N  %s"),diafile+' '+diafile+'.ref '));
 		else
 		mydisp(msprintf(gettext("Test Failed. See : diff -wu  %s"),diafile+' '+diafile+'.ref '));
@@ -159,7 +159,7 @@ function mydisp(str)
 endfunction
 
 function myexec()
-	if MSDOS then
+	if getos() == 'Windows' then
 		if fileinfo(tmpfiles+'dia')<>[] then
 			deletefile(tmpfiles+'dia')
 		end

@@ -25,12 +25,10 @@ function scs_show(scs_m, win)
 //**
 
   if %scicos_debug_gr then
-    disp("scs_show active...")
+    disp(_("scs_show active..."))
   end
 
   gh_curwin = scf(win) ;
-  //** gh_curwin.pixmap="on"
-  gh_curwin.pixmap = "off" ;
   
   if ~set_cmap(scs_m.props.options('Cmap')) then // add colors if required
     scs_m.props.options('3D')(1)=%f //disable 3D block shape
@@ -42,8 +40,8 @@ function scs_show(scs_m, win)
   pwindow_set_size(gh_curwin)   ;
   window_set_size(gh_curwin)    ;
 
-  scs_m.props.title(1) = 'Scilab Graphics of '+scs_m.props.title(1)
+  scs_m.props.title(1) = msprintf(_("Scilab Graphics of %s"),scs_m.props.title(1))
 
   drawobjs(scs_m, gh_curwin)
-  //** drawnow(); Obsolete in Scilab 5
+
 endfunction

@@ -219,7 +219,7 @@ Ce bloc est un intégrateur. La sortie est l'intégrale de l'entrée.
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/integral_func.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/integral_func.c (Type 4)</para>
       </listitem>
       <listitem>
         <para> SCI/modules/scicos_blocks/src/c/integralz_func.c</para>

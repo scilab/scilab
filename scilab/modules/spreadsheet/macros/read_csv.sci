@@ -14,11 +14,11 @@ function mat = read_csv(fname,sep)
 // read_csv(fname) returns the corresponding Scilab matrix of strings.
 
   if (type(fname) <> 10) then
-    error(msprintf(gettext("%s: Wrong type for input argument #%d: a string expected.\n"), 'write_csv', 1));
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: a string expected.\n"), 'read_csv', 1));
   end
   
   if (size(fname,'*')<> 1) then
-    error(msprintf(gettext("%s: Wrong size for input argument #%d: a string expected.\n"), 'write_csv', 1));  
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: a string expected.\n"), 'read_csv', 1));  
   end
   
   if argn(2)<2 then 
@@ -26,7 +26,7 @@ function mat = read_csv(fname,sep)
   end
   
   if ~isfile(fname) then
-    error(msprintf(gettext("%s: file %s does not exist.\n"), 'write_csv', 1, fname));  
+    error(msprintf(gettext("%s: file %s does not exist.\n"), 'read_csv', fname));
   end
   
   v = mgetl(fname);

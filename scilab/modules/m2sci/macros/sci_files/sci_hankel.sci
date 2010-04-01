@@ -17,10 +17,6 @@ tree.name="hank"
 
 // H = hankel(c)
 if rhs==1 then
-  // %c_hank and %b_hank are not defined
-  if tree.rhs(1).vtype<>Double then
-    tree.rhs(1)=convert2double(tree.rhs(1))
-  end
   if typeof(tree.rhs(1))<>"variable" then
     c=gettempvar();
     insert(Equal(list(c),tree.rhs(1)))
@@ -56,21 +52,13 @@ if rhs==1 then
   tree.rhs=Rhs_tlist(n,n,v);
 // H = hankel(c,r)
 else
-  // %c_hank and %b_hank are not defined
-  if tree.rhs(1).vtype<>Double then
-    tree.rhs(1)=convert2double(tree.rhs(1))
-  end
-  
   if typeof(tree.rhs(1))<>"variable" then
     c=gettempvar();
     insert(Equal(list(c),tree.rhs(1)))
   else
     c=tree.rhs(1);
   end
-  if tree.rhs(2).vtype<>Double then
-    tree.rhs(2)=convert2double(tree.rhs(2))
-  end
-  
+
   if typeof(tree.rhs(2))<>"variable" then
     r=gettempvar();
     insert(Equal(list(r),tree.rhs(2)))

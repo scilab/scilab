@@ -14,6 +14,8 @@
 package org.scilab.modules.xcos.actions;
 
 import java.awt.event.ActionEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
@@ -25,9 +27,13 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Grid visibility management
  */
 public final class ViewGridAction extends DefaultAction {
+	/** Name of the action */
 	public static final String NAME = XcosMessages.GRID;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = 0;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = 0;
 	
 	/**
@@ -44,8 +50,20 @@ public final class ViewGridAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static CheckBoxMenuItem createCheckBoxMenu(ScilabGraph scilabGraph) {
-		CheckBoxMenuItem  menu = createCheckBoxMenu(scilabGraph, ViewGridAction.class);
+		final CheckBoxMenuItem  menu = 
+			createCheckBoxMenu(scilabGraph, ViewGridAction.class);
 		menu.setChecked(true);
+		
+		scilabGraph.addPropertyChangeListener("gridEnabled", new PropertyChangeListener() {
+			public void propertyChange(PropertyChangeEvent evt) {
+				XcosDiagram graph = (XcosDiagram) evt.getSource();
+				
+				menu.setChecked(graph.isGridEnabled());
+				graph.getAsComponent().setGridVisible(graph.isGridEnabled());
+				graph.getAsComponent().repaint();
+			}
+		});
+		
 		return  menu;
 	}
 	
@@ -55,6 +73,6 @@ public final class ViewGridAction extends DefaultAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		((XcosDiagram) getGraph(null)).setGridVisible(!((XcosDiagram) getGraph(null)).getAsComponent().isGridVisible());
+		((ScilabGraph) getGraph(e)).setGridEnabled(!((XcosDiagram) getGraph(e)).isGridEnabled());
 	}
 }

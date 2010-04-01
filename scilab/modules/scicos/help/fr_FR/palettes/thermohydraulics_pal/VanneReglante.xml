@@ -228,7 +228,7 @@ de la géométrie de la vanne et de la masse volumique de fluide.
     <title>Modèle Modelica</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/macros/Hydraulics/VanneReglante.mo</para>
+        <para> SCI/modules/scicos_blocks/macros/Hydraulics/Hydraulics.mo</para>
       </listitem>
     </itemizedlist>
   </refsection>

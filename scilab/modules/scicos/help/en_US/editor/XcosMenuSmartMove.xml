@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ *
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ *
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+          version="5.0-subset Scilab"
+          xml:id="XcosMenuSmartMove">
+  <refnamediv>
+    <refname>Smart_Move</refname>
+    <refpurpose>Menu: Move object keeping links segments horizontal and vertical. </refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+      To move a block in  the active editor Scicos window
+      or in edited palette keeping horizontal and vertical
+      links, select first the "Smart Move" menu item,
+      then click on the selected block, link segment or link
+      corner, drag the mouse to the desired new  position
+      and click left again to fix the position.
+      </para><para>
+      Right click cancel the move action.
+    </para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member> <link linkend="XcosMenuMove">Move</link> </member>
+      <member> <link linkend="XcosMenuSetDefaultAction">Set_default_action</link> </member>
+     </simplelist>
+   </refsection>
+</refentry>

@@ -428,6 +428,18 @@
 				RelativePath=".\hashtable_utility.h"
 				>
 			</File>
+			<File
+				RelativePath=".\resource.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Resource Files"
+			>
+			<File
+				RelativePath=".\hashtable.rc"
+				>
+			</File>
 		</Filter>
 	</Files>
 	<Globals>

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2009-11-16 16:22+0000\n"
+"PO-Revision-Date: 2010-02-13 14:59+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
@@ -76,20 +76,20 @@ msgstr "%s: 周波数範囲の終端近くで突然の変化です。\n"
 # File: macros/yulewalk.sci, line: 36
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: 入力引数(s)で不正な数: %d を想定します。\n"
+msgstr "%s: 入力引数の数が不正です: %d を想定します。\n"
 
 #
 # File: macros/fft2.sci, line: 57
 # File: macros/trans.sci, line: 47
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: 入力引数で不正な数: %d または、%d を想定します。\n"
+msgstr "%s: 入力引数の数が不正です: %d または、%d を想定します。\n"
 
 #
 # File: macros/detrend.sci, line: 32
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%1$s: 入力引数で不正な数: %3$d への %2$d を想定します。\n"
+msgstr "%1$s: 入力引数の数が不正です: %3$d への %2$d を想定します。\n"
 
 #
 # File: macros/trans.sci, line: 62
@@ -266,8 +266,8 @@ msgid ""
 "%s: Wrong values for input argument #%d: degree must be in the set {%s}.\n"
 msgstr "%s: 入力引数 #%d で不正な値: set {%s} をしなくてはなりません。\n"
 
-msgid "Arma identifcation"
-msgstr "ARMA 識別"
+msgid "Arma identification"
+msgstr "ARMA識別"
 
 # File: etc/signal_processing.start, line: 13
 msgid "Signal Processing"
@@ -276,7 +276,7 @@ msgstr "シグナル処理"
 msgid "Spectral power"
 msgstr "パワースペクトル"
 
-msgid "Theoritical value"
+msgid "Theoretical value"
 msgstr "理論値"
 
 msgid "Using macro mese"

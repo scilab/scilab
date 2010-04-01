@@ -138,6 +138,34 @@ AC_PROG_CPP
 AC_PROG_GREP
 PKG_PROG_PKG_CONFIG
 
+
+######
+#### Mac OS X set of fink path with provided
+######                 
+
+AC_ARG_WITH(fink_prefix,
+AC_HELP_STRING([--with-fink-prefix],[Provide a fink prefix. Default: /sw/ ]))
+
+case "$host" in
+     *darwin*)
+     if test -n "$with_fink_prefix"; then
+        # If with-fink-prefix is provided, use the provided path to make sure that we will
+	# use it to detect dependencies (for example, gfortran is not provided in xcode.
+	# Therefor, we use the one in fink)
+	FINK_PREFIX="$with_fink_prefix/"
+  
+	# Exec the init script of fink to make sure that the env is set
+	if test -f $with_fink_prefix/bin/init.sh; then
+	   echo "source $with_fink_prefix/bin/init.sh executed to set the env"
+	   source $with_fink_prefix/bin/init.sh	
+        else
+	   AC_MSG_WARN([Could not find the fink init.sh script: $with_fink_prefix/bin/init.sh])
+	fi
+     else
+	FINK_PREFIX="/sw/"
+     fi
+     ;;
+esac
 #####################################################
 ## check if options are correct (or not)
 #####################################################
@@ -531,19 +559,21 @@ case "$CC" in
 	;;
 
   *-*-darwin*)
-	 CFLAGS=" $CFLAGS -I/sw/include "
-	 CPPFLAGS=" $CPPFLAGS -I/sw/include "
-	 LDFLAGS=" $LDFLAGS -L/sw/lib/ "
-	 case "$host" in
-	      i386-apple-darwin*)
-		CC=" $CC -arch i386 "
-		CXX=" $CXX -arch i386 "
-		;;
-	      x86_64-apple-darwin*)
-                CC=" $CC -arch x86_64 "
-                CXX=" $CXX -arch x86_64 "
-                ;;
+case "$F77" in
+	     gfortran-*|gfortran) 
+	         # Extract from gfortran -v the version it has been built for
+	      	 MAC_DETECTED_ARCH="`$F77 -v 2>&1|grep "Target:"|sed -e "s/Target: \([[a-z0-9A-Z_]]*\).*/\1/g"`"
+		 ;;
+	     *)
+		AC_MSG_WARN([gfortran not used. Could not detect the architecture. Switch to the default case: x86_64])
+		MAC_DETECTED_ARCH="x86_64"
+		 ;;
 	esac
+	CC="$CC -arch $MAC_DETECTED_ARCH"
+	CXX="$CXX -arch $MAC_DETECTED_ARCH"
+	LDFLAGS="-L$FINK_PREFIX/lib/ $LDFLAGS"
+	CFLAGS=" $CFLAGS -I$FINK_PREFIX/include "
+	CPPFLAGS=" $CPPFLAGS -I$FINK_PREFIX/include "
 	;;
 esac
 ;; # end of the gcc case on the $CC
@@ -730,12 +760,16 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				   LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -L$SCI_SRCDIR/thirdparty/ -L$SCI_SRCDIR/bin/"
 				   AC_CHECK_LIB([jogl], [glTexParameterf], [JOGL_LIBS="-ljogl"],[AC_MSG_WARN([Could not link against -ljogl. Will try against -ljogl -lGL])])
 				   if test -z "$JOGL_LIBS"; then # The previous test failed add more options to the LDFLAGS
-				   	   LDFLAGS="$LDFLAGS -lGL "
 					   # the space after "jogl" in the following line is on	
 					   # purpose to disable the cache
 				   	   AC_CHECK_LIB([jogl ], [glTexParameterf], 
 					   [JOGL_LIBS="-ljogl -lGL"],
-					   [AC_MSG_ERROR(["libjogl: Library missing (Cannot find symbol glTexParameterf). Check if libjogl - C/Java (JNI) interface for JOGL - or libGL are installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries."])])
+					   [AC_MSG_ERROR(["libjogl: Library
+missing (Cannot find symbol glTexParameterf). Check if libjogl - C/Java (JNI)
+interface for JOGL - or libGL are installed and if the version is correct. Note
+that you might have to update etc/librarypath.xml to provide the actual path
+the the JNI libraries."])],
+					   [-lGL])
 				   fi
 
 				   LDFLAGS=$LDFLAGS_save
@@ -754,7 +788,8 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				   LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -ldl -L$SCI_SRCDIR/thirdparty/ -L$SCI_SRCDIR/bin/"
 				   symbol="Java_com_sun_gluegen_runtime_UnixDynamicLinkerImpl_dlclose__J"
 				   AC_CHECK_LIB([gluegen-rt], [$symbol], [GLUEGEN_RT_LIBS="-lgluegen-rt"],
-				   [AC_MSG_ERROR([libgluegen-rt: Library missing (Cannot find symbol glTexParameterf). Check if libgluegen-rt - C/Java (JNI) interface for GLUEGEN - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])])
+				   [AC_MSG_ERROR([libgluegen-rt: Library missing (Cannot find symbol glTexParameterf). Check if libgluegen-rt - C/Java (JNI) interface for GLUEGEN - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])],
+				   [-ldl])
 				   LDFLAGS=$LDFLAGS_save
 				fi
 
@@ -787,6 +822,53 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				AC_SUBST(JEUCLID_CORE)
 
 
+				################ Mandatory for graphic_export features #####
+				# XML to PDF/other Translator
+				AC_JAVA_CHECK_PACKAGE([fop],[org.apache.fop.pdf.PDFInfo],[XML to PDF Translator (fop)])
+				FOP=$PACKAGE_JAR_FILE
+				AC_SUBST(FOP)
+
+				# xml.apache.org SVG Library (under mandriva for example)
+				AC_JAVA_CHECK_PACKAGE([batik-all],[org.apache.batik.parser.Parser],[Apache SVG Library],"yes")
+				BATIK=$PACKAGE_JAR_FILE
+
+				if test -z "$BATIK"; then
+				   # Other other distribs
+				   AC_JAVA_CHECK_PACKAGE([batik],[org.apache.batik.parser.Parser],[Apache SVG Library])
+				   BATIK=$PACKAGE_JAR_FILE
+				fi
+				AC_SUBST(BATIK)
+
+				# Commons I/O library
+				AC_JAVA_CHECK_PACKAGE([commons-io],[org.apache.commons.io.output.CountingOutputStream],[Commons I/O library])
+				COMMONS_IO=$PACKAGE_JAR_FILE
+				AC_SUBST(COMMONS_IO)
+
+				# XML graphics common
+				AC_JAVA_CHECK_PACKAGE([xmlgraphics-commons],[org.apache.xmlgraphics.util.Service],[Commons graphics library])
+				XMLGRAPHICS_COMMONS=$PACKAGE_JAR_FILE
+				AC_SUBST(XMLGRAPHICS_COMMONS)
+
+				# Avalon Framework (PDF)
+				AC_JAVA_CHECK_PACKAGE([avalon-framework],[org.apache.avalon.framework.configuration.ConfigurationException],[Common framework for Java server application])
+				AVALON_FRAMEWORK=$PACKAGE_JAR_FILE
+				AC_SUBST(AVALON_FRAMEWORK)
+
+	# XML API EXT (conversion of a SVG => PNG)
+				AC_JAVA_CHECK_PACKAGE([xml-apis-ext],[org.w3c.dom.svg.SVGDocument],[XML Commons external code],"yes")
+				XML_APIS_EXT=$PACKAGE_JAR_FILE
+
+				if test -z "$XML_APIS_EXT"; then
+					# Other other distribs (Ex: Fedora/Redhat)
+					AC_JAVA_CHECK_PACKAGE([xml-commons-apis-ext],[org.w3c.dom.svg.SVGDocument],[XML Commons external code])
+					XML_APIS_EXT=$PACKAGE_JAR_FILE
+				fi
+				AC_SUBST(XML_APIS_EXT)
+
+				################ END Mandatory for graphic_export features #####
+
+
+				############ XCOS ############
 				if test $HDF5_ENABLE = yes;  then
 				# HDF5 java lib
 				  AC_JAVA_CHECK_PACKAGE([jhdf5],[ncsa.hdf.hdf5lib.HDF5Constants],[HDF5 Java library])
@@ -799,10 +881,12 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				COMMONS_LOGGING=$PACKAGE_JAR_FILE
 				AC_SUBST(COMMONS_LOGGING)
 
-                                # JLaTeXMath
-                                AC_JAVA_CHECK_PACKAGE([jlatexmath],[org.scilab.forge.jlatexmath.TeXFormula],[LaTex Rendering])
-                                JLATEXMATH=$PACKAGE_JAR_FILE
-                                AC_SUBST(JLATEXMATH)
+				# JLaTeXMath
+                AC_JAVA_CHECK_PACKAGE([jlatexmath],[org.scilab.forge.jlatexmath.TeXFormula],[LaTex Rendering])
+                JLATEXMATH=$PACKAGE_JAR_FILE
+                AC_SUBST(JLATEXMATH)
+
+				AC_JAVA_CHECK_VERSION_PACKAGE([jlatexmath],[import org.scilab.forge.jlatexmath.TeXFormula;],$JLATEXMATH,[0.8.8],[TeXFormula.VERSION])
 
 				AC_DEFINE([WITH_GUI],[],[With the JAVA stuff (GUI, Console, JOGL...)])
 
@@ -957,12 +1041,7 @@ LT_LIB_M()
 # Provided by math.h
 
 LDFLAGS="$LDFLAGS $LIBM"
-AC_CHECK_FUNCS([pow] [sqrt] [finite] [floor])
-
-AC_CHECK_FUNC([exp10],,[
-				AC_DEFINE([log_10_],[2.3025850929940456840179914546844],[Provide a macro to do exp10])
-				AC_DEFINE([exp10(x)],[exp( (log_10_) * (x) )],[Provide a macro to do exp10])
-				])
+AC_CHECK_FUNCS([pow] [sqrt] [finite] [floor] [exp10])
 
 ### If isinf exists or not (used to not be the case under Solaris)
 ### See bug #4164
@@ -1614,6 +1693,7 @@ modules/operations/Makefile
 modules/atoms/Makefile
 modules/xcos/Makefile
 modules/xpad/Makefile
+modules/graph/Makefile
 modules/Makefile
 libs/Makefile
 Makefile
@@ -1835,11 +1915,7 @@ echo ""
 if test $HELP_ENABLE = yes; then
    echo "Documentation building configuration:"
    echo "  Docbook XSL path ....... = $DOCBOOK_ROOT"
-   echo "  Batik (SVG) ............ = $BATIK"
    echo "  Saxon XSLT ............. = $SAXON"
-   echo "  FOP (XML => PDF) ....... = $FOP"
-   echo "  Commons I/O ............ = $COMMONS_IO"
-   echo "  XML graphics commons ... = $XMLGRAPHICS_COMMONS"
    echo "  XML commons external ... = $XML_APIS_EXT"
 else
    echo "No documentation generated"
@@ -1880,6 +1956,18 @@ echo "  Commons Logging ..... = $COMMONS_LOGGING"
 echo "  JGraph X ............ = $JGRAPHX"
 echo "  JLaTeXMath .......... = $JLATEXMATH"
 fi
+
+echo ""
+if test ! -z "$JAVAC"; then
+echo "Documentation, graphic export:"
+echo "  FOP (XML => PDF) .... = $FOP"
+echo "  JLaTeXMath Fop ...... = $JLATEXMATH_FOP"
+echo "  Batik (SVG) ......... = $BATIK"
+echo "  Avalon Framework .... = $AVALON_FRAMEWORK"
+echo "  Commons I/O ......... = $COMMONS_IO"
+echo "  XML graphics commons  = $XMLGRAPHICS_COMMONS"
+fi
+
 
 echo ""
 echo "Code quality (optional):"
@@ -1972,6 +2060,9 @@ echo "  host_vendor .... = $host_vendor"
 echo "  host_os ... .... = $host_os"
 echo "  hostname ....... = $ac_hostname"
 echo "  CPU 64 bits .... = $IS_64_BITS_CPU"
+if test -n "$MAC_DETECTED_ARCH"; then
+echo "  Mac OS X arch .. = $MAC_DETECTED_ARCH"
+fi
 
 echo ""
 echo "Options used to compile and link:"

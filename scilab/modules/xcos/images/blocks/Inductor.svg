@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg id="svg2" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" sodipodi:docname="Inductor.svg" height="15" sodipodi:version="0.32" width="45" version="1.0" xmlns:cc="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" sodipodi:docbase="C:\Documents and Settings\Julian\My Documents\My Pictures\Electronics\Vector Illustrations" xmlns:sodipodi="http://inkscape.sourceforge.net/DTD/sodipodi-0.dtd">
+ <metadata id="metadata1312">
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <sodipodi:namedview id="base" bordercolor="#666666" pagecolor="#ffffff" gridtolerance="1px" borderopacity="1.0" showgrid="true" showguides="true"/>
+ <path id="path1318" stroke-linejoin="miter" d="M1,8.5h5.5s0-4,4-4,4,4,4,4,0-4,4-4,4,4,4,4,0-4,4-4,4,4,4,4,0-4,4-4,4,4,4,4h5.5" sodipodi:nodetypes="ccscscscscc" stroke="#000" stroke-linecap="butt" stroke-width="1px" fill="none"/>
+</svg>

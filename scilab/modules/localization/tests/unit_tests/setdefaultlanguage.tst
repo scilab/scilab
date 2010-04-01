@@ -8,7 +8,7 @@
 // setdefaultlanguage only on Windows
 // returns false in others case
 
-if MSDOS then 
+if getos() == 'Windows' then 
  ierr = execstr('setdefaultlanguage()','errcatch');
  if ierr <> 77 then pause,end
  

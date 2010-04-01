@@ -18,44 +18,44 @@
 *
 * See the file ./license.txt
 */
-# include "scicos_block4.h"
-# include "machine.h"
+/*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
+#include "machine.h" /* C2F */
+#include "MALLOC.h"
+#include "scicos.h"
+#include "scicos_block4.h"
+#include "scicos_malloc.h"
+#include "scicos_free.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
 extern int C2F(dgesvd)();
 extern int C2F(dlaset)();
 extern int C2F(dlacpy)();
-
-#if _MSC_VER
-#define NULL    0
-#endif
-
-#ifndef min
-#define min(a,b) ((a) <= (b) ? (a) : (b))
-#endif
-
-#ifndef max
-#define max(a,b) ((a) >= (b) ? (a) : (b))
-#endif
-
+/*--------------------------------------------------------------------------*/ 
 typedef struct
-{	  double *LA;
-          double *LU;
-          double *LVT;
-          double *dwork;
+{	  
+	double *LA;
+	double *LU;
+	double *LVT;
+	double *dwork;
 } mat_sing_struct ;
-void mat_sing(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void mat_sing(scicos_block *block,int flag)
 {
- double *u;
- double *y;
- int nu,mu;
- int info;
- int lwork;
- mat_sing_struct *ptr;
- mu=GetInPortRows(block,1);
- nu=GetInPortCols(block,1);
- u=GetRealInPortPtrs(block,1);
- y=GetRealOutPortPtrs(block,1);
- lwork=max(3*min(mu,nu)+max(mu,nu),5*min(mu,nu)-4); 
+ double *u = NULL;
+ double *y = NULL;
+ int nu = 0, mu = 0;
+ int info = 0;
+ int lwork = 0;
+ mat_sing_struct *ptr = NULL;
+
+ mu = GetInPortRows(block,1);
+ nu = GetInPortCols(block,1);
+ u = GetRealInPortPtrs(block,1);
+ y = GetRealOutPortPtrs(block,1);
+ /* for lapack 3.1 (2006)*/
+ lwork=max(3*min(mu,nu)+max(mu,nu),5*min(mu,nu));
+ lwork=max(1,lwork); 
              /*init : initialization*/
 if (flag==4)
    {if((*(block->work)=(mat_sing_struct*) scicos_malloc(sizeof(mat_sing_struct)))==NULL)
@@ -109,3 +109,4 @@ else
          return;}}
    }
 }
+/*--------------------------------------------------------------------------*/ 

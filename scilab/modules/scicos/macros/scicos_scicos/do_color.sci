@@ -23,7 +23,9 @@ function scs_m = do_color(%win, %pt, scs_m)
 //
 // do_color - edit a block / link color
 //
-  
+//** 25/06/2009 : Serge Steer, 
+//   -remove  objects which are not in the current window out of the selection
+//   - add drawlater() for smooth drawing  
   if %win <> curwin then
      return ; //** exit point  
   end 
@@ -39,8 +41,8 @@ function scs_m = do_color(%win, %pt, scs_m)
      end 
   
   else
-    
-    KK = Select(:,1)'; //** take all selected objects 
+    K=find(Select(:,2)==%win); //retains objects selected in the current window
+    KK = Select(K,1)'; //** take all selected objects 
 
   end
 
@@ -65,25 +67,23 @@ function scs_m = do_color(%win, %pt, scs_m)
   //** gh_k = o_size(1) - k + 1 ; //** semi empirical equation :)
   //** Alan Layec has done this in the function get_gri();
   //** gh_blk = gh_curwin.children.children(gh_k);
+  drawlater()
   
   for K = KK                                  //** for all the selected object(s)
     o           = scs_m.objs(K);              //** the scs_m object  
-    gh_obj_K    = get_gri(K, o_size(1));      //** compute the index in the graphics DS 
-    gh_compound = gh_axes.children(gh_obj_K); //** get the compound handle 
-    
-    //** ------------------ Link --------------------------
+     //** ------------------ Link --------------------------
     if typeof(o) == "Link" then
       [nam,pos,ct] = (o.id,o.thick,o.ct);
       c = coul ;
-      
       if ~isempty(c) then
         connected = connected_links(scs_m,K);
         for kc = connected
           o = scs_m.objs(kc) ;
           ct = o.ct          ; //** <---- Haio :(
-          
           if ct(1) <> c then
             o.ct(1) = c ;
+	    gh_obj_K    = get_gri(kc, o_size(1));      //** compute the index in the graphics DS 
+	    gh_compound = gh_axes.children(gh_obj_K); //** get the compound handle 
             gh_compound.children.foreground = c ;
             scs_m.objs(kc) = o ;
           end
@@ -92,7 +92,9 @@ function scs_m = do_color(%win, %pt, scs_m)
     
     //** ------------------  Block -------------------------  
     elseif typeof(o) == "Block" then
-      
+      gh_obj_K    = get_gri(K, o_size(1));      //** compute the index in the graphics DS 
+      gh_compound = gh_axes.children(gh_obj_K); //** get the compound handle 
+
       if type(o.graphics.gr_i)==10 then,
         o.graphics.gr_i = list(o.graphics.gr_i,[]),
       end
@@ -120,7 +122,6 @@ function scs_m = do_color(%win, %pt, scs_m)
   end
 
   drawnow(); //** force a redraw 
-  //** show_pixmap() ; //** not useful on Scilab 5
 
 endfunction
 

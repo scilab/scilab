@@ -18,20 +18,23 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include "scicos_block4.h"
-
+#include "machine.h" /* C2F */
+#include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
 extern int C2F(dmmul)();
 extern int C2F(dmmul1)();
-
-
-void gainblk(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void gainblk(scicos_block *block,int flag)
 {
-  int i;
+  int i = 0;
 
-  double *u; double *y;
-  int nu,ny,my;
-  double *rpar;
-  int nrpar;
+  double *u = NULL; double *y = NULL;
+  int nu = 0,ny = 0,my = 0;
+  double *rpar = NULL;
+  int nrpar = 0;
 
   nu=GetInPortRows(block,1);
   ny=GetOutPortRows(block,1);
@@ -52,3 +55,4 @@ void gainblk(scicos_block *block,int flag)
     C2F(dmmul)(rpar,&ny,u,&nu,y,&ny,&ny,&nu,&my);
   }
 }
+/*--------------------------------------------------------------------------*/ 

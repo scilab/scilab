@@ -477,6 +477,14 @@
 				</File>
 			</Filter>
 		</Filter>
+		<Filter
+			Name="Resource File"
+			>
+			<File
+				RelativePath=".\statistics.rc"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath="..\..\..\..\bin\lapack.lib"
 			>

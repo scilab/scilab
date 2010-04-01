@@ -15,6 +15,10 @@
 
 #include "machine.h"
 
+#ifndef API_SCILAB_VERSION
+#pragma message("Using stack-def.h is deprecated. Please use api_scilab instead (try 'help api_scilab'). Note the stack-def.h API will be removed after Scilab 6.0.")
+#endif
+
 #if _LCC_ & FORDLL 
 #define IMPORT __declspec (dllimport)
 #else

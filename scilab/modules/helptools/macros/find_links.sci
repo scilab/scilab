@@ -35,7 +35,7 @@ function flag = find_links(filein,fileout)
 	
 	dtd_line = grep(convstr(txt,'u'),"<!DOCTYPE MAN SYSTEM");
 	
-	if MSDOS then
+	if getos() == 'Windows' then
 		txt(dtd_line) = "<!DOCTYPE MAN SYSTEM ""file://"+SCI+"\modules\helptools\help.dtd"">";
 	else
 		txt(dtd_line) = "<!DOCTYPE MAN SYSTEM """+SCI+"/modules/helptools/help.dtd"">";
@@ -98,11 +98,17 @@ function t=getlink(name,absolute_path,path)
 	
 	global %helps;
 	global %helps_modules;
+	if %helps_modules == [] then
+	  moduleslist = getmodules();
+	  for i = 1:size(moduleslist,'*')
+	    add_module_help_chapter(moduleslist(i));
+	  end
+	end
 	%HELPS=[%helps_modules;%helps];
 	
 	name=stripblanks(name)
 	
-	if MSDOS then
+	if getos() == 'Windows' then
 		sep='\';
 	else
 		sep='/';

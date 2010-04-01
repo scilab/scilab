@@ -580,10 +580,11 @@ C=['#include <math.h>'
    '    g[*n-1]=2.0*p*(x[*n-1]-sq(x[*n-2]))-2.0*(1.0-x[*n-1]);'
    '  }'
    '}'];
+cd TMPDIR;
 mputl(C,TMPDIR+'/rosenc.c')
 
 // compile the C code
-l=ilib_for_link('rosenc','rosenc.c',[],'c',TMPDIR+'/Makefile');
+l=ilib_for_link('rosenc','rosenc.c',[],'c');
 
 // incremental linking
 link(l,'rosenc','c')
@@ -628,11 +629,11 @@ F=[ '      subroutine rosenf(ind, n, x, f, g, ti, tr, td)'
     '      endif'
     '      return'
     '      end'];
-
+cd TMPDIR;
 mputl(F,TMPDIR+'/rosenf.f')
 
 // compile the Fortran code
-l=ilib_for_link('rosenf','rosenf.f',[],'f',TMPDIR+'/Makefile');
+l=ilib_for_link('rosenf','rosenf.f',[],'f');
 
 // incremental linking
 link(l,'rosenf','f')
@@ -718,10 +719,11 @@ fortransource=['      subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
                '      g(n)=2.0d+0*dzs(2)*(x(n)-x(nm1)**2) - 2.0d+0*(1.0d+0-x(n))'
                '      return'
                '      end'];
+cd TMPDIR;
 mputl(fortransource,TMPDIR+'/rosenf.f')
 
 // compile the C code
-libpath=ilib_for_link('rosenf','rosenf.f',[],'f',TMPDIR+'/Makefile');
+libpath=ilib_for_link('rosenf','rosenf.f',[],'f');
 
 // incremental linking
 linkid=link(libpath,'rosenf','f');
@@ -835,7 +837,20 @@ g = 0 0 0
 
 <programlisting role="example">
 <![CDATA[ 
-// 1. Define rosenbrock
+// 1. Define rosenbrock for contouring
+function f = rosenbrockC ( x1 , x2 )
+  x = [x1 x2];
+  f = 100.0 *(x(2)-x(1)^2)^2 + (1-x(1))^2;
+endfunction
+x0 = [-1.2 1.0];
+xopt = [1.0 1.0];
+// 2. Draw the contour of Rosenbrock's function
+xdata = linspace(-2,2,100);
+ydata = linspace(-2,2,100);
+contour ( xdata , ydata , rosenbrockC , [1 10 100 500 1000])
+plot(x0(1) , x0(2) , "b.")
+plot(xopt(1) , xopt(2) , "r*")
+// 3. Define Rosenbrock for optimization
 function [ f , g , ind ] = rosenbrock ( x , ind )
   if ((ind == 1) | (ind == 4)) then
     f = 100.0 *(x(2)-x(1)^2)^2 + (1-x(1))^2;
@@ -848,32 +863,7 @@ function [ f , g , ind ] = rosenbrock ( x , ind )
     plot ( x(1) , x(2) , "g." )
   end
 endfunction
-x0 = [-1.2 1.0];
-xopt = [1.0 1.0];
-// 2. Draw the contour of Rosenbrock's function
-xmin = -2.0
-xmax = 2.0
-stepx = 0.1
-ymin = -1.0
-ymax = 2.0
-stepy = 0.1
-nx = 100
-ny = 100
-stepx = (xmax - xmin)/nx;
-xdata = xmin:stepx:xmax;
-stepy = (ymax - ymin)/ny;
-ydata = ymin:stepy:ymax;
-for ix = 1:length(xdata)
-    for iy = 1:length(ydata)
-      x = [xdata(ix) ydata(iy)];
-      [ f , g , ind ] = rosenbrock ( x , 4 );
-      zdata ( ix , iy ) = f;
-    end
-end
-contour ( xdata , ydata , zdata , [1 10 100 500 1000])
-plot(x0(1) , x0(2) , "b.")
-plot(xopt(1) , xopt(2) , "r*")
-// 3. Plot the optimization process, during optimization
+// 4. Plot the optimization process, during optimization
 [ fopt , xopt ] = optim ( rosenbrock , x0 , imp = -1)
 ]]>
   </programlisting>

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 17:45+0100\n"
-"PO-Revision-Date: 2009-11-16 16:15+0000\n"
+"PO-Revision-Date: 2010-02-12 19:43+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
@@ -454,43 +454,43 @@ msgstr "%s: 入力引数 #%d で列数が不正です: %d を想定します。\
 # File: macros/ged.sci, line: 21
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: 入力引数(s)で不正な数: %d を想定します。\n"
+msgstr "%s: 入力引数の数が不正です: %d を想定します。\n"
 
 #
 # File: sci_gateway/c/sci_xrect.c, line: 110
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected."
-msgstr "%s: 入力引数(s)で不正な数: %d または %d を想定します。"
+msgstr "%s: 入力引数の数が不正です: %d または %d を想定します。"
 
 #
 # File: sci_gateway/c/sci_xrect.c, line: 110
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr "%s: 入力引数(s) で不正な数: %d または、%d を想定します。\n"
+msgstr "%s: 入力引数の数が不正です: %d または、%d を想定します。\n"
 
 #
 # File: macros/clf.sci, line: 40
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr "%s: 入力引数(s)で不正な数値: %d から %d を想定します。"
+msgstr "%s: 入力引数の数が不正です: %d から %d を想定します。"
 
 #
 # File: macros/plot3d3.sci, line: 16
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s: 入力引数(s)の不正な数値: 少なくとも %d が予想されます。\n"
+msgstr "%s: 入力引数の数が不正です: 少なくとも %d が予想されます。\n"
 
 #
 # File: macros/sca.sci, line: 15
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s: 入力引数の不正な数値: %d を想定します。\n"
+msgstr "%s: 入力引数の数が不正です: %d を想定します。\n"
 
 #
 # File: macros/ged.sci, line: 21
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: 入力引数で不正な数値: %d を想定します。\n"
+msgstr "%s: 入力引数の数が不正です: %d を想定します。\n"
 
 #
 # File: macros/square.sci, line: 25
@@ -498,25 +498,25 @@ msgstr "%s: 入力引数で不正な数値: %d を想定します。\n"
 # File: macros/xclear.sci, line: 46
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: 入力引数で不正な数値: %d または %d を想定します。\n"
+msgstr "%s: 入力引数の数が不正です: %d または %d を想定します。\n"
 
 #
 # File: sci_gateway/c/sci_StringBox.c, line: 120
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d to %d expected.\n"
-msgstr "%1$s: 入力引数で数が不正: %4$d への %2$d または %3$d を想定します。\n"
+msgstr "%1$s: 入力引数の数が不正です: %4$d への %2$d または %3$d を想定します。\n"
 
 #
 # File: macros/getcolor.sci, line: 38
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: 入力引数の不正な数値: %d から %d が想定されます。\n"
+msgstr "%s: 入力引数の数が不正です: %d から %d が想定されます。\n"
 
 #
 # File: sci_gateway/c/sci_champ.c, line: 73
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr "%s: 入力引数の不正な数値: 少なくとも %d が予想されます。\n"
+msgstr "%s: 入力引数の数が不正です: 少なくとも %d が予想されます。\n"
 
 #
 # File: sci_gateway/c/sci_xarcs.c, line: 65
@@ -627,7 +627,7 @@ msgid ""
 "%s: Wrong size for input argument #%d: A boolean expected\n"
 "."
 msgstr ""
-"%s: 入力引数 #%d で不正なサイズ:  ブーリアンを想定します。\n"
+"%s: 入力引数 #%d で不正なサイズ: ブーリアンを想定します。\n"
 "."
 
 #
@@ -637,7 +637,7 @@ msgstr ""
 msgid ""
 "%s: Wrong size for input argument #%d: A matrix of size greater than %d-by-"
 "%d expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ:  %d-by-%d より大きいサイズのベクトルを想定します。\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: %d-by-%d より大きいサイズのベクトルを想定します。\n"
 
 #
 # File: macros/getcolor.sci, line: 35
@@ -656,7 +656,7 @@ msgstr "%s: 入力引数 #%d で不正なサイズ: スカラーを想定しま�
 # File: macros/getcolor.sci, line: 29
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 文字列を想定します。\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 文字を想定します。\n"
 
 #
 # File: macros/xbasc.sci, line: 25
@@ -879,7 +879,7 @@ msgstr "%s: 入力引数 #%d で不正な型: 実を想定します。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
+msgstr "%s: 入力引数 #%d で不正な型: 文字を想定します。\n"
 
 #
 # File: macros/xbasc.sci, line: 25
@@ -978,7 +978,7 @@ msgstr "%s: 入力引数 #%d で不正な型: 実スカラーを想定します�
 # File: sci_gateway/c/sci_addcb.c, line: 56
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar or string expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: スカラー、または、文字列を想定します。\n"
+msgstr "%s: 入力引数 #%d で不正な型: スカラー、または、文字を想定します。\n"
 
 #
 # File: sci_gateway/c/sci_rotate_axes.c, line: 57
@@ -995,7 +995,7 @@ msgstr "%s: 入力引数 #%d で不正な型: 単一の構成、または、軸�
 # File: sci_gateway/c/sci_get.c, line: 98
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 単一文字列を想定します。\n"
+msgstr "%s: 入力引数 #%d で不正な型: 単一文字を想定します。\n"
 
 #
 # File: sci_gateway/c/sci_set.c, line: 198
@@ -1007,7 +1007,7 @@ msgstr "%s: 入力引数 #%d で不正な型: 文字配列を想定します。\
 # File: sci_gateway/c/sci_set.c, line: 198
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String or handle expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: ハンドル、または文字列を想定します。\n"
+msgstr "%s: 入力引数 #%d で不正な型: ハンドル、または文字を想定します。\n"
 
 #
 # File: sci_gateway/c/sci_move.c, line: 67
@@ -1222,7 +1222,7 @@ msgstr "%s: x ベクトルは単調ではありません。\n"
 # File: macros/getlinestyle.sci, line: 19
 # File: macros/getmark.sci, line: 25
 msgid "&?"
-msgstr "&?"
+msgstr "その他(&?)"
 
 #
 # File: macros/getcolor.sci, line: 76
@@ -2045,14 +2045,11 @@ msgid ""
 "elements.\n"
 msgstr "警告: '%s' プロパティは、、他の要素でもし %s がドックに入れられれば修正することができません。\n"
 
-#
-# File: src/c/getHandleProperty/set_color_range_property.c, line: 61
-# File: src/c/getHandleProperty/set_outside_colors_property.c, line: 61
 #, c-format
 msgid ""
-"WARNING: Wrong value for '%s' property: indices oustside the colormap will "
-"be clamped.\n"
-msgstr "警告: プロパティ '%s' で不正な値: インデックス外のカラーマップは固定されるでしょう。\n"
+"WARNING: Wrong value for '%s' property: indices outside the colormap will be "
+"clamped.\n"
+msgstr "警告: '%s' プロパティで値が不正です: カラーマップ外のインデックスは固定されます。\n"
 
 #
 # File: src/c/Gray.c, line: 243

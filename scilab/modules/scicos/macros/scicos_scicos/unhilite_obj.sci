@@ -20,6 +20,9 @@
 //
 
 function unhilite_obj(k,win)
+    xcosClearBlockWarning(k); //** new
+	return;
+
 //
 //** 21 Set 2006:
 //** WARNING: I changed mechanism AND input values:
@@ -88,9 +91,7 @@ function unhilite_obj(k,win)
  end
 
  //** update the display
- //** draw(gh_curwin.children);
  drawnow();  
- //** show_pixmap();
  //**----------------------------------------------------------------
 
  //**----------------------------------------------------------------

@@ -9,7 +9,7 @@ function [rep,stat] = java(java_filename)
 	
 	my_saved_path = pwd();
 	
-	if MSDOS then
+	if getos() == 'Windows' then
 		setenv('PATH',SCI+'\bin;' + getenv('PATH') + pathsep());
 	end
 	
@@ -17,7 +17,7 @@ function [rep,stat] = java(java_filename)
 	
 	cd(path);
 	
-	if MSDOS then
+	if getos() == 'Windows' then
 		commandline = jre_path() + "\bin\java -cp " ..
 			+ SCI + "\modules\javasci\jar\javasci.jar" ..
 			+ pathsep() + ". " + fname;

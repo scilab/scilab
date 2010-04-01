@@ -20,6 +20,11 @@
 
 #ifndef STACK3_H
 #define STACK3_H
+
+#ifndef API_SCILAB_VERSION
+#pragma message("Using stack3.h is deprecated. Please use api_scilab instead (try 'help api_scilab'). Note the stack3.h API will be removed after Scilab 6.0.")
+#endif
+
 #include "machine.h"
 //#include "doublecomplex.h"
 

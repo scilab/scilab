@@ -122,7 +122,7 @@ function [palettes,windows] = do_palettes(palettes, windows)
   h = %zoom*%wsiz(2)
   w = %zoom*%wsiz(1)
 
-  if ~MSDOS then
+  if getos() <> 'Windows' then
     h1 = h + 50 ; //** Linux 
   else
     h1 = h ;  //** Windows 
@@ -178,7 +178,6 @@ function [palettes,windows] = do_palettes(palettes, windows)
   //** force the proprieties of the palette windows:
   //** the user should be capable to change the size of the window   
   gh_palette.auto_resize = "on"       ; //** 
-  gh_palette.pixmap      = "off"      ;
   gh_palette.immediate_drawing = "on" ;
 
   //** put the focus in the previous window. 

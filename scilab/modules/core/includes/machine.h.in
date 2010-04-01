@@ -77,6 +77,9 @@
 /* Define to 1 if you have the `endpwent' function. */
 #undef HAVE_ENDPWENT
 
+/* Define to 1 if you have the `exp10' function. */
+#undef HAVE_EXP10
+
 /* Define to 1 if you have the <fcntl.h> header file. */
 #undef HAVE_FCNTL_H
 
@@ -381,12 +384,6 @@
 /* Define to 1 if you have the `_NSGetExecutablePath' function. */
 #undef HAVE__NSGETEXECUTABLEPATH
 
-/* HDF5 cflags */
-#undef HDF5_CFLAGS
-
-/* HDF5 library */
-#undef HDF5_LIBS
-
 /* Define to the value of ${prefix}, as a string. */
 #undef INSTALLPREFIX
 
@@ -519,9 +516,6 @@
 /* Define to empty if `const' does not conform to ANSI C. */
 #undef const
 
-/* Provide a macro to do exp10 */
-#undef exp10
-
 /* Don't use getwd but getcwd */
 #undef getwd
 
@@ -533,9 +527,6 @@
 
 /* Provide a macro to do isinf */
 #undef isinf
-
-/* Provide a macro to do exp10 */
-#undef log_10_
 
 
 

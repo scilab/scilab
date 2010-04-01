@@ -18,6 +18,7 @@
  *
  * See the file ./license.txt
  */
+/*--------------------------------------------------------------------------*/ 
 /**
    \file canimxy.c
    \author Benoit Bayol
@@ -26,6 +27,7 @@
    \brief CANIMXY is a scope in 2D which draw its input as a XY scope, there is animation.
    \see CANIMXY.sci in macros/scicos_blocks/Sinks/
 */
+/*--------------------------------------------------------------------------*/ 
 #include "CurrentObjectsManagement.h"
 #include "scoMemoryScope.h"
 #include "scoWindowScope.h"
@@ -34,35 +36,39 @@
 #include "scoSetProperty.h"
 #include "scicos_block4.h"
 #include "DrawingBridge.h"
-
+#include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
 /** \fn canimxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
 */
-void canimxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
+SCICOS_BLOCKS_IMPEXP void canimxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
 {
   /* Declarations*/
-  int i;
-  int gomme_color; //As usual
-  int * ipar; //Integer Parameters
-  int color_flag; //Flag on Color
+  int i = 0;
+  int gomme_color = 0; //As usual
+  int * ipar = NULL; //Integer Parameters
+  int color_flag = 0; //Flag on Color
   int color[2];
-  int line_size;
-  int animed;
-  int win; //Windows ID : To give a name to the window
-  int buffer_size; //Buffer Size
+  int line_size = 0;
+  int animed = 0;
+  int win = 0; //Windows ID : To give a name to the window
+  int buffer_size = 0; //Buffer Size
   int win_pos[2]; //Position of the Window
   int win_dim[2]; //Dimension of the Window
-  int nipar;
-  double * rpar; //Reals parameters
-  double xmin, xmax, ymin, ymax; //Ymin and Ymax are vectors here
+  int nipar = 0;
+  double * rpar = NULL; //Reals parameters
+  double xmin = 0., xmax = 0., ymin = 0., ymax = 0.; //Ymin and Ymax are vectors here
   scoGraphicalObject Pinceau; //Pointer to each polyline of each axes
   scoGraphicalObject Gomme; //Pointer to each polyline of each axes
   scoGraphicalObject Trait; //Pointer to each trache of each axes
-  int number_of_subwin;
-  int number_of_curves_by_subwin;
+  int number_of_subwin = 0;
+  int number_of_curves_by_subwin = 0;
   int dimension = 2;
-  int nbr_curves;
+  int nbr_curves = 0;
+  char *label = NULL;
 
+  /*Retrieving Parameters*/
   ipar = GetIparPtrs(block);
   nipar = GetNipar(block);
   rpar = GetRparPtrs(block);
@@ -82,8 +88,8 @@ void canimxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
   xmax = rpar[1];
   ymin = rpar[2];
   ymax = rpar[3]; 
+  label = GetLabelPtrs(block);
   number_of_subwin = 1;
-
   /* If only one element to draw*/
   if (buffer_size == 1)
     {
@@ -98,9 +104,7 @@ void canimxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
       if(scoGetScopeActivation(*pScopeMemory) == 1)
 	{
 
-	  sciSetPixmapMode(scoGetPointerScopeWindow(*pScopeMemory),TRUE);
-	  pFIGURE_FEATURE(scoGetPointerScopeWindow(*pScopeMemory))->pixmapMode = 1;
-
+	  //sciSetPixmapMode(scoGetPointerScopeWindow(*pScopeMemory),TRUE);
 
 	  for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(*pScopeMemory, 0) ; i++)
 	    {
@@ -125,9 +129,9 @@ void canimxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
       if(scoGetScopeActivation(*pScopeMemory) == 1)
 	{
 	  gomme_color = sciGetBackground(scoGetPointerAxes(*pScopeMemory,0));
-	  //sciSetIsBoxed(scoGetPointerAxes(*pScopeMemory,0),FALSE); //** obsolete in Scilab 5
-	  /*if mark style*/
-	  if(color[0] <= 0)
+
+	 
+	  if(color[0] <= 0)  /*if mark style*/
 	    {
 	      if(firstdraw == 1)
 		{
@@ -186,22 +190,22 @@ void canimxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
     }
   if(scoGetScopeActivation(*pScopeMemory) == 1)
     {
-      scoAddTitlesScope(*pScopeMemory,"x","y",NULL);
+      scoAddTitlesScope(*pScopeMemory,label,"x","y",NULL);
     }
 }
-
+/*--------------------------------------------------------------------------*/ 
 /** \fn void canimxy(scicos_block * block, int flag)
     \brief the computational function
     \param block A pointer to a scicos_block
     \param flag An int which indicates the state of the block (init, update, ending)
 */
-void canimxy(scicos_block * block, int flag)
+SCICOS_BLOCKS_IMPEXP void canimxy(scicos_block * block, int flag)
 {
   /*Declarations*/
-  ScopeMemory * pScopeMemory;
-  double *u1,*u2;
+  ScopeMemory * pScopeMemory = NULL;
+  double *u1 = NULL,*u2 = NULL;
   scoGraphicalObject pLongDraw;
-  int i;
+  int i = 0;
   /* State Machine Control */
   switch(flag)
     {
@@ -235,41 +239,37 @@ void canimxy(scicos_block * block, int flag)
       //This case is activated when the simulation is done or when we close scicos
     case Ending:
       {
-				scoRetrieveScopeMemory(block->work, &pScopeMemory);
-				if(scoGetScopeActivation(pScopeMemory) == 1)
-				{
-					/* sciSetUsedWindow(scoGetWindowID(pScopeMemory)); */
-					/* Check if figure is still opened, otherwise, don't try to destroy it again. */
-					scoGraphicalObject figure = scoGetPointerScopeWindow(pScopeMemory);
-					if (figure != NULL)
-					{
-						if(scoGetLongDrawSize(pScopeMemory,0) == 0)
-						{
-							for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0) ; i++)
-							{
-								pLongDraw = scoGetPointerLongDraw(pScopeMemory,0,i);
-								forceRedraw(pLongDraw);
-							}
-						}
-						else
-						{
-							for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0)/2 ; i++)
-							{
-								pLongDraw = scoGetPointerLongDraw(pScopeMemory,0,i);
-								forceRedraw(pLongDraw);
-							}
-						}
-					}
-					//Attention : here pShortDraw is a Window
-					/* pShortDraw = sciGetCurrentFigure(); */
-					/*pFIGURE_FEATURE(pShortDraw)->user_data = NULL;*/
-					/*pFIGURE_FEATURE(pShortDraw)->size_of_user_data = 0;*/
-					clearUserData(figure);
-				}
-				scoFreeScopeMemory(block->work, &pScopeMemory);
-				break; //Break of the switch
+	scoRetrieveScopeMemory(block->work, &pScopeMemory);
+	if(scoGetScopeActivation(pScopeMemory) == 1)
+	  {
+	    /* Check if figure is still opened, otherwise, don't try to destroy it again. */
+	    scoGraphicalObject figure = scoGetPointerScopeWindow(pScopeMemory);
+	    if (figure != NULL)
+	      {
+		if(scoGetLongDrawSize(pScopeMemory,0) == 0)
+		  {
+		    for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0) ; i++)
+		      {
+			pLongDraw = scoGetPointerLongDraw(pScopeMemory,0,i);
+			forceRedraw(pLongDraw);
+		      }
+		  }
+		else
+		  {
+		    for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0)/2 ; i++)
+		      {
+			pLongDraw = scoGetPointerLongDraw(pScopeMemory,0,i);
+			forceRedraw(pLongDraw);
+		      }
+		  }
+		clearUserData(figure);
+	      }
+	  }
+	scoFreeScopeMemory(block->work, &pScopeMemory);
+	break; //Break of the switch
       }
       //free the memory which is allocated at each turn by some variables
  
     }
 }
+/*--------------------------------------------------------------------------*/ 

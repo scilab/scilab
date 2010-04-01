@@ -37,7 +37,7 @@ function ilib_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflags,is
     error(999,msprintf(_("%s: Wrong size for input argument #%d: A matrix of strings < 999 expected.\n"),'ilib_build',2));
   end 
   
-  if ~MSDOS & strncpy(ilib_name,3) <> "lib" then
+  if getos() <> 'Windows' & strncpy(ilib_name,3) <> "lib" then
 	// We add a leading lib under Linux/Unix because it is the way
 	  ilib_name="lib" + ilib_name;
   end
@@ -49,7 +49,7 @@ function ilib_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflags,is
   if rhs <= 8 then ismex  = %f; end 
   if rhs <= 9 then cc  = ''; end 
   
-  if MSDOS then
+  if getos() == 'Windows' then
     if isdef('makename') then
       if (makename == []) | (makename == '') then
         makename = 'makelib';
@@ -83,14 +83,14 @@ function ilib_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflags,is
   
   // generate a Makefile
   if ( ilib_verbose() <> 0 ) then
-	  if MSDOS
+	  if getos() == 'Windows'
 	    mprintf(_("   Generate a Makefile: %s\n"),'Makelib');
 	  else
 	    mprintf(_("   Generate a Makefile\n"));
 	  end
   end
   
-  if ~MSDOS then // Needs to copy the libfoo.c which contains important stuff
+  if getos() <> 'Windows' then // Needs to copy the libfoo.c which contains important stuff
     files = files(:)';
     files = [files,ilib_name + '.c'];
   end

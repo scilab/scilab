@@ -20,6 +20,7 @@ function libn = ilib_for_link(names, ..
                               cflags, ..
                               fflags, ..
                               cc)
+ 
 
   [lhs,rhs] = argn(0);
   if rhs < 4 then
@@ -35,7 +36,7 @@ function libn = ilib_for_link(names, ..
   if rhs <= 9 then fflags  = ""; end 
   if rhs <= 10 then cc  = ""; end 
   
-  if MSDOS then
+  if getos() == 'Windows' then
     if isdef('makename') then
       if (makename == []) | (makename == '') then
         makename = 'makelib';
@@ -77,6 +78,7 @@ function libn = ilib_for_link(names, ..
     mprintf(gettext("   Running the Makefile\n"));
   end
   if (libname == "") then libname = names(1);end
+
   libn = ilib_compile('lib' + libname, makename, files);
   
   if ( ilib_verbose() <> 0 ) then
@@ -109,7 +111,7 @@ function ilib_link_gen_Make(names, ..
   if rhs <= 8 then cc  = ""; end 
   if rhs <= 9 then flag  = "c"; end 
   
-  if MSDOS then // Windows
+  if getos() == 'Windows' then // Windows
     // Visual Studio C++ 
     if ( findmsvccompiler() <> 'unknown' ) then 
       Makename = makename+'.mak';

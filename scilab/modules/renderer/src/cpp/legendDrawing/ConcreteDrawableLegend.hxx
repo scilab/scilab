@@ -31,6 +31,14 @@ public:
 
   virtual ~ConcreteDrawableLegend(void);
 
+  /**
+   * To specify that an object and its children have changed.
+   * Reimplemented in order to correctly delete the display lists of the
+   * objects composing the legend (if a GLJPanel is used as the display component)
+   * when a JOGL init event is processed, before any drawing actions are performed.
+   */
+  virtual void familyHasChanged(void);
+
 protected:
 
   /*-----------------------------------------------*/

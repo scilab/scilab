@@ -16,7 +16,13 @@
   <refsection>
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[ 
-k=0; while 1==1, k=k+1; if k > 100 then  break,end; end
+k=0; 
+while 1==1, 
+	  k=k+1;
+	  if k &gt; 100 then  
+	     break
+	  end; 
+end
  ]]></programlisting>
   </refsection>
   <refsection>

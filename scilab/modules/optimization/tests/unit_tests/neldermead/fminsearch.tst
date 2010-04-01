@@ -61,7 +61,7 @@ assert_equal ( output.iterations , 85 );
 assert_equal ( output.algorithm , "Nelder-Mead simplex direct search" );
 assert_equal ( output.funcCount , 159 );
 assert_equal ( output.message(1) , "Optimization terminated:");
-if MSDOS then
+if getos() == 'Windows' then
 assert_equal ( output.message(2) , " the current x satisfies the termination criteria using OPTIONS.TolX of 1.000000e-004");
 assert_equal ( output.message(3) , " and F(X) satisfies the convergence criteria using OPTIONS.TolFun of 1.000000e-004");
 else

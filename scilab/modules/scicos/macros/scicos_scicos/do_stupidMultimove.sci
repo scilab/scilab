@@ -49,7 +49,7 @@ have_moved = %f ; //** flag to signal the movement of one or more objects (used 
 
   //**------------------------------------------------------------------
 
-  if Cmenu=="Quit" then
+  if Cmenu=="XcosMenuQuit" then
     //active window has been closed
     [%win,Cmenu] = resume(%win,Cmenu)
   end
@@ -294,7 +294,7 @@ function [scs_m,have_moved] = stupid_MultiMoveObject(scs_m, Select, xc, yc)
       //** Window change and window closure protection
       gh_figure = gcf();
       if gh_figure.figure_id<>curwin | rep(3)==-1000 then
-	[%win,Cmenu] = resume(curwin,"Quit") ;
+	[%win,Cmenu] = resume(curwin,"XcosMenuQuit") ;
       end
 
       //**------------------------------------------------------------------
@@ -364,9 +364,7 @@ function [scs_m,have_moved] = stupid_MultiMoveObject(scs_m, Select, xc, yc)
        end//** end of the connected links
       //**---------------------------------------------------------------------------------------------
 
-    //** draw(gh_curwin.children); //** draw ALL the moving objects
     drawnow() ; //** force the draw of the object
-    //** show_pixmap() ; //** not useful on Scilab 5
 
     end //** ... of while Interactive move LOOP
     //**--------------------------------------------------------------------------------------------------------
@@ -374,7 +372,7 @@ function [scs_m,have_moved] = stupid_MultiMoveObject(scs_m, Select, xc, yc)
     //**-----------------------------------------------
     gh_figure = gcf();
     if gh_figure.figure_id<>curwin | rep(3)==-1000 then
-         [%win,Cmenu] = resume(curwin,"Quit") ;
+         [%win,Cmenu] = resume(curwin,"XcosMenuQuit") ;
     end
     //**-----------------------------------------------
 

@@ -36,7 +36,7 @@ case 'set' then
   model=arg1.model;
   while %t do
     [ok,M,F,P,exprs]=scicos_getvalue(['Set Gen_SIN Block'],..
-	    ['Magnitude';'Frequency';'phase'],..
+	    ['Magnitude';'Frequency (rad/s)';'phase'],..
 	    list('vec',1,'vec',1,'vec',1),exprs)
     if ~ok then break,end
     if F<0 then

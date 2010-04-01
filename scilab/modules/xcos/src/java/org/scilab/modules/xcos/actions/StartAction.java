@@ -19,23 +19,30 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.actions.base.GraphActionManager;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
+import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosMessages;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
 
 /**
  * Start the simulation
  */
 public class StartAction extends DefaultAction {
+	/** Name of the action */
 	public static final String NAME = XcosMessages.START;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "media-playback-start.png";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = 0;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = 0;
 	
     /**
@@ -68,32 +75,96 @@ public class StartAction extends DefaultAction {
      * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
      */
     public void actionPerformed(ActionEvent e) {
-	File temp;
-	updateUI(true);
+		final XcosDiagram diagram = ((XcosDiagram) getGraph(e)).getRootDiagram();
+		String cmd = "";
+		
+		updateUI(true);
 	
-	try {
-	    temp = File.createTempFile("xcos",".h5");
-	    ((XcosDiagram) getGraph(e)).getRootDiagram().dumpToHdf5File(temp.getAbsolutePath());
-
-	    String command = "import_from_hdf5(\"" + temp.getAbsolutePath() + "\");"
-	    				+ "scicos_debug(" + ((XcosDiagram) getGraph(e)).getDebugLevel() + ");"
-	    				+ "xcos_simulate(scs_m);"
-	    				+ "deletefile(\"" + temp.getAbsolutePath() + "\");";
+		try {
+			cmd = createSimulationCommand(diagram);
+		} catch (IOException ex) {
+			updateUI(false);
+			return;
+		}
+		
 	    try {
-			XcosInterpreterManagement.asynchronousScilabExec(command, new ActionListener() {
+			ScilabInterpreterManagement.asynchronousScilabExec(cmd, new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					updateUI(false);
+					diagram.getEngine().setCompilationNeeded(false);
 				}
 			});
 		} catch (InterpreterException e1) {
 			e1.printStackTrace();
 			updateUI(false);
 		}
-	} catch (IOException e1) {
-	    e1.printStackTrace();
-	    updateUI(false);
-	}
     }
+
+	/**
+	 * Create the command String
+	 * 
+	 * @param diagram
+	 *            the working diagram
+	 * @return the command string
+	 * @throws IOException
+	 *             when temporary files must not be created.
+	 */
+	private String createSimulationCommand(final XcosDiagram diagram)
+			throws IOException {
+		String cmd;
+		final StringBuilder command = new StringBuilder();
+		final boolean needCompile = diagram.getEngine().isCompilationNeeded();
+
+		File temp = null;
+		
+		/*
+		 * Log compilation info
+		 */
+		final Log log = LogFactory.getLog(StartAction.class);
+		if (needCompile && log.isTraceEnabled()) {
+			log.trace("diagram need compilation.");
+		} else {
+			log.trace("diagram doesn't need compilation.");
+		}
+		
+		/*
+		 * Import a valid scs_m structure into Scilab
+		 */
+		if (needCompile) {
+			temp = File.createTempFile("xcos", ".h5", XcosConstants.TMPDIR);
+			diagram.dumpToHdf5File(temp.getAbsolutePath());
+
+			command.append("import_from_hdf5(\"" + temp.getAbsolutePath()
+					+ "\"); ");
+			command.append("scicos_debug("
+					+ diagram.getScicosParameters().getDebugLevel() + "); ");
+		} else {
+			command.append(diagram.getEngine().getLoadSimulationDataCommand());
+		}
+
+		/*
+		 * Magic numbers come from scicos partial compilation status.
+		 */
+		String compile;
+		if (needCompile) {
+			compile = "4";
+		} else {
+			compile = "0";
+		}
+		
+		/*
+		 * Simulate and store results commands
+		 */
+		command.append("%cpr = xcos_simulate(scs_m, " + compile + ");");
+		command.append(diagram.getEngine().getStoreSimulationDataCommand());
+
+		if (needCompile) {
+			command.append("deletefile(\"" + temp.getAbsolutePath() + "\");");
+		}
+
+		cmd = command.toString();
+		return cmd;
+	}
 
 	/**
 	 * Update the UI depending on the action selected or not

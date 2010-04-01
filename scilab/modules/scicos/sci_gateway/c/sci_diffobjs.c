@@ -20,17 +20,50 @@
 */
 
 /*--------------------------------------------------------------------------*/
-/* INRIA 2008 */
-/* Allan CORNET */
-/*--------------------------------------------------------------------------*/
 #include "gw_scicos.h"
-#include "intcscicos.h"
 #include "stack-c.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_diffobjs)(char *fname,unsigned long fname_len)
+int sci_diffobjs(char *fname,unsigned long fname_len)
 {
-	intdiffobjs(fname,fname_len);
+	int one = 1, l3 = 0,k = 0;
+	int size1 = 0;
+	int size2 = 0;
+	int *header1 = NULL;
+	int *header2 = NULL;
+
+	CheckRhs(2,2);
+	CheckLhs(1,1);
+
+	header1 = GetData(1);
+	header2 = GetData(2);
+
+	CreateVar(3,MATRIX_OF_DOUBLE_DATATYPE,(one=1,&one),(one=1,&one),&l3);
+
+	LhsVar(1) = 3;
+
+	size1 = 2*(*Lstk(Top-Rhs+2)-*Lstk(Top-Rhs+1));
+	size2 = 2*(*Lstk(Top-Rhs+3)-*Lstk(Top-Rhs+2));
+
+	if (size1 != size2) 
+	{
+		*stk(l3)=1;
+		C2F(putlhsvar)();
+		return 0;
+	}
+
+	for (k=0; k<size1; k++) 
+	{
+		if (header1[k] != header2[k]) 
+		{
+			*stk(l3)=1;
+			C2F(putlhsvar)();
+			return 0;
+		}
+		*stk(l3)=0;
+	}
 	C2F(putlhsvar)();
+
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

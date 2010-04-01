@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function [x,y,typ]=PRODUCT(job,arg1,arg2)
+function [x,y,typ] = PRODUCT(job,arg1,arg2)
 x=[];y=[];typ=[];
 select job
 case 'plot' then
@@ -37,8 +37,10 @@ case 'set' then
   model=arg1.model
   exprs=graphics.exprs
   while %t do
-    [ok,sgn,exprs]=scicos_getvalue('Set multiplication block parameters',..
-'Number of inputs or sign vector (multiplication: + 1, division: -1)',list('vec',-1),exprs)
+    [ok,sgn,exprs]=scicos_getvalue(['         Set multiplication block parameters';
+                             '(multiplication is set with + 1, division with -1)';''],...
+                            'Number of inputs or sign vector',...
+                            list('vec',-1),exprs)
     if ~ok then break,end
     sgn=sgn(:);
     if size(sgn,1)==1 then 
@@ -99,8 +101,16 @@ case 'define' then
 	'end';
 	'xx=sz(1)*[.8 .8 .4  .4]+orig(1)+de';
 	'yy=sz(2)*[.2 .8 .8  .2]+orig(2)';
-	'xpoly(xx,yy,''lines'')']
+	'xpoly(xx,yy,''lines'')'
+        'txt=''Product'';'
+        'style=5;'
+        'rectstr=stringbox(txt,orig(1),orig(2),0,style,1);'
+        'if ~exists(''%zoom'') then %zoom=1, end;'
+        'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+        'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+        'xstringb(orig(1)+sz(1)/2-w/2,orig(2)-h-4,txt,w,h,''fill'');'
+        'e=gce();'
+        'e.font_style=style;']
   x=standard_define([2 3],model, exprs,gr_i)
-  x.graphics.id="Product"
 end
 endfunction

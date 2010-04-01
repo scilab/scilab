@@ -284,25 +284,6 @@ rect = [xmn,ymn;xmx,ymx];
 // initial draw
 f = scf(curwin);
 
-// if ~MSDOS then
-//   delmenu(curwin,'3D Rot.')
-//   delmenu(curwin,'Edit')
-//   delmenu(curwin,'File')
-//   delmenu(curwin,'Insert')
-// else
-//   toolbar(curwin,"off")
-//  // French
-//   delmenu(curwin,'&Fichier')
-//   delmenu(curwin,'&Editer')
-//   delmenu(curwin,'&Outils')
-//   delmenu(curwin,'&Inserer')
-//   // English
-//   delmenu(curwin,'&File')
-//   delmenu(curwin,'&Edit')
-//   delmenu(curwin,'&Tools')
-//   delmenu(curwin,'&Insert')
-//   end
-// //menuss=menus;menuss(1)=menus(1)(2:$);menubar(curwin,menuss)	  
 
 menu_r = [];
 menu_s = [];

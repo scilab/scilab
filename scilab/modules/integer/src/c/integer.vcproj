@@ -550,7 +550,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_int.c"
+				RelativePath=".\integer.rc"
 				>
 			</File>
 			<File
@@ -743,6 +743,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\resource.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\tpconv.h"
 				>
 			</File>
@@ -774,6 +778,10 @@
 					>
 				</File>
 			</Filter>
+		</Filter>
+		<Filter
+			Name="Resource File"
+			>
 		</Filter>
 		<File
 			RelativePath="..\..\integer.iss"

@@ -7,7 +7,7 @@
 *.o
 
 #
-# Linux libtool files
+# Linux autotool files
 #
 .deps
 .libs

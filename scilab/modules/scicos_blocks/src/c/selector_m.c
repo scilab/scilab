@@ -18,44 +18,50 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 #include <memory.h>
+#include "scicos_block4.h"
+#include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void selector_m(scicos_block *block,int flag)
+{
+	void *u = NULL;
+	void *y = NULL;
+	double *z = NULL;
+	int nu = 0,mu = 0,ic = 0,nev = 0,nin = 0,so = 0;
 
-void selector_m(scicos_block *block,int flag)
- {
-  void *u;
-  void *y;
-  double *z;
-  int nu,mu,ic,nev,nin,so;
+	z = GetDstate(block);
+	nin = GetNin(block);
+	ic = (int)z[0];
 
-  z=GetDstate(block);
-  nin=GetNin(block);
-  ic=(int)z[0];
-  if (flag<3)
-     {ic=0;
-      nev=GetNevIn(block);
-      while (nev>=1) 
-           {
-     	    ic=ic+1;
-     	    nev=nev/2;
-    	   }
-     }
-  if (nin>1)
-     {
-      mu=GetInPortRows(block,ic);
-      nu=GetInPortCols(block,ic);
-      u=GetInPortPtrs(block,ic);
-      so=GetSizeOfOut(block,1);
-      y=GetOutPortPtrs(block,1);
-      memcpy(y,u,mu*nu*so);
-      }
-   else
-      {
-       mu=GetInPortRows(block,1);
-       nu=GetInPortCols(block,1);
-       u=GetRealInPortPtrs(block,1);
-       y=GetRealOutPortPtrs(block,ic);
-       so=GetSizeOfIn(block,1);
-       memcpy(y,u,mu*nu*so);
-       }
+	if (flag<3)
+	{
+		ic=0;
+		nev=GetNevIn(block);
+		while (nev>=1) 
+		{
+			ic=ic+1;
+			nev=nev/2;
+		}
+	}
+	if (nin>1)
+	{
+		mu=GetInPortRows(block,ic);
+		nu=GetInPortCols(block,ic);
+		u=GetInPortPtrs(block,ic);
+		so=GetSizeOfOut(block,1);
+		y=GetOutPortPtrs(block,1);
+		memcpy(y,u,mu*nu*so);
+	}
+	else
+	{
+		mu=GetInPortRows(block,1);
+		nu=GetInPortCols(block,1);
+		u=GetInPortPtrs(block,1);
+		y=GetOutPortPtrs(block,ic);
+		so=GetSizeOfIn(block,1);
+		memcpy(y,u,mu*nu*so);
+	}
 }
+/*--------------------------------------------------------------------------*/ 

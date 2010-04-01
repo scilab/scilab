@@ -19,6 +19,8 @@ import java.util.List;
 
 import javax.swing.SwingUtilities;
 
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
@@ -30,11 +32,9 @@ import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.palette.PaletteBlock;
+import org.scilab.modules.xcos.palette.PaletteBlockCtrl;
 import org.scilab.modules.xcos.palette.view.PaletteBlockView;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
 
 /** Implement the default mouse listener for the block */
 public final class PaletteBlockMouseListener implements MouseListener {
@@ -55,7 +55,7 @@ public final class PaletteBlockMouseListener implements MouseListener {
 			ContextMenu menu = ScilabContextMenu.createContextMenu();
 
 			final List<XcosDiagram> allDiagrams = Xcos.getDiagrams();
-			final PaletteBlock control = ((PaletteBlockView) e.getSource()).getController();
+			final PaletteBlockCtrl control = ((PaletteBlockView) e.getSource()).getController();
 			
 			// No diagram opened: should never happen as Xcos opens an empty diagram when it is launched
 			assert allDiagrams.size() != 0;
@@ -105,7 +105,7 @@ public final class PaletteBlockMouseListener implements MouseListener {
 			help.setCallback(new CallBack(e.toString()) {
 				public void callBack() {
 					try {
-						XcosInterpreterManagement.synchronousScilabExec("help " + control.getModel().getName());
+						ScilabInterpreterManagement.synchronousScilabExec("help " + control.getModel().getName());
 					} catch (InterpreterException e) {
 						e.printStackTrace();
 					}
@@ -125,7 +125,7 @@ public final class PaletteBlockMouseListener implements MouseListener {
 	 * @return the loaded block
 	 */
 	private BasicBlock loadAndSetupBlock(
-			final PaletteBlock control) {
+			final PaletteBlockCtrl control) {
 		BasicBlock current = control.loadBlock();
 		current.getGeometry().setX(BLOCK_DEFAULT_POSITION);
 		current.getGeometry().setY(BLOCK_DEFAULT_POSITION);

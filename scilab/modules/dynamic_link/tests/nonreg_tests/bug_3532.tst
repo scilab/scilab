@@ -18,7 +18,7 @@
 
 ilib_verbose(0);
 
-if MSDOS then
+if getos() == 'Windows' then
   warning('off');
   Cfunctions = '';
   ierr = execstr("link(SCI+''/bin/scilab_windows.dll'',Cfunctions,''c'');",'errcatch');
