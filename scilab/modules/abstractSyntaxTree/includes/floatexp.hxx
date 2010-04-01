@@ -17,54 +17,54 @@
 
 namespace ast
 {
-  /** \brief Abstract an Float Expression node.
-   **
-   ** \b Example:  42.51 */
-  class FloatExp : public ConstExp
-  {
-  public:
-    FloatExp (const Location& location, float value) :
-      ConstExp (location),
-      _value (value)
-    {
-    }
-    /** \brief Destroy an Float Expression node.
+    /** \brief Abstract an Float Expression node.
      **
-     ** Delete size et init (exp) (see constructor). */
-    virtual ~FloatExp ()
+     ** \b Example:  42.51 */
+    class FloatExp : public ConstExp
     {
-    }
-    /** \} */
+    public:
+        FloatExp (const Location& location, float value) :
+            ConstExp (location),
+            _value (value)
+            {
+            }
+        /** \brief Destroy an Float Expression node.
+         **
+         ** Delete size et init (exp) (see constructor). */
+        virtual ~FloatExp ()
+            {
+            }
+        /** \} */
 
-    /** \name Visitors entry point.
-     ** \{ */
-  public:
-    /** \brief Accept a const visitor \a v. */
-    virtual void accept (Visitor& v)
-    {
-      v.visit (*this);
-    }
-    /** \brief Accept a non-const visitor \a v. */
-    virtual void accept (ConstVisitor& v) const
-    {
-      v.visit (*this);
-    }
-    /** \} */
+        /** \name Visitors entry point.
+         ** \{ */
+    public:
+        /** \brief Accept a const visitor \a v. */
+        virtual void accept (Visitor& v)
+            {
+                v.visit (*this);
+            }
+        /** \brief Accept a non-const visitor \a v. */
+        virtual void accept (ConstVisitor& v) const
+            {
+                v.visit (*this);
+            }
+        /** \} */
 
 
-    /** \name Accessors.
-     ** \{ */
-  public:
-    /** \brief Return the value */
-    const float value_get() const
-    {
-      return _value;
-    }
-    /** \} */
+        /** \name Accessors.
+         ** \{ */
+    public:
+        /** \brief Return the value */
+        float value_get() const
+            {
+                return _value;
+            }
+        /** \} */
 
-  protected:
-    float     _value;
-  };
+    protected:
+        float     _value;
+    };
 
 } // namespace ast
 #endif
