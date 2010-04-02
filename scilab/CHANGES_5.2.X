@@ -45,6 +45,12 @@ dynamic link:
   do not stop during the compiler detection but stop at build time.
   The error message is much more explicit.
 
+* In some cases, when a library is not available, we try to find it into the
+  .libs of the module (it is the case in the development source tree). 
+  However, in the binary, for any reason, if we fail to load the library
+  (missing symbol, bad format of library, etc), the error message was not
+  displayed.
+
 call_scilab:
 ============
 
