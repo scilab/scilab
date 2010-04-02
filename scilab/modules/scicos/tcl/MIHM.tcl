@@ -1625,7 +1625,7 @@ global scilabpath
   
         set Main_node "$xparent$ModelName"
 
-        if { [catch {$tree insert end $xparent $Main_node -image [image create photo -file "$scilabpath/modules/scicos/macros/scicos_scicos/scicos2.gif"] -text $ModelName }] } {	    
+        if { [catch {$tree insert end $xparent $Main_node -image [image create photo -file "$scilabpath/modules/scicos/tcl/scicos2.gif"] -text $ModelName }] } {	    
 	    set kids [$tree nodes root]
 	    set exist "no"
 	    foreach  kid   $kids {    
@@ -1635,7 +1635,7 @@ global scilabpath
 		set answer [tk_messageBox -icon question -type yesno -title Message  -message "This model is already open!\n\rDo you want to reopen it?"]
 		if { $answer == "yes" }  {
 		    $tree delete  $Main_node
-		    if { [catch {$tree insert end $xparent $Main_node -image [image create photo -file "$scilabpath/modules/scicos/macros/scicos_scicos/scicos2.gif"] -text $ModelName }] } {
+		    if { [catch {$tree insert end $xparent $Main_node -image [image create photo -file "$scilabpath/modules/scicos/tcl/scicos2.gif"] -text $ModelName }] } {
 			return "" 
 		    }
 		} else { 
