@@ -61,6 +61,48 @@ Graphics:
 
 * Adding two new line style : "dot" and "double dot". See bug 6840.
 
+* bug 6472 fixed - Resizing the graphics window after having plotted several 2D
+                   curves and a legend caused some of them to disappear.
+
+* bug 6531 fixed - Adding a new color to the current colormap caused the Legend
+                   entity's default background color to change.
+
+* bug 6557 fixed - The legend order of the plzr function was incorrect.
+
+* bug 6648 fixed - The description of the format_n property was missing from
+                   the axis_properties online help page.
+
+* bug 6664 fixed - Setting the Axes property tight_limits to "on" caused the 
+                   Axes and their attached entities to disappear when data min
+                   and max bounds were equal (for any of the X,Y or Z axes).
+
+* bug 6687 fixed - The Matplot function didn't set the clip_state property of 
+                   the entities it creates.
+
+* bug 6712 fixed - The "title" function forced displaying axes.
+
+* bug 6718 fixed - A text in a graphic containing a "<" symbol cannot be
+                   exported in eps.
+
+* bug 6720 fixed - "caption" function doesn't handled properly polylines
+                   handles.
+
+* bug 6721 fixed - Loading a saved Axis graphics entity didn't correctly 
+                   restore its tics_direction property.
+
+* bug 6735 fixed - The "landscape" option in the print dialog as well as in
+                   xs2eps did not work as expected.
+
+* bug 6738 fixed - The horizontal line of the square root symbol was not
+                   drawn when exported.
+
+* bug 6817 fixed - The "xstring" function shifted the start position of the 
+                   string relative to the string length.
+
+* bug 6834 fixed - The rotation formula in the rotate help page was incorrect.
+
+* bug 6850 fixed - "PlotSparse" function was not great.
+
 Compilation:
 ============
 
@@ -155,56 +197,21 @@ Bug Fixes:
 * bug 5466 fixed - "savematfile" no more append variables in file by default, 
                    file is now reinitialized at each "savematfile" call.
 
-* bug 6472 fixed - Resizing the graphics window after having plotted several 2D
-                   curves and a legend caused some of them to disappear.
-
-* bug 6531 fixed - Adding a new color to the current colormap caused the Legend
-                   entity's default background color to change.
-
-* bug 6557 fixed - The legend order of the plzr function was incorrect.
-
-* bug 6648 fixed - The description of the format_n property was missing from
-                   the axis_properties online help page.
-
-* bug 6664 fixed - Setting the Axes property tight_limits to "on" caused the 
-                   Axes and their attached entities to disappear when data min
-                   and max bounds were equal (for any of the X,Y or Z axes).
-
 * bug 6675 fixed - x_mdialog crashed scilab with some incorrect input 
                    arguments.
 
-* bug 6687 fixed - The Matplot function didn't set the clip_state property of 
-                   the entities it creates.
-
 * bug 6698 fixed - isreal does not work on hypermatrix
-
-* bug 6718 fixed - A text in a graphic containing a "<" symbol cannot be
-                   exported in eps.
-
-* bug 6721 fixed - Loading a saved Axis graphics entity didn't correctly 
-                   restore its tics_direction property.
 
 * bug 6730 fixed - problem with function calls when seen has member of an 
                    mlist.
 
 * bug 6734 fixed - read_csv function contained erroneous error messages.
 
-* bug 6735 fixed - The "landscape" option in the print dialog as well as in
-                   xs2eps did not work as expected.
-
-* bug 6738 fixed - The horizontal line of the square root symbol was not
-                   drawn when exported.
-
 * bug 6739 fixed - if a Scilab coded library function is redefined in a new 
                    library, completion on its name maked Scilab crashed.
 
-* bug 6712 fixed - The "title" function forced displaying axes.
-
 * bug 6719 fixed - Error fixed in example of root_properties help page
                    (French version only).
-
-* bug 6720 fixed - "caption" function doesn't handled properly polylines
-                   handles.
 
 * bug 6720 fixed - "lib" function didn't print the same thing when it was 
                    entered several times.
@@ -217,16 +224,19 @@ Bug Fixes:
 * bug 6798 fixed - About Matlab to Scilab tools help page updated.
 
 * bug 6816 fixed - Incoherent extraction when there is no index: M()
-
-* bug 6817 fixed - The "xstring" function shifted the start position of the 
-                   string relative to the string length.
  
 * bug 6829 fixed - kpure fails to compute  when applied to an high degree 
                    system.
 
-* bug 6834 fixed - The rotation formula in the rotate help page was incorrect.
+* bug 6841 fixed - fun2string failed on simple examples containing variable
+                   extraction.
 
-* bug 6841 fixed - fun2string failed on simple examples containing variable extraction.
+* bug 6787 fixed - toprint(filename) required only absolute path to filename.
+
+* bug 6788 fixed - toprint(filename) UTF8 chars in a file were mis-printed.
+
+* bug 6790 fixed - toprint(nFigure): %F was returned while actually the figure
+                   is printed.
 
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab
