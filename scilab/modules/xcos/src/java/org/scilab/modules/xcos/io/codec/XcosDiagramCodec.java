@@ -37,13 +37,13 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
 	
 	// The non saved fields are hardcoded and can have the same name.
 	// CSOFF: MultipleStringLiterals
-	private static final String[] DIAGRAM_IGNORED_FIELDS = { "stylesheet",
+	private static final String[] DIAGRAM_IGNORED_FIELDS = {"stylesheet",
 			"parentTab", "viewPort", "viewPortMenu", "view", "selectionModel",
 			"savedFile", "multiplicities", "opened", "modified", "undoManager" };
 	private static final String[] SUPERBLOCKDIAGRAM_IGNORED_FIELDS = {
 			"stylesheet", "parentTab", "viewPort", "viewPortMenu", "view",
 			"selectionModel", "multiplicities", "opened", "modified",
-			"undoManager", "savedFile", "container" };
+			"undoManager", "savedFile", "container"};
 	// CSON: MultipleStringLiterals
 
 	/**
@@ -56,13 +56,6 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
 		super(template);
 	}
 
-	public static void register() {
-		ScilabGraphCodec diagramCodec = new XcosDiagramCodec(new XcosDiagram(), DIAGRAM_IGNORED_FIELDS, null, null);
-		mxCodecRegistry.register(diagramCodec);
-		ScilabGraphCodec superBlockDiagramCodec = new XcosDiagramCodec(new SuperBlockDiagram(), SUPERBLOCKDIAGRAM_IGNORED_FIELDS, null, null);
-		mxCodecRegistry.register(superBlockDiagramCodec);
-	}
-	
 	/**
 	 * The constructor used for configuration
 	 * 
@@ -81,6 +74,16 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
 		super(template, exclude, idrefs, mapping);
 	}
 
+	/**
+	 * Register this codec into the {@link mxCodecRegistry}.
+	 */
+	public static void register() {
+		ScilabGraphCodec diagramCodec = new XcosDiagramCodec(new XcosDiagram(), DIAGRAM_IGNORED_FIELDS, null, null);
+		mxCodecRegistry.register(diagramCodec);
+		ScilabGraphCodec superBlockDiagramCodec = new XcosDiagramCodec(new SuperBlockDiagram(), SUPERBLOCKDIAGRAM_IGNORED_FIELDS, null, null);
+		mxCodecRegistry.register(superBlockDiagramCodec);
+	}
+	
 	/**
 	 * Encode the fieldname value.
 	 * 
