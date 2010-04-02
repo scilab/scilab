@@ -132,7 +132,7 @@ public class DebugLevelDialog extends JDialog {
 				int value = ((DebugLevel) debugList.getSelectedValue()).getValue();
 				try {
 					parameters.setDebugLevel(value);
-					ScilabInterpreterManagement.synchronousScilabExec("scicos_debug(" + value + ");");
+					ScilabInterpreterManagement.synchronousScilabExec("scicos_debug", value);
 					dispose();
 				} catch (InterpreterException e1) {
 					LogFactory.getLog(DebugLevelAction.class).error(e1);
