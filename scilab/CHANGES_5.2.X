@@ -90,6 +90,9 @@ Xcos:
 * bug 5541 fixed - The Cut/Copy-n-Paste operation did not preserve the block
                    rotation.
 
+* bug 5700 fixed - Compilation under RHE4 was failing on term.h and termcap.h
+                   inclusion. Thanks to Nicolas Vergnes for providing the fix.
+
 * bug 6415 fixed - The SAWTOOTH_f block was not working properly.
 
 * bug 6501 fixed - The border color and fill default color was not set 
