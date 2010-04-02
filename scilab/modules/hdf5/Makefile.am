@@ -20,13 +20,13 @@ src/c/h5_writeDataToFile.c \
 src/c/h5_readDataFromFile.c
 
 if NEED_JAVA
-HDF5_CPP_SOURCES =  src/jni/jhdf5load.hxx \
-src/jni/jhdf5load.cpp \
-src/jni/GiwsException.hxx \
+HDF5_CPP_SOURCES =  src/jni/GiwsException.hxx \
 src/jni/GiwsException.cpp
 
 # This is due to an ugly hack for bug #5481
-FORCE_LOAD_SOURCES = src/cpp/forceJHDF5load.cpp
+FORCE_LOAD_SOURCES = src/cpp/forceJHDF5load.cpp \
+src/jni/jhdf5load.hxx \
+src/jni/jhdf5load.cpp
 else
 HDF5_CPP_SOURCES = 
 

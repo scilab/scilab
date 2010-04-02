@@ -151,7 +151,7 @@ public final class BlockWriter {
 	double[][] tol = {{parameters.getIntegratorAbsoluteTolerance(), 
 	    parameters.getIntegratorRelativeTolerance(),
 	    parameters.getToleranceOnTime(),
-	    parameters.getMaxIntegrationTimeinterval(),
+	    parameters.getMaxIntegrationTimeInterval(),
 	    parameters.getRealTimeScaling(),
 	    parameters.getSolver(),
 	    parameters.getMaximumStepSize()}};

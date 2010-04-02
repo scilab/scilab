@@ -55,8 +55,6 @@ import com.mxgraph.util.mxRectangle;
  * A link is always oriented from Input to Output or from Command to Control. 
  */
 public abstract class BasicLink extends ScilabGraphUniqueObject {
-
-	private static final long serialVersionUID = 8557979393361216098L;
 	private static final mxGeometry DEFAULT_GEOMETRY = new mxGeometry(0, 0, 80, 80);
 	private static final int DETECTION_RECTANGLE_DIMENSION = 10;
 

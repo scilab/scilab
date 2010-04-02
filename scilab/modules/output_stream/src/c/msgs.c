@@ -147,6 +147,11 @@ static int msg_115(int *n, int *ierr);
 
 static int msg_default(int *n, int *ierr);
 /*--------------------------------------------------------------------------*/
+void Msgs(int n,int ierr)
+{
+	C2F(msgs)(&n,&ierr);
+}
+/*--------------------------------------------------------------------------*/
 int C2F(msgs)(int *n, int *ierr)
 {
 	if ( getWarningMode() )

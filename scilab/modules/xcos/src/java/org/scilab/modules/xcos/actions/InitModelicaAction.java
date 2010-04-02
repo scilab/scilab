@@ -11,14 +11,17 @@
  */
 package org.scilab.modules.xcos.actions;
 
+import static org.scilab.modules.graph.utils.ScilabInterpreterManagement.asynchronousScilabExec;
+import static org.scilab.modules.graph.utils.ScilabInterpreterManagement.buildCall;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
-import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
 import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
@@ -73,20 +76,24 @@ public class InitModelicaAction extends DefaultAction {
 	    temp = File.createTempFile("xcos", ".h5", XcosConstants.TMPDIR);
 	    ((XcosDiagram) getGraph(e)).getRootDiagram().dumpToHdf5File(temp.getAbsolutePath());
 
-	    String command = "import_from_hdf5(\"" + temp.getAbsolutePath() + "\");"
-	    + "xcosConfigureModelica();"
-	    + "deletefile(\"" + temp.getAbsolutePath() + "\");";
+	    String cmd = buildCall("import_from_hdf5", temp.getAbsolutePath());
+	    cmd += buildCall("xcosConfigureModelica");
+	    cmd += buildCall("deletefile", temp.getAbsolutePath());
+	    
+	    final ActionListener action = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
+			}
+		};
+	    
 	    try {
-		ScilabInterpreterManagement.asynchronousScilabExec(command, new ActionListener() {
-		    public void actionPerformed(ActionEvent arg0) {
-			((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
-		    }
-		});
+	    	asynchronousScilabExec(action, cmd);
 	    } catch (InterpreterException e1) {
-		e1.printStackTrace();
+	    	LogFactory.getLog(InitModelicaAction.class).error(e1);
 	    }
 	} catch (IOException e1) {
-	    e1.printStackTrace();
+		LogFactory.getLog(InitModelicaAction.class).error(e1);
 	}  
     }
 }

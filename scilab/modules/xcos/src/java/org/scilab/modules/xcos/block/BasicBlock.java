@@ -12,7 +12,6 @@
 
 package org.scilab.modules.xcos.block;
 
-
 import java.awt.MouseInfo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -632,6 +631,8 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 	final File tempOutput;
 	final File tempInput;
 	final File tempContext;
+	final BasicBlock currentBlock = this;
+	
 	try {
 	    tempInput = File.createTempFile(INTERNAL_FILE_PREFIX, INTERNAL_FILE_EXTENSION, XcosConstants.TMPDIR);
 
@@ -639,45 +640,45 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 	    tempOutput = exportBlockStruct();
 	    // Write context
 	    tempContext = exportContext(context);
-
-	    String cmd;
 	    
-	    cmd = "xcosBlockInterface(\"" + tempOutput.getAbsolutePath() + "\"";
-	    cmd += ", \"" + tempInput.getAbsolutePath() + "\"";
-	    cmd += ", " + getInterfaceFunctionName();
-	    cmd += ", \"set\"";
-	    cmd += ", \"" + tempContext.getAbsolutePath() + "\");";
-	    
-	    final BasicBlock currentBlock = this;
-	    try {
-			ScilabInterpreterManagement.asynchronousScilabExec(cmd, new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					if (tempInput.exists()) {
-						LOG.trace("Updating data.");
-						
-					// Now read new Block
-				    BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());
-				    updateBlockSettings(modifiedBlock);
-				    
-				    getParentDiagram().fireEvent(new mxEventObject(XcosEvent.ADD_PORTS, XcosConstants.EVENT_BLOCK_UPDATED, 
-					    currentBlock));
-					} else {
-						LOG.trace("No needs to update data.");
-					}
+	    final ActionListener action = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (tempInput.exists()) {
+					LOG.trace("Updating data.");
 					
-				    setLocked(false);
-				    tempInput.delete();
-				    tempOutput.delete();
-				    tempContext.delete();
+				// Now read new Block
+			    BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());
+			    updateBlockSettings(modifiedBlock);
+			    
+			    getParentDiagram().fireEvent(new mxEventObject(XcosEvent.ADD_PORTS, XcosConstants.EVENT_BLOCK_UPDATED, 
+				    currentBlock));
+				} else {
+					LOG.trace("No needs to update data.");
 				}
-			});
+				
+			    setLocked(false);
+			    tempInput.delete();
+			    tempOutput.delete();
+			    tempContext.delete();
+			}
+		};
+		
+	    try {
+			ScilabInterpreterManagement.asynchronousScilabExec(action, 
+				"xcosBlockInterface", 
+				tempOutput.getAbsolutePath(),
+				tempInput.getAbsolutePath(),
+				getInterfaceFunctionName(),
+				"set",
+				tempContext.getAbsolutePath());
 		} catch (InterpreterException e) {
-			e.printStackTrace();
+			LOG.error(e);
 		}
 	    setLocked(true);
 
 	} catch (IOException e) {
-	    e.printStackTrace();
+	    LOG.error(e);
 	}
     }
 

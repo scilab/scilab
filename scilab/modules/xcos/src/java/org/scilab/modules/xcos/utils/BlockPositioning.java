@@ -395,10 +395,10 @@ public final class BlockPositioning {
 				final String rot = Integer.toString(orientation.getRelativeAngle(angle, port.getClass(), flipped, mirrored));
 				mxUtils.setCellStyles(model, new Object[] {port}, XcosConstants.STYLE_ROTATION, rot);
 			} else {
-				final StyleMap m = new StyleMap(block.getStyle());
+				final StyleMap m = new StyleMap(port.getStyle());
 				final int rot = orientation.getRelativeAngle(angle, port.getClass(), flipped, mirrored);
 				m.put(XcosConstants.STYLE_ROTATION, Integer.toString(rot));
-				block.setStyle(m.toString());
+				port.setStyle(m.toString());
 			}
 
 			endUpdate(block);

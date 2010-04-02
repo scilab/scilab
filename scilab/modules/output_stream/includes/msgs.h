@@ -41,4 +41,14 @@ void Msgs(int n,int ierr);
  */
 int printToBuffer(const char* format,...);
 
+
+/**
+* @TODO : add comment
+*
+* @param n 
+* @param ierr  
+*/
+OUTPUT_STREAM_IMPEXP void Msgs(int n,int ierr);
+
+
 #endif /* __MSGS_H__ */
