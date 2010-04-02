@@ -62,7 +62,6 @@ o  circle
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
 [A,description,ref,mtype] = ReadHBSparse(SCI+"/modules/umfpack/examples/arc130.rua");
-set figure_style old
 PlotSparse(A,"y+")
 xtitle(ref + "." + mtype + " : " + description)
  ]]></programlisting>
