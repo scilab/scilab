@@ -14,13 +14,21 @@
 
 package org.scilab.modules.xcos.block.actions;
 
+import static org.scilab.modules.graph.utils.ScilabInterpreterManagement.buildCall;
+
 import java.awt.event.ActionEvent;
 import java.io.File;
+import java.io.IOException;
 
+import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
+
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.VertexSelectionDependantAction;
 import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.hdf5.write.H5Write;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SplitBlock;
@@ -65,40 +73,58 @@ public final class ViewDetailsAction extends VertexSelectionDependantAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-	XcosDiagram graph = (XcosDiagram) getGraph(null);
-	Object[] selectedCells = graph.getSelectionCells();
-
-	//if no cells are selected : Do nothing
-	if (selectedCells.length == 0) { return; }
-
-	for (int i = 0; i < selectedCells.length; ++i) {
-	    if ((selectedCells[i] instanceof BasicBlock) && !(selectedCells[i] instanceof SplitBlock)) {
-		try {
-		    File temp = File.createTempFile("xcos", ".h5");
-		    temp.deleteOnExit();
-		    int fileId = H5Write.createFile(temp.getAbsolutePath());
-		    H5Write.writeInDataSet(fileId, "scs_m", BasicBlockInfo.getAsScilabObj((BasicBlock) selectedCells[i]));
-		    H5Write.closeFile(fileId);
-		    ScilabInterpreterManagement.synchronousScilabExec("import_from_hdf5(\"" + temp.getAbsolutePath() + "\");tree_show(scs_m);"
-			    + "deletefile(\"" + temp.getAbsolutePath() + "\");");
-		} catch (Exception e2) {
-		    // Do Nothing !!!
+		XcosDiagram graph = (XcosDiagram) getGraph(null);
+		Object[] selectedCells = graph.getSelectionCells();
+	
+		//if no cells are selected : Do nothing
+		if (selectedCells.length == 0) { return; }
+	
+		for (int i = 0; i < selectedCells.length; ++i) {
+		    if ((selectedCells[i] instanceof BasicBlock) && !(selectedCells[i] instanceof SplitBlock)) {
+		    	BasicBlock instance = (BasicBlock) selectedCells[i];
+				viewDetails(BasicBlockInfo.getAsScilabObj(instance));
+		    } else if (selectedCells[i] instanceof BasicLink) {
+		    	BasicLink instance = (BasicLink) selectedCells[i];
+				viewDetails(instance.getAsScilabObj());
+		    }
 		}
-	    }
-	    if (selectedCells[i] instanceof BasicLink) {
-		try {
-		    File temp = File.createTempFile("xcos", ".h5");
-		    temp.deleteOnExit();
-		    int fileId = H5Write.createFile(temp.getAbsolutePath());
-		    H5Write.writeInDataSet(fileId, "scs_m", ((BasicLink) selectedCells[i]).getAsScilabObj());
-		    H5Write.closeFile(fileId);
-		    ScilabInterpreterManagement.synchronousScilabExec("import_from_hdf5(\"" + temp.getAbsolutePath() + "\");tree_show(scs_m);"
-			    + "deletefile(\"" + temp.getAbsolutePath() + "\");");
-		} catch (Exception e2) {
-		    // Do Nothing !!!
-		}
-	    }
-	}
-
     }
+
+	/**
+	 * View the data details
+	 * @param data the selected block or link data
+	 */
+	private void viewDetails(ScilabMList data) {
+		/*
+		 * Export data
+		 */
+		File temp;
+		try {
+			temp = File.createTempFile("xcos", ".h5");
+		} catch (IOException e1) {
+			LogFactory.getLog(ViewDetailsAction.class).error(e1);
+			return;
+		}
+
+		int fileId = H5Write.createFile(temp.getAbsolutePath());
+		try {
+			H5Write.writeInDataSet(fileId, "scs_m", data);
+		} catch (HDF5Exception e1) {
+			LogFactory.getLog(ViewDetailsAction.class).error(e1);
+			return;
+		}
+		H5Write.closeFile(fileId);
+		
+		/*
+		 * Build and execute the command
+		 */
+		String cmd = buildCall("import_from_hdf5", temp.getAbsolutePath());
+		cmd += "tree_show(scs_m); ";
+		cmd += buildCall("deletefile", temp.getAbsolutePath());
+		try {
+			ScilabInterpreterManagement.synchronousScilabExec(cmd);
+		} catch (InterpreterException e1) {
+			LogFactory.getLog(ViewDetailsAction.class).error(e1);
+		}
+	}
 }

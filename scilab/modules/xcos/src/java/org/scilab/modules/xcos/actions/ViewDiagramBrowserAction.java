@@ -68,11 +68,10 @@ public final class ViewDiagramBrowserAction extends OneBlockDependantAction {
 			((XcosDiagram) getGraph(null)).dumpToHdf5File(temp
 					.getAbsolutePath());
 			try {
-				ScilabInterpreterManagement
-						.synchronousScilabExec("import_from_hdf5(\""
-								+ temp.getAbsolutePath() + "\"); "
-								+ "tree_show(scs_m);" + "deletefile(\""
-								+ temp.getAbsolutePath() + "\");");
+				String cmd = ScilabInterpreterManagement.buildCall("import_from_hdf5", temp.getAbsolutePath());
+				cmd += "tree_show(scs_m); ";
+				cmd += ScilabInterpreterManagement.buildCall("deletefile", temp.getAbsolutePath());
+				ScilabInterpreterManagement.synchronousScilabExec(cmd);
 			} catch (InterpreterException e2) {
 				e2.printStackTrace();
 			}

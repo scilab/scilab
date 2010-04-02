@@ -13,6 +13,12 @@
 
 package org.scilab.modules.xcos.actions;
 
+import static org.scilab.modules.graph.utils.ScilabInterpreterManagement.asynchronousScilabExec;
+import static org.scilab.modules.graph.utils.ScilabInterpreterManagement.buildCall;
+import static org.scilab.modules.hdf5.write.H5Write.closeFile;
+import static org.scilab.modules.hdf5.write.H5Write.createFile;
+import static org.scilab.modules.hdf5.write.H5Write.writeInDataSet;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -20,11 +26,10 @@ import java.io.IOException;
 
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
 import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.hdf5.write.H5Write;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.actions.SuperBlockSelectedAction;
@@ -68,56 +73,72 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
     }
 
 	/**
+	 * Action !!!
 	 * @param e parameter
 	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-	Object selectedObj = getGraph(null).getSelectionCell();
-		if (!(selectedObj instanceof SuperBlock)) {
-			((XcosDiagram) getGraph(null)).error(XcosMessages.ERROR_GENERATING_C_CODE);
-			return;
-		}
-
-	((XcosDiagram) getGraph(null)).info(XcosMessages.GENERATING_C_CODE);
+		Object selectedObj = getGraph(null).getSelectionCell();
+			if (!(selectedObj instanceof SuperBlock)) {
+				((XcosDiagram) getGraph(null)).error(XcosMessages.ERROR_GENERATING_C_CODE);
+				return;
+			}
 	
-	final SuperBlock block = (SuperBlock) selectedObj;
-	try {
-			final File tempOutput = File.createTempFile(XcosFileType.XCOS
-					.getExtension(), XcosFileType.HDF5.getExtension(),
-					XcosConstants.TMPDIR);
-			final File tempInput = File.createTempFile(XcosFileType.XCOS
-					.getExtension(), XcosFileType.HDF5.getExtension(),
-					XcosConstants.TMPDIR);
-	    tempOutput.deleteOnExit();
-	    tempInput.deleteOnExit();
-	    // Write scs_m
-	    int fileId = H5Write.createFile(tempOutput.getAbsolutePath());
-	    H5Write.writeInDataSet(fileId, "scs_m", block.getAsScilabObj());
-	    H5Write.closeFile(fileId);
-	    
-			String command = "xcosCodeGeneration(\""
-					+ tempOutput.getAbsolutePath() + "\"" + ", \""
-					+ tempInput.getAbsolutePath() + "\");";
-	    
-			final ActionListener callback = new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					doAction(block, tempInput);
-					((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
-				}
-			};
-			
-			ScilabInterpreterManagement.asynchronousScilabExec(command, callback);
-	} catch (IOException ex) {
-		ex.printStackTrace();
-	    ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
-	} catch (HDF5Exception ex) {
-		ex.printStackTrace();
-		((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
-	} catch (InterpreterException ex) {
-		ex.printStackTrace();
-		((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
-	}
+		((XcosDiagram) getGraph(null)).info(XcosMessages.GENERATING_C_CODE);
+		
+		final SuperBlock block = (SuperBlock) selectedObj;
+		try {
+				/*
+				 * Prepare data
+				 */
+				final File tempOutput = File.createTempFile(XcosFileType.XCOS
+						.getExtension(), XcosFileType.HDF5.getExtension(),
+						XcosConstants.TMPDIR);
+				final File tempInput = File.createTempFile(XcosFileType.XCOS
+						.getExtension(), XcosFileType.HDF5.getExtension(),
+						XcosConstants.TMPDIR);
+				
+			    /*
+			     * Export data
+			     */
+			    int fileId = createFile(tempOutput.getAbsolutePath());
+			    writeInDataSet(fileId, "scs_m", block.getAsScilabObj());
+			    closeFile(fileId);
+			    
+			    /*
+			     * Prepare command and callback
+			     */
+				String cmd = buildCall("xcosCodeGeneration",
+						tempOutput.getAbsolutePath(),
+						tempInput.getAbsolutePath());
+				
+				final ActionListener callback = new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						doAction(block, tempInput);
+						
+						tempOutput.delete();
+						tempInput.delete();
+						
+						((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
+					}
+				};
+				
+				/*
+				 * Execute
+				 */
+				asynchronousScilabExec(callback, cmd);
+				
+		} catch (IOException ex) {
+			LogFactory.getLog(CodeGenerationAction.class).error(ex);
+		    ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
+		} catch (HDF5Exception ex) {
+			LogFactory.getLog(CodeGenerationAction.class).error(ex);
+			((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
+		} catch (InterpreterException ex) {
+			LogFactory.getLog(CodeGenerationAction.class).error(ex);
+			((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
+		}
     }
     
     /**
