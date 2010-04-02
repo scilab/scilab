@@ -12,12 +12,12 @@
 
 #include "types_gw.hxx"
 
-#define MADULE_NAME "types"
+#define MODULE_NAME "types"
 bool TypesModule::Load()
 {
-  symbol::Context::getInstance()->AddFunction(Function::createFunction("list", &sci_list, MADULE_NAME));
-  symbol::Context::getInstance()->AddFunction(Function::createFunction("struct", &sci_struct, MADULE_NAME));
-  symbol::Context::getInstance()->AddFunction(Function::createFunction("null", &sci_null, MADULE_NAME));
-  symbol::Context::getInstance()->AddFunction(Function::createFunction("insert", &sci_insert, MADULE_NAME));
+  symbol::Context::getInstance()->AddFunction(Function::createFunction("list", &sci_list, MODULE_NAME));
+  symbol::Context::getInstance()->AddFunction(Function::createFunction("struct", &sci_struct, MODULE_NAME));
+  symbol::Context::getInstance()->AddFunction(Function::createFunction("null", &sci_null, MODULE_NAME));
+  symbol::Context::getInstance()->AddFunction(Function::createFunction("insert", &sci_insert, MODULE_NAME));
   return true;
 }
