@@ -230,9 +230,11 @@ Bug Fixes:
 * bug 6841 fixed - fun2string failed on simple examples containing variable
                    extraction.
 
-* bug 6877 fixed - toprint(filename) UTF8 chars in a file were mis-printed.
+* bug 6787 fixed - toprint(filename) required only absolute path to filename.
 
-* bug 6877 fixed - toprint(nFigure): %F was returned while actually the figure
+* bug 6788 fixed - toprint(filename) UTF8 chars in a file were mis-printed.
+
+* bug 6790 fixed - toprint(nFigure): %F was returned while actually the figure
                    is printed.
 
 
