@@ -55,6 +55,7 @@ import net.sourceforge.jeuclid.converter.Converter;
 
 import org.scilab.forge.jlatexmath.TeXConstants; 
 import org.scilab.forge.jlatexmath.TeXFormula;
+import org.scilab.forge.jlatexmath.ParseException;
 import java.awt.Color;
 
 /**
@@ -346,7 +347,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
     public void endElement(String uri, String localName, String qName)
         throws SAXException {
         if ("latex".equals(localName)) {
-            latexElem.generate();
+            latexElem.generate(locator);
             latexElem = null;
             return;
         }
@@ -841,7 +842,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
         int size = 18;
         Color fg = null, bg = null;
         int disp = TeXConstants.STYLE_DISPLAY;
-        String code = "imageobject><imagedata";
+        String code = "mediaobject><imageobject><imagedata";
         String LaTeX = "";
         boolean exported;
         String attribs, align = "";
@@ -897,21 +898,33 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
             LaTeX += str;
         }
 
-        protected void generate() {
+        protected void generate(Locator loc) throws SAXParseException {
             if (exported) {
-                generatePNG();
+                generatePNG(loc);
                 return;
             }
             out.write("latex" + attribs  + " xmlns=\"http://forge.scilab.org/p/jlatexmath\"><![CDATA[" + LaTeX + "]]></latex>");
         }
                   
-        protected void generatePNG() {
-            TeXFormula tf = new TeXFormula(LaTeX);
+        protected void generatePNG(Locator loc) throws SAXParseException {
+            TeXFormula tf;
+	    try {
+		tf = new TeXFormula(LaTeX);
+	    } catch (ParseException e) {
+		throw new SAXParseException("\nThere was a problem in parsing the LaTeX' formula : \n" + e.getMessage(), locator);
+	    }
 	    File f = new File(outDir, "graphics-" + (++graphicsCounter) + "_latex.png");
 	    reportInfo("Converting LaTeX formula to " + f + "'...");
             tf.createPNG(disp, size, f.getPath(), bg, fg);	    
-
-            out.write(code + " fileref='graphics-" + graphicsCounter + "_latex.png'/></imageobject>");
+	    
+	    String end = "";
+	    if (align.length() == 0) {
+		code = "inline" + code;
+		end = "inline";
+	    }
+	    
+            out.write(code + " fileref='graphics-" + graphicsCounter + "_latex.png'/>" +
+		      "</imageobject></" + end + "mediaobject>");
         }
     }
 

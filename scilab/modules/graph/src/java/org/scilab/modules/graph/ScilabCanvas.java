@@ -17,6 +17,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Composite;
 import java.awt.Image;
+import java.awt.RenderingHints;
 import java.awt.Stroke;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
@@ -27,6 +28,7 @@ import java.util.Map;
 
 import javax.swing.Icon;
 
+import org.apache.batik.ext.awt.RenderingHintsKeyExt;
 import org.apache.batik.gvt.GraphicsNode;
 import org.scilab.modules.graph.utils.MathMLRenderUtils;
 import org.scilab.modules.graph.utils.ScilabConstants;
@@ -380,9 +382,14 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 			return;
 		}
 		
-		// TODO
 		// Remove the "Graphics2D from BufferedImage lacks BUFFERED_IMAGE hint"
-		// message.
+		// message and tweak Batik rendering options to increase performance.
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+				RenderingHints.VALUE_ANTIALIAS_ON);
+		g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+				RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
+		g.setRenderingHint(RenderingHintsKeyExt.KEY_TRANSCODING,
+				RenderingHintsKeyExt.VALUE_TRANSCODING_PRINTING);
 		
 		// Scale to the bounds
 		Rectangle2D bounds = background.getBounds();
