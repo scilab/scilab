@@ -146,16 +146,19 @@ am__objects_2 = unarybit.lo i_mput.lo i_logic.lo i_a_i.lo i_b_i.lo \
 	i_cumprod.lo i_cumsum.lo i_kron.lo
 am__objects_3 = libsciinteger_la-gw_integer.lo \
 	libsciinteger_la-sci_int.lo
-am__objects_4 = sci_i_matrix.lo sci_i_mput.lo sci_i_max.lo \
+am__objects_4 = libsciinteger_la-integer_gw.lo \
+	libsciinteger_la-sci_inttype.lo
+am__objects_5 = sci_i_matrix.lo sci_i_mput.lo sci_i_max.lo \
 	sci_int32.lo sci_int16.lo sci_i_mini.lo sci_mgeti.lo \
 	sci_i_maxi.lo sci_i_p.lo sci_uint8.lo sci_double.lo \
 	sci_i_sum.lo sci_i_prod.lo sci_i_cumsum.lo sci_i_diag.lo \
 	sci_i_abs.lo sci_i_cumprod.lo sci_i_tril.lo sci_int8.lo \
 	sci_uint32.lo sci_uint16.lo sci_iconvert.lo sci_i_triu.lo \
 	sci_i_min.lo sci_inttype.lo
-am__objects_5 = libsciinteger_la-integer_gw.lo
+am__objects_6 =
 am_libsciinteger_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
-	$(am__objects_3) $(am__objects_4) $(am__objects_5)
+	$(am__objects_3) $(am__objects_4) $(am__objects_5) \
+	$(am__objects_6)
 libsciinteger_la_OBJECTS = $(am_libsciinteger_la_OBJECTS)
 libsciinteger_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
@@ -529,9 +532,13 @@ GATEWAY_C_SOURCES = \
 				sci_gateway/c/gw_integer.c \
 				sci_gateway/c/sci_int.c
 
+GATEWAY_CPP_SOURCES = \
+				sci_gateway/cpp/integer_gw.cpp \
+				sci_gateway/cpp/sci_inttype.cpp
+
 
 # List of the cpp files
-INTEGER_CPP_SOURCES = src/cpp/integer_gw.cpp
+INTEGER_CPP_SOURCES = 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_i_matrix.f \
 sci_gateway/fortran/sci_i_mput.f \
 sci_gateway/fortran/sci_i_max.f \
@@ -571,11 +578,18 @@ libsciinteger_la_CPPFLAGS = \
 				-I$(top_srcdir)/modules/functions_manager/includes/ \
 				-I$(top_srcdir)/modules/elementary_functions/includes/ \
 				-I$(top_srcdir)/modules/abstractSyntaxTree/includes/ \
-				-I$(top_srcdir)/modules/types/includes/
+				-I$(top_srcdir)/modules/types/includes/ \
+				-I$(top_srcdir)/modules/api_scilab/includes/
 
 pkglib_LTLIBRARIES = libsciinteger.la
 libsciinteger_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
-libsciinteger_la_SOURCES = $(INTEGER_C_SOURCES) $(INTEGER_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(INTEGER_CPP_SOURCES)
+libsciinteger_la_SOURCES = $(INTEGER_C_SOURCES) \
+							$(INTEGER_FORTRAN_SOURCES) \
+							$(GATEWAY_C_SOURCES) \
+							$(GATEWAY_CPP_SOURCES) \
+							$(GATEWAY_FORTRAN_SOURCES) \
+							$(INTEGER_CPP_SOURCES)
+
 
 # For the code check (splint)
 CHECK_SRC = $(INTEGER_C_SOURCES) $(GATEWAY_C_SOURCES) $(INTEGER_CPP_SOURCES)
@@ -780,6 +794,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_la-i_nextj.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_la-integer_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_la-sci_int.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_la-sci_inttype.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_la-tpconv.Plo@am__quote@
 
 .c.o:
@@ -1139,12 +1154,19 @@ libsciinteger_la-sci_int.lo: sci_gateway/c/sci_int.c
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
 
-libsciinteger_la-integer_gw.lo: src/cpp/integer_gw.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciinteger_la-integer_gw.lo -MD -MP -MF $(DEPDIR)/libsciinteger_la-integer_gw.Tpo -c -o libsciinteger_la-integer_gw.lo `test -f 'src/cpp/integer_gw.cpp' || echo '$(srcdir)/'`src/cpp/integer_gw.cpp
+libsciinteger_la-integer_gw.lo: sci_gateway/cpp/integer_gw.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciinteger_la-integer_gw.lo -MD -MP -MF $(DEPDIR)/libsciinteger_la-integer_gw.Tpo -c -o libsciinteger_la-integer_gw.lo `test -f 'sci_gateway/cpp/integer_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/integer_gw.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciinteger_la-integer_gw.Tpo $(DEPDIR)/libsciinteger_la-integer_gw.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/integer_gw.cpp' object='libsciinteger_la-integer_gw.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/integer_gw.cpp' object='libsciinteger_la-integer_gw.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciinteger_la-integer_gw.lo `test -f 'src/cpp/integer_gw.cpp' || echo '$(srcdir)/'`src/cpp/integer_gw.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciinteger_la-integer_gw.lo `test -f 'sci_gateway/cpp/integer_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/integer_gw.cpp
+
+libsciinteger_la-sci_inttype.lo: sci_gateway/cpp/sci_inttype.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciinteger_la-sci_inttype.lo -MD -MP -MF $(DEPDIR)/libsciinteger_la-sci_inttype.Tpo -c -o libsciinteger_la-sci_inttype.lo `test -f 'sci_gateway/cpp/sci_inttype.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_inttype.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciinteger_la-sci_inttype.Tpo $(DEPDIR)/libsciinteger_la-sci_inttype.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_inttype.cpp' object='libsciinteger_la-sci_inttype.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciinteger_la-sci_inttype.lo `test -f 'sci_gateway/cpp/sci_inttype.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_inttype.cpp
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<

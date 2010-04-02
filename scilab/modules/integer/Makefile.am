@@ -90,8 +90,12 @@ GATEWAY_C_SOURCES = \
 				sci_gateway/c/gw_integer.c \
 				sci_gateway/c/sci_int.c
 
+GATEWAY_CPP_SOURCES = \
+				sci_gateway/cpp/integer_gw.cpp \
+				sci_gateway/cpp/sci_inttype.cpp
+
 # List of the cpp files
-INTEGER_CPP_SOURCES = 	src/cpp/integer_gw.cpp
+INTEGER_CPP_SOURCES = 	
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_i_matrix.f \
 sci_gateway/fortran/sci_i_mput.f \
@@ -132,13 +136,19 @@ libsciinteger_la_CPPFLAGS= \
 				-I$(top_srcdir)/modules/functions_manager/includes/ \
 				-I$(top_srcdir)/modules/elementary_functions/includes/ \
 				-I$(top_srcdir)/modules/abstractSyntaxTree/includes/ \
-				-I$(top_srcdir)/modules/types/includes/
+				-I$(top_srcdir)/modules/types/includes/ \
+				-I$(top_srcdir)/modules/api_scilab/includes/
 				
 pkglib_LTLIBRARIES = libsciinteger.la
 
 libsciinteger_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
-libsciinteger_la_SOURCES = $(INTEGER_C_SOURCES) $(INTEGER_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(INTEGER_CPP_SOURCES)
+libsciinteger_la_SOURCES = 	$(INTEGER_C_SOURCES) \
+							$(INTEGER_FORTRAN_SOURCES) \
+							$(GATEWAY_C_SOURCES) \
+							$(GATEWAY_CPP_SOURCES) \
+							$(GATEWAY_FORTRAN_SOURCES) \
+							$(INTEGER_CPP_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC=  $(INTEGER_C_SOURCES) $(GATEWAY_C_SOURCES) $(INTEGER_CPP_SOURCES)

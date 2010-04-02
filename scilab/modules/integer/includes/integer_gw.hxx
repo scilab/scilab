@@ -27,4 +27,6 @@ public :
 	INTEGER_GW_IMPEXP static bool Load();
 };
 
+Function::ReturnValue sci_inttype(types::typed_list &in, int _iRetCount, types::typed_list &out);
+
 #endif /* __INTEGER_GW_HXX__ */
