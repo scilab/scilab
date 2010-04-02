@@ -229,6 +229,8 @@ Bug Fixes:
 
 * bug 6841 fixed - fun2string failed on simple examples containing variable extraction.
 
+* bug 6877 fixed - toprint(filename) UTF8 chars in a file were mis-printed.
+
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab
                 ==================================================
