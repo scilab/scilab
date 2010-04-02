@@ -227,6 +227,8 @@ Bug Fixes:
 
 * bug 6841 fixed - fun2string failed on simple examples containing variable extraction.
 
+* bug 6850 fixed - "PlotSparse" have been improved.
+
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab
                 ==================================================
