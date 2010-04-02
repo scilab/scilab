@@ -56,12 +56,12 @@ namespace ast
     /** \name Accessors.
      ** \{ */
   public:
-    /** \brief Return the value */
-    const bool value_get() const
-    {
-      return _value;
-    }
-    /** \} */
+      /** \brief Return the value */
+      bool value_get() const
+          {
+              return _value;
+          }
+      /** \} */
 
   protected:
     bool     _value;
