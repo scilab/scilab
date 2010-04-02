@@ -20,20 +20,6 @@ using namespace std;
 
 namespace types
 {
-	Int::Int(int _iRows, int _iCols)
-	{
-		m_iRows				= _iRows;
-		m_iCols				= _iCols;
-		m_iSize				= _iRows * _iCols;
-	}
-
-	Int::Int(long long _llData)
-	{
-		m_iRows				= 1;
-		m_iCols				= 1;
-		m_iSize				= 1;
-	}
-
 	Int* Int::createInt(int _iRows, int _iCols, IntType _iIntType)
 	{
 		Int* pOut	= NULL;
@@ -77,9 +63,9 @@ namespace types
 	bool Int::extract_size_get(int* _piMaxDim, int* _piDimSize, bool _bAsVector, int* _piRows, int* _piCols)
 	{
 		//check input param
-		if(	_bAsVector && _piMaxDim[0] > size_get() ||
-			_bAsVector == false && _piMaxDim[0] > rows_get() ||
-			_bAsVector == false && _piMaxDim[1] > cols_get())
+		if(	(_bAsVector && _piMaxDim[0] > size_get()) ||
+			(_bAsVector == false && _piMaxDim[0] > rows_get()) ||
+			(_bAsVector == false && _piMaxDim[1] > cols_get()))
 		{
 			return false;
 		}
