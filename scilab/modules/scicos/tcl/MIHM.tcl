@@ -1642,7 +1642,7 @@ global scilabpath
 		    return "" 
 		} 
 	    } else {
-		tk_messageBox -icon question -type error -title Message  -message "The XML file is corrupted!"
+		tk_messageBox -icon error -type ok -title Message  -message "The XML file is corrupted!"
 		return "" 
 	    }
 	}
