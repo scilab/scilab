@@ -10,7 +10,7 @@
  * 
  */
 
-package org.scilab.modules.hdf5.scilabTypes;
+package org.scilab.modules.types.scilabTypes;
 
 import java.util.ArrayList;
 

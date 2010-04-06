@@ -14,7 +14,7 @@ package org.scilab.modules.graph.io;
 
 import java.util.Map;
 
-import org.scilab.modules.hdf5.scilabTypes.ScilabInteger;
+import org.scilab.modules.types.scilabTypes.ScilabInteger;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;

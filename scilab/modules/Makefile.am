@@ -80,6 +80,7 @@ simulated_annealing \
 parameters \
 matio \
 atoms \
+types \
 hdf5 \
 graph\
 xcos \

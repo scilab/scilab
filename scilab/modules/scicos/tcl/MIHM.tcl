@@ -1674,7 +1674,7 @@ global scilabpath
  	set StructName [string trim [string map {#text ""} $nm] "\{ \}"]
 
         set SVname "$xparent$StructName" 
-	if { [catch {$tree insert end $xparent $SVname  -image [image create photo -file "$scilabpath/modules/scicos/macros/scicos_scicos/scicos.gif"] -text $StructName }] } {  return "" }
+	if { [catch {$tree insert end $xparent $SVname  -image [image create photo -file "$scilabpath/modules/scicos/tcl/scicos.gif"] -text $StructName }] } {  return "" }
 #      	tk_messageBox -icon question -type yesno -title Message  -message "NEQ=$SVname "
 
         SearchList $WindowsID  $Structure  $tree $SVname  
