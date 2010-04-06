@@ -7,7 +7,9 @@
       Copyright (C) 2010 - DIGITEO - Clément DAVID
     </xs:documentation>
   </xs:annotation>
+  
   <xs:element name="XcosDiagram" type="XcosDiagramType"/>
+  
   <xs:complexType name="addType">
     <xs:simpleContent>
       <xs:extension base="xs:string">
@@ -15,6 +17,7 @@
       </xs:extension>
     </xs:simpleContent>
   </xs:complexType>
+  
   <xs:complexType name="ArrayType" mixed="true">
     <xs:choice maxOccurs="unbounded" minOccurs="0">
       <xs:element type="dataType" name="data"/>
@@ -46,21 +49,17 @@
       </xs:extension>
     </xs:simpleContent>
   </xs:complexType>
+  
+  <!-- Scilab data types -->
   <xs:complexType name="ScilabDoubleType" mixed="true">
-    <xs:choice maxOccurs="unbounded" minOccurs="0">
+    <xs:sequence maxOccurs="unbounded" minOccurs="0">
       <xs:element type="dataType" name="data"/>
-      <xs:element type="addType" name="add"/>
-      <xs:element type="ScilabBooleanType" name="ScilabBoolean"/>
-      <xs:element type="ScilabDoubleType" name="ScilabDouble"/>
-      <xs:element type="ScilabStringType" name="ScilabString"/>
-      <xs:element type="ArrayType" name="Array"/>
-      <xs:element type="mxPointType" name="mxPoint"/>
-    </xs:choice>
-    <xs:attribute type="xs:short" name="height" use="optional"/>
-    <xs:attribute type="xs:byte" name="width" use="optional"/>
+    </xs:sequence>
+    <xs:attribute type="xs:integer" name="height" use="required"/>
+    <xs:attribute type="xs:integer" name="width" use="required"/>
     <xs:attribute type="xs:string" name="as" use="optional"/>
-    <xs:attribute type="xs:string" name="scilabClass" use="optional"/>
   </xs:complexType>
+  
   <xs:complexType name="dataType">
     <xs:simpleContent>
       <xs:extension base="xs:string">
@@ -71,36 +70,27 @@
       </xs:extension>
     </xs:simpleContent>
   </xs:complexType>
+  
   <xs:complexType name="ScilabStringType" mixed="true">
-    <xs:choice maxOccurs="unbounded" minOccurs="0">
+    <xs:sequence maxOccurs="unbounded" minOccurs="0">
       <xs:element type="dataType" name="data"/>
-      <xs:element type="addType" name="add"/>
-      <xs:element type="ScilabBooleanType" name="ScilabBoolean"/>
-      <xs:element type="ScilabDoubleType" name="ScilabDouble"/>
-      <xs:element type="ScilabStringType" name="ScilabString"/>
-      <xs:element type="ArrayType" name="Array"/>
-      <xs:element type="mxPointType" name="mxPoint"/>
-    </xs:choice>
+    </xs:sequence>
     <xs:attribute type="xs:short" name="height" use="optional"/>
     <xs:attribute type="xs:byte" name="width" use="optional"/>
     <xs:attribute type="xs:string" name="as" use="optional"/>
     <xs:attribute type="xs:string" name="scilabClass" use="optional"/>
   </xs:complexType>
+  
   <xs:complexType name="ScilabBooleanType" mixed="true">
-    <xs:choice maxOccurs="unbounded" minOccurs="0">
+    <xs:sequence maxOccurs="unbounded" minOccurs="0">
       <xs:element type="dataType" name="data"/>
-      <xs:element type="addType" name="add"/>
-      <xs:element type="ScilabBooleanType" name="ScilabBoolean"/>
-      <xs:element type="ScilabDoubleType" name="ScilabDouble"/>
-      <xs:element type="ScilabStringType" name="ScilabString"/>
-      <xs:element type="ArrayType" name="Array"/>
-      <xs:element type="mxPointType" name="mxPoint"/>
-    </xs:choice>
+    </xs:sequence>
     <xs:attribute type="xs:short" name="height" use="optional"/>
     <xs:attribute type="xs:byte" name="width" use="optional"/>
     <xs:attribute type="xs:string" name="as" use="optional"/>
     <xs:attribute type="xs:string" name="scilabClass" use="optional"/>
   </xs:complexType>
+  
   <xs:complexType name="mxGeometryType" mixed="true">
     <xs:sequence>
       <xs:element type="mxPointType" name="mxPoint" minOccurs="0"/>
@@ -113,6 +103,7 @@
     <xs:attribute type="xs:float" name="y" use="optional"/>
     <xs:attribute type="xs:byte" name="relative" use="optional"/>
   </xs:complexType>
+  
   <xs:complexType name="SuperBlockType">
     <xs:choice maxOccurs="unbounded" minOccurs="0">
       <xs:element type="ArrayType" name="Array"/>
