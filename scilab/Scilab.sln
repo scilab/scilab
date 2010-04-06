@@ -167,8 +167,14 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "intersci", "modules\intersc
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "intersciexe", "modules\intersci\src\exe\intersciexe\intersciexe.vcproj", "{73AA7612-4297-4339-B521-8C2870E7BEC1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "interscin", "modules\intersci\src\exe\interscin\interscin.vcproj", "{53AAB5BC-2C08-4BBA-9793-C36140A404F8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gui", "modules\gui\src\c\gui.vcproj", "{45CA5B12-7601-4968-AE16-16069FD1A152}"
 	ProjectSection(ProjectDependencies) = postProject
