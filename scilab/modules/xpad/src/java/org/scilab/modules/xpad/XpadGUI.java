@@ -25,7 +25,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JRadioButtonMenuItem;
-import javax.swing.JTextPane;
+import javax.swing.JEditorPane;
 import javax.swing.text.DefaultEditorKit;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
@@ -84,7 +84,6 @@ import org.scilab.modules.xpad.actions.TabifyAction;
 import org.scilab.modules.xpad.actions.UnCommentAction;
 import org.scilab.modules.xpad.actions.UnTabifyAction;
 import org.scilab.modules.xpad.actions.UndoAction;
-import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
@@ -182,8 +181,8 @@ public class XpadGUI {
 	 * @param scilabDocument the document for which the encoding menu should
 	 * be updated
 	 */
-	public void updateEncodingMenu(ScilabStyleDocument scilabDocument) {
-		if (scilabDocument.getScilabDocument() instanceof ScilabStyleDocument) {
+	public void updateEncodingMenu(ScilabDocument scilabDocument) {
+		if (scilabDocument.getScilabDocument() instanceof ScilabDocument) {
 			if (radioTypes != null) { 
 				for (int k = 0; k < radioTypes.length; k++) {
 					if ((scilabDocument.getScilabDocument()).getEncoding().equals(radioTypes[k].getText())) {
@@ -199,8 +198,8 @@ public class XpadGUI {
 	 * @param scilabDocument the document for which the End Of Line menu should
 	 * be updated
 	 */
-	public void updateEolMenu(ScilabStyleDocument scilabDocument) {
-		if (scilabDocument.getScilabDocument() instanceof ScilabStyleDocument) {
+	public void updateEolMenu(ScilabDocument scilabDocument) {
+		if (scilabDocument.getScilabDocument() instanceof ScilabDocument) {
 			String eolLinux = "\n";
 			String eolMacOs = "\r";
 			String eolWindows = "\r\n";
@@ -406,7 +405,7 @@ public class XpadGUI {
 	 * Create the popup menu on the help
 	 * @param c The graphic component
 	 */
-	public static void createPopupMenu(final JTextPane c) {
+	public static void createPopupMenu(final JEditorPane c) {
 		
 		final JPopupMenu popup = new JPopupMenu();
 

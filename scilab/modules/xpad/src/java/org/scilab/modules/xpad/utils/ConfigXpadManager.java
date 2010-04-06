@@ -630,11 +630,50 @@ public final class ConfigXpadManager {
 			NodeList allForegroundElements = style.getElementsByTagName(FOREGROUNDCOLOR);
 			Element styleForeground = (Element) allForegroundElements.item(0);
 			Color styleColor = Color.decode(styleForeground.getAttribute(VALUE));
-
 			stylesColorsTable.put(style.getAttribute(NAME), styleColor);
 		}
 
 		return stylesColorsTable;
+	}
+
+	public static Hashtable<String, Font> getAllFontStyle() {
+		/* Load file */
+		readDocument();
+
+		Hashtable<String, Font> stylesFontsTable = new Hashtable<String, Font>();
+
+		Element root = document.getDocumentElement();
+		NodeList styles = root.getElementsByTagName(STYLE);
+
+		for (int i = 0; i < styles.getLength(); ++i) {
+			Element fstyles = (Element) styles.item(i);
+
+			NodeList allFontStyleElements = fstyles.getElementsByTagName(FONT_STYLE);
+			Element fontStyle = (Element) allFontStyleElements.item(0);
+			int style = Integer.parseInt(fontStyle.getAttribute(VALUE));
+			Font font = getFont();
+			String name = font.getName();
+			int size = font.getSize();
+			if (style == PLAIN) {
+			    font = new Font(name, Font.PLAIN, size); 
+			    
+			} else if (style == BOLD) {
+			    font = new Font(name, Font.BOLD, size); 		
+			    
+			} else if (style == ITALIC) {
+			    font = new Font(name, Font.ITALIC, size); 
+			    
+			} else if (style == BOLDITALIC) {
+			    font = new Font(name, Font.BOLD | Font.ITALIC , size); 
+			    
+			} else {
+			    font = new Font(name, Font.PLAIN, size); 
+			}
+			
+			stylesFontsTable.put(fstyles.getAttribute(NAME), font);
+		}
+
+		return stylesFontsTable;
 	}
 
 	/**

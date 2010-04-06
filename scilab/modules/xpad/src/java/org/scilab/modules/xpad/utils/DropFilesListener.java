@@ -23,9 +23,9 @@ import java.awt.dnd.DropTargetEvent;
 import java.awt.dnd.DropTargetListener;
 import java.io.IOException;
 
-import javax.swing.JTextPane;
+import javax.swing.JEditorPane;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.StyledDocument;
+import javax.swing.text.Document;
 
 import org.scilab.modules.xpad.Xpad;
 
@@ -38,13 +38,13 @@ import org.scilab.modules.xpad.Xpad;
 public class DropFilesListener implements DropTargetListener {
 
 	private DropTarget dropTarget;
-	private JTextPane pane;
+	private JEditorPane pane;
 
 	/**
 	 * Constructor 
-	 * @param pane JTextPane
+	 * @param pane JEditorPane
 	 */
-	public DropFilesListener(JTextPane pane) {
+	public DropFilesListener(JEditorPane pane) {
 		this.pane = pane;
 		dropTarget = new DropTarget(pane, DnDConstants.ACTION_COPY_OR_MOVE, this, true, null);
 	}
@@ -123,8 +123,8 @@ public class DropFilesListener implements DropTargetListener {
 			} else if (transferable.isDataFlavorSupported(DataFlavor.stringFlavor)) {
 				try {
 					String dropString = (String) transferable.getTransferData(DataFlavor.stringFlavor);
-					StyledDocument doc = pane.getStyledDocument();
-					doc.insertString(doc.getLength(), dropString, doc.getStyle(dropString));
+					Document doc = pane.getDocument();
+					doc.insertString(doc.getLength(), dropString, null);
 					
 				} catch (UnsupportedFlavorException e) {
 					// TODO Auto-generated catch block

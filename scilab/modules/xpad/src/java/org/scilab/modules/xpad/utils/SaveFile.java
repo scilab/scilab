@@ -20,11 +20,11 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 
-import javax.swing.JTextPane;
+import javax.swing.JEditorPane;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.EditorKit;
 
-import org.scilab.modules.xpad.style.ScilabStyleDocument;
+import org.scilab.modules.xpad.ScilabDocument;
 
 /**
  * Save File utility class
@@ -41,15 +41,15 @@ public final class SaveFile {
 	private SaveFile() {
 	}
 	/**
-	 * save text in JTextPane
-	 * @param textPane JTextPane
+	 * save text in JEditorPane
+	 * @param textPane JEditorPane
 	 * @param fOut File
 	 * @param editorKit EditorKit
 	 * @return true if saved
 	 */
-	public static boolean doSave(JTextPane textPane, File fOut, EditorKit editorKit) {
+	public static boolean doSave(JEditorPane textPane, File fOut, EditorKit editorKit) {
 		
-		ScilabStyleDocument styledDocument = (ScilabStyleDocument) textPane.getStyledDocument();
+		ScilabDocument styledDocument = (ScilabDocument) textPane.getDocument();
 
 		// get default eol
 		String defaultEol = System.getProperty(LINE_SEPARATOR);

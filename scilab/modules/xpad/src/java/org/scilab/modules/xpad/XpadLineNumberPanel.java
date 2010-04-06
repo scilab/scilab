@@ -33,7 +33,7 @@ import java.beans.PropertyChangeListener;
 import java.util.HashMap;
 
 import javax.swing.JPanel;
-import javax.swing.JTextPane;
+import javax.swing.JEditorPane;
 import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
@@ -46,6 +46,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Element;
+import javax.swing.text.Document;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.Utilities;
@@ -74,7 +75,7 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 
 	public final static int PANEL_GAP_SIZE = 10;
 
-	private JTextPane textPane;
+	private JEditorPane textPane;
 
 	//  Properties that can be changed
 	private boolean updateFont;
@@ -99,7 +100,7 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 	 *
 	 *  @param textPane  the related text component
 	 */
-	public XpadLineNumberPanel(JTextPane textPane) {
+	public XpadLineNumberPanel(JEditorPane textPane) {
 		// Here we have 3, it means that the LineNumber panel will 
 		// allow a minimum of 3 numbers
 		this(textPane, 3);
@@ -112,7 +113,7 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 	 *  @param minimumNumbers  the number of digits used to calculate
 	 *                               the minimum width of the component
 	 */
-	public XpadLineNumberPanel(JTextPane textPane, int minimumNumbers) {
+	public XpadLineNumberPanel(JEditorPane textPane, int minimumNumbers) {
 		this.textPane = textPane;
 
 		setFont(textPane.getFont());
@@ -122,7 +123,7 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 		setMinimumNumbers(minimumNumbers);
 
 		//textPane.getStyledDocument().addDocumentListener(this);
-		//textPane.getDocument().addDocumentListener(this);
+		textPane.getDocument().addDocumentListener(this);
 		textPane.addKeyListener(this);
 		textPane.addCaretListener(this);
 		textPane.addPropertyChangeListener("font", this);
@@ -280,7 +281,7 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 		int availableWidth = getSize().width - insets.left - insets.right;
 
 		//  Determine the rows to draw within the clipped bounds.
-		javax.swing.text.StyledDocument doc = textPane.getStyledDocument();
+		Document doc = textPane.getDocument();
 		synchronized (doc) {
 			Rectangle clip = g.getClipBounds();
 			int rowStartOffset = textPane.viewToModel(new Point(0, clip.y));
@@ -551,8 +552,8 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 	}
 	
 	public void highlightLine(int lineNumber) {
-		if (lineNumber > 0 && lineNumber <= textPane.getStyledDocument().getDefaultRootElement().getElementCount()) {
-			textPane.setCaretPosition(textPane.getStyledDocument().getDefaultRootElement().getElement(lineNumber - 1).getStartOffset());
+		if (lineNumber > 0 && lineNumber <= textPane.getDocument().getDefaultRootElement().getElementCount()) {
+			textPane.setCaretPosition(textPane.getDocument().getDefaultRootElement().getElement(lineNumber - 1).getStartOffset());
 			this.isHighlighted = true;
 			repaint();
 		}

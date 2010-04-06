@@ -30,7 +30,7 @@ public class CompoundUndoManager extends UndoManager {
 	/**
 	 * startCompoundEdit
 	 */
-	void startCompoundEdit() {
+	public void startCompoundEdit() {
 		//System.err.println("starting compound edit");
 		compoundEdit = new CompoundEdit();
 		addEdit(compoundEdit);
@@ -39,7 +39,7 @@ public class CompoundUndoManager extends UndoManager {
 	/**
 	 * endCompoundEdit
 	 */
-	void endCompoundEdit() {
+	public void endCompoundEdit() {
 		//System.err.println("ending compound edit");
 		compoundEdit.end();
 		compoundEdit = null;

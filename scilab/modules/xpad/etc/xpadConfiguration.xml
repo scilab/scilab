@@ -13,76 +13,101 @@
 <Setting>
 	<!-- XPAD configuration -->
 	<Profile name="xpad">
+	  
+	  <!-- GUI Part -->
+	  
+	  <ScrollableUnitIncrement useCache="true" value="20"/>
+	  <ScrollableBlockIncrement useCache="true" value="20"/>
+	  <VerticalWrapAllowed useCache="true" value="false"/>
+	  <HorizontalWrapAllowed useCache="true" value="false"/>
+	  <AutoIndent default="true" useCach="true" value="true" />
+	  <AutoColorize default="true" useCach="true" value="true" />
+	  <DefaultEncoding value=""/> <!-- Initialized to system default at first launch -->
+	  
+	  <styles>
+	    
+	    <FontName default="Monospaced" useCache="true" value="Monospaced"/>
+	    <FontSize default="14" useCache="true" value="14"/>
+	    
+	    <MainWindowPosition useCache="true" x="150" y="50"/>
+	    <MainWindowSize height="550" useCache="true" width="650"/>
+	    
+	    <style name="Default">
+	      <BackgroundColor default="#FFFFFF" useCache="true" value="#FFFFFF"/>
+	      <ForegroundColor default="#000000" useCache="true" value="#000000"/>
+              <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+	    </style>
 
-		<!-- GUI Part -->
+	    <style name="Special">
+	      <ForegroundColor default="#ffaa00" useCache="true" value="#ffaa00"/>
+              <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+	    </style>
 
-		<ScrollableUnitIncrement useCache="true" value="20"/>
-		<ScrollableBlockIncrement useCache="true" value="20"/>
-		<VerticalWrapAllowed useCache="true" value="false"/>
-		<HorizontalWrapAllowed useCache="true" value="false"/>
-    <AutoIndent default="true" useCach="true" value="true" />
-    <AutoColorize default="true" useCach="true" value="true" />
-    <DefaultEncoding value=""/> <!-- Initialized to system default at first launch -->
+	    <style name="Boolean">
+	      <ForegroundColor default="#da70d6" useCache="true" value="#da70d6"/>
+              <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+	    </style>
+	    
+	    <style name="Operator">
+	      <ForegroundColor default="#5c5c5c" useCache="true" value="#5c5c5c"/>
+              <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+	    </style>
+	    
+	    <style name="Number">
+	      <ForegroundColor default="#bc8f8f" useCache="true" value="#bc8f8f"/>
+              <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+	    </style>
+	    
+	    <style name="FunctionKwd">
+	      <ForegroundColor default="#b01813" useCache="true" value="#b01813"/>
+              <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+	    </style>
 
-		<styles>
-
-		  <FontName default="Monospaced" useCache="true" value="Monospaced"/>
-		  <FontSize default="14" useCache="true" value="14"/>
-
-		  <MainWindowPosition useCache="true" x="150" y="50"/>
-		  <MainWindowSize height="550" useCache="true" width="650"/>
-
-		  <style name="Default">
-		    <BackgroundColor default="#FFFFFF" useCache="true" value="#FFFFFF"/>
-		    <ForegroundColor default="#000000" useCache="true" value="#000000"/>
-        <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-      </style>
-
-      <style name="Operator">
-		    <ForegroundColor default="#ff0000" useCache="true" value="#ff0000"/>
-        <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-      </style>
-
-      <style name="Command">
-		    <ForegroundColor default="#b01813" useCache="true" value="#b01813"/>
-        <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-
-      </style>
-
-      <style name="String">
-		    <ForegroundColor default="#0000ff" useCache="true" value="#0000ff"/>
-        <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-      </style>
-
-      <style name="Variable">
-		    <ForegroundColor default="#32b9b9" useCache="true" value="#32b9b9"/>
-        <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-
-      </style>
-
-      <style name="Comment">
-		    <ForegroundColor default="#01a801" useCache="true" value="#01a801"/>
-        <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-      </style>
-
-
-      <style name="Function">
-		    <ForegroundColor default="#d550d5" useCache="true" value="#d550d5"/>
-        <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-      </style>
-
-      <style name="Macro">
-		    <ForegroundColor default="#ff9933" useCache="true" value="#ff9933"/>
-        <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-      </style>
-    </styles>
-
-    <!-- Recent Opened Files Section  -->
-    <recentFiles>
-
-</recentFiles>
-
-
-
+	    <style name="Structure">
+	      <ForegroundColor default="#a020f0" useCache="true" value="#a020f0"/>
+              <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+	    </style>
+	    
+	    <style name="Control">
+	      <ForegroundColor default="#5f9ea0" useCache="true" value="#5f9ea0"/>
+              <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+	    </style>
+	    
+	    <style name="Command">
+	      <ForegroundColor default="#32b9b9" useCache="true" value="#32b9b9"/>
+              <FontStyle default="0" useCache="true" value="0"/> <!-- #b8860b 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+	    </style>
+	    
+	    <style name="String">
+	      <ForegroundColor default="#bc8f8f" useCache="true" value="#bc8f8f"/>
+              <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+	    </style>
+	    
+	    <style name="Variable">
+	      <ForegroundColor default="#000000" useCache="true" value="#000000"/>
+              <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->  
+	    </style>
+	    
+	    <style name="Comment">
+	      <ForegroundColor default="#01a801" useCache="true" value="#01a801"/>
+              <FontStyle default="0" useCache="true" value="2"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+	    </style>
+	    
+	    <style name="Field">
+	      <ForegroundColor default="#aaaaaa" useCache="true" value="#aaaaaa"/>
+              <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+	    </style>
+	    
+	    <!--style name="Macro">
+	      <ForegroundColor default="#ff9933" useCache="true" value="#ff9933"/>
+              <FontStyle default="0" useCache="true" value="0"/--> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+	    <!--/style-->
+	  </styles>
+	  
+	  <!-- Recent Opened Files Section  -->
+	  <recentFiles>
+	    
+	  </recentFiles>
+	  
 	</Profile>
 </Setting>
