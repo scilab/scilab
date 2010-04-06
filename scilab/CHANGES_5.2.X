@@ -100,7 +100,7 @@ Graphics:
 
 * bug 6834 fixed - The rotation formula in the rotate help page was incorrect.
 
-* bug 6850 fixed - "PlotSparse" function does not use the ticks provided by the axis but drew his own.
+* bug 6850 fixed - "PlotSparse" function did not use the ticks provided by the axis but drew his own.
 
 * bug 6870 fixed - Arrowed polylines with infinite value was not plotted even if it was possible.
 
