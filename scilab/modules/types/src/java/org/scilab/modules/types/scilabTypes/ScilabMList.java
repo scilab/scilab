@@ -10,20 +10,20 @@
  * 
  */
 
-package org.scilab.modules.hdf5.scilabTypes;
+package org.scilab.modules.types.scilabTypes;
 
 import java.util.ArrayList;
 
 /**
- * This class provides a wrapping on the Scilab TList datatype
+ * This class provides a wrapping on the Scilab Mlist datatype
  */
-public class ScilabTList extends ArrayList<ScilabType> implements ScilabType {
-
-    public ScilabTList() {
+public class ScilabMList extends ArrayList<ScilabType> implements ScilabType {
+   
+    public ScilabMList() {
 		super();
     }
     
-    public ScilabTList(String []types) {
+    public ScilabMList(String []types) {
 		super();
 		String [][] typesData = new String[1][types.length];
 		typesData[0] = types;
@@ -49,11 +49,11 @@ public class ScilabTList extends ArrayList<ScilabType> implements ScilabType {
 		
 		StringBuffer result = new StringBuffer();
 		if (isEmpty()) {
-			result.append("tlist()");
+			result.append("mlist()");
 			return result.toString();
 		}
 
-		result.append("tlist(");
+		result.append("mlist");
 		for (int i = 0 ; i < size() ; i++){
 			result.append(get(i).toString());
 			if (i != size() - 1) {

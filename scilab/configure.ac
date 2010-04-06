@@ -1636,6 +1636,7 @@ modules/windows_tools/Makefile
 modules/core/Makefile
 modules/api_scilab/Makefile
 modules/call_scilab/Makefile
+modules/types/Makefile
 modules/hdf5/Makefile
 modules/fftw/Makefile
 modules/umfpack/Makefile
