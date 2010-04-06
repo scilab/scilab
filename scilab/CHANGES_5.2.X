@@ -66,16 +66,16 @@ Graphics:
 * bug 6531 fixed - Adding a new color to the current colormap caused the Legend
                    entity's default background color to change.
 
-* bug 6557 fixed - The legend order of the plzr function was incorrect.
+* bug 6557 fixed - The legend order of the "plzr" function was incorrect.
 
-* bug 6648 fixed - The description of the format_n property was missing from
-                   the axis_properties online help page.
+* bug 6648 fixed - The description of the "format_n" property was missing from
+                   the "axis_properties" online help page.
 
-* bug 6664 fixed - Setting the Axes property tight_limits to "on" caused the 
+* bug 6664 fixed - Setting the Axes property "tight_limits" to "on" caused the 
                    Axes and their attached entities to disappear when data min
                    and max bounds were equal (for any of the X,Y or Z axes).
 
-* bug 6687 fixed - The Matplot function didn't set the clip_state property of 
+* bug 6687 fixed - The "Matplot" function didn't set the clip_state property of 
                    the entities it creates.
 
 * bug 6712 fixed - The "title" function forced displaying axes.
@@ -100,7 +100,7 @@ Graphics:
 
 * bug 6834 fixed - The rotation formula in the rotate help page was incorrect.
 
-* bug 6850 fixed - "PlotSparse" function was not great.
+* bug 6850 fixed - "PlotSparse" function does not use the ticks provided by the axis but drew his own.
 
 * bug 6870 fixed - Arrowed polylines with infinite value was not plotted even if it was possible.
 
