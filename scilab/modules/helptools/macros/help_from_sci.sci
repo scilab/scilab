@@ -106,10 +106,6 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
 
 //  $Id: help_from_sci.sci,v 1.20 2009-11-24 20:36:12+01 torbjørn_pettersen Exp torbjørn_pettersen $
 
-if execstr("getversion(""scilab"");","errcatch") <> 0 then
-  error(sprintf(gettext("%s: Scilab 5.0 or more is required.\n"),"help_from_sci"));
-end
-
 if argn(2)==0 then
   template=[..
     'function [z]=function_template(x,y)'
