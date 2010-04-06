@@ -2214,6 +2214,7 @@ public class CallScilabBridge {
 	 * Save the help Window size and position
 	 */
 	public static void saveHelpWindowSettings() {
+        if ((SwingScilabHelpBrowser) ScilabHelpBrowser.getHelpBrowserWithoutCreation() !=null )  {
 		SwingScilabHelpBrowser sciHelpBrowser = ((SwingScilabHelpBrowser) ScilabHelpBrowser.getHelpBrowser().getAsSimpleHelpBrowser());
 		if (sciHelpBrowser != null) {
 			SwingScilabTab consoleTab = (SwingScilabTab) sciHelpBrowser.getParent();
@@ -2224,6 +2225,7 @@ public class CallScilabBridge {
 				ConfigManager.saveHelpWindowSize(helpWindow.getDims());
 			}
 		}
+        }
 
 	}
 
