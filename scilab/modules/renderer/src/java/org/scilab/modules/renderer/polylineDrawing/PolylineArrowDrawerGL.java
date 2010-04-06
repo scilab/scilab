@@ -16,7 +16,9 @@
 package org.scilab.modules.renderer.polylineDrawing;
 
 import org.scilab.modules.renderer.drawers.ArrowHeadDrawerGL;
+import org.scilab.modules.renderer.utils.geom3D.GeomAlgos;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
+import java.util.LinkedList;
 
 /**
  * Class containing the driver dependant routines to draw arrow
@@ -40,16 +42,31 @@ public class PolylineArrowDrawerGL extends ArrowHeadDrawerGL implements Polyline
 	 */
 	public void drawPolyline(double[] xCoords, double[] yCoords, double[] zCoords) {
 		
-		Vector3D[] startPoints = new Vector3D[xCoords.length - 1];
-		Vector3D[] endPoints = new Vector3D[xCoords.length - 1];
+		LinkedList<Vector3D> startPoints = new LinkedList<Vector3D>();
+		LinkedList<Vector3D> endPoints = new LinkedList<Vector3D>();
 		
 		// store the two endpoints of each arrow
 		for (int i = 0; i < xCoords.length - 1; i++) {
-			startPoints[i] = new Vector3D(xCoords[i], yCoords[i], zCoords[i]);
-			endPoints[i] = new Vector3D(xCoords[i + 1], yCoords[i + 1], zCoords[i + 1]);
+			if (	GeomAlgos.isVector3DRepresentable(xCoords[i], yCoords[i], zCoords[i]) && 
+					GeomAlgos.isVector3DRepresentable(xCoords[i + 1], yCoords[i + 1], zCoords[i + 1]) ) {
+				startPoints.addLast(
+					new Vector3D(
+						GeomAlgos.glRepresentable(xCoords[i]),
+						GeomAlgos.glRepresentable(yCoords[i]),
+						GeomAlgos.glRepresentable(zCoords[i])
+					)
+				);
+				endPoints.addLast(
+					new Vector3D(
+						GeomAlgos.glRepresentable(xCoords[i + 1]),
+						GeomAlgos.glRepresentable(yCoords[i + 1]),
+						GeomAlgos.glRepresentable(zCoords[i + 1])
+					)
+				);
+			}
 		}
 		
-		drawArrowHeads(startPoints, endPoints);
+		drawArrowHeads(startPoints.toArray(new Vector3D[0]), endPoints.toArray(new Vector3D[0]));
 	}
 	
 	/**
