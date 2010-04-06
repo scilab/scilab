@@ -23,4 +23,3 @@ EXPORTS
  getSCIpath
  callFunctionFromGateway
  freeArrayOfString
- IsFromJava

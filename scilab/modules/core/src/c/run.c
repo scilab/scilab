@@ -1048,7 +1048,7 @@ int C2F(run)(void)
  L150:
   ++lc;
   if (C2F(recu).niv > 0) {
-    C2F(sciquit)();
+    sciquit();
     exit(0); /* stop */
   }
   C2F(com).fun = 99;

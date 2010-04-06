@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -390,6 +390,10 @@
 			</File>
 			<File
 				RelativePath=".\ExceptionMessage.c"
+				>
+			</File>
+			<File
+				RelativePath=".\exitCodeValue.c"
 				>
 			</File>
 			<File
@@ -987,6 +991,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\existfunction.h"
+				>
+			</File>
+			<File
+				RelativePath=".\exitCodeValue.h"
 				>
 			</File>
 			<File
