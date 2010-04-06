@@ -84,10 +84,10 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
 	final SuperBlock block = (SuperBlock) selectedObj;
 	try {
 			final File tempOutput = File.createTempFile(XcosFileType.XCOS
-					.getExtension(), XcosFileType.HDF5.getExtension(),
+					.getExtension(), XcosFileType.HDF5.getDottedExtension(),
 					new File(System.getenv(XcosConstants.TMPDIR)));
 			final File tempInput = File.createTempFile(XcosFileType.XCOS
-					.getExtension(), XcosFileType.HDF5.getExtension(),
+					.getExtension(), XcosFileType.HDF5.getDottedExtension(),
 					new File(System.getenv(XcosConstants.TMPDIR)));
 	    tempOutput.deleteOnExit();
 	    tempInput.deleteOnExit();
@@ -102,7 +102,9 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
 	    
 			final ActionListener callback = new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					doAction(block, tempInput);
+					if (tempInput.exists()) {
+						doAction(block, tempInput);
+					}
 					((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
 				}
 			};
