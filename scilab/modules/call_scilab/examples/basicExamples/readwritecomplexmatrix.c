@@ -44,14 +44,19 @@ int main(void)
 							* (note that colA = sizeof(A)/2 
 							*/
 		char variableName[]="A";
+		SciErr sciErr;
 
-/* Write it into Scilab's memory */
-		createNamedComplexMatrixOfDouble(pvApiCtx,variableName,rowA,colA, A, A_img);
+		/* Write it into Scilab's memory */
+		sciErr = createNamedComplexMatrixOfDouble(pvApiCtx,variableName,rowA,colA, A, A_img);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+		}
 
-/*
- * Prior to Scilab 5.2:
- * C2F(cwritecmat)(variableName, &rowA, &colA, A,strlen(variableName));
- */
+		/*
+		 * Prior to Scilab 5.2:
+		 * C2F(cwritecmat)(variableName, &rowA, &colA, A,strlen(variableName));
+		 */
 		printf("Display from Scilab of A:\n");
 		SendScilabJob("disp(A);"); /* Display A */
 	}
@@ -73,8 +78,14 @@ int main(void)
 
 		int rowB=2, colB=4; /* Size of the matrix */
 		char variableNameB[] = "B";
-/* Write it into Scilab's memory */
-		createNamedComplexMatrixOfDouble(pvApiCtx,variableNameB, rowB, colB, B, B_img);
+		SciErr sciErr;
+
+		/* Write it into Scilab's memory */
+		sciErr = createNamedComplexMatrixOfDouble(pvApiCtx,variableNameB, rowB, colB, B, B_img);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+		}
 
 /*
  * Prior to Scilab 5.2:
@@ -96,9 +107,14 @@ int main(void)
 		double *matrixOfComplex_img = NULL;
 
 		char variableToBeRetrieved[] = "A";
+		SciErr sciErr;
 
 		/* First, retrieve the size of the matrix */
-		readNamedComplexMatrixOfDouble(pvApiCtx, variableToBeRetrieved, &rowA_, &colA_, NULL, NULL);
+		sciErr = readNamedComplexMatrixOfDouble(pvApiCtx, variableToBeRetrieved, &rowA_, &colA_, NULL, NULL);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+		}
 
 /*
  * Prior to Scilab 5.2:
@@ -110,7 +126,12 @@ int main(void)
 		matrixOfComplex_img = (double*)malloc((rowA_*colA_*2)*sizeof(double));
 
 		/* Load the matrix */
-		readNamedComplexMatrixOfDouble(pvApiCtx, variableToBeRetrieved, &rowA_, &colA_, matrixOfComplex, matrixOfComplex_img);
+		sciErr = readNamedComplexMatrixOfDouble(pvApiCtx, variableToBeRetrieved, &rowA_, &colA_, matrixOfComplex, matrixOfComplex_img);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+		}
+
 
 /*
  * Prior to Scilab 5.2:
@@ -148,10 +169,15 @@ int main(void)
 		double *matrixOfComplexB = NULL;
 		double *matrixOfComplexB_img = NULL;
 		char variableToBeRetrievedB[] = "B";
-
+		SciErr sciErr;
 		/* First, retrieve the size of the matrix */
 
-		readNamedComplexMatrixOfDouble(pvApiCtx, variableToBeRetrievedB, &rowB_, &colB_, NULL, NULL);
+		sciErr = readNamedComplexMatrixOfDouble(pvApiCtx, variableToBeRetrievedB, &rowB_, &colB_, NULL, NULL);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+		}
+
 /*
  * Prior to Scilab 5.2:
  * C2F(cmatcptr)(variableToBeRetrievedB, &rowB_, &colB_, &lp_, strlen(variableToBeRetrievedB));
@@ -162,13 +188,17 @@ int main(void)
 		matrixOfComplexB_img = (double*)malloc((rowB_*colB_)*sizeof(double));
 
 		/* Load the matrix */
-		readNamedComplexMatrixOfDouble(pvApiCtx, variableToBeRetrievedB, &rowB_, &colB_, matrixOfComplexB, matrixOfComplexB_img);
+		sciErr = readNamedComplexMatrixOfDouble(pvApiCtx, variableToBeRetrievedB, &rowB_, &colB_, matrixOfComplexB, matrixOfComplexB_img);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+		}
 
-/*
- * Prior to Scilab 5.2:
- * C2F(creadcmat)(variableToBeRetrievedB,&rowB_,&colB_,matrixOfComplexB,strlen(variableToBeRetrievedB) );
- */
-
+		/*
+		 * Prior to Scilab 5.2:
+		 * C2F(creadcmat)(variableToBeRetrievedB,&rowB_,&colB_,matrixOfComplexB,strlen(variableToBeRetrievedB) );
+		 */
+		
 		printf("\n");
 		printf("Display from B raw - real part (size: %d, %d):\n",rowB_, colB_);
 		for(i=0; i < rowB_*colB_; i++) /* *2 is because complex part is store

@@ -12,14 +12,14 @@
 
 /*--------------------------------------------------------------------------*/ 
 #include <string.h>
-#include "AddFunctionInTable.h"
+#include "GetFunctionByName.h"
 #include "dynamic_link.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 static BOOL SearchComp(FTAB *Ftab, char *op, void (**realop) ());
 static void Emptyfunc(void) {}
 /*--------------------------------------------------------------------------*/
-voidf AddFunctionInTable (char *name, int *rep, FTAB *table)
+voidf GetFunctionByName (char *name, int *rep, FTAB *table)
 {
 	void (*loc)();
 	if (name)

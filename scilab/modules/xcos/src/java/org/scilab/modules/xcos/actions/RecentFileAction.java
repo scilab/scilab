@@ -47,7 +47,7 @@ public final class RecentFileAction extends DefaultAction implements PropertyCha
 	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = 0;
 	
-	private static final Map<URL, RecentFileAction> instanceRegistry = new HashMap<URL, RecentFileAction>();
+	private static final Map<URL, RecentFileAction> INSTANCE_REGISTRY = new HashMap<URL, RecentFileAction>();
 
 	private File recentFile;
 	private MenuItem menu;
@@ -83,7 +83,6 @@ public final class RecentFileAction extends DefaultAction implements PropertyCha
 	};
 
 	/**
-	 * @param scilabGraph graph
 	 * @param file new recent file
 	 * @return menu item
 	 */
@@ -96,7 +95,7 @@ public final class RecentFileAction extends DefaultAction implements PropertyCha
 			return null;
 		}
 		
-		RecentFileAction action = instanceRegistry.get(file);
+		RecentFileAction action = INSTANCE_REGISTRY.get(file);
 		if (action == null) {
 			action = new RecentFileAction(f);
 		}
@@ -161,8 +160,8 @@ public final class RecentFileAction extends DefaultAction implements PropertyCha
 			recentFile = new File(newUrl.toURI());
 			menu.setText(recentFile.getName());
 			
-			instanceRegistry.remove(old);
-			instanceRegistry.put(newUrl, this);
+			INSTANCE_REGISTRY.remove(old);
+			INSTANCE_REGISTRY.put(newUrl, this);
 			
 		} catch (URISyntaxException e) {
 			LogFactory.getLog(RecentFileAction.class).error(e);

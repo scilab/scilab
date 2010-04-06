@@ -133,8 +133,6 @@ AC_ARG_ENABLE(build-giws,
 
 AC_PROG_CPP
 AC_PROG_GREP
-PKG_PROG_PKG_CONFIG
-
 
 ######
 #### Mac OS X set of fink path with provided
@@ -163,6 +161,12 @@ case "$host" in
      fi
      ;;
 esac
+
+#####################################################
+## Look for pkg-config 
+#####################################################
+PKG_PROG_PKG_CONFIG
+
 #####################################################
 ## check if options are correct (or not)
 #####################################################

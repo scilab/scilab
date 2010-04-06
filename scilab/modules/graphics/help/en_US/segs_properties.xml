@@ -73,8 +73,8 @@
         <term>line_style: </term>
         <listitem>
           <para>The <literal>line_style</literal> property value should be an integer in
-        [0 6]. 0 stands for solid the other value stands for a selection of
-        dashes. This property applies to all segments.</para>
+        [0 8]. 0 and 1 stands for solid, the other value stands for a selection of
+        dashes (see <link linkend="axes_properties">getlinestyle</link>).</para>
         </listitem>
       </varlistentry>
       <varlistentry>

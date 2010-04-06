@@ -30,6 +30,8 @@ Documentation:
 * bug 6630 fixed - JavaHelp does not update existing image files when 
                    building help.
 
+* bug 6852 fixed - JavaHelp did not center the LaTeX formulas containing an
+      	   	   attribute align="center" 
 
 Xcos:
 =====
@@ -93,7 +95,12 @@ Matlab to Scilab conversion tools:
 
 * Unitary tests added.
 
-* mfile2sci: option only_double set to %T as default.
+* Matlab-Scilab equivalents dictionnary added in documentation.
+
+* In 'mfile2sci', option only_double is now set to %T as default.
+
+* Conversion updated with new Scilab functions:
+  - 'filesep' now converted by 'filesep' instead of 'pathconvert'.
   
 Tests:
 ======
@@ -148,6 +155,10 @@ Removed functions (previously declared as obsolete):
 Bug fixes:
 ==========
 
+* bug 4672 fixed - Internal function AddFunctionInTable renamed to 
+                   getFunctionByName to avoid confusions on the actual usage
+                   of this function. Thanks to Yuvraj Tomar.
+
 * bug 6419 fixed - gstacksize() There was no way to retrieve minimum 
                    from Scilab.
 
@@ -177,4 +188,7 @@ Bug fixes:
 
 * bug 6740 fixed - It was not possible to launch Scilab as Minimized 
                    or Maximized Window.
+
+* bug 6830 fixed - C2F(scistring) in stack2.c was broken for macro names of 
+                   exactly 2 characters.
 

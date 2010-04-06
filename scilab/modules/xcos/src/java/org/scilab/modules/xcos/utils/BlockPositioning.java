@@ -17,6 +17,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.io.BasicBlockInfo;
 import org.scilab.modules.xcos.port.BasicPort;
@@ -391,8 +392,13 @@ public final class BlockPositioning {
 			/* Apply angle */
 			if (block.getParentDiagram() != null) {
 				final mxIGraphModel model = block.getParentDiagram().getModel();
-				mxUtils.setCellStyles(model, new Object[] {port}, XcosConstants.STYLE_ROTATION, Integer.toString(orientation.getAngle(
-						angle, flipped, mirrored)));
+				final String rot = Integer.toString(orientation.getRelativeAngle(angle, port.getClass(), flipped, mirrored));
+				mxUtils.setCellStyles(model, new Object[] {port}, XcosConstants.STYLE_ROTATION, rot);
+			} else {
+				final StyleMap m = new StyleMap(port.getStyle());
+				final int rot = orientation.getRelativeAngle(angle, port.getClass(), flipped, mirrored);
+				m.put(XcosConstants.STYLE_ROTATION, Integer.toString(rot));
+				port.setStyle(m.toString());
 			}
 
 			endUpdate(block);
@@ -408,6 +414,14 @@ public final class BlockPositioning {
 			updatePortsPosition(block);
 			rotateAllPorts(block);
 		endUpdate(block);
+		
+		/*
+		 * FIXME: #6705; This placement trick doesn't work on the first block
+		 * Dnd as the view is not revalidated.
+		 * 
+		 * On block loading, parentDiagram is null thus placement is not
+		 * performed.
+		 */
 	}
 
     /**

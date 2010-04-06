@@ -8,6 +8,6 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
-function r=with_pvm()
-  r=%pvm;
+function r = with_pvm()
+  r = with_module('pvm');
 endfunction

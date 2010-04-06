@@ -14,6 +14,9 @@ package org.scilab.modules.hdf5.scilabTypes;
 
 import java.util.ArrayList;
 
+/**
+ * This class provides a wrapping on the Scilab TList datatype
+ */
 public class ScilabTList extends ArrayList<ScilabType> implements ScilabType {
 
     public ScilabTList() {

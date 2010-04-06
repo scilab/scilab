@@ -31,14 +31,14 @@
       <varlistentry>
         <term>theta  </term>
         <listitem>
-          <para>réel, angle en radian (0 par défaut).
+          <para>réel, angle en radians (0 par défaut).
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>orig  </term>
         <listitem>
-          <para>centre de la rotation ([0;0] par défaut)
+          <para>centre de la rotation [xc;yc] ([0;0] par défaut)
 </para>
         </listitem>
       </varlistentry>
@@ -49,7 +49,7 @@
     <para><literal>rotate</literal> effectue une rotation d'angle theta <literal>theta</literal> :
   </para>
     <para>
-      <literal>xy1(:,i) = M(theta) *xy (:,i) + yesg</literal>
+      <literal>xy1(:,i) = M(theta) *(xy(:,i) - orig) + orig</literal>
     </para>
     <para>
     où <literal>M</literal> représente la matrice de rotation correspondante.

@@ -39,11 +39,17 @@ int main(void)
 		double A[] = {1,3,3,2};   /* Declare the matrix */
 		int rowA = 1, colA = 4; /* Size of the matrix */
 		char variableName[] = "A";
+		SciErr sciErr;
 
 		/*
 		 * Write it into Scilab's memory 
 		 */
-		createNamedMatrixOfDouble(pvApiCtx,variableName,rowA,colA, A);
+		sciErr = createNamedMatrixOfDouble(pvApiCtx,variableName,rowA,colA, A);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+		}
+
 		/*
 		 * Prior to Scilab 5.2:
 		 * C2F(cwritemat)(variableName, &rowA, &colA, A,strlen(variableName));
@@ -63,11 +69,17 @@ int main(void)
 		double B[] = {1,3,4,9,2,8,3,2};   /* Declare the matrix */
 		int rowB = 2, colB = 4; /* Size of the matrix */
 		char variableNameB[] = "B";
+		SciErr sciErr;
 
 		/*
 		 * Write it into Scilab's memory 
 		 */
 		createNamedMatrixOfDouble(pvApiCtx,variableNameB,rowB,colB, B);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+		}
+
 		/*
 		 * Prior to Scilab 5.2:
 		 * C2F(cwritemat)(variableNameB, &rowB, &colB, B, strlen(variableNameB));
@@ -87,9 +99,15 @@ int main(void)
 		double *matrixOfDouble = NULL;
 
 		char variableToBeRetrieved[]="A";
+		SciErr sciErr;
 
 		/* First, retrieve the size of the matrix */
-		readNamedMatrixOfDouble(pvApiCtx, variableToBeRetrieved, &rowA_, &colA_, NULL);
+		sciErr = readNamedMatrixOfDouble(pvApiCtx, variableToBeRetrieved, &rowA_, &colA_, NULL);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+		}
+
 		/* 
 		 * Prior to Scilab 5.2:
 		 * 	C2F(cmatptr)(variableToBeRetrieved, &rowA_, &colA_, &lp, strlen(variableToBeRetrieved));
@@ -100,7 +118,12 @@ int main(void)
 		matrixOfDouble=(double*)malloc((rowA_*colA_)*sizeof(double));
 
 		/* Load the matrix */
-		readNamedMatrixOfDouble(pvApiCtx, variableToBeRetrieved, &rowA_, &colA_, matrixOfDouble);
+		sciErr = readNamedMatrixOfDouble(pvApiCtx, variableToBeRetrieved, &rowA_, &colA_, matrixOfDouble);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+		}
+
 		/* 
 		 * Prior to Scilab 5.2:
 		 * C2F(creadmat)(variableToBeRetrieved,&rowA_,&colA_,matrixOfDouble,strlen(variableToBeRetrieved) );
@@ -128,9 +151,15 @@ int main(void)
 		int i = 0, j = 0;
 
 		char variableToBeRetrievedB[] = "B";
+		SciErr sciErr;
 
 		/* First, retrieve the size of the matrix */
-		readNamedMatrixOfDouble(pvApiCtx, variableToBeRetrievedB, &rowB_, &colB_, NULL);
+		sciErr = readNamedMatrixOfDouble(pvApiCtx, variableToBeRetrievedB, &rowB_, &colB_, NULL);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+		}
+
 		/* 
 		 * Prior to Scilab 5.2:
 		 * C2F(cmatptr)(variableToBeRetrievedB, &rowB_, &colB_, &lp_, strlen(variableToBeRetrievedB));
@@ -141,7 +170,12 @@ int main(void)
 		matrixOfDoubleB = (double*)malloc((rowB_*colB_)*sizeof(double));
 
 		/* Load the matrix */
-		readNamedMatrixOfDouble(pvApiCtx, variableToBeRetrievedB, &rowB_, &colB_, matrixOfDoubleB);
+		sciErr = readNamedMatrixOfDouble(pvApiCtx, variableToBeRetrievedB, &rowB_, &colB_, matrixOfDoubleB);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+		}
+
 		/* 
 		 * Prior to Scilab 5.2:
 		 * C2F(creadmat)(variableToBeRetrievedB,&rowB_,&colB_,matrixOfDoubleB,strlen(variableToBeRetrievedB) );

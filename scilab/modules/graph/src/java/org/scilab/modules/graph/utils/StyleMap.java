@@ -13,7 +13,8 @@
 package org.scilab.modules.graph.utils;
 
 import java.util.HashMap;
-import java.util.Map;
+import java.util.Iterator;
+import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -50,7 +51,10 @@ public final class StyleMap extends HashMap<String, String> {
 		StringBuilder str = new StringBuilder();
 		String valueRef = null;
 		
-		for (Map.Entry<String, String> entry : entrySet()) {
+		for (Iterator<Entry<String, String>> iterator = entrySet().iterator();
+		     iterator.hasNext();) {
+			Entry<String, String> entry = iterator.next();
+			
 			str.append(entry.getKey());
 			
 			valueRef = entry.getValue();
@@ -58,9 +62,13 @@ public final class StyleMap extends HashMap<String, String> {
 				str.append("=");
 				str.append(valueRef);
 			}
-			str.append(";");
+			
+			if (iterator.hasNext()) {
+				str.append(";");
+			}
+			
 		}
 		
-		return str.substring(0, str.length() - 1);
+		return str.toString();
 	}
 }
