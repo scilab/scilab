@@ -19,7 +19,12 @@
 	</xs:complexType>
 
 	<xs:complexType name="ArrayType" mixed="true">
-		<xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:annotation>
+        	<xs:documentation>An array contains a collection of element of the same class or not. 
+
+This type come from JGraphx serialization which use this type as its default container.</xs:documentation>
+        </xs:annotation>
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
 			<xs:element type="dataType" name="data" />
 			<xs:element type="addType" name="add" />
 			<xs:element type="ScilabBooleanType" name="ScilabBoolean" />
@@ -39,7 +44,7 @@
 			<xs:element type="mxPointType" name="mxPoint" minOccurs="0" />
 			<xs:element type="ArrayType" name="Array" minOccurs="0" />
 		</xs:sequence>
-		<xs:attribute type="xs:string" name="as" use="optional" />
+		<xs:attribute type="xs:string" name="as" use="required" />
 		<xs:attribute type="xs:float" name="height" use="optional" />
 		<xs:attribute type="xs:float" name="width" use="optional" />
 		<xs:attribute type="xs:float" name="x" use="optional" />
@@ -629,434 +634,65 @@
 	</xs:complexType>
 	
 	<xs:complexType name="GainBlockType">
-		<xs:choice maxOccurs="unbounded" minOccurs="0">
-			<xs:element type="ScilabStringType" name="ScilabString" />
-			<xs:element type="ScilabDoubleType" name="ScilabDouble" />
-			<xs:element type="ArrayType" name="Array" />
-			<xs:element type="mxGeometryType" name="mxGeometry" />
-			<xs:element type="mxCellType" name="mxCell" />
-			<xs:element type="ExplicitOutputPortType" name="ExplicitOutputPort" />
-			<xs:element type="ExplicitInputPortType" name="ExplicitInputPort" />
-			<xs:element type="ImplicitOutputPortType" name="ImplicitOutputPort" />
-			<xs:element type="ImplicitInputPortType" name="ImplicitInputPort" />
-			<xs:element type="CommandPortType" name="CommandPort" />
-			<xs:element type="ControlPortType" name="ControlPort" />
-			<xs:element type="SuperBlockDiagramType" name="SuperBlockDiagram" />
-			<xs:element type="OrientationType" name="Orientation" />
-		</xs:choice>
-		<xs:attribute type="xs:byte" name="dependsOnU" use="optional" />
-		<xs:attribute type="xs:string" name="id" use="optional" />
-		<xs:attribute type="xs:string" name="interfaceFunctionName"
-			use="optional" />
-		<xs:attribute type="xs:short" name="ordering" use="optional" />
-		<xs:attribute type="xs:string" name="parent" use="optional" />
-		<xs:attribute type="xs:string" name="simulationFunctionName"
-			use="optional" />
-		<xs:attribute type="xs:string" name="simulationFunctionType"
-			use="optional" />
-		<xs:attribute type="xs:string" name="style" use="optional" />
-		<xs:attribute type="xs:string" name="value" use="optional" />
-		<xs:attribute type="xs:byte" name="dataColumns" use="optional" />
-		<xs:attribute type="xs:byte" name="dataLines" use="optional" />
-		<xs:attribute type="xs:string" name="dataType" use="optional" />
-		<xs:attribute type="xs:byte" name="visible" use="optional" />
-		<xs:attribute type="xs:string" name="as" use="optional" />
-		<xs:attribute type="xs:string" name="blockType" use="optional" />
-		<xs:attribute type="xs:byte" name="dependsOnT" use="optional" />
-		<xs:attribute type="xs:byte" name="connectable" use="optional" />
-		<xs:attribute type="xs:byte" name="vertex" use="optional" />
-		<xs:attribute type="xs:byte" name="connectedLinkId" use="optional" />
-		<xs:attribute type="xs:float" name="initialState" use="optional" />
-		<xs:attribute type="xs:byte" name="locked" use="optional" />
-		<xs:attribute type="xs:short" name="angle" use="optional" />
+		<xs:complexContent>
+			<xs:extension base="BasicBlockType" />
+		</xs:complexContent>
 	</xs:complexType>
 	
 	<xs:complexType name="ConstBlockType">
-		<xs:choice maxOccurs="unbounded" minOccurs="0">
-			<xs:element type="ScilabStringType" name="ScilabString" />
-			<xs:element type="ScilabDoubleType" name="ScilabDouble" />
-			<xs:element type="ArrayType" name="Array" />
-			<xs:element type="mxGeometryType" name="mxGeometry" />
-			<xs:element type="mxCellType" name="mxCell" />
-			<xs:element type="ExplicitOutputPortType" name="ExplicitOutputPort" />
-			<xs:element type="ExplicitInputPortType" name="ExplicitInputPort" />
-			<xs:element type="ImplicitOutputPortType" name="ImplicitOutputPort" />
-			<xs:element type="ImplicitInputPortType" name="ImplicitInputPort" />
-			<xs:element type="CommandPortType" name="CommandPort" />
-			<xs:element type="ControlPortType" name="ControlPort" />
-			<xs:element type="SuperBlockDiagramType" name="SuperBlockDiagram" />
-			<xs:element type="OrientationType" name="Orientation" />
-		</xs:choice>
-		<xs:attribute type="xs:string" name="blockType" use="optional" />
-		<xs:attribute type="xs:string" name="id" use="optional" />
-		<xs:attribute type="xs:short" name="ordering" use="optional" />
-		<xs:attribute type="xs:string" name="parent" use="optional" />
-		<xs:attribute type="xs:string" name="simulationFunctionName"
-			use="optional" />
-		<xs:attribute type="xs:string" name="simulationFunctionType"
-			use="optional" />
-		<xs:attribute type="xs:string" name="style" use="optional" />
-		<xs:attribute type="xs:string" name="value" use="optional" />
-		<xs:attribute type="xs:byte" name="dataColumns" use="optional" />
-		<xs:attribute type="xs:byte" name="dataLines" use="optional" />
-		<xs:attribute type="xs:string" name="dataType" use="optional" />
-		<xs:attribute type="xs:byte" name="visible" use="optional" />
-		<xs:attribute type="xs:string" name="as" use="optional" />
-		<xs:attribute type="xs:string" name="interfaceFunctionName"
-			use="optional" />
-		<xs:attribute type="xs:byte" name="dependsOnU" use="optional" />
-		<xs:attribute type="xs:byte" name="dependsOnT" use="optional" />
-		<xs:attribute type="xs:byte" name="connectable" use="optional" />
-		<xs:attribute type="xs:byte" name="vertex" use="optional" />
-		<xs:attribute type="xs:byte" name="connectedLinkId" use="optional" />
-		<xs:attribute type="xs:float" name="initialState" use="optional" />
-		<xs:attribute type="xs:byte" name="locked" use="optional" />
-		<xs:attribute type="xs:short" name="angle" use="optional" />
+		<xs:complexContent>
+			<xs:extension base="BasicBlockType" />
+		</xs:complexContent>
 	</xs:complexType>
 	
 	<xs:complexType name="SplitBlockType">
-		<xs:choice maxOccurs="unbounded" minOccurs="0">
-			<xs:element type="ScilabDoubleType" name="ScilabDouble" />
-			<xs:element type="ArrayType" name="Array" />
-			<xs:element type="mxGeometryType" name="mxGeometry" />
-			<xs:element type="ScilabStringType" name="ScilabString" />
-			<xs:element type="mxCellType" name="mxCell" />
-			<xs:element type="ExplicitOutputPortType" name="ExplicitOutputPort" />
-			<xs:element type="ExplicitInputPortType" name="ExplicitInputPort" />
-			<xs:element type="ImplicitOutputPortType" name="ImplicitOutputPort" />
-			<xs:element type="ImplicitInputPortType" name="ImplicitInputPort" />
-			<xs:element type="CommandPortType" name="CommandPort" />
-			<xs:element type="ControlPortType" name="ControlPort" />
-			<xs:element type="SuperBlockDiagramType" name="SuperBlockDiagram" />
-			<xs:element type="OrientationType" name="Orientation" />
-		</xs:choice>
-		<xs:attribute type="xs:byte" name="dependsOnU" use="optional" />
-		<xs:attribute type="xs:string" name="id" use="optional" />
-		<xs:attribute type="xs:short" name="ordering" use="optional" />
-		<xs:attribute type="xs:string" name="parent" use="optional" />
-		<xs:attribute type="xs:string" name="simulationFunctionType"
-			use="optional" />
-		<xs:attribute type="xs:string" name="style" use="optional" />
-		<xs:attribute type="xs:string" name="value" use="optional" />
-		<xs:attribute type="xs:string" name="blockType" use="optional" />
-		<xs:attribute type="xs:string" name="interfaceFunctionName"
-			use="optional" />
-		<xs:attribute type="xs:string" name="simulationFunctionName"
-			use="optional" />
-		<xs:attribute type="xs:byte" name="dataColumns" use="optional" />
-		<xs:attribute type="xs:byte" name="dataLines" use="optional" />
-		<xs:attribute type="xs:string" name="dataType" use="optional" />
-		<xs:attribute type="xs:byte" name="visible" use="optional" />
-		<xs:attribute type="xs:string" name="as" use="optional" />
-		<xs:attribute type="xs:byte" name="dependsOnT" use="optional" />
-		<xs:attribute type="xs:byte" name="connectable" use="optional" />
-		<xs:attribute type="xs:byte" name="vertex" use="optional" />
-		<xs:attribute type="xs:byte" name="connectedLinkId" use="optional" />
-		<xs:attribute type="xs:float" name="initialState" use="optional" />
-		<xs:attribute type="xs:byte" name="locked" use="optional" />
-		<xs:attribute type="xs:short" name="angle" use="optional" />
+		<xs:complexContent>
+			<xs:extension base="BasicBlockType" />
+		</xs:complexContent>
 	</xs:complexType>
 	
 	<xs:complexType name="TextBlockType">
-		<xs:choice maxOccurs="unbounded" minOccurs="0">
-			<xs:element type="ScilabStringType" name="ScilabString" />
-			<xs:element type="ScilabDoubleType" name="ScilabDouble" />
-			<xs:element type="ArrayType" name="Array" />
-			<xs:element type="mxGeometryType" name="mxGeometry" />
-			<xs:element type="mxCellType" name="mxCell" />
-			<xs:element type="ExplicitOutputPortType" name="ExplicitOutputPort" />
-			<xs:element type="ExplicitInputPortType" name="ExplicitInputPort" />
-			<xs:element type="CommandPortType" name="CommandPort" />
-			<xs:element type="ControlPortType" name="ControlPort" />
-			<xs:element type="ImplicitOutputPortType" name="ImplicitOutputPort" />
-			<xs:element type="ImplicitInputPortType" name="ImplicitInputPort" />
-			<xs:element type="SuperBlockDiagramType" name="SuperBlockDiagram" />
-			<xs:element type="OrientationType" name="Orientation" />
-		</xs:choice>
-		<xs:attribute type="xs:string" name="id" use="optional" />
-		<xs:attribute type="xs:short" name="ordering" use="optional" />
-		<xs:attribute type="xs:string" name="parent" use="optional" />
-		<xs:attribute type="xs:string" name="simulationFunctionName"
-			use="optional" />
-		<xs:attribute type="xs:string" name="simulationFunctionType"
-			use="optional" />
-		<xs:attribute type="xs:string" name="style" use="optional" />
-		<xs:attribute type="xs:string" name="value" use="optional" />
-		<xs:attribute type="xs:byte" name="dependsOnU" use="optional" />
-		<xs:attribute type="xs:string" name="blockType" use="optional" />
-		<xs:attribute type="xs:string" name="interfaceFunctionName"
-			use="optional" />
-		<xs:attribute type="xs:byte" name="dataColumns" use="optional" />
-		<xs:attribute type="xs:byte" name="dataLines" use="optional" />
-		<xs:attribute type="xs:string" name="dataType" use="optional" />
-		<xs:attribute type="xs:byte" name="visible" use="optional" />
-		<xs:attribute type="xs:string" name="as" use="optional" />
-		<xs:attribute type="xs:byte" name="dependsOnT" use="optional" />
-		<xs:attribute type="xs:byte" name="connectable" use="optional" />
-		<xs:attribute type="xs:byte" name="vertex" use="optional" />
-		<xs:attribute type="xs:byte" name="connectedLinkId" use="optional" />
-		<xs:attribute type="xs:float" name="initialState" use="optional" />
-		<xs:attribute type="xs:byte" name="locked" use="optional" />
-		<xs:attribute type="xs:short" name="angle" use="optional" />
+		<xs:complexContent>
+			<xs:extension base="BasicBlockType" />
+		</xs:complexContent>
 	</xs:complexType>
 	
 	<xs:complexType name="VoltageSensorBlockType">
-		<xs:choice maxOccurs="unbounded" minOccurs="0">
-			<xs:element type="ScilabDoubleType" name="ScilabDouble" />
-			<xs:element type="ArrayType" name="Array" />
-			<xs:element type="mxGeometryType" name="mxGeometry" />
-			<xs:element type="mxCellType" name="mxCell" />
-			<xs:element type="ScilabStringType" name="ScilabString" />
-			<xs:element type="ExplicitOutputPortType" name="ExplicitOutputPort" />
-			<xs:element type="ExplicitInputPortType" name="ExplicitInputPort" />
-			<xs:element type="ImplicitOutputPortType" name="ImplicitOutputPort" />
-			<xs:element type="ImplicitInputPortType" name="ImplicitInputPort" />
-			<xs:element type="CommandPortType" name="CommandPort" />
-			<xs:element type="ControlPortType" name="ControlPort" />
-			<xs:element type="SuperBlockDiagramType" name="SuperBlockDiagram" />
-			<xs:element type="OrientationType" name="Orientation" />
-		</xs:choice>
-		<xs:attribute type="xs:byte" name="dependsOnU" use="optional" />
-		<xs:attribute type="xs:string" name="id" use="optional" />
-		<xs:attribute type="xs:string" name="interfaceFunctionName"
-			use="optional" />
-		<xs:attribute type="xs:string" name="simulationFunctionName"
-			use="optional" />
-		<xs:attribute type="xs:string" name="style" use="optional" />
-		<xs:attribute type="xs:byte" name="connectedLinkId" use="optional" />
-		<xs:attribute type="xs:byte" name="dataLines" use="optional" />
-		<xs:attribute type="xs:string" name="dataType" use="optional" />
-		<xs:attribute type="xs:short" name="ordering" use="optional" />
-		<xs:attribute type="xs:string" name="parent" use="optional" />
-		<xs:attribute type="xs:string" name="as" use="optional" />
-		<xs:attribute type="xs:string" name="blockType" use="optional" />
-		<xs:attribute type="xs:string" name="simulationFunctionType"
-			use="optional" />
-		<xs:attribute type="xs:string" name="value" use="optional" />
-		<xs:attribute type="xs:byte" name="dependsOnT" use="optional" />
-		<xs:attribute type="xs:byte" name="dataColumns" use="optional" />
-		<xs:attribute type="xs:byte" name="visible" use="optional" />
-		<xs:attribute type="xs:byte" name="connectable" use="optional" />
-		<xs:attribute type="xs:byte" name="vertex" use="optional" />
-		<xs:attribute type="xs:float" name="initialState" use="optional" />
-		<xs:attribute type="xs:byte" name="locked" use="optional" />
-		<xs:attribute type="xs:short" name="angle" use="optional" />
+		<xs:complexContent>
+			<xs:extension base="BasicBlockType" />
+		</xs:complexContent>
 	</xs:complexType>
 	
 	<xs:complexType name="GroundBlockType">
-		<xs:choice maxOccurs="unbounded" minOccurs="0">
-			<xs:element type="ScilabStringType" name="ScilabString" />
-			<xs:element type="ScilabDoubleType" name="ScilabDouble" />
-			<xs:element type="ArrayType" name="Array" />
-			<xs:element type="mxGeometryType" name="mxGeometry" />
-			<xs:element type="mxCellType" name="mxCell" />
-			<xs:element type="ExplicitOutputPortType" name="ExplicitOutputPort" />
-			<xs:element type="ExplicitInputPortType" name="ExplicitInputPort" />
-			<xs:element type="ImplicitOutputPortType" name="ImplicitOutputPort" />
-			<xs:element type="ImplicitInputPortType" name="ImplicitInputPort" />
-			<xs:element type="CommandPortType" name="CommandPort" />
-			<xs:element type="ControlPortType" name="ControlPort" />
-			<xs:element type="SuperBlockDiagramType" name="SuperBlockDiagram" />
-			<xs:element type="OrientationType" name="Orientation" />
-		</xs:choice>
-		<xs:attribute type="xs:byte" name="dependsOnU" use="optional" />
-		<xs:attribute type="xs:string" name="id" use="optional" />
-		<xs:attribute type="xs:string" name="interfaceFunctionName"
-			use="optional" />
-		<xs:attribute type="xs:string" name="simulationFunctionName"
-			use="optional" />
-		<xs:attribute type="xs:string" name="style" use="optional" />
-		<xs:attribute type="xs:byte" name="connectedLinkId" use="optional" />
-		<xs:attribute type="xs:byte" name="dataLines" use="optional" />
-		<xs:attribute type="xs:string" name="dataType" use="optional" />
-		<xs:attribute type="xs:short" name="ordering" use="optional" />
-		<xs:attribute type="xs:string" name="parent" use="optional" />
-		<xs:attribute type="xs:string" name="as" use="optional" />
-		<xs:attribute type="xs:string" name="blockType" use="optional" />
-		<xs:attribute type="xs:string" name="simulationFunctionType"
-			use="optional" />
-		<xs:attribute type="xs:string" name="value" use="optional" />
-		<xs:attribute type="xs:byte" name="dependsOnT" use="optional" />
-		<xs:attribute type="xs:byte" name="dataColumns" use="optional" />
-		<xs:attribute type="xs:byte" name="visible" use="optional" />
-		<xs:attribute type="xs:byte" name="connectable" use="optional" />
-		<xs:attribute type="xs:byte" name="vertex" use="optional" />
-		<xs:attribute type="xs:float" name="initialState" use="optional" />
-		<xs:attribute type="xs:byte" name="locked" use="optional" />
-		<xs:attribute type="xs:short" name="angle" use="optional" />
+		<xs:complexContent>
+			<xs:extension base="BasicBlockType" />
+		</xs:complexContent>
 	</xs:complexType>
 	
 	<xs:complexType name="ExplicitOutBlockType">
-		<xs:choice maxOccurs="unbounded" minOccurs="0">
-			<xs:element type="ScilabStringType" name="ScilabString" />
-			<xs:element type="ScilabDoubleType" name="ScilabDouble" />
-			<xs:element type="ArrayType" name="Array" />
-			<xs:element type="mxGeometryType" name="mxGeometry" />
-			<xs:element type="mxCellType" name="mxCell" />
-			<xs:element type="ExplicitOutputPortType" name="ExplicitOutputPort" />
-			<xs:element type="ExplicitInputPortType" name="ExplicitInputPort" />
-			<xs:element type="ImplicitOutputPortType" name="ImplicitOutputPort" />
-			<xs:element type="ImplicitInputPortType" name="ImplicitInputPort" />
-			<xs:element type="CommandPortType" name="CommandPort" />
-			<xs:element type="ControlPortType" name="ControlPort" />
-			<xs:element type="SuperBlockDiagramType" name="SuperBlockDiagram" />
-			<xs:element type="OrientationType" name="Orientation" />
-		</xs:choice>
-		<xs:attribute type="xs:byte" name="connectable" use="optional" />
-		<xs:attribute type="xs:string" name="id" use="optional" />
-		<xs:attribute type="xs:string" name="interfaceFunctionName"
-			use="optional" />
-		<xs:attribute type="xs:short" name="ordering" use="optional" />
-		<xs:attribute type="xs:string" name="simulationFunctionName"
-			use="optional" />
-		<xs:attribute type="xs:string" name="style" use="optional" />
-		<xs:attribute type="xs:string" name="value" use="optional" />
-		<xs:attribute type="xs:byte" name="vertex" use="optional" />
-		<xs:attribute type="xs:byte" name="visible" use="optional" />
-		<xs:attribute type="xs:byte" name="dataColumns" use="optional" />
-		<xs:attribute type="xs:byte" name="dataLines" use="optional" />
-		<xs:attribute type="xs:string" name="dataType" use="optional" />
-		<xs:attribute type="xs:string" name="parent" use="optional" />
-		<xs:attribute type="xs:string" name="as" use="optional" />
-		<xs:attribute type="xs:string" name="blockType" use="optional" />
-		<xs:attribute type="xs:string" name="simulationFunctionType"
-			use="optional" />
-		<xs:attribute type="xs:byte" name="dependsOnU" use="optional" />
-		<xs:attribute type="xs:byte" name="dependsOnT" use="optional" />
-		<xs:attribute type="xs:byte" name="connectedLinkId" use="optional" />
-		<xs:attribute type="xs:float" name="initialState" use="optional" />
-		<xs:attribute type="xs:byte" name="locked" use="optional" />
-		<xs:attribute type="xs:short" name="angle" use="optional" />
+		<xs:complexContent>
+			<xs:extension base="BasicBlockType" />
+		</xs:complexContent>
 	</xs:complexType>
 	
 	<xs:complexType name="ExplicitInBlockType">
-		<xs:choice maxOccurs="unbounded" minOccurs="0">
-			<xs:element type="ScilabStringType" name="ScilabString" />
-			<xs:element type="ScilabDoubleType" name="ScilabDouble" />
-			<xs:element type="ArrayType" name="Array" />
-			<xs:element type="mxGeometryType" name="mxGeometry" />
-			<xs:element type="mxCellType" name="mxCell" />
-			<xs:element type="ExplicitOutputPortType" name="ExplicitOutputPort" />
-			<xs:element type="ExplicitInputPortType" name="ExplicitInputPort" />
-			<xs:element type="ImplicitOutputPortType" name="ImplicitOutputPort" />
-			<xs:element type="ImplicitInputPortType" name="ImplicitInputPort" />
-			<xs:element type="CommandPortType" name="CommandPort" />
-			<xs:element type="ControlPortType" name="ControlPort" />
-			<xs:element type="SuperBlockDiagramType" name="SuperBlockDiagram" />
-			<xs:element type="OrientationType" name="Orientation" />
-		</xs:choice>
-		<xs:attribute type="xs:byte" name="connectable" use="optional" />
-		<xs:attribute type="xs:string" name="id" use="optional" />
-		<xs:attribute type="xs:string" name="interfaceFunctionName"
-			use="optional" />
-		<xs:attribute type="xs:short" name="ordering" use="optional" />
-		<xs:attribute type="xs:string" name="simulationFunctionName"
-			use="optional" />
-		<xs:attribute type="xs:string" name="style" use="optional" />
-		<xs:attribute type="xs:string" name="value" use="optional" />
-		<xs:attribute type="xs:byte" name="vertex" use="optional" />
-		<xs:attribute type="xs:byte" name="visible" use="optional" />
-		<xs:attribute type="xs:byte" name="dataColumns" use="optional" />
-		<xs:attribute type="xs:byte" name="dataLines" use="optional" />
-		<xs:attribute type="xs:string" name="dataType" use="optional" />
-		<xs:attribute type="xs:string" name="parent" use="optional" />
-		<xs:attribute type="xs:string" name="as" use="optional" />
-		<xs:attribute type="xs:string" name="blockType" use="optional" />
-		<xs:attribute type="xs:string" name="simulationFunctionType"
-			use="optional" />
-		<xs:attribute type="xs:byte" name="dependsOnU" use="optional" />
-		<xs:attribute type="xs:byte" name="dependsOnT" use="optional" />
-		<xs:attribute type="xs:byte" name="connectedLinkId" use="optional" />
-		<xs:attribute type="xs:float" name="initialState" use="optional" />
-		<xs:attribute type="xs:byte" name="locked" use="optional" />
-		<xs:attribute type="xs:short" name="angle" use="optional" />
+		<xs:complexContent>
+			<xs:extension base="BasicBlockType" />
+		</xs:complexContent>
 	</xs:complexType>
 	
 	<xs:complexType name="EventInBlockType">
-		<xs:choice maxOccurs="unbounded" minOccurs="0">
-			<xs:element type="ScilabStringType" name="ScilabString" />
-			<xs:element type="ScilabDoubleType" name="ScilabDouble" />
-			<xs:element type="ArrayType" name="Array" />
-			<xs:element type="mxGeometryType" name="mxGeometry" />
-			<xs:element type="mxCellType" name="mxCell" />
-			<xs:element type="ExplicitOutputPortType" name="ExplicitOutputPort" />
-			<xs:element type="ExplicitInputPortType" name="ExplicitInputPort" />
-			<xs:element type="ImplicitOutputPortType" name="ImplicitOutputPort" />
-			<xs:element type="ImplicitInputPortType" name="ImplicitInputPort" />
-			<xs:element type="CommandPortType" name="CommandPort" />
-			<xs:element type="ControlPortType" name="ControlPort" />
-			<xs:element type="SuperBlockDiagramType" name="SuperBlockDiagram" />
-			<xs:element type="OrientationType" name="Orientation" />
-		</xs:choice>
-		<xs:attribute type="xs:byte" name="connectable" use="optional" />
-		<xs:attribute type="xs:string" name="id" use="optional" />
-		<xs:attribute type="xs:string" name="interfaceFunctionName"
-			use="optional" />
-		<xs:attribute type="xs:short" name="ordering" use="optional" />
-		<xs:attribute type="xs:string" name="simulationFunctionName"
-			use="optional" />
-		<xs:attribute type="xs:string" name="style" use="optional" />
-		<xs:attribute type="xs:string" name="value" use="optional" />
-		<xs:attribute type="xs:byte" name="vertex" use="optional" />
-		<xs:attribute type="xs:byte" name="visible" use="optional" />
-		<xs:attribute type="xs:string" name="dataType" use="optional" />
-		<xs:attribute type="xs:string" name="parent" use="optional" />
-		<xs:attribute type="xs:string" name="as" use="optional" />
-		<xs:attribute type="xs:string" name="blockType" use="optional" />
-		<xs:attribute type="xs:string" name="simulationFunctionType"
-			use="optional" />
-		<xs:attribute type="xs:byte" name="dependsOnU" use="optional" />
-		<xs:attribute type="xs:byte" name="dependsOnT" use="optional" />
-		<xs:attribute type="xs:byte" name="dataColumns" use="optional" />
-		<xs:attribute type="xs:byte" name="dataLines" use="optional" />
-		<xs:attribute type="xs:byte" name="connectedLinkId" use="optional" />
-		<xs:attribute type="xs:float" name="initialState" use="optional" />
-		<xs:attribute type="xs:byte" name="locked" use="optional" />
-		<xs:attribute type="xs:short" name="angle" use="optional" />
+		<xs:complexContent>
+			<xs:extension base="BasicBlockType" />
+		</xs:complexContent>
 	</xs:complexType>
 	
 	<xs:complexType name="AfficheBlockType">
-		<xs:choice maxOccurs="unbounded" minOccurs="0">
-			<xs:element type="ScilabStringType" name="ScilabString" />
-			<xs:element type="ScilabDoubleType" name="ScilabDouble" />
-			<xs:element type="ArrayType" name="Array" />
-			<xs:element type="mxGeometryType" name="mxGeometry" />
-			<xs:element type="mxCellType" name="mxCell" />
-			<xs:element type="ExplicitOutputPortType" name="ExplicitOutputPort" />
-			<xs:element type="ExplicitInputPortType" name="ExplicitInputPort" />
-			<xs:element type="ImplicitOutputPortType" name="ImplicitOutputPort" />
-			<xs:element type="ImplicitInputPortType" name="ImplicitInputPort" />
-			<xs:element type="CommandPortType" name="CommandPort" />
-			<xs:element type="ControlPortType" name="ControlPort" />
-			<xs:element type="SuperBlockDiagramType" name="SuperBlockDiagram" />
-			<xs:element type="OrientationType" name="Orientation" />
-		</xs:choice>
-		<xs:attribute type="xs:byte" name="connectable" use="optional" />
-		<xs:attribute type="xs:byte" name="dependsOnU" use="optional" />
-		<xs:attribute type="xs:int" name="hashCode" use="optional" />
-		<xs:attribute type="xs:string" name="id" use="optional" />
-		<xs:attribute type="xs:string" name="interfaceFunctionName"
-			use="optional" />
-		<xs:attribute type="xs:short" name="ordering" use="optional" />
-		<xs:attribute type="xs:string" name="parent" use="optional" />
-		<xs:attribute type="xs:string" name="simulationFunctionName"
-			use="optional" />
-		<xs:attribute type="xs:string" name="simulationFunctionType"
-			use="optional" />
-		<xs:attribute type="xs:string" name="style" use="optional" />
-		<xs:attribute type="xs:string" name="value" use="optional" />
-		<xs:attribute type="xs:byte" name="vertex" use="optional" />
-		<xs:attribute type="xs:byte" name="visible" use="optional" />
-		<xs:attribute type="xs:byte" name="dataColumns" use="optional" />
-		<xs:attribute type="xs:byte" name="dataLines" use="optional" />
-		<xs:attribute type="xs:string" name="dataType" use="optional" />
-		<xs:attribute type="xs:string" name="as" use="optional" />
-		<xs:attribute type="xs:string" name="blockType" use="optional" />
-		<xs:attribute type="xs:byte" name="dependsOnT" use="optional" />
-		<xs:attribute type="xs:byte" name="connectedLinkId" use="optional" />
-		<xs:attribute type="xs:float" name="initialState" use="optional" />
-		<xs:attribute type="xs:byte" name="locked" use="optional" />
-		<xs:attribute type="xs:short" name="angle" use="optional" />
+		<xs:complexContent>
+			<xs:extension base="BasicBlockType">
+				<xs:attribute name="hashCode" type="xs:integer" />
+			</xs:extension>
+		</xs:complexContent>
 	</xs:complexType>
 	
 	<!-- Others specific types -->
