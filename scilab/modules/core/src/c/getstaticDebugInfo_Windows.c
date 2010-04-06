@@ -71,7 +71,7 @@ char **getStaticDebugInfo_Windows(int *sizeArray)
 	if (str_info)
 	{
 
-	#ifdef __INTEL__
+	#ifdef __INTEL_COMPILER
 		sprintf(str_info,"Compiled with %s","Intel compiler");
 	#elif defined _MSC_VER
 		sprintf(str_info,"Compiled with %s","Microsoft compiler");
