@@ -103,6 +103,8 @@ Graphics:
 
 * bug 6850 fixed - "PlotSparse" function was not great.
 
+* bug 6870 fixed - Arrowed polylines with infinite value was not plotted even if it was possible.
+
 Compilation:
 ============
 
