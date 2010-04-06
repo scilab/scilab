@@ -46,8 +46,11 @@ dynamic_gateway_error_code callDynamicGateway(char *moduleName,
 		}
 #else
 		*hlib = LoadDynLibrary(dynLibName); 
+
 		if (*hlib == NULL) 
 		{
+            char *previousError = GetLastDynLibError();
+
 			/* Haven't been able to find the lib with dlopen... 
 			 * This can happen for two reasons:
 			 * - the lib must be dynamically linked
@@ -68,8 +71,12 @@ dynamic_gateway_error_code callDynamicGateway(char *moduleName,
 		      
 			if (*hlib == NULL) 
 			{
-			        if (SciPath) {FREE(SciPath); SciPath = NULL;}
-			        if (pathToLib) {FREE(pathToLib); pathToLib = NULL;}
+                if (previousError != NULL)
+                {
+                    sciprint("A previous error has been detected while loading %s: %s\n",dynLibName, previousError);
+                }
+                if (SciPath) {FREE(SciPath); SciPath = NULL;}
+                if (pathToLib) {FREE(pathToLib); pathToLib = NULL;}
 				return DYN_GW_LOAD_LIBRARY_ERROR;
 			}
 			if (SciPath) {FREE(SciPath); SciPath = NULL;}

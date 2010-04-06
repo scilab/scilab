@@ -14,10 +14,13 @@
 
 package org.scilab.modules.xcos.actions;
 
+import static org.scilab.modules.graph.utils.ScilabInterpreterManagement.buildCall;
+
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
@@ -29,6 +32,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * Dump the graph into scilab.
+ * 
+ * This action is only used for debugging purpose but not on any release version.
  */
 public class DumpAction extends DefaultAction {
 	/** Name of the action */
@@ -69,18 +74,19 @@ public class DumpAction extends DefaultAction {
      * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
      */
     public void actionPerformed(ActionEvent e) {
-	try {
-	    File temp = File.createTempFile("xcos", ".h5");
-	    temp.deleteOnExit();
-	    ((XcosDiagram) getGraph(e)).dumpToHdf5File(temp.getAbsolutePath());
-	    try {
-			ScilabInterpreterManagement.synchronousScilabExec("import_from_hdf5(\"" + temp.getAbsolutePath() + "\");"
-				+ "deletefile(\"" + temp.getAbsolutePath() + "\");");
-		} catch (InterpreterException e1) {
-			e1.printStackTrace();
+		try {
+		    File temp = File.createTempFile("xcos", ".h5");
+		    temp.deleteOnExit();
+		    ((XcosDiagram) getGraph(e)).dumpToHdf5File(temp.getAbsolutePath());
+		    try {
+		    	String cmd = buildCall("import_from_hdf5", temp.getAbsolutePath());
+		    	cmd += buildCall("deletefile", temp.getAbsolutePath());
+		    	ScilabInterpreterManagement.synchronousScilabExec(cmd);
+		    } catch (InterpreterException e1) {
+				LogFactory.getLog(DumpAction.class).error(e1);
+			}
+		} catch (IOException e1) {
+			LogFactory.getLog(DumpAction.class).error(e1);
 		}
-	} catch (IOException e1) {
-	    e1.printStackTrace();
-	}
     }
 }

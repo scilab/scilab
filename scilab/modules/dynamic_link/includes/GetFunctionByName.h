@@ -1,4 +1,3 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
@@ -12,8 +11,8 @@
  */
 
 /*--------------------------------------------------------------------------*/
-#ifndef __ADDFUNCTIONINTABLE_H__
-#define __ADDFUNCTIONINTABLE_H__
+#ifndef __GETFUNCTIONBYNAME_H__
+#define __GETFUNCTIONBYNAME_H__
 
 #include "dynlib_dynamic_link.h"
 
@@ -28,15 +27,15 @@ typedef struct {
 
 
 /**
-* Add a C or fortran function in functions hashtable
+* Gets a pointer to a C or Fortran function by name from the functions table
 *
 * @param name  function name
 * @param[OUT] rep  result 1 (OK) or 0 (Problem)
 * @param table functions hashtable
 * @return a pointer on function in functions hashtable
 */
-DYNAMIC_LINK_IMPEXP voidf AddFunctionInTable (char *name, int *rep, FTAB *table);  
+DYNAMIC_LINK_IMPEXP voidf GetFunctionByName (char *name, int *rep, FTAB *table);  
 
-#endif /* __ADDFUNCTIONINTABLE_H__ */
+#endif /* __GETFUNCTIONBYNAME_H__ */
 /*--------------------------------------------------------------------------*/
 
