@@ -19,9 +19,8 @@ import java.util.List;
 import java.util.Map;
 
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
-import ncsa.hdf.hdf5lib.exceptions.HDF5JavaException;
-import ncsa.hdf.hdf5lib.exceptions.HDF5LibraryException;
 
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
@@ -53,8 +52,15 @@ import com.mxgraph.model.mxGeometry;
 /**
  * Utility class used to load Scicos diagram data. 
  */
-public class BlockReader {
+public final class BlockReader {
 
+	/**
+	 * Default constructor, not used has this class must not be instantiated.
+	 */
+	private BlockReader() {
+		
+	}
+	
 	/**
 	 * Convert a Scicos MList (scs_m) to a map data.
 	 * 
@@ -77,15 +83,9 @@ public class BlockReader {
 	 * @return the data
 	 */
     public static Map<String, Object> convertMListToDiagram(ScilabMList data, boolean checkVersion) {
-
+    	try {
 	try {
 	    isAValidScs_mStructure(data, checkVersion);
-	} catch (WrongTypeException e2) {
-	    e2.printStackTrace();
-	    return null;
-	} catch (WrongStructureException e) {
-	    e.printStackTrace();
-	    return null;
 	} catch (VersionMismatchException e) {
 	    // UNKNOW_VERSION TRY_TO_CONTINUE
 	    ScilabModalDialog.show(null, new String[] {
@@ -108,20 +108,11 @@ public class BlockReader {
 
 	// Read diagrams properties
 	Map<String, Object> properties = null;
-	try {
-	    properties = fillDiagrammProperties((ScilabTList) data.get(1));
-	} catch (WrongStructureException e1) {
-	    e1.printStackTrace();
-	    return null;
-	} catch (WrongTypeException e1) {
-	    e1.printStackTrace();
-	    return null;
-	}
+    properties = fillDiagrammProperties((ScilabTList) data.get(1));
 	result.put("Properties", properties);
 
 	// Read all Blocks
 	for (int i = 0; i < nbObjs; ++i) {
-	    try {
 		if (isBlock(data, i)) {
 		    BasicBlock currentBlock = fillBlockStructure(getBlockAt(data, i));
 		    currentBlock.setOrdering(i);
@@ -136,10 +127,6 @@ public class BlockReader {
 		    minX = Math.min(minX, currentBlock.getGeometry().getX());
 		    minY = Math.min(minY, currentBlock.getGeometry().getY());
 		}
-	    } catch (BlockReaderException e) {
-		e.printStackTrace();
-		return null;
-	    }
 	}
 
 	List<BasicPort[]> linkPorts = new ArrayList<BasicPort[]>();
@@ -147,7 +134,6 @@ public class BlockReader {
 	// Read all Links
 	for (int i = 0; i < nbObjs; ++i) {
 	    if (isLink(data, i)) {
-		try {
 
 		    ScilabMList link = getLinkAt(data, i);
 		    BasicPort startingPort = null;
@@ -185,16 +171,12 @@ public class BlockReader {
 		    } else {
 			linkPoints.add(null);
 		    }
-		} catch (BlockReaderException e) {
-		    e.printStackTrace();
-		    return null;
-		}
 	    }
+	    
 	}
 
 	// Read all Labels
 	for (int i = 0; i < nbObjs; ++i) {
-	    try {
 		if (isLabel(data, i)) {
 		    TextBlock currentText = fillTextStructure(getBlockAt(data, i));
 		    currentText.setOrdering(i);
@@ -213,10 +195,6 @@ public class BlockReader {
 		    minX = Math.min(minX, currentText.getGeometry().getX());
 		    minY = Math.min(minY, currentText.getGeometry().getY());
 		}
-	    } catch (BlockReaderException e) {
-		e.printStackTrace();
-		return null;
-	    }
 
 	}
 
@@ -250,6 +228,11 @@ public class BlockReader {
 	result.put("Links", links);
 
 	return result;
+	
+    	} catch (BlockReaderException e) {
+    		LogFactory.getLog(BlockReader.class).error(e);
+    		return null;
+    	}
     }
 
     /**
@@ -270,14 +253,10 @@ public class BlockReader {
 	    H5Read.closeFile(fileId);
 
 	    return convertMListToDiagram(data);
-	} catch (HDF5LibraryException e) {
-	    System.err.println("An error occurred while working with the HDF5 library " + e.getLocalizedMessage());
 	} catch (WrongStructureException e) {
-	    System.err.println("A HDF5 loading error occurred: Wrong Structure: " + e.getLocalizedMessage());
-	} catch (HDF5JavaException e) {
-	    System.err.println("A HDF5 loading error occurred: Error: " + e.getLocalizedMessage());
+		LogFactory.getLog(BlockReader.class).error(e);
 	} catch (HDF5Exception e) {
-	    System.err.println("A HDF5 loading error occurred: Error: " + e.getLocalizedMessage());
+		LogFactory.getLog(BlockReader.class).error(e);
 	}
 	return null;
     }
@@ -624,7 +603,7 @@ public class BlockReader {
 	    throw new WrongTypeException();
 	}
 
-	if(checkVersion) {
+	if (checkVersion) {
 	    String scicosVersion = ((ScilabString) data.get(3)).getData()[0][0];
 	    if (!scicosVersion.equals(realScicosVersion)) {
 		throw new VersionMismatchException(scicosVersion);
