@@ -25,6 +25,7 @@ import java.awt.Stroke;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import java.io.File;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Hashtable;
 import java.util.List;
@@ -34,6 +35,7 @@ import javax.swing.Icon;
 
 import org.apache.batik.ext.awt.RenderingHintsKeyExt;
 import org.apache.batik.gvt.GraphicsNode;
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.utils.MathMLRenderUtils;
 import org.scilab.modules.graph.utils.ScilabConstants;
 import org.scilab.modules.graph.utils.ScilabGraphUtils;
@@ -381,7 +383,7 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 	 */
 	private void paintSvgBackgroundImage(int w, int h) {
 		GraphicsNode background = ScilabGraphUtils
-		.getSVGComponent(new File(svgBackgroundImage.toString()));
+				.getSVGComponent(svgBackgroundImage);
 
 		if (background == null) {
 			return;
@@ -426,8 +428,14 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 		/*
 		 * Fetch SVG file representation
 		 */
-		File f = new File(image);
-		GraphicsNode icon = ScilabGraphUtils.getSVGComponent(f);
+		URL url;
+		try {
+			url = new URL(image);
+		} catch (MalformedURLException e) {
+			LogFactory.getLog(ScilabCanvas.class).error(e);
+			return;
+		}
+		GraphicsNode icon = ScilabGraphUtils.getSVGComponent(url);
 
 		if (icon == null || icon.getBounds() == null) {
 			return;
