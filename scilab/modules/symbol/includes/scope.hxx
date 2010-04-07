@@ -188,7 +188,7 @@ namespace symbol
 					{
 						for(int j = 0 ; j < pb->cols_get() ; j++)
 						{
-							ostr << pb->bool_get(i,j) == false ? "F " : "T ";
+						  ostr << ((pb->bool_get(i,j) == false) ? "F " : "T ");
 						}
 						ostr << endl;
 					}
