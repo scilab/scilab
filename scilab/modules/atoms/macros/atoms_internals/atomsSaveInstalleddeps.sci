@@ -43,15 +43,15 @@ function  atomsSaveInstalleddeps(child_deps,section)
 	// =========================================================================
 	
 	if type(child_deps) <> 17 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A struct expected.\n"),"atomsSaveInstalleddeps",1));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Struct expected.\n"),"atomsSaveInstalleddeps",1));
 	end
 	
 	if type(section) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsSaveInstalleddeps",2));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsSaveInstalleddeps",2));
 	end
 	
 	if size(section,"*")<>1 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single-string expected.\n"),"atomsSaveInstalleddeps",2));
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsSaveInstalleddeps",2));
 	end
 	
 	if and(section<>["user","allusers"]) then

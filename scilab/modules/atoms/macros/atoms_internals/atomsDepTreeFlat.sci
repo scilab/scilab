@@ -56,11 +56,11 @@ function [tree_out,version_out] = atomsDepTreeFlat(name,version,tree_in)
 	// =========================================================================
 	
 	if type(name) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsDepTreeFlat",1));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsDepTreeFlat",1));
 	end
 	
 	if (rhs>=2) & (type(version) <> 10) then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsDepTreeFlat",2));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsDepTreeFlat",2));
 	end
 	
 	if (rhs==3) & (type(tree_in) <> 17) then
@@ -71,11 +71,11 @@ function [tree_out,version_out] = atomsDepTreeFlat(name,version,tree_in)
 	// =========================================================================
 	
 	if size(name) <> 1 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsDepTreeFlat",1));
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsDepTreeFlat",1));
 	end
 	
 	if (rhs>=2) & (size(name)<>1) then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsDepTreeFlat",1));
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsDepTreeFlat",1));
 	end
 	
 	// If version not define, version is the list of version compatible with

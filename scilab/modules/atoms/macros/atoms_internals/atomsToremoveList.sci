@@ -53,7 +53,7 @@ function toremove = atomsToremoveList(section)
 		// Allusers can be a boolean or equal to "user" or "allusers"
 		
 		if type(section) <> 10 then
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A a single-string expected.\n"),"atomsToremoveList",1));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsToremoveList",1));
 		end
 		
 		if and(section<>["user","allusers","all"]) then

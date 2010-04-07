@@ -60,7 +60,7 @@ function result = atomsUpdate(name,section)
 	else
 		// Just check if it's a boolean
 		if type(section) <> 10 then
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsInstall",2));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsInstall",2));
 		end
 		
 		// Check if we have the write access

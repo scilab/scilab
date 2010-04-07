@@ -38,14 +38,14 @@ function versions_out = atomsVersionSort( versions_in , direction )
 	end
 	
 	if type(direction) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsVersionSort",2));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsVersionSort",2));
 	end
 	
 	// Check input parameters dimension
 	// =========================================================================
 	
 	if size(direction,"*") <> 1 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsVersionSort",2));
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsVersionSort",2));
 	end
 	
 	// Check input parameters value

@@ -39,11 +39,11 @@ function versions = atomsGetVersions(name,min_version,max_version,min_version_in
 	end
 	
 	if (rhs>3) & (type(min_version_included)<>4) then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsGetVersions",4));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Boolean expected.\n"),"atomsGetVersions",4));
 	end
 	
 	if (rhs>4) & (type(max_version_included)<>4) then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsGetVersions",5));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Boolean expected.\n"),"atomsGetVersions",5));
 	end
 	
 	// Default values

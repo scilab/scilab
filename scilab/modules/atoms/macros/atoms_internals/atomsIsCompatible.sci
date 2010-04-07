@@ -25,14 +25,14 @@ function result = atomsIsCompatible(version_str)
 	// Check input parameter type
 	// =========================================================================
 	if type(version_str) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A Single String expected.\n"),"atomsIsCompatible",1));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsIsCompatible",1));
 	end
 	
 	// Check input parameter dimension
 	// =========================================================================
 	
 	if size(version_str,"*") <> 1 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: A Single String expected.\n"),"atomsIsCompatible",1));
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsIsCompatible",1));
 	end
 	
 	// If version_str == 'any', no need to continue
