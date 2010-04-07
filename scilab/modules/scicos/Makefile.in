@@ -2390,8 +2390,8 @@ distclean-local:
 
 @OCAML_TRUE@.ml.cmo:
 @OCAML_TRUE@	@if echo "$<"|grep src/translator; then \
-@OCAML_TRUE@		echo $(OCAMLC) $(INCLUDE_translator)  -c $<; \
-@OCAML_TRUE@		$(OCAMLC) $(INCLUDE_translator)  -c $<; \
+@OCAML_TRUE@		echo $(OCAMLC) $(INCLUDE_modelicat)  -c $<; \
+@OCAML_TRUE@		$(OCAMLC) $(INCLUDE_modelicat)  -c $<; \
 @OCAML_TRUE@	else \
 @OCAML_TRUE@		echo $(OCAMLC) $(INCLUDE)  -c $<; \
 @OCAML_TRUE@		$(OCAMLC) $(INCLUDE)  -c $<; \
@@ -2399,8 +2399,8 @@ distclean-local:
 
 @OCAML_TRUE@.ml.cmx:
 @OCAML_TRUE@	@if echo "$<"|grep src/translator; then \
-@OCAML_TRUE@		echo $(OCAMLOPT) $(INCLUDE_translator) -c $<; \
-@OCAML_TRUE@		$(OCAMLOPT) $(INCLUDE_translator) -c $<; \
+@OCAML_TRUE@		echo $(OCAMLOPT) $(INCLUDE_modelicat) -c $<; \
+@OCAML_TRUE@		$(OCAMLOPT) $(INCLUDE_modelicat) -c $<; \
 @OCAML_TRUE@	else \
 @OCAML_TRUE@		echo $(OCAMLOPT) $(INCLUDE) -c $<; \
 @OCAML_TRUE@		$(OCAMLOPT) $(INCLUDE) -c $<; \
@@ -2408,8 +2408,8 @@ distclean-local:
 
 @OCAML_TRUE@.mli.cmi:
 @OCAML_TRUE@	@if echo "$<"|grep src/translator; then \
-@OCAML_TRUE@		echo $(OCAMLC) $(INCLUDE_translator) -c $<; \
-@OCAML_TRUE@		$(OCAMLC) $(INCLUDE_translator) -c $<; \
+@OCAML_TRUE@		echo $(OCAMLC) $(INCLUDE_modelicat) -c $<; \
+@OCAML_TRUE@		$(OCAMLC) $(INCLUDE_modelicat) -c $<; \
 @OCAML_TRUE@	else \
 @OCAML_TRUE@		echo $(OCAMLC) $(INCLUDE) -c $<; \
 @OCAML_TRUE@		$(OCAMLC) $(INCLUDE) -c $<; \
@@ -2417,8 +2417,8 @@ distclean-local:
 
 @OCAML_TRUE@.ml.mli:
 @OCAML_TRUE@	@if echo "$<"|grep src/translator; then \
-@OCAML_TRUE@		echo $(OCAMLC) $(INCLUDE_translator) -c $<; \
-@OCAML_TRUE@		$(OCAMLC) $(INCLUDE_translator) -c $<; \
+@OCAML_TRUE@		echo $(OCAMLC) $(INCLUDE_modelicat) -c $<; \
+@OCAML_TRUE@		$(OCAMLC) $(INCLUDE_modelicat) -c $<; \
 @OCAML_TRUE@	else \
 @OCAML_TRUE@		echo $(OCAMLC) $(INCLUDE) -c $<; \
 @OCAML_TRUE@		$(OCAMLC) $(INCLUDE) -c $<; \
