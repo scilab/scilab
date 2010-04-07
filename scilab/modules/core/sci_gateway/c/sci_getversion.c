@@ -137,22 +137,38 @@ int getversion_one_rhs(char *fname)
 					{
 						int m = 1;
 						int n = versionSize;
-
-						freeAllocatedSingleString(modulename);
-						modulename = NULL;
-
-						sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, m, n, (double*)version);
-						FREE(version);
-						version = NULL;
-
-						if(sciErr.iErr)
+						double *versionAsDouble = (double*)MALLOC(sizeof(double) * versionSize);
+						if (versionAsDouble)
 						{
-							printError(&sciErr, 0);
+							int i = 0;
+							for (i = 0; i < versionSize; i++)
+							{
+								versionAsDouble[i] = (double)version[i];
+							}
+							FREE(version);
+							version = NULL;
+
+							freeAllocatedSingleString(modulename);
+							modulename = NULL;
+
+							sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, m, n, versionAsDouble);
+							FREE(versionAsDouble);
+							versionAsDouble = NULL;
+
+							if(sciErr.iErr)
+							{
+								printError(&sciErr, 0);
+								return 0;
+							}
+
+							LhsVar(1) = Rhs + 1;
+							C2F(putlhsvar)();
+						}
+						else
+						{
+							Scierror(999,_("%s: Memory allocation error.\n"), fname);
 							return 0;
 						}
-
-						LhsVar(1) = Rhs + 1;
-						C2F(putlhsvar)();
 					}
 					else
 					{
