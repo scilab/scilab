@@ -24,14 +24,14 @@ function  atomsSaveInstalled(installed_struct,section)
 	// =========================================================================
 	
 	if type(installed_struct) <> 17 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A struct expected.\n"),"atomsSaveInstalled",1));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Struct expected.\n"),"atomsSaveInstalled",1));
 	end
 	
 	// Process the 2nd input argument : section
 	// Allusers can be equal to "user" or "allusers"
 	
 	if type(section) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsInstall",2));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsInstall",2));
 	end
 	
 	if and(section<>["user","allusers"]) then

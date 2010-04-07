@@ -30,7 +30,7 @@ function details = atomsToolboxDetails(package,field)
 	end
 	
 	if rhs>1 & type(field)<>10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsToolboxDetails",2));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsToolboxDetails",2));
 	end
 	
 	// Check input parameters dimensions
@@ -41,7 +41,7 @@ function details = atomsToolboxDetails(package,field)
 	end
 	
 	if rhs>1 & size(field,"*") <> 1 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsToolboxDetails",2));
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsToolboxDetails",2));
 	end
 	
 	// Get the full list of packages

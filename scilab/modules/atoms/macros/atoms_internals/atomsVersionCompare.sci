@@ -30,18 +30,18 @@ function result = atomsVersionCompare( version_1 , version_2 )
 	// =========================================================================
 	
 	if type(version_1) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A Single String expected.\n"),"atomsVersionCompare",1));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsVersionCompare",1));
 	end
 	
 	if type(version_2) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A Single String expected.\n"),"atomsVersionCompare",2));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsVersionCompare",2));
 	end
 	
 	// Check input parameters size
 	// =========================================================================
 	
 	if size(version_2,"*") <> 1 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: A Single String expected.\n"),"atomsVersionCompare",2));
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsVersionCompare",2));
 	end
 	
 	// Check input parameters values

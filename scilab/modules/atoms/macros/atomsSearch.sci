@@ -32,18 +32,18 @@ function packages_disp = atomsSearch( search , fields )
 	// =========================================================================
 	
 	if type(search) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsSearch",1));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsSearch",1));
 	end
 	
 	if (rhs>1) & (type(fields)<>10)  then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsSearch",2));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsSearch",2));
 	end
 	
 	// Check input parameters dimensions
 	// =========================================================================
 	
 	if size(search,"*") <> 1 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsSearch",1));
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsSearch",1));
 	end
 	
 	// Don't take into account the character cast

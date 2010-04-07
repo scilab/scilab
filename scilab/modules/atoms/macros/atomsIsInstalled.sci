@@ -73,7 +73,7 @@ function res = atomsIsInstalled(packages,section)
 	else
 		// Just check if it's a boolean
 		if type(section) <> 10 then
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsIsInstalled",2));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsIsInstalled",2));
 		end
 		
 		if and(section<>["user","allusers","all"]) then

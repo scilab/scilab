@@ -28,7 +28,7 @@ function res = atomsGetInstalledPath(packages,section)
 	// =========================================================================
 	
 	if type(packages) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsGetInstalledPath",1));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsGetInstalledPath",1));
 	end
 	
 	if and(size(packages(1,:),"*") <> [2 3]) then
@@ -55,7 +55,7 @@ function res = atomsGetInstalledPath(packages,section)
 		// Allusers can be equal to "user" or "allusers"
 		
 		if type(section) <> 10 then
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsGetInstalledPath",2));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: Boolean or single string expected.\n"),"atomsGetInstalledPath",2));
 		end
 		
 		if (type(section) == 10) & and(section<>["user","allusers","all"]) then

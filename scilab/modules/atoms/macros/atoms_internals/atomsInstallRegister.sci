@@ -42,7 +42,7 @@ function nbAdd = atomsInstallRegister(name,version,status,section)
 	end
 	
 	if type(section) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsInstallRegister",4));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsInstallRegister",4));
 	end
 	
 	// status is a letter

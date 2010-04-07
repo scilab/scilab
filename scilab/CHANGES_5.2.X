@@ -239,6 +239,7 @@ Bug Fixes:
 * bug 6790 fixed - toprint(nFigure): %F was returned while actually the figure
                    is printed.
 
+* bug 6864 partially fixed - ATOMS: Error messages were not homogenized.
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab
                 ==================================================

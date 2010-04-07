@@ -30,7 +30,7 @@ function packages = atomsGetTOOLBOXES(update)
 	end
 	
 	if (rhs == 1) & (type(update) <> 4) then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsGetTOOLBOXES",1));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Boolean expected.\n"),"atomsGetTOOLBOXES",1));
 	end
 	
 	// packages file path definition

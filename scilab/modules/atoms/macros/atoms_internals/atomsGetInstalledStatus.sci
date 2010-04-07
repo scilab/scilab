@@ -27,7 +27,7 @@ function res = atomsGetInstalledStatus(packages,section)
 	// =========================================================================
 	
 	if type(packages) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsGetInstalledStatus",1));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsGetInstalledStatus",1));
 	end
 	
 	if size(packages(1,:),"*") <> 2 then
@@ -46,7 +46,7 @@ function res = atomsGetInstalledStatus(packages,section)
 		// Allusers can be a boolean or equal to "user" or "allusers"
 		
 		if type(section) <> 10 then
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsGetInstalledStatus",2));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: Boolean or single string expected.\n"),"atomsGetInstalledStatus",2));
 		end
 		
 		if and(section<>["user","allusers","all"]) then
