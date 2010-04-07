@@ -473,6 +473,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\getversion.c"
+				>
+			</File>
+			<File
 				RelativePath=".\GetXmlFileEncoding.c"
 				>
 			</File>
@@ -1051,6 +1055,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\getvariablesname.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\getversion.h"
 				>
 			</File>
 			<File

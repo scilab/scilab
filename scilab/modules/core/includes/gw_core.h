@@ -57,7 +57,7 @@ int C2F(sci_isglobal)(char *fname,unsigned long fname_len);
 int C2F(sci_gstacksize)(char *fname,unsigned long fname_len);
 int C2F(sci_intppty)(char *fname,unsigned long fname_len);
 int C2F(sci_lasterror)(char *fname,unsigned long fname_len);
-int C2F(sci_getversion)(char *fname,unsigned long fname_len);
+int sci_getversion(char *fname,unsigned long fname_len);
 int C2F(sci_macr2tree)(char *fname,unsigned long fname_len);
 int C2F(sci_getos)(char *fname,unsigned long fname_len);
 int C2F(sci_banner)(char *fname,unsigned long fname_len);

@@ -22,6 +22,7 @@
 #include "getstaticDebugInfo_Windows.h"
 #include "localization.h"
 #include "version.h"
+#include "getversion.h"
 #include "dynamic_tclsci.h"
 #include "..\..\..\..\libs\pcre\pcre.h"
 /*--------------------------------------------------------------------------*/
@@ -98,7 +99,7 @@ char **getStaticDebugInfo_Windows(int *sizeArray)
 		outputDynamicList = appendStringStaticDebugInfo(outputDynamicList,&nb_info,str_info);
 	}
 
-	if ( withtk() )
+	if ( with_tk() )
 	{
 		str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
 		if (str_info)
