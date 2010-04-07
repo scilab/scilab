@@ -178,7 +178,7 @@ static int getversion_one_rhs(void)
 {
 	if (Lhs == 2)
 	{
-		Scierror(78,_("%s: Wrong number of output arguments: %d expected.\n"),"getversion",2);
+		Scierror(78,_("%s: Wrong number of output arguments: %d expected.\n"),"getversion",1);
 		return 0;
 	}
 
