@@ -52,7 +52,6 @@
 
 # TODO:
 # * see if we can do more factorisation (on the lexer for example)
-# * translator must be renamed
 
 ######### Common Modelica elements #############
 
@@ -308,7 +307,7 @@ libscisundials_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	-o $@
 @SCICOS_TRUE@am_libscisundials_la_rpath = -rpath $(pkglibdir)
 @OCAML_TRUE@am__EXEEXT_1 = modelicac$(EXEEXT) XML2Modelica$(EXEEXT) \
-@OCAML_TRUE@	translator$(EXEEXT)
+@OCAML_TRUE@	modelicat$(EXEEXT)
 PROGRAMS = $(bin_PROGRAMS)
 am__XML2Modelica_SOURCES_DIST = $(srcdir)/src/xml2modelica/xMLTree.ml \
 	$(srcdir)/src/xml2modelica/linenum.ml \
@@ -344,7 +343,7 @@ am__modelicac_SOURCES_DIST =  \
 @OCAML_TRUE@am_modelicac_OBJECTS = $(am__objects_7)
 modelicac_OBJECTS = $(am_modelicac_OBJECTS)
 modelicac_LDADD = $(LDADD)
-am__translator_SOURCES_DIST =  \
+am__modelicat_SOURCES_DIST =  \
 	$(srcdir)/src/translator/compilation/types.ml \
 	$(srcdir)/src/translator/compilation/nameResolve.ml \
 	$(srcdir)/src/translator/instantiation/instantiation.ml \
@@ -355,9 +354,9 @@ am__translator_SOURCES_DIST =  \
 	$(srcdir)/src/translator/translation/codeGeneration.ml \
 	$(srcdir)/src/translator/translation/versiondate.ml \
 	$(srcdir)/src/translator/translation/translator.ml
-@OCAML_TRUE@am_translator_OBJECTS = $(am__objects_7)
-translator_OBJECTS = $(am_translator_OBJECTS)
-translator_LDADD = $(LDADD)
+@OCAML_TRUE@am_modelicat_OBJECTS = $(am__objects_7)
+modelicat_OBJECTS = $(am_modelicat_OBJECTS)
+modelicat_LDADD = $(LDADD)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -380,11 +379,11 @@ F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libsciscicos_la_SOURCES) $(libscisundials_la_SOURCES) \
 	$(XML2Modelica_SOURCES) $(modelicac_SOURCES) \
-	$(translator_SOURCES)
+	$(modelicat_SOURCES)
 DIST_SOURCES = $(am__libsciscicos_la_SOURCES_DIST) \
 	$(am__libscisundials_la_SOURCES_DIST) \
 	$(am__XML2Modelica_SOURCES_DIST) $(am__modelicac_SOURCES_DIST) \
-	$(am__translator_SOURCES_DIST)
+	$(am__modelicat_SOURCES_DIST)
 DATA = $(libsciscicos_la_etc_DATA) $(libsciscicos_la_help_en_US_DATA) \
 	$(libsciscicos_la_help_fr_FR_DATA) \
 	$(libsciscicos_la_root_DATA) \
@@ -706,7 +705,7 @@ JARMASK = *.jar
 HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
 HELP_CHAPTERLANG = en_US fr_FR pt_BR
-@OCAML_TRUE@TARGET = modelicac XML2Modelica translator
+@OCAML_TRUE@TARGET = modelicac XML2Modelica modelicat
 @OCAML_TRUE@BASE_PATH = $(srcdir)/src/
 @OCAML_TRUE@OCAMLLIBS = nums.cma
 
@@ -718,8 +717,8 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @OCAML_TRUE@BASE_PATH_XML2Modelica = $(srcdir)/src/xml2modelica
 
 ### Translator 
-@OCAML_TRUE@translator_SOURCES = $(MLS_translator)
-@OCAML_TRUE@MLS_translator = $(srcdir)/src/translator/compilation/types.ml \
+@OCAML_TRUE@modelicat_SOURCES = $(MLS_modelicat)
+@OCAML_TRUE@MLS_modelicat = $(srcdir)/src/translator/compilation/types.ml \
 @OCAML_TRUE@ $(srcdir)/src/translator/compilation/nameResolve.ml \
 @OCAML_TRUE@ $(srcdir)/src/translator/instantiation/instantiation.ml \
 @OCAML_TRUE@ $(srcdir)/src/translator/exceptionHandling/msgDico.ml \
@@ -730,14 +729,14 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @OCAML_TRUE@ $(srcdir)/src/translator/translation/versiondate.ml \
 @OCAML_TRUE@ $(srcdir)/src/translator/translation/translator.ml
 
-@OCAML_TRUE@MLS_SPECIFIC_PRE_translator = $(srcdir)/src/translator/parsing/syntax.ml \
+@OCAML_TRUE@MLS_SPECIFIC_PRE_modelicat = $(srcdir)/src/translator/parsing/syntax.ml \
 @OCAML_TRUE@$(srcdir)/src/translator/parsing/parser.ml \
 @OCAML_TRUE@$(srcdir)/src/translator/parsing/lexer.ml \
 @OCAML_TRUE@$(srcdir)/src/translator/parsing/linenum.ml
 
-@OCAML_TRUE@PARSER_SRC_translator = $(srcdir)/src/translator/parsing/parser.mly
-@OCAML_TRUE@LEXER_SRC_translator = $(srcdir)/src/translator/parsing/lexer.mll
-@OCAML_TRUE@INCLUDE_translator = -I $(srcdir)/src/translator/compilation \
+@OCAML_TRUE@PARSER_SRC_modelicat = $(srcdir)/src/translator/parsing/parser.mly
+@OCAML_TRUE@LEXER_SRC_modelicat = $(srcdir)/src/translator/parsing/lexer.mll
+@OCAML_TRUE@INCLUDE_modelicat = -I $(srcdir)/src/translator/compilation \
 @OCAML_TRUE@-I $(srcdir)/src/translator/exceptionHandling \
 @OCAML_TRUE@-I $(srcdir)/src/translator/parsing \
 @OCAML_TRUE@-I $(srcdir)/src/translator/instantiation \
@@ -1149,9 +1148,9 @@ clean-binPROGRAMS:
 @OCAML_FALSE@modelicac$(EXEEXT): $(modelicac_OBJECTS) $(modelicac_DEPENDENCIES) 
 @OCAML_FALSE@	@rm -f modelicac$(EXEEXT)
 @OCAML_FALSE@	$(LINK) $(modelicac_OBJECTS) $(modelicac_LDADD) $(LIBS)
-@OCAML_FALSE@translator$(EXEEXT): $(translator_OBJECTS) $(translator_DEPENDENCIES) 
-@OCAML_FALSE@	@rm -f translator$(EXEEXT)
-@OCAML_FALSE@	$(LINK) $(translator_OBJECTS) $(translator_LDADD) $(LIBS)
+@OCAML_FALSE@modelicat$(EXEEXT): $(modelicat_OBJECTS) $(modelicat_DEPENDENCIES) 
+@OCAML_FALSE@	@rm -f modelicat$(EXEEXT)
+@OCAML_FALSE@	$(LINK) $(modelicat_OBJECTS) $(modelicat_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -2449,16 +2448,16 @@ distclean-local:
 @OCAML_TRUE@	$(OCAMLOPT) -o XML2Modelica $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS_XML2Modelica:.ml=.cmx) 
 
 # call the ocaml/Yacc
-@OCAML_TRUE@generate-parser_translator: $(PARSER_SRC_translator)
+@OCAML_TRUE@generate-parser_modelicat: $(PARSER_SRC_modelicat)
 @OCAML_TRUE@	$(OCAMLYACC) $(<)
 @OCAML_TRUE@	$(RM) -f $(<:.mly=.mli)
 
 # Call the lexer
-@OCAML_TRUE@generate-lexer_translator: $(LEXER_SRC_translator)
+@OCAML_TRUE@generate-lexer_modelicat: $(LEXER_SRC_modelicat)
 @OCAML_TRUE@	$(OCAMLLEX) $(<)
 
-@OCAML_TRUE@translator: generate-parser_translator generate-lexer_translator $(MLS_SPECIFIC_PRE_translator:.ml=.cmo)  $(MLS_translator:.ml=.mli) $(MLS_SPECIFIC_PRE_translator:.ml=.cmx) $(MLS_translator:.ml=.cmo)  $(MLS_translator:.ml=.cmx) 
-@OCAML_TRUE@	$(OCAMLOPT) -o modelicat $(INCLUDE_translator) $(OCAMLLIBS:.cma=.cmxa) $(MLS_SPECIFIC_PRE_translator:.ml=.cmx) $(MLS_translator:.ml=.cmx) 
+@OCAML_TRUE@modelicat: generate-parser_modelicat generate-lexer_modelicat $(MLS_SPECIFIC_PRE_modelicat:.ml=.cmo)  $(MLS_modelicat:.ml=.mli) $(MLS_SPECIFIC_PRE_modelicat:.ml=.cmx) $(MLS_modelicat:.ml=.cmo)  $(MLS_modelicat:.ml=.cmx) 
+@OCAML_TRUE@	$(OCAMLOPT) -o modelicat $(INCLUDE_modelicat) $(OCAMLLIBS:.cma=.cmxa) $(MLS_SPECIFIC_PRE_modelicat:.ml=.cmx) $(MLS_modelicat:.ml=.cmx) 
 
 .NOTPARALLEL: libscisundials.la libsciscicos.la
 
