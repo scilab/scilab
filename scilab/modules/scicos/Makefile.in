@@ -957,7 +957,10 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 
 #### scicos : tcl scripts ####
 @SCICOS_TRUE@libsciscicos_la_tcldir = $(mydatadir)/tcl
-@SCICOS_TRUE@libsciscicos_la_tcl_DATA = tcl/MIHM.tcl
+@SCICOS_TRUE@libsciscicos_la_tcl_DATA = tcl/MIHM.tcl \
+@SCICOS_TRUE@tcl/scicos.gif \
+@SCICOS_TRUE@tcl/scicos2.gif
+
 
 #### scicos : gateway declaration ####
 @SCICOS_TRUE@libsciscicos_la_sci_gatewaydir = $(mydatadir)/sci_gateway

@@ -94,7 +94,8 @@ public final class H5Read {
 	int nbObjs = H5.H5Gn_members(fileId, groupName);
 	String[] allObjectsName = new String[nbObjs];
 	int[] allObjectsType = new int[nbObjs];
-	H5.H5Gget_obj_info_all(fileId, groupName, allObjectsName, allObjectsType); 
+	long[] refs = new long[nbObjs];
+	H5.H5Gget_obj_info_all(fileId, groupName, allObjectsName, allObjectsType, refs); 
 
 	for (int i = 0; i < nbObjs; ++i) {
 	    if (allObjectsType[i] == HDF5Constants.H5G_DATASET) {

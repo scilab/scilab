@@ -36,7 +36,7 @@ public enum Orientation {
 	 *            The block mirror state
 	 * @return The value of the angle.
 	 */
-	public final int getRelativeAngle(int blockAngle, Class<? extends BasicPort> klass, boolean flipped, boolean mirrored) {
+	public int getRelativeAngle(int blockAngle, Class< ? extends BasicPort> klass, boolean flipped, boolean mirrored) {
 		final int orientation = getOrientationAngle();
 		final int base = getBaseAngle(klass, orientation);
 		
@@ -49,7 +49,7 @@ public enum Orientation {
 	 * @param mirrored the mirror status
 	 * @return the real angle
 	 */
-	public final int getAbsoluteAngle(Class<? extends BasicPort> klass, boolean flipped, boolean mirrored) {
+	public int getAbsoluteAngle(Class< ? extends BasicPort> klass, boolean flipped, boolean mirrored) {
 		final int orientation = getOrientationAngle();
 		final int base = getBaseAngle(klass, orientation);
 		
@@ -63,7 +63,7 @@ public enum Orientation {
 	 * @param mirrored the mirror status
 	 * @return the updated angle.
 	 */
-	private final int getFlippedAndMirroredAngle(int base, boolean flipped, boolean mirrored) {
+	private int getFlippedAndMirroredAngle(int base, boolean flipped, boolean mirrored) {
 		int angle = base;
 
 		switch (this) {
@@ -92,7 +92,7 @@ public enum Orientation {
 	/**
 	 * @return the angle associated with this orientation.
 	 */
-	private final int getOrientationAngle() {
+	private int getOrientationAngle() {
 		return this.ordinal() * PERPENDICULAR_ROTATION;
 	}
 
@@ -104,7 +104,7 @@ public enum Orientation {
 	 * @param orientationAngle calculated orientation angle
 	 * @return updated angle
 	 */
-	private final int getBaseAngle(Class<? extends BasicPort> klass, int orientationAngle) {
+	private int getBaseAngle(Class< ? extends BasicPort> klass, int orientationAngle) {
 		final boolean isOutput = OutputPort.class.isAssignableFrom(klass)
 				|| CommandPort.class.isAssignableFrom(klass);
 		

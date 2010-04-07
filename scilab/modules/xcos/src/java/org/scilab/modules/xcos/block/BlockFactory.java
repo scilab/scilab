@@ -21,11 +21,9 @@ import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
 import org.scilab.modules.xcos.block.positionning.GroundBlock;
 import org.scilab.modules.xcos.block.positionning.RoundBlock;
 import org.scilab.modules.xcos.block.positionning.VoltageSensorBlock;
-import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxICell;
-
 /**
  * Ease the creation of blocks
  */

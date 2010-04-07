@@ -2345,8 +2345,11 @@ public class CallScilabBridge {
 				Canvas canvas;
 				canvas = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getCanvas();
 				ScilabPrint scilabPrint = new ScilabPrint(canvas.dumpAsBufferedImage(), printerJob, scilabPageFormat);
-
-				return false;
+				if (scilabPrint != null) {
+					return true;
+				} else {
+					return false;
+				}
 
 			//If the OS is Linux
 			} else {

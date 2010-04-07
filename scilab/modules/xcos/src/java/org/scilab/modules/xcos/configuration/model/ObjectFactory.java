@@ -12,10 +12,7 @@
 
 package org.scilab.modules.xcos.configuration.model;
 
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.annotation.XmlElementDecl;
 import javax.xml.bind.annotation.XmlRegistry;
-import javax.xml.namespace.QName;
 
 /**
  * This object contains factory methods for each Java content interface and Java
@@ -31,9 +28,6 @@ import javax.xml.namespace.QName;
  */
 @XmlRegistry
 public class ObjectFactory {
-
-	private static final QName SETTINGS_QNAME = new QName(
-			"http://www.scilab.org/2010/XcosConfiguration", "Setting");
 
 	/**
 	 * Create a new ObjectFactory that can be used to create new instances of
@@ -88,19 +82,4 @@ public class ObjectFactory {
 	public SettingType createSettingType() {
 		return new SettingType();
 	}
-
-	/**
-	 * Create an instance of {@link JAXBElement }{@code <}{@link SettingType }
-	 * {@code >}
-	 * 
-	 * @param value
-	 *            the instance
-	 * @return a new XML element instance
-	 */
-	@XmlElementDecl(namespace = "http://www.scilab.org/2010/XcosConfiguration", name = "Setting")
-	public JAXBElement<SettingType> createSetting(SettingType value) {
-		return new JAXBElement<SettingType>(SETTINGS_QNAME, SettingType.class,
-				null, value);
-	}
-
 }

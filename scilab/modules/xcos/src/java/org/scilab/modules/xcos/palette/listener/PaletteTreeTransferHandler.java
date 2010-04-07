@@ -159,7 +159,7 @@ public class PaletteTreeTransferHandler extends TransferHandler {
 		/**
 		 * The palette data flavor
 		 */
-		public static DataFlavor PALETTE_FLAVOR = new DataFlavor(PaletteNode.class, null);
+		public static final DataFlavor PALETTE_FLAVOR = new DataFlavor(PaletteNode.class, null);
 		
 		private PaletteNode node;
 		
