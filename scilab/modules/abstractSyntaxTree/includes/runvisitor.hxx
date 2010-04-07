@@ -162,7 +162,7 @@ namespace ast
 			}
 			else
 			{
-				return (int)_resultVect.size();
+			  return static_cast<int>(_resultVect.size());
 			}
 		}
 
@@ -213,7 +213,7 @@ namespace ast
 				_resultVect.resize(_iPos + 1, NULL);
 			}
 
-			_resultVect[_iPos] = (types::InternalType *)gtVal;
+			_resultVect[_iPos] = dynamic_cast<types::InternalType *>(gtVal);
 		}
 
 		void result_set(const types::InternalType *gtVal)
