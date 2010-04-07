@@ -63,7 +63,7 @@ namespace symbol
     /** Associate value to key in the current scope. */
     void	put (const string& key, InternalType &value)
     {
-      InternalType *pOld = (this->l_scope.front())->put(key, value);
+      /* InternalType *pOld = */(this->l_scope.front())->put(key, value);
 /*			if(pOld != NULL)
 			{
 				std::list<Scope>::const_iterator it_list_scope;
