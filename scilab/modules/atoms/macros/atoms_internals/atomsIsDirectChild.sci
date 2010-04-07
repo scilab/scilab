@@ -52,11 +52,11 @@ function result = atomsIsDirectChild(parent_packages,child_name)
 	end
 	
 	if type(child_name) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A Single String expected.\n"),"atomsIsDirectChild",2));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsIsDirectChild",2));
 	end
 	
 	if size(child_name,"*") <> 1 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: A Single String expected.\n"),"atomsIsDirectChild",3));
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsIsDirectChild",3));
 	end
 	
 	// Loop on parents

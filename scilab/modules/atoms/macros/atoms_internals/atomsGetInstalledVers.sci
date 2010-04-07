@@ -26,11 +26,11 @@ function res = atomsGetInstalledVers(name,section)
 	// =========================================================================
 	
 	if type(name) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A Single String expected.\n"),"atomsGetInstalledVers",1));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsGetInstalledVers",1));
 	end
 	
 	if size(name,"*") <> 1 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: A Single String expected.\n"),"atomsGetInstalledVers",1));
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsGetInstalledVers",1));
 	end
 	
 	// Allusers/user management
@@ -45,7 +45,7 @@ function res = atomsGetInstalledVers(name,section)
 		// Allusers can be a boolean or equal to "user" or "allusers"
 		
 		if type(section) <> 10 then
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsGetInstalledVers",2));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: Boolean or single string expected.\n"),"atomsGetInstalledVers",2));
 		end
 		
 		if and(section<>["user","allusers","all"]) then

@@ -43,11 +43,11 @@ function packages_out = atomsUpdateDeps(package,section)
 	else
 	
 		if type(section) <> 10 then
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsUpdateDeps",2));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsUpdateDeps",2));
 		end
 		
 		if size(section,"*")<>1 then
-			error(msprintf(gettext("%s: Wrong size for input argument #%d: A single-string expected.\n"),"atomsUpdateDeps",2));
+			error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsUpdateDeps",2));
 		end
 		
 		if and(section<>["user","allusers","all"]) then

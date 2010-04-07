@@ -27,11 +27,11 @@ function path = atomsPath(whataction,section)
 	// =========================================================================
 	
 	if type(whataction) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single String expected.\n"),"atomsPath",1));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsPath",1));
 	end
 	
 	if type(section) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single String expected.\n"),"atomsPath",2));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsPath",2));
 	end
 	
 	// Check input argument value
