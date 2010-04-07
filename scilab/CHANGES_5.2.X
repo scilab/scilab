@@ -187,6 +187,8 @@ Obsolete Functions:
 
 * 'tk_choose' obsolete see 'x_choose'.
 
+* 'readc_' obsolete see 'input'.
+
 Bug Fixes:
 ==========
 
