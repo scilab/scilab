@@ -554,6 +554,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_int.c"
+				>
+			</File>
+			<File
 				RelativePath=".\tpconv.c"
 				>
 			</File>
