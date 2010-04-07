@@ -249,7 +249,7 @@ namespace ast
 	void RunVisitorT<T>::visitprivate(const CallExp &e)
 	{
 		T execFunc;
-		std::list<Exp *>::const_iterator	i;
+		std::list<Exp *>::const_iterator	itExp;
 
 		e.name_get().accept(execFunc);
 		if(execFunc.result_get() != NULL && execFunc.result_get()->isCallable())
@@ -261,9 +261,9 @@ namespace ast
 			//get function arguments
 			T *execVar = new T[e.args_get().size()]();
 			int j = 0;
-			for (j = 0, i = e.args_get().begin (); i != e.args_get().end (); ++i,j++)
+			for (j = 0, itExp = e.args_get().begin (); itExp != e.args_get().end (); ++itExp,j++)
 			{
-				(*i)->accept (execVar[j]);
+				(*itExp)->accept (execVar[j]);
 				if(execVar[j].result_get()->getType() == InternalType::RealImplicitList)
 				{
 					ImplicitList* pIL = execVar[j].result_get()->getAsImplicitList();
@@ -684,22 +684,22 @@ namespace ast
 	template <class T>
 	void RunVisitorT<T>::visitprivate(const SeqExp  &e)
 	{
-		std::list<Exp *>::const_iterator	i;
+		std::list<Exp *>::const_iterator	itExp;
 
-		for (i = e.exps_get().begin (); i != e.exps_get().end (); ++i)
+		for (itExp = e.exps_get().begin (); itExp != e.exps_get().end (); ++itExp)
 		{
 			T execMe;
 			if(e.is_breakable())
 			{
-				(*i)->breakable_set();
+				(*itExp)->breakable_set();
 			}
 
 			if(e.is_returnable())
 			{
-				(*i)->returnable_set();
+				(*itExp)->returnable_set();
 			}
 
-			(*i)->accept(execMe);
+			(*itExp)->accept(execMe);
 
 			if(execMe.result_get() != NULL)
 			{
@@ -746,7 +746,7 @@ namespace ast
 				if(execMe.result_get()->isDeletable())
 				{
 					symbol::Context::getInstance()->put("ans", *execMe.result_get());
-					if((*i)->is_verbose())
+					if((*itExp)->is_verbose())
 					{
 						//TODO manage multiple returns
 						std::ostringstream ostr;
@@ -759,16 +759,16 @@ namespace ast
 
 			}
 
-			if(((SeqExp*)&e)->is_breakable() && (*i)->is_break())
+			if(((SeqExp*)&e)->is_breakable() && (*itExp)->is_break())
 			{
 				((SeqExp*)&e)->break_set();
 				break;
 			}
 
-			if(((SeqExp*)&e)->is_returnable() && (*i)->is_return())
+			if(((SeqExp*)&e)->is_returnable() && (*itExp)->is_return())
 			{
 				((SeqExp*)&e)->return_set();
-				((SeqExp*)(*i))->return_reset();
+				((SeqExp*)(*itExp))->return_reset();
 				break;
 			}
 		}
