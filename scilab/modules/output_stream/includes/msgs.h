@@ -30,7 +30,7 @@ OUTPUT_STREAM_IMPEXP int C2F(msgs)(int *n, int *ierr);
  * for the list of messages 
  * some message append a buffer to the message (@see printToBuffer)
  */
-void Msgs(int n,int ierr);
+//void Msgs(int n,int ierr);
 
 /*
  * print to the char buffer used to add custom info to some messages
