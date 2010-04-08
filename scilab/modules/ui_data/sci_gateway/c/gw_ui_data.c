@@ -24,7 +24,8 @@ static BOOL loadedDep = FALSE;
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[]=
 {
-  {sci_editvar, "editvar"}
+    {sci_editvar, "editvar"},
+    {sci_browsevar, "Jbrowsevar"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_ui_data(void)

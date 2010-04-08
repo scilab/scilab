@@ -17,6 +17,7 @@
 /*--------------------------------------------------------------------------*/
 UI_DATA_IMPEXP int gw_ui_data(void);
 UI_DATA_IMPEXP int sci_editvar(char* fname, unsigned long l);
+UI_DATA_IMPEXP int sci_browsevar(char* fname, unsigned long l);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_UI_DATA__ */
 /*--------------------------------------------------------------------------*/
