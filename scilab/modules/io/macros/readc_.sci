@@ -18,6 +18,8 @@ function [c]=readc_(unit)
 //!
 //
 
+warnobsolete('input','5.3');
+
 [lhs,rhs]=argn(0);
 if rhs<=0 then unit=%io(1); end;
 c=read(unit,1,1,'(a)');

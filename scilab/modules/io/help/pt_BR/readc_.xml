@@ -24,7 +24,7 @@
   <refnamediv>
     <refname>readc_</refname>
 
-    <refpurpose>lê um string</refpurpose>
+    <refpurpose>lê um string (obsolete see input)</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>

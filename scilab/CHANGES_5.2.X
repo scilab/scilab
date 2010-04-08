@@ -6,10 +6,8 @@ Performance:
 ============
 
 * Fix a regression which was slowing down loops in some cases (this can
-improve performances to 50 %)
-Note that many performance improvements will be also available in 
-Scilab 5.3.0.
-
+  improve performances to 50 %).
+  Note that many performance improvements will be also available in Scilab 5.3.0.
 
 Help brower:
 ============
@@ -17,7 +15,7 @@ Help brower:
 * Increase of the default size of the help browser window.
 
 * Help browser window position and size are now stored and restored for the
-next usage. See bug #6482
+  next usage. See bug #6482
 
 Scilab:
 =======
@@ -26,6 +24,7 @@ Scilab:
   See bug #5023
 
 For GNU/Linux, Unix & Mac OS X:
+
 * Arguments -h / --help added to get help about the startup script.
 
 * Clear separation in the help between users and developers arguments in
@@ -101,9 +100,11 @@ Graphics:
 
 * bug 6834 fixed - The rotation formula in the rotate help page was incorrect.
 
-* bug 6850 fixed - "PlotSparse" function did not use the ticks provided by the axis but drew his own.
+* bug 6850 fixed - "PlotSparse" function did not use the ticks provided by the
+                   axis but drew his own.
 
-* bug 6870 fixed - Arrowed polylines with infinite value was not plotted even if it was possible.
+* bug 6870 fixed - Arrowed polylines with infinite value was not plotted even
+                   if it was possible.
 
 Compilation:
 ============
@@ -113,7 +114,7 @@ Compilation:
 * Support of GNU/Linux sparc64 and sh4
 
 * Improves the detection of JOGL/Gluegen under Suse/Opensuse. Thanks to Michal
-Vyskocil
+  Vyskocil
 
 * "make clean" continues even if errors are found
 
@@ -187,6 +188,8 @@ Obsolete Functions:
 
 * 'tk_choose' obsolete see 'x_choose'.
 
+* 'readc_' obsolete see 'input'.
+
 Bug Fixes:
 ==========
 
@@ -241,6 +244,8 @@ Bug Fixes:
                    is printed.
 
 * bug 6864 partially fixed - ATOMS: Error messages were not homogenized.
+
+
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab
                 ==================================================
