@@ -73,7 +73,7 @@ Compilation:
 * Windows 2000 is no more supported as operating system.
 
 * Scilab Mac OS X distribution relies only on Java 1.6 and is therefor now
-only available under 64 bits OS (Most of 10.5 and all 10.6 Mac OS X versions)
+  only available under 64 bits OS (Most of 10.5 and all 10.6 Mac OS X versions)
 
 * Under Mac OS X, uses /usr/libexec/java_home instead of hardcoded paths to
   retrieve JAVA_HOME
@@ -105,7 +105,7 @@ Matlab to Scilab conversion tools:
 Tests:
 ======
 
-* Mechanism of unitary tests for Java code based on TestNG added and used
+* Mechanism of unitary tests for Java code based on TestNG added and used.
 
 Text Rendering:
 ===============
@@ -117,7 +117,6 @@ Obsolete Functions:
 ===================
 
 * 'MSDOS' obsolete see 'getos' (SEP #39).
-
 
 Removed functions (previously declared as obsolete):
 ====================================================
@@ -151,6 +150,8 @@ Removed functions (previously declared as obsolete):
 * 'scilab_demos' replaced by 'demo_gui'.
 
 * 'with_gtk' replaced by 'getversion'.
+
+* 'readc_' replaced by 'input'.
  
 Bug fixes:
 ==========
