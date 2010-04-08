@@ -8,7 +8,7 @@ Performance:
   improve performances to 50 %).
   Note that many performance improvements will be also available in Scilab 5.3.0.
 
-Help brower:
+Help browser:
 ============
 
 * Increase of the default size of the help browser window.
@@ -241,6 +241,10 @@ Bug Fixes:
 
 * bug 6790 fixed - toprint(nFigure): %F was returned while actually the figure
                    is printed.
+
+* bug 6821 fixed - in text editor, labels of contextual menu called
+                   "Execute selection into Scilab" and menu called 
+                   "Evaluate selection" were not homogenized.
 
 * bug 6864 partially fixed - ATOMS: Error messages were not homogenized.
 
