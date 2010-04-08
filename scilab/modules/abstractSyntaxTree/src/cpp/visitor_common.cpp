@@ -59,7 +59,7 @@ bool bConditionState(ast::ConditionVisitor *exec)
 
 void ExpandList(int ** _piList, int *_piListSize, int _iListSizeSize, int *_piResultList)
 {
-//#define ORIGINAL_IMPLEM 
+#define ORIGINAL_IMPLEM 
 #ifdef ORIGINAL_IMPLEM
 	for(int i = _iListSizeSize - 1 ; i >= 0 ; i--)
 	{
