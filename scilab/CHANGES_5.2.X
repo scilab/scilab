@@ -197,6 +197,10 @@ Bug Fixes:
 
 * bug 4599 fixed - It was possible create many different variables with the 
                    same name in the same scope.
+                   
+* bug 5140 fixed - lines to be executed were not printed in the console.
+                   A message box added to advice to use ""Execute into Scilab",
+                   if file is very long (more 100 lines).
 
 * bug 5466 fixed - "savematfile" no more append variables in file by default, 
                    file is now reinitialized at each "savematfile" call.
