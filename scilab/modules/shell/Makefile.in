@@ -291,6 +291,7 @@ PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
 PACKAGE_NAME = @PACKAGE_NAME@
 PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
+PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PCRE_CFLAGS = @PCRE_CFLAGS@
@@ -1244,6 +1245,7 @@ install-data-local:
 		if test -d $(srcdir)/$$dir/; then \
 			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
 			if test -n "$(MACROSSPECIALEXT)"; then \
+				specialExtDir=""; \
 				for specialExt in $(MACROSSPECIALEXT); do \
 					specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
 				done; \

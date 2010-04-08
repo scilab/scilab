@@ -122,6 +122,8 @@ Compilation:
   Java 1.6 (64 bits only).
   This option will set the LDFLAGS & source the fink init script.
 
+* Some macros were duplicated during the installation process.
+
 * CFLAGS -msse2 added under Mac OS X for Scilab module shell. See bug
   #6839
 

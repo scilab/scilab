@@ -1329,6 +1329,7 @@ install-data-local:
 		if test -d $(srcdir)/$$dir/; then \
 			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
 			if test -n "$(MACROSSPECIALEXT)"; then \
+				specialExtDir=""; \
 				for specialExt in $(MACROSSPECIALEXT); do \
 					specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
 				done; \
