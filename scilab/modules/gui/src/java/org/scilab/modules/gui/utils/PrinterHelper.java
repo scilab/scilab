@@ -64,6 +64,7 @@ public static boolean printFile(String fileName) {
 	try {
 		url = new URL("file:///" + fileName); 
 		pageToPrint.setEditable(false);
+		pageToPrint.setContentType("text/plain;charset=UTF-8");
 		try { 
 			pageToPrint.setPage(url); 
 		  } catch (IOException e) { 

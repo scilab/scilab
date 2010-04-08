@@ -50,6 +50,7 @@ ieee(0);
 %F = %f;
 MSDOS = (getos() == 'Windows');
 %pvm = with_module('pvm');
+%tk = (with_module('tclsci') & getscilabmode() <> 'NWNI');
 // Set LANGUAGE  ======================================================
 // used mainly for on-line help
 args = sciargs();

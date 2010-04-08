@@ -83,6 +83,8 @@ src/c/typename.c \
 src/c/inittypenames.c \
 src/c/funcprot.c \
 src/c/eqid.c \
+src/c/exitCodeValue.c \
+src/c/getversion.c \
 src/c/dynamic_tclsci.c
 
 CORE_CPP_SOURCES = src/cpp/hashtable_core.cpp \
@@ -367,6 +369,7 @@ includes/stack3.h \
 includes/stackinfo.h \
 includes/stackTypeVariable.h \
 includes/version.h \
+includes/getversion.h \
 includes/warningmode.h
 
 include $(top_srcdir)/Makefile.incl.am

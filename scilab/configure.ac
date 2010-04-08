@@ -133,6 +133,38 @@ AC_ARG_ENABLE(build-giws,
 
 AC_PROG_CPP
 AC_PROG_GREP
+
+######
+#### Mac OS X set of fink path with provided
+######                 
+
+AC_ARG_WITH(fink_prefix,
+AC_HELP_STRING([--with-fink-prefix],[Provide a fink prefix. Default: /sw/ ]))
+
+case "$host" in
+     *darwin*)
+     if test -n "$with_fink_prefix"; then
+        # If with-fink-prefix is provided, use the provided path to make sure that we will
+	# use it to detect dependencies (for example, gfortran is not provided in xcode.
+	# Therefor, we use the one in fink)
+	FINK_PREFIX="$with_fink_prefix/"
+  
+	# Exec the init script of fink to make sure that the env is set
+	if test -f $with_fink_prefix/bin/init.sh; then
+	   echo "source $with_fink_prefix/bin/init.sh executed to set the env"
+	   source $with_fink_prefix/bin/init.sh	
+        else
+	   AC_MSG_WARN([Could not find the fink init.sh script: $with_fink_prefix/bin/init.sh])
+	fi
+     else
+	FINK_PREFIX="/sw/"
+     fi
+     ;;
+esac
+
+#####################################################
+## Look for pkg-config 
+#####################################################
 PKG_PROG_PKG_CONFIG
 
 #####################################################
@@ -528,27 +560,21 @@ case "$CC" in
 	;;
 
   *-*-darwin*)
-	AC_MSG_CHECKING([if /sw64/ is available or not])
-	if test -d /sw64/; then
-	AC_MSG_RESULT([yes])
-	 CFLAGS=" $CFLAGS -I/sw64/include "
-	 CPPFLAGS=" $CPPFLAGS -I/sw64/include "
-	 LDFLAGS=" $LDFLAGS -L/sw64/lib/ "
-	else
-	AC_MSG_RESULT([no... switch back to /sw/. This might cause issues on link test of third party libraries])
-	 CFLAGS=" $CFLAGS -I/sw/include "
-	 CPPFLAGS=" $CPPFLAGS -I/sw/include "
-	 LDFLAGS=" $LDFLAGS -L/sw/lib/ "
-    fi
-	 case "$host" in
-	# By default, consider that all mac runs 64 bits applications
-	      x86_64-apple-darwin*|i386-apple-darwin*)
-                CC=" $CC -arch x86_64 "
-                CXX=" $CXX -arch x86_64 "
-                ;;
+case "$F77" in
+	     gfortran-*|gfortran) 
+	         # Extract from gfortran -v the version it has been built for
+	      	 MAC_DETECTED_ARCH="`$F77 -v 2>&1|grep "Target:"|sed -e "s/Target: \([[a-z0-9A-Z_]]*\).*/\1/g"`"
+		 ;;
+	     *)
+		AC_MSG_WARN([gfortran not used. Could not detect the architecture. Switch to the default case: x86_64])
+		MAC_DETECTED_ARCH="x86_64"
+		 ;;
 	esac
-	#Check that the current Mac OS X can link against system 64 bits libs
-	AC_CHECK_FUNCS([pow])
+	CC="$CC -arch $MAC_DETECTED_ARCH"
+	CXX="$CXX -arch $MAC_DETECTED_ARCH"
+	LDFLAGS="-L$FINK_PREFIX/lib/ $LDFLAGS"
+	CFLAGS=" $CFLAGS -I$FINK_PREFIX/include "
+	CPPFLAGS=" $CPPFLAGS -I$FINK_PREFIX/include "
 	;;
 esac
 ;; # end of the gcc case on the $CC
@@ -708,12 +734,16 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				   LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -L$SCI_SRCDIR/thirdparty/ -L$SCI_SRCDIR/bin/"
 				   AC_CHECK_LIB([jogl], [glTexParameterf], [JOGL_LIBS="-ljogl"],[AC_MSG_WARN([Could not link against -ljogl. Will try against -ljogl -lGL])])
 				   if test -z "$JOGL_LIBS"; then # The previous test failed add more options to the LDFLAGS
-				   	   LDFLAGS="$LDFLAGS -lGL "
 					   # the space after "jogl" in the following line is on	
 					   # purpose to disable the cache
 				   	   AC_CHECK_LIB([jogl ], [glTexParameterf], 
 					   [JOGL_LIBS="-ljogl -lGL"],
-					   [AC_MSG_ERROR(["libjogl: Library missing (Cannot find symbol glTexParameterf). Check if libjogl - C/Java (JNI) interface for JOGL - or libGL are installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries."])])
+					   [AC_MSG_ERROR(["libjogl: Library
+missing (Cannot find symbol glTexParameterf). Check if libjogl - C/Java (JNI)
+interface for JOGL - or libGL are installed and if the version is correct. Note
+that you might have to update etc/librarypath.xml to provide the actual path
+the the JNI libraries."])],
+					   [-lGL])
 				   fi
 
 				   LDFLAGS=$LDFLAGS_save
@@ -732,7 +762,8 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				   LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -ldl -L$SCI_SRCDIR/thirdparty/ -L$SCI_SRCDIR/bin/"
 				   symbol="Java_com_sun_gluegen_runtime_UnixDynamicLinkerImpl_dlclose__J"
 				   AC_CHECK_LIB([gluegen-rt], [$symbol], [GLUEGEN_RT_LIBS="-lgluegen-rt"],
-				   [AC_MSG_ERROR([libgluegen-rt: Library missing (Cannot find symbol glTexParameterf). Check if libgluegen-rt - C/Java (JNI) interface for GLUEGEN - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])])
+				   [AC_MSG_ERROR([libgluegen-rt: Library missing (Cannot find symbol glTexParameterf). Check if libgluegen-rt - C/Java (JNI) interface for GLUEGEN - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])],
+				   [-ldl])
 				   LDFLAGS=$LDFLAGS_save
 				fi
 
@@ -1605,6 +1636,7 @@ modules/windows_tools/Makefile
 modules/core/Makefile
 modules/api_scilab/Makefile
 modules/call_scilab/Makefile
+modules/types/Makefile
 modules/hdf5/Makefile
 modules/fftw/Makefile
 modules/umfpack/Makefile
@@ -1987,6 +2019,9 @@ echo "  host_vendor .... = $host_vendor"
 echo "  host_os ... .... = $host_os"
 echo "  hostname ....... = $ac_hostname"
 echo "  CPU 64 bits .... = $IS_64_BITS_CPU"
+if test -n "$MAC_DETECTED_ARCH"; then
+echo "  Mac OS X arch .. = $MAC_DETECTED_ARCH"
+fi
 
 echo ""
 echo "Options used to compile and link:"

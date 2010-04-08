@@ -28,7 +28,7 @@ function packages = atomsOrphanList(section)
 	// =========================================================================
 	
 	if type(section) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsOrphanList",1));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsOrphanList",1));
 	end
 	
 	if and(section<>["user","allusers","all"]) then

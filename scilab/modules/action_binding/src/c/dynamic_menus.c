@@ -54,11 +54,6 @@ int StoreCommand (char *command)
 	return (StoreCommandWithFlag (command, 0));
 }
 /*--------------------------------------------------------------------------*/
-int StorePrioritaryCommand (char *command)
-{
-	return (StorePrioritaryCommandWithFlag (command, 0));
-}
-/*--------------------------------------------------------------------------*/
 /*
 * try to execute a command or add it to the end of command queue
 * flag = 0 : the command is not shown in scilab window

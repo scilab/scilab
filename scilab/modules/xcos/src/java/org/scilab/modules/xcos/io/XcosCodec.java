@@ -15,6 +15,7 @@ package org.scilab.modules.xcos.io;
 import org.scilab.modules.graph.io.ScilabObjectCodec;
 import org.scilab.modules.xcos.io.codec.BasicBlockCodec;
 import org.scilab.modules.xcos.io.codec.BasicPortCodec;
+import org.scilab.modules.xcos.io.codec.OrientationCodec;
 import org.scilab.modules.xcos.io.codec.XcosDiagramCodec;
 import org.w3c.dom.Document;
 
@@ -49,8 +50,8 @@ public class XcosCodec extends mxCodec {
 		mxCodecRegistry.addPackage("org.scilab.modules.xcos.port.control");
 		mxCodecRegistry.addPackage("org.scilab.modules.xcos.port.input");
 		mxCodecRegistry.addPackage("org.scilab.modules.xcos.port.output");
-		// Add some hdf5 packages to have all scilab types known
-		mxCodecRegistry.addPackage("org.scilab.modules.hdf5.scilabTypes");
+		// Add 'types' package to have all scilab types known
+		mxCodecRegistry.addPackage("org.scilab.modules.types.scilabTypes");
 	}
 
 	/**
@@ -72,7 +73,9 @@ public class XcosCodec extends mxCodec {
 
 		// Ports
 		BasicPortCodec.register();
-
+		
+		// Orientation
+		OrientationCodec.register();
 	}
 
 	/**

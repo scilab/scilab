@@ -27,9 +27,9 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.ScilabGraphUniqueObject;
 import org.scilab.modules.graph.actions.base.VertexSelectionDependantAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
-import org.scilab.modules.hdf5.scilabTypes.ScilabList;
-import org.scilab.modules.hdf5.scilabTypes.ScilabString;
+import org.scilab.modules.types.scilabTypes.ScilabDouble;
+import org.scilab.modules.types.scilabTypes.ScilabList;
+import org.scilab.modules.types.scilabTypes.ScilabString;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.SplitBlock;
@@ -374,8 +374,10 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
 
 		if (isInSelection(graph.getSelectionCells(), otherSide)) {
 		    graph.addSelectionCell(link);
-		} // isInSelection
-		
+		} else {
+			graph.removeSelectionCell(link);
+		}
+
 		if (otherSide instanceof SplitBlock) {
 		    graph.addSelectionCell(otherSide);
 		} // otherSide is a SplitBlock

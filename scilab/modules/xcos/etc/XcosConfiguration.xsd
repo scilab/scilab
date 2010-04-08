@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation>
+This package contain class for managing Xcos configuration.	
+	
+To serialize/deserialize values, {@link javax.xml.bind.JAXB} is used.
+		</xs:documentation>
+	</xs:annotation>
+
+	<xs:element name="settings" type="SettingType" />
+
+	<xs:complexType name="SettingType">
+		<xs:annotation>
+			<xs:documentation>
+Global configuration.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element type="WindowsManagementType" name="windows"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element type="RecentFilesType" name="recentFiles"
+				minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DocumentType">
+		<xs:annotation>
+			<xs:documentation>
+Any document is linked to the real file with an URL.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="url" type="xs:anyURI" />
+		<xs:attribute name="date" type="xs:dateTime" />
+	</xs:complexType>
+
+	<xs:complexType name="PositionType">
+		<xs:annotation>
+			<xs:documentation>
+Contains any position (x, y, w, h) on the screen.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="x" type="xs:int" />
+		<xs:attribute name="y" type="xs:int" />
+		<xs:attribute name="width" type="xs:int" />
+		<xs:attribute name="height" type="xs:int" />
+	</xs:complexType>
+
+	<xs:complexType name="RecentFilesType">
+		<xs:annotation>
+			<xs:documentation>
+Contains the latest opened files.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element type="DocumentType" name="document" maxOccurs="10"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="WindowsManagementType">
+		<xs:annotation>
+			<xs:documentation>
+Window position and size.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="palette" type="PositionType"/>
+			<xs:element name="diagram" type="PositionType"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

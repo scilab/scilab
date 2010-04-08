@@ -46,6 +46,7 @@ import org.scilab.modules.graphic_export.ExportRenderer;
 import org.scilab.modules.graphic_export.FileExporter;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
+import org.scilab.modules.gui.bridge.helpbrowser.SwingScilabHelpBrowser;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.checkbox.CheckBox;
@@ -2084,6 +2085,7 @@ public class CallScilabBridge {
 	 * Close Scilab Help Browser
 	 */
 	public static void closeHelpBrowser() {
+		CallScilabBridge.saveHelpWindowSettings();
 		ScilabHelpBrowser.getHelpBrowser().close();
 	}
 
@@ -2209,6 +2211,25 @@ public class CallScilabBridge {
 	}
 
 	/**
+	 * Save the help Window size and position
+	 */
+	public static void saveHelpWindowSettings() {
+        if ((SwingScilabHelpBrowser) ScilabHelpBrowser.getHelpBrowserWithoutCreation() !=null )  {
+		SwingScilabHelpBrowser sciHelpBrowser = ((SwingScilabHelpBrowser) ScilabHelpBrowser.getHelpBrowser().getAsSimpleHelpBrowser());
+		if (sciHelpBrowser != null) {
+			SwingScilabTab consoleTab = (SwingScilabTab) sciHelpBrowser.getParent();
+			if (consoleTab != null) {
+				Window helpWindow = (Window) UIElementMapper.getCorrespondingUIElement(consoleTab.getParentWindowId());
+				
+				ConfigManager.saveHelpWindowPosition(helpWindow.getPosition());
+				ConfigManager.saveHelpWindowSize(helpWindow.getDims());
+			}
+		}
+        }
+
+	}
+
+	/**
 	 * Opens a dialog to selected a new Foreground Color for the console
 	 */
 	public static void changeConsoleForeground() {
@@ -2326,8 +2347,11 @@ public class CallScilabBridge {
 				Canvas canvas;
 				canvas = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getCanvas();
 				ScilabPrint scilabPrint = new ScilabPrint(canvas.dumpAsBufferedImage(), printerJob, scilabPageFormat);
-
-				return false;
+				if (scilabPrint != null) {
+					return true;
+				} else {
+					return false;
+				}
 
 			//If the OS is Linux
 			} else {

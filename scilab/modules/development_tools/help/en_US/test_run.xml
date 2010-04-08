@@ -116,78 +116,85 @@
        the test, call test_run with the following option: "enable_lt"
        </para>
      </listitem>
-      <listitem>
+     <listitem>
        <para>
-       &#60;-- NOT FIXED --&#62;
-       This test will be skipped because it is a known, but unfixed bug.
+	 &#60;-- NOT FIXED --&#62;
+	 This test will be skipped because it is a known, but unfixed bug.
        </para>
-       </listitem>
-       <listitem>
+     </listitem>
+     <listitem>
        <para>
-       &#60;-- TEST WITH GRAPHIC --&#62;
-       This test will not be executed if the option "mode_nwni" is used.
+	 &#60;-- TEST WITH GRAPHIC --&#62;
+	 This test will not be executed if the option "mode_nwni" is used.
        </para>
-       </listitem>
-       <listitem>
+     </listitem>
+     <listitem>
        <para>
-       &#60;-- NO TRY CATCH --&#62;
+	 &#60;-- NO TRY CATCH --&#62;
        </para>
-       </listitem>
-       <listitem>
+     </listitem>
+     <listitem>
        <para>
-       &#60;-- NO CHECK ERROR OUTPUT --&#62;
-       The error output file is not checked
+	 &#60;-- NO CHECK ERROR OUTPUT --&#62;
+	 The error output file is not checked
        </para>
-       </listitem>
-       <listitem>
+     </listitem>
+     <listitem>
        <para>
-       &#60;-- NO CHECK REF --&#62;
-       The .dia and the .dia.ref files are not compared.
+	 &#60;-- NO CHECK REF --&#62;
+	 The .dia and the .dia.ref files are not compared.
        </para>
-       </listitem>
-       <listitem>
+     </listitem>
+     <listitem>
        <para>
-       &#60;-- ENGLISH IMPOSED --&#62;
-       This test will be executed with the -l en_US option.
+	 &#60;-- ENGLISH IMPOSED --&#62;
+	 This test will be executed with the -l en_US option.
        </para>
-       </listitem>
-       <listitem>
+     </listitem>
+     <listitem>
        <para>
-       &#60;-- FRENCH IMPOSED --&#62;
-       This test will be executed with the -l fr_FR option.
+	 &#60;-- FRENCH IMPOSED --&#62;
+	 This test will be executed with the -l fr_FR option.
        </para>
-       </listitem>
-       <listitem>
+     </listitem>
+     <listitem>
        <para>
-       &#60;-- JVM NOT MANDATORY --&#62;
-       This test will be executed with the nwni mode by default.
+	 &#60;-- JVM NOT MANDATORY --&#62;
+	 This test will be executed with the nwni mode by default.
        </para>
-       </listitem>
-       <listitem>
+     </listitem>
+     <listitem>
        <para>
        &#60;-- WINDOWS ONLY --&#62;
        If the operating system isn't Windows, the test is skipped.
        </para>
-       </listitem>
-       <listitem>
+     </listitem>
+     <listitem>
        <para>
-       &#60;-- UNIX ONLY --&#62;
-       If the operating system isn't an unix OS, the test is skipped.
+	 &#60;-- UNIX ONLY --&#62;
+	 If the operating system isn't an unix OS, the test is skipped.
        </para>
-       </listitem>
-       <listitem>
+     </listitem>
+     <listitem>
        <para>
-       &#60;-- LINUX ONLY --&#62;
-       If the operating system isn't Linux, the test is skipped.
+	 &#60;-- LINUX ONLY --&#62;
+	 If the operating system isn't Linux, the test is skipped.
        </para>
-       </listitem>
-       <listitem>
+     </listitem>
+     <listitem>
        <para>
-       &#60;-- MACOSX ONLY --&#62;
-       If the operating system isn't MacOSX, the test is skipped.
+	 &#60;-- MACOSX ONLY --&#62;
+	 If the operating system isn't MacOSX, the test is skipped.
        </para>
-       </listitem>
-     </itemizedlist>
+     </listitem>
+     <listitem>
+       <para>
+	 &#60;-- XCOS TEST --&#62;
+	 This test will launch all the necessary Xcos libs. This test
+	 will be launched in nw mode.
+       </para>
+     </listitem>
+   </itemizedlist>
    
     <para>
    Each test is executed in a separated process, created with the "host" command.

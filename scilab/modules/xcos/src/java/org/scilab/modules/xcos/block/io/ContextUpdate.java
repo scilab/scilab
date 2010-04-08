@@ -17,8 +17,8 @@ import java.io.IOException;
 
 import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
 import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
-import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
-import org.scilab.modules.hdf5.scilabTypes.ScilabList;
+import org.scilab.modules.types.scilabTypes.ScilabDouble;
+import org.scilab.modules.types.scilabTypes.ScilabList;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.port.BasicPort;
@@ -126,12 +126,11 @@ public abstract class ContextUpdate extends BasicBlock {
 	    // Write context
 	    tempContext = exportContext(context);
 
-	    String cmd;
-	    
-	    cmd = "xcosBlockEval(\"" + tempOutput.getAbsolutePath() + "\"";
-	    cmd += ", \"" + tempInput.getAbsolutePath() + "\"";
-	    cmd += ", " + getInterfaceFunctionName();
-	    cmd += ", \"" + tempContext.getAbsolutePath() + "\");";
+	    String cmd = ScilabInterpreterManagement.buildCall("xcosBlockEval", 
+	    		tempOutput.getAbsolutePath(),
+	    		tempInput.getAbsolutePath(),
+	    		getInterfaceFunctionName(),
+	    		tempContext.getAbsolutePath());
 
 		try {
 			ScilabInterpreterManagement.synchronousScilabExec(cmd);

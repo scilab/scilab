@@ -50,6 +50,9 @@
 //       If the operating system isn't Linux, the test is skipped.
 //     <-- MACOSX ONLY -->
 //       If the operating system isn't MacOSX, the test is skipped.
+//     <-- XCOS TEST -->
+//       This test will launch all the necessary Xcos libs. This test
+//       will be launched in nw mode.
 //
 //   Each test is executed in a separated process, created with the "host" command.
 //   That enables the current command to continue, even if the test as
@@ -642,6 +645,7 @@ function st = st_new()
 				 "tmp_res"        ..    // diary file
 				 "tmp_err"        ..    // reference file
 				 "status"         ..    // status
+				 "xcos"           ..    // xcos test ?
 				 "cmd"            ..    // command to launch
 				 ] );
 				 
@@ -673,6 +677,8 @@ function st = st_new()
 	st.content       = "";
 	
 	st.status        = status_new();
+
+	st.xcos          = %F;
 	
 endfunction
 
@@ -683,11 +689,11 @@ function st = st_set_name(st,name)
 	
 	st.name = name;
 	
-	st.tmp_tst       = pathconvert( TMPDIR + "/" + name + ".tst" , %F);
-	st.tmp_dia       = pathconvert( TMPDIR + "/" + name + ".dia" , %F);
-	st.tmp_res       = pathconvert( TMPDIR + "/" + name + ".res" , %F);
-	st.tmp_err       = pathconvert( TMPDIR + "/" + name + ".err" , %F);
-	
+	st.tmp_tst       = pathconvert( TMPDIR + "/" + name + ".tst"     , %F);
+	st.tmp_dia       = pathconvert( TMPDIR + "/" + name + ".dia.tmp" , %F);
+	st.tmp_res       = pathconvert( TMPDIR + "/" + name + ".res"     , %F);
+	st.tmp_err       = pathconvert( TMPDIR + "/" + name + ".err"     , %F);
+	st.path_dia      = pathconvert( TMPDIR + "/" + name + ".dia"     , %F);
 endfunction
 
 function st = st_set_type(st,sttype)
@@ -696,10 +702,8 @@ endfunction
 
 function st = st_set_path(st,path)
 	
-	st.path     = path;
-	basepath    = strsubst(path,"/\.tst$/","","r");
-	st.path_dia = basepath + ".dia";
-	
+	st.path         = path;
+	basepath        = strsubst(path,"/\.tst$/","","r");
 	st.path_dia_ref = basepath + ".dia.ref";
 	
 	// Reference file management OS by OS
@@ -789,6 +793,10 @@ function st = st_set_mode(st,smode)
 	st.mode = smode;
 endfunction
 
+function st = st_set_xcos(st,xmode)
+	st.xcos = xmode;
+endfunction
+
 // show
 // -----------------------------------------------------------------------------
 
@@ -802,7 +810,8 @@ function st_show(st)
 	if st.jvm_mandatory  then st_jvm_mandatory  = "Yes"; else st_jvm_mandatory  = "No"; end
 	if st.graphic        then st_graphic        = "Yes"; else st_graphic        = "No"; end
 	if st.try_catch      then st_try_catch      = "Yes"; else st_try_catch      = "No"; end
-	
+	if st.xcos           then st_xcos           = "Yes"; else st_xcos           = "No"; end
+
 	mprintf("Test :\n");
 	mprintf("  name           = %s\n"   ,st.name);
 	mprintf("  type           = %s\n"   ,st.type);
@@ -832,6 +841,7 @@ function st_show(st)
 	mprintf("  reference      = %s\n"   ,st.reference);
 	mprintf("  error_output   = %s\n"   ,st.error_output);
 	mprintf("  try_catch      = %s\n"   ,st_try_catch);
+	mprintf("  xcos           = %s\n"   ,st_xcos);
 	mprintf("\n");
 	
 	mprintf("Test scilab cmd :\n");
@@ -911,6 +921,10 @@ function st = st_analyse(st)
 		st = st_set_mode(st,"NWNI");
 	end
 	
+	if ~ isempty( grep(st.content,"<-- XCOS TEST -->") ) then
+		st = st_set_xcos(st,%T);
+		st = st_set_jvm_mandatory(st,%T);
+	end
 	// Language
 	// =========================================================================
 	
@@ -1062,6 +1076,10 @@ function st = st_run(st)
 		"predef(''all'');" ;                                                    ...
 		"tmpdirToPrint = msprintf(''TMPDIR1=''''%s''''\n'',TMPDIR);"            ...
 	]
+	
+	if st.xcos then
+		head = [ head ; "loadScicosLibs();"];
+	end
 	
 	if st.try_catch then
 		head = [ head ; "try" ];

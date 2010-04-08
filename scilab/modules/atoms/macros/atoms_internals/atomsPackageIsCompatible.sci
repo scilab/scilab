@@ -47,19 +47,19 @@ function result = atomsPackageIsCompatible(parent_name,parent_version,child_name
 	// =========================================================================
 	
 	if type(parent_name) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A Single String expected.\n"),"atomsPackageIsCompatible",1));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsPackageIsCompatible",1));
 	end
 	
 	if type(parent_version) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A Single String expected.\n"),"atomsPackageIsCompatible",2));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsPackageIsCompatible",2));
 	end
 	
 	if type(child_name) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A Single String expected.\n"),"atomsPackageIsCompatible",3));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsPackageIsCompatible",3));
 	end
 	
 	if type(child_version) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A Single String expected.\n"),"atomsPackageIsCompatible",4));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsPackageIsCompatible",4));
 	end
 	
 	// Check input parameter dimension
@@ -70,11 +70,11 @@ function result = atomsPackageIsCompatible(parent_name,parent_version,child_name
 	end
 	
 	if size(child_name,"*") <> 1 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: A Single String expected.\n"),"atomsPackageIsCompatible",3));
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsPackageIsCompatible",3));
 	end
 	
 	if size(child_version,"*") <> 1 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: A Single String expected.\n"),"atomsPackageIsCompatible",4));
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsPackageIsCompatible",4));
 	end
 	
 	// Loop on parents

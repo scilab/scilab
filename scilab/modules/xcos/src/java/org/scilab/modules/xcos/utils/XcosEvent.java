@@ -69,6 +69,11 @@ public final class XcosEvent extends mxEvent {
 	 */
 	public static final String SUPER_BLOCK_UPDATED = "superBlockUpdated";
 
+	/**
+	 * Fired when the diagram has been updated since previous execution
+	 */
+	public static final String DIAGRAM_UPDATED = "DiagramUpdated";
+	
 	/** This class is a static singleton, thus it must not be instantiated */
 	private XcosEvent() { }
 }

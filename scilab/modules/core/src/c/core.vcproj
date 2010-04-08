@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -393,6 +393,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\exitCodeValue.c"
+				>
+			</File>
+			<File
 				RelativePath=".\expr.c"
 				>
 			</File>
@@ -466,6 +470,10 @@
 			</File>
 			<File
 				RelativePath=".\getvariablesname.c"
+				>
+			</File>
+			<File
+				RelativePath=".\getversion.c"
 				>
 			</File>
 			<File
@@ -990,6 +998,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\exitCodeValue.h"
+				>
+			</File>
+			<File
 				RelativePath=".\expr.h"
 				>
 			</File>
@@ -1043,6 +1055,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\getvariablesname.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\getversion.h"
 				>
 			</File>
 			<File

@@ -147,7 +147,7 @@ public final class PaletteBlockCtrl {
 						getTransferable(), null);
 				} catch (InvalidDnDOperationException exception) {
 					LogFactory.getLog(PaletteBlockCtrl.class)
-						.warn(exception.getMessage());
+						.warn(exception);
 				}
 			}
 

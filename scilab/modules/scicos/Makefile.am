@@ -122,7 +122,7 @@ libsciscicos_la_CFLAGS= -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/scicos/src/scicos_sundials/include \
 			-I$(top_srcdir)/modules/scicos/src/scicos_sundials/include/sundials \
 			-I$(top_srcdir)/modules/scicos/src/scicos_sundials/src/ida
-			
+
 
 libsciscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
@@ -155,6 +155,11 @@ libsciscicos_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 libsciscicos_la_etcdir = $(mydatadir)/etc
 libsciscicos_la_etc_DATA = etc/scicos.quit etc/scicos.start
 
+#### scicos : tcl scripts ####
+libsciscicos_la_tcldir = $(mydatadir)/tcl
+libsciscicos_la_tcl_DATA = tcl/MIHM.tcl \
+tcl/scicos.gif \
+tcl/scicos2.gif
 
 #### scicos : gateway declaration ####
 libsciscicos_la_sci_gatewaydir = $(mydatadir)/sci_gateway

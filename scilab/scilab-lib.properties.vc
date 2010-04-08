@@ -18,9 +18,9 @@ jrosetta-API.jar=${thirdparty.dir}/jrosetta-API.jar
 
 jrosetta-engine.jar=${thirdparty.dir}/jrosetta-engine.jar
 
-jlatexmath.jar=${thirdparty.dir}/jlatexmath-0.8.9.jar
+jlatexmath.jar=${thirdparty.dir}/jlatexmath-0.9.1.jar
 
-jlatexmath-fop.jar=${thirdparty.dir}/jlatexmath-fop-0.8.9.jar
+jlatexmath-fop.jar=${thirdparty.dir}/jlatexmath-fop-0.9.1.jar
 
 checkstyle.jar=${thirdparty.dir}/checkstyle/checkstyle-all-4.3.jar
 
@@ -70,6 +70,9 @@ library.javasci.name=javasci.jar
 
 library.graphic_export.dir=${modules.dir}/graphic_export/${build.jar.dir}/
 library.graphic_export.name=org.scilab.modules.graphic_export.jar
+
+library.types.dir=${modules.dir}/types/${build.jar.dir}/
+library.types.name=org.scilab.modules.types.jar
 
 library.hdf5.dir=${modules.dir}/hdf5/${build.jar.dir}/
 library.hdf5.name=org.scilab.modules.hdf5.jar

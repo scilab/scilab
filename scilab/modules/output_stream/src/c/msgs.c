@@ -146,6 +146,11 @@ static int msg_115(int *n, int *ierr);
 
 static int msg_default(int *n, int *ierr);
 /*--------------------------------------------------------------------------*/
+void Msgs(int n,int ierr)
+{
+	C2F(msgs)(&n,&ierr);
+}
+/*--------------------------------------------------------------------------*/
 int C2F(msgs)(int *n, int *ierr)
 {
 	if ( getWarningMode() )
@@ -622,7 +627,7 @@ static int msg_13(int *n, int *ierr)
         // Same comment as for msg_12
 	char localbuf[16];
 	strncpy(localbuf,BUF,15);
-        localbuf[15]='\0';
+    localbuf[15]='\0';
 	sciprint(_("at last iteration f decreases by less than %s.\n"),localbuf);
 	return 0;
 }
@@ -679,6 +684,7 @@ static int msg_22(int *n, int *ierr)
 {
 	char localbuf[5];
 	strncpy(localbuf,BUF,4);
+	localbuf[4]='\0';
 	sciprint(_("sfact : uncomplete convergence relative precision reached : 10**(%s).\n"),localbuf);
 	return 0;
 }
@@ -696,6 +702,7 @@ static int msg_24(int *n, int *ierr)
 	{
 		localbuf=(char*)MALLOC(sizeof(char)*(*ierr +1));
 		strncpy(localbuf,BUF,*ierr);
+		localbuf[*ierr]='\0';
 		sciprint(_("Functions files location : %s.\n"),localbuf);
 		if (localbuf) {FREE(localbuf);localbuf=NULL;}
 	}
@@ -707,8 +714,9 @@ static int msg_25(int *n, int *ierr)
 	char *localbuf=NULL;
 	if (*ierr >0)
 	{
-		localbuf=(char*)MALLOC(sizeof(char)*(*ierr +1));
+		localbuf=(char*)MALLOC(sizeof(char)*(*ierr + 1));
 		strncpy(localbuf,BUF,*ierr);
+		localbuf[*ierr] = '\0';
 		sciprint("    : %s.\n",localbuf);
 		if (localbuf) {FREE(localbuf);localbuf=NULL;}
 	}
@@ -724,8 +732,8 @@ static int msg_26(int *n, int *ierr)
 static int msg_27(int *n, int *ierr)
 {
 	char localbuf[nlgh+1];
-	strncpy(localbuf,BUF,nlgh-1);
-	localbuf[nlgh-1]='\0';
+	strncpy(localbuf,BUF,nlgh - 1);
+	localbuf[nlgh - 1]='\0';
 	sciprint(_("Breakpoints of function : %s\n"),localbuf);
 	return 0;
 }
@@ -745,6 +753,7 @@ static int msg_29(int *n, int *ierr)
 {
 	char localbuf[nlgh+1];
 	strncpy(localbuf,BUF,nlgh);
+	localbuf[nlgh]='\0';
 	sciprint(_("The top %d  x %d blocks may not be in generalized Schur form.\n"),localbuf);
 	return 0;
 }
@@ -825,7 +834,9 @@ static int msg_37(int *n, int *ierr)
 	char localbuf2[14];
 
 	strncpy(localbuf1,BUF,3);
+	localbuf1[3]='\0';
 	strncpy(localbuf2,&BUF[4],13);
+	localbuf2[13]='\0';
 	sciprint(_("Rank deficient : rank = %s  - tol = %s .\n"),localbuf1,localbuf2);
 	return 0;
 }
@@ -842,12 +853,17 @@ static int msg_39(int *n, int *ierr)
 	char localbuf2[10];
 
 	strncpy(localbuf1,BUF,9);
+	localbuf1[9]='\0';
 	strncpy(localbuf2,&BUF[10],9);
+	localbuf2[9]='\0';
 
 	sciprint(_("Using %s elements out of %s.\n"),localbuf1,localbuf2);
 
 	strncpy(localbuf1,&BUF[20],9);
+	localbuf1[9]='\0';
+
 	strncpy(localbuf2,&BUF[30],9);
+	localbuf2[9]='\0';
 	sciprint(_(" and %s variables out of %s.\n"),localbuf1,localbuf2);
 	return 0;
 }
@@ -1078,6 +1094,7 @@ static int msg_70(int *n, int *ierr)
 {
 	char localbuf[10];
 	strncpy(localbuf,BUF,10);
+	localbuf[10]='\0';
 	sciprint(_("At time: %s. Too many iteration to achieve required precision.\n"),localbuf);
 	return 0;
 }
@@ -1320,6 +1337,7 @@ static int msg_105(int *n, int *ierr)
 	char *localbuf=NULL;
 	localbuf=(char*)MALLOC(sizeof(char)*(*ierr +1));
 	strncpy(localbuf,BUF,*ierr);
+	localbuf[*ierr]='\0';
 	sciprint(_("Unknown key <%s> ignored.\n"),localbuf);
 	if (localbuf) {FREE(localbuf);localbuf=NULL;}
 	return 0;
@@ -1394,6 +1412,7 @@ static int msg_default(int *n, int *ierr)
 	int i=0;
 	localbuf=(char*)MALLOC(sizeof(char)*(len+1));
 	strncpy(localbuf,BUF,len);
+	localbuf[len]='\0';
 	sciprint(_("Warning:\n"));
 	for (i=0;i<len;i++)
 	{

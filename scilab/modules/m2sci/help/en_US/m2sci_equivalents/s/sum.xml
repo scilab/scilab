@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="m2sci_sum">
+  <refnamediv>
+    <refname>sum (Matlab function)</refname>
+    <refpurpose>Sum of array elements</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Matlab/Scilab equivalent</title>
+    <informaltable border="1" width="100%">
+      <tr>
+        <td align="center">
+          <emphasis role="bold">Matlab</emphasis>
+        </td>
+        <td align="center">
+          <emphasis role="bold">Scilab</emphasis>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <programlisting role="example"><![CDATA[
+sum
+]]></programlisting>
+        </td>
+        <td>
+          <programlisting role="example"><![CDATA[
+sum
+]]></programlisting>
+        </td>
+      </tr>
+    </informaltable>
+  </refsection>
+  <refsection>
+    <title>Particular cases</title>
+    <variablelist>
+      <varlistentry>
+        <term>M=sum(A)</term>
+        <listitem>
+          <para>Scilab <emphasis role="bold">sum(A)</emphasis> returns the sum of all components of <emphasis role="bold">A</emphasis>. So, if <emphasis role="bold">A</emphasis> is a vector, then Scilab and Matlab work in the same way. If <emphasis role="bold">A</emphasis> is a matrix, Scilab <emphasis role="bold">sum(A)</emphasis> gives the sum of all elements of <emphasis role="bold">A</emphasis> but Matlab returns the sum of each column. Finally, if <emphasis role="bold">A</emphasis> is a multidimensional array, Matlab works on the first non-singleton dimension of <emphasis role="bold">A</emphasis> what Scilab does not. So, to be sure to find a Scilab equivalent for Matlab call to <emphasis role="bold">sum</emphasis> it is better to precise dimension on which to work.
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>M=sum(A,dim)</term>
+        <listitem>
+          <para>In Scilab <emphasis role="bold">dim=1</emphasis> is equivalent to <emphasis role="bold">dim="r"</emphasis> and <emphasis role="bold">dim=2</emphasis> is equivalent <emphasis role="bold">dim="c"</emphasis>. In Matlab, dim can be greater then the number of dimension of <emphasis role="bold">A</emphasis> (in this case, <emphasis role="bold">M=A</emphasis>), in Scilab you will get an error message.
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <informaltable border="1" width="100%">
+      <tr>
+        <td align="center">
+          <emphasis role="bold">Matlab</emphasis>
+        </td>
+        <td align="center">
+          <emphasis role="bold">Scilab</emphasis>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <programlisting role="example"><![CDATA[
+A = [1,2,3;4,5,6]
+M = sum(A)
+M = [5,7,9]
+M = sum(A,1)
+M = [5,7,9]
+]]></programlisting>
+        </td>
+        <td>
+          <programlisting role="example"><![CDATA[
+A = [1,2,3;4,5,6]
+M = sum(A)
+M = 21
+M = sum(A,"r")
+M = [5,7,9]
+]]></programlisting>
+        </td>
+      </tr>
+    </informaltable>
+  </refsection>
+</refentry>

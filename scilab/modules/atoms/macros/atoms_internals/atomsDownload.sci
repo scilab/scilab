@@ -58,11 +58,11 @@ function atomsDownload(url_in,file_out,md5sum)
 	// =========================================================================
 	
 	if regexp(url_in,"/^(http|ftp|file):\/\//","o") <> 1 then
-		error(msprintf(gettext("%s: Wrong value for input argument #%d: A string that start with ''http://'',''ftp://'' or ''file://'' expected.\n"),"atomsDownload",1));
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: String that start with ''http://'',''ftp://'' or ''file://'' expected.\n"),"atomsDownload",1));
 	end
 	
 	if (rhs>2) & (length(md5sum)<>32) then
-		error(msprintf(gettext("%s: Wrong length for input argument #%d: A string which has 32-characters length expected.\n"),"atomsDownload",3));
+		error(msprintf(gettext("%s: Wrong length for input argument #%d: String which has 32-characters length expected.\n"),"atomsDownload",3));
 	end
 	
 	// curl, wget or httpdownload

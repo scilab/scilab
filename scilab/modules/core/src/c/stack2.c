@@ -67,7 +67,7 @@ void strcpy_tws(char *str1,char *str2, int len);
 int C2F(copyvarfromsciptr)(int lw, int n,int l);
 static int intersci_push(void);
 static void intersci_pop(void);
-
+static int C2F(getopcode)(char *string, unsigned long string_len);
 
 static void ConvertData(unsigned char *type, int size,int l);
 /*------------------------------------------------
@@ -2084,67 +2084,81 @@ int C2F(scifunction)(int *number,int *ptr,int *mlhs,int *mrhs)
 
 int C2F(scistring)(int *ifirst,char *thestring,int *mlhs,int *mrhs,unsigned long thestring_len)
 {
-  int ret = FALSE;
-  int ifin, ifun, tops, moutputs, id[nsiz], lf, op, ile, ils, nnn, ninputs;
-  nnn =  thestring_len;
-  op = 0;
-  if (nnn <= 2) {
-    op = C2F(getopcode)(thestring, thestring_len);
-  }
-  if (op == 0) {
-    C2F(cvname)(id, thestring, &cx0, nnn);
-    Fin = 0;
-    tops = Top;
-    Top = Top - Rhs + *ifirst + *mrhs - 1;
-    C2F(funs)(id);
-    Top = tops;
-    if (Fin == 0)
+	int ret = FALSE;
+	int ifin = 0, ifun = 0, tops = 0, moutputs = 0;
+	int id[nsiz];
+	int lf = 0, op = 0, ile = 0, ils = 0, nnn = thestring_len, ninputs = 0;
+
+	if (nnn <= 2) 
 	{
-      Scierror(999,_("%s: %s is not a Scilab function.\n"),"scistring",get_fname(thestring,thestring_len));
-      return ret;
-    }
-    if (C2F(com).fun <= 0) {
-      lf = *Lstk(Fin);
-      ils = iadr(lf) + 1;
-      moutputs = *istk(ils);
-      ile = ils + moutputs * nsiz + 1;
-      ninputs = *istk(ile);
-      /*
-       *   ninputs=actual number of inputs, moutputs=actual number of outputs
-       *   of thestring: checking mlhs=ninputs and mrhs=moutputs not done.
-       */
-      ret = C2F(scifunction)(ifirst, &lf, mlhs, mrhs);
-    } else {
-      ifin = Fin;
-      ifun = C2F(com).fun;
-      ret = C2F(scibuiltin)(ifirst, &ifun, &ifin, mlhs, mrhs);
-    }
-  } else {
-    ret = C2F(sciops)(ifirst, &op, mlhs, mrhs);
-  }
-  return ret;
+		op = C2F(getopcode)(thestring, thestring_len);
+	}
+
+	if (op == 0) 
+	{
+		C2F(cvname)(id, thestring, &cx0, nnn);
+		Fin = 0;
+		tops = Top;
+		Top = Top - Rhs + *ifirst + *mrhs - 1;
+		C2F(funs)(id);
+		Top = tops;
+
+		if (Fin == 0)
+		{
+			Scierror(999,_("%s: %s is not a Scilab function.\n"),"scistring",get_fname(thestring,thestring_len));
+			return ret;
+		}
+
+		if (C2F(com).fun <= 0) 
+		{
+			lf = *Lstk(Fin);
+			ils = iadr(lf) + 1;
+			moutputs = *istk(ils);
+			ile = ils + moutputs * nsiz + 1;
+			ninputs = *istk(ile);
+			/*
+			*   ninputs=actual number of inputs, moutputs=actual number of outputs
+			*   of thestring: checking mlhs=ninputs and mrhs=moutputs not done.
+			*/
+			ret = C2F(scifunction)(ifirst, &lf, mlhs, mrhs);
+		} 
+		else 
+		{
+			ifin = Fin;
+			ifun = C2F(com).fun;
+			ret = C2F(scibuiltin)(ifirst, &ifun, &ifin, mlhs, mrhs);
+		}
+	} 
+	else 
+	{
+		ret = C2F(sciops)(ifirst, &op, mlhs, mrhs);
+	}
+	return ret;
 }
 
 int C2F(getopcode)(char *string,unsigned long string_len)
 {
-  unsigned char ch = string[0];
-  int op = 0;
-  if (  string_len >= 2) {
-    /*     .op  or op. */
-    if ( ch  == '.') ch = string[1];
-    op += 51;
-  }
-  switch ( ch )
-    {
-    case  '*'  :  op += 47; break;
-    case  '+'  :  op += 45; break;
-    case  '-'  :  op += 46; break;
-    case  '\'' :  op += 53; break;
-    case  '/'  :  op += 48; break;
-    case  '\\' :  op += 49; break;
-    case  '^'  :  op += 62; break;
-    }
-  return op;
+	unsigned char ch = string[0];
+	int op = 0;
+	if (  string_len >= 2) 
+	{
+		/* .op  or op. */
+		if ( ch  == '.') ch = string[1];
+		op += 51;
+	}
+
+	switch ( ch )
+	{
+		case  '*'  :  op += 47; break;
+		case  '+'  :  op += 45; break;
+		case  '-'  :  op += 46; break;
+		case  '\'' :  op += 53; break;
+		case  '/'  :  op += 48; break;
+		case  '\\' :  op += 49; break;
+		case  '^'  :  op += 62; break;
+		default : op = 0; break;
+	}
+	return op;
 }
 
 /*---------------------------------------------------------------------

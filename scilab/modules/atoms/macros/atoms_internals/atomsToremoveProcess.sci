@@ -52,7 +52,7 @@ function atomsToremoveProcess(section)
 		// Allusers can be a boolean or equal to "user" or "allusers"
 		
 		if type(section) <> 10 then
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsToremoveProcess",1));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: Boolean or single string expected.\n"),"atomsToremoveProcess",1));
 		end
 		
 		if and(section<>["user","allusers","all"]) then

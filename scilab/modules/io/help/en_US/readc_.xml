@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>readc_</refname>
-    <refpurpose> read a character string</refpurpose>
+    <refpurpose> read a character string (obsolete see input)</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>

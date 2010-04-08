@@ -12,9 +12,9 @@
 
 package org.scilab.modules.graph.utils;
 
-import java.io.File;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.WeakHashMap;
@@ -47,12 +47,12 @@ public final class ScilabGraphUtils extends mxUtils {
 	/**
 	 * Logger for this class
 	 */
-	private static final Log log = LogFactory.getLog(ScilabGraphUtils.class);
+	private static final Log LOG = LogFactory.getLog(ScilabGraphUtils.class);
 	
 	/**
 	 * Cache for the generated SVG components
 	 */
-	private static Map<File, WeakReference<GraphicsNode>> generatedSVGComponents = new HashMap<File, WeakReference<GraphicsNode>>();
+	private static Map<URL, WeakReference<GraphicsNode>> generatedSVGComponents = new HashMap<URL, WeakReference<GraphicsNode>>();
 	
 	/**
 	 * Cache for the generated latex icons
@@ -116,7 +116,7 @@ public final class ScilabGraphUtils extends mxUtils {
 	 * @param filename the file to parse
 	 * @return the corresponding graphic node
 	 */
-	public static GraphicsNode getSVGComponent(File filename) {
+	public static GraphicsNode getSVGComponent(URL filename) {
 		WeakReference<GraphicsNode> nodeRef;
 		GraphicsNode node;
 		
@@ -131,7 +131,7 @@ public final class ScilabGraphUtils extends mxUtils {
 			try {
 				String xmlParser = XMLResourceDescriptor.getXMLParserClassName();
 				SAXSVGDocumentFactory df = new SAXSVGDocumentFactory(xmlParser);
-				Document doc = df.createDocument(filename.getPath());
+				Document doc = df.createDocument(filename.toString());
 				UserAgent userAgent = new UserAgentAdapter();
 				DocumentLoader loader = new DocumentLoader(userAgent);
 				BridgeContext ctx = new BridgeContext(userAgent, loader);
@@ -142,7 +142,7 @@ public final class ScilabGraphUtils extends mxUtils {
 				
 				generatedSVGComponents.put(filename, node.getWeakReference());
 			} catch (IOException e) {
-				log.error(e.getLocalizedMessage());
+				LOG.error(e.getLocalizedMessage());
 			}
 		}
 		return node;

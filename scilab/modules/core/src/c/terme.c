@@ -9,10 +9,12 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#include <stdio.h>
 #include "terme.h"
 #include "stack-def.h"
 #include "stack-c.h"
 #include "Scierror.h"
+#include "basout.h"
 /*--------------------------------------------------------------------------*/ 
 extern int C2F(getsym)();
 /*--------------------------------------------------------------------------*/ 

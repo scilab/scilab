@@ -75,7 +75,7 @@ function nbAdd = atomsAutoloadAdd(packages,section)
 		// Allusers can be equal to "user" or "allusers"
 		
 		if type(section) <> 10 then
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsAutoloadAdd",2));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsAutoloadAdd",2));
 		end
 		
 		if and(section<>["user","allusers"]) then

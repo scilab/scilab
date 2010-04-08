@@ -165,6 +165,7 @@ public final class XcosMessages {
     public static final String NO_BLOCK_SELECTED = Messages.gettext("No block selected");
 
     public static final String EXPORT_TO_XML = Messages.gettext("Export to XML") + DOTS;
+    public static final String EXPORT_IN_PROGRESS = Messages.gettext("Export in progress") + DOTS;
     public static final String IMPORT_FROM_XML = Messages.gettext("Import from XML") + DOTS;
     
     public static final String ADDTO = Messages.gettext("Add to");
@@ -261,11 +262,16 @@ public final class XcosMessages {
     public static final String MASK_DEFAULTWINDOWNAME = Messages.gettext("Set block parameters");
 
     /* Configuration Error */
-	public static final String ERR_CONFIG_PALETTE_INVALID = Messages.gettext("The user palette configuration file (palettes.xml) is invalid.<BR> Switching to the default one."); 
+	public static final String ERR_CONFIG_PALETTE_INVALID = Messages.gettext("The user palette configuration file (palettes.xml) is invalid.<BR> Switching to the default one.");
+	public static final String ERR_CONFIG_INVALID = Messages.gettext("The user configuration file (xcos.xml) is invalid.<BR> Switching to the default one.");
     
     /* Modelica Compiler */
     public static final String INITIALIZING_MODELICA_COMPILER = Messages.gettext("Setting up Modelica Compiler.");
     public static final String INIT_MODELICA = Messages.gettext("Modelica initialize");
+    
+    /* Blocks values */
+    public static final String BLOCK_FROM = Messages.gettext("From %s");
+    public static final String BLOCK_GOTO = Messages.gettext("Goto %s");
     
 // CSON: JavadocVariable
 // CSON: LineLength

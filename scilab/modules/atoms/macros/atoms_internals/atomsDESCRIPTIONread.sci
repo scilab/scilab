@@ -67,7 +67,7 @@ function description_out = atomsDESCRIPTIONread(file_in,additional)
 	end
 	
 	if regexp( file_in,"/(TOOLBOXES|DESCRIPTION)/") == [] then
-		error(msprintf(gettext("%s: Wrong value for input argument #%d: A string that contain ''TOOLBOXES'' or ''DESCRIPTION'' expected.\n"),"atomsDESCRIPTIONread",1));
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: String that contain ''TOOLBOXES'' or ''DESCRIPTION'' expected.\n"),"atomsDESCRIPTIONread",1));
 	end
 	
 	if rhs < 2 then

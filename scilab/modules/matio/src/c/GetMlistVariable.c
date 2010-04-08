@@ -51,13 +51,13 @@ matvar_t *GetMlistVariable(int iVar, const char *name, int matfile_version, int 
 
   _SciErr = getVarType(pvApiCtx, var_addr, &var_type); MATIO_ERROR;
 
-  if(var_type == sci_mlist)
+  if (var_type == sci_mlist)
     {
       /* FIRST LIST ENTRY: fieldnames */
-      _SciErr = getMatrixOfStringInList(pvApiCtx, var_addr, 1, &nbRow, &nbFields, NULL, NULL); MATIO_ERROR;
-      pilen = (int *)MALLOC(nbRow*nbFields*sizeof(int));
+      _SciErr    = getMatrixOfStringInList(pvApiCtx, var_addr, 1, &nbRow, &nbFields, NULL, NULL); MATIO_ERROR;
+      pilen      = (int *)MALLOC(nbRow*nbFields*sizeof(int));
       fieldNames = (char **)MALLOC(nbRow*nbFields*sizeof(char *));
-      _SciErr = getMatrixOfStringInList(pvApiCtx, var_addr, 1, &nbRow, &nbFields, pilen, NULL); MATIO_ERROR;
+      _SciErr    = getMatrixOfStringInList(pvApiCtx, var_addr, 1, &nbRow, &nbFields, pilen, NULL); MATIO_ERROR;
       for(i=0;i<nbRow*nbFields;i++)
       	{
       	  fieldNames[i] = (char *)MALLOC((pilen[i]+1)*sizeof(char));
@@ -95,5 +95,4 @@ matvar_t *GetMlistVariable(int iVar, const char *name, int matfile_version, int 
       Scierror(999, _("%s: Wrong type for first input argument: Mlist expected.\n"), "GetMlistVariable");
       return NULL;
     }
-
 }

@@ -77,7 +77,7 @@
             <varlistentry>
               <term>xtics_coord: </term>
               <listitem>
-                <para>This field represent the x-coordinate of the axis. It is a row
+                <para>This field represents the x-coordinate of the axis. It is a row
             vector containing values increasing from left to right which give
             tics positions for a horizontal axis. Other case, the entity is a
             vertical axis, this property contain a scale which defines the
@@ -87,10 +87,10 @@
             <varlistentry>
               <term>ytics_coord: </term>
               <listitem>
-                <para>This field represent the y-coordinate of the axis. It is a row
+                <para>This field represents the y-coordinate of the axis. It is a row
             vector containing values increasing from bottom to top which give
             tics positions for a vertical axis. Other case, the entity is a
-            horizantal axis, this property contain a scale which defines the
+            horizontal axis, this property contain a scale which defines the
             y-origin of the axis.</para>
               </listitem>
             </varlistentry>
@@ -146,10 +146,20 @@
             <varlistentry>
               <term>tics_labels: </term>
               <listitem>
-                <para>This filed is a string matrix, which contains the strings to
+                <para>This field is a string matrix, which contains the strings to
             be drawn along the axis at tics positions.</para>
               </listitem>
             </varlistentry>
+
+            <varlistentry>
+              <term>format_n: </term>
+              <listitem>
+                <para>This property is a character string which specifies the floating-point display format of the tics labels numbers,
+            when relevant. It uses the format syntax of the C language printf function (for example <literal>"%.3f"</literal>).
+            If equal to <literal>""</literal>, a default display format is used.</para>
+              </listitem>
+            </varlistentry>
+
             <varlistentry>
               <term>labels_font_color: </term>
               <listitem>
@@ -170,7 +180,7 @@
               <term>fractional_font: </term>
               <listitem>
 	        <para>
-		  This property specify whether ticks labels are displayed using fractional font sizes.
+		  This property specifies whether ticks labels are displayed using fractional font sizes.
 		  Its value must be either <literal>"on"</literal> or <literal>"off"</literal>.
 		  If <literal>"on"</literal> the floating point value of <literal>font_size</literal>
 		  is used for display and the font is anti-aliased. If <literal>"off"</literal> only the integer part is used
@@ -213,8 +223,8 @@
             <varlistentry>
               <term>user_data: </term>
               <listitem>
-                <para>This field can be use to store any scilab variable in the axis
-            data structure, and to retreive it.</para>
+                <para>This field can be used to store any scilab variable in the axis
+            data structure, and to retrieve it.</para>
               </listitem>
             </varlistentry>
           </variablelist>

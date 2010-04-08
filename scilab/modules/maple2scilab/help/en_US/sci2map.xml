@@ -49,9 +49,9 @@
     <title>Description</title>
     <para>
     Makes Maple code necessary to send 
-    the Scilab variable <literal>a</literal> to Maple : the name of the variable
+    the Scilab variable <literal>a</literal> to Maple: the name of the variable
     in Maple is <literal>Map-name</literal>.
-    A Maple procedure <literal>maple2scilab</literal> can be found in <literal>SCIDIR/maple</literal>
+    A Maple procedure <literal>maple2scilab</literal> can be found in <literal>SCI/modules/maple2scilab/src/maple/maple2scilab.mpl</literal>
     directory.</para>
   </refsection>
   <refsection>

@@ -22,6 +22,7 @@ import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
+import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.MenuBarBuilder;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -84,8 +85,13 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
 
 			Window helpWindow = ScilabWindow.createWindow();
 			helpWindow.addTab(helpTab);
+
+			/* Set the dimension / position of the help window */
+			helpWindow.setPosition(ConfigManager.getHelpWindowPosition());
+			helpWindow.setDims(ConfigManager.getHelpWindowSize());
+
 			helpWindow.draw();
-			
+
 		}
 		return instance;
 	}
@@ -98,6 +104,14 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
 		if (instance == null) {
 			instance = new ScilabHelpBrowser(null, "en_US");
 		}
+		return instance;
+	}
+	
+	/**
+	 * Get the Scilab Help Browser (does not create it is not existing)
+	 * @return the console
+	 */
+	public static HelpBrowser getHelpBrowserWithoutCreation() {
 		return instance;
 	}
 	

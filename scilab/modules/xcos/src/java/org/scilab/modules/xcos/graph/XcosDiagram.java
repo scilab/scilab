@@ -20,6 +20,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyVetoException;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -42,6 +43,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 import ncsa.hdf.hdf5lib.exceptions.HDF5LibraryException;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabCanvas;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.PasteAction;
@@ -68,9 +71,9 @@ import org.scilab.modules.gui.utils.SciFileFilter;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.hdf5.read.H5Read;
-import org.scilab.modules.hdf5.scilabTypes.ScilabList;
-import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
-import org.scilab.modules.hdf5.scilabTypes.ScilabString;
+import org.scilab.modules.types.scilabTypes.ScilabList;
+import org.scilab.modules.types.scilabTypes.ScilabMList;
+import org.scilab.modules.types.scilabTypes.ScilabString;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.actions.DiagramBackgroundAction;
@@ -86,6 +89,7 @@ import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.block.actions.ShowParentAction;
 import org.scilab.modules.xcos.block.io.ContextUpdate;
+import org.scilab.modules.xcos.configuration.ConfigurationManager;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.io.BlockWriter;
 import org.scilab.modules.xcos.io.XcosCodec;
@@ -104,7 +108,7 @@ import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
 import org.scilab.modules.xcos.utils.BlockPositioning;
-import org.scilab.modules.xcos.utils.ConfigXcosManager;
+import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosDialogs;
 import org.scilab.modules.xcos.utils.XcosEvent;
@@ -134,8 +138,14 @@ import com.mxgraph.view.mxMultiplicity;
  * The base class for a diagram. This class contains jgraphx + Scicos data.
  */
 public class XcosDiagram extends ScilabGraph {
+	private static final Log LOG = LogFactory.getLog(XcosDiagram.class);
+	
 	// the associated parameters
 	private ScicosParameters scicosParameters;
+	
+	// the scicos engine current status
+	private final transient CompilationEngineStatus engine; 
+	
     //private Window palette;
     private Tab viewPort;
     
@@ -307,12 +317,16 @@ public class XcosDiagram extends ScilabGraph {
     	    } else if (source instanceof ControlPort || source instanceof CommandPort) {
     		drawLink = (BasicLink) super.addEdge(new CommandControlLink(), getDefaultParent(), source, target, index);
     	    } else if (source instanceof BasicLink) {
-    		SplitBlock split = (SplitBlock) addSplitEdge((BasicLink) source, (BasicPort) target);
-    		drawLink = (BasicLink) split.getOut2().getEdgeAt(0);
+				/*
+				 * This is a very specific case: user wants to put a split block
+				 * on a link and start a new partial link. It's not handled as a
+				 * SplitBlock must not be partially initialized.
+				 */
+    	    	return null;
     	    }
 
     	    if (drawLink != null) {
-    		waitPathRelease = true;
+    	    	waitPathRelease = true;
     	    }
 
     	    info(XcosMessages.DRAW_LINK);
@@ -401,6 +415,8 @@ public class XcosDiagram extends ScilabGraph {
        	}
     	addCell(newLink2);
 
+    	if (target != null) {
+    	
     	if (target instanceof BasicLink) {
     	    //build link inverted ! it will be invert later
     	    ((BasicLink) target).setTarget(splitBlock.getOut2());
@@ -413,6 +429,7 @@ public class XcosDiagram extends ScilabGraph {
     	    addCell(newLink3);
     	}
     	
+    	}
     	dragSplitPos = null;
 	refresh();
 	getModel().endUpdate();
@@ -425,34 +442,24 @@ public class XcosDiagram extends ScilabGraph {
      */
     public XcosDiagram() {
 	super();
-	scicosParameters = new ScicosParameters();
+	
+	// Scicos related setup
+	engine = new CompilationEngineStatus();
+	setScicosParameters(new ScicosParameters());
+	
+	// Add a default listener to update the modification status when
+	// something has changed on the ScicosParameters
+	scicosParameters.addPropertyChangeListener(new PropertyChangeListener() {
+		@Override
+		public void propertyChange(PropertyChangeEvent evt) {
+			setModified(true);
+		}
+	});
+	
 	
 	getUndoManager().addListener(mxEvent.UNDO, deleteLinkOnMultiPointLinkCreation);
 	
-	mxCodec codec = new mxCodec();
-	try {
-		final String sciURL = XcosConstants.SCI.toURI().toURL().toString();
-		final String sciPath = XcosConstants.SCI.getAbsolutePath();
-	    String xml = mxUtils.readFile(sciPath + "/modules/xcos/etc/Xcos-style.xml");
-	    xml = xml.replaceAll("\\$SCILAB", sciURL);
-	    Document document = mxUtils.parse(xml);
-	    codec.decode(document.getDocumentElement(), getStylesheet());
-	} catch (IOException e) {
-	    e.printStackTrace();
-	}
-	
-	// Set Canvas background
-	URL background = null;
-	try {
-		Map<String, Object> style = getStylesheet().getCellStyle("Icon", null);
-		if (style != null) {
-			background = new URL((String) style.get(XcosConstants.STYLE_IMAGE));
-		}
-	} catch (MalformedURLException e) {
-		e.printStackTrace();
-	}
-	((ScilabCanvas) getAsComponent().getCanvas())
-			.setSvgBackgroundImage(background);
+	installStylesheet();
 
 	getAsComponent().setToolTips(true);
 
@@ -501,6 +508,61 @@ public class XcosDiagram extends ScilabGraph {
 	((mxCell) getModel().getRoot()).setId((new UID()).toString());
     }
 
+	/**
+	 * Install the default style sheet and the user stylesheet on the diagram.
+	 */
+	private void installStylesheet() {
+		final mxCodec codec = new mxCodec();
+		
+		try {
+			/*
+			 * Initialize constants
+			 */
+			final String file = "Xcos-style.xml";
+			final String homePath = XcosConstants.SCIHOME.getAbsolutePath();
+			final File userStyleSheet = new File(homePath + '/' + file);
+			
+	    	/*
+	    	 * Copy the base stylesheet into the user dir when it doesn't exist.
+	    	 */
+			if (!userStyleSheet.exists()) {
+				final String sciPath = XcosConstants.SCI.getAbsolutePath();
+
+		    	File baseStyleSheet = new File(sciPath + "/modules/xcos/etc/" + file);
+		    	FileUtils.forceCopy(baseStyleSheet, userStyleSheet);
+		    }
+		    
+			/*
+			 * Load the stylesheet
+			 */
+			final String sciURL = XcosConstants.SCI.toURI().toURL().toString();
+			final String homeURL = XcosConstants.SCIHOME.toURI().toURL().toString();
+			
+		    String xml = mxUtils.readFile(userStyleSheet.getAbsolutePath());
+		    xml = xml.replaceAll("\\$SCILAB", sciURL);
+		    xml = xml.replaceAll("\\$SCIHOME", homeURL);
+		    Document document = mxUtils.parse(xml);
+		    codec.decode(document.getDocumentElement(), getStylesheet());
+		    
+		} catch (IOException e) {
+			LOG.warn(e);
+			return;
+		}
+		
+		// Set Canvas background
+		URL background = null;
+		try {
+			Map<String, Object> style = getStylesheet().getCellStyle("Icon", null);
+			if (style != null) {
+				background = new URL((String) style.get(XcosConstants.STYLE_IMAGE));
+			}
+		} catch (MalformedURLException e) {
+			LOG.warn(e);
+		}
+		((ScilabCanvas) getAsComponent().getCanvas())
+				.setSvgBackgroundImage(background);
+	}
+    
     /**
      * Install the multiplicities (use for link checking)
      */
@@ -627,18 +689,21 @@ public class XcosDiagram extends ScilabGraph {
 
 	// Track when superblock ask a parent refresh.
 	addListener(XcosEvent.SUPER_BLOCK_UPDATED, new SuperBlockUpdateTracker()); 
-
+	
 	// Track when cells are added.
 	addListener(XcosEvent.CELLS_ADDED, new CellAddedTracker(this)); 
-
+	addListener(XcosEvent.CELLS_ADDED, getEngine());
+	
 	// Track when cells are deleted.
 	addListener(XcosEvent.CELLS_REMOVED, new CellRemovedTracker(this)); 
-		
+	addListener(XcosEvent.CELLS_REMOVED, getEngine());
+	
 	// Track when resizing a cell.
 	addListener(XcosEvent.CELLS_RESIZED, new CellResizedTracker());
 	
 	// Track when we have to force a Block value
 	addListener(XcosEvent.FORCE_CELL_VALUE_UPDATE, new ForceCellValueUpdate());
+	addListener(XcosEvent.FORCE_CELL_VALUE_UPDATE, getEngine());
 	
 	// Update the blocks view on undo/redo
 	getUndoManager().addListener(mxEvent.UNDO, new UndoUpdateTracker());
@@ -1197,7 +1262,13 @@ public class XcosDiagram extends ScilabGraph {
     				if (!e.isControlDown()) {
     					//adjust final point
     					mxGeometry geoPort = drawLink.getSource().getGeometry();
-    					mxGeometry geoBlock = drawLink.getSource().getParent().getGeometry();
+    					mxGeometry geoBlock;
+    					final mxICell parent = drawLink.getSource().getParent();
+    					if (parent == null) {
+    						geoBlock = new mxGeometry();
+    					} else {
+    						geoBlock = drawLink.getSource().getParent().getGeometry();
+    					}
     					mxPoint lastPoint = new mxPoint(geoBlock.getX() + geoPort.getCenterX(),
     						geoBlock.getY() + geoPort.getCenterY());
     					mxPoint click = new mxPoint(e.getX() / scale, e.getY() / scale);
@@ -1445,73 +1516,90 @@ public class XcosDiagram extends ScilabGraph {
 	}
 
 	/**
-	 * @param the simulation parameters
+	 * @param scicosParameters the simulation parameters
 	 */
 	public void setScicosParameters(ScicosParameters scicosParameters) {
 		this.scicosParameters = scicosParameters;
+		
+		scicosParameters.addPropertyChangeListener(getEngine());
 	}
 	
 	/**
+	 * @return the engine
+	 */
+	public CompilationEngineStatus getEngine() {
+		return engine;
+	}
+
+	/**
      * @param finalIntegrationTime set integration time
+	 * @throws PropertyVetoException when the value is invalid
      * @category XMLCompatibility
      */
-    public void setFinalIntegrationTime(double finalIntegrationTime) {
+    public void setFinalIntegrationTime(double finalIntegrationTime) throws PropertyVetoException {
     	scicosParameters.setFinalIntegrationTime(finalIntegrationTime);
     }
 
     /**
      * @param integratorAbsoluteTolerance set integrator absolute tolerance
+     * @throws PropertyVetoException when the value is invalid
      * @category XMLCompatibility
      */
-    public void setIntegratorAbsoluteTolerance(double integratorAbsoluteTolerance) {
+    public void setIntegratorAbsoluteTolerance(double integratorAbsoluteTolerance) throws PropertyVetoException {
 		scicosParameters.setIntegratorAbsoluteTolerance(integratorAbsoluteTolerance);
     }
 
     /**
      * @param integratorRelativeTolerance integrator relative tolerance
+     * @throws PropertyVetoException when the value is invalid
      * @category XMLCompatibility
      */
-    public void setIntegratorRelativeTolerance(double integratorRelativeTolerance) {
+    public void setIntegratorRelativeTolerance(double integratorRelativeTolerance) throws PropertyVetoException {
     	scicosParameters.setIntegratorRelativeTolerance(integratorRelativeTolerance);
     }
 
     /**
      * @param maximumStepSize set max step size
+     * @throws PropertyVetoException when the value is invalid
      * @category XMLCompatibility
      */
-    public void setMaximumStepSize(double maximumStepSize) {
+    public void setMaximumStepSize(double maximumStepSize) throws PropertyVetoException {
     	scicosParameters.setMaximumStepSize(maximumStepSize);
     }
 
     /**
      * @param maxIntegrationTimeinterval set max integration time
+     * @throws PropertyVetoException when the value is invalid
      * @category XMLCompatibility
      */
-    public void setMaxIntegrationTimeinterval(double maxIntegrationTimeinterval) {
-	 scicosParameters.setMaxIntegrationTimeinterval(maxIntegrationTimeinterval);
+    public void setMaxIntegrationTimeinterval(double maxIntegrationTimeinterval) throws PropertyVetoException {
+	 scicosParameters.setMaxIntegrationTimeInterval(maxIntegrationTimeinterval);
     }
 
     /**
      * @param realTimeScaling set real time scaling
+     * @throws PropertyVetoException when the value is invalid
      * @category XMLCompatibility
      */
-    public void setRealTimeScaling(double realTimeScaling) {
+    public void setRealTimeScaling(double realTimeScaling) throws PropertyVetoException {
     	scicosParameters.setRealTimeScaling(realTimeScaling);
     }
 
     /**
      * @param solver set solver
+     * @throws PropertyVetoException when the value is invalid
      * @category XMLCompatibility
      */
-    public void setSolver(double solver) {
+    public void setSolver(double solver) throws PropertyVetoException {
     	scicosParameters.setSolver(solver);
     }
 
     /**
      * @param toleranceOnTime set tolerance time
+     * @throws PropertyVetoException when the value is invalid
      * @category XMLCompatibility
      */
-    public void setToleranceOnTime(double toleranceOnTime) {
+    public void setToleranceOnTime(double toleranceOnTime) throws PropertyVetoException {
 		scicosParameters.setToleranceOnTime(toleranceOnTime);
     }
 
@@ -1713,7 +1801,8 @@ public class XcosDiagram extends ScilabGraph {
 	    this.setSavedFile(writeFile);
 	    File theFile = new File(writeFile);
 	    setTitle(theFile.getName().substring(0, theFile.getName().lastIndexOf('.')));
-	    ConfigXcosManager.saveToRecentOpenedFiles(writeFile);
+	    ConfigurationManager.getInstance().addToRecentFiles(writeFile);
+	    ConfigurationManager.getInstance().saveConfig();
 	    setModified(false);
 	} else {
 	    XcosDialogs.couldNotSaveFile(this);
@@ -1740,9 +1829,11 @@ public class XcosDiagram extends ScilabGraph {
     
     /**
      * @param context set context
+     * @throws PropertyVetoException when the new value is invalid 
      */
-    public void setContext(String[] context) {
+    public void setContext(String[] context) throws PropertyVetoException {
     	scicosParameters.setContext(context);
+    	fireEvent(new mxEventObject(XcosEvent.DIAGRAM_UPDATED));
 	updateCellsContext();
     }
 
@@ -1783,8 +1874,9 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * @param debugLevel change debug level
      * @category XMLCompatibility
+     * @throws PropertyVetoException when the new value is invalid
      */
-    public void setDebugLevel(int debugLevel) {
+    public void setDebugLevel(int debugLevel) throws PropertyVetoException {
     	scicosParameters.setDebugLevel(debugLevel);
     }
 
@@ -1820,7 +1912,7 @@ public class XcosDiagram extends ScilabGraph {
 	List<TextBlock> allTextBlocks = (List<TextBlock>) diagramm.get("TextBlocks");
 	Map<String, Object> allLinks = (Map<String, Object>) diagramm.get("Links");
 	Map<String, Object> properties = (Map<String, Object>) diagramm.get("Properties");
-
+	try {
 	setFinalIntegrationTime((Double) properties.get("finalIntegrationTime"));
 	setIntegratorAbsoluteTolerance((Double) properties.get("integratorAbsoluteTolerance"));
 	setIntegratorRelativeTolerance((Double) properties.get("integratorRelativeTolerance"));
@@ -1830,6 +1922,9 @@ public class XcosDiagram extends ScilabGraph {
 	setSolver((Double) properties.get("solver"));
 	setMaximumStepSize((Double) properties.get("maximumStepSize"));
 	setContext((String[]) properties.get("context"));
+	} catch (PropertyVetoException e) {
+		LOG.error(e);
+	}
 
 	List<BasicPort[]> linkPorts = (List<BasicPort[]>) allLinks.get("Ports");
 	List<double[][]> linkPoints = (List<double[][]>) allLinks.get("Points");

@@ -16,6 +16,7 @@
 #include "stack-c.h"
 #include "Scierror.h"
 #include "recursionFunction.h"
+#include "exitCodeValue.h"
 /*--------------------------------------------------------------------------*/ 
 extern int C2F(parse)(void);
 extern int C2F(isbyref)(int *);
@@ -130,6 +131,10 @@ int C2F(scirun)(char *startupCode, long int startupCode_len)
   C2F(recu).krec = k;
   C2F(callinterf)(&k);
   C2F(recu).krec = -1;
+  if (C2F(com).fun == -999) /* exit detected */
+  {
+	return getExitCodeValue();
+  }
   if (C2F(com).fun >= 0) 
     {
       if (Top - Lhs + 1 > 0) 

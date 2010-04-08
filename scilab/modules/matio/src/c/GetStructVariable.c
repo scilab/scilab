@@ -52,7 +52,11 @@ matvar_t *GetStructVariable(int iVar, const char *name, int matfile_version, cha
   /* FIRST LIST ENTRY: fieldnames --> NO NEED TO BE READ */
   
   /* SECOND LIST ENTRY: dimensions */
-  dimensionsVariable = GetMatlabVariable(iVar, "data", /* Do not need to give the format because this variable is just temp */ 0, var_addr, 3);
+  dimensionsVariable = GetMatlabVariable(iVar, 
+					 "data", /* Do not need to give the format because this variable is just temp */ 
+					 0, 
+					 var_addr, 
+					 3);
 
   /* Total number of entries */
   for (K=0; K<dimensionsVariable->rank; K++)
@@ -92,7 +96,8 @@ matvar_t *GetStructVariable(int iVar, const char *name, int matfile_version, cha
           
           for (valueIndex = 0; valueIndex < prodDims; valueIndex++)
             {
-              structEntries[(fieldIndex-1) + (nbFields-2)*valueIndex] = GetMatlabVariable(iVar ,fieldNames[fieldIndex], matfile_version, list_addr, valueIndex+1);
+              structEntries[(fieldIndex-1) + (nbFields-2)*valueIndex] = GetMatlabVariable(iVar ,fieldNames[fieldIndex], 
+											  matfile_version, list_addr, valueIndex+1);
             }
         }
     }

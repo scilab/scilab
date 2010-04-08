@@ -11,8 +11,8 @@
  */
 package org.scilab.modules.xcos.block;
 
-import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
-import org.scilab.modules.hdf5.scilabTypes.ScilabList;
+import org.scilab.modules.types.scilabTypes.ScilabDouble;
+import org.scilab.modules.types.scilabTypes.ScilabList;
 import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
@@ -104,7 +104,6 @@ public final class SplitBlock extends BasicBlock {
 	protected void setDefaultValues() {
 		super.setDefaultValues();
 		setInterfaceFunctionName("SPLIT_f");
-		setStyle("SPLIT_f");
 		setSimulationFunctionName("lsplit");
 		setRealParameters(new ScilabDouble());
 		setIntegerParameters(new ScilabDouble());
