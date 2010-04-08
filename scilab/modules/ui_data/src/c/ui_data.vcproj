@@ -372,11 +372,23 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
+				RelativePath="..\jni\BrowseVar.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\jni\BrowseVar.hxx"
+				>
+			</File>
+			<File
 				RelativePath=".\DllmainUi_data.c"
 				>
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\gw_ui_data.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\cpp\sci_browsevar.cpp"
 				>
 			</File>
 			<File

@@ -15,5 +15,8 @@
 #define UI_DATA "ui_data"
 ;
 Source: bin\ui_data.dll; DestDir: {app}\bin; Components: {#COMPN_UI_DATA}
+Source: modules\{#UI_DATA}\jar\org.scilab.modules.ui_data.jar;DestDir: {app}\modules\{#UI_DATA}\jar; Components: {#COMPN_UI_DATA}
+;
+Source: modules\{#UI_DATA}\images\icons\*.gif; DestDir: {app}\modules\{#UI_DATA}\images\icons; Components: {#COMPN_UI_DATA}
 ;
 ;--------------------------------------------------------------------------------------------------------------
