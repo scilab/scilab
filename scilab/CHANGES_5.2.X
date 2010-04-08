@@ -245,6 +245,8 @@ Bug Fixes:
 
 * bug 6864 partially fixed - ATOMS: Error messages were not homogenized.
 
+* bug 6879 fixed - Error messages in "sci_champ.c" were not homogenized.
+
 
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab
