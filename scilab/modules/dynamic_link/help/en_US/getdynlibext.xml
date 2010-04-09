@@ -25,7 +25,7 @@
   <refsection>
     <title>Description</title>
     <para>get the extension of dynamic libraries on your operating system.</para>
-    <para>ret=getdynlibext() returns (.so on linux,.sl HP-UX,.dll on Windows, ...).</para>
+    <para>ret=getdynlibext() returns (.so on linux, .dylib on MacOS, .sl HP-UX,.dll on Windows, ...).</para>
   </refsection>
   <refsection>
     <title>Examples</title>
