@@ -115,6 +115,7 @@ namespace types
 		m_iCols	= _iCols;
 		m_iRows	= _iRows;
 		m_iSize = m_iCols * m_iRows;
+		m_iSizeMax = m_iSize;
 
 		if(_pdblReal != NULL)
 		{
@@ -810,45 +811,94 @@ namespace types
 
 		if(isComplex())
 		{
-			pdblReal	= new double[_iNewRows * _iNewCols];
-			memset(pdblReal, 0x00, sizeof(double) * _iNewRows * _iNewCols);
-			pdblImg		= new double[_iNewRows * _iNewCols];
-			memset(pdblImg, 0x00, sizeof(double) * _iNewRows * _iNewCols);
-
-			for(int i = 0 ; i < rows_get() ; i++)
+			if(m_iSizeMax < _iNewRows * _iNewCols)
 			{
-				for(int j = 0 ; j < cols_get() ; j++)
-				{
-					pdblReal[j * _iNewRows + i] = m_pdblReal[j * rows_get() + i];
-					pdblImg[j * _iNewRows + i]	= m_pdblImg[j * rows_get() + i];
-				}
-			}
+				//alloc 10% bigger than asked to prevent future resize
+				m_iSizeMax = static_cast<int>(_iNewRows * _iNewCols * 1.1);
 
-			delete[] m_pdblReal;
-			delete[] m_pdblImg;
-			m_pdblReal	= pdblReal;
-			m_pdblImg		= pdblImg;
+				pdblReal	= new double[m_iSizeMax];
+				memset(pdblReal, 0x00, sizeof(double) * m_iSizeMax);
+				pdblImg		= new double[m_iSizeMax];
+				memset(pdblImg, 0x00, sizeof(double) * m_iSizeMax);
+
+				for(int i = 0 ; i < rows_get() ; i++)
+				{
+					for(int j = 0 ; j < cols_get() ; j++)
+					{
+						pdblReal[j * _iNewRows + i] = m_pdblReal[j * rows_get() + i];
+						pdblImg[j * _iNewRows + i]	= m_pdblImg[j * rows_get() + i];
+					}
+				}
+
+				delete[] m_pdblReal;
+				delete[] m_pdblImg;
+				m_pdblReal	= pdblReal;
+				m_pdblImg		= pdblImg;
+			}
+			else
+			{
+				//if vector or if row dimension not change, we don't need to shift data
+				if(_iNewRows != 1 && _iNewCols != 1 && rows_get() != _iNewRows)
+				{
+					for(int i = cols_get() - 1 ; i >= 0 ; i--)
+					{
+						for(int j = rows_get() - 1 ; j >= 0 ; j--)
+						{
+							m_pdblReal[(i * _iNewRows) + j] = m_pdblReal[(i * rows_get()) + j];
+							m_pdblImg[(i * _iNewRows) + j] 	= m_pdblImg[(i * rows_get()) + j];
+						}
+						
+						//fill zero at the end of column
+						memset(m_pdblReal + (i * _iNewRows) + rows_get(), 0x00, sizeof(double) * (_iNewRows - rows_get()));
+						memset(m_pdblImg + (i * _iNewRows) + rows_get(), 0x00, sizeof(double) * (_iNewRows - rows_get()));
+					}
+				}
+			}	
+			
 		}
 		else
 		{
-			pdblReal	= new double[_iNewRows * _iNewCols];
-			memset(pdblReal, 0x00, sizeof(double) * _iNewRows * _iNewCols);
-
-			for(int i = 0 ; i < rows_get() ; i++)
+			if(m_iSizeMax < _iNewRows * _iNewCols)
 			{
-				for(int j = 0 ; j < cols_get() ; j++)
+				//alloc 10% bigger than asked to prevent future resize
+				m_iSizeMax = static_cast<int>(_iNewRows * _iNewCols * 1.1);
+				
+				pdblReal	= new double[m_iSizeMax];
+				memset(pdblReal, 0x00, sizeof(double) * m_iSizeMax);
+
+				for(int i = 0 ; i < rows_get() ; i++)
 				{
-					pdblReal[j * _iNewRows + i] = m_pdblReal[j * rows_get() + i];
+					for(int j = 0 ; j < cols_get() ; j++)
+					{
+						pdblReal[j * _iNewRows + i] = m_pdblReal[j * rows_get() + i];
+					}
 				}
+
+				delete[] m_pdblReal;
+				m_pdblReal	= pdblReal;
 			}
-			delete[] m_pdblReal;
-			m_pdblReal	= pdblReal;
+			else
+			{
+				//if vector or if row dimension not change, we don't need to shift data
+				if(_iNewRows != 1 && _iNewCols != 1 && rows_get() != _iNewRows)
+				{
+					for(int i = cols_get() - 1 ; i >= 0 ; i--)
+					{
+						for(int j = rows_get() - 1 ; j >= 0 ; j--)
+						{
+							m_pdblReal[(i * _iNewRows) + j] = m_pdblReal[(i * rows_get()) + j];
+						}
+						
+						//fill zero at the end of column
+						memset(m_pdblReal + (i * _iNewRows) + rows_get(), 0x00, sizeof(double) * (_iNewRows - rows_get()));
+					}
+				}
+			}	
 		}
 
 		m_iRows = _iNewRows;
 		m_iCols	= _iNewCols;
 		m_iSize = m_iRows * m_iCols;
-		//copy existing values
 		return true;
 	}
 

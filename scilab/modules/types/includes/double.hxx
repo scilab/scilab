@@ -82,6 +82,7 @@ namespace types
     double*						m_pdblReal;
     double*						m_pdblImg;
 		bool							m_bComplex;
+		int								m_iSizeMax;
 	};
 }
 
