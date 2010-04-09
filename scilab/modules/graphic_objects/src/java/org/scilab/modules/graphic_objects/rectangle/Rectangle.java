@@ -1,0 +1,143 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - DIGITEO - Manuel JULIACHS
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
+package org.scilab.modules.graphic_objects.rectangle;
+
+import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
+
+/**
+ * Class Rectangle
+ * @author Manuel JULIACHS
+ */
+public class Rectangle extends ClippableContouredObject {
+	/** Rectangle properties names */
+	private enum RectangleProperty { UPPERLEFTPOINT, WIDTH, HEIGHT };
+	
+	/** Upper-left corner (x,y,z) coordinates */
+	private double[] upperLeftPoint;
+	
+	/** Width */
+	private double width;
+
+	/** Height */
+	private double height;
+
+	/** Constructor */
+	public Rectangle() {
+		super();
+		upperLeftPoint = new double[3];
+		width = 0.0;
+		height = 0.0;
+	}
+
+	/**
+	 * Returns the enum associated to a property name
+	 * @param propertyName the property name
+	 * @return the property enum
+	 */
+	public Object getPropertyFromName(String propertyName) {
+		if (propertyName.equals("UpperLeftPoint")) {
+			return RectangleProperty.UPPERLEFTPOINT;
+		} else if (propertyName.equals("Width")) {
+			return RectangleProperty.WIDTH;
+		} else if (propertyName.equals("Height")) {
+			return RectangleProperty.HEIGHT;
+		} else {
+			return super.getPropertyFromName(propertyName);
+		}
+	}
+
+	/**
+	 * Fast property get method
+	 * @param property the property to get
+	 * @return the property value
+	 */
+	public Object getPropertyFast(Object property) {
+		if (property == RectangleProperty.UPPERLEFTPOINT) {
+			return getUpperLeftPoint();
+		} else if (property == RectangleProperty.WIDTH) {
+			return getWidth();
+		} else if (property == RectangleProperty.HEIGHT) {
+			return getHeight();
+		} else {
+			return super.getPropertyFast(property);	
+		}
+	}
+
+	/**
+	 * Fast property set method
+	 * @param property the property to set
+	 * @param value the property value
+	 */
+	public void setPropertyFast(Object property, Object value) {
+		if (property == RectangleProperty.UPPERLEFTPOINT) {
+			setUpperLeftPoint((Double[]) value);
+		} else if (property == RectangleProperty.WIDTH) {
+			setWidth((Double) value);
+		} else if (property == RectangleProperty.HEIGHT) {
+			setHeight((Double) value);
+		} else {
+			super.setPropertyFast(property, value);
+		}
+	}
+
+	/**
+	 * @return the height
+	 */
+	public Double getHeight() {
+		return height;
+	}
+
+	/**
+	 * @param height the height to set
+	 */
+	public void setHeight(Double height) {
+		this.height = height;
+	}
+
+	/**
+	 * @return the upperLeftPoint
+	 */
+	public Double[] getUpperLeftPoint() {
+		Double[] retPoint = new Double[3];
+
+		retPoint[0] = upperLeftPoint[0];
+		retPoint[1] = upperLeftPoint[1];
+		retPoint[2] = upperLeftPoint[2];
+
+		return retPoint;
+	}
+
+	/**
+	 * @param upperLeftPoint the upperLeftPoint to set
+	 */
+	public void setUpperLeftPoint(Double[] upperLeftPoint) {
+		this.upperLeftPoint[0] = upperLeftPoint[0];
+		this.upperLeftPoint[1] = upperLeftPoint[1];
+		this.upperLeftPoint[2] = upperLeftPoint[2];
+	}
+
+	/**
+	 * @return the width
+	 */
+	public Double getWidth() {
+		return width;
+	}
+
+	/**
+	 * @param width the width to set
+	 */
+	public void setWidth(Double width) {
+		this.width = width;
+	}
+	
+}
