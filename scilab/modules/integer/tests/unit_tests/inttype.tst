@@ -16,3 +16,7 @@ if inttype(int16(0)) <> 2 then pause,end
 if inttype(uint16(0)) <> 12 then pause,end
 if inttype(int32(0)) <> 4 then pause,end
 if inttype(uint32(0)) <> 14 then pause,end
+
+// Introduced in Scilab 6.0
+if inttype(int64(0)) <> 8 then pause,end
+if inttype(uint64(0)) <> 18 then pause,end
