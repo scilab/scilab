@@ -9,7 +9,7 @@ Performance:
   improve performances to 50 %).
   Note that many performance improvements will be also available in Scilab 5.3.0.
 
-Help brower:
+Help browser:
 ============
 
 * Increase of the default size of the help browser window.
@@ -123,6 +123,8 @@ Compilation:
   Java 1.6 (64 bits only).
   This option will set the LDFLAGS & source the fink init script.
 
+* Some macros were duplicated during the installation process.
+
 * CFLAGS -msse2 added under Mac OS X for Scilab module shell. See bug
   #6839
 
@@ -198,6 +200,10 @@ Bug Fixes:
 
 * bug 4599 fixed - It was possible create many different variables with the 
                    same name in the same scope.
+                   
+* bug 5140 fixed - lines to be executed were not printed in the console.
+                   A message box added to advice to use ""Execute into Scilab",
+                   if file is very long (more 100 lines).
 
 * bug 5466 fixed - "savematfile" no more append variables in file by default, 
                    file is now reinitialized at each "savematfile" call.
@@ -242,6 +248,10 @@ Bug Fixes:
 
 * bug 6790 fixed - toprint(nFigure): %F was returned while actually the figure
                    is printed.
+
+* bug 6821 fixed - in text editor, labels of contextual menu called
+                   "Execute selection into Scilab" and menu called 
+                   "Evaluate selection" were not homogenized.
 
 * bug 6864 partially fixed - ATOMS: Error messages were not homogenized.
 

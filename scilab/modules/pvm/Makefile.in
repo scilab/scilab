@@ -1551,6 +1551,7 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 @PVM_TRUE@		if test -d $(srcdir)/$$dir/; then \
 @PVM_TRUE@			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
 @PVM_TRUE@			if test -n "$(MACROSSPECIALEXT)"; then \
+@PVM_TRUE@				specialExtDir=""; \
 @PVM_TRUE@				for specialExt in $(MACROSSPECIALEXT); do \
 @PVM_TRUE@					specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
 @PVM_TRUE@				done; \
@@ -1735,6 +1736,7 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 @PVM_FALSE@		if test -d $(srcdir)/$$dir/; then \
 @PVM_FALSE@			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
 @PVM_FALSE@			if test -n "$(MACROSSPECIALEXT)"; then \
+@PVM_FALSE@				specialExtDir=""; \
 @PVM_FALSE@				for specialExt in $(MACROSSPECIALEXT); do \
 @PVM_FALSE@					specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
 @PVM_FALSE@				done; \
