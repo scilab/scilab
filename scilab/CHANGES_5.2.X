@@ -49,6 +49,11 @@ dynamic link:
   However, in the binary, for any reason, if we fail to load the library
   (missing symbol, bad format of library, etc), the error message was not
   displayed.
+  
+* Bug 4575 fixed - 'makename' argument in 'ilib_mex_build', 'ilib_gen_cleaner',
+  'ilib_gen_Make', 'ilib_for_link', 'tbx_build_src' and 'tbx_build_gateway' is
+  useless.
+  A warning will be display in next major release, if you use a wrong value.
 
 call_scilab:
 ============
@@ -59,6 +64,8 @@ Graphics:
 =========
 
 * Adding two new line style : "dot" and "double dot". See bug 6840.
+
+* Temporary files in the ps export were stored at a wrong place.
 
 * bug 6472 fixed - Resizing the graphics window after having plotted several 2D
                    curves and a legend caused some of them to disappear.
