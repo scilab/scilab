@@ -79,6 +79,10 @@ public class BasicBlockCodec extends XcosObjectCodec {
 				BlockInterFunction.SPLIT_f.getSharedInstance(),
 				SIMULATION_FUNCTION_TYPE_ARRAY, REFS, null);
 		mxCodecRegistry.register(splitBlockCodec);
+		XcosObjectCodec roundBlockCodec = new BasicBlockCodec(
+				BlockInterFunction.SUM_f.getSharedInstance(),
+				SIMULATION_FUNCTION_TYPE_ARRAY, REFS, null);
+		mxCodecRegistry.register(roundBlockCodec);
 		XcosObjectCodec cellCodec = new XcosObjectCodec(new mxCell(), null,
 				REFS, null);
 		mxCodecRegistry.register(cellCodec);

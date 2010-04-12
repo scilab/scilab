@@ -23,6 +23,11 @@ public class RoundBlock extends BasicBlock {
 	private static final int SIDE_NUMBER = Orientation.values().length;
 	
 	/**
+	 * Default constructor
+	 */
+	public RoundBlock() { }
+	
+	/**
 	 * Set default values
 	 * @param interFunction the interfunction (label) string
 	 */
