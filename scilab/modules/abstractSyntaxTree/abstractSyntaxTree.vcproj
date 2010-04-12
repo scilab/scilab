@@ -66,7 +66,7 @@
 				Name="VCLinkerTool"
 				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
 				GenerateDebugInformation="true"
-				ImportLibrary="&quot;$(SolutionDir)bin\$(ProjectName).lib&quot;"
+				ImportLibrary="../../bin/$(ProjectName).lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -138,7 +138,7 @@
 				Name="VCLinkerTool"
 				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
 				GenerateDebugInformation="true"
-				ImportLibrary="&quot;$(SolutionDir)bin\$(ProjectName).lib&quot;"
+				ImportLibrary="../../bin/$(ProjectName).lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -209,7 +209,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
-				ImportLibrary="&quot;$(SolutionDir)bin\$(ProjectName).lib&quot;"
+				ImportLibrary="../../bin/$(ProjectName).lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -281,7 +281,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
-				ImportLibrary="&quot;$(SolutionDir)bin\$(ProjectName).lib&quot;"
+				ImportLibrary="../../bin/$(ProjectName).lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
