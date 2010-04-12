@@ -64,6 +64,8 @@ Graphics:
 
 * Adding two new line style : "dot" and "double dot". See bug 6840.
 
+* Temporary files in the ps export were stored at a wrong place.
+
 * bug 6472 fixed - Resizing the graphics window after having plotted several 2D
                    curves and a legend caused some of them to disappear.
 

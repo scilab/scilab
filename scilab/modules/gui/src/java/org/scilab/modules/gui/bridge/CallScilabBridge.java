@@ -153,7 +153,7 @@ public class CallScilabBridge {
 
 
 	private static PrintRequestAttributeSet scilabPageFormat = new HashPrintRequestAttributeSet();
-	private static String tmpPrinterFile = System.getenv("TMPDIR") + "scilabfigure";
+	private static String tmpPrinterFile = System.getenv("TMPDIR") + System.getProperty("file.separator") + "scilabfigure";
 	
 	private static final String FIGURE_TITLE = "Graphic window number ";
 	
