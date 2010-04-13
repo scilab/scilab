@@ -10,6 +10,7 @@
 //
 // <-- JVM NOT MANDATORY -->
 // <-- Bugzilla URL -->
+// <-- NOT FIXED -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=2775
 //
 
