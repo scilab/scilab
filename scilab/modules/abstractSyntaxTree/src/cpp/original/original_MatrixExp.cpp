@@ -42,10 +42,10 @@ namespace ast
 			}
 			else
 			{
-				vector<vector<InternalType*> > MatrixList;
+				list<list<InternalType*> > MatrixList;
 				for (row = e.lines_get().begin() ; row != e.lines_get().end() ; ++row )
 				{
-					vector<InternalType*> RowList;
+					list<InternalType*> RowList;
 					for (col = (*row)->columns_get().begin() ; col != (*row)->columns_get().end() ; ++col)
 					{
 						OriginalVisitor execMe;
@@ -104,8 +104,8 @@ namespace ast
 					MatrixList.push_back(RowList);
 				}
 
-				vector<vector<InternalType*> >::const_iterator it_ML;
-				vector<InternalType*>::const_iterator it_RL;
+				list<list<InternalType*> >::const_iterator it_ML;
+				list<InternalType*>::const_iterator it_RL;
 
 				int iAddRow = 0;
 				iCurRow			= 0;
