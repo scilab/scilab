@@ -106,7 +106,7 @@ int sci_toprint(char *fname,unsigned long l)
 					  }
                       catch (const GiwsException::JniException& e)
                       {
-					      Scierror(999,_("%s: An exception occurred: %s"), fname, e.getErrorMessage().c_str());
+					      Scierror(999,_("%s: An exception occurred: %s\n%s\n"), fname, e.getJavaDescription().c_str(), e.getJavaExceptionName().c_str());
                       }
 
 					}
@@ -228,7 +228,7 @@ int sci_toprint(char *fname,unsigned long l)
 					  }
                       catch (const GiwsException::JniException& e)
 					  {
-                          Scierror(999,_("%s: An exception occurred: %s"), fname, e.getErrorMessage().c_str());
+					      Scierror(999,_("%s: An exception occurred: %s\n%s\n"), fname, e.getJavaDescription().c_str(), e.getJavaExceptionName().c_str());
 					  }
 
 					}
