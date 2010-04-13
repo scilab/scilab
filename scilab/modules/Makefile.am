@@ -34,8 +34,8 @@ shell \
 completion \
 console \
 graphic_export \
-gui \
 jvm \
+gui \
 graphics \
 optimization \
 symbolic \
