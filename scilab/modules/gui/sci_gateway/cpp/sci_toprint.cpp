@@ -26,7 +26,9 @@ extern "C"
 #include "gw_gui.h"
 #include "getScilabJavaVM.h"
 #include "getFullFilename.h"
+#include "loadOnUseClassPath.h"
 }
+static BOOL loadedDep = FALSE;
 /*--------------------------------------------------------------------------*/
 using namespace org_scilab_modules_gui_bridge;
 /*--------------------------------------------------------------------------*/
@@ -39,6 +41,12 @@ int sci_toprint(char *fname,unsigned long l)
 
 	CheckRhs(1,2);
 	CheckLhs(0,1);
+
+	if (!loadedDep)
+	{
+	  loadOnUseClassPath("pdf_ps_eps_graphic_export");
+	  loadedDep=TRUE;
+	}
 
 	/* File or figure print */
 	if (Rhs == 1)
