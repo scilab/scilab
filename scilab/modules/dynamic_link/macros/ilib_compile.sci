@@ -126,7 +126,7 @@ function libn = ilib_compile(lib_name,makename,files, ..
 	  chdir(TMPDIR);
 	  cmd = "make "
 	  
-	  cmd = cmd + gencompilationflags_unix(ldflags, cflags, fflags, cc)
+	  cmd = cmd + gencompilationflags_unix(ldflags, cflags, fflags, cc, "build")
 
     //** BEWARE : this function can cause errors if used with "old style" Makefile inside a Scilab 5
     //**          environment where the Makefile are created from a "./configure"  
