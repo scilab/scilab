@@ -153,7 +153,7 @@ public class CallScilabBridge {
 
 
 	private static PrintRequestAttributeSet scilabPageFormat = new HashPrintRequestAttributeSet();
-	private static String tmpPrinterFile = System.getenv("TMPDIR") + "scilabfigure";
+	private static String tmpPrinterFile = System.getenv("TMPDIR") + System.getProperty("file.separator") + "scilabfigure";
 	
 	private static final String FIGURE_TITLE = "Graphic window number ";
 	
@@ -2214,7 +2214,7 @@ public class CallScilabBridge {
 	 * Save the help Window size and position
 	 */
 	public static void saveHelpWindowSettings() {
-        if ((SwingScilabHelpBrowser) ScilabHelpBrowser.getHelpBrowserWithoutCreation() !=null )  {
+        if (ScilabHelpBrowser.getHelpBrowserWithoutCreation() !=null )  {
 		SwingScilabHelpBrowser sciHelpBrowser = ((SwingScilabHelpBrowser) ScilabHelpBrowser.getHelpBrowser().getAsSimpleHelpBrowser());
 		if (sciHelpBrowser != null) {
 			SwingScilabTab consoleTab = (SwingScilabTab) sciHelpBrowser.getParent();
