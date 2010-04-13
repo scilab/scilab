@@ -100,7 +100,15 @@ int sci_toprint(char *fname,unsigned long l)
 					num_win=*istk(l1);
 					if (num_win>=0)
 					{
-						*paramoutINT = (int)CallScilabBridge::printFigure(getScilabJavaVM(), num_win, FALSE, FALSE);
+					  try
+                      {
+                          *paramoutINT = (int)CallScilabBridge::printFigure(getScilabJavaVM(), num_win, FALSE, FALSE);
+					  }
+                      catch (const GiwsException::JniException& e)
+                      {
+					      Scierror(999,_("%s: An exception occurred: %s"), fname, e.getErrorMessage().c_str());
+                      }
+
 					}
 					else
 					{
@@ -207,6 +215,8 @@ int sci_toprint(char *fname,unsigned long l)
 
 					if ( (strcmp(param,"pos")==0) || (strcmp(param,"gdi")==0) )
 					{
+					  try
+					  {
 						if ( strcmp(param,"pos")==0 )
 						{
 							*paramoutINT = (int)CallScilabBridge::printFigure(getScilabJavaVM(), num_win, TRUE, FALSE);
@@ -215,6 +225,12 @@ int sci_toprint(char *fname,unsigned long l)
 						{
 							*paramoutINT = (int)CallScilabBridge::printFigure(getScilabJavaVM(), num_win, FALSE, FALSE);
 						}
+					  }
+                      catch (const GiwsException::JniException& e)
+					  {
+                          Scierror(999,_("%s: An exception occurred: %s"), fname, e.getErrorMessage().c_str());
+					  }
+
 					}
 					else
 					{
