@@ -263,6 +263,8 @@ Bug Fixes:
 
 * bug 6879 fixed - Error messages in "sci_champ.c" were not homogenized.
 
+* bug 6897 fixed - On Windows, umfpack had some wrong dependencies.
+
 
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab
