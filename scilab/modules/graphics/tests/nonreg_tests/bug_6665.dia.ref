@@ -12,83 +12,12 @@
 //
 // <-- Short Description -->
 //legend (caption) nor properly saved or loaded
-plot2d()
-legend(['a';'b';'c'])
- ans  =
- 
-Handle of type "Legend" with properties:
-========================================
-parent: Axes
-children: []
-visible = "on"
-text = ["a";"b";"c"]
-font_style = 6
-font_size = 1
-font_color = -1
-fractional_font = "off"
-links = ["Polyline";"Polyline";"Polyline"]
-legend_location = "in_upper_right"
-position = [0.7491013,0.1332972]
-line_mode = "on"
-thickness = 1
-foreground = -1
-fill_mode = "on"
-background = -2
-clip_state = "off"
-clip_box = []
-user_data = []
-f=gcf()
- f  =
- 
-Handle of type "Figure" with properties:
-========================================
-children: "Axes"
-figure_position = [200,200]
-figure_size = [624,596]
-axes_size = [612,461]
-auto_resize = "on"
-viewport = [0,0]
-figure_name = "Figure n°%d"
-figure_id = 0
-info_message = ""
-color_map= matrix 32x3
-pixmap = "off"
-pixel_drawing_mode = "copy"
-anti_aliasing = "off"
-immediate_drawing = "on"
-background =  -2
-visible = "on"
-rotation_style = "unary"
-event_handler = ""
-event_handler_enable = "off"
-user_data = []
-tag = ""
-save(TMPDIR+'/foo.scg',f)
-clf()
-load(TMPDIR+'/foo.scg')
+plot2d();
+legend(['a';'b';'c']);
+f=gcf();
+save(TMPDIR+'/foo.scg',f);
+clf();
+load(TMPDIR+'/foo.scg');
 if f.children.children(1).type<>'Legend' then bugmes();quit;end
-l=f.children.children(1)
- l  =
- 
-Handle of type "Legend" with properties:
-========================================
-parent: Axes
-children: []
-visible = "on"
-text = ["a";"b";"c"]
-font_style = 6
-font_size = 1
-font_color = -1
-fractional_font = "off"
-links = ["Polyline";"Polyline";"Polyline"]
-legend_location = "in_upper_right"
-position = [0.7491013,0.1332972]
-line_mode = "on"
-thickness = 1
-foreground = -1
-fill_mode = "on"
-background = -2
-clip_state = "off"
-clip_box = []
-user_data = []
+l=f.children.children(1);
 if or(l.text<>['a';'b';'c']) then bugmes();quit;end

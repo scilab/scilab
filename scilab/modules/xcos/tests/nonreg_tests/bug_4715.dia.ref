@@ -12,7 +12,7 @@
 // <-- Short Description -->
 // 
 // 
-load(SCI+'/modules/scicos/tests/nonreg_tests/bug_4715.cos');
+importXcosDiagram(SCI+'/modules/xcos/tests/nonreg_tests/bug_4715.xcos');
 %scicos_context.a = 0.1;
 %scicos_context.b = 0.1;
 global AA
