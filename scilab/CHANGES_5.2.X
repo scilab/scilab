@@ -181,6 +181,8 @@ Xcos:
 
 * bug 6808 fixed - The GOTO/FROM blocks did not display their parameters.
 
+* bug 6699 fixed - The Capacitor block had wrong default label settings.
+
 Tests:
 ======
 
