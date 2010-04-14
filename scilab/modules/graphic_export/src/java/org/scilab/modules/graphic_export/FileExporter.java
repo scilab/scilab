@@ -17,6 +17,7 @@ package org.scilab.modules.graphic_export;
 import java.io.File;
 import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
+import org.scilab.modules.jvm.LoadClassPath;
 
 /**
  * Static class used to create file export of graphic figures
@@ -26,6 +27,9 @@ public class FileExporter {
 
     /** Export waiting message */
     private static final String exportingMessage = "Exporting figure, please wait...";
+
+	/** The id used on classpath.xml to load vectorial export JARs */
+	private static final String CLASSPATH_PDF_PS_EPS_EXPORT_NAME = "pdf_ps_eps_graphic_export";
 
     /**
      * Default constructor
@@ -58,6 +62,11 @@ public class FileExporter {
 	String oldInfoMessage = exportedFig.getInfoMessage();
 	exportedFig.setInfoMessage(exportingMessage);
 	if (fileType == ExportRenderer.PDF_EXPORT || fileType == ExportRenderer.EPS_EXPORT || fileType == ExportRenderer.PS_EXPORT ) {
+
+        /* Under !Windows, make sure that the library for ps export
+         * are already loaded */
+        LoadClassPath.loadOnUse(CLASSPATH_PDF_PS_EPS_EXPORT_NAME);
+
 	    String ext = "";
 
 	    switch (fileType) {
