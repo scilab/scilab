@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA
- * Copyright (C) 2008-2009 - DIGITEO
+ * Copyright (C) 2008-2010 - DIGITEO
  * 
  *  This file is distributed under the same license as the Scilab package.
  -->
 <!DOCTYPE MODULE_VERSION SYSTEM "../core/xml/version.dtd">
 <MODULE_VERSION name="symbolic">
-<VERSION major="5" minor="2" maintenance="0" revision="0" string="unstable-git" />
+<VERSION major="5" minor="2" maintenance="2" revision="0" string="unstable-git" />
 </MODULE_VERSION>
