@@ -153,6 +153,138 @@ int GetVarMaxDim(types::InternalType *_pIT, int _iCurrentDim, int _iMaxDim)
 }
 
 /*
+ * Generate destination variable from _poSource type and size parameters
+ */
+types::InternalType* allocDest(types::InternalType* _poSource, int _iRows, int _iCols)
+{
+    types::InternalType* poResult = NULL;
+    switch(_poSource->getType())
+    {
+    case types::GenericType::RealDouble :
+        poResult = new types::Double(_iRows, _iCols, false);
+        break;
+    case types::GenericType::RealBool :
+        poResult = new types::Bool(_iRows, _iCols);
+        break;
+    case types::GenericType::RealInt :
+        poResult = types::Int::createInt(_iRows, _iCols, _poSource->getAsInt()->getIntType());
+        break;
+    case types::GenericType::RealString :
+        poResult = new types::String(_iRows, _iCols);
+        break;
+    case types::GenericType::RealPoly :
+        {
+            int* piRank = new int[_iRows * _iCols];
+            for(int i = 0 ; i < _iRows * _iCols ; i++)
+            {
+                piRank[i] = 1;
+            }
+            poResult = new types::MatrixPoly(_poSource->getAsPoly()->var_get(), _iRows, _iCols, piRank);
+            break;
+        }
+    case types::InternalType::RealImplicitList :
+        poResult = new types::ImplicitList();
+        break;
+    }
+    return poResult;
+}
+
+types::InternalType* AddElementToVariableFromCol(types::InternalType* _poDest, types::InternalType* _poSource, int _iRows, int _iCols, int *_piCols)
+{
+    types::InternalType *poResult	            = NULL;
+    types::InternalType::RealType TypeSource	= ((types::GenericType*)_poSource)->getType();
+    types::InternalType::RealType TypeDest		= types::InternalType::RealInternal;
+    int iCurRow                                 = _iRows;
+    int iCurCol                                 = _iCols;
+
+
+    if(_poDest == NULL)
+    {//First call, alloc _poSource
+        poResult    = allocDest(_poSource, _iRows, _iCols);
+        TypeDest	= TypeSource;
+        iCurCol	    = 0;
+        iCurRow		= 0;
+    }
+    else
+    {
+        TypeDest    = ((types::GenericType*)_poDest)->getType();
+        poResult    = _poDest;
+    }
+
+    if(TypeDest != TypeSource)
+    {//check if source type is compatible with dest type
+    }
+    else
+    {
+        switch(TypeDest)
+        {
+        case types::GenericType::RealDouble :
+            if(poResult->getAsDouble()->isComplex() == false && _poSource->getAsDouble()->isComplex() == true)
+            {
+                poResult->getAsDouble()->complex_set(true);
+            }
+
+            poResult->getAsDouble()->fillFromCol(*_piCols, _poSource->getAsDouble());
+            *_piCols += _poSource->getAsDouble()->cols_get();
+
+            break;
+        default:
+            break;
+        }
+        return poResult;
+    }
+    return NULL;
+}
+
+types::InternalType* AddElementToVariableFromRow(types::InternalType* _poDest, types::InternalType* _poSource, int _iRows, int _iCols, int *_piRows)
+{
+	types::InternalType *poResult	            = NULL;
+	types::InternalType::RealType TypeSource	= ((types::GenericType*)_poSource)->getType();
+	types::InternalType::RealType TypeDest		= types::InternalType::RealInternal;
+	int iCurRow                                 = _iRows;
+	int iCurCol                                 = _iCols;
+
+    if(_poDest == NULL)
+    {//First call, alloc _poSource
+        poResult    = allocDest(_poSource, _iRows, _iCols);
+        iCurCol	    = 0;
+        iCurRow		= 0;
+        TypeDest	= TypeSource;
+    }
+    else
+    {
+        TypeDest	= ((types::GenericType*)_poDest)->getType();
+        poResult    = _poDest;
+    }
+
+
+    if(TypeDest != TypeSource)
+    {//check if source type is compatible with dest type
+    }
+    else
+    {
+        switch(TypeDest)
+        {
+        case types::GenericType::RealDouble :
+            if(poResult->getAsDouble()->isComplex() == false && _poSource->getAsDouble()->isComplex() == true)
+            {
+                poResult->getAsDouble()->complex_set(true);
+            }
+
+            poResult->getAsDouble()->fillFromRow(*_piRows, _poSource->getAsDouble());
+            *_piRows += _poSource->getAsDouble()->rows_get();
+
+            break;
+        default:
+            break;
+        }
+        return poResult;
+    }
+    return NULL;
+}
+
+
+/*
 _iRows : Position if _poDest allready initialized else size of the matrix
 _iCols : Position if _poDest allready initialized else size of the matrix
 */
@@ -207,7 +339,7 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
 
 
 	if(TypeDest != TypeSource)
-	{//check if source type is compatible with the old one
+	{//check if source type is compatible with dest type
 		switch(TypeDest)
 		{
 		case types::GenericType::RealDouble :

@@ -26,4 +26,14 @@ types::InternalType* AddElementToVariable(
 						types::InternalType* _poSource, 
 						int _iRows, int _iCols, int *_piRows, int *_piCols);
 
+types::InternalType* AddElementToVariableFromCol(
+                        types::InternalType* _poDest, 
+                        types::InternalType* _poSource, 
+                        int _iRows, int _iCols, int *_piCols);
+
+types::InternalType* AddElementToVariableFromRow(
+                        types::InternalType* _poDest, 
+                        types::InternalType* _poSource, 
+                        int _iRows, int _iCols, int *_piRows);
+
 #endif //!AST_VISITOR_COMMON_HXX

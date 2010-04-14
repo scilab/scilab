@@ -18,150 +18,169 @@ using namespace types;
 
 namespace ast
 {
-	/*
-	[1,2;3,4] with/without special character $ and :
-	*/
-	void OriginalVisitor::visit (const MatrixExp &e)
-	{
-		try
-		{
-//			int iRows = e.lines_get().size();
-//			int iCols	= -1;
-			int iRows = 0;
-			int iCols	= -1;
-			int iCurRow = -1;
-			int iCurCol = 0;
-			InternalType *poResult = NULL;
+    /*
+    [1,2;3,4] with/without special character $ and :
+    */
+    void OriginalVisitor::visit (const MatrixExp &e)
+    {
+        try
+        {
+            //			int iRows = e.lines_get().size();
+            //			int iCols	= -1;
+            int iRows = 0;
+            int iCols	= -1;
+            int iCurRow = -1;
+            int iCurCol = 0;
+            InternalType *poResult = NULL;
 
-			std::list<MatrixLineExp *>::const_iterator	row;
-			std::list<Exp *>::const_iterator	col;
-			//store all element after evaluation
-			if(e.lines_get().size() == 0)
-			{
-				poResult = new Double(0,0);
-			}
-			else
-			{
-				list<list<InternalType*> > MatrixList;
-				for (row = e.lines_get().begin() ; row != e.lines_get().end() ; ++row )
-				{
-					list<InternalType*> RowList;
-					for (col = (*row)->columns_get().begin() ; col != (*row)->columns_get().end() ; ++col)
-					{
-						OriginalVisitor execMe;
-						(*col)->accept(execMe);
-						if(execMe.result_get()->getType() == InternalType::RealImplicitList)
-						{
-							if(execMe.result_get()->getAsImplicitList()->computable() == true)
-							{
-								execMe.result_set(execMe.result_get()->getAsImplicitList()->extract_matrix());
-								iCurCol += ((GenericType*)execMe.result_get())->cols_get();
-							}
-							else
-							{
-								iCurCol++;
-							}
-						}
-						else
-						{
-							iCurCol += ((GenericType*)execMe.result_get())->cols_get();
-						}
+            std::list<MatrixLineExp *>::const_iterator	row;
+            std::list<Exp *>::const_iterator	col;
+            //store all element after evaluation
+            if(e.lines_get().size() == 0)
+            {
+                poResult = new Double(0,0);
+            }
+            else
+            {
+                list<list<InternalType*> > MatrixList;
+                for (row = e.lines_get().begin() ; row != e.lines_get().end() ; ++row )
+                {
+                    list<InternalType*> RowList;
+                    for (col = (*row)->columns_get().begin() ; col != (*row)->columns_get().end() ; ++col)
+                    {
+                        OriginalVisitor execMe;
+                        (*col)->accept(execMe);
+                        if(execMe.result_get()->getType() == InternalType::RealImplicitList)
+                        {
+                            if(execMe.result_get()->getAsImplicitList()->computable() == true)
+                            {
+                                execMe.result_set(execMe.result_get()->getAsImplicitList()->extract_matrix());
+                                iCurCol += ((GenericType*)execMe.result_get())->cols_get();
+                            }
+                            else
+                            {
+                                iCurCol++;
+                            }
+                        }
+                        else
+                        {
+                            iCurCol += ((GenericType*)execMe.result_get())->cols_get();
+                        }
 
-						if(iCurRow == -1)
-						{
-							iCurRow = ((GenericType*)execMe.result_get())->rows_get();
-						}
-						else if(iCurRow != ((GenericType*)execMe.result_get())->rows_get())
-						{
-							std::ostringstream os;
-							os << "inconsistent row/column dimensions";
-							os << ((Location)(*row)->location_get()).location_string_get() << std::endl;
-							throw os.str();
-						}
+                        if(iCurRow == -1)
+                        {
+                            iCurRow = ((GenericType*)execMe.result_get())->rows_get();
+                        }
+                        else if(iCurRow != ((GenericType*)execMe.result_get())->rows_get())
+                        {
+                            std::ostringstream os;
+                            os << "inconsistent row/column dimensions";
+                            os << ((Location)(*row)->location_get()).location_string_get() << std::endl;
+                            throw os.str();
+                        }
 
-						InternalType *pResult = execMe.result_get();
-						RowList.push_back(pResult);
+                        InternalType *pResult = execMe.result_get();
+                        RowList.push_back(pResult);
 
-						//tips to delete only visitor but not data
-						pResult->IncreaseRef();
-					}
+                        //tips to delete only visitor but not data
+                        pResult->IncreaseRef();
+                    }
 
-					if(iCols <= 0)
-					{
-						iCols = iCurCol;
-					}
-					else if(iCols != 0 && iCols != iCurCol)
-					{
-						std::ostringstream os;
-						os << "inconsistent row/column dimensions";
-						os << ((Location)(*row)->location_get()).location_string_get() << std::endl;
-						throw os.str();
-					}
+                    if(iCols <= 0)
+                    {
+                        iCols = iCurCol;
+                    }
+                    else if(iCols != 0 && iCols != iCurCol)
+                    {
+                        std::ostringstream os;
+                        os << "inconsistent row/column dimensions";
+                        os << ((Location)(*row)->location_get()).location_string_get() << std::endl;
+                        throw os.str();
+                    }
 
-					iRows += iCurRow;
-					iCurCol = 0;
-					iCurRow = -1;
-					MatrixList.push_back(RowList);
-				}
+                    iRows += iCurRow;
+                    iCurCol = 0;
+                    iCurRow = -1;
+                    MatrixList.push_back(RowList);
+                }
 
-				list<list<InternalType*> >::const_iterator it_ML;
-				list<InternalType*>::const_iterator it_RL;
+                list<list<InternalType*> >::const_iterator it_ML;
+                list<InternalType*>::const_iterator it_RL;
 
-				int iAddRow = 0;
-				iCurRow			= 0;
-				iCurCol			= 0;
-				for(it_ML = MatrixList.begin() ; it_ML != MatrixList.end() ; it_ML++)
-				{
-					int iAddCol = 0;
-					for(it_RL = (*it_ML).begin() ; it_RL != (*it_ML).end() ; it_RL++)
-					{
-						if(poResult == NULL)
-						{
-							//tips to allow delete data
-							(*it_RL)->DecreaseRef();
-							poResult = AddElementToVariable(poResult, *it_RL, iRows, iCols, &iAddRow, &iAddCol);
+                int iAddRow = 0;
+                iCurRow			= 0;
+                iCurCol			= 0;
+                //for(it_ML = MatrixList.begin() ; it_ML != MatrixList.end() ; it_ML++)
+                //{
+                //    int iAddCol = 0;
+                //    for(it_RL = (*it_ML).begin() ; it_RL != (*it_ML).end() ; it_RL++)
+                //    {
+                //        if(poResult == NULL)
+                //        {
+                //            //tips to allow delete data
+                //            (*it_RL)->DecreaseRef();
+                //            poResult = AddElementToVariable(poResult, *it_RL, iRows, iCols, &iAddRow, &iAddCol);
 
-							if((*it_RL)->isDeletable() == true)
-							{
-								if((*it_RL)->getType() == InternalType::RealDouble)
-								{
-									delete (*it_RL)->getAsDouble();
-								}
-								else
-								{
-									delete (*it_RL);
-								}
-							}
-							iCurCol += iAddCol;
-						}
-						else
-						{
-							poResult = AddElementToVariable(poResult, *it_RL, iCurRow, iCurCol, &iAddRow, &iAddCol);
-							if((*it_RL)->isDeletable() == true)
-							{
-								if((*it_RL)->getType() == InternalType::RealDouble)
-								{
-									delete (*it_RL)->getAsDouble();
-								}
-								else
-								{
-									delete (*it_RL);
-								}
-							}
-							iCurCol += iAddCol;
-						}
-					}
-					iCurRow += iAddRow;
-					iCurCol = 0;
-				}
-			}
+                //            if((*it_RL)->isDeletable() == true)
+                //            {
+                //                if((*it_RL)->getType() == InternalType::RealDouble)
+                //                {
+                //                    delete (*it_RL)->getAsDouble();
+                //                }
+                //                else
+                //                {
+                //                    delete (*it_RL);
+                //                }
+                //            }
+                //            iCurCol += iAddCol;
+                //        }
+                //        else
+                //        {
+                //            poResult = AddElementToVariable(poResult, *it_RL, iCurRow, iCurCol, &iAddRow, &iAddCol);
+                //            if((*it_RL)->isDeletable() == true)
+                //            {
+                //                if((*it_RL)->getType() == InternalType::RealDouble)
+                //                {
+                //                    delete (*it_RL)->getAsDouble();
+                //                }
+                //                else
+                //                {
+                //                    delete (*it_RL);
+                //                }
+                //            }
+                //            iCurCol += iAddCol;
+                //        }
+                //    }
+                //    iCurRow += iAddRow;
+                //    iCurCol = 0;
+                //}
 
-			result_set(poResult);
-		}
-		catch(string sz)
-		{
-			throw sz;
-		}
-	}
+                for(it_ML = MatrixList.begin() ; it_ML != MatrixList.end() ; it_ML++)
+                {//;
+                    InternalType* poTemp = NULL;
+                    iCurCol = 0;
+                    for(it_RL = (*it_ML).begin() ; it_RL != (*it_ML).end() ; it_RL++)
+                    {//,
+                        if(poTemp == NULL)
+                        {
+                            poTemp = AddElementToVariableFromCol(poTemp, *it_RL, (*it_RL)->getAsGenericType()->rows_get(), iCols, &iCurCol);
+                        }
+                        else
+                        {
+                            poTemp = AddElementToVariableFromCol(poTemp, *it_RL, iCurRow, (*it_RL)->getAsGenericType()->cols_get(), &iCurCol);
+                        }
+                    }
+                    poResult = AddElementToVariableFromRow(poResult, poTemp, iRows, iCols, &iCurRow);
+                    delete poTemp;
+                }
+            }
+
+            result_set(poResult);
+        }
+        catch(string sz)
+        {
+            throw sz;
+        }
+    }
 }
 

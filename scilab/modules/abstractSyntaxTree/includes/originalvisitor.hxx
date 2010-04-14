@@ -51,7 +51,7 @@ namespace ast
 			}
 			else
 			{
-				for(int i = 0 ; i < _resultVect.size() ; i++)
+				for(int i = 0 ; i < (int)_resultVect.size() ; i++)
 				{
 					if(_resultVect[i] != NULL && _resultVect[i]->isDeletable() == true)
 					{
@@ -179,7 +179,7 @@ namespace ast
 
 		types::InternalType* result_get(int _iPos)
 		{
-			if(_iPos >= _resultVect.size())
+			if(_iPos >= (int)_resultVect.size())
 			{
 				return NULL;
 			}
@@ -194,7 +194,7 @@ namespace ast
 		void result_set(int _iPos, const types::InternalType *gtVal)
 		{
 			m_bSingleResult = false;
-			if(_iPos < _resultVect.size())
+			if(_iPos < (int)_resultVect.size())
 			{
 				if(_resultVect[_iPos] != NULL && _resultVect[_iPos]->isDeletable())
 				{
@@ -202,7 +202,7 @@ namespace ast
 				}
 			}
 
-			if(_iPos >= _resultVect.size())
+			if(_iPos >= (int)_resultVect.size())
 			{
 				_resultVect.resize(_iPos + 1, NULL);
 			}
