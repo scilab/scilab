@@ -902,6 +902,45 @@ namespace types
 		return true;
 	}
 
+    bool Double::fillFromCol(int _iCols, Double *_poSource)
+    {
+        int iRows = _poSource->rows_get();
+        int iCols = _poSource->cols_get();
+
+        if(m_bComplex)
+        {
+            int iDestOffset = _iCols * m_iRows;
+            memcpy(m_pdblReal + iDestOffset, _poSource->real_get(), _poSource->size_get() * sizeof(double));
+            memcpy(m_pdblImg + iDestOffset, _poSource->img_get(), _poSource->size_get() * sizeof(double));
+        }
+        else
+        {
+            int iDestOffset = _iCols * m_iRows;
+            memcpy(m_pdblReal + iDestOffset, _poSource->real_get(), _poSource->size_get() * sizeof(double));
+        }
+        return true;
+    }
+
+    bool Double::fillFromRow(int _iRows, Double *_poSource)
+    {
+        int iRows = _poSource->rows_get();
+        int iCols = _poSource->cols_get();
+
+        if(m_bComplex)
+        {
+        }
+        else
+        {
+            for(int i = 0 ; i < iCols ; i++)
+            {
+                int iDestOffset = i * m_iRows + _iRows;
+                int iOrigOffset = i * _poSource->rows_get();
+                memcpy(m_pdblReal + iDestOffset, _poSource->real_get() + iOrigOffset, _poSource->rows_get() * sizeof(double));
+            }
+        }
+        return true;
+    }
+
 	bool Double::append(int _iRows, int _iCols, Double *_poSource)
 	{
 		int iRows = _poSource->rows_get();
@@ -917,21 +956,50 @@ namespace types
 		{
 			for(int iRow = 0 ; iRow < iRows ; iRow++)
 			{
-				for(int iCol = 0 ; iCol < iCols ; iCol++)
-				{
-					val_set(_iRows + iRow, _iCols + iCol, _poSource->real_get(iRow, iCols), _poSource->img_get(iRow, iCol));
-				}
+                int iDestOffset = _iCols * m_iRows + iRow;
+                int iOrigOffset = iCols * _poSource->rows_get() + iRow;
+                memcpy(m_pdblReal + iDestOffset, _poSource->real_get() + iOrigOffset, iCols * sizeof(double));
+                if(_poSource->isComplex())
+                {
+                    memcpy(m_pdblImg + iDestOffset, _poSource->img_get() + iOrigOffset, iCols * sizeof(double));
+                }
+                else
+                {
+                    memset(m_pdblImg + iDestOffset, 0x00, iCols * sizeof(double));
+                }
+
+				//for(int iCol = 0 ; iCol < iCols ; iCol++)
+				//{
+				//	val_set(_iRows + iRow, _iCols + iCol, _poSource->real_get(iRow, iCols), _poSource->img_get(iRow, iCol));
+				//}
 			}
 		}
 		else
 		{
-			for(int iRow = 0 ; iRow < iRows ; iRow++)
-			{
-				for(int iCol = 0 ; iCol < iCols ; iCol++)
-				{
-					val_set(_iRows + iRow, _iCols + iCol, _poSource->real_get(iRow, iCol));
-				}
-			}
+            if(iRows != 1)
+            {
+                for(int iCol = 0 ; iCol < iCols ; iCol++)
+                {
+                    int iDestOffset = (iCol + _iCols ) * m_iRows + _iRows;
+                    int iOrigOffset = iCol * _poSource->rows_get();
+                    memcpy(m_pdblReal + iDestOffset, _poSource->real_get() + iOrigOffset, iRows * sizeof(double));
+                }
+            }
+            else
+            {
+                for(int iCol = 0 ; iCol < iCols ; iCol++)
+                {
+                    val_set(_iRows, _iCols + iCol, _poSource->real_get(0, iCol));
+                }
+            }
+
+            //for(int iRow = 0 ; iRow < iRows ; iRow++)
+            //{
+            //    for(int iCol = 0 ; iCol < iCols ; iCol++)
+            //    {
+            //        val_set(_iRows + iRow, _iCols + iCol, _poSource->real_get(iRow, iCol));
+            //    }
+            //}
 		}
 		return true;
 	}
