@@ -93,7 +93,7 @@ case 'define' then
   model.blocktype='d'
   model.dep_ut=[%f %f]
 
-  exprs=strcat(string(z0),';')
+  exprs=strcat(string(z0);';')
   gr_i=['dly=model.rpar;';
     'txt=[''Shift'';''Register'';string(dly)];';
     'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')']
