@@ -20,13 +20,13 @@
 	  <ScrollableBlockIncrement useCache="true" value="20"/>
 	  <VerticalWrapAllowed useCache="true" value="false"/>
 	  <HorizontalWrapAllowed useCache="true" value="false"/>
-	  <AutoIndent default="true" useCach="true" value="true" />
-	  <AutoColorize default="true" useCach="true" value="true" />
-	  <DefaultEncoding value=""/> <!-- Initialized to system default at first launch -->
+	  <AutoIndent default="true" useCach="true" value="false"/>
+	  <AutoColorize default="true" useCach="true" value="true"/>
+	  <DefaultEncoding value="UTF-8"/> <!-- Initialized to system default at first launch -->
 	  
 	  <styles>
 	    
-	    <FontName default="Monospaced" useCache="true" value="Monospaced"/>
+	    <FontName default="Monospaced" useCache="true" value="Monospaced.plain"/>
 	    <FontSize default="14" useCache="true" value="14"/>
 	    
 	    <MainWindowPosition useCache="true" x="150" y="50"/>
@@ -40,6 +40,11 @@
 
 	    <style name="Special">
 	      <ForegroundColor default="#ffaa00" useCache="true" value="#ffaa00"/>
+              <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+	    </style>
+
+	    <style name="Url">
+	      <ForegroundColor default="#0000ff" useCache="true" value="#0000ff"/>
               <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
 	    </style>
 
@@ -106,8 +111,27 @@
 	  
 	  <!-- Recent Opened Files Section  -->
 	  <recentFiles>
-	    
-	  </recentFiles>
+<document path="/home/calixte/git/xpad/scilab/scilab/modules/overloading/macros/%b_g_s.sci"/>
+<document path="/home/calixte/git/xpad/scilab/scilab/modules/overloading/macros/%lss_size.sci"/>
+<document path="/home/calixte/git/xpad/scilab/scilab/modules/overloading/macros/%lss_l_lss.sci"/>
+<document path="/home/calixte/git/xpad/scilab/scilab/modules/overloading/macros/%i_g_i.sci"/>
+<document path="/home/calixte/git/xpad/scilab/scilab/modules/overloading/macros/%sp_s_sp.sci"/>
+<document path="/home/calixte/git/xpad/scilab/scilab/modules/overloading/macros/%i_i_ce.sci"/>
+<document path="/home/calixte/git/xpad/scilab/scilab/modules/overloading/macros/%p_matrix.sci"/>
+<document path="/home/calixte/git/xpad/scilab/scilab/modules/overloading/macros/%st_o_p.sci"/>
+<document path="/home/calixte/git/xpad/scilab/scilab/modules/overloading/macros/%s_s_ip.sci"/>
+
+
+
+
+
+
+
+
+
+
+<document path="/home/calixte/git/xpad/scilab/scilab/modules/graphics/macros/ged.sci"/>
+</recentFiles>
 	  
 	</Profile>
 </Setting>

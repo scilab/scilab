@@ -4,14 +4,13 @@ import java.awt.Font;
 import java.util.ArrayList;
 
 import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
-import org.scilab.modules.xpad.style.ColorizationManager;
-import org.scilab.modules.xpad.style.ScilabStyleDocument;
+import org.scilab.modules.xpad.ScilabDocument;
+import javax.swing.JEditorPane;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
@@ -36,17 +35,17 @@ public class ResetFontAction extends DefaultAction {
 		int numberOfTab = getEditor().getTabPane().getComponentCount();
 		for (int j = 0; j < numberOfTab; j++) {
 
-			JTextPane textPane = (JTextPane) ((JScrollPane) getEditor().getTabPane().getComponentAt(j)).getViewport().getComponent(0) ;
-			ScilabStyleDocument styleDocument = (ScilabStyleDocument)textPane.getStyledDocument();
+			JEditorPane textPane = (JEditorPane) ((JScrollPane) getEditor().getTabPane().getComponentAt(j)).getViewport().getComponent(0) ;
+			ScilabDocument styleDocument = (ScilabDocument)textPane.getDocument();
 			for (int i = 0; i < listStylesName.size(); i++) {
-				Style tempStyle =  styleDocument.getStyle(listStylesName.get(i));
+			    //Style tempStyle =  styleDocument.getStyle(listStylesName.get(i));
 
-				StyleConstants.setFontFamily(tempStyle, oldFont.getFamily());
-				StyleConstants.setFontSize(tempStyle, oldFont.getSize());
-				StyleConstants.setBold(tempStyle, oldFont.isBold());
+			    //StyleConstants.setFontFamily(tempStyle, oldFont.getFamily());
+			    //StyleConstants.setFontSize(tempStyle, oldFont.getSize());
+			    //StyleConstants.setBold(tempStyle, oldFont.isBold());
 				//StyleConstants.setItalic(tempStyle, newFont.isItalic());  			
 			}
-			new ColorizationManager().colorize(styleDocument, 0, styleDocument.getLength());
+			//new ColorizationManager().colorize(styleDocument, 0, styleDocument.getLength());
 		}
 
 

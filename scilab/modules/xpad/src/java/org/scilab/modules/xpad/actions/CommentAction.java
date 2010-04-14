@@ -20,7 +20,7 @@ import javax.swing.KeyStroke;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.CommentManager;
-import org.scilab.modules.xpad.style.ScilabStyleDocument;
+import org.scilab.modules.xpad.ScilabDocument;
 import org.scilab.modules.xpad.utils.XpadMessages;
 /**
  * CommentAction Class
@@ -47,7 +47,7 @@ public final class CommentAction extends DefaultAction {
 	 * doAction
 	 */
 	public void doAction() {
-		ScilabStyleDocument doc = (ScilabStyleDocument) getEditor().getTextPane().getStyledDocument();
+		ScilabDocument doc = (ScilabDocument) getEditor().getTextPane().getDocument();
 		synchronized (doc) {
 			int positionStart = getEditor().getTextPane().getSelectionStart();
 			int positionEnd   = getEditor().getTextPane().getSelectionEnd();

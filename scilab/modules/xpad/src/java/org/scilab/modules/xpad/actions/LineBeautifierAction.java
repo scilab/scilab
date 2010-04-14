@@ -16,13 +16,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JComponent;
-import javax.swing.JTextPane;
 import javax.swing.KeyStroke;
-
 
 import org.scilab.modules.xpad.ScilabEditorKit;
 import org.scilab.modules.xpad.style.IndentManager;
-import org.scilab.modules.xpad.style.ScilabStyleDocument;
+import org.scilab.modules.xpad.ScilabDocument;
+import javax.swing.JEditorPane;
 
 /**
  * LineBeautifierAction Class
@@ -51,16 +50,16 @@ public final class LineBeautifierAction extends ScilabEditorKit.InsertBreakActio
 	 */
 	public void actionPerformed(ActionEvent ev) {
 		super.actionPerformed(ev);
-		JTextPane textPane = (JTextPane) ev.getSource();
-		ScilabStyleDocument doc =  (ScilabStyleDocument) textPane.getStyledDocument();
+		JEditorPane textPane = (JEditorPane) ev.getSource();
+		ScilabDocument doc =  (ScilabDocument) textPane.getDocument();
 		javax.swing.text.Element root = doc.getDefaultRootElement();
 		int line =  root.getElementIndex(textPane.getCaretPosition())-1;
 		if (doc.isUpdater() && doc.getAutoIndent()) {
-			boolean autoColorize = doc.getAutoColorize();
-			doc.setAutoColorize(false);
+		    //boolean autoColorize = doc.getAutoColorize();
+		    //doc.setAutoColorize(false);
 			boolean mergeEdits = doc.getShouldMergeEdits();
 			indentManager.beautifyLine(doc, line, true);
-			doc.setAutoColorize(autoColorize);
+			//doc.setAutoColorize(autoColorize);
 			doc.setShouldMergeEdits(mergeEdits);
 		}
 	}

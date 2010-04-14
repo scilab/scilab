@@ -30,8 +30,7 @@ public class ScilabEditorKit extends DefaultEditorKit {
     }
 
     public Document createDefaultDocument() {
-    	Document doc = new ScilabDocument();
-    	return doc;
+    	return new ScilabDocument();
     }
     
     public ScilabContext getStylePreferences() {

@@ -21,7 +21,7 @@ import javax.swing.text.BadLocationException;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.IndentManager;
-import org.scilab.modules.xpad.style.ScilabStyleDocument;
+import org.scilab.modules.xpad.ScilabDocument;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
 /**
@@ -46,7 +46,7 @@ public final class IndentAction extends DefaultAction {
 	 * doAction
 	 */
 	public void doAction() {
-		ScilabStyleDocument styleDocument =  (ScilabStyleDocument) getEditor().getTextPane().getStyledDocument();
+		ScilabDocument styleDocument =  (ScilabDocument) getEditor().getTextPane().getDocument();
 		
 		try {
 			int selectionStart = getEditor().getTextPane().getSelectionStart();

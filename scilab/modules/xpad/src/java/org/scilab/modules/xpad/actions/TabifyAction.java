@@ -19,7 +19,7 @@ import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
-import org.scilab.modules.xpad.style.ScilabStyleDocument;
+import org.scilab.modules.xpad.ScilabDocument;
 import org.scilab.modules.xpad.style.TabManager;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
@@ -37,7 +37,7 @@ public class TabifyAction extends DefaultAction {
 	 * @param editor the editor
 	 */
 	private TabifyAction(Xpad editor) {
-		super(XpadMessages.TABIFY_SELECTION, editor);
+	    super(XpadMessages.TABIFY_SELECTION, editor);
 	}
 	
 	/**
@@ -46,9 +46,9 @@ public class TabifyAction extends DefaultAction {
 	public synchronized void doAction() {
 		int position_start = getEditor().getTextPane().getSelectionStart();
 		int position_end   = getEditor().getTextPane().getSelectionEnd();
-		ScilabStyleDocument scilabDocument = (ScilabStyleDocument) getEditor().getTextPane().getStyledDocument();
-		int line_start = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getDefaultRootElement().getElementIndex(position_start);
-		int line_end = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getDefaultRootElement().getElementIndex(position_end);
+		ScilabDocument scilabDocument = (ScilabDocument) getEditor().getTextPane().getDocument();
+		int line_start = ((ScilabDocument) getEditor().getTextPane().getDocument()).getDefaultRootElement().getElementIndex(position_start);
+		int line_end = ((ScilabDocument) getEditor().getTextPane().getDocument()).getDefaultRootElement().getElementIndex(position_end);
 		if (position_start == position_end) {
 			tabManager.insertTab(scilabDocument, position_start);
 		} else {

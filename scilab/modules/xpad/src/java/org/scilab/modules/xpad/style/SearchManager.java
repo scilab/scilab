@@ -17,6 +17,8 @@ import java.util.regex.Pattern;
 
 import javax.swing.text.BadLocationException;
 
+import org.scilab.modules.xpad.ScilabDocument;
+
 /**
  * Class SearchManager
  * @author Sylvestre Koumar
@@ -35,7 +37,7 @@ public class SearchManager {
 	 * @param useRegexp boolean
 	 * @return ArrayList
 	 */
-	public ArrayList<Integer[]> findWord(ScilabStyleDocument scilabDocument, String word, 
+	public ArrayList<Integer[]> findWord(ScilabDocument scilabDocument, String word, 
 										 int currentSelectStart, int currentSelectEnd, 
 										 boolean caseSensitive, boolean wholeWord, boolean useRegexp) {
 		String fullText = getSelectedDocumentLines(scilabDocument, currentSelectStart, currentSelectEnd);
@@ -89,7 +91,7 @@ public class SearchManager {
 	 * @param end end offset
 	 * @return the selected text
 	 */
-	public String getSelectedDocumentLines(ScilabStyleDocument scilabDocument, int start , int end) {
+	public String getSelectedDocumentLines(ScilabDocument scilabDocument, int start , int end) {
 		int startOffset;
 		int endOffset;
 

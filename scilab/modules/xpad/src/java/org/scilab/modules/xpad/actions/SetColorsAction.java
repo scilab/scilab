@@ -29,15 +29,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 
 import org.scilab.modules.gui.bridge.colorchooser.SwingScilabColorChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
-import org.scilab.modules.xpad.style.ColorizationManager;
-import org.scilab.modules.xpad.style.ScilabStyleDocument;
+import org.scilab.modules.xpad.ScilabDocument;
+import javax.swing.JEditorPane;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
@@ -205,19 +204,19 @@ public class SetColorsAction extends DefaultAction {
 				int numberOfTab = getEditor().getTabPane().getComponentCount();
 				for (int j = 0; j < numberOfTab; j++) {
 					
-					JTextPane textPane = (JTextPane) ((JScrollPane) getEditor().getTabPane().getComponentAt(j)).getViewport().getComponent(0) ;
-					ScilabStyleDocument styleDocument = (ScilabStyleDocument)textPane.getStyledDocument();
+					JEditorPane textPane = (JEditorPane) ((JScrollPane) getEditor().getTabPane().getComponentAt(j)).getViewport().getComponent(0) ;
+					ScilabDocument styleDocument = (ScilabDocument)textPane.getDocument();
 				
 					for (int i = 0; i < numberOfStyles; i++) {
 						
 						Color thisStyleColor = allStylesColor.get(listStylesName.get(i));		
-				    	Style tempStyle = styleDocument.getStyle(listStylesName.get(i));
+						//Style tempStyle = styleDocument.getStyle(listStylesName.get(i));
 	
-				    	StyleConstants.setForeground(tempStyle, thisStyleColor);				    
+						//StyleConstants.setForeground(tempStyle, thisStyleColor);				    
 		
 					}
 						
-					new ColorizationManager().colorize(styleDocument, 0, styleDocument.getLength());
+					//new ColorizationManager().colorize(styleDocument, 0, styleDocument.getLength());
 				}
 		    	/*save the change in the xml*/
 				ConfigXpadManager.saveAllForegroundColors(allStylesColor);

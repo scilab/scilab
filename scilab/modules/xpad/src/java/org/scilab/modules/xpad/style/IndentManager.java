@@ -17,6 +17,8 @@ import java.util.regex.Pattern;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Element;
 
+import org.scilab.modules.xpad.ScilabDocument;
+
 /**
  * Class which manage indentation process
  * @author Sylvestre Koumar
@@ -154,7 +156,7 @@ public class IndentManager {
 	 * @param line int
 	 * @param preIndentNextLine boolean
 	 */
-	public void beautifyLine(ScilabStyleDocument doc, int line, boolean preIndentNextLine) {
+	public void beautifyLine(ScilabDocument doc, int line, boolean preIndentNextLine) {
 		String baseSpaces = "";
 		String tabulation = TabManager.getTabulation();
 		//doc.dump();
@@ -223,7 +225,7 @@ public class IndentManager {
 	 * @return int
 	 * @throws BadLocationException error
 	 */
-	public int beautifier(ScilabStyleDocument doc, int startPosition, int endPosition) throws BadLocationException {
+	public int beautifier(ScilabDocument doc, int startPosition, int endPosition) throws BadLocationException {
 		Element root = doc.getDefaultRootElement();
 		int startLine = root.getElementIndex(startPosition);
 		int endLine = root.getElementIndex(endPosition);

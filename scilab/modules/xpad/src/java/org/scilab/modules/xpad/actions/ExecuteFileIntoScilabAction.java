@@ -25,7 +25,7 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.xpad.Xpad;
-import org.scilab.modules.xpad.style.ScilabStyleDocument;
+import org.scilab.modules.xpad.ScilabDocument;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
 /**
@@ -77,7 +77,7 @@ public final class ExecuteFileIntoScilabAction extends DefaultAction {
 
 	    Xpad editor = getEditor();
 
-	    if (((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).isContentModified()) {
+	    if (((ScilabDocument) getEditor().getTextPane().getDocument()).isContentModified()) {
 		if (ScilabModalDialog.show(Xpad.getEditor(), XpadMessages.EXECUTE_WARNING, XpadMessages.EXECUTE_FILE_INTO_SCILAB, 
 			IconType.WARNING_ICON, ButtonType.CANCEL_OR_SAVE_AND_EXECUTE) == AnswerOption.SAVE_EXECUTE_OPTION) {
 		    if (editor.save(getEditor().getTabPane().getSelectedIndex(), false)) {

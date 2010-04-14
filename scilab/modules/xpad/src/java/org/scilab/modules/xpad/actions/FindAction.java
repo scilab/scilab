@@ -44,7 +44,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JTextPane;
 import javax.swing.KeyStroke;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter;
@@ -53,7 +52,8 @@ import javax.swing.text.Highlighter;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xpad.Xpad;
-import org.scilab.modules.xpad.style.ScilabStyleDocument;
+import org.scilab.modules.xpad.ScilabDocument;
+import javax.swing.JEditorPane;
 import org.scilab.modules.xpad.style.SearchManager;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 import org.scilab.modules.xpad.utils.XpadMessages;
@@ -149,9 +149,9 @@ public final class FindAction extends DefaultAction {
 			// else find and replace action is applied to the entire document
 			int startPos = getEditor().getTextPane().getSelectionStart();
 			int endPos = getEditor().getTextPane().getSelectionEnd();
-			int startLine = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument())
+			int startLine = ((ScilabDocument) getEditor().getTextPane().getDocument())
 										.getDefaultRootElement().getElementIndex(startPos);
-			int endLine = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument())
+			int endLine = ((ScilabDocument) getEditor().getTextPane().getDocument())
 										.getDefaultRootElement().getElementIndex(endPos);
 
 			if (startPos != endPos) {
@@ -346,13 +346,13 @@ public final class FindAction extends DefaultAction {
 			private static final int B_VALUE = 158;
 			
 			public void actionPerformed(ActionEvent e) {
-				JTextPane xpadTextPane =  getEditor().getTextPane();		
+				JEditorPane xpadTextPane =  getEditor().getTextPane();		
 				startSelectedLines = xpadTextPane.getSelectionStart();
 				endSelectedLines = xpadTextPane.getSelectionEnd();					
 
-				startSelectedLines = ((ScilabStyleDocument) xpadTextPane.getStyledDocument()).
+				startSelectedLines = ((ScilabDocument) xpadTextPane.getDocument()).
 				getParagraphElement(startSelectedLines).getStartOffset();
-				endSelectedLines =   ((ScilabStyleDocument) xpadTextPane.getStyledDocument()).
+				endSelectedLines =   ((ScilabDocument) xpadTextPane.getDocument()).
 				getParagraphElement(endSelectedLines).getEndOffset();
 
 				Highlighter hl = xpadTextPane.getHighlighter();
@@ -400,8 +400,8 @@ public final class FindAction extends DefaultAction {
 		buttonReplace.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				saveFindReplaceConfiguration();
-				JTextPane xpadTextPane =  getEditor().getTextPane();
-				ScilabStyleDocument doc = (ScilabStyleDocument) xpadTextPane.getStyledDocument();
+				JEditorPane xpadTextPane =  getEditor().getTextPane();
+				ScilabDocument doc = (ScilabDocument) xpadTextPane.getDocument();
 				boolean mergeMode = doc.getShouldMergeEdits();
 				doc.setShouldMergeEdits(true);
 				replaceOnlyText();
@@ -413,8 +413,8 @@ public final class FindAction extends DefaultAction {
 		buttonReplaceFind.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				saveFindReplaceConfiguration();
-				JTextPane xpadTextPane =  getEditor().getTextPane();
-				ScilabStyleDocument doc = (ScilabStyleDocument) xpadTextPane.getStyledDocument();
+				JEditorPane xpadTextPane =  getEditor().getTextPane();
+				ScilabDocument doc = (ScilabDocument) xpadTextPane.getDocument();
 				boolean mergeMode = doc.getShouldMergeEdits();
 				doc.setShouldMergeEdits(true);
 				replaceText();
@@ -426,8 +426,8 @@ public final class FindAction extends DefaultAction {
 		buttonReplaceAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				saveFindReplaceConfiguration();
-				JTextPane xpadTextPane =  getEditor().getTextPane();
-				ScilabStyleDocument doc = (ScilabStyleDocument) xpadTextPane.getStyledDocument();
+				JEditorPane xpadTextPane =  getEditor().getTextPane();
+				ScilabDocument doc = (ScilabDocument) xpadTextPane.getDocument();
 				String text = null;
 
 				boolean wholeWordSelected  = checkWhole.isSelected() &&  checkWhole.isEnabled();
@@ -437,7 +437,7 @@ public final class FindAction extends DefaultAction {
 				int currentCaretPos = xpadTextPane.getCaretPosition();
 
 				if (radioSelection.isSelected()) {
-					ScilabStyleDocument scilabDocument = (ScilabStyleDocument) xpadTextPane.getStyledDocument();
+					ScilabDocument scilabDocument = (ScilabDocument) xpadTextPane.getDocument();
 					text = searchManager.getSelectedDocumentLines(scilabDocument, startSelectedLines, endSelectedLines);
 				} else {
 					text = doc.getText();
@@ -732,8 +732,8 @@ public final class FindAction extends DefaultAction {
 		updateRecentSearch();
 
 
-		JTextPane xpadTextPane =  getEditor().getTextPane();
-		ScilabStyleDocument scilabStyle = ((ScilabStyleDocument) xpadTextPane.getStyledDocument());
+		JEditorPane xpadTextPane =  getEditor().getTextPane();
+		ScilabDocument scilabStyle = ((ScilabDocument) xpadTextPane.getDocument());
 
 		/*mainly used in case of selected text, otherwise currentPosStart =  currentPosEnd*/
 		int currentCaretPos = 0;
@@ -915,7 +915,7 @@ public final class FindAction extends DefaultAction {
 		updateRecentSearch();
 		updateRecentReplace();
 		setPreviousSearch(oldWord);
-		JTextPane xpadTextPane =  getEditor().getTextPane();
+		JEditorPane xpadTextPane =  getEditor().getTextPane();
 		int currentPosStart = startFindSelection;
 		int currentPosEnd = endFindSelection;
 
@@ -937,7 +937,7 @@ public final class FindAction extends DefaultAction {
 
 
 		try {
-			ScilabStyleDocument doc = (ScilabStyleDocument) getEditor().getTextPane().getStyledDocument();
+			ScilabDocument doc = (ScilabDocument) getEditor().getTextPane().getDocument();
 			doc.replace(currentPosStart, currentPosEnd - currentPosStart, newWord, null);
 
 		} catch (BadLocationException ex) {

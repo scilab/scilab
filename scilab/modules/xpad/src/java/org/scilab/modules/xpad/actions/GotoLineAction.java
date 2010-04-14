@@ -35,7 +35,7 @@ import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
-import org.scilab.modules.xpad.style.ScilabStyleDocument;
+import org.scilab.modules.xpad.ScilabDocument;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
 @SuppressWarnings("serial")
@@ -241,7 +241,7 @@ public class GotoLineAction extends DefaultAction {
 				   
 			   } else {
 				   okButton.setEnabled(true);
-				   ScilabStyleDocument scilabStyle = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument());
+				   ScilabDocument scilabStyle = ((ScilabDocument) getEditor().getTextPane().getDocument());
 				   
 				   int lineNumber = Integer.decode(enterLineNumberField.getText()) - 1;
 				   int maxLineNumber = scilabStyle.getDefaultRootElement().getElementCount();

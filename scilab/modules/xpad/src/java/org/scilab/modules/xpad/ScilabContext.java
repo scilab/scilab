@@ -27,6 +27,7 @@ public class ScilabContext implements ViewFactory {
 
     Color[] tokenColors = new Color[ScilabLexerConstants.NUMBER_OF_TOKENS];
     Font[] tokenFonts = new Font[ScilabLexerConstants.NUMBER_OF_TOKENS];
+    private ScilabView view;
     
     public ScilabContext() {
 	super();
@@ -86,7 +87,12 @@ public class ScilabContext implements ViewFactory {
 	return Color.BLACK;
 	}*/
 
+    public View getCurrentView() {
+	return view;
+    }
+
     public View create(Element elem) {
-	return new ScilabView(elem, this);
+	view = new ScilabView(elem, this);
+	return view;
     }
 }

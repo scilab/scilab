@@ -15,13 +15,13 @@ import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import javax.swing.JTextPane;
 import javax.swing.KeyStroke;
 import javax.swing.text.BadLocationException;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
-import org.scilab.modules.xpad.style.ScilabStyleDocument;
+import org.scilab.modules.xpad.ScilabDocument;
+import javax.swing.JEditorPane;
 import org.scilab.modules.xpad.style.SearchManager;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
@@ -51,8 +51,8 @@ public final class FindNextAction extends DefaultAction {
 		try {
 			int startPos = getEditor().getTextPane().getSelectionStart();
 			int endPos = getEditor().getTextPane().getSelectionEnd();
-			int startLine = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getDefaultRootElement().getElementIndex(startPos);
-			int endLine = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getDefaultRootElement().getElementIndex(endPos);
+			int startLine = ((ScilabDocument) getEditor().getTextPane().getDocument()).getDefaultRootElement().getElementIndex(startPos);
+			int endLine = ((ScilabDocument) getEditor().getTextPane().getDocument()).getDefaultRootElement().getElementIndex(endPos);
 
 			//don't manage multiple lines quick find 
 			if(startLine != endLine) {
@@ -71,8 +71,8 @@ public final class FindNextAction extends DefaultAction {
 				exp = getEditor().getTextPane().getDocument().getText(startPos, endPos - startPos);
 			}
 	
-			JTextPane xpadTextPane =  getEditor().getTextPane();
-			ScilabStyleDocument scilabStyle = ((ScilabStyleDocument) xpadTextPane.getStyledDocument());
+			JEditorPane xpadTextPane =  getEditor().getTextPane();
+			ScilabDocument scilabStyle = ((ScilabDocument) xpadTextPane.getDocument());
 			
 			//search from current position to end document
 			ArrayList<Integer[]> offsets = searchManager.findWord(scilabStyle, exp, 0, scilabStyle.getLength(), false, false, false);

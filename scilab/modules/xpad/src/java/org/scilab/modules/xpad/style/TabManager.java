@@ -12,6 +12,7 @@
 package org.scilab.modules.xpad.style;
 
 import javax.swing.text.BadLocationException;
+import org.scilab.modules.xpad.ScilabDocument;
 
 /**
  * Class TabManager
@@ -41,7 +42,7 @@ public class TabManager {
 	 * @param scilabDocument document
 	 * @param position int
 	 */
-	public synchronized void insertTab(ScilabStyleDocument scilabDocument, int position) {
+	public synchronized void insertTab(ScilabDocument scilabDocument, int position) {
 		try {
 			scilabDocument.insertString(position, getTabulation(), null);
 		} catch (BadLocationException e) 		{
@@ -55,7 +56,7 @@ public class TabManager {
 	 * @param line line to tabify
 	 * @return int
 	 */
-	public synchronized int tabifyLine(ScilabStyleDocument scilabDocument, int line) {
+	public synchronized int tabifyLine(ScilabDocument scilabDocument, int line) {
 		insertTab(scilabDocument, scilabDocument.getDefaultRootElement().getElement(line).getStartOffset());	
 		return getTabulation().length();
 	}
@@ -67,7 +68,7 @@ public class TabManager {
 	 * @param line_end line end
 	 * @return int
 	 */
-	public synchronized int tabifyLines(ScilabStyleDocument scilabDocument, int line_start, int line_end) {
+	public synchronized int tabifyLines(ScilabDocument scilabDocument, int line_start, int line_end) {
 
 		boolean indentMode = scilabDocument.getAutoIndent();
 		boolean colorizeMode = scilabDocument.getAutoColorize();
@@ -97,7 +98,7 @@ public class TabManager {
 	 * @param position int
 	 * @return the nb of deleted characters.
 	 */
-	public synchronized int deleteTab(ScilabStyleDocument scilabDocument, int position)	{
+	public synchronized int deleteTab(ScilabDocument scilabDocument, int position)	{
 		String tab = getTabulation(); 
 		int res = 0, tabLength = tab.length();
 		try {
@@ -120,7 +121,7 @@ public class TabManager {
 	 * @param line int
 	 * @return int
 	 */
-	public synchronized int untabifyLine(ScilabStyleDocument scilabDocument, int line) {
+	public synchronized int untabifyLine(ScilabDocument scilabDocument, int line) {
 		return this.deleteTab(scilabDocument, scilabDocument.getDefaultRootElement().getElement(line).getStartOffset());
 	}
 
@@ -131,7 +132,7 @@ public class TabManager {
 	 * @param line_end int
 	 * @return boolean
 	 */
-	public boolean canUntabifyLines(ScilabStyleDocument scilabDocument, int line_start, int line_end) {
+	public boolean canUntabifyLines(ScilabDocument scilabDocument, int line_start, int line_end) {
 		boolean result = true;
 		String tab = getTabulation();
 		int tabLength = tab.length();
@@ -156,7 +157,7 @@ public class TabManager {
 	 * @param line_end int
 	 * @return int[]
 	 */
-	public synchronized int[] untabifyLines(ScilabStyleDocument scilabDocument, int line_start, int line_end) {	
+	public synchronized int[] untabifyLines(ScilabDocument scilabDocument, int line_start, int line_end) {	
 		int []res = {0, 0};
 
 		if (true || canUntabifyLines(scilabDocument, line_start, line_end)) { // always untabify as much lines as possible from a selection

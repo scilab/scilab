@@ -27,6 +27,8 @@ import org.scilab.modules.xpad.style.CompoundUndoManager;
 
 public class ScilabDocument extends PlainDocument {
 
+    private ScilabView view;
+
     public ScilabDocument() {
 	super(new GapContent(1024));
 	setAsynchronousLoadPriority(2);
@@ -50,6 +52,14 @@ public class ScilabDocument extends PlainDocument {
     
     public Reader getReader() {
 	return new ScilabDocumentReader(this, 0, getLength());
+    }
+
+    public void setView(ScilabView view) {
+	this.view = view;
+    }
+
+    public ScilabView getView() {
+	return view;
     }
 
     private boolean contentModified;
@@ -129,7 +139,8 @@ public class ScilabDocument extends PlainDocument {
      */
     public boolean getAutoIndent() {
 	DEBUG("getAutoIndent(" + autoIndent + ")");
-	return autoIndent;
+	return true;
+	//return autoIndent;
     }
     
     /**

@@ -46,7 +46,6 @@ import org.scilab.modules.xpad.actions.AutoIndentAction;
 import org.scilab.modules.xpad.actions.CloseAction;
 import org.scilab.modules.xpad.actions.CloseAllAction;
 import org.scilab.modules.xpad.actions.CloseAllButThisAction;
-import org.scilab.modules.xpad.actions.ColorizeAction;
 import org.scilab.modules.xpad.actions.CommentAction;
 import org.scilab.modules.xpad.actions.CopyAction;
 import org.scilab.modules.xpad.actions.CutAction;
@@ -81,7 +80,6 @@ import org.scilab.modules.xpad.actions.SelectAllAction;
 import org.scilab.modules.xpad.actions.SetColorsAction;
 import org.scilab.modules.xpad.actions.SetFontAction;
 import org.scilab.modules.xpad.actions.TabifyAction;
-import org.scilab.modules.xpad.actions.UnCommentAction;
 import org.scilab.modules.xpad.actions.UnTabifyAction;
 import org.scilab.modules.xpad.actions.UndoAction;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
@@ -144,7 +142,7 @@ public class XpadGUI {
 		createEolSubMenu(documentMenu, editorInstance);
 		
 		documentMenu.addSeparator();
-		documentMenu.add(ColorizeAction.createCheckBoxMenu(editorInstance));
+		//documentMenu.add(ColorizeAction.createCheckBoxMenu(editorInstance));
 		documentMenu.add(AutoIndentAction.createCheckBoxMenu(editorInstance));
 		menuBar.add(documentMenu);
 
@@ -327,7 +325,7 @@ public class XpadGUI {
 		editMenu.add(DeleteAction.createMenu(editorInstance));
 		editMenu.addSeparator();
 		editMenu.add(CommentAction.createMenu(editorInstance));
-		editMenu.add(UnCommentAction.createMenu(editorInstance));
+		//editMenu.add(UnCommentAction.createMenu(editorInstance));
 		editMenu.addSeparator();
 		editMenu.add(TabifyAction.createMenu(editorInstance));
 		editMenu.add(UnTabifyAction.createMenu(editorInstance));

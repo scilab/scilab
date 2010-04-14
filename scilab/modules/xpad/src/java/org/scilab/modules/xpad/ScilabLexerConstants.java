@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class ScilabLexerConstants {
     
-    public static final int NUMBER_OF_TOKENS = 19;
+    public static final int NUMBER_OF_TOKENS = 20;
 
     public static final int DEFAULT = 0;
     public static final int OPERATOR = 1;
@@ -25,7 +25,8 @@ public class ScilabLexerConstants {
     public static final int COMMANDS = 15;
     public static final int FIELD = 16;
     public static final int AUTHORS = 17;
-    public static final int EOF = 18;
+    public static final int URL = 18;
+    public static final int EOF = 19;
 
     public static final Map<String, Integer> TOKENS = new HashMap();
 
@@ -39,7 +40,7 @@ public class ScilabLexerConstants {
 	TOKENS.put("Comment", COMMENT);
 	TOKENS.put("Field", FIELD);
 	TOKENS.put("FunctionKwd", FKEYWORD);
-	//TOKENS.put("Macro", ID);
+	TOKENS.put("Url", URL);
 	TOKENS.put("Number", NUMBER);
 	TOKENS.put("Control", CKEYWORD);
 	TOKENS.put("Structure", SKEYWORD);

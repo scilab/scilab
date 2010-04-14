@@ -11,7 +11,6 @@ import java.io.IOException;
 %unicode
 %char
 %type int
-
 %pack 
 
 %{
@@ -32,6 +31,7 @@ import java.io.IOException;
     public int yychar() {
         return yychar;
     }
+
 %}
 
 /* main character classes */
@@ -72,6 +72,8 @@ dqstring = \"{string}(\"|\')
 id = ([a-zA-Z%_#!?][a-zA-Z0-9_#!$?]*)|("$"[a-zA-Z0-9_#!$?]+)
 
 dot = "."
+
+url = "http://"[^ \t\f\n\r]+
 
 digit = [0-9]
 exp = [eE][+-]?{digit}+
@@ -209,6 +211,10 @@ number = ({digit}+\.?{digit}*{exp}?)|(\.{digit}+{exp}?)
 <COMMENT> {
   {authors}			 {
 				   return ScilabLexerConstants.AUTHORS;
+				 }
+
+  {url}				 {
+  				   return ScilabLexerConstants.URL;
 				 }	  	  
 
   .	  		         | 

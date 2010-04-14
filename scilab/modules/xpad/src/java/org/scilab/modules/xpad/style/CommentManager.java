@@ -17,6 +17,8 @@ import java.util.regex.Pattern;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Element;
 
+import org.scilab.modules.xpad.ScilabDocument;
+
 /**
  * Class Component manager
  * @author Sylvestre Koumar
@@ -31,7 +33,7 @@ public class CommentManager {
 	 * @param line line number
 	 * @return int
 	 */
-	public int commentLine(ScilabStyleDocument scilabDocument, int line) {
+	public int commentLine(ScilabDocument scilabDocument, int line) {
 		// No selection : comment the current line
 
 		String comment_str = "//";
@@ -54,7 +56,7 @@ public class CommentManager {
 	 * @param line_start line start
 	 * @param line_end line end
 	 */
-	public synchronized void commentLines(ScilabStyleDocument scilabDocument, int line_start, int line_end) {
+	public synchronized void commentLines(ScilabDocument scilabDocument, int line_start, int line_end) {
 		boolean  mergeEditsMode = scilabDocument.getShouldMergeEdits();
 		scilabDocument.setShouldMergeEdits(true);
 		for (int line = line_start; line <= line_end; ++line) {
@@ -70,7 +72,7 @@ public class CommentManager {
 	 * @param line_start line start
 	 * @return int
 	 */
-	public int commentText(ScilabStyleDocument scilabDocument, int position_start) {
+	public int commentText(ScilabDocument scilabDocument, int position_start) {
 		String comment_str = "//";
 		int offset         = comment_str.length();
 		try {
@@ -92,7 +94,7 @@ public class CommentManager {
 	 * @param line line number
 	 * @return int
 	 */
-	public int uncommentLine(ScilabStyleDocument scilabDocument, int line) {
+	public int uncommentLine(ScilabDocument scilabDocument, int line) {
 		int start   = scilabDocument.getDefaultRootElement().getElement(line).getStartOffset();
 		int end     = scilabDocument.getDefaultRootElement().getElement(line).getEndOffset();			
 		int offset  = 0;
@@ -119,7 +121,7 @@ public class CommentManager {
 	 * @param line_start line start
 	 * @param line_end line end
 	 */
-	public synchronized void uncommentLines(ScilabStyleDocument scilabDocument, int line_start, int line_end) {
+	public synchronized void uncommentLines(ScilabDocument scilabDocument, int line_start, int line_end) {
 		Pattern pattern = Pattern.compile("^(\\s)*//");
 		boolean  mergeEditsMode = scilabDocument.getShouldMergeEdits();
 		scilabDocument.setShouldMergeEdits(true);
@@ -149,7 +151,7 @@ public class CommentManager {
 	 * @param position_start position start
 	 * @return int
 	 */
-	public int uncommentText(ScilabStyleDocument scilabDocument, int position_start) {
+	public int uncommentText(ScilabDocument scilabDocument, int position_start) {
 		int offset = 0;
 		try {
 			Element root = scilabDocument.getDefaultRootElement();

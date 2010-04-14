@@ -35,8 +35,7 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.xpad.Xpad;
-import org.scilab.modules.xpad.style.ColorizationManager;
-import org.scilab.modules.xpad.style.ScilabStyleDocument;
+import org.scilab.modules.xpad.ScilabDocument;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
@@ -113,7 +112,7 @@ public class EncodingAction extends DefaultCheckAction {
     public void doAction() {
     	boolean isSuccess = false;
 
-    	ScilabStyleDocument styleDocument = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument());
+    	ScilabDocument styleDocument = ((ScilabDocument) getEditor().getTextPane().getDocument());
 
     	if (styleDocument.isContentModified()) {
     		/* File modified */
@@ -171,7 +170,7 @@ public class EncodingAction extends DefaultCheckAction {
 	}
 
 	/* Allow changes to be saved */
-	new ColorizationManager().colorize(styleDocument, 0, styleDocument.getLength());
+	//new ColorizationManager().colorize(styleDocument, 0, styleDocument.getLength());
 	styleDocument.setAutoIndent(indentMode);
 	styleDocument.setUpdater(true);
 
