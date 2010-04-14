@@ -6,7 +6,7 @@ Performance:
 ============
 
 * Faster access to primitive table (internal). This change improves the overall
-speed of Scilab.
+  speed of Scilab.
 
 
 FFTW:
@@ -25,13 +25,13 @@ Documentation:
 ==============
 
 * It is now possible to use LaTeX inline in the documentation. Thanks to 
- Calixte Denizet for this feature. (See bug #4329)
+  Calixte Denizet for this feature. (See bug #4329)
 
 * bug 6630 fixed - JavaHelp does not update existing image files when 
                    building help.
 
 * bug 6852 fixed - JavaHelp did not center the LaTeX formulas containing an
-      	   	   attribute align="center" 
+                   attribute align="center" 
 
 Xcos:
 =====
@@ -45,7 +45,7 @@ Xcos:
 * The default palettes can now be manipulated by the user.
 
 * LaTeX formulas can be used on any TextBlock using the Scilab tag based 
-description.
+  description.
 
 * builnewblock.sci rewritten to use scilab dynamic link module tools.
 
@@ -58,11 +58,13 @@ description.
 
 * bug 6672 fixed - "Code generation" failed if superblock had 
                    some gain blocks.
-                   
+
 * bug 6674 fixed - modelica generic block did not work.
 
 * bug 6668 fixed - Xcos modelica demos did not work with the new 
                    modelica compiler.
+
+* bug 6903 fixed - modelicat calls ocamlrun (wrong dependency on Windows).                   
 
 Compilation:
 ============
@@ -101,7 +103,7 @@ Matlab to Scilab conversion tools:
 
 * Conversion updated with new Scilab functions:
   - 'filesep' now converted by 'filesep' instead of 'pathconvert'.
-  
+
 Tests:
 ======
 
@@ -152,7 +154,7 @@ Removed functions (previously declared as obsolete):
 * 'with_gtk' replaced by 'getversion'.
 
 * 'readc_' replaced by 'input'.
- 
+
 Bug fixes:
 ==========
 
