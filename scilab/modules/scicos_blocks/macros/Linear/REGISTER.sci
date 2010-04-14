@@ -34,7 +34,7 @@ case 'set' then
   x=arg1;
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
-  if size(exprs,1)==1 then exprs=[exprs,sci2exp(1)];end
+  if size(exprs,1)==1 then exprs=[exprs;sci2exp(1)];end
   while %t do
     [ok,z0,it,exprs]=scicos_getvalue('Set delay parameters',..
 	['Register initial condition';..
@@ -93,7 +93,7 @@ case 'define' then
   model.blocktype='d'
   model.dep_ut=[%f %f]
 
-  exprs=strcat(string(z0);';')
+  exprs=strcat(string(z0), ';')
   gr_i=['dly=model.rpar;';
     'txt=[''Shift'';''Register'';string(dly)];';
     'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')']

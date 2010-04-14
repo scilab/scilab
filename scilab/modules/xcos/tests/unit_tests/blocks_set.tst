@@ -42,10 +42,7 @@ endfunction
 // Stubbing the x_dialog method
 // checking it's arguments size only
 function [result]=x_dialog(labels,default_inputs_vector)
-	if(and(size(labels) <> size(default_inputs_vector))) then
-		disp(path + interfunction + ".sci");
-		pause;
-	end;
+	if(and(size(labels) <> size(default_inputs_vector))) then pause, end;
 	
 	result = default_inputs_vector;
 endfunction
