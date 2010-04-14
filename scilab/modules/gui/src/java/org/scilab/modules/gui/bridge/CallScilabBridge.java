@@ -113,7 +113,6 @@ import org.scilab.modules.gui.waitbar.WaitBar;
 import org.scilab.modules.gui.widget.Widget;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
-import org.scilab.modules.jvm.LoadClassPath;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
@@ -165,9 +164,6 @@ public class CallScilabBridge {
 	private static final String TOOLBARXMLFILE = SCIDIR + "/modules/gui/etc/graphics_toolbar.xml";
 	
 	private static final String CONSOLE = "Console";
-
-	/** The id used on classpath.xml to load vectorial export JARs */
-	private static final String CLASSPATH_PDF_PS_EPS_EXPORT_NAME = "pdf_ps_eps_graphic_export";
 
 	/**
 	 * Constructor
@@ -2365,10 +2361,6 @@ public class CallScilabBridge {
 				String fileExtension = ".ps";
 
 				try {
-					/* Under !Windows, make sure that the library for ps export
-					 * are already loaded */
-					LoadClassPath.loadOnUse(CLASSPATH_PDF_PS_EPS_EXPORT_NAME);
-
 					/** Export image to PostScript */
 					if (((PrintRequestAttribute) scilabPageFormat.get(OrientationRequested.class)) == OrientationRequested.PORTRAIT) {
 						FileExporter.fileExport(figureID,
