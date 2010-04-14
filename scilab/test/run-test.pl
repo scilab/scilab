@@ -57,7 +57,7 @@ if( dirname($0) =~ m/^\// )
 my $Yasp_Path = $directory;
 $Yasp_Path =~ s/\/test/\//g;
 
-my $Yasp_Bin = "bin/scilab6";
+my $Yasp_Bin = "bin/scilab";
 
 if(@ARGV < 1)
 {
