@@ -270,6 +270,8 @@ Bug Fixes:
 
 * bug 6897 fixed - On Windows, umfpack had some wrong dependencies.
 
+* bug 6905 fixed - Error messages in "Gray.c" & "Plo2dn.c" were not homogenized.
+
 
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab
