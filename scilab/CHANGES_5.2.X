@@ -272,6 +272,8 @@ Bug Fixes:
 
 * bug 6905 fixed - Error messages in "Gray.c" & "Plo2dn.c" were not homogenized.
 
+* bug 6906 fixed - Error messages in "SetProperty.c" were not homogenized.
+
 
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab
