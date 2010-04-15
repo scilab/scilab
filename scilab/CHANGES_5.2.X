@@ -5,8 +5,8 @@ Performance:
 ============
 
 * Regression which was slowing down loops in some cases, fixed.
-  Performances improved up to 50 %.
-  Note that many performance improvements will also be available in Scilab 5.3.0.
+  Performances can be improved up to 50 %.
+  Note that other performance improvements will also be available in Scilab 5.3.0.
 
 Help Browser:
 ============
