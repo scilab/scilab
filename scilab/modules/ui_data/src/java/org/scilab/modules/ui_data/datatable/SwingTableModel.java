@@ -92,6 +92,11 @@ public class SwingTableModel<Type> extends AbstractTableModel implements ScilabT
 	if (c == 0) {
 	    return ImageIcon.class;
 	}
+	
+	if (c == 2 || c == 3) {
+		return Integer.class;
+	}
+	
 	return Object.class;
     }
 }
