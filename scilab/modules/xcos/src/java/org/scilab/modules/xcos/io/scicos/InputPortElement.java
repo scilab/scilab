@@ -153,14 +153,25 @@ public class InputPortElement extends AbstractElement<InputPort> {
 		ScilabDouble dataColumns = (ScilabDouble) model.get(MODEL_IN_DATACOL_INDEX);
 		ScilabDouble dataType = (ScilabDouble) model.get(MODEL_IN_DATATYPE_INDEX);
 
+		// The number of row of the port
+		int nbLines;
 		if (dataLines.getRealPart() != null) {
-			int nbLines = (int) dataLines.getRealPart()[alreadyDecodedCount][0];
-			port.setDataLines(nbLines);
+			nbLines = (int) dataLines.getRealPart()[alreadyDecodedCount][0];
+		} else {
+			nbLines = 1;
 		}
+		port.setDataLines(nbLines);
+		
+		// The number of column of the port
+		int nbColumns;
 		if (dataColumns.getRealPart() != null) {
-			int nbColumns = (int) dataColumns.getRealPart()[alreadyDecodedCount][0];
-			port.setDataColumns(nbColumns);
+			nbColumns = (int) dataColumns.getRealPart()[alreadyDecodedCount][0];
+		} else {
+			nbColumns = 1;
 		}
+		port.setDataColumns(nbColumns);
+		
+		// port scilab type
 		if (dataType.getRealPart() != null) {
 			int type;
 			
@@ -204,9 +215,12 @@ public class InputPortElement extends AbstractElement<InputPort> {
 		if (data == null) {
 			throw new IllegalArgumentException();
 		}
-		
+
 		encodeModel(from);
 		encodeGraphics(from);
+		
+		// Update the index counter
+		alreadyDecodedCount++;
 		
 		return data;
 	}
@@ -228,21 +242,29 @@ public class InputPortElement extends AbstractElement<InputPort> {
 		double[][] values;
 		
 		// in
-		sciValues = (ScilabDouble) data.get(MODEL_IN_DATALINE_INDEX);
+		sciValues = (ScilabDouble) model.get(MODEL_IN_DATALINE_INDEX);
 		values = sciValues.getRealPart();
-		values[alreadyDecodedCount][0] = from.getDataLines();
+		int datalines = from.getDataLines();
+		if (datalines == 0) {
+			datalines = 1;
+		}
+		values[alreadyDecodedCount][0] = datalines;
 		
 		// in2
-		sciValues = (ScilabDouble) data.get(MODEL_IN_DATACOL_INDEX);
+		sciValues = (ScilabDouble) model.get(MODEL_IN_DATACOL_INDEX);
 		values = sciValues.getRealPart();
-		values[alreadyDecodedCount][0] = from.getDataColumns();
+		int datacolumns = from.getDataColumns();
+		if (datacolumns == 0) {
+			datacolumns = 1;
+		}
+		values[alreadyDecodedCount][0] = datacolumns;
 		
 		// intyp
-		sciValues = (ScilabDouble) data.get(MODEL_IN_DATATYPE_INDEX);
+		sciValues = (ScilabDouble) model.get(MODEL_IN_DATATYPE_INDEX);
 		values = sciValues.getRealPart();
 		values[alreadyDecodedCount][0] = from.getDataType().getAsDouble();
 	}
-	
+
 	/**
 	 * Encode the data into the graphic fields.
 	 * 
@@ -261,13 +283,13 @@ public class InputPortElement extends AbstractElement<InputPort> {
 		String[][] strings;
 		
 		// pin
-		sciValues = (ScilabDouble) data.get(GRAPHICS_PIN_INDEX);
+		sciValues = (ScilabDouble) graphics.get(GRAPHICS_PIN_INDEX);
 		values = sciValues.getRealPart();
 		values[alreadyDecodedCount][0] = from.getConnectedLinkId();
 		
 		// in_implicit
-		sciStrings = (ScilabString) data.get(GRAPHICS_INIMPL_INDEX);
+		sciStrings = (ScilabString) graphics.get(GRAPHICS_INIMPL_INDEX);
 		strings = sciStrings.getData();
-		strings[alreadyDecodedCount][0] = from.getType().getAsString();
+		strings[alreadyDecodedCount][0] = from.getType().getAsString();		
 	}
 }

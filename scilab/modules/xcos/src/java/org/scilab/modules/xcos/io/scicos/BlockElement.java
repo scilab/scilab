@@ -26,6 +26,8 @@ import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongElementException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongStructureException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongTypeException;
+import org.scilab.modules.xcos.port.command.CommandPort;
+import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
 
@@ -297,16 +299,17 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 		
 		if (data == null) {
 			data = allocateElement();
+			setupPortSize(from);
 		}
 		
 		field++;
 		base = data.get(field);
-		base = graphicElement.encode(from, base);
+		base = graphicElement.encode(from, null);
 		data.set(field, base);
 		
 		field++;
 		base = data.get(field);
-		base = modelElement.encode(from, base);
+		base = modelElement.encode(from, null);
 		data.set(field, base);
 		
 		field++;
@@ -321,23 +324,38 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 		 * Encoding the InputPorts and OutputPorts using there own elements
 		 */
 		final InputPortElement inElement = new InputPortElement(data);
-		final int numberOfInputPorts = inElement.getNumberOfInputPort();
 		final OutputPortElement outElement = new OutputPortElement(data);
-		final int numberOfOutputPorts = outElement.getNumberOfOutputPort();
+		final int numberOfPorts = from.getChildCount();
 		
-		for (int i = 0; i < numberOfInputPorts + numberOfOutputPorts; i++) {
+		for (int i = 0; i < numberOfPorts; i++) {
 			final Object instance = from.getChildAt(i);
 			
 			if (instance instanceof InputPort) {
 				inElement.encode((InputPort) instance, data);
 			} else if (instance instanceof OutputPort) {
 				outElement.encode((OutputPort) instance, data);
-			} else {
-				throw new IllegalStateException();
 			}
 		}
 		
 		return data;
+	}
+
+	/**
+	 * Set the the port size per type.
+	 * 
+	 * @param from the source block
+	 */
+	private void setupPortSize(BasicBlock from) {
+		// Getting children size per type.
+		int in, out, ein, eout;
+		in = BasicBlockInfo.getAllTypedPorts(from, false, InputPort.class).size();
+		out = BasicBlockInfo.getAllTypedPorts(from, false, OutputPort.class).size();
+		ein = BasicBlockInfo.getAllTypedPorts(from, false, ControlPort.class).size();
+		eout = BasicBlockInfo.getAllTypedPorts(from, false, CommandPort.class).size();
+		
+		// Setup the graphics and model ports size
+		graphicElement.setPortsSize(in, out, ein, eout);
+		modelElement.setPortsSize(in, out, ein, eout);
 	}
 
 	/**

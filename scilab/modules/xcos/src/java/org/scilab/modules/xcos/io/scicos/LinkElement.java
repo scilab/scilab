@@ -39,7 +39,8 @@ import com.mxgraph.util.mxPoint;
  */
 // CSOFF: ClassDataAbstractionCoupling
 public class LinkElement extends AbstractElement<BasicLink> {
-	private static final List<String> DATA_FIELD_NAMES = asList("Link", "xx", "yy", "id", "thick", "ct", "from", "to");
+	private static final List<String> DATA_FIELD_NAMES = asList("Link", "xx",
+			"yy", "id", "thick", "ct", "from", "to");
 	
 	private static final int XX_INDEX = 1;
 	private static final int YY_INDEX = 2;
@@ -47,60 +48,65 @@ public class LinkElement extends AbstractElement<BasicLink> {
 	private static final int FROM_INDEX = 6;
 	private static final int TO_INDEX = 7;
 
-	
-	
-	/** Mutable field to easily get the data through methods */ 
+	/** Mutable field to easily get the data through methods */
 	private ScilabMList data;
 	private BasicPort start;
 	private BasicPort end;
-	
+
 	/** The already decoded block map */
 	private final Map<Integer, BasicBlock> blocks;
 
 	/**
 	 * Default constructor
-	 * @param blocks the already decoded blocks
+	 * 
+	 * @param blocks
+	 *            the already decoded blocks
 	 */
 	public LinkElement(Map<Integer, BasicBlock> blocks) {
 		this.blocks = blocks;
 	}
-	
+
 	/**
 	 * Decode the element into the link.
 	 * 
-	 * @param element The current Scilab data
-	 * @param into the target, if null a new instance is allocated and returned.
+	 * @param element
+	 *            The current Scilab data
+	 * @param into
+	 *            the target, if null a new instance is allocated and returned.
 	 * @return the decoded block.
-	 * @throws ScicosFormatException when e decoding error occurred.
-	 * @see org.scilab.modules.xcos.io.scicos.Element#decode(org.scilab.modules.types.scilabTypes.ScilabType, java.lang.Object)
+	 * @throws ScicosFormatException
+	 *             when e decoding error occurred.
+	 * @see org.scilab.modules.xcos.io.scicos.Element#decode(org.scilab.modules.types.scilabTypes.ScilabType,
+	 *      java.lang.Object)
 	 */
 	@Override
-	public BasicLink decode(ScilabType element, BasicLink into) throws ScicosFormatException {
+	public BasicLink decode(ScilabType element, BasicLink into)
+			throws ScicosFormatException {
 		data = (ScilabMList) element;
 		BasicLink link = into;
-		
+
 		validate();
-		
+
 		if (into == null) {
 			link = allocateLink();
 		}
-		
+
 		searchForPorts(link);
 		List<mxPoint> points = getPoints();
-		
+
 		/*
 		 * Fill the data
 		 */
 		link.setSource(start);
 		link.setTarget(end);
-		
+
 		mxGeometry geom = link.getGeometry();
 		if (geom == null) {
 			geom = new mxGeometry();
 		}
 		geom.setPoints(points);
 		link.setGeometry(geom);
-		
+
 		return link;
 	}
 
@@ -109,8 +115,9 @@ public class LinkElement extends AbstractElement<BasicLink> {
 	 */
 	private BasicLink allocateLink() {
 		BasicLink link = null;
-		final int type = (int) ((ScilabDouble) data.get(CT_INDEX)).getRealPart()[0][1];		
-		
+		final int type = (int) ((ScilabDouble) data.get(CT_INDEX))
+				.getRealPart()[0][1];
+
 		try {
 			link = LinkPortMap.getLinkClass(type).newInstance();
 		} catch (InstantiationException e) {
@@ -118,20 +125,23 @@ public class LinkElement extends AbstractElement<BasicLink> {
 		} catch (IllegalAccessException e) {
 			LogFactory.getLog(LinkElement.class).error(e);
 		}
-		
+
 		return link;
 	}
 
 	/**
-	 * @return the link points 
+	 * @return the link points
 	 */
 	private List<mxPoint> getPoints() {
 		List<mxPoint> points = new ArrayList<mxPoint>();
-		
-		final double[][] xAxis = ((ScilabDouble) data.get(XX_INDEX)).getRealPart();
-		final double[][] yAxis = ((ScilabDouble) data.get(YY_INDEX)).getRealPart();
-		final boolean isColumnDominant = data.get(XX_INDEX).getHeight() >= data.get(XX_INDEX).getWidth();
-		
+
+		final double[][] xAxis = ((ScilabDouble) data.get(XX_INDEX))
+				.getRealPart();
+		final double[][] yAxis = ((ScilabDouble) data.get(YY_INDEX))
+				.getRealPart();
+		final boolean isColumnDominant = data.get(XX_INDEX).getHeight() >= data
+				.get(XX_INDEX).getWidth();
+
 		/*
 		 * The first, last and common indexes.
 		 */
@@ -145,56 +155,73 @@ public class LinkElement extends AbstractElement<BasicLink> {
 			max = data.get(1).getWidth() - 1;
 			indexes[1] = min;
 		}
-		
+
 		/*
 		 * Loop all over the points
 		 */
 		for (int i = min; i < max; i++) {
 			double x = xAxis[indexes[0]][indexes[1]];
 			double y = -yAxis[indexes[0]][indexes[1]];
-			
+
 			// Center links
 			x = x + ((start.getGeometry().getX() + end.getGeometry().getX()) / 2.0);
 			y = y + ((start.getGeometry().getY() + end.getGeometry().getY()) / 2.0);
-			
+
 			// offset the axis
 			y = y + start.getGeometry().getHeight();
 			
 			points.add(new mxPoint(x, y));
-			
+
 			incrementIndexes(indexes, isColumnDominant);
 		}
-		
+
 		return points;
 	}
 
 	/**
 	 * Fill the {@link #start} and {@link #end} parameters.
-	 * @param link the link instance
+	 * 
+	 * @param link
+	 *            the link instance
 	 */
 	private void searchForPorts(BasicLink link) {
-		final int startBlockIndex = (int) ((ScilabDouble) data.get(FROM_INDEX)).getRealPart()[0][0];
-		final int endBlockIndex = (int) ((ScilabDouble) data.get(TO_INDEX)).getRealPart()[0][0];
+		final ScilabDouble from = (ScilabDouble) data.get(FROM_INDEX);
+		final ScilabDouble to = (ScilabDouble) data.get(TO_INDEX);
 		
+		final double[][] fromReal = from.getRealPart();
+		final double[][] toReal = to.getRealPart();
+		
+		final int[] indexes = {0, 0};
+		final boolean isColumnDominant = from.getHeight() >= from.getWidth();
+		
+		final int startBlockIndex = (int) fromReal[indexes[0]][indexes[1]];
+		final int endBlockIndex = (int) toReal[indexes[0]][indexes[1]];
+
 		final BasicBlock startBlock = blocks.get(startBlockIndex - 1);
 		final BasicBlock endBlock = blocks.get(endBlockIndex - 1);
 		
-		final int startPortIndex = (int) ((ScilabDouble) data.get(FROM_INDEX)).getRealPart()[0][1];
-		final int endPortIndex = (int) ((ScilabDouble) data.get(TO_INDEX)).getRealPart()[0][1];
+		incrementIndexes(indexes, isColumnDominant);
 		
-		final Class< ? extends BasicPort> startKlass = LinkPortMap.getPortClass(link.getClass(), true);
-		final Class< ? extends BasicPort> endKlass = LinkPortMap.getPortClass(link.getClass(), false);
-		
-		start = BasicBlockInfo.getAllTypedPorts(startBlock, false, startKlass).get(startPortIndex - 1);
-		end = BasicBlockInfo.getAllTypedPorts(endBlock, false, endKlass).get(endPortIndex - 1);
+		final int startPortIndex = (int) fromReal[indexes[0]][indexes[1]];
+		final int endPortIndex = (int) toReal[indexes[0]][indexes[1]];
+
+		final Class< ? extends BasicPort> startKlass = LinkPortMap.getPortClass(
+				link.getClass(), true);
+		final Class< ? extends BasicPort> endKlass = LinkPortMap.getPortClass(
+				link.getClass(), false);
+
+		start = BasicBlockInfo.getAllTypedPorts(startBlock, false, startKlass)
+				.get(startPortIndex - 1);
+		end = BasicBlockInfo.getAllTypedPorts(endBlock, false, endKlass).get(
+				endPortIndex - 1);
 	}
 
 	/**
 	 * Validate the current data.
 	 * 
-	 * This method doesn't pass the metrics because it
-	 * perform many test. Therefore all these tests are trivial and the
-	 * conditioned action only throw an exception.
+	 * This method doesn't pass the metrics because it perform many test.
+	 * Therefore all these tests are trivial and the conditioned action only
+	 * throw an exception.
 	 * 
 	 * @throws ScicosFormatException
 	 *             when there is a validation error.
@@ -205,24 +232,24 @@ public class LinkElement extends AbstractElement<BasicLink> {
 		if (!canDecode(data)) {
 			throw new WrongElementException();
 		}
-		
+
 		int field = 0;
-		
+
 		// we test if the structure as enough field
 		if (data.size() != DATA_FIELD_NAMES.size()) {
 			throw new WrongStructureException();
 		}
-		
+
 		/*
 		 * Checking the MList header
 		 */
-		
+
 		// Check the first field
 		if (!(data.get(field) instanceof ScilabString)) {
 			throw new WrongTypeException();
 		}
 		final String[] header = ((ScilabString) data.get(field)).getData()[0];
-		
+
 		// Checking for the field names
 		if (header.length != DATA_FIELD_NAMES.size()) {
 			throw new WrongStructureException();
@@ -232,52 +259,53 @@ public class LinkElement extends AbstractElement<BasicLink> {
 				throw new WrongStructureException();
 			}
 		}
-		
+
 		// xx
 		field++;
 		if (!(data.get(field) instanceof ScilabDouble)) {
 			throw new WrongTypeException();
 		}
-		
+
 		// yy
 		field++;
 		if (!(data.get(field) instanceof ScilabDouble)) {
 			throw new WrongTypeException();
 		}
-		
+
 		// id
 		field++;
 		if (!(data.get(field) instanceof ScilabString)) {
 			throw new WrongTypeException();
 		}
-		
+
 		// thick
 		field++;
 		if (!(data.get(field) instanceof ScilabDouble)) {
 			throw new WrongTypeException();
 		}
-		
+
 		// ct
 		field++;
 		if (!(data.get(field) instanceof ScilabDouble)) {
 			throw new WrongTypeException();
 		}
-		
+
 		// from
 		field++;
 		if (!(data.get(field) instanceof ScilabDouble)) {
 			throw new WrongTypeException();
 		}
-		
+
 		// to
 		field++;
 		if (!(data.get(field) instanceof ScilabDouble)) {
 			throw new WrongTypeException();
 		}
 	}
+
 	// CSON: CyclomaticComplexity
 	// CSON: NPathComplexity
-	
+
 	/**
 	 * Test if the current implementation can be used to decode the element.
 	 * 
@@ -289,7 +317,7 @@ public class LinkElement extends AbstractElement<BasicLink> {
 	@Override
 	public boolean canDecode(ScilabType element) {
 		data = (ScilabMList) element;
-		
+
 		final String type = ((ScilabString) data.get(0)).getData()[0][0];
 		return type.equals(DATA_FIELD_NAMES.get(0));
 	}
@@ -297,10 +325,13 @@ public class LinkElement extends AbstractElement<BasicLink> {
 	/**
 	 * Encode the instance into the element
 	 * 
-	 * @param from the source instance
-	 * @param element the previously allocated element.
+	 * @param from
+	 *            the source instance
+	 * @param element
+	 *            the previously allocated element.
 	 * @return the element parameter
-	 * @see org.scilab.modules.xcos.io.scicos.Element#encode(java.lang.Object, org.scilab.modules.types.scilabTypes.ScilabType)
+	 * @see org.scilab.modules.xcos.io.scicos.Element#encode(java.lang.Object,
+	 *      org.scilab.modules.types.scilabTypes.ScilabType)
 	 */
 	@Override
 	public ScilabType encode(BasicLink from, ScilabType element) {
@@ -310,41 +341,21 @@ public class LinkElement extends AbstractElement<BasicLink> {
 			data = (ScilabMList) element;
 		}
 
-		final int ptCount = from.getPointCount();
-		
 		start = (BasicPort) from.getSource();
 		end = (BasicPort) from.getTarget();
+
 		final mxGeometry srcGeom = start.getGeometry();
 		final mxGeometry endGeom = end.getGeometry();
 		
-		// xx
-		double[][] xx = new double[1][2 + ptCount];
-		xx[0][0] = srcGeom.getCenterX() + start.getParent().getGeometry().getX();
-		for (int i = 0; i < ptCount; i++) { 
-		    xx[0][i + 1] = ((mxPoint) from.getGeometry().getPoints().get(i)).getX();
-		}
-		xx[0][1 + ptCount] = endGeom.getCenterX() + end.getParent().getGeometry().getX();
-		data.add(new ScilabDouble(xx));
-
-		// yy
-		double[][] yy = new double[1][2 + ptCount];
-			yy[0][0] = -(srcGeom.getCenterY()
-					+ start.getParent().getGeometry().getY() - start
-					.getParent().getGeometry().getHeight());
-		for (int i = 0; i < ptCount; i++) { 
-				yy[0][i + 1] = -(((mxPoint) from.getGeometry().getPoints().get(i)).getY());
-		}
-			yy[0][1 + ptCount] = -(endGeom.getCenterY()
-					+ end.getParent().getGeometry().getY() - start
-					.getParent().getGeometry().getHeight());
-		data.add(new ScilabDouble(yy));
+		// xx and yy
+		encodePoints(from, srcGeom, endGeom);
 
 		data.add(new ScilabString("drawlink")); // id
 
 		double[][] thick = {{0, 0}};
 		data.add(new ScilabDouble(thick)); // thick
 
-		data.add(new ScilabDouble(from.getColorAndType())); //ct
+		data.add(new ScilabDouble(from.getColorAndType())); // ct
 
 		double fromBlockID = ((BasicBlock) start.getParent()).getOrdering();
 		double fromPortID = start.getOrdering();
@@ -358,8 +369,50 @@ public class LinkElement extends AbstractElement<BasicLink> {
 		double toType = LinkPortMap.isStart(end);
 		double[][] toData = {{toBlockID, toPortID, toType}};
 		data.add(new ScilabDouble(toData)); // to
-		
+
 		return data;
 	}
+
+	/**
+	 * Encode the link points
+	 * @param from the source instance
+	 * @param srcGeom the source geometry
+	 * @param endGeom the target geometry
+	 */
+	private void encodePoints(BasicLink from, final mxGeometry srcGeom,
+			final mxGeometry endGeom) {
+		final int ptCount = from.getPointCount();
+		final List<mxPoint> lnkPoints = from.getGeometry().getPoints();
+		
+		double[][] xx = new double[2 + ptCount][1];
+		double[][] yy = new double[2 + ptCount][1];
+		
+		/*
+		 * Start point
+		 */
+		xx[0][0] = srcGeom.getCenterX()	+ start.getParent().getGeometry().getX();
+		yy[0][0] = -(srcGeom.getCenterY()
+				+ start.getParent().getGeometry().getY() - start.getParent()
+				.getGeometry().getHeight());
+		
+		/*
+		 * Control points
+		 */
+		for (int i = 0; i < ptCount; i++) {
+			xx[1 + i][0] = ((mxPoint) lnkPoints.get(i)).getX();
+			yy[1 + i][0] = ((mxPoint) lnkPoints.get(i)).getY();
+		}
+		
+		/*
+		 * End point
+		 */
+		xx[1 + ptCount][0] = endGeom.getCenterX() + end.getParent().getGeometry().getX();
+		yy[1 + ptCount][0] = -(endGeom.getCenterY()
+				+ end.getParent().getGeometry().getY() - end.getParent()
+				.getGeometry().getHeight());
+		
+		data.add(new ScilabDouble(xx));
+		data.add(new ScilabDouble(yy));
+	}
 }
-//CSON: ClassDataAbstractionCoupling
+// CSON: ClassDataAbstractionCoupling

@@ -30,7 +30,6 @@ import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.VersionMismatchException;
-import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongElementException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongStructureException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongTypeException;
 import org.scilab.modules.xcos.link.BasicLink;
@@ -38,6 +37,7 @@ import org.scilab.modules.xcos.link.BasicLink;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxICell;
+import com.mxgraph.model.mxIGraphModel;
 
 /**
  * Perform a diagram transformation between Scicos and Xcos.
@@ -251,10 +251,6 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 	// CSOFF: NPathComplexity
 	private void validate(boolean checkVersion) throws ScicosFormatException {
 		
-		if (!canDecode(base)) {
-			throw new WrongElementException();
-		}
-		
 		// Have we enough fields ?
 		if (base.size() < BASE_FIELD_NAMES.size()) {
 			throw new WrongStructureException();
@@ -431,9 +427,10 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
     	 * Fill the block and link lists
     	 */
 		final Object parent = from.getDefaultParent();
-		final int nbObjs = from.getModel().getChildCount(from);
+		final mxIGraphModel model = from.getModel();
+		final int nbObjs = model.getChildCount(parent);
 		for (int i = 0; i < nbObjs; i++) {
-			Object current = from.getModel().getChildAt(parent, i);
+			Object current = model.getChildAt(parent, i);
 			
 			if (current instanceof BasicBlock && !(current instanceof TextBlock)) {
 				BasicBlock block = (BasicBlock) current;

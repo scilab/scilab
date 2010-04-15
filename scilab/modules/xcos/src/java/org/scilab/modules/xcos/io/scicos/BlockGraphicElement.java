@@ -39,7 +39,7 @@ import com.mxgraph.model.mxGeometry;
  * This class is intentionally package-protected to prevent external use.
  */
 //CSOFF: ClassDataAbstractionCoupling
-class BlockGraphicElement extends AbstractElement<BasicBlock> {
+class BlockGraphicElement extends BlockPartsElement {
 	private static final List<String> DATA_FIELD_NAMES = asList(
 			"graphics", "orig", "sz", "flip", "theta", "exprs", "pin", "pout",
 			"pein", "peout", "gr_i", "id", "in_implicit", "out_implicit");
@@ -357,7 +357,7 @@ class BlockGraphicElement extends AbstractElement<BasicBlock> {
 	 * Encode the instance into the element
 	 * 
 	 * @param from the source instance
-	 * @param element the previously allocated element.
+	 * @param element must be null
 	 * @return the element parameter
 	 * @see org.scilab.modules.xcos.io.scicos.Element#encode(java.lang.Object, org.scilab.modules.types.scilabTypes.ScilabType)
 	 */
@@ -368,6 +368,8 @@ class BlockGraphicElement extends AbstractElement<BasicBlock> {
 		
 		if (data == null) {
 			data = allocateElement();
+		} else {
+			throw new IllegalArgumentException("The element parameter must be null.");
 		}
 		
 		/*
@@ -406,10 +408,10 @@ class BlockGraphicElement extends AbstractElement<BasicBlock> {
 				+ "\",sz(1),sz(2));");
 		graphics.add(graphicsInstructions);
 		graphics.add(new ScilabDouble(GRAPHICS_INSTRUCTION_SIZE));
+		
 		data.set(field, graphics);
 		
 		field++; // id
-		data.set(field, new ScilabString(""));
 		
 		/*
 		 * Fields managed by specific elements.
@@ -433,12 +435,12 @@ class BlockGraphicElement extends AbstractElement<BasicBlock> {
 		int internalField = field;
 		
 		internalField++; // orig
-		double[][] orig = {{geom.getX(), geom.getY()}};
-		data.set(field, new ScilabDouble(orig));
+		final double[][] orig = {{geom.getX(), -geom.getY() - geom.getHeight()}};
+		data.set(internalField, new ScilabDouble(orig));
 		
 		internalField++; // sz
-		double[][] sz = {{geom.getWidth(), geom.getHeight()}};
-		data.set(field, new ScilabDouble(sz));
+		final double[][] sz = {{geom.getWidth(), geom.getHeight()}};
+		data.set(internalField, new ScilabDouble(sz));
 		
 		return internalField;
 	}
@@ -454,16 +456,15 @@ class BlockGraphicElement extends AbstractElement<BasicBlock> {
 		element.add(new ScilabBoolean()); // flip
 		element.add(new ScilabDouble()); // theta
 		element.add(new ScilabString()); // exprs
-		element.add(new ScilabDouble()); // pin
-		element.add(new ScilabDouble()); // pout
-		element.add(new ScilabDouble()); // pein
-		element.add(new ScilabDouble()); // peout
-		element.add(new ScilabList()); // graphics
-		element.add(new ScilabString()); // id
-		element.add(new ScilabDouble()); // in_implicit
-		element.add(new ScilabDouble()); // out_implicit
+		addSizedPortVector(element, ScilabDouble.class, getInSize());  // pin
+		addSizedPortVector(element, ScilabDouble.class, getOutSize()); // pout
+		addSizedPortVector(element, ScilabDouble.class, getEinSize()); // pein
+		addSizedPortVector(element, ScilabDouble.class, getEoutSize()); // peout
+		element.add(new ScilabList()); // gr_i
+		element.add(new ScilabString("")); // id
+		addSizedPortVector(element, ScilabString.class, getInSize()); // in_implicit
+		addSizedPortVector(element, ScilabString.class, getOutSize()); // out_implicit
 		return element;
 	}
-
 }
 //CSON: ClassDataAbstractionCoupling

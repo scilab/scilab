@@ -35,9 +35,12 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
 	private static final List<String> DATA_FIELD_NAMES = asList(
 			"params", "wpar", "title", "tol", "tf",
 			"context", "void1", "options", "void2", "void3", "doc");
+	
 	private static final int TOL_INDEX = 3;
 	private static final int TF_INDEX = 4;
 	private static final int CONTEXT_INDEX = 5;
+	
+	private static final int TOL_SIZE = 7;
 	
 	/**
 	 * Mutable field which contains the current working data. 
@@ -274,12 +277,27 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
 	 * @param into the current object to put data into.
 	 */
 	private void fillContext(ScicosParameters into) {
+		final ScilabType contextType = data.get(CONTEXT_INDEX);
+		
+		/*
+		 * On an empty context the type is ScilabDouble.
+		 */
+		if (contextType instanceof ScilabDouble) {
+			try {
+				into.setContext(new String[] {""});
+			} catch (PropertyVetoException e) {
+				LogFactory.getLog(ScicosParametersElement.class).error(e);
+			}
+			return;
+		}
+		
+		/*
+		 * Normal case
+		 */
 		final boolean isColumnDominant = 
-			data.get(CONTEXT_INDEX).getHeight() >= data.get(CONTEXT_INDEX).getWidth();
-		final String[][] str = ((ScilabString) data.get(CONTEXT_INDEX))
-				.getData();
-		final int length = data.get(CONTEXT_INDEX).getHeight()
-				+ data.get(CONTEXT_INDEX).getWidth() - 1;
+			contextType.getHeight() >= contextType.getWidth();
+		final String[][] str = ((ScilabString) contextType).getData();
+		final int length = contextType.getHeight() + contextType.getWidth() - 1;
 		
 		String[] context = new String[length];
 		
@@ -330,15 +348,19 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
 		/*
 		 * fill the tol field
 		 */
-		double[][] tolField = {
-				{from.getIntegratorAbsoluteTolerance()},
-				{from.getIntegratorRelativeTolerance()},
-				{from.getToleranceOnTime()},
-				{from.getMaxIntegrationTimeInterval()},
-				{from.getRealTimeScaling()},
-				{from.getSolver()},
-				{from.getMaximumStepSize()}
-		};
+		int field = 0;
+		final double[][] tolField = new double[1][TOL_SIZE];
+		
+		tolField[0][field++] = from.getIntegratorAbsoluteTolerance();
+		tolField[0][field++] = from.getIntegratorRelativeTolerance();
+		tolField[0][field++] = from.getToleranceOnTime();
+		tolField[0][field++] = from.getMaxIntegrationTimeInterval();
+		tolField[0][field++] = from.getRealTimeScaling();
+		tolField[0][field++] = from.getSolver();
+		tolField[0][field++] = from.getMaximumStepSize();
+		
+		assert field == TOL_SIZE;
+
 		ScilabDouble scilabTolField = new ScilabDouble(tolField);
 		data.set(TOL_INDEX, scilabTolField);
 		

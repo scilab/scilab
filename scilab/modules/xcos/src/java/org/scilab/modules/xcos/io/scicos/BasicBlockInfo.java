@@ -41,7 +41,7 @@ public final class BasicBlockInfo {
 	 *            the ports
 	 * @return array of links id
 	 */
-	protected static ScilabDouble getAllLinkId(List<? extends BasicPort> ports) {
+	protected static ScilabDouble getAllLinkId(List< ? extends BasicPort> ports) {
 		if (ports.isEmpty()) {
 			return new ScilabDouble();
 		}
@@ -62,7 +62,7 @@ public final class BasicBlockInfo {
 	 * @return array of ports data lines
 	 */
 	protected static ScilabDouble getAllPortsDataLines(
-			List<? extends BasicPort> ports) {
+			List< ? extends BasicPort> ports) {
 		if (ports.isEmpty()) {
 			return new ScilabDouble();
 		}

@@ -25,6 +25,7 @@ import org.scilab.modules.hdf5.write.H5Write;
 import org.scilab.modules.types.scilabTypes.ScilabList;
 import org.scilab.modules.types.scilabTypes.ScilabMList;
 import org.scilab.modules.types.scilabTypes.ScilabString;
+import org.scilab.modules.types.scilabTypes.ScilabType;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.VersionMismatchException;
@@ -162,7 +163,9 @@ public class H5RWHandler {
 				 * contains the partially decoded data so continue.
 				 */
 				diagram.error(XcosMessages.UNKNOW_VERSION
-						+ ((VersionMismatchException) e).getWrongVersion());
+						+ ((VersionMismatchException) e).getWrongVersion()
+						+ "\n"
+						+ XcosMessages.TRY_TO_CONTINUE);
 			} else {
 				LogFactory.getLog(H5RWHandler.class).error(e);
 			}
@@ -185,15 +188,22 @@ public class H5RWHandler {
 	 */
 	public void writeBlock(BasicBlock block) {
 		final BlockElement element = new BlockElement();
+		final ScilabType data = element.encode(block, null);
 
 		try {
 		    int fileId = H5Write.createFile(h5File.getAbsolutePath());
 		    
-		    H5Write.writeInDataSet(fileId, SCS_M, element.encode(block, null));
+		    H5Write.writeInDataSet(fileId, SCS_M, data);
 		    
 		    H5Write.closeFile(fileId);
 		} catch (HDF5Exception e) {
 		   LogFactory.getLog(H5Read.class).error(e);
+		} catch (java.lang.NullPointerException e) {
+			LogFactory.getLog(H5Write.class).error(e);
+			LogFactory.getLog(H5Write.class).error(data);
+		} catch (java.lang.IndexOutOfBoundsException e) {
+			LogFactory.getLog(H5Write.class).error(e);
+			LogFactory.getLog(H5Write.class).error(data);
 		}
 	}
 	
@@ -211,7 +221,7 @@ public class H5RWHandler {
 		    
 		    H5Write.closeFile(fileId);
 		} catch (HDF5Exception e) {
-		   LogFactory.getLog(H5Read.class).error(e);
+		   LogFactory.getLog(H5Write.class).error(e);
 		}
 	}
 	
@@ -221,15 +231,22 @@ public class H5RWHandler {
 	 */
 	public void writeDiagram(XcosDiagram diagram) {
 		final DiagramElement element = new DiagramElement();
-
+		final ScilabType data = element.encode(diagram, null); 
+		
 		try {
 		    int fileId = H5Write.createFile(h5File.getAbsolutePath());
 		    
-		    H5Write.writeInDataSet(fileId, SCS_M, element.encode(diagram, null));
+		    H5Write.writeInDataSet(fileId, SCS_M, data);
 		    
 		    H5Write.closeFile(fileId);
 		} catch (HDF5Exception e) {
-		   LogFactory.getLog(H5Read.class).error(e);
+		   LogFactory.getLog(H5Write.class).error(e);
+		} catch (java.lang.NullPointerException e) {
+			LogFactory.getLog(H5Write.class).error(e);
+			LogFactory.getLog(H5Write.class).error(data);
+		} catch (java.lang.IndexOutOfBoundsException e) {
+			LogFactory.getLog(H5Write.class).error(e);
+			LogFactory.getLog(H5Write.class).error(data);
 		}
 	}
 }

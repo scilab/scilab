@@ -37,7 +37,7 @@ import org.scilab.modules.xcos.port.control.ControlPort;
  * This class is intentionally package-protected to prevent external use.
  */
 //CSOFF: ClassDataAbstractionCoupling
-class BlockModelElement extends AbstractElement<BasicBlock> {
+class BlockModelElement extends BlockPartsElement {
 	private static final List<String> DATA_FIELD_NAMES = asList("model", "sim",
 			"in", "in2", "intyp", "out", "out2", "outtyp", "evtin", "evtout",
 			"state", "dstate", "odstate", "rpar", "ipar", "opar", "blocktype",
@@ -51,7 +51,7 @@ class BlockModelElement extends AbstractElement<BasicBlock> {
 
 	/** Mutable field to easily get the data through methods */
 	private ScilabMList data;
-
+	
 	/**
 	 * Default constructor
 	 */
@@ -467,7 +467,7 @@ class BlockModelElement extends AbstractElement<BasicBlock> {
 	 * Encode the instance into the element
 	 * 
 	 * @param from the source instance
-	 * @param element the previously allocated element.
+	 * @param element must be null.
 	 * @return the element parameter
 	 * @see org.scilab.modules.xcos.io.scicos.Element#encode(java.lang.Object, org.scilab.modules.types.scilabTypes.ScilabType)
 	 */
@@ -478,6 +478,8 @@ class BlockModelElement extends AbstractElement<BasicBlock> {
 		
 		if (data == null) {
 			data = allocateElement();
+		} else {
+			throw new IllegalArgumentException("The element parameter must be null.");
 		}
 		
 		/*
@@ -553,14 +555,14 @@ class BlockModelElement extends AbstractElement<BasicBlock> {
 	private ScilabMList allocateElement() {
 		ScilabMList element = new ScilabMList(DATA_FIELD_NAMES.toArray(new String[0]));
 		element.add(new ScilabList()); // sim
-		element.add(new ScilabDouble()); // in
-		element.add(new ScilabDouble()); // in2
-		element.add(new ScilabDouble()); // intyp
-		element.add(new ScilabDouble()); // out
-		element.add(new ScilabDouble()); // out2
-		element.add(new ScilabDouble()); // outtyp
-		element.add(new ScilabDouble()); // evtin
-		element.add(new ScilabDouble()); // evtout
+		addSizedPortVector(element, ScilabDouble.class, getInSize()); // in
+		addSizedPortVector(element, ScilabDouble.class, getInSize()); // in2
+		addSizedPortVector(element, ScilabDouble.class, getInSize()); // intyp
+		addSizedPortVector(element, ScilabDouble.class, getOutSize()); // out
+		addSizedPortVector(element, ScilabDouble.class, getOutSize()); // out2
+		addSizedPortVector(element, ScilabDouble.class, getOutSize()); // outtyp
+		addSizedPortVector(element, ScilabDouble.class, getEinSize()); // evtin
+		addSizedPortVector(element, ScilabDouble.class, getEoutSize()); // evtout
 		element.add(new ScilabDouble()); // state
 		element.add(new ScilabDouble()); // dstate
 		element.add(new ScilabDouble()); // ostate
@@ -576,6 +578,5 @@ class BlockModelElement extends AbstractElement<BasicBlock> {
 		element.add(new ScilabList()); // equations
 		return element;
 	}
-	
 }
 //CSON: ClassDataAbstractionCoupling

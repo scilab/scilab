@@ -197,9 +197,12 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 		if (data == null) {
 			throw new IllegalArgumentException();
 		}
-		
+
 		encodeModel(from);
 		encodeGraphics(from);
+		
+		// Update the index counter
+		alreadyDecodedCount++;
 		
 		return data;
 	}
@@ -221,17 +224,25 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 		double[][] values;
 		
 		// out
-		sciValues = (ScilabDouble) data.get(MODEL_OUT_DATALINE_INDEX);
+		sciValues = (ScilabDouble) model.get(MODEL_OUT_DATALINE_INDEX);
 		values = sciValues.getRealPart();
-		values[alreadyDecodedCount][0] = from.getDataLines();
+		int datalines = from.getDataLines();
+		if (datalines == 0) {
+			datalines = 1;
+		}
+		values[alreadyDecodedCount][0] = datalines;
 		
 		// out2
-		sciValues = (ScilabDouble) data.get(MODEL_OUT_DATACOL_INDEX);
+		sciValues = (ScilabDouble) model.get(MODEL_OUT_DATACOL_INDEX);
 		values = sciValues.getRealPart();
-		values[alreadyDecodedCount][0] = from.getDataColumns();
+		int datacolumns = from.getDataColumns();
+		if (datacolumns == 0) {
+			datacolumns = 1;
+		}
+		values[alreadyDecodedCount][0] = datacolumns;
 		
 		// outtyp
-		sciValues = (ScilabDouble) data.get(MODEL_OUT_DATATYPE_INDEX);
+		sciValues = (ScilabDouble) model.get(MODEL_OUT_DATATYPE_INDEX);
 		values = sciValues.getRealPart();
 		values[alreadyDecodedCount][0] = from.getDataType().getAsDouble();
 	}
@@ -254,12 +265,12 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 		String[][] strings;
 		
 		// pout
-		sciValues = (ScilabDouble) data.get(GRAPHICS_POUT_INDEX);
+		sciValues = (ScilabDouble) graphics.get(GRAPHICS_POUT_INDEX);
 		values = sciValues.getRealPart();
 		values[alreadyDecodedCount][0] = from.getConnectedLinkId();
 		
 		// out_implicit
-		sciStrings = (ScilabString) data.get(GRAPHICS_OUTIMPL_INDEX);
+		sciStrings = (ScilabString) graphics.get(GRAPHICS_OUTIMPL_INDEX);
 		strings = sciStrings.getData();
 		strings[alreadyDecodedCount][0] = from.getType().getAsString();
 	}
