@@ -16,7 +16,7 @@
 function result = atomsAutoloadCheck(packages,section)
 	
 	rhs        = argn(2);
-	result     = []; // Column vector that contain autoloaded packages
+	result     = []; // Column vector that contains autoloaded packages
 	
 	// Check write access on allusers zone
 	// =========================================================================

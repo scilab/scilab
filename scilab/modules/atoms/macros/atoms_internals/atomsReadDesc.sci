@@ -29,7 +29,7 @@ function description_out = atomsReadDesc(file_in,description_in)
 	end
 	
 	if regexp( file_in,"/DESCRIPTION$/") == [] then
-		error(msprintf(gettext("%s: Wrong value for input argument #%d: String that end with DESCRIPTION expected.\n"),"atomsReadDesc",1));
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: String that ends with DESCRIPTION expected.\n"),"atomsReadDesc",1));
 	end
 	
 	if rhs==2 & type(description_in)<>17 then

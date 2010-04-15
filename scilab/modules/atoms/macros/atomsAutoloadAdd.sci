@@ -17,7 +17,7 @@ function nbAdd = atomsAutoloadAdd(packages,section)
 	
 	rhs            = argn(2);
 	nbAdd          = 0;
-	autoloaded     = []; // Column vector that contain autoloaded packages
+	autoloaded     = []; // Column vector that contains autoloaded packages
 	
 	// Load Atoms Internals lib if it's not already loaded
 	// =========================================================================
