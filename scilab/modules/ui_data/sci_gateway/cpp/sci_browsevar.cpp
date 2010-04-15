@@ -63,7 +63,7 @@ int sci_browsevar(char *fname,unsigned long fname_len)
     {
         pstAllVariableNames[i] = getGlobalNamefromId(j);
         piAllVariableBytes[i] = getGlobalSizefromId(j);
-        getNamedVarType(pvApiCtx, psAllVariableNames[i], &piAllVariableTypes[i]);
+        getNamedVarType(pvApiCtx, pstAllVariableNames[i], &piAllVariableTypes[i]);
         pstAllVariableStandard[i] = "global";
     }
 
@@ -86,7 +86,7 @@ int sci_browsevar(char *fname,unsigned long fname_len)
     // Launch Java Variable Browser through JNI
     BrowseVar::openVariableBrowser(getScilabJavaVM(), 
                                    pstColumnNames, 5,
-                                   psAllVariableNames, iLocalVariablesUsed + iGlobalVariablesUsed,
+                                   pstAllVariableNames, iLocalVariablesUsed + iGlobalVariablesUsed,
                                    piAllVariableBytes, iLocalVariablesUsed + iGlobalVariablesUsed,
                                    piAllVariableTypes, iLocalVariablesUsed + iGlobalVariablesUsed,
                                    pstAllVariableStandard, iLocalVariablesUsed + iGlobalVariablesUsed
