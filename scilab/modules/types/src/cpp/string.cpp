@@ -591,9 +591,9 @@ namespace types
 
 		//check input param
 
-		if(	_bAsVector && _piMaxDim[0] > size_get() ||
-				_bAsVector == false && _piMaxDim[0] > rows_get() ||
-				_bAsVector == false && _piMaxDim[1] > cols_get())
+		if(	(_bAsVector && _piMaxDim[0] > size_get()) ||
+            (_bAsVector == false && _piMaxDim[0] > rows_get()) ||
+            (_bAsVector == false && _piMaxDim[1] > cols_get()))
 		{
 			return NULL;
 		}
