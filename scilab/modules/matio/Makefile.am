@@ -16,6 +16,8 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_matio.c \
 		    sci_gateway/c/sci_matfile_varreadnext.c \
 		    sci_gateway/c/sci_matfile_varwrite.c
 
+GATEWAY_CPP_SOURCES = sci_gateway/cpp/matio_gw.cpp
+
 #### List of the C files ####
 MATIO_C_SOURCES = src/c/matfile_manager.c \
 		  src/c/CreateMatlabVariable.c \
@@ -53,13 +55,19 @@ libscimatio_la_CFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/operations/includes \
 			$(MATIO_CFLAGS)
 
+libscimatio_la_CPPFLAGS = -I$(srcdir)/includes/ \
+			-I$(top_srcdir)/modules/functions_manager/includes/ \
+			-I$(top_srcdir)/modules/types/includes/ \
+			-I$(top_srcdir)/modules/symbol/includes/ \
+			-I$(top_srcdir)/modules/abstractSyntaxTree/includes/
+
 pkglib_LTLIBRARIES = libscimatio.la
 
-libscimatio_la_SOURCES = $(MATIO_C_SOURCES) $(GATEWAY_C_SOURCES)
+libscimatio_la_SOURCES = $(MATIO_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(libscimatio_la_SOURCES)
-INCLUDE_FLAGS = $(libscimatio_la_CFLAGS)
+INCLUDE_FLAGS = $(libscimatio_la_CFLAGS) $(libscimatio_la_CPPFLAGS)
 
 #### Target ######
 modulename=matio

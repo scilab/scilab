@@ -85,7 +85,8 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscifunctions_manager_la_includedir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscifunctions_manager_la_DEPENDENCIES = $(top_builddir)/modules/elementary_functions/libscielementary_functions.la
+libscifunctions_manager_la_DEPENDENCIES = $(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
+	$(top_builddir)/modules/matio/libscimatio.la
 am__objects_1 = libscifunctions_manager_la-funcmanager.lo \
 	libscifunctions_manager_la-configvariable.lo
 am_libscifunctions_manager_la_OBJECTS = $(am__objects_1)
@@ -396,7 +397,9 @@ libscifunctions_manager_la_CXXFLAGS = -I$(top_builddir)/modules/types/includes/ 
 						-Isrc/cpp \
 						$(XML_FLAGS)
 
-libscifunctions_manager_la_LIBADD = $(top_builddir)/modules/elementary_functions/libscielementary_functions.la
+libscifunctions_manager_la_LIBADD = $(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
+					$(top_builddir)/modules/matio/libscimatio.la
+
 libscifunctions_manager_la_includedir = $(pkgincludedir)/Types
 libscifunctions_manager_la_include_HEADERS = 
 

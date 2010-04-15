@@ -19,18 +19,19 @@
 #include "Scierror.h"
 
 #include "api_scilab.h"
+#include "api_oldstack.h"
 
 #define MATIO_ERROR if(_SciErr.iErr) \
     {				     \
       printError(&_SciErr, 0);	     \
-      return 0;			     \
+      return 1;			     \
     }
 
 /*******************************************************************************
    Interface for MATIO function called Mat_Open
    Scilab function name : matfile_open
 *******************************************************************************/
-int sci_matfile_open(void *pvApiCtx, char *fname,unsigned long fname_len)
+int sci_matfile_open(char *fname, int *_piKey)
 {
   int nbRow = 0, nbCol = 0;
   mat_t *matfile;
@@ -44,13 +45,13 @@ int sci_matfile_open(void *pvApiCtx, char *fname,unsigned long fname_len)
   CheckRhs(1, 2);
   CheckLhs(1, 1);
   
-  _SciErr = getVarAddressFromPosition(pvApiCtx, 1, &filename_addr); MATIO_ERROR;
-  _SciErr = getVarType(pvApiCtx, filename_addr, &var_type); MATIO_ERROR;
+  _SciErr = getVarAddressFromPosition(_piKey, 1, &filename_addr); MATIO_ERROR;
+  _SciErr = getVarType(_piKey, filename_addr, &var_type); MATIO_ERROR;
   
   if (var_type == sci_strings)
     {
-      getAllocatedSingleString(pvApiCtx, filename_addr, &filename);
-      _SciErr = getVarDimension(pvApiCtx, filename_addr, &nbRow, &nbCol); 
+      getAllocatedSingleString(_piKey, filename_addr, &filename);
+      _SciErr = getVarDimension(_piKey, filename_addr, &nbRow, &nbCol); 
       MATIO_ERROR;
       
       if (nbCol != 1) 
@@ -59,7 +60,7 @@ int sci_matfile_open(void *pvApiCtx, char *fname,unsigned long fname_len)
 	  
 	  freeAllocatedSingleString(filename);
 	  
-	  return FALSE;
+	  return 1;
 	}
     }
   else
@@ -68,19 +69,19 @@ int sci_matfile_open(void *pvApiCtx, char *fname,unsigned long fname_len)
       
       freeAllocatedSingleString(filename);
       
-      return FALSE;
+      return 1;
     }
   
   if (Rhs == 2)
     {
-      _SciErr = getVarAddressFromPosition(pvApiCtx, 2, &option_addr); MATIO_ERROR;
+      _SciErr = getVarAddressFromPosition(_piKey, 2, &option_addr); MATIO_ERROR;
       
-      _SciErr = getVarType(pvApiCtx, option_addr, &var_type); MATIO_ERROR;
+      _SciErr = getVarType(_piKey, option_addr, &var_type); MATIO_ERROR;
       
       if (var_type == sci_strings)
 	{
-	  getAllocatedSingleString(pvApiCtx, option_addr, &optionStr);
-	  _SciErr = getVarDimension(pvApiCtx, option_addr, &nbRow, &nbCol); MATIO_ERROR;
+	  getAllocatedSingleString(_piKey, option_addr, &optionStr);
+	  _SciErr = getVarDimension(_piKey, option_addr, &nbRow, &nbCol); MATIO_ERROR;
 	  
 	  if (nbCol != 1) 
 	    {
@@ -89,7 +90,7 @@ int sci_matfile_open(void *pvApiCtx, char *fname,unsigned long fname_len)
 	      freeAllocatedSingleString(filename);
 	      freeAllocatedSingleString(optionStr);
 	      
-	      return FALSE;
+	      return 1;
 	    }
 	  
 	  if (strcmp(optionStr, "r")==0)
@@ -107,7 +108,7 @@ int sci_matfile_open(void *pvApiCtx, char *fname,unsigned long fname_len)
 	      freeAllocatedSingleString(filename);
 	      freeAllocatedSingleString(optionStr);
 	      
-	      return FALSE;
+	      return 1;
 	    }
 	}
       else
@@ -117,7 +118,7 @@ int sci_matfile_open(void *pvApiCtx, char *fname,unsigned long fname_len)
 	  freeAllocatedSingleString(filename);
 	  freeAllocatedSingleString(optionStr);
 	  
-	  return FALSE;
+	  return 1;
 	}
     }
   else
@@ -148,7 +149,7 @@ int sci_matfile_open(void *pvApiCtx, char *fname,unsigned long fname_len)
     }
   
   /* Return the index */
-  createScalarDouble(pvApiCtx, Rhs+1, (double)fileIndex);
+  createScalarDouble(_piKey, Rhs+1, (double)fileIndex);
   
   LhsVar(1) = Rhs+1;
   
@@ -157,5 +158,5 @@ int sci_matfile_open(void *pvApiCtx, char *fname,unsigned long fname_len)
   freeAllocatedSingleString(filename);
   freeAllocatedSingleString(optionStr);
   
-  return TRUE;
+  return 0;
 }

@@ -22,11 +22,11 @@ int gw_matio(void);
 /*-----------------------------------------------------------------------------------*/ 
 static gw_generic_table Tab[] =
 {
-  {sci_matfile_open,"matfile_open"},
-  {sci_matfile_close,"matfile_close"},
-  {sci_matfile_listvar,"matfile_listvar"},
-  {sci_matfile_varreadnext,"matfile_varreadnext"},
-  {sci_matfile_varwrite,"matfile_varwrite"}
+  {NULL,""},
+  {NULL,""},
+  {NULL,""},
+  {NULL,""},
+  {NULL,""}
 };
 /*-----------------------------------------------------------------------------------*/  
 int gw_matio(void)

@@ -23,14 +23,15 @@
 #endif
 
 #include "api_scilab.h"
+#include "api_oldstack.h"
 
 #define MATIO_ERROR if(_SciErr.iErr)	     \
     {					     \
       printError(&_SciErr, 0);		     \
-      return 0;				     \
+      return 1;				     \
     }
 
-int sci_matfile_listvar(void *pvApiCtx, char *fname,unsigned long fname_len)
+int sci_matfile_listvar(char* fname, int* _piKey)
 {
   int nbRow = 0, nbCol = 0, stkAdr = 0;
   mat_t *matfile = NULL;
@@ -49,23 +50,23 @@ int sci_matfile_listvar(void *pvApiCtx, char *fname,unsigned long fname_len)
   
   /* First Rhs is the index of the file to read */
   
-  _SciErr = getVarAddressFromPosition(pvApiCtx, 1, &fd_addr); MATIO_ERROR;
-  _SciErr = getVarType(pvApiCtx, fd_addr, &var_type); MATIO_ERROR;
+  _SciErr = getVarAddressFromPosition(_piKey, 1, &fd_addr); MATIO_ERROR;
+  _SciErr = getVarType(_piKey, fd_addr, &var_type); MATIO_ERROR;
   
   if (var_type == sci_matrix)
     {
-      getScalarDouble(pvApiCtx, fd_addr, &tmp_dbl);
-      if (!isScalar(pvApiCtx, fd_addr))
+      getScalarDouble(_piKey, fd_addr, &tmp_dbl);
+      if (!isScalar(_piKey, fd_addr))
 	{
 	  Scierror(999, _("%s: Wrong size for first input argument: Single double expected.\n"), fname);
-	  return FALSE;
+	  return 1;
 	}
       fileIndex = (int)tmp_dbl;
     }
   else
     {
       Scierror(999, _("%s: Wrong type for first input argument: Double expected.\n"), fname);
-      return FALSE;
+      return 1;
     }
   
   /* Gets the corresponding matfile */
@@ -75,7 +76,7 @@ int sci_matfile_listvar(void *pvApiCtx, char *fname,unsigned long fname_len)
   if (Mat_Rewind(matfile) != 0)
     {
       Scierror(999, _("%s: Could not rewind the file %s.\n"), "matfile_listvar", matfile->filename);
-      return FALSE;
+      return 1;
     }
   
   matvar = Mat_VarReadNext(matfile);
@@ -86,21 +87,21 @@ int sci_matfile_listvar(void *pvApiCtx, char *fname,unsigned long fname_len)
       if (varnames == NULL)
 	{
 	  Scierror(999, _("%s: No more memory.\n"), "matfile_listvar");
-	  return FALSE;
+	  return 1;
 	}
       varnames[nbvar-1] = strdup(matvar->name);
       varclasses = (double*) REALLOC(varclasses, nbvar*sizeof(double));
       if (varnames == NULL)
 	{
 	  Scierror(999, _("%s: No more memory.\n"), "matfile_listvar");
-	  return FALSE;
+	  return 1;
 	}
       varclasses[nbvar-1] = (double) matvar->class_type;
       vartypes = (double*) REALLOC(vartypes, nbvar*sizeof(double));
       if (varnames == NULL)
 	{
 	  Scierror(999, _("%s: No more memory.\n"), "matfile_listvar");
-	  return FALSE;
+	  return 1;
 	}
       vartypes[nbvar-1] = (double) matvar->data_type;
       
@@ -112,20 +113,20 @@ int sci_matfile_listvar(void *pvApiCtx, char *fname,unsigned long fname_len)
   
   /* Return the variable names list */
   nbRow = nbvar; nbCol = 1;
-  _SciErr = createMatrixOfString(pvApiCtx, Rhs+1, nbRow, nbCol, varnames); MATIO_ERROR;
+  _SciErr = createMatrixOfString(_piKey, Rhs+1, nbRow, nbCol, varnames); MATIO_ERROR;
   LhsVar(1) = Rhs+1;
   
   /* Return the variable classes */
   if (Lhs >= 2)
     {
-      _SciErr = createMatrixOfDouble(pvApiCtx, Rhs+2, nbRow, nbCol, varclasses); MATIO_ERROR;
+      _SciErr = createMatrixOfDouble(_piKey, Rhs+2, nbRow, nbCol, varclasses); MATIO_ERROR;
       LhsVar(2) = Rhs+2;
     }
   
   /* Return the variable types */
   if (Lhs >= 3)
     {
-      _SciErr = createMatrixOfDouble(pvApiCtx, Rhs+3, nbRow, nbCol, vartypes); MATIO_ERROR;
+      _SciErr = createMatrixOfDouble(_piKey, Rhs+3, nbRow, nbCol, vartypes); MATIO_ERROR;
       LhsVar(3) = Rhs+3;
     }
   
@@ -135,5 +136,5 @@ int sci_matfile_listvar(void *pvApiCtx, char *fname,unsigned long fname_len)
   FREE(varclasses);
   FREE(vartypes);
   
-  return TRUE;
+  return 0;
 }

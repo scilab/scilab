@@ -18,18 +18,19 @@
 #include "sciprint.h"
 
 #include "api_scilab.h"
+#include "api_oldstack.h"
 
 #define MATIO_ERROR if(_SciErr.iErr)	     \
     {					     \
       printError(&_SciErr, 0);		     \
-      return 0;				     \
+      return 1;				     \
     }
 
 /*******************************************************************************
 Interface for MATIO function called Mat_Close
 Scilab function name : matfile_close
 *******************************************************************************/
-int sci_matfile_close(void *pvApiCtx, char *fname,unsigned long fname_len)
+int sci_matfile_close(char* fname, int* _piKey)
 {
   mat_t * matfile = NULL;
   int fileIndex = 0; 
@@ -44,23 +45,23 @@ int sci_matfile_close(void *pvApiCtx, char *fname,unsigned long fname_len)
   
   /* First Rhs is the index of the file to close */
   
-  _SciErr = getVarAddressFromPosition(pvApiCtx, 1, &fd_addr); MATIO_ERROR;
-  _SciErr = getVarType(pvApiCtx, fd_addr, &var_type); MATIO_ERROR;
+  _SciErr = getVarAddressFromPosition(_piKey, 1, &fd_addr); MATIO_ERROR;
+  _SciErr = getVarType(_piKey, fd_addr, &var_type); MATIO_ERROR;
   
   if (var_type == sci_matrix)
     {
-      _SciErr = getMatrixOfDouble(pvApiCtx, fd_addr, &nbRow, &nbCol, &fd_val); MATIO_ERROR;
+      _SciErr = getMatrixOfDouble(_piKey, fd_addr, &nbRow, &nbCol, &fd_val); MATIO_ERROR;
       if (nbRow * nbCol != 1)
 	{
 	  Scierror(999, _("%s: Wrong size for first input argument: Single double expected.\n"), fname);
-	  return FALSE;
+	  return 1;
 	}
       fileIndex = (int)*fd_val;
     }
   else
     {
       Scierror(999, _("%s: Wrong type for first input argument: Double expected.\n"), fname);
-      return FALSE;
+      return 1;
     }
   
   /* Gets the corresponding matfile to close it */
@@ -77,11 +78,11 @@ int sci_matfile_close(void *pvApiCtx, char *fname,unsigned long fname_len)
   
   /* Return execution flag */
   var_type = (flag == 0);
-  createScalarBoolean(pvApiCtx, Rhs+1, var_type); MATIO_ERROR;
+  createScalarBoolean(_piKey, Rhs+1, var_type); MATIO_ERROR;
   
   LhsVar(1) = Rhs+1;
   
   PutLhsVar();
   
-  return TRUE;
+  return 0;
 }

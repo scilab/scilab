@@ -123,7 +123,8 @@ am__libscimatio_la_SOURCES_DIST = src/nomatio/nomatio.c \
 	sci_gateway/c/sci_matfile_close.c \
 	sci_gateway/c/sci_matfile_listvar.c \
 	sci_gateway/c/sci_matfile_varreadnext.c \
-	sci_gateway/c/sci_matfile_varwrite.c
+	sci_gateway/c/sci_matfile_varwrite.c \
+	sci_gateway/cpp/matio_gw.cpp
 @MATIO_FALSE@am__objects_1 = libscimatio_la-nomatio.lo
 @MATIO_TRUE@am__objects_1 = libscimatio_la-matfile_manager.lo \
 @MATIO_TRUE@	libscimatio_la-CreateMatlabVariable.lo \
@@ -149,11 +150,13 @@ am__libscimatio_la_SOURCES_DIST = src/nomatio/nomatio.c \
 @MATIO_TRUE@	libscimatio_la-sci_matfile_listvar.lo \
 @MATIO_TRUE@	libscimatio_la-sci_matfile_varreadnext.lo \
 @MATIO_TRUE@	libscimatio_la-sci_matfile_varwrite.lo
-am_libscimatio_la_OBJECTS = $(am__objects_1) $(am__objects_2)
+@MATIO_TRUE@am__objects_3 = libscimatio_la-matio_gw.lo
+am_libscimatio_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
+	$(am__objects_3)
 libscimatio_la_OBJECTS = $(am_libscimatio_la_OBJECTS)
-libscimatio_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libscimatio_la_CFLAGS) \
-	$(CFLAGS) $(libscimatio_la_LDFLAGS) $(LDFLAGS) -o $@
+libscimatio_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
+	$(CXXFLAGS) $(libscimatio_la_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -166,6 +169,15 @@ LTCOMPILE = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
+	$(LDFLAGS) -o $@
+CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+LTCXXCOMPILE = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+CXXLD = $(CXX)
+CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscimatio_la_SOURCES)
 DIST_SOURCES = $(am__libscimatio_la_SOURCES_DIST)
@@ -492,6 +504,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @MATIO_TRUE@		    sci_gateway/c/sci_matfile_varreadnext.c \
 @MATIO_TRUE@		    sci_gateway/c/sci_matfile_varwrite.c
 
+@MATIO_TRUE@GATEWAY_CPP_SOURCES = sci_gateway/cpp/matio_gw.cpp
 @MATIO_FALSE@MATIO_C_SOURCES = src/nomatio/nomatio.c
 
 #### List of the C files ####
@@ -524,12 +537,18 @@ libscimatio_la_CFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/operations/includes \
 			$(MATIO_CFLAGS)
 
+libscimatio_la_CPPFLAGS = -I$(srcdir)/includes/ \
+			-I$(top_srcdir)/modules/functions_manager/includes/ \
+			-I$(top_srcdir)/modules/types/includes/ \
+			-I$(top_srcdir)/modules/symbol/includes/ \
+			-I$(top_srcdir)/modules/abstractSyntaxTree/includes/
+
 pkglib_LTLIBRARIES = libscimatio.la
-libscimatio_la_SOURCES = $(MATIO_C_SOURCES) $(GATEWAY_C_SOURCES)
+libscimatio_la_SOURCES = $(MATIO_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC = $(libscimatio_la_SOURCES)
-INCLUDE_FLAGS = $(libscimatio_la_CFLAGS)
+INCLUDE_FLAGS = $(libscimatio_la_CFLAGS) $(libscimatio_la_CPPFLAGS)
 
 #### Target ######
 modulename = matio
@@ -548,7 +567,7 @@ libscimatio_la_sci_gateway_DATA = sci_gateway/matio_gateway.xml
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .sci .bin .c .lo .o .obj
+.SUFFIXES: .sci .bin .c .cpp .lo .o .obj
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -638,6 +657,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_la-GetStructVariable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_la-gw_matio.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_la-matfile_manager.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_la-matio_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_la-nomatio.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_la-sci_matfile_close.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_la-sci_matfile_listvar.Plo@am__quote@
@@ -667,179 +687,207 @@ distclean-compile:
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
 libscimatio_la-nomatio.lo: src/nomatio/nomatio.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-nomatio.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-nomatio.Tpo -c -o libscimatio_la-nomatio.lo `test -f 'src/nomatio/nomatio.c' || echo '$(srcdir)/'`src/nomatio/nomatio.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-nomatio.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-nomatio.Tpo -c -o libscimatio_la-nomatio.lo `test -f 'src/nomatio/nomatio.c' || echo '$(srcdir)/'`src/nomatio/nomatio.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscimatio_la-nomatio.Tpo $(DEPDIR)/libscimatio_la-nomatio.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/nomatio/nomatio.c' object='libscimatio_la-nomatio.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-nomatio.lo `test -f 'src/nomatio/nomatio.c' || echo '$(srcdir)/'`src/nomatio/nomatio.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-nomatio.lo `test -f 'src/nomatio/nomatio.c' || echo '$(srcdir)/'`src/nomatio/nomatio.c
 
 libscimatio_la-matfile_manager.lo: src/c/matfile_manager.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-matfile_manager.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-matfile_manager.Tpo -c -o libscimatio_la-matfile_manager.lo `test -f 'src/c/matfile_manager.c' || echo '$(srcdir)/'`src/c/matfile_manager.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-matfile_manager.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-matfile_manager.Tpo -c -o libscimatio_la-matfile_manager.lo `test -f 'src/c/matfile_manager.c' || echo '$(srcdir)/'`src/c/matfile_manager.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscimatio_la-matfile_manager.Tpo $(DEPDIR)/libscimatio_la-matfile_manager.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/matfile_manager.c' object='libscimatio_la-matfile_manager.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-matfile_manager.lo `test -f 'src/c/matfile_manager.c' || echo '$(srcdir)/'`src/c/matfile_manager.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-matfile_manager.lo `test -f 'src/c/matfile_manager.c' || echo '$(srcdir)/'`src/c/matfile_manager.c
 
 libscimatio_la-CreateMatlabVariable.lo: src/c/CreateMatlabVariable.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-CreateMatlabVariable.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-CreateMatlabVariable.Tpo -c -o libscimatio_la-CreateMatlabVariable.lo `test -f 'src/c/CreateMatlabVariable.c' || echo '$(srcdir)/'`src/c/CreateMatlabVariable.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-CreateMatlabVariable.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-CreateMatlabVariable.Tpo -c -o libscimatio_la-CreateMatlabVariable.lo `test -f 'src/c/CreateMatlabVariable.c' || echo '$(srcdir)/'`src/c/CreateMatlabVariable.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscimatio_la-CreateMatlabVariable.Tpo $(DEPDIR)/libscimatio_la-CreateMatlabVariable.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/CreateMatlabVariable.c' object='libscimatio_la-CreateMatlabVariable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-CreateMatlabVariable.lo `test -f 'src/c/CreateMatlabVariable.c' || echo '$(srcdir)/'`src/c/CreateMatlabVariable.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-CreateMatlabVariable.lo `test -f 'src/c/CreateMatlabVariable.c' || echo '$(srcdir)/'`src/c/CreateMatlabVariable.c
 
 libscimatio_la-CreateBooleanVariable.lo: src/c/CreateBooleanVariable.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-CreateBooleanVariable.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-CreateBooleanVariable.Tpo -c -o libscimatio_la-CreateBooleanVariable.lo `test -f 'src/c/CreateBooleanVariable.c' || echo '$(srcdir)/'`src/c/CreateBooleanVariable.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-CreateBooleanVariable.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-CreateBooleanVariable.Tpo -c -o libscimatio_la-CreateBooleanVariable.lo `test -f 'src/c/CreateBooleanVariable.c' || echo '$(srcdir)/'`src/c/CreateBooleanVariable.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscimatio_la-CreateBooleanVariable.Tpo $(DEPDIR)/libscimatio_la-CreateBooleanVariable.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/CreateBooleanVariable.c' object='libscimatio_la-CreateBooleanVariable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-CreateBooleanVariable.lo `test -f 'src/c/CreateBooleanVariable.c' || echo '$(srcdir)/'`src/c/CreateBooleanVariable.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-CreateBooleanVariable.lo `test -f 'src/c/CreateBooleanVariable.c' || echo '$(srcdir)/'`src/c/CreateBooleanVariable.c
 
 libscimatio_la-CreateCharVariable.lo: src/c/CreateCharVariable.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-CreateCharVariable.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-CreateCharVariable.Tpo -c -o libscimatio_la-CreateCharVariable.lo `test -f 'src/c/CreateCharVariable.c' || echo '$(srcdir)/'`src/c/CreateCharVariable.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-CreateCharVariable.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-CreateCharVariable.Tpo -c -o libscimatio_la-CreateCharVariable.lo `test -f 'src/c/CreateCharVariable.c' || echo '$(srcdir)/'`src/c/CreateCharVariable.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscimatio_la-CreateCharVariable.Tpo $(DEPDIR)/libscimatio_la-CreateCharVariable.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/CreateCharVariable.c' object='libscimatio_la-CreateCharVariable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-CreateCharVariable.lo `test -f 'src/c/CreateCharVariable.c' || echo '$(srcdir)/'`src/c/CreateCharVariable.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-CreateCharVariable.lo `test -f 'src/c/CreateCharVariable.c' || echo '$(srcdir)/'`src/c/CreateCharVariable.c
 
 libscimatio_la-CreateDoubleVariable.lo: src/c/CreateDoubleVariable.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-CreateDoubleVariable.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-CreateDoubleVariable.Tpo -c -o libscimatio_la-CreateDoubleVariable.lo `test -f 'src/c/CreateDoubleVariable.c' || echo '$(srcdir)/'`src/c/CreateDoubleVariable.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-CreateDoubleVariable.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-CreateDoubleVariable.Tpo -c -o libscimatio_la-CreateDoubleVariable.lo `test -f 'src/c/CreateDoubleVariable.c' || echo '$(srcdir)/'`src/c/CreateDoubleVariable.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscimatio_la-CreateDoubleVariable.Tpo $(DEPDIR)/libscimatio_la-CreateDoubleVariable.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/CreateDoubleVariable.c' object='libscimatio_la-CreateDoubleVariable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-CreateDoubleVariable.lo `test -f 'src/c/CreateDoubleVariable.c' || echo '$(srcdir)/'`src/c/CreateDoubleVariable.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-CreateDoubleVariable.lo `test -f 'src/c/CreateDoubleVariable.c' || echo '$(srcdir)/'`src/c/CreateDoubleVariable.c
 
 libscimatio_la-CreateIntegerVariable.lo: src/c/CreateIntegerVariable.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-CreateIntegerVariable.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-CreateIntegerVariable.Tpo -c -o libscimatio_la-CreateIntegerVariable.lo `test -f 'src/c/CreateIntegerVariable.c' || echo '$(srcdir)/'`src/c/CreateIntegerVariable.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-CreateIntegerVariable.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-CreateIntegerVariable.Tpo -c -o libscimatio_la-CreateIntegerVariable.lo `test -f 'src/c/CreateIntegerVariable.c' || echo '$(srcdir)/'`src/c/CreateIntegerVariable.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscimatio_la-CreateIntegerVariable.Tpo $(DEPDIR)/libscimatio_la-CreateIntegerVariable.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/CreateIntegerVariable.c' object='libscimatio_la-CreateIntegerVariable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-CreateIntegerVariable.lo `test -f 'src/c/CreateIntegerVariable.c' || echo '$(srcdir)/'`src/c/CreateIntegerVariable.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-CreateIntegerVariable.lo `test -f 'src/c/CreateIntegerVariable.c' || echo '$(srcdir)/'`src/c/CreateIntegerVariable.c
 
 libscimatio_la-CreateHyperMatrixVariable.lo: src/c/CreateHyperMatrixVariable.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-CreateHyperMatrixVariable.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-CreateHyperMatrixVariable.Tpo -c -o libscimatio_la-CreateHyperMatrixVariable.lo `test -f 'src/c/CreateHyperMatrixVariable.c' || echo '$(srcdir)/'`src/c/CreateHyperMatrixVariable.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-CreateHyperMatrixVariable.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-CreateHyperMatrixVariable.Tpo -c -o libscimatio_la-CreateHyperMatrixVariable.lo `test -f 'src/c/CreateHyperMatrixVariable.c' || echo '$(srcdir)/'`src/c/CreateHyperMatrixVariable.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscimatio_la-CreateHyperMatrixVariable.Tpo $(DEPDIR)/libscimatio_la-CreateHyperMatrixVariable.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/CreateHyperMatrixVariable.c' object='libscimatio_la-CreateHyperMatrixVariable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-CreateHyperMatrixVariable.lo `test -f 'src/c/CreateHyperMatrixVariable.c' || echo '$(srcdir)/'`src/c/CreateHyperMatrixVariable.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-CreateHyperMatrixVariable.lo `test -f 'src/c/CreateHyperMatrixVariable.c' || echo '$(srcdir)/'`src/c/CreateHyperMatrixVariable.c
 
 libscimatio_la-CreateStructVariable.lo: src/c/CreateStructVariable.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-CreateStructVariable.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-CreateStructVariable.Tpo -c -o libscimatio_la-CreateStructVariable.lo `test -f 'src/c/CreateStructVariable.c' || echo '$(srcdir)/'`src/c/CreateStructVariable.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-CreateStructVariable.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-CreateStructVariable.Tpo -c -o libscimatio_la-CreateStructVariable.lo `test -f 'src/c/CreateStructVariable.c' || echo '$(srcdir)/'`src/c/CreateStructVariable.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscimatio_la-CreateStructVariable.Tpo $(DEPDIR)/libscimatio_la-CreateStructVariable.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/CreateStructVariable.c' object='libscimatio_la-CreateStructVariable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-CreateStructVariable.lo `test -f 'src/c/CreateStructVariable.c' || echo '$(srcdir)/'`src/c/CreateStructVariable.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-CreateStructVariable.lo `test -f 'src/c/CreateStructVariable.c' || echo '$(srcdir)/'`src/c/CreateStructVariable.c
 
 libscimatio_la-CreateSparseVariable.lo: src/c/CreateSparseVariable.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-CreateSparseVariable.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-CreateSparseVariable.Tpo -c -o libscimatio_la-CreateSparseVariable.lo `test -f 'src/c/CreateSparseVariable.c' || echo '$(srcdir)/'`src/c/CreateSparseVariable.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-CreateSparseVariable.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-CreateSparseVariable.Tpo -c -o libscimatio_la-CreateSparseVariable.lo `test -f 'src/c/CreateSparseVariable.c' || echo '$(srcdir)/'`src/c/CreateSparseVariable.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscimatio_la-CreateSparseVariable.Tpo $(DEPDIR)/libscimatio_la-CreateSparseVariable.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/CreateSparseVariable.c' object='libscimatio_la-CreateSparseVariable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-CreateSparseVariable.lo `test -f 'src/c/CreateSparseVariable.c' || echo '$(srcdir)/'`src/c/CreateSparseVariable.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-CreateSparseVariable.lo `test -f 'src/c/CreateSparseVariable.c' || echo '$(srcdir)/'`src/c/CreateSparseVariable.c
 
 libscimatio_la-CreateCellVariable.lo: src/c/CreateCellVariable.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-CreateCellVariable.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-CreateCellVariable.Tpo -c -o libscimatio_la-CreateCellVariable.lo `test -f 'src/c/CreateCellVariable.c' || echo '$(srcdir)/'`src/c/CreateCellVariable.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-CreateCellVariable.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-CreateCellVariable.Tpo -c -o libscimatio_la-CreateCellVariable.lo `test -f 'src/c/CreateCellVariable.c' || echo '$(srcdir)/'`src/c/CreateCellVariable.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscimatio_la-CreateCellVariable.Tpo $(DEPDIR)/libscimatio_la-CreateCellVariable.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/CreateCellVariable.c' object='libscimatio_la-CreateCellVariable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-CreateCellVariable.lo `test -f 'src/c/CreateCellVariable.c' || echo '$(srcdir)/'`src/c/CreateCellVariable.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-CreateCellVariable.lo `test -f 'src/c/CreateCellVariable.c' || echo '$(srcdir)/'`src/c/CreateCellVariable.c
 
 libscimatio_la-GetMatlabVariable.lo: src/c/GetMatlabVariable.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-GetMatlabVariable.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-GetMatlabVariable.Tpo -c -o libscimatio_la-GetMatlabVariable.lo `test -f 'src/c/GetMatlabVariable.c' || echo '$(srcdir)/'`src/c/GetMatlabVariable.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-GetMatlabVariable.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-GetMatlabVariable.Tpo -c -o libscimatio_la-GetMatlabVariable.lo `test -f 'src/c/GetMatlabVariable.c' || echo '$(srcdir)/'`src/c/GetMatlabVariable.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscimatio_la-GetMatlabVariable.Tpo $(DEPDIR)/libscimatio_la-GetMatlabVariable.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/GetMatlabVariable.c' object='libscimatio_la-GetMatlabVariable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-GetMatlabVariable.lo `test -f 'src/c/GetMatlabVariable.c' || echo '$(srcdir)/'`src/c/GetMatlabVariable.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-GetMatlabVariable.lo `test -f 'src/c/GetMatlabVariable.c' || echo '$(srcdir)/'`src/c/GetMatlabVariable.c
 
 libscimatio_la-GetDoubleVariable.lo: src/c/GetDoubleVariable.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-GetDoubleVariable.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-GetDoubleVariable.Tpo -c -o libscimatio_la-GetDoubleVariable.lo `test -f 'src/c/GetDoubleVariable.c' || echo '$(srcdir)/'`src/c/GetDoubleVariable.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-GetDoubleVariable.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-GetDoubleVariable.Tpo -c -o libscimatio_la-GetDoubleVariable.lo `test -f 'src/c/GetDoubleVariable.c' || echo '$(srcdir)/'`src/c/GetDoubleVariable.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscimatio_la-GetDoubleVariable.Tpo $(DEPDIR)/libscimatio_la-GetDoubleVariable.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/GetDoubleVariable.c' object='libscimatio_la-GetDoubleVariable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-GetDoubleVariable.lo `test -f 'src/c/GetDoubleVariable.c' || echo '$(srcdir)/'`src/c/GetDoubleVariable.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-GetDoubleVariable.lo `test -f 'src/c/GetDoubleVariable.c' || echo '$(srcdir)/'`src/c/GetDoubleVariable.c
 
 libscimatio_la-GetCharVariable.lo: src/c/GetCharVariable.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-GetCharVariable.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-GetCharVariable.Tpo -c -o libscimatio_la-GetCharVariable.lo `test -f 'src/c/GetCharVariable.c' || echo '$(srcdir)/'`src/c/GetCharVariable.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-GetCharVariable.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-GetCharVariable.Tpo -c -o libscimatio_la-GetCharVariable.lo `test -f 'src/c/GetCharVariable.c' || echo '$(srcdir)/'`src/c/GetCharVariable.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscimatio_la-GetCharVariable.Tpo $(DEPDIR)/libscimatio_la-GetCharVariable.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/GetCharVariable.c' object='libscimatio_la-GetCharVariable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-GetCharVariable.lo `test -f 'src/c/GetCharVariable.c' || echo '$(srcdir)/'`src/c/GetCharVariable.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-GetCharVariable.lo `test -f 'src/c/GetCharVariable.c' || echo '$(srcdir)/'`src/c/GetCharVariable.c
 
 libscimatio_la-GetIntegerVariable.lo: src/c/GetIntegerVariable.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-GetIntegerVariable.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-GetIntegerVariable.Tpo -c -o libscimatio_la-GetIntegerVariable.lo `test -f 'src/c/GetIntegerVariable.c' || echo '$(srcdir)/'`src/c/GetIntegerVariable.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-GetIntegerVariable.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-GetIntegerVariable.Tpo -c -o libscimatio_la-GetIntegerVariable.lo `test -f 'src/c/GetIntegerVariable.c' || echo '$(srcdir)/'`src/c/GetIntegerVariable.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscimatio_la-GetIntegerVariable.Tpo $(DEPDIR)/libscimatio_la-GetIntegerVariable.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/GetIntegerVariable.c' object='libscimatio_la-GetIntegerVariable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-GetIntegerVariable.lo `test -f 'src/c/GetIntegerVariable.c' || echo '$(srcdir)/'`src/c/GetIntegerVariable.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-GetIntegerVariable.lo `test -f 'src/c/GetIntegerVariable.c' || echo '$(srcdir)/'`src/c/GetIntegerVariable.c
 
 libscimatio_la-GetMlistVariable.lo: src/c/GetMlistVariable.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-GetMlistVariable.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-GetMlistVariable.Tpo -c -o libscimatio_la-GetMlistVariable.lo `test -f 'src/c/GetMlistVariable.c' || echo '$(srcdir)/'`src/c/GetMlistVariable.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-GetMlistVariable.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-GetMlistVariable.Tpo -c -o libscimatio_la-GetMlistVariable.lo `test -f 'src/c/GetMlistVariable.c' || echo '$(srcdir)/'`src/c/GetMlistVariable.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscimatio_la-GetMlistVariable.Tpo $(DEPDIR)/libscimatio_la-GetMlistVariable.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/GetMlistVariable.c' object='libscimatio_la-GetMlistVariable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-GetMlistVariable.lo `test -f 'src/c/GetMlistVariable.c' || echo '$(srcdir)/'`src/c/GetMlistVariable.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-GetMlistVariable.lo `test -f 'src/c/GetMlistVariable.c' || echo '$(srcdir)/'`src/c/GetMlistVariable.c
 
 libscimatio_la-GetCellVariable.lo: src/c/GetCellVariable.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-GetCellVariable.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-GetCellVariable.Tpo -c -o libscimatio_la-GetCellVariable.lo `test -f 'src/c/GetCellVariable.c' || echo '$(srcdir)/'`src/c/GetCellVariable.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-GetCellVariable.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-GetCellVariable.Tpo -c -o libscimatio_la-GetCellVariable.lo `test -f 'src/c/GetCellVariable.c' || echo '$(srcdir)/'`src/c/GetCellVariable.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscimatio_la-GetCellVariable.Tpo $(DEPDIR)/libscimatio_la-GetCellVariable.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/GetCellVariable.c' object='libscimatio_la-GetCellVariable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-GetCellVariable.lo `test -f 'src/c/GetCellVariable.c' || echo '$(srcdir)/'`src/c/GetCellVariable.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-GetCellVariable.lo `test -f 'src/c/GetCellVariable.c' || echo '$(srcdir)/'`src/c/GetCellVariable.c
 
 libscimatio_la-GetStructVariable.lo: src/c/GetStructVariable.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-GetStructVariable.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-GetStructVariable.Tpo -c -o libscimatio_la-GetStructVariable.lo `test -f 'src/c/GetStructVariable.c' || echo '$(srcdir)/'`src/c/GetStructVariable.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-GetStructVariable.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-GetStructVariable.Tpo -c -o libscimatio_la-GetStructVariable.lo `test -f 'src/c/GetStructVariable.c' || echo '$(srcdir)/'`src/c/GetStructVariable.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscimatio_la-GetStructVariable.Tpo $(DEPDIR)/libscimatio_la-GetStructVariable.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/GetStructVariable.c' object='libscimatio_la-GetStructVariable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-GetStructVariable.lo `test -f 'src/c/GetStructVariable.c' || echo '$(srcdir)/'`src/c/GetStructVariable.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-GetStructVariable.lo `test -f 'src/c/GetStructVariable.c' || echo '$(srcdir)/'`src/c/GetStructVariable.c
 
 libscimatio_la-GetSparseVariable.lo: src/c/GetSparseVariable.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-GetSparseVariable.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-GetSparseVariable.Tpo -c -o libscimatio_la-GetSparseVariable.lo `test -f 'src/c/GetSparseVariable.c' || echo '$(srcdir)/'`src/c/GetSparseVariable.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-GetSparseVariable.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-GetSparseVariable.Tpo -c -o libscimatio_la-GetSparseVariable.lo `test -f 'src/c/GetSparseVariable.c' || echo '$(srcdir)/'`src/c/GetSparseVariable.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscimatio_la-GetSparseVariable.Tpo $(DEPDIR)/libscimatio_la-GetSparseVariable.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/GetSparseVariable.c' object='libscimatio_la-GetSparseVariable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-GetSparseVariable.lo `test -f 'src/c/GetSparseVariable.c' || echo '$(srcdir)/'`src/c/GetSparseVariable.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-GetSparseVariable.lo `test -f 'src/c/GetSparseVariable.c' || echo '$(srcdir)/'`src/c/GetSparseVariable.c
 
 libscimatio_la-gw_matio.lo: sci_gateway/c/gw_matio.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-gw_matio.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-gw_matio.Tpo -c -o libscimatio_la-gw_matio.lo `test -f 'sci_gateway/c/gw_matio.c' || echo '$(srcdir)/'`sci_gateway/c/gw_matio.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-gw_matio.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-gw_matio.Tpo -c -o libscimatio_la-gw_matio.lo `test -f 'sci_gateway/c/gw_matio.c' || echo '$(srcdir)/'`sci_gateway/c/gw_matio.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscimatio_la-gw_matio.Tpo $(DEPDIR)/libscimatio_la-gw_matio.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_matio.c' object='libscimatio_la-gw_matio.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-gw_matio.lo `test -f 'sci_gateway/c/gw_matio.c' || echo '$(srcdir)/'`sci_gateway/c/gw_matio.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-gw_matio.lo `test -f 'sci_gateway/c/gw_matio.c' || echo '$(srcdir)/'`sci_gateway/c/gw_matio.c
 
 libscimatio_la-sci_matfile_open.lo: sci_gateway/c/sci_matfile_open.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-sci_matfile_open.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-sci_matfile_open.Tpo -c -o libscimatio_la-sci_matfile_open.lo `test -f 'sci_gateway/c/sci_matfile_open.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matfile_open.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-sci_matfile_open.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-sci_matfile_open.Tpo -c -o libscimatio_la-sci_matfile_open.lo `test -f 'sci_gateway/c/sci_matfile_open.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matfile_open.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscimatio_la-sci_matfile_open.Tpo $(DEPDIR)/libscimatio_la-sci_matfile_open.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_matfile_open.c' object='libscimatio_la-sci_matfile_open.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-sci_matfile_open.lo `test -f 'sci_gateway/c/sci_matfile_open.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matfile_open.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-sci_matfile_open.lo `test -f 'sci_gateway/c/sci_matfile_open.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matfile_open.c
 
 libscimatio_la-sci_matfile_close.lo: sci_gateway/c/sci_matfile_close.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-sci_matfile_close.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-sci_matfile_close.Tpo -c -o libscimatio_la-sci_matfile_close.lo `test -f 'sci_gateway/c/sci_matfile_close.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matfile_close.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-sci_matfile_close.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-sci_matfile_close.Tpo -c -o libscimatio_la-sci_matfile_close.lo `test -f 'sci_gateway/c/sci_matfile_close.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matfile_close.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscimatio_la-sci_matfile_close.Tpo $(DEPDIR)/libscimatio_la-sci_matfile_close.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_matfile_close.c' object='libscimatio_la-sci_matfile_close.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-sci_matfile_close.lo `test -f 'sci_gateway/c/sci_matfile_close.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matfile_close.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-sci_matfile_close.lo `test -f 'sci_gateway/c/sci_matfile_close.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matfile_close.c
 
 libscimatio_la-sci_matfile_listvar.lo: sci_gateway/c/sci_matfile_listvar.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-sci_matfile_listvar.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-sci_matfile_listvar.Tpo -c -o libscimatio_la-sci_matfile_listvar.lo `test -f 'sci_gateway/c/sci_matfile_listvar.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matfile_listvar.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-sci_matfile_listvar.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-sci_matfile_listvar.Tpo -c -o libscimatio_la-sci_matfile_listvar.lo `test -f 'sci_gateway/c/sci_matfile_listvar.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matfile_listvar.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscimatio_la-sci_matfile_listvar.Tpo $(DEPDIR)/libscimatio_la-sci_matfile_listvar.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_matfile_listvar.c' object='libscimatio_la-sci_matfile_listvar.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-sci_matfile_listvar.lo `test -f 'sci_gateway/c/sci_matfile_listvar.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matfile_listvar.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-sci_matfile_listvar.lo `test -f 'sci_gateway/c/sci_matfile_listvar.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matfile_listvar.c
 
 libscimatio_la-sci_matfile_varreadnext.lo: sci_gateway/c/sci_matfile_varreadnext.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-sci_matfile_varreadnext.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-sci_matfile_varreadnext.Tpo -c -o libscimatio_la-sci_matfile_varreadnext.lo `test -f 'sci_gateway/c/sci_matfile_varreadnext.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matfile_varreadnext.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-sci_matfile_varreadnext.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-sci_matfile_varreadnext.Tpo -c -o libscimatio_la-sci_matfile_varreadnext.lo `test -f 'sci_gateway/c/sci_matfile_varreadnext.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matfile_varreadnext.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscimatio_la-sci_matfile_varreadnext.Tpo $(DEPDIR)/libscimatio_la-sci_matfile_varreadnext.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_matfile_varreadnext.c' object='libscimatio_la-sci_matfile_varreadnext.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-sci_matfile_varreadnext.lo `test -f 'sci_gateway/c/sci_matfile_varreadnext.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matfile_varreadnext.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-sci_matfile_varreadnext.lo `test -f 'sci_gateway/c/sci_matfile_varreadnext.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matfile_varreadnext.c
 
 libscimatio_la-sci_matfile_varwrite.lo: sci_gateway/c/sci_matfile_varwrite.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-sci_matfile_varwrite.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-sci_matfile_varwrite.Tpo -c -o libscimatio_la-sci_matfile_varwrite.lo `test -f 'sci_gateway/c/sci_matfile_varwrite.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matfile_varwrite.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-sci_matfile_varwrite.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-sci_matfile_varwrite.Tpo -c -o libscimatio_la-sci_matfile_varwrite.lo `test -f 'sci_gateway/c/sci_matfile_varwrite.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matfile_varwrite.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscimatio_la-sci_matfile_varwrite.Tpo $(DEPDIR)/libscimatio_la-sci_matfile_varwrite.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_matfile_varwrite.c' object='libscimatio_la-sci_matfile_varwrite.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-sci_matfile_varwrite.lo `test -f 'sci_gateway/c/sci_matfile_varwrite.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matfile_varwrite.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-sci_matfile_varwrite.lo `test -f 'sci_gateway/c/sci_matfile_varwrite.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matfile_varwrite.c
+
+.cpp.o:
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ $<
+
+.cpp.obj:
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
+
+.cpp.lo:
+@am__fastdepCXX_TRUE@	$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
+
+libscimatio_la-matio_gw.lo: sci_gateway/cpp/matio_gw.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscimatio_la-matio_gw.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-matio_gw.Tpo -c -o libscimatio_la-matio_gw.lo `test -f 'sci_gateway/cpp/matio_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/matio_gw.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscimatio_la-matio_gw.Tpo $(DEPDIR)/libscimatio_la-matio_gw.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/matio_gw.cpp' object='libscimatio_la-matio_gw.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscimatio_la-matio_gw.lo `test -f 'sci_gateway/cpp/matio_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/matio_gw.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
