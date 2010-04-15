@@ -33,7 +33,7 @@ For GNU/Linux, Unix & Mac OS X:
   options.
 
 * Bug 6633 fixed - Unknown arguments are now accepted with option -args to
-  allows user to access them throught sciargs Scilab function:
+  allow user to access them throught sciargs Scilab function:
   scilab -nwni -args 2 3
 
 Dynamic Link:
