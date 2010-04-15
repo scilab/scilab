@@ -7,13 +7,13 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function [ga_list,err] = set_param(list_name,param_name,param_value)
+function [plist,err] = set_param(list_name,param_name,param_value)
 [nargout,nargin] = argn();
-ga_list = list_name;
+plist = list_name;
 if typeof(list_name)=='plist' then
   if nargout==2 then err = %F; end
-  if is_param(ga_list,param_name) then
-    ga_list(param_name) = param_value;
+  if is_param(plist,param_name) then
+    plist(param_name) = param_value;
   else
     err = %T;
     warning(sprintf(gettext("%s: parameter doesn''t exist"),"set_param"));
@@ -22,8 +22,7 @@ else
   if nargout==2 then 
     err = %T;
   else
-    warning(sprintf(gettext("%s: not a plist"),"set_param"));
+    warning(sprintf(gettext("%s: Wrong type for input argument #%d: %s expected.\n"), 1, "plist", "set_param"));
   end
 end
 endfunction
-
