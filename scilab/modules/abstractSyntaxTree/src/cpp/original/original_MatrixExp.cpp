@@ -161,6 +161,14 @@ namespace ast
                     iCurCol = 0;
                     for(it_RL = (*it_ML).begin() ; it_RL != (*it_ML).end() ; it_RL++)
                     {//,
+                        if((*it_ML).size() == 1)
+                        {//if item is a full row don(t need to duplicate it in other variable
+                            (*it_RL)->DecreaseRef();
+                            poTemp = *it_RL;
+                            break;
+                        }
+
+
                         if(poTemp == NULL)
                         {
                             poTemp = AddElementToVariableFromCol(poTemp, *it_RL, (*it_RL)->getAsGenericType()->rows_get(), iCols, &iCurCol);
@@ -169,12 +177,28 @@ namespace ast
                         {
                             poTemp = AddElementToVariableFromCol(poTemp, *it_RL, iCurRow, (*it_RL)->getAsGenericType()->cols_get(), &iCurCol);
                         }
+
+                        //tips to allow delete data
+                        (*it_RL)->DecreaseRef();
+                        if((*it_RL)->isDeletable() == true)
+                        {
+                            if((*it_RL)->getType() == InternalType::RealDouble)
+                            {
+                                delete (*it_RL)->getAsDouble();
+                            }
+                            else
+                            {
+                                delete (*it_RL);
+                            }
+                        }
                     }
                     poResult = AddElementToVariableFromRow(poResult, poTemp, iRows, iCols, &iCurRow);
-                    delete poTemp;
+                    if(poTemp->isDeletable())
+                    {
+                        delete poTemp;
+                    }
                 }
             }
-
             result_set(poResult);
         }
         catch(string sz)
