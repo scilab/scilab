@@ -28,7 +28,7 @@ import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
 import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.utils.XcosConstants;
+import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -71,7 +71,7 @@ public class CompileAction extends SimulationNotRunningAction {
 		
 		final File temp;
 		try {
-			temp = File.createTempFile("xcos", ".h5", XcosConstants.TMPDIR);
+			temp = FileUtils.createTempFile();
 		} catch (IOException e1) {
 			LogFactory.getLog(CompileAction.class).error(e1);
 			return;

@@ -28,6 +28,7 @@ import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterExc
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -75,7 +76,7 @@ public class DumpAction extends DefaultAction {
      */
     public void actionPerformed(ActionEvent e) {
 		try {
-		    File temp = File.createTempFile("xcos", ".h5");
+		    File temp = FileUtils.createTempFile();
 		    temp.deleteOnExit();
 		    ((XcosDiagram) getGraph(e)).dumpToHdf5File(temp.getAbsolutePath());
 		    try {

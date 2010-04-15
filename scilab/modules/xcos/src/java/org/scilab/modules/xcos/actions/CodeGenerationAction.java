@@ -35,8 +35,7 @@ import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.actions.SuperBlockSelectedAction;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.BlockReader;
-import org.scilab.modules.xcos.utils.XcosConstants;
-import org.scilab.modules.xcos.utils.XcosFileType;
+import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.util.mxConstants;
@@ -92,12 +91,8 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
 				/*
 				 * Prepare data
 				 */
-				final File tempOutput = File.createTempFile(XcosFileType.XCOS
-						.getExtension(), XcosFileType.HDF5.getExtension(),
-						XcosConstants.TMPDIR);
-				final File tempInput = File.createTempFile(XcosFileType.XCOS
-						.getExtension(), XcosFileType.HDF5.getExtension(),
-						XcosConstants.TMPDIR);
+				final File tempOutput = FileUtils.createTempFile();
+				final File tempInput = FileUtils.createTempFile();
 				
 			    /*
 			     * Export data

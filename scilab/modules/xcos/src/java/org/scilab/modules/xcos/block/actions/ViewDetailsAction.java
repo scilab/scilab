@@ -28,13 +28,14 @@ import org.scilab.modules.graph.actions.base.VertexSelectionDependantAction;
 import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
 import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.types.scilabTypes.ScilabMList;
 import org.scilab.modules.hdf5.write.H5Write;
+import org.scilab.modules.types.scilabTypes.ScilabMList;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.BasicBlockInfo;
 import org.scilab.modules.xcos.link.BasicLink;
+import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 
@@ -100,7 +101,7 @@ public final class ViewDetailsAction extends VertexSelectionDependantAction {
 		 */
 		File temp;
 		try {
-			temp = File.createTempFile("xcos", ".h5");
+			temp = FileUtils.createTempFile();
 		} catch (IOException e1) {
 			LogFactory.getLog(ViewDetailsAction.class).error(e1);
 			return;

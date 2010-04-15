@@ -2284,8 +2284,7 @@ public class XcosDiagram extends ScilabGraph {
 			}
 			str.append(']');
 				
-			final File temp = File.createTempFile("xcos_ctx", ".h5", 
-						XcosConstants.TMPDIR);
+			final File temp = FileUtils.createTempFile();
 			
 			ScilabInterpreterManagement.synchronousScilabExec(
 						  "vars = script2var(" + str.toString() + ", struct());"

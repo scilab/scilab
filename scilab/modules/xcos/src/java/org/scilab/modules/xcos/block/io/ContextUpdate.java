@@ -28,6 +28,7 @@ import org.scilab.modules.xcos.port.input.ExplicitInputPort;
 import org.scilab.modules.xcos.port.input.ImplicitInputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
+import org.scilab.modules.xcos.utils.FileUtils;
 
 /**
  * @author Clement DAVID
@@ -118,7 +119,7 @@ public abstract class ContextUpdate extends BasicBlock {
 	final File tempInput;
 	final File tempContext;
 	try {
-	    tempInput = File.createTempFile("xcos", ".h5");
+	    tempInput = FileUtils.createTempFile();
 	    tempInput.deleteOnExit();
 
 	    // Write scs_m
