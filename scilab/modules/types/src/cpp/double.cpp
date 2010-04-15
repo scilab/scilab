@@ -916,7 +916,17 @@ namespace types
         else
         {
             int iDestOffset = _iCols * m_iRows;
-            memcpy(m_pdblReal + iDestOffset, _poSource->real_get(), _poSource->size_get() * sizeof(double));
+            if(_poSource->size_get() <=  10)
+            {
+                for(int j = 0 ; j < _poSource->rows_get() ; j++)
+                {
+                    m_pdblReal[iDestOffset + j] =  _poSource->real_get()[j];
+                }
+            }
+            else
+            {
+                memcpy(m_pdblReal + iDestOffset, _poSource->real_get(), _poSource->size_get() * sizeof(double));
+            }
         }
         return true;
     }
@@ -935,7 +945,17 @@ namespace types
             {
                 int iDestOffset = i * m_iRows + _iRows;
                 int iOrigOffset = i * _poSource->rows_get();
-                memcpy(m_pdblReal + iDestOffset, _poSource->real_get() + iOrigOffset, _poSource->rows_get() * sizeof(double));
+                if(_poSource->rows_get() <= 10)
+                {
+                    for(int j = 0 ; j < _poSource->rows_get() ; j++)
+                    {
+                        m_pdblReal[iDestOffset + j] = _poSource->real_get()[iOrigOffset + j];
+                    }
+                }
+                else
+                {
+                    memcpy(m_pdblReal + iDestOffset, _poSource->real_get() + iOrigOffset, _poSource->rows_get() * sizeof(double));
+                }
             }
         }
         return true;
