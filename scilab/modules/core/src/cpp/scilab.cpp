@@ -93,6 +93,7 @@ void Add_i(void);
 void Add_pi(void);
 void Add_s(void);
 void Add_z(void);
+void Add_SCI(void);
 void Add_true(void);
 void Add_false(void);
 void Add_All_Variables(void);
@@ -100,6 +101,7 @@ void Add_All_Variables(void);
 void Add_Double_Constant(string _szName, double _dblReal, double _dblImg, bool _bComplex);
 void Add_Poly_Constant(string _szName, string _szPolyVar, int _iRank, Double *_pdblReal);
 void Add_Boolean_Constant(string _szName, bool _bBool);
+void Add_String_Constant(string _szName, const char* _pstString);
 
 int InitializeEnvironnement(void);
 bool execScilabStart(void);
@@ -554,6 +556,7 @@ void Add_All_Variables(void)
 	Add_z();
 	Add_true();
 	Add_false();
+    Add_SCI();
 }
 
 void Add_false(void)
@@ -594,6 +597,12 @@ void Add_z(void)
 	Add_Poly_Constant("%z","z", 2, &dblCoef);
 }
 
+void Add_SCI(void)
+{
+    string stSciDir = ConfigVariable::getInstance()->get("SCI");
+    Add_String_Constant("SCI", stSciDir.c_str());
+}
+
 void Add_Poly_Constant(string _szName, string _szPolyVar, int _iRank, Double *_pdbl)
 {
 	types::MatrixPoly *pVar = new types::MatrixPoly(_szPolyVar, 1, 1, &_iRank);
@@ -613,4 +622,10 @@ void Add_Boolean_Constant(string _szName, bool _bBool)
 {
 	types::Bool* pVal = new types::Bool(_bBool);
 	symbol::Context::getInstance()->put(_szName, *pVal);
+}
+
+void Add_String_Constant(string _szName, const char* _pstString)
+{
+    types::String* ps = new types::String(_pstString);
+	symbol::Context::getInstance()->put(_szName, *ps);
 }
