@@ -38,7 +38,6 @@ import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
 import org.scilab.modules.xcos.block.io.ContextUpdate.IOBlocks;
 import org.scilab.modules.xcos.graph.PaletteDiagram;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
-import org.scilab.modules.xcos.io.BlockWriter;
 import org.scilab.modules.xcos.io.scicos.BasicBlockInfo;
 import org.scilab.modules.xcos.io.scicos.DiagramElement;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
@@ -313,17 +312,6 @@ public final class SuperBlock extends BasicBlock {
 	 */
 	public void setChild(SuperBlockDiagram child) {
 		this.child = child;
-	}
-
-	/**
-	 * @return block as mlist structure
-	 */
-	@Deprecated
-	public ScilabMList getAsScilabObj() {
-		if (child != null) {
-			setRealParameters(BlockWriter.convertDiagramToMList(child));
-		}
-		return org.scilab.modules.xcos.io.BasicBlockInfo.getAsScilabObj(this);
 	}
 
 	/**
