@@ -135,7 +135,15 @@ int32rowvector = int32([1 -4 7]);
 int32colvector = int32([1;-4;7]);
 int32matrix = int32([1 -4 7;-9 6 -3]);
 
-// TODO: int64 tests ?
+//
+// TESTS FOR 64-BITS SIGNED INTEGERS
+//
+
+emptyint64matrix = int64([]);
+int64scalar = int64(1);
+int64rowvector = int64([1 -4 7]);
+int64colvector = int64([1;-4;7]);
+int64matrix = int64([1 -4 7;-9 6 -3]);
 
 //
 // TESTS FOR 8-BITS UNSIGNED INTEGERS
@@ -167,7 +175,15 @@ uint32rowvector = uint32([1 -4 7]);
 uint32colvector = uint32([1;-4;7]);
 uint32matrix = uint32([1 -4 7;-9 6 -3]);
 
-// TODO: uint64 tests ?
+//
+// TESTS FOR 64-BITS UNSIGNED INTEGERS
+//
+
+emptyuint64matrix = uint64([]);
+uint64scalar = uint64(1);
+uint64rowvector = uint64([1 -4 7]);
+uint64colvector = uint64([1;-4;7]);
+uint64matrix = uint64([1 -4 7;-9 6 -3]);
 
 //
 // TESTS FOR ND-ARRAYS

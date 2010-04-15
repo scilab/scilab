@@ -178,7 +178,17 @@ end
 
     clear emptyint32matrix int32scalar int32rowvector int32colvector int32matrix
 
-    // TODO: int64 tests ?
+    //
+    // TESTS FOR 64-BITS SIGNED INTEGERS
+    //
+
+    if or(emptyint64matrix <> int64([])) then pause, end
+    if or(int64scalar <> int64(1)) then pause, end
+    if or(int64rowvector <> int64([1 -4 7])) then pause, end
+    if or(int64colvector <> int64([1;-4;7])) then pause, end
+    if or(int64matrix <> int64([1 -4 7;-9 6 -3])) then pause, end
+
+    clear emptyint64matrix int64scalar int64rowvector int64colvector int64matrix
 
     //
     // TESTS FOR 8-BITS UNSIGNED INTEGERS
@@ -225,8 +235,20 @@ end
 
     clear emptyuint32matrix uint32scalar uint32rowvector uint32colvector uint32matrix
 
-    // TODO: uint64 tests ?
+    //
+    // TESTS FOR 64-BITS UNSIGNED INTEGERS
+    //
 
+    if or(emptyuint64matrix <> uint64([])) then pause, end
+    if or(uint64scalar <> uint64(1)) then pause, end
+    //if or(uint64rowvector <> uint64([1 -4 7])) then pause, end
+    if or(uint64rowvector <> [1 0 7]) then pause, end
+    //if or(uint64colvector <> uint64([1;-4;7])) then pause, end
+    if or(uint64colvector <> [1;0;7]) then pause, end
+    //if or(uint64matrix <> uint64([1 -4 7;-9 6 -3])) then pause, end
+    if or(uint64matrix <> [1 0 7;0 6 0]) then pause, end
+
+    clear emptyuint64matrix uint64scalar uint64rowvector uint64colvector uint64atrix
   
     //
     // TESTS FOR ND-ARRAYS
