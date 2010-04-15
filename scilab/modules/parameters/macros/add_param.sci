@@ -17,7 +17,7 @@ else
   if nargout==2 then
     err = %T; 
   end
-  warning(sprintf(gettext("%s: Wrong type for input argument #%d: %s expected.\n"), 1, "plist", "add_param"));
+  error(sprintf(gettext("%s: Wrong type for input argument #%d: %s expected.\n"), "add_param", 1, "plist"));
 end
 plist = list_name;
 endfunction

@@ -9,6 +9,7 @@
 
 function [string_list,err] = list_param(list_name)
 [nargout,nargin] = argn();
+string_list = [];
 if typeof(list_name)=='plist' then
   string_list = getfield(1,list_name);
   string_list = string_list(2:$);
@@ -17,7 +18,7 @@ else
   if nargout==2 then
     err = %T; 
   else
-    warning(sprintf(gettext("%s: Wrong type for input argument #%d: %s expected.\n"), 1, "plist", "list_param"));
+    error(sprintf(gettext("%s: Wrong type for input argument #%d: %s expected.\n"), "list_param", 1, "plist"));
   end
 end
 endfunction

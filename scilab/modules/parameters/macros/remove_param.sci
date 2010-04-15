@@ -9,6 +9,7 @@
 
 function [plist,err] = remove_param(list_name,param_name)
 [nargout,nargin] = argn();
+plist = [];
 if typeof(list_name)=='plist' then
   if is_param(list_name,param_name) then
     Index = grep(getfield(1,list_name),param_name);
@@ -36,7 +37,7 @@ else
   if nargout==2 then 
     err = %T;
   else
-    warning(sprintf(gettext("%s: Wrong type for input argument #%d: %s expected.\n"), 1, "plist", "remove_param"));
+    error(sprintf(gettext("%s: Wrong type for input argument #%d: %s expected.\n"), "remove_param", 1, "plist"));
   end
 end
 endfunction
