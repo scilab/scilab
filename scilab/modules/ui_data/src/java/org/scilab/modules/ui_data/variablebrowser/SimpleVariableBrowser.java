@@ -11,9 +11,24 @@
  */
 package org.scilab.modules.ui_data.variablebrowser;
 
-import org.scilab.modules.gui.tab.SimpleTab;
+import org.scilab.modules.gui.tab.Tab;
 
 
-public interface SimpleVariableBrowser extends SimpleTab {
+/**
+ * Interface for Variable browser.
+ */
+public interface SimpleVariableBrowser extends Tab {
 
+    /**
+     * Set columns title
+     * @param columnNames : the columns Title
+     */
+    void setColumnNames(String[] columnNames);
+    
+    /**
+     * Set data to be displayed
+     * @param data : the data displayed in JTable
+     */
+    void setData(Object[][] data);
+    
 }
