@@ -516,7 +516,7 @@ namespace types
 						bool bFP = false; // FloatingPoint
 						int iLen = 0;
 						GetDoubleFormat(ZeroIsZero(m_pdblReal[i]), _iPrecision, &iWidth, &iPrec, &bFP);
-						iLen = iWidth + bFP + (int)ostemp.str().size();
+						iLen = iWidth + bFP + static_cast<int>(ostemp.str().size());
 						if(iLen > _iLineLen)
 						{//Max length, new line
 							ostr << endl << "       column " << iLastVal + 1 << " to " << i << endl << endl;
@@ -549,7 +549,7 @@ namespace types
 						GetDoubleFormat(ZeroIsZero(m_pdblReal[i]),	_iPrecision, &iWidthR, &iPrecR, &bFPR);
 						GetDoubleFormat(ZeroIsZero(m_pdblImg[i]),		_iPrecision, &iWidthI, &iPrecI, &bFPI);
 
-						iLen = (int)ostemp.str().size();
+						iLen = static_cast<int>(ostemp.str().size());
 						if(isZero(m_pdblImg[i]))
 						{
 							if(isZero(m_pdblReal[i]))
@@ -604,7 +604,6 @@ namespace types
 			else // matrix
 			{
 				ostringstream ostemp;
-				int iLastVal = 0;
 				int iLen = 0;
 				int iLastCol = 0;
 
@@ -692,7 +691,6 @@ namespace types
 							int iWidthR = 0, iWidthI = 0, iTotalWidth = 0;
 							int iPrecR = 0, iPrecI = 0;
 							bool bFPR = false, bFPI = false; // FloatingPoint
-							int iCurrentLen = 0;
 
 							GetComplexFormat(	ZeroIsZero(m_pdblReal[iCols1 * rows_get() + iRows1]), ZeroIsZero(m_pdblImg[iCols1 * rows_get() + iRows1]), _iPrecision,
 								&iTotalWidth, &iWidthR, &iWidthI, &iPrecR, &iPrecI, &bFPR, &bFPI);
@@ -725,7 +723,6 @@ namespace types
 									int iWidthR = 0, iWidthI = 0, iTotalWidth = 0;
 									int iPrecR = 0, iPrecI = 0;
 									bool bFPR = false, bFPI = false; // FloatingPoint
-									int iCurrentLen = 0;
 
 									GetComplexFormat(	ZeroIsZero(m_pdblReal[iCols2 * rows_get() + iRows2]), ZeroIsZero(m_pdblImg[iCols2 * rows_get() + iRows2]), _iPrecision,
 										&iTotalWidth, &iWidthR, &iWidthI, &iPrecR, &iPrecI, &bFPR, &bFPI);
@@ -753,7 +750,6 @@ namespace types
 							int iWidthR = 0, iWidthI = 0, iTotalWidth = 0;
 							int iPrecR = 0, iPrecI = 0;
 							bool bFPR = false, bFPI = false; // FloatingPoint
-							int iCurrentLen = 0;
 
 							GetComplexFormat(	ZeroIsZero(m_pdblReal[iCols2 * rows_get() + iRows2]), ZeroIsZero(m_pdblImg[iCols2 * rows_get() + iRows2]), _iPrecision,
 								&iTotalWidth, &iWidthR, &iWidthI, &iPrecR, &iPrecI, &bFPR, &bFPI);
@@ -785,7 +781,6 @@ namespace types
 	Double* Double::clone()
 	{
 		double *pReal		= NULL;
-		double *pImg		= NULL;
 
 		Double *pReturn = new Double(m_iRows, m_iCols, &pReal);
 		memcpy(pReal, m_pdblReal, m_iSize * sizeof(double));
@@ -904,9 +899,6 @@ namespace types
 
     bool Double::fillFromCol(int _iCols, Double *_poSource)
     {
-        int iRows = _poSource->rows_get();
-        int iCols = _poSource->cols_get();
-
         if(m_bComplex)
         {
             int iDestOffset = _iCols * m_iRows;
@@ -933,7 +925,6 @@ namespace types
 
     bool Double::fillFromRow(int _iRows, Double *_poSource)
     {
-        int iRows = _poSource->rows_get();
         int iCols = _poSource->cols_get();
 
         if(m_bComplex)
@@ -1026,13 +1017,12 @@ namespace types
 
 	bool Double::operator==(const InternalType& it)
 	{
-		InternalType* pIT = (InternalType*)&it;
-		if(pIT->getType() != RealDouble)
+		if(const_cast<InternalType &>(it).getType() != RealDouble)
 		{
 			return false;
 		}
 
-		Double* pdbl = pIT->getAsDouble();
+		Double* pdbl = const_cast<InternalType &>(it).getAsDouble();
 
 		if(pdbl->rows_get() != rows_get() || pdbl->cols_get() != cols_get())
 		{
@@ -1307,9 +1297,9 @@ namespace types
 
 		//check input param
 
-		if(	_bAsVector && _piMaxDim[0] > size_get() ||
-				_bAsVector == false && _piMaxDim[0] > rows_get() ||
-				_bAsVector == false && _piMaxDim[1] > cols_get())
+		if(	(_bAsVector && _piMaxDim[0] > size_get()) ||
+            (_bAsVector == false && _piMaxDim[0] > rows_get()) ||
+            (_bAsVector == false && _piMaxDim[1] > cols_get()))
 		{
 			return NULL;
 		}
@@ -1358,7 +1348,6 @@ namespace types
 		}
 		else
 		{
-			int iRowIn = rows_get();
 			if(isComplex())
 			{
 				for(int i = 0 ; i < _iSeqCount ; i++)
