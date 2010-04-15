@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
+// Copyright (C) DIGITEO 2008-2010 - Yann COLLETTE
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -7,7 +7,21 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function ga_list = init_param()
-ga_list = mlist(['plist'],[]);
-endfunction
+function plist = init_param(varargin)
+param_name = [];
+param_val  = [];
+if (modulo(length(varargin),2)~=0) then
+  error(sprintf(gettext("%s: Wrong number of input argument(s): %s expected.\n"),"init_param",gettext("even number")));
+end
+for i=1:2:length(varargin)
+  if typeof(varargin(i))~='string' then
+    error(sprintf(gettext("%s: Wrong type for input argument #%d: %s expected.\n"),"init_param",i,gettext("string")));
+  end
+end
 
+plist = mlist(['plist'],[]);
+
+for i=1:2:length(varargin)
+  [plist, _err] = add_param(plist,varargin(i),varargin(i+1));
+end
+endfunction
