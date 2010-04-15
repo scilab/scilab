@@ -11,11 +11,11 @@ function plist = init_param(varargin)
 param_name = [];
 param_val  = [];
 if (modulo(length(varargin),2)~=0) then
-  error(sprintf(gettext("%s: Wrong number of input argument(s): %s expected.\n"),"init_param",gettext("even number")));
+  error(sprintf(gettext("%s: Wrong number of input argument(s): An even number expected.\n"),"init_param"));
 end
 for i=1:2:length(varargin)
   if typeof(varargin(i))~='string' then
-    error(sprintf(gettext("%s: Wrong type for input argument #%d: %s expected.\n"),"init_param",i,gettext("string")));
+    error(sprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"init_param",i));
   end
 end
 
