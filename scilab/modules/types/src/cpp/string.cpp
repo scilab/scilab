@@ -263,7 +263,6 @@ namespace types
 		else //Matrix
 		{
 			ostringstream ostemp;
-			int iLastVal = 0;
 			int iLen = 0;
 			int iLastCol = 0;
 
@@ -631,7 +630,6 @@ namespace types
 		}
 		else
 		{
-			int iRowIn = rows_get();
 			for(int i = 0 ; i < _iSeqCount ; i++)
 			{
 				//convert vertical indexes to horizontal indexes
