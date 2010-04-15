@@ -28,11 +28,7 @@ import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
-import org.scilab.modules.xcos.port.input.ExplicitInputPort;
-import org.scilab.modules.xcos.port.input.ImplicitInputPort;
 import org.scilab.modules.xcos.port.input.InputPort;
-import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
-import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
 
 import com.mxgraph.model.mxICell;
@@ -41,6 +37,7 @@ import com.mxgraph.model.mxICell;
  * Convert BasicBlock pure objects to a mixed BasicBlock objects (update the
  * scicos informations)
  */
+@Deprecated
 public final class BasicBlockInfo {
 // As this is the mapping string according to the Scicos simulator, it is
 // better to keep them as raw vectors instead of playing with reference
@@ -69,6 +66,7 @@ public final class BasicBlockInfo {
      * @param ports the ports
      * @return array of links id
      */
+    @Deprecated
     public static ScilabDouble getAllLinkId(List< ? extends BasicPort> ports) {
 	if (ports.isEmpty()) {
 	    return new ScilabDouble();
@@ -88,6 +86,7 @@ public final class BasicBlockInfo {
      * @param ports the ports
      * @return array of ports data lines
      */
+    @Deprecated
     public static ScilabDouble getAllPortsDataLines(List< ? extends BasicPort> ports) {
 	if (ports.isEmpty()) {
 	    return new ScilabDouble();
@@ -105,6 +104,7 @@ public final class BasicBlockInfo {
      * @param ports the ports
      * @return array of ports data columns
      */
+    @Deprecated
     public static ScilabDouble getAllPortsDataColumns(List< ? extends BasicPort> ports) {
 	boolean allZeros = true;
 	if (ports.isEmpty()) {
@@ -131,6 +131,7 @@ public final class BasicBlockInfo {
      * @param ports the ports
      * @return array of ports data type
      */
+    @Deprecated
     public static ScilabType getAllPortsDataType(List< ? extends BasicPort> ports) {
 	if (ports.isEmpty()) {
 	    return new ScilabDouble();
@@ -148,6 +149,7 @@ public final class BasicBlockInfo {
      * @param ports the ports
      * @return array of ports type
      */
+    @Deprecated
     public static ScilabType getAllPortsType(List< ? extends BasicPort> ports) {
 	if (ports.isEmpty()) {
 	    return new ScilabDouble();
@@ -165,6 +167,7 @@ public final class BasicBlockInfo {
      * @param block the current block.
      * @return graphic structure of given block
      */
+    @Deprecated
     public static ScilabMList createScilabGraphicsProperties(BasicBlock block) {
 	ScilabMList graphics = new ScilabMList(SCICOS_GRAPHIC_FIELDS);
 
@@ -216,6 +219,7 @@ public final class BasicBlockInfo {
      * @param block the current block
      * @return model structure of given block
      */
+    @Deprecated
     public static ScilabMList createScilabModelProperties(BasicBlock block) {
 	ScilabMList model = new ScilabMList(SCICOS_MODEL_FIELDS);
 	
@@ -281,6 +285,7 @@ public final class BasicBlockInfo {
      * @param block the current block
      * @return gui structure of given block
      */
+    @Deprecated
     public static ScilabString createScilabGuiProperties(BasicBlock block) {
 	return new ScilabString(block.getInterfaceFunctionName());
     }
@@ -290,6 +295,7 @@ public final class BasicBlockInfo {
      * @param block the current block
      * @return doc structure of given block
      */
+    @Deprecated
     public static ScilabList createScilabDocProperties(BasicBlock block) {
 	ScilabList result = new ScilabList();
 	// Store UID in doc so that Scilab will now it without being disturbed.
@@ -303,6 +309,7 @@ public final class BasicBlockInfo {
      * @param block the current block
      * @return Scilab structure of given block
      */
+    @Deprecated
     public static ScilabMList getAsScilabObj(BasicBlock block) {
 	ScilabMList obj = new ScilabMList(SCICOS_OBJ_FIELDS);
 
@@ -325,6 +332,7 @@ public final class BasicBlockInfo {
 	 *            The type to search for.
 	 * @return control ports of given block
 	 */
+    @Deprecated
 	public static <T extends BasicPort> List<T> getAllTypedPorts(
 			BasicBlock block, boolean revert, Class<T> type) {
 		List<T> data = new ArrayList<T>();
@@ -352,6 +360,7 @@ public final class BasicBlockInfo {
      * @param block The block we are working on
      * @return Lists of ports where key are BasicPort.Orientation
      */
+    @Deprecated
     public static Map<Orientation, List<BasicPort>> getAllOrientedPorts(BasicBlock block) {
     	EnumMap<Orientation, List<BasicPort>> map = new EnumMap<Orientation, List<BasicPort>>(Orientation.class);
     	List<BasicPort> northPorts = new ArrayList<BasicPort>();

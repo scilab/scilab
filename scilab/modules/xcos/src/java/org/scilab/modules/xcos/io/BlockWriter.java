@@ -17,13 +17,13 @@ import java.util.List;
 
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
+import org.scilab.modules.hdf5.write.H5Write;
 import org.scilab.modules.types.scilabTypes.ScilabBoolean;
 import org.scilab.modules.types.scilabTypes.ScilabDouble;
 import org.scilab.modules.types.scilabTypes.ScilabList;
 import org.scilab.modules.types.scilabTypes.ScilabMList;
 import org.scilab.modules.types.scilabTypes.ScilabString;
 import org.scilab.modules.types.scilabTypes.ScilabTList;
-import org.scilab.modules.hdf5.write.H5Write;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.graph.ScicosParameters;
@@ -85,6 +85,7 @@ public final class BlockWriter {
      * @param diagram diagram to save
      * @return true if file created successfully
      */
+    @Deprecated
     public static boolean writeDiagramToFile(String hdf5File, XcosDiagram diagram)	{
 
 	boolean isSuccess = true;
@@ -110,6 +111,7 @@ public final class BlockWriter {
      * @param diagram the diagram to be converted
      * @return the scilab formatted datas
      */
+    @Deprecated
     public static ScilabMList convertDiagramToMList(XcosDiagram diagram) {
 	ScilabMList data = new ScilabMList(DIAGRAM_FIELDS);
 	data.add(getDiagramProps(diagram));
@@ -163,6 +165,7 @@ public final class BlockWriter {
      * @param diagram the diagram
      * @return the TList
      */
+    @Deprecated
     private static ScilabList getDiagramObjs(XcosDiagram diagram) {
     	ScilabList data = new ScilabList();
 

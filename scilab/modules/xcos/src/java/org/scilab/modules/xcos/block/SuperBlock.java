@@ -15,6 +15,7 @@ package org.scilab.modules.xcos.block;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.menu.Menu;
@@ -37,15 +38,15 @@ import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
 import org.scilab.modules.xcos.block.io.ContextUpdate.IOBlocks;
 import org.scilab.modules.xcos.graph.PaletteDiagram;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
-import org.scilab.modules.xcos.io.BasicBlockInfo;
-import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.io.BlockWriter;
+import org.scilab.modules.xcos.io.scicos.BasicBlockInfo;
+import org.scilab.modules.xcos.io.scicos.DiagramElement;
+import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-import com.mxgraph.model.mxCell;
 import com.mxgraph.util.mxEventObject;
 
 /**
@@ -221,7 +222,7 @@ public final class SuperBlock extends BasicBlock {
 		 * valid.
 		 */
 		if (getChild().isModified()) {
-			setRealParameters(BlockWriter.convertDiagramToMList(getChild()));
+			setRealParameters(new DiagramElement().encode(getChild()));
 			getChild().setModified(true);
 			getChild().setModifiedNonRecursively(false);
 		}
@@ -279,8 +280,12 @@ public final class SuperBlock extends BasicBlock {
 		if (child == null) {
 			child = new SuperBlockDiagram(this);
 			child.installListeners();
-			child.loadDiagram(BlockReader.convertMListToDiagram(
-					(ScilabMList) getRealParameters(), false));
+			try {
+				new DiagramElement().decode(getRealParameters(), child, false);
+			} catch (ScicosFormatException e) {
+				LogFactory.getLog(SuperBlock.class).error(e);
+				return false;
+			}
 			
 			child.installSuperBlockListeners();
 			child.setChildrenParentDiagram();
@@ -313,11 +318,12 @@ public final class SuperBlock extends BasicBlock {
 	/**
 	 * @return block as mlist structure
 	 */
+	@Deprecated
 	public ScilabMList getAsScilabObj() {
 		if (child != null) {
 			setRealParameters(BlockWriter.convertDiagramToMList(child));
 		}
-		return BasicBlockInfo.getAsScilabObj(this);
+		return org.scilab.modules.xcos.io.BasicBlockInfo.getAsScilabObj(this);
 	}
 
 	/**

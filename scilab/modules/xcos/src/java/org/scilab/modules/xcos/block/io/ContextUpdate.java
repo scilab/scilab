@@ -20,7 +20,7 @@ import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterExc
 import org.scilab.modules.types.scilabTypes.ScilabDouble;
 import org.scilab.modules.types.scilabTypes.ScilabList;
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.io.BlockReader;
+import org.scilab.modules.xcos.io.scicos.H5RWHandler;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
@@ -138,7 +138,7 @@ public abstract class ContextUpdate extends BasicBlock {
 		} catch (InterpreterException e) {
 			e.printStackTrace();
 		}
-		BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());
+		BasicBlock modifiedBlock = new H5RWHandler(tempInput).readBlock();
 		updateBlockSettings(modifiedBlock);
 	    
 	} catch (IOException e) {

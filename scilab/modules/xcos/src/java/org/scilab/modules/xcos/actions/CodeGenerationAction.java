@@ -15,16 +15,11 @@ package org.scilab.modules.xcos.actions;
 
 import static org.scilab.modules.graph.utils.ScilabInterpreterManagement.asynchronousScilabExec;
 import static org.scilab.modules.graph.utils.ScilabInterpreterManagement.buildCall;
-import static org.scilab.modules.hdf5.write.H5Write.closeFile;
-import static org.scilab.modules.hdf5.write.H5Write.createFile;
-import static org.scilab.modules.hdf5.write.H5Write.writeInDataSet;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-
-import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabGraph;
@@ -34,7 +29,7 @@ import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.actions.SuperBlockSelectedAction;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.io.BlockReader;
+import org.scilab.modules.xcos.io.scicos.H5RWHandler;
 import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -97,9 +92,7 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
 			    /*
 			     * Export data
 			     */
-			    int fileId = createFile(tempOutput.getAbsolutePath());
-			    writeInDataSet(fileId, "scs_m", block.getAsScilabObj());
-			    closeFile(fileId);
+				new H5RWHandler(tempOutput).writeBlock(block);
 			    
 			    /*
 			     * Prepare command and callback
@@ -127,9 +120,6 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
 		} catch (IOException ex) {
 			LogFactory.getLog(CodeGenerationAction.class).error(ex);
 		    ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
-		} catch (HDF5Exception ex) {
-			LogFactory.getLog(CodeGenerationAction.class).error(ex);
-			((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
 		} catch (InterpreterException ex) {
 			LogFactory.getLog(CodeGenerationAction.class).error(ex);
 			((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
@@ -146,7 +136,7 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
      */
     private static void doAction(final SuperBlock block,
 			final File tempInput) {
-	    BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());
+	    BasicBlock modifiedBlock = new H5RWHandler(tempInput).readBlock();
 	    block.updateBlockSettings(modifiedBlock);
 	    block.setInterfaceFunctionName(modifiedBlock.getInterfaceFunctionName());
 	    block.setSimulationFunctionName(modifiedBlock.getSimulationFunctionName());

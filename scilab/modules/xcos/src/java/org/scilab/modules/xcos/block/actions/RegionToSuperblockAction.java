@@ -44,8 +44,8 @@ import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
 import org.scilab.modules.xcos.block.io.ContextUpdate.IOBlocks;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.io.BasicBlockInfo;
-import org.scilab.modules.xcos.io.BlockWriter;
+import org.scilab.modules.xcos.io.scicos.BasicBlockInfo;
+import org.scilab.modules.xcos.io.scicos.DiagramElement;
 import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
@@ -247,7 +247,7 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
 	/*
 	 * Update block with real parameters
 	 */
-	superBlock.setRealParameters(BlockWriter.convertDiagramToMList(diagram));
+	superBlock.setRealParameters(new DiagramElement().encode(diagram));
 	superBlock.setChild(diagram);
 	
 	/*

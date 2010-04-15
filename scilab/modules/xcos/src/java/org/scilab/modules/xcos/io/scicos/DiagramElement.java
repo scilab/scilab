@@ -108,7 +108,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 	}
 
 	/**
-	 * Decode the diagram
+	 * Decode the diagram with version validation.
 	 * 
 	 * @param element
 	 *            the diagram Scicos element
@@ -122,6 +122,24 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 	@Override
 	public XcosDiagram decode(ScilabType element, XcosDiagram into)
 			throws ScicosFormatException {
+		return decode(element, into, true);
+	}
+	
+	/**
+	 * Decode the diagram
+	 * 
+	 * @param element
+	 *            the diagram Scicos element
+	 * @param into
+	 *            the Xcos instance, if null, a new instance is returned.
+	 * @param validate true, if the diagram version will be checked. false otherwise.
+	 * @return the modified into parameters
+	 * @throws ScicosFormatException when a decoding error occurs
+	 * @see org.scilab.modules.xcos.io.scicos.Element#decode(org.scilab.modules.types.scilabTypes.ScilabType,
+	 *      java.lang.Object)
+	 */
+	public XcosDiagram decode(ScilabType element, XcosDiagram into, boolean validate)
+			throws ScicosFormatException {
 		base = (ScilabMList) element;
 		
 		XcosDiagram diag = into;
@@ -134,7 +152,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 		// Validate the base field
 		String wrongVersion = null;
 		try {
-			validate(true);
+			validate(validate);
 		} catch (VersionMismatchException e) {
 			wrongVersion = e.getWrongVersion();
 		}

@@ -66,6 +66,7 @@ public final class BlockReader {
 	 *            the scs_m Scicos main structure
 	 * @return the data
 	 */
+    @Deprecated
 	public static Map<String, Object> convertMListToDiagram(ScilabMList data) {
 		return convertMListToDiagram(data, true);
 	}
@@ -80,6 +81,7 @@ public final class BlockReader {
 	 *            otherwise.
 	 * @return the data
 	 */
+    @Deprecated
 	public static Map<String, Object> convertMListToDiagram(ScilabMList data,
 			boolean checkVersion) {
 		try {
@@ -252,6 +254,7 @@ public final class BlockReader {
 	 *            hdf5 file
 	 * @return diagram structure
 	 */
+    @Deprecated
 	public static Map<String, Object> readDiagramFromFile(String hdf5File) {
 		ScilabMList data = new ScilabMList();
 
@@ -471,6 +474,7 @@ public final class BlockReader {
 	 *            the file
 	 * @return the read block instance
 	 */
+    @Deprecated
 	public static BasicBlock readBlockFromFile(String hdf5file) {
 		ScilabMList data = new ScilabMList();
 		BasicBlock newBlock;
@@ -501,6 +505,7 @@ public final class BlockReader {
 	 *            the data
 	 * @return the number of objects
 	 */
+    @Deprecated
 	public static int getNbObjs(ScilabMList data) {
 		return ((ScilabList) data.get(2)).size();
 	}
@@ -526,6 +531,7 @@ public final class BlockReader {
 	 *            the index
 	 * @return true, if data(index) is a label; false otherwise.
 	 */
+    @Deprecated
 	public static boolean isLabel(ScilabMList data, int index) {
 		ScilabMList object = (ScilabMList) ((ScilabList) data.get(2))
 				.get(index);
@@ -561,6 +567,7 @@ public final class BlockReader {
 	 *            the index
 	 * @return virtually data(index).
 	 */
+    @Deprecated
 	public static ScilabMList getBlockAt(ScilabMList data, int index) {
 		return (ScilabMList) ((ScilabList) data.get(2)).get(index);
 	}
@@ -585,6 +592,7 @@ public final class BlockReader {
 	 *            the data.
 	 * @return all the fields name
 	 */
+    @Deprecated
 	public static String[] getNameOfFieldsInStructure(ScilabMList structure) {
 		return ((ScilabString) structure.get(0)).getData()[0];
 	}
@@ -930,6 +938,7 @@ public final class BlockReader {
 	 * @throws WrongStructureException
 	 *             when the structure is not valid
 	 */
+    @Deprecated
 	public static void fillGraphicsStructure(ScilabMList blockFields,
 			BasicBlock newBlock) throws WrongTypeException,
 			WrongStructureException {
@@ -1130,6 +1139,7 @@ public final class BlockReader {
 	 * @throws WrongStructureException
 	 *             when the structure is not valid
 	 */
+    @Deprecated
 	public static void fillTextModelStructure(ScilabMList blockFields,
 			BasicBlock newBlock) throws WrongTypeException,
 			WrongStructureException {
@@ -1460,6 +1470,7 @@ public final class BlockReader {
 	 * @throws WrongStructureException
 	 *             when the structure is not valid
 	 */
+    @Deprecated
 	public static void fillModelStructure(ScilabMList blockFields,
 			BasicBlock newBlock) throws WrongTypeException,
 			WrongStructureException {

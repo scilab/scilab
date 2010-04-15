@@ -262,6 +262,7 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
     /**
      * @return A scicos representation of this link
      */
+    @Deprecated
     public ScilabMList getAsScilabObj() {
 	String[] fields = {"Link", "xx", "yy", "id", "thick", "ct", "from", "to"};
 	ScilabMList data = new ScilabMList(fields);

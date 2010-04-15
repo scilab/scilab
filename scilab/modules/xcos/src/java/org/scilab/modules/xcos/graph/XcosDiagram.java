@@ -29,7 +29,6 @@ import java.net.URL;
 import java.rmi.server.UID;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -39,9 +38,6 @@ import javax.swing.SwingUtilities;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-
-import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
-import ncsa.hdf.hdf5lib.exceptions.HDF5LibraryException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -70,10 +66,7 @@ import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.SciFileFilter;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.hdf5.read.H5Read;
-import org.scilab.modules.types.scilabTypes.ScilabList;
 import org.scilab.modules.types.scilabTypes.ScilabMList;
-import org.scilab.modules.types.scilabTypes.ScilabString;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.actions.DiagramBackgroundAction;
@@ -90,9 +83,9 @@ import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.block.actions.ShowParentAction;
 import org.scilab.modules.xcos.block.io.ContextUpdate;
 import org.scilab.modules.xcos.configuration.ConfigurationManager;
-import org.scilab.modules.xcos.io.BlockReader;
-import org.scilab.modules.xcos.io.BlockWriter;
 import org.scilab.modules.xcos.io.XcosCodec;
+import org.scilab.modules.xcos.io.scicos.DiagramElement;
+import org.scilab.modules.xcos.io.scicos.H5RWHandler;
 import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
@@ -846,8 +839,7 @@ public class XcosDiagram extends ScilabGraph {
 	public void invoke(Object source, mxEventObject evt) {
 	    assert evt.getProperty(XcosConstants.EVENT_BLOCK_UPDATED) instanceof SuperBlock;
 	    SuperBlock updatedBlock = (SuperBlock) evt.getProperty(XcosConstants.EVENT_BLOCK_UPDATED);
-	    updatedBlock.setRealParameters(BlockWriter
-		    .convertDiagramToMList(updatedBlock.getChild()));
+	    updatedBlock.setRealParameters(new DiagramElement().encode(updatedBlock.getChild()));
 	    if (updatedBlock.getParentDiagram() instanceof SuperBlockDiagram) {
 		SuperBlock parentBlock = ((SuperBlockDiagram) updatedBlock
 			.getParentDiagram()).getContainer();
@@ -1504,8 +1496,8 @@ public class XcosDiagram extends ScilabGraph {
 	    writeFile = fc.getSelection()[0];
 	    System.out.println("Saving to file : {" + fileName + "}");
 	}
-
-	BlockWriter.writeDiagramToFile(writeFile, this);
+	
+	new H5RWHandler(writeFile).writeDiagram(this);
     }
     
     /**
@@ -1887,6 +1879,7 @@ public class XcosDiagram extends ScilabGraph {
      * 
      * @param diagramm
      */
+    @Deprecated
     public void openDiagram(Map<String, Object> diagramm) {
 	if (diagramm != null) {
 	    if (getModel().getChildCount(getDefaultParent()) == 0) {
@@ -1907,6 +1900,7 @@ public class XcosDiagram extends ScilabGraph {
      * 
      * @param diagramm diagram structure
      */
+    @Deprecated
     public void loadDiagram(Map<String, Object> diagramm) {
 	List<BasicBlock> allBlocks = (List<BasicBlock>) diagramm.get("Blocks");
 	List<TextBlock> allTextBlocks = (List<TextBlock>) diagramm.get("TextBlocks");
@@ -2073,7 +2067,8 @@ public class XcosDiagram extends ScilabGraph {
 	    break;
 
 	case HDF5:
-	    openDiagram(BlockReader.readDiagramFromFile(fileToLoad.getAbsolutePath()));
+	    H5RWHandler handler = new H5RWHandler(fileToLoad);
+	    handler.readDiagram(this);
 	    generateUID();
 	    setModified(false);
 	    result = true;
@@ -2118,7 +2113,7 @@ public class XcosDiagram extends ScilabGraph {
 		    newSP.setRealParameters(block.getRealParameters());
 		    newSP.createChildDiagram(true);
 		    newSP.setParentDiagram(this);
-		    block.setRealParameters(BlockWriter.convertDiagramToMList(newSP.getChild()));
+		    block.setRealParameters(new DiagramElement().encode(newSP.getChild()));
 		} else if (block.getId() == null || block.getId().compareTo("") == 0) {
 		    block.generateId();
 		}
@@ -2278,7 +2273,8 @@ public class XcosDiagram extends ScilabGraph {
      *         evaluated values. 
      */
 	public Map<String, String> evaluateContext() {
-		Map<String, String> result = new HashMap<String, String>();
+		Map<String, String> result = null;
+		
 		try {
 			StringBuilder str = new StringBuilder();
 			str.append('[');
@@ -2295,34 +2291,7 @@ public class XcosDiagram extends ScilabGraph {
 						  "vars = script2var(" + str.toString() + ", struct());"
 						+ "export_to_hdf5('" + temp.getAbsolutePath() + "', 'vars');");
 			
-			ScilabList list = new ScilabList();
-			try {
-				int handle = H5Read.openFile(temp.getAbsolutePath());
-				if (handle >= 0) {
-					H5Read.readDataFromFile(handle, list);
-				}
-			} catch (HDF5LibraryException e) {
-				info("The HDF5 library is not loaded");
-				e.printStackTrace();
-			} catch (NullPointerException e) {
-				info("Unable to open file");
-				e.printStackTrace();
-			} catch (HDF5Exception e) {
-				info("The HDF5 file is not valid");
-				e.printStackTrace();
-			}
-
-			// We are starting at 2 because a struct is composed of
-			//     - the fields names (ScilabString)
-			//     - the dimension
-			//     - variables values...
-			for (int index = 2; index < list.size(); index++) {
-				String key = ((ScilabString) list.get(0)).getData()[0][index];
-				String value = list.get(index).toString();
-				
-				result.put(key, value);
-			}
-			
+			result = new H5RWHandler(temp).readContext();
 		} catch (IOException e) {
 			info("Unable to create file");
 			e.printStackTrace();
