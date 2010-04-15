@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
+ * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,12 +11,17 @@
  *
  */
 
+#include <iostream>
 #include "BrowseVar.hxx"
 
 extern "C"
 {
+#include "localization.h"
 #include "gw_ui_data.h"
+#include "MALLOC.h"
 #include "stack-c.h"
+#include "stackinfo.h"
+#include "api_scilab.h"
 #include "getScilabJavaVM.h"
 }
 using namespace org_scilab_modules_ui_data;
@@ -24,8 +30,72 @@ int sci_browsevar(char *fname,unsigned long fname_len)
 {
 	CheckRhs(0,0);
 	CheckLhs(0,1);	
-	
-    BrowseVar::openVariableBrowser(getScilabJavaVM());
+	int i = 0;
+    int iGlobalVariablesUsed=0;
+    int iGlobalVariablesTotal=0;
+    int iLocalVariablesUsed=0;
+    int iLocalVariablesTotal=0;
+
+    // First get how many global / local variable we have.
+    C2F(getvariablesinfo)(&iLocalVariablesTotal,&iLocalVariablesUsed);
+    C2F(getgvariablesinfo)(&iGlobalVariablesTotal,&iGlobalVariablesUsed);
+
+    char ** pstAllVariableNames = (char **) MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
+    char ** pstAllVariableStandard = (char **) MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
+    int * piAllVariableBytes = (int *) MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
+    int * piAllVariableTypes = (int *) MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
+
+    // for each local variable get informations
+    for (i = 0 ; i < iLocalVariablesUsed ; ++i)
+    {
+        // name
+        pstAllVariableNames[i] = getLocalNamefromId(i+1);
+        // type
+        getNamedVarType(pvApiCtx, pstAllVariableNames[i], &piAllVariableTypes[i]);
+        // Bytes used
+        piAllVariableBytes[i] = getLocalSizefromId(i);
+        // global / local ??
+        pstAllVariableStandard[i] = "local";
+    }
+
+    // for each global variable get informations
+    for (int j = 0 ; j < iGlobalVariablesUsed ; ++j, ++i)
+    {
+        pstAllVariableNames[i] = getGlobalNamefromId(j);
+        piAllVariableBytes[i] = getGlobalSizefromId(j);
+        getNamedVarType(pvApiCtx, psAllVariableNames[i], &piAllVariableTypes[i]);
+        pstAllVariableStandard[i] = "global";
+    }
+
+    char *pstColumnNames[] = {_("Icon"), 
+                              _("Name"), 
+                              //_("Value"),
+                              //_("Size"),
+                              _("Bytes"),
+                              _("Class"),
+                              //_("Min"),
+                              //_("Max"),
+                              //_("Range"),
+                              //_("Mean"),
+                              //_("Median"),
+                              //_("Mode"),
+                              //_("Var"),
+                              _("Std")
+    };
+ 
+    // Launch Java Variable Browser through JNI
+    BrowseVar::openVariableBrowser(getScilabJavaVM(), 
+                                   pstColumnNames, 5,
+                                   psAllVariableNames, iLocalVariablesUsed + iGlobalVariablesUsed,
+                                   piAllVariableBytes, iLocalVariablesUsed + iGlobalVariablesUsed,
+                                   piAllVariableTypes, iLocalVariablesUsed + iGlobalVariablesUsed,
+                                   pstAllVariableStandard, iLocalVariablesUsed + iGlobalVariablesUsed
+        );
+
+    FREE(pstAllVariableNames);
+    FREE(pstAllVariableStandard);
+    FREE(piAllVariableBytes);
+    FREE(piAllVariableTypes);
 
 	LhsVar(1) = 0;
 	PutLhsVar();
