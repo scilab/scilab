@@ -199,7 +199,7 @@ namespace types
 			int iMaxLen = 0;
 			for(int i = 0 ; i < m_iSize ; i++)
 			{
-				iMaxLen = Max(iMaxLen, (int)strlen(string_get(i,0)));
+				iMaxLen = Max(iMaxLen, static_cast<int>(strlen(string_get(i,0))));
 			}
 
 			iMaxLen += 2;
@@ -226,8 +226,8 @@ namespace types
 			for(int i = 0 ; i < m_iCols ; i++)
 			{
 				int iLen = 0;
-				int iCurLen = (int)strlen(string_get(0, i));
-				iLen = iCurLen + SIZE_BETWEEN_TWO_VALUES + (int)ostemp.str().size();
+				int iCurLen = static_cast<int>(strlen(string_get(0, i)));
+				iLen = iCurLen + SIZE_BETWEEN_TWO_VALUES + static_cast<int>(ostemp.str().size());
 				if(iLen > _iLineLen)
 				{//Max length, new line
 					if(iLastVal + 1 == i)
@@ -275,7 +275,7 @@ namespace types
 			{
 				for(int iRows1 = 0 ; iRows1 < rows_get() ; iRows1++)
 				{
-					piSize[iCols1] = Max(piSize[iCols1], (int)strlen(string_get(iRows1,iCols1)));
+					piSize[iCols1] = Max(piSize[iCols1], static_cast<int>(strlen(string_get(iRows1,iCols1))));
 				}
 
 				if(iLen + piSize[iCols1] > _iLineLen)
@@ -353,13 +353,12 @@ namespace types
 
 	bool String::operator==(const InternalType& it)
 	{
-		InternalType* pIT = (InternalType*)&it;
-		if(pIT->getType() != RealString)
+		if(const_cast<InternalType&>(it).getType() != RealString)
 		{
 			return false;
 		}
 
-		String* pS = pIT->getAsString();
+		String* pS = const_cast<InternalType&>(it).getAsString();
 
 		if(pS->rows_get() != rows_get() || pS->cols_get() != cols_get())
 		{
