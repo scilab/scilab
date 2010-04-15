@@ -43,12 +43,19 @@
 
 #include "doublecomplex.h"
 
+#ifdef __cplusplus
+#define getRelativeMachinePrecision()		C2F(dlamch)(const_cast<char*>("e"), 1L)
+#define isZero(x)							fabs(static_cast<double>(x)) <= getRelativeMachinePrecision()
+#define ZeroIsZero(x)						fabs(static_cast<double>(x)) <= getRelativeMachinePrecision() ? 0 : static_cast<double>(x)
+#else
 #define getRelativeMachinePrecision()		C2F(dlamch)((char*)"e", 1L)
+#define isZero(x)							fabs((double)x) <= getRelativeMachinePrecision()
+#define ZeroIsZero(x)						fabs((double)x) <= getRelativeMachinePrecision() ? 0 : (double)x
+#endif 
+
 #define getUnderflowThreshold()					C2F(dlamch)((char*)"u", 1L)
 #define getOverflowThreshold()					C2F(dlamch)((char*)"o", 1L)
-#define isZero(x)												fabs((double)x) <= getRelativeMachinePrecision()
 #define isEqual(x,y)										fabs((double)x - (double)y) <= getRelativeMachinePrecision()
-#define ZeroIsZero(x)										fabs((double)x) <= getRelativeMachinePrecision() ? 0 : (double)x
 
 extern double C2F(dlamch)  (char *_pszCommand, unsigned long int);
 extern double C2F(logp1) (double *_pdblVal);
