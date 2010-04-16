@@ -361,7 +361,7 @@ namespace types
 							continue;
 						}
 
-						Add_Space(&ostemp2, piIndexExp[j] - (int)ostemp2.str().size());
+						Add_Space(&ostemp2, piIndexExp[j] - ostemp2.str().size());
 						if(isZero(_pdblVal[j]) == false)
 							ostemp2 << j;
 					}
@@ -379,10 +379,10 @@ namespace types
 				if(i != 0)
 				{
 					ostemp << _szVar;
-					piIndexExp[i] = (int)ostemp.str().size();
+					piIndexExp[i] = ostemp.str().size();
 				}
 				ostemp << " ";
-				iLen = (int)ostemp.str().size();
+				iLen = ostemp.str().size();
 			}
 		}
 
@@ -395,7 +395,7 @@ namespace types
 					continue;
 				}
 
-				Add_Space(&ostemp2, piIndexExp[j] - (int)ostemp2.str().size());
+				Add_Space(&ostemp2, piIndexExp[j] - ostemp2.str().size());
 				if(isZero(_pdblVal[j]) == false)
 				{
 					ostemp2 << j;
@@ -405,7 +405,7 @@ namespace types
 			if(ostemp.str() == "  ")
 			{
 				ostemp << "  0";
-				Add_Space(&ostemp2, (int)ostemp.str().size());
+				Add_Space(&ostemp2, ostemp.str().size());
 			}
 
 			_pListExp->push_back(ostemp2.str());
@@ -418,13 +418,12 @@ namespace types
 
 	bool Poly::operator==(const InternalType& it)
 	{
-		InternalType* pIT = (InternalType*)&it;
-		if(pIT->getType() != RealSinglePoly)
+		if(const_cast<InternalType &>(it).getType() != RealSinglePoly)
 		{
 			return false;
 		}
 
-		Poly* pP = pIT->getAsSinglePoly();
+		Poly* pP = const_cast<InternalType &>(it).getAsSinglePoly();
 
 		if(rank_get() != pP->rank_get())
 		{
