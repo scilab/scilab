@@ -155,6 +155,11 @@ namespace ast
                 //    iCurCol = 0;
                 //}
 
+                //if(MatrixList.size() == 1)
+                //{
+                //    std::cout << "MatrixList.size() == 1" << std::endl;
+                //}
+
                 for(it_ML = MatrixList.begin() ; it_ML != MatrixList.end() ; it_ML++)
                 {//;
                     InternalType* poTemp = NULL;
