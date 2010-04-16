@@ -270,7 +270,7 @@ namespace types
 					szTemp += "  ";
 				}
 
-				if(bWordWarp == false && (int)(szTemp.size() + strlen(m_piData[i] ? "T" : "F")) >= _iLineLen)
+				if(bWordWarp == false && static_cast<int>(szTemp.size() + strlen(m_piData[i] ? "T" : "F")) >= _iLineLen)
 				{
 					bWordWarp = true;
 					iLineTag	= i;
@@ -310,7 +310,7 @@ namespace types
 					szTemp += "  ";
 				}
 
-				if(bWordWarp == false && (int)(szTemp.size() + strlen(m_piData[i * rows_get()] ? "T" : "F")) >= _iLineLen)
+				if(bWordWarp == false && static_cast<int>(szTemp.size() + strlen(m_piData[i * rows_get()] ? "T" : "F")) >= _iLineLen)
 				{
 					bWordWarp = true;
 					iLineTag	= i;
@@ -351,13 +351,12 @@ namespace types
 
 	bool Bool::operator==(const InternalType& it)
 	{
-		InternalType* pIT = (InternalType*)&it;
-		if(pIT->getType() != RealBool)
+		if(const_cast<InternalType &>(it).getType() != RealBool)
 		{
 			return false;
 		}
 
-		Bool* pb = pIT->getAsBool();
+		Bool* pb = const_cast<InternalType &>(it).getAsBool();
 
 		if(pb->rows_get() != rows_get() || pb->cols_get() != cols_get())
 		{
@@ -566,9 +565,9 @@ namespace types
 
 		//check input param
 
-		if(	_bAsVector && _piMaxDim[0] > size_get() ||
-				_bAsVector == false && _piMaxDim[0] > rows_get() ||
-				_bAsVector == false && _piMaxDim[1] > cols_get())
+		if(	(_bAsVector && _piMaxDim[0] > size_get()) ||
+            (_bAsVector == false && _piMaxDim[0] > rows_get()) ||
+            (_bAsVector == false && _piMaxDim[1] > cols_get()))
 		{
 			return NULL;
 		}
@@ -605,7 +604,6 @@ namespace types
 		}
 		else
 		{
-			int iRowIn	= rows_get();
 			for(int i = 0 ; i < _iSeqCount ; i++)
 			{
 				//convert vertical indexes to horizontal indexes
