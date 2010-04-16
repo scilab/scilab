@@ -45,12 +45,12 @@
 
 #ifdef __cplusplus
 #define getRelativeMachinePrecision()		C2F(dlamch)(const_cast<char*>("e"), 1L)
-#define isZero(x)							fabs(static_cast<double>(x)) <= getRelativeMachinePrecision()
-#define ZeroIsZero(x)						fabs(static_cast<double>(x)) <= getRelativeMachinePrecision() ? 0 : static_cast<double>(x)
+#define isZero(x)							(fabs(static_cast<double>(x)) <= getRelativeMachinePrecision())
+#define ZeroIsZero(x)						(fabs(static_cast<double>(x)) <= getRelativeMachinePrecision() ? 0 : static_cast<double>(x))
 #else
 #define getRelativeMachinePrecision()		C2F(dlamch)((char*)"e", 1L)
-#define isZero(x)							fabs((double)x) <= getRelativeMachinePrecision()
-#define ZeroIsZero(x)						fabs((double)x) <= getRelativeMachinePrecision() ? 0 : (double)x
+#define isZero(x)							(fabs((double)x) <= getRelativeMachinePrecision())
+#define ZeroIsZero(x)						(fabs((double)x) <= getRelativeMachinePrecision() ? 0 : (double)x)
 #endif 
 
 #define getUnderflowThreshold()					C2F(dlamch)((char*)"u", 1L)
