@@ -775,6 +775,7 @@ assign			"="
     yylloc.last_line += 1;
     yylloc.last_column = 1;
     *yylval.str += yytext;
+    yy_pop_state();
     yyterminate();
   }
 
@@ -782,6 +783,7 @@ assign			"="
     std::string str = "unexpected end of file in a string.";
     exit_status = SCAN_ERROR;
     scan_error(str);
+    yy_pop_state();
     yyterminate();
   }
 
@@ -835,6 +837,7 @@ assign			"="
     std::string str = "unexpected end of file in a string";
     exit_status = SCAN_ERROR;
     scan_error(str);
+    yy_pop_state();
     yyterminate();
   }
 

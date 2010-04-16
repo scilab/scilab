@@ -1866,6 +1866,7 @@ YY_RULE_SETUP
     yylloc.last_line += 1;
     yylloc.last_column = 1;
     *yylval.str += yytext;
+    yy_pop_state();
     yyterminate();
   }
 	YY_BREAK
@@ -1874,6 +1875,7 @@ case YY_STATE_EOF(SIMPLESTRING):
     std::string str = "unexpected end of file in a string.";
     exit_status = SCAN_ERROR;
     scan_error(str);
+    yy_pop_state();
     yyterminate();
   }
 	YY_BREAK
@@ -1942,6 +1944,7 @@ case YY_STATE_EOF(DOUBLESTRING):
     std::string str = "unexpected end of file in a string";
     exit_status = SCAN_ERROR;
     scan_error(str);
+    yy_pop_state();
     yyterminate();
   }
 	YY_BREAK
