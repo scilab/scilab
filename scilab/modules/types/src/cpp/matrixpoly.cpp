@@ -418,7 +418,6 @@ namespace types
 		list<string> listExpR, listCoefR, listExpI, listCoefI;
 
 		int iLen				= 0;
-		int iLastFlush	= 0;
 		int iLastCol		= 0;
 
 		string szExp, szCoef;
@@ -431,7 +430,8 @@ namespace types
 		{
 			for(int iRows1 = 0 ; iRows1 < m_iRows ; iRows1++)
 			{
-				int iLen = 0;
+				// FIXME : iLen shadow previous declaration
+                int iLen = 0;
 				if(_bComplex)
 				{
 					poly_get(iRows1, iCols1)->toStringImg(_iPrecison, _iLineLen, var_get(), &listExpR, &listCoefR);
@@ -445,18 +445,18 @@ namespace types
 				{
 					for(it_Exp = listExpR.begin() ; it_Exp != listExpR.end() ; it_Exp++)
 					{
-						iLen += (int)(*it_Exp).size();
+						iLen += static_cast<int>((*it_Exp).size());
 					}
 				}
 				else
 				{
 					if(listExpR.front().size() != 0)
 					{
-						iLen = (int)listExpR.front().size();
+						iLen = static_cast<int>(listExpR.front().size());
 					}
 					else
 					{
-						iLen = (int)listCoefR.front().size();
+						iLen = static_cast<int>(listCoefR.front().size());
 					}
 				}
 				piMaxLen[iCols1] = Min(Max(piMaxLen[iCols1], iLen), _iLineLen);
@@ -466,7 +466,7 @@ namespace types
 
 			//We know the length of the column
 
-			if((int)(iLen + piMaxLen[iCols1]) >= _iLineLen && iLen != 0)
+			if(static_cast<int>(iLen + piMaxLen[iCols1]) >= _iLineLen && iLen != 0)
 			{//if the max length exceeded
 				ostringstream ostemp;
 				for(int iRows2 = 0 ; iRows2 < m_iRows ; iRows2++)
@@ -488,11 +488,11 @@ namespace types
 							for(it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; it_Coef++,it_Exp++)
 							{
 								osExp << *it_Exp;
-								Add_Space(&osExp, piMaxLen[iCols2] - (int)(*it_Exp).size());
+								Add_Space(&osExp, piMaxLen[iCols2] - static_cast<int>((*it_Exp).size()));
 								osExp << endl;
 
 								osExp << *it_Coef;
-								Add_Space(&osExp, piMaxLen[iCols2] - (int)(*it_Coef).size());
+								Add_Space(&osExp, piMaxLen[iCols2] - static_cast<int>((*it_Coef).size()));
 								osExp << endl;
 								bMultiLine = true;
 							}
@@ -500,9 +500,9 @@ namespace types
 						else
 						{
 							osExp << listExpR.front();
-							Add_Space(&osExp, piMaxLen[iCols2] - (int)listExpR.front().size());
+							Add_Space(&osExp, piMaxLen[iCols2] - static_cast<int>(listExpR.front().size()));
 							osCoef << listCoefR.front();
-							Add_Space(&osCoef, piMaxLen[iCols2] - (int)listCoefR.front().size());
+							Add_Space(&osCoef, piMaxLen[iCols2] - static_cast<int>(listCoefR.front().size()));
 							bMultiLine = false;
 						}
 						listExpR.clear();
@@ -569,11 +569,11 @@ namespace types
 					for(it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; it_Coef++,it_Exp++)
 					{//normally useless ...
 						osExp << *it_Exp;
-						Add_Space(&osExp, piMaxLen[iCols2] - (int)(*it_Exp).size());
+						Add_Space(&osExp, piMaxLen[iCols2] - static_cast<int>((*it_Exp).size()));
 						osExp << endl;
 
 						osExp << *it_Coef;
-						Add_Space(&osExp, piMaxLen[iCols2] - (int)(*it_Coef).size());
+						Add_Space(&osExp, piMaxLen[iCols2] - static_cast<int>((*it_Coef).size()));
 						osExp << endl;
 					}
 				}
@@ -584,9 +584,9 @@ namespace types
 						osExp << listExpR.front();
 					}
 
-					Add_Space(&osExp, piMaxLen[iCols2] - (int)listExpR.front().size());
+					Add_Space(&osExp, piMaxLen[iCols2] - static_cast<int>(listExpR.front().size()));
 					osCoef << listCoefR.front();
-					Add_Space(&osCoef, piMaxLen[iCols2] - (int)listCoefR.front().size());
+					Add_Space(&osCoef, piMaxLen[iCols2] - static_cast<int>(listCoefR.front().size()));
 				}
 				listExpR.clear();
 				listCoefR.clear();
@@ -630,7 +630,7 @@ namespace types
 			{
 				poly_get(i)->toStringReal(_iPrecison, _iLineLen, var_get(), &listExpR, &listCoefR);
 			}
-			if(iLen != 0 && (int)(iLen + listExpR.front().size()) > _iLineLen)
+			if(iLen != 0 && static_cast<int>(iLen + listExpR.front().size()) > _iLineLen)
 			{//flush strean
 				if(i == iLastFlush + 1)
 				{
@@ -664,11 +664,11 @@ namespace types
 
 			if(osExp.str().size() != 0)
 			{
-				iLen = (int)osExp.str().size();
+				iLen = static_cast<int>(osExp.str().size());
 			}
 			else
 			{
-				iLen = (int)osCoef.str().size();
+				iLen = static_cast<int>(osCoef.str().size());
 			}
 
 			listCoefR.clear();
@@ -693,9 +693,6 @@ namespace types
 
 	string MatrixPoly::GetColString(int _iPrecison, int _iLineLen, bool _bComplex)
 	{
-		int iLen				= 0;
-		int iLastFlush	= 0;
-
 		ostringstream ostr;
 		ostringstream osExp;
 		ostringstream osCoef;
@@ -801,13 +798,12 @@ namespace types
 
 	bool MatrixPoly::operator==(const InternalType& it)
 	{
-		InternalType* pIT = (InternalType*)&it;
-		if(pIT->getType() != RealPoly)
+		if(const_cast<InternalType &>(it).getType() != RealPoly)
 		{
 			return false;
 		}
 
-		MatrixPoly* pM = pIT->getAsPoly();
+		MatrixPoly* pM = const_cast<InternalType &>(it).getAsPoly();
 
 		if(pM->rows_get() != rows_get() || pM->cols_get() != cols_get())
 		{
