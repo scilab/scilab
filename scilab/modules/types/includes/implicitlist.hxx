@@ -86,20 +86,11 @@ namespace types
 		long long			extract_value_int(int _iOccur);
 		//extract matrix in a Internaltype
 		InternalType* extract_matrix();
-		//extract double
-		void					extract_matrix(double *_pdbl);
-		//extract integer
-		void					extract_matrix(char *_pc);
-		void					extract_matrix(short *_ps);
-		void					extract_matrix(int *_pi);
-		void					extract_matrix(long long *_pll);
-		//extract unsigned integer
-		void					extract_matrix(unsigned char *_puc);
-		void					extract_matrix(unsigned short *_pus);
-		void					extract_matrix(unsigned int *_pui);
-		void					extract_matrix(unsigned long long *_pull);
-
-
+		
+        // templated extract for
+        // double / char / short / int / long long / unsigned ...
+        template<typename T>
+        void					extract_matrix(T *_pT);
 	};
 }
 

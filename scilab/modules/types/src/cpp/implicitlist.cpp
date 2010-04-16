@@ -152,7 +152,7 @@ namespace types
 				double dblStep	= m_poStep->getAsDouble()->real_get(0,0);
 				double dblEnd		= m_poEnd->getAsDouble()->real_get(0,0);
 
-				m_iSize = (long long)floor(fabs(dblEnd - dblStart) / fabs(dblStep)) + 1;
+				m_iSize = static_cast<long long>(floor(fabs(dblEnd - dblStart) / fabs(dblStep))) + 1;
 			}
 			else //m_eOutType == RealInt
 			{
@@ -163,9 +163,9 @@ namespace types
 					unsigned long long ullEnd		= convert_unsigned_input(m_poEnd);
 
 #ifdef _MSC_VER
-					m_iSize = (long long)floor( (double)(_abs64(ullEnd - ullStart) / _abs64(ullStep)) ) + 1;
+					m_iSize = static_cast<long long>(floor(static_cast<double>(_abs64(ullEnd - ullStart) / _abs64(ullStep)) )) + 1;
 #else
-					m_iSize = (long long)floor( (double)(llabs(ullEnd - ullStart) / llabs(ullStep)) ) + 1;
+					m_iSize = static_cast<long long>(floor(static_cast<double>(llabs(ullEnd - ullStart) / llabs(ullStep)) )) + 1;
 #endif
 				}
 				else //Signed
@@ -175,9 +175,9 @@ namespace types
 					long long llEnd		= convert_input(m_poEnd);
 
 #ifdef _MSC_VER
-					m_iSize = (long long)floor( (double)(_abs64(llEnd - llStart) / _abs64(llStep)) ) + 1;
+					m_iSize = static_cast<long long>(floor( static_cast<double>(_abs64(llEnd - llStart) / _abs64(llStep)) )) + 1;
 #else
-					m_iSize = (long long)floor( (double)(llabs(llEnd - llStart) / llabs(llStep)) ) + 1;
+					m_iSize = static_cast<long long>(floor( static_cast<double>(llabs(llEnd - llStart) / llabs(llStep)) )) + 1;
 #endif
 				}
 			}
@@ -337,7 +337,7 @@ namespace types
 		{
 			if(m_eOutType == RealInt)
 			{
-				Int *pI	= Int::createInt(1, (int)m_iSize, m_eOutSubType);
+				Int *pI	= Int::createInt(1, m_iSize, m_eOutSubType);
 
 				for(int i = 0 ; i < m_iSize ; i++)
 				{
@@ -348,7 +348,7 @@ namespace types
 			}
 			else //RealDouble
 			{
-				Double* pD				= new Double(1, (int)m_iSize);
+				Double* pD				= new Double(1, m_iSize);
 				extract_matrix(pD->real_get());
 				pIT = pD;
 			}
@@ -356,114 +356,17 @@ namespace types
 		return pIT;
 	}
 
-	//extract double array
-	void ImplicitList::extract_matrix(double *_pData)
+    template<typename T>
+	void ImplicitList::extract_matrix(T *_pT)
 	{
-		if(m_eOutType == RealDouble)
-		{
-			if(m_iSize > 0)
-			{
-				double dblStart = m_poStart->getAsDouble()->real_get()[0];
-				double dblStep	= m_poStep->getAsDouble()->real_get()[0];
-
-				_pData[0] = dblStart;
-				for(int i = 1 ; i < m_iSize ; i++)
-				{
-					_pData[i] = _pData[i - 1] + dblStep;
-				}
-			}
-		}
-	}
-
-	//extract integer  array
-	void ImplicitList::extract_matrix(char *_pc)
-	{
-		char cStart = (char)convert_input(m_poStart);
-		char cStep	= (char)convert_input(m_poStep);
+        T tStart = static_cast<T>(convert_input(m_poStart));
+		T tStep	= static_cast<T>(convert_input(m_poStep));
 
 		for(int i = 0 ; i < m_iSize ; i++)
 		{
-			_pc[i] = cStart + cStep * i;
+			_pT[i] = tStart + tStep * i;
 		}
-	}
-
-	void ImplicitList::extract_matrix(short *_ps)
-	{
-		short sStart	= (short)convert_input(m_poStart);
-		short sStep		= (short)convert_input(m_poStep);
-
-		for(int i = 0 ; i < m_iSize ; i++)
-		{
-			_ps[i] = sStart + sStep * i;
-		}
-	}
-
-	void ImplicitList::extract_matrix(int *_pi)
-	{
-		int iStart	= (int)convert_input(m_poStart);
-		int iStep		= (int)convert_input(m_poStep);
-
-		for(int i = 0 ; i < m_iSize ; i++)
-		{
-			_pi[i] = iStart + iStep * i;
-		}
-	}
-
-	void ImplicitList::extract_matrix(long long *_pll)
-	{
-		long long llStart	= convert_input(m_poStart);
-		long long llStep		= convert_input(m_poStep);
-
-		for(int i = 0 ; i < m_iSize ; i++)
-		{
-			_pll[i] = llStart + llStep * i;
-		}
-	}
-
-	//extract unsigned integer
-	void ImplicitList::extract_matrix(unsigned char *_puc)
-	{
-		unsigned char ucStart	= (unsigned char)convert_unsigned_input(m_poStart);
-		unsigned char ucStep	= (unsigned char)convert_unsigned_input(m_poStep);
-
-		for(int i = 0 ; i < m_iSize ; i++)
-		{
-			_puc[i] = ucStart + ucStep * i;
-		}
-	}
-
-	void ImplicitList::extract_matrix(unsigned short *_pus)
-	{
-		unsigned short usStart	= (unsigned short)convert_unsigned_input(m_poStart);
-		unsigned short usStep		= (unsigned short)convert_unsigned_input(m_poStep);
-
-		for(int i = 0 ; i < m_iSize ; i++)
-		{
-			_pus[i] = usStart + usStep * i;
-		}
-	}
-
-	void ImplicitList::extract_matrix(unsigned int *_pui)
-	{
-		unsigned int uiStart	= (unsigned int)convert_unsigned_input(m_poStart);
-		unsigned int uiStep		= (unsigned int)convert_unsigned_input(m_poStep);
-
-		for(int i = 0 ; i < m_iSize ; i++)
-		{
-			_pui[i] = uiStart + uiStep * i;
-		}
-	}
-
-	void ImplicitList::extract_matrix(unsigned long long *_pull)
-	{
-		unsigned long long ullStart	= convert_unsigned_input(m_poStart);
-		unsigned long long ullStep	= convert_unsigned_input(m_poStep);
-
-		for(int i = 0 ; i < m_iSize ; i++)
-		{
-			_pull[i] = ullStart + ullStep * i;
-		}
-	}
+    }
 }
 
 string printInLinePoly(types::Poly* _pPoly, string _stVar, int _iPrecision, int _iLineLen)
@@ -512,6 +415,9 @@ long long convert_input(types::InternalType* _poIT)
 	case types::GenericType::RealInt :
 			llValue = (long long)_poIT->getAsInt()->data_get(0,0);
 		break;
+    default:
+        // FIXME : Trigger an error ??
+        break;
 	}
 	return llValue;
 }
@@ -527,6 +433,9 @@ unsigned long long convert_unsigned_input(types::InternalType* _poIT)
 	case types::GenericType::RealInt :
 		ullValue = (unsigned long long)_poIT->getAsInt()->data_get(0,0);
 		break;
+    default:
+        // FIXME : Trigger an error ??
+        break;
 	}
 	return ullValue;
 }
