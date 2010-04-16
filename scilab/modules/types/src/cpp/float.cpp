@@ -331,13 +331,12 @@ namespace types
 
 	bool Float::operator==(const InternalType& it)
 	{
-		InternalType* pIT = (InternalType*)&it;
-		if(pIT->getType() != RealFloat)
+		if(const_cast<InternalType &>(it).getType() != RealFloat)
 		{
 			return false;
 		}
 
-		Float* pf = pIT->getAsFloat();
+		Float* pf = const_cast<InternalType &>(it).getAsFloat();
 
 		if(pf->rows_get() != rows_get() || pf->cols_get() != cols_get())
 		{
