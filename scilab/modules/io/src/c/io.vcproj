@@ -392,7 +392,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\io.rc"
+				RelativePath=".\mgetl.c"
 				>
 			</File>
 			<File
@@ -497,6 +497,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\mgetl.h"
+				>
+			</File>
+			<File
 				RelativePath=".\resource.h"
 				>
 			</File>
@@ -536,6 +540,10 @@
 		<Filter
 			Name="Resource File"
 			>
+			<File
+				RelativePath=".\io.rc"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath="..\..\io.iss"

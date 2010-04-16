@@ -162,6 +162,8 @@ Bug fixes:
                    getFunctionByName to avoid confusions on the actual usage
                    of this function. Thanks to Yuvraj Tomar.
 
+* bug 4985 fixed - mgetl did not use fgets (C function).
+
 * bug 6419 fixed - gstacksize() There was no way to retrieve minimum 
                    from Scilab.
 
