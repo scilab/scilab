@@ -908,6 +908,7 @@ namespace types
         else
         {
             //memcpy version
+/*
             int iDestOffset = _iCols * m_iRows;
             if(_poSource->size_get() ==  1)
             {
@@ -917,13 +918,21 @@ namespace types
             {
                 memcpy(m_pdblReal + iDestOffset, _poSource->real_get(), _poSource->size_get() * sizeof(double));
             }
-
+*/
             //loop version
-            //int iDestOffset = _iCols * m_iRows;
-            //for(int i = 0 ; i < _poSource->size_get() ; i++)
-            //{
-            //    m_pdblReal[iDestOffset + i] =  _poSource->real_get()[i];
-            //}
+/*
+            int iDestOffset = _iCols * m_iRows;
+            for(int i = 0 ; i < _poSource->size_get() ; i++)
+            {
+                m_pdblReal[iDestOffset + i] =  _poSource->real_get()[i];
+            }
+*/
+            //blas
+            int iDestOffset     = _iCols * m_iRows;
+            int iSize           = _poSource->size_get();
+            double* pdblDest    = m_pdblReal + iDestOffset;
+            int iOne            = 1;
+            dcopy_(&iSize, _poSource->real_get(), &iOne, pdblDest, &iOne);
         }
         return true;
     }
@@ -940,6 +949,7 @@ namespace types
             for(int i = 0 ; i < iCols ; i++)
             {
                 //memcpy version
+/*                
                 int iDestOffset = i * m_iRows + _iRows;
                 int iOrigOffset = i * _poSource->rows_get();
                 if(_poSource->rows_get() == 1)
@@ -950,14 +960,25 @@ namespace types
                 {
                     memcpy(m_pdblReal + iDestOffset, _poSource->real_get() + iOrigOffset, _poSource->rows_get() * sizeof(double));
                 }
-                
+*/                
                 //loop version
-                //int iDestOffset = i * m_iRows + _iRows;
-                //int iOrigOffset = i * _poSource->rows_get();
-                //for(int j = 0 ; j < _poSource->rows_get() ; j++)
-                //{
-                //    m_pdblReal[iDestOffset + j] = _poSource->real_get()[iOrigOffset + j];
-                //}
+/*
+                int iDestOffset = i * m_iRows + _iRows;
+                int iOrigOffset = i * _poSource->rows_get();
+                for(int j = 0 ; j < _poSource->rows_get() ; j++)
+                {
+                    m_pdblReal[iDestOffset + j] = _poSource->real_get()[iOrigOffset + j];
+                }
+*/
+
+                int iDestOffset     = i * m_iRows + _iRows;
+                int iOrigOffset     = i * _poSource->rows_get();
+                int iSize           = _poSource->rows_get();
+                double* pdblDest    = m_pdblReal + iDestOffset;
+                double* pdblSource  = _poSource->real_get() + iOrigOffset;
+                int iOne            = 1;
+
+                dcopy_(&iSize, pdblSource, &iOne, pdblDest, &iOne);
             }
 
 
