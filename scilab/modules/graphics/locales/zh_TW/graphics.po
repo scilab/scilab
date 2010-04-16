@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
+"X-Launchpad-Export-Date: 2010-04-16 07:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid "%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
@@ -145,10 +145,6 @@ msgstr ""
 
 #, c-format
 msgid "%s: Legend does not fit with the current context. Skipped\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Misplaced optional argument: #%d must be at position %d\n"
 msgstr ""
 
 #, c-format
@@ -1033,12 +1029,6 @@ msgid ""
 "clamped.\n"
 msgstr ""
 
-msgid "Warning : Nax does not work with logarithmic scaling\n"
-msgstr ""
-
-msgid "Warning : Nax does not work with logarithmic scaling.\n"
-msgstr ""
-
 #, c-format
 msgid ""
 "Warning: %s has been set by user ; you must first increase the size of the "
@@ -1062,9 +1052,6 @@ msgid "Warning: Can't use Log on Y-axis ymin is negative.\n"
 msgstr ""
 
 msgid "Warning: Can't use Log on Z-axis zmin is negative.\n"
-msgstr ""
-
-msgid "Warning: Nax does not work with logarithmic scaling\n"
 msgstr ""
 
 msgid "Warning: Nax does not work with logarithmic scaling.\n"
@@ -1166,10 +1153,6 @@ msgid "Wrong type for '%s' property: Typed list expected.\n"
 msgstr ""
 
 msgid "Wrong type for input argument: Tlist expected.\n"
-msgstr ""
-
-#, c-format
-msgid "Wrong value for %s property: Must be in the interval [%s, %s].\n"
 msgstr ""
 
 #, c-format
