@@ -667,7 +667,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 				"xcosBlockInterface", 
 				tempOutput.getAbsolutePath(),
 				tempInput.getAbsolutePath(),
-				getInterfaceFunctionName(),
+				getInterfaceFunctionName().toCharArray(),
 				"set",
 				tempContext.getAbsolutePath());
 		} catch (InterpreterException e) {

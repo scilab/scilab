@@ -66,7 +66,10 @@ Xcos:
 * bug 6668 fixed - Xcos modelica demos did not work with the new 
                    modelica compiler.
 
-* bug 6903 fixed - modelicat calls ocamlrun (wrong dependency on Windows).
+* bug 6900 fixed - The block interfunction was escaped when calling scilab
+                   macros.
+
+* bug 6903 fixed - modelicat calls ocamlrun (wrong dependency on Windows).      
 
 Compilation:
 ============
