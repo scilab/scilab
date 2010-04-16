@@ -410,10 +410,10 @@ long long convert_input(types::InternalType* _poIT)
 	switch(_poIT->getType())
 	{
 	case types::GenericType::RealDouble :
-		llValue = (long long)_poIT->getAsDouble()->real_get(0,0);
+		llValue = static_cast<long long>(_poIT->getAsDouble()->real_get(0,0));
 		break;
 	case types::GenericType::RealInt :
-			llValue = (long long)_poIT->getAsInt()->data_get(0,0);
+        llValue = static_cast<long long>(_poIT->getAsInt()->data_get(0,0));
 		break;
     default:
         // FIXME : Trigger an error ??
@@ -428,10 +428,10 @@ unsigned long long convert_unsigned_input(types::InternalType* _poIT)
 	switch(_poIT->getType())
 	{
 	case types::GenericType::RealDouble :
-		ullValue = (unsigned long long)_poIT->getAsDouble()->real_get(0,0);
+		ullValue = static_cast<unsigned long long>(_poIT->getAsDouble()->real_get(0,0));
 		break;
 	case types::GenericType::RealInt :
-		ullValue = (unsigned long long)_poIT->getAsInt()->data_get(0,0);
+		ullValue = static_cast<unsigned long long>(_poIT->getAsInt()->data_get(0,0));
 		break;
     default:
         // FIXME : Trigger an error ??
