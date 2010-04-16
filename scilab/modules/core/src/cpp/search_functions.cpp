@@ -18,7 +18,8 @@ extern "C" {
 #include "stack-def.h" /* C2F(basbrk) */
 #include "intmacr2tree.h" /*#define idstk(x,y) (C2F(vstk).idstk+(x-1)+(y-1)*nsiz) */
 
-    void C2F(siflibs)(int* id, int* k_ptr, int* istr, int* lbibn, int* nbibn, int* ilp, int* nn, int* should_return);
+    void C2F(siflibs)(int* id, int* k_ptr, int* istr, int* lbibn, int* nbibn,
+        int* ilp, int* nn, int* should_return);
     void C2F(sivars)(int* id, int* should_return);
     void C2F(namstr)(int* id, int* str, int* n, char const* job);
 }
@@ -67,7 +68,8 @@ namespace
  * function that it should return at once.
  * other variables are lifted straight from Fortran code.
  */
-void C2F(siflibs)(int* id, int* k_ptr, int* istr, int* lbibn_ptr, int* nbibn_ptr, int* ilp_ptr, int* nn_ptr, int* should_return)
+void C2F(siflibs)(int* id, int* k_ptr, int* istr, int* lbibn_ptr, int* nbibn_ptr,
+                  int* ilp_ptr, int* nn_ptr, int* should_return)
 {
 
     static int const* const lstk_ptr = (int*)C2F(vstk).lstk-1;
@@ -87,7 +89,11 @@ void C2F(siflibs)(int* id, int* k_ptr, int* istr, int* lbibn_ptr, int* nbibn_ptr
             lbibn = il+2;
             il += nbibn+2;
             ilp = il+1;
+#ifdef _MSC_VER
+            ip = max(1, id_char(id)-9);
+#else
             ip = std::max(1, id_char(id)-9);
+#endif
             if (ip <= nclas)
             {
 

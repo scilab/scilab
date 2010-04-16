@@ -565,6 +565,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\namstr.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\parse.c"
 				>
 			</File>
@@ -838,6 +842,10 @@
 			</File>
 			<File
 				RelativePath=".\scirun.c"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\search_functions.cpp"
 				>
 			</File>
 			<File
