@@ -38,15 +38,16 @@ namespace ast
 		{
 			/*get king of left hand*/
 			const SimpleVar *pVar				= dynamic_cast<const SimpleVar*>(&e.left_exp_get());
-			const AssignListExp *pList	= dynamic_cast<const AssignListExp*>(&e.left_exp_get());
+			const FieldExp *pField				= dynamic_cast<const FieldExp*>(&e.left_exp_get());
+			const AssignListExp *pList	        = dynamic_cast<const AssignListExp*>(&e.left_exp_get());
 			const CallExp *pCall				= dynamic_cast<const CallExp*>(&e.left_exp_get());
 
 			if(pCall)
 			{//x(?) = ?
-				bool bRet								= true;
-				bool bNew								= false;
+				bool bRet					    = true;
+				bool bNew						= false;
 				int iProductElem				= (int)pCall->args_get().size();
-				pVar										= (SimpleVar*)&pCall->name_get();
+				pVar							= (SimpleVar*)&pCall->name_get();
 				InternalType *pIT				= symbol::Context::getInstance()->get(pVar->name_get());
 				bool bSeeAsVector				= iProductElem == 1;
 
@@ -235,13 +236,78 @@ namespace ast
 				}
 
 			}
-			else
-			{//Houston ...
-				std::ostringstream os;
-				os << "unknow script form";
-				os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
-				throw os.str();
-			}
+            else if(pField)
+            {//a.b = x
+                T execVar;
+                Struct *pStr = NULL;
+               // a et b already exist
+                //a exist and b is a new field 
+                //a and b are new
+
+                const SimpleVar* pHead = dynamic_cast<const SimpleVar*>(pField->head_get());
+                const SimpleVar* pTail = dynamic_cast<const SimpleVar*>(pField->tail_get());
+
+                try
+                {//does a already exist
+                    pField->head_get()->accept(execVar);
+
+                    //a already exist check type
+                    InternalType* pIT = execVar.result_get();
+                    if(pIT->getType() != InternalType::RealStruct)
+                    {
+                        //fake exception to create a new Struct
+                        throw string();
+                    }
+                    //all is OK, get pointer
+                    pStr = pIT->getAsStruct();
+                }
+                catch(string sz)
+                {//a does not exist
+                    //create new list variable
+                    pStr = new Struct();
+                    //Add variable to scope
+                    symbol::Context::getInstance()->put(pHead->name_get(), *pStr);
+                }
+
+                /*getting what to assign*/
+                execMeR.expected_size_set(1);
+                e.right_exp_get().accept(execMeR);
+
+                //we can assign only one value
+                if(execMeR.result_size_get() != 1)
+                {
+                    std::ostringstream os;
+                    os << "Lhs != Rhs";
+                    os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
+                    throw os.str();
+                }
+
+                InternalType *pIT = execMeR.result_get();
+                if(pIT->isImplicitList())
+                {
+                    InternalType *pTemp = ((ImplicitList*)pIT)->extract_matrix();
+                    delete pIT;
+                    pIT = pTemp;
+                }
+
+                //assign result to new field
+                pStr->add(pTail->name_get(), pIT);
+                if(e.is_verbose())
+                {
+                    std::ostringstream ostr;
+                    ostr << pHead->name_get() << " = " << std::endl;
+                    ostr << std::endl;
+                    ostr << pStr->toString(10,75) << std::endl;
+                    YaspWrite((char *)ostr.str().c_str());
+                }
+            }
+            else
+            {//Houston ...
+                std::ostringstream os;
+                os << "unknow script form";
+                os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
+                throw os.str();
+            }
 		}
 		catch(string sz)
 		{
@@ -249,41 +315,3 @@ namespace ast
 		}
 	}
 }
-
-/*
-std::vector<std::vector<int>> ExpandList(std::vector<std::vector<int>> *_List)
-{
-	std::vector<std::vector<int> > ReturnList;
-	if(_List->size() == 1)
-	{
-		for(unsigned int i = 0 ; i< (*_List)[0].size() ; i++)
-		{
-			std::vector<int> SubList;
-			SubList.push_back((*_List)[0][i]);
-			ReturnList.push_back(SubList);
-		}
-	}
-	else
-	{
-		std::vector<int> SubList;
-		std::vector<std::vector<int> > TempList;
-		SubList = *(_List->begin());
-		_List->erase(_List->begin());
-		TempList = ExpandList(_List);
-		for(unsigned int k = 0 ; k < SubList.size() ; k++)
-		{
-			for(unsigned int j = 0 ; j < TempList.size() ; j++)
-			{
-				std::vector<int> SubList2;
-				SubList2.push_back(SubList[k]);
-				for(unsigned int i = 0 ; i < TempList[j].size() ; i++)
-				{
-					SubList2.push_back(TempList[j][i]);
-				}
-				ReturnList.push_back(SubList2);
-			}
-		}
-	}
-	return ReturnList;
-}
-*/
