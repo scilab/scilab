@@ -116,6 +116,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscijvm_la_etcdir)" \
 	"$(DESTDIR)$(libscijvm_la_rootdir)" \
 	"$(DESTDIR)$(libscijvm_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libscijvm_la_xmldir)" \
 	"$(DESTDIR)$(libscijvm_la_includedir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscijvm_disable_la_LIBADD =
@@ -172,7 +173,7 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 SOURCES = $(libscijvm_disable_la_SOURCES) $(libscijvm_la_SOURCES)
 DIST_SOURCES = $(libscijvm_disable_la_SOURCES) $(libscijvm_la_SOURCES)
 DATA = $(libscijvm_la_etc_DATA) $(libscijvm_la_root_DATA) \
-	$(libscijvm_la_sci_gateway_DATA)
+	$(libscijvm_la_sci_gateway_DATA) $(libscijvm_la_xml_DATA)
 HEADERS = $(libscijvm_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
@@ -445,6 +446,10 @@ libscijvm_la_LIBADD = $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir
 #### jvm : gateway declaration ####
 libscijvm_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscijvm_la_sci_gateway_DATA = sci_gateway/jvm_gateway.xml
+
+#### jvm :  dtd files ####
+libscijvm_la_xmldir = $(mydatadir)/xml
+libscijvm_la_xml_DATA = xml/classpath.dtd  xml/librarypath.dtd
 
 #### jvm : include files ####
 libscijvm_la_includedir = $(pkgincludedir)
@@ -918,6 +923,26 @@ uninstall-libscijvm_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscijvm_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscijvm_la_sci_gatewaydir)" && rm -f $$files
+install-libscijvm_la_xmlDATA: $(libscijvm_la_xml_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscijvm_la_xmldir)" || $(MKDIR_P) "$(DESTDIR)$(libscijvm_la_xmldir)"
+	@list='$(libscijvm_la_xml_DATA)'; test -n "$(libscijvm_la_xmldir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libscijvm_la_xmldir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libscijvm_la_xmldir)" || exit $$?; \
+	done
+
+uninstall-libscijvm_la_xmlDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscijvm_la_xml_DATA)'; test -n "$(libscijvm_la_xmldir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(libscijvm_la_xmldir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(libscijvm_la_xmldir)" && rm -f $$files
 install-libscijvm_la_includeHEADERS: $(libscijvm_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscijvm_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscijvm_la_includedir)"
@@ -1026,7 +1051,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscijvm_la_etcdir)" "$(DESTDIR)$(libscijvm_la_rootdir)" "$(DESTDIR)$(libscijvm_la_sci_gatewaydir)" "$(DESTDIR)$(libscijvm_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscijvm_la_etcdir)" "$(DESTDIR)$(libscijvm_la_rootdir)" "$(DESTDIR)$(libscijvm_la_sci_gatewaydir)" "$(DESTDIR)$(libscijvm_la_xmldir)" "$(DESTDIR)$(libscijvm_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1080,7 +1105,8 @@ info-am:
 install-data-am: install-data-local install-libscijvm_la_etcDATA \
 	install-libscijvm_la_includeHEADERS \
 	install-libscijvm_la_rootDATA \
-	install-libscijvm_la_sci_gatewayDATA
+	install-libscijvm_la_sci_gatewayDATA \
+	install-libscijvm_la_xmlDATA
 
 install-dvi: install-dvi-am
 
@@ -1130,7 +1156,7 @@ uninstall-am: uninstall-libscijvm_la_etcDATA \
 	uninstall-libscijvm_la_includeHEADERS \
 	uninstall-libscijvm_la_rootDATA \
 	uninstall-libscijvm_la_sci_gatewayDATA \
-	uninstall-pkglibLTLIBRARIES
+	uninstall-libscijvm_la_xmlDATA uninstall-pkglibLTLIBRARIES
 
 .MAKE: check-am install-am install-strip
 
@@ -1146,7 +1172,8 @@ uninstall-am: uninstall-libscijvm_la_etcDATA \
 	install-libscijvm_la_etcDATA \
 	install-libscijvm_la_includeHEADERS \
 	install-libscijvm_la_rootDATA \
-	install-libscijvm_la_sci_gatewayDATA install-man install-pdf \
+	install-libscijvm_la_sci_gatewayDATA \
+	install-libscijvm_la_xmlDATA install-man install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
 	installdirs maintainer-clean maintainer-clean-generic \
@@ -1156,7 +1183,7 @@ uninstall-am: uninstall-libscijvm_la_etcDATA \
 	uninstall-libscijvm_la_includeHEADERS \
 	uninstall-libscijvm_la_rootDATA \
 	uninstall-libscijvm_la_sci_gatewayDATA \
-	uninstall-pkglibLTLIBRARIES
+	uninstall-libscijvm_la_xmlDATA uninstall-pkglibLTLIBRARIES
 
 
 # This target enables tests for Scilab
