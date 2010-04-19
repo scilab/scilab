@@ -110,99 +110,99 @@ namespace ast
                 int iAddRow = 0;
                 iCurRow			= 0;
                 iCurCol			= 0;
-                //for(it_ML = MatrixList.begin() ; it_ML != MatrixList.end() ; it_ML++)
-                //{
-                //    int iAddCol = 0;
-                //    for(it_RL = (*it_ML).begin() ; it_RL != (*it_ML).end() ; it_RL++)
-                //    {
-                //        if(poResult == NULL)
-                //        {
-                //            //tips to allow delete data
-                //            (*it_RL)->DecreaseRef();
-                //            poResult = AddElementToVariable(poResult, *it_RL, iRows, iCols, &iAddRow, &iAddCol);
+                for(it_ML = MatrixList.begin() ; it_ML != MatrixList.end() ; it_ML++)
+                {
+                    int iAddCol = 0;
+                    for(it_RL = (*it_ML).begin() ; it_RL != (*it_ML).end() ; it_RL++)
+                    {
+                        if(poResult == NULL)
+                        {
+                            //tips to allow delete data
+                            (*it_RL)->DecreaseRef();
+                            poResult = AddElementToVariable(poResult, *it_RL, iRows, iCols, &iAddRow, &iAddCol);
 
-                //            if((*it_RL)->isDeletable() == true)
-                //            {
-                //                if((*it_RL)->getType() == InternalType::RealDouble)
-                //                {
-                //                    delete (*it_RL)->getAsDouble();
-                //                }
-                //                else
-                //                {
-                //                    delete (*it_RL);
-                //                }
-                //            }
-                //            iCurCol += iAddCol;
-                //        }
-                //        else
-                //        {
-                //            poResult = AddElementToVariable(poResult, *it_RL, iCurRow, iCurCol, &iAddRow, &iAddCol);
-                //            if((*it_RL)->isDeletable() == true)
-                //            {
-                //                if((*it_RL)->getType() == InternalType::RealDouble)
-                //                {
-                //                    delete (*it_RL)->getAsDouble();
-                //                }
-                //                else
-                //                {
-                //                    delete (*it_RL);
-                //                }
-                //            }
-                //            iCurCol += iAddCol;
-                //        }
-                //    }
-                //    iCurRow += iAddRow;
-                //    iCurCol = 0;
-                //}
+                            if((*it_RL)->isDeletable() == true)
+                            {
+                                if((*it_RL)->getType() == InternalType::RealDouble)
+                                {
+                                    delete (*it_RL)->getAsDouble();
+                                }
+                                else
+                                {
+                                    delete (*it_RL);
+                                }
+                            }
+                            iCurCol += iAddCol;
+                        }
+                        else
+                        {
+                            poResult = AddElementToVariable(poResult, *it_RL, iCurRow, iCurCol, &iAddRow, &iAddCol);
+                            if((*it_RL)->isDeletable() == true)
+                            {
+                                if((*it_RL)->getType() == InternalType::RealDouble)
+                                {
+                                    delete (*it_RL)->getAsDouble();
+                                }
+                                else
+                                {
+                                    delete (*it_RL);
+                                }
+                            }
+                            iCurCol += iAddCol;
+                        }
+                    }
+                    iCurRow += iAddRow;
+                    iCurCol = 0;
+                }
 
                 //if(MatrixList.size() == 1)
                 //{
                 //    std::cout << "MatrixList.size() == 1" << std::endl;
                 //}
 
-                for(it_ML = MatrixList.begin() ; it_ML != MatrixList.end() ; it_ML++)
-                {//;
-                    InternalType* poTemp = NULL;
-                    iCurCol = 0;
-                    for(it_RL = (*it_ML).begin() ; it_RL != (*it_ML).end() ; it_RL++)
-                    {//,
-                        if((*it_ML).size() == 1)
-                        {//if item is a full row don(t need to duplicate it in other variable
-                            (*it_RL)->DecreaseRef();
-                            poTemp = *it_RL;
-                            break;
-                        }
+                //for(it_ML = MatrixList.begin() ; it_ML != MatrixList.end() ; it_ML++)
+                //{//;
+                //    InternalType* poTemp = NULL;
+                //    iCurCol = 0;
+                //    for(it_RL = (*it_ML).begin() ; it_RL != (*it_ML).end() ; it_RL++)
+                //    {//,
+                //        if((*it_ML).size() == 1)
+                //        {//if item is a full row don(t need to duplicate it in other variable
+                //            (*it_RL)->DecreaseRef();
+                //            poTemp = *it_RL;
+                //            break;
+                //        }
 
 
-                        if(poTemp == NULL)
-                        {
-                            poTemp = AddElementToVariableFromCol(poTemp, *it_RL, (*it_RL)->getAsGenericType()->rows_get(), iCols, &iCurCol);
-                        }
-                        else
-                        {
-                            poTemp = AddElementToVariableFromCol(poTemp, *it_RL, iCurRow, (*it_RL)->getAsGenericType()->cols_get(), &iCurCol);
-                        }
+                //        if(poTemp == NULL)
+                //        {
+                //            poTemp = AddElementToVariableFromCol(poTemp, *it_RL, (*it_RL)->getAsGenericType()->rows_get(), iCols, &iCurCol);
+                //        }
+                //        else
+                //        {
+                //            poTemp = AddElementToVariableFromCol(poTemp, *it_RL, iCurRow, (*it_RL)->getAsGenericType()->cols_get(), &iCurCol);
+                //        }
 
-                        //tips to allow delete data
-                        (*it_RL)->DecreaseRef();
-                        if((*it_RL)->isDeletable() == true)
-                        {
-                            if((*it_RL)->getType() == InternalType::RealDouble)
-                            {
-                                delete (*it_RL)->getAsDouble();
-                            }
-                            else
-                            {
-                                delete (*it_RL);
-                            }
-                        }
-                    }
-                    poResult = AddElementToVariableFromRow(poResult, poTemp, iRows, iCols, &iCurRow);
-                    if(poTemp->isDeletable())
-                    {
-                        delete poTemp;
-                    }
-                }
+                //        //tips to allow delete data
+                //        (*it_RL)->DecreaseRef();
+                //        if((*it_RL)->isDeletable() == true)
+                //        {
+                //            if((*it_RL)->getType() == InternalType::RealDouble)
+                //            {
+                //                delete (*it_RL)->getAsDouble();
+                //            }
+                //            else
+                //            {
+                //                delete (*it_RL);
+                //            }
+                //        }
+                //    }
+                //    poResult = AddElementToVariableFromRow(poResult, poTemp, iRows, iCols, &iCurRow);
+                //    if(poTemp->isDeletable())
+                //    {
+                //        delete poTemp;
+                //    }
+                //}
             }
             result_set(poResult);
         }
