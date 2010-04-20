@@ -36,4 +36,9 @@ types::InternalType* AddElementToVariableFromRow(
                         types::InternalType* _poSource, 
                         int _iRows, int _iCols, int *_piRows);
 
+
+const std::string* getStructNameFromExp(const Exp* _pExp);
+
+types::Struct* getStructFromExp(const Exp* _pExp);
+
 #endif //!AST_VISITOR_COMMON_HXX

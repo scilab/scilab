@@ -14,6 +14,7 @@
 #include "runvisitor.hxx"
 #include "execvisitor.hxx"
 #include "timedvisitor.hxx"
+#include "visitor_common.hxx"
 #include "context.hxx"
 #include <string>
 
@@ -238,36 +239,8 @@ namespace ast
 			}
             else if(pField)
             {//a.b = x
-                T execVar;
-                Struct *pStr = NULL;
-               // a et b already exist
-                //a exist and b is a new field 
-                //a and b are new
 
-                const SimpleVar* pHead = dynamic_cast<const SimpleVar*>(pField->head_get());
-                const SimpleVar* pTail = dynamic_cast<const SimpleVar*>(pField->tail_get());
-
-                try
-                {//does a already exist
-                    pField->head_get()->accept(execVar);
-
-                    //a already exist check type
-                    InternalType* pIT = execVar.result_get();
-                    if(pIT->getType() != InternalType::RealStruct)
-                    {
-                        //fake exception to create a new Struct
-                        throw string();
-                    }
-                    //all is OK, get pointer
-                    pStr = pIT->getAsStruct();
-                }
-                catch(string sz)
-                {//a does not exist
-                    //create new list variable
-                    pStr = new Struct();
-                    //Add variable to scope
-                    symbol::Context::getInstance()->put(pHead->name_get(), *pStr);
-                }
+                Struct* pStr = getStructFromExp(pField->head_get());
 
                 /*getting what to assign*/
                 execMeR.expected_size_set(1);
@@ -291,13 +264,17 @@ namespace ast
                 }
 
                 //assign result to new field
+                const SimpleVar* pTail =  dynamic_cast<const SimpleVar*>(pField->tail_get());
+
                 pStr->add(pTail->name_get(), pIT);
                 if(e.is_verbose())
                 {
+                    const string *pstName = getStructNameFromExp(pField);
+
                     std::ostringstream ostr;
-                    ostr << pHead->name_get() << " = " << std::endl;
+                    ostr << *pstName << " = " << std::endl;
                     ostr << std::endl;
-                    ostr << pStr->toString(10,75) << std::endl;
+                    ostr << symbol::Context::getInstance()->get(*pstName)->toString(10,75) << std::endl;
                     YaspWrite((char *)ostr.str().c_str());
                 }
             }
@@ -314,4 +291,5 @@ namespace ast
 			throw sz;
 		}
 	}
+
 }

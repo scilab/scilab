@@ -13,6 +13,7 @@
 #include <numeric>
 
 #include "conditionvisitor.hxx"
+#include "context.hxx"
 
 bool bConditionState(ast::ConditionVisitor *exec)
 {
@@ -488,3 +489,71 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
 	return NULL;
 }
 
+const std::string* getStructNameFromExp(const Exp* _pExp)
+{
+    const FieldExp* pField =  dynamic_cast<const FieldExp*>(_pExp);
+    const SimpleVar* pVar =  dynamic_cast<const SimpleVar*>(_pExp);
+    const CallExp* pCall =  dynamic_cast<const CallExp*>(_pExp);
+
+    if(pField)
+    {
+        return getStructNameFromExp(pField->head_get());
+    }
+    else if(pVar)
+    {
+        return &(pVar->name_get());
+    }
+    else if(pCall)
+    {
+        return getStructNameFromExp(&(pCall->name_get()));
+    }
+}
+ 
+types::Struct* getStructFromExp(const Exp* _pExp)
+{
+    const FieldExp* pField =  dynamic_cast<const FieldExp*>(_pExp);
+    const SimpleVar* pVar =  dynamic_cast<const SimpleVar*>(_pExp);
+    const CallExp* pCall =  dynamic_cast<const CallExp*>(_pExp);
+    
+    if(pField)
+    {
+        const SimpleVar* pTail = dynamic_cast<const SimpleVar*>(pField->tail_get());
+        if(pTail == NULL)
+        {
+            std::cout << "Houston ..." << std::endl;
+        }
+        
+        types::Struct *pStr        = getStructFromExp(pField->head_get());
+        
+        pStr->add(pTail->name_get());
+        types::InternalType* pIT = pStr->get(pTail->name_get());
+        if(pIT == NULL)
+        {
+            types::Struct* pStruct = new types::Struct();
+            pStr->add(pTail->name_get(), pStruct);
+            pIT = pStruct;
+        }
+        return pIT->getAsStruct();
+    }
+    else if(pVar)
+    {
+        types::Struct *pStr = NULL;
+        types::InternalType *pIT = symbol::Context::getInstance()->get(pVar->name_get());
+        if(pIT == NULL || pIT->getType() != types::InternalType::RealStruct)
+        {
+            //create new list variable
+            pStr = new types::Struct();
+            //Add variable to scope
+            symbol::Context::getInstance()->put(pVar->name_get(), *pStr);
+        }
+        else
+        {
+            pStr = pIT->getAsStruct();
+        }
+        
+        return pStr;
+    }
+    else if(pCall)
+    {
+    }
+}

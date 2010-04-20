@@ -154,7 +154,7 @@ void execAstTask(bool timed, bool ASTtimed)
     try
     {
         Parser::getInstance()->getTree()->accept(*exec);
-        //Parser::getInstance()->freeTree();
+        Parser::getInstance()->freeTree();
     }
     catch(string sz)
     {

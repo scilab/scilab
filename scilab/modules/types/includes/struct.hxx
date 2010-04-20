@@ -1,14 +1,14 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
- * 
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- * 
- */
+*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+*  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
+* 
+*  This file must be used under the terms of the CeCILL.
+*  This source file is licensed as described in the file COPYING, which
+*  you should have received as part of this distribution.  The terms
+*  are also available at
+*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* 
+*/
 
 
 #ifndef __STRUCT_HXX__
@@ -20,54 +20,60 @@
 
 namespace types
 {
-  class Struct : public Container
-  {
-  public :
-    Struct();
-    ~Struct(); 
+    class Struct : public Container
+    {
+    public :
+        Struct();
+        ~Struct(); 
 
-  private :
-    struct ltstr;
-    Struct(Struct *_oListCopyMe);
-		std::map<std::string, InternalType *> *getData();
+    private :
+        struct ltstr;
+        Struct(Struct *_oListCopyMe);
+        std::map<std::string, InternalType *> *getData();
 
-  public :
-    int size_get(); 
+    public :
+        int size_get(); 
 
-    void whoAmI(void) { std::cout << "types::Struct"; };
+        void whoAmI(void) { std::cout << "types::Struct"; };
 
-    RealType getType(void) { return RealStruct; } 
+        RealType getType(void) { return RealStruct; } 
 
-  /**
-   ** add(Symbol *_psKey, InternalType *_typedValue)
-   ** Append the given value to the struct
-   */
-		void add(const std::string& _sKey, InternalType *_typedValue);
+        /**
+        ** add(Symbol *_psKey, InternalType *_typedValue)
+        ** Append the given value to the struct
+        */
+        void add(const std::string& _sKey, InternalType *_typedValue);
 
-    /**
-     ** get(Symbol *_psKey)
-     ** Append the given value to the end of the List
-     */
-		InternalType * get(const std::string& _sKey);
+        /**
+        ** add(Symbol *_psKey)
+        ** Append an null value to the struct
+        */
+        void add(const std::string& _sKey);
 
-    /**
-     **
-     */
-		bool exists(const std::string& _sKey);
+        /**
+        ** get(Symbol *_psKey)
+        ** Append the given value to the end of the List
+        */
+        InternalType * get(const std::string& _sKey);
 
-  /**
-   ** Clone
-   ** Create a new List and Copy all values.
-   */
-    Struct *clone();
+        /**
+        **
+        */
+        bool exists(const std::string& _sKey);
 
-    std::string toString(int _iPrecision, int _iLineLen);
+        /**
+        ** Clone
+        ** Create a new List and Copy all values.
+        */
+        Struct *clone();
 
-    Struct *getAsStruct(void) { return this; }
+        std::string toString(int _iPrecision, int _iLineLen);
 
-  private :
-		std::map<std::string, InternalType *> *m_plData;
-  };
+        Struct *getAsStruct(void) { return this; }
+
+    private :
+        std::map<std::string, InternalType *> *m_plData;
+    };
 }
 
 #endif /* !__STRUCT_HXX__ */

@@ -19,6 +19,7 @@
 # define __AST_SEQEXP_HXX__
 
 # include "exp.hxx"
+#include "functiondec.hxx"
 
 namespace ast
 {
@@ -45,8 +46,13 @@ namespace ast
     virtual ~SeqExp ()
     {
 			std::list<Exp *>::const_iterator i;
-			for(i = _l_body->begin() ; i!= _l_body->end() ; i++)
+			for(i = _l_body->begin() ; i != _l_body->end() ; i++)
 			{
+                FunctionDec* pDec = dynamic_cast<FunctionDec*>(*i);
+                if(pDec)
+                {//do not delete function declaration.
+                    continue;
+                }
 				delete *i;
 			}
       delete _l_body;
