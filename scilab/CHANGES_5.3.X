@@ -204,6 +204,8 @@ Bug fixes:
 * bug 6830 fixed - C2F(scistring) in stack2.c was broken for macro names of 
                    exactly 2 characters.
 
+* bug 6889 fixed - 'fscanfMat' crashed with wrong formatted files.
+
 * bug 6891 fixed - 'whos' did not display global variables.
 
 * bug 6947 fixed - Some demos in "Optimization and Simulation" failed, 

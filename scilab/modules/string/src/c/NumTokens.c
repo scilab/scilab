@@ -17,31 +17,90 @@
 #include <string.h>
 #include <stdio.h>
 #include "NumTokens.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
+#include "BOOL.h"
+#include "MALLOC.h"
+/*--------------------------------------------------------------------------*/
+static BOOL checkLineHaveSeparator(char *line);
 /*--------------------------------------------------------------------------*/
 int NumTokens(char *string)
 {
-	if (string)
-	{
-		char buf[128];
-		int n      = 1;
-		int lnchar = 0;
-		int ntok   = -1;
-		int length = (int)strlen(string)+1;
+    if (string)
+    {
+        int n = 1;
+        int lnchar = 0;
+        int ntok   = -1;
+        int length = (int)strlen(string)+1;
 
-		if (string != 0)
-		/** Counting leading white spaces **/
-		sscanf(string,"%*[ \r\t\n]%n",&lnchar);
+        if (string != 0)
+        {
+            /** Counting leading white spaces **/
+            int r = sscanf(string, "%*[ \r\t\n]%n", &lnchar);
+            if (!checkLineHaveSeparator(string))
+            {
+                return ntok;
+            }
+        }
 
-		while ( n != 0 && n != EOF && lnchar <= length  )
-		{
-			int nchar1=0,nchar2=0;
-			ntok++;
-			n       = sscanf(&(string[lnchar]),"%[^ \r\t\n]%n%*[ \r\t\n]%n",buf,&nchar1,&nchar2);
-			lnchar += (nchar2 <= nchar1) ? nchar1 : nchar2 ;
-		}
+        while ( n != 0 && n != EOF && lnchar <= length  )
+        {
+            char buf[128];
+            int nchar1 = 0;
+            int nchar2 = 0;
+            char *strTmp = NULL;
 
-		return(ntok);
-	}
-	return(1);
+            if (lnchar >= length)
+            {
+                return(ntok);
+            }
+            else
+            {
+                strTmp = strdup(&string[lnchar]);
+            }
+
+            ntok++;
+
+            if (!checkLineHaveSeparator(strTmp))
+            {
+                if (strTmp)
+                {
+                    FREE(strTmp);
+                    strTmp = NULL;
+                }
+                return ntok;
+            }
+
+            n = sscanf(strTmp, "%[^ \r\t\n]%n%*[ \r\t\n]%n", buf, &nchar1, &nchar2);
+            lnchar += (nchar2 <= nchar1) ? nchar1 : nchar2;
+
+            if (strTmp)
+            {
+                FREE(strTmp);
+                strTmp = NULL;
+            }
+        }
+
+        return(ntok);
+    }
+    return(1);
+}
+/*--------------------------------------------------------------------------*/
+static BOOL checkLineHaveSeparator(char *line)
+{
+#define NUMBER_SEPARATOR_TYPE_1 ' '
+#define NUMBER_SEPARATOR_TYPE_2 '\r'
+#define NUMBER_SEPARATOR_TYPE_3 '\t'
+#define NUMBER_SEPARATOR_TYPE_4 '\n'
+
+    if ((strchr(line, NUMBER_SEPARATOR_TYPE_1) == NULL) &&
+        (strchr(line, NUMBER_SEPARATOR_TYPE_2) == NULL) &&
+        (strchr(line, NUMBER_SEPARATOR_TYPE_3) == NULL) &&
+        (strchr(line, NUMBER_SEPARATOR_TYPE_4) == NULL))
+    {
+        return FALSE;
+    }
+    return TRUE;
 }
 /*--------------------------------------------------------------------------*/
