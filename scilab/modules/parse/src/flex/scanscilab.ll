@@ -327,6 +327,7 @@ assign			"="
 
 <INITIAL,MATRIX>{lbrack}		{
   yy_push_state(MATRIX);
+  Parser::getInstance()->pushControlStatus(Parser::WithinMatrix);
   return scan_throw(LBRACK);
 }
 {rbrack}				{
@@ -470,6 +471,7 @@ assign			"="
 {
   {rbrack}				{
     yy_pop_state();
+    Parser::getInstance()->popControlStatus();
     return scan_throw(RBRACK);
   }
 

@@ -1333,6 +1333,7 @@ case 58:
 YY_RULE_SETUP
 {
   yy_push_state(MATRIX);
+  Parser::getInstance()->pushControlStatus(Parser::WithinMatrix);
   return scan_throw(LBRACK);
 }
 	YY_BREAK
@@ -1497,6 +1498,7 @@ case 75:
 YY_RULE_SETUP
 {
     yy_pop_state();
+    Parser::getInstance()->popControlStatus();
     return scan_throw(RBRACK);
   }
 	YY_BREAK

@@ -67,7 +67,9 @@ public:
 	WithinSelect,
 	WithinSwitch,
 	WithinCase,
-	WithinOtherwise
+	WithinOtherwise,
+    WithinMatrix,
+    WithinCell
   };
 
 public:
