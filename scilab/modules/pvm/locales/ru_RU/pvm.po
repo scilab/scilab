@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-11-24 20:36+0000\n"
+"PO-Revision-Date: 2010-02-21 21:57+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
+"X-Launchpad-Export-Date: 2010-04-16 07:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -34,8 +34,12 @@ msgid "%s: No such file or directory.\n"
 msgstr "%s: Нет такого файла или каталога.\n"
 
 #, c-format
-msgid "%s: Unknow type or not yet implemented\n"
-msgstr "%s: Неизвестный тип или ещё не реализовано\n"
+msgid "%s: Unknown type or not yet implemented\n"
+msgstr "%s: Неизвестный тип или ещё не реализовано.\n"
+
+#, c-format
+msgid "%s: Unknown type or not yet implemented.\n"
+msgstr "%s: Неизвестный тип или ещё не реализовано.\n"
 
 #, c-format
 msgid "%s: Wrong first input argument: '%s' or '%s' expected.\n"
@@ -45,14 +49,18 @@ msgstr "%s: Неверный первый входной параметр: ож�
 msgid "%s: work space (stacksize) is too small d\n"
 msgstr "%s: рабочее пространство (размер стека) слишком мало d\n"
 
+#, c-format
+msgid "%s: work space (stacksize) is too small.\n"
+msgstr "%s: размер стека слишком мал.\n"
+
 msgid "(group,instance) already exists"
 msgstr "(группа,экземпляр) уже существует"
 
+msgid "Already doing operation"
+msgstr "Уже выполняется команда"
+
 msgid "Already in group"
 msgstr "Уже в группе"
-
-msgid "Already oing operation"
-msgstr "Операция уже выполняется"
 
 msgid "Bad message id"
 msgstr "Неверный id сообщения"
@@ -82,8 +90,9 @@ msgid "Error pvm_reduce: Not scalar type\n"
 msgstr "Ошибка pvm_reduce: не скалярный тип\n"
 
 #, c-format
-msgid "Error pvm_reduce: Unknow reduction operation %s\n"
-msgstr "Ошибка pvm_reduce: неизвестная операция сокращения %s\n"
+msgid "Error pvm_reduce: Unknown reduction operation %s\n"
+msgstr ""
+"Ошибка pvm_reduce: Неизвестная команда для распределённых вычислений %s\n"
 
 msgid "Failed to exec new slave pvmd"
 msgstr "Не удалось запустить подчиненный pvmd"
@@ -130,7 +139,7 @@ msgstr "Нулевое имя группы недопустимо"
 msgid "OK"
 msgstr "OK"
 
-msgid "Out of ressources"
+msgid "Out of resources"
 msgstr "Недостаточно ресурсов"
 
 msgid "PVM exists"

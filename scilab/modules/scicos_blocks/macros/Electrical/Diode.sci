@@ -37,9 +37,9 @@ case 'set' then
   model=arg1.model;
   while %t do
     [ok,Ids,Vt,Maxexp,R,exprs]=scicos_getvalue('Set Diode block parameter',..
-					['Saturation cuurent (A)',..
-		    'Voltage equivalent to temperature (Volt)',..
-		    'Max exponent for linear continuation',..
+					['Saturation cuurent (A)';..
+		    'Voltage equivalent to temperature (Volt)';..
+		    'Max exponent for linear continuation';..
 		    'R (ohm)'],	list('vec',1,'vec',1,'vec',1,'vec',1),exprs)
     if ~ok then break,end
     model.rpar=[Ids;Vt;Maxexp;R]

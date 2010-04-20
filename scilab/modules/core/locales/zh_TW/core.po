@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
+"X-Launchpad-Export-Date: 2010-04-16 07:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "Revision-Date: 2008-01-30 11:26+0100\n"
 
@@ -19,8 +19,8 @@ msgstr "                 Scilab 協會 (DIGITEO)\n"
 msgid "               Copyright (c) 1989-2007 (ENPC)\n"
 msgstr "               版權 (c) 1989-2007 (ENPC)\n"
 
-msgid "               Copyright (c) 1989-2009 (INRIA)\n"
-msgstr "               版權所有(c) 1989-2009 (INRIA)\n"
+msgid "               Copyright (c) 1989-2010 (INRIA)\n"
+msgstr ""
 
 #
 # File: etc/scilab.start, line: 42
@@ -751,6 +751,10 @@ msgid "%s: Wrong type value.\n"
 msgstr "%s: 型態值錯誤.\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: \"%s\" expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s'.\n"
 
@@ -1000,33 +1004,10 @@ msgstr "檢查: %s\n"
 msgid "Commands:\n"
 msgstr "指令:\n"
 
-#, c-format
-msgid "Compilation date: %s"
-msgstr "編譯日期: %s"
-
-#, c-format
-msgid "Compilation time: %s"
-msgstr "編譯時間: %s"
-
-#, c-format
-msgid "Compiled with %s"
-msgstr "以 %s 編譯"
-
-#, c-format
-msgid "Compiler Architecture: %s"
-msgstr "編譯器架構: %s"
-
-#, c-format
-msgid "Directory separator: %s"
-msgstr "目錄分隔符號: %s"
-
 #
 # File: src/c/callinterf.c, line: 156
 msgid "Do you really want to abort computation (y or n ?) \n"
 msgstr "你確定要結束計算 (y 或 n ?) \n"
-
-msgid "Enable"
-msgstr "啟用"
 
 #
 # File: src/c/tmpdir.c, line: 53
@@ -1092,10 +1073,8 @@ msgstr "錯誤:  版本檔 %s 不正確(不是以 'utf-8' 編碼), 所用之編�
 #, c-format
 msgid ""
 "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
-"contains <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
+"contain <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
 msgstr ""
-"錯誤:版本檔 %s 不正確(應以 <MODULE_VERSION> 起頭並包含 <VERSION major='' minor='' "
-"maintenance='' revision='' string=''>)\n"
 
 #
 # File: src/c/LoadFunctionsTab.c, line: 97
@@ -1107,18 +1086,6 @@ msgstr "錯誤: 無法剖析 (parse) 檔案 %s\n"
 
 msgid "Fatal Error: Can't create table for scilab functions.\n"
 msgstr "嚴重錯誤: 無法產生 Scilab 函數表.\n"
-
-msgid "Free Extended Memory (Kbytes): %*I64d"
-msgstr "釋放延伸紀錄體 (Kbytes): %*l64d"
-
-msgid "Free Paging File (Kbytes): %*I64d"
-msgstr "記憶釋放頁數 (Kbytes): %*l64d"
-
-msgid "Free Physical Memory (Kbytes): %*I64d"
-msgstr "釋放實體記憶體(Kbytes): %*l64d"
-
-msgid "Free Virtual Memory (Kbytes): %*I64d"
-msgstr "釋放虛擬記憶體 (Kbytes): %*l64d"
 
 msgid "Functions compiled with very old versions are no more handled."
 msgstr "無法處理以過舊版本編譯之函數."
@@ -1176,22 +1143,11 @@ msgstr "不正確的時間域.\n"
 msgid "List full.\n"
 msgstr "List 已滿.\n"
 
-#, c-format
-msgid "Memory in use: %*ld %%"
-msgstr "使用中之記憶區: %*ld %%"
-
 #
 # File: src/c/scimem.c, line: 34
 # File: src/c/scimem.c, line: 61
 msgid "No space to allocate Scilab stack.\n"
 msgstr "無法再配置空間給  Scilab 堆疊 (stack).\n"
-
-#, c-format
-msgid "Number of processors: %d"
-msgstr "處理器數目: %d"
-
-msgid "Operating System: "
-msgstr "作業系統: "
 
 #
 # File: src/c/stack2.c, line: 374
@@ -1202,14 +1158,6 @@ msgstr "選擇性參數清單為空\n"
 # File: src/c/stack2.c, line: 377
 msgid "Optional arguments list: \n"
 msgstr "選擇性參數清單. \n"
-
-#, c-format
-msgid "PCRE Version: %d.%d"
-msgstr "PCRE 版本: %d.%d"
-
-#, c-format
-msgid "Path separator: %s"
-msgstr "檔案路徑分隔符號: %s"
 
 #
 # File: src/c/inisci-c.c, line: 110
@@ -1250,22 +1198,10 @@ msgstr ""
 "Scilab 版本 \"%d.%d.%d.%d\"\n"
 "%s\n"
 
-#, c-format
-msgid "Screen size: %d x %d %d bits"
-msgstr "螢幕尺寸: %d x %d %d 位元"
-
 #
 # File: etc/scilab.start, line: 35
 msgid "Startup execution:"
 msgstr "執行啟動"
-
-#, c-format
-msgid "TCL version: %s"
-msgstr "TCL 版本: %s"
-
-#, c-format
-msgid "TK version: %s"
-msgstr "TCL 版本: %s"
 
 #
 # File: src/c/inisci-c.c, line: 178
@@ -1273,23 +1209,10 @@ msgstr "TCL 版本: %s"
 msgid "TMPDIR not defined.\n"
 msgstr "TMPDIR 未定義.\n"
 
-#, c-format
-msgid "Tcl/Tk: %s"
-msgstr "Tcl/Tk: %s"
-
 #
 # File: src/c/getmodules.c, line: 72
 msgid "The SCI environment variable is not set.\n"
 msgstr "SCI 環境參數未設.\n"
-
-msgid "Total Paging File (Kbytes): %*I64d"
-msgstr "記憶體總頁數 (Kbytes): %*l64d"
-
-msgid "Total Physical Memory (Kbytes): %*I64d"
-msgstr "Total Physical Memory (Kbytes): %*I64d"
-
-msgid "Total Virtual Memory (Kbytes): %*I64d"
-msgstr "總虛擬記憶體 (Kbytes): %*l64d"
 
 #
 # File: src/c/callinterf.c, line: 155
@@ -1327,18 +1250,6 @@ msgid "Using %s elements ouf of %s"
 msgstr "由 %s 個之中使用其中的 %s 個元素"
 
 #, c-format
-msgid "Version: %s"
-msgstr "版本: %s"
-
-#, c-format
-msgid "Video card driver version: %s"
-msgstr "顯示卡版本: %s"
-
-#, c-format
-msgid "Video card: %s"
-msgstr "顯示卡: %s"
-
-#, c-format
 msgid "WARNING: %s"
 msgstr "警告: %s"
 
@@ -1364,10 +1275,6 @@ msgid ""
 msgstr ""
 "警告: Scilab 協會之工作團隊未提供也不支援\n"
 "這一版 Scilab, 編譯方式 :\n"
-
-#, c-format
-msgid "XML version: %s"
-msgstr "XML 版本: %s"
 
 #
 # File: sci_gateway/c/sci_who.c, line: 310

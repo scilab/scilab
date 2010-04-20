@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-07-06 20:47+0000\n"
-"Last-Translator: Daniel de Souza Grilo <soporter@gmail.com>\n"
+"PO-Revision-Date: 2010-03-17 02:42+0000\n"
+"Last-Translator: Teylo Laundos Aguiar <teylo.aguiar@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
+"X-Launchpad-Export-Date: 2010-04-16 07:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -39,7 +39,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Not enough points for the fit.\n"
-msgstr ""
+msgstr "%s: Não há pontos suficientes para o ajuste.\n"
 
 #, c-format
 msgid "%s: Problem with 'flag' = %d\n"
@@ -79,6 +79,7 @@ msgstr "%s: Quantidade errada de argumentos de entrada.\n"
 #, c-format
 msgid "%s: Wrong number of input arguments: Must be between %d and %d.\n"
 msgstr ""
+"%s: Quantidade errada de argumentos de entrada: Deve estar enre %d e %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
@@ -111,14 +112,19 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
 msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se um vetor.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector or matrix expected.\n"
 msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se um vetor ou "
+"uma matriz.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
 msgstr ""
+"%s: Tamanho errado para os argumentos de entrada #%d e #%d: Esperava-se "
+"tamanhos iguais.\n"
 
 #, c-format
 msgid ""
@@ -163,16 +169,22 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Array of reals expected.\n"
 msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se array de "
+"reais.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' or ''%s'' "
 "expected.\n"
 msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Esperava-se ''%s'' ou "
+"''%s'' ou ''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or real expected.\n"
 msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Esperava-se ''%s'' ou "
+"real.\n"
 
 #, c-format
 msgid ""
@@ -186,6 +198,8 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d: Reals expected but some NaN found.\n"
 msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Esperava-se reais, mas "
+"foram encontrados alguns NaN.\n"
 
 #, c-format
 msgid ""

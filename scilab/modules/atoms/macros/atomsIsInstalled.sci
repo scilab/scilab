@@ -29,7 +29,7 @@ function res = atomsIsInstalled(packages,section)
 	
 	rhs           = argn(2);
 	res           = [];
-	installed     = []; // Column vector that contain user repositories
+	installed     = []; // Column vector that contains user repositories
 	
 	// Check number of input arguments
 	// =========================================================================

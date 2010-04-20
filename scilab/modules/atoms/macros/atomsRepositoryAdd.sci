@@ -25,7 +25,7 @@ function nbAdd = atomsRepositoryAdd(url,section)
 	
 	rhs                    = argn(2);
 	nbAdd                = 0;
-	repositories         = []; // Column vector that contain user repositories
+	repositories         = []; // Column vector that contains user repositories
 	currentRepositories  = atomsRepositoryList();
 	currentRepositories  = currentRepositories(:,1);
 	valid_url_pattern    = "/^((((H|h)(T|t)|(F|f))(T|t)(P|p)((S|s)?))\:\/\/)?(www.|[a-zA-Z0-9].)[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,6}(\:[0-9]{1,5})*(\/($|[a-zA-Z0-9\.\,\;\?\''\\\+&amp;%\$#\=~_\-]+))*$/";
