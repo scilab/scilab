@@ -23,8 +23,8 @@ my $original_stderr = null;
 ##-------------------
 my $long_compare_old_scilab_option = "--compare-old-scilab";
 my $short_compare_old_scilab_option = "-C";
-my $long_display_tree_option = "--display-tree";
-my $short_display_tree_option = "-D";
+my $long_display_tree_option = "--pretty-print";
+my $short_display_tree_option = "-P";
 my $long_quiet_option = "--quiet";
 my $short_quiet_option = "-Q";
 my $long_help_option = "--help";
@@ -487,7 +487,7 @@ sub through_old_scilab()
 
 
 ####################################
-## What to do when --display-tree ##
+## What to do when --pretty-print ##
 ## option is enable               ##
 ##              {                 ##
 ####################################
@@ -542,7 +542,7 @@ sub display_tree()
 {
     $sci_file = $_[0];
     $output_file = $_[1];
-    $RetVal = system($Yasp_Path . $Yasp_Bin . " -nw --display-tree --no-exec -f " . $sci_file . " > " . $output_file);
+    $RetVal = system($Yasp_Path . $Yasp_Bin . " -nw --pretty-print --no-exec -f " . $sci_file . " > " . $output_file);
 }
 ####################################
 ##              }                 ##
