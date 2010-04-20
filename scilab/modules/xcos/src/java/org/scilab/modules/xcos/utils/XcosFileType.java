@@ -220,16 +220,28 @@ public enum XcosFileType {
 	    File tempOutput = null;
 	    try {
 		tempOutput = FileUtils.createTempFile();
-		String cmd = "scs_m = importScicosDiagram(\"" + filename.getAbsolutePath() + "\");";
-		cmd += "export_to_hdf5(\"" + tempOutput.getAbsolutePath() + "\", \"scs_m\");";
+		
+		StringBuilder cmd = new StringBuilder();
+		cmd.append("scs_m = importScicosDiagram(\"");
+		cmd.append(filename.getAbsolutePath());
+		cmd.append("\");");
+		cmd.append("result = export_to_hdf5(\"");
+		cmd.append(tempOutput.getAbsolutePath());
+		cmd.append("\", \"scs_m\");");
+		
+		cmd.append("if result <> %t then deletefile(\"");
+		cmd.append(tempOutput.getAbsolutePath());
+		cmd.append("\"); end; ");
+		
 		try {
-			ScilabInterpreterManagement.synchronousScilabExec(cmd);
+			ScilabInterpreterManagement.synchronousScilabExec(cmd.toString());
 		} catch (InterpreterException e) {
 			e.printStackTrace();
 		}
 	    } catch (IOException e) {
 		e.printStackTrace();
 	    }
+	    
 	    return tempOutput;
 	}
 }

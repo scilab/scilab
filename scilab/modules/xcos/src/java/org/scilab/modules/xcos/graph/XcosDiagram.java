@@ -2015,6 +2015,11 @@ public class XcosDiagram extends ScilabGraph {
 	final XcosFileType filetype = XcosFileType.findFileType(fileToLoad);
 	boolean result = false;
 
+	if (!fileToLoad.exists()) {
+		XcosDialogs.couldNotLoadFile(this);
+		return false;
+	}
+	
 	switch (filetype) {
 	case COSF:
 	case COS:
