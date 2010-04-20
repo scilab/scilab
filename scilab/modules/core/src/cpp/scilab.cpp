@@ -113,20 +113,25 @@ bool execScilabStart(void);
 */
 static void usage (void)
 {
-	std::cerr << "Usage: "<< prog_name << " [--parse-trace] [--display-tree] [--exec] [-f file] | --help" << std::endl;
-	std::cerr << "--parse-trace : Display bison state machine evolution." << std::endl;
-	std::cerr << "--display-tree : Display Syntax tree formated as understood scilab code." << std::endl;
-	std::cerr << "--context-dump : Display what is stored in scilab at the end." << std::endl;
-	std::cerr << "--timed : Enable timer." << std::endl;
-	std::cerr << "--AST-timed : Enable AST timer." << std::endl;
-	std::cerr << "--no-exec : Do not run the scilab code." << std::endl;
-	std::cerr << "--orig : use origianl visitor for execution" << std::endl;
-	std::cerr << "--debug : Print the AST nodes." << std::endl;
-	std::cerr << "-f file : Batch mode on the given file." << std::endl;
-	std::cerr << "-l lang : Change the language of scilab ( default : en_US )" << std::endl;
-	std::cerr << "-nw : Enable console mode" << std::endl;
-	std::cerr << "-nwni : Enable console mode" << std::endl;
-	std::cerr << "--help : Display this help." << std::endl;
+	std::cerr << "Usage: "<< prog_name << " <options>" << std::endl;
+	std::cerr << "      --orig           : use origianl visitor for execution." << std::endl;
+	std::cerr << "      -f file          : Batch mode on the given file." << std::endl;
+	std::cerr << "      -l lang          : Change the language of scilab ( default : en_US )." << std::endl;
+	std::cerr << "      -nw              : Enable console mode." << std::endl;
+	std::cerr << "      -nwni            : Enable terminal mode." << std::endl;
+	std::cerr << "      --help           : Display this help." << std::endl;
+    std::cerr << "Developer Trace arguments:" << std::endl;
+    std::cerr << "      --parse-trace    : Display bison state machine evolution." << std::endl;
+    std::cerr << "      --AST-trace      : Display ASCII-art AST to be human readable." << std::endl;
+    std::cerr << "      --pretty-print   : Display pretty-printed code, standard Scilab syntax." << std::endl;
+    std::cerr << " " << std::endl;
+    std::cerr << "Developer Timer arguments:" << std::endl;
+    std::cerr << "      --AST-timed      : Time each AST node." << std::endl;
+    std::cerr << "      --timed          : Time global execution." << std::endl;
+    std::cerr << " " << std::endl;
+    std::cerr << "Developer Debug arguments:" << std::endl;
+    std::cerr << "      --no-exec        : Only do Lexing/parsing do not execute instructions." << std::endl;
+    std::cerr << "      --context-dump   : Display context status."	 << std::endl;
 }
 
 
@@ -147,14 +152,14 @@ static int	get_option (const int argc, char *argv[], int *_piFileIndex, int *_pi
 		if (!strcmp("--parse-trace", argv[i])) {
 			Parser::getInstance()->enableParseTrace();
 		}
-		else if (!strcmp("--display-tree", argv[i])) {
+		else if (!strcmp("--pretty-print", argv[i])) {
 			printAst = true;
 		}
 		else if (!strcmp("--help", argv[i])) {
 			usage ();
 			exit (WELL_DONE);
 		}
-		else if (!strcmp("--debug", argv[i])) {
+		else if (!strcmp("--AST-trace", argv[i])) {
 			dumpAst = true;
 		}
 		else if (!strcmp("--no-exec", argv[i])) {

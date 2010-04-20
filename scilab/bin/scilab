@@ -589,6 +589,19 @@ do_help()
 	echo     "                        define the variable SCILAB_VALGRIND_OPT to add custom arguments to"
 	echo     "                        callgrind (and override the existing callgrind arguments)."
 	echo     "      -electric-fence : Start Scilab with the Electric Fence (Unix/linux only)."
+    echo     " "
+    echo     "Developer Trace arguments:"
+    echo     "      --parse-trace    : Display bison state machine evolution."
+    echo     "      --AST-trace      : Display ASCII-art AST to be human readable."
+    echo     "      --pretty-print   : Display pretty-printed code, standard Scilab syntax."
+    echo     " "
+    echo     "Developer Timer arguments:"
+    echo     "      --AST-timed      : Time each AST node."
+    echo     "      --timed          : Time global execution."
+    echo     " "
+    echo     "Developer Debug arguments:"
+    echo     "      --no-exec        : Only do Lexing/parsing do not execute instructions."
+    echo     "      --context-dump   : Display context status."
 	echo     " "
 	echo     "      All these arguments can be retrieved by the Scilab function sciargs."
 	echo     " "
@@ -690,7 +703,7 @@ if test "$rest" = "yes"; then
     case $sciarg in
       -nogui|-version|-ns|-nb|-nw|-nouserstartup|--texmacs|-nwni)
 	    ;;
-      --parse-trace|--display-tree|--help|--debug|--no-exec|--context-dump|--timed|--AST-timed|--orig)
+      --parse-trace|--pretty-print|--help|--AST-trace|--no-exec|--context-dump|--timed|--AST-timed|--orig)
 	    #This are Scilab6 dedicated options.
 	    ;;
       -psn_*)
