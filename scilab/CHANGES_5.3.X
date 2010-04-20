@@ -213,5 +213,7 @@ Bug fixes:
 
 * bug 6891 fixed - 'whos' did not display global variables.
 
+* bug 6901 fixed - This script with 'exec' produced a weird warning.
+
 * bug 6947 fixed - Some demos in "Optimization and Simulation" failed, 
                    without write rights in SCI subdirectory.
