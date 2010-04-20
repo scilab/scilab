@@ -155,7 +155,6 @@ public class XcosDiagram extends ScilabGraph {
 
     private CheckBoxMenuItem viewPortMenu;
     private CheckBoxMenuItem gridMenu;
-    private SetContextAction action;
     
     protected mxIEventListener deleteLinkOnMultiPointLinkCreation = new mxIEventListener() {
 		public void invoke(Object sender, mxEventObject evt) {
@@ -304,11 +303,11 @@ public class XcosDiagram extends ScilabGraph {
     	if (source != null && target == null) {
     	    drawLink = null;
     	    if (source instanceof ExplicitInputPort || source instanceof ExplicitOutputPort) {
-    		drawLink = (BasicLink) super.addEdge(new ExplicitLink(), getDefaultParent(), source, target, index);
+    		drawLink = (BasicLink) super.addEdge(new ExplicitLink(), getDefaultParent(), source, null, index);
     	    } else if (source instanceof ImplicitInputPort || source instanceof ImplicitOutputPort) {
-    		drawLink = (BasicLink) super.addEdge(new ImplicitLink(), getDefaultParent(), source, target, index);
+    		drawLink = (BasicLink) super.addEdge(new ImplicitLink(), getDefaultParent(), source, null, index);
     	    } else if (source instanceof ControlPort || source instanceof CommandPort) {
-    		drawLink = (BasicLink) super.addEdge(new CommandControlLink(), getDefaultParent(), source, target, index);
+    		drawLink = (BasicLink) super.addEdge(new CommandControlLink(), getDefaultParent(), source, null, index);
     	    } else if (source instanceof BasicLink) {
 				/*
 				 * This is a very specific case: user wants to put a split block
@@ -673,7 +672,7 @@ public class XcosDiagram extends ScilabGraph {
 	getAsComponent().addPropertyChangeListener(new PropertyChangeListener() {
 	    public void propertyChange(PropertyChangeEvent e) {
 		if (e.getPropertyName().compareTo("modified") == 0) {
-		    if ((Boolean) e.getOldValue() != (Boolean) e.getNewValue()) {
+		    if (!e.getOldValue().equals(e.getNewValue())) {
 			updateTabTitle();
 		    }
 		}
@@ -855,7 +854,7 @@ public class XcosDiagram extends ScilabGraph {
      * CellAddedTracker
      * Called when mxEvents.CELLS_ADDED is fired.
      */
-    private class CellAddedTracker implements mxIEventListener {
+    private static class CellAddedTracker implements mxIEventListener {
     	private XcosDiagram diagram;
 
     	/**
@@ -1337,8 +1336,6 @@ public class XcosDiagram extends ScilabGraph {
 	 * @return new real point
 	 */
 	mxPoint getPointPosition(mxPoint origin, mxPoint click) {
-		final double scale = getView().getScale();
-
 		final double origX = origin.getX();
 		final double origY = origin.getY();
 
@@ -1494,7 +1491,6 @@ public class XcosDiagram extends ScilabGraph {
 		return;
 	    }
 	    writeFile = fc.getSelection()[0];
-	    System.out.println("Saving to file : {" + fileName + "}");
 	}
 	
 	new H5RWHandler(writeFile).writeDiagram(this);
@@ -2096,18 +2092,18 @@ public class XcosDiagram extends ScilabGraph {
 	    return;
 	}
 
-	String blockResult = "";
+	StringBuilder blockResult = new StringBuilder();
 	for (int i = 0; i < iRows; i++) {
 	    for (int j = 0; j < iCols; j++) {
 		if (iCols != 0) {
-		    blockResult += "  ";
+		    blockResult.append("  ");
 		}
-		blockResult += blockValue[j * iRows + i];
+		blockResult.append(blockValue[j * iRows + i]);
 	    }
-	    blockResult += System.getProperty("line.separator");
+	    blockResult.append(System.getProperty("line.separator"));
 	}
 
-	block.setValue(blockResult);
+	block.setValue(blockResult.toString());
 	block.getParentDiagram().refresh();
     }
 
@@ -2161,21 +2157,7 @@ public class XcosDiagram extends ScilabGraph {
 	super.setModified(modified);
 	updateTabTitle();
     }
-
-    /**
-     * @param action set context action
-     */
-    public void setContextAction(SetContextAction action) {
-	this.action = action;
-    }
-
-    /**
-     * @return context action
-     */
-    public SetContextAction getContextAction() {
-	return action;
-    }
-
+    
     /**
      * Evaluate the current context
      * 
@@ -2333,34 +2315,27 @@ public class XcosDiagram extends ScilabGraph {
     }
 
     /**
+     * Check the direction of an edge.
+     * 
      * @param source edge source
      * @param target edge target
-     * @return edge direction
+     * @return true, if the two parameters are in the right order, false if 
+     *         they must be inverted.
      */
     private boolean checkEdgeDirection(Object source, Object target) {
+		if (source instanceof InputPort && target instanceof OutputPort) {
+		    return false;
+		}
 	
-	if (source instanceof InputPort && target instanceof OutputPort) {
-	    Object temp = source;
-	    source = target;
-	    target = temp;
-	    return false;
-	}
-
-	if (source instanceof ControlPort && target instanceof CommandPort) {
-	    Object temp = source;
-	    source = target;
-	    target = temp;
-	    return false;
-	}
-
-	if ((source instanceof InputPort || source instanceof ControlPort) &&  target instanceof BasicLink) {
-	    Object temp = source;
-	    source = target;
-	    target = temp;
-	    return false;
-	}
+		if (source instanceof ControlPort && target instanceof CommandPort) {
+		    return false;
+		}
 	
-	return true;
+		if ((source instanceof InputPort || source instanceof ControlPort) &&  target instanceof BasicLink) {
+		    return false;
+		}
+		
+		return true;
     }
     
     /**

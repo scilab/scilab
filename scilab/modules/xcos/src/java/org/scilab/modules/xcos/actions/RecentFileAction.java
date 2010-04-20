@@ -17,6 +17,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.HashMap;
@@ -47,7 +48,7 @@ public final class RecentFileAction extends DefaultAction implements PropertyCha
 	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = 0;
 	
-	private static final Map<URL, RecentFileAction> INSTANCE_REGISTRY = new HashMap<URL, RecentFileAction>();
+	private static final Map<URI, RecentFileAction> INSTANCE_REGISTRY = new HashMap<URI, RecentFileAction>();
 
 	private File recentFile;
 	private MenuItem menu;
@@ -87,15 +88,17 @@ public final class RecentFileAction extends DefaultAction implements PropertyCha
 	 * @return menu item
 	 */
 	public static MenuItem createMenu(URL file) {
+		URI fileURI;
 		File f;
 		try {
-			f = new File(file.toURI());
+			fileURI = file.toURI();
+			f = new File(fileURI);
 		} catch (URISyntaxException e) {
 			LogFactory.getLog(RecentFileAction.class).error(e);
 			return null;
 		}
 		
-		RecentFileAction action = INSTANCE_REGISTRY.get(file);
+		RecentFileAction action = INSTANCE_REGISTRY.get(fileURI);
 		if (action == null) {
 			action = new RecentFileAction(f);
 		}
@@ -156,12 +159,13 @@ public final class RecentFileAction extends DefaultAction implements PropertyCha
 		 */
 		try {
 			URL newUrl = new URL(newURL);
+			final URI newURI = newUrl.toURI();
 			
-			recentFile = new File(newUrl.toURI());
+			recentFile = new File(newURI);
 			menu.setText(recentFile.getName());
 			
-			INSTANCE_REGISTRY.remove(old);
-			INSTANCE_REGISTRY.put(newUrl, this);
+			INSTANCE_REGISTRY.remove(old.toURI());
+			INSTANCE_REGISTRY.put(newURI, this);
 			
 		} catch (URISyntaxException e) {
 			LogFactory.getLog(RecentFileAction.class).error(e);

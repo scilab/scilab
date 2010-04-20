@@ -111,4 +111,14 @@ public final class FileUtils {
 		return File.createTempFile(XcosFileType.XCOS.getExtension(),
 				XcosFileType.HDF5.getDottedExtension(), XcosConstants.TMPDIR);
 	}
+	
+	/**
+	 * Delete the file and log an error message if unable to do so.
+	 * @param f the file to delete.
+	 */
+	public static void delete(File f) {
+		if (!f.delete()) {
+			LogFactory.getLog(FileUtils.class).error(XcosMessages.UNABLE_TO_DELETE + f);
+		}
+	}
 }

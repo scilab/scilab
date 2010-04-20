@@ -82,7 +82,7 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
 	/**
 	 * Any link which is broken by performing this action
 	 */
-    private class BrokenLink {
+    private static class BrokenLink {
 	private BasicLink link;
 	private BasicPort port;
 	private mxGeometry geom;
@@ -511,6 +511,10 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
 		}
 	    }
 
+		/**
+		 * FIXME: findbugs found that some execution path may lead to a
+		 * NullPointerException on the next line.
+		 */
 	    block.setGeometry(link.getGeometry());
 	    block.setExprs(new ScilabString(Integer.toString(link
 		    .getPortNumber())));

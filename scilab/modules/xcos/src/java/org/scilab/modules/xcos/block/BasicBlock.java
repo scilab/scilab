@@ -12,6 +12,8 @@
 
 package org.scilab.modules.xcos.block;
 
+import static org.scilab.modules.xcos.utils.FileUtils.delete;
+
 import java.awt.MouseInfo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -139,7 +141,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 	 * Represent a simulation function type compatible with Scilab/Scicos
 	 * function type descriptors.
 	 */
-	public enum SimulationFunctionType {
+	public static enum SimulationFunctionType {
 		ESELECT(-2.0), IFTHENELSE(-1.0), DEFAULT(0.0), TYPE_1(1.0), TYPE_2(2.0),
 		    TYPE_3(3.0), C_OR_FORTRAN(4.0), SCILAB(5.0), MODELICA(30004.0), UNKNOWN(5.0), OLDBLOCKS(10001.0);
 
@@ -656,9 +658,9 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 				}
 				
 			    setLocked(false);
-			    tempInput.delete();
-			    tempOutput.delete();
-			    tempContext.delete();
+			    delete(tempInput);
+			    delete(tempOutput);
+			    delete(tempContext);
 			}
 		};
 		
@@ -1050,7 +1052,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 	this.angle = angle;
 	
 	if (getParentDiagram() != null) {
-	    mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {this}, XcosConstants.STYLE_ROTATION, new Integer(angle).toString());
+	    mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {this}, XcosConstants.STYLE_ROTATION, Integer.toString(angle));
 	}
     }
 

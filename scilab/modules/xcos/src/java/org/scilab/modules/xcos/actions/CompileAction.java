@@ -14,6 +14,7 @@
 package org.scilab.modules.xcos.actions;
 
 import static org.scilab.modules.graph.utils.ScilabInterpreterManagement.buildCall;
+import static org.scilab.modules.xcos.utils.FileUtils.delete;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -96,7 +97,7 @@ public class CompileAction extends SimulationNotRunningAction {
 				final ActionListener action = new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						temp.delete();
+						delete(temp);
 						((XcosDiagram) getGraph(null)).setReadOnly(false);
 						((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
 					}

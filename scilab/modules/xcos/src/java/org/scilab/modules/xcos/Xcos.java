@@ -13,6 +13,8 @@
 
 package org.scilab.modules.xcos;
 
+import static org.scilab.modules.xcos.utils.FileUtils.delete;
+
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
@@ -210,7 +212,7 @@ public final class Xcos {
 	    if (!overwrite) {
 		return 1;
 	    } else {
-		temp.delete();
+		delete(temp);
 	    }
 	}
 

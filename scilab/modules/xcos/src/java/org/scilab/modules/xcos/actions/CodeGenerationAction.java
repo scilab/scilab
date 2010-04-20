@@ -15,6 +15,8 @@ package org.scilab.modules.xcos.actions;
 
 import static org.scilab.modules.graph.utils.ScilabInterpreterManagement.asynchronousScilabExec;
 import static org.scilab.modules.graph.utils.ScilabInterpreterManagement.buildCall;
+import static org.scilab.modules.xcos.utils.FileUtils.delete;
+
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -105,8 +107,8 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
 					public void actionPerformed(ActionEvent arg0) {
 						doAction(block, tempInput);
 						
-						tempOutput.delete();
-						tempInput.delete();
+						delete(tempOutput);
+						delete(tempInput);
 						
 						((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
 					}
