@@ -432,6 +432,8 @@ static int interactiveMain (void)
 				YaspWrite(pParser->getErrorMessage());
 				//std::cerr << "Parser control : " << pParser->getControlStatus() << std::endl;
 			}
+
+            Parser::getInstance()->freeTree();
 		}
 	}
 #ifdef DEBUG
