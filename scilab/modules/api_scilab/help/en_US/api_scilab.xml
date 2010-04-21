@@ -109,7 +109,7 @@
 <link linkend="list_boolean_writing_API">list boolean writing API</link>,
 <link linkend="list_bsparse_reading_API">list bsparse reading API</link>,
 <link linkend="list_bsparse_writing_API">list bsparse writing API</link>,
-<link linkend="list_createlist API">list_createlist API</link>,
+<link linkend="list_createlist_API">list_createlist API</link>,
 <link linkend="list_double_reading_API">list double reading API</link>,
 <link linkend="list_double_writing_API">list double writing API</link>,
 <link linkend="list_getlistitemaddress_API">list getlistitemaddress API</link>,
