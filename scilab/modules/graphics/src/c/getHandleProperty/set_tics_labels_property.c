@@ -26,6 +26,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "BasicAlgos.h"
+#include "loadTextRenderingAPI.h"
 
 /*------------------------------------------------------------------------*/
 int set_tics_labels_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
@@ -55,6 +56,9 @@ int set_tics_labels_property( sciPointObj * pobj, size_t stackPointer, int value
   }
 
   pAXES_FEATURE(pobj)->str = createCopyStringMatrixFromStack( stackPointer, nbCol ) ;
+  /* Check if we should load LaTex / MathML Java libraries */
+  loadTextRenderingAPI(pAXES_FEATURE(pobj)->str, nbCol, 1);
+
   pAXES_FEATURE(pobj)->nb_tics_labels = nbCol ; /* could be increased to support xy_type switching (i.e. xy_type='v' -> xy_type='r') */
 
   return SET_PROPERTY_SUCCEED ;
