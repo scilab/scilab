@@ -21,9 +21,10 @@ bool bConditionState(ast::ConditionVisitor *exec)
 	{
 		return exec->result_bool_get();
 	}
-	else if(((types::GenericType*)exec->result_get())->isDouble() && ((types::Double*)exec->result_get())->isComplex() == false)
+	else if(exec->result_get()->isDouble() && 
+            exec->result_get()->getAsDouble()->isComplex() == false)
 	{
-		types::Double *pR		= (types::Double*)exec->result_get();
+		types::Double *pR		= exec->result_get()->getAsDouble();
 		double *pReal	= pR->real_get();
 
 		for(int i = 0 ; i < pR->size_get() ; i++)
@@ -34,9 +35,9 @@ bool bConditionState(ast::ConditionVisitor *exec)
 			}
 		}
 	}
-	else if(((types::GenericType*)exec->result_get())->isBool())
+	else if(exec->result_get()->isBool())
 	{
-		types::Bool *pB		= (types::Bool*)exec->result_get();
+		types::Bool *pB		= exec->result_get()->getAsBool();
 		int *piData	= pB->bool_get();
 
 		for(int i = 0 ; i < pB->size_get() ; i++)
@@ -48,7 +49,7 @@ bool bConditionState(ast::ConditionVisitor *exec)
 			}
 		}
 	}
-	else if(((types::GenericType*)exec->result_get())->isInt())
+	else if(exec->result_get()->isInt())
 	{
 	}
 	else
@@ -136,20 +137,20 @@ int GetVarMaxDim(types::InternalType *_pIT, int _iCurrentDim, int _iMaxDim)
 	{
 		if(_iMaxDim != 1)
 		{
-			return ((types::GenericType*)_pIT)->rows_get();
+			return static_cast<types::GenericType*>(_pIT)->rows_get();
 		}
 		else
 		{
-			return ((types::GenericType*)_pIT)->size_get();
+			return static_cast<types::GenericType*>(_pIT)->size_get();
 		}
 	}
 	else if(_iCurrentDim == 1)
 	{
-		return ((types::GenericType*)_pIT)->cols_get();
+		return static_cast<types::GenericType*>(_pIT)->cols_get();
 	}
 	else
-	{//more than 2 dimansions ? :(
-		return ((types::GenericType*)_pIT)->size_get();
+	{//more than 2 dimensions ? :(
+		return static_cast<types::GenericType*>(_pIT)->size_get();
 	}
 }
 
@@ -186,6 +187,9 @@ types::InternalType* allocDest(types::InternalType* _poSource, int _iRows, int _
     case types::InternalType::RealImplicitList :
         poResult = new types::ImplicitList();
         break;
+    default :
+        // FIXME : What should we do here ??
+        break;
     }
     return poResult;
 }
@@ -193,7 +197,7 @@ types::InternalType* allocDest(types::InternalType* _poSource, int _iRows, int _
 types::InternalType* AddElementToVariableFromCol(types::InternalType* _poDest, types::InternalType* _poSource, int _iRows, int _iCols, int *_piCols)
 {
     types::InternalType *poResult	            = NULL;
-    types::InternalType::RealType TypeSource	= ((types::GenericType*)_poSource)->getType();
+    types::InternalType::RealType TypeSource	= _poSource->getType();
     types::InternalType::RealType TypeDest		= types::InternalType::RealInternal;
     int iCurRow                                 = _iRows;
     int iCurCol                                 = _iCols;
@@ -208,7 +212,7 @@ types::InternalType* AddElementToVariableFromCol(types::InternalType* _poDest, t
     }
     else
     {
-        TypeDest    = ((types::GenericType*)_poDest)->getType();
+        TypeDest    = _poDest->getType();
         poResult    = _poDest;
     }
 
@@ -240,7 +244,7 @@ types::InternalType* AddElementToVariableFromCol(types::InternalType* _poDest, t
 types::InternalType* AddElementToVariableFromRow(types::InternalType* _poDest, types::InternalType* _poSource, int _iRows, int _iCols, int *_piRows)
 {
 	types::InternalType *poResult	            = NULL;
-	types::InternalType::RealType TypeSource	= ((types::GenericType*)_poSource)->getType();
+	types::InternalType::RealType TypeSource	= _poSource->getType();
 	types::InternalType::RealType TypeDest		= types::InternalType::RealInternal;
 	int iCurRow                                 = _iRows;
 	int iCurCol                                 = _iCols;
@@ -254,7 +258,7 @@ types::InternalType* AddElementToVariableFromRow(types::InternalType* _poDest, t
     }
     else
     {
-        TypeDest	= ((types::GenericType*)_poDest)->getType();
+        TypeDest	= _poDest->getType();
         poResult    = _poDest;
     }
 
@@ -292,7 +296,7 @@ _iCols : Position if _poDest allready initialized else size of the matrix
 types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::InternalType* _poSource, int _iRows, int _iCols, int *_piRows, int *_piCols)
 {
 	types::InternalType *poResult	= NULL;
-	types::InternalType::RealType TypeSource	= ((types::GenericType*)_poSource)->getType();
+	types::InternalType::RealType TypeSource	= _poSource->getType();
 	types::InternalType::RealType TypeDest		=	types::InternalType::RealInternal;
 	int iCurRow = _iRows;
 	int iCurCol = _iCols;
@@ -327,6 +331,9 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
 		case types::InternalType::RealImplicitList :
 			poResult = new types::ImplicitList();
 			break;
+        default :
+            // FIXME What should we do here ...
+            break;
 		}
 		iCurCol		= 0;
 		iCurRow		= 0;
@@ -334,7 +341,7 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
 	}
 	else
 	{
-		TypeDest		= ((types::GenericType*)_poDest)->getType();
+		TypeDest		= _poDest->getType();
 		poResult = _poDest;
 	}
 
@@ -346,7 +353,7 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
 		case types::GenericType::RealDouble :
 			if(TypeSource == types::GenericType::RealPoly)
 			{
-				types::Double *poDest = (types::Double*)_poDest;
+				types::Double *poDest = _poDest->getAsDouble();
 				//Convert Dest to RealPoly
 				int *piRank = new int[poDest->size_get()];
 				for(int i = 0 ; i < poDest->size_get() ; i++)
@@ -354,7 +361,7 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
 					piRank[i] = 1;
 				}
 
-				poResult = new types::MatrixPoly(((types::MatrixPoly*)_poSource)->var_get(), poDest->rows_get(), poDest->cols_get(),  piRank);
+				poResult = new types::MatrixPoly(_poSource->getAsPoly()->var_get(), poDest->rows_get(), poDest->cols_get(),  piRank);
 
 				double *pR = poDest->real_get();
 				double *pI = poDest->img_get();
@@ -370,11 +377,11 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
 						pdbl = new types::Double(pR[i]);
 					}
 
-					((types::MatrixPoly*)poResult)->poly_set(i, pdbl);
+					poResult->getAsPoly()->poly_set(i, pdbl);
 					delete pdbl;
 				}
 
-				((types::MatrixPoly*)poResult)->poly_set(iCurRow, iCurCol, ((types::MatrixPoly*)_poSource)->poly_get(0)->coef_get());
+				poResult->getAsPoly()->poly_set(iCurRow, iCurCol, _poSource->getAsPoly()->poly_get(0)->coef_get());
 			}
 			break;
 		case types::GenericType::RealPoly :
@@ -384,7 +391,7 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
 				types::Poly* pPolyOut	= poResult->getAsPoly()->poly_get(iCurRow, iCurCol);
 
 				pPolyOut->rank_set(1);
-				pPolyOut->coef_set((types::Double*)_poSource);
+				pPolyOut->coef_set(_poSource->getAsDouble());
 			}
 			break;
 		default:
@@ -507,6 +514,8 @@ const std::string* getStructNameFromExp(const Exp* _pExp)
     {
         return getStructNameFromExp(&(pCall->name_get()));
     }
+    // FIXME
+    return NULL;
 }
  
 types::Struct* getStructFromExp(const Exp* _pExp)
@@ -555,5 +564,9 @@ types::Struct* getStructFromExp(const Exp* _pExp)
     }
     else if(pCall)
     {
+        // FIXME
+        return NULL;
     }
+    // FIXME
+    return NULL;
 }
