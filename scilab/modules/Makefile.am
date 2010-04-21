@@ -22,6 +22,7 @@ output_stream \
 action_binding \
 arnoldi \
 elementary_functions \
+matio \
 functions_manager \
 string \
 api_scilab \
@@ -80,7 +81,6 @@ demo_tools \
 genetic_algorithms \
 simulated_annealing \
 parameters \
-matio \
 atoms \
 hdf5 \
 graph \
