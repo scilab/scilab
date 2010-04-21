@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- INTERACTIVE TEST -->
+// <-- NO CHECK REF -->
 // <-- TEST WITH XCOS -->
 //
 // <-- Non-regression test for bug 6776 -->
@@ -14,9 +14,20 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=6776
 //
 // <-- Short Description -->
-// The export_to_hdf5 return status was not used when loading a scicos
-// diagram.
+// the non-empty block.doc field was not cleared on loading.
+//
 
-xcos(SCI + "/modules/xcos/tests/nonreg_tests/Antrieb3.cos");
-// Check that the diagram hasn't been loaded and the error dialog has been poped
-// up
+loadScicosLibs;
+
+// Check that importScicosDiagram perform block.doc clearing
+scs_m = importScicosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/Antrieb3.cos");
+obj = scs_m.objs(1);
+if size(obj.doc) <> 0 then pause, end
+
+// check that the export will not fail
+tempFile = TMPDIR + "/6776temp.h5";
+ierr = export_to_hdf5(tempFile, "scs_m");
+if ierr <> %t then pause, end
+
+deletefile(tempFile);
+
