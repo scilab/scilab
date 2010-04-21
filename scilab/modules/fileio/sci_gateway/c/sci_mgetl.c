@@ -24,7 +24,7 @@
 #include "freeArrayOfString.h"
 #include "BOOL.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_mgetl)(char *fname,unsigned long fname_len)
+int sci_mgetl(char *fname,unsigned long fname_len)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;

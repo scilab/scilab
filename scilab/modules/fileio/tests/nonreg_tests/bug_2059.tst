@@ -7,7 +7,7 @@
 
 // test bug 2059
 
-fd = mopen(SCI+'/modules/io/tests/nonreg_tests/bug_2059.txt','rt');
+fd = mopen(SCI+'/modules/fileio/tests/nonreg_tests/bug_2059.txt','rt');
 
 ierr = execstr("dataReadFromFile = mgetl(fd,100)","errcatch");
 if ierr <> 0 then pause,end

@@ -108,13 +108,9 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciio_la_sci_gatewaydir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libdummy_io_la_LIBADD =
-am_libdummy_io_la_OBJECTS = libdummy_io_la-intmgetl.lo
+am_libdummy_io_la_OBJECTS =
 libdummy_io_la_OBJECTS = $(am_libdummy_io_la_OBJECTS)
-libdummy_io_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(F77LD) $(libdummy_io_la_FFLAGS) \
-	$(FFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
-libsciio_la_DEPENDENCIES = libdummy-io.la \
-	$(top_builddir)/modules/core/libscicore.la \
+libsciio_la_DEPENDENCIES = $(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 	$(top_builddir)/modules/tclsci/libscitclsci.la \
@@ -125,17 +121,17 @@ libsciio_la_DEPENDENCIES = libdummy-io.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__objects_1 = libsciio_la-getpidc.lo libsciio_la-setenvc.lo \
 	libsciio_la-systemc.lo libsciio_la-getenvc.lo \
-	libsciio_la-mgetl.lo libsciio_la-GetenvB.lo
+	libsciio_la-GetenvB.lo
 am__objects_2 = v2unit.lo newsave.lo v2cunit.lo writebuf.lo
 am__objects_3 = libsciio_la-sci_read4b.lo libsciio_la-sci_getio.lo \
 	libsciio_la-sci_readb.lo libsciio_la-sci_host.lo \
 	libsciio_la-sci_file.lo libsciio_la-sci_rat.lo \
 	libsciio_la-sci_getenv.lo libsciio_la-sci_write.lo \
 	libsciio_la-sci_writeb.lo libsciio_la-sci_setenv.lo \
-	libsciio_la-gw_io.lo libsciio_la-sci_mgetl.lo \
-	libsciio_la-sci_read.lo libsciio_la-sci_getpid.lo \
-	libsciio_la-sci_write4b.lo libsciio_la-sci_load.lo \
-	libsciio_la-sci_unix.lo libsciio_la-sci_save.lo
+	libsciio_la-gw_io.lo libsciio_la-sci_read.lo \
+	libsciio_la-sci_getpid.lo libsciio_la-sci_write4b.lo \
+	libsciio_la-sci_load.lo libsciio_la-sci_unix.lo \
+	libsciio_la-sci_save.lo
 am__objects_4 = intwrite4b.lo intrat.lo intwritb.lo intwrite.lo \
 	intread4b.lo intread.lo intreadb.lo intfile.lo
 am_libsciio_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
@@ -415,7 +411,6 @@ IO_C_SOURCES = src/c/getpidc.c \
 src/c/setenvc.c \
 src/c/systemc.c \
 src/c/getenvc.c \
-src/c/mgetl.c \
 src/c/GetenvB.c
 
 IO_FORTRAN_SOURCES = src/fortran/v2unit.f \
@@ -434,7 +429,6 @@ sci_gateway/c/sci_write.c \
 sci_gateway/c/sci_writeb.c \
 sci_gateway/c/sci_setenv.c \
 sci_gateway/c/gw_io.c \
-sci_gateway/c/sci_mgetl.c \
 sci_gateway/c/sci_read.c \
 sci_gateway/c/sci_getpid.c \
 sci_gateway/c/sci_write4b.c \
@@ -454,7 +448,7 @@ sci_gateway/fortran/intfile.f
 
 # Disable optimisation of the file intmgetl.f
 noinst_LTLIBRARIES = libdummy-io.la
-libdummy_io_la_SOURCES = sci_gateway/fortran/intmgetl.f
+libdummy_io_la_SOURCES = 
 libdummy_io_la_FFLAGS = $(FFLAGS:-O%=)
 libsciio_la_CFLAGS = -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \
@@ -475,7 +469,7 @@ libsciio_la_SOURCES = $(IO_C_SOURCES) $(IO_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 # For the code check (splint)
 CHECK_SRC = $(IO_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciio_la_CFLAGS)
-libsciio_la_LIBADD = libdummy-io.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/tclsci/libscitclsci.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/integer/libsciinteger.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libsciio_la_LIBADD = $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/tclsci/libscitclsci.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/integer/libsciinteger.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 #### Target ######
 modulename = io
@@ -484,11 +478,11 @@ modulename = io
 libsciio_la_rootdir = $(mydatadir)
 libsciio_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
-####�io : init scripts ####
+####io : init scripts ####
 libsciio_la_etcdir = $(mydatadir)/etc
 libsciio_la_etc_DATA = etc/io.quit etc/io.start
 
-####�io : gateway declaration ####
+####io : gateway declaration ####
 libsciio_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciio_la_sci_gateway_DATA = sci_gateway/io_gateway.xml
 
@@ -629,7 +623,7 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libdummy-io.la: $(libdummy_io_la_OBJECTS) $(libdummy_io_la_DEPENDENCIES) 
-	$(libdummy_io_la_LINK)  $(libdummy_io_la_OBJECTS) $(libdummy_io_la_LIBADD) $(LIBS)
+	$(LINK)  $(libdummy_io_la_OBJECTS) $(libdummy_io_la_LIBADD) $(LIBS)
 libsciio.la: $(libsciio_la_OBJECTS) $(libsciio_la_DEPENDENCIES) 
 	$(libsciio_la_LINK) -rpath $(pkglibdir) $(libsciio_la_OBJECTS) $(libsciio_la_LIBADD) $(LIBS)
 
@@ -643,14 +637,12 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-getenvc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-getpidc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-gw_io.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-mgetl.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_file.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_getenv.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_getio.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_getpid.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_host.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_load.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_mgetl.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_rat.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_read.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_read4b.Plo@am__quote@
@@ -712,13 +704,6 @@ libsciio_la-getenvc.lo: src/c/getenvc.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getenvc.c' object='libsciio_la-getenvc.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -c -o libsciio_la-getenvc.lo `test -f 'src/c/getenvc.c' || echo '$(srcdir)/'`src/c/getenvc.c
-
-libsciio_la-mgetl.lo: src/c/mgetl.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -MT libsciio_la-mgetl.lo -MD -MP -MF $(DEPDIR)/libsciio_la-mgetl.Tpo -c -o libsciio_la-mgetl.lo `test -f 'src/c/mgetl.c' || echo '$(srcdir)/'`src/c/mgetl.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciio_la-mgetl.Tpo $(DEPDIR)/libsciio_la-mgetl.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/mgetl.c' object='libsciio_la-mgetl.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -c -o libsciio_la-mgetl.lo `test -f 'src/c/mgetl.c' || echo '$(srcdir)/'`src/c/mgetl.c
 
 libsciio_la-GetenvB.lo: src/c/GetenvB.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -MT libsciio_la-GetenvB.lo -MD -MP -MF $(DEPDIR)/libsciio_la-GetenvB.Tpo -c -o libsciio_la-GetenvB.lo `test -f 'src/c/GetenvB.c' || echo '$(srcdir)/'`src/c/GetenvB.c
@@ -803,13 +788,6 @@ libsciio_la-gw_io.lo: sci_gateway/c/gw_io.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_io.c' object='libsciio_la-gw_io.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -c -o libsciio_la-gw_io.lo `test -f 'sci_gateway/c/gw_io.c' || echo '$(srcdir)/'`sci_gateway/c/gw_io.c
-
-libsciio_la-sci_mgetl.lo: sci_gateway/c/sci_mgetl.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -MT libsciio_la-sci_mgetl.lo -MD -MP -MF $(DEPDIR)/libsciio_la-sci_mgetl.Tpo -c -o libsciio_la-sci_mgetl.lo `test -f 'sci_gateway/c/sci_mgetl.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mgetl.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciio_la-sci_mgetl.Tpo $(DEPDIR)/libsciio_la-sci_mgetl.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_mgetl.c' object='libsciio_la-sci_mgetl.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -c -o libsciio_la-sci_mgetl.lo `test -f 'sci_gateway/c/sci_mgetl.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mgetl.c
 
 libsciio_la-sci_read.lo: sci_gateway/c/sci_read.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -MT libsciio_la-sci_read.lo -MD -MP -MF $(DEPDIR)/libsciio_la-sci_read.Tpo -c -o libsciio_la-sci_read.lo `test -f 'sci_gateway/c/sci_read.c' || echo '$(srcdir)/'`sci_gateway/c/sci_read.c
@@ -1179,9 +1157,6 @@ uninstall-am: uninstall-libsciio_la_etcDATA \
 	uninstall-libsciio_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
-
-libdummy_io_la-intmgetl.lo: sci_gateway/fortran/intmgetl.f
-	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_io_la_FFLAGS) -c -o libdummy_io_la-intmgetl.lo `test -f 'sci_gateway/fortran/intmgetl.f' || echo '$(srcdir)/'`sci_gateway/fortran/intmgetl.f
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin

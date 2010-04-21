@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -6,6 +6,7 @@
 	ProjectGUID="{C2EDD447-BB60-41A1-973B-8213FCA9ECD4}"
 	RootNamespace="io_f2c"
 	Keyword="Win32Proj"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -402,10 +403,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\intmgetl.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\intrat.c"
 				>
 			</File>
@@ -499,10 +496,6 @@
 			>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\intfile.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intmgetl.f"
 				>
 			</File>
 			<File

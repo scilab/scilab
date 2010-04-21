@@ -1,4 +1,4 @@
-                Changes between version 5.2.X and 5.3.0 of Scilab
+               Changes between version 5.2.X and 5.3.0 of Scilab
                =================================================
 
 
@@ -165,6 +165,9 @@ Bug fixes:
                    of this function. Thanks to Yuvraj Tomar.
 
 * bug 4985 fixed - mgetl did not use fgets (C function).
+
+* bug 4996 fixed - mgetl() was not located in the right module. It has been
+                   moved to "fileio" module
 
 * bug 6419 fixed - gstacksize() There was no way to retrieve minimum 
                    from Scilab.

@@ -4,7 +4,6 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
 // <-- Non-regression test for bug 3427 -->
 //
 // <-- Short Description -->
@@ -17,17 +16,13 @@
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=3427
 //
-
 ierr = execstr('mgetl(''SCI/etc/scilab.start'',''r'');','errcatch');
-if ierr <> 999 then pause,end
+if ierr <> 999 then bugmes();quit;end
 err_msg = lasterror();
-ref_msg = msprintf(gettext("%s: Wrong type for input argument #%d: An int scalar expected.\n"),'mgetl',2);
-
-if err_msg <> ref_msg then pause,end
-
+ref_msg = msprintf(gettext("%s: Wrong type for input argument #%d: Integer expected.\n"),'mgetl',2);
+if err_msg <> ref_msg then bugmes();quit;end
 ierr = execstr('mgetl(''SCI/etc/scilab.start'',[5 5]);','errcatch');
-if ierr <> 999 then pause,end
+if ierr <> 999 then bugmes();quit;end
 err_msg = lasterror();
-ref_msg = msprintf(gettext("%s: Wrong type for input argument #%d: An int scalar expected.\n"),'mgetl',2);
-
-if err_msg <> ref_msg then pause,end
+ref_msg = msprintf(gettext("%s: Wrong size for input argument #%d: Integer expected.\n"),'mgetl',2);
+if err_msg <> ref_msg then bugmes();quit;end
