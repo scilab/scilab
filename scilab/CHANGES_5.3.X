@@ -198,3 +198,6 @@ Bug fixes:
                    exactly 2 characters.
 
 * bug 6891 fixed - 'whos' did not display global variables.
+
+* bug 6947 fixed - Some demos in "Optimization and Simulation" failed, 
+                   without write rights in SCI subdirectory.
