@@ -22,7 +22,7 @@
 
 #include "dec.hxx"
 #include "exp.hxx"
-#include "var.hxx"
+#include "arraylistvar.hxx"
 
 namespace ast
 {
