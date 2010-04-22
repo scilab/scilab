@@ -57,7 +57,7 @@ namespace ast
 			}
 			else
 			{
-				for(int i = 0 ; i < _resultVect.size() ; i++)
+				for(unsigned int i = 0 ; i < _resultVect.size() ; i++)
 				{
 					if(_resultVect[i] != NULL && _resultVect[i]->isDeletable() == true)
 					{
