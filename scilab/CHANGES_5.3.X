@@ -66,7 +66,7 @@ Xcos:
 * bug 6668 fixed - Xcos modelica demos did not work with the new 
                    modelica compiler.
 
-* bug 6903 fixed - modelicat calls ocamlrun (wrong dependency on Windows).                   
+* bug 6903 fixed - modelicat calls ocamlrun (wrong dependency on Windows).
 
 Compilation:
 ============
@@ -202,6 +202,9 @@ Bug fixes:
 
 * bug 6740 fixed - It was not possible to launch Scilab as Minimized 
                    or Maximized Window.
+
+* bug 6784 fixed - It was not possible to move a Scilab installation without
+                   breaking the (previously installed) ATOMS packages load.
 
 * bug 6830 fixed - C2F(scistring) in stack2.c was broken for macro names of 
                    exactly 2 characters.

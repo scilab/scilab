@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
+// Copyright (C) 2009-2010 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -78,6 +78,9 @@ function  atomsSaveInstalled(installed_struct,section)
 		this_package_path     = this_package_details(3);
 		this_package_allusers = this_package_details(4);
 		this_package_status   = this_package_details(5);
+		
+		this_package_path     = strsubst(this_package_path,pathconvert(SCI    ,%F),"SCI");
+		this_package_path     = strsubst(this_package_path,pathconvert(SCIHOME,%F),"SCIHOME");
 		
 		installed_mat = [ installed_mat ; this_package_name this_package_version this_package_allusers this_package_path this_package_status];
 		installed_str = [ installed_str ; "[ "+this_package_name+" - "+this_package_version+" - "+this_package_allusers+" - "+this_package_path+" - "+this_package_status+" ]" ];

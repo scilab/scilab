@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
+// Copyright (C) 2009-2010 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -201,8 +201,9 @@ function result = atomsRemove(packages,section)
 		
 		// Check if this_package_directory start with SCI or SCIHOME
 		
-		if (grep(this_package_directory,pathconvert(SCI)) == []) & ..
-			(grep(this_package_directory,pathconvert(SCIHOME)) == []) then
+		if  (grep(this_package_directory,pathconvert(SCI)) == []) & ..
+			(grep(this_package_directory,pathconvert(SCIHOME)) == []) &..
+			(grep(this_package_directory,"/^(SCI|SCIHOME)\"+filesep()+"/","r") == []) then
 			
 			atomsError("error", ..
 				msprintf( ..
