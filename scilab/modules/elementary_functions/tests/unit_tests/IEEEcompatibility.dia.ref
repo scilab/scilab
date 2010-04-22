@@ -6,12 +6,10 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
 //
 // <-- JVM NOT MANDATORY -->
 // <-- Bugzilla URL -->
 //
-
 //
 // assert_close --
 //   Returns 1 if the two real matrices computed and expected are close,
@@ -31,9 +29,8 @@ function flag = assert_close ( computed, expected, epsilon )
   else
     flag = 0;
   end
-  if flag <> 1 then pause,end
+  if flag <> 1 then bugmes();quit;end
 endfunction
-
 //
 // assert_equal --
 //   Returns 1 if the two real matrices computed and expected are equal.
@@ -59,15 +56,13 @@ function flag = assert_equal ( computed , expected )
       flag = 0;
     end
   end
-  if flag <> 1 then pause,end
+  if flag <> 1 then bugmes();quit;end
 endfunction
-
 // Bibliography :
 // "IEEE Standard for Floating-Point Arithmetic"
 // IEEE Std 754-2008
 // 29 August 2008
 // (Revision of IEEE Std 754-1985)
-
 // Check that properties of double precision floating point numbers
 // are the one which are expected.
 // Strict equality is required here.
@@ -90,10 +85,8 @@ minexp = number_properties("minexp");
 assert_equal ( minexp , -1021 );
 maxexp = number_properties("maxexp");
 assert_equal ( maxexp , 1024 );
-
 // Check that elementary operators +,-,*,/,sqrt and modulo
 // satisfy basic IEEE requirements.
-
 expectedadd = [
 -%inf 	-%inf 	-%inf 	-%inf 	-%inf 	%nan 	%nan
 -%inf 	-2 	-1 	-1 	0 	%inf 	%nan
@@ -102,7 +95,6 @@ expectedadd = [
 -%inf 	0 	1 	1 	2 	%inf 	%nan
 %nan 	%inf 	%inf 	%inf 	%inf 	%inf 	%nan
 %nan 	%nan 	%nan 	%nan 	%nan 	%nan 	%nan];
-
 expectedminus = [
 %nan 	-%inf 	-%inf 	-%inf 	-%inf 	-%inf 	%nan
 %inf 	0 	-1 	-1 	-2 	-%inf 	%nan
@@ -111,7 +103,6 @@ expectedminus = [
 %inf 	2 	1 	1 	0 	-%inf 	%nan
 %inf 	%inf 	%inf 	%inf 	%inf 	%nan 	%nan
 %nan 	%nan 	%nan 	%nan 	%nan 	%nan 	%nan];
-
 expectedmult = [
 %inf 	%inf 	%nan 	%nan 	-%inf 	-%inf 	%nan
 %inf 	1 	0 	-0 	-1 	-%inf 	%nan
@@ -120,7 +111,6 @@ expectedmult = [
 -%inf 	-1 	-0 	0 	1 	%inf 	%nan
 -%inf 	-%inf 	%nan 	%nan 	%inf 	%inf 	%nan
 %nan 	%nan 	%nan 	%nan 	%nan 	%nan 	%nan];
-
 expecteddiv = [
 %nan 	%inf 	%inf 	-%inf 	-%inf 	%nan 	%nan
 0 	1 	%inf 	-%inf 	-1 	-0 	%nan
@@ -129,7 +119,6 @@ expecteddiv = [
 -0 	-1 	-%inf 	%inf 	1 	0 	%nan
 %nan 	-%inf 	-%inf 	%inf 	%inf 	%nan 	%nan
 %nan 	%nan 	%nan 	%nan 	%nan 	%nan 	%nan];
-
 // See http://bugzilla.scilab.org/show_bug.cgi?id=2409
 // We must use imult(%inf) to get the mathematical number i * inf
 // since %i * %inf produces imult(%inf), as expected by the 
@@ -142,7 +131,6 @@ imult(%inf)
 1.
 %inf
 %nan];
-
 expectedmodulo = [
 %nan  %nan  -%inf -%inf  %nan  %nan  %nan
 %nan     0.   -1.    -1.   0.  %nan  %nan
@@ -151,11 +139,9 @@ expectedmodulo = [
 %nan     0.    1.     1.   0.  %nan  %nan
 %nan  %nan   %inf  %inf  %nan  %nan  %nan
 %nan  %nan   %nan  %nan  %nan  %nan  %nan];
-
 left=[-%inf,-1,-0,+0,1,%inf,%nan];
 right=left;
 n=size(left,2);
-
 computedadd = zeros(n,n);
 computedminus = zeros(n,n);
 computedmult = zeros(n,n);
@@ -176,12 +162,9 @@ for i=1:n
     computedmodulo (i,j) = modulo(l , r);
   end
 end
-
 assert_equal ( computedadd    , expectedadd );
 assert_equal ( computedminus  , expectedminus );
 assert_equal ( computedmult   , expectedmult );
 assert_equal ( computeddiv    , expecteddiv );
 assert_equal ( computedsqrt   , expectedsqrt );
 assert_equal ( computedmodulo , expectedmodulo );
-
-
