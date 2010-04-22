@@ -11,7 +11,7 @@
  */
 #include "machine.h" /* C2F */
 #include "stack-def.h" /* nsiz, nlgh */
-
+#include <algorithm>
 extern "C"
 {
     void C2F(namstr)(int* id, int* str, int* n, char* job);
@@ -72,8 +72,9 @@ void C2F(namstr)(int* id,int* str, int* n, char* job)
     { /* str -> id */
         /* n (<= nsiz*4 = nlgh) int in str packed into id */
         unsigned int j;
-        /* a full id contains 4 ints from str, so we have *n/4 full ids the remaing are padded with blanks */
-        unsigned const int full_ids((*n)/4);
+        /* a full id contains 4 ints from str, so we have *n/4 full ids the remaing are padded with blanks
+         we can get *n > nlgh (we  truncate @ nsiz ids) */
+        unsigned const int full_ids(std::min(*n/4, nsiz));
 
         for (j= 0; j!=full_ids; ++j)
         { /* str int are signed bytes in fact, we pack them using shifts */
