@@ -160,6 +160,8 @@ Removed functions (previously declared as obsolete):
 Bug fixes:
 ==========
 
+* bug 1304 fixed - macr2tree now works with a Scilab expression as input.
+
 * bug 4672 fixed - Internal function AddFunctionInTable renamed to 
                    getFunctionByName to avoid confusions on the actual usage
                    of this function. Thanks to Yuvraj Tomar.
