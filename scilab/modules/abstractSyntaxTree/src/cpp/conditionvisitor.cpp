@@ -29,7 +29,6 @@ namespace ast
 		OriginalVisitor execMeL;
 		OriginalVisitor execMeR;
 
-		symbol::Context* pContext = symbol::Context::getInstance();
 		/*getting what to assign*/
 		e.left_get().accept(execMeL);
 		/*getting what to assign*/
@@ -431,7 +430,7 @@ namespace ast
 			OriginalVisitor exec;
 			e.accept(exec);
 			vector<types::InternalType*>* vect = exec.result_list_get();
-			for(int i = 0 ; i < vect->size() ; i++)
+			for(uint i = 0 ; i < vect->size() ; i++)
 			{
 				result_set(i, (*vect)[i]);
 			}
@@ -441,8 +440,8 @@ namespace ast
 
 	void ConditionVisitor::result_bool_set(bool _bResult)
 	{
-		_bBooleanManagement = true;
-		this->_bResult = _bResult;
+		m_bBooleanManagement = true;
+		this->m_bResult = _bResult;
 	}
 
 }

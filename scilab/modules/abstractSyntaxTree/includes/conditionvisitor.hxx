@@ -29,14 +29,14 @@ namespace ast
 		~ConditionVisitor(){}
 		virtual void visit (const OpExp &e);
 
-		bool is_boolean_result(){return _bBooleanManagement;}
-		bool result_bool_get(){return _bResult;}
+		bool is_boolean_result(){return m_bBooleanManagement;}
+		bool result_bool_get(){return m_bResult;}
 /*-------------.
 		| Attributes.  |
 		`-------------*/
 	protected:
-		bool _bResult;
-		bool _bBooleanManagement;
+		bool m_bResult;
+		bool m_bBooleanManagement;
 
 		void result_bool_set(bool _bResult);
 
