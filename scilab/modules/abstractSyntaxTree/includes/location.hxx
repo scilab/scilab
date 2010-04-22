@@ -70,13 +70,13 @@ public:
   }
   /** \} */
 	
-	std::string location_string_get()
-	{
-		std::ostringstream os;
-		os << " (" << first_line << "," << first_column << ")";
-		return std::string(os.str());
-	}
-
+  std::string location_string_get() const
+  {
+      std::ostringstream os;
+      os << " (" << first_line << "," << first_column << ")";
+      return std::string(os.str());
+  }
+  
 public:
   /** \brief Beginning of the located region. */
   int first_line;
