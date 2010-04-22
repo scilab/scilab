@@ -13,11 +13,6 @@
 #include "timedvisitor.hxx"
 
 #include "timer.hxx"
-#include "localization.h"
-
-#include "yaspio.hxx"
-
-using std::string;
 
 namespace ast
 {
@@ -26,7 +21,7 @@ namespace ast
 		Timer timer;
 		timer.start();
 		visitprivate(e);
-		((Ast&)e).elapsedtime_set(timer.elapsed_time());
+		const_cast<SeqExp&>(e).elapsedtime_set(timer.elapsed_time());
 	}
 
 	void TimedVisitor::visit (const MatrixExp &e)
