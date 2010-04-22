@@ -430,7 +430,7 @@ namespace ast
 			OriginalVisitor exec;
 			e.accept(exec);
 			vector<types::InternalType*>* vect = exec.result_list_get();
-			for(uint i = 0 ; i < vect->size() ; i++)
+			for(unsigned int i = 0 ; i < vect->size() ; i++)
 			{
 				result_set(i, (*vect)[i]);
 			}
