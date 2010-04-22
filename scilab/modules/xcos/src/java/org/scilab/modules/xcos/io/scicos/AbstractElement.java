@@ -33,6 +33,14 @@ public abstract class AbstractElement<T> implements Element<T> {
 	protected AbstractElement() { }
 
 	/**
+	 * Default implementation is empty.
+	 * 
+	 * @see org.scilab.modules.xcos.io.scicos.Element#beforeEncode()
+	 */
+	@Override
+	public void beforeEncode() { }
+	
+	/**
 	 * Encode the instance and return a new element.
 	 * 
 	 * Provide a default implementation which call
@@ -43,9 +51,34 @@ public abstract class AbstractElement<T> implements Element<T> {
 	 * @return the element parameter
 	 * @see org.scilab.modules.xcos.io.scicos.Element#encode(java.lang.Object)
 	 */
+	@Override
 	public ScilabType encode(T from) {
 		return encode(from, null);
 	};
+	
+	/**
+	 * Default implementation is empty.
+	 * 
+	 * @see org.scilab.modules.xcos.io.scicos.Element#afterEncode()
+	 */
+	@Override
+	public void afterEncode() { }
+	
+	/**
+	 * Default implementation is empty.
+	 * 
+	 * @see org.scilab.modules.xcos.io.scicos.Element#beforeDecode()
+	 */
+	@Override
+	public void beforeDecode() { }
+	
+	/**
+	 * Default implementation is empty.
+	 * 
+	 * @see org.scilab.modules.xcos.io.scicos.Element#afterDecode()
+	 */
+	@Override
+	public void afterDecode() { }
 	
 	/**
 	 * Check the emptiness of a type.

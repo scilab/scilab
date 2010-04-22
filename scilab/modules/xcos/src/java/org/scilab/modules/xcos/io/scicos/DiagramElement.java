@@ -57,6 +57,10 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 
 	/** Diagram properties MList header (scs_m.props) */
 	private static final String[] PROPS_FIELDS = {"params", "wpar", "title", "tol", "tf", "context", "void1", "options", "void2", "void3", "doc"};
+	
+	/** Index of the title in the props field */
+	private static final int TITLE_INDEX = 2;
+	
 	/** Diagram options MList header (scs_m.props.options) */
 	private static final String[] OPTS_FIELDS = {"scsopt", "3D", "Background", "Link", "ID", "Cmap"};
 	/**
@@ -406,6 +410,10 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 		final ScicosParametersElement paramsElement = new ScicosParametersElement();
 		data = base.get(field);
 		data = paramsElement.encode(from.getScicosParameters(), data);
+		
+		// set the title as it is need for generating files
+		((ScilabTList) data).set(TITLE_INDEX, new ScilabString(from.getTitle()));
+		
 		base.set(field, data);
 	}
 	

@@ -33,16 +33,22 @@ public enum LinkPortMap {
 	EX_INPUT(ExplicitLink.class, ExplicitInputPort.class, false),
 	/**
 	 * Implicit input port mapping
+	 * 
+	 * Note: for implicit link, the from and to start flag is inverted. So here
+	 * the {@link #isStart} is inverted too.
 	 */
-	IM_INPUT(ImplicitLink.class, ImplicitInputPort.class, false),
+	IM_INPUT(ImplicitLink.class, ImplicitInputPort.class, true),
 	/**
 	 * Explicit output port mapping
 	 */
 	EX_OUTPUT(ExplicitLink.class, ExplicitOutputPort.class, true),
 	/**
 	 * Implicit output port mapping
+	 * 
+	 * Note: for implicit link, the from and to start flag is inverted. So here
+	 * the {@link #isStart} is inverted too.
 	 */
-	IM_OUTPUT(ImplicitLink.class, ImplicitOutputPort.class, true),
+	IM_OUTPUT(ImplicitLink.class, ImplicitOutputPort.class, false),
 	/**
 	 * Control port mapping
 	 */
@@ -139,7 +145,7 @@ public enum LinkPortMap {
 		final Class< ? extends BasicPort> klass = port.getClass();
 		for (LinkPortMap current : values()) {
 			if (klass.equals(current.getPortKlass())) {
-				if (current.isStart) {
+				if (current.isStart()) {
 					ret = 1.0;
 				}
 				break;

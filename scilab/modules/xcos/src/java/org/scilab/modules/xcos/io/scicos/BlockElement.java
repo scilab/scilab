@@ -327,6 +327,9 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 		final OutputPortElement outElement = new OutputPortElement(data);
 		final int numberOfPorts = from.getChildCount();
 		
+		inElement.beforeEncode();
+		outElement.beforeEncode();
+		
 		for (int i = 0; i < numberOfPorts; i++) {
 			final Object instance = from.getChildAt(i);
 			
@@ -336,6 +339,9 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 				outElement.encode((OutputPort) instance, data);
 			}
 		}
+		
+		inElement.afterEncode();
+		outElement.afterEncode();
 		
 		return data;
 	}

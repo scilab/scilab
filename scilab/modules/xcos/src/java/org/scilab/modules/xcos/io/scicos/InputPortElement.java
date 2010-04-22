@@ -54,6 +54,7 @@ public class InputPortElement extends AbstractElement<InputPort> {
 	private final ScilabMList model;
 	
 	private int alreadyDecodedCount;
+	private boolean allColumnsAreZeros = true;
 	
 	/**
 	 * Default constructor
@@ -245,9 +246,6 @@ public class InputPortElement extends AbstractElement<InputPort> {
 		sciValues = (ScilabDouble) model.get(MODEL_IN_DATALINE_INDEX);
 		values = sciValues.getRealPart();
 		int datalines = from.getDataLines();
-		if (datalines == 0) {
-			datalines = 1;
-		}
 		values[alreadyDecodedCount][0] = datalines;
 		
 		// in2
@@ -256,6 +254,8 @@ public class InputPortElement extends AbstractElement<InputPort> {
 		int datacolumns = from.getDataColumns();
 		if (datacolumns == 0) {
 			datacolumns = 1;
+		} else {
+			allColumnsAreZeros = false;
 		}
 		values[alreadyDecodedCount][0] = datacolumns;
 		
@@ -291,5 +291,15 @@ public class InputPortElement extends AbstractElement<InputPort> {
 		sciStrings = (ScilabString) graphics.get(GRAPHICS_INIMPL_INDEX);
 		strings = sciStrings.getData();
 		strings[alreadyDecodedCount][0] = from.getType().getAsString();		
+	}
+	
+	/**
+	 * Clear Block.model.in2 if it contains only zeros.
+	 */
+	@Override
+	public void afterEncode() {
+		if (allColumnsAreZeros) {
+			model.set(MODEL_IN_DATACOL_INDEX, new ScilabDouble());
+		}
 	}
 }

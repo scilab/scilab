@@ -400,7 +400,7 @@ public class LinkElement extends AbstractElement<BasicLink> {
 		 */
 		for (int i = 0; i < ptCount; i++) {
 			xx[1 + i][0] = ((mxPoint) lnkPoints.get(i)).getX();
-			yy[1 + i][0] = ((mxPoint) lnkPoints.get(i)).getY();
+			yy[1 + i][0] = -((mxPoint) lnkPoints.get(i)).getY();
 		}
 		
 		/*
