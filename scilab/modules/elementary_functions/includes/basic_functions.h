@@ -34,10 +34,6 @@
 #define BY_ALL			0
 #define	BY_MTLB			-1
 
-static double spdblExpmC[41] = {0};
-static double sdblExpmN = 0;
-
-
 double dceilsEx(double _dblVal, int _iPrecision);
 double dceils(double _dblVal);
 double wasums(int _iNbElem, double* _pdblReal, double* _pdblImg);
