@@ -10,6 +10,7 @@
  *
  */
 #include <string.h>
+#include <stdio.h>
 #include "expr.h"
 #include "ifexpr.h"
 #include "msgs.h"
