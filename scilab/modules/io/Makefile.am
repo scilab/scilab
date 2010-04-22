@@ -41,11 +41,6 @@ sci_gateway/fortran/intread.f \
 sci_gateway/fortran/intreadb.f \
 sci_gateway/fortran/intfile.f
 
-# Disable optimisation of the file intmgetl.f
-noinst_LTLIBRARIES = libdummy-io.la
-libdummy_io_la_SOURCES = 
-libdummy_io_la_FFLAGS = $(FFLAGS:-O%=)
-
 libsciio_la_CFLAGS=  	-I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -89,3 +84,4 @@ libsciio_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciio_la_sci_gateway_DATA = sci_gateway/io_gateway.xml
 
 include $(top_srcdir)/Makefile.incl.am
+

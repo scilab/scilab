@@ -106,10 +106,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciio_la_etcdir)" \
 	"$(DESTDIR)$(libsciio_la_rootdir)" \
 	"$(DESTDIR)$(libsciio_la_sci_gatewaydir)"
-LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
-libdummy_io_la_LIBADD =
-am_libdummy_io_la_OBJECTS =
-libdummy_io_la_OBJECTS = $(am_libdummy_io_la_OBJECTS)
+LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libsciio_la_DEPENDENCIES = $(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
@@ -160,8 +157,8 @@ F77LD = $(F77)
 F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libdummy_io_la_SOURCES) $(libsciio_la_SOURCES)
-DIST_SOURCES = $(libdummy_io_la_SOURCES) $(libsciio_la_SOURCES)
+SOURCES = $(libsciio_la_SOURCES)
+DIST_SOURCES = $(libsciio_la_SOURCES)
 DATA = $(libsciio_la_etc_DATA) $(libsciio_la_root_DATA) \
 	$(libsciio_la_sci_gateway_DATA)
 ETAGS = etags
@@ -445,11 +442,6 @@ sci_gateway/fortran/intread.f \
 sci_gateway/fortran/intreadb.f \
 sci_gateway/fortran/intfile.f
 
-
-# Disable optimisation of the file intmgetl.f
-noinst_LTLIBRARIES = libdummy-io.la
-libdummy_io_la_SOURCES = 
-libdummy_io_la_FFLAGS = $(FFLAGS:-O%=)
 libsciio_la_CFLAGS = -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -582,15 +574,6 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
-
-clean-noinstLTLIBRARIES:
-	-test -z "$(noinst_LTLIBRARIES)" || rm -f $(noinst_LTLIBRARIES)
-	@list='$(noinst_LTLIBRARIES)'; for p in $$list; do \
-	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
-	  test "$$dir" != "$$p" || dir=.; \
-	  echo "rm -f \"$${dir}/so_locations\""; \
-	  rm -f "$${dir}/so_locations"; \
-	done
 install-pkglibLTLIBRARIES: $(pkglib_LTLIBRARIES)
 	@$(NORMAL_INSTALL)
 	test -z "$(pkglibdir)" || $(MKDIR_P) "$(DESTDIR)$(pkglibdir)"
@@ -622,8 +605,6 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
-libdummy-io.la: $(libdummy_io_la_OBJECTS) $(libdummy_io_la_DEPENDENCIES) 
-	$(LINK)  $(libdummy_io_la_OBJECTS) $(libdummy_io_la_LIBADD) $(LIBS)
 libsciio.la: $(libsciio_la_OBJECTS) $(libsciio_la_DEPENDENCIES) 
 	$(libsciio_la_LINK) -rpath $(pkglibdir) $(libsciio_la_OBJECTS) $(libsciio_la_LIBADD) $(LIBS)
 
@@ -1060,7 +1041,7 @@ maintainer-clean-generic:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
-	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
+	clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -1137,15 +1118,14 @@ uninstall-am: uninstall-libsciio_la_etcDATA \
 
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \
-	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES ctags \
-	distclean distclean-compile distclean-generic \
-	distclean-libtool distclean-local distclean-tags distdir dvi \
-	dvi-am html html-am info info-am install install-am \
-	install-data install-data-am install-data-local install-dvi \
-	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-html-local install-info \
-	install-info-am install-libsciio_la_etcDATA \
-	install-libsciio_la_rootDATA \
+	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
+	distclean-generic distclean-libtool distclean-local \
+	distclean-tags distdir dvi dvi-am html html-am info info-am \
+	install install-am install-data install-data-am \
+	install-data-local install-dvi install-dvi-am install-exec \
+	install-exec-am install-html install-html-am \
+	install-html-local install-info install-info-am \
+	install-libsciio_la_etcDATA install-libsciio_la_rootDATA \
 	install-libsciio_la_sci_gatewayDATA install-man install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
