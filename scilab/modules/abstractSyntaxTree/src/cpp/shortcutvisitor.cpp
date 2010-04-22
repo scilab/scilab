@@ -11,12 +11,6 @@
 */
 
 #include "shortcutvisitor.hxx"
-#include "timer.hxx"
-#include "localization.h"
-
-#include "yaspio.hxx"
-
-using std::string;
 
 namespace ast
 {
@@ -31,11 +25,14 @@ namespace ast
 		switch(e.oper_get())
 		{
 		case LogicalOpExp::logicalOr :
-			((LogicalOpExp*)&e)->oper_set(LogicalOpExp::logicalShortCutOr);
+			const_cast<LogicalOpExp&>(e).oper_set(LogicalOpExp::logicalShortCutOr);
 			break;
 		case LogicalOpExp::logicalAnd :
-			((LogicalOpExp*)&e)->oper_set(LogicalOpExp::logicalShortCutAnd);
+				const_cast<LogicalOpExp&>(e).oper_set(LogicalOpExp::logicalShortCutAnd);
 			break;
+        default :
+            // Do Nothing !
+            break;
 		}
 	}
 }
