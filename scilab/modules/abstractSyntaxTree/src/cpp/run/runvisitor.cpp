@@ -122,7 +122,7 @@ namespace ast
 				ostr << e.name_get() << " = " << "(" << pI->getRef() << ")"<< std::endl;
 			  ostr << std::endl;
 			  ostr << pI->toString(10,75) << std::endl;
-			  YaspWrite((char *) ostr.str().c_str());
+			  YaspWrite(const_cast<char *>(ostr.str().c_str()));
 			}
 		}
 		else
@@ -297,7 +297,7 @@ namespace ast
 			{
 				if(expected_size_get() == 1 && out.size() == 0) //to manage ans
 				{
-					if((int)out.size() < expected_size_get())
+					if(static_cast<int>(out.size()) < expected_size_get())
 					{
 						std::ostringstream os;
 						os << "bad lhs, expected : " << expected_size_get() << " returned : " << out.size() << std::endl;
@@ -311,7 +311,7 @@ namespace ast
 				}
 				else 
 				{
-					for(int i = 0 ; i < out.size() ; i++)
+					for(int i = 0 ; i < static_cast<int>(out.size()) ; i++)
 					{
 						result_set(i, out[i]);
 					}
@@ -330,9 +330,9 @@ namespace ast
 			}
 
 			
-			for (j = 0; j < e.args_get().size(); j++)
+			for (unsigned int k = 0; k < e.args_get().size(); k++)
 			{
-				execVar[j].result_get()->DecreaseRef();
+				execVar[k].result_get()->DecreaseRef();
 			}
 			
 //			std::cout << "before delete[]" << std::endl;
@@ -357,7 +357,7 @@ namespace ast
 			}
 			InternalType *pOut			= NULL;
 			std::vector<InternalType*> ResultList;
-			int iArgDim							= (int)e.args_get().size();
+			int iArgDim							= static_cast<int>(e.args_get().size());
 			bool bSeeAsVector				= iArgDim == 1;
 
 			//Create list of indexes
@@ -385,7 +385,7 @@ namespace ast
 			case InternalType::RealList :
 				{
 					ResultList = pIT->getAsList()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
-					for(int i = 0 ; i < ResultList.size() ; i++)
+					for(int i = 0 ; i < static_cast<int>(ResultList.size()) ; i++)
 					{
 						result_set(i, ResultList[i]);
 					}
@@ -402,7 +402,7 @@ namespace ast
 				{
 					std::ostringstream os;
 					os << "inconsistent row/column dimensions";
-					os << ((Location)(*e.args_get().begin())->location_get()).location_string_get() << std::endl;
+					os << ((*e.args_get().begin())->location_get()).location_string_get() << std::endl;
 					throw os.str();
 				}
 				result_set(pOut);
@@ -413,7 +413,7 @@ namespace ast
 				{
 					std::ostringstream os;
 					os << "inconsistent row/column dimensions";
-					os << ((Location)(*e.args_get().begin())->location_get()).location_string_get() << std::endl;
+					os << ((*e.args_get().begin())->location_get()).location_string_get() << std::endl;
 					throw os.str();
 				}
 			}
@@ -423,15 +423,11 @@ namespace ast
 			delete[] piMaxDim;
 		}
 		else
-		{//result == NULL ,variable doesn't exist :(
-			std::ostringstream os;
-			char pst[bsiz];
-#ifdef _MSC_VER
-			sprintf_s(pst, bsiz, _("Undefined variable %s.\n"), e.name_get());
-#else
-			sprintf(pst, _("Undefined variable %s.\n"), e.name_get());
-#endif
-			throw string(pst);
+		{
+            //result == NULL ,variable doesn't exist :(
+            // Sould never be in this case
+            // In worst case variable pointing to function does not exists
+            // visitprivate(SimpleVar) will throw the right exception.
 		}
 	}
 
@@ -453,12 +449,12 @@ namespace ast
 		{//condition == true
 			if(e.is_breakable())
 			{
-				((Exp*)&e.then_get())->breakable_set();
+				const_cast<Exp*>(&e.then_get())->breakable_set();
 			}
 
 			if(e.is_returnable())
 			{
-				((Exp*)&e.then_get())->returnable_set();
+				const_cast<Exp*>(&e.then_get())->returnable_set();
 			}
 
 			e.then_get().accept(execMeAction);
@@ -470,30 +466,34 @@ namespace ast
 			{
 				if(e.is_breakable())
 				{
-					((Exp*)&e.else_get())->breakable_set();
+					const_cast<Exp*>(&e.else_get())->breakable_set();
 				}
 
 				if(e.is_returnable())
 				{
-					((Exp*)&e.else_get())->returnable_set();
+					const_cast<Exp*>(&e.else_get())->returnable_set();
 				}
 
 				e.else_get().accept(execMeAction);
 			}
 		}
 
-		if(e.is_breakable() && ( ((Exp*)&e.else_get())->is_break() || ((Exp*)&e.then_get())->is_break() ))
+		if(e.is_breakable() 
+           && ( (&e.else_get())->is_break() 
+                || (&e.then_get())->is_break() ))
 		{
-			((Exp*)&e)->break_set();
-			((Exp*)&e.else_get())->break_reset();
-			((Exp*)&e.then_get())->break_reset();
+			const_cast<IfExp*>(&e)->break_set();
+			const_cast<Exp*>(&e.else_get())->break_reset();
+			const_cast<Exp*>(&e.then_get())->break_reset();
 		}
 
-		if(e.is_returnable() && ( ((Exp*)&e.else_get())->is_return() || ((Exp*)&e.then_get())->is_return() ))
+		if(e.is_returnable() 
+           && ( (&e.else_get())->is_return() 
+                || (&e.then_get())->is_return() ))
 		{
-			((Exp*)&e)->return_set();
-			((Exp*)&e.else_get())->return_reset();
-			((Exp*)&e.then_get())->return_reset();
+			const_cast<IfExp*>(&e)->return_set();
+			const_cast<Exp*>(&e.else_get())->return_reset();
+			const_cast<Exp*>(&e.then_get())->return_reset();
 		}
 	}
 
@@ -507,14 +507,13 @@ namespace ast
 	{
 		ConditionVisitor execMeTest;
 		T execMeAction;
-		bool bTestStatus	= false;
 
 		//allow break operation
-		((Exp*)&e.body_get())->breakable_set();
+		const_cast<Exp*>(&e.body_get())->breakable_set();
 		//allow return operation
 		if(e.is_returnable())
 		{
-			((Exp*)&e.body_get())->is_returnable();
+			(&e.body_get())->is_returnable();
 		}
 
 		//condition
@@ -529,7 +528,7 @@ namespace ast
 
 			if(e.body_get().is_return())
 			{
-				((Exp*)&e)->return_set();
+				const_cast<WhileExp*>(&e)->return_set();
 				break;
 			}
 			e.test_get().accept(execMeTest);
@@ -543,17 +542,17 @@ namespace ast
 		e.vardec_get().accept(execVar);
 
 		//allow break operation
-		((Exp*)&e.body_get())->breakable_set();
+		const_cast<Exp*>(&e.body_get())->breakable_set();
 		//allow return operation
 		if(e.is_returnable())
 		{
-			((Exp*)&e.body_get())->is_returnable();
+			(&e.body_get())->is_returnable();
 		}
 
 		if(execVar.result_get()->getType() == InternalType::RealImplicitList)
 		{
 			T execBody;
-			ImplicitList* pVar = (ImplicitList*)execVar.result_get();
+			ImplicitList* pVar = execVar.result_get()->getAsImplicitList();
 //			std::cout << "ImplicitList references : " << pVar->getRef() << std::endl;
 
 			InternalType *pIT = NULL;
@@ -587,7 +586,7 @@ namespace ast
 
 				if(e.body_get().is_return())
 				{
-					((Exp*)&e)->return_set();
+					const_cast<ForExp*>(&e)->return_set();
 					break;
 				}
 			}
@@ -597,7 +596,7 @@ namespace ast
 		else
 		{//Matrix i = [1,3,2,6] or other type
 			T execBody;
-			GenericType* pVar = (GenericType*)execVar.result_get();
+			GenericType* pVar = static_cast<GenericType*>(execVar.result_get());
 			for(int i = 0 ; i < pVar->cols_get() ; i++)
 			{
 				GenericType* pNew = pVar->get_col_value(i);
@@ -610,7 +609,7 @@ namespace ast
 
 				if(e.body_get().is_return())
 				{
-					((Exp*)&e)->return_set();
+					const_cast<ForExp*>(&e)->return_set();
 					break;
 				}
 			}
@@ -620,7 +619,7 @@ namespace ast
 	template <class T>
 	void RunVisitorT<T>::visitprivate(const BreakExp &e)
 	{
-		((BreakExp*)&e)->break_set();
+		const_cast<BreakExp*>(&e)->break_set();
 	}
 
 	template <class T>
@@ -636,7 +635,7 @@ namespace ast
 				result_set(i, execVar.result_get(i)->clone());
 			}
 		}
-		((Exp*)&e)->return_set();
+		const_cast<ReturnExp*>(&e)->return_set();
 	}
 
 	template <class T>
@@ -712,13 +711,13 @@ namespace ast
 					types::typed_list in;
 
 					T execCall;
-					Function::ReturnValue Ret = pCall->call(in, (int)expected_size_get(), out, &execCall);
+					Function::ReturnValue Ret = pCall->call(in, expected_size_get(), out, &execCall);
 
 					if(Ret == Callable::OK)
 					{
 						if(expected_size_get() == 1 && out.size() == 0) //to manage ans
 						{
-							if((int)out.size() < expected_size_get())
+							if(static_cast<int>(out.size()) < expected_size_get())
 							{
 								std::ostringstream os;
 								os << "bad lhs, expected : " << expected_size_get() << " returned : " << out.size() << std::endl;
@@ -726,7 +725,7 @@ namespace ast
 							}
 						}
 
-						for(int i = 0 ; i < out.size() ; i++)
+						for(int i = 0 ; i < static_cast<int>(out.size()) ; i++)
 						{
 							out[i]->DecreaseRef();
 							execMe.result_set(i, out[i]);
@@ -755,22 +754,22 @@ namespace ast
 						ostr << "ans = " << std::endl;
 						ostr << std::endl;
 						ostr << execMe.result_get()->toString(10,75) << std::endl;
-						YaspWrite((char *)ostr.str().c_str());
+						YaspWrite(const_cast<char *>(ostr.str().c_str()));
 					}
 				}
 
 			}
 
-			if(((SeqExp*)&e)->is_breakable() && (*itExp)->is_break())
+			if((&e)->is_breakable() && (*itExp)->is_break())
 			{
-				((SeqExp*)&e)->break_set();
+				const_cast<SeqExp *>(&e)->break_set();
 				break;
 			}
 
-			if(((SeqExp*)&e)->is_returnable() && (*itExp)->is_return())
+			if((&e)->is_returnable() && (*itExp)->is_return())
 			{
-				((SeqExp*)&e)->return_set();
-				((SeqExp*)(*itExp))->return_reset();
+				const_cast<SeqExp *>(&e)->return_set();
+				(*itExp)->return_reset();
 				break;
 			}
 		}
@@ -958,22 +957,23 @@ namespace ast
 
 		//get input parameters list
 		std::list<string> *pVarList = new std::list<string>();
-		ArrayListVar *pListVar = (ArrayListVar *)&e.args_get();
+		const ArrayListVar *pListVar = &e.args_get();
 		for(i = pListVar->vars_get().begin() ; i != pListVar->vars_get().end() ; i++)
 		{
-			pVarList->push_back(((SimpleVar*)(*i))->name_get());
+			pVarList->push_back(static_cast<SimpleVar*>(*i)->name_get());
 		}
 
 		//get output parameters list
 		std::list<string> *pRetList = new std::list<string>();
-		ArrayListVar *pListRet = (ArrayListVar *)&e.returns_get();
+		const ArrayListVar *pListRet = &e.returns_get();
 		for(i = pListRet->vars_get().begin() ; i != pListRet->vars_get().end() ; i++)
 		{
-			pRetList->push_back(((SimpleVar*)(*i))->name_get());
+			pRetList->push_back(static_cast<SimpleVar*>(*i)->name_get());
 		}
 
 		//types::Macro macro(VarList, RetList, (SeqExp&)e.body_get());
-		types::Macro *pMacro = new types::Macro(e.name_get(), *pVarList, *pRetList, (SeqExp&)e.body_get(), "script");
+		types::Macro *pMacro = new types::Macro(e.name_get(), *pVarList, *pRetList, 
+                                                static_cast<SeqExp&>(const_cast<Exp&>(e.body_get())), "script");
 		symbol::Context::getInstance()->AddMacro(pMacro);
 	}
 	/** \} */
@@ -990,7 +990,7 @@ namespace ast
 		try
 		{
 			e.start_get().accept(execMeStart);
-			GenericType* pITStart = (GenericType*)execMeStart.result_get();
+			GenericType* pITStart = static_cast<GenericType*>(execMeStart.result_get());
 			if(pITStart->rows_get() != 1 || pITStart->cols_get() != 1)
 			{
 				throw 1;
@@ -998,14 +998,14 @@ namespace ast
 
 
 			e.step_get().accept(execMeStep);
-			GenericType* pITStep = (GenericType*)execMeStep.result_get();
+			GenericType* pITStep = static_cast<GenericType*>(execMeStep.result_get());
 			if(pITStep->rows_get() != 1 || pITStep->cols_get() != 1)
 			{
 				throw 2;
 			}
 
 			e.end_get().accept(execMeEnd);
-			GenericType* pITEnd = (GenericType*)execMeEnd.result_get();
+			GenericType* pITEnd = static_cast<GenericType*>(execMeEnd.result_get());
 			if(pITEnd->rows_get() != 1 || pITEnd->cols_get() != 1)
 			{
 				throw 3;
@@ -1104,8 +1104,7 @@ namespace ast
 	{
 		//Create list of indexes
 		//std::vector<std::vector<int>> IndexList;
-		symbol::Context *pcontext = symbol::Context::getInstance();
-		int iProductElem				= (int)_plstArg.size();
+		int iProductElem				= _plstArg.size();
 		int **piIndexList				= NULL;
 		int *piTabsize					= NULL;
 		int iTotalCombi					= 1;
@@ -1139,22 +1138,22 @@ namespace ast
 				{
 					if(pIL->start_type_get() == InternalType::RealPoly)
 					{
-						MatrixPoly *poPoly	= (MatrixPoly*)pIL->start_get();
+						MatrixPoly *poPoly	= pIL->start_get()->getAsPoly();
 						pIL->start_set(poPoly->evaluate(&dbl));
 					}
 					if(pIL->step_type_get() == InternalType::RealPoly)
 					{
-						MatrixPoly *poPoly	= (MatrixPoly*)pIL->step_get();
+						MatrixPoly *poPoly	= pIL->step_get()->getAsPoly();
 						pIL->step_set(poPoly->evaluate(&dbl));
 					}
 					if(pIL->end_type_get() == InternalType::RealPoly)
 					{
-						MatrixPoly *poPoly	= (MatrixPoly*)pIL->end_get();
+						MatrixPoly *poPoly	= pIL->end_get()->getAsPoly();
 						pIL->end_set(poPoly->evaluate(&dbl));
 					}
 				}
 
-				pDbl = (Double*)pIL->extract_matrix();
+				pDbl = pIL->extract_matrix()->getAsDouble();
 				bDeleteDbl = true;
 			}
 			else if(execMeArg.result_get()->getType() == InternalType::RealBool)
@@ -1164,9 +1163,9 @@ namespace ast
 
 				//find true item count
 				int iItemCount = 0;
-				for(int i = 0 ; i < pB->size_get() ; i++)
+				for(int j = 0 ; j < pB->size_get() ; j++)
 				{
-					if(piB[i])
+					if(piB[j])
 					{
 						iItemCount++;
 					}
@@ -1177,11 +1176,11 @@ namespace ast
 				double* pdbl	= pDbl->real_get();
 
 				int j = 0;
-				for(int i = 0 ; i < pB->size_get() ; i++)
+				for(int l = 0 ; l < pB->size_get() ; l++)
 				{
-					if(piB[i])
+					if(piB[l])
 					{
-						pdbl[j++] = i + 1;
+						pdbl[j++] = l + 1;
 					}
 				}
 
@@ -1223,7 +1222,7 @@ namespace ast
 			piTabsize[k] = pDbl->size_get();
 			piIndexList[k] = new int[piTabsize[k]];
 
-			(*_piMaxDim)[k] = (int)(pData[0] + 0.5);
+			(*_piMaxDim)[k] = static_cast<int>(pData[0] + 0.5);
 			int iSize = pDbl->size_get();
 			if(_iDimSize != NULL)
 			{
@@ -1232,7 +1231,7 @@ namespace ast
 
 			for(int j = 0 ; j < iSize ; j++)
 			{
-				piIndexList[k][j] = (int)(pData[j] + 0.5);
+				piIndexList[k][j] = static_cast<int>(pData[j] + 0.5);
 				if(piIndexList[k][j] > (*_piMaxDim)[k])
 				{
 					(*_piMaxDim)[k] = piIndexList[k][j];
@@ -1260,9 +1259,9 @@ namespace ast
 
 		delete [] piTabsize;
 
-		for(int i = 0 ; i < iProductElem ; i++)
+		for(int l = 0 ; l < iProductElem ; l++)
 		{
-			delete[] piIndexList[i];
+			delete[] piIndexList[l];
 		}
 		delete[] piIndexList;
 		return iTotalCombi;
