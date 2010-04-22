@@ -86,7 +86,8 @@
 g(i,j) = (df_i)/(dx_j)
  ]]></programlisting>
 
-    <para>using finite difference methods.</para>
+    <para>using finite difference methods.
+    Uses an order 1 formula.</para>
 
     <para>
 	Without parameters, the function fun calling sequence is
