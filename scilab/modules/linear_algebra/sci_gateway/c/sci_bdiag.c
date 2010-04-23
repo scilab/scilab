@@ -56,7 +56,7 @@ int C2F(intbdiagr)(char *fname, long unsigned int fname_len)
     ix1 = (it + 1) * m * n;
     if (C2F(vfinite)(&ix1, stk(la )) == 0) {
 	Err = 1;
-	Error(264);
+	SciError(264);
 	return 0;
     }
     if (Rhs == 2) {

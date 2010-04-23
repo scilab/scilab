@@ -35,6 +35,7 @@
 #include "scilabmode.h"
 #include "stack-def.h" /* C2F(basbrk) */
 #include "dynamic_menus.h"
+#include "do_error_number.h"
 #include "Scierror.h"
 #include "msgs.h"
 #undef Lstk

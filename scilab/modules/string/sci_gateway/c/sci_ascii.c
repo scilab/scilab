@@ -174,7 +174,7 @@ static int asciiStrings(char *fname)
 		if (Err > 0) 
 		{
 			/* stacksize exceeded */
-			Error(17);
+			SciError(17);
 			return 0;
 		}
 	} 
@@ -189,7 +189,7 @@ static int asciiStrings(char *fname)
 		if (Err > 0) 
 		{
 			/* stacksize exceeded */
-			Error(17);
+			SciError(17);
 			return 0;
 		}
 		C2F(icopy)(&nbr_characters, istk(l), &one, istk(l + nbr_characters), &one);

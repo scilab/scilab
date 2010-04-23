@@ -23,6 +23,12 @@ Graphics:
 
 * bug 6959 fixed - axis.tics_labels did not accept $..$ LaTeXed labels
 
+API_Scilab:
+===========
+
+* Error(x) is now deprecated and will be removed in Scilab 5.4. 
+  Please consider SciError(x).
+
 Documentation:
 ==============
 

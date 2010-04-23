@@ -25,6 +25,7 @@
 #include "cvstr.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "do_error_number.h"
 #include "code2str.h"
 #include "elementary_functions.h"
 #include "MALLOC.h"
@@ -1102,7 +1103,7 @@ int GetDimFromVar(int _iVarNum, int _iNum/*Oo*/, int* _piVal)
 	{
 		if(iIsComplex(_iVarNum))
 		{
-			Error(89);
+			SciError(89);
 			return _iNum;
 		}
 		GetRhsVar(_iVarNum, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iRealData);
@@ -1119,7 +1120,7 @@ int GetDimFromVar(int _iVarNum, int _iNum/*Oo*/, int* _piVal)
 		GetRhsVar(_iVarNum, MATRIX_OF_INTEGER_DATATYPE, &iRows, &iCols, &iRealData);
 		if(iRows * iCols != 1)
 		{
-			Error(89);
+			SciError(89);
 			return _iNum;
 		}
 		iRows = 1;
@@ -1129,7 +1130,7 @@ int GetDimFromVar(int _iVarNum, int _iNum/*Oo*/, int* _piVal)
 	}
 	else
 	{
-		Error(89);
+		SciError(89);
 		return _iNum;
 	}
 	return 0;
@@ -1242,13 +1243,13 @@ int iGetOrient(int _iVal)
 	}
 	else
 	{
-		Error(44);
+		SciError(44);
 		return -2;
 	}
 
 	if(iRows != 1 || iCols != 1)
 	{
-		Error(89);
+		SciError(89);
 		return -2;
 	}
 
@@ -1268,7 +1269,7 @@ int iGetOrient(int _iVal)
 	}
 	else
 	{
-		Error(44);
+		SciError(44);
 		return -2;
 	}
 	return iMode;
