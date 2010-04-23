@@ -24,11 +24,11 @@
 
 namespace ast
 {
-	class EXTERN_AST RunVisitor : public ConstVisitor
+	class RunVisitor : public ConstVisitor
 	{
 	};
 
-	template <class T> class EXTERN_AST RunVisitorT : public RunVisitor
+	template <class T> class RunVisitorT : public RunVisitor
 	{
 	public:
 		RunVisitorT()
@@ -40,11 +40,6 @@ namespace ast
 		}
 
 		~RunVisitorT()
-		{
-			result_clear();
-		}
-
-		void result_clear()
 		{
 			if(is_single_result())
 			{
@@ -142,90 +137,23 @@ namespace ast
 		 virtual void visitprivate(const ListExp &e);
 		/** \} */
 
-		int expected_size_get(void)
-		{
-			return _excepted_result;
-		}
+         virtual int expected_size_get(void);
 
-		int result_size_get(void)
-		{
-			if(is_single_result())
-			{
-				if(_result == NULL)
-				{
-					return 0;
-				}
-				else
-				{
-					return 1;
-				}
-			}
-			else
-			{
-			  return static_cast<int>(_resultVect.size());
-			}
-		}
+         virtual int result_size_get(void);
 
-		void expected_size_set(int _iSize)
-		{
-			_excepted_result = _iSize;
-		}
+		virtual void expected_size_set(int _iSize);
 
-		types::InternalType* result_get(void)
-		{
-			if(is_single_result())
-			{
-				return _result;
-			}
-			else
-			{
-				return _resultVect[0];
-			}
-		}
+		virtual types::InternalType* result_get(void);
 
-		types::InternalType* result_get(int _iPos)
-		{
-			if(_iPos >= static_cast<int>(_resultVect.size()))
-			{
-				return NULL;
-			}
-			return _resultVect[_iPos];
-		}
+		virtual types::InternalType* result_get(int _iPos);
 
-		vector<types::InternalType*>* result_list_get()
-		{
-			return &_resultVect;
-		}
+		virtual vector<types::InternalType*>* result_list_get();
 
-		void result_set(int _iPos, const types::InternalType *gtVal)
-		{
-			m_bSingleResult = false;
-			if(_iPos <  static_cast<int>(_resultVect.size()))
-			{
-				if(_resultVect[_iPos] != NULL && _resultVect[_iPos]->isDeletable())
-				{
-					delete _resultVect[_iPos];
-				}
-			}
+		virtual void result_set(int _iPos, const types::InternalType *gtVal);
 
-			if(_iPos >=  static_cast<int>(_resultVect.size()))
-			{
-				_resultVect.resize(_iPos + 1, NULL);
-			}
+		virtual void result_set(const types::InternalType *gtVal);
 
-			_resultVect[_iPos] = const_cast<types::InternalType *>(gtVal);
-		}
-
-		void result_set(const types::InternalType *gtVal)
-		{
-			m_bSingleResult = true;
-			_result = const_cast<types::InternalType *>(gtVal);
-		}
-
-		bool is_single_result()
-		{
-			return m_bSingleResult;
-		}
+		virtual bool is_single_result();
 
 		/*
 		int result_size_get(void);
@@ -250,6 +178,14 @@ namespace ast
 	//private :
 	//	RunVisitorT(RunVisitorT const& e){}
 	};
+
+    // Forward Class definition
+	class ExecVisitor;
+    //class RunVisitorT<ExecVisitor>;
+	class TimedVisitor;
+    //class RunVisitorT<TimedVisitor>;
 }
+
+
 
 #endif // !AST_RUNVISITOR_HXX

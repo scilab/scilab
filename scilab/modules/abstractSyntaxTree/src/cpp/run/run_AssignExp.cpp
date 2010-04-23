@@ -12,8 +12,6 @@
 
 #include "localization.h"
 #include "runvisitor.hxx"
-#include "execvisitor.hxx"
-#include "timedvisitor.hxx"
 #include "visitor_common.hxx"
 #include "context.hxx"
 #include <string>
@@ -26,9 +24,6 @@ using ast::RunVisitor;
 
 namespace ast
 {
-	template class RunVisitorT<ExecVisitor>;
-	template class RunVisitorT<TimedVisitor>;
-
 	template <class T>
 	void RunVisitorT<T>::visitprivate(const AssignExp  &e)
 	{
