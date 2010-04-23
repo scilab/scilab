@@ -64,9 +64,14 @@ double B_img[]={1,0.233,-1,-0.2,0.5,42,-23,123};   /* Declare the matrix */
 
 int rowB=2, colB=4; /* Size of the matrix */
 char variableNameB[] = "B";
+SciErr sciErr;
 
 /* Write it into Scilab's memory */
-createNamedComplexMatrixOfDouble(pvApiCtx,variableNameB,rowB,colB, B, B_img);
+sciErr = createNamedComplexMatrixOfDouble(pvApiCtx,variableNameB,rowB,colB, B, B_img);
+if(sciErr.iErr)
+{
+	printError(&sciErr, 0);
+}
 
 /*
  * Prior to Scilab 5.2:
@@ -84,9 +89,14 @@ int i = 0,j = 0;
 double *matrixOfComplexB = NULL;
 double *matrixOfComplexB_img = NULL;
 char variableToBeRetrievedB[] = "B";
+SciErr sciErr;
 
 /* First, retrieve the size of the matrix */
 readNamedComplexMatrixOfDouble(pvApiCtx, variableToBeRetrievedB, &rowB_, &colB_, NULL, NULL);
+if(sciErr.iErr)
+{
+	printError(&sciErr, 0);
+}
 
 /*
  * Prior to Scilab 5.2:
@@ -98,7 +108,12 @@ matrixOfComplexB = (double*)malloc((rowB_*colB_)*sizeof(double));
 matrixOfComplexB_img = (double*)malloc((rowB_*colB_)*sizeof(double));
 
 /* Load the matrix */
-readNamedComplexMatrixOfDouble(pvApiCtx, variableToBeRetrievedB, &rowB_, &colB_, matrixOfComplexB, matrixOfComplexB_img);
+sciErr = readNamedComplexMatrixOfDouble(pvApiCtx, variableToBeRetrievedB, &rowB_, &colB_, matrixOfComplexB, matrixOfComplexB_img);
+if(sciErr.iErr)
+{
+	printError(&sciErr, 0);
+}
+
 
 /*
  * Prior to Scilab 5.2:

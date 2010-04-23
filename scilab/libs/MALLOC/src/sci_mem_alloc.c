@@ -71,7 +71,7 @@ IMPORT_EXPORT_MALLOC_DLL void * MyCalloc(size_t x, size_t y, const char *file,in
 
 }
 /*-----------------------------------------------------------------------------------*/
-IMPORT_EXPORT_MALLOC_DLL void MyFree(void *x, const char *file,int line)
+IMPORT_EXPORT_MALLOC_DLL void MyFree(void *x)
 {
     if(x != NULL)
 	    free(x);

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-10-23 07:47+0000\n"
+"PO-Revision-Date: 2010-02-22 07:46+0000\n"
 "Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
+"X-Launchpad-Export-Date: 2010-04-16 07:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -216,10 +216,6 @@ msgstr "%s: falsche Antwort.\n"
 #, c-format
 msgid "%s: Incorrect link: %s"
 msgstr "%s: falscher Zeiger: %s"
-
-#, c-format
-msgid "%s: Infinite solution.\n"
-msgstr "%s: unendliche Lösung.\n"
 
 #, c-format
 msgid "%s: Input argument #%d must be real.\n"
@@ -651,6 +647,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value of input argument %d: Proper system expected.\n"
 msgstr ""
+"%s: falscher Wert für Eingangsargument %d: angemessenes System erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d:  %s is not full rank.\n"

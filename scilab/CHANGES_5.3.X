@@ -1,4 +1,4 @@
-                Changes between version 5.2.X and 5.3.0 of Scilab
+               Changes between version 5.2.X and 5.3.0 of Scilab
                =================================================
 
 
@@ -6,7 +6,7 @@ Performance:
 ============
 
 * Faster access to primitive table (internal). This change improves the overall
-speed of Scilab.
+  speed of Scilab.
 
 
 FFTW:
@@ -21,15 +21,19 @@ Graphics:
 
 * the set and get functions are now overloadable.
 
+* bug 6959 fixed - axis.tics_labels did not accept $..$ LaTeXed labels
+
 Documentation:
 ==============
 
 * It is now possible to use LaTeX inline in the documentation. Thanks to 
- Calixte Denizet for this feature. (See bug #4329)
+  Calixte Denizet for this feature. (See bug #4329)
 
 * bug 6630 fixed - JavaHelp does not update existing image files when 
                    building help.
 
+* bug 6852 fixed - JavaHelp did not center the LaTeX formulas containing an
+                   attribute align="center" 
 
 Xcos:
 =====
@@ -43,7 +47,7 @@ Xcos:
 * The default palettes can now be manipulated by the user.
 
 * LaTeX formulas can be used on any TextBlock using the Scilab tag based 
-description.
+  description.
 
 * builnewblock.sci rewritten to use scilab dynamic link module tools.
 
@@ -56,11 +60,16 @@ description.
 
 * bug 6672 fixed - "Code generation" failed if superblock had 
                    some gain blocks.
-                   
+
 * bug 6674 fixed - modelica generic block did not work.
 
 * bug 6668 fixed - Xcos modelica demos did not work with the new 
                    modelica compiler.
+
+* bug 6900 fixed - The block interfunction was escaped when calling scilab
+                   macros.
+
+* bug 6903 fixed - modelicat calls ocamlrun (wrong dependency on Windows).      
 
 Compilation:
 ============
@@ -71,7 +80,7 @@ Compilation:
 * Windows 2000 is no more supported as operating system.
 
 * Scilab Mac OS X distribution relies only on Java 1.6 and is therefor now
-only available under 64 bits OS (Most of 10.5 and all 10.6 Mac OS X versions)
+  only available under 64 bits OS (Most of 10.5 and all 10.6 Mac OS X versions)
 
 * Under Mac OS X, uses /usr/libexec/java_home instead of hardcoded paths to
   retrieve JAVA_HOME
@@ -93,12 +102,17 @@ Matlab to Scilab conversion tools:
 
 * Unitary tests added.
 
-* mfile2sci: option only_double set to %T as default.
-  
+* Matlab-Scilab equivalents dictionnary added in documentation.
+
+* In 'mfile2sci', option only_double is now set to %T as default.
+
+* Conversion updated with new Scilab functions:
+  - 'filesep' now converted by 'filesep' instead of 'pathconvert'.
+
 Tests:
 ======
 
-* Mechanism of unitary tests for Java code based on TestNG added and used
+* Mechanism of unitary tests for Java code based on TestNG added and used.
 
 Text Rendering:
 ===============
@@ -110,7 +124,6 @@ Obsolete Functions:
 ===================
 
 * 'MSDOS' obsolete see 'getos' (SEP #39).
-
 
 Removed functions (previously declared as obsolete):
 ====================================================
@@ -144,9 +157,24 @@ Removed functions (previously declared as obsolete):
 * 'scilab_demos' replaced by 'demo_gui'.
 
 * 'with_gtk' replaced by 'getversion'.
- 
+
+* 'readc_' replaced by 'input'.
+
 Bug fixes:
 ==========
+
+* bug 1304 fixed - macr2tree now works with a Scilab expression as input.
+
+* bug 2775 fixed - Multiplication of 0 times infinity did not work because of ATLAS under Windows.
+
+* bug 4672 fixed - Internal function AddFunctionInTable renamed to 
+                   getFunctionByName to avoid confusions on the actual usage
+                   of this function. Thanks to Yuvraj Tomar.
+
+* bug 4985 fixed - mgetl did not use fgets (C function).
+
+* bug 4996 fixed - mgetl() was not located in the right module. It has been
+                   moved to "fileio" module
 
 * bug 6419 fixed - gstacksize() There was no way to retrieve minimum 
                    from Scilab.
@@ -173,8 +201,26 @@ Bug fixes:
 * bug 6556 fixed - fprintf() returned an error if it's called 2 times (or more)
                    on the same file.
 
+* bug 6635 fixed - Incorrectly drawn Bode plots (calfrq bug).
+
 * bug 6682 fixed - mprintf, msprintf, mfprintf did not manage octal (%o) format.
 
 * bug 6740 fixed - It was not possible to launch Scilab as Minimized 
                    or Maximized Window.
+
+* bug 6784 fixed - It was not possible to move a Scilab installation without
+                   breaking the (previously installed) ATOMS packages load.
+
+* bug 6830 fixed - C2F(scistring) in stack2.c was broken for macro names of 
+                   exactly 2 characters.
+
+* bug 6889 fixed - 'fscanfMat' crashed with wrong formatted files.
+
+* bug 6891 fixed - 'whos' did not display global variables.
+
+* bug 6901 fixed - This script with 'exec' produced a weird warning.
+
+* bug 6947 fixed - Some demos in "Optimization and Simulation" failed, 
+                   without write rights in SCI subdirectory.
+
 

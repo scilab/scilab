@@ -74,20 +74,18 @@
  * Unix/Linux only
  *
  * @param lpAddress Address 
- * @param file Which file is calling the function (used debug) 
- * @param line Which line is calling the function (used debug) 
  * @return <ReturnValue>
  */
- void MyFree(void *lpAddress,const char *file,int line);
+void MyFree(void *lpAddress);
 
 #define MALLOC(x) MyAlloc((size_t)x,__FILE__,__LINE__)
-#define FREE(x) MyFree((void *) x,__FILE__,__LINE__)
+#define FREE(x) MyFree((void *) x)
 #define REALLOC(x,y) MyReAlloc((void *)x, y,__FILE__,__LINE__)
 #define CALLOC(x,y) MyCalloc((size_t) x, (size_t) y,__FILE__,__LINE__)
 
 /* Only for Scilab Stacksize use VirtualAlloc on Window */
 #define SCISTACKMALLOC(x) MyAlloc((unsigned long)x,__FILE__,__LINE__)
-#define SCISTACKFREE(x) MyFree((void *) x,__FILE__,__LINE__)
+#define SCISTACKFREE(x) MyFree((void *) x)
 
 #define Top C2F(vstk).top
 

@@ -15,6 +15,10 @@
 #ifndef STACK_SCI
 #define STACK_SCI
 
+#ifndef API_SCILAB_VERSION
+#pragma message("Using stack-c.h is deprecated. Please use api_scilab instead (try 'help api_scilab'). Note the stack-c.h API will be removed after Scilab 6.0.")
+#endif
+
 #include <string.h>
 
 #ifdef __cplusplus

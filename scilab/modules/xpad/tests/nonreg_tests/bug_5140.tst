@@ -34,19 +34,23 @@ disp(A)
 
 //-->editor
   
+-->1+1
  ans  =
  
     2.  
- 
+-->2
  ans  =
  
     2.  
- 
+-->A= 3
  A  =
  
     3.  
- 
+-->disp(A)
  
     3.  
- 
 
+
+// creates a file with more 100 lines or more than 80 * 100 characters
+// do "Load into Scilab" 
+// a message box should be opened , try 'yes' and 'no'

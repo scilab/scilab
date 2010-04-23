@@ -12,7 +12,12 @@
 #ifndef __VARIABLE_API__
 #define __VARIABLE_API__
 
-#define API_SCILAB_VERSION	1
+/*
+* 1 : First version
+* 2 : Shortcut functions added
+*/
+
+#define API_SCILAB_VERSION	2
 
 #include "api_common.h"
 #include "api_double.h"

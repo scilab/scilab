@@ -16,6 +16,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.logging.LogFactory;
+
 /**
  * Perform the communication between java code and scilab code trough an UID.
  */
@@ -43,7 +45,7 @@ public final class Signal {
 			try {
 				data.wait();
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+				LogFactory.getLog(Signal.class).error(e);
 			}
 		}
 	}
@@ -64,7 +66,7 @@ public final class Signal {
 				Thread.sleep(DELAY_EXEC);
 				data = waiters.get(index);
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+				LogFactory.getLog(Signal.class).error(e);
 			}
 		}
 

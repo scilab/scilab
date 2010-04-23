@@ -141,7 +141,7 @@ return
 
 
 
-    TCL_EvalFile(SCI+"/modules/scicos/macros/scicos_scicos/MIHM.tcl")
+    TCL_EvalFile(SCI+"/modules/scicos/tcl/MIHM.tcl")
 
 
 

@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <VisualStudioToolFile
-	Name="Rename .vc Files"
+	Name="Rename vc extension Files"
 	Version="8,00"
 	>
 	<Rules>
 		<CustomBuildRule
-			Name="rename .vc files"
-			DisplayName="Rename .vc files"
+			Name="rename vc extension files"
+			DisplayName="Rename vc extension files"
 			CommandLine="copy &quot;$(InputDir)$(InputFileName)&quot; &quot;$(InputDir)$(InputName)&quot; 1&gt;NUL"
 			Outputs="$(InputDir)$(InputName) "
 			FileExtensions="*.vc"
@@ -17,3 +17,4 @@
 		</CustomBuildRule>
 	</Rules>
 </VisualStudioToolFile>
+

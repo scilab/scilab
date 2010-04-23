@@ -51,13 +51,7 @@ int ExitScilab(void)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/ 
-void C2F(sciquit)(void)
-{
-	int defaultExitCode = 0;
-	ExitWithCodeFromScilab(defaultExitCode);
-}
-/*--------------------------------------------------------------------------*/
-void ExitWithCodeFromScilab(int _errorCode)
+void sciquit(void)
 {
 #ifdef _MSC_VER
 	/* bug 3672 */
@@ -81,10 +75,6 @@ void ExitWithCodeFromScilab(int _errorCode)
 	used by files association 
 	*/
 	terminateMutexClosingScilab();
-	/* kill process and return 0 */
-	killScilabProcess(_errorCode);
-#else
-	exit(_errorCode);
 #endif
 }
 /*--------------------------------------------------------------------------*/

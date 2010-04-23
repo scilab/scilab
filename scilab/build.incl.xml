@@ -63,6 +63,7 @@
 
 
 	<path id="compile.classpath">
+		<pathelement location="${library.types.dir}/${library.types.name}"/>
 		<pathelement location="${library.graph.dir}/${library.graph.name}"/>
 		<pathelement location="${library.xcos.dir}/${library.xcos.name}"/>
 		<pathelement location="${library.hdf5.dir}/${library.hdf5.name}"/>
@@ -196,6 +197,7 @@
 			debug="off"
 			verbose="off"
 			listfiles="on"
+			includeAntRuntime="no"
 			source="5"
 			/>
 	</target>

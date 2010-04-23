@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include "AddFunctionInTable.h"
+#include "GetFunctionByName.h"
 #include "machine.h"
 /***********************************
 * Search Table for int2d
@@ -50,5 +50,5 @@ double *C2F(fint2d)(double *x, double *y)
 
 void C2F(setfint2d)(char *name, int *rep)
 {
-	fint2dfonc = (fint2df) AddFunctionInTable(name,rep,FTab_fint2d);
+	fint2dfonc = (fint2df) GetFunctionByName(name,rep,FTab_fint2d);
 }

@@ -16,8 +16,19 @@ import java.awt.Color;
 
 import com.sun.opengl.util.texture.Texture;
 
+/**
+ * Special text object 
+ * @author Calixte Denizet
+ */
 public abstract class SpecialTextObjectGL {
-    
+
+    private static final int ALPHA_SHIFT = 24;
+    private static final int RED_SHIFT = 16;
+    private static final int GREEN_SHIFT = 8;
+    private static final int BLUE_SHIFT = 0;
+    private static final int COMPONENT_MASK = 0xFF;
+    private static final int NB_COMPONENTS = 4;
+
     protected Buffer buffer;
     protected float height;
     protected float width;
@@ -25,6 +36,9 @@ public abstract class SpecialTextObjectGL {
 
     protected boolean isColored;
 
+    /**
+     * Default constructor
+     */
     public SpecialTextObjectGL() {
     }
 
@@ -115,20 +129,21 @@ public abstract class SpecialTextObjectGL {
      * @return pixmap RGBA data 
      */
     protected static byte[] ARGBtoRGBA(int[] pix) {
-		byte[] bytes = new byte[pix.length * 4];
-		int p, r, g, b, a;
+		byte[] bytes = new byte[pix.length * NB_COMPONENTS];
+		int p;
+		int [] tmpPix = new int[NB_COMPONENTS];
 		int j = 0;
 		for (int i = 0; i < pix.length; i++) {
 		    p = pix[i];
-		    a = (p >> 24) & 0xFF;
-		    r = (p >> 16) & 0xFF;
-		    g = (p >> 8) & 0xFF;
-		    b = (p >> 0) & 0xFF;
-		    bytes[j] = (byte) r;
-		    bytes[j + 1] = (byte) g;
-		    bytes[j + 2] = (byte) b;
-		    bytes[j + 3] = (byte) a;
-		    j += 4;
+		    tmpPix[0] = (p >> ALPHA_SHIFT) & COMPONENT_MASK;
+		    tmpPix[1] = (p >> RED_SHIFT) & COMPONENT_MASK;
+		    tmpPix[2] = (p >> GREEN_SHIFT) & COMPONENT_MASK;
+		    tmpPix[NB_COMPONENTS - 1] = (p >> BLUE_SHIFT) & COMPONENT_MASK;
+		    bytes[j] = (byte) tmpPix[1];
+		    bytes[j + 1] = (byte) tmpPix[2];
+		    bytes[j + 2] = (byte) tmpPix[NB_COMPONENTS - 1];
+		    bytes[j + NB_COMPONENTS - 1] = (byte) tmpPix[0];
+		    j += NB_COMPONENTS;
 		}
 		
 		return bytes;

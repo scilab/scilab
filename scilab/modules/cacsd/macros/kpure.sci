@@ -7,59 +7,43 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function [y,R]=kpure(sl,eps)
+function [K,R]=kpure(sl,eps)
+//if sl is a transfert function N(S)/D(s) kpure looks for K producing
+//pure  imaginary roots for
+//  P(s)=D(s)+K*N(s)
+//There is a pair of pure imaginary poles if and only if
+//  P(%i*q)=0  (1)
+// and
+//  P(-%i*q)=0 (2)
+// because N and D are polynomials with real coefficients.
+  
+//Author: Serge Steer, INRIA
   y=[];R=[];
-  if argn(2)==1 then eps=[1e-6,1e-6],end
+  msg=_("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n")
+  if argn(2)==1 then eps=1e-6,end
+  if size(eps,'*')==2 then  eps=eps(2),end //compatibility
   select typeof(sl)
   case 'rational' then
-    if size(sl.num,'*') > 1 then error(95,1),end
-  case 'state-space' then
-    sl=ss2tf(sl)
-    if size(sl.num,'*') > 1 then error(95,1),end
-  else
-    error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"),"kpure",1))
-  end
-  if sl.dt<>'c' then 
-    error(msprintf(gettext("%s: Wrong value for input argument #%d: Continuous time system expected.\n"),"kpure",1))
-  end
-  if size(sl.num,'*')<>1 then
-    error(msprintf(gettext("%s: Wrong size for input argument #%d: Single input, single output system expected.\n"),"kpure",1))
-  end
-
-  //build the Routh table of the given system
-  r=routh_t(sl,poly(0,'k')),
-  [s,t]=size(r);
-  
-  //Check of infinite solution
-  for i=1:s,
-    if and(coeff(r(i,:))==0) then 
-      error(msprintf(gettext("%s: Infinite solution.\n"),"kpure")),
+    if size(sl.num,'*') <> 1 then 
+      error(msprintf(msg,"kpure",1))
     end
-  end,
-
-  z=0;u=0;
-
-  for i=1:s,
-    k=roots(gcd(r(i,:)));// k is must be real
-    k=real(k)
-    //k(k<=0)=[]; //remove negative and zero values
-    h=prod(size(k)),
-    if h>0 then
-      for j=1:h,
-	if and(abs(k(j)-y)>eps(1)) then //remove duplicated k's
-	  //compute the poles of the closed loop
-	  wr=roots(k(j)*sl.num+sl.den) 
-	  //retains k if at least one closed loop pole is imaginary	       
-	  [w,ki]=mini(abs(real(wr)))
-	  if w<eps(2) then 
-	    y=[y real(k(j))],
-	    R=[R wr(ki)]
-	  end
-	end
-      end,
-    end;
-  end;
-
-  [y,k]=gsort(y)
-  R=R(k)
+  case 'state-space' then
+    if size(sl.D,'*') <> 1 then 
+      error(msprintf(msg,"kpure",1))
+    end
+    sl=ss2tf(sl)
+  else
+    error(msprintf(msg,"kpure",1))
+  end
+ 
+  //(1) give K(s)=-D(s)/N(s)
+  s=poly(0,varn(sl.den))
+  K=-sl.den/sl.num;
+  // replace K by the previous value in (2) and find the roots
+  s=roots(numer(horner(sl.den,-s)+K*horner(sl.num,-s)),'e');
+  //retain pure imaginary roots
+  s=imag(s(abs(real(s))<eps));
+  R=(s(s>0).'*%i);
+  //find the K(s) values K(s)=-D(s)/N(s)
+  K=-real(freq(den,num,R))
 endfunction

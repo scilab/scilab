@@ -16,7 +16,7 @@ import ncsa.hdf.hdf5lib.H5;
 import ncsa.hdf.hdf5lib.HDF5Constants;
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
-import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
+import org.scilab.modules.types.scilabTypes.ScilabDouble;
 
 public class H5ReadScilabDouble {
     public static void readData(int dataSetId, ScilabDouble data) throws NullPointerException, HDF5Exception {

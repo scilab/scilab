@@ -127,20 +127,23 @@ find_docbook_path() {
 }
 
 detect_type_of_scilab(){
+
 	progname="$0"
 	SCILAB_MODE="gui"
 	SCILABBIN="scilab-bin"
-	if echo "$progname"|grep "scilab-adv-cli$" 2>&1 > /dev/null; then
+
+	if (echo "$progname"|grep "scilab-adv-cli$" 2>&1 > /dev/null;) || (echo "$@"|grep "\-nw" 2>&1 > /dev/null;) then
 		SCILAB_MODE="nw"
 		# We are using scilab-bin here because we are going to force the arg -nw
 		SCILABBIN="scilab-bin"
 	fi
 
-	if echo "$progname"|grep "scilab-cli$" 2>&1 > /dev/null; then
+	if (echo "$progname"|grep "scilab-cli$" 2>&1 > /dev/null;) || (echo "$@"|grep "\-nwni" 2>&1 > /dev/null;) then
 		SCILAB_MODE="nwni"
 		SCILABBIN="scilab-cli-bin"
 		DISABLE_JAVA_DETECTION=1
 	fi
+
 	if test $SCIVERBOSE -ne 0; then
 		echo "SCILABBIN : $SCILABBIN"
 		echo "DISABLE_JAVA_DETECTION : $DISABLE_JAVA_DETECTION"
@@ -148,7 +151,7 @@ detect_type_of_scilab(){
 	fi
 }
 
-detect_type_of_scilab
+detect_type_of_scilab $@
 
 detect_scilab_path() {
 

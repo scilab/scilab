@@ -7,32 +7,33 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function kp=krac2(n)
-
-  select typeof(n)
+function [kp,s]=krac2(sys)
+//The denominator of the closed loop system is den(s)+K*num(s). So the
+//  the closed loops poles verify K(s)=-den(s)/num(s)
+//The real axis breakaway points occurs at the extrema of the K(s)
+// so at the point where K'=dK/ds = 0
+// K'=-(den'*num-den*num')/num^2
+// K'= 0 --> den'*num-den*num'=0
+//  http://www.scribd.com/doc/21374148/An-Introduction-to-Control-Systems
+  select typeof(sys)
   case 'rational' then
-    [n,d,dom]=n(['num','den','dt'])
   case 'state-space' then
-    n=ss2tf(n);[n,d,dom]=n(['num','den','dt'])
+    sys=ss2tf(sys);
   else
      error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"),"krac2",1))
   end
-  if dom<>'c' then 
-    error(msprintf(gettext("%s: Wrong value for input argument #%d: Continuous time system expected.\n"),"krac2",1))
-  end
-  if size(n,'*')<>1 then
+  if size(sys,'*')<>1 then
     error(msprintf(gettext("%s: Wrong size for input argument #%d: Single input, single output system expected.\n"),"krac2",1))
   end
-
-  x=[];
-  q1=derivat(n/d);s=roots(q1(2));
-  //
-  for a=s',
-    if abs(imag(a))<=10*%eps then 
-      x=[x;a],
-    end,
-  end
-  //x(x==0)=[]
-  if x==[] then;return,end
-  kp=gsort(-real(freq(d,n,real(x))))
+  num=sys.num
+  den=sys.den
+  s=roots(derivat(num)*den-derivat(den)*num,'e')
+  //collect the real roots only
+  i=find(abs(imag(s))<=10*%eps)
+  if i==[] then kp=[],s=[];return,end
+  s=s(i)'
+  kp=-real(freq(den,num,real(s)))
+  i=find(kp>=0)
+  kp=kp(i)
+  s=s(i)
 endfunction

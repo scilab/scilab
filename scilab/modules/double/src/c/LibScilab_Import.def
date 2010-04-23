@@ -1,0 +1,11 @@
+	LIBRARY    Libscilab.dll
+
+
+EXPORTS
+;
+;core
+;
+callFunctionFromGateway
+com_
+iop_
+matlog_

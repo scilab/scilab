@@ -14,6 +14,9 @@
 
 package org.scilab.modules.xcos.actions;
 
+import static org.scilab.modules.graph.utils.ScilabInterpreterManagement.asynchronousScilabExec;
+import static org.scilab.modules.graph.utils.ScilabInterpreterManagement.buildCall;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -24,12 +27,11 @@ import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.actions.base.GraphActionManager;
-import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
 import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.utils.XcosConstants;
+import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -76,24 +78,28 @@ public class StartAction extends DefaultAction {
      */
     public void actionPerformed(ActionEvent e) {
 		final XcosDiagram diagram = ((XcosDiagram) getGraph(e)).getRootDiagram();
-		String cmd = "";
+		String cmd;
 		
 		updateUI(true);
 	
 		try {
 			cmd = createSimulationCommand(diagram);
 		} catch (IOException ex) {
+			LogFactory.getLog(StartAction.class).error(ex);
 			updateUI(false);
 			return;
 		}
 		
+		final ActionListener action = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				updateUI(false);
+				diagram.getEngine().setCompilationNeeded(false);
+			}
+		};
+		
 	    try {
-			ScilabInterpreterManagement.asynchronousScilabExec(cmd, new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					updateUI(false);
-					diagram.getEngine().setCompilationNeeded(false);
-				}
-			});
+			asynchronousScilabExec(action, cmd);
 		} catch (InterpreterException e1) {
 			e1.printStackTrace();
 			updateUI(false);
@@ -131,13 +137,11 @@ public class StartAction extends DefaultAction {
 		 * Import a valid scs_m structure into Scilab
 		 */
 		if (needCompile) {
-			temp = File.createTempFile("xcos", ".h5", XcosConstants.TMPDIR);
+			temp = FileUtils.createTempFile();
 			diagram.dumpToHdf5File(temp.getAbsolutePath());
 
-			command.append("import_from_hdf5(\"" + temp.getAbsolutePath()
-					+ "\"); ");
-			command.append("scicos_debug("
-					+ diagram.getScicosParameters().getDebugLevel() + "); ");
+			command.append(buildCall("import_from_hdf5", temp.getAbsolutePath()));
+			command.append(buildCall("scicos_debug", diagram.getScicosParameters().getDebugLevel()));
 		} else {
 			command.append(diagram.getEngine().getLoadSimulationDataCommand());
 		}

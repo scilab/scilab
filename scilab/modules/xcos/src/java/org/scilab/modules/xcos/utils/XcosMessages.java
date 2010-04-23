@@ -165,6 +165,7 @@ public final class XcosMessages {
     public static final String NO_BLOCK_SELECTED = Messages.gettext("No block selected");
 
     public static final String EXPORT_TO_XML = Messages.gettext("Export to XML") + DOTS;
+    public static final String EXPORT_IN_PROGRESS = Messages.gettext("Export in progress") + DOTS;
     public static final String IMPORT_FROM_XML = Messages.gettext("Import from XML") + DOTS;
     
     public static final String ADDTO = Messages.gettext("Add to");

@@ -7,7 +7,7 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function r=with_atlas()
-  [v,opt]=getversion()
-  r=or(opt=='atlas')
+function r = with_atlas()
+  [v, opt] = getversion();
+  r = or(opt == 'atlas');
 endfunction

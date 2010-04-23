@@ -17,6 +17,4 @@
 stacksize(1e8);
 x=1:2000; y=1:1000; m=rand(1000,2000);
 grayplot(x,y,m');
-ConcreteDrawableGrayplot::drawGrayplot: No more memory.
-ConcreteDrawableGrayplot::drawGrayplot: No more memory.
 // used to crash violently

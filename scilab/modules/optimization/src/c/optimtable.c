@@ -10,7 +10,7 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#include "AddFunctionInTable.h"
+#include "GetFunctionByName.h"
 #include "machine.h"
 #include "dynlib_optimization.h"
 /***********************************
@@ -54,6 +54,6 @@ void C2F(foptim)(int *indsim, int *n, double *x, double *f, double *g, int *izs,
 
 void C2F(setfoptim)(char *name, int *rep)
 {
-	foptimfonc = (foptimf) AddFunctionInTable(name,rep,FTab_foptim);
+	foptimfonc = (foptimf) GetFunctionByName(name,rep,FTab_foptim);
 }
 

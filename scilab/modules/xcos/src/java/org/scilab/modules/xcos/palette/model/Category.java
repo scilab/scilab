@@ -98,7 +98,7 @@ public class Category extends PaletteNode {
 	 * @see javax.swing.tree.TreeNode#children()
 	 */
 	@Override
-	public Enumeration children() {
+	public Enumeration<PaletteNode> children() {
 		return Collections.enumeration(getNode());
 	}
 

@@ -12,74 +12,74 @@
 // get the list of repositories
 
 function categories_mat = atomsCategoryList(section)
-	
-	// Load Atoms Internals lib if it's not already loaded
-	// =========================================================================
-	if ~ exists("atomsinternalslib") then
-		load("SCI/modules/atoms/macros/atoms_internals/lib");
-	end
-	
-	rhs            = argn(2);
-	categories_mat = [];
-	
-	// Check number of input arguments
-	// =========================================================================
-	
-	if rhs > 1 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsCategoryList",0,1));
-	end
-	
-	// Check input argument type (if any)
-	// =========================================================================
-	
-	if (rhs==1) & (type(section) <> 10) then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsCategoryList",1));
-	end
-	
-	// Check input argument dimension (if any)
-	// =========================================================================
-	
-	if (rhs==1) & (size(section,"*")<>1) then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsCategoryList",1));
-	end
-	
-	// Check input argument values (if any)
-	// =========================================================================
-	
-	if (rhs==1) & (and(section<>["all","main"])) then
-		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''all'' or ''main'' expected.\n"),"atomsCategoryList",1));
-	end
-	
-	// Default value of section
-	// =========================================================================
-	
-	if rhs==0 then
-		section = "all";
-	end
-	
-	// Get the main categories structure
-	// =========================================================================
-	
-	[packages,categories_flat,categories] = atomsDESCRIPTIONget();
-	
-	categories_mat      = getfield(1,categories);
-	categories_mat(1:2) = [];
-	categories_mat      = gsort(categories_mat,"lc","i");
-	categories_mat      = categories_mat';
-	
-	if section == "all" then
-		
-		main_mat       = categories_mat;
-		categories_mat = [];
-		
-		for i=1:size(main_mat,"*")
-			categories_mat = [ categories_mat ; main_mat(i) "" ];
-			sub_categories = gsort(categories(main_mat(i)),"lc","i");
-			if sub_categories <> [] then
-				categories_mat = [ categories_mat ; emptystr(size(sub_categories,"*"))+main_mat(i) sub_categories ];
-			end
-		end
-		
-	end
-	
+
+    // Load Atoms Internals lib if it's not already loaded
+    // =========================================================================
+    if ~ exists("atomsinternalslib") then
+        load("SCI/modules/atoms/macros/atoms_internals/lib");
+    end
+
+    rhs            = argn(2);
+    categories_mat = [];
+
+    // Check number of input arguments
+    // =========================================================================
+
+    if rhs > 1 then
+        error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsCategoryList",0,1));
+    end
+
+    // Check input argument type (if any)
+    // =========================================================================
+
+    if (rhs==1) & (type(section) <> 10) then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsCategoryList",1));
+    end
+
+    // Check input argument dimension (if any)
+    // =========================================================================
+
+    if (rhs==1) & (size(section,"*")<>1) then
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsCategoryList",1));
+    end
+
+    // Check input argument values (if any)
+    // =========================================================================
+
+    if (rhs==1) & (and(section<>["all","main"])) then
+        error(msprintf(gettext("%s: Wrong value for input argument #%d: ''all'' or ''main'' expected.\n"),"atomsCategoryList",1));
+    end
+
+    // Default value of section
+    // =========================================================================
+
+    if rhs==0 then
+        section = "all";
+    end
+
+    // Get the main categories structure
+    // =========================================================================
+
+    [packages,categories_flat,categories] = atomsDESCRIPTIONget();
+
+    categories_mat      = getfield(1,categories);
+    categories_mat(1:2) = [];
+    categories_mat      = gsort(categories_mat,"lc","i");
+    categories_mat      = categories_mat';
+
+    if section == "all" then
+
+        main_mat       = categories_mat;
+        categories_mat = [];
+
+        for i=1:size(main_mat,"*")
+            categories_mat = [ categories_mat ; main_mat(i) "" ];
+            sub_categories = gsort(categories(main_mat(i)),"lc","i");
+            if sub_categories <> [] then
+                categories_mat = [ categories_mat ; emptystr(size(sub_categories,"*"))+main_mat(i) sub_categories ];
+            end
+        end
+
+    end
+
 endfunction

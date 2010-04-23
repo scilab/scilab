@@ -14,6 +14,8 @@
 
 package org.scilab.modules.graphic_export;
 
+import java.lang.reflect.Method;
+
 import java.io.File;
 import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
@@ -26,6 +28,9 @@ public class FileExporter {
 
     /** Export waiting message */
     private static final String exportingMessage = "Exporting figure, please wait...";
+
+	/** The id used on classpath.xml to load vectorial export JARs */
+	private static final String CLASSPATH_PDF_PS_EPS_EXPORT_NAME = "pdf_ps_eps_graphic_export";
 
     /**
      * Default constructor
@@ -58,6 +63,30 @@ public class FileExporter {
 	String oldInfoMessage = exportedFig.getInfoMessage();
 	exportedFig.setInfoMessage(exportingMessage);
 	if (fileType == ExportRenderer.PDF_EXPORT || fileType == ExportRenderer.EPS_EXPORT || fileType == ExportRenderer.PS_EXPORT ) {
+
+        /* Under !Windows, make sure that the library for ps export
+         * are already loaded
+         * Note that this code is an ugly workaround to avoid the explicit call
+         * to:
+         * LoadClassPath.loadOnUse(CLASSPATH_PDF_PS_EPS_EXPORT_NAME);
+         * which creates a cyclic dependencies on:
+         *  graphic_export => jvm => gui => graphic_export
+         * This code will retrieve on the fly the object and call the method
+         */
+        try {
+            Class jvmLoadClassPathClass = Class.forName("org.scilab.modules.jvm.LoadClassPath");
+            Method loadOnUseMethod = jvmLoadClassPathClass.getDeclaredMethod("loadOnUse", new Class[] { String.class });
+            loadOnUseMethod.invoke(null, CLASSPATH_PDF_PS_EPS_EXPORT_NAME);
+        } catch (java.lang.ClassNotFoundException ex) {
+            System.err.println("Could not find the Scilab class to load the export dependencies: "+ex);
+        } catch (java.lang.NoSuchMethodException ex) {
+            System.err.println("Could not find the Scilab method to load the export dependencies: "+ex);
+        } catch (java.lang.IllegalAccessException ex) {
+            System.err.println("Could not access to the Scilab method to load the export dependencies: "+ex);
+        } catch (java.lang.reflect.InvocationTargetException ex) {
+            System.err.println("Could not invoke the Scilab method to load the export dependencies: "+ex);
+        }
+
 	    String ext = "";
 
 	    switch (fileType) {

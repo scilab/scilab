@@ -25,14 +25,6 @@ int C2F(parse)(void);
  * @TODO : add comment
  *
  * @param n 
- * @param ierr  
- */
-void Msgs(int n,int ierr);
-
-/**
- * @TODO : add comment
- *
- * @param n 
  * @return <ReturnValue>
  */
 int Eptover(int n);

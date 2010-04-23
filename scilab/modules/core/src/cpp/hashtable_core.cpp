@@ -33,7 +33,7 @@ extern int C2F(cvname)(int *,char *,int const*, unsigned long int);
 #include <functional>
 #include <cstring> // for std::memset
 #include "partition.hxx" // for scilab::core::partition_point_n
-#include "unrolled_algorithms.hxx" //for scilab::core::eq_n less_n copy_n
+#include "unrolled_algorithms.hxx" //for eq_n less_n copy_n
 /*----------------------------------------------------------------------------*/
 #define MAXLENGHTFUNCTIONNAME 32 /* 24 in fact in scilab +1 for '\0' round to nearest multiple of 8*/
 /*----------------------------------------------------------------------------*/
@@ -42,18 +42,18 @@ using namespace scilab::core;
 namespace {
 	struct entry
 	{
-		entry() 
+		entry()
 		{
 			std::memset(key, 0, sizeof(key)+sizeof(data)+1); // no alignement issues, init ints to 0 and namefunction to ""
 		}
-		entry(int d, char const* name): data(d) 
+		entry(int d, char const* name): data(d)
 		{
 			int const zero(0);
-			if(name) 
+			if(name)
 			{
 				strncpy(namefunction, name, MAXLENGHTFUNCTIONNAME);
-			} 
-			else 
+			}
+			else
 			{
 				namefunction[0]= '\0'; // "" name
 			}
@@ -76,14 +76,14 @@ namespace {
 	* (could be removed with boost:: or C++0x lambdas )
 	*
 	*/
-	struct key_less_than : std::unary_function<entry const&, bool> 
+	struct key_less_than : std::unary_function<entry const&, bool>
 	{
 		key_less_than(int const* const k): key(k) {}
 		bool operator()(entry const& e) const { return less_n<nsiz>(key, e.key);}
 		int const* const key;
 	};
 
-	struct not_less_than_key : std::unary_function<entry const&, bool> 
+	struct not_less_than_key : std::unary_function<entry const&, bool>
 	{
 		not_less_than_key(int const* const k): key(k) {}
 		bool operator()(entry const& e) const { return !less_n<nsiz>(e.key, key);}
@@ -91,7 +91,7 @@ namespace {
 	};
 
 
-	struct equal_data 
+	struct equal_data
 	{
 		equal_data(int const d) : data(d) {}
 		bool operator()(entry const& e) const { return e.data == data ; }
@@ -103,16 +103,16 @@ namespace {
 * preallocate memory for  DEFAULT_ELEMENTFUNCTIONLIST entries in table
 */
 /*----------------------------------------------------------------------------*/
-BOOL create_hashtable_scilab_functions(void) 
+BOOL create_hashtable_scilab_functions(void)
 {
-	try 
+	try
 	{
 		table_t tmp(0);
 		tmp.reserve( DEFAULT_ELEMENTFUNCTIONLIST );
 		table.swap(tmp);
 		return TRUE;
-	} 
-	catch( std::bad_alloc& e) 
+	}
+	catch( std::bad_alloc& e)
 	{
 		return FALSE;
 	}
@@ -123,7 +123,7 @@ BOOL create_hashtable_scilab_functions(void)
 * free memory for table
 */
 /*----------------------------------------------------------------------------*/
-void destroy_hashtable_scilab_functions() 
+void destroy_hashtable_scilab_functions()
 {
 	table_t tmp(0); // swap trick needed because resize() does *not* release memory
 	table.swap(tmp);
@@ -133,7 +133,7 @@ static BOOL doFindFunction(int *key,char *name, int *scilab_funptr)
 {
 	int tmp[nsiz];
 	int const* keyToSearch= key;
-	if (name) 
+	if (name)
 	{
 		/* faster than a strcmp */
 		int job = 0; /* convert name to id */
@@ -142,12 +142,12 @@ static BOOL doFindFunction(int *key,char *name, int *scilab_funptr)
 	}
 	// find lower bound : first elt not <
 	table_t::const_iterator i= partition_point_n(table.begin(), table.size(), not_less_than_key(keyToSearch));
-	if(i != table.end() && eq_n<nsiz>(keyToSearch, i->key)) 
+	if(i != table.end() && eq_n<nsiz>(keyToSearch, i->key))
 	{
 		*scilab_funptr = i->data;
 		return TRUE;
-	} 
-	else 
+	}
+	else
 	{
 		return FALSE;
 	}
@@ -158,12 +158,12 @@ static BOOL doBackSearchFunction(int *key, int *scilab_funptr)
 {
 	table_t::const_iterator i= std::find_if(table.begin(), table.end()
 		, equal_data(*scilab_funptr));
-	if( i != table.end()) 
+	if( i != table.end())
 	{
 		copy_n<nsiz>(i->key, key);
 		return TRUE;
-	} 
-	else 
+	}
+	else
 	{
 		return FALSE;
 	}
@@ -171,13 +171,13 @@ static BOOL doBackSearchFunction(int *key, int *scilab_funptr)
 /*----------------------------------------------------------------------------*/
 static BOOL doEnterFunction(int *key,char *name, int *scilab_funptr)
 {
-	if(table.size() < MAXELEMENTFUNCTIONLIST) 
+	if(table.size() < MAXELEMENTFUNCTIONLIST)
 	{
 		entry tmp(*scilab_funptr, name);
 		// insert before upper bound : first elt such that key<elt
 		table.insert(partition_point_n(table.begin(), table.size()
 			, key_less_than(tmp.key)), tmp);
-		if(table.size() > hashtable_core_maxFilled) 
+		if(table.size() > hashtable_core_maxFilled)
 		{
 			hashtable_core_maxFilled = table.size();
 		}
@@ -194,14 +194,14 @@ static BOOL doDeleteFunction(int *key, int *scilab_funptr)
 		, not_less_than_key(key))
 		, table.end(), equal_data(*scilab_funptr)));
 
-	if( i != table.end() ) 
-	{ 
+	if( i != table.end() )
+	{
 		// entry found -> erase it
 		table.erase(i);
 		return TRUE;
-	} 
-	else 
-	{ 
+	}
+	else
+	{
 		// not found
 		return FALSE;
 	}
@@ -234,24 +234,24 @@ struct has_namefunction : std::unary_function<entry const&, bool> {
 
 struct copy_name : std::unary_function<entry const&, char**> {
 	copy_name(char** n): names(n) { }
-	char** operator()(entry const& e) 
+	char** operator()(entry const& e)
 	{
-		if(e.namefunction[0] != '\0') 
+		if(e.namefunction[0] != '\0')
 		{
 			*names = strdup(e.namefunction);
 			++names;
 		}
 		return names;
-	} 
+	}
 
 	char** names;
 };
 /*----------------------------------------------------------------------------*/
-char **GetFunctionsList(int *sizeList) 
+char **GetFunctionsList(int *sizeList)
 {
 	*sizeList= std::count_if(table.begin(), table.end(), has_namefunction());
 	char **ListFunctions = static_cast<char**>(MALLOC(sizeof(char*)*(*sizeList)));
-	if ( ListFunctions ) 
+	if ( ListFunctions )
 	{
 		std::for_each(table.begin(), table.end(), copy_name(ListFunctions));
 	}
@@ -265,7 +265,7 @@ struct equal_name : std::unary_function<entry const&, bool>
 	char const* const name;
 };
 /*----------------------------------------------------------------------------*/
-BOOL ExistFunction(char *name) 
+BOOL ExistFunction(char *name)
 {
 	return (std::find_if(table.begin(), table.end(), equal_name(name)) == table.end()) ? FALSE : TRUE ;
 }

@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include "AddFunctionInTable.h"
+#include "GetFunctionByName.h"
 #include "machine.h"
 /***********************************
 * Search Table for dassl 
@@ -102,7 +102,7 @@ void C2F(fresd)(double *t, double *y, double *ydot, double *res, int *ires, doub
 
 void C2F(setfresd)(char *name, int *rep)
 {
-	fresdfonc = (fresdf) AddFunctionInTable(name,rep,FTab_fresd);
+	fresdfonc = (fresdf) GetFunctionByName(name,rep,FTab_fresd);
 }
 
 
@@ -121,7 +121,7 @@ void C2F(fjacd)(double *t, double *y, double *ydot, double *pd, double *cj, doub
 
 void C2F(setfjacd)(char *name, int *rep)
 {
-	fjacdfonc = (fjacdf) AddFunctionInTable(name,rep,FTab_fjacd);
+	fjacdfonc = (fjacdf) GetFunctionByName(name,rep,FTab_fjacd);
 }
 
 
@@ -141,7 +141,7 @@ void C2F(fsurfd)(int *neq, double *t, double *y, int *ng, double *gout, double *
 
 void C2F(setfsurfd)(char *name, int *rep)
 {
-	fsurfdfonc = (fsurfdf) AddFunctionInTable(name,rep,FTab_fsurfd);
+	fsurfdfonc = (fsurfdf) GetFunctionByName(name,rep,FTab_fsurfd);
 }
 
 /***********************************
@@ -163,5 +163,5 @@ void C2F(fsurf)(int *ny, double *t, double *y, int *ng, double *gout)
 
 void C2F(setfsurf)(char *name, int *rep)
 {
-	fsurffonc = (fsurff) AddFunctionInTable(name,rep,FTab_fsurf);
+	fsurffonc = (fsurff) GetFunctionByName(name,rep,FTab_fsurf);
 }

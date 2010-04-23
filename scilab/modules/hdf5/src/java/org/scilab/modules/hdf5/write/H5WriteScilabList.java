@@ -15,7 +15,7 @@ package org.scilab.modules.hdf5.write;
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
 import org.scilab.modules.hdf5.H5ScilabConstant;
-import org.scilab.modules.hdf5.scilabTypes.ScilabList;
+import org.scilab.modules.types.scilabTypes.ScilabList;
 
 public class H5WriteScilabList extends H5WriteScilabCommonList {
 

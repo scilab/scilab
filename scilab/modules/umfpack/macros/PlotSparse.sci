@@ -89,45 +89,25 @@ function [] = PlotSparse(A, style)
    else
       [ markColor , markId ] = ana_style(style)
    end
-   
-   drawlater()
-   plot2d(%inf, %inf, strf="030", rect=[-1,-1,n+1,m+1])
-   
-   // the tics
-   x = [0 n/2 n]
-   dx = -0.02*n ; dy = -0.05*m 
-   xstring(x(1)+dx, dy, "1")
-   h1 = gce();
-   xstring(x(2)+dx, dy, string(floor(x(2))))
-   h2 = gce();
-   xstring(x(3)+dx, dy, string(x(3)))
-   h3 = gce();
-   
-   y = [0 m/2 m]
-   dx = 0.02*m ; dy = 0
-   xstring(m+dx, y(1), string(y(3)))
-   h4 = gce();
-   xstring(m+dx, y(2), string(floor(y(2))))
-   h5 = gce();
-   xstring(m+dx, y(3), "1")
-   h6 = gce();
-
-   // information about nnz
-   xstring(0, -0.1*m, "nnz = "+string(nnz(A)))
-   h7 = gce();
-     
-   glue([h1,h2,h3,h4,h5,h6,h7])
-   
+    
    // display
+   drawlater()
    ij = spget(A)
-   xp = ij(:,2) - 0.5
-   yp = m+0.5 - ij(:,1)
-   plot2d(xp,yp,-markId,strf="000")
+   plot2d(ij(:,2), ij(:,1),-markId)
    e = gce();
-   e.children(1).mark_foreground = markColor;
-
-   // the rectangle
-   xrect(0,m,n,m)
-   drawnow()
+   e1 = e.children(1);
+   e1.mark_foreground = markColor;    
    
+   ca=gca();
+   ca.box="on";
+   ca.axes_reverse(2)="on";
+   mat_size = size(A);
+   ca.data_bounds = [-.5, -.5 ; mat_size(2)+.5 , mat_size(1)+.5];
+   ca.tight_limits="on";
+   
+   // information about nnz
+   captions(e1, "nnz = " + string(nnz(A)), "lower_caption");
+   
+   drawnow()
+
 endfunction

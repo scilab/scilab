@@ -101,4 +101,14 @@ public final class FileUtils {
 			}
 		}
 	}
+	
+	/**
+	 * Create a temporary file and return it
+	 * @return a new unique temporary file.
+	 * @throws IOException when an error occurs
+	 */
+	public static File createTempFile() throws IOException {
+		return File.createTempFile(XcosFileType.XCOS.getExtension(),
+				XcosFileType.HDF5.getDottedExtension(), XcosConstants.TMPDIR);
+	}
 }

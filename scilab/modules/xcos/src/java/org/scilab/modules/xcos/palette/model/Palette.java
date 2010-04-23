@@ -54,7 +54,7 @@ public abstract class Palette extends PaletteNode {
 	 * @see javax.swing.tree.TreeNode#children()
 	 */
 	@Override
-	public Enumeration children() {
+	public Enumeration<Object> children() {
 		return null;
 	}
 

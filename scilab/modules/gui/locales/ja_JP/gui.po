@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
+"X-Launchpad-Export-Date: 2010-04-16 07:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: JAPAN\n"
 "X-Poedit-Language: Japanese\n"
@@ -32,6 +32,10 @@ msgstr "%s: #%d と一致した親ノード。\n"
 #, c-format
 msgid "%s: An error occurred: %s.\n"
 msgstr "%s: エラーが起きました: %s.\n"
+
+#, c-format
+msgid "%s: An exception occurred: %s"
+msgstr ""
 
 #
 # File: sci_gateway/c/sci_uicontrol.c, line: 289
@@ -361,6 +365,12 @@ msgstr "%s: 入力引数 #%d で不正なサイズ: 文字を想定します。\
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string matrix expected.\n"
 msgstr "%s: 入力引数 #%d で不正なサイズ: 文字行列を想定します。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: It must have same dimensions that "
+"argument #%d.\n"
+msgstr ""
 
 #
 # File: sci_gateway/c/sci_helpbrowser.c, line: 48
@@ -1356,8 +1366,8 @@ msgstr "コピー"
 msgid "Copyright (c) 1989-2007 (ENPC)"
 msgstr "Copyright (c) 1989-2007 (ENPC)"
 
-msgid "Copyright (c) 1989-2009 (INRIA)"
-msgstr "Copyright (c) 1989-2009 (INRIA)"
+msgid "Copyright (c) 1989-2010 (INRIA)"
+msgstr ""
 
 msgid "Cut"
 msgstr "切り取り"

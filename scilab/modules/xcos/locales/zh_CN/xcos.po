@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
+"X-Launchpad-Export-Date: 2010-04-16 07:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -239,6 +239,9 @@ msgstr "翻转"
 msgid "Format"
 msgstr "格式"
 
+msgid "From %s"
+msgstr ""
+
 msgid "Generate SuperBlock, please wait ..."
 msgstr ""
 
@@ -247,6 +250,9 @@ msgstr ""
 
 msgid "Get infos"
 msgstr "获取信息"
+
+msgid "Goto %s"
+msgstr ""
 
 msgid "Grid"
 msgstr "网格"
@@ -505,6 +511,9 @@ msgstr ""
 msgid "Superblock mask"
 msgstr ""
 
+msgid "The Scicos libraries are not loaded"
+msgstr ""
+
 msgid "The Scilab Consortium (DIGITEO)"
 msgstr ""
 
@@ -531,6 +540,14 @@ msgid "UnGroup"
 msgstr "取消分组"
 
 msgid "Unable to communicate with the interpreter"
+msgstr ""
+
+#, c-format
+msgid "Unable to open %s"
+msgstr ""
+
+#, c-format
+msgid "Unable to simulate %s"
 msgstr ""
 
 msgid "Undo"

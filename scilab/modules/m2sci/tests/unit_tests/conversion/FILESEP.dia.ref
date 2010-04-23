@@ -40,5 +40,5 @@ ieee(1);
 // Matlab version: 7.0.0.19901 (R14)
 // V.C.
 
-pathconvert("/")
-f = pathconvert("/")
+filesep
+f = filesep()

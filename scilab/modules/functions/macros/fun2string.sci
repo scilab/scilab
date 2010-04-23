@@ -361,7 +361,7 @@ function [stk,txt,ilst]=exp2sci(lst,ilst)
 	      stk(top)=list(op(2),'0')
 	      m=%f
 	    elseif type(stk(top)(1))==10 then
-	      if op(4)=='1'&funptr(op(2))==0&exists(op(2))==0|and(type(evstr(op(2)))<>[11 13 130]) then
+	      if op(4)=='1'&funptr(op(2))==0&exists(op(2))==0|(execstr(op(2),"errcatch")==0&and(type(evstr(op(2)))<>[11 13 130])) then
 	      top=top+1
 	      stk(top)=list(op(2),'0')
 	      m=%f

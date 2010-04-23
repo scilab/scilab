@@ -432,7 +432,7 @@ function ged_axes(h)
   TCL_SetVar("Rmargins",string(h.margins(2)));
   TCL_SetVar("Tmargins",string(h.margins(3)));
   TCL_SetVar("Bmargins",string(h.margins(4)));
-  ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"]; 
+  ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash" "dot" "double dot"]; 
   TCL_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
   if (h.clip_box==[])
     TCL_SetVar("old_Xclipbox","")
@@ -621,7 +621,7 @@ function ged_rectangle(h)
   TCL_SetVar("curback",string(h.background))
   TCL_SetVar("curthick",string(h.thickness))
   TCL_SetVar("curvis",h.visible)
-  ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"]; 
+  ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash" "dot" "double dot"]; 
   TCL_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
   ged_markstylearray=["dot" "plus" "cross" "star" "filled diamond" ..
   "diamond" "triangle up" "triangle down" "diamond plus" "circle" ..
@@ -692,7 +692,7 @@ function ged_polyline(h)
 
     ged_polylinestylearray=["interpolated" "staircase" "barplot" "arrowed" "filled" "bar"];
     TCL_SetVar("curpolylinestyle",ged_polylinestylearray(max(h.polyline_style,1)))
-    ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"];
+    ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash" "dot" "double dot"];
     TCL_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
     ged_markstylearray=["dot" "plus" "cross" "star" "filled diamond" ..
     "diamond" "triangle up" "triangle down" "diamond plus" "circle" ..
@@ -945,7 +945,7 @@ function ged_arc(h)
     TCL_SetVar("Hclipbox",string(h.clip_box(4)))
   end
   TCL_SetVar("curclipstate",h.clip_state);
-  ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"];
+  ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash" "dot" "double dot"];
   TCL_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
   TCL_SetVar("nbcol",string(size(h.data,2)))
   for i=1:size(h.data,2)
@@ -995,7 +995,7 @@ function ged_segs(h)
   TCL_SetVar("ncolors",string(size(f.color_map,1)))
   TCL_SetVar("curarrowsize",string(h.arrow_size))
   TCL_SetVar("curthick",string(h.thickness))
-  ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"]; 
+  ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash" "dot" "double dot"]; 
   TCL_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
 
   ged_markstylearray=["dot" "plus" "cross" "star" "filled diamond" ..
@@ -1053,7 +1053,7 @@ function ged_champ(h)
   TCL_SetVar("ncolors",string(size(f.color_map,1)))
   TCL_SetVar("curarrowsize",string(h.arrow_size))
   TCL_SetVar("curthick",string(h.thickness))
-  ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"]; 
+  ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash" "dot" "double dot"]; 
   TCL_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
 
   d="["+strcat(string(size(h.data.x)),'x')+" double array]"
@@ -1608,7 +1608,7 @@ endfunction
 function setLineStyle(sty)
   global ged_handle; h=ged_handle
   h.line_style=find(sty==[ "solid" "dash" "dash dot" "longdash dot" ..
-		    "bigdash dot" "bigdash longdash"])
+		    "bigdash dot" "bigdash longdash" "dot" "double dot"])
   
 endfunction
 function setMarkStyle(sty)

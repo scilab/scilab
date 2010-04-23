@@ -59,7 +59,7 @@ mfile2sci(MFILE,TMPDIR,%f,%t);
 SCIFILECONTENTS=mgetl(SCIFILE);
 SCIFILECONTENTSREF=["function [A] = bug1636(x,y,z,t,u,v,w,z)";
 		"";
-		"// Ouput variables initialisation (not found in input variables)"
+		"// Output variables initialisation (not found in input variables)"
 		"A=[];";
 		"";
 		"// Display mode";
@@ -79,7 +79,7 @@ SCIFILECONTENTSREF=["function [A] = bug1636(x,y,z,t,u,v,w,z)";
 !                                                                      !
 !                                                                      !
 !                                                                      !
-!// Ouput variables initialisation (not found in input variables)      !
+!// Output variables initialisation (not found in input variables)     !
 !                                                                      !
 !A=[];                                                                 !
 !                                                                      !

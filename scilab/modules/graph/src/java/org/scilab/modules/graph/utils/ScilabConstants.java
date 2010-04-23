@@ -94,6 +94,9 @@ public class ScilabConstants extends mxConstants {
      */
     public static final File SCIHOME = new File(GuiManagement.getSCIHOME());
     
+    /** Escape double quote symbol */
+    public static final char QUOTE = '\"';
+    
     /** This class is a static singleton, thus it must not be instantiated */
     protected ScilabConstants() { }
 }

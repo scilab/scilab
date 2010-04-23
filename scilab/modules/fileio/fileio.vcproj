@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -511,6 +511,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\mgetl.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\mgetstr.c"
 				>
 			</File>
@@ -664,6 +668,10 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\sci_mget.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_mgetl.c"
 				>
 			</File>
 			<File
@@ -870,6 +878,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\mgeti.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\mgetl.h"
 				>
 			</File>
 			<File

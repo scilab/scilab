@@ -18,7 +18,6 @@ import java.awt.FlowLayout;
 import java.awt.Rectangle;
 
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.Scrollable;
 import javax.swing.SwingConstants;
 
@@ -29,7 +28,7 @@ import org.scilab.modules.xcos.utils.XcosConstants;
  * 
  * As the JScrollPane doesn't allow a to specify it's associated layout, we have
  * to use a {@link #mainArea} to perform what we want there. Never use the
- * {@link JScrollPane#add(java.awt.Component)} on this class but use
+ * {@link javax.swing.JScrollPane#add(java.awt.Component)} on this class but use
  * {@link #getMainArea()} then {@link JPanel#add(java.awt.Component)} instead.
  */
 public class PaletteView extends JPanel implements Scrollable {

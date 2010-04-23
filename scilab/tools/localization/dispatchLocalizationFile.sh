@@ -43,6 +43,7 @@ for file in $LAUNCHPAD_DIRECTORY/*.po; do
 	if test "$LOC" == "es"; then LOC="es_ES"; fi
 	if test "$LOC" == "ja"; then LOC="ja_JP"; fi
 	if test "$LOC" == "it"; then LOC="it_IT"; fi
+	if test "$LOC" == "uk"; then LOC="uk_UA"; fi
 
 	# check that it is the right format
 	echo "$LOC"|grep -E "(.*_.*)" > /dev/null # it is a real localization name xx_YY

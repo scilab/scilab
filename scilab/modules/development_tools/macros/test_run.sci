@@ -689,11 +689,11 @@ function st = st_set_name(st,name)
 	
 	st.name = name;
 	
-	st.tmp_tst       = pathconvert( TMPDIR + "/" + name + ".tst" , %F);
-	st.tmp_dia       = pathconvert( TMPDIR + "/" + name + ".dia" , %F);
-	st.tmp_res       = pathconvert( TMPDIR + "/" + name + ".res" , %F);
-	st.tmp_err       = pathconvert( TMPDIR + "/" + name + ".err" , %F);
-	
+	st.tmp_tst       = pathconvert( TMPDIR + "/" + name + ".tst"     , %F);
+	st.tmp_dia       = pathconvert( TMPDIR + "/" + name + ".dia.tmp" , %F);
+	st.tmp_res       = pathconvert( TMPDIR + "/" + name + ".res"     , %F);
+	st.tmp_err       = pathconvert( TMPDIR + "/" + name + ".err"     , %F);
+	st.path_dia      = pathconvert( TMPDIR + "/" + name + ".dia"     , %F);
 endfunction
 
 function st = st_set_type(st,sttype)
@@ -702,10 +702,8 @@ endfunction
 
 function st = st_set_path(st,path)
 	
-	st.path     = path;
-	basepath    = strsubst(path,"/\.tst$/","","r");
-	st.path_dia = basepath + ".dia";
-	
+	st.path         = path;
+	basepath        = strsubst(path,"/\.tst$/","","r");
 	st.path_dia_ref = basepath + ".dia.ref";
 	
 	// Reference file management OS by OS

@@ -10,7 +10,7 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#include "AddFunctionInTable.h"
+#include "GetFunctionByName.h"
 #include "machine.h"
 #include "dynlib_optimization.h"
 /***********************************
@@ -64,7 +64,7 @@ void C2F(lsqrsolvf)(int *m, int *n, double *x, double *fvec, int *iflag)
 
 void C2F(setlsqrsolvf)(char *name, int *rep)
 {
-	lsqrsolvffonc = (lsqrsolvff) AddFunctionInTable(name,rep,FTab_lsqrsolvf);
+	lsqrsolvffonc = (lsqrsolvff) GetFunctionByName(name,rep,FTab_lsqrsolvf);
 }
 
 /** the current function fixed by setfsolvj **/
@@ -82,5 +82,5 @@ void C2F(lsqrsolvj)(int *m, int *n, double *x, double *fjac, int *ldfjac, int *i
 
 void C2F(setlsqrsolvj)(char *name, int *rep)
 {
-	lsqrsolvjfonc = (lsqrsolvjf) AddFunctionInTable(name,rep,FTab_lsqrsolvj);
+	lsqrsolvjfonc = (lsqrsolvjf) GetFunctionByName(name,rep,FTab_lsqrsolvj);
 }

@@ -28,25 +28,25 @@
       <varlistentry>
         <term>xy</term>
         <listitem>
-          <para>matrice of size (2,.).</para>
+          <para>matrix of size (2,.).</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>xy1</term>
         <listitem>
-          <para>matrice of size (2,.).</para>
+          <para>matrix of size (2,.).</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>theta</term>
         <listitem>
-          <para>real, angle en radian; default value is 0.</para>
+          <para>real, angle in radians; default value is 0.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>orig</term>
         <listitem>
-          <para>center of the rotation; default value is [0;0].</para>
+          <para>center of the rotation [xc;yc]; default value is [0;0].</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -55,7 +55,7 @@
     <title>Description</title>
     <para><literal>rotate</literal> performs a rotation with angle <literal>theta</literal>:</para>
     <para>
-      <literal>xy1(:,i) = M(theta) *xy (:,i) + orig</literal>
+      <literal>xy1(:,i) = M(theta) *(xy(:,i) - orig) + orig</literal>
     </para>
     <para>
     where <literal>M</literal> stands for the corresponding rotation matrix.</para>

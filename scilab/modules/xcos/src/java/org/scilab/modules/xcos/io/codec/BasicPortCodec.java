@@ -34,12 +34,16 @@ import com.mxgraph.io.mxCodecRegistry;
 import com.mxgraph.io.mxObjectCodec;
 
 /**
- * Codec for any Port
+ * Codec for any Port.
+ * 
+ * This class doesn't pas the Data Abstraction Coupling (DAC) as we perform some
+ * template initialization on the {@link #register()} method.
  */
+// CSOFF: ClassDataAbstractionCoupling
 public class BasicPortCodec extends XcosObjectCodec {
 
     private static final String DATA_TYPE = "dataType";
-    private static final String[] IGNORED_FIELDS = new String[] { DATA_TYPE };
+    private static final String[] IGNORED_FIELDS = new String[] {DATA_TYPE};
 
 	/**
 	 * The constructor used on for configuration
@@ -48,10 +52,8 @@ public class BasicPortCodec extends XcosObjectCodec {
 	 * @param idrefs Optional array of fieldnames to be converted to/from references.
 	 * @param mapping Optional mapping from field- to attributenames.
 	 */
-    public BasicPortCodec(Object template, String[] exclude, String[] idrefs, Map<String, String> mapping)
-    {
-	super(template, exclude, idrefs, mapping);
-
+    public BasicPortCodec(Object template, String[] exclude, String[] idrefs, Map<String, String> mapping) {
+    	super(template, exclude, idrefs, mapping);
     }
 
     /**
@@ -157,11 +159,10 @@ public class BasicPortCodec extends XcosObjectCodec {
 		flipped = Boolean.parseBoolean(map.get(XcosConstants.STYLE_FLIP));
 		mirrored = Boolean.parseBoolean(map.get(XcosConstants.STYLE_MIRROR));
 
-		// First calculate the block angle then calculate the current rotation
-		// from it.
-		rotation = orientation.getAngle(orientation.getBlockRotationValue(
-				rotation, flipped, mirrored), flipped, mirrored);
+		// Calculate the rotation for this kind of port.
+		rotation = orientation.getAbsoluteAngle(obj.getClass(), flipped, mirrored);
 
 		map.put(XcosConstants.STYLE_ROTATION, Integer.toString(rotation));
 	}
 }
+// CSON: ClassDataAbstractionCoupling

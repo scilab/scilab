@@ -10,9 +10,7 @@ setScilabMode
 getScilabMode
 settexmacs
 setSCIpath
-IsFromJava
-IsFromC
-sciquit_
+sciquit
 realmain
 InitializeLaunchScilabSignal
 with_module

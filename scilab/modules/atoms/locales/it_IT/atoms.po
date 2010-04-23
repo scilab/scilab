@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2010-02-13 20:00+0000\n"
-"Last-Translator: FabioMarconi <marconifabio@hotmail.it>\n"
+"PO-Revision-Date: 2010-02-16 11:37+0000\n"
+"Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
+"X-Launchpad-Export-Date: 2010-04-16 07:54+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -86,7 +86,7 @@ msgid "%s: ''%s'' isn''t installed.\n"
 msgstr "%s: ''%s'' non è installato.\n"
 
 #, c-format
-msgid "%s: An error occurred while loading ''%s-%s''.\n"
+msgid "%s: An error occurred while loading ''%s-%s'':\n"
 msgstr ""
 
 #, c-format
@@ -274,11 +274,9 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong length for input argument #%d: A string which has 32-characters "
+"%s: Wrong length for input argument #%d: String which has 32-characters "
 "length expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una lunghezza sbagliata: era attesa una "
-"stringa lunga 32 caratteri.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -326,30 +324,6 @@ msgid "%s: Wrong size for input argument #%d: 1x2 string matrix expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "matrice di stringhe 1x2.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A Single String expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
-"singola stringa.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
-"singola stringa.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A single-string expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
-"singola stringa.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Single String expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
-"singola stringa.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
@@ -400,53 +374,13 @@ msgstr ""
 "matrice di stringhe mx3.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A Single String expected.\n"
+msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una singola "
-"stringa.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A a single-string expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una singola "
-"stringa.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un valore "
-"booleano.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A boolean or a single string "
-"expected.\n"
+"%s: Wrong type for input argument #%d: Boolean or single string expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un valore "
-"booleano o una singola stringa.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una singola "
-"stringa.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A single-string expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una singola "
-"stringa.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A struct expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una struct.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Single String expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una singola "
-"stringa.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
@@ -543,30 +477,6 @@ msgstr ""
 "\"user'\", \"allusers\" o \"all\".\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A string that contain ''TOOLBOXES'' "
-"or ''DESCRIPTION'' expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era attesa una "
-"stringa contenente ''TOOLBOXES'' o ''DESCRIPTION\".\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A string that end with DESCRIPTION "
-"expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era attesa una "
-"stringa che finisce con DESCRIPTION.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A string that start with "
-"''http://'',''ftp://'' or ''file://'' expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era attesa una "
-"stringa che inizia per ''http://'',''ftp://'' o ''file://'' .\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso ASC o "
@@ -595,11 +505,27 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Single string that end with .tar.gz, "
-".tgz or .zip expected.\n"
+"%s: Wrong value for input argument #%d: Single string that ends with "
+".tar.gz, .tgz or .zip expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era attesa una "
-"singola stringa che finisce con .tar.gz, .tgz o .zip.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: String that contains ''TOOLBOXES'' "
+"or ''DESCRIPTION'' expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: String that ends with DESCRIPTION "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: String that start with "
+"''http://'',''ftp://'' or ''file://'' expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -639,10 +565,14 @@ msgstr ""
 msgid ""
 "%s: You have not enough rights to remove any version of the package %s.\n"
 msgstr ""
+"%s: Non si dispone di diritti sufficienti per rimuovere qualsiasi versione "
+"del pacchetto %s.\n"
 
 #, c-format
 msgid "%s: You have not enough rights to remove the package %s (%s).\n"
 msgstr ""
+"%s: Non si dispone di diritti sufficienti per rimuovere il pacchetto "
+"%s(%s).\n"
 
 #, c-format
 msgid "%s: You haven''t write access on this directory : %s.\n"
@@ -684,7 +614,7 @@ msgid "Author(s)"
 msgstr "Autore(i)"
 
 msgid "Automatically Installed"
-msgstr ""
+msgstr "Installato automaticamente"
 
 msgid "Bytes"
 msgstr "Byte"
@@ -744,11 +674,11 @@ msgstr "Moduli"
 
 msgid "No Atoms module is available. Please, check your Internet connection."
 msgstr ""
-"Nessun modulo Atom è reperibile.  Pregasi controllare la connessione ad "
-"internet."
+"Non è disponibile alcun modulo di Atoms. Controllare la connessione internet."
 
 msgid "No Atoms module is available: your repository list is empty."
-msgstr "nessun modulo Atom è reperibile: l' elenco di repository è vuoto."
+msgstr ""
+"Non è disponibile alcun modulo di Atoms: l'elenco dei repository è vuoto."
 
 msgid "No module selected"
 msgstr "Nessun modulo selezionato"
@@ -761,8 +691,8 @@ msgstr "Elimina"
 
 msgid "Remove done! Please restart Scilab to take changes into account. "
 msgstr ""
-"Rimozione eseguita! Pregasi riavviare Scilab per rendere effettive le "
-"variazioni nell'account. "
+"Rimozione eseguita! Riavviare Scilab per rendere effettive le variazioni "
+"nell'account. "
 
 msgid "Remove failed!"
 msgstr "Rimozione fallita!"

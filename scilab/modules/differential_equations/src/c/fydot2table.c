@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include "AddFunctionInTable.h"
+#include "GetFunctionByName.h"
 #include "machine.h"
 
 extern int C2F(getcodc)(int *nd1, int *iflag1);
@@ -64,5 +64,5 @@ void C2F(fydot2)(int *n, double *t, double *y, double *ydot)
 
 void C2F(setfydot2)(char *name, int *rep)
 {
-	fydot2fonc = (fydot2f) AddFunctionInTable(name,rep,FTab_fydot2);
+	fydot2fonc = (fydot2f) GetFunctionByName(name,rep,FTab_fydot2);
 }

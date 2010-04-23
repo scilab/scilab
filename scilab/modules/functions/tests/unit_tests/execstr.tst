@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 execstr('a=1') // sets a=1.
 if isdef('a')<> %t then pause,end
 if a<> 1 then pause,end

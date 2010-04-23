@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include "AddFunctionInTable.h"
+#include "GetFunctionByName.h"
 #include "arnol.h"
 	/***********************************
 	* ode   (fydot and fjac )
@@ -77,7 +77,7 @@ void C2F(fydot)(int *n, double *t, double *y, double *ydot)
 
 void C2F(setfydot)(char *name, int *rep)
 {
-	fydotfonc = (fydotf) AddFunctionInTable(name,rep,FTab_fydot);
+	fydotfonc = (fydotf) GetFunctionByName(name,rep,FTab_fydot);
 }
 
 
@@ -96,5 +96,5 @@ void C2F(fjac)(int *neq, double *t, double *y, int *ml, int *mu, double *pd, int
 
 void C2F(setfjac)(char *name, int *rep)
 {
-	fjacfonc = (fjacf) AddFunctionInTable(name,rep,FTab_fjac);
+	fjacfonc = (fjacf) GetFunctionByName(name,rep,FTab_fjac);
 }

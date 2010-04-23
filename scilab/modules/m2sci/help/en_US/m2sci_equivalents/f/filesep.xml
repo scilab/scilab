@@ -34,16 +34,10 @@ filesep
         </td>
         <td>
           <programlisting role="example"><![CDATA[
-No equivalent
+filesep
 ]]></programlisting>
         </td>
       </tr>
     </informaltable>
-  </refsection>
-  <refsection>
-    <title>Particular cases</title>
-    <para>
-There is no Scilab function equivalent to Matlab <emphasis role="bold">filesep</emphasis> but the same output can be obtained with <emphasis role="bold">pathconvert("/")</emphasis>.
-</para>
   </refsection>
 </refentry>

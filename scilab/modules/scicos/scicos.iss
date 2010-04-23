@@ -65,7 +65,9 @@ Source: modules\{#SCICOS}\macros\*.cosf; DestDir: {app}\modules\{#SCICOS}\macros
 ;Source: modules\{#SCICOS}\demos\*.*; DestDir: {app}\modules\{#SCICOS}\demos; Flags: recursesubdirs; Components: {#COMPN_XCOS}
 ;
 ;
-;Source: modules\{#SCICOS}\tcl\*.*; DestDir: {app}\modules\{#SCICOS}\bin; Flags: recursesubdirs; Components: {#COMPN_XCOS}
+Source: modules\{#SCICOS}\tcl\MIHM.tcl; DestDir: {app}\modules\{#SCICOS}\tcl; Flags: recursesubdirs; Components: {#COMPN_XCOS}
+Source: modules\{#SCICOS}\tcl\scicos.gif; DestDir: {app}\modules\{#SCICOS}\tcl; Flags: recursesubdirs; Components: {#COMPN_XCOS}
+Source: modules\{#SCICOS}\tcl\scicos2.gif; DestDir: {app}\modules\{#SCICOS}\tcl; Flags: recursesubdirs; Components: {#COMPN_XCOS}
 ;
 ;Source: bin\.scicos_pal; DestDir: {app}\bin; Flags: ignoreversion; Components: {#COMPN_XCOS}
 ;

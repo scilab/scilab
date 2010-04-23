@@ -157,7 +157,9 @@ libsciscicos_la_etc_DATA = etc/scicos.quit etc/scicos.start
 
 #### scicos : tcl scripts ####
 libsciscicos_la_tcldir = $(mydatadir)/tcl
-libsciscicos_la_tcl_DATA = tcl/MIHM.tcl
+libsciscicos_la_tcl_DATA = tcl/MIHM.tcl \
+tcl/scicos.gif \
+tcl/scicos2.gif
 
 #### scicos : gateway declaration ####
 libsciscicos_la_sci_gatewaydir = $(mydatadir)/sci_gateway

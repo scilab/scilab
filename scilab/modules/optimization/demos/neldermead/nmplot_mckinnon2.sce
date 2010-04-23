@@ -118,10 +118,14 @@ nm = nmplot_configure(nm,"-restartdetection","kelley");
 //
 // Setup output files
 //
-nm = nmplot_configure(nm,"-simplexfn","mckinnon.history.restart.simplex.txt");
-nm = nmplot_configure(nm,"-fbarfn","mckinnon.history.restart.fbar.txt");
-nm = nmplot_configure(nm,"-foptfn","mckinnon.history.restart.fopt.txt");
-nm = nmplot_configure(nm,"-sigmafn","mckinnon.history.restart.sigma.txt");
+simplexfn = TMPDIR + filesep() + "history.simplex.txt";
+fbarfn = TMPDIR + filesep() + "history.fbar.txt";
+foptfn = TMPDIR + filesep() + "history.fopt.txt";
+sigmafn = TMPDIR + filesep() + "history.sigma.txt";
+nm = nmplot_configure(nm,"-simplexfn",simplexfn);
+nm = nmplot_configure(nm,"-fbarfn",fbarfn);
+nm = nmplot_configure(nm,"-foptfn",foptfn);
+nm = nmplot_configure(nm,"-sigmafn",sigmafn);
 //
 // Perform optimization
 //
@@ -140,18 +144,15 @@ contour ( xdata , ydata , zdata , [-0.2 0.0 1.0 2.0 5.0 10.0 20.0] )
 nmplot_simplexhistory ( nm );
 drawnow();
 f = scf();
-nmplot_historyplot ( nm , "mckinnon.history.restart.fbar.txt" , ...
-  mytitle = "Function Value Average" , myxlabel = "Iterations" );
+nmplot_historyplot ( nm , fbarfn, mytitle = "Function Value Average" , myxlabel = "Iterations" );
 f = scf();
-nmplot_historyplot ( nm , "mckinnon.history.restart.fopt.txt" , ...
-  mytitle = "Minimum Function Value" , myxlabel = "Iterations" );
+nmplot_historyplot ( nm , foptfn, mytitle = "Minimum Function Value" , myxlabel = "Iterations" );
 f = scf();
-nmplot_historyplot ( nm , "mckinnon.history.restart.sigma.txt" , ...
-  mytitle = "Maximum Oriented length" , myxlabel = "Iterations" );
-deletefile("mckinnon.history.restart.simplex.txt");
-deletefile("mckinnon.history.restart.fbar.txt");
-deletefile("mckinnon.history.restart.fopt.txt");
-deletefile("mckinnon.history.restart.sigma.txt");
+nmplot_historyplot ( nm , sigmafn, mytitle = "Maximum Oriented length" , myxlabel = "Iterations" );
+deletefile(simplexfn);
+deletefile(fbarfn);
+deletefile(foptfn);
+deletefile(sigmafn);
 nm = nmplot_destroy(nm);
 mprintf("End of demo.\n");
 

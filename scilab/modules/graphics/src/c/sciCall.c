@@ -39,6 +39,7 @@
 #include "DrawingBridge.h"
 #include "Plot2d.h"
 #include "HandleManagement.h"
+#include "stack-def.h" /* bsiz */
 
 /**
  * Put min and max of vector in dMin and dMax.

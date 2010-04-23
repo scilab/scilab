@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2009-12-15 07:16+0000\n"
+"PO-Revision-Date: 2010-04-13 09:16+0000\n"
 "Last-Translator: Allan CORNET <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
+"X-Launchpad-Export-Date: 2010-04-16 07:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -23,8 +23,8 @@ msgstr ""
 "%s : %s : Mauvais nombre d'argument(s) d'entrée : %d à %d attendus.\n"
 
 #, c-format
-msgid "%s: Invalid option %s: %d or real matrix expected.\n"
-msgstr "%s : Option %s invalide : %d ou une matrice de réels attendue.\n"
+msgid "%s: Invalid option %s: real matrix expected.\n"
+msgstr "%s: option non correcte %s: une matrice reelle est attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
@@ -57,6 +57,8 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d: syntax error in given expression\n"
 msgstr ""
+"%s: Mauvaise valeur pour l'argument #%d: erreur de syntaxe pour l'expression "
+"donnée.\n"
 
 msgid ""
 "0 : functional iterations (no jacobian used (''adams'' or ''stiff'' only))"
@@ -102,7 +104,7 @@ msgid "Blackhole"
 msgstr "Trou noir"
 
 msgid "Cylinder"
-msgstr ""
+msgstr "Cylindre"
 
 msgid "Default values are given in square brackets"
 msgstr "Les valeurs par défauts sont données entre parenthèses carrées"
@@ -115,6 +117,7 @@ msgstr "Code d'équations différentielles généré par Maple"
 
 msgid "If jactype = 4 or 5 ml and mu are the lower and upper half-bandwidths"
 msgstr ""
+"If jactype = 4 or 5 ml and mu are the lower and upper half-bandwidths"
 
 msgid "If jactype = 4 the jacobian function must return"
 msgstr "Si jactype = 4 la fonction Jacobienne doit sortir"

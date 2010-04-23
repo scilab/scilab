@@ -27,13 +27,16 @@
 #    include <ncurses.h>
 #  endif
 
-#  ifdef HAVE_TERM_H
-#    include <term.h>
-#  endif
 
-#  ifdef HAVE_TERMCAP_H
-#    include <termcap.h>
-#  endif
+#ifdef HAVE_TERMCAP_H
+#include <termcap.h>
+#endif
+
+#ifndef HAVE_TERMCAP_H
+#ifdef HAVE_TERM_H
+#include <term.h>
+#endif
+#endif
 
 #endif /* !defined(_MSC_VER) */
 

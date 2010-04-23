@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-03-31 15:32+0000\n"
-"Last-Translator: Federico Vera <Unknown>\n"
+"PO-Revision-Date: 2010-03-09 17:31+0000\n"
+"Last-Translator: DiegoJ <diegojromerolopez@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
+"X-Launchpad-Export-Date: 2010-04-16 07:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -34,8 +34,12 @@ msgid "%s: No such file or directory.\n"
 msgstr "%s: No hay tal archivo o directorio.\n"
 
 #, c-format
-msgid "%s: Unknow type or not yet implemented\n"
-msgstr "%s: Tipo desconocido o aun no implementado\n"
+msgid "%s: Unknown type or not yet implemented\n"
+msgstr "%s: tipo desconocido o no implementado\n"
+
+#, c-format
+msgid "%s: Unknown type or not yet implemented.\n"
+msgstr "%s: tipo desconocido o no implementado.\n"
 
 #, c-format
 msgid "%s: Wrong first input argument: '%s' or '%s' expected.\n"
@@ -46,14 +50,18 @@ msgstr ""
 msgid "%s: work space (stacksize) is too small d\n"
 msgstr "%s: espacio de trabajo (stacksize) demasiado pequeño\n"
 
+#, c-format
+msgid "%s: work space (stacksize) is too small.\n"
+msgstr "%s: el espacio de trabajo (tamaño de pila) es demasiado pequeño.\n"
+
 msgid "(group,instance) already exists"
 msgstr "(grupo, instancia) ya existe"
 
+msgid "Already doing operation"
+msgstr "Ya está haciendo la operación"
+
 msgid "Already in group"
 msgstr "Ya está en el grupo"
-
-msgid "Already oing operation"
-msgstr "La operación ya es \"oing\""
 
 msgid "Bad message id"
 msgstr "Identificación de mensaje incorrecta"
@@ -83,8 +91,8 @@ msgid "Error pvm_reduce: Not scalar type\n"
 msgstr "Error pvm_reduce: No es de tipo escalar\n"
 
 #, c-format
-msgid "Error pvm_reduce: Unknow reduction operation %s\n"
-msgstr "Error pvm_reduce: Operación de reducción desconocida %s\n"
+msgid "Error pvm_reduce: Unknown reduction operation %s\n"
+msgstr "Error pvm_reduce: operación de reducción %s desconocida\n"
 
 msgid "Failed to exec new slave pvmd"
 msgstr "Falló la ejecución del nuevo esclavo pvmd"
@@ -131,8 +139,8 @@ msgstr "El nombre del grupo Null es ilegal"
 msgid "OK"
 msgstr "OK"
 
-msgid "Out of ressources"
-msgstr "Sin más recursos"
+msgid "Out of resources"
+msgstr "Recursos agotados"
 
 msgid "PVM exists"
 msgstr "Existe PVM"

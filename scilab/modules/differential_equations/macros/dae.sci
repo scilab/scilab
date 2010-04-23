@@ -357,7 +357,7 @@ function [varargout]=dae(varargin)
         error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae",2,3));
      end       
      else
-        error(sprintf(gettext("%s: Invalid option %s: %d or real matrix expected.\n"),"dae","root"));
+        error(sprintf(gettext("%s: Invalid option %s: real matrix expected.\n"),"dae","root"));
      end
      
 endfunction

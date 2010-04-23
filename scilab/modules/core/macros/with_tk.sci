@@ -7,7 +7,6 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function r=with_tk()
-  [v,opt]=getversion()
-  r=or(opt=='tk')
+function r = with_tk()
+  r = (with_module('tclsci') & getscilabmode() <> 'NWNI');
 endfunction

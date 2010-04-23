@@ -1,4 +1,4 @@
-                Scilab for Windows (2000/XP/Vista)
+                Scilab for Windows (XP/Vista/Seven)
                 *******************************
  
 ******************************************************************************
@@ -13,27 +13,22 @@
 I - TO RUN SCILAB (BINARY VERSION)
 ******************************************************************************
  
-    1 - You have already installed Scilab by executing "scilab-5.2.exe".
-        By default Scilab is in "C:\Program Files\scilab-5.2" directory.
+    1 - You have already installed Scilab by executing "scilab-5.3.exe".
+        By default Scilab is in "C:\Program Files\scilab-5.3" directory.
  
-    2 - Run Scilab by executing "Scilab 5.2" from the startup menu.
+    2 - Run Scilab by executing "Scilab 5.3" from the startup menu.
         In fact, it is a link to "wscilex.exe" in Scilab subdirectory "bin", 
         so you can run Scilab by executing directly "wscilex.exe".
  
     3 - Scilab has been compiled with Visual C++ .NET 2008 Pro
-	      (Intel C 11.0 & Fortran 11.0, see III below).
+	      (Intel C 11.1 & Fortran 11.1, see III below).
         All examples of dynamic link given with Scilab are prepared
         for Visual C++.
  
-    4 - If you want use Microsoft Visual C++  2008 Express with Scilab 5.2
+    4 - If you want use Microsoft Visual C++  2008 Express with Scilab 5.3
         http://www.microsoft.com/express/vc/
  
-    5 - If you want use LCC-Win32 (C compiler) with Scilab 5.2
-        See :
-        http://wiki.scilab.org/Using_LCC-Win32_compiler_on_Windows_for_incremental_link_with_Scilab_5.x/
-        You can download at http://www.cs.virginia.edu/~lcc-win32/
-    
-    6 - If you have any problems or suggestions concerning Scilab,
+    5 - If you have any problems or suggestions concerning Scilab,
         http://bugzilla.scilab.org/index.cgi        
 
 
@@ -42,7 +37,7 @@ II - TO UNINSTALL SCILAB (BINARY VERSION)
 ******************************************************************************
  
     To uninstall Scilab you can use the unintaller. You will find it in the 
-    "Scilab 5.2" item of the Program Group.
+    "Scilab 5.3" item of the Program Group.
     You can also use the Add/Remove Programs of the Control Panel.
  
  
@@ -50,8 +45,8 @@ II - TO UNINSTALL SCILAB (BINARY VERSION)
 III - TO COMPILE SCILAB FROM A SOURCE VERSION
 ******************************************************************************
  
-    We have compiled this distribution with Visual Studio 2008 (Intel C 11.0 &
-    Fortran 11.0). 
+    We have compiled this distribution with Visual Studio 2008 (Intel C 11.1 &
+    Fortran 11.1). 
 
     To compile with Visual C++ .NET 2008,  see Readme_visual.txt 
  

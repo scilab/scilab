@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-12-12 17:51+0000\n"
+"PO-Revision-Date: 2010-04-10 18:58+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
+"X-Launchpad-Export-Date: 2010-04-16 07:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -28,6 +28,10 @@ msgstr "%s:  Coincideixen #%d nodes superiors.\n"
 #, c-format
 msgid "%s: An error occurred: %s.\n"
 msgstr "%s: Hi ha hagut un error: %s.\n"
+
+#, c-format
+msgid "%s: An exception occurred: %s"
+msgstr ""
 
 #, c-format
 msgid "%s: Could not create 'Uicontrol' handle.\n"
@@ -243,6 +247,12 @@ msgid "%s: Wrong size for input argument #%d: A string matrix expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu de "
 "cadenes de text.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: It must have same dimensions that "
+"argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Matrix of strings expected.\n"
@@ -560,6 +570,8 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
 msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un tractament "
+"'%s' vàlid.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d expected.\n"
@@ -896,8 +908,8 @@ msgstr "Copia"
 msgid "Copyright (c) 1989-2007 (ENPC)"
 msgstr "Copyright (c) 1989-2007 (ENPC)"
 
-msgid "Copyright (c) 1989-2009 (INRIA)"
-msgstr "Copyright (c) 1989-2009 (INRIA)"
+msgid "Copyright (c) 1989-2010 (INRIA)"
+msgstr ""
 
 msgid "Cut"
 msgstr "Retalla"
@@ -906,7 +918,7 @@ msgid "Display selection"
 msgstr "Selecció de vista"
 
 msgid "Do you really want to quit Scilab?"
-msgstr ""
+msgstr "Esteu segur que voleu tancar l'Scilab?"
 
 msgid "Edit in the Scilab Text Editor"
 msgstr "Edita a l'editor de text de l'Scilab"
@@ -1112,7 +1124,7 @@ msgid "Save and execute"
 msgstr "Desa i executa"
 
 msgid "Scicos files"
-msgstr ""
+msgstr "Fitxers de Scicos"
 
 msgid "Scilab &ATOMS Web Site"
 msgstr "Pàgina web de l'&ATOMS d'Scilab"
@@ -1534,6 +1546,9 @@ msgid ""
 "with advanced graphics capabilities. Type \"\"help usecanvas\"\" for more "
 "information.\")"
 msgstr ""
+"disp(\"Avís: Malgrat el nostre avís anterior, heu escollit utilitzar "
+"l'Scilab amb capacitats gràfiques avançades. Escriviu \"\"help usecanvas\"\" "
+"per obtenir més informació.\")"
 
 msgid ""
 "disp(\"WARNING: Due to your configuration limitations, Scilab switched in a "

@@ -29,6 +29,8 @@
 #include "Scierror.h"
 #include "prompt.h"
 #include "dynamic_menus.h"
+#include "msgs.h"
+#include "eqid.h"
 /*--------------------------------------------------------------------------*/
 #undef Lstk
 #undef Infstk
@@ -68,7 +70,7 @@ extern int C2F(stackp)(int *,int *);
 extern int C2F(macro)(void);
 extern int C2F(getsym)(void);
 
-extern int C2F(eqid)(int *,int *);
+
 
 extern int C2F(bexec)(char *,int *,int *);
 
@@ -90,11 +92,6 @@ extern int C2F(ptover)(int *,int *); /* see src/fortran/ptover.f */
 extern int C2F(eptover)(int *,int *);/* see src/fortran/eptover.f */
 /*--------------------------------------------------------------------------*/
 void handle_onprompt(int *n);
-/*--------------------------------------------------------------------------*/
-void Msgs(int n,int ierr)
-{
-   C2F(msgs)(&n,&ierr);
-}
 /*--------------------------------------------------------------------------*/
 static int Compil(int code,int * val1,int val2,int val3,int val4)
 {

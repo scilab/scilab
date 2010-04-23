@@ -69,15 +69,75 @@
   </refsection>
 
   <refsection>
-    <title>See Also</title>
+    <title>See Also - API_Scilab</title>
 
     <simplelist type="inline">
-      <member><link linkend="compile_and_run_call_scilab">Compile and run with
+      <member>
+<link linkend="boolean_reading_API">boolean reading API</link>,
+<link linkend="boolean_writing_API">boolean writing API</link>,
+<link linkend="bsparse_reading_API">bsparse reading API</link>,
+<link linkend="bsparse_writing_API">bsparse writing API</link>,
+<link linkend="Common_getvaraddr_API">Common getvaraddr API</link>,
+<link linkend="Common_getvardimension_API">Common getvardimension API</link>,
+<link linkend="Common_getvartype_API">Common getvartype API</link>,
+<link linkend="Common_iscomplex_API">Common iscomplex API</link>,
+<link linkend="Common_isvarmatrixtype_API">Common isvarmatrixtype API</link>,
+<link linkend="Double_management_reading_API">Double management reading API</link>,
+<link linkend="Double_management_writing_API">Double management writing API</link>,
+<link linkend="Integer_management_reading_API">Integer management reading API</link>,
+<link linkend="Integer_management_writing_API">Integer management writing API</link>,
+<link linkend="int_getmatrixofintegerprecision_API">getmatrixofintegerprecision API</link>,
+<link linkend="Pointer_reading_API">Pointer reading API</link>,
+<link linkend="Pointer_writing_API">Pointer writing API</link>,
+<link linkend="poly_getpolyvariablename_API">poly getpolyvariablename API</link>,
+<link linkend="Polynomial_management_reading_API">Polynomial management reading API</link>,
+<link linkend="Polynomial_management_writing_API">Polynomial management writing API</link>,
+<link linkend="Sparse_management_reading_API">Sparse management reading API</link>,
+<link linkend="Sparse_management_writing_API">Sparse management writing_API</link>,
+<link linkend="String_management_reading_API">String management reading API</link>,
+<link linkend="String_management_writing_API">String management writing API</link>
+</member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>See Also - API_Scilab list management</title>
+
+    <simplelist type="inline">
+      <member>
+<link linkend="list_boolean_reading_API">list boolean reading API</link>,
+<link linkend="list_boolean_writing_API">list boolean writing API</link>,
+<link linkend="list_bsparse_reading_API">list bsparse reading API</link>,
+<link linkend="list_bsparse_writing_API">list bsparse writing API</link>,
+<link linkend="list_createlist_API">list_createlist API</link>,
+<link linkend="list_double_reading_API">list double reading API</link>,
+<link linkend="list_double_writing_API">list double writing API</link>,
+<link linkend="list_getlistitemaddress_API">list getlistitemaddress API</link>,
+<link linkend="list_getlistitemnumber_API">list getlistitemnumber API</link>,
+<link linkend="list_integer_reading_API">list integer reading API</link>,
+<link linkend="list_integer_writing_API">list integer writing API</link>,
+<link linkend="list_pointer_reading_API">list pointer reading API</link>,
+<link linkend="list_pointer_writing_API">list pointer writing API</link>,
+<link linkend="list_poly_reading_API">list poly reading API</link>,
+<link linkend="list_poly_writing_API">list poly writing API</link>,
+<link linkend="list_sparse_reading_API">list sparse reading API</link>,
+<link linkend="list_sparse_writing_API">list sparse writing API</link>,
+<link linkend="list_string_reading_API">list string reading API</link>,
+<link linkend="list_string_writing_API">list string writing API</link>
+</member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>See Also - call_scilab</title>
+
+    <simplelist type="inline">
+      <member><link linkend="call_scilab">Call_Scilab</link>, <link linkend="compile_and_run_call_scilab">Compile and run with
       call_scilab</link>, <link linkend="DoubleManagement_callscilab">Matrix
       Management</link>, <link linkend="BooleanManagement_callscilab">Boolean
       Management</link>, <link linkend="ComplexManagement_callscilab">Complex
       Management</link>, <link linkend="StringManagement_callscilab">String
-      Management</link>, <link linkend="call_scilab">Call_Scilab</link></member>
+      Management</link></member>
     </simplelist>
   </refsection>
 

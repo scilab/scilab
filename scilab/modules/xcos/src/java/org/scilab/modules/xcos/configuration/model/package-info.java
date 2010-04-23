@@ -9,8 +9,6 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-@javax.xml.bind.annotation.XmlSchema(
-		namespace = "http://www.scilab.org/2010/XcosConfiguration", 
-		elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+
 package org.scilab.modules.xcos.configuration.model;
 
