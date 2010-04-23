@@ -2203,24 +2203,6 @@ Global
 		{968FD6C1-5845-4B22-B61E-F6DE987D47AD}.Release|Win32.Build.0 = Release|Win32
 		{968FD6C1-5845-4B22-B61E-F6DE987D47AD}.Release|x64.ActiveCfg = Release|x64
 		{968FD6C1-5845-4B22-B61E-F6DE987D47AD}.Release|x64.Build.0 = Release|x64
-<<<<<<< HEAD:scilab/Scilab_f2c.sln
-		{30F9EE41-587B-4618-8DE7-698D3FBA4985}.Debug|Win32.ActiveCfg = Debug|Win32
-		{30F9EE41-587B-4618-8DE7-698D3FBA4985}.Debug|Win32.Build.0 = Debug|Win32
-		{30F9EE41-587B-4618-8DE7-698D3FBA4985}.Debug|x64.ActiveCfg = Debug|x64
-		{30F9EE41-587B-4618-8DE7-698D3FBA4985}.Debug|x64.Build.0 = Debug|x64
-		{30F9EE41-587B-4618-8DE7-698D3FBA4985}.Release|Win32.ActiveCfg = Release|Win32
-		{30F9EE41-587B-4618-8DE7-698D3FBA4985}.Release|Win32.Build.0 = Release|Win32
-		{30F9EE41-587B-4618-8DE7-698D3FBA4985}.Release|x64.ActiveCfg = Release|x64
-		{30F9EE41-587B-4618-8DE7-698D3FBA4985}.Release|x64.Build.0 = Release|x64
-		{A3193DF3-A764-4B51-B240-9285289C337E}.Debug|Win32.ActiveCfg = Debug|Win32
-		{A3193DF3-A764-4B51-B240-9285289C337E}.Debug|Win32.Build.0 = Debug|Win32
-		{A3193DF3-A764-4B51-B240-9285289C337E}.Debug|x64.ActiveCfg = Debug|x64
-		{A3193DF3-A764-4B51-B240-9285289C337E}.Debug|x64.Build.0 = Debug|x64
-		{A3193DF3-A764-4B51-B240-9285289C337E}.Release|Win32.ActiveCfg = Release|Win32
-		{A3193DF3-A764-4B51-B240-9285289C337E}.Release|Win32.Build.0 = Release|Win32
-		{A3193DF3-A764-4B51-B240-9285289C337E}.Release|x64.ActiveCfg = Release|x64
-		{A3193DF3-A764-4B51-B240-9285289C337E}.Release|x64.Build.0 = Release|x64
-=======
 		{ABCB724E-8534-4420-AC12-7C33A606ABA3}.Debug|Win32.ActiveCfg = Debug|Win32
 		{ABCB724E-8534-4420-AC12-7C33A606ABA3}.Debug|Win32.Build.0 = Debug|Win32
 		{ABCB724E-8534-4420-AC12-7C33A606ABA3}.Debug|x64.ActiveCfg = Debug|x64
@@ -2237,7 +2219,6 @@ Global
 		{DD8A0506-8D31-4CF8-856A-C10ECE9C13A4}.Release|Win32.Build.0 = Release|Win32
 		{DD8A0506-8D31-4CF8-856A-C10ECE9C13A4}.Release|x64.ActiveCfg = Release|x64
 		{DD8A0506-8D31-4CF8-856A-C10ECE9C13A4}.Release|x64.Build.0 = Release|x64
->>>>>>> origin/master:scilab/Scilab_f2c.sln
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
