@@ -165,6 +165,8 @@ Bug fixes:
 
 * bug 1304 fixed - macr2tree now works with a Scilab expression as input.
 
+* bug 2775 fixed - Multiplication of 0 times infinity did not work because of ATLAS under Windows.
+
 * bug 4672 fixed - Internal function AddFunctionInTable renamed to 
                    getFunctionByName to avoid confusions on the actual usage
                    of this function. Thanks to Yuvraj Tomar.
@@ -220,7 +222,5 @@ Bug fixes:
 
 * bug 6947 fixed - Some demos in "Optimization and Simulation" failed, 
                    without write rights in SCI subdirectory.
-
-* bug 2775 fixed - Multiplication of 0 times infinity did not work because of ATLAS under Windows.
 
 
