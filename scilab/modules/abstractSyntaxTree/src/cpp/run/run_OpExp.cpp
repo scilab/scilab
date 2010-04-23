@@ -14,6 +14,8 @@
 
 #include "timer.hxx"
 #include "runvisitor.hxx"
+#include "execvisitor.hxx"
+#include "timedvisitor.hxx"
 #include "core_math.h"
 
 #include "types_multiplication.hxx"
@@ -32,6 +34,8 @@ using std::string;
 
 namespace ast
 {
+	template class RunVisitorT<ExecVisitor>;
+	template class RunVisitorT<TimedVisitor>;
 
 	template <class T>
 	void RunVisitorT<T>::visitprivate(const OpExp &e)

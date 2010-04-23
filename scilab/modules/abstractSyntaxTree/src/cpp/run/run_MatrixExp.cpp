@@ -11,17 +11,17 @@
 */
 
 #include "runvisitor.hxx"
+#include "execvisitor.hxx"
+#include "timedvisitor.hxx"
 #include "visitor_common.hxx"
-#include "internal.hxx"
-#include "types.hxx"
 
 using std::string;
-using types::InternalType;
-using types::GenericType;
-using types::Double;
 
 namespace ast
 {
+	template class RunVisitorT<ExecVisitor>;
+	template class RunVisitorT<TimedVisitor>;
+
 	/*
 	[1,2;3,4] with/without special character $ and :
 	*/

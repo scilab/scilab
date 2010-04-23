@@ -1,14 +1,14 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2008-2008 - DIGITEO - Bruno JOFRET
- *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+*  Copyright (C) 2008-2008 - DIGITEO - Bruno JOFRET
+*
+*  This file must be used under the terms of the CeCILL.
+*  This source file is licensed as described in the file COPYING, which
+*  you should have received as part of this distribution.  The terms
+*  are also available at
+*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
 
 #include <cstdio>
 #include <iostream>
@@ -22,7 +22,7 @@
 
 extern "C"
 {
-#include "matrix_division.h"
+	#include "matrix_division.h"
 }
 
 #include "timer.hxx"
@@ -35,122 +35,27 @@ using std::string;
 
 namespace ast
 {
-    template <class T>
-    void RunVisitorT<T>::expected_size_set(int _iSize)
-    {
-        _excepted_result = _iSize;
-    }
-    
-    template <class T>
-    int RunVisitorT<T>::expected_size_get(void)
-    {
-        return _excepted_result;
-    }
-
-    template <class T>
-    int RunVisitorT<T>::result_size_get(void)
-    {
-        if(is_single_result())
-        {
-            if(_result == NULL)
-            {
-                return 0;
-            }
-            else
-            {
-                return 1;
-            }
-        }
-        else
-        {
-            return static_cast<int>(_resultVect.size());
-        }
-    }
-
-    template <class T>
-    types::InternalType* RunVisitorT<T>::result_get(void)
-    {
-        if(is_single_result())
-        {
-            return _result;
-        }
-        else
-        {
-            return _resultVect[0];
-        }
-    }
-
-    template <class T>
-    types::InternalType* RunVisitorT<T>::result_get(int _iPos)
-    {
-        if(_iPos >= static_cast<int>(_resultVect.size()))
-        {
-            return NULL;
-        }
-        return _resultVect[_iPos];
-    }
-
-    template <class T>
-    vector<types::InternalType*>* RunVisitorT<T>::result_list_get()
-    {
-        return &_resultVect;
-    }
-
-
-    template <class T>
-    void RunVisitorT<T>::result_set(int _iPos, const types::InternalType *gtVal)
-    {
-        m_bSingleResult = false;
-        if(_iPos <  static_cast<int>(_resultVect.size()))
-        {
-            if(_resultVect[_iPos] != NULL && _resultVect[_iPos]->isDeletable())
-            {
-                delete _resultVect[_iPos];
-            }
-        }
-
-        if(_iPos >=  static_cast<int>(_resultVect.size()))
-        {
-            _resultVect.resize(_iPos + 1, NULL);
-        }
-
-        _resultVect[_iPos] = const_cast<types::InternalType *>(gtVal);
-    }
-
-    template <class T>
-    void RunVisitorT<T>::result_set(const types::InternalType *gtVal)
-    {
-        m_bSingleResult = true;
-        _result = const_cast<types::InternalType *>(gtVal);
-    }
-
-    template <class T>
-    bool RunVisitorT<T>::is_single_result()
-    {
-        return m_bSingleResult;
-    }
-
-
-
+	template class RunVisitorT<ExecVisitor>;
+	template class RunVisitorT<TimedVisitor>;
 
 	template <class T>
 	void RunVisitorT<T>::visitprivate(const MatrixLineExp &e)
 	{
-        /*
-          All processes are done in MatrixExp
-        */
+	/*
+		All processes are done in MatrixExp
+	*/
 	}
 
 	template <class T>
 	void RunVisitorT<T>::visitprivate(const CellExp &e)
 	{
 		/*
-          FIXME : container type
+			FIXME : container type
 		*/
 	}
 
 	/** \name Visit Constant Expressions nodes.
-     ** \{ */
+	** \{ */
 	template <class T>
 	void RunVisitorT<T>::visitprivate(const StringExp &e)
 	{
@@ -162,7 +67,7 @@ namespace ast
 	void RunVisitorT<T>::visitprivate(const CommentExp &e)
 	{
 		/*
-          Nothing to do
+		Nothing to do
 		*/
 	}
 
@@ -170,7 +75,7 @@ namespace ast
 	void RunVisitorT<T>::visitprivate(const IntExp  &e)
 	{
 		/*
-          Int does not exist, Int8 - 16 - 32 - 64 functions
+		Int does not exist, Int8 - 16 - 32 - 64 functions
 		*/
 	}
 
@@ -178,7 +83,7 @@ namespace ast
 	void RunVisitorT<T>::visitprivate(const FloatExp  &e)
 	{
 		/*
-          Float does not exist, float function
+		Float does not exist, float function
 		*/
 	}
 
@@ -200,7 +105,7 @@ namespace ast
 	void RunVisitorT<T>::visitprivate(const NilExp &e)
 	{
 		/*
-          FIXME :
+		FIXME :
 		*/
 	}
 
@@ -213,11 +118,11 @@ namespace ast
 			result_set(pI);
 			if(pI != NULL && pI->getAsCallable() == false && e.is_verbose())
 			{
-                std::ostringstream ostr;
+			  std::ostringstream ostr;
 				ostr << e.name_get() << " = " << "(" << pI->getRef() << ")"<< std::endl;
-                ostr << std::endl;
-                ostr << pI->toString(10,75) << std::endl;
-                YaspWrite(const_cast<char *>(ostr.str().c_str()));
+			  ostr << std::endl;
+			  ostr << pI->toString(10,75) << std::endl;
+			  YaspWrite(const_cast<char *>(ostr.str().c_str()));
 			}
 		}
 		else
@@ -251,7 +156,7 @@ namespace ast
 		pIL->end_set(pVar);
 		result_set(pIL);
 		/*
-          : = 1:$
+		: = 1:$
 		*/
 	}
 
@@ -274,14 +179,14 @@ namespace ast
 	{
 		/*
 
-         */
+		*/
 	}
 
 	template <class T>
 	void RunVisitorT<T>::visitprivate(const FieldExp &e)
 	{
         /*
-          a.b
+        a.b
         */
         T execHead;
         try
@@ -370,8 +275,8 @@ namespace ast
 				
 				if(execVar[j].is_single_result())
 				{
-                    in.push_back(execVar[j].result_get());
-                    execVar[j].result_get()->IncreaseRef();
+						in.push_back(execVar[j].result_get());
+						execVar[j].result_get()->IncreaseRef();
 				}
 				else
 				{
@@ -478,14 +383,14 @@ namespace ast
 				pOut = pIT->getAsString()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
 				break;
 			case InternalType::RealList :
-            {
-                ResultList = pIT->getAsList()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
-                for(int i = 0 ; i < static_cast<int>(ResultList.size()) ; i++)
-                {
-                    result_set(i, ResultList[i]);
-                }
-                break;
-            }
+				{
+					ResultList = pIT->getAsList()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
+					for(int i = 0 ; i < static_cast<int>(ResultList.size()) ; i++)
+					{
+						result_set(i, ResultList[i]);
+					}
+					break;
+				}
 			default :
 				break;
 			}
@@ -736,7 +641,7 @@ namespace ast
 	template <class T>
 	void RunVisitorT<T>::visitprivate(const SelectExp &e)
 	{
-        // FIXME : exec select ... case ... else ... end
+	  // FIXME : exec select ... case ... else ... end
 		T execMe;
 		e.select_get()->accept(execMe);
 		bool bCase = false;
@@ -891,12 +796,12 @@ namespace ast
 	/** \} */
 
 	/** \name Visit Single Operation nodes.
-     ** \{ */
+	** \{ */
 	template <class T>
 	void RunVisitorT<T>::visitprivate(const NotExp &e)
 	{
 		/*
-          @ or ~= !
+		@ or ~= !
 		*/
 		T execMe;
 		e.exp_get().accept(execMe);
@@ -932,7 +837,7 @@ namespace ast
 	void RunVisitorT<T>::visitprivate(const TransposeExp &e)
 	{
 		/*
-          '
+		'
 		*/
 		T execMe;
 		e.exp_get().accept(execMe);
@@ -1021,7 +926,7 @@ namespace ast
 	/** \} */
 
 	/** \name Visit Declaration nodes.
-     ** \{ */
+	** \{ */
 	/** \brief Visit Var declarations. */
 	template <class T>
 	void RunVisitorT<T>::visitprivate(const VarDec  &e)
@@ -1045,8 +950,8 @@ namespace ast
 	void RunVisitorT<T>::visitprivate(const FunctionDec  &e)
 	{
 		/*
-          function foo
-          endfunction
+		function foo
+		endfunction
 		*/
 		std::list<ast::Var *>::const_iterator	i;
 
@@ -1074,7 +979,7 @@ namespace ast
 	/** \} */
 
 	/** \name Visit Type dedicated Expressions related node.
-     ** \{ */
+	** \{ */
 	template <class T>
 	void RunVisitorT<T>::visitprivate(const ListExp &e)
 	{

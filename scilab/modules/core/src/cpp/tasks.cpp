@@ -27,9 +27,6 @@
 
 Timer _timer;
 
-template class RunVisitorT<ExecVisitor>;
-template class RunVisitorT<TimedVisitor>;
-
 //#define DEBUG
 
 /*
