@@ -17,7 +17,7 @@
   </info>
   <refnamediv>
     <refname>mgetl</refname>
-    <refpurpose> read lines from an ascii file</refpurpose>
+    <refpurpose> read lines from an text file</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -48,7 +48,7 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>mgetl</literal> function allows to read a lines from an ascii file.</para>
+    <para><literal>mgetl</literal> function allows to read a lines from an text file.</para>
     <para>
     If <literal>m</literal> is
     omitted or is <literal>-1</literal> all lines till end of file occurs are read.</para>
@@ -60,6 +60,7 @@
     function) issued.</para>
     <para><literal>mgetl</literal> allows to read files coming from Unix, Windows, or Mac
     operating systems.</para>
+    <para><literal>mgetl</literal> supports only UTF-8(NO-BOM) and ANSI file encoding.</para>
   </refsection>
   <refsection>
     <title>Examples</title>

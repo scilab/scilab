@@ -225,10 +225,27 @@ int sci_mgetl(char *fname,unsigned long fname_len)
 
             case MGETL_EOF:
             {
-                if (createEmptyMatrix(pvApiCtx, Rhs + 1) != 0)
+                if (numberOfLinesReaded == 0)
                 {
-                    Scierror(999,_("%s: Memory allocation error.\n"), fname);
-                    return 0;
+                    if (createEmptyMatrix(pvApiCtx, Rhs + 1) != 0)
+                    {
+                        Scierror(999,_("%s: Memory allocation error.\n"), fname);
+                        return 0;
+                    }
+                }
+                else
+                {
+                    int m = numberOfLinesReaded;
+                    int n = 1;
+
+                    sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, m, n, wcReadedStrings);
+                    if(sciErr.iErr)
+                    {
+                        printError(&sciErr, 0);
+                        return 0;
+                    }
+                    freeArrayOfString(wcReadedStrings, numberOfLinesReaded);
+                    wcReadedStrings = NULL;
                 }
             }
             break;

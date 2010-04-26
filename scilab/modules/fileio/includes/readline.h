@@ -17,6 +17,29 @@
 #include "machine.h"
 
 FILEIO_IMPEXP int LineRead(FILE *fd,char buf[],int n,int *cnt,int *nr);
-FILEIO_IMPEXP void C2F(readnextline)(int *fd,char buf[],int *n,int *count,int *nr,int *ierr);
+
+
+#define READNEXTLINE_ERROR_EOF_REACHED_AFTER_EOL 0
+#define READNEXTLINE_ERROR_EOL 1
+#define READNEXTLINE_ERROR_BUFFER_FULL 2
+#define READNEXTLINE_ERROR_EOF_REACHED_BEFORE_EOL 3
+#define READNEXTLINE_ERROR_ERROR_UNMANAGED 4
+
+/**
+* read a line from a text file
+* used by exec to read a .sce file (see getlin.f)
+* @param[in] fd : a int file descriptor to open
+* @param[in/out] buf : string buffer returned
+* @param[in] *n : bsiz (4096)
+* @param[out] *count : numbers of returned characters + 1
+* @param[out] *nr : numbers of returned characters 
+* @param[out] *ierr : int error code
+* 0 : EOF reached after an EOL
+* 1 : EOL reached
+* 2 : buffer full
+* 3 : EOF reached before any EOL
+* 4 : ERROR (not managed)
+*/
+FILEIO_IMPEXP void C2F(readnextline)(int *fd, char buf[], int *n, int *count, int *nr, int *ierr);
 
 #endif /* __READLINE_H__ */
