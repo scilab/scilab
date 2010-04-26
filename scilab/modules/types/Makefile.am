@@ -29,13 +29,16 @@ TYPES_CPP_SOURCES = \
 			src/cpp/listinsert.cpp \
 			src/cpp/listoperation.cpp \
 			src/cpp/listundefined.cpp \
-			src/cpp/struct.cpp
+			src/cpp/struct.cpp \
+			src/cpp/cell.cpp
 
 GATEWAY_CPP_SOURCES	= sci_gateway/cpp/types_gw.cpp \
 			sci_gateway/cpp/sci_list.cpp \
 			sci_gateway/cpp/sci_struct.cpp \
 			sci_gateway/cpp/sci_insert.cpp \
-			sci_gateway/cpp/sci_null.cpp
+			sci_gateway/cpp/sci_null.cpp \
+			sci_gateway/cpp/sci_cell.cpp \
+			sci_gateway/cpp/sci_makecell.cpp
 
 
 pkglib_LTLIBRARIES 	= libscitypes.la
