@@ -198,6 +198,9 @@ public final class SuperBlock extends BasicBlock {
 			getChild().setOpened(true);
 			getChild().setVisible(true);
 			
+			getChild().installListeners();
+			getChild().installSuperBlockListeners();
+			
 		} else {
 			getChild().setVisible(true);
 		}
