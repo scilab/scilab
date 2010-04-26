@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (C) INRIA -  Serge Steer Serge.Steer@inria.fr
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en_US" xml:id="datatipManagerMode">
+  <info>
+    <pubdate>$LastChangedDate: 19-02-2010 $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>datatipManagerMode</refname>
+    <refpurpose>Set or toggles the data tips mode. </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+    datatipManagerMode()
+    datatipManagerMode('on')
+    datatipManagerMode('off')
+    datatipManagerMode(fig)
+    datatipManagerMode(fig,'on')
+    datatipManagerMode(fig,'off')</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>fig</term>
+        <listitem>
+          <para>
+           Graphic window handle or Graphic window id.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+      When enabled, the data tips mode allow
+      to add and edit tips at selected points of curve. The selection is
+      made by a right click on the selected point.
+    </para>
+    <para>
+      <literal>datatipManagerMode()</literal>, toggles the data tips mode
+      for the current figure while
+      <literal>datatipManagerMode(fig)</literal> toggles the data tips mode
+      for figure given by the handle <literal>fig</literal>.
+    </para>
+    <para>
+      <literal>datatipManagerMode('on')</literal>, enables the data tips mode
+      for the current figure while
+      <literal>datatipManagerMode(fig,'on')</literal> enables the data tips mode
+      for figure given by the handle <literal>fig</literal>.
+    </para>
+ 
+    <para>
+      <literal>datatipManagerMode('off')</literal>, disables the data tips mode
+      for the current figure while
+      <literal>datatipManagerMode(fig,'off')</literal> disables the data tips mode
+      for figure given by the handle <literal>fig</literal>.
+    </para>
+ 
+
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+       t=linspace(0,10,200);
+       plot(t,sin(t))
+       datatipManagerMode('on')
+       //now click somewhere on the curve
+    ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="datatipToggle" >datatipToggle</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Serge Steer, INRIA</member>
+    </simplelist>
+  </refsection>
+
+  
+</refentry>

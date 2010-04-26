@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (C) INRIA -  Serge Steer Serge.Steer@inria.fr
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en_US" xml:id="datatipGetStruct">
+  <info>
+    <pubdate>$LastChangedDate: 19-02-2010 $</pubdate>
+  </info>
+
+  <refnamediv> 
+    <refname>datatipGetStruct</refname>
+    <refpurpose>Extract the datatips data structure infrom the curve or surface entity. </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      datatips_struct=datatipGetStruct(curve_handle)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>curve_handle</term>
+        <listitem>
+          <para>
+            A handle on a curve or surface. 
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+	<term>datatips_struct</term>
+        <listitem>
+          <para>
+            A tlist of type  <literal>datatips</literal>.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+  
+    <para>
+        <literal>datatipGetStruct</literal> extract the datatips data
+        structure out of the curve or surface entity. It may be called
+        to retreive properties of the datatips data structure to
+        customize the tip display.
+    </para>
+  
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+    x=linspace(0,1,100)';
+    y=x.^3;
+    clf()
+    plot(x,y);
+    e=gce();p=e.children(1);//get the handle on the polyline
+    datatipCreate(p,50);
+    datatipCreate(p,20);
+    datatips_struct=datatipGetStruct(p)
+    datatips_struct.formatfunction
+    ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member><link linkend="datatips" >datatips</link></member>
+      <member><link linkend="datatipSetDisplay" >datatipSetDisplay</link></member>
+      <member><link linkend="datatipInitStruct" >datatipInitStruct</link></member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Serge Steer, INRIA</member>
+    </simplelist>
+  </refsection>
+ 
+</refentry>
