@@ -84,11 +84,9 @@ library.xcos.name=org.scilab.modules.xcos.jar
 library.xpad.dir=${modules.dir}/xpad/${build.jar.dir}/
 library.xpad.name=org.scilab.modules.xpad.jar
 
-<<<<<<< HEAD
 library.graphic_objects.dir=${modules.dir}/graphic_objects/${build.jar.dir}/
 library.graphic_objects.name=org.scilab.modules.graphic_objects.jar
-=======
+
 library.graph.dir=${modules.dir}/graph/${build.jar.dir}/
 library.graph.name=org.scilab.modules.graph.jar
 
->>>>>>> refs/remotes/origin/master
