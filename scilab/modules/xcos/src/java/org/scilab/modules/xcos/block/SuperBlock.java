@@ -147,6 +147,11 @@ public final class SuperBlock extends BasicBlock {
 	@Override
 	public void openBlockSettings(String[] context) {
 		
+		//prevent to open twice
+		if (isLocked()) {
+			return;
+		}
+		
 		/*
 		 * Do nothing when something happen on the Palette
 		 */
@@ -211,6 +216,8 @@ public final class SuperBlock extends BasicBlock {
 		getChild().updateCellsContext();
 		
 		XcosTab.getAllDiagrams().add(getChild());
+		
+		setLocked(false);
 	}
 
 	/**

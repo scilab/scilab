@@ -195,7 +195,6 @@ This type come from JGraphx serialization which use this type as its default con
 		<xs:attribute type="xs:byte" name="vertex" use="optional" />
 		<xs:attribute type="xs:byte" name="connectedLinkId" use="optional" />
 		<xs:attribute type="xs:float" name="initialState" use="optional" />
-		<xs:attribute type="xs:byte" name="locked" use="optional" />
 		<xs:attribute type="xs:short" name="angle" use="optional" />
 	</xs:complexType>
 	
@@ -238,7 +237,6 @@ This type come from JGraphx serialization which use this type as its default con
 		<xs:attribute type="xs:byte" name="vertex" use="optional" />
 		<xs:attribute type="xs:byte" name="connectedLinkId" use="optional" />
 		<xs:attribute type="xs:float" name="initialState" use="optional" />
-		<xs:attribute type="xs:byte" name="locked" use="optional" />
 		<xs:attribute type="xs:short" name="angle" use="optional" />
 	</xs:complexType>
 	
@@ -282,7 +280,6 @@ This type come from JGraphx serialization which use this type as its default con
 		<xs:attribute type="xs:byte" name="vertex" use="optional" />
 		<xs:attribute type="xs:byte" name="connectedLinkId" use="optional" />
 		<xs:attribute type="xs:float" name="initialState" use="optional" />
-		<xs:attribute type="xs:byte" name="locked" use="optional" />
 		<xs:attribute type="xs:short" name="angle" use="optional" />
 	</xs:complexType>
 
@@ -326,7 +323,6 @@ This type come from JGraphx serialization which use this type as its default con
 		<xs:attribute type="xs:byte" name="connectable" use="optional" />
 		<xs:attribute type="xs:byte" name="vertex" use="optional" />
 		<xs:attribute type="xs:float" name="initialState" use="optional" />
-		<xs:attribute type="xs:byte" name="locked" use="optional" />
 		<xs:attribute type="xs:short" name="angle" use="optional" />
 	</xs:complexType>
 	
@@ -369,7 +365,6 @@ This type come from JGraphx serialization which use this type as its default con
 		<xs:attribute type="xs:byte" name="connectable" use="optional" />
 		<xs:attribute type="xs:byte" name="vertex" use="optional" />
 		<xs:attribute type="xs:float" name="initialState" use="optional" />
-		<xs:attribute type="xs:byte" name="locked" use="optional" />
 		<xs:attribute type="xs:short" name="angle" use="optional" />
 	</xs:complexType>
 	
@@ -412,7 +407,6 @@ This type come from JGraphx serialization which use this type as its default con
 		<xs:attribute type="xs:byte" name="connectable" use="optional" />
 		<xs:attribute type="xs:byte" name="vertex" use="optional" />
 		<xs:attribute type="xs:float" name="initialState" use="optional" />
-		<xs:attribute type="xs:byte" name="locked" use="optional" />
 		<xs:attribute type="xs:short" name="angle" use="optional" />
 	</xs:complexType>
 	
@@ -455,7 +449,6 @@ This type come from JGraphx serialization which use this type as its default con
 		<xs:attribute type="xs:byte" name="connectable" use="optional" />
 		<xs:attribute type="xs:byte" name="vertex" use="optional" />
 		<xs:attribute type="xs:float" name="initialState" use="optional" />
-		<xs:attribute type="xs:byte" name="locked" use="optional" />
 		<xs:attribute type="xs:short" name="angle" use="optional" />
 	</xs:complexType>
 
@@ -499,7 +492,6 @@ This type come from JGraphx serialization which use this type as its default con
 		<xs:attribute type="xs:byte" name="vertex" use="optional" />
 		<xs:attribute type="xs:byte" name="connectedLinkId" use="optional" />
 		<xs:attribute type="xs:float" name="initialState" use="optional" />
-		<xs:attribute type="xs:byte" name="locked" use="optional" />
 		<xs:attribute type="xs:short" name="angle" use="optional" />
 	</xs:complexType>
 	
@@ -542,7 +534,6 @@ This type come from JGraphx serialization which use this type as its default con
 		<xs:attribute type="xs:byte" name="vertex" use="optional" />
 		<xs:attribute type="xs:byte" name="connectedLinkId" use="optional" />
 		<xs:attribute type="xs:float" name="initialState" use="optional" />
-		<xs:attribute type="xs:byte" name="locked" use="optional" />
 		<xs:attribute type="xs:short" name="angle" use="optional" />
 	</xs:complexType>
 
@@ -586,7 +577,6 @@ This type come from JGraphx serialization which use this type as its default con
 		<xs:attribute type="xs:byte" name="connectable" use="optional" />
 		<xs:attribute type="xs:byte" name="vertex" use="optional" />
 		<xs:attribute type="xs:float" name="initialState" use="optional" />
-		<xs:attribute type="xs:byte" name="locked" use="optional" />
 		<xs:attribute type="xs:short" name="angle" use="optional" />
 	</xs:complexType>
 	
@@ -629,7 +619,6 @@ This type come from JGraphx serialization which use this type as its default con
 		<xs:attribute type="xs:byte" name="vertex" use="optional" />
 		<xs:attribute type="xs:byte" name="connectedLinkId" use="optional" />
 		<xs:attribute type="xs:float" name="initialState" use="optional" />
-		<xs:attribute type="xs:byte" name="locked" use="optional" />
 		<xs:attribute type="xs:short" name="angle" use="optional" />
 	</xs:complexType>
 	
