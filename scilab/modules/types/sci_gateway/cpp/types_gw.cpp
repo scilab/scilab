@@ -19,5 +19,7 @@ bool TypesModule::Load()
   symbol::Context::getInstance()->AddFunction(Function::createFunction("struct", &sci_struct, MODULE_NAME));
   symbol::Context::getInstance()->AddFunction(Function::createFunction("null", &sci_null, MODULE_NAME));
   symbol::Context::getInstance()->AddFunction(Function::createFunction("insert", &sci_insert, MODULE_NAME));
+  symbol::Context::getInstance()->AddFunction(Function::createFunction("cell", &sci_cell, MODULE_NAME));
+  symbol::Context::getInstance()->AddFunction(Function::createFunction("makecell", &sci_makecell, MODULE_NAME));
   return true;
 }

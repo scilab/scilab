@@ -226,6 +226,9 @@ SciErr getVarType(void* _pvCtx, int* _piAddress, int* _piType)
 	case GenericType::RealList :
 		*_piType = sci_list;
 		break;
+	case GenericType::RealCell :
+		*_piType = sci_mlist;
+		break;
 	//case GenericType::RealTList :
 	//	*_piType = sci_tlist;
 	//	break;

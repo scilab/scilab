@@ -35,10 +35,11 @@ namespace types
   class Container;
   class List;
   class Struct;
-	class ListOperation;
-	class ListDelete;
-	class ListInsert;
-	class ListUndefined;
+  class ListOperation;
+  class ListDelete;
+  class ListInsert;
+  class ListUndefined;
+  class Cell;
 }
 
 #endif /* !__ANY_TYPES_HXX__ */

@@ -40,5 +40,6 @@
 #include "listdelete.hxx"
 #include "listinsert.hxx"
 #include "listundefined.hxx"
+#include "cell.hxx"
 
 #endif /* !ALL_TYPES_HXX */

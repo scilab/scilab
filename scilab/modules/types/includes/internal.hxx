@@ -48,13 +48,14 @@ namespace types
       RealContainer,
       RealList,
       RealStruct,
+      RealCell,
       /* User */
       RealUserType,
-			/*For list operation*/
-			RealListOperation, //parent type
-			RealListInsertOperation,
-			RealListDeleteOperation,
-			RealListUndefinedOperation
+      /*For list operation*/
+      RealListOperation, //parent type
+      RealListInsertOperation,
+      RealListDeleteOperation,
+      RealListUndefinedOperation
     };
     
   protected :
@@ -71,22 +72,22 @@ namespace types
     virtual std::string	toString(int _iPrecison, int _iLineLen) = 0;
     virtual InternalType* clone(void) = 0;
     
-    void	IncreaseRef()
+    void IncreaseRef()
     {
       m_iRef++;
     }
     
-    void	DecreaseRef()
+    void DecreaseRef()
     {
-      if(m_iRef > 0)
-	{
-	  m_iRef--;
-	}
+        if(m_iRef > 0)
+        {
+            m_iRef--;
+        }
     }
 
     bool	isDeletable() { return m_iRef == 0; }
     bool	isRef(int _iRef = 0) { return m_iRef > _iRef; }
-		int		getRef() { return m_iRef; }
+    int		getRef() { return m_iRef; }
 
     virtual bool operator==(const InternalType& it) { return (getType() == (const_cast<InternalType *>(&it))->getType()); }
     virtual bool operator!=(const InternalType& it) { return !(*this == it); }
@@ -169,6 +170,10 @@ namespace types
     bool isStruct(void) { return (getType() == RealStruct); }
     virtual Struct* getAsStruct(void) { return NULL; }
     
+    /* Cell */
+    bool isCell(void) { return (getType() == RealCell); }
+    virtual Cell* getAsCell(void) { return NULL; }
+    
     /**
      ** \}
      */
@@ -185,15 +190,15 @@ namespace types
 
 		/* ListOperation */
     bool isListOperation(void) { return (getType() == RealListOperation); }
-		virtual ListOperation* getAsListOperation(void) { return NULL; }
+    virtual ListOperation* getAsListOperation(void) { return NULL; }
 
-		/* ListDelete */
+    /* ListDelete */
     bool isListDelete(void) { return (getType() == RealListDeleteOperation); }
-		virtual ListDelete* getAsListDelete(void) { return NULL; }
+    virtual ListDelete* getAsListDelete(void) { return NULL; }
 
-		/* ListAdd */
+    /* ListAdd */
     bool isListInsert(void) { return (getType() == RealListInsertOperation); }
-		virtual ListInsert* getAsListInsert(void) { return NULL; }
+    virtual ListInsert* getAsListInsert(void) { return NULL; }
 
     /**
      ** \}
