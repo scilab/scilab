@@ -424,10 +424,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\NumTokens.c"
-				>
-			</File>
-			<File
 				RelativePath=".\partfunction.c"
 				>
 			</File>
@@ -666,10 +662,6 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\men_Sutils.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\NumTokens.h"
 				>
 			</File>
 			<File
