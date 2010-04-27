@@ -40,9 +40,6 @@ namespace types
     template <typename T> 
     class IntT : public Int
     {
-        int m_iRows;
-        int m_iCols;
-        int m_iSize;
         T* m_pData;
 
     public :
@@ -439,6 +436,7 @@ namespace types
     public :
         Int8(int _iRows, int _iCols) : SignedIntT<char>(_iRows, _iCols) {}
         IntType getIntType() { return Type8; }
+        string getTypeStr(){return "int8";}
     };
 
     /*
@@ -449,6 +447,7 @@ namespace types
     public :
         UInt8(int _iRows, int _iCols) : UnsignedIntT<unsigned char>(_iRows, _iCols) {}
         IntType getIntType() { return TypeUnsigned8; }
+        string getTypeStr(){return "uint8";}
     };
 
 //16 bits
@@ -460,6 +459,7 @@ namespace types
     public :
         Int16(int _iRows, int _iCols) : SignedIntT<short>(_iRows, _iCols) {}
         IntType getIntType() { return Type16; }
+        string getTypeStr(){return "int16";}
     };
 	
     /*
@@ -470,6 +470,7 @@ namespace types
     public :
         UInt16(int _iRows, int _iCols) : UnsignedIntT<unsigned short>(_iRows, _iCols) {}
         IntType getIntType() { return TypeUnsigned16; }
+        string getTypeStr(){return "uint16";}
     };
 
 //32 bits
@@ -481,6 +482,7 @@ namespace types
     public :
         Int32(int _iRows, int _iCols) : SignedIntT<int>(_iRows, _iCols) {}
         IntType getIntType() { return Type32; } 
+        string getTypeStr(){return "int32";}
     };
 	
     /*
@@ -491,6 +493,7 @@ namespace types
     public :
         UInt32(int _iRows, int _iCols) : UnsignedIntT<unsigned int>(_iRows, _iCols) {}
         IntType getIntType() { return TypeUnsigned32; } 
+        string getTypeStr(){return "uint32";}
     };
 
 //64 bits
@@ -502,6 +505,7 @@ namespace types
     public :
         Int64(int _iRows, int _iCols) : SignedIntT<long long>(_iRows, _iCols) {}
         IntType getIntType() { return Type64; } 
+        string getTypeStr(){return "int64";}
     };
 	
     /*
@@ -512,6 +516,7 @@ namespace types
     public :
         UInt64(int _iRows, int _iCols) : UnsignedIntT<unsigned long long>(_iRows, _iCols) {}
         IntType getIntType() { return TypeUnsigned64; } 
+        string getTypeStr(){return "uint64";}
     };
 }
 #endif /* __INTT_HH__ */

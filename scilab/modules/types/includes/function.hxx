@@ -52,7 +52,8 @@ namespace types
 
 		virtual ReturnValue call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
 
-
+    /* return type as string ( double, int, cell, list, ... )*/
+    virtual std::string     getTypeStr() {return string("function");}
   private :
     GW_FUNC			m_pFunc;
   };

@@ -55,6 +55,9 @@ namespace types
 
 		bool						operator==(const InternalType& it);
 		bool						operator!=(const InternalType& it);
+
+        /* return type as string ( double, int, cell, list, ... )*/
+        virtual std::string getTypeStr() {return string("boolean");}
   protected :
 		RealType				getType(void);
 
@@ -62,6 +65,7 @@ namespace types
 		/*clean values array*/
 		void						all_delete();
 		void						CreateBool(int _iRows, int _iCols, int **_ibData);
+
 
   private :
     int*						m_piData;

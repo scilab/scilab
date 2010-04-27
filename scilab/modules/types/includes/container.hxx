@@ -32,6 +32,9 @@ namespace types
     
     virtual RealType getType(void) { return RealContainer; }
     virtual bool isContainer(void) { return true; }
+
+    /* return type as string ( double, int, cell, list, ... )*/
+    virtual std::string getTypeStr() {return string("container");}
   };
 }
 

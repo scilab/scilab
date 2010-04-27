@@ -42,6 +42,9 @@ namespace types
     
 		ast::SeqExp* body_get();
 
+    /* return type as string ( double, int, cell, list, ... )*/
+    virtual std::string         getTypeStr() {return string("macro");}
+
   private :
     std::list<std::string>	*m_inputArgs;
     std::list<std::string>	*m_outputArgs;

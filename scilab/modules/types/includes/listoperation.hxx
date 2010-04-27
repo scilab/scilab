@@ -33,7 +33,10 @@ namespace types
 
     std::string toString(int _iPrecision, int _iLineLen);
     virtual bool isAssignable(void) { return false; }
-	};
+
+    /* return type as string ( double, int, cell, list, ... )*/
+    virtual std::string         getTypeStr() {return string("listoperation");}
+  };
 }
 
 

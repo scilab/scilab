@@ -11,9 +11,11 @@
 */
 
 #include <sstream>
+#include <math.h>
 #include "symbol.hxx"
 #include "cell.hxx"
 #include "double.hxx"
+#include "tostring_common.hxx"
 
 namespace types 
 {
@@ -147,7 +149,98 @@ namespace types
     std::string Cell::toString(int _iPrecision, int _iLineLen)
     {
         std::ostringstream ostr;
-        ostr << " (" << rows_get() << "," << cols_get() << ")" << std::endl;
+       
+        if(size_get() == 0)
+        {
+            ostr << "   {}";
+        }
+        else
+        {
+            //max len for each column
+            int *piColLen = new int[cols_get()];
+            int *piILen = new int[cols_get()];
+            int *piJLen = new int[cols_get()];
+            int *piSumLen = new int[cols_get()];
+
+            memset(piColLen, 0x00, cols_get() * sizeof(int));
+            memset(piILen,  0x00, cols_get() * sizeof(int));
+            memset(piJLen, 0x00, cols_get() * sizeof(int));
+            memset(piSumLen, 0x00, cols_get() * sizeof(int));
+
+            for(int j = 0 ; j < cols_get() ; j++)
+            {
+                for(int i = 0 ; i < rows_get() ; i++)
+                {
+                    InternalType* pIT = get(i,j);
+
+                    std::string strType = pIT->getTypeStr();
+                    if(pIT->isAssignable())
+                    {
+                        //compute number of digits to write rows and cols
+                        int iRowsLen = static_cast<int>(log10(static_cast<double>(pIT->getAsGenericType()->rows_get())) + 1);
+                        int iColsLen = static_cast<int>(log10(static_cast<double>(pIT->getAsGenericType()->cols_get())) + 1);
+
+                        if(piILen[j] < iRowsLen)
+                        {
+                            piILen[j] = iRowsLen;
+                        }
+
+                        if(piJLen[j] < iColsLen)
+                        {
+                            piJLen[j] = iColsLen;
+                        }
+
+                        if(piSumLen[j] < (iColsLen + iRowsLen + 1))
+                        {
+                            piSumLen[j] = iColsLen + iRowsLen + 1; //+1 for 'x' character
+                        }
+                    }
+
+                    if(piColLen[j] < strType.size())
+                    {
+                        piColLen[j] = static_cast<int>(strType.size());
+                    }
+                }
+            }
+
+            for(int i = 0 ; i < rows_get() ; i++)
+            {
+                for(int j = 0 ; j < cols_get() ; j++)
+                {
+                    InternalType* pIT = get(i,j);
+
+                    ostr << "  [";
+                    if(pIT->isAssignable())
+                    {
+                        std::ostringstream ostemp;
+                        Config_Stream(&ostemp, piILen[j], _iPrecision, ' ');
+                        ostemp << right << pIT->getAsGenericType()->rows_get();
+                        ostemp << "x";
+                        Config_Stream(&ostemp, piJLen[j], _iPrecision, ' ');
+                        ostemp << left << pIT->getAsGenericType()->cols_get();
+                        Config_Stream(&ostemp, piSumLen[j] - static_cast<int>(ostemp.str().size()), _iPrecision, ' ');
+                        ostemp << "";//fill with space
+                        ostr << ostemp.str();
+                    }
+                    else
+                    {
+                        Config_Stream(&ostr, piSumLen[j], _iPrecision, ' ');
+                        ostr << "";//fill with space
+                    }
+                    ostr << " ";
+                    Config_Stream(&ostr, piColLen[j], _iPrecision, ' ');
+                    ostr << left << pIT->getTypeStr();
+                    ostr << "]";
+                }
+                ostr << std::endl;
+            }
+
+            delete[] piColLen;
+            delete[] piILen;
+            delete[] piJLen;
+            delete[] piSumLen;
+        }
+        ostr << std::endl;
         return ostr.str();
     }
 

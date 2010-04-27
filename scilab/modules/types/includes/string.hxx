@@ -50,6 +50,8 @@ namespace types
 		bool						operator==(const InternalType& it);
 		bool						operator!=(const InternalType& it);
     
+        /* return type as string ( double, int, cell, list, ... )*/
+        virtual std::string     getTypeStr() {return string("string");}
     String *clone();
 
  protected :

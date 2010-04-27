@@ -35,7 +35,10 @@ namespace types
     std::string					toString(int _iPrecision, int _iLineLen);
 		InternalType*				insert_get();
 
-	private :
+    /* return type as string ( double, int, cell, list, ... )*/
+    virtual std::string         getTypeStr() {return string("listinsert");}
+
+  private :
 		InternalType*				m_pInsert;
 	};
 }

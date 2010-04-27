@@ -57,7 +57,10 @@ namespace types
 
 		bool					operator==(const InternalType& it);
 		bool					operator!=(const InternalType& it);
-  protected :
+
+        /* return type as string ( double, int, cell, list, ... )*/
+        virtual std::string     getTypeStr() {return string("poly");}
+    protected :
 		RealType			getType(void);
 
 	private : 

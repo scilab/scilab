@@ -45,6 +45,8 @@ namespace types
     void setModule(std::string _stModule) { m_stModule = _stModule; }
     std::string getModule() { return m_stModule; }
     
+    /* return type as string ( double, int, cell, list, ... )*/
+    virtual std::string getTypeStr() {return string("callable");}
   protected :
     std::string m_stName;
     std::string	m_stModule;

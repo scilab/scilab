@@ -56,6 +56,9 @@ namespace types
     virtual bool isAssignable(void) { return true; }
 
     virtual RealType getType(void) { return RealGeneric; }
+
+    /* return type as string ( double, int, cell, list, ... )*/
+    virtual std::string     getTypeStr() {return string("generictype");}
   };
 }
 #endif /* !__TYPES_HXX__ */

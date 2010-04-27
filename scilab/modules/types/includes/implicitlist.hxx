@@ -87,6 +87,9 @@ namespace types
 		//extract matrix in a Internaltype
 		InternalType* extract_matrix();
 		
+        /* return type as string ( double, int, cell, list, ... )*/
+        virtual std::string getTypeStr() {return string("implicitlist");}
+
         // templated extract for
         // double / char / short / int / long long / unsigned ...
         template<typename T>

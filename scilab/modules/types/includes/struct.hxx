@@ -71,6 +71,8 @@ namespace types
 
         Struct *getAsStruct(void) { return this; }
 
+        /* return type as string ( double, int, cell, list, ... )*/
+        virtual std::string     getTypeStr() {return string("struct");}
     private :
         std::map<std::string, InternalType *> *m_plData;
     };

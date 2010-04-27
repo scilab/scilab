@@ -34,6 +34,9 @@ namespace types
     void whoAmI();
 
     std::string toString(int _iPrecision, int _iLineLen);
+  
+    /* return type as string ( double, int, cell, list, ... )*/
+    virtual std::string         getTypeStr() {return string("listundefined");}
 	};
 }
 

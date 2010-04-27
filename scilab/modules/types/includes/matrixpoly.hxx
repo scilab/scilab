@@ -67,7 +67,10 @@ namespace types
 		bool					operator==(const InternalType& it);
 		bool					operator!=(const InternalType& it);
 
-	private :
+        /* return type as string ( double, int, cell, list, ... )*/
+        virtual std::string     getTypeStr() {return string("matrixpoly");}
+
+    private :
 		Poly*					m_poPolyMatrix;
 		bool					m_bComplex;
 		string				m_szVarName;

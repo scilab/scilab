@@ -37,10 +37,14 @@ namespace types
 
     std::string toString(int _iPrecision, int _iLineLen);
 
-		Callable::ReturnValue call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
-		bool parse(void);
-  
-		Macro* macro_get(void);
+    Callable::ReturnValue call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
+    bool parse(void);
+
+    Macro* macro_get(void);
+
+    /* return type as string ( double, int, cell, list, ... )*/
+    virtual std::string         getTypeStr() {return string("macrofile");}
+
   private :
     Macro*			m_pMacro;
     std::string			m_stPath;

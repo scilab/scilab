@@ -51,6 +51,9 @@ namespace types
 		bool													insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, vector<types::InternalType*>* _poSource, bool _bAsVector);
 		std::vector<InternalType*>		extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector);
 
+    /* return type as string ( double, int, cell, list, ... )*/
+    virtual std::string         getTypeStr() {return string("list");}
+
   private :
     std::vector<InternalType *>*	m_plData;
   };

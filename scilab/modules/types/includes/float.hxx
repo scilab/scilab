@@ -54,6 +54,8 @@ namespace types
 
     Float*				getAsFloat(void);
 
+    /* return type as string ( double, int, cell, list, ... )*/
+    virtual std::string         getTypeStr() {return string("float");}
   protected :
 		RealType			getType(void);
 

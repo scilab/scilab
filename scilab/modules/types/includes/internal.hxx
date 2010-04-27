@@ -89,6 +89,9 @@ namespace types
     bool	isRef(int _iRef = 0) { return m_iRef > _iRef; }
     int		getRef() { return m_iRef; }
 
+    /* return type as string ( double, int, cell, list, ... )*/
+    virtual std::string getTypeStr() = 0;
+
     virtual bool operator==(const InternalType& it) { return (getType() == (const_cast<InternalType *>(&it))->getType()); }
     virtual bool operator!=(const InternalType& it) { return !(*this == it); }
 
