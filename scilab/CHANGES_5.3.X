@@ -236,6 +236,8 @@ Bug fixes:
 * bug 6830 fixed - C2F(scistring) in stack2.c was broken for macro names of 
                    exactly 2 characters.
 
+* bug 6864 fixed - Error messages have been fixed in data_structures module.
+
 * bug 6889 fixed - 'fscanfMat' crashed with wrong formatted files.
 
 * bug 6891 fixed - 'whos' did not display global variables.
