@@ -242,6 +242,8 @@ Bug fixes:
 
 * bug 6901 fixed - This script with 'exec' produced a weird warning.
 
+* bug 6923 fixed - Wrong localized error messages in 'qmr' have been fixed.
+
 * bug 6932 fixed - Unitary test for function 'exit' failed in Linux binary version.
 
 * bug 6940 fixed - Wrong error message in pvm_send has been fixed.

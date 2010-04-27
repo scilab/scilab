@@ -140,7 +140,7 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: Square matrix expected.\n"),"qmr",5));
       end 
       if (size(Prec_g,1)~=size(b,1)),
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: Must be same size as input argument #%d"),"qmr",5,3));
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: Same size as input argument #%d expected.\n"),"qmr",5,3));
       end 
       deff('y=precond_g(x)','y=Prec_g \ x');
       deff('y=precondp_g(x)','y=Prec_g'' \ x');
@@ -191,7 +191,7 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: Square matrix expected.\n"),"qmr",6));
       end 
       if (size(Prec_d,1)~=size(b,1)),
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: Must be same size as input argument #%d"),"qmr",6,3));
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: Same size as input argument #%d expected.\n"),"qmr",6,3));
       end 
       deff('y=precond_d(x)','y=Prec_d \ x');
       deff('y=precondp_d(x)','y=Prec_d'' \ x');
