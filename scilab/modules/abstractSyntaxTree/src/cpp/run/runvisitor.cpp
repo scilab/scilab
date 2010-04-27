@@ -428,12 +428,15 @@ namespace ast
 					}
 					break;
 				}
+			case InternalType::RealCell :
+				pOut = pIT->getAsCell()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
+				break;
 			default :
 				break;
 			}
 
-			//Container type can return multiple items
-			if(pIT->isContainer() == false)
+			//List extraction can return multiple items
+            if(pIT->isList() == false)
 			{
 				if(pOut == NULL)
 				{

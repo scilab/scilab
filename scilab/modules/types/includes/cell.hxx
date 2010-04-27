@@ -61,8 +61,8 @@ namespace types
 
 	    bool insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector);
 	    Cell* insert_new(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, Double* _poSource, bool _bAsVector);
-	    InternalType* extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector);
-	    Cell* extract_cell(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector);
+	    Cell* extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector);
+	    InternalType* extract_cell(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector);
 
         /* return type as string ( double, int, cell, list, ... )*/
         virtual std::string getTypeStr() {return string("cell");}

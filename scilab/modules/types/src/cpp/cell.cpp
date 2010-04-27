@@ -39,6 +39,8 @@ namespace types
     {
         m_iRows = _iRows;
         m_iCols = _iCols;
+		m_iSize = m_iRows * m_iCols;
+
         m_plData = new InternalType*[size_get()];
         
         Double* pEmpty = new Double(0,0);
@@ -130,7 +132,7 @@ namespace types
     */
     int Cell::size_get() 
     {
-        return m_iRows * m_iCols;
+        return m_iSize;
     }
 
     /**
@@ -285,4 +287,61 @@ namespace types
     {
 		return !(*this == it);
     }
+
+    Cell* Cell::extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector)
+    {
+		Cell* pOut		= NULL;
+		int iRowsOut	= 0;
+		int iColsOut	= 0;
+
+		//check input param
+
+		if(	(_bAsVector && _piMaxDim[0] > size_get()) ||
+            (_bAsVector == false && _piMaxDim[0] > rows_get()) ||
+            (_bAsVector == false && _piMaxDim[1] > cols_get()))
+		{
+			return NULL;
+		}
+
+		if(_bAsVector)
+		{//a([])
+			if(rows_get() == 1)
+			{
+				iRowsOut	= 1;
+				iColsOut	= _piDimSize[0];
+			}
+			else
+			{
+				iRowsOut	= _piDimSize[0];
+				iColsOut	= 1;
+			}
+		}
+		else
+		{//a([],[])
+			iRowsOut		= _piDimSize[0];
+			iColsOut		= _piDimSize[1];
+		}
+
+		pOut					= new Cell(iRowsOut, iColsOut);
+
+
+		if(_bAsVector)
+		{
+			for(int i = 0 ; i < _iSeqCount ; i++)
+			{
+				pOut->set(i, get(_piSeqCoord[i] - 1));
+			}
+		}
+		else
+		{
+			for(int i = 0 ; i < _iSeqCount ; i++)
+			{
+				//convert vertical indexes to horizontal indexes
+				int iCurIndex		= (i % iColsOut) * iRowsOut + (i / iColsOut);
+				int iInIndex		= (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
+				pOut->set(iCurIndex, get(iInIndex));
+			}
+		}
+		return pOut;
+	}
 }
