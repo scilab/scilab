@@ -76,7 +76,7 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
   // If A is a matrix (dense or sparse)
   if (cpt==1),
     if (size(A,1) ~= size(A,2)),
-      error(msprintf(gettext("%s: Wrong type for input argument #%d: Square matrix expected.\n"),"qmr",1));
+      error(msprintf(gettext("%s: Wrong size for input argument #%d: Square matrix expected.\n"),"qmr",1));
     end
     deff('y=matvec(x)','y=A*x');
     deff('y=matvecp(x)','y=A''*x');
@@ -102,7 +102,7 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
   if ( rhs >= fct+2 ),
     b=varargin(fct+1);
     if ( size(b,2) ~= 1),
-      error(msprintf(gettext("%s: Wrong value for input argument #%d: Column vector expected.\n"),"qmr",3));
+      error(msprintf(gettext("%s: Wrong size for input argument #%d: Column vector expected.\n"),"qmr",3));
     end
   else 
     error(msprintf(gettext("%s: Wrong value for input argument #%d: Vector expected.\n"),"qmr",3));
@@ -112,10 +112,10 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
   if ( rhs >= fct+3),
     x=varargin(fct+2);
     if (size(x,2) ~= 1),
-      error(msprintf(gettext("%s: Wrong type for input argument #%d: Column vector expected.\n"),"qmr",4));
+      error(msprintf(gettext("%s: Wrong size for input argument #%d: Column vector expected.\n"),"qmr",4));
     end
     if ( size(x,1) ~= size(b,1)),
-      error(msprintf(gettext("%s: Wrong type for input argument #%d: Same size as the input argument #%d expected.\n"),"qmr",4,3));
+      error(msprintf(gettext("%s: Wrong size for input argument #%d: Same size as input argument #%d expected.\n"),"qmr",4,3));
     end
   else
     x=zeros(size(b,1),1);
@@ -137,7 +137,7 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
     end 
     if ( cpt==1 ),
 	  if (size(Prec_g,1) ~= size(Prec_g,2)),
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: Square matrix expected.\n"),"qmr",5));
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: Square matrix expected.\n"),"qmr",5));
       end 
       if (size(Prec_g,1)~=size(b,1)),
 		error(msprintf(gettext("%s: Wrong size for input argument #%d: Same size as input argument #%d expected.\n"),"qmr",5,3));
@@ -188,7 +188,7 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
     end 
     if ( cpt==1 ),
       if (size(Prec_d,1) ~= size(Prec_d,2)),
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: Square matrix expected.\n"),"qmr",6));
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: Square matrix expected.\n"),"qmr",6));
       end 
       if (size(Prec_d,1)~=size(b,1)),
 		error(msprintf(gettext("%s: Wrong size for input argument #%d: Same size as input argument #%d expected.\n"),"qmr",6,3));
@@ -232,7 +232,7 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
   if (rhs >= fct+6),
     max_it=varargin(fct+5);
     if (size(max_it,1) ~= 1 | size(max_it,2) ~=1),
-	  error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar expected.\n"),"qmr",7));
+	  error(msprintf(gettext("%s: Wrong size for input argument #%d: Scalar expected.\n"),"qmr",7));
 
     end 
   else
@@ -246,7 +246,7 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
   if (rhs == fct+7),
     tol=varargin(fct+6);
     if (size(tol,1) ~= 1 | size(tol,2) ~=1),
-	  error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar expected.\n"),"qmr",8));
+	  error(msprintf(gettext("%s: Wrong size for input argument #%d: Scalar expected.\n"),"qmr",8));
 	  
     end
   else

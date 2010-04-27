@@ -68,11 +68,11 @@ if (matrixType == 1),
 end
 b=varargin(1);
 if (size(b,2) ~= 1),
-  error(msprintf(gettext("%s: Wrong type for input argument #%d: Column vector expected.\n"),"gmres",2));
+  error(msprintf(gettext("%s: Wrong size for input argument #%d: Column vector expected.\n"),"gmres",2));
 end
 if (matrixType==1),
   if (size(b,1) ~= size(A,1)),
-  error(msprintf(gettext("%s: Wrong type for input argument #%d: Same size as input argument #%d expected.\n"),"gmres",2,1));
+  error(msprintf(gettext("%s: Wrong size for input argument #%d: Same size as input argument #%d expected.\n"),"gmres",2,1));
   end 
 end
 
@@ -80,7 +80,7 @@ end
 if (rhs >= 3),
   restrt=varargin(2);
   if (size(restrt) ~= [1 1]),
-	error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar expected.\n"),"gmres",3));
+	error(msprintf(gettext("%s: Wrong size for input argument #%d: Scalar expected.\n"),"gmres",3));
   end 
 else
   restrt=20;
@@ -90,7 +90,7 @@ end
 if (rhs >= 4),
   tol=varargin(3);
   if (size(tol) ~= [1 1]);
-	error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar expected.\n"),"gmres",4));
+	error(msprintf(gettext("%s: Wrong size for input argument #%d: Scalar expected.\n"),"gmres",4));
   end
 else
   tol = 1e-6;
@@ -100,7 +100,7 @@ end
 if (rhs >= 5),
   max_it=varargin(4);
   if (size(max_it) ~= [1 1]),
-	error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar expected.\n"),"gmres",5));
+	error(msprintf(gettext("%s: Wrong size for input argument #%d: Scalar expected.\n"),"gmres",5));
   end 
 else
   max_it=size(b,1);
@@ -119,7 +119,7 @@ if (rhs >= 6),
   end 
   if (precondType == 1),
     if (size(M,1) ~= size(M,2)),
-	  error(msprintf(gettext("%s: Wrong type for input argument #%d: Square matrix expected.\n"),"gmres",4));
+	  error(msprintf(gettext("%s: Wrong size for input argument #%d: Square matrix expected.\n"),"gmres",4));
 
     end 
     if (size(M,1) == 0),
@@ -139,10 +139,10 @@ end
 if (rhs >= 7),
   x=varargin(6);
   if (size(x,2) ~= 1),
-	error(msprintf(gettext("%s: Wrong type for input argument #%d: Column vector expected.\n"),"gmres",3));
+	error(msprintf(gettext("%s: Wrong size for input argument #%d: Column vector expected.\n"),"gmres",3));
   end
   if ( size(x,1) ~= size(b,1) ),
-	error(msprintf(gettext("%s: Wrong type for input argument #%d: Same size as the input argument #%d expected.\n"),"gmres",3,2));
+	error(msprintf(gettext("%s: Wrong type for size argument #%d: Same size as input argument #%d expected.\n"),"gmres",3,2));
   end 
 else
   x=zeros(b);
