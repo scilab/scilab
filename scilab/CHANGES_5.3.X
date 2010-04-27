@@ -236,7 +236,7 @@ Bug fixes:
 * bug 6830 fixed - C2F(scistring) in stack2.c was broken for macro names of 
                    exactly 2 characters.
 
-* bug 6864 fixed - Error messages have been fixed in data_structures module.
+* bug 6864 fixed - Some error messages were wrong in data_structures module.
 
 * bug 6889 fixed - 'fscanfMat' crashed with wrong formatted files.
 
@@ -244,13 +244,13 @@ Bug fixes:
 
 * bug 6901 fixed - This script with 'exec' produced a weird warning.
 
-* bug 6923 fixed - Wrong localized error messages in 'qmr' have been fixed.
+* bug 6923 fixed - Some localized messages were wrong in 'qmr'.
 
-* bug 6924 fixed - Wrong error messages in 'gmres' and 'qmr' have been fixed.
+* bug 6924 fixed - Some error messages were wrong in 'gmres' and 'qmr'.
 
 * bug 6932 fixed - Unitary test for function 'exit' failed in Linux binary version.
 
-* bug 6940 fixed - Wrong error message in pvm_send has been fixed.
+* bug 6940 fixed - An error message was wrong in 'pvm_send'.
 
 * bug 6947 fixed - Some demos in "Optimization and Simulation" failed, 
                    without write rights in SCI subdirectory.
