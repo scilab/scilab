@@ -86,6 +86,10 @@ Xcos:
 
 * bug 6903 fixed - modelicat calls ocamlrun (wrong dependency on Windows).      
 
+* bug 6981 fixed - the Scilab 'exit' call was killing Xcos session without 
+                   prompting the user if modified diagrams must be saved before 
+                   exiting.
+
 Compilation:
 ============
 

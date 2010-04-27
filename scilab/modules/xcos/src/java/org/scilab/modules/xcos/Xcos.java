@@ -23,6 +23,7 @@ import java.util.Map;
 
 import javax.swing.SwingUtilities;
 
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
@@ -176,20 +177,25 @@ public final class Xcos {
 	}
     }
 
-    /**
-     * This method is called when the user exits from Scilab
-     */
-    public static void closeXcosFromScilab() {
-
-	SwingUtilities.invokeLater(new Runnable() {
-	    public void run() {
-		// call close on all diagrams
-		while (XcosTab.getAllDiagrams().size() > 0) {
-		    XcosTab.getAllDiagrams().get(0).closeDiagram(true);
+	/**
+	 * This method is called when the user exits from Scilab
+	 */
+	public static void closeXcosFromScilab() {
+		try {
+			SwingUtilities.invokeAndWait(new Runnable() {
+				public void run() {
+					// call close on all diagrams
+					while (XcosTab.getAllDiagrams().size() > 0) {
+						XcosTab.getAllDiagrams().get(0).closeDiagram(true);
+					}
+				}
+			});
+		} catch (InterruptedException e) {
+			LogFactory.getLog(Xcos.class).error(e);
+		} catch (InvocationTargetException e) {
+			LogFactory.getLog(Xcos.class).error(e);
 		}
-	    }
-	});
-    }
+	}
 
     /**
      * This function convert a Xcos diagram to Scilab variable
