@@ -556,6 +556,9 @@ public class EditBlockFormatAction extends DefaultAction {
 			textArea.setFont(f);
 			textArea.setBackground(backgroundColorChooser.getColor());
 			textArea.setForeground(textColorChooser.getColor());
+			
+			// Repaint the parent scroll pane to force a full redraw call. 
+			jScrollPane1.repaint();
 		}
 	}
 	// CSON: ClassDataAbstractionCoupling
