@@ -515,8 +515,8 @@ ID LPAREN functionArgs RPAREN				{ $$ = new ast::CallExp(@$, *new ast::SimpleVar
 recursiveFunctionCall :
 simpleFunctionCall LPAREN functionArgs RPAREN		{ $$ = new ast::CallExp(@$, *$1, *$3); }
 | recursiveFunctionCall LPAREN functionArgs RPAREN	{ $$ = new ast::CallExp(@$, *$1, *$3); }
-| simpleCellCall LPAREN functionArgs RPAREN	{ std::cout << "recursiveFunctionCall -> simpleCellCall" << std::endl;$$ = new ast::CallExp(@$, *$1, *$3); }
-| recursiveCellCall LPAREN functionArgs RPAREN	{ std::cout << "recursiveFunctionCall -> recursiveCellCall" << std::endl;$$ = new ast::CallExp(@$, *$1, *$3); }
+| simpleCellCall LPAREN functionArgs RPAREN	{ $$ = new ast::CallExp(@$, *$1, *$3); }
+| recursiveCellCall LPAREN functionArgs RPAREN	{ $$ = new ast::CallExp(@$, *$1, *$3); }
 ;
 
 /*
@@ -544,8 +544,8 @@ ID LBRACE functionArgs RBRACE				{ $$ = new ast::CellCallExp(@$, *new ast::Simpl
 recursiveCellCall :
 simpleCellCall LBRACE functionArgs RBRACE		{ $$ = new ast::CellCallExp(@$, *$1, *$3); }
 | recursiveCellCall LBRACE functionArgs RBRACE	{ $$ = new ast::CellCallExp(@$, *$1, *$3); }
-| simpleFunctionCall LBRACE functionArgs RBRACE	{ std::cout << "recursiveCellCall -> simpleFunctionCall" << std::endl;$$ = new ast::CellCallExp(@$, *$1, *$3); }
-| recursiveFunctionCall LBRACE functionArgs RBRACE	{ std::cout << "recursiveCellCall -> recursiveFunctionCall" << std::endl;$$ = new ast::CellCallExp(@$, *$1, *$3); }
+| simpleFunctionCall LBRACE functionArgs RBRACE	{ $$ = new ast::CellCallExp(@$, *$1, *$3); }
+| recursiveFunctionCall LBRACE functionArgs RBRACE	{ $$ = new ast::CellCallExp(@$, *$1, *$3); }
 ;
 
 /*

@@ -3157,12 +3157,12 @@ yyreduce:
 
   case 58:
 
-    { std::cout << "recursiveFunctionCall -> simpleCellCall" << std::endl;(yyval.t_call_exp) = new ast::CallExp((yyloc), *(yyvsp[(1) - (4)].t_cell_call_exp), *(yyvsp[(3) - (4)].t_list_exp)); }
+    { (yyval.t_call_exp) = new ast::CallExp((yyloc), *(yyvsp[(1) - (4)].t_cell_call_exp), *(yyvsp[(3) - (4)].t_list_exp)); }
     break;
 
   case 59:
 
-    { std::cout << "recursiveFunctionCall -> recursiveCellCall" << std::endl;(yyval.t_call_exp) = new ast::CallExp((yyloc), *(yyvsp[(1) - (4)].t_cell_call_exp), *(yyvsp[(3) - (4)].t_list_exp)); }
+    { (yyval.t_call_exp) = new ast::CallExp((yyloc), *(yyvsp[(1) - (4)].t_cell_call_exp), *(yyvsp[(3) - (4)].t_list_exp)); }
     break;
 
   case 60:
@@ -3197,12 +3197,12 @@ yyreduce:
 
   case 66:
 
-    { std::cout << "recursiveCellCall -> simpleFunctionCall" << std::endl;(yyval.t_cell_call_exp) = new ast::CellCallExp((yyloc), *(yyvsp[(1) - (4)].t_call_exp), *(yyvsp[(3) - (4)].t_list_exp)); }
+    { (yyval.t_cell_call_exp) = new ast::CellCallExp((yyloc), *(yyvsp[(1) - (4)].t_call_exp), *(yyvsp[(3) - (4)].t_list_exp)); }
     break;
 
   case 67:
 
-    { std::cout << "recursiveCellCall -> recursiveFunctionCall" << std::endl;(yyval.t_cell_call_exp) = new ast::CellCallExp((yyloc), *(yyvsp[(1) - (4)].t_call_exp), *(yyvsp[(3) - (4)].t_list_exp)); }
+    { (yyval.t_cell_call_exp) = new ast::CellCallExp((yyloc), *(yyvsp[(1) - (4)].t_call_exp), *(yyvsp[(3) - (4)].t_list_exp)); }
     break;
 
   case 68:
