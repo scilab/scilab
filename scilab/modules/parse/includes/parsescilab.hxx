@@ -116,7 +116,8 @@
      HIGHLEVEL = 331,
      UPLEVEL = 332,
      LISTABLE = 333,
-     FUNCTIONCALL = 334
+     CELLCALL = 334,
+     FUNCTIONCALL = 335
    };
 #endif
 /* Tokens.  */
@@ -197,7 +198,8 @@
 #define HIGHLEVEL 331
 #define UPLEVEL 332
 #define LISTABLE 333
-#define FUNCTIONCALL 334
+#define CELLCALL 334
+#define FUNCTIONCALL 335
 
 
 
@@ -250,6 +252,8 @@ typedef union YYSTYPE
 			t_list_mline;
 
   ast::CellExp*		t_cell_exp;
+
+  ast::CellCallExp*	t_cell_call_exp;
 
   ast::FunctionDec*	t_function_dec;
 
