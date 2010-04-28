@@ -285,6 +285,11 @@ namespace ast
     }
 
 	template <class T>
+	void RunVisitorT<T>::visitprivate(const CellCallExp &e)
+	{
+    }
+
+    template <class T>
 	void RunVisitorT<T>::visitprivate(const CallExp &e)
 	{
 		T execFunc;

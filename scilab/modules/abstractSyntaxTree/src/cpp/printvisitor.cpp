@@ -308,6 +308,21 @@ namespace ast {
         e.right_exp_get ().accept (*this);
     }
 
+    void PrintVisitor::visit(const CellCallExp &e)
+    {
+        e.name_get().accept (*this);
+        *ostr << SCI_OPEN_CELL;
+        std::list<Exp *>::const_iterator	i;
+
+        for (i = e.args_get().begin (); i != e.args_get().end ();)
+        {
+            (*i)->accept (*this);
+            if (++i != e.args_get().end ())
+                *ostr << SCI_COMMA << " ";
+        }
+        *ostr << SCI_CLOSE_CELL;
+    }
+
     void PrintVisitor::visit(const CallExp &e)
     {
         e.name_get().accept (*this);

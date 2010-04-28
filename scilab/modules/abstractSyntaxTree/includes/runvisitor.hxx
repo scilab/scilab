@@ -109,6 +109,7 @@ namespace ast
 		 virtual void visitprivate(const OpExp &e);
 		 virtual void visitprivate(const LogicalOpExp &e);
 		 virtual void visitprivate(const AssignExp  &e);
+		 virtual void visitprivate(const CellCallExp &e);
 		 virtual void visitprivate(const CallExp &e);
 		 virtual void visitprivate(const IfExp  &e);
 		 virtual void visitprivate(const TryCatchExp  &e);

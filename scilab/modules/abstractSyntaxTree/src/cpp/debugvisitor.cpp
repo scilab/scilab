@@ -243,7 +243,24 @@ namespace ast
     DEBUG_END_NODE();
   }
 
-  void DebugVisitor::visit(const CallExp &e)
+  void DebugVisitor::visit(const CellCallExp &e)
+  {
+    DEBUG_START_NODE();
+    DEBUG("Exec CellCallExp", e);
+    e.name_get().accept (*this);
+    // FIXME
+    {
+      std::list<Exp *>::const_iterator	i;
+
+      for (i = e.args_get().begin (); i != e.args_get().end (); ++i)
+	{
+	  (*i)->accept (*this);
+	}
+    }
+    DEBUG_END_NODE();
+  }
+
+    void DebugVisitor::visit(const CallExp &e)
   {
     DEBUG_START_NODE();
     DEBUG("Exec CallExp", e);

@@ -101,6 +101,9 @@ namespace ast
 					case InternalType::RealList : 
 						//never occur !
 						break;
+					case InternalType::RealCell : 
+						//never occur !
+						break;
 					default : 
 						//TOTO YaSp : overlaoding insertion
 						break;

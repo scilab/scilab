@@ -228,6 +228,10 @@ namespace ast
 		  }
 	}
 
+	void OriginalVisitor::visit(const CellCallExp &e)
+	{
+    }
+
 	void OriginalVisitor::visit(const CallExp &e)
 	{
 		OriginalVisitor execFunc;

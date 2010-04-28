@@ -449,6 +449,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\cellcallexp.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\cellexp.hxx"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\colonvar.hxx"
 				>
 			</File>

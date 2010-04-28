@@ -121,6 +121,11 @@ namespace ast
 		visitprivate(e);
 	}
 
+	void ExecVisitor::visit (const CellCallExp &e)
+	{
+		visitprivate(e);
+	}
+
 	void ExecVisitor::visit (const CallExp &e)
 	{
 		visitprivate(e);

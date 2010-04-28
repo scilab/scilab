@@ -149,6 +149,17 @@ namespace ast {
 		}
 	}
 
+	void MuteVisitor::visit(const CellCallExp &e)
+	{
+		std::list<Exp *>::const_iterator arg;
+		for (arg = e.args_get().begin() ; arg != e.args_get().end() ; arg++)
+		{
+			(*arg)->mute();
+			MuteVisitor mute;
+			(*arg)->accept(mute);
+		}
+	}
+
 	void MuteVisitor::visit (const IfExp  &e)
 	{
 		const_cast<Exp&>(e.test_get()).mute();			

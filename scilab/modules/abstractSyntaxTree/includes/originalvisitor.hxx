@@ -103,6 +103,7 @@ namespace ast
 		 virtual void visit(const OpExp &e);
 		 virtual void visit(const LogicalOpExp &e);
 		 virtual void visit(const AssignExp  &e);
+		 virtual void visit(const CellCallExp &e);
 		 virtual void visit(const CallExp &e);
 		 virtual void visit(const IfExp  &e);
 		 virtual void visit(const TryCatchExp  &e);

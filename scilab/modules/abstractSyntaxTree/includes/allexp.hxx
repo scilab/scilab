@@ -73,6 +73,7 @@
 
 
 #include "callexp.hxx"
+#include "cellcallexp.hxx"
 #include "assignexp.hxx"
 
 // List of expressions
