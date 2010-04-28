@@ -15,6 +15,7 @@ package org.scilab.modules.xcos.block.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -405,18 +406,18 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 				}
 
 				/* Construct fields from data */
-				ScilabList exprs = new ScilabList() {
-					{
-						add(new ScilabString(values));
-						add(new ScilabList() {
-							{
-								add(new ScilabString(varNames));
-								add(new ScilabString(varDesc));
-								add(polFields);
-							}
-						});
-					}
-				};
+				ScilabList exprs = new ScilabList(
+					Arrays.asList(
+						new ScilabString(values),
+						new ScilabList(
+							Arrays.asList(
+								new ScilabString(varNames),
+								new ScilabString(varDesc),
+								polFields
+							)
+						)
+					)
+				);
 
 				getBlock().setExprs(exprs);
 			}
@@ -434,23 +435,22 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 				// Xcos from Scilab 5.2.0 version
 				// so set default values
 				if (rawExprs instanceof ScilabDouble) {
-					rawExprs = new ScilabList() {
-						{
-							add(new ScilabDouble());
-							add(new ScilabList() {
-								{
-									add(new ScilabDouble());
-									add(new ScilabString(
-											XcosMessages.MASK_DEFAULTWINDOWNAME));
-									add(new ScilabList() {
-										{
-											add(new ScilabDouble());
-										}
-									});
-								}
-							});
-						}
-					};
+					rawExprs = new ScilabList(
+						Arrays.asList(
+							new ScilabDouble(),
+							new ScilabList(
+								Arrays.asList(
+									new ScilabDouble(),
+									new ScilabString(XcosMessages.MASK_DEFAULTWINDOWNAME),
+									new ScilabList(
+										Arrays.asList(
+											new ScilabDouble()
+										)
+									)
+								)
+							)
+						)
+					);
 				}
 				DefaultTableModel customModel = customizeTableModel;
 				DefaultTableModel valuesModel = valuesTableModel;

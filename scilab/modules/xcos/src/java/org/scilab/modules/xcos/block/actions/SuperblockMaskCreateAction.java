@@ -14,6 +14,7 @@
 package org.scilab.modules.xcos.block.actions;
 
 import java.awt.event.ActionEvent;
+import java.util.Arrays;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
@@ -68,23 +69,23 @@ public final class SuperblockMaskCreateAction extends DefaultAction {
 		block.mask();
 
 		/* Set default values */
-		ScilabList exprs = new ScilabList() {
-			{
-				add(new ScilabDouble());
-				add(new ScilabList() {
-					{
-						add(new ScilabDouble());
-						add(new ScilabString(
-								XcosMessages.MASK_DEFAULTWINDOWNAME));
-						add(new ScilabList() {
-							{
-								add(new ScilabDouble());
-							}
-						});
-					}
-				});
-			}
-		};
+		ScilabList exprs = new ScilabList(
+			Arrays.asList(
+				new ScilabDouble(),
+				new ScilabList(
+					Arrays.asList(
+						new ScilabDouble(),
+						new ScilabString(XcosMessages.MASK_DEFAULTWINDOWNAME),
+						new ScilabList(
+							Arrays.asList(
+								new ScilabDouble()
+							)
+						)
+					)
+				)
+			)
+		);
+		
 		block.setExprs(exprs);
 	}
 }

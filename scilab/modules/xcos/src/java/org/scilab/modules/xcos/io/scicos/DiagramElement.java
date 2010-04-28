@@ -15,6 +15,7 @@ package org.scilab.modules.xcos.io.scicos;
 import static java.util.Arrays.asList;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -75,25 +76,25 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 	// As the values are scicos dependent we avoid using constant references.
 	// CSOFF: MagicNumber
 	private static final ScilabTList DIAGRAM_OPTIONS = new ScilabTList(
-			OPTS_FIELDS) {
-		{
-			add(new ScilabList() { // 3D
-				{
-					add(new ScilabBoolean(true));
-					add(new ScilabDouble(33));
-				}
-			});
-			add(new ScilabDouble(new double[][] {{8, 1}})); // Background
-			add(new ScilabDouble(new double[][] {{1, 5}})); // Link
-			add(new ScilabList() { // ID
-				{
-					add(new ScilabDouble(new double[][] {{5, 1}}));
-					add(new ScilabDouble(new double[][] {{4, 1}}));
-				}
-			});
-			add(new ScilabDouble(new double[][] {{0.8, 0.8, 0.8}})); // Cmap
-		}
-	};
+			OPTS_FIELDS,
+		Arrays.asList(
+			new ScilabList( // 3D
+				Arrays.asList(
+					new ScilabBoolean(true),
+					new ScilabDouble(33)
+				)
+			),
+			new ScilabDouble(new double[][] {{8, 1}}), // Background
+			new ScilabDouble(new double[][] {{1, 5}}), // Link
+			new ScilabList( // ID
+				Arrays.asList(
+					new ScilabDouble(new double[][] {{5, 1}}),
+					new ScilabDouble(new double[][] {{4, 1}})
+				)
+			),
+			new ScilabDouble(new double[][] {{0.8, 0.8, 0.8}}) // Cmap
+		)
+	);
 	// CSON: MagicNumber
 	
 	private ScilabMList base;
