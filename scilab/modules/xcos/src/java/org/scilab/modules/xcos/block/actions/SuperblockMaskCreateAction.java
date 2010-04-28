@@ -63,29 +63,33 @@ public final class SuperblockMaskCreateAction extends DefaultAction {
 	public void actionPerformed(ActionEvent e) {
 		SuperBlock block = (SuperBlock) ((XcosDiagram) getGraph(e))
 				.getSelectionCell();
-		/*
-		 * FIXME: this action doesn't handle variable settings
-		 */
-		block.mask();
 
-		/* Set default values */
-		ScilabList exprs = new ScilabList(
-			Arrays.asList(
-				new ScilabDouble(),
-				new ScilabList(
-					Arrays.asList(
-						new ScilabDouble(),
-						new ScilabString(XcosMessages.MASK_DEFAULTWINDOWNAME),
-						new ScilabList(
-							Arrays.asList(
-								new ScilabDouble()
+		block.mask();
+		
+		/*
+		 * Create a valid DSUPER exprs field if not already present.
+		 */
+		if (!(block.getExprs() instanceof ScilabList)) {
+			
+			/* Set default values */
+			ScilabList exprs = new ScilabList(
+				Arrays.asList(
+					new ScilabDouble(),
+					new ScilabList(
+						Arrays.asList(
+							new ScilabDouble(),
+							new ScilabString(XcosMessages.MASK_DEFAULTWINDOWNAME),
+							new ScilabList(
+								Arrays.asList(
+									new ScilabDouble()
+								)
 							)
 						)
 					)
 				)
-			)
-		);
-		
-		block.setExprs(exprs);
+			);
+			
+			block.setExprs(exprs);
+		}
 	}
 }
