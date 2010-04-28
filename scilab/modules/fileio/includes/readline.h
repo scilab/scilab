@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+ * Copyright (C) DIGITEO - 2010 - Allan CORNET 
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,14 +17,33 @@
 #include "dynlib_fileio.h"
 #include "machine.h"
 
-FILEIO_IMPEXP int LineRead(FILE *fd,char buf[],int n,int *cnt,int *nr);
-
-
+#define READNEXTLINE_ERROR_EOF_REACHED -1
 #define READNEXTLINE_ERROR_EOF_REACHED_AFTER_EOL 0
 #define READNEXTLINE_ERROR_EOL 1
 #define READNEXTLINE_ERROR_BUFFER_FULL 2
 #define READNEXTLINE_ERROR_EOF_REACHED_BEFORE_EOL 3
 #define READNEXTLINE_ERROR_ERROR_UNMANAGED 4
+
+/* PLEASE USE mgetl (see mgetl.h) and not these functions */
+/* only for compatibility with fortran code */
+
+/**
+* read a line from a text file
+* used by texmacs mode and readnextline
+* @param[in] fd: a int file descriptor to open
+* @param[in/out] buf : string buffer returned
+* @param[in] n : bsiz (4096)
+* @param[in/out]: *cnt numbers of returned characters 
+* @param[in/out]: *nr numbers of returned characters 
+* @return info code
+* -1 : EOF reached
+* 0 : EOF reached after an EOL
+* 1 : EOL reached
+* 2 : buffer full
+* 3 : EOF reached before any EOL
+* 4 : ERROR (not managed)
+*/
+FILEIO_IMPEXP int LineRead(int fd, char buf[], int n, int *cnt, int *nr);
 
 /**
 * read a line from a text file
@@ -34,6 +54,7 @@ FILEIO_IMPEXP int LineRead(FILE *fd,char buf[],int n,int *cnt,int *nr);
 * @param[out] *count : numbers of returned characters + 1
 * @param[out] *nr : numbers of returned characters 
 * @param[out] *ierr : int error code
+* -1 : EOF reached
 * 0 : EOF reached after an EOL
 * 1 : EOL reached
 * 2 : buffer full

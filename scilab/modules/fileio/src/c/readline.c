@@ -1,7 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA
-* ...
+* Copyright (C) DIGITEO - 2010 - Allan CORNET
 *
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -11,105 +11,99 @@
 *
 */
 /*--------------------------------------------------------------------------*/
-/* LineRead procedure reads lines in ascii files coming from Unix Dos or Mac
-* End of line may be \Cr\lf (Dos) \Lf (Unix) \Cr (Mac)
-*/
-/*--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include <string.h>
 #include "readline.h"
-#include "filesmanagement.h"
+#include "mgetl.h"
+#include "stack-def.h" /* bsiz */
 /*--------------------------------------------------------------------------*/
-#if (defined(sun) && !defined(SYSV)) || defined(sgi)
-#define SEEK_SET 0
-#define SEEK_CUR 1
-#define SEEK_END 2
-#endif
+#define EMPTYSTR ""
 /*--------------------------------------------------------------------------*/
-#define CR 13
-#define LF 10
-/*--------------------------------------------------------------------------*/
-/**
-* @params cnt : number of charaters returned in buf
-* @params nr : number of characters read
-*/
-int LineRead(FILE *fd,char buf[],int n,int *cnt,int *nr)
+int LineRead(int fd, char buf[], int n, int *cnt, int *nr)
 {
-    int c,count,info;
-    long int offset;
-    count=0;
-    *nr=0;
+    int returnedInfo = READNEXTLINE_ERROR_ERROR_UNMANAGED;
+    int nbLinesToRead = 1;
+    int nbLinesReaded = 0;
+    int mgetIerr = MGETL_ERROR;
 
-    while (1)
+    char **lines = mgetl(fd, nbLinesToRead, &nbLinesReaded, &mgetIerr);
+    *cnt = 0;
+    *nr = 0;
+
+    memset(buf, 0, n);
+    strcpy(buf, EMPTYSTR);
+
+    switch(mgetIerr)
     {
-        c=fgetc(fd);
-        *nr=*nr+1;
-        if (c==LF)
+    case MGETL_NO_ERROR:
         {
-            /* LF reached first: unix file */
-            buf[count++]=(char)0;
-            info=1; /* EOL reached */
-            break;
-        }
-        else if (c==CR)
-        {
-            /* CR reached first: Dos or Mac file */
-            c=fgetc(fd);
-            *nr=*nr+1;
-            if (c==EOF)
+            if ((lines[0]) && (lines) && (nbLinesReaded == 1))
             {
-                buf[count++]=(char)0;
-                info=0;/* EOF reached after an EOL */
-                break;
+                /* current limitation (bsiz) of line readed by scilab */
+                if ((int)strlen(lines[0]) < bsiz)
+                {
+                    strcpy(buf, lines[0]);
+                    returnedInfo = READNEXTLINE_ERROR_EOL;
+                }
+                else
+                {
+                    strncpy(buf, lines[0], bsiz);
+                    returnedInfo = READNEXTLINE_ERROR_BUFFER_FULL;
+                }
             }
-            else if (c==LF)
-            {
-                /* LF after CR : Dos file */
-                buf[count++]=(char)0;
-                info=1; /* EOL reached */
-                break;
-            }
-            else if (c!=LF)
-            {
-                /* Mac file */
-                offset=-1;
-                fseek(fd,offset,SEEK_CUR);
-                *nr=*nr-1;
-                buf[count++]=(char)0;
-                info=1;  /* EOL reached */
-                break;
-            }
-        }
-        else if (c==EOF)
-        {
-            /* EOF reached before any EOL*/
-            buf[count++]=(char)0;
-            if (count==1)
-                info=-1; /* EOF reached */
             else
-                info=3;
-            break;
-        }
-        else
-        {
-            buf[count++]=(char)c;
-            if (count==n-1)
             {
-                buf[count++]=(char)0;
-                info=2; /* buffer full */
-                break;
+                returnedInfo = READNEXTLINE_ERROR_EOF_REACHED;
             }
         }
+        break;
+
+    case MGETL_EOF:
+        {
+            if (lines)
+            {
+                if (nbLinesReaded == 0)
+                {
+                    returnedInfo = READNEXTLINE_ERROR_EOF_REACHED;
+                }
+                else
+                {
+                    /* current limitation (bsiz) of line readed by scilab */
+                    if ((int)strlen(lines[0]) >= bsiz)
+                    {
+                        strcpy(buf, lines[0]);
+                        returnedInfo = READNEXTLINE_ERROR_EOF_REACHED_AFTER_EOL;
+                    }
+                    else
+                    {
+                        strncpy(buf, lines[0], bsiz);
+                        returnedInfo = READNEXTLINE_ERROR_BUFFER_FULL;
+                    }
+                }
+            }
+            else
+            {
+                returnedInfo = READNEXTLINE_ERROR_EOF_REACHED_BEFORE_EOL;
+            }
+        }
+        break;
+
+    case MGETL_MEMORY_ALLOCATION_ERROR:
+    case MGETL_ERROR:
+    default:
+        {
+            returnedInfo = READNEXTLINE_ERROR_ERROR_UNMANAGED;
+        }
+        break;
     }
-    *cnt=count;
-    *cnt = (int)strlen(buf)+1;
-    return(info);
+
+    *cnt = (int)strlen(buf) + 1;
+    *nr = *cnt;
+    return returnedInfo;
 }
 /*--------------------------------------------------------------------------*/
-void C2F(readnextline)(int *fd,char buf[],int *n,int *count,int *nr,int *ierr)
+void C2F(readnextline)(int *fd, char buf[], int *n, int *count, int *nr, int *ierr)
 {
-    FILE *fa= GetFileOpenedInScilab(*fd);
-    /* TO DO : replaces LineRead by mgetl */
-    *ierr=LineRead(fa,buf,*n,count,nr);
+    *ierr = LineRead(*fd, buf, *n, count, nr);
 }
 /*--------------------------------------------------------------------------*/

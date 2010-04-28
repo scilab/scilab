@@ -37,7 +37,14 @@ char **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
     *ierr = MGETL_ERROR;
     *nbLinesOut = 0;
 
-    fa = GetFileOpenedInScilab(fd);
+    if (fd == STDIN_ID) 
+    {
+        fa = stdin;
+    }
+    else
+    {
+        fa = GetFileOpenedInScilab(fd);
+    }
 
     if (fa)
     {
@@ -152,17 +159,16 @@ char *removeEOL(char *_inString)
 {
     if (_inString)
     {
-        int len = (int)strlen(_inString);
-
-        if ((_inString[len - 1] == LF) && (len > 0))
+        char *pos = strchr(_inString, LF);
+        if (pos)
         {
-            _inString[len - 1] = 0; 
-            len = (int)strlen(_inString);
+            *pos = 0;
         }
-        
-        if ((_inString[len - 1] == CR) && (len > 0))
+
+        pos = strchr(_inString, CR);
+        if (pos)
         {
-            _inString[len - 1] = 0; 
+            *pos = 0;
         }
     }
     return _inString;

@@ -187,7 +187,8 @@ Bug fixes:
 
 * bug 1304 fixed - macr2tree now works with a Scilab expression as input.
 
-* bug 2775 fixed - Multiplication of 0 times infinity did not work because of ATLAS under Windows.
+* bug 2775 fixed - Multiplication of 0 times infinity did not work because of
+                   ATLAS under Windows.
 
 * bug 3780 fixed - The function loadmatfile did not ignore comments found in 
                    ASCII files while loading them, resulting in an error message.
@@ -204,6 +205,9 @@ Bug fixes:
 
 * bug 4996 fixed - mgetl() was not located in the right module. It has been
                    moved to "fileio" module
+
+* bug 5583 fixed - exec() did not manage correctly UTF-8 and ANSI/ASCII files 
+                   encoded.
 
 * bug 6419 fixed - gstacksize() There was no way to retrieve minimum 
                    from Scilab.

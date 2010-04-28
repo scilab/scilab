@@ -108,6 +108,7 @@ ierr=exec(fun,'errcatch' [,mode])</synopsis>
     <para>Arquivos executáveis (exec files) podem agora ser usados para
     definir funções "inline" utilizando a sintaxe de definição (ver
     function).</para>
+    <para><literal>exec</literal> supports files encoded as ANSI/ASCII and UTF-8 (NO-BOM).</para>
   </refsection>
 
   <refsection>

@@ -118,11 +118,12 @@ ierr=exec(fun,'errcatch' [,mode])</synopsis>
     </para>
   </refsection>
   <refsection>
-    <title>REMARQUE</title>
+    <title>REMARQUES</title>
     <para>
       Les scripts peuvent maintenant contenir des définitions de fonctions en
       ligne (voir fonction). 
     </para>
+    <para><literal>exec</literal> prend en charge les fichiers encodés aux formats ANSI/ASCII et UTF-8 (NO-BOM).</para>
   </refsection>
   <refsection>
     <title>Exemples</title>
