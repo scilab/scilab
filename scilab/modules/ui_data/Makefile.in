@@ -128,7 +128,8 @@ libsciui_data_la_DEPENDENCIES =  \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__objects_2 =
-am__objects_3 = libsciui_data_la-BrowseVar.lo
+am__objects_3 = libsciui_data_la-BrowseVar.lo \
+	libsciui_data_la-EditVar.lo
 am__objects_4 = libsciui_data_la-gw_ui_data.lo
 am__objects_5 = libsciui_data_la-sci_editvar.lo \
 	libsciui_data_la-sci_browsevar.lo
@@ -486,7 +487,9 @@ JARMASK = *.jar
 HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
 HELP_CHAPTERLANG = en_US fr_FR pt_BR
-UI_DATA_JNI_SOURCES = src/jni/BrowseVar.cpp
+UI_DATA_JNI_SOURCES = src/jni/BrowseVar.cpp \
+					  src/jni/EditVar.cpp
+
 UI_DATA_C_SOURCES = 
 UI_DATA_CPP_SOURCES = 
 GIWS_WRAPPERS = 
@@ -620,6 +623,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciui_data_disable_la-noui_data.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciui_data_la-BrowseVar.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciui_data_la-EditVar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciui_data_la-gw_ui_data.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciui_data_la-sci_browsevar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciui_data_la-sci_editvar.Plo@am__quote@
@@ -686,6 +690,13 @@ libsciui_data_la-BrowseVar.lo: src/jni/BrowseVar.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/BrowseVar.cpp' object='libsciui_data_la-BrowseVar.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciui_data_la-BrowseVar.lo `test -f 'src/jni/BrowseVar.cpp' || echo '$(srcdir)/'`src/jni/BrowseVar.cpp
+
+libsciui_data_la-EditVar.lo: src/jni/EditVar.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciui_data_la-EditVar.lo -MD -MP -MF $(DEPDIR)/libsciui_data_la-EditVar.Tpo -c -o libsciui_data_la-EditVar.lo `test -f 'src/jni/EditVar.cpp' || echo '$(srcdir)/'`src/jni/EditVar.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciui_data_la-EditVar.Tpo $(DEPDIR)/libsciui_data_la-EditVar.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/EditVar.cpp' object='libsciui_data_la-EditVar.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciui_data_la-EditVar.lo `test -f 'src/jni/EditVar.cpp' || echo '$(srcdir)/'`src/jni/EditVar.cpp
 
 libsciui_data_la-sci_editvar.lo: sci_gateway/cpp/sci_editvar.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciui_data_la-sci_editvar.lo -MD -MP -MF $(DEPDIR)/libsciui_data_la-sci_editvar.Tpo -c -o libsciui_data_la-sci_editvar.lo `test -f 'sci_gateway/cpp/sci_editvar.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_editvar.cpp

@@ -74,13 +74,18 @@ public class BrowseVar {
 	}
     }
 
+    /**
+     * Open variable Browser with information given columnsNames
+     * @param columnNames titles of the JTable
+     */
+    
     public static void openVariableBrowser(String[] columnNames) {
 	VariableBrowser browsevar = ScilabVariableBrowser.getVariableBrowser(columnNames);
 	browsevar.setVisible(true);
     }
     
     /**
-     * Open variable Browser with infromations given by Scilab
+     * Open variable Browser with information given by Scilab
      * @param columnNames : titles of the JTable
      * @param dataNames : scilab variable name
      * @param dataBytes : scilab variable size in bytes
@@ -89,7 +94,7 @@ public class BrowseVar {
      */
     public static void openVariableBrowser(String[] columnNames, String[] dataNames, int[] dataBytes, int[] dataTypes, String[] dataStandard) {
 	Object[][] data = new Object[dataNames.length][columnNames.length];
-	for (int i = 0 ; i < dataNames.length ; ++i) {
+	for (int i = 0; i < dataNames.length; ++i) {
 	    data[i][0] = getIconFromType(dataTypes[i]);
 	    data[i][1] = dataNames[i];
 	    data[i][2] = dataBytes[i];

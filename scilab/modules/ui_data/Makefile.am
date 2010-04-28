@@ -26,7 +26,8 @@ libsciui_data_la_etc_DATA = etc/ui_data.quit \
 include $(top_srcdir)/Makefile.incl.am
 
 
-UI_DATA_JNI_SOURCES = src/jni/BrowseVar.cpp
+UI_DATA_JNI_SOURCES = src/jni/BrowseVar.cpp \
+					  src/jni/EditVar.cpp
 
 UI_DATA_C_SOURCES = 
 

@@ -13,3 +13,9 @@ getrhsvar_
 vartype_
 checkrhs_ 
 checklhs_
+getGlobalSizefromId
+getGlobalNamefromId
+getLocalSizefromId
+getLocalNamefromId 
+getgvariablesinfo_
+getvariablesinfo_

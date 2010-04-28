@@ -376,11 +376,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\jni\BrowseVar.hxx"
+				RelativePath=".\DllmainUi_data.c"
 				>
 			</File>
 			<File
-				RelativePath=".\DllmainUi_data.c"
+				RelativePath="..\jni\EditVar.cpp"
 				>
 			</File>
 			<File
@@ -401,7 +401,15 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
+				RelativePath="..\jni\BrowseVar.hxx"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\dynlib_ui_data.h"
+				>
+			</File>
+			<File
+				RelativePath="..\jni\EditVar.hxx"
 				>
 			</File>
 			<File

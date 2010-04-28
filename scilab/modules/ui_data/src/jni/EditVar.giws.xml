@@ -1,0 +1,8 @@
+<package name="org.scilab.modules.ui_data">
+    <object name="EditVar">
+        <method name="openVariableEditor" returnType="void" modifier="static">
+          <parameter type="double[][]" name="data"/>
+        </method>
+        <method name="closeVariableEditor" returnType="void" modifier="static"/>
+    </object>
+</package>

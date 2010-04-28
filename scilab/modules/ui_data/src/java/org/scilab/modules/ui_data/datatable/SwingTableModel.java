@@ -17,86 +17,98 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  * Swing implementation of table model.
- * @param <Type>
+ * @param <Type> Type of data to be stored by the model
  */
 public class SwingTableModel<Type> extends AbstractTableModel implements ScilabTable<Type> {
 
-    private static final long serialVersionUID = -4255704246347716837L;
+	private static final long serialVersionUID = -4255704246347716837L;
 
-    private String[] columnNames;
-    private Type[][] data;
+	private String[] columnNames;
+	private Type[][] data;
 
-    /**
-     * Default construction setting columns title.
-     * @param columnsNames : the columns title.
-     */
-    public SwingTableModel(String[] columnsNames) {
-	this.columnNames = columnsNames;
-    }
+	/**
+	 * Default construction setting columns title.
+	 * @param columnsNames : the columns title.
+	 */
+	public SwingTableModel(String[] columnsNames) {
+		this.columnNames = columnsNames;
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    public int getColumnCount() {
-	return columnNames.length;
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    public int getRowCount() {
-	if (data == null) {
-	    return 0;
+	public SwingTableModel(Type[][] data) {
+		this.data = data;
 	}
-	return data.length;
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    public Type getValueAt(int row, int col) {
-	if (data == null) {
-	    return null;
-	}
-	return data[row][col];
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    public void setData(Type[][] data) {
-	this.data = data;
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    public String getColumnName(int col) {
-	return columnNames[col];
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    public void setColumnNames(String[] columnNames) {
-	this.columnNames = columnNames;
-    }
 
-    /**
-     * {@inheritDoc}
-     */
-    public Class getColumnClass(int c) {
-	// Need to force return of ImageIcon when needed
-	// to have real images displayed
-	// and no PATH comming from "toString" method.
-	if (c == 0) {
-	    return ImageIcon.class;
+	/**
+	 * {@inheritDoc}
+	 */
+	public int getColumnCount() {
+		if (columnNames != null) {
+			return columnNames.length;
+		} else {
+			return data[0].length;
+		}
 	}
-	
-	if (c == 2 || c == 3) {
-		return Integer.class;
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public int getRowCount() {
+		if (data == null) {
+			return 0;
+		}
+		return data.length;
 	}
-	
-	return Object.class;
-    }
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Type getValueAt(int row, int col) {
+		if (data == null) {
+			return null;
+		}
+		return data[row][col];
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void setData(Type[][] data) {
+		this.data = data;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getColumnName(int col) {
+		if (columnNames != null) {
+			return columnNames[col];
+		} else {
+			return String.valueOf(col);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void setColumnNames(String[] columnNames) {
+		this.columnNames = columnNames;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Class getColumnClass(int c) {
+		// Need to force return of ImageIcon when needed
+		// to have real images displayed
+		// and no PATH comming from "toString" method.
+		if (c == 0) {
+			return ImageIcon.class;
+		}
+
+		if (c == 2 || c == 3) {
+			return Integer.class;
+		}
+
+		return Object.class;
+	}
 }
