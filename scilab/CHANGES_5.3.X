@@ -243,6 +243,8 @@ Bug fixes:
 * bug 6740 fixed - It was not possible to launch Scilab as Minimized 
                    or Maximized Window.
 
+* bug 6744 fixed - p_margin() returned an erroneous result.
+
 * bug 6784 fixed - It was not possible to move a Scilab installation without
                    breaking the (previously installed) ATOMS packages load.
 
