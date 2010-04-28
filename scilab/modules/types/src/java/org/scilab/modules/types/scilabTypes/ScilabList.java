@@ -13,11 +13,31 @@
 package org.scilab.modules.types.scilabTypes;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * This class provides a wrapping on the Scilab List datatype
  */
 public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
+	
+	/**
+	 * Construct an empty Scilab list.
+	 */
+	public ScilabList() {
+		super();
+	}
+
+	/**
+	 * Construct a list containing the elements of the specified collection, in
+	 * the order that they are returned by the specified collection's iterator.
+	 * 
+	 * @param c
+	 *            the collection whose elements are to be placed into this list.
+	 */
+	public ScilabList(Collection< ? extends ScilabType> c) {
+		super(c);
+	}
+	
     public int getHeight() {
 		if (isEmpty()) {
 			return 0;

@@ -13,21 +13,53 @@
 package org.scilab.modules.types.scilabTypes;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * This class provides a wrapping on the Scilab Mlist datatype
  */
 public class ScilabMList extends ArrayList<ScilabType> implements ScilabType {
    
+	/**
+	 * Construct an empty mlist.
+	 * 
+	 * Note that the first element of this collection is the header used by
+	 * Scilab to find each field name.
+	 */
     public ScilabMList() {
 		super();
     }
     
+    /**
+     * Construct an mlist with a specified header.
+     *  
+     * @param types field names used by the accessors.
+     */
     public ScilabMList(String []types) {
 		super();
 		String [][] typesData = new String[1][types.length];
 		typesData[0] = types;
 		add(new ScilabString(typesData));
+    }
+    
+	/**
+	 * Construct a tlist containing the elements of the specified collection, in
+	 * the order that they are returned by the specified collection's iterator.
+	 * 
+	 * @param names
+	 *            field names, used by the accessors.
+	 * @param c
+	 *            the collection whose elements are to be placed into this
+	 *            mlist.
+	 */
+    public ScilabMList(String[] names, Collection< ? extends ScilabType> c) {
+    	super(c.size() + 1);
+    	
+    	String[][] namesData = new String[1][names.length];
+    	namesData[0] = names;
+    	add(new ScilabString(namesData));
+    	
+    	addAll(c);
     }
     
 	public int getHeight() {
