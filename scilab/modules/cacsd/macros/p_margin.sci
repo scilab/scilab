@@ -26,15 +26,14 @@ function [phm,fr]=p_margin(h)
     niw=horner(h.num,%i*w);
     diw=horner(h.den,%i*w);
     // |n(iw)/d(iw)|=1 <-- (n(iw)*n(-iw))/(d(iw)*d(-iw))=1 <--  (n(iw)*n(-iw)) - (d(iw)*d(-iw))=0
-    w=roots(real(niw*conj(niw)-diw*conj(diw)));
+    w=roots(real(niw*conj(niw)-diw*conj(diw)),"e");
     //select positive real roots
-    ws=w(find((abs(imag(w))<eps)&(real(w)>0))); //frequency points with unitary modulus
+    ws=real(w(find((abs(imag(w))<eps)&(real(w)>0)))); //frequency points with unitary modulus
     if ws==[] then 
       phm=[];
       fr=[];
       return
     end
-    ws=min(real(ws)); //keep only the first point where the open-loop phase first crosses 180°
     f=horner(h,%i*ws);
   else  //discrete time case
     if h.dt=='d' then 
@@ -49,7 +48,7 @@ function [phm,fr]=p_margin(h)
     hh=h*horner(h,1/z)-1;
     simp_mode(sm);
     //find the numerator roots
-    z=roots(hh.num);
+    z=roots(hh.num,"e");
     z(abs(abs(z)-1)>eps)=[];// retain only roots with modulus equal to 1
     w=log(z)/(%i*dt);
     ws=real(w(abs(imag(w))<eps&real(w)>0)); //frequency points with unitary modulus
@@ -58,10 +57,10 @@ function [phm,fr]=p_margin(h)
       fr=[];
       return
     end
-    ws=min(real(ws)); //keep only the first point where the open-loop phase first crosses 180°
     f=horner(h,exp(%i*ws*dt));
   end
   phm=atand(imag(f),real(f));// phase of the frequency response in [-180 180]
-  phm=pmodulo(phm,360)-180;
-  fr=real(ws)/(2*%pi);
+  phm=pmodulo(phm-180,360);
+  [phm,k]=min(phm)
+  fr=ws(k)/(2*%pi);
 endfunction
