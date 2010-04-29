@@ -49,6 +49,7 @@ import org.scilab.modules.graph.actions.SelectAllAction;
 import org.scilab.modules.graph.actions.UndoAction;
 import org.scilab.modules.graph.actions.ZoomInAction;
 import org.scilab.modules.graph.actions.ZoomOutAction;
+import org.scilab.modules.graph.utils.ScilabExported;
 import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
 import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
@@ -2085,6 +2086,7 @@ public class XcosDiagram extends ScilabGraph {
      * @param iRows Number of Row in the blockValue.
      * @param iCols Number of Collumns in the blockValue.
      */
+    @ScilabExported(module="scicos_blocks", filename="XcosDiagram.giws.xml")
     public static void setBlockTextValue(int blockID, String[] blockValue, int iRows, int iCols) {
 
 	AfficheBlock block = XcosTab.getAfficheBlocks().get(blockID);

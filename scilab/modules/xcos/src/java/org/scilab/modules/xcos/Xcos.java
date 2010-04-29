@@ -24,6 +24,7 @@ import java.util.Map;
 import javax.swing.SwingUtilities;
 
 import org.apache.commons.logging.LogFactory;
+import org.scilab.modules.graph.utils.ScilabExported;
 import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
@@ -68,6 +69,7 @@ public final class Xcos {
     /**
      * Entry point without filename
      */
+    @ScilabExported(module="xcos", filename="Xcos.giws.xml")
     public static void xcos() {
     	/* load scicos libraries (macros) */
 		ScilabInterpreterManagement.requestScilabExec("loadScicosLibs();");
@@ -85,6 +87,7 @@ public final class Xcos {
      * Entry point with filename
      * @param fileName The filename
      */
+    @ScilabExported(module="xcos", filename="Xcos.giws.xml")
     public static void xcos(String fileName) {
     	/* load scicos libraries (macros) */
 		ScilabInterpreterManagement.requestScilabExec("loadScicosLibs();");
@@ -169,6 +172,7 @@ public final class Xcos {
      * @param message
      *            The message to display.
      */
+    @ScilabExported(module="xcos", filename="Xcos.giws.xml")
     public static void warnCellByUID(String uid, String message) {
 	// Try to find a block with given index (UID)
 	List<XcosDiagram> allDiagrams = Xcos.getDiagrams();
@@ -180,6 +184,7 @@ public final class Xcos {
 	/**
 	 * This method is called when the user exits from Scilab
 	 */
+    @ScilabExported(module="xcos", filename="Xcos.giws.xml")
 	public static void closeXcosFromScilab() {
 		try {
 			SwingUtilities.invokeAndWait(new Runnable() {
@@ -204,6 +209,7 @@ public final class Xcos {
      * @param forceOverwrite Does the file will be overwritten ?
      * @return Not used (compatibility) 
      */
+    @ScilabExported(module="xcos", filename="Xcos.giws.xml")
     public static int xcosDiagramToHDF5(String xcosFile, String h5File,
 	    boolean forceOverwrite) {
 	final String file = xcosFile;
@@ -243,6 +249,7 @@ public final class Xcos {
 	 * @param showed
 	 *            True if you want the diagram to be shown, false otherwise.
 	 */
+    @ScilabExported(module="xcos", filename="Xcos.giws.xml")
     public static void xcosDiagramOpen(String uid, boolean showed) {
 	final String id = uid;
 	final boolean show = showed;
@@ -287,6 +294,7 @@ public final class Xcos {
      * Close a diagram by uid.
      * @param uid The diagram id
      */
+    @ScilabExported(module="xcos", filename="Xcos.giws.xml")
     public static void xcosDiagramClose(String uid) {
 	final String id = uid;
 
