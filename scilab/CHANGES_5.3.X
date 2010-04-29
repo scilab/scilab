@@ -212,6 +212,9 @@ Bug fixes:
 
 * bug 6435 fixed - error 4 returned a wrong message.
 
+* bug 6447 fixed - unix_g() and dos() did not support properly neither UTF8
+                   nor ANSI encoded output.
+
 * bug 6449 fixed - regexp returned a wrong value with a string returned by mgetl.
 
 * bug 6451 fixed - length returned a wrong value with a string returned by mgetl.
