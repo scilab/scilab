@@ -232,6 +232,9 @@ Bug fixes:
 
 * bug 6484 fixed - file did not return filename of a opened fortran file.
 
+* bug 6510 fixed - modules/helptools/help_en_US.xsl and
+                   modules/helptools/help_fr_FR.xsl were useless but not removed.
+
 * bug 6511 fixed - mseek and mtell did not manage files > 2 Gbytes on 64 bits 
                    Windows.
 
