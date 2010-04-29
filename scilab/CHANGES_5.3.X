@@ -204,6 +204,8 @@ Bug fixes:
                    getFunctionByName to avoid confusions on the actual usage
                    of this function. Thanks to Yuvraj Tomar.
 
+* bug 4699 fixed - xml2test.pl: Paths were badly displayed in some cases.
+
 * bug 4985 fixed - mgetl did not use fgets (C function).
 
 * bug 4996 fixed - mgetl() was not located in the right module. It has been
