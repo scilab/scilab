@@ -260,6 +260,8 @@ Bug fixes:
 
 * bug 6744 fixed - p_margin() returned an erroneous result.
 
+* bug 6745 fixed - g_margin() returned an erroneous result.
+
 * bug 6784 fixed - It was not possible to move a Scilab installation without
                    breaking the (previously installed) ATOMS packages load.
 
