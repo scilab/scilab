@@ -124,6 +124,7 @@ ierr=exec(fun,'errcatch' [,mode])</synopsis>
       ligne (voir fonction). 
     </para>
     <para><literal>exec</literal> prend en charge les fichiers encodés aux formats ANSI/ASCII et UTF-8 (NO-BOM).</para>
+    <para>La longueur des lignes des fichiers est limitée à 4096 caractères.</para>
   </refsection>
   <refsection>
     <title>Exemples</title>

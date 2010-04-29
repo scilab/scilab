@@ -187,6 +187,9 @@ Bug fixes:
 
 * bug 1304 fixed - macr2tree now works with a Scilab expression as input.
 
+* bug 2654 partially fixed - exec returned a wrong error if line had more 
+                   than 4096 characters.
+
 * bug 2775 fixed - Multiplication of 0 times infinity did not work because of
                    ATLAS under Windows.
 
