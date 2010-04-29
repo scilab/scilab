@@ -65,7 +65,7 @@ namespace types
 		m_pstData	= new char*[m_iSize];
 		for(int iIndex = 0 ; iIndex < m_iSize ; iIndex++)
 		{
-			m_pstData[iIndex] = NULL;
+			m_pstData[iIndex] = strdup("");
 		}
 	}
 
@@ -141,13 +141,18 @@ namespace types
 
 		if(m_pstData[_iPos] != NULL)
 		{
-			delete m_pstData[_iPos];
+			delete[] m_pstData[_iPos];
 		}
 
 		m_pstData[_iPos] = new char[strlen(_pcData) + 1];
-		memcpy(m_pstData[_iPos], _pcData, strlen(_pcData) * sizeof(char));
-		m_pstData[_iPos][strlen(_pcData)] = '\0';
-		//strncpy(m_pstData[_iCols * m_iRows + _iRows], _pcData, strlen(_pcData));
+		//memcpy(m_pstData[_iPos], _pcData, strlen(_pcData) * sizeof(char));
+		//m_pstData[_iPos][strlen(_pcData)] = '\0';
+
+#ifdef _MSC_VER
+        strcpy_s(m_pstData[_iPos], strlen(_pcData) + 1, _pcData);
+#else
+        strcpy(m_pstData[_iPos], _pcData);
+#endif
 
 		return true;
 	}
