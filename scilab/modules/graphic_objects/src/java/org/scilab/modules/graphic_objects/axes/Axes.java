@@ -23,7 +23,6 @@ import org.scilab.modules.graphic_objects.textObject.FormattedText;
 
 /**
  * Axes class
- * TBD: (AxesProperties plus title) get/set methods
  * @author Manuel JULIACHS
  */
 public class Axes extends GraphicObject {
@@ -39,7 +38,7 @@ public class Axes extends GraphicObject {
 		CAMERA, BOX, MARGINS, AXESBOUNDS };
 
 	/** Specifies the grid position relative to the graphics entities */
-	private static enum GridPosition { FOREGROUND, BACKGROUND };
+	public static enum GridPosition { FOREGROUND, BACKGROUND };
 
 	/** 3-element array (properties of the X, Y and Z axes) */
 	private AxisProperty[] axes;
@@ -79,7 +78,7 @@ public class Axes extends GraphicObject {
 		axes[1] = new AxisProperty();
 		axes[2] = new AxisProperty();
 		gridPosition = GridPosition.FOREGROUND;
-		title = new Label();
+		title = null;
 		autoClear = false;
 		filled = false;
 		camera = new Camera();
@@ -180,7 +179,7 @@ public class Axes extends GraphicObject {
 			return AxesProperty.CAMERA;
 		} else if (propertyName.equals("View")) {
 			return Camera.CameraProperty.VIEW;
-		} else if (propertyName.equals("IsoView")) {
+		} else if (propertyName.equals("Isoview")) {
 			return Camera.CameraProperty.ISOVIEW;
 		} else if (propertyName.equals("CubeScaling")) {
 			return Camera.CameraProperty.CUBESCALING;
@@ -302,9 +301,9 @@ public class Axes extends GraphicObject {
 		} else if (property == AxesProperty.CAMERA) {
 			return getCamera();
 		} else if (property == Camera.CameraProperty.VIEW) {
-			return getViewType();
+			return getView();
 		} else if (property == Camera.CameraProperty.ISOVIEW) {
-			return getIsoView();
+			return getIsoview();
 		} else if (property == Camera.CameraProperty.CUBESCALING) {
 			return getCubeScaling();
 		} else if (property == Camera.CameraProperty.ROTATIONANGLES) {
@@ -361,7 +360,7 @@ public class Axes extends GraphicObject {
 		} else if (property == AxesProperty.XAXISAUTOTICKS) {
 			setXAxisAutoTicks((Boolean) value);
 		} else if (property == AxesProperty.XAXISTICKSLOCATIONS) {
-			setXAxisTicksLocation((Double[]) value);
+			setXAxisTicksLocations((Double[]) value);
 		} else if (property == AxesProperty.XAXISTICKSLABELS) {
 			setXAxisTicksLabels((ArrayList<FormattedText>) value);
 		} else if (property == AxesProperty.XAXISSUBTICKS) {
@@ -385,7 +384,7 @@ public class Axes extends GraphicObject {
 		} else if (property == AxesProperty.YAXISAUTOTICKS) {
 			setYAxisAutoTicks((Boolean) value);
 		} else if (property == AxesProperty.YAXISTICKSLOCATIONS) {
-			setYAxisTicksLocation((Double[]) value);
+			setYAxisTicksLocations((Double[]) value);
 		} else if (property == AxesProperty.YAXISTICKSLABELS) {
 			setYAxisTicksLabels((ArrayList<FormattedText>) value);
 		} else if (property == AxesProperty.YAXISSUBTICKS) {
@@ -409,7 +408,7 @@ public class Axes extends GraphicObject {
 		} else if (property == AxesProperty.ZAXISAUTOTICKS) {
 			setZAxisAutoTicks((Boolean) value);
 		} else if (property == AxesProperty.ZAXISTICKSLOCATIONS) {
-			setZAxisTicksLocation((Double[]) value);
+			setZAxisTicksLocations((Double[]) value);
 		} else if (property == AxesProperty.ZAXISTICKSLABELS) {
 			setZAxisTicksLabels((ArrayList<FormattedText>) value);
 		} else if (property == AxesProperty.ZAXISSUBTICKS) {
@@ -425,9 +424,9 @@ public class Axes extends GraphicObject {
 		} else if (property == AxesProperty.CAMERA) {
 			setCamera((Camera) value);
 		} else if (property == Camera.CameraProperty.VIEW) {
-			setViewType((ViewType) value);
+			setView((ViewType) value);
 		} else if (property == Camera.CameraProperty.ISOVIEW) {
-			setIsoView((Boolean) value);
+			setIsoview((Boolean) value);
 		} else if (property == Camera.CameraProperty.CUBESCALING) {
 			setCubeScaling((Boolean) value);
 		} else if (property == Camera.CameraProperty.ROTATIONANGLES) {
@@ -621,7 +620,7 @@ public class Axes extends GraphicObject {
 	/**
 	 * @param ticksLocations the x axis ticks locations to set
 	 */
-	public void setXAxisTicksLocation(Double[] ticksLocations) {
+	public void setXAxisTicksLocations(Double[] ticksLocations) {
 			axes[0].setTicksLocations(ticksLocations);
 	}
 
@@ -789,7 +788,7 @@ public class Axes extends GraphicObject {
 	/**
 	 * @param ticksLocations the y axis ticks locations to set
 	 */
-	public void setYAxisTicksLocation(Double[] ticksLocations) {
+	public void setYAxisTicksLocations(Double[] ticksLocations) {
 			axes[1].setTicksLocations(ticksLocations);
 	}
 
@@ -883,7 +882,7 @@ public class Axes extends GraphicObject {
 	public Label getZAxisLabel() {
 		return axes[2].getLabel();
 	}
-	
+
 	/**
 	 * @param label the z axis label to set
 	 */
@@ -957,8 +956,8 @@ public class Axes extends GraphicObject {
 	/**
 	 * @param ticksLocations the z axis ticks locations to set
 	 */
-	public void setZAxisTicksLocation(Double[] ticksLocations) {
-			axes[2].setTicksLocations(ticksLocations);
+	public void setZAxisTicksLocations(Double[] ticksLocations) {
+		axes[2].setTicksLocations(ticksLocations);
 	}
 
 	/**
@@ -1002,7 +1001,7 @@ public class Axes extends GraphicObject {
 
 		return retAxesBounds;
 	}
-	
+
 	/**
 	 * @param axesBounds the axesBounds to set
 	 */
@@ -1033,7 +1032,7 @@ public class Axes extends GraphicObject {
 	public BoxType getBoxType() {
 		return box.getBox();
 	}
-	
+
 	/**
 	 * @param box the BoxType to set
 	 */
@@ -1142,31 +1141,31 @@ public class Axes extends GraphicObject {
 	/**
 	 * @return the view type
 	 */
-	public ViewType getViewType() {
+	public ViewType getView() {
 		return camera.getView();
 	}
 
 	/**
-	 * @param view the ViewType to set
+	 * @param view the view type to set
 	 */
-	public void setViewType(ViewType view) {
+	public void setView(ViewType view) {
 		camera.setView(view);
 	}
 
 	/**
 	 * @return the isoview
 	 */
-	public Boolean getIsoView() {
+	public Boolean getIsoview() {
 		return camera.getIsoview();
 	}
 
 	/**
-	 * @param isoView the isoview to set
+	 * @param isoview the isoview to set
 	 */
-	public void setIsoView(Boolean isoView) {
-		camera.setIsoview(isoView);
+	public void setIsoview(Boolean isoview) {
+		camera.setIsoview(isoview);
 	}
-	
+
 	/**
 	 * @return the cubescaling
 	 */

@@ -19,19 +19,19 @@ package org.scilab.modules.graphic_objects.axes;
 public class Camera {
 	/** Camera properties names */
 	public enum CameraProperty { VIEW, ISOVIEW, CUBESCALING, ROTATIONANGLES };
-	
+
 	/** View type */
 	public enum ViewType { VIEW_2D, VIEW_3D };
-	
+
 	/** Specifies whether the projection must be performed for a 2D or a 3D scene */  
 	private ViewType view;
-	
+
 	/** Specifies whether an isoview transformation must be applied or not */
 	private boolean isoview;
-	
+
 	/** Specifies whether a unit cube transformation must be performed */
 	private boolean cubeScaling;
-	
+
 	/** 2-element array (alpha and theta rotation angles) */
 	private double[] rotationAngles;
 
@@ -88,7 +88,7 @@ public class Camera {
 	 */
 	public void setRotationAngles(Double[] rotationAngles) {
 		this.rotationAngles[0] = rotationAngles[0];
-		this.rotationAngles[1] = rotationAngles[0];
+		this.rotationAngles[1] = rotationAngles[1];
 	}
 
 	/**
@@ -104,5 +104,5 @@ public class Camera {
 	public void setView(ViewType view) {
 		this.view = view;
 	}
-	
+
 }

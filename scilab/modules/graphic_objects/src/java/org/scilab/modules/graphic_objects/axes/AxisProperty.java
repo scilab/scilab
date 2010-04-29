@@ -61,7 +61,7 @@ public class AxisProperty {
 		visible = false;
 		reverse = false;
 		gridColor = 0;
-		label = new Label();
+		label = null;
 		axisLocation = null;
 		ticks = new TicksProperty();
 		logFlag = false;
