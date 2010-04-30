@@ -470,6 +470,9 @@ ATOMS:
 Bug fixes:
 ==========
 
+* bug 1041 fixed - An error inside a loop was reported as if it occurred on 
+                   the "end" line.
+
 * bug 1304 fixed - macr2tree now works with a Scilab expression as input.
 
 * bug 1371 fixed - The representation of floating numbers with exponent larger
