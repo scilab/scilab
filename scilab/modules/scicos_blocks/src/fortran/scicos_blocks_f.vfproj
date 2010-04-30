@@ -106,7 +106,6 @@ lib /DEF:&quot;$(InputDir)Scicos_blocks_Import.def&quot; /SUBSYSTEM:WINDOWS /MAC
 		<File RelativePath=".\scicos_blocks_f.rc"/></Filter>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath=".\affich.f"/>
-		<File RelativePath=".\affich2.f"/>
 		<File RelativePath=".\csslti.f"/>
 		<File RelativePath=".\cstblk.f"/>
 		<File RelativePath=".\delay.f"/>

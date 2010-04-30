@@ -71,6 +71,14 @@ public class BasicBlockCodec extends XcosObjectCodec {
 		mxCellCodec cellCodec = new mxCellCodec(new mxCell(), null,
 				REFS, null);
 		mxCodecRegistry.register(cellCodec);
+		
+		/*
+		 * per block specific codec setup 
+		 */
+		BasicBlockCodec codec = (BasicBlockCodec) mxCodecRegistry.getCodec("AfficheBlock");
+		codec.exclude.add("printTimer");
+		codec.exclude.add("updateAction");
+		
 	}
 	
 	/**

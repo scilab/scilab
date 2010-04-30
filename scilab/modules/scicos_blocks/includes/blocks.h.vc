@@ -2,7 +2,7 @@
 /*  Scicos
 *
 *  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
-*  Copyright (C) DIGITEO - 2009
+*  Copyright (C) DIGITEO - 2010
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -86,7 +86,6 @@ SCICOS_BLOCKS_IMPEXP void C2F(delayv)(ARGS_scicos);
 SCICOS_BLOCKS_IMPEXP void C2F(delay)(ARGS_scicos);
 SCICOS_BLOCKS_IMPEXP void C2F(cstblk)(ARGS_scicos);
 SCICOS_BLOCKS_IMPEXP void C2F(csslti)(ARGS_scicos);
-SCICOS_BLOCKS_IMPEXP void C2F(affich2)(ARGS_scicos);
 SCICOS_BLOCKS_IMPEXP void C2F(affich)(ARGS_scicos);
 SCICOS_BLOCKS_IMPEXP void zcross2(ARGS_scicos);
 SCICOS_BLOCKS_IMPEXP void writec(ARGS_scicos);
@@ -399,6 +398,7 @@ SCICOS_BLOCKS_IMPEXP void acosh_blk(ARGS_scicos);
 SCICOS_BLOCKS_IMPEXP void acos_blk(ARGS_scicos);
 SCICOS_BLOCKS_IMPEXP void absolute_value(ARGS_scicos);
 SCICOS_BLOCKS_IMPEXP void absblk(ARGS_scicos);
+SCICOS_BLOCKS_IMPEXP void affich2(ARGS_scicos);
 
 #define SIZE_TAB_BLOCK_LIST 371
 int ntabsim = SIZE_TAB_BLOCK_LIST ;
@@ -461,7 +461,6 @@ OpTab tabsim[SIZE_TAB_BLOCK_LIST] ={
 {"delay",(ScicosF) C2F(delay)},
 {"cstblk",(ScicosF) C2F(cstblk)},
 {"csslti",(ScicosF) C2F(csslti)},
-{"affich2",(ScicosF) C2F(affich2)},
 {"affich",(ScicosF) C2F(affich)},
 {"zcross2",(ScicosF) zcross2},
 {"writec",(ScicosF) writec},
@@ -774,6 +773,7 @@ OpTab tabsim[SIZE_TAB_BLOCK_LIST] ={
 {"acos_blk",(ScicosF) acos_blk},
 {"absolute_value",(ScicosF) absolute_value},
 {"absblk",(ScicosF) absblk},
+{"affich2",(ScicosF) affich2},
 {(char *) 0, (ScicosF) 0}};
 #endif
 /****************************************/
