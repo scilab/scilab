@@ -33,81 +33,81 @@ import org.scilab.modules.ui_data.datatable.SwingTableModel;
  */
 public final class SwingScilabVariableBrowser extends SwingScilabTab implements Tab, SimpleVariableBrowser {
 
-    private static final long serialVersionUID = 2169382559550113917L;
-    private SwingTableModel<Object> dataModel;
-    private JTable table;
+	private static final long serialVersionUID = 2169382559550113917L;
+	private SwingTableModel<Object> dataModel;
+	private JTable table;
 
-    /**
-     * Create a JTable with data Model.
-     * @param columnsName : Titles of JTable columns.
-     */
-    public SwingScilabVariableBrowser(String[] columnsName) {
-	super(Messages.gettext("Variable Browser"));
+	/**
+	 * Create a JTable with data Model.
+	 * @param columnsName : Titles of JTable columns.
+	 */
+	public SwingScilabVariableBrowser(String[] columnsName) {
+		super(Messages.gettext("Variable Browser"));
 
-	dataModel = new SwingTableModel<Object>(columnsName);
+		dataModel = new SwingTableModel<Object>(columnsName);
 
-	table = new JTable(dataModel);
-	table.setFillsViewportHeight(true);
-	table.setAutoResizeMode(CENTER);
-	table.setAutoCreateRowSorter(true);
+		table = new JTable(dataModel);
+		table.setFillsViewportHeight(true);
+		table.setAutoResizeMode(CENTER);
+		table.setAutoCreateRowSorter(true);
 
-	// Mouse selection mode
-	table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		// Mouse selection mode
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-	JScrollPane scrollPane = new JScrollPane(table);
-	table.setBackground(Color.WHITE);
-	setContentPane(scrollPane);
-    }
+		JScrollPane scrollPane = new JScrollPane(table);
+		table.setBackground(Color.WHITE);
+		setContentPane(scrollPane);
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    public void addInfoBar(TextBox infoBarToAdd) {
-	setInfoBar(infoBarToAdd);
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	public void addInfoBar(TextBox infoBarToAdd) {
+		setInfoBar(infoBarToAdd);
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    public void addMenuBar(MenuBar menuBarToAdd) {
-	setMenuBar(menuBarToAdd);
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	public void addMenuBar(MenuBar menuBarToAdd) {
+		setMenuBar(menuBarToAdd);
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    public void addToolBar(ToolBar toolBarToAdd) {
-	setToolBar(toolBarToAdd);
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	public void addToolBar(ToolBar toolBarToAdd) {
+		setToolBar(toolBarToAdd);
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    public void setColumnNames(String[] columnNames) {
-	dataModel.setColumnNames(columnNames);
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	public void setColumnNames(String[] columnNames) {
+		dataModel.setColumnNames(columnNames);
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    public void setData(Object[][] data) {
-	dataModel.setData(data);
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	public void setData(Object[][] data) {
+		dataModel.setData(data);
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    public SimpleTab getAsSimpleTab() {
-	return this;
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	public SimpleTab getAsSimpleTab() {
+		return this;
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    public Window getParentWindow() {
-	// TODO Auto-generated method stub
-	return null;
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	public Window getParentWindow() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
 }

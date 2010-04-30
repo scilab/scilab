@@ -132,7 +132,8 @@ am__objects_3 = libsciui_data_la-BrowseVar.lo \
 	libsciui_data_la-EditVar.lo
 am__objects_4 = libsciui_data_la-gw_ui_data.lo
 am__objects_5 = libsciui_data_la-sci_editvar.lo \
-	libsciui_data_la-sci_browsevar.lo
+	libsciui_data_la-sci_browsevar.lo \
+	libsciui_data_la-sci_updateEditvarValue.lo
 am_libsciui_data_la_OBJECTS = $(am__objects_2) $(am__objects_3) \
 	$(am__objects_4) $(am__objects_5) $(am__objects_2)
 libsciui_data_la_OBJECTS = $(am_libsciui_data_la_OBJECTS)
@@ -497,7 +498,8 @@ GIWS_WRAPPERS =
 @SWIG_TRUE@BUILT_SOURCES = swig
 GATEWAY_C_SOURCES = sci_gateway/c/gw_ui_data.c
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_editvar.cpp \
-						sci_gateway/cpp/sci_browsevar.cpp
+						sci_gateway/cpp/sci_browsevar.cpp \
+						sci_gateway/cpp/sci_updateEditvarValue.cpp
 
 libsciui_data_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -627,6 +629,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciui_data_la-gw_ui_data.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciui_data_la-sci_browsevar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciui_data_la-sci_editvar.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciui_data_la-sci_updateEditvarValue.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -711,6 +714,13 @@ libsciui_data_la-sci_browsevar.lo: sci_gateway/cpp/sci_browsevar.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_browsevar.cpp' object='libsciui_data_la-sci_browsevar.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciui_data_la-sci_browsevar.lo `test -f 'sci_gateway/cpp/sci_browsevar.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_browsevar.cpp
+
+libsciui_data_la-sci_updateEditvarValue.lo: sci_gateway/cpp/sci_updateEditvarValue.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciui_data_la-sci_updateEditvarValue.lo -MD -MP -MF $(DEPDIR)/libsciui_data_la-sci_updateEditvarValue.Tpo -c -o libsciui_data_la-sci_updateEditvarValue.lo `test -f 'sci_gateway/cpp/sci_updateEditvarValue.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_updateEditvarValue.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciui_data_la-sci_updateEditvarValue.Tpo $(DEPDIR)/libsciui_data_la-sci_updateEditvarValue.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_updateEditvarValue.cpp' object='libsciui_data_la-sci_updateEditvarValue.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciui_data_la-sci_updateEditvarValue.lo `test -f 'sci_gateway/cpp/sci_updateEditvarValue.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_updateEditvarValue.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

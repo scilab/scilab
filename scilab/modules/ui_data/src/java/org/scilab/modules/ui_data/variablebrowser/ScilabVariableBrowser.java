@@ -27,86 +27,86 @@ import org.scilab.modules.localization.Messages;
  */
 public final class ScilabVariableBrowser extends ScilabWindow implements VariableBrowser {
 
-    private static final String MENUBARXMLFILE = System.getenv("SCI") + "/modules/ui_data/etc/variablebrowser_menubar.xml";
+	private static final String MENUBARXMLFILE = System.getenv("SCI") + "/modules/ui_data/etc/variablebrowser_menubar.xml";
 
-    private static VariableBrowser instance;
+	private static VariableBrowser instance;
 
-    private static SimpleVariableBrowser browserTab;   
-    
-    /**
-     * Constructor
-     * @param columnNames the columns title.
-     */
-    private ScilabVariableBrowser(String[] columnNames) {
-	super();
-	setTitle(Messages.gettext("Variable Browser"));
-	browserTab = new SwingScilabVariableBrowser(columnNames);
-	browserTab.setVisible(true);
-	browserTab.setCallback(ScilabCallBack
-		.createCallback("org.scilab.modules.ui_data.BrowseVar.closeVariableBrowser", ScilabCallBack.JAVA_OUT_OF_XCLICK_AND_XGETMOUSE));
-	MenuBar menubar = MenuBarBuilder.buildMenuBar(MENUBARXMLFILE);
-	browserTab.addMenuBar(menubar);
+	private static SimpleVariableBrowser browserTab;   
 
-	TextBox infobar = ScilabTextBox.createTextBox();
-	browserTab.addInfoBar(infobar);
-	addTab(browserTab);
-    }
+	/**
+	 * Constructor
+	 * @param columnNames the columns title.
+	 */
+	private ScilabVariableBrowser(String[] columnNames) {
+		super();
+		setTitle(Messages.gettext("Variable Browser"));
+		browserTab = new SwingScilabVariableBrowser(columnNames);
+		browserTab.setVisible(true);
+		browserTab.setCallback(ScilabCallBack
+				.createCallback("org.scilab.modules.ui_data.BrowseVar.closeVariableBrowser", ScilabCallBack.JAVA_OUT_OF_XCLICK_AND_XGETMOUSE));
+		MenuBar menubar = MenuBarBuilder.buildMenuBar(MENUBARXMLFILE);
+		browserTab.addMenuBar(menubar);
 
-    /**
-     * Retrieve Singleton
-     * @param columnNames : columns title
-     * @param data : data from scilab (type, name, size, ...)
-     * @return the Variable Browser
-     */
-    public static VariableBrowser getVariableBrowser(String[] columnNames, Object[][] data) {
-	VariableBrowser variableBrowser = getVariableBrowser(columnNames);
-	variableBrowser.setData(data);
-	return variableBrowser;
-    }
-    
-    /**
-     * Get the variable browser singleton
-     * @return the Variable Browser
-     */
-    public static VariableBrowser getVariableBrowser() {
-	return instance;
-    }
-    
-    /**
-     * Get the variable browser singleton with specified columns title.
-     * @param columnNames : the columns title
-     * @return the Variable Browser
-     */
-    public static VariableBrowser getVariableBrowser(String[] columnNames) {
-	if (instance == null) {
-	    instance = new ScilabVariableBrowser(columnNames);
+		TextBox infobar = ScilabTextBox.createTextBox();
+		browserTab.addInfoBar(infobar);
+		addTab(browserTab);
 	}
-	return instance;
-    }
-    
-    /**
-     * Close Variable Browser
-     */
-    public void close() {
-	browserTab.setVisible(false);
-	browserTab.close();
-    }
 
-    /**
-     * Set columns title.
-     * @param columnNames : columns Title
-     */
-    public void setColumnNames(String[] columnNames) {
-	browserTab.setColumnNames(columnNames);
-	
-    }
+	/**
+	 * Retrieve Singleton
+	 * @param columnNames : columns title
+	 * @param data : data from scilab (type, name, size, ...)
+	 * @return the Variable Browser
+	 */
+	public static VariableBrowser getVariableBrowser(String[] columnNames, Object[][] data) {
+		VariableBrowser variableBrowser = getVariableBrowser(columnNames);
+		variableBrowser.setData(data);
+		return variableBrowser;
+	}
 
-    /**
-     * Set data displayed in JTable
-     * @param data : data to be displayed in JTable
-     */
-    public void setData(Object[][] data) {
-	browserTab.setData(data);
-    }
+	/**
+	 * Get the variable browser singleton
+	 * @return the Variable Browser
+	 */
+	public static VariableBrowser getVariableBrowser() {
+		return instance;
+	}
+
+	/**
+	 * Get the variable browser singleton with specified columns title.
+	 * @param columnNames : the columns title
+	 * @return the Variable Browser
+	 */
+	public static VariableBrowser getVariableBrowser(String[] columnNames) {
+		if (instance == null) {
+			instance = new ScilabVariableBrowser(columnNames);
+		}
+		return instance;
+	}
+
+	/**
+	 * Close Variable Browser
+	 */
+	public void close() {
+		browserTab.setVisible(false);
+		browserTab.close();
+	}
+
+	/**
+	 * Set columns title.
+	 * @param columnNames : columns Title
+	 */
+	public void setColumnNames(String[] columnNames) {
+		browserTab.setColumnNames(columnNames);
+
+	}
+
+	/**
+	 * Set data displayed in JTable
+	 * @param data : data to be displayed in JTable
+	 */
+	public void setData(Object[][] data) {
+		browserTab.setData(data);
+	}
 
 }

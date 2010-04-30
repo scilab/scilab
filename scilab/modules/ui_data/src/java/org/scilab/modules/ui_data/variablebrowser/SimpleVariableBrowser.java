@@ -19,16 +19,16 @@ import org.scilab.modules.gui.tab.Tab;
  */
 public interface SimpleVariableBrowser extends Tab {
 
-    /**
-     * Set columns title
-     * @param columnNames : the columns Title
-     */
-    void setColumnNames(String[] columnNames);
-    
-    /**
-     * Set data to be displayed
-     * @param data : the data displayed in JTable
-     */
-    void setData(Object[][] data);
-    
+	/**
+	 * Set columns title
+	 * @param columnNames : the columns Title
+	 */
+	void setColumnNames(String[] columnNames);
+
+	/**
+	 * Set data to be displayed
+	 * @param data : the data displayed in JTable
+	 */
+	void setData(Object[][] data);
+
 }

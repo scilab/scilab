@@ -2,7 +2,15 @@
     <object name="EditVar">
         <method name="openVariableEditor" returnType="void" modifier="static">
           <parameter type="double[][]" name="data"/>
+          <parameter type="String" name="variableName"/>
         </method>
         <method name="closeVariableEditor" returnType="void" modifier="static"/>
+        <method name="updateVariableEditor" returnType="void" modifier="static">
+          <parameter type="String" name="variableName"/>
+          <parameter type="int" name="row"/>
+          <parameter type="int" name="col"/>
+          <parameter type="double" name="newValue"/>
+          <parameter type="int" name="errCode"/>
+        </method>
     </object>
 </package>

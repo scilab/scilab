@@ -28,4 +28,12 @@ public interface SimpleVariableEditor extends Tab {
 	 */
 	void setData(Object[][] data);
 
+	/**
+	 * Sets the value in the cell at row and col to value. 
+	 * @param value : the new value
+	 * @param row : the row whose value is to be changed
+	 * @param col : the column whose value is to be changed
+	 */
+	void setValueAt(Object value, int row, int col);
+
 }

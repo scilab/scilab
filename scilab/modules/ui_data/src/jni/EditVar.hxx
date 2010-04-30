@@ -63,8 +63,9 @@ JavaVM * jvm;
 jobject instance;
 
 jclass instanceClass; // cache class
-jmethodID voidopenVariableEditorjobjectArray__ID; // cache method id
+jmethodID voidopenVariableEditorjobjectArray__jstringID; // cache method id
 jmethodID voidcloseVariableEditorID; // cache method id
+jmethodID voidupdateVariableEditorjstringjintjintjdoublejintID; // cache method id
 
 
 /**
@@ -106,9 +107,11 @@ void synchronize();
 void endSynchronize();
 
 // Methods
-static void openVariableEditor(JavaVM * jvm_, double** data, int dataSize, int dataSizeCol);
+static void openVariableEditor(JavaVM * jvm_, double** data, int dataSize, int dataSizeCol, char * variableName);
 
 static void closeVariableEditor(JavaVM * jvm_);
+
+static void updateVariableEditor(JavaVM * jvm_, char * variableName, int row, int col, double newValue, int errCode);
 
 
                         /**

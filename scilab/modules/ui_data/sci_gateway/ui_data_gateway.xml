@@ -24,5 +24,6 @@
 <!-- =================== -->
 
 <PRIMITIVE gatewayId="66" primitiveId="1" primitiveName="editvar" />
-<PRIMITIVE gatewayId="66" primitiveId="2" primitiveName="Jbrowsevar" />
+<PRIMITIVE gatewayId="66" primitiveId="2" primitiveName="updateEditvarValue" />
+<PRIMITIVE gatewayId="66" primitiveId="3" primitiveName="Jbrowsevar" />
 </GATEWAY>

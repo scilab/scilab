@@ -1,3 +1,14 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - DIGITEO - Allan SIMON
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 package org.scilab.modules.ui_data;
 
 import org.scilab.modules.ui_data.variableeditor.ScilabVariableEditor;
@@ -25,11 +36,12 @@ public class EditVar {
 	/**
 	 * Open variable Editor with information given by Scilab
 	 * @param data : scilab double matrix
+	 * @param variableName : name of the variable being edited.
 	 */
-	public static void openVariableEditor(double[][] data) {
+	public static void openVariableEditor(double[][] data, String variableName) {
 		int rows = data.length;
 		int cols = data[0].length;
-		
+
 		// we need to transpose the matrix as the way to store elements is different in scilab
 		// otherwise 
 		//  1  2  3    would be rendered   1  4  2 (for example)
@@ -42,10 +54,39 @@ public class EditVar {
 				k++;
 			}
 		}
-		
-		VariableEditor editvar = ScilabVariableEditor.getVariableEditor(dataDouble);
+
+		VariableEditor editvar = ScilabVariableEditor.getVariableEditor(dataDouble, variableName);
 		editvar.setVisible(true);
-	}	
+	}
+
+	/**
+	 * 	
+	 * Update the cell at coordinate (row,col) to new double value or keep the old one if errCode is set
+	 * @param variableName : The name of the variable that has been updated
+	 * @param row : the row whose value is to be changed
+	 * @param col : the column whose value is to be changed
+	 * @param newValue : the new double value to set.
+	 * @param errCode : the errCode given by Scilab, 0 if no error.
+	 */
+	public static void updateVariableEditor(String variableName, int row, int col, double newValue, int errCode) {
+		updateVariableEditor(variableName, row, col, (Double) newValue, errCode);
+	}
+
+	/**
+	 * 	
+	 * Update the cell at coordinate (row,col) to new generic value or keep the old one if errCode is set
+	 * @param variableName : The name of the variable that has been updated
+	 * @param row : the row whose value is to be changed
+	 * @param col : the column whose value is to be changed
+	 * @param newValue : the new value to set.
+	 * @param errCode : the errCode given by Scilab, 0 if no error.
+	 */
+	public static void updateVariableEditor(String variableName, int row, int col, Object newValue, int errCode) {
+		if (errCode != 0) {
+			System.out.println("bad instruction");
+		}
+		ScilabVariableEditor.getVariableEditor().setValueAt(newValue, row - 1, col - 1);
+	}
 
 	/**
 	 * Close Variable Editor
