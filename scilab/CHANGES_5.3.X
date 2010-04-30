@@ -200,6 +200,8 @@ Bug fixes:
                    file (if filename as no extension or .mat extension) or for an
                    ASCII file if filename has an other extension.
 
+* bug 4359 fixed - M(:,:)='anything' produced erroneous result.
+
 * bug 4672 fixed - Internal function AddFunctionInTable renamed to 
                    getFunctionByName to avoid confusions on the actual usage
                    of this function. Thanks to Yuvraj Tomar.
