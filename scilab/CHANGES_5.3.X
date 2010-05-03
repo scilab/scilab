@@ -113,6 +113,9 @@ Compilation:
 
 * fix many warnings detected by Intel Fortran 11.1.051 and more on Windows.
 
+* bug 6643 fixed - --without-gui failed to disable Ocaml build (A xcos 
+                   dependency)
+
 helptools:
 ==========
 
