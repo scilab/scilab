@@ -480,12 +480,13 @@ Bug fixes:
 
 * bug 7014 fixed - ilib_verbose value was modified after toolbox_skeleton.
 
+* bug 7019 fixed - resume() produced an incorrect error message.
+
 * bug 7021 fixed - Scilab did not start and returned a system error (193)
                    on Windows.
 
 * bug 7033 fixed - newfun was randomly crashing (mostly on 32 bits) writing to
                    unallocated memory.
-
 
 * bug 7057 fixed - isdigit and isalphanum crashed with a matrix of string
                    as input argument.
