@@ -1,56 +1,62 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2009-2009 - DIGITEO - Bruno JOFRET
- * 
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- * 
- */
+*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+*  Copyright (C) 2009-2009 - DIGITEO - Bruno JOFRET
+* 
+*  This file must be used under the terms of the CeCILL.
+*  This source file is licensed as described in the file COPYING, which
+*  you should have received as part of this distribution.  The terms
+*  are also available at
+*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* 
+*/
 
 #include <hdf5.h>
 #include "h5_fileManagement.h"
 #include "FileExist.h"
 #include "deleteafile.h"
+#include "isdir.h"
 
 int createHDF5File(char *name) 
 {
-  hid_t       file;
-	hid_t fapl = H5Pcreate(H5P_FILE_ACCESS);
-	H5Pset_fclose_degree(fapl,H5F_CLOSE_STRONG);
+    hid_t       file;
+    hid_t fapl = H5Pcreate(H5P_FILE_ACCESS);
+    H5Pset_fclose_degree(fapl,H5F_CLOSE_STRONG);
 
-	
-	if(FileExist(name))
-	{
-		deleteafile(name);
-	}
-	/*
-   * Create a new file using the default properties.
-   */
+    /*bug 5629 : to prevent replace directory by file*/
+    if(isdir(name))
+    {
+        return -2;
+    }
 
-	file = H5Fcreate(name, H5F_ACC_TRUNC, H5P_DEFAULT, fapl);
-  
-  return file;
+    if(FileExist(name))
+    {
+        deleteafile(name);
+    }
+    /*
+    * Create a new file using the default properties.
+    */
+
+    file = H5Fcreate(name, H5F_ACC_TRUNC, H5P_DEFAULT, fapl);
+
+    return file;
 }
 
 int openHDF5File(char *name) 
 {
-	hid_t           file;
-	file = H5Fopen (name, H5F_ACC_RDONLY, H5P_DEFAULT);
+    hid_t           file;
+    file = H5Fopen (name, H5F_ACC_RDONLY, H5P_DEFAULT);
 
-  return file;
+    return file;
 }
 
 void closeHDF5File(int file)
 {
-	herr_t status					= 0;
+    herr_t status					= 0;
 
-	//	H5Fflush(file, H5F_SCOPE_GLOBAL);
-  status = H5Fclose(file);
-	if(status < 0)
-	{
-		fprintf(stderr, "%s", "failed to close file");
-	}
+    //	H5Fflush(file, H5F_SCOPE_GLOBAL);
+    status = H5Fclose(file);
+    if(status < 0)
+    {
+        fprintf(stderr, "%s", "failed to close file");
+    }
 }

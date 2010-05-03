@@ -244,6 +244,12 @@ Bug fixes:
 * bug 5583 fixed - exec() did not manage correctly UTF-8 and ANSI/ASCII files 
                    encoded.
 
+* bug 5629 fixed - export_to_hdf5 to a file overwrote a directory 
+                   with the same name (now trigger an error).
+
+* bug 5630 fixed - export_to_hdf5 to a file with a directory named 
+                   the same altered the permission of the directory.
+
 * bug 6419 fixed - gstacksize() There was no way to retrieve minimum 
                    from Scilab.
 
