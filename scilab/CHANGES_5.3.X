@@ -289,6 +289,9 @@ Bug fixes:
 
 * bug 6745 fixed - g_margin() returned an erroneous result.
 
+* bug 6774 fixed - Calling get_param generated a "funcprot" warning when  
+                   the value of an option which was a function.
+
 * bug 6784 fixed - It was not possible to move a Scilab installation without
                    breaking the (previously installed) ATOMS packages load.
 
@@ -327,5 +330,3 @@ Bug fixes:
 * bug 6990 fixed - "and" and "or" did not work on hypermatrices
 
 * bug 7014 fixed - ilib_verbose value was modified after toolbox_skeleton.
-
-

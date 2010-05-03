@@ -1,21 +1,21 @@
-
+// =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
 // Copyright (C) 2010 - DIGITEO - Michael Baudin
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 
-// <-- JVM_NOT_MANDATORY -->
+// <-- JVM NOT MANDATORY -->
 
-test_list = init_param();
+// <-- Non-regression test for bug 6774 -->
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=6774
+//
+// <-- Short Description -->
+//  Detailed description of the problem
+// The use of get_param requires to
+// be extra-careful when we get the value of an option which is a function.
 
-test_list = add_param(test_list,"test",%T);
-
-if get_param(test_list,"test")~=%T then pause,end
 
 function y = rastrigin(x)
   y = x(1)^2+x(2)^2-cos(12*x(1))-cos(18*x(2));
