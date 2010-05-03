@@ -71,6 +71,10 @@ Xcos:
 * bug 5596 fixed - It was not possible to change text block properties (font
   and color)
 
+* bug 6527 fixed - There was several instances of the same variable name
+                   in the workspace when a data set was exported via a
+                   "To Workspace" block.
+
 * bug 6661 fixed - "Code Generation" menu failed.
 
 * bug 6672 fixed - "Code generation" failed if superblock had 
