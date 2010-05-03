@@ -27,6 +27,9 @@ Graphics:
 * bug 5284 fixed - In some case function "legend" drew line segments in its box
                    in a reverse order.
 
+* bug 6786 fixed - The "polarplot" function did not correctly display the polar
+                   coordinates grid when negative rho values were plotted.
+
 * bug 6835 fixed - Performing an interactive rotation after having executed the
                    "plot3d" function caused Scilab to freeze on 64-bit Windows.
 
