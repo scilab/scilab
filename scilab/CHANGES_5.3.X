@@ -274,6 +274,9 @@ Bug fixes:
 * bug 6784 fixed - It was not possible to move a Scilab installation without
                    breaking the (previously installed) ATOMS packages load.
 
+* bug 6827 fixed - The error printed by spchol if the variable was complex
+                   was wrong.
+  
 * bug 6830 fixed - C2F(scistring) in stack2.c was broken for macro names of 
                    exactly 2 characters.
 
