@@ -228,6 +228,9 @@ Bug fixes:
 * bug 4783 fixed - comparison between sparse complex matrix and a full one was 
                    wrong when the sparse matrix contains a  zero row.
 
+* bug 4799 fixed - Sometime the bode, nyquist , ... function reported a
+                   "non convergence" error
+
 * bug 4985 fixed - mgetl did not use fgets (C function).
 
 * bug 4996 fixed - mgetl() was not located in the right module. It has been

@@ -130,7 +130,7 @@ function [frq,bnds,splitf]=calfrq(h,fmin,fmax)
   fmin=c*fmin,fmax=c*fmax;
 
   for i=1:m
-    sing=[sing;%sel(roots(denh(i)),fmin,fmax,tol)];
+    sing=[sing;%sel(roots(denh(i),"e"),fmin,fmax,tol)];
   end
 
   pp=gsort(sing','g','i');npp=size(pp,'*');//'
@@ -166,7 +166,6 @@ function [frq,bnds,splitf]=calfrq(h,fmin,fmax)
 
   // Evaluate bounds of nyquist plot
   //-------------------------------
-
   xt=[];Pas=[]
   for i=1:2:nfrq-1
     w=logspace(log(frqs(i))/log(10),log(frqs(i+1))/log(10),100);
