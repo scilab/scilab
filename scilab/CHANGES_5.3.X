@@ -8,6 +8,7 @@ Performance:
 * Faster access to primitive table (internal). This change improves the overall
   speed of Scilab.
 
+* Improved access to the list of functions increases the performances.
 
 FFTW:
 =====
