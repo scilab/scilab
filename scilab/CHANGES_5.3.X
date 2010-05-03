@@ -205,6 +205,8 @@ Bug fixes:
                    file (if filename as no extension or .mat extension) or for an
                    ASCII file if filename has an other extension.
 
+* bug 3811 fixed - Update documention about "typeof" and overload prefixes ( help overloading ).
+
 * bug 4359 fixed - M(:,:)='anything' produced erroneous result.
 
 * bug 4672 fixed - Internal function AddFunctionInTable renamed to 

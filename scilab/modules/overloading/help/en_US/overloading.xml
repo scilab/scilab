@@ -161,7 +161,7 @@
         <tr>
             <td>string matrix</td>
             <td>
-                <literal>s</literal>
+                <literal>c</literal>
             </td>
             <td>
                 <literal>string</literal>
@@ -191,30 +191,30 @@
         <tr>
             <td>script function</td>
             <td>
-                <literal>function</literal>
+                <literal>mc</literal>
             </td>
             <td>
-                <literal>mc</literal>
+                <literal>function</literal>
             </td>
             <td></td>
         </tr>
         <tr>
             <td>library</td>
             <td>
-                <literal>library</literal>
+                <literal>l</literal>
             </td>
             <td>
-                <literal>f</literal>
+                <literal>library</literal>
             </td>
             <td></td>
         </tr>
         <tr>
             <td>list</td>
             <td>
-                <literal>list</literal>
+                <literal>l</literal>
             </td>
             <td>
-                <literal>l</literal>
+                <literal>list</literal>
             </td>
             <td></td>
         </tr>
@@ -241,22 +241,72 @@
         <tr>
             <td>hypermatrix</td>
             <td>
-                <literal>hypermat</literal>
+                <literal>hm</literal>
             </td>
             <td>
-                <literal>hm</literal>
+                <literal>hypermat</literal>
             </td>
             <td></td>
         </tr>
         <tr>
             <td>pointer</td>
             <td>
-                <literal>pointer</literal>
-            </td>
-            <td>
                 <literal>ptr</literal>
             </td>
+            <td>
+                <literal>pointer</literal>
+            </td>
             <td></td>
+        </tr>
+        <tr>
+            <td>cell</td>
+            <td>
+                <literal>ce</literal>
+            </td>
+            <td>
+                <literal>ce</literal>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>structure</td>
+            <td>
+                <literal>st</literal>
+            </td>
+            <td>
+                <literal>st</literal>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>rational</td>
+            <td>
+                <literal>r</literal>
+            </td>
+            <td>
+                <literal>rational</literal>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>linear state space</td>
+            <td>
+                <literal>lss</literal>
+            </td>
+            <td>
+                <literal>state-space</literal>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>implicit polynom</td>
+            <td>
+                <literal>ip</literal>
+            </td>
+            <td>
+                <literal>size implicit</literal>
+            </td>
+            <td>1:$</td>
         </tr>
     </informaltable>
 
