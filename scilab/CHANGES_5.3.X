@@ -139,7 +139,7 @@ Compilation:
 
 * Better detection system of the version of the dependencies
 
-* Add a check of the minimal installation of hdf5 (1.8.4)
+* Add a check of the minimal installations of hdf5 (1.8.4), batik (1.7)
 
 * bug 6643 fixed - --without-gui failed to disable Ocaml build (A xcos 
                    dependency)

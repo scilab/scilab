@@ -812,6 +812,7 @@ the the JNI libraries."])],
 				   BATIK=$PACKAGE_JAR_FILE
 				fi
 				AC_SUBST(BATIK)
+				AC_JAVA_CHECK_VERSION_PACKAGE([batik],[import org.apache.batik.Version;],$BATIK,[1.7],[Version.getVersion()])
 
 				# Commons I/O library
 				AC_JAVA_CHECK_PACKAGE([commons-io],[org.apache.commons.io.output.CountingOutputStream],[Commons I/O library])
