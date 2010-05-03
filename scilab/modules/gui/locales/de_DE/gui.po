@@ -87,7 +87,7 @@ msgstr "%s: keine Ergebnisse gefunden.\n"
 
 #, c-format
 msgid "%s: Only available under 'STANDARD' mode.\n"
-msgstr "%s: Nur im 'Standart' Modus verfügbar.\n"
+msgstr "%s: Nur im 'Standard' Modus verfügbar.\n"
 
 #, c-format
 msgid "%s: The file %s does not exist.\n"

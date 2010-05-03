@@ -183,7 +183,7 @@ msgid ""
 "The standard configuration file $SCI%s%s needs the environment variables %s, "
 "%s, %s to be set. PVM can not be started.\n"
 msgstr ""
-"Die Standart Konfigurationsdatei $SCI%s%s benötigt die Umgebungsvariablen "
+"Die Standard Konfigurationsdatei $SCI%s%s benötigt die Umgebungsvariablen "
 "%s, %s, %s gesetzt. PVM kann nicht gestartet werden.\n"
 
 msgid "Unknown Error"
