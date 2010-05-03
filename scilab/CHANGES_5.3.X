@@ -312,7 +312,7 @@ Bug fixes:
 
 * bug 6827 fixed - The error printed by spchol if the variable was complex
                    was wrong.
-  
+
 * bug 6830 fixed - C2F(scistring) in stack2.c was broken for macro names of 
                    exactly 2 characters.
 
@@ -321,6 +321,9 @@ Bug fixes:
                    about input arguments number and types in the function.
 
 * bug 6864 fixed - Some error messages were wrong in data_structures module.
+
+* bug 6867 fixed - The error message when base2dec() was called with an invalid
+                   base representation was wrong.
 
 * bug 6889 fixed - 'fscanfMat' crashed with wrong formatted files.
 
