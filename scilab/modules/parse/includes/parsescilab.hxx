@@ -116,8 +116,7 @@
      HIGHLEVEL = 331,
      UPLEVEL = 332,
      LISTABLE = 333,
-     CELLCALL = 334,
-     FUNCTIONCALL = 335
+     FUNCTIONCALL = 334
    };
 #endif
 /* Tokens.  */
@@ -198,8 +197,7 @@
 #define HIGHLEVEL 331
 #define UPLEVEL 332
 #define LISTABLE 333
-#define CELLCALL 334
-#define FUNCTIONCALL 335
+#define FUNCTIONCALL 334
 
 
 

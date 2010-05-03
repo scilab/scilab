@@ -249,16 +249,6 @@
 %type <t_list_exp>	functionArgs
 %type <t_seq_exp>	functionBody
 
- // Cell Call
-%type <t_cell_call_exp>	cellCall
-%type <t_cell_call_exp>	recursiveCellCall
-%type <t_cell_call_exp>	simpleCellCall
-
- // Mix Cell Call and Function Call
-//%type <t_cell_call_exp>	recursiveCellFunctionCall
-//%type <t_call_exp>	    recursiveFunctionCellCall
- 
- 
  // Function Declaration
 %type <t_function_dec>	functionDeclaration
 %type <t_list_var>	functionDeclarationReturns
@@ -287,10 +277,9 @@
 
 %nonassoc LISTABLE
 
-%nonassoc CELLCALL
 %nonassoc FUNCTIONCALL
 %nonassoc BOOLTRUE BOOLFALSE
-%nonassoc LPAREN
+%nonassoc LPAREN LBRACE
 
 %left OR OROR
 %left AND ANDAND
@@ -405,7 +394,6 @@ SEMI						{ $$ = false; }
 expression :
 functionDeclaration				{ $$ = $1; }
 | functionCall			%prec TOPLEVEL	{ $$ = $1; }
-| cellCall  			%prec TOPLEVEL	{ $$ = $1; }
 | variableDeclaration				{ $$ = $1; }
 | ifControl					{ $$ = $1; }
 | selectControl					{ $$ = $1; }
@@ -483,7 +471,7 @@ ID						{ $$ = new ast::StringExp(@$, *$1); }
 /*
 ** -*- FUNCTION CALL -*-
 */
-/* How to call a function */
+/* How to call a function or a cell extraction */
 functionCall :
 simpleFunctionCall		%prec FUNCTIONCALL	{ $$ = $1; }
 | specificFunctionCall		%prec FUNCTIONCALL	{ $$ = $1; }
@@ -503,48 +491,26 @@ BOOLTRUE LPAREN functionArgs RPAREN			{ $$ = new ast::CallExp(@$, *new ast::Simp
 /*
 ** -*- SIMPLE FUNCTION CALL -*-
 */
-/* Usual way to call functions foo(arg1, arg2, arg3) */
+/* Usual way to call functions foo(arg1, arg2, arg3) 
+** or extract cell values foo{arg1, arg2, arg3}
+*/
 simpleFunctionCall :
 ID LPAREN functionArgs RPAREN				{ $$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, *$1), *$3); }
+| ID LBRACE functionArgs RBRACE				{ $$ = new ast::CellCallExp(@$, *new ast::SimpleVar(@1, *$1), *$3); }
 ;
 
 /*
 ** -*- RECURSIVE FUNCTION CALL -*-
 */
-/* To manage foo(a)(b)(c) <=> ((foo(a))(b))(c)*/
+/* To manage foo(a)(b)(c) <=> ((foo(a))(b))(c)
+** foo{a}{b}{c} <=> ((foo{a}){b}){c}
+** foo{a}(b){c} <=> ((foo{a})(b)){c}
+** foo(a){b}(c) <=> ((foo(a)){b})(c)
+*/
 recursiveFunctionCall :
 simpleFunctionCall LPAREN functionArgs RPAREN		{ $$ = new ast::CallExp(@$, *$1, *$3); }
 | recursiveFunctionCall LPAREN functionArgs RPAREN	{ $$ = new ast::CallExp(@$, *$1, *$3); }
-| simpleCellCall LPAREN functionArgs RPAREN	{ $$ = new ast::CallExp(@$, *$1, *$3); }
-| recursiveCellCall LPAREN functionArgs RPAREN	{ $$ = new ast::CallExp(@$, *$1, *$3); }
-;
-
-/*
-** -*- CELL CALL -*-
-*/
-/* How to extract from a cell a{x}*/
-cellCall :
-simpleCellCall		        %prec CELLCALL	{ $$ = $1; }
-| recursiveCellCall		    %prec CELLCALL	{ $$ = $1; }
-| LBRACE cellCall RBRACE	%prec CELLCALL	{ $$ = $2; }
-;
-
-/*
-** -*- SIMPLE CELL CALL -*-
-*/
-/* Usual way to extract from a cell a{arg1, arg2, arg3} */
-simpleCellCall :
-ID LBRACE functionArgs RBRACE				{ $$ = new ast::CellCallExp(@$, *new ast::SimpleVar(@1, *$1), *$3); }
-;
-
-/*
-** -*- RECURSIVE CELL CALL -*-
-*/
-/* To manage foo{a}{b}{c} <=> ((foo{a}){b}){c}*/
-recursiveCellCall :
-simpleCellCall LBRACE functionArgs RBRACE		{ $$ = new ast::CellCallExp(@$, *$1, *$3); }
-| recursiveCellCall LBRACE functionArgs RBRACE	{ $$ = new ast::CellCallExp(@$, *$1, *$3); }
-| simpleFunctionCall LBRACE functionArgs RBRACE	{ $$ = new ast::CellCallExp(@$, *$1, *$3); }
+| simpleFunctionCall LBRACE functionArgs RBRACE		{ $$ = new ast::CellCallExp(@$, *$1, *$3); }
 | recursiveFunctionCall LBRACE functionArgs RBRACE	{ $$ = new ast::CellCallExp(@$, *$1, *$3); }
 ;
 
