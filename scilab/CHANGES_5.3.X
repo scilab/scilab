@@ -232,6 +232,8 @@ Bug fixes:
 
 * bug 4359 fixed - M(:,:)='anything' produced erroneous result.
 
+* bug 4572 fixed - scilab did a SIGSEGV after stacksize('max') + stacksize().
+
 * bug 4672 fixed - Internal function AddFunctionInTable renamed to 
                    getFunctionByName to avoid confusions on the actual usage
                    of this function. Thanks to Yuvraj Tomar.
@@ -265,6 +267,8 @@ Bug fixes:
 
 * bug 5630 fixed - export_to_hdf5 to a file with a directory named 
                    the same altered the permission of the directory.
+
+* bug 6332 fixed - stacksize had problems on Mac OS X and 64 bit platforms.
 
 * bug 6419 fixed - gstacksize() There was no way to retrieve minimum 
                    from Scilab.
@@ -355,6 +359,10 @@ Bug fixes:
 
 * bug 6947 fixed - Some demos in "Optimization and Simulation" failed, 
                    without write rights in SCI subdirectory.
+
+* bug 6951 fixed - stacksize had a strange behaviour.
+
+* bug 6952 fixed - stacksize('max') did not return maximum value.
 
 * bug 6971 fixed - after launching a toolbox by loader.sce, variable v was
                    predefined.
