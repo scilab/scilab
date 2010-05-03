@@ -1,13 +1,17 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
+// Copyright (C) 2010 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 // <-- JVM NOT MANDATORY -->
 // <-- ENGLISH IMPOSED -->
+
+
 //
 // assert_close --
 //   Returns 1 if the two real matrices computed and expected are close,
@@ -27,7 +31,7 @@ function flag = assert_close ( computed, expected, epsilon )
   else
     flag = 0;
   end
-  if flag <> 1 then bugmes();quit;end
+  if flag <> 1 then pause,end
 endfunction
 //
 // assert_equal --
@@ -42,8 +46,24 @@ function flag = assert_equal ( computed , expected )
   else
     flag = 0;
   end
-  if flag <> 1 then bugmes();quit;end
+  if flag <> 1 then pause,end
 endfunction
+
+//
+// Test basic new/destroy sequence
+//
+nm = neldermead_new ();
+nm = neldermead_destroy(nm);
+
+//
+// Test printing system
+//
+nm = neldermead_new ();
+str = string(nm)
+assert_equal ( typeof(str) , "string" )
+nm
+nm = neldermead_destroy(nm);
+
 //
 // optimtestcase --
 //   Non linear inequality constraints are positive.
@@ -69,8 +89,10 @@ function [ f , c , index ] = optimtestcase ( x , index )
     c = [c1 c2 c3]
   end
 endfunction
+
+
 //
-// Test search with various error cases
+// Test printing system with various options configured
 //
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",4);
@@ -83,67 +105,8 @@ nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-method","box");
 nm = neldermead_configure(nm,"-nbineqconst",3);
 nm = neldermead_configure(nm,"-simplex0length",20.0);
-//
-// Test with inconsistent bounds
-//
-nm = neldermead_configure(nm,"-boundsmin",[10.0 -10.0 -10.0 -10.0]);
-nm = neldermead_configure(nm,"-boundsmax",[-10.0 10.0 10.0 10.0]);
-cmd = "nm = neldermead_search(nm)";
-execstr(cmd,"errcatch");
-computed = lasterror();
-if getos() == 'Windows' then
-expected = "neldermead_startup: The max bound -1.000000e+001 for variable #1 is lower than the min bound 1.000000e+001.";
-else
-expected = "neldermead_startup: The max bound -1.000000e+01 for variable #1 is lower than the min bound 1.000000e+01.";
-end
-assert_equal ( computed , expected );
-//
-// Test with wrong number of min bounds
-//
-nm = neldermead_configure(nm,"-boundsmin",[10.0]);
-nm = neldermead_configure(nm,"-boundsmax",[-10.0 10.0 10.0 10.0]);
-cmd = "nm = neldermead_search(nm)";
-execstr(cmd,"errcatch");
-computed = lasterror();
-expected = "neldermead_startup: The number of variables 4 does not match the number of min bounds 1 from [10]";
-assert_equal ( computed , expected );
-//
-// Test with wrong number of max bounds
-//
-nm = neldermead_configure(nm,"-boundsmin",[10.0 -10.0 -10.0 -10.0]);
-nm = neldermead_configure(nm,"-boundsmax",[-10.0]);
-cmd = "nm = neldermead_search(nm)";
-execstr(cmd,"errcatch");
-computed = lasterror();
-expected = "neldermead_startup: The number of variables 4 does not match the number of max bounds 1 from [-10]";
-assert_equal ( computed , expected );
-//
-// Test with Box algorithm and randomized bounds simplex and no bounds
-//
-nm = neldermead_configure(nm,"-boundsmin",[]);
-nm = neldermead_configure(nm,"-boundsmax",[]);
-nm = neldermead_configure(nm,"-simplex0method","randbounds");
-cmd = "nm = neldermead_search(nm)";
-execstr(cmd,"errcatch");
-computed = lasterror();
-expected = "neldermead_startup: Randomized bounds initial simplex is not available without bounds.";
-assert_equal ( computed , expected );
-//
-// Clean-up
-//
+str = string(nm)
+assert_equal ( typeof(str) , "string" )
+nm
 nm = neldermead_destroy(nm);
-//
-// Test search with verbose to log file
-//
-nm = neldermead_new ();
-nm = neldermead_configure(nm,"-numberofvariables",4);
-nm = neldermead_configure(nm,"-function",optimtestcase);
-nm = neldermead_configure(nm,"-x0",[0.0 0.0 0.0 0.0]');
-nm = neldermead_configure(nm,"-maxiter",10);
-nm = neldermead_configure(nm,"-verbose",1);
-nm = neldermead_configure(nm,"-logfile" , "search.txt" );
-nm = neldermead_configure(nm,"-verbosetermination",1);
-nm = neldermead_search(nm);
-nm = neldermead_destroy(nm);
-computed = deletefile("search.txt");
-assert_equal ( computed , %t );
+

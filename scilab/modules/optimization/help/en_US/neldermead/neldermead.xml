@@ -12,9 +12,6 @@
           xmlns:ns4="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate: 22-10-2009 $</pubdate>
-  </info>
 
   <refnamediv>
     <refname>neldermead</refname>
@@ -31,7 +28,6 @@ newobj = neldermead_new ()
 this = neldermead_destroy (this)
 this = neldermead_configure (this,key,value)
 value = neldermead_cget (this,key)
-neldermead_display ( this )
 value = neldermead_get ( this , key )
 this = neldermead_search ( this )
 this = neldermead_restart ( this )
@@ -84,20 +80,20 @@ g_i(x) &lt;= 0, i = 1,nbineq
 
     <variablelist>
       <varlistentry>
-        <term>Spendley, Hext and Himsworth fixed size simplex method</term>
+        <term>Spendley, Hext and Himsworth fixed shape simplex method</term>
 
         <listitem>
           <para>This algorithm solves an unconstrained optimization problem
-          with a fixed sized simplex made of k=n+1 vertices.</para>
+          with a fixed shape simplex made of k=n+1 vertices.</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term>Nelder and Mead variable size simplex method</term>
+        <term>Nelder and Mead variable shape simplex method</term>
 
         <listitem>
           <para>This algorithm solves an unconstrained optimization problem
-          with a variable sized simplex made of k=n+1 vertices.</para>
+          with a variable shape simplex made of k=n+1 vertices.</para>
         </listitem>
       </varlistentry>
 
@@ -106,11 +102,17 @@ g_i(x) &lt;= 0, i = 1,nbineq
 
         <listitem>
           <para>This algorithm solves an constrained optimization problem with
-          a variable sized simplex made of an arbitrary k number of vertices
+          a variable shape simplex made of an arbitrary k number of vertices
           (k=2n is recommended by Box).</para>
         </listitem>
       </varlistentry>
     </variablelist>
+    
+    <para>See the demonstrations, in the Optimization section, for an overview
+    of this component.</para>
+    
+    <para>See the "Nelder-Mead User's Manual" on Scilab's wiki and on the
+    Scilab forge for further informations.</para>
   </refsection>
 
   <refsection>
@@ -1246,24 +1248,6 @@ g_i(x) &lt;= 0, i = 1,nbineq
       </varlistentry>
 
       <varlistentry>
-        <term>neldermead_display ( this )</term>
-
-        <listitem>
-          <para>Display the current settings in the console.</para>
-
-          <variablelist>
-            <varlistentry>
-              <term>this</term>
-
-              <listitem>
-                <para>The current object.</para>
-              </listitem>
-            </varlistentry>
-          </variablelist>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
         <term>this = neldermead_search ( this )</term>
 
         <listitem>
@@ -1583,11 +1567,6 @@ function outputcmd(state, data, myobj)
     (ASCII, LaTeX, Excel, Hdf5, etc...). The user-defined parameter may be
     used in that case to store file names or logging options.</para>
 
-    <para>The data tlist argument may contain more fields than the current
-    presented ones. These additionnal fields may contain values which are
-    specific to the specialized algorithm, such as the simplex in a
-    Nelder-Mead method, the gradient of the cost function in a BFGS method,
-    etc...</para>
   </refsection>
 
   <refsection>
@@ -2274,7 +2253,7 @@ nm = neldermead_configure(nm,"-numberofvariables",2);
 nm = neldermead_configure(nm,"-function",quadratic);
 nm = neldermead_configure(nm,"-x0",x0);
 nm = neldermead_search(nm);
-neldermead_display(nm);
+nm
 xopt = neldermead_get(nm,"-xopt");
 nm = neldermead_destroy(nm);
  ]]>
@@ -2525,6 +2504,10 @@ Iteration #157, Feval #300, Fval = 6.023002e-027, x = 1 1, Size = 2.814328e-013
 
     <para>"Algorithm AS47 - Function minimization using a simplex procedure",
     O'Neill, R., Applied Statistics, 1971</para>
+    
+    <para>"Nelder Mead's User Manual", Consortium Scilab - Digiteo, Michael 
+    Baudin, 2010</para>
+
   </refsection>
 
   <refsection>

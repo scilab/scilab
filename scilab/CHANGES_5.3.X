@@ -111,6 +111,10 @@ Optimization:
 * Simulated annealing: Added documentation for accept_func_default and
   accept_func_vfsa.
 
+* fminsearch: updated printing of neldermead, optimbase and optimsimplex objects.
+
+* fminsearch: added demo for dimensionnality effect of the Nelder-Mead algorithm.
+
 Xcos:
 =====
 

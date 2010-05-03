@@ -1,6 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2008 - INRIA - Michael Baudin
-// Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
+// Copyright (C) 2010 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -8,13 +7,16 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
 //
-// neldermead_display --
-//   Display a Nelder-Mead engine
+// %TNELDER_p --
+//   Prints the string containing the nelder mead component.
 //
-function neldermead_display ( this )
-  warnobsolete("disp", "neldermead_display")
-  disp(this)
+function %TNELDER_p ( this )
+  str = string ( this )
+  srows = size(str,"r")
+  for i = 1 : srows
+    mprintf("%s\n",str(i))
+  end
 endfunction
+
 
