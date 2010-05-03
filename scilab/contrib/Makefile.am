@@ -48,8 +48,7 @@ toolbox_skeleton/tests/unit_tests/c_sum.tst \
 toolbox_skeleton/tests/unit_tests/fortran_sum.tst \
 toolbox_skeleton/tests/unit_tests/scilab_sum.tst \
 toolbox_skeleton/toolbox_skeleton.iss \
-toolbox_skeleton/toolbox_skeleton_redist.iss \
-loader.sce
+toolbox_skeleton/toolbox_skeleton_redist.iss
 
 
 install-data-local:
