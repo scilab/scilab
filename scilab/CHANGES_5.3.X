@@ -136,6 +136,10 @@ Compilation:
 
 * fix many warnings detected by Intel Fortran 11.1.051 and more on Windows.
 
+* Better detection system of the version of the dependencies
+
+* Add a check of the minimal installation of hdf5 (1.8.4)
+
 * bug 6643 fixed - --without-gui failed to disable Ocaml build (A xcos 
                    dependency)
 
