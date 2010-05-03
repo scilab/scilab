@@ -148,6 +148,11 @@ Text Rendering:
 
 * Antialiasing activated by default to render text
 
+License:
+========
+
+* The demos files (modules/*/demos/**/*.dem.*) are now released in the public
+  domain. (See bug #4902)
 
 Obsolete Functions:
 ===================
