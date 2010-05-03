@@ -87,7 +87,7 @@ Xcos:
 * bug 6900 fixed - The block interfunction was escaped when calling scilab
                    macros.
 
-* bug 6903 fixed - modelicat calls ocamlrun (wrong dependency on Windows).      
+* bug 6903 fixed - modelicat calls ocamlrun (wrong dependency on Windows).
 
 * bug 6981 fixed - the Scilab 'exit' call was killing Xcos session without 
                    prompting the user if modified diagrams must be saved before 
@@ -205,7 +205,8 @@ Bug fixes:
                    file (if filename as no extension or .mat extension) or for an
                    ASCII file if filename has an other extension.
 
-* bug 3811 fixed - Update documention about "typeof" and overload prefixes ( help overloading ).
+* bug 3811 fixed - Documention about "typeof" and overload prefixes was not
+                   up-to-date (help overloading).
 
 * bug 4359 fixed - M(:,:)='anything' produced erroneous result.
 
