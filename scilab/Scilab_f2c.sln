@@ -1090,6 +1090,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "types-Ant", "modules\types\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "rename-vc-files", "Visual-Studio-settings\rename-vc-files\rename-vc-files.vcproj", "{DD8A0506-8D31-4CF8-856A-C10ECE9C13A4}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "parameters", "modules\parameters\parameters.vcproj", "{A09E8584-0713-48A5-97BA-ACED0F3728F8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DD8A0506-8D31-4CF8-856A-C10ECE9C13A4} = {DD8A0506-8D31-4CF8-856A-C10ECE9C13A4}
+		{43C5BAB1-1DCA-4743-A183-77E0D42FE7D0} = {43C5BAB1-1DCA-4743-A183-77E0D42FE7D0}
+		{A5911CD7-F8E8-440C-A23E-4843A0636F3A} = {A5911CD7-F8E8-440C-A23E-4843A0636F3A}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -2204,6 +2211,14 @@ Global
 		{DD8A0506-8D31-4CF8-856A-C10ECE9C13A4}.Release|Win32.Build.0 = Release|Win32
 		{DD8A0506-8D31-4CF8-856A-C10ECE9C13A4}.Release|x64.ActiveCfg = Release|x64
 		{DD8A0506-8D31-4CF8-856A-C10ECE9C13A4}.Release|x64.Build.0 = Release|x64
+		{A09E8584-0713-48A5-97BA-ACED0F3728F8}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A09E8584-0713-48A5-97BA-ACED0F3728F8}.Debug|Win32.Build.0 = Debug|Win32
+		{A09E8584-0713-48A5-97BA-ACED0F3728F8}.Debug|x64.ActiveCfg = Debug|x64
+		{A09E8584-0713-48A5-97BA-ACED0F3728F8}.Debug|x64.Build.0 = Debug|x64
+		{A09E8584-0713-48A5-97BA-ACED0F3728F8}.Release|Win32.ActiveCfg = Release|Win32
+		{A09E8584-0713-48A5-97BA-ACED0F3728F8}.Release|Win32.Build.0 = Release|Win32
+		{A09E8584-0713-48A5-97BA-ACED0F3728F8}.Release|x64.ActiveCfg = Release|x64
+		{A09E8584-0713-48A5-97BA-ACED0F3728F8}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
