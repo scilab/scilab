@@ -69,6 +69,9 @@ Graphics:
 
 * bug 7067 fixed - The "isoview" macro created an unnecessary "plot" object.
 
+* bug 7075 fixed - When the "links" property was set for a handle of type
+                   "legend", the property type was not checked.
+
 * bug 7079 fixed - The "mtlb_get" used a "h" global variable instead of the
                    given "H" argument.
 
