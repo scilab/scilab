@@ -72,8 +72,8 @@ void C2F(siflibs)(int* id, int* k_ptr, int* istr, int* lbibn_ptr, int* nbibn_ptr
                   int* ilp_ptr, int* nn_ptr, int* should_return)
 {
 
-    static int const* const lstk_ptr = (int*)C2F(vstk).lstk-1;
-    static int const* const istk_ptr = ((int*)C2F(stack).Stk)-1;
+    int const* const lstk_ptr = (int*)C2F(vstk).lstk-1;
+    int const* const istk_ptr = ((int*)C2F(stack).Stk)-1;
     int k, ilp, nbibn, lbibn;
 
     *should_return= f_false;
