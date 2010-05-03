@@ -224,6 +224,9 @@ Bug fixes:
 * bug 4996 fixed - mgetl() was not located in the right module. It has been
                    moved to "fileio" module
 
+* bug 5541 fixed - In the API documentation, the information that data must be
+                   allocated before calling API functions was missing.
+
 * bug 5575 fixed - Wrong german translation fixed (Standart => Standard)
 
 * bug 5583 fixed - exec() did not manage correctly UTF-8 and ANSI/ASCII files 
