@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <comment>Map between action and keys</comment>
+
+  <entry key="TabifyAction">TAB</entry>
+  <entry key="UnTabifyAction">shift TAB</entry>
+  <entry key="IndentAction">control I</entry>
+  <entry key="CommentAction">control D</entry>
+  <entry key="UnCommentAction">control shift D</entry>
+  <entry key="SelectAllAction">control A</entry>
+
+  <entry key="CopyAction">control C</entry>
+  <entry key="CutAction">control X</entry>
+  <entry key="PasteAction">control V</entry>
+  <entry key="UndoAction">control Z</entry>
+  <entry key="RedoAction">control Y</entry>
+
+  <entry key="NewAction">control N</entry>
+  <entry key="OpenAction">control O</entry>
+  <entry key="SaveAction">control S</entry>
+  <entry key="SaveAsAction">control alt S</entry>
+  <entry key="SaveAllAction">control shift S</entry>
+  <entry key="PrintPreviewAction">control shift P</entry>
+  <entry key="PrintAction">control P</entry>
+  <entry key="CloseAction">control W</entry>
+  <entry key="ExitAction">control Q</entry>
+
+  <entry key="HighlightCurrentLineAction">control J</entry>
+  <entry key="HelpOnKeywordAction">control F1</entry>
+
+  <!--entry key="LineNumbersWhereamiAction">control shift B</entry>
+  <entry key="LoadIntoScilabAction">control L</entry>
+  <entry key="ExecuteFileIntoScilabAction">control E</entry>
+  <entry key="EvaluateSelectionAction">control shift E</entry-->
+
+</properties>
