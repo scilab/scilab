@@ -1069,7 +1069,7 @@ check-code:
 @GIWS_TRUE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@			echo "GIWS process of $$file ..."; \
-@GIWS_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
+@GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
 

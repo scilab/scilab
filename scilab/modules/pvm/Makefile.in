@@ -1447,7 +1447,7 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 @GIWS_TRUE@@PVM_TRUE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@@PVM_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@@PVM_TRUE@			echo "GIWS process of $$file ..."; \
-@GIWS_TRUE@@PVM_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
+@GIWS_TRUE@@PVM_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@@PVM_TRUE@		done; \
 @GIWS_TRUE@@PVM_TRUE@	fi
 
@@ -1632,7 +1632,7 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 @GIWS_TRUE@@PVM_FALSE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@@PVM_FALSE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@@PVM_FALSE@			echo "GIWS process of $$file ..."; \
-@GIWS_TRUE@@PVM_FALSE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
+@GIWS_TRUE@@PVM_FALSE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@@PVM_FALSE@		done; \
 @GIWS_TRUE@@PVM_FALSE@	fi
 
