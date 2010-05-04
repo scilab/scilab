@@ -51,6 +51,9 @@ public class XpadMessages {
     public static final String PASTE = Messages.gettext("Paste");
     public static final String SELECT_ALL = Messages.gettext("Select All");
     public static final String DELETE = Messages.gettext("Delete");
+
+    /** TOOLS MENU */
+    public static final String TOOLS = Messages.gettext("Tools");
     public static final String COMMENT_SELECTION = Messages.gettext("Comment Selection");
     public static final String UNCOMMENT_SELECTION = Messages.gettext("Uncomment Selection");
     public static final String TABIFY_SELECTION = Messages.gettext("Shift Right");
@@ -97,6 +100,7 @@ public class XpadMessages {
     
     /** HELP MENU */
     public static final String HELP = Messages.gettext("Scilab text editor help") + DOTS;
+    public static final String HELP_ON_KEYWORD = Messages.gettext("Help on the current keyword");
     public static final String ABOUT = Messages.gettext("About") + DOTS;
     public static final String XPAD_VERSION = Messages.gettext("Scilab text editor");
     
