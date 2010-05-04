@@ -234,6 +234,9 @@ Bug fixes:
 * bug 4799 fixed - Sometime the bode, nyquist , ... function reported a
                    "non convergence" error
 
+* bug 4948 fixed - a simple Runge Kutta method for solving a second order 
+                   differential equation had a strange behaviour.
+
 * bug 4985 fixed - mgetl did not use fgets (C function).
 
 * bug 4996 fixed - mgetl() was not located in the right module. It has been
