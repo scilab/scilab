@@ -316,7 +316,7 @@ else
 fi
 
 if test "$enable_debug_CXX" = yes; then
-   CXXFLAGS="`echo "$CXXFLAGS"| sed -e 's|-O[0-9+]|-O0|'`"
+   CPPFLAGS="`echo "$CPPFLAGS"| sed -e 's|-O[0-9+]|-O0|'`"
 else
    enable_debug_CXX=no
 fi
@@ -468,17 +468,17 @@ case "$CXX" in
 	 g++-* | g++ | ccache*g++ | ccache*g++-* )
    ## With GNU C++ Compiler
    if test "$enable_debug_CXX" = yes; then
-	  CXXFLAGS="$CXXFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall -Wold-style-cast -g3"
+	  CPPFLAGS="$CPPFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall -Wold-style-cast -g3"
           case "$host" in
           *-linux-gnu )
           # Only doing that under Linux
-                  CXXFLAGS="$CXXFLAGS -fdiagnostics-show-option -Werror=format-security"
+                  CPPFLAGS="$CPPFLAGS -fdiagnostics-show-option -Werror=format-security"
           ;;
 	  esac
    else
-	  CXXFLAGS="$CXXFLAGS -DNDEBUG"
+	  CPPFLAGS="$CPPFLAGS -DNDEBUG"
    fi
-   CXXFLAGS="$CXXFLAGS -fno-stack-protector" # bug 3131
+   CPPFLAGS="$CPPFLAGS -fno-stack-protector" # bug 3131
    ;;
 esac
 
@@ -628,7 +628,7 @@ esac
 
 # flag for possible compilations in configure
 CFLAGS="$CFLAGS "'-I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/'
-CXXFLAGS="$CXXFLAGS "'-I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/'
+CPPFLAGS="$CPPFLAGS "'-I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/'
 FFLAGS="$FFLAGS "'-I$(top_srcdir)/modules/core/includes/'
 
 if test $IS_64_BITS_CPU = true -o "$MACOSX" = "1"; then
@@ -1594,7 +1594,7 @@ AC_DEFINE_UNQUOTED([SHARED_LIB_EXT],["$shrext_cmds"],[Extension of a shared libr
 dnl @TODO : -O0 is only to bypass Stack shit... Must be removed.
 if test "$enable_stop_on_warning" = yes; then
    CFLAGS="$CFLAGS -Werror -O0"
-   CXXFLAGS="$CXXFLAGS -Werror -O0"
+   CPPFLAGS="$CPPFLAGS -Werror -O0"
 fi
 
 AC_CONFIG_FILES([
@@ -2048,7 +2048,7 @@ echo "  LD ............. = $LD"
 echo "  LDFLAGS ........ = $LDFLAGS"
 echo "  LIBS ........... = $LIBS"
 echo "  CXX ............ = $CXX"
-echo "  CXXFLAGS ....... = $CXXFLAGS"
+echo "  CPPFLAGS ....... = $CPPFLAGS"
 echo "  F77 ............ = $F77"
 echo "  FFLAGS ......... = $FFLAGS"
 echo "  F77_LDFLAGS .... = $F77_LDFLAGS"

@@ -8858,7 +8858,7 @@ else
 fi
 
 if test "$enable_debug_CXX" = yes; then
-   CXXFLAGS="`echo "$CXXFLAGS"| sed -e 's|-O0-9+|-O0|'`"
+   CPPFLAGS="`echo "$CPPFLAGS"| sed -e 's|-O0-9+|-O0|'`"
 else
    enable_debug_CXX=no
 fi
@@ -9093,17 +9093,17 @@ case "$CXX" in
 	 g++-* | g++ | ccache*g++ | ccache*g++-* )
    ## With GNU C++ Compiler
    if test "$enable_debug_CXX" = yes; then
-	  CXXFLAGS="$CXXFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall -Wold-style-cast -g3"
+	  CPPFLAGS="$CPPFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall -Wold-style-cast -g3"
           case "$host" in
           *-linux-gnu )
           # Only doing that under Linux
-                  CXXFLAGS="$CXXFLAGS -fdiagnostics-show-option -Werror=format-security"
+                  CPPFLAGS="$CPPFLAGS -fdiagnostics-show-option -Werror=format-security"
           ;;
 	  esac
    else
-	  CXXFLAGS="$CXXFLAGS -DNDEBUG"
+	  CPPFLAGS="$CPPFLAGS -DNDEBUG"
    fi
-   CXXFLAGS="$CXXFLAGS -fno-stack-protector" # bug 3131
+   CPPFLAGS="$CPPFLAGS -fno-stack-protector" # bug 3131
    ;;
 esac
 
@@ -9254,7 +9254,7 @@ esac
 
 # flag for possible compilations in configure
 CFLAGS="$CFLAGS "'-I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/'
-CXXFLAGS="$CXXFLAGS "'-I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/'
+CPPFLAGS="$CPPFLAGS "'-I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/'
 FFLAGS="$FFLAGS "'-I$(top_srcdir)/modules/core/includes/'
 
 if test $IS_64_BITS_CPU = true -o "$MACOSX" = "1"; then
@@ -36417,7 +36417,7 @@ _ACEOF
 #
 if test "$enable_stop_on_warning" = yes; then
    CFLAGS="$CFLAGS -Werror -O0"
-   CXXFLAGS="$CXXFLAGS -Werror -O0"
+   CPPFLAGS="$CPPFLAGS -Werror -O0"
 fi
 
 ac_config_files="$ac_config_files libs/MALLOC/Makefile libs/dynamiclibrary/Makefile libs/doublylinkedlist/Makefile libs/hashtable/Makefile libs/libst/Makefile contrib/Makefile modules/helptools/Makefile modules/helptools/macros/xmlfiletohtml.sci modules/data_structures/Makefile modules/differential_equations/Makefile modules/optimization/Makefile modules/elementary_functions/Makefile modules/special_functions/Makefile modules/io/Makefile modules/shell/Makefile modules/completion/Makefile modules/history_manager/Makefile modules/jvm/Makefile modules/sound/Makefile modules/statistics/Makefile modules/mexlib/Makefile modules/sparse/Makefile modules/linear_algebra/Makefile modules/polynomials/Makefile modules/symbolic/Makefile modules/signal_processing/Makefile modules/arnoldi/Makefile modules/interpolation/Makefile modules/intersci/Makefile modules/localization/Makefile modules/cacsd/Makefile modules/boolean/Makefile modules/integer/Makefile modules/double/Makefile modules/fileio/Makefile modules/spreadsheet/Makefile modules/string/Makefile modules/time/Makefile modules/graphics/Makefile modules/graphic_export/Makefile modules/renderer/Makefile modules/action_binding/Makefile modules/gui/Makefile modules/pvm/Makefile modules/randlib/Makefile modules/tclsci/Makefile modules/windows_tools/Makefile modules/core/Makefile modules/api_scilab/Makefile modules/call_scilab/Makefile modules/types/Makefile modules/hdf5/Makefile modules/fftw/Makefile modules/umfpack/Makefile modules/scicos/Makefile modules/scicos_blocks/Makefile modules/functions/Makefile modules/dynamic_link/Makefile modules/overloading/Makefile modules/javasci/Makefile modules/maple2scilab/Makefile modules/m2sci/Makefile modules/compatibility_functions/Makefile modules/texmacs/Makefile modules/development_tools/Makefile modules/output_stream/Makefile modules/console/Makefile modules/demo_tools/Makefile modules/genetic_algorithms/Makefile modules/simulated_annealing/Makefile modules/parameters/Makefile modules/matio/Makefile modules/atoms/Makefile modules/xcos/Makefile modules/xpad/Makefile modules/graph/Makefile modules/Makefile libs/Makefile Makefile scilab.pc etc/modules.xml etc/classpath.xml etc/jvm_options.xml scilab-lib.properties scilab-lib-doc.properties"
@@ -39947,7 +39947,7 @@ echo "  LD ............. = $LD"
 echo "  LDFLAGS ........ = $LDFLAGS"
 echo "  LIBS ........... = $LIBS"
 echo "  CXX ............ = $CXX"
-echo "  CXXFLAGS ....... = $CXXFLAGS"
+echo "  CPPFLAGS ....... = $CPPFLAGS"
 echo "  F77 ............ = $F77"
 echo "  FFLAGS ......... = $FFLAGS"
 echo "  F77_LDFLAGS .... = $F77_LDFLAGS"

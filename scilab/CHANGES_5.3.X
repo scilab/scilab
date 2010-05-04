@@ -151,6 +151,8 @@ Compilation:
 * bug 6643 fixed - --without-gui failed to disable Ocaml build (A xcos 
                    dependency)
 
+* bug 6857 fixed - make CXXFLAGS="-myflag" was removing some C++ arguments.
+
 helptools:
 ==========
 
