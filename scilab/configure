@@ -19673,7 +19673,7 @@ _ACEOF
 ## Test for gettext
 #######################
 
-ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR ja_JP it_IT uk_UA"
+ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR ja_JP it_IT uk_UA pl_PL"
 
 # Check whether --enable-build-localization was given.
 if test "${enable_build_localization+set}" = set; then :

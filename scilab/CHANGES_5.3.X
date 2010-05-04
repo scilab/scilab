@@ -49,6 +49,13 @@ Graphics:
 
 * bug 7028 fixed - When scilab printed an "axis" graphic handle, string array
                    size for "tics_labels" was erroneous.
+=======
+Localization:
+=============
+
+* Polish localization added. Thanks to Paweł Dąbrowski, Ernest Życiński, 
+  Sebastian Sławski, Kamil Dąbrowsk, Kamil Strojek, Kamil Dąbrowski, 
+  Michał Snoc, Piotr Seroka...
 
 API_Scilab:
 ===========
