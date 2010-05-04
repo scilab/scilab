@@ -370,3 +370,5 @@ Bug fixes:
 * bug 6990 fixed - "and" and "or" did not work on hypermatrices
 
 * bug 7014 fixed - ilib_verbose value was modified after toolbox_skeleton.
+
+* bug 7033 fixed - newfun was randomly crashing (mostly on 32 bits) writing to unallocated memory.
