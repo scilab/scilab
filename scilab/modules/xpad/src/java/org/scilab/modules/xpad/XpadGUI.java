@@ -19,6 +19,9 @@ import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JMenu;
@@ -27,6 +30,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JEditorPane;
 import javax.swing.text.DefaultEditorKit;
+import javax.swing.KeyStroke;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.gui.console.ScilabConsole;
@@ -47,6 +51,7 @@ import org.scilab.modules.xpad.actions.CloseAction;
 import org.scilab.modules.xpad.actions.CloseAllAction;
 import org.scilab.modules.xpad.actions.CloseAllButThisAction;
 import org.scilab.modules.xpad.actions.CommentAction;
+import org.scilab.modules.xpad.actions.UnCommentAction;
 import org.scilab.modules.xpad.actions.CopyAction;
 import org.scilab.modules.xpad.actions.CutAction;
 import org.scilab.modules.xpad.actions.DeleteAction;
@@ -60,6 +65,7 @@ import org.scilab.modules.xpad.actions.FindNextAction;
 import org.scilab.modules.xpad.actions.FindPreviousAction;
 import org.scilab.modules.xpad.actions.GotoLineAction;
 import org.scilab.modules.xpad.actions.HelpAction;
+import org.scilab.modules.xpad.actions.HelpOnKeywordAction;
 import org.scilab.modules.xpad.actions.HighlightCurrentLineAction;
 import org.scilab.modules.xpad.actions.IndentAction;
 import org.scilab.modules.xpad.actions.LineNumbersAction;
@@ -85,12 +91,23 @@ import org.scilab.modules.xpad.actions.UndoAction;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
+/**
+ * Class XpadGUI handles menus, bar, ...
+ */
 public class XpadGUI {
+
 	private static JRadioButtonMenuItem[] radioTypes;
 	private static JRadioButtonMenuItem[] radioEolTypes;
 	private static MenuItem evaluateSelectionMenuItem;
 	private static TextBox infoBar;
+        private static Map<String, KeyStroke> map; 
 
+        /** 
+	 * Constructor
+	 * @param mainWindow Windows
+	 * @param editorInstance Xpad
+	 * @param title the title
+	 */
 	public XpadGUI(Window mainWindow, Xpad editorInstance, String title) {
 		
 		mainWindow.setTitle(title);
@@ -99,7 +116,10 @@ public class XpadGUI {
 		// Set Xpad Window position /size
 		mainWindow.setPosition(ConfigXpadManager.getMainWindowPosition());
 		mainWindow.setDims(ConfigXpadManager.getMainWindowSize());
-
+		
+		map = new HashMap();
+		ConfigXpadManager.addMapActionNameKeys(map);
+		
 		MenuBar menuBar = ScilabMenuBar.createMenuBar();
 		//Create FILE menubar
 		Menu fileMenu = ScilabMenu.createMenu();
@@ -110,6 +130,10 @@ public class XpadGUI {
 		Menu editMenu = ScilabMenu.createMenu();
 		createEditMenu(editMenu, editorInstance);
 		menuBar.add(editMenu);
+
+		Menu toolsMenu = ScilabMenu.createMenu();
+		createToolsMenu(toolsMenu, editorInstance);
+		menuBar.add(toolsMenu);
 
 		// Create SEARCH menubar
 		Menu searchMenu = ScilabMenu.createMenu(); 
@@ -125,7 +149,7 @@ public class XpadGUI {
 		Menu viewMenu = ScilabMenu.createMenu();
 		viewMenu.setText(XpadMessages.VIEW);
 		viewMenu.setMnemonic('S');
-		viewMenu.add(HighlightCurrentLineAction.createCheckBoxMenu(editorInstance));
+		viewMenu.add(HighlightCurrentLineAction.createCheckBoxMenu(editorInstance, map.get("HighlightCurrentLineAction")));
 		viewMenu.add(LineNumbersAction.createCheckBoxMenu(editorInstance));
 		viewMenu.add(SetColorsAction.createMenu(editorInstance));
 		viewMenu.add(SetFontAction.createMenu(editorInstance));
@@ -160,6 +184,7 @@ public class XpadGUI {
 		Menu helpMenu = ScilabMenu.createMenu();
 		helpMenu.setText(XpadMessages.QUESTION_MARK);
 		helpMenu.add(HelpAction.createMenu(editorInstance));
+		helpMenu.add(HelpOnKeywordAction.createMenu(editorInstance, map.get("HelpOnKeywordAction")));
 		helpMenu.add(AboutAction.createMenu(editorInstance));
 		menuBar.add(helpMenu);
 
@@ -180,61 +205,57 @@ public class XpadGUI {
 	 * be updated
 	 */
 	public void updateEncodingMenu(ScilabDocument scilabDocument) {
-		if (scilabDocument.getScilabDocument() instanceof ScilabDocument) {
-			if (radioTypes != null) { 
-				for (int k = 0; k < radioTypes.length; k++) {
-					if ((scilabDocument.getScilabDocument()).getEncoding().equals(radioTypes[k].getText())) {
-						radioTypes[k].setSelected(true);
-					}
-				}
-			}
+	    if (radioTypes != null) { 
+		for (int k = 0; k < radioTypes.length; k++) {
+		    if (scilabDocument.getEncoding().equals(radioTypes[k].getText())) {
+			radioTypes[k].setSelected(true);
+		    }
 		}
+	    }
 	}
-	
+    
 	/**
 	 * Update the selected item in the EOL pull down menu of the document.
 	 * @param scilabDocument the document for which the End Of Line menu should
 	 * be updated
 	 */
 	public void updateEolMenu(ScilabDocument scilabDocument) {
-		if (scilabDocument.getScilabDocument() instanceof ScilabDocument) {
-			String eolLinux = "\n";
-			String eolMacOs = "\r";
-			String eolWindows = "\r\n";
-
-			String eolUsedLabel = XpadMessages.EOL_LINUX;
-			String eolUsed = scilabDocument.getScilabDocument().getEOL();
-			
-			if (eolUsed.compareTo(eolLinux) == 0) {
-				eolUsedLabel = XpadMessages.EOL_LINUX;
-			}
-			
-			if (eolUsed.compareTo(eolMacOs) == 0) {
-				eolUsedLabel = XpadMessages.EOL_MACOS;
-			}
-			
-			if (eolUsed.compareTo(eolWindows) == 0) {
-				eolUsedLabel = XpadMessages.EOL_WINDOWS;
-			}
-			
-			for (int k = 0; k < radioEolTypes.length; k++) {
-				if (radioEolTypes[k].getText().compareTo(eolUsedLabel) == 0) {
-					radioEolTypes[k].setSelected(true);
-				}
-			}
+		String eolLinux = ScilabDocument.EOLUNIX;
+		String eolMacOs = ScilabDocument.EOLMAC;
+		String eolWindows = ScilabDocument.EOLWIN;
+		
+		String eolUsedLabel = XpadMessages.EOL_LINUX;
+		String eolUsed = scilabDocument.getEOL();
+		
+		if (eolUsed.compareTo(eolLinux) == 0) {
+		    eolUsedLabel = XpadMessages.EOL_LINUX;
+		}
+		
+		if (eolUsed.compareTo(eolMacOs) == 0) {
+		    eolUsedLabel = XpadMessages.EOL_MACOS;
+		}
+		
+		if (eolUsed.compareTo(eolWindows) == 0) {
+		    eolUsedLabel = XpadMessages.EOL_WINDOWS;
+		}
+		
+		for (int k = 0; k < radioEolTypes.length; k++) {
+		    if (radioEolTypes[k].getText().compareTo(eolUsedLabel) == 0) {
+			radioEolTypes[k].setSelected(true);
+		    }
 		}
 	}
 
 	/**
 	 * create End Of Line sub Menu
-	 * @param documentMenu
-	 * @param editorInstance
+	 * @param documentMenu Menu
+	 * @param editorInstance Xpad
 	 */
 	private void createEolSubMenu(Menu documentMenu, Xpad editorInstance) {
 		
-		String eolLinux = "\n";
-		String eolMacOs = "\r";
-		String eolWindows = "\r\n";
+		String eolLinux = ScilabDocument.EOLUNIX;
+		String eolMacOs = ScilabDocument.EOLMAC;
+		String eolWindows = ScilabDocument.EOLWIN;
 		String defaultEolLabel = XpadMessages.EOL_LINUX;
 		
 		// selected by default O.S
@@ -314,23 +335,32 @@ public class XpadGUI {
 	private void createEditMenu(Menu editMenu, Xpad editorInstance) {
 		editMenu.setText(XpadMessages.EDIT); 
 		editMenu.setMnemonic('E');
-		editMenu.add(UndoAction.createMenu(editorInstance));
-		editMenu.add(RedoAction.createMenu(editorInstance));
+		editMenu.add(UndoAction.createMenu(editorInstance, map.get("UndoAction")));
+		editMenu.add(RedoAction.createMenu(editorInstance, map.get("RedoAction")));
 		editMenu.addSeparator(); 
-		editMenu.add(CutAction.createMenu(editorInstance));
-		editMenu.add(CopyAction.createMenu(editorInstance));
-		editMenu.add(PasteAction.createMenu(editorInstance));
+		editMenu.add(CutAction.createMenu(editorInstance, map.get("CutAction")));
+		editMenu.add(CopyAction.createMenu(editorInstance, map.get("CopyAction")));
+		editMenu.add(PasteAction.createMenu(editorInstance, map.get("PasteAction")));
 		editMenu.addSeparator(); 
-		editMenu.add(SelectAllAction.createMenu(editorInstance));
+		editMenu.add(SelectAllAction.createMenu(editorInstance, map.get("SelectAllAction")));
 		editMenu.add(DeleteAction.createMenu(editorInstance));
-		editMenu.addSeparator();
-		editMenu.add(CommentAction.createMenu(editorInstance));
-		//editMenu.add(UnCommentAction.createMenu(editorInstance));
-		editMenu.addSeparator();
-		editMenu.add(TabifyAction.createMenu(editorInstance));
-		editMenu.add(UnTabifyAction.createMenu(editorInstance));
-		editMenu.addSeparator();
-		editMenu.add(IndentAction.createMenu(editorInstance));
+	}
+
+	/**
+	 * createToolsMenu
+	 * @param toolsMenu Menu
+	 * @param editorInstance Xpad
+	 */
+	private void createToolsMenu(Menu toolsMenu, Xpad editorInstance) {
+	        toolsMenu.setText(XpadMessages.TOOLS); 
+		toolsMenu.setMnemonic('o');
+		toolsMenu.add(CommentAction.createMenu(editorInstance, map.get("CommentAction")));
+		toolsMenu.add(UnCommentAction.createMenu(editorInstance, map.get("UnCommentAction")));
+		toolsMenu.addSeparator();
+		toolsMenu.add(TabifyAction.createMenu(editorInstance, map.get("TabifyAction")));
+		toolsMenu.add(UnTabifyAction.createMenu(editorInstance, map.get("UnTabifyAction")));
+		toolsMenu.addSeparator();
+		toolsMenu.add(IndentAction.createMenu(editorInstance, map.get("IndentAction")));
 	}
 
 	/**
@@ -339,12 +369,12 @@ public class XpadGUI {
 	 * @param editorInstance Xpad
 	 */
 	private void createFileMenu(Menu fileMenu, Xpad editorInstance) {
-		ArrayList<File> recentFiles = ConfigXpadManager.getAllRecentOpenedFiles();
+		List<File> recentFiles = ConfigXpadManager.getAllRecentOpenedFiles();
 		
 		fileMenu.setText(XpadMessages.FILE);
 		fileMenu.setMnemonic('F');
-		fileMenu.add(NewAction.createMenu(editorInstance));
-		fileMenu.add(OpenAction.createMenu(editorInstance));
+		fileMenu.add(NewAction.createMenu(editorInstance, map.get("NewAction")));
+		fileMenu.add(OpenAction.createMenu(editorInstance, map.get("OpenAction")));
 		Menu recentsMenu = editorInstance.getRecentsMenu();
 		recentsMenu.setText(XpadMessages.RECENT_FILES);
 		for (int i = 0; i < recentFiles.size(); i++) {
@@ -354,19 +384,19 @@ public class XpadGUI {
 		fileMenu.add(recentsMenu);
 
 		fileMenu.addSeparator();
-		fileMenu.add(SaveAction.createMenu(editorInstance));
-		fileMenu.add(SaveAsAction.createMenu(editorInstance));
-		fileMenu.add(SaveAllAction.createMenu(editorInstance));
+		fileMenu.add(SaveAction.createMenu(editorInstance, map.get("SaveAction")));
+		fileMenu.add(SaveAsAction.createMenu(editorInstance, map.get("SaveAsAction")));
+		fileMenu.add(SaveAllAction.createMenu(editorInstance, map.get("SaveAllAction")));
 		fileMenu.addSeparator();
 		fileMenu.add(PageSetupAction.createMenu(editorInstance));
-		fileMenu.add(PrintPreviewAction.createMenu(editorInstance));
-		fileMenu.add(PrintAction.createMenu(editorInstance));
+		fileMenu.add(PrintPreviewAction.createMenu(editorInstance, map.get("PrintPreviewAction")));
+		fileMenu.add(PrintAction.createMenu(editorInstance, map.get("PrintAction")));
 		fileMenu.addSeparator();
-		fileMenu.add(CloseAction.createMenu(editorInstance));
+		fileMenu.add(CloseAction.createMenu(editorInstance, map.get("CloseAction")));
 		fileMenu.add(CloseAllAction.createMenu(editorInstance));
 		fileMenu.add(CloseAllButThisAction.createMenu(editorInstance));
 		fileMenu.addSeparator();
-		fileMenu.add(ExitAction.createMenu(editorInstance));
+		fileMenu.add(ExitAction.createMenu(editorInstance, map.get("ExitAction")));
 	}
 	
 	/**
@@ -380,7 +410,7 @@ public class XpadGUI {
 		encodingTypeMenu.setText(XpadMessages.ENCODING_TYPE);
 		documentMenu.add(encodingTypeMenu);
 
-		ArrayList<String> encodings = EncodingAction.getEcodings();
+		List<String> encodings = EncodingAction.getEcodings();
 		
 		radioTypes = new JRadioButtonMenuItem[encodings.size()];
 		ButtonGroup group = new ButtonGroup();
