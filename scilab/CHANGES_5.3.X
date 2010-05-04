@@ -230,6 +230,8 @@ Bug fixes:
 * bug 3811 fixed - Documention about "typeof" and overload prefixes was not
                    up-to-date (help overloading).
 
+* bug 4075 fixed - a basic uicontrol example crashed scilab 5.0.3
+
 * bug 4359 fixed - M(:,:)='anything' produced erroneous result.
 
 * bug 4572 fixed - scilab did a SIGSEGV after stacksize('max') + stacksize().
