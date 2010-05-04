@@ -37,6 +37,8 @@ Graphics:
 
 * bug 6959 fixed - axis.tics_labels did not accept $..$ LaTeXed labels
 
+* bug 7024 fixed - Error messages from "twinkle" were not standard.
+
 API_Scilab:
 ===========
 
