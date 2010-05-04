@@ -388,6 +388,8 @@ Bug fixes:
 
 * bug 6952 fixed - stacksize('max') did not return maximum value.
 
+* bug 6962 fixed - bvode generated an error on Windows.
+
 * bug 6971 fixed - after launching a toolbox by loader.sce, variable v was
                    predefined.
 
