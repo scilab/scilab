@@ -1,17 +1,15 @@
 /*
- * The base of this file is comming from http://tips4java.wordpress.com/about/
- * 
- * The license allows us to us for whatever is the reason. The actual license is
- * You are free to use and/or modify any or all code posted on the Java Tips Weblog without restriction. 
- * A credit in the code comments would be nice, but not in any way mandatory.
- * Author: Rob Camick
- * 
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Modifications:
- * Copyright (C) 2009 - DIGITEO - Sylvestre KOUMAR
+ * Copyright (C) 2010 - Calixte DENIZET
  *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
 package org.scilab.modules.xpad;
 
 import java.awt.Color;
@@ -19,16 +17,16 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Toolkit;
 import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Rectangle;
-import java.awt.Shape;
-import java.awt.Component;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
+
+import java.util.Map;
+import java.util.Stack;
 
 import javax.swing.JPanel;
-import javax.swing.JEditorPane;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
@@ -38,107 +36,85 @@ import javax.swing.event.CaretListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.Element;
-import javax.swing.text.Document;
-import javax.swing.text.JTextComponent;
+
+import org.scilab.modules.xpad.utils.ConfigXpadManager;
 
 /**
- *  This class will display line numbers for a related text component. The text
- *  component must use the same line height for each line. TextLineNumber
- *  supports wrapped lines and will highlight the line number of the current
- *  line in the text component.
+ * This class will display line numbers for a related text component. The text
+ * component must use the same line height for each line. TextLineNumber
+ * supports wrapped lines and will highlight the line number of the current
+ * line in the text component.
  *
- *  This class was designed to be used as a component added to the row header
- *  of a JScrollPane.
+ * This class was designed to be used as a component added to the row header
+ * of a JScrollPane.
+ * @author Calixte DENIZET
  */
-public class XpadLineNumberPanel extends JPanel implements CaretListener, DocumentListener, PropertyChangeListener {
+public class XpadLineNumberPanel extends JPanel implements CaretListener, DocumentListener {
 
-    private final static Border OUTER = new MatteBorder(0, 0, 0, 2, Color.GRAY);
-        
-    private final static int HEIGHT = Integer.MAX_VALUE - 1000000;
+    private static final int PANELGAPSIZE = 10; 
+    private static final Border OUTER = new MatteBorder(0, 0, 0, 2, Color.GRAY);       
+    private static final int HEIGHT = Integer.MAX_VALUE - 1000000;
+    private static Map desktopFontHints;
+
+    private ScilabEditorPane textPane;
     
-    public final static int PANEL_GAP_SIZE = 10;
-    
-    private JEditorPane textPane;
-    
-    //  Properties that can be changed
-    private boolean updateFont;
     private int borderGap;
     private Color currentLineForeground;
     private boolean isHighlighted;
-    private Color currentLineHighlightColor = new Color(228,233,244);;
-    
-    //  Keep history information to reduce the number of times the component
-    //  needs to be repainted
-    private int numbers = 0;
+    //private Color alternColor = new Color(240, 240, 240);
+    private Color currentColor = Color.GRAY;
+
+    private int numbers;
     private int lastLine;
     
     private ScilabDocument doc;
     private FontMetrics metrics;
     private int ascent;
     private int availableWidth;
+    
+    private int[] lineNumber;
+    private boolean whereami;
 
     /**
      *	Create a line number component for a text component.
-     *
      *  @param textPane the related text component
-     *  @param minimumNumbers  the number of digits used to calculate
-     *                               the minimum width of the component
      */
-    public XpadLineNumberPanel(JEditorPane textPane) {
+    public XpadLineNumberPanel(ScilabEditorPane textPane) {
 	this.textPane = textPane;
 	this.doc = (ScilabDocument) textPane.getDocument();
-	this.metrics = textPane.getFontMetrics(textPane.getFont());
-	this.ascent = metrics.getAscent();
 	setOpaque(true);
 	setFont(textPane.getFont());
-	setBorderGap(PANEL_GAP_SIZE);
-	updateWidth();
+	setBorderGap(PANELGAPSIZE);
 	setCurrentLineForeground(Color.RED);
+	updateFont(ConfigXpadManager.getFont());
 	doc.addDocumentListener(this);
 	textPane.addCaretListener(this);
-	textPane.addPropertyChangeListener("font", this);
     }
-        
+
     /**
-     *  Gets the update font property
-     *
-     *  @return the update font property
+     * Set a line numbering compatible with the whereami function
+     * @param b true to be compatible with whereami
      */
-    public boolean getUpdateFont() {
-	return updateFont;
+    public void setWhereamiLineNumbering(boolean b) {
+	whereami = b;
     }
-    
+
     /**
-     *  Set the update font property. Indicates whether this Font should be
-     *  updated automatically when the Font of the related text component
-     *  is changed.
-     *
-     *  @param updateFont  when true update the Font and repaint the line
-     *                     numbers, otherwise just repaint the line numbers.
+     * @return true if whereami-compatible
      */
-    public void setUpdateFont(boolean updateFont) {
-	this.updateFont = updateFont;
+    public boolean getWhereamiLineNumbering() {
+	return whereami;
     }
-    
+
     /**
-     *  Gets the border gap
-     *
-     *  @return the border gap in pixels
+     * Update the font used in this component
+     * @param font the font to use
      */
-    public int getBorderGap() {
-	return borderGap;
-    }
-    
-    /**
-     *  The border gap is used in calculating the left and right insets of the
-     *  border. Default value is 5.
-     *
-     *  @param borderGap  the gap in pixels
-     */
-    public void setBorderGap(int borderGap) {
-	this.borderGap = borderGap;
-	Border inner = new EmptyBorder(0, borderGap, 0, borderGap);
-	setBorder(new CompoundBorder(OUTER, inner));
+    public void updateFont(Font font) {
+	setFont(font);
+	metrics = textPane.getFontMetrics(font);
+	ascent = metrics.getAscent();
+	updateWidth();
     }
     
     /**
@@ -147,7 +123,11 @@ public class XpadLineNumberPanel extends JPanel implements CaretListener, Docume
      *  @return the Color used to render the current line number
      */
     public Color getCurrentLineForeground() {
-	return currentLineForeground == null ? getForeground() : currentLineForeground;
+	if (currentLineForeground == null) {
+	    return getForeground();
+	} else {
+	    return currentLineForeground;
+	}
     }
     
     /**
@@ -159,7 +139,10 @@ public class XpadLineNumberPanel extends JPanel implements CaretListener, Docume
 	this.currentLineForeground = currentLineForeground;
     }
     
-    private void updateWidth() {
+    /**
+     * Update the width of this component in using the number of digits used
+     */
+    public void updateWidth() {
 	++numbers;
 	Insets insets = getInsets();
 	int width = metrics.charWidth('0') * numbers;
@@ -172,32 +155,43 @@ public class XpadLineNumberPanel extends JPanel implements CaretListener, Docume
     }
 
     /**
-     *  Draw the line numbers
+     * Draw the line numbers
+     * @param g the graphics where to paint
      */
     public void paintComponent(Graphics g) {
 	super.paintComponent(g);
 	
+	if (desktopFontHints == null) {
+	    desktopFontHints = (Map) (Toolkit.getDefaultToolkit().getDesktopProperty("awt.font.desktophints"));
+	} else {
+	    ((Graphics2D) g).addRenderingHints(desktopFontHints);
+	}
+
 	synchronized (doc) {
 	    Element root = doc.getDefaultRootElement();
 	    ScilabView view = doc.getView();
 	    Rectangle clip = g.getClipBounds();
-	    Insets insets = getInsets();
 	    Point pt = new Point(0, clip.y);
 	    int rowStartOffset = textPane.viewToModel(pt);
 	    pt.y += clip.height;
 	    int endOffset = textPane.viewToModel(pt);
-	    root = doc.getDefaultRootElement();
-	    int line = root.getElementIndex(rowStartOffset);
 	    int lineEnd = root.getElementIndex(endOffset);
 	   
-	    for (; line <= lineEnd; line++) {
+	    for (int line = root.getElementIndex(rowStartOffset); line <= lineEnd; line++) {
+		String str;
+		if (whereami && lineNumber != null) {
+		    str = Integer.toString(lineNumber[line]);
+		    //g.fillRect(0, view.getLineAllocation(line), availableWidth, metrics.getHeight());
+		} else {
+		    str = Integer.toString(line + 1);
+		}
+
 		if (line != lastLine) {
 		    g.setColor(getForeground());
 		} else {
 		    g.setColor(getCurrentLineForeground());
 		}
-		
-		String str = Integer.toString(line + 1);
+
 		int diff = (availableWidth - metrics.stringWidth(str)) / 2;
 		if (diff <= 0) {
 		    updateWidth();
@@ -209,12 +203,11 @@ public class XpadLineNumberPanel extends JPanel implements CaretListener, Docume
 	}
     }
     
-    //
-    //  Implement CaretListener interface
-    //
+    /**
+     * Update this component if the caret changed of line
+     * @param e the event
+     */
     public void caretUpdate(CaretEvent e) {
-	//  Get the line the caret is positioned on
-
 	Element root = doc.getDefaultRootElement();
 	int currentLine = root.getElementIndex(textPane.getCaretPosition());
 
@@ -222,34 +215,91 @@ public class XpadLineNumberPanel extends JPanel implements CaretListener, Docume
 	    lastLine = currentLine;
 	    repaint();
 	}
+    }   
+
+    /**
+     * Useful method to determinate the number of the lines in being compatible
+     * with the whereami function
+     * @param p0 start position in the doc
+     * @param p1 end position in the doc
+     */
+    private void updateLineNumber(int p0, int p1) {
+	synchronized (doc) {
+	    Stack<Integer> stk = new Stack();
+	    ScilabDocument.BranchElement root = (ScilabDocument.BranchElement) doc.getDefaultRootElement();
+	    int nlines = root.getElementCount();
+	    lineNumber = new int[nlines + 1];
+	    lineNumber[0] = 1;
+	    int current = 1;
+	    for (int i = 0; i < nlines; i++) {
+		Element elem = root.getElement(i);
+		if (elem instanceof ScilabDocument.ScilabLeafElement) {
+		    int type = ((ScilabDocument.ScilabLeafElement) elem).getType();
+		    switch (type) {
+		    case ScilabDocument.ScilabLeafElement.NOTHING :
+			lineNumber[i] = current++;		
+			break;
+		    case ScilabDocument.ScilabLeafElement.FUN :
+			stk.push(new Integer(current));
+			current = 2;
+			lineNumber[i] = 1;
+			break;
+		    case ScilabDocument.ScilabLeafElement.ENDFUN :
+			lineNumber[i] = current++;
+			if (!stk.empty()) {
+			    current = stk.pop().intValue() + lineNumber[i];
+			}
+			break;
+		    default :
+			break;
+		    }
+		} else {
+		    lineNumber[i + 1] = lineNumber[i] + 1;
+		}
+	    }
+	} 
     }
-    
-    //
-    //  Implement DocumentListener interface
-    //
+
+    /**
+     * Nothing !
+     * @param e the event
+     */
     public void changedUpdate(DocumentEvent e) { }
 
+    /**
+     * Called when an insertion is made in the doc
+     * @param e the event
+     */
     public void insertUpdate(DocumentEvent e) {
-	repaint();
-    }
-    public void removeUpdate(DocumentEvent e) {
-	repaint();
-    }
-       
-    //
-    //  Implement PropertyChangeListener interface
-    //
-    public void propertyChange(PropertyChangeEvent evt) {
-	if (evt.getNewValue() instanceof Font) {
-	    if (updateFont) {
-		Font newFont = (Font) evt.getNewValue();//System.out.println("changement font");
-		setFont(newFont);
-		updateWidth();
-		metrics = textPane.getFontMetrics(newFont);
-		ascent = metrics.getAscent();
-	    } else {
-		repaint();
-	    }
+	if (whereami) {
+	    int offset = e.getOffset();
+	    updateLineNumber(offset, offset + e.getLength());
 	}
+	repaint();
     }
+    
+    /**
+     * Called when a remove is made in the doc
+     * @param e the event
+     */
+    public void removeUpdate(DocumentEvent e) {
+	if (whereami) {
+	    int offset = e.getOffset();
+	    updateLineNumber(offset, offset + e.getLength());
+	}
+	repaint();
+    }
+
+    /**
+     *  The border gap is used in calculating the left and right insets of the
+     *  border. Default value is 5.
+     *  @param borderGap  the gap in pixels
+     */
+    private void setBorderGap(int borderGap) {
+	this.borderGap = borderGap;
+	Border inner = new EmptyBorder(0, borderGap, 0, borderGap);
+	setBorder(new CompoundBorder(OUTER, inner));
+    }
+    
+
 }
