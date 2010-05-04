@@ -16,6 +16,7 @@ package org.scilab.modules.xpad.utils;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Toolkit;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -23,7 +24,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Hashtable;
+import java.util.Properties;
+import java.util.Enumeration;
+import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -37,9 +42,12 @@ import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import org.scilab.modules.console.GuiManagement;
+import javax.swing.KeyStroke;
+
+//import org.scilab.modules.console.GuiManagement;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -56,6 +64,8 @@ public final class ConfigXpadManager {
 	private static final String ERROR_WRITE = "Could not save file: ";
 	private static final String VALUE = "value";
 	private static final String STYLE = "style";
+	private static final String UNDERLINE = "underline";
+	private static final String STROKE = "stroke";
 	private static final String FONT_SIZE = "FontSize";
 	private static final String FONT_STYLE = "FontStyle";
 	private static final String FONT_NAME = "FontName";
@@ -93,8 +103,11 @@ public final class ConfigXpadManager {
 	private static String XPAD = "xpad";
 
 	private static final String XPAD_CONFIG_FILE = System.getenv("SCI") + "/modules/xpad/etc/xpadConfiguration.xml";
-
+        private static final String XPAD_CONFIG_KEYS_FILE = System.getenv("SCI") + "/modules/xpad/etc/keysConfiguration.xml";
+    
         private static final String USER_XPAD_CONFIG_FILE = XPAD_CONFIG_FILE;//GuiManagement.getSCIHOME() + "/xpadConfiguration.xml";
+        private static final String USER_XPAD_CONFIG_KEYS_FILE = XPAD_CONFIG_KEYS_FILE;//GuiManagement.getSCIHOME() + "/keysConfiguration.xml";
+
 	private static final int PLAIN = 0;
 	private static final int BOLD =  1;
 	private static final int ITALIC = 2;
@@ -107,10 +120,10 @@ public final class ConfigXpadManager {
 	private static final int MAX_RECENT_SEARCH = 20;
 	private static final int MAX_RECENT_REPLACE = 20;
 
+        private static final String packActionName = "org.scilab.modules.xpad.actions";
 
 	private static Document document;
-
-
+	private static Properties keysMap;
 
 	/**
 	 * Constructor
@@ -128,7 +141,11 @@ public final class ConfigXpadManager {
 		if (!fileConfig.exists() || (fileConfig.length() == 0)) {
 			/* Create a local copy of the configuration file */
 			copyFile(new File(XPAD_CONFIG_FILE), new File(USER_XPAD_CONFIG_FILE));
-
+		}
+		fileConfig = new File(USER_XPAD_CONFIG_KEYS_FILE);
+		if (!fileConfig.exists() || (fileConfig.length() == 0)) {
+			/* Create a local copy of the configuration file */
+			copyFile(new File(XPAD_CONFIG_KEYS_FILE), new File(USER_XPAD_CONFIG_KEYS_FILE));
 		}
 	}
 	/**
@@ -145,8 +162,8 @@ public final class ConfigXpadManager {
 	 * @return a array list of all style name
 	 */
 
-	public static ArrayList<String> getAllStyleName() {
-		ArrayList<String> stylesName = new ArrayList<String>();
+	public static List<String> getAllStyleName() {
+		List<String> stylesName = new ArrayList<String>();
 
 		readDocument();
 
@@ -636,7 +653,11 @@ public final class ConfigXpadManager {
 		return stylesColorsTable;
 	}
 
-	public static Hashtable<String, Font> getAllFontStyle() {
+        public static Hashtable<String, Font> getAllFontStyle() {
+	        return getAllFontStyle(getFont());
+	}
+
+	public static Hashtable<String, Font> getAllFontStyle(Font font) {
 		/* Load file */
 		readDocument();
 
@@ -651,7 +672,6 @@ public final class ConfigXpadManager {
 			NodeList allFontStyleElements = fstyles.getElementsByTagName(FONT_STYLE);
 			Element fontStyle = (Element) allFontStyleElements.item(0);
 			int style = Integer.parseInt(fontStyle.getAttribute(VALUE));
-			Font font = getFont();
 			String name = font.getName();
 			int size = font.getSize();
 			if (style == PLAIN) {
@@ -675,6 +695,7 @@ public final class ConfigXpadManager {
 
 		return stylesFontsTable;
 	}
+
 
 	/**
 	 * get all default foreground colors of xpad
@@ -701,6 +722,32 @@ public final class ConfigXpadManager {
 
 		return stylesDefaultColorsTable;
 	}	
+
+        public static Hashtable<String, Integer> getAllAttributes() {
+		/* Load file */
+		readDocument();
+
+		Hashtable<String, Integer> attr = new Hashtable<String, Integer>();
+
+		Element root = document.getDocumentElement();
+		NodeList styles = root.getElementsByTagName(STYLE);
+
+		for (int i = 0; i < styles.getLength(); ++i) {
+			Element style = (Element) styles.item(i);
+			int at = 0;
+			String underline = style.getAttribute(UNDERLINE);
+			if ("true".equals(underline)) {
+			    at = 1;
+			}
+			String stroke = style.getAttribute(STROKE);
+			if ("true".equals(stroke)) {
+			    at += 2;
+			}
+			attr.put(style.getAttribute(NAME), at);
+		}
+
+		return attr;
+	}
 
 	/**
 	 * save all foreground colors
@@ -934,14 +981,33 @@ public final class ConfigXpadManager {
 			document = docBuilder.parse(xml);
 
 		} catch (ParserConfigurationException pce) {
-			System.out.println(ERROR_READ + USER_XPAD_CONFIG_FILE);
+			System.err.println(ERROR_READ + USER_XPAD_CONFIG_FILE);
 		} catch (SAXException se) {
-			System.out.println(ERROR_READ + USER_XPAD_CONFIG_FILE);
+			System.err.println(ERROR_READ + USER_XPAD_CONFIG_FILE);
 		} catch (IOException ioe) {
-			System.out.println(ERROR_READ + USER_XPAD_CONFIG_FILE);
+			System.err.println(ERROR_READ + USER_XPAD_CONFIG_FILE);
 		}
 
+		xml = new File(USER_XPAD_CONFIG_KEYS_FILE);
+		keysMap = new Properties();
+		try {
+		        keysMap.loadFromXML(new FileInputStream(xml));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
+
+    public static void addMapActionNameKeys(Map map) {
+	        for (Enumeration action = keysMap.propertyNames(); action.hasMoreElements();) {
+		    String name = (String) action.nextElement();
+		    KeyStroke ks = KeyStroke.getKeyStroke(keysMap.getProperty(name));
+		    map.put(name, ks); 
+		}
+    }
+
+
 	/**
 	 * Save the modifications
 	 */
