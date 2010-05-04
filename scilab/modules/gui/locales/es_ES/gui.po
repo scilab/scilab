@@ -8,13 +8,12 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-03-09 17:31+0000\n"
-"Last-Translator: DiegoJ <diegojromerolopez@gmail.com>\n"
+"PO-Revision-Date: 2010-04-17 20:54+0000\n"
+"Last-Translator: Rodrigo Machado Laprebendere <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-04-16 07:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -31,7 +30,7 @@ msgstr "%s: A ocurrido un error: %s.\n"
 
 #, c-format
 msgid "%s: An exception occurred: %s"
-msgstr ""
+msgstr "%s: Una excepción ha ocurrido: %s"
 
 #, c-format
 msgid "%s: Could not create 'Uicontrol' handle.\n"
@@ -251,6 +250,8 @@ msgid ""
 "%s: Wrong size for input argument #%d: It must have same dimensions that "
 "argument #%d.\n"
 msgstr ""
+"%s: Tamaño incorrecto para el argumento de entrada #%d: Debe tener las "
+"mismas dimensiones que el argumento #%d\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Matrix of strings expected.\n"
@@ -898,7 +899,7 @@ msgid "Copyright (c) 1989-2007 (ENPC)"
 msgstr "Copyright (c) 1989-2007 (ENPC)"
 
 msgid "Copyright (c) 1989-2010 (INRIA)"
-msgstr ""
+msgstr "Copyright (c) 1989-2010 (INRIA)"
 
 msgid "Cut"
 msgstr "Cortar"
