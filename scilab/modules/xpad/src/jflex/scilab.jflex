@@ -1,6 +1,9 @@
+//CHECKSTYLE:OFF 
+
 package org.scilab.modules.xpad;
 
 import java.io.IOException;
+import javax.swing.text.Element;
  
 %% 
 
@@ -18,9 +21,11 @@ import java.io.IOException;
  
     private ScilabDocument doc = null;
     private boolean transposable = false;
+    private Element elem;
     
     public ScilabLexer(ScilabDocument doc) {
     	this.doc = doc;
+	this.elem = doc.getDefaultRootElement();
     }
    
     public void setRange(int p0, int p1) {
@@ -32,12 +37,36 @@ import java.io.IOException;
         return yychar;
     }
 
+    public int getKeyword(int pos, boolean strict) {
+	Element line = elem.getElement(elem.getElementIndex(pos));	
+	int end = line.getEndOffset();
+	int tok = -1;
+        start = line.getStartOffset();
+	int startL = start;
+	int s = -1;
+
+	try {
+	   yyreset(new ScilabDocumentReader(doc, start, end));
+	   if (!strict) {
+	      pos++;
+	   }
+
+           while (startL < pos && s != startL) {
+	       s = startL;
+	       tok = yylex();
+	       startL = start + yychar + yylength();
+	   }
+
+	   return tok;
+        } catch (IOException e) {
+	   return ScilabLexerConstants.DEFAULT;
+        }
+     }
+
 %}
 
 /* main character classes */
-eol = \r|\n|\r\n
-
-white = [ \t\f]+
+eol = \n
 
 open = "[" | "(" | "{"
 close = "]" | ")" | "}"
@@ -46,9 +75,9 @@ comment = "//"
 
 quote = "'"
 
-booleen = "%t" | "%T" | "%f" | "%F"
+cstes = "%t" | "%T" | "%f" | "%F" | "%e" | "%pi" | "%inf" | "%i" | "%z" | "%s" | "%nan" | "%eps" | "SCI" | "WSCI" | "SCIHOME" | "TMPDIR" 
 
-operator = ".'" | ".*" | "./" | ".\\" | ".^" | ".**" | "+" | "-" | "/" | "\\" | "*" | "^" | "**" | "==" | "~=" | "<>" | "<" | ">" | "<=" | ">=" | ".*." | "./." | ".\\." | "/." | "=" | "&" | "|" | "@" | "~"
+operator = ".'" | ".*" | "./" | ".\\" | ".^" | ".**" | "+" | "-" | "/" | "\\" | "*" | "^" | "**" | "==" | "~=" | "<>" | "<" | ">" | "<=" | ">=" | ".*." | "./." | ".\\." | "/." | "=" | "&" | "|" | "@" | "@=" | "~"
 
 functionKwds = "function" | "endfunction"
 
@@ -75,11 +104,13 @@ dot = "."
 
 url = "http://"[^ \t\f\n\r]+
 
+latex = "$"(([^$]*|"\\$")+)"$"
+
 digit = [0-9]
 exp = [eE][+-]?{digit}+
-number = ({digit}+\.?{digit}*{exp}?)|(\.{digit}+{exp}?)
+number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
 
-%x QSTRING, COMMENT, FIELD, COMMANDS
+%x QSTRING, COMMENT, FIELD, COMMANDS, COMMANDSWHITE
 
 %%
 
@@ -109,9 +140,9 @@ number = ({digit}+\.?{digit}*{exp}?)|(\.{digit}+{exp}?)
 				   return ScilabLexerConstants.CKEYWORD;
 				 }
 
-  {booleen}			 { 
+  {cstes}			 { 
   				   transposable = true;	
-				   return ScilabLexerConstants.BOOLEAN;
+				   return ScilabLexerConstants.CONSTANTES;
 				 }
 
   {commands}			 |
@@ -164,11 +195,54 @@ number = ({digit}+\.?{digit}*{exp}?)|(\.{digit}+{exp}?)
   				   transposable = false;
 				   return ScilabLexerConstants.STRING;
 				 }
+
+  " "				 {
+				   return ScilabLexerConstants.WHITE;
+				 }
+
+  "\t"				 {
+				   return ScilabLexerConstants.TAB;
+				 }
+
+  .				 |
+  {eol}				 { 
+				   transposable = false;
+				   return ScilabLexerConstants.DEFAULT;
+				 }
+
 }
 
 <COMMANDS> {
-  {white}[^,;]*			 {
+
+  " "				 {
+				   yybegin(COMMANDSWHITE);
+				   return ScilabLexerConstants.WHITE;
+				 }
+
+  "\t"				 {
+  				   yybegin(COMMANDSWHITE);
+				   return ScilabLexerConstants.TAB;
+				 }
+  .
+  				 {
+				   yypushback(1);
+				   yybegin(YYINITIAL);
+				 }
+
+  {eol}				 { }
+}
+
+<COMMANDSWHITE> {
+  [^ \t,;]*			 {
   				   return ScilabLexerConstants.STRING;
+				 }
+
+  " "				 {
+				   return ScilabLexerConstants.WHITE;
+				 }
+
+  "\t"				 {
+  				   return ScilabLexerConstants.TAB;
 				 }
   .
   				 {
@@ -189,7 +263,7 @@ number = ({digit}+\.?{digit}*{exp}?)|(\.{digit}+{exp}?)
 				   yybegin(YYINITIAL);
 				 }
 
-  {eol}				 { }
+  {eol}				 { }  
 }  				 
 
 <QSTRING> {
@@ -215,25 +289,17 @@ number = ({digit}+\.?{digit}*{exp}?)|(\.{digit}+{exp}?)
 
   {url}				 {
   				   return ScilabLexerConstants.URL;
-				 }	  	  
+				 }
+
+  {latex}			 {
+  				   return ScilabLexerConstants.LATEX;
+				 }
 
   .	  		         | 
   {eol}				 { 
   				   return ScilabLexerConstants.COMMENT;
   				 }
 }
-
-
-{white}				 { 
-				   transposable = false;
-				 }
-
-.                                { 
-				   transposable = false;
-				   return ScilabLexerConstants.DEFAULT;
-				 }
-
-{eol}				 { }
 
 <<EOF>>                          {
 				   return ScilabLexerConstants.EOF;

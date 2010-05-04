@@ -1,12 +1,15 @@
+//CHECKSTYLE:OFF 
+
 package org.scilab.modules.xpad;
 
-import java.util.Stack;
 import java.io.IOException;
+import javax.swing.text.Element;
+import javax.swing.text.BadLocationException;
  
 %% 
 
 %public
-%class SingleScanner
+%class IndentScanner
 %final
 %unicode
 %char
@@ -15,99 +18,177 @@ import java.io.IOException;
 %switch
 
 %{
-    private int indent = 0;
     private ScilabDocument doc;
+    private Element elem;
 
-    public SingleScanner(ScilabDocument doc) {
+    public IndentScanner(ScilabDocument doc) {
     	this.doc = doc;
+	this.elem = doc.getDefaultRootElement();
     }
    
-    public int getMatchingClosed(int p0, int p1) throws IOException {
-    	yyreset(new ScilabDocumentReader(doc, p0, p1));
-        yybegin(MATCHINGCLOSED);
-	return yylex();
-    }
+    public int getIndentNumber(int lineNumber, char type) {
+        if (lineNumber < 0) {
+	    return 0;
+	}
+        try {
+	     Element line = elem.getElement(lineNumber);
+	     int startL = line.getStartOffset();
+	     int endL = line.getEndOffset();	
+	     yyreset(new ScilabDocumentReader(doc, startL, endL));
+	     switch (type) {
+	     	 case ' ':
+	      	 yybegin(WHITE);
+	      	 break;
+	    	 case '\t':
+	     	 yybegin(TAB);
+	      	 break;
+	     default:
+		 yybegin(WHITE);
+	     }
+	     return yylex();
+	} catch (IOException e) {
+	     return 0;
+	}
+    }	
 
-    public int getLevelIndent(int p0, int p1) throws IOException {
-    	yyreset(new ScilabDocumentReader(doc, p0, p1));
-	yybegin(INDENT);
-	return yylex();
+    public int getTabsAtBeginning(int pos) {
+    	Element line = elem.getElement(pos);
+	int startL = line.getStartOffset();
+	int endL = line.getEndOffset();
+	try {
+	    yyreset(new ScilabDocumentReader(doc, startL, endL));
+	    yybegin(BEG);
+	    if (yylex() == 1) {
+	        return yylength();
+       	    }
+	} catch (IOException e) {  
+	    return 0;	
+    	}
+	return 0;
+    }	    
+
+    public void getIndentLevel(int pos, int[] level) {
+    	Element line = elem.getElement(elem.getElementIndex(pos));
+	int startL = line.getStartOffset();
+	int endL = line.getEndOffset();
+	level[0] = 0;
+	level[1] = 0;
+	try {
+	    yyreset(new ScilabDocumentReader(doc, startL, endL));
+	    yybegin(INDENT);
+	    do {
+	        switch (yylex()) {
+	       	case 0:
+	              break;
+	       	case 1:
+	             level[1]++;
+		     break;
+	       	case 2:
+	             if (level[1] > 0) {
+		         level[1]--;
+		     } else {
+	        	 level[0]++;
+		     }
+	             break;
+	       	case 3:
+	             if (level[1] == 0) {
+		         level[0]++;
+		         level[1]++;
+		     }
+                }	         
+	    } while (zzMarkedPos != 0);
+        } catch (IOException e) { } 	  
     }
-    
 %}
 
 %eofval{
-	return -1;
+  return 0;
 %eofval}
 
 /* main character classes */
-eol = \r|\n|\r\n
 
-white = [ \t\f]*
+eol = \n
 
-open = "(" | "[" | "{"
-close = ")" | "]" | "}"
+comment = "//".*{eol}
 
-indentP = "function" | "if" | "for" | "while" | "try" | "select"
-indentM = "endfunction" | "end"
-indentMP = "else" | "elseif" | "catch" | "case"
+spec = [a-zA-Z0-9%_#!$?0-9]
 
-%x INDENT, INDENTPLUS, OPENCLOSEMATCH, MATCHINGCLOSED
+string = (([^\'\"\r\n]*)|([\'\"]{2}))+
+qstring = (\"|\'){string}(\"|\')
+transp = ({spec} | ")" | "]" | "}") "'"
+
+indentP = ("function" | "if" | "for" | "while" | "try" | "select")
+indentPx = {indentP}{spec}+
+xindentP = {spec}{indentP}
+
+indentM = ("endfunction" | "end")
+indentMx = {indentM}{spec}+
+xindentM = {spec}{indentM}
+indentMP = ("else" | "elseif" | "catch" | "case")
+indentMPx = {indentMP}{spec}+
+xindentMP = {spec}{indentMP}
+
+%x INDENT, WHITE, TAB, BEG
 
 %%
 
-<MATCHINGCLOSED> {
-  {open}			 {
-  				   indent = 1;
-				   yybegin(OPENCLOSEMATCH);
+<INDENT> {
+  {transp}			 |
+  {comment}			 |
+  {indentPx}			 |
+  {qstring}			 { }
+
+  {indentP}			 {
+  				   return 1;
+ 				 }
+
+  {indentM}			 {
+  				   return 2;
+ 				 }
+
+  {indentMP}			 {
+  				   return 3;
+ 				 }
+
+  .				 |
+  {xindentP}			 |
+  {xindentM}			 |
+  {xindentMP}			 |
+  {indentMPx}			 |
+  {indentMx}			 { }
+
+  {eol} 			 {
+  				   return 0;
+				 }
+}
+
+<WHITE> {
+  " "*				 {
+				   return yylength();
 				 }
 
   .				 |
   {eol}				 {
-  				   return -1;
-				 }
-}
-
-<INDENT> {
-  {indentP}			 {
-  				   indent = 1;
-				   yybegin(INDENTPLUS);
+  				   return 0;
  				 }
-
-  {white} 			 { }
 }
-				 
 
-
-<INDENTPLUS> {
-  {indentP}			 { 
-  				   indent++;
+<TAB> {
+  "\t"*				 {
+				   return yylength();
 				 }
 
-  {indentM}			 { 
-  				   indent--;
-				 }
-  				 
-  .*				 { }
-
+  .				 |
   {eol}				 {
-				   return indent;
-				 }
+  				   return 0;
+ 				 }
 }
 
-<OPENCLOSEMATCH> {
-  {open}			 {
-  				   indent++;
+<BEG> {
+  ^[ \t]+			 {
+				   return 1;
 				 }
 
-  {close}			 {
-  				   if (indent == 1) {
-				      return yychar;
-				   } else {
-				      indent--;
-				   }
-				 }
-
-  .*				 |
-  {eol} 			 { }
+  .				 |
+  {eol}				 { }
 }
