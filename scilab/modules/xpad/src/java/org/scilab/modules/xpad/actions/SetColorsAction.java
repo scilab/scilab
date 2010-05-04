@@ -21,6 +21,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Hashtable;
 
 import javax.swing.ImageIcon;
@@ -29,14 +30,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.text.Style;
-import javax.swing.text.StyleConstants;
 
 import org.scilab.modules.gui.bridge.colorchooser.SwingScilabColorChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.ScilabDocument;
-import javax.swing.JEditorPane;
+import org.scilab.modules.xpad.ScilabEditorPane;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
@@ -47,7 +46,7 @@ public class SetColorsAction extends DefaultAction {
 	
 	private ArrayList<JLabel> stylesNamesLabelList;
 	private ArrayList<JButton> changeColorButtonList;
-	private ArrayList<String> listStylesName;
+	private List<String> listStylesName;
 	private int numberOfStyles;
 	
 	Hashtable<String, Color> allStylesColor;
@@ -204,19 +203,10 @@ public class SetColorsAction extends DefaultAction {
 				int numberOfTab = getEditor().getTabPane().getComponentCount();
 				for (int j = 0; j < numberOfTab; j++) {
 					
-					JEditorPane textPane = (JEditorPane) ((JScrollPane) getEditor().getTabPane().getComponentAt(j)).getViewport().getComponent(0) ;
-					ScilabDocument styleDocument = (ScilabDocument)textPane.getDocument();
-				
+					ScilabEditorPane textPane = (ScilabEditorPane) ((JScrollPane) getEditor().getTabPane().getComponentAt(j)).getViewport().getComponent(0) ;
 					for (int i = 0; i < numberOfStyles; i++) {
-						
-						Color thisStyleColor = allStylesColor.get(listStylesName.get(i));		
-						//Style tempStyle = styleDocument.getStyle(listStylesName.get(i));
-	
-						//StyleConstants.setForeground(tempStyle, thisStyleColor);				    
-		
+					    textPane.resetColor(listStylesName.get(i), allStylesColor.get(listStylesName.get(i)));
 					}
-						
-					//new ColorizationManager().colorize(styleDocument, 0, styleDocument.getLength());
 				}
 		    	/*save the change in the xml*/
 				ConfigXpadManager.saveAllForegroundColors(allStylesColor);

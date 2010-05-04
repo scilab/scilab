@@ -12,16 +12,15 @@
 
 package org.scilab.modules.xpad.actions;
 
-import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
-
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
-import org.scilab.modules.xpad.style.CommentManager;
+import org.scilab.modules.xpad.CommentManager;
 import org.scilab.modules.xpad.ScilabDocument;
+import org.scilab.modules.xpad.ScilabEditorPane;
 import org.scilab.modules.xpad.utils.XpadMessages;
+
 /**
  * CommentAction Class
  * @author Bruno JOFRET
@@ -33,7 +32,6 @@ public final class CommentAction extends DefaultAction {
 	 * serialVersionUID
 	 */
 	private static final long serialVersionUID = -7258307088402814986L;
-	private CommentManager commentManager = new CommentManager();
 	
 	/**
 	 * Constructor
@@ -47,43 +45,32 @@ public final class CommentAction extends DefaultAction {
 	 * doAction
 	 */
 	public void doAction() {
-		ScilabDocument doc = (ScilabDocument) getEditor().getTextPane().getDocument();
-		synchronized (doc) {
-			int positionStart = getEditor().getTextPane().getSelectionStart();
-			int positionEnd   = getEditor().getTextPane().getSelectionEnd();
-			
-			int lineStart     = doc.getDefaultRootElement().getElementIndex(positionStart);
-			int lineEnd       = doc.getDefaultRootElement().getElementIndex(positionEnd);
-			
-			if (positionStart == positionEnd) {
-				// No selection : comment the current line
-				int offset = commentManager.commentLine(doc, lineStart);
-				getEditor().getTextPane().setCaretPosition(positionStart + offset);
-			} else if (lineStart == lineEnd) {
-				// A part of the line is selected
-				int offset = commentManager.commentText(doc, positionStart);
-				getEditor().getTextPane().setSelectionStart(positionStart);
-				getEditor().getTextPane().setSelectionEnd(positionEnd + offset);
-			} else {
-				// several lines are selected
-				commentManager.commentLines(doc, lineStart, lineEnd);
-				positionEnd = doc.getDefaultRootElement().getElement(lineEnd).getEndOffset();
-				
-				getEditor().getTextPane().setSelectionStart(positionStart);
-				getEditor().getTextPane().setSelectionEnd(positionEnd - 1);
-			}
+	    ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
+	    int start = sep.getSelectionStart();
+	    int end   = sep.getSelectionEnd();
+	    CommentManager com = sep.getCommentManager();
+	    ScilabDocument doc = (ScilabDocument) sep.getDocument();
+
+	    doc.mergeEditsBegin();
+	    if (start == end) {
+		com.commentText(start);
+	    } else {
+		int[] ret = com.commentLines(start, end - 1);
+		if (ret != null) {
+		    sep.setSelectionStart(ret[0]);
+		    sep.setSelectionEnd(ret[1]);
 		}
+	    }
+	    doc.mergeEditsEnd();
 	}
 	
 	/**
 	 * createMenu
 	 * @param editor Xpad
+	 * @param key Keystroke
 	 * @return MenuItem
 	 */
-	public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.COMMENT_SELECTION, null, 
-				new CommentAction(editor), 
-				KeyStroke.getKeyStroke(KeyEvent.VK_D, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
-	 }
+        public static MenuItem createMenu(Xpad editor, KeyStroke key) {
+	    return createMenu(XpadMessages.COMMENT_SELECTION, null, new CommentAction(editor), key);
+	}
 }
- 

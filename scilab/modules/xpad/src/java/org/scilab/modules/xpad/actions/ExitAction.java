@@ -13,10 +13,6 @@
 
 package org.scilab.modules.xpad.actions;
 
-
-import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
-
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -32,24 +28,24 @@ import org.scilab.modules.xpad.utils.XpadMessages;
  */
 public final class ExitAction extends DefaultAction {
 
-	/**
-	 * serialVersionUID
-	 */
-	private static final long serialVersionUID = -6434487252794798547L;
-
-	/**
-	 * Constructor 
-	 * @param editor Xpad
-	 */
+    /**
+     * serialVersionUID
+     */
+    private static final long serialVersionUID = -6434487252794798547L;
+    
+    /**
+     * Constructor 
+     * @param editor Xpad
+     */
     private ExitAction(Xpad editor) {
 	super(XpadMessages.EXIT, editor);
     }
-
+    
     /**
      * doAction
      */
     public void doAction() {
-    	doExit(getEditor());
+	doExit(getEditor());
     }
     
     /**
@@ -81,10 +77,10 @@ public final class ExitAction extends DefaultAction {
     /**
      * createMenu
      * @param editor Xpad
+     * @param key KeyStroke
      * @return MenuItem
      */
-    public static MenuItem createMenu(Xpad editor) {
-	return createMenu(XpadMessages.EXIT, null, new ExitAction(editor), 
-			KeyStroke.getKeyStroke(KeyEvent.VK_Q, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+    public static MenuItem createMenu(Xpad editor, KeyStroke key) {
+	return createMenu(XpadMessages.EXIT, null, new ExitAction(editor), key);
     }
 }

@@ -12,9 +12,7 @@
 
 package org.scilab.modules.xpad.actions;
 
-import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
-
+import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -22,21 +20,52 @@ import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
+/**
+ * CommentAction Class
+ * @author Bruno JOFRET
+ *
+ */
 public class RedoAction extends DefaultAction {
+    
+    /**
+     * Constructor
+     * @param editor Xpad
+     */
+    private RedoAction(Xpad editor) {
+	super(XpadMessages.REDO, editor);
+    }
+    
+    /**
+     * doAction
+     */
+    public void doAction() {
+	getEditor().redo();
+    }
+    
+    /**
+     * createMenu
+     * @param editor Xpad
+     * @param key KeyStroke
+     */
+    public static MenuItem createMenu(Xpad editor, KeyStroke key) {
+	return createMenu(XpadMessages.REDO, null, new RedoAction(editor), key);
+    }
 
-	private RedoAction(Xpad editor) {
-		super(XpadMessages.REDO, editor);
-	}
-
-	public void doAction() {
-		getEditor().redo();
-	}
-	
-	public static MenuItem createMenu(Xpad editor) {
-	    return createMenu(XpadMessages.REDO, null, new RedoAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_Y, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
-	}
-
-	public static PushButton createButton(Xpad editor) {
-	    return createButton(XpadMessages.REDO, "edit-redo.png", new RedoAction(editor));
-	}
+    /**
+     * createButton
+     * @param editor Xpad
+     */
+    public static PushButton createButton(Xpad editor) {
+	return createButton(XpadMessages.REDO, "edit-redo.png", new RedoAction(editor));
+    }
+    
+    /**
+     * Put input map
+     * @param textPane JTextpane
+     * @param editor Editor
+     * @param key KeyStroke
+     */
+    public static void putInInputMap(JComponent textPane, Xpad editor, KeyStroke key) {
+	textPane.getInputMap().put(key, new RedoAction(editor));
+    }
 }

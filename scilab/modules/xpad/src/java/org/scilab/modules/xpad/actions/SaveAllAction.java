@@ -11,10 +11,6 @@
  */
 package org.scilab.modules.xpad.actions;
 
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -64,11 +60,10 @@ public final class SaveAllAction extends DefaultAction {
 	/**
 	 * CreateMenu
 	 * @param editor Xpad
+	 * @param key KeyStroke
 	 * @return MenuItem 
 	 */
-    public static MenuItem createMenu(Xpad editor) {
-    	return createMenu(XpadMessages.SAVE_ALL, null, new SaveAllAction(editor), 
-    			KeyStroke.getKeyStroke(KeyEvent.VK_S, 
-    			Toolkit.getDefaultToolkit().getMenuShortcutKeyMask() + ActionEvent.SHIFT_MASK));
-        }
+        public static MenuItem createMenu(Xpad editor, KeyStroke key) {
+	    return createMenu(XpadMessages.SAVE_ALL, null, new SaveAllAction(editor), key);
+	}
 }

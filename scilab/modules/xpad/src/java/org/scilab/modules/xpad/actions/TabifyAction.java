@@ -12,26 +12,23 @@
 
 package org.scilab.modules.xpad.actions;
 
-import java.awt.event.KeyEvent;
-
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
-import org.scilab.modules.xpad.ScilabDocument;
-import org.scilab.modules.xpad.style.TabManager;
+import org.scilab.modules.xpad.ScilabEditorPane;
+import org.scilab.modules.xpad.TabManager;
 import org.scilab.modules.xpad.utils.XpadMessages;
+import org.scilab.modules.xpad.ScilabDocument;
 
 /**
  * Class Tabify action for Xpad
  * @author Sylvestre Koumar
  *
  */
-public class TabifyAction extends DefaultAction {
+public final class TabifyAction extends DefaultAction {
 
-	private TabManager tabManager = new TabManager();
-	
 	/**
 	 * Default constructor
 	 * @param editor the editor
@@ -44,44 +41,42 @@ public class TabifyAction extends DefaultAction {
 	 * Function doAction
 	 */
 	public synchronized void doAction() {
-		int position_start = getEditor().getTextPane().getSelectionStart();
-		int position_end   = getEditor().getTextPane().getSelectionEnd();
-		ScilabDocument scilabDocument = (ScilabDocument) getEditor().getTextPane().getDocument();
-		int line_start = ((ScilabDocument) getEditor().getTextPane().getDocument()).getDefaultRootElement().getElementIndex(position_start);
-		int line_end = ((ScilabDocument) getEditor().getTextPane().getDocument()).getDefaultRootElement().getElementIndex(position_end);
-		if (position_start == position_end) {
-			tabManager.insertTab(scilabDocument, position_start);
-		} else {
-			if (line_start == line_end) {
-				// A part of the line is selected : Insert a Tab at the beginning of the line
-				int offset = tabManager.tabifyLine(scilabDocument, line_start);
-				getEditor().getTextPane().setSelectionStart(position_start + offset);
-				getEditor().getTextPane().setSelectionEnd(position_end + offset);
-			} else {
-				// several lines are selected
-				int offset = tabManager.tabifyLines(scilabDocument, line_start, line_end);
-				getEditor().getTextPane().setSelectionStart(position_start + offset);
-				getEditor().getTextPane().setSelectionEnd(position_end + offset * (line_end - line_start + 1));
-			}
+	    ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
+	    int start = sep.getSelectionStart();
+	    int end   = sep.getSelectionEnd();
+	    TabManager tab = sep.getTabManager();
+	    ScilabDocument doc = (ScilabDocument) sep.getDocument();
+		
+	    doc.mergeEditsBegin();
+	    if (start == end) {
+		tab.insertTab(start);
+	    } else {
+		int[] ret = tab.tabifyLines(start, end - 1);
+		if (ret != null) {
+		    sep.setSelectionStart(ret[0]);
+		    sep.setSelectionEnd(ret[1]);
 		}
+	    }
+	    doc.mergeEditsEnd();
 	}
 	
 	/**
 	 * Create the MenuItem for tabify action
 	 * @param editor Editor
+	 * @param key KeyStroke
 	 * @return a MenuItem
 	 */
-	public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.TABIFY_SELECTION , null, new TabifyAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_TAB,0));
+        public static MenuItem createMenu(Xpad editor, KeyStroke key) {
+		return createMenu(XpadMessages.TABIFY_SELECTION , null, new TabifyAction(editor), key);
 	}
-	
-	/**
+
+        /**
 	 * Put input map
 	 * @param textPane JTextpane
 	 * @param editor Editor
+	 * @param key KeyStroke
 	 */
-	public static void putInInputMap(JComponent textPane, Xpad editor) {
-		textPane.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0), new TabifyAction(editor));
-		return;
+        public static void putInInputMap(JComponent textPane, Xpad editor, KeyStroke key) {
+	    textPane.getInputMap().put(key, new TabifyAction(editor));
 	}
 }

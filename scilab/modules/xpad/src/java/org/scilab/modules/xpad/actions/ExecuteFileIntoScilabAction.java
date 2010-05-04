@@ -56,7 +56,10 @@ public final class ExecuteFileIntoScilabAction extends DefaultAction {
 	private void executeFile(Xpad editor) {
 		
 		String filePath = editor.getTextPane().getName();
-		
+		/*TODO : check if that fixes 7032 */
+		filePath = filePath.replaceAll("\"", "\"\"");
+		filePath = filePath.replaceAll("'", "''");
+		/* end */
 		if (filePath.compareTo("") != 0) {
 			String cmdToExec = "exec('" + filePath + "', -1)";
 			try {

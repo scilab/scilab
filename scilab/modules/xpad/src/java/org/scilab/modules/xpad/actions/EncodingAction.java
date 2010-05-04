@@ -23,6 +23,7 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.SortedMap;
@@ -48,11 +49,11 @@ import org.scilab.modules.xpad.utils.XpadMessages;
 public class EncodingAction extends DefaultCheckAction {
 
     /**
-	 * serialVersionUID
-	 */
-	private static final long serialVersionUID = -5421313717126859924L;
-	private String encoding;
-
+     * serialVersionUID
+     */
+    private static final long serialVersionUID = -5421313717126859924L;
+    private String encoding;
+    
     /**
      * Constructor
      * @param encodingName Encoding Name
@@ -72,24 +73,24 @@ public class EncodingAction extends DefaultCheckAction {
     	JRadioButtonMenuItem radio = new JRadioButtonMenuItem(encoding);
     	radio.addActionListener(new ActionListener() {
     		public void actionPerformed(ActionEvent arg0) {
-    			doAction();
+		    doAction();
     		}
-    	});
+	    });
     	
     	return radio;
     }
-
+    
     /**
      * getEcodings
      * @return ArrayList String 
      */
-    public static ArrayList<String> getEcodings() {
+    public static List<String> getEcodings() {
     	
 	SortedMap<String, Charset> charsetList = Charset.availableCharsets();
 	Set cles = charsetList.keySet();
 	Iterator iterator = cles.iterator();
-	ArrayList<String> completEncodingList = new ArrayList<String>();
-	ArrayList<String> encodingList = new ArrayList<String>();
+	List<String> completEncodingList = new ArrayList<String>();
+	List<String> encodingList = new ArrayList<String>();
 	while (iterator.hasNext()) {
 	    completEncodingList.add(charsetList.get(iterator.next()).toString());
 	}

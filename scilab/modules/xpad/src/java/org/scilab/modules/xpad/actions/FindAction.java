@@ -28,7 +28,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -113,7 +113,7 @@ public final class FindAction extends DefaultAction {
 	private String wordToFind;
 
 
-	private ArrayList<Integer[]> offsets;
+	private List<Integer[]> offsets;
 
 	private int startSelectedLines;
 	private int endSelectedLines;
@@ -402,10 +402,10 @@ public final class FindAction extends DefaultAction {
 				saveFindReplaceConfiguration();
 				JEditorPane xpadTextPane =  getEditor().getTextPane();
 				ScilabDocument doc = (ScilabDocument) xpadTextPane.getDocument();
-				boolean mergeMode = doc.getShouldMergeEdits();
-				doc.setShouldMergeEdits(true);
+				
+				doc.mergeEditsBegin();
 				replaceOnlyText();
-				doc.setShouldMergeEdits(mergeMode);
+				doc.mergeEditsEnd();
 			}	
 
 		});
@@ -415,11 +415,11 @@ public final class FindAction extends DefaultAction {
 				saveFindReplaceConfiguration();
 				JEditorPane xpadTextPane =  getEditor().getTextPane();
 				ScilabDocument doc = (ScilabDocument) xpadTextPane.getDocument();
-				boolean mergeMode = doc.getShouldMergeEdits();
-				doc.setShouldMergeEdits(true);
+				
+				doc.mergeEditsBegin();
 				replaceText();
 				findText();
-				doc.setShouldMergeEdits(mergeMode);
+				doc.mergeEditsEnd();
 			}
 		});
 
@@ -455,7 +455,7 @@ public final class FindAction extends DefaultAction {
 
 
 				} else {
-					if (wholeWordSelected) {
+				        if (wholeWordSelected) {
 						String patternWordBoundary = "\\b"; 
 						oldWord = patternWordBoundary + oldWord + patternWordBoundary;
 						pattern = Pattern.compile(oldWord);
@@ -467,19 +467,18 @@ public final class FindAction extends DefaultAction {
 				}
 
 				Matcher matcher = pattern.matcher(text);
-				String replacedText = matcher.replaceAll(newWord);
+				String replacedText = matcher.replaceAll(Matcher.quoteReplacement(newWord));
 				if (replacedText.compareTo(text) != 0) {
 					// only touch document if any replacement took place
 					try {
-						boolean mergeMode = doc.getShouldMergeEdits();
-						doc.setShouldMergeEdits(true);
-						doc.replace(startSelectedLines, text.length(), replacedText, null);
-						doc.setShouldMergeEdits(mergeMode);
+						doc.mergeEditsBegin();
+					        doc.replace(startSelectedLines, text.length(), replacedText, null);
+						doc.mergeEditsEnd();
 					} catch (BadLocationException e1) {
 						e1.printStackTrace();
 					}
 				}
-				xpadTextPane.setCaretPosition(currentCaretPos);
+				xpadTextPane.setCaretPosition(Math.min(currentCaretPos, doc.getLength()));
 			}
 		});
 
@@ -607,7 +606,7 @@ public final class FindAction extends DefaultAction {
 	private void updateRecentSearch() {
 		Object old = comboFind.getEditor().getItem();
 		comboFind.removeAllItems();
-		ArrayList<String> recentFind = ConfigXpadManager.getRecentSearch();
+		List<String> recentFind = ConfigXpadManager.getRecentSearch();
 		for (String item : recentFind) {
 			comboFind.addItem(item);
 		}
@@ -618,7 +617,7 @@ public final class FindAction extends DefaultAction {
 	private void updateRecentReplace() {
 		Object old = comboReplace.getEditor().getItem();
 		comboReplace.removeAllItems();
-		ArrayList<String> recentReaplce = ConfigXpadManager.getRecentReplace();
+		List<String> recentReaplce = ConfigXpadManager.getRecentReplace();
 		for (String item : recentReaplce) {
 			comboReplace.addItem(item);
 		}

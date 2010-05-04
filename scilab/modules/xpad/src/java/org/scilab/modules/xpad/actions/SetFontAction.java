@@ -1,17 +1,14 @@
 package org.scilab.modules.xpad.actions;
 
 import java.awt.Font;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JScrollPane;
-import javax.swing.JEditorPane;
-import javax.swing.text.Style;
-import javax.swing.text.StyleConstants;
 
 import org.scilab.modules.gui.bridge.fontchooser.SwingScilabFontChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
-import org.scilab.modules.xpad.ScilabDocument;
+import org.scilab.modules.xpad.ScilabEditorPane;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
@@ -29,34 +26,18 @@ public class SetFontAction extends DefaultAction {
 
 		if (newFont != null) {
 
-			ArrayList<String> listStylesName = ConfigXpadManager.getAllStyleName();
+			List<String> listStylesName = ConfigXpadManager.getAllStyleName();
 
 			getEditor().getTextPane().setFont(newFont);
 
 			/*we need to loop on every style , if not after the second change, styles will not change anymore
     		  except default*/
 			int numberOfTab = getEditor().getTabPane().getComponentCount();
-			//for (int j = 0; j < numberOfTab; j++) {
-
-			    //JEditorPane textPane = (JEditorPane) ((JScrollPane) getEditor().getTabPane().getComponentAt(j)).getViewport().getComponent(0) ;
-				/*ScilabDocument styleDocument = (ScilabDocument)textPane.getDocument();
-				for (int i = 0; i < listStylesName.size(); i++) {
-					Style tempStyle = styleDocument.getStyle(listStylesName.get(i));
-
-					StyleConstants.setFontFamily(tempStyle, newFont.getFamily());
-					StyleConstants.setFontSize(tempStyle, newFont.getSize());
-					StyleConstants.setBold(tempStyle, newFont.isBold());
-					//StyleConstants.setItalic(tempStyle, newFont.isItalic());
-
-					}*/
-				/*insert update refresh the styles without needing to type text*/
-				//new ColorizationManager().colorize(styleDocument, 0, styleDocument.getLength());
-			//}
-
-
-
+			for (int j = 0; j < numberOfTab; j++) {
+			    ScilabEditorPane textPane = (ScilabEditorPane) ((JScrollPane) getEditor().getTabPane().getComponentAt(j)).getViewport().getComponent(0) ;
+			    textPane.resetFont(newFont);
+			}
 			getEditor().getTextPane().setFocusable(true);
-
 			ConfigXpadManager.saveFont(newFont);
 		}
 

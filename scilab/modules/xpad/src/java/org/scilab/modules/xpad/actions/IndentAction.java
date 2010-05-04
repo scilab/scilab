@@ -12,15 +12,10 @@
 
 package org.scilab.modules.xpad.actions;
 
-import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
-
 import javax.swing.KeyStroke;
-import javax.swing.text.BadLocationException;
-
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
-import org.scilab.modules.xpad.style.IndentManager;
+import org.scilab.modules.xpad.ScilabEditorPane;
 import org.scilab.modules.xpad.ScilabDocument;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
@@ -31,8 +26,6 @@ import org.scilab.modules.xpad.utils.XpadMessages;
  */
 @SuppressWarnings("serial")
 public final class IndentAction extends DefaultAction {
-	
-	private IndentManager indentManager = new IndentManager();
 	
 	/**
 	 * Constructor
@@ -46,27 +39,23 @@ public final class IndentAction extends DefaultAction {
 	 * doAction
 	 */
 	public void doAction() {
-		ScilabDocument styleDocument =  (ScilabDocument) getEditor().getTextPane().getDocument();
+		ScilabEditorPane sep =  (ScilabEditorPane) getEditor().getTextPane();
+		int selectionStart = sep.getSelectionStart();
+		int selectionEnd = sep.getSelectionEnd() - 1;
+		ScilabDocument doc = (ScilabDocument) sep.getDocument();
 		
-		try {
-			int selectionStart = getEditor().getTextPane().getSelectionStart();
-			int selectionEnd = getEditor().getTextPane().getSelectionEnd();
-			int finalSelectionEnd = indentManager.beautifier(styleDocument, selectionStart, selectionEnd);
-			getEditor().getTextPane().setSelectionStart(selectionStart);
-			getEditor().getTextPane().setSelectionEnd(finalSelectionEnd);
-		} catch (BadLocationException e) {
-			e.printStackTrace();
-		}
+		doc.mergeEditsBegin();
+		sep.getIndentManager().indentDoc(selectionStart, selectionEnd);
+		doc.mergeEditsEnd();
 	}
 
 	/**
 	 * createMenu
 	 * @param editor Xpad
+	 * @param key KeyStroke
 	 * @return MenuItem
 	 */
-	public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.INDENT, null, 
-				new IndentAction(editor), 
-				KeyStroke.getKeyStroke(KeyEvent.VK_I, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+        public static MenuItem createMenu(Xpad editor, KeyStroke key) {
+		return createMenu(XpadMessages.INDENT, null, new IndentAction(editor), key);
 	}
 }
