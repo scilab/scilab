@@ -108,7 +108,7 @@ public class TabManager {
 	int[] ret = new int[2];
 	
 	try {
-	    String str = doc.getText(start, end - start + 1);
+		String str = doc.getText(sstart, end - sstart + 1);
 	    String rep = EOL + tab;
 	    str = tab + str.replaceAll(EOL, rep);		
 	    ret[0] = start + lengthTab;
