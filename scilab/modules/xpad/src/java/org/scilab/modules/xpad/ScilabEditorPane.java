@@ -16,132 +16,313 @@ import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Font;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseEvent;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.io.IOException;
+import java.util.EventObject;
 
 import javax.swing.JEditorPane;
 import javax.swing.text.JTextComponent;
-import javax.swing.text.View;
-import javax.swing.text.Element;
 import javax.swing.text.Document;
-import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.BadLocationException;
 import javax.swing.event.CaretListener;
 import javax.swing.event.CaretEvent;
 import javax.swing.text.Highlighter;
 
-public class ScilabEditorPane extends JEditorPane implements Highlighter.HighlightPainter, CaretListener, MouseListener {
+/**
+ * Class ScilabEditorPane
+ * @author Calixte DENIZET
+ *
+ */
+public class ScilabEditorPane extends JEditorPane implements Highlighter.HighlightPainter,
+							     CaretListener, MouseListener,
+							     MouseMotionListener {
 
-    private Color highlightColor = new Color(228,233,244);
-    private boolean highlightEnable = false;
-    private ScilabLexer lexer = null;
-    private SingleScanner scanner = null;
+    private Color highlightColor = new Color(228, 233, 244);
+    private boolean highlightEnable;
+    private boolean matchingEnable;
+    private ScilabLexer lexer;
+    private Xpad editor;
+    private IndentManager indent;
+    private TabManager tab;
+    private CommentManager com;
+    
+    /* matchLR matches Left to Right ... */
+    private MatchingBlockManager matchLR;
+    private MatchingBlockManager matchRL;
 
-    private List<KeywordListener> kwList = new ArrayList();
+    private List<KeywordListener> kwListeners = new ArrayList();
 
-    public ScilabEditorPane() {
+    /**
+     * Constructor
+     * @param editor which uses this pane
+     */
+    public ScilabEditorPane(Xpad editor) {
 	super();
+	this.editor = editor;
 	addCaretListener(this);
-	enableHighlightedLine();
-    }
-
-    protected boolean enableScanner() {
-	ScilabDocument doc = (ScilabDocument) getDocument();
-	if (doc != null) {
-	    if (scanner == null) {
-		scanner = new SingleScanner(doc);
-	    }
-	    return true;
-	} else {
-	    return false;
-	}
-    }
-
-    public SingleScanner getScanner() {
-	return scanner;
-    } 
-
-    public void addKeywordListener(KeywordListener kw) {
+	addMouseMotionListener(this);
 	addMouseListener(this);
-	kwList.add(kw);
-	if (lexer == null) {
-	    lexer = ((ScilabDocument) getDocument()).createLexer();
-	}
+	enableMatchingKeywords(true);
+	setFocusable(true);
     }
     
-    public void removeKeywordListener(KeywordListener kw) {
-	removeMouseListener(this);
-	kwList.remove(kw);
-	lexer = null;
+    /**
+     * @overload #setDocument
+     * @param doc to set
+     */
+    public void setDocument(Document doc) {
+	super.setDocument(doc);
+	if (doc instanceof ScilabDocument) {
+	    ((ScilabDocument) doc).getUndoManager().discardAllEdits();
+	    initialize((ScilabDocument) doc);
+	}
     }
 
+    /**
+     * Set a new font
+     * @param font to set
+     */
+    public void resetFont(Font font) {
+	setFont(font);
+	((ScilabEditorKit) getEditorKit()).getStylePreferences().genFonts(font);
+	editor.getXln().updateFont(font);
+    }
+
+    /**
+     * Set a new color
+     * @param keyword the kind of the keyword
+     * @param color the color
+     */
+    public void resetColor(String keyword, Color color) {
+	((ScilabEditorKit) getEditorKit()).getStylePreferences().genColors(keyword, color);
+    }
+    
+    /**
+     * Add a new KeywordListener
+     * @param kw a KeywordListener
+     */
+    public void addKeywordListener(KeywordListener kw) {
+	kwListeners.add(kw);
+    }
+    
+    /**
+     * Remove a new KeywordListener
+     * @param kw a KeywordListener
+     */
+    public void removeKeywordListener(KeywordListener kw) {
+	kwListeners.remove(kw);
+    }    
+    
+    /**
+     * @return an array of KeywordListener
+     */
+    public KeywordListener[] getKeywordListeners() {
+        return kwListeners.toArray(new KeywordListener[0]);
+    }
+
+    /**
+     * Set a new color for the highlighting
+     * @param c the color
+     */
     public void setHighlightedLineColor(Color c) {
 	highlightColor = c;
     }
 
+    /**
+     * @return the color of the highlighted line
+     */ 
     public Color getHighlightedLineColor() {
 	return highlightColor;
     }
 
-    public void enableHighlightedLine() {
-	if (!highlightEnable) {
+    /**
+     * Enable (active true) or disable (active false) the line-highlighting.
+     * @param active true or false
+     */
+    public void enableHighlightedLine(boolean active) {
+	if (active && !highlightEnable) {
 	    try {
 		getHighlighter().addHighlight(0, 0, this);
 	    } catch (BadLocationException e) { }
 	    highlightEnable = true;
 	}
-    }
 
-    public void disableHighlightedLine() {
-	if (highlightEnable) {
+	if (!active && highlightEnable) {
 	    getHighlighter().removeAllHighlights();
 	    highlightEnable = false;
 	}
+
+	repaint();
     }
 
+    /**
+     * Enable (active true) or disable (active false) the matching keywords.
+     * @param active true or false
+     */
+    public void enableMatchingKeywords(boolean active) {
+	matchingEnable = active;
+    }
+
+    /**
+     * This class listens to the caret event
+     * @param e event
+     */
     public void caretUpdate(CaretEvent e) {
 	if (highlightEnable) {
 	    repaint();
 	}
+	
+	if (matchingEnable) {
+	    int pos = getCaretPosition();
+	    int tok = lexer.getKeyword(pos, false);
+	    matchLR.searchMatchingBlock(tok, lexer.start + lexer.yychar());
+	    tok = lexer.getKeyword(pos, true);
+	    matchRL.searchMatchingBlock(tok, lexer.start + lexer.yychar() + lexer.yylength());
+	}
     }
 
+    /**
+     * Used to paint the highlighted line
+     * @param g graphics to use
+     * @param p0 start
+     * @param p1 end
+     * @param bounds the shape representing the area
+     * @param c this pane
+     */
     public void paint(Graphics g, int p0, int p1, Shape bounds, JTextComponent c) {
-	try {
-	    Rectangle r = modelToView(getCaretPosition());
-	    g.setColor(highlightColor);
-	    g.fillRect(0, r.y, getWidth(), r.height);
-	} catch (BadLocationException e) { }
+	if (highlightEnable) {
+	    try {
+		Rectangle r = modelToView(getCaretPosition());
+		g.setColor(highlightColor);
+		g.fillRect(0, r.y, getWidth(), r.height);
+	    } catch (BadLocationException e) { }
+	}
     }
 
-    public void mouseClicked(MouseEvent e) {
-	int p0 = getCaretPosition();
-	Element elem = getDocument().getDefaultRootElement();
-	Element line = elem.getElement(elem.getElementIndex(p0));	
-	int startL = line.getStartOffset();
-	int endL = line.getEndOffset();
-	int tok = -1;
-	
-	try {
-	    lexer.setRange(startL, endL);
-	    while (startL < p0) {
-		tok = lexer.yylex();
-		startL = lexer.start + lexer.yychar() + lexer.yylength();
+    /**
+     * @return the current IndentManager
+     */
+    public IndentManager getIndentManager() {
+	return indent;
+    }
+    
+    /**
+     * @return the current TabManager
+     */
+    public TabManager getTabManager() {
+	return tab;
+    }
+
+    /**
+     * @return the current CommentManager
+     */
+    public CommentManager getCommentManager() {
+	return com;
+    }
+
+    /**
+     * Get a keyword at a position in the document.
+     * @param position in the document
+     * @return the KeywordEvent containing infos about keyword.
+     */
+    public KeywordEvent getKeywordEvent(int position) {
+	int tok = lexer.getKeyword(position, true);
+	return new KeywordEvent(this, null, tok, lexer.start + lexer.yychar(), lexer.yylength());
+    }
+
+    /**
+     * Get a keyword at the current position in the document.
+     * @return the KeywordEvent containing infos about keyword.
+     */
+    public KeywordEvent getKeywordEvent() {
+	return getKeywordEvent(getCaretPosition());
+    }
+
+    /**
+     * Prevents the different KeywordListener that a MouseEvent occured
+     * @param position of the mouse
+     * @param ev the event which occured
+     * @param type of the event : KeywordListener.ONMOUSECLICKED or KeywordListener.ONMOUSEOVER
+     */
+    protected void preventConcernedKeywordListener(int position, EventObject ev, int type) {
+	int tok = lexer.getKeyword(position, true);
+	KeywordEvent kev = new KeywordEvent(this, ev, tok, lexer.start + lexer.yychar(), lexer.yylength());
+	for (KeywordListener listener : kwListeners) {
+	    if (type == listener.getType()) {
+		listener.caughtKeyword(kev);
 	    }
-	} catch (IOException ex) { }
-	
-	KeywordEvent kev = new KeywordEvent(this, tok, lexer.start + lexer.yychar(), lexer.yylength());
-	for (int i = 0; i < kwList.size(); i++) {
-	    kwList.get(i).keywordClicked(kev);
+	}
+    }
+
+    /**
+     * Implements mouseClicked in MouseListener
+     * @param e event
+     */
+    public void mouseClicked(MouseEvent e) {
+	preventConcernedKeywordListener(getCaretPosition(), e, KeywordListener.ONMOUSECLICKED);
+    }
+
+    /**
+     * Implements mouseEntered in MouseListener
+     * @param e event
+     */
+    public void mouseEntered(MouseEvent e) { }
+
+    /**
+     * Implements mouseExited in MouseListener
+     * @param e event
+     */
+    public void mouseExited(MouseEvent e) { }
+
+    /**
+     * Implements mousePressed in MouseListener
+     * @param e event
+     */
+    public void mousePressed(MouseEvent e) {
+	if (highlightEnable) {
+	    repaint();
 	}
     }
     
-    public void mouseEntered(MouseEvent e) { }
-    public void mouseExited(MouseEvent e) { }
-    public void mousePressed(MouseEvent e) { }
+    /**
+     * Implements mouseReleseaed in MouseListener
+     * @param e event
+     */
     public void mouseReleased(MouseEvent e) { }	
-}
+
+    /**
+     * Implements mouseMoved in MouseMotionListener
+     * @param e event
+     */
+    public void mouseMoved(MouseEvent e) {
+	preventConcernedKeywordListener(viewToModel(e.getPoint()), e, KeywordListener.ONMOUSEOVER);
+    }
+
+    /**
+     * Implements mouseDragged in MouseMotionListener
+     * @param e event
+     */
+    public void mouseDragged(MouseEvent e) {
+	if (highlightEnable) {
+	    repaint();
+	}
+    }
     
+    /**
+     * Initialize the pane when the document is loaded
+     * @param doc used with this pane
+     */ 
+    private void initialize(ScilabDocument doc) {
+	indent = new IndentManager(doc);
+	tab = new TabManager(doc, indent);
+	com = new CommentManager(doc);
+	matchLR = new MatchingBlockManager(doc, true, getHighlighter(), Color.PINK);
+	matchRL = new MatchingBlockManager(doc, false, getHighlighter(), Color.ORANGE);
+	lexer = doc.createLexer();
+    }
+}

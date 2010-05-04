@@ -23,36 +23,119 @@ import javax.swing.text.Element;
 
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 
+/**
+ * The class ScilabContext provides a context to render a Scilab's document.
+ * @author Calixte DENIZET
+ */
 public class ScilabContext implements ViewFactory {
 
-    Color[] tokenColors = new Color[ScilabLexerConstants.NUMBER_OF_TOKENS];
-    Font[] tokenFonts = new Font[ScilabLexerConstants.NUMBER_OF_TOKENS];
+    /**
+     * Contains the colors of the different tokens
+     */
+    Color[] tokenColors;
+    
+    /**
+     * Contains the fonts of the different tokens
+     */
+    Font[] tokenFonts;
+    
+    /**
+     * Contains the attrib (underline or stroke) of the different tokens
+     */
+    int[] tokenAttrib = new int[ScilabLexerConstants.NUMBEROFTOKENS];
+
     private ScilabView view;
     
+    /**
+     * The constructor
+     */
     public ScilabContext() {
 	super();
+	genColors();
+	genFonts();
+
+	Map map = ConfigXpadManager.getAllAttributes();
+	Iterator it = map.keySet().iterator();
+	while (it.hasNext()) {
+	    String tokenType = (String) it.next();
+	    tokenAttrib[ScilabLexerConstants.TOKENS.get(tokenType)] = ((Integer) map.get(tokenType)).intValue();
+	}
+    }
+
+    /**
+     * Generate the colors to use to render the document
+     */
+    public void genColors() {
+	tokenColors = new Color[ScilabLexerConstants.NUMBEROFTOKENS];
 	Map map = ConfigXpadManager.getAllForegroundColors();
 	Iterator it = map.keySet().iterator();
 	while (it.hasNext()) {
 	    String tokenType = (String) it.next();
 	    tokenColors[ScilabLexerConstants.TOKENS.get(tokenType)] = (Color) map.get(tokenType);
 	}
-	map = ConfigXpadManager.getAllFontStyle();
-	it = map.keySet().iterator();
-	while (it.hasNext()) {
-	    String tokenType = (String) it.next();
-	    tokenFonts[ScilabLexerConstants.TOKENS.get(tokenType)] = (Font) map.get(tokenType);
-	}
+	
 	for (int i = 0; i < tokenColors.length; i++) {
 	    if (tokenColors[i] == null) {
 		tokenColors[i] = tokenColors[0];
 	    }
+	}
+	
+	/* Special case : Scilab's developers in comments */ 
+	tokenColors[ScilabLexerConstants.AUTHORS] = tokenColors[ScilabLexerConstants.COMMENT];
+    }
+
+    /**
+     * Generate a color for a type of keyword
+     * @param name the name can be found in xpadConfiguration.xml
+     * @param color the color to use
+     */
+    public void genColors(String name, Color color) {
+	Map map = ConfigXpadManager.getAllForegroundColors();
+	if (tokenColors == null) {
+	    genColors();
+	}
+	tokenColors[ScilabLexerConstants.TOKENS.get(name)] = color;
+	tokenColors[ScilabLexerConstants.AUTHORS] = tokenColors[ScilabLexerConstants.COMMENT];
+    }
+    
+    /**
+     * Generate the fonts to use to render the document
+     */
+    public void genFonts() {
+	genFonts(null);
+    }
+
+    /**
+     * Generate the fonts to use to render the document
+     * @param font the base font to use
+     */
+    public void genFonts(Font font) {
+	Map map;
+	if (font != null) {
+	    map = ConfigXpadManager.getAllFontStyle(font);
+	} else {
+	    map = ConfigXpadManager.getAllFontStyle();
+	}   
+	
+	tokenFonts = new Font[ScilabLexerConstants.NUMBEROFTOKENS];
+	
+	Iterator it = map.keySet().iterator();
+	while (it.hasNext()) {
+	    String tokenType = (String) it.next();
+	    tokenFonts[ScilabLexerConstants.TOKENS.get(tokenType)] = (Font) map.get(tokenType);
+	}
+
+	for (int i = 0; i < tokenFonts.length; i++) {
 	    if (tokenFonts[i] == null) {
 		tokenFonts[i] = tokenFonts[0];
 	    }
 	}
 	
-	// Special case : developers in Scilab in comments
+	if (view != null) {
+	    view.reinitialize();
+	}
+
+	/* Special case : Scilab's developers in comments */
 	Font c = tokenFonts[ScilabLexerConstants.COMMENT];
 	int style = c.getStyle();
 	if (c.isBold()) {
@@ -60,37 +143,20 @@ public class ScilabContext implements ViewFactory {
 	} else {
 	    tokenFonts[ScilabLexerConstants.AUTHORS] = c.deriveFont(style | Font.BOLD);
 	}
-	tokenColors[ScilabLexerConstants.AUTHORS] = tokenColors[ScilabLexerConstants.COMMENT];
-
-
-	/*String[] tab = ScilabKeywords.GetMacrosName();//ScilabKeywords.GetCommandsName();//ScilabKeywords.GetVariablesName();
-	String ch="";
-	for (int i = 0; i < tab.length-1; i++) {
-	    if (tab[i].charAt(0) != '%')
-		ch+="\"" + tab[i]+ "\" | ";
-	}
-	ch+="\""+tab[tab.length-1]+"\"";
-	System.out.println(ch);*/
-    }
-    
-    /*    public Color getForeground(int code) {
-	if ((code >= 0) && (code < tokenColors.length)) {
-	    return tokenColors[code];
-	}
-	return Color.BLACK;
     }
 
-    public Color getFont(int code) {
-	if ((code >= 0) && (code < tokenColors.length)) {
-	    return tokenStyle[code];
-	}
-	return Color.BLACK;
-	}*/
-
+    /**
+     * @return the view to use to render the document
+     */
     public View getCurrentView() {
 	return view;
     }
 
+    /**
+     * Create a view with a given element
+     * @param elem the Element to view
+     * @return the view associated with the element
+     */
     public View create(Element elem) {
 	view = new ScilabView(elem, this);
 	return view;
