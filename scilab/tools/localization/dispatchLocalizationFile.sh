@@ -26,11 +26,8 @@ if test ! -d $LAUNCHPAD_DIRECTORY; then
 	exit -3
 fi
 
-# Workaround because launchpad does not allow to delete a directory
-rm $LAUNCHPAD_DIRECTORY/string-v2*.po 
-
 # Don't know why but launchpad is placing some files in some sub dirs
-cp -i $LAUNCHPAD_DIRECTORY/*/*.po $LAUNCHPAD_DIRECTORY/
+/bin/cp -fi $LAUNCHPAD_DIRECTORY/*/*.po $LAUNCHPAD_DIRECTORY/
 
 for file in $LAUNCHPAD_DIRECTORY/*.po; do 
 	file=`echo $file|awk -F / '{print $NF}'` # get only the filename
@@ -55,8 +52,8 @@ for file in $LAUNCHPAD_DIRECTORY/*.po; do
 		if test ! -d $DIR; then
 			mkdir $DIR
 		fi
-		echo "cp $LAUNCHPAD_DIRECTORY/$file $DIR/$MODULE.po"
-		cp $LAUNCHPAD_DIRECTORY/$file $DIR/$MODULE.po
+		echo "/bin/cp $LAUNCHPAD_DIRECTORY/$file $DIR/$MODULE.po"
+		/bin/cp -f $LAUNCHPAD_DIRECTORY/$file $DIR/$MODULE.po
 		if test $? -ne 0; then
 			echo "Error detected in the copy"
 			exit 1;
