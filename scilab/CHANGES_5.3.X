@@ -318,6 +318,8 @@ Bug fixes:
 * bug 6830 fixed - C2F(scistring) in stack2.c was broken for macro names of 
                    exactly 2 characters.
 
+* bug 6861 fixed - yulewalk example failed on Windows.
+
 * bug 6862 fixed - Help page for 'vectorfind' missed some explanations about 
                    input arguments types. Moreover there were missing checks
                    about input arguments number and types in the function.
