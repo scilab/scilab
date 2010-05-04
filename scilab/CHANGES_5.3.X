@@ -42,6 +42,9 @@ Graphics:
 
 * bug 7024 fixed - Error messages from "twinkle" were not standard.
 
+* bug 7028 fixed - When scilab printed an "axis" graphic handle, string array
+                   size for "tics_labels" were erroneous.
+
 API_Scilab:
 ===========
 
