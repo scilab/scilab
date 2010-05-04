@@ -32,6 +32,7 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -399,7 +400,10 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 							.get(i + 1)).get(2);
 
 					/*
-					 * reconstruct pol fields TODO : what are these fields ?
+					 * reconstruct pol fields.
+					 * 
+					 * This field indicate the dimension of each entry (-1.0 is
+					 * automatic).
 					 */
 					polFields.add(new ScilabString("pol"));
 					polFields.add(new ScilabDouble(-1.0));
@@ -420,6 +424,13 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 				);
 
 				getBlock().setExprs(exprs);
+				
+				/*
+				 * Trace the exprs update.
+				 */
+				if (LogFactory.getLog(SuperblockMaskCustomizeAction.class).isTraceEnabled()) {
+					LogFactory.getLog(SuperblockMaskCustomizeAction.class).trace("exprs=" + exprs);
+				}
 			}
 
 			/**
@@ -542,8 +553,8 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 					DefaultTableModel tableModel = model.customizeTableModel;
 
 					for (; rowCount < value; rowCount++) {
-						tableModel
-								.addRow(new Object[] {rowCount + 1, "", true });
+						tableModel.addRow(
+								new Object[] {rowCount + 1, "", "", true });
 					}
 
 					for (; rowCount > value; rowCount--) {
