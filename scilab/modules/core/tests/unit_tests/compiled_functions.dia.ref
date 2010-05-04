@@ -15,6 +15,7 @@ deff('y=toto()','a=stacksize();a=a(1);y=foo(a)')
 y=toto();
 if y<>a+1000 then bugmes();quit;end
 a=y;
+exec(toto)
  
  y  =
  

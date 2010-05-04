@@ -319,6 +319,8 @@ Bug fixes:
                    exponential form (%e) was missing in the prinft_conversion
                    documentation.
 
+* bug 5149 fixed - test_run(): Calls to exec() were no more logged by diary().
+
 * bug 5541 fixed - In the API documentation, the information that data must be
                    allocated before calling API functions was missing.
 

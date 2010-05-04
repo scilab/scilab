@@ -11,6 +11,7 @@ cd(pathconvert(TMPDIR+"/string_writing_api"));
 copyfile(SCI+"/modules/api_scilab/tests/unit_tests/string_writing_api.c",pathconvert(TMPDIR+"/string_writing_api/string_writing_api.c",%F));
 cflags = "-I"+SCI+"/modules/localization/includes";
 ilib_build("string_writing",["write_string","write_string"],"string_writing_api.c",[],"Makefile","",cflags);
+exec("loader.sce");
 a_ref = "may the puffin be with you ";
 b = [];
 a = write_string();
