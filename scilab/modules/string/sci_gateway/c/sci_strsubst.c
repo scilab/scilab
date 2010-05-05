@@ -97,7 +97,7 @@ int sci_strsubst(char *fname,unsigned long fname_len)
 				return 0;
 			}
 
-			sciErr = getMatrixOfString(pvApiCtx, piAddressVarFour,&mFour,&nFour, NULL, NULL);
+			sciErr = getMatrixOfString(pvApiCtx, piAddressVarFour,&mFour,&nFour, &lenStVarFour, NULL);
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
