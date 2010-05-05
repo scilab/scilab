@@ -335,6 +335,9 @@ Bug fixes:
 
 * bug 6682 fixed - mprintf, msprintf, mfprintf did not manage octal (%o) format.
 
+* bug 6731 fixed - Information on the output argument was missing from the 
+                   lib() documentation.
+
 * bug 6740 fixed - It was not possible to launch Scilab as Minimized 
                    or Maximized Window.
 
