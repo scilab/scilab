@@ -76,6 +76,12 @@ rand("info")
 
     <para>random matrix generator.</para>
 
+    <para>Warning: without a seed, the sequence will remain the same
+      from a session to the other.</para>
+    <para>At the beginning of each script using rand function, you
+    should use:</para>
+    <programlisting role="example"><![CDATA[rand('seed',getdate('s'))]]></programlisting>
+
     <para>Without key argument the syntaxes below produce random matrices with
     the current random generator (default is "uniform")</para>
 
