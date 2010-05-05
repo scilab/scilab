@@ -292,6 +292,10 @@ Bug fixes:
 
 * bug 5123 fixed - help about '%helps' was wrong.
 
+* bug 5136 fixed - information about dependant platform display of 
+                   exponential form (%e) was missing in the prinft_conversion
+                   documentation.
+
 * bug 5541 fixed - In the API documentation, the information that data must be
                    allocated before calling API functions was missing.
 
