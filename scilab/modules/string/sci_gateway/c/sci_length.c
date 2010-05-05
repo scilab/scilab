@@ -122,7 +122,7 @@ static int lengthStrings(int *piAddressVar)
 		return 0;
 	}
 
-	sciErr = getMatrixOfString(pvApiCtx, piAddressVar, &m1, &n1, lenStVarOne, pStVarOne);
+	sciErr = getMatrixOfString(pvApiCtx, piAddressVar, &m1, &n1, NULL, NULL);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -137,7 +137,7 @@ static int lengthStrings(int *piAddressVar)
 		return 0;
 	}
 
-	sciErr = getMatrixOfString(pvApiCtx, piAddressVar, &m1, &n1, lenStVarOne, pStVarOne);
+	sciErr = getMatrixOfString(pvApiCtx, piAddressVar, &m1, &n1, lenStVarOne, NULL);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);

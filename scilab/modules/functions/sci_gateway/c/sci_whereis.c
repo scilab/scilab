@@ -82,7 +82,7 @@ int sci_whereis(char *fname,unsigned long fname_len)
 		char **librariesResult = NULL;
 		int librariesResultSize = 0;
 
-		sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m, &n, &lenStVarOne, &pStVarOne);
+		sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m, &n, &lenStVarOne, NULL);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
