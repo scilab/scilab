@@ -245,6 +245,9 @@ Bug fixes:
 
 * bug 4075 fixed - a basic uicontrol example crashed scilab 5.0.3
 
+* bug 4117 fixed - Closing via the user interface a graphics figure which had a non-existing
+                   event handler attached did not destroy its associated data structure.
+
 * bug 4359 fixed - M(:,:)='anything' produced erroneous result.
 
 * bug 4572 fixed - scilab did a SIGSEGV after stacksize('max') + stacksize().

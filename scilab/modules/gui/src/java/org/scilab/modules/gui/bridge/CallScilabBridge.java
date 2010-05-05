@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
  * Copyright (C) 2008 - DIGITEO - Sylvestre KOUMAR
+ * Copyright (C) 2010 - DIGITEO - Manuel JULIACHS
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -583,15 +584,15 @@ public class CallScilabBridge {
 		// if (get_figure_handle(fid) <> []) then
 		//   if (get(get_figure_handle(fid), 'event_handler_enable') == 'on') then
 		//     // execute closing call back
-		//     execstr(get(get_figure_handle(fid), 'event_handler') + '(fid, -1, -1, -1000)');
+		//     execstr(get(get_figure_handle(fid), 'event_handler') + '(fid, -1, -1, -1000)', 'errcatch', 'm');
 		//   end
-		//   // destory the figure
+		//   // destroy the figure
 		//   delete(get_figure_handle(fid));
 		// end
 		String closingCommand = 
 			       "if (get_figure_handle(" + figureIndex + ") <> []) then"
 			+      "  if (get(get_figure_handle(" + figureIndex + "), 'event_handler_enable') == 'on') then"
-			+      "    execstr(get(get_figure_handle(" + figureIndex + "), 'event_handler')+'(" + figureIndex + ", -1, -1, -1000)');"
+			+      "    execstr(get(get_figure_handle(" + figureIndex + "), 'event_handler')+'(" + figureIndex + ", -1, -1, -1000)', 'errcatch', 'm');"
 			+      "  end;"
 			+      "  delete(get_figure_handle(" + figureIndex + "));"
 			+      "end;";

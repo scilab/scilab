@@ -160,11 +160,11 @@
         <separator/>
         <submenu label="C&amp;lose">
             <callback instruction='
-   if (get(get_figure_handle([SCILAB_FIGURE_ID]), "event_handler_enable") == "on" );
-   execstr(get(get_figure_handle([SCILAB_FIGURE_ID]), "event_handler")+"([SCILAB_FIGURE_ID], -1, -1, -1000)");
-   end;
-   delete(get_figure_handle([SCILAB_FIGURE_ID]));'
-      type="0"/>
+                if (get(get_figure_handle([SCILAB_FIGURE_ID]), "event_handler_enable") == "on" );
+                    execstr(get(get_figure_handle([SCILAB_FIGURE_ID]), "event_handler")+"([SCILAB_FIGURE_ID], -1, -1, -1000)", "errcatch", "m");
+                end;
+                delete(get_figure_handle([SCILAB_FIGURE_ID]));'
+                type="0"/>
         </submenu>
     </menu>
 
