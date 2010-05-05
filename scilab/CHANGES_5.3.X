@@ -274,6 +274,8 @@ Bug fixes:
 * bug 4996 fixed - mgetl() was not located in the right module. It has been
                    moved to "fileio" module
 
+* bug 5123 fixed - help about '%helps' was wrong.
+
 * bug 5541 fixed - In the API documentation, the information that data must be
                    allocated before calling API functions was missing.
 
