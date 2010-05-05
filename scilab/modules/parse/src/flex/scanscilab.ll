@@ -93,7 +93,7 @@ times			"*"
 power			("^"|"**")
 
 equal			"=="
-notequal		("~="|"<>")
+notequal		("~="|"@="|"<>")
 lowerthan		"<"
 greaterthan		">"
 lowerequal		"<="
