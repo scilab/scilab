@@ -120,6 +120,8 @@ Xcos:
 * bug 4898 fixed - The scifunction_block stored list() parameters on the ipar 
                    field instead of the opar field.
 
+* bug 4977 fixed - Some icons were duplicated between Gui and Xcos.
+
 * bug 5161 fixed - The export to SVG did not work with images or html.
 
 * bug 5596 fixed - It was not possible to change text block properties (font
