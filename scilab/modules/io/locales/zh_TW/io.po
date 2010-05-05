@@ -14,7 +14,7 @@ msgstr ""
 "Revision-Date: 2008-05-28 16:53+0100\n"
 
 #, c-format
-msgid "%s : Memory allocation error.\n"
+msgid "%s: Memory allocation error.\n"
 msgstr "%s: 記憶體配置時發生錯誤.\n"
 
 #, c-format

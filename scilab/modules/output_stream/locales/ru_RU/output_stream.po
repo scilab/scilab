@@ -66,7 +66,7 @@ msgid "%dth argument type must be boolean.\n"
 msgstr "Тип %d-го параметра должен быть логическим.\n"
 
 #, c-format
-msgid "%s : Memory allocation error.\n"
+msgid "%s: Memory allocation error.\n"
 msgstr "%s: Ошибка выделения памяти.\n"
 
 #, c-format

@@ -46,7 +46,7 @@ msgid "%f: No more space to store string arguments.\n"
 msgstr "%f: kein weiterer Raum, um Zeichenketten-Argumente zu speichern.\n"
 
 #, c-format
-msgid "%s : Memory allocation error.\n"
+msgid "%s: Memory allocation error.\n"
 msgstr "%s: Fehler bei der Speicherbelegung.\n"
 
 #, c-format

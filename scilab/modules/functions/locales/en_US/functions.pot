@@ -22,7 +22,7 @@ msgstr ""
 # File: sci_gateway/c/sci_execstr.c, line: 231
 # File: sci_gateway/c/sci_whereis.c, line: 101
 #, c-format
-msgid "%s : Memory allocation error.\n"
+msgid "%s: Memory allocation error.\n"
 msgstr ""
 #
 # File: macros/recompilefunction.sci, line: 44

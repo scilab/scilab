@@ -29,7 +29,7 @@ msgstr ""
 # File: sci_gateway/c/sci_strsplit.c, line: 342
 # File: sci_gateway/c/sci_isalphanum.c, line: 74
 #, c-format
-msgid "%s : Memory allocation error.\n"
+msgid "%s: Memory allocation error.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_strcmp.c, line: 94

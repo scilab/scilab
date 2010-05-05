@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
-msgid "%s : Memory allocation error.\n"
+msgid "%s: Memory allocation error.\n"
 msgstr "%s: Ошибка выделения памяти.\n"
 
 #, c-format

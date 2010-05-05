@@ -80,7 +80,7 @@ msgid "%dth argument type must be boolean.\n"
 msgstr "第 %d 參數型態須為  boolean.\n"
 
 #, c-format
-msgid "%s : Memory allocation error.\n"
+msgid "%s: Memory allocation error.\n"
 msgstr ""
 
 #

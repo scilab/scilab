@@ -52,7 +52,7 @@ msgstr ""
 "%f : Plus de place pour stocker les arguments de type chaîne de caractères.\n"
 
 #, c-format
-msgid "%s : Memory allocation error.\n"
+msgid "%s: Memory allocation error.\n"
 msgstr "%s : Erreur d'allocation mémoire.\n"
 
 #, c-format

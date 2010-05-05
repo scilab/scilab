@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
-msgid "%s : Memory allocation error.\n"
+msgid "%s: Memory allocation error.\n"
 msgstr "%s: メモリの割り当てに失敗しました。\n"
 
 #

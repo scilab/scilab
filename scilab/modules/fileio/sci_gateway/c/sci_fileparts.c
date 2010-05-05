@@ -90,7 +90,7 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 	pStVarOne = (wchar_t*)MALLOC(sizeof(wchar_t)*(lenStVarOne + 1));
 	if (pStVarOne == NULL)
 	{
-		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+		Scierror(999,_("%s: Memory allocation error.\n"),fname);
 		return 0;
 	}
 
@@ -146,7 +146,7 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 		pStVarTwo = (wchar_t*)MALLOC(sizeof(wchar_t)*(lenStVarTwo + 1));
 		if (pStVarTwo == NULL)
 		{
-			Scierror(999,_("%s : Memory allocation error.\n"),fname);
+			Scierror(999,_("%s: Memory allocation error.\n"),fname);
 			if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;}
 			return 0;
 		}
@@ -177,7 +177,7 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 		if (ext) {FREE(ext); ext = NULL;}
 		if (path_out) {FREE(path_out); path_out = NULL;}
 
-		Scierror(999,_("%s : Memory allocation error.\n"), fname);
+		Scierror(999,_("%s: Memory allocation error.\n"), fname);
 		return 0;
 	}
 

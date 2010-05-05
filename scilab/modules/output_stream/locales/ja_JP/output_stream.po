@@ -90,7 +90,7 @@ msgid "%dth argument type must be boolean.\n"
 msgstr "%d 番目の引数型は、ブーリアンでなくてはなりません。\n"
 
 #, c-format
-msgid "%s : Memory allocation error.\n"
+msgid "%s: Memory allocation error.\n"
 msgstr "%s: メモリの割り当てに失敗しました。\n"
 
 #

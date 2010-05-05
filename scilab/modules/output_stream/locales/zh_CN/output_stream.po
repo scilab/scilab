@@ -64,7 +64,7 @@ msgid "%dth argument type must be boolean.\n"
 msgstr "第%d个参数的类型必须为布尔型。\n"
 
 #, c-format
-msgid "%s : Memory allocation error.\n"
+msgid "%s: Memory allocation error.\n"
 msgstr "%s：内存申请错误。\n"
 
 #, c-format

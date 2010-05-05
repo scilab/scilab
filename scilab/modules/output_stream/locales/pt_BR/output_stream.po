@@ -64,7 +64,7 @@ msgid "%dth argument type must be boolean.\n"
 msgstr "O tipo do %d-ésimo argumento deve ser booleano.\n"
 
 #, c-format
-msgid "%s : Memory allocation error.\n"
+msgid "%s: Memory allocation error.\n"
 msgstr "%s : Erro na alocação de memoria.\n"
 
 #, c-format
