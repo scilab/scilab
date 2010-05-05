@@ -351,6 +351,9 @@ Bug fixes:
 * bug 6774 fixed - Calling get_param generated a "funcprot" warning when  
                    the value of an option which was a function.
 
+* bug 6783 fixed - Solving a system of linear equation by backslash ("\")
+                   caused a crash, when using complex numbers on Windows.
+
 * bug 6784 fixed - It was not possible to move a Scilab installation without
                    breaking the (previously installed) ATOMS packages load.
 
