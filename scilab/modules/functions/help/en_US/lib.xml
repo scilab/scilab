@@ -52,7 +52,7 @@
     for the first time.</para>
     <para>
     Binary files can be created from within Scilab with the command
-    <literal>save</literal>.</para>
+    <literal>save</literal>.
     A library variable
     usually is saved for later loading, either on-line or from the
     user-specific startup file (see startup).</para>
