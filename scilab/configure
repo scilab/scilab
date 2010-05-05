@@ -18472,6 +18472,7 @@ fi
 
       LD_LIBRARY_PATH_save=$LD_LIBRARY_PATH
       LD_LIBRARY_PATH="/usr/lib/jni:/usr/lib64/jni/:$SCI_SRCDIR/bin/:$SCI_SRCDIR/thirdparty/:$with_hdf5_library"
+      export LD_LIBRARY_PATH
 
     { $as_echo "$as_me:${as_lineno-$LINENO}: checking minimal version (1.8.4) of hdf5" >&5
 $as_echo_n "checking minimal version (1.8.4) of hdf5... " >&6; }
@@ -18479,7 +18480,7 @@ $as_echo_n "checking minimal version (1.8.4) of hdf5... " >&6; }
    export ac_java_classpath="$JHDF5:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 18482 "configure"
+// #line 18483 "configure"
 import ncsa.hdf.hdf5lib.H5;
 
 public class conftest {
@@ -18533,6 +18534,7 @@ EOF
 
    ac_java_classpath=$saved_ac_java_classpath
 
+      unset LD_LIBRARY_PATH
       LD_LIBRARY_PATH=$LD_LIBRARY_PATH_save
     fi
 fi #HDF5_ENABLE
@@ -23011,7 +23013,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 $as_echo_n "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... " >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 23014 "configure"
+#line 23016 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -23323,7 +23325,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 $as_echo_n "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... " >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 23326 "configure"
+#line 23328 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -23907,7 +23909,7 @@ $as_echo_n "checking saxon... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 23910 "configure"
+// #line 23912 "configure"
 import com.icl.saxon.Loader;
 
 public class conftest {
@@ -24014,7 +24016,7 @@ $as_echo_n "checking jlatexmath-fop... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 24017 "configure"
+// #line 24019 "configure"
 import org.scilab.forge.jlatexmath.fop.JLaTeXMathObj;
 
 public class conftest {
@@ -30290,7 +30292,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 30293 "configure"
+#line 30295 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -30396,7 +30398,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 30399 "configure"
+#line 30401 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H

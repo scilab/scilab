@@ -1183,11 +1183,13 @@ if test $HDF5_ENABLE = yes;  then
 
       LD_LIBRARY_PATH_save=$LD_LIBRARY_PATH
       LD_LIBRARY_PATH="/usr/lib/jni:/usr/lib64/jni/:$SCI_SRCDIR/bin/:$SCI_SRCDIR/thirdparty/:$with_hdf5_library"
+      export LD_LIBRARY_PATH
       AC_JAVA_CHECK_VERSION_PACKAGE([hdf5],[import ncsa.hdf.hdf5lib.H5;],$JHDF5,[1.8.4],[ver],[int[] vers = new int[3];
                 try { H5.H5get_libversion(vers); }
                 catch (Throwable ex) {System.exit(-1);}
                 String ver = vers[0] + "."+ vers[1] +"."+vers[2];
       ])
+      unset LD_LIBRARY_PATH
       LD_LIBRARY_PATH=$LD_LIBRARY_PATH_save
     fi
 fi #HDF5_ENABLE
