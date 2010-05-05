@@ -33,6 +33,8 @@ Graphics:
 * bug 5284 fixed - In some case function "legend" drew line segments in its box
                    in a reverse order.
 
+* bug 6532 fixed - In some case text entity rendering order was wrong.
+
 * bug 6786 fixed - The "polarplot" function did not correctly display the polar
                    coordinates grid when negative rho values were plotted.
 
