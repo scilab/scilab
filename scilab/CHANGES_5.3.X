@@ -366,6 +366,9 @@ Bug fixes:
 * bug 5583 fixed - exec() did not manage correctly UTF-8 and ANSI/ASCII files 
                    encoded.
 
+* bug 5588 fixed - Assigning null() in a tlist or mlist field shifted all remaining
+                   values with respect to  field names.
+
 * bug 5609 fixed - documentation stated incorrectly fieldnames works on cells
 
 * bug 5629 fixed - export_to_hdf5 to a file overwrote a directory 

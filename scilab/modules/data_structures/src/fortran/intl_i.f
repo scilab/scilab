@@ -77,6 +77,7 @@ c     get arg2
       else
          vol2=lstk(top+1)-lstk(top)
       endif
+      
 c
 c     get arg1
       top=top-1
@@ -99,7 +100,7 @@ c     protect index list
 c     go ahead along the path
       icount=0
       call followpath(top1,top3,il1ir,vol1,il3ir,vol3,
-     $     istk(ilind),icount,info,lw)
+     $     istk(ilind),icount,info,lw,istk(il2).eq.0)
       if(err.gt.0) return
       il1i=il1ir
       if(istk(il1i).lt.0) il1i=iadr(istk(il1i+1))
