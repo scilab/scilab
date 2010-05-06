@@ -52,7 +52,8 @@ nm = nmplot_configure(nm,"-coords0",coords0);
 //
 // Setup output files
 //
-nm = nmplot_configure(nm,"-simplexfn",TMPDIR + "\history.simplex.txt");
+simplexfn = TMPDIR + filesep() + "history.simplex.txt";
+nm = nmplot_configure(nm,"-simplexfn",simplexfn);
 //
 // Perform optimization
 //
@@ -70,7 +71,7 @@ drawlater();
 contour ( xdata , ydata , zdata , [0.1 0.2 0.5 1.0 1.5 1.9] )
 nmplot_simplexhistory ( nm );
 drawnow();
-deletefile(TMPDIR + "\history.simplex.txt");
+deletefile(simplexfn);
 nm = nmplot_destroy(nm);
 mprintf("End of demo.\n");
 

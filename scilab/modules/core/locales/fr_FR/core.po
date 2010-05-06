@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
 "POT-Creation-Date: 2008-02-27 18:16+0100\n"
-"PO-Revision-Date: 2009-12-15 15:28+0000\n"
-"Last-Translator: Allan CORNET <Unknown>\n"
+"PO-Revision-Date: 2010-04-27 11:40+0000\n"
+"Last-Translator: Vincent Couvert <Unknown>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
+"X-Launchpad-Export-Date: 2010-05-04 21:28+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid "                 Consortium Scilab (DIGITEO)\n"
@@ -24,8 +24,8 @@ msgstr "                 Consortium Scilab (DIGITEO)\n"
 msgid "               Copyright (c) 1989-2007 (ENPC)\n"
 msgstr "               Copyright (c) 1989-2007 (ENPC)\n"
 
-msgid "               Copyright (c) 1989-2009 (INRIA)\n"
-msgstr "               Copyright (c) 1989-2009 (INRIA)\n"
+msgid "               Copyright (c) 1989-2010 (INRIA)\n"
+msgstr "               Copyright (c) 1989-2010 (INRIA)\n"
 
 #
 # File: etc/scilab.start, line: 40
@@ -105,11 +105,11 @@ msgstr "%s : %s n'a pas la bonne taille %d, (%d) attendue.\n"
 
 #, c-format
 msgid "%s: %s have incompatible dimensions (%dx%d) # (%dx%d)\n"
-msgstr "%s : %s a des dimensions incompatibles (%dx%d) # (%dx%d)\n"
+msgstr "%s : %s ont des dimensions incompatibles (%dx%d) # (%dx%d)\n"
 
 #, c-format
 msgid "%s: %s have incompatible dimensions.\n"
-msgstr "%s : %s a des dimensions incompatibles.\n"
+msgstr "%s : %s ont des dimensions incompatibles.\n"
 
 #, c-format
 msgid "%s: %s is a uneditable hard coded function.\n"
@@ -646,6 +646,10 @@ msgid "%s: Wrong type value.\n"
 msgstr "%s : mauvaise valeur de type.\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: \"%s\" expected.\n"
+msgstr "%s: Mauvaise valeur pour l'argument d'entrée %d:  \"%s\" attendu.\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr "%s : Mauvaise valeur pour l'argument d'entrée n°%d : '%s' attendu.\n"
 
@@ -866,33 +870,10 @@ msgstr "Vérification : %s\n"
 msgid "Commands:\n"
 msgstr "Commandes :\n"
 
-#, c-format
-msgid "Compilation date: %s"
-msgstr "Date de compilation : %s"
-
-#, c-format
-msgid "Compilation time: %s"
-msgstr "Heure de compilation : %s"
-
-#, c-format
-msgid "Compiled with %s"
-msgstr "Compilé avec %s"
-
-#, c-format
-msgid "Compiler Architecture: %s"
-msgstr "Architecture de compilation : %s"
-
-#, c-format
-msgid "Directory separator: %s"
-msgstr "Séparateur de répertoire : %s"
-
 #
 # File: src/c/callinterf.c, line: 85
 msgid "Do you really want to abort computation (y or n ?) \n"
 msgstr "Voulez-vous vraiment arrêter le calcul (y ou n ?) \n"
-
-msgid "Enable"
-msgstr "Activé"
 
 #
 # File: src/c/tmpdir.c, line: 52
@@ -962,11 +943,11 @@ msgstr ""
 #, c-format
 msgid ""
 "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
-"contains <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
+"contain <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
 msgstr ""
-"Erreur : Fichier version %s invalide (devrait commencer par <MODULE_VERSION> "
-"et contenir <VERSION major='' minor='' maintenance='' revision='' "
-"string=''>)\n"
+"Erreur: fichier version %s non valide (il devrait commencer par "
+"<MODULE_VERSION> et contenir <VERSION major='' minor='' maintenance='' "
+"revision='' string=''>)\n"
 
 #, c-format
 msgid "Error: could not parse file %s\n"
@@ -974,18 +955,6 @@ msgstr "Erreur : Impossible d'analyser (parser) le fichier %s\n"
 
 msgid "Fatal Error: Can't create table for scilab functions.\n"
 msgstr "Erreur fatale : Ne peux pas créer la table des fonctions Scilab.\n"
-
-msgid "Free Extended Memory (Kbytes): %*I64d"
-msgstr "Mémoire étendue disponible (Kbytes) : %*I64d"
-
-msgid "Free Paging File (Kbytes): %*I64d"
-msgstr "Taille fichiers paginés disponible : %*I64d"
-
-msgid "Free Physical Memory (Kbytes): %*I64d"
-msgstr "Mémoire physique libre (Kbytes) : %*I64d"
-
-msgid "Free Virtual Memory (Kbytes): %*I64d"
-msgstr "Mémoire virtuelle disponible (Kbytes) : %*I64d"
 
 msgid "Functions compiled with very old versions are no more handled."
 msgstr ""
@@ -1033,33 +1002,14 @@ msgstr "Domaine de temps invalide.\n"
 msgid "List full.\n"
 msgstr "Liste pleine.\n"
 
-#, c-format
-msgid "Memory in use: %*ld %%"
-msgstr "Mémoire en cours d'utilisateur : %*ld%%"
-
 msgid "No space to allocate Scilab stack.\n"
 msgstr "Pas assez de mémoire pour allouer le coeur (stack) de Scilab.\n"
-
-#, c-format
-msgid "Number of processors: %d"
-msgstr "Nombre de processeur(s) : %d"
-
-msgid "Operating System: "
-msgstr "Système d'exploitation : "
 
 msgid "Optional argument list is empty.\n"
 msgstr "La liste d'arguments optionnels est vide.\n"
 
 msgid "Optional arguments list: \n"
 msgstr "Liste d'arguments optionnels : \n"
-
-#, c-format
-msgid "PCRE Version: %d.%d"
-msgstr "Version de PCRE : %d.%d"
-
-#, c-format
-msgid "Path separator: %s"
-msgstr "Séparateur de path : %s"
 
 msgid "SCI environment variable not defined.\n"
 msgstr "La variable d'environnement SCI n'est pas définie.\n"
@@ -1089,41 +1039,16 @@ msgstr ""
 "Scilab version \"%d.%d.%d.%d\"\n"
 "%s\n"
 
-#, c-format
-msgid "Screen size: %d x %d %d bits"
-msgstr "Taille de l'écran : %d x %d %d bits"
-
 msgid "Startup execution:"
 msgstr "Initialisation :"
-
-#, c-format
-msgid "TCL version: %s"
-msgstr "Version de Tcl : %s"
-
-#, c-format
-msgid "TK version: %s"
-msgstr "Version de Tk : %s"
 
 #
 # File: src/c/inisci-c.c, line: 179
 msgid "TMPDIR not defined.\n"
 msgstr "Variable TMPDIR non définie.\n"
 
-#, c-format
-msgid "Tcl/Tk: %s"
-msgstr "Tcl/Tk : %s"
-
 msgid "The SCI environment variable is not set.\n"
 msgstr "La variable d'environnement SCI n'est pas définie.\n"
-
-msgid "Total Paging File (Kbytes): %*I64d"
-msgstr "Taille fichiers paginés totale : %*I64d"
-
-msgid "Total Physical Memory (Kbytes): %*I64d"
-msgstr "Mémoire physique totale (Kbytes) : %*I64d"
-
-msgid "Total Virtual Memory (Kbytes): %*I64d"
-msgstr "Mémoire virtuelle totale (Kbytes) : %*I64d"
 
 msgid "Trying to stop scilab in the middle of an interface.\n"
 msgstr "Tentative d'arrêt de Scilab au milieu d'une interface.\n"
@@ -1158,18 +1083,6 @@ msgid "Using %s elements ouf of %s"
 msgstr "Utilise %s éléments sur %s"
 
 #, c-format
-msgid "Version: %s"
-msgstr "Version : %s"
-
-#, c-format
-msgid "Video card driver version: %s"
-msgstr "Version du pilote de la carte graphique: %s"
-
-#, c-format
-msgid "Video card: %s"
-msgstr "Carte graphique : %s"
-
-#, c-format
 msgid "WARNING: %s"
 msgstr "ATTENTION : %s"
 
@@ -1195,10 +1108,6 @@ msgstr ""
 "Attention : l'équipe opérationnelle du Consortium Scilab\n"
 "ne fournit et ne supporte pas la version Scilab compilée avec des\n"
 "anciennes versions des compilateurs Microsoft.\n"
-
-#, c-format
-msgid "XML version: %s"
-msgstr "Version de la bibliothèque XML : %s"
 
 msgid "Your global variables are:"
 msgstr "Vos variables globales sont :"
@@ -1301,3 +1210,98 @@ msgstr "tlist partiellement remplie.\n"
 # File: src/c/scicurdir.c, line: 49
 #~ msgid "Can't get current directory.\n"
 #~ msgstr "Impossible d'obtenir le répertoire courant.\n"
+
+#, c-format
+#~ msgid "Compilation date: %s"
+#~ msgstr "Date de compilation : %s"
+
+#, c-format
+#~ msgid "Version: %s"
+#~ msgstr "Version : %s"
+
+#, c-format
+#~ msgid "XML version: %s"
+#~ msgstr "Version de la bibliothèque XML : %s"
+
+#, c-format
+#~ msgid "Directory separator: %s"
+#~ msgstr "Séparateur de répertoire : %s"
+
+#, c-format
+#~ msgid "Compiler Architecture: %s"
+#~ msgstr "Architecture de compilation : %s"
+
+#, c-format
+#~ msgid "Compiled with %s"
+#~ msgstr "Compilé avec %s"
+
+#, c-format
+#~ msgid "Tcl/Tk: %s"
+#~ msgstr "Tcl/Tk : %s"
+
+#~ msgid "Enable"
+#~ msgstr "Activé"
+
+#, c-format
+#~ msgid "TCL version: %s"
+#~ msgstr "Version de Tcl : %s"
+
+#, c-format
+#~ msgid "TK version: %s"
+#~ msgstr "Version de Tk : %s"
+
+#, c-format
+#~ msgid "Path separator: %s"
+#~ msgstr "Séparateur de path : %s"
+
+#, c-format
+#~ msgid "Compilation time: %s"
+#~ msgstr "Heure de compilation : %s"
+
+#, c-format
+#~ msgid "PCRE Version: %d.%d"
+#~ msgstr "Version de PCRE : %d.%d"
+
+#, c-format
+#~ msgid "Video card: %s"
+#~ msgstr "Carte graphique : %s"
+
+#~ msgid "Operating System: "
+#~ msgstr "Système d'exploitation : "
+
+#~ msgid "               Copyright (c) 1989-2009 (INRIA)\n"
+#~ msgstr "               Copyright (c) 1989-2009 (INRIA)\n"
+
+#~ msgid "Free Physical Memory (Kbytes): %*I64d"
+#~ msgstr "Mémoire physique libre (Kbytes) : %*I64d"
+
+#~ msgid "Total Physical Memory (Kbytes): %*I64d"
+#~ msgstr "Mémoire physique totale (Kbytes) : %*I64d"
+
+#, c-format
+#~ msgid "Screen size: %d x %d %d bits"
+#~ msgstr "Taille de l'écran : %d x %d %d bits"
+
+#~ msgid "Free Virtual Memory (Kbytes): %*I64d"
+#~ msgstr "Mémoire virtuelle disponible (Kbytes) : %*I64d"
+
+#~ msgid "Free Extended Memory (Kbytes): %*I64d"
+#~ msgstr "Mémoire étendue disponible (Kbytes) : %*I64d"
+
+#~ msgid "Total Virtual Memory (Kbytes): %*I64d"
+#~ msgstr "Mémoire virtuelle totale (Kbytes) : %*I64d"
+
+#, c-format
+#~ msgid ""
+#~ "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
+#~ "contains <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
+#~ msgstr ""
+#~ "Erreur : Fichier version %s invalide (devrait commencer par <MODULE_VERSION> "
+#~ "et contenir <VERSION major='' minor='' maintenance='' revision='' "
+#~ "string=''>)\n"
+
+#~ msgid "Total Paging File (Kbytes): %*I64d"
+#~ msgstr "Taille fichiers paginés totale : %*I64d"
+
+#~ msgid "Free Paging File (Kbytes): %*I64d"
+#~ msgstr "Taille fichiers paginés disponible : %*I64d"

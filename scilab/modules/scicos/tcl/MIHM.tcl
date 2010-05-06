@@ -66,7 +66,7 @@ proc MIHM_Create { WindowsID } {
     set dw  61;#[expr [lindex $bb1 2] - [lindex $bb1 0] + 2] ;# 52 width
     set dh  19;#[expr [lindex $bb1 3] - [lindex $bb1 1] + 2] ;# 18 height
     set dw_saf [expr $ncolumn*$dw ]; #393 ; # width of safhe
-    set dh_saf [expr $NRowMax*$dh]; # heigth of safhe in rows
+    set dh_saf [expr $NRowMax*$dh]; # height of safhe in rows
     set num_char 8 ;# number of characters in Entry
 
     ################-----------------------------#############
@@ -619,7 +619,7 @@ proc button_OpenXML { WindowsID } {
 	    set NDIF [lindex $Info 7]
 	    if  { [expr $NDIF] > 0 } {
 		set title "State derivative fixing mode selection"
-		set msg "The model contains derivatievs, since you have not fixed some of them, you need to fix or relax some variables to have a square system of equations!\nPlease select un option"
+		set msg "The model contains derivatives, since you have not fixed some of them, you need to fix or relax some variables to have a square system of equations!\nPlease select an option"
 		set default 0
 		set answer [tk_dialog .dialog1 $title $msg question $default { Fix states } { Fix derivatives } { I will do it later } ]
 		switch $answer {
@@ -902,10 +902,10 @@ proc ParameterEmbedding { WindowsID } {
     global ParEmbedded
     global need_compile
 
-    set msg1 "Parameter Embeding option:"
-    set msg2 "\nSetting the parameter embedding option lets the user to change the parametrs and call the solver without regenerating the code."
-    set msg3 "\nIn a code without embedded parameters, parameters are replaced by their numerical values. Hence the code is smaller and is more likely to converg."
-    set msg4 "\nSo it is recommanded to use the parameter embedded option once you achieve the solution and want to test it with other parameter values."
+    set msg1 "Parameter Embedding option:"
+    set msg2 "\nSetting the parameter embedding option lets the user to change the parameters and call the solver without regenerating the code."
+    set msg3 "\nIn a code without embedded parameters, parameters are replaced by their numerical values. Hence the code is smaller and is more likely to convert."
+    set msg4 "\nSo it is recommended to use the parameter embedded option once you achieve the solution and want to test it with other parameter values."
     tk_messageBox -icon question -type ok -title Help  -message "$msg1$msg2$msg3$msg4"
     set need_compile true
 
@@ -1061,7 +1061,7 @@ proc ClickCellName { WindowsID x y } {
     
     set NRow [llength $data_i]
     set dh  19;#[expr [lindex $bb1 3] - [lindex $bb1 1] + 2] ;# 18 height
-    set dh_saf [expr $NRow*$dh]; # heigth of safhe in rows
+    set dh_saf [expr $NRow*$dh]; # height of safhe in rows
     set positiony [$ztable.safhe canvasy $y]
     if { $positiony<=$dh_saf } {
 	set Rowi [Ceil [expr $positiony/$dh]]
@@ -1109,7 +1109,7 @@ proc ClickCell { WindowsID x y } {
         set dw  61;#[expr [lindex $bb1 2] - [lindex $bb1 0] + 2] ;# 52 width
         set dh  19;#[expr [lindex $bb1 3] - [lindex $bb1 1] + 2] ;# 18 height
         set dw_saf [expr $ncolumn*$dw ]; #393 ; # width of safhe
-        set dh_saf [expr $NRow*$dh]; # heigth of safhe in rows
+        set dh_saf [expr $NRow*$dh]; # height of safhe in rows
 	set num_char 8 ;# number of characters in Entry
 
 	set positionx [$ztable.safhe canvasx $x]
@@ -1190,7 +1190,7 @@ proc EditHublotEnter { WindowsID dxi dyj } {
     }
     
     if { $ParEmbedded == 0 } {
-	if { $Colj == 1 } { #  compilig the diagram if the value of a fixed parameter changes
+	if { $Colj == 1 } { #  compiling the diagram if the value of a fixed parameter changes
 	    if { $new_data_i ne $data_i } {
 		set rowi [lindex $new_data_i [expr $Rowi-2]]
 		set weight [lindex $rowi 5]
@@ -1218,7 +1218,7 @@ proc EditHublot { WindowsID Rowi Colj data_i } {
     set dw  61;#[expr [lindex $bb1 2] - [lindex $bb1 0] + 2] ;# 52 width
     set dh  19;#[expr [lindex $bb1 3] - [lindex $bb1 1] + 2] ;# 18 height
     set dw_saf [expr $ncolumn*$dw ]; #393 ; # width of safhe
-    set dh_saf [expr $NRow*$dh]; # heigth of safhe in rows
+    set dh_saf [expr $NRow*$dh]; # height of safhe in rows
     set num_char 8 ;# number of characters in Entry
 
     if { $Rowi>$NRow & $Colj==$ncolumn | $Rowi==$NRow & $Colj>$ncolumn } {
@@ -1244,7 +1244,7 @@ proc EditHublot { WindowsID Rowi Colj data_i } {
 	$ztable.safhe create window $xtarget $ytarget -window $ztable.safhe.entry -anchor nw -tags tag_safhe
 	$ztable.safhe.entry configure -width 0;#$num_char ;# adjustable width size
  
-	focus $ztable.safhe ;#crucial for functionnng with TAB
+	focus $ztable.safhe ;#crucial for functioning with TAB
 	focus $ztable.safhe.entry
 
 	if { ($Rowi_last*$Colj_last)>0 } {; # saving the old cell in the tree as well as in the safhe
@@ -1441,7 +1441,7 @@ proc draw_data_i { data_i } {
     set dw  61;#[expr [lindex $bb1 2] - [lindex $bb1 0] + 2] ;# 52 width
     set dh  19;#[expr [lindex $bb1 3] - [lindex $bb1 1] + 2] ;# 18 height
     set dw_saf [expr $ncolumn*$dw ]; #393 ; # width of safhe
-    set dh_saf [expr $NRow*$dh]; # heigth of safhe in rows
+    set dh_saf [expr $NRow*$dh]; # height of safhe in rows
     set num_char 8 ;# number of characters in Entry
     
     #---------------------------------------------------------- 
@@ -1469,11 +1469,11 @@ proc draw_data_i { data_i } {
 	set Name [lindex $rowi 0]
 	set Name [filterbackCS  $Name]
 
-	$ztable.names create text 5 $yrowi -text $Name -anchor w -fill blue -tag xx$i ; # varaible name
+	$ztable.names create text 5 $yrowi -text $Name -anchor w -fill blue -tag xx$i ; # variable name
 	set ID   [lindex $rowi 2]
 	set ID [filterbackCS  $ID]
 
-	$ztable.names create text $LL $yrowi -text $ID   -anchor w -fill red -tag idx$i ; # varaible id
+	$ztable.names create text $LL $yrowi -text $ID   -anchor w -fill red -tag idx$i ; # variable id
 	
 	set Kind [lindex $rowi 1]
 	if { $Kind == "fixed_parameter"   } { set OKind "parmtr" }
@@ -1597,7 +1597,7 @@ proc fill_tree  { WindowsID xmllist } {
     global Active_Model   
     global ztree
     
-    #$ztree delete [$ztree nodes root];# kill all chikdrens of root
+    #$ztree delete [$ztree nodes root];# kill all childrens of root
 #
     set Main_node [SearchList $WindowsID $xmllist $ztree root];  
 
@@ -2406,7 +2406,7 @@ proc get_model_info { WindowsID } {
 	$w.ninputs   configure -text "Input=0"
 	$w.nderivats configure -text "Diff Ste=0" 
 	return;  }
-    #----------------- reading Number of equation in the xml list of the curent Model
+    #----------------- reading Number of equation in the xml list of the current Model
     set nXML [llength $XML_LIST ]
     set index -1
     for { set j 0 } { $j<$nXML } { incr j } {

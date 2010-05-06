@@ -20,7 +20,7 @@ import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterExc
 import org.scilab.modules.types.scilabTypes.ScilabDouble;
 import org.scilab.modules.types.scilabTypes.ScilabList;
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.io.BlockReader;
+import org.scilab.modules.xcos.io.scicos.H5RWHandler;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
@@ -28,6 +28,7 @@ import org.scilab.modules.xcos.port.input.ExplicitInputPort;
 import org.scilab.modules.xcos.port.input.ImplicitInputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
+import org.scilab.modules.xcos.utils.FileUtils;
 
 /**
  * @author Clement DAVID
@@ -118,7 +119,7 @@ public abstract class ContextUpdate extends BasicBlock {
 	final File tempInput;
 	final File tempContext;
 	try {
-	    tempInput = File.createTempFile("xcos", ".h5");
+	    tempInput = FileUtils.createTempFile();
 	    tempInput.deleteOnExit();
 
 	    // Write scs_m
@@ -137,7 +138,7 @@ public abstract class ContextUpdate extends BasicBlock {
 		} catch (InterpreterException e) {
 			e.printStackTrace();
 		}
-		BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());
+		BasicBlock modifiedBlock = new H5RWHandler(tempInput).readBlock();
 		updateBlockSettings(modifiedBlock);
 	    
 	} catch (IOException e) {

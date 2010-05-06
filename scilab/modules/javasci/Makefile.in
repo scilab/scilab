@@ -1092,7 +1092,7 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @GIWS_TRUE@@JAVASCI_TRUE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@@JAVASCI_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@@JAVASCI_TRUE@			echo "GIWS process of $$file ..."; \
-@GIWS_TRUE@@JAVASCI_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
+@GIWS_TRUE@@JAVASCI_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@@JAVASCI_TRUE@		done; \
 @GIWS_TRUE@@JAVASCI_TRUE@	fi
 
@@ -1196,6 +1196,7 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @JAVASCI_TRUE@		if test -d $(srcdir)/$$dir/; then \
 @JAVASCI_TRUE@			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
 @JAVASCI_TRUE@			if test -n "$(MACROSSPECIALEXT)"; then \
+@JAVASCI_TRUE@				specialExtDir=""; \
 @JAVASCI_TRUE@				for specialExt in $(MACROSSPECIALEXT); do \
 @JAVASCI_TRUE@					specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
 @JAVASCI_TRUE@				done; \

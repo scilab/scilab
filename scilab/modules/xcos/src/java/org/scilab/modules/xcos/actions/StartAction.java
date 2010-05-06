@@ -31,7 +31,7 @@ import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterExc
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.utils.XcosConstants;
+import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -137,7 +137,7 @@ public class StartAction extends DefaultAction {
 		 * Import a valid scs_m structure into Scilab
 		 */
 		if (needCompile) {
-			temp = File.createTempFile("xcos", ".h5", XcosConstants.TMPDIR);
+			temp = FileUtils.createTempFile();
 			diagram.dumpToHdf5File(temp.getAbsolutePath());
 
 			command.append(buildCall("import_from_hdf5", temp.getAbsolutePath()));

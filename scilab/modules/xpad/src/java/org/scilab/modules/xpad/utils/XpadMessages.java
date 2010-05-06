@@ -143,7 +143,7 @@ public class XpadMessages {
     public static final String NEXT_TAB = Messages.gettext("Next tab");
     public static final String PREVIOUS_TAB = Messages.gettext("Previous tab");
     public static final String EXECUTE_WARNING = Messages.gettext("You need to save your modifications before executing this file into Scilab.");
-    
+    public static final String BIG_FILE_WARNING = Messages.gettext("This file is very long. \"Execute File Into Scilab\" could be better.\nAre you sure to continue ?");
 
 
     public static final String ENTER_LINE_NUMBER = Messages .gettext("Enter line number");
@@ -152,8 +152,8 @@ public class XpadMessages {
     /* Status bar messages */
     public static final String LOADING = Messages .gettext("Loading") + DOTS;
     public static final String COLORIZATION_CANCELED = Messages .gettext("Colorization canceled");
-    
-    
+
+
     /* About box */
     public static final String VERSION = Messages.gettext("Editor") + " 1.0";
     public static final String DIGITEO = "The Scilab Consortium (DIGITEO)";

@@ -29,7 +29,6 @@ import java.net.URL;
 import java.rmi.server.UID;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -39,9 +38,6 @@ import javax.swing.SwingUtilities;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-
-import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
-import ncsa.hdf.hdf5lib.exceptions.HDF5LibraryException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -53,6 +49,7 @@ import org.scilab.modules.graph.actions.SelectAllAction;
 import org.scilab.modules.graph.actions.UndoAction;
 import org.scilab.modules.graph.actions.ZoomInAction;
 import org.scilab.modules.graph.actions.ZoomOutAction;
+import org.scilab.modules.graph.utils.ScilabExported;
 import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
 import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
@@ -70,10 +67,7 @@ import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.SciFileFilter;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.hdf5.read.H5Read;
-import org.scilab.modules.types.scilabTypes.ScilabList;
 import org.scilab.modules.types.scilabTypes.ScilabMList;
-import org.scilab.modules.types.scilabTypes.ScilabString;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.actions.DiagramBackgroundAction;
@@ -90,9 +84,9 @@ import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.block.actions.ShowParentAction;
 import org.scilab.modules.xcos.block.io.ContextUpdate;
 import org.scilab.modules.xcos.configuration.ConfigurationManager;
-import org.scilab.modules.xcos.io.BlockReader;
-import org.scilab.modules.xcos.io.BlockWriter;
 import org.scilab.modules.xcos.io.XcosCodec;
+import org.scilab.modules.xcos.io.scicos.DiagramElement;
+import org.scilab.modules.xcos.io.scicos.H5RWHandler;
 import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
@@ -162,7 +156,6 @@ public class XcosDiagram extends ScilabGraph {
 
     private CheckBoxMenuItem viewPortMenu;
     private CheckBoxMenuItem gridMenu;
-    private SetContextAction action;
     
     protected mxIEventListener deleteLinkOnMultiPointLinkCreation = new mxIEventListener() {
 		public void invoke(Object sender, mxEventObject evt) {
@@ -311,11 +304,11 @@ public class XcosDiagram extends ScilabGraph {
     	if (source != null && target == null) {
     	    drawLink = null;
     	    if (source instanceof ExplicitInputPort || source instanceof ExplicitOutputPort) {
-    		drawLink = (BasicLink) super.addEdge(new ExplicitLink(), getDefaultParent(), source, target, index);
+    		drawLink = (BasicLink) super.addEdge(new ExplicitLink(), getDefaultParent(), source, null, index);
     	    } else if (source instanceof ImplicitInputPort || source instanceof ImplicitOutputPort) {
-    		drawLink = (BasicLink) super.addEdge(new ImplicitLink(), getDefaultParent(), source, target, index);
+    		drawLink = (BasicLink) super.addEdge(new ImplicitLink(), getDefaultParent(), source, null, index);
     	    } else if (source instanceof ControlPort || source instanceof CommandPort) {
-    		drawLink = (BasicLink) super.addEdge(new CommandControlLink(), getDefaultParent(), source, target, index);
+    		drawLink = (BasicLink) super.addEdge(new CommandControlLink(), getDefaultParent(), source, null, index);
     	    } else if (source instanceof BasicLink) {
 				/*
 				 * This is a very specific case: user wants to put a split block
@@ -680,7 +673,7 @@ public class XcosDiagram extends ScilabGraph {
 	getAsComponent().addPropertyChangeListener(new PropertyChangeListener() {
 	    public void propertyChange(PropertyChangeEvent e) {
 		if (e.getPropertyName().compareTo("modified") == 0) {
-		    if ((Boolean) e.getOldValue() != (Boolean) e.getNewValue()) {
+		    if (!e.getOldValue().equals(e.getNewValue())) {
 			updateTabTitle();
 		    }
 		}
@@ -846,8 +839,7 @@ public class XcosDiagram extends ScilabGraph {
 	public void invoke(Object source, mxEventObject evt) {
 	    assert evt.getProperty(XcosConstants.EVENT_BLOCK_UPDATED) instanceof SuperBlock;
 	    SuperBlock updatedBlock = (SuperBlock) evt.getProperty(XcosConstants.EVENT_BLOCK_UPDATED);
-	    updatedBlock.setRealParameters(BlockWriter
-		    .convertDiagramToMList(updatedBlock.getChild()));
+	    updatedBlock.setRealParameters(new DiagramElement().encode(updatedBlock.getChild()));
 	    if (updatedBlock.getParentDiagram() instanceof SuperBlockDiagram) {
 		SuperBlock parentBlock = ((SuperBlockDiagram) updatedBlock
 			.getParentDiagram()).getContainer();
@@ -863,7 +855,7 @@ public class XcosDiagram extends ScilabGraph {
      * CellAddedTracker
      * Called when mxEvents.CELLS_ADDED is fired.
      */
-    private class CellAddedTracker implements mxIEventListener {
+    private static class CellAddedTracker implements mxIEventListener {
     	private XcosDiagram diagram;
 
     	/**
@@ -1345,8 +1337,6 @@ public class XcosDiagram extends ScilabGraph {
 	 * @return new real point
 	 */
 	mxPoint getPointPosition(mxPoint origin, mxPoint click) {
-		final double scale = getView().getScale();
-
 		final double origX = origin.getX();
 		final double origY = origin.getY();
 
@@ -1502,10 +1492,9 @@ public class XcosDiagram extends ScilabGraph {
 		return;
 	    }
 	    writeFile = fc.getSelection()[0];
-	    System.out.println("Saving to file : {" + fileName + "}");
 	}
-
-	BlockWriter.writeDiagramToFile(writeFile, this);
+	
+	new H5RWHandler(writeFile).writeDiagram(this);
     }
     
     /**
@@ -1881,94 +1870,6 @@ public class XcosDiagram extends ScilabGraph {
     }
 
     /**
-     * Open a Diagram :
-     * If current Diagram is empty, open within it
-     * else open a new window.
-     * 
-     * @param diagramm
-     */
-    public void openDiagram(Map<String, Object> diagramm) {
-	if (diagramm != null) {
-	    if (getModel().getChildCount(getDefaultParent()) == 0) {
-		loadDiagram(diagramm);
-	    } else {
-		XcosDiagram xcosDiagram = Xcos.createANotShownDiagram();
-		xcosDiagram.loadDiagram(diagramm);
-		setChildrenParentDiagram(xcosDiagram);
-		XcosTab.showTabFromDiagram(xcosDiagram);
-	    }
-	} else {
-	    XcosDialogs.couldNotLoadFile(this);
-	}
-    }
-
-    /**
-     * Load a Diagramm structure into current window.
-     * 
-     * @param diagramm diagram structure
-     */
-    public void loadDiagram(Map<String, Object> diagramm) {
-	List<BasicBlock> allBlocks = (List<BasicBlock>) diagramm.get("Blocks");
-	List<TextBlock> allTextBlocks = (List<TextBlock>) diagramm.get("TextBlocks");
-	Map<String, Object> allLinks = (Map<String, Object>) diagramm.get("Links");
-	Map<String, Object> properties = (Map<String, Object>) diagramm.get("Properties");
-	try {
-	setFinalIntegrationTime((Double) properties.get("finalIntegrationTime"));
-	setIntegratorAbsoluteTolerance((Double) properties.get("integratorAbsoluteTolerance"));
-	setIntegratorRelativeTolerance((Double) properties.get("integratorRelativeTolerance"));
-	setToleranceOnTime((Double) properties.get("toleranceOnTime"));
-	setMaxIntegrationTimeinterval((Double) properties.get("maxIntegrationTimeinterval"));
-	setRealTimeScaling((Double) properties.get("realTimeScaling"));
-	setSolver((Double) properties.get("solver"));
-	setMaximumStepSize((Double) properties.get("maximumStepSize"));
-	setContext((String[]) properties.get("context"));
-	} catch (PropertyVetoException e) {
-		LOG.error(e);
-	}
-
-	List<BasicPort[]> linkPorts = (List<BasicPort[]>) allLinks.get("Ports");
-	List<double[][]> linkPoints = (List<double[][]>) allLinks.get("Points");
-
-	Object[] objs = new Object[allBlocks.size() + linkPorts.size() + allTextBlocks.size()];
-	getModel().beginUpdate();
-	for (int i = 0; i < allBlocks.size(); ++i) {
-		objs[i] = allBlocks.get(i);
-	}
-
-	for (int i = 0; i < linkPorts.size(); ++i) {
-	    BasicLink link = BasicLink.createLinkFromPorts(linkPorts.get(i)[0], linkPorts.get(i)[1]);
-	    link.setGeometry(new mxGeometry(0, 0, 80, 80));
-	    link.setSource(linkPorts.get(i)[0]);
-	    link.setTarget(linkPorts.get(i)[1]);
-	    double[][] points = linkPoints.get(i);
-
-	    if (points != null) {
-		for (int point = 0; point < points.length; point++) {
-		    link.addPoint(points[point][0], points[point][1]);
-		}
-	    }
-	    objs[i + allBlocks.size()] = link;
-	}
-	
-	for (int i = 0; i < allTextBlocks.size(); ++i) {
-		objs[i + allBlocks.size() + linkPorts.size() ] = allTextBlocks.get(i);
-	}
-	
-	addCells(objs);
-	getModel().endUpdate();
-
-	//this.setTitle(fileToLoad);
-	//this.getParentTab().setName(fileToLoad);
-
-	setTitle((String) properties.get("title"));
-	//getParentTab().setName((String) properties.get("title"));
-
-	// Clear all undo events in Undo Manager
-	getUndoManager().clear();
-	setModified(false);
-    }
-
-    /**
      * Read a diagram from an HDF5 file (ask for creation if the file does not exist) 
      * @param diagramFileName file to open
      */
@@ -2015,6 +1916,11 @@ public class XcosDiagram extends ScilabGraph {
 	final XcosFileType filetype = XcosFileType.findFileType(fileToLoad);
 	boolean result = false;
 
+	if (!fileToLoad.exists()) {
+		XcosDialogs.couldNotLoadFile(this);
+		return false;
+	}
+	
 	switch (filetype) {
 	case COSF:
 	case COS:
@@ -2068,7 +1974,8 @@ public class XcosDiagram extends ScilabGraph {
 	    break;
 
 	case HDF5:
-	    openDiagram(BlockReader.readDiagramFromFile(fileToLoad.getAbsolutePath()));
+	    H5RWHandler handler = new H5RWHandler(fileToLoad);
+	    handler.readDiagram(this);
 	    generateUID();
 	    setModified(false);
 	    result = true;
@@ -2113,7 +2020,7 @@ public class XcosDiagram extends ScilabGraph {
 		    newSP.setRealParameters(block.getRealParameters());
 		    newSP.createChildDiagram(true);
 		    newSP.setParentDiagram(this);
-		    block.setRealParameters(BlockWriter.convertDiagramToMList(newSP.getChild()));
+		    block.setRealParameters(new DiagramElement().encode(newSP.getChild()));
 		} else if (block.getId() == null || block.getId().compareTo("") == 0) {
 		    block.generateId();
 		}
@@ -2179,6 +2086,7 @@ public class XcosDiagram extends ScilabGraph {
      * @param iRows Number of Row in the blockValue.
      * @param iCols Number of Collumns in the blockValue.
      */
+    @ScilabExported(module="scicos_blocks", filename="XcosDiagram.giws.xml")
     public static void setBlockTextValue(int blockID, String[] blockValue, int iRows, int iCols) {
 
 	AfficheBlock block = XcosTab.getAfficheBlocks().get(blockID);
@@ -2186,18 +2094,18 @@ public class XcosDiagram extends ScilabGraph {
 	    return;
 	}
 
-	String blockResult = "";
+	StringBuilder blockResult = new StringBuilder();
 	for (int i = 0; i < iRows; i++) {
 	    for (int j = 0; j < iCols; j++) {
 		if (iCols != 0) {
-		    blockResult += "  ";
+		    blockResult.append("  ");
 		}
-		blockResult += blockValue[j * iRows + i];
+		blockResult.append(blockValue[j * iRows + i]);
 	    }
-	    blockResult += System.getProperty("line.separator");
+	    blockResult.append(System.getProperty("line.separator"));
 	}
 
-	block.setValue(blockResult);
+	block.setValue(blockResult.toString());
 	block.getParentDiagram().refresh();
     }
 
@@ -2251,21 +2159,7 @@ public class XcosDiagram extends ScilabGraph {
 	super.setModified(modified);
 	updateTabTitle();
     }
-
-    /**
-     * @param action set context action
-     */
-    public void setContextAction(SetContextAction action) {
-	this.action = action;
-    }
-
-    /**
-     * @return context action
-     */
-    public SetContextAction getContextAction() {
-	return action;
-    }
-
+    
     /**
      * Evaluate the current context
      * 
@@ -2273,7 +2167,8 @@ public class XcosDiagram extends ScilabGraph {
      *         evaluated values. 
      */
 	public Map<String, String> evaluateContext() {
-		Map<String, String> result = new HashMap<String, String>();
+		Map<String, String> result = null;
+		
 		try {
 			StringBuilder str = new StringBuilder();
 			str.append('[');
@@ -2284,41 +2179,13 @@ public class XcosDiagram extends ScilabGraph {
 			}
 			str.append(']');
 				
-			final File temp = File.createTempFile("xcos_ctx", ".h5", 
-						XcosConstants.TMPDIR);
+			final File temp = FileUtils.createTempFile();
 			
 			ScilabInterpreterManagement.synchronousScilabExec(
 						  "vars = script2var(" + str.toString() + ", struct());"
 						+ "export_to_hdf5('" + temp.getAbsolutePath() + "', 'vars');");
 			
-			ScilabList list = new ScilabList();
-			try {
-				int handle = H5Read.openFile(temp.getAbsolutePath());
-				if (handle >= 0) {
-					H5Read.readDataFromFile(handle, list);
-				}
-			} catch (HDF5LibraryException e) {
-				info("The HDF5 library is not loaded");
-				e.printStackTrace();
-			} catch (NullPointerException e) {
-				info("Unable to open file");
-				e.printStackTrace();
-			} catch (HDF5Exception e) {
-				info("The HDF5 file is not valid");
-				e.printStackTrace();
-			}
-
-			// We are starting at 2 because a struct is composed of
-			//     - the fields names (ScilabString)
-			//     - the dimension
-			//     - variables values...
-			for (int index = 2; index < list.size(); index++) {
-				String key = ((ScilabString) list.get(0)).getData()[0][index];
-				String value = list.get(index).toString();
-				
-				result.put(key, value);
-			}
-			
+			result = new H5RWHandler(temp).readContext();
 		} catch (IOException e) {
 			info("Unable to create file");
 			e.printStackTrace();
@@ -2450,34 +2317,27 @@ public class XcosDiagram extends ScilabGraph {
     }
 
     /**
+     * Check the direction of an edge.
+     * 
      * @param source edge source
      * @param target edge target
-     * @return edge direction
+     * @return true, if the two parameters are in the right order, false if 
+     *         they must be inverted.
      */
     private boolean checkEdgeDirection(Object source, Object target) {
+		if (source instanceof InputPort && target instanceof OutputPort) {
+		    return false;
+		}
 	
-	if (source instanceof InputPort && target instanceof OutputPort) {
-	    Object temp = source;
-	    source = target;
-	    target = temp;
-	    return false;
-	}
-
-	if (source instanceof ControlPort && target instanceof CommandPort) {
-	    Object temp = source;
-	    source = target;
-	    target = temp;
-	    return false;
-	}
-
-	if ((source instanceof InputPort || source instanceof ControlPort) &&  target instanceof BasicLink) {
-	    Object temp = source;
-	    source = target;
-	    target = temp;
-	    return false;
-	}
+		if (source instanceof ControlPort && target instanceof CommandPort) {
+		    return false;
+		}
 	
-	return true;
+		if ((source instanceof InputPort || source instanceof ControlPort) &&  target instanceof BasicLink) {
+		    return false;
+		}
+		
+		return true;
     }
     
     /**

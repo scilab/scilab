@@ -23,7 +23,7 @@ static gw_generic_table Tab[] =
 {C2F(sci_getenv),"getenv"},
 {C2F(sci_getio),"getio"},
 {NULL,""},
-{C2F(sci_mgetl),"mgetl"},
+{NULL,""},
 {C2F(sci_write),"write"},
 {C2F(sci_rat),"rat"},
 {C2F(sci_file),"file"},
@@ -43,7 +43,7 @@ int gw_io(void)
 	/* Recursion from a function */
 	if(pvApiCtx == NULL)
 	{
-		pvApiCtx = (StrCtx*)MALLOC(sizeof(SciErr));
+		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
 	}
 
 	if ( isRecursionCallToFunction() )

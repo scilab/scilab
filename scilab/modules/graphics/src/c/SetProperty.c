@@ -60,7 +60,6 @@
 #include "CallFigure.h"
 
 #define MAX_MARK_STYLE 14
-#define MAX_MARK_STYLE_S "14"
 
 /*---------------------------------------------------------------------------*/
 /* setSubWinAngles                                                                    */
@@ -757,7 +756,7 @@ int sciInitMarkStyle( sciPointObj * pobj, int markstyle )
 {
   if (markstyle < 0 || markstyle > MAX_MARK_STYLE )
   {
-    Scierror(999, _("Wrong value for %s property: Must be in the interval [%s, %s].\n"),"mark_style","0",MAX_MARK_STYLE_S);
+    Scierror(999, _("Wrong value for '%s' property: Must be between %d and %d.\n"), "mark_style", 0, MAX_MARK_STYLE);
     return -1;
   }
   else

@@ -21,7 +21,7 @@
   </info>
   <refnamediv>
     <refname>add_help_chapter</refname>
-    <refpurpose> Add an entry in the helps list</refpurpose>
+    <refpurpose> Add an entry in the help list</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -33,7 +33,7 @@
       <varlistentry>
         <term>title</term>
         <listitem>
-          <para>String array, Help chapters title</para>
+          <para>String array, Help chapter title</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -47,13 +47,13 @@
         <listitem>
           <para>A boolean, if TRUE, the chapter is considered as belongs to a
           internal modules, otherwise, the chapter is added as external module.
-          It's an optional input argument and its default value is %F.</para>
+          It is an optional input argument and its default value is %F.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>ok</term>
         <listitem>
-          <para>a vector of booleans. The same size as
+          <para>A vector of booleans. The same size as
           the <literal>path</literal> variable. If the chapter page
           number i was not existing in the help system then ok(i) is
           set to %t.</para>
@@ -64,7 +64,7 @@
   <refsection>
     <title>Description</title>
     <para>
-  This function adds a new entry in the helps list. If the path is already present
+  This function adds a new entry in the help list. If the path is already present
   in the help list, <literal>add_help_chapter</literal> skips the add. The function
   checks if the directory exist.</para>
   </refsection>

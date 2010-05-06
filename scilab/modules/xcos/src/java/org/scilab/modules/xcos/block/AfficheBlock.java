@@ -58,7 +58,7 @@ public final class AfficheBlock extends BasicBlock {
 	 * @param hashcode The new UID.
 	 */
 	@Deprecated
-	public void setHashCode(int hashcode) {
+	public synchronized void setHashCode(int hashcode) {
 		this.hashCode = hashcode;
 	}
 

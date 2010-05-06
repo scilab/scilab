@@ -26,12 +26,16 @@ function [model, ok] = build_block(o)
   model    = o.model;
   graphics = o.graphics;
   if model.sim(1)=='scifunc' then
-    if model.ipar==0 then
+    if model.ipar <> 0 then
+      model.opar=model.ipar;
+      model.ipar=0;
+    end
+    if isempty(model.opar) <> %f then
       messagebox(sprintf(gettext("%s: Error: A scifunc block has not been defined."), "build_block"),"modal","error");
       ok = %f
       return
     end
-    model.sim = list(genmac(model.ipar,size(model.in,'*'),size(model.out,'*')),3);
+    model.sim = list(genmac(model.opar,size(model.in,'*'),size(model.out,'*')),3);
   elseif type(model.sim) == 15 then
     modsim = modulo(model.sim(2),10000)
     if int(modsim/1000) == 1 then   // Fortran Block

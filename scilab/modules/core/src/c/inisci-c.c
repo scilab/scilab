@@ -31,38 +31,6 @@
 #include "PATH_MAX.h"
 #include "scilabDefaults.h"
 /*--------------------------------------------------------------------------*/
-int C2F(withmodelicac)(int *rep)
-{
-	if (ExistModelicac())
-	{
-		*rep =1;
-	}
-	else
-	{
-		*rep =0; 
-	}
-  return 0;
-}
-/*--------------------------------------------------------------------------*/
-int C2F(withmsdos)(int *rep)
-{
-#ifdef _MSC_VER
-	*rep =1;
-#else
-	*rep =0; 
-#endif
-	return 0;
-}
-/*--------------------------------------------------------------------------*/
-int C2F(getcomp)(char *buf,int *nbuf,long int lbuf)
-{
-  int ierr,iflag=0,l1buf=lbuf;
-  C2F(getenvc)(&ierr,"COMPILER",buf,&l1buf,&iflag);
-  if ( ierr== 1) strncpy(buf,"NO",lbuf);
-  *nbuf = (int)strlen(buf);
-  return 0;
-}
-/*--------------------------------------------------------------------------*/
 /**
  * Set the SCI path and initialize the scilab environement path
  *
@@ -173,18 +141,6 @@ int C2F(gettmpdir)(char *buf,int *nbuf,long int lbuf)
 	}
 	*nbuf = (int)strlen(buf);
 	return 0;
-}
-/*--------------------------------------------------------------------------*/
-BOOL ExistModelicac(void)
-{
-	char *fullpathModelicac = searchEnv( ModelicacName,"PATH");
-	if (fullpathModelicac)
-	{
-		FREE(fullpathModelicac);
-		fullpathModelicac = NULL;
-		return TRUE;
-	}
-	return FALSE;
 }
 /*--------------------------------------------------------------------------*/
 int C2F(withgui)(int *rep)

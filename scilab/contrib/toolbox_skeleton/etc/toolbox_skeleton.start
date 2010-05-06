@@ -24,8 +24,11 @@ clear pathmacros;
 // load gateways
 // =============================================================================
 mprintf("\tLoad gateways\n");
+verboseMode = ilib_verbose();
 ilib_verbose(0);
 exec(pathconvert(root_tlbx+"/sci_gateway/loader_gateway.sce",%f));
+ilib_verbose(verboseMode);
+clear verboseMode;
 
 // Load and add help chapter
 // =============================================================================

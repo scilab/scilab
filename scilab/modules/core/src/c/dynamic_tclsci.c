@@ -71,14 +71,3 @@ BOOL dynamic_TerminateTclTk(void)
 	return FALSE;
 }
 /*--------------------------------------------------------------------------*/
-int C2F(withtk)(int *rep)
-{
-	*rep = (int)withtk();
-	return 0;
-}
-/*--------------------------------------------------------------------------*/
-BOOL withtk(void)
-{
-	return with_module(TCLSCI_MODULE_NAME) && (getScilabMode() != SCILAB_NWNI);
-}
-/*--------------------------------------------------------------------------*/

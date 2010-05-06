@@ -43,6 +43,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 import javax.swing.JToggleButton;
 import javax.swing.ListSelectionModel;
 
@@ -218,7 +219,12 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 		super.setTitle(title);
 
 		// Create the message to display
-		JLabel messageLabel = new JLabel(message);
+		JTextPane messageLabel = new JTextPane();
+		messageLabel.setContentType("text/html");
+		messageLabel.setText(message);
+		messageLabel.setOpaque(false);
+		messageLabel.setBorder(null);
+		messageLabel.setEditable(false);
 		JScrollPane messageScrollPane = new JScrollPane(messageLabel);
 		int scrollWidth = (int) Math.min(WINDOW_WIDTH, messageLabel.getPreferredSize().getWidth() + OFFSET);
 		int scrollHeight = (int) Math.min(MESSAGE_HEIGHT, messageLabel.getPreferredSize().getHeight() + OFFSET);
