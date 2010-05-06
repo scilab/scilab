@@ -843,14 +843,6 @@ the the JNI libraries."])],
 				################ END Mandatory for graphic_export features #####
 
 
-				############ XCOS ############
-				if test $HDF5_ENABLE = yes;  then
-				# HDF5 java lib
-				  AC_JAVA_CHECK_PACKAGE([jhdf5],[ncsa.hdf.hdf5lib.HDF5Constants],[HDF5 Java library])
-				  JHDF5=$PACKAGE_JAR_FILE
-				  AC_SUBST(JHDF5)
-				fi
-
 				# Logging (flexdock dep)
 				AC_JAVA_CHECK_PACKAGE([commons-logging],[org.apache.commons.logging.LogFactory],[Apache logging])
 				COMMONS_LOGGING=$PACKAGE_JAR_FILE
@@ -1174,25 +1166,7 @@ if test $HDF5_ENABLE = yes -a "$with_scicos" != no -a "$with_gui" != no;  then
    if test "$MACOSX" = 1; then
    	  echo "Check of the presence of libjhdf5.jnilib disabled under Mac OS X"
    else
-      LDFLAGS_save=$LDFLAGS
-   # Provide known paths where distribs/OS can store JNI libs
-   	 LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -L$SCI_SRCDIR/bin/ -L$SCI_SRCDIR/thirdparty/  -lpthread $HDF5_LIBS"
-   # -lpthread because of packaging bug in jhdf5
-      AC_CHECK_LIB([jhdf5], [h5JNIFatalError], [JHDF5_LIBS="-ljhdf5"],
-   	    [AC_MSG_ERROR([libjhdf5: Library missing (Cannot find symbol h5JNIFatalError). Check if libjhdf5 - C/Java (JNI) interface for HDF5 - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])])
-      LDFLAGS=$LDFLAGS_save
-
-      LD_LIBRARY_PATH_save=$LD_LIBRARY_PATH
-      LD_LIBRARY_PATH="/usr/lib/jni:/usr/lib64/jni/:$SCI_SRCDIR/bin/:$SCI_SRCDIR/thirdparty/:$with_hdf5_library"
-      export LD_LIBRARY_PATH
-      AC_JAVA_CHECK_VERSION_PACKAGE([hdf5],[import ncsa.hdf.hdf5lib.H5;],$JHDF5,[1.8.4],[ver],[int[] vers = new int[3];
-                try { H5.H5get_libversion(vers); }
-                catch (Throwable ex) {System.exit(-1);}
-                String ver = vers[0] + "."+ vers[1] +"."+vers[2];
-      ])
-      unset LD_LIBRARY_PATH
-      LD_LIBRARY_PATH=$LD_LIBRARY_PATH_save
-    fi
+      AC_JAVA_HDF5()
 fi #HDF5_ENABLE
 
 #################
