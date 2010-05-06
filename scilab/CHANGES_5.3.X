@@ -283,6 +283,8 @@ Bug fixes:
 
 * bug 4572 fixed - scilab did a SIGSEGV after stacksize('max') + stacksize().
 
+* bug 4625 fixed - intersci-n was broken on Windows.
+
 * bug 4640 fixed - plot2d() put CPU utilization at 100% on Windows.
 
 * bug 4672 fixed - Internal function AddFunctionInTable renamed to 
