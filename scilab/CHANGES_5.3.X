@@ -134,6 +134,12 @@ Xcos:
                    prompting the user if modified diagrams must be saved before 
                    exiting.
 
+Dynamic link:
+=============
+
+* bug 4265 fixed - In the dynamic link functions (ilib_*), when a compiler was
+                   not available, the execution continued.
+
 Compilation:
 ============
 
