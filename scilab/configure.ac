@@ -1169,7 +1169,8 @@ if test "$with_scicos" != no -a "$GUI_ENABLE" != no; then
    LIBS="$save_LIBS"
    AC_SUBST(RT_LIB)
 
-if test $HDF5_ENABLE = yes;  then
+# Java HDF5 is only needed for Xcos
+if test $HDF5_ENABLE = yes -a "$with_scicos" != no -a "$with_gui" != no;  then
    if test "$MACOSX" = 1; then
    	  echo "Check of the presence of libjhdf5.jnilib disabled under Mac OS X"
    else
