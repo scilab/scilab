@@ -74,7 +74,7 @@ int sci_isdir(char *fname,unsigned long fname_len)
 	lenStVarOne = (int*)MALLOC(sizeof(int) * (m1 * n1));
 	if (lenStVarOne == NULL)
 	{
-		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+		Scierror(999,_("%s: Memory allocation error.\n"),fname);
 		return 0;
 	}
 
@@ -83,7 +83,7 @@ int sci_isdir(char *fname,unsigned long fname_len)
 	{
 		if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}
 		freeArrayOfWideString(pStVarOne, m1 * n1);
-		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+		Scierror(999,_("%s: Memory allocation error.\n"),fname);
 		return 0;
 	}
 
@@ -98,7 +98,7 @@ int sci_isdir(char *fname,unsigned long fname_len)
 	if (pStVarOne == NULL)
 	{
 		if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}
-		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+		Scierror(999,_("%s: Memory allocation error.\n"),fname);
 		return 0;
 	}
 
@@ -109,7 +109,7 @@ int sci_isdir(char *fname,unsigned long fname_len)
 		{
 			freeArrayOfWideString(pStVarOne, m1 * n1);
 			if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}
-			Scierror(999,_("%s : Memory allocation error.\n"),fname);
+			Scierror(999,_("%s: Memory allocation error.\n"),fname);
 			return 0;
 		}
 	}

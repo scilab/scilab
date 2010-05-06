@@ -19,7 +19,7 @@ msgstr ""
 # File: sci_gateway/c/sci_beep.c, line: 92
 # File: sci_gateway/c/sci_PlaySound.c, line: 81
 #, c-format
-msgid "%s : Memory allocation error.\n"
+msgid "%s: Memory allocation error.\n"
 msgstr ""
 #
 # File: macros/savewave.sci, line: 146

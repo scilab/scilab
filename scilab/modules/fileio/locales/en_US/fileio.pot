@@ -55,7 +55,7 @@ msgstr ""
 # File: sci_gateway/c/sci_chdir.c, line: 87
 # File: sci_gateway/c/sci_chdir.c, line: 207
 #, c-format
-msgid "%s : Memory allocation error.\n"
+msgid "%s: Memory allocation error.\n"
 msgstr ""
 #
 # File: src/c/mputi.c, line: 171

@@ -124,7 +124,7 @@ int C2F(sci_setenv)(char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+		Scierror(999,_("%s: Memory allocation error.\n"),fname);
 		return 0;
 	}
 
@@ -142,7 +142,7 @@ int C2F(sci_setenv)(char *fname,unsigned long fname_len)
 	else
 	{
 		FREE(pStVarOne);
-		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+		Scierror(999,_("%s: Memory allocation error.\n"),fname);
 		return 0;
 	}
 

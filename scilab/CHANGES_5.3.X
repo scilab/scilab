@@ -35,6 +35,9 @@ Graphics:
 
 * bug 6532 fixed - In some case text entity rendering order was wrong.
 
+* bug 6676 fixed - When we executed "twinkle(gca())", data related to the
+                   current axes were not twinkling.
+
 * bug 6786 fixed - The "polarplot" function did not correctly display the polar
                    coordinates grid when negative rho values were plotted.
 
@@ -292,6 +295,10 @@ Bug fixes:
 
 * bug 5123 fixed - help about '%helps' was wrong.
 
+* bug 5136 fixed - information about dependant platform display of 
+                   exponential form (%e) was missing in the prinft_conversion
+                   documentation.
+
 * bug 5541 fixed - In the API documentation, the information that data must be
                    allocated before calling API functions was missing.
 
@@ -299,6 +306,8 @@ Bug fixes:
 
 * bug 5583 fixed - exec() did not manage correctly UTF-8 and ANSI/ASCII files 
                    encoded.
+
+* bug 5609 fixed - documentation stated incorrectly fieldnames works on cells
 
 * bug 5629 fixed - export_to_hdf5 to a file overwrote a directory 
                    with the same name (now trigger an error).

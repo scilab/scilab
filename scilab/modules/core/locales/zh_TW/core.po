@@ -52,7 +52,7 @@ msgid "%f: No more space to store string arguments.\n"
 msgstr "%f: 儲存字串參數的空間已用完.\n"
 
 #, c-format
-msgid "%s : Memory allocation error.\n"
+msgid "%s: Memory allocation error.\n"
 msgstr "%s: 配置記憶體發生錯誤.\n"
 
 #

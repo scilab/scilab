@@ -87,7 +87,7 @@ msgstr ""
 # File: sci_gateway/cpp/sci_diary.cpp, line: 1186
 # File: sci_gateway/cpp/sci_diary.cpp, line: 1229
 #, c-format
-msgid "%s : Memory allocation error.\n"
+msgid "%s: Memory allocation error.\n"
 msgstr ""
 #
 # File: src/c/errmsg.c, line: 1476

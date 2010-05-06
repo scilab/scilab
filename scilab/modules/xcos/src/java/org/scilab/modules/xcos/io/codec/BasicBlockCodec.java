@@ -16,6 +16,7 @@ import java.util.Map;
 
 import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.BasicBlock.SimulationFunctionType;
 import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.io.XcosObjectCodec;
@@ -23,6 +24,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
+import com.mxgraph.io.mxCellCodec;
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.io.mxCodecRegistry;
 import com.mxgraph.model.mxCell;
@@ -52,38 +54,21 @@ public class BasicBlockCodec extends XcosObjectCodec {
 	 * Register all known codecs on the {@link mxCodecRegistry}.
 	 */
 	public static void register() {
-		XcosObjectCodec textBlockCodec = new BasicBlockCodec(
-				BlockInterFunction.TEXT_f.getSharedInstance(),
-				IGNORED_FIELDS, REFS, null);
-		mxCodecRegistry.register(textBlockCodec);
+		mxCodecRegistry.addPackage("org.scilab.modules.xcos.block");
+		mxCodecRegistry.addPackage("org.scilab.modules.xcos.block.io");
+		mxCodecRegistry.addPackage("org.scilab.modules.xcos.block.positionning");
+		
+		for (BlockInterFunction function : BlockFactory.BlockInterFunction.values()) {
+			XcosObjectCodec codec = new BasicBlockCodec(function.getSharedInstance(),
+					IGNORED_FIELDS, REFS, null);
+			mxCodecRegistry.register(codec);
+		}
+		
 		XcosObjectCodec basicBlockCodec = new BasicBlockCodec(new BasicBlock(),
 				IGNORED_FIELDS, REFS, null);
 		mxCodecRegistry.register(basicBlockCodec);
-		XcosObjectCodec constBlockCodec = new BasicBlockCodec(
-				BlockInterFunction.CONST.getSharedInstance(),
-				IGNORED_FIELDS, REFS, null);
-		mxCodecRegistry.register(constBlockCodec);
-		XcosObjectCodec afficheBlockCodec = new BasicBlockCodec(
-				BlockInterFunction.AFFICH_f.getSharedInstance(),
-				IGNORED_FIELDS, REFS, null);
-		mxCodecRegistry.register(afficheBlockCodec);
-		XcosObjectCodec superBlockCodec = new BasicBlockCodec(
-				BlockInterFunction.SUPER_f.getSharedInstance(),
-				IGNORED_FIELDS, REFS, null);
-		mxCodecRegistry.register(superBlockCodec);
-		XcosObjectCodec gainBlockCodec = new BasicBlockCodec(
-				BlockInterFunction.GAIN_f.getSharedInstance(),
-				IGNORED_FIELDS, REFS, null);
-		mxCodecRegistry.register(gainBlockCodec);
-		XcosObjectCodec splitBlockCodec = new BasicBlockCodec(
-				BlockInterFunction.SPLIT_f.getSharedInstance(),
-				IGNORED_FIELDS, REFS, null);
-		mxCodecRegistry.register(splitBlockCodec);
-		XcosObjectCodec roundBlockCodec = new BasicBlockCodec(
-				BlockInterFunction.SUM_f.getSharedInstance(),
-				IGNORED_FIELDS, REFS, null);
-		mxCodecRegistry.register(roundBlockCodec);
-		XcosObjectCodec cellCodec = new XcosObjectCodec(new mxCell(), null,
+		
+		mxCellCodec cellCodec = new mxCellCodec(new mxCell(), null,
 				REFS, null);
 		mxCodecRegistry.register(cellCodec);
 	}

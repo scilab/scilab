@@ -24,7 +24,7 @@ msgstr ""
 "stringa.\n"
 
 #, c-format
-msgid "%s : Memory allocation error.\n"
+msgid "%s: Memory allocation error.\n"
 msgstr "%s : Errore di allocazione della memoria\n"
 
 #, c-format

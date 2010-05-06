@@ -65,7 +65,7 @@ msgid "%dth argument type must be boolean.\n"
 msgstr "%dth Argument Typ muß ein boolscher Wert sein.\n"
 
 #, c-format
-msgid "%s : Memory allocation error.\n"
+msgid "%s: Memory allocation error.\n"
 msgstr "%s: Fehler bei der Speicherbelegung.\n"
 
 #, c-format
