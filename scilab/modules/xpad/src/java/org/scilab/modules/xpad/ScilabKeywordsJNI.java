@@ -9,6 +9,8 @@
 package org.scilab.modules.xpad;
 
 
+/* It is generated code. Disable checkstyle */
+//CHECKSTYLE:OFF
  /** 
    * @author Allan CORNET - DIGITEO 2009
    */

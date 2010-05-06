@@ -166,6 +166,8 @@ Compilation:
 
 * /usr/share/*/lib added to the Java search path for OpenSuse
 
+* bug 6432 fixed - Checkstyle disabled on SWIG (Java/JNI) generated files
+
 * bug 6643 fixed - --without-gui failed to disable Ocaml build (A xcos 
                    dependency)
 

@@ -23,6 +23,8 @@
 
 /* JavaDoc for MessagesJNI class */
 %pragma(java) jniclassclassmodifiers=%{
+/* It is generated code. Disable checkstyle */
+//CHECKSTYLE:OFF
  /** 
    * @author Sylvestre LEDRU
    * @copyright DIGITEO 2009
