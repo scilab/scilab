@@ -28,3 +28,5 @@ plot2d("ll", y);
 plot2d("ll", x, y);
 plot2d("ll", y, style=3);
 plot2d("ll", x, y, style=3);
+
+plot2d([0;1],[0;1],0,"121","plot",[0, 0, 1, 1],[1,10,1,10]);
