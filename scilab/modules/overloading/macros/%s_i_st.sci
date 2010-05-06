@@ -1,45 +1,89 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA 
-// 
+// Copyright (C) 2010 - INRIA - Serge Steer <serge.steer@inria.fr>
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function out=%s_i_st(varargin)
-// Modified by Vincent COUVERT (16/08/2004) so that insertion of an empty matrix is understood as an element deletion
-// Only one non-colon index can be used 
 
-// Used for struct part deletion
-  if lstsize(varargin)>=3 & type(varargin(1))==1 & isempty(varargin($-1)) then
+// - Modified by Vincent COUVERT (16/08/2004) so that insertion of an empty matrix
+//   is understood as an element deletion
+//   Only one non-colon index can be used
+// - Modified by Serge Steer INRIA (04/05/2010) to fix problems in element
+//   deletion part
+
+  if size(varargin)>=3 & isempty(varargin($-1)) & ..
+                                     and(type(varargin(1))<>[10 15]) then
+    // st(i,:)=[] or st(:,j)=[] or st(i)=[] or st(:,j,:,:)=[] 
+    //remove the substruct
     out=varargin($);
-    [Ndims,I]=convertindex(list(double(out.dims),[0 0]),varargin(1:$-2));
-    
-    Fout=getfield(1,out)
-    Fout=Fout(3:$)
-    for f=Fout
-      for ki=I($:-1:1)'
-	out(f)(ki)=null()
+    dims=double(out.dims);
+
+    // Make the dimensions and the indices fit
+    Ndims=size(dims,'*')
+    nindex=size(varargin)-2
+    if nindex>Ndims then
+      //index in excess must be equal to 1 or to :
+      for k=Ndims+1:nindex
+        i=varargin(k)
+        if size(i,'*')>1|(i<>1&i<>eye()) then
+          error(_("A null assignment can have only one non-colon index"))
+        end
+      end
+      nindex=Ndims
+    elseif nindex<Ndims then
+      //collapse dimensions in excess
+      dims=[dims(1:nindex-1) prod(dims(nindex:$))]
+      Ndims=nindex;
+      if size(dims,'*')==1 then dims=[dims 1],end
+    end
+
+    // Check the compatibility of the index (at most one index cannot span
+    // all the elements ot the associated struct dimension)
+    cj=[];
+    for k=1:nindex
+      ind=varargin(k)
+      if or(size(ind)<>[-1 -1]) then
+        if or(type(ind)==[2,129]) then // size implicit index ($ based)
+          ind=horner(ind,dims(k));
+        end
+        ind=floor(ind);
+        //check if index is valid
+        if ~isreal(ind)|or(ind<=0) then
+          error(21)
+        end
+        //remove indices that exceed the associated struct dimension
+        ind(ind>dims(k))=[];
+        //compute the complement with respect to the associated dimension of st
+        ind=setdiff(1:dims(k),ind)
+        if ind<>[]&cj==[] then
+          cj=ind 
+          loc=k,
+        else
+          error(_("A null assignment can have only one non-colon index"))
+        end
       end
     end
-    
-    // Which dim has to be decremented
-    if or(size(varargin($))==1) then // Struct vector
-      dim=find(size(varargin($))<>1);
+
+    // Generate the result
+    if cj==[] then  //st(:,:)=[]  --> empty struct
+      Fout=getfield(1,out)
+      Fout=Fout(3:$)
+      for f=Fout
+        out(f)=list()
+      end
+      out.dims=int32([0 0])
     else
-      for kd=1:lstsize(varargin)-2
-	if min(size(varargin(kd)))>=0 then
-	  dim=kd
-	  break
-	end
-      end
+      //replace st(:,j,:,:)=[] by st=st(:,cj,:,:) where cj is the
+      //complement of j with respect to the associated dimension of st
+      out.dims=int32(dims)
+      varargin(loc)=cj
+      out=out(varargin(1:Ndims))
     end
-    out.dims(dim)=out.dims(dim)-size(I,"*");
-    // If one dim is 0 then all dims are set to 0
-    if double(out.dims(dim))==0 then 
-      out.dims=int32([0 0]);
-    end
+
   elseif lstsize(varargin)==3 & type(varargin(1))==10 then // out.i=in
     i=varargin(1);
     in=varargin(2);
