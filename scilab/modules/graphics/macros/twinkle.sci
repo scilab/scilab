@@ -34,31 +34,18 @@ f.pixmap="on";
 show_pixmap();
 realtimeinit(0.1); realtime(0);
 k=0;
-if h.type<>"Axes" then
-  v=h.visible;
-  for i=1:n
-    k=k+2;
-    h.visible="off";
-    show_pixmap();
-    realtime(k);
-    h.visible="on";
-    show_pixmap();
-    realtime(k+1);
-  end
-  h.visible=v;
-else
-  v=h.axes_visible;
-  for i=1:n
-    k=k+2;
-    h.axes_visible="off";
-    show_pixmap();
-    realtime(k);
-    h.axes_visible="on";
-    show_pixmap();
-    realtime(k+1);
-  end
-  h.axes_visible=v;
+
+v=h.visible;
+for i=1:n
+  k=k+2;
+  h.visible="off";
+  show_pixmap();
+  realtime(k);
+  h.visible="on";
+  show_pixmap();
+  realtime(k+1);
 end
+h.visible=v;
 
 f.pixmap=stripblanks(old_pixmap);
 

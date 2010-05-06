@@ -53,7 +53,7 @@ int sci_createGUID(char *fname,unsigned long l)
 				}
 				else
 				{
-					Scierror(999,_("%s : Memory allocation error.\n"),fname);
+					Scierror(999,_("%s: Memory allocation error.\n"),fname);
 				}
 			}
 			else

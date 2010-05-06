@@ -64,7 +64,7 @@ msgstr "%f: 入力引数の保存文字列にこれ以上スペースがあり�
 #
 # File: src/c/readGateway.c, line: 103
 #, c-format
-msgid "%s : Memory allocation error.\n"
+msgid "%s: Memory allocation error.\n"
 msgstr "%s: メモリの割り当てに失敗しました。\n"
 
 #

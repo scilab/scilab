@@ -102,7 +102,9 @@ int sci_plot2d( char * fname, unsigned long fname_len )
 	      *stk( l1 + i + m2*j) = (double) i+1;
       }
     }
-  } else if ((FirstOpt() >= 3 + iskip) && (FirstOpt() <= 4 + iskip)) {    /** plot2d([loglags,] x, y, [style], <opt_args>); **/
+  }
+  else if (FirstOpt() >= 3 + iskip)     /** plot2d([loglags,] x, y[, style [,...]]); **/
+  {
 
     /* x */
     GetRhsVar(1+iskip,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
@@ -169,7 +171,7 @@ int sci_plot2d( char * fname, unsigned long fname_len )
   }
   else
   {
-	  Scierror(999, _("%s: Wrong number of mandatory input arguments. %d to %d expected.\n"), fname, 1, 3);
+	  Scierror(999, _("%s: Wrong number of mandatory input arguments. At least %d expected.\n"), fname, 1);
 	  return 0;    
   }
 

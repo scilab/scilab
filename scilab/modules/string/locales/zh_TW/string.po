@@ -16,7 +16,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_tokens.c, line: 95
 #, c-format
-msgid "%s : Memory allocation error.\n"
+msgid "%s: Memory allocation error.\n"
 msgstr "%s : 記憶體配置錯誤.\n"
 
 #

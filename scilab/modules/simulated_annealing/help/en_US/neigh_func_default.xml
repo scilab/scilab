@@ -29,7 +29,10 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>x_neigh = neigh_func_default(x_current,T,param)</synopsis>
+    <synopsis>
+      x_neigh = neigh_func_default(x_current,T)
+      x_neigh = neigh_func_default(x_current,T,param)
+    </synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -48,7 +51,8 @@
         <term>T</term>
 
         <listitem>
-          <para>the current temperature</para>
+          <para>the current temperature. This parameter is ignored but is 
+          there to make all the neighbour function consistent.</para>
         </listitem>
       </varlistentry>
 
@@ -98,14 +102,14 @@ Proba_start = 0.7;
 It_Pre      = 100;
 It_extern   = 100;
 It_intern   = 1000;
-x_test = neigh_func_default(x0);
+x_test = neigh_func_default(x0,%nan);
 
 saparams = init_param();
 saparams = add_param(comp_t_params,'neigh_func', neigh_func_default);
 
 T0 = compute_initial_temp(x0, rastrigin, Proba_start, It_Pre, saparams);
-
-[x_opt, f_opt, sa_mean_list, sa_var_list] = optim_sa(x0, rastrigin, It_extern, It_intern, T0, Log = %T);
+Log = %T;
+[x_opt, f_opt, sa_mean_list, sa_var_list] = optim_sa(x0, rastrigin, It_extern, It_intern, T0, Log,saparams);
 
 printf('optimal solution:\n'); disp(x_opt);
 printf('value of the objective function = %f\n', f_opt);

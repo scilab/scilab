@@ -120,7 +120,7 @@ static int asciiStrings(char *fname)
 	if (Output_IntMatrix == NULL)
 	{
 		freeArrayOfString(Input_StringMatrix,Row_Num*Col_Num);
-		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+		Scierror(999,_("%s: Memory allocation error.\n"),fname);
 		return 0;
 	}
 

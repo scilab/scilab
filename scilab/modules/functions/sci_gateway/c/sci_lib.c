@@ -85,7 +85,7 @@ int C2F(sci_lib)(char *fname,unsigned long fname_len)
 
 	if (pStVarOne == NULL)
 	{
-		Scierror(999,"%s : Memory allocation error.\n", fname);
+		Scierror(999,"%s: Memory allocation error.\n", fname);
 		return 0;
 	}
 
@@ -107,7 +107,7 @@ int C2F(sci_lib)(char *fname,unsigned long fname_len)
 		}
 		else
 		{
-			Scierror(999,"%s : Memory allocation error.\n",fname);
+			Scierror(999,"%s: Memory allocation error.\n",fname);
 			return 0;
 		}
 	}

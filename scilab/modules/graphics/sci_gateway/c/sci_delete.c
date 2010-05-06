@@ -39,7 +39,7 @@ int sci_delete(char *fname,unsigned long fname_len)
 {
   int m1,n1,l1,m2,n2,l2,num, lw;
   unsigned long hdl;
-  int nb_handles = 0, i;
+  int nb_handles = 0, i, dont_overload = 0;
   sciPointObj * pobj;
   sciPointObj * parentFigure;
 
@@ -67,11 +67,7 @@ int sci_delete(char *fname,unsigned long fname_len)
 	  sciClearFigure(sciGetCurrentFigure());
 	  endGraphicDataWriting();
 	  sciDrawObj(sciGetCurrentFigure()); /* redraw the figure to see the change */
-
-	  // Overload
-	  lw = 1 + Top - Rhs;
-	  C2F(overload)(&lw,"delete",6);
-	  return 0;
+          dont_overload = 1;
 	}
       else
 	{
@@ -165,10 +161,18 @@ int sci_delete(char *fname,unsigned long fname_len)
 	    }
 	}
     }
-  
-  // Overload
-  lw = 1 + Top - Rhs;
-  C2F(overload)(&lw,"delete",6);
+
+  if (!dont_overload)
+    {
+      // Overload
+      lw = 1 + Top - Rhs;
+      C2F(overload)(&lw,"delete",6);
+    }
+  else
+    {
+      LhsVar(1) = 0;
+      C2F(putlhsvar)();
+    }
 
   return 0;
 }

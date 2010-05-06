@@ -56,7 +56,7 @@ msgstr ""
 # File: sci_gateway/c/sci_getmd5.c, line: 100
 # File: sci_gateway/c/sci_getmd5.c, line: 150
 #, c-format
-msgid "%s : Memory allocation error.\n"
+msgid "%s: Memory allocation error.\n"
 msgstr ""
 #
 # File: src/c/stack2.c, line: 2928

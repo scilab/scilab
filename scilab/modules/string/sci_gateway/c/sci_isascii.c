@@ -122,7 +122,7 @@ static int isasciiMatrix(char *fname,int *piAddressVarOne)
 		}
 		else
 		{
-			Scierror(999,_("%s : Memory allocation error.\n"), fname);
+			Scierror(999,_("%s: Memory allocation error.\n"), fname);
 			return 0;
 		}
 	}
@@ -196,7 +196,7 @@ static int isasciiStrings(char *fname,int *piAddressVarOne)
 				}
 
 				freeArrayOfWideString(pwcStVarOne, m1 * n1);
-				Scierror(999,_("%s : Memory allocation error.\n"), fname);
+				Scierror(999,_("%s: Memory allocation error.\n"), fname);
 				return 0;
 			}
 		}
@@ -275,12 +275,12 @@ static int isasciiStrings(char *fname,int *piAddressVarOne)
 				lenStVarOne = NULL;
 			}
 			freeArrayOfWideString(pwcStVarOne, m1 * n1);
-			Scierror(999,_("%s : Memory allocation error.\n"), fname);
+			Scierror(999,_("%s: Memory allocation error.\n"), fname);
 		}
 	}
 	else
 	{
-		Scierror(999,_("%s : Memory allocation error.\n"), fname);
+		Scierror(999,_("%s: Memory allocation error.\n"), fname);
 	}
 	return 0;
 }

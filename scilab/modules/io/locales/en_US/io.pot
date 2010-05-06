@@ -24,7 +24,7 @@ msgstr ""
 # File: sci_gateway/c/sci_file.c, line: 177
 # File: sci_gateway/c/sci_file.c, line: 205
 #, c-format
-msgid "%s : Memory allocation error.\n"
+msgid "%s: Memory allocation error.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_getenv.c, line: 170

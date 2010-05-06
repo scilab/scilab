@@ -99,7 +99,7 @@ sci_gateway/c/sci_pathconvert.c \
 sci_gateway/c/sci_isfile.c
 
 
-libscifileio_la_CXXFLAGS=	-I$(srcdir)/includes/ \
+libscifileio_la_CPPFLAGS=	-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes \

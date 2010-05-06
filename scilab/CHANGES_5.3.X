@@ -33,6 +33,11 @@ Graphics:
 * bug 5284 fixed - In some case function "legend" drew line segments in its box
                    in a reverse order.
 
+* bug 6532 fixed - In some case text entity rendering order was wrong.
+
+* bug 6676 fixed - When we executed "twinkle(gca())", data related to the
+                   current axes were not twinkling.
+
 * bug 6786 fixed - The "polarplot" function did not correctly display the polar
                    coordinates grid when negative rho values were plotted.
 
@@ -47,6 +52,13 @@ Graphics:
 
 * bug 7028 fixed - When scilab printed an "axis" graphic handle, string array
                    size for "tics_labels" was erroneous.
+=======
+Localization:
+=============
+
+* Polish localization added. Thanks to Paweł Dąbrowski, Ernest Życiński, 
+  Sebastian Sławski, Kamil Dąbrowsk, Kamil Strojek, Kamil Dąbrowski, 
+  Michał Snoc, Piotr Seroka...
 
 API_Scilab:
 ===========
@@ -87,6 +99,9 @@ Xcos:
 * bug 4156 fixed - scicos defines some temp. variables on stack without remove.
 
 * bug 4705 fixed - scicos used a non existing file BEpsf
+
+* bug 4898 fixed - The scifunction_block stored list() parameters on the ipar 
+                   field instead of the opar field.
 
 * bug 5161 fixed - The export to SVG did not work with images or html.
 
@@ -143,8 +158,12 @@ Compilation:
 
 * Add a check of the minimal installations of hdf5 (1.8.4), batik (1.7)
 
+* /usr/share/*/lib added to the Java search path for OpenSuse
+
 * bug 6643 fixed - --without-gui failed to disable Ocaml build (A xcos 
                    dependency)
+
+* bug 6857 fixed - make CXXFLAGS="-myflag" was removing some C++ arguments.
 
 helptools:
 ==========
@@ -220,8 +239,6 @@ Removed functions (previously declared as obsolete):
 
 * 'readc_' replaced by 'input'.
 
-* The "toolboxes" menu has been removed and replaced by atomsGui().
-
 Bug fixes:
 ==========
 
@@ -274,7 +291,13 @@ Bug fixes:
 * bug 4996 fixed - mgetl() was not located in the right module. It has been
                    moved to "fileio" module
 
+* bug 5110 fixed - incomplete mgetstr documentation.
+
 * bug 5123 fixed - help about '%helps' was wrong.
+
+* bug 5136 fixed - information about dependant platform display of 
+                   exponential form (%e) was missing in the prinft_conversion
+                   documentation.
 
 * bug 5541 fixed - In the API documentation, the information that data must be
                    allocated before calling API functions was missing.
@@ -283,6 +306,8 @@ Bug fixes:
 
 * bug 5583 fixed - exec() did not manage correctly UTF-8 and ANSI/ASCII files 
                    encoded.
+
+* bug 5609 fixed - documentation stated incorrectly fieldnames works on cells
 
 * bug 5629 fixed - export_to_hdf5 to a file overwrote a directory 
                    with the same name (now trigger an error).
@@ -348,6 +373,9 @@ Bug fixes:
 * bug 6774 fixed - Calling get_param generated a "funcprot" warning when  
                    the value of an option which was a function.
 
+* bug 6783 fixed - Solving a system of linear equation by backslash ("\")
+                   caused a crash, when using complex numbers on Windows.
+
 * bug 6784 fixed - It was not possible to move a Scilab installation without
                    breaking the (previously installed) ATOMS packages load.
 
@@ -400,4 +428,8 @@ Bug fixes:
 
 * bug 7014 fixed - ilib_verbose value was modified after toolbox_skeleton.
 
+* bug 7021 fixed - Scilab did not start and returned a system error (193)
+                   on Windows.
+
 * bug 7033 fixed - newfun was randomly crashing (mostly on 32 bits) writing to unallocated memory.
+
