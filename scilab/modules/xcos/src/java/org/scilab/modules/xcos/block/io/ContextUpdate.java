@@ -15,8 +15,8 @@ package org.scilab.modules.xcos.block.io;
 import java.io.File;
 import java.io.IOException;
 
-import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
-import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.types.scilabTypes.ScilabDouble;
 import org.scilab.modules.types.scilabTypes.ScilabList;
 import org.scilab.modules.xcos.block.BasicBlock;

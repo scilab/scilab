@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.graph.utils;
+package org.scilab.modules.action_binding.utils;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -37,7 +37,6 @@ public final class Signal {
 	 * @param index
 	 *            The uid we are waiting for.
 	 */
-	// FIXME: why Signal::notify is exported and not Signal::wait
 	public static void wait(String index) {
 		Object data = new Object();
 		waiters.put(index, data);
@@ -60,8 +59,6 @@ public final class Signal {
 	 *            The uid to be notified. No one is waiting for the uid at time
 	 *            N, this method wait and retry each 100 milliseconds.
 	 */
-	@ScilabExported(module="xcos", filename="XcosUtils.giws.xml")
-	// FIXME: the graph module is dependent of the Xcos native libraries
 	public static void notify(String index) {
 		Object data = waiters.get(index);
 		while (data == null) {

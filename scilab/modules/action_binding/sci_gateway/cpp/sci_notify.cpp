@@ -14,9 +14,8 @@
 
 extern "C"
 {
-#include "gw_xcos.h"
+#include "gw_action_binding.h"
 #include "stack-c.h"
-#include "callxcos.h"
 #include "api_common.h"
 #include "api_string.h"
 #include "localization.h"
@@ -26,9 +25,9 @@ extern "C"
 #include "getScilabJavaVM.h"
 }
 /*--------------------------------------------------------------------------*/
-using namespace org_scilab_modules_graph_utils;
+using namespace org_scilab_modules_action_binding_utils;
 /*--------------------------------------------------------------------------*/
-int sci_xcosNotify(char *fname,unsigned long fname_len)
+int sci_notify(char *fname,unsigned long fname_len)
 {
 	CheckRhs(1,1);
 	CheckLhs(0,1);

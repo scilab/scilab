@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.graph.utils;
+package org.scilab.modules.action_binding.highlevel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,8 +26,9 @@ import java.util.concurrent.Executors;
 
 import javax.swing.SwingUtilities;
 
-import org.scilab.modules.jvm.utils.ScilabConstants;
 import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.action_binding.utils.ActionBindingMessages;
+import org.scilab.modules.action_binding.utils.Signal;
 
 /**
  * Implements useful methods to communicate with the Scilab interpreter.
@@ -39,7 +40,7 @@ public final class ScilabInterpreterManagement extends InterpreterManagement {
 	private static Set<String> runningTasks = Collections
 			.synchronizedSet(new HashSet<String>());
 
-	private static final String NOTIFY = ";xcosNotify(\"";
+	private static final String NOTIFY = ";notify(\"";
 	private static final String CLOSE = "\");";
 
 	/** This class is a static singleton, thus it must not be instantiated */
@@ -76,12 +77,12 @@ public final class ScilabInterpreterManagement extends InterpreterManagement {
 
 		if (runningTasks.contains(uidDesc)) {
 			throw new InterpreterException(
-					ScilabGraphMessages.SCILAB_SAMECOMMAND);
+					ActionBindingMessages.SCILAB_SAMECOMMAND);
 		}
 
 		int ret = InterpreterManagement.requestScilabExec(fullCommand);
 		if (ret != 0) {
-			throw new InterpreterException(ScilabGraphMessages.SCILAB_UNABLE);
+			throw new InterpreterException(ActionBindingMessages.SCILAB_UNABLE);
 		}
 		runningTasks.add(uidDesc);
 		Signal.wait(uidDesc);
@@ -145,7 +146,7 @@ public final class ScilabInterpreterManagement extends InterpreterManagement {
 
 		if (runningTasks.contains(uidDesc)) {
 			throw new InterpreterException(
-					ScilabGraphMessages.SCILAB_SAMECOMMAND);
+					ActionBindingMessages.SCILAB_SAMECOMMAND);
 		}
 
 		executor.submit(new Callable<Void>() {
@@ -154,7 +155,7 @@ public final class ScilabInterpreterManagement extends InterpreterManagement {
 						.putCommandInScilabQueue(fullCommand);
 				if (ret != 0) {
 					throw new InterpreterException(
-							ScilabGraphMessages.SCILAB_UNABLE);
+							ActionBindingMessages.SCILAB_UNABLE);
 				}
 				runningTasks.add(uidDesc);
 				Signal.wait(uidDesc);
@@ -201,7 +202,7 @@ public final class ScilabInterpreterManagement extends InterpreterManagement {
 
 		if (runningTasks.contains(uidDesc)) {
 			throw new InterpreterException(
-					ScilabGraphMessages.SCILAB_SAMECOMMAND);
+					ActionBindingMessages.SCILAB_SAMECOMMAND);
 		}
 
 		executor.submit(new Callable<Void>() {
@@ -210,7 +211,7 @@ public final class ScilabInterpreterManagement extends InterpreterManagement {
 						.putCommandInScilabQueue(fullCommand);
 				if (ret != 0) {
 					throw new InterpreterException(
-							ScilabGraphMessages.SCILAB_UNABLE);
+							ActionBindingMessages.SCILAB_UNABLE);
 				}
 				runningTasks.add(uidDesc);
 				Signal.wait(uidDesc);
@@ -315,9 +316,9 @@ public final class ScilabInterpreterManagement extends InterpreterManagement {
 			 */
 			if (object instanceof CharSequence) {
 				// We escape any CharSequence
-				b.append(ScilabConstants.QUOTE);
+				b.append("\"");
 				b.append(object);
-				b.append(ScilabConstants.QUOTE);
+				b.append("\"");
 			} else if (object instanceof char[]) {
 				// We don't escape char[]
 				b.append((char[]) object);

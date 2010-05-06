@@ -16,17 +16,12 @@
 
  primitiveName is the name of the Scilab function
 
- @author Allan CORNET
- @date DIGITEO 2009
+ @author Allan SIMON
+ @date DIGITEO 2010
  ===================
  Don't touch if you do not know what you are doing
 -->
 <!-- =================== -->
 
-<PRIMITIVE gatewayId="64" primitiveId="1" primitiveName="xcos" />
-<PRIMITIVE gatewayId="64" primitiveId="2" primitiveName="warnBlockByUID" />
-<PRIMITIVE gatewayId="64" primitiveId="3" primitiveName="closeXcos" />
-<PRIMITIVE gatewayId="64" primitiveId="4" primitiveName="xcosDiagramToHDF5" />
-<PRIMITIVE gatewayId="64" primitiveId="5" primitiveName="xcosDiagramOpen" />
-<PRIMITIVE gatewayId="64" primitiveId="6" primitiveName="xcosDiagramClose" />
+<PRIMITIVE gatewayId="65" primitiveId="1" primitiveName="notify" />
 </GATEWAY>

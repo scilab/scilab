@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2009 - DIGITEO - Allan CORNET
+ *  Copyright (C) 2009 - DIGITEO - Allan SIMON
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -10,43 +10,18 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#include "gw_xcos.h"
+#include "gw_action_binding.h"
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
-#include "BOOL.h"
-#include "scilabmode.h"
-#include "localization.h"
-#include "Scierror.h"
-#include "BOOL.h"
-#include "loadOnUseClassPath.h"
-/*--------------------------------------------------------------------------*/
-static BOOL loadedDep = FALSE;
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] = {
-  {sci_Xcos, "xcos"},
-  {sci_warnBlockByUID, "warnBlockByUID"},
-  {sci_closeXcosFromScilab, "closeXcos"},
-  {sci_xcosDiagramToHDF5, "xcosDiagramToHDF5"},
-  {sci_xcosDiagramOpen, "xcosDiagramOpen"},
-  {sci_xcosDiagramClose, "xcosDiagramClose"}
+    {sci_notify, "notify"},
 };
-
 /*--------------------------------------------------------------------------*/
-int gw_xcos(void)
+int gw_action_binding(void)
 {
 	Rhs = Max(0, Rhs);
 
-	if ( getScilabMode() == SCILAB_NWNI)
-	{
-		Scierror(999,_("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "xcos");
-		return 0;
-	}
-
-	if (!loadedDep) 
-	{
-		loadOnUseClassPath("XCos");
-		loadedDep = TRUE;
-	}
 	callFunctionFromGateway(Tab,  SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
