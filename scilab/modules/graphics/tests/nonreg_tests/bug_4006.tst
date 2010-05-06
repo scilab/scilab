@@ -17,10 +17,12 @@
 // 
 
 fonts = xlfont();
+selected_font = fonts(1);
+
 size_fonts = size(fonts,'*');
 if size_fonts <> 11 then pause,end
 
-r = xlfont('Arial',0);
+r = xlfont(selected_font,0);
 if r <> 0 then pause,end
 
 fonts = xlfont();
@@ -28,11 +30,11 @@ size_fonts = size(fonts,'*');
 if size_fonts <> 11 then pause,end
 
 
-r = xlfont("Arial",20);
+r = xlfont(selected_font,20);
 if r <> 20 then pause,end
 
 fonts = xlfont();
 size_fonts = size(fonts,'*');
 if size_fonts <> 21 then pause,end
 
-if fonts(21) <> "Arial" then pause,end
+if fonts(21) <> selected_font then pause,end
