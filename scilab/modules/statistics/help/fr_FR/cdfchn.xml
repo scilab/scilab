@@ -82,7 +82,7 @@
     La plage de recherche est bornée par 10,000 pour limiter le temps de calcul (pouvant devenir énorme pour des grandes valeurs de Pnonc).
   </para>
     <para>
-    Tiré de la librairie DCDFLIB: Library of Fortran Routines for Cumulative Distribution
+    Tiré de la bibliothèque DCDFLIB: Library of Fortran Routines for Cumulative Distribution
     Functions, Inverses, and Other Parameters (February, 1994)
     Barry W. Brown, James Lovato and Kathy Russell. The University of
     Texas.

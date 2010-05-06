@@ -138,7 +138,7 @@ sl=syslin(dom,H)
     dans les deux types de représentation (représentation d'état ou matrice de
     transfert).</para>
 
-    <para>La plupart des fonctions de la librairie de contrôle acceptent les
+    <para>La plupart des fonctions de la bibliothèque de contrôle acceptent les
     listes de type <literal>syslin</literal> en argument au lieu des quatre
     matrices de la représentation d'état.</para>
   </refsection>
