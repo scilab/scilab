@@ -11399,8 +11399,8 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar jgraphx us
 
 
 
-    { $as_echo "$as_me:${as_lineno-$LINENO}: checking minimal version (1.2.0.7) of jgraphx" >&5
-$as_echo_n "checking minimal version (1.2.0.7) of jgraphx... " >&6; }
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking minimal version (1.4.0.1) of jgraphx" >&5
+$as_echo_n "checking minimal version (1.4.0.1) of jgraphx... " >&6; }
    saved_ac_java_classpath=$ac_java_classpath
    export ac_java_classpath="$JGRAPHX:$ac_java_classpath"
 
@@ -11410,7 +11410,7 @@ import com.mxgraph.view.mxGraph;
 
 public class conftest {
     public static void main(String[] argv) {
-        String minVersion="1.2.0.7";
+        String minVersion="1.4.0.1";
 
                             System.out.println(mxGraph.VERSION);
    						   	if (minVersion.compareTo(mxGraph.VERSION) > 0) {
@@ -11440,7 +11440,7 @@ EOF
                    STDOUT=`cat conftest.java.output`
                 fi
         		echo "configure: CLASSPATH was $CLASSPATH" >&5
-        		  as_fn_error "Wrong version of jgraphx. Expected at least 1.2.0.7. Found $STDOUT" "$LINENO" 5
+        		  as_fn_error "Wrong version of jgraphx. Expected at least 1.4.0.1. Found $STDOUT" "$LINENO" 5
         					fi
 		fi
         if test -f conftest.java.output; then
@@ -11450,7 +11450,7 @@ EOF
         echo "configure: failed program was:" >&5
         cat conftest.java >&5
         echo "configure: CLASSPATH was $CLASSPATH" >&5
-          as_fn_error "Wrong version of jgraphx. Expected at least 1.2.0.7. Found $STDOUT" "$LINENO" 5
+          as_fn_error "Wrong version of jgraphx. Expected at least 1.4.0.1. Found $STDOUT" "$LINENO" 5
             fi
 
    ac_java_classpath=$saved_ac_java_classpath
