@@ -320,6 +320,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private void initialize(ScilabDocument doc) {
 	indent = new IndentManager(doc);
 	tab = new TabManager(doc, indent);
+	tab.setDefaultTabulation();
 	com = new CommentManager(doc);
 	matchLR = new MatchingBlockManager(doc, true, getHighlighter(), Color.PINK);
 	matchRL = new MatchingBlockManager(doc, false, getHighlighter(), Color.ORANGE);

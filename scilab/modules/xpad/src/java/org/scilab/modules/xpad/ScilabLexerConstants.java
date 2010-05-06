@@ -161,8 +161,8 @@ public class ScilabLexerConstants {
 	TOKENS.put("Control", CKEYWORD);
 	TOKENS.put("Structure", SKEYWORD);
 	TOKENS.put("Constantes", CONSTANTES);
-	TOKENS.put("WhiteIndentation", WHITE);
-	TOKENS.put("TabIndentation", TAB);
+	TOKENS.put("White", WHITE);
+	TOKENS.put("Tabulation", TAB);
     }
     
     /**

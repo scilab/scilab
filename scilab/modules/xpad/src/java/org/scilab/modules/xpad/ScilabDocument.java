@@ -95,7 +95,7 @@ public class ScilabDocument extends PlainDocument {
      * @param view the used view
      */
     public void setView(ScilabView view) {
-	this.view = view;
+	this.view = view;    
     }
 
     /**

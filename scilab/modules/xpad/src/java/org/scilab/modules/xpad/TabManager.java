@@ -15,6 +15,8 @@ package org.scilab.modules.xpad;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Element;
 
+import org.scilab.modules.xpad.utils.ConfigXpadManager;
+
 /**
  * This class handles the tabulation
  * @author Calixte DENIZET
@@ -66,6 +68,21 @@ public class TabManager {
     }
 
     /**
+     * Set the type and the size of a tabulation
+     * @param tabulation a Tabulation
+     */
+    public void setTabulation(Tabulation tabulation) {
+	setTabulation(tabulation.tab, tabulation.number);
+    }
+
+    /**
+     * Set the type and the size of a tabulation in using ConfigXpadManager
+     */
+    public void setDefaultTabulation() {
+	setTabulation(ConfigXpadManager.getDefaultTabulation());
+    }
+
+    /**
      * Insert a tab inside a line (true) or tabify a line (false)
      * @param b the boolean
      */
@@ -108,7 +125,7 @@ public class TabManager {
 	int[] ret = new int[2];
 	
 	try {
-		String str = doc.getText(sstart, end - sstart + 1);
+	    String str = doc.getText(sstart, end - sstart + 1);
 	    String rep = EOL + tab;
 	    str = tab + str.replaceAll(EOL, rep);		
 	    ret[0] = start + lengthTab;
@@ -190,5 +207,46 @@ public class TabManager {
 	}
 	
 	return ret;
+    }
+
+    /**
+     * Inner class to represent a tabulation
+     */
+    public static class Tabulation {
+	
+	/**
+	 * Should be '\t' or ' '
+	 */
+	public char tab;
+
+	/**
+	 * The number of whites equivalent at this tabulation
+	 */
+	public int number;
+
+	/**
+	 * Should be one of the constants of ScilabView
+	 */
+	public int type;
+
+	/**
+	 * If type is ScilabView.TABCHARACTER, then rep is the char representing a tabulation
+	 * in the view
+	 */
+	public char rep;
+
+	/**
+	 * Constructor
+	 * @param tab '\t' or ' '
+	 * @param number the number of whites
+	 * @param type see the constants in ScilabView
+	 * @param rep the char to represent a tabulation in a view
+	 */ 
+	public Tabulation(char tab, int number, int type, char rep) {
+	    this.tab = tab;
+	    this.number = number;
+	    this.type = type;
+	    this.rep = rep;
+	}
     }
 }

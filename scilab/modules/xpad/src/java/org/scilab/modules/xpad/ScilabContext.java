@@ -159,6 +159,7 @@ public class ScilabContext implements ViewFactory {
      */
     public View create(Element elem) {
 	view = new ScilabView(elem, this);
+	view.setDefaultTabRepresentation();
 	return view;
     }
 }

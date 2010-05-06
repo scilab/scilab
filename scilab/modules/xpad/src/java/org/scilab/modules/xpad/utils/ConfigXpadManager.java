@@ -44,9 +44,12 @@ import javax.xml.transform.stream.StreamResult;
 
 import javax.swing.KeyStroke;
 
-//import org.scilab.modules.console.GuiManagement;
+import org.scilab.modules.console.GuiManagement;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
+
+import org.scilab.modules.xpad.ScilabView;
+import org.scilab.modules.xpad.TabManager;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -105,8 +108,8 @@ public final class ConfigXpadManager {
 	private static final String XPAD_CONFIG_FILE = System.getenv("SCI") + "/modules/xpad/etc/xpadConfiguration.xml";
         private static final String XPAD_CONFIG_KEYS_FILE = System.getenv("SCI") + "/modules/xpad/etc/keysConfiguration.xml";
     
-        private static final String USER_XPAD_CONFIG_FILE = XPAD_CONFIG_FILE;//GuiManagement.getSCIHOME() + "/xpadConfiguration.xml";
-        private static final String USER_XPAD_CONFIG_KEYS_FILE = XPAD_CONFIG_KEYS_FILE;//GuiManagement.getSCIHOME() + "/keysConfiguration.xml";
+        private static final String USER_XPAD_CONFIG_FILE = GuiManagement.getSCIHOME() + "/xpadConfiguration.xml";
+        private static final String USER_XPAD_CONFIG_KEYS_FILE = GuiManagement.getSCIHOME() + "/keysConfiguration.xml";
 
 	private static final int PLAIN = 0;
 	private static final int BOLD =  1;
@@ -136,7 +139,7 @@ public final class ConfigXpadManager {
 	 * Create a copy of Scilab configuration file in the user directory
 	 */
 	public static void createUserCopy() {
-		/*TODO*/
+	    /*TODO*/
 		File fileConfig = new File(USER_XPAD_CONFIG_FILE);
 		if (!fileConfig.exists() || (fileConfig.length() == 0)) {
 			/* Create a local copy of the configuration file */
@@ -413,26 +416,71 @@ public final class ConfigXpadManager {
 		/*TODO*/
 	}
 
-	/**
+        /**
+	 * Retrieve form xpadConfiguration.xml the infos about a tabulation
+	 * @return a Tabulation containing infos
+	 */
+        public static TabManager.Tabulation getDefaultTabulation() {
+	    /* <style name="Tabulation" rep="vertical" value="4" white="false"> */
+	    readDocument();
+	
+	    Element root = document.getDocumentElement();
+	    NodeList styles = root.getElementsByTagName(STYLE);
+	    
+	    for (int i = 0; i < styles.getLength(); ++i) {
+		Element style = (Element) styles.item(i);
+		if ("Tabulation".equals(style.getAttribute(NAME))) {
+		    String rep = style.getAttribute("rep").toLowerCase();
+		    int type = ScilabView.TABNOTHING;
+		    char rrep = ' ';
+		    if ("vertical".equals(rep)) {
+			type = ScilabView.TABVERTICAL;
+		    } else if ("horizontal".equals(rep)) {
+			type = ScilabView.TABHORIZONTAL;
+		    } else if ("doublechevrons".equals(rep)) {
+			type = ScilabView.TABDOUBLECHEVRONS;
+		    } else if ("none".equals(rep)) {
+			type = ScilabView.TABNOTHING;
+		    } else if (rep.length() >= 1) {
+			type = ScilabView.TABCHARACTER;
+			rrep = rep.charAt(0);
+		    }
+		    
+		    char one;
+		    int value = Integer.parseInt(style.getAttribute("value"));
+		    String white = style.getAttribute("white").toLowerCase();
+		    if ("false".equals(white)) {
+			one = '\t';
+		    } else {
+			one = ' ';
+		    }
+		    
+		    return new TabManager.Tabulation(one, value, type, rrep);
+		}
+	    }
+	    return null;
+	}
+    
+        /**
 	 * Get the background Color 
 	 * @return the background Color
 	 */
-	public static Color getXpadBackgroundColor() {
-		/* Load file */
-		readDocument();
-
-		Element root = document.getDocumentElement();
-
-		NodeList profiles = root.getElementsByTagName(PROFILE);
-		Element xpadProfile = (Element) profiles.item(0);
-
-		NodeList allSizeElements = xpadProfile.getElementsByTagName(BACKGROUNDCOLOR);
-		Element xpadBackground = (Element) allSizeElements.item(0);
-
-		/*direct create a Color with "#FF00FF" string from the xml */
-		return Color.decode(xpadBackground.getAttribute(VALUE));
+        public static Color getXpadBackgroundColor() {
+	    /* Load file */
+	    readDocument();
+	    
+	    Element root = document.getDocumentElement();
+	    
+	    NodeList profiles = root.getElementsByTagName(PROFILE);
+	    Element xpadProfile = (Element) profiles.item(0);
+	    
+	    NodeList allSizeElements = xpadProfile.getElementsByTagName(BACKGROUNDCOLOR);
+	    Element xpadBackground = (Element) allSizeElements.item(0);
+	    
+	    /*direct create a Color with "#FF00FF" string from the xml */
+	    return Color.decode(xpadBackground.getAttribute(VALUE));
 	}
-
+    
 	/**
 	 * Save Xpad BackgroundColor
 	 * @param color the new Color

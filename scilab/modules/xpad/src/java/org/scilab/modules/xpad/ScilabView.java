@@ -33,6 +33,8 @@ import javax.swing.text.Segment;
 import javax.swing.text.Element;
 import javax.swing.text.BadLocationException;
 
+import org.scilab.modules.xpad.utils.ConfigXpadManager;
+
 /**
  * This important class is mainly used to render a document
  * @author Calixte DENIZET
@@ -58,6 +60,11 @@ public class ScilabView extends WrappedPlainView {
      * A tabulation can be rendered with a character.
      */
     public static final int TABCHARACTER = 3;
+
+    /**
+     * A tabulation can be rendered with nothing.
+     */
+    public static final int TABNOTHING = 4;
 
     private static final String DESKTOPHINTS = "awt.font.desktophints";
 
@@ -299,6 +306,25 @@ public class ScilabView extends WrappedPlainView {
     public void setTabRepresentation(char rep) {
 	setTabRepresentation(TABCHARACTER);
 	this.tabCharacter = Character.toString(rep);
+    }
+
+    /**
+     * Used to represent a tabulation
+     * @param tabulation a Tabulation
+     */
+    public void setTabRepresentation(TabManager.Tabulation tabulation) {
+	if (tabulation.type == TABCHARACTER) {
+	    setTabRepresentation(tabulation.rep);
+	} else {
+	    setTabRepresentation(tabulation.type);
+	}
+    }
+
+    /**
+     * Used to represent the default tabulation got with ConfigXpadManager
+     */
+    public void setDefaultTabRepresentation() {
+	setTabRepresentation(ConfigXpadManager.getDefaultTabulation());
     }
 
     /**
