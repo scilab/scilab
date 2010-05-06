@@ -118,7 +118,7 @@
         <link linkend="datatipToggle" >datatipToggle</link>
       </member>
       <member>
-        <link linkend="datatipsInitStruct">datatipsInitStruct</link>
+        <link linkend="datatipInitStruct">datatipInitStruct</link>
       </member>
       <member>
         <link linkend="datatipCreate">datatipCreate</link>
