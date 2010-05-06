@@ -427,7 +427,7 @@ libscigraphics_la_CFLAGS +=	$(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/api_scilab/includes/ \
 				-I$(top_srcdir)/modules/graphic_export/includes/
 
-libscigraphics_la_CXXFLAGS =  	-Iincludes/ \
+libscigraphics_la_CPPFLAGS =  	-Iincludes/ \
 				-Isrc/c/ $(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/jvm/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes/ \
