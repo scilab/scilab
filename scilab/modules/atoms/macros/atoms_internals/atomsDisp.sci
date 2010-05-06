@@ -12,35 +12,35 @@
 // Remove a toolbox
 
 function atomsDisp(str)
-	
-	// Check input parameters
-	// =========================================================================
-	
-	rhs = argn(2);
-	
-	if rhs <> 1 then
-		error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"atomsDisp",1,2))
-	end
-	
-	if type(str) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"atomsDisp",1));
-	end
-	
-	// Verbose Mode ?
-	// =========================================================================
-	
-	if isdef("ATOMSVERBOSE") then
-		if ATOMSVERBOSE then
-			mprintf(str);
-			if size(str,"*")>1 then
-				mprintf("\n");
-			end
-		end
-	elseif strcmpi(atomsGetConfig("Verbose"),"True") == 0
-		mprintf(str);
-		if size(str,"*")>1 then
-			mprintf("\n");
-		end
-	end
-	
+
+    // Check input parameters
+    // =========================================================================
+
+    rhs = argn(2);
+
+    if rhs <> 1 then
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"atomsDisp",1,2))
+    end
+
+    if type(str) <> 10 then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"atomsDisp",1));
+    end
+
+    // Verbose Mode ?
+    // =========================================================================
+
+    if isdef("ATOMSVERBOSE") then
+        if ATOMSVERBOSE then
+            mprintf(str);
+            if size(str,"*")>1 then
+                mprintf("\n");
+            end
+        end
+    elseif strcmpi(atomsGetConfig("Verbose"),"True") == 0
+        mprintf(str);
+        if size(str,"*")>1 then
+            mprintf("\n");
+        end
+    end
+
 endfunction

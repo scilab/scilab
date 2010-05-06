@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-01-16 17:38+0000\n"
-"Last-Translator: yurchor <yurchor@gmail.com>\n"
+"PO-Revision-Date: 2010-02-18 20:10+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-01-21 15:53+0000\n"
+"X-Launchpad-Export-Date: 2010-04-16 07:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -35,8 +35,12 @@ msgid "%s: No such file or directory.\n"
 msgstr "%s: немає такого файла або каталогу.\n"
 
 #, c-format
-msgid "%s: Unknow type or not yet implemented\n"
+msgid "%s: Unknown type or not yet implemented\n"
 msgstr "%s: невідомий або ще не реалізований тип\n"
+
+#, c-format
+msgid "%s: Unknown type or not yet implemented.\n"
+msgstr "%s: невідомий або ще не реалізований тип.\n"
 
 #, c-format
 msgid "%s: Wrong first input argument: '%s' or '%s' expected.\n"
@@ -47,14 +51,18 @@ msgstr ""
 msgid "%s: work space (stacksize) is too small d\n"
 msgstr "%s: занадто малий робочий простір (розмір стека).\n"
 
+#, c-format
+msgid "%s: work space (stacksize) is too small.\n"
+msgstr "%s: занадто малий робочий простір (розмір стека).\n"
+
 msgid "(group,instance) already exists"
 msgstr "Група або екземпляр вже існує"
 
+msgid "Already doing operation"
+msgstr "Операція вже виконується"
+
 msgid "Already in group"
 msgstr "Вже у групі"
-
-msgid "Already oing operation"
-msgstr "Операція вже виконується"
 
 msgid "Bad message id"
 msgstr "Помилковий ідентифікатор повідомлення"
@@ -84,7 +92,7 @@ msgid "Error pvm_reduce: Not scalar type\n"
 msgstr "Помилка pvm_reduce: нескалярний тип\n"
 
 #, c-format
-msgid "Error pvm_reduce: Unknow reduction operation %s\n"
+msgid "Error pvm_reduce: Unknown reduction operation %s\n"
 msgstr "Помилка pvm_reduce: невідома операція спрощення — %s\n"
 
 msgid "Failed to exec new slave pvmd"
@@ -132,8 +140,8 @@ msgstr "Порожні назви груп неприпустимі"
 msgid "OK"
 msgstr "Гаразд"
 
-msgid "Out of ressources"
-msgstr "Ресурси вичерпано"
+msgid "Out of resources"
+msgstr "Вичерпано ресурси"
 
 msgid "PVM exists"
 msgstr "PVM існує"

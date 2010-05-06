@@ -60,7 +60,7 @@ int C2F(sci_frexp) (char *fname,unsigned long fname_len)
 
 	if(isVarComplex(pvApiCtx, piAddr))
 	{
-		Error(9999);
+		SciError(9999);
 		sciprint(_("%s: real data only.\n"), fname);
 	}
 

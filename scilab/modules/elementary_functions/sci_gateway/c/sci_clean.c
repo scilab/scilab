@@ -135,7 +135,7 @@ SciErr clean_double(int* _piAddress)
 
 		if(iRows3 != 1 || iCols3 != 1)
 		{
-			Error(60);
+			SciError(60);
 			return sciErr;
 		}
 		dblEpsR = pdblReal3[0];
@@ -157,7 +157,7 @@ SciErr clean_double(int* _piAddress)
 
 		if(iRows2 != 1 || iCols2 != 1)
 		{
-			Error(60);
+			SciError(60);
 			return sciErr;
 		}
 		dblEpsA = pdblReal2[0];

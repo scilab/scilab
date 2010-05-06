@@ -85,7 +85,7 @@ int C2F(sci_setenv)(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+	sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne, NULL);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -98,7 +98,7 @@ int C2F(sci_setenv)(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	sciErr = getMatrixOfString(pvApiCtx, piAddressVarTwo,&m2,&n2,&lenStVarTwo,&pStVarTwo);
+	sciErr = getMatrixOfString(pvApiCtx, piAddressVarTwo,&m2,&n2,&lenStVarTwo, NULL);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);

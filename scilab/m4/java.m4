@@ -155,24 +155,30 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&AS_MESSAGE_LOG_FD ; eval $cmd >&AS_MESSAGE_LOG_FD 2>&AS_MESSAGE_LOG_FD) ; then
+    if (echo $cmd >&AS_MESSAGE_LOG_FD ; eval $cmd >&conftest.java.output 2>&AS_MESSAGE_LOG_FD) ; then
        if test "$3" = "no"; then
            echo "yes" >&AS_MESSAGE_LOG_FD
    		   $4
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&AS_MESSAGE_LOG_FD ; eval $cmd >&AS_MESSAGE_LOG_FD 2>&AS_MESSAGE_LOG_FD); then
+	   	   if (echo $cmd >&AS_MESSAGE_LOG_FD ; eval $cmd >&conftest.java.output 2>&AS_MESSAGE_LOG_FD); then
 	           echo "yes" >&AS_MESSAGE_LOG_FD
        		   $4
 			else
 		        echo "configure: failed program was:" >&AS_MESSAGE_LOG_FD
 				cat conftest.java >&AS_MESSAGE_LOG_FD
+                if test -s conftest.java.output; then
+                   STDOUT=`cat conftest.java.output`
+                fi
         		echo "configure: CLASSPATH was $CLASSPATH" >&AS_MESSAGE_LOG_FD
         		m4_ifval([$5],
         		[  $5
         		])dnl
 			fi
 		fi
+        if test -f conftest.java.output; then 
+           rm conftest.java.output
+        fi
     else
         echo "configure: failed program was:" >&AS_MESSAGE_LOG_FD
         cat conftest.java >&AS_MESSAGE_LOG_FD

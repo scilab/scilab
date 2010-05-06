@@ -23,7 +23,7 @@ SCI_BUILDDIR="`pwd`"
 SCI_SRCDIR="$srcdir"
 SCI_SRCDIR_FULL="`cd $SCI_SRCDIR && pwd`"
 
-SCILAB_LIBRARY_VERSION=5:2:0
+SCILAB_LIBRARY_VERSION=5:3:0
 AC_SUBST(SCILAB_LIBRARY_VERSION)
 
 #shared library versioning
@@ -812,6 +812,7 @@ the the JNI libraries."])],
 				   BATIK=$PACKAGE_JAR_FILE
 				fi
 				AC_SUBST(BATIK)
+				AC_JAVA_CHECK_VERSION_PACKAGE([batik],[import org.apache.batik.Version;],$BATIK,[1.7],[Version.getVersion()])
 
 				# Commons I/O library
 				AC_JAVA_CHECK_PACKAGE([commons-io],[org.apache.commons.io.output.CountingOutputStream],[Commons I/O library])
@@ -1179,6 +1180,15 @@ if test $HDF5_ENABLE = yes;  then
       AC_CHECK_LIB([jhdf5], [h5JNIFatalError], [JHDF5_LIBS="-ljhdf5"],
    	    [AC_MSG_ERROR([libjhdf5: Library missing (Cannot find symbol h5JNIFatalError). Check if libjhdf5 - C/Java (JNI) interface for HDF5 - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])])
       LDFLAGS=$LDFLAGS_save
+
+      LD_LIBRARY_PATH_save=$LD_LIBRARY_PATH
+      LD_LIBRARY_PATH="/usr/lib/jni:/usr/lib64/jni/:$SCI_SRCDIR/bin/:$SCI_SRCDIR/thirdparty/:$HDF5_LIBS"
+      AC_JAVA_CHECK_VERSION_PACKAGE([hdf5],[import ncsa.hdf.hdf5lib.H5;],$JHDF5,[1.8.4],[ver],[int[] vers = new int[3];
+                try { H5.H5get_libversion(vers); }
+                catch (Throwable ex) {System.exit(-1);}
+                String ver = vers[0] + "."+ vers[1] +"."+vers[2];
+      ])
+      LD_LIBRARY_PATH=$LD_LIBRARY_PATH_save
     fi
 fi #HDF5_ENABLE
 
@@ -1636,6 +1646,7 @@ modules/windows_tools/Makefile
 modules/core/Makefile
 modules/api_scilab/Makefile
 modules/call_scilab/Makefile
+modules/types/Makefile
 modules/hdf5/Makefile
 modules/fftw/Makefile
 modules/umfpack/Makefile

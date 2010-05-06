@@ -47,7 +47,7 @@ int C2F(sci_size) (char *fname,unsigned long fname_len)
 	{
 		if(Lhs == 2)
 		{
-			Error(41);
+			SciError(41);
 			return 0;
 		}
 		sciErr = getProcessMode(pvApiCtx, 2, piAddr, &iMode);
@@ -73,7 +73,7 @@ int C2F(sci_size) (char *fname,unsigned long fname_len)
 	case sci_mlist :
 		if(Rhs != 1)
 		{
-			Error(39);
+			SciError(39);
 			return 0;
 		}
 		sciErr = size_list(piAddr);

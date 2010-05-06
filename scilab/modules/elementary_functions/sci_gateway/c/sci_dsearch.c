@@ -102,13 +102,13 @@ int C2F(sci_dsearch) (char *fname,unsigned long fname_len)
 	if(cMode != 'c' && cMode != 'd')
 	{
 		sciprint(_("%s: unknown char specifier (must be ''c'' or ''d'').\n"), fname);
-		Error(999);
+		SciError(999);
 		return 0;
 	}
 
 	if(isVarComplex(pvApiCtx, piAddr1) || isVarComplex(pvApiCtx, piAddr2))
 	{
-		Error(202);
+		SciError(202);
 		return 0;
 	}
 	else
@@ -126,7 +126,7 @@ int C2F(sci_dsearch) (char *fname,unsigned long fname_len)
 			if(pdblReal2[i] < pdblReal2[i - 1])
 			{
 				sciprint(_("%s: the array val (arg 2) is not well ordered.\n"), fname);
-				Error(999);
+				SciError(999);
 				return 0;
 			}
 		}
@@ -139,7 +139,7 @@ int C2F(sci_dsearch) (char *fname,unsigned long fname_len)
 		if( iRowsOcc * iColsOcc < 1)
 		{
 			sciprint(_("%s: Argument 2: argument 2 must not be an empty vector.\n"), fname);
-			Error(999);
+			SciError(999);
 			return 0;
 		}
 	}
@@ -148,7 +148,7 @@ int C2F(sci_dsearch) (char *fname,unsigned long fname_len)
 		if( iRowsOcc * iColsOcc < 2)
 		{
 			sciprint(_("%s: in the interval case, argument 2 must be a vector with length > 1.\n"), fname);
-			Error(999);
+			SciError(999);
 			return 0;
 		}
 		if(iRowsOcc == 1)
@@ -275,7 +275,7 @@ static SciErr getMode(int _iPos, char *_pcMode)
 	}
 	else
 	{
-		Error(89);
+		SciError(89);
 	}
 	return sciErr;
 }

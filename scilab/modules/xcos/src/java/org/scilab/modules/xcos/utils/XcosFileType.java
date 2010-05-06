@@ -17,6 +17,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Arrays;
 
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
 import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 
@@ -140,10 +141,10 @@ public enum XcosFileType {
 		
 		/* Validate xml header */
 		if (retValue == XcosFileType.XCOS) {
-			byte[] xmlMagic = (new String("<?xml")).getBytes();
+			byte[] xmlMagic = "<?xml".getBytes();
 			byte[] readMagic = new byte[xmlMagic.length];
 
-			FileInputStream stream;
+			FileInputStream stream = null;
 			try {
 				stream = new FileInputStream(theFile);
 				int length;
@@ -154,6 +155,14 @@ public enum XcosFileType {
 				}
 			} catch (IOException e) {
 				retValue = XcosFileType.UNKNOW;
+			} finally {
+				if (stream != null) {
+					try {
+						stream.close();
+					} catch (IOException e) {
+						LogFactory.getLog(XcosFileType.class).error(e);
+					}
+				}
 			}
 		}
 		
@@ -219,17 +228,29 @@ public enum XcosFileType {
 	public static File loadScicosDiagram(File filename) {
 	    File tempOutput = null;
 	    try {
-		tempOutput = File.createTempFile(XcosFileType.XCOS.getExtension(), XcosFileType.HDF5.getDottedExtension());
-		String cmd = "scs_m = importScicosDiagram(\"" + filename.getAbsolutePath() + "\");";
-		cmd += "export_to_hdf5(\"" + tempOutput.getAbsolutePath() + "\", \"scs_m\");";
+		tempOutput = FileUtils.createTempFile();
+		
+		StringBuilder cmd = new StringBuilder();
+		cmd.append("scs_m = importScicosDiagram(\"");
+		cmd.append(filename.getAbsolutePath());
+		cmd.append("\");");
+		cmd.append("result = export_to_hdf5(\"");
+		cmd.append(tempOutput.getAbsolutePath());
+		cmd.append("\", \"scs_m\");");
+		
+		cmd.append("if result <> %t then deletefile(\"");
+		cmd.append(tempOutput.getAbsolutePath());
+		cmd.append("\"); end; ");
+		
 		try {
-			ScilabInterpreterManagement.synchronousScilabExec(cmd);
+			ScilabInterpreterManagement.synchronousScilabExec(cmd.toString());
 		} catch (InterpreterException e) {
 			e.printStackTrace();
 		}
 	    } catch (IOException e) {
 		e.printStackTrace();
 	    }
+	    
 	    return tempOutput;
 	}
 }

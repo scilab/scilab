@@ -44,7 +44,7 @@ int C2F(sci_testmatrix) (char *fname,unsigned long fname_len)
 
 	if(GetType(1) != sci_strings)
 	{
-		Error(55);
+		SciError(55);
 		return 0;
 	}
 
@@ -55,7 +55,7 @@ int C2F(sci_testmatrix) (char *fname,unsigned long fname_len)
 	{
 		//voir comment on ajoute une string dans les messages d'erreur
 		//"%dth argument must be a real scalar
-		Error(51);
+		SciError(51);
 		return 0;
 	}
 
@@ -64,7 +64,7 @@ int C2F(sci_testmatrix) (char *fname,unsigned long fname_len)
 	{
 		//voir comment on ajoute une string dans les messages d'erreur
 		//"%dth argument must be a real scalar
-		Error(51);
+		SciError(51);
 		return 0;
 	}
 	iVal = (int)dabss(stk(iRealData)[0]);

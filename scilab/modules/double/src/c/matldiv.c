@@ -71,7 +71,7 @@ int matldiv()
 	{
 		if(iRows2 < 0)
 		{
-			Error(14);
+			SciError(14);
 			return 0;
 		}
 
@@ -84,7 +84,7 @@ int matldiv()
 
 		if(iRows1 != iRows2 && iSize2 != 1)
 		{
-			Error(265);
+			SciError(265);
 			return 0;
 		}
 
@@ -102,7 +102,7 @@ int matldiv()
 			{
 				if(finite(pReal1[iIndex]) == 0 || finite(pImg1[iIndex]) == 0)
 				{
-					Error(229);
+					SciError(229);
 					return 0;
 				}
 			}
@@ -113,7 +113,7 @@ int matldiv()
 			{
 				if(finite(pReal1[iIndex]) == 0)
 				{
-					Error(229);
+					SciError(229);
 					return 0;
 				}
 			}
@@ -125,7 +125,7 @@ int matldiv()
 			{
 				if(finite(pReal2[iIndex]) == 0 || finite(pImg2[iIndex]) == 0)
 				{
-					Error(229);
+					SciError(229);
 					return 0;
 				}
 			}
@@ -136,7 +136,7 @@ int matldiv()
 			{
 				if(finite(pReal2[iIndex]) == 0)
 				{
-					Error(229);
+					SciError(229);
 					return 0;
 				}
 			}
@@ -153,7 +153,7 @@ int matldiv()
 
 				if(iRet > 0)
 				{
-					Error(iRet);
+					SciError(iRet);
 					return 0;
 				}
 				else if(iRet < 0)
@@ -185,7 +185,7 @@ int matldiv()
 
 				if(iRet > 0)
 				{
-					Error(iRet);
+					SciError(iRet);
 					return 0;
 				}
 				else if(iRet < 0)
@@ -212,7 +212,7 @@ int matldiv()
 			int iErr = 0;
 			if(iRows1 < 0 && iSize2 != 1)
 			{
-				Error(14);
+				SciError(14);
 				return 0;
 			}
 			
@@ -258,7 +258,7 @@ int matldiv()
 			{
 				if(C2F(errgst).ieee == 0)
 				{
-					Error(27);
+					SciError(27);
 					return 0;
 				}
 				else if(C2F(errgst).ieee == 1)

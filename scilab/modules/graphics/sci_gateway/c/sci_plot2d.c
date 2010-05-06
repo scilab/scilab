@@ -82,18 +82,19 @@ int sci_plot2d( char * fname, unsigned long fname_len )
     iskip=1;
   }
 
-  if ( Rhs == 1 + iskip )       /** plot2d([loglags,] y); **/
-  {
-    if ( FirstOpt() <= Rhs )
-    {
-	    Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"),fname,1, 3+iskip);
-	    return -1;
-    }
+  if (GetType(1+iskip) != sci_matrix) {
+	  Scierror(999, _("%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"), fname, 1+iskip);
+    return 0;
+  }
 
+  if (FirstOpt() == 2+iskip)       				/** plot2d([loglags,] y, <opt_args>); **/
+  {
     GetRhsVar(1+iskip,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
-    CreateVar(2+iskip,MATRIX_OF_DOUBLE_DATATYPE,  &m2, &n2, &l1);
+
     if (m2 == 1 && n2 > 1) { m2 = n2; n2 = 1;}
     m1 = m2;  n1 = n2;
+    CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
+
     for (i = 0; i < m2 ; ++i) 
     {
 	    for (j = 0 ; j < n2 ;  ++j)
@@ -101,22 +102,16 @@ int sci_plot2d( char * fname, unsigned long fname_len )
 	      *stk( l1 + i + m2*j) = (double) i+1;
       }
     }
-  }
-
-  if (Rhs >= 2+iskip)
-  {
-    if ( FirstOpt() < 3+iskip)
-    {
-      Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"), fname,1, 3+iskip);
-      return -1;
-    }
-
-    /** plot2d([loglags,] x,y,....); **/
+  } else if ((FirstOpt() >= 3 + iskip) && (FirstOpt() <= 4 + iskip)) {    /** plot2d([loglags,] x, y, [style], <opt_args>); **/
 
     /* x */
     GetRhsVar(1+iskip,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
 
     /* y */
+    if (GetType(2+iskip) != sci_matrix) {
+	    Scierror(999, _("%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"), fname, 2+iskip);
+      return 0;
+    }
     GetRhsVar(2+iskip,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
 
     test = (m1*n1 == 0)||
@@ -171,6 +166,11 @@ int sci_plot2d( char * fname, unsigned long fname_len )
       if (m2 == 1 && n2 > 1) { m2 = n2; n2 = 1;}
       if (m1 == 1 && n1 > 1) { m1 = n1; n1 = 1;}
     }
+  }
+  else
+  {
+	  Scierror(999, _("%s: Wrong number of mandatory input arguments. %d to %d expected.\n"), fname, 1, 3);
+	  return 0;    
   }
 
   if(n1 == -1 || n2 == -1 || m1 == -1 || m2 == -1)

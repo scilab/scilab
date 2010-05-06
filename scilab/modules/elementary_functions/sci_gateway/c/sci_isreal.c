@@ -92,7 +92,7 @@ int C2F(sci_isreal) (char *fname,unsigned long fname_len)
 
 		if(iType2 != sci_matrix)
 		{
-			Error(53);
+			SciError(53);
 			return 0;
 		}
 

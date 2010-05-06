@@ -22,7 +22,6 @@
 #include "PATH_MAX.h"
 #include "systemc.h"
 #include "tmpdir.h"
-#include "stack-def.h"
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER

@@ -2,6 +2,7 @@
 // Copyright (C) 2004 - INRIA - Serge Steer
 // Copyright (C) 2004-2006 - INRIA - Fabrice Leray
 // Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+// Copyright (C) 2010 - DIGITEO - Manuel Juliachs
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
@@ -13,7 +14,6 @@ function h=%h_load(fd)
   global init_immediate_drawing
   init_immediate_drawing = 0;
 
-  if exists('xload_mode')==0 then xload_mode=%f,end
   version=mget(4,'uc',fd)
 
   // saving/loading character with 'c' is actually quite buggy
@@ -54,6 +54,17 @@ function [h,immediate_drawing] = load_graphichandle(fd)
 //  mprintf('----------------------------- %s ----------------------\n',typ)
   select typ
   case "Figure"
+    xload_mode = %f;
+
+    // Determines whether %h_load has been called by the xload macro
+    // in which case xload_mode is set to true
+    [lnums, fnames] = where();
+    ind = grep(fnames, 'xload');
+
+    if (ind <> []) then
+      xload_mode = %t;
+    end;
+
     if xload_mode then
       h=gcf()
       visible=toggle(mget(1,characterFormat,fd)); // visible

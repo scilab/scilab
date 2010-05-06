@@ -19,9 +19,9 @@
 /*--------------------------------------------------------------------------*/
 typedef struct pipeinfo
 {
-	HANDLE pipe;
-	unsigned char *OutputBuffer;
-	int NumberOfLines;
+    HANDLE pipe;
+    unsigned char *OutputBuffer;
+    int NumberOfLines;
 } pipeinfo;
 /*--------------------------------------------------------------------------*/
 /**

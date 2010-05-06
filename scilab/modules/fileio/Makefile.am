@@ -19,6 +19,7 @@ src/c/mclose.c \
 src/c/meof.c \
 src/c/merror.c \
 src/c/mget.c \
+src/c/mgetl.c \
 src/c/mgeti.c \
 src/c/mgetstr.c \
 src/c/mopen.c \
@@ -78,6 +79,7 @@ sci_gateway/c/sci_mclearerr.c \
 sci_gateway/c/sci_mclose.c \
 sci_gateway/c/sci_merror.c \
 sci_gateway/c/sci_mget.c \
+sci_gateway/c/sci_mgetl.c \
 sci_gateway/c/sci_mgetstr.c \
 sci_gateway/c/sci_moef.c \
 sci_gateway/c/sci_mopen.c \

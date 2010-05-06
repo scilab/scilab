@@ -112,7 +112,7 @@ int C2F(sci_cumsum) (char *fname,unsigned long fname_len)
 		}
 		else
 		{
-			Error(44);
+			SciError(44);
 			return 2;
 		}
 	}
@@ -157,7 +157,7 @@ int C2F(sci_cumsum) (char *fname,unsigned long fname_len)
 		}
 		else
 		{
-			Error(44);
+			SciError(44);
 			return 2;
 		}
 	}

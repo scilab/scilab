@@ -74,14 +74,14 @@ int C2F(sci_nearfloat) (char *fname,unsigned long fname_len)
 	if(iType1 != sci_strings)
 	{
 		Err = 1;
-		Error(55);
+		SciError(55);
 		return 0;
 	}
 
 	if(iType2 != sci_matrix)
 	{
 		Err = 2;
-		Error(53);
+		SciError(53);
 		return 0;
 	}
 
@@ -135,7 +135,7 @@ int C2F(sci_nearfloat) (char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		Error(999);
+		SciError(999);
 		return 0;
 	}
 

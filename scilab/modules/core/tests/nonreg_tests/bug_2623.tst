@@ -22,7 +22,7 @@
 
 errcatch(-1,'pause');
 error(1);
-resume();
+resume;
 
 // enter
 // enter

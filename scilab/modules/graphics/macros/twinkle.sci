@@ -11,18 +11,18 @@ function twinkle(h,n)
 [lhs,rhs]=argn(0)
 if rhs==1 then
   if (type(h)<>9 | size(h,"*")<>1) then
-    error("twinkle: first argument must be a graphics handle")
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Graphic handle expected.\n"), "twinkle", 1));
   end
   n=5;
 elseif rhs==2 then
   if (type(h)<>9 | size(h,"*")<>1) then
-    error("twinkle: first argument must be a graphics handle")
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Graphic handle expected.\n"), "twinkle", 1));
   end
   if (type(n)<>1 | size(n,"*")<>1) then
-    error("twinkle: second argument must be an integer")
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar expected.\n"), "twinkle", 2));
   end	
 else
-  error("function ""twinkle"" must have one or two arguments")
+  error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"), "twinkle", 1, 2));
 end
 
 f=h;

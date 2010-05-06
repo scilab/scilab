@@ -261,7 +261,7 @@ SciErr getStartPosition(int _iPos, int* _piStartPos)
 
 	if(iRows != 1 || iCols != 1)
 	{
-		Error(89);
+		SciError(89);
 	}
 
 	*_piStartPos = (int)pdblReal[0];

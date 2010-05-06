@@ -154,7 +154,7 @@ int C2F(sci_file)(char *fname,unsigned long fname_len)
 			}
 
 			// get lenStVarOne value
-			sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
+			sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, NULL);
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
@@ -182,7 +182,7 @@ int C2F(sci_file)(char *fname,unsigned long fname_len)
 				FREE(pStVarOne); pStVarOne = NULL;
 
 				// get lenStVarThree value
-				sciErr = getMatrixOfString(pvApiCtx, piAddressVarThree, &m3, &n3, &lenStVarThree, &pStVarThree);
+				sciErr = getMatrixOfString(pvApiCtx, piAddressVarThree, &m3, &n3, &lenStVarThree, NULL);
 				if(sciErr.iErr)
 				{
 					printError(&sciErr, 0);

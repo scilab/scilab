@@ -13,23 +13,29 @@
 package org.scilab.modules.graph;
 
 import java.awt.AlphaComposite;
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Composite;
 import java.awt.Image;
+import java.awt.Paint;
+import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.Stroke;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import java.io.File;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Map;
 
 import javax.swing.Icon;
 
 import org.apache.batik.ext.awt.RenderingHintsKeyExt;
 import org.apache.batik.gvt.GraphicsNode;
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.utils.MathMLRenderUtils;
 import org.scilab.modules.graph.utils.ScilabConstants;
 import org.scilab.modules.graph.utils.ScilabGraphUtils;
@@ -38,6 +44,7 @@ import org.xml.sax.SAXException;
 
 import com.mxgraph.swing.view.mxInteractiveCanvas;
 import com.mxgraph.util.mxConstants;
+import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxUtils;
 
 /**
@@ -51,17 +58,17 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 	public static final int ROTATION_STEP = 90;
 	/** The max valid rotation value (always 360°) */
 	public static final int MAX_ROTATION = 360;
-	
+
 	private static final int OPACITY_MAX = 100;
-	
+
 	/** The border ratio between the background image and the icon image */
 	private static final double BORDER_RATIO = 0.9;
-	
+
 	private URL svgBackgroundImage; 
-	
+
 	/** Default constructor */
 	public ScilabCanvas() { }
-	
+
 	/**
 	 * @param svgBackgroundImage the svgBackgroundImage to set
 	 */
@@ -94,7 +101,7 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 		int yy = y;
 		int hh = h;
 		int ww = w;
-		
+
 		if (g != null) {
 			xx += translate.x;
 			yy += translate.y;
@@ -113,7 +120,7 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 					// x - h / 2, y - w / 2, h, w
 					xx = xx + (ww / 2) - (hh / 2);
 					yy = yy + (hh / 2) - (ww / 2);
-					
+
 					ww = h;
 					hh = w;
 				}
@@ -216,15 +223,15 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 			}
 		}
 	}
-	
-    /**
-     * test if the angle correspond to the NORTH or SOUTH sides.
-     * @param angle The rotation value
-     * @return true if the angle is NORTH or SOUTH side value, false otherwise.
-     */
-    private static boolean isNearHorizontalSide(double angle) {
-    	return ((angle - ROTATION_STEP) % (MAX_ROTATION / 2)) == 0;
-    }
+
+	/**
+	 * test if the angle correspond to the NORTH or SOUTH sides.
+	 * @param angle The rotation value
+	 * @return true if the angle is NORTH or SOUTH side value, false otherwise.
+	 */
+	private static boolean isNearHorizontalSide(double angle) {
+		return ((angle - ROTATION_STEP) % (MAX_ROTATION / 2)) == 0;
+	}
 
 	/**
 	 * Draws the specified markup.
@@ -242,21 +249,21 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 	 * @param style
 	 *            Style to be used for painting the text.
 	 */
-    @Override
-    protected void drawHtmlText(String text, int x, int y, int w, int h,
-    		Map<String, Object> style) {
+	@Override
+	protected void drawHtmlText(String text, int x, int y, int w, int h,
+			Map<String, Object> style) {
 
-    	SupportedLabelType type = SupportedLabelType.getFromText(text);
-    	
-    	switch (type) {
+		SupportedLabelType type = SupportedLabelType.getFromText(text);
+
+		switch (type) {
 		case Latex:
 			try {
 				drawLatexText(ScilabGraphUtils.getTexIcon(text), x, y, w, h, style);
-	    	} catch (RuntimeException e) {
+			} catch (RuntimeException e) {
 				super.drawHtmlText(text, x, y, w, h, style);
-	    	}
+			}
 			break;
-			
+
 		case MathML:
 			try {
 				drawMathMLText(MathMLRenderUtils.getMathMLComponent(text), x, y, w, h, style);
@@ -267,9 +274,9 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 
 		default:
 			super.drawHtmlText(text, x, y, w, h, style);
-			break;
+		break;
 		}
-    }
+	}
 
 	/**
 	 * Draws the specified Latex markup
@@ -299,7 +306,7 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 			}
 		}
 	}
-	
+
 	/**
 	 * Draws the specified MathML markup
 	 * 
@@ -316,7 +323,7 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 		if (rendererPane != null) {
 			if (g.hitClip(x, y, w, h)) {
 				AffineTransform at = g.getTransform();
-				
+
 				g.scale(scale, scale);
 				Color text = mxUtils.getColor(style, mxConstants.STYLE_FONTCOLOR, Color.BLACK);
 				rendererPane.setForeground(text);
@@ -324,7 +331,7 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 						(int) (x / scale) + mxConstants.LABEL_INSET,
 						(int) (y / scale) + mxConstants.LABEL_INSET,
 						(int) (w / scale), (int) (h / scale), true);
-				
+
 				// Restores the previous transformation
 				g.setTransform(at);
 			}
@@ -356,12 +363,12 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 		if (image.endsWith(".svg")) {
 			// Translate from (0,0) to icon base point.
 			g.translate(x, y);
-			
+
 			// Paint the background image if applicable
 			if (svgBackgroundImage != null) {
 				paintSvgBackgroundImage(w, h);
 			}
-			
+
 			paintSvgForegroundImage(w, h, image);
 		} else {
 			super.drawImage(x, y, w, h, image);
@@ -376,12 +383,12 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 	 */
 	private void paintSvgBackgroundImage(int w, int h) {
 		GraphicsNode background = ScilabGraphUtils
-				.getSVGComponent(new File(svgBackgroundImage.toString()));
-		
+				.getSVGComponent(svgBackgroundImage);
+
 		if (background == null) {
 			return;
 		}
-		
+
 		// Remove the "Graphics2D from BufferedImage lacks BUFFERED_IMAGE hint"
 		// message and tweak Batik rendering options to increase performance.
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
@@ -390,24 +397,24 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 				RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
 		g.setRenderingHint(RenderingHintsKeyExt.KEY_TRANSCODING,
 				RenderingHintsKeyExt.VALUE_TRANSCODING_PRINTING);
-		
+
 		// Scale to the bounds
 		Rectangle2D bounds = background.getBounds();
-		
+
 		double sh = h / bounds.getHeight();
 		double sw = w / bounds.getWidth();
-		
+
 		AffineTransform scaleTransform = new AffineTransform(new double[] {
-		          sw,   0.0,
-		         0.0,     sh
+				sw,   0.0,
+				0.0,     sh
 		});
-		
+
 		background.setTransform(scaleTransform);
-		
+
 		// Paint
 		background.paint(g);
 	}
-	
+
 	/**
 	 * Paint the foreground image.
 	 * 
@@ -421,28 +428,34 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 		/*
 		 * Fetch SVG file representation
 		 */
-		File f = new File(image);
-		GraphicsNode icon = ScilabGraphUtils.getSVGComponent(f);
-		
+		URL url;
+		try {
+			url = new URL(image);
+		} catch (MalformedURLException e) {
+			LogFactory.getLog(ScilabCanvas.class).error(e);
+			return;
+		}
+		GraphicsNode icon = ScilabGraphUtils.getSVGComponent(url);
+
 		if (icon == null || icon.getBounds() == null) {
 			return;
 		}
-		
+
 		/*
 		 * Perform calculations
 		 */
-		
+
 		// Iso scale to the bounds - border size
 		Rectangle2D bounds = icon.getBounds();
-		
+
 		// Calculating icon bordered bounds
 		final double ih = bounds.getHeight();
 		final double iw = bounds.getWidth(); 
-		
+
 		// Calculate per axis scaling factor
 		final double shFactor = h / ih;
 		final double swFactor = w / iw;
-		
+
 		// Calculate the default ratio (iso scaling)
 		double ratio;
 		if (shFactor > swFactor) {
@@ -453,19 +466,19 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 
 		// Adding borders
 		ratio *= BORDER_RATIO;
-		
+
 		// Translate the icon origin to the drawing origin.
 		double tx = -bounds.getX() * ratio;
 		double ty = -bounds.getY() * ratio;
-		
+
 		// Calculate scaled height and width
 		final double sh = ratio * ih;
 		final double sw = ratio * iw;
-		
+
 		// Center the image on the block
 		tx += (w - sw) / 2;
 		ty += (h - sh) / 2;
-		
+
 		/*
 		 * Everything has been calculated, render now.
 		 */
@@ -475,9 +488,78 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 
 		// scale to the ratio
 		g.scale(ratio, ratio);
-				
+
 		// Paint
 		icon.paint(g);
+	}
+
+	/**
+	 * Draws the given lines as segments between all points of the given list
+	 * of mxPoints.
+	 * 
+	 * @param pts List of points that define the line.
+	 * @param style Style to be used for painting the line.
+	 */
+
+	public void drawLine(List<mxPoint> pts, Map<String, Object> style) {
+		Color penColor = mxUtils.getColor(style, mxConstants.STYLE_STROKECOLOR, Color.black);
+		float penWidth = mxUtils.getFloat(style, mxConstants.STYLE_STROKEWIDTH, 1);
+
+		if (penColor != null && penWidth > 0) {
+
+			// Draws the shape
+
+			String shape = mxUtils.getString(style, mxConstants.STYLE_SHAPE, "");
+
+			if (shape.equals(mxConstants.SHAPE_ARROW)) {
+				if (mxUtils.isTrue(style, mxConstants.STYLE_DASHED, false)) {
+					g.setStroke(new BasicStroke((float) (penWidth * scale),
+							BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER,
+							10.0f, new float[] {(float) (3 * scale),
+							(float) (3 * scale)}, 0.0f));
+				} else {
+					g.setStroke(new BasicStroke((float) (penWidth * scale)));
+				}
+
+				// Base vector (between end points)
+
+				mxPoint p0 = pts.get(0);
+				mxPoint pe = pts.get(pts.size() - 1);
+
+				Rectangle bounds = new Rectangle(p0.getPoint());
+				bounds.add(pe.getPoint());
+
+				Color fillColor = mxUtils.getColor(style, mxConstants.STYLE_FILLCOLOR);
+
+				Paint fillPaint = getFillPaint(bounds, fillColor, style);
+
+				boolean shadow = mxUtils.isTrue(style, mxConstants.STYLE_SHADOW, false);
+
+				drawArrow(pts, fillColor, fillPaint, penColor, shadow);
+
+			} else {
+
+				Object startMarker = style.get(mxConstants.STYLE_STARTARROW);
+				Object endMarker = style.get(mxConstants.STYLE_ENDARROW);
+
+				float startSize = (float) (mxUtils.getFloat(style, mxConstants.STYLE_STARTSIZE, mxConstants.DEFAULT_MARKERSIZE));
+				float endSize = (float) (mxUtils.getFloat(style, mxConstants.STYLE_ENDSIZE, mxConstants.DEFAULT_MARKERSIZE));
+				float centerSize = (float) (mxUtils.getFloat(style, ScilabConstants.STYLE_CENTERSIZE,
+						mxConstants.DEFAULT_MARKERSIZE));
+
+				boolean rounded = mxUtils.isTrue(style, mxConstants.STYLE_ROUNDED, false);
+				boolean dashed = mxUtils.isTrue(style, mxConstants.STYLE_DASHED, false);
+				
+				drawConnector(pts, penWidth, penColor, startMarker, startSize, endMarker, endSize, dashed, rounded);
+				Object centerMarker = style.get(ScilabConstants.STYLE_CENTERARROW);
+
+				if (centerMarker != null) {
+					double x = (pts.get(pts.size() - 2).getX() + pts.get(1).getX()) / 2.0;
+					double y = (pts.get(pts.size() - 2).getY() + pts.get(1).getY()) / 2.0;
+					drawMarker(centerMarker, pts.get(1), new mxPoint(x, y), centerSize, penWidth);
+				}
+			}
+		}
 	}
 }
 

@@ -57,7 +57,7 @@ int C2F(sci_log1p) (char *fname,unsigned long fname_len)
 
 	if(isVarComplex(pvApiCtx, piAddr))
 	{
-		Error(43);
+		SciError(43);
 		return 0;
 	}
 	else
@@ -75,7 +75,7 @@ int C2F(sci_log1p) (char *fname,unsigned long fname_len)
 			{
 				if(C2F(errgst).ieee == 0)
 				{
-					Error(32);
+					SciError(32);
 					return 0;
 				}
 				else if(C2F(errgst).ieee == 1)

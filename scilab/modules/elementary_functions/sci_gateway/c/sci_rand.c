@@ -89,7 +89,7 @@ int C2F(sci_rand) (char *fname,unsigned long fname_len)
 				CheckRhs(2,2);
 				if(GetType(2) != sci_matrix)
 				{
-					Error(53);
+					SciError(53);
 					return 0;
 				}
 

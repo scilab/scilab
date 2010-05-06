@@ -17,5 +17,4 @@ stacksize(1e8)
 p=1:9000000;
 q=9000000:-1:1;
 plot2d(p,q)   
-DrawableObjectJoGL::endDrawing: No more memory.
 // scilab should display an error message, but not crash.

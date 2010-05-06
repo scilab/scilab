@@ -54,7 +54,7 @@ int C2F(sci_number_properties) (char *fname,unsigned long fname_len)
 	if(iType != sci_strings)
 	{
 		Err = 1;
-		Error(55);
+		SciError(55);
 		return 0;
 	}
 
@@ -134,7 +134,7 @@ int C2F(sci_number_properties) (char *fname,unsigned long fname_len)
 	else
 	{
 		sciprint(_("%s: unknown property kind.\n"), fname);
-		Error(999);
+		SciError(999);
 		return 0;
 	}
 

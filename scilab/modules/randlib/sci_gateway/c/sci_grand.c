@@ -208,7 +208,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
 
 	      if (! set_initial_seed_clcg4(*stk(l1),*stk(l2), *stk(l3), *stk(l4)) )
 		{   /* => seeds were not good  (info is displayed by the function) */
-		  Error(999);return 0;
+		  SciError(999);return 0;
 		}
 	      LhsVar(1) = 1;
 	      PutLhsVar();
@@ -226,9 +226,9 @@ int sci_Rand(char *fname,unsigned long fname_len)
 		}
 	      GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
 	      if ( m1*n1 == 1)          /* simple init of mt     */
-		{ if (! set_state_mt_simple(*stk(l1)) ) {Error(999); return(0);}; }
+		{ if (! set_state_mt_simple(*stk(l1)) ) {SciError(999); return(0);}; }
 	      else if ( m1*n1 == 625 )  /* init of all the state */
-		{ if (! set_state_mt(stk(l1))) {Error(999); return(0);}; }
+		{ if (! set_state_mt(stk(l1))) {SciError(999); return(0);}; }
 	      else
 		{
 			Scierror(999,_("%s: Wrong values for input argument: Vector of %d or %d values for %s expected.\n"),fname,1, 625,"mt");
@@ -245,7 +245,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
 		      Scierror(999,_("%s: Wrong size for second input argument: %dx%d expected.\n"),fname,40,1);
 		      return 0;
 		    };
-		  if (! set_state_fsultra(stk(l1)) ) {Error(999); return(0);};
+		  if (! set_state_fsultra(stk(l1)) ) {SciError(999); return(0);};
 		}
 	      else if ( Rhs == 3 ) /* init with 2 integers (like before) */
 		{
@@ -255,7 +255,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
 		  GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l2);
 		  if ( m1*n1 != 1)
 		    { Scierror(999,_("%s: Wrong type for third input argument: Scalar expected.\n"),fname); return 0;};
-		  if (! set_state_fsultra_simple(*stk(l1),*stk(l2)) ) {Error(999); return(0);};
+		  if (! set_state_fsultra_simple(*stk(l1),*stk(l2)) ) {SciError(999); return(0);};
 		}
 	      else
 		{
@@ -284,10 +284,10 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	      if ( m1*n1 != 1)
 		{ Scierror(999,_("%s: Wrong type for fifth input argument: Scalar expected.\n"),fname); return 0;}
 	      if (current_gen == KISS)
-		{if (! set_state_kiss(*stk(l1),*stk(l2),*stk(l3),*stk(l4))) {Error(999); return 0;};}
+		{if (! set_state_kiss(*stk(l1),*stk(l2),*stk(l3),*stk(l4))) {SciError(999); return 0;};}
 	      else
 		{if (! set_seed_clcg4(current_clcg4,*stk(l1),*stk(l2),*stk(l3),*stk(l4)))
-		  {Error(999); return 0;};}
+		  {SciError(999); return 0;};}
 	      break;
 
 	    case(CLCG2) :
@@ -303,7 +303,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	      if ( m1*n1 != 1)
 		{ Scierror(999,_("%s: Wrong type for third input argument: Scalar expected.\n"),fname); return 0;};
 	      if (! set_state_clcg2(*stk(l1),*stk(l2)))
-		{ Error(999); return 0;};
+		{ SciError(999); return 0;};
 	      break;
 
 	    case(URAND) :
@@ -316,7 +316,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	      if ( m1*n1 != 1)
 		{ Scierror(999,_("%s: Wrong type for second input argument: Scalar expected.\n"),fname); return 0;};
 	      if (! set_state_urand(*stk(l1)))
-		{Error(999); return 0;};
+		{SciError(999); return 0;};
 	      break;
 	    };
 	  LhsVar(1) = 0;
@@ -815,7 +815,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
       C2F(setgmn)(stk(la),stk(lb),&m2,&m1,stk(parm),&ierr);
       if ( ierr == 1)
 	{
-	  Error(999);return 0;
+	  SciError(999);return 0;
 	}
       for ( i=0 ; i < nn ; i++)
 	{

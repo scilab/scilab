@@ -170,7 +170,7 @@ int sum_matrix(int _iMode)
 		iReturnCols	= 1;
 		break;
 	default :
-		Error(17);
+		SciError(17);
 		return 0;
 	}
 

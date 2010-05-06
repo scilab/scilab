@@ -86,20 +86,21 @@ function gateway_filename = ilib_gen_gateway(name,tables)
           '  return 0;';
           '}'];
 
-	  gateway_filename = path + tname + '.c';
-    // first chek if we already have a gateway 
-    [fd,ierr] = mopen(gateway_filename);
+    gateway_filename = path + tname + '.c';
+    // first check if we have already a gateway 
+    [fd, ierr] = mopen(gateway_filename, 'rt');
     if ierr == 0 then
+      // file already exists
+      t1 = mgetl(fd);
       mclose(fd);
-      t1 = mgetl(gateway_filename);
-      if t1 <> t then 
-	      mputl(t, gateway_filename);    
+      if or(t1 <> t) then
+        mputl(t, gateway_filename);
       end
     else
        // file does not exist we create it 
        mputl(t, gateway_filename) ;   
     end
-    
+
     if ilib_verbose() > 1 then
       disp(t);
     end

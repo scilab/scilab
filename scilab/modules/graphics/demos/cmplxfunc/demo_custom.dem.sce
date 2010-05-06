@@ -1,3 +1,8 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - DIGITEO
+//
+// This file is released into the public domain
+
 funcprot(0);
 
 function demo_custom()

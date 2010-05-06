@@ -33,7 +33,7 @@ import com.mxgraph.model.mxCell;
 public class BasicBlockCodec extends XcosObjectCodec {
 
 	private static final String SIMULATION_FUNCTION_TYPE = "simulationFunctionType";
-	private static final String[] SIMULATION_FUNCTION_TYPE_ARRAY = new String[] {SIMULATION_FUNCTION_TYPE};
+	private static final String[] IGNORED_FIELDS = new String[] {SIMULATION_FUNCTION_TYPE, "locked"};
 
 	/**
 	 * The constructor used on for configuration
@@ -54,31 +54,35 @@ public class BasicBlockCodec extends XcosObjectCodec {
 	public static void register() {
 		XcosObjectCodec textBlockCodec = new BasicBlockCodec(
 				BlockInterFunction.TEXT_f.getSharedInstance(),
-				SIMULATION_FUNCTION_TYPE_ARRAY, REFS, null);
+				IGNORED_FIELDS, REFS, null);
 		mxCodecRegistry.register(textBlockCodec);
 		XcosObjectCodec basicBlockCodec = new BasicBlockCodec(new BasicBlock(),
-				SIMULATION_FUNCTION_TYPE_ARRAY, REFS, null);
+				IGNORED_FIELDS, REFS, null);
 		mxCodecRegistry.register(basicBlockCodec);
 		XcosObjectCodec constBlockCodec = new BasicBlockCodec(
 				BlockInterFunction.CONST.getSharedInstance(),
-				SIMULATION_FUNCTION_TYPE_ARRAY, REFS, null);
+				IGNORED_FIELDS, REFS, null);
 		mxCodecRegistry.register(constBlockCodec);
 		XcosObjectCodec afficheBlockCodec = new BasicBlockCodec(
 				BlockInterFunction.AFFICH_f.getSharedInstance(),
-				SIMULATION_FUNCTION_TYPE_ARRAY, REFS, null);
+				IGNORED_FIELDS, REFS, null);
 		mxCodecRegistry.register(afficheBlockCodec);
 		XcosObjectCodec superBlockCodec = new BasicBlockCodec(
 				BlockInterFunction.SUPER_f.getSharedInstance(),
-				SIMULATION_FUNCTION_TYPE_ARRAY, REFS, null);
+				IGNORED_FIELDS, REFS, null);
 		mxCodecRegistry.register(superBlockCodec);
 		XcosObjectCodec gainBlockCodec = new BasicBlockCodec(
 				BlockInterFunction.GAIN_f.getSharedInstance(),
-				SIMULATION_FUNCTION_TYPE_ARRAY, REFS, null);
+				IGNORED_FIELDS, REFS, null);
 		mxCodecRegistry.register(gainBlockCodec);
 		XcosObjectCodec splitBlockCodec = new BasicBlockCodec(
 				BlockInterFunction.SPLIT_f.getSharedInstance(),
-				SIMULATION_FUNCTION_TYPE_ARRAY, REFS, null);
+				IGNORED_FIELDS, REFS, null);
 		mxCodecRegistry.register(splitBlockCodec);
+		XcosObjectCodec roundBlockCodec = new BasicBlockCodec(
+				BlockInterFunction.SUM_f.getSharedInstance(),
+				IGNORED_FIELDS, REFS, null);
+		mxCodecRegistry.register(roundBlockCodec);
 		XcosObjectCodec cellCodec = new XcosObjectCodec(new mxCell(), null,
 				REFS, null);
 		mxCodecRegistry.register(cellCodec);

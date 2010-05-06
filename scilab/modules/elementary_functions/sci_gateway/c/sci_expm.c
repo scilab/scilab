@@ -166,7 +166,7 @@ int C2F(sci_expm) (char *fname,unsigned long fname_len)
 
 	if(iRows != iCols)
 	{
-		Error(2);
+		SciError(2);
 		return 0;
 	}
 

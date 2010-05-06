@@ -38,20 +38,20 @@ int C2F(sci_tril) (char *fname,unsigned long fname_len)
 	{//Get offset
 		if(GetType(2) != sci_matrix)
 		{
-			Error(53);
+			SciError(53);
 			return 0;
 		}
 
 		if(iIsComplex(2))
 		{
-			Error(52);
+			SciError(52);
 			return 0;
 		}
 
 		GetVarDimension(2, &iRows, &iCols);
 		if(iRows * iCols != 1)
 		{
-			Error(89);
+			SciError(89);
 			return 0;
 		}
 

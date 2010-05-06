@@ -85,7 +85,6 @@ lib /DEF:&quot;$(InputDir)output_stream_f_Import.def&quot; /SUBSYSTEM:WINDOWS /M
 		<File RelativePath=".\io_f.rc"/></Filter>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath="..\..\sci_gateway\fortran\intfile.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\intmgetl.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\intrat.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\intread.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\intread4b.f"/>

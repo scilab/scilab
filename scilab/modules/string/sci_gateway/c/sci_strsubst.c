@@ -1,4 +1,3 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Cong WU , Allan CORNET
@@ -98,7 +97,7 @@ int sci_strsubst(char *fname,unsigned long fname_len)
 				return 0;
 			}
 
-			sciErr = getMatrixOfString(pvApiCtx, piAddressVarFour,&mFour,&nFour,&lenStVarFour,&pStVarFour);
+			sciErr = getMatrixOfString(pvApiCtx, piAddressVarFour,&mFour,&nFour, NULL, NULL);
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
@@ -169,7 +168,7 @@ int sci_strsubst(char *fname,unsigned long fname_len)
 		}
 
 		// checks dimension 3th input argument
-		sciErr = getMatrixOfString(pvApiCtx, piAddressVarThree,&mThree,&nThree,&lenStVarThree,&pStVarThree);
+		sciErr = getMatrixOfString(pvApiCtx, piAddressVarThree,&mThree,&nThree,&lenStVarThree, NULL);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -205,7 +204,7 @@ int sci_strsubst(char *fname,unsigned long fname_len)
 		}
 
 		// checks dimension 2nd input argument
-		sciErr = getMatrixOfString(pvApiCtx, piAddressVarTwo,&mTwo,&nTwo,&lenStVarTwo,&pStVarTwo);
+		sciErr = getMatrixOfString(pvApiCtx, piAddressVarTwo,&mTwo,&nTwo,&lenStVarTwo, NULL);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -234,7 +233,7 @@ int sci_strsubst(char *fname,unsigned long fname_len)
 		}
 
 		// get length 3th input argument
-		sciErr = getMatrixOfString(pvApiCtx, piAddressVarThree, &mThree, &nThree, &lenStVarThree, &pStVarThree);
+		sciErr = getMatrixOfString(pvApiCtx, piAddressVarThree, &mThree, &nThree, &lenStVarThree, NULL);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -253,7 +252,7 @@ int sci_strsubst(char *fname,unsigned long fname_len)
 			}
 
 			// get length 2nd input argument
-			sciErr = getMatrixOfString(pvApiCtx, piAddressVarTwo, &mTwo, &nTwo, &lenStVarTwo, &pStVarTwo);
+			sciErr = getMatrixOfString(pvApiCtx, piAddressVarTwo, &mTwo, &nTwo, &lenStVarTwo, NULL);
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
@@ -271,7 +270,7 @@ int sci_strsubst(char *fname,unsigned long fname_len)
 					return 0;
 				}
 
-				sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&mOne,&nOne,lenStVarOne,pStVarOne);
+				sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&mOne,&nOne,lenStVarOne, NULL);
 				if(sciErr.iErr)
 				{
 					printError(&sciErr, 0);
@@ -281,7 +280,7 @@ int sci_strsubst(char *fname,unsigned long fname_len)
 				lenStVarOne = (int *)MALLOC(sizeof(int) * (mOne * nOne));
 				if (lenStVarOne)
 				{
-					sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&mOne,&nOne,lenStVarOne,pStVarOne);
+					sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&mOne,&nOne,lenStVarOne, NULL);
 					if(sciErr.iErr)
 					{
 						printError(&sciErr, 0);
