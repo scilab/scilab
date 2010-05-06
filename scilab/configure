@@ -11298,7 +11298,7 @@ $as_echo_n "checking jgraphx... " >&6; }
 	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/jgraphx.jar" "$jardir/libjgraphx.jar" "$jardir/libjgraphx-java.jar" "$jardir/jgraphx*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -11463,7 +11463,7 @@ $as_echo_n "checking flexdock... " >&6; }
 	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/flexdock.jar" "$jardir/libflexdock.jar" "$jardir/libflexdock-java.jar" "$jardir/flexdock*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -11570,7 +11570,7 @@ $as_echo_n "checking looks... " >&6; }
 	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/looks.jar" "$jardir/liblooks.jar" "$jardir/liblooks-java.jar" "$jardir/looks*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -11677,7 +11677,7 @@ $as_echo_n "checking jgoodies-looks... " >&6; }
 	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/jgoodies-looks.jar" "$jardir/libjgoodies-looks.jar" "$jardir/libjgoodies-looks-java.jar" "$jardir/jgoodies-looks*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -11785,7 +11785,7 @@ $as_echo_n "checking skinlf... " >&6; }
 	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/skinlf.jar" "$jardir/libskinlf.jar" "$jardir/libskinlf-java.jar" "$jardir/skinlf*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -11892,7 +11892,7 @@ $as_echo_n "checking jogl... " >&6; }
 	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/jogl.jar" "$jardir/libjogl.jar" "$jardir/libjogl-java.jar" "$jardir/jogl*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -12102,7 +12102,7 @@ $as_echo_n "checking gluegen-rt... " >&6; }
 	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/gluegen-rt.jar" "$jardir/libgluegen-rt.jar" "$jardir/libgluegen-rt-java.jar" "$jardir/gluegen-rt*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -12264,7 +12264,7 @@ $as_echo_n "checking jhall... " >&6; }
 	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/jhall.jar" "$jardir/libjhall.jar" "$jardir/libjhall-java.jar" "$jardir/jhall*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -12371,7 +12371,7 @@ $as_echo_n "checking javahelp2... " >&6; }
 	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/javahelp2.jar" "$jardir/libjavahelp2.jar" "$jardir/libjavahelp2-java.jar" "$jardir/javahelp2*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -12479,7 +12479,7 @@ $as_echo_n "checking jrosetta-API... " >&6; }
 	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/jrosetta-API.jar" "$jardir/libjrosetta-API.jar" "$jardir/libjrosetta-API-java.jar" "$jardir/jrosetta-API*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -12586,7 +12586,7 @@ $as_echo_n "checking jrosetta-engine... " >&6; }
 	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/jrosetta-engine.jar" "$jardir/libjrosetta-engine.jar" "$jardir/libjrosetta-engine-java.jar" "$jardir/jrosetta-engine*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -12695,7 +12695,7 @@ $as_echo_n "checking jeuclid-core... " >&6; }
 	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/jeuclid-core.jar" "$jardir/libjeuclid-core.jar" "$jardir/libjeuclid-core-java.jar" "$jardir/jeuclid-core*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -12804,7 +12804,7 @@ $as_echo_n "checking fop... " >&6; }
 	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/fop.jar" "$jardir/libfop.jar" "$jardir/libfop-java.jar" "$jardir/fop*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -12911,7 +12911,7 @@ $as_echo_n "checking batik-all... " >&6; }
 	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/batik-all.jar" "$jardir/libbatik-all.jar" "$jardir/libbatik-all-java.jar" "$jardir/batik-all*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -13018,7 +13018,7 @@ $as_echo_n "checking batik... " >&6; }
 	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/batik.jar" "$jardir/libbatik.jar" "$jardir/libbatik-java.jar" "$jardir/batik*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -13183,7 +13183,7 @@ $as_echo_n "checking commons-io... " >&6; }
 	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/commons-io.jar" "$jardir/libcommons-io.jar" "$jardir/libcommons-io-java.jar" "$jardir/commons-io*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -13290,7 +13290,7 @@ $as_echo_n "checking xmlgraphics-commons... " >&6; }
 	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/xmlgraphics-commons.jar" "$jardir/libxmlgraphics-commons.jar" "$jardir/libxmlgraphics-commons-java.jar" "$jardir/xmlgraphics-commons*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -13397,7 +13397,7 @@ $as_echo_n "checking avalon-framework... " >&6; }
 	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/avalon-framework.jar" "$jardir/libavalon-framework.jar" "$jardir/libavalon-framework-java.jar" "$jardir/avalon-framework*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -13504,7 +13504,7 @@ $as_echo_n "checking xml-apis-ext... " >&6; }
 	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/xml-apis-ext.jar" "$jardir/libxml-apis-ext.jar" "$jardir/libxml-apis-ext-java.jar" "$jardir/xml-apis-ext*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -13611,7 +13611,7 @@ $as_echo_n "checking xml-commons-apis-ext... " >&6; }
 	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/xml-commons-apis-ext.jar" "$jardir/libxml-commons-apis-ext.jar" "$jardir/libxml-commons-apis-ext-java.jar" "$jardir/xml-commons-apis-ext*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -13724,7 +13724,7 @@ $as_echo_n "checking jhdf5... " >&6; }
 	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/jhdf5.jar" "$jardir/libjhdf5.jar" "$jardir/libjhdf5-java.jar" "$jardir/jhdf5*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -13832,7 +13832,7 @@ $as_echo_n "checking commons-logging... " >&6; }
 	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/commons-logging.jar" "$jardir/libcommons-logging.jar" "$jardir/libcommons-logging-java.jar" "$jardir/commons-logging*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -13939,7 +13939,7 @@ $as_echo_n "checking jlatexmath... " >&6; }
 	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/jlatexmath.jar" "$jardir/libjlatexmath.jar" "$jardir/libjlatexmath-java.jar" "$jardir/jlatexmath*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -14110,7 +14110,7 @@ $as_echo_n "checking checkstyle... " >&6; }
 	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/checkstyle.jar" "$jardir/libcheckstyle.jar" "$jardir/libcheckstyle-java.jar" "$jardir/checkstyle*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -14217,7 +14217,7 @@ $as_echo_n "checking commons-beanutils... " >&6; }
 	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/commons-beanutils.jar" "$jardir/libcommons-beanutils.jar" "$jardir/libcommons-beanutils-java.jar" "$jardir/commons-beanutils*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -14324,7 +14324,7 @@ $as_echo_n "checking antlr... " >&6; }
 	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/antlr.jar" "$jardir/libantlr.jar" "$jardir/libantlr-java.jar" "$jardir/antlr*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -14431,7 +14431,7 @@ $as_echo_n "checking testng... " >&6; }
 	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/testng.jar" "$jardir/libtestng.jar" "$jardir/libtestng-java.jar" "$jardir/testng*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -14538,7 +14538,7 @@ $as_echo_n "checking qdox... " >&6; }
 	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/qdox.jar" "$jardir/libqdox.jar" "$jardir/libqdox-java.jar" "$jardir/qdox*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -14645,7 +14645,7 @@ $as_echo_n "checking bsh... " >&6; }
 	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/bsh.jar" "$jardir/libbsh.jar" "$jardir/libbsh-java.jar" "$jardir/bsh*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -14752,7 +14752,7 @@ $as_echo_n "checking junit... " >&6; }
 	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/junit.jar" "$jardir/libjunit.jar" "$jardir/libjunit-java.jar" "$jardir/junit*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -23895,7 +23895,7 @@ $as_echo_n "checking saxon... " >&6; }
 	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/saxon.jar" "$jardir/libsaxon.jar" "$jardir/libsaxon-java.jar" "$jardir/saxon*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -24002,7 +24002,7 @@ $as_echo_n "checking jlatexmath-fop... " >&6; }
 	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/jlatexmath-fop.jar" "$jardir/libjlatexmath-fop.jar" "$jardir/libjlatexmath-fop-java.jar" "$jardir/jlatexmath-fop*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`

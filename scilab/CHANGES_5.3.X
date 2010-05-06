@@ -155,6 +155,8 @@ Compilation:
 
 * Add a check of the minimal installations of hdf5 (1.8.4), batik (1.7)
 
+* /usr/share/*/lib added to the Java search path for OpenSuse
+
 * bug 6643 fixed - --without-gui failed to disable Ocaml build (A xcos 
                    dependency)
 
