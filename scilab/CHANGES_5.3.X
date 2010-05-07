@@ -284,6 +284,8 @@ Bug fixes:
 
 * bug 1304 fixed - macr2tree now works with a Scilab expression as input.
 
+* bug 2076 fixed - pspect did not use the last data window.
+
 * bug 2654 partially fixed - exec returned a wrong error if line had more 
                    than 4096 characters.
 
