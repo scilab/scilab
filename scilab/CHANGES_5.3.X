@@ -326,6 +326,8 @@ Bug fixes:
 * bug 5630 fixed - export_to_hdf5 to a file with a directory named 
                    the same altered the permission of the directory.
 
+* bug 5724 fixed - erfinv and erf missed references to similar functions
+
 * bug 6332 fixed - stacksize had problems on Mac OS X and 64 bit platforms.
 
 * bug 6419 fixed - gstacksize() There was no way to retrieve minimum 
