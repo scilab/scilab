@@ -82,7 +82,7 @@ int sci_pathconvert(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-		sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarFour, &m4, &n4, &lenStVarFour, &pStVarFour);
+		sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarFour, &m4, &n4, &lenStVarFour, NULL);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -291,7 +291,7 @@ int sci_pathconvert(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-		sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+		sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, NULL);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
