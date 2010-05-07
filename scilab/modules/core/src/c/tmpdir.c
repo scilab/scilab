@@ -42,7 +42,7 @@ extern  char  *getenv();
 #include "createdirectory.h"
 /*--------------------------------------------------------------------------*/
 static char tmp_dir[PATH_MAX+FILENAME_MAX+1];
-static int first = 0;
+static int alreadyCreated = 0;
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 void createScilabTMPDIR(void)
@@ -101,16 +101,17 @@ void createScilabTMPDIR(void)
 	}
 }
 #else
+
 void createScilabTMPDIR(void)
 {
-	if ( first == 0 ) 
+	if ( alreadyCreated == 0 ) 
 	{
 		static char bufenv[PATH_MAX + 16];
-		first++;
+		alreadyCreated++;
 
 #ifdef __APPLE__
-                /* /tmp is a symbolic link to /private/tmp under MacOS */
-                realpath("/tmp/", tmp_dir);
+        /* /tmp is a symbolic link to /private/tmp under MacOS */
+        realpath("/tmp/", tmp_dir);
 		sprintf(tmp_dir,"%s/SD_%d_",tmp_dir, (int) getpid());
 #else
 		sprintf(tmp_dir,"/tmp/SD_%d_",(int) getpid());
