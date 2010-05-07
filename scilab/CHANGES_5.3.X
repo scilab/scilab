@@ -187,6 +187,8 @@ Localization:
   Sebastian Sławski, Kamil Dąbrowsk, Kamil Strojek, Kamil Dąbrowski,
   Michał Snoc, Piotr Seroka...
 
+* bug 3069 fixed - In some cases, the function gettext was returning \"
+
 * bug 7059 fixed - Remove the tag X-Launchpad-Export-Date to avoid huge and
                    useless diff after a launchpad synchronization
 
