@@ -439,3 +439,6 @@ Bug fixes:
 
 * bug 7033 fixed - newfun was randomly crashing (mostly on 32 bits) writing to unallocated memory.
 
+* bug 7057 fixed - isdigit and isalphanum crashed with a matrix of string
+                   as input argument.
+
