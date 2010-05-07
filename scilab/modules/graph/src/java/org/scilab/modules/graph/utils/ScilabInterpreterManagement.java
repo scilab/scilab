@@ -26,6 +26,7 @@ import java.util.concurrent.Executors;
 
 import javax.swing.SwingUtilities;
 
+import org.scilab.modules.jvm.utils.ScilabConstants;
 import org.scilab.modules.action_binding.InterpreterManagement;
 
 /**
