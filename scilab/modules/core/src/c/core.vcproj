@@ -877,6 +877,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\storeCommand.c"
+				>
+			</File>
+			<File
 				RelativePath=".\str2sci.c"
 				>
 			</File>
@@ -1283,6 +1287,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\stackinfo.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\storeCommand.h"
 				>
 			</File>
 			<File

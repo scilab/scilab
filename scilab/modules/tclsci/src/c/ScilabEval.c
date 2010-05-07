@@ -20,7 +20,7 @@
 #include "localization.h"
 #include "../../localization/includes/localization.h"
 #include "syncexec.h"
-#include "dynamic_menus.h"
+#include "storeCommand.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif

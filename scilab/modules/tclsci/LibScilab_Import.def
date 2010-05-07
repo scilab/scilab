@@ -23,3 +23,11 @@ EXPORTS
  getSCIpath
  callFunctionFromGateway
  freeArrayOfString
+ StoreCommand
+ StoreCommandWithFlag
+ GetCommand
+ ismenu
+ StorePrioritaryCommandWithFlag
+ 
+ 
+ 

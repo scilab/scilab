@@ -24,7 +24,7 @@
 #include "scirun.h"
 #include "scilabmode.h"
 #include "sciquit.h"
-#include "dynamic_menus.h"
+#include "storeCommand.h"
 #include "WindowList.h"
 #include "../../core/src/c/TerminateCore.h"
 

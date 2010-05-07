@@ -14,3 +14,4 @@ sciquit
 realmain
 InitializeLaunchScilabSignal
 with_module
+StoreCommand

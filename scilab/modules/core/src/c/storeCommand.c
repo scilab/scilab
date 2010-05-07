@@ -15,7 +15,7 @@
 #include <string.h>
 #include "stack-c.h"
 #include "MALLOC.h"
-#include "dynamic_menus.h"
+#include "storeCommand.h"
 #include "sciprint.h"
 #include "sciprint_full.h"
 #include "localization.h"
@@ -30,11 +30,7 @@
  *           int C2F(getmen)(char * btn_cmd,int * lb, int * entry)
 */
 /*--------------------------------------------------------------------------*/
-#ifdef _MSC_VER
-#define IMPORT_SIGNAL __declspec(dllimport)
-#else
 #define IMPORT_SIGNAL extern
-#endif
 /*--------------------------------------------------------------------------*/
 typedef struct commandRec
 {

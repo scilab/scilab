@@ -174,6 +174,8 @@ Compilation:
 
 * /usr/share/*/lib added to the Java search path for OpenSuse
 
+* bug 4300 fixed - Moving Command Queue management to core.
+
 * bug 6432 fixed - Checkstyle disabled on SWIG (Java/JNI) generated files
 
 * bug 6643 fixed - --without-gui failed to disable Ocaml build (A xcos 
