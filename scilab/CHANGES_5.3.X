@@ -496,6 +496,9 @@ Bug fixes:
 
 * bug 6891 fixed - 'whos' did not display global variables.
 
+* bug 6893 fixed - Some files +~JF****.tmp where created outside of the Scilab
+                   temporary directory.
+
 * bug 6901 fixed - This script with 'exec' produced a weird warning.
 
 * bug 6923 fixed - Some localized messages were wrong in 'qmr'.
@@ -504,6 +507,9 @@ Bug fixes:
 
 * bug 6932 fixed - Unitary test for function 'exit' failed in Linux binary
                    version.
+
+* bug 6933 fixed - Some temporary files (dict_*.tmp) were created when using
+                   search engine of the help browser.
 
 * bug 6940 fixed - An error message was wrong in 'pvm_send'.
 
