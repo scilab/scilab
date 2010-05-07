@@ -14,6 +14,7 @@ package org.scilab.modules.gui.bridge.messagebox;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -46,6 +47,9 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JToggleButton;
 import javax.swing.ListSelectionModel;
+import javax.swing.UIManager;
+import javax.swing.text.html.HTMLEditorKit;
+import javax.swing.text.html.StyleSheet;
 
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.messagebox.SimpleMessageBox;
@@ -221,10 +225,22 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 		// Create the message to display
 		JTextPane messageLabel = new JTextPane();
 		messageLabel.setContentType("text/html");
-		messageLabel.setText(message);
 		messageLabel.setOpaque(false);
 		messageLabel.setBorder(null);
 		messageLabel.setEditable(false);
+		
+		// Update the stylesheet so that the font matches JLabel font
+		Font labelFont = UIManager.getFont("Label.font");
+		StyleSheet styles = new StyleSheet();
+		String css = "<style type=\"text/css\"><!--p {font-family:\"" + labelFont.getName()
+					+ "\"; font-size:\"" + labelFont.getSize() + "pt\"}--></style>";
+		styles.addRule(css);
+		HTMLEditorKit editorKit = new HTMLEditorKit();
+		editorKit.setStyleSheet(styles);
+		messageLabel.setEditorKit(editorKit);
+
+		messageLabel.setText(message);
+		
 		JScrollPane messageScrollPane = new JScrollPane(messageLabel);
 		int scrollWidth = (int) Math.min(WINDOW_WIDTH, messageLabel.getPreferredSize().getWidth() + OFFSET);
 		int scrollHeight = (int) Math.min(MESSAGE_HEIGHT, messageLabel.getPreferredSize().getHeight() + OFFSET);
