@@ -210,6 +210,19 @@ Matlab to Scilab conversion tools:
 * Conversion updated with new Scilab functions:
   - 'filesep' now converted by 'filesep' instead of 'pathconvert'.
 
+Core:
+=====
+
+* Under GNU/Linux, Unix and Mac OS X, for security purposes, temporary
+  directory name are now randomized and permissions are limited to the user.
+  (See bug #3493)
+
+* Under GNU/Linux, Unix and Mac OS X, if TMPDIR is set, Scilab will honor it 
+  to store its temporary files (See bug #3493)
+
+* Under non-Windows system, the name of the temporary directory has been changed
+  from SD_* to SCI_TMP_* to match the current Windows behavior.
+
 Tests:
 ======
 
