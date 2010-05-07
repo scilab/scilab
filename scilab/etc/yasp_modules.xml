@@ -22,4 +22,6 @@
     <module name="functions" activate="yes"/>
     <module name="output_stream" activate="yes"/>
     <module name="matio" activate="yes"/>
+    <module name="fileio" activate="yes"/>
+    <module name="development_tools" activate="yes"/>
 </modules>

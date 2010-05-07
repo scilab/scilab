@@ -46,7 +46,6 @@ FILEIO_IMPEXP int sci_getshortpathname(char *fname,unsigned long fname_len);
 FILEIO_IMPEXP int sci_fileext(char *fname,unsigned long fname_len);
 FILEIO_IMPEXP int sci_createdir(char *fname,unsigned long fname_len);
 FILEIO_IMPEXP int sci_removedir(char *fname,unsigned long fname_len);
-FILEIO_IMPEXP int sci_pwd(char *fname,unsigned long fname_len);
 FILEIO_IMPEXP int sci_fileinfo(char *fname,unsigned long fname_len);
 FILEIO_IMPEXP int sci_newest(char *fname,unsigned long fname_len);
 FILEIO_IMPEXP int sci_getrelativefilename(char *fname, unsigned long l);
@@ -54,6 +53,7 @@ FILEIO_IMPEXP int sci_get_absolute_file_path(char *fname,unsigned long fname_len
 FILEIO_IMPEXP int sci_mgetl(char *fname,unsigned long fname_len);
 
 //YaSp
+FILEIO_IMPEXP int sci_pwd(char *fname, int* _piKey);
 FILEIO_IMPEXP int sci_isdir(char *fname, int* _piKey);
 FILEIO_IMPEXP int sci_chdir(char *fname, int* _piKey);
 FILEIO_IMPEXP int sci_copyfile(char *fname,int* _piKey);

@@ -21,6 +21,9 @@
 #include "api_scilab.h"
 #include "isdir.h"
 #include "charEncoding.h"
+#include "api_scilab.h"
+#include "api_oldstack.h"
+
 /*--------------------------------------------------------------------------*/
 int sci_chdir(char *fname ,int* _piKey)
 {
@@ -33,9 +36,8 @@ int sci_chdir(char *fname ,int* _piKey)
 
 	wchar_t *expandedPath = NULL;
 
-	Rhs = Max(0, Rhs);
 	CheckRhs(0,1);
-	CheckLhs(1,1);
+	CheckLhs(0,1);
 
 	if (Rhs == 0)
 	{
@@ -153,7 +155,7 @@ int sci_chdir(char *fname ,int* _piKey)
 			}
 
 			LhsVar(1) = Rhs + 1;
-			C2F(putlhsvar)();
+			PutLhsVar();
 			
 			if (bOutput) {FREE(bOutput); bOutput=NULL;}
 		}
@@ -180,7 +182,7 @@ int sci_chdir(char *fname ,int* _piKey)
 				}
 
 				LhsVar(1) = Rhs + 1;
-				C2F(putlhsvar)();
+				PutLhsVar();
 
 				if (currentDir) {FREE(currentDir); currentDir = NULL;}
 			}
