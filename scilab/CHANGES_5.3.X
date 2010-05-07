@@ -317,6 +317,9 @@ Xcos:
 
 * bug 4977 fixed - Some icons were duplicated between Gui and Xcos.
 
+* bug 5022 fixed - When openning some demos, ArrayIndexOutOfBoundsException 
+                   were throwed by some Swing components.
+
 * bug 5161 fixed - The export to SVG did not work with images or html.
 
 * bug 5596 fixed - It was not possible to change text block properties (font
