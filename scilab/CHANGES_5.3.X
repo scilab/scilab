@@ -424,7 +424,8 @@ Bug fixes:
 
 * bug 6924 fixed - Some error messages were wrong in 'gmres' and 'qmr'.
 
-* bug 6932 fixed - Unitary test for function 'exit' failed in Linux binary version.
+* bug 6932 fixed - Unitary test for function 'exit' failed in Linux binary
+                   version.
 
 * bug 6940 fixed - An error message was wrong in 'pvm_send'.
 
@@ -437,6 +438,8 @@ Bug fixes:
 
 * bug 6962 fixed - bvode generated an error on Windows.
 
+* bug 6964 fixed - Scilab could detect a wrong SCI path on Windows.
+
 * bug 6971 fixed - after launching a toolbox by loader.sce, variable v was
                    predefined.
 
@@ -447,7 +450,9 @@ Bug fixes:
 * bug 7021 fixed - Scilab did not start and returned a system error (193)
                    on Windows.
 
-* bug 7033 fixed - newfun was randomly crashing (mostly on 32 bits) writing to unallocated memory.
+* bug 7033 fixed - newfun was randomly crashing (mostly on 32 bits) writing to
+                   unallocated memory.
+
 
 * bug 7057 fixed - isdigit and isalphanum crashed with a matrix of string
                    as input argument.
