@@ -24,7 +24,7 @@ public class ScilabLexerConstants {
     /**
      * Number of known tokens
      */
-    public static final int NUMBEROFTOKENS = 23;
+    public static final int NUMBEROFTOKENS = 24;
     
     /**
      * DEFAULT : tokens which are not recognized
@@ -137,9 +137,14 @@ public class ScilabLexerConstants {
     public static final int LATEX = 21;
     
     /**
+     * VARIABLES : A variable in Scilab
+     */
+    public static final int VARIABLES = 22;
+
+    /**
      * EOF : End Of File
      */
-    public static final int EOF = 22;
+    public static final int EOF = 23;
     
     /**
      * TOKENS : A Map which contains the names of keywords (useful in xpadConfiguration.xml)
@@ -152,7 +157,8 @@ public class ScilabLexerConstants {
 	TOKENS.put("Operator", OPERATOR);
 	TOKENS.put("Command", COMMANDS);
 	TOKENS.put("String", STRING);
-	TOKENS.put("Variable", ID);
+	TOKENS.put("Variable", VARIABLES);
+	TOKENS.put("Identifier", ID);
 	TOKENS.put("Comment", COMMENT);
 	TOKENS.put("Field", FIELD);
 	TOKENS.put("FunctionKwd", FKEYWORD);

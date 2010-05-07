@@ -89,6 +89,11 @@
       </style>
       
       <style name="Variable">
+	<ForegroundColor default="#FF0000" useCache="true" value="#FF0000"/>
+        <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->  
+      </style>
+      
+      <style name="Identifier">
 	<ForegroundColor default="#000000" useCache="true" value="#000000"/>
         <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->  
       </style>
