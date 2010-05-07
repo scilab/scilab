@@ -8,7 +8,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// <-- JVM_NOT_MANDATORY -->
+// <-- JVM NOT MANDATORY -->
 // <-- ENGLISH IMPOSED -->
 
 
