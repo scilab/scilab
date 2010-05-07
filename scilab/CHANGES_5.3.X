@@ -457,7 +457,10 @@ Bug fixes:
 * bug 6971 fixed - after launching a toolbox by loader.sce, variable v was
                    predefined.
 
-* bug 6990 fixed - "and" and "or" did not work on hypermatrices
+* bug 6990 fixed - "and" and "or" did not work on hypermatrices.
+
+* bug 7006 fixed - exec removed spaces at the end of filename when it returned
+                   an error.
 
 * bug 7014 fixed - ilib_verbose value was modified after toolbox_skeleton.
 
