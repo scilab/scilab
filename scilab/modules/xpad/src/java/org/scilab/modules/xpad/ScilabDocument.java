@@ -37,12 +37,12 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * The EOL in mac OS
      */
     public static final String EOLMAC = "\r";
-    
+
     /**
      * The EOL in windows OS
      */
     public static final String EOLWIN = "\r\n";
-    
+
     /**
      * The EOL in unix OS
      */
@@ -53,9 +53,9 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     private ScilabView view;
     private List<String> saved = new Vector();
     private LineTypeScanner scanner;
-    
+
     private boolean contentModified;
-    
+
     // Editor's default encoding is UTF-8
     private String encoding = "UTF-8";
     private boolean updater = true;
@@ -63,27 +63,27 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     private boolean autoColorize;
     private volatile boolean shouldMergeEdits;
     private boolean undoManagerEnabled;
-    private CompoundUndoManager undo = new CompoundUndoManager();	
-    
+    private CompoundUndoManager undo = new CompoundUndoManager();
+
     private String eolStyle = System.getProperty("line.separator");
 
     /**
      * Constructor
      */
     public ScilabDocument() {
-	super(new GapContent(GAPBUFFERCAPACITY));
-	setAsynchronousLoadPriority(2);
-    
-	autoIndent = ConfigXpadManager.getAutoIndent();
-	autoColorize = ConfigXpadManager.getAutoColorize();
-	encoding = ConfigXpadManager.getDefaultEncoding();
-    
-	addUndoableEditListener(undo);
-	undoManagerEnabled = true;    
-	contentModified = false;
-	
-	scanner = new LineTypeScanner(this);
-	addDocumentListener(this);
+        super(new GapContent(GAPBUFFERCAPACITY));
+        setAsynchronousLoadPriority(2);
+
+        autoIndent = ConfigXpadManager.getAutoIndent();
+        autoColorize = ConfigXpadManager.getAutoColorize();
+        encoding = ConfigXpadManager.getDefaultEncoding();
+
+        addUndoableEditListener(undo);
+        undoManagerEnabled = true;
+        contentModified = false;
+
+        scanner = new LineTypeScanner(this);
+        addDocumentListener(this);
     }
 
     /**
@@ -91,7 +91,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * @return ScilabLexer the lexer
      */ 
     public ScilabLexer createLexer() {
-	return new ScilabLexer(this);
+        return new ScilabLexer(this);
     }
     
     /** 
@@ -99,14 +99,14 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * @param view the used view
      */
     public void setView(ScilabView view) {
-	this.view = view;    
+        this.view = view;
     }
 
     /**
      * @return the current used view
      */
     public ScilabView getView() {
-	return view;
+        return view;
     }
     
     /**
@@ -114,7 +114,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * @return String encoding
      */
     public String getEncoding() {
-	return encoding;
+        return encoding;
     }
     
     /**
@@ -122,7 +122,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * @param encoding encoding
      */
     public void setEncoding(String encoding) {
-	this.encoding = encoding;
+        this.encoding = encoding;
     }
     
     /**
@@ -130,7 +130,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * @param eol String
      */
     public void setEOL(String eol) {
-	this.eolStyle = eol;
+        this.eolStyle = eol;
     }
     
     /**
@@ -138,7 +138,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * @return end of line
      */
     public String getEOL() {
-	return this.eolStyle;
+        return this.eolStyle;
     }
 
     /**
@@ -146,7 +146,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * @return end of line
      */
     public String getDefaultEOL() {
-	return System.getProperty("line.separator");
+        return System.getProperty("line.separator");
     }
     
     /**
@@ -154,7 +154,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * @return true or false
      */
     public boolean getAutoColorize() {
-	return autoColorize;
+        return autoColorize;
     }
     
     /**
@@ -162,7 +162,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * @param b boolean
      */
     public void setAutoColorize(boolean b) {
-	autoColorize = b;
+        autoColorize = b;
     }
     
     /**
@@ -170,7 +170,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * @return boolean
      */
     public boolean isUpdater() {
-	return updater;
+        return updater;
     }
     
     /**
@@ -178,8 +178,8 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * @return boolean
      */
     public boolean getAutoIndent() {
-	return true;
-	//return autoIndent;
+        return true;
+        //return autoIndent;
     }
     
     /**
@@ -187,7 +187,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * @param b boolean
      */
     public void setAutoIndent(boolean b) {
-	autoIndent = b;
+        autoIndent = b;
     }
     
     /**
@@ -195,7 +195,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * @param updaterDisabled boolean
      */
     public void setUpdater(boolean updaterDisabled) {
-	this.updater = updaterDisabled;
+        this.updater = updaterDisabled;
     }
     
     
@@ -204,26 +204,26 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * @return String
      */
     public String getText() {
-	try {
-	    return getText(0, getLength());
-	} catch (BadLocationException e) {
-	    return "";
-	}
+        try {
+            return getText(0, getLength());
+        } catch (BadLocationException e) {
+            return "";
+        }
     }
     
     /**
      * Begins a compound edit (for the undo)
      */
     public void mergeEditsBegin() {
-	undo.endCompoundEdit();
-	undo.startCompoundEdit();
+        undo.endCompoundEdit();
+        undo.startCompoundEdit();
     }
 
     /**
      * Ends a compound edit (for the undo)
      */
     public void mergeEditsEnd() {
-	undo.endCompoundEdit();
+        undo.endCompoundEdit();
     }
 
     /**
@@ -231,7 +231,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * @return boolean
      */
     public boolean getColorize() {
-	return autoColorize;
+        return autoColorize;
     }
     
     /**
@@ -239,7 +239,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * @param b boolean
      */
     public void setColorize(boolean b) {
-	autoColorize = b;
+        autoColorize = b;
     }
         
     /**
@@ -247,27 +247,27 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * @return CompoundUndoManager
      */
     public CompoundUndoManager getUndoManager() {
-	return undo;
+        return undo;
     }
     
     /**
      * disableUndoManager
      */
     public void disableUndoManager() {
-	if (undoManagerEnabled) {
-	    this.removeUndoableEditListener(undo);
-	    undoManagerEnabled = false;
-	}
+        if (undoManagerEnabled) {
+            this.removeUndoableEditListener(undo);
+            undoManagerEnabled = false;
+        }
     }
     
     /**
      * enableUndoManager
      */
     public void enableUndoManager() {
-	if (!undoManagerEnabled) {
-	    this.addUndoableEditListener(undo);
-	    undoManagerEnabled = true;
-	}
+        if (!undoManagerEnabled) {
+            this.addUndoableEditListener(undo);
+            undoManagerEnabled = true;
+        }
     }
     
     /**
@@ -275,7 +275,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * @return boolean
      */
     public boolean isContentModified() {
-	return contentModified && !undo.isAtReference();
+        return contentModified && !undo.isAtReference();
     }
     
     /**
@@ -283,44 +283,43 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * @param contentModified boolean
      */
     public void setContentModified(boolean contentModified) {
-	this.contentModified = contentModified;
-	if (!contentModified) {
-	    undo.setReference();
-	}
+        this.contentModified = contentModified;
+        if (!contentModified) {
+            undo.setReference();
+        }
     }
 
     /**
      * dump document on stderr with line positions 
      */
     public void dump() {
-	readLock();
-	try {
-	    Element root = getDefaultRootElement();
-	    for (int i = 0; i != root.getElementCount(); ++i) {
-		Element e = root.getElement(i);
-		int start = e.getStartOffset();
-		int end = e.getEndOffset();
-		System.err.println("line " + i + " from: " + start + " to: " + end + ":|" + getText(start, end - start) + "|");
-	    }
-	} catch (BadLocationException e) {
-	    System.err.println(e);
-	}
-	readUnlock();
-	
+        readLock();
+        try {
+            Element root = getDefaultRootElement();
+            for (int i = 0; i != root.getElementCount(); ++i) {
+                Element e = root.getElement(i);
+                int start = e.getStartOffset();
+                int end = e.getEndOffset();
+                System.err.println("line " + i + " from: " + start + " to: " + end + ":|" + getText(start, end - start) + "|");
+            }
+        } catch (BadLocationException e) {
+            System.err.println(e);
+        }
+        readUnlock();
     }
     
     /**
      * lock
      */
     public void lock() {
-	super.writeLock();
+        super.writeLock();
     }
     
     /**
      * unlock
      */
     public void unlock() {
-	super.writeUnlock();
+        super.writeUnlock();
     }
 
     /**
@@ -334,7 +333,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * @param documentEvent DocumentEvent
      */
     public void insertUpdate(DocumentEvent documentEvent) {
-	contentModified = true;
+        contentModified = true;
     }
 
     /**
@@ -342,7 +341,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * @param documentEvent DocumentEvent
      */
     public void removeUpdate(DocumentEvent documentEvent) {
-	contentModified = true;
+        contentModified = true;
     }
 
     /**
@@ -367,7 +366,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * @return the created LeafElement
      */
     protected Element createLeafElement(Element parent, AttributeSet a, int p0, int p1) {
-	return new ScilabLeafElement(parent, a, p0, p1);
+        return new ScilabLeafElement(parent, a, p0, p1);
     }
 
     /**
@@ -379,69 +378,76 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      */
     public class ScilabLeafElement extends LeafElement {
 
-	/**
-	 * Nothing in this line
-	 */
-	public static final int NOTHING = 0;
-	
-	/**
-	 * function ... in this line
-	 */
-	public static final int FUN = 1;
+        /**
+         * Nothing in this line
+         */
+        public static final int NOTHING = 0;
 
-	/**
-	 * endfunction in this line
-	 */
-	public static final int ENDFUN = 2;
+        /**
+         * function ... in this line
+         */
+        public static final int FUN = 1;
 
-	private boolean visible = true;
-	private int type;	
-	
-	/**
-	 * The same constructor as in LeafElement.
-	 * @param parent the parent Element
-	 * @param a an AttributeSet
-	 * @param p0 start in the doc
-	 * @param p1 end in the doc
-	 */
-	public ScilabLeafElement(Element parent, AttributeSet a, int p0, int p1) {
-	    super(parent, a, p0, p1);
-	    type = scanner.getLineType(p0, p1);
-	}
+        /**
+         * endfunction in this line
+         */
+        public static final int ENDFUN = 2;
 
-	/**
-	 * @return the type of this line (FUN,...)
-	 */
-	public int getType() {
-	    return type;
-	}
+        private boolean visible = true;
+        private int type;
 
-	/**
-	 * @return if this line begins with function
-	 */
-	public boolean isFunction() {
-	    return type == FUN;
-	}
-	
-	/**
-	 * @return if this line begins with endfunction
-	 */
-	public boolean isEndfunction() {
-	    return type == ENDFUN;
-	}
-	
-	/**
-	 * @return if this line is visible
-	 */
-	public boolean isVisible() {
-	    return visible;
-	}
+        /**
+         * The same constructor as in LeafElement.
+         * @param parent the parent Element
+         * @param a an AttributeSet
+         * @param p0 start in the doc
+         * @param p1 end in the doc
+         */
+        public ScilabLeafElement(Element parent, AttributeSet a, int p0, int p1) {
+            super(parent, a, p0, p1);
+            type = scanner.getLineType(p0, p1);
+        }
 
-	/**
-	 * @param b true if this line is visible
-	 */
-	public void setVisible(boolean b) {
-	    visible = b;
-	}
+        /**
+         * Reset type (normally called on a change in the document)
+         */
+        public void resetType() {
+            type = scanner.getLineType(getStartOffset(), getEndOffset());
+        }
+
+        /**
+         * @return the type of this line (FUN,...)
+         */
+        public int getType() {
+            return type;
+        }
+
+        /**
+         * @return if this line begins with function
+         */
+        public boolean isFunction() {
+            return type == FUN;
+        }
+
+        /**
+         * @return if this line begins with endfunction
+         */
+        public boolean isEndfunction() {
+            return type == ENDFUN;
+        }
+
+        /**
+         * @return if this line is visible
+         */
+        public boolean isVisible() {
+            return visible;
+        }
+
+        /**
+         * @param b true if this line is visible
+         */
+        public void setVisible(boolean b) {
+            visible = b;
+        }
     }
 }
