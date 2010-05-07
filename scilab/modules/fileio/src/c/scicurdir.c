@@ -17,6 +17,7 @@
 	#include <direct.h>
 	#include <errno.h>
 #else
+	#include <errno.h>
 	#include <unistd.h>
 	#define GETCWD(x,y) getcwd(x,y)
 #endif
@@ -45,7 +46,7 @@ int scichdirW(wchar_t *wcpath)
 
 	if (chdir(path) == -1)
 	{
-		if ( getWarningMode() ) sciprint(_("Can't go to directory %s.\n"), path);
+		if ( getWarningMode() ) sciprint(_("Can't go to directory %s: %s\n"), path, strerror(errno));
 		if (path) {FREE(path); path = NULL;}
 		return 1;
 	}
