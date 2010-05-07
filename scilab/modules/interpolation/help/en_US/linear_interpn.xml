@@ -195,7 +195,7 @@ plot3d(xx, xx, zp, flag=[2 6 4])
 param3d1(xg,yg, list(z,-9*ones(1,n)), flag=[0 0])
 xtitle("Bilinear interpolation of 2sin(x)sin(y)")
 legends("interpolation points",-9,1)
-xselect()
+show_window()
 
 // example 3 : bilinear interpolation and experimentation
 //             with all the outmode features
@@ -232,7 +232,7 @@ xtitle("by_zero")
 subplot(2,3,6)
 plot3d(xp, yp, zp5, leg="x@y@z", flag = [2 4 4])
 xtitle("by_nan")
-xselect()
+show_window()
 
 // example 4 : trilinear interpolation (see splin3d help
 //             page which have the same example with
@@ -269,7 +269,7 @@ xset("hidden3d",xget("background"))
 colorbar(vmin,vmax)
 plot3d(XF, YF, list(ZF,color), flag=[-1 6 4])
 xtitle("tri-linear interpolation of "+func)
-xselect()
+show_window()
  ]]></programlisting>
   </refsection>
 

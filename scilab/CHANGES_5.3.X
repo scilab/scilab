@@ -27,6 +27,9 @@ Graphics:
 * bug 2651 fixed - "plot2d" was not working when the x argument was not given
                    and some optional arguments were given.
 
+* bug 3100 fixed - The "xselect" function has been made obsolete, in accordance
+                   with its help page.
+
 * bug 3975 fixed - The "xload" function was not able to load the contents of a previously
                    saved graphics figure into a different one.
 

@@ -146,7 +146,7 @@ subplot(2,2,4)
    Sfgrayplot(x,y,surf4,strf="041",colminmax=[1,64])
    xtitle("f(x,y) = x^2+y^2")
 drawnow() ;
-xselect()
+show_window()
 
 // exemplo #2: esboço de surf3 e adição de algumas linhas de contorno
 function z=surf3(x,y), z=x^3+y^2, endfunction
@@ -160,7 +160,7 @@ Sfgrayplot(x,y,surf3,strf="041")
 fcontour2d(x,y,surf3,[-0.1, 0.025, 0.4],style=[1 1 1],strf="000")
 xtitle("f(x,y) = x^3+y^2")
 drawnow() ;
-xselect()
+show_window()
 
 // exemplo #3: esboço de surf3 e uso dos argumentos opcionais zminmax e colout
 //             para restringir o esboço em -0.5&lt;= z &lt;= 1
@@ -176,7 +176,7 @@ Sfgrayplot(x, y, surf3, strf="041", zminmax=zminmax, colout=[0 0], colminmax=col
 fcontour2d(x,y,surf3,[-0.5, 1],style=[1 1 1],strf="000")
 xtitle("f(x,y) = x^3+y^2, com partes abaixo de z = -0.5 e acima de z = 1 removidas")
 drawnow() ;
-xselect()
+show_window()
  ]]></programlisting>
   </refsection>
 
