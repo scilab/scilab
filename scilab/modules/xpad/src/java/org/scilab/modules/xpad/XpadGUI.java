@@ -72,6 +72,7 @@ import org.scilab.modules.xpad.actions.LineNumbersAction;
 import org.scilab.modules.xpad.actions.LoadIntoScilabAction;
 import org.scilab.modules.xpad.actions.NewAction;
 import org.scilab.modules.xpad.actions.OpenAction;
+import org.scilab.modules.xpad.actions.OpenSourceFileOnKeywordAction;
 import org.scilab.modules.xpad.actions.PageSetupAction;
 import org.scilab.modules.xpad.actions.PasteAction;
 import org.scilab.modules.xpad.actions.PrintAction;
@@ -375,6 +376,8 @@ public class XpadGUI {
 		fileMenu.setMnemonic('F');
 		fileMenu.add(NewAction.createMenu(editorInstance, map.get("NewAction")));
 		fileMenu.add(OpenAction.createMenu(editorInstance, map.get("OpenAction")));
+		fileMenu.add(OpenSourceFileOnKeywordAction.createMenu(editorInstance, map.get("OpenSourceFileOnKeywordAction")));
+
 		Menu recentsMenu = editorInstance.getRecentsMenu();
 		recentsMenu.setText(XpadMessages.RECENT_FILES);
 		for (int i = 0; i < recentFiles.size(); i++) {

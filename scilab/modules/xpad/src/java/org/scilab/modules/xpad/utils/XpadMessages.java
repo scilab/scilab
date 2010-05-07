@@ -26,6 +26,7 @@ public class XpadMessages {
     public static final String FILE = Messages.gettext("File");
     public static final String NEW = Messages.gettext("New") + DOTS;
     public static final String OPEN = Messages.gettext("Open") + DOTS;
+    public static final String OPEN_SOURCE_FILE_ON_KEYWORD = Messages.gettext("Open source file") + DOTS;
     public static final String RECENT_FILES = Messages.gettext("Recent Files");
     public static final String SAVE = Messages.gettext("Save");
     public static final String SAVE_AS = Messages.gettext("Save as") + DOTS;

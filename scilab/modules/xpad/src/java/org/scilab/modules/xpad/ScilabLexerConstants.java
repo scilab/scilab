@@ -152,23 +152,23 @@ public class ScilabLexerConstants {
     public static final Map<String, Integer> TOKENS = new HashMap();
 
     static {
-	TOKENS.put("Default", DEFAULT);
-	TOKENS.put("Special", SPECIAL);
-	TOKENS.put("Operator", OPERATOR);
-	TOKENS.put("Command", COMMANDS);
-	TOKENS.put("String", STRING);
-	TOKENS.put("Variable", VARIABLES);
-	TOKENS.put("Identifier", ID);
-	TOKENS.put("Comment", COMMENT);
-	TOKENS.put("Field", FIELD);
-	TOKENS.put("FunctionKwd", FKEYWORD);
-	TOKENS.put("Url", URL);
-	TOKENS.put("Number", NUMBER);
-	TOKENS.put("Control", CKEYWORD);
-	TOKENS.put("Structure", SKEYWORD);
-	TOKENS.put("Constantes", CONSTANTES);
-	TOKENS.put("White", WHITE);
-	TOKENS.put("Tabulation", TAB);
+        TOKENS.put("Default", DEFAULT);
+        TOKENS.put("Special", SPECIAL);
+        TOKENS.put("Operator", OPERATOR);
+        TOKENS.put("Command", COMMANDS);
+        TOKENS.put("String", STRING);
+        TOKENS.put("Variable", VARIABLES);
+        TOKENS.put("Identifier", ID);
+        TOKENS.put("Comment", COMMENT);
+        TOKENS.put("Field", FIELD);
+        TOKENS.put("FunctionKwd", FKEYWORD);
+        TOKENS.put("Url", URL);
+        TOKENS.put("Number", NUMBER);
+        TOKENS.put("Control", CKEYWORD);
+        TOKENS.put("Structure", SKEYWORD);
+        TOKENS.put("Constantes", CONSTANTES);
+        TOKENS.put("White", WHITE);
+        TOKENS.put("Tabulation", TAB);
     }
     
     /**
@@ -177,12 +177,21 @@ public class ScilabLexerConstants {
      * @return true if the keyword is helpable
      */
     public static boolean isHelpable(int type) {
-	return type == ID 
-	    || type == COMMANDS
-	    || type == OPERATOR
-	    || type == FKEYWORD
-	    || type == CKEYWORD
-	    || type == SKEYWORD
-	    || type == CONSTANTES;
+        return type == ID 
+            || type == COMMANDS
+            || type == OPERATOR
+            || type == FKEYWORD
+            || type == CKEYWORD
+            || type == SKEYWORD
+            || type == CONSTANTES;
+    }
+
+    /**
+     * Can we open the source file of the keyword with type ?
+     * @param type the type of the keyword
+     * @return true if the keyword is openable
+     */
+    public static boolean isOpenable(int type) {
+        return type == COMMANDS;
     }
 }

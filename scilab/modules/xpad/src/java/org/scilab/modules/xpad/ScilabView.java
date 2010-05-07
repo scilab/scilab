@@ -96,13 +96,13 @@ public class ScilabView extends WrappedPlainView {
      * @param context used to view the element
      */
     ScilabView(Element elem, ScilabContext context) {
-	super(elem);
-	this.context = context;
-	doc = (ScilabDocument) getDocument();
-	doc.setView(this);
-	lexer = doc.createLexer();
-	lexerValid = false;
-	setTabRepresentation(TABVERTICAL);
+        super(elem);
+        this.context = context;
+        doc = (ScilabDocument) getDocument();
+        doc.setView(this);
+        lexer = doc.createLexer();
+        lexerValid = false;
+        setTabRepresentation(TABVERTICAL);
     }
 
     /**
@@ -110,7 +110,7 @@ public class ScilabView extends WrappedPlainView {
      * @param b true if viewable or not
      */
     public void setLaTeXViewable(boolean b) {
-	isLaTeXViewable = b;
+        isLaTeXViewable = b;
     }
     
     /**
@@ -118,7 +118,7 @@ public class ScilabView extends WrappedPlainView {
      * @param b true if viewable or not
      */
     public void setTabViewable(boolean b) {
-	isTabViewable = b;
+        isTabViewable = b;
     }
     
     /**
@@ -126,7 +126,7 @@ public class ScilabView extends WrappedPlainView {
      * @param b true if viewable or not
      */
     public void setWhiteViewable(boolean b) {
-	isWhiteViewable = b;
+        isWhiteViewable = b;
     }
 
     /**
@@ -135,7 +135,7 @@ public class ScilabView extends WrappedPlainView {
      * @param n the maximum of column recommanded in this view
      */
     public void setMaxColumns(int n) {
-	numOfColumns = n;
+        numOfColumns = n;
     }
 
     /**
@@ -146,11 +146,11 @@ public class ScilabView extends WrappedPlainView {
      * @overload paint method in WrappedPlainView
      */
     public void paint(Graphics g, Shape a) {
-	if (numOfColumns > 0) {
-	    g.setColor(lineColor);
-	    g.drawLine(numOfColumns * whiteWidth, 0, numOfColumns * whiteWidth, getHeight());
-	}
-	super.paint(g, a);
+        if (numOfColumns > 0) {
+            g.setColor(lineColor);
+            g.drawLine(numOfColumns * whiteWidth, 0, numOfColumns * whiteWidth, getHeight());
+        }
+        super.paint(g, a);
     }
 
     /**
@@ -159,16 +159,18 @@ public class ScilabView extends WrappedPlainView {
      * @return the y-coordinate of the line
      */
     public int getLineAllocation(int n) {
-	rect.setLocation(0, 4); // Why 4 ?? Because it works with 4 !
-	childAllocation(n, rect);
-	return rect.y;
+        rect.setLocation(0, 4); // Why 4 ?? Because it works with 4 !
+        try {
+            childAllocation(n, rect);
+        } catch (ArrayIndexOutOfBoundsException e) { }
+        return rect.y;
     }
 
     /**
      * Used when the font is changed in the pane
      */
     public void reinitialize() {
-	desktopFontHints = null;
+        desktopFontHints = null;
     }
 
     /**
@@ -182,112 +184,112 @@ public class ScilabView extends WrappedPlainView {
      * @throws BadLocationException if p0 and p1 are bad positions in the text
      */
     protected int drawUnselectedText(Graphics g, int sx, int sy, int p0, int p1) throws BadLocationException {
-	/* The lexer returns all tokens between the pos p0 and p1.
-	   The value of the returned token determinates the color and the font.
-	   The lines can be broken by the Pane so we must look at previous
-	   and next chars to know if p0 or p1 is "inside" a token. */
-	
-	Element elem = doc.getDefaultRootElement();
-	Element line = elem.getElement(elem.getElementIndex(p0));	
-	
-	int prevTok = -1;
-	int tok = -1;
-	int mark = p0;
-	int start = p0;
-	int x = sx;
-	int y = sy;
-	boolean isBroken = false;
-	
-	if (desktopFontHints == null) {
-	    /* This hint is used to have antialiased fonts in the view in using 
-	       the same method (differents way to antialias with LCD screen) as the desktop. */
-	    desktopFontHints = (Map) Toolkit.getDefaultToolkit().getDesktopProperty(DESKTOPHINTS);
-	    calculateHeight(((Graphics2D) g).getFontRenderContext(), context.tokenFonts[0]);
-	} else {
-	    ((Graphics2D) g).addRenderingHints(desktopFontHints);
-	}
+        /* The lexer returns all tokens between the pos p0 and p1.
+           The value of the returned token determinates the color and the font.
+           The lines can be broken by the Pane so we must look at previous
+           and next chars to know if p0 or p1 is "inside" a token. */
+        
+        Element elem = doc.getDefaultRootElement();
+        Element line = elem.getElement(elem.getElementIndex(p0));	
+        
+        int prevTok = -1;
+        int tok = -1;
+        int mark = p0;
+        int start = p0;
+        int x = sx;
+        int y = sy;
+        boolean isBroken = false;
 
-	int startL = line.getStartOffset();
-	int endL = line.getEndOffset();
+        if (desktopFontHints == null) {
+            /* This hint is used to have antialiased fonts in the view in using 
+               the same method (differents way to antialias with LCD screen) as the desktop. */
+            desktopFontHints = (Map) Toolkit.getDefaultToolkit().getDesktopProperty(DESKTOPHINTS);
+            calculateHeight(((Graphics2D) g).getFontRenderContext(), context.tokenFonts[0]);
+        } else {
+            ((Graphics2D) g).addRenderingHints(desktopFontHints);
+        }
 
-	if (startL != start) {
-	    //we are drawing a broken line
-	    try {
-		lexer.setRange(startL, endL);
-		while (startL < start) {
-		    tok = lexer.yylex();
-		    startL = lexer.start + lexer.yychar() + lexer.yylength();
-		}
-		isBroken = true;
-	    } catch (IOException e) { }
-	}
+        int startL = line.getStartOffset();
+        int endL = line.getEndOffset();
 
-	if (!isBroken) {
-	    lexer.setRange(start, endL);
-	}
-		
-	while (start < p1) {
-	    try {
-		if (!isBroken) {
-		    tok = lexer.yylex();
-		} else {
-		    isBroken = false;
-		}
-	    } catch (IOException e) { }
+        if (startL != start) {
+            //we are drawing a broken line
+            try {
+                lexer.setRange(startL, endL);
+                while (startL < start) {
+                    tok = lexer.yylex();
+                    startL = lexer.start + lexer.yychar() + lexer.yylength();
+                }
+                isBroken = true;
+            } catch (IOException e) { }
+        }
 
-	    start = lexer.start + lexer.yychar();
-	    int end = Math.min(p1, start + lexer.yylength());
+        if (!isBroken) {
+            lexer.setRange(start, endL);
+        }
 
- 	    if (end != mark) {
-		if (tok != prevTok) {
-		    g.setColor(context.tokenColors[tok]);
-		    g.setFont(context.tokenFonts[tok]);
-		    prevTok = tok;
-		}
+        while (start < p1) {
+            try {
+                if (!isBroken) {
+                    tok = lexer.yylex();
+                } else {
+                    isBroken = false;
+                }
+            } catch (IOException e) { }
 
-		doc.getText(mark, end - mark, text);
-		
-		int w;
-		
-		if ((context.tokenAttrib[tok] & 1) != 0) {
-		    w = Utilities.getTabbedTextWidth(text, g.getFontMetrics(), x, this, mark);
-		    g.drawLine(x, y + 1, x + w, y + 1);
-		}
-		
-		if ((context.tokenAttrib[tok] & 2) != 0) {
-		    w = Utilities.getTabbedTextWidth(text, g.getFontMetrics(), x, this, mark);
-		    g.drawLine(x, y - whiteHeight, x + w, y - whiteHeight);
-		}
+            start = lexer.start + lexer.yychar();
+            int end = Math.min(p1, start + lexer.yylength());
 
-		switch (tok) {
-		case ScilabLexerConstants.WHITE :
-		    if (isWhiteViewable) {
-			w = Utilities.getTabbedTextWidth(text, g.getFontMetrics(), x, this, mark);
-			g.drawLine(x + (w - 1) / 2, y - whiteHeight, x + (w + 1) / 2, y - whiteHeight);
-		    }
-		    break;     
-		case ScilabLexerConstants.TAB :
-		    if (isTabViewable) {
-			paintTab(text, x, y, g, mark);
-		    }
-		    break;
-		case ScilabLexerConstants.LATEX :
-		    if (isLaTeXViewable) {
-			//LaTeXUtilities.drawText(text, x, y, g, mark);
-		    }
-		    break;
-		default :
-		    break;
-		}
+            if (end != mark) {
+                if (tok != prevTok) {
+                    g.setColor(context.tokenColors[tok]);
+                    g.setFont(context.tokenFonts[tok]);
+                    prevTok = tok;
+                }
 
-		x = Utilities.drawTabbedText(text, x, y, g, this, mark);
-		mark = end;
-	    }
+                doc.getText(mark, end - mark, text);
 
-	    start = end;
-	}
+                int w;
 
-	return x;
+                if ((context.tokenAttrib[tok] & 1) != 0) {
+                    w = Utilities.getTabbedTextWidth(text, g.getFontMetrics(), x, this, mark);
+                    g.drawLine(x, y + 1, x + w, y + 1);
+                }
+    
+                if ((context.tokenAttrib[tok] & 2) != 0) {
+                    w = Utilities.getTabbedTextWidth(text, g.getFontMetrics(), x, this, mark);
+                    g.drawLine(x, y - whiteHeight, x + w, y - whiteHeight);
+                }
+
+                switch (tok) {
+                    case ScilabLexerConstants.WHITE :
+                        if (isWhiteViewable) {
+                        w = Utilities.getTabbedTextWidth(text, g.getFontMetrics(), x, this, mark);
+                        g.drawLine(x + (w - 1) / 2, y - whiteHeight, x + (w + 1) / 2, y - whiteHeight);
+                        }
+                        break;     
+                    case ScilabLexerConstants.TAB :
+                        if (isTabViewable) {
+                        paintTab(text, x, y, g, mark);
+                        }
+                        break;
+                    case ScilabLexerConstants.LATEX :
+                        if (isLaTeXViewable) {
+                        //LaTeXUtilities.drawText(text, x, y, g, mark);
+                        }
+                        break;
+                    default :
+                        break;
+                }
+    
+                x = Utilities.drawTabbedText(text, x, y, g, this, mark);
+                mark = end;
+            }
+
+            start = end;
+        }
+
+        return x;
     }
 
     /**
@@ -296,7 +298,7 @@ public class ScilabView extends WrappedPlainView {
      * If a bad value is given, then nothing will be drawn
      */
     public void setTabRepresentation(int type) {
-	this.tabType = type;
+        this.tabType = type;
     }
 
     /**
@@ -304,8 +306,8 @@ public class ScilabView extends WrappedPlainView {
      * @param rep the char representing a tab
      */
     public void setTabRepresentation(char rep) {
-	setTabRepresentation(TABCHARACTER);
-	this.tabCharacter = Character.toString(rep);
+        setTabRepresentation(TABCHARACTER);
+        this.tabCharacter = Character.toString(rep);
     }
 
     /**
@@ -313,18 +315,18 @@ public class ScilabView extends WrappedPlainView {
      * @param tabulation a Tabulation
      */
     public void setTabRepresentation(TabManager.Tabulation tabulation) {
-	if (tabulation.type == TABCHARACTER) {
-	    setTabRepresentation(tabulation.rep);
-	} else {
-	    setTabRepresentation(tabulation.type);
-	}
+        if (tabulation.type == TABCHARACTER) {
+            setTabRepresentation(tabulation.rep);
+        } else {
+            setTabRepresentation(tabulation.type);
+        }
     }
 
     /**
      * Used to represent the default tabulation got with ConfigXpadManager
      */
     public void setDefaultTabRepresentation() {
-	setTabRepresentation(ConfigXpadManager.getDefaultTabulation());
+        setTabRepresentation(ConfigXpadManager.getDefaultTabulation());
     }
 
     /**
@@ -336,23 +338,23 @@ public class ScilabView extends WrappedPlainView {
      * @param start the position in the document
      */ 
     protected void paintTab(Segment text, int x, int y, Graphics g, int start) {
-	FontMetrics fm = g.getFontMetrics();
-	int w = Utilities.getTabbedTextWidth(text, fm, x, this, start);
-	switch (tabType) {
-	case TABVERTICAL :
-	    g.drawLine(x, y + 4, x, y + 4 - fm.getHeight());
-	    break;
-	case TABDOUBLECHEVRONS :
-	    g.drawString("\u00BB", x, y);
-	    break;
-	case TABHORIZONTAL :
-	    g.drawLine(x, y - whiteHeight, x + w - 1, y - whiteHeight);
-	    break;
-	case TABCHARACTER :
-	    g.drawString(tabCharacter, x, y);
-	    break;
-	default :
-	}
+        FontMetrics fm = g.getFontMetrics();
+        int w = Utilities.getTabbedTextWidth(text, fm, x, this, start);
+        switch (tabType) {
+            case TABVERTICAL :
+                g.drawLine(x, y + 4, x, y + 4 - fm.getHeight());
+                break;
+            case TABDOUBLECHEVRONS :
+                g.drawString("\u00BB", x, y);
+                break;
+            case TABHORIZONTAL :
+                g.drawLine(x, y - whiteHeight, x + w - 1, y - whiteHeight);
+                break;
+            case TABCHARACTER :
+                g.drawString(tabCharacter, x, y);
+                break;
+            default :
+        }
     }
 
     /**
@@ -363,11 +365,11 @@ public class ScilabView extends WrappedPlainView {
      * @param f the font where to take the '+'
      */
     private void calculateHeight(FontRenderContext frc, Font f) {
-	TextLayout layout = new TextLayout("+", f, frc);
-	Rectangle2D rectangle = layout.getBounds();
-	whiteHeight = (int) Math.round(-rectangle.getY() / 2);
-	layout = new TextLayout("w", f, frc);
-	rectangle = layout.getBounds();
-	whiteWidth = (int) Math.round(rectangle.getWidth());
+        TextLayout layout = new TextLayout("+", f, frc);
+        Rectangle2D rectangle = layout.getBounds();
+        whiteHeight = (int) Math.round(-rectangle.getY() / 2);
+        layout = new TextLayout("w", f, frc);
+        rectangle = layout.getBounds();
+        whiteWidth = (int) Math.round(rectangle.getWidth());
     }
 }
