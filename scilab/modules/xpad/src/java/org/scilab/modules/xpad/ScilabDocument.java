@@ -21,6 +21,9 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Element;
 import javax.swing.text.AttributeSet; 
 
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 import org.scilab.modules.xpad.style.CompoundUndoManager;
 
@@ -28,7 +31,7 @@ import org.scilab.modules.xpad.style.CompoundUndoManager;
  * The class ScilabDocument is used to render a document .sci or .sce
  * @author Calixte DENIZET
  */
-public class ScilabDocument extends PlainDocument {
+public class ScilabDocument extends PlainDocument implements DocumentListener {
 
     /**
      * The EOL in mac OS
@@ -80,6 +83,7 @@ public class ScilabDocument extends PlainDocument {
 	contentModified = false;
 	
 	scanner = new LineTypeScanner(this);
+	addDocumentListener(this);
     }
 
     /**
@@ -317,6 +321,28 @@ public class ScilabDocument extends PlainDocument {
      */
     public void unlock() {
 	super.writeUnlock();
+    }
+
+    /**
+     * Implements DocumentListener
+     * @param documentEvent DocumentEvent
+     */
+    public void changedUpdate(DocumentEvent documentEvent) { }
+
+    /**
+     * Implements DocumentListener
+     * @param documentEvent DocumentEvent
+     */
+    public void insertUpdate(DocumentEvent documentEvent) {
+	contentModified = true;
+    }
+
+    /**
+     * Implements DocumentListener
+     * @param documentEvent DocumentEvent
+     */
+    public void removeUpdate(DocumentEvent documentEvent) {
+	contentModified = true;
     }
 
     /**

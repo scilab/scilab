@@ -55,6 +55,8 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private MatchingBlockManager matchLR;
     private MatchingBlockManager matchRL;
 
+    private boolean suppressCom = true;
+
     private List<KeywordListener> kwListeners = new ArrayList();
 
     /**
@@ -100,6 +102,39 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      */
     public void resetColor(String keyword, Color color) {
 	((ScilabEditorKit) getEditorKit()).getStylePreferences().genColors(keyword, color);
+    }
+
+    /**
+     * Set to true if the comments must be suppressed when the code is executing in the console
+     * @param b boolean
+     */
+    public void suppressCommentsInExecutingCode(boolean b) {
+	suppressCom = b;
+    }
+    
+    /**
+     * Execute the code in the console, the code is the selected text if exists
+     * or the text from beginning to actual position of the caret
+     * Comments are removed if suppressCom is set to true
+     * @return the code to be executed in the console.
+     */
+    public String getCodeToExecute() {
+	String selection;
+	int start = getSelectionStart();
+	int end = getSelectionEnd();
+	try {
+	    if (start == end) {
+		selection = getDocument().getText(0, start + 1);
+	    } else {
+		selection = getDocument().getText(start, end - start + 1);
+	    }
+	    if (suppressCom) {
+		selection = selection.replaceAll("[ \t]*//[^\n]*\n", "");
+	    }
+	} catch (BadLocationException e) {
+	    selection = "";
+	}
+	return selection;
     }
     
     /**

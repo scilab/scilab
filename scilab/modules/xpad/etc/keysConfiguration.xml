@@ -29,9 +29,8 @@
   <entry key="HighlightCurrentLineAction">control J</entry>
   <entry key="HelpOnKeywordAction">control F1</entry>
 
-  <!--entry key="LineNumbersWhereamiAction">control shift B</entry>
   <entry key="LoadIntoScilabAction">control L</entry>
-  <entry key="ExecuteFileIntoScilabAction">control E</entry>
-  <entry key="EvaluateSelectionAction">control shift E</entry-->
+  <entry key="ExecuteFileIntoScilabAction">control shift E</entry>
+  <entry key="EvaluateSelectionAction">control E</entry>
 
 </properties>

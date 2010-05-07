@@ -13,8 +13,6 @@
 
 package org.scilab.modules.xpad.actions;
 
-import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -102,17 +100,16 @@ public final class LoadIntoScilabAction extends DefaultAction {
 	/**
 	 * createMenu
 	 * @param editor Xpad
+	 * @param key KeyStroke 
 	 * @return MenuItem
 	 */
-	public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.LOAD_INTO_SCILAB, null, 
-				new LoadIntoScilabAction(editor), 
-				KeyStroke.getKeyStroke(KeyEvent.VK_L, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+         public static MenuItem createMenu(Xpad editor, KeyStroke key) {
+		return createMenu(XpadMessages.LOAD_INTO_SCILAB, null, new LoadIntoScilabAction(editor), key);
 	 }
 
 	 /**
 	  * check if string is not too big
-	  * @param[in] text to scan
+	  * @param text to scan
 	  * @return true or false
 	  */
 	private static boolean maxLinesRecommandedDetected(String text) {

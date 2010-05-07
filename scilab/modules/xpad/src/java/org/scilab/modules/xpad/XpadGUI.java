@@ -174,10 +174,10 @@ public class XpadGUI {
 		Menu executeMenu = ScilabMenu.createMenu();
 		executeMenu.setText(XpadMessages.EXECUTE);
 		executeMenu.setMnemonic('e');
-		executeMenu.add(LoadIntoScilabAction.createMenu(editorInstance));
-		evaluateSelectionMenuItem = EvaluateSelectionAction.createMenu(editorInstance);
+		executeMenu.add(LoadIntoScilabAction.createMenu(editorInstance, map.get("LoadIntoScilabAction")));
+		evaluateSelectionMenuItem = EvaluateSelectionAction.createMenu(editorInstance, map.get("EvaluateSelectionAction"));
 		executeMenu.add(evaluateSelectionMenuItem);
-		executeMenu.add(ExecuteFileIntoScilabAction.createMenu(editorInstance));
+		executeMenu.add(ExecuteFileIntoScilabAction.createMenu(editorInstance, map.get("ExecuteFileIntoScilabAction")));
 		menuBar.add(executeMenu);
 
 		//Create HELP menubar
@@ -442,9 +442,9 @@ public class XpadGUI {
 		/* Execute into Scilab */
 		ActionListener actionListenerExecuteIntoScilab = new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
-				String selection = c.getSelectedText();
+				String selection = ((ScilabEditorPane) c).getCodeToExecute();
 				if (selection == null) {
-					infoBar.setText(Messages.gettext("No text selected"));
+					infoBar.setText(Messages.gettext("No text to execute"));
 				} else {
 					ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(selection, true /* display */, true /* store in history */);
 				}

@@ -12,10 +12,13 @@
 
 package org.scilab.modules.xpad.actions;
 
+import javax.swing.KeyStroke;
+
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.utils.XpadMessages;
+import org.scilab.modules.xpad.ScilabEditorPane;
 
 /**
  * EvaluateSelectionAction class
@@ -42,19 +45,20 @@ public final class EvaluateSelectionAction extends DefaultAction {
 	 */
 	public void doAction() {
 		/* Will do the job as if it was copy / paste in scilab Console */
-		//InterpreterManagement.requestScilabExec(getEditor().getTextPane().getText());
-		String selection = getEditor().getTextPane().getSelectedText();
+		ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
+		String selection = sep.getCodeToExecute();
 		if (selection.compareTo("") != 0) {
 			ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(selection, true, false);	
 		}
 	}
 
-	/**
+        /**
 	 * createMenu
 	 * @param editor xpad
+	 * @param key KeyStroke
 	 * @return MenuItem
 	 */
-	public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.EVALUATE_SELECTION, null, new EvaluateSelectionAction(editor), null);
+        public static MenuItem createMenu(Xpad editor, KeyStroke key) {
+		return createMenu(XpadMessages.EVALUATE_SELECTION, null, new EvaluateSelectionAction(editor), key);
 	}
 }

@@ -13,9 +13,6 @@
 
 package org.scilab.modules.xpad.actions;
 
-import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
-
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.console.ScilabConsole;
@@ -55,7 +52,7 @@ public final class ExecuteFileIntoScilabAction extends DefaultAction {
 	 */
 	private void executeFile(Xpad editor) {
 		
-		String filePath = editor.getTextPane().getName();
+	    String filePath = editor.getTextPane().getName();
 		/*TODO : check if that fixes 7032 */
 		filePath = filePath.replaceAll("\"", "\"\"");
 		filePath = filePath.replaceAll("'", "''");
@@ -95,11 +92,10 @@ public final class ExecuteFileIntoScilabAction extends DefaultAction {
 	/**
 	 * createMenu
 	 * @param editor Xpad
+	 * @param key KeyStroke
 	 * @return MenuItem
 	 */
-	public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.EXECUTE_FILE_INTO_SCILAB, null,
-			new ExecuteFileIntoScilabAction(editor), 
-			KeyStroke.getKeyStroke(KeyEvent.VK_E, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
-	 }
+        public static MenuItem createMenu(Xpad editor, KeyStroke key) {
+		return createMenu(XpadMessages.EXECUTE_FILE_INTO_SCILAB, null, new ExecuteFileIntoScilabAction(editor), key);
+	}
 }
