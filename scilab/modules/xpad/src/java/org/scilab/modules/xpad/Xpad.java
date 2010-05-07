@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2010 - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -91,6 +92,7 @@ import org.scilab.modules.xpad.utils.XpadMessages;
 /**
  * Main Xpad class.
  * @author Bruno JOFRET
+ * @author Calixte DENIZET
  */
 public class Xpad extends SwingScilabTab implements Tab {
 
@@ -122,6 +124,10 @@ public class Xpad extends SwingScilabTab implements Tab {
 	private EditorKit editorKit;
 	private long lastKnownSavedState;
 	private Object synchro = new Object();
+    
+        private boolean highlight;
+        private Color highlightColor;
+        private Color highlightContourColor;
 
 	private Vector<Integer> tabList = new Vector<Integer>();
 	private Vector<Integer> closedTabList = new Vector<Integer>();
@@ -142,6 +148,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		recentsMenu = ScilabMenu.createMenu();
 		numberOfUntitled = 0;
 		editorKit = new ScilabEditorKit();
+		setDefaultHighlight();
 		lastKnownSavedState = 0;
 		tabPane = new JTabbedPane();
 		tabPane.addChangeListener(new ChangeListener() {
@@ -245,7 +252,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 		ConfigXpadManager.saveToRecentOpenedFiles(filePath);
 		editorInstance.updateRecentOpenedFilesMenu();
 		editorInstance.readFileAndWait(f);
-		//editorInstance.getXln().highlightLine(lineNumber);
 		editorInstance.lastKnownSavedState = System.currentTimeMillis();
 	}
 
@@ -691,11 +697,11 @@ public class Xpad extends SwingScilabTab implements Tab {
 	 */
 	public ScilabEditorPane addTab(String title) {
 	        textPane = new ScilabEditorPane(this);
+		setHighlight(textPane);
 		textPane.setEditorKit(new ScilabEditorKit());
 		xln = new XpadLineNumberPanel(textPane);
 		xln.setWhereamiLineNumbering(true);
 		scrollingText = new JScrollPane(textPane);
-		ScilabEditorPane sep = (ScilabEditorPane) textPane;
 		/*sep.addKeywordListener(new KeywordListener.MouseClickedListener() {
 			public void caughtKeyword(KeywordEvent e) {
 			    ScilabEditorPane jep = (ScilabEditorPane) e.getSource();
@@ -918,12 +924,85 @@ public class Xpad extends SwingScilabTab implements Tab {
 			System.err.println("Could not retrieve the current text tab." + e);
 			return null;
 		} catch (ArrayIndexOutOfBoundsException e) { // can happen between Xpad construction and first call to addTab()
-			//System.err.println("no tab (yet?)."+e); 
+			//System.err.println("no tab (yet?)."+e);
 			return null;
 		}
 	}
 
 	/**
+	 * Get text component at index.
+	 * @param index the index of the textpane
+	 * @return the text component
+	 */
+	public ScilabEditorPane getTextPane(int index) {
+		try {
+		    return (ScilabEditorPane) ((JScrollPane) tabPane.getComponentAt(index)).getViewport().getComponent(0);
+		} catch (NullPointerException e) {
+			System.err.println("Could not retrieve the text tab at index " + index + ".\n" + e);
+			return null;
+		} catch (ArrayIndexOutOfBoundsException e) { // can happen between Xpad construction and first call to addTab()
+			return null;
+		}
+	}
+
+        /**
+	 * Enable the highlighted line in this editor
+	 * @param b boolean
+	 */
+        public void enableHighlightedLine(boolean b) {
+	    	int n = tabPane.getTabCount();
+		for (int i = 0; i < n; i++) {
+		    ((ScilabEditorPane) getEditor().getTextPane(i)).enableHighlightedLine(b);
+		}
+		highlight = b;
+	}
+
+        /**
+	 * Set the color of the highlighted line in this editor
+	 * @param c Color
+	 */  
+        public void setHighlightedLineColor(Color c) {
+	    	int n = tabPane.getTabCount();
+		for (int i = 0; i < n; i++) {
+		    ((ScilabEditorPane) getEditor().getTextPane(i)).setHighlightedLineColor(c);
+		}
+		highlightColor = c;
+	}
+
+        /**
+	 * Set the color of the contour of the highlighted line in this editor
+	 * @param c Color
+	 */  
+        public void setHighlightedContourColor(Color c) {
+	    	int n = tabPane.getTabCount();
+		for (int i = 0; i < n; i++) {
+		    ((ScilabEditorPane) getEditor().getTextPane(i)).setHighlightedContourColor(c);
+		}
+		highlightContourColor = c;
+	}
+    
+        /**
+	 * Set the defaults for the highlighted line in this editor
+	 * Defaults read in xpadConfiguration.xml
+	 */  
+        public void setDefaultHighlight() {
+	    this.highlight = ConfigXpadManager.getHighlightState();
+	    Color[] arr = ConfigXpadManager.getHighlightColors();
+	    this.highlightColor = arr[0];
+	    this.highlightContourColor = arr[1];
+	}
+
+        /**
+	 * Set the highlighted line in this textPane
+	 * @param sep ScilabEditorPane
+	 */  
+        public void setHighlight(ScilabEditorPane sep) {
+	    sep.enableHighlightedLine(highlight);
+	    sep.setHighlightedLineColor(highlightColor);
+	    sep.setHighlightedContourColor(highlightContourColor);
+	}
+
+        /**
 	 * Get Xpad as a Tab.
 	 * @return Xpad instance
 	 * @see org.scilab.modules.gui.tab.Tab#getAsSimpleTab()

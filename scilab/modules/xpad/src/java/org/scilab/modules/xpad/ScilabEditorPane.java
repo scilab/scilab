@@ -43,6 +43,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
 							     MouseMotionListener {
 
     private Color highlightColor = new Color(228, 233, 244);
+    private Color highlightContourColor = new Color(50, 50, 50);
     private boolean highlightEnable;
     private boolean matchingEnable;
     private ScilabLexer lexer;
@@ -162,17 +163,19 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
 
     /**
      * Set a new color for the highlighting
-     * @param c the color
+     * @param c the color, can be null (useful if setHighlightedContourColor is used with a
+     * non-null value)
      */
     public void setHighlightedLineColor(Color c) {
 	highlightColor = c;
     }
 
     /**
-     * @return the color of the highlighted line
-     */ 
-    public Color getHighlightedLineColor() {
-	return highlightColor;
+     * Set a new color for the contour of the highlighting
+     * @param c the color, if null no contour is drawn
+     */
+    public void setHighlightedContourColor(Color c) {
+	highlightContourColor = c;
     }
 
     /**
@@ -233,8 +236,16 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
 	if (highlightEnable) {
 	    try {
 		Rectangle r = modelToView(getCaretPosition());
-		g.setColor(highlightColor);
-		g.fillRect(0, r.y, getWidth(), r.height);
+		if (highlightColor != null) {
+		    g.setColor(highlightColor);
+		    g.fillRect(0, r.y, getWidth(), r.height);
+		}
+		if (highlightContourColor != null) {
+		    g.setColor(highlightContourColor);
+		    g.drawLine(0, r.y - 1, getWidth(), r.y - 1);
+		    g.drawLine(0, r.y + r.height, getWidth(), r.y + r.height);
+		}
+		
 	    } catch (BadLocationException e) { }
 	}
     }

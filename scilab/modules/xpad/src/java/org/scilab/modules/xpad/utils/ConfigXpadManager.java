@@ -82,12 +82,16 @@ public final class ConfigXpadManager {
 	private static final String AUTOINDENT = "AutoIndent";
 	private static final String AUTOCOLORIZE = "AutoColorize";
 	private static final String DEFAULTENCONDING = "DefaultEncoding";
+	private static final String LINEHIGHLIGHTER = "LineHighlighter";    
 
 	private static final String FOREGROUNDCOLOR = "ForegroundColor";
 	private static final String BACKGROUNDCOLOR = "BackgroundColor";
+	private static final String LINECOLOR = "linecolor";
+	private static final String CONTOURCOLOR = "contourcolor";
 	private static final String COLORPREFIX = "#";
 
 	private static final String NAME = "name";
+	private static final String NULL = "null";
 
 	private static final String PROFILE = "Profile";
 
@@ -225,6 +229,57 @@ public final class ConfigXpadManager {
 
 	}
 
+        /**
+	 * @return true if highlighted line is active
+	 */
+        public static boolean getHighlightState() {
+	    readDocument();
+
+	    Element root = document.getDocumentElement();
+	    
+	    NodeList profiles = root.getElementsByTagName(PROFILE);
+	    Element xpadProfile = (Element) profiles.item(0);
+	    
+	    NodeList allSizeElements = xpadProfile.getElementsByTagName(LINEHIGHLIGHTER);
+	    Element lineHighlight = (Element) allSizeElements.item(0);
+	 
+	    return "true".equals(lineHighlight.getAttribute(VALUE));
+	}
+
+        /**
+	 * @return the color for the highlight and for the contour of the highlight
+	 */
+        public static Color[] getHighlightColors() {
+	    readDocument();
+	    
+	    Element root = document.getDocumentElement();
+	    
+	    NodeList profiles = root.getElementsByTagName(PROFILE);
+	    Element xpadProfile = (Element) profiles.item(0);
+	    
+	    NodeList allSizeElements = xpadProfile.getElementsByTagName(LINEHIGHLIGHTER);
+	    Element lineHighlight = (Element) allSizeElements.item(0);
+	    Color[] arr = new Color[2];
+	
+	    Color c;
+	    if (NULL.equals(lineHighlight.getAttribute(LINECOLOR))) {
+		c = null;
+	    } else {
+		c = Color.decode(lineHighlight.getAttribute(LINECOLOR));
+	    }
+	    
+	    arr[0] = c;
+	    
+	    if (NULL.equals(lineHighlight.getAttribute(CONTOURCOLOR))) {
+		c = null;
+	    } else {
+		c = Color.decode(lineHighlight.getAttribute(CONTOURCOLOR));
+	    }
+	    
+	    arr[1] = c;
+	    return arr;
+	}
+    
 	/**
 	 * Get all font style 
 	 * @return true if the font style is bold , false otherwise

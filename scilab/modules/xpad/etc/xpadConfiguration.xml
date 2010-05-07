@@ -23,6 +23,9 @@
     <AutoIndent default="true" useCach="true" value="false"/>
     <AutoColorize default="true" useCach="true" value="true"/>
     <DefaultEncoding value="UTF-8"/> <!-- Initialized to system default at first launch -->
+
+    <!-- linecolor or contourcolor can be "null" to be transparent -->
+    <LineHighlighter value="true" linecolor="#e4e9f4" contourcolor="#323232"/>
     
     <styles>
       

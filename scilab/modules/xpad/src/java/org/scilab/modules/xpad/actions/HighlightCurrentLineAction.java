@@ -16,8 +16,8 @@ import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.xpad.Xpad;
-import org.scilab.modules.xpad.ScilabEditorPane;
 import org.scilab.modules.xpad.utils.XpadMessages;
+import org.scilab.modules.xpad.utils.ConfigXpadManager;
 
 /**
  * HighlightCurrentLineAction Class
@@ -44,7 +44,7 @@ public final class HighlightCurrentLineAction extends DefaultCheckAction {
      * doAction
      */
     public void doAction() {
-	((ScilabEditorPane) getEditor().getTextPane()).enableHighlightedLine(this.getState());
+	getEditor().enableHighlightedLine(this.getState());
     }
     
     /**
@@ -54,7 +54,9 @@ public final class HighlightCurrentLineAction extends DefaultCheckAction {
      * @return CheckBoxMenuItem
      */
     public static CheckBoxMenuItem createCheckBoxMenu(Xpad editor, KeyStroke key) {
-	return createCheckBoxMenu(XpadMessages.HIGHLIGHT_CURRENT_LINE, null, new HighlightCurrentLineAction(editor), key);
+	CheckBoxMenuItem cb = createCheckBoxMenu(XpadMessages.HIGHLIGHT_CURRENT_LINE, null, new HighlightCurrentLineAction(editor), key);
+	cb.setChecked(ConfigXpadManager.getHighlightState());
+	return cb;
     }
 
     /**
