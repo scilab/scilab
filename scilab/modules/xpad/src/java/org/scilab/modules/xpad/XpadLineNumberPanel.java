@@ -4,7 +4,7 @@
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution. The terms
+ * you should have received as part of this distribution.  The terms
  * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
@@ -61,6 +61,7 @@ public class XpadLineNumberPanel extends JPanel implements CaretListener, Docume
     private int borderGap;
     private Color currentLineForeground;
     private boolean isHighlighted;
+    //private Color alternColor = new Color(240, 240, 240);
     private Color currentColor = Color.GRAY;
 
     private int numbers;
@@ -75,8 +76,8 @@ public class XpadLineNumberPanel extends JPanel implements CaretListener, Docume
     private boolean whereami;
 
     /**
-     * Create a line number component for a text component.
-     * @param textPane the related text component
+     *  Create a line number component for a text component.
+     *  @param textPane the related text component
      */
     public XpadLineNumberPanel(ScilabEditorPane textPane) {
         this.textPane = textPane;
@@ -96,6 +97,7 @@ public class XpadLineNumberPanel extends JPanel implements CaretListener, Docume
      */
     public void setWhereamiLineNumbering(boolean b) {
         whereami = b;
+        updateLineNumber(0, 0);
     }
 
     /**
@@ -117,9 +119,9 @@ public class XpadLineNumberPanel extends JPanel implements CaretListener, Docume
     }
 
     /**
-     * Gets the current line rendering Color
+     *  Gets the current line rendering Color
      *
-     * @return the Color used to render the current line number
+     *  @return the Color used to render the current line number
      */
     public Color getCurrentLineForeground() {
         if (currentLineForeground == null) {
@@ -130,9 +132,9 @@ public class XpadLineNumberPanel extends JPanel implements CaretListener, Docume
     }
 
     /**
-     * The Color used to render the current line numbers. Default is Coolor.RED.
+     *  The Color used to render the current line numbers. Default is Coolor.RED.
      *
-     * @param currentLineForeground  the Color used to render the current line
+     *  @param currentLineForeground  the Color used to render the current line
      */
     public void setCurrentLineForeground(Color currentLineForeground) {
         this.currentLineForeground = currentLineForeground;
@@ -159,7 +161,7 @@ public class XpadLineNumberPanel extends JPanel implements CaretListener, Docume
      */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        
+
         if (desktopFontHints == null) {
             desktopFontHints = (Map) (Toolkit.getDefaultToolkit().getDesktopProperty("awt.font.desktophints"));
         } else {
@@ -177,27 +179,27 @@ public class XpadLineNumberPanel extends JPanel implements CaretListener, Docume
             int lineEnd = root.getElementIndex(endOffset);
 
             for (int line = root.getElementIndex(rowStartOffset); line <= lineEnd; line++) {
-            String str;
-            if (whereami && lineNumber != null) {
-                str = Integer.toString(lineNumber[line]);
-                //g.fillRect(0, view.getLineAllocation(line), availableWidth, metrics.getHeight());
-            } else {
-                str = Integer.toString(line + 1);
-            }
+                String str;
+                if (whereami && lineNumber != null) {
+                    str = Integer.toString(lineNumber[line]);
+                    //g.fillRect(0, view.getLineAllocation(line), availableWidth, metrics.getHeight());
+                } else {
+                    str = Integer.toString(line + 1);
+                }
 
-            if (line != lastLine) {
-                g.setColor(getForeground());
-            } else {
-                g.setColor(getCurrentLineForeground());
-            }
+                if (line != lastLine) {
+                    g.setColor(getForeground());
+                } else {
+                    g.setColor(getCurrentLineForeground());
+                }
 
-            int diff = (availableWidth - metrics.stringWidth(str)) / 2;
-            if (diff <= 0) {
-                updateWidth();
-                diff = (availableWidth - metrics.stringWidth(str)) / 2;
-            }
+                int diff = (availableWidth - metrics.stringWidth(str)) / 2;
+                if (diff <= 0) {
+                    updateWidth();
+                    diff = (availableWidth - metrics.stringWidth(str)) / 2;
+                }
 
-            g.drawString(str, diff, view.getLineAllocation(line) + ascent);
+                g.drawString(str, diff, view.getLineAllocation(line) + ascent);
             }
         }
     }
@@ -235,22 +237,22 @@ public class XpadLineNumberPanel extends JPanel implements CaretListener, Docume
                 if (elem instanceof ScilabDocument.ScilabLeafElement) {
                     int type = ((ScilabDocument.ScilabLeafElement) elem).getType();
                     switch (type) {
-                        case ScilabDocument.ScilabLeafElement.NOTHING :
-                            lineNumber[i] = current++;
-                            break;
-                        case ScilabDocument.ScilabLeafElement.FUN :
-                            stk.push(new Integer(current));
-                            current = 2;
-                            lineNumber[i] = 1;
-                            break;
-                        case ScilabDocument.ScilabLeafElement.ENDFUN :
-                            lineNumber[i] = current++;
-                            if (!stk.empty()) {
-                                current = stk.pop().intValue() + lineNumber[i];
-                            }
-                            break;
-                        default :
-                            break;
+                    case ScilabDocument.ScilabLeafElement.NOTHING :
+                        lineNumber[i] = current++;
+                        break;
+                    case ScilabDocument.ScilabLeafElement.FUN :
+                        stk.push(new Integer(current));
+                        current = 2;
+                        lineNumber[i] = 1;
+                        break;
+                    case ScilabDocument.ScilabLeafElement.ENDFUN :
+                        lineNumber[i] = current++;
+                        if (!stk.empty()) {
+                            current = stk.pop().intValue() + lineNumber[i];
+                        }
+                        break;
+                    default :
+                        break;
                     }
                 } else {
                     lineNumber[i + 1] = lineNumber[i] + 1;
@@ -281,18 +283,18 @@ public class XpadLineNumberPanel extends JPanel implements CaretListener, Docume
         handleEvent(e.getOffset(), e.getLength());
     }
 
-    /** 
+    /**
      * Update the line numbering on a change in the document
      * @param offset offset where the event occured
      * @param length length of inserted or removed text
      */
     private void handleEvent(int offset, int length) {
-        if (whereami) {
-            Element root = doc.getDefaultRootElement();
-            Element line = root.getElement(root.getElementIndex(offset));
-            if (line instanceof ScilabDocument.ScilabLeafElement) {
+        Element root = doc.getDefaultRootElement();
+        Element line = root.getElement(root.getElementIndex(offset));
+        if (line instanceof ScilabDocument.ScilabLeafElement) {
             ((ScilabDocument.ScilabLeafElement) line).resetType();
-            updateLineNumber(offset, offset + length);
+            if (whereami) {
+                updateLineNumber(offset, offset + length);
             }
         }
         repaint();
@@ -308,5 +310,4 @@ public class XpadLineNumberPanel extends JPanel implements CaretListener, Docume
         Border inner = new EmptyBorder(0, borderGap, 0, borderGap);
         setBorder(new CompoundBorder(OUTER, inner));
     }
-
 }

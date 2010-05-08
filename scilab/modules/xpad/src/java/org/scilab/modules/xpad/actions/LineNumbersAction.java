@@ -11,12 +11,9 @@
  */
 package org.scilab.modules.xpad.actions;
 
-import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
-
 import javax.swing.KeyStroke;
 
-import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
+import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
@@ -25,39 +22,47 @@ import org.scilab.modules.xpad.utils.XpadMessages;
  * @author Bruno JOFRET
  *
  */
-public final class LineNumbersAction extends DefaultCheckAction {
+public final class LineNumbersAction extends DefaultAction {
 
     /**
-	 * serialVersionUID
-	 */
-	private static final long serialVersionUID = -2778300710964013775L;
-
-	/**
-	 * Construtor
-	 * @param editor Xpad
-	 */
-	private LineNumbersAction(Xpad editor) {
-		super(XpadMessages.LINE_NUMBERS, editor);
-		setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
-    }
-
-	/**
-	 * doAction
-	 */
-    public void doAction() {
-    	getEditor().displayLineNumbers(this.getState());
-    }
-
-    /**
-     * createCheckBoxMenu
-     * @param editor Xpad
-     * @return CheckBoxMenuItem
+     * serialVersionUID
      */
-    public static CheckBoxMenuItem createCheckBoxMenu(Xpad editor) {
-    	CheckBoxMenuItem lineNumber = createCheckBoxMenu(XpadMessages.LINE_NUMBERS, null, 
-    			new LineNumbersAction(editor), 
-    			KeyStroke.getKeyStroke(KeyEvent.VK_B, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
-    lineNumber.setChecked(true);
-	return lineNumber;
+    private static final long serialVersionUID = -2778300710964013775L;
+
+    private MenuItem menu;
+    private boolean state;
+
+    /**
+     * Construtor
+     * @param editor Xpad
+     */
+    private LineNumbersAction(Xpad editor) {
+        super(XpadMessages.LINE_NUMBERS_WHEREAMI, editor);
+    }
+
+    /**
+     * doAction
+     */
+    public void doAction() {
+        state = !state;
+        getEditor().setWhereamiLineNumbering(state);
+        if (state) {
+            menu.setText(XpadMessages.LINE_NUMBERS_NOWHEREAMI);
+        } else {
+            menu.setText(XpadMessages.LINE_NUMBERS_WHEREAMI);
+        }
+    }
+
+    /**
+     * createMenu
+     * @param editor Xpad
+     * @param key KeyStroke
+     * @return createMenu
+     */
+    public static MenuItem createMenu(Xpad editor, KeyStroke key) {
+        LineNumbersAction ln = new LineNumbersAction(editor);
+        MenuItem mi = createMenu(XpadMessages.LINE_NUMBERS_WHEREAMI, null, ln, key);
+        ln.menu = mi;
+        return mi;
     }
 }

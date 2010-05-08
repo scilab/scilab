@@ -20,7 +20,7 @@ import org.scilab.modules.localization.Messages;
 public class XpadMessages {
 
     public static final String DOTS = "...";
-	
+
     public static final String SCILAB_EDITOR = Messages.gettext("Scilab text editor");
     /** FILE MENU */
     public static final String FILE = Messages.gettext("File");
@@ -42,7 +42,7 @@ public class XpadMessages {
     public static final String CLOSEALLBUTTHIS = Messages.gettext("Close All But This");
     public static final String EXIT = Messages.gettext("Exit");
     public static final String QUESTION_MARK = Messages.gettext("?");
-    
+
     /** EDIT MENU */
     public static final String EDIT = Messages.gettext("Edit");
     public static final String UNDO = Messages.gettext("Undo");
@@ -60,24 +60,26 @@ public class XpadMessages {
     public static final String TABIFY_SELECTION = Messages.gettext("Shift Right");
     public static final String UNTABIFY_SELECTION = Messages.gettext("Shift Left");
     public static final String INDENT = Messages.gettext("Correct Indentation");
-    
+
     /** SEARCH MENU */
     public static final String SEARCH = Messages.gettext("Search");
     public static final String FIND_REPLACE = Messages.gettext("Find/Replace");
     public static final String FIND_NEXT = Messages.gettext("Find Next");
     public static final String FIND_PREVIOUS = Messages.gettext("Find Previous");
     public static final String GOTO_LINE = Messages .gettext("Goto line");
-    
+
     /** VIEW MENU */
     public static final String VIEW = Messages.gettext("View");
     public static final String SHOW_HIDE_TOOLBAR = Messages.gettext("Show/Hide ToolBar");
     public static final String HIGHLIGHT_CURRENT_LINE = Messages.gettext("Highlight current line");
     public static final String WORD_WRAP = Messages.gettext("Word Wrap");
-    public static final String LINE_NUMBERS = Messages.gettext("Line Numbers");
+    public static final String LINE_NUMBERS_WHEREAMI = Messages.gettext("Whereami Line Numbering");
+    public static final String LINE_NUMBERS_NOWHEREAMI = Messages.gettext("Normal Line Numbering");
+
     public static final String SET_COLORS = Messages.gettext("Set Colors") + DOTS;
     public static final String SET_FONT = Messages.gettext("Set Font") + DOTS;
     public static final String RESET_DEFAULT_FONT = Messages.gettext("Reset default font");
-    
+
     /** DOCUMENT MENU */
     public static final String DOCUMENT = Messages.gettext("Document");
     public static final String SYNTAX_TYPE = Messages.gettext("Syntax Type");
@@ -92,19 +94,19 @@ public class XpadMessages {
     public static final String EOL_WINDOWS = Messages.gettext("Windows/DOS (CR + LF)");
     public static final String EOL_MACOS = Messages.gettext("Mac Classic (CR)");
     public static final String EOL_LINUX = Messages.gettext("Unix (LF)");
-    
+
     /** EXECUTE MENU */
     public static final String EXECUTE = Messages.gettext("Execute");
     public static final String LOAD_INTO_SCILAB = Messages.gettext("Load Into Scilab");
     public static final String EVALUATE_SELECTION = Messages.gettext("Evaluate Selection");
     public static final String EXECUTE_FILE_INTO_SCILAB = Messages.gettext("Execute File Into Scilab");
-    
+
     /** HELP MENU */
     public static final String HELP = Messages.gettext("Scilab text editor help") + DOTS;
     public static final String HELP_ON_KEYWORD = Messages.gettext("Help on the current keyword");
     public static final String ABOUT = Messages.gettext("About") + DOTS;
     public static final String XPAD_VERSION = Messages.gettext("Scilab text editor");
-    
+
     /** FIND/REPLACE DIALOG */
     public static final String FIND = Messages.gettext("Find:");
     public static final String FIND_BUTTON = Messages.gettext("Find");
@@ -149,7 +151,7 @@ public class XpadMessages {
 
     public static final String ENTER_LINE_NUMBER = Messages .gettext("Enter line number");
     public static final String BINARY_FILE = Messages .gettext("This file is a binary, saving it will result in a corrupt file.");
-    
+
     /* Status bar messages */
     public static final String LOADING = Messages .gettext("Loading") + DOTS;
     public static final String COLORIZATION_CANCELED = Messages .gettext("Colorization canceled");
@@ -159,7 +161,7 @@ public class XpadMessages {
     public static final String VERSION = Messages.gettext("Editor") + " 1.0";
     public static final String DIGITEO = "The Scilab Consortium (DIGITEO)";
     public static final String COPYRIGHT = Messages.gettext("Copyright (c)") + " 2009 (INRIA)";
-    
+
     public static final String XPAD_ERROR = Messages.gettext("Editor error");
     public static final String COULD_NOT_SAVE_FILE = Messages.gettext("The file could not be saved.");
     public static final String COULD_NOT_CONVERT_FILE = Messages.gettext("The file could not be converted.");
@@ -167,20 +169,20 @@ public class XpadMessages {
     public static final String MODIFICATIONS_WILL_BE_LOST = Messages.gettext("Your modifications will be lost, change encoding anyway?");
     public static final String CONTINUE = Messages.gettext("Continue?");
     public static final String CANNOT_LOAD_COLORIZE = Messages.gettext("Cannot load \"xpadConfiguration.xml\"");
-    
+
     public static final String COULD_NOT_FIND_CONSOLE = Messages.gettext("Could not find the console nor the InterpreterManagement.");
     public static final String COULD_NOT_FIND_TMPFILE = Messages.gettext("Could not find the temporary file.");
-    
+
     /**
      * "Change Colors" message
      */
     public static final String CHANGE_COLORS =  Messages.gettext("Change Colors");
-    
+
     /**
      * "Change Color" message
      */
     public static final String CHANGE_COLOR =  Messages.gettext("Change Color");
-    
+
     /**
      * Exit confirm message
      */
