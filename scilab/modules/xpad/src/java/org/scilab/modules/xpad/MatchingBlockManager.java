@@ -43,18 +43,18 @@ public class MatchingBlockManager {
      * @param color the color of the highlight
      */
     public MatchingBlockManager(ScilabDocument doc, boolean lr, Highlighter highlighter, Color color) {
-	this.doc = doc;
-	this.scanner = new MatchingBlockScanner(doc);
-	this.highlighter = highlighter;
-	this.lr = lr;
-	setColor(color);
+        this.doc = doc;
+        this.scanner = new MatchingBlockScanner(doc);
+        this.highlighter = highlighter;
+        this.lr = lr;
+        setColor(color);
     }
 
     /**
      * @param b if true, then highlights then contents between the matching keywords
      */
     public void highlightAllTheBlock(boolean b) {
-	this.all = b;
+        this.all = b;
     }
 
     /**
@@ -62,18 +62,18 @@ public class MatchingBlockManager {
      * @param color the color to use
      */
     public void setColor(Color color) {
-	if (color != this.color) {
-	    this.color = color;
-	    if (first != null) {
-		highlighter.removeHighlight(first);
-		first = null;
-	    }
-	    if (second != null) {
-		highlighter.removeHighlight(second);
-		second = null;
-	    }
-	    hp = new DefaultHighlighter.DefaultHighlightPainter(color);
-	}
+        if (color != this.color) {
+            this.color = color;
+            if (first != null) {
+                highlighter.removeHighlight(first);
+                first = null;
+            }
+            if (second != null) {
+                highlighter.removeHighlight(second);
+                second = null;
+            }
+            hp = new DefaultHighlighter.DefaultHighlightPainter(color);
+        }
     }
 
     /**
@@ -82,30 +82,30 @@ public class MatchingBlockManager {
      * @param pos the positon in the doc
      */
     public void searchMatchingBlock(int tok, int pos) {
-	MatchingBlockScanner.MatchingPositions mpos = null;
-	if (tok == ScilabLexerConstants.CKEYWORD || tok == ScilabLexerConstants.SKEYWORD || tok == ScilabLexerConstants.FKEYWORD || tok == ScilabLexerConstants.OPEN || tok == ScilabLexerConstants.CLOSE) {
-	    mpos = scanner.getMatchingBlock(pos, lr);
-	}
-	if (mpos != this.smpos) {
-	    this.smpos = mpos;
-	    if (first != null) {
-		highlighter.removeHighlight(first);
-		if (!all && second != null) {
-		    highlighter.removeHighlight(second);
-		}
-	    }
-	    if (mpos != null) {
-		try {
-		    if (!all) {
-			first = highlighter.addHighlight(mpos.firstB, mpos.firstE, hp);
-			second = highlighter.addHighlight(mpos.secondB, mpos.secondE, hp);
-		    } else {
-			first = highlighter.addHighlight(mpos.firstB, mpos.secondE, hp);
-		    }
-		} catch (BadLocationException e) {
-		    System.err.println(e);
-		}
-	    }
-	}
+        MatchingBlockScanner.MatchingPositions mpos = null;
+        if (ScilabLexerConstants.isMatchable(tok)) {
+            mpos = scanner.getMatchingBlock(pos, lr);
+        }
+        if (mpos != this.smpos) {
+            this.smpos = mpos;
+            if (first != null) {
+                highlighter.removeHighlight(first);
+                if (!all && second != null) {
+                    highlighter.removeHighlight(second);
+                }
+            }
+            if (mpos != null) {
+                try {
+                    if (!all) {
+                        first = highlighter.addHighlight(mpos.firstB, mpos.firstE, hp);
+                        second = highlighter.addHighlight(mpos.secondB, mpos.secondE, hp);
+                    } else {
+                        first = highlighter.addHighlight(mpos.firstB, mpos.secondE, hp);
+                    }
+                } catch (BadLocationException e) {
+                    System.err.println(e);
+                }
+            }
+        }
     }
 }
