@@ -1,4 +1,4 @@
-//CHECKSTYLE:OFF 
+//CHECKSTYLE:OFF
 
 package org.scilab.modules.xpad;
 
@@ -7,8 +7,8 @@ import java.util.Set;
 import java.util.HashSet;
 import java.io.IOException;
 import javax.swing.text.Element;
- 
-%% 
+
+%%
 
 %public
 %class ScilabLexer
@@ -21,54 +21,53 @@ import javax.swing.text.Element;
 
 %{
     public int start = 0;
-    public Set<String> commands = new HashSet();
-    public Set<String> variables = new HashSet();
- 
+    public static Set<String> commands = new HashSet();
+    public static Set<String> variables = new HashSet();
+
     private ScilabDocument doc = null;
     private boolean transposable = false;
     private Element elem;
-    
-    public ScilabLexer(ScilabDocument doc) {
-    	this.doc = doc;
-	this.elem = doc.getDefaultRootElement();
-	variables.addAll(Arrays.asList(ScilabKeywords.GetVariablesName()));
-	commands.addAll(Arrays.asList(ScilabKeywords.GetFunctionsName()));
-	commands.addAll(Arrays.asList(ScilabKeywords.GetMacrosName()));
 
+    public ScilabLexer(ScilabDocument doc) {
+        this.doc = doc;
+        this.elem = doc.getDefaultRootElement();
+        variables.addAll(Arrays.asList(ScilabKeywords.GetVariablesName()));
+        commands.addAll(Arrays.asList(ScilabKeywords.GetFunctionsName()));
+        commands.addAll(Arrays.asList(ScilabKeywords.GetMacrosName()));
     }
-   
+
     public void setRange(int p0, int p1) {
-    	start = p0;
-	yyreset(new ScilabDocumentReader(doc, p0, p1));
+        start = p0;
+        yyreset(new ScilabDocumentReader(doc, p0, p1));
     }
-    
+
     public int yychar() {
         return yychar;
     }
 
     public int getKeyword(int pos, boolean strict) {
-	Element line = elem.getElement(elem.getElementIndex(pos));	
-	int end = line.getEndOffset();
-	int tok = -1;
+        Element line = elem.getElement(elem.getElementIndex(pos));
+        int end = line.getEndOffset();
+        int tok = -1;
         start = line.getStartOffset();
-	int startL = start;
-	int s = -1;
+        int startL = start;
+        int s = -1;
 
-	try {
-	   yyreset(new ScilabDocumentReader(doc, start, end));
-	   if (!strict) {
-	      pos++;
-	   }
+        try {
+           yyreset(new ScilabDocumentReader(doc, start, end));
+           if (!strict) {
+              pos++;
+           }
 
            while (startL < pos && s != startL) {
-	       s = startL;
-	       tok = yylex();
-	       startL = start + yychar + yylength();
-	   }
+               s = startL;
+               tok = yylex();
+               startL = start + yychar + yylength();
+           }
 
-	   return tok;
+           return tok;
         } catch (IOException e) {
-	   return ScilabLexerConstants.DEFAULT;
+           return ScilabLexerConstants.DEFAULT;
         }
      }
 
@@ -84,7 +83,7 @@ comment = "//"
 
 quote = "'"
 
-cstes = "%t" | "%T" | "%f" | "%F" | "%e" | "%pi" | "%inf" | "%i" | "%z" | "%s" | "%nan" | "%eps" | "SCI" | "WSCI" | "SCIHOME" | "TMPDIR" 
+cstes = "%t" | "%T" | "%f" | "%F" | "%e" | "%pi" | "%inf" | "%i" | "%z" | "%s" | "%nan" | "%eps" | "SCI" | "WSCI" | "SCIHOME" | "TMPDIR"
 
 operator = ".'" | ".*" | "./" | ".\\" | ".^" | ".**" | "+" | "-" | "/" | "\\" | "*" | "^" | "**" | "==" | "~=" | "<>" | "<" | ">" | "<=" | ">=" | ".*." | "./." | ".\\." | "/." | "=" | "&" | "|" | "@" | "@=" | "~"
 
@@ -94,7 +93,7 @@ structureKwds = "if" | "then" | "else" | "elseif" | "end" | "for" | "while" | "d
 
 controlKwds = "abort" | "break" | "quit" | "return" | "resume" | "pause" | "continue" | "exit"
 
-authors = "Calixte Denizet" | "Calixte DENIZET" | "Sylvestre Ledru" | "Sylvestre LEDRU" | "Yann Collette" | "Yann COLLETTE" | "Allan Cornet" | "Allan CORNET" | "Allan Simon" | "Allan SIMON" | "Antoine Elias" | "Antoine ELIAS" | "Bernard Hugueney" | "Bernard HUGUENEY" | "Bruno Jofret" | "Bruno JOFRET" | "Claude Gomez" | "Claude GOMEZ" | "Clement David" | "Clement DAVID" | "Jerome Picard" | "Jerome PICARD" | "Manuel Juliachs" | "Manuel JULIACHS" | "Michael Baudin" | "Michael BAUDIN" | "Pierre Lando" | "Pierre LANDO" | "Pierre Marechal" | "Pierre MARECHAL" | "Serge Steer" | "Serge STEER" | "Vincent Couvert" | "Vincent COUVERT" | "Vincent Liard" | "Vincent LIARD" | "Zhour Madini-Zouine" | "Zhour MADINI-ZOUINE" | "Inria" | "INRIA"
+authors = "Calixte Denizet" | "Calixte DENIZET" | "Sylvestre Ledru" | "Sylvestre LEDRU" | "Yann Collette" | "Yann COLLETTE" | "Allan Cornet" | "Allan CORNET" | "Allan Simon" | "Allan SIMON" | "Antoine Elias" | "Antoine ELIAS" | "Bernard Hugueney" | "Bernard HUGUENEY" | "Bruno Jofret" | "Bruno JOFRET" | "Claude Gomez" | "Claude GOMEZ" | "Clement David" | "Clement DAVID" | "Jerome Picard" | "Jerome PICARD" | "Manuel Juliachs" | "Manuel JULIACHS" | "Michael Baudin" | "Michael BAUDIN" | "Pierre Lando" | "Pierre LANDO" | "Pierre Marechal" | "Pierre MARECHAL" | "Serge Steer" | "Serge STEER" | "Vincent Couvert" | "Vincent COUVERT" | "Vincent Liard" | "Vincent LIARD" | "Zhour Madini-Zouine" | "Zhour MADINI-ZOUINE" | "Vincent Lejeune" | "Vincent LEJEUNE" | "Sylvestre Koumar" | "Sylvestre KOUMAR" | "Inria" | "INRIA" | "DIGITEO" | "Digiteo" | "ENPC"
 
 break = ".."(".")*
 
@@ -120,192 +119,192 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
 %%
 
 <YYINITIAL> {
-  {comment}			 { 
-  				   transposable = false;
-				   yybegin(COMMENT);
-				 }
-				 
-  {operator}                     { 
-  				   transposable = false;
-				   return ScilabLexerConstants.OPERATOR;
-				 }
+  {comment}                      {
+                                   transposable = false;
+                                   yybegin(COMMENT);
+                                 }
 
-  {functionKwds}		 { 
-  				   transposable = false;
-				   return ScilabLexerConstants.FKEYWORD;
-				 }
+  {operator}                     {
+                                   transposable = false;
+                                   return ScilabLexerConstants.OPERATOR;
+                                 }
 
-  {structureKwds}		 { 
-  				   transposable = false;
-				   return ScilabLexerConstants.SKEYWORD;
-				 }
+  {functionKwds}                 {
+                                   transposable = false;
+                                   return ScilabLexerConstants.FKEYWORD;
+                                 }
 
-  {controlKwds}			 { 
-  				   transposable = false;
-				   return ScilabLexerConstants.CKEYWORD;
-				 }
+  {structureKwds}                {
+                                   transposable = false;
+                                   return ScilabLexerConstants.SKEYWORD;
+                                 }
 
-  {cstes}			 { 
-  				   transposable = true;
-				   return ScilabLexerConstants.CONSTANTES;
-				 }
+  {controlKwds}                  {
+                                   transposable = false;
+                                   return ScilabLexerConstants.CKEYWORD;
+                                 }
 
-  {id}				 { 
-  				   transposable = true;
-				   String str = yytext();
-				   if (commands.contains(str)) {
-				       yybegin(COMMANDS);
-				       return ScilabLexerConstants.COMMANDS;
-				   } else if (variables.contains(str)) {
-				       return ScilabLexerConstants.VARIABLES;
-				   }
-				   return ScilabLexerConstants.ID;
-				 }
+  {cstes}                        {
+                                   transposable = true;
+                                   return ScilabLexerConstants.CONSTANTES;
+                                 }
 
-  {number}			 { 
-  				   transposable = true;
-				   return ScilabLexerConstants.NUMBER;
-				 }
+  {id}                           {
+                                   transposable = true;
+                                   String str = yytext();
+                                   if (commands.contains(str)) {
+                                       yybegin(COMMANDS);
+                                       return ScilabLexerConstants.COMMANDS;
+                                   } else if (variables.contains(str)) {
+                                       return ScilabLexerConstants.VARIABLES;
+                                   }
+                                   return ScilabLexerConstants.ID;
+                                 }
 
-  {special}			 {
-				   transposable = false;
-				   return ScilabLexerConstants.SPECIAL;
-				 }
+  {number}                       {
+                                   transposable = true;
+                                   return ScilabLexerConstants.NUMBER;
+                                 }
 
-  {dot}				 {
-				   transposable = false;
-				   yybegin(FIELD);
-				   return ScilabLexerConstants.OPERATOR;
-				 }
- 	
-  {quote}			 {
-				    if (transposable) {
-				       return ScilabLexerConstants.TRANSP;
-				    } else {
-				       yybegin(QSTRING);
-				    }
-				 }
+  {special}                      {
+                                   transposable = false;
+                                   return ScilabLexerConstants.SPECIAL;
+                                 }
 
-  {open}			 { 
-  				   transposable = false;
-				   return ScilabLexerConstants.OPEN;
-				 }
+  {dot}                          {
+                                   transposable = false;
+                                   yybegin(FIELD);
+                                   return ScilabLexerConstants.OPERATOR;
+                                 }
 
-  {close}			 { 
-  				   transposable = true;
-				   return ScilabLexerConstants.CLOSE;
-				 }
+  {quote}                        {
+                                    if (transposable) {
+                                       return ScilabLexerConstants.TRANSP;
+                                    } else {
+                                       yybegin(QSTRING);
+                                    }
+                                 }
 
-  {dqstring}			 { 
-  				   transposable = false;
-				   return ScilabLexerConstants.STRING;
-				 }
+  {open}                         {
+                                   transposable = false;
+                                   return ScilabLexerConstants.OPEN;
+                                 }
 
-  " "				 {
-				   return ScilabLexerConstants.WHITE;
-				 }
+  {close}                        {
+                                   transposable = true;
+                                   return ScilabLexerConstants.CLOSE;
+                                 }
 
-  "\t"				 {
-				   return ScilabLexerConstants.TAB;
-				 }
+  {dqstring}                     {
+                                   transposable = false;
+                                   return ScilabLexerConstants.STRING;
+                                 }
 
-  .				 |
-  {eol}				 { 
-				   transposable = false;
-				   return ScilabLexerConstants.DEFAULT;
-				 }
+  " "                            {
+                                   return ScilabLexerConstants.WHITE;
+                                 }
+
+  "\t"                           {
+                                   return ScilabLexerConstants.TAB;
+                                 }
+
+  .                              |
+  {eol}                          {
+                                   transposable = false;
+                                   return ScilabLexerConstants.DEFAULT;
+                                 }
 
 }
 
 <COMMANDS> {
 
-  " "				 {
-				   yybegin(COMMANDSWHITE);
-				   return ScilabLexerConstants.WHITE;
-				 }
+  " "                            {
+                                   yybegin(COMMANDSWHITE);
+                                   return ScilabLexerConstants.WHITE;
+                                 }
 
-  "\t"				 {
-  				   yybegin(COMMANDSWHITE);
-				   return ScilabLexerConstants.TAB;
-				 }
+  "\t"                           {
+                                   yybegin(COMMANDSWHITE);
+                                   return ScilabLexerConstants.TAB;
+                                 }
   .
-  				 {
-				   yypushback(1);
-				   yybegin(YYINITIAL);
-				 }
+                                 {
+                                   yypushback(1);
+                                   yybegin(YYINITIAL);
+                                 }
 
-  {eol}				 { }
+  {eol}                          { }
 }
 
 <COMMANDSWHITE> {
-  [^ \t,;]*			 {
-  				   return ScilabLexerConstants.STRING;
-				 }
+  [^ \t,;]*                      {
+                                   return ScilabLexerConstants.STRING;
+                                 }
 
-  " "				 {
-				   return ScilabLexerConstants.WHITE;
-				 }
+  " "                            {
+                                   return ScilabLexerConstants.WHITE;
+                                 }
 
-  "\t"				 {
-  				   return ScilabLexerConstants.TAB;
-				 }
+  "\t"                           {
+                                   return ScilabLexerConstants.TAB;
+                                 }
   .
-  				 {
-				   yypushback(1);
-				   yybegin(YYINITIAL);
-				 }
+                                 {
+                                   yypushback(1);
+                                   yybegin(YYINITIAL);
+                                 }
 
-  {eol}				 { }
+  {eol}                          { }
 }
 
 <FIELD> {
-  {id}				 {
-  				   return ScilabLexerConstants.FIELD;
-				 }
+  {id}                           {
+                                   return ScilabLexerConstants.FIELD;
+                                 }
 
-  .				 {
-				   yypushback(1);
-				   yybegin(YYINITIAL);
-				 }
+  .                              {
+                                   yypushback(1);
+                                   yybegin(YYINITIAL);
+                                 }
 
-  {eol}				 { }  
-}  				 
+  {eol}                          { }
+}
 
 <QSTRING> {
-  {string}			 { }
-  
-  (\'|\")			 { 
-  				   transposable = false;
-  				   yybegin(YYINITIAL);
-				   return ScilabLexerConstants.STRING;
-				 }
-  
-  .				 |				 
-  {eol} 			 {
-				   return ScilabLexerConstants.DEFAULT;
-				 }
+  {string}                       { }
+
+  (\'|\")                        {
+                                   transposable = false;
+                                   yybegin(YYINITIAL);
+                                   return ScilabLexerConstants.STRING;
+                                 }
+
+  .                              |
+  {eol}                          {
+                                   return ScilabLexerConstants.DEFAULT;
+                                 }
 
 }
 
 <COMMENT> {
-  {authors}			 {
-				   return ScilabLexerConstants.AUTHORS;
-				 }
+  {authors}                      {
+                                   return ScilabLexerConstants.AUTHORS;
+                                 }
 
-  {url}				 {
-  				   return ScilabLexerConstants.URL;
-				 }
+  {url}                          {
+                                   return ScilabLexerConstants.URL;
+                                 }
 
-  {latex}			 {
-  				   return ScilabLexerConstants.LATEX;
-				 }
+  {latex}                        {
+                                   return ScilabLexerConstants.LATEX;
+                                 }
 
-  .	  		         | 
-  {eol}				 { 
-  				   return ScilabLexerConstants.COMMENT;
-  				 }
+  .                              |
+  {eol}                          {
+                                   return ScilabLexerConstants.COMMENT;
+                                 }
 }
 
 <<EOF>>                          {
-				   return ScilabLexerConstants.EOF;
-				 }
+                                   return ScilabLexerConstants.EOF;
+                                 }
