@@ -19,5 +19,4 @@ for p=myvector
   computed=computed+p;
 end
 expected=5.+7*%i+9*%s;
-if computed<>expected then pause,end
-
+if computed<>expected then bugmes();quit;end
