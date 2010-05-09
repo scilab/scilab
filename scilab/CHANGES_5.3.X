@@ -488,6 +488,8 @@ Bug fixes:
 * bug 2775 fixed - Multiplication of 0 times infinity did not work because of
                    ATLAS under Windows.
 
+* bug 3281 fixed - Incorrect error message #72 fixed.
+
 * bug 3311 fixed - Loop with a "for" over a vector of complex polynomials produced
                    wrong values.
 
