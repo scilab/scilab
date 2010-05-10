@@ -53,6 +53,8 @@ Graphics:
 * bug 6835 fixed - Performing an interactive rotation after having executed the
                    "plot3d" function caused Scilab to freeze on 64-bit Windows.
 
+* bug 6848 fixed - The patterns of the lines was poorly exported.
+
 * bug 6958 fixed - The "tics_labels" property from "axes" rejected column vector of labels.
 
 * bug 6959 fixed - axis.tics_labels did not accept $..$ LaTeXed labels
