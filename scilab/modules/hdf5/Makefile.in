@@ -489,6 +489,7 @@ libscihdf5_la_CPPFLAGS = -I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes \
 				-I$(top_srcdir)/modules/api_scilab/includes \
                 -I$(top_srcdir)/modules/jvm/includes/ \
+				-I$(top_srcdir)/modules/fileio/includes \
 				$(JAVA_JNI_INCLUDE) \
 				$(HDF5_CFLAGS)
 

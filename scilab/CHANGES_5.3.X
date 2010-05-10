@@ -119,6 +119,9 @@ Xcos:
 * bug 5596 fixed - It was not possible to change text block properties (font
                    and color)
 
+* bug 6440 fixed - xcos demos did not work and returned an error "Unable to 
+                   open file".
+
 * bug 6527 fixed - There was several instances of the same variable name
                    in the workspace when a data set was exported via a
                    "To Workspace" block.
