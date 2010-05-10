@@ -29,6 +29,9 @@ public final class XcosConstants extends ScilabGraphConstants {
     /** Define the default block vertical margin on the palette */
     public static final int PALETTE_VMARGIN = 5;
     
+    /** Define the maximum number of char that might be represented as style */
+    public static final int MAX_CHAR_IN_STYLE = 16;
+    
     /* Events */
     /**
      * When a block changed

@@ -870,7 +870,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
      * @return tooltip text
      */
     public String getToolTipText() {
-	StringBuffer result = new StringBuffer();
+	StringBuilder result = new StringBuilder();
 	result.append(XcosConstants.HTML_BEGIN);
 	result.append("Block Name : " + getInterfaceFunctionName() + XcosConstants.HTML_NEWLINE);
 	result.append("Simulation : " + getSimulationFunctionName() + XcosConstants.HTML_NEWLINE);
@@ -889,7 +889,15 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 	    }
 	} else {
 	    result.append("UID : " + getId() + XcosConstants.HTML_NEWLINE);
-	    result.append("Block Style : " + getStyle() + XcosConstants.HTML_NEWLINE);
+		final int length = getStyle().length();
+		result.append("Style : ");
+		if (length > XcosConstants.MAX_CHAR_IN_STYLE) {
+			result.append(getStyle().substring(0, XcosConstants.MAX_CHAR_IN_STYLE));
+			result.append(XcosMessages.DOTS);
+		} else {
+			result.append(getStyle());
+		}
+		result.append(XcosConstants.HTML_NEWLINE);
 	    result.append("Flip : " + getFlip() + XcosConstants.HTML_NEWLINE);
 	    result.append("Mirror : " + getMirror() + XcosConstants.HTML_NEWLINE);
 	    result.append("Input ports : " + BasicBlockInfo.getAllTypedPorts(this, false, InputPort.class).size() + XcosConstants.HTML_NEWLINE);
