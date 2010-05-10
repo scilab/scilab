@@ -1,6 +1,6 @@
 dnl
 dnl Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-dnl Copyright (C) DIGITEO - 2009 - 2009 - Bruno JOFRET
+dnl Copyright (C) DIGITEO - 2009 - Bruno JOFRET
 dnl 
 dnl This file must be used under the terms of the CeCILL.
 dnl This source file is licensed as described in the file COPYING, which
