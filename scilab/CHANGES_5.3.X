@@ -159,6 +159,9 @@ Xcos:
 
 * bug 7099 fixed - xml2modelica called ocamlrun (wrong dependency on Windows).
 
+* bug 7053 fixed - Rotated saved blocks were not loaded with the right rotation 
+                   value.
+
 Dynamic link:
 =============
 
