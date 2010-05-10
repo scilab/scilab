@@ -26,6 +26,7 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.print.PrinterJob;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -156,7 +157,7 @@ public class CallScilabBridge {
 
 
 	private static PrintRequestAttributeSet scilabPageFormat = new HashPrintRequestAttributeSet();
-	private static String tmpPrinterFile = System.getenv("TMPDIR") + System.getProperty("file.separator") + "scilabfigure";
+	private static String tmpPrinterFile = File.createTempFile("scilabfigure","").getAbsolutePath();
 	
 	private static final String FIGURE_TITLE = "Graphic window number ";
 	
