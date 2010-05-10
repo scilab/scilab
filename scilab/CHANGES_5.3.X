@@ -56,6 +56,8 @@ Graphics:
 * bug 7028 fixed - When scilab printed an "axis" graphic handle, string array
                    size for "tics_labels" was erroneous.
 
+* bug 7067 fixed - The "isoview" macro created an unnecessary "plot" object.
+
 Localization:
 =============
 
