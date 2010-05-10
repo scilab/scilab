@@ -198,7 +198,7 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 
 			// Creates a temporary graphics instance for drawing this shape
 			Graphics2D previousGraphics = g;
-			g = createTemporaryGraphics(style, null);
+			g = createTemporaryGraphics(style, 100, null);
 
 			// Draws the label background and border
 			Color bg = mxUtils.getColor(style,
