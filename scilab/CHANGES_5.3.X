@@ -172,7 +172,7 @@ Xcos:
 
 * bug 7099 fixed - xml2modelica called ocamlrun (wrong dependency on Windows).
 
-* bug 7053 fixed - Rotated saved blocks were not loaded with the right rotation 
+* bug 7053 fixed - Rotated saved blocks were not loaded with the right rotation
                    value.
 
 * bug 7143 fixed - Simulation values were not valid if the exponential sign is
@@ -214,7 +214,7 @@ Compilation:
 
 * /usr/share/*/lib added to the Java search path for OpenSuse
 
-* Option --enable-compilation-tests added to the configure. With this option, 
+* Option --enable-compilation-tests added to the configure. With this option,
   if TestNG has been found, tests will be launched at compilation time.
 
 * bug 4300 fixed - Moving Command Queue management to core.
@@ -346,7 +346,7 @@ Bug fixes:
 
 * bug 2623 fixed - non regression test script fixed
 
-* bug 2654 partially fixed - exec returned a wrong error if line had more 
+* bug 2654 partially fixed - exec returned a wrong error if line had more
                    than 4096 characters.
 
 * bug 2775 fixed - Multiplication of 0 times infinity did not work because of
@@ -374,7 +374,7 @@ Bug fixes:
 * bug 4075 fixed - a basic uicontrol example crashed scilab 5.0.3
 
 * bug 4117 fixed - Closing via the user interface a graphics figure which had a
-                   non-existing event handler attached did not destroy 
+                   non-existing event handler attached did not destroy
                    its associated data structure.
 
 * bug 4224 fixed - uigetfile masks were case insensitive on Windows.
@@ -400,7 +400,7 @@ Bug fixes:
 
 * bug 4799 fixed - Sometime the bode, nyquist , ... function reported a
                    "non convergence" error
-                   
+
 * bug 4841 fixed - functions created by 'getd' were unknown to scilab.
 
 * bug 4948 fixed - a simple Runge Kutta method for solving a second order
@@ -424,7 +424,7 @@ Bug fixes:
 
 * bug 5149 fixed - test_run(): Calls to exec() were no more logged by diary().
 
-* bug 5216 fixed - URLs are now active in uicontrols of style "text". This 
+* bug 5216 fixed - URLs are now active in uicontrols of style "text". This
                    feature is used in ATOMS GUI (modules description).
 
 * bug 5324 fixed - "File open" dialog box focused on parent directory of current
@@ -449,7 +449,7 @@ Bug fixes:
 
 * bug 5609 fixed - documentation stated incorrectly fieldnames works on cells
 
-* bug 5612 fixed - There was no way for deleting a field in a struct. 
+* bug 5612 fixed - There was no way for deleting a field in a struct.
                    It is now available using null().
 
 * bug 5629 fixed - export_to_hdf5 to a file overwrote a directory
@@ -613,19 +613,21 @@ Bug fixes:
 * bug 7042 fixed - Insertion of an empty matrix into a struct (to remove a row or column)
                    was buggy when multiple index is used.
 
+* bug 7044 fixed - calling sequence in help of 'strcat' was wrong.
+
 * bug 7057 fixed - isdigit and isalphanum crashed with a matrix of string
                    as input argument.
 
 * bug 7077 fixed - uigetfont crashed Scilab when the cancel button was clicked.
 
-* bug 7078 fixed - A wrong error message was displayed when setting the "value" 
+* bug 7078 fixed - A wrong error message was displayed when setting the "value"
                    property of an "edit" uicontrol.
 
 * bug 7094 fixed - If badly called, ode made Scilab crash.
 
 * bug 7109 fixed - 'lu' function with some complex matrices crashed on Windows.
 
-* bug 7123 fixed - No completion was possible if the name of a variable is 
+* bug 7123 fixed - No completion was possible if the name of a variable is
                    preceded by ~ or @ or < or >
 
 * bug 7161 fixed - wavread failed to load some .wav files with error 44.
