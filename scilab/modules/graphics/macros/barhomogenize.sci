@@ -24,10 +24,12 @@ varlist=varargin
 pos='v'
 
 if size(varargin)<>0 then
-if or(varlist($)==['h';'v']) then 
-  pos=varlist($)
-  varlist($)=null()
-end
+  if or(varlist($)==['h';'v']) then 
+    pos=varlist($)
+    varlist($)=null()
+  end
+else
+  error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "barhomogenize", 1, 3));
 end
 // detect and set the handle axes, the style and the width
 if size(varlist) == 1 

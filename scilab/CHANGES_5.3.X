@@ -33,6 +33,9 @@ Graphics:
 * bug 3975 fixed - The "xload" function was not able to load the contents of a previously
                    saved graphics figure into a different one.
 
+* bug 4658 fixed - When some graphic functions were called without any arguments,
+                   the error was not explicit enough.
+
 * bug 5284 fixed - In some case function "legend" drew line segments in its box
                    in a reverse order.
 
