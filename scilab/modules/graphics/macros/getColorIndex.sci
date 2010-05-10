@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2004-2006 - INRIA - Fabrice Leray
+// Copyright (C) 2010 - DIGITEO - Pierre Lando <pierre.lando@scilab.org>
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
@@ -8,7 +9,19 @@
 
 function opt1 = getColorIndex(ColorString)
 
+[lhs,rhs]=argn(0)
+
+if rhs<>1 then
+  error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "getColorIndex", 1));
+end
+
+if type(ColorString)<>10 then
+  error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "getColorIndex", 1));
+end
+
+opt1=-1;
 str = convstr(ColorString);
+
 // 1) COLORS
 
 //Colors
@@ -24,9 +37,6 @@ Table      = ['red' 'green' 'blue' 'cyan' 'magenta' 'yellow' 'black' ..
 //i.e:
 //magenta can be set by: 'm' 'ma' 'mag' 'mage' 'magen' 'magent' or at least 'magenta'
 //
-
-opt1=-1;
-str  = convstr(PropertyValue);
 
 k=find(part(Table,1:length(str))==str);
 
