@@ -177,7 +177,6 @@ public class ScilabLexerConstants {
      * @return true if the keyword is helpable
      */
     public static boolean isHelpable(int type) {
-        return type == ID 
         return type == ID
             || type == COMMANDS
             || type == OPERATOR

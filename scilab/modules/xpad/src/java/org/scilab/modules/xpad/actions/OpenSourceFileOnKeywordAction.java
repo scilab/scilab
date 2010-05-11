@@ -45,7 +45,7 @@ public class OpenSourceFileOnKeywordAction extends DefaultAction {
         if (ScilabLexerConstants.isOpenable(kwe.getType())) {
             try {
                 String kw = getEditor().getTextPane().getDocument().getText(kwe.getStart(), kwe.getLength());
-                InterpreterManagement.requestScilabExec("a46d43fa4w5z8512dc7dc2c3=get_function_path("" + kw + "");if a46d43fa4w5z8512dc7dc2c3~=[] then editor(a46d43fa4w5z8512dc7dc2c3);clear a46d43fa4w5z8512dc7dc2c3;end");
+                InterpreterManagement.requestScilabExec("a46d43fa4w5z8512dc7dc2c3=get_function_path('" + kw + "');if a46d43fa4w5z8512dc7dc2c3~=[] then editor(a46d43fa4w5z8512dc7dc2c3);clear a46d43fa4w5z8512dc7dc2c3;end");
             } catch (BadLocationException e) { }
         }
     }
