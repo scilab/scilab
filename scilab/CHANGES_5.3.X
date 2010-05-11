@@ -311,8 +311,9 @@ Bug fixes:
 
 * bug 4075 fixed - a basic uicontrol example crashed scilab 5.0.3
 
-* bug 4117 fixed - Closing via the user interface a graphics figure which had a non-existing
-                   event handler attached did not destroy its associated data structure.
+* bug 4117 fixed - Closing via the user interface a graphics figure which had a
+                   non-existing event handler attached did not destroy 
+                   its associated data structure.
 
 * bug 4359 fixed - M(:,:)='anything' produced erroneous result.
 
@@ -338,6 +339,9 @@ Bug fixes:
 
 * bug 4948 fixed - a simple Runge Kutta method for solving a second order 
                    differential equation had a strange behaviour.
+
+* bug 4857 fixed - help file of 'gsort' updated about sort of complex numbers
+                   and overloading.
 
 * bug 4985 fixed - mgetl did not use fgets (C function).
 
