@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ENPC
 // Copyright (C) 2007-2008 - INRIA - Sylvestre LEDRU (rewrite to use autotools)
+// Copyright (C) 2009-2010 - DIGITEO - Sylvestre LEDRU
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -71,7 +72,7 @@ function ilib_gen_Make_unix(names,   ..
 	
 	if (writePerm == %T & ( fileinfo(commandpath+"/Makefile.orig") == [] | fileinfo(commandpath+"/libtool") == [] )) then
 	  // We have write permission on the scilab tree, then generate the stuff into the directory in order to avoid the configure each time.
-	  generateConfigure(commandpath)
+		generateConfigure(commandpath);
 	end
 	
 	
@@ -264,9 +265,8 @@ function generateConfigure(workingPath, ..
 	  if ( ilib_verbose() <> 0 ) then
 		  mprintf(msg + " " + stderr);
 		end
-		return %F;
+		error(msprintf(gettext("%s: An error occurred during the detection of the compiler(s). Set ilib_verbose(2) for more information.\n"), "ilib_gen_Make"));
+		return;
 	end
-	
-	return %T;
 
 endfunction

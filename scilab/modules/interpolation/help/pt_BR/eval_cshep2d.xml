@@ -132,7 +132,7 @@ color(ind)=3;
 clf();
 plot3d(xf,yf,list(zf,color), flag=[2 6 4])
 legends(["região de extrapolação","região de interpolação"],[2 3],1)
-xselect()
+show_window()
  ]]></programlisting>
   </refsection>
 

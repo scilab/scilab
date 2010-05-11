@@ -42,9 +42,9 @@ function flag = assert_equal ( computed , expected )
   if ( type(computed) == 1 & type(expected) == 1 ) then
     csize = size (computed,"*")
     esize = size (expected,"*")
-    [cnonan , cnumb] = thrownan(computed)
-    [enonan , enumb] = thrownan(expected)
-    if ( and(enonan == cnonan) & and(enumb == cnumb) ) then
+    cnonan = find(~isnan(computed))
+    enonan = find(~isnan(computed))
+    if ( and(cnonan == enonan) & and(computed(enonan) == expected(cnonan)) ) then
       flag = 1;
     else
       flag = 0;

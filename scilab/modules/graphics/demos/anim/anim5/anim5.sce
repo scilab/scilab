@@ -15,7 +15,7 @@ demo_viewCode("anim5.sce");
 
 drawlater();
 
-xselect(); //raise the graphic window
+show_window(); //raise the graphic window
 
 
 // set a new colormap

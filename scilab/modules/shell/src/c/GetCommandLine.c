@@ -24,7 +24,7 @@
 #include "MALLOC.h"
 #include "prompt.h"
 #include "HistoryManager.h"
-#include "dynamic_menus.h" /* for ismenu() */
+#include "storeCommand.h" /* for ismenu() */
 #include "zzledt.h"
 #include "GetCommandLine.h"
 #include "TermReadAndProcess.h"

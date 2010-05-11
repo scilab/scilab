@@ -29,7 +29,7 @@
 	    It creates the window if none exists.
     </para>
     <para>
-	    Warning: This function is obsolete and will be removed in Scilab 5.1.
+	    Warning: This function is obsolete and will be removed in Scilab 5.4.
 	    It has been replaced by the show_window function.
     </para>
   </refsection>

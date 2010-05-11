@@ -199,7 +199,7 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 			}
 
 			// get lenStVarOne
-			sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne,&m,&n,&lenStVarOne,&pStVarOne);
+			sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne,&m,&n,&lenStVarOne, NULL);
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
@@ -318,7 +318,7 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 				}
 				
 				// get lenStVarTwo
-				sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m, &n, lenStVarTwo, pStVarTwo);
+				sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m, &n, lenStVarTwo, NULL);
 				if(sciErr.iErr)
 				{
 					printError(&sciErr, 0);

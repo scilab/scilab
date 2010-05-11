@@ -224,7 +224,7 @@ subplot(1,2,2)
    colorbar(-1,1)
    fec(x,y,T,z,strf="040")  // rmq: mesh=%f por padrão
    xtitle("exemplo de fec (em a malha)")
-xselect()
+show_window()
 
 // este exemplo mostra o efeito de zminmax e usa os
 // dados de exemplos anteriores (você tem que executá-los primeiro)
@@ -233,7 +233,7 @@ xset("colormap",jetcolormap(64))
 colorbar(-0.5,0.5)  // cuidado, a barra de cores deve ser ajustada na mão!
 fec(x,y,T,z,strf="040", zminmax=[-0.5 0.5], mesh=%t)
 xtitle("exemplo de fec: utilizando o argumento zminmax")
-xselect()
+show_window()
 
 // este exemplo mostra os efeitos de zminmax e colout. Utiliza
 // também os dados de exemplos anteriores (você tem que executá-los primeiro)
@@ -255,7 +255,7 @@ subplot(2,2,4)
    colorbar(-0.5,0.5)
    fec(x,y,T,z,strf="040", zminmax=[-0.5 0.5], colout=[0 -1], mesh=%t)
    xtitle("exemplo de fec: utilizando zminmax e colout =[0 -1]")
-xselect()
+show_window()
 
 // este exemplo mostra um recurso de colminmax:
 // utilizando dois mapas de cores para dois subesboços.
@@ -270,7 +270,7 @@ subplot(1,2,2)
    colorbar(-1,1,[65 128])
    fec(x,y,T,z,strf="040", colminmax=[65 128], mesh=%t)
    xtitle("fec utilizando mapa de cores jet ")
-xselect()
+show_window()
  ]]></programlisting>
   </refsection>
 

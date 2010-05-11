@@ -106,7 +106,7 @@ ierr=exec(fun,'errcatch' [,mode])</synopsis>
       forme est plus efficace, car ainsi les instructions du script peuvent
       être pré-compilées (voir comp). Cette méthode d'exécution des
       scripts permet aussi de stocker des scripts comme des fonctions dans des
-      librairies. 
+      bibliothèques. 
     </para>
     <para>
       Si une erreur se produit pendant l'exécution, si la chaîne de

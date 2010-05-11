@@ -28,6 +28,8 @@ extern "C"
 #include "strdup_windows.h"
 #endif
 #include "scilabmode.h"
+#include "splitpath.h"
+#include "scicurdir.h"
 }
 #include "forceJHDF5load.hxx"
 
@@ -102,8 +104,8 @@ int sci_export_to_hdf5(char *fname,unsigned long fname_len)
     }
 
     iLevel = 0;
-    //open hdf5 file
-    int iH5File = createHDF5File(pstNameList[0]); 
+    // open hdf5 file
+    int iH5File = createHDF5File(pstNameList[0]);
 
     if(iH5File < 0)
     {

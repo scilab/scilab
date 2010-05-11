@@ -740,7 +740,7 @@ static wchar_t **getInputArgumentOneFilenames(char *fname,int *sizeReturnedArray
 			}
 			else
 			{
-				sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, wcFilenames);
+				sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, NULL);
 				if(sciErr.iErr)
 				{
 					printError(&sciErr, 0);
@@ -832,7 +832,7 @@ static wchar_t *getInputArgumentTwo(char *fname, int *ierror)
 		else
 		{
 			// get length lenStVarTwo
-			sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo,&m2,&n2,&lenStVarTwo,&wcInputArgumentTwo);
+			sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo,&m2,&n2,&lenStVarTwo, NULL);
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
@@ -913,7 +913,7 @@ static wchar_t** getInputArgumentThree(char *fname,int *sizeReturnedArray, int *
 			}
 			else
 			{
-				sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarThree, &m3, &n3, lenStVarThree, wcInputArgumentThree);
+				sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarThree, &m3, &n3, lenStVarThree, NULL);
 				if(sciErr.iErr)
 				{
 					printError(&sciErr, 0);

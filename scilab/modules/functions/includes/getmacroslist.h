@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Allan CORNET
+ * Copyright (C) 2009 - 2010 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -15,7 +15,8 @@
 #include "dynlib_functions.h"
 
 /**
-* get scilab macros list
+* get scilab macros list (sorted by name)
+* macros on stack and in libraries
 * @param[out] size of returned array
 * @return array of strings
 */

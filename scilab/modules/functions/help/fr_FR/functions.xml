@@ -33,7 +33,7 @@
     <title>Définition de fonctions</title>
     <para>Les fonctions sont tapées dans un éditeur de texte et
     chargées dans Scilab avec la commande <link
-    linkend="exec">exec</link> ou via une librairie (voir <link
+    linkend="exec">exec</link> ou via une bibliothèque (voir <link
     linkend="lib">lib</link> ou <link
     linkend="genlib">genlib</link>). Mais elles peuvent être
     définies en ligne (voir <link linkend="deff">deff</link> ou
@@ -120,7 +120,7 @@ fun a toto 'une chaîne'
     11). Elles peuvent être manipulées (passées en argument, sauvées,
     chargées, ...) comme toute autre variable.</para>
     <para>Un ensemble de fonctions peut être assemblé dans une
-    librairie. Les fonctions dont le nom commence par le caractère
+    bibliothèque. Les fonctions dont le nom commence par le caractère
     <literal>%</literal> (exemple : <literal>%foo</literal>) sont
     utilisées pour la surcharge des opérateurs (voir <link
     linkend="overloading">overloading</link>) ou des fonctions pour

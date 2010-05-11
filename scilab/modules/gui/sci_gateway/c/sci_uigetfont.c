@@ -227,7 +227,7 @@ int sci_uigetfont(char *fname,unsigned long fname_len)
   LhsVar(4) = Rhs+4;
   
   C2F(putlhsvar)();
-  freeArrayOfString(fontNameAdr, fontNameSize);
+  if (fontNameSize) freeArrayOfString(fontNameAdr, fontNameSize);
   return TRUE;
 }
 /*--------------------------------------------------------------------------*/

@@ -138,7 +138,7 @@ y=ode("discrete",y0,k0,kvect,f)</synopsis>
     <para><literal>ode</literal> est la fonction utilisée pour approcher la
     solution d'une équation différentielle ordinaire (EDO) explicite du
     premier ordre en temps, définie par : dy/dt=f(t,y) , y(t0)=y0. Il s'agit
-    d'une interface vers diverses librairies, en particulier ODEPACK. Le type
+    d'une interface vers diverses bibliothèques, en particulier ODEPACK. Le type
     du problème et la méthode utilisée dépendent de la valeur du premier
     argument optionnel <literal>type</literal> qui peut être égal à :</para>
 

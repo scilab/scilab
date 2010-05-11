@@ -22,7 +22,7 @@
 #include "TermLine.h"
 #include "scilines.h"
 #include "HistoryManager.h"
-#include "dynamic_menus.h" /* ismenu */
+#include "storeCommand.h" /* ismenu */
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
 #ifdef CR_1

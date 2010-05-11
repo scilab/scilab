@@ -124,8 +124,7 @@ am__libsciaction_binding_la_SOURCES_DIST =  \
 @GUI_FALSE@	libsciaction_binding_la-noaction_binding.lo \
 @GUI_FALSE@	libsciaction_binding_la-dynamic_menus.lo
 @GUI_TRUE@am__objects_1 =  \
-@GUI_TRUE@	libsciaction_binding_la-InterpreterManagement.lo \
-@GUI_TRUE@	libsciaction_binding_la-dynamic_menus.lo
+@GUI_TRUE@	libsciaction_binding_la-InterpreterManagement.lo
 @GUI_TRUE@am__objects_2 = libsciaction_binding_la-InterpreterManagement_wrap.lo
 am_libsciaction_binding_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libsciaction_binding_la_OBJECTS =  \
@@ -402,9 +401,7 @@ top_srcdir = @top_srcdir@
 
 
 # List of the c files
-@GUI_TRUE@ACTION_BINDING_C_SOURCES = src/c/InterpreterManagement.c \
-@GUI_TRUE@src/c/dynamic_menus.c
-
+@GUI_TRUE@ACTION_BINDING_C_SOURCES = src/c/InterpreterManagement.c
 
 # List of the gateway c files
 @GUI_TRUE@CONSOLE_C_JNI_SOURCES = src/jni/InterpreterManagement_wrap.c

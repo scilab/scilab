@@ -17,6 +17,7 @@ for i = 1 : size(tab_ref,'*')
   fd = mopen(TMPDIR + filesep() + tab_ref(i) + filesep() + tab_ref(i) + '.sce','wt');
   mputl(str_exec,fd);
   mclose(fd);
+  exec(TMPDIR + filesep() + tab_ref(i) + filesep() + tab_ref(i) + '.sce');
   mdelete(TMPDIR + filesep() + tab_ref(i) + filesep() + tab_ref(i) + '.sce');
   rmdir(TMPDIR + filesep() + tab_ref(i));
 end  
@@ -38,6 +39,7 @@ mputl('a=1;b=2',TMPDIR+'/myscript')
  
   T  
 // execute it
+exec(TMPDIR+'/myscript')
  
 a=1;b=2
  b  =
@@ -58,6 +60,7 @@ if isdef('a')<> %f then bugmes();quit;end
 if k <> 4 then bugmes();quit;end
 x=4; //create x to make it known by the script foo
 clear k y
+exec(foo);
  y  =
  
     25.  

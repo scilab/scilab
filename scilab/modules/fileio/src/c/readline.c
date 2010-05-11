@@ -99,6 +99,13 @@ int LineRead(int fd, char buf[], int n, int *cnt, int *nr)
 
     *cnt = (int)strlen(buf) + 1;
     *nr = *cnt;
+
+    if (lines)
+    {
+            freeArrayOfString(lines, nbLinesReaded);
+            lines = NULL;
+    }
+
     return returnedInfo;
 }
 /*--------------------------------------------------------------------------*/
