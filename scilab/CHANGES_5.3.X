@@ -348,6 +348,9 @@ Bug fixes:
 
 * bug 5149 fixed - test_run(): Calls to exec() were no more logged by diary().
 
+* bug 5432 fixed - a link to http://www.tcl.tk/doc/ added in help files about
+                   Tcl/Tk.
+
 * bug 5541 fixed - In the API documentation, the information that data must be
                    allocated before calling API functions was missing.
 
