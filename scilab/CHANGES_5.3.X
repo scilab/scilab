@@ -333,6 +333,8 @@ Bug fixes:
 
 * bug 4799 fixed - Sometime the bode, nyquist , ... function reported a
                    "non convergence" error
+                   
+* bug 4841 fixed - functions created by 'getd' were unknown to scilab.
 
 * bug 4948 fixed - a simple Runge Kutta method for solving a second order 
                    differential equation had a strange behaviour.
