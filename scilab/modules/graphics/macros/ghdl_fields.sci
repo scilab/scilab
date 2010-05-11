@@ -10,9 +10,9 @@
 
 function fields=ghdl_fields(h)
 
-if argn(2)<>1 then
-  error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "ghdl_fields", 1));
-end
+  if argn(2)<>1 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "ghdl_fields", 1));
+  end
 
 //returns the set of fields associated with a given graphic handle
   if size(h,'*')<>1 then error('argument must be a single handle'),end

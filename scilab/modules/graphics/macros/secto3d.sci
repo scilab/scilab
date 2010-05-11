@@ -31,7 +31,7 @@ function [m,x]=secto3d(seclist,npas)
 
 [lhs,rhs]=argn(0)
 
-if argn(2)<1 | argn(2)>2 then
+if and(argn(2)<>[1 2]) then
   error(msprintf(gettext("%s: Wrong number of input argument(s): %d or %d expected.\n"), "secto3d", 1, 2));
 end
 

@@ -12,7 +12,7 @@ function []=oldplot(x,y,legx,legy,leg)
 //! 
   [lhs,rhs]=argn(0);
 
-  if rhs<1 | rhs>5 then
+  if and(rhs<>[1:5]) then
     error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "oldplot", 1, 5));
   end
 

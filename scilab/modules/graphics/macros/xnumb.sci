@@ -7,8 +7,8 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function xnumb(x,y,nums,box,angle) 
-  if argn(2)<3 | argn(2)>5 then
-    error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "xnumb", 1, 5));
+  if and(argn(2)<>[3:5]) then
+    error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "xnumb", 3, 5));
   end
 
   n=size(x,'*');

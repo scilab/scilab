@@ -8,9 +8,9 @@
 
 function []=xload(fil,num)
 
-	if argn(2)<1 | argn(2)>2 then
-		error(msprintf(gettext("%s: Wrong number of input argument(s): %d or %d expected.\n"), "xload", 1, 2));
-	end
+  if and(argn(2)<>[1 2]) then
+    error(msprintf(gettext("%s: Wrong number of input argument(s): %d or %d expected.\n"), "xload", 1, 2));
+  end
 
   if  argn(2)==2 then scf(num),end
   f=gcf()
