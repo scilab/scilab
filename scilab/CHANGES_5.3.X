@@ -550,6 +550,9 @@ Bug fixes:
 * bug 3311 fixed - Loop with a "for" over a vector of complex polynomials produced
                    wrong values.
 
+* bug 3490 fixed - "resume" inside an exec crashed Scilab, "resume" restrictions
+                    of use removed.
+
 * bug 3688 fixed - The assignment using ":" subscript for a dimension that does not exist
                     did not work for hypermatrices.
 
