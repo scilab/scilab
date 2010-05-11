@@ -417,6 +417,9 @@ Bug fixes:
 
 * bug 6635 fixed - Incorrectly drawn Bode plots (calfrq bug).
 
+* bug 6666 fixed - emptystr() gave a wrong result instead of complaining 
+                   about hypermatrix.
+
 * bug 6682 fixed - mprintf, msprintf, mfprintf did not manage octal (%o) format.
 
 * bug 6731 fixed - Information on the output argument was missing from the 
