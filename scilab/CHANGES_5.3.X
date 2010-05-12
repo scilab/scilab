@@ -286,6 +286,16 @@ Removed functions (previously declared as obsolete):
 
 * 'readc_' replaced by 'input'.
 
+
+ATOMS:
+======
+
+* The ATOMS GUI ergonomics has been improved.
+
+* bug 6596 fixed - When the ATOMS GUI started, nothing was displayed. Now, the
+                   list of already installed modules appears on the home page.
+
+
 Bug fixes:
 ==========
 

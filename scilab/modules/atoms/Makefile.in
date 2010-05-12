@@ -108,8 +108,10 @@ am__base_list = \
   sed '$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;s/\n/ /g' | \
   sed '$$!N;$$!N;$$!N;$$!N;s/\n/ /g'
 am__installdirs = "$(DESTDIR)$(libsciatoms_la_etcdir)" \
-	"$(DESTDIR)$(libsciatoms_la_rootdir)"
-DATA = $(libsciatoms_la_etc_DATA) $(libsciatoms_la_root_DATA)
+	"$(DESTDIR)$(libsciatoms_la_rootdir)" \
+	"$(DESTDIR)$(libsciatoms_la_iconsdir)"
+DATA = $(libsciatoms_la_etc_DATA) $(libsciatoms_la_root_DATA) \
+	$(nobase_libsciatoms_la_icons_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
@@ -364,6 +366,12 @@ libsciatoms_la_etc_DATA = etc/atoms.quit etc/atoms.start etc/repositories
 #### atoms : internal functions ####
 MACROSDIRSEXT = macros/atoms_internals macros/atoms_gui
 
+#### atoms : icons files ####
+libsciatoms_la_iconsdir = $(mydatadir)/
+nobase_libsciatoms_la_icons_DATA = images/icons/installed.png \
+images/icons/notinstalled.png
+
+
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
 
@@ -506,6 +514,29 @@ uninstall-libsciatoms_la_rootDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libsciatoms_la_rootdir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libsciatoms_la_rootdir)" && rm -f $$files
+install-nobase_libsciatoms_la_iconsDATA: $(nobase_libsciatoms_la_icons_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libsciatoms_la_iconsdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciatoms_la_iconsdir)"
+	@list='$(nobase_libsciatoms_la_icons_DATA)'; test -n "$(libsciatoms_la_iconsdir)" || list=; \
+	$(am__nobase_list) | while read dir files; do \
+	  xfiles=; for file in $$files; do \
+	    if test -f "$$file"; then xfiles="$$xfiles $$file"; \
+	    else xfiles="$$xfiles $(srcdir)/$$file"; fi; done; \
+	  test -z "$$xfiles" || { \
+	    test "x$$dir" = x. || { \
+	      echo "$(MKDIR_P) '$(DESTDIR)$(libsciatoms_la_iconsdir)/$$dir'"; \
+	      $(MKDIR_P) "$(DESTDIR)$(libsciatoms_la_iconsdir)/$$dir"; }; \
+	    echo " $(INSTALL_DATA) $$xfiles '$(DESTDIR)$(libsciatoms_la_iconsdir)/$$dir'"; \
+	    $(INSTALL_DATA) $$xfiles "$(DESTDIR)$(libsciatoms_la_iconsdir)/$$dir" || exit $$?; }; \
+	done
+
+uninstall-nobase_libsciatoms_la_iconsDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(nobase_libsciatoms_la_icons_DATA)'; test -n "$(libsciatoms_la_iconsdir)" || list=; \
+	$(am__nobase_strip_setup); files=`$(am__nobase_strip)`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(libsciatoms_la_iconsdir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(libsciatoms_la_iconsdir)" && rm -f $$files
 tags: TAGS
 TAGS:
 
@@ -548,7 +579,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(libsciatoms_la_etcdir)" "$(DESTDIR)$(libsciatoms_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(libsciatoms_la_etcdir)" "$(DESTDIR)$(libsciatoms_la_rootdir)" "$(DESTDIR)$(libsciatoms_la_iconsdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -597,7 +628,8 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local install-libsciatoms_la_etcDATA \
-	install-libsciatoms_la_rootDATA
+	install-libsciatoms_la_rootDATA \
+	install-nobase_libsciatoms_la_iconsDATA
 
 install-dvi: install-dvi-am
 
@@ -642,7 +674,8 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libsciatoms_la_etcDATA \
-	uninstall-libsciatoms_la_rootDATA
+	uninstall-libsciatoms_la_rootDATA \
+	uninstall-nobase_libsciatoms_la_iconsDATA
 
 .MAKE: check-am install-am install-strip
 
@@ -654,13 +687,15 @@ uninstall-am: uninstall-libsciatoms_la_etcDATA \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
 	install-info-am install-libsciatoms_la_etcDATA \
-	install-libsciatoms_la_rootDATA install-man install-pdf \
+	install-libsciatoms_la_rootDATA install-man \
+	install-nobase_libsciatoms_la_iconsDATA install-pdf \
 	install-pdf-am install-ps install-ps-am install-strip \
 	installcheck installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am \
 	uninstall-libsciatoms_la_etcDATA \
-	uninstall-libsciatoms_la_rootDATA
+	uninstall-libsciatoms_la_rootDATA \
+	uninstall-nobase_libsciatoms_la_iconsDATA
 
 
 # This target enables tests for Scilab
