@@ -504,3 +504,5 @@ Bug fixes:
                    as input argument.
 
 * bug 7077 fixed - uigetfont crashed Scilab when the cancel button was clicked.
+
+* bug 7094 fixed - If badly called, ode made Scilab crash.
