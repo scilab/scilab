@@ -148,11 +148,13 @@ Xcos:
 * bug 6900 fixed - The block interfunction was escaped when calling scilab
                    macros.
 
-* bug 6903 fixed - modelicat calls ocamlrun (wrong dependency on Windows).
+* bug 6903 fixed - modelicat called ocamlrun (wrong dependency on Windows).
 
 * bug 6981 fixed - the Scilab 'exit' call was killing Xcos session without 
                    prompting the user if modified diagrams must be saved before 
                    exiting.
+
+* bug 7099 fixed - xml2modelica called ocamlrun (wrong dependency on Windows).
 
 Dynamic link:
 =============
