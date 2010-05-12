@@ -373,6 +373,8 @@ Bug fixes:
                    non-existing event handler attached did not destroy 
                    its associated data structure.
 
+* bug 4224 fixed - uigetfile masks were case insensitive on Windows.
+
 * bug 4359 fixed - M(:,:)='anything' produced erroneous result.
 
 * bug 4362 fixed - test_run("gui","checkbox") no more freezes Scilab.
