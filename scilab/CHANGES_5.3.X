@@ -426,6 +426,8 @@ Bug fixes:
 
 * bug 6745 fixed - g_margin() returned an erroneous result.
 
+* bug 6750 fixed - TMPDIR constant had no help page.
+
 * bug 6774 fixed - Calling get_param generated a "funcprot" warning when  
                    the value of an option which was a function.
 
