@@ -54,7 +54,8 @@ libscifunctions_la_CPPFLAGS= \
 				-I$(top_srcdir)/modules/system_env/includes \
 				-I$(top_srcdir)/modules/shell/includes \
 				-I$(top_srcdir)/modules/output_stream/includes \
-				-I$(top_srcdir)/modules/types/includes/
+				-I$(top_srcdir)/modules/types/includes/ \
+				-I$(top_srcdir)/modules/elementary_functions/includes/
 
 pkglib_LTLIBRARIES = libscifunctions.la
 

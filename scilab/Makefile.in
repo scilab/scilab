@@ -628,7 +628,9 @@ scilab_cli_bin_CPPFLAGS = \
 						-I$(top_srcdir)/modules/symbol/includes/ \
 						-I$(top_srcdir)/modules/functions_manager/includes/ \
 						-I$(top_srcdir)/modules/types/includes/ \
-						-I$(top_srcdir)/modules/system_env/includes/ 
+						-I$(top_srcdir)/modules/system_env/includes/ \
+						-I$(top_srcdir)/modules/operations/includes/ \
+						-I$(top_srcdir)/modules/elementary_functions/includes/
 
 @ENABLE_STATIC_TRUE@scilab_static_bin_LDFLAGS = -static -static-libgcc --start-group
 @ENABLE_STATIC_TRUE@scilab_static_bin_CFLAGS = -Wl,--start-group `$(CXX) -print-file-name=libstdc++.a`

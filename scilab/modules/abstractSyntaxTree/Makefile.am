@@ -20,12 +20,6 @@ libsciabstractSyntaxTree_la_SOURCES 	=	src/cpp/libAst.cpp \
 				src/cpp/mutevisitor.cpp \
 				src/cpp/shortcutvisitor.cpp \
 				src/cpp/conditionvisitor.cpp \
-				src/cpp/timedvisitor.cpp \
-				src/cpp/execvisitor.cpp \
-				src/cpp/run/runvisitor.cpp \
-				src/cpp/run/run_OpExp.cpp \
-				src/cpp/run/run_MatrixExp.cpp \
-				src/cpp/run/run_AssignExp.cpp \
 				src/cpp/original/originalvisitor.cpp \
 				src/cpp/original/original_OpExp.cpp \
 				src/cpp/original/original_MatrixExp.cpp \
