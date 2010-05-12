@@ -23,6 +23,8 @@ MACROSDIRSEXT = macros/atoms_internals macros/atoms_gui
 #### atoms : icons files ####
 libsciatoms_la_iconsdir=$(mydatadir)/
 nobase_libsciatoms_la_icons_DATA = images/icons/installed.png \
-images/icons/notinstalled.png
+images/icons/notinstalled.png \
+images/icons/notuptodate.png \
+images/icons/software-update-available.png
 
 include $(top_srcdir)/Makefile.incl.am

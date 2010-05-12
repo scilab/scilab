@@ -22,7 +22,6 @@ function cbAtomsGui()
     // Get the description frame object
     DescFrame = findobj("tag","DescFrame");
 
-
     // Display selected module informations
     // =========================================================================
 
@@ -189,14 +188,27 @@ function updateDescFrame()
     allModules     = get(thisFigure,"userdata");
     thisModuleName = get(DescFrame ,"userdata");
 
+    // Reset the message frame
+    // =========================================================================
+    set(findobj("tag","msgText"),"String","");
+
     // Get the module details
     // =========================================================================
 
     modulesNames       = getfield(1, allModules);
     modulesNames (1:2) = [];
     thisModuleStruct   = allModules(thisModuleName);
-    thisModuleVersions = getfield(1,thisModuleStruct);
-    thisModuleDetails  = thisModuleStruct(thisModuleVersions(3));
+
+    MRVersionAvailable = atomsGetMRVersion(thisModuleName);
+    MRVersionInstalled = "";
+
+    if atomsIsInstalled(thisModuleName) then
+        MRVersionInstalled = atomsVersionSort(atomsGetInstalledVers(thisModuleName),"DESC");
+        MRVersionInstalled = MRVersionInstalled(1);
+        thisModuleDetails  = thisModuleStruct(MRVersionInstalled);
+    else
+        thisModuleDetails  = thisModuleStruct(MRVersionAvailable);
+    end
 
     // Manage size
     // =========================================================================
@@ -270,15 +282,12 @@ function updateDescFrame()
     // Tests for update available
     // --------------------------
 
-    moduleVersion     = atomsGetMRVersion(thisModuleName);
-    installedVersions = atomsGetInstalledVers(thisModuleName);
-    canUpdate         = "off";
+    canUpdate = "off";
 
-    for k=1:size(installedVersions,"*")
-        if atomsVersionCompare(installedVersions(k), moduleVersion)==-1 then
-            canUpdate = "on";
-            break
-        end
+    if atomsIsInstalled(thisModuleName) & atomsVersionCompare(MRVersionInstalled,MRVersionAvailable) == -1 then
+        // Not up-to-date
+        canUpdate = "on";
+        showWarning(sprintf(gettext("A new version (''%s'') of ''%s'' is available"),MRVersionAvailable,thisModuleDetails.Title));
     end
 
     // Can be removed
@@ -355,6 +364,9 @@ endfunction
 
 function showHome()
 
+    // Reset the message frame
+    set(findobj("tag","msgText"),"String","");
+
     // Hide the Desc frame
     hide("DescFrame");
     hide("DescTitle");
@@ -390,5 +402,26 @@ function showDesc()
     show("removeButton");
     show("installButton");
     show("updateButton");
+
+endfunction
+
+
+// =============================================================================
+// showWarning
+// + Update the string in the msg Frame
+// =============================================================================
+
+function showWarning(msg)
+
+    str =       "<html>";
+    str = str + "<table><tr>";
+    str = str + "<td><img src=""file:///"+SCI+"/modules/atoms/images/icons/software-update-available.png"" /></td>";
+    str = str + "<td><div style=""color:red;font-style:italic;"">"+msg+"</div></td>";
+    str = str + "</tr></table>";
+    str = str + "</html>";
+
+    msgText = findobj("tag","msgText");
+
+    set(msgText,"String",str);
 
 endfunction

@@ -292,9 +292,15 @@ ATOMS:
 
 * The ATOMS GUI ergonomics has been improved.
 
+* ATOMS GUI: When a module is not up-to-date, a warning is displayed on the
+  corresponding sheet.
+
 * bug 6596 fixed - When the ATOMS GUI started, nothing was displayed. Now, the
                    list of already installed modules appears on the home page.
 
+* bug 6842 fixed - If the installed version of a module was not the most recent
+                   one, the ATOMS GUI claimed that the newest version was
+                   installed.
 
 Bug fixes:
 ==========

@@ -634,6 +634,12 @@ msgstr "&Outils"
 msgid "?"
 msgstr "?"
 
+#
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 290
+#, c-format
+msgid "A new version (''%s'') of ''%s'' is available"
+msgstr ""
+
 msgid "Atoms"
 msgstr "Atoms"
 

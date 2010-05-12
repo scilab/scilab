@@ -38,6 +38,10 @@ function atomsGui()
     margin           = 10;
     widgetHeight     = 25;
 
+    // Message Frame
+    msgWidth         = figwidth -2*margin;
+    msgHeight        = 30;
+
     // Button
     buttonHeight     = 20;
 
@@ -115,8 +119,19 @@ function atomsGui()
         vers           = getfield(1, allModules(modulesNames(k)));
         vers           = vers(3);
 
-        if atomsIsInstalled([modulesNames(k) vers]) then
-            icon = "installed.png";
+        if atomsIsInstalled(modulesNames(k)) then
+
+            MRVersionAvailable = atomsGetMRVersion(modulesNames(k));
+            MRVersionInstalled = atomsVersionSort(atomsGetInstalledVers(modulesNames(k)),"DESC");
+            MRVersionInstalled = MRVersionInstalled(1);
+            if atomsVersionCompare(MRVersionInstalled,MRVersionAvailable) == -1 then
+                // Not up-to-date
+                icon = "notuptodate.png";
+            else
+                // The Most Recent Version is already installed
+                icon = "installed.png";
+            end
+
         else
             icon = "notinstalled.png";
         end
@@ -151,6 +166,17 @@ function atomsGui()
 
     for k=1:size(installed(:,1), "*")
 
+        MRVersionAvailable = atomsGetMRVersion(installed(k,1));
+        MRVersionInstalled = atomsVersionSort(atomsGetInstalledVers(installed(k,1)),"DESC");
+        MRVersionInstalled = MRVersionInstalled(1);
+        if atomsVersionCompare(MRVersionInstalled,MRVersionAvailable) == -1 then
+            // Not up-to-date
+            icon = "notuptodate.png";
+        else
+            // The Most Recent Version is already installed
+            icon = "installed.png";
+        end
+
         if modulo(k,2) == 0 then
             background = "#eeeeee";
         else
@@ -158,8 +184,9 @@ function atomsGui()
         end
 
         thisItem =            "<html>";
+
         thisItem = thisItem + "<table style=""background-color:"+background+";color:#000000;"" ><tr>";
-        thisItem = thisItem + "<td><img src=""file:///"+SCI+"/modules/atoms/images/icons/installed.png"" /></td>";
+        thisItem = thisItem + "<td><img src=""file:///"+SCI+"/modules/atoms/images/icons/"+icon+""" /></td>";
         thisItem = thisItem + "<td>";
         thisItem = thisItem + "  <div style=""width:385px;text-align:left;"">";
         thisItem = thisItem + "    <span style=""font-weight:bold;"">"+allModules(installed(k,1))(installed(k,2)).Title+" "+installed(k,2)+"</span><br />";
@@ -184,7 +211,7 @@ function atomsGui()
     listboxWidth              = 200;
     listboxFrameWidth         = listboxWidth + 2*margin;
 
-    listboxFrameHeight        = figheight- 2*margin;
+    listboxFrameHeight        = figheight- 3*margin - msgHeight;
     listboxHeight             = listboxFrameHeight - 3*margin;
 
     // Frame
@@ -192,7 +219,7 @@ function atomsGui()
         "Parent"              , atomsfig,..
         "Style"               , "frame",..
         "Relief"              , "solid",..
-        "Position"            , [margin margin listboxFrameWidth listboxFrameHeight],..
+        "Position"            , [margin widgetHeight+2*margin listboxFrameWidth listboxFrameHeight],..
         "Background"          , [1 1 1],..
         "Tag"                 , "LeftFrame");
 
@@ -237,7 +264,7 @@ function atomsGui()
         "Style"              , "frame",..
         "Relief"             , "solid",..
         "Background"         , [1 1 1],..
-        "Position"           , [listboxFrameWidth+2*margin margin descFrameWidth descFrameHeight],..
+        "Position"           , [listboxFrameWidth+2*margin widgetHeight+2*margin descFrameWidth descFrameHeight],..
         "Tag"                , "DescFrame", ..
         "Visible"            , "off");
 
@@ -301,7 +328,7 @@ function atomsGui()
         "Tag"                , "updateButton");
 
     // Home: List of installed modules
-    // =============================================================================
+    // =========================================================================
 
     descWidth                = descFrameWidth  - 2*margin;
     descHeight               = descFrameHeight - 3*margin;
@@ -312,7 +339,7 @@ function atomsGui()
         "Style"              , "frame",..
         "Relief"             , "solid",..
         "Background"         , [1 1 1],..
-        "Position"           , [listboxFrameWidth+2*margin margin descFrameWidth descFrameHeight],..
+        "Position"           , [listboxFrameWidth+2*margin widgetHeight+2*margin descFrameWidth descFrameHeight],..
         "Tag"                , "HomeFrame");
 
     // Frame title
@@ -340,5 +367,29 @@ function atomsGui()
         "Min"                 , 1, ..
         "Max"                 , 1, ..
         "Tag"                 , "HomeListbox");
+
+    // Message Frame
+    // =========================================================================
+
+    // Frame
+    msgFrame                 = uicontrol( ..
+        "Parent"             , atomsfig,..
+        "Style"              , "frame",..
+        "Relief"             , "solid",..
+        "Background"         , [1 1 1],..
+        "Position"           , [margin margin msgWidth msgHeight],..
+        "Tag"                , "msgFrame");
+
+    // Text
+    msgText                  = uicontrol( ..
+        "Parent"             , msgFrame,...
+        "Style"              , "text",..
+        "HorizontalAlignment", "left",..
+        "VerticalAlignment"  , "middle",..
+        "String"             , "", ..
+        "FontSize"           , 12,..
+        "Background"         , [1 1 1],..
+        "Position"           , [2 2 msgWidth-10 msgHeight-4],..
+        "Tag"                , "msgText");
 
 endfunction
