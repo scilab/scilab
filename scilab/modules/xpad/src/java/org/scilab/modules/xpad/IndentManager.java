@@ -28,15 +28,15 @@ public class IndentManager {
     private char indentChar = ' ';
     private int num = 4;
     private boolean isPsychoRigid = true;
-        
+
     /**
      * Constructor.
      * @param doc the doc to indent
      */
     IndentManager(ScilabDocument doc) {
-	this.doc = doc;
-	this.elem = doc.getDefaultRootElement();
-	scanner = new IndentScanner(doc);
+        this.doc = doc;
+        this.elem = doc.getDefaultRootElement();
+        scanner = new IndentScanner(doc);
     }
 
     /**
@@ -50,9 +50,9 @@ public class IndentManager {
      *
      * If isPsychoRigid is true and num equals to 3 :
      * if a == 1 then
-     * -------if b == 1 then 
+     * -------if b == 1 then
      *        ---c = 1 ...
-     * 
+     *
      * The user decided to increase the indent but the PsychoRigid mode says that the
      * indent level is 3.
      *
@@ -61,13 +61,13 @@ public class IndentManager {
      * @param isPsychoRigid for the psycho-rigid mode
      */
     public void setProperties(char indentChar, int num, boolean isPsychoRigid) {
-	this.indentChar = indentChar;
-	if (indentChar != '\t') {
-	    this.num = num;
-	} else {
-	    this.num = 1;
-	}
-	this.isPsychoRigid = isPsychoRigid;
+        this.indentChar = indentChar;
+        if (indentChar != '\t') {
+            this.num = num;
+        } else {
+            this.num = 1;
+        }
+        this.isPsychoRigid = isPsychoRigid;
     }
 
     /**
@@ -76,15 +76,15 @@ public class IndentManager {
      * @param num the number of chars use to indent
      */
     public void setProperties(char indentChar, int num) {
-	setProperties(indentChar, num, isPsychoRigid);
+        setProperties(indentChar, num, isPsychoRigid);
     }
-    
+
     /**
      * Set the psycho-rigid mode or not
      * @param b the mode
      */
     public void setPsychoRigidMode(boolean b) {
-	this.isPsychoRigid = b;
+        this.isPsychoRigid = b;
     }
 
     /**
@@ -94,58 +94,64 @@ public class IndentManager {
      * @return an array of length 2 containing the new start and the new end of the indented text
      */
     public int[] indentDoc(int start, int end) {
-	try {
-	    int[] level = new int[2];
-	    int lineStart = elem.getElementIndex(start);
-	    int lineEnd = elem.getElementIndex(end);
-	    int[] tabs = new int[lineEnd - lineStart + 1];
-	    int[] ret = new int[2];
-	    
-	    int[] ind = new int[2];
-	    getNums(lineStart - 1, ind);
-	    if (lineStart > 0) {
-		scanner.getIndentLevel(lineStart - 1, level);
-		tabs[0] = ind[1] + level[1];
-	    }
-	    
-	    for (int lineNumber = 0; lineNumber <= lineEnd - lineStart; lineNumber++) {
-		int pos = elem.getElement(lineNumber + lineStart).getEndOffset() - 1;
-		scanner.getIndentLevel(pos, level);
-		tabs[lineNumber] = Math.max(tabs[lineNumber] - level[0], 0); 
-		if (lineNumber != lineEnd - lineStart) {
-		    tabs[lineNumber + 1] = tabs[lineNumber] + level[1];
-		}
-	    }
-	    
-	    Segment seg = new Segment();
-	    StringBuffer buffer = new StringBuffer();
-	    int e = start;
-	    
-	    for (int lineNumber = lineStart; lineNumber <= lineEnd; lineNumber++) {
-		if (lineNumber < lineEnd) {
-		    e = elem.getElement(lineNumber).getEndOffset();
-		} else {
-		    e = Math.min(elem.getElement(lineNumber).getEndOffset(), end);
-		}
-		int t = elem.getElement(lineNumber).getStartOffset() + scanner.getTabsAtBeginning(lineNumber);
-		doc.getText(t, e - t, seg);
-		if (e > t + 1) {
-		    char[] str = new char[tabs[lineNumber - lineStart] * num];
-		    for (int i = 0; i < str.length; i++) {
-			str[i] = indentChar;
-		    }
-		    buffer.append(str);
-		}
-		buffer.append(seg.array, seg.offset, seg.count);
-	    }
-	    
-	    int sstart = elem.getElement(lineStart).getStartOffset();
-	    doc.replace(sstart, e - sstart, buffer.toString(), null);
-	    return ret;
-	} catch (BadLocationException e) {
-	    System.err.println(e);
-	    return null;
-	}
+        try {
+            if (start > end ) {
+                end = start;
+            }
+            int[] level = new int[2];
+            int lineStart = elem.getElementIndex(start);
+            int lineEnd = elem.getElementIndex(end);
+            int[] tabs = new int[lineEnd - lineStart + 1];
+            int[] ret = new int[2];
+
+            int[] ind = new int[2];
+            getNums(lineStart - 1, ind);
+            if (lineStart > 0) {
+                scanner.getIndentLevel(lineStart - 1, level);
+                tabs[0] = ind[1] + level[1];
+            }
+
+            for (int lineNumber = 0; lineNumber <= lineEnd - lineStart; lineNumber++) {
+                int pos = elem.getElement(lineNumber + lineStart).getEndOffset() - 1;
+                scanner.getIndentLevel(pos, level);
+                tabs[lineNumber] = Math.max(tabs[lineNumber] - level[0], 0);
+                if (lineNumber != lineEnd - lineStart) {
+                    tabs[lineNumber + 1] = tabs[lineNumber] + level[1];
+                }
+            }
+
+            Segment seg = new Segment();
+            StringBuffer buffer = new StringBuffer();
+            int e = start;
+
+            for (int lineNumber = lineStart; lineNumber <= lineEnd; lineNumber++) {
+                if (lineNumber < lineEnd) {
+                    e = elem.getElement(lineNumber).getEndOffset();
+                } else {
+                    e = Math.min(elem.getElement(lineNumber).getEndOffset(), end);
+                }
+                int t = elem.getElement(lineNumber).getStartOffset() + scanner.getTabsAtBeginning(lineNumber);
+                if (e - t == -1) {
+                    e = t;
+                }
+                doc.getText(t, e - t, seg);
+                if (e > t + 1) {
+                    char[] str = new char[tabs[lineNumber - lineStart] * num];
+                    for (int i = 0; i < str.length; i++) {
+                        str[i] = indentChar;
+                    }
+                    buffer.append(str);
+                }
+                buffer.append(seg.array, seg.offset, seg.count);
+            }
+
+            int sstart = elem.getElement(lineStart).getStartOffset();
+            doc.replace(sstart, e - sstart, buffer.toString(), null);
+            return ret;
+        } catch (BadLocationException e) {
+            System.err.println(e);
+            return null;
+        }
     }
 
     /**
@@ -153,51 +159,51 @@ public class IndentManager {
      * @param position the position in the doc
      */
     public void indentDoc(int position) {
-	int[] level = new int[2];
-	int[] ind = new int[2];
+        int[] level = new int[2];
+        int[] ind = new int[2];
 
-	try {
-	    int lineNumber = elem.getElementIndex(position);
-	    int pos = elem.getElement(lineNumber).getEndOffset() - 1; 
-	    
-	    /* - level[0] is the left shift (else, elseif, ...) for the current line
-	       - level[1] is the right shift for the next line */
-	    scanner.getIndentLevel(pos, level);
-	    
-	    int remove = 0;
-	    if (lineNumber >= 0) {
-		/* - ind[0] is equal to the number of "\t" or " " of the previous line
-		   - ind[1] for the current line */ 
-		getNums(lineNumber, ind);
-		if (level[0] > 0 && ind[0] <= ind[1]) {
-		    remove = level[0] * num;
-		    int startL = elem.getElement(lineNumber).getStartOffset();
-		    if (ind[1] < remove) {
-			remove = ind[1];
-		    } 
-		    if (remove != 0) {
-			doc.remove(startL, remove);
-		    }
-		}
-	    }
-	    
-	    int len = ind[1] + level[1] * num - remove;
-	    char[] str = new char[len];
-	    for (int i = 0; i < len; i++) {
-		str[i] = indentChar;
-	    }
-	    
-	    doc.insertString(pos + 1 - remove, new String(str), null);
-	} catch (BadLocationException e) {
-	    System.err.println(e);
-	}
+        try {
+            int lineNumber = elem.getElementIndex(position);
+            int pos = elem.getElement(lineNumber).getEndOffset() - 1;
+
+            /* - level[0] is the left shift (else, elseif, ...) for the current line
+               - level[1] is the right shift for the next line */
+            scanner.getIndentLevel(pos, level);
+
+            int remove = 0;
+            if (lineNumber >= 0) {
+                /* - ind[0] is equal to the number of "\t" or " " of the previous line
+                   - ind[1] for the current line */
+                getNums(lineNumber, ind);
+                if (level[0] > 0 && ind[0] <= ind[1]) {
+                    remove = level[0] * num;
+                    int startL = elem.getElement(lineNumber).getStartOffset();
+                    if (ind[1] < remove) {
+                        remove = ind[1];
+                    }
+                    if (remove != 0) {
+                        doc.remove(startL, remove);
+                    }
+                }
+            }
+
+            int len = ind[1] + level[1] * num - remove;
+            char[] str = new char[len];
+            for (int i = 0; i < len; i++) {
+                str[i] = indentChar;
+            }
+
+            doc.insertString(pos + 1 - remove, new String(str), null);
+        } catch (BadLocationException e) {
+            System.err.println(e);
+        }
     }
 
     /**
      * @return the scanner used by this IndentManager
      */
     public IndentScanner getIndentScanner() {
-	return scanner;
+        return scanner;
     }
 
     /**
@@ -205,15 +211,15 @@ public class IndentManager {
      * used to indent is modified if we are not in psycho-rigid mode
      * @param lineNumber the number of the line
      * @param ind an array of length 2 which will contain the indent level of the line and the previous
-     */ 
+     */
     private void getNums(int lineNumber, int[] ind) {
-	ind[1] = scanner.getIndentNumber(lineNumber, indentChar);
-	ind[0] = scanner.getIndentNumber(lineNumber - 1, indentChar);
-	if (!isPsychoRigid) {
-	    int m = ind[1] - ind[0];
-	    if (m > 0) {
-		num = m;
-	    }
-	}
+        ind[1] = scanner.getIndentNumber(lineNumber, indentChar);
+        ind[0] = scanner.getIndentNumber(lineNumber - 1, indentChar);
+        if (!isPsychoRigid) {
+            int m = ind[1] - ind[0];
+            if (m > 0) {
+                num = m;
+            }
+        }
     }
 }
