@@ -10,6 +10,15 @@ Performance:
 
 * Improved access to the list of functions increases the performances.
 
+Text Editor:
+============
+
+* bug 5655 fixed - the selection was lost after an unsuccessful search
+
+* bug 5656 fixed - when a text was selected, word was searched in the entire document
+
+* bug 5682 fixed - there was a problem with the replace action
+
 FFTW:
 =====
 

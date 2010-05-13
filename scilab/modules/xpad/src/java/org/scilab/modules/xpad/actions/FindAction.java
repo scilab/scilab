@@ -1,7 +1,8 @@
 /* Scilab (http://www.scilab.org/) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Sylvestre KOUMAR
- * Copyright (C) 2009 - DIGITEO - Allan CORNET 
- * Copyright (C) 2009 - DIGITEO - Antoine ELIAS 
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
+ * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
+ * Copyright (C) 2010 - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -15,7 +16,6 @@ package org.scilab.modules.xpad.actions;
 
 import java.awt.Color;
 import java.awt.GridLayout;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -44,17 +44,21 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JEditorPane;
 import javax.swing.KeyStroke;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Highlighter;
+import javax.swing.text.Document;
+import javax.swing.text.Element;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.ScilabDocument;
-import javax.swing.JEditorPane;
-import org.scilab.modules.xpad.style.SearchManager;
+import org.scilab.modules.xpad.SearchManager;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
@@ -62,905 +66,1009 @@ import org.scilab.modules.xpad.utils.XpadMessages;
 /**
  * FindAction
  * @author Sylvestre KOUMAR
- * @author Allan CORNET 
+ * @author Allan CORNET
  * @author Antoine ELIAS
  * @author Vincent COUVERT
+ * @author Calixte DENIZET
  */
 public final class FindAction extends DefaultAction {
 
-	/**
-	 * serialVersionUID
-	 */
-	private static final long serialVersionUID = -5499974793656106222L;
-	
-	private static final int GAP = 5;
-	private static final int THREE = 3;
-
-	private static boolean windowAlreadyExist;
-
-	private static JFrame frame;
-	private static String previousSearch;
-
-	private JButton buttonClose;
-	private JButton buttonFind;
-	private ButtonGroup buttonGroup1;
-	private ButtonGroup buttonGroup2;
-	private JButton buttonReplace;
-	private JButton buttonReplaceAll;
-	private JButton buttonReplaceFind;
-	private JCheckBox checkCase;
-	private JCheckBox checkRegular;
-	private JCheckBox checkWarp;
-	private JCheckBox checkWhole;
-	private JComboBox comboFind;
-	private JComboBox comboReplace;
-	private JLabel labelFind;
-	private JLabel labelReplace;
-	private JLabel labelStatus;
-	private JPanel panelButton;
-	private JPanel panelDirection;
-	private JPanel panelFind;
-	private JPanel panelFrame;
-	private JPanel panelOptions;
-	private JPanel panelScope;
-	private JRadioButton radioAll;
-	private JRadioButton radioBackward;
-	private JRadioButton radioForward;
-	private JRadioButton radioSelection;
-
-	private String oldWord;
-	private String newWord;
-	private String wordToFind;
-
-
-	private List<Integer[]> offsets;
-
-	private int startSelectedLines;
-	private int endSelectedLines;
-
-	private int startFindSelection;
-	private int endFindSelection;
-
-	private SearchManager searchManager = new SearchManager();
-
-	/**
-	 * Constructor
-	 * @param editor Xpad
-	 */
-	private FindAction(Xpad editor) {
-		super(XpadMessages.FIND_REPLACE +  XpadMessages.DOTS, editor);
-	}
-
-	/**
-	 * doAction
-	 */
-	public void doAction() {
-
-		if (!FindAction.windowAlreadyExist) {
-			findReplaceBox();
-		} else {
-			frame.setVisible(true);
-			buttonFind.requestFocus();
-		}
-
-		try {
-			// If some text is selected, it is used in find.
-			//if more than one line is selected set radio button "selected lines" at true
-			// else find and replace action is applied to the entire document
-			int startPos = getEditor().getTextPane().getSelectionStart();
-			int endPos = getEditor().getTextPane().getSelectionEnd();
-			int startLine = ((ScilabDocument) getEditor().getTextPane().getDocument())
-										.getDefaultRootElement().getElementIndex(startPos);
-			int endLine = ((ScilabDocument) getEditor().getTextPane().getDocument())
-										.getDefaultRootElement().getElementIndex(endPos);
-
-			if (startPos != endPos) {
-				if (startLine != endLine) {
-					radioSelection.setSelected(true);
-					comboFind.setSelectedIndex(-1);
-					comboReplace.setSelectedIndex(-1);
-				} else {
-					radioAll.setSelected(true);
-					comboFind.getEditor().setItem(getEditor().getTextPane().getDocument().getText(startPos, endPos - startPos));
-					comboFind.getEditor().selectAll();
-				}
-			} else {
-				radioAll.setSelected(true);
-				comboFind.setSelectedIndex(-1);
-				comboReplace.setSelectedIndex(-1);
-			}
-			FindAction.windowAlreadyExist = true;
-			updateFindReplaceButtonStatus();
-		} catch (BadLocationException e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * createMenu
-	 * @param editor Xpad
-	 * @return MenuItem
-	 */
-	public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.FIND_REPLACE + XpadMessages.DOTS, null, new FindAction(editor),
-				KeyStroke.getKeyStroke(KeyEvent.VK_F, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
-	}
-
-	/**
-	 * createButton
-	 * @param editor Xpad
-	 * @return PushButton
-	 */
-	public static PushButton createButton(Xpad editor) {
-		return createButton(XpadMessages.FIND_REPLACE +  "...", "edit-find-replace.png", new FindAction(editor));
-	}
-
-
-	/**
-	 * findReplaceBox
-	 */
-	public void findReplaceBox() {
-
-		//Find & Replace Frame
-		frame = new JFrame();
-		frame.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
-		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		frame.setTitle(XpadMessages.FIND_REPLACE);
-		frame.setResizable(false);
-
-		buttonGroup1 = new ButtonGroup();
-		buttonGroup2 = new ButtonGroup();
-		panelFrame = new JPanel();
-		panelDirection = new JPanel();
-		radioForward = new JRadioButton();
-		radioBackward = new JRadioButton();
-		panelScope = new JPanel();
-		radioAll = new JRadioButton();
-		radioSelection = new JRadioButton();
-		panelOptions = new JPanel();
-		checkCase = new JCheckBox();
-		checkWhole = new JCheckBox();
-		checkRegular = new JCheckBox();
-		checkWarp = new JCheckBox();
-		panelFind = new JPanel();
-		labelFind = new JLabel();
-		labelReplace = new JLabel();
-		comboFind = new JComboBox();
-		comboReplace = new JComboBox();
-		panelButton = new JPanel();
-		buttonFind = new JButton();
-		buttonReplaceFind = new JButton();
-		buttonReplace = new JButton();
-		buttonReplaceAll = new JButton();
-		buttonClose = new JButton();
-		labelStatus = new JLabel();
-
-		panelFrame.setLayout(new BoxLayout(panelFrame, BoxLayout.PAGE_AXIS));
-		panelFrame.setBorder(BorderFactory.createEmptyBorder(2 * GAP, 2 * GAP, 2 * GAP, 2 * GAP));
-
-		/* Pattern to search and replace*/
-		labelFind.setText(XpadMessages.FIND);
-		labelReplace.setText(XpadMessages.REPLACE);
-
-		comboFind.setEditable(true);
-		comboReplace.setEditable(true);
-		
-		panelFind.setLayout(new GridLayout(2, 2, GAP, GAP));
-		panelFind.add(labelFind);
-		panelFind.add(comboFind);
-		panelFind.add(labelReplace);
-		panelFind.add(comboReplace);
-		panelFrame.add(panelFind);
-
-		/* Search direction selection*/
-		panelDirection.setBorder(BorderFactory.createTitledBorder(XpadMessages.DIRECTION));
-
-		buttonGroup1.add(radioForward);
-		radioForward.setText(XpadMessages.FORWARD);
-		buttonGroup1.add(radioBackward);
-		radioBackward.setText(XpadMessages.BACKWARD);
-
-		panelDirection.setLayout(new GridLayout(2, 1, GAP, GAP));
-		panelDirection.add(radioForward);
-		panelDirection.add(radioBackward);
-
-		/* Scope for search */
-		panelScope.setBorder(BorderFactory.createTitledBorder(XpadMessages.SCOPE));
-
-		buttonGroup2.add(radioAll);
-		radioAll.setText(XpadMessages.SELECT_ALL);
-
-		buttonGroup2.add(radioSelection);
-		radioSelection.setText(XpadMessages.SELECTED_LINES);
-
-		panelScope.setLayout(new GridLayout(2, 1, GAP, GAP));
-		panelScope.add(radioAll);
-		panelScope.add(radioSelection);
-		
-		JPanel panelDirectionScope = new JPanel();
-		panelDirectionScope.setLayout(new GridLayout(1, 2, GAP, GAP));
-		panelDirectionScope.add(panelDirection);
-		panelDirectionScope.add(panelScope);
-		panelFrame.add(panelDirectionScope);
-		
-		/* Misc Options */
-		panelOptions.setBorder(BorderFactory.createTitledBorder(XpadMessages.OPTIONS));
-
-		checkCase.setText(XpadMessages.CASE_SENSITIVE);
-		checkWhole.setText(XpadMessages.WHOLE_WORD);
-		checkRegular.setText(XpadMessages.REGULAR_EXPRESSIONS);
-		checkWarp.setText(XpadMessages.WORD_WRAP);
-
-		checkWarp.setSelected(true);
-		panelOptions.setLayout(new GridLayout(2, 2, GAP, GAP));
-		panelOptions.add(checkCase);
-		panelOptions.add(checkRegular);
-		panelOptions.add(checkWhole);
-		panelOptions.add(checkWarp);
-		panelFrame.add(panelOptions);
-
-		buttonFind.setText(XpadMessages.FIND_BUTTON);
-		buttonReplaceFind.setText(XpadMessages.FIND_REPLACE);
-		buttonReplace.setText(XpadMessages.REPLACE);
-		buttonReplaceAll.setText(XpadMessages.REPLACE_ALL);
-		buttonClose.setText(XpadMessages.CLOSE);
-		labelStatus.setText("");
-
-		panelButton.setBorder(BorderFactory.createEmptyBorder(GAP, GAP, GAP, GAP));
-		panelButton.setLayout(new GridLayout(THREE, THREE, GAP, GAP));
-		panelButton.add(new JLabel());
-		panelButton.add(buttonFind);
-		panelButton.add(buttonReplaceFind);
-		panelButton.add(new JLabel());
-		panelButton.add(buttonReplace);
-		panelButton.add(buttonReplaceAll);
-		panelButton.add(new JLabel());
-		panelButton.add(new JLabel());
-		panelButton.add(buttonClose);
-		
-		panelFrame.add(panelButton);
-
-		frame.setContentPane(panelFrame);
-		
-		frame.pack();
-		frame.setLocationRelativeTo(Xpad.getEditor());
-		frame.setVisible(true);
-		
-		buttonReplaceFind.setEnabled(false);
-		buttonReplace.setEnabled(false);
-		buttonFind.setEnabled(false);
-		buttonReplaceAll.setEnabled(false);
-
-		radioForward.setSelected(true);
-		radioAll.setSelected(true);
-
-		updateRecentSearch();
-		updateRecentReplace();
-		
-		restoreConfiguration();
-		
-		/*behaviour of buttons*/
-		radioSelection.addActionListener(new ActionListener() {
-			private static final int R_VALUE = 205;
-			private static final int G_VALUE = 183; 
-			private static final int B_VALUE = 158;
-			
-			public void actionPerformed(ActionEvent e) {
-				JEditorPane xpadTextPane =  getEditor().getTextPane();		
-				startSelectedLines = xpadTextPane.getSelectionStart();
-				endSelectedLines = xpadTextPane.getSelectionEnd();					
-
-				startSelectedLines = ((ScilabDocument) xpadTextPane.getDocument()).
-				getParagraphElement(startSelectedLines).getStartOffset();
-				endSelectedLines =   ((ScilabDocument) xpadTextPane.getDocument()).
-				getParagraphElement(endSelectedLines).getEndOffset();
-
-				Highlighter hl = xpadTextPane.getHighlighter();
-				hl.removeAllHighlights();
-				try {
-					hl.addHighlight(startSelectedLines, endSelectedLines, 
-							new DefaultHighlighter.DefaultHighlightPainter(new Color(R_VALUE, G_VALUE, B_VALUE)));
-				} catch (BadLocationException exc) {
-					exc.printStackTrace();
-				}
-				
-				getEditor().getTextPane().addFocusListener(new FocusListener() {
-
-					public void focusGained(FocusEvent e) {
-						if (radioSelection.isSelected()) {
-
-							Highlighter highlight = getEditor().getTextPane().getHighlighter();
-							highlight.removeAllHighlights();
-
-							radioSelection.setSelected(false);
-							radioAll.setSelected(true);
-
-							getEditor().getTextPane().removeFocusListener(this);
-						}	
-					}
-
-
-					public void focusLost(FocusEvent e) { }
-				});
-
-
-			}
-		});
-
-
-
-		buttonFind.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				saveFindReplaceConfiguration();
-				findText();
-			}
-		});
-
-		buttonReplace.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				saveFindReplaceConfiguration();
-				JEditorPane xpadTextPane =  getEditor().getTextPane();
-				ScilabDocument doc = (ScilabDocument) xpadTextPane.getDocument();
-				
-				doc.mergeEditsBegin();
-				replaceOnlyText();
-				doc.mergeEditsEnd();
-			}	
-
-		});
-
-		buttonReplaceFind.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				saveFindReplaceConfiguration();
-				JEditorPane xpadTextPane =  getEditor().getTextPane();
-				ScilabDocument doc = (ScilabDocument) xpadTextPane.getDocument();
-				
-				doc.mergeEditsBegin();
-				replaceText();
-				findText();
-				doc.mergeEditsEnd();
-			}
-		});
-
-		buttonReplaceAll.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				saveFindReplaceConfiguration();
-				JEditorPane xpadTextPane =  getEditor().getTextPane();
-				ScilabDocument doc = (ScilabDocument) xpadTextPane.getDocument();
-				String text = null;
-
-				boolean wholeWordSelected  = checkWhole.isSelected() &&  checkWhole.isEnabled();
-				boolean regexpSelected  = checkRegular.isSelected();
-
-				// save current caret position to restore it at the end
-				int currentCaretPos = xpadTextPane.getCaretPosition();
-
-				if (radioSelection.isSelected()) {
-					ScilabDocument scilabDocument = (ScilabDocument) xpadTextPane.getDocument();
-					text = searchManager.getSelectedDocumentLines(scilabDocument, startSelectedLines, endSelectedLines);
-				} else {
-					text = doc.getText();
-				}
-
-				Pattern pattern = null;
-
-				oldWord = (String) comboFind.getEditor().getItem();
-				newWord = (String) comboReplace.getEditor().getItem();
-				setPreviousSearch(oldWord);
-
-				if (regexpSelected) {
-					oldWord = "(?m)" + oldWord;
-					pattern = Pattern.compile(oldWord, Pattern.MULTILINE);
-
-
-				} else {
-				        if (wholeWordSelected) {
-						String patternWordBoundary = "\\b"; 
-						oldWord = patternWordBoundary + oldWord + patternWordBoundary;
-						pattern = Pattern.compile(oldWord);
-
-					} else {
-
-						pattern = Pattern.compile(oldWord, Pattern.LITERAL);
-					}
-				}
-
-				Matcher matcher = pattern.matcher(text);
-				String replacedText = matcher.replaceAll(Matcher.quoteReplacement(newWord));
-				if (replacedText.compareTo(text) != 0) {
-					// only touch document if any replacement took place
-					try {
-						doc.mergeEditsBegin();
-					        doc.replace(startSelectedLines, text.length(), replacedText, null);
-						doc.mergeEditsEnd();
-					} catch (BadLocationException e1) {
-						e1.printStackTrace();
-					}
-				}
-				xpadTextPane.setCaretPosition(Math.min(currentCaretPos, doc.getLength()));
-			}
-		});
-
-		buttonClose.addActionListener(new ActionListener() {
-
-
-		    public void actionPerformed(ActionEvent e) {
-			closeFindReplaceWindow();
-		    }
-		});
-
-				
-		/*comboReplace*/
-		comboReplace.getEditor().getEditorComponent().addMouseListener(new MouseListener() {
-			public void mouseReleased(MouseEvent e) { }
-			public void mousePressed(MouseEvent e) {
-				closeComboPopUp();
-			}
-			public void mouseExited(MouseEvent e) { }
-			public void mouseEntered(MouseEvent e) { }
-			public void mouseClicked(MouseEvent e) { }
-		});
-		
-		comboReplace.getEditor().getEditorComponent().addKeyListener(new KeyListener() {
-			public void keyTyped(KeyEvent e) { }
-			public void keyReleased(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-				    closeFindReplaceWindow();
-				}
-				
-				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					replaceText();
-					findText();
-				}
-
-				updateFindReplaceButtonStatus();
-			}
-			public void keyPressed(KeyEvent e) { }
-		});
-
-		comboReplace.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent arg0) {
-				updateFindReplaceButtonStatus();
-			}
-		});
-		
-		comboReplace.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				updateFindReplaceButtonStatus();
-			}
-		});
-		
-		/*comboFind*/
-		comboFind.getEditor().getEditorComponent().addMouseListener(new MouseListener() {
-			public void mouseReleased(MouseEvent arg0) { }
-			public void mousePressed(MouseEvent arg0) {
-				closeComboPopUp();
-			}
-			public void mouseExited(MouseEvent arg0) { }
-			public void mouseEntered(MouseEvent arg0) { }
-			public void mouseClicked(MouseEvent arg0) { }
-		});
-
-		comboFind.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent arg0) {
-				updateFindReplaceButtonStatus();
-			}
-		});
-		
-		comboFind.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent arg0) {
-				updateFindReplaceButtonStatus();
-			}
-		});
-
-		comboFind.getEditor().getEditorComponent().addKeyListener(new KeyListener() {
-			
-			public void keyTyped(KeyEvent e) { }
-			public void keyReleased(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-				    closeFindReplaceWindow();
-				}
-				
-				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					findText();
-				}
-
-				updateFindReplaceButtonStatus();
-				
-			}
-			
-			public void keyPressed(KeyEvent e) { }
-		});
-		
-		
-		frame.addWindowListener(new WindowListener() {
-			public void windowClosed(WindowEvent e) { }
-			public void windowDeiconified(WindowEvent e) { }
-			public void windowActivated(WindowEvent e) { }
-			
-			public void windowClosing(WindowEvent e) {
-				FindAction.windowAlreadyExist = false;
-				frame.dispose();
-
-			}
-			
-			public void windowDeactivated(WindowEvent e) { }
-			public void windowIconified(WindowEvent e) { }
-			public void windowOpened(WindowEvent e) { }
-		});
-		
-	}
-
-	private void closeComboPopUp() {
-		if (comboFind.isPopupVisible()) {
-			comboFind.hidePopup();
-		}
-
-		if (comboReplace.isPopupVisible()) {
-			comboReplace.hidePopup();
-		}
-	}
-
-	private void updateRecentSearch() {
-		Object old = comboFind.getEditor().getItem();
-		comboFind.removeAllItems();
-		List<String> recentFind = ConfigXpadManager.getRecentSearch();
-		for (String item : recentFind) {
-			comboFind.addItem(item);
-		}
-
-		comboFind.getEditor().setItem(old);
-	}
-
-	private void updateRecentReplace() {
-		Object old = comboReplace.getEditor().getItem();
-		comboReplace.removeAllItems();
-		List<String> recentReaplce = ConfigXpadManager.getRecentReplace();
-		for (String item : recentReaplce) {
-			comboReplace.addItem(item);
-		}
-
-		comboReplace.getEditor().setItem(old);
-	}
-
-	public void saveFindReplaceConfiguration() {
-	
-		ConfigXpadManager.saveRecentSearch((String) comboFind.getEditor().getItem());
-		ConfigXpadManager.saveRecentReplace((String) comboReplace.getEditor().getItem());
-		ConfigXpadManager.saveRegularExpression(checkRegular.isSelected());
-		ConfigXpadManager.saveWordWarp(checkWarp.isSelected());
-		ConfigXpadManager.saveWholeWord(checkWhole.isSelected());
-		ConfigXpadManager.saveCaseSensitive(checkCase.isSelected());
-	}
-	
-	private void restoreConfiguration() {
-		checkRegular.setSelected(ConfigXpadManager.getRegularExpression());
-		checkWarp.setSelected(ConfigXpadManager.getWordWarp());
-		checkWhole.setSelected(ConfigXpadManager.getWholeWord());
-		checkCase.setSelected(ConfigXpadManager.getCaseSensitive());
-	}
-
-	protected void updateFindReplaceButtonStatus() {
-		String textFind = (String) comboFind.getEditor().getItem();
-		String textReplace = (String) comboReplace.getEditor().getItem();
-		if (textFind.compareTo("") != 0) {
-			buttonFind.setEnabled(true);
-			if (textReplace.compareTo("") != 0) {
-				buttonReplace.setEnabled(true);
-				buttonReplaceAll.setEnabled(true);
-				buttonReplaceFind.setEnabled(true);
-			} else {
-				buttonReplace.setEnabled(false);
-				buttonReplaceAll.setEnabled(false);
-				buttonReplaceFind.setEnabled(false);
-			}
-		} else {
-			buttonFind.setEnabled(false);
-			buttonReplace.setEnabled(false);
-			buttonReplaceAll.setEnabled(false);
-			buttonReplaceFind.setEnabled(false);
-		}
-
-
-
-		// permit to choose "whole word" only if the input is a single word
-
-		Pattern patternWholeWord = Pattern.compile("\\w*");
-		Matcher matcherWholeWord = patternWholeWord.matcher(textFind);
-
-		checkWhole.setEnabled(false);
-
-		if (matcherWholeWord.find()) {
-			if ((matcherWholeWord.end() - matcherWholeWord.start()) == textFind.length()) {
-				checkWhole.setEnabled(true);
-			}
-
-		}
-
-		// if we search a regexp, we first need to know if the regexp is valid or not
-		if (checkRegular.isSelected()) {
-			try {
-				Pattern.compile(textFind);
-				labelStatus.setText("");
-				buttonFind.setEnabled(true);
-				buttonReplaceAll.setEnabled(true);
-			} catch (PatternSyntaxException pse) {
-
-				labelStatus.setText(String.format(XpadMessages.INVALID_REGEXP, textFind));
-
-				buttonFind.setEnabled(false);
-				buttonReplaceAll.setEnabled(false);
-
-			}
-
-
-		}
-
-		if (buttonReplace.isEnabled() && oldWord != null && oldWord.compareTo(textFind) != 0) {
-			buttonReplace.setEnabled(false);
-			buttonReplaceFind.setEnabled(false);
-		}
-	}
-
-	/**
-	 * findText
-	 */
-	private void findText() {
-
-		boolean wrapSearchSelected = checkWarp.isSelected();
-		boolean forwardSearch = radioForward.isSelected();
-		boolean backwardSearch = radioBackward.isSelected();
-		boolean caseSensitiveSelected  = checkCase.isSelected();
-		boolean wholeWordSelected  = checkWhole.isSelected() &&  checkWhole.isEnabled();
-		boolean regexpSelected  = checkRegular.isSelected();
-
-		boolean onlySelectedLines = radioSelection.isSelected();
-
-		int saveStart 	= startFindSelection;
-		int saveEnd 	= endFindSelection;
-
-		String exp = (String) comboFind.getEditor().getItem();
-		if (exp.compareTo("") == 0) {
-			return;
-		}
-		wordToFind = exp;
-		setPreviousSearch(wordToFind);
-		saveFindReplaceConfiguration();
-		updateRecentSearch();
-
-
-		JEditorPane xpadTextPane =  getEditor().getTextPane();
-		ScilabDocument scilabStyle = ((ScilabDocument) xpadTextPane.getDocument());
-
-		/*mainly used in case of selected text, otherwise currentPosStart =  currentPosEnd*/
-		int currentCaretPos = 0;
-
-		//Get the word we have to find
-		oldWord = wordToFind;
-
-		Highlighter highlight = xpadTextPane.getHighlighter();
-		highlight.removeAllHighlights();
-
-		/*case we want to search only into the selected lines*/
-
-
-		currentCaretPos =  xpadTextPane.getSelectionStart();
-
-		if (forwardSearch) {
-			currentCaretPos =  xpadTextPane.getSelectionEnd();
-		}
-		if (backwardSearch) {
-			currentCaretPos =  xpadTextPane.getSelectionStart() - 1;
-		}
-
-		if (onlySelectedLines) {
-			offsets = searchManager.findWord(scilabStyle, wordToFind, startSelectedLines, endSelectedLines - 1, caseSensitiveSelected, 
-					wholeWordSelected, regexpSelected);
-		} else {
-			offsets = searchManager.findWord(scilabStyle, wordToFind, 0, scilabStyle.getLength(), caseSensitiveSelected, 
-					wholeWordSelected, regexpSelected);
-		}
-
-		labelStatus.setText("");
-
-		// if nothing has been found all this things are not needed
-		if (offsets.size() > 0) {
-
-			//find actual position of the caret in the array
-			int nextIndex = -1;
-			for (int i = 0; i < offsets.size(); i++) {
-				if (offsets.get(i)[0] >= currentCaretPos) {
-					nextIndex = i;
-					break;
-				}
-			}
-
-			//if backwardSearch, the next position is the previous one
-			if (backwardSearch && nextIndex != -1) {
-				nextIndex -= 1;
-			}
-
-
-			if (nextIndex == -1) {
-				if (wrapSearchSelected) {
-					// return to the end or the beginning of the document
-					if (backwardSearch) {
-						labelStatus.setText(XpadMessages.PASSED_BEGIN_OF_DOCUMENT);
-						nextIndex = offsets.size() - 1;
-					} else {
-						labelStatus.setText(XpadMessages.PASSED_END_OF_DOCUMENT);
-						nextIndex = 0;
-					}
-				} else {
-					if (backwardSearch) {
-						labelStatus.setText(XpadMessages.BEGIN_OF_DOCUMENT);
-					} else {
-						labelStatus.setText(XpadMessages.END_OF_DOCUMENT);
-					}
-				}
-			}
-
-			//tips to keep last find if we have reach the end/begin of file
-			if (nextIndex == -1) {
-				if (backwardSearch) {
-					if (saveStart >= offsets.get(0)[0]) {
-						nextIndex = 0;
-					}
-				} else if (saveStart <= offsets.get(offsets.size() - 1)[0]) {
-					nextIndex = offsets.size() - 1;
-				}
-			}
-
-			//Here we highlight all the matching words
-			for (int i = 0; i < offsets.size(); i++) {
-				try {
-					if (i != nextIndex) {
-						highlight.addHighlight(offsets.get(i)[0], offsets.get(i)[1], 
-								new DefaultHighlighter.DefaultHighlightPainter(Color.green));
-					}
-					//TODO add a mechanism to change the foreground color too, if not if the text matched is in green too ...
-				} catch (BadLocationException e1) {
-					e1.printStackTrace();
-				}
-			}
-
-			if (onlySelectedLines) {
-				try {
-					highlight.addHighlight(startSelectedLines, endSelectedLines, 
-							new DefaultHighlighter.DefaultHighlightPainter(new Color(205, 183, 158)));
-				} catch (BadLocationException exc) {
-					exc.printStackTrace();
-				}
-			}
-
-			int nextStart  = 0;
-			int nextEnd  = 0;
-			if (nextIndex != -1) {
-				nextStart = offsets.get(nextIndex)[0];
-				nextEnd = offsets.get(nextIndex)[1];
-			} else {
-				nextStart = saveStart;
-				nextEnd = saveEnd;
-			}
-
-			//select current index
-			//xpadTextPane.setCaretPosition(offsets.get(nextIndex)[0]);
-			xpadTextPane.select(nextStart, nextEnd);
-
-			// used by replace and replace/find
-			startFindSelection = nextStart;
-			endFindSelection = nextEnd;
-
-			buttonReplace.setEnabled(true);
-			buttonReplaceFind.setEnabled(true);
-
-			//Here we highlight differently the match next after the caret position
-			/*if we typed on the textPanel all highlights will disappear*/
-
-			if (getEditor().getTextPane().getKeyListeners().length == 0) {
-
-				getEditor().getTextPane().addKeyListener(new KeyListener() {
-
-					public void keyReleased(KeyEvent e) { }
-					public void keyTyped(KeyEvent e) { }
-					public void keyPressed(KeyEvent e) { 
-						getEditor().getTextPane().getHighlighter().removeAllHighlights();
-						getEditor().getTextPane().removeKeyListener(this);
-					}
-
-				});
-			}
-		} else { // nothing has been found
-			labelStatus.setText(String.format(XpadMessages.STRING_NOT_FOUND, wordToFind));
-
-			startFindSelection = -1;
-			endFindSelection = -1;
-			buttonReplace.setEnabled(false);
-			buttonReplaceFind.setEnabled(false);
-
-		}
-	}
-
-	/**
-	 * replaceOnlyText
-	 */
-	private void replaceOnlyText() {
-		replaceText();
-		offsets.clear();
-		buttonReplace.setEnabled(false);
-		buttonReplaceFind.setEnabled(false);
-	}
-
-	/**
-	 * replaceText
-	 */
-
-	private void replaceText() {
-
-		boolean regexpSelected  = checkRegular.isSelected();
-
-		String find = (String) comboFind.getEditor().getItem();
-		String replace = (String) comboReplace.getEditor().getItem();
-
-		if (find.compareTo("") == 0 || replace.compareTo("") == 0) {
-			return;
-		}
-		oldWord = (String) find;
-		newWord = (String) replace;
-
-		saveFindReplaceConfiguration();
-		updateRecentSearch();
-		updateRecentReplace();
-		setPreviousSearch(oldWord);
-		JEditorPane xpadTextPane =  getEditor().getTextPane();
-		int currentPosStart = startFindSelection;
-		int currentPosEnd = endFindSelection;
-
-		/*
-		 * we replace only the current result and then disable replace and replace find button
-		 * same behaviour as find and replace in eclipse
-		 */
-
-		if (regexpSelected) {
-			Pattern patternOldWord = Pattern.compile(oldWord, Pattern.MULTILINE);
-			Matcher matcher;
-			try {
-				matcher = patternOldWord.matcher(xpadTextPane.getText(currentPosStart, currentPosEnd - currentPosStart));
-				newWord = matcher.replaceAll(newWord);
-			} catch (BadLocationException ex) {
-				ex.printStackTrace();
-			}
-		}
-
-
-		try {
-			ScilabDocument doc = (ScilabDocument) getEditor().getTextPane().getDocument();
-			doc.replace(currentPosStart, currentPosEnd - currentPosStart, newWord, null);
-
-		} catch (BadLocationException ex) {
-			ex.printStackTrace();
-		}
-	}
-
-	/**
-	 * closeFindReplaceWindow
-	 */
-	public static void closeFindReplaceWindow() {
-	    if (FindAction.windowAlreadyExist) {
-		Highlighter highlight = Xpad.getEditor().getTextPane().getHighlighter();
-		highlight.removeAllHighlights();
-		frame.dispose();
-		FindAction.windowAlreadyExist = false;
-	    }
-	}
-
-	public static String getPreviousSearch() {
-		return previousSearch;
-	}
-
-	public static void setPreviousSearch(String previousSearch) {
-		FindAction.previousSearch = previousSearch;
-	}
+    /**
+     * serialVersionUID
+     */
+    private static final long serialVersionUID = -5499974793656106222L;
+
+    private static final int GAP = 5;
+    private static final int THREE = 3;
+
+    private static final Color colorSelected = new Color(205, 183, 158);
+    private static final Highlighter.HighlightPainter activePainter = new DefaultHighlighter.DefaultHighlightPainter(Color.green);
+    private static final Highlighter.HighlightPainter inactivePainter = new DefaultHighlighter.DefaultHighlightPainter(Color.yellow);
+    private static final Highlighter.HighlightPainter selectedPainter = new DefaultHighlighter.DefaultHighlightPainter(colorSelected);
+
+    private static boolean windowAlreadyExist;
+
+    private static JFrame frame;
+    private static String previousSearch;
+
+    private JButton buttonClose;
+    private JButton buttonFind;
+    private ButtonGroup buttonGroup1;
+    private ButtonGroup buttonGroup2;
+    private JButton buttonReplace;
+    private JButton buttonReplaceAll;
+    private JButton buttonReplaceFind;
+    private JCheckBox checkCase;
+    private JCheckBox checkRegular;
+    private JCheckBox checkWarp;
+    private JCheckBox checkWhole;
+    private JComboBox comboFind;
+    private JComboBox comboReplace;
+    private JLabel labelFind;
+    private JLabel labelReplace;
+    private JLabel labelStatus;
+    private JPanel panelButton;
+    private JPanel panelDirection;
+    private JPanel panelFind;
+    private JPanel panelFrame;
+    private JPanel panelOptions;
+    private JPanel panelScope;
+    private JRadioButton radioAll;
+    private JRadioButton radioBackward;
+    private JRadioButton radioForward;
+    private JRadioButton radioSelection;
+
+    private String oldWord;
+    private String newWord;
+    private String wordToFind;
+
+    private int startSelectedLines;
+    private int endSelectedLines;
+
+    private int startFind;
+    private int endFind;
+
+    private Object[] highlighters;
+    private Object selectedHighlight;
+
+    private String previousRegexp;
+    private int previousIndex;
+    private List<Integer[]> foundOffsets;
+    private MyListener myListener = new MyListener();
+
+    /**
+     * Constructor
+     * @param editor Xpad
+     */
+    private FindAction(Xpad editor) {
+        super(XpadMessages.FIND_REPLACE +  XpadMessages.DOTS, editor);
+    }
+
+    /**
+     * doAction
+     */
+    public void doAction() {
+        if (!FindAction.windowAlreadyExist) {
+            findReplaceBox();
+        } else {
+            frame.setVisible(true);
+            buttonFind.requestFocus();
+        }
+
+        previousRegexp = "";
+        previousIndex = -1;
+        getEditor().getTextPane().removeCaretListener(myListener);
+        startSelectedLines = 0;
+        endSelectedLines = 0;
+
+        try {
+            // If some text is selected, it is used in find.
+            //if more than one line is selected set radio button "selected lines" at true
+            // else find and replace action is applied to the entire document
+            JEditorPane xpadTextPane = getEditor().getTextPane();
+            int startPos = xpadTextPane.getSelectionStart();
+            int endPos = xpadTextPane.getSelectionEnd();
+            Element root = xpadTextPane.getDocument().getDefaultRootElement();
+            int startLine = root.getElementIndex(startPos);
+            int endLine = root.getElementIndex(endPos);
+
+            if (startPos != endPos) {
+                if (startLine != endLine) {
+                    radioSelection.doClick();
+                    radioSelection.setSelected(true);
+                    comboFind.setSelectedIndex(-1);
+                    comboReplace.setSelectedIndex(-1);
+                } else {
+                    radioAll.doClick();
+                    comboFind.getEditor().setItem(xpadTextPane.getDocument().getText(startPos, endPos - startPos));
+                    comboFind.getEditor().selectAll();
+                }
+            } else {
+                radioAll.doClick();
+                comboFind.setSelectedIndex(-1);
+                comboReplace.setSelectedIndex(-1);
+            }
+            FindAction.windowAlreadyExist = true;
+            updateFindReplaceButtonStatus();
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * createMenu
+     * @param editor Xpad
+     * @param key Keystroke
+     * @return MenuItem
+     */
+    public static MenuItem createMenu(Xpad editor, KeyStroke key) {
+        return createMenu(XpadMessages.FIND_REPLACE + XpadMessages.DOTS, null, new FindAction(editor), key);
+    }
+
+    /**
+     * createButton
+     * @param editor Xpad
+     * @return PushButton
+     */
+    public static PushButton createButton(Xpad editor) {
+        return createButton(XpadMessages.FIND_REPLACE +  "...", "edit-find-replace.png", new FindAction(editor));
+    }
+
+    /**
+     * findReplaceBox
+     */
+    public void findReplaceBox() {
+
+        //Find & Replace Frame
+        frame = new JFrame();
+        frame.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        frame.setTitle(XpadMessages.FIND_REPLACE);
+        frame.setResizable(false);
+
+        buttonGroup1 = new ButtonGroup();
+        buttonGroup2 = new ButtonGroup();
+        panelFrame = new JPanel();
+        panelDirection = new JPanel();
+        radioForward = new JRadioButton();
+        radioBackward = new JRadioButton();
+        panelScope = new JPanel();
+        radioAll = new JRadioButton();
+        radioSelection = new JRadioButton();
+        panelOptions = new JPanel();
+        checkCase = new JCheckBox();
+        checkWhole = new JCheckBox();
+        checkRegular = new JCheckBox();
+        checkWarp = new JCheckBox();
+        panelFind = new JPanel();
+        labelFind = new JLabel();
+        labelReplace = new JLabel();
+        comboFind = new JComboBox();
+        comboReplace = new JComboBox();
+        panelButton = new JPanel();
+        buttonFind = new JButton();
+        buttonReplaceFind = new JButton();
+        buttonReplace = new JButton();
+        buttonReplaceAll = new JButton();
+        buttonClose = new JButton();
+        labelStatus = new JLabel();
+
+        panelFrame.setLayout(new BoxLayout(panelFrame, BoxLayout.PAGE_AXIS));
+        panelFrame.setBorder(BorderFactory.createEmptyBorder(2 * GAP, 2 * GAP, 2 * GAP, 2 * GAP));
+
+        /* Pattern to search and replace*/
+        labelFind.setText(XpadMessages.FIND);
+        labelReplace.setText(XpadMessages.REPLACE);
+
+        comboFind.setEditable(true);
+        comboReplace.setEditable(true);
+
+        panelFind.setLayout(new GridLayout(2, 2, GAP, GAP));
+        panelFind.add(labelFind);
+        panelFind.add(comboFind);
+        panelFind.add(labelReplace);
+        panelFind.add(comboReplace);
+        panelFrame.add(panelFind);
+
+        /* Search direction selection*/
+        panelDirection.setBorder(BorderFactory.createTitledBorder(XpadMessages.DIRECTION));
+
+        buttonGroup1.add(radioForward);
+        radioForward.setText(XpadMessages.FORWARD);
+        buttonGroup1.add(radioBackward);
+        radioBackward.setText(XpadMessages.BACKWARD);
+
+        panelDirection.setLayout(new GridLayout(2, 1, GAP, GAP));
+        panelDirection.add(radioForward);
+        panelDirection.add(radioBackward);
+
+        /* Scope for search */
+        panelScope.setBorder(BorderFactory.createTitledBorder(XpadMessages.SCOPE));
+
+        buttonGroup2.add(radioAll);
+        radioAll.setText(XpadMessages.SELECT_ALL);
+
+        buttonGroup2.add(radioSelection);
+        radioSelection.setText(XpadMessages.SELECTED_LINES);
+
+        panelScope.setLayout(new GridLayout(2, 1, GAP, GAP));
+        panelScope.add(radioAll);
+        panelScope.add(radioSelection);
+
+        JPanel panelDirectionScope = new JPanel();
+        panelDirectionScope.setLayout(new GridLayout(1, 2, GAP, GAP));
+        panelDirectionScope.add(panelDirection);
+        panelDirectionScope.add(panelScope);
+        panelFrame.add(panelDirectionScope);
+
+        /* Misc Options */
+        panelOptions.setBorder(BorderFactory.createTitledBorder(XpadMessages.OPTIONS));
+
+        checkCase.setText(XpadMessages.CASE_SENSITIVE);
+        checkWhole.setText(XpadMessages.WHOLE_WORD);
+        checkRegular.setText(XpadMessages.REGULAR_EXPRESSIONS);
+        checkWarp.setText(XpadMessages.WORD_WRAP);
+
+        checkWarp.setSelected(true);
+        panelOptions.setLayout(new GridLayout(2, 2, GAP, GAP));
+        panelOptions.add(checkCase);
+        panelOptions.add(checkRegular);
+        panelOptions.add(checkWhole);
+        panelOptions.add(checkWarp);
+        panelFrame.add(panelOptions);
+
+        buttonFind.setText(XpadMessages.FIND_BUTTON);
+        buttonReplaceFind.setText(XpadMessages.REPLACE_FIND);
+        buttonReplace.setText(XpadMessages.REPLACE);
+        buttonReplaceAll.setText(XpadMessages.REPLACE_ALL);
+        buttonClose.setText(XpadMessages.CLOSE);
+        labelStatus.setText("");
+
+        panelButton.setBorder(BorderFactory.createEmptyBorder(GAP, GAP, GAP, GAP));
+        panelButton.setLayout(new GridLayout(THREE, THREE, GAP, GAP));
+        panelButton.add(new JLabel());
+        panelButton.add(buttonFind);
+        panelButton.add(buttonReplaceFind);
+        panelButton.add(new JLabel());
+        panelButton.add(buttonReplace);
+        panelButton.add(buttonReplaceAll);
+        panelButton.add(new JLabel());
+        panelButton.add(new JLabel());
+        panelButton.add(buttonClose);
+
+        panelFrame.add(panelButton);
+
+        frame.setContentPane(panelFrame);
+
+        frame.pack();
+        frame.setLocationRelativeTo(Xpad.getEditor());
+        frame.setVisible(true);
+
+        buttonReplaceFind.setEnabled(false);
+        buttonReplace.setEnabled(false);
+        buttonFind.setEnabled(false);
+        buttonReplaceAll.setEnabled(false);
+
+        radioForward.setSelected(true);
+        radioAll.doClick();
+
+        updateRecentSearch();
+        updateRecentReplace();
+
+        restoreConfiguration();
+
+        /*behaviour of buttons*/
+        radioSelection.addActionListener(new ActionListener() {
+
+                public void actionPerformed(ActionEvent e) {
+                    JEditorPane xpadTextPane = getEditor().getTextPane();
+                    Element root = xpadTextPane.getDocument().getDefaultRootElement();
+                    int startPos = xpadTextPane.getSelectionStart();
+                    int endPos = xpadTextPane.getSelectionEnd();
+                    int startLine = root.getElementIndex(startPos);
+                    int endLine = root.getElementIndex(endPos);
+                    startSelectedLines = root.getElement(startLine).getStartOffset();
+                    endSelectedLines = root.getElement(endLine).getEndOffset() - 1;
+
+                    xpadTextPane.setCaretPosition(startSelectedLines);
+
+                    removeAllHighlights();
+                    setSelectedHighlight();
+
+                    xpadTextPane.addFocusListener(new FocusListener() {
+
+                            public void focusGained(FocusEvent e) {
+                                removeAllHighlights();
+                                previousRegexp = "";
+                                radioAll.setSelected(true);
+                                getEditor().getTextPane().removeFocusListener(this);
+                            }
+
+                            public void focusLost(FocusEvent e) { }
+                        });
+                }
+            });
+
+        radioAll.addActionListener(new ActionListener() {
+
+                public void actionPerformed(ActionEvent e) {
+                   removeAllHighlights();
+                   previousRegexp = "";
+                }
+            });
+
+        buttonFind.addActionListener(new ActionListener() {
+
+                public void actionPerformed(ActionEvent e) {
+                    saveFindReplaceConfiguration();
+                    findText();
+                }
+            });
+
+        buttonReplace.addActionListener(new ActionListener() {
+
+                public void actionPerformed(ActionEvent e) {
+                    saveFindReplaceConfiguration();
+                    JEditorPane xpadTextPane =  getEditor().getTextPane();
+                    ScilabDocument doc = (ScilabDocument) xpadTextPane.getDocument();
+
+                    doc.mergeEditsBegin();
+                    replaceOnlyText();
+                    doc.mergeEditsEnd();
+                }
+
+            });
+
+        buttonReplaceFind.addActionListener(new ActionListener() {
+
+                public void actionPerformed(ActionEvent e) {
+                    saveFindReplaceConfiguration();
+                    JEditorPane xpadTextPane =  getEditor().getTextPane();
+                    ScilabDocument doc = (ScilabDocument) xpadTextPane.getDocument();
+
+                    doc.mergeEditsBegin();
+                    if (buttonReplace.isEnabled()) {
+                        replaceText();
+                    }
+                    doc.mergeEditsEnd();
+                    findText();
+                }
+            });
+
+        buttonReplaceAll.addActionListener(new ActionListener() {
+
+                public void actionPerformed(ActionEvent e) {
+                    saveFindReplaceConfiguration();
+                    int start = 0;
+                    JEditorPane xpadTextPane =  getEditor().getTextPane();
+                    ScilabDocument doc = (ScilabDocument) xpadTextPane.getDocument();
+                    String text = "";
+
+                    boolean wholeWordSelected  = checkWhole.isSelected() &&  checkWhole.isEnabled();
+                    boolean regexpSelected  = checkRegular.isSelected();
+                    boolean caseSelected = checkCase.isSelected();
+
+                    // save current caret position to restore it at the end
+                    int currentCaretPos = xpadTextPane.getCaretPosition();
+
+                    if (radioSelection.isSelected()) {
+                        ScilabDocument scilabDocument = (ScilabDocument) xpadTextPane.getDocument();
+                        start = startSelectedLines;
+                        try {
+                            text = doc.getText(startSelectedLines, endSelectedLines - startSelectedLines);
+                        } catch (BadLocationException ex) { }
+                    } else {
+                        text = doc.getText();
+                    }
+
+                    oldWord = (String) comboFind.getEditor().getItem();
+                    newWord = (String) comboReplace.getEditor().getItem();
+                    setPreviousSearch(oldWord);
+
+                    Pattern pattern = SearchManager.generatePattern(oldWord, caseSelected, wholeWordSelected, regexpSelected);
+                    Matcher matcher = pattern.matcher(text);
+                    String replacedText = matcher.replaceAll(Matcher.quoteReplacement(newWord));
+                    if (replacedText.compareTo(text) != 0 && text.length() > 0) {
+                        // only touch document if any replacement took place
+                        try {
+                            doc.mergeEditsBegin();
+                            doc.replace(start, text.length(), replacedText, null);
+                            doc.mergeEditsEnd();
+                            previousRegexp = "";
+                            previousIndex = -1;
+                            buttonReplace.setEnabled(false);
+                            buttonReplaceFind.setEnabled(false);
+                            buttonReplaceAll.setEnabled(false);
+                        } catch (BadLocationException e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+                    if (radioSelection.isSelected()) {
+                        removeAllHighlights();
+                        endSelectedLines = startSelectedLines + replacedText.length();
+                        setSelectedHighlight();
+                    }
+                }
+            });
+
+        buttonClose.addActionListener(new ActionListener() {
+
+                public void actionPerformed(ActionEvent e) {
+                    closeFindReplaceWindow();
+                }
+            });
+
+        comboReplace.getEditor().getEditorComponent().addMouseListener(new MouseListener() {
+                public void mouseReleased(MouseEvent e) { }
+                public void mousePressed(MouseEvent e) {
+                    closeComboPopUp();
+                }
+                public void mouseExited(MouseEvent e) { }
+                public void mouseEntered(MouseEvent e) { }
+                public void mouseClicked(MouseEvent e) { }
+            });
+
+        comboReplace.getEditor().getEditorComponent().addKeyListener(new KeyListener() {
+                public void keyTyped(KeyEvent e) { }
+                public void keyReleased(KeyEvent e) {
+                    if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                        closeFindReplaceWindow();
+                    }
+
+                    if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                        replaceText();
+                        findText();
+                    }
+
+                    updateFindReplaceButtonStatus();
+                }
+                public void keyPressed(KeyEvent e) { }
+            });
+
+        comboReplace.addItemListener(new ItemListener() {
+                public void itemStateChanged(ItemEvent arg0) {
+                    updateFindReplaceButtonStatus();
+                }
+            });
+
+        comboReplace.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent arg0) {
+                    updateFindReplaceButtonStatus();
+                }
+            });
+
+        comboFind.getEditor().getEditorComponent().addMouseListener(new MouseListener() {
+                public void mouseReleased(MouseEvent arg0) { }
+                public void mousePressed(MouseEvent arg0) {
+                    closeComboPopUp();
+                }
+                public void mouseExited(MouseEvent arg0) { }
+                public void mouseEntered(MouseEvent arg0) { }
+                public void mouseClicked(MouseEvent arg0) { }
+            });
+
+        comboFind.addActionListener(new ActionListener() {
+
+                public void actionPerformed(ActionEvent arg0) {
+                    updateFindReplaceButtonStatus();
+                }
+            });
+
+        comboFind.addItemListener(new ItemListener() {
+                public void itemStateChanged(ItemEvent arg0) {
+                    updateFindReplaceButtonStatus();
+                }
+            });
+
+        comboFind.getEditor().getEditorComponent().addKeyListener(new KeyListener() {
+
+                public void keyTyped(KeyEvent e) { }
+                public void keyReleased(KeyEvent e) {
+                    if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                        closeFindReplaceWindow();
+                    }
+
+                    if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                        findText();
+                    }
+
+                    updateFindReplaceButtonStatus();
+
+                }
+
+                public void keyPressed(KeyEvent e) { }
+            });
+
+        frame.addWindowListener(new WindowListener() {
+                public void windowClosed(WindowEvent e) { }
+                public void windowDeiconified(WindowEvent e) { }
+                public void windowActivated(WindowEvent e) { }
+
+                public void windowClosing(WindowEvent e) {
+                    closeFindReplaceWindow();
+                }
+
+                public void windowDeactivated(WindowEvent e) { }
+                public void windowIconified(WindowEvent e) { }
+                public void windowOpened(WindowEvent e) { }
+            });
+
+    }
+
+    /**
+     * Close combo pop-up
+     */
+    private void closeComboPopUp() {
+        if (comboFind.isPopupVisible()) {
+            comboFind.hidePopup();
+        }
+
+        if (comboReplace.isPopupVisible()) {
+            comboReplace.hidePopup();
+        }
+    }
+
+    /**
+     * Update recent search
+     */
+    private void updateRecentSearch() {
+        Object old = comboFind.getEditor().getItem();
+        comboFind.removeAllItems();
+        List<String> recentFind = ConfigXpadManager.getRecentSearch();
+        for (String item : recentFind) {
+            comboFind.addItem(item);
+        }
+
+        comboFind.getEditor().setItem(old);
+    }
+
+    /**
+     * Update recent replace
+     */
+    private void updateRecentReplace() {
+        Object old = comboReplace.getEditor().getItem();
+        comboReplace.removeAllItems();
+        List<String> recentReaplce = ConfigXpadManager.getRecentReplace();
+        for (String item : recentReaplce) {
+            comboReplace.addItem(item);
+        }
+
+        comboReplace.getEditor().setItem(old);
+    }
+
+    /**
+     * Save configuration
+     */
+    public void saveFindReplaceConfiguration() {
+        ConfigXpadManager.saveRecentSearch((String) comboFind.getEditor().getItem());
+        ConfigXpadManager.saveRecentReplace((String) comboReplace.getEditor().getItem());
+        ConfigXpadManager.saveRegularExpression(checkRegular.isSelected());
+        ConfigXpadManager.saveWordWarp(checkWarp.isSelected());
+        ConfigXpadManager.saveWholeWord(checkWhole.isSelected());
+        ConfigXpadManager.saveCaseSensitive(checkCase.isSelected());
+    }
+
+    /**
+     * Restore configuration
+     */
+    private void restoreConfiguration() {
+        checkRegular.setSelected(ConfigXpadManager.getRegularExpression());
+        checkWarp.setSelected(ConfigXpadManager.getWordWarp());
+        checkWhole.setSelected(ConfigXpadManager.getWholeWord());
+        checkCase.setSelected(ConfigXpadManager.getCaseSensitive());
+    }
+
+    /**
+     * Update status of buttons
+     */
+    protected void updateFindReplaceButtonStatus() {
+        String textFind = (String) comboFind.getEditor().getItem();
+        String textReplace = (String) comboReplace.getEditor().getItem();
+        if (textFind.compareTo("") != 0) {
+            buttonFind.setEnabled(true);
+            buttonReplace.setEnabled(true);
+            buttonReplaceAll.setEnabled(true);
+            buttonReplaceFind.setEnabled(true);
+        } else {
+            buttonFind.setEnabled(false);
+            buttonReplace.setEnabled(false);
+            buttonReplaceAll.setEnabled(false);
+            buttonReplaceFind.setEnabled(false);
+        }
+
+        // permit to choose "whole word" only if the input is a single word
+        Pattern patternWholeWord = Pattern.compile("\\w*");
+        Matcher matcherWholeWord = patternWholeWord.matcher(textFind);
+
+        checkWhole.setEnabled(false);
+
+        if (matcherWholeWord.find()) {
+            if ((matcherWholeWord.end() - matcherWholeWord.start()) == textFind.length()) {
+                checkWhole.setEnabled(true);
+            }
+
+        }
+
+        // if we search a regexp, we first need to know if the regexp is valid or not
+        if (checkRegular.isSelected()) {
+            try {
+                Pattern.compile(textFind);
+                labelStatus.setText("");
+                buttonFind.setEnabled(true);
+                buttonReplaceAll.setEnabled(true);
+            } catch (PatternSyntaxException pse) {
+
+                labelStatus.setText(String.format(XpadMessages.INVALID_REGEXP, textFind));
+
+                buttonFind.setEnabled(false);
+                buttonReplaceAll.setEnabled(false);
+            }
+        }
+
+        if (buttonReplace.isEnabled() && oldWord != null && oldWord.compareTo(textFind) != 0) {
+            buttonReplace.setEnabled(false);
+            buttonReplaceFind.setEnabled(false);
+        }
+    }
+
+    /**
+     * Add highlights on the view to see the searched word
+     * @param active to highlight an active word
+     */
+    public void addHighlighters(boolean active) {
+        Highlighter hl = getEditor().getTextPane().getHighlighter();
+        removeAllHighlights();
+        highlighters = new Object[foundOffsets.size()];
+        for (int i = 0; i < foundOffsets.size(); i++) {
+            try {
+                if (active) {
+                    highlighters[i] = hl.addHighlight(foundOffsets.get(i)[0], foundOffsets.get(i)[1], activePainter);
+                } else {
+                    highlighters[i] = hl.addHighlight(foundOffsets.get(i)[0], foundOffsets.get(i)[1], inactivePainter);
+                }
+            } catch (BadLocationException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (radioSelection.isSelected()) {
+            setSelectedHighlight();
+        }
+    }
+
+    /**
+     * Change the highlight with index n to active (or not) the word
+     * @param n the index
+     * @param active to highlight an active word
+     */
+    public void changeHighlighter(int n, boolean active) {
+        if (highlighters != null) {
+            Highlighter hl = getEditor().getTextPane().getHighlighter();
+            hl.removeHighlight(highlighters[n]);
+            try {
+                if (active) {
+                    highlighters[n] = hl.addHighlight(foundOffsets.get(n)[0], foundOffsets.get(n)[1], activePainter);
+                } else {
+                    highlighters[n] = hl.addHighlight(foundOffsets.get(n)[0], foundOffsets.get(n)[1], inactivePainter);
+                }
+            } catch (BadLocationException e) {
+                e.printStackTrace();
+            }
+
+            if (radioSelection.isSelected()) {
+                setSelectedHighlight();
+            }
+        }
+    }
+
+    /**
+     * Set the selection where to search
+     */
+    public void setSelectedHighlight() {
+        Highlighter hl = getEditor().getTextPane().getHighlighter();
+        try {
+            if (selectedHighlight != null) {
+                hl.removeHighlight(selectedHighlight);
+            }
+            selectedHighlight = hl.addHighlight(startSelectedLines, endSelectedLines, selectedPainter);
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Remove an highlight
+     * @param n th index of the word
+     **/
+    public void removeHighlighter(int n) {
+        if (highlighters != null) {
+            Highlighter hl = getEditor().getTextPane().getHighlighter();
+            hl.removeHighlight(highlighters[n]);
+        }
+    }
+
+    /**
+     * Remove all Highlights
+     */
+    public void removeAllHighlights() {
+        Highlighter hl = getEditor().getTextPane().getHighlighter();
+        if (highlighters != null) {
+            for (int i = 0; i < highlighters.length; i++) {
+                hl.removeHighlight(highlighters[i]);
+            }
+        }
+        if (selectedHighlight != null) {
+            hl.removeHighlight(selectedHighlight);
+            selectedHighlight = null;
+        }
+    }
+
+    /**
+     * Get the next keyword after the position pos
+     * @param pos the position of the caret
+     * @param forward for a forward search
+     * @param circular for a circular search
+     * @return the index of the word
+     */
+    private int getSearched(int pos, boolean forward, boolean circular) {
+        int index = -1;
+        for (int i = 0; i < foundOffsets.size(); i++) {
+            if (forward && foundOffsets.get(i)[0] >= pos) {
+                index = i;
+                break;
+            } else if (!forward && foundOffsets.get(i)[0] >= pos) {
+                if (i == 0) {
+                    return -1;
+                }
+                index = i - 1;
+                break;
+            }
+        }
+
+        if (index == -1 && circular) {
+            if (forward) {
+                return 0;
+            } else {
+                return foundOffsets.size() - 1;
+            }
+        }
+
+        return index;
+    }
+
+    /**
+     * Generate the offsets of the searched word
+     * @return a boolean if a job has been done
+     */
+    public boolean generateOffsets() {
+        boolean caseSensitive  = checkCase.isSelected();
+        boolean wholeWord  = checkWhole.isSelected() && checkWhole.isEnabled();
+        boolean useRegexp  = checkRegular.isSelected();
+        boolean onlySelectedLines = radioSelection.isSelected();
+        Document doc = getEditor().getTextPane().getDocument();
+        wordToFind = (String) comboFind.getEditor().getItem();
+
+        String strregexp = SearchManager.generatePattern(wordToFind, caseSensitive, wholeWord, useRegexp).toString();
+        if (!previousRegexp.equals(strregexp)) {
+            previousRegexp = strregexp;
+            if (onlySelectedLines) {
+                foundOffsets = SearchManager.findWord(doc, wordToFind, startSelectedLines, endSelectedLines, caseSensitive, wholeWord, useRegexp);
+            } else {
+                foundOffsets = SearchManager.findWord(doc, wordToFind, 0, doc.getLength(), caseSensitive, wholeWord, useRegexp);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * findText
+     */
+    private void findText() {
+        boolean wrapSearchSelected = checkWarp.isSelected();
+        boolean forwardSearch = radioForward.isSelected();
+        boolean backwardSearch = radioBackward.isSelected();
+
+        String exp = (String) comboFind.getEditor().getItem();
+        if (exp.compareTo("") == 0) {
+            return;
+        }
+
+        setPreviousSearch(wordToFind);
+        saveFindReplaceConfiguration();
+        updateRecentSearch();
+
+        JEditorPane xpadTextPane =  getEditor().getTextPane();
+        Document doc = xpadTextPane.getDocument();
+
+        if (generateOffsets()) {
+            addHighlighters(false);
+            previousIndex = -1;
+        }
+
+        int currentCaretPos = xpadTextPane.getSelectionStart();
+
+        if (forwardSearch) {
+            currentCaretPos =  xpadTextPane.getSelectionEnd();
+        } else {
+            currentCaretPos =  xpadTextPane.getSelectionStart() - 1;
+        }
+
+        labelStatus.setText("");
+
+        int size = foundOffsets.size();
+        if (size > 0) {
+            int nextIndex;
+            if (previousIndex == -1) {
+                nextIndex = getSearched(currentCaretPos, !backwardSearch, wrapSearchSelected);
+            } else {
+                if (backwardSearch) {
+                    if (wrapSearchSelected) {
+                        nextIndex = (size + previousIndex - 1) % size;
+                    } else {
+                        nextIndex = Math.max(previousIndex - 1, 0);
+                    }
+                } else {
+                    if (wrapSearchSelected) {
+                        nextIndex = (previousIndex + 1) % size;
+                    } else {
+                        nextIndex = Math.min(previousIndex + 1, size - 1);
+                    }
+                }
+                changeHighlighter(previousIndex, false);
+            }
+
+            if (nextIndex != -1) {
+                changeHighlighter(nextIndex, true);
+                previousIndex = nextIndex;
+                if (backwardSearch) {
+                    xpadTextPane.setCaretPosition(foundOffsets.get(nextIndex)[0]);
+                } else {
+                    xpadTextPane.setCaretPosition(foundOffsets.get(nextIndex)[1]);
+                }
+
+                xpadTextPane.addFocusListener(myListener);
+                buttonReplace.setEnabled(true);
+                buttonReplaceFind.setEnabled(true);
+
+                startFind = foundOffsets.get(nextIndex)[0];
+                endFind = foundOffsets.get(nextIndex)[1];
+            } else {
+                startFind = 0;
+                endFind = 0;
+                buttonReplace.setEnabled(false);
+                buttonReplaceFind.setEnabled(false);
+            }
+        } else { // nothing has been found
+            labelStatus.setText(String.format(XpadMessages.STRING_NOT_FOUND, wordToFind));
+            buttonReplace.setEnabled(false);
+            buttonReplaceFind.setEnabled(false);
+            buttonReplaceAll.setEnabled(false);
+        }
+    }
+
+    /**
+     * replaceOnlyText
+     */
+    private void replaceOnlyText() {
+        replaceText();
+        buttonReplace.setEnabled(false);
+        buttonReplaceFind.setEnabled(false);
+    }
+
+    /**
+     * replaceText
+     */
+    private void replaceText() {
+        boolean forwardSearch = radioForward.isSelected();
+        boolean backwardSearch = radioBackward.isSelected();
+        boolean caseSensitive  = checkCase.isSelected();
+        boolean wholeWord  = checkWhole.isSelected() && checkWhole.isEnabled();
+        boolean useRegexp  = checkRegular.isSelected();
+
+        String find = (String) comboFind.getEditor().getItem();
+        String replace = (String) comboReplace.getEditor().getItem();
+
+        if (find.compareTo("") == 0 || (startFind == endFind)) {
+            return;
+        }
+
+        saveFindReplaceConfiguration();
+        updateRecentSearch();
+        updateRecentReplace();
+        setPreviousSearch(find);
+
+        JEditorPane xpadTextPane =  getEditor().getTextPane();
+
+        /*
+         * we replace only the current result and then disable replace and replace find button
+         * same behaviour as find and replace in eclipse
+         */
+
+        try {
+            Pattern pattern = SearchManager.generatePattern(find, caseSensitive, wholeWord, useRegexp);
+            Matcher matcher = pattern.matcher(xpadTextPane.getText(startFind, endFind - startFind + 1));
+            String replacedText = matcher.replaceAll(Matcher.quoteReplacement(replace));
+            ScilabDocument doc = (ScilabDocument) xpadTextPane.getDocument();
+            doc.replace(startFind, endFind - startFind + 1, replacedText, null);
+            xpadTextPane.setCaretPosition(startFind + replacedText.length());
+            endSelectedLines += replacedText.length() - (endFind - startFind + 1);
+            previousRegexp = "";
+            previousIndex = -1;
+            if (generateOffsets()) {
+                addHighlighters(false);
+            }
+        } catch (BadLocationException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     * closeFindReplaceWindow
+     */
+    public static void closeFindReplaceWindow() {
+        if (FindAction.windowAlreadyExist) {
+            JEditorPane xpadTextPane =  Xpad.getEditor().getTextPane();
+            if (xpadTextPane != null) {
+                xpadTextPane.getHighlighter().removeAllHighlights();
+                int start = xpadTextPane.getSelectionStart();
+                int end = xpadTextPane.getSelectionEnd();
+                xpadTextPane.select(start, end);
+            }
+            frame.dispose();
+            FindAction.windowAlreadyExist = false;
+        }
+    }
+
+    /**
+     * Get the previous search
+     * @return the previuos search
+     */
+    public static String getPreviousSearch() {
+        return previousSearch;
+    }
+
+    /**
+     * Set the previous search
+     * @param previousSearch String
+     */
+    public static void setPreviousSearch(String previousSearch) {
+        FindAction.previousSearch = previousSearch;
+    }
+
+    /**
+     * Inner class to handle events (used as a singleton)
+     */
+    private class MyListener implements CaretListener, FocusListener {
+
+        /**
+         * focusGained in interface FocusListener
+         * @param e FocusEvent
+         */
+        public void focusGained(FocusEvent e) {
+            if (previousIndex != -1) {
+                int start = foundOffsets.get(previousIndex)[0];
+                int end = foundOffsets.get(previousIndex)[1];
+                getEditor().getTextPane().select(start, end);
+            }
+            getEditor().getTextPane().addCaretListener(this);
+        }
+
+        /**
+         * focusLost in interface FocusListener
+         * @param e FocusEvent
+         */
+        public void focusLost(FocusEvent e) { }
+
+        /**
+         * caretUpdate in interface CaretListener
+         * @param e FocusEvent
+         */
+        public void caretUpdate(CaretEvent e) {
+            removeAllHighlights();
+            getEditor().getTextPane().removeCaretListener(this);
+            getEditor().getTextPane().removeFocusListener(this);
+            previousRegexp = "";
+        }
+    }
 }

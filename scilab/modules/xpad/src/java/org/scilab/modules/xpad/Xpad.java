@@ -82,6 +82,8 @@ import org.scilab.modules.xpad.actions.CutAction;
 import org.scilab.modules.xpad.actions.PasteAction;
 import org.scilab.modules.xpad.actions.HighlightCurrentLineAction;
 import org.scilab.modules.xpad.actions.UnTabifyAction;
+import org.scilab.modules.xpad.actions.FindNextAction;
+import org.scilab.modules.xpad.actions.FindPreviousAction;
 import org.scilab.modules.xpad.actions.LineBeautifierAction;
 import org.scilab.modules.xpad.style.CompoundUndoManager;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
@@ -736,6 +738,8 @@ public class Xpad extends SwingScilabTab implements Tab {
                 CopyAction.putInInputMap(textPane, this, map.get("CopyAction"));
                 CutAction.putInInputMap(textPane, this, map.get("CutAction"));
                 UnTabifyAction.putInInputMap(textPane, this, map.get("UnTabifyAction"));
+                FindNextAction.putInInputMap(textPane, this, map.get("FindNextAction"));
+                FindPreviousAction.putInInputMap(textPane, this, map.get("FindPreviousAction"));
                 HighlightCurrentLineAction.putInInputMap(textPane, this, map.get("HighlightCurrentLineAction"));
 
                 LineBeautifierAction.putInInputMap(textPane);
@@ -921,10 +925,8 @@ public class Xpad extends SwingScilabTab implements Tab {
                 try {
                         return (ScilabEditorPane) ((JScrollPane) tabPane.getSelectedComponent()).getViewport().getComponent(0);
                 } catch (NullPointerException e) {
-                        System.err.println("Could not retrieve the current text tab." + e);
                         return null;
-                } catch (ArrayIndexOutOfBoundsException e) { // can happen between Xpad construction and first call to addTab()
-                        //System.err.println("no tab (yet?)."+e);
+                } catch (ArrayIndexOutOfBoundsException e) {
                         return null;
                 }
         }

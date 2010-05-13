@@ -1,5 +1,4 @@
-/*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+/* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO
  *
  * This file must be used under the terms of the CeCILL.
@@ -139,9 +138,9 @@ public class XpadGUI {
                 Menu searchMenu = ScilabMenu.createMenu();
                 searchMenu.setText(XpadMessages.SEARCH);
                 searchMenu.setMnemonic('S');
-                searchMenu.add(FindAction.createMenu(editorInstance));
-                searchMenu.add(FindNextAction.createMenu(editorInstance));
-                searchMenu.add(FindPreviousAction.createMenu(editorInstance));
+                searchMenu.add(FindAction.createMenu(editorInstance, map.get("FindAction")));
+                searchMenu.add(FindNextAction.createMenu(editorInstance, map.get("FindNextAction")));
+                searchMenu.add(FindPreviousAction.createMenu(editorInstance, map.get("FindPreviousAction")));
                 searchMenu.add(GotoLineAction.createMenu(editorInstance));
                 menuBar.add(searchMenu);
 

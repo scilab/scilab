@@ -35,4 +35,7 @@
   <entry key="ExecuteFileIntoScilabAction">control shift E</entry>
   <entry key="EvaluateSelectionAction">control E</entry>
 
+  <entry key="FindAction">control F</entry>
+  <entry key="FindNextAction">control K</entry>
+  <entry key="FindPreviousAction">control shift K</entry>
 </properties>
