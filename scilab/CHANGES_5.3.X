@@ -13,11 +13,60 @@ Performance:
 Text Editor:
 ============
 
-* bug 5655 fixed - the selection was lost after an unsuccessful search
+* Complete refactorization of the text editor.
 
-* bug 5656 fixed - when a text was selected, word was searched in the entire document
+* bugs 4399, 4922 fixed - The line numbering could not be compatible with the
+                          output of the whereami function.
 
-* bug 5682 fixed - there was a problem with the replace action
+* bug 4907 fixed - The source code of a given macro could not be opened.
+
+* bug 4916 fixed - Problem with 'See the code' in the demos.
+
+* bug 5087 fixed - The different keywords were not splited in different category.
+
+* bug 5102 fixed - It was not possible to choose the font weight or the font
+                   style for a kind of keyword.
+
+* bug 5126 fixed - Problems appeared when we played with undo a few times.
+
+* bug 5175 fixed - Ghost text appeared in the view.
+
+* bug 5178 fixed - the kind of the tabulations (hard tabulations or spaces) could
+                   not be choosen.
+
+* bug 5204 fixed - Weird display of keyword 'else'.
+
+* bug 5321 fixed - There was not the possibility to choose the length of a
+                   tabulation.
+
+* bug 5645 fixed - Undo action deleted a line rather than make it visible.
+
+* bug 5647 fixed - Bad line numbering when a file was just opened.
+
+* bug 5652 fixed - Bad line numbering when several files were opened.
+
+* bug 5655 fixed - The selection was lost after an unsuccessful search.
+
+* bug 5656 fixed - When a text was selected word was searched in the entire
+                   document.
+
+* bug 5658 fixed - The undo/redo strategy was not good.
+
+* bug 5682 fixed - There was a problem with the replace action.
+
+* bug 6479 fixed - There was a problem when a '{' was in comments.
+
+* bug 6670 fixed - There was not a shortcut on the "Evaluate Selection" action.
+
+* bug 6807 fixed - '.*' was not correctly highlighted.
+
+* bug 6980 fixed - When a replaced text contained a '\', the backslash was
+                   considered as a special char.
+
+* bug 7032 fixed - There was a problem when filename contained a ' or a ".
+
+* bug 7112 fixed - Two transpositions gave a string (if a'==1 then a=b').
+>>>>>>> 67c7ac4... Update CHANGES_5.3.X
 
 FFTW:
 =====
