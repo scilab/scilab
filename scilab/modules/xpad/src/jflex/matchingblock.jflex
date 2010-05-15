@@ -97,7 +97,7 @@ comment = "//".*{eol}
 
 tnemmoc = {eol}([^\/\r\n]*"//")+
 
-spec = [a-zA-Z0-9%_#!$?0-9]
+spec = [a-zA-Z0-9_#!$?]
 
 string = (([^\'\"\r\n]*)|([\'\"]{2}))*
 qstring = (\"|\'){string}(\"|\')
@@ -109,7 +109,7 @@ openKx = {openK}{spec}+
 openS = "(" | "[" | "{"
 closeK = ("end" | "endfunction")
 closeKx = {closeK}{spec}+
-xcloseK = {spec}{closeK}
+xcloseK = ({spec} | "%" ){closeK}
 closeS =  ")" | "]" | "}"
 
 esolcK = ("fi" | "rof" | "elihw" | "tceles" | "yrt" | "noitcnuf")

@@ -207,4 +207,14 @@ public class ScilabLexerConstants {
             || type == CKEYWORD
             || type == SKEYWORD;
     }
+
+    /**
+     * To know if a keyword is a part of a matching keywords
+     * @param type the type of the keyword
+     * @return true if the keyword is a part of a matching block
+     */
+    public static boolean isOpenClose(int type) {
+        return type == OPEN
+            || type == CLOSE;
+    }
 }

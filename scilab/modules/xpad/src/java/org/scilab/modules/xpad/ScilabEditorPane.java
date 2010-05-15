@@ -216,6 +216,19 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     }
 
     /**
+     * Get a matching manager
+     * @param lr true if the LR matcher must be returned
+     * @return the MatchingBlockManager
+     */
+    public MatchingBlockManager getMatchingBlockManager(boolean lr) {
+        if (lr) {
+            return matchLR;
+        } else {
+            return matchRL;
+        }
+    }
+
+    /**
      * This class listens to the caret event
      * @param e event
      */
@@ -377,8 +390,10 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         tab = new TabManager(doc, indent);
         tab.setDefaultTabulation();
         com = new CommentManager(doc);
-        matchLR = new MatchingBlockManager(doc, true, getHighlighter(), Color.PINK);
-        matchRL = new MatchingBlockManager(doc, false, getHighlighter(), Color.ORANGE);
+        matchLR = new MatchingBlockManager(doc, this, true, getHighlighter());
+        matchLR.setDefaults();
+        matchRL = new MatchingBlockManager(doc, this, false, getHighlighter());
+        matchRL.setDefaults();
         lexer = doc.createLexer();
         xln = new XpadLineNumberPanel(this);
     }
