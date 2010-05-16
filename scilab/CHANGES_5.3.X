@@ -303,6 +303,9 @@ ATOMS:
                    one, the ATOMS GUI claimed that the newest version was
                    installed.
 
+* bug 6977 fixed - ATOMS GUI: In the presentation frame, URLs and emails were
+                   not hyperlinked.
+
 Bug fixes:
 ==========
 
