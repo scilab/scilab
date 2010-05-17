@@ -470,7 +470,7 @@
 			</Filter>
 		</Filter>
 		<Filter
-			Name="Resource File"
+			Name="Resource Files"
 			>
 			<File
 				RelativePath=".\signal_processing.rc"

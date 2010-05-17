@@ -666,7 +666,7 @@
 			</Filter>
 		</Filter>
 		<Filter
-			Name="Resource File"
+			Name="Resource Files"
 			>
 			<File
 				RelativePath=".\output_stream.rc"

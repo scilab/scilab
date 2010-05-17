@@ -388,10 +388,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\console.rc"
-				>
-			</File>
-			<File
 				RelativePath="..\cpp\ConsoleIsWaitingForInput.cpp"
 				>
 			</File>
@@ -592,6 +588,14 @@
 					>
 				</File>
 			</Filter>
+		</Filter>
+		<Filter
+			Name="Resource Files"
+			>
+			<File
+				RelativePath=".\console.rc"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath="..\..\console.iss"

@@ -585,6 +585,10 @@
 			Name="Resource Files"
 			>
 			<File
+				RelativePath="..\resources\scilab_splashscreen.bmp"
+				>
+			</File>
+			<File
 				RelativePath=".\scilab_windows.rc"
 				>
 			</File>
@@ -613,10 +617,6 @@
 				</File>
 			</Filter>
 		</Filter>
-		<File
-			RelativePath="..\resources\scilab_splashscreen.bmp"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>

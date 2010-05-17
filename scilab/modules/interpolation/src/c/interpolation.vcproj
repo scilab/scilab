@@ -386,10 +386,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\interpolation.rc"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_bsplin3val.c"
 				>
 			</File>
@@ -488,8 +484,12 @@
 			</Filter>
 		</Filter>
 		<Filter
-			Name="Resource File"
+			Name="Resource Files"
 			>
+			<File
+				RelativePath=".\interpolation.rc"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath="..\..\interpolation.iss"
