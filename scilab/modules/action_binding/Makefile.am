@@ -13,8 +13,7 @@ if GUI
 USEANT=1
 
 # List of the c files
-ACTION_BINDING_C_SOURCES = src/c/InterpreterManagement.c \
-src/c/dynamic_menus.c
+ACTION_BINDING_C_SOURCES = src/c/InterpreterManagement.c
 
 # List of the gateway c files
 CONSOLE_C_JNI_SOURCES = src/jni/InterpreterManagement_wrap.c

@@ -80,7 +80,7 @@ int sci_log(char *fname,int* _piKey)
 			{
 				if(C2F(errgst).ieee == 0)
 				{
-					Error(32);
+					SciError(32);
 					return 0;
 				}
 				else if(C2F(errgst).ieee == 1)
@@ -113,7 +113,7 @@ int sci_log(char *fname,int* _piKey)
 			{
 				if(C2F(errgst).ieee == 0)
 				{
-					Error(32);
+					SciError(32);
 					return 0;
 				}
 				else if(C2F(errgst).ieee == 1)

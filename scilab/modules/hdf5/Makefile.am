@@ -43,12 +43,12 @@ FORCE_LOAD_SOURCES_DISABLE = src/cpp/forceJHDF5load-jvmdisable.cpp
 
 libscihdf5_forceload_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS) $(HDF5_LIBS)
 libscihdf5_forceload_la_SOURCES = $(FORCE_LOAD_SOURCES)
-libscihdf5_forceload_la_CXXFLAGS=$(libscihdf5_la_CXXFLAGS)
+libscihdf5_forceload_la_CPPFLAGS=$(libscihdf5_la_CPPFLAGS)
 libscihdf5_forceload_la_CFLAGS=$(libscihdf5_la_CFLAGS)
 
 libscihdf5_forceload_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS) $(HDF5_LIBS)
 libscihdf5_forceload_disable_la_SOURCES = $(FORCE_LOAD_SOURCES_DISABLE)
-libscihdf5_forceload_disable_la_CXXFLAGS=$(libscihdf5_la_CXXFLAGS)
+libscihdf5_forceload_disable_la_CPPFLAGS=$(libscihdf5_la_CPPFLAGS)
 libscihdf5_forceload_disable_la_CFLAGS=$(libscihdf5_la_CFLAGS)
 
 else
@@ -68,7 +68,7 @@ endif
 
 #### hdf5 : include files ####
 
-libscihdf5_la_CXXFLAGS=	-I$(srcdir)/includes/ \
+libscihdf5_la_CPPFLAGS=	-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(srcdir)/src/cpp/ \
 				-I$(srcdir)/src/jni/ \
@@ -77,6 +77,7 @@ libscihdf5_la_CXXFLAGS=	-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/operations/includes \
 				-I$(top_srcdir)/modules/jvm/includes/ \
+				-I$(top_srcdir)/modules/fileio/includes \
 				$(JAVA_JNI_INCLUDE) \
 				$(HDF5_CFLAGS)
 

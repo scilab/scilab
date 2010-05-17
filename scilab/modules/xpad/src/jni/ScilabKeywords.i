@@ -25,6 +25,8 @@
 
 /* JavaDoc for ScilabKeywordsJNI class */
 %pragma(java) jniclassclassmodifiers=%{
+/* It is generated code. Disable checkstyle */
+//CHECKSTYLE:OFF
  /** 
    * @author Allan CORNET - DIGITEO 2009
    */

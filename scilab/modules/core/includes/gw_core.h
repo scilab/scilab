@@ -53,7 +53,6 @@ int C2F(sci_isglobal)(char *fname,unsigned long fname_len);
 int C2F(sci_gstacksize)(char *fname,unsigned long fname_len);
 int C2F(sci_intppty)(char *fname,unsigned long fname_len);
 int C2F(sci_lasterror)(char *fname,unsigned long fname_len);
-int C2F(sci_getversion)(char *fname,unsigned long fname_len);
 int C2F(sci_macr2tree)(char *fname,unsigned long fname_len);
 int C2F(sci_getos)(char *fname,unsigned long fname_len);
 int C2F(sci_banner)(char *fname,unsigned long fname_len);
@@ -80,7 +79,7 @@ int C2F(sci_newfun)(char *fname, int* _piKey);
 //Yasp
 int sci_type(char *fname, int* _piKey);
 int sci_getdebuginfo(char *fname, int* _piKey);
-
+int sci_getversion(char *fname, int* _piKey);
 /*--------------------------------------------------------------------------*/ 
 #endif /*  __GW_CORE__ */
 /*--------------------------------------------------------------------------*/

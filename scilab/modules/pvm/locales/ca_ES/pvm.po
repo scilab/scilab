@@ -8,13 +8,12 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-02-16 10:27+0000\n"
+"PO-Revision-Date: 2010-04-10 19:18+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -34,8 +33,12 @@ msgid "%s: No such file or directory.\n"
 msgstr "%s: No existeix el fitxer o directori.\n"
 
 #, c-format
-msgid "%s: Unknow type or not yet implemented\n"
-msgstr "%s: El tipus és desconegut o encara no s'ha implementat\n"
+msgid "%s: Unknown type or not yet implemented\n"
+msgstr "%s: Aquest tipus és desconegut o no s'ha implementat\n"
+
+#, c-format
+msgid "%s: Unknown type or not yet implemented.\n"
+msgstr "%s: Aquest tipus és desconegut o no s'ha implementat.\n"
 
 #, c-format
 msgid "%s: Wrong first input argument: '%s' or '%s' expected.\n"
@@ -46,14 +49,18 @@ msgstr ""
 msgid "%s: work space (stacksize) is too small d\n"
 msgstr "%s: L'espai de treball (stacksize) és massa petit\n"
 
+#, c-format
+msgid "%s: work space (stacksize) is too small.\n"
+msgstr "%s: La mida de la pila és massa petita.\n"
+
 msgid "(group,instance) already exists"
 msgstr "Ja existeix aquest (grup, instància)"
 
+msgid "Already doing operation"
+msgstr "Ja s'està fent l'operació"
+
 msgid "Already in group"
 msgstr "Ja està al grup"
-
-msgid "Already oing operation"
-msgstr "Ja s'està fent l'operació"
 
 msgid "Bad message id"
 msgstr "Identificador de missatge incorrecte"
@@ -83,8 +90,8 @@ msgid "Error pvm_reduce: Not scalar type\n"
 msgstr "Error al pvm_reduce: El tipus no és escalar\n"
 
 #, c-format
-msgid "Error pvm_reduce: Unknow reduction operation %s\n"
-msgstr "Error al pvm_reduce: La operació de reducció %s és desconeguda\n"
+msgid "Error pvm_reduce: Unknown reduction operation %s\n"
+msgstr "Error pvm_reduce: Operació de reducció %s desconeguda\n"
 
 msgid "Failed to exec new slave pvmd"
 msgstr "No s'ha pogut executar un nou pvmd esclau"
@@ -131,8 +138,8 @@ msgstr "No es pot posar un nom de grup buit"
 msgid "OK"
 msgstr "D'acord"
 
-msgid "Out of ressources"
-msgstr "No hi ha més recursos"
+msgid "Out of resources"
+msgstr "Sense recursos"
 
 msgid "PVM exists"
 msgstr "El PVM existeix"

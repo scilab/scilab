@@ -185,7 +185,7 @@ int sci_exec(char *fname, int* _piKey)
 						}
 						else
 						{
-							Scierror(999,_("%s : Memory allocation error.\n"),fname);
+							Scierror(999,_("%s: Memory allocation error.\n"),fname);
 							return 0;
 						}
 					}

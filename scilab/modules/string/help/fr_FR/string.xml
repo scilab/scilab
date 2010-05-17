@@ -53,8 +53,8 @@
     <para>
     Si  <literal>x</literal> est une variable <literal>lib</literal>,
     text est un vecteur colonne de chaînes de caractères. Le premier
-    élément contient le chemin de la librairie et l'autre élément le
-    nom des fonctions qui sont définies dans cette librairie.</para>
+    élément contient le chemin de la bibliothèque et l'autre élément le
+    nom des fonctions qui sont définies dans cette bibliothèque.</para>
     <para>
     Les chaînes de caractères sont définies de la façon
     suivant, <literal>'string'</literal> (entre quotes) ou

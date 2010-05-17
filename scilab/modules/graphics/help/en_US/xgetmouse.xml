@@ -178,7 +178,7 @@
 clf();  // erase/create window
 a=gca();a.data_bounds=[0 0;100 100];//set user coordinates
 xtitle(" drawing a rectangle ") //add a title
-xselect(); //put the window on the top
+show_window(); //put the window on the top
 
 [b,xc,yc]=xclick(); //get a point
 xrect(xc,yc,0,0) //draw a rectangle entity

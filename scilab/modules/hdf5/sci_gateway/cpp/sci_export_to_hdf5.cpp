@@ -25,9 +25,11 @@ extern "C"
 #include "h5_writeDataToFile.h"
 #include "freeArrayOfString.h"
 #ifdef _MSC_VER
- #include "strdup_windows.h"
+#include "strdup_windows.h"
 #endif
 #include "scilabmode.h"
+#include "splitpath.h"
+#include "scicurdir.h"
 }
 #include "forceJHDF5load.hxx"
 
@@ -57,20 +59,20 @@ static char fname[]			= "export_to_hdf5";
 /*--------------------------------------------------------------------------*/
 int sci_export_to_hdf5(char *fname, int* _piKey)
 {
-	int iRet						= 0;
-	int iNbVar					= 0;
-	int iLen						= 0;
-	int** piAddrList		= NULL;
-	char* pstFilename		= NULL;
-	char** pstNameList	= NULL;
-	bool bExport				= false;
+    int iRet            = 0;
+    int iNbVar          = 0;
+    int iLen            = 0;
+    int** piAddrList    = NULL;
+    char* pstFilename   = NULL;
+    char** pstNameList	= NULL;
+    bool bExport        = false;
 
-	SciErr sciErr;
+    SciErr sciErr;
 
-	CheckLhs(1,1);//output parameter
+    CheckLhs(1,1);//output parameter
 
 #ifndef _MSC_VER
-	forceJHDF5load();
+    forceJHDF5load();
 #endif
 
 	/*get input data*/
@@ -570,8 +572,8 @@ static bool export_sparse(int* _piKey, int *_piVar, int _iH5File, char* _pstName
 
 static bool export_matlab_sparse(int* _piKey, int *_piVar, char* _pstName)
 {
-	print_type(_pstName);
-	return true;
+    print_type(_pstName);
+    return true;
 }
 
 static bool export_ints(int* _piKey, int *_piVar, int _iH5File, char* _pstName)
@@ -681,8 +683,8 @@ static bool export_ints(int* _piKey, int *_piVar, int _iH5File, char* _pstName)
 
 static bool export_handles(int* _piKey, int *_piVar, char* _pstName)
 {
-	print_type(_pstName);
-	return true;
+    print_type(_pstName);
+    return true;
 }
 
 static bool export_strings(int* _piKey, int *_piVar, int _iH5File, char* _pstName)
@@ -738,36 +740,36 @@ static bool export_strings(int* _piKey, int *_piVar, int _iH5File, char* _pstNam
 
 static bool export_u_function(int* _piKey, int *_piVar, char* _pstName)
 {
-	print_type(_pstName);
-	return true;
+    print_type(_pstName);
+    return true;
 }
 
 static bool export_c_function(int* _piKey, int *_piVar, char* _pstName)
 {
-	print_type(_pstName);
-	return true;
+    print_type(_pstName);
+    return true;
 }
 
 static bool export_lib(int* _piKey, int *_piVar, char* _pstName)
 {
-	print_type(_pstName);
-	return true;
+    print_type(_pstName);
+    return true;
 }
 
 static bool export_lufact_pointer(int* _piKey, int *_piVar, char* _pstName)
 {
-	print_type(_pstName);
-	return true;
+    print_type(_pstName);
+    return true;
 }
 
 void print_type(char* _pstType)
 {
 #ifdef PRINT_DEBUG
-	for(int i = 0 ; i < iLevel ; i++)
-	{
-		sciprint("\t");
-	}
-	sciprint("%s\n", _pstType);
+    for(int i = 0 ; i < iLevel ; i++)
+    {
+        sciprint("\t");
+    }
+    sciprint("%s\n", _pstType);
 #endif
 }
 

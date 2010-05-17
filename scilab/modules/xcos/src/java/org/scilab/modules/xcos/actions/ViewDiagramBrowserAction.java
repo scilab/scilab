@@ -24,6 +24,7 @@ import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
 import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -63,7 +64,7 @@ public final class ViewDiagramBrowserAction extends OneBlockDependantAction {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		try {
-			File temp = File.createTempFile("xcos", ".h5");
+			File temp = FileUtils.createTempFile();
 			temp.deleteOnExit();
 			((XcosDiagram) getGraph(null)).dumpToHdf5File(temp
 					.getAbsolutePath());

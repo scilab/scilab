@@ -23,4 +23,11 @@ EXPORTS
  getSCIpath
  callFunctionFromGateway
  freeArrayOfString
- IsFromJava
+ StoreCommand
+ StoreCommandWithFlag
+ GetCommand
+ ismenu
+ StorePrioritaryCommandWithFlag
+ 
+ 
+ 

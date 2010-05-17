@@ -92,7 +92,7 @@ xset("color",2)
 plot2d(x, y, style=0, axesflag=5, rect=[a, -10, b, 10])
 xset("color",c)
 xtitle("The gamma function on ["+string(a)+","+string(b)+"]")
-xselect()
+show_window()
  ]]></programlisting>
   </refsection>
 

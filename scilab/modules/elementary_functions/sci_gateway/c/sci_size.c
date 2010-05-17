@@ -75,7 +75,7 @@ int sci_size(char *fname, int* _piKey)
 	case sci_mlist :
 		if(Rhs != 1)
 		{
-			Error(39);
+			SciError(39);
 			return 0;
 		}
 		sciErr = size_list(_piKey, piAddr);

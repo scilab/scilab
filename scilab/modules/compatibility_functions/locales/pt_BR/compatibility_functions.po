@@ -8,20 +8,19 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-06-30 21:35+0000\n"
-"Last-Translator: Daniel de Souza Grilo <soporter@gmail.com>\n"
+"PO-Revision-Date: 2010-04-03 14:19+0000\n"
+"Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
 msgid ""
 "%s: %s Scilab function does not work with more than one row variables.\n"
 msgstr ""
-"%s: A função %s do Scilab não funciona com mais de uma variável linha.\n"
+"%s: A função %s do Scilab não funciona com variáveis com mais de uma linha.\n"
 
 #, c-format
 msgid "%s: %s is not implemented.\n"
@@ -37,7 +36,7 @@ msgstr "%s: ''%s'' não implementado.\n"
 
 #, c-format
 msgid "%s: ''%s'' only used in 3d mode."
-msgstr "%s: ''%s'' usado apenas em modo 3d."
+msgstr "%s: ''%s'' usado apenas em modo 3D."
 
 #, c-format
 msgid "%s: ''%s'' option ignored.\n"
@@ -45,7 +44,7 @@ msgstr "%s: Opção ''%s'' ignorada.\n"
 
 #, c-format
 msgid "%s: All windows deleted.\n"
-msgstr "%s: Todas as janelas deletadas.\n"
+msgstr "%s: Todas as janelas excluídas.\n"
 
 #, c-format
 msgid "%s: Cannot open file ''%s''.\n"
@@ -62,7 +61,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: End of string reached before data has been read.\n"
-msgstr "%s: Final da string atingido antes dos dados serem lidos.\n"
+msgstr "%s: Chegou-se ao final do texto antes dos dados serem lidos.\n"
 
 #, c-format
 msgid "%s: No equivalent for ''%s'' property.\n"
@@ -70,7 +69,7 @@ msgstr "%s: Não há equivalente para a propriedade ''%s''.\n"
 
 #, c-format
 msgid "%s: No minor grid in Scilab.\n"
-msgstr "%s: Não há grid menor no Scilab.\n"
+msgstr "%s: Não há a grade \"minor\" (menor) no Scilab.\n"
 
 #, c-format
 msgid "%s: Not yet implemented.\n"
@@ -102,12 +101,12 @@ msgstr "%s: Este recurso não foi implementado: %s.\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented: Argument of type %d.\n"
-msgstr "%s: Este recurso não foi implementado: Argumendo do tipo %d.\n"
+msgstr "%s: Este recurso não foi implementado: argumento do tipo %d.\n"
 
 #, c-format
 msgid ""
 "%s: This feature has not been implemented: Support for hypermatrices.\n"
-msgstr "%s: Este recurso não foi implementado: Suporte a hiper-matrizes.\n"
+msgstr "%s: Este recurso não foi implementado: suporte a hipermatrizes.\n"
 
 #, c-format
 msgid "%s: This particular case is not implemented.\n"
@@ -138,120 +137,122 @@ msgstr "%s: Tipo desconhecido.\n"
 
 #, c-format
 msgid "%s: Wrong input argument #%d: Inconsistent size.\n"
-msgstr "%s: Argumento de entrada errado #%d: Tamanho inconsistente.\n"
+msgstr ""
+"%s: Argumento de entrada #%d está incorreto: tamanho inconsistente.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong input arguments: Dimensions given as first argument do not match "
 "specified cell contents.\n"
 msgstr ""
-"%s: Argumentos de entrada incorretos: As dimensões dadas como primeiro "
-"argumento não correspondem ao conteúdo especificado do cell.\n"
+"%s: Argumentos de entrada incorretos: as dimensões fornecidas como primeiro "
+"argumento não correspondem ao conteúdo da célula especificada.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
-"%s: Quantidade incorreta de argumento(s) de entrada: Esperava-se %d.\n"
+"%s: Quantidade incorreta de argumento(s) de entrada: esperava-se %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
-"%s: Número incorreto de argumentos de entrada: Esperava-se de %d a %d.\n"
+"%s: Quantidade incorreta de argumento(s) de entrada: esperava-se de %d a "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
-"%s: Quantidade errada de argumentos de entrada: Esperava-se de %d a %d.\n"
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se de %d a %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s: Quantidade errada de argumento(s) de saída: Esperava-se %d.\n"
+msgstr "%s: Quantidade incorreta de argumento(s) de saída: esperava-se %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for ''%s'': Vector expected.\n"
-msgstr "%s: Tamanho errado para ''%s'': Esperava-se um vetor.\n"
+msgstr "%s: Tamanho incorreto para ''%s'': esperava-se um vetor.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Matlab vector of strings expected.\n"
 msgstr ""
-"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se um vetor de "
-"strings do Matlab.\n"
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um vetor "
+"de textos do Matlab.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A Real, Integer or String matrix "
 "expected.\n"
 msgstr ""
-"%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma matriz de "
-"reais, inteiros ou strings.\n"
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
+"de reais, inteiros ou textos.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
 msgstr ""
-"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um vetor "
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um vetor "
 "coluna.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
-"%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma matriz de "
-"strings.\n"
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
+"de textos.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
 msgstr ""
-"%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma matriz "
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
 "quadrada.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument: Cell elements must be character arrays.\n"
 msgstr ""
-"%s: Tipo errado para o argumento de entrada: Elementos das células devem ser "
-"arrays de caracteres.\n"
+"%s: Tipo incorreto para o argumento de entrada: elementos das células devem "
+"ser matrizes de caracteres.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: Cell expected.\n"
 msgstr ""
-"%s: Tipo errado para o argumento de entrada: Esperava-se uma célula.\n"
+"%s: Tipo incorreto para o argumento de entrada: esperava-se uma célula.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: String expected.\n"
 msgstr ""
-"%s: Tipo errado para argumentos de entrada: Esperava-se uma string.\n"
+"%s: Tipo incorreto para argumentos de entrada: esperava-se um texto.\n"
 
 #, c-format
 msgid "%s: Wrong value for affectation to ''%s''.\n"
-msgstr "%s: Valor errado para simulação de ''%s''.\n"
+msgstr "%s: Valor incorreto para simulação de \"%s\".\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %s, %s, %s, ''%s'', ''%s'' or ''%s'' "
 "expected.\n"
 msgstr ""
-"%s: Valor errado para o argumento de entrada #%d: Esperava-se %s, %s, %s, "
-"''%s'', ''%s'' ou ''%s''.\n"
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se %s, %s, %s, "
+"\"%s\", \"%s\" ou \"%s\".\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %s, %s,''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: Valor errado para o argumento de entrada #%d: Esperava-se %s, %s,''%s'' "
-"ou ''%s''.\n"
+"%s: Valor incorreto para o argumento de entrada #%d: Esperava-se %s, "
+"%s,\"%s\" ou \"%s\".\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: Valor errado para o argumento de entrada #%d: Era esperado ''%s'', "
-"''%s'' ou ''%s'.\n"
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se \"%s\", "
+"\"%s\" ou \"%s\".\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A positive integer value expected.\n"
 msgstr ""
-"%s: Valor errado para o argumento de entrada #%d: Esperava-se um valor "
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se um valor "
 "inteiro positivo.\n"
 
 #, c-format

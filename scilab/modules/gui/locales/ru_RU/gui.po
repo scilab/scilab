@@ -10,13 +10,12 @@ msgstr ""
 "Project-Id-Version: gui-ru\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-02-12 20:16+0000\n"
-"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
+"PO-Revision-Date: 2010-04-14 21:04+0000\n"
+"Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -30,6 +29,10 @@ msgstr "%s:  №%d совпадающие родительские вершин�
 #, c-format
 msgid "%s: An error occurred: %s.\n"
 msgstr "%s: Произошла ошибка: %s.\n"
+
+#, c-format
+msgid "%s: An exception occurred: %s"
+msgstr "%s: Произошло исключение: %s"
 
 #, c-format
 msgid "%s: Could not create 'Uicontrol' handle.\n"
@@ -227,6 +230,14 @@ msgstr "%s: Неверный размер входного параметра �
 msgid "%s: Wrong size for input argument #%d: A string matrix expected.\n"
 msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидалась матрица строк.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: It must have same dimensions that "
+"argument #%d.\n"
+msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидалась одинаковая размерность "
+"с параметром №%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Matrix of strings expected.\n"
@@ -504,6 +515,8 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
 msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидался действительный "
+"дескриптор «%s».\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d expected.\n"
@@ -838,8 +851,8 @@ msgstr "Копировать"
 msgid "Copyright (c) 1989-2007 (ENPC)"
 msgstr "Авторское право (c) 1989-2007 (ENPC)"
 
-msgid "Copyright (c) 1989-2009 (INRIA)"
-msgstr "Авторское право (c) 1989-2009 (INRIA)"
+msgid "Copyright (c) 1989-2010 (INRIA)"
+msgstr "Авторское право (c) 1989-2010 (INRIA)"
 
 msgid "Cut"
 msgstr "Вырезать"
@@ -1445,6 +1458,9 @@ msgid ""
 "with advanced graphics capabilities. Type \"\"help usecanvas\"\" for more "
 "information.\")"
 msgstr ""
+"disp(\"ВНИМАНИЕ: Несмотря на предыдущее предупреждения, вы выбрали "
+"использование Scilab с улучшенными графическими возможностями. Введите "
+"\"\"help usecanvas\"\" для получения дополнительной информации.\")"
 
 msgid ""
 "disp(\"WARNING: Due to your configuration limitations, Scilab switched in a "

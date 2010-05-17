@@ -16,4 +16,4 @@
 //
 
 ierr = execstr("file(''open'', ''my file which does not exist'', ''old'');", "errcatch");
-if ierr <> 999 then pause,end
+if ierr <> 240 then pause,end

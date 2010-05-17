@@ -61,7 +61,7 @@ ieee(mod)</synopsis>
     <title>REMARQUES</title>
     <para>
       Certaines exceptions IEEE générées dans certains algorithmes provenant de
-      librairies ne sont pas prises en compte par les modes <literal>ieee</literal>
+      bibliothèques ne sont pas prises en compte par les modes <literal>ieee</literal>
       pour l'instant.
     </para>
   </refsection>

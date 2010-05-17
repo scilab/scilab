@@ -1,0 +1,8 @@
+LIBRARY    parameters.dll
+
+
+
+EXPORTS
+; --------------------------------------- 
+; parameters explicit export (SEP 35)
+; --------------------------------------- 

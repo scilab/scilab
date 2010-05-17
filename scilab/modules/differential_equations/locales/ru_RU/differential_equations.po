@@ -8,13 +8,12 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2010-02-12 19:55+0000\n"
-"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
+"PO-Revision-Date: 2010-04-14 20:58+0000\n"
+"Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -23,9 +22,9 @@ msgstr ""
 "%s: %s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
 
 #, c-format
-msgid "%s: Invalid option %s: %d or real matrix expected.\n"
+msgid "%s: Invalid option %s: real matrix expected.\n"
 msgstr ""
-"%s: Неверный параметр %s: ожидалась матрица вещественных чисел или %d.\n"
+"%s: Недопустимый параметр %s: ожидалась матрица вещественных чисел.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
@@ -57,7 +56,7 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d: syntax error in given expression\n"
 msgstr ""
-"%s: Неверное значение входного параметра #%d: синтактическая ошибка в данном "
+"%s: Неверное значение входного параметра №%d: синтаксическая ошибка в "
 "выражении\n"
 
 msgid ""
@@ -119,9 +118,11 @@ msgstr ""
 
 msgid "If jactype = 4 or 5 ml and mu are the lower and upper half-bandwidths"
 msgstr ""
+"- если jactype = 4 или 5, тогда ml и mu являются нижней и верхней "
+"половинными полосами"
 
 msgid "If jactype = 4 the jacobian function must return"
-msgstr "если jactype = 4, тогда функция Якоби должна возвращать"
+msgstr "- если jactype = 4, тогда функция Якоби должна возвращать"
 
 msgid "If the function is called without argument, default values are used"
 msgstr ""

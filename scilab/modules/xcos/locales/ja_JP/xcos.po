@@ -8,16 +8,21 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-02-13 11:19+0000\n"
+"PO-Revision-Date: 2010-04-16 17:53+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
 "Language-Team: Japanese <zz-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
+
+msgid "Discrete time systems"
+msgstr "離散時間システム"
+
+msgid "Signal Processing"
+msgstr "信号処理"
 
 #, c-format
 msgid "%s: File ''%s'' does not exist.\n"
@@ -33,23 +38,23 @@ msgstr "%s: xcosファイル %s をインポートできません。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: 入力引数の数が不正です: %d を想定します。\n"
+msgstr "%s: 入力引数の数が不正です: %d が予想されます。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr "%s: 入力引数 #%d で性なサイズ: ブーリアンを想定します。\n"
+msgstr "%s: 入力引数 #%d が不正な値です。 真偽値が予想されます。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
+msgstr "%s: 入力引数 #%d で不正な型: 文字列が予想されます。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: String or diagram structure expected"
-msgstr "%s: 引数 %d で不正な型: 文字、または図形構造を想定します。"
+msgstr "%s: 引数 %d で不正な型: 文字、または図形構造体が予想されます。"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: diagram structure expected"
-msgstr "%s: 引数 %d で不正な型: 図形構造を想定します"
+msgstr "%s: 引数 %d で不正な型: 図形構造体が予想されます"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -102,7 +107,7 @@ msgstr "中央"
 
 msgid ""
 "Click on diagram to add link point or on a compatible target to finish"
-msgstr "図形をクリックしてリンク点を加えてるか、あるいは互換の目標で終了してください"
+msgstr "図形をクリックしてリンク点を加えるか、あるいは互換の目標をクリックして終了してください"
 
 msgid "Close"
 msgstr "閉じる"
@@ -111,10 +116,10 @@ msgid "Code generation"
 msgstr "コード生成"
 
 msgid "Command port must be connected to control port"
-msgstr "コマンドポートは、管理ポートと接続されてなくてはなりません"
+msgstr "コマンドポートは、制御ポートと接続されなくてはなりません"
 
 msgid "Commonly Used Blocks"
-msgstr "一般的なブロック"
+msgstr "汎用ブロック"
 
 msgid ""
 "Compilation in progress, results will be stored in the 'scicos_cpr' variable"
@@ -145,7 +150,7 @@ msgid "Cut"
 msgstr "切り取り"
 
 msgid "Debug block calls without trace"
-msgstr "トレースしないデバッグ・ブロック"
+msgstr "トレースなしブロック命令デバッグ"
 
 msgid "Default"
 msgstr "デフォルト"
@@ -160,10 +165,10 @@ msgid "Demonstrations Blocks"
 msgstr "ブロック・デモ"
 
 msgid "Details"
-msgstr "細部"
+msgstr "詳細"
 
 msgid "Diagram background"
-msgstr "背景図形"
+msgstr "図の背景"
 
 msgid "Diagram browser"
 msgstr "図形 ブラウザー"
@@ -173,10 +178,7 @@ msgid ""
 msgstr "図形は、最後の保存後に修正されました。<br/>保存しますか?"
 
 msgid "Discontinuities"
-msgstr "不連続性"
-
-msgid "Discrete time systems"
-msgstr "分離時間システム"
+msgstr "不連続性（非線形性）"
 
 msgid "Do you want a transparent background image?"
 msgstr "透明な背景イメージが欲しいですか?"
@@ -200,15 +202,15 @@ msgid "Event handling"
 msgstr "イベント・ハンドリング"
 
 msgid "Execution trace and Debug"
-msgstr "実行トレースとデバッグ"
+msgstr "トレースとデバッグの実行"
 
 msgid ""
 "Explicit data input port must be connected to explicit data output port"
-msgstr "明白なデータ入力ポートは、明白なデータ出力ポートと繋がってなくてはいけません"
+msgstr "明示的データ入力ポートは、明示的データ出力ポートと繋がってなくてはいけません"
 
 msgid ""
 "Explicit data output port must be connected to explicit data input port"
-msgstr "明白なデータ出力ポートは、明白なデータ入力ポートと繋がってなくてはいけません"
+msgstr "明示的データ出力ポートは、明示的データ入力ポートと繋がってなくてはいけません"
 
 msgid "Export"
 msgstr "エクスポート"
@@ -241,6 +243,9 @@ msgstr "反転"
 msgid "Format"
 msgstr "フォーマット"
 
+msgid "From %s"
+msgstr "%s から"
+
 msgid "Generate SuperBlock, please wait ..."
 msgstr "SuperBlock生成, お待ちください ..."
 
@@ -249,6 +254,9 @@ msgstr "スーパーブロックの C コード生成"
 
 msgid "Get infos"
 msgstr "情報取得"
+
+msgid "Goto %s"
+msgstr "%s へ"
 
 msgid "Grid"
 msgstr "グリッド"
@@ -266,15 +274,15 @@ msgid "Image contains no data."
 msgstr "イメージはデータを含みません。"
 
 msgid "Implicit"
-msgstr "暗示"
+msgstr "暗示的"
 
 msgid ""
 "Implicit data input port must be connected to implicit data output port"
-msgstr "暗示のデータ入力ポートは、暗示のデータ出力ポートと繋がってなくてはいけません"
+msgstr "暗示的なデータ入力ポートは、暗示的なデータ出力ポートと繋がってなくてはいけません"
 
 msgid ""
 "Implicit data output port must be connected to implicit data input port"
-msgstr "暗示のデータ出力ポートは、暗示のデータ入力ポートと繋がってなくてはいけません"
+msgstr "暗示的なデータ出力ポートは、暗示的なデータ入力ポートと繋がってなくてはいけません"
 
 msgid "Import from XML"
 msgstr "XMLからインポート"
@@ -286,10 +294,10 @@ msgid "Integer"
 msgstr "整数"
 
 msgid "Integrator absolute tolerance"
-msgstr "統合絶対許容誤差"
+msgstr "積算絶対許容誤差"
 
 msgid "Integrator relative tolerance"
-msgstr "統合相対許容誤差"
+msgstr "積算絶対誤差"
 
 msgid "Invert selection"
 msgstr "反転選択"
@@ -474,26 +482,23 @@ msgstr "親図形の表示"
 msgid "Show/Hide shadow"
 msgstr "影の表示/非表示"
 
-msgid "Signal Processing"
-msgstr "シグナル処理"
-
 msgid "Signal Routing"
-msgstr "シグナル処理"
+msgstr "信号ルーティング/信号ルーチン"
 
 msgid "Simulation"
 msgstr "シミュレーション"
 
 msgid "Simulation in progress"
-msgstr "シミュレーション進行中"
+msgstr "シミュレーション実行中"
 
 msgid "Sinks"
-msgstr "減らす"
+msgstr "出力／表示"
 
 msgid "Solver 0 (CVODE) - 100 (IDA)"
 msgstr "解明 0 (CVODE) - 100 (IDA)"
 
 msgid "Sources"
-msgstr "ソース"
+msgstr "信号源"
 
 msgid "Start"
 msgstr "開始"
@@ -507,6 +512,9 @@ msgstr "直線"
 msgid "Superblock mask"
 msgstr "スーパーブロック・マスク"
 
+msgid "The Scicos libraries are not loaded"
+msgstr "Scilabライブラリは取り込めませんでした"
+
 msgid "The Scilab Consortium (DIGITEO)"
 msgstr "Scilab コンソーシアム (DIGITEO)"
 
@@ -515,10 +523,10 @@ msgid ""
 " Do you want to create it?"
 msgstr ""
 "ファイル %s は存在しません\n"
-"生成しますか?"
+"作成しますか?"
 
 msgid "Thermo-Hydraulics"
-msgstr "熱-水力学"
+msgstr "熱水力学"
 
 msgid "Tolerance on time"
 msgstr "許容時間"
@@ -535,6 +543,14 @@ msgstr "グループでない"
 msgid "Unable to communicate with the interpreter"
 msgstr "インタープリタと連携できません"
 
+#, c-format
+msgid "Unable to open %s"
+msgstr "%s を開けません"
+
+#, c-format
+msgid "Unable to simulate %s"
+msgstr "%s をシュミレートできません"
+
 msgid "Undo"
 msgstr "元に戻す"
 
@@ -545,7 +561,7 @@ msgid "Untitled"
 msgstr "無題"
 
 msgid "User-Defined"
-msgstr "ユーザ-定義"
+msgstr "ユーザ定義"
 
 msgid "User-Defined Functions"
 msgstr "ユーザ定義関数"
@@ -569,7 +585,7 @@ msgid "View"
 msgstr "ビュー"
 
 msgid "View in Scicos"
-msgstr "Scicosの表示"
+msgstr "Scicosでの表示"
 
 msgid "Viewport"
 msgstr "表示ポート"
@@ -608,16 +624,16 @@ msgstr ""
 "ると、これらの命令は評価されます。(すなわち、OKをクリックすると常に図形がロードされて評価されます)"
 
 msgid "Zero crossing detection"
-msgstr "ゼロ交差の検出"
+msgstr "ゼロクロス検出"
 
 msgid "Zoom In"
-msgstr "ズーム・イン"
+msgstr "拡大"
 
 msgid "Zoom Out"
-msgstr "ズーム・アウト"
+msgstr "縮小"
 
 msgid "control port must be connected to command port"
-msgstr "管理ポートは、コマンドポートと接続されてなくてはなりません"
+msgstr "制御ポートは、コマンドポートと接続されてなくてはなりません"
 
 msgid "maximum step size (0 means no limit)"
 msgstr "最大反復サイズ(0は制限なし)"

@@ -1,6 +1,6 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2008 - DIGITEO - Allan CORNET
+// Copyright (C) 2008-2010 - DIGITEO - Allan CORNET
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -14,4 +14,9 @@ ref1 = [ 0 1 2 3 4 5 6 7 8 9 ;
 write_csv(ref1, TMPDIR + '/test.csv');
 res = read_csv( TMPDIR + '/test.csv');
 
-if and(evstr(res) <> ref1) then pause,end
+if or(evstr(res) <> ref1) then pause, end
+
+write_csv(ref1, TMPDIR + '/test2.csv', ' ', '.');
+res = read_csv( TMPDIR + '/test2.csv', ' ');
+
+if or(evstr(res) <> ref1) then pause, end

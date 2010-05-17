@@ -5,6 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- TEST WITH GRAPHIC -->
+exec(SCI+"/modules/gui/tests/unit_tests/uicontrol.slider.parameters.tst.sci");
 // Parameters
 // =========================================================================
 global axes_w;

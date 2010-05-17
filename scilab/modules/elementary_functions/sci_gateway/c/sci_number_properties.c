@@ -108,7 +108,7 @@ int sci_number_properties(char *fname, int* _piKey)
 	else
 	{
 		sciprint(_("%s: unknown property kind.\n"), fname);
-		Error(999);
+		SciError(999);
 		return 0;
 	}
 

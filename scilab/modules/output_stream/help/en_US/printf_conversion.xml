@@ -279,7 +279,26 @@
 
     <para>The representation of the plus sign depends on whether the
     <literal>+</literal> or (space) formatting option is specified.</para>
+    <para>display of exponential form %e is platform dependant with a different number of digits in exponent.</para>
+    <informaltable border="1">
+      <tr>
+        <td>Platform</td>
+        <td>Example: sprintf("%e",1.23e4)</td>
+      </tr>
+      <tr>
+        <td>Windows</td>
+        <td>1.23000e+004</td>
+      </tr>
+      <tr>
+        <td>Linux/Mac OS</td>
+        <td>1.23000e+04</td>
+      </tr>
+      
+      
+    </informaltable>
   </refsection>
+  
+  
 
   <refsection>
     <title>Examples</title>

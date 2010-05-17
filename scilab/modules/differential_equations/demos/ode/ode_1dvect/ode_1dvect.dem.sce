@@ -1,9 +1,7 @@
-//
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA
 //
-// This file is distributed under the same license as the Scilab package.
-//
+// This file is released into the public domain
 oldln=lines();lines(0)
 text = ["Examples of ODE''s in 1 dimension"; ..
         "A trajectory is plotted by clicking on the"; ..

@@ -17,7 +17,6 @@
 #include <string.h>
 #include <stdio.h>
 #include "stack-c.h"
-#include "dynamic_menus.h"
 /*--------------------------------------------------------------------------*/
 #include "parse.h"
 #include "basout.h"
@@ -27,8 +26,9 @@
 #include "scilabmode.h"
 #include "stack-def.h" /* C2F(basbrk) */
 #include "Scierror.h"
+#include "do_error_number.h"
 #include "prompt.h"
-#include "dynamic_menus.h"
+#include "storeCommand.h"
 #include "msgs.h"
 #include "eqid.h"
 /*--------------------------------------------------------------------------*/

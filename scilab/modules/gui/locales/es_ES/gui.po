@@ -8,13 +8,12 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-12-10 00:30+0000\n"
-"Last-Translator: Federico Vera <Unknown>\n"
+"PO-Revision-Date: 2010-04-17 20:54+0000\n"
+"Last-Translator: Rodrigo Machado Laprebendere <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -28,6 +27,10 @@ msgstr "%s:  #%d nodos padres coincidentes.\n"
 #, c-format
 msgid "%s: An error occurred: %s.\n"
 msgstr "%s: A ocurrido un error: %s.\n"
+
+#, c-format
+msgid "%s: An exception occurred: %s"
+msgstr "%s: Una excepción ha ocurrido: %s"
 
 #, c-format
 msgid "%s: Could not create 'Uicontrol' handle.\n"
@@ -241,6 +244,14 @@ msgid "%s: Wrong size for input argument #%d: A string matrix expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba una matriz "
 "de strings.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: It must have same dimensions that "
+"argument #%d.\n"
+msgstr ""
+"%s: Tamaño incorrecto para el argumento de entrada #%d: Debe tener las "
+"mismas dimensiones que el argumento #%d\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Matrix of strings expected.\n"
@@ -551,6 +562,8 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
 msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba un manejador "
+"'%s' válido.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d expected.\n"
@@ -885,8 +898,8 @@ msgstr "Copiar"
 msgid "Copyright (c) 1989-2007 (ENPC)"
 msgstr "Copyright (c) 1989-2007 (ENPC)"
 
-msgid "Copyright (c) 1989-2009 (INRIA)"
-msgstr "Copyright (c) 1989-2009 (INRIA)"
+msgid "Copyright (c) 1989-2010 (INRIA)"
+msgstr "Copyright (c) 1989-2010 (INRIA)"
 
 msgid "Cut"
 msgstr "Cortar"
@@ -895,7 +908,7 @@ msgid "Display selection"
 msgstr "Mostrar selección"
 
 msgid "Do you really want to quit Scilab?"
-msgstr ""
+msgstr "¿Realmente desea salir de SciLab?"
 
 msgid "Edit in the Scilab Text Editor"
 msgstr "Editar con el editor de textos de Scilab"
@@ -1101,7 +1114,7 @@ msgid "Save and execute"
 msgstr "Guardar y ejecutar"
 
 msgid "Scicos files"
-msgstr ""
+msgstr "Archivos Scicos"
 
 msgid "Scilab &ATOMS Web Site"
 msgstr "Sitio Web de Scilab &ATOMS"
@@ -1514,6 +1527,9 @@ msgid ""
 "with advanced graphics capabilities. Type \"\"help usecanvas\"\" for more "
 "information.\")"
 msgstr ""
+"disp(\"ADVERTENCIA: A pesar de nuestra advertencia anterior, se optó por "
+"utilizar Scilab con capacidades avanzadas de gráficos. Escriba \"\" help "
+"usecanvas \"\" para más información\")."
 
 msgid ""
 "disp(\"WARNING: Due to your configuration limitations, Scilab switched in a "

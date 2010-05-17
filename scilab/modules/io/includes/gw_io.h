@@ -32,14 +32,13 @@ IO_IMPEXP int C2F(sci_getpid)(char *fname,unsigned long fname_len);
 IO_IMPEXP int C2F(sci_read4b)(char *fname,unsigned long fname_len);
 IO_IMPEXP int C2F(sci_write4b)(char *fname,unsigned long fname_len);
 IO_IMPEXP int C2F(sci_save)(char *fname,unsigned long fname_len);
-IO_IMPEXP int C2F(sci_mgetl)(char *fname,unsigned long fname_len);
+IO_IMPEXP int C2F(sci_load)(char *fname,unsigned long fname_len);
 IO_IMPEXP int C2F(sci_getio)(char *fname,unsigned long fname_len);
 
 IO_IMPEXP int C2F(intgetenv)(char *fname,unsigned long fname_len);
 IO_IMPEXP int C2F(intload) (int *id1, int *k1); /* FORTRAN subroutine */
 IO_IMPEXP int C2F(intsave)(void);
 IO_IMPEXP int C2F(intfile)(void);
-IO_IMPEXP int C2F(intmgetl)(void);
 IO_IMPEXP int C2F(intrat)(void);
 IO_IMPEXP int C2F(intread)(void);
 IO_IMPEXP int C2F(intread4b)(void);

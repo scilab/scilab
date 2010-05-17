@@ -13,10 +13,11 @@
  */
 #include <string.h>
 #ifdef _MSC_VER
-	#include <windows.h>
-	#include <direct.h>
-	#include <errno.h>
+#include <windows.h>
+#include <direct.h>
+#include <errno.h>
 #else
+	#include <errno.h>
 	#include <unistd.h>
 	#define GETCWD(x,y) getcwd(x,y)
 #endif
@@ -31,125 +32,127 @@
 int scichdirW(wchar_t *wcpath)
 {
 #ifndef _MSC_VER
-	char *path = NULL;
-	if (wcpath == NULL)
-	{
-		return 1;
-	}
+    char *path = NULL;
+    if (wcpath == NULL)
+    {
+        return 1;
+    }
 
-	path = wide_string_to_UTF8(wcpath);
-	if (path == NULL)
-	{
-		return 1;
-	}
+    path = wide_string_to_UTF8(wcpath);
+    if (path == NULL)
+    {
+        return 1;
+    }
 
 	if (chdir(path) == -1)
 	{
-		if ( getWarningMode() ) sciprint(_("Can't go to directory %s.\n"), path);
+		if ( getWarningMode() ) sciprint(_("Can't go to directory %s: %s\n"), path, strerror(errno));
 		if (path) {FREE(path); path = NULL;}
 		return 1;
 	}
 
-	if (path) {FREE(path); path = NULL;}
+    if (path) {FREE(path); path = NULL;}
 
 #else
-	if (wcpath == NULL)
-	{
-		return 1;
-	}
+    if (wcpath == NULL)
+    {
+        return 1;
+    }
 
-	if ( _wchdir(wcpath) )
-	{
-		switch (errno)
-		{
-		case ENOENT:
-			{
-				if ( getWarningMode() ) 
-				{
-					char *path = wide_string_to_UTF8(wcpath);
-					if (path)
-					{
-						sciprint(_("Can't go to directory %s.\n"), path);
-						FREE(path);
-						path = NULL;
-					}
-				}
-			}
-			break;
-		case EINVAL:
-			{
-				if ( getWarningMode() ) sciprint(_("Invalid buffer.\n"));
-			}
-			break;
-		default:
-			{
-				if ( getWarningMode() ) sciprint(_("Unknown error.\n"));
-			}
-		}
-		return 1;
-	}
+    if ( _wchdir(wcpath) )
+    {
+        switch (errno)
+        {
+        case ENOENT:
+            {
+                if ( getWarningMode() ) 
+                {
+                    char *path = wide_string_to_UTF8(wcpath);
+                    if (path)
+                    {
+                        sciprint(_("Can't go to directory %s.\n"), path);
+                        FREE(path);
+                        path = NULL;
+                    }
+                }
+            }
+            break;
+        case EINVAL:
+            {
+                if ( getWarningMode() ) sciprint(_("Invalid buffer.\n"));
+            }
+            break;
+        default:
+            {
+                if ( getWarningMode() ) sciprint(_("Unknown error.\n"));
+            }
+        }
+        return 1;
+    }
 #endif
-	return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
 int scichdir(char *path)
 {
-	int ierr = 1;
-	wchar_t *wcpath = NULL;
-	if (path == NULL) return ierr;
-	wcpath = to_wide_string(path);
-	if (wcpath == NULL) return ierr;
-	ierr = scichdirW(wcpath);
-	FREE(wcpath);
-	wcpath = NULL;
-	return ierr;
+    int ierr = 1;
+    wchar_t *wcpath = NULL;
+    if (path == NULL) return ierr;
+    wcpath = to_wide_string(path);
+    if (wcpath == NULL) return ierr;
+    ierr = scichdirW(wcpath);
+    FREE(wcpath);
+    wcpath = NULL;
+    return ierr;
 }
 /*--------------------------------------------------------------------------*/
 wchar_t * scigetcwdW(int *err)
 {
-	wchar_t *wcCurrentDir = NULL;
-	
+    wchar_t *wcCurrentDir = NULL;
+
 #ifndef _MSC_VER
-	char currentDir[PATH_MAX + 1];
-	if (GETCWD(currentDir, PATH_MAX) == NULL)
-	{
-		if ( getWarningMode() ) sciprint(_("Can't get current directory.\n"));
-		*err = 1;
-	}
-	else
-	{
-		wcCurrentDir = to_wide_string(currentDir);
-		*err = 0;
-	}
+    char currentDir[PATH_MAX + 1];
+    if (GETCWD(currentDir, PATH_MAX) == NULL)
+    {
+        if ( getWarningMode() ) sciprint(_("Can't get current directory.\n"));
+        *err = 1;
+    }
+    else
+    {
+        wcCurrentDir = to_wide_string(currentDir);
+        *err = 0;
+    }
 #else
-	wchar_t wcdir[PATH_MAX + 1];
-	if ( _wgetcwd(wcdir, PATH_MAX) == NULL )
-	{
-		if ( getWarningMode() ) sciprint(_("Can't get current directory.\n"));
-		*err = 1;
-	}
-	else
-	{
-		wcCurrentDir = (wchar_t*)MALLOC(sizeof(wchar_t) * ((int)wcslen(wcdir) + 1));
-		if (wcCurrentDir)
-		{
-			wcscpy(wcCurrentDir, wcdir);
-		}
-	}
+    wchar_t wcdir[PATH_MAX + 1];
+    if ( _wgetcwd(wcdir, PATH_MAX) == NULL )
+    {
+        if ( getWarningMode() ) sciprint(_("Can't get current directory.\n"));
+        *err = 1;
+    }
+    else
+    {
+        wcCurrentDir = (wchar_t*)MALLOC(sizeof(wchar_t) * ((int)wcslen(wcdir) + 1));
+        if (wcCurrentDir)
+        {
+            wcscpy(wcCurrentDir, wcdir);
+            *err = 0;
+        }
+    }
 #endif
-	return wcCurrentDir;
+    return wcCurrentDir;
 }
 /*--------------------------------------------------------------------------*/
 char * scigetcwd(int *err)
 {
-	char *currentDir = NULL;
-	wchar_t *wcCurrentDir = scigetcwdW(err);
-	if (wcCurrentDir)
-	{
-		currentDir = wide_string_to_UTF8(wcCurrentDir);
-		FREE(wcCurrentDir);
-		wcCurrentDir = NULL;
-	}
-	return currentDir;
+    char *currentDir = NULL;
+    wchar_t *wcCurrentDir = scigetcwdW(err);
+    if (wcCurrentDir)
+    {
+        currentDir = wide_string_to_UTF8(wcCurrentDir);
+        FREE(wcCurrentDir);
+        wcCurrentDir = NULL;
+    }
+    return currentDir;
 }
 /*--------------------------------------------------------------------------*/
+

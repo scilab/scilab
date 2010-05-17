@@ -141,7 +141,7 @@ zcol = dsearch(zf, linspace(zzm, zzM, nb_col+1));
 plot3d(xf, yf, list(zf, zcol), flag = [-2 6 4])
 xtitle("um plot3d com cores de gradação interpolada")
 drawnow() ;
-xselect()
+show_window()
  ]]></programlisting>
   </refsection>
 

@@ -60,7 +60,7 @@ int sci_mtell(char *fname,unsigned long fname_len)
 
 	if (err >  0)
 	{
-		Error(10000);
+		SciError(10000);
 		return 0;
 	}
 

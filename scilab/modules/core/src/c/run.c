@@ -28,14 +28,15 @@
 #include "stack-c.h"
 #include "run.h"
 #include "basout.h"
-#include "dynamic_menus.h"
 #include "parse.h"
 #include "localization.h"
 #include "core_math.h"
 #include "scilabmode.h"
 #include "stack-def.h" /* C2F(basbrk) */
-#include "dynamic_menus.h"
+#include "storeCommand.h"
+#include "do_error_number.h"
 #include "Scierror.h"
+#include "msgs.h"
 #undef Lstk
 #undef Infstk
 
@@ -1048,7 +1049,7 @@ int C2F(run)(void)
  L150:
   ++lc;
   if (C2F(recu).niv > 0) {
-    C2F(sciquit)();
+    sciquit();
     exit(0); /* stop */
   }
   C2F(com).fun = 99;

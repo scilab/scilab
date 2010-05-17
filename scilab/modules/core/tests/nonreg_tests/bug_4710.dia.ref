@@ -29,4 +29,5 @@ i=['#include <string>'
 mputl(i,'sci_bug4710.cxx');
 files=['sci_bug4710.cxx'];
 ilib_build('bug4710',['bug4710','sci_bug4710'],files,[]);
+exec('loader.sce');
 if bug4710() <> [] then bugmes();quit;end

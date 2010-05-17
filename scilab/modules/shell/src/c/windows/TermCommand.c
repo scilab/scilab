@@ -14,7 +14,7 @@
 #include "TermCommand.h"
 #include "machine.h" /* C2F */
 #include "sigbas.h" /* C2F (sigbas) */
-#include "dynamic_menus.h" /* StoreCommand */
+#include "storeCommand.h" /* StoreCommand */
 #include "clrscr_nw.h"
 #include "TermLine.h"
 #include "MALLOC.h"

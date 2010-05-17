@@ -1,8 +1,9 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * desc : Compute automatic ticks
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
@@ -109,7 +110,33 @@ void AutomaticTicksComputer::getTicksPosition(double positions[], char * labels[
 /*------------------------------------------------------------------------------------------*/
 void AutomaticTicksComputer::reduceTicksNumber(void)
 {
-  m_iNbTicks = (m_iNbTicks + 1) / 2;
+  m_iNbTicks = reduceTicksNumber(m_iNbTicks);
+}
+/*------------------------------------------------------------------------------------------*/
+int AutomaticTicksComputer::reduceTicksNumber(int numberOfTicks)
+{
+  return ((numberOfTicks +1) / 2);
+}
+/*------------------------------------------------------------------------------------------*/
+int AutomaticTicksComputer::computeMaxNumberOfDecimationIterations(void)
+{
+  int nbIterations = 0;
+  int numberOfTicks = m_iNbTicks;
+
+  // No iterations are performed since decimation requires
+  // more than one tick
+  if (numberOfTicks <= 1)
+  {
+    return 0;
+  }
+
+  while(numberOfTicks > 1)
+  {
+    numberOfTicks = reduceTicksNumber(numberOfTicks);
+    nbIterations++;
+  }
+
+  return nbIterations;
 }
 /*------------------------------------------------------------------------------------------*/
 void AutomaticTicksComputer::setAxisBounds(double min, double max)

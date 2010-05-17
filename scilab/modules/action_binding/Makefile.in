@@ -124,8 +124,7 @@ am__libsciaction_binding_la_SOURCES_DIST =  \
 @GUI_FALSE@	libsciaction_binding_la-noaction_binding.lo \
 @GUI_FALSE@	libsciaction_binding_la-dynamic_menus.lo
 @GUI_TRUE@am__objects_1 =  \
-@GUI_TRUE@	libsciaction_binding_la-InterpreterManagement.lo \
-@GUI_TRUE@	libsciaction_binding_la-dynamic_menus.lo
+@GUI_TRUE@	libsciaction_binding_la-InterpreterManagement.lo
 @GUI_TRUE@am__objects_2 = libsciaction_binding_la-InterpreterManagement_wrap.lo
 am_libsciaction_binding_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libsciaction_binding_la_OBJECTS =  \
@@ -408,9 +407,7 @@ yacc_present = @yacc_present@
 
 
 # List of the c files
-@GUI_TRUE@ACTION_BINDING_C_SOURCES = src/c/InterpreterManagement.c \
-@GUI_TRUE@src/c/dynamic_menus.c
-
+@GUI_TRUE@ACTION_BINDING_C_SOURCES = src/c/InterpreterManagement.c
 
 # List of the gateway c files
 @GUI_TRUE@CONSOLE_C_JNI_SOURCES = src/jni/InterpreterManagement_wrap.c
@@ -983,7 +980,7 @@ check-code:
 @GIWS_TRUE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@			echo "GIWS process of $$file ..."; \
-@GIWS_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
+@GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
 
@@ -1087,6 +1084,7 @@ install-data-local:
 		if test -d $(srcdir)/$$dir/; then \
 			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
 			if test -n "$(MACROSSPECIALEXT)"; then \
+				specialExtDir=""; \
 				for specialExt in $(MACROSSPECIALEXT); do \
 					specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
 				done; \

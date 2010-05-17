@@ -68,7 +68,13 @@ int sci_matfile_varreadnext(char* fname, int* _piKey)
   
   /* Gets the corresponding matfile */
   matfile_manager(MATFILEMANAGER_GETFILE, &fileIndex, &matfile);
-  
+
+  if (matfile == NULL)
+    {
+      Scierror(999, _("%s: Invalid file identifier.\n"), fname);
+      return FALSE;
+    }
+
   matvar = Mat_VarReadNext(matfile);
   if ((matvar == NULL) || (matvar->name == NULL))
     {

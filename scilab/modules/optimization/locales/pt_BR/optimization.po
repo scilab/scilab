@@ -8,13 +8,12 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-06-29 17:08+0000\n"
-"Last-Translator: Daniel de Souza Grilo <soporter@gmail.com>\n"
+"PO-Revision-Date: 2010-03-07 19:17+0000\n"
+"Last-Translator: Hidagawa <hidagawa@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid ""
@@ -30,7 +29,7 @@ msgstr " número de restrições (%s)'),'lmisolver',%m,%fm));"
 
 #, c-format
 msgid "%s: %s"
-msgstr ""
+msgstr "%s: %s"
 
 #, c-format
 msgid "%s: Accuracy insufficient to satisfy convergence criterion.\n"
@@ -51,35 +50,35 @@ msgstr "%s: Não é possível alocar mais memória.\n"
 
 #, c-format
 msgid "%s: Cannot check cost function when x0 is empty"
-msgstr ""
+msgstr "%s: Não é possível verificar a função custo quando x0 for vazio"
 
 #, c-format
 msgid "%s: Cannot evaluate cost function from costf(x0,1)."
-msgstr ""
+msgstr "%s: Não é possível avaliar a função custo a partir de costf(x0,1)."
 
 #, c-format
 msgid "%s: Cannot evaluate cost function from costf(x0,2)."
-msgstr ""
+msgstr "%s: Não é possível avaliar a função custo a partir de costf(x0,2)."
 
 #, c-format
 msgid "%s: Cannot evaluate cost function from costf(x0,3)."
-msgstr ""
+msgstr "%s: Não é possível avaliar a função custo a partir de costf(x0,3)."
 
 #, c-format
 msgid "%s: Cannot evaluate cost function from costf(x0,4)."
-msgstr ""
+msgstr "%s: Não é possível avaliar a função custo a partir de costf(x0,4)."
 
 #, c-format
 msgid "%s: Cannot evaluate cost function from costf(x0,5)."
-msgstr ""
+msgstr "%s: Não é possível avaliar a função custo a partir de costf(x0,5)."
 
 #, c-format
 msgid "%s: Cannot evaluate cost function from costf(x0,6)."
-msgstr ""
+msgstr "%s: Não é possível avaliar a função custo a partir de costf(x0,6)."
 
 #, c-format
 msgid "%s: Empty function (use -function option)."
-msgstr ""
+msgstr "%s: Função vazia (use a opção -function)."
 
 #, c-format
 msgid ""
@@ -95,16 +94,20 @@ msgstr ""
 msgid ""
 "%s: Expected real variable for variable %s at input #%d, but got %s instead."
 msgstr ""
+"%s: Esperava-se uma variável real para a variável %s na entrada #%d, porém "
+"recebeu %s."
 
 #, c-format
 msgid ""
 "%s: Expected string variable for variable %s at input #%d, but got %s "
 "instead."
 msgstr ""
+"%s: Esperava-se uma string para a variável %s na entrada #%d, porém recebeu "
+"%s."
 
 #, c-format
 msgid "%s: History disabled ; enable -storehistory option."
-msgstr ""
+msgstr "%s: Histórico desabilitado ; habilite com a opção -storehistory."
 
 #, c-format
 msgid "%s: History disabled ; turn on -storehistory option."
@@ -141,11 +144,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Negative iteration index %d is not allowed."
-msgstr ""
+msgstr "%s: Índice negativo %d para a iteração não é permitido."
 
 #, c-format
 msgid "%s: Negative iteration index are not allowed."
-msgstr ""
+msgstr "%s: Índices negativos iterações não é permitido."
 
 #, c-format
 msgid ""
@@ -155,7 +158,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: No output command is defined."
-msgstr ""
+msgstr "%s: Nenhum comando de saída está definido."
 
 #, c-format
 msgid "%s: Number of columns of fv is %d, which is different from 1."

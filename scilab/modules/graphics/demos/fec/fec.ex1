@@ -28,6 +28,6 @@ drawlater();
 fec(noeul(:,2),noeul(:,3),trianl,(1:N+1)',"030"," ",rect);
 meshvisu(3,rect);
 drawnow();
-xselect();
+show_window();
 
 mode(-1)

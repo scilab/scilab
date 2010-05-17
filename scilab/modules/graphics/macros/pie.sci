@@ -71,7 +71,7 @@ elseif size(varlist) == 3 then
     error("third argument must be a cell or a vector of strings");
   end
 else 
-  error("wrong number of input arguments")
+  error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "pie", 1, 3));
 end
 
 if isempty(x) then

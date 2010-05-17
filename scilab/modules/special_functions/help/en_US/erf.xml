@@ -20,46 +20,34 @@
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
-
   <refnamediv>
     <refname>erf</refname>
-
     <refpurpose>The error function.</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
     <synopsis>y = erf(x)</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Parameters</title>
-
     <variablelist>
       <varlistentry>
         <term>x</term>
-
         <listitem>
           <para>real vector or matrix</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>y</term>
-
         <listitem>
           <para>real vector or matrix (of same size than x)</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-
     <para><literal>erf</literal> computes the error function:</para>
-
     <informalequation>
       <mediaobject>
         <imageobject>
@@ -68,33 +56,25 @@
       </mediaobject>
     </informalequation>
   </refsection>
-
   <refsection>
     <title>Examples</title>
-
     <programlisting role="example"><![CDATA[ 
 deff('y=f(t)','y=exp(-t^2)');
 erf(0.5)-2/sqrt(%pi)*intg(0,0.5,f)
- ]]></programlisting>
+]]></programlisting>
   </refsection>
-
   <refsection>
     <title>See Also</title>
-
     <simplelist type="inline">
-      <member><link linkend="erfc">erfc</link></member>
-
-      <member><link linkend="erfcx">erfcx</link></member>
-
       <member><link linkend="calerf">calerf</link></member>
-
       <member><link linkend="cdfnor">cdfnor</link></member>
+      <member><link linkend="erfc">erfc</link></member>
+      <member><link linkend="erfcx">erfcx</link></member>
+      <member><link linkend="erfinv">erfinv</link></member>
     </simplelist>
   </refsection>
-
   <refsection>
     <title>Authors</title>
-
     <para>W. J. Cody (code from Netlib (specfun))</para>
   </refsection>
 </refentry>

@@ -13,7 +13,7 @@
 
 /* checks if all entries of a vector are finite */
 #include "machine.h"
-#include "stack-c.h" 
+#include "core_math.h"
 #include "vfinite.h"
 #include "finite.h"
 

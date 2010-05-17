@@ -53,20 +53,20 @@ static bool import_list(int* _piKey, int _iDatasetId, int _iVarType, int _iItemP
 
 int sci_import_from_hdf5(char *fname, int* _piKey)
 {
-	CheckRhs(1,2);
-	CheckLhs(1,1);
+    CheckRhs(1,2);
+    CheckLhs(1,1);
 
-	int iRows						= 0;
-	int iCols						= 0;
-	int iLen						= 0;
-	int iType						= 0;
-	int* piAddr					= NULL;
-	char *pstVarName		= NULL;
-	bool bImport				= false;
-	SciErr sciErr;
+    int iRows						= 0;
+    int iCols						= 0;
+    int iLen						= 0;
+    int iType						= 0;
+    int* piAddr					= NULL;
+    char *pstVarName		= NULL;
+    bool bImport				= false;
+    SciErr sciErr;
 
 #ifndef _MSC_VER
-	forceJHDF5load();
+    forceJHDF5load();
 #endif
 
 	iCloseList = 0;
@@ -215,30 +215,30 @@ static bool import_data(int* _piKey, int _iDatasetId, int _iItemPos, int* _piAdd
 	default : 
 		{
 #ifdef PRINT_DEBUG
-			char pstMsg[512];
-			sprintf(pstMsg, "Unknown type : %d", iVarType);
-			print_tree(pstMsg);
+            char pstMsg[512];
+            sprintf(pstMsg, "Unknown type : %d", iVarType);
+            print_tree(pstMsg);
 #endif
-		}
-	}
+        }
+    }
 
-	return bRet;
+    return bRet;
 }
 
 static bool import_double(int* _piKey, int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
 {
-	int iRet						= 0;
-	double *pdblReal		= NULL;
-	double *pdblImg			= NULL;
-	int	iRows						= 0;
-	int iCols						= 0;
-	int iComplex				= 0;
-	SciErr sciErr;
+    int iRet						= 0;
+    double *pdblReal		= NULL;
+    double *pdblImg			= NULL;
+    int	iRows						= 0;
+    int iCols						= 0;
+    int iComplex				= 0;
+    SciErr sciErr;
 
 #ifdef TIME_DEBUG
-	LARGE_INTEGER iStart, iEnd, iFreq;
-	QueryPerformanceFrequency(&iFreq);
-	QueryPerformanceCounter(&iStart);
+    LARGE_INTEGER iStart, iEnd, iFreq;
+    QueryPerformanceFrequency(&iFreq);
+    QueryPerformanceCounter(&iStart);
 #endif
 
 	iRet				= getDatasetDims(_iDatasetId, &iRows, &iCols);
@@ -297,74 +297,74 @@ static bool import_double(int* _piKey, int _iDatasetId, int _iItemPos, int* _piA
 	}
 
 #ifdef PRINT_DEBUG
-	char pstMsg[512];
-	sprintf(pstMsg, "double_%d (%d x %d)", _iItemPos, iRows, iCols);
-	print_tree(pstMsg);
+    char pstMsg[512];
+    sprintf(pstMsg, "double_%d (%d x %d)", _iItemPos, iRows, iCols);
+    print_tree(pstMsg);
 #endif
 
-	if(pdblReal)
-	{
-		FREE(pdblReal);
-	}
+    if(pdblReal)
+    {
+        FREE(pdblReal);
+    }
 
-	if(pdblImg)
-	{
-		FREE(pdblImg);
-	}
+    if(pdblImg)
+    {
+        FREE(pdblImg);
+    }
 
-	if(iRet)
-	{
-		return false;
-	}
+    if(iRet)
+    {
+        return false;
+    }
 
 #ifdef TIME_DEBUG
-	QueryPerformanceCounter(&iEnd);
-	double dblTime	=((iEnd.QuadPart - iStart.QuadPart) * 1000.0) / iFreq.QuadPart;
-	printf("Total Double : %0.3f ms\n\n", dblTime);
+    QueryPerformanceCounter(&iEnd);
+    double dblTime	=((iEnd.QuadPart - iStart.QuadPart) * 1000.0) / iFreq.QuadPart;
+    printf("Total Double : %0.3f ms\n\n", dblTime);
 #endif
 
-	return true;
+    return true;
 }
 
 static bool import_string(int* _piKey, int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
 {
-	int iRet						= 0;
-	int i								= 0;
-	int	iRows						= 0;
-	int iCols						= 0;
-	char **pstData			= NULL;
-	SciErr sciErr;
+    int iRet						= 0;
+    int i								= 0;
+    int	iRows						= 0;
+    int iCols						= 0;
+    char **pstData			= NULL;
+    SciErr sciErr;
 
 #ifdef TIME_DEBUG
-	LARGE_INTEGER iStart1, iEnd1, iStart2, iEnd2, iStart3, iEnd3, iFreq;
+    LARGE_INTEGER iStart1, iEnd1, iStart2, iEnd2, iStart3, iEnd3, iFreq;
 
-	QueryPerformanceFrequency(&iFreq);
-	QueryPerformanceCounter(&iStart1);
+    QueryPerformanceFrequency(&iFreq);
+    QueryPerformanceCounter(&iStart1);
 #endif
-	iRet = getDatasetDims(_iDatasetId, &iRows, &iCols);
-	if(iRet)
-	{
-		return false;
-	}
+    iRet = getDatasetDims(_iDatasetId, &iRows, &iCols);
+    if(iRet)
+    {
+        return false;
+    }
 
 
-	pstData = (char **) MALLOC(iRows * iCols * sizeof(char*));
+    pstData = (char **) MALLOC(iRows * iCols * sizeof(char*));
 
 #ifdef TIME_DEBUG
-	QueryPerformanceCounter(&iStart1);
+    QueryPerformanceCounter(&iStart1);
 #endif
 
-	iRet = readStringMatrix(_iDatasetId, iRows, iCols, pstData);
-	if(iRet)
-	{
-		return false;
-	}
+    iRet = readStringMatrix(_iDatasetId, iRows, iCols, pstData);
+    if(iRet)
+    {
+        return false;
+    }
 
 #ifdef TIME_DEBUG
-	QueryPerformanceCounter(&iEnd1);
+    QueryPerformanceCounter(&iEnd1);
 #endif
 #ifdef TIME_DEBUG
-	QueryPerformanceCounter(&iStart2);
+    QueryPerformanceCounter(&iStart2);
 #endif
 
 	if(_piAddress == NULL)
@@ -383,38 +383,38 @@ static bool import_string(int* _piKey, int _iDatasetId, int _iItemPos, int* _piA
 	}
 
 #ifdef TIME_DEBUG
-	QueryPerformanceCounter(&iEnd2);
-	QueryPerformanceCounter(&iStart3);
+    QueryPerformanceCounter(&iEnd2);
+    QueryPerformanceCounter(&iStart3);
 #endif
 #ifdef PRINT_DEBUG
-	char pstMsg[512];
-	sprintf(pstMsg, "string_%d (%d x %d)", _iItemPos, iRows, iCols);
-	print_tree(pstMsg);
+    char pstMsg[512];
+    sprintf(pstMsg, "string_%d (%d x %d)", _iItemPos, iRows, iCols);
+    print_tree(pstMsg);
 #endif
-	for(i = 0 ; i < iRows * iCols ; i++)
-	{
-		FREE(pstData[i]);
-	}
-	FREE(pstData);
+    for(i = 0 ; i < iRows * iCols ; i++)
+    {
+        FREE(pstData[i]);
+    }
+    FREE(pstData);
 
-	if(iRet)
-	{
-		return false;
-	}
+    if(iRet)
+    {
+        return false;
+    }
 
 #ifdef TIME_DEBUG
-	QueryPerformanceCounter(&iEnd3);
+    QueryPerformanceCounter(&iEnd3);
 
-	//double dblTime	=((iEnd1.QuadPart - iStart1.QuadPart) * 1000.0) / iFreq.QuadPart;
-	//printf("HDF5 : %0.3f ms\n", dblTime);
-	//dblTime	=((iEnd2.QuadPart - iStart2.QuadPart) * 1000.0) / iFreq.QuadPart;
-	//printf("Stack : %0.3f ms\n", dblTime);
-	//dblTime	=((iEnd3.QuadPart - iStart3.QuadPart) * 1000.0) / iFreq.QuadPart;
-	//printf("Clear : %0.3f ms\n", dblTime);
-	double dblTime	=((iEnd3.QuadPart - iStart1.QuadPart) * 1000.0) / iFreq.QuadPart;
-	printf("Total String: %0.3f ms\n\n", dblTime);
+    //double dblTime	=((iEnd1.QuadPart - iStart1.QuadPart) * 1000.0) / iFreq.QuadPart;
+    //printf("HDF5 : %0.3f ms\n", dblTime);
+    //dblTime	=((iEnd2.QuadPart - iStart2.QuadPart) * 1000.0) / iFreq.QuadPart;
+    //printf("Stack : %0.3f ms\n", dblTime);
+    //dblTime	=((iEnd3.QuadPart - iStart3.QuadPart) * 1000.0) / iFreq.QuadPart;
+    //printf("Clear : %0.3f ms\n", dblTime);
+    double dblTime	=((iEnd3.QuadPart - iStart1.QuadPart) * 1000.0) / iFreq.QuadPart;
+    printf("Total String: %0.3f ms\n\n", dblTime);
 #endif
-	return true;
+    return true;
 }
 
 static bool import_integer(int* _piKey, int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
@@ -579,12 +579,12 @@ static bool import_integer(int* _piKey, int _iDatasetId, int _iItemPos, int* _pi
 				sciErr = createMatrixOfInteger64InNamedList(_piKey, _pstVarname, _piAddress, _iItemPos, iRows, iCols, pllData);
 			}
 #else
-			return false;
+            return false;
 #endif
-		}
-		break;
-	case SCI_UINT64 : 
-		{
+        }
+        break;
+    case SCI_UINT64 : 
+        {
 #ifdef __SCILAB_INT64__
 			unsigned long long* pullData	= NULL;
 			pullData = (unsigned long long*)MALLOC(sizeof(unsigned long long) * iRows * iCols);
@@ -603,27 +603,27 @@ static bool import_integer(int* _piKey, int _iDatasetId, int _iItemPos, int* _pi
 				sciErr = createMatrixOfUnsignedInteger64InNamedList(_piKey, _pstVarname, _piAddress, _iItemPos, iRows, iCols, pullData);
 			}
 #else
-			return false;
+            return false;
 #endif
-		}
-		break;
-	default :
-		return false;
-	}
+        }
+        break;
+    default :
+        return false;
+    }
 
 #ifdef PRINT_DEBUG
-	char pstMsg[512];
-	sprintf(pstMsg, "integer_%d (%d x %d)", _iItemPos, iRows, iCols);
-	print_tree(pstMsg);
+    char pstMsg[512];
+    sprintf(pstMsg, "integer_%d (%d x %d)", _iItemPos, iRows, iCols);
+    print_tree(pstMsg);
 #endif
 
-	if(sciErr.iErr)
-	{
-			printError(&sciErr, 0);
-			return false;
-	}
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return false;
+    }
 
-	return true;
+    return true;
 }
 
 static bool import_boolean(int* _piKey, int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
@@ -666,22 +666,22 @@ static bool import_boolean(int* _piKey, int _iDatasetId, int _iItemPos, int* _pi
 	}
 
 #ifdef PRINT_DEBUG
-	char pstMsg[512];
-	sprintf(pstMsg, "boolean_%d (%d x %d)", _iItemPos, iRows, iCols);
-	print_tree(pstMsg);
+    char pstMsg[512];
+    sprintf(pstMsg, "boolean_%d (%d x %d)", _iItemPos, iRows, iCols);
+    print_tree(pstMsg);
 #endif
 
-	if(piData)
-	{
-		FREE(piData);
-	}
+    if(piData)
+    {
+        FREE(piData);
+    }
 
-	if(iRet)
-	{
-		return false;
-	}
+    if(iRet)
+    {
+        return false;
+    }
 
-	return true;
+    return true;
 }
 
 static bool import_poly(int* _piKey, int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
@@ -755,24 +755,24 @@ static bool import_poly(int* _piKey, int _iDatasetId, int _iItemPos, int* _piAdd
 	}
 
 #ifdef PRINT_DEBUG
-	char pstMsg[512];
-	sprintf(pstMsg, "poly_%d (%d x %d)", _iItemPos, iRows, iCols);
-	print_tree(pstMsg);
+    char pstMsg[512];
+    sprintf(pstMsg, "poly_%d (%d x %d)", _iItemPos, iRows, iCols);
+    print_tree(pstMsg);
 #endif
 
-	for(i = 0 ; i < iRows * iCols ; i++)
-	{
-		FREE(pdblReal[i]);
-	}
-	FREE(pdblReal);
-	FREE(piNbCoef);
+    for(i = 0 ; i < iRows * iCols ; i++)
+    {
+        FREE(pdblReal[i]);
+    }
+    FREE(pdblReal);
+    FREE(piNbCoef);
 
-	if(iRet)
-	{
-		return false;
-	}
+    if(iRet)
+    {
+        return false;
+    }
 
-	return true;
+    return true;
 }
 
 static bool import_sparse(int* _piKey, int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
@@ -849,26 +849,26 @@ static bool import_sparse(int* _piKey, int _iDatasetId, int _iItemPos, int* _piA
 	}
 
 #ifdef PRINT_DEBUG
-	char pstMsg[512];
-	sprintf(pstMsg, "sparse_%d (%d x %d)", _iItemPos, iRows, iCols);
-	print_tree(pstMsg);
+    char pstMsg[512];
+    sprintf(pstMsg, "sparse_%d (%d x %d)", _iItemPos, iRows, iCols);
+    print_tree(pstMsg);
 #endif
 
-	FREE(piNbItemRow);
-	FREE(piColPos);
-	FREE(pdblReal);
-	if(iComplex)
-	{
-		FREE(pdblImg);
-	}
+    FREE(piNbItemRow);
+    FREE(piColPos);
+    FREE(pdblReal);
+    if(iComplex)
+    {
+        FREE(pdblImg);
+    }
 
 
-	if(iRet)
-	{
-		return false;
-	}
+    if(iRet)
+    {
+        return false;
+    }
 
-	return true;
+    return true;
 }
 
 static bool import_boolean_sparse(int* _piKey, int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
@@ -913,55 +913,55 @@ static bool import_boolean_sparse(int* _piKey, int _iDatasetId, int _iItemPos, i
 	}
 
 #ifdef PRINT_DEBUG
-	char pstMsg[512];
-	sprintf(pstMsg, "boolean sparse_%d (%d x %d)", _iItemPos, iRows, iCols);
-	print_tree(pstMsg);
+    char pstMsg[512];
+    sprintf(pstMsg, "boolean sparse_%d (%d x %d)", _iItemPos, iRows, iCols);
+    print_tree(pstMsg);
 #endif
 
-	FREE(piNbItemRow);
-	FREE(piColPos);
+    FREE(piNbItemRow);
+    FREE(piColPos);
 
 
-	if(iRet)
-	{
-		return false;
-	}
+    if(iRet)
+    {
+        return false;
+    }
 
-	return true;
+    return true;
 }
 
 static bool import_list(int* _piKey, int _iDatasetId, int _iVarType, int _iItemPos, int* _piAddress, char* _pstVarname)
 {
-	int iRet								= 0;
-	int i										= 0;
-	int	iItems							= 0;
-	int* piListAddr					= NULL;
-	hobj_ref_t* piItemRef		= NULL;
-	SciErr sciErr;
+    int iRet								= 0;
+    int i										= 0;
+    int	iItems							= 0;
+    int* piListAddr					= NULL;
+    hobj_ref_t* piItemRef		= NULL;
+    SciErr sciErr;
 
-	iRet = getListDims(_iDatasetId, &iItems);
-	if(iRet)
-	{
-		return false;
-	}
+    iRet = getListDims(_iDatasetId, &iItems);
+    if(iRet)
+    {
+        return false;
+    }
 
 
-	if(iItems == 0)
-	{//special case for empty list
-	}
-	else
-	{
-		iRet			= getListItemReferences(_iDatasetId, &piItemRef);
-		if(iRet)
-		{
-			return false;
-		}
-	}
+    if(iItems == 0)
+    {//special case for empty list
+    }
+    else
+    {
+        iRet			= getListItemReferences(_iDatasetId, &piItemRef);
+        if(iRet)
+        {
+            return false;
+        }
+    }
 
 #ifdef PRINT_DEBUG
-	char pstMsg[512];
-	sprintf(pstMsg, "list_%d (%d)", _iItemPos, iItems);
-	print_tree(pstMsg);
+    char pstMsg[512];
+    sprintf(pstMsg, "list_%d (%d)", _iItemPos, iItems);
+    print_tree(pstMsg);
 #endif
 
 	if(_piAddress == 0)
@@ -1030,25 +1030,25 @@ static bool import_list(int* _piKey, int _iDatasetId, int _iVarType, int _iItemP
 	}
 
 #ifdef TIME_DEBUG
-	printf("Close List %d\n\n", iCloseList++);
+    printf("Close List %d\n\n", iCloseList++);
 #endif
 
 #ifdef PRINT_DEBUG
-	char pstMsg1[512];
-	sprintf(pstMsg1, "ListEnd_%d", _iItemPos);
-	print_tree(pstMsg1);
+    char pstMsg1[512];
+    sprintf(pstMsg1, "ListEnd_%d", _iItemPos);
+    print_tree(pstMsg1);
 #endif
-	return true;
+    return true;
 }
 
 void print_tree(char* _pstMsg)
 {
 #ifdef PRINT_DEBUG
-	for(int i = 0 ; i < iTab ; i++)
-	{
-		printf("\t");
-	}
-	printf("%s\n", _pstMsg);
+    for(int i = 0 ; i < iTab ; i++)
+    {
+        printf("\t");
+    }
+    printf("%s\n", _pstMsg);
 #endif
 }
 /*--------------------------------------------------------------------------*/

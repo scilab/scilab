@@ -1,10 +1,10 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
-c 
+c
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
-c are also available at    
+c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
       subroutine funs(id)
@@ -15,18 +15,19 @@ c     ====================================================================
       parameter (nz1=nsiz-1,nz2=nsiz-2)
       integer id(nsiz),istr(nlgh)
 c
-      logical eqid,cresmat
+      logical cresmat
       integer srhs,percen,fptr,slhs,r
       integer iadr
+      logical toreturn
       data nclas/29/,percen/56/
 c
       iadr(l)=l+l-1
-c     
+c
 c     look only in scilab code function libraries
       if(fin.eq.-3) goto 35
       if(fin.eq.-4) goto 30
-c     
-c     
+c
+c
       if (comp(1).ne.0) then
 c     if  compilation mode skip primitive functions
          fin=0
@@ -45,66 +46,24 @@ c     look for name in primitive functions
          fin = mod(fptr,1000)
       endif
       return
-c     
+c
 c     is a scilab code function already loaded in the variables stack
- 30   k=bot-1
- 31   k=k+1
-      if(k.gt.isiz) goto 35
-      if(.not.eqid(idstk(1,k),id)) goto 31
-      il=iadr(lstk(k))
-c     modif 1.3 SS
-      if(istk(il).ne.11.and.istk(il).ne.13) then
-         fin=0
-         fun=0
+ 30   call sivars(id, toreturn)
+      if(toreturn) then
          return
       endif
-      fin=k
-      fun=-1
-      return
-c     
+c
 c     look in scilab code function libraries
- 35   k=bot-1
- 36   k=k+1
-      if(k.ge.isiz) then
-         fin=0
-         fun=0
+ 35   call siflibs(id, k, istr, lbibn, nbibn, ilp, nn, toreturn)
+      if(toreturn) then
          return
       endif
-      il=iadr(lstk(k))
-      if(istk(il).ne.14) goto 36
-      nbibn=istk(il+1)
-      lbibn=il+2
-      il=lbibn+nbibn
-      ilp=il+1
-      call namstr(id,istr,nn,1)
-      ip=abs(istr(1))
-      if(ip.eq.percen) ip=abs(istr(2))
-      ip=max(1,ip-9)
-      if(ip.gt.nclas) goto 36
-      n=istk(ilp+ip)-istk(ilp+ip-1)
-      if(n.eq.0) goto 36
-      iln=ilp+nclas+1+(istk(ilp+ip-1)-1)*nsiz
-      do 37 l=1,n
-         if(eqid(id,istk(iln))) goto 39
-         iln=iln+nsiz
- 37   continue
-      goto 36
-c     
-c     
- 39   if(fin.ne.-1.and.fin.ne.-3) goto 40
-      fun=k
-      fin=l
-      return
-c     
- 40   fin=l
-      if(err1.ne.0) then
-         fun=0
-         fin=0
-         return
-      endif
-c     
+c
+c
+
+c
 c     load it in the variables stack
-      
+
 c     create a variable with the bin file path
       n=nbibn
 c     get name and its length
@@ -115,7 +74,7 @@ c     get name and its length
 c     path
       call icopy(nbibn,istk(lbibn),1,istk(ilp),1)
 c     name
-      call icopy(nn,istr,1,istk(ilp+nbibn),1) 
+      call icopy(nn,istr,1,istk(ilp+nbibn),1)
 c     extension
       call cvstr(4,istk(ilp+nbibn+nn),'.bin',0)
 c     load variables stored in the given file
@@ -157,7 +116,3 @@ c     .  requested varible not loaded
       return
 c
       end
-
-
-
-

@@ -49,6 +49,7 @@ extern int sci_show_banner ;
 /*--------------------------------------------------------------------------*/ 
 int Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, int iCmdShow)
 {
+	int iExitCode = 0;
 	BOOL ShortCircuitExec = FALSE;
 	BOOL LaunchAFile = FALSE;
 	char *ScilabDirectory = NULL;
@@ -226,7 +227,7 @@ int Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, i
 	}		
 
 #ifndef _DEBUG
-	if ( (iCmdShow != SW_HIDE) || (iCmdShow != SW_MINIMIZE) )
+	if ( (iCmdShow != SW_HIDE) && (iCmdShow != SW_MINIMIZE) && (iCmdShow != SW_SHOWMINNOACTIVE) )
 	{
 		if ( (sci_show_banner) && (LaunchAFile == FALSE) ) splashScreen();
 	}
@@ -237,8 +238,6 @@ int Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, i
 	HideScilex(); /* hide console window */
 
 	createInnosetupMutex();
-	sci_windows_main (&startupf, path,(InitScriptType)pathtype, &lpath,memory);
-
-	return 0;
+	return sci_windows_main (&startupf, path,(InitScriptType)pathtype, &lpath,memory);
 }
 /*--------------------------------------------------------------------------*/ 

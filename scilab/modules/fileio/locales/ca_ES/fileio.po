@@ -8,13 +8,12 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-10-22 16:05+0000\n"
+"PO-Revision-Date: 2010-04-10 18:54+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -320,6 +319,8 @@ msgid ""
 "%s: Wrong type for input argument #%d: A filename or file descriptor "
 "expected.\n"
 msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un nom o un "
+"descriptor de fitxer.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A integer expected.\n"

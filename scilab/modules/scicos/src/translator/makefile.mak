@@ -18,60 +18,77 @@
 #
 # See the file ./license.txt
 
-MAKE=nmake /f makefile.mak
+!IF "$(OCAMLLIB)" == ""
+OCAMLPATH=C:\Program Files\Objective Caml
+!ELSE
+OCAMLPATH=$(OCAMLLIB)\..
+!ENDIF
+
+OCAMLPATHBIN=$(OCAMLPATH)\bin
+OCAMLPATHLIB=$(OCAMLPATH)\lib
+OCAMLC=ocamlc
+OCAMLOPT=ocamlopt
+OCAMLDEP=ocamldep
+CAMLP4=camlp4
+OCAMLYACC=ocamlyacc
+OCAMLLEX=ocamllex
+RM=del
+EXEC=modelicat.exe
+INCLUDEPATHS=-I ./compilation -I ./exceptionHandling -I ./parsing -I ./instantiation -I ./translation
 
 all::
-	@cd parsing
-	@$(MAKE) all
-	@cd ..
-
-	@cd compilation
-	@$(MAKE) all
-	@cd ..
-	
-	@cd instantiation
-	@$(MAKE) all
-	@cd ..	
-	
-	@cd exceptionHandling
-	@$(MAKE) all
-	@cd ..	
-	
-	@cd translation
-	@$(MAKE) all
-	@cd ..	
-	
+	$(OCAMLYACC) parsing/parser.mly
+	$(RM) parsing\parser.mli
+	$(OCAMLLEX) parsing/lexer.mll
+	$(OCAMLC) $(INCLUDEPATHS) -c parsing/syntax.ml parsing/parser.ml
+	$(OCAMLC) $(INCLUDEPATHS) -c parsing/parser.ml parsing/lexer.ml
+	$(OCAMLC) $(INCLUDEPATHS) -c parsing/lexer.ml parsing/linenum.ml
+	$(OCAMLC) $(INCLUDEPATHS) -c parsing/linenum.ml compilation/types.ml
+	$(OCAMLC) $(INCLUDEPATHS) -c compilation/types.ml compilation/nameResolve.ml
+	$(OCAMLC) $(INCLUDEPATHS) -c compilation/nameResolve.ml instantiation/instantiation.ml
+	$(OCAMLC) $(INCLUDEPATHS) -c instantiation/instantiation.ml exceptionHandling/msgDico.ml
+	$(OCAMLC) $(INCLUDEPATHS) -c exceptionHandling/msgDico.ml exceptionHandling/errorDico.ml
+	$(OCAMLC) $(INCLUDEPATHS) -c exceptionHandling/errorDico.ml exceptionHandling/exceptHandler.ml
+	$(OCAMLC) $(INCLUDEPATHS) -c exceptionHandling/exceptHandler.ml translation/libraryManager.ml
+	$(OCAMLC) $(INCLUDEPATHS) -c translation/libraryManager.ml translation/codeGeneration.ml
+	$(OCAMLC) $(INCLUDEPATHS) -c translation/codeGeneration.ml 
+	$(OCAMLC) $(INCLUDEPATHS) -c translation/versiondate.ml translation/translator.ml
+	$(OCAMLC) $(INCLUDEPATHS) -c translation/translator.ml parsing/syntax.ml
+	$(OCAMLOPT) $(INCLUDEPATHS) -c parsing/syntax.ml parsing/parser.ml
+	$(OCAMLOPT) $(INCLUDEPATHS) -c parsing/parser.ml parsing/lexer.ml
+	$(OCAMLOPT) $(INCLUDEPATHS) -c parsing/lexer.ml parsing/linenum.ml
+	$(OCAMLOPT) $(INCLUDEPATHS) -c parsing/linenum.ml compilation/types.ml
+	$(OCAMLOPT) $(INCLUDEPATHS) -c compilation/types.ml compilation/nameResolve.ml
+	$(OCAMLOPT) $(INCLUDEPATHS) -c compilation/nameResolve.ml instantiation/instantiation.ml
+	$(OCAMLOPT) $(INCLUDEPATHS) -c instantiation/instantiation.ml exceptionHandling/msgDico.ml
+	$(OCAMLOPT) $(INCLUDEPATHS) -c exceptionHandling/msgDico.ml exceptionHandling/errorDico.ml
+	$(OCAMLOPT) $(INCLUDEPATHS) -c exceptionHandling/errorDico.ml exceptionHandling/exceptHandler.ml
+	$(OCAMLOPT) $(INCLUDEPATHS) -c exceptionHandling/exceptHandler.ml translation/libraryManager.ml
+	$(OCAMLOPT) $(INCLUDEPATHS) -c translation/libraryManager.ml translation/codeGeneration.ml
+	$(OCAMLOPT) $(INCLUDEPATHS) -c translation/codeGeneration.ml 
+	$(OCAMLOPT) $(INCLUDEPATHS) -c translation/versiondate.ml translation/translator.ml
+	$(OCAMLOPT) $(INCLUDEPATHS) -c translation/translator.ml
+	$(OCAMLOPT) -o $(EXEC) $(INCLUDEPATHS) nums.cmxa ./parsing/syntax.cmx ./parsing/parser.cmx \
+	    ./parsing/lexer.cmx ./parsing/linenum.cmx ./compilation/types.cmx ./compilation/nameResolve.cmx \
+	    ./instantiation/instantiation.cmx ./exceptionHandling/msgDico.cmx ./exceptionHandling/errorDico.cmx \
+	    ./exceptionHandling/exceptHandler.cmx ./translation/libraryManager.cmx ./translation/codeGeneration.cmx \
+	    ./translation/versiondate.cmx ./translation/translator.cmx 
+	@copy $(EXEC) ..\..\..\..\bin\$(EXEC)
+	$(RM) parsing\parser.ml
+	$(RM) parsing\lexer.ml
 clean::
-	@cd compilation
-	@$(MAKE) clean
-	@cd ..
+	@-del /s *.cmi
+	@-del /s *.cmo
+	@-del /s *.cmx
+	@-del /s *.cma
+	@-del /s *.obj
+	@-del $(EXEC)
 	
-	@cd instantiation
-	@$(MAKE) clean
-	@cd ..	
-	
-	@cd exceptionHandling
-	@$(MAKE) clean
-	@cd ..	
-	
-	@cd translation
-	@$(MAKE) clean
-	@cd ..	
-	
-distclean::	
-	@cd compilation
-	@$(MAKE) distclean
-	@cd ..
-	
-	@cd instantiation
-	@$(MAKE) distclean
-	@cd ..	
-	
-	@cd exceptionHandling
-	@$(MAKE) distclean
-	@cd ..	
-	
-	@cd translation
-	@$(MAKE) distclean
-	@cd ..	
-	
+distclean::
+	@-del /s *.cmi
+	@-del /s *.cmo
+	@-del /s *.cmx
+	@-del /s *.cma
+	@-del /s *.obj
+	@-del $(EXEC)
+	@-del ..\..\..\..\bin\$(EXEC)

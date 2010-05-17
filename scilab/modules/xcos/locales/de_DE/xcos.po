@@ -8,13 +8,12 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-01-07 15:43+0000\n"
-"Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
+"PO-Revision-Date: 2010-04-13 10:56+0000\n"
+"Last-Translator: Tim Schulze-Hartung <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -253,6 +252,9 @@ msgstr "Umdrehen"
 msgid "Format"
 msgstr "Format"
 
+msgid "From %s"
+msgstr "Von %s"
+
 msgid "Generate SuperBlock, please wait ..."
 msgstr "Generiere Superblock, bitte warten..."
 
@@ -261,6 +263,9 @@ msgstr "generoere C  Code für Superblock"
 
 msgid "Get infos"
 msgstr "Informationen holen"
+
+msgid "Goto %s"
+msgstr "Gehe zu %s"
 
 msgid "Grid"
 msgstr "Raster"
@@ -315,6 +320,7 @@ msgstr "Links"
 
 msgid "Light Simulation trace (Discrete and Continuous part switches)"
 msgstr ""
+"Leichte Simulationsspur (diskrete und kontinuierliche Gegenstandsschalter)"
 
 msgid "Link Style"
 msgstr "Stil des Links"
@@ -437,7 +443,7 @@ msgid "Rows"
 msgstr "Reihen"
 
 msgid "Same command executed again"
-msgstr ""
+msgstr "gleicher Befehl nochmals ausgeführt"
 
 msgid "Save"
 msgstr "Speichern"
@@ -478,7 +484,7 @@ msgid "Set Parameters"
 msgstr "Setzte Parameter"
 
 msgid "Set block parameters"
-msgstr ""
+msgstr "Setze Blockparameter"
 
 msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
 msgstr ""
@@ -526,6 +532,9 @@ msgstr "Gerade"
 msgid "Superblock mask"
 msgstr "Superblock Maske"
 
+msgid "The Scicos libraries are not loaded"
+msgstr "Die Scicos-Bibliotheken wurden nicht geladen"
+
 msgid "The Scilab Consortium (DIGITEO)"
 msgstr "Das Scilab Konsortium (DIGITEO)"
 
@@ -552,13 +561,21 @@ msgid "UnGroup"
 msgstr "nicht gruppieren"
 
 msgid "Unable to communicate with the interpreter"
-msgstr ""
+msgstr "Kann nicht mit dem Interpreter kommunizieren"
+
+#, c-format
+msgid "Unable to open %s"
+msgstr "%s kann nicht geöffnet werden"
+
+#, c-format
+msgid "Unable to simulate %s"
+msgstr "%s kann nicht simuliert werden"
 
 msgid "Undo"
 msgstr "Rückgängig machen"
 
 msgid "Unknown Diagram Version : "
-msgstr ""
+msgstr "Unbekannte Diagrammversion "
 
 msgid "Untitled"
 msgstr "Unbenannt"

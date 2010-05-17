@@ -8,15 +8,16 @@
 ; are also available at
 ; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 ;
-;##############################################################################################################
-; Script d'installation Inno Setup (5.2.1) pour scilab
-; Version TRUNK
-;##############################################################################################################
 ;--------------------------------------------------------------------------------------------------------------
 ; double module
 ;--------------------------------------------------------------------------------------------------------------
 ;
 #define DOUBLE "double"
+;
+Source: bin\{#DOUBLE}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#DOUBLE}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\double_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\double_f.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#DOUBLE}\VERSION.xml; DestDir: {app}\modules\{#DOUBLE}; Components: {#COMPN_SCILAB}
 Source: modules\{#DOUBLE}\readme.txt; DestDir: {app}\modules\{#DOUBLE}; Components: {#COMPN_SCILAB}

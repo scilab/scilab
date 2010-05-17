@@ -1,7 +1,7 @@
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006/2007
-##########
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2006-2007 - INRIA - Sylvestre LEDRU
+#
+# This file is distributed under the same license as the Scilab package.
 
 STRING_C_SOURCES = src/c/code2str.c \
 src/c/stripblanks.c \
@@ -24,7 +24,6 @@ src/c/stringsstrrchr.c \
 src/c/stringsstrrev.c \
 src/c/stringsCompare.c \
 src/c/isalphanum.c \
-src/c/NumTokens.c \
 src/c/StringConvert.c \
 src/c/scistrtostr.c
 

@@ -24,6 +24,8 @@
 
 /* JavaDoc for InterpreterManagementJNI class */
 %pragma(java) jniclassclassmodifiers=%{
+/* It is generated code. Disable checkstyle */
+//CHECKSTYLE:OFF
  /**
    * All Scilab interpreter management used in Java console
    * @author Vincent COUVERT

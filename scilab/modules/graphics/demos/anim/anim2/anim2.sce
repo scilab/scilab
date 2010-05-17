@@ -13,7 +13,7 @@ curFig             = scf(100001);
 clf(curFig,"reset");
 demo_viewCode("anim2.sce");
 
-xselect(); //raise the graphic window
+show_window(); //raise the graphic window
 mode(0);
 
 // Creates the 3D curve points
