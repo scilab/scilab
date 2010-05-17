@@ -227,7 +227,7 @@ int Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, i
 	}		
 
 #ifndef _DEBUG
-	if ( (iCmdShow != SW_HIDE) || (iCmdShow != SW_MINIMIZE) )
+	if ( (iCmdShow != SW_HIDE) && (iCmdShow != SW_MINIMIZE) && (iCmdShow != SW_SHOWMINNOACTIVE) )
 	{
 		if ( (sci_show_banner) && (LaunchAFile == FALSE) ) splashScreen();
 	}

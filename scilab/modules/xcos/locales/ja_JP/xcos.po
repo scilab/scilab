@@ -8,13 +8,12 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-04-01 05:14+0000\n"
-"Last-Translator: HSUMIYA <Unknown>\n"
+"PO-Revision-Date: 2010-04-16 17:53+0000\n"
+"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
 "Language-Team: Japanese <zz-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-04-16 07:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
@@ -245,7 +244,7 @@ msgid "Format"
 msgstr "フォーマット"
 
 msgid "From %s"
-msgstr ""
+msgstr "%s から"
 
 msgid "Generate SuperBlock, please wait ..."
 msgstr "SuperBlock生成, お待ちください ..."
@@ -257,7 +256,7 @@ msgid "Get infos"
 msgstr "情報取得"
 
 msgid "Goto %s"
-msgstr ""
+msgstr "%s へ"
 
 msgid "Grid"
 msgstr "グリッド"
@@ -514,7 +513,7 @@ msgid "Superblock mask"
 msgstr "スーパーブロック・マスク"
 
 msgid "The Scicos libraries are not loaded"
-msgstr ""
+msgstr "Scilabライブラリは取り込めませんでした"
 
 msgid "The Scilab Consortium (DIGITEO)"
 msgstr "Scilab コンソーシアム (DIGITEO)"
@@ -546,11 +545,11 @@ msgstr "インタープリタと連携できません"
 
 #, c-format
 msgid "Unable to open %s"
-msgstr ""
+msgstr "%s を開けません"
 
 #, c-format
 msgid "Unable to simulate %s"
-msgstr ""
+msgstr "%s をシュミレートできません"
 
 msgid "Undo"
 msgstr "元に戻す"

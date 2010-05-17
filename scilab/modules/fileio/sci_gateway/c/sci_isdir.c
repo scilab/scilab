@@ -87,7 +87,7 @@ int sci_isdir(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+	sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, NULL);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);

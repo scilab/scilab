@@ -86,7 +86,7 @@
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
 				AdditionalOptions="/fixed:no"
-				AdditionalDependencies="Libscilab.lib output_stream_f.lib"
+				AdditionalDependencies="Libscilab.lib output_stream_f.lib io.lib"
 				OutputFile="$(SolutionDir)bin\io_f.dll"
 				LinkIncremental="2"
 				ModuleDefinitionFile="io_f.def"
@@ -180,7 +180,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/fixed:no"
-				AdditionalDependencies="Libscilab.lib output_stream_f.lib"
+				AdditionalDependencies="Libscilab.lib output_stream_f.lib io.lib"
 				OutputFile="$(SolutionDir)bin\io_f.dll"
 				LinkIncremental="2"
 				ModuleDefinitionFile="io_f.def"
@@ -265,7 +265,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Libscilab.lib output_stream_f.lib"
+				AdditionalDependencies="Libscilab.lib output_stream_f.lib io.lib"
 				OutputFile="$(SolutionDir)bin\io_f.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="io_f.def"
@@ -354,7 +354,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Libscilab.lib output_stream_f.lib"
+				AdditionalDependencies="Libscilab.lib output_stream_f.lib io.lib"
 				OutputFile="$(SolutionDir)bin\io_f.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="io_f.def"

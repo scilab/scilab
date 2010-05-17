@@ -61,6 +61,7 @@
     <title>Description</title>
     <para>Make a link from a tcl source variable to a tcl destination
     variable.</para>
+    <para>More information about Tcl/Tk: <ulink url="http://www.tcl.tk/doc/">http://www.tcl.tk/doc/</ulink></para>
   </refsection>
   <refsection>
     <title>Examples</title>

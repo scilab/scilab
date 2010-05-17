@@ -17,6 +17,7 @@ mputl(['function r=circe()'
 '  try b=0,end'
 '  r= 0'       
 'endfunction'],TMPDIR+'/circe.sci');
+for i=1,exec(TMPDIR+'/circe.sci'),end
  
 function r=circe()
   for j=1,end

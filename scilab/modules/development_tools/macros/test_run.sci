@@ -1290,7 +1290,6 @@ function st = st_run(st)
 	if ( (st.reference=="check") & (testsuite.reference=="check") ) | (testsuite.reference=="create") then
 		
 		//  Do some modification in  dia file
-		dia(grep(dia,"exec("))                     = [];
 		dia(grep(dia,"write(%io(2),tmpdirToPrint"))= [];
 		dia(grep(dia,"TMPDIR1"))                   = [];
 		dia(grep(dia,"diary(0)"))                  = [];

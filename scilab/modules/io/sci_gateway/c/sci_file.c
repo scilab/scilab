@@ -210,7 +210,7 @@ int C2F(sci_file)(char *fname,unsigned long fname_len)
 					FREE(pStVarThree); pStVarThree = NULL; 
 
 					// get lenStVarTwo value
-					sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
+					sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, NULL);
 					if(sciErr.iErr)
 					{
 						printError(&sciErr, 0);

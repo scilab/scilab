@@ -11,6 +11,11 @@ function []=oldplot(x,y,legx,legy,leg)
 // For backward compatibility with some very old stuff
 //! 
   [lhs,rhs]=argn(0);
+
+  if and(rhs<>[1:5]) then
+    error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "oldplot", 1, 5));
+  end
+
   if rhs >=2,
     if type(y)==1, 
       if prod(size(x))<>prod(size(y)),

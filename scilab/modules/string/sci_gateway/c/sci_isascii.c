@@ -167,7 +167,7 @@ static int isasciiStrings(char *fname,int *piAddressVarOne)
 		int i = 0;
 		int lengthAllStrings = 0;
 
-		sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne,&m1,&n1,lenStVarOne,pwcStVarOne);
+		sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne,&m1,&n1,lenStVarOne, NULL);
 		if(sciErr.iErr)
 		{
 			if (lenStVarOne)

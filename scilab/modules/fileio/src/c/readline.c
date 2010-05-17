@@ -16,6 +16,7 @@
 #include "readline.h"
 #include "mgetl.h"
 #include "stack-def.h" /* bsiz */
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 #define EMPTYSTR ""
 /*--------------------------------------------------------------------------*/
@@ -99,6 +100,13 @@ int LineRead(int fd, char buf[], int n, int *cnt, int *nr)
 
     *cnt = (int)strlen(buf) + 1;
     *nr = *cnt;
+
+    if (lines)
+    {
+            freeArrayOfString(lines, nbLinesReaded);
+            lines = NULL;
+    }
+
     return returnedInfo;
 }
 /*--------------------------------------------------------------------------*/

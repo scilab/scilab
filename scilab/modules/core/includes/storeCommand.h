@@ -11,10 +11,9 @@
  *
  */
 
-#ifndef __DYNAMIC_MENUS_H__
-#define __DYNAMIC_MENUS_H__
+#ifndef __STORECOMMAND_H__
+#define __STORECOMMAND_H__
 
-#include "dynlib_action_binding.h"
 #include "machine.h"
 
 /*
@@ -22,7 +21,7 @@
  * commandQueue
  * @return
  */
-ACTION_BINDING_IMPEXP int ismenu(void);
+int ismenu(void);
 
 /**
  * try to execute a command or add it to the end of command queue
@@ -30,7 +29,7 @@ ACTION_BINDING_IMPEXP int ismenu(void);
  * @param command the command
  * @return <ReturnValue>
  */
-ACTION_BINDING_IMPEXP int StoreCommand (char *command);
+int StoreCommand (char *command);
 
 /**
  * try to execute a command or add it to the end of command queue
@@ -39,7 +38,7 @@ ACTION_BINDING_IMPEXP int StoreCommand (char *command);
  * @param flag a internal execution flag for sequential execution
  * @return <ReturnValue>
  */
-ACTION_BINDING_IMPEXP int StoreCommandWithFlag (char *command, int flag);
+int StoreCommandWithFlag (char *command, int flag);
 
 /**
  * @TODO add comment
@@ -47,24 +46,24 @@ ACTION_BINDING_IMPEXP int StoreCommandWithFlag (char *command, int flag);
  * @param str
  * @return <ReturnValue>
  */
-ACTION_BINDING_IMPEXP int GetCommand (char *str);
+int GetCommand (char *str);
 
 /**
 * try to execute a command or add it to the _BEGINNING_ of command queue
 * flag = 0 : the command is not shown in scilab window
 * flag = 1 : the command is shown in scilab window (if at prompt) and executed sequentially
 */
-ACTION_BINDING_IMPEXP int StorePrioritaryCommandWithFlag (char *command,int flag);
+int StorePrioritaryCommandWithFlag (char *command,int flag);
 
 /**
 *
 */
-ACTION_BINDING_IMPEXP  int C2F(getmen)(char * btn_cmd,int * lb, int * entry);
+int C2F(getmen)(char * btn_cmd,int * lb, int * entry);
 
 /**
 * check if command queue is empty
 * @return 1 if empty , 0 is not empty
 */
-ACTION_BINDING_IMPEXP int isEmptyCommandQueue(void);
+int isEmptyCommandQueue(void);
 
-#endif /* __DYNAMIC_MENUS_H__ */
+#endif /* __STORECOMMAND_H__ */

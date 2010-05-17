@@ -7,7 +7,7 @@
 // you should have received as part of this distribution.  The terms
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-// <-- JVM_NOT_MANDATORY -->
+// <-- JVM NOT MANDATORY -->
 // <-- ENGLISH IMPOSED -->
 //
 // assert_close --
@@ -50,16 +50,21 @@ endfunction
 function y=test_func(x)
   y=x^2
 endfunction
+rand("seed",0);
 x0 = 10;
-T_init = compute_initial_temp(x0, test_func, 0.8, 1000);
-[x_best, f_best, mean_list, var_list, temp_list, f_history, x_history,iter] = optim_sa(x0, test_func, 10, 1000, T_init, %F);
-assert_close ( x_best , 0.0 , 1.e-2 );
-assert_close ( f_best , 0.0 , 1.e-2 );
-assert_equal ( size(mean_list) , [1 10] );
-assert_equal ( size(var_list) , [1 10] );
-assert_equal ( size(temp_list) , [1 10] );
-assert_equal ( size(f_history) , 10 );
-assert_equal ( size(x_history) , 10 );
+ItExt = 30;
+ItInt = 50;
+Log = %f;
+ItMX = 100;
+T_init = compute_initial_temp(x0, test_func, 0.8, ItMX);
+[x_best, f_best, mean_list, var_list, temp_list, f_history, x_history,iter] = optim_sa(x0, test_func, ItExt, ItInt, T_init, Log);
+assert_close ( x_best , 0.0 , 1.e-1 );
+assert_close ( f_best , 0.0 , 1.e-1 );
+assert_equal ( size(mean_list) , [1 ItExt] );
+assert_equal ( size(var_list) , [1 ItExt] );
+assert_equal ( size(temp_list) , [1 ItExt] );
+assert_equal ( size(f_history) , ItExt );
+assert_equal ( size(x_history) , ItExt );
 assert_equal ( iter>0 , %t );
 ///////////////////////////////////////////
 // Test that we can configure our own neighbour function
@@ -75,20 +80,17 @@ function x_neigh = myneigh_func ( x_current, T , param)
   sa_max_delta = 0.1*ones(nxrow,nxcol);
   x_neigh = x_current + (sa_max_delta - sa_min_delta).*rand(nxrow,nxcol) + sa_min_delta;
 endfunction
+rand("seed",0);
 x0          = [2 2];
 Proba_start = 0.7;
 It_Pre      = 100;
 It_extern   = 50;
-It_intern   = 100;
+It_intern   = 50;
 saparams = init_param();
 saparams = add_param(saparams,"neigh_func", myneigh_func);
 T0 = compute_initial_temp(x0, quad, Proba_start, It_Pre, saparams);
-Warning : redefining function: result                  . Use funcprot(0) to avoid this message
-
 Log = %f;
 [x_opt, f_opt] = optim_sa(x0, quad, It_extern, It_intern, T0, Log,saparams);
-Warning : redefining function: result                  . Use funcprot(0) to avoid this message
-
 assert_close ( x_opt , [4 3] ,  1.e-1 );
 assert_close ( f_opt , 0 ,  1.e-1 );
 ///////////////////////////////////////////
@@ -96,10 +98,11 @@ assert_close ( f_opt , 0 ,  1.e-1 );
 function f = quadp ( x , p )
   f = (x(1) - p(1))^2 + (x(2) - p(2))^2
 endfunction
+rand("seed",0);
 x0 = [-1 -1];
 p = [4 3];
 T0 = compute_initial_temp(x0, list(quadp,p) , Proba_start, It_Pre);
-[x_opt, f_opt] = optim_sa(x0, list(quadp,p) , 10, 1000, T0, %f);
+[x_opt, f_opt] = optim_sa(x0, list(quadp,p) , 30, 30, T0, %f);
 assert_close ( x_opt , [4 3] ,  1.e-1 );
 assert_close ( f_opt , 0 ,  1.e-1 );
 ///////////////////////////////////////////
@@ -112,35 +115,40 @@ endfunction
 // The threshold is rather loose.
 function stop = outfunc ( itExt , x_best , f_best , T , saparams )
   [mythreshold,err] = get_param(saparams,"mythreshold",0);
-  mprintf ( "Iter = #%d, \t x_best=[%f %f], \t f_best = %e, \t T = %e\n", itExt , x_best(1),x_best(2) , f_best , T )
+  v = format()
+  format("e",10)
+  sxbest = string(x_best)
+  mprintf ( "Iter = #%-4d, \t x_best=[%12s %12s], f_best = %12s, T = %12s\n", itExt , sxbest(1), sxbest(2) , string(f_best) , string(T) )
+  if ( v(1) == 0 ) then
+    format("e",v(2))
+  else
+    format("v",v(2))
+  end
   stop = ( abs(f_best) < mythreshold )
 endfunction
+rand("seed",0);
 x0 = [-1 -1];
 saparams = init_param();
 saparams = add_param(saparams,"output_func", outfunc );
-saparams = add_param(saparams,"mythreshold", 1.e-2 );
-rand("seed",0);
+saparams = add_param(saparams,"mythreshold", 1.e-1 );
 T0 = compute_initial_temp(x0, quad , 0.7, 100, saparams);
 // Notice that the number of external iterations is %inf, so 
 // that the external loop never stops.
 // This allows to check that the output function really allows to 
 // stop the algorithm.
 [x_best, f_best, mean_list, var_list, temp_list, f_history, x_history , iter ] = optim_sa(x0, quad , %inf, 100, T0, %f, saparams);
-Iter = #1, 	 x_best=[-1.000000 -1.000000], 	 f_best = 4.100000e+001, 	 T = 1.453537e+000
-Iter = #2, 	 x_best=[-0.408041 -0.318262], 	 f_best = 3.044169e+001, 	 T = 1.308183e+000
-Iter = #3, 	 x_best=[-0.231406 -0.481078], 	 f_best = 3.002270e+001, 	 T = 1.177365e+000
-Iter = #4, 	 x_best=[0.661827 0.083743], 	 f_best = 1.964796e+001, 	 T = 1.059628e+000
-Iter = #5, 	 x_best=[0.931415 0.820681], 	 f_best = 1.416565e+001, 	 T = 9.536654e-001
-Iter = #6, 	 x_best=[1.849796 1.222178], 	 f_best = 7.784028e+000, 	 T = 8.582988e-001
-Iter = #7, 	 x_best=[2.539775 1.414591], 	 f_best = 4.645780e+000, 	 T = 7.724690e-001
-Iter = #8, 	 x_best=[3.206047 2.394497], 	 f_best = 9.969957e-001, 	 T = 6.952221e-001
-Iter = #9, 	 x_best=[3.164998 2.633170], 	 f_best = 8.317924e-001, 	 T = 6.256999e-001
-Iter = #10, 	 x_best=[3.164998 2.633170], 	 f_best = 8.317924e-001, 	 T = 5.631299e-001
-Iter = #11, 	 x_best=[3.164998 2.633170], 	 f_best = 8.317924e-001, 	 T = 5.068169e-001
-Iter = #12, 	 x_best=[3.961464 2.903763], 	 f_best = 1.074654e-002, 	 T = 4.561352e-001
-Iter = #13, 	 x_best=[3.961464 2.903763], 	 f_best = 1.074654e-002, 	 T = 4.105217e-001
-Iter = #14, 	 x_best=[3.961464 2.903763], 	 f_best = 1.074654e-002, 	 T = 3.694695e-001
-Iter = #15, 	 x_best=[3.931929 3.003181], 	 f_best = 4.643767e-003, 	 T = 3.325226e-001
+Iter = #1   , 	 x_best=[  -1.000D+00   -1.000D+00], f_best =    4.100D+01, T =    1.454D+00
+Iter = #2   , 	 x_best=[  -4.080D-01   -3.183D-01], f_best =    3.044D+01, T =    1.308D+00
+Iter = #3   , 	 x_best=[  -2.314D-01   -4.811D-01], f_best =    3.002D+01, T =    1.177D+00
+Iter = #4   , 	 x_best=[   6.618D-01    8.374D-02], f_best =    1.965D+01, T =    1.060D+00
+Iter = #5   , 	 x_best=[   9.314D-01    8.207D-01], f_best =    1.417D+01, T =    9.537D-01
+Iter = #6   , 	 x_best=[   1.850D+00    1.222D+00], f_best =    7.784D+00, T =    8.583D-01
+Iter = #7   , 	 x_best=[   2.540D+00    1.415D+00], f_best =    4.646D+00, T =    7.725D-01
+Iter = #8   , 	 x_best=[   3.206D+00    2.394D+00], f_best =    9.970D-01, T =    6.952D-01
+Iter = #9   , 	 x_best=[   3.165D+00    2.633D+00], f_best =    8.318D-01, T =    6.257D-01
+Iter = #10  , 	 x_best=[   3.165D+00    2.633D+00], f_best =    8.318D-01, T =    5.631D-01
+Iter = #11  , 	 x_best=[   3.165D+00    2.633D+00], f_best =    8.318D-01, T =    5.068D-01
+Iter = #12  , 	 x_best=[   3.961D+00    2.904D+00], f_best =    1.075D-02, T =    4.561D-01
 assert_close ( x_best , [4 3] ,  1.e-1 );
-assert_close ( f_best , 0 ,  1.e-2 );
+assert_close ( f_best , 0 ,  1.e-1 );
 assert_equal ( iter > 0 , %t );

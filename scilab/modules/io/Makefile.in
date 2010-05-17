@@ -15,10 +15,10 @@
 
 @SET_MAKE@
 
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006
-##########
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+#
+# This file is distributed under the same license as the Scilab package.
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006-2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
@@ -118,7 +118,7 @@ libsciio_la_DEPENDENCIES = $(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__objects_1 = libsciio_la-getpidc.lo libsciio_la-setenvc.lo \
 	libsciio_la-systemc.lo libsciio_la-getenvc.lo \
-	libsciio_la-GetenvB.lo
+	libsciio_la-GetenvB.lo libsciio_la-v2cuniterror.lo
 am__objects_2 = v2unit.lo newsave.lo v2cunit.lo writebuf.lo
 am__objects_3 = libsciio_la-sci_read4b.lo libsciio_la-sci_getio.lo \
 	libsciio_la-sci_readb.lo libsciio_la-sci_host.lo \
@@ -408,7 +408,8 @@ IO_C_SOURCES = src/c/getpidc.c \
 src/c/setenvc.c \
 src/c/systemc.c \
 src/c/getenvc.c \
-src/c/GetenvB.c
+src/c/GetenvB.c \
+src/c/v2cuniterror.c
 
 IO_FORTRAN_SOURCES = src/fortran/v2unit.f \
 src/fortran/newsave.f \
@@ -637,6 +638,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_writeb.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-setenvc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-systemc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-v2cuniterror.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -693,6 +695,13 @@ libsciio_la-GetenvB.lo: src/c/GetenvB.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/GetenvB.c' object='libsciio_la-GetenvB.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -c -o libsciio_la-GetenvB.lo `test -f 'src/c/GetenvB.c' || echo '$(srcdir)/'`src/c/GetenvB.c
+
+libsciio_la-v2cuniterror.lo: src/c/v2cuniterror.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -MT libsciio_la-v2cuniterror.lo -MD -MP -MF $(DEPDIR)/libsciio_la-v2cuniterror.Tpo -c -o libsciio_la-v2cuniterror.lo `test -f 'src/c/v2cuniterror.c' || echo '$(srcdir)/'`src/c/v2cuniterror.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciio_la-v2cuniterror.Tpo $(DEPDIR)/libsciio_la-v2cuniterror.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/v2cuniterror.c' object='libsciio_la-v2cuniterror.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -c -o libsciio_la-v2cuniterror.lo `test -f 'src/c/v2cuniterror.c' || echo '$(srcdir)/'`src/c/v2cuniterror.c
 
 libsciio_la-sci_read4b.lo: sci_gateway/c/sci_read4b.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -MT libsciio_la-sci_read4b.lo -MD -MP -MF $(DEPDIR)/libsciio_la-sci_read4b.Tpo -c -o libsciio_la-sci_read4b.lo `test -f 'sci_gateway/c/sci_read4b.c' || echo '$(srcdir)/'`sci_gateway/c/sci_read4b.c

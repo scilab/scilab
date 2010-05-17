@@ -7,3 +7,6 @@ EXPORTS
  com_
  ;core_f
  sigbas_
+ StoreCommand
+ StoreCommandWithFlag
+ 

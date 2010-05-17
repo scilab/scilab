@@ -18,7 +18,12 @@ c
       data resume/505155099,673713686,nz2*673720360/
       data eol/99/,semi/43/
       data comma/52/
-c
+c      
+      if(rhs.eq.0) then
+         call error(46)
+         return
+      endif
+
       call ref2val
       if(rhs.ne.lhs) then
          call error(41)

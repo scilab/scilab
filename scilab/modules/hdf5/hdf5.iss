@@ -48,5 +48,5 @@ Source: thirdparty\jhdf5.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCIL
 ;
 ;Source: modules\{#HDF5}\demos\*.*; DestDir: {app}\modules\{#HDF5}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#HDF5}\tests\*.*; DestDir: {app}\modules\{#HDF5}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
+Source: modules\{#HDF5}\tests\*.*; DestDir: {app}\modules\{#HDF5}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
 ;--------------------------------------------------------------------------------------------------------------

@@ -17,7 +17,8 @@
   </info>
   <refnamediv>
     <refname>fieldnames</refname>
-    <refpurpose>récupère le nom des champs d'une tlist, d'une mlist ou d'une struct</refpurpose>
+    <refpurpose>récupère le nom des champs d'une tlist, d'une mlist ou
+    d'une struct</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
@@ -35,7 +36,8 @@
       <varlistentry>
         <term>f</term>
         <listitem>
-          <para>Un vecteur colonne de chaînes de caractères représentant les noms des champs.</para>
+          <para>Un vecteur colonne de chaînes de caractères
+          représentant les noms des champs.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -44,9 +46,9 @@
     <title>Description</title>
     <para>
       La fonction <literal>fieldnames</literal> retourne le nom des
-      champs d'une tlist, mlist ou struct. Dans Scilab 5.2,
-      <literal>fieldnames</literal> ne fonctionne pas sur le type
-      cell.
+      champs d'une tlist, mlist ou
+      struct. <literal>fieldnames</literal> ne fonctionne pas sur le
+      type cell.
     </para>
   </refsection>
   <refsection>

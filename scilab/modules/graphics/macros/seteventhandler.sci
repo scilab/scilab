@@ -11,7 +11,7 @@ function seteventhandler(name)
 [lhs,rhs] = argn(0) ;
 
 if ( rhs <> 1 ) then
-  error( 39 ) ;
+  error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "seteventhandler", 1));
   return ;
 end
 

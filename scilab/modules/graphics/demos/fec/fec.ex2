@@ -17,7 +17,7 @@ exec(path+'fec_demo.sci');
 curFig             = scf(100001);
 clf(curFig,"reset");
 
-xselect();
+show_window();
 
 xset("colormap",jetcolormap(128));
 

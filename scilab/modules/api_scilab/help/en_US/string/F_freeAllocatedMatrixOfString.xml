@@ -27,8 +27,10 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>void freeAllocatedMatrixOfString(int _iRows, int _iCols, char** _pstData)</synopsis>
-        <synopsis xml:id="">void freeAllocatedMatrixOfWideString(int _iRows, int _iCols, wchar_t** _pwstData)</synopsis>
+        <synopsis>
+          void freeAllocatedMatrixOfString(int _iRows, int _iCols, char** _pstData)
+          void freeAllocatedMatrixOfWideString(int _iRows, int _iCols, wchar_t** _pwstData)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>

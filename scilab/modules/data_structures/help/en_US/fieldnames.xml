@@ -44,8 +44,8 @@
     <title>Description</title>
     <para>
       The <literal>fieldnames</literal> function returns field names
-      of a tlist, mlist or struct. As for Scilab 5.2,
-      <literal>fieldnames</literal> doesn't work on cells.
+      of a tlist, mlist or struct. <literal>fieldnames</literal>
+      does not work on cells.
     </para>
   </refsection>
   <refsection>

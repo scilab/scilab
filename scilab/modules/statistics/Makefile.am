@@ -1,8 +1,8 @@
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006/2007
-### Copyright (C) 2009 - DIGITEO - Vincent LIARD
-##########
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2006-2007 - INRIA - Sylvestre LEDRU
+# Copyright (C) 2009 - DIGITEO - Vincent LIARD
+#
+# This file is distributed under the same license as the Scilab package.
 
 STATISTICS_C_SOURCES = src/c/CdfBase.c \
 src/c/ipmpar1.c \

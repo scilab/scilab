@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA
-// Copyright (C) 2009 - DIGITEO - Allan CORNET
+// Copyright (C) 2009-2010 - DIGITEO - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -19,6 +19,10 @@ function write_csv(var, fname, sep, dec)
 // write_csv(a,'/tmp/foo.txt',sep=',')
 
   if exists('sep','local') == 0 then
+    sep = ascii(9);
+  end
+  
+  if sep == '\t' then
     sep = ascii(9);
   end
   

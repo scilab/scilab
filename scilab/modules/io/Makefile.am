@@ -1,13 +1,15 @@
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006
-##########
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+#
+# This file is distributed under the same license as the Scilab package.
+
 
 IO_C_SOURCES = src/c/getpidc.c \
 src/c/setenvc.c \
 src/c/systemc.c \
 src/c/getenvc.c \
-src/c/GetenvB.c
+src/c/GetenvB.c \
+src/c/v2cuniterror.c
 
 IO_FORTRAN_SOURCES = src/fortran/v2unit.f \
 src/fortran/newsave.f \

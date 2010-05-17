@@ -82,7 +82,7 @@ int sci_movefile(char *fname,unsigned long fname_len)
 	}
 
 	// get lenStVarOne
-	sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
+	sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, NULL);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -139,7 +139,7 @@ int sci_movefile(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
+	sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, NULL);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);

@@ -110,6 +110,7 @@ ref=["function []=foo()";
      "  z = 3;";
      "endfunction"];
 mputl(ref,TMPDIR+'/foo.sci');
+exec(TMPDIR+'/foo.sci')
  
 function []=foo()
   y = 1

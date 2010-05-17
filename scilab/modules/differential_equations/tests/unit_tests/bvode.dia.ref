@@ -41,6 +41,7 @@ if norm(z-z1) > 1D8*%eps then bugmes();quit;end;
 clear gsub
 clear guess
 clear trusol
+exec(SCI+'/modules/differential_equations/tests/unit_tests/bvode_tst.sci');
 [z,zf]=col1();
 if maxi(abs(z-zf))>1.e-5 then bugmes();quit;end
 [z,zf]=col2(0);

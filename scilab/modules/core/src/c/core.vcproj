@@ -877,6 +877,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\storeCommand.c"
+				>
+			</File>
+			<File
 				RelativePath=".\str2sci.c"
 				>
 			</File>
@@ -1286,6 +1290,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\storeCommand.h"
+				>
+			</File>
+			<File
 				RelativePath=".\str2sci.h"
 				>
 			</File>
@@ -1368,10 +1376,6 @@
 		</File>
 		<File
 			RelativePath="..\..\sci_gateway\core_gateway.xml"
-			>
-		</File>
-		<File
-			RelativePath="..\..\sci_gateway\fundef"
 			>
 		</File>
 		<File

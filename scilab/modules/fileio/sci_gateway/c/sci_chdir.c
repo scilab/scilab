@@ -68,7 +68,7 @@ int sci_chdir(char *fname,unsigned long fname_len)
 		}
 
 		// get value of lenStVarOne
-		sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+		sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne, NULL);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);

@@ -120,7 +120,7 @@ zcol = dsearch(zf, linspace(zzm, zzM, nb_col+1));
 plot3d(xf, yf, list(zf, zcol), flag = [-2 6 4])
 xtitle("a plot3d with shaded interpolated colors")
 drawnow() ;
-xselect()
+show_window()
  ]]></programlisting>
   </refsection>
   <refsection>

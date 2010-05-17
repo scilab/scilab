@@ -9,6 +9,8 @@
 package org.scilab.modules.graphic_export;
 
 
+/* It is generated code. Disable checkstyle */
+//CHECKSTYLE:OFF
  /** 
   * Call from the JoGL display thread to figure drawing code using JNI 
   * @author Jean-Baptiste Silvy

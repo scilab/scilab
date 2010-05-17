@@ -463,6 +463,10 @@
 				RelativePath=".\systemc.c"
 				>
 			</File>
+			<File
+				RelativePath=".\v2cuniterror.c"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -498,6 +502,10 @@
 			</File>
 			<File
 				RelativePath=".\systemc.h"
+				>
+			</File>
+			<File
+				RelativePath=".\v2cuniterror.h"
 				>
 			</File>
 		</Filter>

@@ -130,6 +130,7 @@ GUI_LIBS = 	$(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/graphics/libscigraphics.la \
 	$(top_builddir)/modules/graphic_export/libscigraphic_export.la \
 	$(top_builddir)/modules/console/libsciconsole.la \
+	$(top_builddir)/modules/action_binding/libsciaction_binding.la \
 	$(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/modules/xcos/libscixcos.la \
 	$(top_builddir)/modules/xpad/libscixpad.la
@@ -179,7 +180,6 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/shell/libscishell.la \
 	$(top_builddir)/modules/completion/libscicompletion.la \
 	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
-	$(top_builddir)/modules/action_binding/libsciaction_binding.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 	$(top_builddir)/modules/string/libscistring.la \
 	$(top_builddir)/modules/fftw/libscifftw.la \

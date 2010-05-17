@@ -34,7 +34,7 @@ function []=errbar(x,y,em,ep)
     end
   end
 	
-	xselect();
+	show_window();
 	[n1,n2] = size(x);
 	y1      = matrix(y-em,1,n1*n2);
 	x1      = matrix(x,1,n1*n2);
