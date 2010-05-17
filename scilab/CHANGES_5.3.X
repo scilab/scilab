@@ -22,8 +22,8 @@ Graphics:
 
 * the set, get and uicontrol functions are now overloadable.
 
-* Datatips tools added, the frequency response plots ("bode", "black", "nyquist",
-  "gainplot",...) supports cutomized datatips.
+* Datatips tools added, the frequency response plots ("bode", "black",
+  "nyquist", "gainplot",...) supports cutomized datatips.
 
 * bug 2651 fixed - "plot2d" was not working when the x argument was not given
                    and some optional arguments were given.
@@ -31,10 +31,11 @@ Graphics:
 * bug 3100 fixed - The "xselect" function has been made obsolete, in accordance
                    with its help page.
 
-* bug 3975 fixed - The "xload" function was not able to load the contents of a previously
-                   saved graphics figure into a different one.
+* bug 3975 fixed - The "xload" function was not able to load the contents of a
+                   previously saved graphics figure into a different one.
 
-* bug 4531 fixed - "legend" macros was not displaying any error when no 'Polyline' exist.
+* bug 4531 fixed - "legend" macros was not displaying any error when no
+                   'Polyline' exist.
 
 * bug 4658 fixed - When some graphic functions were called without any arguments,
                    the error was not explicit enough.
@@ -42,7 +43,14 @@ Graphics:
 * bug 5284 fixed - In some case function "legend" drew line segments in its box
                    in a reverse order.
 
-* bug 6098 fixed - It was not possible get values by clicking on point of Bode diagram
+* bug 6098 fixed - It was not possible get values by clicking on point of
+                   Bode diagram.
+
+* bug 6394 fixed - The "black", "m_circle", "chart" functions has been
+                   improved for a better rendering and datatips
+                   customization. Two new functions created: "hallchart"
+                   (superseed "m_circle") and "nicholschart" (superseed
+                   "chart").
 
 * bug 6532 fixed - In some case text entity rendering order was wrong.
 
@@ -57,7 +65,8 @@ Graphics:
 
 * bug 6848 fixed - The patterns of the lines was poorly exported.
 
-* bug 6958 fixed - The "tics_labels" property from "axes" rejected column vector of labels.
+* bug 6958 fixed - The "tics_labels" property from "axes" rejected column vector
+                   of labels.
 
 * bug 6959 fixed - axis.tics_labels did not accept $..$ LaTeXed labels
 
@@ -353,7 +362,7 @@ Bug fixes:
 
 * bug 1304 fixed - macr2tree now works with a Scilab expression as input.
 
-* bug 1371 fixed - The representation of floating numbers with exponent larger 
+* bug 1371 fixed - The representation of floating numbers with exponent larger
                    than 100 or smaller than -100 was incorrect.
 
 * bug 2076 fixed - pspect did not use the last data window.
