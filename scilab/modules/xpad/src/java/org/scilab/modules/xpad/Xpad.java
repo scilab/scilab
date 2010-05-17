@@ -85,6 +85,7 @@ import org.scilab.modules.xpad.actions.UnTabifyAction;
 import org.scilab.modules.xpad.actions.FindNextAction;
 import org.scilab.modules.xpad.actions.FindPreviousAction;
 import org.scilab.modules.xpad.actions.LineBeautifierAction;
+import org.scilab.modules.xpad.actions.XpadCompletionAction;
 import org.scilab.modules.xpad.style.CompoundUndoManager;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 import org.scilab.modules.xpad.utils.DropFilesListener;
@@ -727,6 +728,7 @@ public class Xpad extends SwingScilabTab implements Tab {
                 FindNextAction.putInInputMap(textPane, this, map.get("FindNextAction"));
                 FindPreviousAction.putInInputMap(textPane, this, map.get("FindPreviousAction"));
                 HighlightCurrentLineAction.putInInputMap(textPane, this, map.get("HighlightCurrentLineAction"));
+                XpadCompletionAction.putInInputMap(textPane, this, map.get("XpadCompletionAction"));
 
                 LineBeautifierAction.putInInputMap(textPane);
 

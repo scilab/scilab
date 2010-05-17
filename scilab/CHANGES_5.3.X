@@ -39,6 +39,8 @@ Text Editor:
 * bug 5321 fixed - There was not the possibility to choose the length of a
                    tabulation.
 
+* bug 5534 fixed - There was not auto-completion 
+
 * bug 5645 fixed - Undo action deleted a line rather than make it visible.
 
 * bug 5647 fixed - Bad line numbering when a file was just opened.
