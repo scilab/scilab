@@ -481,14 +481,6 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 		</Filter>
-		<File
-			RelativePath="..\..\bin\blasplus.lib"
-			>
-		</File>
-		<File
-			RelativePath="..\..\bin\lapack.lib"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>

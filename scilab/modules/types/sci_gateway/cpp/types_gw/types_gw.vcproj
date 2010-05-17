@@ -389,6 +389,14 @@
 			Name="Libraries Dependencies"
 			>
 		</Filter>
+		<File
+			RelativePath="..\..\..\..\..\bin\blasplus.lib"
+			>
+		</File>
+		<File
+			RelativePath="..\..\..\..\..\bin\lapack.lib"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

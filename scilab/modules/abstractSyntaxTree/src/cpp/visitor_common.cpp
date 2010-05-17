@@ -11,8 +11,7 @@
 */
 
 #include <numeric>
-
-#include "conditionvisitor.hxx"
+#include "visitor_common.hxx"
 #include "context.hxx"
 
 bool bConditionState(ast::ConditionVisitor *exec)

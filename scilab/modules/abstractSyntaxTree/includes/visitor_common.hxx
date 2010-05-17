@@ -14,31 +14,32 @@
 #define AST_VISITOR_COMMON_HXX
 
 #include "conditionvisitor.hxx"
+#include "location.hxx"
 
 #define bsiz	4096
-bool bConditionState(ast::ConditionVisitor *exec);
+EXTERN_AST bool bConditionState(ast::ConditionVisitor *exec);
 
-void ExpandList(int ** _piList, int *_piListSize, int _iListSizeSize, int *_piResultList);
-int GetVarMaxDim(types::InternalType *_pIT, int _iCurrentDim, int _iMaxDim);
+EXTERN_AST void ExpandList(int ** _piList, int *_piListSize, int _iListSizeSize, int *_piResultList);
+EXTERN_AST int GetVarMaxDim(types::InternalType *_pIT, int _iCurrentDim, int _iMaxDim);
 
-types::InternalType* AddElementToVariable(
+EXTERN_AST types::InternalType* AddElementToVariable(
 						types::InternalType* _poDest, 
 						types::InternalType* _poSource, 
 						int _iRows, int _iCols, int *_piRows, int *_piCols);
 
-types::InternalType* AddElementToVariableFromCol(
+EXTERN_AST types::InternalType* AddElementToVariableFromCol(
                         types::InternalType* _poDest, 
                         types::InternalType* _poSource, 
                         int _iRows, int _iCols, int *_piCols);
 
-types::InternalType* AddElementToVariableFromRow(
+EXTERN_AST types::InternalType* AddElementToVariableFromRow(
                         types::InternalType* _poDest, 
                         types::InternalType* _poSource, 
                         int _iRows, int _iCols, int *_piRows);
 
 
-const std::string* getStructNameFromExp(const Exp* _pExp);
+EXTERN_AST const std::string* getStructNameFromExp(const Exp* _pExp);
 
-types::Struct* getStructFromExp(const Exp* _pExp);
+EXTERN_AST types::Struct* getStructFromExp(const Exp* _pExp);
 
 #endif //!AST_VISITOR_COMMON_HXX

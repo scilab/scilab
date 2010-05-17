@@ -27,7 +27,7 @@
 
 namespace ast
 {
-	class EXTERN_AST TimedVisitor : public RunVisitorT<TimedVisitor>
+	class TimedVisitor : public RunVisitorT<TimedVisitor>
 	{
 	public :
         void visit (const SeqExp &e)

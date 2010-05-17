@@ -51,7 +51,7 @@ extern "C" {
 
 namespace ast
 {
-	class EXTERN_AST RunVisitor : public ConstVisitor
+	class RunVisitor : public ConstVisitor
 	{
 	public:
 		RunVisitor()
@@ -187,7 +187,7 @@ namespace ast
 	};
     
 	template <class T> 
-    class EXTERN_AST RunVisitorT : public RunVisitor
+    class RunVisitorT : public RunVisitor
 	{
 	protected :
         int  GetIndexList(std::list<ast::Exp *>const& _plstArg, int** _piIndexSeq, int** _piMaxDim, InternalType *_pRefVar, int *_iDimSize)

@@ -44,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../../libs/MALLOC/includes;../../includes;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../abstractSyntaxTree/includes;../../../elementary_functions/includes;../../../core/includes;../../../operations/includes;../../../api_scilab/includes;../../../../libs/libxml2;../../../fileio/includes;../../../system_env/includes;../../../parse/includes;../../../output_stream/includes;../../../shell/includes"
+				AdditionalIncludeDirectories="../../../../libs/MALLOC/includes;../../includes;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../abstractSyntaxTree/includes;../../../elementary_functions/includes;../../../core/includes;../../../operations/includes;../../../api_scilab/includes;../../../../libs/libxml2;../../../fileio/includes;../../../system_env/includes;../../../parse/includes;../../../output_stream/includes;../../../shell/includes;../../../localization/includes;../../../../libs/intl"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;FUNCTIONS_GW_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -118,7 +118,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../../libs/MALLOC/includes;../../includes;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../abstractSyntaxTree/includes;../../../elementary_functions/includes;../../../core/includes;../../../operations/includes;../../../api_scilab/includes;../../../../libs/libxml2;../../../fileio/includes;../../../system_env/includes;../../../parse/includes;../../../output_stream/includes;../../../shell/includes"
+				AdditionalIncludeDirectories="../../../../libs/MALLOC/includes;../../includes;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../abstractSyntaxTree/includes;../../../elementary_functions/includes;../../../core/includes;../../../operations/includes;../../../api_scilab/includes;../../../../libs/libxml2;../../../fileio/includes;../../../system_env/includes;../../../parse/includes;../../../output_stream/includes;../../../shell/includes;../../../localization/includes;../../../../libs/intl"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;FUNCTIONS_GW_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -193,7 +193,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="../../../../libs/MALLOC/includes;../../includes;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../abstractSyntaxTree/includes;../../../elementary_functions/includes;../../../core/includes;../../../operations/includes;../../../api_scilab/includes;../../../../libs/libxml2;../../../fileio/includes;../../../system_env/includes;../../../parse/includes;../../../output_stream/includes;../../../shell/includes"
+				AdditionalIncludeDirectories="../../../../libs/MALLOC/includes;../../includes;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../abstractSyntaxTree/includes;../../../elementary_functions/includes;../../../core/includes;../../../operations/includes;../../../api_scilab/includes;../../../../libs/libxml2;../../../fileio/includes;../../../system_env/includes;../../../parse/includes;../../../output_stream/includes;../../../shell/includes;../../../localization/includes;../../../../libs/intl"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;FUNCTIONS_GW_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -270,7 +270,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="../../../../libs/MALLOC/includes;../../includes;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../abstractSyntaxTree/includes;../../../elementary_functions/includes;../../../core/includes;../../../operations/includes;../../../api_scilab/includes;../../../../libs/libxml2;../../../fileio/includes;../../../system_env/includes;../../../parse/includes;../../../output_stream/includes;../../../shell/includes"
+				AdditionalIncludeDirectories="../../../../libs/MALLOC/includes;../../includes;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../abstractSyntaxTree/includes;../../../elementary_functions/includes;../../../core/includes;../../../operations/includes;../../../api_scilab/includes;../../../../libs/libxml2;../../../fileio/includes;../../../system_env/includes;../../../parse/includes;../../../output_stream/includes;../../../shell/includes;../../../localization/includes;../../../../libs/intl"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;FUNCTIONS_GW_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -369,6 +369,14 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 		</Filter>
+		<File
+			RelativePath="..\..\..\..\bin\blasplus.lib"
+			>
+		</File>
+		<File
+			RelativePath="..\..\..\..\bin\lapack.lib"
+			>
+		</File>
 		<File
 			RelativePath="..\..\..\..\bin\libintl.lib"
 			>

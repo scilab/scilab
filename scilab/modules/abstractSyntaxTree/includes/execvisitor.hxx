@@ -17,7 +17,7 @@
 
 namespace ast
 {
-	class EXTERN_AST ExecVisitor : public RunVisitorT<ExecVisitor>
+	class ExecVisitor : public RunVisitorT<ExecVisitor>
 	{
         void visit (const SeqExp  &e)
         {

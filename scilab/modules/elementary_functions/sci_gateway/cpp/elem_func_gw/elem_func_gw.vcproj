@@ -65,7 +65,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="LibScilab.lib"
+				AdditionalDependencies="LibScilab.lib &quot;$(IFORT_COMPILER11)lib\ia32\ifconsol.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\libifcoremdd.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\libmmdd.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\libirc.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\svml_disp.lib&quot;"
 				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
@@ -142,7 +142,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="LibScilab.lib"
+				AdditionalDependencies="LibScilab.lib &quot;$(IFORT_COMPILER11)lib\intel64\ifconsol.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\libifcoremdd.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\libmmdd.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\libirc.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\svml_disp.lib&quot;"
 				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
@@ -219,7 +219,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="LibScilab.lib"
+				AdditionalDependencies="LibScilab.lib &quot;$(IFORT_COMPILER11)lib\ia32\ifconsol.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\libifcoremd.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\libmmd.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\libirc.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\svml_disp.lib&quot;"
 				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
@@ -299,7 +299,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="LibScilab.lib"
+				AdditionalDependencies="LibScilab.lib &quot;$(IFORT_COMPILER11)lib\intel64\ifconsol.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\libifcoremd.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\libmmd.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\libirc.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\svml_disp.lib&quot;"
 				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
