@@ -525,3 +525,5 @@ Bug fixes:
 * bug 7077 fixed - uigetfont crashed Scilab when the cancel button was clicked.
 
 * bug 7094 fixed - If badly called, ode made Scilab crash.
+
+* bug 7109 fixed - 'lu' function with some complex matrices crashed on Windows.
