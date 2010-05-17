@@ -24,7 +24,7 @@ import org.scilab.modules.xpad.utils.ConfigXpadManager;
 public class TabManager {
 
     private static final String EOL = "\n";
-    
+
     private String tab;
     private int lengthTab;
     private ScilabDocument doc;
@@ -38,10 +38,10 @@ public class TabManager {
      * @param indent an IndentManager
      */
     public TabManager(ScilabDocument doc, IndentManager indent) {
-	this.doc = doc;
-	this.elem = doc.getDefaultRootElement();
-	this.indent = indent;
-	setTabulation(' ', 3);
+        this.doc = doc;
+        this.elem = doc.getDefaultRootElement();
+        this.indent = indent;
+        setTabulation(' ', 3);
     }
 
     /**
@@ -50,21 +50,21 @@ public class TabManager {
      * @param n is the length of a tab
      */
     public void setTabulation(char tab, int n) {
-	if (tab == ' ') {
-	    char[] str = new char[n];
-	    for (int i = 0; i < n; i++) {
-		str[i] = ' ';
-	    }
-	    this.tab = new String(str);
-	    lengthTab = n;
-	} else {
-	    this.tab = "\t";
-	    lengthTab = Math.max(n, 1);
-	    doc.putProperty("tabSize", new Integer(lengthTab));
-	}
-	if (indent != null) {
-	    indent.setProperties(tab, n);
-	}
+        if (tab == ' ') {
+            char[] str = new char[n];
+            for (int i = 0; i < n; i++) {
+                str[i] = ' ';
+            }
+            this.tab = new String(str);
+            lengthTab = n;
+        } else {
+            this.tab = "\t";
+            lengthTab = 1;
+            doc.putProperty("tabSize", new Integer(Math.max(n, 1)));
+        }
+        if (indent != null) {
+            indent.setProperties(tab, n);
+        }
     }
 
     /**
@@ -72,14 +72,14 @@ public class TabManager {
      * @param tabulation a Tabulation
      */
     public void setTabulation(Tabulation tabulation) {
-	setTabulation(tabulation.tab, tabulation.number);
+        setTabulation(tabulation.tab, tabulation.number);
     }
 
     /**
      * Set the type and the size of a tabulation in using ConfigXpadManager
      */
     public void setDefaultTabulation() {
-	setTabulation(ConfigXpadManager.getDefaultTabulation());
+        setTabulation(ConfigXpadManager.getDefaultTabulation());
     }
 
     /**
@@ -87,55 +87,55 @@ public class TabManager {
      * @param b the boolean
      */
     public void setTabInsertable(boolean b) {
-	isTabInsertable = b;
+        isTabInsertable = b;
     }
 
     /**
      * @return a String which represents a tab
      */
-    public String getTabulation() { 
-	return tab;
+    public String getTabulation() {
+        return tab;
     }
-    
+
     /**
      * Insert a tab just after the caret position (depends on setTabInsertable)
      * @param position the position in the doc
      */
     public void insertTab(int position) {
-	try {
-	    if (isTabInsertable) {
-		doc.insertString(position, tab, null);
-	    } else {
-		tabifyLines(position, position - 1);
-	    }
-	} catch (BadLocationException e) {
-	    e.printStackTrace();
-	}
+        try {
+            if (isTabInsertable) {
+                doc.insertString(position, tab, null);
+            } else {
+                tabifyLines(position, position - 1);
+            }
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
      * Tabify several lines.
-     * @param start the starting position in the doc 
+     * @param start the starting position in the doc
      * @param end the ending position in the doc
      * @return the new positions of the selected text
      */
     public int[] tabifyLines(int start, int end) {
-	Element startL = elem.getElement(elem.getElementIndex(start));
-	int sstart = startL.getStartOffset();
-	int[] ret = new int[2];
-	
-	try {
-	    String str = doc.getText(sstart, end - sstart + 1);
-	    String rep = EOL + tab;
-	    str = tab + str.replaceAll(EOL, rep);		
-	    ret[0] = start + lengthTab;
-	    ret[1] = sstart + str.length();
-	    doc.replace(sstart, end - sstart + 1, str, null);
-	    return ret;
-	} catch (BadLocationException e) { 
-	    e.printStackTrace();
-	    return null;
-	}
+        Element startL = elem.getElement(elem.getElementIndex(start));
+        int sstart = startL.getStartOffset();
+        int[] ret = new int[2];
+
+        try {
+            String str = doc.getText(sstart, end - sstart + 1);
+            String rep = EOL + tab;
+            str = tab + str.replaceAll(EOL, rep);
+            ret[0] = start + lengthTab;
+            ret[1] = sstart + str.length();
+            doc.replace(sstart, end - sstart + 1, str, null);
+            return ret;
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**
@@ -143,18 +143,18 @@ public class TabManager {
      * @param position of the caret
      */
     public void untabifyText(int position) {
-	try {
-	    if (isTabInsertable) {
-		int end = elem.getElement(elem.getElementIndex(position)).getEndOffset();
-		if (end - position >= lengthTab && tab.equals(doc.getText(position, lengthTab))) {
-		    doc.remove(position, lengthTab);
-		}
-	    } else {
-		untabifyLine(position);
-	    }
-	} catch (BadLocationException e) {
-	    e.printStackTrace();
-	}
+        try {
+            if (isTabInsertable) {
+                int end = elem.getElement(elem.getElementIndex(position)).getEndOffset();
+                if (end - position >= lengthTab && tab.equals(doc.getText(position, lengthTab))) {
+                    doc.remove(position, lengthTab);
+                }
+            } else {
+                untabifyLine(position);
+            }
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -162,91 +162,91 @@ public class TabManager {
      * @param position the position in the doc
      */
     public void untabifyLine(int position) {
-	IndentScanner iscan = indent.getIndentScanner();
-	int line = elem.getElementIndex(position);
-	int n = iscan.getTabsAtBeginning(line);
-	
-	try {
-	    if (n >= lengthTab) {
-		doc.remove(elem.getElement(line).getStartOffset(), lengthTab);
-	    }
-	} catch (BadLocationException e) {
-	    e.printStackTrace();
-	}
-    }    
-            
+        IndentScanner iscan = indent.getIndentScanner();
+        int line = elem.getElementIndex(position);
+        int n = iscan.getTabsAtBeginning(line);
+
+        try {
+            if (n >= lengthTab) {
+                doc.remove(elem.getElement(line).getStartOffset(), lengthTab);
+            }
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * Remove one tabulation step from every line starting with tabulation between start and end
      * @param start the starting position in the doc
      * @param end the ending position in the doc
      * @return the new positions of the selected text
      */
-    public int[] untabifyLines(int start, int end) {	
-	int sstart = elem.getElement(elem.getElementIndex(start)).getStartOffset();
-	int[] ret = new int[2];
-	ret[0] = start;
-	
-	try {
-	    String str = doc.getText(sstart, end - sstart + 1);
-	    String untab = EOL + tab;
-	    str = str.replaceAll(untab, EOL);
-	    IndentScanner iscan = indent.getIndentScanner();
-	    int n = iscan.getTabsAtBeginning(elem.getElementIndex(sstart));
-	    if (n >= lengthTab) {
-		str = str.substring(lengthTab);
-		if (start - sstart >= lengthTab + 1) {
-		    ret[0] = start - lengthTab;
-		}
-	    }
-	    ret[1] = sstart + str.length();
-	    
-	    doc.replace(sstart, end - sstart + 1, str, null);
-	} catch (BadLocationException e) {
-	    e.printStackTrace();
-	    return null;
-	}
-	
-	return ret;
+    public int[] untabifyLines(int start, int end) {
+        int sstart = elem.getElement(elem.getElementIndex(start)).getStartOffset();
+        int[] ret = new int[2];
+        ret[0] = start;
+
+        try {
+            String str = doc.getText(sstart, end - sstart + 1);
+            String untab = EOL + tab;
+            str = str.replaceAll(untab, EOL);
+            IndentScanner iscan = indent.getIndentScanner();
+            int n = iscan.getTabsAtBeginning(elem.getElementIndex(sstart));
+            if (n >= lengthTab) {
+                str = str.substring(lengthTab);
+                if (start - sstart + 1 >= lengthTab) {
+                    ret[0] = start - lengthTab;
+                }
+            }
+            ret[1] = sstart + str.length();
+
+            doc.replace(sstart, end - sstart + 1, str, null);
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        return ret;
     }
 
     /**
      * Inner class to represent a tabulation
      */
     public static class Tabulation {
-	
-	/**
-	 * Should be '\t' or ' '
-	 */
-	public char tab;
 
-	/**
-	 * The number of whites equivalent at this tabulation
-	 */
-	public int number;
+        /**
+         * Should be '\t' or ' '
+         */
+        public char tab;
 
-	/**
-	 * Should be one of the constants of ScilabView
-	 */
-	public int type;
+        /**
+         * The number of whites equivalent at this tabulation
+         */
+        public int number;
 
-	/**
-	 * If type is ScilabView.TABCHARACTER, then rep is the char representing a tabulation
-	 * in the view
-	 */
-	public char rep;
+        /**
+         * Should be one of the constants of ScilabView
+         */
+        public int type;
 
-	/**
-	 * Constructor
-	 * @param tab '\t' or ' '
-	 * @param number the number of whites
-	 * @param type see the constants in ScilabView
-	 * @param rep the char to represent a tabulation in a view
-	 */ 
-	public Tabulation(char tab, int number, int type, char rep) {
-	    this.tab = tab;
-	    this.number = number;
-	    this.type = type;
-	    this.rep = rep;
-	}
+        /**
+         * If type is ScilabView.TABCHARACTER, then rep is the char representing a tabulation
+         * in the view
+         */
+        public char rep;
+
+        /**
+         * Constructor
+         * @param tab '\t' or ' '
+         * @param number the number of whites
+         * @param type see the constants in ScilabView
+         * @param rep the char to represent a tabulation in a view
+         */
+        public Tabulation(char tab, int number, int type, char rep) {
+            this.tab = tab;
+            this.number = number;
+            this.type = type;
+            this.rep = rep;
+        }
     }
 }
