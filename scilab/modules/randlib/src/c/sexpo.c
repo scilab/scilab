@@ -1,3 +1,4 @@
+#include "stack-c.h"
 #include <math.h>
 #include "grand.h"
 #include "core_math.h"

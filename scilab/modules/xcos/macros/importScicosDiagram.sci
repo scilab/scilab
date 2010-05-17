@@ -1,21 +1,3 @@
-//
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2010 - DIGITEO - Clément DAVID
-//
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-//
-
-//
-// Import a scicos diagram.
-//
-// This method wrap all the scicos entry points (load, version, etc...).
-//
-// @source the filename or a diagram instance
-// @out the scicos diagram structure (scs_m)
 function out = importScicosDiagram(source)
   out = [];
   
@@ -52,14 +34,4 @@ function out = importScicosDiagram(source)
     out = do_version(out, version);
   end
   
-  // Clear the doc fields of all the blocks
-  if typeof(out) == "diagram" then
-    for k=1:lstsize(out.objs)
-      o=out.objs(k);
-      if (typeof(o) == "Block") & (size(o.doc) <> 0) then
-          out.objs(k).doc = list();
-      end
-    end
-  end
-
 endfunction

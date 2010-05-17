@@ -13,7 +13,7 @@
   <refnamediv>
     <refname>scilab</refname>
 
-    <refpurpose>principal script para executar o Scilab e ferramentas de
+    <refpurpose>principal script unix para executar o Scilab e ferramentas de
     miscelânea</refpurpose>
   </refnamediv>
 
@@ -56,7 +56,7 @@
 
         <listitem>
           <para>Inicia o Scilab no debugger gdb (apenas para
-          Unix/Linux/Mac OS X).</para>
+          Unix/linux).</para>
         </listitem>
       </varlistentry>
 

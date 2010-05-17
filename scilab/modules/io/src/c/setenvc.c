@@ -16,6 +16,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include "stack-def.h"
 #include "setenvc.h"
 #include "../../../core/src/c/dynamic_tclsci.h"
 #include "MALLOC.h" /* MALLOC */

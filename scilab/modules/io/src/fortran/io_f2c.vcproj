@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -6,7 +6,6 @@
 	ProjectGUID="{C2EDD447-BB60-41A1-973B-8213FCA9ECD4}"
 	RootNamespace="io_f2c"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -58,7 +57,7 @@
 				ExecutionBucket="6"
 				Optimization="0"
 				AdditionalIncludeDirectories="../../../../libs/f2c"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;IO_F2C_EXPORTS;FORDLL"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;RANDLIB_F2C_EXPORTS;FORDLL"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -156,7 +155,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="../../../../libs/f2c"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;IO_F2C_EXPORTS;FORDLL"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;RANDLIB_F2C_EXPORTS;FORDLL"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -244,7 +243,7 @@
 				Name="VCCLCompilerTool"
 				WholeProgramOptimization="false"
 				AdditionalIncludeDirectories="../../../../libs/f2c"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;IO_F2C_EXPORTS;FORDLL"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;RANDLIB_F2C_EXPORTS;FORDLL"
 				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
@@ -333,7 +332,7 @@
 				Name="VCCLCompilerTool"
 				WholeProgramOptimization="false"
 				AdditionalIncludeDirectories="../../../../libs/f2c"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;IO_F2C_EXPORTS;FORDLL"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;RANDLIB_F2C_EXPORTS;FORDLL"
 				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="1"
 				UsePrecompiledHeader="0"
@@ -400,6 +399,10 @@
 			>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\intfile.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\intmgetl.c"
 				>
 			</File>
 			<File
@@ -496,6 +499,10 @@
 			>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\intfile.f"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\intmgetl.f"
 				>
 			</File>
 			<File

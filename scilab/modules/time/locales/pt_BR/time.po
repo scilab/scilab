@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 16:29+0100\n"
-"PO-Revision-Date: 2010-04-07 23:11+0000\n"
-"Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
+"PO-Revision-Date: 2009-06-29 16:44+0000\n"
+"Last-Translator: Daniel de Souza Grilo <soporter@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-04-16 07:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid "   M      Tu     W      Th     F     Sat     Sun"
@@ -22,139 +22,137 @@ msgstr "   Seg Ter Qua Qui Sex Sáb Dom"
 
 #, c-format
 msgid "%s: An error occurred.\n"
-msgstr "%s: Ocorreu um erro.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: An error occurred: %s\n"
-msgstr "%s: Ocorreu um erro: %s\n"
+msgstr "%s: Um erro ocorreu: %s\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument.\n"
-msgstr "%s: Quantidade incorreta de argumentos de entrada.\n"
+msgstr "%s: Quantidade errada de argumentos de entrada.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d.\n"
+msgstr "%s: Número de argumentos de entrada incorreto: Esperava-se %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments.\n"
-msgstr "%s: Quantidade incorreta de argumentos de entrada.\n"
+msgstr "%s: Número incorreto de argumentos de entrada.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
-"%s: Quantidade incorreta de argumentos de entrada: esperava-se %d ou %d.\n"
+"%s: Quantidade errada de argumentos de entrada: Esperava-se %d ou %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Must be between %d and %d.\n"
 msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: deve ser entre %d e "
+"%s: Tamanho incorreto para o argumento de entrada #%d: Deve estar entre %d e "
 "%d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: m*3 matrix or a m*6 matrix expected.\n"
 msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada  #%d: esperava-se uma "
-"matriz m*3 ou m*6.\n"
+"%s: Tamanho errado para o argumento de entrada  #%d: Esperava-se uma matriz "
+"m*3 ou m*6.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument: Same size expected.\n"
 msgstr ""
-"%s: Tamanho incorreto para os argumentos de entrada: esperava-se tamanhos "
-"iguais.\n"
+"%s: Tamanho incorreto para argumentos de entrada: Esperava-se o mesmo "
+"tamanho.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same size expected.\n"
 msgstr ""
-"%s: Tamanho incorreto para os argumentos de entrada: esperava-se tamanho "
-"iguais.\n"
+"%s: Tamanho errado para os argumentos de entrada: Esperava-se o mesmo "
+"tamanho.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type  for input argument #%d: Real constant matrix expected.\n"
 msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se uma "
-"matriz de números reais constantes.\n"
+"%s: Tamanho incorreto para o argumento de entrada #%d: Esperava-se matriz "
+"constante de números reais.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um número "
-"inteiro ou \"%s\".\n"
+"%s: Tipo incorreto para o argumento de entrada #%d: Esperava-se inteiro ou "
+"'%s'.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
-"de números reais.\n"
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma matriz de "
+"números reais.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um vetor de "
-"números reais.\n"
+"%s: Tipo incorreto para o argumento de entrada #%d: Esperava-se vetor de "
+"reais.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments.\n"
-msgstr "%s: Tipo incorreto para os argumentos de entrada.\n"
+msgstr "%s: Tipo errado para argumentos de entrada.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Integer expected.\n"
 msgstr ""
-"%s: Tipo incorreto para os argumentos de entrada: esperava-se números "
-"inteiros.\n"
+"%s: Tipo incorreto para argumentos de entrada: Esperava-se inteiro.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Must be scalars.\n"
 msgstr ""
-"%s: Tipo incorreto para os argumentos de entrada: devem ser escalares.\n"
+"%s: Tipo incorreto para argumentos de entrada: Devem ser escalares.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Scalar values expected.\n"
 msgstr ""
-"%s: Tipo incorreto para os argumentos de entrada: esperava-se valores "
+"%s: Tipo incorreto para argumentos de entrada: Esperava-se valores "
 "escalares.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
 msgstr ""
-"%s: Valor incorretos para o argumento de entrada #%d: %s deve estar entre %d "
+"%s: Valor errado para o argumento de entrada #%d: %s deve estar entre %d "
 "e%d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se \"%s\" ou "
-"\"%s\".\n"
+"%s: Valor errado para o argumento de entrada #%d: Esperava-se ''%s''' ou "
+"''%s'.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be < %d.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: deve ser < %d.\n"
+"%s: Valor incorreto para o argumento de entrada #%d: Deve ser < %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
-msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: deve ser > %d.\n"
+msgstr "%s: Valor errado para o argumento de entrada #%d: Deve ser > %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: deve estar entre %d e "
+"%s: Valor incorreto para o argumento de entrada #%d: Deve estar entre %d e "
 "%d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument: Must be between %d and %d.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada: deve estar entre %d e %d.\n"
+"%s: Valor incorreto para o argumento de entrada: Deve estar entre %d e %d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
 msgstr ""
-"%s: Valores incorretos para o argumento de entrada #%d: esperava-se números "
+"%s: Valores incorretos para o argumento de entrada #%d: Esperava-se números "
 "inteiros não negativos.\n"
 
 msgid "Apr"

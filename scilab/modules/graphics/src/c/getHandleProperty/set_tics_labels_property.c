@@ -26,7 +26,6 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "BasicAlgos.h"
-#include "loadTextRenderingAPI.h"
 
 /*------------------------------------------------------------------------*/
 int set_tics_labels_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
@@ -44,7 +43,7 @@ int set_tics_labels_property( sciPointObj * pobj, size_t stackPointer, int value
     return SET_PROPERTY_ERROR ;
   }
 
-  if ( pAXES_FEATURE(pobj)->nb_tics_labels > nbRow*nbCol )
+  if ( pAXES_FEATURE(pobj)->nb_tics_labels > nbCol )
   {
     Scierror(999, _("Wrong size for '%s' property: At least %d elements expected.\n"), "tics_labels", pAXES_FEATURE(pobj)->nb_tics_labels);
     return SET_PROPERTY_ERROR ;
@@ -55,11 +54,8 @@ int set_tics_labels_property( sciPointObj * pobj, size_t stackPointer, int value
     destroyStringArray( pAXES_FEATURE(pobj)->str, pAXES_FEATURE(pobj)->nb_tics_labels ) ;
   }
 
-  pAXES_FEATURE(pobj)->str = createCopyStringMatrixFromStack( stackPointer, nbRow*nbCol ) ;
-  /* Check if we should load LaTex / MathML Java libraries */
-  loadTextRenderingAPI(pAXES_FEATURE(pobj)->str, nbRow*nbCol, 1);
-
-  pAXES_FEATURE(pobj)->nb_tics_labels = nbRow*nbCol ; /* could be increased to support xy_type switching (i.e. xy_type='v' -> xy_type='r') */
+  pAXES_FEATURE(pobj)->str = createCopyStringMatrixFromStack( stackPointer, nbCol ) ;
+  pAXES_FEATURE(pobj)->nb_tics_labels = nbCol ; /* could be increased to support xy_type switching (i.e. xy_type='v' -> xy_type='r') */
 
   return SET_PROPERTY_SUCCEED ;
 }

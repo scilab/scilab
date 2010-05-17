@@ -44,7 +44,6 @@ c
       endif
       it=istk(il+3)
       if (it.ne.0) then
-         err=1
          call error(52)
          return
       endif

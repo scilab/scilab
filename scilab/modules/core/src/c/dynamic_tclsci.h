@@ -33,5 +33,18 @@ int dynamic_setenvtcl(char *string, char *value);
 */
 BOOL dynamic_TerminateTclTk(void);
 
+/** 
+* check if it is with TCL/TK
+* @param rep 1 (WITH) or 0 (WITHOUT)
+* @return 0
+*/
+int C2F(withtk)(int *rep);
+
+/** 
+* check if it is with TCL/TK
+* @return TRUE or FALSE
+*/
+BOOL withtk(void);
+
 #endif /* __DYNAMIC_TCLSCI_H__ */
 /*--------------------------------------------------------------------------*/

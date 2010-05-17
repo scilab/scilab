@@ -170,7 +170,7 @@ int sci_expm(char *fname, int* _piKey)
 
 	if(iRows != iCols)
 	{
-		SciError(2);
+		Error(2);
 		return 0;
 	}
 

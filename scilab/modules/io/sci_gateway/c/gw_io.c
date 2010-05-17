@@ -23,7 +23,7 @@ static gw_generic_table Tab[] =
 {NULL, ""}, //getenv
 {C2F(sci_getio),"getio"},
 {NULL,""},
-{NULL,""},
+{C2F(sci_mgetl),"mgetl"},
 {C2F(sci_write),"write"},
 {C2F(sci_rat),"rat"},
 {NULL, ""}, //file

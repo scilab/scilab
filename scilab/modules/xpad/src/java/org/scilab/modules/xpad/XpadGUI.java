@@ -423,7 +423,7 @@ public class XpadGUI {
 				}
 			}
 		};
-		menuItem = new JMenuItem(XpadMessages.EVALUATE_SELECTION);
+		menuItem = new JMenuItem(Messages.gettext("Execute selection into Scilab"));
 		menuItem.addActionListener(actionListenerExecuteIntoScilab);
 		if (!ScilabConsole.isExistingConsole()) { /* Only available in STD mode */
 			menuItem.setEnabled(false);

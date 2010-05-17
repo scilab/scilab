@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-02-21 15:40+0000\n"
-"Last-Translator: kkirill <Unknown>\n"
+"PO-Revision-Date: 2010-02-12 19:47+0000\n"
+"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-04-16 07:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -217,6 +217,10 @@ msgid "%s: Incorrect link: %s"
 msgstr "%s: Некорректная ссылка: %s"
 
 #, c-format
+msgid "%s: Infinite solution.\n"
+msgstr "%s: Бесконечное решение.\n"
+
+#, c-format
 msgid "%s: Input argument #%d must be real.\n"
 msgstr "%s: Входной параметр №%d должен быть вещественным числом.\n"
 
@@ -328,7 +332,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong dimension (%d) of stable subspace: %d expected.\n"
 msgstr ""
-"%s: Неверная размерность (%d) устойчивого подпространства: ожидалась %d.\n"
+"%s: Неверная размерность (%d) устойчивого подпространства: Ожидалась %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -400,7 +404,7 @@ msgstr "%s: Неверный размер входного параметра �
 #, c-format
 msgid "%s: Wrong size for input argument #%d: An empty matrix expected.\n"
 msgstr ""
-"%s: Неверный размер входного параметра №%d: ожидалась пустая матрица.\n"
+"%s: Неверный размер входного параметра №%d: Ожидалась пустая матрица.\n"
 
 #, c-format
 msgid ""
@@ -663,7 +667,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value of input argument %d: Proper system expected.\n"
 msgstr ""
-"%s: Неверное значение входного параметра %d: ожидалась правильная система.\n"
+"%s: Неверное значение входного параметра %d: Ожидалась соответствующая "
+"система.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d:  %s is not full rank.\n"

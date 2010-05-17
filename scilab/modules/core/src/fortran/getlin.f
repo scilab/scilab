@@ -106,10 +106,6 @@ c     .     end of file encountered
       else
          call readnextline(rio,buf,bsiz,n,nr,info)
          if(info.eq.-1) goto 50
-         if(info.eq.2) then
-            call error(113)
-         return
-         endif
          n=n-1
          n=lnblnk(buf(1:n))
       endif

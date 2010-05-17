@@ -13,8 +13,8 @@
 
 package org.scilab.modules.xcos.block;
 
-import org.scilab.modules.types.scilabTypes.ScilabString;
-import org.scilab.modules.types.scilabTypes.ScilabType;
+import org.scilab.modules.hdf5.scilabTypes.ScilabString;
+import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 
 /**
  * A {@link BasicBlock} which print getExprs()[0][0] as bloc value.

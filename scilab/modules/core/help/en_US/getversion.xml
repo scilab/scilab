@@ -20,12 +20,12 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>version = getversion()
-[version, opts] = getversion()
-version_numbers = getversion('scilab')
-versioninfo = getversion('scilab', 'string_info')
-version_numbers = getversion('&lt;module&gt;')
-versioninfo = getversion('&lt;module&gt;','string_info')</synopsis>
+    <synopsis>version=getversion()
+[version,opts]=getversion()
+ver=getversion('scilab')
+versioninfo=getversion('scilab','string_info')
+ver=getversion('&lt;module&gt;')
+versioninfo=getversion('&lt;module&gt;','string_info')</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -49,7 +49,7 @@ versioninfo = getversion('&lt;module&gt;','string_info')</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>version_numbers</term>
+        <term>ver</term>
 
         <listitem>
           <para>a integer vector</para>
@@ -68,8 +68,8 @@ versioninfo = getversion('&lt;module&gt;','string_info')</synopsis>
         <term>opts</term>
 
         <listitem>
-          <para>a vector of string 
-          :<literal>[compiler, architecture,[ pvm, tk, modelicac, atlas,] release_mode, release_date, release_time]</literal></para>
+          <para>a vector of string with seven entries
+          :<literal>[compiler, pvm, tk, modelicac, release_mode, release_date, release_time]</literal></para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -80,14 +80,7 @@ versioninfo = getversion('&lt;module&gt;','string_info')</synopsis>
 
     <para>return in <literal>version</literal> the Scilab version name and in
     <literal>opts</literal> build options which can be used to determine if
-    scilab has been build with pvm, tk , atlas or modelicac and give release date and time.</para>
-    <para> [ pvm, tk, modelicac, atlas,] are optional. </para>
-    <para> compiler: returns compiler used to build scilab ('GCC', 'VC++', 'PGI', 'ICC', 'SUN', 'UKN' unknown)</para>
-    <para> archicteture: 'x86' or 'x64'.</para>
-    <para> pvm: 'pvm' if pvm is enabled.</para>
-    <para> tk: 'tk' if tcl/tk is enabled.</para>
-    <para> modelicac: 'modelicac' if modelica compiler is ditributed with scilab/xcos.</para>
-    <para> atlas: 'atlas' if scilab was built with atlas (or MKL).</para>
+    scilab has been build with pvm, tk or modelicac and give release date and time.</para>
   </refsection>
 
   <refsection>
@@ -95,23 +88,11 @@ versioninfo = getversion('&lt;module&gt;','string_info')</synopsis>
 
     <programlisting role="example"><![CDATA[ 
 getversion()
-
-[version, opts] = getversion()
-COMPILER = opts(1)
-ARCH = opts(2)
-or(opt == 'modelicac')
-or(opt == 'pvm')
-or(opt == 'tk')
-or(opt == 'atlas')
-RELEASE_MODE = opts($-2)
-RELEASE_DATE = opts($-1)
-RELEASE_TIME = opts($)
-
-version = getversion('scilab')
-versionstr = getversion('scilab','string_info')
-version = getversion('overloading')
-versionstr = getversion('overloading','string_info')
-
+[version,opts]=getversion()
+ver=getversion('scilab')
+verstr=getversion('scilab','string_info')
+ver=getversion('overloading')
+verstr=getversion('overloading','string_info')
  ]]></programlisting>
   </refsection>
 

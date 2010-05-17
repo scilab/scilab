@@ -33,7 +33,7 @@ void matfile_manager(int action, int *fileIndex, mat_t **matfile)
   
   if (action == MATFILEMANAGER_GETFILE) /* Get the mat_t structure corresponding to the fileIndex (fileIndex is an input) */
     {
-      if((*fileIndex >= numberOfMatfiles) || (*fileIndex < 0)) /* FileIndex is too big or invalid */
+      if(*fileIndex>=numberOfMatfiles) /* FileIndex is too big */
         {
           *matfile = NULL; /* Return NULL */
         }
@@ -78,7 +78,7 @@ void matfile_manager(int action, int *fileIndex, mat_t **matfile)
     }
   else if(action == MATFILEMANAGER_DELFILE) /* Close matfile (fileIndex is an input) */
     {
-      if((*fileIndex >= numberOfMatfiles) || (*fileIndex < 0)) /* FileIndex is too big or invalid */
+      if(*fileIndex>numberOfMatfiles) /* FileIndex is too big */
         {
           matfile = NULL; /* Return NULL */
         }

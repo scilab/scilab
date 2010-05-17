@@ -30,7 +30,6 @@ typedef int (*MYPROC1) (HINSTANCE, HINSTANCE ,LPSTR szCmdLine, int iCmdShow);
 /*--------------------------------------------------------------------------*/
 int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine, int iCmdShow)
 {
-	int iExitCode = 0;
 	HINSTANCE hinstLib = NULL; 
 	BOOL fFreeResult = FALSE, fRunTimeLinkSuccess = FALSE; 
 
@@ -59,23 +58,23 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine
 		{
 			fRunTimeLinkSuccess = TRUE;
 
-		#ifndef _DEBUG
+			#ifndef _DEBUG
 			/* catch system errors msgbox (release mode only) */
 			/* http://msdn.microsoft.com/en-us/library/ms680621(VS.85).aspx */
 			// LastErrorMode = SetErrorMode( SEM_FAILCRITICALERRORS|SEM_NOALIGNMENTFAULTEXCEPT|SEM_NOGPFAULTERRORBOX );
 			_try
 			{
-		#endif
+			#endif
 
-				/* launch main */
-				iExitCode = (Windows_Main)(hInstance,hPrevInstance,szCmdLine, iCmdShow);
-
-		#ifndef _DEBUG
+			/* launch main */
+			(Windows_Main)(hInstance,hPrevInstance,szCmdLine, iCmdShow);
+		
+			#ifndef _DEBUG
 			}
 			_except (EXCEPTION_EXECUTE_HANDLER)
 			{	
 			}
-		#endif
+			#endif
 
 		}
 		fFreeResult = FreeLibrary(hinstLib); 
@@ -107,6 +106,8 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine
 		LocalFree(lpDisplayBuf);
 		exit(1);
 	}
-	return iExitCode;
+	else exit(0);
+
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

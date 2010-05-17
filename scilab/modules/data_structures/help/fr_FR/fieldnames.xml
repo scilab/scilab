@@ -1,41 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2006-2008 - INRIA
- * Copyright (C) 2010 - Digiteo - Vincent LIARD
- *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="fieldnames">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>fieldnames</refname>
-    <refpurpose>récupère le nom des champs d'une tlist, d'une mlist ou d'une struct</refpurpose>
+    <refpurpose>returne les noms de champs d'une tlist, d'une mlist ou d'une struct</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
-    <synopsis>f = fieldnames(lst)</synopsis>
+    <synopsis>f=fieldnames(x)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
     <variablelist>
       <varlistentry>
-        <term>lst</term>
+        <term>x  </term>
         <listitem>
-          <para>Une variable de type tlist, mlist ou struct.</para>
+          <para>une tlist,  une mlist ou une struct.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>f</term>
         <listitem>
-          <para>Un vecteur colonne de chaînes de caractères représentant les noms des champs.</para>
+          <para>Un vecteur colonne de chaînes de caractères</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -43,27 +31,23 @@
   <refsection>
     <title>Description</title>
     <para>
-      La fonction <literal>fieldnames</literal> retourne le nom des
-      champs d'une tlist, mlist ou struct. Dans Scilab 5.2,
-      <literal>fieldnames</literal> ne fonctionne pas sur le type
-      cell.
-    </para>
+    returne les noms de champs d'une tlist, d'une mlist ou d'une struct.</para>
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example">
-fieldnames(tlist(['listtype', 'f1', 'f2'], [], []))
-fieldnames(mlist(['V', 'key', 'value'], ['a' 'b' ; 'c' 'd'], [1 2 ; 3 4]))
-fieldnames(struct('f1', 25, 'month', 'DEC', 'year', 2006))
-obj.x = 3;
-obj.y = 3;
-fieldnames(obj)
-    </programlisting>
+    <programlisting role="example"><![CDATA[ 
+clear t;
+t.a=1;
+t.b=2;
+fieldnames(t)
+fieldnames(1/%s)
+fieldnames(tf2ss(1/%s))
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>
     <simplelist type="inline">
-      <member>
+     <member>
         <link linkend="extraction">extraction</link>
       </member>  
       <member>

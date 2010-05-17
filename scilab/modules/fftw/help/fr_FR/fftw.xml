@@ -13,7 +13,7 @@
   <refnamediv>
     <refname>fftw</refname>
 
-    <refpurpose>transformée de Fourier rapide qui utilise la bibliothèque
+    <refpurpose>transformée de Fourier rapide qui utilise la librairie
     FFTW</refpurpose>
   </refnamediv>
 
@@ -72,14 +72,14 @@
     <title>Description</title>
 
     <para>Cette fonction réalise une Transformée de Fourier Discrete (TFD)
-    inverse ou directe au moyen de la bibliothèque FFTW.</para>
+    inverse ou directe au moyen de la libraire FFTW.</para>
 
     <para>Elle permet le calcul de transformée vectorielle, 2D et M-D.</para>
 
     <para>Pour plus de détails concernant la syntaxe de l'appel à fftw,
     consultez la fonction <link linkend="fft">fft</link> de scilab.</para>
 
-    <para>Pour plus de détails concernant la bibliothèque FFW, consultez le site
+    <para>Pour plus de détails concernant la libraire FFW, consultez le site
     web <ulink url="http://www.fftw.org">http://www.fftw.org</ulink>.</para>
 
     <para>Rmq : La fonction ffw enregistre automatiquement les dernières

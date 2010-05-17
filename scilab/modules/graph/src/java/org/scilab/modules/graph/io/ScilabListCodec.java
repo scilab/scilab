@@ -15,9 +15,9 @@ package org.scilab.modules.graph.io;
 
 import java.util.Map;
 
-import org.scilab.modules.types.scilabTypes.ScilabList;
-import org.scilab.modules.types.scilabTypes.ScilabMList;
-import org.scilab.modules.types.scilabTypes.ScilabTList;
+import org.scilab.modules.hdf5.scilabTypes.ScilabList;
+import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
+import org.scilab.modules.hdf5.scilabTypes.ScilabTList;
 import org.w3c.dom.Node;
 
 import com.mxgraph.io.mxCodec;

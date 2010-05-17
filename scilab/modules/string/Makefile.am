@@ -24,6 +24,7 @@ src/c/stringsstrrchr.c \
 src/c/stringsstrrev.c \
 src/c/stringsCompare.c \
 src/c/isalphanum.c \
+src/c/NumTokens.c \
 src/c/StringConvert.c \
 src/c/scistrtostr.c
 

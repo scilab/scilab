@@ -85,7 +85,7 @@ int sci_mgetstr(char *fname,unsigned long fname_len)
 	LhsVar(1) = Rhs+1;
 	if (err >  0)
 	{
-		SciError(10000);
+		Error(10000);
 		return 0;
 	}
 	else if ( err < 0)

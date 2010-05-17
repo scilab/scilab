@@ -45,7 +45,7 @@ int sci_getlongpathname(char *fname,unsigned long l)
 			if ( (LongNames == NULL) || (bOK == NULL) )
 			{
 				freeArrayOfString(ShortNames,m1n1);
-				Scierror(999,"%s: Memory allocation error.\n",fname);
+				Scierror(999,"%s : Memory allocation error.\n",fname);
 				return 0;
 			}
 		}

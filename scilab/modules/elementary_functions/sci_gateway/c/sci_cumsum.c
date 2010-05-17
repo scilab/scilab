@@ -113,7 +113,7 @@ int sci_cumsum(char *fname, int*_piKey)
 		}
 		else
 		{
-			SciError(44);
+			Error(44);
 			return 2;
 		}
 	}
@@ -158,7 +158,7 @@ int sci_cumsum(char *fname, int*_piKey)
 		}
 		else
 		{
-			SciError(44);
+			Error(44);
 			return 2;
 		}
 	}

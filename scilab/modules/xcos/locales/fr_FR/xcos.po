@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-04-13 09:25+0000\n"
+"PO-Revision-Date: 2010-02-09 06:34+0000\n"
 "Last-Translator: Allan CORNET <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-05-04 21:29+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -256,9 +256,6 @@ msgstr "Retourner"
 msgid "Format"
 msgstr "Format"
 
-msgid "From %s"
-msgstr "De %s"
-
 msgid "Generate SuperBlock, please wait ..."
 msgstr "Generation SuperBlock, veuillez patienter ..."
 
@@ -267,9 +264,6 @@ msgstr "Génère le code C du superbloc"
 
 msgid "Get infos"
 msgstr "Récupérer les informations"
-
-msgid "Goto %s"
-msgstr "Aller à %s"
 
 msgid "Grid"
 msgstr "Grille"
@@ -323,7 +317,7 @@ msgid "Left"
 msgstr "Gauche"
 
 msgid "Light Simulation trace (Discrete and Continuous part switches)"
-msgstr "Light Simulation trace (Discrete and Continuous part switches)"
+msgstr ""
 
 msgid "Link Style"
 msgstr "Style du lien"
@@ -446,7 +440,7 @@ msgid "Rows"
 msgstr "Lignes"
 
 msgid "Same command executed again"
-msgstr "La même commande s'est encore exécutée."
+msgstr ""
 
 msgid "Save"
 msgstr "Enregistrer"
@@ -487,7 +481,7 @@ msgid "Set Parameters"
 msgstr "Règle les paramètres"
 
 msgid "Set block parameters"
-msgstr "Configuration des Paramètres du bloc"
+msgstr ""
 
 msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
 msgstr ""
@@ -536,9 +530,6 @@ msgstr "Droit"
 msgid "Superblock mask"
 msgstr "Masque du superbloc"
 
-msgid "The Scicos libraries are not loaded"
-msgstr "Les bibliothèques Scicos ne sont pas chargées"
-
 msgid "The Scilab Consortium (DIGITEO)"
 msgstr "Scilab Consortium (DIGITEO)"
 
@@ -565,21 +556,13 @@ msgid "UnGroup"
 msgstr "Dégrouper"
 
 msgid "Unable to communicate with the interpreter"
-msgstr "Impossible de communiquer avec l'interprète."
-
-#, c-format
-msgid "Unable to open %s"
-msgstr "Impossible d'ouvrir %s"
-
-#, c-format
-msgid "Unable to simulate %s"
-msgstr "Impossible de simuler %s"
+msgstr ""
 
 msgid "Undo"
 msgstr "Annuler"
 
 msgid "Unknown Diagram Version : "
-msgstr "Version inconnue de diagramme : "
+msgstr ""
 
 msgid "Untitled"
 msgstr "Sans titre"

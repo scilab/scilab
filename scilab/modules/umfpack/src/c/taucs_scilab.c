@@ -33,7 +33,7 @@
 #include <assert.h>
 #include <math.h>
 #include "taucs_scilab.h"
-#include "machine.h"   /* F2C macro */
+#include "stack-c.h"   /* F2C macro */
 #include "MALLOC.h"
 #include "BOOL.h"
 #include "sciprint.h"

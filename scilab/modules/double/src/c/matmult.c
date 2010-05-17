@@ -84,7 +84,7 @@ int matmult()
 			}
 			else
 			{
-				SciError(14);
+				Error(14);
 				return 0;
 			}
 		}
@@ -133,7 +133,7 @@ int matmult()
 	{//a*cst
 		if(iRows2 < 0)
 		{
-			SciError(14);
+			Error(14);
 			return 0;
 		}
 
@@ -178,7 +178,7 @@ int matmult()
 	{//matrix * matrix
 		if(iCols1 != iRows2)
 		{
-			SciError(10);
+			Error(10);
 			return 0;
 		}
 

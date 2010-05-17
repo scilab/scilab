@@ -36,7 +36,7 @@ case 'set' then
   model=arg1.model;
   while %t do
    [ok,x0,xd0,exprs]=scicos_getvalue('Set continuous linear system parameters',..
-	['Initial state';'Initial Derivative'],list('vec',1,'vec',1),exprs)
+	['Initial state','Initial Derivative'],list('vec',1,'vec',1),exprs)
 
 
     if ~ok then break,end

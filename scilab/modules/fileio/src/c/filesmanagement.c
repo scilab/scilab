@@ -266,12 +266,7 @@ BOOL IsAlreadyOpenedInScilab(char *filename)
 	if (ScilabFileList)
 	{
 		char fullpath[PATH_MAX*4];
-		int i = 0;
-
-        if ((strcmp(filename, "") == 0) || (filename == NULL))
-        {
-            return FALSE;
-        }
+		int i=0;
 
 		if( get_full_path( fullpath, filename, PATH_MAX*4 ) == NULL )
 		{

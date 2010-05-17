@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-04-16 07:53+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
@@ -149,6 +149,11 @@ msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
 
 #
+# File: src/java/org/scilab/modules/jvm/Scilab.java, line: 145
+msgid "Console"
+msgstr "コンソール"
+
+#
 # File: src/c/createMainScilabObject.c, line: 33
 msgid "Could not access to the Main Scilab Class:\n"
 msgstr "メインScilabクラスにアクセスできません:\n"
@@ -257,9 +262,6 @@ msgstr "JNI: メモリが足りません"
 # File: sci_gateway/c/gw_jvm.c, line: 41
 msgid "JVM interface disabled in -nogui or -nwni modes.\n"
 msgstr "JVM インターフェース無効 -nogui または -nwni モード\n"
-
-msgid "Scilab Console"
-msgstr ""
 
 #
 # File: src/nojvm/nojvm.c, line: 27

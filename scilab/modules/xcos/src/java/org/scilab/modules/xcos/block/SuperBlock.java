@@ -15,14 +15,13 @@ package org.scilab.modules.xcos.block;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
-import org.scilab.modules.types.scilabTypes.ScilabDouble;
-import org.scilab.modules.types.scilabTypes.ScilabList;
-import org.scilab.modules.types.scilabTypes.ScilabMList;
+import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
+import org.scilab.modules.hdf5.scilabTypes.ScilabList;
+import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.actions.CodeGenerationAction;
 import org.scilab.modules.xcos.block.actions.RegionToSuperblockAction;
@@ -38,14 +37,15 @@ import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
 import org.scilab.modules.xcos.block.io.ContextUpdate.IOBlocks;
 import org.scilab.modules.xcos.graph.PaletteDiagram;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
-import org.scilab.modules.xcos.io.scicos.BasicBlockInfo;
-import org.scilab.modules.xcos.io.scicos.DiagramElement;
-import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
+import org.scilab.modules.xcos.io.BasicBlockInfo;
+import org.scilab.modules.xcos.io.BlockReader;
+import org.scilab.modules.xcos.io.BlockWriter;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
+import com.mxgraph.model.mxCell;
 import com.mxgraph.util.mxEventObject;
 
 /**
@@ -147,11 +147,6 @@ public final class SuperBlock extends BasicBlock {
 	@Override
 	public void openBlockSettings(String[] context) {
 		
-		//prevent to open twice
-		if (isLocked()) {
-			return;
-		}
-		
 		/*
 		 * Do nothing when something happen on the Palette
 		 */
@@ -203,9 +198,6 @@ public final class SuperBlock extends BasicBlock {
 			getChild().setOpened(true);
 			getChild().setVisible(true);
 			
-			getChild().installListeners();
-			getChild().installSuperBlockListeners();
-			
 		} else {
 			getChild().setVisible(true);
 		}
@@ -215,14 +207,7 @@ public final class SuperBlock extends BasicBlock {
 		 */
 		getChild().updateCellsContext();
 		
-		/*
-		 * Register the diagram container
-		 */
-		getChild().setContainer(this);
-		
 		XcosTab.getAllDiagrams().add(getChild());
-		
-		setLocked(false);
 	}
 
 	/**
@@ -236,7 +221,7 @@ public final class SuperBlock extends BasicBlock {
 		 * valid.
 		 */
 		if (getChild().isModified()) {
-			setRealParameters(new DiagramElement().encode(getChild()));
+			setRealParameters(BlockWriter.convertDiagramToMList(getChild()));
 			getChild().setModified(true);
 			getChild().setModifiedNonRecursively(false);
 		}
@@ -294,12 +279,8 @@ public final class SuperBlock extends BasicBlock {
 		if (child == null) {
 			child = new SuperBlockDiagram(this);
 			child.installListeners();
-			try {
-				new DiagramElement().decode(getRealParameters(), child, false);
-			} catch (ScicosFormatException e) {
-				LogFactory.getLog(SuperBlock.class).error(e);
-				return false;
-			}
+			child.loadDiagram(BlockReader.convertMListToDiagram(
+					(ScilabMList) getRealParameters(), false));
 			
 			child.installSuperBlockListeners();
 			child.setChildrenParentDiagram();
@@ -327,6 +308,16 @@ public final class SuperBlock extends BasicBlock {
 	 */
 	public void setChild(SuperBlockDiagram child) {
 		this.child = child;
+	}
+
+	/**
+	 * @return block as mlist structure
+	 */
+	public ScilabMList getAsScilabObj() {
+		if (child != null) {
+			setRealParameters(BlockWriter.convertDiagramToMList(child));
+		}
+		return BasicBlockInfo.getAsScilabObj(this);
 	}
 
 	/**

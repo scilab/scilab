@@ -10,8 +10,8 @@
  *
  */
 
-#include "machine.h"
-#include "core_math.h"
+
+#include "stack-c.h"
 #include "finite.h"
 
 #if !(defined HAVE_FINITE) && (defined hppa)

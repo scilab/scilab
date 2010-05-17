@@ -102,13 +102,13 @@ int sci_dsearch(char *fname, int* _piKey)
 	if(cMode != 'c' && cMode != 'd')
 	{
 		sciprint(_("%s: unknown char specifier (must be ''c'' or ''d'').\n"), fname);
-		SciError(999);
+		Error(999);
 		return 0;
 	}
 
 	if(isVarComplex(_piKey, piAddr1) || isVarComplex(_piKey, piAddr2))
 	{
-		SciError(202);
+		Error(202);
 		return 0;
 	}
 	else
@@ -126,7 +126,7 @@ int sci_dsearch(char *fname, int* _piKey)
 			if(pdblReal2[i] < pdblReal2[i - 1])
 			{
 				sciprint(_("%s: the array val (arg 2) is not well ordered.\n"), fname);
-				SciError(999);
+				Error(999);
 				return 0;
 			}
 		}
@@ -139,7 +139,7 @@ int sci_dsearch(char *fname, int* _piKey)
 		if( iRowsOcc * iColsOcc < 1)
 		{
 			sciprint(_("%s: Argument 2: argument 2 must not be an empty vector.\n"), fname);
-			SciError(999);
+			Error(999);
 			return 0;
 		}
 	}
@@ -148,7 +148,7 @@ int sci_dsearch(char *fname, int* _piKey)
 		if( iRowsOcc * iColsOcc < 2)
 		{
 			sciprint(_("%s: in the interval case, argument 2 must be a vector with length > 1.\n"), fname);
-			SciError(999);
+			Error(999);
 			return 0;
 		}
 		if(iRowsOcc == 1)
@@ -278,7 +278,7 @@ static int getMode(int* _piKey, int _iPos, char *_pcMode)
 	}
 	else
 	{
-		SciError(89);
+		Error(89);
 	}
 	return 0;
 }

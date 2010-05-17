@@ -28,15 +28,7 @@
       <varlistentry>
         <term>str</term>
         <listitem>
-          <para>character string specifying environment variable name </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>rep</term>
-        <listitem>
-          <para>
-            an optional character string. When this optional value  is used, the function <literal>getenv</literal> returns the value <literal>rep</literal> when the environment variable <literal>str</literal> is not found.
-          </para>
+          <para>character string specifying environment variable name rep : an optional character string. When this optional value  is used, the function <literal>getenv</literal> returns the value <literal>rep</literal> when the environment variable <literal>str</literal> is not found.</para>
         </listitem>
       </varlistentry>
       <varlistentry>

@@ -82,15 +82,14 @@
                 <listitem>
                     <para>
                         Return address of real data array (size: _iCols * _iRows).
-                        For "Named" function, _pdblReal must be allocated before calling function.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>_pdblImg</term>
                 <listitem>
-                    Return address of imaginary data array (size: _iCols * _iRows).
-                    For "Named" function, _pdblImg must be allocated before calling function.
+                    <para>Return address of imaginary data array (size: _iCols * _iRows).</para>
+                    <para>This argument does not exist with getMatrixOfDouble and readNamedMatrixOfDouble.</para>
                 </listitem>
             </varlistentry>
 			<varlistentry>

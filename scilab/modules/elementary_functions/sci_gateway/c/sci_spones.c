@@ -51,7 +51,7 @@ int C2F(sci_spones) (char *fname,unsigned long fname_len)
 		else
 		{
 			sciprint(_("%s: argument must be a sparse matrix.\n"), fname);
-			SciError(999);
+			Error(999);
 			return 0;
 		}
 	}

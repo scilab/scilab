@@ -29,7 +29,7 @@ int gw_data_structures2(void)
 	if (Top - Rhs + Lhs + 1 >= Bot)
 	{
 		static int codeerror = 18;
-		SciError(codeerror);
+		Error(codeerror);
 		return 0;
 	}
 

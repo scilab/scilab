@@ -27,7 +27,7 @@
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <para>Input argument profile:</para>
-        <synopsis>SciErr getPointer(void* _pvCtx, int* _piAddress, void** _pvPtr)</synopsis>
+        <synopsis>SciErr createNamedPointer(void* _pvCtx, char* _pstName, void* _pvPtr)</synopsis>
         <para>Named variable profile:</para>
         <synopsis>SciErr readNamedPointer(void* _pvCtx, char* _pstName, void** _pvPtr)</synopsis>
     </refsynopsisdiv>

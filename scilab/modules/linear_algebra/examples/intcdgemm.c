@@ -37,12 +37,12 @@ int intcdgemm(fname)
   if(nA != mB || m1*n1*m4*n4 != 1 )
     {
       sciprint("Bad call to dgemm\n");
-      SciError(9999);     return 0;
+      Error(9999);     return 0;
     }
   if(mA != mC || nB != nC )
     {
       sciprint("%s: invalid matrix dims in ",fname);
-      SciError(9999);     return 0;
+      Error(9999);     return 0;
     }
   k=nA;
   C2F(dgemm)("n","n",&m ,&n ,&k,stk(lalfa),

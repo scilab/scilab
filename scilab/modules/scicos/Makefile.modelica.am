@@ -10,12 +10,12 @@
 
 # TODO:
 # * see if we can do more factorisation (on the lexer for example)
+# * translator must be renamed
 
 ######### Common Modelica elements #############
 
-if SCICOS
 if OCAML
-TARGET = modelicac XML2Modelica modelicat
+TARGET = modelicac XML2Modelica translator
 BASE_PATH = $(srcdir)/src/
 bin_PROGRAMS = $(TARGET)
 OCAMLLIBS=nums.cma
@@ -32,9 +32,9 @@ BASE_PATH_XML2Modelica = $(srcdir)/src/xml2modelica
 
 ### Translator 
 
-modelicat_SOURCES = $(MLS_modelicat)
+translator_SOURCES = $(MLS_translator)
 
-MLS_modelicat =  $(srcdir)/src/translator/compilation/types.ml \
+MLS_translator =  $(srcdir)/src/translator/compilation/types.ml \
  $(srcdir)/src/translator/compilation/nameResolve.ml \
  $(srcdir)/src/translator/instantiation/instantiation.ml \
  $(srcdir)/src/translator/exceptionHandling/msgDico.ml \
@@ -46,16 +46,16 @@ MLS_modelicat =  $(srcdir)/src/translator/compilation/types.ml \
  $(srcdir)/src/translator/translation/translator.ml
 
 
-MLS_SPECIFIC_PRE_modelicat = $(srcdir)/src/translator/parsing/syntax.ml \
+MLS_SPECIFIC_PRE_translator = $(srcdir)/src/translator/parsing/syntax.ml \
 $(srcdir)/src/translator/parsing/parser.ml \
 $(srcdir)/src/translator/parsing/lexer.ml \
 $(srcdir)/src/translator/parsing/linenum.ml
 
-PARSER_SRC_modelicat = $(srcdir)/src/translator/parsing/parser.mly
-LEXER_SRC_modelicat = $(srcdir)/src/translator/parsing/lexer.mll
+PARSER_SRC_translator = $(srcdir)/src/translator/parsing/parser.mly
+LEXER_SRC_translator = $(srcdir)/src/translator/parsing/lexer.mll
 
 
-INCLUDE_modelicat = -I $(srcdir)/src/translator/compilation \
+INCLUDE_translator = -I $(srcdir)/src/translator/compilation \
 -I $(srcdir)/src/translator/exceptionHandling \
 -I $(srcdir)/src/translator/parsing \
 -I $(srcdir)/src/translator/instantiation \
@@ -115,8 +115,8 @@ SUFFIXES += .ml .mli .mll .mly .cmo .cmi .cmx
 
 .ml.cmo:
 	@if echo "$<"|grep src/translator; then \
-		echo $(OCAMLC) $(INCLUDE_modelicat)  -c $<; \
-		$(OCAMLC) $(INCLUDE_modelicat)  -c $<; \
+		echo $(OCAMLC) $(INCLUDE_translator)  -c $<; \
+		$(OCAMLC) $(INCLUDE_translator)  -c $<; \
 	else \
 		echo $(OCAMLC) $(INCLUDE)  -c $<; \
 		$(OCAMLC) $(INCLUDE)  -c $<; \
@@ -124,8 +124,8 @@ SUFFIXES += .ml .mli .mll .mly .cmo .cmi .cmx
 
 .ml.cmx:
 	@if echo "$<"|grep src/translator; then \
-		echo $(OCAMLOPT) $(INCLUDE_modelicat) -c $<; \
-		$(OCAMLOPT) $(INCLUDE_modelicat) -c $<; \
+		echo $(OCAMLOPT) $(INCLUDE_translator) -c $<; \
+		$(OCAMLOPT) $(INCLUDE_translator) -c $<; \
 	else \
 		echo $(OCAMLOPT) $(INCLUDE) -c $<; \
 		$(OCAMLOPT) $(INCLUDE) -c $<; \
@@ -134,8 +134,8 @@ SUFFIXES += .ml .mli .mll .mly .cmo .cmi .cmx
 
 .mli.cmi:
 	@if echo "$<"|grep src/translator; then \
-		echo $(OCAMLC) $(INCLUDE_modelicat) -c $<; \
-		$(OCAMLC) $(INCLUDE_modelicat) -c $<; \
+		echo $(OCAMLC) $(INCLUDE_translator) -c $<; \
+		$(OCAMLC) $(INCLUDE_translator) -c $<; \
 	else \
 		echo $(OCAMLC) $(INCLUDE) -c $<; \
 		$(OCAMLC) $(INCLUDE) -c $<; \
@@ -143,8 +143,8 @@ SUFFIXES += .ml .mli .mll .mly .cmo .cmi .cmx
 
 .ml.mli:
 	@if echo "$<"|grep src/translator; then \
-		echo $(OCAMLC) $(INCLUDE_modelicat) -c $<; \
-		$(OCAMLC) $(INCLUDE_modelicat) -c $<; \
+		echo $(OCAMLC) $(INCLUDE_translator) -c $<; \
+		$(OCAMLC) $(INCLUDE_translator) -c $<; \
 	else \
 		echo $(OCAMLC) $(INCLUDE) -c $<; \
 		$(OCAMLC) $(INCLUDE) -c $<; \
@@ -178,16 +178,16 @@ XML2Modelica: $(MLS_XML2Modelica:.ml=.cmo) $(MLS_XML2Modelica:.ml=.cmx)
 
 
 # call the ocaml/Yacc
-generate-parser_modelicat: $(PARSER_SRC_modelicat)
+generate-parser_translator: $(PARSER_SRC_translator)
 	$(OCAMLYACC) $(<)
 	$(RM) -f $(<:.mly=.mli)
 
 # Call the lexer
-generate-lexer_modelicat: $(LEXER_SRC_modelicat)
+generate-lexer_translator: $(LEXER_SRC_translator)
 	$(OCAMLLEX) $(<)
 
-modelicat: generate-parser_modelicat generate-lexer_modelicat $(MLS_SPECIFIC_PRE_modelicat:.ml=.cmo)  $(MLS_modelicat:.ml=.mli) $(MLS_SPECIFIC_PRE_modelicat:.ml=.cmx) $(MLS_modelicat:.ml=.cmo)  $(MLS_modelicat:.ml=.cmx) 
-	$(OCAMLOPT) -o modelicat $(INCLUDE_modelicat) $(OCAMLLIBS:.cma=.cmxa) $(MLS_SPECIFIC_PRE_modelicat:.ml=.cmx) $(MLS_modelicat:.ml=.cmx) 
+translator: generate-parser_translator generate-lexer_translator $(MLS_SPECIFIC_PRE_translator:.ml=.cmo)  $(MLS_translator:.ml=.mli) $(MLS_SPECIFIC_PRE_translator:.ml=.cmx) $(MLS_translator:.ml=.cmo)  $(MLS_translator:.ml=.cmx) 
+	$(OCAMLOPT) -o modelicat $(INCLUDE_translator) $(OCAMLLIBS:.cma=.cmxa) $(MLS_SPECIFIC_PRE_translator:.ml=.cmx) $(MLS_translator:.ml=.cmx) 
 
 
 CLEANFILES = $(BASE_PATH)/*/*.cmi \
@@ -211,4 +211,3 @@ CLEANFILES = $(BASE_PATH)/*/*.cmi \
 	$(TARGET)
 
 endif # OCAML
-endif # SCICOS

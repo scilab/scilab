@@ -48,6 +48,8 @@ public class SetContextAction extends SimulationNotRunningAction {
 	 * @return the menu
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
+		SetContextAction action = new SetContextAction(scilabGraph);
+		((XcosDiagram) scilabGraph).setContextAction(action);
 		return createMenu(scilabGraph, SetContextAction.class);
 	}
 	

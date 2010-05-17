@@ -16,7 +16,7 @@ import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
 import org.scilab.modules.hdf5.H5ScilabConstant;
 import org.scilab.modules.hdf5.read.H5Read;
-import org.scilab.modules.types.scilabTypes.ScilabString;
+import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.write.H5Write;
 
 

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 16:29+0100\n"
-"PO-Revision-Date: 2010-04-14 21:17+0000\n"
-"Last-Translator: kkirill <Unknown>\n"
+"PO-Revision-Date: 2010-02-12 20:19+0000\n"
+"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-04-16 07:54+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid ""
@@ -158,6 +158,9 @@ msgstr "Выполнение"
 
 msgid "Execute File Into Scilab"
 msgstr "Выполнить файл в Scilab"
+
+msgid "Execute selection into Scilab"
+msgstr "Вычислить выделенное в Scilab"
 
 msgid "Exit"
 msgstr "Выход"
@@ -361,11 +364,6 @@ msgstr "Этот файл"
 msgid "This file is a binary, saving it will result in a corrupt file."
 msgstr "Данный файл является бинарным, при сохранении он будет испорчен."
 
-msgid ""
-"This file is very long. \"Execute File Into Scilab\" could be better.\n"
-"Are you sure to continue ?"
-msgstr "Данный файл очень длинный. Продолжить?"
-
 msgid "Uncomment Selection"
 msgstr "Удалить комментарии"
 
@@ -382,7 +380,7 @@ msgid "View"
 msgstr "Вид"
 
 msgid "Whole word"
-msgstr "Только полные слова"
+msgstr "Слово целиком"
 
 msgid "Windows/DOS (CR + LF)"
 msgstr "Windows/DOS (CR + LF)"

@@ -643,7 +643,7 @@ c     .  reshape arg3 according to arg4
          istk(ilrs+2)=n4
          istk(ilrs+3)=0
          volr=istk(id3+mn3)-1
-         call icopy(mn3+1+volr,istk(id3),1,istk(ilrs+4),1)
+         call icopy(mn3+volr,istk(id3),1,istk(ilrs+4),1)
          lstk(top+1)=sadr(ilrs+5+mn3+volr)
          goto 999
       endif
@@ -986,7 +986,7 @@ c     comparaison des types
          lstk(top+1)=sadr(il1+4)
          return
       endif
-
+ 181  continue
 c     des dimensions
       if(mn1.eq.1.and.mn2.gt.1) then
          nn1=istk(il1+5)-1

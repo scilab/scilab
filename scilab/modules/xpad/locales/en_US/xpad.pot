@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-04-13 09:16+0100\n"
+"Revision-Date: 2010-01-25 10:32+0100\n"
 
 # File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 131
 msgid ""
@@ -201,6 +201,10 @@ msgstr ""
 #
 # File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 96
 msgid "Execute File Into Scilab"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/XpadGUI.java, line: 426
+msgid "Execute selection into Scilab"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 42
@@ -468,12 +472,6 @@ msgstr ""
 #
 # File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 146
 msgid "This file is a binary, saving it will result in a corrupt file."
-msgstr ""
-#
-# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 142
-msgid ""
-"This file is very long. \"Execute File Into Scilab\" could be better.\n"
-"Are you sure to continue ?"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 55

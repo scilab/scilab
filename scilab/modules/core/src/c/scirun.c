@@ -16,7 +16,6 @@
 #include "stack-c.h"
 #include "Scierror.h"
 #include "recursionFunction.h"
-#include "exitCodeValue.h"
 /*--------------------------------------------------------------------------*/ 
 extern int C2F(parse)(void);
 extern int C2F(isbyref)(int *);
@@ -85,13 +84,15 @@ int C2F(scirun)(char *startupCode, long int startupCode_len)
  L89:
   if (Top < Rhs) 
     {
-      SciError(22);
+      int code_error=22;
+      Error(code_error);
       if (C2F(recu).niv > 0 && C2F(recu).paus > 0) C2F(com).fun = 0;
       goto L60;
     }
   if (Top - Rhs + Lhs + 1 >= Bot) 
     {
-      SciError(18);
+      int code_error=18;
+      Error(code_error);
       if (C2F(recu).niv > 0 && C2F(recu).paus > 0) C2F(com).fun = 0;
       goto L60;
     }
@@ -112,8 +113,9 @@ int C2F(scirun)(char *startupCode, long int startupCode_len)
   C2F(com).fun = 0;
   if (k == C2F(recu).krec) 
     {
+      int code_error=22;
       C2F(recu).krec = -1;
-      SciError(22);
+      Error(code_error);
       if (C2F(recu).niv > 0 && C2F(recu).paus > 0) C2F(com).fun = 0;
       goto L60;
     }
@@ -128,10 +130,6 @@ int C2F(scirun)(char *startupCode, long int startupCode_len)
   C2F(recu).krec = k;
   C2F(callinterf)(&k);
   C2F(recu).krec = -1;
-  if (C2F(com).fun == -999) /* exit detected */
-  {
-	return getExitCodeValue();
-  }
   if (C2F(com).fun >= 0) 
     {
       if (Top - Lhs + 1 > 0) 
@@ -178,7 +176,8 @@ int C2F(scirun)(char *startupCode, long int startupCode_len)
 
   if (Fin == 0) 
     {
-      SciError(246);
+      int code_error=246;
+      Error(code_error);
       if (Err > 0) 
 	{
 	  if (C2F(recu).niv > 0 && C2F(recu).paus > 0) C2F(com).fun = 0;

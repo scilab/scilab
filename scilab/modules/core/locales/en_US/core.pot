@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-04-13 09:16+0100\n"
+"Revision-Date: 2010-01-25 10:32+0100\n"
 
 # File: src/c/banier.c, line: 36
 msgid "                 Consortium Scilab (DIGITEO)\n"
@@ -53,10 +53,8 @@ msgid "%f: No more space to store string arguments.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_newfun.c, line: 133
-# File: sci_gateway/c/sci_getmd5.c, line: 100
-# File: sci_gateway/c/sci_getmd5.c, line: 150
 #, c-format
-msgid "%s: Memory allocation error.\n"
+msgid "%s : Memory allocation error.\n"
 msgstr ""
 #
 # File: src/c/stack2.c, line: 2928
@@ -336,8 +334,8 @@ msgid "%s: System error: Command executed: %s"
 msgstr ""
 #
 # File: macros/add_demo.sci, line: 21
-# File: sci_gateway/c/sci_getmd5.c, line: 67
-# File: sci_gateway/c/sci_getmd5.c, line: 87
+# File: sci_gateway/c/sci_getmd5.c, line: 70
+# File: sci_gateway/c/sci_getmd5.c, line: 90
 #, c-format
 msgid "%s: The file %s does not exist.\n"
 msgstr ""
@@ -800,6 +798,7 @@ msgstr ""
 # File: sci_gateway/c/sci_getversion.c, line: 239
 # File: sci_gateway/c/sci_with_module.c, line: 47
 # File: sci_gateway/c/sci_clearfun.c, line: 65
+# File: sci_gateway/c/sci_getmd5.c, line: 147
 # File: sci_gateway/c/sci_getvariablesonstack.c, line: 60
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -820,7 +819,7 @@ msgstr ""
 msgid "%s: Wrong type for input arguments #%d and #%d: Strings expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_getmd5.c, line: 160
+# File: sci_gateway/c/sci_getmd5.c, line: 152
 #, c-format
 msgid "%s: Wrong type for input arguments #%d or #%d: Strings expected.\n"
 msgstr ""
@@ -830,7 +829,7 @@ msgstr ""
 msgid "%s: Wrong type for inputs arguments.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_getmd5.c, line: 105
+# File: sci_gateway/c/sci_getmd5.c, line: 103
 #, c-format
 msgid "%s: Wrong type of input argument #%d: String expected.\n"
 msgstr ""
@@ -838,11 +837,6 @@ msgstr ""
 # File: src/c/intmacr2tree.c, line: 1124
 #, c-format
 msgid "%s: Wrong type value.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_getmd5.c, line: 155
-#, c-format
-msgid "%s: Wrong value for input argument #%d: \"%s\" expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_who.c, line: 139
@@ -1127,8 +1121,41 @@ msgstr ""
 msgid "Commands:\n"
 msgstr ""
 #
+# File: src/c/getstaticDebugInfo_Windows.c, line: 46
+#, c-format
+msgid "Compilation date: %s"
+msgstr ""
+#
+# File: src/c/getstaticDebugInfo_Windows.c, line: 53
+#, c-format
+msgid "Compilation time: %s"
+msgstr ""
+#
+# File: src/c/getstaticDebugInfo_Windows.c, line: 73
+# File: src/c/getstaticDebugInfo_Windows.c, line: 75
+# File: src/c/getstaticDebugInfo_Windows.c, line: 77
+# File: src/c/getstaticDebugInfo_Windows.c, line: 87
+#, c-format
+msgid "Compiled with %s"
+msgstr ""
+#
+# File: src/c/getstaticDebugInfo_Windows.c, line: 61
+# File: src/c/getstaticDebugInfo_Windows.c, line: 63
+#, c-format
+msgid "Compiler Architecture: %s"
+msgstr ""
+#
+# File: src/c/getstaticDebugInfo_Windows.c, line: 133
+#, c-format
+msgid "Directory separator: %s"
+msgstr ""
+#
 # File: src/c/callinterf.c, line: 176
 msgid "Do you really want to abort computation (y or n ?) \n"
+msgstr ""
+#
+# File: src/c/getstaticDebugInfo_Windows.c, line: 104
+msgid "Enable"
 msgstr ""
 #
 # File: src/c/tmpdir.c, line: 53
@@ -1213,6 +1240,22 @@ msgstr ""
 msgid "Fatal Error: Can't create table for scilab functions.\n"
 msgstr ""
 #
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 127
+msgid "Free Extended Memory (Kbytes): %*I64d"
+msgstr ""
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 97
+msgid "Free Paging File (Kbytes): %*I64d"
+msgstr ""
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 77
+msgid "Free Physical Memory (Kbytes): %*I64d"
+msgstr ""
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 117
+msgid "Free Virtual Memory (Kbytes): %*I64d"
+msgstr ""
+#
 # File: src/c/run.c, line: 510
 msgid "Functions compiled with very old versions are no more handled."
 msgstr ""
@@ -1222,7 +1265,7 @@ msgstr ""
 msgid "GetDataFromName: variable %s not found.\n"
 msgstr ""
 #
-# File: src/c/callDynamicGateway.c, line: 187
+# File: src/c/callDynamicGateway.c, line: 180
 #, c-format
 msgid "Impossible to call %s in %s library: %s\n"
 msgstr ""
@@ -1232,12 +1275,12 @@ msgstr ""
 msgid "Impossible to create : %s"
 msgstr ""
 #
-# File: src/c/callDynamicGateway.c, line: 184
+# File: src/c/callDynamicGateway.c, line: 177
 #, c-format
 msgid "Impossible to load %s function in %s library: %s\n"
 msgstr ""
 #
-# File: src/c/callDynamicGateway.c, line: 181
+# File: src/c/callDynamicGateway.c, line: 174
 #, c-format
 msgid "Impossible to load %s library: %s\n"
 msgstr ""
@@ -1274,10 +1317,24 @@ msgstr ""
 msgid "List full.\n"
 msgstr ""
 #
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 57
+#, c-format
+msgid "Memory in use: %*ld %%"
+msgstr ""
+#
 # File: src/c/scimem.c, line: 54
 # File: src/c/scimem.c, line: 86
 # File: src/c/scimem64.c, line: 113
 msgid "No space to allocate Scilab stack.\n"
+msgstr ""
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 164
+#, c-format
+msgid "Number of processors: %d"
+msgstr ""
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 138
+msgid "Operating System: "
 msgstr ""
 #
 # File: src/c/stack2.c, line: 402
@@ -1286,6 +1343,16 @@ msgstr ""
 #
 # File: src/c/stack2.c, line: 405
 msgid "Optional arguments list: \n"
+msgstr ""
+#
+# File: src/c/getstaticDebugInfo_Windows.c, line: 140
+#, c-format
+msgid "PCRE Version: %d.%d"
+msgstr ""
+#
+# File: src/c/getstaticDebugInfo_Windows.c, line: 126
+#, c-format
+msgid "Path separator: %s"
 msgstr ""
 #
 # File: src/c/inisci-c.c, line: 82
@@ -1319,8 +1386,24 @@ msgid ""
 "%s\n"
 msgstr ""
 #
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 331
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 334
+#, c-format
+msgid "Screen size: %d x %d %d bits"
+msgstr ""
+#
 # File: /pro/git/scilab.5.2/scilab/etc/scilab.start, line: 66
 msgid "Startup execution:"
+msgstr ""
+#
+# File: src/c/getstaticDebugInfo_Windows.c, line: 111
+#, c-format
+msgid "TCL version: %s"
+msgstr ""
+#
+# File: src/c/getstaticDebugInfo_Windows.c, line: 118
+#, c-format
+msgid "TK version: %s"
 msgstr ""
 #
 # File: src/c/inisci-c.c, line: 168
@@ -1328,9 +1411,26 @@ msgstr ""
 msgid "TMPDIR not defined.\n"
 msgstr ""
 #
+# File: src/c/getstaticDebugInfo_Windows.c, line: 104
+#, c-format
+msgid "Tcl/Tk: %s"
+msgstr ""
+#
 # File: src/c/getmodules.c, line: 84
 # File: src/c/getmodules.c, line: 119
 msgid "The SCI environment variable is not set.\n"
+msgstr ""
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 87
+msgid "Total Paging File (Kbytes): %*I64d"
+msgstr ""
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 67
+msgid "Total Physical Memory (Kbytes): %*I64d"
+msgstr ""
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 107
+msgid "Total Virtual Memory (Kbytes): %*I64d"
 msgstr ""
 #
 # File: src/c/callinterf.c, line: 175
@@ -1366,6 +1466,21 @@ msgstr ""
 msgid "Using %s elements ouf of %s"
 msgstr ""
 #
+# File: src/c/getstaticDebugInfo_Windows.c, line: 39
+#, c-format
+msgid "Version: %s"
+msgstr ""
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 179
+#, c-format
+msgid "Video card driver version: %s"
+msgstr ""
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 172
+#, c-format
+msgid "Video card: %s"
+msgstr ""
+#
 # File: sci_gateway/c/sci_warning.c, line: 78
 #, c-format
 msgid "WARNING: %s"
@@ -1391,6 +1506,11 @@ msgstr ""
 msgid ""
 "Warning: the operational team of the Scilab Consortium\n"
 "doesn't provide and doesn't support this version of Scilab built with\n"
+msgstr ""
+#
+# File: src/c/getstaticDebugInfo_Windows.c, line: 95
+#, c-format
+msgid "XML version: %s"
 msgstr ""
 #
 # File: sci_gateway/c/sci_who.c, line: 321

@@ -108,14 +108,6 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
 	}
 	
 	/**
-	 * Get the Scilab Help Browser (does not create it is not existing)
-	 * @return the console
-	 */
-	public static HelpBrowser getHelpBrowserWithoutCreation() {
-		return instance;
-	}
-	
-	/**
 	 * Display the Help Browser
 	 */
 	public void display() {

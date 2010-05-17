@@ -19,7 +19,7 @@ import java.io.IOException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.scilab.modules.xcos.utils.FileUtils;
+import org.scilab.modules.xcos.utils.XcosConstants;
 
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxEventSource.mxIEventListener;
@@ -92,7 +92,7 @@ public class CompilationEngineStatus implements mxIEventListener, PropertyChange
 		 */
 		if (getCompilationData() == null || !getCompilationData().exists()) {
 			try {
-				setCompilationData(FileUtils.createTempFile());
+				setCompilationData(File.createTempFile("xcos", ".h5", XcosConstants.TMPDIR));
 			} catch (IOException e) {
 				LOG.warn(e);
 				

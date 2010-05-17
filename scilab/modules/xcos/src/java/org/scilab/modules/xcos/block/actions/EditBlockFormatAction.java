@@ -286,7 +286,7 @@ public class EditBlockFormatAction extends DefaultAction {
 	    
 	    private mxCell cell;
 		
-	    private final transient ChangeListener defaultChangeListener = new ChangeListener() {
+	    private final ChangeListener defaultChangeListener = new ChangeListener() {
         	/**
         	 * Update the text area font
         	 * @param e the event parameters
@@ -298,7 +298,7 @@ public class EditBlockFormatAction extends DefaultAction {
 			}
 		};
 		
-		private final transient ActionListener defaultActionListener = new ActionListener() {
+		private final ActionListener defaultActionListener = new ActionListener() {
         	/**
         	 * Update the text area font
         	 * @param e the event parameters
@@ -556,9 +556,6 @@ public class EditBlockFormatAction extends DefaultAction {
 			textArea.setFont(f);
 			textArea.setBackground(backgroundColorChooser.getColor());
 			textArea.setForeground(textColorChooser.getColor());
-			
-			// Repaint the parent scroll pane to force a full redraw call. 
-			jScrollPane1.repaint();
 		}
 	}
 	// CSON: ClassDataAbstractionCoupling

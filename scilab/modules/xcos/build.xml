@@ -2,7 +2,6 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
- * Copyright (C) 2010 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -18,35 +17,7 @@
   <property name="library.name" value="${library.xcos.name}" />
 
   <description>
-      Build the Scilab xcos module
+			Build the Scilab xcos module
   </description>
 
-  <target name="validate" description="Validate the data">
-    <!-- Validate the demos -->
-    <schemavalidate noNamespaceFile="etc/XcosFile.xsd">
-      <fileset dir="demos" includes="**/*.xcos"/>
-    </schemavalidate>
-
-    <!-- Validate the global configuration file -->
-    <schemavalidate noNamespaceFile="etc/XcosConfiguration.xsd"
-      file="etc/xcos.xml" />
-
-    <!-- Validate the palette configuration file -->
-    <schemavalidate noNamespaceFile="etc/PaletteConfiguration.xsd"
-      file="etc/palettes.xml" />
-  </target>
-
-  <!-- Overload the test target dependencies -->
-  <target name="test" depends="compile-test, validate">
-    <taskdef name="testng" classpathref="unittest.classpath" classname="org.testng.TestNGAntTask" />
-    <testng verbose="2"  haltonfailure="true">
-	    <classpath>
-        <path refid="unittest.classpath" />
-        <path refid="compile.classpath" />
-        <pathelement location="${classes.test.dir}" />
-      </classpath>
-	    <classfileset dir="${build.test.dir}" includes="**/*.class"/>
-      <jvmarg value="-DdisableLoadJNIScilab=1"/>
-    </testng>
-  </target>
 </project>

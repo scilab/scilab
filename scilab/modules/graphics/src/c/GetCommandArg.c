@@ -500,7 +500,7 @@ int get_logflags_arg(char *fname,int pos,rhs_opts opts[], char ** logFlags )
 	      if ((*cstk(l)!='l'&&*cstk(l)!='n')||(*cstk(l+1)!='l'&&*cstk(l+1)!='n'))
         {
 	        Err=pos;
-	        SciError(116);
+	        Error(116);
 	        return 0;
 	      }
 	      logFlagsCpy[0]='g';
@@ -515,7 +515,7 @@ int get_logflags_arg(char *fname,int pos,rhs_opts opts[], char ** logFlags )
 	          (*cstk(l+2)!='l'&&*cstk(l+2)!='n'))
         {
 	        Err=pos;
-	        SciError(116);
+	        Error(116);
 	        return 0;
 	      }
         *logFlags = cstk(l) ;  
@@ -540,7 +540,7 @@ int get_logflags_arg(char *fname,int pos,rhs_opts opts[], char ** logFlags )
       if ((*cstk(l)!='l'&&*cstk(l)!='n')||(*cstk(l+1)!='l'&&*cstk(l+1)!='n'))
       {
 	      Err=kopt;
-	      SciError(116);
+	      Error(116);
 	      return 0;
       }
       logFlagsCpy[0]='g';
@@ -555,7 +555,7 @@ int get_logflags_arg(char *fname,int pos,rhs_opts opts[], char ** logFlags )
 	         (*cstk(l+2)!='l'&&*cstk(l+2)!='n'))
       {
 	      Err=kopt;
-	      SciError(116);
+	      Error(116);
 	      return 0;
       }
       

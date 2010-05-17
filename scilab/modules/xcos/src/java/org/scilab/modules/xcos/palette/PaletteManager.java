@@ -45,7 +45,7 @@ public final class PaletteManager {
 	private static final String SCHEMA_FILENAME = "/PaletteConfiguration.xsd";
 	private static final String INSTANCE_FILENAME = "/palettes.xml";
 
-	private static volatile PaletteManager instance;
+	private static PaletteManager instance;
 	private static Marshaller marshaller;
 	private static Unmarshaller unmarshaller;
 	
@@ -85,7 +85,7 @@ public final class PaletteManager {
 	}
 
 	/** @return the default instance */
-	public static synchronized PaletteManager getInstance() {
+	public static PaletteManager getInstance() {
 		if (instance == null) {
 			instance = new PaletteManager();
 			instance.loadConfig();

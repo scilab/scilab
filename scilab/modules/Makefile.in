@@ -162,9 +162,9 @@ DIST_SUBDIRS = core operations output_stream action_binding arnoldi \
 	call_scilab sound time sparse windows_tools functions \
 	overloading maple2scilab m2sci texmacs development_tools \
 	compatibility_functions helptools fftw umfpack demo_tools \
-	genetic_algorithms simulated_annealing parameters atoms types \
-	hdf5 graph xcos xpad system_env abstractSyntaxTree symbol \
-	parse scicos_blocks scicos . javasci
+	genetic_algorithms simulated_annealing parameters atoms hdf5 \
+	graph xcos xpad system_env abstractSyntaxTree symbol parse \
+	types scicos_blocks scicos . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 am__relativize = \
   dir0=`pwd`; \
@@ -452,7 +452,7 @@ SUBDIRS = core operations output_stream action_binding arnoldi \
 	windows_tools functions overloading maple2scilab m2sci texmacs \
 	development_tools compatibility_functions helptools fftw \
 	umfpack demo_tools genetic_algorithms simulated_annealing \
-	parameters atoms types hdf5 graph xcos xpad system_env \
+	parameters atoms hdf5 graph xcos xpad system_env \
 	abstractSyntaxTree symbol parse types $(am__append_1) scicos . \
 	$(am__append_2)
 
@@ -491,7 +491,6 @@ NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 # HDF5 is here because it needs the JVM (see bug #5481)
 ENGINE_LIBS = $(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/mexlib/libmex.la \
-	$(top_builddir)/modules/parameters/libsciparameters.la \
 	$(top_builddir)/modules/boolean/libsciboolean.la \
 	$(top_builddir)/modules/cacsd/libscicacsd.la \
 	$(top_builddir)/modules/core/libscicore.la \

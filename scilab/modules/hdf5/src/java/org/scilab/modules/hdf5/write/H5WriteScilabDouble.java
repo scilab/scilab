@@ -17,7 +17,7 @@ import ncsa.hdf.hdf5lib.HDF5Constants;
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
 import org.scilab.modules.hdf5.H5ScilabConstant;
-import org.scilab.modules.types.scilabTypes.ScilabDouble;
+import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 
 public class H5WriteScilabDouble {
 	public static void writeInDataSet(int fileId, String dataSetName, ScilabDouble data) throws NullPointerException, HDF5Exception {

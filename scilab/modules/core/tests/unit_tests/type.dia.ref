@@ -1,77 +1,9 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA
-// Copyright (C) 2010 - DIGITEO - Bruno JOFRET
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- ENGLISH IMPOSED -->
 //type
-// Special cases
-if type(%nan) <> 1 then bugmes();quit;end
-if type(%inf) <> 1 then bugmes();quit;end
-// double <-> 1
-if type(1) <> 1 then bugmes();quit;end
-// polynomial <-> 2
-if type(poly(0,"x")) <> 2 then bugmes();quit;end
-// boolean
-if type(%t) <> 4 then bugmes();quit;end
-if type(%f) <> 4 then bugmes();quit;end
-// sparse <-> 5
-if type(sparse([1,2;4,5;3,10],[1,2,3])) <> 5 then bugmes();quit;end
-// boolean sparse <-> 6
-if type(sparse([1,2;4,5;3,10], [%t,%t, %t])) <> 6 then bugmes();quit;end
-// matlab sparse <-> 7
-X=sparse(rand(2,2));
-Y=mtlb_sparse(X);
-if type(Y) <> 7 then bugmes();quit;end
-clear X;
-clear Y;
-// int <-> 8
-if type(int8(0)) <> 8 then bugmes();quit;end
-if type(uint8(0)) <> 8 then bugmes();quit;end
-if type(int16(0)) <> 8 then bugmes();quit;end
-if type(uint16(0)) <> 8 then bugmes();quit;end
-if type(int32(0)) <> 8 then bugmes();quit;end
-if type(uint32(0)) <> 8 then bugmes();quit;end
-// handle <-> 9
-if type(gdf()) <> 9 then bugmes();quit;end
-// string <-> 10
-if type("scilab") <> 10 then bugmes();quit;end
-// Uncompiled function <-> 11 ??????????????????
-deff("__private__()","");
-recompilefunction("__private__","n");
-Warning : redefining function: __private__             . Use funcprot(0) to avoid this message
-
-if type(__private__) <> 11 then bugmes();quit;end
-clear __private__;
-// scilab macro <-> 13
-deff("__private__()","");
-if type(__private__) <> 13 then bugmes();quit;end
-clear __private__;
-// library <-> 14
-if type(corelib) <> 14 then bugmes();quit;end
-// list <-> 15
-if type(list(1,2,3)) <> 15 then bugmes();quit;end
-// tlist <-> 16
-if type(tlist("mytype",2,3)) <> 16 then bugmes();quit;end
-// mlist <-> 17
-if type(mlist("mytype",2,3)) <> 17 then bugmes();quit;end
-// struct <-> 17
-if type(struct()) <> 17 then bugmes();quit;end
-// cell <-> 17
-if type(cell(1,1)) <> 17 then bugmes();quit;end
-// pointer <-> 128
-a=rand(5,5);
-b=rand(5,1);
-A=sparse(a);
-[h,rk]=lufact(A);
-if type(h) <> 128 then bugmes();quit;end
-clear a;
-clear b;
-clear A;
-clear rk;
-ludel(h);
-clear h;
-// GW function
-if type(type) <> 130 then bugmes();quit;end
+if type(1)<>1 then bugmes();quit;end
+a=%s;if type(a)<>2  then bugmes();quit;end

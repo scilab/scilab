@@ -94,7 +94,7 @@ int sci_getenv(char *fname, int* _piKey)
 		}
 		else
 		{
-			Scierror(999,_("%s: Memory allocation error.\n"),fname);
+			Scierror(999,_("%s : Memory allocation error.\n"),fname);
 			return 0;
 		}
 	}
@@ -147,7 +147,7 @@ int sci_getenv(char *fname, int* _piKey)
 	else
 	{
 		if (pStVarTwo) {FREE(pStVarTwo); pStVarTwo = NULL;}
-		Scierror(999,_("%s: Memory allocation error.\n"),fname);
+		Scierror(999,_("%s : Memory allocation error.\n"),fname);
 		return 0;
 	}
 

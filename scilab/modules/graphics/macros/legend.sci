@@ -51,7 +51,7 @@ options_codes=[1;2;3;
   for k=k0:size(varargin)
     if type(varargin(k))<>10 then break,end
     vk=varargin(k)
-    leg=[leg, vk(:)]
+    leg=[vk(:);leg]
   end
   nleg=size(leg,'*')
 
@@ -119,15 +119,16 @@ function h=getvalidchildren(A)
   for k=1:size(A,'*')
     a=A(k)
     select a.type
-      case "Polyline" then
-        h=[h;a]
-      case "Axes"
-        ax=a.children
-        h=[h;getvalidchildren(ax)]
-      case "Compound"
-        for k=1:1:size(a.children,'*')
-          h=[h;getvalidchildren(a.children(k))]
-        end
+    case "Polyline" then
+      h=[h;a]
+     case 'Axes'
+      ax=a.children
+      h=[h;getvalidchildren(ax)]
+    case 'Compound'
+     for k=1:1:size(a.children,'*')
+	h=[h;getvalidchildren(a.children(k))]
+
+      end
+    end
   end
-end
 endfunction

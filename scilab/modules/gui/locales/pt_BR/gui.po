@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: _gui-pt_BR\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-04-03 14:22+0000\n"
-"Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
+"PO-Revision-Date: 2009-08-09 14:02+0000\n"
+"Last-Translator: João Paulo Pizani Flor <joaopizani@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar.conectiva.com.br>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-04-16 07:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -32,10 +32,6 @@ msgid "%s: An error occurred: %s.\n"
 msgstr "%s: Ocorreu um erro: %s.\n"
 
 #, c-format
-msgid "%s: An exception occurred: %s"
-msgstr ""
-
-#, c-format
 msgid "%s: Could not create 'Uicontrol' handle.\n"
 msgstr "%s: Não foi possível criar um manipulador 'Uicontrol'.\n"
 
@@ -49,13 +45,12 @@ msgstr "%s: Não foi possível destruir este objeto.\n"
 
 #, c-format
 msgid "%s: Could not set property '%s'.\n"
-msgstr "%s: Não foi possível ajustar a propriedade \"%s\".\n"
+msgstr "%s: Não foi possível ajustar a propriedade '%s'.\n"
 
 #, c-format
 msgid "%s: Figure number must be given when not in '%s' mode.\n"
 msgstr ""
-"%s: O número da figura deve ser fornecido quando não se está no modo "
-"\"%s\".\n"
+"%s: O número da figura deve ser fornecido quando não se está no modo '%s'.\n"
 
 #, c-format
 msgid "%s: Function not available in NWNI mode.\n"
@@ -103,11 +98,11 @@ msgstr "%s: O tipo %s não foi implementado.\n"
 
 #, c-format
 msgid "%s: Unknown property: %s for '%s' handles.\n"
-msgstr "%s: Propriedade desconhecida: %s para manipuladores \"%s\".\n"
+msgstr "%s: Propriedade desconhecida: %s para manipuladores '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected"
-msgstr "%s: Argumento de entrada errado #%d: esperava-se \"%s\" ou \"%s\""
+msgstr "%s: Argumento de entrada errado #%d: Esperava-se '%s' ou '%s'"
 
 #, c-format
 msgid "%s: Wrong input arguments: %s or %s expected.\n"
@@ -119,11 +114,11 @@ msgstr "%s: Argumentos de entrada errados: Esperava-se %s, %s ou %s.\n"
 
 #, c-format
 msgid "%s: Wrong input arguments: '%s' expected.\n"
-msgstr "%s: Argumentos de entrada errados: esperava-se \"%s\".\n"
+msgstr "%s: Argumentos de entrada errados: Esperava-se '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong input arguments: '%s' or '%s' expected.\n"
-msgstr "%s: Argumentos de entrada errados:  esperava-se \"%s\" ou \"%s\".\n"
+msgstr "%s: Argumentos de entrada errados: Esperava-se '%s' ou '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong input arguments: '%s', '%s' or '%s' expected.\n"
@@ -140,7 +135,7 @@ msgstr "%s: Quantidade errada de argumentos de entrada. Esperava-se %d.\n"
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
-"%s: Quantidade errada de argumentos de entrada: esperava-se %d ou %d.\n"
+"%s: Quantidade errada de argumentos de entrada: Esperava-se %d ou %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -205,14 +200,13 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
 msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
-"booleano.\n"
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um booleano.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean matrix expected.\n"
 msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se uma "
-"matriz de booleanos.\n"
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se uma matriz "
+"de booleanos.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
@@ -241,12 +235,6 @@ msgid "%s: Wrong size for input argument #%d: A string matrix expected.\n"
 msgstr ""
 "%s: Tamanho errado para o argumento de entrada #%d: Esperava-se uma matriz "
 "de strings.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: It must have same dimensions that "
-"argument #%d.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Matrix of strings expected.\n"
@@ -877,7 +865,7 @@ msgstr "Copiar"
 msgid "Copyright (c) 1989-2007 (ENPC)"
 msgstr ""
 
-msgid "Copyright (c) 1989-2010 (INRIA)"
+msgid "Copyright (c) 1989-2009 (INRIA)"
 msgstr ""
 
 msgid "Cut"

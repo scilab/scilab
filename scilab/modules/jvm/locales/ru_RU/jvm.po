@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-04-14 21:05+0000\n"
-"Last-Translator: kkirill <Unknown>\n"
+"PO-Revision-Date: 2010-02-12 20:12+0000\n"
+"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-04-16 07:53+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -114,6 +114,9 @@ msgstr "%s: Неверный тип входного параметра №%d и
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
+msgid "Console"
+msgstr "Командное окно"
+
 msgid "Could not access to the Main Scilab Class:\n"
 msgstr "Не удалось получить доступ к главному классу Scilab:\n"
 
@@ -178,7 +181,7 @@ msgid ""
 "If you are using a self-built version of Scilab, update the script "
 "bin/scilab to provide the path to the JVM.\n"
 msgstr ""
-"Если вы используете самостоятельно собранную версию Scilab, обновите "
+"Если вы используете, собранную самостоятельно версию Scilab, обновите "
 "сценарий bin/scilab для указания пути к JVM.\n"
 
 msgid "JNI version error"
@@ -192,9 +195,6 @@ msgstr "JNI: недостаточно памяти"
 
 msgid "JVM interface disabled in -nogui or -nwni modes.\n"
 msgstr "Интерфейс JVM недоступен в режимах -nogui и -nwni.\n"
-
-msgid "Scilab Console"
-msgstr "Командное окно Scilab"
 
 msgid "Scilab Java module not installed.\n"
 msgstr "Модуль Java не установлен.\n"

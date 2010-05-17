@@ -19,17 +19,12 @@ function xcosCodeGeneration(hdf5FileToLoad, hdf5FileToSave)
   unhilite_obj = xcosClearBlockWarning;
   funcprot(prot);
   //-- end
-  
-  // This will create a scs_m variable.
+    
+// This will create a scs_m variable.
   import_from_hdf5(hdf5FileToLoad);
   
-  ierr = execstr("[ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock42(scs_m, [], [], %f); ", 'errcatch');
-  if ierr <> 0 then
-	  [msg, err] = lasterror();
-	  disp(msg);
-	  deletefile(hdf5FileToSave);
-	  return;
-  end
+  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = ...
+      do_compile_superblock42(scs_m, [], [], %f); 
 
   export_to_hdf5(hdf5FileToSave, "XX");
 

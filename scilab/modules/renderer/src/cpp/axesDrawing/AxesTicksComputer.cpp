@@ -1,9 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
- * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * desc : Compute axes ticks
- *
+ * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
@@ -112,11 +111,5 @@ void AxesTicksComputer::reduceTicksNumber(void)
   // the ticks number can not change
 }
 /*---------------------------------------------------------------------------------*/
-int AxesTicksComputer::computeMaxNumberOfDecimationIterations(void)
-{
-  // return 0 since the number of ticks cannot change as
-  // decimation is not performed at all
-  return 0;
-}
-/*------------------------------------------------------------------------------------------*/
+
 }

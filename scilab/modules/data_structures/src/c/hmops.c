@@ -822,14 +822,14 @@ int C2F(intihm)()
 
   if ( Rhs < 3 )
     {
-      Scierror(999,_(" An hypermatrix insertion must have at least 3 arguments. "));
+      Scierror(999,_(" An hypermatrix insertion must have at least 3 arguments "));
       return 0;
     };
   nb_index_vectors = Rhs - 2;
 
   if ( ! get_hmat(Rhs, &A) )
     {
-      Scierror(999,_(" Argument is not an hypermatrix. "));
+      Scierror(999,_(" Argument is not an hypermatrix "));
       return 0;
     }
   else if ( A.type == NOT_REAL_or_CMPLX_or_BOOL_or_INT  || A.type == OLD_HYPERMAT )

@@ -1757,7 +1757,7 @@ mxArray *UnrefStruct(mxArray *ptr)
     newsize += 3;   /* taking account begining of list */
     newbot=*Lstk(number+offset)+newsize+1;
     if( (newbot - *Lstk(Bot)) > 0)
-      {SciError(17); return 0;}
+      {Error(17); return 0;}
     *Lstk(number+offset+1)=newbot;
     for (list=0; list<nb; list++) {
       headerlist= listentry(header, list+3);
@@ -1815,7 +1815,7 @@ mxArray *UnrefStruct(mxArray *ptr)
     newsize +=3;
     newbot = *Lstk(number+offset)+newsize+1;
     if ( (newbot - *Lstk(Bot)) > 0)
-      {SciError(17); return 0;}
+      {Error(17); return 0;}
     *Lstk(number+offset+1)=newbot;
     for (obj=0; obj<nb; obj++)
       {

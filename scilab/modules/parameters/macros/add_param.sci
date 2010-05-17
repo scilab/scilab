@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) DIGITEO - 2008-2010 - Yann COLLETTE
+// Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -7,7 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function [plist,err] = add_param(list_name,param_name,param_value)
+function [ga_list,err] = add_param(list_name,param_name,param_value)
 [nargout,nargin] = argn();
 if typeof(list_name)=='plist' then
   setfield(1,[getfield(1,list_name) param_name],list_name);
@@ -17,7 +17,8 @@ else
   if nargout==2 then
     err = %T; 
   end
-  error(sprintf(gettext("%s: Wrong type for input argument #%d: %s expected.\n"), "add_param", 1, "plist"));
+  warning(sprintf(gettext("%s: not a plist"),"add_param"));
 end
-plist = list_name;
+ga_list = list_name;
 endfunction
+

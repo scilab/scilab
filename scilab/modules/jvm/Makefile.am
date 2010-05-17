@@ -58,10 +58,6 @@ libscijvm_la_LIBADD =  $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddi
 libscijvm_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscijvm_la_sci_gateway_DATA = sci_gateway/jvm_gateway.xml
 
-#### jvm :  dtd files ####
-libscijvm_la_xmldir = $(mydatadir)/xml
-libscijvm_la_xml_DATA = xml/classpath.dtd  xml/librarypath.dtd
-
 #### jvm : include files ####
 libscijvm_la_includedir=$(pkgincludedir)
 libscijvm_la_include_HEADERS = includes/getScilabJavaVM.h \

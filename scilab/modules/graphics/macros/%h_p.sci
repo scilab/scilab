@@ -786,7 +786,7 @@ function %h_p(h)
         case "Axis"
             u=h.user_data;
             T=sci2exp(h.tics_labels,0)
-            if length(T)>70 then T="string array "+strcat(string(size(h.tics_labels)),'x'),end
+            if length(T)>70 then T="string array 1x"+string(length(T)),end
             t=[t;
                 "parent: "+h.parent.type
                 "visible = "+sci2exp(h.visible)

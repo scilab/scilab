@@ -20,7 +20,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>namelib = lib('lib-dir')</synopsis>
+    <synopsis>xlib = lib('lib-dir')</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -31,13 +31,6 @@
           <para>character string</para>
         </listitem>
       </varlistentry>
-      <varlistentry>
-        <term>namelib</term>
-        <listitem>
-          <para>library variable returned by 'lib'.</para>
-        </listitem>
-      </varlistentry>
-      
     </variablelist>
   </refsection>
   <refsection>
@@ -52,11 +45,14 @@
     for the first time.</para>
     <para>
     Binary files can be created from within Scilab with the command
-    <literal>save</literal>.
+    <literal>save</literal>.</para>
+    <para>
+    Scilab's standard libraries are defined using <literal>lib</literal> on the
+    <literal>SCIDIR/modules/*/macros/*</literal> subdirectories.</para>
+    <para>
     A library variable
     usually is saved for later loading, either on-line or from the
     user-specific startup file (see startup).</para>
-    <para>value returned by 'lib' must be insert in a variable 'namelib' to access to macro functions of this library.</para>
   </refsection>
   <refsection>
     <title>Restrictions</title>
@@ -66,42 +62,30 @@
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
-//define some functions
-function z = myplus(x, y)
-  z = x + y
-endfunction
-
-function z = yourplus(x, y)
-  x = x - y
-endfunction
+//define some variables
+function z = myplus(x, y), z = x + y,endfunction
+function z = yourplus(x, y), x = x - y,endfunction
+A=1:10;
 
 //create the *.bin files in libdir
-libdir = TMPDIR;
+libdir=TMPDIR
 save(libdir + '/myplus.bin', myplus);
 save(libdir + '/yourplus.bin', yourplus);
+save(libdir + '/A.bin', A);
 
 //create the name file
-mputl(['myplus';'yourplus'],TMPDIR+'/names');
+mputl(['myplus';'yourplus';'A'],TMPDIR+'/names');
 
 //build the library containing myplus and yourplus
-mylibfoo = lib(libdir+'/');
+xlib = lib(libdir+'/')
 
 //erase the variables
-clear myplus yourplus
+clear myplus yourplus A
 
 //Automatic loading and execution
 myplus(1,2)
 
-//erase the variables
-clear myplus yourplus
-
-mylibfoo
-[n,p] = libraryinfo('mylibfoo')
-
-isdef('myplus')
-clear mylibfoo
-isdef('myplus')
-
+A
  ]]></programlisting>
   </refsection>
   <refsection>
@@ -125,10 +109,6 @@ isdef('myplus')
       <member>
         <link linkend="whereis">whereis</link>
       </member>
-      <member>
-        <link linkend="libraryinfo">libraryinfo</link>
-      </member>
-     
     </simplelist>
   </refsection>
 </refentry>

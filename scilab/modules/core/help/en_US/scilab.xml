@@ -13,8 +13,8 @@
   <refnamediv>
     <refname>scilab</refname>
 
-    <refpurpose>Main script to start Scilab and miscellaneous
-    tools (GNU/Linux, Unix and Mac OS X)</refpurpose>
+    <refpurpose>Major unix script to execute Scilab and miscellaneous
+    tools</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -58,7 +58,7 @@ scilab-cli &lt;Options&gt;</synopsis>
         <term>-debug</term>
 
         <listitem>
-          <para>Start Scilab under the debugguer gdb (Unix/Linux/Mac OS X only).</para>
+          <para>Start Scilab under the debugguer gdb (Unix/linux only).</para>
 
           <para>Define the variable SCILAB_GDB_OPT to add custom options to
           gdb.</para>
@@ -71,7 +71,7 @@ scilab-cli &lt;Options&gt;</synopsis>
         <term>-debug-kdbg</term>
 
         <listitem>
-          <para>Start Scilab under kdbg (Unix/Linux/Mac OS X only).</para>
+          <para>Start Scilab under kdbg (Unix/linux only).</para>
 
           <para>Advise: use this option on a Scilab source tree.</para>
         </listitem>
@@ -81,7 +81,7 @@ scilab-cli &lt;Options&gt;</synopsis>
         <term>-profiling</term>
 
         <listitem>
-          <para>Start Scilab under valgrind (Unix/Linux/Mac OS X only).</para>
+          <para>Start Scilab under valgrind (Unix/linux only).</para>
 
           <para>Define the variable SCILAB_VALGRIND_OPT to add custom options
           to valgrind (and override the existing valgrind options).</para>
@@ -94,7 +94,7 @@ scilab-cli &lt;Options&gt;</synopsis>
         <term>-profiling-visu</term>
 
         <listitem>
-          <para>Start Scilab under callgrind (Unix/Linux/Mac OS X only).</para>
+          <para>Start Scilab under callgrind (Unix/linux only).</para>
 
           <para>Define the variable SCILAB_VALGRIND_OPT to add custom options
           to callgrind (and override the existing callgrind options).</para>
@@ -107,7 +107,7 @@ scilab-cli &lt;Options&gt;</synopsis>
         <term>-electric-fence</term>
 
         <listitem>
-          <para>Start Scilab with the Electric Fence (Unix/Linux/Mac OS X only).</para>
+          <para>Start Scilab with the Electric Fence (Unix/linux only).</para>
 
           <para>Advise: use this option on a Scilab source tree.</para>
         </listitem>

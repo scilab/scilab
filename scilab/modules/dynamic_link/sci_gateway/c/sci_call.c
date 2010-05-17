@@ -27,7 +27,7 @@ int sci_call(char *fname,unsigned long fname_len)
 {
 	if (Rhs == 0)
 	{
-		SciError(39);
+		Error(39);
 	}
 	else C2F(intfort)(fname,fname_len);
 	return 0;

@@ -27,14 +27,10 @@ nm = nmplot_configure(nm,"-method","fixed");
 //
 // Setup output files
 //
-simplexfn = TMPDIR + filesep() + "history.simplex.txt";
-fbarfn = TMPDIR + filesep() + "history.fbar.txt";
-foptfn = TMPDIR + filesep() + "history.fopt.txt";
-sigmafn = TMPDIR + filesep() + "history.sigma.txt";
-nm = nmplot_configure(nm,"-simplexfn",simplexfn);
-nm = nmplot_configure(nm,"-fbarfn",fbarfn);
-nm = nmplot_configure(nm,"-foptfn",foptfn);
-nm = nmplot_configure(nm,"-sigmafn",sigmafn);
+nm = nmplot_configure(nm,"-simplexfn",TMPDIR + "\history.simplex.txt");
+nm = nmplot_configure(nm,"-fbarfn",TMPDIR + "\history.fbar.txt");
+nm = nmplot_configure(nm,"-foptfn",TMPDIR + "\history.fopt.txt");
+nm = nmplot_configure(nm,"-sigmafn",TMPDIR + "\history.sigma.txt");
 //
 // Perform optimization
 //
@@ -51,17 +47,20 @@ nmplot_simplexhistory ( nm );
 drawnow();
 mprintf("Plotting history of fbar...\n");
 f = scf();
-nmplot_historyplot ( nm , fbarfn, mytitle = "Function Value Average" , myxlabel = "Iterations" );
+nmplot_historyplot ( nm , TMPDIR + "\history.fbar.txt" , ...
+  mytitle = "Function Value Average" , myxlabel = "Iterations" );
 mprintf("Plotting history of fopt...\n");
 f = scf();
-nmplot_historyplot ( nm , foptfn, mytitle = "Minimum Function Value" , myxlabel = "Iterations" );
+nmplot_historyplot ( nm , TMPDIR + "\history.fopt.txt" , ...
+  mytitle = "Minimum Function Value" , myxlabel = "Iterations" );
 mprintf("Plotting history of sigma...\n");
 f = scf();
-nmplot_historyplot ( nm , sigmafn, mytitle = "Maximum Oriented length" , myxlabel = "Iterations" );
-deletefile(simplexfn);
-deletefile(fbarfn);
-deletefile(foptfn);
-deletefile(sigmafn);
+nmplot_historyplot ( nm , TMPDIR + "\history.sigma.txt" , ...
+  mytitle = "Maximum Oriented length" , myxlabel = "Iterations" );
+deletefile(TMPDIR + "\history.simplex.txt");
+deletefile(TMPDIR + "\history.fbar.txt");
+deletefile(TMPDIR + "\history.fopt.txt");
+deletefile(TMPDIR + "\history.sigma.txt");
 nm = nmplot_destroy(nm);
 mprintf("End of demo.\n");
 

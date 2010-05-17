@@ -19,7 +19,6 @@ src/c/mclose.c \
 src/c/meof.c \
 src/c/merror.c \
 src/c/mget.c \
-src/c/mgetl.c \
 src/c/mgeti.c \
 src/c/mgetstr.c \
 src/c/mopen.c \
@@ -79,7 +78,6 @@ sci_gateway/c/sci_mclearerr.c \
 sci_gateway/c/sci_mclose.c \
 sci_gateway/c/sci_merror.c \
 sci_gateway/c/sci_mget.c \
-sci_gateway/c/sci_mgetl.c \
 sci_gateway/c/sci_mgetstr.c \
 sci_gateway/c/sci_moef.c \
 sci_gateway/c/sci_mopen.c \
@@ -99,7 +97,7 @@ sci_gateway/c/sci_pathconvert.c \
 sci_gateway/c/sci_isfile.c
 
 
-libscifileio_la_CPPFLAGS=	-I$(srcdir)/includes/ \
+libscifileio_la_CXXFLAGS=	-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes \

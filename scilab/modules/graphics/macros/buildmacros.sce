@@ -12,4 +12,3 @@ if (isdef('genlib') == %f) then
 end
 
 genlib('graphicslib','SCI/modules/graphics/macros',%f,%t);
-genlib('datatipslib','SCI/modules/graphics/macros/datatips',%f,%t);

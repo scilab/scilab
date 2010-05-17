@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
-// Copyright (C) 2008-2010 DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
+// Copyright (C) 2008-2009 DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
 // Copyright (C) 2009 DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
 //
 // This file must be used under the terms of the CeCILL.
@@ -1077,14 +1077,12 @@ function xmlfiles = x2f_get_xml_files(directory)
 	// =========================================================================
 	
 	if xmlfiles <> [] then
-		xmlmd5 = "a" + getmd5(xmlpaths,"string");
-	else
-		xmlmd5 = [];
+		xmlfiles = "a" + getmd5(xmlpaths,"string");
 	end
 	
 	// Build the final matrix
 	// =========================================================================
-	xmlfiles = [ xmlmd5 xmlpaths lmt xmlfiles];
+	xmlfiles = [ xmlfiles xmlpaths lmt ];
 	
 endfunction
 
@@ -1671,8 +1669,8 @@ function tree_out = x2f_merge_trees( tree_in_1 , tree_in_2 )
 	
 	xmllist_out = xmllist_2;
 	
-	for i=1:size(xmllist_1(:,4),"*")
-		if find(xmllist_2(:,4) == xmllist_1(i,4)) == [] then
+	for i=1:size(xmllist_1(:,1),"*")
+		if find(xmllist_2(:,1) == xmllist_1(i,1)) == [] then
 			xmllist_out             = [ xmllist_out ; xmllist_1(i,:) ];
 			tree_out("xml_number")  = tree_out("xml_number") + 1;
 		end

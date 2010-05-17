@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2010-04-13 10:50+0000\n"
-"Last-Translator: Tim Schulze-Hartung <Unknown>\n"
+"PO-Revision-Date: 2009-12-09 17:21+0000\n"
+"Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-04-16 07:54+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -86,8 +86,8 @@ msgid "%s: ''%s'' isn''t installed.\n"
 msgstr "%s: '%s' ist nicht installiert.\n"
 
 #, c-format
-msgid "%s: An error occurred while loading ''%s-%s'':\n"
-msgstr "%s: Bei Laden von ''%s-%s'' ist ein Fehler aufgetreten:\n"
+msgid "%s: An error occurred while loading ''%s-%s''.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Another version of the package %s is already loaded : %s\n"
@@ -278,11 +278,11 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong length for input argument #%d: String which has 32-characters "
+"%s: Wrong length for input argument #%d: A string which has 32-characters "
 "length expected.\n"
 msgstr ""
-"%s: Falsche Länge des Eingabearguments #%d: String mit 32 Zeichen Länge "
-"erwartet.\n"
+"%s: falsche Länge für Eingangsargument #%d: eine Zeichenkette mit der Länge "
+"von 32 Zeichen erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -321,6 +321,29 @@ msgid "%s: Wrong size for input argument #%d: 1x2 string matrix expected.\n"
 msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: 1 x 2 Zeichenkettenmatrix "
 "erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A Single String expected.\n"
+msgstr ""
+"%s: falsche Größe für Eingangsargument #%d: eine einzelne Zeichenkette "
+"erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgstr ""
+"%s: falsche Größe für Eingangsargument #%d: eine einzelne Zeichenkette "
+"erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A single-string expected.\n"
+msgstr ""
+"%s: falsche Größe für Eingangsargument #%d: eine einzelne Zeichenkette "
+"erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Single String expected.\n"
+msgstr ""
+"%s: falsche Größe für Eingangsargument #%d: einzelne Zeichenkette erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
@@ -370,16 +393,50 @@ msgstr ""
 "erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
+msgid "%s: Wrong type for input argument #%d: A Single String expected.\n"
 msgstr ""
-"%s: Falscher Typ des Eingabearguments #%d: boolescher Wert erwartet.\n"
+"%s: falscher Typ für Eingangsargument #%d: eine einzelne Zeichenkette "
+"erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A a single-string expected.\n"
+msgstr ""
+"%s: falscher Typ für Eingangsargument #%d: eine einzelne Zeichenkette "
+"erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: falscher Typ für Eingangsargument #%d: ein boolscher Wert erwartet.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: Boolean or single string expected.\n"
+"%s: Wrong type for input argument #%d: A boolean or a single string "
+"expected.\n"
 msgstr ""
-"%s: Falscher Typ des Eingabearguments #%d: boolescher Wert oder einzelnes "
-"Zeichen erwartet.\n"
+"%s: falscher Typ für Eingangsargument #%d: ein boolscher Wert oder eine "
+"einzelne Zeichenkette erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
+msgstr ""
+"%s: falscher Typ für Eingangsargument #%d: eine einzelne Zeichenkette "
+"erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A single-string expected.\n"
+msgstr ""
+"%s: falscher Typ für Eingangsargument #%d: eine einzelne Zeichenkette "
+"erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A struct expected.\n"
+msgstr "%s: falscher Typ für Eingangsargument '%d: ein Strkt erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Single String expected.\n"
+msgstr ""
+"%s: falscher Typ für Eingangsargument #%d: einzelne Zeichenkette erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
@@ -470,6 +527,30 @@ msgstr ""
 "erwartet.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A string that contain ''TOOLBOXES'' "
+"or ''DESCRIPTION'' expected.\n"
+msgstr ""
+"%s: falscher Wert für Eingangsargument #%d: eine Zeichenkette, die "
+"''TOOLBOXES' oder 'DESCRIPTION' enthält, erwartet.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A string that end with DESCRIPTION "
+"expected.\n"
+msgstr ""
+"%s: falscher Wert für Eingangsargument #%d: eine Zeichenkette, die mit "
+"Description endet, erwartet.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A string that start with "
+"''http://'',''ftp://'' or ''file://'' expected.\n"
+msgstr ""
+"%s: falscher Wert für Eingangsargument #%d: eine Zeichenkette, die mit "
+"'http://', 'ftp://' oder 'file://' beginnt, erwartet.\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
 msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: ASC oder DESC erwartet.\n"
@@ -496,29 +577,11 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Single string that ends with "
-".tar.gz, .tgz or .zip expected.\n"
+"%s: Wrong value for input argument #%d: Single string that end with .tar.gz, "
+".tgz or .zip expected.\n"
 msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: String that contains ''TOOLBOXES'' "
-"or ''DESCRIPTION'' expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: String that ends with DESCRIPTION "
-"expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: String that start with "
-"''http://'',''ftp://'' or ''file://'' expected.\n"
-msgstr ""
-"%s: Falscher Wert des Eingabearguments #%d: String, der mit "
-"''http://'',''ftp://'' oder ''file://'' beginnt, erwartet.\n"
+"%s: falscher Wert für Eingangsargument #%d: einzelne Zeichenkette, die mit "
+".tar.gz, tgz oder .zip endet, erwartet.\n"
 
 #, c-format
 msgid ""
@@ -557,13 +620,10 @@ msgstr ""
 msgid ""
 "%s: You have not enough rights to remove any version of the package %s.\n"
 msgstr ""
-"%s: Sie haben keine ausreichende Berechtigung, um jede Version des Pakets %s "
-"zu entfernen.\n"
 
 #, c-format
 msgid "%s: You have not enough rights to remove the package %s (%s).\n"
 msgstr ""
-"%s: Sie haben nicht genügend Rechte, um das Paket %s (%s) zu entfernen.\n"
 
 #, c-format
 msgid "%s: You haven''t write access on this directory : %s.\n"
@@ -606,7 +666,7 @@ msgid "Author(s)"
 msgstr "Autor(en)"
 
 msgid "Automatically Installed"
-msgstr "Automatisch installiert"
+msgstr ""
 
 msgid "Bytes"
 msgstr "Bytes"
@@ -667,10 +727,9 @@ msgstr "Module"
 
 msgid "No Atoms module is available. Please, check your Internet connection."
 msgstr ""
-"Kein Atom Modul ist verfügbar. Bitte überprüfen Sie Ihre Internetverbindung."
 
 msgid "No Atoms module is available: your repository list is empty."
-msgstr "Kein Atom Modul ist verfügbar: Ihre Repository Liste ist leer."
+msgstr ""
 
 msgid "No module selected"
 msgstr "Keine Module ausgewählt"

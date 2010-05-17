@@ -78,7 +78,6 @@
 <module name="parameters" activate="yes"/>
 <module name="atoms" activate="yes"/>
 <module name="matio" activate="@MATIO_ENABLE@"/>
-<module name="types" activate="@JAVA_ENABLE@"/>
 <module name="hdf5" activate="yes"/>
 <module name="xcos" activate="@GUI_ENABLE@"/>
 <module name="xpad" activate="@GUI_ENABLE@"/>

@@ -12,6 +12,7 @@
 #include <string.h> /* strcmp */
 #include <stdio.h> /* sprintf */
 #include <stdlib.h> /* qsort */
+#include "stack-def.h"
 #include "getfilesdictionary.h"
 #include "PATH_MAX.h"
 #include "scicurdir.h" /* scigetcwd */
@@ -20,6 +21,7 @@
 #include "expandPathVariable.h"
 #include "machine.h"
 #include "isdir.h"
+#include "stack-def.h"
 /*--------------------------------------------------------------------------*/ 
 static void splitpath(char *composite,  char *path,  char *fname);
 static char **addPath(char **dictionary, int sizearray, char *path);

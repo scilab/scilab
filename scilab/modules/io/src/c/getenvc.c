@@ -17,6 +17,7 @@
 #include <Windows.h> /* GetEnvironmentVariable */
 #include "strdup_windows.h"
 #endif
+#include "stack-def.h"
 #include "MALLOC.h"
 #include "getenvc.h"
 #include "localization.h"

@@ -12,34 +12,33 @@
 
 package org.scilab.modules.graph;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
-import java.awt.Graphics2D;
+import java.awt.Component;
+import java.awt.Composite;
 import java.awt.Image;
-import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import java.awt.Stroke;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
-import java.net.MalformedURLException;
+import java.io.File;
 import java.net.URL;
+import java.util.Hashtable;
 import java.util.Map;
+
+import javax.swing.Icon;
 
 import org.apache.batik.ext.awt.RenderingHintsKeyExt;
 import org.apache.batik.gvt.GraphicsNode;
-import org.apache.commons.logging.LogFactory;
-import org.scilab.modules.graph.shape.LatexTextShape;
-import org.scilab.modules.graph.shape.MathMLTextShape;
 import org.scilab.modules.graph.utils.MathMLRenderUtils;
 import org.scilab.modules.graph.utils.ScilabConstants;
 import org.scilab.modules.graph.utils.ScilabGraphUtils;
 import org.scilab.modules.graph.view.SupportedLabelType;
 import org.xml.sax.SAXException;
 
-import com.mxgraph.shape.mxITextShape;
 import com.mxgraph.swing.view.mxInteractiveCanvas;
 import com.mxgraph.util.mxConstants;
-import com.mxgraph.util.mxRectangle;
 import com.mxgraph.util.mxUtils;
-import com.mxgraph.view.mxCellState;
 
 /**
  * Painter for each vertex and edge
@@ -52,20 +51,17 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 	public static final int ROTATION_STEP = 90;
 	/** The max valid rotation value (always 360°) */
 	public static final int MAX_ROTATION = 360;
-
+	
+	private static final int OPACITY_MAX = 100;
+	
 	/** The border ratio between the background image and the icon image */
 	private static final double BORDER_RATIO = 0.9;
 	
-	static {
-		putTextShape(SupportedLabelType.Latex.name(), new LatexTextShape());
-		putTextShape(SupportedLabelType.MathML.name(), new MathMLTextShape());
-	}
-	
 	private URL svgBackgroundImage; 
-
+	
 	/** Default constructor */
 	public ScilabCanvas() { }
-
+	
 	/**
 	 * @param svgBackgroundImage the svgBackgroundImage to set
 	 */
@@ -79,59 +75,88 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 	public URL getSvgBackgroundImage() {
 		return svgBackgroundImage;
 	}
-	
+
 	/**
-	 * Get the text shape associated with the text
+	 * Draw the vertex
 	 * 
-	 * @param text the associated text
-	 * @param style the current style
-	 * @param html true, if the text is html formatted, false otherwise.
-	 * @return the associated text shape
+	 * @param x horizontal coordinate
+	 * @param y vertical coordinate
+	 * @param w width
+	 * @param h height
+	 * @param style All the style of the associated vertex
+	 * @return always null
 	 */
-	public mxITextShape getTextShape(String text, Map<String, Object> style,
-			boolean html) {
-		final mxITextShape ret;
-		
-		final SupportedLabelType type;
-		if (html) {
-			type = SupportedLabelType.getFromHTML(text);
-		} else {
-			type = SupportedLabelType.getFromText(text);
-		}
-		
-		switch (type) {
-		case Latex:
-			try {
-				// parse the text and cache it if valid. Will throw an exception
-				// if the text is not valid.
-				ScilabGraphUtils.getTexIcon(text);
-				
-				ret = textShapes.get(type.name());
-			} catch (RuntimeException e) {
-				return super.getTextShape(style, html);
-			}
-			break;
+	@Override
+	public Object drawVertex(int x, int y, int w, int h,
+			Map<String, Object> style) {
 
-		case MathML:
-			try {
-				// parse the text and cache it if valid. Will throw an exception
-				// if the text is not valid.
-				MathMLRenderUtils.getMathMLComponent(text);
-				
-				ret = textShapes.get(type.name());
-			} catch (SAXException e) {
-				return super.getTextShape(style, html);
-			}
-			break;
-
-		default:
-			ret = super.getTextShape(style, html);
-		break;
-		}
+		int xx = x;
+		int yy = y;
+		int hh = h;
+		int ww = w;
 		
-		return ret;
+		if (g != null) {
+			xx += translate.x;
+			yy += translate.y;
+
+			// Applies the rotation on the graphics object and stores
+			// the previous transform so that it can be restored
+			AffineTransform saveTransform = g.getTransform();
+			g.translate(xx + (ww / 2.0), yy + (hh / 2.0));
+
+			double rotation = mxUtils.getDouble(style,
+					mxConstants.STYLE_ROTATION, 0);
+
+			if (rotation != 0) {
+				g.rotate(Math.toRadians(rotation));
+				if (isNearHorizontalSide(rotation)) {
+					// x - h / 2, y - w / 2, h, w
+					xx = xx + (ww / 2) - (hh / 2);
+					yy = yy + (hh / 2) - (ww / 2);
+					
+					ww = h;
+					hh = w;
+				}
+			}
+
+			applyFlipAndMirror(style);
+
+			g.translate(-(xx + (ww / 2.0)), -(yy + (hh / 2.0)));
+
+			Composite composite = null;
+			float opacity = mxUtils.getFloat(style, mxConstants.STYLE_OPACITY,
+					OPACITY_MAX);
+
+			// Applies the opacity to the graphics object
+			if (opacity != OPACITY_MAX) {
+				composite = g.getComposite();
+				g.setComposite(AlphaComposite.getInstance(
+						AlphaComposite.SRC_OVER, opacity / OPACITY_MAX));
+			}
+
+			// Saves the stroke
+			Stroke stroke = g.getStroke();
+
+			// Draws a swimlane if start is > 0
+			drawSwimline(xx, yy, ww, hh, style);
+
+			// Restores the stroke
+			g.setStroke(stroke);
+
+			// Restores the composite rule on the graphics object
+			if (composite != null) {
+				g.setComposite(composite);
+			}
+
+			// Restores the affine transformation
+			if (saveTransform != null) {
+				g.setTransform(saveTransform);
+			}
+		}
+
+		return null;
 	}
-	
+
 	/**
 	 * Scale the graphic context depending on the "flip and "mirror" properties
 	 * @param style Style contents
@@ -159,96 +184,187 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 	}
 
 	/**
-	 * Draw the vertex.
+	 * Draws a swimlane if start is > 0
 	 * 
-	 * This method handle the flip and the mirror properties.
-	 * 
-	 * @param state the current cell state
-	 * @return the rendered shape
-	 * @see com.mxgraph.canvas.mxGraphics2DCanvas#drawVertex(com.mxgraph.view.mxCellState)
+	 * @param x Horizontal coordinate
+	 * @param y Vertical coordinate
+	 * @param w Width
+	 * @param h Height
+	 * @param style The associated style
 	 */
-	@Override
-	public Object drawVertex(mxCellState state) {
-		
-		applyFlipAndMirror(state.getStyle());
-		
-		return super.drawVertex(state);
+	private void drawSwimline(int x, int y, int w, int h,
+			Map<String, Object> style) {
+		int start = mxUtils.getInt(style, mxConstants.STYLE_STARTSIZE);
+
+		if (start == 0) {
+			drawShape(x, y, w, h, style);
+		} else {
+			start = (int) Math.round(start * scale);
+
+			// Removes some styles to draw the content area
+			Map<String, Object> cloned = new Hashtable<String, Object>(
+					style);
+			cloned.remove(mxConstants.STYLE_FILLCOLOR);
+			cloned.remove(mxConstants.STYLE_ROUNDED);
+
+			if (mxUtils.isTrue(style, mxConstants.STYLE_HORIZONTAL, true)) {
+				drawShape(x, y, w, start, style);
+				drawShape(x, y + start, w, h - start, cloned);
+			} else {
+				drawShape(x, y, start, h, style);
+				drawShape(x + start, y, w - start, h, cloned);
+			}
+		}
 	}
+	
+    /**
+     * test if the angle correspond to the NORTH or SOUTH sides.
+     * @param angle The rotation value
+     * @return true if the angle is NORTH or SOUTH side value, false otherwise.
+     */
+    private static boolean isNearHorizontalSide(double angle) {
+    	return ((angle - ROTATION_STEP) % (MAX_ROTATION / 2)) == 0;
+    }
 
 	/**
-	 * Draw the text label on the cell state.
+	 * Draws the specified markup.
 	 * 
-	 * @param text the current text
-	 * @param state the cell state
-	 * @param html true, if the text may be HTML, false otherwise.
-	 * @return the associated shape
-	 * @see com.mxgraph.canvas.mxGraphics2DCanvas#drawLabel(java.lang.String, com.mxgraph.view.mxCellState, boolean)
+	 * @param text
+	 *            Markup to be painted.
+	 * @param x
+	 *            X-coordinate of the text.
+	 * @param y
+	 *            Y-coordinate of the text.
+	 * @param w
+	 *            Width of the text.
+	 * @param h
+	 *            Height of the text.
+	 * @param style
+	 *            Style to be used for painting the text.
 	 */
-	@Override
-	public Object drawLabel(String text, mxCellState state, boolean html) {
-		Map<String, Object> style = state.getStyle();
-		mxITextShape shape = getTextShape(text, style, html);
-		
-		if (g != null && shape != null && drawLabels && text != null
-				&& text.length() > 0)
-		{
-			mxRectangle translatedBounds = new mxRectangle(state.getLabelBounds());
-			translatedBounds.setX(translatedBounds.getX() + translate.x);
-			translatedBounds.setY(translatedBounds.getY() + translate.y);
+    @Override
+    protected void drawHtmlText(String text, int x, int y, int w, int h,
+    		Map<String, Object> style) {
 
-			// Creates a temporary graphics instance for drawing this shape
-			Graphics2D previousGraphics = g;
-			g = createTemporaryGraphics(style, null);
+    	SupportedLabelType type = SupportedLabelType.getFromText(text);
+    	
+    	switch (type) {
+		case Latex:
+			try {
+				drawLatexText(ScilabGraphUtils.getTexIcon(text), x, y, w, h, style);
+	    	} catch (RuntimeException e) {
+				super.drawHtmlText(text, x, y, w, h, style);
+	    	}
+			break;
+			
+		case MathML:
+			try {
+				drawMathMLText(MathMLRenderUtils.getMathMLComponent(text), x, y, w, h, style);
+			} catch (SAXException e) {
+				super.drawHtmlText(text, x, y, w, h, style);
+			}
+			break;
 
-			// Draws the label background and border
-			Color bg = mxUtils.getColor(style,
-					mxConstants.STYLE_LABEL_BACKGROUNDCOLOR);
-			Color border = mxUtils.getColor(style,
-					mxConstants.STYLE_LABEL_BORDERCOLOR);
-			paintRectangle(translatedBounds, bg, border);
-
-			// Paints the label and restores the graphics object
-			shape.paintShape(this, text, translatedBounds, style);
-			g.dispose();
-			g = previousGraphics;
+		default:
+			super.drawHtmlText(text, x, y, w, h, style);
+			break;
 		}
-		
-		return shape;
+    }
+
+	/**
+	 * Draws the specified Latex markup
+	 * 
+	 * @param icon Latex icon to be painted.
+	 * @param x X-coordinate of the text.
+	 * @param y Y-coordinate of the text.
+	 * @param w Width of the text.
+	 * @param h Height of the text.
+	 * @param style Style to be used for painting the text.
+	 */
+	protected void drawLatexText(Icon icon, int x, int y, int w, int h,
+			Map<String, Object> style) {
+		if (rendererPane != null) {
+			if (g.hitClip(x, y, w, h)) {
+				AffineTransform at = g.getTransform();
+
+				int sx = (int) (x / scale) + mxConstants.LABEL_INSET;
+				int sy = (int) (y / scale) + mxConstants.LABEL_INSET;
+				g.scale(scale, scale);
+				Color text = mxUtils.getColor(style, mxConstants.STYLE_FONTCOLOR, Color.BLACK);
+				rendererPane.setForeground(text);
+				icon.paintIcon(rendererPane, g, sx, sy);
+
+				// Restores the previous transformation
+				g.setTransform(at);
+			}
+		}
 	}
 	
 	/**
-	 * Paint the image.
+	 * Draws the specified MathML markup
 	 * 
-	 * This function handle all the awt supported {@link Image} plus the SVG
-	 * format.
+	 * @param comp the component to be painted.
+	 * @param x X-coordinate of the text.
+	 * @param y Y-coordinate of the text.
+	 * @param w Width of the text.
+	 * @param h Height of the text.
+	 * @param style Style to be used for painting the text.
+	 */
+	protected void drawMathMLText(Component comp, int x, int y, int w, int h,
+			Map<String, Object> style) {
+
+		if (rendererPane != null) {
+			if (g.hitClip(x, y, w, h)) {
+				AffineTransform at = g.getTransform();
+				
+				g.scale(scale, scale);
+				Color text = mxUtils.getColor(style, mxConstants.STYLE_FONTCOLOR, Color.BLACK);
+				rendererPane.setForeground(text);
+				rendererPane.paintComponent(g, comp, rendererPane,
+						(int) (x / scale) + mxConstants.LABEL_INSET,
+						(int) (y / scale) + mxConstants.LABEL_INSET,
+						(int) (w / scale), (int) (h / scale), true);
+				
+				// Restores the previous transformation
+				g.setTransform(at);
+			}
+		}
+	}
+
+	/**
+	 * Draws an image for the given parameters. This function handle all the awt
+	 * supported {@link Image} plus the SVG format.
 	 * 
-	 * @param bounds
-	 *            the current bounds
-	 * @param style
-	 *            the current style
-	 * @see com.mxgraph.canvas.mxGraphics2DCanvas#paintImage(com.mxgraph.util.mxRectangle,
-	 *      java.util.Map)
+	 * Painting an SVG file, first paint the background image (
+	 * {@link #setSvgBackgroundImage(File)}) and then paint the icon image.
+	 * 
+	 * @param x
+	 *            X-coordinate of the image.
+	 * @param y
+	 *            Y-coordinate of the image.
+	 * @param w
+	 *            Width of the image.
+	 * @param h
+	 *            Height of the image.
+	 * @param image
+	 *            URL of the image.
+	 * @see com.mxgraph.canvas.mxGraphics2DCanvas#drawImage(int, int, int, int,
+	 *      java.lang.String)
 	 */
 	@Override
-	public void paintImage(mxRectangle bounds, Map<String, Object> style) {
-		String image = getImageForStyle(style);
-		
-		if (image != null) {
-			if (image.endsWith(".svg")) {
-				Rectangle rect = bounds.getRectangle();
-				
-				// Translate from (0,0) to icon base point.
-				g.translate(rect.x, rect.y);
-
-				// Paint the background image if applicable
-				if (svgBackgroundImage != null) {
-					paintSvgBackgroundImage(rect.width, rect.height);
-				}
-
-				paintSvgForegroundImage(rect.width, rect.height, image);
-			} else {
-				super.paintImage(bounds, style);
+	protected void drawImage(int x, int y, int w, int h, String image) {
+		if (image.endsWith(".svg")) {
+			// Translate from (0,0) to icon base point.
+			g.translate(x, y);
+			
+			// Paint the background image if applicable
+			if (svgBackgroundImage != null) {
+				paintSvgBackgroundImage(w, h);
 			}
+			
+			paintSvgForegroundImage(w, h, image);
+		} else {
+			super.drawImage(x, y, w, h, image);
 		}
 	}
 
@@ -260,12 +376,12 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 	 */
 	private void paintSvgBackgroundImage(int w, int h) {
 		GraphicsNode background = ScilabGraphUtils
-				.getSVGComponent(svgBackgroundImage);
-
+				.getSVGComponent(new File(svgBackgroundImage.toString()));
+		
 		if (background == null) {
 			return;
 		}
-
+		
 		// Remove the "Graphics2D from BufferedImage lacks BUFFERED_IMAGE hint"
 		// message and tweak Batik rendering options to increase performance.
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
@@ -274,24 +390,24 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 				RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
 		g.setRenderingHint(RenderingHintsKeyExt.KEY_TRANSCODING,
 				RenderingHintsKeyExt.VALUE_TRANSCODING_PRINTING);
-
+		
 		// Scale to the bounds
 		Rectangle2D bounds = background.getBounds();
-
+		
 		double sh = h / bounds.getHeight();
 		double sw = w / bounds.getWidth();
-
+		
 		AffineTransform scaleTransform = new AffineTransform(new double[] {
-				sw,   0.0,
-				0.0,     sh
+		          sw,   0.0,
+		         0.0,     sh
 		});
-
+		
 		background.setTransform(scaleTransform);
-
+		
 		// Paint
 		background.paint(g);
 	}
-
+	
 	/**
 	 * Paint the foreground image.
 	 * 
@@ -305,34 +421,28 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 		/*
 		 * Fetch SVG file representation
 		 */
-		URL url;
-		try {
-			url = new URL(image);
-		} catch (MalformedURLException e) {
-			LogFactory.getLog(ScilabCanvas.class).error(e);
-			return;
-		}
-		GraphicsNode icon = ScilabGraphUtils.getSVGComponent(url);
-
+		File f = new File(image);
+		GraphicsNode icon = ScilabGraphUtils.getSVGComponent(f);
+		
 		if (icon == null || icon.getBounds() == null) {
 			return;
 		}
-
+		
 		/*
 		 * Perform calculations
 		 */
-
+		
 		// Iso scale to the bounds - border size
 		Rectangle2D bounds = icon.getBounds();
-
+		
 		// Calculating icon bordered bounds
 		final double ih = bounds.getHeight();
 		final double iw = bounds.getWidth(); 
-
+		
 		// Calculate per axis scaling factor
 		final double shFactor = h / ih;
 		final double swFactor = w / iw;
-
+		
 		// Calculate the default ratio (iso scaling)
 		double ratio;
 		if (shFactor > swFactor) {
@@ -343,19 +453,19 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 
 		// Adding borders
 		ratio *= BORDER_RATIO;
-
+		
 		// Translate the icon origin to the drawing origin.
 		double tx = -bounds.getX() * ratio;
 		double ty = -bounds.getY() * ratio;
-
+		
 		// Calculate scaled height and width
 		final double sh = ratio * ih;
 		final double sw = ratio * iw;
-
+		
 		// Center the image on the block
 		tx += (w - sw) / 2;
 		ty += (h - sh) / 2;
-
+		
 		/*
 		 * Everything has been calculated, render now.
 		 */
@@ -365,7 +475,7 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 
 		// scale to the ratio
 		g.scale(ratio, ratio);
-
+				
 		// Paint
 		icon.paint(g);
 	}

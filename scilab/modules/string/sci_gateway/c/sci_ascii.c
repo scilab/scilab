@@ -1,3 +1,4 @@
+
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Cong WU
@@ -120,7 +121,7 @@ static int asciiStrings(char *fname)
 	if (Output_IntMatrix == NULL)
 	{
 		freeArrayOfString(Input_StringMatrix,Row_Num*Col_Num);
-		Scierror(999,_("%s: Memory allocation error.\n"),fname);
+		Scierror(999,_("%s : Memory allocation error.\n"),fname);
 		return 0;
 	}
 
@@ -173,7 +174,7 @@ static int asciiStrings(char *fname)
 		if (Err > 0) 
 		{
 			/* stacksize exceeded */
-			SciError(17);
+			Error(17);
 			return 0;
 		}
 	} 
@@ -188,7 +189,7 @@ static int asciiStrings(char *fname)
 		if (Err > 0) 
 		{
 			/* stacksize exceeded */
-			SciError(17);
+			Error(17);
 			return 0;
 		}
 		C2F(icopy)(&nbr_characters, istk(l), &one, istk(l + nbr_characters), &one);

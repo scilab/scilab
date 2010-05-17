@@ -28,7 +28,7 @@ static void interrupt (int an_int);
 /*--------------------------------------------------------------------------*/
 jmp_buf env;
 /*--------------------------------------------------------------------------*/
-int sci_windows_main ( int *nos, char *path, InitScriptType pathtype, int *lpath, int memory)
+void sci_windows_main ( int *nos, char *path, InitScriptType pathtype, int *lpath, int memory)
 {
 	InitializeLaunchScilabSignal();
 	setbuf (stderr, (char *) NULL);
@@ -38,7 +38,7 @@ int sci_windows_main ( int *nos, char *path, InitScriptType pathtype, int *lpath
 		interrupt_setup ();
 	}
 	/* take commands from stdin */
-	return realmain(*nos,path,pathtype,memory);
+	realmain(*nos,path,pathtype,memory);
 }
 /*--------------------------------------------------------------------------*/
 /* Set up to catch interrupts */
@@ -94,6 +94,6 @@ void sci_clear_and_exit(int n) /* used with handlers */
 	"Warning",MB_ICONWARNING);
 	*/
 #endif
-	sciquit();
+	C2F(sciquit)();
 }
 /*--------------------------------------------------------------------------*/

@@ -74,14 +74,14 @@ int sci_nearfloat(char *fname, int* _piKey)
 	if(iType1 != sci_strings)
 	{
 		Err = 1;
-		SciError(55);
+		Error(55);
 		return 0;
 	}
 
 	if(iType2 != sci_matrix)
 	{
 		Err = 2;
-		SciError(53);
+		Error(53);
 		return 0;
 	}
 
@@ -135,7 +135,7 @@ int sci_nearfloat(char *fname, int* _piKey)
 	}
 	else
 	{
-		SciError(999);
+		Error(999);
 		return 0;
 	}
 

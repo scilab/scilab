@@ -16,7 +16,7 @@
 /* desc : function used to launch a demo of a command                     */
 /*------------------------------------------------------------------------*/
 
-#include "stack2.h"
+#include "stack-c.h"
 
 int sci_demo( char * fname, int fname_len)
 {

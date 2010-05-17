@@ -1,9 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
- * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * desc : Compute ticks from ticks given by the user
- *
+ * desc : Compute ticks from ticks given by the user 
+ * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
@@ -59,14 +58,6 @@ void UserDefinedTicksComputer::reduceTicksNumber(void)
 {
   // don't do anything since this is user defined ticks
   // Actually, this function should not be called.
-}
-/*------------------------------------------------------------------------------------------*/
-int UserDefinedTicksComputer::computeMaxNumberOfDecimationIterations()
-{
-  // return 0 since this is user defined ticks and
-  // decimation is not performed at all.
-  // Actually, this function should not be called.
-  return 0;
 }
 /*------------------------------------------------------------------------------------------*/
 void UserDefinedTicksComputer::setUserTicks(double * userTicks, char ** userLabels,

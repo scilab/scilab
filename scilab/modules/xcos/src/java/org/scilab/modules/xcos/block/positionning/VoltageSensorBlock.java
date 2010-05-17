@@ -13,7 +13,7 @@
 package org.scilab.modules.xcos.block.positionning;
 
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.io.scicos.BasicBlockInfo;
+import org.scilab.modules.xcos.io.BasicBlockInfo;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
 import org.scilab.modules.xcos.port.output.OutputPort;

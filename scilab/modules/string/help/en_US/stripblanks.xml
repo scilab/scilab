@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>stripblanks</refname>
-    <refpurpose>Strips / trims leading and trailing
+    <refpurpose> strips leading and trailing
   blanks (and tabs) of strings</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
@@ -43,7 +43,7 @@
   <refsection>
     <title>Description</title>
     <para>
-    stripblanks strips / trims leading and trailing blanks (and tabs) of strings</para>
+    stripblanks strips leading and trailing blanks (and tabs) of strings</para>
   </refsection>
   <refsection>
     <title>Examples</title>

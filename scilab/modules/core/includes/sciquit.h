@@ -19,7 +19,7 @@
  * Clean up and end Scilab
  * from fortran
  */
-void sciquit(void);
+void C2F(sciquit)(void);
 
 /**
  *  Cleanup (terminate) all the different features/modules of scilab 
@@ -27,6 +27,13 @@ void sciquit(void);
  * @return 0 is the end of function is reached
  */
 int ExitScilab(void);
+
+/**
+* Exit from scilab and returns _errorCode as exit code 
+* @param[in] exit code
+*/
+void ExitWithCodeFromScilab(int _errorCode);
+
 
 #endif /*__SCIQUIT__*/
 /*--------------------------------------------------------------------------*/ 

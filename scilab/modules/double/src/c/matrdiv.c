@@ -75,7 +75,7 @@ int matrdiv()
 	{
 		if(iRows1 < 0)
 		{
-			SciError(14);
+			Error(14);
 			return 0;
 		}
 
@@ -88,7 +88,7 @@ int matrdiv()
 
 		if(iCols1 != iCols2 && iSize2 != 1 && iSize1 != 1)
 		{
-			SciError(266);
+			Error(266);
 			return 0;
 		}
 
@@ -107,7 +107,7 @@ int matrdiv()
 		//	{
 		//		if(finite(pReal1[iIndex]) == 0 || finite(pImg1[iIndex]) == 0)
 		//		{
-		//			SciError(229);
+		//			Error(229);
 		//			return 0;
 		//		}
 		//	}
@@ -118,7 +118,7 @@ int matrdiv()
 		//	{
 		//		if(finite(pReal1[iIndex]) == 0)
 		//		{
-		//			SciError(229);
+		//			Error(229);
 		//			return 0;
 		//		}
 		//	}
@@ -130,7 +130,7 @@ int matrdiv()
 		//	{
 		//		if(finite(pReal2[iIndex]) == 0 || finite(pImg2[iIndex]) == 0)
 		//		{
-		//			SciError(229);
+		//			Error(229);
 		//			return 0;
 		//		}
 		//	}
@@ -141,7 +141,7 @@ int matrdiv()
 		//	{
 		//		if(finite(pReal2[iIndex]) == 0)
 		//		{
-		//			SciError(229);
+		//			Error(229);
 		//			return 0;
 		//		}
 		//	}
@@ -165,7 +165,7 @@ int matrdiv()
 
 				if(iRet > 0)
 				{
-					SciError(iRet);
+					Error(iRet);
 					return 0;
 				}
 				else if(iRet < 0)
@@ -198,7 +198,7 @@ int matrdiv()
 
 				if(iRet > 0)
 				{
-					SciError(iRet);
+					Error(iRet);
 					return 0;
 				}
 				else if(iRet < 0)
@@ -246,7 +246,7 @@ int matrdiv()
 
 			if(iRows1 < 0 && iSize2 != 1)
 			{
-				SciError(14);
+				Error(14);
 				return 0;
 			}
 
@@ -289,7 +289,7 @@ int matrdiv()
 			{
 				if(C2F(errgst).ieee == 0)
 				{
-					SciError(27);
+					Error(27);
 					return 0;
 				}
 				else if(C2F(errgst).ieee == 1)

@@ -392,6 +392,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\io.rc"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_file.c"
 				>
 			</File>
@@ -413,6 +417,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_load.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_mgetl.c"
 				>
 			</File>
 			<File
@@ -528,10 +536,6 @@
 		<Filter
 			Name="Resource File"
 			>
-			<File
-				RelativePath=".\io.rc"
-				>
-			</File>
 		</Filter>
 		<File
 			RelativePath="..\..\io.iss"

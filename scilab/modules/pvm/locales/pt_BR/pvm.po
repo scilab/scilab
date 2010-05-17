@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-04-16 07:53+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -34,12 +34,8 @@ msgid "%s: No such file or directory.\n"
 msgstr "%s: Não há tal arquivo ou diretório.\n"
 
 #, c-format
-msgid "%s: Unknown type or not yet implemented\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Unknown type or not yet implemented.\n"
-msgstr ""
+msgid "%s: Unknow type or not yet implemented\n"
+msgstr "%s: Tipo desconhecido ou ainda não implementado\n"
 
 #, c-format
 msgid "%s: Wrong first input argument: '%s' or '%s' expected.\n"
@@ -50,18 +46,14 @@ msgstr ""
 msgid "%s: work space (stacksize) is too small d\n"
 msgstr "%s: (o tamanho da pilha do) espaço de trabalho muito pequeno d\n"
 
-#, c-format
-msgid "%s: work space (stacksize) is too small.\n"
-msgstr ""
-
 msgid "(group,instance) already exists"
 msgstr "(grupo, instância) já existe"
 
-msgid "Already doing operation"
-msgstr ""
-
 msgid "Already in group"
 msgstr "Já está no grupo"
+
+msgid "Already oing operation"
+msgstr "Operação já em andamento"
 
 msgid "Bad message id"
 msgstr "ID de mensagem ruim"
@@ -91,8 +83,8 @@ msgid "Error pvm_reduce: Not scalar type\n"
 msgstr "Erro em pvm_reduce: Não é um escalar\n"
 
 #, c-format
-msgid "Error pvm_reduce: Unknown reduction operation %s\n"
-msgstr ""
+msgid "Error pvm_reduce: Unknow reduction operation %s\n"
+msgstr "Erro em pvm_reduce: Operação de redução desconhecida %s\n"
 
 msgid "Failed to exec new slave pvmd"
 msgstr "Falhou ao executar um novo pvmd escravo"
@@ -139,8 +131,8 @@ msgstr "Nome do grupo nulo é ilegal"
 msgid "OK"
 msgstr "OK"
 
-msgid "Out of resources"
-msgstr ""
+msgid "Out of ressources"
+msgstr "Sem recursos"
 
 msgid "PVM exists"
 msgstr "O PVM existe"

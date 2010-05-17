@@ -13,7 +13,7 @@
   <refnamediv>
     <refname>scilab</refname>
 
-    <refpurpose>Script principal d'exécution de Scilab et de divers
+    <refpurpose>script principal d'exécution de Scilab et de divers
     outils</refpurpose>
   </refnamediv>
 
@@ -60,7 +60,7 @@ scilab-cli &lt;Options&gt;</synopsis>
         <term>-debug</term>
 
         <listitem>
-          <para>Lance Scilab sous gdb (Unix/Linux/Mac OS X seulement).</para>
+          <para>Lance Scilab sous gdb (Unix/linux seulement).</para>
 
           <para>Définir la variable SCILAB_GDB_OPT pour ajouter des options
           supplémentaire à gdb.</para>
@@ -74,7 +74,7 @@ scilab-cli &lt;Options&gt;</synopsis>
         <term>-debug-kdbg</term>
 
         <listitem>
-          <para>Lance Scilab sous kdbg (Unix/Linux/Mac OS X seulement).</para>
+          <para>Lance Scilab sous kdbg (Unix/linux seulement).</para>
 
           <para>Conseil: Utilisez cette option à partir de l'arborescence
           source de Scilab</para>
@@ -85,7 +85,7 @@ scilab-cli &lt;Options&gt;</synopsis>
         <term>-profiling</term>
 
         <listitem>
-          <para>Lance Scilab sous valgrind (Unix/Linux/Mac OS X seulement).</para>
+          <para>Lance Scilab sous valgrind (Unix/linux seulement).</para>
 
           <para>Définir la variable SCILAB_VALGRIND_OPT pour ajouter des
           options supplémentaire à valgrind (et surcharger les options de
@@ -100,7 +100,7 @@ scilab-cli &lt;Options&gt;</synopsis>
         <term>-profiling-visu</term>
 
         <listitem>
-          <para>Lance Scilab sous callgrind (Unix/Linux/Mac OS X seulement).</para>
+          <para>Lance Scilab sous callgrind (Unix/linux seulement).</para>
 
           <para>Définir la variable SCILAB_VALGRIND_OPT pour ajouter des
           options supplémentaires à callgrind (et surcharger les options de
@@ -115,7 +115,8 @@ scilab-cli &lt;Options&gt;</synopsis>
         <term>-electric-fence</term>
 
         <listitem>
-          <para>Lance Scilab sous Electric Fence (Unix/Linux/Mac OS X seulement).</para>
+          <para>Lance Scilab sous Electric Fence (Unix/linux
+          seulement).</para>
 
           <para>Conseil: Utilisez cette option à partir de l'arborescence
           source de Scilab</para>

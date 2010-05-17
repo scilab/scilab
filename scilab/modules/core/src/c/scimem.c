@@ -10,7 +10,7 @@
  *
  */
 #include "MALLOC.h"
-#include "stack-def.h"
+#include "stack-c.h"
 #include "scimem.h"
 #include "sciprint.h"
 #include "localization.h"

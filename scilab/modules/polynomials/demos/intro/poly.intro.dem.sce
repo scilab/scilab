@@ -1,8 +1,9 @@
+//
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Michael Baudin
 //
-// This file is released into the public domain
-
+// This file is distributed under the same license as the Scilab package.
+//
 mode(7)
 // This is a small introduction to the polynomials objects in 
 // Scilab.

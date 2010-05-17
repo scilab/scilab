@@ -40,11 +40,6 @@ function loadScicosLibs()
   end
   clear theLib;
 
-  if isfile('SCI/modules/scicos/macros/scicos_menus/lib') then
-    load('SCI/modules/scicos/macros/scicos_menus/lib');
-    listlibsname = [listlibsname, 'scicos_menus'];
-  end
-
   if isfile('SCI/modules/scicos/macros/scicos_scicos/lib') then
     load('SCI/modules/scicos/macros/scicos_scicos/lib');
     listlibsname = [listlibsname, 'scicos_scicos'];

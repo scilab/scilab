@@ -1,8 +1,10 @@
+//
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
 // Copyright (C) ENPC
 //
-// This file is released into the public domain
+// This file is distributed under the same license as the Scilab package.
+//
 
 function [y]=Weibull(m,n,Alpha,Beta)
 	//------------------------------- 

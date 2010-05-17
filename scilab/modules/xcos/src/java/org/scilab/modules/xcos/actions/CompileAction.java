@@ -14,7 +14,6 @@
 package org.scilab.modules.xcos.actions;
 
 import static org.scilab.modules.graph.utils.ScilabInterpreterManagement.buildCall;
-import static org.scilab.modules.xcos.utils.FileUtils.delete;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,7 +28,7 @@ import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
 import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.utils.FileUtils;
+import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -72,7 +71,7 @@ public class CompileAction extends SimulationNotRunningAction {
 		
 		final File temp;
 		try {
-			temp = FileUtils.createTempFile();
+			temp = File.createTempFile("xcos", ".h5", XcosConstants.TMPDIR);
 		} catch (IOException e1) {
 			LogFactory.getLog(CompileAction.class).error(e1);
 			return;
@@ -97,7 +96,7 @@ public class CompileAction extends SimulationNotRunningAction {
 				final ActionListener action = new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						delete(temp);
+						temp.delete();
 						((XcosDiagram) getGraph(null)).setReadOnly(false);
 						((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
 					}

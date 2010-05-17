@@ -9,12 +9,10 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include <stdio.h>
 #include "terme.h"
 #include "stack-def.h"
 #include "stack-c.h"
-#include "basout.h"
-#include "do_error_number.h"
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/ 
 extern int C2F(getsym)();
 /*--------------------------------------------------------------------------*/ 
@@ -31,6 +29,7 @@ int C2F(terme)(void)
 
   /* Local variables */
   int op = 0;
+  int code_error = 0;
 
   int r = 0;
 
@@ -93,7 +92,8 @@ int C2F(terme)(void)
 
 	if (op != 0) 
 	  {
-	    SciError(7);
+	    code_error = 7;
+	    Error(code_error);
 	  }
 	return 0;
       }
@@ -146,7 +146,8 @@ int C2F(terme)(void)
 
 	if (op != 0) 
 	  {
-	    SciError(7);
+	    code_error = 7;
+	    Error(code_error);
 	  }
 	return 0;
       }
@@ -163,7 +164,8 @@ int C2F(terme)(void)
       break;
     }
 
-  SciError(22);
+  code_error = 22;
+  Error(code_error);
   return 0;
 }
 /*--------------------------------------------------------------------------*/ 

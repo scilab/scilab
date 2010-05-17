@@ -66,12 +66,6 @@ rand("info")
 
     <para>Générateur de nombres aléatoires.</para>
 
-    <para>Attention: sans souche, la séquence générée restera la même
-      d'une session à l'autre.</para>
-    <para>Au début de chaque script utilisant la fonction rand, vous
-    devriez utiliser:</para>
-    <programlisting role="example"><![CDATA[rand('seed',getdate('s'))]]></programlisting>
-
     <para>Sans l'argument <literal>key</literal> la syntaxe ci-dessous produit
     une matrice aléatoire dont chaque élément est la réalisation d'une
     variable aléatoire suivant une loi donnée (par défaut uniforme sur

@@ -15,19 +15,12 @@ package org.scilab.modules.xcos.block.positionning;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
-import org.scilab.modules.xcos.port.command.CommandPort;
-import org.scilab.modules.xcos.port.output.OutputPort;
 
 /**
  * Implement a round block with inputs spread around the block.
  */
 public class RoundBlock extends BasicBlock {
 	private static final int SIDE_NUMBER = Orientation.values().length;
-	
-	/**
-	 * Default constructor
-	 */
-	public RoundBlock() { }
 	
 	/**
 	 * Set default values
@@ -44,17 +37,6 @@ public class RoundBlock extends BasicBlock {
 	 */
 	@Override
 	public void addPort(BasicPort port) {
-		/*
-		 * Any output port keep its orientation.
-		 */
-		if (port instanceof OutputPort || port instanceof CommandPort) {
-			super.addPort(port);
-			return;
-		}
-		
-		/*
-		 * The other ones are placed around the block.
-		 */
 		final int def = port.getOrientation().ordinal() - 1;
 		final int side = getChildCount();
 		

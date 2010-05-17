@@ -80,7 +80,6 @@
 <module name="parameters" activate="yes"/>
 <module name="matio" activate="yes"/>
 <module name="atoms" activate="yes"/>
-<module name="types" activate="yes"/>
 <module name="hdf5" activate="yes"/>
 <module name="xcos" activate="yes"/>
 <module name="xpad" activate="yes"/>

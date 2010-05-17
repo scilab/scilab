@@ -124,7 +124,6 @@ int sci_execstr(char *fname, int* _piKey)
 			}
 
 			sciErr = getMatrixOfString(_piKey, piAddressVarTwo,&m2,&n2,&lenStVarTwo,&pStVarTwo);
-
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
@@ -160,7 +159,7 @@ int sci_execstr(char *fname, int* _piKey)
 			}
 			else
 			{
-				Scierror(999,_("%s: Memory allocation error.\n"),fname);
+				Scierror(999,_("%s : Memory allocation error.\n"),fname);
 				return 0;
 			}
 		}
@@ -194,7 +193,6 @@ int sci_execstr(char *fname, int* _piKey)
 			}
 
 			sciErr = getMatrixOfString(_piKey, piAddressVarThree,&m3,&n3,&lenStVarThree,&pStVarThree);
-
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
@@ -230,7 +228,7 @@ int sci_execstr(char *fname, int* _piKey)
 			}
 			else
 			{
-				Scierror(999,_("%s: Memory allocation error.\n"),fname);
+				Scierror(999,_("%s : Memory allocation error.\n"),fname);
 				return 0;
 			}
 		}

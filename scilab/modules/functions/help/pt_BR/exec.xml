@@ -109,10 +109,6 @@ ierr=exec(fun,'errcatch' [,mode])</synopsis>
     definir funções "inline" utilizando a sintaxe de definição (ver
     function).</para>
   </refsection>
-<!--
-    <para><literal>exec</literal> supports files encoded as ANSI/ASCII and UTF-8 (NO-BOM).</para>
- -->
-  
 
   <refsection>
     <title>Exemplos</title>

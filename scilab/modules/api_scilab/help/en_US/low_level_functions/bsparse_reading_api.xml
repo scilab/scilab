@@ -88,7 +88,6 @@
                 <listitem>
                     <para>
                         Return number of item in each rows (size: _iRows).
-                        For "Named" function, _piNbItemRow must be allocated before calling function.
                     </para>
                 </listitem>
             </varlistentry>
@@ -97,7 +96,6 @@
                 <listitem>
                     <para>
                         Return column position for each item (size: _iNbItem).
-                        For "Named" function, _piColPos must be allocated before calling function.
                     </para>
                 </listitem>
             </varlistentry>

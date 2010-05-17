@@ -1038,7 +1038,7 @@ int isNamedEmptyMatrix(void* _pvCtx, char* _pstName)
 int createEmptyMatrix(void* _pvCtx, int _iVar)
 {
 	SciErr sciErr;
-	double dblReal = 0;
+	double dblReal = 1;
 
 	sciErr = createMatrixOfDouble(_pvCtx, _iVar, 0, 0, &dblReal);
 	if(sciErr.iErr)
@@ -1054,7 +1054,7 @@ int createEmptyMatrix(void* _pvCtx, int _iVar)
 int createNamedEmptyMatrix(void* _pvCtx, char *_pstName)
 {
 	SciErr sciErr;
-	double dblOne = 0;
+	double dblOne = 1;
 
 	sciErr = createNamedMatrixOfDouble(_pvCtx, _pstName, 0, 0, &dblOne);
 	if(sciErr.iErr)

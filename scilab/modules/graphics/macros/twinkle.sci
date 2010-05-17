@@ -11,18 +11,18 @@ function twinkle(h,n)
 [lhs,rhs]=argn(0)
 if rhs==1 then
   if (type(h)<>9 | size(h,"*")<>1) then
-    error(msprintf(gettext("%s: Wrong type for input argument #%d: Graphic handle expected.\n"), "twinkle", 1));
+    error("twinkle: first argument must be a graphics handle")
   end
   n=5;
 elseif rhs==2 then
   if (type(h)<>9 | size(h,"*")<>1) then
-    error(msprintf(gettext("%s: Wrong type for input argument #%d: Graphic handle expected.\n"), "twinkle", 1));
+    error("twinkle: first argument must be a graphics handle")
   end
   if (type(n)<>1 | size(n,"*")<>1) then
-    error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar expected.\n"), "twinkle", 2));
+    error("twinkle: second argument must be an integer")
   end	
 else
-  error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"), "twinkle", 1, 2));
+  error("function ""twinkle"" must have one or two arguments")
 end
 
 f=h;
@@ -34,18 +34,31 @@ f.pixmap="on";
 show_pixmap();
 realtimeinit(0.1); realtime(0);
 k=0;
-
-v=h.visible;
-for i=1:n
-  k=k+2;
-  h.visible="off";
-  show_pixmap();
-  realtime(k);
-  h.visible="on";
-  show_pixmap();
-  realtime(k+1);
+if h.type<>"Axes" then
+  v=h.visible;
+  for i=1:n
+    k=k+2;
+    h.visible="off";
+    show_pixmap();
+    realtime(k);
+    h.visible="on";
+    show_pixmap();
+    realtime(k+1);
+  end
+  h.visible=v;
+else
+  v=h.axes_visible;
+  for i=1:n
+    k=k+2;
+    h.axes_visible="off";
+    show_pixmap();
+    realtime(k);
+    h.axes_visible="on";
+    show_pixmap();
+    realtime(k+1);
+  end
+  h.axes_visible=v;
 end
-h.visible=v;
 
 f.pixmap=stripblanks(old_pixmap);
 

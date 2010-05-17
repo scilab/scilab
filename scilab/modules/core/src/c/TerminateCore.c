@@ -22,6 +22,7 @@
 #include "hashtable_core.h" /* destroy_hashtable_scilab_functions */
 #include "filesmanagement.h"
 #include "scilabmode.h"
+#include "stack-c.h"
 /*--------------------------------------------------------------------------*/ 
 BOOL TerminateCorePart1(void)
 {

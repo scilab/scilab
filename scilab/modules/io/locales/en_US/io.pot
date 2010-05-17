@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-04-13 09:16+0100\n"
+"Revision-Date: 2010-01-25 10:32+0100\n"
 
 # File: sci_gateway/c/sci_setenv.c, line: 127
 # File: sci_gateway/c/sci_setenv.c, line: 145
@@ -24,7 +24,7 @@ msgstr ""
 # File: sci_gateway/c/sci_file.c, line: 177
 # File: sci_gateway/c/sci_file.c, line: 205
 #, c-format
-msgid "%s: Memory allocation error.\n"
+msgid "%s : Memory allocation error.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_getenv.c, line: 170

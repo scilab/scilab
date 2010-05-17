@@ -26,7 +26,7 @@ int sci_matmul(char *fname)
 
   /* Check dimensions    */
   if (!(n1==m2)) { sciprint("%s: Incompatible inputs\n", "matmul");
-    SciError(999);
+    Error(999);
     return 0;}
 
   /* Call multiplication function 

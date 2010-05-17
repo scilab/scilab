@@ -68,12 +68,7 @@ src/translator/translation/libraryManager.cmo
 src/translator/translation/translator.cmo
 src/translator/translation/versiondate.cmo
 
-# .tmp files generated on Windows
-src/translator/translation/*.obj
-src/translator/parsing/*.obj
-src/translator/compilation/*.obj
-src/translator/instantiation/*.obj
-src/translator/exceptionHandling/*.obj
+
 
 
 #

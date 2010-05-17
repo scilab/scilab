@@ -139,6 +139,7 @@ cd .."/></Configuration></Configurations>
 		<File RelativePath="mklist.f"/>
 		<File RelativePath="mname.f"/>
 		<File RelativePath="mrknmd.f"/>
+		<File RelativePath="namstr.f"/>
 		<File RelativePath="nextj.f"/>
 		<File RelativePath="prompt.f"/>
 		<File RelativePath="ptover.f"/>

@@ -94,6 +94,10 @@ mfile2sci(MFILE,TMPDIR);
   Syntax modification: Done
   Macro to tree conversion...
   Conversion of M-tree...
+ 
+ fp,1   
+ 
+ fp,1   
   Conversion of M-tree: Done
   Macro to tree conversion: Done
   ****** End of mfile2sci() session ******

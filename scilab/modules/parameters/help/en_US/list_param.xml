@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) DIGITEO 2008-2010 - Yann COLLETTE
+ * Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -17,6 +17,9 @@
           xmlns:ns3="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>23-Aug-2007</pubdate>
+  </info>
 
   <refnamediv>
     <refname>list_param</refname>
@@ -86,23 +89,29 @@ disp(list_param(mylist));
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="init_param">init_param</link></member>
+      <member><link linkend="init_param"> init_param </link></member>
 
-      <member><link linkend="set_param">set_param</link></member>
+      <member><link linkend="set_param"> set_param </link></member>
 
-      <member><link linkend="get_param">get_param</link></member>
+      <member><link linkend="get_param"> get_param </link></member>
 
-      <member><link linkend="remove_param">remove_param</link></member>
+      <member><link linkend="remove_param"> remove_param </link></member>
 
-      <member><link linkend="is_param">is_param</link></member>
+      <member><link linkend="is_param"> is_param </link></member>
     </simplelist>
   </refsection>
 
   <refsection>
     <title>Authors</title>
 
-    <simplelist type="vert">
-      <member>Yann COLLETTE</member>
-    </simplelist>
+    <variablelist>
+      <varlistentry>
+        <term>collette</term>
+
+        <listitem>
+          <para>ycollet@freesurf.fr</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </refsection>
 </refentry>

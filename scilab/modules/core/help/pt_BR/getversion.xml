@@ -68,8 +68,8 @@ versioninfo=getversion('&lt;module&gt;','string_info')</synopsis>
         <term>opts</term>
 
         <listitem>
-          <para>um vetor de strings:
-          <literal>[compiler, architecture, [pvm, tk, modelicac, atlas,] release_mode, release_date, release_time]</literal></para>
+          <para>um vetor de strings de 7 entradas:
+          <literal>[compiler, pvm, tk, modelicac, release_mode, release_date, release_time]</literal></para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -89,23 +89,11 @@ versioninfo=getversion('&lt;module&gt;','string_info')</synopsis>
 
     <programlisting role="example"><![CDATA[ 
 getversion()
-
-[version, opts] = getversion()
-COMPILER = opts(1)
-ARCH = opts(2)
-or(opt == 'modelicac')
-or(opt == 'pvm')
-or(opt == 'tk')
-or(opt == 'atlas')
-RELEASE_MODE = opts($-2)
-RELEASE_DATE = opts($-1)
-RELEASE_TIME = opts($)
-
-version = getversion('scilab')
-versionstr = getversion('scilab','string_info')
-version = getversion('overloading')
-versionstr = getversion('overloading','string_info')
-
+[version,opts]=getversion()
+ver=getversion('scilab')
+verstr=getversion('scilab','string_info')
+ver=getversion('overloading')
+verstr=getversion('overloading','string_info')
  ]]></programlisting>
   </refsection>
 

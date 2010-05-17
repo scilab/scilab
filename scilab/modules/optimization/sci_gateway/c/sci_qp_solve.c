@@ -92,7 +92,7 @@ int sci_qp_solve(char *fname,unsigned long fname_len)
 	if ((*istk(me)<0) || (*istk(me)>n))
 	{
 		Err = 7;
-		SciError(116);
+		Error(116);
 		return 0;
 	}
 

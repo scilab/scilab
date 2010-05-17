@@ -1,7 +1,6 @@
 /* ============================================== */
 #include "stack-c.h"
 #include "sciprint.h"
-#include "Scierror.h"
 /* ============================================== */
 /*  Interfaces for c fonctions */
 /* ============================================== */
@@ -27,13 +26,13 @@ int c_intsum(char *fname)
   if (!(m1==1)|!(n1==1)) 
   { 
     sciprint("%s: Wrong inputs \r\n", "c_fun");
-    SciError(999);
+    Error(999);
     return 0;
    }
   if (!(m2==1)|!(n2==1)) 
   {
     sciprint("%s: Wrong inputs \r\n", "c_fun");
-    SciError(999);
+    Error(999);
     return 0;
   }
 
@@ -64,13 +63,13 @@ int c_intsub(char *fname)
   if (!(m1==1)|!(n1==1)) 
   { 
     sciprint("%s: Wrong inputs \r\n", "c_fun");
-    SciError(999);
+    Error(999);
     return 0;
    }
   if (!(m2==1)|!(n2==1)) 
   {
     sciprint("%s: Wrong inputs \r\n", "c_fun");
-    SciError(999);
+    Error(999);
     return 0;
   }
 

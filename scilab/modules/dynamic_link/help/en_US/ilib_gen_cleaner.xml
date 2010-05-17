@@ -30,8 +30,6 @@
         <term>makename</term>
         <listitem>
           <para>character string. The pathname of the Makefile file without extension (default value <literal>Makelib</literal>).</para>
-          <para>This parameter is useless since Scilab 5.0.</para>
-          <para>A warning will be displayed in Scilab 5.3 if you use another value that the default.</para>
         </listitem>
       </varlistentry>
       
@@ -54,9 +52,9 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>This is internal function used by <literal>ilib_build and ilib_for_link</literal>
+    <para>
+    Utility function used by <literal>ilib_build and ilib_for_link</literal>
     This function generates a cleaner file.</para>
-    <para><emphasis role="bold">Only use this function is you know what you are doing (it is a semi-private function).</emphasis></para>
   </refsection>
   <refsection>
     <title>See Also</title>

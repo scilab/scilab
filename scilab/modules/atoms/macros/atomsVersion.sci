@@ -12,6 +12,6 @@
 // Load one or several toolboxes
 
 function version = atomsVersion()
-    version = getversion('atoms');
-    version = string(version(1)) + "." + string(version(2));
+	version = getversion('atoms');
+	version = string(version(1)) + "." + string(version(2));
 endfunction

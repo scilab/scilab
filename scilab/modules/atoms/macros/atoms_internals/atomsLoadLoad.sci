@@ -10,25 +10,25 @@
 // Internal function
 
 function matrix_out = atomsLoadLoad()
-
-    // Init the output argument
-    // =========================================================================
-    matrix_out = [];
-
-    // Check number of input arguments
-    // =========================================================================
-    rhs = argn(2);
-    if rhs <> 0 then
-        error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsLoadLoad",0));
-    end
-
-    // loaded_file
-    // =========================================================================
-    loaded_file = pathconvert(TMPDIR+"/atoms/loaded.bin",%F);
-
-    if fileinfo(loaded_file) <> [] then
-        load(loaded_file,"loaded_mat");
-        matrix_out = loaded_mat;
-    end
-
+	
+	// Init the output argument
+	// =========================================================================
+	matrix_out = [];
+	
+	// Check number of input arguments
+	// =========================================================================
+	rhs = argn(2);
+	if rhs <> 0 then
+		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsLoadLoad",0));
+	end
+	
+	// loaded_file
+	// =========================================================================
+	loaded_file = pathconvert(TMPDIR+"/atoms/loaded.bin",%F);
+	
+	if fileinfo(loaded_file) <> [] then
+		load(loaded_file,"loaded_mat");
+		matrix_out = loaded_mat;
+	end
+	
 endfunction

@@ -2,19 +2,20 @@
 # Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
 # This file is distributed under the same license as the scilab package.
 #
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
 # Yuri Chornoivan <yurchor@gmail.com>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-04-13 09:08+0000\n"
-"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"PO-Revision-Date: 2010-01-15 19:18+0000\n"
+"Last-Translator: yurchor <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-04-16 07:53+0000\n"
+"X-Launchpad-Export-Date: 2010-01-21 15:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -122,6 +123,9 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
 "«string».\n"
 
+msgid "Console"
+msgstr "Консоль"
+
 msgid "Could not access to the Main Scilab Class:\n"
 msgstr "Не вдалося отримати доступ до головного класу Scilab:\n"
 
@@ -155,10 +159,6 @@ msgid "Error in the creation of the Java VM: %s\n"
 msgstr "Помилка під час спроби створення віртуальної машини Java: %s\n"
 
 #, c-format
-msgid "Error: %s\n"
-msgstr "Помилка: %s\n"
-
-#, c-format
 msgid "Error: Could not parse file %s.\n"
 msgstr "Помилка: не вдалося розібрати файл %s.\n"
 
@@ -174,22 +174,6 @@ msgstr ""
 msgid "Error: could not parse file %s\n"
 msgstr "Помилка: не вдалося розібрати файл %s\n"
 
-#, c-format
-msgid ""
-"If you are using a binary version of Scilab, please report a bug "
-"http://bugzilla.scilab.org/.\n"
-msgstr ""
-"Якщо ви користуєтеся бінарною версією Scilab, будь ласка, повідомте про ваду "
-"за адресою http://bugzilla.scilab.org/.\n"
-
-#, c-format
-msgid ""
-"If you are using a self-built version of Scilab, update the script "
-"bin/scilab to provide the path to the JVM.\n"
-msgstr ""
-"Якщо ви збирали Scilab власноруч, оновіть скрипт bin/scilab так, щоб шлях до "
-"віртуальної машини Java було вказано належним чином.\n"
-
 msgid "JNI version error"
 msgstr "Помилка у версії JNI"
 
@@ -201,9 +185,6 @@ msgstr "JNI: не вистачає пам’яті"
 
 msgid "JVM interface disabled in -nogui or -nwni modes.\n"
 msgstr "Інтерфейс JVM у режимі -nogui або -nwni вимкнено.\n"
-
-msgid "Scilab Console"
-msgstr "Консоль Scilab"
 
 msgid "Scilab Java module not installed.\n"
 msgstr "Модуль Java Scilab не встановлено.\n"
@@ -217,12 +198,6 @@ msgstr ""
 "Під час завантаження бібліотек Java виникло декілька проблем.\n"
 "Ці проблеми можуть призвести до помилкової роботи програми.\n"
 "Будь ласка, перевірте, чи немає помилок у SCI/etc/classpath.xml.\n"
-
-#, c-format
-msgid "The problem might be related to SELinux. Try to deactivate it.\n"
-msgstr ""
-"Проблему може бути пов’язано з використанням SELinux. Спробуйте вимкнути цю "
-"систему.\n"
 
 msgid "Thread detached from the VM"
 msgstr "Потік від’єднано від віртуальної машини"

@@ -1,3 +1,4 @@
+
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Cong WU
@@ -95,7 +96,7 @@ int sci_tokens(char *fname,unsigned long fname_len)
 				if (Delimiters == NULL)
 				{
 					freeArrayOfString(Input_Strings,mn_One);
-					Scierror(999,_("%s: Memory allocation error.\n"),fname);
+					Scierror(999,_("%s : Memory allocation error.\n"),fname);
 					return 0;
 				}
 				Delimiters[0] = strdup(" ");

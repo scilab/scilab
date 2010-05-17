@@ -61,7 +61,7 @@ int sci_frexp(char *fname, int* _piKey)
 
 	if(isVarComplex(_piKey, piAddr))
 	{
-		SciError(9999);
+		Error(9999);
 		sciprint(_("%s: real data only.\n"), fname);
 	}
 

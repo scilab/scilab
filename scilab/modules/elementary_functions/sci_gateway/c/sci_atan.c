@@ -87,7 +87,7 @@ int sci_atan(char *fname, int*_piKey)
 				if(pdblReal1[i] == 0 && dabss(pdblImg1[i]) == 1)
 				{
 					if(C2F(errgst).ieee==0)
-						SciError(32);
+						Error(32);
 					else if(C2F(errgst).ieee==1)
 						Msgs(64,0);
 				}
@@ -144,10 +144,10 @@ int sci_atan(char *fname, int*_piKey)
 				}
 			}
 			else
-				SciError(60);
+				Error(60);
 		}
 		else
-			SciError(43);
+			Error(43);
 	}
 
 	LhsVar(1) = Rhs + 1;

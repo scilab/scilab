@@ -12,15 +12,15 @@
 // Installation of a toolbox
 
 function atomsSystemUpdate()
-
-    // Load Atoms Internals lib if it's not already loaded
-    // =========================================================================
-    if ~ exists("atomsinternalslib") then
-        load("SCI/modules/atoms/macros/atoms_internals/lib");
-    end
-
-    // Check write access on allusers zone
-    // =========================================================================
-    atomsDESCRIPTIONget(%T);
-
+	
+	// Load Atoms Internals lib if it's not already loaded
+	// =========================================================================
+	if ~ exists("atomsinternalslib") then
+		load("SCI/modules/atoms/macros/atoms_internals/lib");
+	end
+	
+	// Check write access on allusers zone
+	// =========================================================================
+	atomsDESCRIPTIONget(%T);
+	
 endfunction

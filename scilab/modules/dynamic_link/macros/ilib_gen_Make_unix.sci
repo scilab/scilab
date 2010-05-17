@@ -249,7 +249,7 @@ function generateConfigure(workingPath, ..
 	if ( ilib_verbose() <> 0 ) then
 		mprintf(gettext("   %s: configure : Generate Makefile.\n"),"ilib_gen_Make");
 	end
-	cmd = gencompilationflags_unix(ldflags, cflags, fflags, cc, "configure")
+	cmd = gencompilationflags_unix(ldflags, cflags, fflags, cc)
 	cmd = workingPath+"/compilerDetection.sh "+cmd
 	
 	[msg,ierr,stderr] = unix_g(cmd);

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-04-13 09:16+0100\n"
+"Revision-Date: 2010-01-25 10:32+0100\n"
 
 # File: macros/tree/uiFindNode.sci, line: 115
 # File: macros/tree/uiFindNode.sci, line: 142
@@ -33,12 +33,6 @@ msgstr ""
 # File: sci_gateway/cpp/sci_getlookandfeel.cpp, line: 49
 #, c-format
 msgid "%s: An error occurred: %s.\n"
-msgstr ""
-#
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 108
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 231
-#, c-format
-msgid "%s: An exception occurred: %s"
 msgstr ""
 #
 # File: sci_gateway/c/sci_uicontrol.c, line: 290
@@ -133,7 +127,7 @@ msgstr ""
 msgid "%s: Only available under 'STANDARD' mode.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 72
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 61
 #, c-format
 msgid "%s: The file %s does not exist.\n"
 msgstr ""
@@ -148,7 +142,7 @@ msgstr ""
 msgid "%s: Unknown property: %s for '%s' handles.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 237
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 201
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected"
 msgstr ""
@@ -226,7 +220,7 @@ msgstr ""
 msgid "%s: Wrong size for %s: A row vector of strings expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_x_mdialog.c, line: 128
+# File: sci_gateway/c/sci_x_mdialog.c, line: 122
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: %d x %d matrix of strings expected.\n"
@@ -355,26 +349,19 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A string matrix expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_x_mdialog.c, line: 90
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: It must have same dimensions that "
-"argument #%d.\n"
-msgstr ""
-#
 # File: sci_gateway/c/sci_helpbrowser.c, line: 60
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 87
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 67
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_x_mdialog.c, line: 70
-# File: sci_gateway/c/sci_x_mdialog.c, line: 96
-# File: sci_gateway/c/sci_x_mdialog.c, line: 107
+# File: sci_gateway/c/sci_x_mdialog.c, line: 90
+# File: sci_gateway/c/sci_x_mdialog.c, line: 101
 # File: sci_gateway/c/sci_x_choice.c, line: 95
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
@@ -534,7 +521,7 @@ msgstr ""
 # File: macros/addmenu.sci, line: 164
 # File: macros/addmenu.sci, line: 190
 # File: macros/x_choices.sci, line: 34
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 250
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 214
 # File: sci_gateway/cpp/sci_uigetfile.cpp, line: 163
 # File: sci_gateway/cpp/sci_uigetfile.cpp, line: 187
 # File: sci_gateway/cpp/sci_uigetfile.cpp, line: 225
@@ -581,7 +568,7 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 256
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 220
 # File: sci_gateway/c/sci_ClipBoard.c, line: 291
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string or a real expected.\n"
@@ -613,19 +600,19 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_x_mdialog.c, line: 136
+# File: sci_gateway/c/sci_x_mdialog.c, line: 130
 # File: sci_gateway/c/sci_helpbrowser.c, line: 66
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 121
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 127
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 93
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 99
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Non-negative integer expected.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 243
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 207
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Non-negative integers expected\n"
 msgstr ""
@@ -639,8 +626,8 @@ msgstr ""
 # File: macros/tree/uiCreateNode.sci, line: 27
 # File: macros/tree/uiCreateNode.sci, line: 36
 # File: macros/tree/uiCreateNode.sci, line: 44
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 185
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 197
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 157
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 169
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
@@ -678,7 +665,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_x_mdialog.c, line: 51
 # File: sci_gateway/c/sci_x_mdialog.c, line: 78
-# File: sci_gateway/c/sci_x_mdialog.c, line: 116
+# File: sci_gateway/c/sci_x_mdialog.c, line: 110
 # File: sci_gateway/c/sci_x_choose_modeless.c, line: 45
 # File: sci_gateway/c/sci_x_choose_modeless.c, line: 56
 # File: sci_gateway/c/sci_x_choose.c, line: 45
@@ -770,7 +757,7 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: Must be >= %d expected.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 115
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 87
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Non-negative integers expected.\n"
@@ -1043,7 +1030,7 @@ msgstr ""
 msgid "&Zoom"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 246
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 237
 msgid ""
 "'.\n"
 " Please specify a valid file format."
@@ -1081,7 +1068,7 @@ msgid "All Scilab files"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 56
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 49
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 47
 msgid "All files"
 msgstr ""
 #
@@ -1181,11 +1168,11 @@ msgstr ""
 msgid "Console &Font..."
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2256
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2235
 msgid "Console Background..."
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2237
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2216
 msgid "Console Font..."
 msgstr ""
 #
@@ -1204,7 +1191,7 @@ msgid "Copyright (c) 1989-2007 (ENPC)"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/gui/utils/ScilabAboutBox.java, line: 49
-msgid "Copyright (c) 1989-2010 (INRIA)"
+msgid "Copyright (c) 1989-2009 (INRIA)"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 77
@@ -1224,11 +1211,11 @@ msgstr ""
 msgid "Edit in the Scilab Text Editor"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 45
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 43
 msgid "Encapsulated PostScript image (EPS)"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 44
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 42
 msgid "Enhanced Metafile image (EMF)"
 msgstr ""
 #
@@ -1244,8 +1231,8 @@ msgstr ""
 msgid "Error"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 210
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 247
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 203
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 237
 msgid "Error on export"
 msgstr ""
 #
@@ -1265,12 +1252,12 @@ msgstr ""
 msgid "Exit figure"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 96
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 97
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 94
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 95
 msgid "Export"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 46
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 44
 msgid "FIG image"
 msgstr ""
 #
@@ -1286,11 +1273,11 @@ msgstr ""
 msgid "File"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabFileChooser.java, line: 157
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabFileChooser.java, line: 155
 msgid "File already exist"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 142
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 138
 msgid "File already exists"
 msgstr ""
 #
@@ -1298,7 +1285,7 @@ msgstr ""
 msgid "Forward"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 40
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 38
 msgid "GIF image"
 msgstr ""
 #
@@ -1306,7 +1293,7 @@ msgstr ""
 msgid "GUI"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/helpbrowser/ScilabHelpBrowser.java, line: 74
+# File: src/java/org/scilab/modules/gui/helpbrowser/ScilabHelpBrowser.java, line: 73
 # File: scilab_fake_localization_file.c, line: 87
 # File: scilab_fake_localization_file.c, line: 99
 msgid "Help Browser"
@@ -1330,7 +1317,7 @@ msgstr ""
 msgid "Impossible to get current look and feel"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 41
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 39
 msgid "JPEG image"
 msgstr ""
 #
@@ -1355,8 +1342,8 @@ msgstr ""
 msgid "Left click to terminate selection. Right click to cancel."
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/helpbrowser/ScilabHelpBrowser.java, line: 67
-# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowser.java, line: 81
+# File: src/java/org/scilab/modules/gui/helpbrowser/ScilabHelpBrowser.java, line: 66
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowser.java, line: 82
 msgid "Loading help browser..."
 msgstr ""
 #
@@ -1476,15 +1463,15 @@ msgstr ""
 msgid "P&age setup..."
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 47
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 45
 msgid "PDF image"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 42
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 40
 msgid "PNG image"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 43
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 41
 msgid "PPM image"
 msgstr ""
 #
@@ -1497,7 +1484,7 @@ msgstr ""
 msgid "Please enter a color name first."
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 209
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 203
 msgid "Please specify a file format"
 msgstr ""
 #
@@ -1505,7 +1492,7 @@ msgstr ""
 msgid "Popupmenu selection"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 117
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 115
 msgid "Preview"
 msgstr ""
 #
@@ -1522,8 +1509,8 @@ msgstr ""
 msgid "Quit demonstration"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 141
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabFileChooser.java, line: 156
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 138
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabFileChooser.java, line: 155
 msgid "Replace existing file?"
 msgstr ""
 #
@@ -1535,7 +1522,7 @@ msgstr ""
 msgid "S&top entity picker"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 48
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 46
 msgid "SVG image"
 msgstr ""
 #
@@ -1723,7 +1710,7 @@ msgstr ""
 msgid "The Scilab Consortium (DIGITEO)"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/tree/SwingScilabTree.java, line: 173
+# File: src/java/org/scilab/modules/gui/bridge/tree/SwingScilabTree.java, line: 136
 msgid "Tree Overview"
 msgstr ""
 #
@@ -1731,11 +1718,11 @@ msgstr ""
 msgid "Uicontrols demo"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 245
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 237
 msgid "Unrecognized extension '"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 98
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 96
 msgid "Untitled-export"
 msgstr ""
 #
@@ -1758,7 +1745,7 @@ msgid ""
 "property value.\n"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 39
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 37
 msgid "Windows BMP image"
 msgstr ""
 #

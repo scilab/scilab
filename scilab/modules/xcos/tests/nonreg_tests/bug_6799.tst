@@ -21,7 +21,7 @@ loadScicosLibs;
 
 block = TOWS_c("define", [], []);
 
-s = size(block.graphics.exprs);
+s = size(block.graphics.exprs)
 
 if s(1) <> 3 then pause, end
 if s(2) <> 1 then pause, end

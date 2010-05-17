@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-02-27 18:16+0100\n"
-"PO-Revision-Date: 2010-04-13 16:18+0000\n"
+"PO-Revision-Date: 2010-02-11 09:54+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-04-16 07:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: JAPAN\n"
 "X-Poedit-Language: Japanese\n"
@@ -29,8 +29,10 @@ msgstr "                 Scilab コンソーシアム (DIGITEO)\n"
 msgid "               Copyright (c) 1989-2007 (ENPC)\n"
 msgstr "               Copyright (c) 1989-2007 (ENPC)\n"
 
-msgid "               Copyright (c) 1989-2010 (INRIA)\n"
-msgstr "               Copyright (c) 1989-2010 (INRIA)\n"
+#
+# File: src/c/banier.c, line: 38
+msgid "               Copyright (c) 1989-2009 (INRIA)\n"
+msgstr "               Copyright (c) 1989-2009 (INRIA)\n"
 
 #
 # File: etc/scilab.start, line: 63
@@ -64,7 +66,7 @@ msgstr "%f: 入力引数の保存文字列にこれ以上スペースがあり�
 #
 # File: src/c/readGateway.c, line: 103
 #, c-format
-msgid "%s: Memory allocation error.\n"
+msgid "%s : Memory allocation error.\n"
 msgstr "%s: メモリの割り当てに失敗しました。\n"
 
 #
@@ -904,10 +906,6 @@ msgid "%s: Wrong type value.\n"
 msgstr "%s: 型の値が不正です。\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: \"%s\" expected.\n"
-msgstr "%s: 入力引数 #%d で値が不正: \"%s\"を想定します。\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr "%s: 入力引数 #%d で不正な値: '%s' を想定します。\n"
 
@@ -1225,9 +1223,48 @@ msgid "Commands:\n"
 msgstr "コマンド:\n"
 
 #
+# File: src/c/getstaticDebugInfo_Windows.c, line: 46
+#, c-format
+msgid "Compilation date: %s"
+msgstr "コンパイル日: %s"
+
+#
+# File: src/c/getstaticDebugInfo_Windows.c, line: 53
+#, c-format
+msgid "Compilation time: %s"
+msgstr "コンパイル時間: %s"
+
+#
+# File: src/c/getstaticDebugInfo_Windows.c, line: 73
+# File: src/c/getstaticDebugInfo_Windows.c, line: 75
+# File: src/c/getstaticDebugInfo_Windows.c, line: 77
+# File: src/c/getstaticDebugInfo_Windows.c, line: 87
+#, c-format
+msgid "Compiled with %s"
+msgstr "%sでコンパイルされました"
+
+#
+# File: src/c/getstaticDebugInfo_Windows.c, line: 61
+# File: src/c/getstaticDebugInfo_Windows.c, line: 63
+#, c-format
+msgid "Compiler Architecture: %s"
+msgstr "コンパイラー・アーキテクチャ: %s"
+
+#
+# File: src/c/getstaticDebugInfo_Windows.c, line: 133
+#, c-format
+msgid "Directory separator: %s"
+msgstr "ディレクトリー・セパレーター: %s"
+
+#
 # File: src/c/callinterf.c, line: 177
 msgid "Do you really want to abort computation (y or n ?) \n"
 msgstr "計算を中断しますか(y または n ?) \n"
+
+#
+# File: src/c/getstaticDebugInfo_Windows.c, line: 104
+msgid "Enable"
+msgstr "有効"
 
 #
 # File: src/c/CallScilab.c, line: 51
@@ -1305,10 +1342,10 @@ msgstr ""
 #, c-format
 msgid ""
 "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
-"contain <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
+"contains <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
 msgstr ""
-"エラー: バージョン・ファイル %s は適当ではありません(<MODULE_VERSION> と <VERSION major='' minor='' "
-"maintenance='' revision='' string=''> を含めて開始すべきです)\n"
+"エラー: 適当な入口のファイル %s ではありません(<MODULE_VERSION>で始まり、<VERSION major='' minor='' "
+"maintenance='' revision='' string=''>を含みます)\n"
 
 #
 # File: src/c/readGateway.c, line: 95
@@ -1320,6 +1357,26 @@ msgstr "エラー: ファイル %s を構文解析できません\n"
 # File: src/c/InitializeCore.c, line: 35
 msgid "Fatal Error: Can't create table for scilab functions.\n"
 msgstr "致命的エラー: scilab関数のためのテーブルを作ることができません。\n"
+
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 119
+msgid "Free Extended Memory (Kbytes): %*I64d"
+msgstr "空き拡張メモリ(キロバイト): %*I64d"
+
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 89
+msgid "Free Paging File (Kbytes): %*I64d"
+msgstr "空きページファイル(キロバイト): %*I64d"
+
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 69
+msgid "Free Physical Memory (Kbytes): %*I64d"
+msgstr "空き物理メモリ(キロバイト): %*I64d"
+
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 109
+msgid "Free Virtual Memory (Kbytes): %*I64d"
+msgstr "空き仮想メモリ(キロバイト): %*I64d"
 
 #
 # File: src/c/run.c, line: 510
@@ -1393,11 +1450,28 @@ msgid "List full.\n"
 msgstr "リストが一杯です。\n"
 
 #
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 49
+#, c-format
+msgid "Memory in use: %*ld %%"
+msgstr "使われているメモリ:  %*ld %%"
+
+#
 # File: src/c/scimem.c, line: 51
 # File: src/c/scimem.c, line: 82
 # File: src/c/scimem64.c, line: 113
 msgid "No space to allocate Scilab stack.\n"
 msgstr "Scilabスタックにスペースがありません。\n"
+
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 190
+#, c-format
+msgid "Number of processors: %d"
+msgstr "プロセッサ数: %d"
+
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 128
+msgid "Operating System: "
+msgstr "オペレーティングシステム: "
 
 #
 # File: src/c/stack2.c, line: 384
@@ -1408,6 +1482,16 @@ msgstr "オプションの引数リストは空です。\n"
 # File: src/c/stack2.c, line: 387
 msgid "Optional arguments list: \n"
 msgstr "オプションの引数リスト: \n"
+
+#
+# File: src/c/getstaticDebugInfo_Windows.c, line: 140
+#, c-format
+msgid "PCRE Version: %d.%d"
+msgstr "PCRE バージョン: %d.%d"
+
+#, c-format
+msgid "Path separator: %s"
+msgstr "PATH セパレータ: %s"
 
 msgid "SCI environment variable not defined.\n"
 msgstr "SCI 環境変数が見つかりません。\n"
@@ -1445,9 +1529,28 @@ msgstr ""
 "Scilabバージョン \"%d.%d.%d.%d\"\n"
 "%s\n"
 
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 300
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 303
+#, c-format
+msgid "Screen size: %d x %d %d bits"
+msgstr "スクリーン・サイズ: %d x %d %d ビット"
+
 # File: etc/scilab.start, line: 56
 msgid "Startup execution:"
 msgstr "立ち上げ開始:"
+
+#
+# File: src/c/getstaticDebugInfo_Windows.c, line: 111
+#, c-format
+msgid "TCL version: %s"
+msgstr "TCL バージョン: %s"
+
+#
+# File: src/c/getstaticDebugInfo_Windows.c, line: 118
+#, c-format
+msgid "TK version: %s"
+msgstr "TK バージョン: %s"
 
 #
 # File: src/c/inisci-c.c, line: 165
@@ -1456,10 +1559,31 @@ msgid "TMPDIR not defined.\n"
 msgstr "TMPDIR が見つかりません。\n"
 
 #
+# File: src/c/getstaticDebugInfo_Windows.c, line: 104
+#, c-format
+msgid "Tcl/Tk: %s"
+msgstr "Tcl/Tk: %s"
+
+#
 # File: src/c/getmodules.c, line: 83
 # File: src/c/getmodules.c, line: 118
 msgid "The SCI environment variable is not set.\n"
 msgstr "SCI環境変数の設定ができません。\n"
+
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 79
+msgid "Total Paging File (Kbytes): %*I64d"
+msgstr "合計ページファイル(キロバイト): %*I64d"
+
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 59
+msgid "Total Physical Memory (Kbytes): %*I64d"
+msgstr "合計物理メモリ(キロバイト): %*I64d"
+
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 99
+msgid "Total Virtual Memory (Kbytes): %*I64d"
+msgstr "合計仮想メモリ(キロバイト): %*I64d"
 
 #
 # File: src/c/callinterf.c, line: 176
@@ -1498,6 +1622,24 @@ msgid "Using %s elements ouf of %s"
 msgstr "%2$s を超えた要素で %1$s を使っています"
 
 #
+# File: src/c/getstaticDebugInfo_Windows.c, line: 39
+#, c-format
+msgid "Version: %s"
+msgstr "バージョン: %s"
+
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 205
+#, c-format
+msgid "Video card driver version: %s"
+msgstr "ビデオカード ドライバ バージョン: %s"
+
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 198
+#, c-format
+msgid "Video card: %s"
+msgstr "ビデオカード: %s"
+
+#
 # File: sci_gateway/c/sci_warning.c, line: 76
 #, c-format
 msgid "WARNING: %s"
@@ -1528,6 +1670,12 @@ msgid ""
 msgstr ""
 "警告: Scilabコンソーシアム運営チーム\n"
 "ビルドしたこのScilabのバージョンをサポートせずに供給してはなりません\n"
+
+#
+# File: src/c/getstaticDebugInfo_Windows.c, line: 95
+#, c-format
+msgid "XML version: %s"
+msgstr "XML バージョン: %s"
 
 msgid "Your global variables are:"
 msgstr "全体変数:"

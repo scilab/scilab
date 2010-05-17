@@ -13,9 +13,9 @@ package org.scilab.modules.xcos.block;
 
 import java.util.UUID;
 
-import org.scilab.modules.types.scilabTypes.ScilabDouble;
-import org.scilab.modules.types.scilabTypes.ScilabList;
-import org.scilab.modules.types.scilabTypes.ScilabType;
+import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
+import org.scilab.modules.hdf5.scilabTypes.ScilabList;
+import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 
 /**
  * Implement the AFFICH_m block
@@ -58,7 +58,7 @@ public final class AfficheBlock extends BasicBlock {
 	 * @param hashcode The new UID.
 	 */
 	@Deprecated
-	public synchronized void setHashCode(int hashcode) {
+	public void setHashCode(int hashcode) {
 		this.hashCode = hashcode;
 	}
 

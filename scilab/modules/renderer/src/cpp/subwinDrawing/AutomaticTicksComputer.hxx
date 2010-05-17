@@ -1,9 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
- * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * desc : Compute automatic ticks
- *
+ * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy 
+ * desc : Compute automatic ticks  
+ * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
@@ -51,20 +50,9 @@ public:
   virtual void reduceTicksNumber(void);
 
   /**
-   * Performs the actual reduction
-   */
-  int reduceTicksNumber(int numberOfTicks);
-
-  /**
    * To know if the ticks computer needs decimation.
    */
   virtual bool needTicksDecimation(void) {return true;}
-
-  /**
-   * To compute the maximum number of ticks decimation iterations
-   * Assumes that m_iNbTicks is set to the number of undecimated ticks
-   */
-  virtual int computeMaxNumberOfDecimationIterations(void);
 
   /**
    * Set bounds between which we must compute ticks.
@@ -72,7 +60,7 @@ public:
   virtual void setAxisBounds(double min, double max);
 
   /**
-   * To know if we need to get ticks exponents or not.
+   * To know if we need to get ticks exposants or not.
    */
   virtual bool isDisplayingLabelsExponents(void) {return false;}
 

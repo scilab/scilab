@@ -12,37 +12,37 @@
 // Add an URL to the list of repositories, and returns
 
 function res = atomsAUWriteAccess()
-
-    res = %F;
-
-    // Cache
-    if isdef("ATOMSALLUSERSWRITEACCESS") then
-        res = ATOMSALLUSERSWRITEACCESS;
-        return;
-    end
-
-    atoms_system_directory  = atomsPath("system" ,"allusers");
-    atoms_install_directory = atomsPath("install","allusers");
-
-    // Physical test
-
-    if ~ isdir(atoms_system_directory) then
-        if mkdir(atoms_system_directory) <> 1 then
-            return;
-        end
-    end
-
-    if execstr("mputl(""dummy"",atoms_system_directory+""dummy"");","errcatch") == 0 then
-        res = %T;
-        mdelete(atoms_system_directory+"dummy");
-    else
-        return;
-    end
-
-    if execstr("mputl(""dummy"",atoms_install_directory+""dummy"");","errcatch") <> 0 then
-        res = %F;
-    else
-        mdelete(atoms_install_directory+"dummy");
-    end
-
+	
+	res = %F;
+	
+	// Cache
+	if isdef("ATOMSALLUSERSWRITEACCESS") then
+		res = ATOMSALLUSERSWRITEACCESS;
+		return;
+	end
+	
+	atoms_system_directory  = atomsPath("system" ,"allusers");
+	atoms_install_directory = atomsPath("install","allusers");
+	
+	// Physical test
+	
+	if ~ isdir(atoms_system_directory) then
+		if mkdir(atoms_system_directory) <> 1 then
+			return;
+		end
+	end
+	
+	if execstr("mputl(""dummy"",atoms_system_directory+""dummy"");","errcatch") == 0 then
+		res = %T;
+		mdelete(atoms_system_directory+"dummy");
+	else
+		return;
+	end
+	
+	if execstr("mputl(""dummy"",atoms_install_directory+""dummy"");","errcatch") <> 0 then
+		res = %F;
+	else
+		mdelete(atoms_install_directory+"dummy");
+	end
+	
 endfunction

@@ -88,7 +88,7 @@ int C2F(intisequalvar)(char * fname, int *job, long int fl)
       return 0;
     }
     else if (res == -2) {/* Memory allocation failed */
-      SciError(112);
+      Error(112);
       FreeRec();
       return 0;
     }

@@ -1,11 +1,9 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
 	Name="double"
 	ProjectGUID="{E61FEBA7-C98E-4C42-96CA-FC03F0DB26B2}"
-	RootNamespace="double"
-	Keyword="Win32Proj"
 	TargetFrameworkVersion="0"
 	>
 	<Platforms>
@@ -23,7 +21,9 @@
 			Name="Debug|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="2"
+			ConfigurationType="4"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
 			>
 			<Tool
@@ -45,46 +45,40 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions=""
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../localization/includes;../../../api_scilab/includes;../../../core/includes;../../../output_stream/includes;../../../../libs/hashtable;../../../fileio/includes;../../../windows_tools/includes;../../../../libs/intl;../../../operations/includes"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;DOUBLE_EXPORTS"
-				MinimalRebuild="true"
+				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../output_stream/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../elementary_functions/includes;../../../operations/includes"
+				PreprocessorDefinitions="_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
+				StringPooling="false"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile=""
+				AssemblerListingLocation="$(ConfigurationName)/"
+				ObjectFile="$(ConfigurationName)/"
+				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
+				SuppressStartupBanner="true"
 				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
+				CompileAs="0"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_DEBUG"
+				Culture="1036"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)double_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)double_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
 			/>
 			<Tool
-				Name="VCLinkerTool"
-				AdditionalDependencies="LibScilab.lib double_f.lib"
-				OutputFile="../../../../bin/$(ProjectName).dll"
-				LinkIncremental="1"
-				ModuleDefinitionFile="double_Export.def"
-				GenerateDebugInformation="true"
-				SubSystem="2"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
-				ImportLibrary="../../../../bin/$(ProjectName).lib"
-				TargetMachine="1"
-				CLRUnmanagedCodeCheck="true"
+				Name="VCLibrarianTool"
+				OutputFile="../../../../libs/double.lib"
+				SuppressStartupBanner="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -96,17 +90,17 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
-				Name="VCAppVerifierTool"
-			/>
-			<Tool
 				Name="VCPostBuildEventTool"
+				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def double.def &gt;nul&#x0D;&#x0A;copy double.def ..\..\..\..\..\libs\double.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
 			Name="Debug|x64"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="2"
+			ConfigurationType="4"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
 			>
 			<Tool
@@ -128,48 +122,41 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../localization/includes;../../../api_scilab/includes;../../../core/includes;../../../output_stream/includes;../../../../libs/hashtable;../../../fileio/includes;../../../windows_tools/includes;../../../../libs/intl;../../../operations/includes"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;DOUBLE_EXPORTS"
-				MinimalRebuild="true"
-				BasicRuntimeChecks="0"
+				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../output_stream/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../elementary_functions/includes;../../../operations/includes"
+				PreprocessorDefinitions="NDEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE"
+				StringPooling="false"
 				RuntimeLibrary="3"
 				EnableFunctionLevelLinking="true"
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile=""
+				AssemblerListingLocation="$(ConfigurationName)/"
+				ObjectFile="$(ConfigurationName)/"
+				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
+				SuppressStartupBanner="true"
 				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
+				CompileAs="0"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_DEBUG"
+				Culture="1036"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)double_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)double_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
 			/>
 			<Tool
-				Name="VCLinkerTool"
-				AdditionalDependencies="LibScilab.lib double_f.lib"
-				OutputFile="../../../../bin/$(ProjectName).dll"
-				LinkIncremental="1"
-				ModuleDefinitionFile="double_Export.def"
-				GenerateDebugInformation="true"
-				SubSystem="2"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
-				ImportLibrary="../../../../bin/$(ProjectName).lib"
-				TargetMachine="17"
-				CLRUnmanagedCodeCheck="true"
+				Name="VCLibrarianTool"
+				OutputFile="../../../../libs/double.lib"
+				SuppressStartupBanner="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -181,19 +168,18 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
-				Name="VCAppVerifierTool"
-			/>
-			<Tool
 				Name="VCPostBuildEventTool"
+				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def double.def &gt;nul&#x0D;&#x0A;copy double.def ..\..\..\..\..\libs\double.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="2"
+			ConfigurationType="4"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
-			WholeProgramOptimization="0"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -213,52 +199,42 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions=""
-				InlineFunctionExpansion="1"
-				FavorSizeOrSpeed="1"
-				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../localization/includes;../../../api_scilab/includes;../../../core/includes;../../../output_stream/includes;../../../../libs/hashtable;../../../fileio/includes;../../../windows_tools/includes;../../../../libs/intl;../../../operations/includes"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;DOUBLE_EXPORTS"
+				Optimization="2"
+				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../output_stream/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../elementary_functions/includes;../../../operations/includes"
+				PreprocessorDefinitions="NDEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
-				RuntimeLibrary="0"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile=""
+				AssemblerListingLocation="$(ConfigurationName)/"
+				ObjectFile="$(ConfigurationName)/"
+				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
+				SuppressStartupBanner="true"
 				Detect64BitPortabilityProblems="false"
-				DebugInformationFormat="3"
+				DebugInformationFormat="0"
+				CompileAs="0"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="1036"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)double_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)double_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
 			/>
 			<Tool
-				Name="VCLinkerTool"
-				AdditionalDependencies="LibScilab.lib double_f.lib"
-				OutputFile="../../../../bin/$(ProjectName).dll"
-				LinkIncremental="1"
-				ModuleDefinitionFile="double_Export.def"
-				GenerateDebugInformation="false"
-				SubSystem="2"
-				OptimizeReferences="2"
-				EnableCOMDATFolding="2"
-				LinkTimeCodeGeneration="0"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
-				ImportLibrary="../../../../bin/$(ProjectName).lib"
-				TargetMachine="1"
-				CLRUnmanagedCodeCheck="true"
+				Name="VCLibrarianTool"
+				OutputFile="../../../../libs/double.lib"
+				SuppressStartupBanner="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -270,19 +246,18 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
-				Name="VCAppVerifierTool"
-			/>
-			<Tool
 				Name="VCPostBuildEventTool"
+				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def double.def &gt;nul&#x0D;&#x0A;copy double.def ..\..\..\..\..\libs\double.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
 			Name="Release|x64"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="2"
+			ConfigurationType="4"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
-			WholeProgramOptimization="0"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -302,52 +277,44 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../localization/includes;../../../api_scilab/includes;../../../core/includes;../../../output_stream/includes;../../../../libs/hashtable;../../../fileio/includes;../../../windows_tools/includes;../../../../libs/intl;../../../operations/includes"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;DOUBLE_EXPORTS"
+				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../output_stream/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../elementary_functions/includes;../../../operations/includes"
+				PreprocessorDefinitions="NDEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
-				RuntimeLibrary="0"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile=""
+				AssemblerListingLocation="$(ConfigurationName)/"
+				ObjectFile="$(ConfigurationName)/"
+				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
+				SuppressStartupBanner="true"
 				Detect64BitPortabilityProblems="false"
-				DebugInformationFormat="3"
+				DebugInformationFormat="0"
+				CompileAs="0"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="1036"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)double_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)double_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
 			/>
 			<Tool
-				Name="VCLinkerTool"
-				AdditionalDependencies="LibScilab.lib double_f.lib"
-				OutputFile="../../../../bin/$(ProjectName).dll"
-				LinkIncremental="1"
-				ModuleDefinitionFile="double_Export.def"
-				GenerateDebugInformation="false"
-				SubSystem="2"
-				OptimizeReferences="2"
-				EnableCOMDATFolding="2"
-				LinkTimeCodeGeneration="0"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
-				ImportLibrary="../../../../bin/$(ProjectName).lib"
-				TargetMachine="17"
-				CLRUnmanagedCodeCheck="true"
+				Name="VCLibrarianTool"
+				OutputFile="../../../../libs/double.lib"
+				SuppressStartupBanner="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -359,10 +326,8 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
-				Name="VCAppVerifierTool"
-			/>
-			<Tool
 				Name="VCPostBuildEventTool"
+				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def double.def &gt;nul&#x0D;&#x0A;copy double.def ..\..\..\..\..\libs\double.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -373,10 +338,6 @@
 			Name="Source Files"
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
-			<File
-				RelativePath=".\DllmainDouble.c"
-				>
-			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\gw_double.c"
 				>
@@ -399,7 +360,7 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath=".\dynlib_double.h"
+				RelativePath="..\..\includes\double.h"
 				>
 			</File>
 		</Filter>
@@ -414,26 +375,6 @@
 		<Filter
 			Name="Libraries Dependencies"
 			>
-			<Filter
-				Name="Imports"
-				>
-				<File
-					RelativePath=".\double_f_Import.def"
-					>
-				</File>
-				<File
-					RelativePath=".\LibScilab_Import.def"
-					>
-				</File>
-			</Filter>
-		</Filter>
-		<Filter
-			Name="Resource File"
-			>
-			<File
-				RelativePath=".\double.rc"
-				>
-			</File>
 		</Filter>
 		<File
 			RelativePath="..\..\double.iss"

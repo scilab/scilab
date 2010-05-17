@@ -16,6 +16,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "hashtable_core.h"
+#include "stack-c.h"
 #include "Funtab.h"
 /*--------------------------------------------------------------------------*/
 int C2F(funtab)(int *id, int *fptr, int *job,char *namefunction, unsigned long namefunction_len) 

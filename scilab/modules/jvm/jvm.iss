@@ -23,8 +23,6 @@ Source: etc\classpath.xml; DestDir: {app}\etc; Components: {#COMPN_SCILAB}
 Source: etc\librarypath.xml; DestDir: {app}\etc; Components: {#COMPN_SCILAB}
 Source: etc\jvm_options.xml; DestDir: {app}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#JVM}\xml\*.dtd; DestDir: {app}\modules\{#JVM}\xml; Components: {#COMPN_SCILAB}
-;
 Source: modules\{#JVM}\jar\org.scilab.modules.jvm.jar;DestDir: {app}\modules\{#JVM}\jar; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#JVM}\license.txt; DestDir: {app}\modules\{#JVM}; Components: {#COMPN_SCILAB}

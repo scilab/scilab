@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-05-27 18:59+0100\n"
-"PO-Revision-Date: 2010-02-16 14:12+0000\n"
+"PO-Revision-Date: 2009-12-15 15:26+0000\n"
 "Last-Translator: Allan CORNET <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-05-04 21:28+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid ""
@@ -67,7 +67,6 @@ msgstr " ------------------------------------------------------------\n"
 
 msgid " For this demo the current stack size is not enough "
 msgstr ""
-" Pour cette démo la taille courante de la pile n'est pas suffisante. "
 
 #, c-format
 msgid " Warning : for lM convergence at rtol = %e \n"
@@ -218,8 +217,6 @@ msgid ""
 "%s: Wrong value for input argument #%d: Must be symmetric positive definite "
 "matrix."
 msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée %d: Une matrice définie "
-"positive symétrique attendue."
 
 #, c-format
 msgid ""

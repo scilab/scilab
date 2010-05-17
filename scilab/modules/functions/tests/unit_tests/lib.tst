@@ -5,8 +5,6 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
-
 cd(TMPDIR);
 mkdir('test_lib');
 cd('test_lib');

@@ -306,7 +306,7 @@ int conv_real_input(double* _pdblData, int _iSize)
 		}
 		else
 		{
-			SciError(27);
+			Error(27);
 			return 1;
 		}
 	}
@@ -330,7 +330,7 @@ int conv_img_input(double* _pdblReal, double* _pdblImg, int _iSize)
 		}
 		else
 		{
-			SciError(27);
+			Error(27);
 			return 1;
 		}
 	}

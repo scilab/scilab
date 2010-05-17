@@ -43,10 +43,6 @@
     </variablelist>
   </refsection>
   <refsection>
-    <title>Remark:</title>
-    <para>If you call <literal>tbx_build_help</literal> in scilab CLI (=NWNI) mode, help files will not be generated.</para>
-  </refsection>
-  <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
 // Recommended usage

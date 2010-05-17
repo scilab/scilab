@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2010-02-15 21:37+0000\n"
+"PO-Revision-Date: 2009-11-12 18:59+0000\n"
 "Last-Translator: Federico Vera <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-04-16 07:53+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -24,8 +24,8 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid "%s: Invalid option %s: real matrix expected.\n"
-msgstr ""
+msgid "%s: Invalid option %s: %d or real matrix expected.\n"
+msgstr "%s: Opción %s inválida: Se esperaba %d o una matriz real.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
@@ -61,8 +61,6 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d: syntax error in given expression\n"
 msgstr ""
-"%s: Valor incorrecto del argumento de entrada #%d: error de sintaxis en la "
-"expresión dada\n"
 
 msgid ""
 "0 : functional iterations (no jacobian used (''adams'' or ''stiff'' only))"
@@ -106,7 +104,7 @@ msgid "Blackhole"
 msgstr "Agujero Negro"
 
 msgid "Cylinder"
-msgstr "Cilindro"
+msgstr ""
 
 msgid "Default values are given in square brackets"
 msgstr "Los valores predeterminados se dan entre corchetes"

@@ -24,7 +24,6 @@ dnl
 #	4. What is the minimal version expected
 #	5. The Java code to get the version ... This can be a serie of java
 #	   instructions
-#   6. Pre processing
 #
 #------------------------------------------------------------------------
 
@@ -33,11 +32,9 @@ AC_DEFUN([AC_JAVA_CHECK_VERSION_PACKAGE], [
    saved_ac_java_classpath=$ac_java_classpath
    export ac_java_classpath="$3:$ac_java_classpath"
    AC_JAVA_TRY_COMPILE($2, [String minVersion="$4";
-                            $6
-                            System.out.println($5);
    						   	if (minVersion.compareTo($5) > 0) {
-							   	System.exit(-1);
+							   	System.exit(-1); 
 								}
-							], "yes", echo "yes" , AC_MSG_ERROR([Wrong version of $1. Expected at least $4. Found $STDOUT]))
+							], "yes", echo "yes" , AC_MSG_ERROR([Wrong version of $1. Expected at least $4]))
    ac_java_classpath=$saved_ac_java_classpath
 ])

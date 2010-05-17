@@ -30,7 +30,7 @@
 		</refsection>
 		<title>Calling Sequence</title>
         <para>Input argument profile:</para>
-        <synopsis>SciErr createPointer(void* _pvCtx, int _iVar, void* _pvPtr)</synopsis>
+        <synopsis>SciErr getPointer(void* _pvCtx, int* _piAddress, void** _pvPtr)</synopsis>
         <para>Named variable profile:</para>
         <synopsis>SciErr createNamedPointer(void* _pvCtx, char* _pstName, void** _pvPtr)</synopsis>
     </refsynopsisdiv>
@@ -45,19 +45,11 @@
 					</para>
 				</listitem>
 			</varlistentry>
-            <varlistentry>
-                <term>_iVar</term>
+			<varlistentry>
+                <term>_piAddress</term>
                 <listitem>
                     <para>
-                        Position in the Scilab memory where you want to put the variable
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_pstName</term>
-                <listitem>
-                    <para>
-                        Name of the variable for "named" functions.
+                        Address of the Scilab variable.
                     </para>
                 </listitem>
             </varlistentry>

@@ -78,9 +78,8 @@
         <term>makename</term>
 
         <listitem>
-          <para>character string. The path of the Makefile file without extension.</para>
-          <para>This parameter is useless since Scilab 5.0. Default value to use: [].</para>
-          <para>A warning will be displayed in Scilab 5.3 if you use another value that the default.</para>
+          <para>character string. The path of the Makefile file without
+          extension.</para>
         </listitem>
       </varlistentry>
 
@@ -364,7 +363,7 @@ i=['#include <string>'
    ' pStVarOne = new char[lenStVarOne + 1];'
    ' if (pStVarOne == NULL)'
    ' {'
-   '   Scierror(999,_(""%s: Memory allocation error.\n""),fname);'
+   '   Scierror(999,_(""%s : Memory allocation error.\n""),fname);'
    '   return 0;'
    ' }'
    ''
@@ -378,7 +377,7 @@ i=['#include <string>'
    ' pStVarTwo = new char[lenStVarTwo + 1];'
    ' if (pStVarTwo == NULL)'
    ' {'
-   '   Scierror(999,_(""%s: Memory allocation error.\n""),fname);'
+   '   Scierror(999,_(""%s : Memory allocation error.\n""),fname);'
    '   return 0;'
    ' }'
    ''

@@ -47,7 +47,6 @@ stacksize('max')</synopsis>
     <para><literal>sz=stacksize()</literal> renvoie un vecteur à  deux composantes
     contenant la taille totale de la pile et la taille actuellement
     utilisée.</para>
-    <para>Pour les plateformes 64 bit, la taille maximale de la pile est limitée à 268435454.</para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

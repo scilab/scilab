@@ -90,7 +90,7 @@ int sci_mput(char *fname,unsigned long fname_len)
 
 	if (err >  0)
 	{
-		SciError(10000);
+		Error(10000);
 		return 0;
 	}
 

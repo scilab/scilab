@@ -22,7 +22,6 @@
 #include "getstaticDebugInfo_Windows.h"
 #include "localization.h"
 #include "version.h"
-#include "getversion.h"
 #include "dynamic_tclsci.h"
 #include "..\..\..\..\libs\pcre\pcre.h"
 /*--------------------------------------------------------------------------*/
@@ -72,7 +71,7 @@ char **getStaticDebugInfo_Windows(int *sizeArray)
 	if (str_info)
 	{
 
-	#ifdef __INTEL_COMPILER
+	#ifdef __INTEL__
 		sprintf(str_info,"Compiled with %s","Intel compiler");
 	#elif defined _MSC_VER
 		sprintf(str_info,"Compiled with %s","Microsoft compiler");
@@ -99,7 +98,7 @@ char **getStaticDebugInfo_Windows(int *sizeArray)
 		outputDynamicList = appendStringStaticDebugInfo(outputDynamicList,&nb_info,str_info);
 	}
 
-	if ( with_tk() )
+	if ( withtk() )
 	{
 		str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
 		if (str_info)

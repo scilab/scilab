@@ -2,7 +2,6 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2008 - INRIA - Bruno JOFRET
- * Copyright (C) 2010 - DIGITEO - Allan CORNET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -11,319 +10,319 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-/*--------------------------------------------------------------------------*/
 #include <string.h>
-#include "api_scilab.h"
-#include "api_oldstack.h"
+#include <stdio.h>
 #include "gw_core.h"
 #include "stack-c.h"
-#include "getversion.h"
+#include "version.h"
 #include "MALLOC.h"
-#include "localization.h"
-#include "Scierror.h"
 #include "with_module.h"
-#include "freeArrayOfString.h"
+#include "loadversion.h"
+#include "inisci-c.h"
+#include "Scierror.h"
+#include "dynamic_tclsci.h"
+#include "localization.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
+/*--------------------------------------------------------------------------*/
+static int getversion_no_rhs(void);
+static int getversion_one_rhs(void);
+static int getversion_two_rhs(void);
 /*--------------------------------------------------------------------------*/
 #define VERSION_STRING "string_info"
 /*--------------------------------------------------------------------------*/
-static int getversion_no_rhs(char *fname, int *_piKey);
-static int getversion_one_rhs(char *fname, int *_piKey);
-static int getversion_two_rhs(char *fname, int *_piKey);
-/*--------------------------------------------------------------------------*/
-int sci_getversion(char *fname, int *_piKey)
+int C2F(sci_getversion)(char *fname,unsigned long fname_len)
 {
-	Rhs = Max(0,Rhs);
+	Rhs=Max(0,Rhs);
 
 	CheckRhs(0,2);
-	
-	if (Rhs == 0)
+	CheckLhs(1,2);
+
+	if ( Rhs == 0 )
 	{
-		CheckLhs(1,2);
-		getversion_no_rhs(fname, _piKey);
+		getversion_no_rhs();
 	}
-	else if (Rhs == 1)
+	else if ( Rhs == 1)
 	{
-		CheckLhs(1,1);
-		getversion_one_rhs(fname, _piKey);
+		getversion_one_rhs();
 	}
 	else /* Rhs == 2 */
 	{
-		CheckLhs(1,1);
-		getversion_two_rhs(fname, _piKey);
+		getversion_two_rhs();
 	}
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int getversion_no_rhs(char *fname, int *_piKey)
+static int getversion_no_rhs(void)
 {
-	char *version = getScilabVersionAsString();
-	if (version)
-	{
-		createSingleString(_piKey, Rhs + 1, version);
-		LhsVar(1) = Rhs + 1;
-		FREE(version);
-		version = NULL;
-	}
-	else
-	{
-		Scierror(999,_("%s: Memory allocation error.\n"), fname);
-		return 0;
-	}
+	static char Version[]=SCI_VERSION;
+	static int n1,m1;
+	char *v = Version ;
 
-	if (Lhs == 2)
+	n1=1;
+	CreateVarFromPtr( Rhs+1,STRING_DATATYPE,(m1=(int)strlen(Version), &m1),&n1,&v);
+	LhsVar(1) = Rhs+1;
+	if (Lhs==2)
 	{
-		int sizeOptions = 0;
-		char **ScilabOptions = getScilabVersionOptions(&sizeOptions);
+		static char *Str[12];
+		static int irep,nbuf;
+		char tk[]="tk";
+		char pvm[]="pvm";
+		char modelicac[]="modelicac";
 
-		if (ScilabOptions)
+		#ifdef WITH_ATLAS
+		char atlas[]="atlas";
+		#endif
+
+		#ifdef NDEBUG
+		char releasemode[]="release";
+		#else
+		char debugmode[]="debug";
+		#endif
+
+		#ifdef __TIME__
+			char TimeBuild[]=__TIME__;
+		#endif
+
+		#ifdef __DATE__
+			char DateBuild[]=__DATE__;
+		#endif
+
+
+		n1=0;
+
+		C2F(getcomp)( C2F(cha1).buf,&nbuf,128);
+		Str[n1]=C2F(cha1).buf;
+		n1++;
+
+
+		if (with_module("pvm"))
 		{
-			SciErr sciErr;
-			int m = 1;
-			int n = sizeOptions;
-			sciErr = createMatrixOfString(_piKey, Rhs + 2, m, n, ScilabOptions);
-			freeArrayOfString(ScilabOptions, sizeOptions);
+			Str[n1] = pvm;
+			n1++;
+		}
 
-			if(sciErr.iErr)
+
+		if (withtk())
+		{
+			Str[n1]=tk;
+			n1++;
+		}
+
+		C2F(withmodelicac)(&irep);
+		if (irep)
+		{
+			Str[n1]=modelicac;
+			n1++;
+		}
+
+		#ifdef WITH_ATLAS
+		{
+			Str[n1]=atlas;
+			n1++;
+		}
+		#endif
+
+		#ifdef _MSC_VER
+			#ifdef _DEBUG
 			{
-				printError(&sciErr, 0);
-				return 0;
+			Str[n1]=debugmode;
+			n1++;
 			}
+			#else
+			{
+				Str[n1]=releasemode;
+				n1++;
+			}
+			#endif
+		#else
+			#ifdef NDEBUG
+			{
+				Str[n1]=releasemode;
+				n1++;
+			}
+			#else
+			{
+				Str[n1]=debugmode;
+				n1++;
+			}
+			#endif
+		#endif
 
-			LhsVar(2) = Rhs + 2;
-		}
-		else
+		#ifdef __TIME__
 		{
-			Scierror(999,_("%s: Memory allocation error.\n"), fname);
-			return 0;
+			Str[n1]=DateBuild;
+			n1++;
 		}
+		#endif
+
+		#ifdef __DATE__
+		{
+			Str[n1]=TimeBuild;
+			n1++;
+		}
+		#endif
+
+		m1=1;
+		CreateVarFromPtr(Rhs+ 2,MATRIX_OF_STRING_DATATYPE, &m1, &n1, Str);
+		LhsVar(2) = Rhs+2;
 	}
-	
 	C2F(putlhsvar)();
 
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int getversion_one_rhs(char *fname, int *_piKey)
+static int getversion_one_rhs(void)
 {
-	SciErr sciErr;
-	int *piAddressVarOne = NULL;
-
-	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
-	if(sciErr.iErr)
+	if (Lhs == 2)
 	{
-		printError(&sciErr, 0);
+		Scierror(78,_("%s: Wrong number of output arguments: %d expected.\n"),"getversion",2);
 		return 0;
 	}
 
-	if (isStringType(_piKey, piAddressVarOne))
+	if (GetType(1) == sci_strings)
 	{
-		char *modulename = NULL;
+		static int l1,n1,m1;
+		char *Param=NULL;
+		int *VERSIONMATRIX=NULL;
 
-		if (!isScalar(_piKey, piAddressVarOne))
+		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
+		Param=cstk(l1);
+
+		VERSIONMATRIX=(int *)MALLOC( (4)*sizeof(int) );
+
+		if (strcmp(Param,"scilab") == 0)
 		{
-			Scierror(999,_("%s: Wrong size for input argument #%d: String expected.\n"), fname, 1);
-			return 0;
+			VERSIONMATRIX[0]=(int)SCI_VERSION_MAJOR;
+			VERSIONMATRIX[1]=(int)SCI_VERSION_MINOR;
+			VERSIONMATRIX[2]=(int)SCI_VERSION_MAINTENANCE;
+			VERSIONMATRIX[3]=(int)SCI_VERSION_TIMESTAMP;
 		}
-
-		if (getAllocatedSingleString(_piKey, piAddressVarOne, &modulename) == 0)
+		else if (with_module(Param))
 		{
-			if (modulename)
+			char versionstring[1024];
+
+			int version_module_major=0;
+			int version_module_minor=0;
+			int version_module_maintenance=0;
+			int version_module_revision=0;
+
+			if (getversionmodule(Param,&version_module_major,&version_module_minor,&version_module_maintenance,versionstring,&version_module_revision))
 			{
-				if ( with_module(modulename) || (strcmp(modulename, "scilab") == 0) )
-				{
-					int versionSize = 0;
-					int *version = getModuleVersion(modulename, &versionSize);
-
-					if (version)
-					{
-						int m = 1;
-						int n = versionSize;
-						double *versionAsDouble = (double*)MALLOC(sizeof(double) * versionSize);
-						if (versionAsDouble)
-						{
-							int i = 0;
-							for (i = 0; i < versionSize; i++)
-							{
-								versionAsDouble[i] = (double)version[i];
-							}
-							FREE(version);
-							version = NULL;
-
-							freeAllocatedSingleString(modulename);
-							modulename = NULL;
-
-							sciErr = createMatrixOfDouble(_piKey, Rhs + 1, m, n, versionAsDouble);
-							FREE(versionAsDouble);
-							versionAsDouble = NULL;
-
-							if(sciErr.iErr)
-							{
-								printError(&sciErr, 0);
-								return 0;
-							}
-
-							LhsVar(1) = Rhs + 1;
-							C2F(putlhsvar)();
-						}
-						else
-						{
-							Scierror(999,_("%s: Memory allocation error.\n"), fname);
-							return 0;
-						}
-					}
-					else
-					{
-						Scierror(999,_("%s: Wrong file version.xml %s.\n"), fname, modulename);
-
-						freeAllocatedSingleString(modulename);
-						modulename = NULL;
-
-						return 0;
-					}
-				}
-				else
-				{
-					Scierror(999,_("%s: Wrong module name %s.\n"), fname , modulename);
-
-					freeAllocatedSingleString(modulename);
-					modulename = NULL;
-
-					return 0;
-				}
-				freeAllocatedSingleString(modulename);
-				modulename = NULL;
+				VERSIONMATRIX[0]=version_module_major;
+				VERSIONMATRIX[1]=version_module_minor;
+				VERSIONMATRIX[2]=version_module_maintenance;
+				VERSIONMATRIX[3]=version_module_revision;
 			}
 			else
 			{
-				Scierror(999,_("%s: Memory allocation error.\n"), fname);
+				Scierror(999,_("%s: Wrong file VERSION %s.\n"),"getversion",Param);
 				return 0;
 			}
 		}
 		else
 		{
-			Scierror(999,_("%s: Memory allocation error.\n"), fname);
+			Scierror(999,_("%s: Wrong module name %s.\n"),"getversion",Param);
 			return 0;
 		}
+		m1=1;
+		n1=4;
+		CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &m1, &n1 ,&VERSIONMATRIX);
+		LhsVar(1)=Rhs+1;
+		PutLhsVar();
+		if (VERSIONMATRIX){	FREE(VERSIONMATRIX); VERSIONMATRIX=NULL;}
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
+		Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), "getversion",1);
 		return 0;
 	}
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int getversion_two_rhs(char *fname, int *_piKey)
+static int getversion_two_rhs(void)
 {
-	SciErr sciErr;
-	int *piAddressVarOne = NULL;
-	int *piAddressVarTwo = NULL;
-
-	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
-	if(sciErr.iErr)
+	if (Lhs == 2)
 	{
-		printError(&sciErr, 0);
+		Scierror(78,_("%s: Wrong number of output arguments: %d expected.\n"),"getversion",2);
 		return 0;
 	}
 
-	sciErr = getVarAddressFromPosition(_piKey, 2, &piAddressVarTwo);
-	if(sciErr.iErr)
+	if ( (GetType(1) == sci_strings) && (GetType(2) == sci_strings) )
 	{
-		printError(&sciErr, 0);
-		return 0;
-	}
+		static int l2,n2,m2;
+		char *ParamRhs2=NULL;
 
-	if (isStringType(_piKey, piAddressVarOne) && isStringType(_piKey, piAddressVarTwo))
-	{
-		char *modulename = NULL;
-		char *optionname = NULL;
+		GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
+		ParamRhs2=cstk(l2);
 
-		if (!isScalar(_piKey, piAddressVarOne))
+		if (strcmp(ParamRhs2,VERSION_STRING)==0)
 		{
-			Scierror(999,_("%s: Wrong size for input argument #%d: String expected.\n"), fname, 1);
-			return 0;
-		}
+			static int l1,n1,m1;
+			char *ParamRhs1=NULL;
 
-		if (!isScalar(_piKey, piAddressVarTwo))
-		{
-			Scierror(999,_("%s: Wrong size for input argument #%d: String expected.\n"), fname, 2);
-			return 0;
-		}
+			GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
+			ParamRhs1=cstk(l1);
 
-		if ( (getAllocatedSingleString(_piKey, piAddressVarOne, &modulename) == 0) &&
-			(getAllocatedSingleString(_piKey, piAddressVarTwo, &optionname) == 0) )
-		{
-			if ( (modulename) && (optionname) )
+			if (strcmp(ParamRhs1,"scilab") == 0)
 			{
-				if ( with_module(modulename) || (strcmp(modulename, "scilab") == 0) )
+				char *output=NULL ;
+				output = strdup(SCI_VERSION_STRING);
+
+				n1=1;
+				CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(output), &m1),&n1,&output);
+				if (output) {FREE(output);output=NULL;}
+
+				LhsVar(1) = Rhs+1;
+				C2F(putlhsvar)();
+				return 0;
+			}
+			else if (with_module(ParamRhs1))
+			{
+				#define LineMax 1024
+				char versionstring[LineMax];
+
+				int version_module_major=0;
+				int version_module_minor=0;
+				int version_module_maintenance=0;
+				int version_module_revision=0;
+
+				if (getversionmodule(ParamRhs1,&version_module_major,&version_module_minor,&version_module_maintenance,versionstring,&version_module_revision))
 				{
-					if ( strcmp(optionname, VERSION_STRING) == 0)
-					{
-						char *versionInfo = getModuleVersionInfoAsString(modulename);
+					char *output = NULL ;
+					output = strdup(versionstring);
 
-						if (versionInfo)
-						{
-							createSingleString(_piKey, Rhs + 1, versionInfo);
-							
-							FREE(versionInfo);
-							versionInfo = NULL;
+					n1=1;
+					CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(output), &m1),&n1,&output);
+					if (output) {FREE(output);output=NULL;}
 
-							LhsVar(1) = Rhs + 1;
-							C2F(putlhsvar)();
-						}
-						else
-						{
-							Scierror(999,_("%s: Wrong file version.xml %s.\n"), fname, modulename);
-
-							freeAllocatedSingleString(modulename);
-							modulename = NULL;
-							freeAllocatedSingleString(optionname);
-							optionname = NULL;
-
-							return 0;
-						}
-					}
-					else
-					{
-						freeAllocatedSingleString(modulename);
-						modulename = NULL;
-						freeAllocatedSingleString(optionname);
-						optionname = NULL;
-
-						Scierror(999,_("%s: Wrong value for input argument #%d: '%s' expected.\n"), fname, 2, VERSION_STRING);
-						return 0;
-					}
+					LhsVar(1) = Rhs+1;
+					C2F(putlhsvar)();
+					return 0;
 				}
 				else
 				{
-					Scierror(999,_("%s: Wrong module name %s.\n"), fname , modulename);
-
-					freeAllocatedSingleString(modulename);
-					modulename = NULL;
-					freeAllocatedSingleString(optionname);
-					optionname = NULL;
-
+					Scierror(999,_("%s: Wrong file VERSION in %s.\n"),"getversion",ParamRhs1);
 					return 0;
 				}
 			}
 			else
 			{
-				Scierror(999,_("%s: Memory allocation error.\n"), fname);
+				Scierror(999,_("%s: Wrong module name %s.\n"),"getversion",ParamRhs1);
 				return 0;
 			}
 		}
 		else
 		{
-			Scierror(999,_("%s: Memory allocation error.\n"), fname);
+			Scierror(999,_("%s: Wrong value for input argument #%d: '%s' expected.\n"),"getversion",2,VERSION_STRING);
 			return 0;
 		}
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong type for input arguments #%d and #%d: Strings expected.\n"), fname, 1, 2);
+		Scierror(999,_("%s: Wrong type for input arguments #%d and #%d: Strings expected.\n"),"getversion",1,2);
 		return 0;
 	}
-
-	return 0;
 }
 /*--------------------------------------------------------------------------*/

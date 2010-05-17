@@ -10,7 +10,7 @@
 // End user function
 
 // Return a 4xn string matrix :
-//
+// 
 // !toolbox2          0.1  user     /home/pmarecha/.Scilab/scilab-branch-atoms/atoms/contrib/toolbox2/0.1  A  !
 // !                                                                                                          !
 // !toolbox2          0.2  user     /home/pmarecha/.Scilab/scilab-branch-atoms/atoms/contrib/toolbox2/0.2  A  !
@@ -18,19 +18,19 @@
 // !toolbox_skeleton  1.3  alluser  /home/pmarecha/work/atoms/scilab/contrib/toolbox_skeleton/1.3          I  !
 
 function packages = atomsGetLoaded()
-
-    // Load Atoms Internals lib if it's not already loaded
-    // =========================================================================
-    if ~ exists("atomsinternalslib") then
-        load("SCI/modules/atoms/macros/atoms_internals/lib");
-    end
-
-    loaded = atomsLoadLoad();
-
-    if isempty(loaded) then
-        packages = [];
-    else
-        packages = atomsGetInstalledDetails(loaded);
-    end
-
+	
+	// Load Atoms Internals lib if it's not already loaded
+	// =========================================================================
+	if ~ exists("atomsinternalslib") then
+		load("SCI/modules/atoms/macros/atoms_internals/lib");
+	end
+	
+	loaded = atomsLoadLoad();
+	
+	if isempty(loaded) then
+		packages = [];
+	else
+		packages = atomsGetInstalledDetails(loaded);
+	end
+	
 endfunction

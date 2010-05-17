@@ -8,18 +8,18 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-01-29 14:56+0100\n"
-"PO-Revision-Date: 2010-04-12 13:04+0000\n"
-"Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
+"PO-Revision-Date: 2009-12-15 03:53+0000\n"
+"Last-Translator: Heder Dorneles <heder.to@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-04-16 07:53+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s : Erro na alocação de memória.\n"
+msgid "%s : Memory allocation error.\n"
+msgstr "%s : Erro na alocação de memoria.\n"
 
 #, c-format
 msgid "%s : No more memory.\n"
@@ -27,19 +27,19 @@ msgstr "%s : Memória esgotada.\n"
 
 #, c-format
 msgid "%s : Wrong size for input argument #%d.\n"
-msgstr "%s : Tamanho incorreto para o argumento de entrada #%d.\n"
+msgstr "%s : Tamanho errado para o argumento de entrada #%d.\n"
 
 #, c-format
 msgid "%s : Wrong size for input argument(s).\n"
-msgstr "%s : Tamanho incorreto para os argumentos de entrada.\n"
+msgstr "%s : Tamanho(s) errado(s) para o(s) argumento(s) de entrada.\n"
 
 #, c-format
 msgid "%s: Can not compile pattern.\n"
-msgstr "%s: Não é possível compilar o padrão.\n"
+msgstr "%s: Não se consegue compilar o padrão.\n"
 
 #, c-format
 msgid "%s: Capturing subpatterns error.\n"
-msgstr "%s: Capturando erro de subpadrões.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Contains explicit CR or LF match.\n"
@@ -47,7 +47,7 @@ msgstr "%s: Contém correspondência CR ou LF explícita.\n"
 
 #, c-format
 msgid "%s: Current PCRE library does not support UTF-8.\n"
-msgstr "%s: A biblioteca PCRE atual não oferece suporte a UTF-8.\n"
+msgstr "%s: A biblioteca corrente PCRE, não suporta UTF-8.\n"
 
 #, c-format
 msgid "%s: Delimiter must not be alphameric.\n"

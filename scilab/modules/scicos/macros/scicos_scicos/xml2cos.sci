@@ -52,6 +52,7 @@ function [scs_m,atomicflg]=xml2cos(xmlfilename,typ)
        ttyp=tokens(typ(2),'''')
        //disp(ttyp(2));
        if ttyp(2)=='context' then
+         //t=readc_(unit);
 	 t=read_new_line(txt);
 	 cntxt=cos_subst(t);
 	 scs_m.props.context=evstr(cntxt);
@@ -120,6 +121,7 @@ endfunction
 
 function scs_m=load_par(symbol,id1,id2)
   scs_m=scs_m;global txtline
+  //t=readc_(unit);
   t=read_new_line(txt);
   typ=tokens(t);
   while typ(1)<>symbol do
@@ -139,10 +141,12 @@ function scs_m=load_par(symbol,id1,id2)
 	  scs_m1=xml2cos(xmlfilename,typ)
 	  execstr('scs_m.'+id2+'.'+id1+'('''+ttyp(2)+''')='+sci2exp(scs_m1,0));
 	else
+	  //t=readc_(unit);
 	  t=read_new_line(txt);
 	  execstr('scs_m.'+id2+'.'+id1+'('''+ttyp(2)+''')='+cos_subst(t));
 	end
       elseif ttyp(2)=='gr_i' then
+	//t=readc_(unit);
 	t=read_new_line(txt);
 	execstr('scs_m.'+id2+'.'+id1+'('''+ttyp(2)+''')='+cos_subst(t));
       elseif ttyp(2)=='exprs' then
@@ -171,9 +175,11 @@ function scs_m=load_par(symbol,id1,id2)
 	//disp(tttyp(2));
 	execstr('scs_m.'+id2+'.'+id1+'('''+ttyp(2)+''')='+cos_subst(tttyp(2)))
       end
+      //t=readc_(unit);
       t=read_new_line(txt);
       typ=tokens(t);
       if or(typ==['</graphics>','</model>']) then
+	//t=readc_(unit);
 	t=read_new_line(txt);
 	typ=tokens(t);
       end
@@ -204,6 +210,7 @@ function scs_m=treat_blocks(symbol,typ)
  else
    execstr('scs_m.objs('+numb+')=scicos_text();');
  end
+ //t=readc_(unit);
  t=read_new_line(txt);
  typ=tokens(t);
  while typ(1)<>symbol do
@@ -222,6 +229,7 @@ function scs_m=treat_blocks(symbol,typ)
      //tttyp=tokens(typ(3),'''')
      execstr('scs_m.objs('+numb+').'+ttyp(2)+'='+cos_subst(tttyp(2)))
    end
+   //t=readc_(unit);
    t=read_new_line(txt);
    typ=tokens(t);
  end

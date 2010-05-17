@@ -50,8 +50,8 @@ public class XcosCodec extends mxCodec {
 		mxCodecRegistry.addPackage("org.scilab.modules.xcos.port.control");
 		mxCodecRegistry.addPackage("org.scilab.modules.xcos.port.input");
 		mxCodecRegistry.addPackage("org.scilab.modules.xcos.port.output");
-		// Add 'types' package to have all scilab types known
-		mxCodecRegistry.addPackage("org.scilab.modules.types.scilabTypes");
+		// Add some hdf5 packages to have all scilab types known
+		mxCodecRegistry.addPackage("org.scilab.modules.hdf5.scilabTypes");
 	}
 
 	/**

@@ -26,7 +26,7 @@ import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterExc
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.utils.FileUtils;
+import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -73,7 +73,7 @@ public class InitModelicaAction extends DefaultAction {
 
 	try {
 	    ((XcosDiagram) getGraph(null)).info(XcosMessages.INITIALIZING_MODELICA_COMPILER);
-	    temp = FileUtils.createTempFile();
+	    temp = File.createTempFile("xcos", ".h5", XcosConstants.TMPDIR);
 	    ((XcosDiagram) getGraph(e)).getRootDiagram().dumpToHdf5File(temp.getAbsolutePath());
 
 	    String cmd = buildCall("import_from_hdf5", temp.getAbsolutePath());

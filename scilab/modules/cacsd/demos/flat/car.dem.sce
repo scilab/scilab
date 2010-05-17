@@ -1,8 +1,3 @@
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) ????-2008 - INRIA
-//
-// This file is released into the public domain
-
 // Clear the functions defined in car.sci to avoid warnings
 clear car_solve polyline car_polynomial_curve display_car_trajectory build_car draw_car polyline
 

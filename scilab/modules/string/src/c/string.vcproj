@@ -424,6 +424,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\NumTokens.c"
+				>
+			</File>
+			<File
 				RelativePath=".\partfunction.c"
 				>
 			</File>
@@ -665,6 +669,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\NumTokens.h"
+				>
+			</File>
+			<File
 				RelativePath=".\partfunction.h"
 				>
 			</File>
@@ -705,7 +713,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\stripblanks.h"
+				RelativePath=".\stripblanks.h"
 				>
 			</File>
 			<File

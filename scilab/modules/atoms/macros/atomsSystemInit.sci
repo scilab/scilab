@@ -12,27 +12,27 @@
 // Load one or several toolboxes
 
 function atomsSystemInit()
-
-    // Load Atoms Internals lib if it's not already loaded
-    // =========================================================================
-    if ~ exists("atomsinternalslib") then
-        load("SCI/modules/atoms/macros/atoms_internals/lib");
-    end
-
-    // Check write access on allusers zone
-    // =========================================================================
-    ATOMSALLUSERSWRITEACCESS = atomsAUWriteAccess();
-
-    // Check if we have the write access
-    // =========================================================================
-    if ATOMSALLUSERSWRITEACCESS then
-        section = "all";
-    else
-        section = "user";
-    end
-
-    // Toremove process
-    // =========================================================================
-    atomsToremoveProcess(section);
-
+	
+	// Load Atoms Internals lib if it's not already loaded
+	// =========================================================================
+	if ~ exists("atomsinternalslib") then
+		load("SCI/modules/atoms/macros/atoms_internals/lib");
+	end
+	
+	// Check write access on allusers zone
+	// =========================================================================
+	ATOMSALLUSERSWRITEACCESS = atomsAUWriteAccess();
+	
+	// Check if we have the write access
+	// =========================================================================
+	if ATOMSALLUSERSWRITEACCESS then
+		section = "all";
+	else
+		section = "user";
+	end
+	
+	// Toremove process
+	// =========================================================================
+	atomsToremoveProcess(section);
+	
 endfunction

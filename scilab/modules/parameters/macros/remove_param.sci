@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) DIGITEO 2008-2010 - Yann COLLETTE
+// Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -7,9 +7,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function [plist,err] = remove_param(list_name,param_name)
+function [ga_list,err] = remove_param(list_name,param_name)
 [nargout,nargin] = argn();
-plist = [];
 if typeof(list_name)=='plist' then
   if is_param(list_name,param_name) then
     Index = grep(getfield(1,list_name),param_name);
@@ -29,15 +28,15 @@ if typeof(list_name)=='plist' then
       New_Index = New_Index + 1;
     end
   else
-    plist = list_name;
+    ga_list = list_name;
   end
-  plist = new_list;
+  ga_list = new_list;
   if nargout==2 then err = %F; end
 else
   if nargout==2 then 
     err = %T;
   else
-    error(sprintf(gettext("%s: Wrong type for input argument #%d: %s expected.\n"), "remove_param", 1, "plist"));
+    warning(sprintf(gettext("%s: not a plist"),"remove_param"));
   end
 end
 endfunction

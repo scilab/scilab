@@ -41,7 +41,7 @@ case 'set' then
   model=arg1.model;
   while %t do
     [ok,C,v,exprs]=scicos_getvalue('Set Capacitor block parameter',..
-    			   ['C (F)';'Initial Voltage'],list('vec',1,'vec',1),exprs)
+    			   ['C (F)','Initial Voltage'],list('vec',1,'vec',1),exprs)
     if ~ok then break,end
     model.rpar=C
     model.equations.parameters(2)=list(C,v)

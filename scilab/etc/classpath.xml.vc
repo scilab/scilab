@@ -41,6 +41,7 @@ The option is "disableUnderMode" and can be:
 	<load on="XCos"/>
 </path>
 
+
 <path value="$SCILAB/thirdparty/jogl.jar" load="onUse">
 	<load on="graphics"/>
 	<load on="graphic_export"/>
@@ -64,7 +65,6 @@ The option is "disableUnderMode" and can be:
 </path>
 
 <!-- Temp. loaded at startup -->
-<path value="$SCILAB/modules/types/jar/org.scilab.modules.types.jar"/>
 <path value="$SCILAB/modules/hdf5/jar/org.scilab.modules.hdf5.jar" load="startup"/>
 
 <path value="$SCILAB/modules/xcos/jar/org.scilab.modules.xcos.jar" load="onUse">

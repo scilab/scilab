@@ -68,7 +68,6 @@ int sci_libfunc(char *fname, int*_piKey)
 	}
 
 	sciErr = getMatrixOfString(_piKey, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
-
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -86,7 +85,7 @@ int sci_libfunc(char *fname, int*_piKey)
 
 	if (pStVarOne == NULL)
 	{
-		Scierror(999,"%s: Memory allocation error.\n", fname);
+		Scierror(999,"%s : Memory allocation error.\n", fname);
 		return 0;
 	}
 
@@ -108,7 +107,7 @@ int sci_libfunc(char *fname, int*_piKey)
 		}
 		else
 		{
-			Scierror(999,"%s: Memory allocation error.\n",fname);
+			Scierror(999,"%s : Memory allocation error.\n",fname);
 			return 0;
 		}
 	}

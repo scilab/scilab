@@ -51,7 +51,6 @@ function tbx_build_gateway_loader(langs, gateway_path)
 	  "// ====================================================================",
 	  "clear sci_gateway_dir;",
 	  "clear current_dir;",
-	  "clear v;",
 	  "// ===================================================================="
 	];
 	

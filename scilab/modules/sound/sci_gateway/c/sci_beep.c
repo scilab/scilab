@@ -89,7 +89,7 @@ int sci_beep(char *fname, int* _piKey)
 		pStVarOne = (char*)MALLOC(sizeof(char)*(lenStVarOne + 1));
 		if (pStVarOne == NULL)
 		{
-			Scierror(999,_("%s: Memory allocation error.\n"),fname);
+			Scierror(999,_("%s : Memory allocation error.\n"),fname);
 			return 0;
 		}
 

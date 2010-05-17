@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-04-15 17:27+0000\n"
+"PO-Revision-Date: 2009-11-27 18:11+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-04-16 07:53+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
@@ -48,13 +48,12 @@ msgstr "%s: これ以上メモリはありません。\n"
 msgid "%s: No such file or directory.\n"
 msgstr "%s: ファイル、またはディレクトリが在りません。\n"
 
+#
+# File: sci_gateway/c/sci_pvm_bcast.c, line: 52
+# File: sci_gateway/c/sci_pvm_send.c, line: 53
 #, c-format
-msgid "%s: Unknown type or not yet implemented\n"
-msgstr "%s: 未知の型、もしくはまだ装備されていません\n"
-
-#, c-format
-msgid "%s: Unknown type or not yet implemented.\n"
-msgstr "%s: 未知の型、もしくはまだ装備されていません。\n"
+msgid "%s: Unknow type or not yet implemented\n"
+msgstr "%s: 未知の型、または、まだ装備されていません\n"
 
 #
 # File: sci_gateway/c/sci_pvm_error_mode.c, line: 43
@@ -69,22 +68,20 @@ msgstr "%s: 最初の入力引数が不正: '%s' または '%s' を想定しま�
 msgid "%s: work space (stacksize) is too small d\n"
 msgstr "%s: 作業スペース(スタックサイズ)はとても小さい d です。\n"
 
-#, c-format
-msgid "%s: work space (stacksize) is too small.\n"
-msgstr "%s: 作業空間(stacksize)は、あまりにも小さいです。\n"
-
 #
 # File: src/c/pvm_proc_ctrl.c, line: 242
 msgid "(group,instance) already exists"
 msgstr "(グループ、事例) 既に在ります"
 
-msgid "Already doing operation"
-msgstr "すでに操作中です"
-
 #
 # File: src/c/pvm_proc_ctrl.c, line: 219
 msgid "Already in group"
 msgstr "既にグループです。"
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 231
+msgid "Already oing operation"
+msgstr "すでに oing 操作"
 
 #
 # File: src/c/pvm_proc_ctrl.c, line: 217
@@ -133,9 +130,11 @@ msgstr "pvm_halt エラー - シグナル\n"
 msgid "Error pvm_reduce: Not scalar type\n"
 msgstr "エラー pvm_reduce: スカラー型ではありません\n"
 
+#
+# File: src/c/pvm_grp.c, line: 138
 #, c-format
-msgid "Error pvm_reduce: Unknown reduction operation %s\n"
-msgstr "pvm_reduceエラー: 未知の縮小操作 %s\n"
+msgid "Error pvm_reduce: Unknow reduction operation %s\n"
+msgstr "エラー pvm_reduce: 未知の約分操作 %s\n"
 
 #
 # File: src/c/pvm_proc_ctrl.c, line: 230
@@ -212,8 +211,10 @@ msgstr "空のグループ名は不正です"
 msgid "OK"
 msgstr "OK"
 
-msgid "Out of resources"
-msgstr "リソース外です"
+#
+# File: src/c/pvm_proc_ctrl.c, line: 228
+msgid "Out of ressources"
+msgstr "リソース外"
 
 #
 # File: src/c/pvm_proc_ctrl.c, line: 235

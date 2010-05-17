@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -608,6 +608,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\namstr.c"
+				>
+			</File>
+			<File
 				RelativePath=".\nextj.c"
 				>
 			</File>
@@ -1097,6 +1101,10 @@
 			</File>
 			<File
 				RelativePath=".\mrknmd.f"
+				>
+			</File>
+			<File
+				RelativePath=".\namstr.f"
 				>
 			</File>
 			<File

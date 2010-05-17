@@ -24,6 +24,7 @@ extern "C" {
 #ifdef HAVE_LIBINTL_H
 /* Have been able to find the libintl.h file on the system */
 #include <libintl.h>
+//#include "stack-def.h"
 
 
 #define _(String)  gettext(String)/** for console message*/

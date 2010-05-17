@@ -1,6 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-// Copyright (C) 2010 - DIGITEO - Manuel Juliachs
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
@@ -16,7 +15,7 @@ function polarplot(theta,rho,style,strf,leg,rect)
   end
   if size(theta,1)==1 then theta=theta(:),end
   if size(rho,1)==1 then rho=rho(:),end
-  rm=max(abs(rho))
+  rm=max(rho)
   x=rho.*cos(theta)
   y=rho.*sin(theta)
 

@@ -22,7 +22,6 @@ my $directory = getcwd();
 if( dirname($0) ne '.' )
 {
 	$directory .= '/'.dirname($0);
-	$directory =~ s/\/\.\//\//g;
 }
 
 if( dirname($0) =~ m/^\// )

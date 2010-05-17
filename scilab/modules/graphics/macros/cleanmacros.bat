@@ -1,3 +1,3 @@
-@del /s *.bin 2>NUL
-@del /s lib 2>NUL
-@del /s names 2>NUL
+@del *.bin 2>NUL
+@del lib 2>NUL
+@del names 2>NUL

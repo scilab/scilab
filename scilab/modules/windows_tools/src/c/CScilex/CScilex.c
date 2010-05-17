@@ -31,12 +31,12 @@ typedef int (*MYPROC1) (int , char **);
 int main (int argc, char **argv)
 {
 	#define MAXCMDTOKENS 128
-	int iExitCode = 0;
 	UINT LastErrorMode = 0;
 	HINSTANCE hinstLib = NULL; 
 
-	BOOL fFreeResult = FALSE, fRunTimeLinkSuccess = FALSE; 
 
+	BOOL fFreeResult = FALSE, fRunTimeLinkSuccess = FALSE; 
+	
 	int argcbis = -1;
 	LPSTR argvbis[MAXCMDTOKENS];
 	int i = 0;
@@ -106,22 +106,22 @@ int main (int argc, char **argv)
 		{
 			fRunTimeLinkSuccess = TRUE;
 
-		#ifndef _DEBUG
+			#ifndef _DEBUG
 			/* catch system errors msgbox (release mode only) */
 			/* http://msdn.microsoft.com/en-us/library/ms680621(VS.85).aspx */
 			//LastErrorMode = SetErrorMode( SEM_FAILCRITICALERRORS|SEM_NOALIGNMENTFAULTEXCEPT|SEM_NOGPFAULTERRORBOX );
 			_try
 			{
-		#endif
+			#endif
 
-				iExitCode = (Console_Main)(argcbis,argvbis);
+			(Console_Main)(argcbis,argvbis);
 
-		#ifndef _DEBUG
+			#ifndef _DEBUG
 			}
 			_except (EXCEPTION_EXECUTE_HANDLER)
 			{	
 			}
-		#endif
+			#endif
 		}
 		fFreeResult = FreeLibrary(hinstLib); 
 	} 
@@ -134,12 +134,12 @@ int main (int argc, char **argv)
 		DWORD dw = GetLastError(); 
 
 		if (FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, NULL, 
-			dw, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-			buffer, BUFFER_SIZE, NULL) == 0) 
+			              dw, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+			              buffer, BUFFER_SIZE, NULL) == 0) 
 		{
 			StringCchPrintf(buffer,strlen("Unknown Error")+1,"Unknown Error"); 
 		}
-
+				
 		fprintf(stderr,"scilex can't launch scilab.\nError code : %lu\n",dw);
 		OutputMsg = (char*)MALLOC((strlen(buffer)+1)*sizeof(char));
 		if (OutputMsg)
@@ -150,7 +150,9 @@ int main (int argc, char **argv)
 		}
 		exit(1);
 	}
-	return iExitCode;
+	else exit(0);
+
+    return 0;
 
 }
 /*--------------------------------------------------------------------------*/

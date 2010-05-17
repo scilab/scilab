@@ -61,7 +61,6 @@
 #include "getCommonPart.h"
 #include "completeLine.h"
 #include "TermReadAndProcess.h"
-#include "sciquit.h"
 /*--------------------------------------------------------------------------*/
 #ifdef aix
 #define ATTUNIX
@@ -587,7 +586,7 @@ char *TermReadAndProcess(void)
 	    }
 	  else
 	    {
-	      if(keystroke == EOF) {sciquit(); exit(0);}
+	      if(keystroke == EOF) ExitWithCodeFromScilab(0);
 	      else character_count = 1;
 	    }
 

@@ -66,7 +66,7 @@ function atomsGui()
     h = uimenu( ..
         "parent"   , atomsfig, ..
         "label"    , gettext("File"));
-
+    
     uimenu( ..
         "parent"   , h, ..
         "label"    , gettext("Close"), ..
@@ -76,21 +76,21 @@ function atomsGui()
     h = uimenu( ..
         "parent"   , atomsfig, ..
         "label"    , gettext("?"));
-
+        
     uimenu( ..
         "parent"   , h, ..
         "label"    , gettext("Atoms Help..."), ..
         "callback" , "cbAtomsGui", ..
         "tag"      , "helpAtomsMenu");
-
+    
     atomsfig.axes_size = [figwidth figheight];
-
+    
     // Get modules titles to be displayed
     modulesNames       = getfield(1, allModules);
     modulesNames(1:2)  = [];
 
     modulesTitles = [];
-
+    
     for k=1:size(modulesNames, "*")
         vers           = getfield(1, allModules(modulesNames(k)));
         vers           = vers(3);
@@ -111,7 +111,7 @@ function atomsGui()
         "Position"            , [margin margin listboxWidth+2*margin figheight-2*margin],..
         "Background"          , [1 1 1],..
         "Tag"                 , "modulesListboxFrame");
-
+        
     // Frame title
 
     descFrameHTML            = gettext("Modules");
@@ -128,8 +128,8 @@ function atomsGui()
         "Background"          , [1 1 1],..
         "Tag"                 , "modulesListboxFrameTitle")
 
-    // Frame listbox
-
+    // Frame listbox    
+    
     modulesListbox = uicontrol( ..
         "Parent"              , atomsfig,..
         "Style"               , "listbox",..
@@ -145,9 +145,9 @@ function atomsGui()
     // Description
     // =============================================================================
 
-    descWidth                = figwidth - 7*margin - listboxWidth
-    descFrameWidth           = descWidth + 2*margin;
-
+    descWidth                = figwidth - 7*margin - listboxWidth 
+    descFrameWidth           = descWidth + 2*margin; 
+    
     modulesDescFrame         = uicontrol( ..
         "Parent"             , atomsfig,..
         "Style"              , "frame",..

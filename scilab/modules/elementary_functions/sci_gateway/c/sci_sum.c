@@ -223,7 +223,7 @@ int sum_matrix(int* _piKey, int* _piAddress, int _iMode)
 		iColsOut	= 1;
 		break;
 	default :
-		SciError(17);
+		Error(17);
 		return 0;
 	}
 

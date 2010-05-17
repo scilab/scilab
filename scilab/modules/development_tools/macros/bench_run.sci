@@ -217,16 +217,7 @@ function bench_run(varargin)
 	// XML management
 	xml_str = [ xml_str ; "</benchmarks>" ];
 	xml_file_name = SCI+"/bench_"+getversion()+"_"+date()+".xml";
-	ierr = execstr("fd_xml = mopen(xml_file_name,''wt'');","errcatch");
-	if ierr == 999 then 
-	  xml_file_name = SCIHOME + "/bench_" + getversion() + "_" + date() +".xml";
-	  ierr = execstr("fd_xml = mopen(xml_file_name,''wt'');","errcatch");
-	end
-	
-	if ierr == 0 then
-	  mputl(xml_str, fd_xml);
-	  mclose(fd_xml);
-	end
+	mputl(xml_str,xml_file_name);
 	
 	clearglobal test_list;
 	clearglobal test_count;

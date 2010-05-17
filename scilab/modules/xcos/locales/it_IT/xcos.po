@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-02-18 10:43+0000\n"
+"PO-Revision-Date: 2010-01-30 09:43+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-04-16 07:53+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -256,9 +256,6 @@ msgstr "_Ribalta"
 msgid "Format"
 msgstr "_Formatta"
 
-msgid "From %s"
-msgstr ""
-
 msgid "Generate SuperBlock, please wait ..."
 msgstr "Generazione di SuperBlock in corso..."
 
@@ -267,9 +264,6 @@ msgstr "Generazione di codice C per SuperBlock"
 
 msgid "Get infos"
 msgstr "Ottieni informazioni"
-
-msgid "Goto %s"
-msgstr ""
 
 msgid "Grid"
 msgstr "_Griglia"
@@ -446,7 +440,7 @@ msgid "Rows"
 msgstr "Righe"
 
 msgid "Same command executed again"
-msgstr "Eseguito di nuovo lo stesso comando"
+msgstr ""
 
 msgid "Save"
 msgstr "Salva"
@@ -488,7 +482,7 @@ msgid "Set Parameters"
 msgstr "Imposta i _parametri"
 
 msgid "Set block parameters"
-msgstr "Impostare i parametri del blocco"
+msgstr ""
 
 msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
 msgstr ""
@@ -535,9 +529,6 @@ msgstr "Diritto"
 msgid "Superblock mask"
 msgstr "Maschera del superblocco"
 
-msgid "The Scicos libraries are not loaded"
-msgstr ""
-
 msgid "The Scilab Consortium (DIGITEO)"
 msgstr "Il Consorzio Scilab (DIGITEO)"
 
@@ -564,21 +555,13 @@ msgid "UnGroup"
 msgstr "Dividi"
 
 msgid "Unable to communicate with the interpreter"
-msgstr "Impossibile comunicare con l'interprete"
-
-#, c-format
-msgid "Unable to open %s"
-msgstr ""
-
-#, c-format
-msgid "Unable to simulate %s"
 msgstr ""
 
 msgid "Undo"
 msgstr "_Annulla"
 
 msgid "Unknown Diagram Version : "
-msgstr "Versione di diagramma sconosciuta : "
+msgstr ""
 
 msgid "Untitled"
 msgstr "Senza titolo"
@@ -614,7 +597,7 @@ msgid "Viewport"
 msgstr "Area visibile"
 
 msgid "Will try to continue..."
-msgstr "Si tenterà di proseguire..."
+msgstr ""
 
 msgid "WinTitle"
 msgstr ""

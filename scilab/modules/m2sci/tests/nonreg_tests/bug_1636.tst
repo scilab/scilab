@@ -38,7 +38,7 @@ SCIFILECONTENTS=mgetl(SCIFILE);
 
 SCIFILECONTENTSREF=["function [A] = bug1636(x,y,z,t,u,v,w,z)";
 		"";
-		"// Output variables initialisation (not found in input variables)"
+		"// Ouput variables initialisation (not found in input variables)"
 		"A=[];";
 		"";
 		"// Display mode";

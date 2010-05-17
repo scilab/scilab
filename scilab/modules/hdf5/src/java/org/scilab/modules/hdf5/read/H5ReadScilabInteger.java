@@ -16,7 +16,7 @@ import ncsa.hdf.hdf5lib.H5;
 import ncsa.hdf.hdf5lib.HDF5Constants;
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
-import org.scilab.modules.types.scilabTypes.ScilabInteger;
+import org.scilab.modules.hdf5.scilabTypes.ScilabInteger;
 
 public class H5ReadScilabInteger {
 	public static void readData(int dataSetId, ScilabInteger data) throws NullPointerException, HDF5Exception {

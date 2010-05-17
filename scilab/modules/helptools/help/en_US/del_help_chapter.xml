@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>del_help_chapter</refname>
-    <refpurpose> Delete an entry in the help list</refpurpose>
+    <refpurpose> Delete an entry in the helps list</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -28,15 +28,15 @@
       <varlistentry>
         <term>title</term>
         <listitem>
-          <para>String array, Help chapter title</para>
+          <para>String array, Help chapters title</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>mode</term>
         <listitem>
           <para>A boolean, if TRUE, the chapter is considered as belongs to a
-          internal modules, otherwise, the chapter is removed.
-          It is an optional input argument and its default value is %F.</para>
+          internal modules, otherwise, the chapter is added as external module.
+          It's an optional input argument and its default value is %F.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -44,7 +44,7 @@
   <refsection>
     <title>Description</title>
     <para>
-  This function deletes an entry in the help list.</para>
+  This function deletes an entry in the helps list.</para>
   </refsection>
   <refsection>
     <title>See Also</title>

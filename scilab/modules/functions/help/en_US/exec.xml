@@ -83,10 +83,8 @@ ierr=exec(fun,'errcatch' [,mode])</synopsis>
     works.</para>
   </refsection>
   <refsection>
-    <title>Remarks</title>
+    <title>Remark</title>
     <para><literal>exec</literal> files may now be used to define functions using the inline function definition syntax (see function).</para>
-    <para><literal>exec</literal> supports files encoded as ANSI/ASCII and UTF-8 (NO-BOM).</para>
-    <para>length of each line in a file is limited to 4096 characters.</para>
   </refsection>
   <refsection>
     <title>Examples</title>

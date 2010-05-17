@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-02-27 18:16+0100\n"
-"PO-Revision-Date: 2010-04-14 20:50+0000\n"
+"PO-Revision-Date: 2009-12-09 20:49+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-04-16 07:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid "                 Consortium Scilab (DIGITEO)\n"
@@ -23,8 +23,8 @@ msgstr "                 Консорциум Scilab (DIGITEO)\n"
 msgid "               Copyright (c) 1989-2007 (ENPC)\n"
 msgstr "               Авторское право (c) 1989-2007 (ENPC)\n"
 
-msgid "               Copyright (c) 1989-2010 (INRIA)\n"
-msgstr "               Авторское право (c) 1989-2010 (INRIA)\n"
+msgid "               Copyright (c) 1989-2009 (INRIA)\n"
+msgstr "               Авторское право (c) 1989-2009 (INRIA)\n"
 
 msgid "  loading initial environment"
 msgstr "  загрузка исходного окружения"
@@ -46,7 +46,7 @@ msgid "%f: No more space to store string arguments.\n"
 msgstr "%f: Закончилось место для хранения строковых параметров.\n"
 
 #, c-format
-msgid "%s: Memory allocation error.\n"
+msgid "%s : Memory allocation error.\n"
 msgstr "%s: Ошибка выделения памяти.\n"
 
 #, c-format
@@ -608,10 +608,6 @@ msgid "%s: Wrong type value.\n"
 msgstr "%s: Неверный тип значения.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: \"%s\" expected.\n"
-msgstr "%s: Неверное значение входного параметра №%d: ожидалось «%s».\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr "%s: Неверное значение входного параметра №%d: ожидалось «%s».\n"
 
@@ -826,8 +822,31 @@ msgstr "Проверка: %s\n"
 msgid "Commands:\n"
 msgstr "Команды:\n"
 
+#, c-format
+msgid "Compilation date: %s"
+msgstr "Дата компиляции: %s"
+
+#, c-format
+msgid "Compilation time: %s"
+msgstr "Время компиляции: %s"
+
+#, c-format
+msgid "Compiled with %s"
+msgstr "Откомпилирован с помощью %s"
+
+#, c-format
+msgid "Compiler Architecture: %s"
+msgstr "Архитектура компилятора: %s"
+
+#, c-format
+msgid "Directory separator: %s"
+msgstr "Разделитель каталогов: %s"
+
 msgid "Do you really want to abort computation (y or n ?) \n"
 msgstr "Вы действительно  хотите завершить вычисление? (y или n) \n"
+
+msgid "Enable"
+msgstr "Включено"
 
 msgid "Error"
 msgstr "Ошибка"
@@ -893,11 +912,11 @@ msgstr ""
 #, c-format
 msgid ""
 "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
-"contain <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
+"contains <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
 msgstr ""
 "Ошибка: Неправильный файл версии %s (файл должен начинаться с "
-"<MODULE_VERSION> и содержать <VERSION major='' minor='' maintenance='' "
-"revision='' string=''>)\n"
+"<MODULE_VERSION> и содержать строчку <VERSION major='' minor='' "
+"maintenance='' revision='' string=''>)\n"
 
 #, c-format
 msgid "Error: could not parse file %s\n"
@@ -905,6 +924,18 @@ msgstr "Ошибка: не удалось сделать грамматичес�
 
 msgid "Fatal Error: Can't create table for scilab functions.\n"
 msgstr "Неисправимая ошибка: Не могу создать таблицу для функций scilab.\n"
+
+msgid "Free Extended Memory (Kbytes): %*I64d"
+msgstr "Свободной расширенной памяти (Кбайт): %*I64d"
+
+msgid "Free Paging File (Kbytes): %*I64d"
+msgstr "Свободно в файле подкачки (Кбайт): %*I64d"
+
+msgid "Free Physical Memory (Kbytes): %*I64d"
+msgstr "Свободной физической памяти (Кбайт): %*I64d"
+
+msgid "Free Virtual Memory (Kbytes): %*I64d"
+msgstr "Свободной виртуальной памяти (Кбайт): %*I64d"
 
 msgid "Functions compiled with very old versions are no more handled."
 msgstr ""
@@ -949,14 +980,33 @@ msgstr "Недопустимая временная область.\n"
 msgid "List full.\n"
 msgstr "Полный список.\n"
 
+#, c-format
+msgid "Memory in use: %*ld %%"
+msgstr "Используемая память: %*ld %%"
+
 msgid "No space to allocate Scilab stack.\n"
 msgstr "Недостаточно места для размещения стека Scilab.\n"
+
+#, c-format
+msgid "Number of processors: %d"
+msgstr "Количество процессоров: %d"
+
+msgid "Operating System: "
+msgstr "Операционная система: "
 
 msgid "Optional argument list is empty.\n"
 msgstr "Список необязательных параметров пуст.\n"
 
 msgid "Optional arguments list: \n"
 msgstr "Необязательные параметры: \n"
+
+#, c-format
+msgid "PCRE Version: %d.%d"
+msgstr "Версия PCRE: %d.%d"
+
+#, c-format
+msgid "Path separator: %s"
+msgstr "Разделитель пути: %s"
 
 msgid "SCI environment variable not defined.\n"
 msgstr "Переменная окружения SCI не задана.\n"
@@ -982,14 +1032,39 @@ msgstr ""
 "Версия Scilab «%d.%d.%d.%d»\n"
 "%s\n"
 
+#, c-format
+msgid "Screen size: %d x %d %d bits"
+msgstr "Размер экрана: %d x %d %d bits"
+
 msgid "Startup execution:"
 msgstr "Запуск программы:"
+
+#, c-format
+msgid "TCL version: %s"
+msgstr "Версия TCL: %s"
+
+#, c-format
+msgid "TK version: %s"
+msgstr "Версия TK: %s"
 
 msgid "TMPDIR not defined.\n"
 msgstr "Переменная окружения TMPDIR не задана.\n"
 
+#, c-format
+msgid "Tcl/Tk: %s"
+msgstr "Tcl/Tk: %s"
+
 msgid "The SCI environment variable is not set.\n"
 msgstr "Переменная окружения SCI не установлена.\n"
+
+msgid "Total Paging File (Kbytes): %*I64d"
+msgstr "Общий размер файла подкачки (Кбайт): %*I64d"
+
+msgid "Total Physical Memory (Kbytes): %*I64d"
+msgstr "Всего физической памяти (Кбайт): %*I64d"
+
+msgid "Total Virtual Memory (Kbytes): %*I64d"
+msgstr "Всего виртуальной памяти (Кбайт): %*I64d"
 
 msgid "Trying to stop scilab in the middle of an interface.\n"
 msgstr "Пытаюсь остановить scilab во время взаимодействия.\n"
@@ -1007,6 +1082,18 @@ msgstr "Пользовательские пременные:"
 #, c-format
 msgid "Using %s elements ouf of %s"
 msgstr "Используется %s элементов из %s"
+
+#, c-format
+msgid "Version: %s"
+msgstr "Версия: %s"
+
+#, c-format
+msgid "Video card driver version: %s"
+msgstr "Версия драйвера видеокарты: %s"
+
+#, c-format
+msgid "Video card: %s"
+msgstr "Видеокарта: %s"
 
 #, c-format
 msgid "WARNING: %s"
@@ -1029,6 +1116,10 @@ msgid ""
 msgstr ""
 "Внимание: основная команда консорциума Scilab не распространяет и\n"
 "не поддерживает эту версию Scilab, собранную при помощи\n"
+
+#, c-format
+msgid "XML version: %s"
+msgstr "Версия XML: %s"
 
 msgid "Your global variables are:"
 msgstr "Ваши глобальные переменные:"

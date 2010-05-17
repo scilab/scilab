@@ -49,14 +49,10 @@ nm = nmplot_configure(nm,"-coords0",coords0);
 // Setup output files
 //
 mprintf("Setup output files...\n");
-simplexfn = TMPDIR + filesep() + "history.simplex.txt";
-fbarfn = TMPDIR + filesep() + "history.fbar.txt";
-foptfn = TMPDIR + filesep() + "history.fopt.txt";
-sigmafn = TMPDIR + filesep() + "history.sigma.txt";
-nm = nmplot_configure(nm,"-simplexfn",simplexfn);
-nm = nmplot_configure(nm,"-fbarfn",fbarfn);
-nm = nmplot_configure(nm,"-foptfn",foptfn);
-nm = nmplot_configure(nm,"-sigmafn",sigmafn);
+nm = nmplot_configure(nm,"-simplexfn",TMPDIR + "\history.simplex.txt");
+nm = nmplot_configure(nm,"-fbarfn",TMPDIR + "\history.fbar.txt");
+nm = nmplot_configure(nm,"-foptfn",TMPDIR + "\history.fopt.txt");
+nm = nmplot_configure(nm,"-sigmafn",TMPDIR + "\history.sigma.txt");
 //
 // Perform optimization
 //
@@ -77,10 +73,10 @@ drawnow();
 //
 // Clean-up
 //
-deletefile(simplexfn);
-deletefile(fbarfn);
-deletefile(foptfn);
-deletefile(sigmafn);
+deletefile(TMPDIR + "\history.simplex.txt");
+deletefile(TMPDIR + "\history.fbar.txt");
+deletefile(TMPDIR + "\history.fopt.txt");
+deletefile(TMPDIR + "\history.sigma.txt");
 nm = nmplot_destroy(nm);
 mprintf("End of demo.\n");
 

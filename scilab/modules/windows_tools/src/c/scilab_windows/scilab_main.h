@@ -25,7 +25,7 @@
 * @param[in] size path
 * @param[in] stacksize
 */
-SCILAB_WINDOWS_IMPEXP int sci_windows_main ( int *nos, char *path, InitScriptType pathtype, int *lpath, int memory);
+SCILAB_WINDOWS_IMPEXP void sci_windows_main ( int *nos, char *path, InitScriptType pathtype, int *lpath, int memory);
 
 #endif /* __SCILAB_MAIN__H__ */
 /*--------------------------------------------------------------------------*/ 

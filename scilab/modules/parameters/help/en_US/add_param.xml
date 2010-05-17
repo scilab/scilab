@@ -2,7 +2,7 @@
 
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) DIGITEO 2008-2010 - Yann COLLETTE
+ * Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,24 +12,18 @@
  *
  -->
 
-<refentry xmlns="http://docbook.org/ns/docbook" 
-	  xmlns:xlink="http://www.w3.org/1999/xlink" 
-	  xmlns:svg="http://www.w3.org/2000/svg" 
-	  xmlns:mml="http://www.w3.org/1998/Math/MathML" 
-	  xmlns:db="http://docbook.org/ns/docbook" 
-	  version="5.0-subset Scilab" 
-	  xml:lang="en" xml:id="add_param">
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="add_param">
+  <info>
+    <pubdate>23-Aug-2007</pubdate>
+  </info>
   <refnamediv>
     <refname>add_param</refname>
     <refpurpose> Add a parameter to a list of parameters </refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[param_list,err] = add_param(list_name,param_name,param_value)</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Parameters</title>
     <variablelist>
@@ -70,14 +64,12 @@
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
         <para>
       This function creates a new parameter in a list of parameters. You can set the value of the parameter using this function or you can set it via a call to set_param.
      </para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
@@ -85,33 +77,37 @@ mylist = init_param();
 mylist = add_param(mylist,'minbound',[0 0 0]);
  ]]></programlisting>
   </refsection>
-
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="init_param">init_param</link>
+        <link linkend="init_param"> init_param </link>
       </member>
       <member>
-        <link linkend="set_param">set_param</link>
+        <link linkend="set_param"> set_param </link>
       </member>
       <member>
-        <link linkend="get_param">get_param</link>
+        <link linkend="get_param"> get_param </link>
       </member>
       <member>
-        <link linkend="remove_param">remove_param</link>
+        <link linkend="remove_param"> remove_param </link>
       </member>
       <member>
-        <link linkend="is_param">is_param</link>
+        <link linkend="is_param"> is_param </link>
       </member>
     </simplelist>
   </refsection>
-
   <refsection>
     <title>Authors</title>
-
-    <simplelist type="vert">
-      <member>Yann COLLETTE</member>
-    </simplelist>
+    <variablelist>
+      <varlistentry>
+        <term>collette</term>
+        <listitem>
+          <para>
+    ycollet@freesurf.fr
+    </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </refsection>
 </refentry>

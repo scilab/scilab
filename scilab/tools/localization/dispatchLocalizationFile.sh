@@ -26,8 +26,11 @@ if test ! -d $LAUNCHPAD_DIRECTORY; then
 	exit -3
 fi
 
+# Workaround because launchpad does not allow to delete a directory
+rm $LAUNCHPAD_DIRECTORY/string-v2*.po 
+
 # Don't know why but launchpad is placing some files in some sub dirs
-/bin/cp -fi $LAUNCHPAD_DIRECTORY/*/*.po $LAUNCHPAD_DIRECTORY/
+cp -i $LAUNCHPAD_DIRECTORY/*/*.po $LAUNCHPAD_DIRECTORY/
 
 for file in $LAUNCHPAD_DIRECTORY/*.po; do 
 	file=`echo $file|awk -F / '{print $NF}'` # get only the filename
@@ -40,8 +43,6 @@ for file in $LAUNCHPAD_DIRECTORY/*.po; do
 	if test "$LOC" == "es"; then LOC="es_ES"; fi
 	if test "$LOC" == "ja"; then LOC="ja_JP"; fi
 	if test "$LOC" == "it"; then LOC="it_IT"; fi
-	if test "$LOC" == "uk"; then LOC="uk_UA"; fi
-	if test "$LOC" == "pl"; then LOC="pl_PL"; fi
 
 	# check that it is the right format
 	echo "$LOC"|grep -E "(.*_.*)" > /dev/null # it is a real localization name xx_YY
@@ -53,8 +54,8 @@ for file in $LAUNCHPAD_DIRECTORY/*.po; do
 		if test ! -d $DIR; then
 			mkdir $DIR
 		fi
-		echo "/bin/cp $LAUNCHPAD_DIRECTORY/$file $DIR/$MODULE.po"
-		/bin/cp -f $LAUNCHPAD_DIRECTORY/$file $DIR/$MODULE.po
+		echo "cp $LAUNCHPAD_DIRECTORY/$file $DIR/$MODULE.po"
+		cp $LAUNCHPAD_DIRECTORY/$file $DIR/$MODULE.po
 		if test $? -ne 0; then
 			echo "Error detected in the copy"
 			exit 1;

@@ -1,6 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA - Serge Steer
-// Copyright (C) 2010 - DIGITEO - Yann COLLETTE
+// Copyright (C) INRIA  Serge Steer
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
@@ -44,9 +43,7 @@ function black(varargin)
 //See also:
 //  bode nyquist  abaque freq repfreq 
 //!
-
-
-  rhs=size(varargin)
+    rhs=size(varargin)
   if type(varargin($))==10 then
     comments=varargin($),rhs=rhs-1;
   else
@@ -127,9 +124,9 @@ function black(varargin)
   phi1=phi+5*ones(phi);
 
   kk=1;p0=[phi(:,kk) d(:,kk)];ks=1;dst=0;
-  dx=max(%eps,xmx-xmn);
-  dy=max(%eps,ymx-ymn);
-  dx2=max(%eps,dx^2);dy2=max(%eps,dy^2);
+  dx=xmx-xmn
+  dy=ymx-ymn
+  dx2=dx^2;dy2=dy^2
 
   while kk<n
     kk=kk+1

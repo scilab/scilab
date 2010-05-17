@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-04-14 21:20+0000\n"
-"Last-Translator: kkirill <Unknown>\n"
+"PO-Revision-Date: 2010-02-12 20:30+0000\n"
+"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-04-16 07:53+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -248,9 +248,6 @@ msgstr "Отразить по вертикали"
 msgid "Format"
 msgstr "Формат"
 
-msgid "From %s"
-msgstr "От %s"
-
 msgid "Generate SuperBlock, please wait ..."
 msgstr "Формируется суперблок..."
 
@@ -259,9 +256,6 @@ msgstr "Формируется код на C для суперблока..."
 
 msgid "Get infos"
 msgstr "Получить информацию"
-
-msgid "Goto %s"
-msgstr "Перейти к %s"
 
 msgid "Grid"
 msgstr "Сетка"
@@ -315,7 +309,7 @@ msgid "Left"
 msgstr "По левому краю"
 
 msgid "Light Simulation trace (Discrete and Continuous part switches)"
-msgstr "Трассировка только блоков интегрирования"
+msgstr ""
 
 msgid "Link Style"
 msgstr "Стиль соединений"
@@ -437,7 +431,7 @@ msgid "Rows"
 msgstr "Строки"
 
 msgid "Same command executed again"
-msgstr "Та же команда выполнена снова"
+msgstr ""
 
 msgid "Save"
 msgstr "Сохранить"
@@ -526,9 +520,6 @@ msgstr "Прямой"
 msgid "Superblock mask"
 msgstr "Маска суперблока"
 
-msgid "The Scicos libraries are not loaded"
-msgstr "Библиотеки Scicos не загружены"
-
 msgid "The Scilab Consortium (DIGITEO)"
 msgstr "Консорциум Scilab (DIGITEO)"
 
@@ -555,21 +546,13 @@ msgid "UnGroup"
 msgstr "Разгруппировать"
 
 msgid "Unable to communicate with the interpreter"
-msgstr "Не удалось связаться с интерпретатором"
-
-#, c-format
-msgid "Unable to open %s"
-msgstr "Не удалось открыть %s"
-
-#, c-format
-msgid "Unable to simulate %s"
-msgstr "Не удалось моделировать %s"
+msgstr "Невозможно связаться с интерпретатором"
 
 msgid "Undo"
 msgstr "Отменить"
 
 msgid "Unknown Diagram Version : "
-msgstr "Неизвестная версия диаграммы: "
+msgstr "Неизвестная версия диаграммы : "
 
 msgid "Untitled"
 msgstr "Безымянная диаграмма"

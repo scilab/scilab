@@ -45,7 +45,7 @@ function [d]=base2dec(h,b)
 		for j=1:nc
 			s = abs(str2code(h(i,j)));
 			if max(s)>(b-1) then
-				error(msprintf(gettext("%s: Wrong value for input argument(s): Valid base %d representations expected.\n"),"base2dec",b));
+				error(msprintf(gettext("%s: Wrong value for input argument(s): Valid base %d representations expected.\n"),"base2dec",12));
 			end
 			d(i,j) = p(n(i,j):-1:1)*s;
 		end
