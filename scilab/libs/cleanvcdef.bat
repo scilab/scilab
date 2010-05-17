@@ -10,8 +10,6 @@
 @del /Q data_structures_f.vcdef
 @del /Q differential_equations.vcdef
 @del /Q differential_equations_f.vcdef
-@del /Q double.vcdef
-@del /Q double_f.vcdef
 @del /Q elementary_functions.vcdef
 @del /Q elementary_functions_f.vcdef
 @del /Q sparse.vcdef

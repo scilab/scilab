@@ -13,4 +13,4 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=3478
 //
 ierr = execstr("file(''open'', ''my file which does not exist'', ''old'');", "errcatch");
-if ierr <> 999 then bugmes();quit;end
+if ierr <> 240 then bugmes();quit;end

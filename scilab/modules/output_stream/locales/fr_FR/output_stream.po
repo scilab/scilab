@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-01-30 18:01+0100\n"
-"PO-Revision-Date: 2009-12-15 15:22+0000\n"
+"PO-Revision-Date: 2010-04-13 09:21+0000\n"
 "Last-Translator: Allan CORNET <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
+"X-Launchpad-Export-Date: 2010-05-04 21:28+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -65,7 +65,7 @@ msgid "%dth argument type must be boolean.\n"
 msgstr "Le type du %dième argument doit être booléen.\n"
 
 #, c-format
-msgid "%s : Memory allocation error.\n"
+msgid "%s: Memory allocation error.\n"
 msgstr "%s : Erreur d'allocation mémoire.\n"
 
 #, c-format
@@ -191,11 +191,11 @@ msgstr "%s: Arrêt demandé par le simulateur (ind=0)\n"
 
 #, c-format
 msgid "%s: The colocation matrix is singular.\n"
-msgstr ""
+msgstr "%s: La matrice de colocation est singulière.\n"
 
 #, c-format
 msgid "%s: This method is NOT implemented.\n"
-msgstr ""
+msgstr "%s: Cette méthode n'est pas encore crée.\n"
 
 #, c-format
 msgid ""
@@ -497,7 +497,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: singular or asymmetric problem.\n"
-msgstr ""
+msgstr "%s : problème singulier ou asymétrique.\n"
 
 #, c-format
 msgid "%s: sum(m) must be less than 40.\n"
@@ -545,6 +545,7 @@ msgstr "format 'o' non autorisé."
 
 msgid "A sparse matrix entry is defined with two different values.\n"
 msgstr ""
+"Une entrée de la matrice creuse est définie avec deux valeurs différentes.\n"
 
 msgid "Argument type must be boolean.\n"
 msgstr "Le type de l'argument doit être booléen.\n"
@@ -555,6 +556,7 @@ msgstr "Les arguments sont:\n"
 #, c-format
 msgid "At time: %s. Too many iteration to achieve required precision.\n"
 msgstr ""
+"Au temps : %s. Trop d'itération pour réaliser la précision requise.\n"
 
 #, c-format
 msgid "Bad call to primitive: %s\n"
@@ -564,7 +566,7 @@ msgid "Bad conversion."
 msgstr "Mauvaise conversion"
 
 msgid "Binary direct access files must be opened by 'file'.\n"
-msgstr ""
+msgstr "L'accès direct à un fichier binaire doit être ouvert par 'file'\n"
 
 #, c-format
 msgid "Breakpoints of function : %s\n"
@@ -636,6 +638,7 @@ msgstr "Erreur pendant l'édition de liens.\n"
 
 msgid "Error while writing in file: disk full or deleted file.\n"
 msgstr ""
+"Erreur durant l'ecriture dans le fichier: disque plein ou fichier supprimé.\n"
 
 msgid "Eye variable undefined in this context.\n"
 msgstr "La variable Eye n'est pas définie dans ce contexte.\n"
@@ -802,6 +805,9 @@ msgstr "Mémoire intermédiaire requise: %d\n"
 msgid "Invalid exponent.\n"
 msgstr "Exposant invalide.\n"
 
+msgid "Invalid factor.\n"
+msgstr "Facteur invalide.\n"
+
 msgid "Invalid index.\n"
 msgstr "Index invalide.\n"
 
@@ -895,7 +901,7 @@ msgid "Null variable cannot be used here.\n"
 msgstr "Une variable nulle ne peut pas être utilisée ici.\n"
 
 msgid "Operands of / and \\ operations must not contain NaN of Inf.\n"
-msgstr ""
+msgstr "Les opérandes /et \\  ne doivent pas contenir NaN & Inf.\n"
 
 msgid "Optim stops: maximum number of calls to f is reached.\n"
 msgstr "Optim s'est arrêté: le nombre maximum d'appel à f a été atteint.\n"
@@ -940,7 +946,7 @@ msgstr "Défaillance du rang : rang = %s - tol = %s.\n"
 
 #, c-format
 msgid "Rank deficient. rank = %d\n"
-msgstr ""
+msgstr "rang déficiant. rang = %d\n"
 
 msgid "Real part\n"
 msgstr "Partie réelle\n"
@@ -1069,13 +1075,13 @@ msgstr "Trop de fonctions sont définies (nb maximum: %d).\n"
 
 #, c-format
 msgid "Too many global variables! Max number is %d.\n"
-msgstr ""
+msgstr "Trop de variables globales ! Le nombre maximum est %d.\n"
 
 msgid "Too many input/output entries for highlighted block.\n"
-msgstr ""
+msgstr "Trop d'entrées d'entrée-sortie pour le bloc accentué.\n"
 
 msgid "Too many input/output ports for highlighted block.\n"
-msgstr ""
+msgstr "Trop de ports d'entrée-sortie pour le bloc accentué\n"
 
 msgid "Too many linked routines.\n"
 msgstr "Trop de routines liées.\n"
@@ -1184,6 +1190,8 @@ msgid ""
 "Warning: Jacobian external is given, but\n"
 " not used! See %ODEOPTIONS(6).\n"
 msgstr ""
+"Avertissement : L'external de Jacobian est donné, mais non utilisé! Voir "
+"%ODEOPTIONS(6).\n"
 
 msgid ""
 "Warning: No Jacobian external given but\n"
@@ -1207,6 +1215,8 @@ msgid ""
 "Warning: integration not completed! Check tolerance parameters or step "
 "size.\n"
 msgstr ""
+"Avertissement : intégration non accomplie! Vérifiez les paramètres de "
+"tolérance ou la taille du pas.\n"
 
 msgid "Warning: integration up to tcrit.\n"
 msgstr "Attention: intégration jusqu'à l'instant tcrit.\n"
@@ -1224,7 +1234,7 @@ msgid "Warning: obsolete use of '=' instead of '=='.\n"
 msgstr "Attention: utilisation obsolète de '=' à la place de '=='.\n"
 
 msgid "Warning: obsolete use of eye, rand, or ones.\n"
-msgstr ""
+msgstr "Avertissement : utilisation désuète de eye, rand, ou ones.\n"
 
 msgid ""
 "Warning: odedc forces itask=4 and handles\n"

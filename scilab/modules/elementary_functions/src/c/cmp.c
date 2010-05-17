@@ -10,7 +10,6 @@
  *
  */
 
-#include "stack-c.h" 
 #include "isanan.h"
 
 

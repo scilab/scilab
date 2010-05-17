@@ -1,7 +1,5 @@
 ; ==============================================================================
 ; Script d'installation Inno Setup pour scilab
-; Version TRUNK
-; Copyright INRIA 2008
 ; ==============================================================================
 ;
 ;-------------------------------------------------------------------------------
@@ -9,6 +7,9 @@
 ;-------------------------------------------------------------------------------
 ;
 #define PARAMETERS "parameters"
+;
+Source: bin\parameters.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: modules\{#PARAMETERS}\includes\parameters.h; DestDir: {app}\modules\{#PARAMETERS}\includes; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#PARAMETERS}\VERSION.xml; DestDir: {app}\modules\{#PARAMETERS}; Components: {#COMPN_SCILAB}
 Source: modules\{#PARAMETERS}\readme.txt; DestDir: {app}\modules\{#PARAMETERS}; Components: {#COMPN_SCILAB}

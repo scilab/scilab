@@ -50,7 +50,7 @@ function Makename=ilib_gen_Make(name,tables,files,libs,makename,with_gateway,ldf
 	tables(it)=table;
   end
       
-  comp_target = COMPILER;
+
   if with_lcc() == %T then
     if isdef('makename') then
       if (makename == []) | (makename == '') then
@@ -59,26 +59,19 @@ function Makename=ilib_gen_Make(name,tables,files,libs,makename,with_gateway,ldf
     end
     Makename = makename + '.lcc';
     ilib_gen_Make_lcc(name,tables,files,libs,Makename,with_gateway,ldflags,cflags,fflags)
-  else if getenv('WIN32','NO')=='OK' then
-    if isdef('makename') then
-      if (makename == []) | (makename == '') then
-        makename = 'makelib';
+  else 
+    if getos() == 'Windows' then
+      if isdef('makename') then
+        if (makename == []) | (makename == '') then
+          makename = 'makelib';
+        end
       end
-    end
-    select comp_target
-     case 'VC++'   then Makename = makename + '.mak';
+      Makename = makename + '.mak';
       ilib_gen_Make_win32(name,tables,files,libs,Makename,with_gateway,ldflags,cflags,fflags)
-     case 'gcc' then 
-      Makename = makename; 
-      ilib_gen_Make_unix(name,files,libs,Makename,with_gateway,ldflags,cflags,fflags,cc,tables)
     else
-       Makename = makename;
-       ilib_gen_Make_win32(name,tables,files,libs,Makename,with_gateway,ldflags,cflags,fflags)
+      Makename = makename;
+      ilib_gen_Make_unix(name,files,libs,name,ldflags,cflags,fflags,cc,tables)
     end
-  else
-     Makename = makename;
-     ilib_gen_Make_unix(name,files,libs,name,ldflags,cflags,fflags,cc,tables)
-  end
   end
 endfunction
 

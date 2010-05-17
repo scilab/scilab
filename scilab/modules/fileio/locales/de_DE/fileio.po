@@ -8,17 +8,17 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-10-23 09:41+0000\n"
+"PO-Revision-Date: 2010-02-22 07:45+0000\n"
 "Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
+"X-Launchpad-Export-Date: 2010-04-16 07:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
-msgid "%s : Memory allocation error.\n"
+msgid "%s: Memory allocation error.\n"
 msgstr "%s: Fehler bei der Speicherbelegung.\n"
 
 #, c-format
@@ -314,6 +314,8 @@ msgid ""
 "%s: Wrong type for input argument #%d: A filename or file descriptor "
 "expected.\n"
 msgstr ""
+"%s: falscher Typ für Eingangsargument #%d: ein Dateiname oder "
+"Dateideskriptor erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A integer expected.\n"

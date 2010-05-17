@@ -93,7 +93,7 @@ int sci_movefile(char *fname, int* _piKey)
 	pStVarOne = (wchar_t*)MALLOC(sizeof(wchar_t)*(lenStVarOne + 2));
 	if (pStVarOne == NULL)
 	{
-		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+		Scierror(999,_("%s: Memory allocation error.\n"),fname);
 		return 0;
 	}
 	
@@ -151,7 +151,7 @@ int sci_movefile(char *fname, int* _piKey)
 	if (pStVarTwo == NULL)
 	{
 		if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;}
-		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+		Scierror(999,_("%s: Memory allocation error.\n"),fname);
 		return 0;
 	}
 	
@@ -206,7 +206,7 @@ int sci_movefile(char *fname, int* _piKey)
 					if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;}
 					if (pStVarTwo) {FREE(pStVarTwo); pStVarTwo = NULL;}
 
-					Scierror(999,_("%s : Memory allocation error.\n"),fname);
+					Scierror(999,_("%s: Memory allocation error.\n"),fname);
 					return 0;
 				}
 			}
@@ -271,7 +271,7 @@ static void returnMoveFileResultOnStack(int ierr, char *fname, int* _piKey)
 	sciError = (wchar_t**)MALLOC(sizeof(wchar_t*)* 1);
 	if (sciError == NULL)
 	{
-		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+		Scierror(999,_("%s: Memory allocation error.\n"),fname);
 		return;
 	}
 
@@ -295,7 +295,7 @@ static void returnMoveFileResultOnStack(int ierr, char *fname, int* _piKey)
 		sciError[0] = (wchar_t*)MALLOC(sizeof(wchar_t)* ((int)wcslen(buffer) + 1));
 		if (sciError[0] == NULL)
 		{
-			Scierror(999,_("%s : Memory allocation error.\n"),fname);
+			Scierror(999,_("%s: Memory allocation error.\n"),fname);
 			return;
 		}
 
@@ -307,7 +307,7 @@ static void returnMoveFileResultOnStack(int ierr, char *fname, int* _piKey)
 		sciError[0] = (wchar_t*)MALLOC(sizeof(wchar_t)* 1);
 		if (sciError[0] == NULL)
 		{
-			Scierror(999,_("%s : Memory allocation error.\n"),fname);
+			Scierror(999,_("%s: Memory allocation error.\n"),fname);
 			return;
 		}
 		wcscpy(sciError[0], L"");
@@ -322,7 +322,7 @@ static void returnMoveFileResultOnStack(int ierr, char *fname, int* _piKey)
 		sciError[0] = to_wide_string(strerror(errno));
 		if (sciError[0] == NULL)
 		{
-			Scierror(999,_("%s : Memory allocation error.\n"),fname);
+			Scierror(999,_("%s: Memory allocation error.\n"),fname);
 			return;
 		}
 	}
@@ -332,7 +332,7 @@ static void returnMoveFileResultOnStack(int ierr, char *fname, int* _piKey)
 		sciError[0] = (wchar_t*)MALLOC(sizeof(wchar_t)* 1);
 		if (sciError[0] == NULL)
 		{
-			Scierror(999,_("%s : Memory allocation error.\n"),fname);
+			Scierror(999,_("%s: Memory allocation error.\n"),fname);
 			return;
 		}
 		wcscpy(sciError[0], L"");

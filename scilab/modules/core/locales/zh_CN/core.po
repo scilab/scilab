@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
+"X-Launchpad-Export-Date: 2010-04-16 07:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid "                 Consortium Scilab (DIGITEO)\n"
@@ -23,8 +23,8 @@ msgstr "                 Scilab协会 (DIGITEO)\n"
 msgid "               Copyright (c) 1989-2007 (ENPC)\n"
 msgstr "               版权所有 (c) 1989-2007 (ENPC)\n"
 
-msgid "               Copyright (c) 1989-2009 (INRIA)\n"
-msgstr "               版权所有 (c) 1989-2009 (INRIA)\n"
+msgid "               Copyright (c) 1989-2010 (INRIA)\n"
+msgstr ""
 
 msgid "  loading initial environment"
 msgstr "  正在载入初始环境"
@@ -46,7 +46,7 @@ msgid "%f: No more space to store string arguments.\n"
 msgstr "%f：没有更多空间来存储字符串参数。\n"
 
 #, c-format
-msgid "%s : Memory allocation error.\n"
+msgid "%s: Memory allocation error.\n"
 msgstr "%s：内存分配发生错误。\n"
 
 #, c-format
@@ -565,6 +565,10 @@ msgid "%s: Wrong type value.\n"
 msgstr "%s：错误的类型值。\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: \"%s\" expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr "%s：输入参数 #%d 的值出错：应该为“%s”。\n"
 
@@ -750,31 +754,8 @@ msgstr "正在检查：%s\n"
 msgid "Commands:\n"
 msgstr "命令:\n"
 
-#, c-format
-msgid "Compilation date: %s"
-msgstr "编译日期：%s"
-
-#, c-format
-msgid "Compilation time: %s"
-msgstr "编译时间：%s"
-
-#, c-format
-msgid "Compiled with %s"
-msgstr "使用 %s 编译"
-
-#, c-format
-msgid "Compiler Architecture: %s"
-msgstr "编译器架构：%s"
-
-#, c-format
-msgid "Directory separator: %s"
-msgstr "目录分隔符：%s"
-
 msgid "Do you really want to abort computation (y or n ?) \n"
 msgstr "您真的要中断计算么？（y 还是 n） \n"
-
-msgid "Enable"
-msgstr "启用"
 
 msgid "Error"
 msgstr "出错"
@@ -834,10 +815,8 @@ msgstr "出错：未找到有效的以“%s”编码的版本文件 %s（未以�
 #, c-format
 msgid ""
 "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
-"contains <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
+"contain <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
 msgstr ""
-"出错：无效的版本文件 %s（应该以<MODULE_VERSION>开始并包含<VERSION major='' minor='' "
-"maintenance='' revision='' string=''>）\n"
 
 #, c-format
 msgid "Error: could not parse file %s\n"
@@ -845,18 +824,6 @@ msgstr "出错：不能分析文件 %s\n"
 
 msgid "Fatal Error: Can't create table for scilab functions.\n"
 msgstr "严重出错：不能为 scilab 函数创建表格。\n"
-
-msgid "Free Extended Memory (Kbytes): %*I64d"
-msgstr "空闲的扩展内存（KB）：%*I64d"
-
-msgid "Free Paging File (Kbytes): %*I64d"
-msgstr "空闲的分页文件（KB）：%*I64d"
-
-msgid "Free Physical Memory (Kbytes): %*I64d"
-msgstr "空闲的物理内存（KB）：%*I64d"
-
-msgid "Free Virtual Memory (Kbytes): %*I64d"
-msgstr "空闲的虚拟内存（KB）：%*I64d"
 
 msgid "Functions compiled with very old versions are no more handled."
 msgstr "使用非常旧的版本编译的函数不再被支持。"
@@ -900,33 +867,14 @@ msgstr "不正确的时间域。\n"
 msgid "List full.\n"
 msgstr "列表满。\n"
 
-#, c-format
-msgid "Memory in use: %*ld %%"
-msgstr "使用的内存：%*ld %%"
-
 msgid "No space to allocate Scilab stack.\n"
 msgstr "无空间用来分配 Scilab 栈。\n"
-
-#, c-format
-msgid "Number of processors: %d"
-msgstr "处理器数目：%d"
-
-msgid "Operating System: "
-msgstr "操作系统： "
 
 msgid "Optional argument list is empty.\n"
 msgstr "可选参数列表为空。\n"
 
 msgid "Optional arguments list: \n"
 msgstr "可选参数列表： \n"
-
-#, c-format
-msgid "PCRE Version: %d.%d"
-msgstr "PCRE 版本：%d.%d"
-
-#, c-format
-msgid "Path separator: %s"
-msgstr "路径分隔符：%s"
 
 msgid "SCI environment variable not defined.\n"
 msgstr "未定义 SCI 环境变量。\n"
@@ -952,39 +900,14 @@ msgstr ""
 "Scilab 版本\"%d.%d.%d.%d\"\n"
 "%s\n"
 
-#, c-format
-msgid "Screen size: %d x %d %d bits"
-msgstr "屏幕大小：%d x %d %d 位"
-
 msgid "Startup execution:"
 msgstr "开始执行："
-
-#, c-format
-msgid "TCL version: %s"
-msgstr "TCL 版本：%s"
-
-#, c-format
-msgid "TK version: %s"
-msgstr "TK 版本：%s"
 
 msgid "TMPDIR not defined.\n"
 msgstr "未定义 TMPDIR。\n"
 
-#, c-format
-msgid "Tcl/Tk: %s"
-msgstr "Tcl/Tk：%s"
-
 msgid "The SCI environment variable is not set.\n"
 msgstr "未设置 SCI 环境变量。\n"
-
-msgid "Total Paging File (Kbytes): %*I64d"
-msgstr "所有的分页文件（KB）：%*I64d"
-
-msgid "Total Physical Memory (Kbytes): %*I64d"
-msgstr "所有的物理内存（KB）：%*I64d"
-
-msgid "Total Virtual Memory (Kbytes): %*I64d"
-msgstr "所有的虚拟内存（KB）：%*I64d"
 
 msgid "Trying to stop scilab in the middle of an interface.\n"
 msgstr "在界面中间尝试终止 Scilab。\n"
@@ -1002,18 +925,6 @@ msgstr "用户变量是："
 #, c-format
 msgid "Using %s elements ouf of %s"
 msgstr "使用了 %s 个元素中的 %s"
-
-#, c-format
-msgid "Version: %s"
-msgstr "版本： %s"
-
-#, c-format
-msgid "Video card driver version: %s"
-msgstr "视频卡驱动版本：%s"
-
-#, c-format
-msgid "Video card: %s"
-msgstr "视频卡：%s"
 
 #, c-format
 msgid "WARNING: %s"
@@ -1034,10 +945,6 @@ msgid ""
 "Warning: the operational team of the Scilab Consortium\n"
 "doesn't provide and doesn't support this version of Scilab built with\n"
 msgstr "警告：Scilab 协会的运作团队不提供且不支持 Scilab 生成于这个版本\n"
-
-#, c-format
-msgid "XML version: %s"
-msgstr "XML 版本： %s"
 
 msgid "Your global variables are:"
 msgstr "您的全局变量是："

@@ -1,14 +1,14 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2009 - DIGITEO - Antoine ELIAS
-*
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-*
-*/
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 
 extern "C"
 {
@@ -25,7 +25,7 @@ extern "C"
 #include "h5_writeDataToFile.h"
 #include "freeArrayOfString.h"
 #ifdef _MSC_VER
- #include "strdup_windows.h"
+#include "strdup_windows.h"
 #endif
 #include "scilabmode.h"
 }
@@ -57,20 +57,20 @@ static char fname[]			= "export_to_hdf5";
 /*--------------------------------------------------------------------------*/
 int sci_export_to_hdf5(char *fname, int* _piKey)
 {
-	int iRet						= 0;
-	int iNbVar					= 0;
-	int iLen						= 0;
-	int** piAddrList		= NULL;
-	char* pstFilename		= NULL;
-	char** pstNameList	= NULL;
-	bool bExport				= false;
+    int iRet            = 0;
+    int iNbVar          = 0;
+    int iLen            = 0;
+    int** piAddrList    = NULL;
+    char* pstFilename   = NULL;
+    char** pstNameList	= NULL;
+    bool bExport        = false;
 
-	SciErr sciErr;
+    SciErr sciErr;
 
-	CheckLhs(1,1);//output parameter
+    CheckLhs(1,1);//output parameter
 
 #ifndef _MSC_VER
-	forceJHDF5load();
+    forceJHDF5load();
 #endif
 
 	/*get input data*/
@@ -129,8 +129,8 @@ int sci_export_to_hdf5(char *fname, int* _piKey)
 	sciErr = allocMatrixOfBoolean(_piKey, Rhs + 1, 1, 1, &piReturn);
 	if(sciErr.iErr)
 	{
-			printError(&sciErr, 0);
-			return 0;
+        printError(&sciErr, 0);
+        return 0;
 	}
 
 	if(bExport == true)
@@ -155,84 +155,84 @@ static bool export_data(int* _piKey, int* _piVar, int _iH5File, char* _pstName)
 	SciErr sciErr = getVarType(_piKey, _piVar, &iType);
 	if(sciErr.iErr)
 	{
-			printError(&sciErr, 0);
-			return false;
+        printError(&sciErr, 0);
+        return false;
 	}
 
 	switch(iType)
 	{
 	case sci_matrix :
-		{
-			bReturn = export_double(_piKey, _piVar, _iH5File, _pstName);
-			break;
-		}
+    {
+        bReturn = export_double(_piKey, _piVar, _iH5File, _pstName);
+        break;
+    }
 	case sci_poly :
-		{
-			bReturn = export_poly(_piKey, _piVar, _iH5File, _pstName);
-			break;
-		}
+    {
+        bReturn = export_poly(_piKey, _piVar, _iH5File, _pstName);
+        break;
+    }
 	case sci_boolean :
-		{
-			bReturn = export_boolean(_piKey, _piVar, _iH5File, _pstName);
-			break;
-		}
+    {
+        bReturn = export_boolean(_piKey, _piVar, _iH5File, _pstName);
+        break;
+    }
 	case sci_sparse :
-		{
-			bReturn = export_sparse(_piKey, _piVar, _iH5File, _pstName);
-			break;
-		}
+    {
+        bReturn = export_sparse(_piKey, _piVar, _iH5File, _pstName);
+        break;
+    }
 	case sci_boolean_sparse :
-		{
-			bReturn = export_boolean_sparse(_piKey, _piVar, _iH5File, _pstName);
-			break;
-		}
+    {
+        bReturn = export_boolean_sparse(_piKey, _piVar, _iH5File, _pstName);
+        break;
+    }
 	case sci_matlab_sparse :
-		{
-			bReturn = export_matlab_sparse(_piKey, _piVar, _pstName);
-			break;
-		}
+    {
+        bReturn = export_matlab_sparse(_piKey, _piVar, _pstName);
+        break;
+    }
 	case sci_ints :
-		{
-			bReturn = export_ints(_piKey, _piVar, _iH5File, _pstName);
-			break;
-		}
+    {
+        bReturn = export_ints(_piKey, _piVar, _iH5File, _pstName);
+        break;
+    }
 	case sci_handles :
-		{
-			bReturn = export_handles(_piKey, _piVar, _pstName);
-			break;
-		}
+    {
+        bReturn = export_handles(_piKey, _piVar, _pstName);
+        break;
+    }
 	case sci_strings :
-		{
-			bReturn = export_strings(_piKey, _piVar, _iH5File, _pstName);
-			break;
-		}
+    {
+        bReturn = export_strings(_piKey, _piVar, _iH5File, _pstName);
+        break;
+    }
 	case sci_u_function :
-		{
-			bReturn = export_u_function(_piKey, _piVar, _pstName);
-			break;
-		}
+    {
+        bReturn = export_u_function(_piKey, _piVar, _pstName);
+        break;
+    }
 	case sci_c_function :
-		{
-			bReturn = export_c_function(_piKey, _piVar, _pstName);
-			break;
-		}
+    {
+        bReturn = export_c_function(_piKey, _piVar, _pstName);
+        break;
+    }
 	case sci_lib :
-		{
-			bReturn = export_lib(_piKey, _piVar, _pstName);
-			break;
-		}
+    {
+        bReturn = export_lib(_piKey, _piVar, _pstName);
+        break;
+    }
 	case sci_list :
 	case sci_tlist :
 	case sci_mlist :
-		{
-			bReturn = export_list(_piKey, _piVar, _iH5File, _pstName, iType);
-			break;
-		}
+    {
+        bReturn = export_list(_piKey, _piVar, _iH5File, _pstName, iType);
+        break;
+    }
 	case sci_lufact_pointer :
-		{
-			bReturn = export_lufact_pointer(_piKey, _piVar, _pstName);
-			break;
-		}
+    {
+        bReturn = export_lufact_pointer(_piKey, _piVar, _pstName);
+        break;
+    }
 	}
 	return bReturn;
 }
@@ -245,8 +245,8 @@ static bool export_list(int* _piKey, int *_piVar, int _iH5File, char* _pstName, 
 	SciErr sciErr = getListItemNumber(_piKey, _piVar, &iItemNumber);
 	if(sciErr.iErr)
 	{
-			printError(&sciErr, 0);
-			return false;
+        printError(&sciErr, 0);
+        return false;
 	}
 
 
@@ -298,8 +298,8 @@ static bool export_double(int* _piKey, int *_piVar, int _iH5File, char* _pstName
 	SciErr sciErr = getVarType(_piKey, _piVar, &iType);
 	if(sciErr.iErr)
 	{
-			printError(&sciErr, 0);
-			return false;
+        printError(&sciErr, 0);
+        return false;
 	}
 
 	if(iType != sci_matrix)
@@ -474,8 +474,8 @@ static bool export_boolean(int* _piKey, int *_piVar, int _iH5File, char* _pstNam
 	SciErr sciErr = getMatrixOfBoolean(_piKey, _piVar, &iRows, &iCols, &piData);
 	if(sciErr.iErr)
 	{
-			printError(&sciErr, 0);
-			return 0;
+        printError(&sciErr, 0);
+        return 0;
 	}
 
 	int iRet = writeBooleanMatrix(_iH5File, _pstName, iRows, iCols, piData);
@@ -504,8 +504,8 @@ static bool export_boolean_sparse(int* _piKey, int *_piVar, int _iH5File, char* 
 	SciErr sciErr = getBooleanSparseMatrix(_piKey, _piVar, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos);
 	if(sciErr.iErr)
 	{
-			printError(&sciErr, 0);
-			return false;
+        printError(&sciErr, 0);
+        return false;
 	}
 
 	iRet = writeBooleanSparseMatrix(_iH5File, _pstName, iRows, iCols, iNbItem, piNbItemRow, piColPos);
@@ -570,8 +570,8 @@ static bool export_sparse(int* _piKey, int *_piVar, int _iH5File, char* _pstName
 
 static bool export_matlab_sparse(int* _piKey, int *_piVar, char* _pstName)
 {
-	print_type(_pstName);
-	return true;
+    print_type(_pstName);
+    return true;
 }
 
 static bool export_ints(int* _piKey, int *_piVar, int _iH5File, char* _pstName)
@@ -681,8 +681,8 @@ static bool export_ints(int* _piKey, int *_piVar, int _iH5File, char* _pstName)
 
 static bool export_handles(int* _piKey, int *_piVar, char* _pstName)
 {
-	print_type(_pstName);
-	return true;
+    print_type(_pstName);
+    return true;
 }
 
 static bool export_strings(int* _piKey, int *_piVar, int _iH5File, char* _pstName)
@@ -738,36 +738,36 @@ static bool export_strings(int* _piKey, int *_piVar, int _iH5File, char* _pstNam
 
 static bool export_u_function(int* _piKey, int *_piVar, char* _pstName)
 {
-	print_type(_pstName);
-	return true;
+    print_type(_pstName);
+    return true;
 }
 
 static bool export_c_function(int* _piKey, int *_piVar, char* _pstName)
 {
-	print_type(_pstName);
-	return true;
+    print_type(_pstName);
+    return true;
 }
 
 static bool export_lib(int* _piKey, int *_piVar, char* _pstName)
 {
-	print_type(_pstName);
-	return true;
+    print_type(_pstName);
+    return true;
 }
 
 static bool export_lufact_pointer(int* _piKey, int *_piVar, char* _pstName)
 {
-	print_type(_pstName);
-	return true;
+    print_type(_pstName);
+    return true;
 }
 
 void print_type(char* _pstType)
 {
 #ifdef PRINT_DEBUG
-	for(int i = 0 ; i < iLevel ; i++)
-	{
-		sciprint("\t");
-	}
-	sciprint("%s\n", _pstType);
+    for(int i = 0 ; i < iLevel ; i++)
+    {
+        sciprint("\t");
+    }
+    sciprint("%s\n", _pstType);
 #endif
 }
 

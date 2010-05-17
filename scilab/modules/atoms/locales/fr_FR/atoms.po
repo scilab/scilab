@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2009-12-15 15:26+0000\n"
-"Last-Translator: Allan CORNET <Unknown>\n"
+"PO-Revision-Date: 2010-04-15 13:33+0000\n"
+"Last-Translator: Sylvestre Ledru <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
+"X-Launchpad-Export-Date: 2010-05-04 21:29+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -86,8 +86,8 @@ msgid "%s: ''%s'' isn''t installed.\n"
 msgstr "%s: ''%s'' n''est pas installé.\n"
 
 #, c-format
-msgid "%s: An error occurred while loading ''%s-%s''.\n"
-msgstr ""
+msgid "%s: An error occurred while loading ''%s-%s'':\n"
+msgstr "%s : Une erreur est survenue au cours du chargement de \"%s-%s\":\n"
 
 #, c-format
 msgid "%s: Another version of the package %s is already loaded : %s\n"
@@ -281,11 +281,11 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong length for input argument #%d: A string which has 32-characters "
+"%s: Wrong length for input argument #%d: String which has 32-characters "
 "length expected.\n"
 msgstr ""
-"%s: Mauvaise longueur pour l''argument d''entrée n° %d: Une chaîne de 32 "
-"caractères attendue.\n"
+"%s: Mauvaise taille pour l'argument d'entrée n° %d: Une chaine de 32 "
+"caracteres est attendue.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -323,30 +323,6 @@ msgid "%s: Wrong size for input argument #%d: 1x2 string matrix expected.\n"
 msgstr ""
 "%s: Mauvaise dimension pour l''argument d''entrée n° %d: Une matrice de "
 "chaînes de caractères de taille 1x2 attendue.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A Single String expected.\n"
-msgstr ""
-"%s: Mauvaise dimension pour l''argument d''entrée n° %d: Une simple chaîne "
-"de caractères attendue.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
-msgstr ""
-"%s: Mauvaise dimension pour l''argument d''entrée n° %d: Une simple chaîne "
-"de caractères attendue.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A single-string expected.\n"
-msgstr ""
-"%s: Mauvaise dimension pour l''argument d''entrée n° %d: Une simple chaîne "
-"de caractères attendue.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Single String expected.\n"
-msgstr ""
-"%s: Mauvaise dimension pour l''argument d''entrée n° %d: Une simple chaîne "
-"de caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
@@ -397,52 +373,15 @@ msgstr ""
 "chaînes de caractères de taille mx3 attendue.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A Single String expected.\n"
-msgstr ""
-"%s: Mauvais type pour l''argument d''entrée n° %d: Une simple chaîne de "
-"caractères attendue.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A a single-string expected.\n"
-msgstr ""
-"%s: Mauvaise valeur pour l''argument d''entrée n° %d: Une simple chaîne de "
-"caractères attendue.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
-msgstr ""
-"%s : Mauvais type pour l'argument d'entrée n° %d : Un booléen attendu.\n"
+msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
+msgstr "%s: Mauvais type pour l'argument d'entrée n° %d: Booléen attendu.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A boolean or a single string "
-"expected.\n"
+"%s: Wrong type for input argument #%d: Boolean or single string expected.\n"
 msgstr ""
-"%s: Mauvais type pour l''argument d''entrée n° %d: Un booléen ou une simple "
-"chaîne de caractères attendu.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
-msgstr ""
-"%s: Mauvais type pour l''argument d''entrée n° %d: Une simple chaîne de "
-"caractères attendue.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A single-string expected.\n"
-msgstr ""
-"%s: Mauvais type pour l''argument d''entrée n° %d: Une simple chaîne de "
-"caractères attendue.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A struct expected.\n"
-msgstr ""
-"%s: Mauvais type pour l''argument d''entrée n° %d: Une struct attendue.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Single String expected.\n"
-msgstr ""
-"%s : Mauvais type pour l''argument d''entrée n° %d : Une simple chaîne de "
-"caractères attendue.\n"
+"%s: Mauvais type pour l'argument d'entrée n° %d: Booléen ou simple chaîne de "
+"caractères attendus.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
@@ -535,30 +474,6 @@ msgstr ""
 "ou ''all'' attendu.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A string that contain ''TOOLBOXES'' "
-"or ''DESCRIPTION'' expected.\n"
-msgstr ""
-"%s: Mauvaise valeur pour l''argument d''entrée n° %d: Une chaîne de "
-"caractères contenant ''TOOLBOXES'' ou ''DESCRIPTION'' attendue.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A string that end with DESCRIPTION "
-"expected.\n"
-msgstr ""
-"%s: Mauvaise valeur pour l''argument d''entrée n° %d: Une chaîne de "
-"caractères terminant par DESCRIPTION attendue.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A string that start with "
-"''http://'',''ftp://'' or ''file://'' expected.\n"
-msgstr ""
-"%s: Mauvaise valeur pour l''argument d''entrée n° %d: Une chaîne de "
-"caractères commençant par ''http://'',''ftp://'' ou ''file://'' attendue.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
 msgstr ""
 "%s: Mauvaise valeur pour l''argument d''entrée n° %d: ASC ou DESC attendu.\n"
@@ -586,11 +501,35 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Single string that end with .tar.gz, "
-".tgz or .zip expected.\n"
+"%s: Wrong value for input argument #%d: Single string that ends with "
+".tar.gz, .tgz or .zip expected.\n"
 msgstr ""
 "%s: Mauvaise valeur pour l''argument d''entrée n° %d: Une simple chaîne de "
 "caractères terminant par .tar.gz, .tgz ou .zip attendue.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: String that contains ''TOOLBOXES'' "
+"or ''DESCRIPTION'' expected.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l''argument d''entrée n° %d: Une chaîne de "
+"caractères contenant ''TOOLBOXES'' ou ''DESCRIPTION'' attendue.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: String that ends with DESCRIPTION "
+"expected.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l''argument d''entrée n° %d: Une chaîne de "
+"caractères terminant par DESCRIPTION attendue.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: String that start with "
+"''http://'',''ftp://'' or ''file://'' expected.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Chaîne commençant par "
+"\"http://\", \"ftp://\" ou \"file://\" attendue.\n"
 
 #, c-format
 msgid ""
@@ -630,10 +569,13 @@ msgstr ""
 msgid ""
 "%s: You have not enough rights to remove any version of the package %s.\n"
 msgstr ""
+"%s: Vous ne disposez pas des droits pour supprimer aucune version du paquet "
+"%s.\n"
 
 #, c-format
 msgid "%s: You have not enough rights to remove the package %s (%s).\n"
 msgstr ""
+"%s: Vous n'avez pas assez de droits pour supprimer le paquet %s (%s).\n"
 
 #, c-format
 msgid "%s: You haven''t write access on this directory : %s.\n"
@@ -676,7 +618,7 @@ msgid "Author(s)"
 msgstr "Auteur(s)"
 
 msgid "Automatically Installed"
-msgstr ""
+msgstr "Installé automatiquement"
 
 msgid "Bytes"
 msgstr "Octets"
@@ -737,9 +679,10 @@ msgstr "Modules"
 
 msgid "No Atoms module is available. Please, check your Internet connection."
 msgstr ""
+"Aucun module externe disponible. Veuillez verifier votre connexion internet."
 
 msgid "No Atoms module is available: your repository list is empty."
-msgstr ""
+msgstr "Aucun module externe disponible. Votre liste de depot est vide."
 
 msgid "No module selected"
 msgstr "Pas de module sélectionné"

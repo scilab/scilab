@@ -70,7 +70,7 @@ int sci_isfile(char *fname, int *_piKey)
 	lenStVarOne = (int*)MALLOC(sizeof(int) * (m1 * n1));
 	if (lenStVarOne == NULL)
 	{
-		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+		Scierror(999,_("%s: Memory allocation error.\n"),fname);
 		return 0;
 	}
 
@@ -79,7 +79,7 @@ int sci_isfile(char *fname, int *_piKey)
 	{
 		if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}
 		freeArrayOfWideString(pStVarOne, m1 * n1);
-		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+		Scierror(999,_("%s: Memory allocation error.\n"),fname);
 		return 0;
 	}
 
@@ -94,7 +94,7 @@ int sci_isfile(char *fname, int *_piKey)
 	if (pStVarOne == NULL)
 	{
 		if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}
-		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+		Scierror(999,_("%s: Memory allocation error.\n"),fname);
 		return 0;
 	}
 
@@ -105,7 +105,7 @@ int sci_isfile(char *fname, int *_piKey)
 		{
 			freeArrayOfWideString(pStVarOne, m1 * n1);
 			if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}
-			Scierror(999,_("%s : Memory allocation error.\n"),fname);
+			Scierror(999,_("%s: Memory allocation error.\n"),fname);
 			return 0;
 		}
 	}

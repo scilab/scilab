@@ -58,7 +58,7 @@ int sci_log1p(char *fname, int* _piKey)
 
 	if(isVarComplex(_piKey, piAddr))
 	{
-		Error(43);
+		SciError(43);
 		return 0;
 	}
 	else
@@ -76,7 +76,7 @@ int sci_log1p(char *fname, int* _piKey)
 			{
 				if(C2F(errgst).ieee == 0)
 				{
-					Error(32);
+					SciError(32);
 					return 0;
 				}
 				else if(C2F(errgst).ieee == 1)

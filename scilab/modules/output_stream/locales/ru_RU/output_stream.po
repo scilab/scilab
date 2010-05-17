@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: output_stream-ru\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-01-30 18:01+0100\n"
-"PO-Revision-Date: 2010-02-12 20:27+0000\n"
-"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
+"PO-Revision-Date: 2010-04-14 21:06+0000\n"
+"Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
+"X-Launchpad-Export-Date: 2010-04-16 07:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -66,7 +66,7 @@ msgid "%dth argument type must be boolean.\n"
 msgstr "Тип %d-го параметра должен быть логическим.\n"
 
 #, c-format
-msgid "%s : Memory allocation error.\n"
+msgid "%s: Memory allocation error.\n"
 msgstr "%s: Ошибка выделения памяти.\n"
 
 #, c-format
@@ -188,11 +188,11 @@ msgstr "%s: Симулятор запросил остановку (ind=0)\n"
 
 #, c-format
 msgid "%s: The colocation matrix is singular.\n"
-msgstr ""
+msgstr "%s: Матрица расположения вырождена.\n"
 
 #, c-format
 msgid "%s: This method is NOT implemented.\n"
-msgstr "%s: Этот метод НЕ реализован.\n"
+msgstr "%s: Данный метод не реализован.\n"
 
 #, c-format
 msgid ""
@@ -484,7 +484,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: singular or asymmetric problem.\n"
-msgstr ""
+msgstr "%s: вырожденная или асимметричная задача.\n"
 
 #, c-format
 msgid "%s: sum(m) must be less than 40.\n"
@@ -531,7 +531,7 @@ msgid "'o' format not allowed."
 msgstr "Недопустимый формат «o»."
 
 msgid "A sparse matrix entry is defined with two different values.\n"
-msgstr ""
+msgstr "Элемент разреженной матрицы был задан двумя разными значениями.\n"
 
 msgid "Argument type must be boolean.\n"
 msgstr "Тип параметра должен быть логическим.\n"
@@ -542,6 +542,8 @@ msgstr "Параметры:\n"
 #, c-format
 msgid "At time: %s. Too many iteration to achieve required precision.\n"
 msgstr ""
+"В промежуток времени %s, слишком много итераций для достижения требуемой "
+"точности.\n"
 
 #, c-format
 msgid "Bad call to primitive: %s\n"
@@ -552,6 +554,7 @@ msgstr "Плохое преобразование."
 
 msgid "Binary direct access files must be opened by 'file'.\n"
 msgstr ""
+"Двоичные файлы прямого доступа могут быть открыты только командой «file».\n"
 
 #, c-format
 msgid "Breakpoints of function : %s\n"
@@ -616,7 +619,7 @@ msgid "Error while linking.\n"
 msgstr "Ошибка связывания (linking).\n"
 
 msgid "Error while writing in file: disk full or deleted file.\n"
-msgstr "Ошибка при записи в файл: диск заполнен или файл удалён.\n"
+msgstr "Ошибка при записи в файл: диск полный или файл удалён.\n"
 
 msgid "Eye variable undefined in this context.\n"
 msgstr "Переменная окна (eye variable) не определена в данном контексте.\n"
@@ -778,6 +781,9 @@ msgstr "Необходимо промежуточной памяти: %d\n"
 msgid "Invalid exponent.\n"
 msgstr "Неправильный показатель степени.\n"
 
+msgid "Invalid factor.\n"
+msgstr "Неправильный множитель.\n"
+
 msgid "Invalid index.\n"
 msgstr "Неправильный индекс.\n"
 
@@ -812,7 +818,7 @@ msgid "Logical unit number should be larger than %d.\n"
 msgstr "Номер логического блока должен быть больше %d.\n"
 
 msgid "Matrix is not positive definite.\n"
-msgstr "Матрия не является определенно-положительной.\n"
+msgstr "Матрица не является положительно определённой\n"
 
 msgid "Matrix norms available are 1, 2, inf, and fro.\n"
 msgstr "Доступные матричные нормы: 1, 2, inf и fro.\n"
@@ -870,7 +876,7 @@ msgid "Null variable cannot be used here.\n"
 msgstr "Здесь не может использоваться пустая переменная.\n"
 
 msgid "Operands of / and \\ operations must not contain NaN of Inf.\n"
-msgstr ""
+msgstr "Параметры команд / и \\ не могут содержать NaN или Inf.\n"
 
 msgid "Optim stops: maximum number of calls to f is reached.\n"
 msgstr "Оптимизация остановилась: достигнут максимум вызовов функции f.\n"
@@ -914,7 +920,7 @@ msgstr "Ранг недостаточен : ранг = %s  - tol = %s .\n"
 
 #, c-format
 msgid "Rank deficient. rank = %d\n"
-msgstr ""
+msgstr "Ранг недостаточен. Ранг = %d\n"
 
 msgid "Real part\n"
 msgstr "Вещественная часть\n"
@@ -1036,13 +1042,14 @@ msgstr "Определено слишком много функций (макс�
 
 #, c-format
 msgid "Too many global variables! Max number is %d.\n"
-msgstr "Слишком много глобальных переменных! Максимальное число - %d.\n"
+msgstr ""
+"Слишком много глобальных переменных! Максимальное число не более %d.\n"
 
 msgid "Too many input/output entries for highlighted block.\n"
-msgstr ""
+msgstr "Слишком много элементов ввода/вывода для подсвеченного блока.\n"
 
 msgid "Too many input/output ports for highlighted block.\n"
-msgstr ""
+msgstr "Слишком много портов ввода/вывода для подсвеченного блока.\n"
 
 msgid "Too many linked routines.\n"
 msgstr "Слишком много связанных программ.\n"
@@ -1149,6 +1156,8 @@ msgid ""
 "Warning: Jacobian external is given, but\n"
 " not used! See %ODEOPTIONS(6).\n"
 msgstr ""
+"Внимание: матрица Якоби задана, но\n"
+" не использована! см. %ODEOPTIONS(6).\n"
 
 msgid ""
 "Warning: No Jacobian external given but\n"
@@ -1172,6 +1181,8 @@ msgid ""
 "Warning: integration not completed! Check tolerance parameters or step "
 "size.\n"
 msgstr ""
+"Внимание: интегрирование не выполнено! Проверьте параметр допуска или размер "
+"шага.\n"
 
 msgid "Warning: integration up to tcrit.\n"
 msgstr "Внимание: интегрирование вплоть до tcrit.\n"
@@ -1187,7 +1198,7 @@ msgid "Warning: obsolete use of '=' instead of '=='.\n"
 msgstr "Внимание: устаревшее использование '=' вместо '=='.\n"
 
 msgid "Warning: obsolete use of eye, rand, or ones.\n"
-msgstr ""
+msgstr "Внимание: устаревшее использование eye(), rand() или ones().\n"
 
 msgid ""
 "Warning: odedc forces itask=4 and handles\n"

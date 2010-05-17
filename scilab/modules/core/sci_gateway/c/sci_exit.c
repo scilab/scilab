@@ -9,74 +9,92 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+/*--------------------------------------------------------------------------*/
 #include "gw_core.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "api_oldstack.h"
 #include "MALLOC.h"
-#include "sciquit.h"
+#include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
-
+#include "exitCodeValue.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(compil)(int *, int *, int *, int *, int *);
-/*--------------------------------------------------------------------------*/
-int C2F(sci_exit)(char *fname,unsigned long fname_len)
+int sci_exit(char *fname, int *_piKey)
 {
-	int twenty = 20;
-	int zero = 0;
-	int exitCode = 0;
 
-	/* if special compilation mode skip commands */
-	if ( C2F(com).comp[2] == 1 )
-	{
-		C2F(com).fin = 0;
-		C2F(com).fun = 0;
+// FIXME : Rewrite me for YaSp
 
-		LhsVar(1) = 0;
-		C2F(putlhsvar)();
+#ifdef __REWRITE_ME_FOR_YASP__
+	SciErr sciErr;
 
-		return 0;
-	}
-
-	/* compilation exit:<20> */
-	if (C2F(compil)(&twenty, &zero, &zero, &zero, &zero)) 
-	{
-		return 0;
-	}
-
-	Rhs = Max(0, Rhs);
+	CheckLhs(1,1);
 	CheckRhs(0,1);
 
-	if (Rhs == 1)
+	if (Rhs == 0)
 	{
-		if ( VarType(1) == sci_matrix )
-		{
-			int m1 = 0, n1 = 0, l1 = 0;
-			GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
-			if ( (m1 == n1) && (n1 == 1) )
-			{
-				double dexitcode = *stk(l1);
-				exitCode = (int) dexitcode;
+		setExitCodeValue(0);
+	}
+	else
+	{
+		int iExit = 0;
+		int m1 = 0, n1 = 0;
+		int iType1 = 0;
+		int *piAddressVarOne = NULL;
+		double *pdVarOne = NULL;
 
-				if (dexitcode != (double)exitCode)
-				{
-					Scierror(999,_("%s: Wrong value for input argument #%d: A int expected.\n"),fname,1);
-					return 0;
-				}
-			}
-			else
-			{
-				Scierror(999,_("%s: Wrong size for input argument #%d: A scalar expected.\n"),fname,1);
-				return 0;
-			}
+		/* get Address of inputs */
+		sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
 		}
+
+		sciErr = getVarType(_piKey, piAddressVarOne, &iType1);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+
+		/* check input type */
+		if ( iType1 != sci_matrix )
+		{
+			Scierror(999,_("%s: Wrong type for input argument #%d: A scalar expected.\n"),fname,1);
+			return 0;
+		}
+
+		sciErr = getMatrixOfDouble(_piKey, piAddressVarOne,&m1,&n1,&pdVarOne);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+
+		if( n1 != 1 || m1 != 1)
+		{
+			Scierror(999,_("%s: Wrong size for input argument #%d: A scalar expected.\n"),fname,1);
+			return 0;
+		}
+
+		iExit = (int) *pdVarOne;
+
+		if (*pdVarOne != (double)iExit)
+		{
+			Scierror(999,_("%s: Wrong value for input argument #%d: A integer expected.\n"),fname,1);
+			return 0;
+		}
+
+		setExitCodeValue(iExit);
 	}
 
-	LhsVar(1) = 0;
+	// this value do quit in scirun
+	C2F(com).fun = -999;
+
+	LhsVar(1) = 0; 
 	C2F(putlhsvar)();
 
-	ExitWithCodeFromScilab(exitCode);
-
-
+#endif 
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

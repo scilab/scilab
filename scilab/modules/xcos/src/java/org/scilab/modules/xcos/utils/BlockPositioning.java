@@ -19,7 +19,7 @@ import java.util.Map;
 
 import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.io.BasicBlockInfo;
+import org.scilab.modules.xcos.io.scicos.BasicBlockInfo;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
 

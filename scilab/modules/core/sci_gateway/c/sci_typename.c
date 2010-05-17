@@ -156,11 +156,11 @@ int sci_typename_two_rhs(char *fname, int* _piKey)
 			break;
 
 		case 1: case 3:
-				Error(224);
+				SciError(224);
 			break;
 
 		case 2:
-				Error(225);
+				SciError(225);
 			break;
 
 		default:

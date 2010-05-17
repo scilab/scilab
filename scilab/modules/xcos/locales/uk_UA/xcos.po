@@ -2,20 +2,19 @@
 # Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
 # This file is distributed under the same license as the scilab package.
 #
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
-# Yuri Chornoivan <yurchor@ukr.net>, 2010.
+# Yuri Chornoivan <yurchor@gmail.com>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-01-09 12:32+0000\n"
-"Last-Translator: yurchor <yurchor@gmail.com>\n"
+"PO-Revision-Date: 2010-04-13 09:11+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-01-21 15:53+0000\n"
+"X-Launchpad-Export-Date: 2010-04-16 07:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -256,6 +255,9 @@ msgstr "Віддзеркалити"
 msgid "Format"
 msgstr "Формат"
 
+msgid "From %s"
+msgstr "З %s"
+
 msgid "Generate SuperBlock, please wait ..."
 msgstr "Створення суперблоку, будь ласка, зачекайте…"
 
@@ -264,6 +266,9 @@ msgstr "Створення коду C для суперблоку"
 
 msgid "Get infos"
 msgstr "Отримати відомості"
+
+msgid "Goto %s"
+msgstr "Перейти до %s"
 
 msgid "Grid"
 msgstr "Ґратка"
@@ -314,7 +319,7 @@ msgstr "Інвертувати вибір"
 msgid "Left"
 msgstr "Ліворуч"
 
-msgid "Light Simulation trace (Discrete and Continous part switches)"
+msgid "Light Simulation trace (Discrete and Continuous part switches)"
 msgstr ""
 "Поверхневе трасування моделі (перемикачі дискретних та неперервних частин)"
 
@@ -438,6 +443,9 @@ msgstr "Обернути"
 msgid "Rows"
 msgstr "Рядки"
 
+msgid "Same command executed again"
+msgstr "Та сама команда, виконана знову"
+
 msgid "Save"
 msgstr "Зберегти"
 
@@ -468,13 +476,16 @@ msgid "Scilab file"
 msgstr "Файл Scilab"
 
 msgid "Select all"
-msgstr "Вибрати все"
+msgstr "Позначити все"
 
 msgid "Set Context"
 msgstr "Вказати контекст"
 
 msgid "Set Parameters"
 msgstr "Вказати параметри"
+
+msgid "Set block parameters"
+msgstr "Встановити параметри блоку"
 
 msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
 msgstr ""
@@ -522,6 +533,9 @@ msgstr "Прямий"
 msgid "Superblock mask"
 msgstr "Маска суперблоку"
 
+msgid "The Scicos libraries are not loaded"
+msgstr "Не завантажено бібліотеки Scicos"
+
 msgid "The Scilab Consortium (DIGITEO)"
 msgstr "Консорціум Scilab (DIGITEO)"
 
@@ -547,10 +561,21 @@ msgstr "Вгорі"
 msgid "UnGroup"
 msgstr "Розгрупувати"
 
+msgid "Unable to communicate with the interpreter"
+msgstr "Не вдалося обмінятися даними з інтерпретатором"
+
+#, c-format
+msgid "Unable to open %s"
+msgstr "Не вдалося відкрити %s"
+
+#, c-format
+msgid "Unable to simulate %s"
+msgstr "Не вдалося імітувати %s"
+
 msgid "Undo"
 msgstr "Вернути"
 
-msgid "Unknow Diagram Version : "
+msgid "Unknown Diagram Version : "
 msgstr "Невідома версія діаграми: "
 
 msgid "Untitled"

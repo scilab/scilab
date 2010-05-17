@@ -4,14 +4,18 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <!-- ENGLISH IMPOSED -->
+
+// <-- ENGLISH IMPOSED -->
+// <-- JVM NOT MANDATORY -->
+
 // <-- Non-regression test for bug 5466 -->
 //
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=5466
 //
 // <-- Short Description -->
-// I met some problems while saving scilab variables in a Matlab data file. Some times, the variables are not written in the data file.
+// I met some problems while saving scilab variables in a Matlab data file. 
+// Some times, the variables are not written in the data file.
 
 A = sprand(400,400,0.01);
 B = sprand(100,100,0.1);
@@ -28,4 +32,3 @@ savematfile(TMPDIR + filesep() + "bug_5466.mat","A");
 clear
 loadmatfile(TMPDIR + filesep() + "bug_5466.mat","A");
 if or(size(A)<>[10 10]) then pause;end
-                    

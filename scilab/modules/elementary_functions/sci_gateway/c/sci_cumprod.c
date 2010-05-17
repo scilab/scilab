@@ -117,7 +117,7 @@ int sci_cumprod(char *fname, int*_piKey)
 		}
 		else
 		{
-			Error(44);
+			SciError(44);
 			return 2;
 		}
 	}
@@ -162,7 +162,7 @@ int sci_cumprod(char *fname, int*_piKey)
 		}
 		else
 		{
-			Error(44);
+			SciError(44);
 			return 2;
 		}
 	}

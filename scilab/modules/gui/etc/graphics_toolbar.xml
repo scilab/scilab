@@ -19,8 +19,16 @@
 
     <separator/>
 
+    <!-- Datatips -->
+    <button icon="datatips.png" tooltiptext="toggle datatip mode">
+        <callback instruction='datatipManagerMode([SCILAB_FIGURE_ID],"toggle");' type="-2"/>
+    </button>
+
+    <separator/>
+
     <!-- Help -->
     <button icon="help-browser.png" tooltiptext="Help Browser">
         <callback instruction='help();' type="-2"/>
     </button>
+
 </toolbar>

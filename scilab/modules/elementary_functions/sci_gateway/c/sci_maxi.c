@@ -228,7 +228,7 @@ SciErr compare_double_inside(int* _piKey, int* _piAddress, int _iIsMini, int _iM
 	if(isVarComplex(_piKey, _piAddress))
 	{
 		Err = 1;
-		Error(202);
+		SciError(202);
 		return sciErr;
 	}
 
@@ -473,7 +473,7 @@ static SciErr compare_double(int* _piKey, int _iIsMini, int** _piAddr, int _iNbI
 		if(isVarComplex(_piKey, _piAddr[i]))
 		{
 			Err = i;
-			Error(202);
+			SciError(202);
 			return sciErr;
 		}
 
@@ -486,7 +486,7 @@ static SciErr compare_double(int* _piKey, int _iIsMini, int** _piAddr, int _iNbI
 		if(iRhsRows * iRhsCols == 0)
 		{
 			Err = i + 1;
-			Error(45);
+			SciError(45);
 			return sciErr;
 		}
 
@@ -504,7 +504,7 @@ static SciErr compare_double(int* _piKey, int _iIsMini, int** _piAddr, int _iNbI
 					if(iRows * iCols != 1)
 					{
 						Err = i + 1;
-						Error(42);
+						SciError(42);
 						return sciErr;
 					}
 					else

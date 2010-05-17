@@ -38,7 +38,7 @@ int intdlassq(fname)
     break;
   default:
     sciprint("%s: bad call to dassq",fname);
-    Error(9999); return 0;
+    SciError(9999); return 0;
   }
   C2F(dlassq)(&N , stk(lX), &un, stk(lSCALE), stk(lSUMSQ));
   LhsVar(1) = 2;  LhsVar(2) = 3; /*  Return var #2 (SCALE) and #3 (SUMSQ) */

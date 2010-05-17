@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -16,9 +16,6 @@
 		/>
 	</Platforms>
 	<ToolFiles>
-		<ToolFile
-			RelativePath="..\..\Visual-Studio-settings\rename-vc-files.rules"
-		/>
 	</ToolFiles>
 	<Configurations>
 		<Configuration
@@ -38,14 +35,11 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
-				Name="rename .vc files"
+				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"
 				ExecutionBucket="4"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
@@ -144,9 +138,6 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
-				Name="rename .vc files"
-			/>
-			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
@@ -238,14 +229,11 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
-				Name="rename .vc files"
+				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"
 				ExecutionBucket="4"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
@@ -344,9 +332,6 @@
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="rename .vc files"
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -485,46 +470,6 @@
 			Name="Resource Files"
 			Filter="ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
 			>
-		</Filter>
-		<Filter
-			Name="Rename Header Files"
-			>
-			<File
-				RelativePath="..\..\modules\scicos_blocks\includes\blocks.h.vc"
-				>
-			</File>
-			<File
-				RelativePath="..\..\etc\classpath.xml.vc"
-				>
-			</File>
-			<File
-				RelativePath="..\..\etc\jvm_options.xml.vc"
-				>
-			</File>
-			<File
-				RelativePath="..\..\modules\core\includes\machine.h.vc"
-				>
-			</File>
-			<File
-				RelativePath="..\..\etc\modules.xml.vc"
-				>
-			</File>
-			<File
-				RelativePath="..\..\scilab-lib-doc.properties.vc"
-				>
-			</File>
-			<File
-				RelativePath="..\..\scilab-lib.properties.vc"
-				>
-			</File>
-			<File
-				RelativePath="..\..\modules\core\includes\stack.h.vc"
-				>
-			</File>
-			<File
-				RelativePath="..\..\modules\helptools\macros\xmlfiletohtml.sci.vc"
-				>
-			</File>
 		</Filter>
 	</Files>
 	<Globals>

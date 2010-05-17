@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-02-27 18:16+0100\n"
-"PO-Revision-Date: 2010-01-30 09:31+0000\n"
+"PO-Revision-Date: 2010-02-20 13:12+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
+"X-Launchpad-Export-Date: 2010-04-16 07:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid "                 Consortium Scilab (DIGITEO)\n"
@@ -23,8 +23,8 @@ msgstr "                 Consorzio Scilab (DIGITEO)\n"
 msgid "               Copyright (c) 1989-2007 (ENPC)\n"
 msgstr "               Copyright (c) 1989-2007 (ENPC)\n"
 
-msgid "               Copyright (c) 1989-2009 (INRIA)\n"
-msgstr "               Copyright (c) 1989-2009 (INRIA)\n"
+msgid "               Copyright (c) 1989-2010 (INRIA)\n"
+msgstr "               Copyright (c) 1989-2010 (INRIA)\n"
 
 msgid "  loading initial environment"
 msgstr "  caricamento dell'ambiente iniziale"
@@ -46,7 +46,7 @@ msgid "%f: No more space to store string arguments.\n"
 msgstr "%f: Non c'è più spazio per sistemare gli argomenti della stringa.\n"
 
 #, c-format
-msgid "%s : Memory allocation error.\n"
+msgid "%s: Memory allocation error.\n"
 msgstr "%s : Errore di allocazione della memoria\n"
 
 #, c-format
@@ -684,6 +684,10 @@ msgid "%s: Wrong type value.\n"
 msgstr "%s: Valore di tipo sbagliato.\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: \"%s\" expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso %s\".\n"
@@ -911,31 +915,8 @@ msgstr "Controllo di %s in corso\n"
 msgid "Commands:\n"
 msgstr "Comandi:\n"
 
-#, c-format
-msgid "Compilation date: %s"
-msgstr "Data di compilazione: %s"
-
-#, c-format
-msgid "Compilation time: %s"
-msgstr "Tempo di compilazione: %s"
-
-#, c-format
-msgid "Compiled with %s"
-msgstr "Compilato con %s"
-
-#, c-format
-msgid "Compiler Architecture: %s"
-msgstr "Architettura del compilatore: %s"
-
-#, c-format
-msgid "Directory separator: %s"
-msgstr "Separatore di directory: %s"
-
 msgid "Do you really want to abort computation (y or n ?) \n"
 msgstr "Interrompere veramente il calcolo (y o n) \n"
-
-msgid "Enable"
-msgstr "Abilitare"
 
 msgid "Error"
 msgstr "Errore"
@@ -1001,11 +982,8 @@ msgstr ""
 #, c-format
 msgid ""
 "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
-"contains <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
+"contain <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
 msgstr ""
-"Errore: %s non è un file di versione valido (dovrebbe iniziare con "
-"<MODULE_VERSION> e contiene <VERSION major=\" minor=\" maintenance=\" "
-"revision=\" string=\">)\n"
 
 #, c-format
 msgid "Error: could not parse file %s\n"
@@ -1015,18 +993,6 @@ msgid "Fatal Error: Can't create table for scilab functions.\n"
 msgstr ""
 "Errore fatale: non è possibile creare una tabella per le funzioni di "
 "Scilab.\n"
-
-msgid "Free Extended Memory (Kbytes): %*I64d"
-msgstr "Memoria estesa totale (Kbyte): %*l64d"
-
-msgid "Free Paging File (Kbytes): %*I64d"
-msgstr "File di Paging disponibile (Kbyte): %*64d"
-
-msgid "Free Physical Memory (Kbytes): %*I64d"
-msgstr "Memoria Fisica disponibile (Kbyte): %*64d"
-
-msgid "Free Virtual Memory (Kbytes): %*I64d"
-msgstr "Memoria virtuale disponibile (Kbyte): %*l64d"
 
 msgid "Functions compiled with very old versions are no more handled."
 msgstr ""
@@ -1072,33 +1038,14 @@ msgstr "Il dominio temporale non è valido.\n"
 msgid "List full.\n"
 msgstr "La lista è piena.\n"
 
-#, c-format
-msgid "Memory in use: %*ld %%"
-msgstr "Memoria in uso: %*ld%%"
-
 msgid "No space to allocate Scilab stack.\n"
 msgstr "Non c'è spazio per allocare lo stack di Scilab.\n"
-
-#, c-format
-msgid "Number of processors: %d"
-msgstr "Numero di processori: %d"
-
-msgid "Operating System: "
-msgstr "Sistema operativo: "
 
 msgid "Optional argument list is empty.\n"
 msgstr "La lista degli argomenti opzionali è vuota.\n"
 
 msgid "Optional arguments list: \n"
 msgstr "Lista degli argomenti opzionali: \n"
-
-#, c-format
-msgid "PCRE Version: %d.%d"
-msgstr "Versione di PCRE: %d.%d"
-
-#, c-format
-msgid "Path separator: %s"
-msgstr "Separatore di percorso: %s"
 
 msgid "SCI environment variable not defined.\n"
 msgstr "La variabile d'ambiente SCI non è definita.\n"
@@ -1124,39 +1071,14 @@ msgstr ""
 "Versione di Scilab \"%d.%d.%d.%d\"\n"
 "%s\n"
 
-#, c-format
-msgid "Screen size: %d x %d %d bits"
-msgstr "Dimensione dello schermo: %d x %d %d bit"
-
 msgid "Startup execution:"
 msgstr "Esecuzione d'avvio:"
-
-#, c-format
-msgid "TCL version: %s"
-msgstr "Versione di TCL: %s"
-
-#, c-format
-msgid "TK version: %s"
-msgstr "Versione di TK: %s"
 
 msgid "TMPDIR not defined.\n"
 msgstr "TMPDIR non è definita.\n"
 
-#, c-format
-msgid "Tcl/Tk: %s"
-msgstr "Tcl/TK: %s"
-
 msgid "The SCI environment variable is not set.\n"
 msgstr "La variabile d'ambiente SCI non è impostata.\n"
-
-msgid "Total Paging File (Kbytes): %*I64d"
-msgstr "File di Paging in totale (Kbyte): %*64d"
-
-msgid "Total Physical Memory (Kbytes): %*I64d"
-msgstr "Memoria Fisica totale (Kbyte): %*l64d"
-
-msgid "Total Virtual Memory (Kbytes): %*I64d"
-msgstr "Memoria virtuale totale (Kbyte): %*l64d"
 
 msgid "Trying to stop scilab in the middle of an interface.\n"
 msgstr "Tentativo di fermare Scilab nel mezzo di una interfaccia.\n"
@@ -1176,18 +1098,6 @@ msgstr "Le variabili dell'utente sono:"
 #, c-format
 msgid "Using %s elements ouf of %s"
 msgstr "Uso di %s elementi fuori da %s"
-
-#, c-format
-msgid "Version: %s"
-msgstr "Versione: %s"
-
-#, c-format
-msgid "Video card driver version: %s"
-msgstr "Versione del driver della scheda video: %s"
-
-#, c-format
-msgid "Video card: %s"
-msgstr "Scheda video: %s"
 
 #, c-format
 msgid "WARNING: %s"
@@ -1210,10 +1120,6 @@ msgid ""
 msgstr ""
 "Attenzione il gruppo operativo del Consorzio Scilab\n"
 "non fornisce e non supporta questa versione di Scilab creata con\n"
-
-#, c-format
-msgid "XML version: %s"
-msgstr "Versione di XML: %s"
 
 msgid "Your global variables are:"
 msgstr "Le vostre variabili globali sono:"

@@ -111,7 +111,7 @@ int sci_scimatrix(char *fname, int* _piKey)
 
 		if(isVarComplex(_piKey, piAddr2))
 		{
-			Error(32);
+			SciError(32);
 			return 0;
 		}
 
@@ -159,7 +159,7 @@ int sci_scimatrix(char *fname, int* _piKey)
 
 		if(isVarComplex(_piKey, piAddr3) || isVarComplex(_piKey, piAddr2))
 		{
-			Error(32);
+			SciError(32);
 			return 0;
 		}
 
@@ -180,7 +180,7 @@ int sci_scimatrix(char *fname, int* _piKey)
 
 		if(iRows3 * iCols3 != 1 || iRows2 * iCols2 != 1)
 		{
-			Error(52);
+			SciError(52);
 			return 0;
 		}
 		else
@@ -189,7 +189,7 @@ int sci_scimatrix(char *fname, int* _piKey)
 			iRowsRet = (int)pdblRealData2[0];
 			if(iColsRet < -1 || iRowsRet < -1)
 			{
-				Error(116);
+				SciError(116);
 				return 0;
 			}
 		}
@@ -197,7 +197,7 @@ int sci_scimatrix(char *fname, int* _piKey)
 
 	if(iColsRet == -1 && iRowsRet == -1)
 	{
-		Error(42);
+		SciError(42);
 		return 0;
 	}
 
@@ -220,14 +220,14 @@ int sci_scimatrix(char *fname, int* _piKey)
 
 	if(iRowsRet * iColsRet != iRows1 * iCols1)
 	{
-		Error(60);
+		SciError(60);
 		return 0;
 	}
 
 	if(iRowsRet * iColsRet > MAX_INTERGER)
 	{
 		sciprint(_("%s: interger overflow.\n"), fname);
-		Error(9999);
+		SciError(9999);
 	}
 
 	switch(iType)

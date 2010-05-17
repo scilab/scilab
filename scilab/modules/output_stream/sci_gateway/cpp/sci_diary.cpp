@@ -132,7 +132,7 @@ static int sci_diary_no_rhs(char *fname, int* _piKey)
 		}
 		else
 		{
-			Scierror(999,_("%s : Memory allocation error.\n"),fname);
+			Scierror(999,_("%s: Memory allocation error.\n"),fname);
 			return 0;
 		}
 	}
@@ -176,7 +176,7 @@ static int sci_diary_no_rhs(char *fname, int* _piKey)
 			}
 			else
 			{
-				Scierror(999,_("%s : Memory allocation error.\n"),fname);
+				Scierror(999,_("%s: Memory allocation error.\n"),fname);
 				return 0;
 			}
 		}
@@ -622,12 +622,12 @@ static int sci_diary_three_rhs(char *fname, int* _piKey)
 		}
 		else
 		{
-			Scierror(999,_("%s : Memory allocation error.\n"),fname);
+			Scierror(999,_("%s: Memory allocation error.\n"),fname);
 		}
 	}
 	else
 	{
-		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+		Scierror(999,_("%s: Memory allocation error.\n"),fname);
 	}
 	return 0;
 }
@@ -735,7 +735,7 @@ static wchar_t **getInputArgumentOneFilenames(char *fname, int* _piKey,int *size
 			lenStVarOne = (int *)MALLOC(sizeof(int) * (m1 * n1));
 			if (lenStVarOne == NULL)
 			{
-				Scierror(999,_("%s : Memory allocation error.\n"),fname);
+				Scierror(999,_("%s: Memory allocation error.\n"),fname);
 				*ierror = 1;
 			}
 			else
@@ -750,7 +750,7 @@ static wchar_t **getInputArgumentOneFilenames(char *fname, int* _piKey,int *size
 				wcFilenames = (wchar_t **)MALLOC(sizeof(wchar_t *) * (m1 * n1));
 				if (wcFilenames == NULL)
 				{
-					Scierror(999,_("%s : Memory allocation error.\n"),fname);
+					Scierror(999,_("%s: Memory allocation error.\n"),fname);
 					*ierror = 1;
 				}
 				else
@@ -760,7 +760,7 @@ static wchar_t **getInputArgumentOneFilenames(char *fname, int* _piKey,int *size
 						wcFilenames[i] = (wchar_t*)MALLOC(sizeof(wchar_t)* (lenStVarOne[i] + 1));
 						if (wcFilenames[i] == NULL)
 						{
-							Scierror(999,_("%s : Memory allocation error.\n"),fname);
+							Scierror(999,_("%s: Memory allocation error.\n"),fname);
 							*ierror = 1;
 						}
 					}
@@ -843,7 +843,7 @@ static wchar_t *getInputArgumentTwo(char *fname, int* _piKey, int *ierror)
 
 			if (wcInputArgumentTwo == NULL)
 			{
-				Scierror(999,_("%s : Memory allocation error.\n"),fname);
+				Scierror(999,_("%s: Memory allocation error.\n"),fname);
 				*ierror = 1;
 			}
 
@@ -908,7 +908,7 @@ static wchar_t** getInputArgumentThree(char *fname, int* _piKey,int *sizeReturne
 			lenStVarThree = (int *)MALLOC(sizeof(int) * (m3 * n3));
 			if (lenStVarThree == NULL)
 			{
-				Scierror(999,_("%s : Memory allocation error.\n"),fname);
+				Scierror(999,_("%s: Memory allocation error.\n"),fname);
 				*ierror = 1;
 			}
 			else
@@ -923,7 +923,7 @@ static wchar_t** getInputArgumentThree(char *fname, int* _piKey,int *sizeReturne
 				wcInputArgumentThree = (wchar_t **)MALLOC(sizeof(wchar_t *) * (m3 * n3));
 				if (wcInputArgumentThree == NULL)
 				{
-					Scierror(999,_("%s : Memory allocation error.\n"),fname);
+					Scierror(999,_("%s: Memory allocation error.\n"),fname);
 					*ierror = 1;
 				}
 				else
@@ -1183,7 +1183,7 @@ static int ExistByFilenames(char *fname, int* _piKey)
 	if (resultExist == NULL)
 	{
 		freeArrayOfWideString(wcFilenames,dIDs_size);
-		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+		Scierror(999,_("%s: Memory allocation error.\n"),fname);
 		return 0;
 	}
 	
@@ -1226,7 +1226,7 @@ static int ExistByIds(char *fname, int* _piKey)
 	int *resultExist = (int*)MALLOC(sizeof(int)*dIDs_size);
 	if (resultExist == NULL)
 	{
-		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+		Scierror(999,_("%s: Memory allocation error.\n"),fname);
 		return 0;
 	}
 

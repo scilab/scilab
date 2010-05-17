@@ -165,7 +165,7 @@ int sci_file(char *fname, int* _piKey)
 			pStVarOne = (char*)MALLOC(sizeof(char)*(lenStVarOne + 1));
 			if (pStVarOne == NULL)
 			{
-				Scierror(999,_("%s : Memory allocation error.\n"),fname);
+				Scierror(999,_("%s: Memory allocation error.\n"),fname);
 				return 0;
 			}
 
@@ -193,7 +193,7 @@ int sci_file(char *fname, int* _piKey)
 				pStVarThree = (char*)MALLOC(sizeof(char)*(lenStVarThree + 1));
 				if (pStVarThree == NULL)
 				{
-					Scierror(999,_("%s : Memory allocation error.\n"),fname);
+					Scierror(999,_("%s: Memory allocation error.\n"),fname);
 					return 0;
 				}
 
@@ -221,7 +221,7 @@ int sci_file(char *fname, int* _piKey)
 					pStVarTwo = (wchar_t*)MALLOC(sizeof(wchar_t)*(lenStVarTwo + 1));
 					if (pStVarTwo == NULL)
 					{
-						Scierror(999,_("%s : Memory allocation error.\n"),fname);
+						Scierror(999,_("%s: Memory allocation error.\n"),fname);
 						return 0;
 					}
 
