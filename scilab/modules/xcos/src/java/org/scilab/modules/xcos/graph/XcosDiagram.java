@@ -66,6 +66,7 @@ import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.SciFileFilter;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
+import org.scilab.modules.jvm.utils.ScilabConstants;
 import org.scilab.modules.types.scilabTypes.ScilabMList;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
@@ -124,6 +125,7 @@ import com.mxgraph.util.mxRectangle;
 import com.mxgraph.util.mxUndoableEdit;
 import com.mxgraph.util.mxUtils;
 import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
+import com.mxgraph.view.mxGraphSelectionModel;
 import com.mxgraph.view.mxMultiplicity;
 import com.mxgraph.view.mxStylesheet;
 
@@ -2291,5 +2293,34 @@ public class XcosDiagram extends ScilabGraph {
 	waitPathRelease = false;
 	drawLink = null;
 	info(XcosMessages.EMPTY_INFO);
+    }
+    
+    /**
+     * Construct a new selection model used on this graph.
+     * 
+     * @return a new selection model instance.
+     * @see com.mxgraph.view.mxGraph#createSelectionModel()
+     */
+    @Override
+    protected mxGraphSelectionModel createSelectionModel() {
+    	return new mxGraphSelectionModel(this) {
+			/**
+			 * When we only want to select a cell which is a port, select the
+			 * parent block.
+			 * 
+			 * @param cell the cell
+			 * @see com.mxgraph.view.mxGraphSelectionModel#setCell(java.lang.Object)
+			 */
+    		@Override
+    		public void setCell(Object cell) {
+    			final Object current;
+    			if (cell instanceof BasicPort) {
+    				current = getModel().getParent(cell);
+    			} else {
+    				current = cell;
+    			}
+    			super.setCell(current);
+    		}
+    	};
     }
 }

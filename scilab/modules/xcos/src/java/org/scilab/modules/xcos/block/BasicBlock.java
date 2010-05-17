@@ -22,6 +22,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -91,7 +92,7 @@ import com.mxgraph.model.mxGeometry;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxUtils;
 
-public class BasicBlock extends ScilabGraphUniqueObject {
+public class BasicBlock extends ScilabGraphUniqueObject implements Serializable {
 	private static final double DEFAULT_POSITION_X = 10.0;
 	private static final double DEFAULT_POSITION_Y = 10.0;
 	private static final double DEFAULT_WIDTH = 40.0;
@@ -122,7 +123,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 	 *     - "blockType"
 	 *     - "ordering"
 	 */
-	protected PropertyChangeSupport parameters = new PropertyChangeSupport(this);
+	protected PropertyChangeSupport parametersPCS = new PropertyChangeSupport(this);
 	
     private String interfaceFunctionName = "xcos_block";
     private String simulationFunctionName = "xcos_simulate";
@@ -211,7 +212,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 		}
 	};
 
-	private static class UpdateStyleFromInterfunction implements PropertyChangeListener {
+	private static class UpdateStyleFromInterfunction implements PropertyChangeListener, Serializable {
 
 		/**
 		 * Update the label on interfunction change.
@@ -231,6 +232,29 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 		
 	}
 	
+	private static class TraceParametersListener implements PropertyChangeListener, Serializable {
+		private static TraceParametersListener instance;
+		
+		private TraceParametersListener() {
+			super();
+		}
+		
+		/**
+		 * @return the instance
+		 */
+		public static TraceParametersListener getInstance() {
+			if (instance == null) {
+				instance = new TraceParametersListener();
+			}
+			return instance;
+		}
+		
+		@Override
+		public void propertyChange(PropertyChangeEvent evt) {
+			LOG.trace(evt.getPropertyName() + ": " + evt.getOldValue() + ", " + evt.getNewValue());
+		}
+	}
+	
 	/**
 	 * 
 	 */
@@ -240,8 +264,15 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 		setVisible(true);
 		setVertex(true);
 		
-		parameters.addPropertyChangeListener("interfaceFunctionName",
+		parametersPCS.addPropertyChangeListener("interfaceFunctionName",
 				styleUpdater);
+		
+		/*
+		 * Trace block parameters change if applicable.
+		 */
+		if (LOG.isTraceEnabled()) {
+			parametersPCS.addPropertyChangeListener(TraceParametersListener.getInstance());
+		}
 	}
 
 	/**
@@ -306,7 +337,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			
 			final String oldValue = this.interfaceFunctionName;
 			this.interfaceFunctionName = interfaceFunctionName;
-			parameters.firePropertyChange("interfaceFunctionName", oldValue,
+			parametersPCS.firePropertyChange("interfaceFunctionName", oldValue,
 					interfaceFunctionName);
 		}
     }
@@ -320,7 +351,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			
     		final String oldValue = this.simulationFunctionName;
     		this.simulationFunctionName = simulationFunctionName;
-    		parameters.firePropertyChange("simulationFunctionName", oldValue, simulationFunctionName);
+    		parametersPCS.firePropertyChange("simulationFunctionName", oldValue, simulationFunctionName);
     	}
     }
 
@@ -348,7 +379,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			
 			final SimulationFunctionType oldValue = this.simulationFunctionType;
 			this.simulationFunctionType = simulationFunctionType;
-			parameters.firePropertyChange("simulationFunctionType", oldValue,
+			parametersPCS.firePropertyChange("simulationFunctionType", oldValue,
 					simulationFunctionType);
 		}
 	}
@@ -376,7 +407,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			
 			final ScilabType oldValue = this.realParameters;
 			this.realParameters = realParameters;
-			parameters.firePropertyChange("realParameters", oldValue, realParameters);
+			parametersPCS.firePropertyChange("realParameters", oldValue, realParameters);
 		}
     } 
 
@@ -396,7 +427,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			
 			final ScilabType oldValue = this.integerParameters;
 			this.integerParameters = integerParameters;
-			parameters.firePropertyChange("integerParameters", oldValue, integerParameters);
+			parametersPCS.firePropertyChange("integerParameters", oldValue, integerParameters);
 		}
     }
 
@@ -416,7 +447,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			
 			final ScilabType oldValue = this.objectsParameters;
 			this.objectsParameters = objectsParameters;
-			parameters.firePropertyChange("objectsParameters", oldValue, objectsParameters);
+			parametersPCS.firePropertyChange("objectsParameters", oldValue, objectsParameters);
 		}
     }
 
@@ -428,7 +459,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			
 			final boolean oldValue = this.dependsOnU;
 			this.dependsOnU = dependsOnU;
-			parameters.firePropertyChange("dependsOnU", oldValue, dependsOnU);
+			parametersPCS.firePropertyChange("dependsOnU", oldValue, dependsOnU);
 		}
     }
 
@@ -447,7 +478,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			
 			final boolean oldValue = this.dependsOnT;
 			this.dependsOnT = dependsOnT;
-			parameters.firePropertyChange("dependsOnT", oldValue, dependsOnT);
+			parametersPCS.firePropertyChange("dependsOnT", oldValue, dependsOnT);
 		}
     }
 
@@ -467,7 +498,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			
 			final String oldValue = this.blockType;
 			this.blockType = blockType;
-			parameters.firePropertyChange("blockType", oldValue, blockType);
+			parametersPCS.firePropertyChange("blockType", oldValue, blockType);
 		}
     }
 
@@ -486,7 +517,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			
 			final int oldValue = this.ordering;
 			this.ordering = ordering;
-			parameters.firePropertyChange("ordering", oldValue, ordering);
+			parametersPCS.firePropertyChange("ordering", oldValue, ordering);
 		}
     }
 
@@ -506,7 +537,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			
 			final ScilabType oldValue = this.exprs;
 			this.exprs = exprs;
-			parameters.firePropertyChange("exprs", oldValue, exprs);
+			parametersPCS.firePropertyChange("exprs", oldValue, exprs);
 		}
     }
 
@@ -533,7 +564,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			
 			final ScilabType oldValue = this.nbZerosCrossing;
 			this.nbZerosCrossing = nbZerosCrossing;
-			parameters.firePropertyChange("nbZerosCrossing", oldValue, nbZerosCrossing);
+			parametersPCS.firePropertyChange("nbZerosCrossing", oldValue, nbZerosCrossing);
 		}
     }
 
@@ -553,7 +584,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			
 			final ScilabType oldValue = this.nmode;
 			this.nmode = nmode;
-			parameters.firePropertyChange("nmode", oldValue, nmode);
+			parametersPCS.firePropertyChange("nmode", oldValue, nmode);
 		}
     }
 
@@ -573,7 +604,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			
 			final ScilabType oldValue = this.state;
 			this.state = state;
-			parameters.firePropertyChange("state", oldValue, state);
+			parametersPCS.firePropertyChange("state", oldValue, state);
 		}
     }
 
@@ -593,7 +624,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			
 			final ScilabType oldValue = this.dState;
 			this.dState = dState;
-			parameters.firePropertyChange("dState", oldValue, dState);
+			parametersPCS.firePropertyChange("dState", oldValue, dState);
 		}
     }
 
@@ -613,7 +644,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			
 			final ScilabType oldValue = this.oDState;
 			this.oDState = oDState;
-			parameters.firePropertyChange("oDState", oldValue, oDState);
+			parametersPCS.firePropertyChange("oDState", oldValue, oDState);
 		}
     }
 
@@ -633,7 +664,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			
 			final ScilabType oldValue = this.equations;
 			this.equations = equations;
-			parameters.firePropertyChange("equations", oldValue, equations);
+			parametersPCS.firePropertyChange("equations", oldValue, equations);
 		}
     }
 
@@ -796,12 +827,12 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			    
 			    getParentDiagram().fireEvent(new mxEventObject(XcosEvent.ADD_PORTS, XcosConstants.EVENT_BLOCK_UPDATED, 
 				    currentBlock));
+			    delete(tempInput);
 				} else {
 					LOG.trace("No needs to update data.");
 				}
 				
 			    setLocked(false);
-			    delete(tempInput);
 			    delete(tempOutput);
 			    delete(tempContext);
 			}
@@ -1257,6 +1288,27 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 	 * @return the associated {@link PropertyChangeSupport} instance
 	 */
 	public PropertyChangeSupport getParametersPCS() {
-		return parameters;
+		return parametersPCS;
+	}
+	
+	/**
+	 * Re-associate fields with the new instance.
+	 * 
+	 * @return a new clone instance
+	 * @throws CloneNotSupportedException never
+	 * @see com.mxgraph.model.mxCell#clone()
+	 */
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		BasicBlock clone = (BasicBlock) super.clone();
+		
+		/* Reinstall the PropertyChangeSupport and all of it listeners */
+		clone.parametersPCS = new PropertyChangeSupport(clone);
+		PropertyChangeSupport pcs = getParametersPCS();
+		for (PropertyChangeListener iter : pcs.getPropertyChangeListeners()) {
+			clone.parametersPCS.addPropertyChangeListener(iter);
+		}
+		
+		return clone;
 	}
 }
