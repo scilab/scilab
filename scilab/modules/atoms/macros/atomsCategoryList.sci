@@ -76,7 +76,7 @@ function categories_mat = atomsCategoryList(section)
             categories_mat = [ categories_mat ; main_mat(i) "" ];
             sub_categories = gsort(categories(main_mat(i)),"lc","i");
             if sub_categories <> [] then
-                categories_mat = [ categories_mat ; emptystr(size(sub_categories,"*"))+main_mat(i) sub_categories ];
+                categories_mat = [ categories_mat ; emptystr(size(sub_categories,"*"),1)+main_mat(i) sub_categories ];
             end
         end
 
