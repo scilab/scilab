@@ -210,36 +210,32 @@ function updateDescFrame()
         thisModuleDetails  = thisModuleStruct(MRVersionAvailable);
     end
 
-    // Manage size
+    // Download Size
     // =========================================================================
 
+    sizeHTML = "";
+
     if isfield(thisModuleDetails,OSNAME+ARCH+"Size") then
-        sizeHTML = ..
-            "<div style=""font-weight:bold;margin-top:10px;margin-bottom:5px;"">" + ..
-            gettext("Download size")                                              + ..
-            "</div>"                                                              + ..
-            "<div>"                                                               + ..
-            atomsSize2human(thisModuleDetails(OSNAME+ARCH+"Size"))                + ..
-            "</div>";
-    else
-        sizeHTML = "";
+        sizeHTML = txt2title(gettext("Download size")) ..
+                   + "<div>" ..
+                   + atomsSize2human(thisModuleDetails(OSNAME+ARCH+"Size")) ..
+                   + "</div>";
     end
 
-    // Manage authors
+    // Authors
     // =========================================================================
 
     authorMat  = thisModuleDetails.Author;
-
-    authorHTML = "<div style=""font-weight:bold;margin-top:10px;margin-bottom:5px;"">" + ..
-                 gettext("Author(s)") + ..
-                 "</div>" + ..
-                 "<div>";
+    authorHTML = "";
 
     for i=1:size(authorMat,"*")
         authorHTML = authorHTML + authorMat(i)+"<br>";
     end
 
-    authorHTML = authorHTML + "</div>";
+    authorHTML = txt2title(gettext("Author(s)")) ..
+                 + "<div>" ..
+                 + authorHTML
+                 + "</div>";
 
     // URLs (See also)
     // =========================================================================
@@ -257,33 +253,28 @@ function updateDescFrame()
 
     if ~isempty(URLs) then
 
-        seeAlsoHTML = "<div style=""font-weight:bold;margin-top:10px;margin-bottom:5px;"">" + ..
-                      gettext("See also") + ..
-                      "</div>" + ..
-                      "<div>";
-
         for i=1:size(URLs,"*")
             seeAlsoHTML = seeAlsoHTML + "&nbsp;&bull;&nbsp;"+URLs(i)+"<br>";
         end
 
-        seeAlsoHTML = seeAlsoHTML + "</div>";
-
+        seeAlsoHTML = txt2title(gettext("See also"))..
+                      + "<div>" ..
+                      + seeAlsoHTML ..
+                      + "</div>";
     end
 
     // Release date
     // =========================================================================
 
+    dateHTML = "";
+
     if isfield(thisModuleDetails,"Date") ..
        & ~isempty(regexp(thisModuleDetails.Date,"/^[0-9]{4}-[0-1][0-9]-[0-3][0-9]\s/")) then
 
-        dateHTML = "<div style=""font-weight:bold;margin-top:10px;margin-bottom:5px;"">" ..
-                   + gettext("Release date") ..
-                   + "</div>" ..
+        dateHTML = txt2title(gettext("Release date")) ..
                    + "<div>" ..
                    + part(thisModuleDetails.Date,1:10) ..
                    + "</div>";
-    else
-        dateHTML = "";
     end
 
     // Build and Set the HTML code
@@ -292,14 +283,10 @@ function updateDescFrame()
 
     htmlcode = "<html>" + ..
                "<body>" + ..
-               "<div style=""font-weight:bold;margin-top:10px;margin-bottom:5px;"">" + ..
-               gettext("Version") + ..
-               "</div>" + ..
+               txt2title(gettext("Version")) + ..
                "<div>" + thisModuleDetails.Version  + "</div>" + ..
                authorHTML + ..
-               "<div style=""font-weight:bold;margin-top:10px;margin-bottom:5px;"">" + ..
-               gettext("Description") + ..
-               "</div>" + ..
+               txt2title(gettext("Description")) + ..
                "<div>" + ..
                strcat(thisModuleDetails.Description,"<br>")  + ..
                "</div>" + ..
@@ -521,5 +508,17 @@ function txtout = processHTMLLinks(txtin)
     else
         txtout = txtin;
     end
+
+endfunction
+
+// =============================================================================
+// txt2title
+// =============================================================================
+
+function txtout = txt2title(txtin)
+
+    txtout = "<div style=""font-weight:bold;margin-top:10px;margin-bottom:3px;"">" + ..
+             txtin + ..
+             "</div>";
 
 endfunction
