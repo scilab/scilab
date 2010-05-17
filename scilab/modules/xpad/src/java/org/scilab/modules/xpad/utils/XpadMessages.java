@@ -75,6 +75,7 @@ public class XpadMessages {
     public static final String WORD_WRAP = Messages.gettext("Word Wrap");
     public static final String LINE_NUMBERS_WHEREAMI = Messages.gettext("Whereami Line Numbering");
     public static final String LINE_NUMBERS_NOWHEREAMI = Messages.gettext("Normal Line Numbering");
+    public static final String NO_LINE_NUMBERS = Messages.gettext("No Line Numbering");
 
     public static final String SET_COLORS = Messages.gettext("Set Colors") + DOTS;
     public static final String SET_FONT = Messages.gettext("Set Font") + DOTS;

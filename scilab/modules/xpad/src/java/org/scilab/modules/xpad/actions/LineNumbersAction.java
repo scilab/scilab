@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2010 - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -20,7 +21,7 @@ import org.scilab.modules.xpad.utils.XpadMessages;
 /**
  * LineNumbersAction Class
  * @author Bruno JOFRET
- *
+ * @author Calixte DENIZET
  */
 public final class LineNumbersAction extends DefaultAction {
 
@@ -30,7 +31,7 @@ public final class LineNumbersAction extends DefaultAction {
     private static final long serialVersionUID = -2778300710964013775L;
 
     private MenuItem menu;
-    private boolean state;
+    private int state = 1;
 
     /**
      * Construtor
@@ -44,12 +45,17 @@ public final class LineNumbersAction extends DefaultAction {
      * doAction
      */
     public void doAction() {
-        state = !state;
         getEditor().setWhereamiLineNumbering(state);
-        if (state) {
+        state = (state + 1) % 3;
+        switch (state) {
+        case 0 :
             menu.setText(XpadMessages.LINE_NUMBERS_NOWHEREAMI);
-        } else {
+            break;
+        case 1 :
             menu.setText(XpadMessages.LINE_NUMBERS_WHEREAMI);
+            break;
+        default :
+            menu.setText(XpadMessages.NO_LINE_NUMBERS);
         }
     }
 

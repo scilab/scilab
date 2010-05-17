@@ -74,6 +74,7 @@ public class XpadLineNumberPanel extends JPanel implements CaretListener, Docume
 
     private int[] lineNumber;
     private boolean whereami;
+    private boolean display;
 
     /**
      *  Create a line number component for a text component.
@@ -93,10 +94,19 @@ public class XpadLineNumberPanel extends JPanel implements CaretListener, Docume
 
     /**
      * Set a line numbering compatible with the whereami function
-     * @param b true to be compatible with whereami
+     * @param state 0 for normal, 1 for whereami and 2 for nothing
      */
-    public void setWhereamiLineNumbering(boolean b) {
-        whereami = b;
+    public void setWhereamiLineNumbering(int state) {
+        if (state != 2) {
+            if (!display) {
+                textPane.getScrollPane().setRowHeaderView(this);
+            }
+            whereami = state == 1;
+            display = true;
+        } else {
+            textPane.getScrollPane().setRowHeaderView(null);
+            display = false;
+        }
         updateLineNumber(0, 0);
     }
 

@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.EventObject;
 
 import javax.swing.JEditorPane;
+import javax.swing.JScrollPane;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.Document;
 import javax.swing.text.BadLocationException;
@@ -59,6 +60,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private boolean suppressCom = true;
 
     private XpadLineNumberPanel xln;
+    private JScrollPane scroll;
 
     private List<KeywordListener> kwListeners = new ArrayList();
 
@@ -69,6 +71,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     public ScilabEditorPane(Xpad editor) {
         super();
         this.editor = editor;
+        scroll = new JScrollPane(this);
         addCaretListener(this);
         addMouseMotionListener(this);
         addMouseListener(this);
@@ -93,6 +96,13 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      */
     public XpadLineNumberPanel getXln() {
         return xln;
+    }
+
+    /**
+     * @return the scrollPane associated with this textPane
+     */
+    public JScrollPane getScrollPane() {
+        return scroll;
     }
 
     /**
@@ -396,5 +406,6 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         matchRL.setDefaults();
         lexer = doc.createLexer();
         xln = new XpadLineNumberPanel(this);
+        scroll.setRowHeaderView(xln);
     }
 }

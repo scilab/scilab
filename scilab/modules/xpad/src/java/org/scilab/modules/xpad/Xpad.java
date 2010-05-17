@@ -130,7 +130,7 @@ public class Xpad extends SwingScilabTab implements Tab {
         private Color highlightColor;
         private Color highlightContourColor;
 
-        private boolean whereami;
+        private int whereami;
 
         private Vector<Integer> tabList = new Vector<Integer>();
         private Vector<Integer> closedTabList = new Vector<Integer>();
@@ -702,24 +702,10 @@ public class Xpad extends SwingScilabTab implements Tab {
                 textPane = new ScilabEditorPane(this);
                 setHighlight(textPane);
                 textPane.setEditorKit(new ScilabEditorKit());
-                scrollingText = new JScrollPane(textPane);
-                /*sep.addKeywordListener(new KeywordListener.MouseClickedListener() {
-                        public void caughtKeyword(KeywordEvent e) {
-                            ScilabEditorPane jep = (ScilabEditorPane) e.getSource();
-                            try {
-                                System.out.println("Token with type " + e.getType() + " and containing " + jep.getText(e.getStart(), e.getLength()));
-                                ScilabEditorPane sep = (ScilabEditorPane) e.getSource();
-                                ScilabDocument doc = (ScilabDocument) sep.getDocument();
-                                //doc.saveAndRemove(e.getStart() + 8, 10);
-                                //sep.repaint();
-                            } catch (Exception ex) { }
-                            }});
 
-                */
                 // Panel of line number for the text pane
-                scrollingText.setRowHeaderView(textPane.getXln());
                 textPane.getXln().setWhereamiLineNumbering(whereami);
-                tabPane.add(title, scrollingText);
+                tabPane.add(title, textPane.getScrollPane());
                 tabPane.setSelectedIndex(tabPane.getTabCount() - 1);
                 this.setContentPane(tabPane);
                 textPane.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
@@ -949,15 +935,15 @@ public class Xpad extends SwingScilabTab implements Tab {
 
         /**
          * Enable the whereami-line numbering
-         * @param b boolean
+         * @param state int
          */
-        public void setWhereamiLineNumbering(boolean b) {
+        public void setWhereamiLineNumbering(int state) {
             int n = tabPane.getTabCount();
             for (int i = 0; i < n; i++) {
-                ((ScilabEditorPane) getEditor().getTextPane(i)).getXln().setWhereamiLineNumbering(b);
+                ((ScilabEditorPane) getEditor().getTextPane(i)).getXln().setWhereamiLineNumbering(state);
             }
             repaint();
-            whereami = b;
+            whereami = state;
         }
 
 
@@ -1301,32 +1287,4 @@ public class Xpad extends SwingScilabTab implements Tab {
             }
         }
 
-}
-
-/**
- * Update the table title
- * @author Sylvestre Koumar
- *
- */
-class TabTitleUpdater implements Runnable {
-
-        /**
-         * The editor
-         */
-        Xpad editor;
-
-        /**
-         * Default constructor
-         * @param e Xpad
-         */
-        TabTitleUpdater(Xpad e) {
-                editor = e;
-        }
-
-        /**
-         * Function Run
-         */
-        public void run() {
-                editor.updateTabTitle();
-        }
 }
