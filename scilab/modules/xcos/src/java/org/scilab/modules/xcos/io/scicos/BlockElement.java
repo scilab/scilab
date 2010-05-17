@@ -117,21 +117,6 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 		}
 		
 		/*
-		 * Fill block with the data structure
-		 */
-		int field = 1;
-		graphicElement.decode(data.get(field), block);
-		
-		field++;
-		modelElement.decode(data.get(field), block);
-		
-		field++;
-		block.setInterfaceFunctionName(interfunction);
-		
-		field++;
-		fillDocStructure(data.get(field), block);
-		
-		/*
 		 * Allocate and setup ports
 		 */
 		InputPortElement inElement = new InputPortElement(data);
@@ -145,6 +130,21 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 		for (int i = 0; i < numberOfOutputPorts; i++) {
 			block.addPort(outElement.decode(data, null));
 		}
+		
+		/*
+		 * Fill block with the data structure
+		 */
+		int field = 1;
+		graphicElement.decode(data.get(field), block);
+		
+		field++;
+		modelElement.decode(data.get(field), block);
+		
+		field++;
+		block.setInterfaceFunctionName(interfunction);
+		
+		field++;
+		fillDocStructure(data.get(field), block);
 		
 		/*
 		 * Set state dependent informations.
