@@ -241,6 +241,35 @@ function updateDescFrame()
 
     authorHTML = authorHTML + "</div>";
 
+    // URLs (See also)
+    // =========================================================================
+
+    URLs        = [];
+    seeAlsoHTML = "";
+
+    if isfield(thisModuleDetails,"URL") & (thisModuleDetails.URL<>"") then
+        URLs = [ URLs ; thisModuleDetails.URL ];
+    end
+
+    if isfield(thisModuleDetails,"WebSite") & (thisModuleDetails.WebSite<>"") then
+        URLs = [ URLs ; thisModuleDetails.WebSite ];
+    end
+
+    if ~isempty(URLs) then
+
+        seeAlsoHTML = "<div style=""font-weight:bold;margin-top:10px;margin-bottom:5px;"">" + ..
+                      gettext("See also") + ..
+                      "</div>" + ..
+                      "<div>";
+
+        for i=1:size(URLs,"*")
+            seeAlsoHTML = seeAlsoHTML + "&nbsp;&bull;&nbsp;"+URLs(i)+"<br>";
+        end
+
+        seeAlsoHTML = seeAlsoHTML + "</div>";
+
+    end
+
     // Build and Set the HTML code
     // =========================================================================
 
@@ -258,6 +287,7 @@ function updateDescFrame()
                "<div>" + ..
                strcat(thisModuleDetails.Description,"<br>")  + ..
                "</div>" + ..
+               seeAlsoHTML + ..
                sizeHTML + ..
                "</body>" + ..
                "</html>";

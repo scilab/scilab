@@ -743,6 +743,11 @@ msgstr "Désintallation echouée!"
 msgid "Scilab Version"
 msgstr "Version Scilab"
 
+#
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 261
+msgid "See also"
+msgstr ""
+
 msgid "Status"
 msgstr "Statut"
 
