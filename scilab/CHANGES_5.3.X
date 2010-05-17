@@ -302,6 +302,8 @@ ATOMS:
 * ATOMS GUI: When a module is not up-to-date, a warning is displayed on the
   corresponding sheet.
 
+* ATOMS GUI: Display the release date of the watched module.
+
 * bug 6596 fixed - When the ATOMS GUI started, nothing was displayed. Now, the
                    list of already installed modules appears on the home page.
 

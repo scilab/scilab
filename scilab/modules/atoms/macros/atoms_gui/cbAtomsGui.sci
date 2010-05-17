@@ -270,6 +270,22 @@ function updateDescFrame()
 
     end
 
+    // Release date
+    // =========================================================================
+
+    if isfield(thisModuleDetails,"Date") ..
+       & ~isempty(regexp(thisModuleDetails.Date,"/^[0-9]{4}-[0-1][0-9]-[0-3][0-9]\s/")) then
+
+        dateHTML = "<div style=""font-weight:bold;margin-top:10px;margin-bottom:5px;"">" ..
+                   + gettext("Release date") ..
+                   + "</div>" ..
+                   + "<div>" ..
+                   + part(thisModuleDetails.Date,1:10) ..
+                   + "</div>";
+    else
+        dateHTML = "";
+    end
+
     // Build and Set the HTML code
     // =========================================================================
 
@@ -288,6 +304,7 @@ function updateDescFrame()
                strcat(thisModuleDetails.Description,"<br>")  + ..
                "</div>" + ..
                seeAlsoHTML + ..
+               dateHTML + ..
                sizeHTML + ..
                "</body>" + ..
                "</html>";

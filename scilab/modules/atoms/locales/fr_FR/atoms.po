@@ -729,6 +729,11 @@ msgstr "Aucun module externe disponible. Votre liste de depot est vide."
 msgid "Package"
 msgstr "Package"
 
+#
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 280
+msgid "Release date"
+msgstr ""
+
 msgid "Remove"
 msgstr "Supprimer"
 
