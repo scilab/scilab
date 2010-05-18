@@ -3,6 +3,7 @@
  * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
  * Copyright (C) 2008 - DIGITEO - Sylvestre KOUMAR
  * Copyright (C) 2010 - DIGITEO - Manuel JULIACHS
+ * Copyright (C) 2010 - DIGITEO - Vincent COUVERT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -1781,6 +1782,24 @@ public class CallScilabBridge {
 	 */
 	public static void setListBoxText(int id, String[] text) {
 		((ListBox) UIElementMapper.getCorrespondingUIElement(id)).setText(text);
+	}
+	
+	/**
+	 * Adjusts the view so that the element given by index is displayed at the top of the ListBox.
+	 * @param id the id of the ListBox
+	 * @param index the index of the element to be displayed at the top of the ListBox.
+	 */
+	public static void setListBoxListBoxTop(int id, int index) {
+		((ListBox) UIElementMapper.getCorrespondingUIElement(id)).setListBoxTop(index);
+	}
+	
+	/**
+	 * Gets the index of the element displayed at the top of the ListBox
+	 * @param id the id of the ListBox
+	 * @return the index of the element displayed at the top of the ListBox
+	 */
+	public static int getListBoxListBoxTop(int id) {
+		return ((ListBox) UIElementMapper.getCorrespondingUIElement(id)).getListBoxTop();
 	}
 
 	/********************/

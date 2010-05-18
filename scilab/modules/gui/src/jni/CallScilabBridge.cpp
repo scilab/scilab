@@ -194,6 +194,8 @@ voidsetListBoxMultipleSelectionEnabledjintjbooleanID=NULL;
 jobjectArray_getListBoxAllItemsTextjintID=NULL; 
 jintgetListBoxNumberOfItemsjintID=NULL; 
 voidsetListBoxTextjintjobjectArray_ID=NULL; 
+voidsetListBoxListBoxTopjintjintID=NULL; 
+jintgetListBoxListBoxTopjintID=NULL; 
 jobjectArray_getPopupMenuAllItemsTextjintID=NULL; 
 jintgetPopupMenuNumberOfItemsjintID=NULL; 
 voidsetPopupMenuTextjintjobjectArray_ID=NULL; 
@@ -398,6 +400,8 @@ voidsetListBoxMultipleSelectionEnabledjintjbooleanID=NULL;
 jobjectArray_getListBoxAllItemsTextjintID=NULL; 
 jintgetListBoxNumberOfItemsjintID=NULL; 
 voidsetListBoxTextjintjobjectArray_ID=NULL; 
+voidsetListBoxListBoxTopjintjintID=NULL; 
+jintgetListBoxListBoxTopjintID=NULL; 
 jobjectArray_getPopupMenuAllItemsTextjintID=NULL; 
 jintgetPopupMenuNumberOfItemsjintID=NULL; 
 voidsetPopupMenuTextjintjobjectArray_ID=NULL; 
@@ -2311,6 +2315,40 @@ curEnv->DeleteLocalRef(text_);
 if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
+}
+
+void CallScilabBridge::setListBoxListBoxTop (JavaVM * jvm_, int objID, int index){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetListBoxListBoxTopjintjintID = curEnv->GetStaticMethodID(cls, "setListBoxListBoxTop", "(II)V" ) ;
+if (voidsetListBoxListBoxTopjintjintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setListBoxListBoxTop");
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetListBoxListBoxTopjintjintID ,objID, index);if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+int CallScilabBridge::getListBoxListBoxTop (JavaVM * jvm_, int objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jintgetListBoxListBoxTopjintID = curEnv->GetStaticMethodID(cls, "getListBoxListBoxTop", "(I)I" ) ;
+if (jintgetListBoxListBoxTopjintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "getListBoxListBoxTop");
+}
+
+                        jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintgetListBoxListBoxTopjintID ,objID));if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return res;
+
 }
 
 char ** CallScilabBridge::getPopupMenuAllItemsText (JavaVM * jvm_, int objID){

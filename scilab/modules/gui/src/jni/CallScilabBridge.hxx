@@ -158,6 +158,8 @@ jmethodID voidsetListBoxMultipleSelectionEnabledjintjbooleanID; // cache method 
 jmethodID jobjectArray_getListBoxAllItemsTextjintID; // cache method id
 jmethodID jintgetListBoxNumberOfItemsjintID; // cache method id
 jmethodID voidsetListBoxTextjintjobjectArray_ID; // cache method id
+jmethodID voidsetListBoxListBoxTopjintjintID; // cache method id
+jmethodID jintgetListBoxListBoxTopjintID; // cache method id
 jmethodID jobjectArray_getPopupMenuAllItemsTextjintID; // cache method id
 jmethodID jintgetPopupMenuNumberOfItemsjintID; // cache method id
 jmethodID voidsetPopupMenuTextjintjobjectArray_ID; // cache method id
@@ -472,6 +474,10 @@ static char ** getListBoxAllItemsText(JavaVM * jvm_, int objID);
 static int getListBoxNumberOfItems(JavaVM * jvm_, int objID);
 
 static void setListBoxText(JavaVM * jvm_, int objID, char ** text, int textSize);
+
+static void setListBoxListBoxTop(JavaVM * jvm_, int objID, int index);
+
+static int getListBoxListBoxTop(JavaVM * jvm_, int objID);
 
 static char ** getPopupMenuAllItemsText(JavaVM * jvm_, int objID);
 

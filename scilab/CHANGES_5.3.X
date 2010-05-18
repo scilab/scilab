@@ -431,6 +431,9 @@ Bug fixes:
 
 * bug 6516 fixed - fullfile did not remove blanks and not create a valid path.
 
+* bug 6535 fixed - The property 'ListboxTop' of the graphic user interface object
+                   'listbox' had no effect.
+
 * bug 6543 fixed - neldermead issues for automatic restarts.
 
 * bug 6549 fixed - genlib function had a behavior which was not consistent with
