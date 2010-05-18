@@ -105,9 +105,10 @@ public class IndentManager {
             int[] ret = new int[2];
 
             int[] ind = new int[2];
+
             getNums(lineStart - 1, ind);
             if (lineStart > 0) {
-                scanner.getIndentLevel(lineStart - 1, level);
+                scanner.getIndentLevel(elem.getElement(lineStart - 1).getStartOffset(), level);
                 tabs[0] = ind[1] + level[1];
             }
 
@@ -128,10 +129,10 @@ public class IndentManager {
                 if (lineNumber < lineEnd) {
                     e = elem.getElement(lineNumber).getEndOffset();
                 } else {
-                    e = Math.min(elem.getElement(lineNumber).getEndOffset(), end);
+                    e = elem.getElement(lineNumber).getEndOffset() - 1;
                 }
                 int t = elem.getElement(lineNumber).getStartOffset() + scanner.getTabsAtBeginning(lineNumber);
-                if (e - t == -1) {
+                if (e - t + 1 == 0) {
                     e = t;
                 }
                 doc.getText(t, e - t, seg);
@@ -141,12 +142,16 @@ public class IndentManager {
                         str[i] = indentChar;
                     }
                     buffer.append(str);
+                    if (lineNumber == lineStart) {
+                        ret[0] = start + str.length - scanner.getTabsAtBeginning(lineNumber);
+                    }
                 }
                 buffer.append(seg.array, seg.offset, seg.count);
             }
 
             int sstart = elem.getElement(lineStart).getStartOffset();
             doc.replace(sstart, e - sstart, buffer.toString(), null);
+            ret[1] = sstart + buffer.length() - (e - end - 1);
             return ret;
         } catch (BadLocationException e) {
             System.err.println(e);
