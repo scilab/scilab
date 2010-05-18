@@ -9,3 +9,14 @@ callFunctionFromGateway
 com_
 iop_
 matlog_
+iAllocComplexMatrixOfDouble
+errgst_
+iIsComplex
+getrhscvar_
+getrhsvar_
+iAllocMatrixOfDouble
+stack_
+intersci_
+putlhsvar_
+cha1_
+

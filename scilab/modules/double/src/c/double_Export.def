@@ -6,3 +6,6 @@ EXPORTS
 ; double
 ; --------------------------------------- 
 matops_
+matldiv
+matrdiv
+matmult
