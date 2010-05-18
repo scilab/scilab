@@ -20,7 +20,7 @@ FFTW:
 Graphics:
 =========
 
-* the set and get functions are now overloadable.
+* the set, get and uicontrol functions are now overloadable.
 
 * Datatips tools added
 
