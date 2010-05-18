@@ -22,58 +22,60 @@
 
 namespace types
 {
-	class MatrixPoly : public GenericType
-	{
-  public :
-									MatrixPoly();
-									MatrixPoly(string _szVarName, int _iRows, int _iCols, int *_piRank);
-		virtual				~MatrixPoly();
+    class MatrixPoly : public GenericType
+    {
+    public :
+                                MatrixPoly();
+                                MatrixPoly(string _szVarName, int _iRows, int _iCols, int *_piRank);
+        virtual                 ~MatrixPoly();
 
-	  // FIXME : Should not return NULL
-	  MatrixPoly*		clone() { return NULL; }
+        // FIXME : Should not return NULL
+        MatrixPoly*             clone() { return NULL; }
 
-		GenericType*	get_col_value(int _iPos);
+        GenericType*            get_col_value(int _iPos);
 
-		Poly*					poly_get(int _iRows, int _iCols);
-		Poly*					poly_get(int _iIdx);
-		bool					poly_set(int _iRows, int _iCols, Double *_pdblCoef);
-		bool					poly_set(int _iIdx, Double *_pdblCoef);
+        Poly*                   poly_get(int _iRows, int _iCols);
+        Poly*                   poly_get(int _iIdx);
+        bool                    poly_set(int _iRows, int _iCols, Double *_pdblCoef);
+        bool                    poly_set(int _iIdx, Double *_pdblCoef);
 
-		MatrixPoly*		getAsPoly();
-		RealType			getType();
-		void					whoAmI(void);
-		bool					isComplex(void);
-		void					complex_set(bool _bComplex);
-		string				var_get();
-		bool					rank_get(int *_piRank);
-		int 					rank_max_get(void);
-		Double*				evaluate(Double* _pdblValue);
-		void					update_rank(void);
-		Double* 			coef_get(void);
-		void					coef_set(Double *_pCoef);
-		Double*				extract_coef(int _iRank);
-		bool					insert_coef(int _iRank, Double* _pCoef);
+        MatrixPoly*             getAsPoly();
+        RealType                getType();
+        void                    whoAmI(void);
+        bool                    isComplex(void);
+        void                    complex_set(bool _bComplex);
+        string                  var_get();
+        bool                    rank_get(int *_piRank);
+        int                     rank_max_get(void);
+        Double*                 evaluate(Double* _pdblValue);
+        void                    update_rank(void);
+        Double*                 coef_get(void);
+        void                    coef_set(Double *_pCoef);
+        Double*                 extract_coef(int _iRank);
+        bool                    insert_coef(int _iRank, Double* _pCoef);
 
-		bool					insert(int _iRows, int _iCols, MatrixPoly* _poSource);
+        bool                    insert(int _iRows, int _iCols, MatrixPoly* _poSource);
 
-		string				toString(int _iPrecison, int _iLineLen);
-		string				GetRowString(int _iPrecison, int _iLineLen, bool _bComplex);
-		string				GetColString(int _iPrecison, int _iLineLen, bool _bComplex);
-		string				GetMatrixString(int _iPrecison, int _iLineLen, bool _bComplex);
+        string                  toString(int _iPrecison, int _iLineLen);
+        string                  GetRowString(int _iPrecison, int _iLineLen, bool _bComplex);
+        string                  GetColString(int _iPrecison, int _iLineLen, bool _bComplex);
+        string                  GetMatrixString(int _iPrecison, int _iLineLen, bool _bComplex);
 
 
-		MatrixPoly&		operator= (MatrixPoly& poPoly);
+        MatrixPoly&             operator= (MatrixPoly& poPoly);
 
-		bool					operator==(const InternalType& it);
-		bool					operator!=(const InternalType& it);
+        bool                    operator==(const InternalType& it);
+        bool                    operator!=(const InternalType& it);
 
         /* return type as string ( double, int, cell, list, ... )*/
         virtual std::string     getTypeStr() {return string("matrixpoly");}
+        /* return type as short string ( s, i, ce, l, ... )*/
+        virtual std::string     getShortTypeStr() {return string("p");}
 
     private :
-		Poly*					m_poPolyMatrix;
-		bool					m_bComplex;
-		string				m_szVarName;
-	};
+        Poly*                   m_poPolyMatrix;
+        bool                    m_bComplex;
+        string                  m_szVarName;
+    };
 }
 #endif /* !__MATRIXPOLY_HH__ */

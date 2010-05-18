@@ -15,46 +15,48 @@
 
 namespace types
 {
-  class List : public Container
-  {
-  public :
-																	 List();
-																	~List(); 
+    class List : public Container
+    {
+    public :
+                                        List();
+                                        ~List(); 
 
-  private :
-																	List(List *_oListCopyMe);
-    std::vector<InternalType *>*	getData();
+    private :
+                                        List(List *_oListCopyMe);
+        std::vector<InternalType *>*    getData();
 
-  public :
-    int														size_get(); 
+    public :
+        int                             size_get(); 
 
-    void													whoAmI(void) { std::cout << "types::List"; };
+        void                            whoAmI(void) { std::cout << "types::List"; };
 
-    RealType											getType(void) { return RealList; } 
+        RealType                        getType(void) { return RealList; } 
 
-  /**
-   ** append(InternalType *_typedValue)
-   ** Append the given value to the end of the List
-   */
-    void													append(InternalType *_typedValue);
+        /**
+        ** append(InternalType *_typedValue)
+        ** Append the given value to the end of the List
+        */
+        void                            append(InternalType *_typedValue);
 
-  /**
-   ** Clone
-   ** Create a new List and Copy all values.
-   */
-    List*													clone();
+        /**
+        ** Clone
+        ** Create a new List and Copy all values.
+        */
+        List*                           clone();
 
-    std::string										toString(int _iPrecision, int _iLineLen);
+        std::string                     toString(int _iPrecision, int _iLineLen);
 
-    List*													getAsList(void) { return this; }
+        List*                           getAsList(void) { return this; }
 
-		bool													insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, vector<types::InternalType*>* _poSource, bool _bAsVector);
-		std::vector<InternalType*>		extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector);
+        bool                            insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, vector<types::InternalType*>* _poSource, bool _bAsVector);
+        std::vector<InternalType*>      extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector);
 
-    /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::string         getTypeStr() {return string("list");}
+        /* return type as string ( double, int, cell, list, ... )*/
+        virtual std::string             getTypeStr() {return string("list");}
+        /* return type as short string ( s, i, ce, l, ... )*/
+        virtual std::string             getShortTypeStr() {return string("l");}
 
-  private :
-    std::vector<InternalType *>*	m_plData;
-  };
+    private :
+        std::vector<InternalType *>*    m_plData;
+    };
 }

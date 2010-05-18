@@ -23,58 +23,59 @@ namespace types
     class Struct : public Container
     {
     public :
-        Struct();
-        ~Struct(); 
+                                                Struct();
+                                                ~Struct(); 
 
     private :
-        struct ltstr;
-        Struct(Struct *_oListCopyMe);
-        std::map<std::string, InternalType *> *getData();
+                                                Struct(Struct *_oListCopyMe);
+        std::map<std::string, InternalType *>*  getData();
 
     public :
-        int size_get(); 
+        int                                     size_get(); 
 
-        void whoAmI(void) { std::cout << "types::Struct"; };
+        void                                    whoAmI(void) { std::cout << "types::Struct"; };
 
-        RealType getType(void) { return RealStruct; } 
+        RealType                                getType(void) { return RealStruct; } 
 
         /**
         ** add(Symbol *_psKey, InternalType *_typedValue)
         ** Append the given value to the struct
         */
-        void add(const std::string& _sKey, InternalType *_typedValue);
+        void                                    add(const std::string& _sKey, InternalType *_typedValue);
 
         /**
         ** add(Symbol *_psKey)
         ** Append an null value to the struct
         */
-        void add(const std::string& _sKey);
+        void                                    add(const std::string& _sKey);
 
         /**
         ** get(Symbol *_psKey)
         ** Append the given value to the end of the List
         */
-        InternalType * get(const std::string& _sKey);
+        InternalType*                           get(const std::string& _sKey);
 
         /**
         **
         */
-        bool exists(const std::string& _sKey);
+        bool                                    exists(const std::string& _sKey);
 
         /**
         ** Clone
         ** Create a new List and Copy all values.
         */
-        Struct *clone();
+        Struct*                                 clone();
 
-        std::string toString(int _iPrecision, int _iLineLen);
+        std::string                             toString(int _iPrecision, int _iLineLen);
 
-        Struct *getAsStruct(void) { return this; }
+        Struct*                                 getAsStruct(void) { return this; }
 
         /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::string     getTypeStr() {return string("struct");}
+        virtual std::string                     getTypeStr() {return string("struct");}
+        /* return type as short string ( s, i, ce, l, ... )*/
+        virtual std::string                     getShortTypeStr() {return string("st");}
     private :
-        std::map<std::string, InternalType *> *m_plData;
+        std::map<std::string, InternalType *>*  m_plData;
     };
 }
 

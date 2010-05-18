@@ -27,60 +27,62 @@
 
 namespace types
 {
-  class Function : public Callable
-  {
-  public :
-    typedef ReturnValue (*GW_FUNC)(typed_list &in, int _iRetCount, typed_list &out); 
-    typedef int (*OLDGW_FUNC)(char *fname, int* _piKey);
-    
-    Function():Callable() {};
-    Function(std::string _szName, GW_FUNC _pFunc, std::string _szModule);
-    ~Function();
-  
-    //FIXME : Should not return NULL
-    Function* clone() { return NULL; }
+    class Function : public Callable
+    {
+    public :
+        typedef ReturnValue (*GW_FUNC)(typed_list &in, int _iRetCount, typed_list &out); 
+        typedef int (*OLDGW_FUNC)(char *fname, int* _piKey);
 
-    static Function *createFunction(std::string _szName, GW_FUNC _pFunc, std::string _szModule);
-    static Function *createFunction(std::string _szName, OLDGW_FUNC _pFunc, std::string _szModule);
+                            Function(): Callable() {};
+                            Function(std::string _szName, GW_FUNC _pFunc, std::string _szModule);
+                            ~Function();
 
-    Function * 	getAsFunction(void);
-    RealType getType(void) { return RealFunction; }
+        //FIXME : Should not return NULL
+        Function*           clone() { return NULL; }
 
-    void					whoAmI();
+        static Function*    createFunction(std::string _szName, GW_FUNC _pFunc, std::string _szModule);
+        static Function*    createFunction(std::string _szName, OLDGW_FUNC _pFunc, std::string _szModule);
 
-    std::string toString(int _iPrecision, int _iLineLen);
+        Function*           getAsFunction(void);
+        RealType            getType(void) { return RealFunction; }
 
-		virtual ReturnValue call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
+        void                whoAmI();
 
-    /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::string     getTypeStr() {return string("function");}
-  private :
-    GW_FUNC			m_pFunc;
-  };
+        std::string         toString(int _iPrecision, int _iLineLen);
 
-  class WrapFunction : public Function
-  {
-  public :
-    WrapFunction(std::string _szName, OLDGW_FUNC _pFunc, std::string _szModule);
+        virtual ReturnValue call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
 
-		Callable::ReturnValue call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
-  private :
-    OLDGW_FUNC m_pOldFunc;
-		InternalType* m_pTempOut[MAX_OUTPUT_VARIABLE];
-  };
+        /* return type as string ( double, int, cell, list, ... )*/
+        virtual std::string getTypeStr() {return string("fptr");}
+        /* return type as short string ( s, i, ce, l, ... )*/
+        virtual std::string getShortTypeStr() {return string("fptr");}
+    private :
+        GW_FUNC             m_pFunc;
+    };
 
-  class GatewayStruct
-  {
-  public :
-    typed_list* m_pIn;
-    InternalType** m_pOut;
-    int*	m_piRetCount;
-    char* m_pstName;
-		int* m_pOutOrder;
+    class WrapFunction : public Function
+    {
+    public :
+                            WrapFunction(std::string _szName, OLDGW_FUNC _pFunc, std::string _szModule);
 
-    GatewayStruct(){};
-    ~GatewayStruct(){};
-  };
+                            Callable::ReturnValue call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
+    private :
+        OLDGW_FUNC          m_pOldFunc;
+        InternalType*       m_pTempOut[MAX_OUTPUT_VARIABLE];
+    };
+
+    class GatewayStruct
+    {
+    public :
+        typed_list*         m_pIn;
+        InternalType**      m_pOut;
+        int*                m_piRetCount;
+        char*               m_pstName;
+        int*                m_pOutOrder;
+
+                            GatewayStruct(){};
+                            ~GatewayStruct(){};
+    };
 }
 
 

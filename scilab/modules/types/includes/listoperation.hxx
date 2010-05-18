@@ -18,25 +18,27 @@
 
 namespace types
 {
-  class ListOperation : public InternalType
-  {
-  public :
-    ListOperation(): InternalType(){};
-    virtual ~ListOperation();
+    class ListOperation : public InternalType
+    {
+    public :
+                                ListOperation(): InternalType(){};
+        virtual                 ~ListOperation();
 
-    ListOperation* clone();
+        ListOperation*          clone();
 
-    ListOperation *getAsListOperation(void);
-    RealType getType(void);
-    
-    void whoAmI();
+        ListOperation*          getAsListOperation(void);
+        RealType                getType(void);
 
-    std::string toString(int _iPrecision, int _iLineLen);
-    virtual bool isAssignable(void) { return false; }
+        void                    whoAmI();
 
-    /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::string         getTypeStr() {return string("listoperation");}
-  };
+        std::string             toString(int _iPrecision, int _iLineLen);
+        virtual bool            isAssignable(void) { return false; }
+
+        /* return type as string ( double, int, cell, list, ... )*/
+        virtual std::string     getTypeStr() {return string("listoperation");}
+        /* return type as short string ( s, i, ce, l, ... )*/
+        virtual std::string     getShortTypeStr() {return string("");}
+    };
 }
 
 

@@ -22,52 +22,55 @@ namespace types
     class Cell : public Container
     {
     public :
-        Cell();
-        Cell(int _iRows, int _iCols);
-        ~Cell(); 
+                            Cell();
+                            Cell(int _iRows, int _iCols);
+                            ~Cell(); 
 
     private :
-        Cell(Cell* _oCellCopyMe);
-        void createCell(int _iRows, int _iCols);
+                            Cell(Cell* _oCellCopyMe);
+        void                createCell(int _iRows, int _iCols);
 
     public :
-        int size_get(); 
+        int                 size_get(); 
 
-        void whoAmI(void) { std::cout << "types::Cell"; };
+        void                whoAmI(void) { std::cout << "types::Cell"; };
 
-        RealType getType(void) { return RealCell; } 
+        RealType            getType(void) { return RealCell; } 
 
         /**
         ** Clone
         ** Create a new List and Copy all values.
         */
-        Cell* clone();
+        Cell*               clone();
 
-        std::string toString(int _iPrecision, int _iLineLen);
+        std::string         toString(int _iPrecision, int _iLineLen);
 
-        Cell* getAsCell(void) { return this; }
+        Cell*               getAsCell(void) { return this; }
 
-        InternalType* get(int _iRows, int _iCols);
-        InternalType* get(int _iIndex);
-        bool set(int _iRows, int _iCols, InternalType* _pIT);
-        bool set(int _iIndex, InternalType* _pIT);
+        InternalType*       get(int _iRows, int _iCols);
+        InternalType*       get(int _iIndex);
+        bool                set(int _iRows, int _iCols, InternalType* _pIT);
+        bool                set(int _iIndex, InternalType* _pIT);
 
 
-	    bool resize(int _iNewRows, int _iNewCols);
-	    bool append(int _iRows, int _iCols, Cell *_poSource);
+        bool                resize(int _iNewRows, int _iNewCols);
+        bool                append(int _iRows, int _iCols, Cell *_poSource);
 
-    	bool operator==(const InternalType& it);
-    	bool operator!=(const InternalType& it);
+        bool                operator==(const InternalType& it);
+        bool                operator!=(const InternalType& it);
 
-	    bool insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector);
-	    Cell* insert_new(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, Double* _poSource, bool _bAsVector);
-	    Cell* extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector);
-	    InternalType* extract_cell(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector);
+        bool                insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector);
+        Cell*               insert_new(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, Double* _poSource, bool _bAsVector);
+        Cell*               extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector);
+        InternalType*       extract_cell(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector);
 
         /* return type as string ( double, int, cell, list, ... )*/
         virtual std::string getTypeStr() {return string("cell");}
+        /* return type as short string ( s, i, ce, l, ... )*/
+        virtual std::string getShortTypeStr() {return string("ce");};
+
     private :
-        InternalType** m_plData;
+        InternalType**      m_plData;
     };
 }
 

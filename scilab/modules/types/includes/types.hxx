@@ -22,43 +22,45 @@ using namespace std;
 
 namespace types
 {
-  /*
-  ** Type
-  */
-  class GenericType : public InternalType
-  {
+    /*
+    ** Type
+    */
+    class GenericType : public InternalType
+    {
 
-  protected :
-    int m_iRows;
-    int m_iCols;
-    int m_iSize;
+    protected :
+        int                         m_iRows;
+        int                         m_iCols;
+        int                         m_iSize;
 
-    GenericType() : InternalType(), m_iRows(0), m_iCols(0), m_iSize(0) {}
-    virtual ~GenericType() {}
+                                    GenericType() : InternalType(), m_iRows(0), m_iCols(0), m_iSize(0) {}
+        virtual                     ~GenericType() {}
 
-  public :
-    void whoAmI(void) { std::cout << "types::GenericType"; }
-    
-    /*commun functions*/
-    int cols_get();
-    int rows_get();
-    int size_get();
+    public :
+        void                        whoAmI(void) { std::cout << "types::GenericType"; }
 
-    std::string DimToString();
+        /*commun functions*/
+        int                         cols_get();
+        int                         rows_get();
+        int                         size_get();
 
-    /* GenericType */
-    GenericType* getAsGenericType(void) { return this; }
+        std::string                 DimToString();
 
-    /* FIXME : should be : virtual GenericType*	get(int _iPos) = 0; */
-    virtual GenericType*	get_col_value(int _iPos) { return NULL; }
+        /* GenericType */
+        GenericType*                getAsGenericType(void) { return this; }
 
-    bool isIdentity(void);
-    virtual bool isAssignable(void) { return true; }
+        /* FIXME : should be : virtual GenericType*	get(int _iPos) = 0; */
+        virtual GenericType*        get_col_value(int _iPos) { return NULL; }
 
-    virtual RealType getType(void) { return RealGeneric; }
+        bool                        isIdentity(void);
+        virtual bool                isAssignable(void) { return true; }
 
-    /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::string     getTypeStr() {return string("generictype");}
-  };
+        virtual RealType            getType(void) { return RealGeneric; }
+
+        /* return type as string ( double, int, cell, list, ... )*/
+        virtual std::string         getTypeStr() {return string("generictype");}
+        /* return type as short string ( s, i, ce, l, ... )*/
+        virtual std::string         getShortTypeStr() {return string("");}
+    };
 }
 #endif /* !__TYPES_HXX__ */

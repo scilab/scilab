@@ -19,25 +19,27 @@
 
 namespace types
 {
-	class ListDelete : public ListOperation
-  {
-  public :
-    ListDelete(): ListOperation(){};
-    virtual ~ListDelete();
+    class ListDelete : public ListOperation
+    {
+    public :
+                                ListDelete(): ListOperation(){};
+        virtual                 ~ListDelete();
 
-    // FIXME : Should not return NULL;
-    ListDelete* clone();
+        // FIXME : Should not return NULL;
+        ListDelete*             clone();
 
-    ListDelete *getAsListDelete(void);
-    RealType getType(void);
-    
-    void whoAmI();
+        ListDelete*             getAsListDelete(void);
+        RealType                getType(void);
 
-    std::string toString(int _iPrecision, int _iLineLen);
+        void                    whoAmI();
 
-    /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::string         getTypeStr() {return string("listdelete");}
-	};
+        std::string             toString(int _iPrecision, int _iLineLen);
+
+        /* return type as string ( double, int, cell, list, ... )*/
+        virtual std::string     getTypeStr() {return string("listdelete");}
+        /* return type as short string ( s, i, ce, l, ... )*/
+        virtual std::string     getShortTypeStr() {return string("");}
+    };
 }
 
 

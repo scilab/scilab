@@ -21,35 +21,37 @@
 
 namespace types
 {
-  class Macro : public Callable
-  {
-  public :
-    Macro(): Callable(){};
-    Macro(const std::string& _stName, std::list<std::string> &_inputArgs, std::list<std::string> &_outputArgs, ast::SeqExp &_body, const string& _stModule);
-    virtual ~Macro();
+    class Macro : public Callable
+    {
+    public :
+                                    Macro(): Callable(){};
+                                    Macro(const std::string& _stName, std::list<std::string> &_inputArgs, std::list<std::string> &_outputArgs, ast::SeqExp &_body, const string& _stModule);
+        virtual                     ~Macro();
 
-    // FIXME : Should not return NULL;
-    Macro* clone() { return NULL; }
+        // FIXME : Should not return NULL;
+        Macro*                      clone() { return NULL; }
 
-    Macro *getAsMacro(void);
-    RealType getType(void);
-    
-    void whoAmI();
+        Macro*                      getAsMacro(void);
+        RealType                    getType(void);
 
-    std::string toString(int _iPrecision, int _iLineLen);
-    
-		Callable::ReturnValue call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
-    
-		ast::SeqExp* body_get();
+        void                        whoAmI();
 
-    /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::string         getTypeStr() {return string("macro");}
+        std::string                 toString(int _iPrecision, int _iLineLen);
 
-  private :
-    std::list<std::string>	*m_inputArgs;
-    std::list<std::string>	*m_outputArgs;
-    ast::SeqExp			*m_body;
-  };
+        Callable::ReturnValue       call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
+
+        ast::SeqExp*                body_get();
+
+        /* return type as string ( double, int, cell, list, ... )*/
+        virtual std::string         getTypeStr() {return string("macro");}
+        /* return type as short string ( s, i, ce, l, ... )*/
+        virtual std::string         getShortTypeStr() {return string("function");}
+
+    private :
+        std::list<std::string>*     m_inputArgs;
+        std::list<std::string>*     m_outputArgs;
+        ast::SeqExp*                m_body;
+    };
 }
 
 

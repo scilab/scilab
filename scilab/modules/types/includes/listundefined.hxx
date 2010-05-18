@@ -19,25 +19,27 @@
 
 namespace types
 {
-	class ListUndefined : public ListOperation
-  {
-  public :
-    ListUndefined(): ListOperation(){};
-    virtual ~ListUndefined();
+    class ListUndefined : public ListOperation
+    {
+    public :
+                                ListUndefined(): ListOperation(){};
+        virtual                 ~ListUndefined();
 
-    // FIXME : Should not return NULL;
-    ListUndefined* clone();
+        // FIXME : Should not return NULL;
+        ListUndefined*          clone();
 
-    ListUndefined *getAsListUndefined(void);
-    RealType getType(void);
-    
-    void whoAmI();
+        ListUndefined*          getAsListUndefined(void);
+        RealType                getType(void);
 
-    std::string toString(int _iPrecision, int _iLineLen);
-  
-    /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::string         getTypeStr() {return string("listundefined");}
-	};
+        void                    whoAmI();
+
+        std::string             toString(int _iPrecision, int _iLineLen);
+
+        /* return type as string ( double, int, cell, list, ... )*/
+        virtual std::string     getTypeStr() {return string("listundefined");}
+        /* return type as short string ( s, i, ce, l, ... )*/
+        virtual std::string     getShortTypeStr() {return string("");}
+    };
 }
 
 

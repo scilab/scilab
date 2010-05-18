@@ -20,35 +20,37 @@
 
 namespace types
 {
-  class MacroFile : public Callable
-  {
-  public :
-    MacroFile(): Callable(){};
-    MacroFile(std::string _stName, string _stPath, string _stModule);
-    virtual ~MacroFile(){};
-    
-    //FIXME : Should not return NULL
-    MacroFile *clone() { return NULL; }
+    class MacroFile : public Callable
+    {
+    public :
+                                MacroFile(): Callable(){};
+                                MacroFile(std::string _stName, string _stPath, string _stModule);
+        virtual                 ~MacroFile(){};
 
-    MacroFile *getAsMacroFile(void);
-    RealType getType(void);
-    
-    void whoAmI();
+        //FIXME : Should not return NULL
+        MacroFile*              clone() { return NULL; }
 
-    std::string toString(int _iPrecision, int _iLineLen);
+        MacroFile*              getAsMacroFile(void);
+        RealType                getType(void);
 
-    Callable::ReturnValue call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
-    bool parse(void);
+        void                    whoAmI();
 
-    Macro* macro_get(void);
+        std::string             toString(int _iPrecision, int _iLineLen);
 
-    /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::string         getTypeStr() {return string("macrofile");}
+        Callable::ReturnValue   call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
+        bool                    parse(void);
 
-  private :
-    Macro*			m_pMacro;
-    std::string			m_stPath;
-  };
+        Macro*                  macro_get(void);
+
+        /* return type as string ( double, int, cell, list, ... )*/
+        virtual std::string     getTypeStr() {return string("macrofile");}
+        /* return type as short string ( s, i, ce, l, ... )*/
+        virtual std::string     getShortTypeStr() {return string("function");}
+
+    private :
+        Macro*                  m_pMacro;
+        std::string             m_stPath;
+    };
 }
 
 

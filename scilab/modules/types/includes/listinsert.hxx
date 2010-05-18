@@ -19,28 +19,30 @@
 
 namespace types
 {
-	class ListInsert : public ListOperation
-  {
-  public :
-												ListInsert(InternalType* _pIT);
-    virtual							~ListInsert();
+    class ListInsert : public ListOperation
+    {
+    public :
+                                ListInsert(InternalType* _pIT);
+        virtual                 ~ListInsert();
 
-    ListInsert*					clone();
+        ListInsert*             clone();
 
-    ListInsert*					getAsListInsert(void);
-    RealType						getType(void);
-    
-    void								whoAmI();
+        ListInsert*             getAsListInsert(void);
+        RealType                getType(void);
 
-    std::string					toString(int _iPrecision, int _iLineLen);
-		InternalType*				insert_get();
+        void                    whoAmI();
 
-    /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::string         getTypeStr() {return string("listinsert");}
+        std::string             toString(int _iPrecision, int _iLineLen);
+        InternalType*           insert_get();
 
-  private :
-		InternalType*				m_pInsert;
-	};
+        /* return type as string ( double, int, cell, list, ... )*/
+        virtual std::string     getTypeStr() {return string("listinsert");}
+        /* return type as short string ( s, i, ce, l, ... )*/
+        virtual std::string     getShortTypeStr() {return string("");}
+
+    private :
+        InternalType*           m_pInsert;
+    };
 }
 
 

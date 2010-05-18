@@ -17,29 +17,29 @@
 
 namespace types
 {
-  class String;
-  class Double;
-  class Float;
-  class Int;
-  class Bool;
-  class MatrixType;
-  class GenericType;
-  class ImplicitList;
-  class Callable;
-  class Function;
-  class Macro;
-  class MacroFile;
-  class Dollar;
-  class Poly;
-  class MatrixPoly;
-  class Container;
-  class List;
-  class Struct;
-  class ListOperation;
-  class ListDelete;
-  class ListInsert;
-  class ListUndefined;
-  class Cell;
+    class String;
+    class Double;
+    class Float;
+    class Int;
+    class Bool;
+    class MatrixType;
+    class GenericType;
+    class ImplicitList;
+    class Callable;
+    class Function;
+    class Macro;
+    class MacroFile;
+    class Dollar;
+    class Poly;
+    class MatrixPoly;
+    class Container;
+    class List;
+    class Struct;
+    class ListOperation;
+    class ListDelete;
+    class ListInsert;
+    class ListUndefined;
+    class Cell;
 }
 
 #endif /* !__ANY_TYPES_HXX__ */

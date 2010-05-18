@@ -13,10 +13,11 @@
 #define ALL_TYPES_HXX
 
 #ifdef getType
-#undef getType
+    #undef getType
 #endif
+
 #ifdef isComplex
-#undef isComplex
+    #undef isComplex
 #endif
 
 #include "internal.hxx"

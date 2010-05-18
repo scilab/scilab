@@ -24,11 +24,11 @@ namespace types
     public :
         virtual						~Double();
 
-        Double(double _dblReal);
-        Double(double _dblReal, double _dblImg);
-        Double(int _iRows, int _iCols, bool _bComplex = false);
-        Double(int _iRows, int _iCols, double **_pdblReal);
-        Double(int _iRows, int _iCols, double **_pdblReal, double **_pdblImg);
+                                    Double(double _dblReal);
+                                    Double(double _dblReal, double _dblImg);
+                                    Double(int _iRows, int _iCols, bool _bComplex = false);
+                                    Double(int _iRows, int _iCols, double **_pdblReal);
+                                    Double(int _iRows, int _iCols, double **_pdblReal, double **_pdblImg);
 
         /*data management*/
         GenericType*                get_col_value(int _iPos);
@@ -71,6 +71,8 @@ namespace types
 
         /* return type as string ( double, int, cell, list, ... )*/
         virtual std::string         getTypeStr() {return string("double");}
+        /* return type as short string ( s, i, ce, l, ... )*/
+        virtual std::string	        getShortTypeStr() {return string("constant");}
     protected :
         RealType                    getType(void);
 

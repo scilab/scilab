@@ -25,31 +25,34 @@ namespace types
   class Callable : public InternalType
   {
   public :
-    enum ReturnValue
+      enum ReturnValue
       {
-	OK,
-	OK_NoResult,
-	Error
+          OK,
+          OK_NoResult,
+          Error
       };
     
-    Callable(): InternalType() {}
-    virtual ~Callable() {}
+                            Callable(): InternalType() {}
+      virtual               ~Callable() {}
 
-    Callable * 	getAsCallable() { return this; }
-    bool isCallable() { return true; }
+      Callable*             getAsCallable() { return this; }
+      bool                  isCallable() { return true; }
 
-		virtual ReturnValue call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc) = 0;
-    
-    void setName(std::string _stName) { m_stName = _stName; }
-    std::string getName() { return m_stName; }
-    void setModule(std::string _stModule) { m_stModule = _stModule; }
-    std::string getModule() { return m_stModule; }
-    
-    /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::string getTypeStr() {return string("callable");}
+      virtual ReturnValue   call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc) = 0;
+
+      void                  setName(std::string _stName) { m_stName = _stName; }
+      std::string           getName() { return m_stName; }
+      void                  setModule(std::string _stModule) { m_stModule = _stModule; }
+      std::string           getModule() { return m_stModule; }
+
+      /* return type as string ( double, int, cell, list, ... )*/
+      virtual std::string   getTypeStr() {return string("callable");}
+      /* return type as short string ( s, i, ce, l, ... )*/
+      virtual std::string	getShortTypeStr() = 0;
+
   protected :
-    std::string m_stName;
-    std::string	m_stModule;
+      std::string           m_stName;
+      std::string           m_stModule;
   };
 }
 

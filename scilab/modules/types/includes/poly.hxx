@@ -21,57 +21,59 @@ using std::list;
 
 namespace types
 {
-	class Poly : public GenericType
-	{
-  public :
-									Poly();
-									Poly(double** _pdblCoefR, int _iRank);
-									Poly(double** _pdblCoefR, double** _pdblcoefI, int _iRank);
-									Poly(Double** _poCoefR, int _iRank);
-									~Poly();
+    class Poly : public GenericType
+    {
+    public :
+                                Poly();
+                                Poly(double** _pdblCoefR, int _iRank);
+                                Poly(double** _pdblCoefR, double** _pdblcoefI, int _iRank);
+                                Poly(Double** _poCoefR, int _iRank);
+                                ~Poly();
 
-	  // FIXME : Should not return NULL;
-	  Poly*					clone() { return NULL; }
+        // FIXME : Should not return NULL;
+        Poly*                   clone() { return NULL; }
 
-		Poly*					getAsSinglePoly(void);
-		/*Config management*/
-    void					whoAmI();
-		bool					isComplex();
-		void					complex_set(bool _bComplex);
+        Poly*                   getAsSinglePoly(void);
+        /*Config management*/
+        void                    whoAmI();
+        bool                    isComplex();
+        void                    complex_set(bool _bComplex);
 
-		int						rank_get();
-		bool					rank_set(int _iRank, bool bSave = false);
-		Double*				coef_get();
-		double*				coef_real_get();
-		double*				coef_img_get();
-		bool					coef_set(Double *_poPow);
-		bool					coef_set(double *_pdblCoefR, double *_pdblCoefI);
-		bool					evaluate(double _dblInR, double _dblInI, double *_pdblOutR, double *_pdblOutI);
-		void					update_rank(void);
+        int                     rank_get();
+        bool                    rank_set(int _iRank, bool bSave = false);
+        Double*                 coef_get();
+        double*                 coef_real_get();
+        double*                 coef_img_get();
+        bool                    coef_set(Double *_poPow);
+        bool                    coef_set(double *_pdblCoefR, double *_pdblCoefI);
+        bool                    evaluate(double _dblInR, double _dblInI, double *_pdblOutR, double *_pdblOutI);
+        void                    update_rank(void);
 
-		void					CreatePoly(double**_pdblCoefR, double**_pdblCoefI, int _iRank);
-		void					toStringReal(int _iPrecision, int _iLineLen, string _szVar, list<string>* _pListExp , list<string>* _pListCoef);
-		void					toStringImg(int _iPrecision, int _iLineLen, string _szVar, list<string>* _pListExp , list<string>* _pListCoef);
+        void                    CreatePoly(double**_pdblCoefR, double**_pdblCoefI, int _iRank);
+        void                    toStringReal(int _iPrecision, int _iLineLen, string _szVar, list<string>* _pListExp , list<string>* _pListCoef);
+        void                    toStringImg(int _iPrecision, int _iLineLen, string _szVar, list<string>* _pListExp , list<string>* _pListCoef);
 
-		std::string			toString(int _iPrecision, int _iLineLen);
+        std::string             toString(int _iPrecision, int _iLineLen);
 
-		bool					operator==(const InternalType& it);
-		bool					operator!=(const InternalType& it);
+        bool                    operator==(const InternalType& it);
+        bool                    operator!=(const InternalType& it);
 
         /* return type as string ( double, int, cell, list, ... )*/
         virtual std::string     getTypeStr() {return string("poly");}
+        /* return type as short string ( s, i, ce, l, ... )*/
+        virtual std::string     getShortTypeStr() {return string("p");}
     protected :
-		RealType			getType(void);
+        RealType                getType(void);
 
-	private : 
-		void					toStringInternal(double *_pdblVal, int _iPrecision, int _iLineLen, string _szVar, list<string>* _pListExp , list<string>* _pListCoef);
+    private : 
+        void                    toStringInternal(double *_pdblVal, int _iPrecision, int _iLineLen, string _szVar, list<string>* _pListExp , list<string>* _pListCoef);
 
 
-  private :
-		bool					m_bComplex;
-		Double*				m_pdblCoef;
-		int						m_iRank;
-	};
+    private :
+        bool                    m_bComplex;
+        Double*                 m_pdblCoef;
+        int                     m_iRank;
+    };
 }
 
 #endif /* !__POLY_HH__ */
