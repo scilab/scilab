@@ -56,6 +56,9 @@ extern "C"
 #include "../../../history_manager/includes/InitializeHistoryManager.h"
 #include "../../../history_manager/includes/TerminateHistoryManager.h"
 
+#ifdef __APPLE__
+#include "../../../shell/src/c/others/initMacOSXEnv.h"
+#endif
 	/*
 	** HACK HACK HACK
 	*/
@@ -105,6 +108,8 @@ void Add_String_Constant(string _szName, const char* _pstString);
 
 int InitializeEnvironnement(void);
 bool execScilabStart(void);
+
+int StartScilabEngine(int argc, char*argv[], int iFileIndex);
 
 /*
 ** Usage
@@ -454,7 +459,7 @@ int main(int argc, char *argv[])
 {
 	int iFileIndex = INTERACTIVE;
 	int iLangIndex = 0;
-	int iMainRet = 0;
+
 	prog_name = argv[0];
 
 	setScilabMode(SCILAB_STD);
@@ -465,13 +470,23 @@ int main(int argc, char *argv[])
 	{
 		setYaspInputMethod(&TermReadAndProcess);
 		setYaspOutputMethod(&TermPrintf);
+        return StartScilabEngine(argc, argv, iFileIndex);
 	}
 	else
 	{
 		setYaspInputMethod(&ConsoleRead);
 		setYaspOutputMethod(&ConsolePrintf);
+#ifdef __APPLE__
+        return initMacOSXEnv(argc, argv, iFileIndex);
+#else
+        return StartScilabEngine(argc, argv, iFileIndex);
+#endif
 	}
+}
 
+int StartScilabEngine(int argc, char*argv[], int iFileIndex)
+{
+    int iMainRet = 0;
 	/* Scilab Startup */
 	InitializeEnvironnement();
 

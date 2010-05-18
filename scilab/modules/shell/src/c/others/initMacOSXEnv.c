@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - DIGITEO - Sylvestre LEDRU
+ * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -25,10 +26,9 @@
 #if defined(__APPLE__) && !defined(WITHOUT_GUI)
 
 typedef struct {
-  int   no_startup_flag_l;
-  char  *initial_script;
-  InitScriptType initial_script_type;
-  int memory;
+    int   argc;
+    char  **argv;
+    int iFileIndex;
 } thread_parm_t;
 
 /*
@@ -167,11 +167,11 @@ static int launchMacOSXEnv(thread_parm_t *param){
 
   if (ret==0) {
     /* Call the actual startup script of Scilab */
-    ret = realmain(p->no_startup_flag_l, p->initial_script, p->initial_script_type, p->memory);
+    ret=StartScilabEngine(p->argc, p->argv, p->iFileIndex);
 	free(p);
 	exit(ret);  
   }
-    free(p);
+  free(p);
   return ret;
 
 } 
@@ -183,7 +183,7 @@ static void sourceCallBack (  void *info  ) {}
 /* Specific wrapper for mac os X which is going to call realmin in a specific thread.
  * Takes the same args as realmain 
  */ 
-int initMacOSXEnv(int no_startup_flag_l, char *initial_script, InitScriptType initial_script_type, int memory){
+int initMacOSXEnv(int argc, char *argv[], int iFileIndex) {
 
   CFRunLoopSourceContext sourceContext;
   /* Start the thread that runs the VM. */
@@ -193,10 +193,9 @@ int initMacOSXEnv(int no_startup_flag_l, char *initial_script, InitScriptType in
   /* Create the structure which is going to be giving to the function inside the thread */
   thread_parm_t         *param=NULL;
   param = malloc(sizeof(thread_parm_t));
-  param->no_startup_flag_l = no_startup_flag_l;
-  param->initial_script = initial_script;
-  param->initial_script_type = initial_script_type;
-  param->memory = memory;
+  param->argc = argc;
+  param->argv = argv;
+  param->iFileIndex = iFileIndex;
 
   /* create a new pthread copying the stack size of the primordial pthread */
   struct rlimit limit;
