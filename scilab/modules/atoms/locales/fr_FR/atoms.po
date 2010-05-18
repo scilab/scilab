@@ -301,6 +301,10 @@ msgstr "%s: Mauvais nombre d''argument d''entrée: au plus %d attendu.\n"
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s : Mauvais nombre d'arguments d'entrée : %d attendu.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s : Mauvais nombre d'arguments d'entrée : %d à %d attendus.\n"
+
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s : Mauvais nombre d'arguments d'entrée : %d à %d attendus.\n"
@@ -321,6 +325,12 @@ msgid "%s: Wrong size for input argument #%d: 1x2 string matrix expected.\n"
 msgstr ""
 "%s: Mauvaise dimension pour l''argument d''entrée n° %d: Une matrice de "
 "chaînes de caractères de taille 1x2 attendue.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s : Mauvaise dimension pour l'argument d'entrée n° %d : Une simple chaîne "
+"de caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
@@ -369,6 +379,11 @@ msgid "%s: Wrong size for input argument #%d: mx3 string matrix expected.\n"
 msgstr ""
 "%s: Mauvaise dimension pour l''argument d''entrée n° %d: une matrice de "
 "chaînes de caractères de taille mx3 attendue.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s : Mauvais type pour l'argument n° %d : Chaîne de caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
@@ -452,6 +467,13 @@ msgstr ""
 "%s: Mauvaise valeur pour l''argument d''entrée n° %d: "
 "''all'',''user'',''allusers'' ou ''official'' attendue.\n"
 
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''filter:all'',''filter:main'' or a "
+"valid main category expected.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l''argument d''entrée n° %d: ASC ou DESC attendu.\n"
+
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''system'' or ''install'' expected.\n"
@@ -489,6 +511,11 @@ msgid ""
 msgstr ""
 "%s: Mauvaise valeur pour l''argument d''entrée n° %d: ''user'',''allusers'' "
 "ou ''all'' attendu.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: A valid category expected.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l''argument d''entrée n° %d: ASC ou DESC attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"

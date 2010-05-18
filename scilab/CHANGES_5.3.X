@@ -320,6 +320,10 @@ Removed functions (previously declared as obsolete):
 ATOMS:
 ======
 
+* ATOMS client: Categories are now managed.
+  - atomsList(category) limits the list of modules to a category.
+  - atomsCategoryList() lists available categories.
+
 * The ATOMS GUI ergonomics has been improved.
 
 * ATOMS GUI: When a module is not up-to-date, a warning is displayed on the
