@@ -52,6 +52,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private IndentManager indent;
     private TabManager tab;
     private CommentManager com;
+    private HelpOnTypingManager helpOnTyping;
 
     /* matchLR matches Left to Right ... */
     private MatchingBlockManager matchLR;
@@ -195,6 +196,20 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      */
     public void setHighlightedContourColor(Color c) {
         highlightContourColor = c;
+    }
+
+    /**
+     * Activate or desactivate the help on typing
+     * @param isActive a boolean, true to activate.
+     */
+    public void activateHelpOnTyping(boolean isActive) {
+        if (isActive && helpOnTyping == null) {
+            helpOnTyping = new HelpOnTypingManager(this);
+            addKeyListener(helpOnTyping);
+        } else if (!isActive && helpOnTyping != null) {
+            removeKeyListener(helpOnTyping);
+            helpOnTyping = null;
+        }
     }
 
     /**

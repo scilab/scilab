@@ -24,7 +24,7 @@ public class ScilabLexerConstants {
     /**
      * Number of known tokens
      */
-    public static final int NUMBEROFTOKENS = 24;
+    public static final int NUMBEROFTOKENS = 25;
 
     /**
      * DEFAULT : tokens which are not recognized
@@ -37,114 +37,119 @@ public class ScilabLexerConstants {
     public static final int OPERATOR = 1;
 
     /**
-     * SKEYWORD : Structure keywords like 'if', 'for' or 'while'
+     * SKEYWORD : Structure keywords like 'then', 'else' or 'catch' ...
      */
     public static final int SKEYWORD = 2;
 
     /**
+     * SKEYWORD : Structure keywords like 'if', 'for' or 'while'
+     */
+    public static final int OSKEYWORD = 3;
+
+    /**
      * CKEYWORD : Control keywords like 'abort', 'break' or 'return'
      */
-    public static final int CKEYWORD = 3;
+    public static final int CKEYWORD = 4;
 
     /**
      * CONSTANTES : Constantes like '%pi' or '%T'
      */
-    public static final int CONSTANTES = 4;
+    public static final int CONSTANTES = 5;
 
     /**
      * ID : Identifiers like 'myvar' or 'myfun'
      */
-    public static final int ID = 5;
+    public static final int ID = 6;
 
     /**
      * NUMBER : I don't know ;)
      */
-    public static final int NUMBER = 6;
+    public static final int NUMBER = 7;
 
     /**
      * SPECIAL : Special keywords like '$', ':' or '...'
      */
-    public static final int SPECIAL = 7;
+    public static final int SPECIAL = 8;
 
     /**
      * DOT : the dot in a field context, e.g. 'object.myfield'
      */
-    public static final int DOT = 8;
+    public static final int DOT = 9;
 
     /**
      * TRANSP : just the transpose operator
      */
-    public static final int TRANSP = 9;
+    public static final int TRANSP = 10;
 
     /**
      * OPEN : an opening char like '(', '[' or '{'
      */
-    public static final int OPEN = 10;
+    public static final int OPEN = 11;
 
     /**
      * CLOSE : a closing char like ')', ']' or '}'
      */
-    public static final int CLOSE = 11;
+    public static final int CLOSE = 12;
 
     /**
      * STRING : "bla bla bla" or 'bli bli bli' (or fucking exotic way to write a string)
      */
-    public static final int STRING = 12;
+    public static final int STRING = 13;
 
     /**
      * COMMENT : Comments like // An interesting commentary
      */
-    public static final int COMMENT = 13;
+    public static final int COMMENT = 14;
 
     /**
      * FKEYWORD : For keywords 'function' and 'endfunction'
      */
-    public static final int FKEYWORD = 14;
+    public static final int FKEYWORD = 15;
 
     /**
      * COMMANDS : Functions in Scilab
      */
-    public static final int COMMANDS = 15;
+    public static final int COMMANDS = 16;
 
     /**
      * FIELD : Field of an object, e.g. myobject.myfield
      */
-    public static final int FIELD = 16;
+    public static final int FIELD = 17;
 
     /**
      * AUTHORS : Authors in Scilab
      */
-    public static final int AUTHORS = 17;
+    public static final int AUTHORS = 18;
 
     /**
      * URL : http://...
      */
-    public static final int URL = 18;
+    public static final int URL = 19;
 
     /**
      * WHITE : A white char ' '
      */
-    public static final int WHITE = 19;
+    public static final int WHITE = 20;
 
     /**
      * TAB : A tabulation '\t'
      */
-    public static final int TAB = 20;
+    public static final int TAB = 21;
 
     /**
      * LATEX : $\frac\pi\alpha$
      */
-    public static final int LATEX = 21;
+    public static final int LATEX = 22;
 
     /**
      * VARIABLES : A variable in Scilab
      */
-    public static final int VARIABLES = 22;
+    public static final int VARIABLES = 23;
 
     /**
      * EOF : End Of File
      */
-    public static final int EOF = 23;
+    public static final int EOF = 24;
 
     /**
      * TOKENS : A Map which contains the names of keywords (useful in xpadConfiguration.xml)
@@ -182,6 +187,7 @@ public class ScilabLexerConstants {
             || type == OPERATOR
             || type == FKEYWORD
             || type == CKEYWORD
+            || type == OSKEYWORD
             || type == SKEYWORD
             || type == CONSTANTES;
     }
@@ -205,6 +211,7 @@ public class ScilabLexerConstants {
             || type == CLOSE
             || type == FKEYWORD
             || type == CKEYWORD
+            || type == OSKEYWORD
             || type == SKEYWORD;
     }
 

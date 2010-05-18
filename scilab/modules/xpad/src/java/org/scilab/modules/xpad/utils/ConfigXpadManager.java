@@ -85,6 +85,7 @@ public final class ConfigXpadManager {
     private static final String AUTOCOLORIZE = "AutoColorize";
     private static final String DEFAULTENCONDING = "DefaultEncoding";
     private static final String LINEHIGHLIGHTER = "LineHighlighter";
+    private static final String HELPONTYPING = "HelpOnTyping";
 
     private static final String FOREGROUNDCOLOR = "ForegroundColor";
     private static final String BACKGROUNDCOLOR = "BackgroundColor";
@@ -224,6 +225,23 @@ public final class ConfigXpadManager {
         Element fontSize = (Element) fontSizeElement.item(0);
         return Integer.parseInt(fontSize.getAttribute(VALUE));
 
+    }
+
+    /**
+     * @return true if help on typing is active
+     */
+    public static boolean getHelpOnTypingState() {
+        readDocument();
+
+        Element root = document.getDocumentElement();
+
+        NodeList profiles = root.getElementsByTagName(PROFILE);
+        Element xpadProfile = (Element) profiles.item(0);
+
+        NodeList allSizeElements = xpadProfile.getElementsByTagName(HELPONTYPING);
+        Element helpontyping = (Element) allSizeElements.item(0);
+
+        return "true".equals(helpontyping.getAttribute(VALUE));
     }
 
     /**

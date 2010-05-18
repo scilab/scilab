@@ -43,6 +43,7 @@ import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.localization.Messages;
+import org.scilab.modules.xpad.actions.ActivateHelpOnTypingAction;
 import org.scilab.modules.xpad.actions.AboutAction;
 import org.scilab.modules.xpad.actions.AutoIndentAction;
 import org.scilab.modules.xpad.actions.CloseAction;
@@ -353,6 +354,8 @@ public class XpadGUI {
         private void createToolsMenu(Menu toolsMenu, Xpad editorInstance) {
                 toolsMenu.setText(XpadMessages.TOOLS);
                 toolsMenu.setMnemonic('o');
+                toolsMenu.add(ActivateHelpOnTypingAction.createCheckBoxMenu(editorInstance, map.get("ActivateHelpOnTypingAction")));
+                toolsMenu.addSeparator();
                 toolsMenu.add(CommentAction.createMenu(editorInstance, map.get("CommentAction")));
                 toolsMenu.add(UnCommentAction.createMenu(editorInstance, map.get("UnCommentAction")));
                 toolsMenu.addSeparator();

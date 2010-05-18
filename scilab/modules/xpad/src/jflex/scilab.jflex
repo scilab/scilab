@@ -89,7 +89,9 @@ operator = ".'" | ".*" | "./" | ".\\" | ".^" | ".**" | "+" | "-" | "/" | "\\" | 
 
 functionKwds = "function" | "endfunction"
 
-structureKwds = "if" | "then" | "else" | "elseif" | "end" | "for" | "while" | "do" | "try" | "catch" | "select" | "case"
+structureKwds = "then" | "else" | "elseif" | "end" | "do" | "catch" | "case"
+
+openstructureKwds = "if" | "for" | "while" | "try" | "select"
 
 controlKwds = "abort" | "break" | "quit" | "return" | "resume" | "pause" | "continue" | "exit"
 
@@ -132,6 +134,11 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
   {functionKwds}                 {
                                    transposable = false;
                                    return ScilabLexerConstants.FKEYWORD;
+                                 }
+
+  {openstructureKwds}            {
+                                   transposable = false;
+                                   return ScilabLexerConstants.OSKEYWORD;
                                  }
 
   {structureKwds}                {

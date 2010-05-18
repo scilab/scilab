@@ -15,6 +15,9 @@ Text Editor:
 
 * Complete refactorization of the text editor.
 
+* Add the possibility to autocomplete some characters (e.g. type '[' gives '[]')
+  or keywords (e.g. type 'if ' gives 'if <CR>end')  
+
 * bugs 4399, 4922 fixed - The line numbering could not be compatible with the
                           output of the whereami function.
 

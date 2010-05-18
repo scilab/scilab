@@ -131,14 +131,14 @@ public class Xpad extends SwingScilabTab implements Tab {
         private Color highlightColor;
         private Color highlightContourColor;
 
+        private boolean helpOnTyping;
+
         private int whereami;
 
         private Vector<Integer> tabList = new Vector<Integer>();
         private Vector<Integer> closedTabList = new Vector<Integer>();
 
         private String fileFullPath = "";
-
-        //private static org.scilab.modules.gui.menuitem.MenuItem evaluateSelectionMenuItem;
 
         private File fileToEncode;
 
@@ -153,6 +153,7 @@ public class Xpad extends SwingScilabTab implements Tab {
                 numberOfUntitled = 0;
                 editorKit = new ScilabEditorKit();
                 setDefaultHighlight();
+                setDefaultHelpOnTyping();
                 lastKnownSavedState = 0;
                 tabPane = new JTabbedPane();
                 tabPane.addChangeListener(new ChangeListener() {
@@ -163,20 +164,6 @@ public class Xpad extends SwingScilabTab implements Tab {
                                                 path  =  " (" + getTextPane().getName() + ")";
                                         }
                                         setTitle(tabPane.getTitleAt(tabPane.getSelectedIndex()) + path + " - " + XpadMessages.SCILAB_EDITOR);
-
-                                        // This listener is for 'evaluate selection' of the Execute menu
-                                        // it enable the menuItem only if something is selected
-                                        /*textPane.addCaretListener(new CaretListener() {
-                                                public void caretUpdate(CaretEvent e) {
-                                                    int dot = e.getDot();
-                                                    int mark = e.getMark();
-                                                    if (dot == mark) {  // no selection
-                                                        XpadGUI.getEvaluateSelectionMenuItem().setEnabled(false);
-                                                    } else {
-                                                        XpadGUI.getEvaluateSelectionMenuItem().setEnabled(true);
-                                                    }
-                                                }
-                                                });*/
                                         updateUI();
 
                                         // Update encoding menu
@@ -706,6 +693,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 
                 // Panel of line number for the text pane
                 textPane.getXln().setWhereamiLineNumbering(whereami);
+                setHelpOnTyping(textPane);
                 tabPane.add(title, textPane.getScrollPane());
                 tabPane.setSelectedIndex(tabPane.getTabCount() - 1);
                 this.setContentPane(tabPane);
@@ -948,7 +936,6 @@ public class Xpad extends SwingScilabTab implements Tab {
             whereami = state;
         }
 
-
         /**
          * Enable the highlighted line in this editor
          * @param b boolean
@@ -959,6 +946,33 @@ public class Xpad extends SwingScilabTab implements Tab {
                     ((ScilabEditorPane) getEditor().getTextPane(i)).enableHighlightedLine(b);
                 }
                 highlight = b;
+        }
+
+        /**
+         * Enable the help on typing in the current textPane
+         * @param b boolean
+         */
+        public void setHelpOnTyping(ScilabEditorPane pane) {
+                pane.activateHelpOnTyping(helpOnTyping);
+        }
+
+        /**
+         * Enable the help on typing in this editor
+         * @param b boolean
+         */
+        public void setHelpOnTyping(boolean b) {
+                int n = tabPane.getTabCount();
+                for (int i = 0; i < n; i++) {
+                    ((ScilabEditorPane) getEditor().getTextPane(i)).activateHelpOnTyping(b);
+                }
+                helpOnTyping = b;
+        }
+
+        /**
+         * Enable the help on typing in this editor according to xpadConfiguration.xml
+         */
+        public void setDefaultHelpOnTyping() {
+                helpOnTyping = ConfigXpadManager.getHelpOnTypingState();
         }
 
         /**

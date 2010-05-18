@@ -28,6 +28,9 @@
     <!-- linecolor or contourcolor can be "null" to be transparent -->
     <LineHighlighter value="false" linecolor="#e4e9f4" contourcolor="#323232"/>
 
+    <!-- Activate or not the help on typing -->
+    <HelpOnTyping value="true"/>
+
     <!-- inside is a boolean to indicate if the contents between the keywords must be highlighted
          if inside is true type can be filled or framed else it can be filled, framed or underlined -->
     <Matching onmouseover="true">

@@ -60,6 +60,7 @@ public class XpadMessages {
     public static final String TABIFY_SELECTION = Messages.gettext("Shift Right");
     public static final String UNTABIFY_SELECTION = Messages.gettext("Shift Left");
     public static final String INDENT = Messages.gettext("Correct Indentation");
+    public static final String HELP_ON_TYPING = Messages.gettext("Help on typing");
 
     /** SEARCH MENU */
     public static final String SEARCH = Messages.gettext("Search");

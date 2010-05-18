@@ -33,55 +33,59 @@ public class ScilabContext implements ViewFactory {
      * Contains the colors of the different tokens
      */
     Color[] tokenColors;
-    
+
     /**
      * Contains the fonts of the different tokens
      */
     Font[] tokenFonts;
-    
+
     /**
      * Contains the attrib (underline or stroke) of the different tokens
      */
     int[] tokenAttrib = new int[ScilabLexerConstants.NUMBEROFTOKENS];
 
     private ScilabView view;
-    
+
     /**
      * The constructor
      */
     public ScilabContext() {
-	super();
-	genColors();
-	genFonts();
+        super();
+        genColors();
+        genFonts();
 
-	Map map = ConfigXpadManager.getAllAttributes();
-	Iterator it = map.keySet().iterator();
-	while (it.hasNext()) {
-	    String tokenType = (String) it.next();
-	    tokenAttrib[ScilabLexerConstants.TOKENS.get(tokenType)] = ((Integer) map.get(tokenType)).intValue();
-	}
+        Map map = ConfigXpadManager.getAllAttributes();
+        Iterator it = map.keySet().iterator();
+        while (it.hasNext()) {
+            String tokenType = (String) it.next();
+            tokenAttrib[ScilabLexerConstants.TOKENS.get(tokenType)] = ((Integer) map.get(tokenType)).intValue();
+        }
+
+        tokenAttrib[ScilabLexerConstants.OSKEYWORD] = tokenAttrib[ScilabLexerConstants.SKEYWORD];
     }
 
     /**
      * Generate the colors to use to render the document
      */
     public void genColors() {
-	tokenColors = new Color[ScilabLexerConstants.NUMBEROFTOKENS];
-	Map map = ConfigXpadManager.getAllForegroundColors();
-	Iterator it = map.keySet().iterator();
-	while (it.hasNext()) {
-	    String tokenType = (String) it.next();
-	    tokenColors[ScilabLexerConstants.TOKENS.get(tokenType)] = (Color) map.get(tokenType);
-	}
-	
-	for (int i = 0; i < tokenColors.length; i++) {
-	    if (tokenColors[i] == null) {
-		tokenColors[i] = tokenColors[0];
-	    }
-	}
-	
-	/* Special case : Scilab's developers in comments */ 
-	tokenColors[ScilabLexerConstants.AUTHORS] = tokenColors[ScilabLexerConstants.COMMENT];
+        tokenColors = new Color[ScilabLexerConstants.NUMBEROFTOKENS];
+        Map map = ConfigXpadManager.getAllForegroundColors();
+        Iterator it = map.keySet().iterator();
+        while (it.hasNext()) {
+            String tokenType = (String) it.next();
+            tokenColors[ScilabLexerConstants.TOKENS.get(tokenType)] = (Color) map.get(tokenType);
+        }
+
+        for (int i = 0; i < tokenColors.length; i++) {
+            if (tokenColors[i] == null) {
+                tokenColors[i] = tokenColors[0];
+            }
+        }
+
+        /* Special case : Scilab's developers in comments */
+        tokenColors[ScilabLexerConstants.AUTHORS] = tokenColors[ScilabLexerConstants.COMMENT];
+
+        tokenColors[ScilabLexerConstants.OSKEYWORD] = tokenColors[ScilabLexerConstants.SKEYWORD];
     }
 
     /**
@@ -90,19 +94,20 @@ public class ScilabContext implements ViewFactory {
      * @param color the color to use
      */
     public void genColors(String name, Color color) {
-	Map map = ConfigXpadManager.getAllForegroundColors();
-	if (tokenColors == null) {
-	    genColors();
-	}
-	tokenColors[ScilabLexerConstants.TOKENS.get(name)] = color;
-	tokenColors[ScilabLexerConstants.AUTHORS] = tokenColors[ScilabLexerConstants.COMMENT];
+        Map map = ConfigXpadManager.getAllForegroundColors();
+        if (tokenColors == null) {
+            genColors();
+        }
+        tokenColors[ScilabLexerConstants.TOKENS.get(name)] = color;
+        tokenColors[ScilabLexerConstants.AUTHORS] = tokenColors[ScilabLexerConstants.COMMENT];
+        tokenColors[ScilabLexerConstants.OSKEYWORD] = tokenColors[ScilabLexerConstants.SKEYWORD];
     }
-    
+
     /**
      * Generate the fonts to use to render the document
      */
     public void genFonts() {
-	genFonts(null);
+        genFonts(null);
     }
 
     /**
@@ -110,46 +115,48 @@ public class ScilabContext implements ViewFactory {
      * @param font the base font to use
      */
     public void genFonts(Font font) {
-	Map map;
-	if (font != null) {
-	    map = ConfigXpadManager.getAllFontStyle(font);
-	} else {
-	    map = ConfigXpadManager.getAllFontStyle();
-	}   
-	
-	tokenFonts = new Font[ScilabLexerConstants.NUMBEROFTOKENS];
-	
-	Iterator it = map.keySet().iterator();
-	while (it.hasNext()) {
-	    String tokenType = (String) it.next();
-	    tokenFonts[ScilabLexerConstants.TOKENS.get(tokenType)] = (Font) map.get(tokenType);
-	}
+        Map map;
+        if (font != null) {
+            map = ConfigXpadManager.getAllFontStyle(font);
+        } else {
+            map = ConfigXpadManager.getAllFontStyle();
+        }
 
-	for (int i = 0; i < tokenFonts.length; i++) {
-	    if (tokenFonts[i] == null) {
-		tokenFonts[i] = tokenFonts[0];
-	    }
-	}
-	
-	if (view != null) {
-	    view.reinitialize();
-	}
+        tokenFonts = new Font[ScilabLexerConstants.NUMBEROFTOKENS];
 
-	/* Special case : Scilab's developers in comments */
-	Font c = tokenFonts[ScilabLexerConstants.COMMENT];
-	int style = c.getStyle();
-	if (c.isBold()) {
-	    tokenFonts[ScilabLexerConstants.AUTHORS] = c.deriveFont(style ^ Font.BOLD);
-	} else {
-	    tokenFonts[ScilabLexerConstants.AUTHORS] = c.deriveFont(style | Font.BOLD);
-	}
+        Iterator it = map.keySet().iterator();
+        while (it.hasNext()) {
+            String tokenType = (String) it.next();
+            tokenFonts[ScilabLexerConstants.TOKENS.get(tokenType)] = (Font) map.get(tokenType);
+        }
+
+        for (int i = 0; i < tokenFonts.length; i++) {
+            if (tokenFonts[i] == null) {
+                tokenFonts[i] = tokenFonts[0];
+            }
+        }
+
+        if (view != null) {
+            view.reinitialize();
+        }
+
+        /* Special case : Scilab's developers in comments */
+        Font c = tokenFonts[ScilabLexerConstants.COMMENT];
+        int style = c.getStyle();
+        if (c.isBold()) {
+            tokenFonts[ScilabLexerConstants.AUTHORS] = c.deriveFont(style ^ Font.BOLD);
+        } else {
+            tokenFonts[ScilabLexerConstants.AUTHORS] = c.deriveFont(style | Font.BOLD);
+        }
+
+        tokenFonts[ScilabLexerConstants.OSKEYWORD] = tokenFonts[ScilabLexerConstants.SKEYWORD];
     }
 
     /**
      * @return the view to use to render the document
      */
     public View getCurrentView() {
-	return view;
+        return view;
     }
 
     /**
@@ -158,8 +165,8 @@ public class ScilabContext implements ViewFactory {
      * @return the view associated with the element
      */
     public View create(Element elem) {
-	view = new ScilabView(elem, this);
-	view.setDefaultTabRepresentation();
-	return view;
+        view = new ScilabView(elem, this);
+        view.setDefaultTabRepresentation();
+        return view;
     }
 }

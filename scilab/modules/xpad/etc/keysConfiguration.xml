@@ -3,6 +3,7 @@
 <properties>
   <comment>Map between action and keys</comment>
 
+  <entry key="ActivateHelpOnTypingAction">control alt H</entry>
   <entry key="TabifyAction">TAB</entry>
   <entry key="UnTabifyAction">shift TAB</entry>
   <entry key="IndentAction">control I</entry>
