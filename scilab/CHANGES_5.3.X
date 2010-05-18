@@ -323,6 +323,10 @@ Bug fixes:
                    file (if filename as no extension or .mat extension) or for an
                    ASCII file if filename has an other extension.
 
+* bug 3796 fixed - In some situation the "tf2ss()" function failed to
+                   compute correctly the state space representation of
+                   a transfer function.
+
 * bug 3811 fixed - Documention about "typeof" and overload prefixes was not
                    up-to-date (help overloading).
 
