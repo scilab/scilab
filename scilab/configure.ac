@@ -117,6 +117,9 @@ AC_ARG_WITH(tk,
 AC_ARG_WITH(javasci,
     AC_HELP_STRING([--without-javasci],[Disable the Java/Scilab interface (javasci)]))
 
+AC_ARG_ENABLE(compilation-tests,
+    AC_HELP_STRING([--enable-compilation-tests],[Enable unitary tests and checks at compilation time]))
+
 AC_ARG_WITH(gui,
     AC_HELP_STRING([--without-gui],[Disable the Scilab Graphical User Interface (GUI). Intended for embedded/clustering/grid Scilab ]))
 
@@ -1484,6 +1487,23 @@ fi
 
 AC_SUBST(JAVASCI_ENABLE)
 
+
+##############################################################
+## Enable test a compilation time
+##############################################################
+
+COMPILATION_TESTS=no
+if test "$enable_compilation_tests" != no -a "$enable_compilation_tests" != ""; then
+   COMPILATION_TESTS=yes
+fi
+
+if test COMPILATION_TESTS=yes -a "$TESTNG" == ""; then
+   AC_MSG_WARN([--enable-compilation-tests deactivated: Could not find TestNG"])
+   COMPILATION_TESTS=no
+fi
+
+AM_CONDITIONAL(COMPILATION_TESTS, test "$COMPILATION_TESTS" != "")
+
 ##############################################################
 ## demo_tools module
 ##############################################################
@@ -1772,6 +1792,7 @@ echo "  TCL library (--with-tcl-library) ................. = $USER_TCL_LIB_PATH"
 echo "  TK include (--with-tk-include) ................... = $USER_TK_INC_PATH"
 echo "  TK library (--with-tk-library) ................... = $USER_TK_LIB_PATH"
 echo "  Install XML Help (--with-install-help-xml) ....... = $with_install_help_xml"
+echo "  Compilation tests (--enable-compilation-tests) ... = $COMPILATION_TESTS"
 echo "  Make the package relocatable (--enable-relocatable)= $RELOCATABLE"
 echo "  Use FFTW (--without-fftw) ........................ = $with_fftw"
 echo "  Use MATIO (--without-matio) ...................... = $with_matio"

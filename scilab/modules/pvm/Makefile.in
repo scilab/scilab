@@ -75,7 +75,13 @@ host_triplet = @host@
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@@PVM_TRUE@am__append_1 = java
-@NEED_JAVA_TRUE@@PVM_FALSE@am__append_2 = java
+
+# With --enable-compilation-tests, launch java unitary tests
+@COMPILATION_TESTS_TRUE@@PVM_TRUE@am__append_2 = test
+@NEED_JAVA_TRUE@@PVM_FALSE@am__append_3 = java
+
+# With --enable-compilation-tests, launch java unitary tests
+@COMPILATION_TESTS_TRUE@@PVM_FALSE@am__append_4 = test
 subdir = modules/pvm
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -569,14 +575,15 @@ top_srcdir = @top_srcdir@
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-@PVM_FALSE@TARGETS_ALL = $(am__append_2)
+@PVM_FALSE@TARGETS_ALL = $(am__append_3) $(am__append_4)
 
 ########################### JAVA ######################################
 #### We are delegating java compilation to ant... Thanks to that
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-@PVM_TRUE@TARGETS_ALL = $(am__append_1) $(am__append_2)
+@PVM_TRUE@TARGETS_ALL = $(am__append_1) $(am__append_2) \
+@PVM_TRUE@	$(am__append_3) $(am__append_4)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -1399,7 +1406,7 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 
 
 # This target enables tests for Scilab
-@PVM_TRUE@check-local: $(top_builddir)/scilab-bin
+@PVM_TRUE@check-local: $(top_builddir)/scilab-bin test
 @PVM_TRUE@	@COMMAND="test_run('$(modulename)');quit";\
 @PVM_TRUE@	export LANG=C;\
 @PVM_TRUE@	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
@@ -1465,6 +1472,12 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 @PVM_TRUE@		echo "rm -f $(builddir)/$$dir/$(MACROBINMASK)"; \
 @PVM_TRUE@		rm -f $(builddir)/$$dir/$(MACROBINMASK); \
 @PVM_TRUE@	done
+
+@PVM_TRUE@test:
+# More tests could be added here
+@PVM_TRUE@	@if test -f build.xml; then \
+@PVM_TRUE@		$(ANT) test; \
+@PVM_TRUE@	fi
 
 @PVM_TRUE@all-local: $(TARGETS_ALL)
 
@@ -1584,7 +1597,7 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 @PVM_TRUE@.PHONY: macros java swig giws
 
 # This target enables tests for Scilab
-@PVM_FALSE@check-local: $(top_builddir)/scilab-bin
+@PVM_FALSE@check-local: $(top_builddir)/scilab-bin test
 @PVM_FALSE@	@COMMAND="test_run('$(modulename)');quit";\
 @PVM_FALSE@	export LANG=C;\
 @PVM_FALSE@	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
@@ -1650,6 +1663,12 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 @PVM_FALSE@		echo "rm -f $(builddir)/$$dir/$(MACROBINMASK)"; \
 @PVM_FALSE@		rm -f $(builddir)/$$dir/$(MACROBINMASK); \
 @PVM_FALSE@	done
+
+@PVM_FALSE@test:
+# More tests could be added here
+@PVM_FALSE@	@if test -f build.xml; then \
+@PVM_FALSE@		$(ANT) test; \
+@PVM_FALSE@	fi
 
 @PVM_FALSE@all-local: $(TARGETS_ALL)
 

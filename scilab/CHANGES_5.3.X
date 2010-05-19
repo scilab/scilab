@@ -191,6 +191,9 @@ Compilation:
 
 * /usr/share/*/lib added to the Java search path for OpenSuse
 
+* Option --enable-compilation-tests added to the configure. With this option, 
+  if TestNG has been found, tests will be launched at compilation time.
+
 * bug 4300 fixed - Moving Command Queue management to core.
 
 * bug 6432 fixed - Checkstyle disabled on SWIG (Java/JNI) generated files
