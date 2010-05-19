@@ -407,10 +407,6 @@
 				RelativePath="..\jni\Xpad.cpp"
 				>
 			</File>
-			<File
-				RelativePath=".\xpad.rc"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -470,8 +466,12 @@
 			</File>
 		</Filter>
 		<Filter
-			Name="Resource File"
+			Name="Resource Files"
 			>
+			<File
+				RelativePath=".\xpad.rc"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath="..\..\Makefile.am"

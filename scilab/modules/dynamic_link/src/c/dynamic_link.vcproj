@@ -372,10 +372,6 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath=".\GetFunctionByName.c"
-				>
-			</File>
-			<File
 				RelativePath=".\addinter.c"
 				>
 			</File>
@@ -392,7 +388,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dynamic_link.rc"
+				RelativePath=".\GetFunctionByName.c"
 				>
 			</File>
 			<File
@@ -437,10 +433,6 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath="..\..\includes\GetFunctionByName.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\includes\addinter.h"
 				>
 			</File>
@@ -454,6 +446,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\dynlib_dynamic_link.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\GetFunctionByName.h"
 				>
 			</File>
 			<File
@@ -494,6 +490,14 @@
 			</File>
 			<File
 				RelativePath=".\scilab_windows_Import.def"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Resource Files"
+			>
+			<File
+				RelativePath=".\dynamic_link.rc"
 				>
 			</File>
 		</Filter>

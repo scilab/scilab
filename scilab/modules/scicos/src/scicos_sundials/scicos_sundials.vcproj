@@ -534,7 +534,7 @@
 			>
 		</Filter>
 		<Filter
-			Name="Resource Filter"
+			Name="Resource Files"
 			>
 			<File
 				RelativePath=".\scicos_sundials.rc"

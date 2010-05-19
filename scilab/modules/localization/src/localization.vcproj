@@ -496,10 +496,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\localization.rc"
-				>
-			</File>
-			<File
 				RelativePath=".\jni\Messages_wrap.c"
 				>
 			</File>
@@ -533,8 +529,12 @@
 			</File>
 		</Filter>
 		<Filter
-			Name="Resource File"
+			Name="Resource Files"
 			>
+			<File
+				RelativePath=".\localization.rc"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath="..\localization.iss"

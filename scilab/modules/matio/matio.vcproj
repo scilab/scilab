@@ -542,15 +542,7 @@
 			>
 		</File>
 		<File
-			RelativePath=".\src\c\matio.rc.bak"
-			>
-		</File>
-		<File
 			RelativePath=".\sci_gateway\matio_gateway.xml"
-			>
-		</File>
-		<File
-			RelativePath=".\src\c\resource.h.bak"
 			>
 		</File>
 		<File

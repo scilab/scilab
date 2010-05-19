@@ -1370,6 +1370,10 @@
 			Name="Libraries Dependencies"
 			>
 		</Filter>
+		<Filter
+			Name="Resource Files"
+			>
+		</Filter>
 		<File
 			RelativePath="..\..\core.iss"
 			>

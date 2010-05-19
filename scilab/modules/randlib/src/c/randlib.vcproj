@@ -484,7 +484,7 @@
 			</Filter>
 		</Filter>
 		<Filter
-			Name="Resource File"
+			Name="Resource Files"
 			>
 			<File
 				RelativePath=".\randlib.rc"

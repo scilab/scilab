@@ -376,10 +376,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\functions.rc"
-				>
-			</File>
-			<File
 				RelativePath=".\getmacroslist.c"
 				>
 			</File>
@@ -484,6 +480,14 @@
 					>
 				</File>
 			</Filter>
+		</Filter>
+		<Filter
+			Name="Resource Files"
+			>
+			<File
+				RelativePath=".\functions.rc"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath="..\..\functions.iss"

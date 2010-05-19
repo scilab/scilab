@@ -1,6 +1,7 @@
 #
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) DIGITEO - 2009 - Allan CORNET
+# Copyright (C) DIGITEO - 2010 - Clément DAVID
 # 
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
@@ -164,27 +165,13 @@ images/blocks/SWITCH.svg \
 images/blocks/VanneReglante.svg \
 images/blocks/VariableResistor.svg \
 images/blocks/VoltageSensor.svg \
-images/icons/applications-system.png \
-images/icons/document-new.png \
-images/icons/document-open.png \
-images/icons/document-print.png \
-images/icons/document-save-as.png \
-images/icons/edit-copy.png \
-images/icons/edit-cut.png \
 images/icons/edit-delete.png \
-images/icons/edit-paste.png \
-images/icons/edit-redo.png \
-images/icons/edit-undo.png \
 images/icons/go-bottom.png \
 images/icons/go-center.png \
 images/icons/go-first.png \
 images/icons/go-last.png \
 images/icons/go-middle.png \
 images/icons/go-top.png \
-images/icons/help-browser.png \
-images/icons/list-add.png \
-images/icons/list-remove.png \
-images/icons/media-floppy.png \
 images/icons/media-playback-start.png \
 images/icons/process-stop.png \
 images/icons/view-fullscreen.png \

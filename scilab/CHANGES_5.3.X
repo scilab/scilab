@@ -20,7 +20,7 @@ FFTW:
 Graphics:
 =========
 
-* the set and get functions are now overloadable.
+* the set, get and uicontrol functions are now overloadable.
 
 * Datatips tools added
 
@@ -119,6 +119,8 @@ Xcos:
 
 * bug 4898 fixed - The scifunction_block stored list() parameters on the ipar 
                    field instead of the opar field.
+
+* bug 4977 fixed - Some icons were duplicated between Gui and Xcos.
 
 * bug 5161 fixed - The export to SVG did not work with images or html.
 
@@ -284,6 +286,22 @@ Removed functions (previously declared as obsolete):
 
 * 'readc_' replaced by 'input'.
 
+
+ATOMS:
+======
+
+* The ATOMS GUI ergonomics has been improved.
+
+* ATOMS GUI: When a module is not up-to-date, a warning is displayed on the
+  corresponding sheet.
+
+* bug 6596 fixed - When the ATOMS GUI started, nothing was displayed. Now, the
+                   list of already installed modules appears on the home page.
+
+* bug 6842 fixed - If the installed version of a module was not the most recent
+                   one, the ATOMS GUI claimed that the newest version was
+                   installed.
+
 Bug fixes:
 ==========
 
@@ -309,8 +327,9 @@ Bug fixes:
 
 * bug 4075 fixed - a basic uicontrol example crashed scilab 5.0.3
 
-* bug 4117 fixed - Closing via the user interface a graphics figure which had a non-existing
-                   event handler attached did not destroy its associated data structure.
+* bug 4117 fixed - Closing via the user interface a graphics figure which had a
+                   non-existing event handler attached did not destroy 
+                   its associated data structure.
 
 * bug 4359 fixed - M(:,:)='anything' produced erroneous result.
 
@@ -331,9 +350,14 @@ Bug fixes:
 
 * bug 4799 fixed - Sometime the bode, nyquist , ... function reported a
                    "non convergence" error
+                   
+* bug 4841 fixed - functions created by 'getd' were unknown to scilab.
 
 * bug 4948 fixed - a simple Runge Kutta method for solving a second order 
                    differential equation had a strange behaviour.
+
+* bug 4857 fixed - help file of 'gsort' updated about sort of complex numbers
+                   and overloading.
 
 * bug 4985 fixed - mgetl did not use fgets (C function).
 
@@ -363,6 +387,9 @@ Bug fixes:
 
 * bug 5583 fixed - exec() did not manage correctly UTF-8 and ANSI/ASCII files 
                    encoded.
+
+* bug 5588 fixed - Assigning null() in a tlist or mlist field shifted all remaining
+                   values with respect to  field names.
 
 * bug 5609 fixed - documentation stated incorrectly fieldnames works on cells
 
@@ -403,6 +430,9 @@ Bug fixes:
                    Windows.
 
 * bug 6516 fixed - fullfile did not remove blanks and not create a valid path.
+
+* bug 6535 fixed - The property 'ListboxTop' of the graphic user interface object
+                   'listbox' had no effect.
 
 * bug 6543 fixed - neldermead issues for automatic restarts.
 
@@ -511,9 +541,17 @@ Bug fixes:
 
 * bug 7036 fixed - the plot2d document was incomplete (missing optional argument).
 
+* bug 7042 fixed - Insertion of an empty matrix into a struct (to remove a row or column)
+                   was buggy when multiple index is used.
+
 * bug 7057 fixed - isdigit and isalphanum crashed with a matrix of string
                    as input argument.
 
 * bug 7077 fixed - uigetfont crashed Scilab when the cancel button was clicked.
 
 * bug 7094 fixed - If badly called, ode made Scilab crash.
+
+* bug 7109 fixed - 'lu' function with some complex matrices crashed on Windows.
+
+* bug 7123 fixed - No completion was possible if the name of a variable is 
+                   preceded by ~ or @ or < or >

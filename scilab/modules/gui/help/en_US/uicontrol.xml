@@ -6,10 +6,6 @@
           xmlns:ns4="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate: 2008-04-24 18:08:41 +0200 (jeu, 24 avr 2008)
-    $</pubdate>
-  </info>
 
   <refnamediv>
     <refname>uicontrol</refname>
@@ -502,6 +498,24 @@ set(h, 'value', [1 3]);
 close(f);
 // close the figure
  ]]></programlisting>
+
+    <para>uicontrol function can be overloaded</para>
+    <programlisting role="example"><![CDATA[ 
+// create a mlist
+mymlist = mlist(['objid','A','B'],[],[]);
+
+// overload set / get for objid
+function result = %objid_uicontrol(varargin)
+  // res = uicontrol(mymlist,'A');
+  obj_tmp   = varargin(1);
+  field_tmp = varargin(2);
+  printf('uicontrol on an object of type %s, field = %s\n', typeof(obj_tmp), field_tmp);
+  result = %t;
+endfunction
+
+res = uicontrol(mymlist,'property');
+ ]]></programlisting>
+
   </refsection>
 
   <refsection>
@@ -524,5 +538,7 @@ close(f);
     <para>Bertrand Guiheneuf</para>
 
     <para>Vincent Couvert</para>
+
+    <para>Yann Collette</para>
   </refsection>
 </refentry>

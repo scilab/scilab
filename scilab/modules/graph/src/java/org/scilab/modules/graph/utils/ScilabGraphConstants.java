@@ -21,7 +21,7 @@ import com.mxgraph.util.mxConstants;
 /**
  * Define all the constants used on a Scilab graph
  */
-public class ScilabConstants extends mxConstants {
+public class ScilabGraphConstants extends mxConstants {
 	
 	/**
 	 * Defines the size of the arcs for rounded edges. Default is 10.
@@ -77,26 +77,6 @@ public class ScilabConstants extends mxConstants {
     /** Name of the edit event */
     public static final String EVENT_CHANGE_EDIT = "edit";
     
-    /* Scilab */
-    
-    /**
-     * The tmp directory
-     */
-    public static final File TMPDIR = new File(System.getenv("TMPDIR"));
-    
-    /**
-     * The SCI directory (Scilab root directory)
-     */
-    public static final File SCI = new File(System.getenv("SCI"));
-    
-    /**
-     * The SCI configuration directory (Scilab home directory)
-     */
-    public static final File SCIHOME = new File(GuiManagement.getSCIHOME());
-    
-    /** Escape double quote symbol */
-    public static final char QUOTE = '\"';
-    
     /** This class is a static singleton, thus it must not be instantiated */
-    protected ScilabConstants() { }
+    protected ScilabGraphConstants() { }
 }
