@@ -205,9 +205,16 @@
 			source="5"
 			/>
 	</target>
-	
+
+	<target name="existing-tests">
+		<available property="test-present"
+			directory="${src.test.dir}"
+		/>	
+	</target>
+
 	<!-- Compile test sources -->
-	<target name="compile-test" description="Build tests" depends="jar">
+	<target name="compile-test" description="Build tests" depends="jar" if="test-present">
+
 		<javac
 			srcdir="${src.test.dir}" 
 			destdir="${classes.test.dir}" 
