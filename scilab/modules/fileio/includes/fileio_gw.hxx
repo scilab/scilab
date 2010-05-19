@@ -16,6 +16,16 @@
 #include "funcmanager.hxx"
 #include "context.hxx"
 
+#ifdef _MSC_VER
+	#if FILEIO_GW_EXPORTS
+		#define EXTERN_FILEIO_GW __declspec (dllexport)
+	#else
+		#define EXTERN_FILEIO_GW __declspec (dllimport)
+	#endif
+#else
+	#define EXTERN_FILEIO_GW 
+#endif
+
 class FileioModule
 {
 private :
@@ -23,6 +33,6 @@ private :
     ~FileioModule() {};
 
 public :
-    static bool Load();
+	EXTERN_FILEIO_GW static bool Load();
 };
 #endif /* !__FILEIO_GW_HXX__ */
