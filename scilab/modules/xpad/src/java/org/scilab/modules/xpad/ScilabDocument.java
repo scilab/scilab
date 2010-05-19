@@ -19,7 +19,7 @@ import javax.swing.text.GapContent;
 import javax.swing.text.PlainDocument;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Element;
-import javax.swing.text.AttributeSet; 
+import javax.swing.text.AttributeSet;
 
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -89,12 +89,12 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     /**
      * Create a lexer used to colorize the text
      * @return ScilabLexer the lexer
-     */ 
+     */
     public ScilabLexer createLexer() {
         return new ScilabLexer(this);
     }
-    
-    /** 
+
+    /**
      * Set the current view to render the code
      * @param view the used view
      */
@@ -108,7 +108,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     public ScilabView getView() {
         return view;
     }
-    
+
     /**
      * Get encoding
      * @return String encoding
@@ -116,15 +116,15 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     public String getEncoding() {
         return encoding;
     }
-    
+
     /**
-     * set Encoding 
+     * set Encoding
      * @param encoding encoding
      */
     public void setEncoding(String encoding) {
         this.encoding = encoding;
     }
-    
+
     /**
      * set end of line value
      * @param eol String
@@ -132,7 +132,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     public void setEOL(String eol) {
         this.eolStyle = eol;
     }
-    
+
     /**
      * get end of line
      * @return end of line
@@ -148,23 +148,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     public String getDefaultEOL() {
         return System.getProperty("line.separator");
     }
-    
-    /**
-     * getAutoColorize
-     * @return true or false
-     */
-    public boolean getAutoColorize() {
-        return autoColorize;
-    }
-    
-    /**
-     * setAutoColorize
-     * @param b boolean
-     */
-    public void setAutoColorize(boolean b) {
-        autoColorize = b;
-    }
-    
+
     /**
      * isUpdater
      * @return boolean
@@ -172,16 +156,15 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     public boolean isUpdater() {
         return updater;
     }
-    
+
     /**
      * getAutoIndent
      * @return boolean
      */
     public boolean getAutoIndent() {
-        return true;
-        //return autoIndent;
+        return autoIndent;
     }
-    
+
     /**
      * setAutoIndent
      * @param b boolean
@@ -189,7 +172,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     public void setAutoIndent(boolean b) {
         autoIndent = b;
     }
-    
+
     /**
      * setUpdater
      * @param updaterDisabled boolean
@@ -197,8 +180,8 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     public void setUpdater(boolean updaterDisabled) {
         this.updater = updaterDisabled;
     }
-    
-    
+
+
     /**
      * Get document text
      * @return String
@@ -210,7 +193,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
             return "";
         }
     }
-    
+
     /**
      * Begins a compound edit (for the undo)
      */
@@ -233,7 +216,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     public boolean getColorize() {
         return autoColorize;
     }
-    
+
     /**
      * setColorize
      * @param b boolean
@@ -241,7 +224,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     public void setColorize(boolean b) {
         autoColorize = b;
     }
-        
+
     /**
      * getUndoManager
      * @return CompoundUndoManager
@@ -249,7 +232,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     public CompoundUndoManager getUndoManager() {
         return undo;
     }
-    
+
     /**
      * disableUndoManager
      */
@@ -259,7 +242,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
             undoManagerEnabled = false;
         }
     }
-    
+
     /**
      * enableUndoManager
      */
@@ -269,7 +252,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
             undoManagerEnabled = true;
         }
     }
-    
+
     /**
      * isContentModified
      * @return boolean
@@ -277,7 +260,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     public boolean isContentModified() {
         return contentModified && !undo.isAtReference();
     }
-    
+
     /**
      * setContentModified
      * @param contentModified boolean
@@ -290,7 +273,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     }
 
     /**
-     * dump document on stderr with line positions 
+     * dump document on stderr with line positions
      */
     public void dump() {
         readLock();
@@ -307,14 +290,14 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
         }
         readUnlock();
     }
-    
+
     /**
      * lock
      */
     public void lock() {
         super.writeLock();
     }
-    
+
     /**
      * unlock
      */

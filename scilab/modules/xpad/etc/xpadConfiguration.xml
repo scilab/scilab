@@ -31,6 +31,9 @@
     <!-- Activate or not the help on typing -->
     <HelpOnTyping value="true"/>
 
+    <!-- Line numbering : 0 is normal, 1 is for the whereami compatibility and 2 for no numbering-->
+    <LineNumbering value="0"/>
+
     <!-- inside is a boolean to indicate if the contents between the keywords must be highlighted
          if inside is true type can be filled or framed else it can be filled, framed or underlined -->
     <Matching onmouseover="true">

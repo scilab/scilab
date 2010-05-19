@@ -86,6 +86,7 @@ public final class ConfigXpadManager {
     private static final String DEFAULTENCONDING = "DefaultEncoding";
     private static final String LINEHIGHLIGHTER = "LineHighlighter";
     private static final String HELPONTYPING = "HelpOnTyping";
+    private static final String LINENUMBERING = "LineNumbering";
 
     private static final String FOREGROUNDCOLOR = "ForegroundColor";
     private static final String BACKGROUNDCOLOR = "BackgroundColor";
@@ -245,6 +246,71 @@ public final class ConfigXpadManager {
     }
 
     /**
+     * Save help on typing
+     * @param boolean active or not
+     */
+    public static void saveHelpOnTypingState(boolean activated) {
+        readDocument();
+
+        Element root = document.getDocumentElement();
+
+        NodeList profiles = root.getElementsByTagName(PROFILE);
+        Element xpadProfile = (Element) profiles.item(0);
+
+        NodeList allSizeElements = xpadProfile.getElementsByTagName(HELPONTYPING);
+        Element helpOnTyping = (Element) allSizeElements.item(0);
+        if (helpOnTyping == null){
+            Element help = document.createElement(HELPONTYPING);
+            helpOnTyping.setAttribute(VALUE, new Boolean(activated).toString());
+            helpOnTyping.appendChild((Node) help);
+        } else {
+            helpOnTyping.setAttribute(VALUE, new Boolean(activated).toString());
+        }
+        writeDocument();
+    }
+
+    /**
+     * @return the default state
+     */
+    public static int getLineNumberingState() {
+        readDocument();
+
+        Element root = document.getDocumentElement();
+
+        NodeList profiles = root.getElementsByTagName(PROFILE);
+        Element xpadProfile = (Element) profiles.item(0);
+
+        NodeList allSizeElements = xpadProfile.getElementsByTagName(LINENUMBERING);
+        Element lineNumbering = (Element) allSizeElements.item(0);
+
+        return Integer.parseInt(lineNumbering.getAttribute(VALUE));
+    }
+
+    /**
+     * Save line numbering state
+     * @param state the state
+     */
+    public static void saveLineNumberingState(int state) {
+        readDocument();
+
+        Element root = document.getDocumentElement();
+
+        NodeList profiles = root.getElementsByTagName(PROFILE);
+        Element xpadProfile = (Element) profiles.item(0);
+
+        NodeList allSizeElements = xpadProfile.getElementsByTagName(LINENUMBERING);
+        Element lineNumbering = (Element) allSizeElements.item(0);
+        if (lineNumbering == null){
+            Element line = document.createElement(LINENUMBERING);
+            lineNumbering.setAttribute(VALUE, Integer.toString(state));
+            lineNumbering.appendChild((Node) line);
+        } else {
+            lineNumbering.setAttribute(VALUE, Integer.toString(state));
+        }
+        writeDocument();
+    }
+
+    /**
      * @return true if highlighted line is active
      */
     public static boolean getHighlightState() {
@@ -259,6 +325,30 @@ public final class ConfigXpadManager {
         Element lineHighlight = (Element) allSizeElements.item(0);
 
         return "true".equals(lineHighlight.getAttribute(VALUE));
+    }
+
+    /**
+     * Save highlight state
+     * @param state the state
+     */
+    public static void saveHighlightState(boolean state) {
+        readDocument();
+
+        Element root = document.getDocumentElement();
+
+        NodeList profiles = root.getElementsByTagName(PROFILE);
+        Element xpadProfile = (Element) profiles.item(0);
+
+        NodeList allSizeElements = xpadProfile.getElementsByTagName(LINEHIGHLIGHTER);
+        Element lineHighlighter = (Element) allSizeElements.item(0);
+        if (lineHighlighter == null){
+            Element line = document.createElement(LINEHIGHLIGHTER);
+            lineHighlighter.setAttribute(VALUE, Boolean.toString(state));
+            lineHighlighter.appendChild((Node) line);
+        } else {
+            lineHighlighter.setAttribute(VALUE, Boolean.toString(state));
+        }
+        writeDocument();
     }
 
     /**
@@ -551,11 +641,11 @@ public final class ConfigXpadManager {
         boolean inside = "true".equals(matcher.getAttribute("inside"));
         String stype = matcher.getAttribute("type");
         int type = 0;
-        if ("filled".equals(type)) {
+        if ("filled".equals(stype)) {
             type = MatchingBlockManager.ScilabKeywordsPainter.FILLED;
-        } else if ("underlined".equals(type)) {
+        } else if ("underlined".equals(stype)) {
             type = MatchingBlockManager.ScilabKeywordsPainter.UNDERLINED;
-        } else if ("framed".equals(type)) {
+        } else if ("framed".equals(stype)) {
             type = MatchingBlockManager.ScilabKeywordsPainter.FRAMED;
         }
 

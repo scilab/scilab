@@ -693,7 +693,7 @@ public class Xpad extends SwingScilabTab implements Tab {
                 textPane.setEditorKit(new ScilabEditorKit());
 
                 // Panel of line number for the text pane
-                textPane.getXln().setWhereamiLineNumbering(whereami);
+                textPane.getXln().setWhereamiLineNumbering(ConfigXpadManager.getLineNumberingState());
                 setHelpOnTyping(textPane);
                 tabPane.add(title, textPane.getScrollPane());
                 tabPane.setSelectedIndex(tabPane.getTabCount() - 1);
@@ -757,14 +757,6 @@ public class Xpad extends SwingScilabTab implements Tab {
          */
         public void setAutoIndent(boolean b) {
                 ((ScilabDocument) getTextPane().getDocument()).setAutoIndent(b);
-        }
-
-        /**
-         * Auto-colorize mode management
-         * @param b true to activate auto-colorize mode
-         */
-        public void setAutoColorize(boolean b) {
-                ((ScilabDocument) getTextPane().getDocument()).setAutoColorize(b);
         }
 
         /**

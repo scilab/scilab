@@ -29,24 +29,25 @@ public final class HighlightCurrentLineAction extends DefaultCheckAction {
     /**
      * serialVersionUID
      */
-    private static final long serialVersionUID = -1489762718469013039L;  
-    
+    private static final long serialVersionUID = -1489762718469013039L;
+
     /**
      * Constructor
      * @param editor Xpad
      */
     private HighlightCurrentLineAction(Xpad editor) {
-	super(XpadMessages.HIGHLIGHT_CURRENT_LINE, editor);
-	setState(false);
+        super(XpadMessages.HIGHLIGHT_CURRENT_LINE, editor);
+        setState(false);
     }
-    
+
     /**
      * doAction
      */
     public void doAction() {
-	getEditor().enableHighlightedLine(this.getState());
+        getEditor().enableHighlightedLine(this.getState());
+        ConfigXpadManager.saveHighlightState(this.getState());
     }
-    
+
     /**
      * createCheckBoxMenu
      * @param editor Xpad
@@ -54,9 +55,9 @@ public final class HighlightCurrentLineAction extends DefaultCheckAction {
      * @return CheckBoxMenuItem
      */
     public static CheckBoxMenuItem createCheckBoxMenu(Xpad editor, KeyStroke key) {
-	CheckBoxMenuItem cb = createCheckBoxMenu(XpadMessages.HIGHLIGHT_CURRENT_LINE, null, new HighlightCurrentLineAction(editor), key);
-	cb.setChecked(ConfigXpadManager.getHighlightState());
-	return cb;
+        CheckBoxMenuItem cb = createCheckBoxMenu(XpadMessages.HIGHLIGHT_CURRENT_LINE, null, new HighlightCurrentLineAction(editor), key);
+        cb.setChecked(ConfigXpadManager.getHighlightState());
+        return cb;
     }
 
     /**
@@ -66,6 +67,6 @@ public final class HighlightCurrentLineAction extends DefaultCheckAction {
      * @param key KeyStroke
      */
     public static void putInInputMap(JComponent textPane, Xpad editor, KeyStroke key) {
-	textPane.getInputMap().put(key, new HighlightCurrentLineAction(editor));
+        textPane.getInputMap().put(key, new HighlightCurrentLineAction(editor));
     }
 }

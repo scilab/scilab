@@ -164,43 +164,45 @@ public class IndentManager {
      * @param position the position in the doc
      */
     public void indentDoc(int position) {
-        int[] level = new int[2];
-        int[] ind = new int[2];
+        if (doc.getAutoIndent()) {
+            int[] level = new int[2];
+            int[] ind = new int[2];
 
-        try {
-            int lineNumber = elem.getElementIndex(position);
-            int pos = elem.getElement(lineNumber).getEndOffset() - 1;
+            try {
+                int lineNumber = elem.getElementIndex(position);
+                int pos = elem.getElement(lineNumber).getEndOffset() - 1;
 
-            /* - level[0] is the left shift (else, elseif, ...) for the current line
-               - level[1] is the right shift for the next line */
-            scanner.getIndentLevel(pos, level);
+                /* - level[0] is the left shift (else, elseif, ...) for the current line
+                   - level[1] is the right shift for the next line */
+                scanner.getIndentLevel(pos, level);
 
-            int remove = 0;
-            if (lineNumber >= 0) {
-                /* - ind[0] is equal to the number of "\t" or " " of the previous line
-                   - ind[1] for the current line */
-                getNums(lineNumber, ind);
-                if (level[0] > 0 && ind[0] <= ind[1]) {
-                    remove = level[0] * num;
-                    int startL = elem.getElement(lineNumber).getStartOffset();
-                    if (ind[1] < remove) {
-                        remove = ind[1];
-                    }
-                    if (remove != 0) {
-                        doc.remove(startL, remove);
+                int remove = 0;
+                if (lineNumber >= 0) {
+                    /* - ind[0] is equal to the number of "\t" or " " of the previous line
+                       - ind[1] for the current line */
+                    getNums(lineNumber, ind);
+                    if (level[0] > 0 && ind[0] <= ind[1]) {
+                        remove = level[0] * num;
+                        int startL = elem.getElement(lineNumber).getStartOffset();
+                        if (ind[1] < remove) {
+                            remove = ind[1];
+                        }
+                        if (remove != 0) {
+                            doc.remove(startL, remove);
+                        }
                     }
                 }
-            }
 
-            int len = ind[1] + level[1] * num - remove;
-            char[] str = new char[len];
-            for (int i = 0; i < len; i++) {
-                str[i] = indentChar;
-            }
+                int len = ind[1] + level[1] * num - remove;
+                char[] str = new char[len];
+                for (int i = 0; i < len; i++) {
+                    str[i] = indentChar;
+                }
 
-            doc.insertString(pos + 1 - remove, new String(str), null);
-        } catch (BadLocationException e) {
-            System.err.println(e);
+                doc.insertString(pos + 1 - remove, new String(str), null);
+            } catch (BadLocationException e) {
+                System.err.println(e);
+            }
         }
     }
 

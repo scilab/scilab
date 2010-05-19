@@ -39,6 +39,7 @@ public final class ActivateHelpOnTypingAction extends DefaultCheckAction {
      */
     public void doAction() {
         getEditor().setHelpOnTyping(this.getState());
+        ConfigXpadManager.saveHelpOnTypingState(this.getState());
     }
 
     /**

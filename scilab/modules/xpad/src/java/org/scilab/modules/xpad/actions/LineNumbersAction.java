@@ -17,6 +17,7 @@ import javax.swing.KeyStroke;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.utils.XpadMessages;
+import org.scilab.modules.xpad.utils.ConfigXpadManager;
 
 /**
  * LineNumbersAction Class
@@ -46,17 +47,8 @@ public final class LineNumbersAction extends DefaultAction {
      */
     public void doAction() {
         getEditor().setWhereamiLineNumbering(state);
-        state = (state + 1) % 3;
-        switch (state) {
-        case 0 :
-            menu.setText(XpadMessages.LINE_NUMBERS_NOWHEREAMI);
-            break;
-        case 1 :
-            menu.setText(XpadMessages.LINE_NUMBERS_WHEREAMI);
-            break;
-        default :
-            menu.setText(XpadMessages.NO_LINE_NUMBERS);
-        }
+        ConfigXpadManager.saveLineNumberingState(state);
+        setMenu();
     }
 
     /**
@@ -68,7 +60,26 @@ public final class LineNumbersAction extends DefaultAction {
     public static MenuItem createMenu(Xpad editor, KeyStroke key) {
         LineNumbersAction ln = new LineNumbersAction(editor);
         MenuItem mi = createMenu(XpadMessages.LINE_NUMBERS_WHEREAMI, null, ln, key);
+        ln.state = ConfigXpadManager.getLineNumberingState();
         ln.menu = mi;
+        ln.setMenu();
         return mi;
+    }
+
+    /**
+     * Set the menu
+     */
+    private void setMenu() {
+        state = (state + 1) % 3;
+        switch (state) {
+        case 0 :
+            menu.setText(XpadMessages.LINE_NUMBERS_NOWHEREAMI);
+            break;
+        case 1 :
+            menu.setText(XpadMessages.LINE_NUMBERS_WHEREAMI);
+            break;
+        default :
+            menu.setText(XpadMessages.NO_LINE_NUMBERS);
+        }
     }
 }

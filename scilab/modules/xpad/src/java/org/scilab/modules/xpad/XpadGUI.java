@@ -166,7 +166,6 @@ public class XpadGUI {
                 createEolSubMenu(documentMenu, editorInstance);
 
                 documentMenu.addSeparator();
-                //documentMenu.add(ColorizeAction.createCheckBoxMenu(editorInstance));
                 documentMenu.add(AutoIndentAction.createCheckBoxMenu(editorInstance));
                 menuBar.add(documentMenu);
 
