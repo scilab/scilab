@@ -531,7 +531,7 @@ namespace ast
                                 bool bState = true;
                                 for(int i = 0 ; i < pR->size_get() ; i++)
                                 {
-                                    if(piR[i] == 1)
+                                    if(piR[i] == 0)
                                     {
                                         bState = false;
                                         break;
