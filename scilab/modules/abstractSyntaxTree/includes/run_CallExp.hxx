@@ -123,51 +123,81 @@ void visitprivate(const CallExp &e)
         {
             pIT = execFunc.result_get();
         }
-        InternalType *pOut			= NULL;
+
+        int iArgDim = static_cast<int>(e.args_get().size());
+        InternalType *pOut = NULL;
         std::vector<InternalType*> ResultList;
-        int iArgDim							= static_cast<int>(e.args_get().size());
-        bool bSeeAsVector				= iArgDim == 1;
 
-        //Create list of indexes
-        //std::vector<std::vector<int>> IndexList;
-
-        int *piIndexSeq		= NULL;
-        int *piMaxDim			= NULL;
-        int *piDimSize		= new int[iArgDim];
-        int iTotalCombi		= GetIndexList(e.args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
-
-        switch(pIT->getType())
+        if(pIT->isStruct())
         {
-        case InternalType::RealDouble :
-            pOut = pIT->getAsDouble()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
-            break;
-        case InternalType::RealBool : 
-            pOut = pIT->getAsBool()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
-            break;
-        case InternalType::RealInt :
-            pOut = pIT->getAsInt()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
-            break;
-        case InternalType::RealString :
-            pOut = pIT->getAsString()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
-            break;
-        case InternalType::RealList :
-        {
-            ResultList = pIT->getAsList()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
+            list<string> stFields;
+            list<Exp*>::const_iterator it1;
+            for(it1 = e.args_get().begin() ; it1 != e.args_get().end() ; it1++)
+            {
+                T execArg;
+                (*it1)->accept(execArg);
+                if(execArg.result_get()->isString())
+                {
+                    String *pString = execArg.result_get()->getAsString();
+                    for(int i = 0 ; i < pString->size_get() ; i++)
+                    {
+                        stFields.push_back(string(pString->string_get(i)));
+                    }
+                }
+            }
+
+            ResultList = pIT->getAsStruct()->extract(stFields);
             for(int i = 0 ; i < static_cast<int>(ResultList.size()) ; i++)
             {
                 result_set(i, ResultList[i]);
             }
-            break;
         }
-        case InternalType::RealCell :
-            pOut = pIT->getAsCell()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
-            break;
-        default :
-            break;
+        else
+        {
+            //Create list of indexes
+            bool bSeeAsVector   = iArgDim == 1;
+            int *piIndexSeq		= NULL;
+            int *piMaxDim       = NULL;
+            int *piDimSize		= new int[iArgDim];
+            int iTotalCombi		= GetIndexList(e.args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
+
+            switch(pIT->getType())
+            {
+            case InternalType::RealDouble :
+                pOut = pIT->getAsDouble()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
+                break;
+            case InternalType::RealBool : 
+                pOut = pIT->getAsBool()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
+                break;
+            case InternalType::RealInt :
+                pOut = pIT->getAsInt()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
+                break;
+            case InternalType::RealString :
+                pOut = pIT->getAsString()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
+                break;
+            case InternalType::RealList :
+            {
+                ResultList = pIT->getAsList()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
+                for(int i = 0 ; i < static_cast<int>(ResultList.size()) ; i++)
+                {
+                    result_set(i, ResultList[i]);
+                }
+                break;
+            }
+            case InternalType::RealCell :
+                pOut = pIT->getAsCell()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
+                break;
+            default :
+                break;
+            }
+
+            delete[] piDimSize;
+            delete[] piIndexSeq;
+            delete[] piMaxDim;
         }
 
         //List extraction can return multiple items
-        if(pIT->isList() == false)
+        if(pIT->isList() == false && pIT->isStruct() == false)
         {
             if(pOut == NULL)
             {
@@ -188,10 +218,6 @@ void visitprivate(const CallExp &e)
                 throw os.str();
             }
         }
-			
-        delete[] piDimSize;
-        delete[] piIndexSeq;
-        delete[] piMaxDim;
     }
     else
     {

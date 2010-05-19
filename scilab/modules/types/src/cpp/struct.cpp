@@ -169,4 +169,24 @@ namespace types
         }
         return ostr.str();
     }
+
+    std::vector<InternalType*> Struct::extract(list<string> _stFields)
+    {
+        std::vector<InternalType*> Result;
+
+        std::list<string>::const_iterator it;
+        for(it = _stFields.begin() ; it != _stFields.end() ; it++)
+        {
+            if(exists(*it) == false)
+            {
+                return Result;
+            }
+        }
+
+        for(it = _stFields.begin() ; it != _stFields.end() ; it++)
+        {
+            Result.push_back(get(*it)->clone());
+        }
+        return Result;
+    }
 }

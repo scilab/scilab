@@ -60,6 +60,8 @@ namespace types
         */
         bool                                    exists(const std::string& _sKey);
 
+        std::vector<InternalType*>              extract(list<string> _stFields);
+
         /**
         ** Clone
         ** Create a new List and Copy all values.
