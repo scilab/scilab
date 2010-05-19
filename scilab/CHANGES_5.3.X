@@ -385,6 +385,9 @@ Bug fixes:
 
 * bug 5149 fixed - test_run(): Calls to exec() were no more logged by diary().
 
+* bug 5216 fixed - URLs are now active in uicontrols of style "text". This 
+                   feature is used in ATOMS GUI (modules description).
+
 * bug 5432 fixed - a link to http://www.tcl.tk/doc/ added in help files about
                    Tcl/Tk.
 
