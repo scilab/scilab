@@ -22,12 +22,13 @@
 
 namespace ast
 {
-	class EXTERN_AST ConditionVisitor : public OriginalVisitor
+    class EXTERN_AST ConditionVisitor : public OriginalVisitor
 	{
 	public:
-		ConditionVisitor(){}
+		ConditionVisitor(){m_bBooleanManagement=false;m_bResult=false;}
 		~ConditionVisitor(){}
 		virtual void visit (const OpExp &e);
+		virtual void visit (const LogicalOpExp &e);
 
 		bool is_boolean_result(){return m_bBooleanManagement;}
 		bool result_bool_get(){return m_bResult;}
