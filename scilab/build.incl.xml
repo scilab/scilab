@@ -222,6 +222,7 @@
 			debug="off"
 			verbose="off"
 			listfiles="on"
+			includeAntRuntime="no"
 			source="5"
 			>
 		  <classpath>
