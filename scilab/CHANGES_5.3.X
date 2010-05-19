@@ -82,7 +82,8 @@ Graphics:
 
 * the set, get and uicontrol functions are now overloadable.
 
-* Datatips tools added
+* Datatips tools added, the frequency response plots ("bode", "black", "nyquist",
+  "gainplot",...) supports cutomized datatips.
 
 * bug 2651 fixed - "plot2d" was not working when the x argument was not given
                    and some optional arguments were given.
@@ -218,6 +219,9 @@ Xcos:
 
 * bug 7099 fixed - xml2modelica called ocamlrun (wrong dependency on Windows).
 
+* bug 7053 fixed - Rotated saved blocks were not loaded with the right rotation 
+                   value.
+
 Dynamic link:
 =============
 
@@ -249,6 +253,9 @@ Compilation:
 * Add a check of the minimal installations of hdf5 (1.8.4), batik (1.7)
 
 * /usr/share/*/lib added to the Java search path for OpenSuse
+
+* Option --enable-compilation-tests added to the configure. With this option, 
+  if TestNG has been found, tests will be launched at compilation time.
 
 * bug 4300 fixed - Moving Command Queue management to core.
 
@@ -362,6 +369,9 @@ ATOMS:
                    one, the ATOMS GUI claimed that the newest version was
                    installed.
 
+* bug 6977 fixed - ATOMS GUI: In the presentation frame, URLs and emails were
+                   not hyperlinked.
+
 Bug fixes:
 ==========
 
@@ -381,6 +391,10 @@ Bug fixes:
                    one input argument load(filename), it now looks for a binary 
                    file (if filename as no extension or .mat extension) or for an
                    ASCII file if filename has an other extension.
+
+* bug 3796 fixed - In some situation the "tf2ss()" function failed to
+                   compute correctly the state space representation of
+                   a transfer function.
 
 * bug 3811 fixed - Documention about "typeof" and overload prefixes was not
                    up-to-date (help overloading).
@@ -433,6 +447,9 @@ Bug fixes:
                    documentation.
 
 * bug 5149 fixed - test_run(): Calls to exec() were no more logged by diary().
+
+* bug 5216 fixed - URLs are now active in uicontrols of style "text". This 
+                   feature is used in ATOMS GUI (modules description).
 
 * bug 5432 fixed - a link to http://www.tcl.tk/doc/ added in help files about
                    Tcl/Tk.

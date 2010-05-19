@@ -19,7 +19,7 @@
 mydatadir=$(pkgdatadir)/modules/$(modulename)
 
 # This target enables tests for Scilab
-check-local: $(top_builddir)/scilab-bin
+check-local: $(top_builddir)/scilab-bin test
 	@COMMAND="test_run('$(modulename)');quit";\
 	export LANG=C;\
 	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
@@ -33,7 +33,6 @@ check-code:
 	if test -x "$(SPLINT)"; then \
 		$(SPLINT) $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC); \
 	fi
-
 
 ########################### JAVA ######################################
 #### We are delegating java compilation to ant... Thanks to that
@@ -113,6 +112,18 @@ clean-macros:
 		echo "rm -f $(builddir)/$$dir/$(MACROBINMASK)"; \
 		rm -f $(builddir)/$$dir/$(MACROBINMASK); \
 	done
+
+if COMPILATION_TESTS
+# With --enable-compilation-tests, launch java unitary tests
+TARGETS_ALL+=test
+endif
+
+test:
+# More tests could be added here
+	@if test -f build.xml; then \
+		$(ANT) test; \
+	fi
+
 
 
 all-local: $(TARGETS_ALL)

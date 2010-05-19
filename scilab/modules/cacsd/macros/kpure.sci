@@ -1,10 +1,10 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Serge Steer
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [K,R]=kpure(sl,eps)
@@ -16,7 +16,7 @@ function [K,R]=kpure(sl,eps)
 // and
 //  P(-%i*q)=0 (2)
 // because N and D are polynomials with real coefficients.
-  
+
 //Author: Serge Steer, INRIA
   y=[];R=[];
   msg=_("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n")
@@ -24,18 +24,18 @@ function [K,R]=kpure(sl,eps)
   if size(eps,'*')==2 then  eps=eps(2),end //compatibility
   select typeof(sl)
   case 'rational' then
-    if size(sl.num,'*') <> 1 then 
+    if size(sl.num,'*') <> 1 then
       error(msprintf(msg,"kpure",1))
     end
   case 'state-space' then
-    if size(sl.D,'*') <> 1 then 
+    if size(sl.D,'*') <> 1 then
       error(msprintf(msg,"kpure",1))
     end
     sl=ss2tf(sl)
   else
     error(msprintf(msg,"kpure",1))
   end
- 
+
   //(1) give K(s)=-D(s)/N(s)
   s=poly(0,varn(sl.den))
   K=-sl.den/sl.num;
@@ -45,5 +45,5 @@ function [K,R]=kpure(sl,eps)
   s=imag(s(abs(real(s))<eps));
   R=(s(s>0).'*%i);
   //find the K(s) values K(s)=-D(s)/N(s)
-  K=-real(freq(den,num,R))
+  K=-real(freq(sl.den,sl.num,R))
 endfunction
