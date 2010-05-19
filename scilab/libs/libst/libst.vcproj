@@ -402,10 +402,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\libst.rc"
-				>
-			</File>
-			<File
 				RelativePath=".\misc.c"
 				>
 			</File>
@@ -424,8 +420,12 @@
 			</File>
 		</Filter>
 		<Filter
-			Name="Resource File"
+			Name="Resource Files"
 			>
+			<File
+				RelativePath=".\libst.rc"
+				>
+			</File>
 		</Filter>
 	</Files>
 	<Globals>

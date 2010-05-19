@@ -33,6 +33,7 @@ import org.scilab.modules.graph.actions.SelectAllAction;
 import org.scilab.modules.graph.actions.UndoAction;
 import org.scilab.modules.graph.actions.ZoomInAction;
 import org.scilab.modules.graph.actions.ZoomOutAction;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.event.ArrowKeyListener;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
@@ -123,6 +124,11 @@ public class XcosTab extends ScilabTab {
      */
     private static List<XcosDiagram> diagrams = new Vector<XcosDiagram>();
     private static Map<Integer, AfficheBlock> afficheBlocks = new HashMap<Integer, AfficheBlock>();
+    
+    static {
+        DefaultAction.addIconPath(
+            System.getenv("SCI") + "/modules/xcos/images/icons/");
+    }
     
     /*
      * Instance fields

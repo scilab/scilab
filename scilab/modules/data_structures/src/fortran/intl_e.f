@@ -83,7 +83,7 @@ c
       endif
 c     go ahead along the path
       call followpath(top1,top2,il1ir,vol1,il2ir,vol2,istk(ilind),
-     $     icount,info,lw)
+     $     icount,info,lw,.false.)
       if(err.gt.0) return
       if(vol2.eq.0) then
 c     empty field found
@@ -231,7 +231,7 @@ c
 c     standard matrix extraction
       call createref(il2i,0,vol2)
 c
- 34   fin=3
+      fin=3
 c     back to allops for  standard extraction
       if (ptover(1,psiz)) return
       icall=4

@@ -724,7 +724,7 @@
 			</Filter>
 		</Filter>
 		<Filter
-			Name="Resource File"
+			Name="Resource Files"
 			>
 			<File
 				RelativePath=".\scicos.rc"

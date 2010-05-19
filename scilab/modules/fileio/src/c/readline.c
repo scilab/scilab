@@ -16,6 +16,7 @@
 #include "readline.h"
 #include "mgetl.h"
 #include "stack-def.h" /* bsiz */
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 #define EMPTYSTR ""
 /*--------------------------------------------------------------------------*/

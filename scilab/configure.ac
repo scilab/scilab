@@ -1161,12 +1161,24 @@ if test "$with_scicos" != no -a "$GUI_ENABLE" != no; then
    LIBS="$save_LIBS"
    AC_SUBST(RT_LIB)
 
+
+#################
+## ocaml which only called when using Scicos
+#################
+
+   if test "$with_ocaml" != no; then
+      AC_CHECK_PROG_OCAML()
+   fi
+   SCICOS_ENABLE=yes
+
 # Java HDF5 is only needed for Xcos
 if test $HDF5_ENABLE = yes -a "$with_scicos" != no -a "$with_gui" != no;  then
+AC_JAVA_HDF5()
    if test "$MACOSX" = 1; then
    	  echo "Check of the presence of libjhdf5.jnilib disabled under Mac OS X"
    else
-      AC_JAVA_HDF5()
+      AC_JNI_HDF5()
+   fi
 fi #HDF5_ENABLE
 
 #################

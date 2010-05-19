@@ -34,13 +34,16 @@
     <literal>%&lt;tlist_type&gt;_p</literal> where <literal>%&lt;tlist_type&gt;</literal> stands for the first
     entry of the tlist type component.</para>
     <para>
-      The <link linkend="lines">lines</link> function may be used to control the ouput.
+      The <link linkend="lines">lines</link> function may be used to control the output.
       </para>
+      
+      <para><literal>disp("a",1,"c")</literal> display order: last input argument will be the first displayed (LIFO).</para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
 disp([1 2],3)
+disp("a",1,"c")
 deff('[]=%t_p(l)','disp(l(3),l(2))')
 disp(tlist('t',1,2))
  ]]></programlisting>

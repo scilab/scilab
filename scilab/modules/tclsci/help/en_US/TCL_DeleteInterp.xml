@@ -38,6 +38,7 @@ TCL_DeleteInterp()</synopsis>
   <refsection>
     <title>Description</title>
     <para>This routine allows to delete a TCL slave interpreter or the main scilab TCL interpreter.</para>
+    <para>More information about Tcl/Tk: <ulink url="http://www.tcl.tk/doc/">http://www.tcl.tk/doc/</ulink></para>
   </refsection>
   <refsection>
     <title>Examples</title>

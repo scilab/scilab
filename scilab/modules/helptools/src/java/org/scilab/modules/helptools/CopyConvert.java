@@ -53,6 +53,7 @@ import net.sourceforge.jeuclid.MutableLayoutContext;
 import net.sourceforge.jeuclid.context.LayoutContextImpl;
 import net.sourceforge.jeuclid.converter.Converter;
 
+import org.scilab.modules.jvm.utils.ScilabConstants;
 import org.scilab.forge.jlatexmath.TeXConstants; 
 import org.scilab.forge.jlatexmath.TeXFormula;
 import org.scilab.forge.jlatexmath.ParseException;
@@ -67,6 +68,11 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
         "http://www.w3.org/1998/Math/MathML";
     private static final String SVG_NS = "http://www.w3.org/2000/svg";
 
+    /**
+     * The tmp directory
+     */
+    public static final File TMPDIR = new File(System.getenv("TMPDIR"));
+    
     private boolean verbose;
     private String printFormat;
 
@@ -639,7 +645,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
         throws IOException {
         String tex = Helpers.loadString(inFile, "ISO-8859-1");
 
-        File latexFile = File.createTempFile("CopyConvert", ".tex");
+        File latexFile = File.createTempFile("CopyConvert", ".tex", TMPDIR);
 
         StringBuilder buffer = new StringBuilder();
         buffer.append("\\documentclass[12pt]{article}\n");

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -542,15 +542,7 @@
 			>
 		</File>
 		<File
-			RelativePath=".\src\c\matio.rc.bak"
-			>
-		</File>
-		<File
 			RelativePath=".\sci_gateway\matio_gateway.xml"
-			>
-		</File>
-		<File
-			RelativePath=".\src\c\resource.h.bak"
 			>
 		</File>
 		<File

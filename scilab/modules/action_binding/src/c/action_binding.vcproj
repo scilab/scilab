@@ -438,7 +438,7 @@
 			</Filter>
 		</Filter>
 		<Filter
-			Name="Ressources"
+			Name="Resource Files"
 			>
 			<File
 				RelativePath=".\action_binding.rc"

@@ -26,11 +26,12 @@ import java.util.Map;
 import org.apache.batik.ext.awt.RenderingHintsKeyExt;
 import org.apache.batik.gvt.GraphicsNode;
 import org.apache.commons.logging.LogFactory;
+import org.scilab.modules.jvm.utils.ScilabConstants;
 import org.scilab.modules.graph.shape.LatexTextShape;
 import org.scilab.modules.graph.shape.MathMLTextShape;
 import org.scilab.modules.graph.utils.MathMLRenderUtils;
-import org.scilab.modules.graph.utils.ScilabConstants;
 import org.scilab.modules.graph.utils.ScilabGraphUtils;
+import org.scilab.modules.graph.utils.ScilabGraphConstants;
 import org.scilab.modules.graph.view.SupportedLabelType;
 import org.xml.sax.SAXException;
 
@@ -137,9 +138,9 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 	 * @param style Style contents
 	 */
 	private void applyFlipAndMirror(Map<String, Object> style) {
-		String flip = mxUtils.getString(style, ScilabConstants.STYLE_FLIP,
+		String flip = mxUtils.getString(style, ScilabGraphConstants.STYLE_FLIP,
 				Boolean.FALSE.toString());
-		String mirror = mxUtils.getString(style, ScilabConstants.STYLE_MIRROR,
+		String mirror = mxUtils.getString(style, ScilabGraphConstants.STYLE_MIRROR,
 				Boolean.FALSE.toString());
 
 		// scale, 1st flip, 2nd mirror

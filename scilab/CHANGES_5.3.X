@@ -80,7 +80,7 @@ FFTW:
 Graphics:
 =========
 
-* the set and get functions are now overloadable.
+* the set, get and uicontrol functions are now overloadable.
 
 * Datatips tools added
 
@@ -92,6 +92,9 @@ Graphics:
 
 * bug 3975 fixed - The "xload" function was not able to load the contents of a previously
                    saved graphics figure into a different one.
+
+* bug 4658 fixed - When some graphic functions were called without any arguments,
+                   the error was not explicit enough.
 
 * bug 5284 fixed - In some case function "legend" drew line segments in its box
                    in a reverse order.
@@ -177,6 +180,8 @@ Xcos:
 * bug 4898 fixed - The scifunction_block stored list() parameters on the ipar 
                    field instead of the opar field.
 
+* bug 4977 fixed - Some icons were duplicated between Gui and Xcos.
+
 * bug 5161 fixed - The export to SVG did not work with images or html.
 
 * bug 5596 fixed - It was not possible to change text block properties (font
@@ -205,11 +210,13 @@ Xcos:
 * bug 6900 fixed - The block interfunction was escaped when calling scilab
                    macros.
 
-* bug 6903 fixed - modelicat calls ocamlrun (wrong dependency on Windows).
+* bug 6903 fixed - modelicat called ocamlrun (wrong dependency on Windows).
 
 * bug 6981 fixed - the Scilab 'exit' call was killing Xcos session without 
                    prompting the user if modified diagrams must be saved before 
                    exiting.
+
+* bug 7099 fixed - xml2modelica called ocamlrun (wrong dependency on Windows).
 
 Dynamic link:
 =============
@@ -339,6 +346,22 @@ Removed functions (previously declared as obsolete):
 
 * 'readc_' replaced by 'input'.
 
+
+ATOMS:
+======
+
+* The ATOMS GUI ergonomics has been improved.
+
+* ATOMS GUI: When a module is not up-to-date, a warning is displayed on the
+  corresponding sheet.
+
+* bug 6596 fixed - When the ATOMS GUI started, nothing was displayed. Now, the
+                   list of already installed modules appears on the home page.
+
+* bug 6842 fixed - If the installed version of a module was not the most recent
+                   one, the ATOMS GUI claimed that the newest version was
+                   installed.
+
 Bug fixes:
 ==========
 
@@ -364,8 +387,9 @@ Bug fixes:
 
 * bug 4075 fixed - a basic uicontrol example crashed scilab 5.0.3
 
-* bug 4117 fixed - Closing via the user interface a graphics figure which had a non-existing
-                   event handler attached did not destroy its associated data structure.
+* bug 4117 fixed - Closing via the user interface a graphics figure which had a
+                   non-existing event handler attached did not destroy 
+                   its associated data structure.
 
 * bug 4359 fixed - M(:,:)='anything' produced erroneous result.
 
@@ -386,9 +410,14 @@ Bug fixes:
 
 * bug 4799 fixed - Sometime the bode, nyquist , ... function reported a
                    "non convergence" error
+                   
+* bug 4841 fixed - functions created by 'getd' were unknown to scilab.
 
 * bug 4948 fixed - a simple Runge Kutta method for solving a second order 
                    differential equation had a strange behaviour.
+
+* bug 4857 fixed - help file of 'gsort' updated about sort of complex numbers
+                   and overloading.
 
 * bug 4985 fixed - mgetl did not use fgets (C function).
 
@@ -405,6 +434,12 @@ Bug fixes:
 
 * bug 5149 fixed - test_run(): Calls to exec() were no more logged by diary().
 
+* bug 5432 fixed - a link to http://www.tcl.tk/doc/ added in help files about
+                   Tcl/Tk.
+
+* bug 5512 fixed - The display order of input arguments was not described in 
+                   the disp() documention.
+
 * bug 5541 fixed - In the API documentation, the information that data must be
                    allocated before calling API functions was missing.
 
@@ -412,6 +447,9 @@ Bug fixes:
 
 * bug 5583 fixed - exec() did not manage correctly UTF-8 and ANSI/ASCII files 
                    encoded.
+
+* bug 5588 fixed - Assigning null() in a tlist or mlist field shifted all remaining
+                   values with respect to  field names.
 
 * bug 5609 fixed - documentation stated incorrectly fieldnames works on cells
 
@@ -453,6 +491,9 @@ Bug fixes:
 
 * bug 6516 fixed - fullfile did not remove blanks and not create a valid path.
 
+* bug 6535 fixed - The property 'ListboxTop' of the graphic user interface object
+                   'listbox' had no effect.
+
 * bug 6543 fixed - neldermead issues for automatic restarts.
 
 * bug 6549 fixed - genlib function had a behavior which was not consistent with
@@ -466,6 +507,9 @@ Bug fixes:
 
 * bug 6635 fixed - Incorrectly drawn Bode plots (calfrq bug).
 
+* bug 6666 fixed - emptystr() gave a wrong result instead of complaining 
+                   about hypermatrix.
+
 * bug 6682 fixed - mprintf, msprintf, mfprintf did not manage octal (%o) format.
 
 * bug 6731 fixed - Information on the output argument was missing from the 
@@ -477,6 +521,8 @@ Bug fixes:
 * bug 6744 fixed - p_margin() returned an erroneous result.
 
 * bug 6745 fixed - g_margin() returned an erroneous result.
+
+* bug 6750 fixed - TMPDIR constant had no help page.
 
 * bug 6774 fixed - Calling get_param generated a "funcprot" warning when  
                    the value of an option which was a function.
@@ -510,6 +556,9 @@ Bug fixes:
 
 * bug 6891 fixed - 'whos' did not display global variables.
 
+* bug 6893 fixed - Some files +~JF****.tmp where created outside of the Scilab
+                   temporary directory.
+
 * bug 6901 fixed - This script with 'exec' produced a weird warning.
 
 * bug 6923 fixed - Some localized messages were wrong in 'qmr'.
@@ -519,7 +568,13 @@ Bug fixes:
 * bug 6932 fixed - Unitary test for function 'exit' failed in Linux binary
                    version.
 
+* bug 6933 fixed - Some temporary files (dict_*.tmp) were created when using
+                   search engine of the help browser.
+
 * bug 6940 fixed - An error message was wrong in 'pvm_send'.
+
+* bug 6946 fixed - information about optional input arguments 'column separator'
+                   and 'decimal mark' were missing in the write_csv documentation.
 
 * bug 6947 fixed - Some demos in "Optimization and Simulation" failed, 
                    without write rights in SCI subdirectory.
@@ -550,7 +605,19 @@ Bug fixes:
 * bug 7033 fixed - newfun was randomly crashing (mostly on 32 bits) writing to
                    unallocated memory.
 
+* bug 7036 fixed - the plot2d document was incomplete (missing optional argument).
+
+* bug 7042 fixed - Insertion of an empty matrix into a struct (to remove a row or column)
+                   was buggy when multiple index is used.
+
 * bug 7057 fixed - isdigit and isalphanum crashed with a matrix of string
                    as input argument.
 
 * bug 7077 fixed - uigetfont crashed Scilab when the cancel button was clicked.
+
+* bug 7094 fixed - If badly called, ode made Scilab crash.
+
+* bug 7109 fixed - 'lu' function with some complex matrices crashed on Windows.
+
+* bug 7123 fixed - No completion was possible if the name of a variable is 
+                   preceded by ~ or @ or < or >

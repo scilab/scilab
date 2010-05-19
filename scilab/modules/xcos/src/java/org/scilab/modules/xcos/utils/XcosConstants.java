@@ -12,12 +12,12 @@
 
 package org.scilab.modules.xcos.utils;
 
-import org.scilab.modules.graph.utils.ScilabConstants;
+import org.scilab.modules.graph.utils.ScilabGraphConstants;
 
 /**
  * Contains all the constants used trough the source code.
  */
-public final class XcosConstants extends ScilabConstants {
+public final class XcosConstants extends ScilabGraphConstants {
 
     /** Define the default block width on the palette */
     public static final int PALETTE_BLOCK_WIDTH = 100;
