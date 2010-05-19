@@ -23,9 +23,10 @@ pkglib_LTLIBRARIES = libsciparse.la
 
 libsciparse_la_SOURCES 	= $(PARSE_CPP_SOURCES)
 
-libsciparse_la_CXXFLAGS = -I$(top_builddir)/modules/core/includes \
+libsciparse_la_CPPFLAGS = -I$(top_builddir)/modules/core/includes \
 			-I$(top_builddir)/modules/abstractSyntaxTree/includes \
 			-I$(top_builddir)/modules/symbol/includes \
+			-I$(top_builddir)/modules/types/includes \
 			-Iincludes \
 			-Isrc/cpp
 

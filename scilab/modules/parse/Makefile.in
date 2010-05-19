@@ -105,10 +105,6 @@ am__objects_3 = $(am__objects_1) $(am__objects_2) \
 	libsciparse_la-parser.lo libsciparse_la-printerror.lo
 am_libsciparse_la_OBJECTS = $(am__objects_3)
 libsciparse_la_OBJECTS = $(am_libsciparse_la_OBJECTS)
-libsciparse_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CXXLD) \
-	$(libsciparse_la_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
-	$(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -382,9 +378,10 @@ PARSE_CPP_SOURCES = $(BISON_PARSESCILAB_CPP) \
 
 pkglib_LTLIBRARIES = libsciparse.la
 libsciparse_la_SOURCES = $(PARSE_CPP_SOURCES)
-libsciparse_la_CXXFLAGS = -I$(top_builddir)/modules/core/includes \
+libsciparse_la_CPPFLAGS = -I$(top_builddir)/modules/core/includes \
 			-I$(top_builddir)/modules/abstractSyntaxTree/includes \
 			-I$(top_builddir)/modules/symbol/includes \
+			-I$(top_builddir)/modules/types/includes \
 			-Iincludes \
 			-Isrc/cpp
 
@@ -525,7 +522,7 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libsciparse.la: $(libsciparse_la_OBJECTS) $(libsciparse_la_DEPENDENCIES) 
-	$(libsciparse_la_LINK) -rpath $(pkglibdir) $(libsciparse_la_OBJECTS) $(libsciparse_la_LIBADD) $(LIBS)
+	$(CXXLINK) -rpath $(pkglibdir) $(libsciparse_la_OBJECTS) $(libsciparse_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -560,32 +557,32 @@ distclean-compile:
 @am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
 
 libsciparse_la-parsescilab.lo: src/cpp/parsescilab.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciparse_la_CXXFLAGS) $(CXXFLAGS) -MT libsciparse_la-parsescilab.lo -MD -MP -MF $(DEPDIR)/libsciparse_la-parsescilab.Tpo -c -o libsciparse_la-parsescilab.lo `test -f 'src/cpp/parsescilab.cpp' || echo '$(srcdir)/'`src/cpp/parsescilab.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciparse_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciparse_la-parsescilab.lo -MD -MP -MF $(DEPDIR)/libsciparse_la-parsescilab.Tpo -c -o libsciparse_la-parsescilab.lo `test -f 'src/cpp/parsescilab.cpp' || echo '$(srcdir)/'`src/cpp/parsescilab.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciparse_la-parsescilab.Tpo $(DEPDIR)/libsciparse_la-parsescilab.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/parsescilab.cpp' object='libsciparse_la-parsescilab.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciparse_la_CXXFLAGS) $(CXXFLAGS) -c -o libsciparse_la-parsescilab.lo `test -f 'src/cpp/parsescilab.cpp' || echo '$(srcdir)/'`src/cpp/parsescilab.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciparse_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciparse_la-parsescilab.lo `test -f 'src/cpp/parsescilab.cpp' || echo '$(srcdir)/'`src/cpp/parsescilab.cpp
 
 libsciparse_la-scanscilab.lo: src/cpp/scanscilab.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciparse_la_CXXFLAGS) $(CXXFLAGS) -MT libsciparse_la-scanscilab.lo -MD -MP -MF $(DEPDIR)/libsciparse_la-scanscilab.Tpo -c -o libsciparse_la-scanscilab.lo `test -f 'src/cpp/scanscilab.cpp' || echo '$(srcdir)/'`src/cpp/scanscilab.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciparse_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciparse_la-scanscilab.lo -MD -MP -MF $(DEPDIR)/libsciparse_la-scanscilab.Tpo -c -o libsciparse_la-scanscilab.lo `test -f 'src/cpp/scanscilab.cpp' || echo '$(srcdir)/'`src/cpp/scanscilab.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciparse_la-scanscilab.Tpo $(DEPDIR)/libsciparse_la-scanscilab.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/scanscilab.cpp' object='libsciparse_la-scanscilab.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciparse_la_CXXFLAGS) $(CXXFLAGS) -c -o libsciparse_la-scanscilab.lo `test -f 'src/cpp/scanscilab.cpp' || echo '$(srcdir)/'`src/cpp/scanscilab.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciparse_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciparse_la-scanscilab.lo `test -f 'src/cpp/scanscilab.cpp' || echo '$(srcdir)/'`src/cpp/scanscilab.cpp
 
 libsciparse_la-parser.lo: src/cpp/parser.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciparse_la_CXXFLAGS) $(CXXFLAGS) -MT libsciparse_la-parser.lo -MD -MP -MF $(DEPDIR)/libsciparse_la-parser.Tpo -c -o libsciparse_la-parser.lo `test -f 'src/cpp/parser.cpp' || echo '$(srcdir)/'`src/cpp/parser.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciparse_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciparse_la-parser.lo -MD -MP -MF $(DEPDIR)/libsciparse_la-parser.Tpo -c -o libsciparse_la-parser.lo `test -f 'src/cpp/parser.cpp' || echo '$(srcdir)/'`src/cpp/parser.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciparse_la-parser.Tpo $(DEPDIR)/libsciparse_la-parser.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/parser.cpp' object='libsciparse_la-parser.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciparse_la_CXXFLAGS) $(CXXFLAGS) -c -o libsciparse_la-parser.lo `test -f 'src/cpp/parser.cpp' || echo '$(srcdir)/'`src/cpp/parser.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciparse_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciparse_la-parser.lo `test -f 'src/cpp/parser.cpp' || echo '$(srcdir)/'`src/cpp/parser.cpp
 
 libsciparse_la-printerror.lo: src/cpp/printerror.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciparse_la_CXXFLAGS) $(CXXFLAGS) -MT libsciparse_la-printerror.lo -MD -MP -MF $(DEPDIR)/libsciparse_la-printerror.Tpo -c -o libsciparse_la-printerror.lo `test -f 'src/cpp/printerror.cpp' || echo '$(srcdir)/'`src/cpp/printerror.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciparse_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciparse_la-printerror.lo -MD -MP -MF $(DEPDIR)/libsciparse_la-printerror.Tpo -c -o libsciparse_la-printerror.lo `test -f 'src/cpp/printerror.cpp' || echo '$(srcdir)/'`src/cpp/printerror.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciparse_la-printerror.Tpo $(DEPDIR)/libsciparse_la-printerror.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/printerror.cpp' object='libsciparse_la-printerror.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciparse_la_CXXFLAGS) $(CXXFLAGS) -c -o libsciparse_la-printerror.lo `test -f 'src/cpp/printerror.cpp' || echo '$(srcdir)/'`src/cpp/printerror.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciparse_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciparse_la-printerror.lo `test -f 'src/cpp/printerror.cpp' || echo '$(srcdir)/'`src/cpp/printerror.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

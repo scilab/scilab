@@ -4,6 +4,8 @@
 #include "parse.hxx"
 #include "parser.hxx"
 
+#include "context.hxx"
+
 static int comment_level = 0;
 static int last_token = 0;
 static int exit_status = PARSE_ERROR;
@@ -33,6 +35,9 @@ static std::string program_name;
 %x MATRIX
 %x MATRIXMINUSID
 
+%x SHELLMODE
+%x BEGINID
+
 spaces			[ \t\v\f]+
 integer			[0-9]+
 number			[0-9]+[\.][0-9]*
@@ -40,10 +45,13 @@ little			\.[0-9]+
 
 floating		({little}|{number}|{integer})[deDE][+-]?{integer}
 
-hex			[0]x[0-9a-fA-F]+
-oct			[0]o[0-7]+
+hex             [0]x[0-9a-fA-F]+
+oct             [0]o[0-7]+
 
-id			[a-zA-Z_%#?][a-zA-Z_0-9#?]*
+id              ([a-zA-Z_%#?][a-zA-Z_0-9#?]*)
+
+keywords        ("function"|"if")
+
 newline			("\n"|"\r\n"|"\r")
 blankline		^[ \t\v\f]+{newline}
 next			(".."|"...")
@@ -109,87 +117,150 @@ assign			"="
 
 %%
 
-"if"		{
+<INITIAL,BEGINID>"if"            {
 	Parser::getInstance()->pushControlStatus(Parser::WithinIf);
-	return scan_throw(IF);
+	BEGIN(INITIAL);
+    return scan_throw(IF);
 }
-"then"		return scan_throw(THEN);
-"else" {
+
+<INITIAL,BEGINID>"then"          {
+    	BEGIN(INITIAL);
+        return scan_throw(THEN);
+}
+
+<INITIAL,BEGINID>"else"          {
 	Parser::getInstance()->popControlStatus();
 	Parser::getInstance()->pushControlStatus(Parser::WithinElse);
+	BEGIN(INITIAL);
 	return scan_throw(ELSE);
 }
-"elseif" {
+
+<INITIAL,BEGINID>"elseif" {
 	Parser::getInstance()->popControlStatus();
 	Parser::getInstance()->pushControlStatus(Parser::WithinElseIf);
+	BEGIN(INITIAL);
 	return scan_throw(ELSEIF);
 }
-"end"		{
+
+<INITIAL,BEGINID>"end"		{
   Parser::getInstance()->popControlStatus();
+	BEGIN(INITIAL);
   return scan_throw(END);
 }
 
-"select"	{
+<INITIAL,BEGINID>"select"	{
   Parser::getInstance()->pushControlStatus(Parser::WithinSelect);
+	BEGIN(INITIAL);
   return scan_throw(SELECT);
 }
 
-"switch"	{
+<INITIAL,BEGINID>"switch"	{
   Parser::getInstance()->pushControlStatus(Parser::WithinSwitch);
+	BEGIN(INITIAL);
   return scan_throw(SWITCH);
 }
 
-"otherwise" {
+<INITIAL,BEGINID>"otherwise" {
 	Parser::getInstance()->popControlStatus();
 	Parser::getInstance()->pushControlStatus(Parser::WithinOtherwise);
+	BEGIN(INITIAL);
 	return scan_throw(OTHERWISE);
 }
 
-"case"		{
+<INITIAL,BEGINID>"case"		{
   Parser::getInstance()->popControlStatus();
   Parser::getInstance()->pushControlStatus(Parser::WithinCase);
+	BEGIN(INITIAL);
   return scan_throw(CASE);
 }
 
-"function" {
+<INITIAL,BEGINID>"function" {
 	Parser::getInstance()->pushControlStatus(Parser::WithinFunction);
+	BEGIN(INITIAL);
 	return scan_throw(FUNCTION);
 }
-"endfunction" {
+
+<INITIAL,BEGINID>"endfunction" {
 	Parser::getInstance()->popControlStatus();
+	BEGIN(INITIAL);
 	return scan_throw(ENDFUNCTION);
 }
-"#function"	{
+
+<INITIAL,BEGINID>"#function"	{
 	Parser::getInstance()->pushControlStatus(Parser::WithinFunction);
+	BEGIN(INITIAL);
 	return scan_throw(HIDDENFUNCTION);
 }
-"hidden"	return scan_throw(HIDDEN);
 
-"for" {
+<INITIAL,BEGINID>"hidden"	{
+ 	BEGIN(INITIAL);
+   return scan_throw(HIDDEN);
+}
+
+<INITIAL,BEGINID>"for" {
   Parser::getInstance()->pushControlStatus(Parser::WithinFor);
+	BEGIN(INITIAL);
   return scan_throw(FOR);
 }
 
-"while"	{
+<INITIAL,BEGINID>"while"	{
 	Parser::getInstance()->pushControlStatus(Parser::WithinWhile);
+	BEGIN(INITIAL);
 	return scan_throw(WHILE);
 }
 
-"do"		return scan_throw(DO);
-"break"		return scan_throw(BREAK);
+<INITIAL,BEGINID>"do"		{
+	BEGIN(INITIAL);
+    return scan_throw(DO);
+}
 
+<INITIAL,BEGINID>"break"		{
+    	BEGIN(INITIAL);
+        return scan_throw(BREAK);
+}
 
-"try" {
+<INITIAL,BEGINID>"try" {
 	Parser::getInstance()->pushControlStatus(Parser::WithinTry);
+	BEGIN(INITIAL);
 	return scan_throw(TRY);
 }
 
-"catch" {
+<INITIAL,BEGINID>"catch" {
 	Parser::getInstance()->pushControlStatus(Parser::WithinCatch);
+	BEGIN(INITIAL);
 	return scan_throw(CATCH);
 }
-"return"	return scan_throw(RETURN);
 
+<INITIAL,BEGINID>"return"	{
+    BEGIN(INITIAL);
+    return scan_throw(RETURN);
+}
+
+^{spaces}*/({id}){spaces}[^(=] {
+        BEGIN(BEGINID);
+}
+
+<BEGINID>
+{
+    {id}                        {
+        yylval.str = new std::string(yytext);
+        if (symbol::Context::getInstance()->get(yytext) != NULL 
+            && symbol::Context::getInstance()->get(yytext)->isCallable())
+        {
+            //std::cout << "** Start shell mode ..." << std::endl;
+            //std::cout << "ID = " << yytext << std::endl;
+            scan_throw(ID);
+            BEGIN(SHELLMODE);
+        }
+        else 
+        {
+            //std::cout << "** NO shell mode ... throwing ID " << yytext << std::endl;
+            BEGIN(INITIAL);
+            return scan_throw(ID);
+        }
+    }
+
+}
 
 <INITIAL,MATRIX>{boolnot}		{
   return scan_throw(NOT);
@@ -408,13 +479,13 @@ assign			"="
 }
 
 
-<INITIAL,MATRIX>{dquote}		{
+<INITIAL,MATRIX,SHELLMODE>{dquote}		{
   yylval.str = new std::string();
   yy_push_state(DOUBLESTRING);
 }
 
 
-<INITIAL,MATRIX>{quote}			{
+<INITIAL,MATRIX,SHELLMODE>{quote}			{
   /*
   ** Matrix Transposition special behaviour
   ** ID' []' toto()' are transposition call
@@ -443,8 +514,9 @@ assign			"="
   yylloc.last_line += 1;
   yylloc.last_column = 1;
   scan_step();
+  //std::cout << "<INITIAL,MATRIX>{newline}" << std::endl;
   if (last_token != EOL) {
-    return scan_throw(EOL);
+      return scan_throw(EOL);
   }
 }
 
@@ -847,6 +919,47 @@ assign			"="
     scan_step();
     *yylval.str += yytext;
   }
+}
+
+
+<SHELLMODE>
+{
+    {spaces}                    {
+        if (last_token == ID)
+        {
+            scan_throw(SPACES);
+            return ID;
+        }
+    }
+    
+    {semicolon}                 {
+        BEGIN(INITIAL);
+        //std::cout << "<SHELLMODE> SEMICOLON" << std::endl;
+        return scan_throw(SEMI);
+    }
+
+    {comma}                     {
+        BEGIN(INITIAL);
+        //std::cout << "<SHELLMODE> COMMA" << std::endl;
+        return scan_throw(COMMA);
+    }
+
+    {newline}                   {
+        BEGIN(INITIAL);
+        //std::cout << "<SHELLMODE> EOL" << std::endl;
+        return scan_throw(EOL);
+    }
+
+    [^ \t\v\f\r\n,;'"]+               {
+        yylval.str = new std::string(yytext);
+        //std::cout << "STR = " << yytext << std::endl;
+        return scan_throw(STR);
+    }
+    
+    <<EOF>>                     {
+        BEGIN(INITIAL);
+    }
+
 }
 
 %%
