@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2009 - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,24 +14,54 @@
 package org.scilab.modules.xpad.actions;
 
 import javax.swing.KeyStroke;
+import javax.swing.JComponent;
 import javax.swing.text.DefaultEditorKit;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.ScilabDocument;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
-public class SelectAllAction extends DefaultAction {
+/**
+ * Class to handle "select all"
+ * @author Bruno JOFRET
+ * @author Calixte DENIZET
+ */
+public final class SelectAllAction extends DefaultAction {
 
-	public SelectAllAction(Xpad editor) {
-		super(XpadMessages.SELECT_ALL, editor);
-	}
+    /**
+     * Constructor
+     */
+    private SelectAllAction(Xpad editor) {
+        super(XpadMessages.SELECT_ALL, editor);
+    }
 
-	public void doAction() {
-		getEditor().getTextPane().getActionMap().get(DefaultEditorKit.selectAllAction).actionPerformed(null);
-	}
+    /**
+     * doAction
+     */
+    public void doAction() {
+        ((ScilabDocument) getEditor().getTextPane().getDocument()).mergeEditsEnd();
+        ((ScilabDocument) getEditor().getTextPane().getDocument()).mergeEditsBegin();
+        getEditor().getTextPane().getActionMap().get(DefaultEditorKit.selectAllAction).actionPerformed(null);
+    }
 
-        public static MenuItem createMenu(Xpad editor, KeyStroke key) {
-		return createMenu(XpadMessages.SELECT_ALL, null, new SelectAllAction(editor), key);
-	}
+    /**
+     * createMenu
+     * @param editor Xpad
+     * @param key KeyStroke
+     * @return MenuItem
+     */
+    public static MenuItem createMenu(Xpad editor, KeyStroke key) {
+        return createMenu(XpadMessages.SELECT_ALL, null, new SelectAllAction(editor), key);
+    }
 
+    /**
+     * Put input map
+     * @param textPane JTextpane
+     * @param editor Editor
+     * @param key KeyStroke
+     */
+    public static void putInInputMap(JComponent textPane, Xpad editor, KeyStroke key) {
+        textPane.getInputMap().put(key, new SelectAllAction(editor));
+    }
 }

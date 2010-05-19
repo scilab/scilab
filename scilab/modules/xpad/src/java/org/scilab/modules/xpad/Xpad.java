@@ -80,6 +80,7 @@ import org.scilab.modules.xpad.actions.RedoAction;
 import org.scilab.modules.xpad.actions.CopyAction;
 import org.scilab.modules.xpad.actions.CutAction;
 import org.scilab.modules.xpad.actions.PasteAction;
+import org.scilab.modules.xpad.actions.SelectAllAction;
 import org.scilab.modules.xpad.actions.HighlightCurrentLineAction;
 import org.scilab.modules.xpad.actions.UnTabifyAction;
 import org.scilab.modules.xpad.actions.FindNextAction;
@@ -717,6 +718,7 @@ public class Xpad extends SwingScilabTab implements Tab {
                 FindPreviousAction.putInInputMap(textPane, this, map.get("FindPreviousAction"));
                 HighlightCurrentLineAction.putInInputMap(textPane, this, map.get("HighlightCurrentLineAction"));
                 XpadCompletionAction.putInInputMap(textPane, this, map.get("XpadCompletionAction"));
+                SelectAllAction.putInInputMap(textPane, this, map.get("SelectAllAction"));
 
                 LineBeautifierAction.putInInputMap(textPane);
 
