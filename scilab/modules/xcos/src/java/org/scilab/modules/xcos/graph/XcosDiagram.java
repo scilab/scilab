@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2009-2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2009-2010 - DIGITEO - Clément DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -64,9 +65,6 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.SciFileFilter;
-import org.scilab.modules.gui.utils.UIElementMapper;
-import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.jvm.utils.ScilabConstants;
 import org.scilab.modules.types.scilabTypes.ScilabMList;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
@@ -139,7 +137,7 @@ public class XcosDiagram extends ScilabGraph {
 	private ScicosParameters scicosParameters;
 	
 	// the scicos engine current status
-	private final transient CompilationEngineStatus engine; 
+	private final transient CompilationEngineStatus engine;
 	
     //private Window palette;
     private Tab viewPort;
@@ -469,8 +467,6 @@ public class XcosDiagram extends ScilabGraph {
 	
 	installStylesheet();
 
-	
-	
 	getAsComponent().setToolTips(true);
 
 	// Forbid disconnecting cells once it is connected.
@@ -522,14 +518,8 @@ public class XcosDiagram extends ScilabGraph {
 	 * Install the default style sheet and the user stylesheet on the diagram.
 	 */
 	private void installStylesheet() {
-		final mxStylesheet styleSheet = getStylesheet();
-		
-		try {
-			FileUtils.decodeStyle(styleSheet);
-		} catch (IOException e) {
-			LOG.warn(e);
-			return;
-		}
+		final mxStylesheet styleSheet = Xcos.getInstance().getStyleSheet();
+		setStylesheet(styleSheet);
 		
 		// Set Canvas background
 		URL background = null;
@@ -893,11 +883,6 @@ public class XcosDiagram extends ScilabGraph {
 //    			((mxCell) cells[i]).setId((new UID()).toString());
 
 				if (cells[i] instanceof BasicBlock) {
-					// Store all AfficheBlocks in a dedicated HasMap
-					if (cells[i] instanceof AfficheBlock) {
-						AfficheBlock affich = (AfficheBlock) cells[i];
-						XcosTab.getAfficheBlocks().put(affich.getHashCode(), affich);
-					}
 					// Update parent on cell addition
 					((BasicBlock) cells[i]).setParentDiagram(diagram);
 				}
@@ -1797,68 +1782,69 @@ public class XcosDiagram extends ScilabGraph {
 	this.gridMenu = menu;
     }
 
-    /**
-     * Close Xcos instance including all tabs
-     */
-    public void closeDiagram() {
-	closeDiagram(false);
-    }
-    
-    /**
-     * Close Xcos instance including all tabs
-     * @param fromScilab true if the caller is scilab direct and not an internal call
-     */
-    public void closeDiagram(boolean fromScilab) {
+	/**
+	 * Close the current diagram.
+	 * 
+	 * This operation doesn't remove the diagram instance from the Xcos session.
+	 * To completely close a diagram please use
+	 * {@link Xcos#close(XcosDiagram, boolean)} instead.
+	 * 
+	 * @param force
+	 *            true if the close must be forced.
+	 * @return status of the close operation (true if the close is successful,
+	 *         false otherwise)
+	 */
+	public boolean close(boolean force) {
 
-	boolean wantToClose = true;
+		if (!canClose()) {
+			setVisible(false);
+			return false;
+		}
 
-	if (!canClose()) {
-	    setVisible(false);
-	    return;
+		boolean wantToClose = true;
+		if (isModified()) {
+			// Ask the user want he want to do !
+			final AnswerOption answer;
+			if (force) {
+				answer = ScilabModalDialog.show(getParentTab(),
+						XcosMessages.DIAGRAM_MODIFIED, XcosMessages.XCOS,
+						IconType.QUESTION_ICON, ButtonType.YES_NO);
+			} else {
+				answer = ScilabModalDialog.show(getParentTab(),
+						XcosMessages.DIAGRAM_MODIFIED, XcosMessages.XCOS,
+						IconType.QUESTION_ICON, ButtonType.YES_NO_CANCEL);
+			}
+
+			switch (answer) {
+			case YES_OPTION:
+				if (!saveDiagram()) {
+					// if save is canceled, cancel close windows
+					wantToClose = false;
+				}
+				break;
+			case CANCEL_OPTION:
+				wantToClose = false;
+				break;
+			case NO_OPTION:
+			default:
+				break;
+			}
+		}
+
+		if (wantToClose) {
+			if (getParentTab() != null) {
+				getParentTab().close();
+				setParentTab(null);
+			}
+		    
+			if (viewPort != null) {
+			    viewPort.close();
+			    viewPort = null;
+			}
+		}
+		
+		return true;
 	}
-	
-	if (isModified()) {
-	    // The diagram has been modified
-	    // Ask the user want he want to do !
-	    
-	    AnswerOption answer; 
-	    if (fromScilab) {
-		answer = ScilabModalDialog.show(getParentTab(), XcosMessages.DIAGRAM_MODIFIED, XcosMessages.XCOS, 
-			IconType.QUESTION_ICON, ButtonType.YES_NO);
-	    } else {
-		answer = ScilabModalDialog.show(getParentTab(), XcosMessages.DIAGRAM_MODIFIED, XcosMessages.XCOS, 
-			IconType.QUESTION_ICON, ButtonType.YES_NO_CANCEL);
-	    }
-
-	    switch (answer) {
-	    case YES_OPTION :
-	    	// Save the diagram
-	    	if (!saveDiagram()) {
-	    		//if save is canceled, cancel close windows
-	    		wantToClose = false;
-	    	}
-		break;
-	    case NO_OPTION :
-		break;
-	    case CANCEL_OPTION :
-		// The user cancels
-		wantToClose = false;
-		break;
-	    default:
-		break;
-	    }
-	}
-
-	if (wantToClose) {
-	    if (getParentTab() != null) {
-		ScilabWindow xcosWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(getParentTab().getParentWindowId());
-		xcosWindow.removeTab(getParentTab());
-		viewPort.close();
-	    }
-	    XcosTab.closeDiagram(this);
-	    setOpened(false);
-	}
-    }
 
     /**
      * @return save status
@@ -2028,12 +2014,11 @@ public class XcosDiagram extends ScilabGraph {
      * @param diagramFileName file to open
      */
     public void openDiagramFromFile(String diagramFileName) {
-	if (!XcosTab.focusOnExistingFile(diagramFileName)) {
 	    File theFile = new File(diagramFileName);
 	    info(XcosMessages.LOADING_DIAGRAM);
 
 	    if (theFile.exists()) {
-		transformAndLoadFile(theFile, false);
+	    	transformAndLoadFile(theFile, false);
 	    } else {
 		AnswerOption answer = ScilabModalDialog.show(getParentTab(), String.format(
 			XcosMessages.FILE_DOESNT_EXIST, theFile.getAbsolutePath()),
@@ -2056,7 +2041,6 @@ public class XcosDiagram extends ScilabGraph {
 	    }
 	    info(XcosMessages.EMPTY_INFO);
 	    getUndoManager().clear();
-	}
     }
     
 
@@ -2113,16 +2097,16 @@ public class XcosDiagram extends ScilabGraph {
 		setChildrenParentDiagram();
 		generateUID();
 	    } else {
-		XcosDiagram xcosDiagram = Xcos.createANotShownDiagram();
-		xcosDiagram.info(XcosMessages.LOADING_DIAGRAM);
+	    	info(XcosMessages.LOADING_DIAGRAM);
+		XcosDiagram xcosDiagram = new XcosDiagram();
 		codec.decode(document.getDocumentElement(), xcosDiagram);
 		xcosDiagram.setModified(false);
 		xcosDiagram.setSavedFile(theFile.getAbsolutePath());
 		xcosDiagram.setTitle(theFile.getName().substring(0,	theFile.getName().lastIndexOf('.')));
-		setChildrenParentDiagram(xcosDiagram);
-		XcosTab.showTabFromDiagram(xcosDiagram);
+		xcosDiagram.setChildrenParentDiagram();
 		xcosDiagram.generateUID();
-		xcosDiagram.info(XcosMessages.EMPTY_INFO);
+		new XcosTab(xcosDiagram).setVisible(true);
+		info(XcosMessages.EMPTY_INFO);
 	    }
 	    
 	    result = true;
@@ -2187,25 +2171,24 @@ public class XcosDiagram extends ScilabGraph {
      * Update all the children of the current graph.
      */
     public void setChildrenParentDiagram() {
-	setChildrenParentDiagram(this);
+    	for (int i = 0; i < getModel().getChildCount(getDefaultParent()); i++) {
+    	    mxCell cell = (mxCell) getModel().getChildAt(getDefaultParent(), i);
+    	    if (cell instanceof BasicBlock) {
+    		BasicBlock block = (BasicBlock) cell;
+    		block.setParentDiagram(this);
+    	    }
+    	}
     }
 
     /**
      * For each block in the argument, call its setParentDiagram method
      * @param diagram The new parent of the blocks.
+     * 
+     * @deprecated please use {@link #setChildrenParentDiagram()} instead
      */
+    @Deprecated
     private void setChildrenParentDiagram(XcosDiagram diagram) {
-	for (int i = 0; i < diagram.getModel().getChildCount(diagram.getDefaultParent()); i++) {
-	    mxCell cell = (mxCell) diagram.getModel().getChildAt(diagram.getDefaultParent(), i);
-	    if (cell instanceof BasicBlock) {
-		BasicBlock block = (BasicBlock) cell;
-		block.setParentDiagram(diagram);
-		if (block instanceof AfficheBlock) {
-		    AfficheBlock affich = (AfficheBlock) block;
-		    XcosTab.getAfficheBlocks().put(affich.getHashCode(), affich);
-		}
-	    }
-	}
+    	diagram.setChildrenParentDiagram();
     }
 
     /**
@@ -2234,7 +2217,6 @@ public class XcosDiagram extends ScilabGraph {
 	}
 	return "";
     }
-
 
     /**
      * Display the message in info bar.
@@ -2348,7 +2330,7 @@ public class XcosDiagram extends ScilabGraph {
 			returnBlock = ((SuperBlock) block).getChild().getChildById(uid);
 
 			if (created) { //if temporary, destroy it
-			    ((SuperBlock) block).getChild().closeDiagram();
+			    ((SuperBlock) block).closeBlockSettings();
 			}
 		    } else if (block.getRealParameters() instanceof ScilabMList) { 
 			//we have a hidden SuperBlock, create a real one
@@ -2358,7 +2340,7 @@ public class XcosDiagram extends ScilabGraph {
 			newSP.createChildDiagram();
 			//search in child
 			returnBlock = newSP.getChild().getChildById(uid);
-			newSP.getChild().closeDiagram();
+			newSP.closeBlockSettings();
 			newSP = null;
 		    }
 		}
@@ -2374,21 +2356,19 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * @return child visibility
      */
-    public boolean isChildVisible() {
-	for (int i = 0; i < getModel().getChildCount(getDefaultParent()); i++) {
-	    Object child = getModel().getChildAt(getDefaultParent(), i);
-	    if (child instanceof SuperBlock) {
-		XcosDiagram diag = ((SuperBlock) child).getChild();
-		if (diag != null && diag.isOpened()) {
-		    // if child or sub child is visible
-		    if (diag.isChildVisible() || diag.isVisible()) {
-			return true;
-		    }
+	public boolean isChildVisible() {
+		for (int i = 0; i < getModel().getChildCount(getDefaultParent()); i++) {
+			Object child = getModel().getChildAt(getDefaultParent(), i);
+			if (child instanceof SuperBlock) {
+				XcosDiagram diag = ((SuperBlock) child).getChild();
+				if (diag != null && (diag.isChildVisible() || diag.isVisible())) {
+					// if child or sub child is visible
+					return true;
+				}
+			}
 		}
-	    }
+		return false;
 	}
-	return false;
-    }
 
     /**
      * @return close capability
@@ -2409,7 +2389,7 @@ public class XcosDiagram extends ScilabGraph {
 	    if (child instanceof SuperBlock) {
 		SuperBlock diag = (SuperBlock) child;
 
-		if (diag.getChild() != null && diag.getChild().isOpened()) {
+		if (diag.getChild() != null) {
 		    diag.closeBlockSettings();
 		}
 	    }

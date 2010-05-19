@@ -31,7 +31,6 @@ import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.configuration.ConfigurationManager;
 import org.scilab.modules.xcos.configuration.model.DocumentType;
 import org.scilab.modules.xcos.configuration.utils.ConfigurationConstants;
-import org.scilab.modules.xcos.graph.XcosDiagram;
 
 /**
  * Implement the recent file actions.
@@ -74,13 +73,7 @@ public final class RecentFileAction extends DefaultAction implements PropertyCha
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		ConfigurationManager.getInstance().addToRecentFiles(recentFile.getPath());
-		if (getGraph(null) == null) { // Called from palettes 
-			Xcos.xcos(recentFile.getPath());
-		} else {
-			((XcosDiagram) getGraph(null)).openDiagramFromFile(recentFile.getPath());
-		}
-		ConfigurationManager.getInstance().saveConfig();
+		Xcos.getInstance().open(recentFile.getAbsolutePath());
 	};
 
 	/**

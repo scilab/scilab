@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
+ * Copyright (C) 2009-2009 - DIGITEO - Antoine ELIAS
+ * Copyright (C) 2009-2010 - DIGITEO - Clément DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -77,16 +78,6 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
 	}
 	
 	return entireContext;
-    }
-    
-    /**
-     * Close the current diagram.
-     * 
-     * @see org.scilab.modules.xcos.graph.XcosDiagram#closeDiagram()
-     */
-	@Override
-    public void closeDiagram() {
-	getContainer().closeBlockSettings();
     }
 
     /**

@@ -54,6 +54,7 @@ import org.scilab.modules.types.scilabTypes.ScilabList;
 import org.scilab.modules.types.scilabTypes.ScilabString;
 import org.scilab.modules.types.scilabTypes.ScilabType;
 import org.scilab.modules.xcos.Xcos;
+import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.actions.ShowHideShadowAction;
 import org.scilab.modules.xcos.block.actions.BlockDocumentationAction;
 import org.scilab.modules.xcos.block.actions.BlockParametersAction;
@@ -968,7 +969,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
     public ContextMenu createPaletteContextMenu(ScilabGraph graph) {
 	ContextMenu menu = ScilabContextMenu.createContextMenu();
 
-	final List<XcosDiagram> allDiagrams = Xcos.getDiagrams();
+	final List<XcosDiagram> allDiagrams = Xcos.getInstance().getDiagrams();
 
 	if (allDiagrams.size() == 0) {
 	    // No diagram opened: should never happen if Xcos opens an empty diagram when it is launched
@@ -978,12 +979,15 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 	    addTo.setCallback(new CallBack(XcosMessages.ADDTO_NEW_DIAGRAM) {
 		@Override
 		public void callBack() {
-		    XcosDiagram theDiagram = Xcos.createEmptyDiagram();
+			
+		    XcosDiagram theDiagram = new XcosDiagram();
 		    BasicBlock block = (BasicBlock) BlockFactory.createClone(BasicBlock.this);
 		    theDiagram.getModel().add(theDiagram.getDefaultParent(), block, 0);
 		    mxGeometry geom = BasicBlock.this.getGeometry();
 		    setDefaultPosition(geom);
 		    theDiagram.getModel().setGeometry(block, geom);
+		    
+		    new XcosTab(theDiagram).setVisible(true);
 		    BlockPositioning.updateBlockView(block);
 		}
 	    });

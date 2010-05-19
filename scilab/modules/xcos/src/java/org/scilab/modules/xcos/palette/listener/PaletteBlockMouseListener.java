@@ -54,7 +54,7 @@ public final class PaletteBlockMouseListener implements MouseListener {
 
 			ContextMenu menu = ScilabContextMenu.createContextMenu();
 
-			final List<XcosDiagram> allDiagrams = Xcos.getDiagrams();
+			final List<XcosDiagram> allDiagrams = Xcos.getInstance().getDiagrams();
 			final PaletteBlockCtrl control = ((PaletteBlockView) e.getSource()).getController();
 			
 			// No diagram opened: should never happen as Xcos opens an empty diagram when it is launched
