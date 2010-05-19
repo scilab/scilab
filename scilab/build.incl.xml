@@ -158,7 +158,7 @@
 		<delete dir="${checkstyle.report.dir}"/>
 	</target>
 
-	<target name="test" depends="compile-test">
+	<target name="test" depends="compile-test, validate" if="test-present">
         <taskdef name="testng" classpathref="unittest.classpath" classname="org.testng.TestNGAntTask" />
 	    <testng verbose="2"  haltonfailure="true">
 		  <classpath>
@@ -170,6 +170,10 @@
           <jvmarg value="-DdisableLoadJNIScilab=1"/>
 	   </testng>
 	 </target>
+
+	<target name="validate">
+	<!-- Empty target to be override by other build.xml -->
+	</target>
 
 	<target name="init">
 		<mkdir dir="${classes.dir}"/>
