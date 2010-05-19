@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="slatec_f2c"
+	Name="slatec_f"
 	ProjectGUID="{EAF0949C-28D2-497C-954F-FC13B32FF2F3}"
 	RootNamespace="slatec_f2c"
 	Keyword="Win32Proj"
@@ -84,7 +84,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
-				AdditionalOptions="/fixed:no"
+				AdditionalOptions="/ignore:4049"
 				AdditionalDependencies="Libscilab.lib"
 				OutputFile="$(SolutionDir)bin\slatec_f.dll"
 				LinkIncremental="2"
@@ -178,7 +178,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/fixed:no"
+				AdditionalOptions="/ignore:4049"
 				AdditionalDependencies="Libscilab.lib"
 				OutputFile="$(SolutionDir)bin\slatec_f.dll"
 				LinkIncremental="2"
@@ -265,6 +265,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalOptions="/ignore:4049"
 				AdditionalDependencies="Libscilab.lib"
 				OutputFile="$(SolutionDir)bin\slatec_f.dll"
 				LinkIncremental="1"
@@ -355,6 +356,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalOptions="/ignore:4049"
 				AdditionalDependencies="Libscilab.lib"
 				OutputFile="$(SolutionDir)bin\slatec_f.dll"
 				LinkIncremental="1"
@@ -402,6 +404,10 @@
 			>
 			<File
 				RelativePath=".\balanc.c"
+				>
+			</File>
+			<File
+				RelativePath=".\common_f2c.c"
 				>
 			</File>
 			<File
@@ -939,38 +945,6 @@
 			<File
 				RelativePath=".\dxlegf.f"
 				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="f2c rule"
-						CommandLine="cd &quot;$(InputDir)&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputFileName)&quot; 2&gt;NUL"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-						CommandLine="cd &quot;$(InputDir)&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputFileName)&quot; 2&gt;NUL"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="f2c rule"
-						CommandLine="cd &quot;$(InputDir)&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputFileName)&quot; 2&gt;NUL"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-						CommandLine="cd &quot;$(InputDir)&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputFileName)&quot; 2&gt;NUL"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\dyairy.f"

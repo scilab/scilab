@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="core_f2c"
+	Name="core_f"
 	ProjectGUID="{C352587B-F5E4-457C-80EE-A1AEAB176C8E}"
 	RootNamespace="core_f2c"
 	Keyword="Win32Proj"

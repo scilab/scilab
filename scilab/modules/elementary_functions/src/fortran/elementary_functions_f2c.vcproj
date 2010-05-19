@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="elementary_functions_f2c"
+	Name="elementary_functions_f"
 	ProjectGUID="{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}"
 	RootNamespace="elementary_functions_f2c"
 	Keyword="Win32Proj"

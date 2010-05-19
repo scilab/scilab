@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="string_f2c"
+	Name="string_f"
 	ProjectGUID="{FAF6A7EB-8A36-4278-B34E-34EA89E55304}"
 	RootNamespace="string_f2c"
 	Keyword="Win32Proj"
@@ -84,7 +84,6 @@
 			<Tool
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
-				AdditionalOptions="/fixed:no"
 				AdditionalDependencies="Libscilab.lib string.lib"
 				OutputFile="$(SolutionDir)bin\string_f.dll"
 				LinkIncremental="2"
@@ -178,7 +177,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/fixed:no"
 				AdditionalDependencies="Libscilab.lib string.lib"
 				OutputFile="$(SolutionDir)bin\string_f.dll"
 				LinkIncremental="2"

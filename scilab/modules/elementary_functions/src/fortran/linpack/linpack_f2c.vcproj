@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="linpack_f2c"
+	Name="linpack_f"
 	ProjectGUID="{F0F55692-0355-4BC3-BE9D-552C8AAC5238}"
 	RootNamespace="linpack_f2c"
 	Keyword="Win32Proj"
@@ -84,7 +84,6 @@
 			<Tool
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
-				AdditionalOptions="/fixed:no"
 				AdditionalDependencies="Libscilab.lib"
 				OutputFile="$(SolutionDir)bin\linpack_f.dll"
 				LinkIncremental="2"
@@ -178,7 +177,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/fixed:no"
 				AdditionalDependencies="Libscilab.lib"
 				OutputFile="$(SolutionDir)bin\linpack_f.dll"
 				LinkIncremental="2"

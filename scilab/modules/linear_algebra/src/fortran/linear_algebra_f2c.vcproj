@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="linear_algebra_f2c"
+	Name="linear_algebra_f"
 	ProjectGUID="{3735EFF9-925B-45B1-82CF-762658E69E70}"
 	RootNamespace="linear_algebra_f2c"
 	Keyword="Win32Proj"
@@ -84,7 +84,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
-				AdditionalOptions="/fixed:no"
+				AdditionalOptions="/ignore:4049"
 				AdditionalDependencies="Libscilab.lib linear_algebra.lib"
 				OutputFile="$(SolutionDir)bin\linear_algebra_f.dll"
 				LinkIncremental="2"
@@ -178,7 +178,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/fixed:no"
+				AdditionalOptions="/ignore:4049"
 				AdditionalDependencies="Libscilab.lib linear_algebra.lib"
 				OutputFile="$(SolutionDir)bin\linear_algebra_f.dll"
 				LinkIncremental="2"
@@ -265,6 +265,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalOptions="/ignore:4049"
 				AdditionalDependencies="Libscilab.lib linear_algebra.lib"
 				OutputFile="$(SolutionDir)bin\linear_algebra_f.dll"
 				LinkIncremental="1"
@@ -355,6 +356,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalOptions="/ignore:4049"
 				AdditionalDependencies="Libscilab.lib linear_algebra.lib"
 				OutputFile="$(SolutionDir)bin\linear_algebra_f.dll"
 				LinkIncremental="1"
@@ -402,6 +404,10 @@
 			>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\bschur.c"
+				>
+			</File>
+			<File
+				RelativePath=".\common_f2c.c"
 				>
 			</File>
 			<File
@@ -635,38 +641,6 @@
 			<File
 				RelativePath="..\..\sci_gateway\fortran\bschur.f"
 				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="f2c rule"
-						CommandLine="cd &quot;$(InputDir)&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-						CommandLine="cd &quot;$(InputDir)&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="f2c rule"
-						CommandLine="cd &quot;$(InputDir)&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-						CommandLine="cd &quot;$(InputDir)&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\complexify.f"

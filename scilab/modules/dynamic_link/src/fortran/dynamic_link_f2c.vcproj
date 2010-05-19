@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="dynamic_link_f2c"
+	Name="dynamic_link_f"
 	ProjectGUID="{9BC28602-73B4-4FBB-9583-478D2F047CA4}"
 	RootNamespace="dynamic_link_f2c"
 	Keyword="Win32Proj"
@@ -85,7 +85,6 @@
 			<Tool
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
-				AdditionalOptions="/fixed:no"
 				AdditionalDependencies="LibScilab.lib output_stream.lib string.lib"
 				OutputFile="$(SolutionDir)bin\dynamic_link_f.dll"
 				LinkIncremental="2"
@@ -180,7 +179,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/fixed:no"
 				AdditionalDependencies="LibScilab.lib output_stream.lib string.lib"
 				OutputFile="$(SolutionDir)bin\dynamic_link_f.dll"
 				LinkIncremental="2"

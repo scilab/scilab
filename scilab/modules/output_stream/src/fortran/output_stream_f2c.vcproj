@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="output_stream_f2c"
+	Name="output_stream_f"
 	ProjectGUID="{E60B43CC-73EA-457E-8DEE-31D0B2BDFA4B}"
 	RootNamespace="output_stream_f2c"
 	Keyword="Win32Proj"
@@ -84,7 +84,6 @@
 			<Tool
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
-				AdditionalOptions="/fixed:no"
 				AdditionalDependencies="Libscilab.lib output_stream.lib string.lib io_f.lib polynomials_f.lib"
 				OutputFile="$(SolutionDir)bin\output_stream_f.dll"
 				LinkIncremental="2"
@@ -178,7 +177,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/fixed:no"
 				AdditionalDependencies="Libscilab.lib output_stream.lib string.lib io_f.lib polynomials_f.lib"
 				OutputFile="$(SolutionDir)bin\output_stream_f.dll"
 				LinkIncremental="2"

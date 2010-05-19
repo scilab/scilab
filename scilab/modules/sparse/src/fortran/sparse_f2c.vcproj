@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="sparse_f2c"
+	Name="sparse_f"
 	ProjectGUID="{13082624-97F9-47DB-A9A1-AD7D6BF3856A}"
 	RootNamespace="sparse_f2c"
 	Keyword="Win32Proj"

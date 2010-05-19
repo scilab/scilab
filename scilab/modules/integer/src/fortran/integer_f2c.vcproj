@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="integer_f2c"
+	Name="integer_f"
 	ProjectGUID="{FD0F48D8-9D0B-42A8-A743-B57198FAB41E}"
 	RootNamespace="integer_f2c"
 	Keyword="Win32Proj"
@@ -84,7 +84,6 @@
 			<Tool
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
-				AdditionalOptions="/fixed:no"
 				AdditionalDependencies="Libscilab.lib integer.lib"
 				OutputFile="$(SolutionDir)bin\integer_f.dll"
 				LinkIncremental="2"
@@ -177,7 +176,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/fixed:no"
 				AdditionalDependencies="Libscilab.lib integer.lib"
 				OutputFile="$(SolutionDir)bin\integer_f.dll"
 				LinkIncremental="2"

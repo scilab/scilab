@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="polynomials_f2c"
+	Name="polynomials_f"
 	ProjectGUID="{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}"
 	RootNamespace="polynomials_f2c"
 	Keyword="Win32Proj"
@@ -84,7 +84,6 @@
 			<Tool
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
-				AdditionalOptions="/fixed:no"
 				AdditionalDependencies="Libscilab.lib polynomials.lib output_stream.lib linear_algebra.lib"
 				OutputFile="$(SolutionDir)bin\polynomials_f.dll"
 				LinkIncremental="2"
@@ -178,7 +177,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/fixed:no"
 				AdditionalDependencies="Libscilab.lib polynomials.lib output_stream.lib linear_algebra.lib"
 				OutputFile="$(SolutionDir)bin\polynomials_f.dll"
 				LinkIncremental="2"

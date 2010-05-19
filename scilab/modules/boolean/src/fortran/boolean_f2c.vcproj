@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="boolean_f2c"
+	Name="boolean_f"
 	ProjectGUID="{45ECEB36-A12B-42F5-9D7A-216A0E70601D}"
 	RootNamespace="boolean_f2c"
 	Keyword="Win32Proj"

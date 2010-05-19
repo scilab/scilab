@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="special_functions_f2c"
+	Name="special_functions_f"
 	ProjectGUID="{E3A01BE7-815F-4A06-9F0A-C95E80873966}"
 	RootNamespace="special_functions_f2c"
 	Keyword="Win32Proj"

@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="optimization_f2c"
+	Name="optimization_f"
 	ProjectGUID="{1D219098-007C-4F76-9AE6-271ABBB7D393}"
 	RootNamespace="optimization_f2c"
 	Keyword="Win32Proj"
@@ -84,7 +84,6 @@
 			<Tool
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
-				AdditionalOptions="/fixed:no"
 				AdditionalDependencies="LibScilab.lib optimization.lib string.lib output_stream.lib io_f.lib"
 				OutputFile="$(SolutionDir)bin\optimization_f.dll"
 				LinkIncremental="2"
@@ -178,7 +177,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/fixed:no"
 				AdditionalDependencies="LibScilab.lib optimization.lib string.lib output_stream.lib io_f.lib"
 				OutputFile="$(SolutionDir)bin\optimization_f.dll"
 				LinkIncremental="2"

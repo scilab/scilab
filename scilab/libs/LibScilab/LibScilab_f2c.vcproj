@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="LibScilab_f2c"
+	Name="LibScilab_f"
 	ProjectGUID="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}"
 	RootNamespace="LibScilab"
 	TargetFrameworkVersion="0"

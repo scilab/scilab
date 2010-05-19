@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="double_f2c"
+	Name="double_f"
 	ProjectGUID="{97B3664E-1186-400A-AEC0-AC3F23087689}"
 	RootNamespace="double_f2c"
 	Keyword="Win32Proj"
@@ -85,7 +85,6 @@
 			<Tool
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
-				AdditionalOptions="/fixed:no"
 				AdditionalDependencies="Libscilab.lib double.lib"
 				OutputFile="$(SolutionDir)bin\double_f.dll"
 				LinkIncremental="2"
@@ -179,7 +178,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/fixed:no"
 				AdditionalDependencies="Libscilab.lib double.lib"
 				OutputFile="$(SolutionDir)bin\double_f.dll"
 				LinkIncremental="2"

@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="randlib_f2c"
+	Name="randlib_f"
 	ProjectGUID="{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}"
 	RootNamespace="randlib_f2c"
 	Keyword="Win32Proj"
@@ -84,7 +84,6 @@
 			<Tool
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
-				AdditionalOptions="/fixed:no"
 				AdditionalDependencies="Libscilab.lib randlib.lib"
 				OutputFile="$(SolutionDir)bin\randlib_f.dll"
 				LinkIncremental="2"
@@ -178,7 +177,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/fixed:no"
 				AdditionalDependencies="Libscilab.lib randlib.lib"
 				OutputFile="$(SolutionDir)bin\randlib_f.dll"
 				LinkIncremental="2"
