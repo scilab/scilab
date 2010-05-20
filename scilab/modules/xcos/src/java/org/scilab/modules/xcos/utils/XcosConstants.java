@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Clément David
+ * Copyright (C) 2010 - DIGITEO - ClÃ©ment David
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
