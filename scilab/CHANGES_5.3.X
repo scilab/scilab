@@ -347,6 +347,8 @@ Bug fixes:
 
 * bug 4359 fixed - M(:,:)='anything' produced erroneous result.
 
+* bug 4362 fixed - test_run("gui","checkbox") no more freezes Scilab.
+
 * bug 4572 fixed - scilab did a SIGSEGV after stacksize('max') + stacksize().
 
 * bug 4625 fixed - intersci-n was broken on Windows.
