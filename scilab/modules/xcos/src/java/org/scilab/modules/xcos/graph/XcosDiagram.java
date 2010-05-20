@@ -41,6 +41,11 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
+import org.scilab.modules.jvm.utils.ScilabConstants;
+
 import org.scilab.modules.graph.ScilabCanvas;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.PasteAction;
@@ -50,8 +55,6 @@ import org.scilab.modules.graph.actions.UndoAction;
 import org.scilab.modules.graph.actions.ZoomInAction;
 import org.scilab.modules.graph.actions.ZoomOutAction;
 import org.scilab.modules.graph.utils.ScilabExported;
-import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
-import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
@@ -512,14 +515,14 @@ public class XcosDiagram extends ScilabGraph {
 			 * Initialize constants
 			 */
 			final String file = "Xcos-style.xml";
-			final String homePath = XcosConstants.SCIHOME.getAbsolutePath();
+			final String homePath = ScilabConstants.SCIHOME.getAbsolutePath();
 			final File userStyleSheet = new File(homePath + '/' + file);
 			
 	    	/*
 	    	 * Copy the base stylesheet into the user dir when it doesn't exist.
 	    	 */
 			if (!userStyleSheet.exists()) {
-				final String sciPath = XcosConstants.SCI.getAbsolutePath();
+				final String sciPath = ScilabConstants.SCI.getAbsolutePath();
 
 		    	File baseStyleSheet = new File(sciPath + "/modules/xcos/etc/" + file);
 		    	FileUtils.forceCopy(baseStyleSheet, userStyleSheet);
@@ -528,8 +531,8 @@ public class XcosDiagram extends ScilabGraph {
 			/*
 			 * Load the stylesheet
 			 */
-			final String sciURL = XcosConstants.SCI.toURI().toURL().toString();
-			final String homeURL = XcosConstants.SCIHOME.toURI().toURL().toString();
+			final String sciURL = ScilabConstants.SCI.toURI().toURL().toString();
+			final String homeURL = ScilabConstants.SCIHOME.toURI().toURL().toString();
 			
 		    String xml = mxUtils.readFile(userStyleSheet.getAbsolutePath());
 		    xml = xml.replaceAll("\\$SCILAB", sciURL);

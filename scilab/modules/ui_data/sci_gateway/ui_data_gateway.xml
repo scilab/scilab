@@ -23,6 +23,6 @@
 -->
 <!-- =================== -->
 
-<PRIMITIVE gatewayId="65" primitiveId="1" primitiveName="editvar" />
-<PRIMITIVE gatewayId="65" primitiveId="2" primitiveName="Jbrowsevar" />
+<PRIMITIVE gatewayId="66" primitiveId="1" primitiveName="editvar" />
+<PRIMITIVE gatewayId="66" primitiveId="2" primitiveName="Jbrowsevar" />
 </GATEWAY>

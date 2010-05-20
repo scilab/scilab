@@ -9,4 +9,11 @@ EXPORTS
  sigbas_
  StoreCommand
  StoreCommandWithFlag
+ ;
+ callFunctionFromGateway
+ putlhsvar_
+ freeArrayOfString
+ checklhs_
+ checkrhs_
+ intersci_
  

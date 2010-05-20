@@ -21,8 +21,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="2"
 			>
@@ -104,8 +104,8 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|x64"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="2"
 			>
@@ -187,8 +187,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="2"
 			WholeProgramOptimization="0"
@@ -276,8 +276,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|x64"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="2"
 			WholeProgramOptimization="0"
@@ -372,10 +372,6 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath=".\GetFunctionByName.c"
-				>
-			</File>
-			<File
 				RelativePath=".\addinter.c"
 				>
 			</File>
@@ -392,7 +388,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dynamic_link.rc"
+				RelativePath=".\GetFunctionByName.c"
 				>
 			</File>
 			<File
@@ -437,10 +433,6 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath="..\..\includes\GetFunctionByName.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\includes\addinter.h"
 				>
 			</File>
@@ -454,6 +446,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\dynlib_dynamic_link.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\GetFunctionByName.h"
 				>
 			</File>
 			<File
@@ -494,6 +490,14 @@
 			</File>
 			<File
 				RelativePath=".\scilab_windows_Import.def"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Resource Files"
+			>
+			<File
+				RelativePath=".\dynamic_link.rc"
 				>
 			</File>
 		</Filter>

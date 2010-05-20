@@ -1,6 +1,7 @@
 #
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) DIGITEO - 2009 - Allan CORNET
+# Copyright (C) DIGITEO - 2010 - Clément DAVID
 # 
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
@@ -34,12 +35,9 @@ XCOS_C_SOURCES =
 XCOS_CPP_SOURCES = 	src/cpp/callxcos.cpp \
 			src/jni/Xcos.cpp \
 			src/jni/Xcos.hxx \
-			src/jni/Signal.cpp \
-			src/jni/Signal.hxx \
 			src/jni/GiwsException.cpp
 
-GIWS_WRAPPERS = src/jni/Xcos.giws.xml \
-src/jni/XcosUtils.giws.xml
+GIWS_WRAPPERS = src/jni/Xcos.giws.xml
 
 if GIWS
 BUILT_SOURCES=giws
@@ -50,7 +48,6 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_xcos.c
 
 GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_Xcos.cpp \
-	sci_gateway/cpp/sci_xcosNotify.cpp \
 	sci_gateway/cpp/sci_warnBlockByUID.cpp \
 	sci_gateway/cpp/sci_closeXcosFromScilab.cpp \
 	sci_gateway/cpp/sci_xcosDiagramToHDF5.cpp \
@@ -162,27 +159,13 @@ images/blocks/SWITCH.svg \
 images/blocks/VanneReglante.svg \
 images/blocks/VariableResistor.svg \
 images/blocks/VoltageSensor.svg \
-images/icons/applications-system.png \
-images/icons/document-new.png \
-images/icons/document-open.png \
-images/icons/document-print.png \
-images/icons/document-save-as.png \
-images/icons/edit-copy.png \
-images/icons/edit-cut.png \
 images/icons/edit-delete.png \
-images/icons/edit-paste.png \
-images/icons/edit-redo.png \
-images/icons/edit-undo.png \
 images/icons/go-bottom.png \
 images/icons/go-center.png \
 images/icons/go-first.png \
 images/icons/go-last.png \
 images/icons/go-middle.png \
 images/icons/go-top.png \
-images/icons/help-browser.png \
-images/icons/list-add.png \
-images/icons/list-remove.png \
-images/icons/media-floppy.png \
 images/icons/media-playback-start.png \
 images/icons/process-stop.png \
 images/icons/view-fullscreen.png \

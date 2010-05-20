@@ -24,10 +24,9 @@
 <!-- =================== -->
 
 <PRIMITIVE gatewayId="64" primitiveId="1" primitiveName="xcos" />
-<PRIMITIVE gatewayId="64" primitiveId="2" primitiveName="xcosNotify" />
-<PRIMITIVE gatewayId="64" primitiveId="3" primitiveName="warnBlockByUID" />
-<PRIMITIVE gatewayId="64" primitiveId="4" primitiveName="closeXcos" />
-<PRIMITIVE gatewayId="64" primitiveId="5" primitiveName="xcosDiagramToHDF5" />
-<PRIMITIVE gatewayId="64" primitiveId="6" primitiveName="xcosDiagramOpen" />
-<PRIMITIVE gatewayId="64" primitiveId="7" primitiveName="xcosDiagramClose" />
+<PRIMITIVE gatewayId="64" primitiveId="2" primitiveName="warnBlockByUID" />
+<PRIMITIVE gatewayId="64" primitiveId="3" primitiveName="closeXcos" />
+<PRIMITIVE gatewayId="64" primitiveId="4" primitiveName="xcosDiagramToHDF5" />
+<PRIMITIVE gatewayId="64" primitiveId="5" primitiveName="xcosDiagramOpen" />
+<PRIMITIVE gatewayId="64" primitiveId="6" primitiveName="xcosDiagramClose" />
 </GATEWAY>

@@ -21,7 +21,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "elementary_functions", "mod
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "elementary_functions_f2c", "modules\elementary_functions\src\fortran\elementary_functions_f2c.vcproj", "{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "elementary_functions_f", "modules\elementary_functions\src\fortran\elementary_functions_f2c.vcproj", "{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
@@ -34,7 +34,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "statistics", "modules\stati
 		{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0} = {18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibScilab_f2c", "libs\LibScilab\LibScilab_f2c.vcproj", "{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibScilab_f", "libs\LibScilab\LibScilab_f2c.vcproj", "{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}"
 	ProjectSection(ProjectDependencies) = postProject
 		{9BC28602-73B4-4FBB-9583-478D2F047CA4} = {9BC28602-73B4-4FBB-9583-478D2F047CA4}
 		{9594AC02-20EE-4FBF-95B4-BFA5865ED7CA} = {9594AC02-20EE-4FBF-95B4-BFA5865ED7CA}
@@ -119,7 +119,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core", "modules\core\src\c\
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core_f2c", "modules\core\src\fortran\core_f2c.vcproj", "{C352587B-F5E4-457C-80EE-A1AEAB176C8E}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core_f", "modules\core\src\fortran\core_f2c.vcproj", "{C352587B-F5E4-457C-80EE-A1AEAB176C8E}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
@@ -152,7 +152,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "integer", "modules\integer\
 		{A5911CD7-F8E8-440C-A23E-4843A0636F3A} = {A5911CD7-F8E8-440C-A23E-4843A0636F3A}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "integer_f2c", "modules\integer\src\fortran\integer_f2c.vcproj", "{FD0F48D8-9D0B-42A8-A743-B57198FAB41E}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "integer_f", "modules\integer\src\fortran\integer_f2c.vcproj", "{FD0F48D8-9D0B-42A8-A743-B57198FAB41E}"
 	ProjectSection(ProjectDependencies) = postProject
 		{4FC72D4A-80EE-4B1A-8724-0201C1A35621} = {4FC72D4A-80EE-4B1A-8724-0201C1A35621}
 		{8D45767A-9B03-4905-97F6-D2F3F79141EA} = {8D45767A-9B03-4905-97F6-D2F3F79141EA}
@@ -204,13 +204,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "optimization", "modules\opt
 		{A5911CD7-F8E8-440C-A23E-4843A0636F3A} = {A5911CD7-F8E8-440C-A23E-4843A0636F3A}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "optimization_f2c", "modules\optimization\src\fortran\optimization_f2c.vcproj", "{1D219098-007C-4F76-9AE6-271ABBB7D393}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "optimization_f", "modules\optimization\src\fortran\optimization_f2c.vcproj", "{1D219098-007C-4F76-9AE6-271ABBB7D393}"
 	ProjectSection(ProjectDependencies) = postProject
 		{F0F55692-0355-4BC3-BE9D-552C8AAC5238} = {F0F55692-0355-4BC3-BE9D-552C8AAC5238}
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "polynomials_f2c", "modules\polynomials\src\fortran\polynomials_f2c.vcproj", "{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "polynomials_f", "modules\polynomials\src\fortran\polynomials_f2c.vcproj", "{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}"
 	ProjectSection(ProjectDependencies) = postProject
 		{F0F55692-0355-4BC3-BE9D-552C8AAC5238} = {F0F55692-0355-4BC3-BE9D-552C8AAC5238}
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
@@ -234,7 +234,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "randlib", "modules\randlib\
 		{A5911CD7-F8E8-440C-A23E-4843A0636F3A} = {A5911CD7-F8E8-440C-A23E-4843A0636F3A}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "randlib_f2c", "modules\randlib\src\fortran\randlib_f2c.vcproj", "{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "randlib_f", "modules\randlib\src\fortran\randlib_f2c.vcproj", "{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}"
 	ProjectSection(ProjectDependencies) = postProject
 		{F0F55692-0355-4BC3-BE9D-552C8AAC5238} = {F0F55692-0355-4BC3-BE9D-552C8AAC5238}
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
@@ -253,18 +253,18 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scicos", "modules\scicos\sr
 		{70F677F1-B535-4D0F-A16F-5093B799A540} = {70F677F1-B535-4D0F-A16F-5093B799A540}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scicos_f2c", "modules\scicos\src\fortran\scicos_f2c.vcproj", "{566E524B-D327-4416-A865-9C83503FAB7B}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scicos_f", "modules\scicos\src\fortran\scicos_f2c.vcproj", "{566E524B-D327-4416-A865-9C83503FAB7B}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "signal_processing_f2c", "modules\signal_processing\src\fortran\signal_processing_f2c.vcproj", "{959384FC-016C-4B01-B848-1B18D26B6CC4}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "signal_processing_f", "modules\signal_processing\src\fortran\signal_processing_f2c.vcproj", "{959384FC-016C-4B01-B848-1B18D26B6CC4}"
 	ProjectSection(ProjectDependencies) = postProject
 		{A3AD381E-C0DD-45BB-ACB2-C0A0DB33A606} = {A3AD381E-C0DD-45BB-ACB2-C0A0DB33A606}
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "slicot_f2c", "modules\cacsd\src\slicot\slicot_f\slicot_f2c.vcproj", "{C4C3EA58-1C27-4EFB-A5BF-0DB24EC5F87A}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "slicot_f", "modules\cacsd\src\slicot\slicot_f\slicot_f2c.vcproj", "{C4C3EA58-1C27-4EFB-A5BF-0DB24EC5F87A}"
 	ProjectSection(ProjectDependencies) = postProject
 		{F0F55692-0355-4BC3-BE9D-552C8AAC5238} = {F0F55692-0355-4BC3-BE9D-552C8AAC5238}
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
@@ -288,7 +288,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sparse", "modules\sparse\sr
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sparse_f2c", "modules\sparse\src\fortran\sparse_f2c.vcproj", "{13082624-97F9-47DB-A9A1-AD7D6BF3856A}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sparse_f", "modules\sparse\src\fortran\sparse_f2c.vcproj", "{13082624-97F9-47DB-A9A1-AD7D6BF3856A}"
 	ProjectSection(ProjectDependencies) = postProject
 		{C2EDD447-BB60-41A1-973B-8213FCA9ECD4} = {C2EDD447-BB60-41A1-973B-8213FCA9ECD4}
 		{8D45767A-9B03-4905-97F6-D2F3F79141EA} = {8D45767A-9B03-4905-97F6-D2F3F79141EA}
@@ -436,7 +436,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "io", "modules\io\src\c\io.v
 		{A5911CD7-F8E8-440C-A23E-4843A0636F3A} = {A5911CD7-F8E8-440C-A23E-4843A0636F3A}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "io_f2c", "modules\io\src\fortran\io_f2c.vcproj", "{C2EDD447-BB60-41A1-973B-8213FCA9ECD4}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "io_f", "modules\io\src\fortran\io_f2c.vcproj", "{C2EDD447-BB60-41A1-973B-8213FCA9ECD4}"
 	ProjectSection(ProjectDependencies) = postProject
 		{4FC72D4A-80EE-4B1A-8724-0201C1A35621} = {4FC72D4A-80EE-4B1A-8724-0201C1A35621}
 		{8D45767A-9B03-4905-97F6-D2F3F79141EA} = {8D45767A-9B03-4905-97F6-D2F3F79141EA}
@@ -456,7 +456,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "string", "modules\string\sr
 		{A5911CD7-F8E8-440C-A23E-4843A0636F3A} = {A5911CD7-F8E8-440C-A23E-4843A0636F3A}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "string_f2c", "modules\string\src\fortran\string_f2c.vcproj", "{FAF6A7EB-8A36-4278-B34E-34EA89E55304}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "string_f", "modules\string\src\fortran\string_f2c.vcproj", "{FAF6A7EB-8A36-4278-B34E-34EA89E55304}"
 	ProjectSection(ProjectDependencies) = postProject
 		{F0F55692-0355-4BC3-BE9D-552C8AAC5238} = {F0F55692-0355-4BC3-BE9D-552C8AAC5238}
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
@@ -464,7 +464,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "string_f2c", "modules\strin
 		{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390} = {3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "symbolic_f2c", "modules\symbolic\src\fortran\symbolic_f2c.vcproj", "{D2B63E7D-1E66-4EFC-892E-FA6DAF4E5895}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "symbolic_f", "modules\symbolic\src\fortran\symbolic_f2c.vcproj", "{D2B63E7D-1E66-4EFC-892E-FA6DAF4E5895}"
 	ProjectSection(ProjectDependencies) = postProject
 		{6A84AD8C-BA18-4A3F-9C72-EC3DF0939E9E} = {6A84AD8C-BA18-4A3F-9C72-EC3DF0939E9E}
 		{F0F55692-0355-4BC3-BE9D-552C8AAC5238} = {F0F55692-0355-4BC3-BE9D-552C8AAC5238}
@@ -500,7 +500,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "signal_processing", "module
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cacsd_f2c", "modules\cacsd\src\fortran\cacsd_f2c.vcproj", "{0BB16C71-0FCD-4FB9-B7C0-F2601330C980}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cacsd_f", "modules\cacsd\src\fortran\cacsd_f2c.vcproj", "{0BB16C71-0FCD-4FB9-B7C0-F2601330C980}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
@@ -511,12 +511,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cacsd", "modules\cacsd\src\
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dcd_f2c_DLL", "modules\statistics\src\dcdflib\dcd_f\dcd_DLL_f2c.vcproj", "{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dcd_DLL", "modules\statistics\src\dcdflib\dcd_f\dcd_DLL_f2c.vcproj", "{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "linear_algebra_f2c", "modules\linear_algebra\src\fortran\linear_algebra_f2c.vcproj", "{3735EFF9-925B-45B1-82CF-762658E69E70}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "linear_algebra_f", "modules\linear_algebra\src\fortran\linear_algebra_f2c.vcproj", "{3735EFF9-925B-45B1-82CF-762658E69E70}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 		{A5911CD7-F8E8-440C-A23E-4843A0636F3A} = {A5911CD7-F8E8-440C-A23E-4843A0636F3A}
@@ -539,7 +539,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "special_functions", "module
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "special_functions_f2c", "modules\special_functions\src\fortran\special_functions_f2c.vcproj", "{E3A01BE7-815F-4A06-9F0A-C95E80873966}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "special_functions_f", "modules\special_functions\src\fortran\special_functions_f2c.vcproj", "{E3A01BE7-815F-4A06-9F0A-C95E80873966}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
@@ -550,7 +550,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "differential_equations", "m
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "differential_equations_f2c", "modules\differential_equations\src\fortran\differential_equations_f2c.vcproj", "{28E4E9CA-3EEC-43EE-9F15-56259C6677B8}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "differential_equations_f", "modules\differential_equations\src\fortran\differential_equations_f2c.vcproj", "{28E4E9CA-3EEC-43EE-9F15-56259C6677B8}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
@@ -561,7 +561,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "double", "modules\double\sr
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "double_f2c", "modules\double\src\fortran\double_f2c.vcproj", "{97B3664E-1186-400A-AEC0-AC3F23087689}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "double_f", "modules\double\src\fortran\double_f2c.vcproj", "{97B3664E-1186-400A-AEC0-AC3F23087689}"
 	ProjectSection(ProjectDependencies) = postProject
 		{BC462A57-C5B3-4F93-8067-80363827DCDA} = {BC462A57-C5B3-4F93-8067-80363827DCDA}
 		{F0F55692-0355-4BC3-BE9D-552C8AAC5238} = {F0F55692-0355-4BC3-BE9D-552C8AAC5238}
@@ -576,7 +576,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "boolean", "modules\boolean\
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "boolean_f2c", "modules\boolean\src\fortran\boolean_f2c.vcproj", "{45ECEB36-A12B-42F5-9D7A-216A0E70601D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "boolean_f", "modules\boolean\src\fortran\boolean_f2c.vcproj", "{45ECEB36-A12B-42F5-9D7A-216A0E70601D}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
@@ -598,12 +598,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "data_structures", "modules\
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "data_structures_f2c", "modules\data_structures\src\fortran\data_structures_f2c.vcproj", "{8091E9B6-4C08-4218-A63D-742867CCFE9F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "data_structures_f", "modules\data_structures\src\fortran\data_structures_f2c.vcproj", "{8091E9B6-4C08-4218-A63D-742867CCFE9F}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "interpolation_f2c", "modules\interpolation\src\fortran\interpolation_f2c.vcproj", "{D98B0986-14E4-44FD-B006-CACE4B291F38}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "interpolation_f", "modules\interpolation\src\fortran\interpolation_f2c.vcproj", "{D98B0986-14E4-44FD-B006-CACE4B291F38}"
 	ProjectSection(ProjectDependencies) = postProject
 		{EAF0949C-28D2-497C-954F-FC13B32FF2F3} = {EAF0949C-28D2-497C-954F-FC13B32FF2F3}
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
@@ -633,7 +633,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "noscicos", "modules\scicos\
 		{A5911CD7-F8E8-440C-A23E-4843A0636F3A} = {A5911CD7-F8E8-440C-A23E-4843A0636F3A}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "slatec_f2c", "modules\elementary_functions\src\fortran\slatec\slatec_f2c.vcproj", "{EAF0949C-28D2-497C-954F-FC13B32FF2F3}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "slatec_f", "modules\elementary_functions\src\fortran\slatec\slatec_f2c.vcproj", "{EAF0949C-28D2-497C-954F-FC13B32FF2F3}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 		{A5911CD7-F8E8-440C-A23E-4843A0636F3A} = {A5911CD7-F8E8-440C-A23E-4843A0636F3A}
@@ -841,6 +841,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "action_binding", "modules\action_binding\src\c\action_binding.vcproj", "{8A654CC5-22C1-4972-A8CF-1B89F78B5383}"
 	ProjectSection(ProjectDependencies) = postProject
 		{6A84AD8C-BA18-4A3F-9C72-EC3DF0939E9E} = {6A84AD8C-BA18-4A3F-9C72-EC3DF0939E9E}
+		{8BA2DDA8-BD04-4D4D-8EE6-6CAA955F7470} = {8BA2DDA8-BD04-4D4D-8EE6-6CAA955F7470}
+		{43C5BAB1-1DCA-4743-A183-77E0D42FE7D0} = {43C5BAB1-1DCA-4743-A183-77E0D42FE7D0}
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 		{A5911CD7-F8E8-440C-A23E-4843A0636F3A} = {A5911CD7-F8E8-440C-A23E-4843A0636F3A}
 	EndProjectSection
@@ -890,7 +892,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "graphic_export-Ant", "modul
 		{4235A847-ED0E-43A3-B62B-E59CB857EDE9} = {4235A847-ED0E-43A3-B62B-E59CB857EDE9}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dynamic_link_f2c", "modules\dynamic_link\src\fortran\dynamic_link_f2c.vcproj", "{9BC28602-73B4-4FBB-9583-478D2F047CA4}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dynamic_link_f", "modules\dynamic_link\src\fortran\dynamic_link_f2c.vcproj", "{9BC28602-73B4-4FBB-9583-478D2F047CA4}"
 	ProjectSection(ProjectDependencies) = postProject
 		{EAB6C580-22B3-4359-BA1D-DD7499A96163} = {EAB6C580-22B3-4359-BA1D-DD7499A96163}
 		{F0F55692-0355-4BC3-BE9D-552C8AAC5238} = {F0F55692-0355-4BC3-BE9D-552C8AAC5238}
@@ -918,7 +920,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scicos_blocks", "modules\sc
 		{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390} = {3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scicos_blocks_f2c", "modules\scicos_blocks\src\fortran\scicos_blocks_f2c.vcproj", "{2F7B6080-8D84-43A7-A967-13FC8AA83DEB}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scicos_blocks_f", "modules\scicos_blocks\src\fortran\scicos_blocks_f2c.vcproj", "{2F7B6080-8D84-43A7-A967-13FC8AA83DEB}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390} = {3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}
 	EndProjectSection
@@ -960,12 +962,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "helptools", "modules\helpto
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "helptools-Ant", "modules\helptools\src\java\helptools-JAVA.vcproj", "{899DECF1-D4DC-4C84-BB3C-3A343401A5B4}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "linpack_f2c", "modules\elementary_functions\src\fortran\linpack\linpack_f2c.vcproj", "{F0F55692-0355-4BC3-BE9D-552C8AAC5238}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "linpack_f", "modules\elementary_functions\src\fortran\linpack\linpack_f2c.vcproj", "{F0F55692-0355-4BC3-BE9D-552C8AAC5238}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "eispack_f2c", "modules\elementary_functions\src\fortran\eispack\eispack_f2c.vcproj", "{96248E56-C84A-4803-9F50-25E2089AB6B8}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "eispack_f", "modules\elementary_functions\src\fortran\eispack\eispack_f2c.vcproj", "{96248E56-C84A-4803-9F50-25E2089AB6B8}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
@@ -981,7 +983,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "call_scilab", "modules\call
 		{8A654CC5-22C1-4972-A8CF-1B89F78B5383} = {8A654CC5-22C1-4972-A8CF-1B89F78B5383}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "output_stream_f2c", "modules\output_stream\src\fortran\output_stream_f2c.vcproj", "{E60B43CC-73EA-457E-8DEE-31D0B2BDFA4B}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "output_stream_f", "modules\output_stream\src\fortran\output_stream_f2c.vcproj", "{E60B43CC-73EA-457E-8DEE-31D0B2BDFA4B}"
 	ProjectSection(ProjectDependencies) = postProject
 		{F0F55692-0355-4BC3-BE9D-552C8AAC5238} = {F0F55692-0355-4BC3-BE9D-552C8AAC5238}
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
@@ -1001,7 +1003,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "functions", "modules\functi
 		{A5911CD7-F8E8-440C-A23E-4843A0636F3A} = {A5911CD7-F8E8-440C-A23E-4843A0636F3A}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "functions_f2c", "modules\functions\src\fortran\functions_f2c.vcproj", "{E6552427-01DD-4C12-823C-09AD46F77FAD}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "functions_f", "modules\functions\src\fortran\functions_f2c.vcproj", "{E6552427-01DD-4C12-823C-09AD46F77FAD}"
 	ProjectSection(ProjectDependencies) = postProject
 		{F0F55692-0355-4BC3-BE9D-552C8AAC5238} = {F0F55692-0355-4BC3-BE9D-552C8AAC5238}
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}

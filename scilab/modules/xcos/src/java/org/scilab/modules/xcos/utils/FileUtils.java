@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.nio.channels.FileChannel;
 
 import org.apache.commons.logging.LogFactory;
+import org.scilab.modules.jvm.utils.ScilabConstants;
 
 /**
  * Contains useful method for managing files.
@@ -109,7 +110,7 @@ public final class FileUtils {
 	 */
 	public static File createTempFile() throws IOException {
 		return File.createTempFile(XcosFileType.XCOS.getExtension(),
-				XcosFileType.HDF5.getDottedExtension(), XcosConstants.TMPDIR);
+				XcosFileType.HDF5.getDottedExtension());
 	}
 	
 	/**

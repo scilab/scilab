@@ -16,6 +16,7 @@ package org.scilab.modules.xcos.io.codec;
 import java.util.Map;
 
 import org.scilab.modules.graph.utils.StyleMap;
+import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.io.XcosObjectCodec;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
@@ -158,6 +159,13 @@ public class BasicPortCodec extends XcosObjectCodec {
 		
 		flipped = Boolean.parseBoolean(map.get(XcosConstants.STYLE_FLIP));
 		mirrored = Boolean.parseBoolean(map.get(XcosConstants.STYLE_MIRROR));
+		
+		final int baseAngle = orientation.getRelativeAngle(((BasicBlock) obj
+				.getParent()).getAngle(), obj.getClass(), flipped, mirrored);
+		
+		if (rotation == baseAngle) {
+			return;
+		}
 
 		// Calculate the rotation for this kind of port.
 		rotation = orientation.getAbsoluteAngle(obj.getClass(), flipped, mirrored);

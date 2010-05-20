@@ -1,6 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
+ * Copyright (C) 2010 - DIGITEO - Vincent COUVERT
+ *
  * Get the listbox top property of an uicontrol
  * 
  * This file must be used under the terms of the CeCILL.
@@ -25,7 +27,15 @@ int GetUicontrolListboxTop(sciPointObj* sciObj)
         }
       else
         {
-          return sciReturnRowVectorFromInt(pUICONTROL_FEATURE(sciObj)->listboxTop, 1);
+            switch(pUICONTROL_FEATURE(sciObj)->style)
+            {
+            case SCI_LISTBOX:
+                return sciReturnInt(CallScilabBridge::getListBoxListBoxTop(getScilabJavaVM(), 
+                                                       pUICONTROL_FEATURE(sciObj)->hashMapIndex));
+            default:
+                /* No Java attribute to set or method to call */
+                return sciReturnRowVectorFromInt(pUICONTROL_FEATURE(sciObj)->listboxTop, 1);
+            }
         }
     }
   else

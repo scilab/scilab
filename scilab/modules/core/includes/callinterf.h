@@ -86,7 +86,8 @@
 /* 62 */						#include "dynamic_gateways.h" /* hdf5 */
 /* 63 */						#include "dynamic_gateways.h" /* xpad */
 /* 64 */						#include "dynamic_gateways.h" /* xcos */
-/* 65 */						#include "dynamic_gateways.h" /* ui_data */
+/* 65 */                        #include "../../action_binding/includes/gw_action_binding.h"
+/* 66 */						#include "dynamic_gateways.h" /* ui_data */
 
 /*-------------------------------------
  * long jump to stop interface computation

@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Clément David
+ * Copyright (C) 2010 - DIGITEO - ClÃ©ment David
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,12 +12,12 @@
 
 package org.scilab.modules.xcos.utils;
 
-import org.scilab.modules.graph.utils.ScilabConstants;
+import org.scilab.modules.graph.utils.ScilabGraphConstants;
 
 /**
  * Contains all the constants used trough the source code.
  */
-public final class XcosConstants extends ScilabConstants {
+public final class XcosConstants extends ScilabGraphConstants {
 
     /** Define the default block width on the palette */
     public static final int PALETTE_BLOCK_WIDTH = 100;

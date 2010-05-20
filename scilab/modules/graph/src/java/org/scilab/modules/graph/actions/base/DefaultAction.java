@@ -15,7 +15,12 @@ package org.scilab.modules.graph.actions.base;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
@@ -38,9 +43,12 @@ import com.mxgraph.swing.mxGraphComponent;
  * Default action for a Scilab Graph
  */
 public abstract class DefaultAction extends CallBack {
-	private static final String ICON_PATH = System.getenv("SCI")
-			+ "/modules/xcos/images/icons/";
+	private static final Set<String> ICON_PATH = new HashSet<String>();
 
+	static {
+		addIconPath(System.getenv("SCI") + "/modules/gui/images/icons/");
+	}
+	
 	private ScilabGraph scilabGraph;
 
 	/**
@@ -52,7 +60,7 @@ public abstract class DefaultAction extends CallBack {
 	 * <ul>
 	 * <li>String NAME : The name of the action</li>
 	 * <li>String SMALL_ICON : The associated icon name (located on
-	 * $SCI/modules/xcos/images/icons)</li>
+	 * $SCI/modules/gui/images/icons)</li>
 	 * <li>int MNEMONIC_KEY : The key associated with the action (see
 	 * {@link KeyEvent})</li>
 	 * <li>int ACCELERATOR_KEY : The key mask to apply to the mnemonic</li>
@@ -67,6 +75,15 @@ public abstract class DefaultAction extends CallBack {
 
 		installProperties();
 	}
+	
+	/**
+	 * Add an icon path to the default icon path.
+	 * 
+	 * @param path the icon path (with the trailing /)
+	 */
+	public static void addIconPath(String path) {
+		ICON_PATH.add(path);
+	}
 
 	/**
 	 * Install the static actions properties on the instance
@@ -78,8 +95,18 @@ public abstract class DefaultAction extends CallBack {
 		int accelerator = 0;
 		try {
 			name = (String) getClass().getField("NAME").get(null);
-			icon = ICON_PATH
-					+ (String) getClass().getField("SMALL_ICON").get(null);
+			
+			/*
+			 * Getting icon from the registered icon path
+			 */
+			final String iconName = (String) getClass().getField("SMALL_ICON").get(null);
+			for (String path : ICON_PATH) {
+				if (new File(path + iconName).exists()) {
+					icon = path + iconName;
+					break;
+				}
+			}
+			
 			mnemonic = getClass().getField("MNEMONIC_KEY").getInt(null);
 			accelerator = getClass().getField("ACCELERATOR_KEY").getInt(null);
 		} catch (IllegalArgumentException e) {
