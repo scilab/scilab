@@ -21,6 +21,8 @@ Text Editor:
 * Add the possibility to have several instances of the editor and to dock (or not)
   them.
 
+* Add the possibility to remove trailing whitespaces.
+
 * bugs 4399, 4922 fixed - The line numbering could not be compatible with the
                           output of the whereami function.
 

@@ -64,6 +64,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private TabManager tab;
     private CommentManager com;
     private HelpOnTypingManager helpOnTyping;
+    private TrailingWhiteManager trailingWhite;
 
     /* matchLR matches Left to Right ... */
     private MatchingBlockManager matchLR;
@@ -354,6 +355,13 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     }
 
     /**
+     * @return the current TrailingWhiteManager
+     */
+    public TrailingWhiteManager getTrailingWhiteManager() {
+        return trailingWhite;
+    }
+
+    /**
      * @return the current IndentManager
      */
     public IndentManager getIndentManager() {
@@ -544,6 +552,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         tab = new TabManager(doc, indent);
         tab.setDefaultTabulation();
         com = new CommentManager(doc);
+        trailingWhite = new TrailingWhiteManager(doc);
         matchLR = new MatchingBlockManager(doc, this, true, getHighlighter());
         matchLR.setDefaults();
         matchRL = new MatchingBlockManager(doc, this, false, getHighlighter());

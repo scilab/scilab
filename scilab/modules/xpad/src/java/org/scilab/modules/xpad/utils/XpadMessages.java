@@ -66,6 +66,7 @@ public class XpadMessages {
     public static final String GENERATE_HELP = Messages.gettext("Generate help from function");
     public static final String OPEN_TAB_IN_NEW_WINDOW = Messages.gettext("Clone tab in a new window");
     public static final String CCLOSE_TAB_IN_NEW_WINDOW = Messages.gettext("Clone and close tab in a new window");
+    public static final String REMOVE_TRAILING_WHITE = Messages.gettext("Remove trailing whitespaces");
 
     /** SEARCH MENU */
     public static final String SEARCH = Messages.gettext("Search");

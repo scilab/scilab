@@ -10,6 +10,7 @@
   <entry key="IndentAction">control I</entry>
   <entry key="CommentAction">control D</entry>
   <entry key="UnCommentAction">control shift D</entry>
+  <entry key="RemoveTrailingWhiteAction">control alt W</entry>
   <entry key="SelectAllAction">control A</entry>
   <entry key="OpenTabInNewWindowAction">control alt T</entry>
   <entry key="CCloseTabInNewWindowAction">control alt C</entry>
