@@ -54,7 +54,7 @@ function cbAtomsGui()
 
             // Figure name
             atomsfig                = findobj("tag","atomsFigure");
-            atomsfig("figure_name") = LeftElements("title")+" - Atoms";
+            atomsfig("figure_name") = LeftElements("title")+" - ATOMS";
 
        end
 
@@ -75,49 +75,58 @@ function cbAtomsGui()
     // =========================================================================
 
     if UItag == "installButton" then
+
+        updateStatusBar("info",gettext("Installing")+" &hellip;");
+
         if execstr("atomsInstall("""+module+""")","errcatch")<>0 then
-            messagebox(gettext("Installation failed!"),gettext("Atoms error"),"error");
+            updateStatusBar();
+            messagebox(gettext("Installation failed!"),gettext("ATOMS error"),"error");
         else
-            messagebox(gettext("Installation done! Please restart Scilab to take changes into account."),gettext("Atoms"),"info");
+            updateDescFrame();
+            updateStatusBar("success",gettext("Installation done! Please restart Scilab to take changes into account."));
         end
 
     // Remove selected module
     // =========================================================================
 
     elseif UItag == "removeButton" then // Remove selected module
+        updateStatusBar("info",gettext("Removing")+" &hellip;");
+
         if execstr("atomsRemove("""+module+""")", "errcatch")<>0 then
-            messagebox(gettext("Remove failed!"),gettext("Atoms error"),"error");
+            updateStatusBar();
+            messagebox(gettext("Remove failed!"),gettext("ATOMS error"),"error");
         else
-            messagebox(gettext("Remove done! Please restart Scilab to take changes into account. "),gettext("Atoms"),"info");
+            updateDescFrame();
+            updateStatusBar("success",gettext("Remove done! Please restart Scilab to take changes into account. "));
         end
 
     // Update selected module
     // =========================================================================
 
     elseif UItag == "updateButton" then // Update selected module
+
+        updateStatusBar("info",gettext("Updating")+" &hellip;");
+
         if execstr("atomsUpdate("""+module+""")","errcatch")<>0 then
-            messagebox(gettext("Update failed!"),gettext("Atoms error"),"error");
+            updateStatusBar();
+            messagebox(gettext("Update failed!"),gettext("ATOMS error"),"error");
         else
-            messagebox(gettext("Update done! Please restart Scilab to take changes into account."),gettext("Atoms"),"info");
+            updateDescFrame();
+            updateStatusBar("success",gettext("Update done! Please restart Scilab to take changes into account."));
         end
+
     end
 
     // End of the button action
     // =========================================================================
 
     if or(UItag == ["installButton";"removeButton";"updateButton"]) then
-
-        // Update the description frame
-        updateDescFrame();
-
         // Left listbox:
         //  - Enable it
         //  - Reload it
         enableLeftListbox();
         reloadLeftListbox();
-
     end
-
 
     // Menu
     // =========================================================================
@@ -349,7 +358,7 @@ function updateDescFrame()
     if atomsIsInstalled(thisModuleName) & atomsVersionCompare(MRVersionInstalled,MRVersionAvailable) == -1 then
         // Not up-to-date
         canUpdate = "on";
-        showWarning(sprintf(gettext("A new version (''%s'') of ''%s'' is available"),MRVersionAvailable,thisModuleDetails.Title));
+        updateStatusBar("warning",sprintf(gettext("A new version (''%s'') of ''%s'' is available"),MRVersionAvailable,thisModuleDetails.Title));
     end
 
     // Can be removed
@@ -475,20 +484,39 @@ endfunction
 
 
 // =============================================================================
-// showWarning
+// updateStatusBar
 // + Update the string in the msg Frame
 // =============================================================================
 
-function showWarning(msg)
+function updateStatusBar(status,msg)
+
+    rhs = argn(2);
+
+    msgText = findobj("tag","msgText");
+
+    if rhs==0 then
+        set(msgText,"String","");
+        return
+    end
+
+    select status
+        case "warning" then
+            fontcolor = "#ff0000"; // red
+            icon      = "software-update-available.png";
+        case "success" then
+            fontcolor = "#009a1b"; // dark green
+            icon      = "emblem-default.png";
+        case "info" then
+            fontcolor = "#7d7d7d"; // dark green
+            icon      = "dialog-information.png";
+    end
 
     str =       "<html>";
     str = str + "<table><tr>";
-    str = str + "<td><img src=""file:///"+SCI+"/modules/atoms/images/icons/software-update-available.png"" /></td>";
-    str = str + "<td><div style=""color:red;font-style:italic;"">"+msg+"</div></td>";
+    str = str + "<td><img src=""file:///"+SCI+"/modules/atoms/images/icons/"+icon+""" /></td>";
+    str = str + "<td><div style=""color:"+fontcolor+";font-style:italic;"">"+msg+"</div></td>";
     str = str + "</tr></table>";
     str = str + "</html>";
-
-    msgText = findobj("tag","msgText");
 
     set(msgText,"String",str);
 

@@ -20,9 +20,9 @@ function atomsGui()
 
     if errStatus<>0 | size(allModules, "*") == 0 then
         if size(atomsRepositoryList(),"*") > 0 then
-            messagebox(gettext("No Atoms module is available. Please, check your Internet connection."), gettext("Atoms error"), "error");
+            messagebox(gettext("No ATOMS module is available. Please, check your Internet connection."), gettext("ATOMS error"), "error");
         else
-            messagebox(gettext("No Atoms module is available: your repository list is empty."), gettext("Atoms error"), "error");
+            messagebox(gettext("No ATOMS module is available: your repository list is empty."), gettext("ATOMS error"), "error");
         end
         return
     end

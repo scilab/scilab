@@ -682,17 +682,15 @@ msgid "ATOMS"
 msgstr ""
 
 #, fuzzy
+msgid "ATOMS error"
+msgstr "Erreur Atoms"
+
+#, fuzzy
 msgid "All modules"
 msgstr "Modules"
 
-msgid "Atoms"
-msgstr "Atoms"
-
 msgid "Atoms Help..."
 msgstr "Aide Atoms..."
-
-msgid "Atoms error"
-msgstr "Erreur Atoms"
 
 msgid "Author(s)"
 msgstr "Auteur(s)"
@@ -743,6 +741,10 @@ msgstr ""
 msgid "Installation failed!"
 msgstr "Installation échouée!"
 
+#, fuzzy
+msgid "Installing"
+msgstr "Installation..."
+
 msgid "KB"
 msgstr "Ko"
 
@@ -765,11 +767,13 @@ msgstr "Catégorie(s)"
 msgid "Maintainer(s)"
 msgstr "Mainteneur(s)"
 
-msgid "No Atoms module is available. Please, check your Internet connection."
+#, fuzzy
+msgid "No ATOMS module is available. Please, check your Internet connection."
 msgstr ""
 "Aucun module externe disponible. Veuillez verifier votre connexion internet."
 
-msgid "No Atoms module is available: your repository list is empty."
+#, fuzzy
+msgid "No ATOMS module is available: your repository list is empty."
 msgstr "Aucun module externe disponible. Votre liste de depot est vide."
 
 msgid "Package"
@@ -790,6 +794,10 @@ msgstr ""
 
 msgid "Remove failed!"
 msgstr "Désintallation echouée!"
+
+#, fuzzy
+msgid "Removing"
+msgstr "Suppression..."
 
 msgid "Scilab Version"
 msgstr "Version Scilab"
@@ -819,6 +827,10 @@ msgstr ""
 msgid "Update failed!"
 msgstr "La mise à jour a échouée !"
 
+#, fuzzy
+msgid "Updating"
+msgstr "Mise à jour..."
+
 msgid "Version"
 msgstr "Version"
 
@@ -831,14 +843,8 @@ msgstr "Site web"
 #~ "%s: Mauvaise valeur pour l''argument d''entrée n° %d: ''user'' ou "
 #~ "''allusers'' attendu.\n"
 
-#~ msgid "Installing..."
-#~ msgstr "Installation..."
+#~ msgid "Atoms"
+#~ msgstr "Atoms"
 
 #~ msgid "No module selected"
 #~ msgstr "Pas de module sélectionné"
-
-#~ msgid "Removing..."
-#~ msgstr "Suppression..."
-
-#~ msgid "Updating..."
-#~ msgstr "Mise à jour..."

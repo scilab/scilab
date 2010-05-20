@@ -27,6 +27,8 @@ images/icons/notinstalled.png \
 images/icons/notuptodate.png \
 images/icons/software-update-available.png \
 images/icons/folder.png \
+images/icons/dialog-information.png \
+images/icons/emblem-default.png \
 images/icons/user-home.png
 
 include $(top_srcdir)/Makefile.incl.am
