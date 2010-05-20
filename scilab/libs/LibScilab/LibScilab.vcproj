@@ -67,7 +67,7 @@
 				ObjectFile="$(ConfigurationName)/"
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="false"
+				
 				DebugInformationFormat="3"
 				CompileAs="0"
 			/>
@@ -153,9 +153,7 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
+
 			<Tool
 				Name="VCMIDLTool"
 				PreprocessorDefinitions="_DEBUG"
@@ -177,7 +175,7 @@
 				ObjectFile="$(ConfigurationName)/"
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="false"
+				
 				DebugInformationFormat="3"
 				CompileAs="0"
 			/>
@@ -288,7 +286,7 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="false"
+				
 				CompileAs="0"
 			/>
 			<Tool
@@ -375,9 +373,7 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
+
 			<Tool
 				Name="VCMIDLTool"
 				PreprocessorDefinitions="NDEBUG"
@@ -405,7 +401,7 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="false"
+				
 				CompileAs="0"
 			/>
 			<Tool

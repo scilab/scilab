@@ -20,7 +20,7 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(SolutionDir)bin\"
+			OutputDirectory="$(SolutionDir)libs\"
 			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="4"
 			UseOfMFC="0"
@@ -36,9 +36,7 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
+
 			<Tool
 				Name="VCMIDLTool"
 			/>
@@ -57,7 +55,7 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="false"
+				
 				DebugInformationFormat="3"
 				CompileAs="0"
 			/>
@@ -67,7 +65,7 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_DEBUG"
-				Culture="1036"
+				Culture="0"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
@@ -96,7 +94,7 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|x64"
-			OutputDirectory="$(SolutionDir)bin\"
+			OutputDirectory="$(SolutionDir)libs\"
 			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="4"
 			UseOfMFC="0"
@@ -112,9 +110,7 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
+
 			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
@@ -133,7 +129,7 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="false"
+				
 				DebugInformationFormat="3"
 				CompileAs="0"
 			/>
@@ -143,7 +139,7 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_DEBUG"
-				Culture="1036"
+				Culture="0"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
@@ -172,7 +168,7 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)bin\"
+			OutputDirectory="$(SolutionDir)libs\"
 			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="4"
 			UseOfMFC="0"
@@ -188,9 +184,7 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
+
 			<Tool
 				Name="VCMIDLTool"
 			/>
@@ -213,7 +207,7 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="false"
+				
 				CompileAs="0"
 			/>
 			<Tool
@@ -222,7 +216,7 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="NDEBUG"
-				Culture="1036"
+				Culture="0"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
@@ -251,7 +245,7 @@
 		</Configuration>
 		<Configuration
 			Name="Release|x64"
-			OutputDirectory="$(SolutionDir)bin\"
+			OutputDirectory="$(SolutionDir)libs\"
 			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="4"
 			UseOfMFC="0"
@@ -267,9 +261,7 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
+
 			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
@@ -292,7 +284,7 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="false"
+				
 				CompileAs="0"
 			/>
 			<Tool
@@ -301,7 +293,7 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="NDEBUG"
-				Culture="1036"
+				Culture="0"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"

@@ -64,7 +64,7 @@
 				ObjectFile="$(ConfigurationName)/"
 				ProgramDataBaseFileName="$(ConfigurationName)/vc80.pdb"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
+				
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -141,9 +141,7 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
+
 			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
@@ -160,7 +158,7 @@
 				ObjectFile="$(ConfigurationName)/"
 				ProgramDataBaseFileName="$(ConfigurationName)/vc80.pdb"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
+				
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -249,7 +247,7 @@
 				ObjectFile="$(ConfigurationName)/"
 				ProgramDataBaseFileName="$(ConfigurationName)/vc80.pdb"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
+				
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -326,9 +324,7 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
+
 			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
@@ -344,7 +340,7 @@
 				ObjectFile="$(ConfigurationName)/"
 				ProgramDataBaseFileName="$(ConfigurationName)/vc80.pdb"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
+				
 				DebugInformationFormat="3"
 			/>
 			<Tool
