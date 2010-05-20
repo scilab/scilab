@@ -8,13 +8,12 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-10-22 21:24+0000\n"
+"PO-Revision-Date: 2010-04-14 20:55+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid " An hypermatrix extraction must have at least 2 arguments. "
@@ -36,8 +35,13 @@ msgid " Incompatible hypermatrix extraction. "
 msgstr " Несовместимое извлеченение из гиперматрицы. "
 
 #, c-format
-msgid "%s: Wrong number of input argument(s) : an even number is expected."
-msgstr "%s: Неверно число входных аргументов: ожидалось чётное число."
+msgid "%s: ''dims'' can not be used as a field name.\n"
+msgstr "%s: «dims» не может быть использовано в качестве имени поля.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s) : an even number is expected.\n"
+msgstr ""
+"%s: Неверное количество входных параметров: ожидалось чётное число.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -54,6 +58,10 @@ msgstr "%s: Неверный тип входного параметра №%d: �
 #, c-format
 msgid "%s: Wrong type for input argument #%d: struct array expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидался массив структур.\n"
+
+#, c-format
+msgid "%s: field name ''%s'' defined twice.\n"
+msgstr "%s: имя поля «%s» определено дважды.\n"
 
 #, c-format
 msgid "Bad (%d th) index in hypermatrix extraction. "

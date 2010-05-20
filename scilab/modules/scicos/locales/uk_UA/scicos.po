@@ -10,12 +10,11 @@ msgstr ""
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-09-22 14:07+0100\n"
 "PO-Revision-Date: 2010-01-16 18:20+0000\n"
-"Last-Translator: yurchor <yurchor@gmail.com>\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-01-21 15:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -41,14 +40,6 @@ msgstr "%s: не вдалося знайти жодного файла MO за �
 #, c-format
 msgid "%s: Diagram does not compile in pass %d.\n"
 msgstr "%s: не вдалося створити діаграму на кроці %d.\n"
-
-#, c-format
-msgid ""
-"%s: Diagram does not compile in pass %d.\n"
-"'),"
-msgstr ""
-"%s: не вдалося створити діаграму на кроці %d.\n"
-"'),"
 
 #, c-format
 msgid "%s: Error : the following command line failed to execute: %s.\n"

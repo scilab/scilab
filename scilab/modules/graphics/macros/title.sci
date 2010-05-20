@@ -10,6 +10,10 @@ function title(varargin)
 // TITLE function
 // Add titles on a graphics window 
 
+if size(varargin)<>1 then
+  error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "title", 1));
+end
+
 varargin = list('title',varargin(1:$));
 TitleLabel(varargin(:));
 endfunction

@@ -359,7 +359,7 @@ int get_optionals(char *fname ,rhs_opts opts[])
 	    {
 	      sciprint(_("%s: Unrecognized optional arguments %s.\n"),fname,name);
 	      rhs_opt_print_names(opts) ;
-	      Error(999);
+	      SciError(999);
 	      return(0);
 	    }
 	}
@@ -1901,7 +1901,7 @@ int C2F(scifunction)(int *number,int *ptr,int *mlhs,int *mrhs)
   Top = Top - Rhs + *number + *mrhs - 1;
   ++C2F(recu).pt;
   if (C2F(recu).pt > psiz) {
-    Error(cx26);
+    SciError(cx26);
     goto L9999;
   }
   C2F(recu).ids[C2F(recu).pt * nsiz - nsiz] = Lhs;
@@ -2021,8 +2021,7 @@ int C2F(scifunction)(int *number,int *ptr,int *mlhs,int *mrhs)
     goto L91;
   }
   if (Fin == 0) {
-    int cx4 = 246;
-    Error(cx4);
+    SciError(246);
     if (Err > 0) goto L97;
     goto L90;
   }
@@ -2274,8 +2273,7 @@ int C2F(scibuiltin)(int *number,int *ifun,int *ifin,int *mlhs,int *mrhs)
     goto L91;
   }
   if (Fin == 0) {
-    int cx4 = 246;
-    Error(cx4);
+    SciError(246);
     if (Err > 0) goto L97;
     goto L90;
   }

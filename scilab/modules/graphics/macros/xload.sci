@@ -6,8 +6,13 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function xload(fil,num)
-  if  argn(2)==2 then xset("window",num),end
+function []=xload(fil,num)
+
+  if and(argn(2)<>[1 2]) then
+    error(msprintf(gettext("%s: Wrong number of input argument(s): %d or %d expected.\n"), "xload", 1, 2));
+  end
+
+  if  argn(2)==2 then scf(num),end
   f=gcf()
   res = execstr('load(fil)','errcatch') ;
   if res==0 then

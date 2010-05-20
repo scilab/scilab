@@ -35,10 +35,6 @@
 /* Table of constant values */
 
 static int c1 = 1;
-static int c41 = 41;
-static int c39 = 39;
-static int c17 = 17;
-static int c44 = 44;
 static int c_n1 = -1;
 static double c_b46 = 0.;
 
@@ -73,11 +69,11 @@ int C2F(intmsparse)(int *id)
 
     lw = C2F(vstk).lstk[Top];
     if (Lhs != 1) {
-	Error(c41);
+	SciError(41);
 	return 0;
     }
     if (Rhs != 1) {
-	Error(c39);
+	SciError(39);
 	return 0;
     }
     il = C2F(vstk).lstk[Top-1] + C2F(vstk).lstk[Top-1] - 1;
@@ -99,7 +95,7 @@ int C2F(intmsparse)(int *id)
 	lw = lat + nel * (it + 1);
 	Err = lw - C2F(vstk).lstk[Bot-1];
 	if (Err > 0) {
-	    Error(c17);
+	    SciError(17);
 	    return 0;
 	}
 	*istk(ia) = 1;
@@ -130,7 +126,7 @@ int C2F(intmsparse)(int *id)
 	C2F(vstk).lstk[Top] = lr + nel * (it + 1);
     } else if (*istk(il ) == 7) {
     } else {
-	Error(c44);
+	SciError(44);
 	return 0;
     }
     return 0;
@@ -185,11 +181,11 @@ int C2F(intmspget)(int *id)
     top0 = Top + 1 - Rhs;
     lw = C2F(vstk).lstk[Top];
     if (Rhs != 1) {
-	Error(c39);
+	SciError(39);
 	return 0;
     }
     if (Lhs > 3) {
-	Error(c41);
+	SciError(41);
 	return 0;
     }
     il = C2F(vstk).lstk[Top -1] + C2F(vstk).lstk[Top -1] - 1;
@@ -250,7 +246,7 @@ int C2F(intmspget)(int *id)
     lw = I1 / 2 + 1;
     Err = lw - C2F(vstk).lstk[Bot -1];
     if (Err > 0) {
-	Error(c17);
+	SciError(17);
 	return 0;
     }
     I1 = n + nel + 1;
@@ -341,11 +337,11 @@ int C2F(intmfull)(int *id)
     top0 = Top + 1 - Rhs;
     lw = C2F(vstk).lstk[Top];
     if (Rhs != 1) {
-	Error(c39);
+	SciError(39);
 	return 0;
     }
     if (Lhs != 1) {
-	Error(c41);
+	SciError(41);
 	return 0;
     }
     il = C2F(vstk).lstk[Top -1] + C2F(vstk).lstk[Top -1] - 1;
@@ -367,7 +363,7 @@ int C2F(intmfull)(int *id)
     lw = ls + nel * (it + 1);
     Err = lw - C2F(vstk).lstk[Bot-1];
     if (Err > 0) {
-	Error(c17);
+	SciError(17);
 	return 0;
     }
     I1 = n + 1 + nel;

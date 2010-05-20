@@ -2,19 +2,18 @@
 # Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
 # This file is distributed under the same license as the scilab package.
 #
-# Yuri Chornoivan <yurchor@ukr.net>, 2010.
+# Yuri Chornoivan <yurchor@gmail.com>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 16:29+0100\n"
-"PO-Revision-Date: 2010-01-09 11:37+0000\n"
-"Last-Translator: yurchor <yurchor@gmail.com>\n"
+"PO-Revision-Date: 2010-04-13 09:23+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-01-21 15:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid ""
@@ -163,9 +162,6 @@ msgstr "Виконання"
 msgid "Execute File Into Scilab"
 msgstr "Виконати файл у Scilab"
 
-msgid "Execute selection into Scilab"
-msgstr "Виконати позначений фрагмент у Scilab"
-
 msgid "Exit"
 msgstr "Вийти"
 
@@ -177,6 +173,12 @@ msgstr "Файл вже існує"
 
 msgid "Find"
 msgstr "Знайти"
+
+msgid "Find Next"
+msgstr "Знайти далі"
+
+msgid "Find Previous"
+msgstr "Знайти позаду"
 
 msgid "Find/Replace"
 msgstr "Знайти/Замінити"
@@ -361,6 +363,14 @@ msgstr "Поточний файл"
 
 msgid "This file is a binary, saving it will result in a corrupt file."
 msgstr "Цей файл є бінарним файлом, збереження пошкодить цей файл."
+
+msgid ""
+"This file is very long. \"Execute File Into Scilab\" could be better.\n"
+"Are you sure to continue ?"
+msgstr ""
+"Цей файл є занадто об’ємним. Краще скористатися пунктом «Виконати файл у "
+"Scilab».\n"
+"Ви справді бажаєте завантажити цей файл?"
 
 msgid "Uncomment Selection"
 msgstr "Зняти позначки коментаря з позначеного"

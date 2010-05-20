@@ -22,7 +22,7 @@ int C2F(intand)(char *fname,unsigned long l);
 int C2F(intand)(char *fname,unsigned long l)
 {
  int m1,n1,l1,mm2,l2,lo,nopt=0,lw;
- int opt=0,errn=44;
+ int opt=0;
 
  CheckRhs(1,2);
  CheckLhs(1,1);
@@ -43,7 +43,7 @@ int C2F(intand)(char *fname,unsigned long l)
        opt=2;
      else {
        Err=2;
-       Error(errn);
+       SciError(44);
      }
  
    }
@@ -52,7 +52,7 @@ int C2F(intand)(char *fname,unsigned long l)
      opt= (int) *stk(lo);
      if (opt>2||opt<1) {
        Err=2;
-       Error(errn);
+       SciError(44);
      }
    }
  }  /*(Rhs==2) */

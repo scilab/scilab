@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (C) INRIA -  Serge Steer Serge.Steer@inria.fr
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en_US" xml:id="datatipInitStruct">
+  <info>
+    <pubdate>$LastChangedDate: 19-02-2010 $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>datatipInitStruct</refname>
+    <refpurpose>initialize the datatip structure associated with the given polyline. </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>ok=datatipInitStruct(curve_handle,varargin)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>curve_handle</term>
+        <listitem>
+          <para>
+            A handle on an entity compatible with datatips
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>varargin</term>
+        <listitem>
+          <para>
+            A sequence of pairs (&lt;field name&gt;,&lt;field value&gt;) used to
+            add or customize fields of the datatips data structure.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+      This function is called by <link
+      linkend="datatipCreate">datatipCreate</link>to create a data
+      structure for tips stored in the polyline entity user_data
+      field.
+    </para>
+    <para>
+      This function as to be called only is one want to customize the datatips data structure fields
+    </para>
+  </refsection>
+  <refsection>
+    <title>Datatip data structure</title>
+    <para>
+      The datatips data structure is a <literal>tlist</literal> of
+      type <literal>"datatips"</literal> with at least the following
+      fields.
+    </para>
+    <variablelist>
+      <varlistentry>
+        <term>interpolate</term>
+        <listitem>
+          <para>
+            A boolean, indicating if the tips position can be interpolated between mesh points or not.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>replace</term>
+        <listitem>
+          <para>
+             A boolean, indicating if adding a new tip erases the others or not
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>formatfunction</term>
+        <listitem>
+          <para>
+             A Scilab function, the function which is called to format
+             the text that appears in the datatips. It as the
+             following calling sequence:
+             <literal>str=datatipDefaultDisplay(curve_handle,pt,index)</literal>
+             where <literal>curve_handle</literal> is handle on the
+             polyline or surface, <literal>pt</literal> is the
+             coordinates of the point and <literal>index</literal> is
+             the index of the point in the data or is empty in case of
+             interpolated mode.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tips</term>
+        <listitem>
+          <para>
+             An array of handles. Each of these points to a given tip on the curve.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>
+      Others fields can be added by the programmer to the datatips
+      data structure throught the <literal>datatipInitStruct</literal>
+      <literal>varargin</literal> optional arguments.
+    </para>
+   
+   
+  </refsection>
+ 
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="datatipCreate">datatipCreate</link>
+      </member>
+     <member>
+        <link linkend="datatips">datatips</link>
+     </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+    t=linspace(0,10,1000);
+    clf();
+    plot(t.*sin(t),t.*cos(t),1.5*t.*sin(t),1.5*t.*cos(1.5*t));
+    e=gce();
+    p1=e.children(1);//get the handle on the polyline
+    p2=e.children(2);//get the handle on the polyline
+
+
+    function str=mytipfmt(curve,pt,index)
+      ds=datatipGetStruct(curve)
+      if index<>[] then
+        t=ds.param(index);
+      else //interpolated
+        [d,ptp,i,c]=orthProj(curve.data,pt);
+        t=ds.param(i)+(ds.param(i+1)-ds.param(i))*c;
+      end
+      str=msprintf("%s\nt=%-0.3g",ds.name,t);
+    endfunction
+
+    ok=datatipInitStruct(p1,"formatfunction","mytipfmt","param",t,"name","spiral");
+    ok=datatipInitStruct(p2,"formatfunction","mytipfmt","param",t,"name","curve");
+
+    datatipCreate(p1,500);
+    datatipCreate(p1,900);
+    datatipCreate(p2,750);
+
+    ]]></programlisting>
+    <para>
+      <inlinemediaobject>
+	<imageobject>
+	  <imagedata fileref="../../images/datatips2.svg"/>
+	</imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Serge Steer, INRIA</member>
+    </simplelist>
+  </refsection>
+</refentry>

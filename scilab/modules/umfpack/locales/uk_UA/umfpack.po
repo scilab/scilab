@@ -2,20 +2,18 @@
 # Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
 # This file is distributed under the same license as the scilab package.
 #
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
 # Yuri Chornoivan <yurchor@gmail.com>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-05-27 18:59+0100\n"
-"PO-Revision-Date: 2010-01-14 19:36+0000\n"
-"Last-Translator: yurchor <yurchor@gmail.com>\n"
+"PO-Revision-Date: 2010-02-12 16:04+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-01-21 15:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid ""
@@ -65,7 +63,7 @@ msgstr " ----------------------------------------------------- \n"
 msgid " ------------------------------------------------------------\n"
 msgstr " ------------------------------------------------------------\n"
 
-msgid " For this demo the current stack size is not enought "
+msgid " For this demo the current stack size is not enough "
 msgstr " Для цієї демонстрації недостатньо поточного розміру стека "
 
 #, c-format
@@ -220,10 +218,11 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Must be symetric positive definite"
+"%s: Wrong value for input argument #%d: Must be symmetric positive definite "
+"matrix."
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати "
-"симетричну додатно визначену матрицю"
+"симетричну додатно визначену матрицю."
 
 #, c-format
 msgid ""

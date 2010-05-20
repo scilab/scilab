@@ -8,13 +8,12 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-10-22 16:36+0000\n"
+"PO-Revision-Date: 2010-04-16 17:42+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
@@ -51,10 +50,13 @@ msgstr " 多次元配列の不正な差し込みです。 "
 msgid " Incompatible hypermatrix extraction. "
 msgstr " 互換性がない多次元配列の抽出です。 "
 
-# File: macros/iscellstr.sci, line: 16
 #, c-format
-msgid "%s: Wrong number of input argument(s) : an even number is expected."
-msgstr "%s: 入力引数(s)で不正な数値: 偶数 を想定します。"
+msgid "%s: ''dims'' can not be used as a field name.\n"
+msgstr "%s: ''dims'' は項目名として使うことができません。\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s) : an even number is expected.\n"
+msgstr "%s: 入力引数の数が不正です: 偶数を想定します。\n"
 
 # File: macros/iscellstr.sci, line: 16
 #, c-format
@@ -75,6 +77,10 @@ msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: struct array expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 構造配列を想定します。\n"
+
+#, c-format
+msgid "%s: field name ''%s'' defined twice.\n"
+msgstr "%s: 項目名 \"%s\" 定義は重複します。\n"
 
 #
 # File: src/c/hmops.c, line: 702

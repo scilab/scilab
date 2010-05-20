@@ -1,7 +1,7 @@
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006
-##########
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+#
+# This file is distributed under the same license as the Scilab package.
 
 MEXLIB_C_SOURCES = src/c/mexlib.c \
 src/c/sci_gateway.c

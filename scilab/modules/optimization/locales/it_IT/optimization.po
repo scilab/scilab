@@ -8,13 +8,12 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-11-26 14:44+0000\n"
+"PO-Revision-Date: 2010-02-16 12:13+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid ""
@@ -87,22 +86,30 @@ msgstr "%s: Funzione vuota (usare l'opzione -function)."
 msgid ""
 "%s: Expected boolean but for variable %s at input #%d, got %s instead."
 msgstr ""
+"%s: Era atteso un booleano, ma per la variabile %s all'ingresso #%d si è "
+"ottenuto %s invece."
 
 #, c-format
 msgid ""
 "%s: Expected function but for variable %s at input #%d, got %s instead."
 msgstr ""
+"%s: Era attesa una funzione, ma per la variabile %s all'ingresso #%d si è "
+"ottenuto %s invece."
 
 #, c-format
 msgid ""
 "%s: Expected real variable for variable %s at input #%d, but got %s instead."
 msgstr ""
+"%s: Era attesa variabile reale, ma per la variabile %s all'ingresso #%d si è "
+"ottenuto %s invece."
 
 #, c-format
 msgid ""
 "%s: Expected string variable for variable %s at input #%d, but got %s "
 "instead."
 msgstr ""
+"%s: Era attesa variabile stringa, ma per la variabile %s all'ingresso #%d si "
+"è ottenuto %s invece."
 
 #, c-format
 msgid "%s: History disabled ; enable -storehistory option."
@@ -242,14 +249,16 @@ msgid ""
 "%s: The boundsmax vector is expected to be a row matrix, but current shape "
 "is %d x %d"
 msgstr ""
-"%s: Il vettore boundsmax dovrebbe essere una matrice riga, la la forma "
-"attuale è %d x %d"
+"%s: Il vettore boundsmax dovrebbe essere una matrice riga, la forma attuale "
+"è %d x %d"
 
 #, c-format
 msgid ""
 "%s: The boundsmax vector is expected to have %d columns, but current shape "
 "is %d x %d"
 msgstr ""
+"%s: Il vettore boundsmax dovrebbe avere %d colonne, ma la forma attuale è %d "
+"x %d"
 
 #, c-format
 msgid ""
@@ -264,6 +273,8 @@ msgid ""
 "%s: The boundsmin vector is expected to have %d columns, but current shape "
 "is %d x %d"
 msgstr ""
+"%s: Il vettore boundsmin dovrebbe avere %d colonne, ma la forma attuale è %d "
+"x %d"
 
 #, c-format
 msgid "%s: The constraints are inconsistent.\n"
@@ -290,6 +301,8 @@ msgid ""
 "%s: The len vector is expected to be a row matrix, but current shape is %d x "
 "%d."
 msgstr ""
+"%s: Il vettore len dovrebbe essere una matrice riga, ma la forma attuale è "
+"%d x %d."
 
 #, c-format
 msgid ""
@@ -302,6 +315,8 @@ msgid ""
 "%s: The len vector is not consistent with the x0 point. Current shape of x0 "
 "is %d x %d while current shape of len is %d x %d."
 msgstr ""
+"%s: Il vettore len non è consistente con il punto x0. L'attuale forma di x0 "
+"è %d x %d mentre l'attuale forma di len è %d x %d."
 
 #, c-format
 msgid "%s: The matrix %s from costf(x0,%d) has %d columns, instead of %d."
@@ -396,6 +411,8 @@ msgid ""
 "%s: The x0 vector is expected to be a row matrix, but current shape is %d x "
 "%d."
 msgstr ""
+"%s: Il vettore x0 dovrebbe essere una matrice riga, ma la forma attuale è %d "
+"x %d."
 
 #, c-format
 msgid "%s: Too many iterations (more than %d).\n"

@@ -26,6 +26,7 @@ src/xml2modelica/xML2Modelica.cmx
 src/xml2modelica/xMLLexer.cmx
 src/xml2modelica/xMLParser.cmx
 src/xml2modelica/xMLTree.cmx
+src/xml2modelica/*.obj
 
 
 
@@ -68,7 +69,12 @@ src/translator/translation/libraryManager.cmo
 src/translator/translation/translator.cmo
 src/translator/translation/versiondate.cmo
 
-
+# .tmp files generated on Windows
+src/translator/translation/*.obj
+src/translator/parsing/*.obj
+src/translator/compilation/*.obj
+src/translator/instantiation/*.obj
+src/translator/exceptionHandling/*.obj
 
 
 #

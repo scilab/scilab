@@ -11,43 +11,43 @@
 // Operating system detection + archi
 
 function [OSNAME,ARCH,LINUX,MACOSX,SOLARIS,BSD] = atomsGetPlatform()
-	
-	// Operating system detection
-	
-	if getos() <> 'Windows' then
-		OSNAME   = unix_g("uname");
-		MACOSX   = (strcmpi(OSNAME,"darwin") == 0);
-		LINUX    = (strcmpi(OSNAME,"linux")  == 0);
-		SOLARIS  = (strcmpi(OSNAME,"sunos")  == 0);
-		BSD      = (regexp(OSNAME ,"/BSD$/") <> []);
-	else
-		MACOSX  = %F;
-		LINUX   = %F;
-		SOLARIS = %F;
-		BSD     = %F;
-	end
-	
-	if getos() == 'Windows' then
-		OSNAME = "windows";
-	elseif LINUX then
-		OSNAME = "linux";
-	elseif MACOSX then
-		OSNAME = "macosx";
-	elseif SOLARIS then
-		OSNAME = "solaris";
-	elseif BSD then
-		OSNAME = "bsd";
-	end
-	
-	// Architecture
-	
-	[dynamic_info,static_info] = getdebuginfo();
-	arch_info  = static_info(grep(static_info,"/^Compiler Architecture:/","r"))
-	
-	if ~isempty(arch_info) & (regexp(arch_info,"/\sX64$/","o") <> []) then
-		ARCH = "64";
-	else
-		ARCH = "32";
-	end
-	
+
+    // Operating system detection
+
+    if getos() <> 'Windows' then
+        OSNAME   = unix_g("uname");
+        MACOSX   = (strcmpi(OSNAME,"darwin") == 0);
+        LINUX    = (strcmpi(OSNAME,"linux")  == 0);
+        SOLARIS  = (strcmpi(OSNAME,"sunos")  == 0);
+        BSD      = (regexp(OSNAME ,"/BSD$/") <> []);
+    else
+        MACOSX  = %F;
+        LINUX   = %F;
+        SOLARIS = %F;
+        BSD     = %F;
+    end
+
+    if getos() == 'Windows' then
+        OSNAME = "windows";
+    elseif LINUX then
+        OSNAME = "linux";
+    elseif MACOSX then
+        OSNAME = "macosx";
+    elseif SOLARIS then
+        OSNAME = "solaris";
+    elseif BSD then
+        OSNAME = "bsd";
+    end
+
+    // Architecture
+
+    [dynamic_info,static_info] = getdebuginfo();
+    arch_info  = static_info(grep(static_info,"/^Compiler Architecture:/","r"))
+
+    if ~isempty(arch_info) & (regexp(arch_info,"/\sX64$/","o") <> []) then
+        ARCH = "64";
+    else
+        ARCH = "32";
+    end
+
 endfunction

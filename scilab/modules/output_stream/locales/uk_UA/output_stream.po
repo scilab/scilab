@@ -2,20 +2,18 @@
 # Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
 # This file is distributed under the same license as the scilab package.
 #
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
 # Yuri Chornoivan <yurchor@gmail.com>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-01-30 18:01+0100\n"
-"PO-Revision-Date: 2010-01-17 17:27+0000\n"
-"Last-Translator: yurchor <yurchor@gmail.com>\n"
+"PO-Revision-Date: 2010-04-13 09:09+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-01-21 15:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -51,9 +49,6 @@ msgstr " рядок вхідних даних перевищує розміри 
 
 msgid "\"unknown data\""
 msgstr "«невідомі дані»"
-
-msgid "%: This method is NOT implemented.\n"
-msgstr "%: цей метод ще не реалізовано.\n"
 
 #, c-format
 msgid "%d graphic terminal?\n"
@@ -192,8 +187,12 @@ msgid "%s: Stop requested by simulator (ind=0)\n"
 msgstr "%s: інструментом моделювання ініційовано зупинку (ind=0)\n"
 
 #, c-format
-msgid "%s: Th colocation matrix is singular.\n"
+msgid "%s: The colocation matrix is singular.\n"
 msgstr "%s: матриця колокації є виродженою.\n"
+
+#, c-format
+msgid "%s: This method is NOT implemented.\n"
+msgstr "%s: цей метод ще не реалізовано.\n"
 
 #, c-format
 msgid ""
@@ -504,7 +503,7 @@ msgstr ""
 "%s: відносна похибка між двома послідовними ітераціями не перевищує %s.\n"
 
 #, c-format
-msgid "%s: singular or assymetric problem.\n"
+msgid "%s: singular or asymmetric problem.\n"
 msgstr "%s: вироджена або несиметрична задача.\n"
 
 #, c-format
@@ -550,7 +549,7 @@ msgstr "%s: встановлено виміри вікна, менші за 2^16
 msgid "'o' format not allowed."
 msgstr "Не можна використовувати формат «o»."
 
-msgid "A sparse matrix entry is defined with two differents values.\n"
+msgid "A sparse matrix entry is defined with two different values.\n"
 msgstr "Запис розрідженої матриці визначено двома різними значеннями.\n"
 
 msgid "Argument type must be boolean.\n"
@@ -560,7 +559,7 @@ msgid "Arguments are :\n"
 msgstr "Параметри:\n"
 
 #, c-format
-msgid "At time: %s ,Too many iteration to achieve required precision.\n"
+msgid "At time: %s. Too many iteration to achieve required precision.\n"
 msgstr ""
 "На час %s: занадто багато ітерацій для досягнення бажаної точності.\n"
 
@@ -571,7 +570,7 @@ msgstr "Помилковий виклик примітива: %s\n"
 msgid "Bad conversion."
 msgstr "Помилкове перетворення."
 
-msgid "Binary direct acces files must be opened by 'file'.\n"
+msgid "Binary direct access files must be opened by 'file'.\n"
 msgstr ""
 "Бінарні файли безпосереднього доступ слід відкривати за допомогою «file».\n"
 
@@ -637,10 +636,9 @@ msgstr "Не виявлено назви запису.\n"
 msgid "Error while linking.\n"
 msgstr "Помилка під час спроби об’єднання.\n"
 
-msgid "Error while writing in file,(disk full or deleted file.\n"
+msgid "Error while writing in file: disk full or deleted file.\n"
 msgstr ""
-"Помилка під час спроби запису до файла (диск переповнено або файл "
-"вилучено).\n"
+"Помилка під час спроби запису до файла: диск переповнено або файл вилучено.\n"
 
 msgid "Eye variable undefined in this context.\n"
 msgstr "Змінну одиничної матриці у цьому контексті не визначено.\n"
@@ -801,6 +799,9 @@ msgstr "Потрібна проміжна область пам’яті: %d\n"
 msgid "Invalid exponent.\n"
 msgstr "Некоректний показник.\n"
 
+msgid "Invalid factor.\n"
+msgstr "Некоректний коефіцієнт.\n"
+
 msgid "Invalid index.\n"
 msgstr "Некоректний індекс.\n"
 
@@ -891,7 +892,7 @@ msgstr "Не реалізовано у Scilab…\n"
 msgid "Null variable cannot be used here.\n"
 msgstr "Тут не можна використовувати порожню змінну.\n"
 
-msgid "Operands of / and \\ operations  must not contain NaN of Inf.\n"
+msgid "Operands of / and \\ operations must not contain NaN of Inf.\n"
 msgstr "Операнди операцій / і \\ не повинні містити значень NaN чи Inf.\n"
 
 msgid "Optim stops: maximum number of calls to f is reached.\n"
@@ -930,12 +931,12 @@ msgid "Quapro encounters cycles on degenerate point.\n"
 msgstr "Quapro зациклився навколо виродженої точки.\n"
 
 #, c-format
-msgid "Rank defficient. rank = %d\n"
-msgstr "Недостатній ранг. ранг = %d\n"
-
-#, c-format
 msgid "Rank deficient : rank = %s  - tol = %s .\n"
 msgstr "Недостатній ранг: ранг = %s  - tol = %s .\n"
+
+#, c-format
+msgid "Rank deficient. rank = %d\n"
+msgstr "Недостатній ранг. ранг = %d\n"
 
 msgid "Real part\n"
 msgstr "Дійсна частина\n"
@@ -1062,14 +1063,14 @@ msgid "Too many functions are defined (maximum #:%d).\n"
 msgstr "Визначено занадто багато функцій (гранична кількість: %d).\n"
 
 #, c-format
-msgid "Too many global variables! , max number is %d.\n"
+msgid "Too many global variables! Max number is %d.\n"
 msgstr ""
 "Занадто багато загальних змінних! Максимальна кількість дорівнює %d.\n"
 
-msgid "Too many input/output entries for hilited block.\n"
+msgid "Too many input/output entries for highlighted block.\n"
 msgstr "Занадто багато вхідних/вихідних записів у позначеному блоці.\n"
 
-msgid "Too many input/output ports for hilited block.\n"
+msgid "Too many input/output ports for highlighted block.\n"
 msgstr "Занадто багато вхідних/вихідних портів у позначеному блоці.\n"
 
 msgid "Too many linked routines.\n"
@@ -1174,7 +1175,7 @@ msgstr "Попередження: результат може бути нето�
 
 msgid ""
 "Warning: Jacobian external is given, but\n"
-" not used!,  see %ODEOPTIONS(6).\n"
+" not used! See %ODEOPTIONS(6).\n"
 msgstr ""
 "Попередження: вказано зовнішню функцію якобіана, але\n"
 " її не використано! Див. %ODEOPTIONS(6).\n"
@@ -1198,7 +1199,7 @@ msgid "Warning: function is already compiled.\n"
 msgstr "Попередження: функцію вже зібрано.\n"
 
 msgid ""
-"Warning: integration not completed! check tolerance parameters or step "
+"Warning: integration not completed! Check tolerance parameters or step "
 "size.\n"
 msgstr ""
 "Попередження: інтегрування не завершено! Перевірте параметри точності "
@@ -1219,7 +1220,7 @@ msgstr ""
 msgid "Warning: obsolete use of '=' instead of '=='.\n"
 msgstr "Попередження: застаріле використання «=» замість «==».\n"
 
-msgid "Warning: obsolete use of eye rand or ones.\n"
+msgid "Warning: obsolete use of eye, rand, or ones.\n"
 msgstr "Попередження: застаріле використання eye, rand або ones.\n"
 
 msgid ""

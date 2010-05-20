@@ -44,3 +44,6 @@ unsfdcopy_
 itosci_
 isort_
 dset_
+;
+ismenu
+GetCommand

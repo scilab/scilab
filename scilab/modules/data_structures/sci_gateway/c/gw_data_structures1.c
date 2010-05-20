@@ -35,8 +35,7 @@ int gw_data_structures1(void)
 	Rhs=Max(Rhs,0);
 	if (Top - Rhs + Lhs + 1 >= Bot)
 	{
-		static int codeerror = 18;
-		Error(codeerror);
+		SciError(18);
 		return 0;
 	}
 

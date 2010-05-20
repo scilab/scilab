@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-01-25 10:33+0100\n"
+"Revision-Date: 2010-04-13 09:16+0100\n"
 
 # File: sci_gateway/c/sci_isdigit.c, line: 74
 # File: sci_gateway/c/sci_tokens.c, line: 99
@@ -29,7 +29,7 @@ msgstr ""
 # File: sci_gateway/c/sci_strsplit.c, line: 342
 # File: sci_gateway/c/sci_isalphanum.c, line: 74
 #, c-format
-msgid "%s : Memory allocation error.\n"
+msgid "%s: Memory allocation error.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_strcmp.c, line: 94

@@ -14,7 +14,6 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -22,8 +21,8 @@ msgid "%s: %s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr "%s：%s：输入参数的数目错误：应该为%d到%d个。\n"
 
 #, c-format
-msgid "%s: Invalid option %s: %d or real matrix expected.\n"
-msgstr "%s：不正确的选项%s：应该为%d或实数矩阵。\n"
+msgid "%s: Invalid option %s: real matrix expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"

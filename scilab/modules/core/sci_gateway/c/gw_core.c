@@ -60,7 +60,7 @@ static gw_generic_table Tab[]=
 {C2F(sci_gstacksize),"gstacksize"},
 {C2F(sci_intppty),"intppty"},
 {C2F(sci_lasterror),"lasterror"},
-{C2F(sci_getversion),"getversion"},
+{sci_getversion,"getversion"},
 {C2F(sci_macr2tree),"macr2tree"},
 {C2F(sci_getos),"getos"},
 {C2F(sci_banner),"banner"},
@@ -91,7 +91,7 @@ int gw_core(void)
 	
 	if(pvApiCtx == NULL)
 	{
-		pvApiCtx = (StrCtx*)MALLOC(sizeof(SciErr));
+		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
 	}
 
 	pvApiCtx->pstName = (char*)Tab[Fin-1].name;

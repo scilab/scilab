@@ -123,7 +123,7 @@ int C2F(sci_execstr)(char *fname,unsigned long fname_len)
 				return 0;
 			}
 
-			sciErr = getMatrixOfString(pvApiCtx, piAddressVarTwo,&m2,&n2,&lenStVarTwo,&pStVarTwo);
+			sciErr = getMatrixOfString(pvApiCtx, piAddressVarTwo,&m2,&n2,&lenStVarTwo, NULL);
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
@@ -159,7 +159,7 @@ int C2F(sci_execstr)(char *fname,unsigned long fname_len)
 			}
 			else
 			{
-				Scierror(999,_("%s : Memory allocation error.\n"),fname);
+				Scierror(999,_("%s: Memory allocation error.\n"),fname);
 				return 0;
 			}
 		}
@@ -192,7 +192,7 @@ int C2F(sci_execstr)(char *fname,unsigned long fname_len)
 				return 0;
 			}
 
-			sciErr = getMatrixOfString(pvApiCtx, piAddressVarThree,&m3,&n3,&lenStVarThree,&pStVarThree);
+			sciErr = getMatrixOfString(pvApiCtx, piAddressVarThree,&m3,&n3,&lenStVarThree, NULL);
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
@@ -228,7 +228,7 @@ int C2F(sci_execstr)(char *fname,unsigned long fname_len)
 			}
 			else
 			{
-				Scierror(999,_("%s : Memory allocation error.\n"),fname);
+				Scierror(999,_("%s: Memory allocation error.\n"),fname);
 				return 0;
 			}
 		}

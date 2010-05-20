@@ -168,7 +168,7 @@ clear tt
 u=t5(-4);
 if u<>'neg' then bugmes();quit;end
 if exists('tt')==1 then bugmes();quit;end
-//
+// 
 clear u v tt
 [u,v]=t5(5);
 if u<>'pos' then bugmes();quit;end
@@ -553,6 +553,7 @@ fic=file('open',TMPDIR+"/test_macro_exec",'unknown');
 write(fic,text)
 file('close',fic)
 deff('[x]=b(a)','x=a,prod([1 1])','n')
+deff('[x]=t9(a)','exec(TMPDIR+''/test_macro_exec''),x=aa','n')
 y=t9(2)
  
  aa=1,if a==2 then aa=b(a),end
@@ -583,6 +584,7 @@ y=t9(2)
     2.  
 if y<>2 then bugmes();quit;end
 //
+deff('[x]=t9(a)','exec(TMPDIR+''/test_macro_exec''),x=aa','n')
 y=t9(2)
  
  aa=1,if a==2 then aa=b(a),end

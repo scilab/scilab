@@ -194,7 +194,7 @@ int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *st
       }
     else
     {
-      sciprint(_("Warning : Nax does not work with logarithmic scaling.\n"));
+      sciprint(_("Warning: Nax does not work with logarithmic scaling.\n"));
     }
   }
   endFigureDataWriting(curFigure);

@@ -16,7 +16,7 @@
 #include <stdlib.h>
 #include "dropFiles.h"
 #include "MALLOC.h"
-#include "../../../action_binding/includes/dynamic_menus.h" /* storecommand */
+#include "../../../core/includes/storeCommand.h" /* storecommand */
 #include "../../../fileio/includes/FindFileExtension.h"
 #include "../../../fileio/includes/URIFileToFilename.h"
 #include "../../../string/includes/stricmp.h"

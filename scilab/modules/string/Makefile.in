@@ -15,10 +15,10 @@
 
 @SET_MAKE@
 
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006/2007
-##########
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2006-2007 - INRIA - Sylvestre LEDRU
+#
+# This file is distributed under the same license as the Scilab package.
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006-2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
@@ -126,8 +126,7 @@ am__objects_1 = libscistring_la-code2str.lo \
 	libscistring_la-strsubst.lo libscistring_la-stringsstrrchr.lo \
 	libscistring_la-stringsstrrev.lo \
 	libscistring_la-stringsCompare.lo \
-	libscistring_la-isalphanum.lo libscistring_la-NumTokens.lo \
-	libscistring_la-StringConvert.lo \
+	libscistring_la-isalphanum.lo libscistring_la-StringConvert.lo \
 	libscistring_la-scistrtostr.lo
 am__objects_2 =
 am__objects_3 = libscistring_la-gw_string.lo \
@@ -444,7 +443,6 @@ src/c/stringsstrrchr.c \
 src/c/stringsstrrev.c \
 src/c/stringsCompare.c \
 src/c/isalphanum.c \
-src/c/NumTokens.c \
 src/c/StringConvert.c \
 src/c/scistrtostr.c
 
@@ -655,7 +653,6 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-InitializeString.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-NumTokens.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-StringConvert.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-code2str.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-convstr.Plo@am__quote@
@@ -877,13 +874,6 @@ libscistring_la-isalphanum.lo: src/c/isalphanum.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/isalphanum.c' object='libscistring_la-isalphanum.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-isalphanum.lo `test -f 'src/c/isalphanum.c' || echo '$(srcdir)/'`src/c/isalphanum.c
-
-libscistring_la-NumTokens.lo: src/c/NumTokens.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-NumTokens.lo -MD -MP -MF $(DEPDIR)/libscistring_la-NumTokens.Tpo -c -o libscistring_la-NumTokens.lo `test -f 'src/c/NumTokens.c' || echo '$(srcdir)/'`src/c/NumTokens.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscistring_la-NumTokens.Tpo $(DEPDIR)/libscistring_la-NumTokens.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/NumTokens.c' object='libscistring_la-NumTokens.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-NumTokens.lo `test -f 'src/c/NumTokens.c' || echo '$(srcdir)/'`src/c/NumTokens.c
 
 libscistring_la-StringConvert.lo: src/c/StringConvert.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-StringConvert.lo -MD -MP -MF $(DEPDIR)/libscistring_la-StringConvert.Tpo -c -o libscistring_la-StringConvert.lo `test -f 'src/c/StringConvert.c' || echo '$(srcdir)/'`src/c/StringConvert.c
@@ -1462,7 +1452,7 @@ check-code:
 @GIWS_TRUE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@			echo "GIWS process of $$file ..."; \
-@GIWS_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
+@GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
 
@@ -1566,6 +1556,7 @@ install-data-local:
 		if test -d $(srcdir)/$$dir/; then \
 			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
 			if test -n "$(MACROSSPECIALEXT)"; then \
+				specialExtDir=""; \
 				for specialExt in $(MACROSSPECIALEXT); do \
 					specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
 				done; \

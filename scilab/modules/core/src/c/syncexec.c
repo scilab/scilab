@@ -16,7 +16,7 @@
 #include "core_math.h"
 #include "parse.h"
 #include "stack-def.h" /* C2F(basbrk) */
-#include "Scierror.h"
+#include "do_error_number.h"
 #include "recursionFunction.h"
 /*--------------------------------------------------------------------------*/
 #define Pt (C2F(recu).pt)
@@ -96,12 +96,12 @@ L60:
 L89:
 	if (Top < Rhs) {
 		int lierr = 22;
-		Error(lierr);
+		SciError(lierr);
 		goto L9999;
 	}
 	if (Top - Rhs + Lhs + 1 >= Bot) {
 		int lierr = 18;
-		Error(lierr);
+		SciError(lierr);
 		goto L9999;
 	}
 	goto L91;
@@ -116,7 +116,7 @@ L91:
 	if (k == C2F(recu).krec) {
 		int lierr = 22;
 		C2F(recu).krec = -1;
-		Error(lierr);
+		SciError(lierr);
 		goto L9999;
 	}
 	C2F(recu).krec = -1;
@@ -150,7 +150,7 @@ L95:
 	}
 	if (Fin == 0) {
 		int lierr = 246;
-		Error(lierr);
+		SciError(lierr);
 		if (Err > 0) {
 			goto L9999;
 		}

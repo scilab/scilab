@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -6,6 +6,7 @@
 	ProjectGUID="{C2EDD447-BB60-41A1-973B-8213FCA9ECD4}"
 	RootNamespace="io_f2c"
 	Keyword="Win32Proj"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -57,7 +58,7 @@
 				ExecutionBucket="6"
 				Optimization="0"
 				AdditionalIncludeDirectories="../../../../libs/f2c"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;RANDLIB_F2C_EXPORTS;FORDLL"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;IO_F2C_EXPORTS;FORDLL"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -85,7 +86,7 @@
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
 				AdditionalOptions="/fixed:no"
-				AdditionalDependencies="Libscilab.lib output_stream_f.lib"
+				AdditionalDependencies="Libscilab.lib output_stream_f.lib io.lib"
 				OutputFile="$(SolutionDir)bin\io_f.dll"
 				LinkIncremental="2"
 				ModuleDefinitionFile="io_f.def"
@@ -155,7 +156,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="../../../../libs/f2c"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;RANDLIB_F2C_EXPORTS;FORDLL"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;IO_F2C_EXPORTS;FORDLL"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -179,7 +180,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/fixed:no"
-				AdditionalDependencies="Libscilab.lib output_stream_f.lib"
+				AdditionalDependencies="Libscilab.lib output_stream_f.lib io.lib"
 				OutputFile="$(SolutionDir)bin\io_f.dll"
 				LinkIncremental="2"
 				ModuleDefinitionFile="io_f.def"
@@ -243,7 +244,7 @@
 				Name="VCCLCompilerTool"
 				WholeProgramOptimization="false"
 				AdditionalIncludeDirectories="../../../../libs/f2c"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;RANDLIB_F2C_EXPORTS;FORDLL"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;IO_F2C_EXPORTS;FORDLL"
 				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
@@ -264,7 +265,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Libscilab.lib output_stream_f.lib"
+				AdditionalDependencies="Libscilab.lib output_stream_f.lib io.lib"
 				OutputFile="$(SolutionDir)bin\io_f.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="io_f.def"
@@ -332,7 +333,7 @@
 				Name="VCCLCompilerTool"
 				WholeProgramOptimization="false"
 				AdditionalIncludeDirectories="../../../../libs/f2c"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;RANDLIB_F2C_EXPORTS;FORDLL"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;IO_F2C_EXPORTS;FORDLL"
 				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="1"
 				UsePrecompiledHeader="0"
@@ -353,7 +354,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Libscilab.lib output_stream_f.lib"
+				AdditionalDependencies="Libscilab.lib output_stream_f.lib io.lib"
 				OutputFile="$(SolutionDir)bin\io_f.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="io_f.def"
@@ -399,10 +400,6 @@
 			>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\intfile.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intmgetl.c"
 				>
 			</File>
 			<File
@@ -499,10 +496,6 @@
 			>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\intfile.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intmgetl.f"
 				>
 			</File>
 			<File

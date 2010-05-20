@@ -8,6 +8,7 @@
 // <-- ENGLISH IMPOSED -->
 // <-- LONG TIME EXECUTION -->
 // Unitary test for conversion of Matlab function: REPMAT
+exec("SCI/modules/m2sci/tests/unit_tests/utils/m2sciTestConversionNoExe.sci", -1);
 mprintf("%s\n", m2sciTestConversionNoExe("REPMAT"));
   ****** Beginning of mfile2sci() session ******
   File to convert: SCI/modules/m2sci/tests/unit_tests/mfilesnoexec/REPMAT.m
@@ -22,28 +23,9 @@ mprintf("%s\n", m2sciTestConversionNoExe("REPMAT"));
   Syntax modification: Done
   Macro to tree conversion...
   Conversion of M-tree...
-  ! L.26: real(n) may be replaced by:
-  !     n if n is Real.
-  ! L.27: real(n) may be replaced by:
-  !     n if n is Real.
-  ! L.28: real(n) may be replaced by:
-  !     n if n is Real.
-  ! L.52: real(m1) may be replaced by:
-  !     m1 if m1 is Real.
-  ! L.52: real(n1) may be replaced by:
-  !     n1 if n1 is Real.
-  ! L.53: real(m1) may be replaced by:
-  !     m1 if m1 is Real.
-  ! L.53: real(n1) may be replaced by:
-  !     n1 if n1 is Real.
-  ! L.54: real(m1) may be replaced by:
-  !     m1 if m1 is Real.
-  ! L.54: real(n1) may be replaced by:
-  !     n1 if n1 is Real.
   Conversion of M-tree: Done
 TESTING M2SCI: creating varslist file...
   Macro to tree conversion: Done
-  Translation may be improved: see the //! comments and for all mtlb_<funname> function call\n  Type help mtlb_<funname> in Scilab command window to get information about improvements.
   ****** End of mfile2sci() session ******
 
 // Display mode
@@ -83,9 +65,9 @@ O = mtlb_repmat(1==1,m);
 P = mtlb_repmat("str1",m);
 
 
-Q = ones(real(n),real(n)) .*. 2;
-R = ones(real(n),real(n)) .*. bool2s(1==1);
-S = asciimat(ones(real(n),real(n)) .*. asciimat("str1"));
+Q = ones(n,n) .*. 2;
+R = ones(n,n) .*. bool2s(1==1);
+S = asciimat(ones(n,n) .*. asciimat("str1"));
 
 A1 = ones(2,3) .*. 2;
 B1 = ones(2,3) .*. [2,2];
@@ -109,9 +91,9 @@ P1 = asciimat(ones(m2,n2) .*. asciimat("str1"));
 
 
 
-Q1 = ones(real(m1),real(n1)) .*. 2;
-R1 = ones(real(m1),real(n1)) .*. bool2s(1==1);
-S1 = asciimat(ones(real(m1),real(n1)) .*. asciimat("str1"));
+Q1 = ones(m1,n1) .*. 2;
+R1 = ones(m1,n1) .*. bool2s(1==1);
+S1 = asciimat(ones(m1,n1) .*. asciimat("str1"));
 
 T = ones(2,2) .*. ones(2,2,2)
 %v0 = [2,2];

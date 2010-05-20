@@ -8,13 +8,12 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-10-26 15:55+0000\n"
+"PO-Revision-Date: 2010-02-16 11:51+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -38,7 +37,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Not enough points for the fit.\n"
-msgstr ""
+msgstr "%s: Non ci sono punti sufficienti per l'interpolazione.\n"
 
 #, c-format
 msgid "%s: Problem with 'flag' = %d\n"

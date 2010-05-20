@@ -19,5 +19,6 @@ testtxt = ["function bug_3543()";
 "a = st.val(1,index);";
 "endfunction"];
 mputl(testtxt, TMPDIR+filesep()+"bug_3543.sci");
+exec(TMPDIR+filesep()+"bug_3543.sci");
 generated = tree2code(macr2tree(bug_3543));
 if generated(4)<>testtxt(4) | generated(5)<>testtxt(5) then bugmes();quit;end

@@ -13,7 +13,9 @@
 // Completion delete some characters of the string we are typing (With NW mode).
 // <-- JVM NOT MANDATORY -->
 ilib_verbose(0);
+ierr = exec(SCI+"/modules/completion/tests/utilities/build_primitives.sce","errcatch",-1);
 if ierr<>0 then bugmes();quit;end
+ierr = exec(SCI+"/modules/completion/tests/utilities/loader.sce","errcatch",-1);
 if ierr<>0 then bugmes();quit;end
 // cd SCI/mod<TAB>
 currentline = 'cd SCI/mod';
@@ -39,7 +41,7 @@ r = completion(getfilepartlevel(currentline),'files');
 if r <> 'tests' + filesep() then bugmes();quit;end
 newline = completeline(currentline,r,getfilepartlevel(currentline),getpartlevel(currentline),%t);
 if newline <> 'cd SCI/modules/fileio/tests' + filesep() then bugmes();quit;end
-// cd SCI/modules/fileio/tests/u<TAB>
+// cd SCI/modules/fileio/tests/u<TAB> 
 currentline = 'cd SCI/modules/fileio/tests/u';
 r = getfilepartlevel(currentline);
 if r <> 'SCI/modules/fileio/tests/u' then bugmes();quit;end

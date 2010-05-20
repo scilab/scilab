@@ -40,6 +40,7 @@
           interpreter in which the operation has to be performed. If not
           provided, it defaults to the main tcl interpreter created by
           Scilab.</para>
+
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -53,6 +54,7 @@
   <refsection>
     <title>Description</title>
     <para>This routine allows to unset a tcl variable.</para>
+    <para>More information about Tcl/Tk: <ulink url="http://www.tcl.tk/doc/">http://www.tcl.tk/doc/</ulink></para>
   </refsection>
   <refsection>
     <title>Examples</title>

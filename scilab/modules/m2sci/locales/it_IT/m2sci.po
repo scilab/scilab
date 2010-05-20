@@ -8,13 +8,12 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-12-16 13:04+0000\n"
+"PO-Revision-Date: 2010-02-16 12:24+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -193,6 +192,8 @@ msgstr "// Numero di argomenti nella chiamata di funzione"
 
 msgid "// Output variables initialisation (not found in input variables)"
 msgstr ""
+"// Inizializzazione delle variabili in uscita (non trovate nelle variabili "
+"in ingresso)"
 
 msgid "0"
 msgstr "0"

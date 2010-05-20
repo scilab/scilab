@@ -8,13 +8,12 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-02-27 18:16+0100\n"
-"PO-Revision-Date: 2009-12-12 17:25+0000\n"
+"PO-Revision-Date: 2010-04-10 18:49+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid "                 Consortium Scilab (DIGITEO)\n"
@@ -23,8 +22,8 @@ msgstr "                 Consorci Scilab (DIGITEO)\n"
 msgid "               Copyright (c) 1989-2007 (ENPC)\n"
 msgstr "               Copyright (c) 1989-2007 (ENPC)\n"
 
-msgid "               Copyright (c) 1989-2009 (INRIA)\n"
-msgstr "               Copyright (c) 1989-2009 (INRIA)\n"
+msgid "               Copyright (c) 1989-2010 (INRIA)\n"
+msgstr "               Copyright (c) 1989-2010 (INRIA)\n"
 
 msgid "  loading initial environment"
 msgstr "  s'està carregant l'entorn inicial"
@@ -658,6 +657,10 @@ msgid "%s: Wrong type value.\n"
 msgstr "%s: Tipus de valor incorrecte.\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: \"%s\" expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s'.\n"
@@ -879,31 +882,8 @@ msgstr "S'està comprovant: %s\n"
 msgid "Commands:\n"
 msgstr "Comandes:\n"
 
-#, c-format
-msgid "Compilation date: %s"
-msgstr "Data de compilació: %s"
-
-#, c-format
-msgid "Compilation time: %s"
-msgstr "Hora de compilació: %s"
-
-#, c-format
-msgid "Compiled with %s"
-msgstr "Compilat amb %s"
-
-#, c-format
-msgid "Compiler Architecture: %s"
-msgstr "Arquitectura de compilació: %s"
-
-#, c-format
-msgid "Directory separator: %s"
-msgstr "Separador de directoris: %s"
-
 msgid "Do you really want to abort computation (y or n ?) \n"
 msgstr "Esteu segur que voleu aturar el càlcul (y o n ?) \n"
-
-msgid "Enable"
-msgstr "Activa"
 
 msgid "Error"
 msgstr "Error"
@@ -970,10 +950,10 @@ msgstr ""
 #, c-format
 msgid ""
 "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
-"contains <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
+"contain <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
 msgstr ""
-"Error: Fitxer de versio %s incorrecte (hauria de començar per "
-"<MODULE_VERSION> i conté <VERSION major='' minor='' maintenance='' "
+"Error: La versió del fitxer %s no és vàlida (hauria de començar amb "
+"<MODULE_VERSION> i contenir <VERSION major='' minor='' maintenance='' "
 "revision='' string=''>)\n"
 
 #, c-format
@@ -982,18 +962,6 @@ msgstr "Error: No s'ha pogut analitzar el fitxer %s\n"
 
 msgid "Fatal Error: Can't create table for scilab functions.\n"
 msgstr "Error crític: No es pot crear la taula de funcions de Scilab.\n"
-
-msgid "Free Extended Memory (Kbytes): %*I64d"
-msgstr "Memòria extesa lliure (Kbytes): %*I64d"
-
-msgid "Free Paging File (Kbytes): %*I64d"
-msgstr "Fitxer de paginació lliure (Kbytes): %*I64d"
-
-msgid "Free Physical Memory (Kbytes): %*I64d"
-msgstr "Memòria física lliure (Kbytes): %*I64d"
-
-msgid "Free Virtual Memory (Kbytes): %*I64d"
-msgstr "Memòria virtual lliure (Kbytes): %*I64d"
 
 msgid "Functions compiled with very old versions are no more handled."
 msgstr ""
@@ -1039,33 +1007,14 @@ msgstr "El domini temporal no és vàlid.\n"
 msgid "List full.\n"
 msgstr "La llista està plena.\n"
 
-#, c-format
-msgid "Memory in use: %*ld %%"
-msgstr "Memòria utilitzada: %*ld %%"
-
 msgid "No space to allocate Scilab stack.\n"
 msgstr "No hi ha prou espai per a la pila de Scilab.\n"
-
-#, c-format
-msgid "Number of processors: %d"
-msgstr "Nombre de processadors: %d"
-
-msgid "Operating System: "
-msgstr "Sistema operatiu: "
 
 msgid "Optional argument list is empty.\n"
 msgstr "La llista d'arguments opcionals és buida.\n"
 
 msgid "Optional arguments list: \n"
 msgstr "Llista d'arguments opcionals: \n"
-
-#, c-format
-msgid "PCRE Version: %d.%d"
-msgstr "Versió del PCRE: %d.%d"
-
-#, c-format
-msgid "Path separator: %s"
-msgstr "Sepador del camí: %s"
 
 msgid "SCI environment variable not defined.\n"
 msgstr "No s'ha definit la variable d'entorn SCI.\n"
@@ -1091,39 +1040,14 @@ msgstr ""
 "Versió de Scilab \"%d.%d.%d.%d\"\n"
 "%s\n"
 
-#, c-format
-msgid "Screen size: %d x %d %d bits"
-msgstr "Mida de la pantalla: %d x %d %d bits"
-
 msgid "Startup execution:"
 msgstr "Execució a l'arrancada:"
-
-#, c-format
-msgid "TCL version: %s"
-msgstr "Versió de TCL: %s"
-
-#, c-format
-msgid "TK version: %s"
-msgstr "Versió de TK: %s"
 
 msgid "TMPDIR not defined.\n"
 msgstr "No s'ha definit el TMPDIR.\n"
 
-#, c-format
-msgid "Tcl/Tk: %s"
-msgstr "Tcl/Tk: %s"
-
 msgid "The SCI environment variable is not set.\n"
 msgstr "No s'ha establert la variable d'entorn SCI.\n"
-
-msgid "Total Paging File (Kbytes): %*I64d"
-msgstr "Fitxer de paginació total (Kbytes): %*I64d"
-
-msgid "Total Physical Memory (Kbytes): %*I64d"
-msgstr "Memòria física total (Kbytes): %*I64d"
-
-msgid "Total Virtual Memory (Kbytes): %*I64d"
-msgstr "Memòria virtual total (Kbytes): %*I64d"
 
 msgid "Trying to stop scilab in the middle of an interface.\n"
 msgstr "S'ha intentat aturar el Scilab al mig d'una interfície.\n"
@@ -1141,18 +1065,6 @@ msgstr "Les variables d'usuari són:"
 #, c-format
 msgid "Using %s elements ouf of %s"
 msgstr "S'estan utilitzant %s elements de %s"
-
-#, c-format
-msgid "Version: %s"
-msgstr "Versió: %s"
-
-#, c-format
-msgid "Video card driver version: %s"
-msgstr "Versió del controlador de la targeta de vídeo: %s"
-
-#, c-format
-msgid "Video card: %s"
-msgstr "Targeta de vídeo: %s"
 
 #, c-format
 msgid "WARNING: %s"
@@ -1175,10 +1087,6 @@ msgid ""
 msgstr ""
 "Avís: l'equip operacional del Consorci Scilab\n"
 "no proporciona suport per a aquesta versió de Scilab feta amb\n"
-
-#, c-format
-msgid "XML version: %s"
-msgstr "Versió d'XML: %s"
 
 msgid "Your global variables are:"
 msgstr "Les vostres variables globals són:"

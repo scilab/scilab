@@ -1,12 +1,12 @@
 #
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) INRIA   - 2006 - Sylvestre Ledru
-# Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
-# 
+# Copyright (C) DIGITEO - 2009-2010 - Pierre MARECHAL
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 #
 
@@ -22,7 +22,8 @@ libscigraphics_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 libscigraphics_la_etcdir = $(mydatadir)/etc
 libscigraphics_la_etc_DATA = etc/graphics.quit etc/graphics.start
 
-
+#### graphics : datatips sub-module ####
+MACROSDIRSEXT = macros/datatips
 
 # the module Doublylinkedlist  is included here... of course, it is not
 # used in the mode without gui but It causes some silly problems with includes
@@ -426,7 +427,7 @@ libscigraphics_la_CFLAGS +=	$(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/api_scilab/includes/ \
 				-I$(top_srcdir)/modules/graphic_export/includes/
 
-libscigraphics_la_CXXFLAGS =  	-Iincludes/ \
+libscigraphics_la_CPPFLAGS =  	-Iincludes/ \
 				-Isrc/c/ $(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/jvm/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes/ \

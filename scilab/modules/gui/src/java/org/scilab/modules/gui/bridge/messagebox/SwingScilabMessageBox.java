@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent Couvert
+ * Copyright (C) 2010 - DIGITEO - Vincent Couvert
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,6 +15,7 @@ package org.scilab.modules.gui.bridge.messagebox;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -43,12 +45,19 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 import javax.swing.JToggleButton;
 import javax.swing.ListSelectionModel;
+import javax.swing.UIManager;
+import javax.swing.event.HyperlinkEvent;
+import javax.swing.event.HyperlinkListener;
+import javax.swing.text.html.HTMLEditorKit;
+import javax.swing.text.html.StyleSheet;
 
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.messagebox.SimpleMessageBox;
 import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.utils.WebBrowser;
 
 /**
  * Swing implementation of a Scilab MessageBox
@@ -218,7 +227,33 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 		super.setTitle(title);
 
 		// Create the message to display
-		JLabel messageLabel = new JLabel(message);
+		JTextPane messageLabel = new JTextPane();
+		messageLabel.setContentType("text/html");
+		messageLabel.setOpaque(false);
+		messageLabel.setBorder(null);
+		messageLabel.setEditable(false);
+		
+		// Update the stylesheet so that the font matches JLabel font
+		Font labelFont = UIManager.getFont("Label.font");
+		HTMLEditorKit editorKit = (HTMLEditorKit) messageLabel.getEditorKit();
+		StyleSheet styles = editorKit.getStyleSheet();
+		String css = "body {font-family:\"" + labelFont.getName()
+					+ "\"; font-size:\"" + labelFont.getSize() + "pt\"}";
+		styles.addRule(css);
+		editorKit.setStyleSheet(styles);
+		messageLabel.setEditorKit(editorKit);
+
+		messageLabel.setText(message);
+		
+		/* Add a link to make HTML links active */
+		messageLabel.addHyperlinkListener(new HyperlinkListener() {
+			public void hyperlinkUpdate(HyperlinkEvent e) {
+				if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
+					WebBrowser.openUrl(e.getURL().toString());
+				}
+			}
+		});
+
 		JScrollPane messageScrollPane = new JScrollPane(messageLabel);
 		int scrollWidth = (int) Math.min(WINDOW_WIDTH, messageLabel.getPreferredSize().getWidth() + OFFSET);
 		int scrollHeight = (int) Math.min(MESSAGE_HEIGHT, messageLabel.getPreferredSize().getHeight() + OFFSET);

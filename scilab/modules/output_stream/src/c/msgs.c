@@ -768,7 +768,7 @@ static int msg_31(int *n, int *ierr)
 {
     /*int cerr=-1;*/
 	sciprint(_("Warning: stack problem..., cleared.\n"));
-	/*Error(cerr);*/
+	/*SciError(cerr);*/
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

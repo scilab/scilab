@@ -26,7 +26,9 @@ extern "C"
 #include "gw_gui.h"
 #include "getScilabJavaVM.h"
 #include "getFullFilename.h"
+#include "loadOnUseClassPath.h"
 }
+static BOOL loadedDep = FALSE;
 /*--------------------------------------------------------------------------*/
 using namespace org_scilab_modules_gui_bridge;
 /*--------------------------------------------------------------------------*/
@@ -39,6 +41,12 @@ int sci_toprint(char *fname,unsigned long l)
 
 	CheckRhs(1,2);
 	CheckLhs(0,1);
+
+	if (!loadedDep)
+	{
+	  loadOnUseClassPath("pdf_ps_eps_graphic_export");
+	  loadedDep=TRUE;
+	}
 
 	/* File or figure print */
 	if (Rhs == 1)
@@ -92,7 +100,15 @@ int sci_toprint(char *fname,unsigned long l)
 					num_win=*istk(l1);
 					if (num_win>=0)
 					{
-						*paramoutINT = (int)CallScilabBridge::printFigure(getScilabJavaVM(), num_win, FALSE, FALSE);
+					  try
+                      {
+                          *paramoutINT = (int)CallScilabBridge::printFigure(getScilabJavaVM(), num_win, FALSE, FALSE);
+					  }
+                      catch (const GiwsException::JniException& e)
+                      {
+					      Scierror(999,_("%s: An exception occurred: %s\n%s\n"), fname, e.getJavaDescription().c_str(), e.getJavaExceptionName().c_str());
+                      }
+
 					}
 					else
 					{
@@ -199,6 +215,8 @@ int sci_toprint(char *fname,unsigned long l)
 
 					if ( (strcmp(param,"pos")==0) || (strcmp(param,"gdi")==0) )
 					{
+					  try
+					  {
 						if ( strcmp(param,"pos")==0 )
 						{
 							*paramoutINT = (int)CallScilabBridge::printFigure(getScilabJavaVM(), num_win, TRUE, FALSE);
@@ -207,6 +225,12 @@ int sci_toprint(char *fname,unsigned long l)
 						{
 							*paramoutINT = (int)CallScilabBridge::printFigure(getScilabJavaVM(), num_win, FALSE, FALSE);
 						}
+					  }
+                      catch (const GiwsException::JniException& e)
+					  {
+					      Scierror(999,_("%s: An exception occurred: %s\n%s\n"), fname, e.getJavaDescription().c_str(), e.getJavaExceptionName().c_str());
+					  }
+
 					}
 					else
 					{

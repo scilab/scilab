@@ -8,13 +8,12 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-03-04 10:13+0000\n"
-"Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
+"PO-Revision-Date: 2010-05-03 07:50+0000\n"
+"Last-Translator: Sylvestre Ledru <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -34,8 +33,12 @@ msgid "%s: No such file or directory.\n"
 msgstr "%s: keine solche Datei oder Verzeichnis.\n"
 
 #, c-format
-msgid "%s: Unknow type or not yet implemented\n"
+msgid "%s: Unknown type or not yet implemented\n"
 msgstr "%s: unbekannter Typ oder noch nicht implementiert\n"
+
+#, c-format
+msgid "%s: Unknown type or not yet implemented.\n"
+msgstr "%s: unbekannter Typ oder noch nicht implementiert.\n"
 
 #, c-format
 msgid "%s: Wrong first input argument: '%s' or '%s' expected.\n"
@@ -45,14 +48,18 @@ msgstr "%s: falsches erstes Eingangsargument: '%s' oder '%s' erwartet.\n"
 msgid "%s: work space (stacksize) is too small d\n"
 msgstr "%s: Arbeistbereich (Stackgröße) ist zu klein d.\n"
 
+#, c-format
+msgid "%s: work space (stacksize) is too small.\n"
+msgstr "%s: Arbeitsbereich (Stapelgröße) ist zu klein.\n"
+
 msgid "(group,instance) already exists"
 msgstr "(Gruppe, Instanz) existierte bereits"
 
+msgid "Already doing operation"
+msgstr "Arbeit im Begriff"
+
 msgid "Already in group"
 msgstr "bereist in Gruppe"
-
-msgid "Already oing operation"
-msgstr "Bereist ausführende Operation"
 
 msgid "Bad message id"
 msgstr "Falsche ID der Nachricht"
@@ -82,8 +89,8 @@ msgid "Error pvm_reduce: Not scalar type\n"
 msgstr "Fehler beim pvm_reduce: kein Skalartyp.\n"
 
 #, c-format
-msgid "Error pvm_reduce: Unknow reduction operation %s\n"
-msgstr "ehler beim pvm_reduce: unbekannte Reduktion Operation %s\n"
+msgid "Error pvm_reduce: Unknown reduction operation %s\n"
+msgstr "Fehler pvm_reduce: unbekannte Reduktionsoperation %s\n"
 
 msgid "Failed to exec new slave pvmd"
 msgstr "Fehler beim Ausführen des untergeodneten pvmd"
@@ -130,8 +137,8 @@ msgstr "Null Gruppenname illegal"
 msgid "OK"
 msgstr "OK"
 
-msgid "Out of ressources"
-msgstr "Keine weiteren Ressourcen"
+msgid "Out of resources"
+msgstr "Nicht genügend Ressourcen verfügbar"
 
 msgid "PVM exists"
 msgstr "PVM existiert"
@@ -175,7 +182,7 @@ msgid ""
 "The standard configuration file $SCI%s%s needs the environment variables %s, "
 "%s, %s to be set. PVM can not be started.\n"
 msgstr ""
-"Die Standart Konfigurationsdatei $SCI%s%s benötigt die Umgebungsvariablen "
+"Die Standard Konfigurationsdatei $SCI%s%s benötigt die Umgebungsvariablen "
 "%s, %s, %s gesetzt. PVM kann nicht gestartet werden.\n"
 
 msgid "Unknown Error"

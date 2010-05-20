@@ -239,7 +239,7 @@
 clf();  // apagando/criando janela
 a=gca();a.data_bounds=[0 0;100 100];//ajustando cooredenadas do usuário
 xtitle(" drawing a rectangle ") //adicionando um título
-xselect(); //pondo a janela no topo
+show_window(); //pondo a janela no topo
 
 [b,xc,yc]=xclick(); //retornando um ponto
 xrect(xc,yc,0,0) //desenhando a entidade Rectangle

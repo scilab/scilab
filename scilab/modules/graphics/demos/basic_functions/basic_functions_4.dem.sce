@@ -1,9 +1,7 @@
-//
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA
 //
-// This file is distributed under the same license as the Scilab package.
-//
+// This file is released into the public domain
 
 mode(-1);
 
@@ -35,6 +33,6 @@ execstr(expr);
 
 // Demo IV.2
 expr=["scf(0); fec();";
-"xselect();";]
+"show_window();";]
 messagebox(["[IV.2] Creating window number 0";expr],"modal");
 execstr(expr);

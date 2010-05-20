@@ -82,7 +82,7 @@ int sci_whereis(char *fname,unsigned long fname_len)
 		char **librariesResult = NULL;
 		int librariesResultSize = 0;
 
-		sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m, &n, &lenStVarOne, &pStVarOne);
+		sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m, &n, &lenStVarOne, NULL);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -98,7 +98,7 @@ int sci_whereis(char *fname,unsigned long fname_len)
 		pStVarOne = (char*)MALLOC(sizeof(char)*(lenStVarOne + 1));
 		if (pStVarOne == NULL)
 		{
-			Scierror(999,_("%s : Memory allocation error.\n"),fname);
+			Scierror(999,_("%s: Memory allocation error.\n"),fname);
 			return 0;
 		}
 

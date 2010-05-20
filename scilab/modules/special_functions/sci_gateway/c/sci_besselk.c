@@ -151,7 +151,7 @@ int sci_besselk(char *fname,unsigned long fname_len)
   if (ierr==2) {
     if ( C2F(errgst).ieee==0) { 
       ierr=69;
-      Error(ierr);
+      SciError(ierr);
     }
     else if ( C2F(errgst).ieee==1) {
      ierr=63;
@@ -166,7 +166,7 @@ int sci_besselk(char *fname,unsigned long fname_len)
   else if (ierr==4||ierr==5) {
     if ( C2F(errgst).ieee==0) { 
       ierr=69;
-      Error(ierr);
+      SciError(ierr);
     }
     else if ( C2F(errgst).ieee==1) {
      ierr=107;

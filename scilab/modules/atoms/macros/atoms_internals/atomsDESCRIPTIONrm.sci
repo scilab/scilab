@@ -16,7 +16,7 @@
 // |
 // |-- packages
 // |   |-- toolbox_1                         [1x1 struct]
-// |   |   |-- 2.0                           [1x1 struct] 
+// |   |   |-- 2.0                           [1x1 struct]
 // |   |   |   |-- Toolbox: "toolbox_2"
 // |   |   |   |-- Title: "Toolbox Test 2"
 // |   |   |   |-- Version: "2.0"
@@ -33,86 +33,86 @@
 // |-- categories_flat
 
 function tree_out = atomsDESCRIPTIONrm( tree_in , package_name , package_version )
-	
-	// Check input parameters number
-	// =========================================================================
-	
-	rhs  = argn(2);
-	
-	if rhs <> 3 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsDESCRIPTIONrm",3));
-	end
-	
-	// Check input parameters type
-	// =========================================================================
-	
-	if type(tree_in) <> 17 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: Struct expected.\n"),"atomsDESCRIPTIONrm",1));
-	end
-	
-	if type(package_name) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsDESCRIPTIONrm",2));
-	end
-	
-	if type(package_version) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsDESCRIPTIONrm",3));
-	end
-	
-	// Check input parameters size
-	// =========================================================================
-	
-	if size(package_name,"*") <> 1 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsDESCRIPTIONrm",2));
-	end
-	
-	if size(package_version,"*") <> 1 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsDESCRIPTIONrm",3));
-	end
-	
-	// And now ... action
-	// =========================================================================
-	
-	tree_out     = struct();
-	packages_out = struct();
-	
-	if isfield(tree_in,"packages") then
-		packages_in = tree_in("packages");
-	else
-		return;
-	end
-	
-	package_names      = getfield(1,packages_in);
-	package_names(1:2) = [];
-	
-	for i=1:size(package_names,"*")
-		
-		if package_names(i) <> package_name then
-			packages_out(package_names(i)) = packages_in(package_names(i));
-			continue;
-		end
-		
-		package_versions_out  = struct();
-		package_versions_in   = packages_in(package_names(i));
-		package_versions      = getfield(1,package_versions_in);
-		package_versions(1:2) = [];
-		package_versions_size = size(package_versions,"*");
-		
-		if (package_versions_size == 1) & (package_versions == package_version) then
-			continue;
-		end
-		
-		for j=1:package_versions_size
-			if package_versions(j) <> package_version then
-				package_versions_out(package_versions(j)) = package_versions_in(package_versions(j));
-			else
-				is_present = %T;
-			end
-		end
-		
-		packages_out(package_names(i)) = package_versions_out;
-		
-	end
-	
-	tree_out("packages") = packages_out;
-	
+
+    // Check input parameters number
+    // =========================================================================
+
+    rhs  = argn(2);
+
+    if rhs <> 3 then
+        error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsDESCRIPTIONrm",3));
+    end
+
+    // Check input parameters type
+    // =========================================================================
+
+    if type(tree_in) <> 17 then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Struct expected.\n"),"atomsDESCRIPTIONrm",1));
+    end
+
+    if type(package_name) <> 10 then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsDESCRIPTIONrm",2));
+    end
+
+    if type(package_version) <> 10 then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsDESCRIPTIONrm",3));
+    end
+
+    // Check input parameters size
+    // =========================================================================
+
+    if size(package_name,"*") <> 1 then
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsDESCRIPTIONrm",2));
+    end
+
+    if size(package_version,"*") <> 1 then
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsDESCRIPTIONrm",3));
+    end
+
+    // And now ... action
+    // =========================================================================
+
+    tree_out     = struct();
+    packages_out = struct();
+
+    if isfield(tree_in,"packages") then
+        packages_in = tree_in("packages");
+    else
+        return;
+    end
+
+    package_names      = getfield(1,packages_in);
+    package_names(1:2) = [];
+
+    for i=1:size(package_names,"*")
+
+        if package_names(i) <> package_name then
+            packages_out(package_names(i)) = packages_in(package_names(i));
+            continue;
+        end
+
+        package_versions_out  = struct();
+        package_versions_in   = packages_in(package_names(i));
+        package_versions      = getfield(1,package_versions_in);
+        package_versions(1:2) = [];
+        package_versions_size = size(package_versions,"*");
+
+        if (package_versions_size == 1) & (package_versions == package_version) then
+            continue;
+        end
+
+        for j=1:package_versions_size
+            if package_versions(j) <> package_version then
+                package_versions_out(package_versions(j)) = package_versions_in(package_versions(j));
+            else
+                is_present = %T;
+            end
+        end
+
+        packages_out(package_names(i)) = package_versions_out;
+
+    end
+
+    tree_out("packages") = packages_out;
+
 endfunction

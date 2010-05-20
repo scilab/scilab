@@ -154,7 +154,7 @@ int C2F(sci_file)(char *fname,unsigned long fname_len)
 			}
 
 			// get lenStVarOne value
-			sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
+			sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, NULL);
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
@@ -165,7 +165,7 @@ int C2F(sci_file)(char *fname,unsigned long fname_len)
 			pStVarOne = (char*)MALLOC(sizeof(char)*(lenStVarOne + 1));
 			if (pStVarOne == NULL)
 			{
-				Scierror(999,_("%s : Memory allocation error.\n"),fname);
+				Scierror(999,_("%s: Memory allocation error.\n"),fname);
 				return 0;
 			}
 
@@ -182,7 +182,7 @@ int C2F(sci_file)(char *fname,unsigned long fname_len)
 				FREE(pStVarOne); pStVarOne = NULL;
 
 				// get lenStVarThree value
-				sciErr = getMatrixOfString(pvApiCtx, piAddressVarThree, &m3, &n3, &lenStVarThree, &pStVarThree);
+				sciErr = getMatrixOfString(pvApiCtx, piAddressVarThree, &m3, &n3, &lenStVarThree, NULL);
 				if(sciErr.iErr)
 				{
 					printError(&sciErr, 0);
@@ -193,7 +193,7 @@ int C2F(sci_file)(char *fname,unsigned long fname_len)
 				pStVarThree = (char*)MALLOC(sizeof(char)*(lenStVarThree + 1));
 				if (pStVarThree == NULL)
 				{
-					Scierror(999,_("%s : Memory allocation error.\n"),fname);
+					Scierror(999,_("%s: Memory allocation error.\n"),fname);
 					return 0;
 				}
 
@@ -210,7 +210,7 @@ int C2F(sci_file)(char *fname,unsigned long fname_len)
 					FREE(pStVarThree); pStVarThree = NULL; 
 
 					// get lenStVarTwo value
-					sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
+					sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, NULL);
 					if(sciErr.iErr)
 					{
 						printError(&sciErr, 0);
@@ -221,7 +221,7 @@ int C2F(sci_file)(char *fname,unsigned long fname_len)
 					pStVarTwo = (wchar_t*)MALLOC(sizeof(wchar_t)*(lenStVarTwo + 1));
 					if (pStVarTwo == NULL)
 					{
-						Scierror(999,_("%s : Memory allocation error.\n"),fname);
+						Scierror(999,_("%s: Memory allocation error.\n"),fname);
 						return 0;
 					}
 

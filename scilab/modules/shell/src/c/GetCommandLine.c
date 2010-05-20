@@ -24,11 +24,10 @@
 #include "MALLOC.h"
 #include "prompt.h"
 #include "HistoryManager.h"
-#include "dynamic_menus.h" /* for ismenu() */
+#include "storeCommand.h" /* for ismenu() */
 #include "zzledt.h"
 #include "GetCommandLine.h"
 #include "TermReadAndProcess.h"
-#include "stack-def.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif

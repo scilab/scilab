@@ -969,9 +969,9 @@ int isNamedEmptyMatrix(void* _pvCtx, char* _pstName)
 int createEmptyMatrix(void* _pvCtx, int _iVar)
 {
 	SciErr sciErr;
-	double dblReal = 1;
+	double dblReal = 0;
 
-	sciErr = createMatrixOfDouble(_pvCtx, _iVar, -1, -1, &dblReal);
+	sciErr = createMatrixOfDouble(_pvCtx, _iVar, 0, 0, &dblReal);
 	if(sciErr.iErr)
 	{
 		addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createEmptyMatrix");
@@ -985,9 +985,9 @@ int createEmptyMatrix(void* _pvCtx, int _iVar)
 int createNamedEmptyMatrix(void* _pvCtx, char *_pstName)
 {
 	SciErr sciErr;
-	double dblOne = 1;
+	double dblOne = 0;
 
-	sciErr = createNamedMatrixOfDouble(_pvCtx, _pstName, -1, -1, &dblOne);
+	sciErr = createNamedMatrixOfDouble(_pvCtx, _pstName, 0, 0, &dblOne);
 	if(sciErr.iErr)
 	{
 		addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createNamedEmptyMatrix");

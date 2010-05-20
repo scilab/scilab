@@ -61,7 +61,8 @@ static gw_generic_table Tab[]={
 	{sci_movefile,"movefile"},
 	{sci_basename,"basename"},
 	{sci_pathconvert,"pathconvert"},
-	{sci_chdir,"cd"}
+	{sci_chdir,"cd"},
+    {sci_mgetl,"mgetl"}
 	};
 /*--------------------------------------------------------------------------*/ 
 int gw_fileio(void)
@@ -70,7 +71,7 @@ int gw_fileio(void)
 
 	if(pvApiCtx == NULL)
 	{
-		pvApiCtx = (StrCtx*)MALLOC(sizeof(SciErr));
+		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
 	}
 
 	pvApiCtx->pstName = (char*)Tab[Fin-1].name;

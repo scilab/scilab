@@ -6,4 +6,5 @@ EXPORTS
 ;
 getSCIHOME
 with_module
+StoreCommand
 ;

@@ -1,4 +1,3 @@
-
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA - Allan CORNET
@@ -123,7 +122,7 @@ static int isasciiMatrix(char *fname,int *piAddressVarOne)
 		}
 		else
 		{
-			Scierror(999,_("%s : Memory allocation error.\n"), fname);
+			Scierror(999,_("%s: Memory allocation error.\n"), fname);
 			return 0;
 		}
 	}
@@ -168,7 +167,7 @@ static int isasciiStrings(char *fname,int *piAddressVarOne)
 		int i = 0;
 		int lengthAllStrings = 0;
 
-		sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne,&m1,&n1,lenStVarOne,pwcStVarOne);
+		sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne,&m1,&n1,lenStVarOne, NULL);
 		if(sciErr.iErr)
 		{
 			if (lenStVarOne)
@@ -197,7 +196,7 @@ static int isasciiStrings(char *fname,int *piAddressVarOne)
 				}
 
 				freeArrayOfWideString(pwcStVarOne, m1 * n1);
-				Scierror(999,_("%s : Memory allocation error.\n"), fname);
+				Scierror(999,_("%s: Memory allocation error.\n"), fname);
 				return 0;
 			}
 		}
@@ -276,12 +275,12 @@ static int isasciiStrings(char *fname,int *piAddressVarOne)
 				lenStVarOne = NULL;
 			}
 			freeArrayOfWideString(pwcStVarOne, m1 * n1);
-			Scierror(999,_("%s : Memory allocation error.\n"), fname);
+			Scierror(999,_("%s: Memory allocation error.\n"), fname);
 		}
 	}
 	else
 	{
-		Scierror(999,_("%s : Memory allocation error.\n"), fname);
+		Scierror(999,_("%s: Memory allocation error.\n"), fname);
 	}
 	return 0;
 }

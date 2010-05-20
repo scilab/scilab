@@ -22,6 +22,7 @@
 #include "cvstr.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "do_error_number.h"
 #include "libinter.h"
 
 /* Table of constant values */
@@ -1740,7 +1741,7 @@ int C2F(fakecresmat2)(int *lw,int *nchar,int *lr)
   Err = sadr(il + 4 + (*nchar + 1)) - *Lstk(Bot);
   if (Err > 0) 
   {
-    Error(cx17);
+    SciError(cx17);
     retval = FALSE;
   }
   else

@@ -14,7 +14,6 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -27,9 +26,6 @@ msgstr "點擊 Axes 物件上開始旋轉. 按滑鼠右鍵或鍵盤 ESC 鍵取�
 
 msgid "Click or press ESCAPE to terminate rotation."
 msgstr "點擊或按下 ESC 鍵可中止旋轉."
-
-msgid "Scilab Renderer module not installed.\n"
-msgstr "Scilab Renderer 模組尚未安裝.\n"
 
 msgid "Unable to render polyline, memory full.\n"
 msgstr "記憶體空間已湡,無法渲染多邊線 polyline.\n"

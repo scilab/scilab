@@ -26,7 +26,7 @@ function [x,but]=locate(n,flag)
 
   [lhs,rhs]=argn(0)
   but=[]
-  xselect();
+  show_window();
   if rhs<=1,flag=0;end
   if rhs==0;n=-1;end
 

@@ -99,5 +99,5 @@ function plzr(a,b,c,d)
 	 gettext("Imaginary axis"));
   if legs<>[] then legend(lhandle,legs,1),end
   drawnow()
-  xselect();
+  show_window();
 endfunction

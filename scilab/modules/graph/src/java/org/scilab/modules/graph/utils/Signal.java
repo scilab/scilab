@@ -16,6 +16,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.logging.LogFactory;
+
 /**
  * Perform the communication between java code and scilab code trough an UID.
  */
@@ -35,6 +37,7 @@ public final class Signal {
 	 * @param index
 	 *            The uid we are waiting for.
 	 */
+	// FIXME: why Signal::notify is exported and not Signal::wait
 	public static void wait(String index) {
 		Object data = new Object();
 		waiters.put(index, data);
@@ -43,7 +46,7 @@ public final class Signal {
 			try {
 				data.wait();
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+				LogFactory.getLog(Signal.class).error(e);
 			}
 		}
 	}
@@ -57,6 +60,8 @@ public final class Signal {
 	 *            The uid to be notified. No one is waiting for the uid at time
 	 *            N, this method wait and retry each 100 milliseconds.
 	 */
+	@ScilabExported(module="xcos", filename="XcosUtils.giws.xml")
+	// FIXME: the graph module is dependent of the Xcos native libraries
 	public static void notify(String index) {
 		Object data = waiters.get(index);
 		while (data == null) {
@@ -64,7 +69,7 @@ public final class Signal {
 				Thread.sleep(DELAY_EXEC);
 				data = waiters.get(index);
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+				LogFactory.getLog(Signal.class).error(e);
 			}
 		}
 

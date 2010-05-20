@@ -7,13 +7,12 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-01-17 16:57+0000\n"
-"Last-Translator: yurchor <yurchor@gmail.com>\n"
+"PO-Revision-Date: 2010-04-13 09:08+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-01-21 15:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "Language: uk\n"
 
@@ -28,6 +27,10 @@ msgstr "%s:  №%d збіг батьківських вузлів.\n"
 #, c-format
 msgid "%s: An error occurred: %s.\n"
 msgstr "%s: Сталася помилка: %s.\n"
+
+#, c-format
+msgid "%s: An exception occurred: %s"
+msgstr "%s: сталася помилка типу «виключення»: %s"
 
 #, c-format
 msgid "%s: Could not create 'Uicontrol' handle.\n"
@@ -251,6 +254,14 @@ msgid "%s: Wrong size for input argument #%d: A string matrix expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати матрицю з "
 "рядків.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: It must have same dimensions that "
+"argument #%d.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: розмірність має збігатися "
+"з розмірністю параметра №%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Matrix of strings expected.\n"
@@ -566,6 +577,13 @@ msgstr ""
 "%d» не існує.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати "
+"коректний елемент керування «%s».\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати > %d.\n"
@@ -610,7 +628,7 @@ msgid "&About Scilab..."
 msgstr "П&ро Scilab..."
 
 msgid "&Applications"
-msgstr "&Програми"
+msgstr "П&рограми"
 
 msgid "&Axes properties"
 msgstr "Властивості &осей"
@@ -637,7 +655,7 @@ msgid "&Contributions"
 msgstr "В&нески"
 
 msgid "&Control"
-msgstr "К&ерування"
+msgstr "&Керування"
 
 msgid "&Copy"
 msgstr "&Копіювати"
@@ -685,7 +703,7 @@ msgid "&GIF"
 msgstr "&GIF"
 
 msgid "&Interrupt"
-msgstr "П&ерервати"
+msgstr "П&ризупинити"
 
 msgid "&JPG"
 msgstr "&JPG"
@@ -718,7 +736,7 @@ msgid "&Paste"
 msgstr "&Вставити"
 
 msgid "&Preferences"
-msgstr "&Параметри"
+msgstr "П&араметри"
 
 msgid "&Print..."
 msgstr "На&друкувати..."
@@ -900,8 +918,8 @@ msgstr "Копіювати"
 msgid "Copyright (c) 1989-2007 (ENPC)"
 msgstr "Авторські права належать © 1989-2007 (ENPC)"
 
-msgid "Copyright (c) 1989-2009 (INRIA)"
-msgstr "Авторські права належать © 1989-2009 (INRIA)"
+msgid "Copyright (c) 1989-2010 (INRIA)"
+msgstr "© INRIA, 1989-2010"
 
 msgid "Cut"
 msgstr "Вирізати"
@@ -909,8 +927,8 @@ msgstr "Вирізати"
 msgid "Display selection"
 msgstr "Показ позначеного"
 
-msgid "Do you relly want to quit Scilab?"
-msgstr "Ви справді бажаєте завершити роботу Scilab?"
+msgid "Do you really want to quit Scilab?"
+msgstr "Ви справді хочете вийти зі Scilab?"
 
 msgid "Edit in the Scilab Text Editor"
 msgstr "Редагувати за допомогою текстового редактора Scilab"
@@ -1115,6 +1133,9 @@ msgstr "Зображення SVG"
 msgid "Save and execute"
 msgstr "Зберегти і виконати"
 
+msgid "Scicos files"
+msgstr "Файли Scicos"
+
 msgid "Scilab &ATOMS Web Site"
 msgstr "В&еб-сайт ATOMS Scilab"
 
@@ -1175,7 +1196,7 @@ msgid "Scilab binary files"
 msgstr "Бінарні файли Scilab"
 
 msgid "Select All"
-msgstr "Вибрати все"
+msgstr "Позначити все"
 
 msgid "Select a directory"
 msgstr "Вкажіть каталог"
@@ -1534,7 +1555,7 @@ msgid "createPopupItems: found an empty cascading menu."
 msgstr "createPopupItems: знайдено порожнє ієрархічне меню."
 
 msgid ""
-"disp(\"WARNING: Despite of our previous warning, you choosed to use Scilab "
+"disp(\"WARNING: Despite of our previous warning, you chose to use Scilab "
 "with advanced graphics capabilities. Type \"\"help usecanvas\"\" for more "
 "information.\")"
 msgstr ""

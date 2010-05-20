@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-01-25 10:33+0100\n"
+"Revision-Date: 2010-04-13 09:16+0100\n"
 
 # File: macros/test_clean.sci, line: 97
 # File: macros/bench_run.sci, line: 73
@@ -22,13 +22,13 @@ msgstr ""
 msgid "%s is not an installed module"
 msgstr ""
 #
-# File: macros/test_run.sci, line: 222
-# File: macros/test_run.sci, line: 264
+# File: macros/test_run.sci, line: 225
+# File: macros/test_run.sci, line: 267
 #, c-format
 msgid "%s is not an installed module or toolbox"
 msgstr ""
 #
-# File: macros/test_run.sci, line: 835
+# File: macros/test_run.sci, line: 854
 #, c-format
 msgid "%s: The test ''%s'' doesn''t exist or is not read available.\n"
 msgstr ""
@@ -39,12 +39,12 @@ msgid "%s: Wrong first input argument: File with .dia suffix expected."
 msgstr ""
 #
 # File: macros/test_clean.sci, line: 116
-# File: macros/test_run.sci, line: 246
+# File: macros/test_run.sci, line: 249
 #, c-format
 msgid "%s: Wrong size for input argument."
 msgstr ""
 #
-# File: macros/test_run.sci, line: 831
+# File: macros/test_run.sci, line: 850
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
 msgstr ""
@@ -79,14 +79,14 @@ msgstr ""
 msgid "Test passed"
 msgstr ""
 #
-# File: macros/test_run.sci, line: 1331
+# File: macros/test_run.sci, line: 1362
 #, c-format
 msgid "The ref file (%s) doesn''t exist"
 msgstr ""
 #
 # File: macros/test_clean.sci, line: 135
 # File: macros/bench_run.sci, line: 105
-# File: macros/test_run.sci, line: 318
+# File: macros/test_run.sci, line: 321
 #, c-format
 msgid "The test %s is not available from the %s module"
 msgstr ""

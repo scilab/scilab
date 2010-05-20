@@ -14,6 +14,7 @@
 #include "stack-c.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "do_error_number.h"
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 /* @TO DO : extend 'error' primitive
