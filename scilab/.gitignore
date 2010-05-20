@@ -118,6 +118,20 @@ modules/*/sci_gateway/fortran/*.c
 *.manifest
 
 #
+# VS 2010 files
+# 
+*.filters
+*.vcxproj
+*.opensdf
+*.sdf
+*.old
+_UpgradeReport_Files/
+UpgradeLog.XML
+Visual-Studio-settings/f2c.props
+Visual-Studio-settings/f2c.targets
+Visual-Studio-settings/f2c.xml
+
+#
 # scilab/ specific files
 #
 /thirdparty
