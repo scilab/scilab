@@ -465,17 +465,14 @@ endfunction
 
 // =============================================================================
 // processHTMLLinks
-// + Find URLs and emails
-// + Convert them in HTML
+// + Find URLs
+// + Convert them in HTML (hyperlinks)
 // =============================================================================
 
 function txtout = processHTMLLinks(txtin)
 
     regexUrl   = "/((((H|h)(T|t)|(F|f))(T|t)(P|p)((S|s)?))\:\/\/)(www|[a-zA-Z0-9])[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,6}(\:[0-9]{1,5})*(\/($|[a-zA-Z0-9\.\,\;\?\''\\\+&amp;%\$#\=~_\-\/]+))*/";
-    regexEmail = "/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}/";
     txtout     = "";
-
-    // Process URLs
 
     [mat_start,mat_end,mat_match] = regexp(txtin,regexUrl);
 
@@ -484,23 +481,6 @@ function txtout = processHTMLLinks(txtin)
         for i=1:size(mat_match,"*")
             txtout = txtout + part(txtin,[mat_end(i)+1:mat_start(i)-1]) ..
                             + "<a href="""+mat_match(i)+""" target=""_blank"">" ..
-                            + mat_match(i) ..
-                            + "</a>";
-        end
-        txtout = txtout + part(txtin,mat_end(size(mat_end,"*"))+1:length(txtin));
-        txtin  = txtout;
-        txtout = "";
-    end
-
-    // Process Emails
-
-    [mat_start,mat_end,mat_match] = regexp(txtin,regexEmail);
-
-    if ~isempty(mat_match) then
-        mat_end = [ 0 mat_end ];
-        for i=1:size(mat_match,"*")
-            txtout = txtout + part(txtin,[mat_end(i)+1:mat_start(i)-1]) ..
-                            + "<a href=""mailto:"+mat_match(i)+""" target=""_blank"">" ..
                             + mat_match(i) ..
                             + "</a>";
         end
