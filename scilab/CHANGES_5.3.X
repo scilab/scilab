@@ -339,6 +339,8 @@ Bug fixes:
 * bug 3811 fixed - Documention about "typeof" and overload prefixes was not
                    up-to-date (help overloading).
 
+* bug 3937 fixed - Buttons size in "x_choices" window was related to the labels one.
+
 * bug 4075 fixed - a basic uicontrol example crashed scilab 5.0.3
 
 * bug 4117 fixed - Closing via the user interface a graphics figure which had a

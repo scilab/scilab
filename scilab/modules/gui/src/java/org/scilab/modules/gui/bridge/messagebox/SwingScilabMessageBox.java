@@ -18,7 +18,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -299,7 +298,11 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 			numberOfLines++; 
 			
 			// Create the panel with button groups
-			JPanel panel = new JPanel(new GridLayout(numberOfLines, numberOfColumns));
+			JPanel panel = new JPanel(new GridBagLayout());
+			GridBagConstraints gbc = new GridBagConstraints();
+			gbc.gridx = 0;
+			gbc.gridy = 0;
+			gbc.fill = GridBagConstraints.HORIZONTAL;
 			buttonGroups = new ButtonGroup[numberOfLines];
 			
 			// Initialize return value
@@ -310,9 +313,13 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 			int buttonNumber = 0;
 			for (curItemIndex = 0; curItemIndex < lineLabels.length; curItemIndex++) {
 				// Add the label of the line 
-				panel.add(new JLabel(lineLabels[curItemIndex]));
+				gbc.weightx = 1; // Labels will use remaining space when resizing
+				panel.add(new JLabel(lineLabels[curItemIndex]), gbc);
+				gbc.gridx++; // Increment the column index
+
 				buttonNumber = 0;
 				curItemIndex++;
+				
 				// Add the button group
 				ButtonGroup group = new ButtonGroup();
 				while (curItemIndex < lineLabels.length &&  !lineLabels[curItemIndex].equals(SEPARATOR)) {
@@ -333,7 +340,9 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 					// Add the button to the group (for toggle)
 					// And to the panel (for display)
 					group.add(button);
-					panel.add(button);
+					gbc.weightx = 0; // Button size will not change when resizing
+					panel.add(button, gbc);
+					gbc.gridx++; // Increment the column index
 					
 					// Increment item index
 					curItemIndex++;
@@ -341,7 +350,8 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 				}
 				// Add empty labels if number of buttons in the line is lesser than maximum number of buttons found in a line 
 				for (int emptyLabelsIndex = buttonsPerLines.get(lineNumber); emptyLabelsIndex < numberOfColumns; emptyLabelsIndex++) {
-					panel.add(new JLabel());
+					panel.add(new JLabel(), gbc);
+					gbc.gridx++; // Increment the column index
 				}
 				
 				// Store the group to get the user selection when returning
@@ -349,6 +359,8 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 				
 				// Increment current line number
 				lineNumber++;
+				gbc.gridx = 0; // New line --> Back to first column
+				gbc.gridy++; // Increment the row index
 			}
 
 			// Display the panel
