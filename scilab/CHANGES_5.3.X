@@ -26,6 +26,8 @@ Bug Fixes:
 
 * bug 5366 fixed - help of modules_manager was not built.
 
+* bug 6639 fixed - "hypermat"  did not remove higher dimensions equal to 1.
+
 * bug 7121 fixed - Update help file about saveafterncommands(0).
 
 * bug 7158 fixed - help chapter about texmacs was empty.
@@ -976,7 +978,7 @@ Bug fixes:
 
 * bug 6635 fixed - Incorrectly drawn Bode plots (calfrq bug).
 
-* bug 6666 fixed - emptystr() gave a wrong result instead of complaining
+* bug 6666 fixed - emptystr() gave a wrong result instead of complaining 
                    about hypermatrix.
 
 * bug 6682 fixed - mprintf, msprintf, mfprintf did not manage octal (%o) format.
