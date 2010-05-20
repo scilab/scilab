@@ -702,7 +702,7 @@ public class Xpad extends SwingScilabTab implements Tab {
                 textPane.setFont(ConfigXpadManager.getFont());
 
                 textPane.setBackground(ConfigXpadManager.getXpadBackgroundColor());
-                textPane.setCaretColor(Color.BLACK);
+                textPane.setCaretColor(ConfigXpadManager.getXpadForegroundColor());
 
                 Map<String, KeyStroke> map = new HashMap();
                 ConfigXpadManager.addMapActionNameKeys(map);

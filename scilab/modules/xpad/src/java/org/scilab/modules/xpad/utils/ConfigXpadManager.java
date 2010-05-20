@@ -87,6 +87,7 @@ public final class ConfigXpadManager {
     private static final String LINEHIGHLIGHTER = "LineHighlighter";
     private static final String HELPONTYPING = "HelpOnTyping";
     private static final String LINENUMBERING = "LineNumbering";
+    private static final String EDITOR = "Editor";
 
     private static final String FOREGROUNDCOLOR = "ForegroundColor";
     private static final String BACKGROUNDCOLOR = "BackgroundColor";
@@ -662,14 +663,34 @@ public final class ConfigXpadManager {
 
         Element root = document.getDocumentElement();
 
-        NodeList profiles = root.getElementsByTagName(PROFILE);
+        NodeList profiles = root.getElementsByTagName(EDITOR);
         Element xpadProfile = (Element) profiles.item(0);
 
-        NodeList allSizeElements = xpadProfile.getElementsByTagName(BACKGROUNDCOLOR);
-        Element xpadBackground = (Element) allSizeElements.item(0);
+        NodeList allElements = xpadProfile.getElementsByTagName(BACKGROUNDCOLOR);
+        Element xpadBackground = (Element) allElements.item(0);
 
         /*direct create a Color with "#FF00FF" string from the xml */
         return Color.decode(xpadBackground.getAttribute(VALUE));
+    }
+
+    /**
+     * Get the foreground Color
+     * @return the foreground Color
+     */
+    public static Color getXpadForegroundColor() {
+        /* Load file */
+        readDocument();
+
+        Element root = document.getDocumentElement();
+
+        NodeList profiles = root.getElementsByTagName(EDITOR);
+        Element xpadProfile = (Element) profiles.item(0);
+
+        NodeList allElements = xpadProfile.getElementsByTagName(FOREGROUNDCOLOR);
+        Element xpadForeground = (Element) allElements.item(0);
+
+        /*direct create a Color with "#FF00FF" string from the xml */
+        return Color.decode(xpadForeground.getAttribute(VALUE));
     }
 
     /**
@@ -683,7 +704,29 @@ public final class ConfigXpadManager {
 
         Element root = document.getDocumentElement();
 
-        NodeList profiles = root.getElementsByTagName(PROFILE);
+        NodeList profiles = root.getElementsByTagName(EDITOR);
+        Element xpadProfile = (Element) profiles.item(0);
+
+        NodeList allSizeElements = xpadProfile.getElementsByTagName(BACKGROUNDCOLOR);
+        Element xpadBackground = (Element) allSizeElements.item(0);
+
+        String rgb = Integer.toHexString(color.getRGB());
+        xpadBackground.setAttribute(VALUE, COLORPREFIX + rgb.substring(2, rgb.length()));
+
+        /* Save changes */
+        writeDocument();
+    }
+
+    /**
+     * Save Xpad foregroundColor
+     * @param color the new Color
+     */
+    public static void saveXpadForeground(Color color) {
+        readDocument();
+
+        Element root = document.getDocumentElement();
+
+        NodeList profiles = root.getElementsByTagName(EDITOR);
         Element xpadProfile = (Element) profiles.item(0);
 
         NodeList allSizeElements = xpadProfile.getElementsByTagName(FOREGROUNDCOLOR);
@@ -694,7 +737,6 @@ public final class ConfigXpadManager {
 
         /* Save changes */
         writeDocument();
-
     }
 
     /**
