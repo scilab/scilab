@@ -149,6 +149,14 @@ int gw_dynamic_hdf5(void);
 */
 int gw_dynamic_graphic_export(void);
 
+/**
+* action_binding gateway
+* action_binding is loaded dynamically at runtime
+* load gw_action_binding in SCI/modules/action_binding/sci_gateway/gw_action_binding.c
+*/
+int gw_dynamic_action_binding(void);
+
 #endif /* __DYNAMIC_GATEWAYS_H__ */
 /*--------------------------------------------------------------------------*/
+
 

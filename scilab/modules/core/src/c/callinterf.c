@@ -99,7 +99,7 @@ static OpTab Interfaces[INTERFACES_MAX] = {
 	/* 62  */ {gw_dynamic_hdf5},
 	/* 63  */ {gw_dynamic_xpad},
 	/* 64  */ {gw_dynamic_xcos},
-    /* 65  */ {gw_action_binding}
+    /* 65  */ {gw_dynamic_action_binding}
 };
 /*--------------------------------------------------------------------------*/
 static int sig_ok = 0;
