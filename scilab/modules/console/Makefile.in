@@ -130,7 +130,7 @@ libsciconsole_disable_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libsciconsole_disable_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-libsciconsole_la_DEPENDENCIES = $(top_builddir)/modules/action_binding/libsciaction_binding.la \
+libsciconsole_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/shell/libscishell.la \
 	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
@@ -490,7 +490,10 @@ libsciconsole_la_SOURCES = $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES) $(CONSO
 # For the code check (splint)
 CHECK_SRC = $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES)
 INCLUDE_FLAGS = $(libsciconsole_la_CFLAGS)
-libsciconsole_la_LIBADD = $(top_builddir)/modules/action_binding/libsciaction_binding.la $(top_builddir)/modules/shell/libscishell.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/libs/MALLOC/libscimalloc.la 
+libsciconsole_la_LIBADD = $(top_builddir)/modules/shell/libscishell.la \
+							$(top_builddir)/modules/fileio/libscifileio.la \
+							$(top_builddir)/libs/MALLOC/libscimalloc.la 
+
 # java code is needed $(top_builddir)/modules/jvm/libscijvm.la
 
 #### SWIG Declaration ####

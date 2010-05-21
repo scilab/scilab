@@ -29,10 +29,6 @@ GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_notify.cpp
 
 #### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/InterpreterManagement.i
-else
-# List of the c files
-ACTION_BINDING_C_SOURCES = src/noaction_binding/noaction_binding.c \
-src/c/dynamic_menus.c
 endif
 
 if SWIG
@@ -45,6 +41,9 @@ if GIWS
 BUILT_SOURCES=giws
 endif
 
+libsciaction_binding_disable_la_SOURCES = src/noaction_binding/noaction_binding.c
+libsciaction_binding_disable_la_CFLAGS = 	-I$(srcdir)/includes/ \
+											-I$(top_srcdir)/modules/output_stream/includes
 
 # Includes need for the compilation
 libsciaction_binding_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
@@ -68,7 +67,11 @@ libsciaction_binding_la_CPPFLAGS= 	$(JAVA_JNI_INCLUDE) \
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
-pkglib_LTLIBRARIES = libsciaction_binding.la
+pkglib_LTLIBRARIES = libsciaction_binding-disable.la
+
+if GUI
+pkglib_LTLIBRARIES += libsciaction_binding.la
+endif
 
 libsciaction_binding_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 
@@ -83,8 +86,11 @@ INCLUDE_FLAGS = $(libsciaction_binding_la_CFLAGS)
 ## Change to include other Scilab modules/lib
 libsciaction_binding_la_LIBADD =  	$(top_builddir)/modules/core/libscicore.la \
 									$(top_builddir)/libs/MALLOC/libscimalloc.la \
-									$(top_builddir)/modules/jvm/libscijvm.la \
 									$(top_builddir)/modules/output_stream/libscioutput_stream.la
+
+# Cyclic dependancy
+#									$(top_builddir)/modules/jvm/libscijvm.la
+
 #### Name of the module and the path ######
 modulename=action_binding
 
