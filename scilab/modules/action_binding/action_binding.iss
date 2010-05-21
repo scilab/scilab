@@ -30,7 +30,7 @@ Source: modules\{#ACTION_BINDING}\license.txt; DestDir: {app}\modules\{#ACTION_B
 Source: modules\{#ACTION_BINDING}\readme.txt; DestDir: {app}\modules\{#ACTION_BINDING}; Components: {#COMPN_SCILAB}
 Source: modules\{#ACTION_BINDING}\version.xml; DestDir: {app}\modules\{#ACTION_BINDING}; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#ACTION_BINDING}\sci_gateway\action_binding.xml; DestDir: {app}\modules\{#ACTION_BINDING}\sci_gateway; Components: {#COMPN_SCILAB}
+Source: modules\{#ACTION_BINDING}\sci_gateway\action_binding_gateway.xml; DestDir: {app}\modules\{#ACTION_BINDING}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#ACTION_BINDING}\includes\*.h; DestDir: {app}\modules\{#ACTION_BINDING}\includes; Components: {#COMPN_SCILAB}
 ;
