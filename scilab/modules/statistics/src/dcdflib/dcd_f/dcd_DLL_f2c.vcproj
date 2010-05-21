@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="dcd_DLL"
+	Name="dcd"
 	ProjectGUID="{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}"
 	RootNamespace="dcd_f2c_DLL"
 	Keyword="Win32Proj"
@@ -40,10 +40,7 @@
 			<Tool
 				Name="f2c rule"
 			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-				ExecutionBucket="4"
-			/>
+
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
@@ -64,7 +61,6 @@
 				ObjectFile="$(ConfigurationName)/"
 				ProgramDataBaseFileName="$(ConfigurationName)/vc80.pdb"
 				WarningLevel="3"
-				
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -85,11 +81,11 @@
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
 				AdditionalDependencies="output_stream.lib statistics.lib"
-				OutputFile="$(SolutionDir)bin/dcd.dll"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				ModuleDefinitionFile="dcd.def"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="$(SolutionDir)bin/dcd.lib"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
@@ -141,7 +137,6 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-
 			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
@@ -158,7 +153,6 @@
 				ObjectFile="$(ConfigurationName)/"
 				ProgramDataBaseFileName="$(ConfigurationName)/vc80.pdb"
 				WarningLevel="3"
-				
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -175,11 +169,11 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="output_stream.lib statistics.lib"
-				OutputFile="$(SolutionDir)bin/dcd.dll"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				ModuleDefinitionFile="dcd.def"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="$(SolutionDir)bin/dcd.lib"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				TargetMachine="17"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -224,10 +218,7 @@
 			<Tool
 				Name="f2c rule"
 			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-				ExecutionBucket="4"
-			/>
+
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
@@ -247,7 +238,6 @@
 				ObjectFile="$(ConfigurationName)/"
 				ProgramDataBaseFileName="$(ConfigurationName)/vc80.pdb"
 				WarningLevel="3"
-				
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -268,11 +258,11 @@
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
 				AdditionalDependencies="output_stream.lib statistics.lib"
-				OutputFile="$(SolutionDir)bin/dcd.dll"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				ModuleDefinitionFile="dcd.def"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="$(SolutionDir)bin/dcd.lib"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
@@ -324,7 +314,6 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-
 			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
@@ -340,7 +329,6 @@
 				ObjectFile="$(ConfigurationName)/"
 				ProgramDataBaseFileName="$(ConfigurationName)/vc80.pdb"
 				WarningLevel="3"
-				
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -357,11 +345,11 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="output_stream.lib statistics.lib"
-				OutputFile="$(SolutionDir)bin/dcd.dll"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				ModuleDefinitionFile="dcd.def"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="$(SolutionDir)bin/dcd.lib"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				TargetMachine="17"
 				CLRUnmanagedCodeCheck="true"
 			/>

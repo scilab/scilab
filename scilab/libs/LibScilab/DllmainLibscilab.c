@@ -29,7 +29,6 @@
 #pragma comment(lib,"../../bin/string_f.lib")
 #pragma comment(lib,"../../bin/io_f.lib")
 #pragma comment(lib,"../../libs/data_structures_f.lib")
-#pragma comment(lib,"../../libs/boolean_f.lib")
 #pragma comment(lib,"../../libs/differential_equations_f.lib")
 #pragma comment(lib,"../../libs/special_functions_f.lib")
 #pragma comment(lib,"../../libs/elementary_functions_f.lib")

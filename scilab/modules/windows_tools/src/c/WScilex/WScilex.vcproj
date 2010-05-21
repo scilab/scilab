@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -35,7 +35,6 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-
 			<Tool
 				Name="VCMIDLTool"
 			/>
@@ -52,7 +51,6 @@
 				ObjectFile="$(ConfigurationName)/"
 				ProgramDataBaseFileName="$(ConfigurationName)/vc80.pdb"
 				WarningLevel="3"
-				
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -66,7 +64,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../../../../../bin/WScilex.exe"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).exe"
 				LinkIncremental="1"
 				IgnoreAllDefaultLibraries="false"
 				IgnoreDefaultLibraryNames=""
@@ -116,7 +114,6 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-
 			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
@@ -133,7 +130,6 @@
 				ObjectFile="$(ConfigurationName)/"
 				ProgramDataBaseFileName="$(ConfigurationName)/vc80.pdb"
 				WarningLevel="3"
-				
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -147,7 +143,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../../../../../bin/WScilex.exe"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).exe"
 				LinkIncremental="1"
 				IgnoreAllDefaultLibraries="false"
 				IgnoreDefaultLibraryNames=""
@@ -197,7 +193,6 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-
 			<Tool
 				Name="VCMIDLTool"
 			/>
@@ -213,7 +208,6 @@
 				ObjectFile="$(ConfigurationName)/"
 				ProgramDataBaseFileName="$(ConfigurationName)/vc80.pdb"
 				WarningLevel="3"
-				
 				DebugInformationFormat="0"
 			/>
 			<Tool
@@ -227,7 +221,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../../../../../bin/WScilex.exe"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).exe"
 				LinkIncremental="1"
 				IgnoreAllDefaultLibraries="false"
 				IgnoreDefaultLibraryNames=""
@@ -235,7 +229,7 @@
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
-				OptimizeForWindows98="0"
+
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
 				TargetMachine="1"
@@ -279,7 +273,6 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-
 			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
@@ -295,7 +288,6 @@
 				ObjectFile="$(ConfigurationName)/"
 				ProgramDataBaseFileName="$(ConfigurationName)/vc80.pdb"
 				WarningLevel="3"
-				
 				DebugInformationFormat="0"
 			/>
 			<Tool
@@ -309,7 +301,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../../../../../bin/WScilex.exe"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).exe"
 				LinkIncremental="1"
 				IgnoreAllDefaultLibraries="false"
 				IgnoreDefaultLibraryNames=""
@@ -317,7 +309,7 @@
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
-				OptimizeForWindows98="0"
+
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
 				TargetMachine="17"

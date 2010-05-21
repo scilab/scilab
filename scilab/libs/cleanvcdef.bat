@@ -1,7 +1,5 @@
 @del /Q LibScilab.def
 @del /Q *.bak
-@del /Q boolean.vcdef
-@del /Q boolean_f.vcdef
 @del /Q cacsd.vcdef
 @del /Q cacsd_f.vcdef
 @del /Q core.vcdef

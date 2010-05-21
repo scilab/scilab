@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -35,7 +35,6 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-
 			<Tool
 				Name="VCMIDLTool"
 			/>
@@ -50,7 +49,6 @@
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -67,14 +65,14 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib libjvm.lib sciconsole.lib scilab_windows.lib scicompletion.lib fileio.lib scilocalization.lib"
-				OutputFile="../../../../bin/libshell.dll"
+				OutputFile="$(SolutionDir)bin\lib$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="shell_export.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="../../../../bin/libshell.lib"
+				ImportLibrary="$(SolutionDir)bin\lib$(ProjectName).lib"
 				TargetMachine="1"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -117,7 +115,6 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-
 			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
@@ -132,7 +129,6 @@
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -149,14 +145,14 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib libjvm.lib sciconsole.lib scilab_windows.lib scicompletion.lib fileio.lib scilocalization.lib"
-				OutputFile="../../../../bin/libshell.dll"
+				OutputFile="$(SolutionDir)bin\lib$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="shell_export.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="../../../../bin/libshell.lib"
+				ImportLibrary="$(SolutionDir)bin\lib$(ProjectName).lib"
 				TargetMachine="17"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -200,7 +196,6 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-
 			<Tool
 				Name="VCMIDLTool"
 			/>
@@ -217,7 +212,6 @@
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -234,7 +228,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib libjvm.lib sciconsole.lib scilab_windows.lib scicompletion.lib fileio.lib scilocalization.lib"
-				OutputFile="../../../../bin/libshell.dll"
+				OutputFile="$(SolutionDir)bin\lib$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="shell_export.def"
 				GenerateDebugInformation="false"
@@ -244,7 +238,7 @@
 				LinkTimeCodeGeneration="0"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="../../../../bin/libshell.lib"
+				ImportLibrary="$(SolutionDir)bin\lib$(ProjectName).lib"
 				TargetMachine="1"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -288,7 +282,6 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-
 			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
@@ -305,7 +298,6 @@
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -322,7 +314,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib libjvm.lib sciconsole.lib scilab_windows.lib scicompletion.lib fileio.lib scilocalization.lib"
-				OutputFile="../../../../bin/libshell.dll"
+				OutputFile="$(SolutionDir)bin\lib$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="shell_export.def"
 				GenerateDebugInformation="false"
@@ -332,7 +324,7 @@
 				LinkTimeCodeGeneration="0"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="../../../../bin/libshell.lib"
+				ImportLibrary="$(SolutionDir)bin\lib$(ProjectName).lib"
 				TargetMachine="17"
 				CLRUnmanagedCodeCheck="true"
 			/>

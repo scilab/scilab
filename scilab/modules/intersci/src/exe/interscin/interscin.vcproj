@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="interscin"
+	Name="intersci-n"
 	ProjectGUID="{53AAB5BC-2C08-4BBA-9793-C36140A404F8}"
+	RootNamespace="intersci-n"
 	TargetFrameworkVersion="0"
 	>
 	<Platforms>
@@ -35,7 +36,6 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-
 			<Tool
 				Name="VCMIDLTool"
 				TypeLibraryName="$(ConfigurationName)/interscin.tlb"
@@ -56,7 +56,6 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -72,7 +71,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../../../bin/intersci-n.exe"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				GenerateDebugInformation="true"
@@ -123,7 +122,6 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-
 			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
@@ -144,7 +142,6 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -160,7 +157,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../../../bin/intersci-n.exe"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				GenerateDebugInformation="true"
@@ -211,7 +208,6 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-
 			<Tool
 				Name="VCMIDLTool"
 				TypeLibraryName="$(ConfigurationName)/interscin.tlb"
@@ -236,7 +232,6 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -251,7 +246,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../../../bin/intersci-n.exe"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				ProgramDatabaseFile="$(ConfigurationName)/intersci-n.pdb"
@@ -301,7 +296,6 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-
 			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
@@ -326,7 +320,6 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -341,7 +334,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../../../bin/intersci-n.exe"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				ProgramDatabaseFile="$(ConfigurationName)/intersci-n.pdb"

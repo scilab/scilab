@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -35,7 +35,6 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-
 			<Tool
 				Name="VCMIDLTool"
 			/>
@@ -54,7 +53,6 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				
 				DebugInformationFormat="3"
 				CompileAs="0"
 			/>
@@ -71,7 +69,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../../../libs/differential_equations.lib"
+				OutputFile="$(SolutionDir)libs\$(ProjectName).lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -109,7 +107,6 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-
 			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
@@ -128,7 +125,6 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				
 				DebugInformationFormat="3"
 				CompileAs="0"
 			/>
@@ -145,7 +141,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../../../libs/differential_equations.lib"
+				OutputFile="$(SolutionDir)libs\$(ProjectName).lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -183,7 +179,6 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-
 			<Tool
 				Name="VCMIDLTool"
 			/>
@@ -206,7 +201,6 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				
 				CompileAs="0"
 			/>
 			<Tool
@@ -222,7 +216,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../../../libs/differential_equations.lib"
+				OutputFile="$(SolutionDir)libs\$(ProjectName).lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -260,7 +254,6 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-
 			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
@@ -283,7 +276,6 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				
 				CompileAs="0"
 			/>
 			<Tool
@@ -299,7 +291,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../../../libs/differential_equations.lib"
+				OutputFile="$(SolutionDir)libs\$(ProjectName).lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool

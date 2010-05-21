@@ -36,10 +36,7 @@
 			<Tool
 				Name="VCCustomBuildTool"
 			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-				ExecutionBucket="4"
-			/>
+
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
@@ -210,10 +207,7 @@
 			<Tool
 				Name="VCCustomBuildTool"
 			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-				ExecutionBucket="4"
-			/>
+
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>

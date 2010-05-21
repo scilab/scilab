@@ -17,6 +17,9 @@
 ;
 #define BOOLEAN "boolean"
 ;
+Source: bin\{#BOOLEAN}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\boolean_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#BOOLEAN}\VERSION.xml; DestDir: {app}\modules\{#BOOLEAN}; Components: {#COMPN_SCILAB}
 Source: modules\{#BOOLEAN}\readme.txt; DestDir: {app}\modules\{#BOOLEAN}; Components: {#COMPN_SCILAB}
 Source: modules\{#BOOLEAN}\license.txt; DestDir: {app}\modules\{#BOOLEAN}; Components: {#COMPN_SCILAB}

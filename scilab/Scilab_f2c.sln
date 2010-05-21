@@ -34,7 +34,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "statistics", "modules\stati
 		{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0} = {18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibScilab_f", "libs\LibScilab\LibScilab_f2c.vcproj", "{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibScilab", "libs\LibScilab\LibScilab_f2c.vcproj", "{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}"
 	ProjectSection(ProjectDependencies) = postProject
 		{9BC28602-73B4-4FBB-9583-478D2F047CA4} = {9BC28602-73B4-4FBB-9583-478D2F047CA4}
 		{9594AC02-20EE-4FBF-95B4-BFA5865ED7CA} = {9594AC02-20EE-4FBF-95B4-BFA5865ED7CA}
@@ -174,7 +174,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "intersciexe", "modules\inte
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "interscin", "modules\intersci\src\exe\interscin\interscin.vcproj", "{53AAB5BC-2C08-4BBA-9793-C36140A404F8}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "intersci-n", "modules\intersci\src\exe\interscin\interscin.vcproj", "{53AAB5BC-2C08-4BBA-9793-C36140A404F8}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
@@ -297,7 +297,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sparse_f", "modules\sparse\
 		{A5911CD7-F8E8-440C-A23E-4843A0636F3A} = {A5911CD7-F8E8-440C-A23E-4843A0636F3A}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CScilex", "modules\windows_tools\src\c\CScilex\CScilex.vcproj", "{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Scilex", "modules\windows_tools\src\c\CScilex\CScilex.vcproj", "{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}"
 	ProjectSection(ProjectDependencies) = postProject
 		{982BF37F-42C4-4D37-8D14-60521B141503} = {982BF37F-42C4-4D37-8D14-60521B141503}
 		{6A84AD8C-BA18-4A3F-9C72-EC3DF0939E9E} = {6A84AD8C-BA18-4A3F-9C72-EC3DF0939E9E}
@@ -511,7 +511,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cacsd", "modules\cacsd\src\
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dcd_DLL", "modules\statistics\src\dcdflib\dcd_f\dcd_DLL_f2c.vcproj", "{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dcd", "modules\statistics\src\dcdflib\dcd_f\dcd_DLL_f2c.vcproj", "{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
@@ -559,6 +559,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "double", "modules\double\sr
 	ProjectSection(ProjectDependencies) = postProject
 		{6A84AD8C-BA18-4A3F-9C72-EC3DF0939E9E} = {6A84AD8C-BA18-4A3F-9C72-EC3DF0939E9E}
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
+		{8AB8ECEC-8C22-475E-80D0-E14696F5A19B} = {8AB8ECEC-8C22-475E-80D0-E14696F5A19B}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "double_f", "modules\double\src\fortran\double_f2c.vcproj", "{97B3664E-1186-400A-AEC0-AC3F23087689}"
@@ -574,11 +575,14 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "boolean", "modules\boolean\
 	ProjectSection(ProjectDependencies) = postProject
 		{6A84AD8C-BA18-4A3F-9C72-EC3DF0939E9E} = {6A84AD8C-BA18-4A3F-9C72-EC3DF0939E9E}
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
+		{A5911CD7-F8E8-440C-A23E-4843A0636F3A} = {A5911CD7-F8E8-440C-A23E-4843A0636F3A}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "boolean_f", "modules\boolean\src\fortran\boolean_f2c.vcproj", "{45ECEB36-A12B-42F5-9D7A-216A0E70601D}"
 	ProjectSection(ProjectDependencies) = postProject
+		{F0F55692-0355-4BC3-BE9D-552C8AAC5238} = {F0F55692-0355-4BC3-BE9D-552C8AAC5238}
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
+		{A5911CD7-F8E8-440C-A23E-4843A0636F3A} = {A5911CD7-F8E8-440C-A23E-4843A0636F3A}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "interpolation", "modules\interpolation\src\c\interpolation.vcproj", "{22F14F8F-67C6-49B1-A730-CE70FFE9EB61}"
@@ -961,6 +965,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "helptools", "modules\helpto
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "helptools-Ant", "modules\helptools\src\java\helptools-JAVA.vcproj", "{899DECF1-D4DC-4C84-BB3C-3A343401A5B4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E9783492-017E-4811-9CC7-6B71856F847C} = {E9783492-017E-4811-9CC7-6B71856F847C}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "linpack_f", "modules\elementary_functions\src\fortran\linpack\linpack_f2c.vcproj", "{F0F55692-0355-4BC3-BE9D-552C8AAC5238}"
 	ProjectSection(ProjectDependencies) = postProject

@@ -174,6 +174,8 @@ Compilation:
 * On Windows, Pentium III class (or equivalent) with SSE instructions is 
   required.
 
+* Scilab_f2c.sln can be exported to VS 2010 format.
+
 * Windows 2000 is no more supported as operating system.
 
 * Scilab Mac OS X distribution relies only on Java 1.6 and is therefor now

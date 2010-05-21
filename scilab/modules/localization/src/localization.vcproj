@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -37,7 +37,6 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-
 			<Tool
 				Name="VCMIDLTool"
 			/>
@@ -56,7 +55,6 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				
 				DebugInformationFormat="3"
 				CompileAs="0"
 			/>
@@ -75,7 +73,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="Libscilab.lib io.lib"
-				OutputFile="..\..\..\bin\scilocalization.dll"
+				OutputFile="$(SolutionDir)bin\sci$(ProjectName).dll"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames=""
 				ModuleDefinitionFile="localization_export.def"
@@ -83,7 +81,7 @@
 				ProgramDatabaseFile="$(TargetDir)$(TargetName).pdb"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="..\..\..\bin\scilocalization.lib"
+				ImportLibrary="$(SolutionDir)bin\sci$(ProjectName).lib"
 				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
@@ -127,7 +125,6 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-
 			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
@@ -146,7 +143,6 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				
 				DebugInformationFormat="3"
 				CompileAs="0"
 			/>
@@ -165,7 +161,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="Libscilab.lib io.lib"
-				OutputFile="..\..\..\bin\scilocalization.dll"
+				OutputFile="$(SolutionDir)bin\sci$(ProjectName).dll"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames=""
 				ModuleDefinitionFile="localization_export.def"
@@ -173,7 +169,7 @@
 				ProgramDatabaseFile="$(TargetDir)$(TargetName).pdb"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="..\..\..\bin\scilocalization.lib"
+				ImportLibrary="$(SolutionDir)bin\sci$(ProjectName).lib"
 				TargetMachine="17"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -217,7 +213,6 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-
 			<Tool
 				Name="VCMIDLTool"
 			/>
@@ -240,7 +235,6 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				
 				CompileAs="0"
 			/>
 			<Tool
@@ -258,14 +252,14 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="Libscilab.lib io.lib"
-				OutputFile="..\..\..\bin\scilocalization.dll"
+				OutputFile="$(SolutionDir)bin\sci$(ProjectName).dll"
 				IgnoreDefaultLibraryNames=""
 				ModuleDefinitionFile="localization_export.def"
-				OptimizeForWindows98="0"
+
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
 				SupportUnloadOfDelayLoadedDLL="true"
-				ImportLibrary="..\..\..\bin\scilocalization.lib"
+				ImportLibrary="$(SolutionDir)bin\sci$(ProjectName).lib"
 				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
@@ -308,7 +302,6 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-
 			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
@@ -331,7 +324,6 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				
 				CompileAs="0"
 			/>
 			<Tool
@@ -349,14 +341,14 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="Libscilab.lib io.lib"
-				OutputFile="..\..\..\bin\scilocalization.dll"
+				OutputFile="$(SolutionDir)bin\sci$(ProjectName).dll"
 				IgnoreDefaultLibraryNames=""
 				ModuleDefinitionFile="localization_export.def"
-				OptimizeForWindows98="0"
+
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
 				SupportUnloadOfDelayLoadedDLL="true"
-				ImportLibrary="..\..\..\bin\scilocalization.lib"
+				ImportLibrary="$(SolutionDir)bin\sci$(ProjectName).lib"
 				TargetMachine="17"
 				CLRUnmanagedCodeCheck="true"
 			/>

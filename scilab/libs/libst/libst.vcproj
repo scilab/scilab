@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -36,7 +36,6 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-
 			<Tool
 				Name="VCMIDLTool"
 			/>
@@ -56,7 +55,6 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				
 				DebugInformationFormat="3"
 				CompileAs="1"
 			/>
@@ -81,7 +79,7 @@
 				GenerateDebugInformation="true"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="..\..\bin\libst.lib"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
@@ -125,7 +123,6 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-
 			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
@@ -145,7 +142,6 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				
 				DebugInformationFormat="3"
 				CompileAs="1"
 			/>
@@ -170,7 +166,7 @@
 				GenerateDebugInformation="true"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="..\..\bin\libst.lib"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				TargetMachine="17"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -214,7 +210,6 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-
 			<Tool
 				Name="VCMIDLTool"
 			/>
@@ -237,7 +232,6 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				
 				CompileAs="1"
 			/>
 			<Tool
@@ -257,11 +251,11 @@
 				OutputFile="..\..\bin\libst.dll"
 				IgnoreDefaultLibraryNames=""
 				ModuleDefinitionFile="..\..\bin\libst.def"
-				OptimizeForWindows98="0"
+
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
 				SupportUnloadOfDelayLoadedDLL="true"
-				ImportLibrary="..\..\bin\libst.lib"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
@@ -304,7 +298,6 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-
 			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
@@ -327,7 +320,6 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				
 				CompileAs="1"
 			/>
 			<Tool
@@ -347,11 +339,11 @@
 				OutputFile="..\..\bin\libst.dll"
 				IgnoreDefaultLibraryNames=""
 				ModuleDefinitionFile="..\..\bin\libst.def"
-				OptimizeForWindows98="0"
+
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
 				SupportUnloadOfDelayLoadedDLL="true"
-				ImportLibrary="..\..\bin\libst.lib"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				TargetMachine="17"
 				CLRUnmanagedCodeCheck="true"
 			/>

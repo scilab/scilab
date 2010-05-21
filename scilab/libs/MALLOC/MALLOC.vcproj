@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -35,7 +35,6 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-
 			<Tool
 				Name="VCMIDLTool"
 			/>
@@ -50,7 +49,6 @@
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -113,7 +111,6 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-
 			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
@@ -128,7 +125,6 @@
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -149,7 +145,7 @@
 				SubSystem="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="..\..\bin\$(ProjectName).lib"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				TargetMachine="17"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -192,7 +188,6 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-
 			<Tool
 				Name="VCMIDLTool"
 			/>
@@ -206,7 +201,6 @@
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -272,7 +266,6 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-
 			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
@@ -286,7 +279,6 @@
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -309,7 +301,7 @@
 				EnableCOMDATFolding="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="..\..\bin\$(ProjectName).lib"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				TargetMachine="17"
 				CLRUnmanagedCodeCheck="true"
 			/>

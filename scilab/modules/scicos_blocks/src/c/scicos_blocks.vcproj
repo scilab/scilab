@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -35,7 +35,6 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-
 			<Tool
 				Name="VCMIDLTool"
 			/>
@@ -50,7 +49,6 @@
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -67,7 +65,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib scicos_blocks_f.lib scicos.lib output_stream.lib string.lib fileio.lib linear_algebra_f.lib scirenderer.lib graphics.lib slicot_f.lib"
-				OutputFile="../../../../bin/$(ProjectName).dll"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames="libmmdd.lib"
 				ModuleDefinitionFile=""
@@ -75,7 +73,7 @@
 				SubSystem="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="../../../../bin/$(ProjectName).lib"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				TargetMachine="1"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -117,7 +115,6 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-
 			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
@@ -132,7 +129,6 @@
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -149,7 +145,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib scicos_blocks_f.lib scicos.lib output_stream.lib string.lib fileio.lib linear_algebra_f.lib scirenderer.lib graphics.lib slicot_f.lib"
-				OutputFile="../../../../bin/$(ProjectName).dll"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames="libmmdd.lib"
 				ModuleDefinitionFile=""
@@ -157,7 +153,7 @@
 				SubSystem="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="../../../../bin/$(ProjectName).lib"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				TargetMachine="17"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -200,7 +196,6 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-
 			<Tool
 				Name="VCMIDLTool"
 			/>
@@ -217,7 +212,6 @@
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -234,7 +228,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib scicos_blocks_f.lib scicos.lib output_stream.lib string.lib fileio.lib linear_algebra_f.lib scirenderer.lib graphics.lib slicot_f.lib"
-				OutputFile="../../../../bin/$(ProjectName).dll"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile=""
 				GenerateDebugInformation="false"
@@ -244,7 +238,7 @@
 				LinkTimeCodeGeneration="0"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="../../../../bin/$(ProjectName).lib"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				TargetMachine="1"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -287,7 +281,6 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-
 			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
@@ -304,7 +297,6 @@
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -321,7 +313,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib scicos_blocks_f.lib scicos.lib output_stream.lib string.lib fileio.lib linear_algebra_f.lib scirenderer.lib graphics.lib slicot_f.lib"
-				OutputFile="../../../../bin/$(ProjectName).dll"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile=""
 				GenerateDebugInformation="false"
@@ -331,7 +323,7 @@
 				LinkTimeCodeGeneration="0"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="../../../../bin/$(ProjectName).lib"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				TargetMachine="17"
 				CLRUnmanagedCodeCheck="true"
 			/>
