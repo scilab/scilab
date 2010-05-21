@@ -15,8 +15,8 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=3075
 //
 
-a=mopen(TMPDIR+'test.sce','wt');
-if get_absolute_file_path('test.sce') <> TMPDIR then pause,end 
+a=mopen(TMPDIR+'/test.sce','wt');
+if get_absolute_file_path('test.sce') <> TMPDIR then pause,end
 mclose(a);
 
 ierr = execstr('get_absolute_file_path('''')','errcatch');
