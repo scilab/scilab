@@ -21,10 +21,13 @@
 class CoreModule
 {
 private :
-	CoreModule(){};
-	~CoreModule(){};
+    CoreModule(){};
+    ~CoreModule(){};
 public :
-	CORE_GW_IMPEXP static bool Load();
+    CORE_GW_IMPEXP static bool Load();
 };
+
+Function::ReturnValue sci_getmodules(types::typed_list &in, int _iRetCount, types::typed_list &out);
+Function::ReturnValue sci_clear(types::typed_list &in, int _iRetCount, types::typed_list &out);
 
 #endif /* __CORE_GW_HXX__ */

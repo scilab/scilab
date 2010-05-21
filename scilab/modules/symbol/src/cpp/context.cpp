@@ -14,127 +14,148 @@
 
 namespace symbol
 {
-	Context* Context::me;
+    Context* Context::me;
 
-	Context::Context()
-	{
-		PrivateFunTable.scope_begin();
-		PrivateVarTable.scope_begin();
-		HeapFunTable.scope_begin();
-		HeapVarTable.scope_begin();
-		EnvFunTable.scope_begin();
-		EnvVarTable.scope_begin();
-	}
+    Context::Context()
+    {
+        PrivateFunTable.scope_begin();
+        PrivateVarTable.scope_begin();
+        HeapFunTable.scope_begin();
+        HeapVarTable.scope_begin();
+        EnvFunTable.scope_begin();
+        EnvVarTable.scope_begin();
+    }
 
-	Context* Context::getInstance(void)
-  {
-		if (me == 0)
-		{
-			me = new Context();
-		}
-		return me;
-  }
+    Context* Context::getInstance(void)
+    {
+        if (me == 0)
+        {
+            me = new Context();
+        }
+        return me;
+    }
 
-	void Context::scope_begin() {
-		PrivateFunTable.scope_begin();
-		PrivateVarTable.scope_begin();
-		HeapFunTable.scope_begin();
-		HeapVarTable.scope_begin();
-		EnvFunTable.scope_begin();
-		EnvVarTable.scope_begin();
-	}
+    void Context::scope_begin() {
+        PrivateFunTable.scope_begin();
+        PrivateVarTable.scope_begin();
+        HeapFunTable.scope_begin();
+        HeapVarTable.scope_begin();
+        EnvFunTable.scope_begin();
+        EnvVarTable.scope_begin();
+    }
 
-	void Context::scope_end() {
-		PrivateFunTable.scope_end();
-		PrivateVarTable.scope_end();
-		EnvFunTable.scope_end();
-		EnvVarTable.scope_end();
-		HeapFunTable.scope_end();
-		HeapVarTable.scope_end();
-	}
+    void Context::scope_end() {
+        PrivateFunTable.scope_end();
+        PrivateVarTable.scope_end();
+        EnvFunTable.scope_end();
+        EnvVarTable.scope_end();
+        HeapFunTable.scope_end();
+        HeapVarTable.scope_end();
+    }
 
-	InternalType*	Context::get(const string& key) const
-	{
-		// FIXME
-		InternalType* pI = NULL;
-		pI = EnvVarTable.get(key);
+    InternalType*	Context::get(const string& key) const
+    {
+        // FIXME
+        InternalType* pI = NULL;
+        pI = EnvVarTable.get(key);
 
-		if(pI != NULL)
-		{
-			return pI;
-		}
-		else
-		{
-			pI = EnvFunTable.get(key);
-			if(pI != NULL)
-			{
-				return pI;
-			}
-			else
-			{
-				return NULL;
-			}
-		}
-	}
+        if(pI != NULL)
+        {
+            return pI;
+        }
+        else
+        {
+            pI = EnvFunTable.get(key);
+            if(pI != NULL)
+            {
+                return pI;
+            }
+            else
+            {
+                return NULL;
+            }
+        }
+    }
 
-	InternalType*	Context::get_fun(const string& key) const
-	{
-		return EnvFunTable.get(key);
-		// FIXME
-	}
+    InternalType*	Context::get_fun(const string& key) const
+    {
+        return EnvFunTable.get(key);
+        // FIXME
+    }
 
-	std::list<string>& Context::get_funlist(const string& _stModuleName)
-	{
-		return EnvFunTable.get_funlist(_stModuleName);
-	}
+    std::list<string>& Context::get_funlist(const string& _stModuleName)
+    {
+        return EnvFunTable.get_funlist(_stModuleName);
+    }
 
-	bool Context::put(const string& key, InternalType &type)
-	{
-		// FIXME
-		EnvVarTable.put(key, type);
-		return true;
-	}
+    bool Context::put(const string& key, InternalType &type)
+    {
+        // FIXME
+        EnvVarTable.put(key, type);
+        return true;
+    }
 
-	bool Context::put_in_previous_scope(const string& key, InternalType &type)
-	{
-		// FIXME
-		EnvVarTable.put_in_previous_scope(key, type);
-		return true;
-	}
+    bool Context::remove(const string& key)
+    {
+        // First look in Variables Environment
+        if (EnvVarTable.get(key) == NULL)
+        {
+            // If not found, look in Functions Environment
+            if (EnvFunTable.get(key) == NULL)
+            {
+                return false;
+            }
+            else
+            {
+                EnvFunTable.remove(key);
+                return true;
+            }
+        }
 
-	void Context::print()
-	{
-		std::cout << "PrivateFunTable : " << std::endl;
-		std::cout << PrivateFunTable << std::endl << std::endl;
-		std::cout << "PrivateVarTable : " << std::endl;
-		std::cout << PrivateVarTable << std::endl << std::endl;
-		std::cout << "EnvFunTable : " << std::endl;
-		std::cout << EnvFunTable << std::endl << std::endl;
-		std::cout << "EnvVarTable : " << std::endl;
-		std::cout << EnvVarTable << std::endl << std::endl;
-		std::cout << "HeapFunTable : " << std::endl;
-		std::cout << HeapFunTable << std::endl << std::endl;
-		std::cout << "HeapVarTable : " << std::endl;
-		std::cout << HeapVarTable << std::endl << std::endl;
-		//FIXME
-	}
+        EnvVarTable.remove(key);
+        return true;
+    }
 
-	bool Context::AddFunction(types::Function *_info)
-	{
-	  EnvFunTable.put(_info->getName(), *_info);
-	  return true;
-	}
+    bool Context::put_in_previous_scope(const string& key, InternalType &type)
+    {
+        // FIXME
+        EnvVarTable.put_in_previous_scope(key, type);
+        return true;
+    }
 
-	bool Context::AddMacro(types::Macro *_info)
-	{
-	  EnvFunTable.put(_info->getName(), *_info);
-	  return true;
-	}
+    void Context::print()
+    {
+        std::cout << "PrivateFunTable : " << std::endl;
+        std::cout << PrivateFunTable << std::endl << std::endl;
+        std::cout << "PrivateVarTable : " << std::endl;
+        std::cout << PrivateVarTable << std::endl << std::endl;
+        std::cout << "EnvFunTable : " << std::endl;
+        std::cout << EnvFunTable << std::endl << std::endl;
+        std::cout << "EnvVarTable : " << std::endl;
+        std::cout << EnvVarTable << std::endl << std::endl;
+        std::cout << "HeapFunTable : " << std::endl;
+        std::cout << HeapFunTable << std::endl << std::endl;
+        std::cout << "HeapVarTable : " << std::endl;
+        std::cout << HeapVarTable << std::endl << std::endl;
+        //FIXME
+    }
 
-	bool Context::AddMacroFile(types::MacroFile *_info)
-	{
-	  EnvFunTable.put(_info->getName(), *_info);
-	  return true;
-	}
+    bool Context::AddFunction(types::Function *_info)
+    {
+        EnvFunTable.put(_info->getName(), *_info);
+        return true;
+    }
+
+    bool Context::AddMacro(types::Macro *_info)
+    {
+        EnvFunTable.put(_info->getName(), *_info);
+        return true;
+    }
+
+    bool Context::AddMacroFile(types::MacroFile *_info)
+    {
+        EnvFunTable.put(_info->getName(), *_info);
+        return true;
+    }
 }
 

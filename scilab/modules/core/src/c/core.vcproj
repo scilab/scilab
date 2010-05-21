@@ -613,10 +613,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_clear.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_clearfun.c"
 				>
 			</File>
@@ -686,10 +682,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_getmemory.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_getmodules.c"
 				>
 			</File>
 			<File

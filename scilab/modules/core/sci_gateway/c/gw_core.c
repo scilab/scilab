@@ -49,7 +49,7 @@ static gw_generic_table Tab[]=
 {C2F(sci_havewindow),"havewindow"},
 {C2F(sci_stacksize),"stacksize"},
 {C2F(sci_mtlb_mode),"mtlb_mode"},
-{C2F(sci_clear),"clear"},
+{NULL,""}, // clear
 {C2F(sci_what),"what"},
 {C2F(sci_sciargs),"sciargs"},
 {C2F(sci_ieee),"ieee"},
@@ -66,7 +66,7 @@ static gw_generic_table Tab[]=
 {C2F(sci_banner),"banner"},
 {C2F(sci_getmemory),"getmemory"},
 {C2F(sci_getmd5),"getmd5"},
-{C2F(sci_getmodules),"getmodules"},
+{NULL,""}, //getmodules
 {C2F(sci_with_module),"with_module"},
 {NULL, ""}, //getdebuginfo
 {C2F(sci_readgateway),"readgateway"},

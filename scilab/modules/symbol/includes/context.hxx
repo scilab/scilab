@@ -24,56 +24,59 @@
 namespace symbol
 {
 
-  /** \brief Define class Context.
-   */
-  class EXTERN_SYMBOL Context
-  {
-	public :
-		Context();
-		static Context* getInstance(void);
+    /** \brief Define class Context.
+    */
+    class EXTERN_SYMBOL Context
+    {
+    public :
+        Context();
+        static Context* getInstance(void);
 
-		/** Open a context scope i.e
-		** open the heap table one
-		** and the env table too. */
-		void scope_begin();
+        /** Open a context scope i.e
+        ** open the heap table one
+        ** and the env table too. */
+        void scope_begin();
 
-		/** Close a context scope i.e
-		** close the heap table one
-		** and the env table too. */
-		void scope_end();
+        /** Close a context scope i.e
+        ** close the heap table one
+        ** and the env table too. */
+        void scope_end();
 
-		/** If key was associated to some Entry_T in the open scopes, return the
-		** most recent insertion. Otherwise return the empty pointer. */
-		InternalType*	get(const string& key) const;
+        /** If key was associated to some Entry_T in the open scopes, return the
+        ** most recent insertion. Otherwise return the empty pointer. */
+        InternalType*	get(const string& key) const;
 
-		/** If key was associated to some Entry_T in the open scopes, return the
-		** most recent insertion. Otherwise return the empty pointer. */
-		InternalType*	get_fun(const string& key) const;
+        /** If key was associated to some Entry_T in the open scopes, return the
+        ** most recent insertion. Otherwise return the empty pointer. */
+        InternalType*	get_fun(const string& key) const;
 
-		/*return function list in the module _stModuleName*/
-		std::list<string>& get_funlist(const string& _stModuleName);
+        /*return function list in the module _stModuleName*/
+        std::list<string>& get_funlist(const string& _stModuleName);
 
-		/*print all tables*/
-		void print();
+        /*print all tables*/
+        void print();
 
-		/*add symbol and value in the stack*/
-		bool put(const string& key, InternalType &type);
-		/*add symbol and value in the previous scope*/
-		bool put_in_previous_scope(const string& key, InternalType &type);
+        /*add symbol and value in the stack*/
+        bool put(const string& key, InternalType &type);
+        /*add symbol and value in the previous scope*/
+        bool put_in_previous_scope(const string& key, InternalType &type);
 
-		bool AddFunction(types::Function *_info);
-		bool AddMacro(types::Macro *_info);
-		bool AddMacroFile(types::MacroFile *_info);
+        /* remove symbol/value association */
+        bool remove(const string& key);
 
-	private :
-		Stack PrivateFunTable;
-		Stack PrivateVarTable;
-		Heap HeapFunTable;
-		Heap HeapVarTable;
-		Stack EnvFunTable;
-		Stack EnvVarTable;
+        bool AddFunction(types::Function *_info);
+        bool AddMacro(types::Macro *_info);
+        bool AddMacroFile(types::MacroFile *_info);
 
-		static Context* me;
-	};
+    private :
+        Stack PrivateFunTable;
+        Stack PrivateVarTable;
+        Heap HeapFunTable;
+        Heap HeapVarTable;
+        Stack EnvFunTable;
+        Stack EnvVarTable;
+
+        static Context* me;
+    };
 }
 #endif // !CONTEXT_HH

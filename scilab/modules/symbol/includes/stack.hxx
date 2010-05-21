@@ -23,97 +23,103 @@
 namespace symbol
 {
 
-/*-----------------------------------------------------------------------.
-| This implements stacks for storing definitions of variables and        |
-| functions as a stack of dictionnaries.  Each time a scope is opened, a |
-| new dictionnary is added on the top of the stack; the dictionary is    |
-| removed when the scope is closed.  Lookup of symbols is donne in the   |
-| last added dictionnary first (LIFO).                                   |
-`-----------------------------------------------------------------------*/
-  class EXTERN_SYMBOL Stack : public Table
-  {
-  public:
-    /** Open a new scope */
-    void	scope_begin()
+    /*-----------------------------------------------------------------------.
+    | This implements stacks for storing definitions of variables and        |
+    | functions as a stack of dictionnaries.  Each time a scope is opened, a |
+    | new dictionnary is added on the top of the stack; the dictionary is    |
+    | removed when the scope is closed.  Lookup of symbols is donne in the   |
+    | last added dictionnary first (LIFO).                                   |
+    `-----------------------------------------------------------------------*/
+    class EXTERN_SYMBOL Stack : public Table
     {
-      this->l_scope.push_front(new Scope());
-    }
+    public:
+        /** Open a new scope */
+        void	scope_begin()
+        {
+            this->l_scope.push_front(new Scope());
+        }
 
-    /** Close the last scope, forgetting everything since the latest
-     **	scope_begin (). */
-    void	scope_end()
+        /** Close the last scope, forgetting everything since the latest
+        **	scope_begin (). */
+        void	scope_end()
+        {
+            Scope* scope = this->l_scope.front();
+            delete scope;
+            this->l_scope.pop_front();
+        }
+
+        void	put_in_previous_scope(const string& key, InternalType &value)
+        {
+            size_t iSize = l_scope.size();
+            if(iSize > 1)
+            {
+                std::list<Scope*>::iterator i;
+                i = l_scope.begin();
+                i++;
+                (*i)->put(key, value);
+            }
+        }
+
+        /** Associate value to key in the current scope. */
+        void	put (const string& key, InternalType &value)
+        {
+            /* InternalType *pOld = */(this->l_scope.front())->put(key, value);
+            /*			if(pOld != NULL)
+            {
+            std::list<Scope>::const_iterator it_list_scope;
+            it_list_scope = this->l_scope.begin();
+
+            do
+            {
+            bool bUsed = (*it_list_scope).isUsed(pOld);
+            if(bUsed)
+            {
+            return;
+            }
+            }while(&(*it_list_scope) != &l_scope.front());
+            //				std::cout << pOld->getAsDouble()->toString(10,100) << std::endl;
+            delete pOld;
+            }
+            */    }
+
+        /** Remove Association between value and key in the current scope. */
+        void	remove(const string& key)
+        {
+            (this->l_scope.front())->remove(key);
+        }
+
+        /** If key was associated to some Entry_T in the open scopes, return the
+        ** most recent insertion. Otherwise return the empty pointer. */
+        InternalType*	get (const string& key) const
+        {
+            InternalType* result = 0;
+
+            std::list<Scope*>::const_iterator it_list_scope;
+
+            for (it_list_scope = this->l_scope.begin(); it_list_scope != this->l_scope.end(); ++it_list_scope)
+            {
+                result = (*it_list_scope)->get(key);
+                if (result == 0)
+                    continue ;
+                return result;
+            }
+            return result;
+        }
+
+        std::list<std::string>& get_funlist(const string& _stModuleName)
+        {
+            //get hightest scope
+            std::list<Scope*>::iterator i = l_scope.end();
+            i--;
+            return (*i)->get_names(_stModuleName);
+        }
+    };
+
+    inline std::ostream& operator<< (std::ostream& ostr, const Stack &tbl)
     {
-    	Scope* scope = this->l_scope.front();
-    	delete scope;
-      this->l_scope.pop_front();
+        tbl.print (ostr);
+        return ostr;
     }
-
-    void	put_in_previous_scope(const string& key, InternalType &value)
-		{
-			size_t iSize = l_scope.size();
-			if(iSize > 1)
-			{
-				std::list<Scope*>::iterator i;
-				i = l_scope.begin();
-				i++;
-				(*i)->put(key, value);
-			}
-		}
-		
-    /** Associate value to key in the current scope. */
-    void	put (const string& key, InternalType &value)
-    {
-      /* InternalType *pOld = */(this->l_scope.front())->put(key, value);
-/*			if(pOld != NULL)
-			{
-				std::list<Scope>::const_iterator it_list_scope;
-				it_list_scope = this->l_scope.begin();
-
-				do
-				{
-					bool bUsed = (*it_list_scope).isUsed(pOld);
-					if(bUsed)
-					{
-						return;
-					}
-				}while(&(*it_list_scope) != &l_scope.front());
-//				std::cout << pOld->getAsDouble()->toString(10,100) << std::endl;
-				delete pOld;
-			}
-*/    }
-
-    /** If key was associated to some Entry_T in the open scopes, return the
-     ** most recent insertion. Otherwise return the empty pointer. */
-    InternalType*	get (const string& key) const
-		{
-			InternalType* result = 0;
-
-			std::list<Scope*>::const_iterator it_list_scope;
-
-			for (it_list_scope = this->l_scope.begin(); it_list_scope != this->l_scope.end(); ++it_list_scope)
-			{
-				result = (*it_list_scope)->get(key);
-				if (result == 0)
-					continue ;
-				return result;
-			}
-      return result;
-    }
-
-		std::list<std::string>& get_funlist(const string& _stModuleName)
-		{
-			//get hightest scope
-			std::list<Scope*>::iterator i = l_scope.end();
-			i--;
-			return (*i)->get_names(_stModuleName);
-		}
-  };
-
-  inline std::ostream& operator<< (std::ostream& ostr, const Stack &tbl)
-  {
-    tbl.print (ostr);
-    return ostr;
-  }
 }
 
 

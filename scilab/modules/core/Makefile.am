@@ -228,10 +228,8 @@ sci_gateway/c/sci_funptr.c \
 sci_gateway/c/sci_return.c \
 sci_gateway/c/sci_exists.c \
 sci_gateway/c/sci_getmd5.c \
-sci_gateway/c/sci_clear.c \
 sci_gateway/c/sci_clearfun.c \
 sci_gateway/c/sci_setbpt.c \
-sci_gateway/c/sci_getmodules.c \
 sci_gateway/c/sci_what.c \
 sci_gateway/c/sci_predef.c \
 sci_gateway/c/sci_clearglobal.c \
@@ -279,6 +277,9 @@ sci_gateway/fortran/sci_debug.f \
 sci_gateway/fortran/sci_comp.f \
 sci_gateway/fortran/sci_isglobal.f
 
+GATEWAY_CPP_SOURCES = 	sci_gateway/cpp/sci_getmodules.cpp \
+						sci_gateway/cpp/sci_clear.cpp
+
 libscicore_la_CFLAGS = -I$(srcdir)/includes/ \
 	-I$(srcdir)/src/c/ \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -311,6 +312,7 @@ libscicore_la_CPPFLAGS = \
 			-I$(top_srcdir)/modules/elementary_functions/includes/ \
 			-I$(top_srcdir)/modules/abstractSyntaxTree/includes/ \
 			-I$(top_srcdir)/modules/types/includes/ \
+			-I$(top_srcdir)/modules/output_stream/includes/ \
 			-I$(top_srcdir)/modules/dynamic_link/includes \
 			-I$(top_srcdir)/libs/MALLOC/includes/ 
 
@@ -328,7 +330,7 @@ libscicore_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(XML_LIBS)
 CHECK_SRC= $(CORE_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscicore_la_CFLAGS)
 
-libscicore_la_SOURCES = $(CORE_C_SOURCES) $(CORE_FORTRAN_SOURCES) $(CORE_CPP_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(JNI_SOURCES)
+libscicore_la_SOURCES = $(CORE_C_SOURCES) $(CORE_FORTRAN_SOURCES) $(CORE_CPP_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_CPP_SOURCES) $(JNI_SOURCES)
 
 # Commented because it is easier to comment first the core module
 #�libscicore_la_LIBADD =  $(top_builddir)/modules/io/libsciio.la $(top_builddir)/modules/fftw/libscifftw.la $(top_builddir)/modules/console/libsciconsole.la $(top_builddir)/modules/special_functions/libscispecial_functions.la $(top_builddir)/modules/cacsd/libscicacsd.la $(top_builddir)/modules/polynomials/libscipolynomials.la $(top_builddir)/modules/data_structures/libscidata_structures.la $(top_builddir)/modules/boolean/libsciboolean.la $(top_builddir)/modules/dynamic_link/libscidynamic_link.la $(top_builddir)/modules/randlib/libscirandlib.la $(top_builddir)/modules/localization/libscilocalization.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/signal_processing/libscisignal_processing.la $(top_builddir)/modules/completion/libscicompletion.la $(top_builddir)/modules/action_binding/libsciaction_binding.la $(top_builddir)/modules/differential_equations/libscidifferential_equations.la $(top_builddir)/modules/tclsci/libscitclsci.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la $(top_builddir)/modules/shell/libscishell.la $(top_builddir)/modules/pvm/libscipvm.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/double/libscidouble.la $(top_builddir)/modules/sound/libscisound.la $(top_builddir)/modules/intersci/libsciintersci.la $(top_builddir)/modules/graphics/libscigraphics.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/graphic_export/libscigraphic_export.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/spreadsheet/libscispreadsheet.la $(top_builddir)/modules/gui/libscigui.la $(top_builddir)/modules/history_manager/libscihistory_manager.la $(top_builddir)/modules/time/libscitime.la $(top_builddir)/modules/metanet/libscimetanet.la $(top_builddir)/modules/windows_tools/libsciwindows_tools.la $(top_builddir)/modules/interpolation/libsciinterpolation.la $(top_builddir)/modules/symbolic/libscisymbolic.la $(top_builddir)/libs/blas/libsciblas.la $(top_builddir)/modules/statistics/libscistatistics.la $(top_builddir)/modules/jvm/libscijvm.la $(top_builddir)/modules/sparse/libscisparse.la $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la $(top_builddir)/modules/optimization/libscioptimization.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/libs/lapack/libscilapack.la

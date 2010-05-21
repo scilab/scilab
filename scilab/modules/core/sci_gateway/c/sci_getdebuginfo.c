@@ -14,6 +14,7 @@
 #include "gw_core.h"
 #include "stack-c.h"
 #include "version.h"
+#include "api_oldstack.h"
 #include "MALLOC.h"
 #include "freeArrayOfString.h"
 #ifdef _MSC_VER
@@ -37,7 +38,7 @@ int sci_getdebuginfo(char *fname, int* _piKey)
 
 #ifdef _MSC_VER
 	outputDynamicList = getDynamicDebugInfo_Windows(&m1, _piKey);
-	outputStaticList = getStaticDebugInfo_Windows(&m2, _piKey);
+	outputStaticList = getStaticDebugInfo_Windows(&m2);
 #else
 	outputDynamicList = getDynamicDebugInfo(&m1, _piKey);
 	outputStaticList = getStaticDebugInfo(&m2);

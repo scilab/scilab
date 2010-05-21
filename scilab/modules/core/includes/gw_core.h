@@ -43,7 +43,7 @@ int C2F(sci_where)(char *fname,unsigned long fname_len);
 int C2F(sci_havewindow)(char *fname,unsigned long fname_len);
 int C2F(sci_stacksize)(char *fname,unsigned long fname_len);
 int C2F(sci_mtlb_mode)(char *fname,unsigned long fname_len);
-int C2F(sci_clear)(char *fname,unsigned long fname_len);
+//int C2F(sci_clear)(char *fname,unsigned long fname_len);
 int C2F(sci_what)(char *fname,unsigned long fname_len);
 int C2F(sci_sciargs)(char *fname,unsigned long fname_len);
 int C2F(sci_ieee)(char *fname,unsigned long fname_len);
