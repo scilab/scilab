@@ -72,7 +72,13 @@ public class TicksProperty {
 	 * @param labels the labels to set
 	 */
 	public void setLabels(ArrayList<FormattedText> labels) {
-		this.labels = labels;
+		if (!this.labels.isEmpty()) {
+			this.labels.clear();
+		}
+
+		for (int i = 0; i < labels.size(); i++) {
+			this.labels.add(i, new FormattedText(labels.get(i)));
+		}
 	}
 
 	/**

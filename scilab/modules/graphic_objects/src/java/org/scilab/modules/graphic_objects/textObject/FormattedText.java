@@ -33,6 +33,15 @@ public class FormattedText {
 	}
 
 	/**
+	 * Copy constructor
+	 * @param formText the formatted text to copy
+	 */
+	public FormattedText(FormattedText formText) {
+		this.text = new String(formText.getText());
+		this.font = formText.getFont();
+	}
+
+	/**
 	 * @return the font
 	 */
 	public Font getFont() {
