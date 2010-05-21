@@ -120,18 +120,18 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscigui_disable_la_LIBADD =
 am__objects_1 = libscigui_disable_la-nogui.lo
-am_libscigui_disable_la_OBJECTS = $(am__objects_1)
+am__objects_2 = libscigui_disable_la-nogui_gw.lo
+am_libscigui_disable_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscigui_disable_la_OBJECTS = $(am_libscigui_disable_la_OBJECTS)
-libscigui_disable_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
-	$(libscigui_disable_la_CFLAGS) $(CFLAGS) \
-	$(libscigui_disable_la_LDFLAGS) $(LDFLAGS) -o $@
+libscigui_disable_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
+	$(CXXFLAGS) $(libscigui_disable_la_LDFLAGS) $(LDFLAGS) -o $@
 libscigui_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/renderer/libscirenderer.la \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
-am__objects_2 = libscigui_la-TerminateGui.lo \
+am__objects_3 = libscigui_la-TerminateGui.lo \
 	libscigui_la-buildMainWindowTitle.lo \
 	libscigui_la-getMainWindowTitle.lo \
 	libscigui_la-InitializeGUI.lo \
@@ -141,7 +141,7 @@ am__objects_2 = libscigui_la-TerminateGui.lo \
 	libscigui_la-CreateUIContextMenu.lo \
 	libscigui_la-UicontrolStyleToString.lo \
 	libscigui_la-messageboxoptions.lo
-am__objects_3 = libscigui_la-sci_x_choice.lo libscigui_la-gw_gui.lo \
+am__objects_4 = libscigui_la-sci_x_choice.lo libscigui_la-gw_gui.lo \
 	libscigui_la-sci_x_mdialog.lo libscigui_la-sci_x_dialog.lo \
 	libscigui_la-sci_x_choose.lo \
 	libscigui_la-sci_x_choose_modeless.lo \
@@ -156,15 +156,15 @@ am__objects_3 = libscigui_la-sci_x_choice.lo libscigui_la-gw_gui.lo \
 	libscigui_la-sci_uigetcolor.lo \
 	libscigui_la-sci_getcallbackobject.lo \
 	libscigui_la-sci_exportUI.lo
-am__objects_4 = libscigui_la-sci_printsetupbox.lo \
+am__objects_5 = libscigui_la-sci_printsetupbox.lo \
 	libscigui_la-sci_toprint.lo libscigui_la-sci_printfigure.lo \
 	libscigui_la-sci_setlookandfeel.lo \
 	libscigui_la-sci_getinstalledlookandfeels.lo \
 	libscigui_la-sci_getlookandfeel.lo \
 	libscigui_la-sci_uigetdir.lo libscigui_la-sci_uigetfile.lo \
 	libscigui_la-sci_displaytree.lo libscigui_la-sci_uiputfile.lo \
-	libscigui_la-sci_about.lo
-am__objects_5 = libscigui_la-InitUIMenu.lo \
+	libscigui_la-sci_about.lo libscigui_la-gui_gw.lo
+am__objects_6 = libscigui_la-InitUIMenu.lo \
 	libscigui_la-CallScilabBridge.lo libscigui_la-Jxclick.lo \
 	libscigui_la-DestroyUimenu.lo libscigui_la-DestroyUicontrol.lo \
 	libscigui_la-DestroyJavaUiobject.lo \
@@ -237,8 +237,8 @@ am__objects_5 = libscigui_la-InitUIMenu.lo \
 	libscigui_la-GiwsException.lo libscigui_la-Juigetfile.lo \
 	libscigui_la-CallJuigetfile.lo libscigui_la-displaytree.lo \
 	libscigui_la-ScilabDisplayTree.lo
-am_libscigui_la_OBJECTS = $(am__objects_2) $(am__objects_3) \
-	$(am__objects_4) $(am__objects_5)
+am_libscigui_la_OBJECTS = $(am__objects_3) $(am__objects_4) \
+	$(am__objects_5) $(am__objects_6)
 libscigui_la_OBJECTS = $(am_libscigui_la_OBJECTS)
 libscigui_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
@@ -759,7 +759,8 @@ sci_gateway/cpp/sci_uigetdir.cpp \
 sci_gateway/cpp/sci_uigetfile.cpp \
 sci_gateway/cpp/sci_displaytree.cpp \
 sci_gateway/cpp/sci_uiputfile.cpp \
-sci_gateway/cpp/sci_about.cpp
+sci_gateway/cpp/sci_about.cpp \
+sci_gateway/cpp/gui_gw.cpp
 
 libscigui_la_CFLAGS = -I$(srcdir)/src/c/ -I$(srcdir)/src/c/xsci/ \
 	-I$(srcdir)/includes/ \
@@ -801,7 +802,10 @@ libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/graphic_export/includes/ \
 			-I$(top_srcdir)/modules/string/includes/ \
 			-I$(top_srcdir)/modules/api_scilab/includes \
-			-I$(top_srcdir)/modules/operations/includes/
+			-I$(top_srcdir)/modules/operations/includes/ \
+			-I$(top_srcdir)/modules/types/includes/ \
+			-I$(top_srcdir)/modules/abstractSyntaxTree/includes/ \
+			-I$(top_srcdir)/modules/symbol/includes/
 
 
 # Without the GUI module
@@ -810,9 +814,11 @@ libscigui_disable_la_CFLAGS = -Iincludes/ \
 			-I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes
 
+libscigui_disable_la_CPPFLAGS = -Iincludes/
 GUI_DISABLE_C_SOURCES = src/nogui/nogui.c
+GUI_DISABLE_CPP_SOURCES = src/nogui/nogui_gw.cpp
 libscigui_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
-libscigui_disable_la_SOURCES = $(GUI_DISABLE_C_SOURCES)
+libscigui_disable_la_SOURCES = $(GUI_DISABLE_C_SOURCES) $(GUI_DISABLE_CPP_SOURCES)
 pkglib_LTLIBRARIES = libscigui-disable.la $(am__append_2)
 libscigui_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 libscigui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GUI_CPP_SOURCES)
@@ -945,6 +951,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_disable_la-nogui.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_disable_la-nogui_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallClipboard.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallColorChooser.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallFigure.Plo@am__quote@
@@ -1045,6 +1052,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-displaytree.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-exportUserInterface.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-getMainWindowTitle.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-gui_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-gw_gui.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-messageboxoptions.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_ClipBoard.Plo@am__quote@
@@ -1107,11 +1115,11 @@ distclean-compile:
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
 libscigui_disable_la-nogui.lo: src/nogui/nogui.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_disable_la_CFLAGS) $(CFLAGS) -MT libscigui_disable_la-nogui.lo -MD -MP -MF $(DEPDIR)/libscigui_disable_la-nogui.Tpo -c -o libscigui_disable_la-nogui.lo `test -f 'src/nogui/nogui.c' || echo '$(srcdir)/'`src/nogui/nogui.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_disable_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_disable_la_CFLAGS) $(CFLAGS) -MT libscigui_disable_la-nogui.lo -MD -MP -MF $(DEPDIR)/libscigui_disable_la-nogui.Tpo -c -o libscigui_disable_la-nogui.lo `test -f 'src/nogui/nogui.c' || echo '$(srcdir)/'`src/nogui/nogui.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscigui_disable_la-nogui.Tpo $(DEPDIR)/libscigui_disable_la-nogui.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/nogui/nogui.c' object='libscigui_disable_la-nogui.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_disable_la_CFLAGS) $(CFLAGS) -c -o libscigui_disable_la-nogui.lo `test -f 'src/nogui/nogui.c' || echo '$(srcdir)/'`src/nogui/nogui.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_disable_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_disable_la_CFLAGS) $(CFLAGS) -c -o libscigui_disable_la-nogui.lo `test -f 'src/nogui/nogui.c' || echo '$(srcdir)/'`src/nogui/nogui.c
 
 libscigui_la-TerminateGui.lo: src/c/TerminateGui.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-TerminateGui.lo -MD -MP -MF $(DEPDIR)/libscigui_la-TerminateGui.Tpo -c -o libscigui_la-TerminateGui.lo `test -f 'src/c/TerminateGui.c' || echo '$(srcdir)/'`src/c/TerminateGui.c
@@ -1393,6 +1401,13 @@ libscigui_la-sci_exportUI.lo: sci_gateway/c/sci_exportUI.c
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
 
+libscigui_disable_la-nogui_gw.lo: src/nogui/nogui_gw.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_disable_la-nogui_gw.lo -MD -MP -MF $(DEPDIR)/libscigui_disable_la-nogui_gw.Tpo -c -o libscigui_disable_la-nogui_gw.lo `test -f 'src/nogui/nogui_gw.cpp' || echo '$(srcdir)/'`src/nogui/nogui_gw.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_disable_la-nogui_gw.Tpo $(DEPDIR)/libscigui_disable_la-nogui_gw.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/nogui/nogui_gw.cpp' object='libscigui_disable_la-nogui_gw.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_disable_la-nogui_gw.lo `test -f 'src/nogui/nogui_gw.cpp' || echo '$(srcdir)/'`src/nogui/nogui_gw.cpp
+
 libscigui_la-sci_printsetupbox.lo: sci_gateway/cpp/sci_printsetupbox.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_printsetupbox.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_printsetupbox.Tpo -c -o libscigui_la-sci_printsetupbox.lo `test -f 'sci_gateway/cpp/sci_printsetupbox.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_printsetupbox.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_la-sci_printsetupbox.Tpo $(DEPDIR)/libscigui_la-sci_printsetupbox.Plo
@@ -1469,6 +1484,13 @@ libscigui_la-sci_about.lo: sci_gateway/cpp/sci_about.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_about.cpp' object='libscigui_la-sci_about.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_about.lo `test -f 'sci_gateway/cpp/sci_about.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_about.cpp
+
+libscigui_la-gui_gw.lo: sci_gateway/cpp/gui_gw.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-gui_gw.lo -MD -MP -MF $(DEPDIR)/libscigui_la-gui_gw.Tpo -c -o libscigui_la-gui_gw.lo `test -f 'sci_gateway/cpp/gui_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/gui_gw.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_la-gui_gw.Tpo $(DEPDIR)/libscigui_la-gui_gw.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/gui_gw.cpp' object='libscigui_la-gui_gw.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-gui_gw.lo `test -f 'sci_gateway/cpp/gui_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/gui_gw.cpp
 
 libscigui_la-InitUIMenu.lo: src/cpp/InitUIMenu.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-InitUIMenu.lo -MD -MP -MF $(DEPDIR)/libscigui_la-InitUIMenu.Tpo -c -o libscigui_la-InitUIMenu.lo `test -f 'src/cpp/InitUIMenu.cpp' || echo '$(srcdir)/'`src/cpp/InitUIMenu.cpp

@@ -197,7 +197,8 @@ sci_gateway/cpp/sci_uigetdir.cpp \
 sci_gateway/cpp/sci_uigetfile.cpp \
 sci_gateway/cpp/sci_displaytree.cpp \
 sci_gateway/cpp/sci_uiputfile.cpp \
-sci_gateway/cpp/sci_about.cpp
+sci_gateway/cpp/sci_about.cpp \
+sci_gateway/cpp/gui_gw.cpp
 
 libscigui_la_CFLAGS=	-I$(srcdir)/src/c/ \
 			-I$(srcdir)/src/c/xsci/ \
@@ -245,7 +246,10 @@ libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/graphic_export/includes/ \
 			-I$(top_srcdir)/modules/string/includes/ \
 			-I$(top_srcdir)/modules/api_scilab/includes \
-			-I$(top_srcdir)/modules/operations/includes/
+			-I$(top_srcdir)/modules/operations/includes/ \
+			-I$(top_srcdir)/modules/types/includes/ \
+			-I$(top_srcdir)/modules/abstractSyntaxTree/includes/ \
+			-I$(top_srcdir)/modules/symbol/includes/
 
 # Without the GUI module
 libscigui_disable_la_CFLAGS = -Iincludes/ \
@@ -253,9 +257,12 @@ libscigui_disable_la_CFLAGS = -Iincludes/ \
 			-I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes
 
+libscigui_disable_la_CPPFLAGS = -Iincludes/
+
 GUI_DISABLE_C_SOURCES = src/nogui/nogui.c
+GUI_DISABLE_CPP_SOURCES = src/nogui/nogui_gw.cpp
 libscigui_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
-libscigui_disable_la_SOURCES = $(GUI_DISABLE_C_SOURCES)
+libscigui_disable_la_SOURCES = $(GUI_DISABLE_C_SOURCES) $(GUI_DISABLE_CPP_SOURCES)
 
 
 pkglib_LTLIBRARIES = libscigui-disable.la

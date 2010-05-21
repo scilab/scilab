@@ -23,5 +23,6 @@
 #include "../../output_stream/includes/output_stream_gw.hxx"
 #include "../../matio/includes/matio_gw.hxx"
 #include "../../fileio/includes/fileio_gw.hxx"
+#include "../../gui/includes/gui_gw.hxx"
 
 #endif /* !__MODULE_DECLARATION_HXX__ */

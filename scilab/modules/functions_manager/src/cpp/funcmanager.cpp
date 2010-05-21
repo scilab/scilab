@@ -285,6 +285,7 @@ bool FuncManager::CreateModuleList(void)
 	m_ModuleMap.insert(pair<string, GW_MOD>("matio", &MatioModule::Load));
     m_ModuleMap.insert(pair<string, GW_MOD>("fileio", &FileioModule::Load));
 	m_ModuleMap.insert(pair<string, GW_MOD>("overloading", NULL));
+	m_ModuleMap.insert(pair<string, GW_MOD>("gui", &GuiModule::Load));
 	return bRet;
 }
 

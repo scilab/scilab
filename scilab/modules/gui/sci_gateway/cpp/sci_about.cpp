@@ -10,11 +10,14 @@
  *
  */
 
+#include <iostream>
 #include "CallScilabBridge.hxx"
 
 extern "C"
 {
 #include "stack-c.h"
+#include "api_scilab.h"
+#include "api_oldstack.h"
 #include "getScilabJavaVM.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -25,15 +28,15 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 using namespace org_scilab_modules_gui_bridge;
 /*--------------------------------------------------------------------------*/
-int sci_about( char * fname, unsigned long fname_len )
+int sci_about( char * fname, int *_piKey )
 {
-  
+    std::cerr << "Calling sci_about" << std::endl;
   CallScilabBridge::scilabAboutBox(getScilabJavaVM());
   
   LhsVar(1) = 0;
   PutLhsVar();
   
-  return TRUE;
+  return 0;
  
 }
 /*--------------------------------------------------------------------------*/
