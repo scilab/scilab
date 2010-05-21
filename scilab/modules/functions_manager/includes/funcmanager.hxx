@@ -17,7 +17,6 @@
 #include <list>
 #include <iostream>
 #include <string>
-#include <alltypes.hxx>
 //#include "scilabfunction.hxx"
 
 
