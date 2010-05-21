@@ -20,6 +20,7 @@
 #include "gw_time.h"
 #include "api_common.h"
 #include "api_double.h"
+#include "api_oldstack.h"
 #include "stack-c.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -71,7 +72,7 @@ int sci_xpause(char *fname, int* _piKey)
     }
 
   LhsVar(1)=0;
-  C2F(putlhsvar)();
+  PutLhsVar();
 
   return 0;
 }

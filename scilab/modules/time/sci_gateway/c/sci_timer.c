@@ -14,6 +14,7 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_time.h"
 #include "api_double.h"
+#include "api_oldstack.h"
 #include "timer.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -40,7 +41,7 @@ int sci_timer(char *fname,int* _piKey)
       *pDblReal = (double)timerval;
 
       LhsVar(1) = Rhs+1;
-      C2F(putlhsvar)();
+      PutLhsVar();
     }
   else
     {

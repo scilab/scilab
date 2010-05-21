@@ -21,6 +21,7 @@
 #include "stack-c.h"
 #include "api_common.h"
 #include "api_double.h"
+#include "api_oldstack.h"
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
@@ -70,7 +71,7 @@ int sci_sleep(char *fname, int* _piKey)
     }
 
   LhsVar(1)=0;
-  C2F(putlhsvar)();
+  PutLhsVar();
 
   return 0;
 }

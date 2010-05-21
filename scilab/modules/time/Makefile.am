@@ -16,6 +16,9 @@ sci_gateway/c/sci_sleep.c \
 sci_gateway/c/sci_getdate.c \
 sci_gateway/c/gw_time.c
 
+GATEWAY_CPP_SOURCES = 	sci_gateway/cpp/time_gw.cpp \
+						sci_gateway/cpp/sci_tictoc.cpp
+
 libscitime_la_CFLAGS=  	-I$(srcdir)/includes/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(srcdir)/src/c/ \
@@ -23,11 +26,19 @@ libscitime_la_CFLAGS=  	-I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/operations/includes \
 			-I$(top_srcdir)/modules/api_scilab/includes
 
+libscitime_la_CPPFLAGS=  	-I$(srcdir)/includes/ \
+							-I$(top_srcdir)/modules/api_scilab/includes \
+							-I$(top_srcdir)/modules/operations/includes \
+							-I$(top_srcdir)/modules/functions_manager/includes \
+							-I$(top_srcdir)/modules/symbol/includes \
+							-I$(top_srcdir)/modules/types/includes \
+							-I$(top_srcdir)/modules/abstractSyntaxTree/includes
+
 pkglib_LTLIBRARIES = libscitime.la
 
 libscitime_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
-libscitime_la_SOURCES = $(TIME_C_SOURCES) $(GATEWAY_C_SOURCES)
+libscitime_la_SOURCES = $(TIME_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(libscitime_la_SOURCES)

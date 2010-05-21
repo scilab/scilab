@@ -15,6 +15,7 @@
 #include "realtime.h"
 #include "api_common.h"
 #include "api_double.h"
+#include "api_oldstack.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/ 
 int sci_realtimeinit(char *fname, int* _piKey)
@@ -39,7 +40,7 @@ int sci_realtimeinit(char *fname, int* _piKey)
   C2F(realtimeinit)(&zer,pDblReal);
 
   LhsVar(1) = 0;
-  C2F(putlhsvar)();
+  PutLhsVar();
 
   return 0;
 }
@@ -64,7 +65,7 @@ int sci_realtime(char *fname, int* _piKey)
   C2F(realtime)(pDblReal);
 
   LhsVar(1) = 0;
-  C2F(putlhsvar)();
+  PutLhsVar();
 
   return 0;
 }

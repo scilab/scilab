@@ -23,15 +23,17 @@
 #include <sys/time.h>
 #endif
 #include "gw_time.h"
+#include "stack-c.h"
 #include "api_common.h"
 #include "api_double.h"
 #include "api_string.h"
-#include "stack-c.h"
 #include "MALLOC.h"
 #include "getdate.h"
 #include "transposeMatrix.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "api_oldstack.h"
+
 /*--------------------------------------------------------------------------*/
 int sci_getdate(char *fname, int* _piKey)
 {
@@ -41,7 +43,7 @@ int sci_getdate(char *fname, int* _piKey)
   int i=0;
   double *DATEMATRIX=NULL;
 
-  Rhs=Max(Rhs,0);
+  //Rhs=Max(Rhs,0);
   CheckRhs(0,1) ;
   CheckLhs(0,1) ;
 
@@ -140,7 +142,7 @@ int sci_getdate(char *fname, int* _piKey)
 	      sciErr = createMatrixOfDouble(_piKey, Rhs+1, m1, n1, DATEARRAY);
 
 	      LhsVar(1)=Rhs+1;
-	      C2F(putlhsvar)();
+	      PutLhsVar();
 
 	      if (DATEMATRIX) {FREE(DATEMATRIX);DATEMATRIX=NULL;}
 	      if (DATEARRAY) {FREE(DATEARRAY);DATEARRAY=NULL;}
@@ -157,7 +159,7 @@ int sci_getdate(char *fname, int* _piKey)
     }
 
   LhsVar(1)=Rhs+1;
-  C2F(putlhsvar)();
+  PutLhsVar();
 
   if (DATEMATRIX) {FREE(DATEMATRIX);DATEMATRIX=NULL;}
 

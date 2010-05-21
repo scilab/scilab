@@ -16,6 +16,7 @@
 #include "stack-c.h"
 #include "api_common.h"
 #include "api_double.h"
+#include "api_oldstack.h"
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "IsAScalar.h"
@@ -47,7 +48,7 @@ int sci_calendar(char *fname, int* _piKey)
   double *CALMONTH  = NULL;
   double *tmpMatrix = NULL;
 
-  Rhs = Max(0, Rhs);
+  //Rhs = Max(0, Rhs);
 
   CheckRhs(2,2);
   CheckLhs(1,1);

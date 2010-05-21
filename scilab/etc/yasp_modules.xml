@@ -25,4 +25,5 @@
     <module name="fileio" activate="yes"/>
     <module name="development_tools" activate="yes"/>
     <module name="gui" activate="yes"/>
+    <module name="time" activate="yes"/>
 </modules>

@@ -1,12 +1,10 @@
-//------------------------------------
-// Pierre MARECHAL
-// Scilab team
-// Copyright INRIA
-// Date :  décembre 2005
-//------------------------------------
-if (isdef('genlib') == %f) then
-  exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
-end
-//------------------------------------
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006 - INRIA - Pierre MARECHAL
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 genlib('timelib','SCI/modules/time/macros',%f,%t);
-//------------------------------------
