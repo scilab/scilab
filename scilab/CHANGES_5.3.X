@@ -590,6 +590,9 @@ Bug fixes:
 
 * bug 7077 fixed - uigetfont crashed Scilab when the cancel button was clicked.
 
+* bug 7078 fixed - A wrong error message was displayed when setting the "value" 
+                   property of an "edit" uicontrol.
+
 * bug 7094 fixed - If badly called, ode made Scilab crash.
 
 * bug 7109 fixed - 'lu' function with some complex matrices crashed on Windows.
