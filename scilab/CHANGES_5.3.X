@@ -100,6 +100,11 @@ Text Editor:
 
 * bug 7112 fixed - Two transpositions gave a string (if a'==1 then a=b').
 
+Incompatibilities:
+==================
+* The bug 4583 fix makes the default element value in string array assignment 
+  be an empty string instead of " ".
+
 * bug 7238 fixed - The dot/del key on the numeric pad added a 'suppr' and a dot.
 
 * bug 7239 fixed - Font style was lost on a selected text.
@@ -510,6 +515,8 @@ Bug fixes:
                    compute correctly the state space representation of
                    a transfer function.
 
+* bug 3810 fixed - Insertion in string array and polynomial array may be very slow.
+
 * bug 3811 fixed - Documention about "typeof" and overload prefixes was not
                    up-to-date (help overloading).
 
@@ -528,6 +535,9 @@ Bug fixes:
 * bug 4362 fixed - test_run("gui","checkbox") no more freezes Scilab.
 
 * bug 4572 fixed - scilab did a SIGSEGV after stacksize('max') + stacksize().
+
+* bug 4583 fixed - Default value for string array assignment was " " instead 
+                   of an empty string "".
 
 * bug 4625 fixed - intersci-n was broken on Windows.
 
