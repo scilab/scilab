@@ -56,9 +56,10 @@ function [model, ok] = build_block(o)
         tt    = graphics.exprs.funtxt;
       end
       [dirF, nameF, extF] = fileparts(funam);
-      tarpath = pathconvert(fullfile(TMPDIR,'Modelica'), %f, %t);
+      // the modelica file is in TMPDIR
+      // tarpath = pathconvert(fullfile(TMPDIR,'Modelica'), %f, %t);
       if (extF == '') then
-        funam = fullfile(tarpath, nameF + '.mo');
+	funam = nameF + '.mo';
         mputl(tt, funam);
       end
 
