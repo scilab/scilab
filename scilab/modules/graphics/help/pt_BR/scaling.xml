@@ -78,6 +78,6 @@
     conjunto de pontos definidos pelas coordenadas
     <literal>xy</literal>:</para>
 
-    <para><literal>xy1(:,i) = factor * xy(:,i) + orig</literal>.</para>
+    <para><literal>xy1(:,i) = factor * (xy(:,i) - orig) + orig</literal>.</para>
   </refsection>
 </refentry>

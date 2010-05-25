@@ -55,6 +55,6 @@
     <title>Description</title>
     <para><literal>scaling</literal> performs an affine transformation on the set of points defined
     by the coordinates <literal>xy</literal>:</para>
-    <para><literal>xy1(:,i) = factor * xy(:,i) + orig</literal>.</para>
+    <para><literal>xy1(:,i) = factor * (xy(:,i) - orig) + orig</literal>.</para>
   </refsection>
 </refentry>

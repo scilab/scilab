@@ -56,14 +56,14 @@ Text Editor:
 
 * bug 5261 fixed - Could not open several instances of the editor.
 
-* bug 5269 fixed - Could not have help on a keyword with CTRL+F1. 
+* bug 5269 fixed - Could not have help on a keyword with CTRL+F1.
 
 * bug 5320 fixed - A good name was not proposed on the 'Save as' action.
 
 * bug 5321 fixed - There was not the possibility to choose the length of a
                    tabulation.
 
-* bug 5473 fixed - It was not possibile to generate a function help template 
+* bug 5473 fixed - It was not possibile to generate a function help template
                    using help_from_sci.
 
 * bug 5534 fixed - There was not auto-completion
@@ -175,6 +175,8 @@ Graphics:
 
 * bug 7079 fixed - The "mtlb_get" used a "h" global variable instead of the
                    given "H" argument.
+
+* bug 7173 fixed - The equation in the "scaling" help page was incorrect.
 
 * bug 7188 fixed - Deleting a Label graphics entity caused Scilab to crash.
 

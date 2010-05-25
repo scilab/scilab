@@ -49,7 +49,7 @@
     <para><literal>scaling</literal> applique une transformation affine sur les points définis par
     les coordonnées <literal>xy</literal> :
   </para>
-    <para><literal>xy1(:,i) = factor * xy(:,i) + orig</literal>.
+    <para><literal>xy1(:,i) = factor * (xy(:,i) - orig) + orig</literal>.
   </para>
   </refsection>
 </refentry>
