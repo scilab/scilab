@@ -376,6 +376,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\forkWindows.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\gw_parallel.c"
 				>
 			</File>
@@ -390,6 +394,10 @@
 			>
 			<File
 				RelativePath="..\..\includes\dynlib_parallel.h"
+				>
+			</File>
+			<File
+				RelativePath=".\forkWindows.h"
 				>
 			</File>
 			<File
