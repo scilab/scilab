@@ -326,6 +326,8 @@ Bug fixes:
 
 * bug 2076 fixed - pspect did not use the last data window.
 
+* bug 2623 fixed - non regression test script fixed
+
 * bug 2654 partially fixed - exec returned a wrong error if line had more 
                    than 4096 characters.
 
