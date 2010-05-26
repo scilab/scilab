@@ -445,6 +445,8 @@ Bug fixes:
 
 * bug 6332 fixed - stacksize had problems on Mac OS X and 64 bit platforms.
 
+* bug 6349 fixed -  The callback of an 'edit' uicontrol was only executed when it lost focus.
+
 * bug 6419 fixed - gstacksize() There was no way to retrieve minimum 
                    from Scilab.
 
