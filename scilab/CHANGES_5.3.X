@@ -777,6 +777,8 @@ Bug fixes:
 * bug 7170 fixed - Scilab equivalent for Matlab "uigetdir" was "tk_getdir",
                    it has been replaced by "uigetdir".
 
+* bug 7180 fixed - xs2pdf was unable to export a graphic.
+
 * bug 7181 fixed - The display of a struct having no fields did not work.
 
 * bug 7224 fixed - export empty matrix in HDF5 did not unlock file.
