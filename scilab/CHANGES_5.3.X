@@ -629,3 +629,5 @@ Bug fixes:
                    preceded by ~ or @ or < or >
 
 * bug 7161 fixed - wavread failed to load some .wav files with error 44.
+
+* bug 7181 fixed - The display of a struct having no fields did not work.
