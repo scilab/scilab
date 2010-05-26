@@ -393,6 +393,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 					super.remove((SwingScilabToolBar) this.toolBar);
 				}
 				this.toolBar = newToolBar.getAsSimpleToolBar();
+                this.toolBar.setVisible(true);
 				super.add((SwingScilabToolBar) this.toolBar, java.awt.BorderLayout.PAGE_START);
 				this.repaint();
 			}
