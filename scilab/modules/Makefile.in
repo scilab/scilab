@@ -162,7 +162,7 @@ DIST_SUBDIRS = core output_stream arnoldi elementary_functions string \
 	windows_tools functions overloading maple2scilab m2sci texmacs \
 	development_tools compatibility_functions helptools fftw \
 	umfpack demo_tools genetic_algorithms simulated_annealing \
-	parameters matio atoms types hdf5 graph xcos xpad \
+	parameters matio atoms types hdf5 graph xcos xpad parallel \
 	scicos_blocks scicos . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 am__relativize = \
@@ -312,6 +312,7 @@ OCAMLDEP = @OCAMLDEP@
 OCAMLLEX = @OCAMLLEX@
 OCAMLOPT = @OCAMLOPT@
 OCAMLYACC = @OCAMLYACC@
+OPENMP_ENABLE = @OPENMP_ENABLE@
 OTOOL = @OTOOL@
 OTOOL64 = @OTOOL64@
 PACKAGE = @PACKAGE@
@@ -445,7 +446,7 @@ SUBDIRS = core output_stream arnoldi elementary_functions string \
 	maple2scilab m2sci texmacs development_tools \
 	compatibility_functions helptools fftw umfpack demo_tools \
 	genetic_algorithms simulated_annealing parameters matio atoms \
-	types hdf5 graph xcos xpad $(am__append_1) scicos . \
+	types hdf5 graph xcos xpad parallel $(am__append_1) scicos . \
 	$(am__append_2)
 
 #### Basic files ####
@@ -515,7 +516,8 @@ ENGINE_LIBS = $(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/string/libscistring.la \
 	$(top_builddir)/modules/fftw/libscifftw.la \
 	$(top_builddir)/modules/hdf5/libscihdf5.la \
-	$(top_builddir)/modules/functions/libscifunctions.la
+	$(top_builddir)/modules/functions/libscifunctions.la \
+	$(top_builddir)/modules/parallel/libsciparallel.la
 
 
 # These libraries are loaded dynamically from Scilab.
@@ -534,7 +536,7 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
 	$(top_builddir)/modules/umfpack/libsciumfpack.la \
 	$(top_builddir)/modules/matio/libscimatio.la \
-	$(top_builddir)/modules/helptools/libscihelptools.la
+	$(top_builddir)/modules/helptools/libscihelptools.la 
 
 
 # Core modules

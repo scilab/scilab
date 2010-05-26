@@ -361,7 +361,20 @@ int gw_dynamic_action_binding(void)
         &ptr_gw_action_binding);
 }
 /*--------------------------------------------------------------------------*/
-
-
-
+/* PARALLEL module */
+#define PARALLEL_MODULE_NAME "parallel"
+static DynLibHandle hParallelLib = NULL;
+static PROC_GATEWAY ptr_gw_parallel = NULL;
+static char* dynlibname_parallel = NULL;
+static char* gatewayname_parallel = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_parallel(void)
+{
+    return gw_dynamic_generic(PARALLEL_MODULE_NAME,
+        &dynlibname_parallel,
+        &gatewayname_parallel,
+        &hParallelLib,
+        &ptr_gw_parallel);
+}
+/*--------------------------------------------------------------------------*/
 

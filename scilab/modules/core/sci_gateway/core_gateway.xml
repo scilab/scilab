@@ -81,7 +81,6 @@
   <PRIMITIVE gatewayId="13" primitiveId="51" primitiveName="getdebuginfo" />
   <PRIMITIVE gatewayId="13" primitiveId="52" primitiveName="readgateway" />
   <PRIMITIVE gatewayId="13" primitiveId="53" primitiveName="exit" />
-  <PRIMITIVE gatewayId="13" primitiveId="54" primitiveName="parallel_run" />
 
   <PRIMITIVE gatewayId="14" primitiveId="1" primitiveName="user" />
   
