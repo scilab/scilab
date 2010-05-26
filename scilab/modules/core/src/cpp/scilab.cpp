@@ -1,14 +1,14 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2006-2008 - DIGITEO - Bruno JOFRET
-*
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-*
-*/
+ *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Copyright (C) 2006-2008 - DIGITEO - Bruno JOFRET
+ *
+ *  This file must be used under the terms of the CeCILL.
+ *  This source file is licensed as described in the file COPYING, which
+ *  you should have received as part of this distribution.  The terms
+ *  are also available at
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 
 #pragma comment(lib,"../../bin/libintl.lib")
 
@@ -22,7 +22,7 @@ extern "C"
 #include <unistd.h>
 #endif
 
-	//#include "SetScilabEnvironment.h"
+//#include "SetScilabEnvironment.h"
 #include "prompt.h"
 #include "localization.h"
 #include "InitializeLocalization.h"
@@ -59,10 +59,10 @@ extern "C"
 #ifdef __APPLE__
 #include "../../../shell/src/c/others/initMacOSXEnv.h"
 #endif
-	/*
-	** HACK HACK HACK
-	*/
-	extern char *TermReadAndProcess(void);
+/*
+** HACK HACK HACK
+*/
+    extern char *TermReadAndProcess(void);
 }
 
 #include "yaspio.hxx"
@@ -75,10 +75,10 @@ extern "C"
 //#include "setenvvar.hxx"
 #include "funcmanager.hxx"
 
-#define INTERACTIVE	-1
+#define INTERACTIVE     -1
 
-const char*	prog_name;
-const char*	file_name;
+const char* prog_name;
+const char* file_name;
 
 bool printAst = false;
 bool execAst = true;
@@ -88,6 +88,7 @@ bool dumpStack = false;
 bool timed = false;
 bool ASTtimed = false;
 bool consoleMode = false;
+bool noJvm = false;
 
 using symbol::Context;
 using std::string;
@@ -118,13 +119,13 @@ int StartScilabEngine(int argc, char*argv[], int iFileIndex);
 */
 static void usage (void)
 {
-	std::cerr << "Usage: "<< prog_name << " <options>" << std::endl;
-	std::cerr << "      --orig           : use origianl visitor for execution." << std::endl;
-	std::cerr << "      -f file          : Batch mode on the given file." << std::endl;
-	std::cerr << "      -l lang          : Change the language of scilab ( default : en_US )." << std::endl;
-	std::cerr << "      -nw              : Enable console mode." << std::endl;
-	std::cerr << "      -nwni            : Enable terminal mode." << std::endl;
-	std::cerr << "      --help           : Display this help." << std::endl;
+    std::cerr << "Usage: "<< prog_name << " <options>" << std::endl;
+    std::cerr << "      --orig           : use origianl visitor for execution." << std::endl;
+    std::cerr << "      -f file          : Batch mode on the given file." << std::endl;
+    std::cerr << "      -l lang          : Change the language of scilab ( default : en_US )." << std::endl;
+    std::cerr << "      -nw              : Enable console mode." << std::endl;
+    std::cerr << "      -nwni            : Enable terminal mode." << std::endl;
+    std::cerr << "      --help           : Display this help." << std::endl;
     std::cerr << "Developer Trace arguments:" << std::endl;
     std::cerr << "      --parse-trace    : Display bison state machine evolution." << std::endl;
     std::cerr << "      --AST-trace      : Display ASCII-art AST to be human readable." << std::endl;
@@ -136,7 +137,7 @@ static void usage (void)
     std::cerr << " " << std::endl;
     std::cerr << "Developer Debug arguments:" << std::endl;
     std::cerr << "      --no-exec        : Only do Lexing/parsing do not execute instructions." << std::endl;
-    std::cerr << "      --context-dump   : Display context status."	 << std::endl;
+    std::cerr << "      --context-dump   : Display context status." << std::endl;
 }
 
 
@@ -145,65 +146,70 @@ static void usage (void)
 **
 **
 */
-static int	get_option (const int argc, char *argv[], int *_piFileIndex, int *_piLangIndex)
+static int get_option (const int argc, char *argv[], int *_piFileIndex, int *_piLangIndex)
 {
-	int	i = 0;
+    int i = 0;
 
 #ifdef DEBUG
-	std::cerr << "-*- Getting Options -*-"<< std::endl;
+    std::cerr << "-*- Getting Options -*-"<< std::endl;
 #endif
 
-	for (i = 1; i < argc; ++i) {
-		if (!strcmp("--parse-trace", argv[i])) {
-			Parser::getInstance()->enableParseTrace();
-		}
-		else if (!strcmp("--pretty-print", argv[i])) {
-			printAst = true;
-		}
-		else if (!strcmp("--help", argv[i])) {
-			usage ();
-			exit (WELL_DONE);
-		}
-		else if (!strcmp("--AST-trace", argv[i])) {
-			dumpAst = true;
-		}
-		else if (!strcmp("--no-exec", argv[i])) {
-			execAst = false;
-		}
-		else if (!strcmp("--orig", argv[i])) {
-			std::cout << "Original execution" << std::endl;
-			execOrig = true;
-			execAst = false;
-		}
-		else if (!strcmp("--context-dump", argv[i])) {
-			dumpStack = true;
-		}
-		else if (!strcmp("--timed", argv[i])) {
-			timed = true;
-		}
-		else if (!strcmp("--AST-timed", argv[i])) {
-			std::cout << "Timed execution" << std::endl;
-			ASTtimed = true;
-		}
-		else if (!strcmp("-f", argv[i])) {
-			i++;
-			*_piFileIndex = i;
-		}
-		else if (!strcmp("-l", argv[i])) {
-			i++;
-			*_piLangIndex = i;
-		}
-		else if (!strcmp("-nw", argv[i]) || !strcmp("-nwni", argv[i])) {
-			consoleMode = true;
-			setScilabMode(SCILAB_NWNI);
-		}
-	}
+    for (i = 1; i < argc; ++i) {
+        if (!strcmp("--parse-trace", argv[i])) {
+            Parser::getInstance()->enableParseTrace();
+        }
+        else if (!strcmp("--pretty-print", argv[i])) {
+            printAst = true;
+        }
+        else if (!strcmp("--help", argv[i])) {
+            usage ();
+            exit (WELL_DONE);
+        }
+        else if (!strcmp("--AST-trace", argv[i])) {
+            dumpAst = true;
+        }
+        else if (!strcmp("--no-exec", argv[i])) {
+            execAst = false;
+        }
+        else if (!strcmp("--orig", argv[i])) {
+            std::cout << "Original execution" << std::endl;
+            execOrig = true;
+            execAst = false;
+        }
+        else if (!strcmp("--context-dump", argv[i])) {
+            dumpStack = true;
+        }
+        else if (!strcmp("--timed", argv[i])) {
+            timed = true;
+        }
+        else if (!strcmp("--AST-timed", argv[i])) {
+            std::cout << "Timed execution" << std::endl;
+            ASTtimed = true;
+        }
+        else if (!strcmp("-f", argv[i])) {
+            i++;
+            *_piFileIndex = i;
+        }
+        else if (!strcmp("-l", argv[i])) {
+            i++;
+            *_piLangIndex = i;
+        }
+        else if (!strcmp("-nw", argv[i])) {
+            consoleMode = true;
+            setScilabMode(SCILAB_NW);
+        }
+        else if (!strcmp("-nwni", argv[i])) {
+            consoleMode = true;
+            noJvm = true;
+            setScilabMode(SCILAB_NWNI);
+        }
+    }
 
 #ifdef DEBUG
-	std::cerr << "File : " << argv[good] << std::endl;
+    std::cerr << "File : " << argv[good] << std::endl;
 #endif
 
-	return 0;
+    return 0;
 }
 
 /*
@@ -218,8 +224,8 @@ extern "C"
 #include <unistd.h>
 #endif
 #include "scilabmode.h"
-	extern char *TermReadAndProcess(void);
-	extern void ConsolePrintf(char*);
+    extern char *TermReadAndProcess(void);
+    extern void ConsolePrintf(char*);
 }
 
 
@@ -228,79 +234,79 @@ extern "C"
 */
 static int batchMain (void)
 {
-	/*
-	** -*- PARSING -*-
-	*/
-	Parser::ParserStatus parseResult = parseFileTask(timed, file_name, prog_name);
+/*
+** -*- PARSING -*-
+*/
+    Parser::ParserStatus parseResult = parseFileTask(timed, file_name, prog_name);
 
-	/*
-	** -*- DUMPING TREE -*-
-	*/
-	if (dumpAst == true) { dumpAstTask(timed); }
+/*
+** -*- DUMPING TREE -*-
+*/
+    if (dumpAst == true) { dumpAstTask(timed); }
 
-	if (parseResult != Parser::Succeded)
-	{
-		YaspWrite(Parser::getInstance()->getErrorMessage());
-		return PARSE_ERROR;
-	}
+    if (parseResult != Parser::Succeded)
+    {
+        YaspWrite(Parser::getInstance()->getErrorMessage());
+        return PARSE_ERROR;
+    }
 
-	/*
-	** -*- PRETTY PRINT TREE -*-
-	*/
-	if (printAst == true) { printAstTask(timed); }
+/*
+** -*- PRETTY PRINT TREE -*-
+*/
+    if (printAst == true) { printAstTask(timed); }
 
-	/*
-	** -*- EXECUTING TREE -*-
-	*/
-	if (execAst == true) { execAstTask(timed, ASTtimed); }
+/*
+** -*- EXECUTING TREE -*-
+*/
+    if (execAst == true) { execAstTask(timed, ASTtimed); }
 
-	/*
-	** -*- EXECUTING TREE WITH ORIGINAL VISITOR-*-
-	*/
-	if (execOrig == true) { origAstTask(timed); }
+/*
+** -*- EXECUTING TREE WITH ORIGINAL VISITOR-*-
+*/
+    if (execOrig == true) { origAstTask(timed); }
 
-	/*
-	** -*- DUMPING STACK AFTER EXECUTION -*-
-	*/
-	if (dumpStack == true) { dumpStackTask(timed); }
+/*
+** -*- DUMPING STACK AFTER EXECUTION -*-
+*/
+    if (dumpStack == true) { dumpStackTask(timed); }
 
 #ifdef DEBUG
-	std::cerr << "To end program press [ENTER]" << std::endl;
+    std::cerr << "To end program press [ENTER]" << std::endl;
 #endif
 
-	return WELL_DONE;
+    return WELL_DONE;
 }
 
 static void banner()
 {
 #define SCI_VERSION_STRING "scilab-branch-YaSp"
-	int i;
-	char *line = "        ___________________________________________        ";
-	int startVersion = (int)(floor((double)(strlen(line)/2)) - floor((double)(strlen(SCI_VERSION_STRING)/2)));
+    int i;
+    char *line = "        ___________________________________________        ";
+    int startVersion = (int)(floor((double)(strlen(line)/2)) - floor((double)(strlen(SCI_VERSION_STRING)/2)));
 
-	YaspWrite(line);
-	YaspWrite("\n");
+    YaspWrite(line);
+    YaspWrite("\n");
 
-	/* To center the version name */
-	for( i=0 ; i<startVersion ; i++ )
-	{
-		YaspWrite(" ");
-	}
+/* To center the version name */
+    for( i=0 ; i<startVersion ; i++ )
+    {
+        YaspWrite(" ");
+    }
 
-	YaspWrite(SCI_VERSION_STRING);
-	YaspWrite("\n\n");
+    YaspWrite(SCI_VERSION_STRING);
+    YaspWrite("\n\n");
 
-	YaspWrite(_("                 Consortium Scilab (DIGITEO)\n"));
+    YaspWrite(_("                 Consortium Scilab (DIGITEO)\n"));
 
-	YaspWrite(_("               Copyright (c) 1989-2009 (INRIA)\n"));
-	YaspWrite(_("               Copyright (c) 1989-2007 (ENPC)\n"));
-	YaspWrite(line);
-	YaspWrite("\n");
-	YaspWrite("\n");
-	YaspWrite("           -*- THIS IS SCILAB 6.0 aka YaSp -*-\n");
-	YaspWrite("\n");
-	YaspWrite(line);
-	YaspWrite("\n");
+    YaspWrite(_("               Copyright (c) 1989-2009 (INRIA)\n"));
+    YaspWrite(_("               Copyright (c) 1989-2007 (ENPC)\n"));
+    YaspWrite(line);
+    YaspWrite("\n");
+    YaspWrite("\n");
+    YaspWrite("           -*- THIS IS SCILAB 6.0 aka YaSp -*-\n");
+    YaspWrite("\n");
+    YaspWrite(line);
+    YaspWrite("\n");
 }
 
 /*
@@ -311,22 +317,22 @@ static void banner()
 
 static void stateShow(Parser::ControlStatus status)
 {
-	switch (status)
-	{
-	case Parser::WithinFor :			SetTemporaryPrompt("-for       ->"); break;
-	case Parser::WithinWhile :		SetTemporaryPrompt("-while     ->"); break;
-	case Parser::WithinIf :				SetTemporaryPrompt("-if        ->"); break;
-	case Parser::WithinElse :			SetTemporaryPrompt("-else      ->"); break;
-	case Parser::WithinElseIf :		SetTemporaryPrompt("-elseif    ->"); break;
-	case Parser::WithinTry :			SetTemporaryPrompt("-try       ->"); break;
-	case Parser::WithinCatch :		SetTemporaryPrompt("-catch     ->"); break;
-	case Parser::WithinFunction : SetTemporaryPrompt("-function  ->"); break;
-	case Parser::WithinSelect :		SetTemporaryPrompt("-select    ->"); break;
-	case Parser::WithinCase :			SetTemporaryPrompt("-case      ->"); break;
-	case Parser::WithinSwitch :		SetTemporaryPrompt("-switch    ->"); break;
-	case Parser::WithinOtherwise :			SetTemporaryPrompt("-otherwise ->"); break;
-	case Parser::AllControlClosed : break;
-	}
+    switch (status)
+    {
+    case Parser::WithinFor :            SetTemporaryPrompt("-for       ->"); break;
+    case Parser::WithinWhile :          SetTemporaryPrompt("-while     ->"); break;
+    case Parser::WithinIf :             SetTemporaryPrompt("-if        ->"); break;
+    case Parser::WithinElse :           SetTemporaryPrompt("-else      ->"); break;
+    case Parser::WithinElseIf :         SetTemporaryPrompt("-elseif    ->"); break;
+    case Parser::WithinTry :            SetTemporaryPrompt("-try       ->"); break;
+    case Parser::WithinCatch :          SetTemporaryPrompt("-catch     ->"); break;
+    case Parser::WithinFunction :       SetTemporaryPrompt("-function  ->"); break;
+    case Parser::WithinSelect :         SetTemporaryPrompt("-select    ->"); break;
+    case Parser::WithinCase :           SetTemporaryPrompt("-case      ->"); break;
+    case Parser::WithinSwitch :         SetTemporaryPrompt("-switch    ->"); break;
+    case Parser::WithinOtherwise :      SetTemporaryPrompt("-otherwise ->"); break;
+    case Parser::AllControlClosed :     break;
+    }
 }
 
 /*
@@ -334,122 +340,122 @@ static void stateShow(Parser::ControlStatus status)
 */
 static int interactiveMain (void)
 {
-	Parser::ParserStatus parseResult;
-	bool exit = false;
-	int pause = 0;
-	char *command = NULL;
-	Parser* pParser = Parser::getInstance();
+    Parser::ParserStatus parseResult;
+    bool exit = false;
+    int pause = 0;
+    char *command = NULL;
+    Parser* pParser = Parser::getInstance();
 
-	banner();
+    banner();
 
-	char *commentbeginsession = NULL;
-	InitializeHistoryManager();
-	
-	/* add date & time @ begin session */
-	//commentbeginsession = getCommentDateSession(TRUE);
-	//if (commentbeginsession)
-	//  {
-	//	appendLineToScilabHistory(commentbeginsession);
-	//	FREE(commentbeginsession);
-	//	commentbeginsession=NULL;
-	//  }
-	
+    char *commentbeginsession = NULL;
+    InitializeHistoryManager();
+
+/* add date & time @ begin session */
+//commentbeginsession = getCommentDateSession(TRUE);
+//if (commentbeginsession)
+//  {
+//appendLineToScilabHistory(commentbeginsession);
+//FREE(commentbeginsession);
+//commentbeginsession=NULL;
+//  }
 
 
-	while (!exit)
-	{
-	  // Show Parser Sate before prompt
-	  stateShow(pParser->getControlStatus());
 
-		//set prompt value
-		C2F(setprlev)(&pause);
+    while (!exit)
+    {
+        // Show Parser Sate before prompt
+        stateShow(pParser->getControlStatus());
 
-		if (pParser->getControlStatus() == Parser::AllControlClosed) 
-		{
-			if(command)
-			{
-				FREE(command);
-				command = NULL;
-			}
-			command = YaspRead();
-		}
-		else
-		{
-			char* pstRead = YaspRead();
-			//+1 for null termination and +1 for '\n'
-			size_t iLen = strlen(command) + strlen(pstRead) + 2;
-			char* pstNewCommand = (char*)MALLOC(iLen * sizeof(char));
+        //set prompt value
+        C2F(setprlev)(&pause);
+
+        if (pParser->getControlStatus() == Parser::AllControlClosed) 
+        {
+            if(command)
+            {
+                FREE(command);
+                command = NULL;
+            }
+            command = YaspRead();
+        }
+        else
+        {
+            char* pstRead = YaspRead();
+            //+1 for null termination and +1 for '\n'
+            size_t iLen = strlen(command) + strlen(pstRead) + 2;
+            char* pstNewCommand = (char*)MALLOC(iLen * sizeof(char));
 #ifdef _MSC_VER
-			sprintf_s(pstNewCommand, iLen, "%s\n%s", command, pstRead);
+            sprintf_s(pstNewCommand, iLen, "%s\n%s", command, pstRead);
 #else
-			sprintf(pstNewCommand, "%s\n%s", command, pstRead);
+            sprintf(pstNewCommand, "%s\n%s", command, pstRead);
 #endif
-			FREE(pstRead);
-			FREE(command);
-			command = pstNewCommand;
-		}
+            FREE(pstRead);
+            FREE(command);
+            command = pstNewCommand;
+        }
 
-		//std::cout << "---" << std::endl << "Command = " << std::endl;
-		//std::cout << command << std::endl;
-		//std::cout << "---" << std::endl;
-		if (strcmp(command, "quit") == 0 || strcmp(command, "exit") == 0)
-		{
-			exit = true;
-			return 0;
-		}
+        //std::cout << "---" << std::endl << "Command = " << std::endl;
+        //std::cout << command << std::endl;
+        //std::cout << "---" << std::endl;
+        if (strcmp(command, "quit") == 0 || strcmp(command, "exit") == 0)
+        {
+            exit = true;
+            return 0;
+        }
 
-		if (strcmp(command, "") != 0)
-		{
-			/*
-			** -*- PARSING -*-
-			*/
-			parseResult = parseCommandTask(timed, command);
+        if (strcmp(command, "") != 0)
+        {
+            /*
+            ** -*- PARSING -*-
+            */
+            parseResult = parseCommandTask(timed, command);
 
-			/*
-			** -*- DUMPING TREE -*-
-			*/
-			if (dumpAst == true) { dumpAstTask(timed); }
+            /*
+            ** -*- DUMPING TREE -*-
+            */
+            if (dumpAst == true) { dumpAstTask(timed); }
 
-			if (parseResult == Parser::Succeded)
-			{
-				/*
-				** -*- PRETTY PRINT TREE -*-
-				*/
-				if (printAst == true) { printAstTask(timed); }
+            if (parseResult == Parser::Succeded)
+            {
+                /*
+                ** -*- PRETTY PRINT TREE -*-
+                */
+                if (printAst == true) { printAstTask(timed); }
 
-				/*
-				** -*- EXECUTING TREE -*-
-				*/
-				if (execAst == true && execOrig == false) { execAstTask(timed, ASTtimed); }
+                /*
+                ** -*- EXECUTING TREE -*-
+                */
+                if (execAst == true && execOrig == false) { execAstTask(timed, ASTtimed); }
 
-				/*
-				** -*- EXECUTING ORIGINAL TREE -*-
-				*/
-				if (execAst == false && execOrig == true) { origAstTask(timed); }
+                /*
+                ** -*- EXECUTING ORIGINAL TREE -*-
+                */
+                if (execAst == false && execOrig == true) { origAstTask(timed); }
 
-				/*
-				** -*- DUMPING STACK AFTER EXECUTION -*-
-				*/
-				if (dumpStack == true) { dumpStackTask(timed); }
-			}
-			else if(parseResult == Parser::Failed && pParser->getControlStatus() == Parser::AllControlClosed)
-			{
-				YaspWrite(pParser->getErrorMessage());
-				//std::cerr << "Parser control : " << pParser->getControlStatus() << std::endl;
-			}
+                /*
+                ** -*- DUMPING STACK AFTER EXECUTION -*-
+                */
+                if (dumpStack == true) { dumpStackTask(timed); }
+            }
+            else if(parseResult == Parser::Failed && pParser->getControlStatus() == Parser::AllControlClosed)
+            {
+                YaspWrite(pParser->getErrorMessage());
+                //std::cerr << "Parser control : " << pParser->getControlStatus() << std::endl;
+            }
 
             Parser::getInstance()->freeTree();
-		}
-	}
+        }
+    }
 #ifdef DEBUG
-	std::cerr << "To end program press [ENTER]" << std::endl;
+    std::cerr << "To end program press [ENTER]" << std::endl;
 #endif
-	return WELL_DONE;
+    return WELL_DONE;
 }
 
 static void TermPrintf(char *text)
 {
-	std::cout << text;
+    std::cout << text;
 }
 
 /*
@@ -457,166 +463,165 @@ static void TermPrintf(char *text)
 */
 int main(int argc, char *argv[])
 {
-	int iFileIndex = INTERACTIVE;
-	int iLangIndex = 0;
+    int iFileIndex = INTERACTIVE;
+    int iLangIndex = 0;
 
-	prog_name = argv[0];
+    prog_name = argv[0];
 
-	setScilabMode(SCILAB_STD);
-	Parser::getInstance()->disableParseTrace();
-	get_option(argc, argv, &iFileIndex, &iLangIndex);
+    setScilabMode(SCILAB_STD);
+    Parser::getInstance()->disableParseTrace();
+    get_option(argc, argv, &iFileIndex, &iLangIndex);
 
-	if (consoleMode)
-	{
-		setYaspInputMethod(&TermReadAndProcess);
-		setYaspOutputMethod(&TermPrintf);
+    if (consoleMode)
+    {
+        setYaspInputMethod(&TermReadAndProcess);
+        setYaspOutputMethod(&TermPrintf);
         return StartScilabEngine(argc, argv, iFileIndex);
-	}
-	else
-	{
-		setYaspInputMethod(&ConsoleRead);
-		setYaspOutputMethod(&ConsolePrintf);
+    }
+    else
+    {
+        setYaspInputMethod(&ConsoleRead);
+        setYaspOutputMethod(&ConsolePrintf);
 #ifdef __APPLE__
         return initMacOSXEnv(argc, argv, iFileIndex);
 #else
         return StartScilabEngine(argc, argv, iFileIndex);
 #endif
-	}
+    }
 }
 
 int StartScilabEngine(int argc, char*argv[], int iFileIndex)
 {
     int iMainRet = 0;
-	/* Scilab Startup */
-	InitializeEnvironnement();
+    /* Scilab Startup */
+    InitializeEnvironnement();
 
-	InitializeString();
+    InitializeString();
 
 #ifdef _MSC_VER
-	InitializeWindows_tools();
+    InitializeWindows_tools();
 #endif
 
-	InitializeCore();
+    InitializeCore();
 
-	InitializeShell();
+    InitializeShell();
 
-	if ( 
-		!consoleMode ) 
-	{
-		/* bug 3702 */
-		/* tclsci creates a TK window on Windows */
-		/* it changes focus on previous windows */
-		/* we put InitializeTclTk before InitializeGUI */
+    if (!noJvm) 
+    {
+        /* bug 3702 */
+        /* tclsci creates a TK window on Windows */
+        /* it changes focus on previous windows */
+        /* we put InitializeTclTk before InitializeGUI */
+        
+        //InitializeTclTk();
+        InitializeJVM();
+        InitializeGUI();
 
-		//InitializeTclTk();
-		InitializeJVM();
-		InitializeGUI();
+        /* create needed data structure if not already created */
+        loadGraphicModule() ;
 
-		/* create needed data structure if not already created */
-		loadGraphicModule() ;
+        /* Standard mode -> init Java Console */
+        if ( !consoleMode ) 
+        {
+            /* Initialize console: lines... */
+            InitializeConsole();
+        }
 
-		/* Standard mode -> init Java Console */
-		//if ( !consoleMode ) 
-		{
-			/* Initialize console: lines... */
-			InitializeConsole();
-		}
+        loadBackGroundClassPath();
+    }
 
-		loadBackGroundClassPath();
-	}
+    /* set current language of scilab */
+    FuncManager *pFM = new FuncManager();
 
-	/* set current language of scilab */
-	FuncManager *pFM = new FuncManager();
-
-	//execute scilab.start
-	//execScilabStartTask();
-
+    //execute scilab.start
+    //execScilabStartTask();
 
 
-	if (iFileIndex == INTERACTIVE)
-	{
-		file_name = "prompt";
-		iMainRet = interactiveMain();
-	}
-	else
-	{
-		file_name = argv[iFileIndex];
-		iMainRet = batchMain();
-	}
 
-	//close main scope
-	symbol::Context::getInstance()->scope_end();
-	delete pFM;
-	return iMainRet;
+    if (iFileIndex == INTERACTIVE)
+    {
+        file_name = "prompt";
+        iMainRet = interactiveMain();
+    }
+    else
+    {
+        file_name = argv[iFileIndex];
+        iMainRet = batchMain();
+    }
+
+    //close main scope
+    symbol::Context::getInstance()->scope_end();
+    delete pFM;
+    return iMainRet;
 }
 
 int InitializeEnvironnement(void)
 {
-	char *ScilabDirectory = NULL;
+    char *ScilabDirectory = NULL;
 #ifdef _MSC_VER
-	ScilabDirectory = getScilabDirectory(FALSE);
+    ScilabDirectory = getScilabDirectory(FALSE);
 #else
-	SetSci();
-	ScilabDirectory = getSCIpath();
+    SetSci();
+    ScilabDirectory = getSCIpath();
 #endif
-	if(ScilabDirectory)
-	{
-		ConfigVariable::getInstance()->set("SCI", ScilabDirectory);
-		FREE(ScilabDirectory);
-	}
-	SetScilabEnvironment();
-	InitializeLocalization();
-	Add_All_Variables();
-	return 0;
+    if(ScilabDirectory)
+    {
+        ConfigVariable::getInstance()->set("SCI", ScilabDirectory);
+        FREE(ScilabDirectory);
+    }
+    SetScilabEnvironment();
+    InitializeLocalization();
+    Add_All_Variables();
+    return 0;
 }
 
 void Add_All_Variables(void)
 {
-	Add_pi();
-	Add_i();
-	Add_s();
-	Add_z();
-	Add_true();
-	Add_false();
+    Add_pi();
+    Add_i();
+    Add_s();
+    Add_z();
+    Add_true();
+    Add_false();
     Add_SCI();
 }
 
 void Add_false(void)
 {
-	Add_Boolean_Constant("%f", false);
+    Add_Boolean_Constant("%f", false);
 }
 
 void Add_true(void)
 {
-	Add_Boolean_Constant("%t", true);
+    Add_Boolean_Constant("%t", true);
 }
 
 void Add_pi(void)
 {
-	Add_Double_Constant("%pi", 3.1415926535897931159980, 0, false);
+    Add_Double_Constant("%pi", 3.1415926535897931159980, 0, false);
 }
 
 void Add_i(void)
 {
-	Add_Double_Constant("%i", 0, 1, true);
+    Add_Double_Constant("%i", 0, 1, true);
 }
 
 void Add_s(void)
 {
-	Double dblCoef(1,2);
-	dblCoef.val_set(0, 0, 0);
-	dblCoef.val_set(0, 1, 1);
+    Double dblCoef(1,2);
+    dblCoef.val_set(0, 0, 0);
+    dblCoef.val_set(0, 1, 1);
 
-	Add_Poly_Constant("%s","s", 2, &dblCoef);
+    Add_Poly_Constant("%s","s", 2, &dblCoef);
 }
 
 void Add_z(void)
 {
-	Double dblCoef(1,2);
-	dblCoef.val_set(0, 0, 0);
-	dblCoef.val_set(0, 1, 1);
+    Double dblCoef(1,2);
+    dblCoef.val_set(0, 0, 0);
+    dblCoef.val_set(0, 1, 1);
 
-	Add_Poly_Constant("%z","z", 2, &dblCoef);
+    Add_Poly_Constant("%z","z", 2, &dblCoef);
 }
 
 void Add_SCI(void)
@@ -627,27 +632,27 @@ void Add_SCI(void)
 
 void Add_Poly_Constant(string _szName, string _szPolyVar, int _iRank, Double *_pdbl)
 {
-	types::MatrixPoly *pVar = new types::MatrixPoly(_szPolyVar, 1, 1, &_iRank);
-	Poly *poPoly = pVar->poly_get(0,0);
-	poPoly->coef_set(_pdbl);
-	Context::getInstance()->put(_szName, *pVar);
+    types::MatrixPoly *pVar = new types::MatrixPoly(_szPolyVar, 1, 1, &_iRank);
+    Poly *poPoly = pVar->poly_get(0,0);
+    poPoly->coef_set(_pdbl);
+    Context::getInstance()->put(_szName, *pVar);
 }
 
 void Add_Double_Constant(string _szName, double _dblReal, double _dblImg, bool _bComplex)
 {
-	types::Double* pVal = new types::Double(1,1,_bComplex);
-	pVal->val_set(0,0,_dblReal,_dblImg);
-	symbol::Context::getInstance()->put(_szName, *pVal);
+    types::Double* pVal = new types::Double(1,1,_bComplex);
+    pVal->val_set(0,0,_dblReal,_dblImg);
+    symbol::Context::getInstance()->put(_szName, *pVal);
 }
 
 void Add_Boolean_Constant(string _szName, bool _bBool)
 {
-	types::Bool* pVal = new types::Bool(_bBool);
-	symbol::Context::getInstance()->put(_szName, *pVal);
+    types::Bool* pVal = new types::Bool(_bBool);
+    symbol::Context::getInstance()->put(_szName, *pVal);
 }
 
 void Add_String_Constant(string _szName, const char* _pstString)
 {
     types::String* ps = new types::String(_pstString);
-	symbol::Context::getInstance()->put(_szName, *ps);
+    symbol::Context::getInstance()->put(_szName, *ps);
 }
