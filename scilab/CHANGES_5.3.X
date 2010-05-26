@@ -169,6 +169,9 @@ Xcos:
 * bug 7053 fixed - Rotated saved blocks were not loaded with the right rotation 
                    value.
 
+* bug 7143 fixed - Simulation values were not valid if the exponential sign is
+                   an 'e'.
+
 * bug 7175 fixed - demo bridge rectifier did not build on Windows.
 
 Dynamic link:
