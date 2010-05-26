@@ -432,6 +432,9 @@ Bug fixes:
 
 * bug 5609 fixed - documentation stated incorrectly fieldnames works on cells
 
+* bug 5612 fixed - There was no way for deleting a field in a struct. 
+                   It is now available using null().
+
 * bug 5629 fixed - export_to_hdf5 to a file overwrote a directory 
                    with the same name (now trigger an error).
 
