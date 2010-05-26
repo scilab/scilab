@@ -1298,6 +1298,7 @@ YY_RULE_SETUP
 case 3:
 YY_RULE_SETUP
 {
+    // Pop to step out IF
 	Parser::getInstance()->popControlStatus();
 	Parser::getInstance()->pushControlStatus(Parser::WithinElse);
 	BEGIN(INITIAL);
@@ -1427,6 +1428,8 @@ YY_RULE_SETUP
 case 19:
 YY_RULE_SETUP
 {
+    // Pop to step out TRY
+	Parser::getInstance()->popControlStatus();
 	Parser::getInstance()->pushControlStatus(Parser::WithinCatch);
 	BEGIN(INITIAL);
 	return scan_throw(CATCH);

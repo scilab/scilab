@@ -129,6 +129,7 @@ assign			"="
 }
 
 <INITIAL,BEGINID>"else"          {
+    // Pop to step out IF
 	Parser::getInstance()->popControlStatus();
 	Parser::getInstance()->pushControlStatus(Parser::WithinElse);
 	BEGIN(INITIAL);
@@ -226,6 +227,8 @@ assign			"="
 }
 
 <INITIAL,BEGINID>"catch" {
+    // Pop to step out TRY
+	Parser::getInstance()->popControlStatus();
 	Parser::getInstance()->pushControlStatus(Parser::WithinCatch);
 	BEGIN(INITIAL);
 	return scan_throw(CATCH);
