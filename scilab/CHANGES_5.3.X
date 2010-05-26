@@ -546,6 +546,8 @@ Bug fixes:
 * bug 6893 fixed - Some files +~JF****.tmp where created outside of the Scilab
                    temporary directory.
 
+* bug 6895 fixed - completion crashed with -NW mode, on some linux.
+
 * bug 6901 fixed - This script with 'exec' produced a weird warning.
 
 * bug 6923 fixed - Some localized messages were wrong in 'qmr'.
