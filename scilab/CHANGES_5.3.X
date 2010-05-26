@@ -603,3 +603,5 @@ Bug fixes:
 
 * bug 7123 fixed - No completion was possible if the name of a variable is 
                    preceded by ~ or @ or < or >
+
+* bug 7161 fixed - wavread failed to load some .wav files with error 44.
