@@ -7,11 +7,11 @@
 # are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-PARALLEL_CPP_SOURCES = 
+PARALLEL_CPP_SOURCES =
 
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_parallel_run.cpp
 
-PARALLEL_C_SOURCES = 
+PARALLEL_C_SOURCES =
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_parallel.c
 
@@ -19,7 +19,7 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_parallel.c
 libsciparallel_la_CFLAGS=  -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/core/includes \
--I$(srcdir)/src/c/ \
+-I$(srcdir)/src/cpp/ \
 -I$(top_srcdir)/modules/api_scilab/includes \
 -I$(top_srcdir)/modules/string/includes
 
@@ -27,7 +27,6 @@ libsciparallel_la_CPPFLAGS=  -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/core/includes \
 -I$(srcdir)/src/cpp/ \
--I$(srcdir)/src/c/ \
 -I$(top_srcdir)/modules/api_scilab/includes \
 -I$(top_srcdir)/modules/output_stream/includes \
 -I$(top_srcdir)/modules/parameters/includes \
@@ -38,7 +37,7 @@ pkglib_LTLIBRARIES = libsciparallel.la
 
 libsciparallel_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
-libsciparallel_la_SOURCES = $(PARALLEL_C_SOURCES) $(PARALLEL_CPP_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)  
+libsciparallel_la_SOURCES = $(PARALLEL_C_SOURCES) $(PARALLEL_CPP_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(PARALLEL_C_SOURCES) $(GATEWAY_C_SOURCES)
@@ -62,7 +61,7 @@ libsciparallel_la_sci_gateway_DATA = sci_gateway/parallel_gateway.xml
 
 #### parallel : include files ####
 libsciparallel_la_includedir=$(pkgincludedir)
-libsciparallel_la_include_HEADERS = 
+libsciparallel_la_include_HEADERS =
 
 include $(top_srcdir)/Makefile.incl.am
 

@@ -856,9 +856,11 @@ int sci_parallel_run(char *fname,unsigned long fname_len)
     wrapper w(stack.begin(), functionArg, stack.end(), Lhs);
     bool const withThreads(w.isForeignFunction() && sharedMemory);
     simple_wrapper prologue(prologueName), epilogue(epilogueName);
+#ifdef _TODO_DEBUG
     make_parallel_wrapper(w.argsDataBegin(), w.argsSizesBegin(), w.argsNbBegin(), w.nbRhs(), w.tasksNb()
                           ,  w.resDataBegin(), w.resSizesBegin()
                           , Lhs, w.getHandle(), prologue, epilogue)(withThreads, nbWorkers, dynamicScheduling, chunkSize);
+#endif
 
     for(int i(0); i != Lhs; ++i)
     {

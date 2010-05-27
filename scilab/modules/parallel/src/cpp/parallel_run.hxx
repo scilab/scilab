@@ -303,6 +303,7 @@ namespace
          */
         void callF(std::size_t const i)
         {
+#ifndef  _MSC_VER
             std::vector<void const *> local_args(rhs);
             for (std::size_t j(0); j!= rhs; ++j)
             {
@@ -314,6 +315,7 @@ namespace
                 local_res[j]= res[j]+ i*(*(res_size+j));// all res are required to have n elts
             }
             f(&local_args[0], &local_res[0]);
+#endif
         }
         void const* const* const args; /* ptrs to the rhs args */
         std::size_t const* args_size; /* sizeof each rhs */
@@ -341,5 +343,4 @@ make_parallel_wrapper(ArgsItIt args, ArgsSizeIt args_size, ArgsNbIt args_nb, Sz1
 {
     return parallel_wrapper<F, G>(args, args_size, args_nb, rhs, n, res, res_size, lhs, f, prologue, epilogue);
 }
-
 #endif
