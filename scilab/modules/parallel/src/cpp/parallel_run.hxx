@@ -24,6 +24,10 @@
 
 #ifndef  _MSC_VER
 
+#ifndef MAP_ANONYMOUS
+# define MAP_ANONYMOUS MAP_ANON
+#endif
+
 #include <sys/mman.h>
 #include <semaphore.h>
 #include <pthread.h>
