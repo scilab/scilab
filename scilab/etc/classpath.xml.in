@@ -64,6 +64,22 @@ The option is "disableUnderMode" and can be:
 	<load on="XCos"/>
 </path>
 
+<path value="@JGRAPHX@" load="onUse">
+	<load on="XCos"/>
+</path>
+
+<path value="@SIMULINK@" load="onUse">
+	<load on="XCos"/>
+</path>
+
+<path value="@CCSM@" load="onUse">
+	<load on="XCos"/>
+</path>
+
+<path value="@JAVA_CUP@" load="onUse">
+	<load on="XCos"/>
+</path>
+
 <!-- Temp. loaded at startup -->
 <path value="$SCILAB/modules/types/jar/org.scilab.modules.types.jar"/>
 <path value="$SCILAB/modules/hdf5/jar/org.scilab.modules.hdf5.jar" load="startup"/>

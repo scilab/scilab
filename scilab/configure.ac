@@ -897,6 +897,21 @@ the the JNI libraries."])],
                 JUNIT=$PACKAGE_JAR_FILE
                 AC_SUBST(JUNIT)
 
+		# CCSM Commons
+		AC_JAVA_CHECK_PACKAGE([ccsm-commons],[edu.tum.cs.commons.logging.*],[CCSM Commons],"yes")
+	  	CCSM=$PACKAGE_JAR_FILE
+	  	AC_SUBST(CCSM)
+
+		# CCSM Simulink
+		AC_JAVA_CHECK_PACKAGE([simulink],[edu.tum.cs.simulink.model.*],[CCSM Simulink model],"yes")
+	  	SIMULINK=$PACKAGE_JAR_FILE
+	  	AC_SUBST(SIMULINK)
+
+		# CCSM Cup runtime
+		AC_JAVA_CHECK_PACKAGE([cup-runtime],[java_cup.runtime.*],[Cup runtime],"yes")
+	  	JAVA_CUP=$PACKAGE_JAR_FILE
+	  	AC_SUBST(JAVA_CUP)
+
 
 	else
 		AC_MSG_WARN([Sun javac not found: I will not build the java interface])

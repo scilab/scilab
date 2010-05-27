@@ -29,6 +29,12 @@ bsh.jar=@BSH@
 
 junit.jar=@JUNIT@
 
+simulink.jar=@SIMULINK@
+
+ccsm-commons.jar=@CCSM@
+
+cup-runtime.jar=@JAVA_CUP@
+
 commons-beanutils.jar=@COMMONS_BEANUTILS@
 
 antlr.jar=@ANTLR@

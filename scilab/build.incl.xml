@@ -98,6 +98,11 @@
 		
 		<pathelement location="${jgraphx.jar}"/>
 
+		<pathelement location="${ccsm-commons.jar}"/>
+		<pathelement location="${simulink.jar}"/>
+		<pathelement location="${cup-runtime.jar}"/>
+
+
 	<!-- Only usefull for the documentation -->	
 		<pathelement location="${library.helptools.dir}/${library.helptools.name}"/>
 		<pathelement location="${batik.jar}"/>

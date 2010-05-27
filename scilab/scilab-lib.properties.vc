@@ -32,6 +32,12 @@ bsh.jar=${thirdparty.dir}/bsh.jar
 
 junit.jar=${thirdparty.dir}/junit.jar
 
+simulink.jar=${thirdparty.dir}/simulink.jar
+
+ccsm-commons.jar=${thirdparty.dir}/ccsm-commons.jar
+
+cup-runtime.jar=${thirdparty.dir}/cup-runtime.jar
+
 ; To build the export through the Java
 avalon-framework.jar=${thirdparty.dir}/avalon-framework.jar
 
