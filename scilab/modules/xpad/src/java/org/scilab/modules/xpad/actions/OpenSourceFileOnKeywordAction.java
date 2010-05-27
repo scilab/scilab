@@ -17,6 +17,7 @@ import javax.swing.text.BadLocationException;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.ScilabDocument;
 import org.scilab.modules.xpad.ScilabLexerConstants;
 import org.scilab.modules.xpad.ScilabEditorPane;
 import org.scilab.modules.xpad.KeywordEvent;
@@ -28,7 +29,7 @@ import org.scilab.modules.action_binding.InterpreterManagement;
  * @author Calixte DENIZET
  */
 public class OpenSourceFileOnKeywordAction extends DefaultAction {
-    
+
     /**
      * Constructor
      * @param editor Xpad
@@ -36,20 +37,28 @@ public class OpenSourceFileOnKeywordAction extends DefaultAction {
     private OpenSourceFileOnKeywordAction(Xpad editor) {
         super(XpadMessages.OPEN_SOURCE_FILE_ON_KEYWORD, editor);
     }
-    
+
     /**
      * doAction
      */
     public void doAction() {
-        KeywordEvent kwe = ((ScilabEditorPane) getEditor().getTextPane()).getKeywordEvent();
+        ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
+        KeywordEvent kwe = sep.getKeywordEvent();
         if (ScilabLexerConstants.isOpenable(kwe.getType())) {
             try {
-                String kw = getEditor().getTextPane().getDocument().getText(kwe.getStart(), kwe.getLength());
+                ScilabDocument doc = (ScilabDocument) sep.getDocument();
+                String kw = doc.getText(kwe.getStart(), kwe.getLength());
+                int pos = doc.searchFunctionByName(kw);
+                if (pos != -1) {
+                    sep.getScrollPane().getVerticalScrollBar().setValue(sep.modelToView(pos).y);
+                    sep.setCaretPosition(pos);
+                } else {
                 InterpreterManagement.requestScilabExec("a46d43fa4w5z8512dc7dc2c3=get_function_path('" + kw + "');if a46d43fa4w5z8512dc7dc2c3~=[] then editor(a46d43fa4w5z8512dc7dc2c3);clear a46d43fa4w5z8512dc7dc2c3;end");
+                }
             } catch (BadLocationException e) { }
         }
     }
-    
+
     /**
      * createMenu
      * @param editor Xpad

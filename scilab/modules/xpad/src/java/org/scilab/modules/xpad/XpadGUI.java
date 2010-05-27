@@ -44,6 +44,7 @@ import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.xpad.actions.ActivateHelpOnTypingAction;
+import org.scilab.modules.xpad.actions.GenerateHelpFromFunctionAction;
 import org.scilab.modules.xpad.actions.AboutAction;
 import org.scilab.modules.xpad.actions.AutoIndentAction;
 import org.scilab.modules.xpad.actions.CloseAction;
@@ -362,6 +363,8 @@ public class XpadGUI {
                 toolsMenu.add(UnTabifyAction.createMenu(editorInstance, map.get("UnTabifyAction")));
                 toolsMenu.addSeparator();
                 toolsMenu.add(IndentAction.createMenu(editorInstance, map.get("IndentAction")));
+                toolsMenu.addSeparator();
+                toolsMenu.add(GenerateHelpFromFunctionAction.createMenu(editorInstance, map.get("GenerateHelpFromFunctionAction")));
         }
 
         /**

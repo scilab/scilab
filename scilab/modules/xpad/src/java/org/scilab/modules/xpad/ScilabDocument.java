@@ -13,6 +13,7 @@
 package org.scilab.modules.xpad;
 
 import java.util.Vector;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.text.GapContent;
@@ -52,7 +53,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
 
     private ScilabView view;
     private List<String> saved = new Vector();
-    private LineTypeScanner scanner;
+    private FunctionScanner funScanner;
 
     private boolean contentModified;
 
@@ -82,7 +83,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
         undoManagerEnabled = true;
         contentModified = false;
 
-        scanner = new LineTypeScanner(this);
+        funScanner = new FunctionScanner(this);
         addDocumentListener(this);
     }
 
@@ -292,6 +293,43 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     }
 
     /**
+     * Search the position of the function name in the Document
+     * @param name the name of the function
+     * @return the position where to go or -1 if not found
+     */
+    public int searchFunctionByName(String name) {
+        Element root = getDefaultRootElement();
+        for (int i = 0; i < root.getElementCount(); i++) {
+            Element e = root.getElement(i);
+            if (e instanceof ScilabLeafElement) {
+                ScilabLeafElement se = (ScilabLeafElement) e;
+                if (se.isFunction() && se.getFunctionInfo().functionName.equals(name)) {
+                    return e.getStartOffset();
+                }
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * @return a list containing all the infos about functions available in this document
+     */
+    public List<FunctionScanner.FunctionInfo> getFunctionInfo() {
+        ArrayList list = new ArrayList();
+        Element root = getDefaultRootElement();
+        for (int i = 0; i < root.getElementCount(); i++) {
+            Element e = root.getElement(i);
+            if (e instanceof ScilabLeafElement) {
+                ScilabLeafElement se = (ScilabLeafElement) e;
+                if (se.isFunction()) {
+                    list.add(se.getFunctionInfo());
+                }
+            }
+        }
+        return list;
+    }
+
+    /**
      * lock
      */
     public void lock() {
@@ -378,6 +416,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
 
         private boolean visible = true;
         private int type;
+        private FunctionScanner.FunctionInfo info;
 
         /**
          * The same constructor as in LeafElement.
@@ -388,14 +427,20 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
          */
         public ScilabLeafElement(Element parent, AttributeSet a, int p0, int p1) {
             super(parent, a, p0, p1);
-            type = scanner.getLineType(p0, p1);
+            type = funScanner.getLineType(p0, p1);
+            if (type == FUN) {
+                info = funScanner.getFunctionInfo();
+            }
         }
 
         /**
          * Reset type (normally called on a change in the document)
          */
         public void resetType() {
-            type = scanner.getLineType(getStartOffset(), getEndOffset());
+            type = funScanner.getLineType(getStartOffset(), getEndOffset());
+            if (type == FUN) {
+                info = funScanner.getFunctionInfo();
+            }
         }
 
         /**
@@ -403,6 +448,13 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
          */
         public int getType() {
             return type;
+        }
+
+        /**
+         * @return the info about this line containing a function def
+         */
+        public FunctionScanner.FunctionInfo getFunctionInfo() {
+            return info;
         }
 
         /**
