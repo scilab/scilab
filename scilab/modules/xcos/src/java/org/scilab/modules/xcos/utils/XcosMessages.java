@@ -41,6 +41,7 @@ public final class XcosMessages {
     public static final String OPEN = Messages.gettext("Open") + DOTS;
     public static final String SAVE = Messages.gettext("Save");
     public static final String SAVE_AS = Messages.gettext("Save as") + DOTS;
+    public static final String IMPORT = Messages.gettext("Import") + DOTS;
     public static final String EXPORT = Messages.gettext("Export") + DOTS;
     public static final String SAVE_AS_INTERFACE_FUNCTION = Messages.gettext("Save as interface function") + DOTS;
     public static final String PRINT = Messages.gettext("Print") + DOTS;

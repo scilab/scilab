@@ -62,6 +62,7 @@ import org.scilab.modules.xcos.actions.DebugLevelAction;
 import org.scilab.modules.xcos.actions.DiagramBackgroundAction;
 import org.scilab.modules.xcos.actions.ExportAction;
 import org.scilab.modules.xcos.actions.FitDiagramToViewAction;
+import org.scilab.modules.xcos.simulink.ImportAction;
 import org.scilab.modules.xcos.actions.InitModelicaAction;
 import org.scilab.modules.xcos.actions.NewDiagramAction;
 import org.scilab.modules.xcos.actions.NormalViewAction;
@@ -326,6 +327,7 @@ public class XcosTab extends ScilabTab {
 	fileMenu.addSeparator();
 	fileMenu.add(SaveAction.createMenu(diagram));
 	fileMenu.add(SaveAsAction.createMenu(diagram));
+	fileMenu.add(ImportAction.createMenu(diagram));
 	fileMenu.add(ExportAction.createMenu(diagram));
 
 	recentsMenu = ScilabMenu.createMenu();
