@@ -95,7 +95,7 @@ namespace
     };
 
     /* types to be used in unions of function pointers */
-    typedef void (*functionToCall_t)(void const*const*, void*const*);
+    typedef void (*functionToCall_t)(char const*const*, char*const*);
     typedef void (*wrapperFunction_t)(double const*, double*);
     typedef void (*loadedFunction_t)();
     typedef void (*simpleFunction_t)(int );
@@ -393,7 +393,7 @@ namespace
          * @ param args array of ptrs to args data
          * @ param res array of ptrs to res data
          */
-        void operator()(void const** args, void ** res)
+        void operator()(char const** args, char ** res)
         {
             (*this.*(this->fPtr))(args, res);
         }
@@ -406,7 +406,7 @@ namespace
             {
             }
             /* just forward to the underlying wrapper */
-            void operator()(void const** args, void ** res) const
+            void operator()(char const** args, char ** res) const
             {
                 w(args, res);
             }
@@ -417,9 +417,9 @@ namespace
             return handle(*this);
         }
         /* @return begin iterator to the array of pointers to arguments data */
-        void const*const* argsDataBegin() const
+        char const*const* argsDataBegin() const
         {
-            return &argsData[0].opaquePtr;
+            return &argsData[0].bytePtr;
         }
         /* @return begin iterator to the array of arguments sizes */
         std::size_t const* argsSizesBegin() const
@@ -437,9 +437,9 @@ namespace
             return n;
         }
         /* @return begin iterator to the array of pointers to result data */
-        void * const* resDataBegin()
+        char * const* resDataBegin()
         {
-            return &resData[0].opaquePtr;
+            return &resData[0].bytePtr;
         }
         /* @return begin iterator to the array of results sizes */
         std::size_t const* resSizesBegin() const
@@ -573,7 +573,7 @@ namespace
          * @param res array of ptr to res data
          */
         template<bool byName>
-        void macro(void const** args, void ** res)  {
+        void macro(char const** args, char ** res)  {
             /* rhs models from  */
             int saveNbvars= Nbvars, saveTop= currentTop;
             for( std::vector<scilabDesc_t>::const_iterator it(rhsDesc.begin())
@@ -629,7 +629,7 @@ namespace
                 currentTop=saveTop;
             }
         }
-        void nativeFunction(void const** args, void ** res)
+        void nativeFunction(char const** args, char ** res)
         {
             function.toCall(args, res);
         }
@@ -643,7 +643,7 @@ namespace
         std::vector<unionOfPtrs_t> resData; /* ptrs to res data */
 
         /* the member function to call, dispatches to macro of foreign function */
-        void(wrapper::*fPtr)(void const** args, void ** res);
+        void(wrapper::*fPtr)(char const** args, char ** res);
 
         int scilabFunction; /* the scilab function 'ptr' for scifunction */
         char* scilabFunctionName;/* the scilab function name for scistring */
@@ -666,7 +666,7 @@ namespace
             if(Rhs<2) { return false; }
             bool before_function(true), at_least_one_arg(false);
             bool ok(true);
-            for( unsigned int pos(1); pos <= (unsigned int)Rhs && ok; ++pos) {
+            for( int pos(1); pos <= Rhs && ok; ++pos) {
                 int* addr;
                 err= getVarAddressFromPosition(pvApiCtx, pos, &addr);
                 int type;

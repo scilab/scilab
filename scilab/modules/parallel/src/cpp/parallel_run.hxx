@@ -137,7 +137,7 @@ namespace
             for(std::size_t i(0); i != w.lhs; ++i)
             {
                 backup_res[i]= w.res[i];
-                const_cast<void**>(w.res)[i]=  allocSharedMem<char>(w.n * w.res_size[i]);
+                const_cast<char**>(w.res)[i]=  allocSharedMem<char>(w.n * w.res_size[i]);
             }
             todo= allocSharedMem<std::size_t>();
             *todo= 0;
@@ -184,7 +184,7 @@ namespace
         ~scheduler() {
             for(std::size_t j(0); j!= w.lhs; ++j) {
                 freeSharedMem(w.res[j], w.n * w.res_size[j]);
-                const_cast<void**>(w.res)[j]= backup_res[j];
+                const_cast<char**>(w.res)[j]= backup_res[j];
             }
             freeSharedMem(todo, sizeof(std::size_t));
         }
@@ -220,7 +220,7 @@ namespace
         std::size_t chunk_size;
         std::size_t* todo;
         PortableSemaphore out_of_work, todo_protect;
-        std::vector<void*> backup_res;
+        std::vector<char*> backup_res;
     };
 #else
     template< typename ParallelWrapper> struct scheduler
@@ -241,7 +241,7 @@ namespace
 #endif
     template<typename F, typename G>
     struct parallel_wrapper {
-        parallel_wrapper(void const* const* const a, std::size_t const* a_s, std::size_t const* a_n, std::size_t const the_rhs, std::size_t nb_tasks, void * const* const r, std::size_t const* r_s, std::size_t const the_lhs, F the_f, G p, G e)
+        parallel_wrapper(char const* const* const a, std::size_t const* a_s, std::size_t const* a_n, std::size_t const the_rhs, std::size_t nb_tasks, char * const* const r, std::size_t const* r_s, std::size_t const the_lhs, F the_f, G p, G e)
             :args(a), args_size(a_s), args_nb(a_n), rhs(the_rhs), n(nb_tasks),res(r), res_size(r_s), lhs(the_lhs), f(the_f), prologue(p), epilogue(e)
         {
         }
@@ -308,12 +308,12 @@ namespace
         void callF(std::size_t const i)
         {
 #ifndef  _MSC_VER
-            std::vector<void const *> local_args(rhs);
+            std::vector<char const *> local_args(rhs);
             for (std::size_t j(0); j!= rhs; ++j)
             {
                 local_args[j]= args[j]+ (i%(*(args_nb+j))) *(*(args_size+j));/*(i%(*(args_nb+j))) because all args are not required to have same nb of elts*/
             }
-        std::vector<void *> local_res(lhs);
+        std::vector<char *> local_res(lhs);
             for (std::size_t j(0); j!= lhs; ++j)
             {
                 local_res[j]= res[j]+ i*(*(res_size+j));// all res are required to have n elts
@@ -321,12 +321,12 @@ namespace
             f(&local_args[0], &local_res[0]);
 #endif
         }
-        void const* const* const args; /* ptrs to the rhs args */
+        char const* const* const args; /* ptrs to the rhs args */
         std::size_t const* args_size; /* sizeof each rhs */
         std::size_t const* args_nb;/* nb of given values for each arg, in 1...n */
         std::size_t const rhs;  /* nb of rhs for f */
         std::size_t n; /* nb of calls to perform */
-        void* const* const res; /* ptr to the lhs results */
+        char* const* const res; /* ptr to the lhs results */
         std::size_t const* res_size; /* sizeof each lhs */
         std::size_t const lhs;/* nb of lhs for f */
         /* no res_nb because we must have room for n vaules for each result */
