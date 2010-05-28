@@ -103,7 +103,7 @@ function check_help(dirs)
 			// Check if we must verify this directory
 			//------------------------------------------------------------------
 			
-			if fileinfo(".last_successful_check") == [] then
+			if ~isfile(".last_successful_check") then
 				need_to_be_checked = %T;
 			else
 				exec(".last_successful_check",-1);
