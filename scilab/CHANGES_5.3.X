@@ -185,6 +185,9 @@ Graphics:
 
 * bug 7173 fixed - The equation in the "scaling" help page was incorrect.
 
+* bug 7187 fixed - Plotting a curve, zooming, and then plotting an additional curve
+                   caused Scilab to freeze, depending on the zoomed-in area.
+
 * bug 7188 fixed - Deleting a Label graphics entity caused Scilab to crash.
 
 Localization:
