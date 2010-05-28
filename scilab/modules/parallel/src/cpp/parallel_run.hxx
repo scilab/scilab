@@ -266,7 +266,7 @@ namespace
          */
         F applyWithThreads(std::size_t nb_threads, bool dynamic_scheduling, int chunk_size)
         {
-            std::size_t i;
+            signed int i;
             nb_threads = min(nb_threads, n);
             if (nb_threads)
             {
