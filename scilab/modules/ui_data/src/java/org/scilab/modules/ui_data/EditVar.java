@@ -38,7 +38,7 @@ public class EditVar {
 	 * @param data : scilab double matrix
 	 * @param variableName : name of the variable being edited.
 	 */
-	public static void openVariableEditor(double[][] data, String variableName) {
+	public static void openVariableEditorDouble(double[][] data, String variableName) {
 		int rows = data.length;
 		int cols = data[0].length;
 
@@ -60,6 +60,59 @@ public class EditVar {
 	}
 
 	/**
+	 * Open variable Editor with information given by Scilab
+	 * @param data : scilab double matrix
+	 * @param variableName : name of the variable being edited.
+	 */
+	public static void openVariableEditorString(String[][] data, String variableName) {
+		int rows = data.length;
+		int cols = data[0].length;
+
+		// we need to transpose the matrix as the way to store elements is different in scilab
+		// otherwise 
+		//  1  2  3    would be rendered   1  4  2 (for example)
+		//  4  5  6                        5  3  6 
+		String[][] dataString = new String[rows][cols];
+		int k = 0;
+		for (int i = 0; i < rows; ++i) {
+			for (int j = 0; j < cols; ++j) {
+				dataString[k % rows][k / rows] = data[i][j];
+				k++;
+			}
+		}
+
+		VariableEditor editvar = ScilabVariableEditor.getVariableEditor(dataString, variableName);
+		editvar.setVisible(true);
+	}
+	
+	
+	/**
+	 * Open variable Editor with information given by Scilab
+	 * @param data : scilab double matrix
+	 * @param variableName : name of the variable being edited.
+	 */
+	public static void openVariableEditorBoolean(int[][] data, String variableName) {
+		int rows = data.length;
+		int cols = data[0].length;
+
+		// we need to transpose the matrix as the way to store elements is different in scilab
+		// otherwise 
+		//  1  2  3    would be rendered   1  4  2 (for example)
+		//  4  5  6                        5  3  6 
+		Boolean[][] dataBool = new Boolean[rows][cols];
+		int k = 0;
+		for (int i = 0; i < rows; ++i) {
+			for (int j = 0; j < cols; ++j) {
+				dataBool[k % rows][k / rows] = (data[i][j] == 1);
+				k++;
+			}
+		}
+
+		VariableEditor editvar = ScilabVariableEditor.getVariableEditor(dataBool, variableName);
+		editvar.setVisible(true);
+	}
+	
+	/**
 	 * 	
 	 * Update the cell at coordinate (row,col) to new double value or keep the old one if errCode is set
 	 * @param variableName : The name of the variable that has been updated
@@ -68,8 +121,17 @@ public class EditVar {
 	 * @param newValue : the new double value to set.
 	 * @param errCode : the errCode given by Scilab, 0 if no error.
 	 */
-	public static void updateVariableEditor(String variableName, int row, int col, double newValue, int errCode) {
+	public static void updateVariableEditorDouble(String variableName, int row, int col, double newValue, int errCode) {
 		updateVariableEditor(variableName, row, col, (Double) newValue, errCode);
+	}
+	
+	public static void updateVariableEditorBoolean(String variableName, int row, int col, int newValue, int errCode) {
+		Boolean newBool = (newValue == 1);
+		updateVariableEditor(variableName, row, col, newBool, errCode);
+	}
+	
+	public static void updateVariableEditorString(String variableName, int row, int col, String newValue, int errCode) {
+		updateVariableEditor(variableName, row, col, newValue, errCode);
 	}
 
 	/**
@@ -83,9 +145,10 @@ public class EditVar {
 	 */
 	public static void updateVariableEditor(String variableName, int row, int col, Object newValue, int errCode) {
 		if (errCode != 0) {
-			System.out.println("bad instruction");
+			System.err.println("bad instruction");
+		} else {
+			ScilabVariableEditor.getVariableEditor().setValueAt(newValue, row - 1, col - 1);
 		}
-		ScilabVariableEditor.getVariableEditor().setValueAt(newValue, row - 1, col - 1);
 	}
 
 	/**

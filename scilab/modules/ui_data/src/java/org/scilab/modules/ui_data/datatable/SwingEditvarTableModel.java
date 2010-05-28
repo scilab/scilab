@@ -23,12 +23,13 @@ public class SwingEditvarTableModel<Type> extends DefaultTableModel {
 	private static final long serialVersionUID = -4255704246347716837L;
 	private int scilabMatrixRowCount;
 	private int scilabMatrixColCount;
-
+	private Object defaultValue;
 	/**
 	 * Default construction setting table data.
 	 * @param data : the data to store.
 	 */
-	public SwingEditvarTableModel(Type[][] data) {
+	public SwingEditvarTableModel(Type[][] data, Object defaultvalue) {
+		this.defaultValue = defaultvalue;
 		scilabMatrixColCount =  data[0].length;
 		scilabMatrixRowCount =  data.length;
 		this.setDataVector(data);
@@ -39,22 +40,19 @@ public class SwingEditvarTableModel<Type> extends DefaultTableModel {
 	/**
 	 * {@inheritDoc}
 	 */
-	public void setDataVector(Object[][] data) {
+	public void setDataVector(Type[][] data) {
 		int cols = data[0].length;
 		Integer[] identifiers = new Integer[cols]; 
 		for (int i = 0; i < cols; ++i) {
 			identifiers[i] = i+1;
 		}
 		super.setDataVector(data, identifiers);
+		
 	}
 	
 	
 	@Override
 	public void setValueAt(Object value, int row, int col) {
-
-
-		Object defaultValue = new Double(0.0);
-		
 		
 		for (int i = scilabMatrixRowCount; i <= Math.max(row, scilabMatrixRowCount-1); i++){
 			for(int j = 0; j <= Math.max(col,scilabMatrixColCount-1); j++) {
@@ -109,6 +107,6 @@ public class SwingEditvarTableModel<Type> extends DefaultTableModel {
 
 		}
 	}
-
+	
 
 }

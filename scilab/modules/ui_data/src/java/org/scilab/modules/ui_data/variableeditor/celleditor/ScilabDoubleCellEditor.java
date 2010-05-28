@@ -9,6 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
 package org.scilab.modules.ui_data.variableeditor.celleditor;
 
 import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.asynchronousScilabExec;
@@ -28,15 +29,8 @@ import javax.swing.KeyStroke;
 
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.ui_data.variableeditor.ScilabVariableEditor;
-import org.scilab.modules.ui_data.variableeditor.renderers.ScilabDoubleRenderer;
-import org.scilab.modules.ui_data.variableeditor.renderers.ScilabStringRenderer;
 
-/**
- * class VariableEditorCellEditor
- * Use when editing cells, call Scilab interpreter.
- */
-public class VariableEditorCellEditor extends DefaultCellEditor {
-
+public class ScilabDoubleCellEditor extends DefaultCellEditor {
 	/**
 	 * 
 	 */
@@ -45,21 +39,13 @@ public class VariableEditorCellEditor extends DefaultCellEditor {
 	private int row;
 	private int col;
 	private JFormattedTextField textField;
-	private String type;
+	
 	/**
 	 * Constructor
 	 */
-	public VariableEditorCellEditor(Object[][] data) {
+	public ScilabDoubleCellEditor() {
 		super(new JFormattedTextField());
 		// TODO Auto-generated constructor stub
-
-		if (data instanceof String[][]) {
-			type = "string";
-		} else if (data instanceof Double[][]) {
-			type = "double";
-		} else if (data instanceof Boolean[][]) {
-			type = "boolean";
-		}
 		
 		textField = (JFormattedTextField) getComponent();
 		textField.setFocusLostBehavior(JFormattedTextField.COMMIT);
@@ -92,14 +78,9 @@ public class VariableEditorCellEditor extends DefaultCellEditor {
 			String variableName = ScilabVariableEditor.getVariableEditor().getVariablename();
 			String data = String.valueOf(textField.getText());
 			
-			if (type.equalsIgnoreCase("string")) {
-				data = data.replace("\"","\"\"\"\"");
-				data = data.replace("'","''''");
-				data = "\"\"" + data +"\"\"";
-			} else {
-				data = data.replace("\"","\"\"");
-				data = data.replace("'","''");
-			}
+			data = data.replace("\"","\"\"");
+			data = data.replace("'","''");
+
 			
 			String cellInVariable = variableName + "(" + row + "," + col + ")";
 			String cmdInExecStr = cellInVariable + " = " + data;
@@ -143,16 +124,7 @@ public class VariableEditorCellEditor extends DefaultCellEditor {
 		this.row = row + 1; // +1 because scilab index start at 1
 		this.col = col + 1;
 		
-		Object newValue = value;
-		if (value != null && type.equalsIgnoreCase("boolean")) {
-			if ((Boolean) value == false) {
-				newValue = "%F" ;
-			} else {
-				newValue = "%T" ;
-			}
-		}
-		
-		return super.getTableCellEditorComponent(table, newValue, isSelected, row, col);
+		return super.getTableCellEditorComponent(table, value, isSelected, row, col);
 	}
 
 }

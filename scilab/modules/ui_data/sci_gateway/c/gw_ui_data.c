@@ -26,7 +26,7 @@ static gw_generic_table Tab[]=
 {
     {sci_editvar, "editvar"},
     {sci_updateEditvarValue, "updateEditvarValue"},
-    {sci_browsevar, "Jbrowsevar"}
+    {sci_browsevar, "browsevar"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_ui_data(void)
@@ -39,12 +39,12 @@ int gw_ui_data(void)
 		return 0;
 	}
 
-/*	if (!loadedDep) 
+/*	if (!loadedDep)
 	{
 		loadOnUseClassPath("ui_data");
 		loadedDep = TRUE;
 	}
-*/	
+*/
 	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }

@@ -11,7 +11,7 @@ public class RowHeader extends JList {
 		setFixedCellHeight(table.getRowHeight()
 				+ table.getRowMargin()
 				- table.getIntercellSpacing().height);
-		setCellRenderer(new RowHeaderRenderer(table));
+		setCellRenderer(new RowHeaderRenderer());
 	}
 
 }

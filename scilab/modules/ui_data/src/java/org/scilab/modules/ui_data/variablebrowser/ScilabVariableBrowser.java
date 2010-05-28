@@ -11,13 +11,35 @@
  */
 package org.scilab.modules.ui_data.variablebrowser;
 
+import java.awt.CheckboxMenuItem;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.List;
+import java.util.ArrayList;
+
+import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
+import org.scilab.modules.gui.checkboxmenuitem.SimpleCheckBoxMenuItem;
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.events.callback.ScilabCallBack;
+import org.scilab.modules.gui.menu.Menu;
+import org.scilab.modules.gui.menu.ScilabMenu;
+import org.scilab.modules.gui.menu.SimpleMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
+import org.scilab.modules.gui.menubar.ScilabMenuBar;
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.menuitem.SimpleMenuItem;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
-import org.scilab.modules.gui.utils.MenuBarBuilder;
+import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.localization.Messages;
+import org.scilab.modules.ui_data.actions.BooleanFilteringAction;
+import org.scilab.modules.ui_data.utils.UiDataMessages;
+import org.scilab.modules.ui_data.variablebrowser.actions.CloseAction;
+
 
 /**
  * 
@@ -31,7 +53,9 @@ public final class ScilabVariableBrowser extends ScilabWindow implements Variabl
 
 	private static VariableBrowser instance;
 
-	private static SimpleVariableBrowser browserTab;   
+	private static SimpleVariableBrowser browserTab;  
+
+
 
 	/**
 	 * Constructor
@@ -44,8 +68,6 @@ public final class ScilabVariableBrowser extends ScilabWindow implements Variabl
 		browserTab.setVisible(true);
 		browserTab.setCallback(ScilabCallBack
 				.createCallback("org.scilab.modules.ui_data.BrowseVar.closeVariableBrowser", ScilabCallBack.JAVA_OUT_OF_XCLICK_AND_XGETMOUSE));
-		MenuBar menubar = MenuBarBuilder.buildMenuBar(MENUBARXMLFILE);
-		browserTab.addMenuBar(menubar);
 
 		TextBox infobar = ScilabTextBox.createTextBox();
 		browserTab.addInfoBar(infobar);
@@ -84,12 +106,16 @@ public final class ScilabVariableBrowser extends ScilabWindow implements Variabl
 		return instance;
 	}
 
+
 	/**
 	 * Close Variable Browser
 	 */
 	public void close() {
+		ScilabWindow editvarWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(browserTab.getParentWindowId());
+		editvarWindow.removeTab(browserTab);
 		browserTab.setVisible(false);
 		browserTab.close();
+		instance = null;
 	}
 
 	/**
@@ -107,6 +133,11 @@ public final class ScilabVariableBrowser extends ScilabWindow implements Variabl
 	 */
 	public void setData(Object[][] data) {
 		browserTab.setData(data);
+	}
+	
+	
+	public void updateRowFiltering() {
+		browserTab.updateRowFiltering();
 	}
 
 }

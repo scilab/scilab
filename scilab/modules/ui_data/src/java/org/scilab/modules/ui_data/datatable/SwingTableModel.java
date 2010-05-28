@@ -14,12 +14,13 @@ package org.scilab.modules.ui_data.datatable;
 
 import javax.swing.ImageIcon;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  * Swing implementation of table model.
  * @param <Type> Type of data to be stored by the model
  */
-public class SwingTableModel<Type> extends AbstractTableModel implements ScilabTable<Type> {
+public class SwingTableModel<Type> extends DefaultTableModel implements ScilabTable<Type> {
 
 	private static final long serialVersionUID = -4255704246347716837L;
 
@@ -109,6 +110,16 @@ public class SwingTableModel<Type> extends AbstractTableModel implements ScilabT
 			return Integer.class;
 		}
 
+		if (getValueAt(0, c) != null) {
+		return getValueAt(0, c).getClass();
+		}
 		return Object.class;
 	}
+	
+	@Override
+    public boolean isCellEditable(int row, int column)
+    {
+        return false;
+    }
+
 }

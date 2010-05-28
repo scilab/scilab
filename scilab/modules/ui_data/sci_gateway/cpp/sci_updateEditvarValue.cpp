@@ -54,6 +54,7 @@ int sci_updateEditvarValue(char *fname,unsigned long fname_len)
     int m5 = 0, n5 = 0;
 
 
+    int* piLen = NULL;
 
     /* First parameters must be a single string */
 
@@ -167,6 +168,38 @@ int sci_updateEditvarValue(char *fname,unsigned long fname_len)
         return 0;
     }
 
+    /* Fith parameters must be a single int */
+
+    /* get address */
+    sciErr = getVarAddressFromPosition(pvApiCtx, 5, &piAddressVarFive);
+
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
+
+    /* get dimensions */
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarFive, &m5, &n5, NULL);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
+
+    /* we only want a single int */
+    if (m5 !=1 || n5 != 1) {
+        Scierror(999,_("%s: Wrong size for input argument #%d: An integer expected.\n"),fname,5);
+        return 0;
+    } 
+
+    /* get value */
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarFive, &m5, &n5, &pdblVarFive);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
 
     /* Fourth parameters */
 
@@ -213,6 +246,80 @@ int sci_updateEditvarValue(char *fname,unsigned long fname_len)
             printError(&sciErr, 0);
             return 0;
         }
+
+        /* Launch Java Variable Editor through JNI */
+        EditVar::updateVariableEditorDouble(getScilabJavaVM(),
+                                      pStVarOne,
+                                      (int)pdblVarTwo[0],
+                                      (int)pdblVarThree[0],
+                                      ((double*)pVarFour)[0],
+                                      (int)pdblVarFive[0]);
+
+        break;
+
+    case sci_strings :
+
+
+        //fisrt call to retrieve dimensions
+        sciErr = getMatrixOfString(pvApiCtx, piAddressVarFour, &m4, &n4, NULL, NULL);
+        if(sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
+
+        piLen = (int*)malloc(sizeof(int) * m4 * n4);
+        //second call to retrieve length of each string
+        sciErr = getMatrixOfString(pvApiCtx, piAddressVarFour, &m4, &n4, piLen, NULL);
+        if(sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
+
+        pVarFour = (char**)malloc(sizeof(char*) * m4 * n4);
+        for(int i = 0 ; i < m4 * n4 ; i++)
+        {
+            ((char**)pVarFour)[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
+        }
+        //third call to retrieve data
+        sciErr = getMatrixOfString(pvApiCtx, piAddressVarFour, &m4, &n4, piLen, (char**)pVarFour);
+        if(sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
+
+        /* Launch Java Variable Editor through JNI */
+        EditVar::updateVariableEditorString(getScilabJavaVM(),
+                                      pStVarOne,
+                                      (int)pdblVarTwo[0],
+                                      (int)pdblVarThree[0],
+                                      ((char**)pVarFour)[0],
+                                      (int)pdblVarFive[0]);
+
+
+        break;
+
+    case sci_boolean:
+        /* get size and data from Scilab memory */
+        sciErr = getMatrixOfBoolean(pvApiCtx, piAddressVarFour, &m4, &n4, (int**)&pVarFour);
+
+        if(sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
+
+        /* Launch Java Variable Editor through JNI */
+        EditVar::updateVariableEditorBoolean(getScilabJavaVM(),
+                                      pStVarOne,
+                                      (int)pdblVarTwo[0],
+                                      (int)pdblVarThree[0],
+                                      ((int*)pVarFour)[0],
+                                      (int)pdblVarFive[0]);
+
+
         break;
 
     default :
@@ -220,46 +327,9 @@ int sci_updateEditvarValue(char *fname,unsigned long fname_len)
         return 0;
     }
     
-    /* Fith parameters must be a single int */
 
-    /* get address */
-    sciErr = getVarAddressFromPosition(pvApiCtx, 5, &piAddressVarFive);
 
-    if(sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        return 0;
-    }
 
-    /* get dimensions */
-    sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarFive, &m5, &n5, NULL);
-    if(sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        return 0;
-    }
-
-    /* we only want a single int */
-    if (m5 !=1 || n5 != 1) {
-        Scierror(999,_("%s: Wrong size for input argument #%d: An integer expected.\n"),fname,5);
-        return 0;
-    } 
-
-    /* get value */
-    sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarFive, &m5, &n5, &pdblVarFive);
-    if(sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        return 0;
-    }
-
-    /* Launch Java Variable Editor through JNI */
-    EditVar::updateVariableEditor(getScilabJavaVM(),
-                                  pStVarOne,
-                                  (int)pdblVarTwo[0],
-                                  (int)pdblVarThree[0],
-                                  ((double*)pVarFour)[0],
-                                  (int)pdblVarFive[0]);
 
     LhsVar(1) = 0;
     PutLhsVar();

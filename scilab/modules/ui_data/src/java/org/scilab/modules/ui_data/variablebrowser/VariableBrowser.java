@@ -37,4 +37,9 @@ public interface VariableBrowser extends Window {
      */
     void setData(Object[][] data);
     
+    /**
+     * Update row filtering
+     */
+    void updateRowFiltering();
+    
 }

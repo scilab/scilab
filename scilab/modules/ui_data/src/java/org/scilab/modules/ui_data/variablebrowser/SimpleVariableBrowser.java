@@ -31,4 +31,9 @@ public interface SimpleVariableBrowser extends Tab {
 	 */
 	void setData(Object[][] data);
 
+	/**
+	 * Update the row filtering
+	 */
+	void updateRowFiltering();
+	
 }

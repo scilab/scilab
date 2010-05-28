@@ -30,8 +30,13 @@ import org.scilab.modules.localization.Messages;
 import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
 import org.scilab.modules.ui_data.rowheader.RowHeader;
 import org.scilab.modules.ui_data.rowheader.RowHeaderModel;
+import org.scilab.modules.ui_data.variableeditor.celleditor.CellEditorFactory;
+import org.scilab.modules.ui_data.variableeditor.celleditor.ScilabBooleanCellEditor;
+import org.scilab.modules.ui_data.variableeditor.celleditor.ScilabDoubleCellEditor;
+import org.scilab.modules.ui_data.variableeditor.celleditor.ScilabStringCellEditor;
 import org.scilab.modules.ui_data.variableeditor.celleditor.VariableEditorCellEditor;
 import org.scilab.modules.ui_data.variableeditor.listeners.ExpandListener;
+import org.scilab.modules.ui_data.variableeditor.renderers.RendererFactory;
 
 
 /**
@@ -46,6 +51,7 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
 	private static final long serialVersionUID = 1L;
 	private SwingEditvarTableModel<Object> dataModel;
 	private JTable table;
+	private JScrollPane scrollPane;
 
 	/**
 	 * Create a JTable with data Model.
@@ -54,28 +60,28 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
 	public SwingScilabVariableEditor(Object[][] data) {
 		super(Messages.gettext("Variable Browser"));
 
-		dataModel = new SwingEditvarTableModel<Object>(data);
+		dataModel = new SwingEditvarTableModel<Object>(data, getDefaultValue(data));
 
 		table = new JTable(dataModel);
-		table.setDefaultEditor(Object.class, new VariableEditorCellEditor());
+		table.setDefaultEditor(Object.class, CellEditorFactory.createCellEditor(data));
 		table.setFillsViewportHeight(true);
 		table.setAutoResizeMode(CENTER);
 		table.setRowHeight(25);
+		table.setDefaultRenderer(Object.class, RendererFactory.createRenderer(data));
+
 		//table.getColumnModel().setColumnMargin(2);
-		
-		
-	       
-		RowHeaderModel rowHeaderModel = new RowHeaderModel(dataModel);
-	    RowHeader rowHeader = new RowHeader(rowHeaderModel, table);
 
-		
-		
-		// Mouse selection mode
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setCellSelectionEnabled(true);		
 
-		JScrollPane scrollPane = new JScrollPane(table);
-	    scrollPane.setRowHeaderView(rowHeader);
-	    scrollPane.getHorizontalScrollBar().addAdjustmentListener(new ExpandListener());
+		RowHeaderModel rowHeaderModel = new RowHeaderModel(dataModel);
+		RowHeader rowHeader = new RowHeader(rowHeaderModel, table);
+
+
+		scrollPane = new JScrollPane(table);
+		scrollPane.setRowHeaderView(rowHeader);
+		scrollPane.getHorizontalScrollBar().addAdjustmentListener(new ExpandListener());
+
 		table.setBackground(Color.WHITE);
 		setContentPane(scrollPane);
 	}
@@ -104,16 +110,31 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
 	/**
 	 * {@inheritDoc}
 	 */
-	
+
 	public void setData(Object[][] data) {
 		dataModel.setDataVector(data);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
 	public void setValueAt(Object value, int row, int col) {
 		dataModel.setValueAt(value, row, col);
+		RowHeaderModel rowHeaderModel = new RowHeaderModel(dataModel);
+		RowHeader rowHeader = new RowHeader(rowHeaderModel, table);
+		scrollPane.setRowHeaderView(rowHeader);
+	}
+
+	public Object getDefaultValue(Object[][] data){
+
+		if (data instanceof String[][]) {
+			return "";
+		} else if (data instanceof Double[][]) {
+			return 0.0;
+		} else if (data instanceof Boolean[][]) {
+			return false;
+		}
+		return "";
 	}
 
 	/**

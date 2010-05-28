@@ -14,9 +14,8 @@ import javax.swing.table.JTableHeader;
 
 public class RowHeaderRenderer extends JButton implements ListCellRenderer {
 
-	public RowHeaderRenderer(JTable table) {
-		JTableHeader header = table.getTableHeader();
-
+	public RowHeaderRenderer() {
+		super();
 	}
 
 	public Component getListCellRendererComponent( JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
