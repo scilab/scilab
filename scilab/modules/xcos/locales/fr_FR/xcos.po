@@ -614,7 +614,7 @@ msgid "Viewport"
 msgstr "Zone d'affichage"
 
 msgid "Will try to continue..."
-msgstr "Essayera de continuer ..."
+msgstr "Essayer de continuer ..."
 
 msgid "WinTitle"
 msgstr "TitreFenêtre"
