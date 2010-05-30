@@ -25,12 +25,11 @@ copyfile(SCI+'/modules/dynamic_link/tests/nonreg_tests/bug_3639.c' , TEST_DIR + 
 chdir(TEST_DIR);
 files=['bug_3639.c'];
 ilib_build('libc_fun1',['c_sum1','c_intsum';'c_sub1','c_intsub'],files,[]);
-copyfile('loader.sce','loader1.sce');
-ilib_build('libc_fun2',['c_sum2','c_intsum';'c_sub2','c_intsub'],files,[]);
-// load the shared library
+// load the shared library 
 info_link = link();
 if info_link <> [] then bugmes();quit;end
-exec loader1.sce;
+exec loader.sce;
+ilib_build('libc_fun2',['c_sum2','c_intsum';'c_sub2','c_intsub'],files,[]);
 info_link = link();
 if info_link <> 'libc_fun1' then bugmes();quit;end
 exec loader.sce;

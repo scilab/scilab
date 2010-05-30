@@ -74,7 +74,7 @@ USE_F2C=NO
 !IF "$(USE_F2C)" == "NO"
 FC=ifort 
 FC_OPTIONS_COMMON=/nologo /DFORDLL /assume:underscore \
-/noaltparam /f77rtl /arch:IA32 /fpscomp:nolibs /names:lowercase \
+/noaltparam /f77rtl /fpscomp:nolibs /names:lowercase \
 /iface:cref /threads /c /Qvc9 \
 /Fo"$(DIR_OBJ)/" /Fd"$(DIR_OBJ)/" \
 /include:"$(SCIDIR1)/modules/core/includes"

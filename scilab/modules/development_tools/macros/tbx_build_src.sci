@@ -23,7 +23,7 @@ function tbx_build_src(names, files, flag, src_path, libs, ldflags, cflags, ..
 	if ~exists('cc', 'local') then cc = ""; end
 	if ~exists('libname', 'local') then libname = ""; end
 	if ~exists('loadername', 'local') then loadername = "loader.sce"; end
-	if ~exists('makename', 'local') then makename = "Makelib"; end
+	if ~exists('makename', 'local') then makename = ""; end
 	
 	ilib_for_link(names, files, libs, flag, makename, loadername, ..
 	              libname, ldflags, cflags, fflags, cc);
