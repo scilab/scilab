@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
@@ -20,6 +21,7 @@ import edu.tum.cs.simulink.model.SimulinkModel;
 public class DiagramElement extends AbstractElement<XcosDiagram> {
 
 	private SimulinkModel base;
+	private static final Log LOG = LogFactory.getLog(DiagramElement.class);
 	
 	/** Map from index to blocks */
 	private final Map<Integer, BasicBlock> blocks;
@@ -47,11 +49,9 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 	
 	public void decodeDiagram(XcosDiagram diag) throws SimulinkFormatException {
 		// fill all diagram parameters
-		try {
-			Logger.toFile("From " + base.getName() + ":");
-			Logger.toFile(base.getParameterNames().toString());
-		} catch(IOException e1) {
-			LogFactory.getLog(BlockElement.class).error(e1);
+		if (LOG.isTraceEnabled()) {
+			LOG.trace("From " + base.getName() + ":");
+			LOG.trace(base.getParameterNames().toString());
 		}
 		decodeObjs(diag);
 	}

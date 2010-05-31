@@ -17,12 +17,8 @@ public class AnnotationElement extends AbstractElement<TextBlock>{
 
 	public Object decode(SimulinkAnnotation from, Object object) {
 		// TODO Auto-generated method stub
-		try {
-			Logger.toFile("From " + from.getName() + ":");
-			Logger.toFile(from.getParameterNames().toString());
-		} catch(IOException e1) {
-			LogFactory.getLog(BlockElement.class).error(e1);
-		}
+		LogFactory.getLog(AnnotationElement.class).trace("From " + from.getName() + ":");
+		LogFactory.getLog(AnnotationElement.class).trace(from.getParameterNames().toString());
 		return null;
 	}
 

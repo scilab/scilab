@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
@@ -18,7 +19,10 @@ import edu.tum.cs.simulink.model.SimulinkInPort;
 import edu.tum.cs.simulink.model.SimulinkOutPort;
 
 public class BlockElement extends AbstractElement<BasicBlock> {
+	
 	private SimulinkBlock base;
+	private static final Log LOG = LogFactory.getLog(BlockElement.class);
+	
 	/** Map from index to blocks */
 	private final Map<Integer, BasicBlock> blocks;
 	/**
@@ -38,13 +42,11 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 		if (block == null) {
 			block = BlockFactory.createBlock(from.getId());
 		}
-		
-		try {
-			Logger.toFile("From " + base.getName() + ":");
-			Logger.toFile(base.getParameterNames().toString());
-		} catch(IOException e1) {
-			LogFactory.getLog(BlockElement.class).error(e1);
+		if (LOG.isTraceEnabled()) {
+			LOG.trace("From " + from.getName() + ":");
+			LOG.trace(from.getParameterNames().toString());
 		}
+		
 		/*
 		 * TODO: SimulinkBlock decoding, parameters etc.
 		 */
@@ -83,7 +85,10 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 		 */
 		double minimalYaxisValue = 0.0;
 		int i=0;
-		
+		if (LOG.isTraceEnabled()) {
+			LOG.trace("From " + base.getName() + " subblocks:");
+			LOG.trace(base.getSubBlocks().toString());
+		}
 		UnmodifiableIterator<SimulinkBlock> blockIter = base.getSubBlocks().iterator();
 		while(blockIter.hasNext()) {
 			SimulinkBlock data = blockIter.next();
@@ -99,7 +104,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 			
 			if (cell != null) {
 				// FIXME: How to create subsystem in existing block?
-				block.getParentDiagram().addCell(cell); //not that way for sure
+				//block.getParentDiagram().addCell(cell); //not that way for sure
 			}
 			i++;
 		}

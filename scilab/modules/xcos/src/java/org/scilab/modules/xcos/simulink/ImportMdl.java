@@ -16,9 +16,13 @@ import edu.tum.cs.simulink.model.SimulinkOutPort;
 
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.simulink.Logger;
 import org.scilab.modules.xcos.simulink.DiagramElement;
 
+/**
+ *  
+ * main simulink entry point class
+ * 
+ */
 public class ImportMdl {
 	/**
 	 * fromFile is a function that reads .mdl file, and logs all the model, blocks
@@ -37,7 +41,6 @@ public class ImportMdl {
 	    	XcosDiagram into = diagram.decode(model, null);
 	    } catch(SimulinkFormatException e1) {
 	    	LogFactory.getLog(ImportMdl.class).error(e1);
-	    	Logger.toFile("EE: diagram.decode exception");
 	    }
 	}
 	/**
