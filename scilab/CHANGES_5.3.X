@@ -638,4 +638,7 @@ Bug fixes:
 
 * bug 7161 fixed - wavread failed to load some .wav files with error 44.
 
+* bug 7170 fixed - Scilab equivalent for Matlab "uigetdir" was "tk_getdir",
+                   it has been replaced by "uigetdir".
+
 * bug 7181 fixed - The display of a struct having no fields did not work.
