@@ -257,6 +257,9 @@ Core:
 * Under non-Windows system, the name of the temporary directory has been changed
   from SD_* to SCI_TMP_* to match the current Windows behavior.
 
+* bug 6986 fixed - edit('toto.sce') created a file toto.sce.sci containing
+                   a function named toto.sce
+
 Tests:
 ======
 
