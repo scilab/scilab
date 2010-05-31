@@ -1,11 +1,11 @@
-//CHECKSTYLE:OFF 
+//CHECKSTYLE:OFF
 
 package org.scilab.modules.xpad;
 
 import java.io.IOException;
 import javax.swing.text.Element;
- 
-%% 
+
+%%
 
 %public
 %class MatchingBlockScanner
@@ -23,67 +23,67 @@ import javax.swing.text.Element;
     private boolean transp = false;
 
     public MatchingBlockScanner(ScilabDocument doc) {
-    	this.doc = doc;
-	this.elem = doc.getDefaultRootElement();
+        this.doc = doc;
+        this.elem = doc.getDefaultRootElement();
     }
-   
-    public MatchingPositions getMatchingBlock(int pos, boolean lr) {
-    	int p1, s = 1;
-	transp = false;
-	try {
-	    if (lr) {
-	        yyreset(new ScilabDocumentReader(doc, pos, doc.getEndPosition().getOffset()));
-	   	yybegin(OPENCLOSE);
-	   	if (yylex() != 1) {
-	       	   return null;
-	   	}
-	
-		p1 = pos + yylength();
-	   	yybegin(LR);
-	    } else {
-	      	 yyreset(new ScilabDocumentReader(doc, true, pos - 1, 0));
-	   	 yybegin(CLOSEOPEN);
-	   	 if (yylex() != 1) {
-	       	    return null;
-	  	 }
-           	 p1 = pos - yylength();
-	   	 yybegin(RL);
-	    }
 
-	    do {
-	       if (yylex() == 0) {
-	          s--;
-	       } else {
-	          s++;
-	       }	         
-	    } while (zzMarkedPos != 0 && s != 0);
-	} catch (IOException e) {
-	    return null;
-	}
-	if (s == 0) {
-	    if (lr) {
-               	return new MatchingPositions(pos, p1, pos + yychar, pos + yychar + (transp?(yylength()-1):yylength()));
-	    } else {
-	        return new MatchingPositions(p1, pos, pos - yychar - yylength(), pos - yychar);
-	    }
+    public MatchingPositions getMatchingBlock(int pos, boolean lr) {
+        int p1, s = 1;
+        transp = false;
+        try {
+            if (lr) {
+                yyreset(new ScilabDocumentReader(doc, pos, doc.getEndPosition().getOffset()));
+                yybegin(OPENCLOSE);
+                if (yylex() != 1) {
+                   return null;
+                }
+
+                p1 = pos + yylength();
+                yybegin(LR);
+            } else {
+                 yyreset(new ScilabDocumentReader(doc, true, pos - 1, 0));
+                 yybegin(CLOSEOPEN);
+                 if (yylex() != 1) {
+                    return null;
+                 }
+                 p1 = pos - yylength();
+                 yybegin(RL);
+            }
+
+            do {
+               if (yylex() == 0) {
+                  s--;
+               } else {
+                  s++;
+               }
+            } while (zzMarkedPos != 0 && s != 0);
+        } catch (IOException e) {
+            return null;
         }
-	
-	return null;
+        if (s == 0) {
+            if (lr) {
+                return new MatchingPositions(pos, p1, pos + yychar, pos + yychar + (transp?(yylength()-1):yylength()));
+            } else {
+                return new MatchingPositions(p1, pos, pos - yychar - yylength(), pos - yychar);
+            }
+        }
+
+        return null;
     }
 
     public final class MatchingPositions {
         public int firstB;
-	public int firstE;
-	public int secondB;
-	public int secondE;
-	
-	private MatchingPositions(int x1, int x2, int y1, int y2) {
-	    firstB = x1;
-	    firstE = x2;
-	    secondB = y1;
-	    secondE = y2;
-	}
-    }    
+        public int firstE;
+        public int secondB;
+        public int secondE;
+
+        private MatchingPositions(int x1, int x2, int y1, int y2) {
+            firstB = x1;
+            firstE = x2;
+            secondB = y1;
+            secondE = y2;
+        }
+    }
 %}
 
 %eofval{
@@ -95,7 +95,7 @@ eol = \n
 
 comment = "//".*{eol}
 
-tnemmoc = {eol}([^\/\r\n]*"//")+
+tnemmoc = {eol}([^\r\n]*"//")+
 
 spec = [a-zA-Z0-9_#!$?]
 
@@ -124,88 +124,88 @@ psnart = "'" {string} "'" ({spec} | ")" | "]" | "}")
 %%
 
 <LR> {
-  {transp}			 {
-				   char c = yycharat(yylength() - 2);
-				   if (c == ')' || c == ']' || c == '}') {
-				      transp = true;
-				      return 0;
-				   }
-				 }	
+  {transp}                       {
+                                   char c = yycharat(yylength() - 2);
+                                   if (c == ')' || c == ']' || c == '}') {
+                                      transp = true;
+                                      return 0;
+                                   }
+                                 }
 
-  "elseif"			 |
-  {comment}			 |
-  {openKx}			 |
-  {qstring}			 { }
+  "elseif"                       |
+  {comment}                      |
+  {openKx}                       |
+  {qstring}                      { }
 
-  {openS}			 |
-  {openK}			 {
-				   return 1;
- 				 }
+  {openS}                        |
+  {openK}                        {
+                                   return 1;
+                                 }
 
-  {closeS}			 |
-  {closeK}			 {
-				   return 0;
- 				 }
+  {closeS}                       |
+  {closeK}                       {
+                                   return 0;
+                                 }
 
-  {closeKx}			 |
-  {xcloseK}			 |
-  .				 |
-  {eol} 			 { }
+  {closeKx}                      |
+  {xcloseK}                      |
+  .                              |
+  {eol}                          { }
 }
 
 <RL> {
-  {psnart}			 {
-  				   yypushback(yylength() - 1);
-				 }
+  {psnart}                       {
+                                   yypushback(yylength() - 1);
+                                 }
 
-  "fiesle"			 |
-  {tnemmoc}			 |
-  {esolcKx}			 |
-  {qstring}			 { }
+  "fiesle"                       |
+  {tnemmoc}                      |
+  {esolcKx}                      |
+  {qstring}                      { }
 
-  {closeS}			 |
-  {nepoK}			 {
-				   return 1;
- 				 }
+  {closeS}                       |
+  {nepoK}                        {
+                                   return 1;
+                                 }
 
-  {openS}			 |
-  {esolcK}			 {
-				   return 0;
- 				 }
+  {openS}                        |
+  {esolcK}                       {
+                                   return 0;
+                                 }
 
-  {nepoKx}			 |
-  .				 |
-  {eol} 			 { }
+  {nepoKx}                       |
+  .                              |
+  {eol}                          { }
 }
 
 <OPENCLOSE> {
-  {openKx}			 {
-				   return 0;
-				 }
+  {openKx}                       {
+                                   return 0;
+                                 }
 
-  {openS}			 |
-  {openK}			 {
-  				   return 1;
-				 }
+  {openS}                        |
+  {openK}                        {
+                                   return 1;
+                                 }
 
-  .				 |
-  {eol}				 {
-  				   return 0;
-				 }
+  .                              |
+  {eol}                          {
+                                   return 0;
+                                 }
 }
 
 <CLOSEOPEN> {
-  {nepoKx}			 {
-  				   return 0;
- 				 }
+  {nepoKx}                       {
+                                   return 0;
+                                 }
 
-  {closeS}			 |
-  {nepoK}			 {
-  				   return 1;
-				 }
+  {closeS}                       |
+  {nepoK}                        {
+                                   return 1;
+                                 }
 
-  .				 |
-  {eol}				 {
-  				   return 0;
-				 }
+  .                              |
+  {eol}                          {
+                                   return 0;
+                                 }
 }
