@@ -1,17 +1,17 @@
+/*
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2010 - DIGITEO - Bernard HUGUENEY
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
+
 #ifndef PARALLEL_RUN_HXX
 #define PARALLEL_RUN_HXX
-
-/*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Bernard HUGUENEY
- *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
 
 #include <algorithm>
 #include <vector>
@@ -37,26 +37,31 @@
 
 using std::min;
 using std::max;
+#else
+#include <windows.h>
+extern "C"
+{
+#include "forkWindows.h"
+#include "mmapWindows.h"
+#include "semWindows.h"
+};
 #endif
 
 /*
-  implementation notes:
-  due to alignment issues, we have to use lhs differents shared memory buffers
-  we avoif busywaiting (bad for cpu time) or sleeping (bad for wallclock time) thanks to semaphores in shared memopry
+implementation notes:
+due to alignment issues, we have to use lhs differents shared memory buffers
+we avoif busywaiting (bad for cpu time) or sleeping (bad for wallclock time) thanks to semaphores in shared memopry
 */
 
 
 namespace
 {
-
-#ifndef _MSC_VER
-
     /*
-     * allocates shared memory for s elements of type T. (anonymous, not mapped to a file)
-     *
-     * @param  T type to alloc
-     * @param  s nb of elements to alloc mem, defaults to 1.
-     */
+    * allocates shared memory for s elements of type T. (anonymous, not mapped to a file)
+    *
+    * @param  T type to alloc
+    * @param  s nb of elements to alloc mem, defaults to 1.
+    */
     template<typename T> T* allocSharedMem(std::size_t s=1)
     {
         return static_cast<T*>(mmap(0, sizeof(T)*s, PROT_READ | PROT_WRITE,MAP_SHARED |  MAP_ANONYMOUS, -1, 0));
@@ -84,50 +89,67 @@ namespace
         {
             munmap(ptr, sizeof(sem_t));
         }
+
         sem_t* ptr;
     };
+
 
     struct PortableSignalInhibiter
     {
         PortableSignalInhibiter()
         {
+#ifndef _MSC_VER
             struct sigaction reapchildren;
             std::memset( &reapchildren, 0, sizeof reapchildren );
             reapchildren.sa_flags = SA_NOCLDWAIT;
             sigaction( SIGCHLD, &reapchildren, &backup_sigaction );
+#else
+#endif
         }
         ~PortableSignalInhibiter()
         {
+#ifndef _MSC_VER
             sigaction(SIGCHLD, &backup_sigaction, 0 );/* restore of sigaction */
+#else
+#endif
         }
+#ifndef _MSC_VER
         struct sigaction backup_sigaction;
+#else
+#endif
     };
     /*
-     * Handles scheduling. Could be done in parallel_wrapper, but it would a a very long applyWithProcesses() member function
-     * breaking it would involve adding many member variables in the wrapper, so I chose an utility class with friend access to a parallel_wrapper
-     * taken by ref.
-     *
-     * The trick is to exchange the res[] ptr with ptrs to some shared memory so that callF() from each process fills the same shared result buffer.
-     * When all is done, we copy the result to the original (not shared) result buffer. Apart from the result buffer, we also share a std::size_t *todo
-     * poiting to the next index to compute.
-     *
-     * We use two cross process synch semaphores :
-     * 1°) todo_protect to protect access to the *todo shared value
-     * 2°) out_of_work to count how many workers have finished their work. Master process waits until nb_process have done their work.
-     *
-     */
+    * Handles scheduling. Could be done in parallel_wrapper, but it would a a very long applyWithProcesses() member function
+    * breaking it would involve adding many member variables in the wrapper, so I chose an utility class with friend access to a parallel_wrapper
+    * taken by ref.
+    *
+    * The trick is to exchange the res[] ptr with ptrs to some shared memory so that callF() from each process fills the same shared result buffer.
+    * When all is done, we copy the result to the original (not shared) result buffer. Apart from the result buffer, we also share a std::size_t *todo
+    * poiting to the next index to compute.
+    *
+    * We use two cross process synch semaphores :
+    * 1°) todo_protect to protect access to the *todo shared value
+    * 2°) out_of_work to count how many workers have finished their work. Master process waits until nb_process have done their work.
+    *
+    */
+
+#ifndef _MSC_VER
+ #define __HAVE_FORK__ 1
+#endif
+
+#ifdef __HAVE_FORK__
     template< typename ParallelWrapper> struct scheduler
     {
         typedef std::pair<std::size_t, std::size_t> workshare_t;
 
         /*
-         * constructs the scheduler, allocating the ressources (shared memory) and semaphores
-         * @param wrapper the parallel wrapper launching the computations
-         * @param nb_proc number of processes to use (spawns nb_proc-1 processes)
-         * @param dyn if scheduling is dynamic or static
-         * @param chunk_s chunk size. Only useful for dynamic sheduling as static is always faster with max chunk size for processes.
-         * /!\ changes w.res[] to point to shared memory buffer
-         */
+        * constructs the scheduler, allocating the ressources (shared memory) and semaphores
+        * @param wrapper the parallel wrapper launching the computations
+        * @param nb_proc number of processes to use (spawns nb_proc-1 processes)
+        * @param dyn if scheduling is dynamic or static
+        * @param chunk_s chunk size. Only useful for dynamic sheduling as static is always faster with max chunk size for processes.
+        * /!\ changes w.res[] to point to shared memory buffer
+        */
         scheduler( ParallelWrapper& wrapper,std::size_t nb_proc,  bool dyn, std::size_t chunk_s)
             : w(wrapper), nb_process(nb_proc), dynamic(dyn), chunk_size(chunk_s), todo(0)
             , out_of_work(0)
@@ -144,9 +166,9 @@ namespace
         }
 
         /*
-         * performs concurrent calls from w. (with w.f()) and copy results to the original w.res[] locations
-         * but does not restore w.res[} (this is done in destructor.
-         */
+        * performs concurrent calls from w. (with w.f()) and copy results to the original w.res[] locations
+        * but does not restore w.res[} (this is done in destructor.
+        */
         void operator()() {
             PortableSignalInhibiter guard; /* disable waiting notification from child death to avoid zombies */
             std::vector<workshare_t> init_ws(nb_process);
@@ -190,8 +212,8 @@ namespace
         }
     private:
         /* compute initial workshares. no need to synch because we did not fork() yet
-         * @param p process id from 0(parent) -> nb_process-1
-         */
+        * @param p process id from 0(parent) -> nb_process-1
+        */
         workshare_t initialWork( std::size_t p) const {
             std::size_t old_todo(*todo);
             //      std::cerr<<"*todo="<<*todo<<" dynamic="<<dynamic<<" nb_process="<<nb_process<<" p="<<p<<std::endl;
@@ -225,18 +247,18 @@ namespace
 #else
     template< typename ParallelWrapper> struct scheduler
     {
-	scheduler( ParallelWrapper& wrapper,std::size_t nb_proc, bool dyn, std::size_t chunk_s)
-	    : w(wrapper)
-	{
-	}
-	void operator()()
-	{
-	    for(std::size_t i(0); i != w.n; ++i)
-	    {
-		w.callF(i);
-	    }
-	}
-	ParallelWrapper& w;
+        scheduler( ParallelWrapper& wrapper,std::size_t nb_proc, bool dyn, std::size_t chunk_s)
+            : w(wrapper)
+        {
+        }
+        void operator()()
+        {
+            for(std::size_t i(0); i != w.n; ++i)
+            {
+                w.callF(i);
+            }
+        }
+        ParallelWrapper& w;
     };
 #endif
     template<typename F, typename G>
@@ -247,9 +269,9 @@ namespace
         }
 
         /* we define a functor. Calling it lanches the parallel processing of args, either with threads of processes(default).
-           the nb of wokers (threads or processes) can also be specified (default is implementation defined usually nb of cores).
-           TODO : enable specification of near / far / all (must, must not, can share L2 cache), at least for threads.
-           so first arge might not stay boolean (we can add an overload)*/
+        the nb of wokers (threads or processes) can also be specified (default is implementation defined usually nb of cores).
+        TODO : enable specification of near / far / all (must, must not, can share L2 cache), at least for threads.
+        so first arge might not stay boolean (we can add an overload)*/
         F operator()( bool with_threads=false, std::size_t nb_workers=0, bool dynamic_scheduling=true, int chunk_size=1)
         {
             return with_threads
@@ -260,10 +282,10 @@ namespace
         friend struct scheduler<parallel_wrapper>;
 
         /* Launch concurrent calls to f using OpenMP threads. OpenMP semantics for the parameters.
-         * @param nb_threads number of threads to use
-         * @param dynamic_scheduling if scheduling is dynamic or static
-         * @param chunk_size chunk size.
-         */
+        * @param nb_threads number of threads to use
+        * @param dynamic_scheduling if scheduling is dynamic or static
+        * @param chunk_size chunk size.
+        */
         F applyWithThreads(std::size_t nb_threads, bool dynamic_scheduling, int chunk_size)
         {
             signed int i;
@@ -291,10 +313,10 @@ namespace
         }
 
         /* Launch concurrent calls to f using fork()ed processes. See scheduler<> fr details
-         * @param nb_processes number of processes to use
-         * @param dynamic_scheduling if scheduling is dynamic or static
-         * @param chunk_size chunk size.
-         */
+        * @param nb_processes number of processes to use
+        * @param dynamic_scheduling if scheduling is dynamic or static
+        * @param chunk_size chunk size.
+        */
         F applyWithProcesses(std::size_t nb_process, bool dynamic_scheduling, std::size_t chunk_size)
         {
             nb_process = min( (nb_process ? nb_process : omp_get_num_procs()), n);
@@ -303,23 +325,23 @@ namespace
             return f;
         }
         /* Perform i^th call to f, ajusting arguments and results ptrs from args[] and res[]
-         * @param i args and reults index.
-         */
+        * @param i args and reults index.
+        */
         void callF(std::size_t const i)
         {
-#ifndef  _MSC_VER
+
             std::vector<char const *> local_args(rhs);
             for (std::size_t j(0); j!= rhs; ++j)
             {
                 local_args[j]= args[j]+ (i%(*(args_nb+j))) *(*(args_size+j));/*(i%(*(args_nb+j))) because all args are not required to have same nb of elts*/
             }
-        std::vector<char *> local_res(lhs);
+            std::vector<char *> local_res(lhs);
             for (std::size_t j(0); j!= lhs; ++j)
             {
                 local_res[j]= res[j]+ i*(*(res_size+j));// all res are required to have n elts
             }
             f(&local_args[0], &local_res[0]);
-#endif
+
         }
         char const* const* const args; /* ptrs to the rhs args */
         std::size_t const* args_size; /* sizeof each rhs */
@@ -338,10 +360,10 @@ namespace
 
 
 /*
- * make a parallel wrapper, just calls the constructor : is used mainly not to have to type the complete templated name of the wrapper type.
- * We can then directly call the parallel_wrapper operator() to lanch the parallel processing.
- * @param
- */
+* make a parallel wrapper, just calls the constructor : is used mainly not to have to type the complete templated name of the wrapper type.
+* We can then directly call the parallel_wrapper operator() to lanch the parallel processing.
+* @param
+*/
 template<typename ArgsItIt, typename ArgsSizeIt, typename ArgsNbIt, typename Sz1, typename Sz2, typename ResItIt, typename ResSizeIt, typename Sz3, typename F, typename G>   parallel_wrapper<F, G>
 make_parallel_wrapper(ArgsItIt args, ArgsSizeIt args_size, ArgsNbIt args_nb, Sz1 rhs, Sz2 n, ResItIt res, ResSizeIt res_size, Sz3 lhs, F f, G prologue, G epilogue)
 {

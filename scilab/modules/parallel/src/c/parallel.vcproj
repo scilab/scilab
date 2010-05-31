@@ -388,6 +388,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\mmapWindows.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\cpp\sci_parallel_run.cpp"
 				>
 			</File>
@@ -409,7 +413,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\mmapWindows.h"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\parallel_run.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\semWindows.h"
 				>
 			</File>
 		</Filter>
