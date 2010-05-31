@@ -14,15 +14,16 @@ toolbox_dir   = get_absolute_file_path("builder.sce");
 // =============================================================================
 
 try
-	v = getversion("scilab");
+    v = getversion("scilab");
 catch
-	error(gettext("Scilab 5.2 or more is required."));
+    error(gettext("Scilab 5.2 or more is required."));
 end
 
 if v(2) < 2 then
-	// new API in scilab 5.2
-	error(gettext('Scilab 5.2 or more is required.'));  
+    // new API in scilab 5.2
+    error(gettext('Scilab 5.2 or more is required.'));
 end
+clear v;
 
 // Check development_tools module avaibility
 // =============================================================================
@@ -45,3 +46,4 @@ tbx_build_cleaner(TOOLBOX_NAME, toolbox_dir);
 // =============================================================================
 
 clear toolbox_dir TOOLBOX_NAME TOOLBOX_TITLE;
+
