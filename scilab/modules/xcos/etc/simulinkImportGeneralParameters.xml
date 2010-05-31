@@ -1,0 +1,14 @@
+<generals dsc="string">
+  <!--Zero or more repetitions:-->
+  <string sim="string" xCos="string" dsc="string">
+    <!--1 or more repetitions:-->
+    <parMap simVal="string" xCosVal="string"/>
+  </string>
+  <!--Zero or more repetitions:-->
+  <integer sim="string" xCos="string" dsc="string">
+    <!--1 or more repetitions:-->
+    <parMap simVal="100" xCosVal="100"/>
+  </integer>
+  <!--Zero or more repetitions:-->
+  <simple sim="string" xCos="string" dsc="string"/>
+</generals>
