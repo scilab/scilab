@@ -24,7 +24,6 @@ import org.scilab.modules.xpad.ScilabEditorPane;
 import org.scilab.modules.xpad.ScilabDocument;
 import org.scilab.modules.xpad.FunctionScanner;
 import org.scilab.modules.xpad.utils.XpadMessages;
-import org.scilab.modules.action_binding.InterpreterManagement;
 
 /**
  * Generate help from a function definition
@@ -35,26 +34,26 @@ public class GenerateHelpFromFunctionAction extends DefaultAction {
     /**
      * The help template
      */
-    public static final String template = "//\n" +
-                                          "//\n" +
-                                          "// Calling Sequence\n" +
-                                          "// [returnValues] = functionName(argsValues) // \n" +
-                                          "// Parameters\n" +
-                                          "// argsValuesOnColumn\n" +
-                                          "// returnValuesOnColumn\n" +
-                                          "// \n" +
-                                          "// Description\n" +
-                                          "// \n" +
-                                          "// \n" +
-                                          "// Examples\n" +
-                                          "// \n" +
-                                          "// \n" +
-                                          "// See Also\n" +
-                                          "// \n" +
-                                          "// \n" +
-                                          "// Authors\n" +
-                                          "// \n" +
-                                          "\n";
+    public static final String template = "//\n"
+        + "//\n"
+        + "// Calling Sequence\n"
+        + "// [returnValues] = functionName(argsValues) // \n"
+        + "// Parameters\n"
+        + "// argsValuesOnColumn\n"
+        + "// returnValuesOnColumn\n"
+        + "// \n"
+        + "// Description\n"
+        + "// \n"
+        + "// \n"
+        + "// Examples\n"
+        + "// \n"
+        + "// \n"
+        + "// See Also\n"
+        + "// \n"
+        + "// \n"
+        + "// Authors\n"
+        + "// \n"
+        + "\n";
 
     /**
      * Constructor

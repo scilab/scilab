@@ -11,7 +11,6 @@
  */
 package org.scilab.modules.xpad.actions;
 
-import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;

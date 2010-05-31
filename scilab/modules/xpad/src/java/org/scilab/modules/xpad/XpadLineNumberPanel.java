@@ -66,6 +66,7 @@ public class XpadLineNumberPanel extends JPanel implements CaretListener, Docume
 
     private int numbers;
     private int lastLine;
+    private int state;
 
     private ScilabDocument doc;
     private FontMetrics metrics;
@@ -108,6 +109,14 @@ public class XpadLineNumberPanel extends JPanel implements CaretListener, Docume
             display = false;
         }
         updateLineNumber(0, 0);
+        this.state = state;
+    }
+
+    /**
+     * @return the current state
+     */
+    public int getState() {
+        return state;
     }
 
     /**
@@ -180,7 +189,7 @@ public class XpadLineNumberPanel extends JPanel implements CaretListener, Docume
 
         synchronized (doc) {
             Element root = doc.getDefaultRootElement();
-            ScilabView view = doc.getView();
+            ScilabView view = (ScilabView) doc.getView();
             Rectangle clip = g.getClipBounds();
             Point pt = new Point(0, clip.y);
             int rowStartOffset = textPane.viewToModel(pt);

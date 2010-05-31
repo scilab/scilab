@@ -50,8 +50,7 @@ public class OpenSourceFileOnKeywordAction extends DefaultAction {
                 String kw = doc.getText(kwe.getStart(), kwe.getLength());
                 int pos = doc.searchFunctionByName(kw);
                 if (pos != -1) {
-                    sep.getScrollPane().getVerticalScrollBar().setValue(sep.modelToView(pos).y);
-                    sep.setCaretPosition(pos);
+                    sep.scrollTextToPos(pos);
                 } else {
                 InterpreterManagement.requestScilabExec("a46d43fa4w5z8512dc7dc2c3=get_function_path('" + kw + "');if a46d43fa4w5z8512dc7dc2c3~=[] then editor(a46d43fa4w5z8512dc7dc2c3);clear a46d43fa4w5z8512dc7dc2c3;end");
                 }

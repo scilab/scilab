@@ -18,12 +18,18 @@ Text Editor:
 * Add the possibility to autocomplete some characters (e.g. type '[' gives '[]')
   or keywords (e.g. type 'if ' gives 'if <CR>end')
 
+* Add the possibility to have several instances of the editor and to dock (or not)
+  them.
+
 * bugs 4399, 4922 fixed - The line numbering could not be compatible with the
                           output of the whereami function.
 
 * bug 4907 fixed - The source code of a given macro could not be opened.
 
 * bug 4916 fixed - Problem with 'See the code' in the demos.
+
+* bug 4992 fixed - There was no possibility to split the window with the same
+                   contents.
 
 * bug 5087 fixed - The different keywords were not splited in different category.
 

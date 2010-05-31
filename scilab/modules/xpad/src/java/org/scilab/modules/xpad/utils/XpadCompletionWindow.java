@@ -14,12 +14,12 @@
 package org.scilab.modules.xpad.utils;
 
 import java.awt.Component;
-import java.awt.Rectangle;
 import java.awt.Point;
 import java.util.List;
 
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.BadLocationException;
 
@@ -87,11 +87,21 @@ public class XpadCompletionWindow extends AbstractSciCompletionWindow {
         if (list != null) {
             /* If completion window size bigger than input command view size
                put the window on the top of the current line */
-            JScrollPane jSP = editor.getTextPane().getScrollPane();
-            if (window.getHeight() + inputParsingManager.getWindowCompletionLocation().y > jSP.getHeight()) {
+            JComponent c = editor.getTextPane().getParentComponent();
+            int height;
+            int value;
+            if (c instanceof JScrollPane) {
+                value = ((JScrollPane) c).getVerticalScrollBar().getValue();
+                height = ((JScrollPane) c).getHeight();
+            } else {
+                value = ((JScrollPane) ((JSplitPane) c).getLeftComponent()).getVerticalScrollBar().getValue();
+                height = ((JScrollPane) ((JSplitPane) c).getLeftComponent()).getHeight();
+                getTextComponent().add(window);
+            }
+            if (window.getHeight() + location.y > value + height) {
                 try {
-                    Rectangle r = editor.getTextPane().modelToView(currentCaretPosition);
-                    location.y = location.y - window.getHeight() - r.height;
+                    int ypos = editor.getTextPane().modelToView(currentCaretPosition).height;
+                    location.y = location.y - window.getHeight() - ypos;
                 } catch (BadLocationException e) { }
             }
 

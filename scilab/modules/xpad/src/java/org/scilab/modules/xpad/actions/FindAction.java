@@ -86,11 +86,11 @@ public final class FindAction extends DefaultAction {
     private static final Highlighter.HighlightPainter inactivePainter = new DefaultHighlighter.DefaultHighlightPainter(Color.yellow);
     private static final Highlighter.HighlightPainter selectedPainter = new DefaultHighlighter.DefaultHighlightPainter(colorSelected);
 
-    private static boolean windowAlreadyExist;
-
-    private static JFrame frame;
     private static String previousSearch;
 
+    private boolean windowAlreadyExist;
+
+    private JFrame frame;
     private JButton buttonClose;
     private JButton buttonFind;
     private ButtonGroup buttonGroup1;
@@ -142,13 +142,14 @@ public final class FindAction extends DefaultAction {
      */
     private FindAction(Xpad editor) {
         super(XpadMessages.FIND_REPLACE +  XpadMessages.DOTS, editor);
+        editor.addFindActionWindow(this);
     }
 
     /**
      * doAction
      */
     public void doAction() {
-        if (!FindAction.windowAlreadyExist) {
+        if (!windowAlreadyExist) {
             findReplaceBox();
         } else {
             frame.setVisible(true);
@@ -188,7 +189,7 @@ public final class FindAction extends DefaultAction {
                 comboFind.setSelectedIndex(-1);
                 comboReplace.setSelectedIndex(-1);
             }
-            FindAction.windowAlreadyExist = true;
+            windowAlreadyExist = true;
             updateFindReplaceButtonStatus();
         } catch (BadLocationException e) {
             e.printStackTrace();
@@ -341,7 +342,7 @@ public final class FindAction extends DefaultAction {
         frame.setContentPane(panelFrame);
 
         frame.pack();
-        frame.setLocationRelativeTo(Xpad.getEditor());
+        frame.setLocationRelativeTo(getEditor());
         frame.setVisible(true);
 
         buttonReplaceFind.setEnabled(false);
@@ -472,6 +473,7 @@ public final class FindAction extends DefaultAction {
                         // only touch document if any replacement took place
                         try {
                             doc.mergeEditsBegin();
+                            doc.setFocused(true);
                             doc.replace(start, text.length(), replacedText, null);
                             doc.mergeEditsEnd();
                             previousRegexp = "";
@@ -990,6 +992,7 @@ public final class FindAction extends DefaultAction {
             Matcher matcher = pattern.matcher(xpadTextPane.getText(startFind, endFind - startFind + 1));
             String replacedText = matcher.replaceAll(Matcher.quoteReplacement(replace));
             ScilabDocument doc = (ScilabDocument) xpadTextPane.getDocument();
+            doc.setFocused(true);
             doc.replace(startFind, endFind - startFind + 1, replacedText, null);
             xpadTextPane.setCaretPosition(startFind + replacedText.length());
             endSelectedLines += replacedText.length() - (endFind - startFind + 1);
@@ -1006,9 +1009,9 @@ public final class FindAction extends DefaultAction {
     /**
      * closeFindReplaceWindow
      */
-    public static void closeFindReplaceWindow() {
-        if (FindAction.windowAlreadyExist) {
-            JEditorPane xpadTextPane =  Xpad.getEditor().getTextPane();
+    public void closeFindReplaceWindow() {
+        if (windowAlreadyExist) {
+            JEditorPane xpadTextPane = getEditor().getTextPane();
             if (xpadTextPane != null) {
                 xpadTextPane.getHighlighter().removeAllHighlights();
                 int start = xpadTextPane.getSelectionStart();
@@ -1016,7 +1019,7 @@ public final class FindAction extends DefaultAction {
                 xpadTextPane.select(start, end);
             }
             frame.dispose();
-            FindAction.windowAlreadyExist = false;
+            windowAlreadyExist = false;
         }
     }
 

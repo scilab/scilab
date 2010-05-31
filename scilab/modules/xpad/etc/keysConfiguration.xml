@@ -11,6 +11,8 @@
   <entry key="CommentAction">control D</entry>
   <entry key="UnCommentAction">control shift D</entry>
   <entry key="SelectAllAction">control A</entry>
+  <entry key="OpenTabInNewWindowAction">control alt T</entry>
+  <entry key="CCloseTabInNewWindowAction">control alt C</entry>
 
   <entry key="CopyAction">control C</entry>
   <entry key="CutAction">control X</entry>
@@ -42,4 +44,9 @@
   <entry key="FindPreviousAction">control shift K</entry>
 
   <entry key="XpadCompletionAction">control SPACE</entry>
+
+  <entry key="SplitHorizontallyAction">alt H</entry>
+  <entry key="SplitVerticallyAction">alt V</entry>
+  <entry key="NoSplitAction">alt N</entry>
+
 </properties>

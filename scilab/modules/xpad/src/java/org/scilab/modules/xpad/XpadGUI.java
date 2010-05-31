@@ -1,5 +1,6 @@
 /* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO
+ * Copyright (C) 2010 - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -43,6 +44,9 @@ import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.localization.Messages;
+import org.scilab.modules.xpad.actions.SplitHorizontallyAction;
+import org.scilab.modules.xpad.actions.SplitVerticallyAction;
+import org.scilab.modules.xpad.actions.NoSplitAction;
 import org.scilab.modules.xpad.actions.ActivateHelpOnTypingAction;
 import org.scilab.modules.xpad.actions.GenerateHelpFromFunctionAction;
 import org.scilab.modules.xpad.actions.AboutAction;
@@ -60,6 +64,8 @@ import org.scilab.modules.xpad.actions.EndOfLineAction;
 import org.scilab.modules.xpad.actions.EvaluateSelectionAction;
 import org.scilab.modules.xpad.actions.ExecuteFileIntoScilabAction;
 import org.scilab.modules.xpad.actions.ExitAction;
+import org.scilab.modules.xpad.actions.OpenTabInNewWindowAction;
+import org.scilab.modules.xpad.actions.CCloseTabInNewWindowAction;
 import org.scilab.modules.xpad.actions.FindAction;
 import org.scilab.modules.xpad.actions.FindNextAction;
 import org.scilab.modules.xpad.actions.FindPreviousAction;
@@ -155,6 +161,10 @@ public class XpadGUI {
                 viewMenu.add(SetColorsAction.createMenu(editorInstance));
                 viewMenu.add(SetFontAction.createMenu(editorInstance));
                 viewMenu.add(ResetFontAction.createMenu(editorInstance));
+                viewMenu.addSeparator();
+                viewMenu.add(SplitVerticallyAction.createMenu(editorInstance, map.get("SplitVerticallyAction")));
+                viewMenu.add(SplitHorizontallyAction.createMenu(editorInstance, map.get("SplitHorizontallyAction")));
+                viewMenu.add(NoSplitAction.createMenu(editorInstance, map.get("NoSplitAction")));
                 menuBar.add(viewMenu);
 
                 // Create DOCUMENT MenuBar
@@ -355,6 +365,9 @@ public class XpadGUI {
                 toolsMenu.setText(XpadMessages.TOOLS);
                 toolsMenu.setMnemonic('o');
                 toolsMenu.add(ActivateHelpOnTypingAction.createCheckBoxMenu(editorInstance, map.get("ActivateHelpOnTypingAction")));
+                toolsMenu.addSeparator();
+                toolsMenu.add(OpenTabInNewWindowAction.createMenu(editorInstance, map.get("OpenTabInNewWindowAction")));
+                toolsMenu.add(CCloseTabInNewWindowAction.createMenu(editorInstance, map.get("CCloseTabInNewWindowAction")));
                 toolsMenu.addSeparator();
                 toolsMenu.add(CommentAction.createMenu(editorInstance, map.get("CommentAction")));
                 toolsMenu.add(UnCommentAction.createMenu(editorInstance, map.get("UnCommentAction")));

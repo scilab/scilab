@@ -20,15 +20,24 @@ import java.awt.Font;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 import java.util.List;
 import java.util.ArrayList;
 import java.util.EventObject;
+import java.io.StringReader;
+import java.io.IOException;
 
 import javax.swing.JEditorPane;
 import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JScrollBar;
+import javax.swing.JComponent;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.Document;
+import javax.swing.text.Element;
 import javax.swing.text.BadLocationException;
 import javax.swing.event.CaretListener;
 import javax.swing.event.CaretEvent;
@@ -41,7 +50,9 @@ import javax.swing.text.Highlighter;
  */
 public class ScilabEditorPane extends JEditorPane implements Highlighter.HighlightPainter,
                                                              CaretListener, MouseListener,
-                                                             MouseMotionListener {
+                                                             MouseMotionListener, Cloneable {
+
+    private static ScilabEditorPane focused;
 
     private Color highlightColor = new Color(228, 233, 244);
     private Color highlightContourColor = new Color(50, 50, 50);
@@ -62,6 +73,8 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
 
     private XpadLineNumberPanel xln;
     private JScrollPane scroll;
+    private JSplitPane split;
+    private ScilabEditorPane rightTextPane;
 
     private List<KeywordListener> kwListeners = new ArrayList();
 
@@ -78,6 +91,18 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         addMouseListener(this);
         enableMatchingKeywords(true);
         setFocusable(true);
+
+        addFocusListener(new FocusListener() {
+                public void focusGained(FocusEvent e) {
+                    ((ScilabDocument) getDocument()).setFocused(true);
+                    Xpad.editor = ScilabEditorPane.this.editor;
+                    focused = ScilabEditorPane.this;
+                }
+
+                public void focusLost(FocusEvent e) {
+                    ((ScilabDocument) getDocument()).setFocused(false);
+                }
+            });
     }
 
     /**
@@ -100,10 +125,41 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     }
 
     /**
-     * @return the scrollPane associated with this textPane
+     * @return the scrollPane or the splitpane associated with this textPane
      */
-    public JScrollPane getScrollPane() {
-        return scroll;
+    public JComponent getParentComponent() {
+        if (split == null) {
+            return scroll;
+        }
+        return split;
+    }
+
+    /**
+     * Scroll the pane to have the line containing pos on the top of the pane
+     * @param pos the position in the document
+     */
+    public void scrollTextToPos(int pos) {
+        try {
+            setCaretPosition(pos);
+            JScrollBar scrollbar = scroll.getVerticalScrollBar();
+            int value = modelToView(pos).y;
+            if (modelToView(pos).y > scrollbar.getMaximum()) {
+                scrollbar.setMaximum(value);
+            }
+            scrollbar.setValue(value);
+        } catch (BadLocationException e) { }
+    }
+
+    /**
+     * Scroll the pane to have the line lineNumber on the top of the pane
+     * @param lineNumber the number of the line
+     */
+    public void scrollTextToLineNumber(int lineNumber) {
+        Element root = getDocument().getDefaultRootElement();
+        if (lineNumber >= 1 && lineNumber <= root.getElementCount()) {
+            int pos = root.getElement(lineNumber - 1).getStartOffset();
+            setCaretPosition(pos);
+        }
     }
 
     /**
@@ -404,6 +460,79 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         if (highlightEnable) {
             repaint();
         }
+    }
+
+    /**
+     * Split the EditorPane
+     * @param vertical true for a vertical split
+     */
+    public void splitWindow(boolean vertical) {
+        rightTextPane = new ScilabEditorPane(editor);
+        rightTextPane.setName(getName());
+        editor.initPane(rightTextPane);
+        editor.initInputMap(rightTextPane);
+        ScilabEditorKit kit = (ScilabEditorKit) getEditorKit().clone();
+        rightTextPane.setEditorKit(kit);
+        ScilabDocument doc = (ScilabDocument) rightTextPane.getDocument();
+        try {
+            kit.read(new StringReader(((ScilabDocument) getDocument()).getText()), doc, 0);
+        } catch (IOException e) {
+        } catch (BadLocationException e) { }
+        doc.setContentModified(((ScilabDocument) getDocument()).isContentModified());
+        rightTextPane.activateHelpOnTyping(false);
+        editor.setHelpOnTyping(rightTextPane);
+        ((ScilabDocument) getDocument()).setRightDocument(doc);
+        doc.setLeftDocument((ScilabDocument) getDocument());
+        rightTextPane.setCaretPosition(0);
+        JTabbedPane tabpane = editor.getTabPane();
+        int index = tabpane.getSelectedIndex();
+        if (vertical) {
+            split = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
+        } else {
+            split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+        }
+        rightTextPane.split = split;
+        rightTextPane.rightTextPane = this;
+        tabpane.setComponentAt(index, split);
+        split.setLeftComponent(scroll);
+        split.setRightComponent(rightTextPane.scroll);
+        split.setResizeWeight(0.5);
+    }
+
+    /**
+     * Remove the split
+     */
+    public void removeSplit() {
+        if (split != null) {
+            JTabbedPane tab = editor.getTabPane();
+            tab.setComponentAt(tab.getSelectedIndex(), scroll);
+            split = null;
+            rightTextPane = null;
+        }
+    }
+
+    /**
+     * @return the EditorPane associated with this EditorPane in a splitted view
+     */
+    public ScilabEditorPane getRightTextPane() {
+        if (split != null) {
+            return rightTextPane;
+        }
+        return null;
+    }
+
+    /**
+     * @return the scrollPane associated with this EditorPane
+     */
+    public JScrollPane getScrollPane() {
+        return scroll;
+    }
+
+    /**
+     * @return the current focused editorPane
+     */
+    public static ScilabEditorPane getFocusedPane() {
+        return focused;
     }
 
     /**

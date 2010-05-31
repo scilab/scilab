@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2010 - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,6 +17,7 @@ import org.scilab.modules.localization.Messages;
 /**
  * All messages used in Xpad menus, dialogs, ...
  * @author Bruno JOFRET
+ * @author Calixte DENIZET
  */
 public class XpadMessages {
 
@@ -62,6 +64,8 @@ public class XpadMessages {
     public static final String INDENT = Messages.gettext("Correct Indentation");
     public static final String HELP_ON_TYPING = Messages.gettext("Help on typing");
     public static final String GENERATE_HELP = Messages.gettext("Generate help from function");
+    public static final String OPEN_TAB_IN_NEW_WINDOW = Messages.gettext("Clone tab in a new window");
+    public static final String CCLOSE_TAB_IN_NEW_WINDOW = Messages.gettext("Clone and close tab in a new window");
 
     /** SEARCH MENU */
     public static final String SEARCH = Messages.gettext("Search");
@@ -82,6 +86,10 @@ public class XpadMessages {
     public static final String SET_COLORS = Messages.gettext("Set Colors") + DOTS;
     public static final String SET_FONT = Messages.gettext("Set Font") + DOTS;
     public static final String RESET_DEFAULT_FONT = Messages.gettext("Reset default font");
+
+    public static final String SPLIT_HORIZONTALLY = Messages.gettext("Split horizontally");
+    public static final String SPLIT_VERTICALLY = Messages.gettext("Split vertically");
+    public static final String NO_SPLIT = Messages.gettext("No split");
 
     /** DOCUMENT MENU */
     public static final String DOCUMENT = Messages.gettext("Document");

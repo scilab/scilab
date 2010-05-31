@@ -1,3 +1,15 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - Calixte DENIZET
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 package org.scilab.modules.xpad.actions;
 
 import java.awt.Point;
@@ -27,6 +39,7 @@ import org.scilab.modules.console.SciCompletionManager;
 import org.scilab.modules.console.SciInputParsingManager;
 
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.ScilabDocument;
 import org.scilab.modules.xpad.utils.XpadCompletionWindow;
 
 /**
@@ -40,9 +53,9 @@ public final class XpadCompletionAction extends CompletionAction {
      * Constructor
      * @param editor Xpad
      */
-    private XpadCompletionAction(Xpad editor) {
+    private XpadCompletionAction(JComponent textPane, Xpad editor) {
         this.editor = editor;
-        configuration = new XpadCompletionConfiguration();
+        configuration = new XpadCompletionConfiguration(textPane);
     }
 
     /**
@@ -52,7 +65,7 @@ public final class XpadCompletionAction extends CompletionAction {
      * @param editor Editor
      */
     public static void putInInputMap(JComponent textPane, Xpad editor, KeyStroke key) {
-        editor.getTextPane().getInputMap().put(key, new XpadCompletionAction(editor));
+        textPane.getInputMap().put(key, new XpadCompletionAction(textPane, editor));
     }
 
     /**
@@ -65,6 +78,7 @@ public final class XpadCompletionAction extends CompletionAction {
          */
         public void reset() {
             try {
+                ((ScilabDocument) editor.getTextPane().getDocument()).setFocused(true);
                 Element root = editor.getTextPane().getDocument().getDefaultRootElement();
                 int pos = editor.getTextPane().getCaretPosition();
                 int line = root.getElementIndex(pos);
@@ -105,6 +119,7 @@ public final class XpadCompletionAction extends CompletionAction {
          */
         public void append(String content) {
             try {
+                ((ScilabDocument) editor.getTextPane().getDocument()).setFocused(true);
                 Element root = editor.getTextPane().getDocument().getDefaultRootElement();
                 int pos = editor.getTextPane().getCaretPosition();
                 editor.getTextPane().getDocument().insertString(pos, content, null);
@@ -197,11 +212,11 @@ public final class XpadCompletionAction extends CompletionAction {
         /**
          * Constructor
          */
-        public XpadCompletionConfiguration() {
+        public XpadCompletionConfiguration(JComponent textPane) {
             scm.setInputParsingManager(xipm);
             cwi = new XpadCompletionWindow(editor, scm);
             cwi.setInputParsingManager(xipm);
-            cwi.setGraphicalContext(editor.getTextPane());
+            cwi.setGraphicalContext(textPane);
         }
 
         /**

@@ -21,6 +21,7 @@ import javax.swing.text.PlainDocument;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Element;
 import javax.swing.text.AttributeSet;
+import javax.swing.text.View;
 
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -51,7 +52,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
 
     private static final int GAPBUFFERCAPACITY = 2;
 
-    private ScilabView view;
+    private View view;
     private List<String> saved = new Vector();
     private FunctionScanner funScanner;
 
@@ -65,6 +66,10 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     private volatile boolean shouldMergeEdits;
     private boolean undoManagerEnabled;
     private CompoundUndoManager undo = new CompoundUndoManager();
+
+    private ScilabDocument rightDocument;
+    private ScilabDocument leftDocument;
+    private boolean focused;
 
     private String eolStyle = System.getProperty("line.separator");
 
@@ -88,6 +93,33 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     }
 
     /**
+     * Set the right document in a splitted view
+     * @param doc the doc at the right
+     */
+    public void setRightDocument(ScilabDocument doc) {
+        rightDocument = doc;
+        doc.removeUndoableEditListener(doc.undo);
+        doc.undo = undo;
+        doc.addUndoableEditListener(undo);
+    }
+
+    /**
+     * Set the left document in a splitted view
+     * @param doc the doc at the left
+     */
+    public void setLeftDocument(ScilabDocument doc) {
+        leftDocument = doc;
+    }
+
+    /**
+     * Set to true of the document is focused in the EditorPane
+     * @param b the boolean
+     */
+    public void setFocused(boolean b) {
+        focused = b;
+    }
+
+    /**
      * Create a lexer used to colorize the text
      * @return ScilabLexer the lexer
      */
@@ -99,14 +131,14 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * Set the current view to render the code
      * @param view the used view
      */
-    public void setView(ScilabView view) {
+    public void setView(View view) {
         this.view = view;
     }
 
     /**
      * @return the current used view
      */
-    public ScilabView getView() {
+    public View getView() {
         return view;
     }
 
@@ -341,6 +373,37 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      */
     public void unlock() {
         super.writeUnlock();
+    }
+
+    /**
+     * Overrides the method in PlainDocument (useful in splitted view)
+     * @param offset an int
+     * @param str a String
+     * @param a an AttributeSet
+     * @throw a BadLocationException
+     */
+    public void insertString(int offset, String str, AttributeSet a) throws BadLocationException {
+        super.insertString(offset, str, a);
+        if (focused && rightDocument != null) {
+            rightDocument.insertString(offset, str, a);
+        } else if (focused && leftDocument != null) {
+            leftDocument.insertString(offset, str, a);
+        }
+    }
+
+    /**
+     * Overrides the method in PlainDocument (useful in splitted view)
+     * @param offs an int
+     * @param len the length
+     * @throw a BadLocationException
+     */
+    public void remove(int offs, int len) throws BadLocationException {
+        super.remove(offs, len);
+        if (focused && rightDocument != null) {
+            rightDocument.remove(offs, len);
+        } else if (focused && leftDocument != null) {
+            leftDocument.remove(offs, len);
+        }
     }
 
     /**
