@@ -23,6 +23,8 @@ Text Editor:
 
 * Add the possibility to remove trailing whitespaces.
 
+* Add help on keyword in the popup menu
+
 * bugs 4399, 4922 fixed - The line numbering could not be compatible with the
                           output of the whereami function.
 

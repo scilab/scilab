@@ -29,6 +29,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JEditorPane;
 import javax.swing.text.DefaultEditorKit;
+import javax.swing.text.BadLocationException;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
@@ -527,16 +528,23 @@ public class XpadGUI {
                 public void actionPerformed(ActionEvent actionEvent) {
                     String selection = c.getSelectedText();
                     if (selection == null) {
-                        infoBar.setText(Messages.gettext("No text selected"));
-                    } else {
-                        /* Double the quote/double quote in order to avoid
-                         * and error with the call of help()
-                         */
-                        selection = selection.replaceAll("'", "''");
-                        selection = selection.replaceAll("\"", "\"\"");
-
-                        InterpreterManagement.requestScilabExec("help('" + selection + "')");
+                        KeywordEvent kwe = ((ScilabEditorPane) c).getKeywordEvent();
+                        if (ScilabLexerConstants.isHelpable(kwe.getType())) {
+                            try {
+                                selection = c.getDocument().getText(kwe.getStart(), kwe.getLength());
+                            } catch (BadLocationException e) { }
+                        } else {
+                            infoBar.setText(Messages.gettext("No text selected"));
+                            return;
+                        }
                     }
+                    /* Double the quote/double quote in order to avoid
+                     * and error with the call of help()
+                     */
+                    selection = selection.replaceAll("'", "''");
+                    selection = selection.replaceAll("\"", "\"\"");
+
+                    InterpreterManagement.requestScilabExec("help('" + selection + "')");
                 }
             };
 
@@ -545,14 +553,23 @@ public class XpadGUI {
                 public void propertyChange(PropertyChangeEvent arg0) {
                     String keyword = c.getSelectedText();
                     if (keyword == null) {
-                        helpMenuItem.setText(Messages.gettext("Help about a selected text"));
-                    } else {
-                        int nbOfDisplayedOnlyXChar = 10;
-                        if (keyword.length() > nbOfDisplayedOnlyXChar) {
-                            keyword = keyword.substring(0, nbOfDisplayedOnlyXChar) + "...";
+                        KeywordEvent kwe = ((ScilabEditorPane) c).getKeywordEvent();
+                        if (ScilabLexerConstants.isHelpable(kwe.getType())) {
+                            try {
+                                keyword = c.getDocument().getText(kwe.getStart(), kwe.getLength());
+                            } catch (BadLocationException e) { }
+                        } else {
+                            helpMenuItem.setText(Messages.gettext("Help on selected text or keyword"));
+                            helpMenuItem.setEnabled(false);
+                            return;
                         }
-                        helpMenuItem.setText(Messages.gettext("Help about '") + keyword + "'");
                     }
+                    int nbOfDisplayedOnlyXChar = 10;
+                    if (keyword.length() > nbOfDisplayedOnlyXChar) {
+                        keyword = keyword.substring(0, nbOfDisplayedOnlyXChar) + "...";
+                    }
+                    helpMenuItem.setText(Messages.gettext("Help about '") + keyword + "'");
+                    helpMenuItem.setEnabled(true);
                 }
             };
         helpMenuItem.addPropertyChangeListener(listenerTextItem);
