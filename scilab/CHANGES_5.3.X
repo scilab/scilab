@@ -574,6 +574,9 @@ Bug fixes:
 * bug 6933 fixed - Some temporary files (dict_*.tmp) were created when using
                    search engine of the help browser.
 
+* bug 6934 fixed - Denormalized floating point numbers were not present in
+                   Scilab's master.
+
 * bug 6940 fixed - An error message was wrong in 'pvm_send'.
 
 * bug 6946 fixed - information about optional input arguments 'column separator'
