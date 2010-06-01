@@ -16,7 +16,6 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -38,240 +37,229 @@ import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.ScilabDocument;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
+/**
+ * Action to go to a given line
+ * @author Bruno JOFRET
+ * @author Calixte DENIZET
+ */
 @SuppressWarnings("serial")
-public class GotoLineAction extends DefaultAction {
-	
-	private static boolean windowAlreadyExist;
-	private static JFrame mainFrame;
-	private JTextField enterLineNumberField;
-	private int firstCaretPosition;
-	private JButton okButton;
-	
-	private GotoLineAction(Xpad editor) {
+public final class GotoLineAction extends DefaultAction {
 
-    		super(XpadMessages.GOTO_LINE, editor);
+    private static boolean windowAlreadyExist;
+    private static JFrame mainFrame;
 
-	}
-	
-	public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.GOTO_LINE, null, new GotoLineAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_G, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
-	 }
+    private JTextField enterLineNumberField;
+    private int firstCaretPosition;
+    private JButton okButton;
 
-	 @Override
-	public void doAction() {
-	    	if (!GotoLineAction.windowAlreadyExist) {
-	    		firstCaretPosition = getEditor().getTextPane().getCaretPosition();
-	    		gotoLineBox();
-	    		GotoLineAction.windowAlreadyExist = true;
-	    	}
-	}
-	
-	 /**
-	  * check if it is Windows
-	  * @return true or false
-	  */
-	private boolean isWindows() {
-			return System.getProperty("os.name").toLowerCase().contains("windows");
-		}
-	 
-	public void gotoLineBox () {
-			final int dimX = 305;
-			final int dimY = 105;
-			
-	        mainFrame = new JFrame();
-	        mainFrame.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
-	        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	        mainFrame.setLayout(new GridBagLayout());
-	        
-	        mainFrame.setPreferredSize(new Dimension(dimX, dimY));
-	        mainFrame.setMinimumSize(new Dimension(dimX, dimY));
-	        mainFrame.setMaximumSize(new Dimension(dimX, dimY));
+    /**
+     * Constructor
+     * @param editor Xpad
+     */
+    private GotoLineAction(Xpad editor) {
+        super(XpadMessages.GOTO_LINE, editor);
+    }
 
-	        JLabel label = new JLabel(XpadMessages.ENTER_LINE_NUMBER);
+    /**
+     * createMenu
+     * @param editor Xpad
+     * @param key KeyStroke
+     * @return createMenu
+     */
+    public static MenuItem createMenu(Xpad editor, KeyStroke key) {
+        return createMenu(XpadMessages.GOTO_LINE, null, new GotoLineAction(editor), key);
+    }
 
-	        enterLineNumberField = new JTextField();
-	        
-	        JButton cancelButton = new JButton(XpadMessages.CANCEL);
-	        okButton = new JButton(XpadMessages.OK);
-	        okButton.setPreferredSize(cancelButton.getPreferredSize());
+    /**
+     * Close this popup
+     */
+    public static void closeGotoLineWindow() {
+        if (GotoLineAction.windowAlreadyExist) {
+            mainFrame.dispose();
+            GotoLineAction.windowAlreadyExist = false;
+        }
+    }
 
-	        GridBagConstraints gbc = new GridBagConstraints();
-	        gbc.gridy = 0;
-	        gbc.gridx = 0;
-	        gbc.gridheight = 1;
-	        gbc.gridwidth = 1;
-	        gbc.insets = new Insets(0, 10, 0, 0);
+    /**
+     * Action !!
+     */
+    public void doAction() {
+        if (!GotoLineAction.windowAlreadyExist) {
+            firstCaretPosition = getEditor().getTextPane().getCaretPosition();
+            gotoLineBox();
+            GotoLineAction.windowAlreadyExist = true;
+        }
+    }
 
-	        gbc.gridx = 0;
-	        gbc.gridy = 4;
-	        gbc.gridheight = 1;
-	        gbc.gridwidth = 1;
-	        gbc.fill = GridBagConstraints.NONE;
-	        gbc.insets = new Insets(0, 10, 0, 0);
-	        mainFrame.add(label, gbc);
+    /**
+     * A box to go to a given line
+     */
+    public void gotoLineBox() {
+        final int dimX = 305;
+        final int dimY = 105;
 
-	        gbc.gridx = 1;
-	        gbc.gridwidth = GridBagConstraints.REMAINDER;
-	        gbc.fill = GridBagConstraints.HORIZONTAL;
-	        gbc.insets = new Insets(5, 10, 0, 10);
-	        mainFrame.add(enterLineNumberField, gbc);
+        mainFrame = new JFrame();
+        mainFrame.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
+        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainFrame.setLayout(new GridBagLayout());
 
+        mainFrame.setPreferredSize(new Dimension(dimX, dimY));
+        mainFrame.setMinimumSize(new Dimension(dimX, dimY));
+        mainFrame.setMaximumSize(new Dimension(dimX, dimY));
 
-	        if (isWindows()) {
-		        gbc.gridx = 1;
-		        gbc.gridy = 5;
-		        gbc.gridheight = 1;
-		        gbc.gridwidth = 1;
-		        gbc.weightx = 1.;
-		        gbc.fill = GridBagConstraints.NONE;
-		        gbc.insets = new Insets(5, 0, 10, 10);
-		        mainFrame.add(okButton, gbc);	      
+        JLabel label = new JLabel(XpadMessages.ENTER_LINE_NUMBER);
 
-		        gbc.gridx = 2;
-		        gbc.weightx = 0.;
-		        gbc.insets = new Insets(5, 0, 10, 5);
-		        mainFrame.add(cancelButton, gbc);
-	        } else {
-		        gbc.gridx = 1;
-		        gbc.gridy = 5;
-		        gbc.gridheight = 1;
-		        gbc.gridwidth = 1;
-		        gbc.weightx = 1.;
-		        gbc.fill = GridBagConstraints.NONE;
-		        gbc.insets = new Insets(5, 0, 10, 5);
-		        mainFrame.add(cancelButton, gbc);
+        enterLineNumberField = new JTextField();
 
-		        gbc.gridx = 2;
-		        gbc.weightx = 0.;
-		        gbc.insets = new Insets(5, 0, 10, 10);
-		        mainFrame.add(okButton, gbc);
-	        }
+        JButton cancelButton = new JButton(XpadMessages.CANCEL);
+        okButton = new JButton(XpadMessages.OK);
+        okButton.setPreferredSize(cancelButton.getPreferredSize());
 
-		
-			cancelButton.addActionListener(new ActionListener() {
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridy = 0;
+        gbc.gridx = 0;
+        gbc.gridheight = 1;
+        gbc.gridwidth = 1;
+        gbc.insets = new Insets(0, 10, 0, 0);
 
-				public void actionPerformed(ActionEvent e) {
-					getEditor().getTextPane().setCaretPosition(firstCaretPosition);
-					GotoLineAction.windowAlreadyExist = false;
-					mainFrame.dispose();
-				}
-			});
-	        
-			okButton.addActionListener(new ActionListener() {
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.gridheight = 1;
+        gbc.gridwidth = 1;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.insets = new Insets(0, 10, 0, 0);
+        mainFrame.add(label, gbc);
 
-				public void actionPerformed(ActionEvent e) {
-					
-					updateCaretPosition();
-					getEditor().getTextPane().setFocusable(true);
-					GotoLineAction.windowAlreadyExist = false;
-					mainFrame.dispose();
-				}
-			});
-			
-			enterLineNumberField.addKeyListener(new KeyListener() {
-				public void keyTyped(KeyEvent arg0) {
-					// TODO Auto-generated method stub
-					
-				}
-				public void keyPressed(KeyEvent arg0) {
-					// TODO Auto-generated method stub
-					
-				}
-				public void keyReleased(KeyEvent arg0) {
-					updateCaretPosition();
-					
-				}
-				
-				
-			});
-			
-	        
-		//display the frame and set some properties
-			
-			mainFrame.addWindowListener(new WindowListener() {
-				public void windowClosed(WindowEvent arg0) {
-					// TODO Auto-generated method stub
-					
-				}
-				public void windowDeiconified(WindowEvent arg0) {
-					// TODO Auto-generated method stub
-					
-				}
-				public void windowActivated(WindowEvent arg0) {
-					// TODO Auto-generated method stub
-					
-				}
-				public void windowClosing(WindowEvent arg0) {
-					GotoLineAction.windowAlreadyExist = false;
-					mainFrame.dispose();
-					
-				}
-				public void windowDeactivated(WindowEvent arg0) {
-					// TODO Auto-generated method stub
-					
-				}
-				public void windowIconified(WindowEvent arg0) {
-					
-				};
-				public void windowOpened(WindowEvent arg0) {
-					// TODO Auto-generated method stub
-					
-				}
-				
-			});
-			
-			
-	        mainFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-	        mainFrame.setTitle(XpadMessages.GOTO_LINE);
-	        mainFrame.pack();
-	        mainFrame.setLocationRelativeTo(null);
-	        mainFrame.setVisible(true);	
-	}
+        gbc.gridx = 1;
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 10, 0, 10);
+        mainFrame.add(enterLineNumberField, gbc);
 
-	private void updateCaretPosition() {
-		if (enterLineNumberField.getText().length() != 0) {
-			
-			   // if the input is not a integer..
-			   Pattern p = Pattern.compile("\\D");
-			   Matcher m = p.matcher(enterLineNumberField.getText());
+        if (isWindows()) {
+            gbc.gridx = 1;
+            gbc.gridy = 5;
+            gbc.gridheight = 1;
+            gbc.gridwidth = 1;
+            gbc.weightx = 1.;
+            gbc.fill = GridBagConstraints.NONE;
+            gbc.insets = new Insets(5, 0, 10, 10);
+            mainFrame.add(okButton, gbc);
 
-			   if (m.find()) {
-				   //... we disable okbutton
-				   okButton.setEnabled(false);
-				   
-			   } else {
-				   okButton.setEnabled(true);
-				   ScilabDocument scilabStyle = ((ScilabDocument) getEditor().getTextPane().getDocument());
-				   
-				   int lineNumber = Integer.decode(enterLineNumberField.getText()) - 1;
-				   int maxLineNumber = scilabStyle.getDefaultRootElement().getElementCount();
-					
-				   // avoid too big or too small number
-				   if (lineNumber <= 0) {
-					   lineNumber = 0;
-				   }
-				   if (lineNumber >= maxLineNumber) {
-					   lineNumber = maxLineNumber - 1;
-				   }
-				    // we get the offset of the line we want
-					int start = scilabStyle.getDefaultRootElement().getElement(lineNumber).getStartOffset();
-					getEditor().getTextPane().setCaretPosition(start);
+            gbc.gridx = 2;
+            gbc.weightx = 0.;
+            gbc.insets = new Insets(5, 0, 10, 5);
+            mainFrame.add(cancelButton, gbc);
+        } else {
+            gbc.gridx = 1;
+            gbc.gridy = 5;
+            gbc.gridheight = 1;
+            gbc.gridwidth = 1;
+            gbc.weightx = 1.;
+            gbc.fill = GridBagConstraints.NONE;
+            gbc.insets = new Insets(5, 0, 10, 5);
+            mainFrame.add(cancelButton, gbc);
 
-			   }
-			
-		} else {
-			 okButton.setEnabled(true);
-		}
-		
-		
-	}
+            gbc.gridx = 2;
+            gbc.weightx = 0.;
+            gbc.insets = new Insets(5, 0, 10, 10);
+            mainFrame.add(okButton, gbc);
+        }
 
-	public static void closeGotoLineWindow() {
-    	if (GotoLineAction.windowAlreadyExist) {
-    		mainFrame.dispose();
-    		GotoLineAction.windowAlreadyExist = false;
-        	
-    	}
-		
-	}
+        cancelButton.addActionListener(new ActionListener() {
+
+                public void actionPerformed(ActionEvent e) {
+                    getEditor().getTextPane().setCaretPosition(firstCaretPosition);
+                    GotoLineAction.windowAlreadyExist = false;
+                    mainFrame.dispose();
+                }
+            });
+
+        okButton.addActionListener(new ActionListener() {
+
+                public void actionPerformed(ActionEvent e) {
+                    updateCaretPosition();
+                    getEditor().getTextPane().setFocusable(true);
+                    GotoLineAction.windowAlreadyExist = false;
+                    mainFrame.dispose();
+                }
+            });
+
+        enterLineNumberField.addKeyListener(new KeyListener() {
+                public void keyTyped(KeyEvent arg0) { }
+                public void keyPressed(KeyEvent arg0) { }
+
+                public void keyReleased(KeyEvent arg0) {
+                    updateCaretPosition();
+                }
+            });
+
+        //display the frame and set some properties
+
+        mainFrame.addWindowListener(new WindowListener() {
+                public void windowClosed(WindowEvent arg0) { }
+                public void windowDeiconified(WindowEvent arg0) { }
+                public void windowActivated(WindowEvent arg0) { }
+
+                public void windowClosing(WindowEvent arg0) {
+                    GotoLineAction.windowAlreadyExist = false;
+                    mainFrame.dispose();
+                }
+
+                public void windowDeactivated(WindowEvent arg0) { }
+                public void windowIconified(WindowEvent arg0) { }
+                public void windowOpened(WindowEvent arg0) { }
+            });
+
+        mainFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        mainFrame.setTitle(XpadMessages.GOTO_LINE);
+        mainFrame.pack();
+        mainFrame.setLocationRelativeTo(null);
+        mainFrame.setVisible(true);
+    }
+
+    /**
+     * check if it is Windows
+     * @return true or false
+     */
+    private boolean isWindows() {
+        return System.getProperty("os.name").toLowerCase().contains("windows");
+    }
+
+    /**
+     * Update the caret position when a number is entered in the field
+     */
+    private void updateCaretPosition() {
+        if (enterLineNumberField.getText().length() != 0) {
+
+            // if the input is not a integer..
+            Pattern p = Pattern.compile("\\D");
+            Matcher m = p.matcher(enterLineNumberField.getText());
+
+            if (m.find()) {
+                //... we disable okbutton
+                okButton.setEnabled(false);
+            } else {
+                okButton.setEnabled(true);
+                ScilabDocument doc = (ScilabDocument) getEditor().getTextPane().getDocument();
+
+                int lineNumber = Integer.decode(enterLineNumberField.getText()) - 1;
+                int maxLineNumber = doc.getDefaultRootElement().getElementCount();
+
+                // avoid too big or too small number
+                if (lineNumber <= 0) {
+                    lineNumber = 0;
+                }
+                if (lineNumber >= maxLineNumber) {
+                    lineNumber = maxLineNumber - 1;
+                }
+                // we get the offset of the line we want
+                int start = doc.getDefaultRootElement().getElement(lineNumber).getStartOffset();
+                getEditor().getTextPane().scrollTextToPos(start);
+
+            }
+        } else {
+            okButton.setEnabled(true);
+        }
+    }
 }

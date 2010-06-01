@@ -43,6 +43,7 @@
   <entry key="FindAction">control F</entry>
   <entry key="FindNextAction">control K</entry>
   <entry key="FindPreviousAction">control shift K</entry>
+  <entry key="GotoLineAction">control G</entry>
 
   <entry key="XpadCompletionAction">control SPACE</entry>
 
