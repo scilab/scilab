@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-05-18 15:25+0100\n"
+"Revision-Date: 2010-05-19 17:38+0100\n"
 
 # File: macros/atomsAutoloadAdd.sci, line: 168
 # File: macros/atomsAutoloadAdd.sci, line: 173
@@ -250,11 +250,6 @@ msgstr ""
 msgid "%s: The file %s doesn''t exist or is not read accessible.\n"
 msgstr ""
 #
-# File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 266
-#, c-format
-msgid "%s: The file %s is not well formated at line %d\n"
-msgstr ""
-#
 # File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 126
 # File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 170
 #, c-format
@@ -277,6 +272,11 @@ msgstr ""
 # File: macros/atomsLoad.sci, line: 330
 #, c-format
 msgid "%s: The file ''%s'' doesn''t exist or is not read accessible.\n"
+msgstr ""
+#
+# File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 266
+#, c-format
+msgid "%s: The file ''%s'' is not well formated at line %d\n"
 msgstr ""
 #
 # File: macros/atoms_internals/atomsDownload.sci, line: 225
@@ -994,7 +994,7 @@ msgstr ""
 msgid "?"
 msgstr ""
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 340
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 293
 #, c-format
 msgid "A new version (''%s'') of ''%s'' is available"
 msgstr ""
@@ -1027,7 +1027,7 @@ msgstr ""
 msgid "Automatically Installed"
 msgstr ""
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 379
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 332
 msgid "Bytes"
 msgstr ""
 #
@@ -1080,7 +1080,7 @@ msgstr ""
 msgid "Installation failed!"
 msgstr ""
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 382
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 335
 msgid "KB"
 msgstr ""
 #
@@ -1093,7 +1093,7 @@ msgstr ""
 msgid "List of installed modules"
 msgstr ""
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 385
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 338
 msgid "MB"
 msgstr ""
 #

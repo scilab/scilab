@@ -204,10 +204,6 @@ msgstr "%s: L''extraction de l''archive ''%s'' a échoué.\n"
 msgid "%s: The file %s doesn''t exist or is not read accessible.\n"
 msgstr "%s: Le fichier %s n''existe pas ou n''est pas accessible en lecture.\n"
 
-#, c-format
-msgid "%s: The file %s is not well formated at line %d\n"
-msgstr "%s: Le fichier %s n''est pas bien formaté à la ligne %d\n"
-
 #, fuzzy, c-format
 msgid ""
 "%s: The file %s is not well formated, the toolbox %s - %s doesn''t contain "
@@ -229,6 +225,10 @@ msgstr ""
 msgid "%s: The file ''%s'' doesn''t exist or is not read accessible.\n"
 msgstr ""
 "%s: Le fichier ''%s'' n''existe pas ou n''est pas accessible en lecture.\n"
+
+#, fuzzy, c-format
+msgid "%s: The file ''%s'' is not well formated at line %d\n"
+msgstr "%s: Le fichier %s n''est pas bien formaté à la ligne %d\n"
 
 #, c-format
 msgid "%s: The following file hasn''t been copied:\n"

@@ -340,6 +340,8 @@ ATOMS:
 * bug 6977 fixed - ATOMS GUI: In the presentation frame, URLs and emails were
                    not hyperlinked.
 
+* bug 7149 fixed - An error message of atomsDESCRIPTIONread() was badly formated.
+
 Bug fixes:
 ==========
 
