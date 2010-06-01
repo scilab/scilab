@@ -18,6 +18,22 @@ c maxc: Maximun character authorized
          n2 = 1
          write(form,130) maxc,maxc-7
          write (str,form) a
+         n1=floor(log10(a))
+         if(n1.ge.100.or.n1.le.-100) then
+C     .     Workaround to add the exponent mark "D" that fortran omits
+C     .     for denormalized numbers. To preserve the max length the
+C     .     exponent mark is put in place of the last digit
+            i=maxc+1
+ 10         i=i-1
+            if(i.eq.0) goto 20
+            if (str(i:i).eq.'+'.or.str(i:i).eq.'-') then
+               i=i-1
+               str(i:i)='D'
+               goto 20
+            endif
+            goto 10
+ 20         continue
+         endif
        elseif (ifmt .ge. 0) then
           n1 = ifmt / 32
           n2 = ifmt - 32*n1

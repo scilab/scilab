@@ -40,12 +40,10 @@ c
       integer str(*),istr(*),ipt
       character*256 cw
       character*1 ii
-      character*10 form(2)
       data ipt /46/
 
 c
       eps=dlamch('p')
-      write(form(1),130) maxc,maxc-7
 c     
       lstr=1
       istr(1)=1
@@ -61,33 +59,20 @@ c     traitement du coeff (l,k)
 c     determination du format devant representer a
             typ=1
             if(mode.eq.1) call fmt(abs(a),maxc,typ,n1,n2)
-c     
+c           
+            if(typ.eq.2) then
+               ifmt=n2+32*n1
+            elseif(typ.lt.0) then
+               ifmt=typ
+            else
+               ifmt=1
+            endif
             l1=1
             l0=1
 c
-            if(typ.eq.1) then
-               fl=maxc
-               write(cw(l1:l1+fl-1),form(1)) a
-            elseif(typ.eq.-1) then
-c     .        Inf
-               if(a.lt.0.0d0) then
-                  fl=4
-                  cw(l1:l1+fl-1)='-Inf'
-               else
-                  fl=3
-                  cw(l1:l1+fl-1)='Inf'
-               endif
-            elseif(typ.eq.-2) then
-c     .        Nan
-               fl=3
-               cw(l1:l1+fl-1)='Nan'
-            else
-               fl=n1
-               if(a.lt.0.0d0) fl=fl+1
-               write(form(2),120) fl,n2
-               write(cw(l1:l1+fl-1),form(2)) a
-            endif
-c     
+            call formatnumber(abs(a),ifmt,maxc,cw(l1:),fl)
+            if (a.lt.0.0d0)  cw(l1:l1)='-'
+
             l1=l1+fl
             if(cw(l0:l0).eq.'+'.or.cw(l0:l0).eq.' ') l0=2
             l1=l1+1
@@ -101,6 +86,4 @@ c
  50      continue
  60   continue
       return
- 120  format('(f',i2,'.',i2,')')
- 130  format('(1pd',i2,'.',i2,')')
       end
