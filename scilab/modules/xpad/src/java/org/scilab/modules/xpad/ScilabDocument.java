@@ -65,8 +65,9 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     private boolean autoColorize;
     private volatile boolean shouldMergeEdits;
     private boolean undoManagerEnabled;
-    private CompoundUndoManager undo = new CompoundUndoManager();
+    private CompoundUndoManager undo;
 
+    private ScilabEditorPane pane;
     private ScilabDocument rightDocument;
     private ScilabDocument leftDocument;
     private boolean focused;
@@ -84,6 +85,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
         autoColorize = ConfigXpadManager.getAutoColorize();
         encoding = ConfigXpadManager.getDefaultEncoding();
 
+        undo = new CompoundUndoManager(this);
         addUndoableEditListener(undo);
         undoManagerEnabled = true;
         contentModified = false;
@@ -109,6 +111,14 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      */
     public void setLeftDocument(ScilabDocument doc) {
         leftDocument = doc;
+    }
+
+    /**
+     * Set the ScilabEditorPane associated with this doc
+     * @param pane the ScilabEditorPane
+     */
+    public void setEditorPane(ScilabEditorPane pane) {
+        this.pane = pane;
     }
 
     /**
@@ -291,7 +301,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * @return boolean
      */
     public boolean isContentModified() {
-        return contentModified && !undo.isAtReference();
+        return contentModified;
     }
 
     /**
@@ -302,6 +312,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
         this.contentModified = contentModified;
         if (!contentModified) {
             undo.setReference();
+            pane.updateTitle();
         }
     }
 
@@ -417,7 +428,10 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * @param documentEvent DocumentEvent
      */
     public void insertUpdate(DocumentEvent documentEvent) {
-        contentModified = true;
+        if (!contentModified && pane != null) {
+            contentModified = true;
+            pane.updateTitle();
+        }
     }
 
     /**
@@ -425,7 +439,10 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * @param documentEvent DocumentEvent
      */
     public void removeUpdate(DocumentEvent documentEvent) {
-        contentModified = true;
+        if (!contentModified && pane != null) {
+            contentModified = true;
+            pane.updateTitle();
+        }
     }
 
     /**

@@ -135,6 +135,10 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         return split;
     }
 
+    public void updateTitle() {
+        editor.updateTabTitle();
+    }
+
     /**
      * Scroll the pane to have the line containing pos on the top of the pane
      * @param pos the position in the document
@@ -560,5 +564,6 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         lexer = doc.createLexer();
         xln = new XpadLineNumberPanel(this);
         scroll.setRowHeaderView(xln);
+        doc.setEditorPane(this);
     }
 }
