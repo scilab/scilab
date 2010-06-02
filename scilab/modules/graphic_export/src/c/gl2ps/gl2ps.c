@@ -5999,7 +5999,6 @@ GL2PSDLL_API int gl2psDrawImageMap(int width, int height,
 
 GL2PSDLL_API int gl2psEnable(int mode)
 {
-  int tmp;
 
   if(!gl2ps) return GL2PS_UNINITIALIZED;
 
@@ -6016,7 +6015,7 @@ GL2PSDLL_API int gl2psEnable(int mode)
   {
 	joglPassThrough(GL2PS_BEGIN_STIPPLE_TOKEN); /*ici*/
 	joglPassThrough(gl2ps->lastpattern);
-	joglPassThrough(gl2ps->lastfactor);
+	joglPassThrough((float)gl2ps->lastfactor);
 
   }else if (mode == GL2PS_BLEND)
   {
