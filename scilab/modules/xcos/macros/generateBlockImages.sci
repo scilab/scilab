@@ -1,6 +1,7 @@
 //
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+// Copyright (C) DIGITEO - 2009-2009 - Vincent COUVERT
+// Copyright (C) DIGITEO - 2010-2010 - Clément DAVID
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -9,107 +10,112 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 //
 //
-function generateBlockImages(palFiles, outPath)
-  
-  rhs = argn(2);
-  
-  if rhs < 2 then
-    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "importScicosPal", 2));
-    return
-  end
-  
-  
-  //load all files
-  varsToLoad = [];
-  for fIndex = 1:size(palFiles, "*")
-    
-    if ~isfile(palFiles(fIndex)) then
-      error(msprintf(gettext("%s: File ''%s'' does not exist.\n"), "importScicosPal", palFiles(fIndex)));
-      return
+
+// Generate xcos palette block icons and graph images from scicos pal files.
+//
+// @param palFiles set of string of palette files
+// @param iconsOutPath output path of the palette icons (GIF files).
+//             The default is the common `palFiles' dir.
+// @param imagesOutPath output path of the graph images (SVG files).
+//             The default is the common `palFiles' dir.
+// @param[opt] traceEnable %T if a trace output must be printed, %F if not (default=%F).
+function generateBlockImages(palFiles, iconsOutPath, imagesOutPath, traceEnable)
+    [lhs, rhs] = argn(0);
+    if rhs < 3 then
+        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "generateBlockImages", 3));
     end
     
-    exec(palFiles(fIndex), -1);
-    names = who("get");
+    if typeof(iconsOutPath) <> "string" | ~isdir(iconsOutPath) then
+        error(msprintf(gettext("%s: Wrong type for input argument ""%s"": directory path string expected.\n"), "generateBlockImages", "iconsOutPath"));
+    end
     
-    // Try to find scs_m variables
-    for kVar = 1:size(names, "*")
-      if ~isempty(strindex(names(kVar), "scs_m")) then
-        currentPal = eval(names(kVar));
-        for kBlock = 1:size(currentPal.objs)
-          if typeof(currentPal.objs(kBlock))=="Block" then
-            if find(varsToLoad == currentPal.objs(kBlock).gui) == [] then
-              varsToLoad($+1) = currentPal.objs(kBlock).gui;
+    if typeof(imagesOutPath) <> "string" | ~isdir(imagesOutPath) then
+        error(msprintf(gettext("%s: Wrong type for input argument ""%s"": directory path string expected.\n"), "generateBlockImages", "imagesOutPath"));
+    end
+    
+    if exists("traceEnable", 'l') == 0 then
+        traceEnable = %f;
+    else
+        if typeof(traceEnable) <> "boolean" then
+            error(msprintf(gettext("%s: Wrong type for input argument ""%s"": boolean expected.\n"), "generateBlockImage", "traceEnable"));
+        end
+    end
+    
+    // call loadScicosLibs if not loaded
+    if exists("scicos_diagram", 'a') == 0 then loadScicosLibs(); end
+    
+    if traceEnable then
+        ncl = lines(), lines(0);        
+    end
+    
+    // iterator on all blocks
+    for fIndex = 1:size(palFiles, "*")
+    
+        if ~isfile(palFiles(fIndex)) then
+            if traceEnable then
+                mprintf(gettext("%s: File ''%s'' does not exist.\n"), "generateBlockImages", palFiles(fIndex));
             end
-          end
+            continue;
         end
-      end
+        
+        exec(palFiles(fIndex), -1);
+        
+        if isempty("scs_m") then
+            if traceEnable then
+                mprintf(gettext("%s: File ''%s'' is not a valid palette file.\n"), "generateBlockImages", palFiles(fIndex));
+            end
+            continue;
+        end
+        
+        for iBlock = 1:size(scs_m.objs)
+            block = scs_m.objs(iBlock);
+            
+            if typeof(block)=="Block" & block.gui == "PAL_f" then
+                // Add PAL_f children blocks
+                children = block.model.rpar.objs;
+                for jBlock = 1:size(children)
+                    varsToLoad($+1) = children(jBlock).gui;
+                end
+            elseif typeof(block)=="Block" then
+                // old scicos palettes doesn't have a PAL_f block but directly
+                // the reference instances instead.
+                varsToLoad($+1) = block.gui
+            else
+                if traceEnable then
+                    mprintf(gettext("%s: Found ''%s'' instead of a block.\n"), "generateBlockImages", typeof(block));
+                end
+                continue;
+            end
+        end
+        
+        clear scs_m;
     end
-  end
   
-  f = gcf();
-
-  varsToLoad = gsort(varsToLoad, "r", "i");
-  for kBlock = 1 : size(varsToLoad, "*")
-    
-    clf();
-    
-    BlockFile = outPath + varsToLoad(kBlock) + ".h5";
-    
-    ierr = execstr("scs_m  = " + varsToLoad(kBlock) + "(""define"")", "errcatch");
-    
-    if ierr == 0 then
-      mprintf("%d: %s",  kBlock, varsToLoad(kBlock));
-      sz = scs_m.graphics.sz;
-      orig = scs_m.graphics.orig;
-
-      // Customize axes
-      a = gca();
-      a.data_bounds = [orig(1), orig(2); sz(1), sz(2)];
-      a.isoview = "on";
-      a.margins = [0.001, 0.001, 0.001, 0.001];
-      a.box ="on";
-      f.axes_size = [max(20, 20 * sz(1)), max(20, 20 * sz(2))];
-
-      if stripblanks(scs_m.graphics.gr_i(1)) == ""  | isempty(scs_m.graphics.gr_i(1)) then
-	mprintf("(empty gr_i)");
-	diagram = scicos_diagram();
-	options = diagram.props.options;
-	sz = scs_m.graphics.sz;
-	orig = scs_m.graphics.orig;
-	
-	// Create variable o because needed inside "plot"
-	o = scs_m; 
-	o.graphics.exprs = ["";""];
-	ierr = execstr("scs_m  = " + varsToLoad(kBlock) + "(""plot"",o)", "errcatch");
-	if ierr <> 0 then
-	  mprintf(" FAILED\n");
-	else
-	  xs2gif(f.figure_id, outPath + varsToLoad(kBlock) + ".gif");
-	  mprintf(" SUCCEED\n");
-	end
-	
-      else
-        ierr = 0;
-        if type(scs_m.graphics.gr_i)==10 & size(scs_m.graphics.gr_i, "*") <> 1 then
-          for k=1:size(scs_m.graphics.gr_i, "*")
-            ierr = ierr + execstr(scs_m.graphics.gr_i(k), "errcatch");
-          end
-        else
-	  ierr = execstr(strcat(scs_m.graphics.gr_i(1),";"), "errcatch");
+    varsToLoad = gsort(varsToLoad, "r", "i");
+    f = gcf();
+    for kBlock = 1 : size(varsToLoad, "*")
+        ierr = execstr("scs_m  = " + varsToLoad(kBlock) + "(""define"")", "errcatch");
+        if traceEnable then
+            mprintf("%d: %s",  kBlock, varsToLoad(kBlock));
         end
-        if ierr <> 0 then
-          mprintf(" FAILED\n");
-        else
-          xs2gif(f.figure_id, outPath + scs_m.gui + ".gif");
-          mprintf(" SUCCEED\n");
+        if ierr == 0 then
+            status = generateBlockImage(scs_m, iconsOutPath, handle=f, imageType="gif");
+            status = status & generateBlockImage(scs_m, imagesOutPath, handle=f, imageType="svg");
+            if status & traceEnable then
+                mprintf(" SUCCEED\n");
+            elseif traceEnable then
+                mprintf(" FAILED\n");
+            end
+        elseif traceEnable then
+            mprintf(" FAILED\n");     
         end
-      end
     end
-    
-  end
   
-  delete(f);
+    if traceEnable then
+        lines(ncl);
+    end
   
+    delete(f);
 endfunction
 
 function c=scs_color(c)
