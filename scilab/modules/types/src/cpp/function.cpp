@@ -94,7 +94,8 @@ namespace types
           for(int i = 0 ; i < _iRetCount ; i++)
           {
               //take care about return value count
-              if(pStr->m_pOutOrder[i] == -1)
+              // or LhsVar(1) = 0
+              if(pStr->m_pOutOrder[i] == -1 || pStr->m_pOutOrder[i] == 0)
               {
                   break;
               }
