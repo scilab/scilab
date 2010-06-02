@@ -1,6 +1,6 @@
 ;
 ; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-; Copyright (C) 2010 - DIGITEO - Allan CORNET
+; Copyright (C) DIGITEO - 2010 - Allan CORNET
 ;
 ; This file must be used under the terms of the CeCILL.
 ; This source file is licensed as described in the file COPYING, which
@@ -9,19 +9,22 @@
 ; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 ;
 ;--------------------------------------------------------------------------------------------------------------
+; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
+;
+;--------------------------------------------------------------------------------------------------------------
 ; parallel module
 ;--------------------------------------------------------------------------------------------------------------
 ;
 #define PARALLEL "parallel"
 ;
-Source: bin\parallel.dll; DestDir: {app}\bin; Components: {#COMPN_PARALLEL}
+Source: bin\{#PARALLEL}.dll; DestDir: {app}\bin; Components: {#COMPN_PARALLEL}
 ;
-Source: modules\{#PARALLEL}\changelog.txt; DestDir: {app}\modules\{#PARALLEL}; Components: {#COMPN_PARALLEL};
+;Source: modules\{#PARALLEL}\changelog.txt; DestDir: {app}\modules\{#PARALLEL}; Components: {#COMPN_PARALLEL};
 Source: modules\{#PARALLEL}\license.txt; DestDir: {app}\modules\{#PARALLEL}; Components: {#COMPN_PARALLEL}
 Source: modules\{#PARALLEL}\readme.txt; DestDir: {app}\modules\{#PARALLEL}; Components: {#COMPN_PARALLEL}
 Source: modules\{#PARALLEL}\version.xml; DestDir: {app}\modules\{#PARALLEL}; Components: {#COMPN_PARALLEL}
 ;
-Source: modules\{#PARALLEL}\sci_gateway\parallel_gateway.xml; DestDir: {app}\modules\{#PARALLEL}\sci_gateway; Components: {#COMPN_PARALLEL}
+Source: modules\{#PARALLEL}\sci_gateway\{#PARALLEL}_gateway.xml; DestDir: {app}\modules\{#PARALLEL}\sci_gateway; Components: {#COMPN_PARALLEL}
 ;
 ;Source: modules\{#PARALLEL}\includes\*.h; DestDir: {app}\modules\{#PARALLEL}\includes; Components: {#COMPN_PARALLEL}
 ;
