@@ -89,6 +89,7 @@ bool timed = false;
 bool ASTtimed = false;
 bool consoleMode = false;
 bool noJvm = false;
+bool noStart = false;
 
 using symbol::Context;
 using std::string;
@@ -125,6 +126,7 @@ static void usage (void)
     std::cerr << "      -l lang          : Change the language of scilab ( default : en_US )." << std::endl;
     std::cerr << "      -nw              : Enable console mode." << std::endl;
     std::cerr << "      -nwni            : Enable terminal mode." << std::endl;
+    std::cerr << "      -ns              : Don't execute etc/scilab.start." << std::endl;
     std::cerr << "      --help           : Display this help." << std::endl;
     std::cerr << "Developer Trace arguments:" << std::endl;
     std::cerr << "      --parse-trace    : Display bison state machine evolution." << std::endl;
@@ -202,6 +204,9 @@ static int get_option (const int argc, char *argv[], int *_piFileIndex, int *_pi
             consoleMode = true;
             noJvm = true;
             setScilabMode(SCILAB_NWNI);
+        }
+        else if (!strcmp("-ns", argv[i])) {
+            noStart = true;
         }
     }
 
@@ -532,9 +537,13 @@ int StartScilabEngine(int argc, char*argv[], int iFileIndex)
 
     /* set current language of scilab */
     FuncManager *pFM = new FuncManager();
+    pFM->LoadModules(noStart);
 
     //execute scilab.start
-    //execScilabStartTask();
+    if(noStart == false)
+    {
+        execScilabStartTask();
+    }
 
 
 

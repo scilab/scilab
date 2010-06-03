@@ -39,8 +39,8 @@ function a=%hm_matrix(a,varargin)
   end
   
   if prod(P)<>prod(sz) then
-    error('MATRIX: input and output matrices  must have the same number"+...
-	  " of elements')
+    error("MATRIX: input and output matrices  must have the same number"+...
+	  " of elements")
   end
   
   if type(a)<>17 then 

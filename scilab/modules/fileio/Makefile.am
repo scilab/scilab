@@ -4,7 +4,7 @@
 # This file is distributed under the same license as the Scilab package.
 
 
-FILEIO_SOURCES = src/c/FileExist.c \
+FILEIO_C_SOURCES = src/c/FileExist.c \
 src/c/scanf_functions.c \
 src/c/do_xxscanf.c \
 src/c/findfiles.c \
@@ -47,7 +47,6 @@ src/c/fileinfo.c \
 src/c/getrelativefilename.c \
 src/c/splitpath.c \
 src/c/movefile.c \
-src/c/expandPathVariable.c \
 src/c/basename.c \
 src/c/pathconvert.c \
 src/c/copyfile_others.c \
@@ -102,6 +101,10 @@ sci_gateway/c/sci_isfile.c
 GATEWAY_CPP_SOURCES = \
 sci_gateway/cpp/fileio_gw.cpp
 
+FILEIO_CPP_SOURCES = \
+src/cpp/expandPathVariable.cpp
+
+
 libscifileio_la_CPPFLAGS=	-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -129,10 +132,10 @@ pkglib_LTLIBRARIES = libscifileio.la
 
 libscifileio_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
-libscifileio_la_SOURCES = $(FILEIO_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
+libscifileio_la_SOURCES = $(FILEIO_C_SOURCES) $(FILEIO_CPP_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 
 # For the code check (splint)
-CHECK_SRC= $(FILEIO_SOURCES) $(GATEWAY_SOURCES)
+CHECK_SRC= $(FILEIO_C_SOURCES) $(FILEIO_CPP_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 INCLUDE_FLAGS = $(libscifileio_la_CFLAGS)
 
 # pb of order $(top_builddir)/modules/shell/libscishell.la

@@ -30,7 +30,7 @@ extern "C"
 #ifndef _MSC_VER
 #include "stricmp.h"
 #endif
-#include "cluni0.h"
+#include "expandPathVariable.h"
 #include "PATH_MAX.h"
 }
 
@@ -46,7 +46,7 @@ using namespace types;
 Function::ReturnValue sci_load(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
 	int iXMLFileLen = 0;
-	char pstXMLFile[PATH_MAX + FILENAME_MAX];
+	char* pstXMLFile = NULL;
 
 	if(in.size() != 1)
 	{
@@ -68,7 +68,7 @@ Function::ReturnValue sci_load(types::typed_list &in, int _iRetCount, types::typ
 	}
 
 	char* pstFile = pS->string_get(0);
-	C2F(cluni0)(pstFile, pstXMLFile, &iXMLFileLen, (long)strlen(pstFile), PATH_MAX + FILENAME_MAX);
+    pstXMLFile = expandPathVariable(pstFile);
 
 	if(getMacros(pstXMLFile) == false)
 	{
@@ -158,7 +158,6 @@ bool getMacros(string _stXMLFile)
 				  size_t iPos = _stXMLFile.rfind(DIR_SEPARATOR);
 					string stFilename = _stXMLFile.substr(0,iPos + 1) + pstFileName;
 					pContext->AddMacroFile(new MacroFile(pstName, stFilename, pstLibName));
-				
 				}
 				else
 				{

@@ -12,12 +12,20 @@
 */
 /*--------------------------------------------------------------------------*/
 #include "stack-c.h"
+
 #include "expandPathVariable.h"
+
+extern "C"
+{
 #include "charEncoding.h"
 #include "MALLOC.h"
 #include "PATH_MAX.h"
 #include "api_scilab.h"
 #include "getlongpathname.h"
+}
+
+#include "context.hxx"
+
 /*--------------------------------------------------------------------------*/
 struct VARIABLEALIAS
 {
@@ -140,51 +148,17 @@ wchar_t *getVariableValueDefinedInScilab(wchar_t *wcVarName)
 		varname = wide_string_to_UTF8(wcVarName);
 		if (varname)
 		{
-			SciErr sciErr = getNamedVarType(NULL, varname, &iType);
-			if(sciErr.iErr)
-			{
-				return NULL;
-			}
+            InternalType *pIT = symbol::Context::getInstance()->get("SCI");
+            if(pIT->isString() == false)
+            {
+                return NULL;
+            }
 
-			if (iType == sci_strings)
-			{
-				
-				int VARVALUElen = 0;
-				int m = 0, n = 0;
-
-				sciErr = readNamedMatrixOfWideString(NULL, varname, &m, &n, &VARVALUElen, &VARVALUE);
-				if(sciErr.iErr)
-				{
-					return NULL;
-				}
-
-				if ( (m == 1) && (n == 1) )
-				{
-					VARVALUE = (wchar_t*)MALLOC(sizeof(wchar_t)*(VARVALUElen + 1));
-					if (VARVALUE)
-					{
-						BOOL bConvLong = FALSE;
-						wchar_t *LongName = NULL;
-						sciErr = readNamedMatrixOfWideString(NULL, varname, &m, &n, &VARVALUElen, &VARVALUE);
-						if(sciErr.iErr)
-						{
-							FREE(VARVALUE);
-							VARVALUE = NULL;
-							return 0;
-						}
-						LongName = getlongpathnameW(VARVALUE, &bConvLong);
-						if (LongName)
-						{
-							FREE(VARVALUE);
-							VARVALUE = LongName;
-						}
-					}
-				}
-			}
-		}
-		if (varname) {FREE(varname);varname = NULL;}
+            String* pS = pIT->getAsString();
+            return to_wide_string(pS->string_get(0));
+        }
 	}
-	return VARVALUE;
+	return NULL;
 }
 /*--------------------------------------------------------------------------*/
 wchar_t *convertFileSeparators(wchar_t *wcStr)

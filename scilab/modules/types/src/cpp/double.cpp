@@ -145,6 +145,15 @@ namespace types
 //		zero_set();
 	}
 
+    bool Double::isEmpty()
+    {
+        if(m_iRows == 0 && m_iCols == 0)
+        {
+            return true;
+        }
+        return false;
+    }
+
 	bool Double::isComplex()
 	{
 		return m_bComplex;

@@ -12,11 +12,8 @@
 //warning('off'); // disable warnings
 // ------------------------------------
 
-if (isdef('genlib') == %f) then
-  exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
-end
 // ------------------------------------
-lines(0);
+//lines(0);
 Directories=[];
 CurrentDirectory=pwd();
 
@@ -24,7 +21,7 @@ CurrentDirectory=pwd();
 // because scilab.start not called when we build macros
 // Previously (wrong place), it was defined in buildmacros.sce of metanet module
 
-stacksize(5000000);
+//stacksize(5000000);
 
 modules=getmodules();
 index=size(modules);
@@ -38,11 +35,12 @@ Dim=size(Directories);
 
 
 for i=1:Dim(1) do 
-  chdir(Directories(i));
-  if (fileinfo('buildmacros.sce')<>[]) then
+  cd(Directories(i));
+  //if (fileinfo('buildmacros.sce')<>[]) then
+    disp(Directories(i));
     exec('buildmacros.sce');
-  end
-  chdir(CurrentDirectory);
+  //end
+  cd(CurrentDirectory);
 end
 clear CurrentDirectory Dim Directories
 exit

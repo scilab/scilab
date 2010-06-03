@@ -604,6 +604,10 @@
 				RelativePath=".\set_xxprintf.h"
 				>
 			</File>
+			<File
+				RelativePath="..\..\includes\yaspio.hxx"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="localization"

@@ -68,8 +68,12 @@ void visitprivate(const MatrixExp &e)
                     if(iCurRow == -1)
                     {
                         iCurRow = ((GenericType*)execMe->result_get())->rows_get();
+                        if(iCurRow == 0)
+                        {//to manage [] in MatrixExp
+                            iCurRow = -1;
+                        }
                     }
-                    else if(iCurRow != ((GenericType*)execMe->result_get())->rows_get())
+                    else if(iCurRow != ((GenericType*)execMe->result_get())->rows_get() && ((GenericType*)execMe->result_get())->rows_get() != 0)
                     {
                         std::ostringstream os;
                         os << "inconsistent row/column dimensions";
@@ -86,9 +90,13 @@ void visitprivate(const MatrixExp &e)
                     pResult->DecreaseRef();
                 }
 
-                if(iCols <= 0)
+                if(iCols == -1)
                 {
                     iCols = iCurCol;
+                    if(iCols == 0)
+                    {//manage []
+                        iCols = -1;
+                    }
                 }
                 else if(iCols != 0 && iCols != iCurCol)
                 {
@@ -99,6 +107,10 @@ void visitprivate(const MatrixExp &e)
                 }
 
                 iRows += iCurRow;
+                if(iRows == -1)
+                {//manage  []
+                    iRows = 0;
+                }
                 iCurCol = 0;
                 iCurRow = -1;
                 MatrixList.push_back(RowList);
@@ -115,6 +127,11 @@ void visitprivate(const MatrixExp &e)
                 int iAddCol = 0;
                 for(it_RL = (*it_ML).begin() ; it_RL != (*it_ML).end() ; it_RL++)
                 {
+                    if((*it_RL)->isDouble() && (*it_RL)->getAsDouble()->isEmpty())
+                    {//manage []
+                        continue;
+                    }
+
                     if(poResult == NULL)
                     {
                         poResult = AddElementToVariable(poResult, *it_RL, iRows, iCols, &iAddRow, &iAddCol);

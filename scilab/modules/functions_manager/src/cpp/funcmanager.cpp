@@ -50,25 +50,31 @@ char *GetXmlFileEncoding(string _filename);
 
 FuncManager::FuncManager(void)
 {
-	/*parse all modules directories*/
-	string szPath = ConfigVariable::getInstance()->get("SCI");
-	szPath += "/";
-	szPath += BASENAMEMODULESFILE;
-
-	CreateModuleList();
-
-	/*get module activation list from xml file*/
-	if(GetModules() == true)
-	{
-		AppendModules();
-	}
-	CreateActivModuleList();
-
-	LoadFuncByModule();
+    m_bNoStart = false;
 }
 
 FuncManager::~FuncManager(void)
 {
+}
+
+bool FuncManager::LoadModules(bool _bNoStart)
+{
+    m_bNoStart = _bNoStart;
+	if(CreateModuleList() == false)
+    {
+        return false;
+    }
+
+	/*get module activation list from xml file*/
+	if(GetModules() == true)
+	{
+		if(AppendModules() == false)
+        {
+            return false;
+        }
+	}
+	
+    return LoadFuncByModule();
 }
 
 bool FuncManager::GetModules()
@@ -210,6 +216,16 @@ bool FuncManager::AppendModules()
 		free(encoding);
 		encoding = NULL;
 	}
+
+    String *pS  = new String(static_cast<int>(m_ModuleName.size()), 1);
+
+    list<string>::iterator it = m_ModuleName.begin();
+    for(int i = 0; it != m_ModuleName.end() ; it++,i++)
+    {
+        pS->string_set(i, it->c_str());
+    }
+
+    symbol::Context::getInstance()->put("modules_list", *pS);
 	return true;
 }
 
@@ -222,7 +238,7 @@ bool FuncManager::VerifyModule(char *_pszModuleName)
 		return false;
 	}
 
-	string FullPathModuleName = SciPath + "/modules/" + _pszModuleName + "/etc/" + _pszModuleName + ".start";
+	string FullPathModuleName = SciPath + "/modules/" + _pszModuleName + "/etc/" + _pszModuleName + START_EXT;
 
 	/* ajouter d'autres tests d'existences */
 
@@ -273,7 +289,6 @@ char *GetXmlFileEncoding(string _filename)
 
 bool FuncManager::CreateModuleList(void)
 {
-	bool bRet = true;
 	m_ModuleMap.insert(pair<string, GW_MOD>("elementary_functions", &ElemFuncModule::Load));
 	m_ModuleMap.insert(pair<string, GW_MOD>("types", &TypesModule::Load));
 	m_ModuleMap.insert(pair<string, GW_MOD>("boolean", &BooleanModule::Load));
@@ -286,44 +301,81 @@ bool FuncManager::CreateModuleList(void)
     m_ModuleMap.insert(pair<string, GW_MOD>("fileio", &FileioModule::Load));
 	m_ModuleMap.insert(pair<string, GW_MOD>("gui", &GuiModule::Load));
 	m_ModuleMap.insert(pair<string, GW_MOD>("time", &TimeModule::Load));
-	return bRet;
-}
-
-bool FuncManager::CreateActivModuleList(void)
-{
-	bool bRet	= true;
-	list<string>::const_iterator itName;
-	for(itName = m_ModuleName.begin() ; itName != m_ModuleName.end() ; itName++)
-	{
-		map<string, GW_MOD>::iterator itModule = m_ModuleMap.find(*itName);
-		if(itModule != m_ModuleMap.end())
-		{
-			m_ActivModuleMap.insert(pair<string, GW_MOD>(itModule->first,itModule->second));
-		}
-	}
-	return bRet;
+	return true;
 }
 
 bool FuncManager::LoadFuncByModule(void)
 {
 	bool bRet	= true;
-	map<string, GW_MOD>::const_iterator itMod;
-	for(itMod = m_ActivModuleMap.begin() ; itMod != m_ActivModuleMap.end() ; itMod++)
-	{
-		//call Load function
+	list<string>::const_iterator itName;
 
-        //check if module have gateways
-        if(itMod->second != NULL)
-        {
-		    itMod->second();
-        }
-		LoadMacroFile(itMod->first);
+    //load gateways
+	for(itName = m_ModuleName.begin() ; itName != m_ModuleName.end() ; itName++)
+	{
+		map<string, GW_MOD>::iterator itModule = m_ModuleMap.find(*itName);
+		if(itModule != m_ModuleMap.end())
+		{
+            //check if module have gateways
+            if(itModule->second != NULL)
+            {
+                //call ::Load function
+                itModule->second();
+            }
+		}
 	}
+
+    if(m_bNoStart == false)
+    {
+        //excute .start file
+	    for(itName = m_ModuleName.begin() ; itName != m_ModuleName.end() ; itName++)
+	    {
+		    ExecuteStartFile(*itName);
+	    }
+    }
+
 	return bRet;
+}
+
+bool FuncManager::ExecuteStartFile(string _stModule)
+{
+    //build .start filename
+	string stPath = ConfigVariable::getInstance()->get("SCI");
+	stPath += MODULE_DIR;
+	stPath += _stModule;
+	stPath += ETC_DIR;
+	stPath += _stModule;
+	stPath += START_EXT;
+
+    Parser::getInstance()->parseFile(stPath, ConfigVariable::getInstance()->get("SCI"));
+    if(Parser::getInstance()->getExitStatus() == Parser::Failed)
+    {
+        std::ostringstream ostr;
+        ostr << _("Unable to execute : ") << stPath << endl;
+        YaspWrite(const_cast<char*>(ostr.str().c_str()));
+        Parser::getInstance()->freeTree();
+        return false;
+    }
+
+    ExecVisitor execStart;
+
+    try
+    {
+        Parser::getInstance()->getTree()->accept(execStart);
+    }
+    catch(string sz)
+    {
+        YaspWrite((char *) sz.c_str());
+        YaspWrite("\n");
+        return false;
+    }
+
+    return true;
 }
 
 bool FuncManager::LoadMacroFile(string _stModule)
 {
+    YaspWrite("Old \"LoadMacroFile\" function, no more called !");
+    return true;
 	//macros
 	string stPath = ConfigVariable::getInstance()->get("SCI");
 	stPath += MODULE_DIR;
@@ -396,4 +448,3 @@ bool FuncManager::LoadMacroFile(string _stModule)
 	}
 	return true;
 }
-

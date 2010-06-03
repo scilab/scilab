@@ -24,6 +24,10 @@
 * "TMPDIR"
 */
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 /**
 * expand in_name to produce out_name 
 * @param[in] string where to find a variable and expand
@@ -37,6 +41,10 @@ FILEIO_IMPEXP char *expandPathVariable(char* str);
 * @return wide string with expanded variable
 */
 FILEIO_IMPEXP wchar_t *expandPathVariableW(wchar_t *wcstr);
+
+#ifdef __cplusplus
+}
+#endif //_cplusplus
 
 #endif /* __EXPANDPATHVARIABLE_H__ */
 /*--------------------------------------------------------------------------*/

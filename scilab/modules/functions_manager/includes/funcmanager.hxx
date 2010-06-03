@@ -34,8 +34,11 @@
 using namespace std;
 
 #define MODULE_DIR  "/modules/"
-#define MACRO_DIR		"/macros/"
-#define SCI_EXT			"*.sci"
+#define MACRO_DIR   "/macros/"
+#define ETC_DIR     "/etc/"
+#define SCI_EXT     "*.sci"
+#define START_EXT   ".start"
+#define END_EXT     ".end"
 
 //Gateway function pointer
 typedef bool (*GW_MOD)(void); 
@@ -44,24 +47,28 @@ class EXTERN_FUNC_MAN FuncManager
 {
 private : 
 //	map <string, FuncInfo*>	m_FuncMap;
-	map <string, GW_MOD>		m_ModuleMap;
-	map <string, GW_MOD>		m_ActivModuleMap;
-	list <string>						m_ModuleName;
-	string									m_szXmlFile;
-
+	map <string, GW_MOD>    m_ModuleMap;
+	map <string, GW_MOD>    m_ActivModuleMap;
+	list <string>           m_ModuleName;
+	string                  m_szXmlFile;
+    bool                    m_bNoStart;
 public:
 	FuncManager(void);
 	~FuncManager(void);
 
+    bool LoadModules(bool _bNoStart);
+
+private :
 	bool GetModules();
 	bool AppendModules();
 	bool VerifyModule(char *ModuleName);
 
 	bool CreateModuleList(void);
-	bool CreateActivModuleList(void);
 	bool LoadFuncByModule(void);
 
 	bool LoadMacroFile(string _stModule);
+    bool ExecuteStartFile(string _stModule);
+
 };
 
 #endif //__FUNCMANAGER_HH__

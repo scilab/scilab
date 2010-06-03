@@ -223,6 +223,7 @@ void dumpStackTask(bool timed)
 */
 void execScilabStartTask(void)
 {
+    return;
     Parser* pParse = Parser::getInstance();
     string stSCI = ConfigVariable::getInstance()->get("SCI");
     stSCI += SCILAB_START;
@@ -230,6 +231,7 @@ void execScilabStartTask(void)
 
     if(pParse->getExitStatus() != Parser::Succeded)
     {
+        YaspWrite(pParse->getErrorMessage());
         YaspWrite("Failed to parse scilab.start");
         return;
     }

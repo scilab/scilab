@@ -1742,11 +1742,10 @@ uninstall-am: uninstall-binPROGRAMS uninstall-binSCRIPTS \
 
 all-local: $(TARGETS_ALL)
 
-macros:
-#$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
-#	-@( cd $(top_builddir) ; \
-#	echo "$(top_builddir)/bin/scilab-cli -ns -f modules/functions/scripts/buildmacros/buildmacros.sce" ; \
-#	$(top_builddir)/bin/scilab-cli -ns -f modules/functions/scripts/buildmacros/buildmacros.sce)
+macros:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
+	-@( cd $(top_builddir) ; \
+	echo "$(top_builddir)/bin/scilab-cli -ns -f modules/functions/scripts/buildmacros/buildmacros.sce" ; \
+	$(top_builddir)/bin/scilab-cli -ns -f modules/functions/scripts/buildmacros/buildmacros.sce)
 
 doc:
 #$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli

@@ -49,6 +49,7 @@ namespace types
 
         /*Config management*/
         void                        whoAmI();
+        bool                        isEmpty();
         bool                        isComplex();
         void                        complex_set(bool _bComplex);
 

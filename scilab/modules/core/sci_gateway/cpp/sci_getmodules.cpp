@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2006 - INRIA - Allan Cornet
+ * Copyright (C) 2006 - INRIA - Antoine ELIAS
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -9,17 +9,19 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+/*--------------------------------------------------------------------------*/
+
 #include "funcmanager.hxx"
 #include "context.hxx"
-#include "core_gw.hxx"
-#include "types.hxx"
 
-/*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_getmodules(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    InternalType *pIT	= symbol::Context::getInstance()->get("module_list");
+    if(in.size() != 0 || _iRetCount > 1)
+    {
+        return Function::Error;
+    }
 
-    out.push_back(pIT);
+    out.push_back(symbol::Context::getInstance()->get("modules_list"));
     return Function::OK;
 }
 /*--------------------------------------------------------------------------*/

@@ -8,9 +8,5 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-if ~ isdef("genlib") then
-   exec(SCI+"/modules/functions/scripts/buildmacros/loadgenlib.sce");
-end
-
 genlib("guilib"    ,"SCI/modules/gui/macros"     ,%f,%t);
 genlib("uitreelib" ,"SCI/modules/gui/macros/tree",%f,%t);

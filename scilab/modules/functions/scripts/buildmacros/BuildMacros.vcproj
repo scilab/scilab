@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -51,8 +51,8 @@
 			>
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="..\..\..\..\bin\scilex -ns -nwni -f buildmacros.sce"
-				ReBuildCommandLine="call cleanmacros.bat&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex&quot; -ns -nwni -f &quot;$(ProjectDir)buildmacros.sce&quot;&#x0D;&#x0A;"
+				BuildCommandLine="$(SolutionDir)bin\YaSp -ns -nwni -f buildmacros.sce"
+				ReBuildCommandLine="call cleanmacros.bat&#x0D;&#x0A;&quot;$(SolutionDir)bin\YaSp&quot; -ns -nwni -f &quot;$(ProjectDir)buildmacros.sce&quot;&#x0D;&#x0A;"
 				CleanCommandLine="cleanmacros.bat"
 				Output=""
 				PreprocessorDefinitions=""

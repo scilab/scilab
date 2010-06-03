@@ -453,8 +453,16 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
 			//((Double*)poResult)->val_set(iCurRow, iCurCol, ((Double*)_poSource)->real_get(0,0), ((Double*)_poSource)->img_get(0,0));
 			break;
 		case types::GenericType::RealString :
-			poResult->getAsString()->string_set(iCurRow, iCurCol, _poSource->getAsString()->string_get(0,0));
-			*_piRows = _poSource->getAsString()->rows_get();
+            if(_poSource->getAsString()->size_get() != 1)
+            {
+                poResult->getAsString()->append(iCurRow, iCurCol, _poSource->getAsString());
+            }
+            else
+            {
+                poResult->getAsString()->string_set(iCurRow, iCurCol, _poSource->getAsString()->string_get(0,0));
+            }
+
+            *_piRows = _poSource->getAsString()->rows_get();
 			*_piCols = _poSource->getAsString()->cols_get();
 			break;
 		case types::GenericType::RealImplicitList :

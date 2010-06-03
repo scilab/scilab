@@ -30,7 +30,7 @@ function y=dec2bin(x,n)
 	rhs = argn(2);
 	
 	// check the number of input arguments
-	if rhs<1 or rhs>2 then
+	if rhs<1 | rhs>2 then
 		error(msprintf(gettext("%s: Wrong number of input argument(s): %d or %d expected.\n"),"dec2bin",1,2));
 	end
 	

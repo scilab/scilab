@@ -28,12 +28,17 @@
 #include "context.hxx"
 #include "io_gw.hxx"
 #include "setenvvar.hxx"
+#include "yaspio.hxx"
+#include "expandPathVariable.h"
 
 extern "C"
 {
-#include "cluni0.h"
+#include "MALLOC.h"
+#include "localization.h"
 #include "PATH_MAX.h"
 #include "findfiles.h"
+#include "FileExist.h"
+#include "deleteafile.h"
 }
 
 
@@ -46,13 +51,16 @@ using namespace types;
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-	int iNbFile	= 0;
-	char pstParsePath[PATH_MAX + FILENAME_MAX];
 	char pstParseFile[PATH_MAX + FILENAME_MAX];
+	char pstVerbose[4096];
+
+    int iNbFile	            = 0;
+	char *pstParsePath      = NULL;
 	int iParsePathLen		= 0;
 	char* pstLibName		= NULL;
+    bool bVerbose           = false;
 
-	if(in.size() < 2)
+	if(in.size() < 2 && in.size() > 4)
 	{
 		return Function::Error;
 	}
@@ -84,16 +92,59 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
 		return Function::Error;
 	}
 
-	char* pstFile = pS->string_get(0);
-	C2F(cluni0)(pstFile, pstParsePath, &iParsePathLen, (long)strlen(pstFile), PATH_MAX + FILENAME_MAX);
+    if(in.size() > 2)
+    {//force flag, do nothing but keep for compatibility
+    }
 
+    if(in.size() > 3)
+    {//versbose flag
+        pIT = in[2];
+	    if(pIT->getType() != InternalType::RealBool)
+	    {
+		    return Function::Error;
+	    }
+
+        bVerbose = pIT->getAsBool()->bool_get()[0] == 1;
+    }
+
+	char* pstFile = pS->string_get(0);
+    pstParsePath = expandPathVariable(pstFile);
 
 #ifdef _MSC_VER
-	sprintf_s(pstParseFile, PATH_MAX + FILENAME_MAX, "%s%s%s.xml", pstParsePath, DIR_SEPARATOR, pstLibName);
+	sprintf_s(pstParseFile, PATH_MAX + FILENAME_MAX, "%s%slib", pstParsePath, DIR_SEPARATOR);
 #else
-	sprintf(pstParseFile, "%s%s%s.xml", pstParsePath, DIR_SEPARATOR, pstLibName);
+	sprintf(pstParseFile, "%s%slib", pstParsePath, DIR_SEPARATOR);
 #endif
+
+    if(bVerbose)
+    {
+#ifdef _MSC_VER
+        sprintf_s(pstVerbose, 4096, _("-- Creation of [%s] (Macros) --\n"), pstLibName);
+#else
+        sprintf(pstVerbose, _("-- Creation of [%s] (Macros) --\n"), pstLibName);
+#endif
+        YaspWrite(pstVerbose);
+    }
+
+    if(FileExist(pstParseFile))
+    {
+        deleteafile(pstParseFile);
+    }
+
 	xmlTextWriterPtr pWriter = openXMLFile(pstParseFile, pstLibName);
+    if(pWriter == NULL)
+    {
+#ifdef _MSC_VER
+        sprintf_s(pstVerbose, 4096, _("%s: Cannot open file ''%s''.\n"), "genlib", pstParseFile);
+#else
+        sprintf(pstVerbose, _("%s: Cannot open file ''%s''.\n"), pstParseFile);
+#endif
+        YaspWrite(pstVerbose);
+
+        out.push_back(new Bool(0));
+        FREE(pstParsePath);
+        return Function::OK;
+    }
 
 
 	char **pstPath = findfiles(pstParsePath, const_cast<char*>("*.sci"), &iNbFile, FALSE);
@@ -105,31 +156,47 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
 			//version with direct parsing
 			//parse the file to find all functions
 			string stFullPath = string(pstParsePath) + string(DIR_SEPARATOR) + string(pstPath[k]);
-			Parser::getInstance()->parseFile(stFullPath, ConfigVariable::getInstance()->get("SCI"));
-			ast::FunctionDec* pFD = NULL;
+
+            Parser *pParser = Parser::getInstance();
+			pParser->parseFile(stFullPath, ConfigVariable::getInstance()->get("SCI"));
+            if(Parser::getInstance()->getExitStatus() !=  Parser::Succeded)
+            {
+#ifdef _MSC_VER
+                sprintf_s(pstVerbose, 4096, _("%s: Warning: Error in file %s : %s. File ignored\n"), "genlib", pstPath[k], pParser->getErrorMessage());
+#else
+                sprintf(pstVerbose, _("%s: Warning: Error in file %s : %s. File ignored\n"), "genlib", pstPath[k], pParser->getErrorMessage());
+#endif
+                YaspWrite(pstVerbose);
+                //pParser->freeTree();
+                continue;
+            }
 
 			std::list<ast::Exp *>::iterator j;
-			std::list<ast::Exp *>LExp = ((ast::SeqExp*)Parser::getInstance()->getTree())->exps_get();
-			if(Parser::getInstance()->getExitStatus() == Parser::Failed)
-			{
-				Parser::getInstance()->freeTree();
-				continue;
-			}
+			std::list<ast::Exp *>LExp = ((ast::SeqExp*)pParser->getTree())->exps_get();
 
 			for(j = LExp.begin() ; j != LExp.end() ; j++)
 			{
-				pFD = dynamic_cast<ast::FunctionDec*>(*j);
+				ast::FunctionDec* pFD = dynamic_cast<ast::FunctionDec*>(*j);
 				if(pFD)
 				{
-					AddMacroToXML(pWriter, pair<string, string>(string(pFD->name_get()), string(pstPath[k])));
+					if(AddMacroToXML(pWriter, pair<string, string>(string(pFD->name_get()), string(pstPath[k]))) == false)
+                    {
+#ifdef _MSC_VER
+                        sprintf_s(pstVerbose, 4096, _("%s: Warning: %s information cannot be added to file %s. File ignored\n"), "genlib", pFD->name_get() , pstPath[k]);
+#else
+                        sprintf(pstVerbose, _("%s: Warning: Error in file %s : %s. File ignored\n"), "genlib", pstPath[k], pParser->getErrorMessage());
+#endif
+                        YaspWrite(pstVerbose);
+                    }
 				}
 			}
 
-			Parser::getInstance()->freeTree();
+			pParser->freeTree();
 		}
 	}
 
-
+    out.push_back(new Bool(1));
+    FREE(pstParsePath);
 	closeXMLFile(pWriter);
 	return Function::OK;
 }
