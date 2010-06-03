@@ -85,8 +85,7 @@ src/c/funcprot.c \
 src/c/eqid.c \
 src/c/exitCodeValue.c \
 src/c/getversion.c \
-src/c/dynamic_tclsci.c \
-src/c/storeCommand.c
+src/c/dynamic_tclsci.c
 
 if USE_DYNAMIC_STACK
 CORE_C_SOURCES += src/c/scimem64.c
@@ -193,7 +192,8 @@ CORE_CPP_SOURCES = \
 src/cpp/core_gw.cpp \
 src/cpp/hashtable_core.cpp \
 src/cpp/namstr.cpp \
-src/cpp/search_functions.cpp
+src/cpp/search_functions.cpp \
+src/cpp/storeCommand.cpp
 
 if USE_DYNAMIC_STACK
 CORE_FORTRAN_SOURCES += src/fortran/relocstack.f
@@ -311,6 +311,7 @@ libscicore_la_CPPFLAGS = \
 			-I$(top_srcdir)/modules/functions_manager/includes/ \
 			-I$(top_srcdir)/modules/elementary_functions/includes/ \
 			-I$(top_srcdir)/modules/abstractSyntaxTree/includes/ \
+			-I$(top_srcdir)/modules/parse/includes \
 			-I$(top_srcdir)/modules/types/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
 			-I$(top_srcdir)/modules/dynamic_link/includes \
