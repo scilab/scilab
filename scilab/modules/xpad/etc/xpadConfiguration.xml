@@ -21,7 +21,7 @@
     <ScrollableBlockIncrement useCache="true" value="20"/>
     <VerticalWrapAllowed useCache="true" value="false"/>
     <HorizontalWrapAllowed useCache="true" value="false"/>
-    <AutoIndent default="true" useCach="true" value="false"/>
+    <AutoIndent default="true" useCache="true" value="true"/>
     <AutoColorize default="true" useCach="true" value="true"/>
     <DefaultEncoding value="UTF-8"/> <!-- Initialized to system default at first launch -->
 
@@ -112,6 +112,11 @@
       <style name="Variable">
         <ForegroundColor default="#FF0000" useCache="true" value="#FF0000"/>
         <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+      </style>
+
+      <style name="LocalVariable">
+        <ForegroundColor default="#834310" useCache="true" value="#834310"/>
+        <FontStyle default="1" useCache="true" value="1"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
       </style>
 
       <style name="Identifier">

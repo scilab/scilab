@@ -215,6 +215,7 @@ public class Xpad extends SwingScilabTab implements Tab {
             System.err.println("EDT interrupted " + e);
         } catch (java.lang.reflect.InvocationTargetException e) {
             System.err.println(" xpad() throw: " + e);
+            e.printStackTrace();
         }
 
     }

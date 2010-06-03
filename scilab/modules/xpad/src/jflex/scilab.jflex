@@ -5,6 +5,8 @@ package org.scilab.modules.xpad;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Iterator;
 import java.io.IOException;
 import javax.swing.text.Element;
 
@@ -34,6 +36,10 @@ import javax.swing.text.Element;
         variables.addAll(Arrays.asList(ScilabKeywords.GetVariablesName()));
         commands.addAll(Arrays.asList(ScilabKeywords.GetFunctionsName()));
         commands.addAll(Arrays.asList(ScilabKeywords.GetMacrosName()));
+        Iterator<String> iter = commands.iterator();
+        while (iter.hasNext()) {
+            variables.remove(iter.next());
+        }
     }
 
     public void setRange(int p0, int p1) {
@@ -164,6 +170,11 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
                                        return ScilabLexerConstants.COMMANDS;
                                    } else if (variables.contains(str)) {
                                        return ScilabLexerConstants.VARIABLES;
+                                   } else {
+                                       List<String>[] arr = doc.getLocalVariables(start + yychar);
+                                       if (arr != null && (arr[0].contains(str) || arr[1].contains(str))) {
+                                           return ScilabLexerConstants.LOCALVARIABLES;
+                                       }
                                    }
                                    return ScilabLexerConstants.ID;
                                  }

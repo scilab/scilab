@@ -373,6 +373,41 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     }
 
     /**
+     * Get the local variables used as arguments or returned valuesof a function
+     * @param pos the position in the document
+     * @return the two lists containing args and returned values or null if we are not
+     * in a function
+     */
+    public List<String>[] getLocalVariables(int pos) {
+        Element root = getDefaultRootElement();
+        int index = root.getElementIndex(pos);
+        int compt = 0;
+        while (index != -1) {
+            Element e = root.getElement(index--);
+            if (e instanceof ScilabLeafElement) {
+                ScilabLeafElement se = (ScilabLeafElement) e;
+                int type = se.getType();
+                switch (type) {
+                case ScilabLeafElement.NOTHING :
+                    break;
+                case ScilabLeafElement.FUN :
+                    if (compt == 0) {
+                        FunctionScanner.FunctionInfo info = se.getFunctionInfo();
+                        return new List[]{info.returnValues, info.argsValues};
+                    } else {
+                        compt++;
+                    }
+                    break;
+                case ScilabLeafElement.ENDFUN :
+                    compt--;
+                    break;
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
      * lock
      */
     public void lock() {
