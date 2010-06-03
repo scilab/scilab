@@ -175,6 +175,9 @@ if getscilabmode() == "STD" then
   if ~with_module("m2sci") then // Desactivate mfile2sci menu
     unsetmenu(gettext("&Applications"),5);
   end
+  if ~with_module("atoms") then // Desactivate atoms menu
+    unsetmenu(gettext("&Applications"),7);
+  end
   setmenu(gettext("&?"));
   setmenu(gettext("&Toolboxes"));
   toolbar(-1, "on");
