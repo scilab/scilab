@@ -77,6 +77,8 @@ Graphics:
 * bug 7079 fixed - The "mtlb_get" used a "h" global variable instead of the
                    given "H" argument.
 
+* bug 7188 fixed - Deleting a Label graphics entity caused Scilab to crash.
+
 Localization:
 =============
 
