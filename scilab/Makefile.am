@@ -51,23 +51,7 @@ $(LTLIBINTL)
 SCILAB_LIB=$(top_builddir)/modules/libscilab.la
 SCILAB_CLI_LIB=$(top_builddir)/modules/libscilab-cli.la
 
-
-scilab_bin_SOURCES		= 	$(top_srcdir)/modules/core/src/cpp/scilab.cpp \
-							$(top_srcdir)/modules/core/src/cpp/tasks.cpp
-
-scilab_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_LIB)
-
-scilab_bin_CPPFLAGS		= $(scilab_cli_bin_CPPFLAGS)
-
-# Match scilab -nwni (ie command line without graphics)
-scilab_cli_bin_SOURCES	=	$(top_srcdir)/modules/core/src/cpp/scilab.cpp \
-							$(top_srcdir)/modules/core/src/cpp/tasks.cpp
-
-scilab_cli_bin_CFLAGS 		= -DWITHOUT_GUI
-scilab_cli_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_CLI_LIB)
-
-scilab_cli_bin_CPPFLAGS	= \
-						-I$(top_srcdir)/modules/shell/includes/ \
+COMMON_CPPFLAGS = 		-I$(top_srcdir)/modules/shell/includes/ \
 						-I$(top_srcdir)/modules/console/includes/ \
 						-I$(top_srcdir)/modules/output_stream/includes/ \
 						-I$(top_srcdir)/modules/parse/includes/ \
@@ -78,6 +62,22 @@ scilab_cli_bin_CPPFLAGS	= \
 						-I$(top_srcdir)/modules/system_env/includes/ \
 						-I$(top_srcdir)/modules/operations/includes/ \
 						-I$(top_srcdir)/modules/elementary_functions/includes/
+
+scilab_bin_SOURCES		= 	$(top_srcdir)/modules/core/src/cpp/scilab.cpp \
+							$(top_srcdir)/modules/core/src/cpp/tasks.cpp
+
+scilab_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_LIB)
+
+scilab_bin_CPPFLAGS		= $(COMMON_CPPFLAGS)
+
+# Match scilab -nwni (ie command line without graphics)
+scilab_cli_bin_SOURCES	=	$(top_srcdir)/modules/core/src/cpp/scilab.cpp \
+							$(top_srcdir)/modules/core/src/cpp/tasks.cpp
+
+scilab_cli_bin_CFLAGS 		= -DWITHOUT_GUI
+scilab_cli_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_CLI_LIB)
+
+scilab_cli_bin_CPPFLAGS	= -DWITHOUT_GUI $(COMMON_CPPFLAGS)
 
 if NEED_JAVA
 # Don't do it for scilab_cli_bin. We want to be able to call it without

@@ -477,22 +477,41 @@ int main(int argc, char *argv[])
     Parser::getInstance()->disableParseTrace();
     get_option(argc, argv, &iFileIndex, &iLangIndex);
 
+// if WITHOUT_GUI is defined
+// force Terminal IO -> Terminal IO + StartScilabEngine
+
+// WITHOUT_GUI (All Platform) => Terminal IO + StartScilabEngine
+// GUI (MacOSX) =>      [no option]     -> Console IO + InitMacOSXEnv
+//                      | [-nwni]       -> Terminal IO + StartScilabEngine
+//                      | [-nw]         -> Terminal IO + InitMacOSXEnv
+#ifndef WITHOUT_GUI
     if (consoleMode)
     {
         setYaspInputMethod(&TermReadAndProcess);
         setYaspOutputMethod(&TermPrintf);
+  #if defined(__APPLE__)
+        if(!noJvm)
+        {
+            return initMacOSXEnv(argc, argv, iFileIndex);
+        }
+  #endif // !defined(__APPLE__)
         return StartScilabEngine(argc, argv, iFileIndex);
     }
     else
     {
         setYaspInputMethod(&ConsoleRead);
         setYaspOutputMethod(&ConsolePrintf);
-#ifdef __APPLE__
+  #if defined(__APPLE__)
         return initMacOSXEnv(argc, argv, iFileIndex);
-#else
+  #else
         return StartScilabEngine(argc, argv, iFileIndex);
-#endif
+  #endif // !defined(__APPLE__)
     }
+#else
+        setYaspInputMethod(&TermReadAndProcess);
+        setYaspOutputMethod(&TermPrintf);
+        return StartScilabEngine(argc, argv, iFileIndex);
+#endif // defined(WITHOUT_GUI)
 }
 
 int StartScilabEngine(int argc, char*argv[], int iFileIndex)
