@@ -1,3 +1,15 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - Jerzy Zagorski
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 package org.scilab.modules.xcos.simulink;
 
 import java.io.IOException;
@@ -8,6 +20,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
+import org.scilab.modules.xcos.simulink.BlockGraphicElement;
 import org.scilab.modules.xcos.simulink.InputPortElement;
 import org.scilab.modules.xcos.simulink.OutputPortElement;
 
@@ -21,6 +34,8 @@ import edu.tum.cs.simulink.model.SimulinkOutPort;
 public class BlockElement extends AbstractElement<BasicBlock> {
 	
 	private SimulinkBlock base;
+	private BlockGraphicElement graphicElement = new BlockGraphicElement();
+	private BlockSpecificElement specificElement = new BlockSpecificElement();
 	private static final Log LOG = LogFactory.getLog(BlockElement.class);
 	
 	/** Map from index to blocks */
@@ -58,23 +73,27 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 	private void decodeParams(BasicBlock block) {
 		// TODO Auto-generated method stub
 		
-		/*
-		 * Allocate and setup ports
-		 */
 		OutputPortElement outElement = new OutputPortElement(base);
 		UnmodifiableIterator<SimulinkOutPort> portOutIter = base.getOutPorts().iterator();
-	    while(portOutIter.hasNext()) {
-	    	//block.addPort(
-	    	outElement.decode(portOutIter.next(), null);
-	    }
+		while(portOutIter.hasNext()) {
+			//TODO: block.addPort(outElement.decode(portOutIter.next(), null);
+			outElement.decode(portOutIter.next(), null);
+		}
 		
 		InputPortElement inElement = new InputPortElement(base);
 		UnmodifiableIterator<SimulinkInPort> portInIter = base.getInPorts().iterator();
-	    while(portInIter.hasNext()) {
-	    	//block.addPort(
-	    	inElement.decode(portInIter.next(), null);
-	    }
-		
+		while(portInIter.hasNext()) {
+			//TODO:block.addPort(inElement.decode(portInIter.next(), null);
+			inElement.decode(portInIter.next(), null);
+		}
+		/*
+		 * decode graphics elements of BasicBlock
+		 */
+		graphicElement.decode(base, block);
+		specificElement.decode(base, block);
+		/*
+		 * recursively decode all of the Block subBlocks
+		 */
 		decodeSubBlocks(block);
 	}
 
