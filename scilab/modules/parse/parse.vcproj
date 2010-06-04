@@ -349,6 +349,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\parser_private.hxx"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\parsescilab.hxx"
 				>
 			</File>

@@ -20,42 +20,42 @@
 **
 ** Parse the given file and create the AST.
 */
-Parser::ParserStatus parseFileTask(bool timed, const char* file_name, const char* prog_name);
+void parseFileTask(Parser *parser, bool timed, const char* file_name, const char* prog_name);
 
 /*
 ** Parse
 **
 ** Parse the given command and create the AST.
 */
-Parser::ParserStatus parseCommandTask(bool timed, char *command);
+void parseCommandTask(Parser *parser, bool timed, char *command);
 
 /*
 ** Dump AST
 **
 ** Display the AST in human readable format.
 */
-void dumpAstTask(bool timed);
+void dumpAstTask(ast::Exp *tree, bool timed);
 
 /*
 ** Pretty Print
 **
 ** Pretty print the Stored AST.
 */
-void printAstTask(bool timed);
+void printAstTask(ast::Exp *tree, bool timed);
 
 /*
 ** Exec Tree
 **
 ** Execute the stored AST.
 */
-void execAstTask(bool timed, bool ASTtimed);
+void execAstTask(ast::Exp *tree, bool timed, bool ASTtimed);
 
 /*
 ** Exec Tree with original visitor ( without template )
 **
 ** Execute the stored AST.
 */
-void origAstTask(bool timed);
+void origAstTask(ast::Exp *tree, bool timed);
 
 /*
 ** Dump Stack Trace

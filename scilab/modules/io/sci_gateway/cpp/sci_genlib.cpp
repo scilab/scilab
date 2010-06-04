@@ -157,22 +157,22 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
 			//parse the file to find all functions
 			string stFullPath = string(pstParsePath) + string(DIR_SEPARATOR) + string(pstPath[k]);
 
-            Parser *pParser = Parser::getInstance();
-			pParser->parseFile(stFullPath, ConfigVariable::getInstance()->get("SCI"));
-            if(Parser::getInstance()->getExitStatus() !=  Parser::Succeded)
+            Parser parser;
+			parser.parseFile(stFullPath, ConfigVariable::getInstance()->get("SCI"));
+            if(parser.getExitStatus() !=  Parser::Succeded)
             {
 #ifdef _MSC_VER
-                sprintf_s(pstVerbose, 4096, _("%s: Warning: Error in file %s : %s. File ignored\n"), "genlib", pstPath[k], pParser->getErrorMessage());
+                sprintf_s(pstVerbose, 4096, _("%s: Warning: Error in file %s : %s. File ignored\n"), "genlib", pstPath[k], parser.getErrorMessage());
 #else
-                sprintf(pstVerbose, _("%s: Warning: Error in file %s : %s. File ignored\n"), "genlib", pstPath[k], pParser->getErrorMessage());
+                sprintf(pstVerbose, _("%s: Warning: Error in file %s : %s. File ignored\n"), "genlib", pstPath[k], parser.getErrorMessage());
 #endif
                 YaspWrite(pstVerbose);
-                //pParser->freeTree();
+                parser.freeTree();
                 continue;
             }
 
 			std::list<ast::Exp *>::iterator j;
-			std::list<ast::Exp *>LExp = ((ast::SeqExp*)pParser->getTree())->exps_get();
+			std::list<ast::Exp *>LExp = ((ast::SeqExp*)parser.getTree())->exps_get();
 
 			for(j = LExp.begin() ; j != LExp.end() ; j++)
 			{
@@ -184,14 +184,14 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
 #ifdef _MSC_VER
                         sprintf_s(pstVerbose, 4096, _("%s: Warning: %s information cannot be added to file %s. File ignored\n"), "genlib", pFD->name_get() , pstPath[k]);
 #else
-                        sprintf(pstVerbose, _("%s: Warning: Error in file %s : %s. File ignored\n"), "genlib", pstPath[k], pParser->getErrorMessage());
+                        sprintf(pstVerbose, _("%s: Warning: Error in file %s : %s. File ignored\n"), "genlib", pstPath[k], parser.getErrorMessage());
 #endif
                         YaspWrite(pstVerbose);
                     }
 				}
 			}
 
-			pParser->freeTree();
+			parser.freeTree();
 		}
 	}
 

@@ -58,11 +58,12 @@ int StoreCommand (char *command)
  */
 int StoreCommandWithFlag (char *command,int flag)
 {
+    Parser parser;
     try
     {
-        Parser::getInstance()->parse(command);
+        parser.parse(command);
         ast::ExecVisitor exec;
-        Parser::getInstance()->getTree()->accept(exec);
+        parser.getTree()->accept(exec);
     }
     catch (std::string error)
     {
@@ -73,7 +74,9 @@ int StoreCommandWithFlag (char *command,int flag)
         YaspWrite(const_cast<char *>(error.c_str()));
         YaspWrite("\n");
         YaspWrite(_("while executing a callback"));
-    }   
+    }
+
+    parser.freeTree();
 	return (0);
 }
 /*--------------------------------------------------------------------------*/
@@ -84,11 +87,13 @@ int StoreCommandWithFlag (char *command,int flag)
  */
 int StorePrioritaryCommandWithFlag (char *command,int flag)
 {
+    Parser parser;
+
     try
     {
-        Parser::getInstance()->parse(command);
+        parser.parse(command);
         ast::ExecVisitor exec;
-        Parser::getInstance()->getTree()->accept(exec);
+        parser.getTree()->accept(exec);
     }
     catch (std::string error)
     {
@@ -100,6 +105,8 @@ int StorePrioritaryCommandWithFlag (char *command,int flag)
         YaspWrite("\n");
         YaspWrite(_("while executing a callback"));
     }
+    
+    parser.freeTree();
 	return (0);
 }
 /*--------------------------------------------------------------------------*/

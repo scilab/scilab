@@ -80,6 +80,7 @@ extern "C"
 const char* prog_name;
 const char* file_name;
 
+bool parseTrace = false;
 bool printAst = false;
 bool execAst = true;
 bool execOrig = false;
@@ -158,7 +159,7 @@ static int get_option (const int argc, char *argv[], int *_piFileIndex, int *_pi
 
     for (i = 1; i < argc; ++i) {
         if (!strcmp("--parse-trace", argv[i])) {
-            Parser::getInstance()->enableParseTrace();
+            parseTrace = true;
         }
         else if (!strcmp("--pretty-print", argv[i])) {
             printAst = true;
@@ -242,33 +243,34 @@ static int batchMain (void)
 /*
 ** -*- PARSING -*-
 */
-    Parser::ParserStatus parseResult = parseFileTask(timed, file_name, prog_name);
+    Parser *parser = new Parser();
+    parseFileTask(parser, timed, file_name, prog_name);
 
 /*
 ** -*- DUMPING TREE -*-
 */
-    if (dumpAst == true) { dumpAstTask(timed); }
+    if (dumpAst == true) { dumpAstTask(parser->getTree(), timed); }
 
-    if (parseResult != Parser::Succeded)
+    if (parser->getExitStatus() != Parser::Succeded)
     {
-        YaspWrite(Parser::getInstance()->getErrorMessage());
+        YaspWrite(parser->getErrorMessage());
         return PARSE_ERROR;
     }
 
 /*
 ** -*- PRETTY PRINT TREE -*-
 */
-    if (printAst == true) { printAstTask(timed); }
+    if (printAst == true) { printAstTask(parser->getTree(), timed); }
 
 /*
 ** -*- EXECUTING TREE -*-
 */
-    if (execAst == true) { execAstTask(timed, ASTtimed); }
+    if (execAst == true) { execAstTask(parser->getTree(), timed, ASTtimed); }
 
 /*
 ** -*- EXECUTING TREE WITH ORIGINAL VISITOR-*-
 */
-    if (execOrig == true) { origAstTask(timed); }
+    if (execOrig == true) { origAstTask(parser->getTree(), timed); }
 
 /*
 ** -*- DUMPING STACK AFTER EXECUTION -*-
@@ -345,11 +347,11 @@ static void stateShow(Parser::ControlStatus status)
 */
 static int interactiveMain (void)
 {
-    Parser::ParserStatus parseResult;
     bool exit = false;
     int pause = 0;
     char *command = NULL;
-    Parser* pParser = Parser::getInstance();
+    Parser *parser = new Parser();
+    parser->setParseTrace(parseTrace);
 
     banner();
 
@@ -370,12 +372,12 @@ static int interactiveMain (void)
     while (!exit)
     {
         // Show Parser Sate before prompt
-        stateShow(pParser->getControlStatus());
+        stateShow(parser->getControlStatus());
 
         //set prompt value
         C2F(setprlev)(&pause);
 
-        if (pParser->getControlStatus() == Parser::AllControlClosed) 
+        if (parser->getControlStatus() == Parser::AllControlClosed) 
         {
             if(command)
             {
@@ -414,42 +416,42 @@ static int interactiveMain (void)
             /*
             ** -*- PARSING -*-
             */
-            parseResult = parseCommandTask(timed, command);
+            parseCommandTask(parser, timed, command);
 
             /*
             ** -*- DUMPING TREE -*-
             */
-            if (dumpAst == true) { dumpAstTask(timed); }
+            if (dumpAst == true) { dumpAstTask(parser->getTree(), timed); }
 
-            if (parseResult == Parser::Succeded)
+            if (parser->getExitStatus() == Parser::Succeded)
             {
                 /*
                 ** -*- PRETTY PRINT TREE -*-
                 */
-                if (printAst == true) { printAstTask(timed); }
+                if (printAst == true) { printAstTask(parser->getTree(), timed); }
 
                 /*
                 ** -*- EXECUTING TREE -*-
                 */
-                if (execAst == true && execOrig == false) { execAstTask(timed, ASTtimed); }
+                if (execAst == true && execOrig == false) { execAstTask(parser->getTree(), timed, ASTtimed); }
 
                 /*
                 ** -*- EXECUTING ORIGINAL TREE -*-
                 */
-                if (execAst == false && execOrig == true) { origAstTask(timed); }
+                if (execAst == false && execOrig == true) { origAstTask(parser->getTree(), timed); }
 
                 /*
                 ** -*- DUMPING STACK AFTER EXECUTION -*-
                 */
                 if (dumpStack == true) { dumpStackTask(timed); }
             }
-            else if(parseResult == Parser::Failed && pParser->getControlStatus() == Parser::AllControlClosed)
+            else if(parser->getExitStatus() == Parser::Failed && parser->getControlStatus() == Parser::AllControlClosed)
             {
-                YaspWrite(pParser->getErrorMessage());
-                //std::cerr << "Parser control : " << pParser->getControlStatus() << std::endl;
+                YaspWrite(parser->getErrorMessage());
+                //std::cerr << "Parser control : " << parser->getControlStatus() << std::endl;
             }
 
-            Parser::getInstance()->freeTree();
+            parser->freeTree();
         }
     }
 #ifdef DEBUG
@@ -474,7 +476,6 @@ int main(int argc, char *argv[])
     prog_name = argv[0];
 
     setScilabMode(SCILAB_STD);
-    Parser::getInstance()->disableParseTrace();
     get_option(argc, argv, &iFileIndex, &iLangIndex);
 
 // if WITHOUT_GUI is defined

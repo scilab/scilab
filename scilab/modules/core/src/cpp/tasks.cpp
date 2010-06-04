@@ -34,7 +34,7 @@ Timer _timer;
 **
 ** Parse the given file and create the AST.
 */
-Parser::ParserStatus parseFileTask(bool timed, const char* file_name, const char* prog_name)
+void parseFileTask(Parser *parser, bool timed, const char* file_name, const char* prog_name)
 {
 #ifdef DEBUG
     std::cerr << "*** Processing " << file_name << " file..." << std::endl;
@@ -45,14 +45,12 @@ Parser::ParserStatus parseFileTask(bool timed, const char* file_name, const char
         _timer.start();
     }
 
-    Parser::getInstance()->parseFile(file_name, prog_name);
+    parser->parseFile(file_name, prog_name);
 
     if(timed)
     {
         _timer.check("Parsing");
     }
-
-    return (Parser::getInstance()->getExitStatus());
 }
 
 /*
@@ -60,7 +58,7 @@ Parser::ParserStatus parseFileTask(bool timed, const char* file_name, const char
 **
 ** Parse the given command and create the AST.
 */
-Parser::ParserStatus parseCommandTask(bool timed, char *command)
+void parseCommandTask(Parser *parser, bool timed, char *command)
 {
 #ifdef DEBUG
     std::cerr << "*** Processing [" <<  command << "]..." << std::endl;
@@ -71,14 +69,12 @@ Parser::ParserStatus parseCommandTask(bool timed, char *command)
         _timer.start();
     }
 
-    Parser::getInstance()->parse(command);
+    parser->parse(command);
 
-    if(timed && Parser::getInstance()->getControlStatus() == Parser::AllControlClosed)
+    if(timed && parser->getControlStatus() == Parser::AllControlClosed)
     {
         _timer.check("Parsing");
     }
-
-    return (Parser::getInstance()->getExitStatus());
 }
 
 /*
@@ -86,7 +82,7 @@ Parser::ParserStatus parseCommandTask(bool timed, char *command)
 **
 ** Display the AST in human readable format.
 */
-void dumpAstTask(bool timed)
+void dumpAstTask(ast::Exp *tree, bool timed)
 {
     if(timed)
     {
@@ -94,9 +90,9 @@ void dumpAstTask(bool timed)
     }
 
     ast::DebugVisitor debugMe;
-    if (Parser::getInstance()->getTree())
+    if (tree)
     {
-        Parser::getInstance()->getTree()->accept(debugMe);
+        tree->accept(debugMe);
     }
 
     if(timed)
@@ -110,15 +106,18 @@ void dumpAstTask(bool timed)
 **
 ** Pretty print the Stored AST.
 */
-void printAstTask(bool timed)
+void printAstTask(ast::Exp *tree, bool timed)
 {
     if(timed)
     {
         _timer.start();
     }
 
-    ast::PrintVisitor printMe = *new ast::PrintVisitor(std::cout);
-    Parser::getInstance()->getTree()->accept(printMe);
+    if (tree)
+    {
+        ast::PrintVisitor printMe = *new ast::PrintVisitor(std::cout);
+        tree->accept(printMe);
+    }
 
     if(timed)
     {
@@ -132,7 +131,7 @@ void printAstTask(bool timed)
 **
 ** Execute the stored AST.
 */
-void execAstTask(bool timed, bool ASTtimed)
+void execAstTask(ast::Exp* tree, bool timed, bool ASTtimed)
 {
     ast::ExecVisitor *exec;
     if(timed)
@@ -151,7 +150,7 @@ void execAstTask(bool timed, bool ASTtimed)
 
     try
     {
-        Parser::getInstance()->getTree()->accept(*exec);
+        tree->accept(*exec);
     }
     catch(string sz)
     {
@@ -172,7 +171,7 @@ void execAstTask(bool timed, bool ASTtimed)
 **
 ** Execute the stored AST.
 */
-void origAstTask(bool timed)
+void origAstTask(ast::Exp *tree, bool timed)
 {
     ast::OriginalVisitor exec;
     if(timed)
@@ -182,7 +181,7 @@ void origAstTask(bool timed)
 
     try
     {
-        Parser::getInstance()->getTree()->accept(exec);
+        tree->accept(exec);
     }
     catch(string sz)
     {
@@ -224,17 +223,17 @@ void dumpStackTask(bool timed)
 void execScilabStartTask(void)
 {
     return;
-    Parser* pParse = Parser::getInstance();
+    Parser parse;
     string stSCI = ConfigVariable::getInstance()->get("SCI");
     stSCI += SCILAB_START;
-    pParse->parseFile(stSCI, "");
+    parse.parseFile(stSCI, "");
 
-    if(pParse->getExitStatus() != Parser::Succeded)
+    if(parse.getExitStatus() != Parser::Succeded)
     {
-        YaspWrite(pParse->getErrorMessage());
+        YaspWrite(parse.getErrorMessage());
         YaspWrite("Failed to parse scilab.start");
         return;
     }
 
-    execAstTask(false, false);
+    execAstTask(parse.getTree(), false, false);
 }

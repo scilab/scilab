@@ -2,7 +2,7 @@
 
 #include "isatty.hxx"
 #include "parse.hxx"
-#include "parser.hxx"
+#include "parser_private.hxx"
 
 #include "context.hxx"
 
@@ -118,7 +118,7 @@ assign			"="
 %%
 
 <INITIAL,BEGINID>"if"            {
-	Parser::getInstance()->pushControlStatus(Parser::WithinIf);
+	ParserSingleInstance::pushControlStatus(Parser::WithinIf);
 	BEGIN(INITIAL);
     return scan_throw(IF);
 }
@@ -130,65 +130,65 @@ assign			"="
 
 <INITIAL,BEGINID>"else"          {
     // Pop to step out IF
-	Parser::getInstance()->popControlStatus();
-	Parser::getInstance()->pushControlStatus(Parser::WithinElse);
+	ParserSingleInstance::popControlStatus();
+	ParserSingleInstance::pushControlStatus(Parser::WithinElse);
 	BEGIN(INITIAL);
 	return scan_throw(ELSE);
 }
 
 <INITIAL,BEGINID>"elseif" {
-	Parser::getInstance()->popControlStatus();
-	Parser::getInstance()->pushControlStatus(Parser::WithinElseIf);
+	ParserSingleInstance::popControlStatus();
+	ParserSingleInstance::pushControlStatus(Parser::WithinElseIf);
 	BEGIN(INITIAL);
 	return scan_throw(ELSEIF);
 }
 
 <INITIAL,BEGINID>"end"		{
-  Parser::getInstance()->popControlStatus();
+  ParserSingleInstance::popControlStatus();
 	BEGIN(INITIAL);
   return scan_throw(END);
 }
 
 <INITIAL,BEGINID>"select"	{
-  Parser::getInstance()->pushControlStatus(Parser::WithinSelect);
+  ParserSingleInstance::pushControlStatus(Parser::WithinSelect);
 	BEGIN(INITIAL);
   return scan_throw(SELECT);
 }
 
 <INITIAL,BEGINID>"switch"	{
-  Parser::getInstance()->pushControlStatus(Parser::WithinSwitch);
+  ParserSingleInstance::pushControlStatus(Parser::WithinSwitch);
 	BEGIN(INITIAL);
   return scan_throw(SWITCH);
 }
 
 <INITIAL,BEGINID>"otherwise" {
-	Parser::getInstance()->popControlStatus();
-	Parser::getInstance()->pushControlStatus(Parser::WithinOtherwise);
+	ParserSingleInstance::popControlStatus();
+	ParserSingleInstance::pushControlStatus(Parser::WithinOtherwise);
 	BEGIN(INITIAL);
 	return scan_throw(OTHERWISE);
 }
 
 <INITIAL,BEGINID>"case"		{
-  Parser::getInstance()->popControlStatus();
-  Parser::getInstance()->pushControlStatus(Parser::WithinCase);
+  ParserSingleInstance::popControlStatus();
+  ParserSingleInstance::pushControlStatus(Parser::WithinCase);
 	BEGIN(INITIAL);
   return scan_throw(CASE);
 }
 
 <INITIAL,BEGINID>"function" {
-	Parser::getInstance()->pushControlStatus(Parser::WithinFunction);
+	ParserSingleInstance::pushControlStatus(Parser::WithinFunction);
 	BEGIN(INITIAL);
 	return scan_throw(FUNCTION);
 }
 
 <INITIAL,BEGINID>"endfunction" {
-	Parser::getInstance()->popControlStatus();
+	ParserSingleInstance::popControlStatus();
 	BEGIN(INITIAL);
 	return scan_throw(ENDFUNCTION);
 }
 
 <INITIAL,BEGINID>"#function"	{
-	Parser::getInstance()->pushControlStatus(Parser::WithinFunction);
+	ParserSingleInstance::pushControlStatus(Parser::WithinFunction);
 	BEGIN(INITIAL);
 	return scan_throw(HIDDENFUNCTION);
 }
@@ -199,13 +199,13 @@ assign			"="
 }
 
 <INITIAL,BEGINID>"for" {
-  Parser::getInstance()->pushControlStatus(Parser::WithinFor);
+  ParserSingleInstance::pushControlStatus(Parser::WithinFor);
 	BEGIN(INITIAL);
   return scan_throw(FOR);
 }
 
 <INITIAL,BEGINID>"while"	{
-	Parser::getInstance()->pushControlStatus(Parser::WithinWhile);
+	ParserSingleInstance::pushControlStatus(Parser::WithinWhile);
 	BEGIN(INITIAL);
 	return scan_throw(WHILE);
 }
@@ -221,15 +221,15 @@ assign			"="
 }
 
 <INITIAL,BEGINID>"try" {
-	Parser::getInstance()->pushControlStatus(Parser::WithinTry);
+	ParserSingleInstance::pushControlStatus(Parser::WithinTry);
 	BEGIN(INITIAL);
 	return scan_throw(TRY);
 }
 
 <INITIAL,BEGINID>"catch" {
     // Pop to step out TRY
-	Parser::getInstance()->popControlStatus();
-	Parser::getInstance()->pushControlStatus(Parser::WithinCatch);
+	ParserSingleInstance::popControlStatus();
+	ParserSingleInstance::pushControlStatus(Parser::WithinCatch);
 	BEGIN(INITIAL);
 	return scan_throw(CATCH);
 }
@@ -401,7 +401,7 @@ assign			"="
 
 <INITIAL,MATRIX>{lbrack}		{
   yy_push_state(MATRIX);
-  Parser::getInstance()->pushControlStatus(Parser::WithinMatrix);
+  ParserSingleInstance::pushControlStatus(Parser::WithinMatrix);
   return scan_throw(LBRACK);
 }
 {rbrack}				{
@@ -546,7 +546,7 @@ assign			"="
 {
   {rbrack}				{
     yy_pop_state();
-    Parser::getInstance()->popControlStatus();
+    ParserSingleInstance::popControlStatus();
     return scan_throw(RBRACK);
   }
 
@@ -982,8 +982,8 @@ void scan_step() {
 
 void scan_error(std::string msg)
 {
-  Parser::PrintError(msg);
-  Parser::getInstance()->setExitStatus(Parser::Failed);
+  ParserSingleInstance::PrintError(msg);
+  ParserSingleInstance::setExitStatus(Parser::Failed);
 }
 
 /*

@@ -70,7 +70,7 @@
  // -*- C++ -*-
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2008-2009 - DIGITEO - Bruno JOFRET
+ *  Copyright (C) 2008-2010 - DIGITEO - Bruno JOFRET
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -97,17 +97,17 @@
 #include <list>
 #include "all.hxx"
 #include "parse.hxx"
-#include "parser.hxx"
+#include "parser_private.hxx"
 #include "location.hxx"
 
-#define StopOnError()					\
-  {							\
-    if(Parser::getInstance()->stopOnFirstError())	\
-      {							\
-	return Parser::getInstance()->getExitStatus();	\
-      }							\
- }
-
+#define StopOnError()                                           \
+    {                                                           \
+        if(ParserSingleInstance::stopOnFirstError())            \
+        {                                                       \
+            return ParserSingleInstance::getExitStatus();       \
+        }                                                       \
+    }
+  
 
 
 
@@ -2732,12 +2732,12 @@ yyreduce:
     {
         case 2:
 
-    { Parser::getInstance()->setTree((yyvsp[(1) - (1)].t_seq_exp)); }
+    { ParserSingleInstance::setTree((yyvsp[(1) - (1)].t_seq_exp)); }
     break;
 
   case 3:
 
-    { Parser::getInstance()->setTree((yyvsp[(2) - (2)].t_seq_exp)); }
+    { ParserSingleInstance::setTree((yyvsp[(2) - (2)].t_seq_exp)); }
     break;
 
   case 4:
@@ -5220,11 +5220,11 @@ yyreturn:
 
 
 void yyerror(std::string msg) {
-  if(!Parser::getInstance()->isStrictMode()
-     || Parser::getInstance()->getExitStatus() == Parser::Succeded)
+    if(!ParserSingleInstance::isStrictMode()
+       || ParserSingleInstance::getExitStatus() == Parser::Succeded)
     {
-      Parser::PrintError(msg);
-      Parser::getInstance()->setExitStatus(Parser::Failed);
+        ParserSingleInstance::PrintError(msg);
+        ParserSingleInstance::setExitStatus(Parser::Failed);
     }
 }
 

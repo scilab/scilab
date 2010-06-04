@@ -346,13 +346,15 @@ bool FuncManager::ExecuteStartFile(string _stModule)
 	stPath += _stModule;
 	stPath += START_EXT;
 
-    Parser::getInstance()->parseFile(stPath, ConfigVariable::getInstance()->get("SCI"));
-    if(Parser::getInstance()->getExitStatus() == Parser::Failed)
+    Parser parser;
+
+    parser.parseFile(stPath, ConfigVariable::getInstance()->get("SCI"));
+    if(parser.getExitStatus() == Parser::Failed)
     {
         std::ostringstream ostr;
         ostr << _("Unable to execute : ") << stPath << endl;
         YaspWrite(const_cast<char*>(ostr.str().c_str()));
-        Parser::getInstance()->freeTree();
+        parser.freeTree();
         return false;
     }
 
@@ -360,15 +362,17 @@ bool FuncManager::ExecuteStartFile(string _stModule)
 
     try
     {
-        Parser::getInstance()->getTree()->accept(execStart);
+        parser.getTree()->accept(execStart);
     }
     catch(string sz)
     {
         YaspWrite((char *) sz.c_str());
         YaspWrite("\n");
+        parser.freeTree();
         return false;
     }
 
+    parser.freeTree();
     return true;
 }
 

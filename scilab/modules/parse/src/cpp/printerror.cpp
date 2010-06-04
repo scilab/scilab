@@ -12,9 +12,9 @@
 
 #include <fstream>
 #include <string>
-#include "parser.hxx"
+#include "parser_private.hxx"
 
-void Parser::PrintError(std::string msg) {
+void ParserSingleInstance::PrintError(std::string msg) {
  int i = 0;
 
  // FIXME : Should work under Windows
@@ -24,7 +24,7 @@ void Parser::PrintError(std::string msg) {
  char *codeLine = NULL;
 
  /** First print where in the script the error is located */
- ostr << "[" <<*(Parser::getInstance()->getProgName()) << "] ";
+ ostr << "[" <<*(ParserSingleInstance::getProgName()) << "] ";
 
  /*
  ** If the error is a the very beginning of a line
@@ -36,11 +36,11 @@ void Parser::PrintError(std::string msg) {
    --yylloc.first_line;
  }
 
- ostr << Parser::getInstance()->getCodeLine(yylloc.first_line, &codeLine) << std::endl;
+ ostr << ParserSingleInstance::getCodeLine(yylloc.first_line, &codeLine) << std::endl;
  free(codeLine);
 
  /** Then underline what causes the trouble */
- ostr << "[" <<*(Parser::getInstance()->getProgName()) << "] ";
+ ostr << "[" <<*(ParserSingleInstance::getProgName()) << "] ";
  for( i = 1 ; i < yylloc.first_column ; ++i) {
    ostr << " ";
  }
@@ -55,8 +55,8 @@ void Parser::PrintError(std::string msg) {
 #endif
 
  /** Finally display the Lexer / Parser message */
- ostr << "[" <<*(Parser::getInstance()->getProgName()) << "] ";
- ostr << *(Parser::getInstance()->getFileName()) << " : " <<
+ ostr << "[" <<*(ParserSingleInstance::getProgName()) << "] ";
+ ostr << *(ParserSingleInstance::getFileName()) << " : " <<
    yylloc.first_line << "." << yylloc.first_column <<
    " - " <<
    yylloc.last_line << "." << yylloc.last_column <<
@@ -67,5 +67,5 @@ void Parser::PrintError(std::string msg) {
  //yylloc.last_line = yylloc.first_line;
  //yylloc.last_column = yylloc.first_column;
  
- Parser::getInstance()->appendErrorMessage(ostr.str());
+ ParserSingleInstance::appendErrorMessage(ostr.str());
 }

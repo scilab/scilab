@@ -47,6 +47,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 	char* pstMsg			= NULL;
 	Exp* pExp					= NULL;
 	char *pstCommand	= NULL;
+    Parser parser;
 
 	if(in.size() < 1 || in.size() > 3)
 	{
@@ -133,15 +134,15 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 			pstCommand[iPos] = 0;
 		}
 
-		Parser::getInstance()->parse(pstCommand);
-		if(Parser::getInstance()->getExitStatus() !=  Parser::Succeded)
+		parser.parse(pstCommand);
+		if(parser.getExitStatus() !=  Parser::Succeded)
 		{
-			YaspWrite(Parser::getInstance()->getErrorMessage());
+			YaspWrite(parser.getErrorMessage());
 			FREE(pstCommand);
 			return Function::Error;
 		}
 
-		pExp = Parser::getInstance()->getTree();
+		pExp = parser.getTree();
 	}
 	else
 	{//not managed
@@ -178,7 +179,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 		}
 	}
 
-	Parser::getInstance()->freeTree();
+	parser.freeTree();
 	FREE(pstCommand);
 	return Function::OK;
 }

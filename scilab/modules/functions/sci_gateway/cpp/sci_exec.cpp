@@ -53,7 +53,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 	bool bErrCatch	= false;
 	int iMode				= EXEC_MODE_VERBOSE;
 	Exp* pExp				= NULL;
-
+    Parser parser;
 
 	if(in.size() < 1 || in.size() > 3)
 	{
@@ -134,15 +134,15 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 
 		char* pstFile = pS->string_get(0);
 		C2F(cluni0)(pstFile, pstParsePath, &iParsePathLen, (long)strlen(pstFile), PATH_MAX + FILENAME_MAX);
-		Parser::getInstance()->parseFile(pstParsePath, "exec");
-		if(Parser::getInstance()->getExitStatus() !=  Parser::Succeded)
+        parser.parseFile(pstParsePath, "exec");
+		if(parser.getExitStatus() !=  Parser::Succeded)
 		{
-			YaspWrite(Parser::getInstance()->getErrorMessage());
-			Parser::getInstance()->freeTree();
+			YaspWrite(parser.getErrorMessage());
+			parser.freeTree();
 			return Function::Error;
 		}
 
-		pExp = Parser::getInstance()->getTree();
+		pExp = parser.getTree();
 	}
 	else if(in[0]->getType() == InternalType::RealMacro)
 	{//1st argument is a macro name, execute it in the current environnement
@@ -228,7 +228,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 		}
 	}
 
-	Parser::getInstance()->freeTree();
+	parser.freeTree();
 	file.close();
 	return Function::OK;
 }

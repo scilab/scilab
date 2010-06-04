@@ -86,14 +86,16 @@ namespace types
 
 	bool MacroFile::parse(void)
 	{
+
 		if(m_pMacro == NULL)
 		{//load file, only for the first call
-			Parser::getInstance()->parseFile(m_stPath, "parse macro file");
+			Parser parser;
+            parser.parseFile(m_stPath, "parse macro file");
 			//find FunctionDec
 			FunctionDec* pFD = NULL;
 
 			std::list<Exp *>::iterator j;
-			std::list<Exp *>LExp = ((SeqExp*)Parser::getInstance()->getTree())->exps_get();
+			std::list<Exp *>LExp = ((SeqExp*)parser.getTree())->exps_get();
 
 			for(j = LExp.begin() ; j != LExp.end() ; j++)
 			{
