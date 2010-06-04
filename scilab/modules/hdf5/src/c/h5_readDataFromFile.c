@@ -412,16 +412,21 @@ int readDouble(int _iDatasetId, int _iRows, int _iCols, double *_pdblData)
 
 int readDoubleMatrix(int _iDatasetId, int _iRows, int _iCols, double *_pdblData)
 {
-	hid_t		obj;
-	hobj_ref_t	*pRef = (hobj_ref_t *) MALLOC (1 * sizeof (hobj_ref_t));
 	herr_t	status;
 
-	//Read the data.
-	status = H5Dread (_iDatasetId, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, pRef);
+    if(_iRows != 0 && _iCols != 0)
+    {
+        hid_t		obj;
+	    hobj_ref_t	*pRef = (hobj_ref_t *) MALLOC (1 * sizeof (hobj_ref_t));
 
-	//Open the referenced object, get its name and type.
-	obj = H5Rdereference (_iDatasetId, H5R_OBJECT, &pRef[0]);
-	readDouble(obj,_iRows, _iCols, _pdblData);
+	    //Read the data.
+	    status = H5Dread (_iDatasetId, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, pRef);
+
+	    //Open the referenced object, get its name and type.
+	    obj = H5Rdereference (_iDatasetId, H5R_OBJECT, &pRef[0]);
+	    readDouble(obj,_iRows, _iCols, _pdblData);
+        FREE(pRef);
+    }
 
 	status = H5Dclose(_iDatasetId);
 	if(status < 0)
@@ -456,6 +461,18 @@ int readDoubleComplexMatrix(int _iDatasetId, int _iRows, int _iCols, double *_pd
 		return -1;
 	}
 
+	status = H5Dclose(_iDatasetId);
+	if(status < 0)
+	{
+		return -1;
+	}
+
+	return 0;
+}
+
+int readEmptyMatrix(int _iDatasetId)
+{//close dataset
+	herr_t	status;
 	status = H5Dclose(_iDatasetId);
 	if(status < 0)
 	{
