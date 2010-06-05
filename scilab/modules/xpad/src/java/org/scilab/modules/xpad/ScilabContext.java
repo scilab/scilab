@@ -13,6 +13,8 @@
 package org.scilab.modules.xpad;
 
 import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.awt.Color;
 import java.awt.Font;
@@ -42,9 +44,10 @@ public class ScilabContext implements ViewFactory {
     /**
      * Contains the attrib (underline or stroke) of the different tokens
      */
-    int[] tokenAttrib = new int[ScilabLexerConstants.NUMBEROFTOKENS];
+    int[] tokenAttrib;
 
     private ScilabView view;
+    private List<Integer> typeToDefault = new ArrayList();
 
     /**
      * The constructor
@@ -53,7 +56,29 @@ public class ScilabContext implements ViewFactory {
         super();
         genColors();
         genFonts();
+        genAttributes();
+    }
 
+    /**
+     * Generate an attribute for a type of keyword
+     * @param keyword the name can be found in xpadConfiguration.xml
+     * @param color the color to use
+     */
+    public void genAttribute(String keyword, int type) {
+        tokenAttrib[ScilabLexerConstants.TOKENS.get(keyword)] = type;
+        tokenAttrib[ScilabLexerConstants.OSKEYWORD] = tokenAttrib[ScilabLexerConstants.SKEYWORD];
+        if (ScilabLexerConstants.TOKENS.get(keyword) == ScilabLexerConstants.DEFAULT) {
+            for (Integer i : typeToDefault) {
+                tokenAttrib[i] = tokenAttrib[0];
+            }
+        }
+    }
+
+    /**
+     * Generate attributes to use to render the document
+     */
+    public void genAttributes() {
+        tokenAttrib = new int[ScilabLexerConstants.NUMBEROFTOKENS];
         Map map = ConfigXpadManager.getAllAttributes();
         Iterator it = map.keySet().iterator();
         while (it.hasNext()) {
@@ -61,6 +86,9 @@ public class ScilabContext implements ViewFactory {
             tokenAttrib[ScilabLexerConstants.TOKENS.get(tokenType)] = ((Integer) map.get(tokenType)).intValue();
         }
 
+        for (Integer i : typeToDefault) {
+            tokenAttrib[i] = tokenAttrib[0];
+        }
         tokenAttrib[ScilabLexerConstants.OSKEYWORD] = tokenAttrib[ScilabLexerConstants.SKEYWORD];
     }
 
@@ -76,15 +104,18 @@ public class ScilabContext implements ViewFactory {
             tokenColors[ScilabLexerConstants.TOKENS.get(tokenType)] = (Color) map.get(tokenType);
         }
 
+        tokenColors[ScilabLexerConstants.OSKEYWORD] = Color.BLACK;
+
+        typeToDefault.clear();
         for (int i = 0; i < tokenColors.length; i++) {
             if (tokenColors[i] == null) {
                 tokenColors[i] = tokenColors[0];
+                typeToDefault.add(i);
             }
         }
 
         /* Special case : Scilab's developers in comments */
         tokenColors[ScilabLexerConstants.AUTHORS] = tokenColors[ScilabLexerConstants.COMMENT];
-
         tokenColors[ScilabLexerConstants.OSKEYWORD] = tokenColors[ScilabLexerConstants.SKEYWORD];
     }
 
@@ -98,9 +129,48 @@ public class ScilabContext implements ViewFactory {
         if (tokenColors == null) {
             genColors();
         }
+
         tokenColors[ScilabLexerConstants.TOKENS.get(name)] = color;
         tokenColors[ScilabLexerConstants.AUTHORS] = tokenColors[ScilabLexerConstants.COMMENT];
         tokenColors[ScilabLexerConstants.OSKEYWORD] = tokenColors[ScilabLexerConstants.SKEYWORD];
+
+        if (ScilabLexerConstants.TOKENS.get(name) == ScilabLexerConstants.DEFAULT) {
+            for (Integer i : typeToDefault) {
+                tokenColors[i] = tokenColors[0];
+            }
+        }
+    }
+
+    /**
+     * Generate a color for a type of keyword
+     * @param name the name can be found in xpadConfiguration.xml
+     * @param color the color to use
+     */
+    public void genFont(String name, int type) {
+        Font font = tokenFonts[ScilabLexerConstants.TOKENS.get(name)];
+        int style = font.getStyle();
+        switch (type) {
+        case -2 :
+            font = font.deriveFont(style & ~Font.ITALIC);
+            break;
+        case -1 :
+            font = font.deriveFont(style & ~Font.BOLD);
+            break;
+        case 1 :
+            font = font.deriveFont(style | Font.BOLD);
+            break;
+        case 2 :
+            font = font.deriveFont(style | Font.ITALIC);
+            break;
+        }
+
+        tokenFonts[ScilabLexerConstants.TOKENS.get(name)] = font;
+        tokenFonts[ScilabLexerConstants.OSKEYWORD] = tokenFonts[ScilabLexerConstants.SKEYWORD];
+        if (ScilabLexerConstants.TOKENS.get(name) == ScilabLexerConstants.DEFAULT) {
+            for (Integer i : typeToDefault) {
+                tokenFonts[i] = tokenFonts[0];
+            }
+        }
     }
 
     /**
@@ -134,10 +204,6 @@ public class ScilabContext implements ViewFactory {
             if (tokenFonts[i] == null) {
                 tokenFonts[i] = tokenFonts[0];
             }
-        }
-
-        if (view != null) {
-            view.reinitialize();
         }
 
         /* Special case : Scilab's developers in comments */

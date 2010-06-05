@@ -205,12 +205,12 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
 
   {open}                         {
                                    transposable = false;
-                                   return ScilabLexerConstants.OPEN;
+                                   return ScilabLexerConstants.OPENCLOSE;
                                  }
 
   {close}                        {
                                    transposable = true;
-                                   return ScilabLexerConstants.CLOSE;
+                                   return ScilabLexerConstants.OPENCLOSE;
                                  }
 
   {dqstring}                     {

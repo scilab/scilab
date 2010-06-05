@@ -71,6 +71,28 @@ import javax.swing.text.Element;
         return null;
     }
 
+    public int getAloneOpenSymbol(int start, int end) {
+        int s = 0;
+        yyreset(new ScilabDocumentReader(doc, true, end, start));
+        yybegin(RLALONE);
+        try {
+           do {
+              if (yylex() == 0) {
+                 s--;
+              } else {
+                 s++;
+              }
+           } while (zzMarkedPos != 0 && s != -1);
+           if (s == -1) {
+              return end - yychar - yylength() + 2;
+           } else {
+              return -1;
+           }
+        } catch (IOException e) {
+            return -1;
+        }
+    }
+
     public final class MatchingPositions {
         public int firstB;
         public int firstE;
@@ -99,6 +121,8 @@ tnemmoc = {eol}([^\r\n]*"//")+
 
 spec = [a-zA-Z0-9_#!$?]
 
+id = [a-zA-Z%_#!?][a-zA-Z0-9_#!$?]*
+
 string = (([^\'\"\r\n]*)|([\'\"]{2}))*
 qstring = (\"|\'){string}(\"|\')
 transp = ({spec} | ")" | "]" | "}") "'"
@@ -119,7 +143,7 @@ nepoKx = {spec}{nepoK}
 
 psnart = "'" {string} "'" ({spec} | ")" | "]" | "}")
 
-%x LR, RL, OPENCLOSE, CLOSEOPEN
+%x LR, RL, OPENCLOSE, CLOSEOPEN, RLALONE
 
 %%
 
@@ -147,6 +171,7 @@ psnart = "'" {string} "'" ({spec} | ")" | "]" | "}")
                                    return 0;
                                  }
 
+  {id}                           |
   {closeKx}                      |
   {xcloseK}                      |
   .                              |
@@ -170,6 +195,29 @@ psnart = "'" {string} "'" ({spec} | ")" | "]" | "}")
 
   {openS}                        |
   {esolcK}                       {
+                                   return 0;
+                                 }
+
+  {nepoKx}                       |
+  .                              |
+  {eol}                          { }
+}
+
+<RLALONE> {
+  {psnart}                       {
+                                   yypushback(yylength() - 1);
+                                 }
+
+  "fiesle"                       |
+  {tnemmoc}                      |
+  {esolcKx}                      |
+  {qstring}                      { }
+
+  {closeS}                       {
+                                   return 1;
+                                 }
+
+  {openS}                        {
                                    return 0;
                                  }
 

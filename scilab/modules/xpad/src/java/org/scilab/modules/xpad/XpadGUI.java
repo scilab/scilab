@@ -377,6 +377,7 @@ public class XpadGUI {
         toolsMenu.add(IndentAction.createMenu(editorInstance, map.get("IndentAction")));
         toolsMenu.addSeparator();
         toolsMenu.add(GenerateHelpFromFunctionAction.createMenu(editorInstance, map.get("GenerateHelpFromFunctionAction")));
+        toolsMenu.addSeparator();
         toolsMenu.add(RemoveTrailingWhiteAction.createMenu(editorInstance, map.get("RemoveTrailingWhiteAction")));
     }
 

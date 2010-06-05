@@ -126,7 +126,7 @@
 
       <style name="Comment">
         <ForegroundColor default="#01a801" useCache="true" value="#01a801"/>
-        <FontStyle default="0" useCache="true" value="2"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+        <FontStyle default="2" useCache="true" value="2"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
       </style>
 
       <style name="Field">
@@ -144,6 +144,11 @@
 
       <style name="White">
         <ForegroundColor default="#dcdcdc" useCache="true" value="#dcdcdc"/>
+        <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+      </style>
+
+      <style name="OpenClose">
+        <ForegroundColor default="#4a55db" useCache="true" value="#4a55db"/>
         <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
       </style>
 

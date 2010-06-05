@@ -14,6 +14,7 @@ package org.scilab.modules.xpad;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * This class contains constants used in the lexer
@@ -24,7 +25,7 @@ public class ScilabLexerConstants {
     /**
      * Number of known tokens
      */
-    public static final int NUMBEROFTOKENS = 26;
+    public static final int NUMBEROFTOKENS = 25;
 
     /**
      * DEFAULT : tokens which are not recognized
@@ -82,84 +83,81 @@ public class ScilabLexerConstants {
     public static final int TRANSP = 10;
 
     /**
-     * OPEN : an opening char like '(', '[' or '{'
+     * OPENCLOSE : an opening char like '(', '[', '{' or ')'
      */
-    public static final int OPEN = 11;
-
-    /**
-     * CLOSE : a closing char like ')', ']' or '}'
-     */
-    public static final int CLOSE = 12;
+    public static final int OPENCLOSE = 11;
 
     /**
      * STRING : "bla bla bla" or 'bli bli bli' (or fucking exotic way to write a string)
      */
-    public static final int STRING = 13;
+    public static final int STRING = 12;
 
     /**
      * COMMENT : Comments like // An interesting commentary
      */
-    public static final int COMMENT = 14;
+    public static final int COMMENT = 13;
 
     /**
      * FKEYWORD : For keywords 'function' and 'endfunction'
      */
-    public static final int FKEYWORD = 15;
+    public static final int FKEYWORD = 14;
 
     /**
      * COMMANDS : Functions in Scilab
      */
-    public static final int COMMANDS = 16;
+    public static final int COMMANDS = 15;
 
     /**
      * FIELD : Field of an object, e.g. myobject.myfield
      */
-    public static final int FIELD = 17;
+    public static final int FIELD = 16;
 
     /**
      * AUTHORS : Authors in Scilab
      */
-    public static final int AUTHORS = 18;
+    public static final int AUTHORS = 17;
 
     /**
      * URL : http://...
      */
-    public static final int URL = 19;
+    public static final int URL = 18;
 
     /**
      * WHITE : A white char ' '
      */
-    public static final int WHITE = 20;
+    public static final int WHITE = 19;
 
     /**
      * TAB : A tabulation '\t'
      */
-    public static final int TAB = 21;
+    public static final int TAB = 20;
 
     /**
      * LATEX : $\frac\pi\alpha$
      */
-    public static final int LATEX = 22;
+    public static final int LATEX = 21;
 
     /**
      * VARIABLES : A variable in Scilab
      */
-    public static final int VARIABLES = 23;
+    public static final int VARIABLES = 22;
 
     /**
      * LOCALVARIABLES : A local variable in Scilab
      */
-    public static final int LOCALVARIABLES = 24;
+    public static final int LOCALVARIABLES = 23;
 
     /**
      * EOF : End Of File
      */
-    public static final int EOF = 25;
+    public static final int EOF = 24;
 
     /**
      * TOKENS : A Map which contains the names of keywords (useful in xpadConfiguration.xml)
      */
-    public static final Map<String, Integer> TOKENS = new HashMap();
+    public static final Map<String, Integer> TOKENS = new HashMap(19);
+
+    private static Map<Integer, String> idTokens;
 
     static {
         TOKENS.put("Default", DEFAULT);
@@ -180,6 +178,32 @@ public class ScilabLexerConstants {
         TOKENS.put("Constantes", CONSTANTES);
         TOKENS.put("White", WHITE);
         TOKENS.put("Tabulation", TAB);
+        TOKENS.put("OpenClose", OPENCLOSE);
+    }
+
+    /**
+     * getStringRep
+     * @param id the type of a token
+     * @return the string representation in config file of this token
+     */
+    public static String getStringRep(int id) {
+        if (idTokens == null) {
+            idTokens = new HashMap(TOKENS.size());
+            Iterator<String> iterator = TOKENS.keySet().iterator();
+            while (iterator.hasNext()) {
+                String key = iterator.next();
+                idTokens.put(TOKENS.get(key), key);
+            }
+        }
+
+        String rep = idTokens.get(id);
+        if (rep != null) {
+            return rep;
+        }
+        if (id == OSKEYWORD) {
+            return "Structure";
+        }
+        return "Default";
     }
 
     /**
@@ -213,8 +237,7 @@ public class ScilabLexerConstants {
      * @return true if the keyword is a part of a matching block
      */
     public static boolean isMatchable(int type) {
-        return type == OPEN
-            || type == CLOSE
+        return type == OPENCLOSE
             || type == FKEYWORD
             || type == CKEYWORD
             || type == OSKEYWORD
@@ -227,7 +250,6 @@ public class ScilabLexerConstants {
      * @return true if the keyword is a part of a matching block
      */
     public static boolean isOpenClose(int type) {
-        return type == OPEN
-            || type == CLOSE;
+        return type == OPENCLOSE;
     }
 }

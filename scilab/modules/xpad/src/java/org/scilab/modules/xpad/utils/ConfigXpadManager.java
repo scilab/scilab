@@ -11,7 +11,6 @@
  *
  */
 
-
 package org.scilab.modules.xpad.utils;
 
 import java.awt.Color;
@@ -59,7 +58,9 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-
+/**
+ * Configuration class which interacts with the file etc/xpadConfiguration.xml
+ */
 public final class ConfigXpadManager {
     private static final int BUFSIZE = 1024;
 
@@ -113,6 +114,11 @@ public final class ConfigXpadManager {
 
     private static String SETTING = "Setting";
     private static String XPAD = "xpad";
+    private static String TRUE = "true";
+    private static String FALSE = "false";
+    private static String DOCUMENT = "document";
+    private static String PATH = "path";
+    private static String RECENT_FILES = "recentFiles";
 
     private static final String XPAD_CONFIG_FILE = System.getenv("SCI") + "/modules/xpad/etc/xpadConfiguration.xml";
     private static final String XPAD_CONFIG_KEYS_FILE = System.getenv("SCI") + "/modules/xpad/etc/keysConfiguration.xml";
@@ -243,12 +249,12 @@ public final class ConfigXpadManager {
         NodeList allSizeElements = xpadProfile.getElementsByTagName(HELPONTYPING);
         Element helpontyping = (Element) allSizeElements.item(0);
 
-        return "true".equals(helpontyping.getAttribute(VALUE));
+        return TRUE.equals(helpontyping.getAttribute(VALUE));
     }
 
     /**
      * Save help on typing
-     * @param boolean active or not
+     * @param activated active or not
      */
     public static void saveHelpOnTypingState(boolean activated) {
         readDocument();
@@ -260,7 +266,7 @@ public final class ConfigXpadManager {
 
         NodeList allSizeElements = xpadProfile.getElementsByTagName(HELPONTYPING);
         Element helpOnTyping = (Element) allSizeElements.item(0);
-        if (helpOnTyping == null){
+        if (helpOnTyping == null) {
             Element help = document.createElement(HELPONTYPING);
             helpOnTyping.setAttribute(VALUE, new Boolean(activated).toString());
             helpOnTyping.appendChild((Node) help);
@@ -301,7 +307,7 @@ public final class ConfigXpadManager {
 
         NodeList allSizeElements = xpadProfile.getElementsByTagName(LINENUMBERING);
         Element lineNumbering = (Element) allSizeElements.item(0);
-        if (lineNumbering == null){
+        if (lineNumbering == null) {
             Element line = document.createElement(LINENUMBERING);
             lineNumbering.setAttribute(VALUE, Integer.toString(state));
             lineNumbering.appendChild((Node) line);
@@ -325,7 +331,7 @@ public final class ConfigXpadManager {
         NodeList allSizeElements = xpadProfile.getElementsByTagName(LINEHIGHLIGHTER);
         Element lineHighlight = (Element) allSizeElements.item(0);
 
-        return "true".equals(lineHighlight.getAttribute(VALUE));
+        return TRUE.equals(lineHighlight.getAttribute(VALUE));
     }
 
     /**
@@ -342,7 +348,7 @@ public final class ConfigXpadManager {
 
         NodeList allSizeElements = xpadProfile.getElementsByTagName(LINEHIGHLIGHTER);
         Element lineHighlighter = (Element) allSizeElements.item(0);
-        if (lineHighlighter == null){
+        if (lineHighlighter == null) {
             Element line = document.createElement(LINEHIGHLIGHTER);
             lineHighlighter.setAttribute(VALUE, Boolean.toString(state));
             lineHighlighter.appendChild((Node) line);
@@ -390,10 +396,10 @@ public final class ConfigXpadManager {
      * Get all font style
      * @return true if the font style is bold , false otherwise
      */
-    public static Hashtable<String, Boolean> getAllisBold() {
+    public static Map<String, Boolean> getAllisBold() {
         /*load file*/
         readDocument();
-        Hashtable<String, Boolean > stylesIsBoldTable = new Hashtable<String, Boolean>();
+        Map<String, Boolean > stylesIsBoldTable = new Hashtable<String, Boolean>();
 
         Element root = document.getDocumentElement();
         NodeList styles = root.getElementsByTagName(STYLE);
@@ -415,6 +421,90 @@ public final class ConfigXpadManager {
         return stylesIsBoldTable;
     }
 
+    /**
+     * Get all default font style
+     * @return true if the font style is bold , false otherwise
+     */
+    public static Map<String, Boolean> getDefaultAllisBold() {
+        /*load file*/
+        readDocument();
+        Map<String, Boolean > stylesIsBoldTable = new Hashtable<String, Boolean>();
+
+        Element root = document.getDocumentElement();
+        NodeList styles = root.getElementsByTagName(STYLE);
+
+        for (int i = 0; i < styles.getLength(); ++i) {
+            Element style = (Element) styles.item(i);
+
+
+            NodeList fontStyleElement = style.getElementsByTagName(FONT_STYLE);
+            Element fontStyle = (Element) fontStyleElement.item(0);
+            int value = Integer.parseInt(fontStyle.getAttribute(DEFAULT));
+
+            if (value  == BOLD || value == BOLDITALIC) {
+                stylesIsBoldTable.put(style.getAttribute(NAME), true);
+            } else {
+                stylesIsBoldTable.put(style.getAttribute(NAME), false);
+            }
+        }
+        return stylesIsBoldTable;
+    }
+
+    /**
+     * Get all font style
+     * @return true if the font style is bold , false otherwise
+     */
+    public static Map<String, Boolean> getAllisItalic() {
+        /*load file*/
+        readDocument();
+        Map<String, Boolean> stylesIsItalicTable = new Hashtable<String, Boolean>();
+
+        Element root = document.getDocumentElement();
+        NodeList styles = root.getElementsByTagName(STYLE);
+
+        for (int i = 0; i < styles.getLength(); ++i) {
+            Element style = (Element) styles.item(i);
+
+            NodeList fontStyleElement = style.getElementsByTagName(FONT_STYLE);
+            Element fontStyle = (Element) fontStyleElement.item(0);
+            int value = Integer.parseInt(fontStyle.getAttribute(VALUE));
+
+            if (value  == ITALIC || value == BOLDITALIC) {
+                stylesIsItalicTable.put(style.getAttribute(NAME), true);
+            } else {
+                stylesIsItalicTable.put(style.getAttribute(NAME), false);
+            }
+        }
+        return stylesIsItalicTable;
+    }
+
+    /**
+     * Get all default font style
+     * @return true if the font style is bold , false otherwise
+     */
+    public static Map<String, Boolean> getDefaultAllisItalic() {
+        /*load file*/
+        readDocument();
+        Map<String, Boolean> stylesIsItalicTable = new Hashtable<String, Boolean>();
+
+        Element root = document.getDocumentElement();
+        NodeList styles = root.getElementsByTagName(STYLE);
+
+        for (int i = 0; i < styles.getLength(); ++i) {
+            Element style = (Element) styles.item(i);
+
+            NodeList fontStyleElement = style.getElementsByTagName(FONT_STYLE);
+            Element fontStyle = (Element) fontStyleElement.item(0);
+            int value = Integer.parseInt(fontStyle.getAttribute(DEFAULT));
+
+            if (value  == ITALIC || value == BOLDITALIC) {
+                stylesIsItalicTable.put(style.getAttribute(NAME), true);
+            } else {
+                stylesIsItalicTable.put(style.getAttribute(NAME), false);
+            }
+        }
+        return stylesIsItalicTable;
+    }
 
     /**
      * Get the font setting
@@ -606,9 +696,9 @@ public final class ConfigXpadManager {
                 }
 
                 char one;
-                int value = Integer.parseInt(style.getAttribute("value"));
+                int value = Integer.parseInt(style.getAttribute(VALUE));
                 String white = style.getAttribute("white").toLowerCase();
-                if ("false".equals(white)) {
+                if (FALSE.equals(white)) {
                     one = '\t';
                 } else {
                     one = ' ';
@@ -626,20 +716,20 @@ public final class ConfigXpadManager {
      * @return an Object containing infos
      */
     public static MatchingBlockManager.Parameters getDefaultForMatcher(String kind) {
-        /* <KeywordsHighlighter color="#fff3d2" inside="true" type="filled"/> */
+        /* <KeywordsHighlighter color="#fff3d2" inside=TRUE type="filled"/> */
 
         readDocument();
 
         Element root = document.getDocumentElement();
         NodeList matching = root.getElementsByTagName("Matching");
         Element elem = (Element) matching.item(0);
-        boolean onmouseover = "true".equals(elem.getAttribute("onmouseover"));
+        boolean onmouseover = TRUE.equals(elem.getAttribute("onmouseover"));
 
         NodeList mat = elem.getElementsByTagName(kind);
         Element matcher = (Element) mat.item(0);
 
         Color color = Color.decode(matcher.getAttribute("color"));
-        boolean inside = "true".equals(matcher.getAttribute("inside"));
+        boolean inside = TRUE.equals(matcher.getAttribute("inside"));
         String stype = matcher.getAttribute("type");
         int type = 0;
         if ("filled".equals(stype)) {
@@ -741,10 +831,9 @@ public final class ConfigXpadManager {
 
     /**
      * Save Xpad autoIndent or not
-     * @param boolean if autoIndent should be used or not
+     * @param activated if autoIndent should be used or not
      */
     public static void saveAutoIndent(boolean activated) {
-
         /* Load file */
         readDocument();
 
@@ -755,39 +844,33 @@ public final class ConfigXpadManager {
 
         NodeList allSizeElements = xpadProfile.getElementsByTagName(AUTOINDENT);
         Element xpadAutoIndent = (Element) allSizeElements.item(0);
-        if (xpadAutoIndent == null){
+        if (xpadAutoIndent == null) {
             Element autoIndent = document.createElement(AUTOINDENT);
 
             autoIndent.setAttribute(VALUE, new Boolean(activated).toString());
 
             xpadProfile.appendChild((Node) autoIndent);
         } else {
-            xpadAutoIndent.setAttribute(VALUE, new Boolean(activated).toString()  );
+            xpadAutoIndent.setAttribute(VALUE, new Boolean(activated).toString());
         }
         /* Save changes */
         writeDocument();
-
     }
 
-
     /**
-     * Save Xpad autoIndent or not
-     * @param boolean if autoIndent should be used or not
+     * @return a boolean if autoIndent should be used or not
      */
     public static boolean getAutoIndent() {
-
         /* Load file */
         readDocument();
 
         Element root = document.getDocumentElement();
-
         NodeList profiles = root.getElementsByTagName(PROFILE);
         Element xpadProfile = (Element) profiles.item(0);
-
         NodeList allSizeElements = xpadProfile.getElementsByTagName(AUTOINDENT);
         Element autoIndent = (Element) allSizeElements.item(0);
 
-        if(autoIndent == null){
+        if (autoIndent == null) {
             return true;
         } else {
             return new Boolean(autoIndent.getAttribute(VALUE));
@@ -797,7 +880,7 @@ public final class ConfigXpadManager {
 
     /**
      * Save Xpad autoColorize or not
-     * @param boolean if autoIndent should be used or not
+     * @param activated if autoIndent should be used or not
      */
     public static void saveAutoColorize(boolean activated) {
 
@@ -811,27 +894,24 @@ public final class ConfigXpadManager {
 
         NodeList allSizeElements = xpadProfile.getElementsByTagName(AUTOCOLORIZE);
         Element xpadAutoIndent = (Element) allSizeElements.item(0);
-        if (xpadAutoIndent == null){
+        if (xpadAutoIndent == null) {
             Element autoColorize = document.createElement(AUTOCOLORIZE);
 
             autoColorize.setAttribute(VALUE, new Boolean(activated).toString());
 
             xpadProfile.appendChild((Node) autoColorize);
         } else {
-            xpadAutoIndent.setAttribute(VALUE, new Boolean(activated).toString()  );
+            xpadAutoIndent.setAttribute(VALUE, new Boolean(activated).toString());
         }
         /* Save changes */
         writeDocument();
-
     }
 
 
     /**
-     * Save Xpad autoIndent or not
-     * @param boolean if autoIndent should be used or not
+     * @return a boolean to say if the doc is autocolorize
      */
     public static boolean getAutoColorize() {
-
         /* Load file */
         readDocument();
 
@@ -843,7 +923,7 @@ public final class ConfigXpadManager {
         NodeList allSizeElements = xpadProfile.getElementsByTagName(AUTOCOLORIZE);
         Element autoColorize = (Element) allSizeElements.item(0);
 
-        if(autoColorize == null){
+        if (autoColorize == null) {
             return true;
         } else {
             return new Boolean(autoColorize.getAttribute(VALUE));
@@ -852,50 +932,41 @@ public final class ConfigXpadManager {
 
 
     /**
-     * Save Xpad autoIndent or not
-     * @param boolean if autoIndent should be used or not
+     * @param encoding the default encoding for the files
      */
     public static void saveDefaultEncoding(String encoding) {
-
         /* Load file */
         readDocument();
 
         Element root = document.getDocumentElement();
-
         NodeList profiles = root.getElementsByTagName(PROFILE);
         Element xpadProfile = (Element) profiles.item(0);
-
         NodeList allSizeElements = xpadProfile.getElementsByTagName(DEFAULTENCONDING);
         Element xpadAutoIndent = (Element) allSizeElements.item(0);
-        if (xpadAutoIndent == null){
+        if (xpadAutoIndent == null) {
             Element defaultEncoding = document.createElement(DEFAULTENCONDING);
 
             defaultEncoding.setAttribute(VALUE, encoding);
 
             xpadProfile.appendChild((Node) defaultEncoding);
         } else {
-            xpadAutoIndent.setAttribute(VALUE, encoding  );
+            xpadAutoIndent.setAttribute(VALUE, encoding);
         }
         /* Save changes */
         writeDocument();
-
     }
 
 
     /**
-     * Save Xpad autoIndent or not
-     * @param boolean if autoIndent should be used or not
+     * @return the default encoding
      */
     public static String getDefaultEncoding() {
-
         /* Load file */
         readDocument();
 
         Element root = document.getDocumentElement();
-
         NodeList profiles = root.getElementsByTagName(PROFILE);
         Element xpadProfile = (Element) profiles.item(0);
-
         NodeList allSizeElements = xpadProfile.getElementsByTagName(DEFAULTENCONDING);
         Element defaultEncoding = (Element) allSizeElements.item(0);
 
@@ -912,12 +983,11 @@ public final class ConfigXpadManager {
      * Get all the foreground Colors
      * @return a Hashtable with the styles and the associated colors.
      */
-
-    public static Hashtable<String, Color> getAllForegroundColors() {
+    public static Map<String, Color> getAllForegroundColors() {
         /* Load file */
         readDocument();
 
-        Hashtable<String, Color> stylesColorsTable = new Hashtable<String, Color>();
+        Map<String, Color> stylesColorsTable = new Hashtable<String, Color>();
 
         Element root = document.getDocumentElement();
         NodeList styles = root.getElementsByTagName(STYLE);
@@ -934,15 +1004,23 @@ public final class ConfigXpadManager {
         return stylesColorsTable;
     }
 
-    public static Hashtable<String, Font> getAllFontStyle() {
+    /**
+     * @return a map containing styles names and the associated default font correctly derivated
+     */
+    public static Map<String, Font> getAllFontStyle() {
         return getAllFontStyle(getFont());
     }
 
-    public static Hashtable<String, Font> getAllFontStyle(Font font) {
+    /**
+     * @param f the base font
+     * @return a map containing styles names and the associated font correctly derivated
+     */
+    public static Map<String, Font> getAllFontStyle(Font f) {
         /* Load file */
         readDocument();
 
-        Hashtable<String, Font> stylesFontsTable = new Hashtable<String, Font>();
+        Font font = f;
+        Map<String, Font> stylesFontsTable = new Hashtable<String, Font>();
 
         Element root = document.getDocumentElement();
         NodeList styles = root.getElementsByTagName(STYLE);
@@ -982,11 +1060,11 @@ public final class ConfigXpadManager {
      * get all default foreground colors of xpad
      * @return a Hashtable with the styles and the associated default colors.
      */
-    public static Hashtable<String, Color> getAllDefaultForegroundColors() {
+    public static Map<String, Color> getAllDefaultForegroundColors() {
         /* Load file */
         readDocument();
 
-        Hashtable<String, Color> stylesDefaultColorsTable = new Hashtable<String, Color>();
+        Map<String, Color> stylesDefaultColorsTable = new Hashtable<String, Color>();
 
         Element root = document.getDocumentElement();
         NodeList styles = root.getElementsByTagName(STYLE);
@@ -1004,11 +1082,15 @@ public final class ConfigXpadManager {
         return stylesDefaultColorsTable;
     }
 
-    public static Hashtable<String, Integer> getAllAttributes() {
+    /**
+     * @return a map containing styles names and an integer : 0 for nothing, 1 for underline, 2 for stroke
+     * and 3 for stroke+underline
+     */
+    public static Map<String, Integer> getAllAttributes() {
         /* Load file */
         readDocument();
 
-        Hashtable<String, Integer> attr = new Hashtable<String, Integer>();
+        Map<String, Integer> attr = new Hashtable<String, Integer>();
 
         Element root = document.getDocumentElement();
         NodeList styles = root.getElementsByTagName(STYLE);
@@ -1017,11 +1099,11 @@ public final class ConfigXpadManager {
             Element style = (Element) styles.item(i);
             int at = 0;
             String underline = style.getAttribute(UNDERLINE);
-            if ("true".equals(underline)) {
+            if (TRUE.equals(underline)) {
                 at = 1;
             }
             String stroke = style.getAttribute(STROKE);
-            if ("true".equals(stroke)) {
+            if (TRUE.equals(stroke)) {
                 at += 2;
             }
             attr.put(style.getAttribute(NAME), at);
@@ -1034,7 +1116,7 @@ public final class ConfigXpadManager {
      * save all foreground colors
      *@param stylesColorsTable a hashtable containing styles and the associated colors
      */
-    public static void saveAllForegroundColors(Hashtable<String, Color> stylesColorsTable) {
+    public static void saveAllForegroundColors(Map<String, Color> stylesColorsTable) {
         /* Load file */
         readDocument();
 
@@ -1054,6 +1136,72 @@ public final class ConfigXpadManager {
             styleForeground.setAttribute(VALUE, COLORPREFIX + rgb.substring(2, rgb.length()));
 
 
+        }
+        /* Save changes */
+        writeDocument();
+    }
+
+    /**
+     * save all style for the font
+     * @param boldTable a hashtable containing style names and a boolean for the bold style
+     * @param italicTable a hashtable containing style names and a boolean for the italic style
+     */
+    public static void saveAllFontStyle(Map<String, Boolean> boldTable, Map<String, Boolean> italicTable) {
+        /* Load file */
+        readDocument();
+
+        Element root = document.getDocumentElement();
+        NodeList styles = root.getElementsByTagName(STYLE);
+
+        for (int i = 0; i < styles.getLength(); ++i) {
+            Element style = (Element) styles.item(i);
+
+            String styleName = style.getAttribute(NAME);
+            NodeList fontStyleElements = style.getElementsByTagName(FONT_STYLE);
+            Element fontStyle = (Element) fontStyleElements.item(0);
+
+            int bold = 1;
+            if (!boldTable.get(styleName)) {
+                bold = 0;
+            }
+            int italic = 2;
+            if (!italicTable.get(styleName)) {
+                italic = 0;
+            }
+
+            fontStyle.setAttribute(VALUE, Integer.toString(bold + italic));
+        }
+        /* Save changes */
+        writeDocument();
+    }
+
+    /**
+     * save all style for the font
+     * @param attTable a hashtable containing styles and the associated attribute
+     */
+    public static void saveAllAttributes(Map<String, Integer> attTable) {
+        /* Load file */
+        readDocument();
+
+        Element root = document.getDocumentElement();
+        NodeList styles = root.getElementsByTagName(STYLE);
+
+        for (int i = 0; i < styles.getLength(); ++i) {
+            Element style = (Element) styles.item(i);
+
+            String styleName = style.getAttribute(NAME);
+
+            String underline = TRUE;
+            if ((attTable.get(styleName) & 1) != 1) {
+                underline = FALSE;
+            }
+            String stroke = TRUE;
+            if ((attTable.get(styleName) & 2) != 2) {
+                stroke = FALSE;
+            }
+
+            style.setAttribute(UNDERLINE, underline);
+            style.setAttribute(STROKE, stroke);
         }
         /* Save changes */
         writeDocument();
@@ -1164,21 +1312,16 @@ public final class ConfigXpadManager {
      * Get all the  recent opened files
      * @return a array of uri
      */
-
-    public static ArrayList<File> getAllRecentOpenedFiles() {
-        ArrayList<File> files = new ArrayList<File>();
-
+    public static List<File> getAllRecentOpenedFiles() {
+        List<File> files = new ArrayList<File>();
         readDocument();
-
-
-        Element root = (Element)document.getDocumentElement().getElementsByTagName("recentFiles").item(0);
+        Element root = (Element) document.getDocumentElement().getElementsByTagName(RECENT_FILES).item(0);
         if (root != null) {
-            NodeList recentFiles = root.getElementsByTagName("document");
-
+            NodeList recentFiles = root.getElementsByTagName(DOCUMENT);
             for (int i = 0; i < recentFiles.getLength(); ++i) {
                 Element style = (Element) recentFiles.item(i);
 
-                File temp = new File(style.getAttribute("path"));
+                File temp = new File(style.getAttribute(PATH));
 
                 if (temp.exists()) {
                     files.add(temp);
@@ -1198,23 +1341,19 @@ public final class ConfigXpadManager {
      * @param filePath the path of the files to add
      */
     public static void saveToRecentOpenedFiles(String filePath) {
-
         readDocument();
 
-        Element root = (Element) document.getDocumentElement().getElementsByTagName("recentFiles").item(0);
-        NodeList recentFiles = root.getElementsByTagName("document");
+        Element root = (Element) document.getDocumentElement().getElementsByTagName(RECENT_FILES).item(0);
+        NodeList recentFiles = root.getElementsByTagName(DOCUMENT);
         int numberOfFiles = recentFiles.getLength();
 
         // we remove all the duplicate
         for (int i = 0; i < recentFiles.getLength();  ++i) {
             Element style = (Element) recentFiles.item(i);
-
-
-            if (filePath.equals(style.getAttribute("path"))) {
+            if (filePath.equals(style.getAttribute(PATH))) {
                 root.removeChild((Node) style);
                 numberOfFiles--;
             }
-
         }
 
         // if we have reached the maximun , we remove the oldest files
@@ -1222,10 +1361,8 @@ public final class ConfigXpadManager {
             root.removeChild(root.getFirstChild());
         }
 
-        Element newFile =  document.createElement("document");
-
-        newFile.setAttribute("path", filePath);
-
+        Element newFile =  document.createElement(DOCUMENT);
+        newFile.setAttribute(PATH, filePath);
         root.appendChild((Node) newFile);
 
         /* Save changes */
@@ -1236,7 +1373,6 @@ public final class ConfigXpadManager {
      * Read the file to modify
      */
     private static void readDocument() {
-
         File xml = null;
         DocumentBuilder docBuilder = null;
 
@@ -1270,6 +1406,9 @@ public final class ConfigXpadManager {
         }
     }
 
+    /**
+     * @param map the map to fill with the pairs (keystroke, action) found in file etc/keysConfiguration.xml
+     */
     public static void addMapActionNameKeys(Map map) {
         for (Enumeration action = keysMap.propertyNames(); action.hasMoreElements();) {
             String name = (String) action.nextElement();
@@ -1304,84 +1443,84 @@ public final class ConfigXpadManager {
 
 
     }
+
     /**
      * Add a file to recent Opened Files
-     *
-     * @param exp
-     *            the path of the files to add
+     * @param exp the path of the files to add
      */
     public static void saveRecentSearch(String exp) {
-
         Node root = getXcosRoot();
-        if(root == null || exp == null || exp.compareTo("") == 0) {
+        if (root == null || exp == null || exp.compareTo("") == 0) {
             return;
         }
 
         Node recents = getNodeChild(root, RECENT_SEARCH);
-        if(recents == null) {
+        if (recents == null) {
             recents = document.createElement(RECENT_SEARCH);
             root.appendChild(recents);
         }
 
-        ArrayList<Node> search = getNodeChildren(recents, SEARCH);
+        List<Node> search = getNodeChildren(recents, SEARCH);
 
-        while(search.size() >= MAX_RECENT_SEARCH) {
-            removeRecentSearch(((Element)search.get(0)).getAttribute(EXPRESSION));
+        while (search.size() >= MAX_RECENT_SEARCH) {
+            removeRecentSearch(((Element) search.get(0)).getAttribute(EXPRESSION));
             search = getNodeChildren(recents, SEARCH);
         }
         //if path already in file no need to add it
-        for(Node item : search) {
-            if (exp.compareTo(((Element)item).getAttribute(EXPRESSION)) == 0) {
+        for (Node item : search) {
+            if (exp.compareTo(((Element) item).getAttribute(EXPRESSION)) == 0) {
                 return;
             }
         }
 
         Element newSearch = document.createElement(SEARCH);
-
         newSearch.setAttribute(EXPRESSION, exp);
-
         recents.appendChild((Node) newSearch);
 
         /* Save changes */
         writeDocument();
     }
 
+    /**
+     * @param exp the expression to remove
+     */
     public static void removeRecentSearch(String exp) {
-
         Node root = getXcosRoot();
-        if(root == null) {
+        if (root == null) {
             return;
         }
 
         Node recent = getNodeChild(root, RECENT_SEARCH);
-        ArrayList<Node> search = getNodeChildren(recent, SEARCH);
+        List<Node> search = getNodeChildren(recent, SEARCH);
 
         // remove node if exists
-        for(Node file : search) {
-            if (exp.compareTo(((Element)file).getAttribute(EXPRESSION)) == 0) {
+        for (Node file : search) {
+            if (exp.compareTo(((Element) file).getAttribute(EXPRESSION)) == 0) {
                 recent.removeChild(file);
                 break;
             }
-
         }
         /* Save changes */
         writeDocument();
 
     }
 
-    public static ArrayList<String> getRecentSearch() {
-        ArrayList<String> files = new ArrayList<String>();
+    /**
+     * @return a list of the recent searches
+     */
+    public static List<String> getRecentSearch() {
+        List<String> files = new ArrayList<String>();
 
         Node root = getXcosRoot();
-        if(root == null) {
+        if (root == null) {
             return files;
         }
 
         Node recent = getNodeChild(root, RECENT_SEARCH);
-        ArrayList<Node> searches = getNodeChildren(recent, SEARCH);
-        for(Node search : searches) {
-            String exp = ((Element)search).getAttribute(EXPRESSION);
-            if(exp != null && exp.compareTo("") != 0) {
+        List<Node> searches = getNodeChildren(recent, SEARCH);
+        for (Node search : searches) {
+            String exp = ((Element) search).getAttribute(EXPRESSION);
+            if (exp != null && exp.compareTo("") != 0) {
                 files.add(exp);
             }
         }
@@ -1389,55 +1528,58 @@ public final class ConfigXpadManager {
         return files;
     }
 
+    /**
+     * @param exp the recent expression for a replacement
+     */
     public static void saveRecentReplace(String exp) {
-
         Node root = getXcosRoot();
-        if(root == null || exp == null || exp.compareTo("") == 0) {
+        if (root == null || exp == null || exp.compareTo("") == 0) {
             return;
         }
 
         Node recent = getNodeChild(root, RECENT_REPLACE);
-        if(recent == null) {
+        if (recent == null) {
             recent = document.createElement(RECENT_REPLACE);
             root.appendChild(recent);
         }
 
-        ArrayList<Node> replace = getNodeChildren(recent, REPLACE);
+        List<Node> replace = getNodeChildren(recent, REPLACE);
 
-        while(replace.size() >= MAX_RECENT_REPLACE) {
-            removeRecentReplace(((Element)replace.get(0)).getAttribute(EXPRESSION));
+        while (replace.size() >= MAX_RECENT_REPLACE) {
+            removeRecentReplace(((Element) replace.get(0)).getAttribute(EXPRESSION));
             replace = getNodeChildren(recent, REPLACE);
         }
         //if path already in file no need to add it
-        for(Node item : replace) {
-            if (exp.compareTo(((Element)item).getAttribute(EXPRESSION)) == 0) {
+        for (Node item : replace) {
+            if (exp.compareTo(((Element) item).getAttribute(EXPRESSION)) == 0) {
                 return;
             }
         }
 
         Element newReplace = document.createElement(REPLACE);
-
         newReplace.setAttribute(EXPRESSION, exp);
-
         recent.appendChild((Node) newReplace);
 
         /* Save changes */
         writeDocument();
     }
 
+    /**
+     * @param filePath remove recent replace in the this file
+     */
     public static void removeRecentReplace(String filePath) {
 
         Node root = getXcosRoot();
-        if(root == null) {
+        if (root == null) {
             return;
         }
 
         Node recent = getNodeChild(root, RECENT_REPLACE);
-        ArrayList<Node> replace = getNodeChildren(recent, REPLACE );
+        List<Node> replace = getNodeChildren(recent, REPLACE);
 
         // remove node if exists
-        for(Node exp : replace) {
-            if (filePath.compareTo(((Element)exp).getAttribute(EXPRESSION)) == 0) {
+        for (Node exp : replace) {
+            if (filePath.compareTo(((Element) exp).getAttribute(EXPRESSION)) == 0) {
                 recent.removeChild(exp);
                 break;
             }
@@ -1448,19 +1590,22 @@ public final class ConfigXpadManager {
 
     }
 
-    public static ArrayList<String> getRecentReplace() {
-        ArrayList<String> exps = new ArrayList<String>();
+    /**
+     * @return the recent replace
+     */
+    public static List<String> getRecentReplace() {
+        List<String> exps = new ArrayList<String>();
 
         Node root = getXcosRoot();
-        if(root == null) {
+        if (root == null) {
             return exps;
         }
 
         Node recent = getNodeChild(root, RECENT_REPLACE);
-        ArrayList<Node> replace = getNodeChildren(recent, REPLACE);
-        for(Node file : replace) {
-            String exp = ((Element)file).getAttribute(EXPRESSION);
-            if(exp != null && exp.compareTo("") != 0) {
+        List<Node> replace = getNodeChildren(recent, REPLACE);
+        for (Node file : replace) {
+            String exp = ((Element) file).getAttribute(EXPRESSION);
+            if (exp != null && exp.compareTo("") != 0) {
                 exps.add(exp);
             }
         }
@@ -1468,48 +1613,79 @@ public final class ConfigXpadManager {
         return exps;
     }
 
+    /**
+     * @return true for a regexp search
+     */
     public static boolean getRegularExpression() {
         return getBooleanAttribute(REGULAR_EXPRESION, STATE_FLAG, false);
     }
 
+    /**
+     * @param regualExp for a regexp search
+     */
     public static void saveRegularExpression(boolean regualExp) {
         saveBooleanAttribute(REGULAR_EXPRESION, STATE_FLAG, regualExp);
     }
 
+    /**
+     * @return true for a wholeWord search
+     */
     public static boolean getWholeWord() {
         return getBooleanAttribute(WHOLE_WORD, STATE_FLAG, false);
     }
 
+    /**
+     * @param wholeWord for a wholeWord search
+     */
     public static void saveWholeWord(boolean wholeWord) {
         saveBooleanAttribute(WHOLE_WORD, STATE_FLAG, wholeWord);
     }
 
+    /**
+     * @return true for a wordWrap search
+     */
     public static boolean getWordWarp() {
         return getBooleanAttribute(WORD_WARP, STATE_FLAG, true);
     }
 
+    /**
+     * @param wordWarp for a wordWrap search
+     */
     public static void saveWordWarp(boolean wordWarp) {
         saveBooleanAttribute(WORD_WARP, STATE_FLAG, wordWarp);
     }
 
+    /**
+     * @return true for a case sensitive search
+     */
     public static boolean getCaseSensitive() {
         return getBooleanAttribute(CASE_SENSITIVE, STATE_FLAG, false);
     }
 
+    /**
+     * @param caseSensitive for a case sensitive search
+     */
     public static void saveCaseSensitive(boolean caseSensitive) {
         saveBooleanAttribute(CASE_SENSITIVE, STATE_FLAG, caseSensitive);
     }
 
+    /**
+     * getBooleanAttribute
+     * @param node the node name
+     * @param attrib the attribute of the node
+     * @param defaultValue true or false
+     * @return the found boolean value or defaultValue if not found
+     */
     private static boolean getBooleanAttribute(String node, String attrib, boolean defaultValue) {
         boolean flag = false;
         Node root = getXcosRoot();
-        if(root == null) {
+        if (root == null) {
             return flag;
         }
         Node recent = getNodeChild(root, node);
-        if(recent != null) {
-            String exp = ((Element)recent).getAttribute(attrib);
-            if(exp.compareTo("true") == 0) {
+        if (recent != null) {
+            String exp = ((Element) recent).getAttribute(attrib);
+            if (exp.compareTo(TRUE) == 0) {
                 flag = true;
             }
         } else {
@@ -1518,20 +1694,26 @@ public final class ConfigXpadManager {
         return flag;
     }
 
+    /**
+     * saveBooleanAttribute
+     * @param node the node name
+     * @param attrib the attribute of the node
+     * @param state "true" or "false"
+     */
     private static void saveBooleanAttribute(String node, String attrib, boolean state) {
         Node root = getXcosRoot();
-        if(root == null) {
+        if (root == null) {
             return;
         }
 
         Node recent = getNodeChild(root, node);
-        if(recent == null) {
+        if (recent == null) {
             recent = document.createElement(node);
             root.appendChild(recent);
         }
 
 
-        ((Element)recent).setAttribute(attrib, new Boolean(state).toString());
+        ((Element) recent).setAttribute(attrib, new Boolean(state).toString());
 
         root.appendChild((Node) recent);
 
@@ -1539,12 +1721,18 @@ public final class ConfigXpadManager {
         writeDocument();
     }
 
-    private static Node getNodeChild(Node parent, String nodeName) {
-
-        if(parent == null) {
-            if(document == null) {
+    /**
+     * getNodeChild
+     * @param par parent
+     * @param nodeName the name
+     * @return the node
+     */
+    private static Node getNodeChild(Node par, String nodeName) {
+        Node parent = par;
+        if (parent == null) {
+            if (document == null) {
                 readDocument();
-                if(document == null) {
+                if (document == null) {
                     return null;
                 }
             }
@@ -1552,8 +1740,8 @@ public final class ConfigXpadManager {
         }
 
         Node currentNode = parent.getFirstChild();
-        while(currentNode != null) {
-            if(currentNode.getNodeName().compareTo(nodeName) == 0){
+        while (currentNode != null) {
+            if (currentNode.getNodeName().compareTo(nodeName) == 0) {
                 return currentNode;
             }
             currentNode = currentNode.getNextSibling();
@@ -1561,13 +1749,19 @@ public final class ConfigXpadManager {
         return currentNode;
     }
 
-    private static ArrayList<Node> getNodeChildren(Node parent, String childName) {
-        ArrayList<Node> nodes = new ArrayList<Node>();
-
-        if(parent == null) {
-            if(document == null) {
+    /**
+     * getNodeChildren
+     * @param par parent
+     * @param childName the name
+     * @return a list of nodes
+     */
+    private static List<Node> getNodeChildren(Node par, String childName) {
+        Node parent = par;
+        List<Node> nodes = new ArrayList<Node>();
+        if (parent == null) {
+            if (document == null) {
                 readDocument();
-                if(document == null) {
+                if (document == null) {
                     return nodes;
                 }
             }
@@ -1575,8 +1769,8 @@ public final class ConfigXpadManager {
         }
 
         Node currentNode = parent.getFirstChild();
-        while(currentNode != null) {
-            if(currentNode.getNodeName().compareTo(childName) == 0){
+        while (currentNode != null) {
+            if (currentNode.getNodeName().compareTo(childName) == 0) {
                 nodes.add(currentNode);
             }
             currentNode = currentNode.getNextSibling();
@@ -1585,21 +1779,23 @@ public final class ConfigXpadManager {
 
     }
 
+    /**
+     * @return the root
+     */
     private static Node getXcosRoot() {
-
-        if(document == null) {
+        if (document == null) {
             readDocument();
-            if(document == null) {
+            if (document == null) {
                 return null;
             }
         }
 
         Node setting = getNodeChild(null, SETTING);
 
-        if(setting != null) {
-            ArrayList<Node> nodes = getNodeChildren(setting, PROFILE);
-            for(Node node : nodes) {
-                if(((Element)node).getAttribute(NAME).compareTo(XPAD) == 0) {
+        if (setting != null) {
+            List<Node> nodes = getNodeChildren(setting, PROFILE);
+            for (Node node : nodes) {
+                if (((Element) node).getAttribute(NAME).compareTo(XPAD) == 0) {
                     return node;
                 }
             }

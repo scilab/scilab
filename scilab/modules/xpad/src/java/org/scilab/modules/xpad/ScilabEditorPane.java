@@ -174,7 +174,29 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     public void resetFont(Font font) {
         setFont(font);
         ((ScilabEditorKit) getEditorKit()).getStylePreferences().genFonts(font);
+        ScilabView view = (ScilabView) ((ScilabEditorKit) getEditorKit()).getStylePreferences().getCurrentView();
+        if (view != null) {
+            view.reinitialize();
+        }
         xln.updateFont(font);
+    }
+
+    /**
+     * Set a new font
+     * @param keyword the type of keyword
+     * @param type an int : -2 to reset italic, -1 to reset bold, 1 to set bold and 2 to set italic
+     */
+    public void resetFont(String keyword, int type) {
+        ((ScilabEditorKit) getEditorKit()).getStylePreferences().genFont(keyword, type);
+    }
+
+    /**
+     * Set a new attribute
+     * @param keyword the type of keyword
+     * @param type an int : 0 nothing, 1 underline, 2 stroke, 3 underline and stroke
+     */
+    public void resetAttribute(String keyword, int type) {
+        ((ScilabEditorKit) getEditorKit()).getStylePreferences().genAttribute(keyword, type);
     }
 
     /**
@@ -224,7 +246,9 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * @param kw a KeywordListener
      */
     public void addKeywordListener(KeywordListener kw) {
-        kwListeners.add(kw);
+        if (!kwListeners.contains(kw)) {
+            kwListeners.add(kw);
+        }
     }
 
     /**
@@ -232,7 +256,9 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * @param kw a KeywordListener
      */
     public void removeKeywordListener(KeywordListener kw) {
-        kwListeners.remove(kw);
+        if (kwListeners.contains(kw)) {
+            kwListeners.remove(kw);
+        }
     }
 
     /**

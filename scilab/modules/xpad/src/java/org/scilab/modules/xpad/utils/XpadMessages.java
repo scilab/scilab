@@ -194,6 +194,13 @@ public class XpadMessages {
      * "Change Color" message
      */
     public static final String CHANGE_COLOR =  Messages.gettext("Change Color");
+    public static final String ITALIC = Messages.gettext("Italic");
+    public static final String STRIKETHROUGH = Messages.gettext("Strike Through");
+    public static final String PREVIEW = Messages.gettext("Preview");
+    public static final String UNDERLINE = Messages.gettext("Underline");
+    public static final String SETTINGS = Messages.gettext("Settings");
+    public static final String COLOR = Messages.gettext("Color");
+    public static final String BOLD = Messages.gettext("Bold");
 
     /**
      * Exit confirm message
