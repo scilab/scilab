@@ -381,6 +381,23 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     }
 
     /**
+     * @return the first function name which appears in this doc or null
+     */
+    public String getFirstFunctionName() {
+        Element root = getDefaultRootElement();
+        for (int i = 0; i < root.getElementCount(); i++) {
+            Element e = root.getElement(i);
+            if (e instanceof ScilabLeafElement) {
+                ScilabLeafElement se = (ScilabLeafElement) e;
+                if (se.isFunction()) {
+                    return se.getFunctionInfo().functionName;
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
      * Get the local variables used as arguments or returned valuesof a function
      * @param pos the position in the document
      * @return the two lists containing args and returned values or null if we are not
