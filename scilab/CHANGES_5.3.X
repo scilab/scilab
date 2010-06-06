@@ -60,6 +60,8 @@ Text Editor:
 
 * bug 5534 fixed - There was not auto-completion
 
+* bug 5644 fixed - The DragN'Droped text was copied rather than moved.
+
 * bug 5645 fixed - Undo action deleted a line rather than make it visible.
 
 * bug 5647 fixed - Bad line numbering when a file was just opened.
@@ -76,6 +78,8 @@ Text Editor:
 * bug 5682 fixed - There was a problem with the replace action.
 
 * bug 6479 fixed - There was a problem when a '{' was in comments.
+
+* bug 6515 fixed - The DragN'Droped text was copied at the end of the file.
 
 * bug 6670 fixed - There was not a shortcut on the "Evaluate Selection" action.
 
