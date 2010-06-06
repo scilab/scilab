@@ -25,6 +25,7 @@ import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.CannotRedoException;
 
 import org.scilab.modules.xpad.ScilabDocument;
+import org.scilab.modules.xpad.actions.RedoAction;
 
 /**
  * Class CompoundUndoManager
@@ -42,8 +43,6 @@ public class CompoundUndoManager extends UndoManager {
     private char[] breaks;
     private int prevLine;
 
-    private final int INITIALCAPACITY = 256;
-
     /**
      * Constructor
      * @param sdoc the ScilabDocument where we want to make undo/redo
@@ -51,7 +50,7 @@ public class CompoundUndoManager extends UndoManager {
     public CompoundUndoManager(ScilabDocument sdoc) {
         super();
         this.sdoc = sdoc;
-        setLimit(INITIALCAPACITY);
+        setLimit(-1);
         setBreakingChars(" \n");
     }
 
@@ -71,6 +70,7 @@ public class CompoundUndoManager extends UndoManager {
             compoundEdit = new CompoundEdit();
             addEdit(compoundEdit);
             ++nbEdits;
+            sdoc.getEditorPane().getEditor().enableUndoButton(true);
         }
     }
 
@@ -91,9 +91,13 @@ public class CompoundUndoManager extends UndoManager {
         endCompoundEdit();
         try {
             super.undo();
+            sdoc.getEditorPane().getEditor().enableRedoButton(true);
             --nbEdits;
             if (nbEdits == 0) {
                 sdoc.setContentModified(false);
+            }
+            if (!canUndo()) {
+                sdoc.getEditorPane().getEditor().enableUndoButton(false);
             }
         } catch (CannotUndoException e) {
             return;
@@ -107,13 +111,25 @@ public class CompoundUndoManager extends UndoManager {
         endCompoundEdit();
         try {
             super.redo();
+            sdoc.getEditorPane().getEditor().enableUndoButton(true);
             ++nbEdits;
             if (nbEdits == 0) {
                 sdoc.setContentModified(false);
             }
+            if (!canRedo()) {
+                sdoc.getEditorPane().getEditor().enableRedoButton(false);
+            }
         } catch (CannotRedoException e) {
             return;
         }
+    }
+
+    /**
+     * Enable or not the Undo and Redo buttons
+     */
+    public void enableUndoRedoButtons() {
+        sdoc.getEditorPane().getEditor().enableRedoButton(canRedo());
+        sdoc.getEditorPane().getEditor().enableUndoButton(canUndo());
     }
 
     /**
@@ -169,6 +185,8 @@ public class CompoundUndoManager extends UndoManager {
                     br = seg.array[seg.offset] == breaks[i];
                 }
                 if (!remove && br) {
+                    // there is a problem when the window is splitted
+                    // two compoundEdits are created !
                     endCompoundEdit();
                     startCompoundEdit();
                     compoundEdit.addEdit(e.getEdit());

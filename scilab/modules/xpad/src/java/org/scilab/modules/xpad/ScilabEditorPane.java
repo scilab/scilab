@@ -95,7 +95,9 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
 
         addFocusListener(new FocusListener() {
                 public void focusGained(FocusEvent e) {
-                    ((ScilabDocument) getDocument()).setFocused(true);
+                    ScilabDocument doc = (ScilabDocument) getDocument();
+                    doc.setFocused(true);
+                    doc.getUndoManager().enableUndoRedoButtons();
                     Xpad.editor = ScilabEditorPane.this.editor;
                     focused = ScilabEditorPane.this;
                 }
@@ -123,6 +125,13 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      */
     public XpadLineNumberPanel getXln() {
         return xln;
+    }
+
+    /**
+     * @return the editor
+     */
+    public Xpad getEditor() {
+        return editor;
     }
 
     /**

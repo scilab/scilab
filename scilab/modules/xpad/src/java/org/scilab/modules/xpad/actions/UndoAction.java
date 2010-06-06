@@ -32,14 +32,14 @@ public final class UndoAction extends DefaultAction {
      * @param editor Xpad
      */
     private UndoAction(Xpad editor) {
-	super(XpadMessages.UNDO, editor);
+        super(XpadMessages.UNDO, editor);
     }
-    
+
     /**
      * doAction
      */
     public void doAction() {
-	getEditor().undo();
+        getEditor().undo();
     }
 
     /**
@@ -49,17 +49,19 @@ public final class UndoAction extends DefaultAction {
      * @return a MenuItem
      */
     public static MenuItem createMenu(Xpad editor, KeyStroke key) {
-	return createMenu(XpadMessages.UNDO, null, new UndoAction(editor), key);
+        return createMenu(XpadMessages.UNDO, null, new UndoAction(editor), key);
     }
-    
-    
+
+
     /**
      * Create the menu for undo action
      * @param editor Editor
      * @return a PushButton
      */
     public static PushButton createButton(Xpad editor) {
-	return createButton(XpadMessages.UNDO, "edit-undo.png", new UndoAction(editor));
+        PushButton button = createButton(XpadMessages.UNDO, "edit-undo.png", new UndoAction(editor));
+        editor.setUndoButton(button);
+        return button;
     }
 
     /**
@@ -69,6 +71,6 @@ public final class UndoAction extends DefaultAction {
      * @param key KeyStroke
      */
     public static void putInInputMap(JComponent textPane, Xpad editor, KeyStroke key) {
-	textPane.getInputMap().put(key, new UndoAction(editor));
+        textPane.getInputMap().put(key, new UndoAction(editor));
     }
 }

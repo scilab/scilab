@@ -122,6 +122,14 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     }
 
     /**
+     * Get the ScilabEditorPane associated with this doc
+     * @return pane the ScilabEditorPane
+     */
+    public ScilabEditorPane getEditorPane() {
+        return pane;
+    }
+
+    /**
      * Set to true of the document is focused in the EditorPane
      * @param b the boolean
      */

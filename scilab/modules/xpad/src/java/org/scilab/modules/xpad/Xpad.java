@@ -16,6 +16,8 @@ package org.scilab.modules.xpad;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -57,6 +59,7 @@ import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
+import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
@@ -131,6 +134,9 @@ public class Xpad extends SwingScilabTab implements Tab {
     private Object synchro = new Object();
     private FindAction find;
 
+    private PushButton undoButton;
+    private PushButton redoButton;
+
     private boolean highlight;
     private Color highlightColor;
     private Color highlightContourColor;
@@ -180,7 +186,16 @@ public class Xpad extends SwingScilabTab implements Tab {
                     }
                 }
             });
+        /*        tabPane.addFocusListener(new FocusListener() {
+                public void focusGained(FocusEvent e) {
+                    ScilabEditorPane pane = getTextPane();
+                    if (pane != null) {
+                        pane.grabFocus();
+                    }
+                }
 
+                public void focusLost(FocusEvent e) { }
+                });*/
         this.setContentPane(tabPane);
     }
 
@@ -285,8 +300,12 @@ public class Xpad extends SwingScilabTab implements Tab {
         editor.getTabPane().setTitleAt(0, title);
         editor.getTextPane().setName(current.getTextPane().getName());
         editor.setTitle(current.getTitle());
-        ((ScilabDocument) editor.getTextPane().getDocument()).setContentModified(cdoc.isContentModified());
+        ScilabDocument sdoc = (ScilabDocument) editor.getTextPane().getDocument();
+        sdoc.setContentModified(cdoc.isContentModified());
+        sdoc.getUndoManager().discardAllEdits();
         editor.getTextPane().setCaretPosition(0);
+        editor.enableUndoButton(false);
+        editor.enableRedoButton(false);
 
         if (b) {
             current.closeTabAt(current.getTabPane().getSelectedIndex());
@@ -807,6 +826,7 @@ public class Xpad extends SwingScilabTab implements Tab {
         if (((ScilabDocument) currentTextPane.getDocument()).isContentModified()) {
             newTitle.append('*');
         }
+
         String textPaneName = currentTextPane.getName();
         try {
             File f = new File(textPaneName);
@@ -819,12 +839,46 @@ public class Xpad extends SwingScilabTab implements Tab {
     }
 
     /**
+     * @param button the UndoButton used in this editor
+     */
+    public void setUndoButton(PushButton button) {
+        undoButton = button;
+        enableUndoButton(false);
+    }
+
+    /**
+     * @param b true to enable the button
+     */
+    public void enableUndoButton(boolean b) {
+        if (undoButton != null) {
+            undoButton.setEnabled(b);
+        }
+    }
+
+    /**
      * Undo last modification.
      */
     public void undo() {
         ScilabDocument doc = (ScilabDocument) getTextPane().getDocument();
         synchronized (doc) {
             doc.getUndoManager().undo();
+        }
+    }
+
+    /**
+     * @param button the RedoButton used in this editor
+     */
+    public void setRedoButton(PushButton button) {
+        redoButton = button;
+        enableRedoButton(false);
+    }
+
+    /**
+     * @param b true to enable the button
+     */
+    public void enableRedoButton(boolean b) {
+        if (redoButton != null) {
+            redoButton.setEnabled(b);
         }
     }
 
@@ -1209,6 +1263,7 @@ public class Xpad extends SwingScilabTab implements Tab {
             if (f.exists()) {
                 theTextPane = addTab(f.getName());
                 styleDocument = (ScilabDocument) theTextPane.getDocument();
+                styleDocument.disableUndoManager();
 
                 try {
                     synchronized (styleDocument) {
@@ -1235,6 +1290,7 @@ public class Xpad extends SwingScilabTab implements Tab {
                 theTextPane.setName(f.getAbsolutePath());
                 getTabPane().setTitleAt(getTabPane().getSelectedIndex() , f.getName());
                 styleDocument.setContentModified(false);
+                styleDocument.enableUndoManager();
 
                 getInfoBar().setText("");
 
@@ -1249,6 +1305,7 @@ public class Xpad extends SwingScilabTab implements Tab {
                                                            JOptionPane.YES_NO_OPTION);
                 if (choice == 0) { //OK
                     styleDocument = (ScilabDocument) theTextPane.getDocument();
+                    styleDocument.disableUndoManager();
 
                     BufferedWriter out = null;
                     try {
@@ -1276,6 +1333,8 @@ public class Xpad extends SwingScilabTab implements Tab {
                     updateRecentOpenedFilesMenu();
 
                     styleDocument.setContentModified(false);
+                    styleDocument.enableUndoManager();
+
                     lastKnownSavedState = System.currentTimeMillis();
 
                     // Get current file path for Execute file into Scilab
