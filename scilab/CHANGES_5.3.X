@@ -43,6 +43,8 @@ Text Editor:
 * bug 5102 fixed - It was not possible to choose the font weight or the font
                    style for a kind of keyword.
 
+* bug 5124 fixed - Editor's title was not updated when a file was saved as...
+
 * bug 5126 fixed - Problems appeared when we played with undo a few times.
 
 * bug 5175 fixed - Ghost text appeared in the view.
@@ -51,6 +53,12 @@ Text Editor:
                    not be choosen.
 
 * bug 5204 fixed - Weird display of keyword 'else'.
+
+* bug 5261 fixed - Could not open several instances of the editor.
+
+* bug 5269 fixed - Could not have help on a keyword with CTRL+F1. 
+
+* bug 5320 fixed - A good name was not proposed on the 'Save as' action.
 
 * bug 5321 fixed - There was not the possibility to choose the length of a
                    tabulation.
@@ -73,7 +81,7 @@ Text Editor:
 * bug 5656 fixed - When a text was selected word was searched in the entire
                    document.
 
-* bug 5658 fixed - The undo/redo strategy was not good.
+* bugs 5646, 5658 fixed - The undo/redo strategy was not good.
 
 * bug 5682 fixed - There was a problem with the replace action.
 
