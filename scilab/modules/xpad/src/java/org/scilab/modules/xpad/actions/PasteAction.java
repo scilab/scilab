@@ -12,15 +12,14 @@
 
 package org.scilab.modules.xpad.actions;
 
-import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
-
+import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 import javax.swing.text.DefaultEditorKit;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.ScilabDocument;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class PasteAction extends DefaultAction {
@@ -30,14 +29,27 @@ public class PasteAction extends DefaultAction {
     }
     
     public void doAction() {
+	ScilabDocument doc = (ScilabDocument) getEditor().getTextPane().getDocument();
+	doc.mergeEditsBegin();
 	getEditor().getTextPane().getActionMap().get(DefaultEditorKit.pasteAction).actionPerformed(null);
+	doc.mergeEditsEnd();
     }
 
-    public static MenuItem createMenu(Xpad editor) {
-	return createMenu(XpadMessages.PASTE, null, new PasteAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_V, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+    public static MenuItem createMenu(Xpad editor, KeyStroke key) {
+	return createMenu(XpadMessages.PASTE, null, new PasteAction(editor), key);
     }
     
     public static PushButton createButton(Xpad editor) {
 	return createButton(XpadMessages.PASTE, "edit-paste.png", new PasteAction(editor));
+    }
+    
+    /**
+     * Put input map
+     * @param textPane JTextpane
+     * @param key KeyStroke
+     * @param editor Editor
+     */
+    public static void putInInputMap(JComponent textPane, Xpad editor, KeyStroke key) {
+	textPane.getInputMap().put(key, new PasteAction(editor));
     }
 }

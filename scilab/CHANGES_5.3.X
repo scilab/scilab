@@ -10,6 +10,96 @@ Performance:
 
 * Improved access to the list of functions increases the performances.
 
+Text Editor:
+============
+
+* Complete refactorization of the text editor.
+
+* Add the possibility to autocomplete some characters (e.g. type '[' gives '[]')
+  or keywords (e.g. type 'if ' gives 'if <CR>end')
+
+* Add the possibility to have several instances of the editor and to dock (or not)
+  them.
+
+* Add the possibility to remove trailing whitespaces.
+
+* Add help on keyword in the popup menu
+
+* bugs 4399, 4922 fixed - The line numbering could not be compatible with the
+                          output of the whereami function.
+
+* bug 4865 fixed - The buttons to undo and redo were not disabled when there
+                   was nothing to undo or redo.
+
+* bug 4907 fixed - The source code of a given macro could not be opened.
+
+* bug 4916 fixed - Problem with 'See the code' in the demos.
+
+* bug 4992 fixed - There was no possibility to split the window with the same
+                   contents.
+
+* bug 5087 fixed - The different keywords were not splited in different category.
+
+* bug 5102 fixed - It was not possible to choose the font weight or the font
+                   style for a kind of keyword.
+
+* bug 5124 fixed - Editor's title was not updated when a file was saved as...
+
+* bug 5126 fixed - Problems appeared when we played with undo a few times.
+
+* bug 5175 fixed - Ghost text appeared in the view.
+
+* bug 5178 fixed - the kind of the tabulations (hard tabulations or spaces) could
+                   not be choosen.
+
+* bug 5204 fixed - Weird display of keyword 'else'.
+
+* bug 5261 fixed - Could not open several instances of the editor.
+
+* bug 5269 fixed - Could not have help on a keyword with CTRL+F1. 
+
+* bug 5320 fixed - A good name was not proposed on the 'Save as' action.
+
+* bug 5321 fixed - There was not the possibility to choose the length of a
+                   tabulation.
+
+* bug 5473 fixed - It was not possibile to generate a function help template 
+                   using help_from_sci.
+
+* bug 5534 fixed - There was not auto-completion
+
+* bug 5644 fixed - The DragN'Droped text was copied rather than moved.
+
+* bug 5645 fixed - Undo action deleted a line rather than make it visible.
+
+* bug 5647 fixed - Bad line numbering when a file was just opened.
+
+* bug 5652 fixed - Bad line numbering when several files were opened.
+
+* bug 5655 fixed - The selection was lost after an unsuccessful search.
+
+* bug 5656 fixed - When a text was selected word was searched in the entire
+                   document.
+
+* bugs 5646, 5658 fixed - The undo/redo strategy was not good.
+
+* bug 5682 fixed - There was a problem with the replace action.
+
+* bug 6479 fixed - There was a problem when a '{' was in comments.
+
+* bug 6515 fixed - The DragN'Droped text was copied at the end of the file.
+
+* bug 6670 fixed - There was not a shortcut on the "Evaluate Selection" action.
+
+* bug 6807 fixed - '.*' was not correctly highlighted.
+
+* bug 6980 fixed - When a replaced text contained a '\', the backslash was
+                   considered as a special char.
+
+* bug 7032 fixed - There was a problem when filename contained a ' or a ".
+
+* bug 7112 fixed - Two transpositions gave a string (if a'==1 then a=b').
+
 FFTW:
 =====
 

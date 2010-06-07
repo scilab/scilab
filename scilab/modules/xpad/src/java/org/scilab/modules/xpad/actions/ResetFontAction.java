@@ -1,63 +1,57 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO
+ * Copyright (C) 2010 - Calixte DENIZET
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 package org.scilab.modules.xpad.actions;
 
 import java.awt.Font;
-import java.util.ArrayList;
-
-import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
-import javax.swing.text.Style;
-import javax.swing.text.StyleConstants;
+import java.util.List;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
-import org.scilab.modules.xpad.style.ColorizationManager;
-import org.scilab.modules.xpad.style.ScilabStyleDocument;
+import org.scilab.modules.xpad.ScilabEditorPane;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class ResetFontAction extends DefaultAction {
 
-	private ResetFontAction(Xpad editor) {
-		super(XpadMessages.RESET_DEFAULT_FONT, editor);
-	}
+    private ResetFontAction(Xpad editor) {
+        super(XpadMessages.RESET_DEFAULT_FONT, editor);
+    }
 
-	public void doAction() {
+    public void doAction() {
+        Font oldFont = ConfigXpadManager.getDefaultFont();
+        List<String> listStylesName = ConfigXpadManager.getAllStyleName();
 
+        getEditor().getTextPane().resetFont(oldFont);
 
-		Font oldFont = ConfigXpadManager.getDefaultFont();
+        /*we need to loop on every style , if not after the second change, styles will not change anymore
+          except default*/
+        int numberOfTab = getEditor().getTabPane().getComponentCount();
+        for (int j = 0; j < numberOfTab; j++) {
 
+            ScilabEditorPane textPane = getEditor().getTextPane(j);
+            textPane.resetFont(oldFont);
+            if (textPane.getRightTextPane() != null) {
+                textPane.getRightTextPane().resetFont(oldFont);
+            }
+        }
+        getEditor().getTextPane().setFocusable(true);
 
-		ArrayList<String> listStylesName = ConfigXpadManager.getAllStyleName();
+        ConfigXpadManager.saveFont(oldFont);
+    }
 
-		getEditor().getTextPane().setFont(oldFont);
-
-		/*we need to loop on every style , if not after the second change, styles will not change anymore
-    		  except default*/
-		int numberOfTab = getEditor().getTabPane().getComponentCount();
-		for (int j = 0; j < numberOfTab; j++) {
-
-			JTextPane textPane = (JTextPane) ((JScrollPane) getEditor().getTabPane().getComponentAt(j)).getViewport().getComponent(0) ;
-			ScilabStyleDocument styleDocument = (ScilabStyleDocument)textPane.getStyledDocument();
-			for (int i = 0; i < listStylesName.size(); i++) {
-				Style tempStyle =  styleDocument.getStyle(listStylesName.get(i));
-
-				StyleConstants.setFontFamily(tempStyle, oldFont.getFamily());
-				StyleConstants.setFontSize(tempStyle, oldFont.getSize());
-				StyleConstants.setBold(tempStyle, oldFont.isBold());
-				//StyleConstants.setItalic(tempStyle, newFont.isItalic());  			
-			}
-			new ColorizationManager().colorize(styleDocument, 0, styleDocument.getLength());
-		}
-
-
-
-		getEditor().getTextPane().setFocusable(true);
-
-		ConfigXpadManager.saveFont(oldFont);
-	}
-
-	public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.RESET_DEFAULT_FONT, null, new ResetFontAction(editor), null);
-	}
+    public static MenuItem createMenu(Xpad editor) {
+        return createMenu(XpadMessages.RESET_DEFAULT_FONT, null, new ResetFontAction(editor), null);
+    }
 
 }

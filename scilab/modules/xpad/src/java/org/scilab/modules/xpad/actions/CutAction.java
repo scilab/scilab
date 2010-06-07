@@ -12,15 +12,14 @@
 
 package org.scilab.modules.xpad.actions;
 
-import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
-
 import javax.swing.KeyStroke;
+import javax.swing.JComponent;
 import javax.swing.text.DefaultEditorKit;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.ScilabDocument;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
 /**
@@ -30,15 +29,15 @@ import org.scilab.modules.xpad.utils.XpadMessages;
  */
 public final class CutAction extends DefaultAction {
 
-	/**
-	 * serialVersionUID
-	 */
-	private static final long serialVersionUID = -4831313579986185630L;
-
-	/**
-	 * Constructor 
-	 * @param editor Xpad
-	 */
+    /**
+     * serialVersionUID
+     */
+    private static final long serialVersionUID = -4831313579986185630L;
+    
+    /**
+     * Constructor 
+     * @param editor Xpad
+     */
     private CutAction(Xpad editor) {
 	super(XpadMessages.CUT, editor);
     }
@@ -47,17 +46,20 @@ public final class CutAction extends DefaultAction {
      * doAction
      */
     public void doAction() {
+	ScilabDocument doc = (ScilabDocument) getEditor().getTextPane().getDocument();
+	doc.mergeEditsBegin();
 	getEditor().getTextPane().getActionMap().get(DefaultEditorKit.cutAction).actionPerformed(null);
+	doc.mergeEditsEnd();
     }
 
     /**
      * createMenu
      * @param editor Xpad 
+     * @param key KeyStroke
      * @return MenuItem
      */
-    public static MenuItem createMenu(Xpad editor) {
-	return createMenu(XpadMessages.CUT, null, new CutAction(editor), 
-			KeyStroke.getKeyStroke(KeyEvent.VK_X, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+    public static MenuItem createMenu(Xpad editor, KeyStroke key) {
+	return createMenu(XpadMessages.CUT, null, new CutAction(editor), key);
     }
     
     /**
@@ -69,4 +71,13 @@ public final class CutAction extends DefaultAction {
 	return createButton(XpadMessages.CUT, "edit-cut.png", new CutAction(editor));
     }
     
+    /**
+     * Put input map
+     * @param textPane JTextpane
+     * @param editor Editor
+     * @param key KeyStroke
+     */
+    public static void putInInputMap(JComponent textPane, Xpad editor, KeyStroke key) {
+	textPane.getInputMap().put(key, new CutAction(editor));
+    }
 }
