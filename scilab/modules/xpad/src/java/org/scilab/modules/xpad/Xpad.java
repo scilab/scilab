@@ -135,7 +135,6 @@ public class Xpad extends SwingScilabTab implements Tab {
     private Menu recentsMenu;
     private int numberOfUntitled;
     private EditorKit editorKit;
-    private long lastKnownSavedState;
     private Object synchro = new Object();
     private FindAction find;
 
@@ -170,14 +169,11 @@ public class Xpad extends SwingScilabTab implements Tab {
         editorKit = new ScilabEditorKit();
         setDefaultHighlight();
         setDefaultHelpOnTyping();
-        lastKnownSavedState = 0;
-
         SwingScilabWindow window = (SwingScilabWindow) parentWindow.getAsSimpleWindow();
         Position pos = ConfigXpadManager.getMainWindowPosition();
         window.setLocation(pos.getX(), pos.getY());
         Size size = ConfigXpadManager.getMainWindowSize();
         window.setSize(size.getWidth(), size.getHeight());
-
         tabPane = new JTabbedPane();
         tabPane.addChangeListener(new ChangeListener() {
                 public void stateChanged(ChangeEvent e) {
@@ -197,7 +193,7 @@ public class Xpad extends SwingScilabTab implements Tab {
                     }
                 }
             });
-        /*        tabPane.addFocusListener(new FocusListener() {
+        tabPane.addFocusListener(new FocusListener() {
                 public void focusGained(FocusEvent e) {
                     ScilabEditorPane pane = getTextPane();
                     if (pane != null) {
@@ -206,7 +202,7 @@ public class Xpad extends SwingScilabTab implements Tab {
                 }
 
                 public void focusLost(FocusEvent e) { }
-                });*/
+            });
         this.setContentPane(tabPane);
     }
 
@@ -262,7 +258,6 @@ public class Xpad extends SwingScilabTab implements Tab {
         ConfigXpadManager.saveToRecentOpenedFiles(filePath);
         editorInstance.updateRecentOpenedFilesMenu();
         editorInstance.readFileAndWait(f);
-        editorInstance.lastKnownSavedState = System.currentTimeMillis();
     }
 
     /**
@@ -276,7 +271,6 @@ public class Xpad extends SwingScilabTab implements Tab {
         ConfigXpadManager.saveToRecentOpenedFiles(filePath);
         editorInstance.updateRecentOpenedFilesMenu();
         editorInstance.readFileAndWait(f);
-        editorInstance.lastKnownSavedState = System.currentTimeMillis();
         editorInstance.getTextPane().scrollTextToLineNumber(lineNumber);
     }
 
@@ -286,7 +280,6 @@ public class Xpad extends SwingScilabTab implements Tab {
      */
     public static void xpadWithText(String text) {
         Xpad editorInstance = launchXpad();
-        editorInstance.lastKnownSavedState = System.currentTimeMillis();
         ScilabEditorPane theTextPane = editorInstance.addEmptyTab();
         ScilabDocument styleDocument = (ScilabDocument) theTextPane.getDocument();
         try {
@@ -529,7 +522,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 
         // Get current file path for Execute file into Scilab
         fileFullPath = newSavedFile.getAbsolutePath();
-        lastKnownSavedState = System.currentTimeMillis();
+        getTextPane().setLastModified(newSavedFile.lastModified());
 
         textPaneAt.setName(fileToSave);
         return true;
@@ -542,10 +535,9 @@ public class Xpad extends SwingScilabTab implements Tab {
      * @return the filename where to save
      */
     public String checkExternalModification(String filename) {
-        File newSavedFiled = new File(filename);
-
-        if ((lastKnownSavedState != 0) && (newSavedFiled.lastModified() > lastKnownSavedState)) {
-            if (ScilabModalDialog.show(this, String.format(XpadMessages.EXTERNAL_MODIFICATION, newSavedFiled.getPath()),
+        File newSavedFile = new File(filename);
+        if (newSavedFile.lastModified() > getTextPane().getLastModified()) {
+            if (ScilabModalDialog.show(this, String.format(XpadMessages.EXTERNAL_MODIFICATION, newSavedFile.getPath()),
                                        XpadMessages.REPLACE_FILE_TITLE, IconType.QUESTION_ICON,
                                        ButtonType.YES_NO) == AnswerOption.NO_OPTION) {
                 return chooseFileToSave();
@@ -587,12 +579,12 @@ public class Xpad extends SwingScilabTab implements Tab {
 
         //select default file type
         fileChooser.setFileFilter(sceFilter);
-        
+
         String name = ((ScilabDocument) getTextPane().getDocument()).getFirstFunctionName();
         if (name != null) {
             fileChooser.setSelectedFile(new File(name + ".sci"));
-        } 
-        
+        }
+
         int retval = fileChooser.showSaveDialog(this);
 
         if (retval == JFileChooser.APPROVE_OPTION) {
@@ -745,7 +737,7 @@ public class Xpad extends SwingScilabTab implements Tab {
             updateRecentOpenedFilesMenu();
 
             styledDocument.setContentModified(false);
-            lastKnownSavedState = System.currentTimeMillis();
+            getTextPane().setLastModified(f.lastModified());
             isSuccess = true;
 
             // Get current file path for Execute file into Scilab
@@ -1289,6 +1281,7 @@ public class Xpad extends SwingScilabTab implements Tab {
                 theTextPane = addTab(f.getName());
                 styleDocument = (ScilabDocument) theTextPane.getDocument();
                 styleDocument.disableUndoManager();
+                theTextPane.setLastModified(f.lastModified());
 
                 try {
                     synchronized (styleDocument) {
@@ -1359,8 +1352,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 
                     styleDocument.setContentModified(false);
                     styleDocument.enableUndoManager();
-
-                    lastKnownSavedState = System.currentTimeMillis();
+                    getTextPane().setLastModified(f.lastModified());
 
                     // Get current file path for Execute file into Scilab
                     fileFullPath = f.getAbsolutePath();

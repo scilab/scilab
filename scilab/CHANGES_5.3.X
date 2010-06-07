@@ -93,6 +93,9 @@ Text Editor:
 
 * bug 6670 fixed - There was not a shortcut on the "Evaluate Selection" action.
 
+* bug 6748 fixed - There was a problem of time between local computer and
+                   remote file system.
+
 * bug 6807 fixed - '.*' was not correctly highlighted.
 
 * bug 6980 fixed - When a replaced text contained a '\', the backslash was

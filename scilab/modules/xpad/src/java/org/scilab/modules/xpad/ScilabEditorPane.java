@@ -67,6 +67,8 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private HelpOnTypingManager helpOnTyping;
     private TrailingWhiteManager trailingWhite;
 
+    private long lastModified;
+
     /* matchLR matches Left to Right ... */
     private MatchingBlockManager matchLR;
     private MatchingBlockManager matchRL;
@@ -118,6 +120,24 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             ((ScilabDocument) doc).getUndoManager().discardAllEdits();
             initialize((ScilabDocument) doc);
         }
+    }
+
+    /**
+     * Get the the time where the file associated with this pane
+     * has been modified.
+     * @return the last modified time or 0
+     */
+    public long getLastModified() {
+        return lastModified;
+    }
+
+    /**
+     * Set the last time where the file associated with this pane
+     * has been modified.
+     * @param time the time
+     */
+    public void setLastModified(long time) {
+        this.lastModified = time;
     }
 
     /**
