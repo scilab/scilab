@@ -6,10 +6,6 @@
           xmlns:ns3="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008)
-    $</pubdate>
-  </info>
 
   <refnamediv>
     <refname>qld</refname>
@@ -98,7 +94,7 @@
         <term>tol</term>
 
         <listitem>
-          <para>Floatting point number, required prÃ©cision.</para>
+          <para>Floatting point number, required precision.</para>
         </listitem>
       </varlistentry>
 
