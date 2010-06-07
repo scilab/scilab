@@ -45,7 +45,7 @@ public class ScilabView extends WrappedPlainView {
      * A tabulation can be rendered with a vertical line.
      */
     public static final int TABVERTICAL = 0;
-    
+
     /**
      * A tabulation can be rendered with a double-chevrons.
      */
@@ -77,17 +77,19 @@ public class ScilabView extends WrappedPlainView {
     private boolean isTabViewable = true;
     private boolean isWhiteViewable = true;
 
-    private int tabType;    
+    private int tabType;
     private String tabCharacter = " ";
 
     private int numOfColumns = 80;
     private Color lineColor = new Color(220, 220, 220);
-    
+
     private final Rectangle rect = new Rectangle();
     private Map desktopFontHints;
 
     private int whiteHeight;
     private int whiteWidth;
+
+    private boolean unselected = true;
 
     /**
      * The constructor to set this view for an element with a context (containing infos
@@ -112,7 +114,7 @@ public class ScilabView extends WrappedPlainView {
     public void setLaTeXViewable(boolean b) {
         isLaTeXViewable = b;
     }
-    
+
     /**
      * A tabulation can be drawn with a mark
      * @param b true if viewable or not
@@ -120,7 +122,7 @@ public class ScilabView extends WrappedPlainView {
     public void setTabViewable(boolean b) {
         isTabViewable = b;
     }
-    
+
     /**
      * A white can be drawn with a mark
      * @param b true if viewable or not
@@ -142,7 +144,7 @@ public class ScilabView extends WrappedPlainView {
      * This method can be used to draw anything you want in the editor (such as
      * the line of maximum recommanded chars).
      * @param g the graphics where to draw
-     * @param a the shape bounding the visible area 
+     * @param a the shape bounding the visible area
      * @overload paint method in WrappedPlainView
      */
     public void paint(Graphics g, Shape a) {
@@ -188,10 +190,10 @@ public class ScilabView extends WrappedPlainView {
            The value of the returned token determinates the color and the font.
            The lines can be broken by the Pane so we must look at previous
            and next chars to know if p0 or p1 is "inside" a token. */
-        
+
         Element elem = doc.getDefaultRootElement();
-        Element line = elem.getElement(elem.getElementIndex(p0));	
-        
+        Element line = elem.getElement(elem.getElementIndex(p0));
+
         int prevTok = -1;
         int tok = -1;
         int mark = p0;
@@ -201,7 +203,7 @@ public class ScilabView extends WrappedPlainView {
         boolean isBroken = false;
 
         if (desktopFontHints == null) {
-            /* This hint is used to have antialiased fonts in the view in using 
+            /* This hint is used to have antialiased fonts in the view in using
                the same method (differents way to antialias with LCD screen) as the desktop. */
             desktopFontHints = (Map) Toolkit.getDefaultToolkit().getDesktopProperty(DESKTOPHINTS);
             calculateHeight(((Graphics2D) g).getFontRenderContext(), context.tokenFonts[0]);
@@ -242,7 +244,11 @@ public class ScilabView extends WrappedPlainView {
 
             if (end != mark) {
                 if (tok != prevTok) {
-                    g.setColor(context.tokenColors[tok]);
+                    if (unselected) {
+                        g.setColor(context.tokenColors[tok]);
+                    } else {
+                        g.setColor(Color.WHITE);
+                    }
                     g.setFont(context.tokenFonts[tok]);
                     prevTok = tok;
                 }
@@ -255,7 +261,7 @@ public class ScilabView extends WrappedPlainView {
                     w = Utilities.getTabbedTextWidth(text, g.getFontMetrics(), x, this, mark);
                     g.drawLine(x, y + 1, x + w, y + 1);
                 }
-    
+
                 if ((context.tokenAttrib[tok] & 2) != 0) {
                     w = Utilities.getTabbedTextWidth(text, g.getFontMetrics(), x, this, mark);
                     g.drawLine(x, y - whiteHeight, x + w, y - whiteHeight);
@@ -267,7 +273,7 @@ public class ScilabView extends WrappedPlainView {
                         w = Utilities.getTabbedTextWidth(text, g.getFontMetrics(), x, this, mark);
                         g.drawLine(x + (w - 1) / 2, y - whiteHeight, x + (w + 1) / 2, y - whiteHeight);
                         }
-                        break;     
+                        break;
                     case ScilabLexerConstants.TAB :
                         if (isTabViewable) {
                         paintTab(text, x, y, g, mark);
@@ -281,7 +287,7 @@ public class ScilabView extends WrappedPlainView {
                     default :
                         break;
                 }
-    
+
                 x = Utilities.drawTabbedText(text, x, y, g, this, mark);
                 mark = end;
             }
@@ -293,7 +299,24 @@ public class ScilabView extends WrappedPlainView {
     }
 
     /**
-     * Used to give the way to represent a tabulation. By default TABVERTICAL is used. 
+     * Draw the selected text.
+     * @param g the graphics where to draw
+     * @param sx the x-coordinate where to draw
+     * @param sy the y-coordinate ... (guess the end pf the sentence)
+     * @param p0 the start of the text in the doc
+     * @param p1 the end of the text in the doc
+     * @return the x-coordinate where to draw the next piece of text
+     * @throws BadLocationException if p0 and p1 are bad positions in the text
+     */
+    protected int drawSelectedText(Graphics g, int x, int y, int p0, int p1) throws BadLocationException {
+        unselected = false;
+        int z = drawUnselectedText(g, x, y, p0, p1);
+        unselected = true;
+        return z;
+    }
+
+    /**
+     * Used to give the way to represent a tabulation. By default TABVERTICAL is used.
      * @param type must be TABVERTICAL or TABDOUBLECHEVRONS or TABHORIZONTAL
      * If a bad value is given, then nothing will be drawn
      */
@@ -336,7 +359,7 @@ public class ScilabView extends WrappedPlainView {
      * @param y the y-coordinate where to draw
      * @param g the graphics ... (yeah ! once again)
      * @param start the position in the document
-     */ 
+     */
     protected void paintTab(Segment text, int x, int y, Graphics g, int start) {
         FontMetrics fm = g.getFontMetrics();
         int w = Utilities.getTabbedTextWidth(text, fm, x, this, start);

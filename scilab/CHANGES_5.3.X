@@ -102,6 +102,8 @@ Text Editor:
 
 * bug 7238 fixed - The dot/del key on the numeric pad added a 'suppr' and a dot.
 
+* bug 7239 fixed - Font style was lost on a selected text.
+
 FFTW:
 =====
 

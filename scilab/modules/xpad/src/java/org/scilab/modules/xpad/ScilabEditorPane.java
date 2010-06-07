@@ -57,6 +57,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private Color highlightColor = new Color(228, 233, 244);
     private Color highlightContourColor = new Color(50, 50, 50);
     private boolean highlightEnable;
+    private Object highlightCL;
     private boolean matchingEnable;
     private ScilabLexer lexer;
     private Xpad editor;
@@ -92,7 +93,6 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         addMouseListener(this);
         enableMatchingKeywords(true);
         setFocusable(true);
-
         addFocusListener(new FocusListener() {
                 public void focusGained(FocusEvent e) {
                     ScilabDocument doc = (ScilabDocument) getDocument();
@@ -315,13 +315,13 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     public void enableHighlightedLine(boolean active) {
         if (active && !highlightEnable) {
             try {
-                getHighlighter().addHighlight(0, 0, this);
+                highlightCL = getHighlighter().addHighlight(0, 0, this);
             } catch (BadLocationException e) { }
             highlightEnable = true;
         }
 
         if (!active && highlightEnable) {
-            getHighlighter().removeAllHighlights();
+            getHighlighter().removeHighlight(highlightCL);
             highlightEnable = false;
         }
 
