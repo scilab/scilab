@@ -106,6 +106,14 @@ namespace symbol
             return result;
         }
 
+        /** If key was associated to some Entry_T in the last opened scope, return it.
+        ** Otherwise return the empty pointer. */
+        InternalType*	getCurrentLevel(const string& key) const
+        {
+            return l_scope.front()->get(key);
+        }
+
+
         std::list<std::string>& get_funlist(const string& _stModuleName)
         {
             //get hightest scope

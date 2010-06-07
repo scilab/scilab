@@ -107,7 +107,7 @@ namespace symbol
         void remove(const string& key)
         {
             InternalType *pOld = (*_scope)[key];
-
+            
             _scope->erase(key);
             pOld->DecreaseRef();
             if(pOld->isDeletable() == true)

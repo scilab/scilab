@@ -77,6 +77,30 @@ namespace symbol
         }
     }
 
+    InternalType*	Context::getCurrentLevel(const string& key) const
+    {
+        // FIXME
+        InternalType* pI = NULL;
+        pI = EnvVarTable.getCurrentLevel(key);
+        
+        if(pI != NULL)
+        {
+            return pI;
+        }
+        else
+        {
+            pI = EnvFunTable.getCurrentLevel(key);
+            if(pI != NULL)
+            {
+                return pI;
+            }
+            else
+            {
+                return NULL;
+            }
+        }
+    }
+
     InternalType*	Context::get_fun(const string& key) const
     {
         return EnvFunTable.get(key);
@@ -98,10 +122,10 @@ namespace symbol
     bool Context::remove(const string& key)
     {
         // First look in Variables Environment
-        if (EnvVarTable.get(key) == NULL)
+        if (EnvVarTable.getCurrentLevel(key) == NULL)
         {
             // If not found, look in Functions Environment
-            if (EnvFunTable.get(key) == NULL)
+            if (EnvFunTable.getCurrentLevel(key) == NULL)
             {
                 return false;
             }
