@@ -119,10 +119,13 @@ public final class XpadCompletionAction extends CompletionAction {
          */
         public void append(String content) {
             try {
-                ((ScilabDocument) editor.getTextPane().getDocument()).setFocused(true);
+                ScilabDocument doc = (ScilabDocument) editor.getTextPane().getDocument();
+                doc.setFocused(true);
                 Element root = editor.getTextPane().getDocument().getDefaultRootElement();
                 int pos = editor.getTextPane().getCaretPosition();
+                doc.mergeEditsBegin();
                 editor.getTextPane().getDocument().insertString(pos, content, null);
+                doc.mergeEditsEnd();
             } catch (BadLocationException e) { }
         }
 
