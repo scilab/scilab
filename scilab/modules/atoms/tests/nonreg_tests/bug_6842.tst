@@ -29,4 +29,4 @@ atomsGui();
 // Check if there is a warning when the description of toolbox_1 is displayed.
 
 atomsRemove("toolbox_1");
-atomsRepositorySetOfl("http://atoms.scilab.org");
+atomsRepositorySetOfl(mgetl(SCI+"/modules/atoms/tests/unit_tests/repositories.orig"));
