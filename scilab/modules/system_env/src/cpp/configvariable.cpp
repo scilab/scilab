@@ -12,36 +12,49 @@
 
 #include "configvariable.hxx"
 
-ConfigVariable* ConfigVariable::me;
+std::list<std::string> ConfigVariable::m_ModuleList;
 
-ConfigVariable* ConfigVariable::getInstance()
+bool ConfigVariable::setModuleList(std::list<std::string>& _pModule_list)
 {
-	if (me == NULL)
-	{
-		me = new ConfigVariable();
-	}
-	return me;
+    m_ModuleList.clear();
+
+    std::list<std::string>::iterator it;
+    for(it = _pModule_list.begin() ; it != _pModule_list.end() ; it++)
+    {
+        m_ModuleList.push_back(*it);
+    }
+    return true;
 }
 
-std::string ConfigVariable::get(const std::string& _szVar)
+std::list<std::string> ConfigVariable::getModuleList()
 {
-	std::map<std::string, std::string>::const_iterator it;
-	it = m_VarList.find(_szVar);
-	if(it != m_VarList.end())
-	{
-		return it->second;
-	}
-	else
-	{
-		return "";
-	}
+    std::list<std::string> moduleList;
+    return moduleList;
 }
 
-bool ConfigVariable::set(std::string _szVar, std::string _szVal)
+
+std::string ConfigVariable::m_SCIPath;
+
+bool ConfigVariable::setSCIPath(std::string& _SCIPath)
 {
-	bool bReturn = true;
-	//std::map <std::string, std::string> ::const_iterator it;
-	m_VarList.insert(std::pair<std::string,std::string>(_szVar,_szVal));
-	//m_VarList[_szVar] = _szVal;
-	return bReturn;
+    m_SCIPath = _SCIPath;
+    return true;
+}
+
+std::string ConfigVariable::getSCIPath()
+{
+    return m_SCIPath;
+}
+
+std::string ConfigVariable::m_HOMEPath;
+
+bool ConfigVariable::setHOMEPath(std::string& _HOMEPath)
+{
+    m_HOMEPath = _HOMEPath;
+    return true;
+}
+
+std::string ConfigVariable::getHOMEPath()
+{
+    return m_HOMEPath;
 }

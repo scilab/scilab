@@ -49,6 +49,8 @@ bool AntislashToSlash(char *pathwindows,char *pathunix);
 bool slashToAntislash(char *pathunix,char *pathwindows);
 char *getYASPpath(void);
 void setYASPpath(char *path);
+void setYASPHome(char *path);
+char *getYASPHome(void);
 void getenvc(int *ierr,char *var,char *buf,int *buflen,int *iflag);
 char *getshortpathname(char *longpathname,bool *convertok);
 bool isdir(const char * path);

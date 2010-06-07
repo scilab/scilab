@@ -87,10 +87,6 @@ libscisystem_env_la_LIBADD =
 am__objects_1 = libscisystem_env_la-setenvvar.lo
 am_libscisystem_env_la_OBJECTS = $(am__objects_1)
 libscisystem_env_la_OBJECTS = $(am_libscisystem_env_la_OBJECTS)
-libscisystem_env_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CXXLD) \
-	$(libscisystem_env_la_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
-	$(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -359,8 +355,11 @@ yacc_present = @yacc_present@
 SYSTEM_ENV_CPP_SOURCES = src/cpp/setenvvar.cpp
 pkglib_LTLIBRARIES = libscisystem_env.la
 libscisystem_env_la_SOURCES = $(SYSTEM_ENV_CPP_SOURCES)
-libscisystem_env_la_CXXFLAGS = -I includes/ \
-				-I src/cpp
+libscisystem_env_la_CPPFLAGS = -I includes/ \
+									-I src/cpp \
+									-I $(top_srcdir)/modules/symbol/includes \
+									-I $(top_srcdir)/modules/types/includes \
+									-I $(top_srcdir)/modules/abstractSyntaxTree/includes
 
 libscisystem_env_la_includedir = $(pkgincludedir)/system_env
 libscisystem_env_la_include_HEADERS = includes/setenvvar.hxx
@@ -430,7 +429,7 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libscisystem_env.la: $(libscisystem_env_la_OBJECTS) $(libscisystem_env_la_DEPENDENCIES) 
-	$(libscisystem_env_la_LINK) -rpath $(pkglibdir) $(libscisystem_env_la_OBJECTS) $(libscisystem_env_la_LIBADD) $(LIBS)
+	$(CXXLINK) -rpath $(pkglibdir) $(libscisystem_env_la_OBJECTS) $(libscisystem_env_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -462,11 +461,11 @@ distclean-compile:
 @am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
 
 libscisystem_env_la-setenvvar.lo: src/cpp/setenvvar.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisystem_env_la_CXXFLAGS) $(CXXFLAGS) -MT libscisystem_env_la-setenvvar.lo -MD -MP -MF $(DEPDIR)/libscisystem_env_la-setenvvar.Tpo -c -o libscisystem_env_la-setenvvar.lo `test -f 'src/cpp/setenvvar.cpp' || echo '$(srcdir)/'`src/cpp/setenvvar.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscisystem_env_la-setenvvar.lo -MD -MP -MF $(DEPDIR)/libscisystem_env_la-setenvvar.Tpo -c -o libscisystem_env_la-setenvvar.lo `test -f 'src/cpp/setenvvar.cpp' || echo '$(srcdir)/'`src/cpp/setenvvar.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscisystem_env_la-setenvvar.Tpo $(DEPDIR)/libscisystem_env_la-setenvvar.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/setenvvar.cpp' object='libscisystem_env_la-setenvvar.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisystem_env_la_CXXFLAGS) $(CXXFLAGS) -c -o libscisystem_env_la-setenvvar.lo `test -f 'src/cpp/setenvvar.cpp' || echo '$(srcdir)/'`src/cpp/setenvvar.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscisystem_env_la-setenvvar.lo `test -f 'src/cpp/setenvvar.cpp' || echo '$(srcdir)/'`src/cpp/setenvvar.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

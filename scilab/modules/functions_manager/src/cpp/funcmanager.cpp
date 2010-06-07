@@ -81,7 +81,7 @@ bool FuncManager::GetModules()
 {
 	string szModulesFilename;
 
-	string szPath = ConfigVariable::getInstance()->get("SCI");
+	string szPath = ConfigVariable::getSCIPath();
 	//	SciPath=getSCIpath();
 	if(szPath == "")
 	{
@@ -231,7 +231,7 @@ bool FuncManager::AppendModules()
 
 bool FuncManager::VerifyModule(char *_pszModuleName)
 {
-	string SciPath = ConfigVariable::getInstance()->get("SCI");
+	string SciPath = ConfigVariable::getSCIPath();
 	if(SciPath == "")
 	{
 		std::cout << "The SCI environment variable is not set." << std::endl;
@@ -339,7 +339,7 @@ bool FuncManager::LoadFuncByModule(void)
 bool FuncManager::ExecuteStartFile(string _stModule)
 {
     //build .start filename
-	string stPath = ConfigVariable::getInstance()->get("SCI");
+	string stPath = ConfigVariable::getSCIPath();
 	stPath += MODULE_DIR;
 	stPath += _stModule;
 	stPath += ETC_DIR;
@@ -348,7 +348,8 @@ bool FuncManager::ExecuteStartFile(string _stModule)
 
     Parser parser;
 
-    parser.parseFile(stPath, ConfigVariable::getInstance()->get("SCI"));
+    parser.parseFile(stPath, ConfigVariable::getSCIPath());
+
     if(parser.getExitStatus() == Parser::Failed)
     {
         std::ostringstream ostr;
@@ -381,7 +382,7 @@ bool FuncManager::LoadMacroFile(string _stModule)
     YaspWrite("Old \"LoadMacroFile\" function, no more called !");
     return true;
 	//macros
-	string stPath = ConfigVariable::getInstance()->get("SCI");
+	string stPath = ConfigVariable::getSCIPath();
 	stPath += MODULE_DIR;
 	stPath += _stModule;
 	stPath += MACRO_DIR;

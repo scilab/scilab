@@ -49,7 +49,6 @@ extern "C"
 #include "../../../gui/includes/InitializeGUI.h"
 #include "../../../string/includes/InitializeString.h"
 #include "scilabmode.h"
-#include "SetScilabEnvironment.h"
 #include "../../../jvm/includes/loadBackGroundClassPath.h"
 
 #include "../../../history_manager/includes/HistoryManager.h"
@@ -72,7 +71,7 @@ extern "C"
 #include "context.hxx"
 #include "configvariable.hxx"
 #include "context.hxx"
-//#include "setenvvar.hxx"
+#include "setenvvar.hxx"
 #include "funcmanager.hxx"
 
 #define INTERACTIVE     -1
@@ -99,7 +98,6 @@ void Add_i(void);
 void Add_pi(void);
 void Add_s(void);
 void Add_z(void);
-void Add_SCI(void);
 void Add_true(void);
 void Add_false(void);
 void Add_All_Variables(void);
@@ -586,18 +584,6 @@ int StartScilabEngine(int argc, char*argv[], int iFileIndex)
 
 int InitializeEnvironnement(void)
 {
-    char *ScilabDirectory = NULL;
-#ifdef _MSC_VER
-    ScilabDirectory = getScilabDirectory(FALSE);
-#else
-    SetSci();
-    ScilabDirectory = getSCIpath();
-#endif
-    if(ScilabDirectory)
-    {
-        ConfigVariable::getInstance()->set("SCI", ScilabDirectory);
-        FREE(ScilabDirectory);
-    }
     SetScilabEnvironment();
     InitializeLocalization();
     Add_All_Variables();
@@ -612,7 +598,6 @@ void Add_All_Variables(void)
     Add_z();
     Add_true();
     Add_false();
-    Add_SCI();
 }
 
 void Add_false(void)
@@ -651,12 +636,6 @@ void Add_z(void)
     dblCoef.val_set(0, 1, 1);
 
     Add_Poly_Constant("%z","z", 2, &dblCoef);
-}
-
-void Add_SCI(void)
-{
-    string stSciDir = ConfigVariable::getInstance()->get("SCI");
-    Add_String_Constant("SCI", stSciDir.c_str());
 }
 
 void Add_Poly_Constant(string _szName, string _szPolyVar, int _iRank, Double *_pdbl)

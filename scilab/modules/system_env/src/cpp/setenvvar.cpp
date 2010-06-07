@@ -28,7 +28,7 @@
 #endif
 
 #include "setenvvar.hxx"
-#include "configvariable.hxx"
+#include "context.hxx"
 
 using namespace std;
 
@@ -140,7 +140,7 @@ bool Set_YASP_PATH(char *DefaultPath)
 		GetShortPathName(DefaultPath,ShortPath,PATH_MAX);
 		AntislashToSlash(ShortPath,CopyOfDefaultPath);
 		sprintf (env, "SCI=%s",ShortPath);
-		setYASPpath(ShortPath);
+        setYASPpath(ShortPath);
 
 		if(CopyOfDefaultPath)
 		{
@@ -189,6 +189,7 @@ bool Set_HOME_PATH(char *DefaultPath)
 			GetShortPathName(DefaultPath,ShortPath,PATH_MAX);
 			slashToAntislash(ShortPath,CopyOfDefaultPath);
 			sprintf (env, "HOME=%s",ShortPath);
+            setYASPHome(ShortPath);
 
 			if(CopyOfDefaultPath)
 			{
@@ -221,6 +222,8 @@ bool Set_HOME_PATH(char *DefaultPath)
 		AntislashToSlash(DefaultPath,CopyOfDefaultPath);
 		GetShortPathName(CopyOfDefaultPath,ShortPath,PATH_MAX);
 		sprintf (env, "HOME=%s",ShortPath);
+        setYASPHome(ShortPath);
+
 
 		if(CopyOfDefaultPath)
 		{
@@ -355,8 +358,6 @@ char *getScilabDirectory(bool UnixStyle)
 			}
 		}
 		SciPathName[strlen(SciPathName)-1]='\0';
-		setYASPpath(SciPathName);
-
 	}
 	return SciPathName;
 }
@@ -515,13 +516,41 @@ bool convertSlash(char *path_in,char *path_out,bool slashToAntislash)
 /*--------------------------------------------------------------------------*/
 void setYASPpath(char *path)
 {
-	ConfigVariable::getInstance()->set("SCI", path);
+    String *pS = new String(path);
+    symbol::Context::getInstance()->put("SCI", *pS);
+
+    string sciPath(path);
+    ConfigVariable::setSCIPath(sciPath);
 }
 /*--------------------------------------------------------------------------*/
 char *getYASPpath(void)
 {
-	string sz = ConfigVariable::getInstance()->get("SCI");
-	return (char*)sz.c_str();
+    InternalType* pIT = symbol::Context::getInstance()->get("SCI");
+    if(pIT != NULL && pIT->getType() == InternalType::RealString)
+    {
+        return pIT->getAsString()->string_get(0);
+    }
+    return NULL;
+}
+
+/*--------------------------------------------------------------------------*/
+void setYASPHome(char *path)
+{
+    String *pS = new String(path);
+    symbol::Context::getInstance()->put("home", *pS);
+
+    string sciHome(path);
+    ConfigVariable::setHOMEPath(sciHome);
+}
+/*--------------------------------------------------------------------------*/
+char *getYASPHome(void)
+{
+    InternalType* pIT = symbol::Context::getInstance()->get("home");
+    if(pIT != NULL && pIT->getType() == InternalType::RealString)
+    {
+        return pIT->getAsString()->string_get(0);
+    }
+    return NULL;
 }
 
 void getenvc(int *ierr,char *var,char *buf,int *buflen,int *iflag)

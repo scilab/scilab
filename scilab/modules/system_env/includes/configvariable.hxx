@@ -13,35 +13,45 @@
 #ifndef __CONFIGVARIABLE_HXX__
 #define __CONFIGVARIABLE_HXX__
 
-#include <map>
+#include <list>
 #include <string>
 
 #ifdef _MSC_VER
-	#if SYSTEM_ENV_EXPORTS
-		#define EXTERN_SYSTEM_ENV __declspec (dllexport)
-	#else
-		#define EXTERN_SYSTEM_ENV __declspec (dllimport)
-	#endif
+    #if SYSTEM_ENV_EXPORTS
+        #define EXTERN_SYSTEM_ENV __declspec (dllexport)
+    #else
+        #define EXTERN_SYSTEM_ENV __declspec (dllimport)
+    #endif
 #else
-	#define EXTERN_SYSTEM_ENV 
+    #define EXTERN_SYSTEM_ENV 
 #endif
 
 class EXTERN_SYSTEM_ENV ConfigVariable
 {
+    //module list
 private :
-  ConfigVariable(){};
-  ~ConfigVariable(){};
+    static std::list<std::string> m_ModuleList;
 
-  static ConfigVariable *me;
-
-  std::map<std::string, std::string>m_VarList;
 public :
+    static bool setModuleList(std::list<std::string>& _module_list);
+    static std::list<std::string> getModuleList();
 
-  static ConfigVariable* getInstance();
 
-  std::string	get(const std::string& _szVar);
-  bool		set(std::string _szVar, std::string _szVal);
+    //SCI
+private :
+    static std::string m_SCIPath;
 
+public :
+    static bool setSCIPath(std::string& _SCIPath);
+    static std::string getSCIPath();
+
+    //HOME
+private :
+    static std::string m_HOMEPath;
+
+public :
+    static bool setHOMEPath(std::string& _HOMEPath);
+    static std::string getHOMEPath();
 };
 
 #endif /* __CONFIGVARIABLE_HXX__ */

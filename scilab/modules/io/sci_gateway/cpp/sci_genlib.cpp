@@ -158,7 +158,7 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
 			string stFullPath = string(pstParsePath) + string(DIR_SEPARATOR) + string(pstPath[k]);
 
             Parser parser;
-			parser.parseFile(stFullPath, ConfigVariable::getInstance()->get("SCI"));
+			parser.parseFile(stFullPath, ConfigVariable::getSCIPath());
             if(parser.getExitStatus() !=  Parser::Succeded)
             {
 #ifdef _MSC_VER
