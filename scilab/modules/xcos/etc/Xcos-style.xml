@@ -756,7 +756,7 @@
 		<add as="strokeColor" value="red" />
 	</add>
 	<add as="CLKSOMV_f" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/CLKSOMV_f.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/SUM_f.svg" />
 		<!--
 			<add as="shape" value="ellipse"/> <add as="strokeColor" value="red"/>
 			<add as="perimeter" value="ellipsePerimeter"/> <add
