@@ -100,6 +100,8 @@ Text Editor:
 
 * bug 7112 fixed - Two transpositions gave a string (if a'==1 then a=b').
 
+* bug 7238 fixed - The dot/del key on the numeric pad added a 'suppr' and a dot.
+
 FFTW:
 =====
 
