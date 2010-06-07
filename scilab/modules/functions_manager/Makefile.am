@@ -10,9 +10,7 @@
 ##
 ##
 
-FUNCTION_MANAGER_CPP_SOURCES 	= src/cpp/funcmanager.cpp \
-				$(top_builddir)/modules/system_env/src/cpp/configvariable.cpp
-
+FUNCTION_MANAGER_CPP_SOURCES 	= src/cpp/funcmanager.cpp
 
 pkglib_LTLIBRARIES 	= libscifunctions_manager.la
 

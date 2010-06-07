@@ -87,8 +87,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscifunctions_manager_la_DEPENDENCIES = $(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 	$(top_builddir)/modules/matio/libscimatio.la
-am__objects_1 = libscifunctions_manager_la-funcmanager.lo \
-	libscifunctions_manager_la-configvariable.lo
+am__objects_1 = libscifunctions_manager_la-funcmanager.lo
 am_libscifunctions_manager_la_OBJECTS = $(am__objects_1)
 libscifunctions_manager_la_OBJECTS =  \
 	$(am_libscifunctions_manager_la_OBJECTS)
@@ -377,9 +376,7 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
-FUNCTION_MANAGER_CPP_SOURCES = src/cpp/funcmanager.cpp \
-				$(top_builddir)/modules/system_env/src/cpp/configvariable.cpp
-
+FUNCTION_MANAGER_CPP_SOURCES = src/cpp/funcmanager.cpp
 pkglib_LTLIBRARIES = libscifunctions_manager.la
 libscifunctions_manager_la_SOURCES = $(FUNCTION_MANAGER_CPP_SOURCES)
 libscifunctions_manager_la_CXXFLAGS = -I$(top_builddir)/modules/types/includes/ \
@@ -504,7 +501,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_manager_la-configvariable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_manager_la-funcmanager.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testFunctionManager-cosinus.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testFunctionManager-foo.Po@am__quote@
@@ -537,13 +533,6 @@ libscifunctions_manager_la-funcmanager.lo: src/cpp/funcmanager.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/funcmanager.cpp' object='libscifunctions_manager_la-funcmanager.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifunctions_manager_la_CXXFLAGS) $(CXXFLAGS) -c -o libscifunctions_manager_la-funcmanager.lo `test -f 'src/cpp/funcmanager.cpp' || echo '$(srcdir)/'`src/cpp/funcmanager.cpp
-
-libscifunctions_manager_la-configvariable.lo: $(top_builddir)/modules/system_env/src/cpp/configvariable.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifunctions_manager_la_CXXFLAGS) $(CXXFLAGS) -MT libscifunctions_manager_la-configvariable.lo -MD -MP -MF $(DEPDIR)/libscifunctions_manager_la-configvariable.Tpo -c -o libscifunctions_manager_la-configvariable.lo `test -f '$(top_builddir)/modules/system_env/src/cpp/configvariable.cpp' || echo '$(srcdir)/'`$(top_builddir)/modules/system_env/src/cpp/configvariable.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscifunctions_manager_la-configvariable.Tpo $(DEPDIR)/libscifunctions_manager_la-configvariable.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_builddir)/modules/system_env/src/cpp/configvariable.cpp' object='libscifunctions_manager_la-configvariable.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifunctions_manager_la_CXXFLAGS) $(CXXFLAGS) -c -o libscifunctions_manager_la-configvariable.lo `test -f '$(top_builddir)/modules/system_env/src/cpp/configvariable.cpp' || echo '$(srcdir)/'`$(top_builddir)/modules/system_env/src/cpp/configvariable.cpp
 
 testFunctionManager-test-function.o: src/cpp/test-function.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testFunctionManager_CXXFLAGS) $(CXXFLAGS) -MT testFunctionManager-test-function.o -MD -MP -MF $(DEPDIR)/testFunctionManager-test-function.Tpo -c -o testFunctionManager-test-function.o `test -f 'src/cpp/test-function.cpp' || echo '$(srcdir)/'`src/cpp/test-function.cpp

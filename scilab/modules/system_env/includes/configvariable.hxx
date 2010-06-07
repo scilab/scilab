@@ -52,6 +52,23 @@ private :
 public :
     static bool setHOMEPath(std::string& _HOMEPath);
     static std::string getHOMEPath();
+
+// Force Quit
+private :
+    static bool m_bForceQuit;
+
+public : 
+    static bool setForceQuit(bool _bForceQuit);
+    static bool getForceQuit(void);
+
+// Exit Status
+private :
+    static int m_iExitStatus;
+    
+public : 
+    static bool setExitStatus(int _iExitStatus);
+    static int getExitStatus(void);
+
 };
 
 #endif /* __CONFIGVARIABLE_HXX__ */

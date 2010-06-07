@@ -12,6 +12,10 @@
 
 #include "configvariable.hxx"
 
+/*
+** Module List
+** \{
+*/
 std::list<std::string> ConfigVariable::m_ModuleList;
 
 bool ConfigVariable::setModuleList(std::list<std::string>& _pModule_list)
@@ -31,8 +35,14 @@ std::list<std::string> ConfigVariable::getModuleList()
     std::list<std::string> moduleList;
     return moduleList;
 }
+/*
+** \}
+*/
 
-
+/*
+** SCI Path
+** \{
+*/
 std::string ConfigVariable::m_SCIPath;
 
 bool ConfigVariable::setSCIPath(std::string& _SCIPath)
@@ -58,3 +68,46 @@ std::string ConfigVariable::getHOMEPath()
 {
     return m_HOMEPath;
 }
+/*
+** \}
+*/
+
+/*
+** Force Quit
+** \{
+*/
+bool ConfigVariable::m_bForceQuit = false;
+
+bool ConfigVariable::setForceQuit(bool _bForceQuit)
+{
+    m_bForceQuit = _bForceQuit;
+    return true;
+}
+
+bool ConfigVariable::getForceQuit(void)
+{
+    return m_bForceQuit;
+}
+/*
+** \}
+*/
+
+/*
+** Exit Status
+** \{
+*/
+int ConfigVariable::m_iExitStatus = 0;
+
+bool ConfigVariable::setExitStatus(int _iExitStatus)
+{
+    m_iExitStatus = _iExitStatus;
+    return true;
+}
+
+int ConfigVariable::getExitStatus(void)
+{
+    return m_iExitStatus;
+}
+/*
+** \}
+*/
