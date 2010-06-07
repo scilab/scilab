@@ -129,17 +129,17 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/c/stack1.c src/c/realmain.c src/c/stack3.c src/c/str2sci.c \
 	src/c/getmodules.c src/c/setgetSCIpath.c src/c/getmemory.c \
 	src/c/Funtab.c src/c/csignal.c src/c/callinterf.c \
-	src/c/scimem.c src/c/banier.c src/c/isanan.c src/c/parse.c \
-	src/c/timer.c src/c/stack2.c src/c/xscion.c \
-	src/c/SetScilabEnvironment.c src/c/returnanan.c \
-	src/c/LoadFunctionsTab.c src/c/with_module.c \
-	src/c/loadversion.c src/c/version.c src/c/stackinfo.c \
-	src/c/scirun.c src/c/SCIHOME.c src/c/warningmode.c \
-	src/c/InitializeCore.c src/c/TerminateCore.c src/c/coretable.c \
-	src/c/returnProperty.c src/c/returnPropertyList.c \
-	src/c/scilabmode.c src/c/GetXmlFileEncoding.c \
-	src/c/islittleendian.c src/c/terme.c src/c/ifexpr.c \
-	src/c/expr.c src/c/getcommandlineargs.c src/c/syncexec.c \
+	src/c/scimem.c src/c/isanan.c src/c/parse.c src/c/timer.c \
+	src/c/stack2.c src/c/xscion.c src/c/SetScilabEnvironment.c \
+	src/c/returnanan.c src/c/LoadFunctionsTab.c \
+	src/c/with_module.c src/c/loadversion.c src/c/version.c \
+	src/c/stackinfo.c src/c/scirun.c src/c/SCIHOME.c \
+	src/c/warningmode.c src/c/InitializeCore.c \
+	src/c/TerminateCore.c src/c/coretable.c src/c/returnProperty.c \
+	src/c/returnPropertyList.c src/c/scilabmode.c \
+	src/c/GetXmlFileEncoding.c src/c/islittleendian.c \
+	src/c/terme.c src/c/ifexpr.c src/c/expr.c \
+	src/c/getcommandlineargs.c src/c/syncexec.c \
 	src/c/callFunctionFromGateway.c src/c/getvariablesname.c \
 	src/c/commandwords.c src/c/freeArrayOfString.c \
 	src/c/getstaticdebuginfo.c src/c/getdynamicdebuginfo.c \
@@ -191,8 +191,8 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/fortran/relocstack.f src/cpp/core_gw.cpp \
 	src/cpp/hashtable_core.cpp src/cpp/namstr.cpp \
 	src/cpp/search_functions.cpp src/cpp/storeCommand.cpp \
-	sci_gateway/c/sci_stacksize.c sci_gateway/c/sci_resume.c \
-	sci_gateway/c/sci_mtlb_mode.c sci_gateway/c/sci_banner.c \
+	src/cpp/banner.cpp sci_gateway/c/sci_stacksize.c \
+	sci_gateway/c/sci_resume.c sci_gateway/c/sci_mtlb_mode.c \
 	sci_gateway/c/sci_where.c sci_gateway/c/sci_errcatch.c \
 	sci_gateway/c/sci_getos.c sci_gateway/c/sci_format.c \
 	sci_gateway/c/sci_getmemory.c sci_gateway/c/sci_havewindow.c \
@@ -239,7 +239,7 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	sci_gateway/fortran/sci_debug.f sci_gateway/fortran/sci_comp.f \
 	sci_gateway/fortran/sci_isglobal.f \
 	sci_gateway/cpp/sci_getmodules.cpp \
-	sci_gateway/cpp/sci_clear.cpp
+	sci_gateway/cpp/sci_clear.cpp sci_gateway/cpp/sci_banner.cpp
 @USE_DYNAMIC_STACK_TRUE@am__objects_1 = libscicore_la-scimem64.lo
 am__objects_2 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-tmpdir.lo libscicore_la-intmacr2tree.lo \
@@ -252,10 +252,10 @@ am__objects_2 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-getmodules.lo libscicore_la-setgetSCIpath.lo \
 	libscicore_la-getmemory.lo libscicore_la-Funtab.lo \
 	libscicore_la-csignal.lo libscicore_la-callinterf.lo \
-	libscicore_la-scimem.lo libscicore_la-banier.lo \
-	libscicore_la-isanan.lo libscicore_la-parse.lo \
-	libscicore_la-timer.lo libscicore_la-stack2.lo \
-	libscicore_la-xscion.lo libscicore_la-SetScilabEnvironment.lo \
+	libscicore_la-scimem.lo libscicore_la-isanan.lo \
+	libscicore_la-parse.lo libscicore_la-timer.lo \
+	libscicore_la-stack2.lo libscicore_la-xscion.lo \
+	libscicore_la-SetScilabEnvironment.lo \
 	libscicore_la-returnanan.lo libscicore_la-LoadFunctionsTab.lo \
 	libscicore_la-with_module.lo libscicore_la-loadversion.lo \
 	libscicore_la-version.lo libscicore_la-stackinfo.lo \
@@ -309,28 +309,28 @@ am__objects_4 = clunit.lo getlin.lo allowptr.lo isany.lo hmcreate.lo \
 am__objects_5 = libscicore_la-core_gw.lo \
 	libscicore_la-hashtable_core.lo libscicore_la-namstr.lo \
 	libscicore_la-search_functions.lo \
-	libscicore_la-storeCommand.lo
+	libscicore_la-storeCommand.lo libscicore_la-banner.lo
 am__objects_6 = libscicore_la-sci_stacksize.lo \
 	libscicore_la-sci_resume.lo libscicore_la-sci_mtlb_mode.lo \
-	libscicore_la-sci_banner.lo libscicore_la-sci_where.lo \
-	libscicore_la-sci_errcatch.lo libscicore_la-sci_getos.lo \
-	libscicore_la-sci_format.lo libscicore_la-sci_getmemory.lo \
-	libscicore_la-sci_havewindow.lo libscicore_la-sci_delbpt.lo \
-	libscicore_la-sci_macr2lst.lo libscicore_la-sci_isdef.lo \
-	libscicore_la-sci_isglobal.lo libscicore_la-sci_who.lo \
-	libscicore_la-sci_errclear.lo libscicore_la-sci_global.lo \
-	libscicore_la-sci_funcprot.lo libscicore_la-sci_newfun.lo \
-	libscicore_la-sci_warning.lo libscicore_la-sci_dispbpt.lo \
-	libscicore_la-sci_intppty.lo libscicore_la-sci_ieee.lo \
-	libscicore_la-sci_gstacksize.lo libscicore_la-sci_lasterror.lo \
-	libscicore_la-sci_funptr.lo libscicore_la-sci_return.lo \
-	libscicore_la-sci_exists.lo libscicore_la-sci_getmd5.lo \
-	libscicore_la-sci_clearfun.lo libscicore_la-sci_setbpt.lo \
-	libscicore_la-sci_what.lo libscicore_la-sci_predef.lo \
-	libscicore_la-sci_clearglobal.lo libscicore_la-sci_arg.lo \
-	libscicore_la-sci_type.lo libscicore_la-sci_typename.lo \
-	libscicore_la-sci_mode.lo libscicore_la-sci_macr2tree.lo \
-	libscicore_la-sci_iserror.lo libscicore_la-sci_getversion.lo \
+	libscicore_la-sci_where.lo libscicore_la-sci_errcatch.lo \
+	libscicore_la-sci_getos.lo libscicore_la-sci_format.lo \
+	libscicore_la-sci_getmemory.lo libscicore_la-sci_havewindow.lo \
+	libscicore_la-sci_delbpt.lo libscicore_la-sci_macr2lst.lo \
+	libscicore_la-sci_isdef.lo libscicore_la-sci_isglobal.lo \
+	libscicore_la-sci_who.lo libscicore_la-sci_errclear.lo \
+	libscicore_la-sci_global.lo libscicore_la-sci_funcprot.lo \
+	libscicore_la-sci_newfun.lo libscicore_la-sci_warning.lo \
+	libscicore_la-sci_dispbpt.lo libscicore_la-sci_intppty.lo \
+	libscicore_la-sci_ieee.lo libscicore_la-sci_gstacksize.lo \
+	libscicore_la-sci_lasterror.lo libscicore_la-sci_funptr.lo \
+	libscicore_la-sci_return.lo libscicore_la-sci_exists.lo \
+	libscicore_la-sci_getmd5.lo libscicore_la-sci_clearfun.lo \
+	libscicore_la-sci_setbpt.lo libscicore_la-sci_what.lo \
+	libscicore_la-sci_predef.lo libscicore_la-sci_clearglobal.lo \
+	libscicore_la-sci_arg.lo libscicore_la-sci_type.lo \
+	libscicore_la-sci_typename.lo libscicore_la-sci_mode.lo \
+	libscicore_la-sci_macr2tree.lo libscicore_la-sci_iserror.lo \
+	libscicore_la-sci_getversion.lo \
 	libscicore_la-sci_getdebuginfo.lo libscicore_la-sci_debug.lo \
 	libscicore_la-gw_core.lo libscicore_la-gw_user.lo \
 	libscicore_la-gw_user2.lo libscicore_la-sci_error.lo \
@@ -347,7 +347,7 @@ am__objects_7 = sci_errclear.lo sci_global.lo sci_mtlb_mode.lo \
 	sci_clearglobal.lo sci_delbpt.lo where.lo sci_iserror.lo \
 	sci_debug.lo sci_comp.lo sci_isglobal.lo
 am__objects_8 = libscicore_la-sci_getmodules.lo \
-	libscicore_la-sci_clear.lo
+	libscicore_la-sci_clear.lo libscicore_la-sci_banner.lo
 am_libscicore_la_OBJECTS = $(am__objects_2) $(am__objects_4) \
 	$(am__objects_5) $(am__objects_6) $(am__objects_7) \
 	$(am__objects_8)
@@ -645,17 +645,17 @@ CORE_C_SOURCES = src/c/inffic.c src/c/cs2st.c src/c/tmpdir.c \
 	src/c/realmain.c src/c/stack3.c src/c/str2sci.c \
 	src/c/getmodules.c src/c/setgetSCIpath.c src/c/getmemory.c \
 	src/c/Funtab.c src/c/csignal.c src/c/callinterf.c \
-	src/c/scimem.c src/c/banier.c src/c/isanan.c src/c/parse.c \
-	src/c/timer.c src/c/stack2.c src/c/xscion.c \
-	src/c/SetScilabEnvironment.c src/c/returnanan.c \
-	src/c/LoadFunctionsTab.c src/c/with_module.c \
-	src/c/loadversion.c src/c/version.c src/c/stackinfo.c \
-	src/c/scirun.c src/c/SCIHOME.c src/c/warningmode.c \
-	src/c/InitializeCore.c src/c/TerminateCore.c src/c/coretable.c \
-	src/c/returnProperty.c src/c/returnPropertyList.c \
-	src/c/scilabmode.c src/c/GetXmlFileEncoding.c \
-	src/c/islittleendian.c src/c/terme.c src/c/ifexpr.c \
-	src/c/expr.c src/c/getcommandlineargs.c src/c/syncexec.c \
+	src/c/scimem.c src/c/isanan.c src/c/parse.c src/c/timer.c \
+	src/c/stack2.c src/c/xscion.c src/c/SetScilabEnvironment.c \
+	src/c/returnanan.c src/c/LoadFunctionsTab.c \
+	src/c/with_module.c src/c/loadversion.c src/c/version.c \
+	src/c/stackinfo.c src/c/scirun.c src/c/SCIHOME.c \
+	src/c/warningmode.c src/c/InitializeCore.c \
+	src/c/TerminateCore.c src/c/coretable.c src/c/returnProperty.c \
+	src/c/returnPropertyList.c src/c/scilabmode.c \
+	src/c/GetXmlFileEncoding.c src/c/islittleendian.c \
+	src/c/terme.c src/c/ifexpr.c src/c/expr.c \
+	src/c/getcommandlineargs.c src/c/syncexec.c \
 	src/c/callFunctionFromGateway.c src/c/getvariablesname.c \
 	src/c/commandwords.c src/c/freeArrayOfString.c \
 	src/c/getstaticdebuginfo.c src/c/getdynamicdebuginfo.c \
@@ -711,12 +711,12 @@ src/cpp/core_gw.cpp \
 src/cpp/hashtable_core.cpp \
 src/cpp/namstr.cpp \
 src/cpp/search_functions.cpp \
-src/cpp/storeCommand.cpp
+src/cpp/storeCommand.cpp \
+src/cpp/banner.cpp
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_stacksize.c \
 sci_gateway/c/sci_resume.c \
 sci_gateway/c/sci_mtlb_mode.c \
-sci_gateway/c/sci_banner.c \
 sci_gateway/c/sci_where.c \
 sci_gateway/c/sci_errcatch.c \
 sci_gateway/c/sci_getos.c \
@@ -792,7 +792,8 @@ sci_gateway/fortran/sci_comp.f \
 sci_gateway/fortran/sci_isglobal.f
 
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_getmodules.cpp \
-						sci_gateway/cpp/sci_clear.cpp
+						sci_gateway/cpp/sci_clear.cpp \
+						sci_gateway/cpp/sci_banner.cpp
 
 libscicore_la_CFLAGS = -I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -1038,7 +1039,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-SCIHOME.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-SetScilabEnvironment.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-TerminateCore.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-banier.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-banner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-callDynamicGateway.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-callFunctionFromGateway.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-callinterf.Plo@am__quote@
@@ -1350,13 +1351,6 @@ libscicore_la-scimem.lo: src/c/scimem.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/scimem.c' object='libscicore_la-scimem.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-scimem.lo `test -f 'src/c/scimem.c' || echo '$(srcdir)/'`src/c/scimem.c
-
-libscicore_la-banier.lo: src/c/banier.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-banier.lo -MD -MP -MF $(DEPDIR)/libscicore_la-banier.Tpo -c -o libscicore_la-banier.lo `test -f 'src/c/banier.c' || echo '$(srcdir)/'`src/c/banier.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-banier.Tpo $(DEPDIR)/libscicore_la-banier.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/banier.c' object='libscicore_la-banier.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-banier.lo `test -f 'src/c/banier.c' || echo '$(srcdir)/'`src/c/banier.c
 
 libscicore_la-isanan.lo: src/c/isanan.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-isanan.lo -MD -MP -MF $(DEPDIR)/libscicore_la-isanan.Tpo -c -o libscicore_la-isanan.lo `test -f 'src/c/isanan.c' || echo '$(srcdir)/'`src/c/isanan.c
@@ -1756,13 +1750,6 @@ libscicore_la-sci_mtlb_mode.lo: sci_gateway/c/sci_mtlb_mode.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_mtlb_mode.c' object='libscicore_la-sci_mtlb_mode.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_mtlb_mode.lo `test -f 'sci_gateway/c/sci_mtlb_mode.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mtlb_mode.c
-
-libscicore_la-sci_banner.lo: sci_gateway/c/sci_banner.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_banner.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_banner.Tpo -c -o libscicore_la-sci_banner.lo `test -f 'sci_gateway/c/sci_banner.c' || echo '$(srcdir)/'`sci_gateway/c/sci_banner.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-sci_banner.Tpo $(DEPDIR)/libscicore_la-sci_banner.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_banner.c' object='libscicore_la-sci_banner.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_banner.lo `test -f 'sci_gateway/c/sci_banner.c' || echo '$(srcdir)/'`sci_gateway/c/sci_banner.c
 
 libscicore_la-sci_where.lo: sci_gateway/c/sci_where.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_where.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_where.Tpo -c -o libscicore_la-sci_where.lo `test -f 'sci_gateway/c/sci_where.c' || echo '$(srcdir)/'`sci_gateway/c/sci_where.c
@@ -2177,6 +2164,13 @@ libscicore_la-storeCommand.lo: src/cpp/storeCommand.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicore_la-storeCommand.lo `test -f 'src/cpp/storeCommand.cpp' || echo '$(srcdir)/'`src/cpp/storeCommand.cpp
 
+libscicore_la-banner.lo: src/cpp/banner.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicore_la-banner.lo -MD -MP -MF $(DEPDIR)/libscicore_la-banner.Tpo -c -o libscicore_la-banner.lo `test -f 'src/cpp/banner.cpp' || echo '$(srcdir)/'`src/cpp/banner.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-banner.Tpo $(DEPDIR)/libscicore_la-banner.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/banner.cpp' object='libscicore_la-banner.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicore_la-banner.lo `test -f 'src/cpp/banner.cpp' || echo '$(srcdir)/'`src/cpp/banner.cpp
+
 libscicore_la-sci_getmodules.lo: sci_gateway/cpp/sci_getmodules.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicore_la-sci_getmodules.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_getmodules.Tpo -c -o libscicore_la-sci_getmodules.lo `test -f 'sci_gateway/cpp/sci_getmodules.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_getmodules.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-sci_getmodules.Tpo $(DEPDIR)/libscicore_la-sci_getmodules.Plo
@@ -2190,6 +2184,13 @@ libscicore_la-sci_clear.lo: sci_gateway/cpp/sci_clear.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_clear.cpp' object='libscicore_la-sci_clear.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicore_la-sci_clear.lo `test -f 'sci_gateway/cpp/sci_clear.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_clear.cpp
+
+libscicore_la-sci_banner.lo: sci_gateway/cpp/sci_banner.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicore_la-sci_banner.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_banner.Tpo -c -o libscicore_la-sci_banner.lo `test -f 'sci_gateway/cpp/sci_banner.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_banner.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-sci_banner.Tpo $(DEPDIR)/libscicore_la-sci_banner.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_banner.cpp' object='libscicore_la-sci_banner.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicore_la-sci_banner.lo `test -f 'sci_gateway/cpp/sci_banner.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_banner.cpp
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<

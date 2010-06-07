@@ -337,10 +337,6 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath=".\banier.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\..\call_scilab\src\c\call_scilab.c"
 				>
 			</File>
@@ -606,10 +602,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_arg.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_banner.c"
 				>
 			</File>
 			<File

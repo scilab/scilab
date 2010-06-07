@@ -11,7 +11,6 @@
  *
  */
 #include <stdio.h>
-#include "banier.h"
 #include "csignal.h"
 #include "sigbas.h"
 

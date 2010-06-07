@@ -32,7 +32,6 @@ src/c/Funtab.c \
 src/c/csignal.c \
 src/c/callinterf.c \
 src/c/scimem.c \
-src/c/banier.c \
 src/c/isanan.c \
 src/c/parse.c \
 src/c/timer.c \
@@ -193,7 +192,8 @@ src/cpp/core_gw.cpp \
 src/cpp/hashtable_core.cpp \
 src/cpp/namstr.cpp \
 src/cpp/search_functions.cpp \
-src/cpp/storeCommand.cpp
+src/cpp/storeCommand.cpp \
+src/cpp/banner.cpp
 
 if USE_DYNAMIC_STACK
 CORE_FORTRAN_SOURCES += src/fortran/relocstack.f
@@ -202,7 +202,6 @@ endif
 GATEWAY_C_SOURCES = sci_gateway/c/sci_stacksize.c \
 sci_gateway/c/sci_resume.c \
 sci_gateway/c/sci_mtlb_mode.c \
-sci_gateway/c/sci_banner.c \
 sci_gateway/c/sci_where.c \
 sci_gateway/c/sci_errcatch.c \
 sci_gateway/c/sci_getos.c \
@@ -278,7 +277,8 @@ sci_gateway/fortran/sci_comp.f \
 sci_gateway/fortran/sci_isglobal.f
 
 GATEWAY_CPP_SOURCES = 	sci_gateway/cpp/sci_getmodules.cpp \
-						sci_gateway/cpp/sci_clear.cpp
+						sci_gateway/cpp/sci_clear.cpp \
+						sci_gateway/cpp/sci_banner.cpp
 
 libscicore_la_CFLAGS = -I$(srcdir)/includes/ \
 	-I$(srcdir)/src/c/ \

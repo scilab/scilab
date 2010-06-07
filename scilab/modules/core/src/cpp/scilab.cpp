@@ -24,7 +24,6 @@ extern "C"
 
 //#include "SetScilabEnvironment.h"
 #include "prompt.h"
-#include "localization.h"
 #include "InitializeLocalization.h"
 #include "MALLOC.h"
 #include "setgetSCIpath.h"
@@ -73,6 +72,8 @@ extern "C"
 #include "context.hxx"
 #include "setenvvar.hxx"
 #include "funcmanager.hxx"
+
+#include "banner.hxx"
 
 #define INTERACTIVE     -1
 
@@ -280,38 +281,6 @@ static int batchMain (void)
 #endif
 
     return WELL_DONE;
-}
-
-static void banner()
-{
-#define SCI_VERSION_STRING "scilab-branch-YaSp"
-    int i;
-    char *line = "        ___________________________________________        ";
-    int startVersion = (int)(floor((double)(strlen(line)/2)) - floor((double)(strlen(SCI_VERSION_STRING)/2)));
-
-    YaspWrite(line);
-    YaspWrite("\n");
-
-/* To center the version name */
-    for( i=0 ; i<startVersion ; i++ )
-    {
-        YaspWrite(" ");
-    }
-
-    YaspWrite(SCI_VERSION_STRING);
-    YaspWrite("\n\n");
-
-    YaspWrite(_("                 Consortium Scilab (DIGITEO)\n"));
-
-    YaspWrite(_("               Copyright (c) 1989-2009 (INRIA)\n"));
-    YaspWrite(_("               Copyright (c) 1989-2007 (ENPC)\n"));
-    YaspWrite(line);
-    YaspWrite("\n");
-    YaspWrite("\n");
-    YaspWrite("           -*- THIS IS SCILAB 6.0 aka YaSp -*-\n");
-    YaspWrite("\n");
-    YaspWrite(line);
-    YaspWrite("\n");
 }
 
 /*
