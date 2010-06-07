@@ -210,36 +210,72 @@ function updateDescFrame()
         thisModuleDetails  = thisModuleStruct(MRVersionAvailable);
     end
 
-    // Manage size
+    // Download Size
     // =========================================================================
 
+    sizeHTML = "";
+
     if isfield(thisModuleDetails,OSNAME+ARCH+"Size") then
-        sizeHTML = ..
-            "<div style=""font-weight:bold;margin-top:10px;margin-bottom:5px;"">" + ..
-            gettext("Download size")                                              + ..
-            "</div>"                                                              + ..
-            "<div>"                                                               + ..
-            atomsSize2human(thisModuleDetails(OSNAME+ARCH+"Size"))                + ..
-            "</div>";
-    else
-        sizeHTML = "";
+        sizeHTML = txt2title(gettext("Download size")) ..
+                   + "<div>" ..
+                   + atomsSize2human(thisModuleDetails(OSNAME+ARCH+"Size")) ..
+                   + "</div>";
     end
 
-    // Manage authors
+    // Authors
     // =========================================================================
 
     authorMat  = thisModuleDetails.Author;
-
-    authorHTML = "<div style=""font-weight:bold;margin-top:10px;margin-bottom:5px;"">" + ..
-                 gettext("Author(s)") + ..
-                 "</div>" + ..
-                 "<div>";
+    authorHTML = "";
 
     for i=1:size(authorMat,"*")
         authorHTML = authorHTML + authorMat(i)+"<br>";
     end
 
-    authorHTML = authorHTML + "</div>";
+    authorHTML = txt2title(gettext("Author(s)")) ..
+                 + "<div>" ..
+                 + authorHTML
+                 + "</div>";
+
+    // URLs (See also)
+    // =========================================================================
+
+    URLs        = [];
+    seeAlsoHTML = "";
+
+    if isfield(thisModuleDetails,"URL") & (thisModuleDetails.URL<>"") then
+        URLs = [ URLs ; thisModuleDetails.URL ];
+    end
+
+    if isfield(thisModuleDetails,"WebSite") & (thisModuleDetails.WebSite<>"") then
+        URLs = [ URLs ; thisModuleDetails.WebSite ];
+    end
+
+    if ~isempty(URLs) then
+
+        for i=1:size(URLs,"*")
+            seeAlsoHTML = seeAlsoHTML + "&nbsp;&bull;&nbsp;"+URLs(i)+"<br>";
+        end
+
+        seeAlsoHTML = txt2title(gettext("See also"))..
+                      + "<div>" ..
+                      + seeAlsoHTML ..
+                      + "</div>";
+    end
+
+    // Release date
+    // =========================================================================
+
+    dateHTML = "";
+
+    if isfield(thisModuleDetails,"Date") ..
+       & ~isempty(regexp(thisModuleDetails.Date,"/^[0-9]{4}-[0-1][0-9]-[0-3][0-9]\s/")) then
+
+        dateHTML = txt2title(gettext("Release date")) ..
+                   + "<div>" ..
+                   + part(thisModuleDetails.Date,1:10) ..
+                   + "</div>";
+    end
 
     // Build and Set the HTML code
     // =========================================================================
@@ -247,20 +283,21 @@ function updateDescFrame()
 
     htmlcode = "<html>" + ..
                "<body>" + ..
-               "<div style=""font-weight:bold;margin-top:10px;margin-bottom:5px;"">" + ..
-               gettext("Version") + ..
-               "</div>" + ..
+               txt2title(gettext("Version")) + ..
                "<div>" + thisModuleDetails.Version  + "</div>" + ..
                authorHTML + ..
-               "<div style=""font-weight:bold;margin-top:10px;margin-bottom:5px;"">" + ..
-               gettext("Description") + ..
-               "</div>" + ..
+               txt2title(gettext("Description")) + ..
                "<div>" + ..
                strcat(thisModuleDetails.Description,"<br>")  + ..
                "</div>" + ..
+               seeAlsoHTML + ..
+               dateHTML + ..
                sizeHTML + ..
                "</body>" + ..
                "</html>";
+
+    // Process URLs and Emails
+    htmlcode = processHTMLLinks(htmlcode);
 
     // Update the main description
     set(Desc,"String",htmlcode);
@@ -423,5 +460,45 @@ function showWarning(msg)
     msgText = findobj("tag","msgText");
 
     set(msgText,"String",str);
+
+endfunction
+
+// =============================================================================
+// processHTMLLinks
+// + Find URLs
+// + Convert them in HTML (hyperlinks)
+// =============================================================================
+
+function txtout = processHTMLLinks(txtin)
+
+    regexUrl   = "/((((H|h)(T|t)|(F|f))(T|t)(P|p)((S|s)?))\:\/\/)(www|[a-zA-Z0-9])[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,6}(\:[0-9]{1,5})*(\/($|[a-zA-Z0-9\.\,\;\?\''\\\+&amp;%\$#\=~_\-\/]+))*/";
+    txtout     = "";
+
+    [mat_start,mat_end,mat_match] = regexp(txtin,regexUrl);
+
+    if ~isempty(mat_match) then
+        mat_end = [ 0 mat_end ];
+        for i=1:size(mat_match,"*")
+            txtout = txtout + part(txtin,[mat_end(i)+1:mat_start(i)-1]) ..
+                            + "<a href="""+mat_match(i)+""" target=""_blank"">" ..
+                            + mat_match(i) ..
+                            + "</a>";
+        end
+        txtout = txtout + part(txtin,mat_end(size(mat_end,"*"))+1:length(txtin));
+    else
+        txtout = txtin;
+    end
+
+endfunction
+
+// =============================================================================
+// txt2title
+// =============================================================================
+
+function txtout = txt2title(txtin)
+
+    txtout = "<div style=""font-weight:bold;margin-top:10px;margin-bottom:3px;"">" + ..
+             txtin + ..
+             "</div>";
 
 endfunction

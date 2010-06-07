@@ -113,6 +113,7 @@ public class InputPortElement extends AbstractElement<InputPort> {
 	private InputPort allocatePort() {
 		InputPort ret;
 		ScilabType inImpl = graphics.get(GRAPHICS_INIMPL_INDEX);
+		
 		/*
 		 * backward compatibility, use explicit as default.
 		 */
@@ -166,7 +167,12 @@ public class InputPortElement extends AbstractElement<InputPort> {
 		// The number of column of the port
 		int nbColumns;
 		if (dataColumns.getRealPart() != null) {
-			nbColumns = (int) dataColumns.getRealPart()[alreadyDecodedCount][0];
+			
+			try {
+				nbColumns = (int) dataColumns.getRealPart()[alreadyDecodedCount][0];
+			} catch (ArrayIndexOutOfBoundsException e) {
+				nbColumns = 1;
+			}
 		} else {
 			nbColumns = 1;
 		}

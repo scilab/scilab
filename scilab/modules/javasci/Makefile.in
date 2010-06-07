@@ -66,6 +66,9 @@ host_triplet = @host@
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @JAVASCI_TRUE@@NEED_JAVA_TRUE@am__append_1 = java
+
+# With --enable-compilation-tests, launch java unitary tests
+@COMPILATION_TESTS_TRUE@@JAVASCI_TRUE@am__append_2 = test
 subdir = modules/javasci
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -284,6 +287,7 @@ OCAMLDEP = @OCAMLDEP@
 OCAMLLEX = @OCAMLLEX@
 OCAMLOPT = @OCAMLOPT@
 OCAMLYACC = @OCAMLYACC@
+OPENMP_ENABLE = @OPENMP_ENABLE@
 OTOOL = @OTOOL@
 OTOOL64 = @OTOOL64@
 PACKAGE = @PACKAGE@
@@ -506,7 +510,7 @@ libjavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-@JAVASCI_TRUE@TARGETS_ALL = $(am__append_1)
+@JAVASCI_TRUE@TARGETS_ALL = $(am__append_1) $(am__append_2)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -1045,7 +1049,7 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 
 
 # This target enables tests for Scilab
-@JAVASCI_TRUE@check-local: $(top_builddir)/scilab-bin
+@JAVASCI_TRUE@check-local: $(top_builddir)/scilab-bin test
 @JAVASCI_TRUE@	@COMMAND="test_run('$(modulename)');quit";\
 @JAVASCI_TRUE@	export LANG=C;\
 @JAVASCI_TRUE@	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
@@ -1111,6 +1115,12 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @JAVASCI_TRUE@		echo "rm -f $(builddir)/$$dir/$(MACROBINMASK)"; \
 @JAVASCI_TRUE@		rm -f $(builddir)/$$dir/$(MACROBINMASK); \
 @JAVASCI_TRUE@	done
+
+@JAVASCI_TRUE@test:
+# More tests could be added here
+@JAVASCI_TRUE@	@if test -f build.xml; then \
+@JAVASCI_TRUE@		$(ANT) test; \
+@JAVASCI_TRUE@	fi
 
 @JAVASCI_TRUE@all-local: $(TARGETS_ALL)
 

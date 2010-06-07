@@ -1,0 +1,6 @@
+	LIBRARY    operations.dll
+
+
+EXPORTS
+vGetPointerFromDoubleComplex
+oGetDoubleComplexFromPointer

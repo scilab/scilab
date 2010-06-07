@@ -58,6 +58,9 @@
     <para>If functionname is the name of a undefined scilab function
     <literal>edit</literal> create a functionname.sci file in the TMPDIR
     directory.</para>
+
+    <para>If functionname is not a valid macro or function name
+    <literal>edit</literal> opens the file with filename equals to functionname.</para>
   </refsection>
 
   <refsection>
@@ -66,6 +69,7 @@
     <programlisting role="example"><![CDATA[ 
 edit('edit')  //opens editor with text of this function
 edit('myfunction')  //opens editor for a new function
+edit('/home/foo/bar.sci') //opens the file bar.sci
  ]]></programlisting>
   </refsection>
 
@@ -74,7 +78,7 @@ edit('myfunction')  //opens editor for a new function
 
     <simplelist type="inline">
       <member><link linkend="manedit">manedit</link></member>
-
+      <member><link linkend="names">names</link></member>
     </simplelist>
   </refsection>
 </refentry>

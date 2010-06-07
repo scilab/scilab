@@ -22,7 +22,8 @@ Graphics:
 
 * the set, get and uicontrol functions are now overloadable.
 
-* Datatips tools added
+* Datatips tools added, the frequency response plots ("bode", "black",
+  "nyquist", "gainplot",...) supports cutomized datatips.
 
 * bug 2651 fixed - "plot2d" was not working when the x argument was not given
                    and some optional arguments were given.
@@ -30,14 +31,26 @@ Graphics:
 * bug 3100 fixed - The "xselect" function has been made obsolete, in accordance
                    with its help page.
 
-* bug 3975 fixed - The "xload" function was not able to load the contents of a previously
-                   saved graphics figure into a different one.
+* bug 3975 fixed - The "xload" function was not able to load the contents of a
+                   previously saved graphics figure into a different one.
+
+* bug 4531 fixed - "legend" macros was not displaying any error when no
+                   'Polyline' exist.
 
 * bug 4658 fixed - When some graphic functions were called without any arguments,
                    the error was not explicit enough.
 
 * bug 5284 fixed - In some case function "legend" drew line segments in its box
                    in a reverse order.
+
+* bug 6098 fixed - It was not possible get values by clicking on point of
+                   Bode diagram.
+
+* bug 6394 fixed - The "black", "m_circle", "chart" functions has been
+                   improved for a better rendering and datatips
+                   customization. Two new functions created: "hallchart"
+                   (superseed "m_circle") and "nicholschart" (superseed
+                   "chart").
 
 * bug 6532 fixed - In some case text entity rendering order was wrong.
 
@@ -50,7 +63,10 @@ Graphics:
 * bug 6835 fixed - Performing an interactive rotation after having executed the
                    "plot3d" function caused Scilab to freeze on 64-bit Windows.
 
-* bug 6958 fixed - The "tics_labels" property from "axes" rejected column vector of labels.
+* bug 6848 fixed - The patterns of the lines was poorly exported.
+
+* bug 6958 fixed - The "tics_labels" property from "axes" rejected column vector
+                   of labels.
 
 * bug 6959 fixed - axis.tics_labels did not accept $..$ LaTeXed labels
 
@@ -64,42 +80,54 @@ Graphics:
 
 * bug 7067 fixed - The "isoview" macro created an unnecessary "plot" object.
 
+* bug 7075 fixed - When the "links" property was set for a handle of type
+                   "legend", the property type was not checked.
+
 * bug 7079 fixed - The "mtlb_get" used a "h" global variable instead of the
                    given "H" argument.
+
+* bug 7188 fixed - Deleting a Label graphics entity caused Scilab to crash.
 
 Localization:
 =============
 
-* Polish localization added. Thanks to Paweł Dąbrowski, Ernest Życiński, 
-  Sebastian Sławski, Kamil Dąbrowsk, Kamil Strojek, Kamil Dąbrowski, 
+* Polish localization added. Thanks to Paweł Dąbrowski, Ernest Życiński,
+  Sebastian Sławski, Kamil Dąbrowsk, Kamil Strojek, Kamil Dąbrowski,
   Michał Snoc, Piotr Seroka...
 
 * bug 7059 fixed - Remove the tag X-Launchpad-Export-Date to avoid huge and
                    useless diff after a launchpad synchronization
 
+* bug 7220 fixed - On Windows, when you started Scilab with "WScilex -l ru_RU",
+                   some menus were disabled.
+
 API_Scilab:
 ===========
 
-* Error(x) is now deprecated and will be removed in Scilab 5.4. 
+* Error(x) is now deprecated and will be removed in Scilab 5.4.
   Please consider SciError(x).
 
 Documentation:
 ==============
 
-* It is now possible to use LaTeX inline in the documentation. Thanks to 
+* It is now possible to use LaTeX inline in the documentation. Thanks to
   Calixte Denizet for this feature. (See bug #4329)
 
-* bug 6630 fixed - JavaHelp does not update existing image files when 
+* bug 6630 fixed - JavaHelp does not update existing image files when
                    building help.
 
 * bug 6852 fixed - JavaHelp did not center the LaTeX formulas containing an
-                   attribute align="center" 
+                   attribute align="center"
 
 Optimization:
 =============
 
-* Simulated annealing: Added documentation for accept_func_default and 
-  accept_func_vfsa.  
+* Simulated annealing: Added documentation for accept_func_default and
+  accept_func_vfsa.
+
+* fminsearch: updated printing of neldermead, optimbase and optimsimplex objects.
+
+* fminsearch: added demo for dimensionnality effect of the Nelder-Mead algorithm.
 
 Xcos:
 =====
@@ -108,7 +136,7 @@ Xcos:
 
 * The default palettes can now be manipulated by the user.
 
-* LaTeX formulas can be used on any TextBlock using the Scilab tag based 
+* LaTeX formulas can be used on any TextBlock using the Scilab tag based
   description.
 
 * builnewblock.sci rewritten to use scilab dynamic link module tools.
@@ -117,7 +145,7 @@ Xcos:
 
 * bug 4705 fixed - scicos used a non existing file BEpsf
 
-* bug 4898 fixed - The scifunction_block stored list() parameters on the ipar 
+* bug 4898 fixed - The scifunction_block stored list() parameters on the ipar
                    field instead of the opar field.
 
 * bug 4977 fixed - Some icons were duplicated between Gui and Xcos.
@@ -127,7 +155,7 @@ Xcos:
 * bug 5596 fixed - It was not possible to change text block properties (font
                    and color)
 
-* bug 6440 fixed - xcos demos did not work and returned an error "Unable to 
+* bug 6440 fixed - xcos demos did not work and returned an error "Unable to
                    open file".
 
 * bug 6527 fixed - There was several instances of the same variable name
@@ -136,12 +164,12 @@ Xcos:
 
 * bug 6661 fixed - "Code Generation" menu failed.
 
-* bug 6672 fixed - "Code generation" failed if superblock had 
+* bug 6672 fixed - "Code generation" failed if superblock had
                    some gain blocks.
 
 * bug 6674 fixed - modelica generic block did not work.
 
-* bug 6668 fixed - Xcos modelica demos did not work with the new 
+* bug 6668 fixed - Xcos modelica demos did not work with the new
                    modelica compiler.
 
 * bug 6814 fixed - Link point positions (link.xx and link.yy) were not exported
@@ -152,11 +180,19 @@ Xcos:
 
 * bug 6903 fixed - modelicat called ocamlrun (wrong dependency on Windows).
 
-* bug 6981 fixed - the Scilab 'exit' call was killing Xcos session without 
-                   prompting the user if modified diagrams must be saved before 
+* bug 6981 fixed - the Scilab 'exit' call was killing Xcos session without
+                   prompting the user if modified diagrams must be saved before
                    exiting.
 
 * bug 7099 fixed - xml2modelica called ocamlrun (wrong dependency on Windows).
+
+* bug 7053 fixed - Rotated saved blocks were not loaded with the right rotation
+                   value.
+
+* bug 7143 fixed - Simulation values were not valid if the exponential sign is
+                   an 'e'.
+
+* bug 7175 fixed - demo bridge rectifier did not build on Windows.
 
 Dynamic link:
 =============
@@ -167,8 +203,10 @@ Dynamic link:
 Compilation:
 ============
 
-* On Windows, Pentium III class (or equivalent) with SSE instructions is 
+* On Windows, Pentium III class (or equivalent) with SSE instructions is
   required.
+
+* Scilab_f2c.sln can be exported to VS 2010 format.
 
 * Windows 2000 is no more supported as operating system.
 
@@ -190,11 +228,14 @@ Compilation:
 
 * /usr/share/*/lib added to the Java search path for OpenSuse
 
+* Option --enable-compilation-tests added to the configure. With this option,
+  if TestNG has been found, tests will be launched at compilation time.
+
 * bug 4300 fixed - Moving Command Queue management to core.
 
 * bug 6432 fixed - Checkstyle disabled on SWIG (Java/JNI) generated files
 
-* bug 6643 fixed - --without-gui failed to disable Ocaml build (A xcos 
+* bug 6643 fixed - --without-gui failed to disable Ocaml build (A xcos
                    dependency)
 
 * bug 6857 fixed - make CXXFLAGS="-myflag" was removing some C++ arguments.
@@ -202,7 +243,7 @@ Compilation:
 helptools:
 ==========
 
-* %helps_modules (global variable in scilab) is defined only when 
+* %helps_modules (global variable in scilab) is defined only when
   scilab build help and no more at scilab's startup.
 
 Matlab to Scilab conversion tools:
@@ -224,11 +265,14 @@ Core:
   directory name are now randomized and permissions are limited to the user.
   (See bug #3493)
 
-* Under GNU/Linux, Unix and Mac OS X, if TMPDIR is set, Scilab will honor it 
+* Under GNU/Linux, Unix and Mac OS X, if TMPDIR is set, Scilab will honor it
   to store its temporary files (See bug #3493)
 
 * Under non-Windows system, the name of the temporary directory has been changed
   from SD_* to SCI_TMP_* to match the current Windows behavior.
+
+* bug 6986 fixed - edit('toto.sce') created a file toto.sce.sci containing
+                   a function named toto.sce
 
 Tests:
 ======
@@ -290,10 +334,16 @@ Removed functions (previously declared as obsolete):
 ATOMS:
 ======
 
+* ATOMS client: Categories are now managed.
+  - atomsList(category) limits the list of modules to a category.
+  - atomsCategoryList() lists available categories.
+
 * The ATOMS GUI ergonomics has been improved.
 
 * ATOMS GUI: When a module is not up-to-date, a warning is displayed on the
   corresponding sheet.
+
+* ATOMS GUI: Display the release date of the watched module.
 
 * bug 6596 fixed - When the ATOMS GUI started, nothing was displayed. Now, the
                    list of already installed modules appears on the home page.
@@ -302,36 +352,68 @@ ATOMS:
                    one, the ATOMS GUI claimed that the newest version was
                    installed.
 
+* bug 6976 fixed - ATOMS GUI: Webpages URLs linked with a module were missing
+                   from the presentation frame.
+
+* bug 6977 fixed - ATOMS GUI: In the presentation frame, URLs and emails were
+                   not hyperlinked.
+
+* bug 7149 fixed - An error message of atomsDESCRIPTIONread() was badly formated.
+
 Bug fixes:
 ==========
 
 * bug 1304 fixed - macr2tree now works with a Scilab expression as input.
 
+* bug 1371 fixed - The representation of floating numbers with exponent larger
+                   than 100 or smaller than -100 was incorrect.
+
 * bug 2076 fixed - pspect did not use the last data window.
 
-* bug 2654 partially fixed - exec returned a wrong error if line had more 
+* bug 2613 fixed - Incorrect stack recovery for catched errors in some
+                   specific contexts (for loops, ..)
+
+* bug 2623 fixed - non regression test script fixed
+
+* bug 2654 partially fixed - exec returned a wrong error if line had more
                    than 4096 characters.
 
 * bug 2775 fixed - Multiplication of 0 times infinity did not work because of
                    ATLAS under Windows.
 
-* bug 3780 fixed - The function loadmatfile did not ignore comments found in 
+* bug 3311 fixed - Loop with a "for" over a vector of complex polynomials produced
+                   wrong values.
+
+* bug 3688 fixed - The assignment using ":" subscript for a dimension that does not exist
+                    did not work for hypermatrices.
+
+* bug 3780 fixed - The function loadmatfile did not ignore comments found in
                    ASCII files while loading them, resulting in an error message.
-                   For Matlab compatibility, when this function is called with 
-                   one input argument load(filename), it now looks for a binary 
+                   For Matlab compatibility, when this function is called with
+                   one input argument load(filename), it now looks for a binary
                    file (if filename as no extension or .mat extension) or for an
                    ASCII file if filename has an other extension.
+
+* bug 3796 fixed - In some situation the "tf2ss()" function failed to
+                   compute correctly the state space representation of
+                   a transfer function.
 
 * bug 3811 fixed - Documention about "typeof" and overload prefixes was not
                    up-to-date (help overloading).
 
+* bug 3937 fixed - Buttons size in "x_choices" window was related to the labels one.
+
 * bug 4075 fixed - a basic uicontrol example crashed scilab 5.0.3
 
 * bug 4117 fixed - Closing via the user interface a graphics figure which had a
-                   non-existing event handler attached did not destroy 
+                   non-existing event handler attached did not destroy
                    its associated data structure.
 
+* bug 4224 fixed - uigetfile masks were case insensitive on Windows.
+
 * bug 4359 fixed - M(:,:)='anything' produced erroneous result.
+
+* bug 4362 fixed - test_run("gui","checkbox") no more freezes Scilab.
 
 * bug 4572 fixed - scilab did a SIGSEGV after stacksize('max') + stacksize().
 
@@ -339,21 +421,21 @@ Bug fixes:
 
 * bug 4640 fixed - plot2d() put CPU utilization at 100% on Windows.
 
-* bug 4672 fixed - Internal function AddFunctionInTable renamed to 
+* bug 4672 fixed - Internal function AddFunctionInTable renamed to
                    getFunctionByName to avoid confusions on the actual usage
                    of this function. Thanks to Yuvraj Tomar.
 
 * bug 4699 fixed - xml2test.pl: Paths were badly displayed in some cases.
 
-* bug 4783 fixed - comparison between sparse complex matrix and a full one was 
+* bug 4783 fixed - comparison between sparse complex matrix and a full one was
                    wrong when the sparse matrix contains a  zero row.
 
 * bug 4799 fixed - Sometime the bode, nyquist , ... function reported a
                    "non convergence" error
-                   
+
 * bug 4841 fixed - functions created by 'getd' were unknown to scilab.
 
-* bug 4948 fixed - a simple Runge Kutta method for solving a second order 
+* bug 4948 fixed - a simple Runge Kutta method for solving a second order
                    differential equation had a strange behaviour.
 
 * bug 4857 fixed - help file of 'gsort' updated about sort of complex numbers
@@ -368,16 +450,22 @@ Bug fixes:
 
 * bug 5123 fixed - help about '%helps' was wrong.
 
-* bug 5136 fixed - information about dependant platform display of 
+* bug 5136 fixed - information about dependant platform display of
                    exponential form (%e) was missing in the prinft_conversion
                    documentation.
 
 * bug 5149 fixed - test_run(): Calls to exec() were no more logged by diary().
 
+* bug 5216 fixed - URLs are now active in uicontrols of style "text". This
+                   feature is used in ATOMS GUI (modules description).
+
+* bug 5324 fixed - "File open" dialog box focused on parent directory of current
+                   directory, on Windows.
+
 * bug 5432 fixed - a link to http://www.tcl.tk/doc/ added in help files about
                    Tcl/Tk.
 
-* bug 5512 fixed - The display order of input arguments was not described in 
+* bug 5512 fixed - The display order of input arguments was not described in
                    the disp() documention.
 
 * bug 5541 fixed - In the API documentation, the information that data must be
@@ -385,7 +473,7 @@ Bug fixes:
 
 * bug 5575 fixed - Wrong german translation fixed (Standart => Standard)
 
-* bug 5583 fixed - exec() did not manage correctly UTF-8 and ANSI/ASCII files 
+* bug 5583 fixed - exec() did not manage correctly UTF-8 and ANSI/ASCII files
                    encoded.
 
 * bug 5588 fixed - Assigning null() in a tlist or mlist field shifted all remaining
@@ -393,17 +481,22 @@ Bug fixes:
 
 * bug 5609 fixed - documentation stated incorrectly fieldnames works on cells
 
-* bug 5629 fixed - export_to_hdf5 to a file overwrote a directory 
+* bug 5612 fixed - There was no way for deleting a field in a struct.
+                   It is now available using null().
+
+* bug 5629 fixed - export_to_hdf5 to a file overwrote a directory
                    with the same name (now trigger an error).
 
-* bug 5630 fixed - export_to_hdf5 to a file with a directory named 
+* bug 5630 fixed - export_to_hdf5 to a file with a directory named
                    the same altered the permission of the directory.
 
 * bug 5724 fixed - erfinv and erf missed references to similar functions
 
 * bug 6332 fixed - stacksize had problems on Mac OS X and 64 bit platforms.
 
-* bug 6419 fixed - gstacksize() There was no way to retrieve minimum 
+* bug 6349 fixed -  The callback of an 'edit' uicontrol was only executed when it lost focus.
+
+* bug 6419 fixed - gstacksize() There was no way to retrieve minimum
                    from Scilab.
 
 * bug 6428 fixed - fscanfMat did not manage format parameter as fprintfMat.
@@ -426,7 +519,7 @@ Bug fixes:
 * bug 6510 fixed - modules/helptools/help_en_US.xsl and
                    modules/helptools/help_fr_FR.xsl were useless but not removed.
 
-* bug 6511 fixed - mseek and mtell did not manage files > 2 Gbytes on 64 bits 
+* bug 6511 fixed - mseek and mtell did not manage files > 2 Gbytes on 64 bits
                    Windows.
 
 * bug 6516 fixed - fullfile did not remove blanks and not create a valid path.
@@ -439,7 +532,7 @@ Bug fixes:
 * bug 6549 fixed - genlib function had a behavior which was not consistent with
                    the load function.
 
-* bug 6550 fixed - lib(".") returned a relative path in library variable 
+* bug 6550 fixed - lib(".") returned a relative path in library variable
                    created.
 
 * bug 6556 fixed - fprintf() returned an error if it's called 2 times (or more)
@@ -447,15 +540,15 @@ Bug fixes:
 
 * bug 6635 fixed - Incorrectly drawn Bode plots (calfrq bug).
 
-* bug 6666 fixed - emptystr() gave a wrong result instead of complaining 
+* bug 6666 fixed - emptystr() gave a wrong result instead of complaining
                    about hypermatrix.
 
 * bug 6682 fixed - mprintf, msprintf, mfprintf did not manage octal (%o) format.
 
-* bug 6731 fixed - Information on the output argument was missing from the 
+* bug 6731 fixed - Information on the output argument was missing from the
                    lib() documentation.
 
-* bug 6740 fixed - It was not possible to launch Scilab as Minimized 
+* bug 6740 fixed - It was not possible to launch Scilab as Minimized
                    or Maximized Window.
 
 * bug 6744 fixed - p_margin() returned an erroneous result.
@@ -464,7 +557,7 @@ Bug fixes:
 
 * bug 6750 fixed - TMPDIR constant had no help page.
 
-* bug 6774 fixed - Calling get_param generated a "funcprot" warning when  
+* bug 6774 fixed - Calling get_param generated a "funcprot" warning when
                    the value of an option which was a function.
 
 * bug 6783 fixed - Solving a system of linear equation by backslash ("\")
@@ -476,14 +569,14 @@ Bug fixes:
 * bug 6827 fixed - The error printed by spchol if the variable was complex
                    was wrong.
 
-* bug 6830 fixed - C2F(scistring) in stack2.c was broken for macro names of 
+* bug 6830 fixed - C2F(scistring) in stack2.c was broken for macro names of
                    exactly 2 characters.
 
 * bug 6831 fixed - in cli (=nwni) mode, tbx_build_help failed.
 
 * bug 6861 fixed - yulewalk example failed on Windows.
 
-* bug 6862 fixed - Help page for 'vectorfind' missed some explanations about 
+* bug 6862 fixed - Help page for 'vectorfind' missed some explanations about
                    input arguments types. Moreover there were missing checks
                    about input arguments number and types in the function.
 
@@ -496,6 +589,11 @@ Bug fixes:
 
 * bug 6891 fixed - 'whos' did not display global variables.
 
+* bug 6893 fixed - Some files +~JF****.tmp where created outside of the Scilab
+                   temporary directory.
+
+* bug 6895 fixed - completion crashed with -NW mode, on some linux.
+
 * bug 6901 fixed - This script with 'exec' produced a weird warning.
 
 * bug 6923 fixed - Some localized messages were wrong in 'qmr'.
@@ -505,12 +603,18 @@ Bug fixes:
 * bug 6932 fixed - Unitary test for function 'exit' failed in Linux binary
                    version.
 
+* bug 6933 fixed - Some temporary files (dict_*.tmp) were created when using
+                   search engine of the help browser.
+
+* bug 6934 fixed - Denormalized floating point numbers were not present in
+                   Scilab's master.
+
 * bug 6940 fixed - An error message was wrong in 'pvm_send'.
 
 * bug 6946 fixed - information about optional input arguments 'column separator'
                    and 'decimal mark' were missing in the write_csv documentation.
 
-* bug 6947 fixed - Some demos in "Optimization and Simulation" failed, 
+* bug 6947 fixed - Some demos in "Optimization and Simulation" failed,
                    without write rights in SCI subdirectory.
 
 * bug 6951 fixed - stacksize had a strange behaviour.
@@ -544,14 +648,28 @@ Bug fixes:
 * bug 7042 fixed - Insertion of an empty matrix into a struct (to remove a row or column)
                    was buggy when multiple index is used.
 
+* bug 7044 fixed - calling sequence in help of 'strcat' was wrong.
+
 * bug 7057 fixed - isdigit and isalphanum crashed with a matrix of string
                    as input argument.
 
 * bug 7077 fixed - uigetfont crashed Scilab when the cancel button was clicked.
 
+* bug 7078 fixed - A wrong error message was displayed when setting the "value"
+                   property of an "edit" uicontrol.
+
 * bug 7094 fixed - If badly called, ode made Scilab crash.
 
 * bug 7109 fixed - 'lu' function with some complex matrices crashed on Windows.
 
-* bug 7123 fixed - No completion was possible if the name of a variable is 
+* bug 7123 fixed - No completion was possible if the name of a variable is
                    preceded by ~ or @ or < or >
+
+* bug 7161 fixed - wavread failed to load some .wav files with error 44.
+
+* bug 7170 fixed - Scilab equivalent for Matlab "uigetdir" was "tk_getdir",
+                   it has been replaced by "uigetdir".
+
+* bug 7181 fixed - The display of a struct having no fields did not work.
+
+* bug 7224 fixed - export empty matrix in HDF5 did not unlock file.

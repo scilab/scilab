@@ -17,6 +17,9 @@ import static org.scilab.modules.xcos.utils.FileUtils.delete;
 import java.awt.MouseInfo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -27,15 +30,15 @@ import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.ScilabGraphUniqueObject;
 import org.scilab.modules.graph.actions.CopyAction;
 import org.scilab.modules.graph.actions.CutAction;
 import org.scilab.modules.graph.actions.DeleteAction;
 import org.scilab.modules.graph.actions.base.DefaultAction;
-import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
 import org.scilab.modules.graph.utils.StyleMap;
-import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
@@ -94,12 +97,37 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 	private static final double DEFAULT_WIDTH = 40.0;
 	private static final double DEFAULT_HEIGHT = 40.0;
 	
+	private static final PropertyChangeListener styleUpdater = new UpdateStyleFromInterfunction();
 	private static final Log LOG = LogFactory.getLog(BasicBlock.class);
+	
+	/**
+	 * Manage events for block parameters.
+	 * 
+	 * The property name is the field name, is one of:
+	 *     - "interfaceFunctionName"
+	 *     - "simulationFunctionName"
+	 *     - "simulationFunctionType"
+	 *     - "exprs"
+	 *     - "realParameters"
+	 *     - "integerParameters"
+	 *     - "objectsParameters"
+	 *     - "nbZerosCrossing"
+	 *     - "nmode"
+	 *     - "state"
+	 *     - "dState"
+	 *     - "oDState"
+	 *     - "equations"
+	 *     - "dependsOnU"
+	 *     - "dependsOnT"
+	 *     - "blockType"
+	 *     - "ordering"
+	 */
+	protected PropertyChangeSupport parameters = new PropertyChangeSupport(this);
 	
     private String interfaceFunctionName = "xcos_block";
     private String simulationFunctionName = "xcos_simulate";
     private SimulationFunctionType simulationFunctionType = SimulationFunctionType.DEFAULT;
-    private transient XcosDiagram parentDiagram;
+    private transient XcosDiagram parentDiagram;   
     
     private int angle;
     private boolean isFlipped;
@@ -183,6 +211,26 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 		}
 	};
 
+	private static class UpdateStyleFromInterfunction implements PropertyChangeListener {
+
+		/**
+		 * Update the label on interfunction change.
+		 * 
+		 * @param evt the property change event.
+		 * @see java.beans.PropertyChangeListener#propertyChange(java.beans.PropertyChangeEvent)
+		 */
+		@Override
+		public void propertyChange(PropertyChangeEvent evt) {
+			BasicBlock source = (BasicBlock) evt.getSource();
+			
+			StyleMap style = new StyleMap(source.getStyle());
+			style.remove((String) evt.getOldValue());
+			style.put((String) evt.getNewValue(), null);
+			source.setStyle(style.toString());
+		}
+		
+	}
+	
 	/**
 	 * 
 	 */
@@ -191,6 +239,9 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 		setDefaultValues();
 		setVisible(true);
 		setVertex(true);
+		
+		parameters.addPropertyChangeListener("interfaceFunctionName",
+				styleUpdater);
 	}
 
 	/**
@@ -250,23 +301,27 @@ public class BasicBlock extends ScilabGraphUniqueObject {
      * @param interfaceFunctionName interface function name
      */
     public void setInterfaceFunctionName(String interfaceFunctionName) {
-    	String interfunction = getInterfaceFunctionName();
-    	this.interfaceFunctionName = interfaceFunctionName;
-    	
-    	/*
-    	 * Update style
-    	 */
-    	StyleMap style = new StyleMap(getStyle());
-    	style.remove(interfunction);
-    	style.put(interfaceFunctionName, null);
-    	setStyle(style.toString());
+		if ((this.interfaceFunctionName == null && interfaceFunctionName != null)
+				|| !this.interfaceFunctionName.equals(interfaceFunctionName)) {
+			
+			final String oldValue = this.interfaceFunctionName;
+			this.interfaceFunctionName = interfaceFunctionName;
+			parameters.firePropertyChange("interfaceFunctionName", oldValue,
+					interfaceFunctionName);
+		}
     }
 
     /**
      * @param simulationFunctionName sumulation function name
      */
     public void setSimulationFunctionName(String simulationFunctionName) {
-	this.simulationFunctionName = simulationFunctionName;
+		if ((this.simulationFunctionName == null && simulationFunctionName != null)
+				|| !this.simulationFunctionName.equals(simulationFunctionName)) {
+			
+    		final String oldValue = this.simulationFunctionName;
+    		this.simulationFunctionName = simulationFunctionName;
+    		parameters.firePropertyChange("simulationFunctionName", oldValue, simulationFunctionName);
+    	}
     }
 
     /**
@@ -280,15 +335,23 @@ public class BasicBlock extends ScilabGraphUniqueObject {
      * @param scilabValue simulation function type
      */
     public void setSimulationFunctionType(int scilabValue) {
-	this.simulationFunctionType = SimulationFunctionType.convertScilabValue(scilabValue);
+		SimulationFunctionType simulationFunctionType = SimulationFunctionType.convertScilabValue(scilabValue);
+		setSimulationFunctionType(simulationFunctionType);
     }
 
     /**
      * @param simulationFunctionType simulation function type
      */
-    public void setSimulationFunctionType(SimulationFunctionType simulationFunctionType) {
-	this.simulationFunctionType = simulationFunctionType;
-    }
+	public void setSimulationFunctionType(SimulationFunctionType simulationFunctionType) {
+		if ((this.simulationFunctionType == null && simulationFunctionType != null)
+				|| !this.simulationFunctionType.equals(simulationFunctionType)) {
+			
+			final SimulationFunctionType oldValue = this.simulationFunctionType;
+			this.simulationFunctionType = simulationFunctionType;
+			parameters.firePropertyChange("simulationFunctionType", oldValue,
+					simulationFunctionType);
+		}
+	}
 
     /**
      * @return simulation function type
@@ -308,7 +371,13 @@ public class BasicBlock extends ScilabGraphUniqueObject {
      * @param realParameters reaL parameter ( rpar )
      */
     public void setRealParameters(ScilabType realParameters) {
-	this.realParameters = realParameters;
+		if ((this.realParameters == null && realParameters != null)
+				|| !this.realParameters.equals(realParameters)) {
+			
+			final ScilabType oldValue = this.realParameters;
+			this.realParameters = realParameters;
+			parameters.firePropertyChange("realParameters", oldValue, realParameters);
+		}
     } 
 
     /**
@@ -322,7 +391,13 @@ public class BasicBlock extends ScilabGraphUniqueObject {
      * @param integerParameters integer parameter ( ipar )
      */
     public void setIntegerParameters(ScilabType integerParameters) {
-	this.integerParameters = integerParameters;
+		if ((this.integerParameters == null && integerParameters != null)
+				|| !this.integerParameters.equals(integerParameters)) {
+			
+			final ScilabType oldValue = this.integerParameters;
+			this.integerParameters = integerParameters;
+			parameters.firePropertyChange("integerParameters", oldValue, integerParameters);
+		}
     }
 
     /**
@@ -336,14 +411,25 @@ public class BasicBlock extends ScilabGraphUniqueObject {
      * @param objectsParameters object parameter ( opar )
      */
     public void setObjectsParameters(ScilabType objectsParameters) {
-	this.objectsParameters = objectsParameters;
+		if ((this.objectsParameters == null && objectsParameters != null)
+				|| !this.objectsParameters.equals(objectsParameters)) {
+			
+			final ScilabType oldValue = this.objectsParameters;
+			this.objectsParameters = objectsParameters;
+			parameters.firePropertyChange("objectsParameters", oldValue, objectsParameters);
+		}
     }
 
     /**
      * @param dependsOnU ?
      */
     public void setDependsOnU(boolean dependsOnU) {
-	this.dependsOnU = dependsOnU;
+		if (this.dependsOnU != dependsOnU) {
+			
+			final boolean oldValue = this.dependsOnU;
+			this.dependsOnU = dependsOnU;
+			parameters.firePropertyChange("dependsOnU", oldValue, dependsOnU);
+		}
     }
 
     /**
@@ -357,7 +443,12 @@ public class BasicBlock extends ScilabGraphUniqueObject {
      * @param dependsOnT ?
      */
     public void setDependsOnT(boolean dependsOnT) {
-	this.dependsOnT = dependsOnT;
+		if (this.dependsOnT != dependsOnT) {
+			
+			final boolean oldValue = this.dependsOnT;
+			this.dependsOnT = dependsOnT;
+			parameters.firePropertyChange("dependsOnT", oldValue, dependsOnT);
+		}
     }
 
     /**
@@ -371,7 +462,13 @@ public class BasicBlock extends ScilabGraphUniqueObject {
      * @param blockType block type
      */
     public void setBlockType(String blockType) {
-	this.blockType = blockType;
+		if ((this.blockType == null && blockType != null)
+				|| !this.blockType.equals(blockType)) {
+			
+			final String oldValue = this.blockType;
+			this.blockType = blockType;
+			parameters.firePropertyChange("blockType", oldValue, blockType);
+		}
     }
 
     /**
@@ -385,7 +482,12 @@ public class BasicBlock extends ScilabGraphUniqueObject {
      * @param ordering order value
      */
     public void setOrdering(int ordering) {
-	this.ordering = ordering;
+		if (this.ordering != ordering) {
+			
+			final int oldValue = this.ordering;
+			this.ordering = ordering;
+			parameters.firePropertyChange("ordering", oldValue, ordering);
+		}
     }
 
     /**
@@ -399,7 +501,13 @@ public class BasicBlock extends ScilabGraphUniqueObject {
      * @param exprs expression
      */
     public void setExprs(ScilabType exprs) {
-	this.exprs = exprs;
+		if ((this.exprs == null && exprs != null)
+				|| !this.exprs.equals(exprs)) {
+			
+			final ScilabType oldValue = this.exprs;
+			this.exprs = exprs;
+			parameters.firePropertyChange("exprs", oldValue, exprs);
+		}
     }
 
     /**
@@ -420,7 +528,13 @@ public class BasicBlock extends ScilabGraphUniqueObject {
      * @param nbZerosCrossing zero crossing value
      */
     public void setNbZerosCrossing(ScilabType nbZerosCrossing) {
-	this.nbZerosCrossing = nbZerosCrossing;
+		if ((this.nbZerosCrossing == null && nbZerosCrossing != null)
+				|| !this.nbZerosCrossing.equals(nbZerosCrossing)) {
+			
+			final ScilabType oldValue = this.nbZerosCrossing;
+			this.nbZerosCrossing = nbZerosCrossing;
+			parameters.firePropertyChange("nbZerosCrossing", oldValue, nbZerosCrossing);
+		}
     }
 
     /**
@@ -434,7 +548,13 @@ public class BasicBlock extends ScilabGraphUniqueObject {
      * @param nmode nmode
      */
     public void setNmode(ScilabType nmode) {
-	this.nmode = nmode;
+		if ((this.nmode == null && nmode != null)
+				|| !this.nmode.equals(nmode)) {
+			
+			final ScilabType oldValue = this.nmode;
+			this.nmode = nmode;
+			parameters.firePropertyChange("nmode", oldValue, nmode);
+		}
     }
 
     /**
@@ -448,7 +568,13 @@ public class BasicBlock extends ScilabGraphUniqueObject {
      * @param state new state
      */
     public void setState(ScilabType state) {
-	this.state = state;
+		if ((this.state == null && state != null)
+				|| !this.state.equals(state)) {
+			
+			final ScilabType oldValue = this.state;
+			this.state = state;
+			parameters.firePropertyChange("state", oldValue, state);
+		}
     }
 
     /**
@@ -461,8 +587,14 @@ public class BasicBlock extends ScilabGraphUniqueObject {
     /**
      * @param state new dstate
      */
-    public void setDState(ScilabType state) {
-	dState = state;
+    public void setDState(ScilabType dState) {
+		if ((this.dState == null && dState != null)
+				|| !this.dState.equals(dState)) {
+			
+			final ScilabType oldValue = this.dState;
+			this.dState = dState;
+			parameters.firePropertyChange("dState", oldValue, dState);
+		}
     }
 
     /**
@@ -475,8 +607,14 @@ public class BasicBlock extends ScilabGraphUniqueObject {
     /**
      * @param state new ostate
      */
-    public void setODState(ScilabType state) {
-	oDState = state;
+    public void setODState(ScilabType oDState) {
+		if ((this.oDState == null && oDState != null)
+				|| !this.oDState.equals(oDState)) {
+			
+			final ScilabType oldValue = this.oDState;
+			this.oDState = oDState;
+			parameters.firePropertyChange("oDState", oldValue, oDState);
+		}
     }
 
     /**
@@ -490,7 +628,13 @@ public class BasicBlock extends ScilabGraphUniqueObject {
      * @param equations equations
      */
     public void setEquations(ScilabType equations) {
-	this.equations = equations;
+		if ((this.equations == null && equations != null)
+				|| !this.equations.equals(equations)) {
+			
+			final ScilabType oldValue = this.equations;
+			this.equations = equations;
+			parameters.firePropertyChange("equations", oldValue, equations);
+		}
     }
 
     /**
@@ -611,7 +755,6 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 	    parentBlock.getParentDiagram().fireEvent(new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED, 
 		    XcosConstants.EVENT_BLOCK_UPDATED, parentBlock));
 	}
-	
     }
 
     /**
@@ -727,7 +870,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
      * @return tooltip text
      */
     public String getToolTipText() {
-	StringBuffer result = new StringBuffer();
+	StringBuilder result = new StringBuilder();
 	result.append(XcosConstants.HTML_BEGIN);
 	result.append("Block Name : " + getInterfaceFunctionName() + XcosConstants.HTML_NEWLINE);
 	result.append("Simulation : " + getSimulationFunctionName() + XcosConstants.HTML_NEWLINE);
@@ -746,7 +889,15 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 	    }
 	} else {
 	    result.append("UID : " + getId() + XcosConstants.HTML_NEWLINE);
-	    result.append("Block Style : " + getStyle() + XcosConstants.HTML_NEWLINE);
+		final int length = getStyle().length();
+		result.append("Style : ");
+		if (length > XcosConstants.MAX_CHAR_IN_STYLE) {
+			result.append(getStyle().substring(0, XcosConstants.MAX_CHAR_IN_STYLE));
+			result.append(XcosMessages.DOTS);
+		} else {
+			result.append(getStyle());
+		}
+		result.append(XcosConstants.HTML_NEWLINE);
 	    result.append("Flip : " + getFlip() + XcosConstants.HTML_NEWLINE);
 	    result.append("Mirror : " + getMirror() + XcosConstants.HTML_NEWLINE);
 	    result.append("Input ports : " + BasicBlockInfo.getAllTypedPorts(this, false, InputPort.class).size() + XcosConstants.HTML_NEWLINE);
@@ -1079,5 +1230,33 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 	private void setDefaultPosition(mxGeometry geom) {
 		geom.setX(DEFAULT_POSITION_X);
 		geom.setY(DEFAULT_POSITION_Y);
+	}
+	
+	/**
+	 * Get the parameters change support.
+	 * 
+	 * The property name for each event is the field name, so one of:
+	 *     - "interfaceFunctionName"
+	 *     - "simulationFunctionName"
+	 *     - "simulationFunctionType"
+	 *     - "exprs"
+	 *     - "realParameters"
+	 *     - "integerParameters"
+	 *     - "objectsParameters"
+	 *     - "nbZerosCrossing"
+	 *     - "nmode"
+	 *     - "state"
+	 *     - "dState"
+	 *     - "oDState"
+	 *     - "equations"
+	 *     - "dependsOnU"
+	 *     - "dependsOnT"
+	 *     - "blockType"
+	 *     - "ordering"
+	 * 
+	 * @return the associated {@link PropertyChangeSupport} instance
+	 */
+	public PropertyChangeSupport getParametersPCS() {
+		return parameters;
 	}
 }

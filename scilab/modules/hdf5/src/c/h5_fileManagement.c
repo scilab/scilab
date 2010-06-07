@@ -37,7 +37,7 @@ int createHDF5File(char *name)
     char *filename = getFilenameWithExtension(name);
     int ierr = 0;
 
-    H5Pset_fclose_degree(fapl, H5F_CLOSE_STRONG);
+    //H5Pset_fclose_degree(fapl, H5F_CLOSE_STRONG);
     
     /* TO DO : remove when HDF5 will be fixed ... */
     /* HDF5 does not manage no ANSI characters */
@@ -46,7 +46,12 @@ int createHDF5File(char *name)
     /* and return in previous place */
     /* see BUG 6440 */
     currentpath = scigetcwd(&ierr);
-    scichdir(pathdest);
+
+    //prevent error msg to change directory to ""
+    if(strcmp(pathdest, "") != 0)
+    {
+        scichdir(pathdest);
+    }
 
     /*bug 5629 : to prevent replace directory by file*/
     if(isdir(filename))
@@ -62,7 +67,11 @@ int createHDF5File(char *name)
     * Create a new file using the default properties.
     */
 
-    file = H5Fcreate(filename, H5F_ACC_TRUNC, H5P_DEFAULT, fapl);
+    printf("pathdest = %s\n", pathdest);
+    printf("currentpath = %s\n", currentpath);
+    printf("filename = %s\n", filename);
+
+    file = H5Fcreate(filename, H5F_ACC_TRUNC , H5P_DEFAULT, H5P_DEFAULT);
 
     scichdir(currentpath);
 
@@ -88,7 +97,12 @@ int openHDF5File(char *name)
     /* and return in previous place */
     /* see BUG 6440 */
     currentpath = scigetcwd(&ierr);
-    scichdir(pathdest);
+
+    //prevent error msg to change directory to ""
+    if(strcmp(pathdest, "") != 0)
+    {
+        scichdir(pathdest);
+    }
 
     file = H5Fopen (filename, H5F_ACC_RDONLY, H5P_DEFAULT);
 

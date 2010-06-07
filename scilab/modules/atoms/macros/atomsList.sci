@@ -11,7 +11,7 @@
 
 // display of the available toolboxes
 
-function atomsList()
+function atomsList(category)
 
     // Load Atoms Internals lib if it's not already loaded
     // =========================================================================
@@ -24,19 +24,45 @@ function atomsList()
 
     rhs = argn(2);
 
-    if rhs <> 0 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"atomsInstall",0))
+    if rhs > 1 then
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"),"atomsInstall",0,1))
+    end
+
+
+    if rhs==1 then
+
+        if type(category) <> 10 then
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"atomsIsCategory",1));
+        end
+
+        if size(category,"*") <> 1 then
+            error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"atomsIsCategory",1));
+        end
+
+        if ~atomsIsCategory(category) then
+            error(msprintf(gettext("%s: Wrong value for input argument #%d: A valid category expected.\n"),"atomsIsCategory",1));
+        end
+
     end
 
     // Get the list of available toolboxes
     // =========================================================================
 
-    packages_struct    = atomsDESCRIPTIONget();
+    [packages_struct,categories_struct] = atomsDESCRIPTIONget();
 
-    packages_list      = getfield(1,packages_struct);
-    packages_list(1:2) = [];
+    if rhs==0 then
+        packages_list      = getfield(1,packages_struct);
+        packages_list(1:2) = [];
+        packages_list      = packages_list';
+    else
+        category_struct    = categories_struct(category);
+        packages_list      = category_struct("packages");
+        packages_list      = unique(packages_list(:,1));
+    end
 
-    packages_disp      = [];
+    [A,k]         = gsort(convstr(packages_list,"l"),"lr","i");
+    packages_list = packages_list(k);
+    packages_disp = [];
 
     // Loop on package list
     // =========================================================================

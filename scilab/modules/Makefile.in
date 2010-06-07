@@ -151,19 +151,20 @@ AM_RECURSIVE_TARGETS = $(RECURSIVE_TARGETS:-recursive=) \
 	distdir
 ETAGS = etags
 CTAGS = ctags
-DIST_SUBDIRS = core operations output_stream action_binding arnoldi \
+DIST_SUBDIRS = core operations output_stream arnoldi \
 	elementary_functions string api_scilab dynamic_link fileio \
-	history_manager spreadsheet tclsci localization renderer shell \
-	completion console graphic_export gui jvm graphics \
-	optimization symbolic randlib statistics special_functions \
-	interpolation linear_algebra integer data_structures mexlib \
-	differential_equations cacsd polynomials boolean double pvm io \
-	intersci signal_processing call_scilab sound time sparse \
-	windows_tools functions overloading maple2scilab m2sci texmacs \
-	development_tools compatibility_functions helptools fftw \
-	umfpack demo_tools genetic_algorithms simulated_annealing \
-	parameters matio atoms types hdf5 graph xcos xpad \
-	scicos_blocks scicos . javasci
+	history_manager spreadsheet tclsci localization action_binding \
+	renderer shell completion console graphic_export gui jvm \
+	graphics optimization symbolic randlib statistics \
+	special_functions interpolation linear_algebra integer \
+	data_structures mexlib differential_equations cacsd \
+	polynomials boolean double pvm io intersci signal_processing \
+	call_scilab sound time sparse windows_tools functions \
+	overloading maple2scilab m2sci texmacs development_tools \
+	compatibility_functions helptools fftw umfpack demo_tools \
+	genetic_algorithms simulated_annealing parameters matio atoms \
+	types hdf5 graph xcos xpad parallel scicos_blocks scicos . \
+	javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 am__relativize = \
   dir0=`pwd`; \
@@ -312,6 +313,7 @@ OCAMLDEP = @OCAMLDEP@
 OCAMLLEX = @OCAMLLEX@
 OCAMLOPT = @OCAMLOPT@
 OCAMLYACC = @OCAMLYACC@
+OPENMP_ENABLE = @OPENMP_ENABLE@
 OTOOL = @OTOOL@
 OTOOL64 = @OTOOL64@
 PACKAGE = @PACKAGE@
@@ -433,9 +435,9 @@ top_srcdir = @top_srcdir@
 
 # core is the main module of Scilab. All the compilation deps has been removed
 # since it already linked almost the whole world
-SUBDIRS = core operations output_stream action_binding arnoldi \
-	elementary_functions string api_scilab dynamic_link fileio \
-	history_manager spreadsheet tclsci localization renderer shell \
+SUBDIRS = core operations output_stream arnoldi elementary_functions \
+	string api_scilab dynamic_link fileio history_manager \
+	spreadsheet tclsci localization action_binding renderer shell \
 	completion console graphic_export gui jvm graphics \
 	optimization symbolic randlib statistics special_functions \
 	interpolation linear_algebra integer data_structures mexlib \
@@ -445,7 +447,7 @@ SUBDIRS = core operations output_stream action_binding arnoldi \
 	maple2scilab m2sci texmacs development_tools \
 	compatibility_functions helptools fftw umfpack demo_tools \
 	genetic_algorithms simulated_annealing parameters matio atoms \
-	types hdf5 graph xcos xpad $(am__append_1) scicos . \
+	types hdf5 graph xcos xpad parallel $(am__append_1) scicos . \
 	$(am__append_2)
 
 #### Basic files ####
@@ -477,6 +479,7 @@ NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/graphics/libscigraphics-disable.la \
 	$(top_builddir)/modules/graphic_export/libscigraphic_export-disable.la \
 	$(top_builddir)/modules/console/libsciconsole-disable.la \
+	$(top_builddir)/modules/action_binding/libsciaction_binding-disable.la \
 	$(top_builddir)/modules/jvm/libscijvm-disable.la \
 	$(top_builddir)/modules/xcos/libscixcos-disable.la \
 	$(top_builddir)/modules/xpad/libscixpad-disable.la \
@@ -514,7 +517,8 @@ ENGINE_LIBS = $(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/string/libscistring.la \
 	$(top_builddir)/modules/fftw/libscifftw.la \
 	$(top_builddir)/modules/hdf5/libscihdf5.la \
-	$(top_builddir)/modules/functions/libscifunctions.la
+	$(top_builddir)/modules/functions/libscifunctions.la \
+	$(top_builddir)/modules/parallel/libsciparallel.la
 
 
 # These libraries are loaded dynamically from Scilab.
@@ -533,7 +537,7 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
 	$(top_builddir)/modules/umfpack/libsciumfpack.la \
 	$(top_builddir)/modules/matio/libscimatio.la \
-	$(top_builddir)/modules/helptools/libscihelptools.la
+	$(top_builddir)/modules/helptools/libscihelptools.la 
 
 
 # Core modules

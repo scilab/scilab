@@ -1,6 +1,7 @@
 ;
 ; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-; Copyright (C) 2007-2008 - INRIA - Allan CORNET <allan.cornet@inria.fr>
+; Copyright (C) INRIA - Allan CORNET
+; Copyright (C) DIGITEO - 2010 - Allan CORNET
 ;
 ; This file must be used under the terms of the CeCILL.
 ; This source file is licensed as described in the file COPYING, which
@@ -8,27 +9,24 @@
 ; are also available at
 ; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 ;
-;##############################################################################################################
-; Script d'installation Inno Setup (5.2.1) pour scilab
-; Version TRUNK
-;##############################################################################################################
+;--------------------------------------------------------------------------------------------------------------
+; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
+;
 ;--------------------------------------------------------------------------------------------------------------
 ; randlib module
 ;--------------------------------------------------------------------------------------------------------------
 ;
 #define RANDLIB "randlib"
 ;
-Source: bin\norandlib.dll; DestDir: {app}\bin; DestName: randlib.dll; Components: not ({#COMPN_RANDLIB})
-;
-Source: bin\randlib.dll; DestDir: {app}\bin; Components: {#COMPN_RANDLIB}
-Source: bin\randlib_f.dll; DestDir: {app}\bin; Components: {#COMPN_RANDLIB}
+Source: bin\{#RANDLIB}.dll; DestDir: {app}\bin; Components: {#COMPN_RANDLIB}
+Source: bin\{#RANDLIB}_f.dll; DestDir: {app}\bin; Components: {#COMPN_RANDLIB}
 ;
 Source: modules\{#RANDLIB}\VERSION.xml; DestDir: {app}\modules\{#RANDLIB}; Components: {#COMPN_RANDLIB}
 Source: modules\{#RANDLIB}\readme.txt; DestDir: {app}\modules\{#RANDLIB}; Components: {#COMPN_RANDLIB}
 Source: modules\{#RANDLIB}\license.txt; DestDir: {app}\modules\{#RANDLIB}; Components: {#COMPN_RANDLIB}
 Source: modules\{#RANDLIB}\changelog.txt; DestDir: {app}\modules\{#RANDLIB}; Components: {#COMPN_RANDLIB}
 ;
-Source: modules\{#RANDLIB}\sci_gateway\randlib_gateway.xml; DestDir: {app}\modules\{#RANDLIB}\sci_gateway; Components: {#COMPN_RANDLIB}
+Source: modules\{#RANDLIB}\sci_gateway\{#RANDLIB}_gateway.xml; DestDir: {app}\modules\{#RANDLIB}\sci_gateway; Components: {#COMPN_RANDLIB}
 ;
 Source: modules\{#RANDLIB}\etc\{#RANDLIB}.quit; DestDir: {app}\modules\{#RANDLIB}\etc; Components: {#COMPN_RANDLIB}
 Source: modules\{#RANDLIB}\etc\{#RANDLIB}.start; DestDir: {app}\modules\{#RANDLIB}\etc; Components: {#COMPN_RANDLIB}

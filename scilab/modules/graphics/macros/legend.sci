@@ -47,9 +47,15 @@ options_codes=[1;2;3;
     H=getvalidchildren(A)
   end
 
+  if H==[] then
+    error(msprintf(gettext("%s: No ''%s'' handle found.\n"), "legend","Polyline"));
+  end
+
   //get all labels
   for k=k0:size(varargin)
-    if type(varargin(k))<>10 then break,end
+    if type(varargin(k))<>10 then
+      error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "legend", k));
+    end
     vk=varargin(k)
     leg=[leg, vk(:)]
   end

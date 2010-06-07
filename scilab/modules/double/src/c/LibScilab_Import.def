@@ -8,4 +8,13 @@ EXPORTS
 callFunctionFromGateway
 com_
 iop_
-matlog_
+getrhscvar_
+stack_
+getrhsvar_
+iAllocMatrixOfDouble
+iIsComplex
+putlhsvar_
+intersci_
+cha1_
+errgst_
+iAllocComplexMatrixOfDouble

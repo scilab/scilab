@@ -18,10 +18,8 @@ import org.scilab.modules.xcos.link.implicit.ImplicitLink;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
-import org.scilab.modules.xcos.port.input.ExplicitInputPort;
-import org.scilab.modules.xcos.port.input.ImplicitInputPort;
-import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
-import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
+import org.scilab.modules.xcos.port.input.InputPort;
+import org.scilab.modules.xcos.port.output.OutputPort;
 
 /**
  * Enum used to get the links and ports class from ids. 
@@ -30,25 +28,25 @@ public enum LinkPortMap {
 	/**
 	 * Explicit input port mapping
 	 */
-	EX_INPUT(ExplicitLink.class, ExplicitInputPort.class, false),
+	EX_INPUT(ExplicitLink.class, InputPort.class, false),
 	/**
 	 * Implicit input port mapping
 	 * 
 	 * Note: for implicit link, the from and to start flag is inverted. So here
 	 * the {@link #isStart} is inverted too.
 	 */
-	IM_INPUT(ImplicitLink.class, ImplicitInputPort.class, true),
+	IM_INPUT(ImplicitLink.class, InputPort.class, false),
 	/**
 	 * Explicit output port mapping
 	 */
-	EX_OUTPUT(ExplicitLink.class, ExplicitOutputPort.class, true),
+	EX_OUTPUT(ExplicitLink.class, OutputPort.class, true),
 	/**
 	 * Implicit output port mapping
 	 * 
 	 * Note: for implicit link, the from and to start flag is inverted. So here
 	 * the {@link #isStart} is inverted too.
 	 */
-	IM_OUTPUT(ImplicitLink.class, ImplicitOutputPort.class, false),
+	IM_OUTPUT(ImplicitLink.class, OutputPort.class, true),
 	/**
 	 * Control port mapping
 	 */
@@ -140,19 +138,11 @@ public enum LinkPortMap {
 	 * @return 1.0 if is a start point, 0.0 otherwise.
 	 */
 	public static double isStart(BasicPort port) {
-		double ret = 0.0;
-		
-		final Class< ? extends BasicPort> klass = port.getClass();
-		for (LinkPortMap current : values()) {
-			if (klass.equals(current.getPortKlass())) {
-				if (current.isStart()) {
-					ret = 1.0;
-				}
-				break;
-			}
+		if (port instanceof InputPort || port instanceof CommandPort) {
+			return 1.0;
+		} else {
+			return 0.0;
 		}
-		
-		return ret;
 	}
 	
 	/**

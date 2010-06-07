@@ -13,6 +13,8 @@
 #include "localization.h"
 #include "v2cuniterror.h"
 #include "Scierror.h"
+#include "FileExist.h"
+#include "isdir.h"
 /*--------------------------------------------------------------------------*/ 
 int C2F(v2cuniterror)(int *_errorcode, char *_filename, 
                       unsigned long _length_filename)
@@ -27,16 +29,27 @@ int C2F(v2cuniterror)(int *_errorcode, char *_filename,
 
         case 240:
         {
-            Scierror(*_errorcode, 
-                _("File \"%s\" already exists or directory write access denied.\n"), 
-                _filename);
+            if (FileExist(_filename))
+            {
+                Scierror(*_errorcode, _("File \"%s\" already exists.\n"), _filename);
+            }
+            else
+            {
+                Scierror(*_errorcode,  _("\"%s\" directory write access denied.\n"), _filename);
+            }
         }
         break;
 
         case 241:
         {
-            Scierror(*_errorcode, 
-                _("File \"%s\" does not exist or read access denied.\n"), _filename);
+            if (!FileExist(_filename))
+            {
+                Scierror(*_errorcode, _("File \"%s\" does not exist.\n"), _filename);
+            }
+            else
+            {
+                Scierror(*_errorcode, _("File \"%s\" read access denied.\n"), _filename);
+            }
         }
         break;
 

@@ -110,7 +110,7 @@ public final class FileUtils {
 	 */
 	public static File createTempFile() throws IOException {
 		return File.createTempFile(XcosFileType.XCOS.getExtension(),
-				XcosFileType.HDF5.getDottedExtension(), ScilabConstants.TMPDIR);
+				XcosFileType.HDF5.getDottedExtension());
 	}
 	
 	/**

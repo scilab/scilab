@@ -34,7 +34,6 @@ vfiniteComplex_
 GetRhsVarMatrixComplex
 iIsComplex
 GetVarDimension
-Msgs
 scifunction_
 ;
 ;core_f

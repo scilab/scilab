@@ -150,3 +150,27 @@ computed = optimsimplex_getnbve (s1);
 assert_equal ( computed , 5 );
 s1 = optimsimplex_destroy(s1);
 
+// Check printing system
+coords = [
+    0.    0.  
+    1.    0.  
+    0.    1.  
+    1.    1.  
+    2.    2.  
+];
+s1 = optimsimplex_new ( coords , rosenbrock );
+string(s1)
+s1
+s1 = optimsimplex_destroy(s1);
+//
+coords = [
+    0.    0.  
+    1.    0.  
+    0.    1.  
+    1.    1.  
+    2.    2.  
+];
+s1 = optimsimplex_new ( coords );
+s1
+s1 = optimsimplex_destroy(s1);
+

@@ -14,6 +14,7 @@ package org.scilab.modules.xcos.port;
 
 import org.scilab.modules.graph.ScilabGraphUniqueObject;
 import org.scilab.modules.xcos.utils.XcosConstants;
+import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGeometry;
 
@@ -211,9 +212,20 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
 	 * @return An html formatted documentation string
 	 */
     public String getToolTipText() {
-	StringBuffer result = new StringBuffer();
+	StringBuilder result = new StringBuilder();
 	result.append(XcosConstants.HTML_BEGIN);
 	result.append("Port number : " + getOrdering() + XcosConstants.HTML_NEWLINE);
+	
+	final int length = getStyle().length();
+	result.append("Style : ");
+	if (length > XcosConstants.MAX_CHAR_IN_STYLE) {
+		result.append(getStyle().substring(0, XcosConstants.MAX_CHAR_IN_STYLE));
+		result.append(XcosMessages.DOTS);
+	} else {
+		result.append(getStyle());
+	}
+	result.append(XcosConstants.HTML_NEWLINE);
+	
 	result.append("Style : " + getStyle() + XcosConstants.HTML_NEWLINE);
 	result.append(XcosConstants.HTML_END);
 	return result.toString();

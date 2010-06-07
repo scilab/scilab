@@ -213,8 +213,8 @@ char *ezxml_decode(char *s, char **ent, char t)
                  b += 2); // find entity in entity list
 
             if (ent[b++]) { // found a match
-                if ((c = strlen(ent[b])) - 1 > (e = strchr(s, ';')) - s) {
-                    l = (d = (s - r)) + c + strlen(e); // new length
+                if ((c = (long)strlen(ent[b])) - 1 > (e = strchr(s, ';')) - s) {
+                    l = (long)(d = (s - r)) + c + (long)strlen(e); // new length
                     r = (r == m) ? strcpy(MALLOC(l), r) : REALLOC(r, l);
                     e = strchr((s = r + d), ';'); // fix up pointers
                 }
@@ -230,7 +230,7 @@ char *ezxml_decode(char *s, char **ent, char t)
 
     if (t == '*') { // normalize spaces for non-cdata attributes
         for (s = r; *s; s++) {
-            if ((l = strspn(s, " "))) memmove(s, s + l, strlen(s + l) + 1);
+            if ((l = (long)strspn(s, " "))) memmove(s, s + l, (long)strlen(s + l) + 1);
             while (*s && *s != ' ') s++;
         }
         if (--s >= r && *s == ' ') *s = '\0'; // trim any trailing space
@@ -951,7 +951,7 @@ ezxml_t ezxml_set_attr(ezxml_t xml, const char *name, char *value)
 
         xml->attr[l] = (char *)name; // set attribute name
         xml->attr[l + 2] = NULL; // null terminate attribute list
-        xml->attr[l + 3] = REALLOC(xml->attr[l + 1],(c = strlen(xml->attr[l + 1])) + 2);
+        xml->attr[l + 3] = REALLOC(xml->attr[l + 1],(c = (int)strlen(xml->attr[l + 1])) + 2);
         strcpy(xml->attr[l + 3] + c, " "); // set name/value as not malloced
         if (xml->flags & EZXML_DUP) xml->attr[l + 3][c] = EZXML_NAMEM;
     }

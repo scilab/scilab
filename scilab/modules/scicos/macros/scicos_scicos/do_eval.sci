@@ -51,9 +51,8 @@ deff('result         = dialog(labels,valueini)','result=valueini')
 deff('[result,Quit]  = scstxtedit(valueini,v2)','result=valueini,Quit=0')
 deff('[ok,tt]        = MODCOM(funam,tt,vinp,vout,vparam,vparamv,vpprop)',..
      '[dirF,nameF,extF]=fileparts(funam);..
-      tarpath=pathconvert(TMPDIR+''/Modelica/'',%f,%t);..
       if (extF=='''')  then,..
-         funam1=tarpath+nameF+''.mo'';..
+         funam1=nameF+''.mo'';..
       elseif fileinfo(funam)==[] then,..
          funam1=funam;..
       end;..

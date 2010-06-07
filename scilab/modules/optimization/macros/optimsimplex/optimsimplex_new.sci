@@ -229,7 +229,7 @@ function [ newobj , data ] = optimsimplex_coords ( coords , fun , data )
   else
     assert_typefunction ( fun , "fun" , 2 );
   end
-  newobj = tlist(["T_SIMPLEX",...
+  newobj = tlist(["TSIMPLEX",...
     "verbose","x","n","fv","nbve"]);
   newobj.verbose = 0;
   // The dimension of the space

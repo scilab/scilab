@@ -251,7 +251,7 @@ localization:
 			mkdir -p $$PATHTO; \
 		fi; \
 		POFILE=$$PATHTO/$(LANG_DOMAIN).po; \
-		$(MSGCAT) -o $$POFILE $$FILES; \
+		$(MSGCAT) --use-first -o $$POFILE $$FILES; \
 		if test "$(MACOSX)" = "1"; then sed -i -e '/charset=UTF-8/d' $$POFILE; fi; \
 		$(MSGFMT) $(MSGFMT_OPTS) --statistics -o $$PATHTO/$(LANG_DOMAIN).mo $$POFILE; \
 	done;

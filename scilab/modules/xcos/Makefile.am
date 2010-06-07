@@ -35,12 +35,9 @@ XCOS_C_SOURCES =
 XCOS_CPP_SOURCES = 	src/cpp/callxcos.cpp \
 			src/jni/Xcos.cpp \
 			src/jni/Xcos.hxx \
-			src/jni/Signal.cpp \
-			src/jni/Signal.hxx \
 			src/jni/GiwsException.cpp
 
-GIWS_WRAPPERS = src/jni/Xcos.giws.xml \
-src/jni/XcosUtils.giws.xml
+GIWS_WRAPPERS = src/jni/Xcos.giws.xml
 
 if GIWS
 BUILT_SOURCES=giws
@@ -51,7 +48,6 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_xcos.c
 
 GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_Xcos.cpp \
-	sci_gateway/cpp/sci_xcosNotify.cpp \
 	sci_gateway/cpp/sci_warnBlockByUID.cpp \
 	sci_gateway/cpp/sci_closeXcosFromScilab.cpp \
 	sci_gateway/cpp/sci_xcosDiagramToHDF5.cpp \

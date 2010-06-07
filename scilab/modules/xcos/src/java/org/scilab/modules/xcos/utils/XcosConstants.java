@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Clément David
+ * Copyright (C) 2010 - DIGITEO - ClÃ©ment David
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -28,6 +28,9 @@ public final class XcosConstants extends ScilabGraphConstants {
     public static final int PALETTE_HMARGIN = 5;
     /** Define the default block vertical margin on the palette */
     public static final int PALETTE_VMARGIN = 5;
+    
+    /** Define the maximum number of char that might be represented as style */
+    public static final int MAX_CHAR_IN_STYLE = 16;
     
     /* Events */
     /**

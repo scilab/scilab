@@ -14,6 +14,7 @@ package org.scilab.modules.xcos.port.control;
 
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
+import org.scilab.modules.xcos.port.command.CommandPort;
 
 /**
  * A control port acts as the execution tick for the block.
@@ -30,6 +31,8 @@ public class ControlPort extends BasicPort {
     public ControlPort() {
 	super("ControlPort");
 	setOrientation(Orientation.NORTH);
+	
+	setDefaultValues();
     }
 
     /**

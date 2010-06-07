@@ -24,8 +24,8 @@ import java.util.Map;
 import javax.swing.SwingUtilities;
 
 import org.apache.commons.logging.LogFactory;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.graph.utils.ScilabExported;
-import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.SuperBlock;
