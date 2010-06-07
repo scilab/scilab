@@ -60,7 +60,7 @@ static gw_generic_table Tab[]=
 {C2F(sci_gstacksize),"gstacksize"},
 {C2F(sci_intppty),"intppty"},
 {C2F(sci_lasterror),"lasterror"},
-{sci_getversion,"getversion"},
+{NULL, ""}, //getversion
 {C2F(sci_macr2tree),"macr2tree"},
 {C2F(sci_getos),"getos"},
 {NULL, ""}, //banner
@@ -70,7 +70,7 @@ static gw_generic_table Tab[]=
 {C2F(sci_with_module),"with_module"},
 {NULL, ""}, //getdebuginfo
 {C2F(sci_readgateway),"readgateway"},
-{C2F(sci_exit),"exit"}
+{NULL, ""} //exit
 };
 /*--------------------------------------------------------------------------*/
 int gw_core(void)

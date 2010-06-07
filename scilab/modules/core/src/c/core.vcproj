@@ -645,10 +645,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_exit.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_format.c"
 				>
 			</File>

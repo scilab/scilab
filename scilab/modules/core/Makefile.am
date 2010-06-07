@@ -251,8 +251,7 @@ sci_gateway/c/sci_islittleendian.c \
 sci_gateway/c/sci_getscilabmode.c \
 sci_gateway/c/sci_getvariablesonstack.c \
 sci_gateway/c/sci_readgateway.c \
-sci_gateway/c/sci_comp.c \
-sci_gateway/c/sci_exit.c
+sci_gateway/c/sci_comp.c
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_errclear.f \
 sci_gateway/fortran/sci_global.f \
@@ -278,7 +277,9 @@ sci_gateway/fortran/sci_isglobal.f
 
 GATEWAY_CPP_SOURCES = 	sci_gateway/cpp/sci_getmodules.cpp \
 						sci_gateway/cpp/sci_clear.cpp \
-						sci_gateway/cpp/sci_banner.cpp
+						sci_gateway/cpp/sci_banner.cpp \
+						sci_gateway/cpp/sci_quit.cpp \
+						sci_gateway/cpp/sci_exit.cpp
 
 libscicore_la_CFLAGS = -I$(srcdir)/includes/ \
 	-I$(srcdir)/src/c/ \
@@ -315,6 +316,7 @@ libscicore_la_CPPFLAGS = \
 			-I$(top_srcdir)/modules/types/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
 			-I$(top_srcdir)/modules/dynamic_link/includes \
+			-I$(top_srcdir)/modules/system_env/includes \
 			-I$(top_srcdir)/libs/MALLOC/includes/ 
 
 # Used by sci_getdebuginfo:

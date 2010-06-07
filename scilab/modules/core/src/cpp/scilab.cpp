@@ -72,6 +72,7 @@ extern "C"
 #include "context.hxx"
 #include "setenvvar.hxx"
 #include "funcmanager.hxx"
+#include "configvariable.hxx"
 
 #include "banner.hxx"
 
@@ -280,7 +281,7 @@ static int batchMain (void)
     std::cerr << "To end program press [ENTER]" << std::endl;
 #endif
 
-    return WELL_DONE;
+    return ConfigVariable::getExitStatus();
 }
 
 /*
@@ -336,7 +337,7 @@ static int interactiveMain (void)
 
 
 
-    while (!exit)
+    while (!ConfigVariable::getForceQuit())
     {
         // Show Parser Sate before prompt
         stateShow(parser->getControlStatus());
@@ -372,11 +373,6 @@ static int interactiveMain (void)
         //std::cout << "---" << std::endl << "Command = " << std::endl;
         //std::cout << command << std::endl;
         //std::cout << "---" << std::endl;
-        if (strcmp(command, "quit") == 0 || strcmp(command, "exit") == 0)
-        {
-            exit = true;
-            return 0;
-        }
 
         if (strcmp(command, "") != 0)
         {
@@ -424,7 +420,7 @@ static int interactiveMain (void)
 #ifdef DEBUG
     std::cerr << "To end program press [ENTER]" << std::endl;
 #endif
-    return WELL_DONE;
+    return ConfigVariable::getExitStatus();
 }
 
 static void TermPrintf(char *text)
