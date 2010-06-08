@@ -41,6 +41,8 @@ import javax.swing.event.CaretListener;
 import javax.swing.event.CaretEvent;
 import javax.swing.text.Highlighter;
 
+import org.scilab.modules.xpad.utils.XpadMessages;
+
 /**
  * Class ScilabEditorPane
  * @author Calixte DENIZET
@@ -101,6 +103,11 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                     ScilabDocument doc = (ScilabDocument) getDocument();
                     doc.setFocused(true);
                     doc.getUndoManager().enableUndoRedoButtons();
+                    if (doc.getBinary()) {
+                        ScilabEditorPane.this.editor.getInfoBar().setText(XpadMessages.BINARY_FILE_MODE);
+                    } else {
+                        ScilabEditorPane.this.editor.getInfoBar().setText("");
+                    }
                     Xpad.setEditor(ScilabEditorPane.this.editor);
                     focused = ScilabEditorPane.this;
                 }
@@ -133,6 +140,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         pane.matchingEnable = matchingEnable;
         pane.suppressCom = suppressCom;
         pane.setName(getName());
+        pane.setEditable(isEditable());
     }
 
     /**
@@ -165,6 +173,21 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      */
     public Xpad getEditor() {
         return editor;
+    }
+
+    /**
+     * Disable all
+     */
+    public void disableAll() {
+        indent = null;
+        tab = null;
+        com = null;
+        trailingWhite = null;
+        enableMatchingKeywords(false);
+        matchLR.desactivateMouseOver();
+        matchLR = null;
+        matchRL.desactivateMouseOver();
+        matchRL = null;
     }
 
     /**

@@ -52,6 +52,7 @@ public class ScilabPlainView extends PlainView {
     private boolean isLaTeXViewable;
     private boolean isTabViewable = true;
     private boolean isWhiteViewable = true;
+    private boolean enable = true;
 
     private int tabType;
     private String tabCharacter = " ";
@@ -77,6 +78,9 @@ public class ScilabPlainView extends PlainView {
         super(elem);
         this.context = context;
         doc = (ScilabDocument) getDocument();
+        if (doc.getBinary()) {
+            disable();
+        }
         doc.setView(this);
         lexer = doc.createLexer();
         lexerValid = false;
@@ -105,6 +109,20 @@ public class ScilabPlainView extends PlainView {
      */
     public void setWhiteViewable(boolean b) {
         isWhiteViewable = b;
+    }
+
+    /**
+     * Disable this view
+     */
+    public void disable() {
+        enable = false;
+    }
+
+    /**
+     * Enable this view
+     */
+    public void enable() {
+        enable = true;
     }
 
     /**
@@ -163,6 +181,19 @@ public class ScilabPlainView extends PlainView {
      * @throws BadLocationException if p0 and p1 are bad positions in the text
      */
     protected int drawUnselectedText(Graphics g, int sx, int sy, int p0, int p1) throws BadLocationException {
+        if (!enable) {
+            return super.drawUnselectedText(g, sx, sy, p0, p1);
+        }
+
+        if (desktopFontHints == null) {
+            /* This hint is used to have antialiased fonts in the view in using
+               the same method (differents way to antialias with LCD screen) as the desktop. */
+            desktopFontHints = (Map) Toolkit.getDefaultToolkit().getDesktopProperty(DESKTOPHINTS);
+            calculateHeight(((Graphics2D) g).getFontRenderContext(), context.tokenFonts[0]);
+        } else {
+            ((Graphics2D) g).addRenderingHints(desktopFontHints);
+        }
+
         /* The lexer returns all tokens between the pos p0 and p1.
            The value of the returned token determinates the color and the font.
            The lines can be broken by the Pane so we must look at previous
@@ -178,15 +209,6 @@ public class ScilabPlainView extends PlainView {
         int x = sx;
         int y = sy;
         boolean isBroken = false;
-
-        if (desktopFontHints == null) {
-            /* This hint is used to have antialiased fonts in the view in using
-               the same method (differents way to antialias with LCD screen) as the desktop. */
-            desktopFontHints = (Map) Toolkit.getDefaultToolkit().getDesktopProperty(DESKTOPHINTS);
-            calculateHeight(((Graphics2D) g).getFontRenderContext(), context.tokenFonts[0]);
-        } else {
-            ((Graphics2D) g).addRenderingHints(desktopFontHints);
-        }
 
         int startL = line.getStartOffset();
         int endL = line.getEndOffset();

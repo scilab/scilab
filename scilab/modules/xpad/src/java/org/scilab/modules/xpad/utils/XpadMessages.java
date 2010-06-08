@@ -167,7 +167,7 @@ public class XpadMessages {
     /* Status bar messages */
     public static final String LOADING = Messages .gettext("Loading") + DOTS;
     public static final String COLORIZATION_CANCELED = Messages .gettext("Colorization canceled");
-
+    public static final String BINARY_FILE_MODE = Messages .gettext("Binary file: read-only mode");
 
     /* About box */
     public static final String VERSION = Messages.gettext("Editor") + " 1.0";

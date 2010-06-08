@@ -61,9 +61,10 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     // Editor's default encoding is UTF-8
     private String encoding = "UTF-8";
     private boolean updater = true;
+    private boolean binary;
     private boolean autoIndent;
     private boolean autoColorize;
-    private volatile boolean shouldMergeEdits;
+    private boolean shouldMergeEdits;
     private boolean undoManagerEnabled;
     private CompoundUndoManager undo;
 
@@ -154,6 +155,21 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      */
     public void setEncoding(String encoding) {
         this.encoding = encoding;
+    }
+
+    /**
+     * Set to true if it's a binary doc
+     * @param binary boolean
+     */
+    public void setBinary(boolean binary) {
+        this.binary = binary;
+    }
+
+    /**
+     * @return true if it's a binary file
+     */
+    public boolean getBinary() {
+        return binary;
     }
 
     /**

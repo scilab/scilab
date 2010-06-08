@@ -31,6 +31,8 @@ Text Editor:
 * bug 4865 fixed - The buttons to undo and redo were not disabled when there
                    was nothing to undo or redo.
 
+* bug 4872 fixed - A binary file was opened like a text file.
+
 * bug 4907 fixed - The source code of a given macro could not be opened.
 
 * bug 4916 fixed - Problem with 'See the code' in the demos.

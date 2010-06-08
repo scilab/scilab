@@ -78,6 +78,7 @@ import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.localization.Messages;
 import org.scilab.modules.xpad.actions.ExitAction;
 import org.scilab.modules.xpad.actions.FindAction;
 import org.scilab.modules.xpad.actions.GotoLineAction;
@@ -345,6 +346,7 @@ public class Xpad extends SwingScilabTab implements Tab {
         while (getTabPane().getComponentCount() > 0) {
             closeTabAt(0, true);
         }
+        xpadList.remove(this);
         editor = null;
         SwingScilabWindow window = (SwingScilabWindow) parentWindow.getAsSimpleWindow();
         Point p = window.getLocation();
@@ -866,6 +868,13 @@ public class Xpad extends SwingScilabTab implements Tab {
         setHelpOnTyping(rightPane);
         initInputMap(leftPane);
         initInputMap(rightPane);
+        if (doc.getBinary()) {
+            leftPane.disableAll();
+            rightPane.disableAll();
+            getInfoBar().setText(XpadMessages.BINARY_FILE_MODE);
+        } else {
+            getInfoBar().setText("");
+        }
         updateTabTitle();
     }
 
@@ -882,9 +891,16 @@ public class Xpad extends SwingScilabTab implements Tab {
             ScilabDocument doc = (ScilabDocument) textpane.getDocument();
             pane.setDocument(doc);
             pane.setCaretPosition(0);
-            initInputMap(pane);
+            setHelpOnTyping(pane);
             tabPane.setComponentAt(tabPane.getSelectedIndex(), pane.getScrollPane());
             setContentPane(tabPane);
+            initInputMap(pane);
+            if (doc.getBinary()) {
+                pane.disableAll();
+                getInfoBar().setText(XpadMessages.BINARY_FILE_MODE);
+            } else {
+                getInfoBar().setText("");
+            }
             updateTabTitle();
         }
     }
@@ -1385,7 +1401,13 @@ public class Xpad extends SwingScilabTab implements Tab {
                 styleDocument.setContentModified(false);
                 styleDocument.enableUndoManager();
 
-                getInfoBar().setText("");
+                if (styleDocument.getBinary()) {
+                    theTextPane.setEditable(false);
+                    theTextPane.disableAll();
+                    getInfoBar().setText(XpadMessages.BINARY_FILE_MODE);
+                } else {
+                    getInfoBar().setText("");
+                }
 
                 xpadGUI.updateEncodingMenu((ScilabDocument) getTextPane().getDocument());
 

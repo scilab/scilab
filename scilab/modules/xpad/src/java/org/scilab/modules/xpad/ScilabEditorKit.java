@@ -12,6 +12,8 @@
 
 package org.scilab.modules.xpad;
 
+import java.nio.CharBuffer;
+import java.nio.charset.Charset;
 import java.io.Reader;
 import java.io.IOException;
 
@@ -108,45 +110,72 @@ public class ScilabEditorKit extends DefaultEditorKit {
         int i;
         int prev;
         int offs = 0;
+        int inc = 0;
         boolean win = false;
         boolean mac = false;
+        boolean first = true;
+        boolean binary = false;
         StringBuffer sbuf = new StringBuffer(buffer.length);
         while ((nch = in.read(buffer, 0, buffer.length)) != -1) {
-            prev = 0;
-            for (i = 0; i < nch - 1; i++) {
-                if (buffer[i] == '\r') {
-                    buffer[i] = '\n';
-                    sbuf.append(buffer, prev, i - prev + 1);
-                    if (buffer[i + 1] == '\n') {
-                        i++;
-                        if (!win && !mac) {
-                            ((ScilabDocument) doc).setEOL(ScilabDocument.EOLWIN);
-                            win = true;
-                        }
-                    } else {
-                        if (!win && !mac) {
-                            ((ScilabDocument) doc).setEOL(ScilabDocument.EOLMAC);
-                            mac = true;
+            if (first) {
+                /* We try to know if we have a binary file
+                   The rule is : two \0 in the first 8ko : it's binary ! */
+                CharBuffer cb = CharBuffer.wrap(buffer);
+                byte[] bytes = Charset.defaultCharset().encode(cb).array();
+                for (i = 0; i < nch; i++) {
+                    if (bytes[i] == 0 ) {
+                        inc++;
+                        if (inc == 2) {
+                            binary = true;
+                            break;
                         }
                     }
-
-                    prev = i + 1;
                 }
+                first = false;
             }
 
-            if (i == nch - 1) {
-                if (buffer[i] == '\r') {
-                    if (!win && !mac) {
-                        ((ScilabDocument) doc).setEOL(ScilabDocument.EOLMAC);
+            prev = 0;
+            if (!binary) {
+                for (i = 0; i < nch - 1; i++) {
+                    if (buffer[i] == '\r') {
+                        buffer[i] = '\n';
+                        sbuf.append(buffer, prev, i - prev + 1);
+                        if (buffer[i + 1] == '\n') {
+                            i++;
+                            if (!win && !mac) {
+                                ((ScilabDocument) doc).setEOL(ScilabDocument.EOLWIN);
+                                win = true;
+                            }
+                        } else {
+                            if (!win && !mac) {
+                                ((ScilabDocument) doc).setEOL(ScilabDocument.EOLMAC);
+                                mac = true;
+                            }
+                        }
+
+                        prev = i + 1;
                     }
-                    buffer[i] = '\n';
                 }
-                sbuf.append(buffer, prev, i - prev + 1);
+
+                if (i == nch - 1) {
+                    if (buffer[i] == '\r') {
+                        if (!win && !mac) {
+                            ((ScilabDocument) doc).setEOL(ScilabDocument.EOLMAC);
+                        }
+                        buffer[i] = '\n';
+                    }
+                    sbuf.append(buffer, prev, i - prev + 1);
+                }
+            } else {
+                sbuf.append(buffer, 0, nch);
             }
         }
         if (!win && !mac) {
             ((ScilabDocument) doc).setEOL(ScilabDocument.EOLUNIX);
         }
+
+        ((ScilabDocument) doc).setBinary(inc == 2);
+
         doc.insertString(pos, sbuf.toString(), null);
     }
 }
