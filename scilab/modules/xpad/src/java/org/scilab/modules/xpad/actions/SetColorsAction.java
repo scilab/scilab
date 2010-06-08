@@ -350,11 +350,11 @@ public final class SetColorsAction extends DefaultAction {
                                             textPane.resetFont(name, bold);
                                             textPane.resetFont(name, italic);
                                             textPane.resetAttribute(name, allAttributes.get(name));
-                                            if (textPane.getRightTextPane() != null) {
-                                                textPane.getRightTextPane().resetColor(name, allStylesColor.get(name));
-                                                textPane.getRightTextPane().resetFont(name, bold);
-                                                textPane.getRightTextPane().resetFont(name, italic);
-                                                textPane.getRightTextPane().resetAttribute(name, allAttributes.get(name));
+                                            if (textPane.getOtherPaneInSplit() != null) {
+                                                textPane.getOtherPaneInSplit().resetColor(name, allStylesColor.get(name));
+                                                textPane.getOtherPaneInSplit().resetFont(name, bold);
+                                                textPane.getOtherPaneInSplit().resetFont(name, italic);
+                                                textPane.getOtherPaneInSplit().resetAttribute(name, allAttributes.get(name));
                                             }
                                         }
                                 }
@@ -415,7 +415,7 @@ public final class SetColorsAction extends DefaultAction {
                 frame.pack();
                 frame.setLocationRelativeTo(getEditor());
                 frame.setVisible(true);
-                
+
         }
 
         /**

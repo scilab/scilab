@@ -47,6 +47,6 @@ public final class SplitHorizontallyAction extends DefaultAction {
          * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
          */
         public void doAction() {
-            getEditor().getTextPane().splitWindow(false);
+            getEditor().splitTab(false);
         }
 }

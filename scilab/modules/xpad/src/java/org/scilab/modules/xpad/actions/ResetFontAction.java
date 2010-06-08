@@ -41,8 +41,8 @@ public class ResetFontAction extends DefaultAction {
 
             ScilabEditorPane textPane = getEditor().getTextPane(j);
             textPane.resetFont(oldFont);
-            if (textPane.getRightTextPane() != null) {
-                textPane.getRightTextPane().resetFont(oldFont);
+            if (textPane.getOtherPaneInSplit() != null) {
+                textPane.getOtherPaneInSplit().resetFont(oldFont);
             }
         }
         getEditor().getTextPane().setFocusable(true);

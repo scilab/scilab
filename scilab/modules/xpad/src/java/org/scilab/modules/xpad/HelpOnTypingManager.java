@@ -15,7 +15,6 @@ package org.scilab.modules.xpad;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 
-import javax.swing.text.Element;
 import javax.swing.text.BadLocationException;
 
 /**
@@ -24,19 +23,11 @@ import javax.swing.text.BadLocationException;
  */
 public class HelpOnTypingManager implements KeyListener {
 
-    private ScilabEditorPane textPane;
-    private ScilabDocument doc;
-    private Element root;
-
     /**
      * Constructor
      * @param pane the associated TextPane
      */
-    public HelpOnTypingManager(ScilabEditorPane pane) {
-        this.textPane = pane;
-        this.doc = (ScilabDocument) pane.getDocument();
-        this.root = this.doc.getDefaultRootElement();
-    }
+    public HelpOnTypingManager(ScilabEditorPane pane) { }
 
     /**
      * Nothing !
@@ -63,10 +54,12 @@ public class HelpOnTypingManager implements KeyListener {
      */
     public void keyTyped(KeyEvent e) {
         char c = e.getKeyChar();
+        ScilabEditorPane textPane = ScilabEditorPane.getFocusedPane();
+        ScilabDocument doc = (ScilabDocument) textPane.getDocument();
         if (c != KeyEvent.CHAR_UNDEFINED && textPane.getSelectionStart() == textPane.getSelectionEnd()) {
             int pos = textPane.getCaretPosition();
             if (c == ' ' && e.getModifiers() == 0) {
-                int end = root.getElement(root.getElementIndex(pos)).getEndOffset() - 1;
+                int end = doc.getDefaultRootElement().getElement(doc.getDefaultRootElement().getElementIndex(pos)).getEndOffset() - 1;
                 /* the following test is used to know if an insertion in the line is done */
                 if (pos == end) {
                     try {
@@ -87,6 +80,7 @@ public class HelpOnTypingManager implements KeyListener {
                                 textPane.setCaretPosition(pos + 1);
                             }
                             break;
+                        default :
                         }
                     } catch (BadLocationException exc) { }
                 }
@@ -104,6 +98,7 @@ public class HelpOnTypingManager implements KeyListener {
                     break;
                 case '\"' :
                     str = "\"\"";
+                default :
                 }
 
                 if (str != null) {

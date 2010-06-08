@@ -36,6 +36,7 @@ import javax.swing.event.CaretListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.Element;
+import javax.swing.text.View;
 
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 
@@ -134,6 +135,7 @@ public class XpadLineNumberPanel extends JPanel implements CaretListener, Docume
         setFont(font);
         metrics = textPane.getFontMetrics(font);
         ascent = metrics.getAscent();
+        numbers = 0;
         updateWidth();
     }
 
@@ -189,7 +191,7 @@ public class XpadLineNumberPanel extends JPanel implements CaretListener, Docume
 
         synchronized (doc) {
             Element root = doc.getDefaultRootElement();
-            ScilabView view = (ScilabView) doc.getView();
+            View view = doc.getView();
             Rectangle clip = g.getClipBounds();
             Point pt = new Point(0, clip.y);
             int rowStartOffset = textPane.viewToModel(pt);
@@ -218,7 +220,11 @@ public class XpadLineNumberPanel extends JPanel implements CaretListener, Docume
                     diff = (availableWidth - metrics.stringWidth(str)) / 2;
                 }
 
-                g.drawString(str, diff, view.getLineAllocation(line) + ascent);
+                if (view instanceof ScilabView) {
+                    g.drawString(str, diff, ((ScilabView) view).getLineAllocation(line) + ascent);
+                } else {
+                    g.drawString(str, diff, ((ScilabPlainView) view).getLineAllocation(line) + ascent);
+                }
             }
         }
     }

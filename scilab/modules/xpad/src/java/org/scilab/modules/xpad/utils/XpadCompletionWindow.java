@@ -28,6 +28,7 @@ import com.artenum.rosetta.interfaces.core.CompletionManager;
 
 import org.scilab.modules.completion.Completion;
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.ScilabEditorPane;
 import org.scilab.modules.console.AbstractSciCompletionWindow;
 
 /**
@@ -87,20 +88,17 @@ public class XpadCompletionWindow extends AbstractSciCompletionWindow {
         if (list != null) {
             /* If completion window size bigger than input command view size
                put the window on the top of the current line */
-            JComponent c = editor.getTextPane().getParentComponent();
+            ScilabEditorPane first = editor.getTextPane();
             int height;
             int value;
-            if (c instanceof JScrollPane) {
-                value = ((JScrollPane) c).getVerticalScrollBar().getValue();
-                height = ((JScrollPane) c).getHeight();
-            } else {
-                value = ((JScrollPane) ((JSplitPane) c).getLeftComponent()).getVerticalScrollBar().getValue();
-                height = ((JScrollPane) ((JSplitPane) c).getLeftComponent()).getHeight();
+            value = first.getScrollPane().getVerticalScrollBar().getValue();
+            height = first.getScrollPane().getHeight();
+            if (first.getOtherPaneInSplit() != null) {
                 getTextComponent().add(window);
             }
             if (window.getHeight() + location.y > value + height) {
                 try {
-                    int ypos = editor.getTextPane().modelToView(currentCaretPosition).height;
+                    int ypos = first.modelToView(currentCaretPosition).height;
                     location.y = location.y - window.getHeight() - ypos;
                 } catch (BadLocationException e) { }
             }

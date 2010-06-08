@@ -26,18 +26,16 @@ import java.awt.event.FocusListener;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.EventObject;
-import java.io.StringReader;
-import java.io.IOException;
 
 import javax.swing.JEditorPane;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
-import javax.swing.JTabbedPane;
 import javax.swing.JScrollBar;
 import javax.swing.JComponent;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.Document;
 import javax.swing.text.Element;
+import javax.swing.text.View;
 import javax.swing.text.BadLocationException;
 import javax.swing.event.CaretListener;
 import javax.swing.event.CaretEvent;
@@ -54,8 +52,8 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
 
     private static ScilabEditorPane focused;
 
-    private Color highlightColor = new Color(228, 233, 244);
-    private Color highlightContourColor = new Color(50, 50, 50);
+    private Color highlightColor;
+    private Color highlightContourColor;
     private boolean highlightEnable;
     private Object highlightCL;
     private boolean matchingEnable;
@@ -88,6 +86,9 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      */
     public ScilabEditorPane(Xpad editor) {
         super();
+        if (focused == null) {
+            focused = this;
+        }
         this.editor = editor;
         scroll = new JScrollPane(this);
         addCaretListener(this);
@@ -100,7 +101,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                     ScilabDocument doc = (ScilabDocument) getDocument();
                     doc.setFocused(true);
                     doc.getUndoManager().enableUndoRedoButtons();
-                    Xpad.editor = ScilabEditorPane.this.editor;
+                    Xpad.setEditor(ScilabEditorPane.this.editor);
                     focused = ScilabEditorPane.this;
                 }
 
@@ -120,6 +121,18 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             ((ScilabDocument) doc).getUndoManager().discardAllEdits();
             initialize((ScilabDocument) doc);
         }
+    }
+
+    /**
+     * Copy the props of this textPane to pane
+     * @param pane the pane which receives the same props as this
+     */
+    public void copyProps(ScilabEditorPane pane) {
+        pane.lastModified = lastModified;
+        pane.highlightEnable = highlightEnable;
+        pane.matchingEnable = matchingEnable;
+        pane.suppressCom = suppressCom;
+        pane.setName(getName());
     }
 
     /**
@@ -164,6 +177,9 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         return split;
     }
 
+    /**
+     * Update the title of current tab
+     */
     public void updateTitle() {
         editor.updateTabTitle();
     }
@@ -203,9 +219,13 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     public void resetFont(Font font) {
         setFont(font);
         ((ScilabEditorKit) getEditorKit()).getStylePreferences().genFonts(font);
-        ScilabView view = (ScilabView) ((ScilabEditorKit) getEditorKit()).getStylePreferences().getCurrentView();
+        View view = ((ScilabDocument) getDocument()).getView();
         if (view != null) {
-            view.reinitialize();
+            if (view instanceof ScilabView) {
+                ((ScilabView) view).reinitialize();
+            } else {
+                ((ScilabPlainView) view).reinitialize();
+            }
         }
         xln.updateFont(font);
     }
@@ -530,62 +550,20 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     }
 
     /**
-     * Split the EditorPane
-     * @param vertical true for a vertical split
+     * @param pane the EditorPane associated with this EditorPane in a splitted view
      */
-    public void splitWindow(boolean vertical) {
-        rightTextPane = new ScilabEditorPane(editor);
-        rightTextPane.setName(getName());
-        editor.initPane(rightTextPane);
-        editor.initInputMap(rightTextPane);
-        ScilabEditorKit kit = (ScilabEditorKit) getEditorKit().clone();
-        rightTextPane.setEditorKit(kit);
-        ScilabDocument doc = (ScilabDocument) rightTextPane.getDocument();
-        try {
-            kit.read(new StringReader(((ScilabDocument) getDocument()).getText()), doc, 0);
-        } catch (IOException e) {
-        } catch (BadLocationException e) { }
-        doc.setContentModified(((ScilabDocument) getDocument()).isContentModified());
-        rightTextPane.activateHelpOnTyping(false);
-        editor.setHelpOnTyping(rightTextPane);
-        ((ScilabDocument) getDocument()).setRightDocument(doc);
-        doc.setLeftDocument((ScilabDocument) getDocument());
-        rightTextPane.setCaretPosition(0);
-        JTabbedPane tabpane = editor.getTabPane();
-        int index = tabpane.getSelectedIndex();
-        if (vertical) {
-            split = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
-        } else {
-            split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+    public void setOtherPaneInSplit(ScilabEditorPane pane) {
+        if (pane == null) {
+            rightTextPane.rightTextPane = null;
         }
-        rightTextPane.split = split;
-        rightTextPane.rightTextPane = this;
-        tabpane.setComponentAt(index, split);
-        split.setLeftComponent(scroll);
-        split.setRightComponent(rightTextPane.scroll);
-        split.setResizeWeight(0.5);
-    }
-
-    /**
-     * Remove the split
-     */
-    public void removeSplit() {
-        if (split != null) {
-            JTabbedPane tab = editor.getTabPane();
-            tab.setComponentAt(tab.getSelectedIndex(), scroll);
-            split = null;
-            rightTextPane = null;
-        }
+        rightTextPane = pane;
     }
 
     /**
      * @return the EditorPane associated with this EditorPane in a splitted view
      */
-    public ScilabEditorPane getRightTextPane() {
-        if (split != null) {
-            return rightTextPane;
-        }
-        return null;
+    public ScilabEditorPane getOtherPaneInSplit() {
+        return rightTextPane;
     }
 
     /**

@@ -47,6 +47,6 @@ public final class NoSplitAction extends DefaultAction {
          * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
          */
         public void doAction() {
-            getEditor().getTextPane().removeSplit();
+            getEditor().removeSplit();
         }
 }

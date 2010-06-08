@@ -19,7 +19,6 @@ import org.scilab.modules.xpad.ScilabEditorPane;
 import org.scilab.modules.xpad.ScilabDocument;
 import org.scilab.modules.xpad.TrailingWhiteManager;
 import org.scilab.modules.xpad.utils.XpadMessages;
-import org.scilab.modules.xpad.utils.ConfigXpadManager;
 
 /**
  * RemoveTrailingWhiteAction Class

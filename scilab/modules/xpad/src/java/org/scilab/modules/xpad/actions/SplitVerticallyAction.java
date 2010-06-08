@@ -47,6 +47,6 @@ public final class SplitVerticallyAction extends DefaultAction {
          * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
          */
         public void doAction() {
-            getEditor().getTextPane().splitWindow(true);
+            getEditor().splitTab(true);
         }
 }

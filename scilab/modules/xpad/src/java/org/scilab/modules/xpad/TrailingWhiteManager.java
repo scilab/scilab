@@ -15,8 +15,6 @@ package org.scilab.modules.xpad;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Element;
 
-import org.scilab.modules.xpad.utils.ConfigXpadManager;
-
 /**
  * This class handles the tabulation
  * @author Calixte DENIZET

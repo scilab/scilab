@@ -16,7 +16,6 @@ package org.scilab.modules.xpad.style;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.UndoableEditEvent;
 import javax.swing.text.AbstractDocument;
-import javax.swing.text.Document;
 import javax.swing.text.Segment;
 import javax.swing.text.BadLocationException;
 import javax.swing.undo.CompoundEdit;
@@ -25,7 +24,6 @@ import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.CannotRedoException;
 
 import org.scilab.modules.xpad.ScilabDocument;
-import org.scilab.modules.xpad.actions.RedoAction;
 
 /**
  * Class CompoundUndoManager
@@ -165,7 +163,6 @@ public class CompoundUndoManager extends UndoManager {
      */
     public void undoableEditHappened(UndoableEditEvent e) {
         DocumentEvent event = (AbstractDocument.DefaultDocumentEvent) e.getEdit();
-        Document doc = event.getDocument();
 
         if (event.getLength() == 1) {
             if (!remove && event.getType() == DocumentEvent.EventType.REMOVE) {
@@ -179,7 +176,7 @@ public class CompoundUndoManager extends UndoManager {
             }
 
             try {
-                doc.getText(event.getOffset(), 1, seg);
+                sdoc.getText(event.getOffset(), 1, seg);
                 boolean br = false;
                 for (int i = 0; i < breaks.length && !br; i++) {
                     br = seg.array[seg.offset] == breaks[i];
@@ -193,8 +190,8 @@ public class CompoundUndoManager extends UndoManager {
                     endCompoundEdit();
                     return;
                 } else {
-                    if (doc.getDefaultRootElement().getElementIndex(event.getOffset()) != prevLine) {
-                        prevLine = doc.getDefaultRootElement().getElementIndex(event.getOffset());
+                    if (sdoc.getDefaultRootElement().getElementIndex(event.getOffset()) != prevLine) {
+                        prevLine = sdoc.getDefaultRootElement().getElementIndex(event.getOffset());
                         endCompoundEdit();
                     }
                     startCompoundEdit();

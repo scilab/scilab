@@ -47,8 +47,8 @@ public class SetFontAction extends DefaultAction {
                         for (int j = 0; j < numberOfTab; j++) {
                             ScilabEditorPane textPane = getEditor().getTextPane(j);
                             textPane.resetFont(newFont);
-                            if (textPane.getRightTextPane() != null) {
-                                textPane.getRightTextPane().resetFont(newFont);
+                            if (textPane.getOtherPaneInSplit() != null) {
+                                textPane.getOtherPaneInSplit().resetFont(newFont);
                             }
                         }
                         getEditor().getTextPane().setFocusable(true);

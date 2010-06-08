@@ -68,11 +68,10 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     private CompoundUndoManager undo;
 
     private ScilabEditorPane pane;
-    private ScilabDocument rightDocument;
-    private ScilabDocument leftDocument;
     private boolean focused;
 
-    private String eolStyle = System.getProperty("line.separator");
+    private String LINE_SEPARATOR = "line.separator";
+    private String eolStyle = System.getProperty(LINE_SEPARATOR);
 
     /**
      * Constructor
@@ -92,25 +91,6 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
 
         funScanner = new FunctionScanner(this);
         addDocumentListener(this);
-    }
-
-    /**
-     * Set the right document in a splitted view
-     * @param doc the doc at the right
-     */
-    public void setRightDocument(ScilabDocument doc) {
-        rightDocument = doc;
-        doc.removeUndoableEditListener(doc.undo);
-        doc.undo = undo;
-        doc.addUndoableEditListener(undo);
-    }
-
-    /**
-     * Set the left document in a splitted view
-     * @param doc the doc at the left
-     */
-    public void setLeftDocument(ScilabDocument doc) {
-        leftDocument = doc;
     }
 
     /**
@@ -197,7 +177,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * @return end of line
      */
     public String getDefaultEOL() {
-        return System.getProperty("line.separator");
+        return System.getProperty(LINE_SEPARATOR);
     }
 
     /**
@@ -366,7 +346,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * @return a list containing all the infos about functions available in this document
      */
     public List<FunctionScanner.FunctionInfo> getFunctionInfo() {
-        ArrayList list = new ArrayList();
+        List list = new ArrayList();
         Element root = getDefaultRootElement();
         for (int i = 0; i < root.getElementCount(); i++) {
             Element e = root.getElement(i);
@@ -426,6 +406,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
                 case ScilabLeafElement.ENDFUN :
                     compt--;
                     break;
+                default :
                 }
             }
         }
@@ -444,37 +425,6 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      */
     public void unlock() {
         super.writeUnlock();
-    }
-
-    /**
-     * Overrides the method in PlainDocument (useful in splitted view)
-     * @param offset an int
-     * @param str a String
-     * @param a an AttributeSet
-     * @throw a BadLocationException
-     */
-    public void insertString(int offset, String str, AttributeSet a) throws BadLocationException {
-        super.insertString(offset, str, a);
-        if (focused && rightDocument != null) {
-            rightDocument.insertString(offset, str, a);
-        } else if (focused && leftDocument != null) {
-            leftDocument.insertString(offset, str, a);
-        }
-    }
-
-    /**
-     * Overrides the method in PlainDocument (useful in splitted view)
-     * @param offs an int
-     * @param len the length
-     * @throw a BadLocationException
-     */
-    public void remove(int offs, int len) throws BadLocationException {
-        super.remove(offs, len);
-        if (focused && rightDocument != null) {
-            rightDocument.remove(offs, len);
-        } else if (focused && leftDocument != null) {
-            leftDocument.remove(offs, len);
-        }
     }
 
     /**

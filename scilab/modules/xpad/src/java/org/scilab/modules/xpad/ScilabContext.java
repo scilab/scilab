@@ -46,7 +46,8 @@ public class ScilabContext implements ViewFactory {
      */
     int[] tokenAttrib;
 
-    private ScilabView view;
+    private View view;
+    private boolean plain;
     private List<Integer> typeToDefault = new ArrayList();
 
     /**
@@ -60,9 +61,18 @@ public class ScilabContext implements ViewFactory {
     }
 
     /**
+     * Constructor
+     * @param plain boolean for a plain view
+     */
+     public ScilabContext(boolean plain) {
+        this();
+        this.plain = plain;
+    }
+
+    /**
      * Generate an attribute for a type of keyword
      * @param keyword the name can be found in xpadConfiguration.xml
-     * @param color the color to use
+     * @param type the type to use
      */
     public void genAttribute(String keyword, int type) {
         tokenAttrib[ScilabLexerConstants.TOKENS.get(keyword)] = type;
@@ -142,9 +152,9 @@ public class ScilabContext implements ViewFactory {
     }
 
     /**
-     * Generate a color for a type of keyword
+     * Generate a font for a type of keyword
      * @param name the name can be found in xpadConfiguration.xml
-     * @param color the color to use
+     * @param type the type to use
      */
     public void genFont(String name, int type) {
         Font font = tokenFonts[ScilabLexerConstants.TOKENS.get(name)];
@@ -162,6 +172,7 @@ public class ScilabContext implements ViewFactory {
         case 2 :
             font = font.deriveFont(style | Font.ITALIC);
             break;
+        default :
         }
 
         tokenFonts[ScilabLexerConstants.TOKENS.get(name)] = font;
@@ -231,8 +242,13 @@ public class ScilabContext implements ViewFactory {
      * @return the view associated with the element
      */
     public View create(Element elem) {
-        view = new ScilabView(elem, this);
-        view.setDefaultTabRepresentation();
+        if (plain) {
+            view = new ScilabPlainView(elem, this);
+            ((ScilabPlainView) view).setDefaultTabRepresentation();
+        } else {
+            view = new ScilabView(elem, this);
+            ((ScilabView) view).setDefaultTabRepresentation();
+        }
         return view;
     }
 }
