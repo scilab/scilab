@@ -116,6 +116,9 @@ public class PaletteManagerView extends ScilabTab {
 		setCallback(new ClosePalettesAction(null));
 		window.addTab(this);
 		window.setVisible(true);
+		
+		getTree().revalidate();
+		getPanel().performStartUpLayout();
 	}
 	
 	/** @return the category tree */

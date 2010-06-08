@@ -93,16 +93,14 @@ public final class PaletteManager {
 		if (instance == null) {
 			instance = new PaletteManager();
 			instance.loadConfig();
-			instance.setView(new PaletteManagerView(instance));
-			instance.getView().getTree().revalidate();
-			instance.getView().getPanel().performStartUpLayout();
 		}
 		return instance;
 	}
 
 	/** @return true if the palette window is visible, false otherwise */
 	public static boolean isVisible() {
-		return getInstance().getView().isVisible();
+		return getInstance().getView() != null
+				|| getInstance().getView().isVisible();
 	}
 
 	/**
@@ -112,6 +110,9 @@ public final class PaletteManager {
 	 *            true to set visible, false to hide.
 	 */
 	public static void setVisible(boolean status) {
+		if (getInstance().getView() == null) {
+			getInstance().setView(new PaletteManagerView(getInstance()));
+		}
 		getInstance().getView().setVisible(status);
 	}
 
@@ -142,6 +143,10 @@ public final class PaletteManager {
 								+ "Switching to the default one."
 								+ e);
 
+				if (getView() == null) {
+					throw new Error(XcosMessages.ERR_CONFIG_PALETTE_INVALID);
+				}
+				
 				ScilabModalDialog.show(getView(),
 						XcosMessages.ERR_CONFIG_PALETTE_INVALID,
 						XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
