@@ -28,8 +28,8 @@ extern int      yydebug;
 void Parser::parseFile(const std::string& fileName, const std::string& progName)
 {
     // Calling Parse state machine in C with global values
-  // Must be locked to avoid concurrent access
-  // FIXME : LOCK
+    // Must be locked to avoid concurrent access
+    // FIXME : LOCK
     if (getParseTrace() == true)
     {
         ParserSingleInstance::enableParseTrace();
@@ -40,46 +40,51 @@ void Parser::parseFile(const std::string& fileName, const std::string& progName)
     }
     ParserSingleInstance::parseFile(fileName, progName);
     this->setExitStatus(ParserSingleInstance::getExitStatus());
+    this->setControlStatus(ParserSingleInstance::getControlStatus());
     if (getExitStatus() == Parser::Succeded) {
         this->setTree(ParserSingleInstance::getTree());
     }
-  // FIXME : UNLOCK
+    else
+    {
+        this->setErrorMessage(ParserSingleInstance::getErrorMessage());
+    }
+    // FIXME : UNLOCK
 }
 
 
 /** \brief parse the given file name */
 void ParserSingleInstance::parseFile(const std::string& fileName, const std::string& progName)
 {
-  yylloc.first_line = yylloc.last_line = 1;
-  yylloc.first_column = yylloc.last_column = 1;
+    yylloc.first_line = yylloc.last_line = 1;
+    yylloc.first_column = yylloc.last_column = 1;
 #ifdef _MSC_VER
 	fopen_s(&yyin, fileName.c_str (), "r");
 #else
-  yyin = fopen(fileName.c_str (), "r");
+    yyin = fopen(fileName.c_str (), "r");
 #endif
 
-  if (!yyin)
+    if (!yyin)
     {
-      std::cerr << "*** Error -> cannot open `" << fileName << "`" << std::endl;
-      exit (SYSTEM_ERROR);
+        std::cerr << "*** Error -> cannot open `" << fileName << "`" << std::endl;
+        exit (SYSTEM_ERROR);
     }
 
-  ParserSingleInstance::disableStrictMode();
-  //  Parser::getInstance()->enableStrictMode();
-  ParserSingleInstance::setFileName(fileName);
-  ParserSingleInstance::setProgName(progName);
+    ParserSingleInstance::disableStrictMode();
+    //  Parser::getInstance()->enableStrictMode();
+    ParserSingleInstance::setFileName(fileName);
+    ParserSingleInstance::setProgName(progName);
 
-  ParserSingleInstance::setExitStatus(Parser::Succeded);
-  ParserSingleInstance::resetControlStatus();
-  ParserSingleInstance::resetErrorMessage();
-  yyparse();
-  fclose(yyin);
+    ParserSingleInstance::setExitStatus(Parser::Succeded);
+    ParserSingleInstance::resetControlStatus();
+    ParserSingleInstance::resetErrorMessage();
+    yyparse();
+    fclose(yyin);
 }
 
 void Parser::parse(char *command) {
-   // Calling Parse state machine in C with global values
-  // Must be locked to avoid concurrent access
-  // FIXME : LOCK
+    // Calling Parse state machine in C with global values
+    // Must be locked to avoid concurrent access
+    // FIXME : LOCK
     if (getParseTrace() == true)
     {
         ParserSingleInstance::enableParseTrace();
@@ -90,20 +95,25 @@ void Parser::parse(char *command) {
     }
     ParserSingleInstance::parse(command);
     this->setExitStatus(ParserSingleInstance::getExitStatus());
+    this->setControlStatus(ParserSingleInstance::getControlStatus());
     if (getExitStatus() == Parser::Succeded) {
         this->setTree(ParserSingleInstance::getTree());
     }
-  // FIXME : UNLOCK
+    else
+    {
+        this->setErrorMessage(ParserSingleInstance::getErrorMessage());
+    }
+    // FIXME : UNLOCK
 }
 
 /** \brief parse the given file command */
 void ParserSingleInstance::parse(char *command)
 {
-   char *codeLine = NULL;
-   size_t len = 0;
+    char *codeLine = NULL;
+    size_t len = 0;
 
-  yylloc.first_line = yylloc.last_line = 1;
-  yylloc.first_column = yylloc.last_column = 1;
+    yylloc.first_line = yylloc.last_line = 1;
+    yylloc.first_column = yylloc.last_column = 1;
 #ifdef _MSC_VER
 	TCHAR szFile[] = TEXT("command.temp");
 	fopen_s(&yyin, "command.temp", "w");
@@ -122,19 +132,19 @@ void ParserSingleInstance::parse(char *command)
 
 #ifndef _MSC_VER
 #ifndef __APPLE__
-  yyin = fmemopen(command, strlen(command), "r");
+    yyin = fmemopen(command, strlen(command), "r");
 #endif
 #endif
 
-  ParserSingleInstance::disableStrictMode();
-  ParserSingleInstance::setFileName(*new std::string("prompt"));
-  ParserSingleInstance::setExitStatus(Parser::Succeded);
-  ParserSingleInstance::resetControlStatus();
-  ParserSingleInstance::resetErrorMessage();
+    ParserSingleInstance::disableStrictMode();
+    ParserSingleInstance::setFileName(*new std::string("prompt"));
+    ParserSingleInstance::setExitStatus(Parser::Succeded);
+    ParserSingleInstance::resetControlStatus();
+    ParserSingleInstance::resetErrorMessage();
 
-  yyparse();
+    yyparse();
 
-  fclose(yyin);
+    fclose(yyin);
 #ifdef _MSC_VER
 	DeleteFile(szFile);
 #endif
@@ -144,43 +154,43 @@ void ParserSingleInstance::parse(char *command)
 char *ParserSingleInstance::getCodeLine(int line, char **codeLine) {
 #ifndef _MSC_VER
 #ifndef __APPLE__
-   size_t len = 0;
-   int i = 0;
+    size_t len = 0;
+    int i = 0;
 
-   rewind(yyin);
-   /*
-   ** WARNING : *codeLine will be allocated by getline
-   ** so it must be manually freed !
-   */
-   for (i = 1 ; i <= line ; ++i)
-     {
-       getline(codeLine, &len, yyin);
-     }
+    rewind(yyin);
+    /*
+    ** WARNING : *codeLine will be allocated by getline
+    ** so it must be manually freed !
+    */
+    for (i = 1 ; i <= line ; ++i)
+    {
+        getline(codeLine, &len, yyin);
+    }
 #endif
 #endif
-   return *codeLine;
+    return *codeLine;
 }
 
-char *ParserSingleInstance::getErrorMessage(void)
+std::string *ParserSingleInstance::getErrorMessage(void)
 {
-  return (char *)_error_message->c_str();
+    return _error_message;
 }
 
 void ParserSingleInstance::appendErrorMessage(std::string message)
 {
-  *_error_message += message;
+    *_error_message += message;
 }
 
 /** \brief enable Bison trace mode */
 void ParserSingleInstance::enableParseTrace(void)
 {
-  yydebug = 1;
+    yydebug = 1;
 }
 
 /** \brief disable Bison trace mode */
 void ParserSingleInstance::disableParseTrace(void)
 {
-  yydebug = 0;
+    yydebug = 0;
 }
 
 void Parser::freeTree()

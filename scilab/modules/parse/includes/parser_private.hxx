@@ -1,13 +1,13 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
- * 
+ *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
  *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- * 
+ *
  */
 
 #ifndef __PARSER_PRIVATE_HXX__
@@ -24,12 +24,12 @@ public :
         }
         return Parser::AllControlClosed;
     }
-    
-    static void pushControlStatus(Parser::ControlStatus control_status) { 
+
+    static void pushControlStatus(Parser::ControlStatus control_status) {
         //std::cout << "Push front : " << control_status << std::endl;
-        _control_status->push_front(control_status); 
+        _control_status->push_front(control_status);
     }
-    
+
     static void popControlStatus(void) {
         if(!_control_status->empty())
         {
@@ -38,7 +38,7 @@ public :
             _control_status->pop_front();
         }
     }
-    
+
     static void resetControlStatus(void) {
         _control_status->clear();
     }
@@ -90,9 +90,9 @@ public :
     /*
     ** Error Message management
     */
-    static char *getErrorMessage(void);
+    static std::string* getErrorMessage(void);
     static void appendErrorMessage(std::string ostr);
-    static void resetErrorMessage(void) { _error_message->clear(); }   
+    static void resetErrorMessage(void) { _error_message->clear(); }
 
     /*
     ** \brief This funnction returns the parsed code written
@@ -114,7 +114,7 @@ private :
     static ast::Exp* _the_program;
     static Parser::ParserStatus _exit_status;
     static std::list<Parser::ControlStatus> *_control_status;
-        
+
 };
 
 #endif /* !__PARSER_PRIVATE_HXX__ */
