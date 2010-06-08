@@ -239,12 +239,8 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	sci_gateway/fortran/sci_debug.f sci_gateway/fortran/sci_comp.f \
 	sci_gateway/fortran/sci_isglobal.f \
 	sci_gateway/cpp/sci_getmodules.cpp \
-<<<<<<< HEAD
-	sci_gateway/cpp/sci_clear.cpp sci_gateway/cpp/sci_banner.cpp
-=======
-	sci_gateway/cpp/sci_clear.cpp sci_gateway/cpp/sci_quit.cpp \
-	sci_gateway/cpp/sci_exit.cpp
->>>>>>> 8b949c6... quit & exit now use ConfigVariable
+	sci_gateway/cpp/sci_clear.cpp sci_gateway/cpp/sci_banner.cpp \
+	sci_gateway/cpp/sci_quit.cpp sci_gateway/cpp/sci_exit.cpp
 @USE_DYNAMIC_STACK_TRUE@am__objects_1 = libscicore_la-scimem64.lo
 am__objects_2 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-tmpdir.lo libscicore_la-intmacr2tree.lo \
@@ -351,12 +347,8 @@ am__objects_7 = sci_errclear.lo sci_global.lo sci_mtlb_mode.lo \
 	sci_clearglobal.lo sci_delbpt.lo where.lo sci_iserror.lo \
 	sci_debug.lo sci_comp.lo sci_isglobal.lo
 am__objects_8 = libscicore_la-sci_getmodules.lo \
-<<<<<<< HEAD
-	libscicore_la-sci_clear.lo libscicore_la-sci_banner.lo
-=======
-	libscicore_la-sci_clear.lo libscicore_la-sci_quit.lo \
-	libscicore_la-sci_exit.lo
->>>>>>> 8b949c6... quit & exit now use ConfigVariable
+	libscicore_la-sci_clear.lo libscicore_la-sci_banner.lo \
+	libscicore_la-sci_quit.lo libscicore_la-sci_exit.lo
 am_libscicore_la_OBJECTS = $(am__objects_2) $(am__objects_4) \
 	$(am__objects_5) $(am__objects_6) $(am__objects_7) \
 	$(am__objects_8)
@@ -801,12 +793,9 @@ sci_gateway/fortran/sci_isglobal.f
 
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_getmodules.cpp \
 						sci_gateway/cpp/sci_clear.cpp \
-<<<<<<< HEAD
-						sci_gateway/cpp/sci_banner.cpp
-=======
+						sci_gateway/cpp/sci_banner.cpp \
 						sci_gateway/cpp/sci_quit.cpp \
 						sci_gateway/cpp/sci_exit.cpp
->>>>>>> 8b949c6... quit & exit now use ConfigVariable
 
 libscicore_la_CFLAGS = -I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -2193,14 +2182,13 @@ libscicore_la-sci_clear.lo: sci_gateway/cpp/sci_clear.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicore_la-sci_clear.lo `test -f 'sci_gateway/cpp/sci_clear.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_clear.cpp
 
-<<<<<<< HEAD
 libscicore_la-sci_banner.lo: sci_gateway/cpp/sci_banner.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicore_la-sci_banner.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_banner.Tpo -c -o libscicore_la-sci_banner.lo `test -f 'sci_gateway/cpp/sci_banner.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_banner.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-sci_banner.Tpo $(DEPDIR)/libscicore_la-sci_banner.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_banner.cpp' object='libscicore_la-sci_banner.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicore_la-sci_banner.lo `test -f 'sci_gateway/cpp/sci_banner.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_banner.cpp
-=======
+
 libscicore_la-sci_quit.lo: sci_gateway/cpp/sci_quit.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicore_la-sci_quit.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_quit.Tpo -c -o libscicore_la-sci_quit.lo `test -f 'sci_gateway/cpp/sci_quit.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_quit.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-sci_quit.Tpo $(DEPDIR)/libscicore_la-sci_quit.Plo
@@ -2214,7 +2202,6 @@ libscicore_la-sci_exit.lo: sci_gateway/cpp/sci_exit.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_exit.cpp' object='libscicore_la-sci_exit.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicore_la-sci_exit.lo `test -f 'sci_gateway/cpp/sci_exit.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_exit.cpp
->>>>>>> 8b949c6... quit & exit now use ConfigVariable
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<
