@@ -286,6 +286,9 @@ Xcos:
 
 * bug 7175 fixed - demo bridge rectifier did not build on Windows.
 
+* bug 7214 fixed - Modelica demos did not generate a .mo file in TMPDIR/modelica
+                   directory.
+
 Dynamic link:
 =============
 

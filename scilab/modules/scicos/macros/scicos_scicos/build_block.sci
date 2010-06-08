@@ -1,6 +1,7 @@
 //  Scicos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//  Copyright (C) DIGITEO - 2010 - Jérôme PICARD
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -56,10 +57,9 @@ function [model, ok] = build_block(o)
         tt    = graphics.exprs.funtxt;
       end
       [dirF, nameF, extF] = fileparts(funam);
-      // the modelica file is in TMPDIR
-      // tarpath = pathconvert(fullfile(TMPDIR,'Modelica'), %f, %t);
-      if (extF == '') then
-	funam = nameF + '.mo';
+      [modelica_path, modelica_directory] = getModelicaPath();
+      if (extF == "") then
+        funam = modelica_directory + nameF + ".mo";
         mputl(tt, funam);
       end
 
@@ -71,7 +71,7 @@ function [model, ok] = build_block(o)
 //         ok = %f
 //       end
 
-  
+
 //       compilerpath = 'modelicac' //** thanks to automatic detection
 
 //       // build compilation command line, execute it and test for result
