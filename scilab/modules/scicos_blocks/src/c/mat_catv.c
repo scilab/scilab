@@ -19,6 +19,7 @@
 * See the file ./license.txt
 */
 /*--------------------------------------------------------------------------*/ 
+#include <string.h>
 #include <stdio.h>
 #include "scicos_block4.h"
 #include "MALLOC.h"
