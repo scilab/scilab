@@ -111,7 +111,7 @@ Text Editor:
 
 Incompatibilities:
 ==================
-* The bug 4583 fix makes the default element value in string array assignment 
+* The bug 4583 fix makes the default element value in string array assignment
   be an empty string instead of " ".
 
 * bug 7238 fixed - The dot/del key on the numeric pad added a 'suppr' and a dot.
@@ -180,7 +180,7 @@ Graphics:
 
 * bug 7024 fixed - Error messages from "twinkle" were not standard.
 
-* bug 7028 fixed - When scilab printed an "axis" graphic handle, string array
+* bug 7028 fixed - When Scilab printed an "axis" graphic handle, string array
                    size for "tics_labels" was erroneous.
 
 * bug 7065 fixed - "getColorIndex" used some global variables prohibiting
@@ -257,7 +257,7 @@ Xcos:
 * LaTeX formulas can be used on any TextBlock using the Scilab tag based
   description.
 
-* builnewblock.sci rewritten to use scilab dynamic link module tools.
+* builnewblock.sci rewritten to use Scilab dynamic link module tools.
 
 * bug 4156 fixed - scicos defines some temp. variables on stack without remove.
 
@@ -293,7 +293,7 @@ Xcos:
 * bug 6814 fixed - Link point positions (link.xx and link.yy) were not exported
                    as column vectors.
 
-* bug 6900 fixed - The block interfunction was escaped when calling scilab
+* bug 6900 fixed - The block interfunction was escaped when calling Scilab
                    macros.
 
 * bug 6903 fixed - modelicat called ocamlrun (wrong dependency on Windows).
@@ -364,8 +364,8 @@ Compilation:
 helptools:
 ==========
 
-* %helps_modules (global variable in scilab) is defined only when
-  scilab build help and no more at scilab's startup.
+* %helps_modules (global variable in Scilab) is defined only when
+  Scilab build help and no more at Scilab's startup.
 
 Matlab to Scilab conversion tools:
 ==================================
@@ -488,7 +488,7 @@ ATOMS:
 Bug fixes:
 ==========
 
-* bug 1041 fixed - An error inside a loop was reported as if it occurred on 
+* bug 1041 fixed - An error inside a loop was reported as if it occurred on
                    the "end" line.
 
 * bug 1304 fixed - macr2tree now works with a Scilab expression as input.
@@ -535,7 +535,7 @@ Bug fixes:
 
 * bug 3937 fixed - Buttons size in "x_choices" window was related to the labels one.
 
-* bug 4075 fixed - a basic uicontrol example crashed scilab 5.0.3
+* bug 4075 fixed - a basic uicontrol example crashed Scilab 5.0.3
 
 * bug 4117 fixed - Closing via the user interface a graphics figure which had a
                    non-existing event handler attached did not destroy
@@ -547,9 +547,9 @@ Bug fixes:
 
 * bug 4362 fixed - test_run("gui","checkbox") no more freezes Scilab.
 
-* bug 4572 fixed - scilab did a SIGSEGV after stacksize('max') + stacksize().
+* bug 4572 fixed - Scilab did a SIGSEGV after stacksize('max') + stacksize().
 
-* bug 4583 fixed - Default value for string array assignment was " " instead 
+* bug 4583 fixed - Default value for string array assignment was " " instead
                    of an empty string "".
 
 * bug 4625 fixed - intersci-n was broken on Windows.
@@ -568,7 +568,7 @@ Bug fixes:
 * bug 4799 fixed - Sometime the bode, nyquist , ... function reported a
                    "non convergence" error
 
-* bug 4841 fixed - functions created by 'getd' were unknown to scilab.
+* bug 4841 fixed - functions created by 'getd' were unknown to Scilab.
 
 * bug 4948 fixed - a simple Runge Kutta method for solving a second order
                    differential equation had a strange behaviour.
@@ -810,5 +810,7 @@ Bug fixes:
 * bug 7181 fixed - The display of a struct having no fields did not work.
 
 * bug 7189 fixed - In some cases the usage of resume lead to a crash of Scilab.
+
+* bug 7223 fixed - 'unsetmenu' on a separator crashed Scilab.
 
 * bug 7224 fixed - export empty matrix in HDF5 did not unlock file.
