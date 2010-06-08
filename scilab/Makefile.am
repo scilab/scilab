@@ -33,7 +33,7 @@ if IS_MACOSX
 scilab_bin_LDFLAGS 		+= -framework Cocoa
 endif
 
-scilab_bin_CFLAGS 		=
+scilab_bin_CFLAGS 		= -I$(top_srcdir)/modules/io/includes	
 # --no-undefined --relax
 
 # libshell is mandatory here since main_linux.c depends on it.
@@ -57,7 +57,7 @@ scilab_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_LIB)
 # Match scilab -nwni (ie command line without graphics)
 scilab_cli_bin_SOURCES	= $(top_srcdir)/modules/shell/src/c/others/mainscic.c
 
-scilab_cli_bin_CFLAGS 		= -DWITHOUT_GUI
+scilab_cli_bin_CFLAGS 		= -DWITHOUT_GUI -I$(top_srcdir)/modules/io/includes	
 scilab_cli_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_CLI_LIB)
 
 
