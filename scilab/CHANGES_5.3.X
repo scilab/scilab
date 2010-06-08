@@ -765,6 +765,8 @@ Bug fixes:
 
 * bug 6990 fixed - "and" and "or" did not work on hypermatrices.
 
+* bug 7003 fixed - 'evstr' did not evaluate NaN and Inf as %nan and %inf.
+
 * bug 7006 fixed - exec removed spaces at the end of filename when it returned
                    an error.
 
