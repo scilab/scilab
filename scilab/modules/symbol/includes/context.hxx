@@ -51,6 +51,10 @@ namespace symbol
         InternalType*	getCurrentLevel(const string& key) const;
 
         /** If key was associated to some Entry_T in the open scopes, return the
+         ** most recent insertion DESPITE the current/last one. Otherwise return the empty pointer. */
+        InternalType*	getAllButCurrentLevel(const string& key) const;
+
+        /** If key was associated to some Entry_T in the open scopes, return the
         ** most recent insertion. Otherwise return the empty pointer. */
         InternalType*	get_fun(const string& key) const;
 

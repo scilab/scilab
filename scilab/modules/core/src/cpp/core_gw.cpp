@@ -29,6 +29,8 @@ bool CoreModule::Load()
     symbol::Context::getInstance()->AddFunction(Function::createFunction("banner", &sci_banner, "core"));
     symbol::Context::getInstance()->AddFunction(Function::createFunction("quit", &sci_quit, "core"));
     symbol::Context::getInstance()->AddFunction(Function::createFunction("exit", &sci_exit, "core"));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction("exists", &sci_exists, "core"));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction("isdef", &sci_isdef, "core"));
     return true;
 }
 

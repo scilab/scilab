@@ -210,7 +210,6 @@ sci_gateway/c/sci_getmemory.c \
 sci_gateway/c/sci_havewindow.c \
 sci_gateway/c/sci_delbpt.c \
 sci_gateway/c/sci_macr2lst.c \
-sci_gateway/c/sci_isdef.c \
 sci_gateway/c/sci_isglobal.c \
 sci_gateway/c/sci_who.c \
 sci_gateway/c/sci_errclear.c \
@@ -225,7 +224,6 @@ sci_gateway/c/sci_gstacksize.c \
 sci_gateway/c/sci_lasterror.c \
 sci_gateway/c/sci_funptr.c \
 sci_gateway/c/sci_return.c \
-sci_gateway/c/sci_exists.c \
 sci_gateway/c/sci_getmd5.c \
 sci_gateway/c/sci_clearfun.c \
 sci_gateway/c/sci_setbpt.c \
@@ -262,7 +260,6 @@ sci_gateway/fortran/sci_useascommand.f \
 sci_gateway/fortran/sci_intppty.f \
 sci_gateway/fortran/sci_ieee.f \
 sci_gateway/fortran/sci_macrovar.f \
-sci_gateway/fortran/sci_exists.f \
 sci_gateway/fortran/sci_errcatch.f \
 sci_gateway/fortran/sci_clear.f \
 sci_gateway/fortran/sci_argn.f \
@@ -279,7 +276,8 @@ GATEWAY_CPP_SOURCES = 	sci_gateway/cpp/sci_getmodules.cpp \
 						sci_gateway/cpp/sci_clear.cpp \
 						sci_gateway/cpp/sci_banner.cpp \
 						sci_gateway/cpp/sci_quit.cpp \
-						sci_gateway/cpp/sci_exit.cpp
+						sci_gateway/cpp/sci_exit.cpp \
+						sci_gateway/cpp/sci_exists.cpp
 
 libscicore_la_CFLAGS = -I$(srcdir)/includes/ \
 	-I$(srcdir)/src/c/ \
@@ -317,7 +315,7 @@ libscicore_la_CPPFLAGS = \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
 			-I$(top_srcdir)/modules/dynamic_link/includes \
 			-I$(top_srcdir)/modules/system_env/includes \
-			-I$(top_srcdir)/libs/MALLOC/includes/ 
+			-I$(top_srcdir)/libs/MALLOC/includes/
 
 # Used by sci_getdebuginfo:
 if TCLTK

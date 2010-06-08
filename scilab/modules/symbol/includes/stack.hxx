@@ -63,24 +63,8 @@ namespace symbol
         /** Associate value to key in the current scope. */
         void	put (const string& key, InternalType &value)
         {
-            /* InternalType *pOld = */(this->l_scope.front())->put(key, value);
-            /*			if(pOld != NULL)
-            {
-            std::list<Scope>::const_iterator it_list_scope;
-            it_list_scope = this->l_scope.begin();
-
-            do
-            {
-            bool bUsed = (*it_list_scope).isUsed(pOld);
-            if(bUsed)
-            {
-            return;
-            }
-            }while(&(*it_list_scope) != &l_scope.front());
-            //				std::cout << pOld->getAsDouble()->toString(10,100) << std::endl;
-            delete pOld;
-            }
-            */    }
+            (this->l_scope.front())->put(key, value);
+        }
 
         /** Remove Association between value and key in the current scope. */
         void	remove(const string& key)
@@ -100,7 +84,40 @@ namespace symbol
             {
                 result = (*it_list_scope)->get(key);
                 if (result == 0)
+                {
                     continue ;
+                }
+                return result;
+            }
+            return result;
+        }
+
+        /** If key was associated to some Entry_T in the open scopes, return the
+        ** most recent insertion DESPITE the current/last one. Otherwise return the empty pointer. */
+        InternalType*	getAllButCurrentLevel(const string& key) const
+        {
+            InternalType* result = 0;
+
+            /*
+            ** If we are in the top level scope, also look within it
+            */
+            if (l_scope.size() == 1)
+            {
+                return l_scope.front()->get(key);
+            }
+
+            /*
+            ** else look in all previous scopes but not in the current one.
+            */
+            std::list<Scope*>::const_iterator it_list_scope = this->l_scope.begin();
+            ++it_list_scope;
+            for ( ; it_list_scope != this->l_scope.end(); ++it_list_scope)
+            {
+                result = (*it_list_scope)->get(key);
+                if (result == 0)
+                {
+                    continue ;
+                }
                 return result;
             }
             return result;

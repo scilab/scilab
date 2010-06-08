@@ -32,5 +32,7 @@ Function::ReturnValue sci_clear(types::typed_list &in, int _iRetCount, types::ty
 Function::ReturnValue sci_banner(types::typed_list &in, int _iRetCount, types::typed_list &out);
 Function::ReturnValue sci_quit(types::typed_list &in, int _iRetCount, types::typed_list &out);
 Function::ReturnValue sci_exit(types::typed_list &in, int _iRetCount, types::typed_list &out);
+Function::ReturnValue sci_exists(types::typed_list &in, int _iRetCount, types::typed_list &out);
+Function::ReturnValue sci_isdef(types::typed_list &in, int _iRetCount, types::typed_list &out);
 
 #endif /* __CORE_GW_HXX__ */

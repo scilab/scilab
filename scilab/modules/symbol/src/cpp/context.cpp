@@ -82,7 +82,7 @@ namespace symbol
         // FIXME
         InternalType* pI = NULL;
         pI = EnvVarTable.getCurrentLevel(key);
-        
+
         if(pI != NULL)
         {
             return pI;
@@ -90,6 +90,30 @@ namespace symbol
         else
         {
             pI = EnvFunTable.getCurrentLevel(key);
+            if(pI != NULL)
+            {
+                return pI;
+            }
+            else
+            {
+                return NULL;
+            }
+        }
+    }
+
+    InternalType*	Context::getAllButCurrentLevel(const string& key) const
+    {
+       // FIXME
+        InternalType* pI = NULL;
+        pI = EnvVarTable.getAllButCurrentLevel(key);
+
+        if(pI != NULL)
+        {
+            return pI;
+        }
+        else
+        {
+            pI = EnvFunTable.getAllButCurrentLevel(key);
             if(pI != NULL)
             {
                 return pI;
