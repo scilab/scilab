@@ -15,6 +15,8 @@
 
 #include "conditionvisitor.hxx"
 #include "location.hxx"
+#include "types.hxx"
+#include "exp.hxx"
 
 #define bsiz	4096
 EXTERN_AST bool bConditionState(ast::ConditionVisitor *exec);
@@ -23,18 +25,18 @@ EXTERN_AST void ExpandList(int ** _piList, int *_piListSize, int _iListSizeSize,
 EXTERN_AST int GetVarMaxDim(types::InternalType *_pIT, int _iCurrentDim, int _iMaxDim);
 
 EXTERN_AST types::InternalType* AddElementToVariable(
-						types::InternalType* _poDest, 
-						types::InternalType* _poSource, 
+						types::InternalType* _poDest,
+						types::InternalType* _poSource,
 						int _iRows, int _iCols, int *_piRows, int *_piCols);
 
 EXTERN_AST types::InternalType* AddElementToVariableFromCol(
-                        types::InternalType* _poDest, 
-                        types::InternalType* _poSource, 
+                        types::InternalType* _poDest,
+                        types::InternalType* _poSource,
                         int _iRows, int _iCols, int *_piCols);
 
 EXTERN_AST types::InternalType* AddElementToVariableFromRow(
-                        types::InternalType* _poDest, 
-                        types::InternalType* _poSource, 
+                        types::InternalType* _poDest,
+                        types::InternalType* _poSource,
                         int _iRows, int _iCols, int *_piRows);
 
 
