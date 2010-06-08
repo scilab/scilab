@@ -15,6 +15,8 @@ package org.scilab.modules.xpad;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -54,6 +56,7 @@ import javax.swing.undo.UndoManager;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.filechooser.Juigetfile;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menu.Menu;
@@ -70,6 +73,8 @@ import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.SciFileFilter;
+import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.gui.events.callback.CallBack;
@@ -166,6 +171,12 @@ public class Xpad extends SwingScilabTab implements Tab {
         setDefaultHighlight();
         setDefaultHelpOnTyping();
         lastKnownSavedState = 0;
+
+        SwingScilabWindow window = (SwingScilabWindow) parentWindow.getAsSimpleWindow();
+        Position pos = ConfigXpadManager.getMainWindowPosition();
+        window.setLocation(pos.getX(), pos.getY());
+        Size size = ConfigXpadManager.getMainWindowSize();
+        window.setSize(size.getWidth(), size.getHeight());
 
         tabPane = new JTabbedPane();
         tabPane.addChangeListener(new ChangeListener() {
@@ -339,6 +350,11 @@ public class Xpad extends SwingScilabTab implements Tab {
             closeTabAt(0, true);
         }
         editor = null;
+        SwingScilabWindow window = (SwingScilabWindow) parentWindow.getAsSimpleWindow();
+        Point p = window.getLocation();
+        ConfigXpadManager.saveMainWindowPosition(new Position(p.x, p.y));
+        Dimension d = window.getSize();
+        ConfigXpadManager.saveMainWindowSize(new Size(d.width, d.height));
     }
 
     /**
