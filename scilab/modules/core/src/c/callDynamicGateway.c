@@ -17,6 +17,7 @@
 #include "callDynamicGateway.h"
 #include "MALLOC.h"
 #include "Scierror.h"
+#include "sciprint.h"
 #include "localization.h"
 #include "setgetSCIpath.h"
 #include "getshortpathname.h"
