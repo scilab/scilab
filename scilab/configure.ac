@@ -1266,6 +1266,9 @@ if test "$with_openmp" != no; then
 	OPENMP_CXXFLAGS="-fopenmp"
 	OPENMP_LIBS="-lgomp"
 
+    AC_CHECK_HEADERS([omp.h], [],
+     [AC_MSG_ERROR([Could not find omp.h])])
+
 	CFLAGS="$CFLAGS $OPENMP_CFLAGS"
 	CXXFLAGS="$CXXFLAGS $OPENMP_CFLAGS"
 	LIBS="$LIBS $OPENMP_LIBS"
