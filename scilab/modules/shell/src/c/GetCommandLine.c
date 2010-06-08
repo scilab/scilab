@@ -15,6 +15,8 @@
 #include <io.h>
 #define isatty	_isatty
 #define fileno	_fileno
+#else
+#include <unistd.h> /* isatty */
 #endif
 #include "Thread_Wrapper.h" /* Thread should be first for Windows */
 #include "BOOL.h"
