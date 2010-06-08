@@ -37,7 +37,12 @@ pkglib_LTLIBRARIES = libsciparallel.la
 
 libsciparallel_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
+if OPENMP
 libsciparallel_la_SOURCES = $(PARALLEL_C_SOURCES) $(PARALLEL_CPP_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
+else
+libsciparallel_la_SOURCES = src/noparallel/noparallel.h \
+src/noparallel/noparallel.c
+endif
 
 # For the code check (splint)
 CHECK_SRC= $(PARALLEL_C_SOURCES) $(GATEWAY_C_SOURCES)

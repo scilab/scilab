@@ -118,11 +118,17 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciparallel_la_includedir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libsciparallel_la_LIBADD =
+am__libsciparallel_la_SOURCES_DIST = src/noparallel/noparallel.h \
+	src/noparallel/noparallel.c sci_gateway/c/gw_parallel.c \
+	sci_gateway/cpp/sci_parallel_run.cpp
 am__objects_1 =
 am__objects_2 = libsciparallel_la-gw_parallel.lo
 am__objects_3 = libsciparallel_la-sci_parallel_run.lo
-am_libsciparallel_la_OBJECTS = $(am__objects_1) $(am__objects_1) \
-	$(am__objects_2) $(am__objects_3)
+@OPENMP_FALSE@am_libsciparallel_la_OBJECTS =  \
+@OPENMP_FALSE@	libsciparallel_la-noparallel.lo
+@OPENMP_TRUE@am_libsciparallel_la_OBJECTS = $(am__objects_1) \
+@OPENMP_TRUE@	$(am__objects_1) $(am__objects_2) \
+@OPENMP_TRUE@	$(am__objects_3)
 libsciparallel_la_OBJECTS = $(am_libsciparallel_la_OBJECTS)
 libsciparallel_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
@@ -150,7 +156,7 @@ CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libsciparallel_la_SOURCES)
-DIST_SOURCES = $(libsciparallel_la_SOURCES)
+DIST_SOURCES = $(am__libsciparallel_la_SOURCES_DIST)
 DATA = $(libsciparallel_la_etc_DATA) $(libsciparallel_la_root_DATA) \
 	$(libsciparallel_la_sci_gateway_DATA)
 HEADERS = $(libsciparallel_la_include_HEADERS)
@@ -420,7 +426,10 @@ libsciparallel_la_CPPFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/ \
 
 pkglib_LTLIBRARIES = libsciparallel.la
 libsciparallel_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
-libsciparallel_la_SOURCES = $(PARALLEL_C_SOURCES) $(PARALLEL_CPP_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
+@OPENMP_FALSE@libsciparallel_la_SOURCES = src/noparallel/noparallel.h \
+@OPENMP_FALSE@src/noparallel/noparallel.c
+
+@OPENMP_TRUE@libsciparallel_la_SOURCES = $(PARALLEL_C_SOURCES) $(PARALLEL_CPP_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC = $(PARALLEL_C_SOURCES) $(GATEWAY_C_SOURCES)
@@ -582,6 +591,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciparallel_la-gw_parallel.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciparallel_la-noparallel.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciparallel_la-sci_parallel_run.Plo@am__quote@
 
 .c.o:
@@ -604,6 +614,13 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
+
+libsciparallel_la-noparallel.lo: src/noparallel/noparallel.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciparallel_la_CPPFLAGS) $(CPPFLAGS) $(libsciparallel_la_CFLAGS) $(CFLAGS) -MT libsciparallel_la-noparallel.lo -MD -MP -MF $(DEPDIR)/libsciparallel_la-noparallel.Tpo -c -o libsciparallel_la-noparallel.lo `test -f 'src/noparallel/noparallel.c' || echo '$(srcdir)/'`src/noparallel/noparallel.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciparallel_la-noparallel.Tpo $(DEPDIR)/libsciparallel_la-noparallel.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/noparallel/noparallel.c' object='libsciparallel_la-noparallel.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciparallel_la_CPPFLAGS) $(CPPFLAGS) $(libsciparallel_la_CFLAGS) $(CFLAGS) -c -o libsciparallel_la-noparallel.lo `test -f 'src/noparallel/noparallel.c' || echo '$(srcdir)/'`src/noparallel/noparallel.c
 
 libsciparallel_la-gw_parallel.lo: sci_gateway/c/gw_parallel.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciparallel_la_CPPFLAGS) $(CPPFLAGS) $(libsciparallel_la_CFLAGS) $(CFLAGS) -MT libsciparallel_la-gw_parallel.lo -MD -MP -MF $(DEPDIR)/libsciparallel_la-gw_parallel.Tpo -c -o libsciparallel_la-gw_parallel.lo `test -f 'sci_gateway/c/gw_parallel.c' || echo '$(srcdir)/'`sci_gateway/c/gw_parallel.c
