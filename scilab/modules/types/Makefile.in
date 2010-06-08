@@ -494,7 +494,7 @@ CHECK_SRC = $(TYPES_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscitypes_la_CFLAGS)
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = 
+SWIG_WRAPPERS = src/jni/sci_types.i
 libscitypes_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
 $(top_builddir)/libs/MALLOC/libscimalloc.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la
