@@ -67,11 +67,7 @@ int createHDF5File(char *name)
     * Create a new file using the default properties.
     */
 
-    printf("pathdest = %s\n", pathdest);
-    printf("currentpath = %s\n", currentpath);
-    printf("filename = %s\n", filename);
-
-    file = H5Fcreate(filename, H5F_ACC_TRUNC , H5P_DEFAULT, H5P_DEFAULT);
+    file = H5Fcreate(filename, H5F_ACC_TRUNC, H5P_DEFAULT, fapl);
 
     scichdir(currentpath);
 
