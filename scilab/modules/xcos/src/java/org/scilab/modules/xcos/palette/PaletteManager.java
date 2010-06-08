@@ -23,11 +23,12 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
+import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.action_binding.InterpreterManagement;
-import org.scilab.modules.jvm.utils.ScilabConstants;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
+import org.scilab.modules.jvm.utils.ScilabConstants;
 import org.scilab.modules.xcos.palette.model.Category;
 import org.scilab.modules.xcos.palette.view.PaletteManagerView;
 import org.scilab.modules.xcos.utils.FileUtils;
@@ -45,7 +46,9 @@ public final class PaletteManager {
 	private static final String MODEL_CLASS_PACKAGE = "org.scilab.modules.xcos.palette.model";
 	private static final String SCHEMA_FILENAME = "/PaletteConfiguration.xsd";
 	private static final String INSTANCE_FILENAME = "/palettes.xml";
-
+	
+	private static final Log LOG = LogFactory.getLog(PaletteManager.class);
+	
 	private static volatile PaletteManager instance;
 	private static Marshaller marshaller;
 	private static Unmarshaller unmarshaller;
@@ -134,7 +137,7 @@ public final class PaletteManager {
 				
 				setRoot((Category) unmarshaller.unmarshal(f));
 			} catch (JAXBException e) {
-				LogFactory.getLog(PaletteManager.class).warn(
+				LOG.warn(
 						"user palette configuration file is not valid.\n"
 								+ "Switching to the default one."
 								+ e);
@@ -148,7 +151,7 @@ public final class PaletteManager {
 							+ XcosConstants.XCOS_ETC + INSTANCE_FILENAME);
 					setRoot((Category) unmarshaller.unmarshal(f));
 				} catch (JAXBException ex) {
-					LogFactory.getLog(PaletteManager.class).error(
+					LOG.error(
 							"base palette configuration file corrupted.\n"
 							+ e);
 					return;
@@ -180,7 +183,7 @@ public final class PaletteManager {
 					new File(schemaPath));
 			unmarshaller.setSchema(schema);
 		} catch (SAXException e) {
-			LogFactory.getLog(PaletteManager.class).error(
+			LOG.error(
 					UNABLE_TO_VALIDATE_CONFIG
 							+ e);
 		}
@@ -202,7 +205,7 @@ public final class PaletteManager {
 				marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 				marshaller.marshal(getRoot(), f);
 			} catch (JAXBException e) {
-				LogFactory.getLog(PaletteManager.class).warn(
+				LOG.warn(
 						"Unable to save user palette configuration file.\n"
 						+ e);
 			}
@@ -232,7 +235,7 @@ public final class PaletteManager {
 					new File(schemaPath));
 			marshaller.setSchema(schema);
 		} catch (SAXException e) {
-			LogFactory.getLog(PaletteManager.class).warn(
+			LOG.warn(
 					UNABLE_TO_VALIDATE_CONFIG
 							+ e);
 		}
