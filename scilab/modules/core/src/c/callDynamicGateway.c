@@ -63,12 +63,12 @@ dynamic_gateway_error_code callDynamicGateway(char *moduleName,
             char *SciPath = getSCIpath();
             #define PATHTOMODULE "/modules/"
             #ifndef LT_OBJDIR
-            #define LT_OBJDIR "/.libs/"
+            #define LT_OBJDIR ".libs/"
             #endif
 
             /* Build the full path to the library */
-            char *pathToLib=(char*) MALLOC((strlen(SciPath)+strlen(PATHTOMODULE)+strlen(moduleName)+strlen(LT_OBJDIR)+strlen(dynLibName)+1)*sizeof(char));
-            sprintf(pathToLib,"%s%s%s%s%s",SciPath,PATHTOMODULE,moduleName,LT_OBJDIR,dynLibName);
+            char *pathToLib=(char*) MALLOC((strlen(SciPath)+strlen(PATHTOMODULE)+strlen(moduleName)+strlen("/")+strlen(LT_OBJDIR)+strlen(dynLibName)+1)*sizeof(char));
+            sprintf(pathToLib,"%s%s%s/%s%s",SciPath,PATHTOMODULE,moduleName,LT_OBJDIR,dynLibName);
 
             *hlib = LoadDynLibrary(pathToLib);
               
