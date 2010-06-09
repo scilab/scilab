@@ -71,9 +71,9 @@ namespace types
         bool                        operator!=(const InternalType& it);
 
         /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::string         getTypeStr() {return string("double");}
+        virtual std::string         getTypeStr() {return string("constant");}
         /* return type as short string ( s, i, ce, l, ... )*/
-        virtual std::string	        getShortTypeStr() {return string("constant");}
+        virtual std::string	        getShortTypeStr() {return string("s");}
     protected :
         RealType                    getType(void);
 

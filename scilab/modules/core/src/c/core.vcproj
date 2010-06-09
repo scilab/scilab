@@ -565,6 +565,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\overload.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\parse.c"
 				>
 			</File>
@@ -1131,6 +1135,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\Os_specific.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\overload.hxx"
 				>
 			</File>
 			<File
