@@ -13,7 +13,7 @@
 #include <stdarg.h>
 /*--------------------------------------------------------------------------*/ 
 #include "parameters.h"
-#include "stack-c.h"
+#include "sci_types.h"
 #include "MALLOC.h"
 #include "freeArrayOfString.h"
 #include "Scierror.h"

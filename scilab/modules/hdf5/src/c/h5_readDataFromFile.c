@@ -22,7 +22,7 @@
 #include <hdf5.h>
 #include <stdlib.h>
 #include "MALLOC.h"
-#include "stack-c.h"
+#include "sci_types.h"
 #include "h5_attributeConstants.h"
 #include "h5_readDataFromFile.h"
 

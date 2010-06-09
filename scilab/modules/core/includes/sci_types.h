@@ -11,8 +11,8 @@
  *
  */
 
-#ifndef SCI_TYPES
-#define SCI_TYPES
+#ifndef __SCI_TYPES_H__
+#define __SCI_TYPES_H__
 
 /*-------------------------------------------------
  * types
@@ -41,10 +41,10 @@ typedef enum {
 } sci_types;
 
  /* lufact pointer... Done for backward compatibility. 
-  *	sci_lufact_pointer has been added to be able to handle umfpack datatype
-  * Since the use of pointer data structur is very interesting for Scilab 
+  *	sci_lufact_pointer has been added to be able to handle umfpack data type
+  * Since the use of pointer data structure is very interesting for Scilab 
   * we decided to rename it to remove the reference of the initial use.
   */
 #define sci_lufact_pointer sci_pointer
 
-#endif /* SCI_TYPES */
+#endif /* __SCI_TYPES_H__ */

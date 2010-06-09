@@ -13,7 +13,8 @@
 
 extern "C" 
 {
-	#include "stack-c.h"
+	#include "sci_types.h"
+    #include "stack3.h"
 	#include "stdlib.h"
 	#include "sciprint.h"
 	#include "MALLOC.h"
