@@ -455,12 +455,6 @@ msgstr ""
 "URL valide.\n"
 
 #, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr ""
-"%s: Mauvaise valeur pour l''argument d''entrée n° %d: ''user'' ou "
-"''allusers'' attendu.\n"
-
-#, fuzzy, c-format
 msgid "%s: Wrong value for input argument #%d: ''all'' or ''main'' expected.\n"
 msgstr ""
 "%s: Mauvaise valeur pour l''argument d''entrée n° %d:''error'' ou "
@@ -682,6 +676,15 @@ msgstr "?"
 msgid "A new version (''%s'') of ''%s'' is available"
 msgstr ""
 
+#
+# File: macros/atoms_gui/atomsGui.sci, line: 61
+msgid "ATOMS"
+msgstr ""
+
+#, fuzzy
+msgid "All modules"
+msgstr "Modules"
+
 msgid "Atoms"
 msgstr "Atoms"
 
@@ -755,11 +758,12 @@ msgstr ""
 msgid "MB"
 msgstr "Mo"
 
+#, fuzzy
+msgid "Main categories"
+msgstr "Catégorie(s)"
+
 msgid "Maintainer(s)"
 msgstr "Mainteneur(s)"
-
-msgid "Modules"
-msgstr "Modules"
 
 msgid "No Atoms module is available. Please, check your Internet connection."
 msgstr ""
@@ -820,6 +824,12 @@ msgstr "Version"
 
 msgid "WebSite"
 msgstr "Site web"
+
+#, fuzzy
+#~ msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+#~ msgstr ""
+#~ "%s: Mauvaise valeur pour l''argument d''entrée n° %d: ''user'' ou "
+#~ "''allusers'' attendu.\n"
 
 #~ msgid "Installing..."
 #~ msgstr "Installation..."

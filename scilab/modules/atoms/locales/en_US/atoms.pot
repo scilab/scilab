@@ -375,6 +375,7 @@ msgstr ""
 # File: macros/atoms_internals/atomsDESCRIPTIONcat.sci, line: 52
 # File: macros/atoms_internals/atomsDESCRIPTIONcat.sci, line: 141
 # File: macros/atoms_internals/atomsDESCRIPTIONcat.sci, line: 203
+# File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 27
 # File: macros/atoms_internals/atomsRmfields.sci, line: 21
 # File: macros/atoms_internals/atomsDESCRIPTIONadd.sci, line: 43
 #, c-format
@@ -539,6 +540,7 @@ msgstr ""
 # File: macros/atoms_internals/atomsInstallList.sci, line: 62
 # File: macros/atoms_internals/atomsRemoveList.sci, line: 59
 # File: macros/atoms_internals/atomsIsCategory.sci, line: 37
+# File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 42
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: mx1 or mx2 string matrix expected.\n"
@@ -684,6 +686,8 @@ msgstr ""
 # File: macros/atoms_internals/atomsPath.sci, line: 34
 # File: macros/atoms_internals/atomsInstallRegister.sci, line: 45
 # File: macros/atoms_internals/atomsDESCRIPTIONwrite.sci, line: 53
+# File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 34
+# File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 38
 # File: macros/atoms_internals/atomsDESCRIPTIONadd.sci, line: 54
 # File: macros/atoms_internals/atomsDESCRIPTIONadd.sci, line: 58
 # File: macros/atoms_internals/atomsSaveInstalleddeps.sci, line: 50
@@ -787,11 +791,6 @@ msgstr ""
 # File: macros/atoms_internals/atomsRepositorySetOfl.sci, line: 37
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' is not a valid URL.\n"
-msgstr ""
-#
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 134
-#, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
 #
 # File: macros/atomsCategoryList.sci, line: 50
@@ -1045,15 +1044,23 @@ msgstr ""
 msgid "?"
 msgstr ""
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 327
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 331
 #, c-format
 msgid "A new version (''%s'') of ''%s'' is available"
 msgstr ""
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 61
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 71
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 81
 # File: macros/atoms_gui/atomsGui.sci, line: 61
+msgid "ATOMS"
+msgstr ""
+#
+# File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 66
+# File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 214
+msgid "All modules"
+msgstr ""
+#
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 78
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 88
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 98
 msgid "Atoms"
 msgstr ""
 #
@@ -1061,16 +1068,16 @@ msgstr ""
 msgid "Atoms Help..."
 msgstr ""
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 59
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 69
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 79
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 76
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 86
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 96
 # File: macros/atoms_gui/atomsGui.sci, line: 23
 # File: macros/atoms_gui/atomsGui.sci, line: 25
 msgid "Atoms error"
 msgstr ""
 #
 # File: macros/atomsShow.sci, line: 85
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 235
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 239
 msgid "Author(s)"
 msgstr ""
 #
@@ -1078,7 +1085,7 @@ msgstr ""
 msgid "Automatically Installed"
 msgstr ""
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 366
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 370
 msgid "Bytes"
 msgstr ""
 #
@@ -1095,11 +1102,11 @@ msgid "Depend"
 msgstr ""
 #
 # File: macros/atomsShow.sci, line: 99
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 289
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 293
 msgid "Description"
 msgstr ""
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 219
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 223
 msgid "Download size"
 msgstr ""
 #
@@ -1115,7 +1122,7 @@ msgstr ""
 msgid "Home"
 msgstr ""
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 315
+# File: macros/atoms_gui/atomsGui.sci, line: 220
 msgid "Install"
 msgstr ""
 #
@@ -1123,15 +1130,15 @@ msgstr ""
 msgid "Install Directory"
 msgstr ""
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 61
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 78
 msgid "Installation done! Please restart Scilab to take changes into account."
 msgstr ""
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 59
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 76
 msgid "Installation failed!"
 msgstr ""
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 369
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 373
 msgid "KB"
 msgstr ""
 #
@@ -1139,21 +1146,23 @@ msgstr ""
 msgid "License"
 msgstr ""
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 278
-# File: macros/atoms_gui/atomsGui.sci, line: 352
+# File: macros/atoms_gui/atomsGui.sci, line: 183
+# File: macros/atoms_gui/atomsGui.sci, line: 257
 msgid "List of installed modules"
 msgstr ""
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 372
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 376
 msgid "MB"
+msgstr ""
+#
+# File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 106
+# File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 111
+# File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 212
+msgid "Main categories"
 msgstr ""
 #
 # File: macros/atomsShow.sci, line: 86
 msgid "Maintainer(s)"
-msgstr ""
-#
-# File: macros/atoms_gui/atomsGui.sci, line: 233
-msgid "Modules"
 msgstr ""
 #
 # File: macros/atoms_gui/atomsGui.sci, line: 23
@@ -1168,19 +1177,19 @@ msgstr ""
 msgid "Package"
 msgstr ""
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 274
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 278
 msgid "Release date"
 msgstr ""
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 305
+# File: macros/atoms_gui/atomsGui.sci, line: 210
 msgid "Remove"
 msgstr ""
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 71
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 88
 msgid "Remove done! Please restart Scilab to take changes into account. "
 msgstr ""
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 69
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 86
 msgid "Remove failed!"
 msgstr ""
 #
@@ -1188,7 +1197,7 @@ msgstr ""
 msgid "Scilab Version"
 msgstr ""
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 260
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 264
 msgid "See also"
 msgstr ""
 #
@@ -1204,20 +1213,20 @@ msgstr ""
 msgid "Title"
 msgstr ""
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 325
+# File: macros/atoms_gui/atomsGui.sci, line: 230
 msgid "Update"
 msgstr ""
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 81
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 98
 msgid "Update done! Please restart Scilab to take changes into account."
 msgstr ""
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 79
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 96
 msgid "Update failed!"
 msgstr ""
 #
 # File: macros/atomsShow.sci, line: 82
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 286
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 290
 msgid "Version"
 msgstr ""
 #

@@ -454,10 +454,14 @@ ATOMS:
 
 * The ATOMS GUI ergonomics has been improved.
 
+* ATOMS GUI: Modules can be filtered by category (See request 5276).
+
 * ATOMS GUI: When a module is not up-to-date, a warning is displayed on the
   corresponding sheet.
 
 * ATOMS GUI: Display the release date of the watched module.
+
+* bug 5276 fixed - ATOMS GUI: It was not possible to filter modules by category.
 
 * bug 6596 fixed - When the ATOMS GUI started, nothing was displayed. Now, the
                    list of already installed modules appears on the home page.

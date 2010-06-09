@@ -58,7 +58,7 @@ function atomsGui()
     // =========================================================================
 
     atomsfig = figure( ..
-        "figure_name", gettext("Atoms"), ..
+        "figure_name", gettext("ATOMS"), ..
         "position"   , [0 0 figwidth figheight],..
         "background" , -2,..
         "UserData"   , allModules, ..
@@ -109,97 +109,11 @@ function atomsGui()
 
     // Build the module list (listbox on the left)
     // =========================================================================
-
-    modulesNames  = atomsGetAvailable([],%T);
-    modulesTitles = [];
-
-    for k=1:size(modulesNames, "*")
-
-        MRVersionAvailable = atomsGetMRVersion(modulesNames(k));
-        thisModuleTitle    = allModules(modulesNames(k))(MRVersionAvailable).Title;
-
-        if atomsIsInstalled(modulesNames(k)) then
-
-            MRVersionInstalled = atomsVersionSort(atomsGetInstalledVers(modulesNames(k)),"DESC");
-            MRVersionInstalled = MRVersionInstalled(1);
-            thisModuleTitle    = allModules(modulesNames(k))(MRVersionInstalled).Title;
-
-            if atomsVersionCompare(MRVersionInstalled,MRVersionAvailable) == -1 then
-                // Not up-to-date
-                icon = "notuptodate.png";
-            else
-                // The Most Recent Version is already installed
-                icon = "installed.png";
-            end
-
-        else
-            icon = "notinstalled.png";
-        end
-
-        if modulo(k,2) == 0 then
-            background = "#eeeeee";
-        else
-            background = "#ffffff";
-        end
-
-        thisItem =            "<html>";
-        thisItem = thisItem + "<table style=""background-color:"+background+";color:#000000;"" ><tr>";
-        thisItem = thisItem + "<td><img src=""file:///"+SCI+"/modules/atoms/images/icons/"+icon+""" /></td>";
-        thisItem = thisItem + "<td><div style=""width:117px;text-align:left;"">"+thisModuleTitle+"</div></td>";
-        thisItem = thisItem + "</tr></table>";
-        thisItem = thisItem + "</html>";
-
-        modulesTitles  = [modulesTitles; thisItem ];
-
-    end
+    LeftElements = atomsGetLeftListboxElts("filter:main");
 
     // Build the installed module list
     // =========================================================================
-
-    installed    = atomsGetInstalled();
-
-    if installed==[] then
-        installedStr = "";
-    else
-        installedStr = [];
-    end
-
-    for k=1:size(installed(:,1), "*")
-
-        MRVersionAvailable = atomsGetMRVersion(installed(k,1));
-        MRVersionInstalled = atomsVersionSort(atomsGetInstalledVers(installed(k,1)),"DESC");
-        MRVersionInstalled = MRVersionInstalled(1);
-        if atomsVersionCompare(MRVersionInstalled,MRVersionAvailable) == -1 then
-            // Not up-to-date
-            icon = "notuptodate.png";
-        else
-            // The Most Recent Version is already installed
-            icon = "installed.png";
-        end
-
-        if modulo(k,2) == 0 then
-            background = "#eeeeee";
-        else
-            background = "#ffffff";
-        end
-
-        thisItem =            "<html>";
-
-        thisItem = thisItem + "<table style=""background-color:"+background+";color:#000000;"" ><tr>";
-        thisItem = thisItem + "<td><img src=""file:///"+SCI+"/modules/atoms/images/icons/"+icon+""" /></td>";
-        thisItem = thisItem + "<td>";
-        thisItem = thisItem + "  <div style=""width:385px;text-align:left;"">";
-        thisItem = thisItem + "    <span style=""font-weight:bold;"">"+allModules(installed(k,1))(installed(k,2)).Title+" "+installed(k,2)+"</span><br />";
-        thisItem = thisItem + "    <span>"+allModules(installed(k,1))(installed(k,2)).Summary+"</span><br />";
-        thisItem = thisItem + "    <span style=""font-style:italic;"">"+installed(k,4)+"</span>";
-        thisItem = thisItem + "  </div>";
-        thisItem = thisItem + "</td>";
-        thisItem = thisItem + "</tr></table>";
-        thisItem = thisItem + "</html>";
-
-        installedStr = [installedStr;thisItem];
-
-    end
+    HomeElements = getHomeListboxElements();
 
     // Set the figure size ... after all delmenu(s)
     // =========================================================================
@@ -212,7 +126,10 @@ function atomsGui()
     listboxFrameWidth         = listboxWidth + 2*margin;
 
     listboxFrameHeight        = figheight- 3*margin - msgHeight;
-    listboxHeight             = listboxFrameHeight - 3*margin;
+    listboxHeight             = listboxFrameHeight - 2*margin;
+
+    // Figure name
+    atomsfig("figure_name")   = LeftElements("title")+" - ATOMS";
 
     // Frame
     LeftFrame                 = uicontrol( ..
@@ -221,20 +138,8 @@ function atomsGui()
         "Relief"              , "solid",..
         "Position"            , [margin widgetHeight+2*margin listboxFrameWidth listboxFrameHeight],..
         "Background"          , [1 1 1],..
+        "UserData"            , "filter:main",..
         "Tag"                 , "LeftFrame");
-
-    // Title
-    LeftTitle                 = uicontrol( ..
-        "Parent"              , LeftFrame,..
-        "Style"               , "text",..
-        "Position"            , [2*margin listboxFrameHeight-1.5*margin 110 widgetHeight],..
-        "HorizontalAlignment" , "center",..
-        "VerticalAlignment"   , "middle",..
-        "String"              , gettext("Modules"), ..
-        "FontWeight"          , "bold",..
-        "FontSize"            , 12,..
-        "Background"          , [1 1 1],..
-        "Tag"                 , "LeftTitle")
 
     // Listbox
     LeftListbox               = uicontrol( ..
@@ -243,7 +148,8 @@ function atomsGui()
         "Position"            , [ margin margin listboxWidth listboxHeight],..
         "Background"          , [1 1 1],..
         "FontSize"            , defaultFontSize,..
-        "String"              , modulesTitles,..
+        "String"              , LeftElements("items_str"),..
+        "UserData"            , LeftElements("items_mat"),..
         "Callback"            , "cbAtomsGui", ..
         "Min"                 , 1, ..
         "Max"                 , 1, ..
@@ -362,7 +268,8 @@ function atomsGui()
         "Position"            , [ margin margin descWidth descHeight],..
         "Background"          , [1 1 1],..
         "FontSize"            , defaultFontSize,..
-        "String"              , installedStr,..
+        "String"              , HomeElements("items_str"),..
+        "UserData"            , HomeElements("items_mat"),..
         "Callback"            , "cbAtomsGui", ..
         "Min"                 , 1, ..
         "Max"                 , 1, ..
@@ -391,5 +298,71 @@ function atomsGui()
         "Background"         , [1 1 1],..
         "Position"           , [2 2 msgWidth-10 msgHeight-4],..
         "Tag"                , "msgText");
+
+endfunction
+
+// =============================================================================
+// getHomeListboxElements()
+//
+// Returns a struct that contains the followings fields:
+//  - elements("items_str")
+//  - elements("items_mat")
+//
+// =============================================================================
+
+function elements = getHomeListboxElements()
+
+    items_str  = [];
+    items_mat  = [];
+
+    installed  = atomsGetInstalled();
+    atomsfig   = findobj("tag","atomsFigure");
+    allModules = atomsfig("UserData");
+
+
+    for i=1:size(installed(:,1), "*")
+
+        MRVersionAvailable = atomsGetMRVersion(installed(i,1));
+        MRVersionInstalled = atomsVersionSort(atomsGetInstalledVers(installed(i,1)),"DESC");
+        MRVersionInstalled = MRVersionInstalled(1);
+        if atomsVersionCompare(MRVersionInstalled,MRVersionAvailable) == -1 then
+            // Not up-to-date
+            icon = "notuptodate.png";
+        else
+            // The Most Recent Version is already installed
+            icon = "installed.png";
+        end
+
+        if modulo(i,2) == 0 then
+            background = "#eeeeee";
+        else
+            background = "#ffffff";
+        end
+
+        thisItem =            "<html>";
+
+        thisItem = thisItem + "<table style=""background-color:"+background+";color:#000000;"" ><tr>";
+        thisItem = thisItem + "<td><img src=""file:///"+SCI+"/modules/atoms/images/icons/"+icon+""" /></td>";
+        thisItem = thisItem + "<td>";
+        thisItem = thisItem + "  <div style=""width:383px;text-align:left;"">";
+        thisItem = thisItem + "    <span style=""font-weight:bold;"">"+allModules(installed(i,1))(installed(i,2)).Title+" "+installed(i,2)+"</span><br />";
+        thisItem = thisItem + "    <span>"+allModules(installed(i,1))(installed(i,2)).Summary+"</span><br />";
+        thisItem = thisItem + "    <span style=""font-style:italic;"">"+installed(i,4)+"</span>";
+        thisItem = thisItem + "  </div>";
+        thisItem = thisItem + "</td>";
+        thisItem = thisItem + "</tr></table>";
+        thisItem = thisItem + "</html>";
+
+        items_str = [items_str ; thisItem];
+        items_mat = [items_mat ; "module" installed(i,1)];
+    end
+
+    if items_str==[] then
+        elements("items_str") = "";
+    else
+        elements("items_str") = items_str;
+    end
+
+    elements("items_mat") = items_mat;
 
 endfunction
