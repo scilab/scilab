@@ -110,20 +110,20 @@ function atomsGui()
     // Build the module list (listbox on the left)
     // =========================================================================
 
-    modulesNames       = getfield(1, allModules);
-    modulesNames(1:2)  = [];
-    modulesTitles      = [];
+    modulesNames  = atomsGetAvailable([],%T);
+    modulesTitles = [];
 
     for k=1:size(modulesNames, "*")
 
-        vers           = getfield(1, allModules(modulesNames(k)));
-        vers           = vers(3);
+        MRVersionAvailable = atomsGetMRVersion(modulesNames(k));
+        thisModuleTitle    = allModules(modulesNames(k))(MRVersionAvailable).Title;
 
         if atomsIsInstalled(modulesNames(k)) then
 
-            MRVersionAvailable = atomsGetMRVersion(modulesNames(k));
             MRVersionInstalled = atomsVersionSort(atomsGetInstalledVers(modulesNames(k)),"DESC");
             MRVersionInstalled = MRVersionInstalled(1);
+            thisModuleTitle    = allModules(modulesNames(k))(MRVersionInstalled).Title;
+
             if atomsVersionCompare(MRVersionInstalled,MRVersionAvailable) == -1 then
                 // Not up-to-date
                 icon = "notuptodate.png";
@@ -145,7 +145,7 @@ function atomsGui()
         thisItem =            "<html>";
         thisItem = thisItem + "<table style=""background-color:"+background+";color:#000000;"" ><tr>";
         thisItem = thisItem + "<td><img src=""file:///"+SCI+"/modules/atoms/images/icons/"+icon+""" /></td>";
-        thisItem = thisItem + "<td><div style=""width:117px;text-align:left;"">"+allModules(modulesNames(k))(vers).Title+"</div></td>";
+        thisItem = thisItem + "<td><div style=""width:117px;text-align:left;"">"+thisModuleTitle+"</div></td>";
         thisItem = thisItem + "</tr></table>";
         thisItem = thisItem + "</html>";
 

@@ -443,6 +443,7 @@ msgstr ""
 # File: macros/atomsInstall.sci, line: 42
 # File: macros/atomsRemove.sci, line: 42
 # File: macros/atoms_internals/atomsDisp.sci, line: 22
+# File: macros/atoms_internals/atomsGetAvailable.sci, line: 60
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
@@ -465,6 +466,17 @@ msgstr ""
 # File: macros/atoms_internals/atomsGetDepChilds.sci, line: 34
 #, c-format
 msgid "%s: Wrong size for input argument #%d: 1x2 string matrix expected.\n"
+msgstr ""
+#
+# File: macros/atoms_internals/atomsGetAvailable.sci, line: 74
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 1x1 or 1x2 string matrix expected.\n"
+msgstr ""
+#
+# File: macros/atoms_internals/atomsGetAvailable.sci, line: 94
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
 msgstr ""
 #
 # File: macros/atomsList.sci, line: 39
@@ -572,7 +584,13 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: mx3 string matrix expected.\n"
 msgstr ""
 #
+# File: macros/atoms_internals/atomsGetAvailable.sci, line: 90
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+#
 # File: macros/atomsList.sci, line: 35
+# File: macros/atoms_internals/atomsGetAvailable.sci, line: 70
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
@@ -865,6 +883,7 @@ msgid ""
 msgstr ""
 #
 # File: macros/atomsList.sci, line: 43
+# File: macros/atoms_internals/atomsGetAvailable.sci, line: 82
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A valid category expected.\n"
 msgstr ""

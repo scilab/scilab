@@ -327,6 +327,17 @@ msgstr ""
 "chaînes de caractères de taille 1x2 attendue.\n"
 
 #, fuzzy, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 1x1 or 1x2 string matrix expected.\n"
+msgstr ""
+"%s: Mauvaise dimension pour l''argument d''entrée n° %d: une matrice de "
+"chaînes de caractères de taille 1x1 ou 1x2 attendue.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr "%s: Mauvais type pour l'argument d'entrée n° %d: Booléen attendu.\n"
+
+#, fuzzy, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 "%s : Mauvaise dimension pour l'argument d'entrée n° %d : Une simple chaîne "
@@ -379,6 +390,10 @@ msgid "%s: Wrong size for input argument #%d: mx3 string matrix expected.\n"
 msgstr ""
 "%s: Mauvaise dimension pour l''argument d''entrée n° %d: une matrice de "
 "chaînes de caractères de taille mx3 attendue.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr "%s: Mauvais type pour l'argument d'entrée n° %d: Booléen attendu.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
