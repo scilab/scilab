@@ -35,9 +35,12 @@ XCOS_C_SOURCES =
 XCOS_CPP_SOURCES = 	src/cpp/callxcos.cpp \
 			src/jni/Xcos.cpp \
 			src/jni/Xcos.hxx \
+			src/jni/Palette.cpp \
+			src/jni/Palette.hxx \
 			src/jni/GiwsException.cpp
 
-GIWS_WRAPPERS = src/jni/Xcos.giws.xml
+GIWS_WRAPPERS = src/jni/Xcos.giws.xml \
+			src/jni/Palette.giws.xml
 
 if GIWS
 BUILT_SOURCES=giws
@@ -52,7 +55,15 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_closeXcosFromScilab.cpp \
 	sci_gateway/cpp/sci_xcosDiagramToHDF5.cpp \
 	sci_gateway/cpp/sci_xcosDiagramOpen.cpp \
-	sci_gateway/cpp/sci_xcosDiagramClose.cpp
+	sci_gateway/cpp/sci_xcosDiagramClose.cpp \
+	sci_gateway/cpp/xcosUtilities.cpp \
+	sci_gateway/cpp/sci_xcosPalLoad.cpp \
+	sci_gateway/cpp/sci_xcosPalCategoryAdd.cpp \
+	sci_gateway/cpp/sci_xcosPalDelete.cpp \
+	sci_gateway/cpp/sci_xcosPalMove.cpp \
+	sci_gateway/cpp/sci_xcosPalEnable.cpp \
+	sci_gateway/cpp/sci_xcosPalDisable.cpp \
+	sci_gateway/cpp/sci_xcosPalGenerateIcon.cpp
 
 libscixcos_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -111,7 +122,7 @@ libscixcos_la_sci_gateway_DATA = sci_gateway/xcos_gateway.xml
 #### xcos : images files ####
 #
 # Generated with:
-#   $ find images/ -type f -printf "%p \\ \n" -name *.svg -or -name *.gif -or -name *.jpg -or -name *.png -not -name *_pal.jpg -not -name gui |sort |awk '{sub(/[ \t]+$/, "")};1' |awk '$0 !~ /gui/{print;}' |awk '$0 !~ /_pal.jpg/ {print;}'
+#   $ find images/ -type f -printf "%p \\ \n" -name *.svg -or -name *.gif -or -name *.jpg -or -name *.png -not -name *_pal.jpg -not -name gui |sort |awk '{sub(/[ \t]+$/, "")};1' |awk '$0 !~ /gui/{print;}' |awk '$0 !~ /_pal.jpg/{print;}'
 libscixcos_la_imagesdir=$(mydatadir)/
 nobase_libscixcos_la_images_DATA = images/blocks/3DSCOPE.svg \
 images/blocks/ANDBLK.svg \

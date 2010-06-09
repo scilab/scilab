@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * Default exception for a Xcos - Scicos communication
  */
-public abstract class ScicosFormatException extends Exception {
+public abstract class ScicosFormatException extends RuntimeException {
 	/**
 	 * Used when the {@link Element} cannot be used to decode/encode the instance.
 	 */

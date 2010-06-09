@@ -100,7 +100,7 @@ public final class PaletteManager {
 	/** @return true if the palette window is visible, false otherwise */
 	public static boolean isVisible() {
 		return getInstance().getView() != null
-				|| getInstance().getView().isVisible();
+				&& getInstance().getView().isVisible();
 	}
 
 	/**
