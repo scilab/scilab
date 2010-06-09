@@ -9,7 +9,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
-    <synopsis>xy1=scaling(xy,factor,[orig])</synopsis>
+    <synopsis>xy1=scaling(xy,scalingFactor,[orig])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -29,7 +29,7 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>factor  </term>
+        <term>scalingFactor  </term>
         <listitem>
           <para>réel, coefficient de la transformation linéaire
 </para>
@@ -49,7 +49,7 @@
     <para><literal>scaling</literal> applique une transformation affine sur les points définis par
     les coordonnées <literal>xy</literal> :
   </para>
-    <para><literal>xy1(:,i) = factor * (xy(:,i) - orig) + orig</literal>.
+    <para><literal>xy1(:,i) = scalingFactor * (xy(:,i) - orig) + orig</literal>.
   </para>
   </refsection>
 </refentry>

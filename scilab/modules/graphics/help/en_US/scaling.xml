@@ -20,7 +20,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>xy1=scaling(xy,factor,[orig])</synopsis>
+    <synopsis>xy1=scaling(xy,scalingFactor,[orig])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -38,7 +38,7 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>factor</term>
+        <term>scalingFactor</term>
         <listitem>
           <para>real scalar, coefficient of the linear transformation.</para>
         </listitem>
@@ -55,6 +55,6 @@
     <title>Description</title>
     <para><literal>scaling</literal> performs an affine transformation on the set of points defined
     by the coordinates <literal>xy</literal>:</para>
-    <para><literal>xy1(:,i) = factor * (xy(:,i) - orig) + orig</literal>.</para>
+    <para><literal>xy1(:,i) = scalingFactor * (xy(:,i) - orig) + orig</literal>.</para>
   </refsection>
 </refentry>

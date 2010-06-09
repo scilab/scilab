@@ -180,6 +180,9 @@ Graphics:
 * bug 7079 fixed - The "mtlb_get" used a "h" global variable instead of the
                    given "H" argument.
 
+* bug 7172 fixed - Executing the "scaling" function caused a function redefinition
+                   warning due to its "factor" input argument.
+
 * bug 7173 fixed - The equation in the "scaling" help page was incorrect.
 
 * bug 7188 fixed - Deleting a Label graphics entity caused Scilab to crash.
