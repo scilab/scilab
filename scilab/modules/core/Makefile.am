@@ -191,7 +191,8 @@ src/cpp/hashtable_core.cpp \
 src/cpp/namstr.cpp \
 src/cpp/search_functions.cpp \
 src/cpp/storeCommand.cpp \
-src/cpp/banner.cpp
+src/cpp/banner.cpp \
+src/cpp/overload.cpp
 
 if USE_DYNAMIC_STACK
 CORE_FORTRAN_SOURCES += src/fortran/relocstack.f

@@ -33,6 +33,9 @@
 #include "types_substraction.hxx"
 #include "types_divide.hxx"
 #include "types_power.hxx"
+
+#include "overload.hxx"
+
 extern "C" {
     #include "doublecomplex.h"
     #include "matrix_transpose.h"

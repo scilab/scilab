@@ -807,15 +807,37 @@ void visitprivate(const LogicalOpExp &e)
     else
     {
         //TODO YaSp : Overloading %*_oper_*
+        e.right_get().accept(execMeR);
+        types::typed_list in;
+        types::typed_list out;
+        T execOverload;
+        in.push_back(execMeL.result_get());
+        in.push_back(execMeR.result_get());
         switch(e.oper_get())
         {
         case LogicalOpExp::logicalShortCutOr :
         case LogicalOpExp::logicalOr :
-            YaspWrite("Calling overload : %*_g_*\n");
+            Overload::generateNameAndCall(std::string("g"), in, 1, out, &execOverload);
+            if(out.size() == 1)
+            {
+                result_set(out[0]);
+            }
+            else
+            {
+                result_set(new types::Double(0,0,false));
+            }
             break;
         case LogicalOpExp::logicalShortCutAnd :
         case LogicalOpExp::logicalAnd :
-            YaspWrite("Calling overload : %*_h_*\n");
+            Overload::generateNameAndCall(std::string("h"), in, 1, out, &execOverload);
+            if(out.size() == 1)
+            {
+                result_set(out[0]);
+            }
+            else
+            {
+                result_set(new types::Double(0,0,false));
+            }
             break;
         }
         return;
@@ -908,8 +930,11 @@ void visitprivate(const LogicalOpExp &e)
         }
         else
         {
-            //TODO: YaSp : Overloading %*_g_*
-            YaspWrite("Calling overload : %*_g_*\n");
+            T execMe;
+            types::typed_list in;
+            types::typed_list out;
+
+            Overload::generateNameAndCall(std::string("g"), in, 1, out, &execMe);
         }
         break;
     }

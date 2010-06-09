@@ -190,26 +190,26 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/fortran/relocstack.f src/cpp/core_gw.cpp \
 	src/cpp/hashtable_core.cpp src/cpp/namstr.cpp \
 	src/cpp/search_functions.cpp src/cpp/storeCommand.cpp \
-	src/cpp/banner.cpp sci_gateway/c/sci_stacksize.c \
-	sci_gateway/c/sci_resume.c sci_gateway/c/sci_mtlb_mode.c \
-	sci_gateway/c/sci_where.c sci_gateway/c/sci_errcatch.c \
-	sci_gateway/c/sci_getos.c sci_gateway/c/sci_format.c \
-	sci_gateway/c/sci_getmemory.c sci_gateway/c/sci_havewindow.c \
-	sci_gateway/c/sci_delbpt.c sci_gateway/c/sci_macr2lst.c \
-	sci_gateway/c/sci_isglobal.c sci_gateway/c/sci_who.c \
-	sci_gateway/c/sci_errclear.c sci_gateway/c/sci_global.c \
-	sci_gateway/c/sci_funcprot.c sci_gateway/c/sci_newfun.c \
-	sci_gateway/c/sci_warning.c sci_gateway/c/sci_dispbpt.c \
-	sci_gateway/c/sci_intppty.c sci_gateway/c/sci_ieee.c \
-	sci_gateway/c/sci_gstacksize.c sci_gateway/c/sci_lasterror.c \
-	sci_gateway/c/sci_funptr.c sci_gateway/c/sci_return.c \
-	sci_gateway/c/sci_getmd5.c sci_gateway/c/sci_clearfun.c \
-	sci_gateway/c/sci_setbpt.c sci_gateway/c/sci_what.c \
-	sci_gateway/c/sci_predef.c sci_gateway/c/sci_clearglobal.c \
-	sci_gateway/c/sci_arg.c sci_gateway/c/sci_type.c \
-	sci_gateway/c/sci_typename.c sci_gateway/c/sci_mode.c \
-	sci_gateway/c/sci_macr2tree.c sci_gateway/c/sci_iserror.c \
-	sci_gateway/c/sci_getversion.c \
+	src/cpp/banner.cpp src/cpp/overload.cpp \
+	sci_gateway/c/sci_stacksize.c sci_gateway/c/sci_resume.c \
+	sci_gateway/c/sci_mtlb_mode.c sci_gateway/c/sci_where.c \
+	sci_gateway/c/sci_errcatch.c sci_gateway/c/sci_getos.c \
+	sci_gateway/c/sci_format.c sci_gateway/c/sci_getmemory.c \
+	sci_gateway/c/sci_havewindow.c sci_gateway/c/sci_delbpt.c \
+	sci_gateway/c/sci_macr2lst.c sci_gateway/c/sci_isglobal.c \
+	sci_gateway/c/sci_who.c sci_gateway/c/sci_errclear.c \
+	sci_gateway/c/sci_global.c sci_gateway/c/sci_funcprot.c \
+	sci_gateway/c/sci_newfun.c sci_gateway/c/sci_warning.c \
+	sci_gateway/c/sci_dispbpt.c sci_gateway/c/sci_intppty.c \
+	sci_gateway/c/sci_ieee.c sci_gateway/c/sci_gstacksize.c \
+	sci_gateway/c/sci_lasterror.c sci_gateway/c/sci_funptr.c \
+	sci_gateway/c/sci_return.c sci_gateway/c/sci_getmd5.c \
+	sci_gateway/c/sci_clearfun.c sci_gateway/c/sci_setbpt.c \
+	sci_gateway/c/sci_what.c sci_gateway/c/sci_predef.c \
+	sci_gateway/c/sci_clearglobal.c sci_gateway/c/sci_arg.c \
+	sci_gateway/c/sci_type.c sci_gateway/c/sci_typename.c \
+	sci_gateway/c/sci_mode.c sci_gateway/c/sci_macr2tree.c \
+	sci_gateway/c/sci_iserror.c sci_gateway/c/sci_getversion.c \
 	sci_gateway/c/sci_getdebuginfo.c sci_gateway/c/sci_debug.c \
 	sci_gateway/c/gw_core.c sci_gateway/c/gw_user.c \
 	sci_gateway/c/gw_user2.c sci_gateway/c/sci_error.c \
@@ -306,7 +306,8 @@ am__objects_4 = clunit.lo getlin.lo allowptr.lo isany.lo hmcreate.lo \
 am__objects_5 = libscicore_la-core_gw.lo \
 	libscicore_la-hashtable_core.lo libscicore_la-namstr.lo \
 	libscicore_la-search_functions.lo \
-	libscicore_la-storeCommand.lo libscicore_la-banner.lo
+	libscicore_la-storeCommand.lo libscicore_la-banner.lo \
+	libscicore_la-overload.lo
 am__objects_6 = libscicore_la-sci_stacksize.lo \
 	libscicore_la-sci_resume.lo libscicore_la-sci_mtlb_mode.lo \
 	libscicore_la-sci_where.lo libscicore_la-sci_errcatch.lo \
@@ -708,7 +709,8 @@ src/cpp/hashtable_core.cpp \
 src/cpp/namstr.cpp \
 src/cpp/search_functions.cpp \
 src/cpp/storeCommand.cpp \
-src/cpp/banner.cpp
+src/cpp/banner.cpp \
+src/cpp/overload.cpp
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_stacksize.c \
 sci_gateway/c/sci_resume.c \
@@ -1074,6 +1076,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-md5.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-mode_exec.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-namstr.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-overload.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-parse.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-predef.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-readGateway.Plo@am__quote@
@@ -2127,6 +2130,13 @@ libscicore_la-banner.lo: src/cpp/banner.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/banner.cpp' object='libscicore_la-banner.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicore_la-banner.lo `test -f 'src/cpp/banner.cpp' || echo '$(srcdir)/'`src/cpp/banner.cpp
+
+libscicore_la-overload.lo: src/cpp/overload.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicore_la-overload.lo -MD -MP -MF $(DEPDIR)/libscicore_la-overload.Tpo -c -o libscicore_la-overload.lo `test -f 'src/cpp/overload.cpp' || echo '$(srcdir)/'`src/cpp/overload.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-overload.Tpo $(DEPDIR)/libscicore_la-overload.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/overload.cpp' object='libscicore_la-overload.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicore_la-overload.lo `test -f 'src/cpp/overload.cpp' || echo '$(srcdir)/'`src/cpp/overload.cpp
 
 libscicore_la-sci_getmodules.lo: sci_gateway/cpp/sci_getmodules.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicore_la-sci_getmodules.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_getmodules.Tpo -c -o libscicore_la-sci_getmodules.lo `test -f 'sci_gateway/cpp/sci_getmodules.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_getmodules.cpp
