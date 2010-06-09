@@ -252,6 +252,7 @@ public abstract class AbstractSciCompletionWindow implements CompletionWindow, K
         public void addCompletedWord(int position) {
                 String currentLine = inputParsingManager.getCommandLine();
                 String lineBeforeCaret = currentLine.substring(0, position);
+                lineBeforeCaret = currentLine.substring(0, position - Completion.getPartLevel(lineBeforeCaret).length() + 1);
                 String lineAfterCaret = currentLine.substring(position);
 
                 String stringToAdd = getCompletionResult();

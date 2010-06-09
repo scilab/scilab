@@ -816,3 +816,6 @@ Bug fixes:
 * bug 7223 fixed - 'unsetmenu' on a separator crashed Scilab.
 
 * bug 7224 fixed - export empty matrix in HDF5 did not unlock file.
+
+* bug 7250 fixed - In the console, first char of a filename was doubled
+                   when completed.
