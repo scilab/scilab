@@ -26,7 +26,7 @@ extern "C"
 #include "prompt.h"
 #include "InitializeLocalization.h"
 #include "MALLOC.h"
-#include "setgetSCIpath.h"
+#include "sci_path.h"
 #include "inisci-c.h"
 #include "scilabmode.h"
 #ifdef _MSC_VER

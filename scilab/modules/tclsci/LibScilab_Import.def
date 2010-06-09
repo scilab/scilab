@@ -20,7 +20,6 @@ EXPORTS
  checkrhs_
  intersci_
  createvarfromptr_
- getSCIpath
  callFunctionFromGateway
  freeArrayOfString
  StoreCommand

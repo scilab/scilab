@@ -47,7 +47,7 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions=""
 				Optimization="0"
-				AdditionalIncludeDirectories="../src/c;../includes;../../core/includes;../../output_stream/includes;../../windows_tools/includes;../../fileio/includes;../../string/src/c;../../string/includes;../../../libs/intl;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32;../../../libs/GetWindowsVersion;../../api_scilab/includes;../../operations/includes"
+				AdditionalIncludeDirectories="../src/c;../includes;../../core/includes;../../output_stream/includes;../../windows_tools/includes;../../fileio/includes;../../string/src/c;../../string/includes;../../../libs/intl;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32;../../../libs/GetWindowsVersion;../../api_scilab/includes;../../operations/includes;../../system_env/includes"
 				PreprocessorDefinitions="FORDLL;_DLL;_DEBUG;_CRT_SECURE_NO_DEPRECATE;EXPORT_LOCALIZATION_DLL"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -72,11 +72,11 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)io_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)io.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)io_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)io.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)System_env_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)system_env.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Libscilab.lib io.lib"
+				AdditionalDependencies="Libscilab.lib io.lib system_env.lib"
 				OutputFile="..\..\..\bin\scilocalization.dll"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames=""
@@ -139,7 +139,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../src/c;../includes;../../core/includes;../../output_stream/includes;../../windows_tools/includes;../../fileio/includes;../../string/src/c;../../string/includes;../../../libs/intl;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32;../../../libs/GetWindowsVersion;../../api_scilab/includes;../../operations/includes"
+				AdditionalIncludeDirectories="../src/c;../includes;../../core/includes;../../output_stream/includes;../../windows_tools/includes;../../fileio/includes;../../string/src/c;../../string/includes;../../../libs/intl;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32;../../../libs/GetWindowsVersion;../../api_scilab/includes;../../operations/includes;../../system_env/includes"
 				PreprocessorDefinitions="FORDLL;_DLL;_DEBUG;_CRT_SECURE_NO_DEPRECATE;EXPORT_LOCALIZATION_DLL"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -164,11 +164,11 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)io_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)io.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)io_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)io.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)System_env_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)system_env.lib&quot; 1&gt;NUL 2&gt;NUL"
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Libscilab.lib io.lib"
+				AdditionalDependencies="Libscilab.lib io.lib system_env.lib"
 				OutputFile="..\..\..\bin\scilocalization.dll"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames=""
@@ -233,7 +233,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../src/c;../includes;../../core/includes;../../output_stream/includes;../../windows_tools/includes;../../fileio/includes;../../string/src/c;../../string/includes;../../../libs/intl;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32;../../../libs/GetWindowsVersion;../../api_scilab/includes;../../operations/includes"
+				AdditionalIncludeDirectories="../src/c;../includes;../../core/includes;../../output_stream/includes;../../windows_tools/includes;../../fileio/includes;../../string/src/c;../../string/includes;../../../libs/intl;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32;../../../libs/GetWindowsVersion;../../api_scilab/includes;../../operations/includes;../../system_env/includes"
 				PreprocessorDefinitions="FORDLL;EXPORT_LOCALIZATION_DLL;NDEBUG;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -259,11 +259,11 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)io_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)io.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)io_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)io.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)System_env_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)system_env.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Libscilab.lib io.lib"
+				AdditionalDependencies="Libscilab.lib io.lib system_env.lib"
 				OutputFile="..\..\..\bin\scilocalization.dll"
 				IgnoreDefaultLibraryNames=""
 				ModuleDefinitionFile="localization_export.def"
@@ -326,7 +326,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../src/c;../includes;../../core/includes;../../output_stream/includes;../../windows_tools/includes;../../fileio/includes;../../string/src/c;../../string/includes;../../../libs/intl;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32;../../../libs/GetWindowsVersion;../../api_scilab/includes;../../operations/includes"
+				AdditionalIncludeDirectories="../src/c;../includes;../../core/includes;../../output_stream/includes;../../windows_tools/includes;../../fileio/includes;../../string/src/c;../../string/includes;../../../libs/intl;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32;../../../libs/GetWindowsVersion;../../api_scilab/includes;../../operations/includes;../../system_env/includes"
 				PreprocessorDefinitions="FORDLL;EXPORT_LOCALIZATION_DLL;NDEBUG;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -352,11 +352,11 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)io_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)io.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)io_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)io.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)System_env_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)system_env.lib&quot; 1&gt;NUL 2&gt;NUL"
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Libscilab.lib io.lib"
+				AdditionalDependencies="Libscilab.lib io.lib system_env.lib"
 				OutputFile="..\..\..\bin\scilocalization.dll"
 				IgnoreDefaultLibraryNames=""
 				ModuleDefinitionFile="localization_export.def"
@@ -455,6 +455,10 @@
 				</File>
 				<File
 					RelativePath=".\LibScilab_Import.def"
+					>
+				</File>
+				<File
+					RelativePath=".\System_env_Import.def"
 					>
 				</File>
 			</Filter>

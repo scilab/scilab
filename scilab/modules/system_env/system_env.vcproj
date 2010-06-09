@@ -44,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;..\core\includes;../symbol/includes;../types/includes;../abstractSyntaxTree/includes"
+				AdditionalIncludeDirectories="includes;..\core\includes;../symbol/includes;../types/includes;../abstractSyntaxTree/includes;../windows_tools/includes;../localization/includes;../io/includes;../../libs/MALLOC/includes"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;SYSTEM_ENV_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -61,9 +61,11 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				CommandLine="lib /DEF:&quot;$(InputDir)Scilab_windows_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Scilab_windows.lib&quot; 1&gt;NUL 2&gt;NUL"
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="Scilab_windows.lib"
 				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
 				GenerateDebugInformation="true"
 				ImportLibrary="../../bin/$(ProjectName).lib"
@@ -116,7 +118,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;..\core\includes;../symbol/includes;../types/includes;../abstractSyntaxTree/includes"
+				AdditionalIncludeDirectories="includes;..\core\includes;../symbol/includes;../types/includes;../abstractSyntaxTree/includes;../windows_tools/includes;../localization/includes;../io/includes;../../libs/MALLOC/includes"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;SYSTEM_ENV_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -133,9 +135,11 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				CommandLine="lib /DEF:&quot;$(InputDir)Scilab_windows_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Scilab_windows.lib&quot; 1&gt;NUL 2&gt;NUL"
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="Scilab_windows.lib"
 				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
 				GenerateDebugInformation="true"
 				ImportLibrary="../../bin/$(ProjectName).lib"
@@ -189,7 +193,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="includes;..\core\includes;../symbol/includes;../types/includes;../abstractSyntaxTree/includes"
+				AdditionalIncludeDirectories="includes;..\core\includes;../symbol/includes;../types/includes;../abstractSyntaxTree/includes;../windows_tools/includes;../localization/includes;../io/includes;../../libs/MALLOC/includes"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;SYSTEM_ENV_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -205,9 +209,11 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				CommandLine="lib /DEF:&quot;$(InputDir)Scilab_windows_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Scilab_windows.lib&quot; 1&gt;NUL 2&gt;NUL"
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="Scilab_windows.lib"
 				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
 				ImportLibrary="../../bin/$(ProjectName).lib"
 			/>
@@ -261,7 +267,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="includes;..\core\includes;../symbol/includes;../types/includes;../abstractSyntaxTree/includes"
+				AdditionalIncludeDirectories="includes;..\core\includes;../symbol/includes;../types/includes;../abstractSyntaxTree/includes;../windows_tools/includes;../localization/includes;../io/includes;../../libs/MALLOC/includes"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;SYSTEM_ENV_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -277,9 +283,11 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				CommandLine="lib /DEF:&quot;$(InputDir)Scilab_windows_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Scilab_windows.lib&quot; 1&gt;NUL 2&gt;NUL"
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="Scilab_windows.lib"
 				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
 				ImportLibrary="../../bin/$(ProjectName).lib"
 			/>
@@ -319,6 +327,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\cpp\sci_home.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\sci_path.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\setenvvar.cpp"
 				>
 			</File>
@@ -333,6 +349,18 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\dynlib_system_env.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_home.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_path.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\setenvvar.hxx"
 				>
 			</File>
@@ -342,6 +370,14 @@
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
+		</Filter>
+		<Filter
+			Name="Imports"
+			>
+			<File
+				RelativePath=".\Scilab_windows_Import.def"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath="..\..\bin\lapack.lib"

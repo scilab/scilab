@@ -20,7 +20,7 @@ extern "C"
 #include "stack-c.h"
 #include "gw_helptools.h"
 #include "Scierror.h"
-#include "setgetSCIpath.h"
+#include "sci_path.h"
 #include "localization.h"
 #include "setgetlanguage.h"
 #include "getScilabJavaVM.h"
@@ -54,7 +54,7 @@ static void __slashToAntislash(std::string *in)
     static int l4 = 0,n4 = 0,m4 = 0;
 	//	static int Row_Output = 0, Col_Output = 0;
     std::string exportFormat;
-    std::string SciPath = getSCIpath(); /* Scilab path */
+    std::string SciPath = getSCI(); /* Scilab path */
     std::string masterXML; /* Which file contains all the doc stuff */
     std::string masterXMLTMP;
     std::string outputDirectory; /* Working directory */

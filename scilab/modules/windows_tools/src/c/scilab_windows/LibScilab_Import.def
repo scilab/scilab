@@ -9,7 +9,6 @@ setCommandLineArgs
 setScilabMode
 getScilabMode
 settexmacs
-setSCIpath
 sciquit
 realmain
 InitializeLaunchScilabSignal

@@ -1,0 +1,6 @@
+	LIBRARY    system_env.dll
+
+
+EXPORTS
+getSCIHOME
+;

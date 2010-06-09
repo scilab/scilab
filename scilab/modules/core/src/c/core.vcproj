@@ -46,7 +46,7 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions=""
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/MALLOC/includes;../../../mexlib/includes;../../../gui/src/c/wsci;../../../api_scilab/includes;../../../string/includes;../../../functions/includes;../../../dynamic_link/includes;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../action_binding/includes;../../../output_stream/includes;../../../fileio/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../pvm/includes;../../../shell/includes;../../../../libs/intl;../../../tclsci/includes/tcltk;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../intersci/includes;../../../call_scilab/includes;../../../call_scilab/src/c;../../../graphics/includes;../../../operations/includes;../../../parse/includes;../../../abstractSyntaxTree/includes;../../../types/includes;../../../symbol/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/MALLOC/includes;../../../mexlib/includes;../../../gui/src/c/wsci;../../../api_scilab/includes;../../../string/includes;../../../functions/includes;../../../dynamic_link/includes;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../action_binding/includes;../../../output_stream/includes;../../../fileio/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../pvm/includes;../../../shell/includes;../../../../libs/intl;../../../tclsci/includes/tcltk;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../intersci/includes;../../../call_scilab/includes;../../../call_scilab/src/c;../../../graphics/includes;../../../operations/includes;../../../parse/includes;../../../abstractSyntaxTree/includes;../../../types/includes;../../../symbol/includes;../../../system_env/includes"
 				PreprocessorDefinitions="_DEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE;WITH_TK;WITH_ATLAS;__STDC__"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -122,7 +122,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/MALLOC/includes;../../../mexlib/includes;../../../gui/src/c/wsci;../../../api_scilab/includes;../../../string/includes;../../../functions/includes;../../../dynamic_link/includes;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../action_binding/includes;../../../output_stream/includes;../../../fileio/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../pvm/includes;../../../shell/includes;../../../../libs/intl;../../../tclsci/includes/tcltk;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../intersci/includes;../../../call_scilab/includes;../../../call_scilab/src/c;../../../graphics/includes;../../../operations/includes;../../../parse/includes;../../../abstractSyntaxTree/includes;../../../types/includes;../../../symbol/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/MALLOC/includes;../../../mexlib/includes;../../../gui/src/c/wsci;../../../api_scilab/includes;../../../string/includes;../../../functions/includes;../../../dynamic_link/includes;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../action_binding/includes;../../../output_stream/includes;../../../fileio/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../pvm/includes;../../../shell/includes;../../../../libs/intl;../../../tclsci/includes/tcltk;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../intersci/includes;../../../call_scilab/includes;../../../call_scilab/src/c;../../../graphics/includes;../../../operations/includes;../../../parse/includes;../../../abstractSyntaxTree/includes;../../../types/includes;../../../symbol/includes;../../../system_env/includes"
 				PreprocessorDefinitions="_DEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE;WITH_TK;WITH_ATLAS;__STDC__"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -200,7 +200,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/MALLOC/includes;../../../mexlib/includes;../../../gui/src/c/wsci;../../../api_scilab/includes;../../../string/includes;../../../functions/includes;../../../dynamic_link/includes;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../action_binding/includes;../../../output_stream/includes;../../../fileio/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../pvm/includes;../../../shell/includes;../../../../libs/intl;../../../tclsci/includes/tcltk;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../intersci/includes;../../../call_scilab/includes;../../../call_scilab/src/c;../../../graphics/includes;../../../operations/includes;../../../parse/includes;../../../abstractSyntaxTree/includes;../../../types/includes;../../../symbol/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/MALLOC/includes;../../../mexlib/includes;../../../gui/src/c/wsci;../../../api_scilab/includes;../../../string/includes;../../../functions/includes;../../../dynamic_link/includes;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../action_binding/includes;../../../output_stream/includes;../../../fileio/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../pvm/includes;../../../shell/includes;../../../../libs/intl;../../../tclsci/includes/tcltk;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../intersci/includes;../../../call_scilab/includes;../../../call_scilab/src/c;../../../graphics/includes;../../../operations/includes;../../../parse/includes;../../../abstractSyntaxTree/includes;../../../types/includes;../../../symbol/includes;../../../system_env/includes"
 				PreprocessorDefinitions="NDEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE;WITH_TK;WITH_ATLAS;__STDC__"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -279,7 +279,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/MALLOC/includes;../../../mexlib/includes;../../../gui/src/c/wsci;../../../api_scilab/includes;../../../string/includes;../../../functions/includes;../../../dynamic_link/includes;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../action_binding/includes;../../../output_stream/includes;../../../fileio/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../pvm/includes;../../../shell/includes;../../../../libs/intl;../../../tclsci/includes/tcltk;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../intersci/includes;../../../call_scilab/includes;../../../call_scilab/src/c;../../../graphics/includes;../../../operations/includes;../../../parse/includes;../../../abstractSyntaxTree/includes;../../../types/includes;../../../symbol/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/MALLOC/includes;../../../mexlib/includes;../../../gui/src/c/wsci;../../../api_scilab/includes;../../../string/includes;../../../functions/includes;../../../dynamic_link/includes;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../action_binding/includes;../../../output_stream/includes;../../../fileio/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../pvm/includes;../../../shell/includes;../../../../libs/intl;../../../tclsci/includes/tcltk;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../intersci/includes;../../../call_scilab/includes;../../../call_scilab/src/c;../../../graphics/includes;../../../operations/includes;../../../parse/includes;../../../abstractSyntaxTree/includes;../../../types/includes;../../../symbol/includes;../../../system_env/includes"
 				PreprocessorDefinitions="NDEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE;WITH_TK;WITH_ATLAS;__STDC__"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -797,10 +797,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\SCIHOME.c"
-				>
-			</File>
-			<File
 				RelativePath=".\scilabmode.c"
 				>
 			</File>
@@ -822,10 +818,6 @@
 			</File>
 			<File
 				RelativePath="..\..\..\call_scilab\src\c\SendScilabJobs.c"
-				>
-			</File>
-			<File
-				RelativePath=".\setgetSCIpath.c"
 				>
 			</File>
 			<File
@@ -1198,10 +1190,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\SCIHOME.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\includes\scilabDefaults.h"
 				>
 			</File>
@@ -1223,10 +1211,6 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\scisparse.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\setgetSCIpath.h"
 				>
 			</File>
 			<File

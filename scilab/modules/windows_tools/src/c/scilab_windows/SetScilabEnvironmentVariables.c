@@ -16,7 +16,7 @@
 #include "SetScilabEnvironmentVariables.h"
 #include "PATH_MAX.h"
 #include "win_mem_alloc.h" /* MALLOC */
-#include "setgetSCIpath.h"
+#include "sci_path.h"
 #include "getScilabDirectory.h"
 #include "scilabDefaults.h"
 #include "ConvertSlash.h"
@@ -88,7 +88,7 @@ BOOL Set_SCI_PATH(char *DefaultPath)
         AntislashToSlash(ShortPath, ShortPath);
 
         sprintf (env, "SCI=%s", ShortPath);
-        setSCIpath(ShortPath);
+        setSCI(ShortPath);
 
         if (ShortPath) 
         {

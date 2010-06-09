@@ -25,7 +25,6 @@ setCommandLineArgs
 setScilabMode
 realmain
 sciquit_
-setSCIpath
 IsAScalar
 freeArrayOfString
 getSCIHOME

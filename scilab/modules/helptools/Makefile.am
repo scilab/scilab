@@ -43,6 +43,7 @@ libscihelptools_la_CPPFLAGS= $(JAVA_JNI_INCLUDE) \
 				-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/jvm/includes \
 				-I$(top_srcdir)/modules/output_stream/includes/ \
+				-I$(top_srcdir)/modules/system_env/includes/ \
 				-I$(top_srcdir)/modules/operations/includes/
 
 libscihelptools_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)

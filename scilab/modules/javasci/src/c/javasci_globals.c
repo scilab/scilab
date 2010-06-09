@@ -20,7 +20,7 @@
 #endif
 #include "javasci_globals.h"
 #include "inisci-c.h"
-#include "setgetSCIpath.h"
+#include "sci_path.h"
 #include "tmpdir.h"
 #include "PATH_MAX.h"
 #include "getcommandlineargs.h"
@@ -115,7 +115,7 @@ void Initialize(void)
 	else
 	{
 		sprintf (env, "%s=%s", "SCI", sciPath);
-		setSCIpath(SCI);
+		setSCI(SCI);
 		putenv (env);
 	}
 

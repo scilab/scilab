@@ -26,7 +26,6 @@ src/c/realmain.c \
 src/c/stack3.c \
 src/c/str2sci.c \
 src/c/getmodules.c \
-src/c/setgetSCIpath.c \
 src/c/getmemory.c \
 src/c/Funtab.c \
 src/c/csignal.c \
@@ -45,7 +44,6 @@ src/c/loadversion.c \
 src/c/version.c \
 src/c/stackinfo.c \
 src/c/scirun.c \
-src/c/SCIHOME.c \
 src/c/warningmode.c \
 src/c/InitializeCore.c \
 src/c/TerminateCore.c \
@@ -370,12 +368,10 @@ includes/getos.h \
 includes/machine.h \
 includes/mode_exec.h \
 includes/PATH_MAX.h \
-includes/SCIHOME.h \
 includes/scilabDefaults.h \
 includes/scilabmode.h \
 includes/scisparse.h \
 includes/sciquit.h \
-includes/setgetSCIpath.h \
 includes/stack-c.h \
 includes/stack-def.h \
 includes/stack.h \

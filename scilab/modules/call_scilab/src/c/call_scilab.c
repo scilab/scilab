@@ -17,7 +17,7 @@
 #include "LaunchScilabSignal.h"
 #include "localization.h"
 #include "isdir.h"
-#include "setgetSCIpath.h"
+#include "sci_path.h"
 #include "scilabDefaults.h"
 #include "tmpdir.h"
 #include "inisci-c.h"
@@ -98,7 +98,7 @@ BOOL StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 			return FALSE;
 		}else{
 			char env[2048];
-			setSCIpath(SCIpath);
+			setSCI(SCIpath);
 			sprintf(env,"SCI=%s",SCIpath);
 			putenv(env);
 		}

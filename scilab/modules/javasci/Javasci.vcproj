@@ -45,7 +45,7 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions=""
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;../../libs/MALLOC/includes;../../libs/doublylinkedlist/includes;../core/includes;../api_scilab/includes;../output_stream/includes;../windows_tools/includes;../tclsci/includes;../tclsci/includes/tcltk/include;../../java/jdk/include/;../../java/jdk/include/win32;../../libs/intl;../call_scilab/includes;../operations/includes"
+				AdditionalIncludeDirectories="includes;../../libs/MALLOC/includes;../../libs/doublylinkedlist/includes;../core/includes;../api_scilab/includes;../output_stream/includes;../windows_tools/includes;../tclsci/includes;../tclsci/includes/tcltk/include;../../java/jdk/include/;../../java/jdk/include/win32;../../libs/intl;../call_scilab/includes;../operations/includes;../system_env/includes"
 				PreprocessorDefinitions="_DEBUG;_USRDLL;JAVA_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -128,7 +128,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;../../libs/MALLOC/includes;../../libs/doublylinkedlist/includes;../core/includes;../api_scilab/includes;../output_stream/includes;../windows_tools/includes;../tclsci/includes;../tclsci/includes/tcltk/include;../../java/jdk/include/;../../java/jdk/include/win32;../../libs/intl;../call_scilab/includes;../operations/includes"
+				AdditionalIncludeDirectories="includes;../../libs/MALLOC/includes;../../libs/doublylinkedlist/includes;../core/includes;../api_scilab/includes;../output_stream/includes;../windows_tools/includes;../tclsci/includes;../tclsci/includes/tcltk/include;../../java/jdk/include/;../../java/jdk/include/win32;../../libs/intl;../call_scilab/includes;../operations/includes;../system_env/includes"
 				PreprocessorDefinitions="_DEBUG;_USRDLL;JAVA_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -209,7 +209,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="includes;../../libs/MALLOC/includes;../../libs/doublylinkedlist/includes;../core/includes;../api_scilab/includes;../output_stream/includes;../windows_tools/includes;../tclsci/includes;../tclsci/includes/tcltk/include;../../java/jdk/include/;../../java/jdk/include/win32;../../libs/intl;../call_scilab/includes;../operations/includes"
+				AdditionalIncludeDirectories="includes;../../libs/MALLOC/includes;../../libs/doublylinkedlist/includes;../core/includes;../api_scilab/includes;../output_stream/includes;../windows_tools/includes;../tclsci/includes;../tclsci/includes/tcltk/include;../../java/jdk/include/;../../java/jdk/include/win32;../../libs/intl;../call_scilab/includes;../operations/includes;../system_env/includes"
 				PreprocessorDefinitions="NDEBUG;_USRDLL;JAVA_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="0"
@@ -292,7 +292,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="includes;../../libs/MALLOC/includes;../../libs/doublylinkedlist/includes;../core/includes;../api_scilab/includes;../output_stream/includes;../windows_tools/includes;../tclsci/includes;../tclsci/includes/tcltk/include;../../java/jdk/include/;../../java/jdk/include/win32;../../libs/intl;../call_scilab/includes;../operations/includes"
+				AdditionalIncludeDirectories="includes;../../libs/MALLOC/includes;../../libs/doublylinkedlist/includes;../core/includes;../api_scilab/includes;../output_stream/includes;../windows_tools/includes;../tclsci/includes;../tclsci/includes/tcltk/include;../../java/jdk/include/;../../java/jdk/include/win32;../../libs/intl;../call_scilab/includes;../operations/includes;../system_env/includes"
 				PreprocessorDefinitions="NDEBUG;_USRDLL;JAVA_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="0"

@@ -4,7 +4,6 @@ LIBRARY    LibScilab.dll
 EXPORTS
 
 ; core
-getSCIpath
 checkrhs_
 checklhs_ 
 vstk_

@@ -15,7 +15,7 @@
 #include <stdlib.h>
 #include "getScilabDirectory.h"
 #include "MALLOC.h"
-#include "setgetSCIpath.h"
+#include "sci_path.h"
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/ 
 char *getScilabDirectory(BOOL UnixStyle)
@@ -68,7 +68,7 @@ char *getScilabDirectory(BOOL UnixStyle)
 	
 	if (SciPathName)
 	{
-		setSCIpath(SciPathName);
+		setSCI(SciPathName);
 	}
 
 	return SciPathName;

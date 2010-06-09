@@ -15,7 +15,6 @@ EXPORTS
  gettype_
  vstk_
  createvar_
- getSCIpath
  getSCIHOME
  getWarningMode
  syncexec_

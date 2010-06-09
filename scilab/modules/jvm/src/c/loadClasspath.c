@@ -20,7 +20,7 @@
 #include "GetXmlFileEncoding.h"
 #include "../../fileio/includes/FileExist.h"
 #include "addToClasspath.h"
-#include "setgetSCIpath.h"
+#include "sci_path.h"
 #include "MALLOC.h"
 #include "localization.h"
 #include "scilabmode.h"
@@ -139,7 +139,7 @@ BOOL LoadClasspath(char *xmlfilename)
 					if ( (classpath) && (strlen(classpath) > 0) && (strncmp(classpath,"@",1) != 0) ) /* If it starts by a @ that means it hasn't been able to find it... which is normal... for example with the documentation */
 					{
 						#define KEYWORDSCILAB "$SCILAB" 
-						char *sciPath = getSCIpath();
+						char *sciPath = getSCI();
 						char *FullClasspath = NULL;
 						
 						if (strncmp(classpath,KEYWORDSCILAB,strlen(KEYWORDSCILAB))==0)

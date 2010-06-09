@@ -30,7 +30,7 @@
 #include "MALLOC.h"
 #include "InitializeLocalization.h"
 #include "localization.h"
-#include "setgetSCIpath.h"
+#include "sci_path.h"
 #include "inisci-c.h"
 #include "scilabDefaults.h"
 #include "setgetlanguage.h"
@@ -46,7 +46,7 @@ BOOL InitializeLocalization(void)
 {
 #ifdef HAVE_LIBINTL_H
 
-	char *SCIpath = getSCIpath();
+	char *SCIpath = getSCI();
 	char *pathLocales = NULL, *previousPathLocales = NULL;
 	char *ret = NULL;
 

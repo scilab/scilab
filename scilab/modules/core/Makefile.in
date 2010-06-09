@@ -127,14 +127,13 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/c/InitScilab.c src/c/getval.c src/c/md5.c src/c/inisci-c.c \
 	src/c/IsAScalar.c src/c/texmacs.c src/c/sciquit.c \
 	src/c/stack1.c src/c/realmain.c src/c/stack3.c src/c/str2sci.c \
-	src/c/getmodules.c src/c/setgetSCIpath.c src/c/getmemory.c \
-	src/c/Funtab.c src/c/csignal.c src/c/callinterf.c \
-	src/c/scimem.c src/c/isanan.c src/c/parse.c src/c/timer.c \
-	src/c/stack2.c src/c/xscion.c src/c/SetScilabEnvironment.c \
-	src/c/returnanan.c src/c/LoadFunctionsTab.c \
-	src/c/with_module.c src/c/loadversion.c src/c/version.c \
-	src/c/stackinfo.c src/c/scirun.c src/c/SCIHOME.c \
-	src/c/warningmode.c src/c/InitializeCore.c \
+	src/c/getmodules.c src/c/getmemory.c src/c/Funtab.c \
+	src/c/csignal.c src/c/callinterf.c src/c/scimem.c \
+	src/c/isanan.c src/c/parse.c src/c/timer.c src/c/stack2.c \
+	src/c/xscion.c src/c/SetScilabEnvironment.c src/c/returnanan.c \
+	src/c/LoadFunctionsTab.c src/c/with_module.c \
+	src/c/loadversion.c src/c/version.c src/c/stackinfo.c \
+	src/c/scirun.c src/c/warningmode.c src/c/InitializeCore.c \
 	src/c/TerminateCore.c src/c/coretable.c src/c/returnProperty.c \
 	src/c/returnPropertyList.c src/c/scilabmode.c \
 	src/c/GetXmlFileEncoding.c src/c/islittleendian.c \
@@ -249,20 +248,18 @@ am__objects_2 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-texmacs.lo libscicore_la-sciquit.lo \
 	libscicore_la-stack1.lo libscicore_la-realmain.lo \
 	libscicore_la-stack3.lo libscicore_la-str2sci.lo \
-	libscicore_la-getmodules.lo libscicore_la-setgetSCIpath.lo \
-	libscicore_la-getmemory.lo libscicore_la-Funtab.lo \
-	libscicore_la-csignal.lo libscicore_la-callinterf.lo \
-	libscicore_la-scimem.lo libscicore_la-isanan.lo \
-	libscicore_la-parse.lo libscicore_la-timer.lo \
-	libscicore_la-stack2.lo libscicore_la-xscion.lo \
-	libscicore_la-SetScilabEnvironment.lo \
+	libscicore_la-getmodules.lo libscicore_la-getmemory.lo \
+	libscicore_la-Funtab.lo libscicore_la-csignal.lo \
+	libscicore_la-callinterf.lo libscicore_la-scimem.lo \
+	libscicore_la-isanan.lo libscicore_la-parse.lo \
+	libscicore_la-timer.lo libscicore_la-stack2.lo \
+	libscicore_la-xscion.lo libscicore_la-SetScilabEnvironment.lo \
 	libscicore_la-returnanan.lo libscicore_la-LoadFunctionsTab.lo \
 	libscicore_la-with_module.lo libscicore_la-loadversion.lo \
 	libscicore_la-version.lo libscicore_la-stackinfo.lo \
-	libscicore_la-scirun.lo libscicore_la-SCIHOME.lo \
-	libscicore_la-warningmode.lo libscicore_la-InitializeCore.lo \
-	libscicore_la-TerminateCore.lo libscicore_la-coretable.lo \
-	libscicore_la-returnProperty.lo \
+	libscicore_la-scirun.lo libscicore_la-warningmode.lo \
+	libscicore_la-InitializeCore.lo libscicore_la-TerminateCore.lo \
+	libscicore_la-coretable.lo libscicore_la-returnProperty.lo \
 	libscicore_la-returnPropertyList.lo \
 	libscicore_la-scilabmode.lo \
 	libscicore_la-GetXmlFileEncoding.lo \
@@ -643,14 +640,13 @@ CORE_C_SOURCES = src/c/inffic.c src/c/cs2st.c src/c/tmpdir.c \
 	src/c/getval.c src/c/md5.c src/c/inisci-c.c src/c/IsAScalar.c \
 	src/c/texmacs.c src/c/sciquit.c src/c/stack1.c \
 	src/c/realmain.c src/c/stack3.c src/c/str2sci.c \
-	src/c/getmodules.c src/c/setgetSCIpath.c src/c/getmemory.c \
-	src/c/Funtab.c src/c/csignal.c src/c/callinterf.c \
-	src/c/scimem.c src/c/isanan.c src/c/parse.c src/c/timer.c \
-	src/c/stack2.c src/c/xscion.c src/c/SetScilabEnvironment.c \
-	src/c/returnanan.c src/c/LoadFunctionsTab.c \
-	src/c/with_module.c src/c/loadversion.c src/c/version.c \
-	src/c/stackinfo.c src/c/scirun.c src/c/SCIHOME.c \
-	src/c/warningmode.c src/c/InitializeCore.c \
+	src/c/getmodules.c src/c/getmemory.c src/c/Funtab.c \
+	src/c/csignal.c src/c/callinterf.c src/c/scimem.c \
+	src/c/isanan.c src/c/parse.c src/c/timer.c src/c/stack2.c \
+	src/c/xscion.c src/c/SetScilabEnvironment.c src/c/returnanan.c \
+	src/c/LoadFunctionsTab.c src/c/with_module.c \
+	src/c/loadversion.c src/c/version.c src/c/stackinfo.c \
+	src/c/scirun.c src/c/warningmode.c src/c/InitializeCore.c \
 	src/c/TerminateCore.c src/c/coretable.c src/c/returnProperty.c \
 	src/c/returnPropertyList.c src/c/scilabmode.c \
 	src/c/GetXmlFileEncoding.c src/c/islittleendian.c \
@@ -874,12 +870,10 @@ includes/getos.h \
 includes/machine.h \
 includes/mode_exec.h \
 includes/PATH_MAX.h \
-includes/SCIHOME.h \
 includes/scilabDefaults.h \
 includes/scilabmode.h \
 includes/scisparse.h \
 includes/sciquit.h \
-includes/setgetSCIpath.h \
 includes/stack-c.h \
 includes/stack-def.h \
 includes/stack.h \
@@ -1036,7 +1030,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-IsAScalar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-LaunchScilabSignal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-LoadFunctionsTab.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-SCIHOME.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-SetScilabEnvironment.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-TerminateCore.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-banner.Plo@am__quote@
@@ -1151,7 +1144,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-scirun.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-search_functions.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-setPrecisionFPU.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-setgetSCIpath.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-stack1.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-stack2.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-stack3.Plo@am__quote@
@@ -1310,13 +1302,6 @@ libscicore_la-getmodules.lo: src/c/getmodules.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-getmodules.lo `test -f 'src/c/getmodules.c' || echo '$(srcdir)/'`src/c/getmodules.c
 
-libscicore_la-setgetSCIpath.lo: src/c/setgetSCIpath.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-setgetSCIpath.lo -MD -MP -MF $(DEPDIR)/libscicore_la-setgetSCIpath.Tpo -c -o libscicore_la-setgetSCIpath.lo `test -f 'src/c/setgetSCIpath.c' || echo '$(srcdir)/'`src/c/setgetSCIpath.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-setgetSCIpath.Tpo $(DEPDIR)/libscicore_la-setgetSCIpath.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/setgetSCIpath.c' object='libscicore_la-setgetSCIpath.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-setgetSCIpath.lo `test -f 'src/c/setgetSCIpath.c' || echo '$(srcdir)/'`src/c/setgetSCIpath.c
-
 libscicore_la-getmemory.lo: src/c/getmemory.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-getmemory.lo -MD -MP -MF $(DEPDIR)/libscicore_la-getmemory.Tpo -c -o libscicore_la-getmemory.lo `test -f 'src/c/getmemory.c' || echo '$(srcdir)/'`src/c/getmemory.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-getmemory.Tpo $(DEPDIR)/libscicore_la-getmemory.Plo
@@ -1442,13 +1427,6 @@ libscicore_la-scirun.lo: src/c/scirun.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/scirun.c' object='libscicore_la-scirun.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-scirun.lo `test -f 'src/c/scirun.c' || echo '$(srcdir)/'`src/c/scirun.c
-
-libscicore_la-SCIHOME.lo: src/c/SCIHOME.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-SCIHOME.lo -MD -MP -MF $(DEPDIR)/libscicore_la-SCIHOME.Tpo -c -o libscicore_la-SCIHOME.lo `test -f 'src/c/SCIHOME.c' || echo '$(srcdir)/'`src/c/SCIHOME.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-SCIHOME.Tpo $(DEPDIR)/libscicore_la-SCIHOME.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/SCIHOME.c' object='libscicore_la-SCIHOME.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-SCIHOME.lo `test -f 'src/c/SCIHOME.c' || echo '$(srcdir)/'`src/c/SCIHOME.c
 
 libscicore_la-warningmode.lo: src/c/warningmode.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-warningmode.lo -MD -MP -MF $(DEPDIR)/libscicore_la-warningmode.Tpo -c -o libscicore_la-warningmode.lo `test -f 'src/c/warningmode.c' || echo '$(srcdir)/'`src/c/warningmode.c

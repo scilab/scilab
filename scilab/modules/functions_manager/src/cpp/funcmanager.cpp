@@ -82,7 +82,6 @@ bool FuncManager::GetModules()
 	string szModulesFilename;
 
 	string szPath = ConfigVariable::getSCIPath();
-	//	SciPath=getSCIpath();
 	if(szPath == "")
 	{
 		std::cout << "The SCI environment variable is not set." << std::endl;

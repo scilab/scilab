@@ -21,4 +21,3 @@ getScilabMode
 ExitScilab
 TerminateCorePart2
 InitializeLaunchScilabSignal
-setSCIpath

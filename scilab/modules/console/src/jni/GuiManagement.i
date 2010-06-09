@@ -7,7 +7,7 @@
 %{
 #include "MALLOC.h"
 #include "../c/GuiManagement.h"
-#include "../../../core/includes/SCIHOME.h"
+#include "sci_home.h"
 %}
 
 %include "../../../jvm/src/jni/scilab_typemaps.i"

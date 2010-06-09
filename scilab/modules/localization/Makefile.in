@@ -438,7 +438,8 @@ libscilocalization_la_CFLAGS = $(JAVA_JNI_INCLUDE) -I/sw/include \
 	-I$(top_srcdir)/modules/fileio/includes \
 	-I$(top_srcdir)/modules/output_stream/includes \
 	-I$(top_srcdir)/modules/api_scilab/includes \
-	-I$(top_srcdir)/modules/operations/includes $(am__append_4)
+	-I$(top_srcdir)/modules/operations/includes \
+	-I$(top_srcdir)/modules/system_env/includes $(am__append_4)
 pkglib_LTLIBRARIES = libscilocalization.la
 libscilocalization_la_LDFLAGS = -version-info \
 	$(SCILAB_LIBRARY_VERSION) $(am__append_3)

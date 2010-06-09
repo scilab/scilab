@@ -19,7 +19,7 @@
 #include "scilabDefaults.h"
 #include "getScilabJNIEnv.h"
 #include "localization.h"
-#include "setgetSCIpath.h"
+#include "sci_path.h"
 #include "stricmp.h"
 #include "addToClasspath.h"
 #include "loadOnUseClassPath.h"
@@ -33,7 +33,7 @@
 BOOL loadOnUseClassPath(char *tag)
 {
 	BOOL bOK = FALSE;
-	char *sciPath = getSCIpath();
+	char *sciPath = getSCI();
 
 	char *classpathfile = (char*)MALLOC(sizeof(char)*(strlen(sciPath)+strlen(XMLCLASSPATH)+1));
 

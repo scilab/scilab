@@ -4,7 +4,6 @@
 EXPORTS
 ; core 
 ;
-getSCIHOME
 with_module
 StoreCommand
 ;

@@ -18,7 +18,7 @@
 #include "GetXmlFileEncoding.h"
 #include "../../fileio/includes/FileExist.h"
 #include "addToLibrarypath.h"
-#include "setgetSCIpath.h"
+#include "sci_path.h"
 #include "MALLOC.h"
 #include "localization.h"
 #include "stricmp.h"
@@ -89,7 +89,7 @@ BOOL LoadLibrarypath(char *xmlfilename)
 					{
 						#define KEYWORDSCILAB "$SCILAB" 
 						char *FullLibrarypath = NULL;
-						char *sciPath = getSCIpath();
+						char *sciPath = getSCI();
 						
 						if (strncmp(libraryPath,KEYWORDSCILAB, strlen(KEYWORDSCILAB))==0)
 						{

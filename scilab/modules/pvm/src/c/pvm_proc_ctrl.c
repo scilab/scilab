@@ -177,7 +177,7 @@
 #endif 
 
 #include "sci_pvm.h"
-#include "setgetSCIpath.h"
+#include "sci_path.h"
 #include "GetenvB.h"
 #include "PATH_MAX.h"
 #include "sciprint.h"
@@ -308,7 +308,7 @@ void C2F(scipvmstart)(int *res, char *hostfile, int *hostfile_len)
 			}
 		}
 		/* PVM_ROOT + HOME */
-		if (!argc && (rd = getSCIpath()))
+		if (!argc && (rd = getSCI()))
 		{
 			if ((path = (char *) MALLOC(strlen(rd)+strlen(PVM_MODULE)+strlen(PVM_CONFIG_FILE)+1)) == NULL) 
 			{

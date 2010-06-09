@@ -30,6 +30,7 @@
 #include "setenvvar.hxx"
 #include "yaspio.hxx"
 #include "expandPathVariable.h"
+#include "configvariable.hxx"
 
 extern "C"
 {

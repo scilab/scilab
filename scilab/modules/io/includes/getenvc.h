@@ -25,7 +25,7 @@
  * @param[out] buflen  the length of the variable
  * @param[in] iflag 
  */
-IO_IMPEXP void C2F(getenvc)(int *ierr,char *var,char *buf,int *buflen,int *iflag);
+IO_IMPEXP void getenvc(int *ierr,char *var,char *buf,int *buflen,int *iflag);
 
 /**
 * Searches for a file using environment paths

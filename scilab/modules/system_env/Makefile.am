@@ -10,8 +10,11 @@
 ##
 ##
 
-SYSTEM_ENV_CPP_SOURCES 		= 	src/cpp/setenvvar.cpp \
-								src/cpp/configvariable.cpp
+SYSTEM_ENV_CPP_SOURCES 		= 	\
+            src/cpp/setenvvar.cpp \
+            src/cpp/sci_path.cpp \
+            src/cpp/sci_home.cpp \
+            src/cpp/configvariable.cpp
 
 pkglib_LTLIBRARIES 		= libscisystem_env.la
 
@@ -21,6 +24,7 @@ libscisystem_env_la_CPPFLAGS	= 	-I includes/ \
 									-I src/cpp \
 									-I $(top_srcdir)/modules/symbol/includes \
 									-I $(top_srcdir)/modules/types/includes \
+									-I $(top_srcdir)/modules/io/includes \
 									-I $(top_srcdir)/modules/abstractSyntaxTree/includes
 
 

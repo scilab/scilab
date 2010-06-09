@@ -18,7 +18,7 @@
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "setgetSCIpath.h"
+#include "sci_path.h"
 #include "getshortpathname.h"
 #include "BOOL.h"
 #include "charEncoding.h"
@@ -59,7 +59,7 @@ dynamic_gateway_error_code callDynamicGateway(char *moduleName,
 			 * because libraries are split (they are in the same directory 
 			 * in the binary)
 			 */
-			char *SciPath = getSCIpath();
+			char *SciPath = getSCI();
 			#define PATHTOMODULE "/modules/"
 			#define LT_OBJDIR "/.libs/"
 			

@@ -175,7 +175,7 @@ int sci_getenv(char *fname, int* _piKey)
 		int m_out = 1, n_out = 1;
 		int iflag = 0;
 
-		C2F(getenvc)(&ierr, env_name, env_value, &length_env, &iflag);
+		getenvc(&ierr, env_name, env_value, &length_env, &iflag);
 
 		if (ierr == 0)
 		{

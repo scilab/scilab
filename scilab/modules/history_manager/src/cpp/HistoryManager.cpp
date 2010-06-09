@@ -22,7 +22,7 @@ extern "C"
 	#include <string.h>
 	#include <stdlib.h>
 	#include "sciprint.h"
-	#include "SCIHOME.h"
+	#include "sci_home.h"
 	#include "inffic.h"
 	#include "InitializeHistoryManager.h"
 	#include "TerminateHistoryManager.h"

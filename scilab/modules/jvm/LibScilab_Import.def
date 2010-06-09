@@ -14,7 +14,6 @@ freeArrayOfString
 vstk_
 gettype_
 getrhsvar_
-getSCIpath
 getScilabModeString
 com_
 callFunctionFromGateway

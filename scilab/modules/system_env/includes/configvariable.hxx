@@ -15,16 +15,7 @@
 
 #include <list>
 #include <string>
-
-#ifdef _MSC_VER
-    #if SYSTEM_ENV_EXPORTS
-        #define EXTERN_SYSTEM_ENV __declspec (dllexport)
-    #else
-        #define EXTERN_SYSTEM_ENV __declspec (dllimport)
-    #endif
-#else
-    #define EXTERN_SYSTEM_ENV 
-#endif
+#include "dynlib_system_env.h"
 
 class EXTERN_SYSTEM_ENV ConfigVariable
 {
@@ -33,7 +24,7 @@ private :
     static std::list<std::string> m_ModuleList;
 
 public :
-    static bool setModuleList(std::list<std::string>& _module_list);
+    static void setModuleList(std::list<std::string>& _module_list);
     static std::list<std::string> getModuleList();
 
 
@@ -42,31 +33,31 @@ private :
     static std::string m_SCIPath;
 
 public :
-    static bool setSCIPath(std::string& _SCIPath);
+    static void setSCIPath(std::string& _SCIPath);
     static std::string getSCIPath();
 
     //HOME
 private :
-    static std::string m_HOMEPath;
+    static std::string m_SciHome;
 
 public :
-    static bool setHOMEPath(std::string& _HOMEPath);
-    static std::string getHOMEPath();
+    static void setSCIHOME(std::string& _SciHome);
+    static std::string getSCIHOME();
 
-// Force Quit
+    // Force Quit
 private :
     static bool m_bForceQuit;
 
 public : 
-    static bool setForceQuit(bool _bForceQuit);
+    static void setForceQuit(bool _bForceQuit);
     static bool getForceQuit(void);
 
-// Exit Status
+    // Exit Status
 private :
     static int m_iExitStatus;
-    
+
 public : 
-    static bool setExitStatus(int _iExitStatus);
+    static void setExitStatus(int _iExitStatus);
     static int getExitStatus(void);
 
 };

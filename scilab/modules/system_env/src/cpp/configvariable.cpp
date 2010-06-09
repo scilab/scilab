@@ -18,7 +18,7 @@
 */
 std::list<std::string> ConfigVariable::m_ModuleList;
 
-bool ConfigVariable::setModuleList(std::list<std::string>& _pModule_list)
+void ConfigVariable::setModuleList(std::list<std::string>& _pModule_list)
 {
     m_ModuleList.clear();
 
@@ -27,7 +27,6 @@ bool ConfigVariable::setModuleList(std::list<std::string>& _pModule_list)
     {
         m_ModuleList.push_back(*it);
     }
-    return true;
 }
 
 std::list<std::string> ConfigVariable::getModuleList()
@@ -45,10 +44,9 @@ std::list<std::string> ConfigVariable::getModuleList()
 */
 std::string ConfigVariable::m_SCIPath;
 
-bool ConfigVariable::setSCIPath(std::string& _SCIPath)
+void ConfigVariable::setSCIPath(std::string& _SCIPath)
 {
     m_SCIPath = _SCIPath;
-    return true;
 }
 
 std::string ConfigVariable::getSCIPath()
@@ -56,17 +54,25 @@ std::string ConfigVariable::getSCIPath()
     return m_SCIPath;
 }
 
-std::string ConfigVariable::m_HOMEPath;
+/*
+** \}
+*/
 
-bool ConfigVariable::setHOMEPath(std::string& _HOMEPath)
+/*
+** SCIHOME
+** \{
+*/
+
+std::string ConfigVariable::m_SciHome;
+
+void ConfigVariable::setSCIHOME(std::string& _SciHome)
 {
-    m_HOMEPath = _HOMEPath;
-    return true;
+    m_SciHome = _SciHome;
 }
 
-std::string ConfigVariable::getHOMEPath()
+std::string ConfigVariable::getSCIHOME()
 {
-    return m_HOMEPath;
+    return m_SciHome;
 }
 /*
 ** \}
@@ -78,10 +84,9 @@ std::string ConfigVariable::getHOMEPath()
 */
 bool ConfigVariable::m_bForceQuit = false;
 
-bool ConfigVariable::setForceQuit(bool _bForceQuit)
+void ConfigVariable::setForceQuit(bool _bForceQuit)
 {
     m_bForceQuit = _bForceQuit;
-    return true;
 }
 
 bool ConfigVariable::getForceQuit(void)
@@ -98,10 +103,9 @@ bool ConfigVariable::getForceQuit(void)
 */
 int ConfigVariable::m_iExitStatus = 0;
 
-bool ConfigVariable::setExitStatus(int _iExitStatus)
+void ConfigVariable::setExitStatus(int _iExitStatus)
 {
     m_iExitStatus = _iExitStatus;
-    return true;
 }
 
 int ConfigVariable::getExitStatus(void)

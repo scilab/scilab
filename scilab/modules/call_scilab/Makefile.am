@@ -24,6 +24,7 @@ libscicall_scilab_la_CFLAGS=  	-I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/fileio/includes \
 			-I$(top_srcdir)/modules/graphics/includes \
 			-I$(top_srcdir)/modules/operations/includes \
+			-I$(top_srcdir)/modules/system_env/includes \
 			-I$(top_srcdir)/modules/core/src/c/
 
 pkglib_LTLIBRARIES = libscicall_scilab.la

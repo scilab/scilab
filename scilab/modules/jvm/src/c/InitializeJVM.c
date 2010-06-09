@@ -17,7 +17,7 @@
 #include "InitializeJVM.h"
 #include "loadClasspath.h"
 #include "loadLibrarypath.h"
-#include "setgetSCIpath.h"
+#include "sci_path.h"
 #include "MALLOC.h"
 #include "JVM.h"
 #include "createMainScilabObject.h"
@@ -32,7 +32,7 @@ BOOL InitializeJVM(void)
 	BOOL bOK=FALSE;
 	char *sciPath=NULL;
 
-	sciPath=getSCIpath();
+	sciPath=getSCI();
 
 	if (!startJVM(sciPath))
 	{

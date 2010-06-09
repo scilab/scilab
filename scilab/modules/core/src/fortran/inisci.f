@@ -202,7 +202,7 @@ c     string   -> size : sadr(6+nchar)+1
 c     3 strings
 c     4 booleans
       call getsci(bufsci,nbsci)
-      call getscihome(bufscihome,nbscihome)
+c      call getscihome(bufscihome,nbscihome)
       call gettmpdir(buftmp,nbtmpdir)
       lpvar = (sadr(10-1) + 2) 
      $     + 4*sadr(5) 

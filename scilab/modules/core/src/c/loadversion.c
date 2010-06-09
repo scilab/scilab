@@ -16,7 +16,7 @@
 #include <libxml/xmlreader.h>
 #include "loadversion.h"
 #include "with_module.h"
-#include "setgetSCIpath.h"
+#include "sci_path.h"
 #include "MALLOC.h"
 #include "GetXmlFileEncoding.h"
 #include "scilabDefaults.h"
@@ -43,7 +43,7 @@ BOOL getversionmodule(char *modulename,
 		char *SciPath=NULL;
 		int len=0;
 
-		SciPath=getSCIpath();
+		SciPath=getSCI();
 		len=(int)strlen(FORMATVERSIONFILENAME)+(int)strlen(SciPath)+(int)strlen(modulename)+1;
 		filename_VERSION_module=(char*)MALLOC(sizeof(char)*len);
 		sprintf(filename_VERSION_module,FORMATVERSIONFILENAME,SciPath,modulename);

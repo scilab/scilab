@@ -31,7 +31,7 @@ static void searchenv_others(const char *filename, const char *varname,
 							 char *pathname);
 #endif
 /*--------------------------------------------------------------------------*/
-void C2F(getenvc)(int *ierr,char *var,char *buf,int *buflen,int *iflag)
+void getenvc(int *ierr,char *var,char *buf,int *buflen,int *iflag)
 {
 #ifdef _MSC_VER
 

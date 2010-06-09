@@ -17,7 +17,7 @@
 #include <libxml/xpath.h>
 #include <libxml/xmlreader.h>
 #include "readGateway.h"
-#include "setgetSCIpath.h"
+#include "sci_path.h"
 #include "scilabDefaults.h"
 #include "FileExist.h"
 #include "with_module.h"
@@ -234,7 +234,7 @@ static char *getModuleXmlFilename(char *modulename)
 	if (modulename)
 	{
 		char *SciPath = NULL;
-		SciPath = getSCIpath();
+		SciPath = getSCI();
 		if (SciPath)
 		{
 			int length_filename_module = 0;

@@ -16,7 +16,7 @@
 #include <libxml/xmlreader.h>
 #include "getmodules.h"
 #include "MALLOC.h"
-#include "setgetSCIpath.h"
+#include "sci_path.h"
 #include "localization.h"
 #include "string.h"
 #include "stricmp.h"
@@ -78,7 +78,7 @@ static BOOL ReadModulesFile(void)
 	char *ModulesFilename=NULL;
 	char *SciPath=NULL;
 
-	SciPath=getSCIpath();
+	SciPath=getSCI();
 	if (SciPath==NULL)
 	{
 		sciprint(_("The SCI environment variable is not set.\n"));
@@ -113,7 +113,7 @@ static BOOL VerifyModule(char *ModuleName)
 	char *FullPathModuleName=NULL;
 	
 
-	SciPath=getSCIpath();
+	SciPath=getSCI();
 	if (SciPath==NULL)
 	{
 		sciprint(_("The SCI environment variable is not set.\n"));

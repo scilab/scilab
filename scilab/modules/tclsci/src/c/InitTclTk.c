@@ -21,7 +21,7 @@
 #include "strdup_windows.h"
 #endif
 #include "InitTclTk.h"
-#include "setgetSCIpath.h"
+#include "sci_path.h"
 #include "sciprint.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -255,7 +255,7 @@ static char *GetSciPath(void)
 	char *SciPathTmp=NULL;
 	int i=0;
 
-	SciPathTmp=getSCIpath();
+	SciPathTmp=getSCI();
 
 	if (SciPathTmp)
 	{

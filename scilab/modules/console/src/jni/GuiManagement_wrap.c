@@ -189,7 +189,7 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 
 #include "MALLOC.h"
 #include "../c/GuiManagement.h"
-#include "../../../core/includes/SCIHOME.h"
+#include "sci_home.h"
 
 
 #ifdef __cplusplus
