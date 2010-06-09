@@ -13,13 +13,11 @@
 #ifndef AST_VISITOR_COMMON_HXX
 #define AST_VISITOR_COMMON_HXX
 
-#include "conditionvisitor.hxx"
-#include "location.hxx"
-#include "types.hxx"
+#include "internal.hxx"
 #include "exp.hxx"
 
 #define bsiz	4096
-EXTERN_AST bool bConditionState(ast::ConditionVisitor *exec);
+EXTERN_AST bool bConditionState(types::InternalType *_pITResult);
 
 EXTERN_AST void ExpandList(int ** _piList, int *_piListSize, int _iListSizeSize, int *_piResultList);
 EXTERN_AST int GetVarMaxDim(types::InternalType *_pIT, int _iCurrentDim, int _iMaxDim);
@@ -40,8 +38,8 @@ EXTERN_AST types::InternalType* AddElementToVariableFromRow(
                         int _iRows, int _iCols, int *_piRows);
 
 
-EXTERN_AST const std::string* getStructNameFromExp(const Exp* _pExp);
+EXTERN_AST const std::string* getStructNameFromExp(const ast::Exp* _pExp);
 
-EXTERN_AST types::Struct* getStructFromExp(const Exp* _pExp);
+EXTERN_AST types::Struct* getStructFromExp(const ast::Exp* _pExp);
 
 #endif //!AST_VISITOR_COMMON_HXX

@@ -84,7 +84,6 @@ const char* file_name;
 bool parseTrace = false;
 bool printAst = false;
 bool execAst = true;
-bool execOrig = false;
 bool dumpAst = false;
 bool dumpStack = false;
 bool timed = false;
@@ -122,7 +121,6 @@ int StartScilabEngine(int argc, char*argv[], int iFileIndex);
 static void usage (void)
 {
     std::cerr << "Usage: "<< prog_name << " <options>" << std::endl;
-    std::cerr << "      --orig           : use origianl visitor for execution." << std::endl;
     std::cerr << "      -f file          : Batch mode on the given file." << std::endl;
     std::cerr << "      -l lang          : Change the language of scilab ( default : en_US )." << std::endl;
     std::cerr << "      -nw              : Enable console mode." << std::endl;
@@ -172,11 +170,6 @@ static int get_option (const int argc, char *argv[], int *_piFileIndex, int *_pi
             dumpAst = true;
         }
         else if (!strcmp("--no-exec", argv[i])) {
-            execAst = false;
-        }
-        else if (!strcmp("--orig", argv[i])) {
-            std::cout << "Original execution" << std::endl;
-            execOrig = true;
             execAst = false;
         }
         else if (!strcmp("--context-dump", argv[i])) {
@@ -268,11 +261,6 @@ static int batchMain (void)
     if (execAst == true) { execAstTask(parser->getTree(), timed, ASTtimed); }
 
 /*
-** -*- EXECUTING TREE WITH ORIGINAL VISITOR-*-
-*/
-    if (execOrig == true) { origAstTask(parser->getTree(), timed); }
-
-/*
 ** -*- DUMPING STACK AFTER EXECUTION -*-
 */
     if (dumpStack == true) { dumpStackTask(timed); }
@@ -345,7 +333,7 @@ static int interactiveMain (void)
         //set prompt value
         C2F(setprlev)(&pause);
 
-        if (parser->getControlStatus() == Parser::AllControlClosed) 
+        if (parser->getControlStatus() == Parser::AllControlClosed)
         {
             if(command)
             {
@@ -396,12 +384,7 @@ static int interactiveMain (void)
                 /*
                 ** -*- EXECUTING TREE -*-
                 */
-                if (execAst == true && execOrig == false) { execAstTask(parser->getTree(), timed, ASTtimed); }
-
-                /*
-                ** -*- EXECUTING ORIGINAL TREE -*-
-                */
-                if (execAst == false && execOrig == true) { origAstTask(parser->getTree(), timed); }
+                if (execAst == true) { execAstTask(parser->getTree(), timed, ASTtimed); }
 
                 /*
                 ** -*- DUMPING STACK AFTER EXECUTION -*-
@@ -490,17 +473,17 @@ int StartScilabEngine(int argc, char*argv[], int iFileIndex)
     InitializeWindows_tools();
 #endif
 
-    InitializeCore();
+    //InitializeCore();
 
     InitializeShell();
 
-    if (!noJvm) 
+    if (!noJvm)
     {
         /* bug 3702 */
         /* tclsci creates a TK window on Windows */
         /* it changes focus on previous windows */
         /* we put InitializeTclTk before InitializeGUI */
-        
+
         //InitializeTclTk();
         InitializeJVM();
         InitializeGUI();
@@ -509,7 +492,7 @@ int StartScilabEngine(int argc, char*argv[], int iFileIndex)
         loadGraphicModule() ;
 
         /* Standard mode -> init Java Console */
-        if ( !consoleMode ) 
+        if ( !consoleMode )
         {
             /* Initialize console: lines... */
             InitializeConsole();

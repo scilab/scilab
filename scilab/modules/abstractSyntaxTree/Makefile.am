@@ -18,12 +18,7 @@ libsciabstractSyntaxTree_la_SOURCES 	=	src/cpp/libAst.cpp \
 				src/cpp/printvisitor.cpp \
 				src/cpp/debugvisitor.cpp \
 				src/cpp/mutevisitor.cpp \
-				src/cpp/shortcutvisitor.cpp \
-				src/cpp/conditionvisitor.cpp \
-				src/cpp/original/originalvisitor.cpp \
-				src/cpp/original/original_OpExp.cpp \
-				src/cpp/original/original_MatrixExp.cpp \
-				src/cpp/original/original_AssignExp.cpp
+				src/cpp/shortcutvisitor.cpp
 
 libsciabstractSyntaxTree_la_CXXFLAGS 	= -I$(top_srcdir)/modules/symbol/includes \
 			-I $(top_srcdir)/modules/types/includes \

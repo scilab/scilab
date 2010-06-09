@@ -1,13 +1,13 @@
 /*
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2009-2009 - DIGITEO - Bruno JOFRET
-* 
+*
 *  This file must be used under the terms of the CeCILL.
 *  This source file is licensed as described in the file COPYING, which
 *  you should have received as part of this distribution.  The terms
 *  are also available at
 *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-* 
+*
 */
 
 #include "tasks.hxx"
@@ -16,7 +16,6 @@
 #include "visitor.hxx"
 #include "printvisitor.hxx"
 #include "execvisitor.hxx"
-#include "originalvisitor.hxx"
 #include "timedvisitor.hxx"
 #include "debugvisitor.hxx"
 #include "configvariable.hxx"
@@ -165,36 +164,6 @@ void execAstTask(ast::Exp* tree, bool timed, bool ASTtimed)
         _timer.check("Execute AST");
     }
 }
-
-/*
-** Exec Tree with original visitor ( without template )
-**
-** Execute the stored AST.
-*/
-void origAstTask(ast::Exp *tree, bool timed)
-{
-    ast::OriginalVisitor exec;
-    if(timed)
-    {
-        _timer.start();
-    }
-
-    try
-    {
-        tree->accept(exec);
-    }
-    catch(string sz)
-    {
-        YaspWrite((char *) sz.c_str());
-        YaspWrite("\n");
-    }
-
-    if(timed)
-    {
-        _timer.check("Execute original AST");
-    }
-}
-
 
 /*
 ** Dump Stack Trace

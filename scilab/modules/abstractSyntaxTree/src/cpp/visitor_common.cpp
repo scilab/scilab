@@ -13,18 +13,19 @@
 #include <numeric>
 #include "visitor_common.hxx"
 #include "context.hxx"
+#include "internal.hxx"
+#include "exp.hxx"
+#include "fieldexp.hxx"
+#include "callexp.hxx"
+#include "simplevar.hxx"
 
-bool bConditionState(ast::ConditionVisitor *exec)
+bool bConditionState(types::InternalType *_pITResult)
 {
-	if(exec->is_boolean_result())
+	if(_pITResult->isDouble() &&
+       _pITResult->getAsDouble()->isComplex() == false)
 	{
-		return exec->result_bool_get();
-	}
-	else if(exec->result_get()->isDouble() && 
-            exec->result_get()->getAsDouble()->isComplex() == false)
-	{
-		types::Double *pR		= exec->result_get()->getAsDouble();
-		double *pReal	= pR->real_get();
+		types::Double *pR = _pITResult->getAsDouble();
+		double *pReal = pR->real_get();
 
 		for(int i = 0 ; i < pR->size_get() ; i++)
 		{
@@ -34,9 +35,9 @@ bool bConditionState(ast::ConditionVisitor *exec)
 			}
 		}
 	}
-	else if(exec->result_get()->isBool())
+	else if(_pITResult->isBool())
 	{
-		types::Bool *pB		= exec->result_get()->getAsBool();
+		types::Bool *pB		= _pITResult->getAsBool();
 		int *piData	= pB->bool_get();
 
 		for(int i = 0 ; i < pB->size_get() ; i++)
@@ -48,7 +49,7 @@ bool bConditionState(ast::ConditionVisitor *exec)
 			}
 		}
 	}
-	else if(exec->result_get()->isInt())
+	else if(_pITResult->isInt())
 	{
 	}
 	else
@@ -60,7 +61,7 @@ bool bConditionState(ast::ConditionVisitor *exec)
 
 void ExpandList(int ** _piList, int *_piListSize, int _iListSizeSize, int *_piResultList)
 {
-#define ORIGINAL_IMPLEM 
+#define ORIGINAL_IMPLEM
 #ifdef ORIGINAL_IMPLEM
 	for(int i = _iListSizeSize - 1 ; i >= 0 ; i--)
 	{
@@ -115,7 +116,7 @@ void ExpandList(int ** _piList, int *_piListSize, int _iListSizeSize, int *_piRe
 			int const data=_piList[i][m];
 			for(int j1(0); j1 != iPreOcc; ++j1, ptr +=  delta * iSize)
 			{
-				for(int j2(0); j2!= iPostOcc ; ++j2, ptr+=  _iListSizeSize) 
+				for(int j2(0); j2!= iPostOcc ; ++j2, ptr+=  _iListSizeSize)
 				{
 					*ptr= data;
 				}
@@ -524,13 +525,13 @@ const std::string* getStructNameFromExp(const Exp* _pExp)
     // FIXME
     return NULL;
 }
- 
+
 types::Struct* getStructFromExp(const Exp* _pExp)
 {
     const FieldExp* pField =  dynamic_cast<const FieldExp*>(_pExp);
     const SimpleVar* pVar =  dynamic_cast<const SimpleVar*>(_pExp);
     const CallExp* pCall =  dynamic_cast<const CallExp*>(_pExp);
-    
+
     if(pField)
     {
         const SimpleVar* pTail = dynamic_cast<const SimpleVar*>(pField->tail_get());
@@ -538,9 +539,9 @@ types::Struct* getStructFromExp(const Exp* _pExp)
         {
             std::cout << "Houston ..." << std::endl;
         }
-        
+
         types::Struct *pStr        = getStructFromExp(pField->head_get());
-        
+
         pStr->add(pTail->name_get());
         types::InternalType* pIT = pStr->get(pTail->name_get());
         if(pIT == NULL)
@@ -566,7 +567,7 @@ types::Struct* getStructFromExp(const Exp* _pExp)
         {
             pStr = pIT->getAsStruct();
         }
-        
+
         return pStr;
     }
     else if(pCall)
