@@ -670,8 +670,8 @@
 	<add as="CMATVIEW" extend="blockWithLabel">
 		<add as="displayedLabel" value="Mat. View" />
 	</add>
-	<add as="CMSCOPE" extend="blockWithLabel">
-		<add as="displayedLabel" value="MScope" />
+	<add as="CMSCOPE" extend="Icon">
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/ASCOPE.svg" />
 	</add>
 	<add as="AFFICH_m" extend="Affiche" />
 	<add as="AFFICH_f" extend="Affiche" />
