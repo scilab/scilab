@@ -11,6 +11,7 @@
 */
 
 #include "core_gw.hxx"
+#include "context.hxx"
 
 extern "C"
 {
