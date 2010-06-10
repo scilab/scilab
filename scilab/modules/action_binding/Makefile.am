@@ -22,8 +22,7 @@ CONSOLE_C_JNI_SOURCES = src/jni/InterpreterManagement_wrap.c
 SWIG_WRAPPERS = src/jni/InterpreterManagement.i
 else
 # List of the c files
-ACTION_BINDING_C_SOURCES = src/noaction_binding/noaction_binding.c \
-src/c/dynamic_menus.c
+ACTION_BINDING_C_SOURCES = src/noaction_binding/noaction_binding.c
 endif
 
 if SWIG

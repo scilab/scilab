@@ -117,12 +117,11 @@ libsciaction_binding_la_DEPENDENCIES =  \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__libsciaction_binding_la_SOURCES_DIST =  \
-	src/noaction_binding/noaction_binding.c src/c/dynamic_menus.c \
+	src/noaction_binding/noaction_binding.c \
 	src/c/InterpreterManagement.c \
 	src/jni/InterpreterManagement_wrap.c
 @GUI_FALSE@am__objects_1 =  \
-@GUI_FALSE@	libsciaction_binding_la-noaction_binding.lo \
-@GUI_FALSE@	libsciaction_binding_la-dynamic_menus.lo
+@GUI_FALSE@	libsciaction_binding_la-noaction_binding.lo
 @GUI_TRUE@am__objects_1 =  \
 @GUI_TRUE@	libsciaction_binding_la-InterpreterManagement.lo
 @GUI_TRUE@am__objects_2 = libsciaction_binding_la-InterpreterManagement_wrap.lo
@@ -402,9 +401,7 @@ top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 @GUI_TRUE@USEANT = 1
 # List of the c files
-@GUI_FALSE@ACTION_BINDING_C_SOURCES = src/noaction_binding/noaction_binding.c \
-@GUI_FALSE@src/c/dynamic_menus.c
-
+@GUI_FALSE@ACTION_BINDING_C_SOURCES = src/noaction_binding/noaction_binding.c
 
 # List of the c files
 @GUI_TRUE@ACTION_BINDING_C_SOURCES = src/c/InterpreterManagement.c
@@ -592,7 +589,6 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciaction_binding_la-InterpreterManagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciaction_binding_la-InterpreterManagement_wrap.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciaction_binding_la-dynamic_menus.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciaction_binding_la-noaction_binding.Plo@am__quote@
 
 .c.o:
@@ -622,13 +618,6 @@ libsciaction_binding_la-noaction_binding.lo: src/noaction_binding/noaction_bindi
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/noaction_binding/noaction_binding.c' object='libsciaction_binding_la-noaction_binding.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciaction_binding_la_CFLAGS) $(CFLAGS) -c -o libsciaction_binding_la-noaction_binding.lo `test -f 'src/noaction_binding/noaction_binding.c' || echo '$(srcdir)/'`src/noaction_binding/noaction_binding.c
-
-libsciaction_binding_la-dynamic_menus.lo: src/c/dynamic_menus.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciaction_binding_la_CFLAGS) $(CFLAGS) -MT libsciaction_binding_la-dynamic_menus.lo -MD -MP -MF $(DEPDIR)/libsciaction_binding_la-dynamic_menus.Tpo -c -o libsciaction_binding_la-dynamic_menus.lo `test -f 'src/c/dynamic_menus.c' || echo '$(srcdir)/'`src/c/dynamic_menus.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciaction_binding_la-dynamic_menus.Tpo $(DEPDIR)/libsciaction_binding_la-dynamic_menus.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/dynamic_menus.c' object='libsciaction_binding_la-dynamic_menus.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciaction_binding_la_CFLAGS) $(CFLAGS) -c -o libsciaction_binding_la-dynamic_menus.lo `test -f 'src/c/dynamic_menus.c' || echo '$(srcdir)/'`src/c/dynamic_menus.c
 
 libsciaction_binding_la-InterpreterManagement.lo: src/c/InterpreterManagement.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciaction_binding_la_CFLAGS) $(CFLAGS) -MT libsciaction_binding_la-InterpreterManagement.lo -MD -MP -MF $(DEPDIR)/libsciaction_binding_la-InterpreterManagement.Tpo -c -o libsciaction_binding_la-InterpreterManagement.lo `test -f 'src/c/InterpreterManagement.c' || echo '$(srcdir)/'`src/c/InterpreterManagement.c
