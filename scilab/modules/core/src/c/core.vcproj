@@ -641,10 +641,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_exists.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_format.c"
 				>
 			</File>
@@ -706,10 +702,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_intppty.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_isdef.c"
 				>
 			</File>
 			<File
