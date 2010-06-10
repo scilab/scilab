@@ -39,11 +39,9 @@ sci_xcosPalCategoryAdd(char *fname, unsigned long fname_len)
     CheckRhs(1, 2);
     CheckLhs(1, 1);
 
-    SciErr sciErr;
-
-    char** name;
-    int nameLength;
-    bool visible;
+    char** name = NULL;
+    int nameLength = 0;
+    bool visible = false;
 
     /* name setup */
     if (readVectorString(1, &name, &nameLength, fname))
@@ -76,7 +74,6 @@ sci_xcosPalCategoryAdd(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    LhsVar(1) = 1;
     PutLhsVar();
     return 0;
 }

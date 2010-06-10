@@ -36,8 +36,6 @@ sci_xcosPalLoad(char *fname, unsigned long fname_len)
     CheckRhs(2, 2);
     CheckLhs(0, 1);
 
-    SciErr sciErr;
-
     char* path = NULL;
     
     int lenCategory = 0;
@@ -67,7 +65,6 @@ sci_xcosPalLoad(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    LhsVar(1) = 0;
     PutLhsVar();
     return 0;
 }

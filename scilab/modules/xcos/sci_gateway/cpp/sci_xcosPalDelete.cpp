@@ -36,10 +36,8 @@ sci_xcosPalDelete(char *fname, unsigned long fname_len)
     CheckRhs(1, 1);
     CheckLhs(1, 1);
 
-    SciErr sciErr;
-
-    char** name;
-    int nameLength;
+    char** name = NULL;
+    int nameLength = 0;
 
     /* name setup */
     if (readVectorString(1, &name, &nameLength, fname))
@@ -58,7 +56,6 @@ sci_xcosPalDelete(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    LhsVar(1) = 1;
     PutLhsVar();
     return 0;
 }

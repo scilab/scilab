@@ -36,13 +36,11 @@ sci_xcosPalMove(char *fname, unsigned long fname_len)
     CheckRhs(1, 1);
     CheckLhs(1, 1);
 
-    SciErr sciErr;
+    char** source = NULL;
+    int sourceLength = 0;
 
-    char** source;
-    int sourceLength;
-
-    char** target;
-    int targetLength;
+    char** target = NULL;
+    int targetLength = 0;
 
     /* source setup */
     if (readVectorString(1, &source, &sourceLength, fname))
@@ -68,7 +66,6 @@ sci_xcosPalMove(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    LhsVar(1) = 1;
     PutLhsVar();
     return 0;
 }
