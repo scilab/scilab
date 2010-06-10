@@ -17,12 +17,12 @@
 
 #
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-# Copyright (C) DIGITEO - 2009 - Allan CORNET
-# 
+# Copyright (C) 2009-2010 - DIGITEO
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
-# you should have received as part of this distribution.  The terms
-# are also available at    
+# you should have received as part of this distribution. The terms
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 #
 
@@ -425,11 +425,12 @@ modulename = xpad
 libscixpad_la_rootdir = $(mydatadir)
 libscixpad_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
-#### xpad : init scripts ####
+#### xpad : init scripts & configuration files ####
 libscixpad_la_etcdir = $(mydatadir)/etc
 libscixpad_la_etc_DATA = etc/xpadConfiguration.xml \
-				etc/xpad.quit \
-				etc/xpad.start
+    etc/keysConfiguration.xml \
+    etc/xpad.quit \
+    etc/xpad.start
 
 
 # Where all the Scilab stuff is installed (macros, help, ...)
@@ -497,8 +498,8 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 XPAD_JNI_SOURCES = src/jni/ScilabKeywords_wrap.c
 XPAD_C_SOURCES = src/c/ScilabKeywords.c
 XPAD_CPP_SOURCES = src/jni/Xpad.cpp \
-	src/cpp/callxpad.cpp \
-	src/jni/GiwsException.cpp
+    src/cpp/callxpad.cpp \
+    src/jni/GiwsException.cpp
 
 GIWS_WRAPPERS = src/jni/Xpad.giws.xml
 @GIWS_TRUE@BUILT_SOURCES = giws
@@ -508,30 +509,30 @@ GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_xpad.cpp \
 sci_gateway/cpp/sci_closeXpadFromScilab.cpp
 
 libscixpad_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
-			-I$(top_srcdir)/libs/MALLOC/includes/ \
-			-I$(top_srcdir)/modules/jvm/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/modules/localization/includes \
-			-I$(top_srcdir)/modules/api_scilab/includes \
-			-I$(top_srcdir)/modules/fileio/includes \
-			-I$(top_srcdir)/modules/core/includes \
-			-I$(top_srcdir)/modules/functions/includes
+    -I$(top_srcdir)/libs/MALLOC/includes/ \
+    -I$(top_srcdir)/modules/jvm/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes \
+    -I$(top_srcdir)/modules/localization/includes \
+    -I$(top_srcdir)/modules/api_scilab/includes \
+    -I$(top_srcdir)/modules/fileio/includes \
+    -I$(top_srcdir)/modules/core/includes \
+    -I$(top_srcdir)/modules/functions/includes
 
 libscixpad_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
-			-I$(srcdir)/includes/ \
-			-I$(srcdir)/src/cpp/ \
-			-I$(srcdir)/src/c/ \
-			-I$(srcdir)/src/jni/ \
-	 		-I$(top_srcdir)/modules/jvm/includes/ \
-			-I$(top_srcdir)/modules/fileio/includes \
-			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/modules/localization/includes \
-			-I$(top_srcdir)/modules/api_scilab/includes
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/cpp/ \
+    -I$(srcdir)/src/c/ \
+    -I$(srcdir)/src/jni/ \
+    -I$(top_srcdir)/modules/jvm/includes/ \
+    -I$(top_srcdir)/modules/fileio/includes \
+    -I$(top_srcdir)/modules/output_stream/includes \
+    -I$(top_srcdir)/modules/localization/includes \
+    -I$(top_srcdir)/modules/api_scilab/includes
 
 
 # Without the xpad module 
 libscixpad_disable_la_CFLAGS = -Iincludes/ \
-			-I$(top_srcdir)/modules/output_stream/includes
+    -I$(top_srcdir)/modules/output_stream/includes
 
 XPAD_DISABLE_C_SOURCES = src/noxpad/noxpad.c
 libscixpad_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
@@ -547,8 +548,8 @@ INCLUDE_FLAGS = $(libscixpad_la_CFLAGS)
 #### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/ScilabKeywords.i 
 libscixpad_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
-$(top_builddir)/libs/MALLOC/libscimalloc.la \
-$(top_builddir)/modules/output_stream/libscioutput_stream.la
+    $(top_builddir)/libs/MALLOC/libscimalloc.la \
+    $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 
 #### xpad : gateway declaration ####
