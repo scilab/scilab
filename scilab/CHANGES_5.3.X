@@ -28,6 +28,9 @@ Bug Fixes:
 
 * bug 6639 fixed - "hypermat"  did not remove higher dimensions equal to 1.
 
+* bug 6849 fixed - add_profiling badly handled "else" that made plotprofile
+                   function produce an incorrect report.
+
 * bug 7121 fixed - Update help file about saveafterncommands(0).
 
 * bug 7158 fixed - help chapter about texmacs was empty.
