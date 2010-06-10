@@ -22,7 +22,7 @@ typedef struct {
 	int ndng;
 } DCOEFF_struct;
 
-DCOEFF_struct C2F(dcoeff);
+__declspec(dllexport) DCOEFF_struct C2F(dcoeff);
 
 #endif
 

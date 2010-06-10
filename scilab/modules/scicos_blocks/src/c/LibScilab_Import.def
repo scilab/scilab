@@ -8,14 +8,3 @@ namstr_
 freeArrayOfString
 
 ;
-; elementary_functions
-dmmul_  
-dmmul1_
-urand_
-wmmul_
-wsqrt_
-mtran_
-wexpm1_
-dexpm1_
-sciround_
-;

@@ -35,8 +35,5 @@ LaunchScilab
 LaunchScilabLock
 ;
 ;
-; defined for expm (elementary functions)
-;
-dcoeff_
-;
 BuildWithVS8ExpressF2C
+

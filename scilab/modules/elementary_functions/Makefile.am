@@ -400,6 +400,7 @@ libscielementary_functions_la_CPPFLAGS = 	-I$(srcdir)/includes/ \
 libscielementary_functions_la_CFLAGS= 	-I$(srcdir)/includes/ \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(srcdir)/src/c/ \
+-I$(top_srcdir)/modules/core/src/c/ \
 -I$(top_srcdir)/modules/api_scilab/includes \
 -I$(top_srcdir)/modules/output_stream/includes
 
