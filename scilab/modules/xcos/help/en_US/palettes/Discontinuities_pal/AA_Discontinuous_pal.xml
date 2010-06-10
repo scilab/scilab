@@ -37,13 +37,43 @@
   <refsection>
     <title>Block Screenshot</title>
 
-    <para><inlinemediaobject>
-        <imageobject>
-          <imagedata align="center"
-                     fileref="../../../../images/palettes/Discontinuities_pal.jpg"
-                     valign="middle"></imagedata>
-        </imageobject>
-      </inlinemediaobject></para>
+    <para>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="BACKLASH" fileref="../../../../../../modules/xcos/images/palettes/BACKLASH.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="DEADBAND" fileref="../../../../../../modules/xcos/images/palettes/DEADBAND.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="DELAYV_f" fileref="../../../../../../modules/xcos/images/palettes/DELAYV_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="HYSTHERESIS" fileref="../../../../../../modules/xcos/images/palettes/HYSTHERESIS.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="RATELIMITER" fileref="../../../../../../modules/xcos/images/palettes/RATELIMITER.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="QUANT_f" fileref="../../../../../../modules/xcos/images/palettes/QUANT_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="SATURATION" fileref="../../../../../../modules/xcos/images/palettes/SATURATION.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    </para>
   </refsection>
 
   <refsection id="Module_discontinuities_pal">
