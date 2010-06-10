@@ -917,22 +917,16 @@ void visitprivate(const LogicalOpExp &e)
     {
         Bool *pL	= execMeL.result_get()->getAsBool();
         int *piL	= pL->bool_get();
-        bool iL     = true;
-        // Check if all values are false
+        // Check if one value is false
         // false && <something> is always false
         for(int i = 0 ; i < pL->size_get() ; i++)
         {
-            if(piL[i] == true)
+            if(piL[i] == false)
             {
-                iL = false;
-                break;
+                pResult = new Bool(false);
+                result_set(pResult);
+                return;
             }
-        }
-        if(iL)
-        {//we don't need to look at ohers exp
-            pResult = new Bool(false);
-            result_set(pResult);
-            return;
         }
         // DO NOT break here, falling into normal And if this can not be shotcutted.
     }
