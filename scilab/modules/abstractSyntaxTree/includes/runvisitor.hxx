@@ -599,7 +599,7 @@ namespace ast
                     sprintf_s(szError, bsiz, _("/!\\ Unmanaged FieldExp.\n"));
 #else
                     sprintf(szError, _("/!\\ Unmanaged FieldExp.\n"));
-#endif
+#endif 
                     throw string(szError);
                 }
             }
@@ -608,6 +608,55 @@ namespace ast
 
         void visitprivate(const CellCallExp &e)
         {
+            //get head
+            T execMeCell;
+            e.name_get().accept(execMeCell);
+
+            if(execMeCell.result_get() != NULL)
+            {//a{xxx} with a variable, extraction
+                InternalType *pIT = NULL;
+
+                pIT = execMeCell.result_get();
+
+                if(pIT)
+                {
+                    int iArgDim = static_cast<int>(e.args_get().size());
+                    std::vector<InternalType*> ResultList;
+
+                    //Create list of indexes
+                    bool bSeeAsVector   = iArgDim == 1;
+                    int *piIndexSeq		= NULL;
+                    int *piMaxDim       = NULL;
+                    int *piDimSize		= new int[iArgDim];
+                    int iTotalCombi		= GetIndexList(e.args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
+
+                    ResultList = pIT->getAsCell()->extract_cell(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
+
+                    delete[] piDimSize;
+                    delete[] piIndexSeq;
+                    delete[] piMaxDim;
+
+                    if(ResultList.size() == 0)
+                    {
+                        std::ostringstream os;
+                        os << "inconsistent row/column dimensions";
+                        os << ((*e.args_get().begin())->location_get()).location_string_get() << std::endl;
+                        throw os.str();
+                    }
+
+                    for(int i = 0 ; i < static_cast<int>(ResultList.size()) ; i++)
+                    {
+                        result_set(i, ResultList[i]);
+                    }
+                }
+            }
+            else
+            {
+                //result == NULL ,variable doesn't exist :(
+                // Sould never be in this case
+                // In worst case variable pointing to function does not exists
+                // visitprivate(SimpleVar) will throw the right exception.
+            }
         }
 
         void visitprivate(const IfExp  &e)

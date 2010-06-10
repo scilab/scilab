@@ -390,6 +390,7 @@ namespace types
 		piB = new int[_iNewRows * _iNewCols];
 		memset(piB, 0x00, sizeof(int) * _iNewRows * _iNewCols);
 
+		//copy existing values
 		for(int i = 0 ; i < rows_get() ; i++)
 		{
 			for(int j = 0 ; j < cols_get() ; j++)
@@ -403,7 +404,6 @@ namespace types
 		m_iRows = _iNewRows;
 		m_iCols	= _iNewCols;
 		m_iSize = m_iRows * m_iCols;
-		//copy existing values
 		return true;
 	}
 
@@ -461,7 +461,7 @@ namespace types
 
 		switch(_poSource->getType())
 		{
-		case InternalType::RealString :
+		case InternalType::RealBool :
 			{
 				Bool *pIn = _poSource->getAsBool();
 

@@ -114,6 +114,16 @@ void visitprivate(const AssignExp  &e)
                 case InternalType::RealList : 
                     bRet = pIT->getAsList()->insert(iTotalCombi, piIndexSeq, piMaxDim, execMeR.result_list_get(), bSeeAsVector);
                     break;
+                case InternalType::RealCell : 
+                    if(execMeR.result_list_get()->size() ==1)
+                    {
+                        bRet = pIT->getAsCell()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
+                    }
+                    else
+                    {
+                        bRet = false;
+                    }
+                    break;
                 default : 
                     //TOTO YaSp : overlaoding insertion
                     break;
