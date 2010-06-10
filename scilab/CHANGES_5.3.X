@@ -39,6 +39,8 @@ Text Editor:
 
 * bug 4916 fixed - Problem with 'See the code' in the demos.
 
+* bug 4990 fixed - When the argument was a directory, an error was displayed.
+
 * bug 4992 fixed - There was no possibility to split the window with the same
                    contents.
 

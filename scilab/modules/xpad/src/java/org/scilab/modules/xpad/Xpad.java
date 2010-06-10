@@ -243,8 +243,7 @@ public class Xpad extends SwingScilabTab implements Tab {
         Xpad editorInstance = launchXpad();
         File f = new File(filePath);
         if (f.isDirectory()) { /* Bug 5131 */
-            ScilabModalDialog.show(editorInstance, String.format(XpadMessages.CANNOT_LOAD_DIRECTORY, f.getAbsolutePath()),
-                                   XpadMessages.XPAD_ERROR, IconType.ERROR_ICON);
+            ConfigManager.saveLastOpenedDirectory(f.getPath());
             xpad();
             return;
         }
@@ -671,8 +670,6 @@ public class Xpad extends SwingScilabTab implements Tab {
         SciFileFilter scxFilter = new SciFileFilter(ALL_SCX_FILES , null , 2);
         SciFileFilter allFilter = new SciFileFilter(ALL_FILES , null , 3);
 
-
-
         SwingScilabFileChooser fileChooser = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
 
         fileChooser.setInitialDirectory(ConfigManager.getLastOpenedDirectory());
@@ -768,10 +765,21 @@ public class Xpad extends SwingScilabTab implements Tab {
      * @return the text component inside the tab
      */
     public ScilabEditorPane addTab(String title) {
+        return addTab(title, Integer.MAX_VALUE);
+    }
+
+    /**
+     * Create a new tab in Xpad.
+     * @param title the title of the tab
+     * @param index the index where to put the new tab
+     * @return the text component inside the tab
+     */
+    public ScilabEditorPane addTab(String title, int index) {
         ScilabEditorPane sep = new ScilabEditorPane(this);
         initPane(sep);
-        tabPane.add(title, sep.getParentComponent());
-        tabPane.setSelectedIndex(tabPane.getTabCount() - 1);
+        index = Math.min(Math.max(0, index), tabPane.getTabCount());
+        tabPane.insertTab(title, null, sep.getParentComponent(), "", index);
+        tabPane.setSelectedIndex(index);
         setContentPane(tabPane);
         initInputMap(sep);
         setTitle(title + TIRET + XpadMessages.SCILAB_EDITOR);
@@ -1037,17 +1045,39 @@ public class Xpad extends SwingScilabTab implements Tab {
     public void readFileAndWait(File f) {
         /** Is this file already opened */
         boolean alreadyOpened = false;
+        int index = -1;
         for (int i = 0; i < tabPane.getTabCount(); i++) {
             ScilabEditorPane textPaneAt = getTextPane(i);
             if (f.getAbsolutePath().equals(textPaneAt.getName())) {
-                /* File is already opnened */
+                /* File is already opened */
                 tabPane.setSelectedIndex(i);
-                alreadyOpened = true;
+                if (f.lastModified() > textPaneAt.getLastModified()) {
+                    if (ScilabModalDialog.show(this, String.format(XpadMessages.EXTERNAL_MODIFICATION, textPaneAt.getName()), XpadMessages.REPLACE_FILE_TITLE, IconType.QUESTION_ICON, ButtonType.YES_NO) == AnswerOption.NO_OPTION) {
+                        alreadyOpened = true;
+                    } else {
+                        if ((i == 0) && (getTabPane().getTabCount() == 1)) {
+                            for (int j = 0; j < tabPane.getChangeListeners().length; j++) {
+                                tabPane.removeChangeListener(tabPane.getChangeListeners()[j]);
+                            }
+                        }
+                        tabPane.remove(i);
+                        f = new File(textPaneAt.getName());
+                        index = i;
+                    }
+                } else {
+                    alreadyOpened = true;
+                }
                 break;
             }
         }
+
         if (!alreadyOpened) {
-            ReadFileThread myReadThread = new ReadFileThread(f);
+            ReadFileThread myReadThread;
+            if (index == -1) {
+                myReadThread = new ReadFileThread(f);
+            } else {
+                myReadThread = new ReadFileThread(f, index);
+            }
             myReadThread.start();
             synchronized (synchro) {
                 try {
@@ -1340,6 +1370,7 @@ public class Xpad extends SwingScilabTab implements Tab {
     private class ReadFileThread extends Thread {
 
         private File fileToRead;
+        private int index = -1;
 
         /**
          * ReadFileThread
@@ -1348,6 +1379,16 @@ public class Xpad extends SwingScilabTab implements Tab {
         public ReadFileThread(File f) {
             this.fileToRead = f;
             setFileToEncode(f);
+        }
+
+        /**
+         * ReadFileThread
+         * @param f File
+         * @param index the index where to put the opened file
+         */
+        public ReadFileThread(File f, int index) {
+            this(f);
+            this.index = index;
         }
 
         /**
@@ -1372,7 +1413,11 @@ public class Xpad extends SwingScilabTab implements Tab {
 
             // File exist
             if (f.exists()) {
-                theTextPane = addTab(f.getName());
+                if (index != -1) {
+                    theTextPane = addTab(f.getName(), index);
+                } else {
+                    theTextPane = addTab(f.getName());
+                }
                 styleDocument = (ScilabDocument) theTextPane.getDocument();
                 styleDocument.disableUndoManager();
                 theTextPane.setLastModified(f.lastModified());
