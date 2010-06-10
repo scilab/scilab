@@ -6,7 +6,7 @@
  * the SWIG interface file instead.
  * ----------------------------------------------------------------------------- */
 
-package org.scilab.modules.types;
+package org.scilab.modules.types.scilabTypes;
 
 public enum ScilabTypeEnum {
   sci_matrix(1),
