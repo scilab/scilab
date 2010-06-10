@@ -1512,7 +1512,7 @@ msgid ""
 "information.\")"
 msgstr ""
 "disp(\"OSTRZEŻENIE: pomimo naszych wcześniejszych ostrzeżeń, wybrano do "
-"użycia Scilab w zaawansowanej opcji graficznej.\r\n"
+"użycia Scilab w zaawansowanej opcji graficznej."
 "Typ \"\"help usecanvas\"\" dla większych informacji.\")"
 
 msgid ""
