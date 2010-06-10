@@ -178,6 +178,7 @@ void visitprivate(const AssignExp  &e)
             {
                 InternalType *pTemp = ((ImplicitList*)pIT)->extract_matrix();
                 delete pIT;
+                execMeR.result_set(NULL);
                 pIT = pTemp;
             }
 
@@ -259,6 +260,7 @@ void visitprivate(const AssignExp  &e)
             {
                 InternalType *pTemp = ((ImplicitList*)pIT)->extract_matrix();
                 delete pIT;
+                execMeR.result_set(NULL);
                 pIT = pTemp;
             }
 
