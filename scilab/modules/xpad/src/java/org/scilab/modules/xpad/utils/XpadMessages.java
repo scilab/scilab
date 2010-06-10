@@ -168,7 +168,8 @@ public class XpadMessages {
     public static final String LOADING = Messages .gettext("Loading") + DOTS;
     public static final String COLORIZATION_CANCELED = Messages .gettext("Colorization canceled");
     public static final String BINARY_FILE_MODE = Messages .gettext("Binary file: read-only mode");
-
+    public static final String READ_ONLY_MODE = Messages .gettext("Read-only mode");
+    
     /* About box */
     public static final String VERSION = Messages.gettext("Editor") + " 1.0";
     public static final String DIGITEO = "The Scilab Consortium (DIGITEO)";

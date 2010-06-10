@@ -78,7 +78,6 @@ import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.gui.events.callback.CallBack;
-import org.scilab.modules.localization.Messages;
 import org.scilab.modules.xpad.actions.ExitAction;
 import org.scilab.modules.xpad.actions.FindAction;
 import org.scilab.modules.xpad.actions.GotoLineAction;
@@ -188,7 +187,7 @@ public class Xpad extends SwingScilabTab implements Tab {
                         }
                         setTitle(tabPane.getTitleAt(tabPane.getSelectedIndex()) + path + TIRET + XpadMessages.SCILAB_EDITOR);
                         updateUI();
-
+                        getInfoBar().setText(getTextPane().getInfoBarText());
                         // Update encoding menu
                         xpadGUI.updateEncodingMenu((ScilabDocument) getTextPane().getDocument());
 
@@ -201,6 +200,7 @@ public class Xpad extends SwingScilabTab implements Tab {
                 public void focusGained(FocusEvent e) {
                     ScilabEditorPane pane = getTextPane();
                     if (pane != null) {
+                        getInfoBar().setText(pane.getInfoBarText());
                         pane.grabFocus();
                     }
                 }
@@ -276,6 +276,23 @@ public class Xpad extends SwingScilabTab implements Tab {
         editorInstance.updateRecentOpenedFilesMenu();
         editorInstance.readFileAndWait(f);
         editorInstance.getTextPane().scrollTextToLineNumber(lineNumber);
+    }
+
+    /**
+     * Launch Xpad with a file name to open and a line to highlight.
+     * @param filePath the name of the file to open
+     * @param lineNumber the line to highlight
+     */
+    public static void xpad(String filePath, String option) {
+        Xpad editorInstance = launchXpad();
+        File f = new File(filePath);
+        ConfigXpadManager.saveToRecentOpenedFiles(filePath);
+        editorInstance.updateRecentOpenedFilesMenu();
+        editorInstance.readFileAndWait(f);
+        if ("readonly".equals(option.toLowerCase())) {
+            editorInstance.getTextPane().setReadOnly(true);
+            editorInstance.getInfoBar().setText(editorInstance.getTextPane().getInfoBarText());
+        }
     }
 
     /**
@@ -768,8 +785,9 @@ public class Xpad extends SwingScilabTab implements Tab {
         tabPane.setSelectedIndex(tabPane.getTabCount() - 1);
         setContentPane(tabPane);
         initInputMap(sep);
-        updateTabTitle();
         setTitle(title + TIRET + XpadMessages.SCILAB_EDITOR);
+        updateTabTitle();
+        getInfoBar().setText(sep.getInfoBarText());
         repaint();
         return sep;
     }
@@ -869,12 +887,10 @@ public class Xpad extends SwingScilabTab implements Tab {
         initInputMap(leftPane);
         initInputMap(rightPane);
         if (doc.getBinary()) {
-            leftPane.disableAll();
-            rightPane.disableAll();
-            getInfoBar().setText(XpadMessages.BINARY_FILE_MODE);
-        } else {
-            getInfoBar().setText("");
+            leftPane.setBinary(true);
+            rightPane.setBinary(true);
         }
+        getInfoBar().setText(leftPane.getInfoBarText());
         updateTabTitle();
     }
 
@@ -896,11 +912,9 @@ public class Xpad extends SwingScilabTab implements Tab {
             setContentPane(tabPane);
             initInputMap(pane);
             if (doc.getBinary()) {
-                pane.disableAll();
-                getInfoBar().setText(XpadMessages.BINARY_FILE_MODE);
-            } else {
-                getInfoBar().setText("");
+                pane.setBinary(true);
             }
+            getInfoBar().setText(pane.getInfoBarText());
             updateTabTitle();
         }
     }
@@ -1402,12 +1416,9 @@ public class Xpad extends SwingScilabTab implements Tab {
                 styleDocument.enableUndoManager();
 
                 if (styleDocument.getBinary()) {
-                    theTextPane.setEditable(false);
-                    theTextPane.disableAll();
-                    getInfoBar().setText(XpadMessages.BINARY_FILE_MODE);
-                } else {
-                    getInfoBar().setText("");
+                    theTextPane.setBinary(true);
                 }
+                getInfoBar().setText(theTextPane.getInfoBarText());
 
                 xpadGUI.updateEncodingMenu((ScilabDocument) getTextPane().getDocument());
 

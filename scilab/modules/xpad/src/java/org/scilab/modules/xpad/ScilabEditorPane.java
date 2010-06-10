@@ -66,6 +66,8 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private CommentManager com;
     private HelpOnTypingManager helpOnTyping;
     private TrailingWhiteManager trailingWhite;
+    private boolean readonly;
+    private String infoBar = "";
 
     private long lastModified;
 
@@ -103,11 +105,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                     ScilabDocument doc = (ScilabDocument) getDocument();
                     doc.setFocused(true);
                     doc.getUndoManager().enableUndoRedoButtons();
-                    if (doc.getBinary()) {
-                        ScilabEditorPane.this.editor.getInfoBar().setText(XpadMessages.BINARY_FILE_MODE);
-                    } else {
-                        ScilabEditorPane.this.editor.getInfoBar().setText("");
-                    }
+                    ScilabEditorPane.this.editor.getInfoBar().setText(ScilabEditorPane.this.getInfoBarText());
                     Xpad.setEditor(ScilabEditorPane.this.editor);
                     focused = ScilabEditorPane.this;
                 }
@@ -127,6 +125,41 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         if (doc instanceof ScilabDocument) {
             ((ScilabDocument) doc).getUndoManager().discardAllEdits();
             initialize((ScilabDocument) doc);
+        }
+    }
+
+    /**
+     * @return the String which must be displayed in the infobar
+     */
+    public String getInfoBarText() {
+        return infoBar;
+    }
+
+    /**
+     * @param readonly true to set Read-Only mode
+     */
+    public void setReadOnly(boolean readonly) {
+        this.readonly = readonly;
+        setEditable(!readonly);
+        setDragEnabled(!readonly);
+        if (readonly) {
+            infoBar = XpadMessages.READ_ONLY_MODE;
+        } else {
+            infoBar = "";
+        }
+    }
+
+    /**
+     * @param binary true to set binary mode
+     */
+    public void setBinary(boolean binary) {
+        setEditable(!binary);
+        setDragEnabled(!binary);
+        if (binary) {
+            infoBar = XpadMessages.BINARY_FILE_MODE;
+            disableAll();
+        } else {
+            infoBar = "";
         }
     }
 

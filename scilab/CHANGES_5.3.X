@@ -70,6 +70,8 @@ Text Editor:
 
 * bug 5534 fixed - There was not auto-completion
 
+* bug 5632 fixed - Could not open a file in read-only mode.
+
 * bug 5644 fixed - The DragN'Droped text was copied rather than moved.
 
 * bug 5645 fixed - Undo action deleted a line rather than make it visible.
