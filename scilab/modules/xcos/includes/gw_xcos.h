@@ -1,6 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2009 - DIGITEO - Allan CORNET
+* Copyright (C) DIGITEO - 2009-2010 - Allan CORNET
+* Copyright (C) DIGITEO - 2010-2010 - Clément DAVID
 * 
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -23,6 +24,13 @@ XCOS_IMPEXP int sci_closeXcosFromScilab(char* fname, unsigned long l);
 XCOS_IMPEXP int sci_xcosDiagramToHDF5(char* fname, unsigned long l);
 XCOS_IMPEXP int sci_xcosDiagramOpen(char* fname, unsigned long l);
 XCOS_IMPEXP int sci_xcosDiagramClose(char* fname, unsigned long l);
+XCOS_IMPEXP int sci_xcosPalLoad(char* fname, unsigned long l);
+XCOS_IMPEXP int sci_xcosPalCategoryAdd(char* fname, unsigned long l);
+XCOS_IMPEXP int sci_xcosPalDelete(char* fname, unsigned long l);
+XCOS_IMPEXP int sci_xcosPalMove(char* fname, unsigned long l);
+XCOS_IMPEXP int sci_xcosPalEnable(char* fname, unsigned long l);
+XCOS_IMPEXP int sci_xcosPalDisable(char* fname, unsigned long l);
+XCOS_IMPEXP int sci_xcosPalGenerateIcon(char* fname, unsigned long l);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_XCOS__ */
 /*--------------------------------------------------------------------------*/

@@ -31,6 +31,7 @@ Source: modules\{#XPAD}\sci_gateway\{#XPAD}_gateway.xml; DestDir: {app}\modules\
 Source: modules\{#XPAD}\etc\{#XPAD}.quit; DestDir: {app}\modules\{#XPAD}\etc; Components: {#COMPN_XPAD}
 Source: modules\{#XPAD}\etc\{#XPAD}.start; DestDir: {app}\modules\{#XPAD}\etc; Components: {#COMPN_XPAD}
 Source: modules\{#XPAD}\etc\{#XPAD}Configuration.xml; DestDir: {app}\modules\{#XPAD}\etc; Components: {#COMPN_XPAD}
+Source: modules\{#XPAD}\etc\keysConfiguration.xml; DestDir: {app}\modules\{#XPAD}\etc; Components: {#COMPN_XPAD}
 ;
 Source: modules\{#XPAD}\macros\lib; DestDir: {app}\modules\{#XPAD}\macros; Components: {#COMPN_XPAD}
 Source: modules\{#XPAD}\macros\names; DestDir: {app}\modules\{#XPAD}\macros; Components: {#COMPN_XPAD}

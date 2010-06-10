@@ -104,7 +104,12 @@ public final class PaletteBlockCtrl {
 			// Load the block from the file
 			String realPath = model.getData().getEvaluatedPath(); 
 			block = new H5RWHandler(realPath).readBlock();
-
+			
+			// invalid block case
+			if (block == null) {
+				return null;
+			}
+			
 			if (block.getStyle().compareTo("") == 0) {
 				block.setStyle(block.getInterfaceFunctionName());
 				block.setValue(block.getInterfaceFunctionName());

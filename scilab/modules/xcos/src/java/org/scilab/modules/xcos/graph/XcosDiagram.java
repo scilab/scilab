@@ -66,7 +66,6 @@ import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.SciFileFilter;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.jvm.utils.ScilabConstants;
 import org.scilab.modules.types.scilabTypes.ScilabMList;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
@@ -111,7 +110,6 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
-import com.mxgraph.io.mxCodec;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxGraphModel;
@@ -127,6 +125,7 @@ import com.mxgraph.util.mxUndoableEdit;
 import com.mxgraph.util.mxUtils;
 import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
 import com.mxgraph.view.mxMultiplicity;
+import com.mxgraph.view.mxStylesheet;
 
 /**
  * The base class for a diagram. This class contains jgraphx + Scicos data.
@@ -454,6 +453,8 @@ public class XcosDiagram extends ScilabGraph {
 	
 	installStylesheet();
 
+	
+	
 	getAsComponent().setToolTips(true);
 
 	// Forbid disconnecting cells once it is connected.
@@ -505,38 +506,10 @@ public class XcosDiagram extends ScilabGraph {
 	 * Install the default style sheet and the user stylesheet on the diagram.
 	 */
 	private void installStylesheet() {
-		final mxCodec codec = new mxCodec();
+		final mxStylesheet styleSheet = getStylesheet();
 		
 		try {
-			/*
-			 * Initialize constants
-			 */
-			final String file = "Xcos-style.xml";
-			final String homePath = ScilabConstants.SCIHOME.getAbsolutePath();
-			final File userStyleSheet = new File(homePath + '/' + file);
-			
-	    	/*
-	    	 * Copy the base stylesheet into the user dir when it doesn't exist.
-	    	 */
-			if (!userStyleSheet.exists()) {
-				final String sciPath = ScilabConstants.SCI.getAbsolutePath();
-
-		    	File baseStyleSheet = new File(sciPath + "/modules/xcos/etc/" + file);
-		    	FileUtils.forceCopy(baseStyleSheet, userStyleSheet);
-		    }
-		    
-			/*
-			 * Load the stylesheet
-			 */
-			final String sciURL = ScilabConstants.SCI.toURI().toURL().toString();
-			final String homeURL = ScilabConstants.SCIHOME.toURI().toURL().toString();
-			
-		    String xml = mxUtils.readFile(userStyleSheet.getAbsolutePath());
-		    xml = xml.replaceAll("\\$SCILAB", sciURL);
-		    xml = xml.replaceAll("\\$SCIHOME", homeURL);
-		    Document document = mxUtils.parse(xml);
-		    codec.decode(document.getDocumentElement(), getStylesheet());
-		    
+			FileUtils.decodeStyle(styleSheet);
 		} catch (IOException e) {
 			LOG.warn(e);
 			return;
@@ -545,7 +518,7 @@ public class XcosDiagram extends ScilabGraph {
 		// Set Canvas background
 		URL background = null;
 		try {
-			Map<String, Object> style = getStylesheet().getCellStyle("Icon", null);
+			Map<String, Object> style = styleSheet.getCellStyle("Icon", null);
 			if (style != null) {
 				background = new URL((String) style.get(XcosConstants.STYLE_IMAGE));
 			}

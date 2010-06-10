@@ -94,7 +94,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="scicos_manual">Scicos</link>
+          <link linkend="xcos">xcos</link>
         </para>
       </listitem>
     </itemizedlist>
@@ -106,7 +106,7 @@ The C structure of a Scicos block defines all the fields to handle data provided
 such inputs/outputs, parameters, states, ...
 </para>
     <para>
-That structure of type <literal>scicos_block</literal> is defined in the file <link linkend="scicos_block4_rout">scicos_block4.h</link>, and user must include that header in each computational functions in the form :
+That structure of type <literal>scicos_block</literal> is defined in the file scicos_block4.h, and user must include that header in each computational functions in the form :
 </para>
     <para>
 

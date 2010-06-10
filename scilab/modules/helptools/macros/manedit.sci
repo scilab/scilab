@@ -55,7 +55,7 @@ function path = get_item_xml_path(manitem)
 	%HELPS=[%helps_modules;%helps];
 	
 	for k=1:size(%HELPS(:,1),'*')
-		if fileinfo(pathconvert(%HELPS(k,1)+"/"+manitem+".xml",%f,%f)) <> [] then
+		if isfile(pathconvert(%HELPS(k,1)+"/"+manitem+".xml",%f,%f)) then
 			path = pathconvert(%HELPS(k,1)+"/"+manitem+".xml",%f,%f);
 			return;
 		end

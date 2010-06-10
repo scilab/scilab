@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -36,19 +36,21 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Build Libscilab.lib (dependencies)"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL"
 				ExecutionBucket="2"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
 			/>
-
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
 				ExecutionBucket="5"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
@@ -81,7 +83,7 @@
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
 				AdditionalOptions="/ignore:4049"
-				AdditionalDependencies="Libscilab.lib"
+				AdditionalDependencies="Libscilab.lib elementary_functions_f.lib"
 				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="2"
 				ModuleDefinitionFile="slatec_f.def"
@@ -131,7 +133,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Build Libscilab.lib (dependencies)"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -141,6 +143,9 @@
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
@@ -172,7 +177,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/ignore:4049"
-				AdditionalDependencies="Libscilab.lib"
+				AdditionalDependencies="Libscilab.lib elementary_functions_f.lib"
 				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="2"
 				ModuleDefinitionFile="slatec_f.def"
@@ -217,7 +222,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Build Libscilab.lib (dependencies)"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -227,6 +232,9 @@
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
@@ -256,7 +264,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/ignore:4049"
-				AdditionalDependencies="Libscilab.lib"
+				AdditionalDependencies="Libscilab.lib elementary_functions_f.lib"
 				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="slatec_f.def"
@@ -304,7 +312,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Build Libscilab.lib (dependencies)"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -314,6 +322,9 @@
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
@@ -344,7 +355,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/ignore:4049"
-				AdditionalDependencies="Libscilab.lib"
+				AdditionalDependencies="Libscilab.lib elementary_functions_f.lib"
 				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="slatec_f.def"

@@ -11,14 +11,13 @@
  */
 package org.scilab.modules.xpad.actions;
 
-import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
-
+import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.utils.XpadMessages;
+import org.scilab.modules.xpad.utils.ConfigXpadManager;
 
 /**
  * HighlightCurrentLineAction Class
@@ -27,36 +26,47 @@ import org.scilab.modules.xpad.utils.XpadMessages;
  */
 public final class HighlightCurrentLineAction extends DefaultCheckAction {
 
-	/**
-	 * serialVersionUID
-	 */
-	private static final long serialVersionUID = -1489762718469013039L;
+    /**
+     * serialVersionUID
+     */
+    private static final long serialVersionUID = -1489762718469013039L;
 
+    /**
+     * Constructor
+     * @param editor Xpad
+     */
+    private HighlightCurrentLineAction(Xpad editor) {
+        super(XpadMessages.HIGHLIGHT_CURRENT_LINE, editor);
+        setState(false);
+    }
 
-	/**
-	 * Constructor
-	 * @param editor Xpad
-	 */
-	private HighlightCurrentLineAction(Xpad editor) {
-		super(XpadMessages.HIGHLIGHT_CURRENT_LINE, editor);
-		setState(false);
-	}
+    /**
+     * doAction
+     */
+    public void doAction() {
+        getEditor().enableHighlightedLine(this.getState());
+        ConfigXpadManager.saveHighlightState(this.getState());
+    }
 
-	/**
-	 * doAction
-	 */
-	public void doAction() {
-		getEditor().enableLineHighlight(this.getState());
-	}
+    /**
+     * createCheckBoxMenu
+     * @param editor Xpad
+     * @param key KeyStroke
+     * @return CheckBoxMenuItem
+     */
+    public static CheckBoxMenuItem createCheckBoxMenu(Xpad editor, KeyStroke key) {
+        CheckBoxMenuItem cb = createCheckBoxMenu(XpadMessages.HIGHLIGHT_CURRENT_LINE, null, new HighlightCurrentLineAction(editor), key);
+        cb.setChecked(ConfigXpadManager.getHighlightState());
+        return cb;
+    }
 
-	/**
-	 * createCheckBoxMenu
-	 * @param editor Xpad
-	 * @return CheckBoxMenuItem
-	 */
-	public static CheckBoxMenuItem createCheckBoxMenu(Xpad editor) {
-		return createCheckBoxMenu(XpadMessages.HIGHLIGHT_CURRENT_LINE, null, 
-				new HighlightCurrentLineAction(editor), 
-				KeyStroke.getKeyStroke(KeyEvent.VK_J, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
-	}
+    /**
+     * Put input map
+     * @param textPane JTextpane
+     * @param editor Editor
+     * @param key KeyStroke
+     */
+    public static void putInInputMap(JComponent textPane, Xpad editor, KeyStroke key) {
+        textPane.getInputMap().put(key, new HighlightCurrentLineAction(editor));
+    }
 }

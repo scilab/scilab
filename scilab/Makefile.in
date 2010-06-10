@@ -445,7 +445,10 @@ OCAMLDEP = @OCAMLDEP@
 OCAMLLEX = @OCAMLLEX@
 OCAMLOPT = @OCAMLOPT@
 OCAMLYACC = @OCAMLYACC@
+OPENMP_CFLAGS = @OPENMP_CFLAGS@
+OPENMP_CXXFLAGS = @OPENMP_CXXFLAGS@
 OPENMP_ENABLE = @OPENMP_ENABLE@
+OPENMP_LIBS = @OPENMP_LIBS@
 OTOOL = @OTOOL@
 OTOOL64 = @OTOOL64@
 PACKAGE = @PACKAGE@
@@ -574,7 +577,7 @@ changelogs = CHANGES CHANGES_5.1.X
 bin_SCRIPTS = bin/scilab bin/scilab-adv-cli bin/scilab-cli
 scilab_bin_LDFLAGS = $(am__append_1)
 scilab_cli_bin_LDFLAGS = 
-scilab_bin_CFLAGS = 
+scilab_bin_CFLAGS = -I$(top_srcdir)/modules/io/includes	
 # --no-undefined --relax
 
 # libshell is mandatory here since main_linux.c depends on it.
@@ -594,7 +597,7 @@ scilab_bin_LDADD = $(COMMON_LIBS) $(SCILAB_LIB)
 
 # Match scilab -nwni (ie command line without graphics)
 scilab_cli_bin_SOURCES = $(top_srcdir)/modules/shell/src/c/others/mainscic.c
-scilab_cli_bin_CFLAGS = -DWITHOUT_GUI
+scilab_cli_bin_CFLAGS = -DWITHOUT_GUI -I$(top_srcdir)/modules/io/includes	
 scilab_cli_bin_LDADD = $(COMMON_LIBS) $(SCILAB_CLI_LIB)
 @ENABLE_STATIC_TRUE@scilab_static_bin_LDFLAGS = -static -static-libgcc --start-group
 @ENABLE_STATIC_TRUE@scilab_static_bin_CFLAGS = -Wl,--start-group `$(CXX) -print-file-name=libstdc++.a`

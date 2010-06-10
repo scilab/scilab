@@ -12,9 +12,7 @@
 
 package org.scilab.modules.xpad.actions;
 
-import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
-
+import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 import javax.swing.text.DefaultEditorKit;
 
@@ -31,21 +29,21 @@ import org.scilab.modules.xpad.utils.XpadMessages;
 public final class CopyAction extends DefaultAction {
 
     /**
-	 * serialVersionUID
-	 */
-	private static final long serialVersionUID = -8858655782952121924L;
-
-	/**
-	 * Constructor
-	 * @param editor Xpad
-	 */
-	private CopyAction(Xpad editor) {
+     * serialVersionUID
+     */
+    private static final long serialVersionUID = -8858655782952121924L;
+    
+    /**
+     * Constructor
+     * @param editor Xpad
+     */
+    private CopyAction(Xpad editor) {
 	super(XpadMessages.COPY, editor);
     }
     
-	/**
-	 * doAction
-	 */
+    /**
+     * doAction
+     */
     public void doAction() {
 	getEditor().getTextPane().getActionMap().get(DefaultEditorKit.copyAction).actionPerformed(null);
     }
@@ -53,11 +51,11 @@ public final class CopyAction extends DefaultAction {
     /**
      * createMenu
      * @param editor Xpad
+     * @param key KeyStroke
      * @return createMenu
      */
-    public static MenuItem createMenu(Xpad editor) {
-	return createMenu(XpadMessages.COPY, null, new CopyAction(editor), 
-			KeyStroke.getKeyStroke(KeyEvent.VK_C, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+    public static MenuItem createMenu(Xpad editor, KeyStroke key) {
+	return createMenu(XpadMessages.COPY, null, new CopyAction(editor), key);
     }
     
     /**
@@ -67,5 +65,15 @@ public final class CopyAction extends DefaultAction {
      */
     public static PushButton createButton(Xpad editor) {
 	return createButton(XpadMessages.COPY, "edit-copy.png", new CopyAction(editor));
+    }
+
+    /**
+     * Put input map
+     * @param textPane JTextpane
+     * @param key KeyStroke
+     * @param editor Editor
+     */
+    public static void putInInputMap(JComponent textPane, Xpad editor, KeyStroke key) {
+	textPane.getInputMap().put(key, new CopyAction(editor));
     }
 }

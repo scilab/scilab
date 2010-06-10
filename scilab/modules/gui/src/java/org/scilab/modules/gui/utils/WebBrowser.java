@@ -57,7 +57,7 @@ public final class WebBrowser {
 			
 			} else { /* Unix... */
 				
-				String[] browsers = {"firefox", "opera", "konqueror", "epiphany", "mozilla", "netscape" };
+				String[] browsers = {"xdg-open", "firefox", "opera", "konqueror", "epiphany", "mozilla", "netscape" };
 				String browser = null;
 				
 				for (int count = 0; count < browsers.length && browser == null; count++) {

@@ -35,7 +35,9 @@
       editor([file1, file2])
       editor(file, line_number)
       editor([file1, file2], [line_number1, line_number2])
-      
+      editor(file, 'readonly')
+      editor([file1, file2], 'readonly')
+
     </synopsis>
   </refsynopsisdiv>
 
@@ -96,6 +98,9 @@
 
     <para>The same invocation adds further files to an already opened
     Editor.</para>
+    
+    <para>With the option 'readonly', files are opened in read-only mode so
+    they cannot be modified.</para>
 
     <para>Keyboard shortcuts are defined for most possible editing actions and
     reported by the menu entries.</para>

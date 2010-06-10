@@ -1,6 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2010 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2010 - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -11,302 +13,477 @@
  */
 package org.scilab.modules.xpad.actions;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.util.ArrayList;
-import java.util.Hashtable;
+import java.awt.event.MouseEvent;
+import java.util.Map;
+import java.util.List;
+import java.util.Iterator;
 
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
-import javax.swing.text.Style;
-import javax.swing.text.StyleConstants;
+import javax.swing.ListSelectionModel;
+import javax.swing.text.DefaultCaret;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import org.scilab.modules.gui.bridge.colorchooser.SwingScilabColorChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.xpad.ScilabEditorKit;
+import org.scilab.modules.xpad.ScilabEditorPane;
 import org.scilab.modules.xpad.Xpad;
-import org.scilab.modules.xpad.style.ColorizationManager;
-import org.scilab.modules.xpad.style.ScilabStyleDocument;
+import org.scilab.modules.xpad.KeywordAdaptater;
+import org.scilab.modules.xpad.KeywordEvent;
+import org.scilab.modules.xpad.ScilabLexerConstants;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
-public class SetColorsAction extends DefaultAction {
+/**
+ * Action called to customize Xpad fonts & styles
+ * @author Vincent COUVERT
+ * @author Bruno JOFRET
+ * @author Calixte DENIZET
+ */
+public final class SetColorsAction extends DefaultAction {
 
-	private static JFrame jframe;
-	private static boolean windowAlreadyExist;
-	
-	private ArrayList<JLabel> stylesNamesLabelList;
-	private ArrayList<JButton> changeColorButtonList;
-	private ArrayList<String> listStylesName;
-	private int numberOfStyles;
-	
-	Hashtable<String, Color> allStylesColor;
-	
-    private SetColorsAction(Xpad editor) {
-	super(XpadMessages.SET_COLORS, editor);
-    }
-    
-    
-    public void doAction() {
-    	
-    	if (!SetColorsAction.windowAlreadyExist) {
-    		SetColorsAction.windowAlreadyExist = true;
-        	changeColorsBox();
-    	}
+        private static final long serialVersionUID = 1L;
 
-    }
-    
-    public static MenuItem createMenu(Xpad editor) {
-	return createMenu(XpadMessages.SET_COLORS, null, new SetColorsAction(editor), null);
-    }
-    
-    private void changeColorsBox () {
-    	final int dimX = 250;
-    	final int dimY = 470;
-    	
-		jframe = new JFrame();
-		jframe.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
-		
-		JPanel panel = new JPanel(new GridBagLayout());
-		jframe.setContentPane(panel);
-		jframe.setPreferredSize(new Dimension(dimX, dimY));
-		jframe.setMinimumSize(new Dimension(dimX, dimY));
-		jframe.setMaximumSize(new Dimension(dimX, dimY));
-		
-		JPanel changePanel = new JPanel(new GridBagLayout());
-		JPanel validationPanel = new JPanel(new GridBagLayout());
-		
+        private static final int GAP = 5;
+        private static final int THREE = 3;
+        private static final int FOUR = 4;
+        private static final int FIVE = 5;
 
-		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.anchor = GridBagConstraints.WEST;		
-		gbc.insets = new Insets(10, 5, 10, 5);
-		
-		 listStylesName  =  ConfigXpadManager.getAllStyleName();
-		 allStylesColor   = ConfigXpadManager.getAllForegroundColors();
-		 numberOfStyles = listStylesName.size();
-		 stylesNamesLabelList = new ArrayList<JLabel>(numberOfStyles);
-		 changeColorButtonList = new ArrayList<JButton>(numberOfStyles);
-		 
-		 /*listener which will be addded to each "change color" buttons*/
-		 ActionListener changeColorListener = new ActionListener() {
+        private static boolean windowAlreadyExist;
 
-				public void actionPerformed(ActionEvent e) {
-					
-					boolean isSourceNotFound = true;
-					int i = 0;
-					
-					
-					/*loop which button has called the action, is there a more direct way?*/
-					while (i < numberOfStyles && isSourceNotFound) {
-						isSourceNotFound = (e.getSource() != changeColorButtonList.get(i));
-						i++;
-					}
-					
-					/*to avoid the extra i++*/
-					i--; 
-					
-					/*launch a color chooser window*/
-					Color previousColor = ConfigXpadManager.getAllForegroundColors().get(listStylesName.get(i));
-			    	SwingScilabColorChooser _colorChooser = new SwingScilabColorChooser(previousColor);
-			    	_colorChooser.displayAndWait();
-			    	Color newColor = _colorChooser.getSelectedColor();
-			    	
-			    	if (newColor != null) {
-			    		allStylesColor.put(listStylesName.get(i), newColor);
-			    		stylesNamesLabelList.get(i).setForeground(newColor);
-			    	}
-			    	/*update label color*/
-			    	
+        /* List of all components */
+        private static JFrame frame;
 
-			    	jframe.setFocusable(true);
-				}
-			};
-	
-		/*generate all the button for each style from the xml*/
-		
-		for (int i = 0; i < numberOfStyles; i++) {
-		    
-			
-			Color thisStyleColor = allStylesColor.get(listStylesName.get(i));
-			gbc.gridy = i;
-			
-			/* create label*/
-			gbc.anchor = GridBagConstraints.WEST;
-			gbc.gridx = 0;
-			gbc.gridwidth = 3;
-			
-			JLabel styleNameLabel = new JLabel(listStylesName.get(i), JLabel.TRAILING);
-		    styleNameLabel.setForeground(thisStyleColor);
+        private JPanel contentPanel;
+        private JPanel settingsPanel;
+        private JPanel previewPanel;
+        private JPanel buttonsPanel;
+        private JButton cancelButton;
+        private JButton defaultButton;
+        private JButton okButton;
+        private JScrollPane stylesScrollPane;
+        private JList stylesList;
+        private JLabel colorLabel;
+        private JButton colorButton;
+        private JCheckBox boldCheckBox;
+        private JCheckBox italicCheckBox;
+        private JCheckBox strikethroughCheckBox;
+        private JCheckBox underlineCheckBox;
+        private ScilabEditorPane previewEditorPane;
 
-			changePanel.add(styleNameLabel, gbc);
-		    
-		    /*create  button*/
-		    gbc.anchor = GridBagConstraints.EAST;
-		    gbc.gridx = 4;
-		    gbc.gridwidth = GridBagConstraints.REMAINDER;
-		    
-		    JButton changeStyleColorButton  = new JButton(XpadMessages.CHANGE_COLOR);
-		    changeStyleColorButton.addActionListener(changeColorListener);
+        private List<String> listStylesName;
+        private int numberOfStyles;
 
-		    changePanel.add(changeStyleColorButton, gbc);
+        private Map<String, Color> allStylesColor;
+        private Map<String, Boolean> allStylesIsBold;
+        private Map<String, Boolean> allStylesIsItalic;
+        private Map<String, Integer> allAttributes;
 
+        /**
+         * Constructor
+         * @param editor Scilab editor instance
+         */
+        private SetColorsAction(Xpad editor) {
+                super(XpadMessages.SET_COLORS, editor);
+        }
 
-		    /**/
-		    stylesNamesLabelList.add(styleNameLabel);
-		    changeColorButtonList.add(changeStyleColorButton);
+        /**
+         * Displays the customization window
+         */
+        public void doAction() {
+                if (!windowAlreadyExist) {
+                        windowAlreadyExist = true;
+                        changeColorsBox();
+                } else {
+            frame.setVisible(true);
+                }
+        }
 
-		}
-		
-		/*ok cancel and reset to default button*/
+        /**
+         * Create the associated menu
+         * @param editor Scilab editor instance
+         * @return the menu
+         */
+        public static MenuItem createMenu(Xpad editor) {
+                return createMenu(XpadMessages.SET_COLORS, null, new SetColorsAction(editor), null);
+        }
 
-		JButton okButton  = new JButton(XpadMessages.OK);
-		JButton cancelButton  = new JButton(XpadMessages.CANCEL);
-		JButton defaultButton  = new JButton(XpadMessages.DEFAULT);
-		
-		
-		gbc.gridwidth = 1;
-		
-		gbc.gridx = 1;
-		validationPanel.add(okButton, gbc);
-		gbc.gridx = 2;
-		validationPanel.add(cancelButton, gbc);
-		gbc.gridx = 3;
-		validationPanel.add(defaultButton, gbc);
-		
+        /**
+         * Create the customization window
+         */
+        private void changeColorsBox() {
 
-		
-		/*add both panel*/
+                allStylesColor = ConfigXpadManager.getAllForegroundColors();
+                allStylesIsBold = ConfigXpadManager.getAllisBold();
+                allStylesIsItalic = ConfigXpadManager.getAllisItalic();
+                allAttributes = ConfigXpadManager.getAllAttributes();
 
-		gbc.gridy = 0;
-		panel.add(changePanel, gbc);
-		gbc.gridy = 1;
-		panel.add(validationPanel, gbc);
-		
-		
-		/*set actions*/
-		
-		
-		okButton.addActionListener(new ActionListener() {
+                /* Main frame = Window */
+                frame = new JFrame();
+                frame.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
+                frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+                frame.setTitle(XpadMessages.SET_COLORS);
+                frame.setResizable(false);
 
-			public void actionPerformed(ActionEvent e) {
-				
-				/*apply all the new colors to the editor*/
-				int numberOfTab = getEditor().getTabPane().getComponentCount();
-				for (int j = 0; j < numberOfTab; j++) {
-					
-					JTextPane textPane = (JTextPane) ((JScrollPane) getEditor().getTabPane().getComponentAt(j)).getViewport().getComponent(0) ;
-					ScilabStyleDocument styleDocument = (ScilabStyleDocument)textPane.getStyledDocument();
-				
-					for (int i = 0; i < numberOfStyles; i++) {
-						
-						Color thisStyleColor = allStylesColor.get(listStylesName.get(i));		
-				    	Style tempStyle = styleDocument.getStyle(listStylesName.get(i));
-	
-				    	StyleConstants.setForeground(tempStyle, thisStyleColor);				    
-		
-					}
-						
-					new ColorizationManager().colorize(styleDocument, 0, styleDocument.getLength());
-				}
-		    	/*save the change in the xml*/
-				ConfigXpadManager.saveAllForegroundColors(allStylesColor);
-				SetColorsAction.windowAlreadyExist = false;
-				jframe.dispose();
-			}
-		});
-		
-		
-		cancelButton.addActionListener(new ActionListener() {
+                /* Main content pane */
+                contentPanel = new JPanel();
+                contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.PAGE_AXIS));
+                contentPanel.setBorder(BorderFactory.createEmptyBorder(2 * GAP, 2 * GAP, 2 * GAP, 2 * GAP));
 
-			public void actionPerformed(ActionEvent e) {
-				SetColorsAction.windowAlreadyExist = false;
-				jframe.dispose();
-			}
-		});
-		
-		
-		defaultButton.addActionListener(new ActionListener() {
+                /* Settings */
+                settingsPanel = new JPanel(new GridBagLayout());
+                settingsPanel.setBorder(BorderFactory.createTitledBorder(XpadMessages.SETTINGS));
+                stylesList = new JList();
+                stylesList.setModel(new DefaultListModel());
+                listStylesName  =  ConfigXpadManager.getAllStyleName();
+                numberOfStyles = listStylesName.size();
+                for (int i = 0; i < numberOfStyles; i++) {
+                        ((DefaultListModel) stylesList.getModel()).addElement(listStylesName.get(i));
+                }
 
-			public void actionPerformed(ActionEvent e) {
-				allStylesColor = ConfigXpadManager.getAllDefaultForegroundColors();
-				
-				/*
-				 * reset all style colors to their default value, will be applied only when
-				 * clicking on ok button 
-				 */
-				for (int i = 0; i < numberOfStyles; i++) {
-				    	
-					Color thisStyleColor = allStylesColor.get(listStylesName.get(i));
-		
-					stylesNamesLabelList.get(i).setForeground(thisStyleColor);
+                stylesScrollPane = new JScrollPane(stylesList);
+                stylesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+                stylesList.addListSelectionListener(new ListSelectionListener() {
 
+                        public void valueChanged(ListSelectionEvent arg0) {
+                                /* Update the GUI */
+                                settingsUpdate();
+                        }
 
-				}
-				
+                });
 
-			}
-		});
-		
-		//display the frame and set some properties
-		
-		jframe.addWindowListener(new WindowListener() {
-			public void windowClosed(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			public void windowDeiconified(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			public void windowActivated(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			public void windowClosing(WindowEvent arg0) {
-				SetColorsAction.windowAlreadyExist = false;
-				jframe.dispose();
-				
-			}
-			public void windowDeactivated(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			public void windowIconified(WindowEvent arg0) {
-				
-			};
-			public void windowOpened(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-		});
-		
-		jframe.setDefaultCloseOperation(jframe.DO_NOTHING_ON_CLOSE);
-		jframe.setTitle(XpadMessages.CHANGE_COLORS);
-		jframe.pack();
-		jframe.setLocationRelativeTo(null);
-		jframe.setVisible(true);	
-		
-    }
+                GridBagConstraints gbc = new GridBagConstraints();
+                gbc.gridx = 1;
+                gbc.gridy = 1;
+                gbc.insets = new Insets(GAP, GAP, GAP, GAP);
+                gbc.gridheight = GridBagConstraints.REMAINDER;
 
-	public static void closeSetColorsWindow(){
-    	if (SetColorsAction.windowAlreadyExist) {
-    		jframe.dispose();
-    		SetColorsAction.windowAlreadyExist = false;
-        	
-    	}
-		
-	}
+                settingsPanel.add(stylesScrollPane, gbc);
 
+                colorLabel = new JLabel(XpadMessages.COLOR);
+                colorButton = new JButton(XpadMessages.CHANGE_COLOR);
+                colorButton.setContentAreaFilled(true);
+                colorButton.setOpaque(true);
+                colorButton.addActionListener(new ActionListener() {
+
+                        public void actionPerformed(ActionEvent e) {
+                                int selectedStyleIndex = 0;
+
+                                /* Which style is selected in the list? */
+                                selectedStyleIndex = stylesList.getSelectedIndex();
+
+                                /* Launch a color chooser */
+                                Color previousColor = ConfigXpadManager.getAllForegroundColors().get(listStylesName.get(selectedStyleIndex));
+                                SwingScilabColorChooser colorChooser = new SwingScilabColorChooser(previousColor);
+                                colorChooser.displayAndWait();
+                                Color newColor = colorChooser.getSelectedColor();
+
+                                if (newColor != null) {
+                                        /* Update the styles */
+                                        allStylesColor.put(listStylesName.get(selectedStyleIndex), newColor);
+                                        /* Update the GUI */
+                                        settingsUpdate();
+                                }
+
+                                frame.setFocusable(true);
+                        }
+                });
+
+                gbc.gridx = 2;
+                gbc.gridheight = 1;
+                gbc.anchor = GridBagConstraints.LINE_START;
+                gbc.insets = new Insets(GAP, THREE * GAP, GAP, GAP);
+                settingsPanel.add(colorLabel, gbc);
+                gbc.gridx = THREE;
+                gbc.anchor = GridBagConstraints.CENTER;
+                gbc.insets = new Insets(GAP, GAP, GAP, GAP);
+                settingsPanel.add(colorButton, gbc);
+
+                gbc.gridx = 2;
+                gbc.gridy = 2;
+                gbc.insets = new Insets(GAP, THREE * GAP, GAP, GAP);
+                gbc.anchor = GridBagConstraints.LINE_START;
+                boldCheckBox = new JCheckBox(XpadMessages.BOLD);
+                boldCheckBox.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            int selectedStyleIndex = stylesList.getSelectedIndex();
+                            String styleName = listStylesName.get(selectedStyleIndex);
+                            allStylesIsBold.put(styleName, boldCheckBox.isSelected());
+                            settingsUpdate();
+                        }
+                    });
+                settingsPanel.add(boldCheckBox, gbc);
+
+                gbc.gridy = THREE;
+                italicCheckBox = new JCheckBox(XpadMessages.ITALIC);
+                italicCheckBox.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            int selectedStyleIndex = stylesList.getSelectedIndex();
+                            String styleName = listStylesName.get(selectedStyleIndex);
+                            allStylesIsItalic.put(styleName, italicCheckBox.isSelected());
+                            settingsUpdate();
+                        }
+                    });
+                settingsPanel.add(italicCheckBox, gbc);
+
+                gbc.gridy = FOUR;
+                strikethroughCheckBox = new JCheckBox(XpadMessages.STRIKETHROUGH);
+                strikethroughCheckBox.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            int selectedStyleIndex = stylesList.getSelectedIndex();
+                            String styleName = listStylesName.get(selectedStyleIndex);
+                            int stroke = 0;
+                            if (strikethroughCheckBox.isSelected()) {
+                                stroke = 2;
+                            }
+                            int actual = allAttributes.get(styleName);
+                            allAttributes.put(styleName, (actual & 1) | stroke);
+                            settingsUpdate();
+                        }
+                    });
+                settingsPanel.add(strikethroughCheckBox, gbc);
+
+                gbc.gridy = FIVE;
+                underlineCheckBox = new JCheckBox(XpadMessages.UNDERLINE);
+                underlineCheckBox.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            int selectedStyleIndex = stylesList.getSelectedIndex();
+                            String styleName = listStylesName.get(selectedStyleIndex);
+                            int under = 0;
+                            if (underlineCheckBox.isSelected()) {
+                                under = 1;
+                            }
+                            int actual = allAttributes.get(styleName);
+                            allAttributes.put(styleName, (actual & 2) | under);
+                            settingsUpdate();
+                        }
+                    });
+                settingsPanel.add(underlineCheckBox, gbc);
+
+                contentPanel.add(settingsPanel);
+
+                /* Preview */
+                previewPanel = new JPanel(new BorderLayout(GAP, GAP));
+                previewPanel.setBorder(BorderFactory.createTitledBorder(XpadMessages.PREVIEW));
+                previewEditorPane = new ScilabEditorPane(getEditor());
+                previewEditorPane.setEditorKit(new ScilabEditorKit());
+                previewEditorPane.setText("// A comment\n"
+                                + "// Scilab editor: http://www.scilab.org/\n"
+                                + "function [a, b] = myfunction(d, e, f)\n"
+                                + "\ta = 2.71828 + %pi + f($, :);\n"
+                                + "\tb = abs(a) - e.field;\n"
+                                + "\tif d == e then\n"
+                                + "\t\tb = 10;\n"
+                                + "\telse\n"
+                                + "\t\tb = \"test\" + home\n"
+                                + "\t\treturn\n"
+                                + "\tend\n"
+                                + "\tvar = 4.12e-12;\n"
+                                + "endfunction");
+
+                previewEditorPane.setBackground(Color.WHITE);
+                previewEditorPane.setFont(ConfigXpadManager.getFont());
+                previewEditorPane.setCaret(new DefaultCaret() {
+                        public void mouseDragged(MouseEvent e) {
+                            e.consume();
+                        }
+                    });
+                previewEditorPane.getCaret().setVisible(false);
+                previewEditorPane.setEditable(false);
+                previewEditorPane.addKeywordListener(new KeywordAdaptater.MouseOverAdaptater() {
+                        public void caughtKeyword(KeywordEvent e) {
+                            previewEditorPane.setToolTipText(ScilabLexerConstants.getStringRep(e.getType()));
+                        }
+                    });
+                previewEditorPane.addKeywordListener(new KeywordAdaptater.MouseClickedAdaptater() {
+                        public void caughtKeyword(KeywordEvent e) {
+                            stylesList.setSelectedValue(ScilabLexerConstants.getStringRep(e.getType()), true);
+                        }
+                    });
+                previewPanel.add(previewEditorPane, BorderLayout.CENTER);
+                contentPanel.add(previewPanel);
+
+                /* Buttons */
+                buttonsPanel = new JPanel();
+        buttonsPanel.setBorder(BorderFactory.createEmptyBorder(GAP, GAP, GAP, GAP));
+        buttonsPanel.setLayout(new GridLayout(1, FOUR, GAP, GAP));
+
+        okButton  = new JButton(XpadMessages.OK);
+                okButton.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                                /* Apply all new settings */
+                                int numberOfTab = getEditor().getTabPane().getComponentCount();
+                                for (int j = 0; j < numberOfTab; j++) {
+                                        ScilabEditorPane textPane = getEditor().getTextPane(j);
+                                        for (int i = 0; i < numberOfStyles; i++) {
+                                            String name = listStylesName.get(i);
+                                            int bold = -1;
+                                            if (allStylesIsBold.get(name)) {
+                                                bold = 1;
+                                            }
+                                            int italic = -2;
+                                            if (allStylesIsItalic.get(name)) {
+                                                italic = 2;
+                                            }
+                                            textPane.resetColor(name, allStylesColor.get(name));
+                                            textPane.resetFont(name, bold);
+                                            textPane.resetFont(name, italic);
+                                            textPane.resetAttribute(name, allAttributes.get(name));
+                                            if (textPane.getOtherPaneInSplit() != null) {
+                                                textPane.getOtherPaneInSplit().resetColor(name, allStylesColor.get(name));
+                                                textPane.getOtherPaneInSplit().resetFont(name, bold);
+                                                textPane.getOtherPaneInSplit().resetFont(name, italic);
+                                                textPane.getOtherPaneInSplit().resetAttribute(name, allAttributes.get(name));
+                                            }
+                                        }
+                                }
+                                /* Save the setting in the configuration file */
+                                ConfigXpadManager.saveAllForegroundColors(allStylesColor);
+                                ConfigXpadManager.saveAllFontStyle(allStylesIsBold, allStylesIsItalic);
+                                ConfigXpadManager.saveAllAttributes(allAttributes);
+                                windowAlreadyExist = false;
+                                frame.dispose();
+                        }
+                    });
+
+                cancelButton  = new JButton(XpadMessages.CANCEL);
+                cancelButton.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                    windowAlreadyExist = false;
+                    frame.dispose();
+                        }
+                });
+
+                defaultButton  = new JButton(XpadMessages.DEFAULT);
+                defaultButton.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                                settingsDefault();
+                        }
+                });
+
+                buttonsPanel.add(new JLabel()); /* Empty label used to move button to the right */
+                buttonsPanel.add(okButton);
+                buttonsPanel.add(cancelButton);
+                buttonsPanel.add(defaultButton);
+
+                contentPanel.add(buttonsPanel);
+
+                frame.setContentPane(contentPanel);
+                frame.addWindowListener(new WindowListener() {
+                        public void windowClosed(WindowEvent arg0) {
+                        }
+                        public void windowDeiconified(WindowEvent arg0) {
+                        }
+                        public void windowActivated(WindowEvent arg0) {
+                        }
+                        public void windowClosing(WindowEvent arg0) {
+                                SetColorsAction.windowAlreadyExist = false;
+                                frame.dispose();
+                        }
+                        public void windowDeactivated(WindowEvent arg0) {
+                        }
+                        public void windowIconified(WindowEvent arg0) {
+                        };
+                        public void windowOpened(WindowEvent arg0) {
+                        }
+                });
+
+                /* Select the default style */
+                stylesList.setSelectedIndex(0);
+
+                frame.pack();
+                frame.setLocationRelativeTo(getEditor());
+                frame.setVisible(true);
+
+        }
+
+        /**
+         *  Close this window (used from Xpad.java when closing Xpad)
+         */
+        public static void closeSetColorsWindow() {
+                SetColorsAction.windowAlreadyExist = false;
+                if (frame != null) {
+                    frame.dispose();
+                }
+        }
+
+        /**
+         * Update the GUI according to the selected style
+         */
+        private void settingsUpdate() {
+                /* Get the selected item */
+                int selectedStyleIndex = stylesList.getSelectedIndex();
+                String styleName = listStylesName.get(selectedStyleIndex);
+                previewEditorPane.resetColor(styleName, allStylesColor.get(styleName));
+                int bold = -1;
+                if (allStylesIsBold.get(styleName)) {
+                    bold = 1;
+                }
+                previewEditorPane.resetFont(styleName, bold);
+                int italic = -2;
+                if (allStylesIsItalic.get(styleName)) {
+                    italic = 2;
+                }
+                previewEditorPane.resetFont(styleName, italic);
+                previewEditorPane.resetAttribute(styleName, allAttributes.get(styleName));
+                previewEditorPane.repaint();
+
+                /* Update the GUI */
+                colorButton.setBackground(allStylesColor.get(styleName));
+                boldCheckBox.setSelected(allStylesIsBold.get(styleName));
+                italicCheckBox.setSelected(allStylesIsItalic.get(styleName));
+                underlineCheckBox.setSelected((allAttributes.get(styleName) & 1) == 1);
+                strikethroughCheckBox.setSelected((allAttributes.get(styleName) & 2) == 2);
+                /* TODO update other checkboxes */
+        }
+
+        /**
+         * Reset the gui to set it to defaults
+         */
+        private void settingsDefault() {
+            allStylesColor = ConfigXpadManager.getAllDefaultForegroundColors();
+            allStylesIsBold = ConfigXpadManager.getDefaultAllisBold();
+            allStylesIsItalic = ConfigXpadManager.getDefaultAllisItalic();
+            Iterator<String> iter = allStylesColor.keySet().iterator();
+            while (iter.hasNext()) {
+                String name = iter.next();
+                previewEditorPane.resetColor(name, allStylesColor.get(name));
+                colorButton.setBackground(allStylesColor.get(name));
+                int bold = -1;
+                if (allStylesIsBold.get(name)) {
+                    bold = 1;
+                }
+                previewEditorPane.resetFont(name, bold);
+                int italic = -2;
+                if (allStylesIsItalic.get(name)) {
+                    italic = 2;
+                }
+                previewEditorPane.resetFont(name, italic);
+                boldCheckBox.setSelected(allStylesIsBold.get(name));
+                italicCheckBox.setSelected(allStylesIsItalic.get(name));
+            }
+
+            previewEditorPane.repaint();
+        }
 }

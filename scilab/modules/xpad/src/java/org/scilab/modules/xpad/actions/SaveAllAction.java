@@ -11,10 +11,6 @@
  */
 package org.scilab.modules.xpad.actions;
 
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -24,51 +20,50 @@ import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
 /**
- * 
+ *
  * @author Allan CORNET
  * SaveAllAction class
  */
 public final class SaveAllAction extends DefaultAction {
 
 
-	/**
-	 * serialVersionUID
-	 */
-	private static final long serialVersionUID = 7134703185408281234L;
+        /**
+         * serialVersionUID
+         */
+        private static final long serialVersionUID = 7134703185408281234L;
 
-	/**
-	 * Constructor
-	 * @param editor Xpad
-	 */
-	private SaveAllAction(Xpad editor) {
-			super(XpadMessages.SAVE_ALL, editor);
-		    }
+        /**
+         * Constructor
+         * @param editor Xpad
+         */
+        private SaveAllAction(Xpad editor) {
+                        super(XpadMessages.SAVE_ALL, editor);
+                    }
 
-	/**
-	 * doAction
-	 */
-	public void doAction() {
-		int currentIndex = getEditor().getTabPane().getSelectedIndex();
-		
-		for (int i = 0; i < getEditor().getTabPane().getTabCount(); i++) {
-			getEditor().getTabPane().setSelectedIndex(i);
-			if (!getEditor().save(getEditor().getTabPane().getSelectedIndex(), true)) {
-					ScilabModalDialog.show(Xpad.getEditor(), XpadMessages.COULD_NOT_SAVE_FILE,
-						XpadMessages.XPAD_ERROR, IconType.ERROR_ICON);
-				    }
-		}
-		getEditor().getTabPane().setSelectedIndex(currentIndex);
-			
-	}
-	
-	/**
-	 * CreateMenu
-	 * @param editor Xpad
-	 * @return MenuItem 
-	 */
-    public static MenuItem createMenu(Xpad editor) {
-    	return createMenu(XpadMessages.SAVE_ALL, null, new SaveAllAction(editor), 
-    			KeyStroke.getKeyStroke(KeyEvent.VK_S, 
-    			Toolkit.getDefaultToolkit().getMenuShortcutKeyMask() + ActionEvent.SHIFT_MASK));
+        /**
+         * doAction
+         */
+        public void doAction() {
+                int currentIndex = getEditor().getTabPane().getSelectedIndex();
+
+                for (int i = 0; i < getEditor().getTabPane().getTabCount(); i++) {
+                        getEditor().getTabPane().setSelectedIndex(i);
+                        if (!getEditor().save(getEditor().getTabPane().getSelectedIndex(), true)) {
+                                        ScilabModalDialog.show(getEditor(), XpadMessages.COULD_NOT_SAVE_FILE,
+                                                XpadMessages.XPAD_ERROR, IconType.ERROR_ICON);
+                                    }
+                }
+                getEditor().getTabPane().setSelectedIndex(currentIndex);
+
+        }
+
+        /**
+         * CreateMenu
+         * @param editor Xpad
+         * @param key KeyStroke
+         * @return MenuItem
+         */
+        public static MenuItem createMenu(Xpad editor, KeyStroke key) {
+            return createMenu(XpadMessages.SAVE_ALL, null, new SaveAllAction(editor), key);
         }
 }

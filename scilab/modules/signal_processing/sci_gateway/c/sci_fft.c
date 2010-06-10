@@ -86,7 +86,7 @@ sci_fft(char *fname, unsigned long fname_len)
     // GetRhsVarMatrixDouble(2, &rows, &cols, &argument);
     getVarAddressFromPosition(pvApiCtx, 2, &p);
     getMatrixOfDouble(pvApiCtx, p, &rows, &cols, &argument);
-    inverse = argument[0];
+    inverse = (int)argument[0];
     if (rows != 1 || cols != 1) {
       Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 2);
       return 1;

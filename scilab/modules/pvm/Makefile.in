@@ -350,7 +350,10 @@ OCAMLDEP = @OCAMLDEP@
 OCAMLLEX = @OCAMLLEX@
 OCAMLOPT = @OCAMLOPT@
 OCAMLYACC = @OCAMLYACC@
+OPENMP_CFLAGS = @OPENMP_CFLAGS@
+OPENMP_CXXFLAGS = @OPENMP_CXXFLAGS@
 OPENMP_ENABLE = @OPENMP_ENABLE@
+OPENMP_LIBS = @OPENMP_LIBS@
 OTOOL = @OTOOL@
 OTOOL64 = @OTOOL64@
 PACKAGE = @PACKAGE@
@@ -1478,7 +1481,8 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 
 @PVM_TRUE@test:
 # More tests could be added here
-@PVM_TRUE@	@if test -f build.xml; then \
+@PVM_TRUE@	@if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
+@PVM_TRUE@	if test -f build.xml -a $$USEANT -eq 1; then \
 @PVM_TRUE@		$(ANT) test; \
 @PVM_TRUE@	fi
 
@@ -1669,7 +1673,8 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 
 @PVM_FALSE@test:
 # More tests could be added here
-@PVM_FALSE@	@if test -f build.xml; then \
+@PVM_FALSE@	@if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
+@PVM_FALSE@	if test -f build.xml -a $$USEANT -eq 1; then \
 @PVM_FALSE@		$(ANT) test; \
 @PVM_FALSE@	fi
 

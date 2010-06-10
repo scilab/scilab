@@ -11,38 +11,38 @@
 // return the Modelica directory path modelica_path
 // used by Xcos diagram containing Modelica blocks
 
-function [modelica_path,modelica_directory] = getModelicaPath()
+function [modelica_path, modelica_directory] = getModelicaPath()
 
   lhs = argn(1);
 
   if (lhs > 2) then
     error(msprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "getModelicaPath",1,2));
     return
-    
+
   else
-    
+
     modelica_path = [];
     modelica_directory = [];
-    
+
     // path for generic modelica blocks
-    // modelica_directory = pathconvert(TMPDIR+'/modelica/',%f,%t);
-    
-    // for the standard electrical and hydraulical components 
-    modelica_path = 'SCI/modules/scicos_blocks/macros/' + ['Electrical','Hydraulics'];
-    
+    modelica_directory = pathconvert(TMPDIR + "/modelica/", %t, %t);
+
+    // for the standard electrical and hydraulical components
+    modelica_path = "SCI/modules/scicos_blocks/macros/" + ["Electrical", "Hydraulics"];
+
     // add TMPDIR/modelica for generic modelica blocks
     // needed by modelicat to compile every modelica file
-    
+
     // create modelica directory if it doesn't exist
-    [status_exists,messages_exists] = mkdir(TMPDIR,'modelica');    
-    
-    if (status_exists==1 | status_exists==2)  then 
-      modelica_path = [modelica_path,TMPDIR + '/modelica'];
+    [status_exists, messages_exists] = mkdir(TMPDIR, "modelica");
+
+    if (status_exists == 1 | status_exists == 2)  then
+      modelica_path = [modelica_path, TMPDIR + "/modelica"];
     else
-      error(msprintf(gettext("%s \n" ),messages_exists));
+      error(msprintf(gettext("%s \n" ), messages_exists));
       return
-    end    
-    
+    end
+
   end
 
 endfunction

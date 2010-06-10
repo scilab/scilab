@@ -19,7 +19,7 @@
 ** Started on  Thu Jul 19 12:12:28 2007 bruno
 ** Last update Fri Mar 13 15:48:48 2009 Bernard Hugueney -> use iIsComplex from stack3.h 
 */
-
+#include "stack-c.h"
 #include "issymmetric.h"
 #include "stack3.h"
 /*

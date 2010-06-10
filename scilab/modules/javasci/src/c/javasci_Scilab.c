@@ -12,6 +12,8 @@
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include "javasci_Scilab.h"
+#include "stack-def.h"
+#include "sci_types.h"
 #include "call_scilab.h"
 #include "api_scilab.h"
 #include "../../../modules/graphics/includes/WindowList.h"

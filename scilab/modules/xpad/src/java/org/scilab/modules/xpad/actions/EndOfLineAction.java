@@ -18,7 +18,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JRadioButtonMenuItem;
 
 import org.scilab.modules.xpad.Xpad;
-import org.scilab.modules.xpad.style.ScilabStyleDocument;
+import org.scilab.modules.xpad.ScilabDocument;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
 /**
@@ -70,7 +70,7 @@ public class EndOfLineAction  extends DefaultCheckAction {
 	 * doAction
 	 */
     public void doAction() {
-    	ScilabStyleDocument styleDocument = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument());
+    	ScilabDocument styleDocument = ((ScilabDocument) getEditor().getTextPane().getDocument());
 
     	// default
     	String newOel = System.getProperty(LINE_SEPARATOR); 

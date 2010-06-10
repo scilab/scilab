@@ -11,7 +11,7 @@
  */
 
 #include "elem_common.h"
-
+#include "sqrt.h"
 
 /*sqrt*/
 double dsqrts(double _dblVal)

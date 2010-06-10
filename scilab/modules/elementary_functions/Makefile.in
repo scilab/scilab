@@ -661,7 +661,10 @@ OCAMLDEP = @OCAMLDEP@
 OCAMLLEX = @OCAMLLEX@
 OCAMLOPT = @OCAMLOPT@
 OCAMLYACC = @OCAMLYACC@
+OPENMP_CFLAGS = @OPENMP_CFLAGS@
+OPENMP_CXXFLAGS = @OPENMP_CXXFLAGS@
 OPENMP_ENABLE = @OPENMP_ENABLE@
+OPENMP_LIBS = @OPENMP_LIBS@
 OTOOL = @OTOOL@
 OTOOL64 = @OTOOL64@
 PACKAGE = @PACKAGE@
@@ -1194,6 +1197,7 @@ libscielementary_functions_la_CPPFLAGS = -I$(srcdir)/includes/ \
 libscielementary_functions_la_CFLAGS = -I$(srcdir)/includes/ \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(srcdir)/src/c/ \
+-I$(top_srcdir)/modules/core/src/c/ \
 -I$(top_srcdir)/modules/output_stream/includes \
 -I$(top_srcdir)/modules/double/includes/ \
 -I$(top_srcdir)/modules/api_scilab/includes/
@@ -3376,7 +3380,8 @@ clean-macros:
 
 test:
 # More tests could be added here
-	@if test -f build.xml; then \
+	@if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
+	if test -f build.xml -a $$USEANT -eq 1; then \
 		$(ANT) test; \
 	fi
 

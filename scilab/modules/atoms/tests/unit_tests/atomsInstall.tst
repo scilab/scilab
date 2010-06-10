@@ -178,4 +178,4 @@ atomsRemove("toolbox_7","allusers");
 // =============================================================================
 atomsSetConfig("autoloadAddAfterInstall",config_autoload);
 atomsSetConfig("Verbose" ,config_Verbose);
-atomsRepositorySetOfl("http://atoms.scilab.org");
+atomsRepositorySetOfl(mgetl(SCI+"/modules/atoms/tests/unit_tests/repositories.orig"));

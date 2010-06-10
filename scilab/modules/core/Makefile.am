@@ -364,6 +364,7 @@ includes/scisparse.h \
 includes/sciquit.h \
 includes/setgetSCIpath.h \
 includes/stack-c.h \
+includes/sci_types.h \
 includes/stack-def.h \
 includes/stack.h \
 includes/stack1.h \

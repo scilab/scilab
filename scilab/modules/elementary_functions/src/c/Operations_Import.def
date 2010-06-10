@@ -1,0 +1,15 @@
+	LIBRARY    operations.dll
+
+
+EXPORTS
+;
+;operations
+;
+iLeftDivisionOfRealMatrix
+iMultiRealMatrixByRealMatrix
+iRightDivisionRealMatrixByRealMatrix
+iRightDivisionComplexMatrixByRealMatrix
+iMultiComplexMatrixByComplexMatrix
+iMultiRealScalarByRealMatrix
+iMultiRealScalarByComplexMatrix
+iLeftDivisionOfComplexMatrix

@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2009-11-28 03:16+0000\n"
-"Last-Translator: ilinux <bnufl66@gmail.com>\n"
+"PO-Revision-Date: 2010-05-27 09:56+0000\n"
+"Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -324,7 +324,7 @@ msgstr "%s：输入参数 #%d 的大小出错：应该为 mx3 大小的字符矩
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
-msgstr ""
+msgstr "%s：输入参数#%d的类型错误：应该为布尔值。\n"
 
 #, c-format
 msgid ""
@@ -518,10 +518,10 @@ msgid "Author(s)"
 msgstr "作者"
 
 msgid "Automatically Installed"
-msgstr ""
+msgstr "已自动安装"
 
 msgid "Bytes"
-msgstr ""
+msgstr "字节"
 
 msgid "Category(ies)"
 msgstr "类别"
@@ -552,22 +552,22 @@ msgstr "安装目录"
 
 msgid ""
 "Installation done! Please restart Scilab to take changes into account."
-msgstr ""
+msgstr "安装完成！请重新运行Scilab，以使改动生效。"
 
 msgid "Installation failed!"
-msgstr ""
+msgstr "安装失败！"
 
 msgid "Installing..."
 msgstr "正在安装..."
 
 msgid "KB"
-msgstr ""
+msgstr "KB"
 
 msgid "License"
 msgstr "授权协议"
 
 msgid "MB"
-msgstr ""
+msgstr "MB"
 
 msgid "Maintainer(s)"
 msgstr "维护人员"
@@ -576,10 +576,10 @@ msgid "Modules"
 msgstr "模块"
 
 msgid "No Atoms module is available. Please, check your Internet connection."
-msgstr ""
+msgstr "没有发现Atoms模块。请检查你的网络连接。"
 
 msgid "No Atoms module is available: your repository list is empty."
-msgstr ""
+msgstr "没有发现Atoms模块：你的仓库列表是空的。"
 
 msgid "No module selected"
 msgstr "没有模块被选择"
@@ -591,10 +591,10 @@ msgid "Remove"
 msgstr "删除"
 
 msgid "Remove done! Please restart Scilab to take changes into account. "
-msgstr ""
+msgstr "删除完成！请重新运行Scilab，以使改变生效。 "
 
 msgid "Remove failed!"
-msgstr ""
+msgstr "删除失败！"
 
 msgid "Removing..."
 msgstr "正在删除..."
@@ -615,10 +615,10 @@ msgid "Update"
 msgstr "更新"
 
 msgid "Update done! Please restart Scilab to take changes into account."
-msgstr ""
+msgstr "更新完成！请重新运行Scilab，以使改变生效。"
 
 msgid "Update failed!"
-msgstr ""
+msgstr "更新失败！"
 
 msgid "Updating..."
 msgstr "正在更新..."

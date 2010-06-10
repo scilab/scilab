@@ -23,13 +23,7 @@ EXPORTS
  crewimat_
  checkrhs_
  checklhs_
- unsfdcopy_
- dset_
- iset_
  funnam_
- int2db_
- mtlbsel_
- getorient_
  gettype_
  indxg_
  

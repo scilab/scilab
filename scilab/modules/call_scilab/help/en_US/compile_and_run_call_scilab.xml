@@ -100,9 +100,28 @@
       </listitem>
     </itemizedlist>
 
+    <para>The following example is a Makefile to build against Scilab binary</para>
+
+    <programlisting role="example"><![CDATA[ 
+# A sample Makefile building a C code using Call Scilab using Scilab binary
+PATH_SCILAB = /path/to/scilab/ 
+# Note that PATH_SCILAB can be /usr/ is using a packaged version of Scilab.
+SCILAB_CFLAGS = -I$(PATH_SCILAB)/include/scilab/
+SCILAB_LDFLAGS = -lscilab
+PATH_TO_LIB_SCILAB = $(PATH_SCILAB)/lib/scilab/
+PATH_TO_LIB_CALL_SCILAB = $(PATH_SCILAB)/lib/scilab/
+
+all: simple_call_scilab.c
+	export LD_LIBRARY_PATH=$(PATH_TO_LIB_SCILAB):$(PATH_TO_LIB_CALL_SCILAB)
+	gcc -o myExample $(SCILAB_LDFLAGS) -L$(PATH_TO_LIB_SCILAB) -L$(PATH_TO_LIB_CALL_SCILAB) $(SCILAB_CFLAGS) simple_call_scilab.c
+ ]]></programlisting>
+  </refsection>
+
+    <para>The following example is a Makefile to build against Scilab source tree</para>
+
     <programlisting role="example"><![CDATA[ 
 # A sample Makefile building a C code using Call Scilab using Scilab built in it source tree.
-PATH_SCILAB = /path/to/scilab/sources.
+PATH_SCILAB = /path/to/scilab/sources/
 SCILAB_CFLAGS = -I$(PATH_SCILAB)/modules/core/includes/ -I$(PATH_SCILAB)/modules/call_scilab/includes/
 SCILAB_LDFLAGS = -lscilab
 PATH_TO_LIB_SCILAB = $(PATH_SCILAB)/modules/.libs/
@@ -231,12 +250,14 @@ $ SCI=<path to Scilab source tree>
 $ export LD_LIBRARY_PATH=$SCI/modules/.libs/:$SCI/modules/call_scilab/.libs/:$SCI/modules/api_scilab/.libs
 
 # With a Scilab binary:
-$ SCI=<path to Scilab binary>
-$ export LD_LIBRARY_PATH=$SCI/lib/scilab/
+$ SCI_PATH=<path to Scilab binary>
+$ export LD_LIBRARY_PATH=$SCI_PATH/lib/scilab/
 
-# Don't forget to update i386 to whatever is necessary
-$ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/jvm/java-6-openjdk//jre/lib/i386/:/usr/lib/jvm/java-6-openjdk//jre/lib/i386/server/
-$ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/jvm/java-6-openjdk//jre/lib/i386/native_threads/
+# Set the path to Java Virtual Machine library; This is mandatory for graphics features
+# Don't forget to update arch (i386) and paths to whatever is necessary
+$ export JAVA_HOME=/usr/lib/jvm/java-6-openjdk/
+$ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$JAVA_HOME/jre/lib/i386/:$JAVA_HOME/jre/lib/i386/server/
+$ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$JAVA_HOME/jre/lib/i386/native_threads/
 $ export SCI=/path/to/scilab/
 $ ./myExample
 !sample  for the help  !

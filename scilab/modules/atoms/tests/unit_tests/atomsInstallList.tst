@@ -73,4 +73,4 @@ if or(atomsInstallList("toolbox_6")<>ref) then pause, end
 
 // Restore Original values
 // =============================================================================
-atomsRepositorySetOfl("http://atoms.scilab.org");
+atomsRepositorySetOfl(mgetl(SCI+"/modules/atoms/tests/unit_tests/repositories.orig"));

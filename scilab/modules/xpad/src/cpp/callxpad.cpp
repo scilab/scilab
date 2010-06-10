@@ -27,67 +27,105 @@ using namespace org_scilab_modules_xpad;
 /*--------------------------------------------------------------------------*/
 int callXpadW(wchar_t **_wcfilenames, int _nbfiles)
 {
-	if ( (_wcfilenames) && (_nbfiles > 0) )
-	{
-		int i = 0;
-		for (i = 0; i < _nbfiles; i++)
-		{
-			if (_wcfilenames[i])
-			{
-				wchar_t *wcFullFilename = getFullFilenameW(_wcfilenames[i]);
-				if (wcFullFilename)
-				{
-					char *fullFilename = wide_string_to_UTF8(wcFullFilename);
-					if (fullFilename)
-					{
-						Xpad::xpad(getScilabJavaVM(), fullFilename);
-						FREE(fullFilename);
-						fullFilename = NULL;
-					}
-					
-					FREE(wcFullFilename);
-					wcFullFilename = NULL;
-				}
-			}
-		}
-	}
-	else
-	{
-		Xpad::xpad(getScilabJavaVM());
-	}
-	return 0;
+        if ( (_wcfilenames) && (_nbfiles > 0) )
+        {
+                int i = 0;
+                for (i = 0; i < _nbfiles; i++)
+                {
+                        if (_wcfilenames[i])
+                        {
+                                wchar_t *wcFullFilename = getFullFilenameW(_wcfilenames[i]);
+                                if (wcFullFilename)
+                                {
+                                        char *fullFilename = wide_string_to_UTF8(wcFullFilename);
+                                        if (fullFilename)
+                                        {
+                                                Xpad::xpad(getScilabJavaVM(), fullFilename);
+                                                FREE(fullFilename);
+                                                fullFilename = NULL;
+                                        }
+
+                                        FREE(wcFullFilename);
+                                        wcFullFilename = NULL;
+                                }
+                        }
+                }
+        }
+        else
+        {
+                Xpad::xpad(getScilabJavaVM());
+        }
+        return 0;
 }
 
 int callXpadWWithLineNumber(wchar_t **_wcfilenames, double* pdblLineNumber, int _nbfiles)
 {
-	if ( (_wcfilenames) && (_nbfiles > 0) )
-	{
-		int i = 0;
-		for (i = 0; i < _nbfiles; i++)
-		{
-			if (_wcfilenames[i])
-			{
-				wchar_t *wcFullFilename = getFullFilenameW(_wcfilenames[i]);
-				if (wcFullFilename)
-				{
-					char *fullFilename = wide_string_to_UTF8(wcFullFilename);
-					if (fullFilename)
-					{
-						Xpad::xpad(getScilabJavaVM(), fullFilename, (int)pdblLineNumber[i]);
-						FREE(fullFilename);
-						fullFilename = NULL;
-					}
-					
-					FREE(wcFullFilename);
-					wcFullFilename = NULL;
-				}
-			}
-		}
-	}
-	else
-	{
-		Xpad::xpad(getScilabJavaVM());
-	}
-	return 0;
+        if ( (_wcfilenames) && (_nbfiles > 0) )
+        {
+                int i = 0;
+                for (i = 0; i < _nbfiles; i++)
+                {
+                        if (_wcfilenames[i])
+                        {
+                                wchar_t *wcFullFilename = getFullFilenameW(_wcfilenames[i]);
+                                if (wcFullFilename)
+                                {
+                                        char *fullFilename = wide_string_to_UTF8(wcFullFilename);
+                                        if (fullFilename)
+                                        {
+                                                Xpad::xpad(getScilabJavaVM(), fullFilename, (int)pdblLineNumber[i]);
+                                                FREE(fullFilename);
+                                                fullFilename = NULL;
+                                        }
+
+                                        FREE(wcFullFilename);
+                                        wcFullFilename = NULL;
+                                }
+                        }
+                }
+        }
+        else
+        {
+                Xpad::xpad(getScilabJavaVM());
+        }
+        return 0;
+}
+
+int callXpadWWithOption(wchar_t **_wcfilenames, wchar_t** option, int _nbfiles)
+{
+        if ( (_wcfilenames) && (_nbfiles > 0) )
+        {
+                int i = 0;
+                char *opt = wide_string_to_UTF8(option[0]);
+                if (opt)
+                {
+                        for (i = 0; i < _nbfiles; i++)
+                        {
+                                if (_wcfilenames[i])
+                                {
+                                        wchar_t *wcFullFilename = getFullFilenameW(_wcfilenames[i]);
+                                        if (wcFullFilename)
+                                        {
+                                                char *fullFilename = wide_string_to_UTF8(wcFullFilename);
+                                                if (fullFilename)
+                                                {
+                                                        Xpad::xpad(getScilabJavaVM(), fullFilename, opt);
+                                                        FREE(fullFilename);
+                                                        fullFilename = NULL;
+                                                }
+
+                                                FREE(wcFullFilename);
+                                                wcFullFilename = NULL;
+                                        }
+                                }
+                        }
+                        FREE(opt);
+                }
+        }
+        else
+        {
+                Xpad::xpad(getScilabJavaVM());
+        }
+        return 0;
 }
 /*--------------------------------------------------------------------------*/
