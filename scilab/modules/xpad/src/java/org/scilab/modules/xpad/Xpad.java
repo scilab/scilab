@@ -187,7 +187,7 @@ public class Xpad extends SwingScilabTab implements Tab {
                         }
                         setTitle(tabPane.getTitleAt(tabPane.getSelectedIndex()) + path + TIRET + XpadMessages.SCILAB_EDITOR);
                         updateUI();
-                        getInfoBar().setText(getTextPane().getInfoBarText());
+                        getTextPane().updateInfosWhenFocused();
                         // Update encoding menu
                         xpadGUI.updateEncodingMenu((ScilabDocument) getTextPane().getDocument());
 
@@ -195,17 +195,6 @@ public class Xpad extends SwingScilabTab implements Tab {
                         xpadGUI.updateEolMenu((ScilabDocument) getTextPane().getDocument());
                     }
                 }
-            });
-        tabPane.addFocusListener(new FocusListener() {
-                public void focusGained(FocusEvent e) {
-                    ScilabEditorPane pane = getTextPane();
-                    if (pane != null) {
-                        getInfoBar().setText(pane.getInfoBarText());
-                        pane.grabFocus();
-                    }
-                }
-
-                public void focusLost(FocusEvent e) { }
             });
         this.setContentPane(tabPane);
     }

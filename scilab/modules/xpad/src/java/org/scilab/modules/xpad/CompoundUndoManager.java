@@ -126,6 +126,7 @@ public class CompoundUndoManager extends UndoManager {
      * Enable or not the Undo and Redo buttons
      */
     public void enableUndoRedoButtons() {
+        endCompoundEdit();
         sdoc.getEditorPane().getEditor().enableRedoButton(canRedo());
         sdoc.getEditorPane().getEditor().enableUndoButton(canUndo());
     }

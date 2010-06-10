@@ -102,12 +102,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         setFocusable(true);
         addFocusListener(new FocusListener() {
                 public void focusGained(FocusEvent e) {
-                    ScilabDocument doc = (ScilabDocument) getDocument();
-                    doc.setFocused(true);
-                    doc.getUndoManager().enableUndoRedoButtons();
-                    ScilabEditorPane.this.editor.getInfoBar().setText(ScilabEditorPane.this.getInfoBarText());
-                    Xpad.setEditor(ScilabEditorPane.this.editor);
-                    focused = ScilabEditorPane.this;
+                    updateInfosWhenFocused();
                 }
 
                 public void focusLost(FocusEvent e) {
@@ -126,6 +121,18 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             ((ScilabDocument) doc).getUndoManager().discardAllEdits();
             initialize((ScilabDocument) doc);
         }
+    }
+
+    /**
+     * Update infos
+     */
+    public void updateInfosWhenFocused() {
+        ScilabDocument doc = (ScilabDocument) getDocument();
+        doc.setFocused(true);
+        Xpad.setEditor(ScilabEditorPane.this.editor);
+        focused = ScilabEditorPane.this;
+        doc.getUndoManager().enableUndoRedoButtons();
+        editor.getInfoBar().setText(getInfoBarText());
     }
 
     /**
