@@ -809,4 +809,6 @@ Bug fixes:
 
 * bug 7181 fixed - The display of a struct having no fields did not work.
 
+* bug 7189 fixed - In some cases the usage of resume lead to a crash of Scilab.
+
 * bug 7224 fixed - export empty matrix in HDF5 did not unlock file.
