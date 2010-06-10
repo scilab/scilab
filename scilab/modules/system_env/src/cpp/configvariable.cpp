@@ -39,7 +39,7 @@ std::list<std::string> ConfigVariable::getModuleList()
 */
 
 /*
-** SCI Path
+** SCI
 ** \{
 */
 std::string ConfigVariable::m_SCIPath;
@@ -63,16 +63,36 @@ std::string ConfigVariable::getSCIPath()
 ** \{
 */
 
-std::string ConfigVariable::m_SciHome;
+std::string ConfigVariable::m_SCIHOME;
 
-void ConfigVariable::setSCIHOME(std::string& _SciHome)
+void ConfigVariable::setSCIHOME(std::string& _SCIHOME)
 {
-    m_SciHome = _SciHome;
+    m_SCIHOME = _SCIHOME;
 }
 
 std::string ConfigVariable::getSCIHOME()
 {
-    return m_SciHome;
+    return m_SCIHOME;
+}
+/*
+** \}
+*/
+
+/*
+** TMPDIR
+** \{
+*/
+
+std::string ConfigVariable::m_TMPDIR;
+
+void ConfigVariable::setTMPDIR(std::string& _TMPDIR)
+{
+    m_TMPDIR = _TMPDIR;
+}
+
+std::string ConfigVariable::getTMPDIR()
+{
+    return m_TMPDIR;
 }
 /*
 ** \}

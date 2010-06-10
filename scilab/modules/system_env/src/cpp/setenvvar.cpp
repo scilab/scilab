@@ -40,6 +40,7 @@
 #include "configvariable.hxx"
 #include "sci_home.h"
 #include "sci_path.h"
+#include "sci_tmpdir.h"
 
 using namespace std;
 
@@ -66,7 +67,7 @@ void SetScilabEnvironment(void)
     //create SCIHOME
     defineSCIHOME();
     //create TMPDIR
-    //TODO: create TMPDIR
+    defineTMPDIR();
     //create home
     //TODO: create home
 }

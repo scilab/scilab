@@ -14,6 +14,7 @@ SYSTEM_ENV_CPP_SOURCES 		= 	\
             src/cpp/setenvvar.cpp \
             src/cpp/sci_path.cpp \
             src/cpp/sci_home.cpp \
+            src/cpp/sci_tmpdir.cpp \
             src/cpp/configvariable.cpp
 
 pkglib_LTLIBRARIES 		= libscisystem_env.la

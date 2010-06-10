@@ -44,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;..\core\includes;../symbol/includes;../types/includes;../abstractSyntaxTree/includes;../windows_tools/includes;../localization/includes;../io/includes;../../libs/MALLOC/includes"
+				AdditionalIncludeDirectories="includes;..\core\includes;../symbol/includes;../types/includes;../abstractSyntaxTree/includes;../windows_tools/includes;../localization/includes;../io/includes;../../libs/MALLOC/includes;../../libs/intl"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;SYSTEM_ENV_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -118,7 +118,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;..\core\includes;../symbol/includes;../types/includes;../abstractSyntaxTree/includes;../windows_tools/includes;../localization/includes;../io/includes;../../libs/MALLOC/includes"
+				AdditionalIncludeDirectories="includes;..\core\includes;../symbol/includes;../types/includes;../abstractSyntaxTree/includes;../windows_tools/includes;../localization/includes;../io/includes;../../libs/MALLOC/includes;../../libs/intl"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;SYSTEM_ENV_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -193,7 +193,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="includes;..\core\includes;../symbol/includes;../types/includes;../abstractSyntaxTree/includes;../windows_tools/includes;../localization/includes;../io/includes;../../libs/MALLOC/includes"
+				AdditionalIncludeDirectories="includes;..\core\includes;../symbol/includes;../types/includes;../abstractSyntaxTree/includes;../windows_tools/includes;../localization/includes;../io/includes;../../libs/MALLOC/includes;../../libs/intl"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;SYSTEM_ENV_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -267,7 +267,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="includes;..\core\includes;../symbol/includes;../types/includes;../abstractSyntaxTree/includes;../windows_tools/includes;../localization/includes;../io/includes;../../libs/MALLOC/includes"
+				AdditionalIncludeDirectories="includes;..\core\includes;../symbol/includes;../types/includes;../abstractSyntaxTree/includes;../windows_tools/includes;../localization/includes;../io/includes;../../libs/MALLOC/includes;../../libs/intl"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;SYSTEM_ENV_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -335,6 +335,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\cpp\sci_tmpdir.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\setenvvar.cpp"
 				>
 			</File>
@@ -361,6 +365,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\sci_tmpdir.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\setenvvar.hxx"
 				>
 			</File>
@@ -381,6 +389,10 @@
 		</Filter>
 		<File
 			RelativePath="..\..\bin\lapack.lib"
+			>
+		</File>
+		<File
+			RelativePath="..\..\bin\libintl.lib"
 			>
 		</File>
 		<File

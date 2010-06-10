@@ -38,11 +38,19 @@ public :
 
     //HOME
 private :
-    static std::string m_SciHome;
+    static std::string m_SCIHOME;
 
 public :
-    static void setSCIHOME(std::string& _SciHome);
+    static void setSCIHOME(std::string& _m_SCIHOME);
     static std::string getSCIHOME();
+
+    //TMPDIR
+private :
+    static std::string m_TMPDIR;
+
+public :
+    static void setTMPDIR(std::string& _TMPDIR);
+    static std::string getTMPDIR();
 
     // Force Quit
 private :
