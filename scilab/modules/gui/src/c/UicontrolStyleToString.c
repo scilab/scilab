@@ -36,6 +36,8 @@ char * UicontrolStyleToString(int style)
       return "listbox";
     case SCI_POPUPMENU:
       return "popupmenu";
+    case SCI_IMAGERENDER:
+      return "imagerender";
     default:
       return "Unknown";
     }

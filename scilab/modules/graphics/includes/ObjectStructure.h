@@ -608,7 +608,8 @@ typedef enum {
   SCI_SLIDER,
   SCI_UIFRAME,
   SCI_LISTBOX,
-  SCI_POPUPMENU
+  SCI_POPUPMENU,
+  SCI_IMAGERENDER
 } UicontrolStyle ;
 /* uicontrol units */
 typedef enum {POINTS_UNITS, NORMALIZED_UNITS, INCHES_UNITS, CENTIMETERS_UNITS, PIXELS_UNITS} UicontrolUnits ;

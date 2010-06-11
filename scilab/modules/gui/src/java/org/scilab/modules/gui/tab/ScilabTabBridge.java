@@ -27,6 +27,7 @@ import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.popupmenu.PopupMenu;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
+import org.scilab.modules.gui.imagerender.ImageRender;
 import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tree.Tree;
 import org.scilab.modules.gui.utils.Position;
@@ -285,6 +286,25 @@ public class ScilabTabBridge {
 	 * @param member the RadioButton to add
 	 */
 	public static void removeMember(Tab tab, RadioButton member) {
+		tab.getAsSimpleTab().removeMember(member);
+	}
+
+	/**
+	 * Add a member (dockable element) to a tab and returns the index of this member
+	 * @param tab the tab which we want to add the ImageRender to
+	 * @param member the ImageRender to add
+	 * @return the position of the ImageRender in the member list.
+	 */
+	public static int addMember(Tab tab, ImageRender member) {
+		return (tab.getAsSimpleTab().addMember(member));
+	}
+
+	/**
+	 * Remove a ImageRender member from a tab
+	 * @param tab the tab which we want to remove the ImageRender from
+	 * @param member the ImageRender to add
+	 */
+	public static void removeMember(Tab tab, ImageRender member) {
 		tab.getAsSimpleTab().removeMember(member);
 	}
 

@@ -114,6 +114,7 @@ jintnewSliderID=NULL;
 jintnewPopupMenuID=NULL; 
 jintnewListBoxID=NULL; 
 jintnewFrameID=NULL; 
+jintnewImageRenderID=NULL;
 jstringnewContextMenujobjectArray_ID=NULL; 
 jintnewContextMenuID=NULL; 
 voiddestroyWidgetjintID=NULL; 
@@ -133,6 +134,8 @@ voidsetCheckBoxParentjintjintID=NULL;
 voidremoveCheckBoxFromParentjintjintID=NULL; 
 voidsetRadioButtonParentjintjintID=NULL; 
 voidremoveRadioButtonFromParentjintjintID=NULL; 
+voidsetImageRenderParentjintjintID=NULL; 
+voidremoveImageRenderFromParentjintjintID=NULL; 
 voidsetSliderParentjintjintID=NULL; 
 voidremoveSliderFromParentjintjintID=NULL; 
 voidsetPopupMenuParentjintjintID=NULL; 
@@ -316,6 +319,7 @@ jintnewEditBoxID=NULL;
 jintnewLabelID=NULL; 
 jintnewCheckBoxID=NULL; 
 jintnewRadioButtonID=NULL; 
+jintnewImageRenderID=NULL; 
 jintnewSliderID=NULL; 
 jintnewPopupMenuID=NULL; 
 jintnewListBoxID=NULL; 
@@ -339,6 +343,8 @@ voidsetCheckBoxParentjintjintID=NULL;
 voidremoveCheckBoxFromParentjintjintID=NULL; 
 voidsetRadioButtonParentjintjintID=NULL; 
 voidremoveRadioButtonFromParentjintjintID=NULL; 
+voidsetImageRenderParentjintjintID=NULL; 
+voidremoveImageRenderFromParentjintjintID=NULL;
 voidsetSliderParentjintjintID=NULL; 
 voidremoveSliderFromParentjintjintID=NULL; 
 voidsetPopupMenuParentjintjintID=NULL; 
@@ -649,6 +655,24 @@ throw GiwsException::JniMethodNotFoundException(curEnv, "newRadioButton");
 }
 
                         jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintnewRadioButtonID ));if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return res;
+
+}
+
+int CallScilabBridge::newImageRender (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jintnewImageRenderID = curEnv->GetStaticMethodID(cls, "newImageRender", "()I" ) ;
+if (jintnewImageRenderID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "newImageRender");
+}
+
+                        jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintnewImageRenderID ));if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
 return res;
@@ -1066,6 +1090,38 @@ throw GiwsException::JniMethodNotFoundException(curEnv, "removeRadioButtonFromPa
 }
 
                          curEnv->CallStaticVoidMethod(cls, voidremoveRadioButtonFromParentjintjintID ,parentID, objID);if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void CallScilabBridge::setImageRenderParent (JavaVM * jvm_, int parentID, int objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetImageRenderParentjintjintID = curEnv->GetStaticMethodID(cls, "setImageRenderParent", "(II)V" ) ;
+if (voidsetImageRenderParentjintjintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setImageRenderParent");
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetImageRenderParentjintjintID ,parentID, objID);if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void CallScilabBridge::removeImageRenderFromParent (JavaVM * jvm_, int parentID, int objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidremoveImageRenderFromParentjintjintID = curEnv->GetStaticMethodID(cls, "removeImageRenderFromParent", "(II)V" ) ;
+if (voidremoveImageRenderFromParentjintjintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "removeImageRenderFromParent");
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidremoveImageRenderFromParentjintjintID ,parentID, objID);if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
 }

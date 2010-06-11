@@ -12,7 +12,8 @@
       	<method name="newSlider" returnType="int" modifier="static"/>        
 	<method name="newPopupMenu" returnType="int" modifier="static"/>
         <method name="newListBox" returnType="int" modifier="static"/>        
-        <method name="newFrame" returnType="int" modifier="static"/>        
+        <method name="newFrame" returnType="int" modifier="static"/>  
+        <method name="newImageRender" returnType="int" modifier="static"/>              
 	<method name="newContextMenu" returnType="String" modifier="static">
           <parameter type="String[]" name="menuLabels"/>
         </method>
@@ -79,6 +80,14 @@
 	  <parameter type="int" name="objID"/>
 	</method>
 	<method name="removeRadioButtonFromParent" returnType="void" modifier="static">
+	  <parameter type="int" name="parentID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setImageRenderParent" returnType="void" modifier="static">
+	  <parameter type="int" name="parentID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="removeImageRenderFromParent" returnType="void" modifier="static">
 	  <parameter type="int" name="parentID"/>
 	  <parameter type="int" name="objID"/>
 	</method>

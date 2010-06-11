@@ -26,6 +26,7 @@ import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.popupmenu.PopupMenu;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
+import org.scilab.modules.gui.imagerender.ImageRender;
 import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
@@ -151,6 +152,19 @@ public interface SimpleTab {
 	 * @param member the RadioButton to remove
 	 */
 	void removeMember(RadioButton member);
+
+	/**
+	 * We want to be able to add directly a ImageRender in a Tab.
+	 * @param member the ImageRender to add
+	 * @return the position of the ImageRender in the member list.
+	 */
+	int addMember(ImageRender member);
+
+	/**
+	 * Remove a ImageRender from a Tab.
+	 * @param member the ImageRender to remove
+	 */
+	void removeMember(ImageRender member);
 
 	/**
 	 * We want to be able to add directly a Slider in a Tab.

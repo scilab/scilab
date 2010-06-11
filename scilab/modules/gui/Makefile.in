@@ -180,11 +180,12 @@ am__objects_5 = libscigui_la-InitUIMenu.lo \
 	libscigui_la-CallWaitBar.lo libscigui_la-CallHelpBrowser.lo \
 	libscigui_la-PushButton.lo libscigui_la-EditBox.lo \
 	libscigui_la-Label.lo libscigui_la-CheckBox.lo \
-	libscigui_la-RadioButton.lo libscigui_la-Slider.lo \
-	libscigui_la-PopupMenu.lo libscigui_la-ContextMenu.lo \
-	libscigui_la-ListBox.lo libscigui_la-Frame.lo \
-	libscigui_la-Toolbar.lo libscigui_la-Widget.lo \
-	libscigui_la-SetUimenuLabel.lo libscigui_la-GetUimenuLabel.lo \
+	libscigui_la-RadioButton.lo libscigui_la-ImageRender.lo \
+	libscigui_la-Slider.lo libscigui_la-PopupMenu.lo \
+	libscigui_la-ContextMenu.lo libscigui_la-ListBox.lo \
+	libscigui_la-Frame.lo libscigui_la-Toolbar.lo \
+	libscigui_la-Widget.lo libscigui_la-SetUimenuLabel.lo \
+	libscigui_la-GetUimenuLabel.lo \
 	libscigui_la-GetUicontrolStyle.lo \
 	libscigui_la-SetUicontrolString.lo \
 	libscigui_la-GetUicontrolString.lo \
@@ -644,6 +645,7 @@ src/cpp/EditBox.cpp \
 src/cpp/Label.cpp \
 src/cpp/CheckBox.cpp \
 src/cpp/RadioButton.cpp \
+src/cpp/ImageRender.cpp \
 src/cpp/Slider.cpp \
 src/cpp/PopupMenu.cpp \
 src/cpp/ContextMenu.cpp \
@@ -1000,6 +1002,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUiobjectTag.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUiobjectVisible.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GiwsException.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-ImageRender.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-InitProgressionBar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-InitUIMenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-InitWaitBar.Plo@am__quote@
@@ -1628,6 +1631,13 @@ libscigui_la-RadioButton.lo: src/cpp/RadioButton.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/RadioButton.cpp' object='libscigui_la-RadioButton.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-RadioButton.lo `test -f 'src/cpp/RadioButton.cpp' || echo '$(srcdir)/'`src/cpp/RadioButton.cpp
+
+libscigui_la-ImageRender.lo: src/cpp/ImageRender.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-ImageRender.lo -MD -MP -MF $(DEPDIR)/libscigui_la-ImageRender.Tpo -c -o libscigui_la-ImageRender.lo `test -f 'src/cpp/ImageRender.cpp' || echo '$(srcdir)/'`src/cpp/ImageRender.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_la-ImageRender.Tpo $(DEPDIR)/libscigui_la-ImageRender.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/ImageRender.cpp' object='libscigui_la-ImageRender.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-ImageRender.lo `test -f 'src/cpp/ImageRender.cpp' || echo '$(srcdir)/'`src/cpp/ImageRender.cpp
 
 libscigui_la-Slider.lo: src/cpp/Slider.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-Slider.lo -MD -MP -MF $(DEPDIR)/libscigui_la-Slider.Tpo -c -o libscigui_la-Slider.lo `test -f 'src/cpp/Slider.cpp' || echo '$(srcdir)/'`src/cpp/Slider.cpp

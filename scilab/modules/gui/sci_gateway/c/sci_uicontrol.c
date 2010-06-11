@@ -32,6 +32,7 @@
 #include "PopupMenu.h" /* setCurentFigureAsPopupMenuParent */
 #include "ListBox.h" /* setCurentFigureAsListBoxParent */
 #include "Frame.h" /* setCurentFigureAsFrameParent */
+#include "ImageRender.h" /* setCurentFigureAsImageRenderParent */
 #include "Scierror.h"
 #include "WindowList.h" /* getFigureFromIndex */
 #include "Widget.h" /* requestWidgetFocus */
@@ -334,6 +335,9 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
               break;
             case SCI_UIFRAME:
               setCurentFigureAsFrameParent(graphicObject);
+              break;
+            case SCI_IMAGERENDER:
+              setCurentFigureAsImageRenderParent(graphicObject);
               break;
            default:
               break;

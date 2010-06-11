@@ -92,6 +92,8 @@ import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.radiobutton.ScilabRadioButton;
+import org.scilab.modules.gui.imagerender.ImageRender;
+import org.scilab.modules.gui.imagerender.ScilabImageRender;
 import org.scilab.modules.gui.slider.ScilabSlider;
 import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tab.ScilabTab;
@@ -425,6 +427,27 @@ public class CallScilabBridge {
     public static int newRadioButton() {
         RadioButton radioButton = ScilabRadioButton.createRadioButton();
         int id = UIElementMapper.add(radioButton);
+
+        /* Default font */
+        setWidgetFontName(id, DEFAULTFONTNAME);
+        setWidgetFontWeight(id, NORMALFONT);
+        setWidgetFontSize(id, DEFAULTFONTSIZE);
+
+        setWidgetRelief(id, ScilabRelief.FLAT);
+
+        /* Default colors */
+        setWidgetBackgroundColor(id, (int) DEFAULT_RED_BACKGROUND, (int) DEFAULT_GREEN_BACKGROUND, (int) DEFAULT_BLUE_BACKGROUND);
+        setWidgetForegroundColor(id, (int) DEFAULT_RED_FOREGROUND, (int) DEFAULT_GREEN_FOREGROUND, (int) DEFAULT_BLUE_FOREGROUND);
+        return id;
+    }
+
+    /**
+     * Create a new ImageRender in Scilab GUIs
+     * @return the ID of the ImageRender in the UIElementMapper
+     */
+    public static int newImageRender() {
+        ImageRender imageRender = ScilabImageRender.createImageRender();
+        int id = UIElementMapper.add(imageRender);
 
         /* Default font */
         setWidgetFontName(id, DEFAULTFONTNAME);
@@ -817,6 +840,28 @@ public class CallScilabBridge {
         Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         RadioButton radioButton = (RadioButton) UIElementMapper.getCorrespondingUIElement(objID);
         ScilabBridge.removeMember(parentTab, radioButton);
+    }
+
+    /**
+     * Set a figure as parent for a ImageRender
+     * @param figureID the ID of the figure in the FigureMapper
+     * @param objID the ID of the PushButton in the UIElementMapper
+     */
+    public static void setImageRenderParent(int figureID, int objID) {
+        Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+        ImageRender imageRender = (ImageRender) UIElementMapper.getCorrespondingUIElement(objID);
+        ScilabBridge.addMember(parentTab, imageRender);
+    }
+
+    /**
+     * Remove a ImageRender from its parent figure
+     * @param figureID the ID of the figure in the FigureMapper
+     * @param objID the ID of the PushButton in the UIElementMapper
+     */
+    public static void removeImageRenderFromParent(int figureID, int objID) {
+        Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+        ImageRender imageRender = (ImageRender) UIElementMapper.getCorrespondingUIElement(objID);
+        ScilabBridge.removeMember(parentTab, imageRender);
     }
 
     /**

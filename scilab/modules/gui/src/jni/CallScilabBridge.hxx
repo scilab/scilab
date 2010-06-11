@@ -73,6 +73,7 @@ jmethodID jintnewEditBoxID; // cache method id
 jmethodID jintnewLabelID; // cache method id
 jmethodID jintnewCheckBoxID; // cache method id
 jmethodID jintnewRadioButtonID; // cache method id
+jmethodID jintnewImageRenderID; // cache method id
 jmethodID jintnewSliderID; // cache method id
 jmethodID jintnewPopupMenuID; // cache method id
 jmethodID jintnewListBoxID; // cache method id
@@ -97,6 +98,8 @@ jmethodID voidsetCheckBoxParentjintjintID; // cache method id
 jmethodID voidremoveCheckBoxFromParentjintjintID; // cache method id
 jmethodID voidsetRadioButtonParentjintjintID; // cache method id
 jmethodID voidremoveRadioButtonFromParentjintjintID; // cache method id
+jmethodID voidsetImageRenderParentjintjintID; // cache method id
+jmethodID voidremoveImageRenderFromParentjintjintID; // cache method id
 jmethodID voidsetSliderParentjintjintID; // cache method id
 jmethodID voidremoveSliderFromParentjintjintID; // cache method id
 jmethodID voidsetPopupMenuParentjintjintID; // cache method id
@@ -307,6 +310,8 @@ static int newCheckBox(JavaVM * jvm_);
 
 static int newRadioButton(JavaVM * jvm_);
 
+static int newImageRender(JavaVM * jvm_);
+
 static int newSlider(JavaVM * jvm_);
 
 static int newPopupMenu(JavaVM * jvm_);
@@ -352,6 +357,10 @@ static void removeCheckBoxFromParent(JavaVM * jvm_, int parentID, int objID);
 static void setRadioButtonParent(JavaVM * jvm_, int parentID, int objID);
 
 static void removeRadioButtonFromParent(JavaVM * jvm_, int parentID, int objID);
+
+static void setImageRenderParent(JavaVM * jvm_, int parentID, int objID);
+
+static void removeImageRenderFromParent(JavaVM * jvm_, int parentID, int objID);
 
 static void setSliderParent(JavaVM * jvm_, int parentID, int objID);
 

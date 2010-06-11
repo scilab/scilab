@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -34,6 +34,9 @@
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
@@ -115,6 +118,9 @@
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
 			/>
@@ -193,6 +199,9 @@
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
@@ -278,6 +287,9 @@
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
@@ -585,6 +597,10 @@
 			</File>
 			<File
 				RelativePath=".\iconifyMainWindow.c"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\ImageRender.cpp"
 				>
 			</File>
 			<File
@@ -941,6 +957,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\CallClipboard.h"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\CallClipboard.hxx"
 				>
 			</File>
@@ -974,6 +994,14 @@
 			</File>
 			<File
 				RelativePath="..\cpp\CallHelpBrowser.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\CallJuigetfile.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\CallJuigetfile.hxx"
 				>
 			</File>
 			<File
@@ -1058,6 +1086,10 @@
 			</File>
 			<File
 				RelativePath="..\cpp\DestroyJavaUiobject.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\DestroyUicontrol.h"
 				>
 			</File>
 			<File
@@ -1281,6 +1313,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\GetUiobjectEnable.h"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\GetUiobjectEnable.hxx"
 				>
 			</File>
@@ -1322,6 +1358,14 @@
 			</File>
 			<File
 				RelativePath=".\iconifyMainWindow.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\ImageRender.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\ImageRender.hxx"
 				>
 			</File>
 			<File
@@ -1578,6 +1622,10 @@
 			</File>
 			<File
 				RelativePath="..\cpp\SetUiobjectCallback.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\SetUiobjectEnable.h"
 				>
 			</File>
 			<File
