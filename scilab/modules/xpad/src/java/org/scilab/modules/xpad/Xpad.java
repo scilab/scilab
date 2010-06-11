@@ -1350,10 +1350,9 @@ public class Xpad extends SwingScilabTab implements Tab {
         List<File> recentFiles = ConfigXpadManager.getAllRecentOpenedFiles();
 
         ((SwingScilabMenu) getRecentsMenu().getAsSimpleMenu()).removeAll();
-        for (int i = 0; i < recentFiles.size(); i++) {
+        for (int i = recentFiles.size() - 1; i >= 0; i--) {
             getRecentsMenu().add(RecentFileAction.createMenu(this, recentFiles.get(i)));
         }
-
     }
 
     /**

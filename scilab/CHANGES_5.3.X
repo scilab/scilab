@@ -124,6 +124,8 @@ Text Editor:
 * bug 7272 fixed - No check on the lastModified property was performed when
                    a file is opened.
 
+* bug 7277 fixed - The "recent files" list was badly ordered.
+
 Incompatibilities:
 ==================
 * The bug 4583 fix makes the default element value in string array assignment

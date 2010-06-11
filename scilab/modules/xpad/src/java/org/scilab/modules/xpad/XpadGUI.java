@@ -387,8 +387,6 @@ public class XpadGUI {
      * @param editorInstance Xpad
      */
     private void createFileMenu(Menu fileMenu, Xpad editorInstance) {
-        List<File> recentFiles = ConfigXpadManager.getAllRecentOpenedFiles();
-
         fileMenu.setText(XpadMessages.FILE);
         fileMenu.setMnemonic('F');
         fileMenu.add(NewAction.createMenu(editorInstance, map.get("NewAction")));
@@ -397,10 +395,7 @@ public class XpadGUI {
 
         Menu recentsMenu = editorInstance.getRecentsMenu();
         recentsMenu.setText(XpadMessages.RECENT_FILES);
-        for (int i = 0; i < recentFiles.size(); i++) {
-            recentsMenu.add(RecentFileAction.createMenu(editorInstance , recentFiles.get(i)));
-        }
-
+        editorInstance.updateRecentOpenedFilesMenu();
         fileMenu.add(recentsMenu);
 
         fileMenu.addSeparator();
