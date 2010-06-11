@@ -600,6 +600,8 @@ Bug fixes:
 
 * bug 4493 fixed - 'rat' moved in elementary_functions module.
 
+* bug 4505 fixed - A red vertical bar appeared for some continuous time systems.
+
 * bug 4572 fixed - Scilab did a SIGSEGV after stacksize('max') + stacksize().
 
 * bug 4583 fixed - Default value for string array assignment was " " instead
