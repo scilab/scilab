@@ -22,7 +22,7 @@ import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-
+import java.io.File;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.EventObject;
@@ -132,7 +132,26 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         Xpad.setEditor(ScilabEditorPane.this.editor);
         focused = ScilabEditorPane.this;
         doc.getUndoManager().enableUndoRedoButtons();
-        editor.getInfoBar().setText(getInfoBarText());
+
+        if (checkExternalModif()) {
+            editor.getInfoBar().setText(XpadMessages.EXTERNAL_MODIFICATION_INFO);
+        } else {
+            editor.getInfoBar().setText(getInfoBarText());
+        }
+    }
+
+    /**
+     * @param return true if an external modif occured
+     */
+    public boolean checkExternalModif() {
+        String path = getName();
+        if (path != null) {
+            File f = new File(path);
+            if (f != null) {
+                return lastModified < f.lastModified();
+            }
+        }
+        return false;
     }
 
     /**

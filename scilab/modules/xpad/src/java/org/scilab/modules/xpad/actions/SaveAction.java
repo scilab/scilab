@@ -70,4 +70,3 @@ public final class SaveAction extends DefaultAction {
         }
     }
 }
-

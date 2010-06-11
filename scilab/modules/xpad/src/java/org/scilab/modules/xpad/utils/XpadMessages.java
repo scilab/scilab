@@ -150,6 +150,10 @@ public class XpadMessages {
     public static final String THIS_FILE = Messages.gettext("This file");
     public static final String MODIFIED = Messages.gettext(" has been modified since last save\nsave it?");
     public static final String EXTERNAL_MODIFICATION = Messages.gettext("The file %s has been modified by another program !\n Overwrite it ?");
+    public static final String EXTERNAL_MODIFICATION_INFO = Messages.gettext("Warning: the file has been modified by another program !");
+    public static final String RELOAD = Messages.gettext("Reload");
+    public static final String OVERWRITE = Messages.gettext("Overwrite");
+    public static final String IGNORE = Messages.gettext("Ignore");
     public static final String REPLACE_FILE_TITLE = Messages.gettext("Replace File?");
     public static final String FILE_ALREADY_EXIST = Messages.gettext("File already exists");
     public static final String UNTITLED = Messages.gettext("Untitled ");

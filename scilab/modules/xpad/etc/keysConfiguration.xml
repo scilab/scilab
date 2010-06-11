@@ -27,6 +27,8 @@
   <entry key="SaveAction">control S</entry>
   <entry key="SaveAsAction">control alt S</entry>
   <entry key="SaveAllAction">control shift S</entry>
+  <entry key="OverwriteAction">control shift O</entry>
+  <entry key="ReloadAction">control shift R</entry>
   <entry key="PrintPreviewAction">control shift P</entry>
   <entry key="PrintAction">control P</entry>
   <entry key="CloseAction">control W</entry>

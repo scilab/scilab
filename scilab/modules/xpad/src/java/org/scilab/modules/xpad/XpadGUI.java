@@ -72,6 +72,8 @@ import org.scilab.modules.xpad.actions.FindAction;
 import org.scilab.modules.xpad.actions.FindNextAction;
 import org.scilab.modules.xpad.actions.FindPreviousAction;
 import org.scilab.modules.xpad.actions.GotoLineAction;
+import org.scilab.modules.xpad.actions.OverwriteAction;
+import org.scilab.modules.xpad.actions.ReloadAction;
 import org.scilab.modules.xpad.actions.HelpAction;
 import org.scilab.modules.xpad.actions.HelpOnKeywordAction;
 import org.scilab.modules.xpad.actions.HighlightCurrentLineAction;
@@ -426,6 +428,23 @@ public class XpadGUI {
         fileMenu.add(SaveAction.createMenu(editorInstance, map.get("SaveAction")));
         fileMenu.add(SaveAsAction.createMenu(editorInstance, map.get("SaveAsAction")));
         fileMenu.add(SaveAllAction.createMenu(editorInstance, map.get("SaveAllAction")));
+        fileMenu.addSeparator();
+        final MenuItem overitem = OverwriteAction.createMenu(editorInstance, map.get("OverwriteAction"));
+        ((JMenuItem) overitem.getAsSimpleMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
+                public void propertyChange(PropertyChangeEvent arg0) {
+                    overitem.setEnabled(editorInstance.getTextPane().checkExternalModif());
+                }
+            });
+        fileMenu.add(overitem);
+
+        final MenuItem reloaditem = ReloadAction.createMenu(editorInstance, map.get("ReloadAction"));
+        ((JMenuItem) reloaditem.getAsSimpleMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
+                public void propertyChange(PropertyChangeEvent arg0) {
+                    reloaditem.setEnabled(editorInstance.getTextPane().checkExternalModif());
+                }
+            });
+        fileMenu.add(reloaditem);
+
         fileMenu.addSeparator();
         fileMenu.add(PageSetupAction.createMenu(editorInstance));
         fileMenu.add(PrintPreviewAction.createMenu(editorInstance, map.get("PrintPreviewAction")));

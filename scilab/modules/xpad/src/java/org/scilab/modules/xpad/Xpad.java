@@ -18,8 +18,6 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -63,6 +61,8 @@ import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.gui.messagebox.MessageBox;
+import org.scilab.modules.gui.messagebox.ScilabMessageBox;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
@@ -474,11 +474,10 @@ public class Xpad extends SwingScilabTab implements Tab {
      * @param scilabClose : if true, save dialog confirmation cannot be canceled
      * @return execution status
      */
-
     public boolean save(int indexTab, boolean force, boolean scilabClose) {
         ScilabEditorPane textPaneAt = getTextPane(indexTab);
         //if the file ( empty, new or loaded ) is not modified, exit save process and return true
-        if (!((ScilabDocument) textPaneAt.getDocument()).isContentModified()
+        if (!textPaneAt.checkExternalModif() && !((ScilabDocument) textPaneAt.getDocument()).isContentModified()
             && (textPaneAt.getName() != null)) { /* Bug 5103 fix */
             return true;
         }
@@ -519,6 +518,41 @@ public class Xpad extends SwingScilabTab implements Tab {
         }
 
         File newSavedFile = new File(fileToSave);
+
+        if (!SaveFile.doSave(textPaneAt, newSavedFile, editorKit)) {
+            return false;
+        }
+
+        ScilabDocument styledDocument = (ScilabDocument) textPaneAt.getDocument();
+        styledDocument.setContentModified(false);
+
+        getTabPane().setTitleAt(getTabPane().getSelectedIndex() , newSavedFile.getName());
+        setTitle(newSavedFile.getPath() + TIRET + XpadMessages.SCILAB_EDITOR);
+
+        // Get current file path for Execute file into Scilab
+        fileFullPath = newSavedFile.getAbsolutePath();
+        getTextPane().setLastModified(newSavedFile.lastModified());
+
+        textPaneAt.setName(fileToSave);
+        return true;
+    }
+
+    /**
+     * Overwrite the file at a given index.
+     * @param indexTab the textPane index containing the file contents
+     * @return execution status
+     */
+    public boolean overwrite(int indexTab) {
+        ScilabEditorPane textPaneAt = getTextPane(indexTab);
+        String fileToSave = textPaneAt.getName();
+        if (fileToSave == null) {
+            return true;
+        }
+
+        File newSavedFile = new File(fileToSave);
+        if (!newSavedFile.exists()) {
+            return true;
+        }
 
         if (!SaveFile.doSave(textPaneAt, newSavedFile, editorKit)) {
             return false;
@@ -1013,6 +1047,23 @@ public class Xpad extends SwingScilabTab implements Tab {
     }
 
     /**
+     * Reload a file inside Xpad.
+     * @param index the index
+     */
+    public void reload(int index) {
+        ScilabEditorPane textPaneAt = getTextPane(index);
+        if ((index == 0) && (getTabPane().getTabCount() == 1)) {
+            for (int j = 0; j < tabPane.getChangeListeners().length; j++) {
+                tabPane.removeChangeListener(tabPane.getChangeListeners()[j]);
+            }
+        }
+        tabPane.remove(index);
+        File f = new File(textPaneAt.getName());
+        ReadFileThread myReadThread = new ReadFileThread(f, index);
+        myReadThread.start();
+    }
+
+    /**
      * Load a file inside Xpad.
      * @param f the file to open
      */
@@ -1052,9 +1103,26 @@ public class Xpad extends SwingScilabTab implements Tab {
                 /* File is already opened */
                 tabPane.setSelectedIndex(i);
                 if (f.lastModified() > textPaneAt.getLastModified()) {
-                    if (ScilabModalDialog.show(this, String.format(XpadMessages.EXTERNAL_MODIFICATION, textPaneAt.getName()), XpadMessages.REPLACE_FILE_TITLE, IconType.QUESTION_ICON, ButtonType.YES_NO) == AnswerOption.NO_OPTION) {
-                        alreadyOpened = true;
-                    } else {
+
+                    /*
+                     * Create a new messagebox to know what the user wants to do
+                     * if the file has been modified outside Xpad
+                     */
+                    MessageBox messageBox = ScilabMessageBox.createMessageBox();
+                    messageBox.setTitle(XpadMessages.REPLACE_FILE_TITLE);
+                    messageBox.setMessage(String.format(XpadMessages.EXTERNAL_MODIFICATION, textPaneAt.getName()));
+
+                    String[] labels = new String[]{XpadMessages.RELOAD, XpadMessages.OVERWRITE, XpadMessages.IGNORE};
+                    messageBox.setButtonsLabels(labels);
+
+                    messageBox.setIcon("question"); // Question icon
+
+                    messageBox.setParentForLocation(this); // Centered on Xpad main window
+
+                    messageBox.displayAndWait(); // Waits for a user action
+
+                    switch (messageBox.getSelectedButton()) {
+                    case 1: // Reload
                         if ((i == 0) && (getTabPane().getTabCount() == 1)) {
                             for (int j = 0; j < tabPane.getChangeListeners().length; j++) {
                                 tabPane.removeChangeListener(tabPane.getChangeListeners()[j]);
@@ -1063,6 +1131,13 @@ public class Xpad extends SwingScilabTab implements Tab {
                         tabPane.remove(i);
                         f = new File(textPaneAt.getName());
                         index = i;
+                        break;
+                    case 2: // Overwrite 2
+                        overwrite(i);
+                        alreadyOpened = true;
+                        break;
+                    default: // Ignore
+                        alreadyOpened = true;
                     }
                 } else {
                     alreadyOpened = true;
