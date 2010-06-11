@@ -35,7 +35,7 @@ int
 sci_xcosPalEnable(char *fname, unsigned long fname_len)
 {
     CheckRhs(1, 1);
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
 
 
     char** name = NULL;
@@ -52,9 +52,14 @@ sci_xcosPalEnable(char *fname, unsigned long fname_len)
     {
         Palette::enable(getScilabJavaVM(), name, nameLength, true);
     }
-    catch (GiwsException::JniCallMethodException& exception)
+    catch (GiwsException::JniCallMethodException exception)
     {
-        Scierror(999, "%s: %s", fname, exception.getJavaDescription().c_str());
+        Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
+        return 0;
+    }
+    catch (GiwsException::JniException exception)
+    {
+        Scierror(999, "%s: %s\n", fname, exception.what());
         return 0;
     }
 

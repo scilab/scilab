@@ -67,14 +67,14 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
             
             // store the block instance if not already saved
             if exists("scs_m", 'l') == 0 then
-            	status = import_from_hdf5(block);
-            	if ~status then
-            		error(msprintf(gettext("%s: Unable to load block from ""%s"": hdf5 file expected.\n"), "xcosPalAddBlock", block));
-            	end
-            	
-            	if exists("scs_m", 'l') == 0 then
-            		error(msprintf(gettext("%s: Unable to load block from ""%s"": no `scs_m'' variable found.\n"), "xcosPalAddBlock", block));
-            	end
+                status = import_from_hdf5(block);
+                if ~status then
+                    error(msprintf(gettext("%s: Unable to load block from ""%s"": hdf5 file expected.\n"), "xcosPalAddBlock", block));
+                end
+                
+                if exists("scs_m", 'l') == 0 then
+                    error(msprintf(gettext("%s: Unable to load block from ""%s"": no `scs_m'' variable found.\n"), "xcosPalAddBlock", block));
+                end
             end
         end
     else
@@ -95,32 +95,40 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
         if typeof(pal_block_img) <> "string" | ~isfile(pal_block_img) then
             error(msprintf(gettext("%s: Wrong type for input argument ""%s"": path string expected.\n"), "xcosPalAddBlock", "pal_block_img"));
         end
-        pal_block_img = fullpath(pal_block_img);
+        currentFile = ls(pal_block_img); // evaluate wildcard and path
+        if size(currentFile, '*') <> 1 then
+            error(msprintf(gettext("%s: Wrong type for input argument ""%s"": path string expected.\n"), "xcosPalAddBlock", "pal_block_img"));
+        end
+        pal_block_img = fullpath(currentFile);
     end
     
     if exists("style", 'l') == 0 then
         block_img = TMPDIR + "/" + scs_m.gui + ".svg";
-        style = "image=" + block_img + ";";
+        style = "image=file:" + block_img + ";";
         status = generateBlockImage(scs_m, TMPDIR, imageType="svg");
         if ~status then
-        	error(msprintf(gettext("%s: Unable to generate the image ""%s"".\n"), "xcosPalAddBlock", block_img));
+            error(msprintf(gettext("%s: Unable to generate the image ""%s"".\n"), "xcosPalAddBlock", block_img));
         end
     else
-        if typeof(style) <> "string" & typeof(style) <> "struct" then
+        if typeof(style) <> "st" & typeof(style) <> "string" then
             error(msprintf(gettext("%s: Wrong type for input argument ""%s"": string or struct expected.\n"), "xcosPalAddBlock", "style"));
-        elseif typeof(style) <> "struct" then
+        elseif typeof(style) == "st" then
             formattedStyle = "";
-        	fields = fieldnames(style);
-        	for field = fields
-        	    formattedStyle = field + "=" + getfield(field, style) + ";";
-        	end
-        	style = formattedStyle;
-        elseif typeof(style) == "string" & isfile(style) then
-            style = "image=" + style + ";";
+            fields = fieldnames(style);
+            fieldsSize = size(fields, '*');
+            for i=1:fieldsSize
+                formattedStyle = fields(i) + "=" + ..
+                    getfield(fields(i), style) + ";" + formattedStyle;
+            end
+            style = formattedStyle;
         elseif typeof(style) == "string" then
-            // assume well formatted string, do nothing
-        else
-        	style = "";
+            currentFile = ls(style); // evaluate wildcard and path
+            if size(currentFile, '*') == 1 then
+                style = fullpath(currentFile);
+                style = "image=file:" + style + ";";
+            else
+                // assume well formatted string, do nothing
+            end
         end
     end
     

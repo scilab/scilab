@@ -47,7 +47,7 @@ function [status, msg] = xcosPalAdd(pal, category)
     
     if typeof(pal) == "palette" then
         myPalette = pal;
-        pal = TMPDIR + "palette.h5";
+        pal = TMPDIR + "/palette.h5";
         [status, msg] = xcosPalExport(myPalette, pal);
         if ~status then
             return;

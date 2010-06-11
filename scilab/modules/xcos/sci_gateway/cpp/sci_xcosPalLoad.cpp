@@ -57,11 +57,25 @@ sci_xcosPalLoad(char *fname, unsigned long fname_len)
     /* Call the java implementation */
     try
     {
-        Palette::loadPal(getScilabJavaVM(), path, category, lenCategory);
+        // FIXME #7266 workaround
+        // check category emptyness
+        if (lenCategory == 1 && *category == '\0')
+        {
+            Palette::loadPal(getScilabJavaVM(), path);
+        }
+        else
+        {
+            Palette::loadPal(getScilabJavaVM(), path, category, lenCategory);
+        }
     }
-    catch (GiwsException::JniCallMethodException& exception)
+    catch (GiwsException::JniCallMethodException exception)
     {
-        Scierror(999, "%s: %s", fname, exception.getJavaDescription().c_str());
+        Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
+        return 0;
+    }
+    catch (GiwsException::JniException exception)
+    {
+        Scierror(999, "%s: %s\n", fname, exception.what());
         return 0;
     }
 

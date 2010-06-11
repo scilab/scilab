@@ -56,9 +56,14 @@ sci_xcosPalGenerateIcon(char *fname, unsigned long fname_len)
     {
         Palette::generatePaletteIcon(getScilabJavaVM(), blockPath, iconPath);
     }
-    catch (GiwsException::JniCallMethodException& exception)
+    catch (GiwsException::JniCallMethodException exception)
     {
-        Scierror(999, "%s : %s", fname, exception.getJavaDescription().c_str());
+        Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
+        return 0;
+    }
+    catch (GiwsException::JniException exception)
+    {
+        Scierror(999, "%s: %s\n", fname, exception.what());
         return 0;
     }
 
