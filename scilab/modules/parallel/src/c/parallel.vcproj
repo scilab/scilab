@@ -45,7 +45,7 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions=""
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../src/cpp;../../../../libs/MALLOC/includes;../../../dynamic_link/includes;../../../parameters/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl"
+				AdditionalIncludeDirectories=".;../../includes;../../src/cpp;../../../../libs/MALLOC/includes;../../../dynamic_link/includes;../../../parameters/includes;../../../jvm/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/src/c/scilab_windows;../../../localization/includes;../../../../libs/intl;../../../../java/jdk/include;../../../../java/jdk/include/win32"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;PARALLEL_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -129,7 +129,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../src/cpp;../../../../libs/MALLOC/includes;../../../dynamic_link/includes;../../../parameters/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl"
+				AdditionalIncludeDirectories=".;../../includes;../../src/cpp;../../../../libs/MALLOC/includes;../../../dynamic_link/includes;../../../parameters/includes;../../../jvm/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/src/c/scilab_windows;../../../localization/includes;../../../../libs/intl;../../../../java/jdk/include;../../../../java/jdk/include/win32"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;PARALLEL_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -216,7 +216,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;../../includes;../../src/cpp;../../../../libs/MALLOC/includes;../../../dynamic_link/includes;../../../parameters/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl"
+				AdditionalIncludeDirectories=".;../../includes;../../src/cpp;../../../../libs/MALLOC/includes;../../../dynamic_link/includes;../../../parameters/includes;../../../jvm/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/src/c/scilab_windows;../../../localization/includes;../../../../libs/intl;../../../../java/jdk/include;../../../../java/jdk/include/win32"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;PARALLEL_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -306,7 +306,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;../../includes;../../src/cpp;../../../../libs/MALLOC/includes;../../../dynamic_link/includes;../../../parameters/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl"
+				AdditionalIncludeDirectories=".;../../includes;../../src/cpp;../../../../libs/MALLOC/includes;../../../dynamic_link/includes;../../../parameters/includes;../../../jvm/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/src/c/scilab_windows;../../../localization/includes;../../../../libs/intl;../../../../java/jdk/include;../../../../java/jdk/include/win32"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;PARALLEL_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -388,10 +388,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\mmapWindows.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\cpp\sci_parallel_run.cpp"
 				>
 			</File>
@@ -410,10 +406,6 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\gw_parallel.h"
-				>
-			</File>
-			<File
-				RelativePath=".\mmapWindows.h"
 				>
 			</File>
 			<File

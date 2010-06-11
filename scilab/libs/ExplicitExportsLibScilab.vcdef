@@ -32,7 +32,7 @@ basbrk_
 ; used to synchronize thread
 ;
 LaunchScilab
-LaunchScilabLock
+pLaunchScilabLock
 ;
 ;
 BuildWithVS8ExpressF2C

@@ -20,45 +20,45 @@
 #define __THREAD_WRAPPER_H__
 
 #ifdef _MSC_VER
-	#ifndef _WIN32_WINNT
-		#define _WIN32_WINNT 0x500
-	#endif
-	#include <Windows.h>
-	#include <process.h>
+#ifndef _WIN32_WINNT
+#define _WIN32_WINNT 0x500
+#endif
+#include <Windows.h>
+#include <process.h>
 
-	typedef HANDLE				__threadId;
-	typedef HANDLE				__threadLock;
-	typedef CRITICAL_SECTION	__threadSignalLock;
-	typedef HANDLE				__threadSignal;
+typedef HANDLE				__threadId;
+typedef HANDLE				__threadLock;
+typedef CRITICAL_SECTION	__threadSignalLock;
+typedef HANDLE				__threadSignal;
 
-	#define __InitSignalLock(lockName)				InitializeCriticalSection(lockName)
+#define __InitSignalLock(lockName)				InitializeCriticalSection(lockName)
 
-	#define __LockSignal(lockName)					EnterCriticalSection(lockName)
+#define __LockSignal(lockName)					EnterCriticalSection(lockName)
 
-	#define __UnLockSignal(lockName)				LeaveCriticalSection(lockName)
+#define __UnLockSignal(lockName)				LeaveCriticalSection(lockName)
 
-	#define __InitLock(lockName)					(*(lockName)=CreateMutex(NULL,FALSE,NULL))
+#define __InitLock(lockName)					(*(lockName)=CreateMutex(NULL, FALSE, NULL))
 
-	#define __Lock(lockName)						WaitForSingleObject(*lockName,INFINITE)
+#define __Lock(lockName)						WaitForSingleObject(*lockName, INFINITE)
 
-	#define __UnLock(lockName)						ReleaseMutex(*lockName)
+#define __UnLock(lockName)						ReleaseMutex(*lockName)
 
-	#define __InitSignal(signalName)				(*signalName=CreateEvent(NULL,FALSE,FALSE,NULL))
+#define __InitSignal(signalName)				(*signalName=CreateEvent(NULL, FALSE, FALSE, NULL))
 
-	#define __Signal(signalName)					SetEvent(*signalName)
+#define __Signal(signalName)					SetEvent(*signalName)
 
-	#define __Wait(signalName, lockName)			{ResetEvent(*signalName);__UnLockSignal(lockName);WaitForSingleObject(*signalName, INFINITE);__LockSignal(lockName);};
+#define __Wait(signalName, lockName)			{ResetEvent(*signalName); __UnLockSignal(lockName); WaitForSingleObject(*signalName, INFINITE); __LockSignal(lockName);};
 
-	#define __CreateThread(threadId, functionName)  *(threadId)=CreateThread(NULL,0,(LPTHREAD_START_ROUTINE)functionName, NULL,0,NULL)
+#define __CreateThread(threadId, functionName)  *(threadId) = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)functionName, NULL, 0, NULL)
 
-	#define __WaitThreadDie(threadId)				((WaitForSingleObject((threadId),INFINITE)!=WAIT_OBJECT_0) || !CloseHandle(threadId))
+#define __WaitThreadDie(threadId)				((WaitForSingleObject((threadId),INFINITE)!=WAIT_OBJECT_0) || !CloseHandle(threadId))
 
-	#define __Terminate(threadId)					TerminateThread(threadId, 0)
+#define __Terminate(threadId)					TerminateThread(threadId, 0)
 
-        #define __StaticInitLock                                        NULL
+#define __StaticInitLock                                        NULL
 
 #else
-	#include <pthread.h>
+#include <pthread.h>
 
 typedef pthread_t __threadId;
 typedef pthread_mutex_t __threadLock;
@@ -70,8 +70,18 @@ typedef pthread_cond_t __threadSignal;
 #define __Lock(lockName)			pthread_mutex_lock(lockName)
 
 #define __UnLock(lockName)			pthread_mutex_unlock(lockName)
+/* PTHREAD_MUTEX_ERRORCHECK_NP needed for a safe release atexit when we try to release without knowing if we own the lock
+PTHREAD_PROCESS_SHARED needed for interprocess synch (plus alloc in shared mem thread_mutexattr_settype*/
+#define __InitSignalLock(lockName) \
+    do { \
+    pthread_mutexattr_t attr; \
+    pthread_mutexattr_init (&attr); \
+    pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_ERRORCHECK_NP); \
+    pthread_mutexattr_setpshared (&attr, PTHREAD_PROCESS_SHARED); \
+    pthread_mutex_init(lockName, NULL); \
+    pthread_mutexattr_destroy(&attr); \
+    } while (0)
 
-#define __InitSignalLock(lockName)			pthread_mutex_init(lockName, NULL)
 
 #define __LockSignal(lockName)			pthread_mutex_lock(lockName)
 

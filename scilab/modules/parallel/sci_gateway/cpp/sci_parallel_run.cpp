@@ -594,14 +594,10 @@ namespace
                 err= allocMatrixOfDouble(pvApiCtx, ++currentTop, 0, 0, &unused);
             }
             Nbvars = Rhs+Lhs+sciRhs;
-            if(byName)
-            {
-                C2F(scistring)(&sciArgPos, scilabFunctionName, &sciLhs, &sciRhs, static_cast<unsigned long>(scilabFunctionNameLength));
-            }
-            else
-            {
-                C2F(scifunction)(&sciArgPos, &scilabFunction, &sciLhs, &sciRhs);
-            }
+            bool success(byName
+                           ? C2F(scistring)(&sciArgPos, scilabFunctionName, &sciLhs, &sciRhs, static_cast<unsigned long>(scilabFunctionNameLength))
+                           : C2F(scifunction)(&sciArgPos, &scilabFunction, &sciLhs, &sciRhs)
+                           ==0);
             // result r is now on first position on stack
             {
                 Nbvars = static_cast<int>(Rhs + Lhs + sciRhs + dummyVars);
@@ -611,9 +607,12 @@ namespace
                          ; it != lhsDesc.end(); ++it, ++resPos, ++res)
                 {
                     scilabVar_t scilabRes;
-                    err= getVarAddressFromPosition(pvApiCtx, resPos, &scilabRes);
+                    if(success)
+                    {
+                        err= getVarAddressFromPosition(pvApiCtx, resPos, &scilabRes);
+                    }
                     scilabDesc_t resDesc;
-                    if(err.iErr)
+                    if(!success || err.iErr)
                     {/* there was an error getting the result variable */
                         resDesc= *it; /* pretend we got the right type */
                         resDesc.second.first = resDesc.second.second= 0;/* but 0 elements */

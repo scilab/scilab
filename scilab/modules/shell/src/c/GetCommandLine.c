@@ -11,6 +11,7 @@
  */
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #ifdef _MSC_VER
 #include <io.h>
 #define isatty	_isatty
@@ -31,7 +32,15 @@
 #include "GetCommandLine.h"
 #include "TermReadAndProcess.h"
 #ifdef _MSC_VER
+
+#include "mmapWindows.h"
 #include "strdup_windows.h"
+
+#else
+#include <sys/mman.h>
+#ifndef MAP_ANONYMOUS
+# define MAP_ANONYMOUS MAP_ANON
+#endif
 #endif
 
 #ifdef _MSC_VER
@@ -47,12 +56,23 @@ static char* tmpPrompt = NULL;
 static char * __CommandLine = NULL;
 /*--------------------------------------------------------------------------*/
 
-IMPORT_SIGNAL __threadSignal		LaunchScilab;
-IMPORT_SIGNAL __threadSignalLock	LaunchScilabLock;
+IMPORT_SIGNAL __threadSignal        LaunchScilab;
+IMPORT_SIGNAL __threadSignalLock    *pLaunchScilabLock;
 
-static __threadSignal	TimeToWork;
+static __threadSignal   TimeToWork;
 
-static __threadSignalLock ReadyForLaunch;
+
+static __threadSignalLock *pReadyForLaunch= NULL;
+
+
+/* exit(0) must unlock */
+static void release(void)
+{
+    if(pReadyForLaunch)
+    {
+        __UnLockSignal(pReadyForLaunch);
+    }
+}
 
 static BOOL WatchStoreCmdThreadAlive = FALSE;
 static __threadId WatchStoreCmdThread;
@@ -111,8 +131,10 @@ char *getConsoleInputLine(void)
 */
 static void initAll(void) {
   initialized = TRUE;
+  pReadyForLaunch = mmap(0, sizeof(__threadSignalLock), PROT_READ | PROT_WRITE,MAP_SHARED |  MAP_ANONYMOUS, -1, 0);
+  atexit(release);
   __InitSignal(&TimeToWork);
-  __InitSignalLock(&ReadyForLaunch);
+  __InitSignalLock(pReadyForLaunch);
 }
 
 
@@ -122,14 +144,14 @@ static void initAll(void) {
 ** sent when StoreCommand is performed.
 */
 static void *watchStoreCommand(void *in) {
-  __LockSignal(&LaunchScilabLock);
-  __Wait(&LaunchScilab, &LaunchScilabLock);
-  __UnLockSignal(&LaunchScilabLock);
+  __LockSignal(pLaunchScilabLock);
+  __Wait(&LaunchScilab, pLaunchScilabLock);
+  __UnLockSignal(pLaunchScilabLock);
 
-  __LockSignal(&ReadyForLaunch);
+  __LockSignal(pReadyForLaunch);
   WatchStoreCmdThreadAlive=FALSE;
   __Signal(&TimeToWork);
-  __UnLockSignal(&ReadyForLaunch);
+  __UnLockSignal(pReadyForLaunch);
 
   return NULL;
 }
@@ -143,10 +165,10 @@ static void *watchStoreCommand(void *in) {
 static void *watchGetCommandLine(void *in) {
   getCommandLine();
 
-  __LockSignal(&ReadyForLaunch);
+  __LockSignal(pReadyForLaunch);
   WatchGetCmdLineThreadAlive = FALSE;
   __Signal(&TimeToWork);
-  __UnLockSignal(&ReadyForLaunch);
+  __UnLockSignal(pReadyForLaunch);
 
   return NULL;
 
@@ -159,68 +181,68 @@ static void *watchGetCommandLine(void *in) {
  * @TODO remove unused arg buf_size, menusflag, modex & dummy1
 */
 void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
-		 int *menusflag,int * modex,long int dummy1)
+         int *menusflag,int * modex,long int dummy1)
 {
 
-	/* if not an interactive terminal */
+    /* if not an interactive terminal */
 #ifdef _MSC_VER
-	/* if file descriptor returned is -2 stdin is not associated with an intput stream */
-	/* example : echo plot3d | scilex -nw -e */
-	if(!isatty(fileno(stdin)) && (fileno(stdin) != -2) && getScilabMode() != SCILAB_STD )
+    /* if file descriptor returned is -2 stdin is not associated with an intput stream */
+    /* example : echo plot3d | scilex -nw -e */
+    if(!isatty(fileno(stdin)) && (fileno(stdin) != -2) && getScilabMode() != SCILAB_STD )
 #else
-	if ( !isatty(fileno(stdin)) && getScilabMode() != SCILAB_STD )
+    if ( !isatty(fileno(stdin)) && getScilabMode() != SCILAB_STD )
 #endif
-	{
-		/* read a line into the buffer, but not too
-		* big */
-		*eof = (fgets(buffer, *buf_size, stdin) == NULL);
-		*len_line = (int)strlen(buffer);
-		/* remove newline character if there */
-		if(buffer[*len_line - 1] == '\n') 
-		{
-			(*len_line)--;
-		}
-		return;
-	}
+    {
+        /* read a line into the buffer, but not too
+        * big */
+        *eof = (fgets(buffer, *buf_size, stdin) == NULL);
+        *len_line = (int)strlen(buffer);
+        /* remove newline character if there */
+        if(buffer[*len_line - 1] == '\n')
+        {
+            (*len_line)--;
+        }
+        return;
+    }
 
   if(!initialized)
     {
       initAll();
     }
 
-  __LockSignal(&ReadyForLaunch);
+  __LockSignal(pReadyForLaunch);
 
   if (__CommandLine)
   {
-	  FREE(__CommandLine);
-	  __CommandLine = NULL;
+      FREE(__CommandLine);
+      __CommandLine = NULL;
   }
   __CommandLine = strdup("");
 
   if (ismenu() == 0)
   {
-	  if (!WatchGetCmdLineThreadAlive)
-	  {
-		  if (WatchGetCmdLineThread)
-		  {
-			  __WaitThreadDie(WatchGetCmdLineThread);
-		  }
-		  __CreateThread(&WatchGetCmdLineThread, &watchGetCommandLine);
-		  WatchGetCmdLineThreadAlive = TRUE;
-	  }
+      if (!WatchGetCmdLineThreadAlive)
+      {
+          if (WatchGetCmdLineThread)
+          {
+              __WaitThreadDie(WatchGetCmdLineThread);
+          }
+          __CreateThread(&WatchGetCmdLineThread, &watchGetCommandLine);
+          WatchGetCmdLineThreadAlive = TRUE;
+      }
       if (!WatchStoreCmdThreadAlive)
-	  {
-		  if (WatchStoreCmdThread)
-		  {
-			  __WaitThreadDie(WatchStoreCmdThread);
-		  }
-		  __CreateThread(&WatchStoreCmdThread, &watchStoreCommand);
-		  WatchStoreCmdThreadAlive = TRUE;
-	  }
+      {
+          if (WatchStoreCmdThread)
+          {
+              __WaitThreadDie(WatchStoreCmdThread);
+          }
+          __CreateThread(&WatchStoreCmdThread, &watchStoreCommand);
+          WatchStoreCmdThreadAlive = TRUE;
+      }
 
-      __Wait(&TimeToWork, &ReadyForLaunch);
+      __Wait(&TimeToWork, pReadyForLaunch);
   }
-  __UnLockSignal(&ReadyForLaunch);
+  __UnLockSignal(pReadyForLaunch);
 
   /*
   ** WARNING : Old crappy f.... code
@@ -229,14 +251,13 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
   */
   if (__CommandLine)
   {
-	strcpy(buffer, __CommandLine);
+    strcpy(buffer, __CommandLine);
   }
   else
   {
-	  strcpy(buffer,"");
+      strcpy(buffer,"");
   }
   *len_line = (int)strlen(buffer);
 
   *eof = FALSE;
 }
-

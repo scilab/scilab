@@ -13,6 +13,8 @@
 #ifndef __MMAPWINDOWS_H__
 #define __MMAPWINDOWS_H__
 
+#include "dynlib_scilab_windows.h"
+
 #define MMAP_FAILURE (-1)
 #define MUNMAP_FAILURE (-1)
 #define PROT_READ 0x1
@@ -22,9 +24,9 @@
 
 /* Emulation of mmap and munmap on Windows */
 
-void *mmap (void *ptr, long size, long prot, long type, long handle, long arg);
+SCILAB_WINDOWS_IMPEXP void *mmap (void *ptr, long size, long prot, long type, long handle, long arg);
 
-long munmap (void *ptr, long size);
+SCILAB_WINDOWS_IMPEXP long munmap (void *ptr, long size);
 
 #endif /* __MMAPWINDOWS_H__ */
 /*--------------------------------------------------------------------------*/
