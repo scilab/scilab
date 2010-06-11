@@ -27,7 +27,7 @@ args=[1,2];
 res=parallel_run(args,g_fun_name,1);
 if res<>[2, 4] then bugmes();quit;end
 function a= g(arg1); a=2*arg1; endfunction;
-res=parallel_run(args, "g");
+res=parallel_run(args, g);
 if res<>[2, 4] then bugmes();quit;end
 fun_name='test_fun_2_1';
 c_prog=['#include  <math.h>'

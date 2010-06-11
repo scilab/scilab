@@ -595,9 +595,9 @@ namespace
             }
             Nbvars = Rhs+Lhs+sciRhs;
             bool success(byName
-                           ? C2F(scistring)(&sciArgPos, scilabFunctionName, &sciLhs, &sciRhs, static_cast<unsigned long>(scilabFunctionNameLength))
-                           : C2F(scifunction)(&sciArgPos, &scilabFunction, &sciLhs, &sciRhs)
-                           ==0);
+                          ? C2F(scistring)(&sciArgPos, scilabFunctionName, &sciLhs, &sciRhs, static_cast<unsigned long>(scilabFunctionNameLength))
+                          : C2F(scifunction)(&sciArgPos, &scilabFunction, &sciLhs, &sciRhs)
+                         );
             // result r is now on first position on stack
             {
                 Nbvars = static_cast<int>(Rhs + Lhs + sciRhs + dummyVars);
@@ -683,6 +683,8 @@ namespace
                         int rows, cols;
                         err= getMatrixOfString(pvApiCtx, addr, &rows, &cols, 0,0);
                         ok= (rows == 1) && (cols == 1);
+                    }/* no break */
+                    case sci_c_function:{
                         before_function= false;
                         break;
                     }

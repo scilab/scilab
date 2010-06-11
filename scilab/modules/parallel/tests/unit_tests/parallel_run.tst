@@ -35,7 +35,7 @@ if res<>[2, 4] then pause,end
 
 function a= g(arg1); a=2*arg1; endfunction;
 
-res=parallel_run(args, "g");
+res=parallel_run(args, g);
 if res<>[2, 4] then pause,end
 
 fun_name='test_fun_2_1';
