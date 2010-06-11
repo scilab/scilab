@@ -27,6 +27,8 @@
 	    <xsd:element name="string" type="StringParameter" minOccurs="0" maxOccurs="unbounded"/>
 	    <xsd:element name="integer" type="IntegerParameters" minOccurs="0" maxOccurs="unbounded"/>
 	    <xsd:element name="simple" type="SimpleParameter" minOccurs="0" maxOccurs="unbounded"/>
+	    <xsd:element name="str2int" type="Str2IntParameters" minOccurs="0" maxOccurs="unbounded"/>
+	    <xsd:element name="int2str" type="Int2StrParameters" minOccurs="0" maxOccurs="unbounded"/>
 	  </xsd:sequence>
 	    <xsd:attribute name="sim" type="xsd:string" use="required"/>
 	    <xsd:attribute name="xcos" type="xsd:string" use="required"/>	
@@ -65,6 +67,33 @@
 	<xsd:complexType name="IntegerValueMap">
 	    <xsd:attribute name="simVal" type="xsd:integer" use="required"/>
 	    <xsd:attribute name="xcosVal" type="xsd:integer" use="required"/>
+	 </xsd:complexType>
+
+	<xsd:complexType name="Str2IntParameters">
+	  <xsd:sequence>
+	    <xsd:element name="parMap" type="Str2IntValueMap" minOccurs="1" maxOccurs="unbounded"/>
+	  </xsd:sequence>
+	    <xsd:attribute name="sim" type="xsd:string" use="required"/>
+	    <xsd:attribute name="xcos" type="xsd:string" use="required"/>
+	    <xsd:attribute name="description" type="xsd:string" use="optional"/>
+	 </xsd:complexType>
+
+	<xsd:complexType name="Str2IntValueMap">
+	    <xsd:attribute name="simVal" type="xsd:string" use="required"/>
+	    <xsd:attribute name="xcosVal" type="xsd:integer" use="required"/>
+	 </xsd:complexType>
+
+	<xsd:complexType name="Int2StrParameters">
+	  <xsd:sequence>
+	    <xsd:element name="parMap" type="Int2StrValueMap" minOccurs="1" maxOccurs="unbounded"/>
+	  </xsd:sequence>
+	    <xsd:attribute name="sim" type="xsd:string" use="required"/>
+	    <xsd:attribute name="xcos" type="xsd:string" use="required"/>
+	    <xsd:attribute name="description" type="xsd:string" use="optional"/>
+	 </xsd:complexType>
+	<xsd:complexType name="Int2StrValueMap">
+	    <xsd:attribute name="simVal" type="xsd:integer" use="required"/>
+	    <xsd:attribute name="xcosVal" type="xsd:string" use="required"/>
 	 </xsd:complexType>
 	<!--Its possible that Ill have to add more parameter types, such as: boolean -->
 </xsd:schema>

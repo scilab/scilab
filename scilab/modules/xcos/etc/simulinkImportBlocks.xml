@@ -1,5 +1,5 @@
 <blocks>
-  <!--Template-->
+<!--Template-->
   <block sim="string" xcos="string" description="string">
     <!--Zero or more repetitions:-->
     <string sim="string" xcos="string" description="string">
@@ -14,22 +14,117 @@
     <!--Zero or more repetitions:-->
     <simple sim="string" xcos="string" description="string"/>
   </block>
-  <!-- Constant Block Compatibility Pattern -->
-  <block sim="Constant" xcos="CONST_m" description="no description">
-    <simple sim="Value" xcos="Constant" description="no description"/>
-  </block>
-  <!--Absolute Value Block Compatibility Pattern:-->
-  <block sim="Abs" xcos="ABSOLUTE_VALUE" description="
-	SampleTime - in xcos always inherited;
-	OutMax - output limiter not available;
-	OutDataTypeStr - always inherited(?);
-	RndMeth - rounding mode not available(?);
-	SaturateOnIntegerOverflow - always saturated(?);
-	">
-    <string sim="ZeroCross" xcos="zero_crossing" description="Enable zero-crossing detection">
-      <!--FIXME: here it should be string to int mapping-->
-      <parMap simVal="off" xcosVal="0"/>
-      <parMap simVal="yes" xcosVal="1"/>
-    </string>
-  </block>
+<!-- Continuous Library Block Parameters -->
+	  <!-- 	Derivative Block Compatibility Pattern -->
+	  <block sim="Derivative" xcos="DERIV" description="
+		LinearizePole - not available;
+		">
+	  </block>
+	  <!-- 	Integrator Block Compatibility Pattern -->
+	  <block sim="Integrator" xcos="INTEGRAL_m" description="
+		ExternalReset - not available;
+		InitialConditionSource - external?internal (?);
+		LimitOutput - switched on by default;
+		ShowSaturationPort - N/A;
+		ShowStatePort - N/A;
+		AbsoluteTolerance- N/A;
+		IgnoreLimit - N/A;
+		ContinuousStateAttributes - N/A;
+		">
+	    <!--FIXME: Can be complex! -->
+	    <integer sim="InitialCondition" xcos="Initial Condition" description="">
+	      <parMap simVal="1" xcosVal="1"/>
+	    </integer>
+	    <integer sim="UpperSaturationLimit" xcos="Upper limit" description="">
+	      <parMap simVal="1" xcosVal="1"/>
+	    </integer>
+	    <!--FIXME: Can be complex! -->
+	    <integer sim="LowerSaturationLimit" xcos="Lower limit" description="">
+	      <parMap simVal="1" xcosVal="1"/>
+	    </integer>
+	    <!--FIXME: Can be complex! -->
+	    <str2int sim="ZeroCross" xcos="zero_crossing" description="Enable zero-crossing detection">
+	      <parMap simVal="off" xcosVal="0"/>
+	      <parMap simVal="on" xcosVal="1"/>
+	    </str2int>
+	    <str2int sim="ExternalReset" xcos="With re-initialization" description="">
+	      <!-- TODO: {'none'} | 'rising' | 'falling' | 'either' | 'level' | 'level hold' -->
+	      <parMap simVal="none" xcosVal="0"/>
+	    </str2int>
+	    <str2int sim="LimitOutput" xcos="With saturation" description="">
+	      <parMap simVal="off" xcosVal="0"/>
+	      <parMap simVal="on" xcosVal="1"/>
+	    </str2int>
+	  </block>
+<!-- Math Operations Library Block Parameters -->
+  <!-- A -->
+  	  <!--Absolute Value Block Compatibility Pattern:-->
+	  <block sim="Abs" xcos="ABSOLUTE_VALUE" description="
+		SampleTime - in xcos always inherited;
+		OutMax - output limiter not available;
+		OutDataTypeStr - always inherited(?);
+		RndMeth - rounding mode not available(?);
+		SaturateOnIntegerOverflow - always saturated(?);
+		">
+	    <!-- TODO: ZeroCross for the second time, create general parameter -->
+	    <str2int sim="ZeroCross" xcos="zero_crossing" description="Enable zero-crossing detection">
+	      <parMap simVal="off" xcosVal="0"/>
+	      <parMap simVal="on" xcosVal="1"/>
+	    </str2int>
+	  </block>
+	  <!--Add Block Compatibility Pattern:-->
+	  <block sim="Add" xcos="SUMMATION" description="
+		IconShape - not available;
+		CollapseMode - not available;
+		CollapseDim - not available;
+		SampleTime - always inherited;
+		AccumDataTypeStr - always inherited;
+		OutMin, OutMax - limiters of in/out values not available;
+		OutputDataType - always inherited;
+		LockScale - (?);
+		RndMeth - integer rounding method, unneccesery as output is inherited from
+		">
+	    <!-- TODO: unavailable parameter of data type, should be inherited from inputs some special handling needed -->
+	    <simple sim="unavailable" xcos="Datatype" description="should be inherited from inputs"/>
+	    <!-- TODO: '++-' to [1 , 1 , -1], some special handling needed -->
+	    <str2int sim="Inputs" xcos="Number of inputs or sign vector" description="String with +/- to vec [1/-1]">
+	      <parMap simVal="+" xcosVal="1"/>
+	      <parMap simVal="-" xcosVal="-1"/>
+	    </str2int>
+	    <str2int sim=" SaturateOnIntegerOverflow" xcos="Do on Overflow" description="">
+	      <parMap simVal="on" xcosVal="1"/>
+	      <parMap simVal="off" xcosVal="0"/>
+	    </str2int>
+	  </block>
+	  <!--Algebraic Constraint Compatibility Pattern:-->
+	  <block sim="Algebraic Constraint" xcos="CONSTRAINT_c" description="no description">
+	    <simple sim="z0" xcos="initial guess values" description="no description"/>
+	  </block>
+	  <!--Assignment Compatibility Pattern:-->
+	  <block sim="Assignment" xcos="Assignment" description="no description">
+	    <integer sim="NumberOfDimensions" xcos="Number of output dimensions" description="">
+	      <parMap simVal="1" xcosVal="1"/>
+	    </integer>
+	    <str2int sim="IndexMode" xcos="Index Base" description="">
+	      <parMap simVal="Zero-based" xcosVal="0"/>
+	      <parMap simVal="One-based" xcosVal="1"/>
+	    </str2int>
+	    <str2int sim="IndexOptionArray" xcos="Index Option" description="">
+	      <parMap simVal="Zero-based" xcosVal="0"/>
+	      <parMap simVal="One-based" xcosVal="1"/>
+	    </str2int>
+	    <!--TODO: IndexOptions: See IndexOptionArray parameter for more information.
+			 'Assign all' | {'Index vector (dialog)'} | 'Index vector (port)' | 'Starting index (dialog)' | 'Starting index (port)'	
+		FIXME: Is it available only in scicos?	
+            -->
+	  </block>
+  <!-- B -->
+
+<!-- Sources Library Block Parameters -->
+  <!-- C -->
+	  <!-- Constant Block Compatibility Pattern -->
+	  <block sim="Constant" xcos="CONST_m" description="no description">
+	    <simple sim="Value" xcos="Constant" description="no description"/>
+	  </block>
+
 </blocks>
