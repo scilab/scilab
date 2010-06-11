@@ -63,7 +63,11 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 		// fill all diagram parameters
 		if (LOG.isTraceEnabled()) {
 			LOG.trace("From " + base.getName() + ":");
-			LOG.trace(base.getParameterNames().toString());
+			UnmodifiableIterator<String> paramNameIter = base.getParameterNames().iterator();
+			while(paramNameIter.hasNext()){
+				String paramName = paramNameIter.next();
+				LOG.trace(paramName + ": " + base.getParameter(paramName));
+			}
 		}
 		decodeObjs(diag);
 	}

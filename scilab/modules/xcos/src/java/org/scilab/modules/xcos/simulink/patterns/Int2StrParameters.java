@@ -18,16 +18,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for IntegerParameters complex type.
+ * <p>Java class for Int2StrParameters complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="IntegerParameters">
+ * &lt;complexType name="Int2StrParameters">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="parMap" type="{}IntegerValueMap" maxOccurs="unbounded"/>
+ *         &lt;element name="parMap" type="{}Int2StrValueMap" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *       &lt;attribute name="sim" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="xcos" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
@@ -40,13 +40,13 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "IntegerParameters", propOrder = {
+@XmlType(name = "Int2StrParameters", propOrder = {
     "parMap"
 })
-public class IntegerParameters {
+public class Int2StrParameters {
 
     @XmlElement(required = true)
-    protected List<IntegerValueMap> parMap;
+    protected List<Int2StrValueMap> parMap;
     @XmlAttribute(required = true)
     protected String sim;
     @XmlAttribute(required = true)
@@ -72,13 +72,13 @@ public class IntegerParameters {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link IntegerValueMap }
+     * {@link Int2StrValueMap }
      * 
      * 
      */
-    public List<IntegerValueMap> getParMap() {
+    public List<Int2StrValueMap> getParMap() {
         if (parMap == null) {
-            parMap = new ArrayList<IntegerValueMap>();
+            parMap = new ArrayList<Int2StrValueMap>();
         }
         return this.parMap;
     }

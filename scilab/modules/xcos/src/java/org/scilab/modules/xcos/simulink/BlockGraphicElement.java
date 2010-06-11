@@ -60,12 +60,6 @@ public class BlockGraphicElement{
 		 * \\s+ to split string around whitespaces
 		 */
 		String[] position = from.getParameter("Position").replaceAll("\\W", " ").trim().split("\\s+");
-		if (LOG.isTraceEnabled()) {
-			LOG.trace(Integer.toString(position.length));
-			for(int i = 0; i < position.length ; i++){
-				LOG.trace(position[i]);
-			}
-		}
 		double x = Double.parseDouble(position[0]);
 		double y = Double.parseDouble(position[1]);
 		

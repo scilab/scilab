@@ -57,10 +57,6 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 		if (block == null) {
 			block = BlockFactory.createBlock(from.getId());
 		}
-		if (LOG.isTraceEnabled()) {
-			LOG.trace("From " + from.getName() + ":");
-			LOG.trace(from.getParameterNames().toString());
-		}
 		
 		/*
 		 * TODO: SimulinkBlock decoding, parameters etc.

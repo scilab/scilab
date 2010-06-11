@@ -16,16 +16,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for IntegerValueMap complex type.
+ * <p>Java class for Int2StrValueMap complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="IntegerValueMap">
+ * &lt;complexType name="Int2StrValueMap">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;attribute name="simVal" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
- *       &lt;attribute name="xcosVal" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
+ *       &lt;attribute name="xcosVal" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -34,13 +34,13 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "IntegerValueMap")
-public class IntegerValueMap {
+@XmlType(name = "Int2StrValueMap")
+public class Int2StrValueMap {
 
     @XmlAttribute(required = true)
     protected BigInteger simVal;
     @XmlAttribute(required = true)
-    protected BigInteger xcosVal;
+    protected String xcosVal;
 
     /**
      * Gets the value of the simVal property.
@@ -71,10 +71,10 @@ public class IntegerValueMap {
      * 
      * @return
      *     possible object is
-     *     {@link BigInteger }
+     *     {@link String }
      *     
      */
-    public BigInteger getXcosVal() {
+    public String getXcosVal() {
         return xcosVal;
     }
 
@@ -83,10 +83,10 @@ public class IntegerValueMap {
      * 
      * @param value
      *     allowed object is
-     *     {@link BigInteger }
+     *     {@link String }
      *     
      */
-    public void setXcosVal(BigInteger value) {
+    public void setXcosVal(String value) {
         this.xcosVal = value;
     }
 
