@@ -82,7 +82,7 @@ public class DropFilesListener implements DropTargetListener {
         int line1 = Math.max(0, line0 + Math.min(root.getElementCount() - 1 - line0, (int) Math.signum(y) * y * y));
         int diff = actualPos - root.getElement(line0).getStartOffset();
         Element line = root.getElement(line1);
-        pane.setCaretPosition(Math.min(line.getStartOffset() + diff, line.getEndOffset()));
+        pane.setCaretPosition(Math.min(line.getStartOffset() + diff, line.getEndOffset() - 1));
     }
 
     /**

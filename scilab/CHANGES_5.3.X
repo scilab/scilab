@@ -109,14 +109,20 @@ Text Editor:
 
 * bug 7112 fixed - Two transpositions gave a string (if a'==1 then a=b').
 
+* bug 7238 fixed - The dot/del key on the numeric pad added a 'suppr' and a dot.
+
+* bug 7239 fixed - Font style was lost on a selected text.
+
+* bug 7262 fixed - An exception was thrown when a text was dragged and droped.
+
+* bug 7272 fixed - No check on the lastModified property was performed when
+                   a file is opened.
+
 Incompatibilities:
 ==================
 * The bug 4583 fix makes the default element value in string array assignment
   be an empty string instead of " ".
 
-* bug 7238 fixed - The dot/del key on the numeric pad added a 'suppr' and a dot.
-
-* bug 7239 fixed - Font style was lost on a selected text.
 
 FFTW:
 =====
