@@ -633,6 +633,8 @@ Bug fixes:
 
 * bug 4505 fixed - A red vertical bar appeared for some continuous time systems.
 
+* bug 4375 fixed - Interactive test SCI/modules/core/tests/unit_tests/breakpoints.tst failed
+
 * bug 4572 fixed - Scilab did a SIGSEGV after stacksize('max') + stacksize().
 
 * bug 4583 fixed - Default value for string array assignment was " " instead
