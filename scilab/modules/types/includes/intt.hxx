@@ -37,10 +37,16 @@ namespace types
      ** Scilab : int64 -> 64 bytes -> C : long long
      */
 
-    template <typename T> 
+    template <typename T>
     class IntT : public Int
     {
+    private :
         T* m_pData;
+
+        void data_set(T *_pData)
+        {
+            m_pData = _pData;
+        }
 
     public :
         //IntT
@@ -52,7 +58,7 @@ namespace types
 
             m_pData				= new T[m_iSize];
         }
-        
+
         IntT()
         {
         }
@@ -76,10 +82,22 @@ namespace types
                 m_pData[i] = _pTData[i];
             }
         }
-        
+
         ~IntT()
         {
             delete[] m_pData;
+        }
+
+        virtual Int *clone()
+        {
+            Int *pOut = Int::createInt(rows_get(), cols_get(), getIntType());
+
+            T* pTData = new T[size_get()];
+            memcpy(pTData, m_pData, size_get() * sizeof(T));
+
+            dynamic_cast<IntT<T>*>(pOut)->data_set(pTData);
+
+            return pOut;
         }
 
         bool data_set(Int* _pTData)
@@ -88,7 +106,7 @@ namespace types
             {
                 return false;
             }
-                
+
             for(int i = 0 ; i < m_iSize ; i++)
             {
                 m_pData[i] = static_cast<T>(_pTData->data_get(i));
@@ -154,23 +172,23 @@ namespace types
 
         GenericType* get_col_value(int _iPos)
         {
-            //FIXME 
+            //FIXME
             return NULL;
         }
-        
+
         Int* extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector)
         {
             Int* pOut		= NULL;
             int iRowsOut	= 0;
             int iColsOut	= 0;
-                
+
             if(extract_size_get(_piMaxDim, _piDimSize, _bAsVector, &iRowsOut, &iColsOut) == false)
             {
                 return NULL;
             }
-                
+
             pOut	= Int::createInt(iRowsOut, iColsOut, getIntType());
-            return extract(pOut, _iSeqCount, _piSeqCoord, _piMaxDim, _piDimSize, _bAsVector); 
+            return extract(pOut, _iSeqCount, _piSeqCoord, _piMaxDim, _piDimSize, _bAsVector);
         }
 
 
@@ -255,11 +273,11 @@ namespace types
             }
             return true;
         }
-        
+
 
         std::string toString(int _iPrecision, int _iLineLen)
         {
-            std::ostringstream ostr;
+           std::ostringstream ostr;
             if(m_iRows == 1 && m_iCols == 1)
             {//scalar
                 int iWidth = 0;
@@ -371,7 +389,7 @@ namespace types
                 ostr << ostemp.str();
             }
             return ostr.str();
-        }  
+        }
         virtual IntType getIntType() = 0;
 
     private :
@@ -379,7 +397,7 @@ namespace types
         virtual void GetIntFormat(T _TVal, int *_piWidth) = 0;
 
     };
-    
+
     /*
     ** Class SignedIntT<typename T>
     ** \brief This is a inner class that derivates from IntT to define all __signed__ integers
@@ -394,16 +412,18 @@ namespace types
     {
     protected :
         SignedIntT(int _iRows, int _iCols) : IntT<T>(_iRows, _iCols) {}
+
         void AddIntValue(std::ostringstream *_postr, T _TVal, int _iWidth, bool bPrintPlusSign, bool bPrintOne)
         {
             AddSignedIntValue(_postr, _TVal, _iWidth, bPrintPlusSign, bPrintOne);
         }
+
         void GetIntFormat(T _TVal, int *_piWidth)
         {
             GetSignedIntFormat(_TVal, _piWidth);
         }
     };
-    
+
     /*
     ** Class SignedIntT<typename T>
     ** \brief This is a inner class that derivates from IntT to define all __unsisigned__ integers
@@ -427,7 +447,7 @@ namespace types
             GetUnsignedIntFormat(_TVal, _piWidth);
         }
     };
-    
+
     /*
     ** Class Int8 <-> Scilab int8(X)
     */
@@ -441,7 +461,7 @@ namespace types
 
     /*
     ** Class UInt8 <-> Scilab uint8(X)
-    */	
+    */
     class UInt8 : public UnsignedIntT<unsigned char>
     {
     public :
@@ -461,7 +481,7 @@ namespace types
         IntType getIntType() { return Type16; }
         string getTypeStr(){return "int16";}
     };
-	
+
     /*
     ** Class UInt16 <-> Scilab uint16(X)
     */
@@ -481,10 +501,10 @@ namespace types
     {
     public :
         Int32(int _iRows, int _iCols) : SignedIntT<int>(_iRows, _iCols) {}
-        IntType getIntType() { return Type32; } 
+        IntType getIntType() { return Type32; }
         string getTypeStr(){return "int32";}
     };
-	
+
     /*
     ** Class UInt32 <-> Scilab uint32(X)
     */
@@ -492,7 +512,7 @@ namespace types
     {
     public :
         UInt32(int _iRows, int _iCols) : UnsignedIntT<unsigned int>(_iRows, _iCols) {}
-        IntType getIntType() { return TypeUnsigned32; } 
+        IntType getIntType() { return TypeUnsigned32; }
         string getTypeStr(){return "uint32";}
     };
 
@@ -504,10 +524,10 @@ namespace types
     {
     public :
         Int64(int _iRows, int _iCols) : SignedIntT<long long>(_iRows, _iCols) {}
-        IntType getIntType() { return Type64; } 
+        IntType getIntType() { return Type64; }
         string getTypeStr(){return "int64";}
     };
-	
+
     /*
     ** Class UInt64 <-> Scilab uint64(X) -*- NEW Scilab 6.0 -*-
     */
@@ -515,7 +535,7 @@ namespace types
     {
     public :
         UInt64(int _iRows, int _iCols) : UnsignedIntT<unsigned long long>(_iRows, _iCols) {}
-        IntType getIntType() { return TypeUnsigned64; } 
+        IntType getIntType() { return TypeUnsigned64; }
         string getTypeStr(){return "uint64";}
     };
 }
