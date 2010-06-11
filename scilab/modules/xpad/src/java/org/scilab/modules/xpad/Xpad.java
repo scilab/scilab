@@ -241,7 +241,7 @@ public class Xpad extends SwingScilabTab implements Tab {
      */
     public static void xpad(String filePath) {
         Xpad editorInstance = launchXpad();
-        File f = new File(filePath);
+        File f = FileToCanonicalFile(new File(filePath));
         if (f.isDirectory()) { /* Bug 5131 */
             ConfigManager.saveLastOpenedDirectory(f.getPath());
             xpad();
@@ -259,7 +259,7 @@ public class Xpad extends SwingScilabTab implements Tab {
      */
     public static void xpad(String filePath, int lineNumber) {
         Xpad editorInstance = launchXpad();
-        File f = new File(filePath);
+        File f = FileToCanonicalFile(new File(filePath));
         ConfigXpadManager.saveToRecentOpenedFiles(filePath);
         editorInstance.updateRecentOpenedFilesMenu();
         editorInstance.readFileAndWait(f);
@@ -273,7 +273,7 @@ public class Xpad extends SwingScilabTab implements Tab {
      */
     public static void xpad(String filePath, String option) {
         Xpad editorInstance = launchXpad();
-        File f = new File(filePath);
+        File f = FileToCanonicalFile(new File(filePath));
         ConfigXpadManager.saveToRecentOpenedFiles(filePath);
         editorInstance.updateRecentOpenedFilesMenu();
         editorInstance.readFileAndWait(f);
@@ -611,9 +611,9 @@ public class Xpad extends SwingScilabTab implements Tab {
         SwingScilabFileChooser fileChooser = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
 
         fileChooser.setInitialDirectory(ConfigManager.getLastOpenedDirectory());
-        fileChooser .setAcceptAllFileFilterUsed(false);
-        fileChooser .setInitialDirectory(initialDirectoryPath);
-        fileChooser .setUiDialogType(Juigetfile.SAVE_DIALOG);
+        fileChooser.setAcceptAllFileFilterUsed(false);
+        fileChooser.setInitialDirectory(initialDirectoryPath);
+        fileChooser.setUiDialogType(Juigetfile.SAVE_DIALOG);
 
         // order is also important here
         fileChooser.addChoosableFileFilter(sceFilter);
@@ -632,7 +632,7 @@ public class Xpad extends SwingScilabTab implements Tab {
         int retval = fileChooser.showSaveDialog(this);
 
         if (retval == JFileChooser.APPROVE_OPTION) {
-            File f = fileChooser.getSelectedFile();
+            File f = FileToCanonicalFile(fileChooser.getSelectedFile());
             initialDirectoryPath = f.getPath();
             if (f.exists()) {
                 if (ScilabModalDialog.show(this, XpadMessages.REPLACE_FILE_TITLE,
@@ -731,7 +731,7 @@ public class Xpad extends SwingScilabTab implements Tab {
         int retval = fileChooser.showSaveDialog(this);
 
         if (retval == JFileChooser.APPROVE_OPTION) {
-            File f = fileChooser.getSelectedFile();
+            File f = FileToCanonicalFile(fileChooser.getSelectedFile());
             initialDirectoryPath = f.getPath();
             if (f.exists()) {
                 AnswerOption ans = ScilabModalDialog.show(this, XpadMessages.REPLACE_FILE_TITLE,
@@ -1644,5 +1644,17 @@ public class Xpad extends SwingScilabTab implements Tab {
             ed.closeXpad();
         }
         xpadList.clear();
+    }
+
+    /**
+     * @return the canonical file if possible
+     */
+    public static File FileToCanonicalFile(File f) {
+        /* Fix bug 5648 */
+        try {
+            return f.getCanonicalFile();
+        } catch(IOException e) {
+            return f;
+        }
     }
 }

@@ -33,65 +33,63 @@ import org.scilab.modules.xpad.utils.XpadMessages;
  */
 public final class OpenAction extends DefaultAction {
 
-	private static final long serialVersionUID = -8765712033802048782L;
+    private static final long serialVersionUID = -8765712033802048782L;
 
-	/**
-	 * Constructor
-	 * @param editor associated Xpad instance
-	 */
-	private OpenAction(Xpad editor) {
-		super(XpadMessages.OPEN, editor);
-	}
+    /**
+     * Constructor
+     * @param editor associated Xpad instance
+     */
+    private OpenAction(Xpad editor) {
+        super(XpadMessages.OPEN, editor);
+    }
 
-	/**
-	 * Open file action
-	 * @see org.scilab.modules.xpad.actions.DefaultAction#doAction()
-	 */
-	public void doAction() {
-		
-		String initialDirectoryPath = getEditor().getTextPane().getName();
-		if (initialDirectoryPath == null) {
-			initialDirectoryPath = ConfigManager.getLastOpenedDirectory() ;
-		}
+    /**
+     * Open file action
+     * @see org.scilab.modules.xpad.actions.DefaultAction#doAction()
+     */
+    public void doAction() {
 
-		String[] mask = new String[]{"*.cos*", "*.sci", "*.sce", "*.sc*"}; 
+        String initialDirectoryPath = getEditor().getTextPane().getName();
+        if (initialDirectoryPath == null) {
+            initialDirectoryPath = ConfigManager.getLastOpenedDirectory() ;
+        }
 
-		SwingScilabFileChooser fileChooser = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
-		fileChooser.setInitialDirectory(initialDirectoryPath);
-		fileChooser .setAcceptAllFileFilterUsed(true);
-		fileChooser .addMask(mask, null);		
-		fileChooser .setUiDialogType(Juigetfile.SAVE_DIALOG);	 	
+        String[] mask = new String[]{"*.cos*", "*.sci", "*.sce", "*.sc*"};
 
-		int retval = fileChooser.showOpenDialog(getEditor());
-		if (retval == JFileChooser.APPROVE_OPTION) {
-			File f = fileChooser.getSelectedFile();
-			ConfigManager.saveLastOpenedDirectory(f.getPath());
-			ConfigXpadManager.saveToRecentOpenedFiles(f.getPath());
+        SwingScilabFileChooser fileChooser = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
+        fileChooser.setInitialDirectory(initialDirectoryPath);
+        fileChooser.setAcceptAllFileFilterUsed(true);
+        fileChooser.addMask(mask, null);
+        fileChooser.setUiDialogType(Juigetfile.SAVE_DIALOG);
 
-			getEditor().setTitle(f.getPath() + " - " + XpadMessages.SCILAB_EDITOR);
-			getEditor().updateRecentOpenedFilesMenu();
-			getEditor().readFile(f);
+        int retval = fileChooser.showOpenDialog(getEditor());
+        if (retval == JFileChooser.APPROVE_OPTION) {
+            File f = fileChooser.getSelectedFile();
+            ConfigManager.saveLastOpenedDirectory(f.getPath());
+            ConfigXpadManager.saveToRecentOpenedFiles(f.getPath());
 
+            getEditor().setTitle(f.getPath() + " - " + XpadMessages.SCILAB_EDITOR);
+            getEditor().updateRecentOpenedFilesMenu();
+            getEditor().readFile(f);
+        }
+    }
 
-		}
-	}
+    /**
+     * Create a menu to add to Xpad menu bar
+     * @param editor associated Xpad instance
+     * @param key KeyStroke
+     * @return the menu
+     */
+    public static MenuItem createMenu(Xpad editor, KeyStroke key) {
+        return createMenu(XpadMessages.OPEN, null, new OpenAction(editor), key);
+    }
 
-	/**
-	 * Create a menu to add to Xpad menu bar
-	 * @param editor associated Xpad instance
-	 * @param key KeyStroke
-	 * @return the menu
-	 */
-        public static MenuItem createMenu(Xpad editor, KeyStroke key) {
-	    return createMenu(XpadMessages.OPEN, null, new OpenAction(editor), key);
-	}
-
-	/**
-	 * Create a button to add to Xpad tool bar
-	 * @param editor associated Xpad instance
-	 * @return the button
-	 */
-	public static PushButton createButton(Xpad editor) {
-		return createButton(XpadMessages.OPEN, "document-open.png", new OpenAction(editor));
-	}
+    /**
+     * Create a button to add to Xpad tool bar
+     * @param editor associated Xpad instance
+     * @return the button
+     */
+    public static PushButton createButton(Xpad editor) {
+        return createButton(XpadMessages.OPEN, "document-open.png", new OpenAction(editor));
+    }
 }

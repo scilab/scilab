@@ -82,6 +82,9 @@ Text Editor:
 
 * bug 5647 fixed - Bad line numbering when a file was just opened.
 
+* bug 5648 fixed - The editor let you think that you can change a filename just
+                   in changing the case.
+
 * bug 5652 fixed - Bad line numbering when several files were opened.
 
 * bug 5655 fixed - The selection was lost after an unsuccessful search.
