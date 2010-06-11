@@ -288,6 +288,7 @@ libscicore_la_CFLAGS = -I$(srcdir)/includes/ \
 	-I$(top_srcdir)/modules/action_binding/includes \
 	-I$(top_srcdir)/modules/output_stream/includes \
 	-I$(top_srcdir)/modules/localization/includes \
+	-I$(top_srcdir)/modules/io/includes \
 	-I$(top_srcdir)/modules/tclsci/includes \
 	-I$(top_srcdir)/modules/dynamic_link/includes \
 	-I$(top_srcdir)/modules/pvm/includes \

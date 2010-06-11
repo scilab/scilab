@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA
+ * Copyright (C) 2010 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,16 +10,12 @@
  *
  */
 
-#ifndef __FINITE_H__
-#define __FINITE_H__
+#ifndef __CMP_H__
+#define __CMP_H__
 
-#include "doublecomplex.h" 
+#include "machine.h"
 #include "dynlib_elementary_functions.h"
 
-#ifndef HAVE_FINITE
-ELEMENTARY_FUNCTIONS_IMPEXP int finite(double x);
-#endif
+ELEMENTARY_FUNCTIONS_IMPEXP int C2F(idcmp)(double x[], double y[], int *n, int res[], int *op);
 
-ELEMENTARY_FUNCTIONS_IMPEXP int finiteComplex(doublecomplex x);
-
-#endif /* __FINITE_H__ */
+#endif /* CMP_H__ */

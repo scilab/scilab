@@ -17,7 +17,6 @@
 #include <signal.h>
 #include "csignal.h"
 #include "addinter.h" /* for DynInterfStart */
-#include "Os_specific.h" /* for DynInterfStart */
 #include "callinterf.h"
 #include "sciprint.h"
 #include "Scierror.h"

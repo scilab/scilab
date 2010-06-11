@@ -14,9 +14,9 @@
 #define __GW_ELEMENTARIES_FUNCTIONS__
 /*--------------------------------------------------------------------------*/
 #include "machine.h"
-#include "api_common.h"
+#include "dynlib_elementary_functions.h"
 /*--------------------------------------------------------------------------*/
-int gw_elementary_functions(void);
+ELEMENTARY_FUNCTIONS_IMPEXP int gw_elementary_functions(void);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_abs)(char *fname,unsigned long fname_len);
 int C2F(sci_real)(char *fname,unsigned long fname_len);

@@ -18,7 +18,7 @@
 #include <string.h>
 #include "loadClasspath.h"
 #include "GetXmlFileEncoding.h"
-#include "../../fileio/includes/FileExist.h"
+#include "FileExist.h"
 #include "addToClasspath.h"
 #include "setgetSCIpath.h"
 #include "MALLOC.h"

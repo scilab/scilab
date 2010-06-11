@@ -10,7 +10,8 @@
  *
  */
 #include "stack-c.h" 
-#include "elementary_functions.h" 
+#include "elementary_functions.h"
+#include "vfinite.h"
 #include "do_error_number.h"
 #include "MALLOC.h"
 #include "assembleEigenvectors.h"

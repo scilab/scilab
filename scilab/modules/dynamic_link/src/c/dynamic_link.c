@@ -16,7 +16,7 @@
 #include <stdlib.h>
 #include "dynamic_link.h"
 #include "dynamiclibrary.h"
-#include "../../../string/includes/men_Sutils.h"
+#include "men_Sutils.h"
 #include "MALLOC.h" /* MALLOC */
 #include "warningmode.h"
 #include "sciprint.h"

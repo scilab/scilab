@@ -30,8 +30,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "sci_pvm.h"
-#include "stack-c.h"
 #include "sci_tools.h"
+#include "stack-c.h"
 
 
 void C2F(scipvmsend)(int *taskId, int *p, 

@@ -16,9 +16,9 @@
 #include <stdlib.h>
 #include "dropFiles.h"
 #include "MALLOC.h"
-#include "../../../core/includes/storeCommand.h" /* storecommand */
-#include "../../../fileio/includes/FindFileExtension.h"
-#include "../../../fileio/includes/URIFileToFilename.h"
+#include "storeCommand.h" /* storecommand */
+#include "FindFileExtension.h"
+#include "URIFileToFilename.h"
 #include "../../../string/includes/stricmp.h"
 #include "../../../core/src/c/with_module.h"
 #if _MSC_VER
