@@ -4,19 +4,19 @@
             jxb:version="2.0">
 	
 	<!--Each Migration Schema, can consist of many blocks, and only one general parameters section -->
-	<xsd:element name="generals" type="GeneralParameters"/>
-	<xsd:element name="blocks" type="BlockPallete"/>	
+	<!--<xsd:element name="generals" type="GeneralParameters"/> general section will be added as a block to BlockPalette-->
+	<xsd:element name="blocks" type="BlockPalette"/>	
 	
 	<xsd:complexType name="GeneralParameters">
 	  <xsd:sequence>
 	    <xsd:element name="string" type="StringParameter" minOccurs="0" maxOccurs="unbounded"/>
-	    <xsd:element name="integer" type="IntegerParameter" minOccurs="0" maxOccurs="unbounded"/>
+	    <xsd:element name="integer" type="IntegerParameters" minOccurs="0" maxOccurs="unbounded"/>
 	    <xsd:element name="simple" type="SimpleParameter" minOccurs="0" maxOccurs="unbounded"/>
 	  </xsd:sequence>
-	    <xsd:attribute name="dsc" type="xsd:string" use="optional"/>
+	    <xsd:attribute name="description" type="xsd:string" use="optional"/>
 	</xsd:complexType>
 
-	<xsd:complexType name="BlockPallete">
+	<xsd:complexType name="BlockPalette">
 	  <xsd:sequence>
 	    <xsd:element name="block" type="Block" minOccurs="0" maxOccurs="unbounded"/>
 	  </xsd:sequence>
@@ -25,18 +25,18 @@
 	<xsd:complexType name="Block">
 	  <xsd:sequence>
 	    <xsd:element name="string" type="StringParameter" minOccurs="0" maxOccurs="unbounded"/>
-	    <xsd:element name="integer" type="IntegerParameter" minOccurs="0" maxOccurs="unbounded"/>
+	    <xsd:element name="integer" type="IntegerParameters" minOccurs="0" maxOccurs="unbounded"/>
 	    <xsd:element name="simple" type="SimpleParameter" minOccurs="0" maxOccurs="unbounded"/>
 	  </xsd:sequence>
 	    <xsd:attribute name="sim" type="xsd:string" use="required"/>
-	    <xsd:attribute name="xCos" type="xsd:string" use="required"/>	
-	    <xsd:attribute name="dsc" type="xsd:string" use="optional"/>
+	    <xsd:attribute name="xcos" type="xsd:string" use="required"/>	
+	    <xsd:attribute name="description" type="xsd:string" use="optional"/>
 	</xsd:complexType>
 	<!-- parameters that differs only in parameter name ex:Constant Value -->
 	<xsd:complexType name="SimpleParameter">
 	    <xsd:attribute name="sim" type="xsd:string" use="required"/>
-	    <xsd:attribute name="xCos" type="xsd:string" use="required"/>
-	    <xsd:attribute name="dsc" type="xsd:string" use="optional"/>
+	    <xsd:attribute name="xcos" type="xsd:string" use="required"/>
+	    <xsd:attribute name="description" type="xsd:string" use="optional"/>
 	 </xsd:complexType>
 	<!-- parameters that in name, and have different string values ex:CSCOPE SCOPE -->
 	<xsd:complexType name="StringParameter">
@@ -44,27 +44,27 @@
 	    <xsd:element name="parMap" type="StringValueMap" minOccurs="1" maxOccurs="unbounded"/>
 	  </xsd:sequence>
 	    <xsd:attribute name="sim" type="xsd:string" use="required"/>
-	    <xsd:attribute name="xCos" type="xsd:string" use="required"/>
-	    <xsd:attribute name="dsc" type="xsd:string" use="optional"/>
+	    <xsd:attribute name="xcos" type="xsd:string" use="required"/>
+	    <xsd:attribute name="description" type="xsd:string" use="optional"/>
 	 </xsd:complexType>
 
 	<xsd:complexType name="StringValueMap">
 	    <xsd:attribute name="simVal" type="xsd:string" use="required"/>
-	    <xsd:attribute name="xCosVal" type="xsd:string" use="required"/>
+	    <xsd:attribute name="xcosVal" type="xsd:string" use="required"/>
 	 </xsd:complexType>
 	<!-- parameters that needs to be calculated before setting -->
-	<xsd:complexType name="IntegerParameter">
+	<xsd:complexType name="IntegerParameters">
 	  <xsd:sequence>
 	    <xsd:element name="parMap" type="IntegerValueMap" minOccurs="1" maxOccurs="unbounded"/>
 	  </xsd:sequence>
 	    <xsd:attribute name="sim" type="xsd:string" use="required"/>
-	    <xsd:attribute name="xCos" type="xsd:string" use="required"/>
-	    <xsd:attribute name="dsc" type="xsd:string" use="optional"/>
+	    <xsd:attribute name="xcos" type="xsd:string" use="required"/>
+	    <xsd:attribute name="description" type="xsd:string" use="optional"/>
 	 </xsd:complexType>
 
 	<xsd:complexType name="IntegerValueMap">
 	    <xsd:attribute name="simVal" type="xsd:integer" use="required"/>
-	    <xsd:attribute name="xCosVal" type="xsd:integer" use="required"/>
+	    <xsd:attribute name="xcosVal" type="xsd:integer" use="required"/>
 	 </xsd:complexType>
 	<!--Its possible that Ill have to add more parameter types, such as: boolean -->
 </xsd:schema>

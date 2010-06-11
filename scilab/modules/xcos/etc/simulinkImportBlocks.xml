@@ -1,17 +1,35 @@
 <blocks>
-  <!--Zero or more repetitions:-->
-  <block sim="string" xCos="string" dsc="string">
+  <!--Template-->
+  <block sim="string" xcos="string" description="string">
     <!--Zero or more repetitions:-->
-    <string sim="string" xCos="string" dsc="string">
+    <string sim="string" xcos="string" description="string">
       <!--1 or more repetitions:-->
-      <parMap simVal="string" xCosVal="string"/>
+      <parMap simVal="string" xcosVal="string"/>
     </string>
     <!--Zero or more repetitions:-->
-    <integer sim="string" xCos="string" dsc="string">
+    <integer sim="string" xcos="string" description="string">
       <!--1 or more repetitions:-->
-      <parMap simVal="100" xCosVal="100"/>
+      <parMap simVal="100" xcosVal="100"/>
     </integer>
     <!--Zero or more repetitions:-->
-    <simple sim="string" xCos="string" dsc="string"/>
+    <simple sim="string" xcos="string" description="string"/>
+  </block>
+  <!-- Constant Block Compatibility Pattern -->
+  <block sim="Constant" xcos="CONST_m" description="no description">
+    <simple sim="Value" xcos="Constant" description="no description"/>
+  </block>
+  <!--Absolute Value Block Compatibility Pattern:-->
+  <block sim="Abs" xcos="ABSOLUTE_VALUE" description="
+	SampleTime - in xcos always inherited;
+	OutMax - output limiter not available;
+	OutDataTypeStr - always inherited(?);
+	RndMeth - rounding mode not available(?);
+	SaturateOnIntegerOverflow - always saturated(?);
+	">
+    <string sim="ZeroCross" xcos="zero_crossing" description="Enable zero-crossing detection">
+      <!--FIXME: here it should be string to int mapping-->
+      <parMap simVal="off" xcosVal="0"/>
+      <parMap simVal="yes" xcosVal="1"/>
+    </string>
   </block>
 </blocks>
