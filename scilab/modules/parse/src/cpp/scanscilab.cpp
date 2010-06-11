@@ -371,8 +371,8 @@ static void yy_fatal_error (yyconst char msg[]  );
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
 
-#define YY_NUM_RULES 127
-#define YY_END_OF_BUFFER 128
+#define YY_NUM_RULES 128
+#define YY_END_OF_BUFFER 129
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -382,51 +382,51 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_acclist[796] =
     {   0,
-    16405,  128,   76,  127,   73,   76,  127,   74,  127,   74,
-       76,  127,   71,   76,  127,   68,   76,  127,   24,   76,
-      127,   68,   76,  127,   27,   76,  127,   72,   76,  127,
-       31,   76,  127,   32,   76,  127,   45,   76,  127,   44,
-       76,  127,   34,   76,  127,   43,   76,  127,   62,   76,
-      127,   46,   76,  127,   64,   76,  127,   35,   76,  127,
-       33,   76,  127,   55,   76,  127,   59,   76,  127,   56,
-       76,  127,   68,   76,  127,   23,   76,  127,   60,   76,
-      127,   47,   76,  127,   61,   76,  127,   48,   76,  127,
-       68,   76,  127,   68,   76,  127,   68,   76,  127,   68,
+    16405,  129,   76,  128,   73,   76,  128,   74,  128,   74,
+       76,  128,   71,   76,  128,   68,   76,  128,   24,   76,
+      128,   68,   76,  128,   27,   76,  128,   72,   76,  128,
+       31,   76,  128,   32,   76,  128,   45,   76,  128,   44,
+       76,  128,   34,   76,  128,   43,   76,  128,   62,   76,
+      128,   46,   76,  128,   64,   76,  128,   35,   76,  128,
+       33,   76,  128,   55,   76,  128,   59,   76,  128,   56,
+       76,  128,   68,   76,  128,   23,   76,  128,   60,   76,
+      128,   47,   76,  128,   61,   76,  128,   48,   76,  128,
+       68,   76,  128,   68,   76,  128,   68,   76,  128,   68,
 
-       76,  127,   68,   76,  127,   68,   76,  127,   68,   76,
-      127,   68,   76,  127,   68,   76,  127,   68,   76,  127,
-       68,   76,  127,   68,   76,  127,   36,   76,  127,   29,
-       76,  127,   37,   76,  127,   23,   76,  127,   73,   76,
-      127,16405,   68,   76,  127,   68,   76,  127,   68,   76,
-      127,   68,   76,  127,   68,   76,  127,   68,   76,  127,
-       68,   76,  127,   68,   76,  127,   68,   76,  127,   68,
-       76,  127,   68,   76,  127,   68,   76,  127,   68,   76,
-      127,   68,   76,  127,   68,   76,  127,  113,  127,  112,
-      127,  112,  113,  127,  113,  127,  110,  113,  127,  113,
+       76,  128,   68,   76,  128,   68,   76,  128,   68,   76,
+      128,   68,   76,  128,   68,   76,  128,   68,   76,  128,
+       68,   76,  128,   68,   76,  128,   36,   76,  128,   29,
+       76,  128,   37,   76,  128,   23,   76,  128,   73,   76,
+      128,16405,   68,   76,  128,   68,   76,  128,   68,   76,
+      128,   68,   76,  128,   68,   76,  128,   68,   76,  128,
+       68,   76,  128,   68,   76,  128,   68,   76,  128,   68,
+       76,  128,   68,   76,  128,   68,   76,  128,   68,   76,
+      128,   68,   76,  128,   68,   76,  128,  114,  128,  113,
+      128,  113,  114,  128,  114,  128,  111,  114,  128,  114,
 
-      127,  121,  127,  119,  127,  119,  121,  127,  118,  121,
-      127,  121,  127,  121,  127,  105,  127,  104,  127,  104,
-      105,  127,  105,  127,  105,  127,  101,  127,  100,  127,
-      100,  101,  127,   99,  127,   98,   99,  127,   95,  127,
-       95,   99,  127,   99,  127,   85,  127,   73,   85,  127,
-       74,   85,  127,   71,   85,  127,   68,   85,  127,   24,
-       85,  127,   68,   85,  127,   27,   85,  127,   72,   85,
-      127,   31,   85,  127,   32,   85,  127,   45,   85,  127,
-       78,   85,  127,   34,   85,  127,   79,   85,  127,   62,
-       85,  127,   46,   85,  127,   64,   85,  127,   35,   85,
+      128,  122,  128,  120,  128,  120,  122,  128,  119,  122,
+      128,  122,  128,  122,  128,  106,  128,  105,  128,  105,
+      106,  128,  106,  128,  106,  128,  102,  128,  101,  128,
+      101,  102,  128,  100,  128,   99,  100,  128,   96,  128,
+       96,  100,  128,  100,  128,   86,  128,   73,   86,  128,
+       74,   86,  128,   71,   86,  128,   68,   86,  128,   24,
+       86,  128,   68,   86,  128,   27,   86,  128,   72,   86,
+      128,   31,   86,  128,   32,   86,  128,   45,   86,  128,
+       79,   86,  128,   34,   86,  128,   80,   86,  128,   62,
+       86,  128,   46,   86,  128,   64,   86,  128,   35,   86,
 
-      127,   33,   85,  127,   55,   85,  127,   59,   85,  127,
-       56,   85,  127,   23,   85,  127,   60,   85,  127,   47,
-       85,  127,   77,   85,  127,   48,   85,  127,   36,   85,
-      127,   29,   85,  127,   37,   85,  127,   23,   85,  127,
-       73,   85,  127,   94,  127,   93,   94,  127,  127,   92,
-       94,  127,   87,   94,  127,   86,   94,  127,   94,  127,
-       88,   94,  127,  126,  127,  122,  127,  125,  127,  125,
-      127,   71,  127,   72,  127,  124,  127,  123,  127,   22,
-      127,   22,  127,   22,  127,   22,  127,   22,  127,   22,
-      127,   22,  127,   22,  127,   22,  127,   22,  127,   22,
+      128,   33,   86,  128,   55,   86,  128,   59,   86,  128,
+       56,   86,  128,   23,   86,  128,   60,   86,  128,   47,
+       86,  128,   77,   86,  128,   48,   86,  128,   36,   86,
+      128,   29,   86,  128,   78,   86,  128,   23,   86,  128,
+       73,   86,  128,   95,  128,   94,   95,  128,  128,   93,
+       95,  128,   88,   95,  128,   87,   95,  128,   95,  128,
+       89,   95,  128,  127,  128,  123,  128,  126,  128,  126,
+      128,   71,  128,   72,  128,  125,  128,  124,  128,   22,
+      128,   22,  128,   22,  128,   22,  128,   22,  128,   22,
+      128,   22,  128,   22,  128,   22,  128,   22,  128,   22,
 
-      127,   22,  127,   22,  127,   22,  127,   73,   74,   68,
+      128,   22,  128,   22,  128,   22,  128,   73,   74,   68,
        68,   26,   68,   25,   68,   28,   48,   38,   39,   63,
        40,   67,   41,   42,   69,   52,   70,   66,   64,   57,
        54,   53,   58,   68,   68,   16,   68,   68,   68,   68,
@@ -434,29 +434,29 @@ static yyconst flex_int16_t yy_acclist[796] =
        68,   30,   73,16405,   75,   75,   68,   68,   26,   68,
        25,   68,   68,   68,   16,   68,   68,   68,   68,   68,
        68,    1,   68,   68,   68,   68,   68,   68,   68,   68,
-      112,  106,  107,  108,  109,  111,  119,  114,  115,  116,
-      117,  120,  104,  102,  103,  100,   98,   95,   96,   97,
+      113,  107,  108,  109,  110,  112,  120,  115,  116,  117,
+      118,  121,  105,  103,  104,  101,   99,   96,   97,   98,
 
-       73,   73,   93,   92,   90,   89,   88,  126,  122,  125,
+       73,   73,   94,   93,   91,   90,   89,  127,  123,  126,
        22,   22,   22,   22,   16,   22,   22,   22,   22,   22,
        22,    1,   22,   22,   22,   22,   22,   22,   22,   22,
        68,   49,   63,   50,   51,   66,   65,   68,   68,   68,
        68,    5,   68,   14,   68,   68,   68,   68,   68,   68,
        68,   68,   18,   68,   68, 8213, 8213,   68,   68,   68,
        68,   68,    5,   68,   14,   68,   68,   68,   68,   68,
-       68,   68,   68,   18,   68,   68,  111,  120,   84,   80,
-       89,   91,   22,   22,   22,   22,   22,    5,   22,   14,
+       68,   68,   68,   18,   68,   68,  112,  121,   85,   81,
+       90,   92,   22,   22,   22,   22,   22,    5,   22,   14,
        22,   22,   22,   22,   22,   22,   22,   22,   18,   22,
 
        22,   68,   68,    9,   68,   68,    3,   68,   68,   68,
        68,   68,   68,   68,   68,    2,   68,   68,   68,   68,
         9,   68,   68,    3,   68,   68,   68,   68,   68,   68,
-       68,   68,    2,   68,   68,   84,   83,   81,   22,   22,
+       68,   68,    2,   68,   68,   85,   84,   82,   22,   22,
         9,   22,   22,    3,   22,   22,   22,   22,   22,   22,
        22,   22,    2,   22,   22,   68,   17,   68,   19,   68,
        68,   68,   68,   68,   68,   68,   68,   68,   15,   68,
        68,   17,   68,   19,   68,   68,   68,   68,   68,   68,
-       68,   68,   68,   15,   68,   81,   82,   22,   17,   22,
+       68,   68,   68,   15,   68,   82,   83,   22,   17,   22,
        19,   22,   22,   22,   22,   22,   22,   22,   22,   22,
 
        15,   22,   68,    4,   68,   68,   68,   13,   68,   68,
@@ -1454,7 +1454,7 @@ case 22:
 YY_RULE_SETUP
 {
         yylval.str = new std::string(yytext);
-        if (symbol::Context::getInstance()->get(yytext) != NULL 
+        if (symbol::Context::getInstance()->get(yytext) != NULL
             && symbol::Context::getInstance()->get(yytext)->isCallable())
         {
             //std::cout << "** Start shell mode ..." << std::endl;
@@ -1462,7 +1462,7 @@ YY_RULE_SETUP
             scan_throw(ID);
             BEGIN(SHELLMODE);
         }
-        else 
+        else
         {
             //std::cout << "** NO shell mode ... throwing ID " << yytext << std::endl;
             BEGIN(INITIAL);
@@ -1554,6 +1554,8 @@ YY_RULE_SETUP
 case 36:
 YY_RULE_SETUP
 {
+  yy_push_state(MATRIX);
+  ParserSingleInstance::pushControlStatus(Parser::WithinCell);
   return scan_throw(LBRACE);
 }
 	YY_BREAK
@@ -1872,30 +1874,21 @@ YY_RULE_SETUP
 case 78:
 YY_RULE_SETUP
 {
-    return scan_throw(PLUS);
+    yy_pop_state();
+    ParserSingleInstance::popControlStatus();
+    return scan_throw(RBRACE);
   }
 	YY_BREAK
 case 79:
 YY_RULE_SETUP
 {
-    return scan_throw(MINUS);
+    return scan_throw(PLUS);
   }
 	YY_BREAK
 case 80:
 YY_RULE_SETUP
 {
-   int i;
-    for (i = yyleng - 1 ; i >= 0 ; --i)
-      {
-	unput(yytext[i]);
-      }
-    yy_push_state(MATRIXMINUSID);
-    if (last_token != LBRACK
-	&& last_token != EOL
-	&& last_token != SEMI)
-      {
-	return scan_throw(COMMA);
-      }
+    return scan_throw(MINUS);
   }
 	YY_BREAK
 case 81:
@@ -1952,7 +1945,7 @@ YY_RULE_SETUP
 case 84:
 YY_RULE_SETUP
 {
-    int i;
+   int i;
     for (i = yyleng - 1 ; i >= 0 ; --i)
       {
 	unput(yytext[i]);
@@ -1969,6 +1962,23 @@ YY_RULE_SETUP
 case 85:
 YY_RULE_SETUP
 {
+    int i;
+    for (i = yyleng - 1 ; i >= 0 ; --i)
+      {
+	unput(yytext[i]);
+      }
+    yy_push_state(MATRIXMINUSID);
+    if (last_token != LBRACK
+	&& last_token != EOL
+	&& last_token != SEMI)
+      {
+	return scan_throw(COMMA);
+      }
+  }
+	YY_BREAK
+case 86:
+YY_RULE_SETUP
+{
     std::string str = "unexpected token '";
     str += yytext;
     str += "' within a matrix.";
@@ -1978,19 +1988,19 @@ YY_RULE_SETUP
   }
 	YY_BREAK
 
-case 86:
+case 87:
 YY_RULE_SETUP
 {
     return scan_throw(MINUS);
   }
 	YY_BREAK
-case 87:
+case 88:
 YY_RULE_SETUP
 {
      /* Do Nothing. */
   }
 	YY_BREAK
-case 88:
+case 89:
 YY_RULE_SETUP
 {
     yy_pop_state();
@@ -2002,7 +2012,7 @@ YY_RULE_SETUP
     return scan_throw(VARINT);
   }
 	YY_BREAK
-case 89:
+case 90:
 YY_RULE_SETUP
 {
     yy_pop_state();
@@ -2014,7 +2024,7 @@ YY_RULE_SETUP
     return scan_throw(NUM);
   }
 	YY_BREAK
-case 90:
+case 91:
 YY_RULE_SETUP
 {
     yy_pop_state();
@@ -2026,7 +2036,7 @@ YY_RULE_SETUP
     return scan_throw(NUM);
   }
 	YY_BREAK
-case 91:
+case 92:
 YY_RULE_SETUP
 {
     yy_pop_state();
@@ -2039,7 +2049,7 @@ YY_RULE_SETUP
     return scan_throw(VARFLOAT);
   }
 	YY_BREAK
-case 92:
+case 93:
 YY_RULE_SETUP
 {
     yy_pop_state();
@@ -2051,13 +2061,13 @@ YY_RULE_SETUP
     return scan_throw(ID);
   }
 	YY_BREAK
-case 93:
+case 94:
 YY_RULE_SETUP
 {
     /* Do Nothing. */
   }
 	YY_BREAK
-case 94:
+case 95:
 YY_RULE_SETUP
 {
     std::string str = "unexpected token '";
@@ -2069,8 +2079,8 @@ YY_RULE_SETUP
   }
 	YY_BREAK
 
-case 95:
-/* rule 95 can match eol */
+case 96:
+/* rule 96 can match eol */
 YY_RULE_SETUP
 {
     yylloc.last_line += 1;
@@ -2079,14 +2089,14 @@ YY_RULE_SETUP
     yy_pop_state();
   }
 	YY_BREAK
-case 96:
+case 97:
 YY_RULE_SETUP
 {
     ++comment_level;
     yy_push_state(REGIONCOMMENT);
   }
 	YY_BREAK
-case 97:
+case 98:
 YY_RULE_SETUP
 {
     scan_throw(DOTS);
@@ -2094,13 +2104,13 @@ YY_RULE_SETUP
     yy_push_state(LINECOMMENT);
   }
 	YY_BREAK
-case 98:
+case 99:
 YY_RULE_SETUP
 {
     /* Do nothing... */
   }
 	YY_BREAK
-case 99:
+case 100:
 YY_RULE_SETUP
 {
     std::string str = "unexpected token '";
@@ -2112,8 +2122,8 @@ YY_RULE_SETUP
   }
 	YY_BREAK
 
-case 100:
-/* rule 100 can match eol */
+case 101:
+/* rule 101 can match eol */
 YY_RULE_SETUP
 {
     //yylloc.last_line += 1;
@@ -2137,14 +2147,14 @@ case YY_STATE_EOF(LINECOMMENT):
     return scan_throw(COMMENT);
   }
 	YY_BREAK
-case 101:
+case 102:
 YY_RULE_SETUP
 {
     *yylval.comment += yytext;
   }
 	YY_BREAK
 
-case 102:
+case 103:
 YY_RULE_SETUP
 {
     --comment_level;
@@ -2154,7 +2164,7 @@ YY_RULE_SETUP
     }
   }
 	YY_BREAK
-case 103:
+case 104:
 YY_RULE_SETUP
 {
     ++comment_level;
@@ -2169,8 +2179,8 @@ case YY_STATE_EOF(REGIONCOMMENT):
     yyterminate();
   }
 	YY_BREAK
-case 104:
-/* rule 104 can match eol */
+case 105:
+/* rule 105 can match eol */
 YY_RULE_SETUP
 {
     yylloc.last_line += 1;
@@ -2179,38 +2189,38 @@ YY_RULE_SETUP
     *yylval.comment += "\n//";
   }
 	YY_BREAK
-case 105:
+case 106:
 YY_RULE_SETUP
 {
     *yylval.comment += yytext;
   }
 	YY_BREAK
 
-case 106:
-YY_RULE_SETUP
-{
-    *yylval.str += "\"";
-  }
-	YY_BREAK
 case 107:
 YY_RULE_SETUP
 {
-    *yylval.str += "'";
+    *yylval.str += "\"";
   }
 	YY_BREAK
 case 108:
 YY_RULE_SETUP
 {
-    *yylval.str += "\"";
+    *yylval.str += "'";
   }
 	YY_BREAK
 case 109:
 YY_RULE_SETUP
 {
-    *yylval.str += "'";
+    *yylval.str += "\"";
   }
 	YY_BREAK
 case 110:
+YY_RULE_SETUP
+{
+    *yylval.str += "'";
+  }
+	YY_BREAK
+case 111:
 YY_RULE_SETUP
 {
     yy_pop_state();
@@ -2218,15 +2228,15 @@ YY_RULE_SETUP
     return scan_throw(STR);
   }
 	YY_BREAK
-case 111:
+case 112:
 YY_RULE_SETUP
 {
     //yylloc.last_line += 1;
     scan_step();
   }
 	YY_BREAK
-case 112:
-/* rule 112 can match eol */
+case 113:
+/* rule 113 can match eol */
 YY_RULE_SETUP
 {
     std::string str = "unexpected end of line in a string.";
@@ -2248,7 +2258,7 @@ case YY_STATE_EOF(SIMPLESTRING):
     yyterminate();
   }
 	YY_BREAK
-case 113:
+case 114:
 YY_RULE_SETUP
 {
     scan_step();
@@ -2256,31 +2266,31 @@ YY_RULE_SETUP
   }
 	YY_BREAK
 
-case 114:
-YY_RULE_SETUP
-{
-    *yylval.str += "\"";
-  }
-	YY_BREAK
 case 115:
 YY_RULE_SETUP
 {
-    *yylval.str += "'";
+    *yylval.str += "\"";
   }
 	YY_BREAK
 case 116:
 YY_RULE_SETUP
 {
-    *yylval.str += "\"";
+    *yylval.str += "'";
   }
 	YY_BREAK
 case 117:
 YY_RULE_SETUP
 {
-    *yylval.str += "'";
+    *yylval.str += "\"";
   }
 	YY_BREAK
 case 118:
+YY_RULE_SETUP
+{
+    *yylval.str += "'";
+  }
+	YY_BREAK
+case 119:
 YY_RULE_SETUP
 {
     yy_pop_state();
@@ -2288,8 +2298,8 @@ YY_RULE_SETUP
     return scan_throw(STR);
   }
 	YY_BREAK
-case 119:
-/* rule 119 can match eol */
+case 120:
+/* rule 120 can match eol */
 YY_RULE_SETUP
 {
     std::string str = "unexpected end of line in a string";
@@ -2301,7 +2311,7 @@ YY_RULE_SETUP
     yyterminate();
   }
 	YY_BREAK
-case 120:
+case 121:
 YY_RULE_SETUP
 {
     //yylloc.last_line += 1;
@@ -2317,7 +2327,7 @@ case YY_STATE_EOF(DOUBLESTRING):
     yyterminate();
   }
 	YY_BREAK
-case 121:
+case 122:
 YY_RULE_SETUP
 {
     scan_step();
@@ -2325,7 +2335,7 @@ YY_RULE_SETUP
   }
 	YY_BREAK
 
-case 122:
+case 123:
 YY_RULE_SETUP
 {
         if (last_token == ID)
@@ -2335,7 +2345,7 @@ YY_RULE_SETUP
         }
     }
 	YY_BREAK
-case 123:
+case 124:
 YY_RULE_SETUP
 {
         BEGIN(INITIAL);
@@ -2343,7 +2353,7 @@ YY_RULE_SETUP
         return scan_throw(SEMI);
     }
 	YY_BREAK
-case 124:
+case 125:
 YY_RULE_SETUP
 {
         BEGIN(INITIAL);
@@ -2351,8 +2361,8 @@ YY_RULE_SETUP
         return scan_throw(COMMA);
     }
 	YY_BREAK
-case 125:
-/* rule 125 can match eol */
+case 126:
+/* rule 126 can match eol */
 YY_RULE_SETUP
 {
         BEGIN(INITIAL);
@@ -2360,7 +2370,7 @@ YY_RULE_SETUP
         return scan_throw(EOL);
     }
 	YY_BREAK
-case 126:
+case 127:
 YY_RULE_SETUP
 {
         yylval.str = new std::string(yytext);
@@ -2374,7 +2384,7 @@ case YY_STATE_EOF(SHELLMODE):
     }
 	YY_BREAK
 
-case 127:
+case 128:
 YY_RULE_SETUP
 ECHO;
 	YY_BREAK

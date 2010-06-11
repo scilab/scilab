@@ -247,7 +247,7 @@ assign			"="
 {
     {id}                        {
         yylval.str = new std::string(yytext);
-        if (symbol::Context::getInstance()->get(yytext) != NULL 
+        if (symbol::Context::getInstance()->get(yytext) != NULL
             && symbol::Context::getInstance()->get(yytext)->isCallable())
         {
             //std::cout << "** Start shell mode ..." << std::endl;
@@ -255,7 +255,7 @@ assign			"="
             scan_throw(ID);
             BEGIN(SHELLMODE);
         }
-        else 
+        else
         {
             //std::cout << "** NO shell mode ... throwing ID " << yytext << std::endl;
             BEGIN(INITIAL);
@@ -315,9 +315,12 @@ assign			"="
 
 
 <INITIAL,MATRIX>{lbrace}		{
+  yy_push_state(MATRIX);
+  ParserSingleInstance::pushControlStatus(Parser::WithinCell);
   return scan_throw(LBRACE);
 }
-<INITIAL,MATRIX>{rbrace}		{
+
+{rbrace}                        {
   return scan_throw(RBRACE);
 }
 
@@ -548,6 +551,12 @@ assign			"="
     yy_pop_state();
     ParserSingleInstance::popControlStatus();
     return scan_throw(RBRACK);
+  }
+
+  {rbrace}				{
+    yy_pop_state();
+    ParserSingleInstance::popControlStatus();
+    return scan_throw(RBRACE);
   }
 
   {plus}				{
@@ -934,7 +943,7 @@ assign			"="
             return ID;
         }
     }
-    
+
     {semicolon}                 {
         BEGIN(INITIAL);
         //std::cout << "<SHELLMODE> SEMICOLON" << std::endl;
@@ -958,7 +967,7 @@ assign			"="
         //std::cout << "STR = " << yytext << std::endl;
         return scan_throw(STR);
     }
-    
+
     <<EOF>>                     {
         BEGIN(INITIAL);
     }
