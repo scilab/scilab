@@ -71,7 +71,9 @@ public final class ConfigXpadManager {
     private static final String VALUE = "value";
     private static final String STYLE = "style";
     private static final String UNDERLINE = "underline";
+    private static final String DEFAULTUNDERLINE = "defaultUnderline";
     private static final String STROKE = "stroke";
+    private static final String DEFAULTSTROKE = "defaultStroke";
     private static final String FONT_SIZE = "FontSize";
     private static final String FONT_STYLE = "FontStyle";
     private static final String FONT_NAME = "FontName";
@@ -1103,6 +1105,35 @@ public final class ConfigXpadManager {
                 at = 1;
             }
             String stroke = style.getAttribute(STROKE);
+            if (TRUE.equals(stroke)) {
+                at += 2;
+            }
+            attr.put(style.getAttribute(NAME), at);
+        }
+
+        return attr;
+    }
+
+    /**
+     * @return a map containing all defaults attributes
+     */
+    public static Map<String, Integer> getDefaultAllAttributes() {
+        /* Load file */
+        readDocument();
+
+        Map<String, Integer> attr = new Hashtable<String, Integer>();
+
+        Element root = document.getDocumentElement();
+        NodeList styles = root.getElementsByTagName(STYLE);
+
+        for (int i = 0; i < styles.getLength(); ++i) {
+            Element style = (Element) styles.item(i);
+            int at = 0;
+            String underline = style.getAttribute(DEFAULTUNDERLINE);
+            if (TRUE.equals(underline)) {
+                at = 1;
+            }
+            String stroke = style.getAttribute(DEFAULTSTROKE);
             if (TRUE.equals(stroke)) {
                 at += 2;
             }

@@ -451,6 +451,7 @@ public final class SetColorsAction extends DefaultAction {
 
                 /* Update the GUI */
                 colorButton.setBackground(allStylesColor.get(styleName));
+                //colorButton.fireStateChanged();
                 boldCheckBox.setSelected(allStylesIsBold.get(styleName));
                 italicCheckBox.setSelected(allStylesIsItalic.get(styleName));
                 underlineCheckBox.setSelected((allAttributes.get(styleName) & 1) == 1);
@@ -465,11 +466,12 @@ public final class SetColorsAction extends DefaultAction {
             allStylesColor = ConfigXpadManager.getAllDefaultForegroundColors();
             allStylesIsBold = ConfigXpadManager.getDefaultAllisBold();
             allStylesIsItalic = ConfigXpadManager.getDefaultAllisItalic();
+            allAttributes = ConfigXpadManager.getDefaultAllAttributes();
+
             Iterator<String> iter = allStylesColor.keySet().iterator();
             while (iter.hasNext()) {
                 String name = iter.next();
                 previewEditorPane.resetColor(name, allStylesColor.get(name));
-                colorButton.setBackground(allStylesColor.get(name));
                 int bold = -1;
                 if (allStylesIsBold.get(name)) {
                     bold = 1;
@@ -480,9 +482,17 @@ public final class SetColorsAction extends DefaultAction {
                     italic = 2;
                 }
                 previewEditorPane.resetFont(name, italic);
-                boldCheckBox.setSelected(allStylesIsBold.get(name));
-                italicCheckBox.setSelected(allStylesIsItalic.get(name));
+                previewEditorPane.resetAttribute(name, allAttributes.get(name));
             }
+
+            int selectedStyleIndex = stylesList.getSelectedIndex();
+            String styleName = listStylesName.get(selectedStyleIndex);
+
+            colorButton.setBackground(allStylesColor.get(styleName));
+            boldCheckBox.setSelected(allStylesIsBold.get(styleName));
+            italicCheckBox.setSelected(allStylesIsItalic.get(styleName));
+            underlineCheckBox.setSelected((allAttributes.get(styleName) & 1) == 1);
+            strikethroughCheckBox.setSelected((allAttributes.get(styleName) & 2) == 2);
 
             previewEditorPane.repaint();
         }
