@@ -28,13 +28,25 @@ void visitprivate(const AssignExp  &e)
         const FieldExp *pField				= dynamic_cast<const FieldExp*>(&e.left_exp_get());
         const AssignListExp *pList	        = dynamic_cast<const AssignListExp*>(&e.left_exp_get());
         const CallExp *pCall				= dynamic_cast<const CallExp*>(&e.left_exp_get());
+        const CellCallExp *pCell    		= dynamic_cast<const CellCallExp*>(&e.left_exp_get());
 
-        if(pCall)
-        {//x(?) = ?
-            bool bRet					    = true;
-            bool bNew						= false;
-            int iProductElem				= (int)pCall->args_get().size();
-            pVar							= (SimpleVar*)&pCall->name_get();
+        if(pCell)
+        {
+            T execVar;
+            bool bRet           = true;
+            bool bNew           = false;
+            int iProductElem    = (int)pCell->args_get().size();
+
+            pVar = dynamic_cast<const SimpleVar*>(&pCell->name_get());
+            if(pVar == NULL)
+            {
+                //manage error
+                std::ostringstream os;
+                os << _("Can insert only in a existing variable.\n");
+                os << ((Location)e.left_exp_get().location_get()).location_string_get() << std::endl;
+                throw os.str();
+            }
+
             InternalType *pIT				= symbol::Context::getInstance()->get(pVar->name_get());
             bool bSeeAsVector				= iProductElem == 1;
 
@@ -53,11 +65,131 @@ void visitprivate(const AssignExp  &e)
                 }
             }
 
-            int *piIndexSeq		= NULL;
-            int *piMaxDim			= NULL;
-            int *piDimSize			= new int[iProductElem];
+            int *piIndexSeq     = NULL;
+            int *piMaxDim       = NULL;
+            int *piDimSize      = new int[iProductElem];
             int iTotalCombi		= GetIndexList(pCall->args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
             /*We have the indexlist expanded and the max index*/
+
+            //check we don't have bad indexes like "< 1"
+            for(int i = 0 ; i < iTotalCombi * iProductElem; i++)
+            {
+                if(piIndexSeq[i] < 1)
+                {
+                    //manage error
+                    std::ostringstream os;
+                    os << _("Indexes must be positive .\n");
+                    os << ((Location)e.left_exp_get().location_get()).location_string_get() << std::endl;
+                    throw os.str();
+                }
+            }
+
+            InternalType *pOut	= NULL;
+
+            //fisrt extract implicit list
+            if(execMeR.result_get()->getType() == InternalType::RealImplicitList)
+            {
+                InternalType *pIL = execMeR.result_get()->getAsImplicitList()->extract_matrix();
+                execMeR.result_set(pIL);
+            }
+
+            if(pIT == NULL)
+            {//call static insert function
+                pOut = Cell::insert_new(iTotalCombi, piIndexSeq, piMaxDim, dynamic_cast<GenericType*>(execMeR.result_get()), bSeeAsVector);
+            }
+            else
+            {//call type insert function
+                bRet = pIT->getAsCell()->insert_cell(iTotalCombi, piIndexSeq, piMaxDim, dynamic_cast<GenericType*>(execMeR.result_get()), bSeeAsVector);
+                pOut = pIT;
+            }
+
+            if(pOut != NULL && bRet == true)
+            {
+                if(bNew)
+                {
+                    symbol::Context::getInstance()->put(pVar->name_get(), *((GenericType*)pOut));
+                }
+
+                if(e.is_verbose())
+                {
+                    std::ostringstream ostr;
+                    if(pVar)
+                    {
+                        ostr << pVar->name_get() << " = " << std::endl;
+                    }
+                    else
+                    {
+                        ostr << "???" << " = " << std::endl;
+                    }
+                    ostr << std::endl;
+                    ostr << pOut->toString(10,75) << std::endl;
+                    YaspWrite((char *)ostr.str().c_str());
+                }
+            }
+            else
+            {
+                //manage error
+                std::ostringstream os;
+                os << _("Submatrix incorrectly defined.\n");
+                os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
+                throw os.str();
+            }
+            delete piMaxDim;
+            delete[] piDimSize;
+        }
+        else if(pCall)
+        {//x(?) = ?
+            T execVar;
+            bool bRet           = true;
+            bool bNew           = false;
+            int iProductElem    = (int)pCall->args_get().size();
+
+            pVar = dynamic_cast<const SimpleVar*>(&pCall->name_get());
+            if(pVar == NULL)
+            {
+                //manage error
+                std::ostringstream os;
+                os << _("Can insert only in a existing variable.\n");
+                os << ((Location)e.left_exp_get().location_get()).location_string_get() << std::endl;
+                throw os.str();
+            }
+
+            InternalType *pIT				= symbol::Context::getInstance()->get(pVar->name_get());
+            bool bSeeAsVector				= iProductElem == 1;
+
+            /*getting what to assign*/
+            e.right_exp_get().accept(execMeR);
+            if(pIT == NULL)
+            {//Var doesn't exist, create it with good dimensions
+                bNew = true;
+            }
+            else
+            {
+                if(pIT->isRef(1) == true)
+                {
+                    pIT = pIT->clone();
+                    bNew = true;
+                }
+            }
+
+            int *piIndexSeq     = NULL;
+            int *piMaxDim       = NULL;
+            int *piDimSize      = new int[iProductElem];
+            int iTotalCombi		= GetIndexList(pCall->args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
+            /*We have the indexlist expanded and the max index*/
+
+            //check we don't have bad indexes like "< 1"
+            for(int i = 0 ; i < iTotalCombi * iProductElem; i++)
+            {
+                if(piIndexSeq[i] < 1)
+                {
+                    //manage error
+                    std::ostringstream os;
+                    os << _("Indexes must be positive .\n");
+                    os << ((Location)e.left_exp_get().location_get()).location_string_get() << std::endl;
+                    throw os.str();
+                }
+            }
 
             InternalType *pOut	= NULL;
 
@@ -142,7 +274,14 @@ void visitprivate(const AssignExp  &e)
                 if(e.is_verbose())
                 {
                     std::ostringstream ostr;
-                    ostr << pVar->name_get() << " = " << std::endl;
+                    if(pVar)
+                    {
+                        ostr << pVar->name_get() << " = " << std::endl;
+                    }
+                    else
+                    {
+                        ostr << "???" << " = " << std::endl;
+                    }
                     ostr << std::endl;
                     ostr << pOut->toString(10,75) << std::endl;
                     YaspWrite((char *)ostr.str().c_str());

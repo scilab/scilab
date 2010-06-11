@@ -161,6 +161,19 @@ void visitprivate(const CallExp &e)
             int *piDimSize		= new int[iArgDim];
             int iTotalCombi		= GetIndexList(e.args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
 
+            //check we don't have bad indexes like "< 1"
+            for(int i = 0 ; i < iTotalCombi * iArgDim; i++)
+            {
+                if(piIndexSeq[i] < 1)
+                {
+                    //manage error
+                    std::ostringstream os;
+                    os << _("Indexes must be positive .\n");
+                    os << ((Location)e.name_get().location_get()).location_string_get() << std::endl;
+                    throw os.str();
+                }
+            }
+
             switch(pIT->getType())
             {
             case InternalType::RealDouble :

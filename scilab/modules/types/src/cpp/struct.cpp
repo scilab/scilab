@@ -87,8 +87,12 @@ namespace types
                 }
             }
         }
-        _typedValue->IncreaseRef();
-        (*m_plData)[_sKey] = _typedValue;
+
+        //it seams std::map implementation is different between windows and linux
+        //so cloning in temporary variable before assign it.
+        InternalType* pIT = _typedValue->clone();
+        (*m_plData)[_sKey] = pIT;
+        (*m_plData)[_sKey]->IncreaseRef();
     }
 
 
