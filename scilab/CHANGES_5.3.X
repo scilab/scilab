@@ -745,6 +745,9 @@ Bug fixes:
 
 * bug 6750 fixed - TMPDIR constant had no help page.
 
+* bug 6751 fixed - Completion added unwanted characters when some
+                   string sequences occured several times.
+
 * bug 6774 fixed - Calling get_param generated a "funcprot" warning when
                    the value of an option which was a function.
 
