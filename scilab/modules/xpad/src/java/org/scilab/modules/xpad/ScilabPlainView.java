@@ -218,7 +218,7 @@ public class ScilabPlainView extends PlainView {
             try {
                 lexer.setRange(startL, endL);
                 while (startL < start) {
-                    tok = lexer.yylex();
+                    tok = lexer.scan();
                     startL = lexer.start + lexer.yychar() + lexer.yylength();
                 }
                 isBroken = true;
@@ -232,7 +232,7 @@ public class ScilabPlainView extends PlainView {
         while (start < p1) {
             try {
                 if (!isBroken) {
-                    tok = lexer.yylex();
+                    tok = lexer.scan();
                 } else {
                     isBroken = false;
                 }
@@ -267,24 +267,28 @@ public class ScilabPlainView extends PlainView {
                 }
 
                 switch (tok) {
-                    case ScilabLexerConstants.WHITE :
-                        if (isWhiteViewable) {
+                case ScilabLexerConstants.WHITE :
+                case ScilabLexerConstants.WHITE_COMMENT :
+                case ScilabLexerConstants.WHITE_STRING :
+                    if (isWhiteViewable) {
                         w = Utilities.getTabbedTextWidth(text, g.getFontMetrics(), x, this, mark);
                         g.drawLine(x + (w - 1) / 2, y - whiteHeight, x + (w + 1) / 2, y - whiteHeight);
-                        }
-                        break;
-                    case ScilabLexerConstants.TAB :
-                        if (isTabViewable) {
+                    }
+                    break;
+                case ScilabLexerConstants.TAB :
+                case ScilabLexerConstants.TAB_COMMENT :
+                case ScilabLexerConstants.TAB_STRING :
+                    if (isTabViewable) {
                         paintTab(text, x, y, g, mark);
-                        }
-                        break;
-                    case ScilabLexerConstants.LATEX :
-                        if (isLaTeXViewable) {
+                    }
+                    break;
+                case ScilabLexerConstants.LATEX :
+                    if (isLaTeXViewable) {
                         //LaTeXUtilities.drawText(text, x, y, g, mark);
-                        }
-                        break;
-                    default :
-                        break;
+                    }
+                    break;
+                default :
+                    break;
                 }
 
                 x = Utilities.drawTabbedText(text, x, y, g, this, mark);

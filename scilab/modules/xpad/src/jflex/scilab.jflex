@@ -29,6 +29,7 @@ import javax.swing.text.Element;
     private ScilabDocument doc = null;
     private boolean transposable = false;
     private Element elem;
+    private int breakstring = -2;
 
     public ScilabLexer(ScilabDocument doc) {
         this.doc = doc;
@@ -49,6 +50,13 @@ import javax.swing.text.Element;
 
     public int yychar() {
         return yychar;
+    }
+
+    public int scan() throws IOException {
+    	if (elem.getElementIndex(start) == breakstring + 1) {
+	    yybegin(QSTRING);
+	}
+	return yylex();
     }
 
     public int getKeyword(int pos, boolean strict) {
@@ -89,6 +97,8 @@ comment = "//"
 
 quote = "'"
 
+dquote = "\""
+
 cstes = "%t" | "%T" | "%f" | "%F" | "%e" | "%pi" | "%inf" | "%i" | "%z" | "%s" | "%nan" | "%eps" | "SCI" | "WSCI" | "SCIHOME" | "TMPDIR"
 
 operator = ".'" | ".*" | "./" | ".\\" | ".^" | ".**" | "+" | "-" | "/" | "\\" | "*" | "^" | "**" | "==" | "~=" | "<>" | "<" | ">" | "<=" | ">=" | ".*." | "./." | ".\\." | "/." | "=" | "&" | "|" | "@" | "@=" | "~"
@@ -107,8 +117,7 @@ break = ".."(".")*
 
 special = "$" | ":" | {break}
 
-string = (([^\'\"\r\n]*)|([\'\"]{2}))+
-dqstring = \"{string}(\"|\')
+string = (([^ \t\'\"\r\n\.]*)|([\'\"]{2}))+
 
 id = ([a-zA-Z%_#!?][a-zA-Z0-9_#!$?]*)|("$"[a-zA-Z0-9_#!$?]+)
 
@@ -122,14 +131,15 @@ digit = [0-9]
 exp = [eE][+-]?{digit}+
 number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
 
-%x QSTRING, COMMENT, FIELD, COMMANDS, COMMANDSWHITE
+%x QSTRING, COMMENT, FIELD, COMMANDS, COMMANDSWHITE, BREAKSTRING
 
 %%
 
 <YYINITIAL> {
   {comment}                      {
                                    transposable = false;
-                                   yybegin(COMMENT);
+                                   yypushback(2);
+				   yybegin(COMMENT);
                                  }
 
   {operator}                     {
@@ -200,6 +210,7 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
                                        return ScilabLexerConstants.TRANSP;
                                     } else {
                                        yybegin(QSTRING);
+				       return ScilabLexerConstants.STRING;
                                     }
                                  }
 
@@ -213,9 +224,10 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
                                    return ScilabLexerConstants.OPENCLOSE;
                                  }
 
-  {dqstring}                     {
+  {dquote}                       {
                                    transposable = false;
-                                   return ScilabLexerConstants.STRING;
+                                   yybegin(QSTRING);
+				   return ScilabLexerConstants.STRING;	
                                  }
 
   " "                            {
@@ -289,11 +301,30 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
 }
 
 <QSTRING> {
-  {string}                       { }
+  {break}			 {
+				   yypushback(yylength());
+				   yybegin(BREAKSTRING);
+				   transposable = false;
+  				   return ScilabLexerConstants.STRING;
+				 }
+
+  " "				 {
+    				   return ScilabLexerConstants.WHITE_STRING;
+				 }
+
+  "\t"				 {
+    				   return ScilabLexerConstants.TAB_STRING;
+				 }
+
+  {string}                       |
+  "."				 {
+				   return ScilabLexerConstants.STRING;
+				 }
 
   (\'|\")                        {
                                    transposable = false;
-                                   yybegin(YYINITIAL);
+				   breakstring = -2;
+				   yybegin(YYINITIAL);
                                    return ScilabLexerConstants.STRING;
                                  }
 
@@ -301,7 +332,6 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
   {eol}                          {
                                    return ScilabLexerConstants.DEFAULT;
                                  }
-
 }
 
 <COMMENT> {
@@ -317,10 +347,26 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
                                    return ScilabLexerConstants.LATEX;
                                  }
 
+  " "				 {
+    				   return ScilabLexerConstants.WHITE_COMMENT;
+				 }
+
+  "\t"				 {
+    				   return ScilabLexerConstants.TAB_COMMENT;
+				 }
+
   .                              |
   {eol}                          {
                                    return ScilabLexerConstants.COMMENT;
                                  }
+}
+
+<BREAKSTRING> {
+  {break}			 {
+  				   yybegin(YYINITIAL);
+				   breakstring = elem.getElementIndex(start);
+  				   return ScilabLexerConstants.SPECIAL;
+				 }
 }
 
 <<EOF>>                          {

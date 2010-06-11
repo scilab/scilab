@@ -28,6 +28,8 @@ Text Editor:
 * bugs 4399, 4922 fixed - The line numbering could not be compatible with the
                           output of the whereami function.
 
+* bug 4790 fixed - A broken (with .. operator) string was badly colorized.
+
 * bug 4865 fixed - The buttons to undo and redo were not disabled when there
                    was nothing to undo or redo.
 
@@ -108,6 +110,8 @@ Text Editor:
 * bug 7032 fixed - There was a problem when filename contained a ' or a ".
 
 * bug 7112 fixed - Two transpositions gave a string (if a'==1 then a=b').
+
+* bug 7237 fixed - Whites and tabs were not visible in strings and in comments.
 
 * bug 7238 fixed - The dot/del key on the numeric pad added a 'suppr' and a dot.
 

@@ -288,7 +288,7 @@ public final class SetColorsAction extends DefaultAction {
                 previewPanel.setBorder(BorderFactory.createTitledBorder(XpadMessages.PREVIEW));
                 previewEditorPane = new ScilabEditorPane(getEditor());
                 previewEditorPane.setEditorKit(new ScilabEditorKit());
-                previewEditorPane.setText("// A comment\n"
+                previewEditorPane.setText("// A comment with whites    and tabulations \t\t\n"
                                 + "// Scilab editor: http://www.scilab.org/\n"
                                 + "function [a, b] = myfunction(d, e, f)\n"
                                 + "\ta = 2.71828 + %pi + f($, :);\n"
@@ -296,10 +296,10 @@ public final class SetColorsAction extends DefaultAction {
                                 + "\tif d == e then\n"
                                 + "\t\tb = 10;\n"
                                 + "\telse\n"
-                                + "\t\tb = \"test\" + home\n"
+                                + "\t\tb = \"\t\ttest     \" + home\n"
                                 + "\t\treturn\n"
                                 + "\tend\n"
-                                + "\tvar = 4.12e-12;\n"
+                                + "\tvar = 1.23e-45;\n"
                                 + "endfunction");
 
                 previewEditorPane.setBackground(Color.WHITE);

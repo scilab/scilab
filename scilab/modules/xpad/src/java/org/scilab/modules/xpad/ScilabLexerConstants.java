@@ -25,7 +25,7 @@ public class ScilabLexerConstants {
     /**
      * Number of known tokens
      */
-    public static final int NUMBEROFTOKENS = 25;
+    public static final int NUMBEROFTOKENS = 29;
 
     /**
      * DEFAULT : tokens which are not recognized
@@ -148,9 +148,29 @@ public class ScilabLexerConstants {
     public static final int LOCALVARIABLES = 23;
 
     /**
+     * WHITE_COMMENT : A white char ' ' in comments
+     */
+    public static final int WHITE_COMMENT = 24;
+
+    /**
+     * TAB_COMMENT : A tabulation '\t' in comments
+     */
+    public static final int TAB_COMMENT = 25;
+
+    /**
+     * WHITE_STRING : A white char ' ' in strings
+     */
+    public static final int WHITE_STRING = 26;
+
+    /**
+     * TAB_STRING : A tabulation '\t' in strings
+     */
+    public static final int TAB_STRING = 27;
+
+    /**
      * EOF : End Of File
      */
-    public static final int EOF = 24;
+    public static final int EOF = 28;
 
     /**
      * TOKENS : A Map which contains the names of keywords (useful in xpadConfiguration.xml)
@@ -177,7 +197,11 @@ public class ScilabLexerConstants {
         TOKENS.put("Structure", SKEYWORD);
         TOKENS.put("Constantes", CONSTANTES);
         TOKENS.put("White", WHITE);
+        TOKENS.put("WhiteInComment", WHITE_COMMENT);
+        TOKENS.put("WhiteInString", WHITE_STRING);
         TOKENS.put("Tabulation", TAB);
+        TOKENS.put("TabulationInComment", TAB_COMMENT);
+        TOKENS.put("TabulationInString", TAB_STRING);
         TOKENS.put("OpenClose", OPENCLOSE);
     }
 
