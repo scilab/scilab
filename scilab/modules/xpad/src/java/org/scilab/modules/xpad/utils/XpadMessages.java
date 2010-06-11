@@ -28,7 +28,7 @@ public class XpadMessages {
     public static final String FILE = Messages.gettext("File");
     public static final String NEW = Messages.gettext("New") + DOTS;
     public static final String OPEN = Messages.gettext("Open") + DOTS;
-    public static final String OPEN_SOURCE_FILE_ON_KEYWORD = Messages.gettext("Open source file") + DOTS;
+    public static final String OPEN_SOURCE_FILE_ON_KEYWORD = Messages.gettext("Open function source file") + DOTS;
     public static final String RECENT_FILES = Messages.gettext("Recent Files");
     public static final String SAVE = Messages.gettext("Save");
     public static final String SAVE_AS = Messages.gettext("Save as") + DOTS;
@@ -111,6 +111,7 @@ public class XpadMessages {
     public static final String EXECUTE = Messages.gettext("Execute");
     public static final String LOAD_INTO_SCILAB = Messages.gettext("Load Into Scilab");
     public static final String EVALUATE_SELECTION = Messages.gettext("Evaluate Selection");
+    public static final String EVALUATE_FROM_BEGINNING = Messages.gettext("Evaluate from beginning...");
     public static final String EXECUTE_FILE_INTO_SCILAB = Messages.gettext("Execute File Into Scilab");
 
     /** HELP MENU */
@@ -169,7 +170,7 @@ public class XpadMessages {
     public static final String COLORIZATION_CANCELED = Messages .gettext("Colorization canceled");
     public static final String BINARY_FILE_MODE = Messages .gettext("Binary file: read-only mode");
     public static final String READ_ONLY_MODE = Messages .gettext("Read-only mode");
-    
+
     /* About box */
     public static final String VERSION = Messages.gettext("Editor") + " 1.0";
     public static final String DIGITEO = "The Scilab Consortium (DIGITEO)";

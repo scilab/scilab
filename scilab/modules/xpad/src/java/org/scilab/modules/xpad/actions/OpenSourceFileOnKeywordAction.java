@@ -52,7 +52,8 @@ public class OpenSourceFileOnKeywordAction extends DefaultAction {
                 if (pos != -1) {
                     sep.scrollTextToPos(pos);
                 } else {
-                InterpreterManagement.requestScilabExec("a46d43fa4w5z8512dc7dc2c3=get_function_path('" + kw + "');if a46d43fa4w5z8512dc7dc2c3~=[] then editor(a46d43fa4w5z8512dc7dc2c3);clear a46d43fa4w5z8512dc7dc2c3;end");
+                    String path = "get_function_path('" + kw + "')";
+                    InterpreterManagement.requestScilabExec("if " + path +" ~=[] then editor(" + path + ");end");
                 }
             } catch (BadLocationException e) { }
         }

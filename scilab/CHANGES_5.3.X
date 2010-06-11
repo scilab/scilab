@@ -119,12 +119,18 @@ Text Editor:
 
 * bug 7239 fixed - Font style was lost on a selected text.
 
+* bug 7240 fixed - The menu "Open source file" was active even if nothing was
+                   openable.
+
 * bug 7262 fixed - An exception was thrown when a text was dragged and droped.
 
 * bug 7272 fixed - No check on the lastModified property was performed when
                    a file is opened.
 
 * bug 7277 fixed - The "recent files" list was badly ordered.
+
+* bug 7281 fixed - The menu "Evaluate selection" didn't change when nothing
+                   was selected.
 
 Incompatibilities:
 ==================

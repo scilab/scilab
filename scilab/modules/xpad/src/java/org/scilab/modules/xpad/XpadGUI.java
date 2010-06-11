@@ -107,7 +107,6 @@ public class XpadGUI {
 
     private static JRadioButtonMenuItem[] radioTypes;
     private static JRadioButtonMenuItem[] radioEolTypes;
-    private static MenuItem evaluateSelectionMenuItem;
     private static TextBox infoBar;
     private static Map<String, KeyStroke> map;
 
@@ -117,7 +116,7 @@ public class XpadGUI {
      * @param editorInstance Xpad
      * @param title the title
      */
-    public XpadGUI(Window mainWindow, Xpad editorInstance, String title) {
+    public XpadGUI(Window mainWindow, final Xpad editorInstance, String title) {
         mainWindow.setTitle(title);
         mainWindow.addTab(editorInstance);
 
@@ -186,7 +185,21 @@ public class XpadGUI {
         executeMenu.setText(XpadMessages.EXECUTE);
         executeMenu.setMnemonic('e');
         executeMenu.add(LoadIntoScilabAction.createMenu(editorInstance, map.get("LoadIntoScilabAction")));
-        evaluateSelectionMenuItem = EvaluateSelectionAction.createMenu(editorInstance, map.get("EvaluateSelectionAction"));
+        final MenuItem evaluateSelectionMenuItem = EvaluateSelectionAction.createMenu(editorInstance, map.get("EvaluateSelectionAction"));
+        if (!ScilabConsole.isExistingConsole()) { /* Only available in STD mode */
+            ((JMenuItem) evaluateSelectionMenuItem.getAsSimpleMenuItem()).setEnabled(false);
+        }
+        PropertyChangeListener listenerEvalItem = new PropertyChangeListener() {
+                public void propertyChange(PropertyChangeEvent arg0) {
+                    String select = editorInstance.getTextPane().getSelectedText();
+                    if (select == null) {
+                        evaluateSelectionMenuItem.setText(Messages.gettext(XpadMessages.EVALUATE_FROM_BEGINNING));
+                    } else {
+                        evaluateSelectionMenuItem.setText(Messages.gettext(XpadMessages.EVALUATE_SELECTION));
+                    }
+                }
+            };
+        ((JMenuItem) evaluateSelectionMenuItem.getAsSimpleMenuItem()).addPropertyChangeListener(listenerEvalItem);
         executeMenu.add(evaluateSelectionMenuItem);
         executeMenu.add(ExecuteFileIntoScilabAction.createMenu(editorInstance, map.get("ExecuteFileIntoScilabAction")));
         menuBar.add(executeMenu);
@@ -386,12 +399,23 @@ public class XpadGUI {
      * @param fileMenu Menu
      * @param editorInstance Xpad
      */
-    private void createFileMenu(Menu fileMenu, Xpad editorInstance) {
+    private void createFileMenu(Menu fileMenu,final Xpad editorInstance) {
         fileMenu.setText(XpadMessages.FILE);
         fileMenu.setMnemonic('F');
         fileMenu.add(NewAction.createMenu(editorInstance, map.get("NewAction")));
         fileMenu.add(OpenAction.createMenu(editorInstance, map.get("OpenAction")));
-        fileMenu.add(OpenSourceFileOnKeywordAction.createMenu(editorInstance, map.get("OpenSourceFileOnKeywordAction")));
+        final MenuItem openSource = OpenSourceFileOnKeywordAction.createMenu(editorInstance, map.get("OpenSourceFileOnKeywordAction"));
+        ((JMenuItem) openSource.getAsSimpleMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
+                public void propertyChange(PropertyChangeEvent arg0) {
+                    String keyword = editorInstance.getTextPane().getSelectedText();
+                    if (keyword == null) {
+                        KeywordEvent kwe = editorInstance.getTextPane().getKeywordEvent();
+                        openSource.setEnabled(ScilabLexerConstants.isOpenable(kwe.getType()));
+                    }
+                }
+            });
+
+        fileMenu.add(openSource);
 
         Menu recentsMenu = editorInstance.getRecentsMenu();
         recentsMenu.setText(XpadMessages.RECENT_FILES);
@@ -448,6 +472,7 @@ public class XpadGUI {
 
         final JPopupMenu popup = new JPopupMenu();
 
+        final JMenuItem evalMenuItem = new JMenuItem(XpadMessages.EVALUATE_SELECTION);
         JMenuItem menuItem = null;
 
         /* Execute into Scilab */
@@ -461,13 +486,23 @@ public class XpadGUI {
                     }
                 }
             };
-        menuItem = new JMenuItem(XpadMessages.EVALUATE_SELECTION);
-        menuItem.addActionListener(actionListenerExecuteIntoScilab);
-        if (!ScilabConsole.isExistingConsole()) { /* Only available in STD mode */
-            menuItem.setEnabled(false);
-        }
-        popup.add(menuItem);
 
+        evalMenuItem.addActionListener(actionListenerExecuteIntoScilab);
+        if (!ScilabConsole.isExistingConsole()) { /* Only available in STD mode */
+            evalMenuItem.setEnabled(false);
+        }
+        PropertyChangeListener listenerEvalItem = new PropertyChangeListener() {
+                public void propertyChange(PropertyChangeEvent arg0) {
+                    String select = c.getSelectedText();
+                    if (select == null) {
+                        evalMenuItem.setText(Messages.gettext(XpadMessages.EVALUATE_FROM_BEGINNING));
+                    } else {
+                        evalMenuItem.setText(Messages.gettext(XpadMessages.EVALUATE_SELECTION));
+                    }
+                }
+            };
+        evalMenuItem.addPropertyChangeListener(listenerEvalItem);
+        popup.add(evalMenuItem);
 
         /* Edit in the Scilab Text Editor */
         ActionListener actionListenerLoadIntoTextEditor = new ActionListener() {
@@ -571,6 +606,59 @@ public class XpadGUI {
         helpMenuItem.addPropertyChangeListener(listenerTextItem);
         helpMenuItem.addActionListener(actionListenerHelpOnKeyword);
         popup.add(helpMenuItem);
+
+        /* Open source file in the Scilab Text Editor */
+        final JMenuItem sourceMenuItem = new JMenuItem(XpadMessages.OPEN_SOURCE_FILE_ON_KEYWORD);
+
+        ActionListener actionListenerOpenSource = new ActionListener() {
+                public void actionPerformed(ActionEvent actionEvent) {
+                    String selection = c.getSelectedText();
+                    if (selection == null) {
+                        KeywordEvent kwe = ((ScilabEditorPane) c).getKeywordEvent();
+                        if (ScilabLexerConstants.isOpenable(kwe.getType())) {
+                            try {
+                                ScilabDocument doc = (ScilabDocument) ((ScilabEditorPane) c).getDocument();
+                                String kw = doc.getText(kwe.getStart(), kwe.getLength());
+                                int pos = doc.searchFunctionByName(kw);
+                                if (pos != -1) {
+                                    ((ScilabEditorPane) c).scrollTextToPos(pos);
+                                } else {
+                                    String path = "get_function_path('" + kw + "')";
+                                    InterpreterManagement.requestScilabExec("if " + path +" ~=[] then editor(" + path + ");end");
+                                }
+                            } catch (BadLocationException e) { }
+                        }
+                    }
+                }
+            };
+
+        /* Not sure it is the best listener */
+        PropertyChangeListener listenerSourceItem = new PropertyChangeListener() {
+                public void propertyChange(PropertyChangeEvent arg0) {
+                    String keyword = c.getSelectedText();
+                    if (keyword == null) {
+                        KeywordEvent kwe = ((ScilabEditorPane) c).getKeywordEvent();
+                        if (ScilabLexerConstants.isOpenable(kwe.getType())) {
+                            try {
+                                keyword = c.getDocument().getText(kwe.getStart(), kwe.getLength());
+                            } catch (BadLocationException e) { }
+                        } else {
+                            sourceMenuItem.setText(XpadMessages.OPEN_SOURCE_FILE_ON_KEYWORD);
+                            sourceMenuItem.setEnabled(false);
+                            return;
+                        }
+                    }
+                    int nbOfDisplayedOnlyXChar = 10;
+                    if (keyword.length() > nbOfDisplayedOnlyXChar) {
+                        keyword = keyword.substring(0, nbOfDisplayedOnlyXChar) + "...";
+                    }
+                    sourceMenuItem.setText(Messages.gettext("Source of '") + keyword + "'");
+                    sourceMenuItem.setEnabled(true);
+                }
+            };
+        sourceMenuItem.addPropertyChangeListener(listenerSourceItem);
+        sourceMenuItem.addActionListener(actionListenerOpenSource);
+        popup.add(sourceMenuItem);
 
         /* Creates the Popupmenu on the component */
         c.setComponentPopupMenu(popup);
