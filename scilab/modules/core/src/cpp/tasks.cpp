@@ -132,6 +132,11 @@ void printAstTask(ast::Exp *tree, bool timed)
 */
 void execAstTask(ast::Exp* tree, bool timed, bool ASTtimed)
 {
+    if(tree == NULL)
+    {
+        return;
+    }
+
     ast::ExecVisitor *exec;
     if(timed)
     {

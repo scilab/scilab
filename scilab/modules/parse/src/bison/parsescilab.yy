@@ -38,7 +38,7 @@
             return ParserSingleInstance::getExitStatus();       \
         }                                                       \
     }
-  
+
 
 %}
 
@@ -307,6 +307,7 @@
 program:
 expressions					{ ParserSingleInstance::setTree($1); }
 | EOL expressions 				{ ParserSingleInstance::setTree($2); }
+| /* Epsilon */                 { ParserSingleInstance::setTree(NULL); }
 ;
 
 /*
@@ -491,7 +492,7 @@ BOOLTRUE LPAREN functionArgs RPAREN			{ $$ = new ast::CallExp(@$, *new ast::Simp
 /*
 ** -*- SIMPLE FUNCTION CALL -*-
 */
-/* Usual way to call functions foo(arg1, arg2, arg3) 
+/* Usual way to call functions foo(arg1, arg2, arg3)
 ** or extract cell values foo{arg1, arg2, arg3}
 */
 simpleFunctionCall :
@@ -820,12 +821,12 @@ functionCall	%prec HIGHLEVEL		{ $$ = $1; }
 */
 /* a way to compare two expressions */
 comparison :
-variable rightComparable		{ 
+variable rightComparable		{
 					  delete &($2->left_get());
 					  $2->left_set(*$1);
 					  $$ = $2;
 					}
-| functionCall rightComparable		{ 
+| functionCall rightComparable		{
 					  delete &($2->left_get());
 					  $2->left_set(*$1);
 					  $$ = $2;
@@ -849,7 +850,7 @@ AND variable				{ $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new st
 | OR variable				{ $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::LogicalOpExp::logicalOr, *$2); }
 | OR functionCall			{ $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::LogicalOpExp::logicalOr, *$2); }
 | OR COLON				{ $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::LogicalOpExp::logicalOr, * new ast::ColonVar(@$)); }
-/* || */				
+/* || */
 | OROR variable				{ $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::LogicalOpExp::logicalShortCutOr, *$2); }
 | OROR functionCall			{ $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::LogicalOpExp::logicalShortCutOr, *$2); }
 | OROR COLON				{ $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::LogicalOpExp::logicalShortCutOr, * new ast::ColonVar(@$)); }
@@ -884,13 +885,13 @@ AND variable				{ $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new st
 */
 /* Operations */
 operation :
-variable rightOperand			{ 
+variable rightOperand			{
 					  delete &($2->left_get());
 					  $2->left_set(*$1);
 					  $2->location_set(@$);
 					  $$ = $2;
 					}
-| functionCall rightOperand		{ 
+| functionCall rightOperand		{
 					  delete &($2->left_get());
 					  $2->left_set(*$1);
 					  $2->location_set(@$);
@@ -977,14 +978,14 @@ variable :
 NOT variable				%prec NOT	{ $$ = new ast::NotExp(@$, *$2); }
 | NOT functionCall			%prec NOT	{ $$ = new ast::NotExp(@$, *$2); }
 | variable DOT ID			%prec UPLEVEL	{ $$ = new ast::FieldExp(@$, *$1, *new ast::SimpleVar(@$, *$3)); }
-| variable DOT functionCall				{ 
-							  $3->name_set(new ast::FieldExp(@$, *$1, $3->name_get())); 
+| variable DOT functionCall				{
+							  $3->name_set(new ast::FieldExp(@$, *$1, $3->name_get()));
 							  $3->location_set(@$);
 							  $$ = $3;
 }
 | functionCall DOT variable				{ $$ = new ast::FieldExp(@$, *$1, *$3); }
-| functionCall DOT functionCall				{ 
-							  $3->name_set(new ast::FieldExp(@$, *$1, $3->name_get())); 
+| functionCall DOT functionCall				{
+							  $3->name_set(new ast::FieldExp(@$, *$1, $3->name_get()));
 							  $3->location_set(@$);
 							  $$ = $3;
 }
@@ -1382,7 +1383,7 @@ EOL								{ /* !! Do Nothing !! */ }
 */
 /* (Case ... Then ...)+ control block */
 casesControl :
-CASE variable caseControlBreak caseBody							{ 
+CASE variable caseControlBreak caseBody							{
 																  $$ = new ast::cases_t;
 																  $$->push_back(new ast::CaseExp(@$, *$2, *$4));
 																}
