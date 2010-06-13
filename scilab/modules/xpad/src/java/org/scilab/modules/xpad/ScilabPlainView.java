@@ -62,6 +62,7 @@ public class ScilabPlainView extends PlainView {
 
     private final Rectangle rect = new Rectangle();
     private Map desktopFontHints;
+    private boolean enableDesktopFontHints = true;
 
     private int whiteHeight;
     private int whiteWidth;
@@ -168,6 +169,7 @@ public class ScilabPlainView extends PlainView {
      */
     public void reinitialize() {
         desktopFontHints = null;
+        enableDesktopFontHints = true;
     }
 
     /**
@@ -185,12 +187,15 @@ public class ScilabPlainView extends PlainView {
             return super.drawUnselectedText(g, sx, sy, p0, p1);
         }
 
-        if (desktopFontHints == null) {
+        if (enableDesktopFontHints && desktopFontHints == null) {
             /* This hint is used to have antialiased fonts in the view in using
                the same method (differents way to antialias with LCD screen) as the desktop. */
             desktopFontHints = (Map) Toolkit.getDefaultToolkit().getDesktopProperty(DESKTOPHINTS);
             calculateHeight(((Graphics2D) g).getFontRenderContext(), context.tokenFonts[0]);
-        } else {
+            enableDesktopFontHints = desktopFontHints != null;
+        }
+
+        if (enableDesktopFontHints) {
             ((Graphics2D) g).addRenderingHints(desktopFontHints);
         }
 

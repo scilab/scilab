@@ -17,6 +17,8 @@ import java.awt.Shape;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Font;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseEvent;
@@ -31,6 +33,7 @@ import javax.swing.JEditorPane;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JScrollBar;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.JComponent;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.Document;
@@ -95,6 +98,15 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         }
         this.editor = editor;
         scroll = new JScrollPane(this);
+        scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scroll.addComponentListener(new ComponentAdapter() {
+                public void componentResized(ComponentEvent e) {
+                    setSize(scroll.getViewport().getSize());
+                    validate();
+                }
+            });
+
         addCaretListener(this);
         addMouseMotionListener(this);
         addMouseListener(this);
@@ -129,8 +141,8 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     public void updateInfosWhenFocused() {
         ScilabDocument doc = (ScilabDocument) getDocument();
         doc.setFocused(true);
-        Xpad.setEditor(ScilabEditorPane.this.editor);
-        focused = ScilabEditorPane.this;
+        Xpad.setEditor(editor);
+        focused = this;
         doc.getUndoManager().enableUndoRedoButtons();
 
         if (checkExternalModif()) {

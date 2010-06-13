@@ -86,6 +86,7 @@ public class ScilabView extends WrappedPlainView {
 
     private final Rectangle rect = new Rectangle();
     private Map desktopFontHints;
+    private boolean enableDesktopFontHints = true;
 
     private int whiteHeight;
     private int whiteWidth;
@@ -191,13 +192,14 @@ public class ScilabView extends WrappedPlainView {
      */
     public void reinitialize() {
         desktopFontHints = null;
+        enableDesktopFontHints = true;
     }
 
     /**
      * Very important method since we draw the text in this method !!
      * @param g the graphics where to draw
      * @param sx the x-coordinate where to draw
-     * @param sy the y-coordinate ... (guess the end pf the sentence)
+     * @param sy the y-coordinate ... (guess the end of the sentence)
      * @param p0 the start of the text in the doc
      * @param p1 the end of the text in the doc
      * @return the x-coordinate where to draw the next piece of text
@@ -208,12 +210,15 @@ public class ScilabView extends WrappedPlainView {
             return super.drawUnselectedText(g, sx, sy, p0, p1);
         }
 
-        if (desktopFontHints == null) {
+        if (enableDesktopFontHints && desktopFontHints == null) {
             /* This hint is used to have antialiased fonts in the view in using
                the same method (differents way to antialias with LCD screen) as the desktop. */
             desktopFontHints = (Map) Toolkit.getDefaultToolkit().getDesktopProperty(DESKTOPHINTS);
             calculateHeight(((Graphics2D) g).getFontRenderContext(), context.tokenFonts[0]);
-        } else {
+            enableDesktopFontHints = desktopFontHints != null;
+        }
+
+        if (enableDesktopFontHints) {
             ((Graphics2D) g).addRenderingHints(desktopFontHints);
         }
 
