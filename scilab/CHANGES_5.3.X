@@ -598,6 +598,8 @@ Bug fixes:
 
 * bug 4362 fixed - test_run("gui","checkbox") no more freezes Scilab.
 
+* bug 4493 fixed - 'rat' moved in elementary_functions module.
+
 * bug 4572 fixed - Scilab did a SIGSEGV after stacksize('max') + stacksize().
 
 * bug 4583 fixed - Default value for string array assignment was " " instead

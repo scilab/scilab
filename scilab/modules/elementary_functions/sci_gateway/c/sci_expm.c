@@ -28,7 +28,7 @@ __declspec(dllexport) DCOEFF_struct C2F(dcoeff);
 
 extern int C2F(intexpm)(int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_expm)(char *fname,unsigned long fname_len)
+int sci_expm(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	C2F(intexpm)(id);

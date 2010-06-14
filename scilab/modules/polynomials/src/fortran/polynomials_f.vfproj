@@ -91,6 +91,8 @@ lib /DEF:&quot;$(InputDir)Elementary_functions_Import.def&quot; /SUBSYSTEM:WINDO
 	<Files>
 		<Filter Name="Header Files" Filter="fi;fd"/>
 		<Filter Name="Library Dependencies">
+		<File RelativePath=".\Elementary_functions_f_Import.def"/>
+		<File RelativePath=".\Elementary_functions_Import.def"/>
 		<File RelativePath=".\LibScilab_Import.def"/>
 		<File RelativePath=".\linear_algebra_Import.def"/>
 		<File RelativePath=".\output_stream_Import.def"/>

@@ -608,6 +608,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_rat.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_real.c"
 				>
 			</File>

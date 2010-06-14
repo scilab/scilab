@@ -262,6 +262,7 @@ src/fortran/bdiag.f \
 src/fortran/wvmul.f \
 src/fortran/dmmul.f \
 src/fortran/wsqrt.f \
+src/fortran/israt.f \
 src/fortran/rat.f \
 src/fortran/ribesl.f \
 src/fortran/rjbesl.f \
@@ -294,6 +295,7 @@ sci_gateway/c/sci_asin.c \
 sci_gateway/c/sci_sign.c \
 sci_gateway/c/sci_zeros.c \
 sci_gateway/c/sci_ones.c \
+sci_gateway/c/sci_rat.c \
 sci_gateway/c/gw_elementary_functions.c \
 sci_gateway/c/sci_number_properties.c \
 sci_gateway/c/sci_diag.c \
@@ -328,6 +330,7 @@ sci_gateway/fortran/sci_f_expm.f \
 sci_gateway/fortran/sci_f_size.f \
 sci_gateway/fortran/sci_f_tril.f \
 sci_gateway/fortran/sci_f_ceil.f \
+sci_gateway/fortran/sci_f_rat.f \
 sci_gateway/fortran/sci_f_imag.f \
 sci_gateway/fortran/sci_f_log.f \
 sci_gateway/fortran/sci_f_log1p.f \

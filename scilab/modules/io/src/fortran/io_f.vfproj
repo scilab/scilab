@@ -91,7 +91,6 @@ lib /DEF:&quot;$(InputDir)Elementary_functions_f_Import.def&quot; /SUBSYSTEM:WIN
 		<File RelativePath=".\io_f.rc"/></Filter>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath="..\..\sci_gateway\fortran\intfile.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\intrat.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\intread.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\intread4b.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\intreadb.f"/>
@@ -100,8 +99,7 @@ lib /DEF:&quot;$(InputDir)Elementary_functions_f_Import.def&quot; /SUBSYSTEM:WIN
 		<File RelativePath="..\..\sci_gateway\fortran\intwrite4b.f"/>
 		<File RelativePath=".\newsave.f"/>
 		<File RelativePath=".\v2cunit.f"/>
-		<File RelativePath=".\v2unit.f"/>
-		<File RelativePath=".\writebuf.f"/></Filter>
+		<File RelativePath=".\v2unit.f"/></Filter>
 		<File RelativePath="..\..\..\..\bin\blasplus.lib"/>
 		<File RelativePath="..\..\sci_gateway\io_gateway.xml"/>
 		<File RelativePath="..\..\Makefile.am"/></Files>

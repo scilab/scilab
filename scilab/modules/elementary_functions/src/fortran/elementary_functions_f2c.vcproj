@@ -658,6 +658,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\israt.c"
+				>
+			</File>
+			<File
 				RelativePath=".\ivimp.c"
 				>
 			</File>
@@ -867,6 +871,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_f_rand.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_f_rat.c"
 				>
 			</File>
 			<File
@@ -1386,6 +1394,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\israt.f"
+				>
+			</File>
+			<File
 				RelativePath=".\ivimp.f"
 				>
 			</File>
@@ -1595,6 +1607,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_f_rand.f"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_f_rat.f"
 				>
 			</File>
 			<File

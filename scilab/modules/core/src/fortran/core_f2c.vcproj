@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -40,9 +40,11 @@
 			<Tool
 				Name="VCCustomBuildTool"
 			/>
-
 			<Tool
 				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
@@ -121,6 +123,9 @@
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
 			/>
@@ -186,9 +191,11 @@
 			<Tool
 				Name="VCCustomBuildTool"
 			/>
-
 			<Tool
 				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
@@ -264,6 +271,9 @@
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
@@ -529,10 +539,6 @@
 			</File>
 			<File
 				RelativePath=".\isnum.c"
-				>
-			</File>
-			<File
-				RelativePath=".\israt.c"
 				>
 			</File>
 			<File
@@ -1021,10 +1027,6 @@
 			</File>
 			<File
 				RelativePath=".\isnum.f"
-				>
-			</File>
-			<File
-				RelativePath=".\israt.f"
 				>
 			</File>
 			<File

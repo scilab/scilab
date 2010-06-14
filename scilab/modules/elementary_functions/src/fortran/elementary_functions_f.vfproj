@@ -144,6 +144,7 @@ lib /DEF:&quot;$(InputDir)elementary_functions_Import.def&quot; /SUBSYSTEM:WINDO
 		<File RelativePath=".\isort.f"/>
 		<File RelativePath=".\isova0.f"/>
 		<File RelativePath=".\isoval.f"/>
+		<File RelativePath=".\israt.f"/>
 		<File RelativePath=".\ivimp.f"/>
 		<File RelativePath=".\iwamax.f"/>
 		<File RelativePath=".\kronc.f"/>
@@ -197,6 +198,7 @@ lib /DEF:&quot;$(InputDir)elementary_functions_Import.def&quot; /SUBSYSTEM:WINDO
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_ones.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_prod.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_rand.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_rat.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_real.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_round.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_sign.f"/>

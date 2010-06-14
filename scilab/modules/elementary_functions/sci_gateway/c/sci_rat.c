@@ -10,9 +10,12 @@
  *
  */
 
-#include "gw_io.h"
+#include "gw_elementary_functions.h"
+#include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_rat)(char *fname,unsigned long fname_len)
+extern int C2F(intrat)(); /* fortran subroutine */
+/*--------------------------------------------------------------------------*/
+int sci_rat(char *fname,unsigned long fname_len)
 {
 	C2F(intrat)();
 	return 0;

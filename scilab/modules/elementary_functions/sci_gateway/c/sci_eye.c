@@ -14,7 +14,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(inteye)(int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_eye)(char *fname,unsigned long fname_len)
+int sci_eye(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	C2F(inteye)(id);

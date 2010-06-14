@@ -4,10 +4,30 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+//
 // <-- JVM NOT MANDATORY -->
-[n,d]=rat(%pi);
+//
+// by reference
+[n, d] = rat(%pi);
 if n <> 355 then bugmes();quit;end
 if d <> 113 then bugmes();quit;end
-[n,d]=rat(%pi,1.d-12);
+y = rat(%pi);
+if y <> n/d then bugmes();quit;end
+[n, d] = rat(%pi, 1.d-12);
 if n <> 1146408 then bugmes();quit;end
 if d <> 364913 then bugmes();quit;end
+// by value
+[n, d] = rat(3.1415927)
+ d  =
+ 
+    113.  
+ n  =
+ 
+    355.  
+if n <> 355 then bugmes();quit;end
+if d <> 113 then bugmes();quit;end
+y = rat(%pi);
+if y <> n/d then bugmes();quit;end
+[n, d] = rat(3.1415927, 1.d-12);
+if n <> 1640169 then bugmes();quit;end
+if d <> 522082 then bugmes();quit;end

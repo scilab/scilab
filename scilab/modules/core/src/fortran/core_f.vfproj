@@ -126,7 +126,6 @@ cd .."/>
 		<File RelativePath="iseye.f"/>
 		<File RelativePath=".\isinstring.f"/>
 		<File RelativePath="isnum.f"/>
-		<File RelativePath="israt.f"/>
 		<File RelativePath="istrue.f"/>
 		<File RelativePath="itosci.f"/>
 		<File RelativePath="logops.f"/>

@@ -134,7 +134,6 @@ src/fortran/getsym.f \
 src/fortran/findequal.f \
 src/fortran/stackg.f \
 src/fortran/find.f \
-src/fortran/israt.f \
 src/fortran/setlnb.f \
 src/fortran/mrknmd.f \
 src/fortran/stackgl.f \
