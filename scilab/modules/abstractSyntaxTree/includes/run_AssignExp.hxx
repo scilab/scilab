@@ -378,8 +378,14 @@ void visitprivate(const AssignExp  &e)
         }
         else if(pField)
         {//a.b = x
-
             Struct* pStr = getStructFromExp(pField->head_get());
+
+            if(pStr->isRef(1) == true)
+            {
+                pStr = pStr->clone();
+                const string *pstName = getStructNameFromExp(pField);
+                symbol::Context::getInstance()->put(*pstName, *pStr);
+            }
 
             /*getting what to assign*/
             execMeR.expected_size_set(1);
@@ -406,7 +412,7 @@ void visitprivate(const AssignExp  &e)
             //assign result to new field
             const SimpleVar* pTail =  dynamic_cast<const SimpleVar*>(pField->tail_get());
 
-            pStr->add(pTail->name_get(), pIT);
+            pStr->add(pTail->name_get(), pIT->clone());
             if(e.is_verbose())
             {
                 const string *pstName = getStructNameFromExp(pField);

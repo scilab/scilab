@@ -50,6 +50,7 @@ namespace types
             itValues++)
         {
             (*m_plData)[(*itValues).first] = ((*itValues).second)->clone();
+            (*m_plData)[(*itValues).first]->IncreaseRef();
         }
     }
 

@@ -91,6 +91,14 @@ namespace types
 		{//load file, only for the first call
 			Parser parser;
             parser.parseFile(m_stPath, "parse macro file");
+            if(parser.getExitStatus() !=  Parser::Succeded)
+            {
+                YaspWrite("Unable to parse ");
+                YaspWrite(const_cast<char*>(m_stPath.c_str()));
+                YaspWrite("\n\n");
+                YaspWrite(parser.getErrorMessage());
+            }
+
 			//find FunctionDec
 			FunctionDec* pFD = NULL;
 
