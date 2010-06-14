@@ -122,7 +122,7 @@ void visitprivate(const AssignExp  &e)
                         ostr << "???" << " = " << std::endl;
                     }
                     ostr << std::endl;
-                    ostr << pOut->toString(10,75) << std::endl;
+                    ostr << pOut->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
                     YaspWrite((char *)ostr.str().c_str());
                 }
             }
@@ -283,7 +283,7 @@ void visitprivate(const AssignExp  &e)
                         ostr << "???" << " = " << std::endl;
                     }
                     ostr << std::endl;
-                    ostr << pOut->toString(10,75) << std::endl;
+                    ostr << pOut->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
                     YaspWrite((char *)ostr.str().c_str());
                 }
             }
@@ -337,7 +337,7 @@ void visitprivate(const AssignExp  &e)
                 std::ostringstream ostr;
                 ostr << pVar->name_get() << " = " << std::endl;
                 ostr << std::endl;
-                ostr << pIT->toString(10,75) << std::endl;
+                ostr << pIT->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
                 YaspWrite((char *)ostr.str().c_str());
             }
         }
@@ -369,7 +369,7 @@ void visitprivate(const AssignExp  &e)
                     std::ostringstream ostr;
                     ostr << pListVar->name_get() << " = " << std::endl;
                     ostr << std::endl;
-                    ostr << execMeR.result_get(i)->toString(10,75) << std::endl;
+                    ostr << execMeR.result_get(i)->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
                     YaspWrite((char *)ostr.str().c_str());
                 }
                 i--;
@@ -414,7 +414,7 @@ void visitprivate(const AssignExp  &e)
                 std::ostringstream ostr;
                 ostr << *pstName << " = " << std::endl;
                 ostr << std::endl;
-                ostr << symbol::Context::getInstance()->get(*pstName)->toString(10,75) << std::endl;
+                ostr << symbol::Context::getInstance()->get(*pstName)->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
                 YaspWrite((char *)ostr.str().c_str());
             }
         }

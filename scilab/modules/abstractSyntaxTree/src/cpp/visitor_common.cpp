@@ -313,7 +313,6 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
 			break;
 		case types::GenericType::RealInt :
 			poResult = types::Int::createInt(_iRows, _iCols, _poSource->getAsInt()->getIntType());
-			//poResult = new Int(_iRows, _iCols, _poSource->getAsInt()->getIntType());
 			break;
 		case types::GenericType::RealString :
 			poResult = new types::String(_iRows, _iCols);
@@ -451,7 +450,17 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
 			*_piCols = _poSource->getAsBool()->cols_get();
 			break;
 		case types::GenericType::RealInt :
-			//((Double*)poResult)->val_set(iCurRow, iCurCol, ((Double*)_poSource)->real_get(0,0), ((Double*)_poSource)->img_get(0,0));
+            if(_poSource->getAsInt()->size_get() != 1)
+            {
+                poResult->getAsInt()->append(iCurRow, iCurCol, _poSource->getAsInt());
+            }
+            else
+            {
+                poResult->getAsInt()->data_set(iCurRow, iCurCol, _poSource->getAsInt()->data_get(0,0));
+            }
+
+            *_piRows = _poSource->getAsInt()->rows_get();
+			*_piCols = _poSource->getAsInt()->cols_get();
 			break;
 		case types::GenericType::RealString :
             if(_poSource->getAsString()->size_get() != 1)

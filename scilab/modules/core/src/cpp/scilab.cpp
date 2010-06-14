@@ -101,6 +101,7 @@ void Add_s(void);
 void Add_z(void);
 void Add_true(void);
 void Add_false(void);
+void Add_WITH_DEMOS(void); //temporary variable
 void Add_All_Variables(void);
 
 void Add_Double_Constant(string _szName, double _dblReal, double _dblImg, bool _bComplex);
@@ -536,6 +537,9 @@ int InitializeEnvironnement(void)
 {
     SetScilabEnvironment();
     InitializeLocalization();
+
+    ConfigVariable::setConsoleWidth(75);
+    ConfigVariable::setFormat(16);
     Add_All_Variables();
     return 0;
 }
@@ -548,6 +552,12 @@ void Add_All_Variables(void)
     Add_z();
     Add_true();
     Add_false();
+    Add_WITH_DEMOS();
+}
+
+void Add_WITH_DEMOS(void)
+{
+    Add_Boolean_Constant("WITH_DEMOS", false);
 }
 
 void Add_false(void)

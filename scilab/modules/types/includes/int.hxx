@@ -56,6 +56,7 @@ namespace types
         virtual GenericType*    get_col_value(int _iPos) = 0;
         virtual Int*            extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector) = 0;
         virtual bool            insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector);
+        bool                    append(int _iRows, int _iCols, Int *_poSource);
 
 
         virtual std::string     toString(int _iPrecision, int _iLineLen) = 0;

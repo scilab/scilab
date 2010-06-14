@@ -18,7 +18,6 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_diary.cpp \
 	sci_gateway/cpp/sci_disp.cpp \
 	sci_gateway/cpp/output_stream_gw.cpp
-	
 
 OUTPUT_STREAM_C_SOURCES = 	src/c/erro.c \
 				src/c/cerro.c \
@@ -59,7 +58,7 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_output_stream.c \
 		sci_gateway/c/sci_print.c \
 		sci_gateway/c/sci_mprintf.c \
 		sci_gateway/c/sci_msprintf.c
-		
+
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/intprint.f \
 			sci_gateway/fortran/intdisp.f
@@ -83,7 +82,8 @@ libscioutput_stream_la_CPPFLAGS=  -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/types/includes \
 -I$(top_srcdir)/modules/functions_manager/includes \
 -I$(top_srcdir)/modules/symbol/includes \
--I$(top_srcdir)/modules/abstractSyntaxTree/includes
+-I$(top_srcdir)/modules/abstractSyntaxTree/includes \
+-I$(top_srcdir)/modules/system_env/includes
 
 
 pkglib_LTLIBRARIES = libscioutput_stream.la

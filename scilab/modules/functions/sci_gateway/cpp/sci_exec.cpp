@@ -202,7 +202,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 					std::ostringstream ostr;
 					ostr << "ans = " << std::endl;
 					ostr << std::endl;
-					ostr << execMe.result_get()->toString(10,75) << std::endl;
+					ostr << execMe.result_get()->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
 					YaspWrite((char *)ostr.str().c_str());
 				}
 			}

@@ -13,6 +13,7 @@
 #include "alltypes.hxx"
 #include "funcmanager.hxx"
 #include "yaspio.hxx"
+#include "configvariable.hxx"
 
 using namespace types;
 
@@ -29,7 +30,7 @@ Function::ReturnValue sci_disp(typed_list &in, int _piRetCount, typed_list &out)
 	for(it = in.rbegin() ; it != in.rend() ; it++)
 	{
 		YaspWrite("\n");
-		YaspWrite(const_cast<char*>((*it)->toString(16,75).c_str()));
+		YaspWrite(const_cast<char*>((*it)->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()).c_str()));
 	}
 
 	YaspWrite("\n");

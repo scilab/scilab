@@ -68,6 +68,22 @@ public :
     static void setExitStatus(int _iExitStatus);
     static int getExitStatus(void);
 
+    // Digit precision, ex format function
+private :
+    static int m_iFormat;
+
+public : 
+    static void setFormat(int _iFormat);
+    static int getFormat(void);
+
+
+    // Screen console width
+private :
+    static int m_iConsoleWidth;
+
+public : 
+    static void setConsoleWidth(int _iConsoleWidth);
+    static int getConsoleWidth(void);
 };
 
 #endif /* __CONFIGVARIABLE_HXX__ */

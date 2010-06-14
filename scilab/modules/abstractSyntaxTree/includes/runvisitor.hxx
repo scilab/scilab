@@ -33,7 +33,7 @@
 #include "types_substraction.hxx"
 #include "types_divide.hxx"
 #include "types_power.hxx"
-
+#include "configvariable.hxx"
 #include "overload.hxx"
 
 extern "C" {
@@ -479,7 +479,7 @@ namespace ast
                     std::ostringstream ostr;
                     ostr << e.name_get() << " = " << "(" << pI->getRef() << ")"<< std::endl;
                     ostr << std::endl;
-                    ostr << pI->toString(10,75) << std::endl;
+                    ostr << pI->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
                     YaspWrite(const_cast<char *>(ostr.str().c_str()));
                 }
             }
@@ -993,7 +993,7 @@ namespace ast
                             std::ostringstream ostr;
                             ostr << "ans = " << std::endl;
                             ostr << std::endl;
-                            ostr << execMe.result_get()->toString(10,75) << std::endl;
+                            ostr << execMe.result_get()->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
                             YaspWrite(const_cast<char *>(ostr.str().c_str()));
                         }
                     }

@@ -182,5 +182,28 @@ namespace types
 		}
 		return true;
 	}
+
+    bool Int::append(int _iRows, int _iCols, Int *_poSource)
+    {
+        int iRows = _poSource->rows_get();
+        int iCols = _poSource->cols_get();
+
+        //insert without resize
+        if(iRows + _iRows > m_iRows || iCols + _iCols > m_iCols)
+        {
+            return false;
+        }
+
+        for(int i = 0 ; i < iRows ; i++)
+        {
+            for(int j = 0 ; j < iCols ; j++)
+            {
+                data_set(_iRows + i, _iCols + j, _poSource->data_get(i,j));
+            }
+        }
+
+        return true;
+    }
+
 }
 /**/

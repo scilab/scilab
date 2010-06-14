@@ -512,7 +512,8 @@ libscioutput_stream_la_CPPFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/types/includes \
 -I$(top_srcdir)/modules/functions_manager/includes \
 -I$(top_srcdir)/modules/symbol/includes \
--I$(top_srcdir)/modules/abstractSyntaxTree/includes
+-I$(top_srcdir)/modules/abstractSyntaxTree/includes \
+-I$(top_srcdir)/modules/system_env/includes
 
 pkglib_LTLIBRARIES = libscioutput_stream.la
 libscioutput_stream_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)

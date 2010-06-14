@@ -135,3 +135,44 @@ int ConfigVariable::getExitStatus(void)
 /*
 ** \}
 */
+
+/*
+** Digit precision, ex format function
+** \{
+*/
+
+int ConfigVariable::m_iFormat = 0;
+
+void ConfigVariable::setFormat(int _iFormat)
+{
+    m_iFormat = _iFormat;
+}
+
+int ConfigVariable::getFormat(void)
+{
+    return m_iFormat;
+}
+
+/*
+** \}
+*/
+
+/*
+** Screen console width
+** \{
+*/
+
+int ConfigVariable::m_iConsoleWidth = 0;
+
+void ConfigVariable::setConsoleWidth(int _iConsoleWidth)
+{
+    m_iConsoleWidth = _iConsoleWidth;
+}
+
+int ConfigVariable::getConsoleWidth(void)
+{
+    return m_iConsoleWidth;
+}
+/*
+** \}
+*/
