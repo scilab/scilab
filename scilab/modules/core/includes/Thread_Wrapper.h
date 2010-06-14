@@ -70,13 +70,18 @@ typedef pthread_cond_t __threadSignal;
 #define __Lock(lockName)			pthread_mutex_lock(lockName)
 
 #define __UnLock(lockName)			pthread_mutex_unlock(lockName)
-/* PTHREAD_MUTEX_ERRORCHECK_NP needed for a safe release atexit when we try to release without knowing if we own the lock
-PTHREAD_PROCESS_SHARED needed for interprocess synch (plus alloc in shared mem thread_mutexattr_settype*/
+/* PTHREAD_MUTEX_ERRORCHECK needed for a safe release atexit when we try to release without knowing if we own the lock
+PTHREAD_PROCESS_SHARED needed for interprocess synch (plus alloc in shared mem thread_mutexattr_settype
+Linux uses PTHREAD_MUTEX_ERRORCHECK_NP other Posix use PTHREAD_MUTEX_ERRORCHECK
+*/
+#ifndef PTHREAD_MUTEX_ERRORCHECK
+#define PTHREAD_MUTEX_ERRORCHECK PTHREAD_MUTEX_ERRORCHECK_NP
+#endif
 #define __InitSignalLock(lockName) \
     do { \
     pthread_mutexattr_t attr; \
     pthread_mutexattr_init (&attr); \
-    pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_ERRORCHECK_NP); \
+    pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_ERRORCHECK); \
     pthread_mutexattr_setpshared (&attr, PTHREAD_PROCESS_SHARED); \
     pthread_mutex_init(lockName, NULL); \
     pthread_mutexattr_destroy(&attr); \
