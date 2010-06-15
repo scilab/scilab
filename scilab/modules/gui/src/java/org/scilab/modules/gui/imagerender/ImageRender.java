@@ -25,5 +25,10 @@ public interface ImageRender extends Text {
 	 * @return this Bridge component object
 	 */
 	SimpleImageRender getAsSimpleImageRender();
-
+ 
+	/**
+	 * Rotates an image
+	 * @param indices the double value for the angle to rotate
+	 */
+ 	void setRotate(double[] indices);
 }

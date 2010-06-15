@@ -73,11 +73,11 @@ jmethodID jintnewEditBoxID; // cache method id
 jmethodID jintnewLabelID; // cache method id
 jmethodID jintnewCheckBoxID; // cache method id
 jmethodID jintnewRadioButtonID; // cache method id
-jmethodID jintnewImageRenderID; // cache method id
 jmethodID jintnewSliderID; // cache method id
 jmethodID jintnewPopupMenuID; // cache method id
 jmethodID jintnewListBoxID; // cache method id
 jmethodID jintnewFrameID; // cache method id
+jmethodID jintnewImageRenderID; // cache method id
 jmethodID jstringnewContextMenujobjectArray_ID; // cache method id
 jclass stringArrayClass;
 jmethodID jintnewContextMenuID; // cache method id
@@ -253,6 +253,7 @@ jmethodID voidraiseWindowjintID; // cache method id
 jmethodID voiduseCanvasForDisplayjbooleanID; // cache method id
 jmethodID jbooleanuseCanvasForDisplayID; // cache method id
 jmethodID voidscilabAboutBoxID; // cache method id
+jmethodID voidsetImageRenderRotatejintjobjectArray_ID; // cache method id
 
 
 /**
@@ -310,8 +311,6 @@ static int newCheckBox(JavaVM * jvm_);
 
 static int newRadioButton(JavaVM * jvm_);
 
-static int newImageRender(JavaVM * jvm_);
-
 static int newSlider(JavaVM * jvm_);
 
 static int newPopupMenu(JavaVM * jvm_);
@@ -319,6 +318,8 @@ static int newPopupMenu(JavaVM * jvm_);
 static int newListBox(JavaVM * jvm_);
 
 static int newFrame(JavaVM * jvm_);
+
+static int newImageRender(JavaVM * jvm_);
 
 static char * newContextMenu(JavaVM * jvm_, char ** menuLabels, int menuLabelsSize);
 
@@ -667,6 +668,8 @@ static void useCanvasForDisplay(JavaVM * jvm_, bool onOrOff);
 static bool useCanvasForDisplay(JavaVM * jvm_);
 
 static void scilabAboutBox(JavaVM * jvm_);
+
+static void setImageRenderRotate(JavaVM * jvm_, int objID, double* indices, int indicesSize);
 
 
                         /**

@@ -5555,4 +5555,14 @@ public class ScilabBridge {
 	public static void requestFocus(ImageRender imageRender) {
 		ScilabImageRenderBridge.requestFocus(imageRender);
 	}
+
+        /**
+         * Rotates an image
+	 * @param imageRender the ImageRender we want to rotate
+         * @param indices the double value that contains an angle to rotate
+         */
+	public static void setRotate(ImageRender imageRender, double[] indices)
+	{
+		ScilabImageRenderBridge.setRotate(imageRender, indices);
+	}
 }		

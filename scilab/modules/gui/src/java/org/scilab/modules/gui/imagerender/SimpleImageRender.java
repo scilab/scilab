@@ -18,4 +18,10 @@ import org.scilab.modules.gui.text.SimpleText;
  * @author Han DONG
  */
 public interface SimpleImageRender extends SimpleText {
+
+	/**
+	 * Rotates an image
+	 * @param indices the double value for the angle to rotate
+	 */
+	void setRotate(double[] indices);
 }

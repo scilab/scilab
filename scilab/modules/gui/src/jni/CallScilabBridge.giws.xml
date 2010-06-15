@@ -667,5 +667,9 @@
         </method>      
 	<method name="useCanvasForDisplay" returnType="boolean" modifier="static"/>
 	<method name="scilabAboutBox" returnType="void" modifier="static"/>
+        <method name="setImageRenderRotate" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="double[]" name="indices"/>
+	</method>
   </object>
 </package>

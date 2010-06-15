@@ -40,6 +40,7 @@
 #include "SetUicontrolFontAngle.h"
 #include "SetUiobjectTag.h"
 #include "SetUiobjectEnable.h"
+#include "SetUiobjectRotate.h"
 #include "SetUicontrolMin.h"
 #include "SetUicontrolMax.h"
 #include "SetUicontrolUnits.h"

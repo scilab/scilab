@@ -238,4 +238,12 @@ public class ScilabImageRender extends ScilabWidget implements ImageRender {
 		ScilabBridge.requestFocus(this);
 	}
 
+	/**
+	 * Rotates an image
+	 * @param indices the double value for the angle to rotate
+	 */
+        public void setRotate(double[] indices)
+        {
+ 		ScilabBridge.setRotate(this, indices);
+	}
 }

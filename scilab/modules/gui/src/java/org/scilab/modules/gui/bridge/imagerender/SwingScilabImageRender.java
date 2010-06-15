@@ -285,7 +285,6 @@ public class SwingScilabImageRender extends JScrollPane implements SimpleImageRe
 	/**
 	 * Sets the directory for image to render
 	 * @param newText the new directory to image
-	 * @see org.scilab.modules.gui.text.SimpleText#setText(java.lang.String)
 	 */
 	public void setText(String newText) {
 		directory = newText;
@@ -300,8 +299,7 @@ public class SwingScilabImageRender extends JScrollPane implements SimpleImageRe
 	 * @param indices the double value of the angle to rotate
 	 */
 	public void setRotate(double[] indices) {
-		if(img == null) {}
-		else {
+		if(img != null) {
 		int h = img.getHeight(this);
 		int w = img.getWidth(this);
 		BufferedImage bim = new BufferedImage(h, w, BufferedImage.TYPE_INT_RGB);
@@ -317,8 +315,7 @@ public class SwingScilabImageRender extends JScrollPane implements SimpleImageRe
 	 * @param indices the double array of x, y values to shear
 	 */
 	public void setShear(double[] indices) {
-		if(img == null) {}
-		else {
+		if(img != null) {
 		int h = img.getHeight(this);
 		int w = img.getWidth(this);
 		BufferedImage bim = new BufferedImage(h, w, BufferedImage.TYPE_INT_RGB);

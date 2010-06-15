@@ -2950,4 +2950,12 @@ public class CallScilabBridge {
     public static void scilabAboutBox() {
         ScilabAboutBox.displayAndWait();
     }
+
+    /**
+     * Rotates an image by certain degrees
+     */
+    public static void setImageRenderRotate(int id, double[] indices)
+    {
+    	((ImageRender) UIElementMapper.getCorrespondingUIElement(id)).setRotate(indices);
+    }
 }

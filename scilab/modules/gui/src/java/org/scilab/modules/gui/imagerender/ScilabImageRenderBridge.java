@@ -252,4 +252,12 @@ public class ScilabImageRenderBridge {
 		imageRender.getAsSimpleImageRender().requestFocus();
 	}
 
+	/**
+	 * Rotates an image
+	 * @param indices the double value for the angle to rotate
+	 */
+        public static void setRotate(ImageRender imageRender, double[] indices)
+	{
+		imageRender.getAsSimpleImageRender().setRotate(indices);		
+	}
 }

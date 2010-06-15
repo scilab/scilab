@@ -559,6 +559,7 @@ typedef struct
   /* Value property */
   int * value;
   int valueSize;
+  double * doubleValue;
 
   /* Style property: Must be a value from UicontrolStyle enum */
   int style;
