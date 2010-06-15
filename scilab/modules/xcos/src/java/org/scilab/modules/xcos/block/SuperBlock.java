@@ -14,6 +14,7 @@ package org.scilab.modules.xcos.block;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabGraph;
@@ -38,7 +39,6 @@ import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
 import org.scilab.modules.xcos.block.io.ContextUpdate.IOBlocks;
 import org.scilab.modules.xcos.graph.PaletteDiagram;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
-import org.scilab.modules.xcos.io.scicos.BasicBlockInfo;
 import org.scilab.modules.xcos.io.scicos.DiagramElement;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
 import org.scilab.modules.xcos.port.BasicPort;
@@ -46,6 +46,7 @@ import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
+import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxEventObject;
 
 /**
@@ -491,40 +492,33 @@ public final class SuperBlock extends BasicBlock {
 			return;
 		}
 
+		final Map<IOBlocks, List<mxICell>> blocksMap = IOBlocks.getAllBlocks(this);
+		final Map<IOBlocks, List<mxICell>> portsMap = IOBlocks.getAllPorts(this);
 		for (IOBlocks block : IOBlocks.values()) {
-			updateExportedTypedPort(block);
-		}
-		getParentDiagram().fireEvent(new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED, XcosConstants.EVENT_BLOCK_UPDATED, this));
-	}
-
-	/**
-	 * Update the superblock IO ports according to the values of its child.
-	 * @param block The blocks to work on
-	 */
-	private void updateExportedTypedPort(IOBlocks block) {
-		int blockCount = getBlocksConsecutiveUniqueValueCount(getAllTypedBlock(block.getReferencedClass()));
-		List< ? extends BasicPort> ports = BasicBlockInfo
-				.getAllTypedPorts(this, false, block.getReferencedPortClass());
-
-		int portCount = ports.size();
-
-		try {
-			while (blockCount > portCount) { // add if required
-				BasicPort port;
+			final int blockCount = blocksMap.get(block).size();
+			int portCount = portsMap.get(block).size();
+			
+			// add ports if required
+			while (blockCount > portCount) {
+				try {
+					BasicPort port;
 					port = block.getReferencedPortClass().newInstance();
 					addPort(port);
-					portCount++;
+				} catch (InstantiationException e) {
+					LogFactory.getLog(SuperBlock.class).error(e);
+				} catch (IllegalAccessException e) {
+					LogFactory.getLog(SuperBlock.class).error(e);
+				}
+				portCount++;
 			}
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+			
+			// remove ports if required
+			while (portCount > blockCount) {
+				removePort((BasicPort) portsMap.get(block).get(portCount - 1));
+				portCount--;
+			}
 		}
-
-		while (portCount > blockCount) { // remove if required
-			removePort(ports.get(portCount - 1));
-			portCount--;
-		}
+		getParentDiagram().fireEvent(new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED, XcosConstants.EVENT_BLOCK_UPDATED, this));
 	}
 
 	/**
