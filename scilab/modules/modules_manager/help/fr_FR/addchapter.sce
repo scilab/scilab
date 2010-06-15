@@ -1,4 +1,4 @@
-﻿// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - DIGITEO - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
