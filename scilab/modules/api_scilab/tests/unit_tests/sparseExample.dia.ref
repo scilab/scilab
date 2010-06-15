@@ -6,13 +6,13 @@
 // =============================================================================
 // <-- JVM NOT MANDATORY -->
 ilib_verbose(0);
-mkdir(pathconvert(TMPDIR+"/string_reading_api"));
-cd(pathconvert(TMPDIR+"/string_reading_api"));
-copyfile(SCI+"/modules/api_scilab/tests/unit_tests/string_reading_api.c",pathconvert(TMPDIR+"/string_reading_api/string_reading_api.c",%F));
+mkdir(pathconvert(TMPDIR+"/sparseExample"));
+cd(pathconvert(TMPDIR+"/sparseExample"));
+copyfile(SCI+"/modules/api_scilab/tests/unit_tests/sparseExample.c",pathconvert(TMPDIR+"/sparseExample/sparseExample.c",%F));
 cflags = "-I"+SCI+"/modules/localization/includes";
-ilib_build("string_reading",["read_string","read_string"],"string_reading_api.c",[],"","",cflags);
+ilib_build("sparseExample",["sparseExample","sparseExample"],"sparseExample.c",[],"","",cflags);
 exec("loader.sce");
-a_ref = ["may the puffin be with you"];
-a = ["may", "the", "puffin"; "be","with","you"];
-b = read_string(a);
-if a_ref <> b then bugmes();quit;end
+a = sparse([1,1;2,2;3,3], [1, 2, 3]);
+b = sparse([1,1;2,2;3,3], [1 + 2 * %i, 3 , -4 * %i]);
+if sparseExample(a) <> a then bugmes();quit;end
+if sparseExample(b) <> b then bugmes();quit;end

@@ -1,6 +1,6 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2009 - DIGITEO - Scilab Consortium Operational Team
+// Copyright (C) 2009-2010 - DIGITEO - Scilab Consortium Operational Team
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -10,9 +10,8 @@ mkdir(pathconvert(TMPDIR+"/integer_reading_api"));
 cd(pathconvert(TMPDIR+"/integer_reading_api"));
 copyfile(SCI+"/modules/api_scilab/tests/unit_tests/integer_reading_api.c",pathconvert(TMPDIR+"/integer_reading_api/integer_reading_api.c",%F));
 cflags = "-I"+SCI+"/modules/localization/includes";
-ilib_build("integer_reading",["read_integer","read_integer"],"integer_reading_api.c",[],"Makefile","",cflags);
+ilib_build("integer_reading",["read_integer","read_integer"],"integer_reading_api.c",[],"","",cflags);
 exec("loader.sce");
-	 
 a8  = int8([    1   -2  3   -4  5; ..
                 -6  7   -8  9   -10; ..
                 11  -12 13  -14 15]);
