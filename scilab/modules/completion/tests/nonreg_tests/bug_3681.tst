@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 // <-- Non-regression test for bug 3681 -->
 //
 // <-- Bugzilla URL -->
@@ -13,5 +15,4 @@
 // <-- Short Description -->
 // Disable automatic completion if there are only spaces in a line
 
-r = completion(' ');
-if r <> [] then pause,end
+if completion(" ") <> [] then pause,end
