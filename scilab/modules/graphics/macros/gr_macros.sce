@@ -369,7 +369,7 @@ function [sd1]=fleche(sd,del)
     if but==2 then sd1=list();return,end
     o1=[oi1;of1],o2=[oi2;of2];
     [r1,r2]=xgetech()
-    sz=1/(40*mini(abs(r2(3)-r2(1)),abs(r2(4)-r2(2))))
+    sz=1/(40*min(abs(r2(3)-r2(1)),abs(r2(4)-r2(2))))
     sd1=list("fleche",o1,o2,sz);
     d_arrow(o1,o2,sz);
   elseif rhs==1 then //draw
@@ -617,7 +617,7 @@ function d_arrow(c1,c2,x1,x2)
     sz=x1;x1=c1(2);c1=c1(1);x2=c2(2);c2=c2(1);
   else
     [r1,r2]=xgetech()
-    sz=1/(40*mini(abs(r2(3)-r2(1)),abs(r2(4)-r2(2))))
+    sz=1/(40*min(abs(r2(3)-r2(1)),abs(r2(4)-r2(2))))
   end
   xarrows([c1;x1],[c2;x2],sz,-1);
 endfunction

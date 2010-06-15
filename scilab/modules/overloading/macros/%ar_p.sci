@@ -19,7 +19,7 @@ function armap(ar,out)
 [lhs,rhs]=argn(0)
 if rhs==1 then out=%io(2),end
 deff('[ta]=%cv(x)',['[m,n]=size(x);';
-                    'frmt=format();frmt=10**frmt(2)/maxi([1,norm(x)]);';
+                    'frmt=format();frmt=10**frmt(2)/max([1,norm(x)]);';
                     'x=round(frmt*x)/frmt;';
                     't=[];for k=1:m,t=[t;''|''],end;';
                     'ta=t;for k=1:n,';
@@ -29,7 +29,7 @@ deff('[ta]=%cv(x)',['[m,n]=size(x);';
                     '               aa(l)='' ''+aa(l),';
                     '           end,';
                     '        end,';
-                    '        n=maxi(length(aa)),';
+                    '        n=max(length(aa)),';
                     '        aa=part(aa+blank,1:n),';
                     '        ta=ta+aa+part(blank,1),';
                     'end;ta=ta+t;'])
@@ -100,7 +100,7 @@ function armap_p(ar,out)
 [lhs,rhs]=argn(0)
 if rhs==1 then out=%io(2),end
 deff('[ta]=%cv(x)',['[m,n]=size(x);';
-                    'frmt=format();frmt=10**frmt(2)/maxi([1,norm(x)]);';
+                    'frmt=format();frmt=10**frmt(2)/max([1,norm(x)]);';
                     'x=round(frmt*x)/frmt;';
                     't=[];for k=1:m,t=[t;''|''],end;';
                     'ta=t;for k=1:n,';
@@ -110,7 +110,7 @@ deff('[ta]=%cv(x)',['[m,n]=size(x);';
                     '               aa(l)='' ''+aa(l),';
                     '           end,';
                     '        end,';
-                    '        n=maxi(length(aa)),';
+                    '        n=max(length(aa)),';
                     '        aa=part(aa+blank,1:n),';
                     '        ta=ta+aa+part(blank,1),';
                     'end;ta=ta+t;'])

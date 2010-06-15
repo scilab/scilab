@@ -65,7 +65,7 @@ case 'set' then
     co=int(co(:));nevout=size(co,1);
     if part(impli,1)=='y' then funtyp=12004, else funtyp=2004,end
     if [ci;co]<>[] then
-      if maxi([ci;co])>1 then message('vector event links not supported');ok=%f;end
+      if max([ci;co])>1 then message('vector event links not supported');ok=%f;end
     end
     depu=stripblanks(depu);if part(depu,1)=='y' then depu=%t; else depu=%f;end
     dept=stripblanks(dept);if part(dept,1)=='y' then dept=%t; else dept=%f;end

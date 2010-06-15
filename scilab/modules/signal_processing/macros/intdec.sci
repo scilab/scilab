@@ -20,7 +20,7 @@ function [y]=intdec(x,lom)
 //Get dimensions of vectors
  
    xsize=size(x);
-   xmin=mini(x);xmax=maxi(x);
+   xmin=min(x);xmax=max(x);
    if xsize(1)==1 then, lom=[1 lom]; end,
    if xsize(2)==1 then, lom=[lom 1]; end,
  

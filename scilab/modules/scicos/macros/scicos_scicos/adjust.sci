@@ -216,7 +216,7 @@ function [ok,bllst]=adjust(bllst,inpptr,outptr,inplnk,outlnk)
 
                      //test if all size of the ndim dimension of input
                      //port of the source block is positive
-                     if mini(ww)>0 then
+                     if min(ww)>0 then
 
                         //test if the dimension of the target port
                         //is positive
@@ -308,7 +308,7 @@ function [ok,bllst]=adjust(bllst,inpptr,outptr,inplnk,outlnk)
 
                      //test if all size of the ndim dimension of output
                      //port of the target block is positive
-                     if mini(ww)>0 then
+                     if min(ww)>0 then
                         //test if the dimension of the source port
                         //is positive
                         if nout(1,ndim)>0 then
@@ -403,13 +403,13 @@ function [ok,bllst]=adjust(bllst,inpptr,outptr,inplnk,outlnk)
                if (nout(1,ndim)==0) then
                  if ndim==1 then
                     ww=bllst(blkout).in(:)
-                    if mini(ww)>0 then
+                    if min(ww)>0 then
                       bllst(blkout).out(portout)=sum(ww)
                       ok=%f
                     end
                  elseif ndim==2 then
                     ww=bllst(blkout).in2(:)
-                    if mini(ww)>0 then
+                    if min(ww)>0 then
                       bllst(blkout).out2(portout)=sum(ww)
                       ok=%f
                     end
@@ -453,8 +453,8 @@ function [outoin,outoinptr]=connmat(inpptr,outptr,inplnk,outlnk)
      end
      outoini=[];jj=0
      for j=ii
-//         m=int32(maxi(find(inpptr<=int32(j))))
-        m=maxi(find(inpptr<=j))
+//         m=int32(max(find(inpptr<=int32(j))))
+        m=max(find(inpptr<=j))
         n=j-inpptr(m)+1
         outoini=[outoini;[m,n]]
         jj=jj+1

@@ -26,6 +26,10 @@
 
     <refpurpose>minimum</refpurpose>
   </refnamediv>
+  <refnamediv xml:id="mini">
+    <refname>mini</refname>
+    <refpurpose>Obsolete alias of min</refpurpose>
+  </refnamediv>
 
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -89,7 +93,10 @@
     <para><literal>[m,k]=min(list(A1,...,An))</literal> is an equivalent
     syntax of <literal>[m,k]=min(A1,A2,...,An)</literal></para>
   </refsection>
-
+  <refsection>
+    <title>Remark</title>
+    <para>The <literal>mini</literal> function is an obsolete alias of <literal>min</literal>.</para>
+ </refsection>
   <refsection>
     <title>Examples</title>
 

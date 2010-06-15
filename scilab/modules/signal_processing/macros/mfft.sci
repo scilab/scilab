@@ -37,8 +37,8 @@ function [xk]=mfft(x,flag,dim)
 //!
 
    xk=x;
-   dims=[1 matrix(dim,1,maxi(size(dim)))];
-   for k=1:maxi(size(dim)),
+   dims=[1 matrix(dim,1,max(size(dim)))];
+   for k=1:max(size(dim)),
       xk=fft(xk,flag,dim(k),prod(dims(1:k)));
    end,
 endfunction

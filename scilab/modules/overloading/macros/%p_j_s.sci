@@ -17,7 +17,7 @@ if  or(imag(s)<>0)|or(int(s)<>s) then error('%p_j_s: integer power only'),end
 [ms,ns]=size(s)
 if ms==1&ns==1 then
   if s<0 then 
-    if or(abs(coeff(p(:)))*ones(maxi(degree(p))+1,1)==0) then
+    if or(abs(coeff(p(:)))*ones(max(degree(p))+1,1)==0) then
       error(27)
     end
     f=tlist(['r','num','den','dt'],ones(p),p.^(-s),[])
@@ -41,7 +41,7 @@ elseif ms==m&ns==n then  // Element wise exponentiation
   num=p
   den=ones(s)
   num(kp)=num(kp).^s(kp)
-  if or(abs(coeff(p(kn)))*ones(maxi(degree(p(kn)))+1,1)==0) then
+  if or(abs(coeff(p(kn)))*ones(max(degree(p(kn)))+1,1)==0) then
     error(27)
   end
   num(kn)=ones(p(kn))

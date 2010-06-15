@@ -76,7 +76,7 @@
 
         <listitem>
           <para>The l_1 norm <literal>x</literal> (the largest column sum :
-          <literal>maxi(sum(abs(x),'r'))</literal> ).</para>
+          <literal>max(sum(abs(x),'r'))</literal> ).</para>
         </listitem>
       </varlistentry>
 
@@ -85,7 +85,7 @@
 
         <listitem>
           <para>The infinity norm of <literal>x</literal> (the largest row sum
-          : <literal>maxi(sum(abs(x),'c'))</literal> ).</para>
+          : <literal>max(sum(abs(x),'c'))</literal> ).</para>
         </listitem>
       </varlistentry>
 

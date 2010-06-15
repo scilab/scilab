@@ -32,15 +32,15 @@ function an=remezb(nc,fg,ds,wt)
 
 //get frequency grid size
   
-  ngrid=maxi(size(fg));
+  ngrid=max(size(fg));
   
   //check for errors in input
   
   if min(fg)<0|max(fg)>0.5 then
     error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"),'remezb',2,"0","0.5"));
   end,
-  dsize=maxi(size(ds));
-  wsize=maxi(size(wt));
+  dsize=max(size(ds));
+  wsize=max(size(wt));
   if dsize<>ngrid then
     error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),'remezb',2,3));
   end,

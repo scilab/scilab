@@ -32,8 +32,8 @@ static gw_generic_table Tab[] =
 	{sci_eye, "eye"},
 	{sci_rand, "rand"},
 	{sci_ones, "ones"},
-	{sci_maxi, "maxi"},
-	{sci_maxi, "mini"},
+	{sci_maxi, "max"},
+	{sci_maxi, "min"},
 	{sci_kron, "kron"},
 	{sci_kron, "kron"},
 	{sci_kron, "kron"},
@@ -68,7 +68,9 @@ static gw_generic_table Tab[] =
 	{sci_spones, "spones"},
 	{sci_gsort, "gsort"},
 	{sci_isequalbitwise, "isequalbitwise"},
-    {sci_rat, "rat"}
+    {sci_rat, "rat"},
+    {sci_maxi, "maxi"},
+    {sci_maxi, "mini"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_elementary_functions(void)

@@ -80,7 +80,7 @@ function [h,err]=frep2tf_b(frq,repf,dg,dom,weight)
   // L*[x;b]=[repfk;1]
   // Least squ. pb is  min norm of [A,0] [x;b]
   //  under constraint         L*[x;b]=[repfk;1]              
-  [rmax,imax]=maxi(abs(repf))
+  [rmax,imax]=max(abs(repf))
   L2=a(imax,1:dg+1);
   L=[zeros(L2),L2,%i;
      L2,zeros(L2),repf(imax)*%i];

@@ -114,7 +114,7 @@ function []=bode(varargin)
 
   axes=newaxes();
   axes.axes_bounds=[wrect(1)+0,wrect(2)+wrect(4)*hx,wrect(3)*1.0,wrect(4)*hx*0.95];
-  axes.data_bounds = [mini(frq),mini(phi);maxi(frq),maxi(phi)];
+  axes.data_bounds = [min(frq),min(phi);max(frq),max(phi)];
   axes.log_flags = "lnn" ;
   axes.grid=color("lightgrey")*ones(1,3);
   axes.axes_visible="on";

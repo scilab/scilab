@@ -56,9 +56,9 @@ function plzr(a,b,c,d)
   ni=imag(nr);nr=real(nr)
   di=imag(dr);dr=real(dr)
   //
-  mxx=maxi([nr;dr;1]*1.1)
-  mnx=mini([nr;dr;-1]*1.1)
-  my=maxi(abs([ni;di;1])*1.1)
+  mxx=max([nr;dr;1]*1.1)
+  mnx=min([nr;dr;-1]*1.1)
+  my=max(abs([ni;di;1])*1.1)
  
   rect=[mnx, -my, mxx, my];
 

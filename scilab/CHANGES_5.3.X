@@ -465,6 +465,10 @@ Obsolete Functions:
   'findlcccompiler' have been moved as toolbox in ATOMS
   See http://atoms.scilab.org/toolboxes/LCC-windows or atomsInstall('LCC-windows')
   from Scilab.
+  
+* 'maxi' obsolete see 'max'.
+
+* 'mini' obsolete see 'min'.
 
 Removed functions (previously declared as obsolete):
 ====================================================

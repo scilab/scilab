@@ -44,7 +44,7 @@
     matrice de polynômes <literal>Mp</literal>. <literal>C</literal> est
     partitionnée comme <literal>C=[C0,C1,...,Ck]</literal> 
     où les <literal>Ci</literal> sont arrangés dans l'ordre décroissant .
-    <literal>k = maxi(degree(Mp))</literal>
+    <literal>k = max(degree(Mp))</literal>
   </para>
     <para><literal>C=coeff(Mp,v)</literal> renvoie la matrice des coefficients avec les 
     degrés dans <literal>v</literal>.

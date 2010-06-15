@@ -33,7 +33,7 @@ if typeof(f)=='list' then
   end
   dx=(x(2)-x(1))/nep;
   dy=(y(2)-y(1))/nep;
-  bnds=[x(1) x($), y(1) y($),mini(0,mini(f)) maxi(0,maxi(f))]
+  bnds=[x(1) x($), y(1) y($),min(0,min(f)) max(0,max(f))]
   x=(x(1:sx-1)+x(2:sx))/2;
   y=(y(1:sy-1)+y(2:sy))/2;
   [nl,nc]=size(f);
@@ -42,7 +42,7 @@ else
   x=(1:nl)-(0.5)*ones(1,nl);
   y=(1:nc)-(0.5)*ones(1,nc);
   dx=1/nep; dy=1/nep;
-  bnds=[0 nl,0 nc,mini(0,mini(f)) maxi(0,maxi(f))]
+  bnds=[0 nl,0 nc,min(0,min(f)) max(0,max(f))]
 end
 x=x.*.[1,1] + dx*ones(x).*.[0,1] - dx*ones(x).*.[1,0];
 y=y.*.[1,1] + dy*ones(y).*.[0,1] - dy*ones(y).*.[1,0];

@@ -24,7 +24,7 @@ function [Si,Pi,Di,order]=penlaur(E,A)
   tests=rand(1,10);
   conditions=0*tests;k=1;
   for s0=tests, conditions(k)=cond(s0*E-A);k=k+1;end
-  [w,k1]=mini(conditions);
+  [w,k1]=min(conditions);
   rand(typ);rand('seed',seed)
   if w>1.d+20 then 
     error(msprintf(gettext('%s: Singular pencil.'),'penlaur'));

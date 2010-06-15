@@ -51,9 +51,7 @@
 <PRIMITIVE gatewayId="6" primitiveId="14" primitiveName="rand" />
 <PRIMITIVE gatewayId="6" primitiveId="15" primitiveName="ones" />
 <PRIMITIVE gatewayId="6" primitiveId="16" primitiveName="max" />
-<PRIMITIVE gatewayId="6" primitiveId="16" primitiveName="maxi" />
 <PRIMITIVE gatewayId="6" primitiveId="17" primitiveName="min" />
-<PRIMITIVE gatewayId="6" primitiveId="17" primitiveName="mini" />
 <PRIMITIVE gatewayId="6" primitiveId="18" primitiveName="kron" />
 <PRIMITIVE gatewayId="6" primitiveId="21" primitiveName="matrix" />
 <PRIMITIVE gatewayId="6" primitiveId="22" primitiveName="sin" />
@@ -86,4 +84,6 @@
 <PRIMITIVE gatewayId="6" primitiveId="50" primitiveName="gsort" />
 <PRIMITIVE gatewayId="6" primitiveId="51" primitiveName="isequalbitwise" />
 <PRIMITIVE gatewayId="6" primitiveId="52" primitiveName="rat" />
+<PRIMITIVE gatewayId="6" primitiveId="53" primitiveName="maxi" />
+<PRIMITIVE gatewayId="6" primitiveId="54" primitiveName="mini" />
 </GATEWAY>

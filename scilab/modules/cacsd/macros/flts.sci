@@ -21,7 +21,7 @@ function [y,xf]=flts(u,sl,x0)
     [nb,mb]=size(sl.B)
     if mb<>nu then error(60),end;
     if sl.dt=='c' then error(94,2),end;
-    np=maxi(degree(sl.D))
+    np=max(degree(sl.D))
     [xf,x]=ltitr(sl.A,sl.B,u(:,1:(mu-np)),x0)
     D=sl.D
     if type(D)==1 then
@@ -42,10 +42,10 @@ function [y,xf]=flts(u,sl,x0)
       nden(l)=pp
       for k=1:ne,nnum(l,k)=num(l,k)*pdiv(pp,den(l,k)),end,
     end;
-    for l=1:ns, nm(l)=degree(nden(l))-maxi(degree(nnum(l,:))),end
-    ly=mu+mini(nm)
+    for l=1:ns, nm(l)=degree(nden(l))-max(degree(nnum(l,:))),end
+    ly=mu+min(nm)
     if rhs==3 then
-      [mx,nx]=size(x0);maxdgd=maxi(degree(nden))
+      [mx,nx]=size(x0);maxdgd=max(degree(nden))
       if nx<maxdgd then
 	error(msprintf(gettext("%s: At least %s past values needed.\n"),"flts",string(maxdgd)))
       end;
@@ -54,7 +54,7 @@ function [y,xf]=flts(u,sl,x0)
     y=0*ones(ns,ly);
     for l=1:ns
       ddl=degree(nden(l))
-      dnl=maxi(degree(nnum(l,:)))
+      dnl=max(degree(nnum(l,:)))
       lent=ly-ddl+dnl
       select rhs
       case 2 then yl=rtitr(nnum(l,:),nden(l),u(:,1:lent));

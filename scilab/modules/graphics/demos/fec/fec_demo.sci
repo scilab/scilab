@@ -11,7 +11,7 @@ function []=emc2(filename)
 	y=xx(:,2);
 	y1=matrix(y,2,prod(size(y))/2);
 	x1=matrix(x,2,prod(size(x))/2);
-	rect=[mini(x1),mini(y1),maxi(x1),maxi(y1)];
+	rect=[min(x1),min(y1),max(x1),max(y1)];
 	plot2d(1,1,[1],"031"," ",rect);
 	xsegs(x1,y1);
 	
@@ -43,7 +43,7 @@ function []=meshvisu(col,rect)
 	
 	[lhs,rhs]=argn(0);
 	if rhs<=0;col=1;end
-	if rhs<=1;rect=[mini(noeul(:,2)),mini(noeul(:,3)),maxi(noeul(:,2)),maxi(noeul(:,3))];end
+	if rhs<=1;rect=[min(noeul(:,2)),min(noeul(:,3)),max(noeul(:,2)),max(noeul(:,3))];end
 	if rhs<=2;iso='1';end
 	plot2d(1,1,[1],"031"," ",rect);
 	xset("clipgrf");
@@ -66,7 +66,7 @@ function []=nvisu(rect)
 	// Visualisation des noeuds 
 	
 	[lhs,rhs]=argn(0);
-	if rhs==0;rect=[mini(noeul(:,2)),mini(noeul(:,3)),maxi(noeul(:,2)),maxi(noeul(:,3))];end
+	if rhs==0;rect=[min(noeul(:,2)),min(noeul(:,3)),max(noeul(:,2)),max(noeul(:,3))];end
 	plot2d(1,1,[1],"031"," ",rect);
 	xset("clipgrf");
 	bords=noeul(find(noeul(:,4)>0),:);
@@ -99,7 +99,7 @@ function []=emc2V(i,j,k,sa,FN,rect)
 		nm=[nm,nm1];
 		if nm1<>0,resu(i,:)=resu(i,:)/nm1;end
 	end
-	nmax=maxi(nm);
+	nmax=max(nm);
 	if nmax<>0; nm=nm/nmax;end
 	xsegs([noeul(:,2)-(1/sa)*resu(:,1),noeul(:,2)+(1/sa)*resu(:,1)]',...
 		[noeul(:,3)-(1/sa)*resu(:,2),noeul(:,3)+(1/sa)*resu(:,2)]',...
@@ -122,7 +122,7 @@ function []=emc2C(i,j,FN,rect)
 	resu=read(unit,-1,j);
 	resu=resu(:,i);
 	file('close',unit);
-	if rhs<=3;rect=[mini(noeul(:,2)),mini(noeul(:,3)),maxi(noeul(:,2)),maxi(noeul(:,3))];end
+	if rhs<=3;rect=[min(noeul(:,2)),min(noeul(:,3)),max(noeul(:,2)),max(noeul(:,3))];end
 	fec(noeul(:,2),noeul(:,3),trianl,resu,"031"," ",rect);
 	file("close",unit);
 	

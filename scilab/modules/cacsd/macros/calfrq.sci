@@ -178,8 +178,8 @@ function [frq,bnds,splitf]=calfrq(h,fmin,fmax)
     rf=freq(h('num'),h('den'),exp(%i*xt));
   end
   //
-  xmin=mini(real(rf));xmax=maxi(real(rf));
-  ymin=mini(imag(rf));ymax=maxi(imag(rf));
+  xmin=min(real(rf));xmax=max(real(rf));
+  ymin=min(imag(rf));ymax=max(imag(rf));
   bnds=[xmin xmax ymin ymax];
   dx=max([xmax-xmin,1]);dy=max([ymax-ymin,1]);
 
@@ -199,7 +199,7 @@ function [frq,bnds,splitf]=calfrq(h,fmin,fmax)
     pas=Pas(floor(i/2)+1)
     splitf=[splitf size(frq,'*')];
 
-    f=mini(f0+pas,fmax);
+    f=min(f0+pas,fmax);
 
     if dom=='c' then //cas continu
       while f0<fmax
@@ -211,7 +211,7 @@ function [frq,bnds,splitf]=calfrq(h,fmin,fmax)
 	rfd=(freq(h('num'),h('den'),%i*(f0+epsd))-rf0)/(epsd);
 	rfp=rf0+pas*rfd;
 
-	e=maxi([abs(imag(rfp-rfc))/dy;abs(real(rfp-rfc))/dx])
+	e=max([abs(imag(rfp-rfc))/dy;abs(real(rfp-rfc))/dx])
 	if (e>k) then rf0=freq(h('num'),h('den'),(%i*f0));
 	  rfc=freq(h('num'),h('den'),%i*f);
 	  // compute prediction error
@@ -220,7 +220,7 @@ function [frq,bnds,splitf]=calfrq(h,fmin,fmax)
 	  rfd=(freq(h('num'),h('den'),%i*(f0+epsd))-rf0)/(epsd);
 	  rfp=rf0+pas*rfd;
 
-	  e=maxi([abs(imag(rfp-rfc))/dy;abs(real(rfp-rfc))/dx])
+	  e=max([abs(imag(rfp-rfc))/dy;abs(real(rfp-rfc))/dx])
 	  // compute minimum frequency logarithmic step to ensure a maximum 
 	  //of nptmax points to discretize
 	  pasmin=f0*(10^((l10last-log10(f0))/(nptr+1))-1)
@@ -228,17 +228,17 @@ function [frq,bnds,splitf]=calfrq(h,fmin,fmax)
 	  if pas<pasmin then
 	    pas=pasmin
 	    frq=[frq,f];nptr=max([1,nptr-1])
-	    f0=f;f=mini(f0+pas,fmax)
+	    f0=f;f=min(f0+pas,fmax)
 	  else
-	    f=mini(f0+pas,fmax)
+	    f=min(f0+pas,fmax)
 	  end
 	elseif e<k/2 then
 	  pas=2*pas
 	  frq=[frq,f];nptr=max([1,nptr-1])
-	  f0=f;f=mini(f0+pas,fmax),
+	  f0=f;f=min(f0+pas,fmax),
 	else
 	  frq=[frq,f];nptr=max([1,nptr-1])
-	  f0=f;f=mini(f0+pas,fmax),
+	  f0=f;f=min(f0+pas,fmax),
 	end
       end
     else  //cas discret
@@ -248,24 +248,24 @@ function [frq,bnds,splitf]=calfrq(h,fmin,fmax)
 	rfd=dom*(freq(h('num'),h('den'),exp(%i*(f0+pas/100)))-rf0)/(pas/100);
 	rfp=rf0+pas*rfd
 	rfc=freq(h('num'),h('den'),exp(%i*f));
-	e=maxi([abs(imag(rfp-rfc))/dy;abs(real(rfp-rfc))/dx])
+	e=max([abs(imag(rfp-rfc))/dy;abs(real(rfp-rfc))/dx])
 	if (e>k) then
 	  pasmin=f0*(10^((l10last-log10(f0))/(nptr+1))-1)
 	  pas=pas/2
 	  if pas<pasmin then
 	    pas=pasmin
 	    frq=[frq,f];nptr=max([1,nptr-1])
-	    f0=f;f=mini(f0+pas,fmax)
+	    f0=f;f=min(f0+pas,fmax)
 	  else
-	    f=mini(f0+pas,fmax)
+	    f=min(f0+pas,fmax)
 	  end
 	elseif e<k/2 then
 	  pas=2*pas
 	  frq=[frq,f];nptr=max([1,nptr-1])
-	  f0=f;f=mini(f0+pas,fmax),
+	  f0=f;f=min(f0+pas,fmax),
 	else
 	  frq=[frq,f];nptr=max([1,nptr-1])
-	  f0=f;f=mini(f0+pas,fmax),
+	  f0=f;f=min(f0+pas,fmax),
 	end
       end
     end
