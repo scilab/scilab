@@ -86,5 +86,6 @@
 <module name="helptools" activate="@HELP_ENABLE@"/>
 <module name="graph" activate="@JAVA_ENABLE@"/>
 <module name="parallel" activate="yes"/>
+<module name="modules_manager" activate="yes"/>
 </modules>
 

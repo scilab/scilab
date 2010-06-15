@@ -88,5 +88,6 @@
 <module name="helptools" activate="yes"/>
 <module name="graph" activate="yes"/>
 <module name="parallel" activate="yes"/>
+<module name="modules_manager" activate="yes"/>
 <!-- comments -->
 </modules>

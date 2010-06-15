@@ -85,7 +85,9 @@ hdf5 \
 graph\
 xcos \
 xpad \
-parallel
+parallel \
+modules_manager
+
 
 #umfpack
 

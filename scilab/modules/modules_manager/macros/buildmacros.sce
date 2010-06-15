@@ -1,5 +1,6 @@
+
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2008 - INRIA - Simon LIPP <simon.lipp@scilab.org>
+// Copyright (C) 2010 - DIGITEO - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -7,9 +8,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// Run the toolbox_path+"/macros/buildmacros.sce" script if it exists
-// See devtools_run_builder
-function tbx_builder_macros(toolbox_path)
-	mprintf(gettext('Building macros...\n'));
-	devtools_run_builder(toolbox_path, 'macros', 'buildmacros.sce');
-endfunction
+if (isdef('genlib') == %f) then
+  exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
+end
+
+genlib('modules_managerlib','SCI/modules/modules_manager/macros',%f,%t);

@@ -10,11 +10,11 @@
 
 // Simple wrapper around xmltojar
 function tbx_build_help(toolbox_name, help_lang_path)
-  if(~exists(help_lang_path, 'local'))
+  if(~exists(help_lang_path, "local"))
     help_lang_path = pwd();
   end
-  
-  if or(getscilabmode() == ['STD' 'NW']) then
+
+  if or(getscilabmode() == ["STD" "NW"]) then
     xmltojar(help_lang_path, toolbox_name);
   else
     warning(msprintf(gettext("%s: documentation cannot be built in this scilab mode: %s.\n"), ..
