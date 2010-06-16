@@ -42,6 +42,7 @@
 #include "SetUiobjectEnable.h"
 #include "SetUiobjectRotate.h"
 #include "SetUiobjectShear.h"
+#include "SetUiobjectScale.h"
 #include "SetUicontrolMin.h"
 #include "SetUicontrolMax.h"
 #include "SetUicontrolUnits.h"

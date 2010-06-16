@@ -37,4 +37,10 @@ public interface ImageRender extends Text {
 	 * @param indices the double array with x, y values to shear
 	 */
  	void setShear(double[] indices);
+
+	/**
+	 * Scaless an image
+	 * @param indices the double array with x, y values to scale
+	 */
+ 	void setScale(double[] indices);
 }

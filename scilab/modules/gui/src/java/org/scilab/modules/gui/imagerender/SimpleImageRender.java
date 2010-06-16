@@ -30,4 +30,10 @@ public interface SimpleImageRender extends SimpleText {
 	 * @param indices the double array for x, y values to shear
 	 */
 	void setShear(double[] indices);
+
+	/**
+	 * Scales an image
+	 * @param indices the double array for x, y values to scale
+	 */
+	void setScale(double[] indices);
 }

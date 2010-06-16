@@ -255,6 +255,7 @@ jmethodID jbooleanuseCanvasForDisplayID; // cache method id
 jmethodID voidscilabAboutBoxID; // cache method id
 jmethodID voidsetImageRenderRotatejintjobjectArray_ID; // cache method id
 jmethodID voidsetImageRenderShearjintjobjectArray_ID; // cache method id
+jmethodID voidsetImageRenderScalejintjobjectArray_ID; // cache method id
 
 
 /**
@@ -673,6 +674,8 @@ static void scilabAboutBox(JavaVM * jvm_);
 static void setImageRenderRotate(JavaVM * jvm_, int objID, double* indices, int indicesSize);
 
 static void setImageRenderShear(JavaVM * jvm_, int objID, double* indices, int indicesSize);
+
+static void setImageRenderScale(JavaVM * jvm_, int objID, double* indices, int indicesSize);
 
 
                         /**

@@ -341,4 +341,18 @@ public class SwingScilabImageRender extends JScrollPane implements SimpleImageRe
 		imageRender.setIcon(new ImageIcon(bim));
 		}
 	}
+
+	/**
+	 * Scaless the image
+	 * @param indices the double array of x, y values to scale
+	 */
+	public void setScale(double[] indices) {
+		int h = img.getHeight(this) * (int) Math.ceil(indices[0]);
+		int w = img.getWidth(this) * (int) Math.ceil(indices[1]);
+		BufferedImage bim = new BufferedImage(h, w, BufferedImage.TYPE_INT_RGB);
+		Graphics2D g2 = bim.createGraphics();
+		g2.scale(indices[0], indices[1]);
+		g2.drawImage(img, 0, 0, this);
+		imageRender.setIcon(new ImageIcon(bim));
+	}
 }

@@ -253,4 +253,12 @@ public class ScilabImageRender extends ScilabWidget implements ImageRender {
  	public void setShear(double[] indices) {
 		ScilabBridge.setShear(this, indices);
 	}
+
+	/**
+	 * Scaless an image
+	 * @param indices the double array with x, y values to scale
+	 */
+ 	public void setScale(double[] indices) {
+		ScilabBridge.setScale(this, indices);
+	}
 }

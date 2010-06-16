@@ -267,4 +267,12 @@ public class ScilabImageRenderBridge {
  	public static void setShear(ImageRender imageRender, double[] indices) {
 		imageRender.getAsSimpleImageRender().setShear(indices);		
 	}
+
+	/**
+	 * Scaless an image
+	 * @param indices the double array with x, y values to scale
+	 */
+ 	public static void setScale(ImageRender imageRender, double[] indices) {
+		imageRender.getAsSimpleImageRender().setScale(indices);		
+	}
 }

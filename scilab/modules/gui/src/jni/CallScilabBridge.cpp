@@ -291,6 +291,7 @@ jbooleanuseCanvasForDisplayID=NULL;
 voidscilabAboutBoxID=NULL; 
 voidsetImageRenderRotatejintjobjectArray_ID=NULL; 
 voidsetImageRenderShearjintjobjectArray_ID=NULL; 
+voidsetImageRenderScalejintjobjectArray_ID=NULL; 
 
 
 }
@@ -502,6 +503,7 @@ jbooleanuseCanvasForDisplayID=NULL;
 voidscilabAboutBoxID=NULL; 
 voidsetImageRenderRotatejintjobjectArray_ID=NULL; 
 voidsetImageRenderShearjintjobjectArray_ID=NULL; 
+voidsetImageRenderScalejintjobjectArray_ID=NULL; 
 
 
 }
@@ -4431,6 +4433,34 @@ curEnv->SetDoubleArrayRegion( indices_, 0, indicesSize, (jdouble*)(indices) ) ;
 
 
                          curEnv->CallStaticVoidMethod(cls, voidsetImageRenderShearjintjobjectArray_ID ,objID, indices_);curEnv->DeleteLocalRef(indices_);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void CallScilabBridge::setImageRenderScale (JavaVM * jvm_, int objID, double* indices, int indicesSize){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetImageRenderScalejintjobjectArray_ID = curEnv->GetStaticMethodID(cls, "setImageRenderScale", "(I[D)V" ) ;
+if (voidsetImageRenderScalejintjobjectArray_ID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setImageRenderScale");
+}
+
+jdoubleArray indices_ = curEnv->NewDoubleArray( indicesSize ) ;
+
+if (indices_ == NULL)
+{
+// check that allocation succeed
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+curEnv->SetDoubleArrayRegion( indices_, 0, indicesSize, (jdouble*)(indices) ) ;
+
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetImageRenderScalejintjobjectArray_ID ,objID, indices_);curEnv->DeleteLocalRef(indices_);
 if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }

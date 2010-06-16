@@ -110,6 +110,7 @@ src/cpp/GetUiobjectCallback.cpp \
 src/cpp/SetUiobjectTag.cpp \
 src/cpp/SetUiobjectRotate.cpp \
 src/cpp/SetUiobjectShear.cpp \
+src/cpp/SetUiobjectScale.cpp \
 src/cpp/GetUiobjectTag.cpp \
 src/cpp/SetUiobjectEnable.cpp \
 src/cpp/GetUiobjectEnable.cpp \
