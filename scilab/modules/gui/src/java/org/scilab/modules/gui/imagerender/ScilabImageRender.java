@@ -242,8 +242,15 @@ public class ScilabImageRender extends ScilabWidget implements ImageRender {
 	 * Rotates an image
 	 * @param indices the double value for the angle to rotate
 	 */
-        public void setRotate(double[] indices)
-        {
- 		ScilabBridge.setRotate(this, indices);
+	public void setRotate(double[] indices) {
+		ScilabBridge.setRotate(this, indices);
+	}
+
+	/**
+	 * Shears an image
+	 * @param indices the double array with x, y values to shear
+	 */
+ 	public void setShear(double[] indices) {
+		ScilabBridge.setShear(this, indices);
 	}
 }

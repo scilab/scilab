@@ -2956,6 +2956,14 @@ public class CallScilabBridge {
      */
     public static void setImageRenderRotate(int id, double[] indices)
     {
-    	((ImageRender) UIElementMapper.getCorrespondingUIElement(id)).setRotate(indices);
+	((ImageRender) UIElementMapper.getCorrespondingUIElement(id)).setRotate(indices);
+    }
+
+    /**
+     * Shears an image by x, y values
+     */
+    public static void setImageRenderShear(int id, double[] indices)
+    {
+	((ImageRender) UIElementMapper.getCorrespondingUIElement(id)).setShear(indices);
     }
 }

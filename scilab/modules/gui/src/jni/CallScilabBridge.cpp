@@ -290,6 +290,7 @@ voiduseCanvasForDisplayjbooleanID=NULL;
 jbooleanuseCanvasForDisplayID=NULL; 
 voidscilabAboutBoxID=NULL; 
 voidsetImageRenderRotatejintjobjectArray_ID=NULL; 
+voidsetImageRenderShearjintjobjectArray_ID=NULL; 
 
 
 }
@@ -500,6 +501,7 @@ voiduseCanvasForDisplayjbooleanID=NULL;
 jbooleanuseCanvasForDisplayID=NULL; 
 voidscilabAboutBoxID=NULL; 
 voidsetImageRenderRotatejintjobjectArray_ID=NULL; 
+voidsetImageRenderShearjintjobjectArray_ID=NULL; 
 
 
 }
@@ -4401,6 +4403,34 @@ curEnv->SetDoubleArrayRegion( indices_, 0, indicesSize, (jdouble*)(indices) ) ;
 
 
                          curEnv->CallStaticVoidMethod(cls, voidsetImageRenderRotatejintjobjectArray_ID ,objID, indices_);curEnv->DeleteLocalRef(indices_);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void CallScilabBridge::setImageRenderShear (JavaVM * jvm_, int objID, double* indices, int indicesSize){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetImageRenderShearjintjobjectArray_ID = curEnv->GetStaticMethodID(cls, "setImageRenderShear", "(I[D)V" ) ;
+if (voidsetImageRenderShearjintjobjectArray_ID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setImageRenderShear");
+}
+
+jdoubleArray indices_ = curEnv->NewDoubleArray( indicesSize ) ;
+
+if (indices_ == NULL)
+{
+// check that allocation succeed
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+curEnv->SetDoubleArrayRegion( indices_, 0, indicesSize, (jdouble*)(indices) ) ;
+
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetImageRenderShearjintjobjectArray_ID ,objID, indices_);curEnv->DeleteLocalRef(indices_);
 if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }

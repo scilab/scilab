@@ -256,8 +256,15 @@ public class ScilabImageRenderBridge {
 	 * Rotates an image
 	 * @param indices the double value for the angle to rotate
 	 */
-        public static void setRotate(ImageRender imageRender, double[] indices)
-	{
+	public static void setRotate(ImageRender imageRender, double[] indices) {
 		imageRender.getAsSimpleImageRender().setRotate(indices);		
+	}
+
+	/**
+	 * Shears an image
+	 * @param indices the double array with x, y values to shear
+	 */
+ 	public static void setShear(ImageRender imageRender, double[] indices) {
+		imageRender.getAsSimpleImageRender().setShear(indices);		
 	}
 }

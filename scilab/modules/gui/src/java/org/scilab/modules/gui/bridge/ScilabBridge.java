@@ -5556,13 +5556,21 @@ public class ScilabBridge {
 		ScilabImageRenderBridge.requestFocus(imageRender);
 	}
 
-        /**
+	/**
          * Rotates an image
 	 * @param imageRender the ImageRender we want to rotate
-         * @param indices the double value that contains an angle to rotate
-         */
-	public static void setRotate(ImageRender imageRender, double[] indices)
-	{
+	 * @param indices the double value that contains an angle to rotate
+	 */
+	public static void setRotate(ImageRender imageRender, double[] indices) {
 		ScilabImageRenderBridge.setRotate(imageRender, indices);
+	}
+
+	/**
+         * Shears an image by x, y values
+	 * @param imageRender the ImageRender we want to shear
+	 * @param indices the double array that contains x, y values to shear
+	 */
+	public static void setShear(ImageRender imageRender, double[] indices) {
+		ScilabImageRenderBridge.setShear(imageRender, indices);
 	}
 }		

@@ -331,8 +331,7 @@ public class SwingScilabImageRender extends JScrollPane implements SimpleImageRe
 	 * @param indices the double array of x, y values to scale
 	 */
 	public void setScale(double[] indices) {
-		if(img == null) {}
-		else {
+		if(img != null) {
 		int h = img.getHeight(this) * (int) Math.ceil(indices[0]);
 		int w = img.getWidth(this) * (int) Math.ceil(indices[1]);
 		BufferedImage bim = new BufferedImage(h, w, BufferedImage.TYPE_INT_RGB);

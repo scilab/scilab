@@ -31,4 +31,10 @@ public interface ImageRender extends Text {
 	 * @param indices the double value for the angle to rotate
 	 */
  	void setRotate(double[] indices);
+
+	/**
+	 * Shears an image
+	 * @param indices the double array with x, y values to shear
+	 */
+ 	void setShear(double[] indices);
 }
