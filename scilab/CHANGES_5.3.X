@@ -786,6 +786,9 @@ Bug fixes:
 * bug 6774 fixed - Calling get_param generated a "funcprot" warning when
                    the value of an option which was a function.
 
+* bug 6781 fixed - Variables defined in a library were not recognized in
+                   compiled macros.
+
 * bug 6783 fixed - Solving a system of linear equation by backslash ("\")
                    caused a crash, when using complex numbers on Windows.
 

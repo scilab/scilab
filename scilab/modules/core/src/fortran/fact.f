@@ -259,7 +259,7 @@ c
             call varfunptr(id,fun,fin)
             goto 60
          endif
-c     this should never happen???
+c     this happens when referencing a variable that is in a library
          fun=fun1
          fin=setgetmode(id)
          call stackg(id)
