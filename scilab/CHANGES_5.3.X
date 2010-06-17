@@ -874,3 +874,5 @@ Bug fixes:
 
 * bug 7250 fixed - In the console, first char of a filename was doubled
                    when completed.
+
+* bug 7312 fixed - isnum() diplayed warnings when using some unusual parameters.
