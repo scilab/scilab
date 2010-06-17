@@ -1204,7 +1204,11 @@ assignable ASSIGN variable		%prec HIGHLEVEL { $$ = new ast::AssignExp(@$, *$1, *
 /* What we can assign something to. */
 assignable :
 variable DOT ID			%prec UPLEVEL		{ $$ = new ast::FieldExp(@$, *$1, *new ast::SimpleVar(@$, *$3)); }
-| variable DOT functionCall				{ $$ = new ast::FieldExp(@$, *$1, *$3); }
+| variable DOT functionCall                 {
+                                                $3->name_set(new ast::FieldExp(@$, *$1, $3->name_get()));
+                                                $3->location_set(@$);
+                                                $$ = $3;
+                                            }
 | functionCall DOT variable				{ $$ = new ast::FieldExp(@$, *$1, *$3); }
 | functionCall DOT functionCall				{ $$ = new ast::FieldExp(@$, *$1, *$3); }
 | ID					%prec LISTABLE	{ $$ = new ast::SimpleVar(@$, *$1); }
