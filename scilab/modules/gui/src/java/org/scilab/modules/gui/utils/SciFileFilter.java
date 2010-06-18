@@ -1,12 +1,12 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent Couvert
- * Copyright (C) 2010 - DIGITEO - Allan CORNET 
- * 
+ * Copyright (C) 2010 - DIGITEO - Allan CORNET
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -25,7 +25,7 @@ import org.scilab.modules.localization.Messages;
  * Generic file filter used for Scilab file selection GUIs
  * @author Vincent COUVERT
  * @author Sylvestre KOUMAR
- * @author Allan CORNET 
+ * @author Allan CORNET
  */
 public class SciFileFilter extends FileFilter {
 
@@ -41,7 +41,7 @@ public class SciFileFilter extends FileFilter {
 	 * @param filterIndex index the mask from the mask matrix
 	 */
 	public SciFileFilter(String fileMask, String maskdescription, int filterIndex) {
-		
+
 		if (maskdescription == null) {
 
 			if (fileMask.equals("*.sci")) {
@@ -71,7 +71,7 @@ public class SciFileFilter extends FileFilter {
 		// Create a regexp
 		mask = fileMask.replaceAll("\\.", "\\\\."); // Point is a special regexp character
 		mask = mask.replaceAll("\\*", ".\\*");
-		
+
 		this.filterIndex = filterIndex;
 	}
 
@@ -82,7 +82,7 @@ public class SciFileFilter extends FileFilter {
 	private boolean isWindows() {
 		return System.getProperty("os.name").toLowerCase().contains("windows");
 	}
-	
+
 	/**
 	 * get file extension
 	 * @param file File
@@ -106,19 +106,21 @@ public class SciFileFilter extends FileFilter {
 	public boolean accept(File pathname) {
 		if (pathname.isDirectory()) {
 			return true;
-		}		
-		if (mask.equals("")) { 
+		}
+		if (mask.equals("")) {
 			// Bug 2861: have to return true for all files if no mask given
 			return true;
-		} else {			
+		} else if (mask.equals(".*\\..*")) {
+			// bug 7285: *.* as filter returns also files without extension
+			return true;
+		} else {
 			int selectedIndex = this.filterIndex + 1;
 			FileChooserInfos.getInstance().setFilterIndex(selectedIndex);
 			/* bug 4224 */
-			/* On Windows, files are not case sensitive */ 
+			/* On Windows, files are not case sensitive */
 			if (isWindows()) {
 				Pattern patternExt = Pattern.compile(mask, Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
 				Matcher matchExt = patternExt.matcher(getFileExtension(pathname));
-				
 				return matchExt.find();
 			} else {
 				return pathname.getAbsolutePath().matches(mask);
