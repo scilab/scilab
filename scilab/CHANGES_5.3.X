@@ -165,6 +165,8 @@ Graphics:
 * bug 5284 fixed - In some case function "legend" drew line segments in its box
                    in a reverse order.
 
+* bug 5606 fixed - In certain cases, user-defined x-axis ticks were not correctly aligned.
+
 * bug 6098 fixed - It was not possible get values by clicking on point of
                    Bode diagram.
 
