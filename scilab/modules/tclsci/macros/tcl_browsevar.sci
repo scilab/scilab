@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2004 - Jaime Urzua
-// 
+//
 
-function browsevar()
+function tcl_browsevar()
 // Variable Browser
 // This file is part of sciGUI toolbox
 //
@@ -10,7 +10,7 @@ function browsevar()
 //it under the terms of the GNU General Public License as published by
 //the Free Software Foundation; either version 2 of the License, or
 //(at your option) any later version.
-  
+
   sciGUI_init();
 
   [%_nams,%_vol]=who('get');
@@ -26,7 +26,7 @@ function browsevar()
       ierr=execstr('%_sz=%'+%_tt+'_size('+%_nams(%_k)+')','errcatch'); // ?
       if ierr<>0 then %_sz='?',end
     end
-    
+
     mfprintf(u,"<d>%d {%s} %d {%s}\n",%_typ,strcat(string(%_sz),' by '),%_vol(%_k),%_nams(%_k));
   end
   mfprintf(u,"<m>%d %d %d\n",sz(1),sz(2),sz(2)/sz(1)*100);

@@ -13,12 +13,18 @@
 #define __DYNAMIC_GATEWAYS_H__
 
 /**
+* ui_data gateway
+* ui_data is loaded dynamically at runtime
+* load gw_ui_data in SCI/modules/ui_data/sci_gateway/gw_ui_data.c
+*/
+int gw_dynamic_ui_data(void);
+
+/**
 * pvm gateway
 * pvm is loaded dynamically at runtime
 * load gw_pvm in SCI/modules/pvm/sci_gateway/gw_pvm.c
 */
 int gw_dynamic_pvm(void);
-
 
 /**
 * xcos gateway

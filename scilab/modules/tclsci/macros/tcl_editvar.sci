@@ -1,14 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2004 - Jaime Urzua
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
-function editvar(%_name)
+function tcl_editvar(%_name)
 // Simple Variable Editor
 // This file is part of sciGUI toolbox
 // rev. 0.2 2004/06/24
@@ -19,7 +19,7 @@ function editvar(%_name)
 //(at your option) any later version.
 
   sciGUI_init()
-  
+
   if (type(%_name)~=10) then error(44), end
   if execstr("%_var="+%_name,'errcatch')~=0 then error(44), end
   %_type=typeof(%_var)
@@ -32,7 +32,7 @@ function editvar(%_name)
   else
     %_var=string(%_var);
   end
-  
+
   TCL_EvalStr("set EdVarLoc [sciGUIEditVar -1]");
   %_winId=TCL_GetVar("EdVarLoc");
 
@@ -41,14 +41,14 @@ function editvar(%_name)
   TCL_SetVar("sciGUITable(win,"+%_winId+",data,ni)",string(%_ni));
   TCL_SetVar("sciGUITable(win,"+%_winId+",data,nj)",string(%_nj));
   if %_type=="xlssheet" then
-     
+
       TCL_SetVar("sciGUITable(win,"+%_winId+",data,sheetname)",namesheet);
       clear namesheet;
   end
 
-  
+
   editvar_set_values( %_var, %_winId ) ;
-  
+
   TCL_EvalStr("sciGUIEditVarDrawGrid "+%_winId);
 
 endfunction

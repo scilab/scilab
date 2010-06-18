@@ -1707,6 +1707,7 @@ modules/matio/Makefile
 modules/atoms/Makefile
 modules/xcos/Makefile
 modules/xpad/Makefile
+modules/ui_data/Makefile
 modules/graph/Makefile
 modules/parallel/Makefile
 modules/modules_manager/Makefile

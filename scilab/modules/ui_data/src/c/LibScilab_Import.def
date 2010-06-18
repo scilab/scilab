@@ -1,0 +1,21 @@
+LIBRARY    LibScilab.dll
+
+
+EXPORTS
+;
+callFunctionFromGateway
+putlhsvar_
+intersci_
+getScilabMode
+com_
+stack_
+getrhsvar_
+vartype_
+checkrhs_ 
+checklhs_
+getGlobalSizefromId
+getGlobalNamefromId
+getLocalSizefromId
+getLocalNamefromId 
+getgvariablesinfo_
+getvariablesinfo_

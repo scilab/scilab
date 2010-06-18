@@ -32,7 +32,7 @@ static void sci_sigint_addinter(int n);
  ** Watch out the positions are crutial !!!
  ** @TODO : Make this less crappy...
  **/
-#define INTERFACES_MAX 66
+#define INTERFACES_MAX 67
 static OpTab Interfaces[INTERFACES_MAX] = {
     /* 01  */ {gw_user}, /* free position may be used */
 	/* 02  */ {gw_linear_algebra},
@@ -99,8 +99,8 @@ static OpTab Interfaces[INTERFACES_MAX] = {
 	/* 63  */ {gw_dynamic_xpad},
 	/* 64  */ {gw_dynamic_xcos},
     /* 65  */ {gw_dynamic_action_binding},
-    /* 66  */ {gw_dynamic_parallel}
-
+    /* 66  */ {gw_dynamic_parallel},
+	/* 67  */ {gw_dynamic_ui_data}
 };
 /*--------------------------------------------------------------------------*/
 static int sig_ok = 0;
@@ -118,18 +118,18 @@ int C2F(callinterf) (int *k)
 
 	if ( count == 0)
     {
-		if (sig_ok) 
+		if (sig_ok)
 		{
-			if (signal(SIGINT,sci_sigint_addinter) == SIG_ERR) 
+			if (signal(SIGINT,sci_sigint_addinter) == SIG_ERR)
 			{
 				fprintf(stderr,"Could not set the signal SIGINT to the handler.\n");
 			}
 		}
 		if (( returned_from_longjump = setjmp(jmp_env)) != 0 )
 		{
-			if (sig_ok) 
+			if (sig_ok)
 			{
-				if (signal(SIGINT, controlC_handler) == SIG_ERR) 
+				if (signal(SIGINT, controlC_handler) == SIG_ERR)
 				{
 					fprintf(stderr,"Could not set the signal SIGINT to the handler.\n");
 				}
@@ -140,10 +140,10 @@ int C2F(callinterf) (int *k)
 		}
 	}
 	count++;
-	if (*k > DynInterfStart) 
+	if (*k > DynInterfStart)
 	{
 		C2F(userlk)(k);
-	} 
+	}
 	else
 	{
 		if ( (*k > INTERFACES_MAX) || (*k < 1) )
@@ -152,17 +152,17 @@ int C2F(callinterf) (int *k)
 			count = 0;
 			return 0;
 		}
-		else 
+		else
 		{
 			(*(Interfaces[*k-1].fonc))();
 		}
 	}
 	count--;
-	if (count == 0) 
+	if (count == 0)
 	{
-		if (sig_ok) 
+		if (sig_ok)
 		{
-			if (signal(SIGINT, controlC_handler) == SIG_ERR) 
+			if (signal(SIGINT, controlC_handler) == SIG_ERR)
 			{
 				fprintf(stderr,"Could not set the signal SIGINT to the handler.\n");
 			}

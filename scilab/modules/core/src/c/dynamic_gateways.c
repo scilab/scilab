@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -375,6 +375,29 @@ int gw_dynamic_parallel(void)
         &gatewayname_parallel,
         &hParallelLib,
         &ptr_gw_parallel);
+}
+/*--------------------------------------------------------------------------*/
+/* ui_data module */
+#define UI_DATA_MODULE_NAME "ui_data"
+static DynLibHandle hUi_dataLib = NULL;
+static PROC_GATEWAY ptr_gw_ui_data = NULL;
+static char* dynlibname_ui_data = NULL;
+static char* gatewayname_ui_data = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_ui_data(void)
+{
+#ifdef _MSC_VER
+	if (dynlibname_ui_data == NULL)
+	{
+		dynlibname_ui_data = buildModuleDynLibraryName(UI_DATA_MODULE_NAME, DYNLIB_NAME_FORMAT_2);
+	}
+#endif
+
+	return gw_dynamic_generic(UI_DATA_MODULE_NAME,
+		&dynlibname_ui_data,
+		&gatewayname_ui_data,
+		&hUi_dataLib,
+		&ptr_gw_ui_data);
 }
 /*--------------------------------------------------------------------------*/
 
