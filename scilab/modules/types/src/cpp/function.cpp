@@ -17,117 +17,138 @@
 
 namespace types
 {
-  Function *Function::createFunction(std::string _stName, GW_FUNC _pFunc, std::string _stModule)
-  {
-    return new Function(_stName, _pFunc, _stModule);
-  }
+    Function *Function::createFunction(std::string _stName, GW_FUNC _pFunc, std::string _stModule)
+    {
+        return new Function(_stName, _pFunc, _stModule);
+    }
 
-  Function *Function::createFunction(std::string _stName, OLDGW_FUNC _pFunc, std::string _stModule)
-  {
-    return new WrapFunction(_stName, _pFunc, _stModule);
-  }
+    Function *Function::createFunction(std::string _stName, OLDGW_FUNC _pFunc, std::string _stModule)
+    {
+        return new WrapFunction(_stName, _pFunc, _stModule);
+    }
 
-  Function::Function(std::string _stName, GW_FUNC _pFunc, std::string _stModule):
-    Callable(),
-    m_pFunc(_pFunc)
-  {
-    setName(_stName);
-    setModule(_stModule);
-  }
+    Function::Function(std::string _stName, GW_FUNC _pFunc, std::string _stModule) : Callable(), m_pFunc(_pFunc)
+    {
+        setName(_stName);
+        setModule(_stModule);
+    }
 
-  Function::~Function()
-  {
-    if(isDeletable() == true)
-      {
-      }
-  }
+    Function::Function(Function* _pFunction)
+    {
+        m_stModule  = _pFunction->getModule();
+        m_stName    = _pFunction->getName();
+        m_pFunc     = _pFunction->getFunc();
+    }
+        
+    Function::~Function()
+    {
+        if(isDeletable() == true)
+        {
+        }
+    }
 
-  Function* Function::getAsFunction(void)		
-  {
-    return this; 
-  }
+    Function* Function::getAsFunction(void)		
+    {
+        return this; 
+    }
 
-	Function::ReturnValue Function::call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
-  {
-    return this->m_pFunc(in, _iRetCount, out);
-  }
+    Function::ReturnValue Function::call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
+    {
+        return this->m_pFunc(in, _iRetCount, out);
+    }
 
-  /*--------------*/
-  /*		whoIAm		*/
-  /*--------------*/
-  void Function::whoAmI() 
-  { 
-    std::cout << "types::Function"; 
-  }
+    /*--------------*/
+    /*		whoIAm		*/
+    /*--------------*/
+    void Function::whoAmI() 
+    { 
+        std::cout << "types::Function"; 
+    }
 
-  WrapFunction::WrapFunction(std::string _stName, OLDGW_FUNC _pFunc, std::string _stModule)
-  {
-    m_stName = _stName;
-    m_pOldFunc = _pFunc;
-    m_stModule = _stModule;
-  }
+    std::string Function::toString(int _iPrecision, int _iLineLen)
+    {
+        std::ostringstream ostr;
 
-  Function::ReturnValue WrapFunction::call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc) 
-  {
-      ReturnValue retVal = Callable::OK;
-      GatewayStruct* pStr = new GatewayStruct();
+        // FIXME : Implement me.
+        ostr << "FIXME : Implement Function::toString" << std::endl;
 
-      _iRetCount = Max(1, _iRetCount);
-      pStr->m_pIn = &in;
-      pStr->m_pOut = m_pTempOut;
-      pStr->m_piRetCount = &_iRetCount;
-      pStr->m_pstName = (char*)m_stName.c_str();
-      pStr->m_pOutOrder = new int[_iRetCount < 1 ? 1 : _iRetCount];
-      memset(pStr->m_pOutOrder, 0xFF, (_iRetCount < 1 ? 1 : _iRetCount) * sizeof(int));
-      memset(pStr->m_pOut, 0x00, MAX_OUTPUT_VARIABLE * sizeof(InternalType*));
+        return ostr.str();
+    }
 
-      //call gateway
-      int iRet = m_pOldFunc((char*)m_stName.c_str(), (int*)pStr);
+    Function* Function::clone() 
+    {
+        return new Function(this);
+    }
 
-      if(iRet != 0)
-      {
-          retVal = Callable::Error;
-      }
-      else
-      {
-          //replace output argument in good order following m_pOutOrder
-          for(int i = 0 ; i < _iRetCount ; i++)
-          {
-              //take care about return value count
-              // or LhsVar(1) = 0
-              if(pStr->m_pOutOrder[i] == -1 || pStr->m_pOutOrder[i] == 0)
-              {
-                  break;
-              }
+    WrapFunction::WrapFunction(std::string _stName, OLDGW_FUNC _pFunc, std::string _stModule)
+    {
+        m_stName = _stName;
+        m_pOldFunc = _pFunc;
+        m_stModule = _stModule;
+    }
 
-              int iPos = (int)(pStr->m_pOutOrder[i] - in.size() - 1);
-              out.push_back(m_pTempOut[iPos]);
-              m_pTempOut[iPos] = NULL;
-          }
-      }
+    WrapFunction::WrapFunction(WrapFunction* _pWrapFunction)
+    {
+        m_stModule  = _pWrapFunction->getModule();
+        m_stName    = _pWrapFunction->getName();
+        m_pOldFunc  = _pWrapFunction->getFunc();
+    }
 
-      //clean temp output variable array
-      for(int i = 0 ; i < MAX_OUTPUT_VARIABLE ; i++)
-      {
-          if(m_pTempOut[i] != NULL)
-          {
-              delete m_pTempOut[i];
-          }
-      }
+    WrapFunction* WrapFunction::clone()
+    {
+        return new WrapFunction(this);
+    }
 
-      delete[] pStr->m_pOutOrder;
-      delete pStr;
-      return retVal;
-  }
+    Function::ReturnValue WrapFunction::call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc) 
+    {
+        ReturnValue retVal = Callable::OK;
+        GatewayStruct* pStr = new GatewayStruct();
 
-  std::string Function::toString(int _iPrecision, int _iLineLen)
-  {
-    std::ostringstream ostr;
+        _iRetCount = Max(1, _iRetCount);
+        pStr->m_pIn = &in;
+        pStr->m_pOut = m_pTempOut;
+        pStr->m_piRetCount = &_iRetCount;
+        pStr->m_pstName = (char*)m_stName.c_str();
+        pStr->m_pOutOrder = new int[_iRetCount < 1 ? 1 : _iRetCount];
+        memset(pStr->m_pOutOrder, 0xFF, (_iRetCount < 1 ? 1 : _iRetCount) * sizeof(int));
+        memset(pStr->m_pOut, 0x00, MAX_OUTPUT_VARIABLE * sizeof(InternalType*));
 
-    // FIXME : Implement me.
-    ostr << "FIXME : Implement Function::toString" << std::endl;
+        //call gateway
+        int iRet = m_pOldFunc((char*)m_stName.c_str(), (int*)pStr);
 
-    return ostr.str();
-  }
+        if(iRet != 0)
+        {
+            retVal = Callable::Error;
+        }
+        else
+        {
+            //replace output argument in good order following m_pOutOrder
+            for(int i = 0 ; i < _iRetCount ; i++)
+            {
+                //take care about return value count
+                // or LhsVar(1) = 0
+                if(pStr->m_pOutOrder[i] == -1 || pStr->m_pOutOrder[i] == 0)
+                {
+                    break;
+                }
 
+                int iPos = (int)(pStr->m_pOutOrder[i] - in.size() - 1);
+                out.push_back(m_pTempOut[iPos]);
+                m_pTempOut[iPos] = NULL;
+            }
+        }
+
+        //clean temp output variable array
+        for(int i = 0 ; i < MAX_OUTPUT_VARIABLE ; i++)
+        {
+            if(m_pTempOut[i] != NULL)
+            {
+                delete m_pTempOut[i];
+            }
+        }
+
+        delete[] pStr->m_pOutOrder;
+        delete pStr;
+        return retVal;
+    }
 }

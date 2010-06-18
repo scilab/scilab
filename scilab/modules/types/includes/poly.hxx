@@ -31,7 +31,7 @@ namespace types
                                 ~Poly();
 
         // FIXME : Should not return NULL;
-        Poly*                   clone() { return NULL; }
+        Poly*                   clone() { std::cout << "Poly::clone" << std::endl; return NULL; }
 
         Poly*                   getAsSinglePoly(void);
         /*Config management*/

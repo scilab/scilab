@@ -22,13 +22,15 @@ namespace types
 {
     class MacroFile : public Callable
     {
+    private : 
+                                MacroFile(MacroFile* _pMacroFile);
     public :
                                 MacroFile(): Callable(){};
                                 MacroFile(std::string _stName, string _stPath, string _stModule);
         virtual                 ~MacroFile(){};
 
         //FIXME : Should not return NULL
-        MacroFile*              clone() { return NULL; }
+        MacroFile*              clone() { std::cout << "MacroFile::clone" << std::endl; return NULL; }
 
         MacroFile*              getAsMacroFile(void);
         RealType                getType(void);

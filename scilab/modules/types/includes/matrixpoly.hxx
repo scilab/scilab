@@ -30,7 +30,7 @@ namespace types
         virtual                 ~MatrixPoly();
 
         // FIXME : Should not return NULL
-        MatrixPoly*             clone() { return NULL; }
+        MatrixPoly*             clone() { std::cout << "MatrixPoly::clone" << std::endl; return NULL; }
 
         GenericType*            get_col_value(int _iPos);
 

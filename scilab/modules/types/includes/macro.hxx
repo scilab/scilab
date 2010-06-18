@@ -23,13 +23,15 @@ namespace types
 {
     class Macro : public Callable
     {
+    private : 
+                                    Macro(Macro* _pMacro);
     public :
                                     Macro(): Callable(){};
                                     Macro(const std::string& _stName, std::list<std::string> &_inputArgs, std::list<std::string> &_outputArgs, ast::SeqExp &_body, const string& _stModule);
         virtual                     ~Macro();
 
         // FIXME : Should not return NULL;
-        Macro*                      clone() { return NULL; }
+        Macro*                      clone();
 
         Macro*                      getAsMacro(void);
         RealType                    getType(void);
@@ -47,10 +49,15 @@ namespace types
         /* return type as short string ( s, i, ce, l, ... )*/
         virtual std::string         getShortTypeStr() {return string("function");}
 
+        std::list<std::string>*     inputs_get();
+        std::list<std::string>*     outputs_get();
+
     private :
         std::list<std::string>*     m_inputArgs;
         std::list<std::string>*     m_outputArgs;
         ast::SeqExp*                m_body;
+        bool                        bAutoAlloc;
+
     };
 }
 

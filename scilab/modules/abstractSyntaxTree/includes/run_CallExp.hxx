@@ -74,13 +74,15 @@ void visitprivate(const CallExp &e)
             }
 
             if(out.size() == 1)
-            {
+            {//protect output values
+                out[0]->IncreaseRef();
                 result_set(out[0]);
             }
             else 
             {
                 for(int i = 0 ; i < static_cast<int>(out.size()) ; i++)
-                {
+                {//protect output values
+                    out[i]->IncreaseRef();
                     result_set(i, out[i]);
                 }
             }
@@ -103,9 +105,21 @@ void visitprivate(const CallExp &e)
             execVar[k].result_get()->DecreaseRef();
         }
 			
-//			std::cout << "before delete[]" << std::endl;
+        //std::cout << "before delete[]" << std::endl;
         delete[] execVar;
-//			std::cout << "after delete[]" << std::endl;
+        //std::cout << "after delete[]" << std::endl;
+
+        if(out.size() == 1)
+        {//unprotect output values
+            out[0]->DecreaseRef();
+        }
+        else 
+        {
+            for(int i = 0 ; i < static_cast<int>(out.size()) ; i++)
+            {//unprotect output values
+                out[i]->DecreaseRef();
+            }
+        }
     }
     else if(execFunc.result_get() != NULL)
     {//a(xxx) with a variable, extraction

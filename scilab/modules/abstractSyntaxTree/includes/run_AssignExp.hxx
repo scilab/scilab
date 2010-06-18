@@ -33,22 +33,35 @@ void visitprivate(const AssignExp  &e)
         if(pCell)
         {
             T execVar;
+            InternalType *pIT;
+            bool bSeeAsVector   = false;
             bool bRet           = true;
             bool bNew           = false;
             int iProductElem    = (int)pCell->args_get().size();
 
             pVar = dynamic_cast<const SimpleVar*>(&pCell->name_get());
             if(pVar == NULL)
+            {//manage a.b{1} = x
+                pCell->name_get().accept(execVar);
+
+                if(execVar.result_get() != NULL && execVar.result_get()->isCell())
+                {
+                    pIT = execVar.result_get();
+                }
+                else
+                {//never append ?
+                    std::ostringstream os;
+                    os << _("Unable to extract left part expression.\n");
+                    os << ((Location)e.left_exp_get().location_get()).location_string_get() << std::endl;
+                    throw os.str();
+                }
+            }
+            else
             {
-                //manage error
-                std::ostringstream os;
-                os << _("Can insert only in a existing variable.\n");
-                os << ((Location)e.left_exp_get().location_get()).location_string_get() << std::endl;
-                throw os.str();
+                pIT = symbol::Context::getInstance()->get(pVar->name_get());
             }
 
-            InternalType *pIT				= symbol::Context::getInstance()->get(pVar->name_get());
-            bool bSeeAsVector				= iProductElem == 1;
+            bSeeAsVector	= iProductElem == 1;
 
             /*getting what to assign*/
             e.right_exp_get().accept(execMeR);
@@ -140,22 +153,37 @@ void visitprivate(const AssignExp  &e)
         else if(pCall)
         {//x(?) = ?
             T execVar;
+            InternalType *pIT;
             bool bRet           = true;
             bool bNew           = false;
+            bool bSeeAsVector   = false;
             int iProductElem    = (int)pCall->args_get().size();
+
+
 
             pVar = dynamic_cast<const SimpleVar*>(&pCall->name_get());
             if(pVar == NULL)
+            {//manage a.b(1) = x
+                pCall->name_get().accept(execVar);
+
+                if(execVar.result_get() != NULL && execVar.result_get()->isCallable())
+                {
+                    pIT = execVar.result_get();
+                }
+                else
+                {//never append ?
+                    std::ostringstream os;
+                    os << _("Unable to extract left part expression.\n");
+                    os << ((Location)e.left_exp_get().location_get()).location_string_get() << std::endl;
+                    throw os.str();
+                }
+            }
+            else
             {
-                //manage error
-                std::ostringstream os;
-                os << _("Can insert only in a existing variable.\n");
-                os << ((Location)e.left_exp_get().location_get()).location_string_get() << std::endl;
-                throw os.str();
+                pIT = symbol::Context::getInstance()->get(pVar->name_get());
             }
 
-            InternalType *pIT				= symbol::Context::getInstance()->get(pVar->name_get());
-            bool bSeeAsVector				= iProductElem == 1;
+            bSeeAsVector    = iProductElem == 1;
 
             /*getting what to assign*/
             e.right_exp_get().accept(execMeR);
@@ -374,7 +402,6 @@ void visitprivate(const AssignExp  &e)
                 }
                 i--;
             }
-
         }
         else if(pField)
         {//a.b = x
@@ -412,7 +439,7 @@ void visitprivate(const AssignExp  &e)
             //assign result to new field
             const SimpleVar* pTail =  dynamic_cast<const SimpleVar*>(pField->tail_get());
 
-            pStr->add(pTail->name_get(), pIT->clone());
+            pStr->add(pTail->name_get(), pIT);
             if(e.is_verbose())
             {
                 const string *pstName = getStructNameFromExp(pField);

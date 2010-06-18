@@ -587,14 +587,6 @@ namespace types
             return false;
         }
 
-
-        //check if the count of values is compatible with indexes
-        if(_poSource->size_get() != 1 && _poSource->size_get() != _iSeqCount)
-        {
-            return false;
-        }
-
-
         //Only resize after all tests !
         if(resize(iNewRows, iNewCols) == false)
         {
@@ -602,15 +594,8 @@ namespace types
         }
 
         ////variable can receive new values.
-        if(_poSource->isDeletable())
-        {
-            m_plData[_piSeqCoord[0] - 1]	= _poSource;
-            _poSource->IncreaseRef();
-        }
-        else
-        {
-            m_plData[_piSeqCoord[0] - 1]	= _poSource->clone();
-        }
+        m_plData[_piSeqCoord[0] - 1]	= _poSource;
+        _poSource->IncreaseRef();
         return true;
     }
 }

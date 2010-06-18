@@ -97,6 +97,7 @@ namespace types
                 YaspWrite(const_cast<char*>(m_stPath.c_str()));
                 YaspWrite("\n\n");
                 YaspWrite(parser.getErrorMessage());
+                return false;
             }
 
 			//find FunctionDec

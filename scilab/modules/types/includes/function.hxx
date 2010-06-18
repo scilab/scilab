@@ -31,16 +31,18 @@ namespace types
 {
     class Function : public Callable
     {
+    private :
+                            Function(Function* _pfunc);
     public :
         typedef ReturnValue (*GW_FUNC)(typed_list &in, int _iRetCount, typed_list &out); 
         typedef int (*OLDGW_FUNC)(char *fname, int* _piKey);
 
-                            Function(): Callable() {};
+                            Function() : Callable() {};
                             Function(std::string _szName, GW_FUNC _pFunc, std::string _szModule);
                             ~Function();
 
         //FIXME : Should not return NULL
-        Function*           clone() { return NULL; }
+        Function*           clone();
 
         static Function*    createFunction(std::string _szName, GW_FUNC _pFunc, std::string _szModule);
         static Function*    createFunction(std::string _szName, OLDGW_FUNC _pFunc, std::string _szModule);
@@ -58,16 +60,24 @@ namespace types
         virtual std::string getTypeStr() {return string("fptr");}
         /* return type as short string ( s, i, ce, l, ... )*/
         virtual std::string getShortTypeStr() {return string("fptr");}
+
+        GW_FUNC             getFunc() { return m_pFunc; }
     private :
         GW_FUNC             m_pFunc;
     };
 
     class WrapFunction : public Function
     {
+    private :
+                            WrapFunction(WrapFunction* _pWrapFunction);
     public :
                             WrapFunction(std::string _szName, OLDGW_FUNC _pFunc, std::string _szModule);
 
                             Callable::ReturnValue call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
+   WrapFunction*            clone();
+
+    OLDGW_FUNC              getFunc() { return m_pOldFunc; }
+
     private :
         OLDGW_FUNC          m_pOldFunc;
         InternalType*       m_pTempOut[MAX_OUTPUT_VARIABLE];

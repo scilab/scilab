@@ -579,7 +579,7 @@ namespace ast
                     if ( psValue->exists(psvRightMember->name_get()) )
                     {
                         InternalType* pIT = psValue->get(psvRightMember->name_get());
-                        result_set(pIT->clone());
+                        result_set(pIT);
                     }
                     else
                     {
@@ -594,6 +594,7 @@ namespace ast
                 }
                 else
                 {
+
                     char szError[bsiz];
 #ifdef _MSC_VER
                     sprintf_s(szError, bsiz, _("/!\\ Unmanaged FieldExp.\n"));
@@ -983,8 +984,11 @@ namespace ast
                             throw string(szError);
                         }
                     }
+                    
 
-                    if(execMe.result_get()->isDeletable())
+                    FieldExp* pExp = dynamic_cast<FieldExp*>(*itExp);
+                    //to manage structure field extraction
+                    if(pExp != NULL || execMe.result_get()->isDeletable())
                     {
                         symbol::Context::getInstance()->put("ans", *execMe.result_get());
                         if((*itExp)->is_verbose())

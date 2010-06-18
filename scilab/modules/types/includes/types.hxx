@@ -61,6 +61,8 @@ namespace types
         virtual std::string         getTypeStr() {return string("generictype");}
         /* return type as short string ( s, i, ce, l, ... )*/
         virtual std::string         getShortTypeStr() {return string("");}
+
+        virtual GenericType*        clone(void) = 0;
     };
 }
 #endif /* !__TYPES_HXX__ */
