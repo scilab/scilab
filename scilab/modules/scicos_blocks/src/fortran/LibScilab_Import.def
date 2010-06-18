@@ -27,14 +27,3 @@ ierode_
 getrecursiongatewaytocall_
 isrecursioncalltofunction_
 ;
-; elementary_functions
-sciround_
-lnblnk_
-urand_
-dset_
-dmmul_
-dmmul1_
-intp_
-iset_
-unsfdcopy_
-;

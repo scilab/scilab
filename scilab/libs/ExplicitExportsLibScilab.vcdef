@@ -32,11 +32,8 @@ basbrk_
 ; used to synchronize thread
 ;
 LaunchScilab
-LaunchScilabLock
+pLaunchScilabLock
 ;
-;
-; defined for expm (elementary functions)
-;
-dcoeff_
 ;
 BuildWithVS8ExpressF2C
+

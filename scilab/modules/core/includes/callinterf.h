@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -34,7 +34,7 @@
 /* 11 */						#include "dynamic_gateways.h" /* optimization */
 /* 12 */						#include "../../differential_equations/includes/gw_differential_equations1.h"
 /* 13 */						#include "gw_core.h"
-/* 14  gw_user(); RESERVED to gw_user (see callinter.h) */						
+/* 14  gw_user(); RESERVED to gw_user (see callinter.h) */
 /* 15  gw_user(); FREE */
 /* 16 */						#include "../../polynomials/includes/gw_polynomials.h"
 /* 17 */						#include "../../data_structures/includes/gw_data_structures1.h"
@@ -86,8 +86,9 @@
 /* 62 */						#include "dynamic_gateways.h" /* hdf5 */
 /* 63 */						#include "dynamic_gateways.h" /* xpad */
 /* 64 */						#include "dynamic_gateways.h" /* xcos */
-/* 65 */                        #include "../../action_binding/includes/gw_action_binding.h"
-/* 66 */						#include "dynamic_gateways.h" /* ui_data */
+/* 65 */						#include "dynamic_gateways.h" /* action_binding */
+/* 66 */                        #include "dynamic_gateways.h" /* parallel */
+/* 67 */                        #include "dynamic_gateways.h" /* ui_data */
 
 /*-------------------------------------
  * long jump to stop interface computation

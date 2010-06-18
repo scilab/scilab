@@ -1,30 +1,30 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
-c 
+c
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
-c are also available at    
+c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
       subroutine command(id)
 C     ====================================================================
-C     Scilab Command and Keyword 
+C     Scilab Command and Keyword
 C     ====================================================================
-C     id(nsiz) coded name of the command 
+C     id(nsiz) coded name of the command
       include 'stack.h'
       logical compil
-C     
+C
       integer lunit,mode(2)
       double precision x
       integer ix(2)
       equivalence (x,ix(1))
-C     
+C
       integer cmdl
       parameter (cmdl = 29)
       parameter (nz1 = nsiz-1, nz2 = nsiz-2, nz3 = nsiz-3)
       parameter (iif=1,iwhile=2,iselect=3)
-C     
+C
       integer cmd(nsiz,cmdl),blank
       integer id(nsiz)
       integer func(nsiz)
@@ -32,11 +32,11 @@ C
       integer count,equal,nchar,pchar
       logical eqid,cremat
       integer iadr
-C     
+C
       data eol/99/,semi/43/,comma/52/,lparen/41/,equal/50/,slash/48/
       data blank/40/
       data func/202841615,387453469,nz2*673720360/
-   
+
 C     if, else, for, while, end, select, case, quit, quit, return
       data ((cmd(i,j), i = 1,nsiz), j = 1,10)/
      &     673713938,nz1*673720360,
@@ -61,7 +61,7 @@ C     help, what, who, pause, clear, resume, then, do, apropos, abort
      &     673716237,nz1*673720360,
      &     404429066,672929817,nz2*673720360,
      &     454560522,673720349,nz2*673720360/
-C     break, elseif, pwd, function, endfunction, clc, continue, try, catch 
+C     break, elseif, pwd, function, endfunction, clc, continue, try, catch
       data ((cmd(i,j), i = 1,nsiz), j = 21,29)/
      &     168696587,673720340,nz2*673720360,
      &     236721422,673713938,nz2*673720360,
@@ -72,15 +72,15 @@ C     break, elseif, pwd, function, endfunction, clc, continue, try, catch
      &     488052748,236853010,nz2*673720360,
      &     673323805,nz1*673720360,
      &     203229708,673720337,nz2*673720360/
-C     
+C
 
       iadr(l) = l + l - 1
-C     
+C
       if (ddt .eq. 4) then
          call cvname(id,buf,1)
          call basout(io,wte,' command   : '//buf(1:nlgh))
       endif
-C     
+C
       kcont=27
       kbrk=21
 
@@ -154,23 +154,23 @@ c     id has been found in the stack, it is not useful to scan funtab
       endif
 
       return
-C     
+C
  15   if (fin .eq. -1) return
-C     
+C
       fin = 1
 C     mots cles if  then else for do  while end case selec
       goto (32,33,30,31,35,36,37) k
       goto (42,42) k-16
-C     
+C
       goto (50,50,45,16,16,16,20,16,45,16,
      &     16,16,120,130,38,140,150,16,16,130,160,170) k-7
  16   call error(16)
       return
-C     
+C
 C     -----
 C     pause
 C     -----
-C     
+C
  20   continue
 c     if special compilation mode skip  commands
       if (comp(3).eq.1) then
@@ -188,13 +188,13 @@ C     compilation de pause:<12>
       if (compil(12,0,0,0,0)) return
       fin = 3
       goto 999
-C     
+C
 
-C     
+C
 C     ---------------------------------------
 C     for, while, if, else, end, select, case, elseif
 C     ---------------------------------------
-C     
+C
  30   fin = -11
       goto 999
  31   fin = -12
@@ -232,14 +232,14 @@ C
          goto 42
       endif
       goto 999
-C     
+C
  42   call error(34)
       return
-C     
+C
 C     -------------
 C     return/resume
 C     -------------
-C     
+C
  45   continue
       if (char1 .eq. lparen) then
 C     return/resume avec rhs et sans lhs --> fonction et non commande
@@ -263,11 +263,11 @@ C     compilation return:<99>
       fin = 2
       lhs = 0
       goto 999
-C     
+C
 C     -------------
 C     quit
 C     -------------
-C     
+C
  50   continue
 c     if special compilation mode skip  commands
       if (comp(3).eq.1) then
@@ -313,7 +313,7 @@ C     quit (sortie)
       endif
       goto 998
 
-C     
+C
 C     pwd
 C     ---
  140  continue
@@ -329,16 +329,16 @@ c     if special compilation mode skip  commands
          return
       endif
       fun=34
-c     if you modify pwd position in fileio gateway , you need change fin      
+c     if you modify pwd position in fileio gateway , you need change fin
       fin=31
       rhs=0
       return
-C     
+C
 
-C     
+C
 C     abort
 C     -----
-C     
+C
  120  continue
 c     if special compilation mode skip  commands
       if (comp(3).eq.1) then
@@ -412,7 +412,7 @@ c     .  abort in an external unstack it
       comp(1) = 0
       if (niv .gt. 0) err = 9999999
       goto 999
-C     
+C
 C     break, continue
 C------
  130  continue
@@ -435,19 +435,20 @@ C     compilation de break:<13>
  131  pt = pt - 1
       if (pt .eq. 0) then
          pt = 1
-         call putid(ids(1,pt),cmd(1,kcmd))
+         call putid(ids(1,pt+1),cmd(1,kcmd))
          call error(72)
          return
       endif
-C     
+C
       ir = rstk(pt) / 100
 c     96
       if (ir .eq. 5) then
-         call putid(ids(1,pt),cmd(1,kcmd))
+c     .  pt+1 used instead of pt not to modify the recursion pointer stored in ids
+         call putid(ids(1,pt+1),cmd(1,kcmd))
          call error(72)
          return
       endif
-c     
+c
       if (ir .ne. 8) goto 131
       count = count + 1
       if (rstk(pt) .eq. 802) then
@@ -464,7 +465,7 @@ c     .  discard select variable
 C     .  break or continue in a  while
          if (kcmd.eq.kbrk) pt = pt - 1
       elseif (int(rstk(pt)/100) .eq. 5) then
-         call putid(ids(1,pt),cmd(1,kcmd))
+         call putid(ids(1,pt+1),cmd(1,kcmd))
          call error(72)
          return
       else
@@ -482,7 +483,7 @@ C     char1=blank
          fin = -10
       endif
       return
-      
+
 
  150  if (eqid(id,func)) then
 c     .  inline function definition
@@ -493,9 +494,9 @@ c     .  inline function definition
 c     . add an third argument to deff, to notify that it is called by function
          if (comp(1).eq.0) then
             top=top+1
-            if (.not.cremat('function',top,0,1,1,lr,lc)) return  
+            if (.not.cremat('function',top,0,1,1,lr,lc)) return
             stk(lr)=1.0
-           
+
          else
             x=1.0
             if (.not.compil(6,ix,0,0,0)) return
@@ -519,16 +520,16 @@ c     catch
       fin = -19
       goto 999
 
-C     
-C     
+C
+C
 C     fin
 C     ---
-C     
+C
  998  continue
       fin = 0
       call getsym
       fin = 1
-C     
+C
  999  continue
       lunit = 0
       end

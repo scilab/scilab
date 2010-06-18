@@ -41,11 +41,8 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
-import org.scilab.modules.jvm.utils.ScilabConstants;
-
 import org.scilab.modules.graph.ScilabCanvas;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.PasteAction;
@@ -54,7 +51,6 @@ import org.scilab.modules.graph.actions.SelectAllAction;
 import org.scilab.modules.graph.actions.UndoAction;
 import org.scilab.modules.graph.actions.ZoomInAction;
 import org.scilab.modules.graph.actions.ZoomOutAction;
-import org.scilab.modules.graph.utils.ScilabExported;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
@@ -114,7 +110,6 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
-import com.mxgraph.io.mxCodec;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxGraphModel;
@@ -130,6 +125,7 @@ import com.mxgraph.util.mxUndoableEdit;
 import com.mxgraph.util.mxUtils;
 import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
 import com.mxgraph.view.mxMultiplicity;
+import com.mxgraph.view.mxStylesheet;
 
 /**
  * The base class for a diagram. This class contains jgraphx + Scicos data.
@@ -457,6 +453,8 @@ public class XcosDiagram extends ScilabGraph {
 	
 	installStylesheet();
 
+	
+	
 	getAsComponent().setToolTips(true);
 
 	// Forbid disconnecting cells once it is connected.
@@ -508,38 +506,10 @@ public class XcosDiagram extends ScilabGraph {
 	 * Install the default style sheet and the user stylesheet on the diagram.
 	 */
 	private void installStylesheet() {
-		final mxCodec codec = new mxCodec();
+		final mxStylesheet styleSheet = getStylesheet();
 		
 		try {
-			/*
-			 * Initialize constants
-			 */
-			final String file = "Xcos-style.xml";
-			final String homePath = ScilabConstants.SCIHOME.getAbsolutePath();
-			final File userStyleSheet = new File(homePath + '/' + file);
-			
-	    	/*
-	    	 * Copy the base stylesheet into the user dir when it doesn't exist.
-	    	 */
-			if (!userStyleSheet.exists()) {
-				final String sciPath = ScilabConstants.SCI.getAbsolutePath();
-
-		    	File baseStyleSheet = new File(sciPath + "/modules/xcos/etc/" + file);
-		    	FileUtils.forceCopy(baseStyleSheet, userStyleSheet);
-		    }
-		    
-			/*
-			 * Load the stylesheet
-			 */
-			final String sciURL = ScilabConstants.SCI.toURI().toURL().toString();
-			final String homeURL = ScilabConstants.SCIHOME.toURI().toURL().toString();
-			
-		    String xml = mxUtils.readFile(userStyleSheet.getAbsolutePath());
-		    xml = xml.replaceAll("\\$SCILAB", sciURL);
-		    xml = xml.replaceAll("\\$SCIHOME", homeURL);
-		    Document document = mxUtils.parse(xml);
-		    codec.decode(document.getDocumentElement(), getStylesheet());
-		    
+			FileUtils.decodeStyle(styleSheet);
 		} catch (IOException e) {
 			LOG.warn(e);
 			return;
@@ -548,7 +518,7 @@ public class XcosDiagram extends ScilabGraph {
 		// Set Canvas background
 		URL background = null;
 		try {
-			Map<String, Object> style = getStylesheet().getCellStyle("Icon", null);
+			Map<String, Object> style = styleSheet.getCellStyle("Icon", null);
 			if (style != null) {
 				background = new URL((String) style.get(XcosConstants.STYLE_IMAGE));
 			}
@@ -2080,36 +2050,6 @@ public class XcosDiagram extends ScilabGraph {
 	    return ((BasicPort) cell).getToolTipText();
 	}
 	return "";
-    }
-
-    /**
-     * Set any text to an Afficheblock specified by its ID.
-     * @param blockID ID of the AfficheBlock to be modified.
-     * @param blockValue Content to be apply to the block.
-     * @param iRows Number of Row in the blockValue.
-     * @param iCols Number of Collumns in the blockValue.
-     */
-    @ScilabExported(module="scicos_blocks", filename="XcosDiagram.giws.xml")
-    public static void setBlockTextValue(int blockID, String[] blockValue, int iRows, int iCols) {
-
-	AfficheBlock block = XcosTab.getAfficheBlocks().get(blockID);
-	if (block == null) {
-	    return;
-	}
-
-	StringBuilder blockResult = new StringBuilder();
-	for (int i = 0; i < iRows; i++) {
-	    for (int j = 0; j < iCols; j++) {
-		if (iCols != 0) {
-		    blockResult.append("  ");
-		}
-		blockResult.append(blockValue[j * iRows + i]);
-	    }
-	    blockResult.append(System.getProperty("line.separator"));
-	}
-
-	block.setValue(blockResult.toString());
-	block.getParentDiagram().refresh();
     }
 
 

@@ -13,16 +13,12 @@
 package org.scilab.modules.xpad.actions;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 
 import javax.swing.JComponent;
-import javax.swing.JTextPane;
 import javax.swing.KeyStroke;
 
-
 import org.scilab.modules.xpad.ScilabEditorKit;
-import org.scilab.modules.xpad.style.IndentManager;
-import org.scilab.modules.xpad.style.ScilabStyleDocument;
+import org.scilab.modules.xpad.ScilabEditorPane;
 
 /**
  * LineBeautifierAction Class
@@ -31,45 +27,37 @@ import org.scilab.modules.xpad.style.ScilabStyleDocument;
  */
 public final class LineBeautifierAction extends ScilabEditorKit.InsertBreakAction {
 	
-
-	/**
-	 * serialVersionUID
-	 */
-	private static final long serialVersionUID = -8313095922543576108L;
-	private IndentManager indentManager = new IndentManager();
-	
-	/**
-	 * Constructor
-	 */
-	private LineBeautifierAction() {
-		
-	}
-	
-	/**
-	 * actionPerformed
-	 * @param ev ActionEvent
-	 */
-	public void actionPerformed(ActionEvent ev) {
-		super.actionPerformed(ev);
-		JTextPane textPane = (JTextPane) ev.getSource();
-		ScilabStyleDocument doc =  (ScilabStyleDocument) textPane.getStyledDocument();
-		javax.swing.text.Element root = doc.getDefaultRootElement();
-		int line =  root.getElementIndex(textPane.getCaretPosition())-1;
-		if (doc.isUpdater() && doc.getAutoIndent()) {
-			boolean autoColorize = doc.getAutoColorize();
-			doc.setAutoColorize(false);
-			boolean mergeEdits = doc.getShouldMergeEdits();
-			indentManager.beautifyLine(doc, line, true);
-			doc.setAutoColorize(autoColorize);
-			doc.setShouldMergeEdits(mergeEdits);
-		}
-	}
-	
-	/**
-	 * putInInputMap
-	 * @param textPane JComponent
-	 */
-	public static void putInInputMap(JComponent textPane) {
-		textPane.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), new LineBeautifierAction());
-	}
+    /**
+     * The key associated with tthis action
+     */
+    public static String key = "ENTER";
+    
+    /**
+     * serialVersionUID
+     */
+    private static final long serialVersionUID = -8313095922543576108L;
+    
+    /**
+     * Constructor
+     */
+    private LineBeautifierAction() {	
+    }
+    
+    /**
+     * actionPerformed
+     * @param ev ActionEvent
+     */
+    public void actionPerformed(ActionEvent ev) {
+	super.actionPerformed(ev);
+	ScilabEditorPane sep = (ScilabEditorPane) ev.getSource();
+	sep.getIndentManager().indentDoc(sep.getCaretPosition() - 1);
+    }
+    
+    /**
+     * putInInputMap
+     * @param textPane JComponent
+     */
+    public static void putInInputMap(JComponent textPane) {
+	textPane.getInputMap().put(KeyStroke.getKeyStroke(key), new LineBeautifierAction());
+    }
 }

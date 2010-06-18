@@ -30,7 +30,7 @@ The option is "disableUnderMode" and can be:
 <!-- Mandatory on startup -->
 <path value="@FLEXDOCK@"/>
 <path value="@JROSETTA_API@" disableUnderMode="NW"/>
-<path value="@JROSETTA_ENGINE@" disableUnderMode="NW"/>
+<path value="@JROSETTA_ENGINE@"/>
 <path value="@SKINLF@"/>
 <path value="@LOOKS@"/>
 <path value="@COMMONS_LOGGING@"/>

@@ -42,17 +42,6 @@ cremat_
 getscalar_
 getvectrow_
 ;
-; elementary_functions
-unsfdcopy_
-wdpow_
-dwpow_
-wwpow_
-ddpow_
-wscal_
-iset_
-dset_
-entier_
-int2db_
 ; sparse
 lufact1_
 ludel1_

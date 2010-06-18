@@ -35,7 +35,7 @@ import com.mxgraph.model.mxCell;
 public class BasicBlockCodec extends XcosObjectCodec {
 
 	private static final String SIMULATION_FUNCTION_TYPE = "simulationFunctionType";
-	private static final String[] IGNORED_FIELDS = new String[] {SIMULATION_FUNCTION_TYPE, "locked"};
+	private static final String[] IGNORED_FIELDS = new String[] {SIMULATION_FUNCTION_TYPE, "locked", "parameters"};
 
 	/**
 	 * The constructor used on for configuration
@@ -71,6 +71,14 @@ public class BasicBlockCodec extends XcosObjectCodec {
 		mxCellCodec cellCodec = new mxCellCodec(new mxCell(), null,
 				REFS, null);
 		mxCodecRegistry.register(cellCodec);
+		
+		/*
+		 * per block specific codec setup 
+		 */
+		BasicBlockCodec codec = (BasicBlockCodec) mxCodecRegistry.getCodec("AfficheBlock");
+		codec.exclude.add("printTimer");
+		codec.exclude.add("updateAction");
+		
 	}
 	
 	/**

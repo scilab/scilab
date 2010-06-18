@@ -18,8 +18,8 @@
 /* Jean-Philippe Chancelier July 2002  */
 /* Modified by Allan Cornet  INRIA 2006 */
 /*--------------------------------------------------------------------------*/ 
-#include "gw_pvm.h"
 #include "sci_pvm.h"
+#include "gw_pvm.h"
 /*--------------------------------------------------------------------------*/ 
 /******************************************
  * SCILAB function : pvm_f772sci

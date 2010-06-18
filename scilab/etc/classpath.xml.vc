@@ -31,7 +31,7 @@ The option is "disableUnderMode" and can be:
 
 <path value="$SCILAB/thirdparty/flexdock-0.5.1.jar" load="startup"/>
 <path value="$SCILAB/thirdparty/jrosetta-API.jar" load="startup" disableUnderMode="NW"/>
-<path value="$SCILAB/thirdparty/jrosetta-engine.jar" load="startup" disableUnderMode="NW"/>
+<path value="$SCILAB/thirdparty/jrosetta-engine.jar" load="startup"/>
 <path value="$SCILAB/thirdparty/skinlf.jar" load="startup"/>
 <path value="$SCILAB/thirdparty/looks-2.1.1.jar" load="startup"/>
 <path value="$SCILAB/thirdparty/commons-logging-1.1.jar" load="startup"/>

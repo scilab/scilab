@@ -34,5 +34,5 @@ atomsGui();
 atomsRemove("toolbox_1") then pause, end
 
 // Some cleaning
-atomsRepositorySetOfl("http://atoms.scilab.org");
+atomsRepositorySetOfl(mgetl(SCI+"/modules/atoms/tests/unit_tests/repositories.orig"));
 atomsSystemUpdate();

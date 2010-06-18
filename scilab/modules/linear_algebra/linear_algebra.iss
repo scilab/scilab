@@ -1,6 +1,7 @@
 ;
 ; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-; Copyright (C) 2007-2008 - INRIA - Allan CORNET <allan.cornet@inria.fr>
+; Copyright (C) INRIA - Allan CORNET
+; Copyright (C) DIGITEO - 2010 - Allan CORNET
 ;
 ; This file must be used under the terms of the CeCILL.
 ; This source file is licensed as described in the file COPYING, which
@@ -8,43 +9,42 @@
 ; are also available at
 ; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 ;
-;##############################################################################################################
-; Script d'installation Inno Setup (5.2.1) pour scilab
-; Version TRUNK
-;##############################################################################################################
+;--------------------------------------------------------------------------------------------------------------
+; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
+;
 ;--------------------------------------------------------------------------------------------------------------
 ; linear_algebra module
 ;--------------------------------------------------------------------------------------------------------------
 ;
-#define LINALG "linear_algebra"
+#define LINEAR_ALGEBRA "linear_algebra"
 ;
-Source: bin\linear_algebra.dll; DestDir: {app}\bin; Components: {#COMPN_LINALG}
-Source: bin\linear_algebra_f.dll; DestDir: {app}\bin; Components: {#COMPN_LINALG}
+Source: bin\{#LINEAR_ALGEBRA}.dll; DestDir: {app}\bin; Components: {#COMPN_LINALG}
+Source: bin\{#LINEAR_ALGEBRA}_f.dll; DestDir: {app}\bin; Components: {#COMPN_LINALG}
 ;
-Source: modules\{#LINALG}\VERSION.xml; DestDir: {app}\modules\{#LINALG}; Components: {#COMPN_LINALG}
-Source: modules\{#LINALG}\readme.txt; DestDir: {app}\modules\{#LINALG}; Components: {#COMPN_LINALG}
-Source: modules\{#LINALG}\license.txt; DestDir: {app}\modules\{#LINALG}; Components: {#COMPN_LINALG}
-Source: modules\{#LINALG}\changelog.txt; DestDir: {app}\modules\{#LINALG}; Components: {#COMPN_LINALG}
+Source: modules\{#LINEAR_ALGEBRA}\VERSION.xml; DestDir: {app}\modules\{#LINEAR_ALGEBRA}; Components: {#COMPN_LINALG}
+Source: modules\{#LINEAR_ALGEBRA}\readme.txt; DestDir: {app}\modules\{#LINEAR_ALGEBRA}; Components: {#COMPN_LINALG}
+Source: modules\{#LINEAR_ALGEBRA}\license.txt; DestDir: {app}\modules\{#LINEAR_ALGEBRA}; Components: {#COMPN_LINALG}
+Source: modules\{#LINEAR_ALGEBRA}\changelog.txt; DestDir: {app}\modules\{#LINEAR_ALGEBRA}; Components: {#COMPN_LINALG}
 ;
-Source: modules\{#LINALG}\sci_gateway\linear_algebra_gateway.xml; DestDir: {app}\modules\{#LINALG}\sci_gateway; Components: {#COMPN_LINALG}
+Source: modules\{#LINEAR_ALGEBRA}\sci_gateway\{#LINEAR_ALGEBRA}_gateway.xml; DestDir: {app}\modules\{#LINEAR_ALGEBRA}\sci_gateway; Components: {#COMPN_LINALG}
 ;
-Source: modules\{#LINALG}\etc\{#LINALG}.quit; DestDir: {app}\modules\{#LINALG}\etc; Components: {#COMPN_LINALG}
-Source: modules\{#LINALG}\etc\{#LINALG}.start; DestDir: {app}\modules\{#LINALG}\etc; Components: {#COMPN_LINALG}
+Source: modules\{#LINEAR_ALGEBRA}\etc\{#LINEAR_ALGEBRA}.quit; DestDir: {app}\modules\{#LINEAR_ALGEBRA}\etc; Components: {#COMPN_LINALG}
+Source: modules\{#LINEAR_ALGEBRA}\etc\{#LINEAR_ALGEBRA}.start; DestDir: {app}\modules\{#LINEAR_ALGEBRA}\etc; Components: {#COMPN_LINALG}
 ;
-;Source: modules\{#LINALG}\includes\*.h; DestDir: {app}\modules\{#LINALG}\includes; Components: {#COMPN_LINALG}
+;Source: modules\{#LINEAR_ALGEBRA}\includes\*.h; DestDir: {app}\modules\{#LINEAR_ALGEBRA}\includes; Components: {#COMPN_LINALG}
 ;
-Source: modules\{#LINALG}\macros\buildmacros.sce; DestDir: {app}\modules\{#LINALG}\macros; Components: {#COMPN_LINALG}
-Source: modules\{#LINALG}\macros\buildmacros.bat; DestDir: {app}\modules\{#LINALG}\macros; Components: {#COMPN_LINALG}
-Source: modules\{#LINALG}\macros\cleanmacros.bat; DestDir: {app}\modules\{#LINALG}\macros; Components: {#COMPN_LINALG}
-Source: modules\{#LINALG}\macros\lib; DestDir: {app}\modules\{#LINALG}\macros; Components: {#COMPN_LINALG}
-Source: modules\{#LINALG}\macros\names; DestDir: {app}\modules\{#LINALG}\macros; Components: {#COMPN_LINALG}
-Source: modules\{#LINALG}\macros\*.bin; DestDir: {app}\modules\{#LINALG}\macros; Components: {#COMPN_LINALG}
-Source: modules\{#LINALG}\macros\*.sci; DestDir: {app}\modules\{#LINALG}\macros; Components: {#COMPN_LINALG}
+Source: modules\{#LINEAR_ALGEBRA}\macros\buildmacros.sce; DestDir: {app}\modules\{#LINEAR_ALGEBRA}\macros; Components: {#COMPN_LINALG}
+Source: modules\{#LINEAR_ALGEBRA}\macros\buildmacros.bat; DestDir: {app}\modules\{#LINEAR_ALGEBRA}\macros; Components: {#COMPN_LINALG}
+Source: modules\{#LINEAR_ALGEBRA}\macros\cleanmacros.bat; DestDir: {app}\modules\{#LINEAR_ALGEBRA}\macros; Components: {#COMPN_LINALG}
+Source: modules\{#LINEAR_ALGEBRA}\macros\lib; DestDir: {app}\modules\{#LINEAR_ALGEBRA}\macros; Components: {#COMPN_LINALG}
+Source: modules\{#LINEAR_ALGEBRA}\macros\names; DestDir: {app}\modules\{#LINEAR_ALGEBRA}\macros; Components: {#COMPN_LINALG}
+Source: modules\{#LINEAR_ALGEBRA}\macros\*.bin; DestDir: {app}\modules\{#LINEAR_ALGEBRA}\macros; Components: {#COMPN_LINALG}
+Source: modules\{#LINEAR_ALGEBRA}\macros\*.sci; DestDir: {app}\modules\{#LINEAR_ALGEBRA}\macros; Components: {#COMPN_LINALG}
 ;
-;Source: modules\{#LINALG}\demos\*.*; DestDir: {app}\modules\{#LINALG}\demos; Flags: recursesubdirs;  Components: {#COMPN_LINALG}
+;Source: modules\{#LINEAR_ALGEBRA}\demos\*.*; DestDir: {app}\modules\{#LINEAR_ALGEBRA}\demos; Flags: recursesubdirs;  Components: {#COMPN_LINALG}
 ;
-Source: modules\{#LINALG}\examples\*.*; DestDir: {app}\modules\{#LINALG}\examples; Flags: recursesubdirs;  Components: {#COMPN_LINALG}
+Source: modules\{#LINEAR_ALGEBRA}\examples\*.*; DestDir: {app}\modules\{#LINEAR_ALGEBRA}\examples; Flags: recursesubdirs;  Components: {#COMPN_LINALG}
 ;
-Source: modules\{#LINALG}\tests\*.*; DestDir: {app}\modules\{#LINALG}\tests; Flags: recursesubdirs; Components: {#COMPN_LINALG} and {#COMPN_TESTS}
+Source: modules\{#LINEAR_ALGEBRA}\tests\*.*; DestDir: {app}\modules\{#LINEAR_ALGEBRA}\tests; Flags: recursesubdirs; Components: {#COMPN_LINALG} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

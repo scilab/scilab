@@ -115,7 +115,7 @@ public class FileExporter {
 
             try {
                 /* Temporary SVG file which will be used to convert to PDF */
-                fileName = File.createTempFile(name,"svg").getAbsolutePath();
+                fileName = File.createTempFile(name,".svg").getAbsolutePath();
             } catch (IOException e) {
                 System.err.println("Could not create temporary file " + e.getLocalizedMessage());
             }

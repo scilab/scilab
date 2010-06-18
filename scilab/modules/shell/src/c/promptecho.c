@@ -11,6 +11,7 @@
 */
 /*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
+#include <string.h>
 #include "promptecho.h"
 #include "basout.h"
 #include "MALLOC.h"

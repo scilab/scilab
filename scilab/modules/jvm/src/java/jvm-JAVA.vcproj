@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -36,7 +36,7 @@
 				ForcedIncludes=""
 				AssemblySearchPath=""
 				ForcedUsingAssemblies=""
-				CompileAsManaged=""
+				
 			/>
 		</Configuration>
 		<Configuration
@@ -56,7 +56,7 @@
 				ForcedIncludes=""
 				AssemblySearchPath=""
 				ForcedUsingAssemblies=""
-				CompileAsManaged=""
+				
 			/>
 		</Configuration>
 		<Configuration
@@ -76,7 +76,7 @@
 				ForcedIncludes=""
 				AssemblySearchPath=""
 				ForcedUsingAssemblies=""
-				CompileAsManaged=""
+				
 			/>
 		</Configuration>
 		<Configuration
@@ -96,7 +96,7 @@
 				ForcedIncludes=""
 				AssemblySearchPath=""
 				ForcedUsingAssemblies=""
-				CompileAsManaged=""
+				
 			/>
 		</Configuration>
 	</Configurations>

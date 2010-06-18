@@ -263,7 +263,7 @@ function description_out = atomsDESCRIPTIONread(file_in,additional)
         end
 
         // Else Error
-        error(msprintf(gettext("%s: The file ""%s"" is not well formated at line %d\n"),"atomsDESCRIPTIONread",filein,i));
+        error(msprintf(gettext("%s: The file ''%s'' is not well formated at line %d\n"),"atomsDESCRIPTIONread",file_in,i));
 
     end
 

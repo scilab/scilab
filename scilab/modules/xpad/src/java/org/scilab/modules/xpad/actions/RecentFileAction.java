@@ -16,21 +16,39 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 
+/**
+ * RecentFileAction Class
+ * @author Allan SIMON
+ *
+ */
 public class RecentFileAction extends DefaultAction {
 	
 	private File recentFile ;
 
+        /**
+	 * Constructor
+	 * @param editor Xpad
+	 * @param f File
+	 */
 	private RecentFileAction(Xpad editor , File f) {
 		super(f.getName(), editor);
 		recentFile = f ;
 	}
 	
+        /**
+	 * doAction
+	 */
 	public void doAction() {
 		ConfigXpadManager.saveToRecentOpenedFiles(recentFile.getPath());
 		getEditor().readFile(recentFile);
 		getEditor().setTitle(recentFile.getPath() + " - Xpad");
-	};
+	}
 
+        /**
+	 * createMenu
+	 * @param editorXpad
+	 * @param f File
+	 */
 	public static MenuItem createMenu(Xpad editor, File f) {
 	    return createMenu(f.getName(), null, new RecentFileAction(editor, f), null);
 	}

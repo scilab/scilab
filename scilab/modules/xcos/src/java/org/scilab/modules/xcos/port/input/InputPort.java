@@ -14,6 +14,7 @@ package org.scilab.modules.xcos.port.input;
 
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
+import org.scilab.modules.xcos.port.output.OutputPort;
 
 /**
  * An input port acts as a protection barrier between a link and the internal functions of
@@ -33,5 +34,7 @@ public abstract class InputPort extends BasicPort {
     protected InputPort(String type) {
 	super(type);
 	setOrientation(Orientation.WEST);
+	
+	setDefaultValues();
     }
 }

@@ -1,0 +1,3 @@
+# ignore openoffice temporary lock files
+.~lock.*#
+

@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
@@ -25,16 +25,18 @@
   <refnamediv>
     <refname>black</refname>
 
-    <refpurpose>Black's diagram (Nichols chart)</refpurpose>
+    <refpurpose>Black-Nichols diagram of a linear dynamical system</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>black( sl,[fmin,fmax] [,step] [,comments] )
-black( sl,frq [,comments] )
-black(frq,db,phi [,comments])
-black(frq,repf [,comments])</synopsis>
+    <synopsis>
+      black( sl,[fmin,fmax] [,step] [,comments] )
+      black( sl,frq [,comments] )
+      black(frq,db,phi [,comments])
+      black(frq,repf [,comments])
+    </synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -45,7 +47,8 @@ black(frq,repf [,comments])</synopsis>
         <term>sl</term>
 
         <listitem>
-          <para>list ( linear system <literal>syslin</literal>)</para>
+          <para>a continuous or discrete time SIMO linear dynamical
+          system ( see: <link linkend="syslin">syslin</link>).</para>
         </listitem>
       </varlistentry>
 
@@ -102,17 +105,16 @@ black(frq,repf [,comments])</synopsis>
   <refsection>
     <title>Description</title>
 
-    <para>Black's diagram (Nichols'chart) for a linear system
-    <literal>sl</literal>. <literal>sl</literal> can be a continuous-time or
-    discrete-time SIMO system (see <literal>syslin</literal>). In case of
-    multi-output the outputs are plotted with different symbols.</para>
+    <para>Black's diagram (Nichols'chart) for a linear system ( see: <link linkend="syslin">syslin</link>). <literal>sl</literal> can be a continuous-time or
+    discrete-time SIMO system. In case of
+    multi-output the outputs are plotted with different colors.</para>
 
     <para>The frequencies are given by the bounds
     <literal>fmin</literal>,<literal>fmax</literal> (in Hz) or by a row-vector
     (or a matrix for multi-output) <literal>frq</literal>.</para>
 
     <para><literal>step</literal> is the ( logarithmic ) discretization step.
-    (see <literal>calfrq</literal> for the choice of default value).</para>
+    (see <link linkend="calfrq">calfrq</link> for the choice of default value).</para>
 
     <para><literal>comments</literal> is a vector of character strings
     (captions).</para>
@@ -125,7 +127,7 @@ black(frq,repf [,comments])</synopsis>
 
     <para>To plot the grid of iso-gain and iso-phase of
     <literal>y/(1+y)</literal> use <link
-    linkend="chart">chart()</link>.</para>
+    linkend="nicholschart">nicolschart()</link>.</para>
 
     <para>Default values for <literal>fmin</literal> and
     <literal>fmax</literal> are <literal>1.d-3</literal>,
@@ -137,37 +139,54 @@ black(frq,repf [,comments])</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"><![CDATA[ 
-s=poly(0,'s')
-h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+    <programlisting role="exemple"><![CDATA[
+    //Black diagram
+    s=poly(0,'s');
+    sl=syslin('c',5*(1+s)/(.1*s^4+s^3+15*s^2+3*s+1))
+    clf();black(sl,0.01,10);
+    ]]></programlisting>
+    <para>
+      <inlinemediaobject>
+	<imageobject>
+	  <imagedata fileref="../images/black1.svg"/>
+	</imageobject>
+      </inlinemediaobject>
+    </para>
+    <programlisting role="example"><![CDATA[
+    //Black diagram with Nichols chart as a grid
+    s=poly(0,'s');
+    Plant=syslin('c',16000/((s+1)*(s+10)*(s+100)));
+    //two degree of freedom PID
+    tau=0.2;xsi=1.2;
+    PID=syslin('c',(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau^2*s^2));
+    clf();
+    black([Plant;Plant*PID ],0.01,100,["Plant";"Plant and PID corrector"]);
+    //move the caption in the lower rigth corner
+    ax=gca();Leg=ax.children(1);
+    Leg.legend_location="in_lower_right";
+    nicholschart(colors=color('light gray')*[1 1])
 
-clf();black(h,0.01,100);
-chart(list(1,0));
-
-h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
-clf()
-black([h1;h],0.01,100,['h1';'h'])
-chart(list(1,0)); 
- ]]></programlisting>
+    ]]></programlisting>
+    <para>
+      <inlinemediaobject>
+	<imageobject>
+	  <imagedata fileref="../images/black2.svg"/>
+	</imageobject>
+      </inlinemediaobject>
+    </para>
   </refsection>
 
   <refsection>
     <title>See Also</title>
 
     <simplelist type="inline">
+      <member><link linkend="nicholschart">nicholschart</link></member>
       <member><link linkend="bode">bode</link></member>
-
       <member><link linkend="nyquist">nyquist</link></member>
 
-      <member><link linkend="chart">chart</link></member>
-
-      <member><link linkend="freq">freq</link></member>
-
-      <member><link linkend="repfreq">repfreq</link></member>
-
+      <member><link linkend="syslin">syslin</link></member>
       <member><link linkend="calfrq">calfrq</link></member>
-
-      <member><link linkend="phasemag">phasemag</link></member>
+      <member><link linkend="datatips">datatips</link></member>
     </simplelist>
   </refsection>
 </refentry>

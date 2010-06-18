@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -41,11 +41,10 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-				ExecutionBucket="4"
+				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
-				Name="VCXMLDataGeneratorTool"
+				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
@@ -62,7 +61,6 @@
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -80,7 +78,7 @@
 			<Tool
 				Name="VCLibrarianTool"
 				ExecutionBucket="10"
-				OutputFile="../../../../libs/core_f.lib"
+				OutputFile="$(SolutionDir)libs\$(ProjectName).lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -141,7 +139,6 @@
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -155,7 +152,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../../../libs/core_f.lib"
+				OutputFile="$(SolutionDir)libs\$(ProjectName).lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -195,11 +192,10 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-				ExecutionBucket="4"
+				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
-				Name="VCXMLDataGeneratorTool"
+				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
@@ -214,7 +210,6 @@
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -232,7 +227,7 @@
 			<Tool
 				Name="VCLibrarianTool"
 				ExecutionBucket="10"
-				OutputFile="../../../../libs/core_f.lib"
+				OutputFile="$(SolutionDir)libs\$(ProjectName).lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -292,7 +287,6 @@
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -306,7 +300,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../../../libs/core_f.lib"
+				OutputFile="$(SolutionDir)libs\$(ProjectName).lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -545,10 +539,6 @@
 			</File>
 			<File
 				RelativePath=".\isnum.c"
-				>
-			</File>
-			<File
-				RelativePath=".\israt.c"
 				>
 			</File>
 			<File
@@ -1037,10 +1027,6 @@
 			</File>
 			<File
 				RelativePath=".\isnum.f"
-				>
-			</File>
-			<File
-				RelativePath=".\israt.f"
 				>
 			</File>
 			<File

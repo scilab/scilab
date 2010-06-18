@@ -511,7 +511,6 @@ public final class SuperBlock extends BasicBlock {
 			while (blockCount > portCount) { // add if required
 				BasicPort port;
 					port = block.getReferencedPortClass().newInstance();
-					port.setDefaultValues();
 					addPort(port);
 					portCount++;
 			}

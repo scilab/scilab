@@ -1,0 +1,8 @@
+<package name="org.scilab.modules.xcos.block">
+    <object name="AfficheBlock">
+        <method name="setValue" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+            <parameter name="value" type="String[][]"/>
+        </method>
+    </object>
+</package>

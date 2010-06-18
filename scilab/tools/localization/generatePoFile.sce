@@ -20,15 +20,15 @@ end
 
 // make destination directories 
 
-if (fileinfo(SCI+filesep()+'locale') == []) then
+if ~isdir(SCI+filesep()+'locale') then
   mkdir(SCI,'locale');
 end 
 
-if (fileinfo(SCI+filesep()+'locale'+filesep()+LANGUAGE) == []) then
+if ~isdir(SCI+filesep()+'locale'+filesep()+LANGUAGE) then
   mkdir(SCI+filesep()+'locale',LANGUAGE);
 end 
 
-if (fileinfo(SCI+filesep()+'locale'+filesep()+LANGUAGE+filesep()+LC) == []) then
+if ~isdir(SCI+filesep()+'locale'+filesep()+LANGUAGE+filesep()+LC) then
   mkdir(SCI+filesep()+'locale'+filesep()+LANGUAGE,LC);
 end 
 
@@ -55,7 +55,7 @@ for MODULE = getmodules()'
   end
   
   if FINDFULLFILENAMEPO <> [] then
-    if (fileinfo(FINDFULLFILENAMEPO)<>[]) then
+    if isfile(FINDFULLFILENAMEPO) then
       ext = fileext(FINDFULLFILENAMEPO);
       if ( ( ext == '.pot' ) | (ext == '.po') ) then
         // '""' path windows with blank

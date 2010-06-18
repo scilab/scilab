@@ -52,7 +52,6 @@
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -69,14 +68,14 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib libjvm.lib scilab_windows.lib scilocalization.lib"
-				OutputFile="../../../../bin/sciaction_binding.dll"
+				OutputFile="$(SolutionDir)bin\sci$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="../../../../bin/sciaction_binding.lib"
+				ImportLibrary="$(SolutionDir)bin\sci$(ProjectName).lib"
 				TargetMachine="1"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -136,7 +135,6 @@
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -153,14 +151,14 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib libjvm.lib scilab_windows.lib scilocalization.lib"
-				OutputFile="../../../../bin/sciaction_binding.dll"
+				OutputFile="$(SolutionDir)bin\sci$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="../../../../bin/sciaction_binding.lib"
+				ImportLibrary="$(SolutionDir)bin\sci$(ProjectName).lib"
 				TargetMachine="17"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -223,7 +221,6 @@
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -240,7 +237,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib libjvm.lib scilab_windows.lib scilocalization.lib"
-				OutputFile="../../../../bin/sciaction_binding.dll"
+				OutputFile="$(SolutionDir)bin\sci$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile=""
 				GenerateDebugInformation="false"
@@ -250,7 +247,7 @@
 				LinkTimeCodeGeneration="0"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="../../../../bin/sciaction_binding.lib"
+				ImportLibrary="$(SolutionDir)bin\sci$(ProjectName).lib"
 				TargetMachine="1"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -313,7 +310,6 @@
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -330,7 +326,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib libjvm.lib scilab_windows.lib scilocalization.lib"
-				OutputFile="../../../../bin/sciaction_binding.dll"
+				OutputFile="$(SolutionDir)bin\sci$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile=""
 				GenerateDebugInformation="false"
@@ -340,7 +336,7 @@
 				LinkTimeCodeGeneration="0"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="../../../../bin/sciaction_binding.lib"
+				ImportLibrary="$(SolutionDir)bin\sci$(ProjectName).lib"
 				TargetMachine="17"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -474,7 +470,7 @@
 			>
 		</File>
 		<File
-			RelativePath="..\..\action_binding.xml"
+			RelativePath="..\..\sci_gateway\action_binding_gateway.xml"
 			>
 		</File>
 		<File

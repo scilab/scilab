@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 16:29+0100\n"
-"PO-Revision-Date: 2009-10-28 03:07+0000\n"
+"PO-Revision-Date: 2010-05-28 01:02+0000\n"
 "Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgid ""
 msgstr " 自上次保存已经被修改，保存改动么？"
 
 msgid "%s is a directory."
-msgstr ""
+msgstr "%s 是目录。"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -31,18 +31,18 @@ msgstr "%s: 内存不足。\n"
 #, c-format
 msgid ""
 "%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
-msgstr ""
+msgstr "%s：输入参数#%d和#%d的大小错误：应该为同样的维数。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数的类型错误：应该是实数矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: String matrix expected.\n"
-msgstr ""
+msgstr "%s：参数%d的类型错误：应该为字符串矩阵。\n"
 
 msgid "?"
-msgstr ""
+msgstr "？"
 
 msgid "About"
 msgstr "关于"
@@ -78,10 +78,10 @@ msgid "Close"
 msgstr "关闭"
 
 msgid "Close All"
-msgstr ""
+msgstr "关闭所有文档"
 
 msgid "Close All But This"
-msgstr ""
+msgstr "关闭其他文档"
 
 msgid "Colorization canceled"
 msgstr ""
@@ -93,16 +93,16 @@ msgid "Comment Selection"
 msgstr "注释选区"
 
 msgid "Continue?"
-msgstr ""
+msgstr "继续？"
 
 msgid "Copy"
 msgstr "复制"
 
 msgid "Copyright (c)"
-msgstr ""
+msgstr "版权所有 (c)"
 
 msgid "Correct Indentation"
-msgstr ""
+msgstr "纠正缩进"
 
 msgid "Could not find the console nor the InterpreterManagement."
 msgstr ""
@@ -129,10 +129,10 @@ msgid "Edit"
 msgstr "编辑"
 
 msgid "Edit selection in a new tab"
-msgstr ""
+msgstr "在新标签页中编辑选择区"
 
 msgid "Editor"
-msgstr ""
+msgstr "编辑器"
 
 msgid "Editor error"
 msgstr ""

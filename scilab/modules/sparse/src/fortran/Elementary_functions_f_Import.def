@@ -1,0 +1,14 @@
+	LIBRARY    elementary_functions_f.dll
+
+
+EXPORTS
+;
+;elementary_functions_f
+iset_
+dset_
+wwpow_
+dwpow_
+ddpow_
+wscal_
+entier_
+wdpow_

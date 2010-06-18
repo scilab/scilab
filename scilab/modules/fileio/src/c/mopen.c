@@ -12,6 +12,7 @@
  */
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
+#include <string.h>
 #include "mopen.h"
 #include "Status2Mode.h"
 #include "filesmanagement.h"

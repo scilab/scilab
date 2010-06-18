@@ -20,6 +20,15 @@
 #include "sciprint_full.h"
 #include "localization.h"
 #include "Thread_Wrapper.h"
+
+#ifdef _MSC_VER
+#include "mmapWindows.h"
+#else
+#include <sys/mman.h>
+#ifndef MAP_ANONYMOUS
+# define MAP_ANONYMOUS MAP_ANON
+#endif
+#endif
 /*--------------------------------------------------------------------------*/
 /*
  *  Command queue functions
@@ -43,7 +52,31 @@ typedef struct commandRec
 IMPORT_SIGNAL __threadSignal LaunchScilab;
 /*--------------------------------------------------------------------------*/
 static CommandRec *commandQueue = NULL;
-static __threadLock commandQueueSingleAccess = __StaticInitLock;
+
+static void release(void);
+
+static __threadLock* getCommandQueueSingleAccess(){
+    static __threadLock* ptr= NULL;
+    if(!ptr)
+    {
+        ptr = mmap(0, sizeof(__threadLock), PROT_READ | PROT_WRITE,MAP_SHARED |  MAP_ANONYMOUS, -1, 0);
+#ifdef _MSC_VER
+        *ptr=  __StaticInitLock;
+#else
+        __InitSignalLock(ptr);
+#endif
+        atexit(release);
+    }
+    return ptr;
+}
+
+static void release(void)
+{
+    if(getCommandQueueSingleAccess())
+    {
+        __UnLock(getCommandQueueSingleAccess());
+    }
+}
 /*--------------------------------------------------------------------------*/
 int StoreCommand (char *command)
 {
@@ -75,7 +108,7 @@ int StoreCommandWithFlag (char *command,int flag)
 	}
 	strcpy (p->command, command);
 	p->next = NULL;
-	__Lock(&commandQueueSingleAccess);
+	__Lock(getCommandQueueSingleAccess());
 	if (commandQueue == NULL)
 	{
 		commandQueue = p;
@@ -89,7 +122,7 @@ int StoreCommandWithFlag (char *command,int flag)
 		}
 		q->next = p;
 	}
-	__UnLock(&commandQueueSingleAccess);
+	__UnLock(getCommandQueueSingleAccess());
 	//**
 	//** We have something to do, awake Scilab !!!!!!
 	//**
@@ -120,7 +153,7 @@ int StorePrioritaryCommandWithFlag (char *command,int flag)
 	}
 	strcpy (p->command, command);
 	p->next = NULL;
-	__Lock(&commandQueueSingleAccess);
+	__Lock(getCommandQueueSingleAccess());
 	if (commandQueue == NULL)
 	{
 		commandQueue = p;
@@ -130,7 +163,7 @@ int StorePrioritaryCommandWithFlag (char *command,int flag)
 		p->next = commandQueue;
 		commandQueue = p;
 	}
-	__UnLock(&commandQueueSingleAccess);
+	__UnLock(getCommandQueueSingleAccess());
 	//**
 	//** We have something to do, awake Scilab !!!!!!
 	//**
@@ -141,9 +174,9 @@ int StorePrioritaryCommandWithFlag (char *command,int flag)
 int isEmptyCommandQueue(void)
 {
 	int isEmpty = 0;
-	__Lock(&commandQueueSingleAccess);
+	__Lock(getCommandQueueSingleAccess());
 	isEmpty = (commandQueue == NULL);
-	__UnLock(&commandQueueSingleAccess);
+	__UnLock(getCommandQueueSingleAccess());
 	return isEmpty;
 }
 /*--------------------------------------------------------------------------*/
@@ -154,7 +187,7 @@ int isEmptyCommandQueue(void)
 int GetCommand ( char *str)
 {
 	int flag = 0;
-	__Lock(&commandQueueSingleAccess);
+	__Lock(getCommandQueueSingleAccess());
 	if (commandQueue != NULL)
 	{
 		CommandRec *p = commandQueue;
@@ -165,19 +198,19 @@ int GetCommand ( char *str)
 		commandQueue = p->next;
 		FREE (p->command);
 		FREE (p);
-		if (C2F(iop).ddt == -1) 
+		if (C2F(iop).ddt == -1)
 		{
-			if (flag == 0) 
-			{ 
-				sciprint_full(_("Unqueuing %s - No option.\n"),str); 
+			if (flag == 0)
+			{
+				sciprint_full(_("Unqueuing %s - No option.\n"),str);
 			}
 			else
-			{ 
-				sciprint_full(_("Unqueuing %s - seq.\n"),str); 
+			{
+				sciprint_full(_("Unqueuing %s - seq.\n"),str);
 			}
 		}
 	}
-	__UnLock(&commandQueueSingleAccess);
+	__UnLock(getCommandQueueSingleAccess());
 
 	return flag;
 }

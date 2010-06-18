@@ -12,14 +12,14 @@
 
 package org.scilab.modules.xcos.io.scicos;
 
+import java.util.List;
+
 
 
 /**
  * Default exception for a Xcos - Scicos communication
  */
 public abstract class ScicosFormatException extends Exception {
-	private final String field;
-	
 	/**
 	 * Used when the {@link Element} cannot be used to decode/encode the instance.
 	 */
@@ -40,6 +40,31 @@ public abstract class ScicosFormatException extends Exception {
 		 * Default constructor
 		 */
 		public WrongTypeException() { }
+
+		/**
+		 * @param message the message
+		 * @param cause the cause
+		 */
+		public WrongTypeException(String message, Throwable cause) {
+			super(message, cause);
+		}
+
+		/**
+		 * @param cause the cause
+		 */
+		public WrongTypeException(Throwable cause) {
+			super(cause);
+		}
+		
+		/**
+		 * Constructor with field.
+		 * @param fields the field list
+		 * @param index the buggy index
+		 */
+		public WrongTypeException(List<String> fields, int index) {
+			super(String.format("Unable to decode \"%s.%s\" : invalid field.", fields.get(0), fields.get(index)));
+		}
+		
 	}
 	
 	/**
@@ -51,6 +76,14 @@ public abstract class ScicosFormatException extends Exception {
 		 * Default constructor
 		 */
 		public WrongStructureException() { }
+		
+		/**
+		 * Constructor with field descriptor.
+		 * @param fields the erroneous fields
+		 */
+		public WrongStructureException(List<String> fields) {
+			String.format("Unable to decode \"%s\" : invalid data.", fields.get(0));
+		}
 	}
 	
 	/**
@@ -79,25 +112,34 @@ public abstract class ScicosFormatException extends Exception {
 	 * Default constructor
 	 */
 	protected ScicosFormatException() {
-		this.field = null;
-		
 		if (!(this instanceof VersionMismatchException)) {
 			printStackTrace();
 		}
 	}
 	
 	/**
-	 * Default constructor
-	 * @param field path to the erroneous field
+	 * @param message the message
 	 */
-	public ScicosFormatException(String field) {
-		this.field = field; 
+	public ScicosFormatException(String message) {
+		super(message);
 	}
 
 	/**
-	 * @return the erroneous field
+	 * {@link ScicosFormatException} with message and cause.
+	 * 
+	 * @param message the message to be printed
+	 * @param cause the cause
 	 */
-	public String getField() {
-		return field;
+	public ScicosFormatException(String message, Throwable cause) {
+		super(message, cause);
+	}
+
+	/**
+	 * {@link ScicosFormatException} with cause.
+	 * 
+	 * @param cause the cause
+	 */
+	public ScicosFormatException(Throwable cause) {
+		super(cause);
 	}
 }

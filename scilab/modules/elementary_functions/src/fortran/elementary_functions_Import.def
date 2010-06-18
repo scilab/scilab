@@ -1,0 +1,12 @@
+LIBRARY    elementary_functions.dll
+
+
+EXPORTS
+vceil_
+unsfdcopy_
+int2db_
+vfloor_
+vfrexp_
+idmax_
+idmin_
+dcoeff_

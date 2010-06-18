@@ -31,7 +31,6 @@ iAllocComplexMatrixOfDouble
 GetRhsVarMatrixDouble
 iAllocMatrixOfDouble
 vGetPointerFromDoubleComplex
-vfiniteComplex_
 oGetDoubleComplexFromPointer
 GetRhsVarMatrixComplex
 vFreeDoubleComplexFromPointer
@@ -41,10 +40,3 @@ vFreeDoubleComplexFromPointer
 folhp_
 find_
 ;
-;elementary_functions_f
-;
-wbdiag_
-bdiag_
-vfinite_
-dset_
-wwrdiv_

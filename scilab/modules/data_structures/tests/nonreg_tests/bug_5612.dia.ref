@@ -1,0 +1,23 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Vincent COUVERT
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- Non-regression test for bug 5612 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=5612
+//
+// <-- Short Description -->
+// There is no way for deleting a structure field.
+s = struct("txt","Hello","num",%pi,"pol",%z^2+1);
+if or(getfield(1,s)<>["st", "dims", "txt", "num", "pol"]) then bugmes();quit;end
+// Delete the field called 'num'
+s.num = null();
+// Check that 'num' field has been deleted
+if or(getfield(1,s)<>["st", "dims", "txt", "pol"]) then bugmes();quit;end
+// Check that remaining fields have the right value
+if s.txt<>"Hello" then bugmes();quit;end
+if s.pol<>%z^2+1 then bugmes();quit;end

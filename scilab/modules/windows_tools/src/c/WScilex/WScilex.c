@@ -1,12 +1,15 @@
-/*--------------------------------------------------------------------------*/
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA - Allan CORNET
-// 
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at    
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+/*
+*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+*  Copyright (C) INRIA - Allan CORNET
+*  Copyright (C) 2010 - DIGITEO - Allan CORNET
+*
+*  This file must be used under the terms of the CeCILL.
+*  This source file is licensed as described in the file COPYING, which
+*  you should have received as part of this distribution.  The terms
+*  are also available at
+*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
 /*--------------------------------------------------------------------------*/
 #include <windows.h>
 #include <strsafe.h>
@@ -28,85 +31,94 @@
 /*--------------------------------------------------------------------------*/
 typedef int (*MYPROC1) (HINSTANCE, HINSTANCE ,LPSTR szCmdLine, int iCmdShow);
 /*--------------------------------------------------------------------------*/
+/* BUG 6934 */
+/* http://bugzilla.scilab.org/show_bug.cgi?id=6934 */
+/* http://msdn.microsoft.com/en-us/library/chh3fb0k(VS.80).aspx */
+#ifdef __INTEL_COMPILER
+#pragma optimize("g", off)
+#endif
+/*--------------------------------------------------------------------------*/
 int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine, int iCmdShow)
 {
-	int iExitCode = 0;
-	HINSTANCE hinstLib = NULL; 
-	BOOL fFreeResult = FALSE, fRunTimeLinkSuccess = FALSE; 
+    int iExitCode = 0;
+    HINSTANCE hinstLib = NULL; 
+    BOOL fFreeResult = FALSE, fRunTimeLinkSuccess = FALSE; 
 
-	if (GetWindowsVersion() < OS_WIN32_WINDOWS_2000)
-	{
-		MessageBox(NULL,TEXT(MSG_DETECT_2K_OR_MORE),TEXT(MSG_WARNING),MB_ICONWARNING);
-		return -1;
-	}
+    if (GetWindowsVersion() < OS_WIN32_WINDOWS_2000)
+    {
+        MessageBox(NULL, TEXT(MSG_DETECT_2K_OR_MORE), TEXT(MSG_WARNING), MB_ICONWARNING);
+        return -1;
+    }
 
-	/* http://msdn.microsoft.com/en-us/library/ms724482(VS.85).aspx */
-	if (!IsProcessorFeaturePresent(PF_XMMI_INSTRUCTIONS_AVAILABLE))
-	{
-		MessageBox(NULL,TEXT(MSG_DETECT_SSE_OR_MORE),TEXT(MSG_WARNING),MB_ICONWARNING);
-		return -1;
-	}
+    /* http://msdn.microsoft.com/en-us/library/ms724482(VS.85).aspx */
+    if (!IsProcessorFeaturePresent(PF_XMMI_INSTRUCTIONS_AVAILABLE))
+    {
+        MessageBox(NULL, TEXT(MSG_DETECT_SSE_OR_MORE), TEXT(MSG_WARNING), MB_ICONWARNING);
+        return -1;
+    }
 
-	hinstLib = LoadLibrary(TEXT(SCILAB_LIBRARY)); 	
-	if (hinstLib != NULL) 
-	{ 
-		UINT LastErrorMode = 0;
-		MYPROC1 Windows_Main = NULL; 
+    hinstLib = LoadLibrary(TEXT(SCILAB_LIBRARY));
+    if (hinstLib != NULL)
+    { 
+        UINT LastErrorMode = 0;
+        MYPROC1 Windows_Main = NULL;
 
-		/* launch main */
-		Windows_Main = (MYPROC1) GetProcAddress(hinstLib,MAIN_FUNCTION); 
-		if (NULL != Windows_Main) 
-		{
-			fRunTimeLinkSuccess = TRUE;
+        /* launch main */
+        Windows_Main = (MYPROC1) GetProcAddress(hinstLib, MAIN_FUNCTION);
+        if (NULL != Windows_Main) 
+        {
+            fRunTimeLinkSuccess = TRUE;
 
-		#ifndef _DEBUG
-			/* catch system errors msgbox (release mode only) */
-			/* http://msdn.microsoft.com/en-us/library/ms680621(VS.85).aspx */
-			// LastErrorMode = SetErrorMode( SEM_FAILCRITICALERRORS|SEM_NOALIGNMENTFAULTEXCEPT|SEM_NOGPFAULTERRORBOX );
-			_try
-			{
-		#endif
+#ifndef _DEBUG
+            /* catch system errors msgbox (release mode only) */
+            /* http://msdn.microsoft.com/en-us/library/ms680621(VS.85).aspx */
+            // LastErrorMode = SetErrorMode( SEM_FAILCRITICALERRORS|SEM_NOALIGNMENTFAULTEXCEPT|SEM_NOGPFAULTERRORBOX );
+            _try
+            {
+#endif
+                /* launch main */
+                iExitCode = (Windows_Main)(hInstance, hPrevInstance, szCmdLine, iCmdShow);
 
-				/* launch main */
-				iExitCode = (Windows_Main)(hInstance,hPrevInstance,szCmdLine, iCmdShow);
+#ifndef _DEBUG
+            }
+            _except (EXCEPTION_EXECUTE_HANDLER)
+            {
+            }
+#endif
+        }
+        fFreeResult = FreeLibrary(hinstLib);
+    }
 
-		#ifndef _DEBUG
-			}
-			_except (EXCEPTION_EXECUTE_HANDLER)
-			{	
-			}
-		#endif
+    if (!fRunTimeLinkSuccess)
+    {
+        LPVOID lpMsgBuf;
+        LPVOID lpDisplayBuf;
 
-		}
-		fFreeResult = FreeLibrary(hinstLib); 
-	} 
+        DWORD dw = GetLastError();
 
-	if (! fRunTimeLinkSuccess) 
-	{
-		LPVOID lpMsgBuf;
-		LPVOID lpDisplayBuf;
+        FormatMessage(
+            FORMAT_MESSAGE_ALLOCATE_BUFFER |
+            FORMAT_MESSAGE_FROM_SYSTEM |
+            FORMAT_MESSAGE_IGNORE_INSERTS,
+            NULL,
+            dw,
+            MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+            (LPTSTR) &lpMsgBuf,
+            0, NULL );
 
-		DWORD dw = GetLastError(); 
+        lpDisplayBuf = (LPVOID)LocalAlloc(LMEM_ZEROINIT,
+                                         (lstrlen((LPCTSTR)lpMsgBuf) + LENGTH_BUFFER_SECURITY) * sizeof(TCHAR));
+        StringCchPrintf((LPTSTR)lpDisplayBuf,
+                        LocalSize(lpDisplayBuf) / sizeof(TCHAR),
+                        TEXT(MSG_LOAD_LIBRARIES),
+                        dw, lpMsgBuf); 
 
-		FormatMessage(
-			FORMAT_MESSAGE_ALLOCATE_BUFFER | 
-			FORMAT_MESSAGE_FROM_SYSTEM |
-			FORMAT_MESSAGE_IGNORE_INSERTS,
-			NULL,
-			dw,
-			MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-			(LPTSTR) &lpMsgBuf,
-			0, NULL );
+        MessageBox(NULL, (LPCTSTR)lpDisplayBuf, TEXT(MSG_WARNING), MB_ICONERROR);
 
-		lpDisplayBuf = (LPVOID)LocalAlloc(LMEM_ZEROINIT,(lstrlen((LPCTSTR)lpMsgBuf)+LENGTH_BUFFER_SECURITY)*sizeof(TCHAR)); 
-		StringCchPrintf((LPTSTR)lpDisplayBuf,LocalSize(lpDisplayBuf) / sizeof(TCHAR),TEXT(MSG_LOAD_LIBRARIES), dw, lpMsgBuf); 
-
-		MessageBox(NULL, (LPCTSTR)lpDisplayBuf, TEXT(MSG_WARNING), MB_ICONERROR); 
-
-		LocalFree(lpMsgBuf);
-		LocalFree(lpDisplayBuf);
-		exit(1);
-	}
-	return iExitCode;
+        LocalFree(lpMsgBuf);
+        LocalFree(lpDisplayBuf);
+        exit(1);
+    }
+    return iExitCode;
 }
 /*--------------------------------------------------------------------------*/

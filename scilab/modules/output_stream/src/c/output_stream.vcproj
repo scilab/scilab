@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -45,14 +45,13 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions=""
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../jni;../cpp;../../../../libs/MALLOC/includes;../../../core/includes;../../../api_scilab/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../shell/src/c/windows;../../../localization/includes;../../../../libs/intl;../../../string/includes;../../../windows_tools/includes"
+				AdditionalIncludeDirectories=".;../../includes;../jni;../cpp;../../../../libs/MALLOC/includes;../../../core/includes;../../../shell/includes;../../../api_scilab/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../shell/src/c/windows;../../../localization/includes;../../../../libs/intl;../../../string/includes;../../../windows_tools/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;OUTPUT_STREAM_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -69,14 +68,14 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib fileio.lib sciconsole.lib libshell.lib string.lib scilocalization.lib scilab_windows.lib output_stream_f.lib api_scilab.lib"
-				OutputFile="../../../../bin/output_stream.dll"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="output_stream_export.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="../../../../bin/output_stream.lib"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				TargetMachine="1"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -129,14 +128,13 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../jni;../cpp;../../../../libs/MALLOC/includes;../../../core/includes;../../../api_scilab/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../shell/src/c/windows;../../../localization/includes;../../../../libs/intl;../../../string/includes;../../../windows_tools/includes"
+				AdditionalIncludeDirectories=".;../../includes;../jni;../cpp;../../../../libs/MALLOC/includes;../../../core/includes;../../../shell/includes;../../../api_scilab/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../shell/src/c/windows;../../../localization/includes;../../../../libs/intl;../../../string/includes;../../../windows_tools/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;OUTPUT_STREAM_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -153,14 +151,14 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib fileio.lib sciconsole.lib libshell.lib string.lib scilocalization.lib scilab_windows.lib output_stream_f.lib api_scilab.lib"
-				OutputFile="../../../../bin/output_stream.dll"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="output_stream_export.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="../../../../bin/output_stream.lib"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				TargetMachine="17"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -216,14 +214,13 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;../../includes;../jni;../cpp;../../../../libs/MALLOC/includes;../../../core/includes;../../../api_scilab/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../shell/src/c/windows;../../../localization/includes;../../../../libs/intl;../../../string/includes;../../../windows_tools/includes"
+				AdditionalIncludeDirectories=".;../../includes;../jni;../cpp;../../../../libs/MALLOC/includes;../../../core/includes;../../../shell/includes;../../../api_scilab/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../shell/src/c/windows;../../../localization/includes;../../../../libs/intl;../../../string/includes;../../../windows_tools/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;OUTPUT_STREAM_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -240,7 +237,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib fileio.lib sciconsole.lib libshell.lib string.lib scilocalization.lib scilab_windows.lib output_stream_f.lib api_scilab.lib"
-				OutputFile="../../../../bin/output_stream.dll"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="output_stream_export.def"
 				GenerateDebugInformation="false"
@@ -250,7 +247,7 @@
 				LinkTimeCodeGeneration="0"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="../../../../bin/output_stream.lib"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				TargetMachine="1"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -306,14 +303,13 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;../../includes;../jni;../cpp;../../../../libs/MALLOC/includes;../../../core/includes;../../../api_scilab/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../shell/src/c/windows;../../../localization/includes;../../../../libs/intl;../../../string/includes;../../../windows_tools/includes"
+				AdditionalIncludeDirectories=".;../../includes;../jni;../cpp;../../../../libs/MALLOC/includes;../../../core/includes;../../../shell/includes;../../../api_scilab/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../shell/src/c/windows;../../../localization/includes;../../../../libs/intl;../../../string/includes;../../../windows_tools/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;OUTPUT_STREAM_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -330,7 +326,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib fileio.lib sciconsole.lib libshell.lib string.lib scilocalization.lib scilab_windows.lib output_stream_f.lib api_scilab.lib"
-				OutputFile="../../../../bin/output_stream.dll"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="output_stream_export.def"
 				GenerateDebugInformation="false"
@@ -340,7 +336,7 @@
 				LinkTimeCodeGeneration="0"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="../../../../bin/output_stream.lib"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				TargetMachine="17"
 				CLRUnmanagedCodeCheck="true"
 			/>

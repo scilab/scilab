@@ -395,6 +395,10 @@
 				RelativePath="..\..\sci_gateway\cpp\sci_editvar.cpp"
 				>
 			</File>
+			<File
+				RelativePath="..\..\sci_gateway\cpp\sci_updateEditvarValue.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -450,7 +454,7 @@
 			>
 		</File>
 		<File
-			RelativePath="..\..\sci_gateway\uidata_gateway.xml"
+			RelativePath="..\..\sci_gateway\ui_data_gateway.xml"
 			>
 		</File>
 		<File

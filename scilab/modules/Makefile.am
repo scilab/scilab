@@ -2,11 +2,11 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) INRIA - 2006-2008 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
-# 
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 #
 
@@ -18,7 +18,6 @@ SUBDIRS = core
 
 SUBDIRS += \
 output_stream \
-action_binding \
 arnoldi \
 elementary_functions \
 string \
@@ -29,6 +28,7 @@ history_manager \
 spreadsheet \
 tclsci \
 localization \
+action_binding \
 renderer \
 shell \
 completion \
@@ -85,6 +85,8 @@ hdf5 \
 graph\
 xcos \
 xpad \
+parallel \
+modules_manager \
 ui_data
 
 
@@ -146,6 +148,7 @@ NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/graphics/libscigraphics-disable.la \
 	$(top_builddir)/modules/graphic_export/libscigraphic_export-disable.la \
 	$(top_builddir)/modules/console/libsciconsole-disable.la \
+	$(top_builddir)/modules/action_binding/libsciaction_binding-disable.la \
 	$(top_builddir)/modules/jvm/libscijvm-disable.la \
 	$(top_builddir)/modules/xcos/libscixcos-disable.la \
 	$(top_builddir)/modules/xpad/libscixpad-disable.la \
@@ -187,7 +190,8 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/string/libscistring.la \
 	$(top_builddir)/modules/fftw/libscifftw.la \
 	$(top_builddir)/modules/hdf5/libscihdf5.la \
-	$(top_builddir)/modules/functions/libscifunctions.la
+	$(top_builddir)/modules/functions/libscifunctions.la \
+	$(top_builddir)/modules/parallel/libsciparallel.la
 
 
 # These libraries are loaded dynamically from Scilab.

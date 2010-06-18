@@ -1,160 +1,170 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<VisualStudioProject ProjectType="typeStaticLibrary" ProjectCreator="Intel Fortran" Keyword="Static Library" Version="11.0" ProjectIdGuid="{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}">
+<VisualStudioProject ProjectType="typeDynamicLibrary" ProjectCreator="Intel Fortran" Keyword="Dll" Version="11.0" ProjectIdGuid="{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}">
 	<Platforms>
 		<Platform Name="Win32"/>
 		<Platform Name="x64"/></Platforms>
 	<Configurations>
-		<Configuration Name="Debug|Win32" OutputDirectory="$(SolutionDir)libs\" IntermediateDirectory="$(ProjectDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
-				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" AdditionalIncludeDirectories="../../includes;../../../core/includes;" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebugDLL"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../../libs/elementary_functions_f.lib"/>
+		<Configuration Name="Debug|Win32" OutputDirectory="$(SolutionDir)bin\" IntermediateDirectory="$(ProjectDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebugDLL"/>
+				<Tool Name="VFLinkerTool" OutputFile="$(SolutionDir)bin\$(ProjectName).dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="elementary_functions_f.def" GenerateDebugInformation="true" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib" LinkDLL="true" AdditionalDependencies="LibScilab.lib elementary_functions.lib"/>
 				<Tool Name="VFResourceCompilerTool"/>
-				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFPreBuildEventTool"/>
-				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n elementary_functions_f.dll %%f &gt;nul
 copy *.def elementary_functions_f.def &gt;nul
-copy elementary_functions_f.def ..\..\..\..\..\libs\elementary_functions_f.vcdef &gt;nul
+copy elementary_functions_f.def ..\elementary_functions_f.vcdef &gt;nul
 del *.def &gt;nul
-cd .."/>
+cd ..
+copy elementary_functions_f_header.def+elementary_functions_f.vcdef elementary_functions_f.def &gt;nul" Description="Build elementary_functions.def"/>
+				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL
+lib /DEF:&quot;$(InputDir)elementary_functions_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)elementary_functions.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
+				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
-		<Configuration Name="Release|Win32" OutputDirectory="$(SolutionDir)libs\" IntermediateDirectory="$(ProjectDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
-				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" AdditionalIncludeDirectories="../../includes;../../../core/includes;" PreprocessorDefinitions="WIN32" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDLL" ImproveFloatingPointConsistency="true"/>
-				<Tool Name="VFLinkerTool" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../../libs/elementary_functions_f.lib"/>
+		<Configuration Name="Release|Win32" OutputDirectory="$(SolutionDir)bin\" IntermediateDirectory="$(ProjectDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" Parallelization="true" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDLL"/>
+				<Tool Name="VFLinkerTool" OutputFile="$(SolutionDir)bin\$(ProjectName).dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="elementary_functions_f.def" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib" LinkDLL="true" AdditionalDependencies="LibScilab.lib elementary_functions.lib"/>
 				<Tool Name="VFResourceCompilerTool"/>
-				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFPreBuildEventTool"/>
-				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n elementary_functions_f.dll %%f &gt;nul
 copy *.def elementary_functions_f.def &gt;nul
-copy elementary_functions_f.def ..\..\..\..\..\libs\elementary_functions_f.vcdef &gt;nul
+copy elementary_functions_f.def ..\elementary_functions_f.vcdef &gt;nul
 del *.def &gt;nul
-cd .."/>
+cd ..
+copy elementary_functions_f_header.def+elementary_functions_f.vcdef elementary_functions_f.def &gt;nul" Description="Build elementary_functions.def"/>
+				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL
+lib /DEF:&quot;$(InputDir)elementary_functions_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)elementary_functions.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
+				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
-		<Configuration Name="Debug|x64" OutputDirectory="$(SolutionDir)libs\" IntermediateDirectory="$(ProjectDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
-				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" AdditionalIncludeDirectories="../../includes;../../../core/includes;" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebugDLL"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../../libs/elementary_functions_f.lib"/>
+		<Configuration Name="Debug|x64" OutputDirectory="$(SolutionDir)bin\" IntermediateDirectory="$(ProjectDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebugDLL"/>
+				<Tool Name="VFLinkerTool" OutputFile="$(SolutionDir)bin\$(ProjectName).dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="elementary_functions_f.def" GenerateDebugInformation="true" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib" LinkDLL="true" AdditionalDependencies="LibScilab.lib elementary_functions.lib"/>
 				<Tool Name="VFResourceCompilerTool"/>
-				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFPreBuildEventTool"/>
-				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n elementary_functions_f.dll %%f &gt;nul
 copy *.def elementary_functions_f.def &gt;nul
-copy elementary_functions_f.def ..\..\..\..\..\libs\elementary_functions_f.vcdef &gt;nul
+copy elementary_functions_f.def ..\elementary_functions_f.vcdef &gt;nul
 del *.def &gt;nul
-cd .."/>
+cd ..
+copy elementary_functions_f_header.def+elementary_functions_f.vcdef elementary_functions_f.def &gt;nul" Description="Build elementary_functions.def"/>
+				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL
+lib /DEF:&quot;$(InputDir)elementary_functions_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)elementary_functions.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
+				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
-		<Configuration Name="Release|x64" OutputDirectory="$(SolutionDir)libs\" IntermediateDirectory="$(ProjectDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
-				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" AdditionalIncludeDirectories="../../includes;../../../core/includes;" PreprocessorDefinitions="WIN32" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDLL" ImproveFloatingPointConsistency="true"/>
-				<Tool Name="VFLinkerTool" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../../libs/elementary_functions_f.lib"/>
+		<Configuration Name="Release|x64" OutputDirectory="$(SolutionDir)bin\" IntermediateDirectory="$(ProjectDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" Parallelization="true" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDLL"/>
+				<Tool Name="VFLinkerTool" OutputFile="$(SolutionDir)bin\$(ProjectName).dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="elementary_functions_f.def" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib" LinkDLL="true" AdditionalDependencies="LibScilab.lib elementary_functions.lib"/>
 				<Tool Name="VFResourceCompilerTool"/>
-				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFPreBuildEventTool"/>
-				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n elementary_functions_f.dll %%f &gt;nul
 copy *.def elementary_functions_f.def &gt;nul
-copy elementary_functions_f.def ..\..\..\..\..\libs\elementary_functions_f.vcdef &gt;nul
+copy elementary_functions_f.def ..\elementary_functions_f.vcdef &gt;nul
 del *.def &gt;nul
-cd .."/>
+cd ..
+copy elementary_functions_f_header.def+elementary_functions_f.vcdef elementary_functions_f.def &gt;nul" Description="Build elementary_functions.def"/>
+				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL
+lib /DEF:&quot;$(InputDir)elementary_functions_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)elementary_functions.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
+				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration></Configurations>
 	<Files>
 		<Filter Name="Header Files" Filter="fi;fd"/>
-		<Filter Name="Library dependencies"/>
-		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
+		<Filter Name="Library Dependencies">
+		<File RelativePath=".\elementary_functions_Import.def"/>
+		<File RelativePath=".\LibScilab_Import.def"/></Filter>
+		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe">
+		<File RelativePath=".\elementary_functions_f.rc"/></Filter>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
-		<File RelativePath="arcosh.f"/>
-		<File RelativePath="bdiag.f"/>
-		<File RelativePath="calerf.f"/>
-		<File RelativePath="cbal.f"/>
-		<File RelativePath="ccopy.f"/>
-		<File RelativePath="cerr.f"/>
-		<File RelativePath="coef.f"/>
-		<File RelativePath="comqr3.f"/>
-		<File RelativePath="corth.f"/>
-		<File RelativePath="cortr.f"/>
-		<File RelativePath="coshin.f"/>
-		<File RelativePath="cupro.f"/>
-		<File RelativePath="cuproi.f"/>
-		<File RelativePath="cusum.f"/>
-		<File RelativePath="d1mach.f"/>
-		<File RelativePath="dad.f"/>
-		<File RelativePath="dadd.f"/>
-		<File RelativePath="dbesig.f"/>
-		<File RelativePath="dbesjg.f"/>
-		<File RelativePath="dbeskg.f"/>
-		<File RelativePath="dbesyg.f"/>
-		<File RelativePath="dclmat.f"/>
-		<File RelativePath="ddif.f"/>
-		<File RelativePath="ddpow.f"/>
-		<File RelativePath="ddpow1.f"/>
-		<File RelativePath="ddpowe.f"/>
-		<File RelativePath="ddrdiv.f"/>
-		<File RelativePath="dexpm1.f"/>
-		<File RelativePath="dipow.f"/>
-		<File RelativePath="dipowe.f"/>
-		<File RelativePath="dlblks.f"/>
-		<File RelativePath="dlgama.f"/>
-		<File RelativePath="dmcopy.f"/>
-		<File RelativePath="dmmul.f"/>
-		<File RelativePath="dmmul1.f"/>
-		<File RelativePath="dmprod.f"/>
-		<File RelativePath="dmsum.f"/>
-		<File RelativePath="drdiv.f"/>
-		<File RelativePath="dsearch.f"/>
-		<File RelativePath="dset.f"/>
-		<File RelativePath="dsort.f"/>
-		<File RelativePath="dsum.f"/>
-		<File RelativePath="dtild.f"/>
-		<File RelativePath="dvmul.f"/>
-		<File RelativePath="dwdiv.f"/>
-		<File RelativePath="dwpow.f"/>
-		<File RelativePath="dwpow1.f"/>
-		<File RelativePath="dwpowe.f"/>
-		<File RelativePath="dwrdiv.f"/>
-		<File RelativePath="entier.f"/>
-		<File RelativePath="exch.f"/>
-		<File RelativePath="franck.f"/>
-		<File RelativePath="gdcp2i.f"/>
-		<File RelativePath="getdimfromvar.f"/>
-		<File RelativePath="getorient.f"/>
-		<File RelativePath="hilber.f"/>
-		<File RelativePath="i1mach.f"/>
-		<File RelativePath="imcopy.f"/>
-		<File RelativePath="infinity.f"/>
-		<File RelativePath="intp.f"/>
-		<File RelativePath="iset.f"/>
-		<File RelativePath="isort.f"/>
-		<File RelativePath="isova0.f"/>
-		<File RelativePath="isoval.f"/>
-		<File RelativePath="ivimp.f"/>
-		<File RelativePath="iwamax.f"/>
-		<File RelativePath="kronc.f"/>
-		<File RelativePath="kronr.f"/>
-		<File RelativePath="lnblnk.f"/>
-		<File RelativePath="magic.f"/>
-		<File RelativePath="mtran.f"/>
-		<File RelativePath="nearfloat.f"/>
-		<File RelativePath="orthes.f"/>
-		<File RelativePath="ortran.f"/>
-		<File RelativePath="psi.f"/>
-		<File RelativePath="pythag.f"/>
-		<File RelativePath="rat.f"/>
-		<File RelativePath="rcopy.f"/>
-		<File RelativePath="rcsort.f"/>
-		<File RelativePath="ribesl.f"/>
-		<File RelativePath="rjbesl.f"/>
-		<File RelativePath="rkbesl.f"/>
-		<File RelativePath="round.f"/>
-		<File RelativePath="rybesl.f"/>
+		<File RelativePath=".\arcosh.f"/>
+		<File RelativePath=".\bdiag.f"/>
+		<File RelativePath=".\calerf.f"/>
+		<File RelativePath=".\cbal.f"/>
+		<File RelativePath=".\ccopy.f"/>
+		<File RelativePath=".\cerr.f"/>
+		<File RelativePath=".\coef.f"/>
+		<File RelativePath=".\comqr3.f"/>
+		<File RelativePath=".\corth.f"/>
+		<File RelativePath=".\cortr.f"/>
+		<File RelativePath=".\coshin.f"/>
+		<File RelativePath=".\cupro.f"/>
+		<File RelativePath=".\cuproi.f"/>
+		<File RelativePath=".\cusum.f"/>
+		<File RelativePath=".\d1mach.f"/>
+		<File RelativePath=".\dad.f"/>
+		<File RelativePath=".\dadd.f"/>
+		<File RelativePath=".\dbesig.f"/>
+		<File RelativePath=".\dbesjg.f"/>
+		<File RelativePath=".\dbeskg.f"/>
+		<File RelativePath=".\dbesyg.f"/>
+		<File RelativePath=".\dclmat.f"/>
+		<File RelativePath=".\ddif.f"/>
+		<File RelativePath=".\ddpow.f"/>
+		<File RelativePath=".\ddpow1.f"/>
+		<File RelativePath=".\ddpowe.f"/>
+		<File RelativePath=".\ddrdiv.f"/>
+		<File RelativePath=".\dexpm1.f"/>
+		<File RelativePath=".\dipow.f"/>
+		<File RelativePath=".\dipowe.f"/>
+		<File RelativePath=".\dlblks.f"/>
+		<File RelativePath=".\dlgama.f"/>
+		<File RelativePath=".\dmcopy.f"/>
+		<File RelativePath=".\dmmul.f"/>
+		<File RelativePath=".\dmmul1.f"/>
+		<File RelativePath=".\dmprod.f"/>
+		<File RelativePath=".\dmsum.f"/>
+		<File RelativePath=".\drdiv.f"/>
+		<File RelativePath=".\dsearch.f"/>
+		<File RelativePath=".\dset.f"/>
+		<File RelativePath=".\dsort.f"/>
+		<File RelativePath=".\dsum.f"/>
+		<File RelativePath=".\dtild.f"/>
+		<File RelativePath=".\dvmul.f"/>
+		<File RelativePath=".\dwdiv.f"/>
+		<File RelativePath=".\dwpow.f"/>
+		<File RelativePath=".\dwpow1.f"/>
+		<File RelativePath=".\dwpowe.f"/>
+		<File RelativePath=".\dwrdiv.f"/>
+		<File RelativePath=".\entier.f"/>
+		<File RelativePath=".\exch.f"/>
+		<File RelativePath=".\franck.f"/>
+		<File RelativePath=".\gdcp2i.f"/>
+		<File RelativePath=".\getdimfromvar.f"/>
+		<File RelativePath=".\getorient.f"/>
+		<File RelativePath=".\hilber.f"/>
+		<File RelativePath=".\i1mach.f"/>
+		<File RelativePath=".\imcopy.f"/>
+		<File RelativePath=".\infinity.f"/>
+		<File RelativePath=".\intp.f"/>
+		<File RelativePath=".\iset.f"/>
+		<File RelativePath=".\isort.f"/>
+		<File RelativePath=".\isova0.f"/>
+		<File RelativePath=".\isoval.f"/>
+		<File RelativePath=".\israt.f"/>
+		<File RelativePath=".\ivimp.f"/>
+		<File RelativePath=".\iwamax.f"/>
+		<File RelativePath=".\kronc.f"/>
+		<File RelativePath=".\kronr.f"/>
+		<File RelativePath=".\lnblnk.f"/>
+		<File RelativePath=".\magic.f"/>
+		<File RelativePath=".\mtran.f"/>
+		<File RelativePath=".\nearfloat.f"/>
+		<File RelativePath=".\orthes.f"/>
+		<File RelativePath=".\ortran.f"/>
+		<File RelativePath=".\psi.f"/>
+		<File RelativePath=".\pythag.f"/>
+		<File RelativePath=".\rat.f"/>
+		<File RelativePath=".\rcopy.f"/>
+		<File RelativePath=".\rcsort.f"/>
+		<File RelativePath=".\ribesl.f"/>
+		<File RelativePath=".\rjbesl.f"/>
+		<File RelativePath=".\rkbesl.f"/>
+		<File RelativePath=".\round.f"/>
+		<File RelativePath=".\rybesl.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_abs.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_acos.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_asin.f"/>
@@ -188,6 +198,7 @@ cd .."/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_ones.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_prod.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_rand.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_rat.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_real.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_round.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_sign.f"/>
@@ -202,53 +213,55 @@ cd .."/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_triu.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_zeros.f"/>
 		<File RelativePath=".\sdot.f"/>
-		<File RelativePath="simple.f"/>
-		<File RelativePath="split.f"/>
-		<File RelativePath="urand.f"/>
-		<File RelativePath="vpythag.f"/>
-		<File RelativePath="wacos.f"/>
-		<File RelativePath="wasin.f"/>
-		<File RelativePath="wasum.f"/>
-		<File RelativePath="watan.f"/>
-		<File RelativePath="waxpy.f"/>
-		<File RelativePath="wbdiag.f"/>
-		<File RelativePath="wcerr.f"/>
-		<File RelativePath="wclmat.f"/>
-		<File RelativePath="wddiv.f"/>
-		<File RelativePath="wdiv.f"/>
-		<File RelativePath="wdotci.f"/>
-		<File RelativePath="wdotcr.f"/>
-		<File RelativePath="wdpow.f"/>
-		<File RelativePath="wdpow1.f"/>
-		<File RelativePath="wdpowe.f"/>
-		<File RelativePath="wdrdiv.f"/>
-		<File RelativePath="wexchn.f"/>
-		<File RelativePath="wexpm1.f"/>
-		<File RelativePath="wipow.f"/>
-		<File RelativePath="wipowe.f"/>
-		<File RelativePath="wlog.f"/>
-		<File RelativePath="wmmul.f"/>
-		<File RelativePath="wmprod.f"/>
-		<File RelativePath="wmsum.f"/>
-		<File RelativePath="wmul.f"/>
-		<File RelativePath="wrscal.f"/>
-		<File RelativePath="wscal.f"/>
-		<File RelativePath="wshrsl.f"/>
-		<File RelativePath="wsign.f"/>
-		<File RelativePath="wsqrt.f"/>
-		<File RelativePath="wswap.f"/>
-		<File RelativePath="wtan.f"/>
-		<File RelativePath="wvmul.f"/>
-		<File RelativePath="wwdiv.f"/>
-		<File RelativePath="wwpow.f"/>
-		<File RelativePath="wwpow1.f"/>
-		<File RelativePath="wwpowe.f"/>
-		<File RelativePath="wwrdiv.f"/>
-		<File RelativePath="zbeshg.f"/>
-		<File RelativePath="zbesig.f"/>
-		<File RelativePath="zbesjg.f"/>
-		<File RelativePath="zbeskg.f"/>
-		<File RelativePath="zbesyg.f"/></Filter>
+		<File RelativePath=".\simple.f"/>
+		<File RelativePath=".\split.f"/>
+		<File RelativePath=".\urand.f"/>
+		<File RelativePath=".\vpythag.f"/>
+		<File RelativePath=".\wacos.f"/>
+		<File RelativePath=".\wasin.f"/>
+		<File RelativePath=".\wasum.f"/>
+		<File RelativePath=".\watan.f"/>
+		<File RelativePath=".\waxpy.f"/>
+		<File RelativePath=".\wbdiag.f"/>
+		<File RelativePath=".\wcerr.f"/>
+		<File RelativePath=".\wclmat.f"/>
+		<File RelativePath=".\wddiv.f"/>
+		<File RelativePath=".\wdiv.f"/>
+		<File RelativePath=".\wdotci.f"/>
+		<File RelativePath=".\wdotcr.f"/>
+		<File RelativePath=".\wdpow.f"/>
+		<File RelativePath=".\wdpow1.f"/>
+		<File RelativePath=".\wdpowe.f"/>
+		<File RelativePath=".\wdrdiv.f"/>
+		<File RelativePath=".\wexchn.f"/>
+		<File RelativePath=".\wexpm1.f"/>
+		<File RelativePath=".\wipow.f"/>
+		<File RelativePath=".\wipowe.f"/>
+		<File RelativePath=".\wlog.f"/>
+		<File RelativePath=".\wmmul.f"/>
+		<File RelativePath=".\wmprod.f"/>
+		<File RelativePath=".\wmsum.f"/>
+		<File RelativePath=".\wmul.f"/>
+		<File RelativePath=".\wrscal.f"/>
+		<File RelativePath=".\wscal.f"/>
+		<File RelativePath=".\wshrsl.f"/>
+		<File RelativePath=".\wsign.f"/>
+		<File RelativePath=".\wsqrt.f"/>
+		<File RelativePath=".\wswap.f"/>
+		<File RelativePath=".\wtan.f"/>
+		<File RelativePath=".\wvmul.f"/>
+		<File RelativePath=".\wwdiv.f"/>
+		<File RelativePath=".\wwpow.f"/>
+		<File RelativePath=".\wwpow1.f"/>
+		<File RelativePath=".\wwpowe.f"/>
+		<File RelativePath=".\wwrdiv.f"/>
+		<File RelativePath=".\zbeshg.f"/>
+		<File RelativePath=".\zbesig.f"/>
+		<File RelativePath=".\zbesjg.f"/>
+		<File RelativePath=".\zbeskg.f"/>
+		<File RelativePath=".\zbesyg.f"/></Filter>
+		<File RelativePath="..\..\..\..\bin\blasplus.lib"/>
 		<File RelativePath="..\..\sci_gateway\elementary_functions_gateway.xml"/>
+		<File RelativePath="..\..\..\..\bin\lapack.lib"/>
 		<File RelativePath="..\..\Makefile.am"/></Files>
 	<Globals/></VisualStudioProject>

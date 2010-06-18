@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -39,10 +39,7 @@
 			<Tool
 				Name="VCCustomBuildTool"
 			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-				ExecutionBucket="4"
-			/>
+
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
@@ -61,7 +58,6 @@
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -79,7 +75,7 @@
 			<Tool
 				Name="VCLibrarianTool"
 				ExecutionBucket="10"
-				OutputFile="../../../../libs/data_structures_f.lib"
+				OutputFile="$(SolutionDir)libs\$(ProjectName).lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -124,9 +120,6 @@
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
 			/>
@@ -140,7 +133,6 @@
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -154,7 +146,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../../../libs/data_structures_f.lib"
+				OutputFile="$(SolutionDir)libs\$(ProjectName).lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -193,10 +185,7 @@
 			<Tool
 				Name="VCCustomBuildTool"
 			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-				ExecutionBucket="4"
-			/>
+
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
@@ -213,7 +202,6 @@
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -231,7 +219,7 @@
 			<Tool
 				Name="VCLibrarianTool"
 				ExecutionBucket="10"
-				OutputFile="../../../../libs/data_structures_f.lib"
+				OutputFile="$(SolutionDir)libs\$(ProjectName).lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -277,9 +265,6 @@
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
 			/>
@@ -291,7 +276,6 @@
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -305,7 +289,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../../../libs/data_structures_f.lib"
+				OutputFile="$(SolutionDir)libs\$(ProjectName).lib"
 			/>
 			<Tool
 				Name="VCALinkTool"

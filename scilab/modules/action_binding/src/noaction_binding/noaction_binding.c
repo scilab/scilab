@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT <vincent.couvert@inria.fr>
+ * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,15 +10,11 @@
  *
  */
 
-#include "InterpreterManagement.h"
-/*--------------------------------------------------------------------------*/
-int putCommandInScilabQueue(char *command)
+#include "Scierror.h"
+#include "localization.h"
+
+int gw_action_binding()
 {
-  return 0;
+	Scierror(999,_("Scilab '%s' module not installed.\n"), "action_binding");
+	return 0;
 }
-/*--------------------------------------------------------------------------*/
-int interruptScilab(void)
-{
-  return 0;
-}
-/*--------------------------------------------------------------------------*/

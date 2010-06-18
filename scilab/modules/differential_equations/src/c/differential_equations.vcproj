@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -45,7 +45,7 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions=""
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../api_scilab/includes"
+				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../api_scilab/includes"
 				PreprocessorDefinitions="_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -56,7 +56,6 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 				CompileAs="0"
 			/>
@@ -73,7 +72,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../../../libs/differential_equations.lib"
+				OutputFile="$(SolutionDir)libs\$(ProjectName).lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -121,7 +120,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../api_scilab/includes"
+				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../api_scilab/includes"
 				PreprocessorDefinitions="_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -132,7 +131,6 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 				CompileAs="0"
 			/>
@@ -149,7 +147,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../../../libs/differential_equations.lib"
+				OutputFile="$(SolutionDir)libs\$(ProjectName).lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -199,7 +197,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../api_scilab/includes"
+				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../api_scilab/includes"
 				PreprocessorDefinitions="NDEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -212,7 +210,6 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="false"
 				CompileAs="0"
 			/>
 			<Tool
@@ -228,7 +225,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../../../libs/differential_equations.lib"
+				OutputFile="$(SolutionDir)libs\$(ProjectName).lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -278,7 +275,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../api_scilab/includes"
+				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../api_scilab/includes"
 				PreprocessorDefinitions="NDEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -291,7 +288,6 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="false"
 				CompileAs="0"
 			/>
 			<Tool
@@ -307,7 +303,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../../../libs/differential_equations.lib"
+				OutputFile="$(SolutionDir)libs\$(ProjectName).lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool

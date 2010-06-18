@@ -1,7 +1,7 @@
-;##############################################################################################################
-; Script d'installation Inno Setup (5.2.1) pour scilab
+;
 ; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 ; Copyright (C) INRIA - Allan CORNET
+; Copyright (C) DIGITEO - 2010 - Allan CORNET
 ;
 ; This file must be used under the terms of the CeCILL.
 ; This source file is licensed as described in the file COPYING, which
@@ -9,7 +9,9 @@
 ; are also available at
 ; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 ;
-;##############################################################################################################
+;--------------------------------------------------------------------------------------------------------------
+; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
+;
 ;--------------------------------------------------------------------------------------------------------------
 ; cacsd module
 ;--------------------------------------------------------------------------------------------------------------
@@ -23,7 +25,7 @@ Source: modules\{#CACSD}\readme.txt; DestDir: {app}\modules\{#CACSD}; Components
 Source: modules\{#CACSD}\license.txt; DestDir: {app}\modules\{#CACSD}; Components: {#COMPN_CACSD}
 Source: modules\{#CACSD}\changelog.txt; DestDir: {app}\modules\{#CACSD}; Components: {#COMPN_CACSD}
 ;
-Source: modules\{#CACSD}\sci_gateway\cacsd_gateway.xml; DestDir: {app}\modules\{#CACSD}\sci_gateway; Components: {#COMPN_CACSD}
+Source: modules\{#CACSD}\sci_gateway\{#CACSD}_gateway.xml; DestDir: {app}\modules\{#CACSD}\sci_gateway; Components: {#COMPN_CACSD}
 ;
 Source: modules\{#CACSD}\etc\{#CACSD}.quit; DestDir: {app}\modules\{#CACSD}\etc; Components: {#COMPN_CACSD}
 Source: modules\{#CACSD}\etc\{#CACSD}.start; DestDir: {app}\modules\{#CACSD}\etc; Components: {#COMPN_CACSD}

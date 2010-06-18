@@ -36,7 +36,7 @@ public final class AboutAction extends DefaultAction {
 	 * Constructor
 	 * @param editor associated editor
 	 */
-	private AboutAction(Xpad editor) {
+	public AboutAction(Xpad editor) {
 		super(XpadMessages.ABOUT, editor);
 	}
 

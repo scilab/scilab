@@ -30,7 +30,6 @@ recu_
 iop_
 cvnamel_
 eptover_
-unsfdcopy_
 namstr_
 typ2cod_
 gettype_
@@ -41,5 +40,3 @@ funs_
 clunit_
 objvide_
 
-;elementary_functions
-sciround_

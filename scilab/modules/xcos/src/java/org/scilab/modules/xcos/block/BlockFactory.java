@@ -12,6 +12,9 @@
 
 package org.scilab.modules.xcos.block;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
 import org.scilab.modules.xcos.block.io.EventInBlock;
 import org.scilab.modules.xcos.block.io.EventOutBlock;
 import org.scilab.modules.xcos.block.io.ExplicitInBlock;
@@ -187,6 +190,13 @@ public final class BlockFactory {
 				clone.insert((mxICell) port.clone());
 			}
 
+			/* Reinstall the PropertyChangeSupport and all of it listeners */
+			clone.parameters = new PropertyChangeSupport(clone);
+			PropertyChangeSupport pcs = block.getParametersPCS();
+			for (PropertyChangeListener iter : pcs.getPropertyChangeListeners()) {
+				clone.parameters.addPropertyChangeListener(iter);
+			}
+			
 			return clone;
 		} catch (CloneNotSupportedException e) {
 			e.printStackTrace();

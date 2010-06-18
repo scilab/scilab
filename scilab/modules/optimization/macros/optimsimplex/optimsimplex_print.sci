@@ -16,21 +16,7 @@
 //   <no arg>
 //
 function optimsimplex_print ( this )
-  if this.n == 0 then
-    mprintf("Empty simplex (zero dimension)\n");
-  elseif this.nbve == 0 then
-    mprintf("Empty simplex (zero vertices)\n");
-  elseif this.x == [] then
-    mprintf("Empty simplex (zero coordinates)\n");
-  elseif this.fv == [] then
-    mprintf("Empty simplex (zero function values)\n");
-  else
-    mprintf("Dimension : %d\n" , this.n );
-    mprintf("Number of vertices : %d\n" , this.nbve );
-    str = optimsimplex_tostring ( this );
-    for k = 1:this.nbve
-      mprintf("%s\n" , str(k) );
-    end
-  end
+  warnobsolete("disp", "optimsimplex_print")
+  disp(this)
 endfunction
 

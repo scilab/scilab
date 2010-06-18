@@ -20,9 +20,9 @@
 #include "sciprint.h"
 #include "returnanan.h"
 #include "xls.h"
-#include "../../../fileio/includes/mseek.h"
-#include "../../../fileio/includes/mtell.h"
-#include "../../../fileio/includes/mget.h"
+#include "mseek.h"
+#include "mtell.h"
+#include "mget.h"
 /*------------------------------------------------------------------*/
 #define  typ_short "s"
 #define  typ_ushort "us"

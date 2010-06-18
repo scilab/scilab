@@ -116,7 +116,15 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath="BuildMacros.mak"
+				RelativePath=".\buildmacros.sce"
+				>
+			</File>
+			<File
+				RelativePath=".\cleanmacros.sce"
+				>
+			</File>
+			<File
+				RelativePath=".\loadgenlib.sce"
 				>
 			</File>
 		</Filter>

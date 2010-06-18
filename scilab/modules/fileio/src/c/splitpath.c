@@ -11,6 +11,7 @@
 *
 */
 /*--------------------------------------------------------------------------*/ 
+#include <string.h>
 #include "splitpath.h"
 #include "charEncoding.h"
 #include "PATH_MAX.h"
