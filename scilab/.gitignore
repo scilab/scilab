@@ -145,3 +145,9 @@ pvm3
 # atoms generated files
 .atoms
 contrib/archives
+
+# SWIG generated files which are not used
+modules/types/src/java/org/scilab/modules/types/scilabTypes/types.java
+modules/types/src/java/org/scilab/modules/types/scilabTypes/typesJNI.java
+modules/types/src/jni/sci_types_wrap.c
+
