@@ -14,9 +14,8 @@ static std::string program_name;
 
  static bool rejected = false;
 
-#define YY_USER_ACTION           \
-    yylloc.last_column += yyleng;
-
+#define YY_USER_ACTION                          \
+ yylloc.last_column += yyleng;
 /* -*- Verbose Special Debug -*- */
 //#define DEV
 //#define TOKENDEV
@@ -250,14 +249,11 @@ assign			"="
         if (symbol::Context::getInstance()->get(yytext) != NULL
             && symbol::Context::getInstance()->get(yytext)->isCallable())
         {
-            //std::cout << "** Start shell mode ..." << std::endl;
-            //std::cout << "ID = " << yytext << std::endl;
             scan_throw(ID);
             BEGIN(SHELLMODE);
         }
         else
         {
-            //std::cout << "** NO shell mode ... throwing ID " << yytext << std::endl;
             BEGIN(INITIAL);
             return scan_throw(ID);
         }
@@ -407,6 +403,7 @@ assign			"="
   ParserSingleInstance::pushControlStatus(Parser::WithinMatrix);
   return scan_throw(LBRACK);
 }
+
 {rbrack}				{
   return scan_throw(RBRACK);
 }
@@ -474,7 +471,8 @@ assign			"="
 
 <INITIAL,MATRIX>{startblockcomment}	{
   yylval.comment = new std::string();
-  ++comment_level;
+  comment_level = 1;
+  ParserSingleInstance::pushControlStatus(Parser::WithinBlockComment);
   yy_push_state(REGIONCOMMENT);
 }
 
@@ -520,7 +518,6 @@ assign			"="
   yylloc.last_line += 1;
   yylloc.last_column = 1;
   scan_step();
-  //std::cout << "<INITIAL,MATRIX>{newline}" << std::endl;
   if (last_token != EOL) {
       return scan_throw(EOL);
   }
@@ -795,6 +792,7 @@ assign			"="
   {endblockcomment}				{
     --comment_level;
     if (comment_level == 0) {
+      ParserSingleInstance::popControlStatus();
       yy_pop_state();
       //return scan_throw(BLOCKCOMMENT);
     }
@@ -803,13 +801,6 @@ assign			"="
   {startblockcomment}				{
     ++comment_level;
     yy_push_state(REGIONCOMMENT);
-  }
-
-  <<EOF>>					{
-    std::string str = "unexpected end of file in a comment";
-    exit_status = SCAN_ERROR;
-    scan_error(str);
-    yyterminate();
   }
 
   {newline}					{
@@ -821,6 +812,14 @@ assign			"="
 
   .						{
     *yylval.comment += yytext;
+  }
+
+ <<EOF>>					{
+    std::string str = "unexpected end of file in a comment";
+    exit_status = SCAN_ERROR;
+    scan_error(str);
+    yy_pop_state();
+    yyterminate();
   }
 }
 
@@ -946,25 +945,21 @@ assign			"="
 
     {semicolon}                 {
         BEGIN(INITIAL);
-        //std::cout << "<SHELLMODE> SEMICOLON" << std::endl;
         return scan_throw(SEMI);
     }
 
     {comma}                     {
         BEGIN(INITIAL);
-        //std::cout << "<SHELLMODE> COMMA" << std::endl;
         return scan_throw(COMMA);
     }
 
     {newline}                   {
         BEGIN(INITIAL);
-        //std::cout << "<SHELLMODE> EOL" << std::endl;
         return scan_throw(EOL);
     }
 
     [^ \t\v\f\r\n,;'"]+               {
         yylval.str = new std::string(yytext);
-        //std::cout << "STR = " << yytext << std::endl;
         return scan_throw(STR);
     }
 

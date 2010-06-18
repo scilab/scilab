@@ -43,7 +43,7 @@ public:
         _error_message = NULL;
         _the_program = NULL;
     }
-    
+
     ~Parser()
     {
         // Do not delete Tree here.
@@ -54,7 +54,7 @@ public:
         Succeded ,
         Failed
     };
-    
+
 public:
     enum ControlStatus {
         AllControlClosed,
@@ -71,7 +71,8 @@ public:
         WithinCase,
         WithinOtherwise,
         WithinMatrix,
-        WithinCell
+        WithinCell,
+        WithinBlockComment
     };
 
 public:
@@ -100,7 +101,7 @@ public:
 
     ControlStatus getControlStatus(void) { return _control_status; }
     void setControlStatus(ControlStatus controlStatus) { _control_status = controlStatus; }
-    
+
     char *getErrorMessage(void) { return const_cast<char *>(_error_message->c_str()); }
     void setErrorMessage(std::string *errorMessage) { _error_message = errorMessage; }
 

@@ -963,9 +963,8 @@ static std::string program_name;
 
  static bool rejected = false;
 
-#define YY_USER_ACTION           \
-    yylloc.last_column += yyleng;
-
+#define YY_USER_ACTION                          \
+ yylloc.last_column += yyleng;
 /* -*- Verbose Special Debug -*- */
 //#define DEV
 //#define TOKENDEV
@@ -1457,14 +1456,11 @@ YY_RULE_SETUP
         if (symbol::Context::getInstance()->get(yytext) != NULL
             && symbol::Context::getInstance()->get(yytext)->isCallable())
         {
-            //std::cout << "** Start shell mode ..." << std::endl;
-            //std::cout << "ID = " << yytext << std::endl;
             scan_throw(ID);
             BEGIN(SHELLMODE);
         }
         else
         {
-            //std::cout << "** NO shell mode ... throwing ID " << yytext << std::endl;
             BEGIN(INITIAL);
             return scan_throw(ID);
         }
@@ -1783,7 +1779,8 @@ case 69:
 YY_RULE_SETUP
 {
   yylval.comment = new std::string();
-  ++comment_level;
+  comment_level = 1;
+  ParserSingleInstance::pushControlStatus(Parser::WithinBlockComment);
   yy_push_state(REGIONCOMMENT);
 }
 	YY_BREAK
@@ -1835,7 +1832,6 @@ YY_RULE_SETUP
   yylloc.last_line += 1;
   yylloc.last_column = 1;
   scan_step();
-  //std::cout << "<INITIAL,MATRIX>{newline}" << std::endl;
   if (last_token != EOL) {
       return scan_throw(EOL);
   }
@@ -2159,6 +2155,7 @@ YY_RULE_SETUP
 {
     --comment_level;
     if (comment_level == 0) {
+      ParserSingleInstance::popControlStatus();
       yy_pop_state();
       //return scan_throw(BLOCKCOMMENT);
     }
@@ -2169,14 +2166,6 @@ YY_RULE_SETUP
 {
     ++comment_level;
     yy_push_state(REGIONCOMMENT);
-  }
-	YY_BREAK
-case YY_STATE_EOF(REGIONCOMMENT):
-{
-    std::string str = "unexpected end of file in a comment";
-    exit_status = SCAN_ERROR;
-    scan_error(str);
-    yyterminate();
   }
 	YY_BREAK
 case 105:
@@ -2193,6 +2182,15 @@ case 106:
 YY_RULE_SETUP
 {
     *yylval.comment += yytext;
+  }
+	YY_BREAK
+case YY_STATE_EOF(REGIONCOMMENT):
+{
+    std::string str = "unexpected end of file in a comment";
+    exit_status = SCAN_ERROR;
+    scan_error(str);
+    yy_pop_state();
+    yyterminate();
   }
 	YY_BREAK
 
@@ -2349,7 +2347,6 @@ case 124:
 YY_RULE_SETUP
 {
         BEGIN(INITIAL);
-        //std::cout << "<SHELLMODE> SEMICOLON" << std::endl;
         return scan_throw(SEMI);
     }
 	YY_BREAK
@@ -2357,7 +2354,6 @@ case 125:
 YY_RULE_SETUP
 {
         BEGIN(INITIAL);
-        //std::cout << "<SHELLMODE> COMMA" << std::endl;
         return scan_throw(COMMA);
     }
 	YY_BREAK
@@ -2366,7 +2362,6 @@ case 126:
 YY_RULE_SETUP
 {
         BEGIN(INITIAL);
-        //std::cout << "<SHELLMODE> EOL" << std::endl;
         return scan_throw(EOL);
     }
 	YY_BREAK
@@ -2374,7 +2369,6 @@ case 127:
 YY_RULE_SETUP
 {
         yylval.str = new std::string(yytext);
-        //std::cout << "STR = " << yytext << std::endl;
         return scan_throw(STR);
     }
 	YY_BREAK

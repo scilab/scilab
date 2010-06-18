@@ -297,6 +297,7 @@ static void stateShow(Parser::ControlStatus status)
     case Parser::WithinOtherwise :      SetTemporaryPrompt("-otherwise ->"); break;
     case Parser::WithinMatrix :         SetTemporaryPrompt("- [        ->"); break;
     case Parser::WithinCell :           SetTemporaryPrompt("- {        ->"); break;
+    case Parser::WithinBlockComment :   SetTemporaryPrompt("- /*       ->"); break;
     case Parser::AllControlClosed :     break;
     }
 }
