@@ -24,7 +24,7 @@
 		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="10"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -34,7 +34,7 @@
 				Name="VCPreBuildEventTool"
 			/>
 			<Tool
-				Name="rename .vc files"
+				Name="rename vc extension files"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -52,7 +52,7 @@
 		<Configuration
 			Name="Debug|x64"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="10"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -62,7 +62,7 @@
 				Name="VCPreBuildEventTool"
 			/>
 			<Tool
-				Name="rename .vc files"
+				Name="rename vc extension files"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -81,7 +81,7 @@
 		<Configuration
 			Name="Release|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="10"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -91,7 +91,7 @@
 				Name="VCPreBuildEventTool"
 			/>
 			<Tool
-				Name="rename .vc files"
+				Name="rename vc extension files"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -109,7 +109,7 @@
 		<Configuration
 			Name="Release|x64"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="10"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -119,7 +119,7 @@
 				Name="VCPreBuildEventTool"
 			/>
 			<Tool
-				Name="rename .vc files"
+				Name="rename vc extension files"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -145,290 +145,38 @@
 			<File
 				RelativePath="..\..\modules\scicos_blocks\includes\blocks.h.vc"
 				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="rename .vc files"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="rename .vc files"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="rename .vc files"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="rename .vc files"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\..\etc\classpath.xml.vc"
 				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="rename .vc files"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="rename .vc files"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="rename .vc files"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="rename .vc files"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\..\etc\jvm_options.xml.vc"
 				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="rename .vc files"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="rename .vc files"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="rename .vc files"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="rename .vc files"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\..\modules\core\includes\machine.h.vc"
 				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="rename .vc files"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="rename .vc files"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="rename .vc files"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="rename .vc files"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\..\etc\modules.xml.vc"
 				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="rename .vc files"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="rename .vc files"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="rename .vc files"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="rename .vc files"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\..\scilab-lib-doc.properties.vc"
 				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="rename .vc files"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="rename .vc files"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="rename .vc files"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="rename .vc files"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\..\scilab-lib.properties.vc"
 				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="rename .vc files"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="rename .vc files"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="rename .vc files"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="rename .vc files"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\..\modules\core\includes\stack.h.vc"
 				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="rename .vc files"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="rename .vc files"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="rename .vc files"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="rename .vc files"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\..\modules\helptools\macros\xmlfiletohtml.sci.vc"
 				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="rename .vc files"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="rename .vc files"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="rename .vc files"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="rename .vc files"
-					/>
-				</FileConfiguration>
 			</File>
 		</Filter>
 	</Files>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -21,8 +21,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="2"
 			>
@@ -45,14 +45,13 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions=""
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../src/c;../../../../libs/MALLOC/includes;../../../../libs/dynamiclibrary/includes;../../../output_stream/includes;../../../windows_tools/includes;../../../localization/includes;../../../io/includes;../../../core/includes;../../../fileio/includes;../../../../libs/hashtable;../../../../libs/intl;../../../api_scilab/includes"
+				AdditionalIncludeDirectories="../../includes;../../src/c;../../../../libs/MALLOC/includes;../../../../libs/dynamiclibrary/includes;../../../../libs/intl;../../../string/includes;../../../output_stream/includes;../../../windows_tools/includes;../../../localization/includes;../../../io/includes;../../../core/includes;../../../fileio/includes;../../../../libs/hashtable;../../../api_scilab/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;DYNAMIC_LINK_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -69,14 +68,14 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib dynamic_link_f.lib io.lib scilab_windows.lib"
-				OutputFile="../../../../bin/$(ProjectName).dll"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="../../../../bin/$(ProjectName).lib"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				TargetMachine="1"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -104,8 +103,8 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|x64"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="2"
 			>
@@ -128,14 +127,13 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../src/c;../../../../libs/MALLOC/includes;../../../../libs/dynamiclibrary/includes;../../../output_stream/includes;../../../windows_tools/includes;../../../localization/includes;../../../io/includes;../../../core/includes;../../../fileio/includes;../../../../libs/hashtable;../../../../libs/intl;../../../api_scilab/includes"
+				AdditionalIncludeDirectories="../../includes;../../src/c;../../../../libs/MALLOC/includes;../../../../libs/dynamiclibrary/includes;../../../../libs/intl;../../../string/includes;../../../output_stream/includes;../../../windows_tools/includes;../../../localization/includes;../../../io/includes;../../../core/includes;../../../fileio/includes;../../../../libs/hashtable;../../../api_scilab/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;DYNAMIC_LINK_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -152,14 +150,14 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib dynamic_link_f.lib io.lib scilab_windows.lib"
-				OutputFile="../../../../bin/$(ProjectName).dll"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="../../../../bin/$(ProjectName).lib"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				TargetMachine="17"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -187,8 +185,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="2"
 			WholeProgramOptimization="0"
@@ -214,14 +212,13 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../includes;../../src/c;../../../../libs/MALLOC/includes;../../../../libs/dynamiclibrary/includes;../../../output_stream/includes;../../../windows_tools/includes;../../../localization/includes;../../../io/includes;../../../core/includes;../../../fileio/includes;../../../../libs/hashtable;../../../../libs/intl;../../../api_scilab/includes"
+				AdditionalIncludeDirectories="../../includes;../../src/c;../../../../libs/MALLOC/includes;../../../../libs/dynamiclibrary/includes;../../../../libs/intl;../../../string/includes;../../../output_stream/includes;../../../windows_tools/includes;../../../localization/includes;../../../io/includes;../../../core/includes;../../../fileio/includes;../../../../libs/hashtable;../../../api_scilab/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;DYNAMIC_LINK_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -238,7 +235,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib dynamic_link_f.lib io.lib scilab_windows.lib"
-				OutputFile="../../../../bin/$(ProjectName).dll"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile=""
 				GenerateDebugInformation="false"
@@ -248,7 +245,7 @@
 				LinkTimeCodeGeneration="0"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="../../../../bin/$(ProjectName).lib"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				TargetMachine="1"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -276,8 +273,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|x64"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="2"
 			WholeProgramOptimization="0"
@@ -303,14 +300,13 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../includes;../../src/c;../../../../libs/MALLOC/includes;../../../../libs/dynamiclibrary/includes;../../../output_stream/includes;../../../windows_tools/includes;../../../localization/includes;../../../io/includes;../../../core/includes;../../../fileio/includes;../../../../libs/hashtable;../../../../libs/intl;../../../api_scilab/includes"
+				AdditionalIncludeDirectories="../../includes;../../src/c;../../../../libs/MALLOC/includes;../../../../libs/dynamiclibrary/includes;../../../../libs/intl;../../../string/includes;../../../output_stream/includes;../../../windows_tools/includes;../../../localization/includes;../../../io/includes;../../../core/includes;../../../fileio/includes;../../../../libs/hashtable;../../../api_scilab/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;DYNAMIC_LINK_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -327,7 +323,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib dynamic_link_f.lib io.lib scilab_windows.lib"
-				OutputFile="../../../../bin/$(ProjectName).dll"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile=""
 				GenerateDebugInformation="false"
@@ -337,7 +333,7 @@
 				LinkTimeCodeGeneration="0"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="../../../../bin/$(ProjectName).lib"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				TargetMachine="17"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -372,10 +368,6 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath=".\GetFunctionByName.c"
-				>
-			</File>
-			<File
 				RelativePath=".\addinter.c"
 				>
 			</File>
@@ -392,7 +384,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dynamic_link.rc"
+				RelativePath=".\GetFunctionByName.c"
 				>
 			</File>
 			<File
@@ -437,10 +429,6 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath="..\..\includes\GetFunctionByName.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\includes\addinter.h"
 				>
 			</File>
@@ -454,6 +442,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\dynlib_dynamic_link.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\GetFunctionByName.h"
 				>
 			</File>
 			<File
@@ -494,6 +486,14 @@
 			</File>
 			<File
 				RelativePath=".\scilab_windows_Import.def"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Resource Files"
+			>
+			<File
+				RelativePath=".\dynamic_link.rc"
 				>
 			</File>
 		</Filter>

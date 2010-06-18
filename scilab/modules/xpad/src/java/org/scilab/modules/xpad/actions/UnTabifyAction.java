@@ -12,17 +12,15 @@
 
 package org.scilab.modules.xpad.actions;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
-import org.scilab.modules.xpad.style.ScilabStyleDocument;
-import org.scilab.modules.xpad.style.TabManager;
+import org.scilab.modules.xpad.ScilabEditorPane;
+import org.scilab.modules.xpad.TabManager;
 import org.scilab.modules.xpad.utils.XpadMessages;
+import org.scilab.modules.xpad.ScilabDocument;
 
 /**
  * Class Untabify action for Xpad
@@ -30,55 +28,55 @@ import org.scilab.modules.xpad.utils.XpadMessages;
  *
  */
 public class UnTabifyAction extends DefaultAction {
-
-	private TabManager tabManager = new TabManager();
+    
+    /**
+     * Default constructor
+     * @param editor the editor
+     */
+    public UnTabifyAction(Xpad editor) {
+	super(XpadMessages.UNTABIFY_SELECTION, editor);
+    }
+    
+    /**
+     * Function doAction
+     */
+    public void doAction() {
+	ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
+	int start = sep.getSelectionStart();
+	int end   = sep.getSelectionEnd();
+	TabManager tab = sep.getTabManager();
+	ScilabDocument doc = (ScilabDocument) sep.getDocument();
 	
-	/**
-	 * Default constructor
-	 * @param editor the editor
-	 */
-	private UnTabifyAction(Xpad editor) {
-		super(XpadMessages.UNTABIFY_SELECTION, editor);
+	doc.mergeEditsBegin();
+	if (start == end) {
+	    tab.untabifyLine(start);
+	} else {
+	    int[] ret = tab.untabifyLines(start, end - 1);
+	    if (ret != null) {
+		sep.setSelectionStart(ret[0]);
+		sep.setSelectionEnd(ret[1]);
+	    }
 	}
+	doc.mergeEditsEnd();
+    }
+    
+    /**
+     * Create the MenuItem for untabify action
+     * @param editor Editor
+     * @param key KeyStroke
+     * @return a MenuItem
+     */
+    public static MenuItem createMenu(Xpad editor, KeyStroke key) {
+	return createMenu(XpadMessages.UNTABIFY_SELECTION , null, new UnTabifyAction(editor), key);
+    }
 
-	/**
-	 * Function doAction
-	 */
-	public void doAction() {
-		int position_start = getEditor().getTextPane().getSelectionStart();
-		int position_end   = getEditor().getTextPane().getSelectionEnd();
-		ScilabStyleDocument scilabDocument = (ScilabStyleDocument) getEditor().getTextPane().getStyledDocument();
-		int line_start     = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getDefaultRootElement().getElementIndex(position_start);
-		int line_end       = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getDefaultRootElement().getElementIndex(position_end);
-		
-		if (line_start == line_end) {
-			// A part of the line is selected : Delete a Tab at the beginning of the line
-			int offset = tabManager.untabifyLine(scilabDocument, line_start);
-		} else {
-			// several lines are selected
-			// TODO exact caret position requires API change if we untabify as much lines as possible: we must know if
-			// the line of the caret position was untabified or not.
-			int [] delta = tabManager.untabifyLines(scilabDocument, line_start, line_end);
-		}
-	}
-
-	/**
-	 * Create the MenuItem for untabify action
-	 * @param editor Editor
-	 * @return a MenuItem
-	 */
-	public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.UNTABIFY_SELECTION , null, new UnTabifyAction(editor), 
-						  KeyStroke.getKeyStroke(KeyEvent.VK_TAB, ActionEvent.SHIFT_MASK));
-	}
-	
-	/**
-	 * Put input map
-	 * @param textPane JTextpane
-	 * @param editor Editor
-	 */
-	public static void putInInputMap(JComponent textPane, Xpad editor) {
-		textPane.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, ActionEvent.SHIFT_MASK), new UnTabifyAction(editor));
-		return;
-	}
+    /**
+     * Put input map
+     * @param textPane JTextpane
+     * @param key KeyStroke
+     * @param editor Editor
+     */
+    public static void putInInputMap(JComponent textPane, Xpad editor, KeyStroke key) {
+	textPane.getInputMap().put(key, new UnTabifyAction(editor));
+    }
 }

@@ -37,13 +37,63 @@
   <refsection>
     <title>Block Screenshot</title>
 
-    <para><inlinemediaobject>
-        <imageobject>
-          <imagedata align="center"
-                     fileref="../../../../images/palettes/Integer_pal.jpg"
-                     valign="middle"></imagedata>
-        </imageobject>
-      </inlinemediaobject></para>
+    <para>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="BITCLEAR" fileref="../../../../../../modules/xcos/images/palettes/BITCLEAR.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="BITSET" fileref="../../../../../../modules/xcos/images/palettes/BITSET.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="CONVERT" fileref="../../../../../../modules/xcos/images/palettes/CONVERT.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="DFLIPFLOP" fileref="../../../../../../modules/xcos/images/palettes/DFLIPFLOP.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="DLATCH" fileref="../../../../../../modules/xcos/images/palettes/DLATCH.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="EXTRACTBITS" fileref="../../../../../../modules/xcos/images/palettes/EXTRACTBITS.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="INTMUL" fileref="../../../../../../modules/xcos/images/palettes/INTMUL.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="JKFLIPFLOP" fileref="../../../../../../modules/xcos/images/palettes/JKFLIPFLOP.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="LOGIC" fileref="../../../../../../modules/xcos/images/palettes/LOGIC.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="SHIFT" fileref="../../../../../../modules/xcos/images/palettes/SHIFT.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="SRFLIPFLOP" fileref="../../../../../../modules/xcos/images/palettes/SRFLIPFLOP.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    </para>
   </refsection>
 
   <refsection id="Module_Integer_pal">

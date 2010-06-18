@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
+// Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -14,7 +15,12 @@
 //
 
 mprintf("Illustrates Box'' algorithm on Box problem B.\n");
-mprintf("Defining Box Problem B function...\n");
+
+mprintf("M.J. Box, \n");
+mprintf("""A new method of constrained optimization \n");
+mprintf("and a comparison with other methods"".\n");
+mprintf("The Computer Journal, Volume 8, Number 1, 1965, 42--52\n");
+mprintf("Problem B\n");
 
 //
 //  Reference:
@@ -118,18 +124,17 @@ nm = neldermead_configure(nm,"-boxboundsalpha" , 0.0001 );
 //
 mprintf("Searching (please wait)...\n");
 nm = neldermead_search(nm);
-neldermead_display(nm);
 mprintf("==========================\n");
 xcomp = neldermead_get(nm,"-xopt");
-mprintf("x computed=%s\n",strcat(string(xcomp)," "));
-mprintf("x expected=%s\n",strcat(string(xopt)," "));
+mprintf("x computed=[%s]\n",strcat(string(xcomp)," "));
+mprintf("x expected=[%s]\n",strcat(string(xopt)," "));
 shift = norm(xcomp-xopt)/norm(xopt);
-mprintf("Shift =%f\n",shift);
+mprintf("Relative error =%e\n",shift);
 fcomp = neldermead_get(nm,"-fopt");
 mprintf("f computed=%f\n",fcomp);
 mprintf("f expected=%f\n",fopt);
 shift = abs(fcomp-fopt)/abs(fopt);
-mprintf("Shift =%f\n",shift);
+mprintf("Relative error =%e\n",shift);
 nm = neldermead_destroy(nm);
 mprintf("End of demo.\n");
 

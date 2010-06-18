@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- -->
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) INRIA
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="gainplot">
   <info>
     <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008) $</pubdate>
@@ -21,8 +21,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>gainplot(sl,fmin,fmax [,step] [,comments] )
-gainplot(frq,db,phi [,comments])
-gainplot(frq, repf [,comments])</synopsis>
+    gainplot(frq,db,phi [,comments])
+    gainplot(frq, repf [,comments])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -74,18 +74,25 @@ gainplot(frq, repf [,comments])</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Same as Bode but plots only the magnitude.</para>
+    <para>Same as <link linkend="bode">bode</link> but plots only the magnitude.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
-s=poly(0,'s')
-h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
-gainplot(h,0.01,100,'(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)')
-clf()
-h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
-gainplot([h1;h],0.01,100,['h1';'h'])
- ]]></programlisting>
+    <programlisting role="example"><![CDATA[
+    s=poly(0,'s')
+    h1=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+    h2=syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+    clf();gainplot([h1;h2],0.01,100,['h1';'h2'])
+    title('Gainplot')
+
+    ]]></programlisting>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../images/gainplot.svg"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
   </refsection>
   <refsection>
     <title>See Also</title>
@@ -100,16 +107,13 @@ gainplot([h1;h],0.01,100,['h1';'h'])
         <link linkend="nyquist">nyquist</link>
       </member>
       <member>
-        <link linkend="freq">freq</link>
-      </member>
-      <member>
         <link linkend="repfreq">repfreq</link>
       </member>
       <member>
         <link linkend="g_margin">g_margin</link>
       </member>
       <member>
-        <link linkend="p_margin">p_margin</link>
+        <link linkend="datatips">datatips</link>
       </member>
     </simplelist>
   </refsection>

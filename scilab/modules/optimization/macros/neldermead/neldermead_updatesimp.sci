@@ -62,7 +62,7 @@ function this = neldermead_updatesimp ( this )
   //
   nbve = optimsimplex_getnbve ( simplex0 );
   this = neldermead_log (this,"Before scaling:");
-  str = optimsimplex_tostring ( simplex0 )
+  str = string ( simplex0 )
   for i = 1:nbve
     this = neldermead_log (this,str(i));
   end
@@ -95,7 +95,7 @@ function this = neldermead_updatesimp ( this )
     end
   end
   this = neldermead_log (this,"After scaling:");
-  str = optimsimplex_tostring ( simplex0 )
+  str = string ( simplex0 )
   for i = 1:nbve
     this = neldermead_log (this,str(i));
   end

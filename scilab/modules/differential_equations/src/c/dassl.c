@@ -12,7 +12,7 @@
  */
 
 /* C driver over ddassl to handle longjump from xerhlt*/
-#include "../../../elementary_functions/includes/xerhlt.h"
+#include "xerhlt.h"
 
 
 extern void C2F(ddassl)(void *res, int *neq, double *t, double *y, double *yprime, 

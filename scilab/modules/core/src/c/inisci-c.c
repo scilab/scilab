@@ -18,10 +18,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h> /* getenv ! */
-#include "../../../io/includes/getenvc.h"
-#include "../../../fileio/includes/FileExist.h"
+#include "getenvc.h"
+#include "FileExist.h"
 #include "localization.h"
-#include "Os_specific.h"
 #include "core_math.h" 
 #include "setgetSCIpath.h"
 #include "MALLOC.h"

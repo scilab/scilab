@@ -10,7 +10,7 @@
 // Exec tests common to all uicontrols
 clear uicontrol_generic_test
 exec("SCI/modules/gui/tests/unit_tests/uicontrol_generic_test.sci");
-uicontrol_generic_test("pushbutton");
+if uicontrol_generic_test("pushbutton") <> 0 then pause; end
 
 // Default relief value
 h = uicontrol("parent", scf(), "style", "pushbutton");

@@ -25,6 +25,7 @@
 #include "core_math.h"
 #include "setgetlanguage.h"
 #include "LaunchScilabSignal.h"
+#include "setenvc.h"
 
 #ifdef __APPLE__
 #include "initMacOSXEnv.h"

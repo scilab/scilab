@@ -2,6 +2,7 @@
 # windows directories (binaries)
 #
 doublylinkedlist/doublylinkedlist.def
+google_breakpad
 LibScilab.def
 *.vcdef
 f2c

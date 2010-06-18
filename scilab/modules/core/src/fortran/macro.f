@@ -1,17 +1,17 @@
 c     Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c     Copyright (C) INRIA
-c     
+c
 c     This file must be used under the terms of the CeCILL.
 c     This source file is licensed as described in the file COPYING,
 c     which
 c     you should have received as part of this distribution.  The terms
-c     are also available at    
+c     are also available at
 c     http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
       subroutine macro
-c     
+c
       include 'stack.h'
-c     
+c
       parameter (nz2=nsiz-2,nz3=nsiz-3)
       double precision val
       integer eol
@@ -24,22 +24,22 @@ c
       data blank/40/,eol/99/
       data varargin/169544223,387059739,nz2*673720360/
       data varargout/169544223,504893467,673720349,nz3*673720360/
-c     
-c     
+c
+c
       iadr(l)=l+l-1
-c     
+c
       r=rstk(pt)
       if (ddt .eq. 4) then
          write(buf(1:18),'(2i4,i6)') pt,r,fin
          call basout(io,wte,' macro  pt:'//buf(1:4)//' rstk(pt):'//
      &        buf(5:8)//' fin:'//buf(9:14))
       endif
-c     
+c
       ir=r/100
       if(ir.ne.5) goto 10
       goto(40,40,60,40),r-500
       goto 99
-c     
+c
  10   continue
 
 c     check for interpreted pause(701),compiled pause(604) or exec(902)
@@ -47,10 +47,10 @@ c     check for interpreted pause(701),compiled pause(604) or exec(902)
 
 c     initialize macro or execstr execution
 c------------------------------------------
-c     
+c
       ilk=iadr(fin)
       wmacn=0
-c     
+c
       if(istk(ilk).eq.10) then
 c     an execstr
          exec=.false.
@@ -161,8 +161,9 @@ c     save line pointers
       call putid(lin(k+12),syn)
       lin(k+12+nsiz)=lct(8)
       lpt(1) = k + 13+nsiz
-c     
+c
       if ( ptover(1,psiz-1)) return
+      rstk(pt)=0
       ids(1,pt) = rhs
       ids(2,pt) = lhs
       ids(3,pt) = lf
@@ -174,7 +175,7 @@ c
       ids(4,pt)=ids(4,pt)+2*wmac
       wmac=wmacn
       pstk(pt)=lct(4)
-c     
+c
       macr=macr+1
 c     set line pointers
       k=lpt(1)
@@ -191,9 +192,8 @@ c     c_ex lct(1) = 0
       endif
       char1 = blank
       lin(lpt(4)+1)=blank
-c     
+c
 c     save input variables
-
 c     next line should be suppressed, but when no arg given rhs is -1
 c     and not 0
       irhs=max(rhs,0)
@@ -229,7 +229,7 @@ C     .           the same global variable is used inside the macro
             call stackp(varargout,0)
          endif
       endif
-c     
+c
       ids(6,pt)=toperr
       toperr=top
       if(istk(ilk).eq.13) then
@@ -248,7 +248,7 @@ c     pstk(pt)=0
 c     *call* parse
       endif
       go to 99
-c     
+c
  40   continue
 c     terminate macro or execstr execution
 c-----------------------------------------
@@ -278,10 +278,10 @@ C     .     try level found
             goto 401
          endif
       endif
-      
+
 
       lhsr=lhs
-c     
+c
       lct(4)=pstk(pt)
       rhs=ids(1,pt)
       lhs=ids(2,pt)
@@ -294,7 +294,7 @@ c     restaure  pointers
       char1=lin(k+10)
       sym=lin(k+11)
       call putid(syn,lin(k+12))
-c     
+c
       if (err1.gt.0.and.catch.eq.0) then
          top=toperr
          toperr=ids(6,pt)
@@ -304,8 +304,8 @@ c
       endif
 
       toperr=ids(6,pt)
-      
-c     
+
+c
       if(comp(1).ne.0) then
          comp(2)=comp(1)
          comp(1)=0
@@ -354,7 +354,7 @@ c     .   extract required output variables out of varargout
             l0=l0+nsiz
          endif
       endif
-c     
+c
       macr=macr-1
       if(istk(ilk).eq.10.or.exec) goto 48
       bot=lin(k+5)
@@ -365,7 +365,7 @@ c     .   handle variables returned by resume
          top1=top
          top=top-lhs
          count=0
-c     
+c
          if(rstk(pt).eq.501) then
 c     .     resume in a "compiled" macro
             count=pstk(pt+2)
@@ -394,7 +394,7 @@ c     .        retained for 2.7 and earlier version compatibility (old affectati
                if(err.gt.0) return
  44         continue
          else
-c     .     resume in "uncompiled" macros 
+c     .     resume in "uncompiled" macros
 c     .     and in execstr call in a macro (rstk(pt)==504 see sci_resume)
 
             ptr=pstk(pt+1)
@@ -412,10 +412,10 @@ c     .      reset lpt(1) for error recovery
  45         continue
             lpt(1)=lpt1s
          endif
-c     
+c
 c     .  remove top variables relatives to for or select if any
          top=top-count
-c     
+c
          if(lhs.gt.0) then
 c     .     move macro output variables at the top of the stack
             top1=top1-lhs
@@ -432,7 +432,7 @@ c     .     move macro output variables at the top of the stack
             endif
          endif
       endif
-c     
+c
  47   continue
       if(lhs.eq.0) then
          top=top+1
@@ -451,7 +451,7 @@ c
       ival(2)=lin(k+9)
       stk(lstk(isiz))=val
       return
-c     
+c
 c     exec
  50   continue
       k = lpt(6)
@@ -464,7 +464,7 @@ c     exec
       lin(k+3) = lpt(3)
       lin(k+4) = lpt(4)
       lin(k+5) = bot0
-c     two following lines set information necessary for  stackp to know 
+c     two following lines set information necessary for  stackp to know
 c     current macro context
       if(macr.ge.1) lin(k+5)=lin(lpt(1)-(8+nsiz))
       if(rio.eq.rte) lin(k+5)=bot
@@ -473,7 +473,7 @@ c     current macro context
 c     following lines allows to distinguish between macro (<>0) and
 c     exec (=0)
       lin(k+7)=0
-c     
+c
       lin(k+10)=char1
       lin(k+11)=sym
       lin(k+12+nsiz)=lct(8)
@@ -487,8 +487,8 @@ c
       lct(8)=0
       rstk(pt)=503
       pstk(pt)=wmac
-      
-      if(r.eq.701.or.r.eq.604) then 
+
+      if(r.eq.701.or.r.eq.604) then
 c     .  disable error recovery mode , for pause only (is it mandatory?)
          ids(2,pt)=errct
          ids(3,pt)=err2
@@ -503,7 +503,7 @@ c     .  disable error recovery mode , for pause only (is it mandatory?)
       icall=7
 c     *call parse*
       go to 99
-c     
+c
 c     fin exec
  60   continue
       k = lpt(1) - (13+nsiz)
@@ -522,7 +522,7 @@ c     fin exec
       endif
       wmac=pstk(pt)
       r=rstk(pt-1)
-      if(r.eq.701.or.r.eq.604) then 
+      if(r.eq.701.or.r.eq.604) then
 c     restore current error recovery modes
          errct=ids(2,pt)
          err2=ids(3,pt)
@@ -533,7 +533,7 @@ c     restore current error recovery modes
 
       pt=pt-1
       go to 99
-c     
+c
  99   continue
       return
       end

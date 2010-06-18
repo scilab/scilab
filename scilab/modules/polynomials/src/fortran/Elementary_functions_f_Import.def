@@ -1,0 +1,18 @@
+	LIBRARY    elementary_functions_f.dll
+
+
+EXPORTS
+;
+;elementary_functions_f
+iset_
+dset_
+dadd_
+ddif_
+ivimp_
+wscal_
+dtild_
+wmul_
+wwdiv_
+waxpy_
+wdpow_
+israt_

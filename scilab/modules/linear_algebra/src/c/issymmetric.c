@@ -19,7 +19,7 @@
 ** Started on  Thu Jul 19 12:12:28 2007 bruno
 ** Last update Thu Sep 13 09:48:48 2007 bruno
 */
-
+#include "stack-c.h"
 #include "issymmetric.h"
 
 /*

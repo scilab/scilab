@@ -1,262 +1,256 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA/ENPC
-// Copyright (C) DIGITEO - 2009 - Allan CORNET
-// 
+// Copyright (C) DIGITEO - 2009-2010 - Allan CORNET
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-
-// ilib_gen_loader also used by ilib_for_link
-// ilib_gen_loader for ilib_for_link have more options but not 
-// in the same order (internal use ONLY)
-
+//=============================================================================
 function ilib_gen_loader(varargin)
+  // varargin (max) name, tables, libs, libname, flag, loadername
+  [lhs, rhs] = argn(0);
 
-  [lhs,rhs] = argn(0);
-  
-  if and(rhs<>[2 3 5]) then
-    error(msprintf(_("%s: Wrong number of input argument(s): %d,%d or %d expected.\n"),"ilib_gen_loader",2,3,5));
+  if and(rhs <> [2 3 6]) then
+    error(msprintf(_("%s: Wrong number of input argument(s): %d,%d or %d expected.\n"), "ilib_gen_loader", 2, 3, 6));
   end
- 
-  if ( (rhs == 2) | (rhs == 3) ) then
 
-    name   = varargin(1);
-    tables = varargin(2);
-    
-    if (rhs > 2) then
-      libs = varargin(3);
-    else
-      libs = [];
-    end
-    
-    if type(name) <> 10 then
-      error(msprintf(_("%s: Wrong type for input argument #%d: String expected.\n"),"ilib_gen_loader",1));
-    end
-    
-    if tables <> [] then
-      if type(tables) <> 10 then
-        error(msprintf(_("%s: Wrong type for input argument #%d: String array expected.\n"),"ilib_gen_loader",2));
-      end
-    end
-    
-    if libs <> [] then
-      if type(libs) <> 10 then
-        error(msprintf(_("%s: Wrong type for input argument #%d: String array expected.\n"),"ilib_gen_loader",3));
-      end
-    end
-    
-    ilib_std_gen_loader(name,tables,libs);
-    
-  elseif (rhs == 5) then
-    
-    names      = varargin(1);
-    flag       = varargin(2);
-    loadername = varargin(3);
-    libs       = varargin(4);
-    libname    = varargin(5);
-    
-    if type(names) <> 10 then
-      error(msprintf(_("%s: Wrong type for input argument #%d: String array expected.\n"),"ilib_gen_loader",1));
-    end
-    
-    if type(flag) <> 10 then
-      error(msprintf(_("%s: Wrong type for input argument #%d: String expected.\n"),"ilib_gen_loader",2));
-    end
-    
-    if type(loadername) <> 10 then
-      error(msprintf(_("%s: Wrong type for input argument #%d: String expected.\n"),"ilib_gen_loader",3));
-    end
-    
-    if libs <> [] then
-      if type(libs) <> 10 then
-        error(msprintf(_("%s: Wrong type for input argument #%d: String array expected.\n"),"ilib_gen_loader",4));
-      end
-    end
-    
-    if libname <> [] then
-      if type(libname) <> 10 then
-        error(msprintf(_("%s: Wrong type for input argument #%d: String array expected.\n"),"ilib_gen_loader",5));
-      end
-    end
-    
-    ilib_4_link_gen_loader(names,flag,loadername,libs,libname);
-    
+  name = varargin(1);
+  tables = varargin(2);
+
+  if rhs > 2 then
+    libs = varargin(3);
+  else
+    libs = [];
   end
-  
+
+  if rhs > 3 then
+    libname = varargin(4);
+  else
+    libname = '';
+  end
+
+  if rhs > 4 then
+    flag = varargin(5);
+  else
+    flag = '';
+  end
+
+  if rhs > 5 then
+    loadername = varargin(6);
+  else
+    loadername = 'loader.sce';
+  end
+
+  if type(name) <> 10 then
+    error(999, msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), 'ilib_gen_loader', 1));
+  end
+
+  if tables <> [] then
+    if type(tables) <> 10 then
+      error(999, msprintf(_("%s: Wrong type for input argument #%d: String matrix expected.\n"), 'ilib_gen_loader', 2));
+    end
+  else
+    backupTables = tables;
+    if ( typeof(tables) <> 'list') then
+      tables = list(tables);
+    end
+    L = length(tables);
+    for it = 1:L
+      [mt, nt] = size(tables(it));
+
+      if ((mt == 0) & (nt == 0)) then
+        break;
+      end
+
+      if ( (nt <> 3) & ( nt <> 2) ) then
+        error(msprintf(gettext("%s: Wrong size for input argument #%d.\n"),"ilib_gen_loader", 2));
+      end
+    end
+    tables = backupTables;
+  end
+
+  if libs <> [] & type(libs) <> 10 then
+    error(999, msprintf(_("%s: Wrong type for input argument #%d: String matrix expected.\n"), 'ilib_gen_loader', 3));
+  end
+
+  if type(libname) <> 10 then
+    error(999, msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), 'ilib_gen_loader', 4));
+  end
+
+  if size(libname,'*') <> 1 then
+    error(999, msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"), 'ilib_gen_loader', 4));
+  end
+
+  if type(flag) <> 10 then
+    error(999, msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), 'ilib_gen_loader', 5));
+  end
+
+  if size(flag,'*') <> 1 then
+    error(999, msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"), 'ilib_gen_loader', 5));
+  end
+
+  if type(loadername) <> 10 then
+    error(999, msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), 'ilib_gen_loader', 6));
+  end
+
+  if size(loadername,'*') <> 1 then
+    error(999, msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"), 'ilib_gen_loader', 6));
+  end
+
+  if libname == '' then
+    libname = name(1);
+  end
+
+  generateLoader(name, tables, libs, libname, flag, loadername);
+
 endfunction
+//=============================================================================
+function bOK = generateLoader(name, tables, libs, libname, flag, loadername)
+  bOK = %F;
 
-
-//==============================================================================
-// ilib_4_link_gen_loader
-//   used by ilib_for_link
-//   INTERNAL USE ONLY
-//==============================================================================
-
-function ilib_4_link_gen_loader(names, flag, loadername, libs, libname)
-  
-  if libname=="" then libname = names(1);end 
-  
   if ( length(libname) + length("_path") ) > 24 then
-   shortlibname_path = part(libname,1:(24 - length("_path")));
+    shortlibname_path = part(libname,1:(24 - length("_path")));
   else
    shortlibname_path = libname;
   end
-  
-  fd=mopen(loadername,"wt");
-  mfprintf(fd,"// This file is released into the public domain\n");
-  mfprintf(fd,"// Generated by builder.sce : Please, do not edit this file\n");
-  mfprintf(fd,"//\n");
-  mfprintf(fd,"\n");
-  mfprintf(fd,"%s_path = get_absolute_file_path(''%s'');\n",shortlibname_path,basename(loadername+'.x'));
-  mfprintf(fd,"\n");
-  
-  //** first "link" : external libraries 
-  if libs=="" then 
-    //** do nothing : you don't need to link any "external" lib(s)
-  else
-    //** add one "link" line for each library (with the appropriate extension)
-    nl = size(libs,'*') ;
-    for i=1:nl 
-      if is_absolute_path(libs(i)) then
-        mfprintf(fd,"link(''%s''+getdynlibext());\n",libs(i));
+
+  [fd, err] = mopen(loadername, "wt");
+  if err <> 0 then
+    warning(msprintf(_("%s: Cannot open file %s.\n"), "mopen", loadername));
+    bOK = %F;
+    return
+  end
+
+  mfprintf(fd, "// This file is released into the public domain\n");
+  mfprintf(fd, "// Generated by builder.sce : Please, do not edit this file\n");
+  mfprintf(fd, "// ----------------------------------------------------------------------------\n");
+  mfprintf(fd, "//\n");
+
+  // Bug 5737
+  if getos() == 'Windows' then
+    if win64() then
+      mfprintf(fd, "if ~win64() then\n");
+      mfprintf(fd, "  warning(_(""This module requires a Windows x64 platform.""));\n");
+    else
+      mfprintf(fd, "if win64() then\n");
+      mfprintf(fd, "  warning(_(""This module requires a Windows x86 platform.""));\n");
+    end
+    mfprintf(fd, "  return\n");
+    mfprintf(fd, "end\n");
+    mfprintf(fd, "//\n");
+  end
+
+  // remove path
+  filenamewithext = fileparts(loadername,'fname') + fileparts(loadername, 'extension');
+
+  mfprintf(fd, "%s_path = get_absolute_file_path(''%s'');\n", shortlibname_path, filenamewithext);
+  mfprintf(fd, "//\n");
+
+  // bug 4515 - unlink previous function with same name
+  name = name(:)';
+  n = size(name, '*');
+  mfprintf(fd, "// ulink previous function with same name\n");
+  for i = 1:n
+    mfprintf(fd, "[bOK, ilib] = c_link(''%s'');\n", name(i));
+    mfprintf(fd, "if bOK then\n");
+    mfprintf(fd, "  ulink(ilib);\n");
+    mfprintf(fd, "end\n");
+    mfprintf(fd, "//\n");
+  end
+
+  nl = size(libs ,'*');
+  for i = 1:nl
+    // Add the relative path only if the lib has a relative path
+    isabspath = is_absolute_path(libs(i));
+    libfile = libs(i);
+    if libfile <> '' then
+      if isabspath then
+        mfprintf(fd, "link(''%s'' + getdynlibext());\n", libfile);
       else
-        mfprintf(fd,"link(%s_path+''%s''+getdynlibext());\n",shortlibname_path,libs(i));
+        mfprintf(fd, "link(%s_path + filesep() + ''%s'' + getdynlibext());\n", shortlibname_path, libfile);
       end
     end
   end
-  
-  // bug 4515 - unlink previous function with same name
-  names = names(:)';
-  n = size(names,'*');
-  mfprintf(fd,"// ulink previous function with same name\n");
-  for i = 1:n
-    mfprintf(fd,"[bOK,ilib] = c_link(''%s'');if (bOK) then ulink(ilib),end\n", names(i));
+
+  if tables <> [] then
+    //
+    // addinter
+    //
+    if ( typeof(tables) <> 'list') then
+       tables = list(tables);
+    end
+    L = length(tables);
+    if L == 1 then
+      // direct call to addinter
+      table = tables(1);
+      mfprintf(fd, "list_functions = [ ");
+      withoutSpace = %T;
+      for x = table(1:$,1)'
+        if withoutSpace then
+          withoutSpace = %F;
+          mfprintf(fd, "''%s'';\n", x);
+        else
+          mfprintf(fd, "                   ''%s'';\n", x);
+        end
+      end
+      mfprintf(fd, "];\n");
+
+      mfprintf(fd, "addinter(%s_path + filesep() + ''%s'' + getdynlibext(), ''%s'', list_functions);\n", shortlibname_path, ..
+                name, name);
+    else
+      // on link then a set of addinter
+      mfprintf(fd, "ilib = link(%s_path + filesep() + ''%s'' + getdynlibext());\n", shortlibname_path, ..
+                  name);
+      for itable =1 :L
+        // loop on a list of tables
+        table = tables(itable);
+
+        mfprintf(fd, "list_functions = [ ''%s'';\n", table(1,1));
+        for x = table(2:$, 1)'
+          mfprintf(fd, "                  ''%s'';\n", x);
+        end
+        mfprintf(fd, "];\n");
+
+        mfprintf(fd, "addinter(ilib, ''%s'', list_functions);\n", ..
+                  name + string(itable));
+      end
+    end
+
+  else
+    //
+    // link
+    //
+    mfprintf(fd,"link(%s_path + ''lib%s'' + getdynlibext(), [", shortlibname_path, libname);
+
+    for i = 1:n
+      mfprintf(fd, "''%s''", name(i));
+      if i <> n then
+        mfprintf(fd, ",");
+      else
+        mfprintf(fd, "],");
+      end
+    end
+    mfprintf(fd,"''%s'');\n",flag);
   end
 
-  //** second "link" : user defined functions  
-  mfprintf(fd,"link(%s_path+''lib%s''+getdynlibext(),[",shortlibname_path,libname);
-  
-  for i=1:n
-    mfprintf(fd,"''%s''",names(i))
-    if i <>n ; mfprintf(fd,","); else mfprintf(fd,"],");end
-  end
-  
-  // we manage .f90 as .f on windows
-  if getos() == 'Windows' then 
-   if findmsifortcompiler()<> "unknown" then
-     if flag == "f90" then
-      flag = "f";
-     end
-   else
-     if flag == "f90" then
-      error(gettext("F2C cannot build fortran 90"));
-     end
-   end
+  mfprintf(fd, "// remove temp. variables on stack\n");
+  mfprintf(fd,"clear %s_path;\n", shortlibname_path);
+  mfprintf(fd,"clear bOK;\n");
+  mfprintf(fd,"clear ilib;\n");
+
+  if tables <> [] then
+    mfprintf(fd, "clear list_functions;\n");
   end
 
-  mfprintf(fd,"''%s'');\n",flag);
-  mfprintf(fd,"// remove temp. variables on stack\n");
-  mfprintf(fd,"clear %s_path;\n",shortlibname_path);
-  mfprintf(fd,"clear get_file_path;\n");
-  mfprintf(fd,"// ------------------------------------------------------\n");
+  mfprintf(fd, "// ----------------------------------------------------------------------------\n");
   mclose(fd);
-  
+
   if ilib_verbose() > 1 then
     disp(mgetl(loadername));
   end
 
+  bOK = %T;
 endfunction
-
-//==============================================================================
-// ilib_std_gen_loader
-//   INTERNAL USE ONLY
-//==============================================================================
-
-function ilib_std_gen_loader(name, tables, libs)
-
-  if ( typeof(tables) <> 'list') then 
-    tables = list(tables);
-  end
-  
-  L = length(tables); 
-  for it = 1:L 
-    [mt,nt] = size(tables(it));
-    if ((mt == 0) & (nt == 0)) then
-       break;
-    end
-    if ( (nt <> 3) & ( nt <> 2) ) then 
-      error(msprintf(gettext("%s: Wrong size for input argument #%d.\n"),"ilib_gen_loader",2));
-    end 
-  end
-  
-  if length(name) + length('_path') > 24 then
-    name_path = part(name,1:(24 - length('_path')));
-  else
-    name_path = name;
-  end
-  
-  fd=mopen('loader.sce',"wt");
-  mfprintf(fd,"// This file is released into the public domain\n");
-  mfprintf(fd,"// Generated by builder.sce : Please, do not edit this file\n");
-  mfprintf(fd,"//\n");
-  mfprintf(fd,"%s_path = get_file_path(''loader.sce'');\n",name_path);
-
-  nl = size(libs,'*');
-  for i=1:nl 
-    // Add the relative path only if the lib has a relative path
-    isabspath = is_absolute_path(libs(i));
-    ext = getdynlibext();
-    libfile = libs(i);
-    if isabspath then
-      data = "link(''%s%s'');\n";
-      mfprintf(fd,data,libfile,ext);
-    else
-      data = "link(%s_path+''/%s%s'');\n";
-      mfprintf(fd,data,name_path,libfile,ext);
-    end
-  end 
-
-  if L == 1 then 
-    // direct call to addinter 
-    table = tables(1);
-    
-    mfprintf(fd,"list_functions = [ ");
-    for x = table(1:$,1)' 
-      mfprintf(fd,"            ''%s'';\n",x);
-    end
-    mfprintf(fd,"];\n");
-
-    mfprintf(fd,"addinter(%s_path+''/%s%s'',''%s'',list_functions);\n",name_path, ..
-	              name,getdynlibext(),name);
-  else
-    // on link then a set of addinter 
-    mfprintf(fd,"ilib = link(%s_path+filesep()+''%s%s'');\n",name_path, ..
-                name,getdynlibext());
-    for itable=1:L 
-      // loop on a list of tables 
-      table = tables(itable);
-      
-      mfprintf(fd,"list_functions = [ ''%s'';\n",table(1,1));
-      for x=table(2:$,1)' 
-        mfprintf(fd,"            ''%s'';\n",x);
-      end
-      mfprintf(fd,"];\n");
-      
-      mfprintf(fd,"addinter(ilib,''%s'',list_functions);\n", ..
-                  name+ string(itable));
-     end
-  end
-  
-  mfprintf(fd,"// remove temp. variables on stack\n");
-  mfprintf(fd,"clear %s_path;\n",name_path);
-  mfprintf(fd,"clear list_functions;\n");
-  mfprintf(fd,"clear get_file_path;\n");
-  mfprintf(fd,"// ------------------------------------------------------\n");
-  mclose(fd);
-  
-  if ilib_verbose() > 1 then
-    disp(mgetl('loader.sce'));
-  end
-endfunction
+//=============================================================================

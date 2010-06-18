@@ -14,7 +14,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intlog)(int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_log)(char *fname,unsigned long fname_len)
+int sci_log(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	C2F(intlog)(id);

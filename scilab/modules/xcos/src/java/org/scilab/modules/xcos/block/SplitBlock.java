@@ -104,6 +104,7 @@ public final class SplitBlock extends BasicBlock {
 	protected void setDefaultValues() {
 		super.setDefaultValues();
 		setInterfaceFunctionName("SPLIT_f");
+		setStyle(getInterfaceFunctionName()); 
 		setSimulationFunctionName("lsplit");
 		setRealParameters(new ScilabDouble());
 		setIntegerParameters(new ScilabDouble());

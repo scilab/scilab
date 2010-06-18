@@ -126,7 +126,7 @@ class BlockGraphicElement extends BlockPartsElement {
 
 		// we test if the structure as enough field
 		if (data.size() != DATA_FIELD_NAMES.size()) {
-			throw new WrongStructureException();
+			throw new WrongStructureException(DATA_FIELD_NAMES);
 		}
 
 		/*
@@ -135,17 +135,17 @@ class BlockGraphicElement extends BlockPartsElement {
 
 		// Check the first field
 		if (!(data.get(field) instanceof ScilabString)) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
 		final String[] header = ((ScilabString) data.get(field)).getData()[0];
 
 		// Checking for the field names
 		if (header.length != DATA_FIELD_NAMES.size()) {
-			throw new WrongStructureException();
+			throw new WrongStructureException(DATA_FIELD_NAMES);
 		}
 		for (int i = 0; i < header.length; i++) {
 			if (!header[i].equals(DATA_FIELD_NAMES.get(i))) {
-				throw new WrongStructureException();
+				throw new WrongStructureException(DATA_FIELD_NAMES);
 			}
 		}
 
@@ -156,25 +156,25 @@ class BlockGraphicElement extends BlockPartsElement {
 		// orig : must contain the coord of the block
 		field++;
 		if (!(data.get(field) instanceof ScilabDouble)) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
 
 		// sz : must contains the size of the block
 		field++;
 		if (!(data.get(field) instanceof ScilabDouble)) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
 
 		// flip
 		field++;
 		if (!(data.get(field) instanceof ScilabBoolean)) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
 
 		// theta
 		field++;
 		if (!(data.get(field) instanceof ScilabDouble)) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
 
 		// exprs
@@ -183,31 +183,31 @@ class BlockGraphicElement extends BlockPartsElement {
 				&& !(data.get(field) instanceof ScilabList)
 				&& !(data.get(field) instanceof ScilabTList)
 				&& !isEmptyField(data.get(field))) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
 
 		// pin
 		field++;
 		if (!(data.get(field) instanceof ScilabDouble)) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
 
 		// pout
 		field++;
 		if (!(data.get(field) instanceof ScilabDouble)) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
 
 		// pein
 		field++;
 		if (!(data.get(field) instanceof ScilabDouble)) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
 
 		// peout
 		field++;
 		if (!(data.get(field) instanceof ScilabDouble)) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
 
 		// gr_i
@@ -218,21 +218,21 @@ class BlockGraphicElement extends BlockPartsElement {
 		// id
 		field++;
 		if (!(data.get(field) instanceof ScilabString)) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
 
 		// in_implicit
 		field++;
 		if (!(data.get(field) instanceof ScilabString)
 				&& !isEmptyField(data.get(field))) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
 
 		// out_implicit
 		field++;
 		if (!(data.get(field) instanceof ScilabString)
 				&& !isEmptyField(data.get(field))) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
 	}
 	// CSON: CyclomaticComplexity

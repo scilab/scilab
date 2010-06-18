@@ -186,6 +186,7 @@ c
       if(macr.eq.0.and.rio.eq.rte) goto 1000
       call whatln(lpt(1),lpt(2),lpt(6),nlc,l1,ifin)
       m=ifin-l1+1
+      lct(8)=lct(8)-nlc
       if(m.gt.ll) then
          l1=max(l1,lpt(2)-ll/2)
          m=min(ifin-l1,ll)

@@ -16,7 +16,6 @@
 #include <stdio.h> 
 #include <string.h>
 #include "jni.h"
-#include "stack-c.h"
 #include "tmpdir.h"
 #include "scirun.h"
 #include "sciquit.h"

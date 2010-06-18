@@ -24,8 +24,8 @@ import java.util.Map;
 import javax.swing.SwingUtilities;
 
 import org.apache.commons.logging.LogFactory;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.graph.utils.ScilabExported;
-import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.SuperBlock;
@@ -92,15 +92,21 @@ public final class Xcos {
     	/* load scicos libraries (macros) */
 		ScilabInterpreterManagement.requestScilabExec("loadScicosLibs();");
 		
+		// FIXME: temporary workaround
+    	// fix #7015 by instantiate the palette manager once. 
+    	PaletteManager.getInstance();
+		
 	final String filename = fileName;
 	SwingUtilities.invokeLater(new Runnable() {
 	    public void run() {
 		ConfigurationManager.getInstance().addToRecentFiles(filename);
 		if (!XcosTab.focusOnExistingFile(filename)) {
 		    XcosDiagram diagram = createEmptyDiagram();
+		    ViewPaletteBrowserAction.setPalettesVisible(false);
 		    diagram.openDiagramFromFile(filename);
 		}
 		ConfigurationManager.getInstance().saveConfig();
+		
 	    }
 	});
     }

@@ -1,9 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007 - INRIA - Allan CORNET
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function  generatePoFile(LANGUAGE)
-// ======================================
-// INRIA 2007
-// Allan CORNET
-// based on generatePoFile.sh
-// ======================================
 PATH_GETTEXT_TOOLS = '/usr/bin/';
 LC = 'LC_MESSAGES';
 DEST_FILE_MO = SCI+filesep()+'locale'+filesep()+LANGUAGE+filesep()+LC+filesep()+'scilab.mo';
@@ -16,15 +20,15 @@ end
 
 // make destination directories 
 
-if (fileinfo(SCI+filesep()+'locale') == []) then
+if ~isdir(SCI+filesep()+'locale') then
   mkdir(SCI,'locale');
 end 
 
-if (fileinfo(SCI+filesep()+'locale'+filesep()+LANGUAGE) == []) then
+if ~isdir(SCI+filesep()+'locale'+filesep()+LANGUAGE) then
   mkdir(SCI+filesep()+'locale',LANGUAGE);
 end 
 
-if (fileinfo(SCI+filesep()+'locale'+filesep()+LANGUAGE+filesep()+LC) == []) then
+if ~isdir(SCI+filesep()+'locale'+filesep()+LANGUAGE+filesep()+LC) then
   mkdir(SCI+filesep()+'locale'+filesep()+LANGUAGE,LC);
 end 
 
@@ -51,7 +55,7 @@ for MODULE = getmodules()'
   end
   
   if FINDFULLFILENAMEPO <> [] then
-    if (fileinfo(FINDFULLFILENAMEPO)<>[]) then
+    if isfile(FINDFULLFILENAMEPO) then
       ext = fileext(FINDFULLFILENAMEPO);
       if ( ( ext == '.pot' ) | (ext == '.po') ) then
         // '""' path windows with blank

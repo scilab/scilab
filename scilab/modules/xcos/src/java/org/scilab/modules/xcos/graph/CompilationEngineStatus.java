@@ -50,10 +50,10 @@ public class CompilationEngineStatus implements mxIEventListener, PropertyChange
 	}
 
 	/**
-	 * @return true when the diagram need a compilation/recompilation
+	 * @return always true as we don't use scicos internal modification checking
 	 */
 	public boolean isCompilationNeeded() {
-		return compilationNeeded;
+		return true;
 	}
 
 	/**

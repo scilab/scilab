@@ -14,7 +14,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intdsearch)(int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_dsearch)(char *fname,unsigned long fname_len)
+int sci_dsearch(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	C2F(intdsearch)(id);

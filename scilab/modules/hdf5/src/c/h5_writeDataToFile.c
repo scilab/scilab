@@ -13,9 +13,10 @@
 #define H5_USE_16_API
 
 #include <hdf5.h>
-#include "stack-c.h"
 #include <MALLOC.h>
 #include <math.h>
+#include "sci_types.h"
+#include "core_math.h"
 #include "h5_writeDataToFile.h"
 #include "h5_attributeConstants.h"
 

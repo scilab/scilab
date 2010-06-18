@@ -17,7 +17,6 @@
 #include <signal.h>
 #include "csignal.h"
 #include "addinter.h" /* for DynInterfStart */
-#include "Os_specific.h" /* for DynInterfStart */
 #include "callinterf.h"
 #include "sciprint.h"
 #include "Scierror.h"
@@ -33,7 +32,7 @@ static void sci_sigint_addinter(int n);
  ** Watch out the positions are crutial !!!
  ** @TODO : Make this less crappy...
  **/
-#define INTERFACES_MAX 64
+#define INTERFACES_MAX 66
 static OpTab Interfaces[INTERFACES_MAX] = {
     /* 01  */ {gw_user}, /* free position may be used */
 	/* 02  */ {gw_linear_algebra},
@@ -98,7 +97,10 @@ static OpTab Interfaces[INTERFACES_MAX] = {
 	/* 61  */ {gw_call_scilab},
 	/* 62  */ {gw_dynamic_hdf5},
 	/* 63  */ {gw_dynamic_xpad},
-	/* 64  */ {gw_dynamic_xcos}
+	/* 64  */ {gw_dynamic_xcos},
+    /* 65  */ {gw_dynamic_action_binding},
+    /* 66  */ {gw_dynamic_parallel}
+
 };
 /*--------------------------------------------------------------------------*/
 static int sig_ok = 0;

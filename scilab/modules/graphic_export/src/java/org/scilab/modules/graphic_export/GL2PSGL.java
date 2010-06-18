@@ -393,11 +393,12 @@ public class GL2PSGL extends DebugGL {
 	
 	/**
 	 * glLineStipple
-	 * @param arg0 blend function value
-	 * @param arg1 blend function value
+	 * @param arg0 stipple factor.
+	 * @param arg1 stipple patern.
 	 */
 	public void glLineStipple(int arg0, short arg1) {
 		gl.glLineStipple(arg0, arg1);		
+		gl2ps.gl2psLineStipple(arg0, arg1);
 	}
 	
 	/**

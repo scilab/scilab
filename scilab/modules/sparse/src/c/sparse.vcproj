@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -20,8 +20,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)libs\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -46,7 +46,7 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions=""
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../api_scilab/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../output_stream/includes;../../../core/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../localization/includes;../../../api_scilab/includes;../../../elementary_functions/includes"
 				PreprocessorDefinitions="_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -57,7 +57,6 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 				CompileAs="0"
 			/>
@@ -96,8 +95,8 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|x64"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)libs\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -122,7 +121,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../api_scilab/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../output_stream/includes;../../../core/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../localization/includes;../../../api_scilab/includes;../../../elementary_functions/includes"
 				PreprocessorDefinitions="_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -133,7 +132,6 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 				CompileAs="0"
 			/>
@@ -172,8 +170,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)libs\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -200,7 +198,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../../includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../api_scilab/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../output_stream/includes;../../../core/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../localization/includes;../../../api_scilab/includes;../../../elementary_functions/includes"
 				PreprocessorDefinitions="NDEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -213,7 +211,6 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="false"
 				CompileAs="0"
 			/>
 			<Tool
@@ -251,8 +248,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|x64"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)libs\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -279,7 +276,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../../includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../api_scilab/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../output_stream/includes;../../../core/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../localization/includes;../../../api_scilab/includes;../../../elementary_functions/includes"
 				PreprocessorDefinitions="NDEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -292,7 +289,6 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="false"
 				CompileAs="0"
 			/>
 			<Tool
@@ -523,24 +519,8 @@
 			</File>
 		</Filter>
 		<Filter
-			Name="localization"
-			>
-			<File
-				RelativePath="..\..\locales\en_US\messages.pot"
-				>
-			</File>
-		</Filter>
-		<Filter
 			Name="Libraries Dependencies"
 			>
-		</Filter>
-		<Filter
-			Name="Resource File"
-			>
-			<File
-				RelativePath=".\sparse.rc"
-				>
-			</File>
 		</Filter>
 		<File
 			RelativePath="..\..\Makefile.am"

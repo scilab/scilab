@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent Couvert
+ * Copyright (C) 2010 - DIGITEO - Allan CORNET 
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,6 +15,8 @@ package org.scilab.modules.gui.utils;
 
 import java.io.File;
 import javax.swing.filechooser.FileFilter;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.scilab.modules.gui.filechooser.FileChooserInfos;
 import org.scilab.modules.localization.Messages;
@@ -22,6 +25,7 @@ import org.scilab.modules.localization.Messages;
  * Generic file filter used for Scilab file selection GUIs
  * @author Vincent COUVERT
  * @author Sylvestre KOUMAR
+ * @author Allan CORNET 
  */
 public class SciFileFilter extends FileFilter {
 
@@ -69,7 +73,28 @@ public class SciFileFilter extends FileFilter {
 		mask = mask.replaceAll("\\*", ".\\*");
 		
 		this.filterIndex = filterIndex;
-		//this.lastFilterIndex = lastFilterIndex;
+	}
+
+	/**
+	 * check if it is Windows
+	 * @return boolean true if it is Windows
+	 */
+	private boolean isWindows() {
+		return System.getProperty("os.name").toLowerCase().contains("windows");
+	}
+	
+	/**
+	 * get file extension
+	 * @param file File
+	 * @return a string file extension with .
+	 */
+	private String getFileExtension(File file) {
+		String fileName = file.getName();
+		int dotIndex = fileName.lastIndexOf('.');
+		if (dotIndex == -1 || dotIndex == fileName.length() - 1) {
+			return new String("");
+		}
+		return fileName.substring(dotIndex);
 	}
 
 	/**
@@ -82,15 +107,22 @@ public class SciFileFilter extends FileFilter {
 		if (pathname.isDirectory()) {
 			return true;
 		}		
-		
-		if (mask.equals("")) { // Bug 2861: have to return true for all files if no mask given
+		if (mask.equals("")) { 
+			// Bug 2861: have to return true for all files if no mask given
 			return true;
 		} else {			
-			
 			int selectedIndex = this.filterIndex + 1;
 			FileChooserInfos.getInstance().setFilterIndex(selectedIndex);
-			//System.out.println("JAVA this.filterIndex: "+selectedIndex);			
-			return pathname.getAbsolutePath().matches(mask);
+			/* bug 4224 */
+			/* On Windows, files are not case sensitive */ 
+			if (isWindows()) {
+				Pattern patternExt = Pattern.compile(mask, Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
+				Matcher matchExt = patternExt.matcher(getFileExtension(pathname));
+				
+				return matchExt.find();
+			} else {
+				return pathname.getAbsolutePath().matches(mask);
+			}
 		}
 	}
 

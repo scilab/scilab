@@ -15,7 +15,7 @@
 #include "CallScilabBridge.hxx"
 extern "C"
 {
-#include "stack-c.h"
+#include "sci_types.h"
 #include "BuildObjects.h"
 #include "Scierror.h"
 #include "UicontrolStyleToString.h"

@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Sylvestre Koumar
+ * Copyright (C) 2010 - DIGITEO - Pierre Lando
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -92,6 +93,10 @@ int sci_gl2psDisable(int mode){
 
 int sci_gl2psPointSize(float value){
 	return gl2psPointSize(value);
+};
+
+int sci_gl2psLineStipple(int factor, int pattern){
+	return gl2psLineStipple(factor, pattern);
 };
 
 int sci_gl2psLineWidth(float value){

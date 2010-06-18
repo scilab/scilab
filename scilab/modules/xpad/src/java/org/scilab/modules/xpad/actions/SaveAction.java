@@ -12,9 +12,6 @@
 
 package org.scilab.modules.xpad.actions;
 
-import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
-
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -31,47 +28,46 @@ import org.scilab.modules.xpad.utils.XpadMessages;
  */
 public final class SaveAction extends DefaultAction {
 
-	/**
-	 * serialVersionUID
-	 */
-	private static final long serialVersionUID = 1638973738114812027L;
+    /**
+     * serialVersionUID
+     */
+    private static final long serialVersionUID = 1638973738114812027L;
 
-	/**
-	 * Constructor
-	 * @param editor Xpad
-	 */
-	private SaveAction(Xpad editor) {
-		super(XpadMessages.SAVE, editor);
+    /**
+     * Constructor
+     * @param editor Xpad
+     */
+    private SaveAction(Xpad editor) {
+        super(XpadMessages.SAVE, editor);
+    }
 
-	}
+    /**
+     * Create Menu
+     * @param editor Xpad
+     * @param key KeyStroke
+     * @return MenuItem
+     */
+    public static MenuItem createMenu(Xpad editor, KeyStroke key) {
+        return createMenu(XpadMessages.SAVE, null, new SaveAction(editor), key);
+    }
 
-	/**
-	 * Create Menu
-	 * @param editor Xpad
-	 * @return MenuItem
-	 */
-	public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.SAVE, null, new SaveAction(editor),
-				KeyStroke.getKeyStroke(KeyEvent.VK_S, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
-	}
+    /**
+     * Create Button
+     * @param editor Xpad
+     * @return PushButton
+     */
+    public static PushButton createButton(Xpad editor) {
+        return createButton(XpadMessages.SAVE, "media-floppy.png", new SaveAction(editor));
+    }
 
-	/**
-	 * Create Button
-	 * @param editor Xpad
-	 * @return PushButton
-	 */
-	public static PushButton createButton(Xpad editor) {
-		return createButton(XpadMessages.SAVE, "media-floppy.png", new SaveAction(editor));
-	}
-
-	/**
-	 * DoAction
-	 */
-	public void doAction() {
-	    if (!getEditor().save(getEditor().getTabPane().getSelectedIndex(), true)) {
-		ScilabModalDialog.show(Xpad.getEditor(), XpadMessages.COULD_NOT_SAVE_FILE,
-			XpadMessages.XPAD_ERROR, IconType.ERROR_ICON);
-	    }
-	}
+    /**
+     * DoAction
+     */
+    public void doAction() {
+        if (!getEditor().save(getEditor().getTabPane().getSelectedIndex(), true)) {
+            ScilabModalDialog.show(getEditor(), XpadMessages.COULD_NOT_SAVE_FILE,
+                                   XpadMessages.XPAD_ERROR, IconType.ERROR_ICON);
+        }
+    }
 }
 

@@ -16,7 +16,7 @@
 #include "CallScilabBridge.hxx"
 extern "C"
 {
-#include "stack-c.h"
+#include "sci_types.h"
 #include "SetUicontrolFontName.h"
 #include "GetProperty.h"
 #include "getPropertyAssignedValue.h"

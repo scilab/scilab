@@ -17,6 +17,9 @@ function  bar(varargin)
 // width : a double, the bar width, it's the percentage (0<width<1) of the width max of one bar which is wanted (default: width=0.8)
 // style : a string 'grouped' or 'stacked' (default: style='grouped')
 
+if size(varargin)<1 | size(varargin)>5  then
+  error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "bar", 1, 5));
+end
 
 styletab=["grouped","stacked"]
 COLORBOOL=%f

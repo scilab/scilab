@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-02-16 13:37+0000\n"
-"Last-Translator: Allan CORNET <Unknown>\n"
+"PO-Revision-Date: 2010-06-10 09:00+0000\n"
+"Last-Translator: Sylvestre Ledru <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -388,7 +388,7 @@ msgstr "] : %d bibliothèques.\n"
 
 #, c-format
 msgid "] : %d library.\n"
-msgstr "] : %d librairie.\n"
+msgstr "] : %d bibliothèque.\n"
 
 #, c-format
 msgid "stderr: %s\n"

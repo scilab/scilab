@@ -12,9 +12,6 @@
 
 package org.scilab.modules.xpad.actions;
 
-import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
-
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -49,11 +46,11 @@ public final class NewAction extends DefaultAction {
 	/**
 	 * Create a menu to add to Xpad menu bar
 	 * @param editor associated Xpad instance
+	 * @param key KeyStroke
 	 * @return the menu
 	 */
-	public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.NEW, null, new NewAction(editor), 
-				KeyStroke.getKeyStroke(KeyEvent.VK_N, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+        public static MenuItem createMenu(Xpad editor, KeyStroke key) {
+	    return createMenu(XpadMessages.NEW, null, new NewAction(editor), key); 
 	}
 
 	/**

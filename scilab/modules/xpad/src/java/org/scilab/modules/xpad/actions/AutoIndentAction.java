@@ -25,26 +25,26 @@ import org.scilab.modules.xpad.utils.XpadMessages;
 public final class AutoIndentAction extends DefaultCheckAction  {
 
 
-	/**
-	 * serialVersionUID
-	 */
-	private static final long serialVersionUID = -1937347660350539353L;
+    /**
+     * serialVersionUID
+     */
+    private static final long serialVersionUID = -1937347660350539353L;
 
 
-	/**
-	 * Constructor
-	 * @param editor Xpad
-	 */
+    /**
+     * Constructor
+     * @param editor Xpad
+     */
     private AutoIndentAction(Xpad editor) {
-    	super(XpadMessages.AUTO_INDENT, editor);
+        super(XpadMessages.AUTO_INDENT, editor);
     }
 
     /**
      * doAction
      */
     public void doAction() {
-    	getEditor().setAutoIndent(this.getState());
-    	ConfigXpadManager.saveAutoIndent(this.getState());
+        getEditor().setAutoIndent(this.getState());
+        ConfigXpadManager.saveAutoIndent(this.getState());
     }
 
 
@@ -54,8 +54,8 @@ public final class AutoIndentAction extends DefaultCheckAction  {
      * @return CheckBoxMenuItem
      */
     public static CheckBoxMenuItem createCheckBoxMenu(Xpad editor) {
-    	CheckBoxMenuItem autoIndent = createCheckBoxMenu(XpadMessages.AUTO_INDENT, null, new AutoIndentAction(editor), null);
-    	autoIndent.setChecked(ConfigXpadManager.getAutoIndent());
-    	return autoIndent;
+        CheckBoxMenuItem autoIndent = createCheckBoxMenu(XpadMessages.AUTO_INDENT, null, new AutoIndentAction(editor), null);
+        autoIndent.setChecked(ConfigXpadManager.getAutoIndent());
+        return autoIndent;
     }
 }

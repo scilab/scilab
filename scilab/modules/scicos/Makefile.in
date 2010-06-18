@@ -81,10 +81,13 @@ DIST_COMMON = $(am__libsciscicos_la_include_HEADERS_DIST) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(srcdir)/Makefile.modelica.am $(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
+
+# With --enable-compilation-tests, launch java unitary tests
+@COMPILATION_TESTS_TRUE@am__append_2 = test
 @OCAML_TRUE@@SCICOS_TRUE@bin_PROGRAMS = $(am__EXEEXT_1)
 
 ########## COMMON
-@OCAML_TRUE@@SCICOS_TRUE@am__append_2 = .ml .mli .mll .mly .cmo .cmi .cmx
+@OCAML_TRUE@@SCICOS_TRUE@am__append_3 = .ml .mli .mll .mly .cmo .cmi .cmx
 subdir = modules/scicos
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -520,6 +523,10 @@ OCAMLDEP = @OCAMLDEP@
 OCAMLLEX = @OCAMLLEX@
 OCAMLOPT = @OCAMLOPT@
 OCAMLYACC = @OCAMLYACC@
+OPENMP_CFLAGS = @OPENMP_CFLAGS@
+OPENMP_CXXFLAGS = @OPENMP_CXXFLAGS@
+OPENMP_ENABLE = @OPENMP_ENABLE@
+OPENMP_LIBS = @OPENMP_LIBS@
 OTOOL = @OTOOL@
 OTOOL64 = @OTOOL64@
 PACKAGE = @PACKAGE@
@@ -655,12 +662,12 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_1)
+TARGETS_ALL = $(am__append_1) $(am__append_2)
 
 ################ MACROS ######################
 # Rule to build a macro
 # NOT USED  AT THE MOMENT
-SUFFIXES = .sci $(am__append_2)
+SUFFIXES = .sci $(am__append_3)
 
 ########### INSTALL DOCUMENTATION ###################
 
@@ -2211,7 +2218,7 @@ uninstall-am: uninstall-binPROGRAMS uninstall-libsciscicos_la_etcDATA \
 
 
 # This target enables tests for Scilab
-check-local: $(top_builddir)/scilab-bin
+check-local: $(top_builddir)/scilab-bin test
 	@COMMAND="test_run('$(modulename)');quit";\
 	export LANG=C;\
 	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
@@ -2277,6 +2284,13 @@ clean-macros:
 		echo "rm -f $(builddir)/$$dir/$(MACROBINMASK)"; \
 		rm -f $(builddir)/$$dir/$(MACROBINMASK); \
 	done
+
+test:
+# More tests could be added here
+	@if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
+	if test -f build.xml -a $$USEANT -eq 1; then \
+		$(ANT) test; \
+	fi
 
 all-local: $(TARGETS_ALL)
 

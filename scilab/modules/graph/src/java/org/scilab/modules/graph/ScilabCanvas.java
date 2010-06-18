@@ -29,7 +29,7 @@ import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.shape.LatexTextShape;
 import org.scilab.modules.graph.shape.MathMLTextShape;
 import org.scilab.modules.graph.utils.MathMLRenderUtils;
-import org.scilab.modules.graph.utils.ScilabConstants;
+import org.scilab.modules.graph.utils.ScilabGraphConstants;
 import org.scilab.modules.graph.utils.ScilabGraphUtils;
 import org.scilab.modules.graph.view.SupportedLabelType;
 import org.xml.sax.SAXException;
@@ -134,45 +134,60 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 	
 	/**
 	 * Scale the graphic context depending on the "flip and "mirror" properties
+	 * @param temporaryGraphics the current graphic surface
 	 * @param style Style contents
+	 * @param bounds the current bounds
 	 */
-	private void applyFlipAndMirror(Map<String, Object> style) {
-		String flip = mxUtils.getString(style, ScilabConstants.STYLE_FLIP,
-				Boolean.FALSE.toString());
-		String mirror = mxUtils.getString(style, ScilabConstants.STYLE_MIRROR,
-				Boolean.FALSE.toString());
+	private void applyFlipAndMirror(Graphics2D temporaryGraphics, Map<String, Object> style, mxRectangle bounds) {
+		if (bounds == null) {
+			return;
+		}
+		
+		final boolean flip = mxUtils.isTrue(style, ScilabGraphConstants.STYLE_FLIP, false);
+		final boolean mirror = mxUtils.isTrue(style, ScilabGraphConstants.STYLE_MIRROR, false);
+		
+		final double x = bounds.getCenterX();
+		final double y = bounds.getCenterY();
 
+		temporaryGraphics.translate(x, y);
+		
 		// scale, 1st flip, 2nd mirror
-		if (Boolean.parseBoolean(flip)) {
-			if (Boolean.parseBoolean(mirror)) {
-				g.scale(-1, -1); // T / T
+		if (flip) {
+			if (mirror) {
+				temporaryGraphics.scale(-1, -1); // T / T
 			} else {
-				g.scale(-1, 1); // T / F
+				temporaryGraphics.scale(-1, 1); // T / F
 			}
 		} else {
-			if (Boolean.parseBoolean(mirror)) {
-				g.scale(1, -1); // F / T
+			if (mirror) {
+				temporaryGraphics.scale(1, -1); // F / T
 			} else {
-				g.scale(1, 1); // F / F
+				temporaryGraphics.scale(1, 1); // F / F
 			}
 		}
+		
+		temporaryGraphics.translate(-x, -y);
 	}
-
+	
 	/**
-	 * Draw the vertex.
+	 * Allocate a new graphic surface and set some properties on it.
 	 * 
 	 * This method handle the flip and the mirror properties.
 	 * 
-	 * @param state the current cell state
-	 * @return the rendered shape
-	 * @see com.mxgraph.canvas.mxGraphics2DCanvas#drawVertex(com.mxgraph.view.mxCellState)
+	 * @param style the current style
+	 * @param opacity the opacity
+	 * @param bounds the bounds
+	 * @return a graphic surface
+	 * @see com.mxgraph.canvas.mxGraphics2DCanvas#createTemporaryGraphics(java.util.Map, float, com.mxgraph.util.mxRectangle)
 	 */
 	@Override
-	public Object drawVertex(mxCellState state) {
+	protected Graphics2D createTemporaryGraphics(Map<String, Object> style,
+			float opacity, mxRectangle bounds) {
+		Graphics2D temporaryGraphics = super.createTemporaryGraphics(style, opacity, bounds);
 		
-		applyFlipAndMirror(state.getStyle());
+		applyFlipAndMirror(temporaryGraphics, style, bounds);
 		
-		return super.drawVertex(state);
+		return temporaryGraphics;
 	}
 
 	/**
@@ -198,7 +213,7 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 
 			// Creates a temporary graphics instance for drawing this shape
 			Graphics2D previousGraphics = g;
-			g = createTemporaryGraphics(style, null);
+			g = createTemporaryGraphics(style, 100, null);
 
 			// Draws the label background and border
 			Color bg = mxUtils.getColor(style,

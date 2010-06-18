@@ -14,7 +14,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intfrexp)(int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_frexp)(char *fname,unsigned long fname_len)
+int sci_frexp(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	C2F(intfrexp)(id);

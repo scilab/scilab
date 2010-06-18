@@ -1,25 +1,25 @@
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006
-##########
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+#
+# This file is distributed under the same license as the Scilab package.
+
 
 IO_C_SOURCES = src/c/getpidc.c \
 src/c/setenvc.c \
 src/c/systemc.c \
 src/c/getenvc.c \
-src/c/GetenvB.c
+src/c/GetenvB.c \
+src/c/v2cuniterror.c
 
 IO_FORTRAN_SOURCES = src/fortran/v2unit.f \
 src/fortran/newsave.f \
-src/fortran/v2cunit.f \
-src/fortran/writebuf.f
+src/fortran/v2cunit.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_read4b.c \
 sci_gateway/c/sci_getio.c \
 sci_gateway/c/sci_readb.c \
 sci_gateway/c/sci_host.c \
 sci_gateway/c/sci_file.c \
-sci_gateway/c/sci_rat.c \
 sci_gateway/c/sci_getenv.c \
 sci_gateway/c/sci_write.c \
 sci_gateway/c/sci_writeb.c \
@@ -33,7 +33,6 @@ sci_gateway/c/sci_unix.c \
 sci_gateway/c/sci_save.c
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/intwrite4b.f \
-sci_gateway/fortran/intrat.f \
 sci_gateway/fortran/intwritb.f \
 sci_gateway/fortran/intwrite.f \
 sci_gateway/fortran/intread4b.f \

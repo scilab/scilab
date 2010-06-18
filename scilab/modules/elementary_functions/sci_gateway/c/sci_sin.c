@@ -14,7 +14,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intsin)(int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_sin)(char *fname,unsigned long fname_len)
+int sci_sin(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	C2F(intsin)(id);

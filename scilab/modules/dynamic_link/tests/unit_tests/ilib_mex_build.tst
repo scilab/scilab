@@ -22,7 +22,7 @@ mputl([
 '}'
 ],'mexfunction16.c');
 
-ilib_mex_build('libmex',['mexf16','mexfunction16','cmex'],['mexfunction16.c'],[],'Makelib','','','');
+ilib_mex_build('libmex',['mexf16','mexfunction16','cmex'],['mexfunction16.c'],[],'','','','');
 
 exec(TMPDIR+'/loader.sce');
 mexf16(rand(2,3,2));

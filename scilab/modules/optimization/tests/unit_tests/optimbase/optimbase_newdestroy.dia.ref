@@ -184,7 +184,6 @@ assert_equal ( status , "maxiter" );
 opt = optimbase_configure(opt,"-verbose",1);
 opt = optimbase_log ( opt , "My interesting message" );
 My interesting message
-
 opt = optimbase_configure(opt,"-verbose",0);
 // Log a message relative to the stopping rule
 opt = optimbase_configure(opt,"-verbosetermination",1);
@@ -231,58 +230,6 @@ opt = optimbase_configure ( opt , "-storehistory" , %t );
 opt = optimbase_histset ( opt , 1 , "-fopt" , 1.0 );
 f0 = optimbase_histget ( opt , 1 , "-fopt" );
 assert_close ( f0 , 1.0, %eps );
-// Check display
-optimbase_display ( opt );
-Optimization Object
-
-Number of variables : 2
-
-Initial Guess : [-1.2 1]
-
-Initial Function Value :
-
-Number of Inequality Constraints :0
-
-Bounds Mininimum : []
-
-Bounds Maxinimum :[]
-
-Optimum Parameters : [1 1]
-
-Optimum Function Value :1.000000e+000
-
-Number of iterations : 1
-
-Maximum number of iterations : 200
-
-Number function evaluations : 0
-
-Maximum number of function evaluations : 200
-
-Termination Method on function value : F
-
-Termination Absolute Tolerance on function value : 0
-
-Termination Relative Tolerance on function value : 2.220D-15
-
-Termination Method on x : T
-
-Termination Absolute Tolerance on x : 0
-
-Termination Relative Tolerance on x : 2.220D-15
-
-Optimization Status : maxiter
-
-Verbose logging : 0
-
-Verbose Termination : 0
-
-Verbose Log File : 
-
-Verbose Log File Startup Up: F
-
-Store History : T
-
 // Check the boundsmin, boundsmax and nbineqconst
 opt = optimbase_configure ( opt , "-boundsmin" , [-5.0 -5.0] );
 boundsmin = optimbase_cget ( opt , "-boundsmin" );
@@ -394,4 +341,92 @@ computed = lasterror();
 expected = "optimbase_histget: Negative iteration index -1 is not allowed.";
 assert_equal ( computed , expected );
 // Cleanup
+opt = optimbase_destroy(opt);
+//
+// Test the printing system
+//
+opt = optimbase_new ();
+string(opt)
+ ans  =
+ 
+!Optim Base Object:                                            !
+!                                                              !
+!==================                                            !
+!                                                              !
+!Number of variables : 0                                       !
+!                                                              !
+!Initial Guess : []                                            !
+!                                                              !
+!Initial Function Value :                                      !
+!                                                              !
+!Number of Inequality Constraints :0                           !
+!                                                              !
+!Bounds Mininimum : []                                         !
+!                                                              !
+!Bounds Maxinimum :[]                                          !
+!                                                              !
+!Optimum Parameters : [0]                                      !
+!                                                              !
+!Optimum Function Value :0.000000e+000                         !
+!                                                              !
+!Number of iterations : 0                                      !
+!                                                              !
+!Maximum number of iterations : 100                            !
+!                                                              !
+!Number function evaluations : 0                               !
+!                                                              !
+!Maximum number of function evaluations : 100                  !
+!                                                              !
+!Termination Method on function value : F                      !
+!                                                              !
+!Termination Absolute Tolerance on function value : 0          !
+!                                                              !
+!Termination Relative Tolerance on function value : 2.220D-16  !
+!                                                              !
+!Termination Method on x : T                                   !
+!                                                              !
+!Termination Absolute Tolerance on x : 0                       !
+!                                                              !
+!Termination Relative Tolerance on x : 2.220D-16               !
+!                                                              !
+!Optimization Status :                                         !
+!                                                              !
+!Verbose logging : 0                                           !
+!                                                              !
+!Verbose Termination : 0                                       !
+!                                                              !
+!Verbose Log File :                                            !
+!                                                              !
+!Verbose Log File Startup Up: F                                !
+!                                                              !
+!Store History : F                                             !
+opt
+ opt  =
+ 
+Optim Base Object:
+==================
+Number of variables : 0
+Initial Guess : []
+Initial Function Value :
+Number of Inequality Constraints :0
+Bounds Mininimum : []
+Bounds Maxinimum :[]
+Optimum Parameters : [0]
+Optimum Function Value :0.000000e+000
+Number of iterations : 0
+Maximum number of iterations : 100
+Number function evaluations : 0
+Maximum number of function evaluations : 100
+Termination Method on function value : F
+Termination Absolute Tolerance on function value : 0
+Termination Relative Tolerance on function value : 2.220D-16
+Termination Method on x : T
+Termination Absolute Tolerance on x : 0
+Termination Relative Tolerance on x : 2.220D-16
+Optimization Status : 
+Verbose logging : 0
+Verbose Termination : 0
+Verbose Log File : 
+Verbose Log File Startup Up: F
+Store History : F
 opt = optimbase_destroy(opt);

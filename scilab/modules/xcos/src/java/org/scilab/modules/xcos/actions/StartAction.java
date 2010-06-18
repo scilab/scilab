@@ -14,8 +14,8 @@
 
 package org.scilab.modules.xcos.actions;
 
-import static org.scilab.modules.graph.utils.ScilabInterpreterManagement.asynchronousScilabExec;
-import static org.scilab.modules.graph.utils.ScilabInterpreterManagement.buildCall;
+import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.asynchronousScilabExec;
+import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.buildCall;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,10 +24,10 @@ import java.io.IOException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.actions.base.GraphActionManager;
-import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.graph.XcosDiagram;

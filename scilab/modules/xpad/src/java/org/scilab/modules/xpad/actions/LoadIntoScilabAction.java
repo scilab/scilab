@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
- * Copyright (C) 2009 - DIGITEO - Allan CORNET 
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,13 +13,10 @@
 
 package org.scilab.modules.xpad.actions;
 
-import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.util.UUID;
 
 import javax.swing.KeyStroke;
 
@@ -38,96 +35,89 @@ import org.scilab.modules.xpad.utils.XpadMessages;
  *
  */
 public final class LoadIntoScilabAction extends DefaultAction {
-	
-	/**
-	 * serialVersionUID
-	 */
-	private static final long serialVersionUID = -5659317486404897280L;
 
-	/**
-	 * Constructor
-	 * @param editor Xpad
-	 */
-	private LoadIntoScilabAction(Xpad editor) {
-		super(XpadMessages.LOAD_INTO_SCILAB, editor);
-	}
+        /**
+         * serialVersionUID
+         */
+        private static final long serialVersionUID = -5659317486404897280L;
 
-	/**
-	 * doAction
-	 */
-	public void doAction() {
-		boolean bDoExec = false;
+        private static final int MAX_LINES_RECOMMANDED = 100;
+        private static final int NB_STANDARD_COLUMNS = 80;
+        private static final int MAX_CHARACTERS_RECOMMANDED = MAX_LINES_RECOMMANDED * NB_STANDARD_COLUMNS;
 
-		String text = getEditor().getTextPane().getText();
+        /**
+         * Constructor
+         * @param editor Xpad
+         */
+        private LoadIntoScilabAction(Xpad editor) {
+                super(XpadMessages.LOAD_INTO_SCILAB, editor);
+        }
 
-		if (text.compareTo("") != 0) {
-			boolean bContinue = false;
+        /**
+         * doAction
+         */
+        public void doAction() {
+                String text = getEditor().getTextPane().getText();
 
-			if (maxLinesRecommandedDetected(text)) {
-				if (ScilabModalDialog.show(Xpad.getEditor(), XpadMessages.BIG_FILE_WARNING, XpadMessages.LOAD_INTO_SCILAB, 
-				 IconType.QUESTION_ICON, ButtonType.YES_NO) == AnswerOption.YES_OPTION) {
-					bContinue = true;
-				} else {
-					bContinue = false;
-				}
-			} else {
-				bContinue = true;
-			}
+                if (text.compareTo("") != 0) {
+                        boolean bContinue = false;
 
-			if (bContinue) {
-				String tmpFilename = "LOAD_INTO_SCILAB-" + UUID.randomUUID().toString() + ".sce";
-				String tmpFullFilename = System.getenv("TMPDIR") + System.getProperty("file.separator") + tmpFilename;
-				// save file as UTF-8
-				File f = new File(tmpFullFilename);
-				try {
-					OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(f) , "UTF-8");
-					out.write(text);
-					out.flush();
-					out.close();
-					bDoExec = true;
-				} catch (IOException e) {
-					bDoExec = false;
-				}
+                        if (maxLinesRecommandedDetected(text)) {
+                                if (ScilabModalDialog.show(getEditor(), XpadMessages.BIG_FILE_WARNING, XpadMessages.LOAD_INTO_SCILAB,
+                                 IconType.QUESTION_ICON, ButtonType.YES_NO) == AnswerOption.YES_OPTION) {
+                                        bContinue = true;
+                                } else {
+                                        bContinue = false;
+                                }
+                        } else {
+                                bContinue = true;
+                        }
 
-				if (bDoExec && f.exists()) {
-					String cmdToExec = "exec('" + tmpFullFilename + "', 1)";
-					InterpreterManagement.requestScilabExec(cmdToExec);
-				} else {
-					ScilabModalDialog.show(getEditor(), XpadMessages.COULD_NOT_FIND_TMPFILE);
-				}
-			}
-		}
-	}
+                        if (bContinue) {
+                            String tmpFilename = "LOAD_INTO_SCILAB-";
 
-	/**
-	 * createMenu
-	 * @param editor Xpad
-	 * @return MenuItem
-	 */
-	public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.LOAD_INTO_SCILAB, null, 
-				new LoadIntoScilabAction(editor), 
-				KeyStroke.getKeyStroke(KeyEvent.VK_L, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
-	 }
+                                // save file as UTF-8
+                                try {
+                                        File f = File.createTempFile(tmpFilename, ".sce");
+                                        String tmpFullFilename = f.getAbsolutePath();
+                                        OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(f) , "UTF-8");
+                                        out.write(text);
+                                        out.flush();
+                                        out.close();
+                                        String cmdToExec = "exec('" + tmpFullFilename + "', 1)";
+                                        InterpreterManagement.requestScilabExec(cmdToExec);
+                                } catch (IOException e) {
+                                        ScilabModalDialog.show(getEditor(), XpadMessages.COULD_NOT_FIND_TMPFILE);
+                                }
+                        }
+                }
+        }
 
-	 /**
-	  * check if string is not too big
-	  * @param[in] text to scan
-	  * @return true or false
-	  */
-	private static boolean maxLinesRecommandedDetected(String text) {
-		int MAX_LINES_RECOMMANDED = 100;
-		int NB_STANDARD_COLUMNS = 80;
-		int MAX_CHARACTERS_RECOMMANDED = MAX_LINES_RECOMMANDED * NB_STANDARD_COLUMNS;
-		if (text.length() > MAX_CHARACTERS_RECOMMANDED) {
-			return true;
-		}
+        /**
+         * createMenu
+         * @param editor Xpad
+         * @param key KeyStroke
+         * @return MenuItem
+         */
+         public static MenuItem createMenu(Xpad editor, KeyStroke key) {
+                return createMenu(XpadMessages.LOAD_INTO_SCILAB, null, new LoadIntoScilabAction(editor), key);
+         }
 
-		String splitedStringOnLineSeparator[] = text.split(System.getProperty("line.separator"));
-		if (splitedStringOnLineSeparator.length > MAX_LINES_RECOMMANDED) {
-			return true;
-		}
+         /**
+          * check if string is not too big
+          * @param text to scan
+          * @return true or false
+          */
+        private static boolean maxLinesRecommandedDetected(String text) {
+               if (text.length() > MAX_CHARACTERS_RECOMMANDED) {
+                        return true;
+                }
 
-		return false;
-	}
+                String[] splitedStringOnLineSeparator = text.split(System.getProperty("line.separator"));
+                if (splitedStringOnLineSeparator.length > MAX_LINES_RECOMMANDED) {
+                        return true;
+                }
+
+                return false;
+        }
 }

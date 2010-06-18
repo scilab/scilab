@@ -1,6 +1,6 @@
 dnl
 dnl Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-dnl Copyright (C) DIGITEO - 2009 - 2009 - Bruno JOFRET
+dnl Copyright (C) DIGITEO - 2009 - Bruno JOFRET
 dnl 
 dnl This file must be used under the terms of the CeCILL.
 dnl This source file is licensed as described in the file COPYING, which
@@ -81,7 +81,9 @@ AC_DEFUN([AC_JAVA_HDF5], [
      AC_JAVA_CHECK_PACKAGE([jhdf5],[ncsa.hdf.hdf5lib.HDF5Constants],[HDF5 Java library])
      JHDF5=$PACKAGE_JAR_FILE
      AC_SUBST(JHDF5)
+])
 
+AC_DEFUN([AC_JNI_HDF5], [
      LDFLAGS_save=$LDFLAGS
    # Provide known paths where distribs/OS can store JNI libs
         LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -L$SCI_SRCDIR/bin/ -L$SCI_SRCDIR/thirdparty/  -lpthread $HDF5_LIBS"
@@ -100,5 +102,4 @@ AC_DEFUN([AC_JAVA_HDF5], [
       ])
       unset LD_LIBRARY_PATH
       LD_LIBRARY_PATH=$LD_LIBRARY_PATH_save
-    fi
 ])

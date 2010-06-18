@@ -8,6 +8,10 @@
             <parameter name="fileName" type="String"/>
             <parameter name="lineNumber" type="int"/>
         </method>
+        <method name="xpad" returnType="void" modifier="static">
+            <parameter name="fileName" type="String"/>
+            <parameter name="option" type="String"/>
+        </method>
         <method name="closeXpadFromScilab" returnType="void" modifier="static"/>
     </object>
 </package>

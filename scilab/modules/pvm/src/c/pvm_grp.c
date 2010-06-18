@@ -26,6 +26,7 @@
 #include <string.h>
 
 #include "sci_tools.h"
+#include "stack2.h"
 #include "sci_pvm.h"
 #include "localization.h"
 

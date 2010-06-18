@@ -1,6 +1,13 @@
-#!/bin/bash
-# Copyright INRIA/Scilab 2008
-# Author : Sylvestre Ledru <sylvestre.ledru@inria.fr>
+#!/bin/sh
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) INRIA - 2007-2008 - Sylvestre Ledru
+# Copyright (C) DIGITEO - 2009-2010 - Sylvestre Ledru
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+#
 # This script takes a list of localization files dumped by launchpad
 # here https://translations.launchpad.net/scilab/trunk/+export 
 # and dispatch them into Scilab source tree

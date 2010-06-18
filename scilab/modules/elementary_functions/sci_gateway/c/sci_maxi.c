@@ -14,7 +14,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intmaxi)(char *fname,int *id,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_maxi)(char *fname,unsigned long fname_len)
+int sci_maxi(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	C2F(intmaxi)(fname,id,fname_len);

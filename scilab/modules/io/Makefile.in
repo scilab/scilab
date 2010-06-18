@@ -15,10 +15,10 @@
 
 @SET_MAKE@
 
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006
-##########
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+#
+# This file is distributed under the same license as the Scilab package.
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006-2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
@@ -59,6 +59,9 @@ host_triplet = @host@
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
+
+# With --enable-compilation-tests, launch java unitary tests
+@COMPILATION_TESTS_TRUE@am__append_2 = test
 subdir = modules/io
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -118,19 +121,18 @@ libsciio_la_DEPENDENCIES = $(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__objects_1 = libsciio_la-getpidc.lo libsciio_la-setenvc.lo \
 	libsciio_la-systemc.lo libsciio_la-getenvc.lo \
-	libsciio_la-GetenvB.lo
-am__objects_2 = v2unit.lo newsave.lo v2cunit.lo writebuf.lo
+	libsciio_la-GetenvB.lo libsciio_la-v2cuniterror.lo
+am__objects_2 = v2unit.lo newsave.lo v2cunit.lo
 am__objects_3 = libsciio_la-sci_read4b.lo libsciio_la-sci_getio.lo \
 	libsciio_la-sci_readb.lo libsciio_la-sci_host.lo \
-	libsciio_la-sci_file.lo libsciio_la-sci_rat.lo \
-	libsciio_la-sci_getenv.lo libsciio_la-sci_write.lo \
-	libsciio_la-sci_writeb.lo libsciio_la-sci_setenv.lo \
-	libsciio_la-gw_io.lo libsciio_la-sci_read.lo \
-	libsciio_la-sci_getpid.lo libsciio_la-sci_write4b.lo \
-	libsciio_la-sci_load.lo libsciio_la-sci_unix.lo \
-	libsciio_la-sci_save.lo
-am__objects_4 = intwrite4b.lo intrat.lo intwritb.lo intwrite.lo \
-	intread4b.lo intread.lo intreadb.lo intfile.lo
+	libsciio_la-sci_file.lo libsciio_la-sci_getenv.lo \
+	libsciio_la-sci_write.lo libsciio_la-sci_writeb.lo \
+	libsciio_la-sci_setenv.lo libsciio_la-gw_io.lo \
+	libsciio_la-sci_read.lo libsciio_la-sci_getpid.lo \
+	libsciio_la-sci_write4b.lo libsciio_la-sci_load.lo \
+	libsciio_la-sci_unix.lo libsciio_la-sci_save.lo
+am__objects_4 = intwrite4b.lo intwritb.lo intwrite.lo intread4b.lo \
+	intread.lo intreadb.lo intfile.lo
 am_libsciio_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4)
 libsciio_la_OBJECTS = $(am_libsciio_la_OBJECTS)
@@ -286,6 +288,10 @@ OCAMLDEP = @OCAMLDEP@
 OCAMLLEX = @OCAMLLEX@
 OCAMLOPT = @OCAMLOPT@
 OCAMLYACC = @OCAMLYACC@
+OPENMP_CFLAGS = @OPENMP_CFLAGS@
+OPENMP_CXXFLAGS = @OPENMP_CXXFLAGS@
+OPENMP_ENABLE = @OPENMP_ENABLE@
+OPENMP_LIBS = @OPENMP_LIBS@
 OTOOL = @OTOOL@
 OTOOL64 = @OTOOL64@
 PACKAGE = @PACKAGE@
@@ -408,19 +414,18 @@ IO_C_SOURCES = src/c/getpidc.c \
 src/c/setenvc.c \
 src/c/systemc.c \
 src/c/getenvc.c \
-src/c/GetenvB.c
+src/c/GetenvB.c \
+src/c/v2cuniterror.c
 
 IO_FORTRAN_SOURCES = src/fortran/v2unit.f \
 src/fortran/newsave.f \
-src/fortran/v2cunit.f \
-src/fortran/writebuf.f
+src/fortran/v2cunit.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_read4b.c \
 sci_gateway/c/sci_getio.c \
 sci_gateway/c/sci_readb.c \
 sci_gateway/c/sci_host.c \
 sci_gateway/c/sci_file.c \
-sci_gateway/c/sci_rat.c \
 sci_gateway/c/sci_getenv.c \
 sci_gateway/c/sci_write.c \
 sci_gateway/c/sci_writeb.c \
@@ -434,7 +439,6 @@ sci_gateway/c/sci_unix.c \
 sci_gateway/c/sci_save.c
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/intwrite4b.f \
-sci_gateway/fortran/intrat.f \
 sci_gateway/fortran/intwritb.f \
 sci_gateway/fortran/intwrite.f \
 sci_gateway/fortran/intread4b.f \
@@ -489,7 +493,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_1)
+TARGETS_ALL = $(am__append_1) $(am__append_2)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -624,7 +628,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_getpid.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_host.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_load.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_rat.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_read.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_read4b.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_readb.Plo@am__quote@
@@ -636,6 +639,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_writeb.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-setenvc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-systemc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-v2cuniterror.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -693,6 +697,13 @@ libsciio_la-GetenvB.lo: src/c/GetenvB.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -c -o libsciio_la-GetenvB.lo `test -f 'src/c/GetenvB.c' || echo '$(srcdir)/'`src/c/GetenvB.c
 
+libsciio_la-v2cuniterror.lo: src/c/v2cuniterror.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -MT libsciio_la-v2cuniterror.lo -MD -MP -MF $(DEPDIR)/libsciio_la-v2cuniterror.Tpo -c -o libsciio_la-v2cuniterror.lo `test -f 'src/c/v2cuniterror.c' || echo '$(srcdir)/'`src/c/v2cuniterror.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciio_la-v2cuniterror.Tpo $(DEPDIR)/libsciio_la-v2cuniterror.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/v2cuniterror.c' object='libsciio_la-v2cuniterror.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -c -o libsciio_la-v2cuniterror.lo `test -f 'src/c/v2cuniterror.c' || echo '$(srcdir)/'`src/c/v2cuniterror.c
+
 libsciio_la-sci_read4b.lo: sci_gateway/c/sci_read4b.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -MT libsciio_la-sci_read4b.lo -MD -MP -MF $(DEPDIR)/libsciio_la-sci_read4b.Tpo -c -o libsciio_la-sci_read4b.lo `test -f 'sci_gateway/c/sci_read4b.c' || echo '$(srcdir)/'`sci_gateway/c/sci_read4b.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciio_la-sci_read4b.Tpo $(DEPDIR)/libsciio_la-sci_read4b.Plo
@@ -727,13 +738,6 @@ libsciio_la-sci_file.lo: sci_gateway/c/sci_file.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_file.c' object='libsciio_la-sci_file.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -c -o libsciio_la-sci_file.lo `test -f 'sci_gateway/c/sci_file.c' || echo '$(srcdir)/'`sci_gateway/c/sci_file.c
-
-libsciio_la-sci_rat.lo: sci_gateway/c/sci_rat.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -MT libsciio_la-sci_rat.lo -MD -MP -MF $(DEPDIR)/libsciio_la-sci_rat.Tpo -c -o libsciio_la-sci_rat.lo `test -f 'sci_gateway/c/sci_rat.c' || echo '$(srcdir)/'`sci_gateway/c/sci_rat.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciio_la-sci_rat.Tpo $(DEPDIR)/libsciio_la-sci_rat.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_rat.c' object='libsciio_la-sci_rat.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -c -o libsciio_la-sci_rat.lo `test -f 'sci_gateway/c/sci_rat.c' || echo '$(srcdir)/'`sci_gateway/c/sci_rat.c
 
 libsciio_la-sci_getenv.lo: sci_gateway/c/sci_getenv.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -MT libsciio_la-sci_getenv.lo -MD -MP -MF $(DEPDIR)/libsciio_la-sci_getenv.Tpo -c -o libsciio_la-sci_getenv.lo `test -f 'sci_gateway/c/sci_getenv.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getenv.c
@@ -830,14 +834,8 @@ newsave.lo: src/fortran/newsave.f
 v2cunit.lo: src/fortran/v2cunit.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o v2cunit.lo `test -f 'src/fortran/v2cunit.f' || echo '$(srcdir)/'`src/fortran/v2cunit.f
 
-writebuf.lo: src/fortran/writebuf.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o writebuf.lo `test -f 'src/fortran/writebuf.f' || echo '$(srcdir)/'`src/fortran/writebuf.f
-
 intwrite4b.lo: sci_gateway/fortran/intwrite4b.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intwrite4b.lo `test -f 'sci_gateway/fortran/intwrite4b.f' || echo '$(srcdir)/'`sci_gateway/fortran/intwrite4b.f
-
-intrat.lo: sci_gateway/fortran/intrat.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intrat.lo `test -f 'sci_gateway/fortran/intrat.f' || echo '$(srcdir)/'`sci_gateway/fortran/intrat.f
 
 intwritb.lo: sci_gateway/fortran/intwritb.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intwritb.lo `test -f 'sci_gateway/fortran/intwritb.f' || echo '$(srcdir)/'`sci_gateway/fortran/intwritb.f
@@ -1139,7 +1137,7 @@ uninstall-am: uninstall-libsciio_la_etcDATA \
 
 
 # This target enables tests for Scilab
-check-local: $(top_builddir)/scilab-bin
+check-local: $(top_builddir)/scilab-bin test
 	@COMMAND="test_run('$(modulename)');quit";\
 	export LANG=C;\
 	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
@@ -1205,6 +1203,13 @@ clean-macros:
 		echo "rm -f $(builddir)/$$dir/$(MACROBINMASK)"; \
 		rm -f $(builddir)/$$dir/$(MACROBINMASK); \
 	done
+
+test:
+# More tests could be added here
+	@if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
+	if test -f build.xml -a $$USEANT -eq 1; then \
+		$(ANT) test; \
+	fi
 
 all-local: $(TARGETS_ALL)
 

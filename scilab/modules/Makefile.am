@@ -18,7 +18,6 @@ SUBDIRS = core
 
 SUBDIRS += \
 output_stream \
-action_binding \
 arnoldi \
 elementary_functions \
 string \
@@ -29,6 +28,7 @@ history_manager \
 spreadsheet \
 tclsci \
 localization \
+action_binding \
 renderer \
 shell \
 completion \
@@ -84,7 +84,10 @@ types \
 hdf5 \
 graph\
 xcos \
-xpad 
+xpad \
+parallel \
+modules_manager
+
 
 #umfpack
 
@@ -143,6 +146,7 @@ NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/graphics/libscigraphics-disable.la \
 	$(top_builddir)/modules/graphic_export/libscigraphic_export-disable.la \
 	$(top_builddir)/modules/console/libsciconsole-disable.la \
+	$(top_builddir)/modules/action_binding/libsciaction_binding-disable.la \
 	$(top_builddir)/modules/jvm/libscijvm-disable.la \
 	$(top_builddir)/modules/xcos/libscixcos-disable.la \
 	$(top_builddir)/modules/xpad/libscixpad-disable.la
@@ -183,7 +187,8 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/string/libscistring.la \
 	$(top_builddir)/modules/fftw/libscifftw.la \
 	$(top_builddir)/modules/hdf5/libscihdf5.la \
-	$(top_builddir)/modules/functions/libscifunctions.la
+	$(top_builddir)/modules/functions/libscifunctions.la \
+	$(top_builddir)/modules/parallel/libsciparallel.la
 
 
 # These libraries are loaded dynamically from Scilab.
@@ -202,7 +207,7 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
 	$(top_builddir)/modules/umfpack/libsciumfpack.la \
 	$(top_builddir)/modules/matio/libscimatio.la \
-	$(top_builddir)/modules/helptools/libscihelptools.la
+	$(top_builddir)/modules/helptools/libscihelptools.la 
 
 # Core modules
 libscilab_la_LIBADD = $(ENGINE_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)

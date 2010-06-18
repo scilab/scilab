@@ -12,7 +12,7 @@
  */
 #include <stdlib.h>
 #include "api_scilab.h"
-#include "stack-c.h"
+#include "sci_types.h"
 #include "getmacroslist.h"
 #include "librarieslist.h"
 #include "libraryinfo.h"

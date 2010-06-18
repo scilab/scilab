@@ -14,6 +14,7 @@ package org.scilab.modules.xcos.port.command;
 
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
+import org.scilab.modules.xcos.port.control.ControlPort;
 
 /**
  * A command port acts generate execution ticks to another block.
@@ -33,6 +34,8 @@ public class CommandPort extends BasicPort {
     public CommandPort() {
 	super("CommandPort");
 	setOrientation(Orientation.SOUTH);
+	
+	setDefaultValues();
     }
 
     /**

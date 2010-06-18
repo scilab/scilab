@@ -55,7 +55,6 @@ m = optimsimplex_fvmean ( this )
 sd = optimsimplex_fvstdev ( this )
 v = optimsimplex_fvvariance ( this )
 [ g , data ] = optimsimplex_gradientfv ( this , fun , method , data )
-optimsimplex_print ( this )
 [ r , data ] = optimsimplex_reflect ( this , fun , data )
 [ this , data ] = optimsimplex_shrink ( this , fun , sigma , data )
 ssize = optimsimplex_size ( this , method )
@@ -1541,25 +1540,6 @@ function [ y , data ] = myfunction ( x , data )
       </varlistentry>
 
       <varlistentry>
-        <term>optimsimplex_print ( this )</term>
-
-        <listitem>
-          <para>Display the current simplex, with coordinates and function
-          values.</para>
-
-          <variablelist>
-            <varlistentry>
-              <term>this</term>
-
-              <listitem>
-                <para>The current simplex object.</para>
-              </listitem>
-            </varlistentry>
-          </variablelist>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
         <term>[ r , data ] = optimsimplex_reflect ( this , fun , data )</term>
 
         <listitem>
@@ -1834,9 +1814,9 @@ coords = [
     0.    1.  
 ];
 s1 = optimsimplex_new ( coords );
-computed = optimsimplex_getallx ( s1 );
-computed = optimsimplex_getn(s1);
-computed = optimsimplex_getnbve (s1);
+optimsimplex_getallx ( s1 )
+optimsimplex_getn(s1)
+optimsimplex_getnbve (s1)
 s1 = optimsimplex_destroy(s1);
  ]]>
 </programlisting>
@@ -1865,9 +1845,9 @@ endfunction
 
 mystuff = tlist(["T_MYSTUFF","nb"]);
 mystuff.nb = 0;
-s1 = optimsimplex_new ();
-[ s1 , mystuff ] = optimsimplex_randbounds ( s1 , x0 = [-1.2 1.0], fun = mycostf, ...
-  boundsmin = [-5.0 -5.0] , boundsmax = [5.0 5.0], nbve=5 , data = mystuff );
+[ s1 , mystuff ] = optimsimplex_new ( "randbounds" , [-1.2 1.0], mycostf, ...
+  [-5.0 -5.0] , [5.0 5.0], 5 , mystuff );
+s1
 mprintf("Function evaluations: %d\n",mystuff.nb)
 s1 = optimsimplex_destroy ( s1 );
 ]]>
@@ -1925,7 +1905,7 @@ s1 = optimsimplex_destroy ( s1 );
 
     <para>Michael Baudin - INRIA - 2008-2009</para>
 
-    <para>Michael Baudin - Digiteo - 2009</para>
+    <para>Michael Baudin - Digiteo - 2009-2010</para>
   </refsection>
 
   <refsection>

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-10-25 12:01+0000\n"
+"PO-Revision-Date: 2010-05-28 01:39+0000\n"
 "Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -573,7 +573,7 @@ msgid "&Load..."
 msgstr "载入(&L)..."
 
 msgid "&Mailing lists"
-msgstr ""
+msgstr "邮件列表(&M)"
 
 msgid "&Matlab to Scilab translator"
 msgstr "Matlab到Scilab转换器(&M)"
@@ -642,7 +642,7 @@ msgid "&Web links"
 msgstr "网页链接(&W)"
 
 msgid "&Xcos"
-msgstr ""
+msgstr "Xcos(&X)"
 
 msgid "&Zoom"
 msgstr "缩放(&Z)"
@@ -656,7 +656,7 @@ msgid "2D/3D &Rotation"
 msgstr "2D/3D旋转(&R)"
 
 msgid "<Enter color name here>"
-msgstr ""
+msgstr "<请在此输入颜色名>"
 
 msgid "About Scilab..."
 msgstr "关于Scilab..."
@@ -665,13 +665,13 @@ msgid "Acknowledgements"
 msgstr "致谢"
 
 msgid "Add color in listbox"
-msgstr ""
+msgstr "在listbox中添加颜色"
 
 msgid "All %s files"
-msgstr ""
+msgstr "所有 %s 文件"
 
 msgid "All Scilab files"
-msgstr ""
+msgstr "所有Scilab文件"
 
 msgid "All files"
 msgstr "全部文件"
@@ -724,10 +724,10 @@ msgid "C&ut"
 msgstr "剪切(&u)"
 
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 msgid "CeCILL License"
-msgstr ""
+msgstr "CeCILL协议"
 
 msgid "Change Current Directory"
 msgstr "改变当前目录"
@@ -772,10 +772,10 @@ msgid "Copy"
 msgstr "复制"
 
 msgid "Copyright (c) 1989-2007 (ENPC)"
-msgstr ""
+msgstr "版权所有 (c) 1989-2007 (ENPC)"
 
 msgid "Copyright (c) 1989-2010 (INRIA)"
-msgstr ""
+msgstr "版权所有 (c) 1989-2010 (INRIA)"
 
 msgid "Cut"
 msgstr "剪切"
@@ -784,10 +784,10 @@ msgid "Display selection"
 msgstr ""
 
 msgid "Do you really want to quit Scilab?"
-msgstr ""
+msgstr "你真的要退出Scilab么？"
 
 msgid "Edit in the Scilab Text Editor"
-msgstr ""
+msgstr "在Scilab文本编辑器中编辑"
 
 msgid "Encapsulated PostScript image (EPS)"
 msgstr ""
@@ -802,7 +802,7 @@ msgid "Environment saved.\n"
 msgstr "运行环境已被保存\n"
 
 msgid "Error"
-msgstr ""
+msgstr "错误"
 
 msgid "Error on export"
 msgstr "导出时发生错误"
@@ -811,13 +811,13 @@ msgid "Error. A signal has been caught.\n"
 msgstr "错误。已产生一个信号。\n"
 
 msgid "Execute into Scilab"
-msgstr ""
+msgstr "载入Scilab执行"
 
 msgid "Execution done.\n"
 msgstr "执行完毕\n"
 
 msgid "Exit figure"
-msgstr ""
+msgstr "退出Figure"
 
 msgid "Export"
 msgstr "导出"

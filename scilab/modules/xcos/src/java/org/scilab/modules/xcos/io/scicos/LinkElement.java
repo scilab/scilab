@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.types.scilabTypes.ScilabDouble;
 import org.scilab.modules.types.scilabTypes.ScilabMList;
@@ -41,13 +42,15 @@ import com.mxgraph.util.mxPoint;
 public class LinkElement extends AbstractElement<BasicLink> {
 	private static final List<String> DATA_FIELD_NAMES = asList("Link", "xx",
 			"yy", "id", "thick", "ct", "from", "to");
-	
+
 	private static final int XX_INDEX = 1;
 	private static final int YY_INDEX = 2;
 	private static final int CT_INDEX = 5;
 	private static final int FROM_INDEX = 6;
 	private static final int TO_INDEX = 7;
 
+	private static final Log LOG = LogFactory.getLog(LinkElement.class);
+	
 	/** Mutable field to easily get the data through methods */
 	private ScilabMList data;
 	private BasicPort start;
@@ -164,12 +167,14 @@ public class LinkElement extends AbstractElement<BasicLink> {
 			double y = -yAxis[indexes[0]][indexes[1]];
 
 			// Center links
-			x = x + ((start.getGeometry().getX() + end.getGeometry().getX()) / 2.0);
-			y = y + ((start.getGeometry().getY() + end.getGeometry().getY()) / 2.0);
+			x = x
+					+ ((start.getGeometry().getX() + end.getGeometry().getX()) / 2.0);
+			y = y
+					+ ((start.getGeometry().getY() + end.getGeometry().getY()) / 2.0);
 
 			// offset the axis
 			y = y + start.getGeometry().getHeight();
-			
+
 			points.add(new mxPoint(x, y));
 
 			incrementIndexes(indexes, isColumnDominant);
@@ -187,33 +192,82 @@ public class LinkElement extends AbstractElement<BasicLink> {
 	private void searchForPorts(BasicLink link) {
 		final ScilabDouble from = (ScilabDouble) data.get(FROM_INDEX);
 		final ScilabDouble to = (ScilabDouble) data.get(TO_INDEX);
-		
+
 		final double[][] fromReal = from.getRealPart();
 		final double[][] toReal = to.getRealPart();
-		
+
 		final int[] indexes = {0, 0};
 		final boolean isColumnDominant = from.getHeight() >= from.getWidth();
-		
+
 		final int startBlockIndex = (int) fromReal[indexes[0]][indexes[1]];
 		final int endBlockIndex = (int) toReal[indexes[0]][indexes[1]];
 
 		final BasicBlock startBlock = blocks.get(startBlockIndex - 1);
 		final BasicBlock endBlock = blocks.get(endBlockIndex - 1);
-		
+
 		incrementIndexes(indexes, isColumnDominant);
-		
+
 		final int startPortIndex = (int) fromReal[indexes[0]][indexes[1]];
 		final int endPortIndex = (int) toReal[indexes[0]][indexes[1]];
 
-		final Class< ? extends BasicPort> startKlass = LinkPortMap.getPortClass(
-				link.getClass(), true);
-		final Class< ? extends BasicPort> endKlass = LinkPortMap.getPortClass(
-				link.getClass(), false);
+		incrementIndexes(indexes, isColumnDominant);
 
-		start = BasicBlockInfo.getAllTypedPorts(startBlock, false, startKlass)
-				.get(startPortIndex - 1);
-		end = BasicBlockInfo.getAllTypedPorts(endBlock, false, endKlass).get(
-				endPortIndex - 1);
+		final boolean startPortIsStart;
+		if (canGet(from, indexes)) {
+			startPortIsStart = fromReal[indexes[0]][indexes[1]] == 0.0;
+		} else {
+			startPortIsStart = true;
+		}
+
+		final boolean endPortIsStart;
+		if (canGet(to, indexes)) {
+			endPortIsStart = toReal[indexes[0]][indexes[1]] == 0.0;
+		} else {
+			endPortIsStart = false;
+		}
+
+		Class< ? extends BasicPort> startKlass = LinkPortMap.getPortClass(
+				link.getClass(), startPortIsStart);
+		Class< ? extends BasicPort> endKlass = LinkPortMap.getPortClass(
+				link.getClass(), endPortIsStart);
+
+		start = null;
+		end = null;
+		try {
+			start = BasicBlockInfo.getAllTypedPorts(startBlock, false,
+					startKlass).get(startPortIndex - 1);
+			end = BasicBlockInfo.getAllTypedPorts(endBlock, false, endKlass)
+					.get(endPortIndex - 1);
+		} catch (java.lang.IndexOutOfBoundsException e) {
+			// implicit links can be inverted but this is exceptional so trace
+			// them
+			if (LOG.isDebugEnabled()) {
+				final Class< ? extends BasicPort> current;
+				final BasicBlock block;
+				final int index;
+				if (start == null) {
+					current = startKlass;
+					block = startBlock;
+					index = startPortIndex;
+				} else {
+					current = endKlass;
+					block = endBlock;
+					index = endPortIndex;
+				}
+
+				LOG.debug("Unable to get " + block.getSimulationFunctionName()
+						+ '.' + current.getSimpleName() + "[" + index + "]");
+			}
+			
+			startKlass = LinkPortMap.getPortClass(
+					link.getClass(), !startPortIsStart);
+			start = BasicBlockInfo.getAllTypedPorts(startBlock, false,
+					startKlass).get(startPortIndex - 1);
+			endKlass = LinkPortMap.getPortClass(
+					link.getClass(), !endPortIsStart);
+			end = BasicBlockInfo.getAllTypedPorts(endBlock, false,
+					endKlass).get(endPortIndex - 1);
+		}
 	}
 
 	/**
@@ -237,7 +291,7 @@ public class LinkElement extends AbstractElement<BasicLink> {
 
 		// we test if the structure as enough field
 		if (data.size() != DATA_FIELD_NAMES.size()) {
-			throw new WrongStructureException();
+			throw new WrongStructureException(DATA_FIELD_NAMES);
 		}
 
 		/*
@@ -246,60 +300,60 @@ public class LinkElement extends AbstractElement<BasicLink> {
 
 		// Check the first field
 		if (!(data.get(field) instanceof ScilabString)) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
 		final String[] header = ((ScilabString) data.get(field)).getData()[0];
 
 		// Checking for the field names
 		if (header.length != DATA_FIELD_NAMES.size()) {
-			throw new WrongStructureException();
+			throw new WrongStructureException(DATA_FIELD_NAMES);
 		}
 		for (int i = 0; i < header.length; i++) {
 			if (!header[i].equals(DATA_FIELD_NAMES.get(i))) {
-				throw new WrongStructureException();
+				throw new WrongStructureException(DATA_FIELD_NAMES);
 			}
 		}
 
 		// xx
 		field++;
 		if (!(data.get(field) instanceof ScilabDouble)) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
 
 		// yy
 		field++;
 		if (!(data.get(field) instanceof ScilabDouble)) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
 
 		// id
 		field++;
 		if (!(data.get(field) instanceof ScilabString)) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
 
 		// thick
 		field++;
 		if (!(data.get(field) instanceof ScilabDouble)) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
 
 		// ct
 		field++;
 		if (!(data.get(field) instanceof ScilabDouble)) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
 
 		// from
 		field++;
 		if (!(data.get(field) instanceof ScilabDouble)) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
 
 		// to
 		field++;
 		if (!(data.get(field) instanceof ScilabDouble)) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
 	}
 
@@ -346,7 +400,7 @@ public class LinkElement extends AbstractElement<BasicLink> {
 
 		final mxGeometry srcGeom = start.getGeometry();
 		final mxGeometry endGeom = end.getGeometry();
-		
+
 		// xx and yy
 		encodePoints(from, srcGeom, endGeom);
 
@@ -367,6 +421,7 @@ public class LinkElement extends AbstractElement<BasicLink> {
 		double toBlockID = ((BasicBlock) end.getParent()).getOrdering();
 		double toPortID = end.getOrdering();
 		double toType = LinkPortMap.isStart(end);
+
 		double[][] toData = {{toBlockID, toPortID, toType}};
 		data.add(new ScilabDouble(toData)); // to
 
@@ -375,26 +430,31 @@ public class LinkElement extends AbstractElement<BasicLink> {
 
 	/**
 	 * Encode the link points
-	 * @param from the source instance
-	 * @param srcGeom the source geometry
-	 * @param endGeom the target geometry
+	 * 
+	 * @param from
+	 *            the source instance
+	 * @param srcGeom
+	 *            the source geometry
+	 * @param endGeom
+	 *            the target geometry
 	 */
 	private void encodePoints(BasicLink from, final mxGeometry srcGeom,
 			final mxGeometry endGeom) {
 		final int ptCount = from.getPointCount();
 		final List<mxPoint> lnkPoints = from.getGeometry().getPoints();
-		
+
 		double[][] xx = new double[2 + ptCount][1];
 		double[][] yy = new double[2 + ptCount][1];
-		
+
 		/*
 		 * Start point
 		 */
-		xx[0][0] = srcGeom.getCenterX()	+ start.getParent().getGeometry().getX();
+		xx[0][0] = srcGeom.getCenterX()
+				+ start.getParent().getGeometry().getX();
 		yy[0][0] = -(srcGeom.getCenterY()
 				+ start.getParent().getGeometry().getY() - start.getParent()
 				.getGeometry().getHeight());
-		
+
 		/*
 		 * Control points
 		 */
@@ -402,15 +462,16 @@ public class LinkElement extends AbstractElement<BasicLink> {
 			xx[1 + i][0] = ((mxPoint) lnkPoints.get(i)).getX();
 			yy[1 + i][0] = -((mxPoint) lnkPoints.get(i)).getY();
 		}
-		
+
 		/*
 		 * End point
 		 */
-		xx[1 + ptCount][0] = endGeom.getCenterX() + end.getParent().getGeometry().getX();
+		xx[1 + ptCount][0] = endGeom.getCenterX()
+				+ end.getParent().getGeometry().getX();
 		yy[1 + ptCount][0] = -(endGeom.getCenterY()
 				+ end.getParent().getGeometry().getY() - end.getParent()
 				.getGeometry().getHeight());
-		
+
 		data.add(new ScilabDouble(xx));
 		data.add(new ScilabDouble(yy));
 	}
