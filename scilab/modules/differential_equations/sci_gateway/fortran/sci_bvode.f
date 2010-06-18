@@ -14,6 +14,7 @@ c      implicit undefined (a-z)
 c     -----------------------------------------------------
       include 'stack.h'
       character*(*) fname
+      character tmpbuf * (bsiz)      
       character*(nlgh+1)   efsub,edfsub,egsub,edgsub,eguess
       integer    kfsub,kdfsub,kgsub,kdgsub,kguess,topk
       external   fsub,dfsub,gsub,dgsub,dguess
@@ -40,8 +41,8 @@ c
 
 c
       if (ddt .eq. 4) then
-         write(buf(1:4),'(i4)') fin
-         call basout(io,wte,' bva '//buf(1:4))
+         write(tmpbuf(1:4),'(i4)') fin
+         call basout(io,wte,' bva '//tmpbuf(1:4))
       endif
 c
 c     fin  1

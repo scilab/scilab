@@ -14,19 +14,18 @@
 #ifndef __GW_SPECIAL_FUNCTIONS__
 #define __GW_SPECIAL_FUNCTIONS__
 /*--------------------------------------------------------------------------*/ 
-#include "machine.h"
-#include "api_scilab.h"
+#include "dynlib_special_functions.h"
 /*--------------------------------------------------------------------------*/ 
-int gw_special_functions1(void);
+SPECIAL_FUNCTIONS_IMPEXP int gw_special_functions1(void);
 /*--------------------------------------------------------------------------*/ 
-int C2F(sci_oldbesseli)(char *fname,unsigned long fname_len);
-int C2F(sci_oldbesselj)(char *fname,unsigned long fname_len);
-int C2F(sci_oldbesselk)(char *fname,unsigned long fname_len);
-int C2F(sci_oldbessely)(char *fname,unsigned long fname_len);
-int C2F(sci_gamma)(char *fname,unsigned long fname_len);
-int C2F(sci_lgamma)(char *fname,unsigned long fname_len);
-int C2F(sci_dlgamma)(char *fname,unsigned long fname_len);
-int C2F(sci_calerf)(char *fname,unsigned long fname_len);
+int sci_oldbesseli(char *fname,unsigned long fname_len);
+int sci_oldbesselj(char *fname,unsigned long fname_len);
+int sci_oldbesselk(char *fname,unsigned long fname_len);
+int sci_oldbessely(char *fname,unsigned long fname_len);
+int sci_gamma(char *fname,unsigned long fname_len);
+int sci_lgamma(char *fname,unsigned long fname_len);
+int sci_dlgamma(char *fname,unsigned long fname_len);
+int sci_calerf(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/ 
 #endif /*  __GW_SPECIAL_FUNCTIONS__ */
 /*--------------------------------------------------------------------------*/

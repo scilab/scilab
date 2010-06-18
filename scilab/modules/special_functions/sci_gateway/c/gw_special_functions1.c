@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2008 - INRIA
+ * Copyright (C) 2010 - DIGITEO - Allan CORNET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -18,21 +19,21 @@
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] = 
 { 
-  {C2F(sci_oldbesseli),"oldbesseli"},
-  {C2F(sci_oldbesselj), "oldbesselj"},
-  {C2F(sci_oldbesselk),"oldbesselk"},
-  {C2F(sci_oldbessely),"oldbessely"},
-  {C2F(sci_gamma),"gamma"},
-  {C2F(sci_lgamma),"gammaln"},
-  {C2F(sci_dlgamma),"dlgamma"},
-  {C2F(sci_calerf),"calerf"}
+    {sci_oldbesseli,"oldbesseli"},
+    {sci_oldbesselj, "oldbesselj"},
+    {sci_oldbesselk,"oldbesselk"},
+    {sci_oldbessely,"oldbessely"},
+    {sci_gamma,"gamma"},
+    {sci_lgamma,"gammaln"},
+    {sci_dlgamma,"dlgamma"},
+    {sci_calerf,"calerf"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_special_functions1(void)
 {
-	Rhs = Max(0, Rhs);
+    Rhs = Max(0, Rhs);
 
-	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
-	return 0;
+    callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

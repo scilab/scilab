@@ -12,6 +12,7 @@
  */
 #include "GetFunctionByName.h"
 #include "machine.h"
+#include "dynlib_differential_equations.h"
 
 extern int C2F(getcodc)(int *nd1, int *iflag1);
 
@@ -30,8 +31,9 @@ extern void C2F(fcd)(ARGS_fydot2);
 extern void C2F(fcd1)(ARGS_fydot2);
 extern void C2F(phis)(ARGS_fydot2);
 extern void C2F(phit)(ARGS_fydot2);
-void C2F(fydot2)(ARGS_fydot2f);
-void C2F(setfydot2)(char *name, int *rep);
+
+DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(fydot2)(ARGS_fydot2f);
+DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(setfydot2)(char *name, int *rep);
 
 FTAB FTab_fydot2[] =
 {

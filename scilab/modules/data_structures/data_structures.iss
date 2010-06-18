@@ -18,6 +18,9 @@
 ;
 #define DATASTRUCT "data_structures"
 ;
+Source: bin\{#DATASTRUCT}_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#DATASTRUCT}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#DATASTRUCT}\VERSION.xml; DestDir: {app}\modules\{#DATASTRUCT}; Components: {#COMPN_SCILAB}
 Source: modules\{#DATASTRUCT}\readme.txt; DestDir: {app}\modules\{#DATASTRUCT}; Components: {#COMPN_SCILAB}
 Source: modules\{#DATASTRUCT}\license.txt; DestDir: {app}\modules\{#DATASTRUCT}; Components: {#COMPN_SCILAB}

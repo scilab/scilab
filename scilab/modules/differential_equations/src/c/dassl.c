@@ -13,6 +13,7 @@
 
 /* C driver over ddassl to handle longjump from xerhlt*/
 #include "xerhlt.h"
+#include "dynlib_differential_equations.h"
 
 
 extern void C2F(ddassl)(void *res, int *neq, double *t, double *y, double *yprime, 
@@ -21,7 +22,7 @@ extern void C2F(ddassl)(void *res, int *neq, double *t, double *y, double *yprim
 			double *rpar, int *ipar, void *jac);
 
 
-void  C2F(dassl)(void *res, int *neq, double *t, double *y, double *yprime, double *tout, 
+DIFFERENTIAL_EQUATIONS_IMPEXP void  C2F(dassl)(void *res, int *neq, double *t, double *y, double *yprime, double *tout, 
 	    int *info, double *rtol, double *atol, int *idid, double *rwork, 
 				 int *lrw, int *iwork, int *liw, double *rpar, int *ipar, void *jac);
 

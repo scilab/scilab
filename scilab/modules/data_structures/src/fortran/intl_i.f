@@ -14,6 +14,7 @@ c
 c     Copyright INRIA
       include 'stack.h'
 c
+      character tmpbuf * (bsiz)
       integer vol1,vol2,vol3,volv
       integer top3,top2,top1
 
@@ -24,8 +25,8 @@ c
       sadr(l)=(l/2)+1
 c
       if (ddt .eq. 4) then
-         write(buf(1:8),'(2i4)') pt,rstk(pt)
-         call basout(io,wte,' intl_i   pt:'//buf(1:4)//' rstk(pt):'
+         write(tmpbuf(1:8),'(2i4)') pt,rstk(pt)
+         call basout(io,wte,' intl_i   pt:'//tmpbuf(1:4)//' rstk(pt):'
      &        //buf(5:8))
       endif
 c

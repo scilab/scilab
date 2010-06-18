@@ -19,6 +19,7 @@ c
 c     
       common/ierode/iero
 c     
+      character tmpbuf * (bsiz) 
       logical allowptr
       double precision t, y(*),ydot(*),res(*),rpar(*),cj
       integer ipar(*)
@@ -29,8 +30,8 @@ c
       sadr(l)=(l/2)+1
 c
       if (ddt .eq. 4) then
-         write(buf(1:12),'(3i4)') top,r,sym
-         call basout(io,wte,' bjacd  top:'//buf(1:4))
+         write(tmpbuf(1:12),'(3i4)') top,r,sym
+         call basout(io,wte,' bjacd  top:'//tmpbuf(1:4))
       endif
 c     
 c     nordre est le numero d'ordre de cet external dans la structure

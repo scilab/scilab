@@ -16,7 +16,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intsbesselj)(char *id,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_oldbesselj)(char *fname,unsigned long fname_len)
+int sci_oldbesselj(char *fname,unsigned long fname_len)
 {
 	C2F(intsbesselj)(fname,fname_len);
 	return 0;

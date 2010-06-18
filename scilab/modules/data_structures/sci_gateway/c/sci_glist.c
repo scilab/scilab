@@ -16,7 +16,7 @@
 extern int C2F(gratyp)(); /* fortran */
 extern int C2F(mtlist)(); /* fortran */
 /*--------------------------------------------------------------------------*/
-int C2F(sci_glist)(char *fname,unsigned long fname_len)
+int sci_glist(char *fname,unsigned long fname_len)
 {
     C2F(mtlist)(C2F(gratyp));
 	return 0;

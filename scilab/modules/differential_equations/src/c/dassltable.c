@@ -12,6 +12,7 @@
  */
 #include "GetFunctionByName.h"
 #include "machine.h"
+#include "dynlib_differential_equations.h"
 /***********************************
 * Search Table for dassl 
 ***********************************/
@@ -38,8 +39,9 @@ extern void C2F(dres1)(ARGS_fresd);
 extern void C2F(dres2)(ARGS_fresd);
 extern void C2F(res1)(ARGS_fresd);
 extern void C2F(res2)(ARGS_fresd);
-void C2F(fresd)(ARGS_fresd);
-void C2F(setfresd)(char *name, int *rep);
+
+DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(fresd)(ARGS_fresd);
+DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(setfresd)(char *name, int *rep);
 
 FTAB FTab_fresd[] =
 {
@@ -54,8 +56,9 @@ FTAB FTab_fresd[] =
 extern void C2F(djac1)(ARGS_fjacd);
 extern void C2F(djac2)(ARGS_fjacd);
 extern void C2F(jac2)(ARGS_fjacd);
-void C2F(fjacd)(ARGS_fjacd);
-void C2F(setfjacd)(char *name, int *rep);
+
+DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(fjacd)(ARGS_fjacd);
+DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(setfjacd)(char *name, int *rep);
 
 FTAB FTab_fjacd[] =
 {
@@ -67,16 +70,17 @@ FTAB FTab_fjacd[] =
 
 
 /**************** fsurf ***************/
-void C2F(fsurf)(ARGS_fsurf);
-void C2F(setfsurf)(char *name, int *rep);
+DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(fsurf)(ARGS_fsurf);
+DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(setfsurf)(char *name, int *rep);
 
 FTAB FTab_fsurf[] ={
 {(char *) 0, (voidf) 0}};
 /**************** fsurfd ***************/
 extern void C2F(gr1)(ARGS_fsurfd);
 extern void C2F(gr2)(ARGS_fsurfd);
-void C2F(fsurfd)(ARGS_fsurfd);
-void C2F(setfsurfd)(char *name, int *rep);
+
+DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(fsurfd)(ARGS_fsurfd);
+DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(setfsurfd)(char *name, int *rep);
 
 FTAB FTab_fsurfd[] ={
 {"gr1", (voidf)  C2F(gr1)},

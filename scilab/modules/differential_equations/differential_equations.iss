@@ -18,6 +18,9 @@
 ;
 #define DIFFEQU "differential_equations"
 ;
+Source: bin\{#DIFFEQU}_f.dll; DestDir: {app}\bin; Components: {#COMPN_EQUDIF}
+Source: bin\{#DIFFEQU}.dll; DestDir: {app}\bin; Components: {#COMPN_EQUDIF}
+;
 Source: modules\{#DIFFEQU}\VERSION.xml; DestDir: {app}\modules\{#DIFFEQU}; Components: {#COMPN_EQUDIF}
 Source: modules\{#DIFFEQU}\readme.txt; DestDir: {app}\modules\{#DIFFEQU}; Components: {#COMPN_EQUDIF}
 Source: modules\{#DIFFEQU}\license.txt; DestDir: {app}\modules\{#DIFFEQU}; Components: {#COMPN_EQUDIF}

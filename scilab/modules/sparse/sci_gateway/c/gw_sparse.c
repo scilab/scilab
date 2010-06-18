@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
+ * Copyright (C) 2010 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,37 +17,37 @@
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[]=
 {
-	{C2F(sci_sparsefunc),"sparse"},
-	{C2F(sci_spget),"spget"},
-	{C2F(sci_full),"full"},
-	{C2F(sci_lufact),"lufact"},
-	{C2F(sci_lusolve),"lusolve"},
-	{C2F(sci_ludel),"ludel"},
-	{C2F(sci_luget),"luget"},
-	{C2F(sci_spclean),"spclean"},
-	{C2F(sci_nnz),"nnz"},
-	{C2F(sci_spmax),"spmax"},
-	{C2F(sci_spmin),"spmin"},
-	{C2F(sci_spmatrix),"spmatrix"},
-	{C2F(sci_spchol),"spchol"},
-	{C2F(sci_fadj2sp),"fadj2sp"},
-	{C2F(sci_spcompa),"spcompa"},
-	{C2F(sci_ordmmd),"ordmmd"},
-	{C2F(sci_blkfc1i),"blkfc1i"},
-	{C2F(sci_blkslvi),"blkslvi"},
-	{C2F(sci_inpnvi),"inpnvi"},
-	{C2F(sci_sfinit),"sfinit"},
-	{C2F(sci_symfcti),"symfcti"},
-	{C2F(sci_bfinit),"bfinit"},
-	{C2F(sci_msparse),"msparse"},
-	{C2F(sci_mspget),"mspget"},
-	{C2F(sci_mfull),"mfull"},
-	{C2F(scita2lpd),"ta2lpd"}
+    {sci_sparsefunc, "sparse"},
+    {sci_spget, "spget"},
+    {sci_full, "full"},
+    {sci_lufact, "lufact"},
+    {sci_lusolve, "lusolve"},
+    {sci_ludel, "ludel"},
+    {sci_luget, "luget"},
+    {sci_spclean, "spclean"},
+    {sci_nnz, "nnz"},
+    {sci_spmax, "spmax"},
+    {sci_spmin, "spmin"},
+    {sci_spmatrix, "spmatrix"},
+    {sci_spchol, "spchol"},
+    {sci_fadj2sp, "fadj2sp"},
+    {sci_spcompa, "spcompa"},
+    {sci_ordmmd, "ordmmd"},
+    {sci_blkfc1i, "blkfc1i"},
+    {sci_blkslvi, "blkslvi"},
+    {sci_inpnvi, "inpnvi"},
+    {sci_sfinit, "sfinit"},
+    {sci_symfcti, "symfcti"},
+    {sci_bfinit, "bfinit"},
+    {sci_msparse, "msparse"},
+    {sci_mspget, "mspget"},
+    {sci_mfull, "mfull"},
+    {C2F(scita2lpd), "ta2lpd"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_sparse(void)
 {  
-	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
-	return 0;
+    callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
