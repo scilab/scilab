@@ -57,6 +57,12 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
 	this.container = container;
     }
 
+	/**
+	 * Concatenate all the parent diagrams context to get the full variables
+	 * definitions in one String array.
+	 * 
+	 * @return the context available on this diagram
+	 */
     public String[] buildEntireContext() {
 	
 	String[] parentContext = getContainer().getParentDiagram().getScicosParameters().getContext();
@@ -73,13 +79,18 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
 	return entireContext;
     }
     
+    /**
+     * Close the current diagram.
+     * 
+     * @see org.scilab.modules.xcos.graph.XcosDiagram#closeDiagram()
+     */
+	@Override
     public void closeDiagram() {
 	getContainer().closeBlockSettings();
     }
 
     /**
-     * @author Antoine ELIAS
-     *
+     * Listener for SuperBlock diagram events.
      */
     private static final class GenericSuperBlockListener implements mxIEventListener {
 	private static GenericSuperBlockListener instance;
@@ -102,6 +113,12 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
 	    return instance;
 	}
 	
+	/**
+	 * Update the IOPorts colors and values.
+	 * @param arg0 the source
+	 * @param arg1 the event data
+	 * @see com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object, com.mxgraph.util.mxEventObject)
+	 */
 	public void invoke(Object arg0, mxEventObject arg1) {
 	    ((SuperBlockDiagram) arg0).getContainer().updateAllBlocksColor();
 	    ((SuperBlockDiagram) arg0).getContainer().updateExportedPort();	    
@@ -134,6 +151,7 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
      * modified state or not.
      * @param modified status
      */
+	@Override
     public void setModified(boolean modified) {
         super.setModified(modified);
 

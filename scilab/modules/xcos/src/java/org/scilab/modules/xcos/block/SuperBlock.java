@@ -252,6 +252,7 @@ public final class SuperBlock extends BasicBlock {
 	/**
 	 * @param graph parent diagram
 	 */
+	@Override
 	public void openContextMenu(ScilabGraph graph) {
 		ContextMenu menu = null;
 
