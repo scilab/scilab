@@ -11,6 +11,7 @@
  */
 
 package org.scilab.modules.xcos.simulink;
+import java.math.BigInteger;
 import java.util.Iterator;
 
 import javax.xml.bind.JAXBContext;
@@ -30,6 +31,8 @@ import org.scilab.modules.xcos.simulink.patterns.BlockPalette;
 import org.scilab.modules.xcos.simulink.patterns.Int2StrParameters;
 import org.scilab.modules.xcos.simulink.patterns.IntegerParameters;
 import org.scilab.modules.xcos.simulink.patterns.IntegerValueMap;
+import org.scilab.modules.xcos.simulink.patterns.RealParameters;
+import org.scilab.modules.xcos.simulink.patterns.RealValueMap;
 import org.scilab.modules.xcos.simulink.patterns.SimpleParameter;
 import org.scilab.modules.xcos.simulink.patterns.Str2IntParameters;
 import org.scilab.modules.xcos.simulink.patterns.Str2IntValueMap;
@@ -376,7 +379,25 @@ public class PatternElement {
 		return null;
 	}
 	public ScilabType decodeRealParameters(SimulinkBlock data) {
-		// TODO Auto-generated method stub
+		double[][] rparData;
+		if(currentBlock.getSim().equals(data.getName())){
+			Iterator<RealParameters> realParamIter = currentBlock.getReal().iterator();
+			while (realParamIter.hasNext()){
+				RealParameters realParam = realParamIter.next();
+				/*
+				 * Check if rpar
+				 */
+				if(realParam.getXcos().contentEquals("rpar")){
+					Iterator<RealValueMap> valueMapIter = realParam.getParMap().iterator();
+					rparData=new double[1][10]; //FIXME: add count to realParameters
+					while (valueMapIter.hasNext()){
+						RealValueMap valueMap = valueMapIter.next();
+						rparData[1][valueMap.getXcosIndex().intValue()] = Double.parseDouble(data.getParameter(valueMap.getSimName()));
+					}
+					return new ScilabDouble(rparData);
+				}
+			}
+		}
 		return null;
 	}
 
