@@ -9,7 +9,7 @@
 	
 	<xsd:complexType name="GeneralParameters">
 	  <xsd:sequence>
-	    <xsd:element name="string" type="StringParameter" minOccurs="0" maxOccurs="unbounded"/>
+	    <xsd:element name="string" type="StringParameters" minOccurs="0" maxOccurs="unbounded"/>
 	    <xsd:element name="integer" type="IntegerParameters" minOccurs="0" maxOccurs="unbounded"/>
 	    <xsd:element name="simple" type="SimpleParameter" minOccurs="0" maxOccurs="unbounded"/>
 	  </xsd:sequence>
@@ -24,7 +24,7 @@
 	<!-- parameter won't be found in Block scope, It'll be searched among general parameters. This way it will be possible to shadow parameter -->
 	<xsd:complexType name="Block">
 	  <xsd:sequence>
-	    <xsd:element name="string" type="StringParameter" minOccurs="0" maxOccurs="unbounded"/>
+	    <xsd:element name="string" type="StringParameters" minOccurs="0" maxOccurs="unbounded"/>
 	    <xsd:element name="integer" type="IntegerParameters" minOccurs="0" maxOccurs="unbounded"/>
 	    <xsd:element name="simple" type="SimpleParameter" minOccurs="0" maxOccurs="unbounded"/>
 	    <xsd:element name="str2int" type="Str2IntParameters" minOccurs="0" maxOccurs="unbounded"/>
@@ -41,7 +41,7 @@
 	    <xsd:attribute name="description" type="xsd:string" use="optional"/>
 	 </xsd:complexType>
 	<!-- parameters that in name, and have different string values ex:CSCOPE SCOPE -->
-	<xsd:complexType name="StringParameter">
+	<xsd:complexType name="StringParameters">
 	  <xsd:sequence>
 	    <xsd:element name="parMap" type="StringValueMap" minOccurs="1" maxOccurs="unbounded"/>
 	  </xsd:sequence>
