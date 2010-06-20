@@ -36,6 +36,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 	private SimulinkBlock base;
 	private BlockGraphicElement graphicElement = new BlockGraphicElement();
 	private BlockSpecificElement specificElement = new BlockSpecificElement();
+	private BlockModelElement modelElement = new BlockModelElement();
 	private static final Log LOG = LogFactory.getLog(BlockElement.class);
 	
 	/** Map from index to blocks */
@@ -87,6 +88,11 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 		 */
 		graphicElement.decode(base, block);
 		specificElement.decode(base, block);
+		/*try {
+			//FIXME: modelElement.decode(base, block);
+		} catch(SimulinkFormatException se) {
+			LogFactory.getLog(BlockElement.class).error(se);
+		}*/
 		/*
 		 * recursively decode all of the Block subBlocks
 		 */

@@ -23,14 +23,19 @@ import javax.xml.transform.stream.StreamSource;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.jvm.utils.ScilabConstants;
+import org.scilab.modules.types.scilabTypes.ScilabDouble;
+import org.scilab.modules.types.scilabTypes.ScilabType;
 import org.scilab.modules.xcos.simulink.patterns.Block;
 import org.scilab.modules.xcos.simulink.patterns.BlockPalette;
 import org.scilab.modules.xcos.simulink.patterns.Int2StrParameters;
 import org.scilab.modules.xcos.simulink.patterns.IntegerParameters;
+import org.scilab.modules.xcos.simulink.patterns.IntegerValueMap;
 import org.scilab.modules.xcos.simulink.patterns.SimpleParameter;
 import org.scilab.modules.xcos.simulink.patterns.Str2IntParameters;
 import org.scilab.modules.xcos.simulink.patterns.Str2IntValueMap;
 import org.scilab.modules.xcos.simulink.patterns.StringParameters;
+
+import edu.tum.cs.simulink.model.SimulinkBlock;
 
 public class PatternElement {
 	private static final Log LOG = LogFactory.getLog(PatternElement.class);
@@ -39,7 +44,7 @@ public class PatternElement {
 	private BlockPalette blocks;
 	
 	/**
-	 * Function reading compatibility patterns to BlockPalette object
+	 * General version of patternElement initialization
 	 */
 	public PatternElement(){
 	try{
@@ -59,11 +64,48 @@ public class PatternElement {
 		LogFactory.getLog(PatternElement.class).error(je);
 	}
 	}
+	/*
+	 * block that compatibility patterns are being processed for
+	 */
+	private Block currentBlock;
+	/*
+	 * block containing all general parameters
+	 */
+	private Block generalParameters;
+	/**
+	 * specific block patternElement initialization
+	 * @param simulinkBlockName
+	 */
+	public PatternElement(String simulinkBlockName){
+		try{
+			JAXBContext jc = JAXBContext.newInstance( "org.scilab.modules.xcos.simulink.patterns" );
+			Unmarshaller u = jc.createUnmarshaller();
+			//FIXME: now you have to manually copy compatibility pattern to SCIHOME
+			JAXBElement<BlockPalette> element = u.unmarshal(
+					new StreamSource(ScilabConstants.SCIHOME + "/simulinkImportBlocks.xml"),
+					BlockPalette.class );
+			blocks = element.getValue();
+		} catch( UnmarshalException ue ) {
+			LogFactory.getLog(PatternElement.class).error(ue);
+		} catch( JAXBException je ) {
+			LogFactory.getLog(PatternElement.class).error(je);
+		}
+		Iterator<Block> blockIter = blocks.getBlock().iterator();
+		while (blockIter.hasNext()){
+			Block block = blockIter.next();
+			if(block.getSim().contentEquals(simulinkBlockName)){
+				currentBlock = block;
+			}
+			if(block.getSim().contentEquals("GeneralParameters")){
+				generalParameters = block;
+			}
+		}
+	}
 	
 	/**
 	 * Function without target functionality yet
 	 * @param String paramName;
-	 * @return respondend Xcos parameterName
+	 * @return responded Xcos parameterName
 	 */
 	public String decode(String simulinkBlockName, String paramName, String simulinkValue){
 		try{
@@ -71,6 +113,7 @@ public class PatternElement {
 			while (blockIter.hasNext()){
 				Block block = blockIter.next();
 				if(block.getSim().contentEquals(simulinkBlockName)){
+					//TODO: check also in generals section
 					/*
 					 * checking simple parameters
 					 */
@@ -88,8 +131,14 @@ public class PatternElement {
 					while (integerParamIter.hasNext()){
 						IntegerParameters integerParam = integerParamIter.next();
 						if(integerParam.getSim().contentEquals(paramName)){
-							return integerParam.getXcos();
-						}
+							String returnValue = integerParam.getXcos() + ": ";
+							Iterator<IntegerValueMap> valueMapIter = integerParam.getParMap().iterator();
+							//while (valueMapIter.hasNext()){
+								returnValue += simulinkValue;
+							//}
+							//TODO: enable compatibility patterns
+							return returnValue;
+							}
 					}
 					/*
 					 * checking string parameters
@@ -217,5 +266,132 @@ public class PatternElement {
 				LogFactory.getLog(PatternElement.class).error(e1);
 			}
 		}
+	}
+	/**
+	 * For now I'm using simple parameter for translating FunctionName and FunctionType
+	 * @param data
+	 * @return
+	 */
+	public String decodeFunctionName(SimulinkBlock data) {
+		/*
+		 * Check if current block is well initialized for coresponding SimulinkBlock
+		 */
+		if(currentBlock.getSim().equals(data.getName())){
+			Iterator<SimpleParameter> simpleParamIter = currentBlock.getSimple().iterator();
+			while (simpleParamIter.hasNext()){
+				SimpleParameter simpleParam = simpleParamIter.next();
+				if(simpleParam.getSim().contentEquals("FunctionType")){
+					return simpleParam.getXcos();
+				}
+			}
+		}
+		return null;
+	}
+	/**
+	 * As the Simulink blocks don't have explicit function types as xcos ones,
+	 *  this function resolves function type from additional info from compatibility pattern
+	 * @param data
+	 * @return
+	 */
+	public int decodeFunctionType(SimulinkBlock data) {
+		/*
+		 * Check if current block is well initialized for coresponding SimulinkBlock
+		 */
+		if(currentBlock.getSim().equals(data.getName())){
+			Iterator<SimpleParameter> simpleParamIter = currentBlock.getSimple().iterator();
+			while (simpleParamIter.hasNext()){
+				SimpleParameter simpleParam = simpleParamIter.next();
+				if(simpleParam.getSim().contentEquals("FunctionType")){
+					try {
+					return Integer.parseInt(simpleParam.getXcos());
+					} catch(NumberFormatException ne) {
+						LogFactory.getLog(PatternElement.class).error(ne);
+					}
+				}
+			}
+		}
+		return 0;
+	}
+
+	public ScilabType decodeState(SimulinkBlock data) {
+		// TODO Auto-generated method stub
+		// what parameters are set as state
+		return null;
+	}
+
+	public ScilabType decodeDState(SimulinkBlock data) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ScilabType decodeODState(SimulinkBlock data) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String decodeBlockType(SimulinkBlock data) {
+		/*
+		 * Check if current block is well initialized for coresponding SimulinkBlock
+		 */
+		if(currentBlock.getSim().equals(data.getName())){
+			Iterator<SimpleParameter> simpleParamIter = currentBlock.getSimple().iterator();
+			while (simpleParamIter.hasNext()){
+				SimpleParameter simpleParam = simpleParamIter.next();
+				if(simpleParam.getSim().contentEquals("BlockType")){
+					return simpleParam.getXcos();
+				}
+			}
+		}
+		return null;
+	}
+
+	public Object decodeNbZerosCrossing(SimulinkBlock data) {
+		/*
+		 * Check if current block is well initialized for coresponding SimulinkBlock
+		 */
+		if(currentBlock.getSim().equals(data.getName())){
+			Iterator<Str2IntParameters> str2intParamIter = currentBlock.getStr2Int().iterator();
+			while (str2intParamIter.hasNext()){
+				Str2IntParameters str2intParam = str2intParamIter.next();
+				/*
+				 * Check if nzcross enabled
+				 */
+				if(str2intParam.getXcos().contentEquals("nzcross")){
+					String nzcross = data.getParameter(str2intParam.getSim());
+					Iterator<Str2IntValueMap> valueMapIter = str2intParam.getParMap().iterator();
+					while (valueMapIter.hasNext()){
+						Str2IntValueMap valueMap = valueMapIter.next();
+						if(valueMap.getSimVal().contentEquals(nzcross)){
+							return valueMap.getXcosVal();
+						}
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+	public Object decodeNmode(SimulinkBlock data) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public ScilabType decodeRealParameters(SimulinkBlock data) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ScilabType decodeIntegerParameters(SimulinkBlock data) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ScilabType decodeObjectsParameters(SimulinkBlock data) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ScilabType decodeEquations(SimulinkBlock data) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

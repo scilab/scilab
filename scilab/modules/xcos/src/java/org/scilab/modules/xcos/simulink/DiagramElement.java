@@ -69,6 +69,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 				LOG.trace(paramName + ": " + base.getParameter(paramName));
 			}
 		}
+		diag.setTitle(base.getName());
 		decodeObjs(diag);
 	}
 	
@@ -97,7 +98,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 			} 
 			
 			if (cell != null) {
-				diag.addCell(cell);
+				//FIXME: diag.addCell(cell);
 			}
 			i++;
 		}
@@ -117,6 +118,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 			} 
 			
 			if (cell != null) {
+				//FIXME:
 				diag.addCell(cell);
 			}
 			i++;

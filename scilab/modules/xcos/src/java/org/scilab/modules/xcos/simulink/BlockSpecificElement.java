@@ -14,6 +14,7 @@ package org.scilab.modules.xcos.simulink;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.scilab.modules.types.scilabTypes.ScilabString;
 import org.scilab.modules.xcos.block.BasicBlock;
 
 import edu.tum.cs.commons.collections.UnmodifiableIterator;
@@ -43,9 +44,14 @@ public class BlockSpecificElement {
 		/*
 		 * fill the data
 		 */
+		fillSpecificParameters(base);
 		//findCorrespondingParameter(string simulinkParameter);
 		
 		return into;
+	}
+
+	private void fillSpecificParameters(BasicBlock base) {
+		
 	}
 
 	private void validate() {
