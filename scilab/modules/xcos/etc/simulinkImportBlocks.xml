@@ -119,6 +119,20 @@
 			</str2int>
 		</block>
 		<!-- StateSpace Block compatibility pattern -->
+		<block sim="StateSpace" xcos="CLSS" description="">
+			<simple sim="FunctionName" xcos="csslti4"></simple>
+			<simple sim="FunctionType" xcos="4"></simple>
+			<simple sim="BlockType" xcos="c"></simple>
+			<real xcos="rpar">
+				<parMap simName="A" xcosIndex="1"/>
+				<parMap simName="B" xcosIndex="2"/>
+				<parMap simName="C" xcosIndex="3"/>
+				<parMap simName="D" xcosIndex="4"/>
+			</real>	
+			<real xcos="state">
+				<parMap simName="InitialState" xcosIndex="1"/>
+			</real>
+		</block>
 <!-- Math Operations Library Block Parameters -->
 	<!-- A -->
 		<!--Absolute Value Block Compatibility Pattern:-->
