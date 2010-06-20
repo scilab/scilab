@@ -29,6 +29,7 @@
 	    <xsd:element name="simple" type="SimpleParameter" minOccurs="0" maxOccurs="unbounded"/>
 	    <xsd:element name="str2int" type="Str2IntParameters" minOccurs="0" maxOccurs="unbounded"/>
 	    <xsd:element name="int2str" type="Int2StrParameters" minOccurs="0" maxOccurs="unbounded"/>
+	    <xsd:element name="real" type="RealParameters" minOccurs="0" maxOccurs="unbounded"/>
 	  </xsd:sequence>
 	    <xsd:attribute name="sim" type="xsd:string" use="required"/>
 	    <xsd:attribute name="xcos" type="xsd:string" use="required"/>	
@@ -94,6 +95,20 @@
 	<xsd:complexType name="Int2StrValueMap">
 	    <xsd:attribute name="simVal" type="xsd:integer" use="required"/>
 	    <xsd:attribute name="xcosVal" type="xsd:string" use="required"/>
+	 </xsd:complexType>
+	 
+	 <xsd:complexType name="RealParameters">
+	  <xsd:sequence>
+	    <xsd:element name="parMap" type="RealValueMap" minOccurs="1" maxOccurs="unbounded"/>
+	  </xsd:sequence>
+	    <xsd:attribute name="sim" type="xsd:string" use="optional"/>
+	    <xsd:attribute name="xcos" type="xsd:string" use="required"/>
+	    <xsd:attribute name="description" type="xsd:string" use="optional"/>
+	 </xsd:complexType>
+
+	<xsd:complexType name="RealValueMap">
+	    <xsd:attribute name="simName" type="xsd:string" use="required"/>
+	    <xsd:attribute name="xcosIndex" type="xsd:integer" use="required"/>
 	 </xsd:complexType>
 	<!--Its possible that Ill have to add more parameter types, such as: boolean -->
 </xsd:schema>

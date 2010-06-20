@@ -25,6 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="simple" type="{}SimpleParameter" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="str2int" type="{}Str2IntParameters" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="int2str" type="{}Int2StrParameters" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="real" type="{}RealParameters" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *       &lt;attribute name="sim" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="xcos" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
@@ -42,7 +43,8 @@ import javax.xml.bind.annotation.XmlType;
     "integer",
     "simple",
     "str2Int",
-    "int2Str"
+    "int2Str",
+    "real"
 })
 public class Block {
 
@@ -53,6 +55,7 @@ public class Block {
     protected List<Str2IntParameters> str2Int;
     @XmlElement(name = "int2str")
     protected List<Int2StrParameters> int2Str;
+    protected List<RealParameters> real;
     @XmlAttribute(required = true)
     protected String sim;
     @XmlAttribute(required = true)
@@ -203,6 +206,35 @@ public class Block {
             int2Str = new ArrayList<Int2StrParameters>();
         }
         return this.int2Str;
+    }
+
+    /**
+     * Gets the value of the real property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the real property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getReal().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link RealParameters }
+     * 
+     * 
+     */
+    public List<RealParameters> getReal() {
+        if (real == null) {
+            real = new ArrayList<RealParameters>();
+        }
+        return this.real;
     }
 
     /**

@@ -34,19 +34,35 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Int2StrValueMap }
+     * Create an instance of {@link StringValueMap }
      * 
      */
-    public Int2StrValueMap createInt2StrValueMap() {
-        return new Int2StrValueMap();
+    public StringValueMap createStringValueMap() {
+        return new StringValueMap();
     }
 
     /**
-     * Create an instance of {@link Str2IntParameters }
+     * Create an instance of {@link Str2IntValueMap }
      * 
      */
-    public Str2IntParameters createStr2IntParameters() {
-        return new Str2IntParameters();
+    public Str2IntValueMap createStr2IntValueMap() {
+        return new Str2IntValueMap();
+    }
+
+    /**
+     * Create an instance of {@link IntegerParameters }
+     * 
+     */
+    public IntegerParameters createIntegerParameters() {
+        return new IntegerParameters();
+    }
+
+    /**
+     * Create an instance of {@link Block }
+     * 
+     */
+    public Block createBlock() {
+        return new Block();
     }
 
     /**
@@ -58,27 +74,43 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GeneralParameters }
-     * 
-     */
-    public GeneralParameters createGeneralParameters() {
-        return new GeneralParameters();
-    }
-
-    /**
-     * Create an instance of {@link StringValueMap }
-     * 
-     */
-    public StringValueMap createStringValueMap() {
-        return new StringValueMap();
-    }
-
-    /**
      * Create an instance of {@link BlockPalette }
      * 
      */
     public BlockPalette createBlockPalette() {
         return new BlockPalette();
+    }
+
+    /**
+     * Create an instance of {@link RealValueMap }
+     * 
+     */
+    public RealValueMap createRealValueMap() {
+        return new RealValueMap();
+    }
+
+    /**
+     * Create an instance of {@link RealParameters }
+     * 
+     */
+    public RealParameters createRealParameters() {
+        return new RealParameters();
+    }
+
+    /**
+     * Create an instance of {@link IntegerValueMap }
+     * 
+     */
+    public IntegerValueMap createIntegerValueMap() {
+        return new IntegerValueMap();
+    }
+
+    /**
+     * Create an instance of {@link Int2StrValueMap }
+     * 
+     */
+    public Int2StrValueMap createInt2StrValueMap() {
+        return new Int2StrValueMap();
     }
 
     /**
@@ -98,35 +130,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link IntegerParameters }
+     * Create an instance of {@link Str2IntParameters }
      * 
      */
-    public IntegerParameters createIntegerParameters() {
-        return new IntegerParameters();
+    public Str2IntParameters createStr2IntParameters() {
+        return new Str2IntParameters();
     }
 
     /**
-     * Create an instance of {@link Str2IntValueMap }
+     * Create an instance of {@link GeneralParameters }
      * 
      */
-    public Str2IntValueMap createStr2IntValueMap() {
-        return new Str2IntValueMap();
-    }
-
-    /**
-     * Create an instance of {@link Block }
-     * 
-     */
-    public Block createBlock() {
-        return new Block();
-    }
-
-    /**
-     * Create an instance of {@link IntegerValueMap }
-     * 
-     */
-    public IntegerValueMap createIntegerValueMap() {
-        return new IntegerValueMap();
+    public GeneralParameters createGeneralParameters() {
+        return new GeneralParameters();
     }
 
     /**
