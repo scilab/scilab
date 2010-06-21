@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
  * Copyright (C) 2010 - DIGITEO - Allan SIMON
+ * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -25,6 +26,7 @@ extern "C"
 #include "freeArrayOfString.h"
 #include "sciprint.h"
 #include "getScilabJavaVM.h"
+#include "localization.h"
 }
 
 using namespace org_scilab_modules_ui_data;
@@ -32,8 +34,8 @@ using namespace org_scilab_modules_ui_data;
 int sci_editvar(char *fname,unsigned long fname_len)
 {
     CheckRhs(1,1); /* TODO change this in the future */
-    CheckLhs(0,1);    
-    SciErr sciErr; 
+    CheckLhs(0,1);
+    SciErr sciErr;
 
     int m1 = 0, n1 = 0;
 
@@ -59,12 +61,21 @@ int sci_editvar(char *fname,unsigned long fname_len)
     char *pStVarOne = NULL;
     int lenStVarOne = 0;
 
+    /*get input data*/
+    if(Rhs != 1)
+    {
+        Scierror(999,_("%s: Wrong number of input argument(s): %d expected.\n"), fname, 1);
+        return 0;
+    }
+
+
     /* get address */
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+    sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
 
-    if(sciErr.iErr)
+    if (iType != sci_strings)
     {
-        printError(&sciErr, 0);
+        Scierror(999,_("%s: Wrong type for input argument #%d: A String expected.\n"), fname, 1);
         return 0;
     }
 
@@ -80,7 +91,7 @@ int sci_editvar(char *fname,unsigned long fname_len)
     if (m1 !=1 || n1 != 1) {
         Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,1);
         return 0;
-    } 
+    }
 
     /* get lengths */
     sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, NULL);
@@ -105,8 +116,8 @@ int sci_editvar(char *fname,unsigned long fname_len)
     sciErr = getVarAddressFromName(pvApiCtx, pStVarOne, &piAddr);
     if(sciErr.iErr)
     {
+        Scierror(4,_("%s: Undefined variable %s.\n"), fname, pStVarOne);
         FREE(pStVarOne);
-        printError(&sciErr, 0);
         return 0;
     }
 
@@ -138,8 +149,8 @@ int sci_editvar(char *fname,unsigned long fname_len)
             return 0;
         }
 
-            
-        /* 
+
+        /*
          * we need this to make the links between the API (which return a double*)
          * and the JNI which needs a double**
          */
@@ -154,9 +165,9 @@ int sci_editvar(char *fname,unsigned long fname_len)
         EditVar::openVariableEditorDouble(getScilabJavaVM(), ppdblRealMatrix, iRows, iCols, pStVarOne);
 
 
-        
-        
-        
+
+
+
         break;
 
     case sci_strings :
@@ -192,7 +203,7 @@ int sci_editvar(char *fname,unsigned long fname_len)
             return 0;
         }
 
-        /* 
+        /*
          * we need this to make the links between the API (which return a char**)
          * and the JNI which needs a char***
          */
@@ -215,7 +226,7 @@ int sci_editvar(char *fname,unsigned long fname_len)
             return 0;
         }
 
-        /* 
+        /*
          * we need this to make the links between the API (which return a int*)
          * and the JNI which needs a int**
          */
