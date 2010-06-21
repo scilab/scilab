@@ -18,6 +18,7 @@ import static org.scilab.modules.xcos.utils.FileUtils.delete;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -30,6 +31,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.graph.utils.ScilabExported;
+import org.scilab.modules.localization.Messages;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.SuperBlock;
@@ -54,6 +56,20 @@ public final class Xcos {
 	 */
 	public static final String TRADENAME = "Xcos";
 
+	/*
+	 * Dependencies version
+	 */
+	private static final List<String> MXGRAPH_VERSIONS = Arrays.asList("1.4.0.2");
+	private static final List<String> HDF5_VERSIONS = Arrays.asList("[1, 8, 4]");
+	private static final List<String> BATIK_VERSIONS = Arrays.asList("1.7");
+	
+	private static final String UNABLE_TO_LOAD_JGRAPHX = 
+		Messages.gettext("Unable to load the jgraphx library.\nExpecting version %s ; Getting version %s .");
+	private static final String UNABLE_TO_LOAD_HDF5 = 
+		Messages.gettext("Unable to load the HDF5 library. \nExpecting version %s ; Getting version %s .");
+	private static final String UNABLE_TO_LOAD_BATIK = 
+		Messages.gettext("Unable to load the Batik library. \nExpecting version %s ; Getting version %s .");
+	
 	private static final String CALLED_OUTSIDE_THE_EDT_THREAD = "Called outside the EDT thread.";
 	private static final Log LOG = LogFactory.getLog(Xcos.class);
 
@@ -82,6 +98,9 @@ public final class Xcos {
 		/* load scicos libraries (macros) */
 		ScilabInterpreterManagement.requestScilabExec("loadScicosLibs();");
 
+		/* Check the dependencies at startup time */
+		checkDependencies();
+		
 		/*
 		 * Allocate synchronized communications data
 		 */
@@ -107,6 +126,71 @@ public final class Xcos {
 			LogFactory.getLog(Xcos.class).error(e);
 		}
 	}
+
+	/**
+	 * Check the dependencies and the version dependencies.
+	 * 
+	 * This method use runtime class loading to handle ClassNotFoundException. 
+	 * 
+	 * This method catch any exception and rethrow it with a well defined
+	 * message. Thus it doesn't pass the IllegalCatch metrics.
+	 */
+	// CSOFF: IllegalCatch
+	// CSOFF: MagicNumber
+	private void checkDependencies() {
+		final ClassLoader loader = ClassLoader.getSystemClassLoader();
+		
+		/* JGraphx */
+		String mxGraphVersion = "";
+		try {
+			Class< ? > klass = loader.loadClass("com.mxgraph.view.mxGraph");
+			mxGraphVersion = (String) klass.getDeclaredField("VERSION").get(null);
+				
+			if (!MXGRAPH_VERSIONS.contains(mxGraphVersion)) {
+				throw new Exception();
+			}
+		} catch (Throwable e) {
+			throw new RuntimeException(String.format(UNABLE_TO_LOAD_JGRAPHX,
+					MXGRAPH_VERSIONS.get(0), mxGraphVersion), e);
+		}
+		
+		/* HDF5 */
+		int[] libVersion = new int[3]; 
+		try {
+			Class< ? > klass = loader.loadClass("ncsa.hdf.hdf5lib.H5");
+			int ret = (Integer) klass.getMethod("H5get_libversion", libVersion.getClass())
+									.invoke(null, libVersion);
+			if (ret < 0) {
+				throw new Exception();
+			}
+			
+			if (!HDF5_VERSIONS.contains(Arrays.toString(libVersion))) {
+				throw new Exception();
+			}
+			
+		} catch (Throwable e) {
+			throw new RuntimeException(String.format(UNABLE_TO_LOAD_HDF5,
+					HDF5_VERSIONS.get(0), Arrays.toString(libVersion)), e);
+		}
+		
+		/* Batik */
+		String batikVersion = null;
+		try {
+			Class< ? > klass = loader.loadClass("org.apache.batik.Version");
+			batikVersion = klass.getPackage().getImplementationVersion()
+								.split("\\+")[0];
+			
+			if (!BATIK_VERSIONS.contains(batikVersion)) {
+				throw new Exception();
+			}
+			
+		} catch (Throwable e) {
+			throw new RuntimeException(String.format(UNABLE_TO_LOAD_BATIK,
+					BATIK_VERSIONS.get(0), batikVersion), e);
+		}
+	}
+	// CSON: MagicNumber
+	// CSON: IllegalCatch
 
 	/**
 	 * @return the per Scilab application, Xcos instance
