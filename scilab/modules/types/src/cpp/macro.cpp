@@ -1,13 +1,13 @@
 /*
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2009-2009 - DIGITEO - Bruno JOFRET
-* 
+*
 *  This file must be used under the terms of the CeCILL.
 *  This source file is licensed as described in the file COPYING, which
 *  you should have received as part of this distribution.  The terms
 *  are also available at
 *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-* 
+*
 */
 
 #include <sstream>
@@ -17,6 +17,11 @@
 #include "context.hxx"
 #include "localization.h"
 #include "yaspio.hxx"
+
+extern "C"
+{
+    #include "Scierror.h"
+}
 
 namespace types
 {
@@ -78,12 +83,12 @@ namespace types
 
     Macro* Macro::getAsMacro(void)
     {
-        return this; 
+        return this;
     }
 
     InternalType::RealType Macro::getType(void)
-    { 
-        return RealMacro; 
+    {
+        return RealMacro;
     }
 
     ast::SeqExp* Macro::body_get(void)
@@ -104,11 +109,25 @@ namespace types
     Callable::ReturnValue Macro::call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
     {
         ReturnValue RetVal = Callable::OK;
+
         //check excepted and input/output parameters numbers
-        if(in.size() != m_inputArgs->size())
-        {
-            return Callable::Error;
-        }
+        // Scilab Macro can be called with less than prototyped arguments,
+        // but not more execpts with varargin
+        // TODO: Manage varargin here
+		if(in.size() > m_inputArgs->size())
+		{
+            std::ostringstream ostr;
+            ostr << _("Wrong number of input arguments:") << std::endl << std::endl;
+            ostr << _("Arguments are:") << std::endl << std::endl;
+            ostr << " ";
+            for (std::list<std::string>::iterator it =  m_inputArgs->begin() ; it != m_inputArgs->end() ; ++it)
+            {
+                ostr << *it << "    ";
+            }
+            ostr << std::endl << std::endl;
+            Scierror(58, const_cast<char *>(ostr.str().c_str()));
+			return Callable::Error;
+		}
 
         std::list<std::string>::const_iterator i;
         typed_list::const_iterator j;
@@ -117,6 +136,14 @@ namespace types
         //open a new scope
         symbol::Context *pContext = symbol::Context::getInstance();
         pContext->scope_begin();
+
+        // Declare nargin & nargout in function context.
+        pContext->put(std::string("nargin"), *new Double(in.size()));
+        pContext->put(std::string("nargout"), *new Double(_iRetCount));
+        Double *pDblArgn = new Double(1,2);
+        pDblArgn->val_set(0, 0, _iRetCount);
+        pDblArgn->val_set(0, 1, in.size());
+        pContext->put(std::string("argn"), *pDblArgn);
 
         //assign value to variable in the new context
         for (i = m_inputArgs->begin(), j = in.begin(); j != in.end (); ++j,++i)
@@ -130,7 +157,7 @@ namespace types
             m_body->accept(*execFunc);
             if(m_body->is_return())
             {
-                m_body->returnable_set();				
+                m_body->returnable_set();
             }
 
 
