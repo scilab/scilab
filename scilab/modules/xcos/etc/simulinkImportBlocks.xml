@@ -90,17 +90,6 @@
 		IgnoreLimit - N/A;
 		ContinuousStateAttributes - N/A;"
 		>
-			<!--FIXME: Can be complex! -->
-			<integer sim="InitialCondition" xcos="state" description="">
-				<parMap simVal="1" xcosVal="1"/>
-			</integer>
-			<integer sim="UpperSaturationLimit" xcos="rpar1" description="">
-				<parMap simVal="1" xcosVal="1"/>
-			</integer>
-			<!--FIXME: Can be complex! -->
-			<integer sim="LowerSaturationLimit" xcos="rpar2" description="">
-				<parMap simVal="1" xcosVal="1"/>
-			</integer>
 			<simple sim="FunctionName" xcos="integral_func"></simple>
 			<simple sim="FunctionType" xcos="4"></simple>
 			<simple sim="BlockType" xcos="c"></simple>
@@ -117,21 +106,66 @@
 				<parMap simVal="off" xcosVal="0"/>
 				<parMap simVal="on" xcosVal="1"/>
 			</str2int>
+			<real xcos="rpar">
+				<parMap simName="UpperStaturationLimit" xcosIndex="0"/>
+				<parMap simName="LowerSaturationLimit" xcosIndex="1"/>
+			</real>
+			<real xcos="state">
+				<parMap simName="InitialCondition" xcosIndex="0"/>
+			</real>
 		</block>
 		<!-- StateSpace Block compatibility pattern -->
-		<block sim="StateSpace" xcos="CLSS" description="">
+		<block sim="State-Space" xcos="CLSS" description="">
 			<simple sim="FunctionName" xcos="csslti4"></simple>
 			<simple sim="FunctionType" xcos="4"></simple>
 			<simple sim="BlockType" xcos="c"></simple>
 			<real xcos="rpar">
-				<parMap simName="A" xcosIndex="1"/>
-				<parMap simName="B" xcosIndex="2"/>
-				<parMap simName="C" xcosIndex="3"/>
-				<parMap simName="D" xcosIndex="4"/>
+				<parMap simName="A" xcosIndex="0"/>
+				<parMap simName="B" xcosIndex="1"/>
+				<parMap simName="C" xcosIndex="2"/>
+				<parMap simName="D" xcosIndex="3"/>
 			</real>	
 			<real xcos="state">
-				<parMap simName="InitialState" xcosIndex="1"/>
+				<parMap simName="X0" xcosIndex="0"/>
 			</real>
+		</block>
+		<!-- Transport-Delay Block compatibility pattern -->
+		<block sim="Transport-Delay" xcos="TIME_DELAY" description="">
+			<simple sim="FunctionName" xcos="time delay"></simple>
+			<simple sim="FunctionType" xcos="4"></simple>
+			<simple sim="BlockType" xcos="x"></simple>
+			<str2int sim="FixedBuffer" xcos="???" description="">
+				<parMap simVal="off" xcosVal="0"/>
+				<parMap simVal="on" xcosVal="1"/>
+			</str2int>
+			<real xcos="rpar">
+				<parMap simName="DelayTime" xcosIndex="0"/>
+				<parMap simName="InitialOutput" xcosIndex="1"/>
+			</real>	
+			<!-- 
+			<integer xcos="ipar" count="1">
+				<map name="BufferSize" index="0,0">
+			</integer>
+			-->
+		</block>
+		<!-- Variable-Transpor/Time-Delay Block compatibility pattern -->
+		<block sim="VariableTimeDelay" xcos="Variable_DELAY" description="">
+			<simple sim="FunctionName" xcos="variable delay"></simple>
+			<simple sim="FunctionType" xcos="4"></simple>
+			<simple sim="BlockType" xcos="d"></simple>
+			<str2int sim="FixedBuffer" xcos="???" description="">
+				<parMap simVal="off" xcosVal="0"/>
+				<parMap simVal="on" xcosVal="1"/>
+			</str2int>
+			<real xcos="rpar">
+				<parMap simName="MaximumDelay" xcosIndex="0"/>
+				<parMap simName="InitialOutput" xcosIndex="1"/>
+			</real>	
+			<!-- 
+			<integer xcos="ipar" count="1">
+				<map name="BufferSize" index="0,0">
+			</integer>
+			-->
 		</block>
 <!-- Math Operations Library Block Parameters -->
 	<!-- A -->
