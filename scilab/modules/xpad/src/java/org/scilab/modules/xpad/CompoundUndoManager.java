@@ -11,7 +11,7 @@
  *
  */
 
-package org.scilab.modules.xpad.style;
+package org.scilab.modules.xpad;
 
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.UndoableEditEvent;

@@ -27,7 +27,6 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
-import org.scilab.modules.xpad.style.CompoundUndoManager;
 
 /**
  * The class ScilabDocument is used to render a document .sci or .sce
