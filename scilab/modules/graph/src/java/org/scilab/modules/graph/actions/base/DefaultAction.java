@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
- * Copyright (C) 2010 - DIGITEO - Clément DAVID
+ * Copyright (C) 2009-2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2009-2010 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -100,10 +100,12 @@ public abstract class DefaultAction extends CallBack {
 			 * Getting icon from the registered icon path
 			 */
 			final String iconName = (String) getClass().getField("SMALL_ICON").get(null);
-			for (String path : ICON_PATH) {
-				if (new File(path + iconName).exists()) {
-					icon = path + iconName;
-					break;
+			if (iconName != null && !iconName.isEmpty()) {
+				for (String path : ICON_PATH) {
+					if (new File(path + iconName).isFile()) {
+						icon = path + iconName;
+						break;
+					}
 				}
 			}
 			
@@ -123,7 +125,7 @@ public abstract class DefaultAction extends CallBack {
 		putValue(Action.NAME, name);
 		putValue(Action.SHORT_DESCRIPTION, name);
 		putValue(Action.LONG_DESCRIPTION, name);
-		if (!ICON_PATH.equals(icon)) {
+		if (!icon.isEmpty()) {
 			putValue(Action.SMALL_ICON, new ImageIcon(icon));
 		}
 
