@@ -1,3 +1,15 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - Jerzy Zagorski
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 package org.scilab.modules.xcos.simulink;
 
 import org.scilab.modules.types.scilabTypes.ScilabString;
@@ -45,19 +57,19 @@ public class BlockModelElement extends AbstractElement{
 
 	private void fillParameters(BasicBlock base) {
 		// TODO Auto-generated method stub
-		/*
+		
 		// state - vector conaining initial values of continous-time state
 		base.setState((ScilabType)patternElement.decodeState(data));
-
+/*
 		// dstate - vector conaining initial values of discrete-time state
 		base.setDState(patternElement.decodeDState(data));
 
 		// odstate - List containing initial values of objects state. 
 		base.setODState(patternElement.decodeODState(data));
-
+*/
 		// rpar - The vector of floating point block parameters. 
 		base.setRealParameters((ScilabType)patternElement.decodeRealParameters(data));
-
+/*
 		// ipar - The vector of integer block parameters
 		base.setIntegerParameters((ScilabType)patternElement.decodeIntegerParameters(data));
 

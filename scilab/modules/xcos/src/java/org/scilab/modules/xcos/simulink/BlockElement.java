@@ -74,25 +74,27 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 		UnmodifiableIterator<SimulinkOutPort> portOutIter = base.getOutPorts().iterator();
 		while(portOutIter.hasNext()) {
 			//TODO: block.addPort(outElement.decode(portOutIter.next(), null);
-			outElement.decode(portOutIter.next(), null);
+			//outElement.decode(portOutIter.next(), null);
+			portOutIter.next();
 		}
 		
 		InputPortElement inElement = new InputPortElement(base);
 		UnmodifiableIterator<SimulinkInPort> portInIter = base.getInPorts().iterator();
 		while(portInIter.hasNext()) {
 			//TODO:block.addPort(inElement.decode(portInIter.next(), null);
-			inElement.decode(portInIter.next(), null);
+			//inElement.decode(portInIter.next(), null);
+			portInIter.next();
 		}
 		/*
 		 * decode graphics elements of BasicBlock
 		 */
 		graphicElement.decode(base, block);
 		specificElement.decode(base, block);
-		/*try {
-			//FIXME: modelElement.decode(base, block);
+		try {
+			modelElement.decode(base, block);
 		} catch(SimulinkFormatException se) {
 			LogFactory.getLog(BlockElement.class).error(se);
-		}*/
+		}
 		/*
 		 * recursively decode all of the Block subBlocks
 		 */

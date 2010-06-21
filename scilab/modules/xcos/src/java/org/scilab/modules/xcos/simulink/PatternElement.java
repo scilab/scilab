@@ -11,7 +11,6 @@
  */
 
 package org.scilab.modules.xcos.simulink;
-import java.math.BigInteger;
 import java.util.Iterator;
 
 import javax.xml.bind.JAXBContext;
@@ -96,6 +95,9 @@ public class PatternElement {
 		Iterator<Block> blockIter = blocks.getBlock().iterator();
 		while (blockIter.hasNext()){
 			Block block = blockIter.next();
+			if(LOG.isTraceEnabled()){
+				LOG.trace(block.getSim());
+			}
 			if(block.getSim().contentEquals(simulinkBlockName)){
 				currentBlock = block;
 			}
@@ -283,7 +285,11 @@ public class PatternElement {
 			Iterator<SimpleParameter> simpleParamIter = currentBlock.getSimple().iterator();
 			while (simpleParamIter.hasNext()){
 				SimpleParameter simpleParam = simpleParamIter.next();
-				if(simpleParam.getSim().contentEquals("FunctionType")){
+				if(simpleParam.getSim().contentEquals("FunctionName")){
+					if(LOG.isTraceEnabled()){
+						LOG.trace(currentBlock.getXcos() + "FunctionName:");
+						LOG.trace(simpleParam.getXcos());
+					}
 					return simpleParam.getXcos();
 				}
 			}
@@ -306,6 +312,10 @@ public class PatternElement {
 				SimpleParameter simpleParam = simpleParamIter.next();
 				if(simpleParam.getSim().contentEquals("FunctionType")){
 					try {
+					if(LOG.isTraceEnabled()){
+						LOG.trace(currentBlock.getXcos() + "FunctionType:");
+						LOG.trace(simpleParam.getXcos());
+					}
 					return Integer.parseInt(simpleParam.getXcos());
 					} catch(NumberFormatException ne) {
 						LogFactory.getLog(PatternElement.class).error(ne);
@@ -317,13 +327,62 @@ public class PatternElement {
 	}
 
 	public ScilabType decodeState(SimulinkBlock data) {
-		// TODO Auto-generated method stub
-		// what parameters are set as state
+		double[][] stateData;
+		/*
+		 * Check if current block is well initialized for coresponding SimulinkBlock
+		 */
+		if(currentBlock.getSim().equals(data.getName())){
+			Iterator<RealParameters> realParamIter = currentBlock.getReal().iterator();
+			while (realParamIter.hasNext()){
+				RealParameters realParam = realParamIter.next();
+				/*
+				 * Check if state
+				 */
+				if(realParam.getXcos().contentEquals("state")){
+					Iterator<RealValueMap> valueMapIter = realParam.getParMap().iterator();
+					stateData=new double[1][10]; //FIXME: add count to realParameters
+					while (valueMapIter.hasNext()){
+						RealValueMap valueMap = valueMapIter.next();
+						stateData[0][valueMap.getXcosIndex().intValue()] = Double.parseDouble(data.getParameter(valueMap.getSimName()));
+						if(LOG.isTraceEnabled()){
+							LOG.trace(currentBlock.getXcos() + "state:");
+							LOG.trace(stateData[0][valueMap.getXcosIndex().intValue()]);
+						}
+					}
+					return new ScilabDouble(stateData);
+				}
+			}
+		}
 		return null;
 	}
 
 	public ScilabType decodeDState(SimulinkBlock data) {
-		// TODO Auto-generated method stub
+		double[][] stateData;
+		/*
+		 * Check if current block is well initialized for coresponding SimulinkBlock
+		 */
+		if(currentBlock.getSim().equals(data.getName())){
+			Iterator<RealParameters> realParamIter = currentBlock.getReal().iterator();
+			while (realParamIter.hasNext()){
+				RealParameters realParam = realParamIter.next();
+				/*
+				 * Check if state
+				 */
+				if(realParam.getXcos().contentEquals("dstate")){
+					Iterator<RealValueMap> valueMapIter = realParam.getParMap().iterator();
+					stateData=new double[1][10]; //FIXME: add count to realParameters
+					while (valueMapIter.hasNext()){
+						RealValueMap valueMap = valueMapIter.next();
+						stateData[0][valueMap.getXcosIndex().intValue()] = Double.parseDouble(data.getParameter(valueMap.getSimName()));
+						if(LOG.isTraceEnabled()){
+							LOG.trace(currentBlock.getXcos() + "state:");
+							LOG.trace(stateData[0][valueMap.getXcosIndex().intValue()]);
+						}
+					}
+					return new ScilabDouble(stateData);
+				}
+			}
+		}
 		return null;
 	}
 
@@ -341,6 +400,10 @@ public class PatternElement {
 			while (simpleParamIter.hasNext()){
 				SimpleParameter simpleParam = simpleParamIter.next();
 				if(simpleParam.getSim().contentEquals("BlockType")){
+					if(LOG.isTraceEnabled()){
+						LOG.trace(currentBlock.getXcos() + "blocktype:");
+						LOG.trace(simpleParam.getXcos());
+					}
 					return simpleParam.getXcos();
 				}
 			}
@@ -380,6 +443,9 @@ public class PatternElement {
 	}
 	public ScilabType decodeRealParameters(SimulinkBlock data) {
 		double[][] rparData;
+		/*
+		 * Check if current block is well initialized for coresponding SimulinkBlock
+		 */
 		if(currentBlock.getSim().equals(data.getName())){
 			Iterator<RealParameters> realParamIter = currentBlock.getReal().iterator();
 			while (realParamIter.hasNext()){
@@ -392,7 +458,11 @@ public class PatternElement {
 					rparData=new double[1][10]; //FIXME: add count to realParameters
 					while (valueMapIter.hasNext()){
 						RealValueMap valueMap = valueMapIter.next();
-						rparData[1][valueMap.getXcosIndex().intValue()] = Double.parseDouble(data.getParameter(valueMap.getSimName()));
+						rparData[0][valueMap.getXcosIndex().intValue()] = Double.parseDouble(data.getParameter(valueMap.getSimName()));
+						if(LOG.isTraceEnabled()){
+							LOG.trace(currentBlock.getXcos() + "rpar:");
+							LOG.trace(rparData[0][valueMap.getXcosIndex().intValue()]);
+						}
 					}
 					return new ScilabDouble(rparData);
 				}
