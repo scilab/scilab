@@ -155,7 +155,6 @@ cd .."/></Configuration></Configurations>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_dispbpt.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_errcatch.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_errclear.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_exists.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_global.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_ieee.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_intppty.f"/>

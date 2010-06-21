@@ -11,7 +11,7 @@
  */
 
 #ifndef AST_RUNVISITOR_HXX
-# define AST_RUNVISITOR_HXX
+#define AST_RUNVISITOR_HXX
 
 #include <time.h>
 #include <string>
@@ -37,8 +37,8 @@
 #include "overload.hxx"
 
 extern "C" {
-    #include "doublecomplex.h"
-    #include "matrix_transpose.h"
+#include "doublecomplex.h"
+#include "matrix_transpose.h"
 }
 
 #include "timer.hxx"
@@ -53,145 +53,154 @@ extern "C" {
 
 namespace ast
 {
-	class RunVisitor : public ConstVisitor
-	{
-	public:
-		RunVisitor()
-		{
-			_excepted_result = -1;
-			_resultVect.push_back(NULL);
-			_result = NULL;
-			m_bSingleResult = true;
-		}
+    class RunVisitor : public ConstVisitor
+    {
+    public:
+        RunVisitor()
+        {
+            _excepted_result = -1;
+            _resultVect.push_back(NULL);
+            _result = NULL;
+            m_bSingleResult = true;
+        }
 
-		~RunVisitor()
-		{
-			result_clear();
-		}
+        ~RunVisitor()
+        {
+            result_clear();
+        }
 
-		void result_clear()
-		{
-			if(is_single_result())
-			{
-				if(_result != NULL && _result->isDeletable() == true)
-				{
-//					std::cout << "before single delete : " << _result << std::endl;
-					delete _result;
-//					std::cout << "after single delete" << std::endl;
-				}
-			}
-			else
-			{
-				for(unsigned int i = 0 ; i < _resultVect.size() ; i++)
-				{
-					if(_resultVect[i] != NULL && _resultVect[i]->isDeletable() == true)
-					{
-						delete _resultVect[i];
-					}
-				}
-			}
-		}
+        void result_clear()
+        {
+            if(is_single_result())
+            {
+                if(_result != NULL && _result->isDeletable() == true)
+                {
+                    //					std::cout << "before single delete : " << _result << std::endl;
+                    delete _result;
+                    //					std::cout << "after single delete" << std::endl;
+                }
+            }
+            else
+            {
+                for(unsigned int i = 0 ; i < _resultVect.size() ; i++)
+                {
+                    if(_resultVect[i] != NULL && _resultVect[i]->isDeletable() == true)
+                    {
+                        delete _resultVect[i];
+                    }
+                }
+            }
+        }
 
-	public:
-		int expected_size_get(void)
-		{
-			return _excepted_result;
-		}
+    public:
+        int expected_size_get(void)
+        {
+            return _excepted_result;
+        }
 
-		int result_size_get(void)
-		{
-			if(is_single_result())
-			{
-				if(_result == NULL)
-				{
-					return 0;
-				}
-				else
-				{
-					return 1;
-				}
-			}
-			else
-			{
+        int result_size_get(void)
+        {
+            if(is_single_result())
+            {
+                if(_result == NULL)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return 1;
+                }
+            }
+            else
+            {
                 return static_cast<int>(_resultVect.size());
-			}
-		}
+            }
+        }
 
-		void expected_size_set(int _iSize)
-		{
-			_excepted_result = _iSize;
-		}
+        void expected_size_set(int _iSize)
+        {
+            _excepted_result = _iSize;
+        }
 
-		types::InternalType* result_get(void)
-		{
-			if(is_single_result())
-			{
-				return _result;
-			}
-			else
-			{
-				return _resultVect[0];
-			}
-		}
+        types::InternalType* result_get(void)
+        {
+            if(is_single_result())
+            {
+                return _result;
+            }
+            else
+            {
+                return _resultVect[0];
+            }
+        }
 
-		types::InternalType* result_get(int _iPos)
-		{
-			if(_iPos >= static_cast<int>(_resultVect.size()))
-			{
-				return NULL;
-			}
-			return _resultVect[_iPos];
-		}
+        types::InternalType* result_get(int _iPos)
+        {
+            if(_iPos >= static_cast<int>(_resultVect.size()))
+            {
+                return NULL;
+            }
+            return _resultVect[_iPos];
+        }
 
-		vector<types::InternalType*>* result_list_get()
-		{
-			return &_resultVect;
-		}
+        vector<types::InternalType*>* result_list_get()
+        {
+            if(result_size_get() == 1)
+            {
+                vector<types::InternalType*>* pList = new vector<types::InternalType*>;
+                pList->push_back(_result);
+                return pList;
+            }
+            else
+            {
+                return &_resultVect;
+            }
+        }
 
-		void result_set(int _iPos, const types::InternalType *gtVal)
-		{
-			m_bSingleResult = false;
-			if(_iPos <  static_cast<int>(_resultVect.size()))
-			{
-				if(_resultVect[_iPos] != NULL && _resultVect[_iPos]->isDeletable())
-				{
-					delete _resultVect[_iPos];
-				}
-			}
+        void result_set(int _iPos, const types::InternalType *gtVal)
+        {
+            m_bSingleResult = false;
+            if(_iPos <  static_cast<int>(_resultVect.size()))
+            {
+                if(_resultVect[_iPos] != NULL && _resultVect[_iPos]->isDeletable())
+                {
+                    delete _resultVect[_iPos];
+                }
+            }
 
-			if(_iPos >=  static_cast<int>(_resultVect.size()))
-			{
-				_resultVect.resize(_iPos + 1, NULL);
-			}
+            if(_iPos >=  static_cast<int>(_resultVect.size()))
+            {
+                _resultVect.resize(_iPos + 1, NULL);
+            }
 
-			_resultVect[_iPos] = const_cast<types::InternalType *>(gtVal);
-		}
+            _resultVect[_iPos] = const_cast<types::InternalType *>(gtVal);
+        }
 
-		void result_set(const types::InternalType *gtVal)
-		{
-			m_bSingleResult = true;
-			_result = const_cast<types::InternalType *>(gtVal);
-		}
+        void result_set(const types::InternalType *gtVal)
+        {
+            m_bSingleResult = true;
+            _result = const_cast<types::InternalType *>(gtVal);
+        }
 
-		bool is_single_result()
-		{
-			return m_bSingleResult;
-		}
+        bool is_single_result()
+        {
+            return m_bSingleResult;
+        }
 
-		/*-------------.
-          | Attributes.  |
-          `-------------*/
-	protected:
-		vector<types::InternalType*>	_resultVect;
-		types::InternalType*	_result;
-		bool m_bSingleResult;
-		int _excepted_result;
-	};
+        /*-------------.
+        | Attributes.  |
+        `-------------*/
+    protected:
+        vector<types::InternalType*>	_resultVect;
+        types::InternalType*	_result;
+        bool m_bSingleResult;
+        int _excepted_result;
+    };
 
-	template <class T>
+    template <class T>
     class RunVisitorT : public RunVisitor
-	{
-	protected :
+    {
+    protected :
         int  GetIndexList(std::list<ast::Exp *>const& _plstArg, int** _piIndexSeq, int** _piMaxDim, InternalType *_pRefVar, int *_iDimSize)
         {
             //Create list of indexes
@@ -278,35 +287,30 @@ namespace ast
 
                     bDeleteDbl		= true;
                 }
-                else
+                else if(execMeArg.result_get()->getType() == InternalType::RealPoly)
                 {
-                    pIn = execMeArg.result_get();
+                    MatrixPoly *pPoly = execMeArg.result_get()->getAsPoly();
 
-                    if(pIn->getType() == InternalType::RealPoly)
-                    {//manage $
-                        MatrixPoly *pPoly = pIn->getAsPoly();
-
-                        if(_pRefVar != NULL)
-                        {
-                            int iMaxDim = GetVarMaxDim(_pRefVar, k, iProductElem);
-                            Double dbl(iMaxDim); // $
-                            pDbl = pPoly->evaluate(&dbl);
-                            bDeleteDbl = true;
-                        }
-                        else
-                        {//houston we have a problem ...
-                            Double dbl(0);
-                            pDbl = pPoly->evaluate(&dbl);
-
-                        }
-                    }
-                    else if(pIn->getType() == InternalType::RealDouble)
+                    if(_pRefVar != NULL)
                     {
-                        pDbl	= pIn->getAsDouble();//
+                        int iMaxDim = GetVarMaxDim(_pRefVar, k, iProductElem);
+                        Double dbl(iMaxDim); // $
+                        pDbl = pPoly->evaluate(&dbl);
+                        bDeleteDbl = true;
                     }
                     else
-                    {//Heu ... ?
+                    {//houston we have a problem ...
+                        Double dbl(0);
+                        pDbl = pPoly->evaluate(&dbl);
+
                     }
+                }
+                else if(execMeArg.result_get()->getType() == InternalType::RealDouble)
+                {
+                    pDbl	= execMeArg.result_get()->getAsDouble();
+                }
+                else
+                {//Heu ... ?
                 }
 
                 double *pData = pDbl->real_get();
@@ -363,7 +367,7 @@ namespace ast
         void visitprivate(const MatrixLineExp &e)
         {
             /*
-              All processes are done in MatrixExp
+            All processes are done in MatrixExp
             */
         }
 
@@ -413,7 +417,7 @@ namespace ast
         }
 
         /** \name Visit Constant Expressions nodes.
-         ** \{ */
+        ** \{ */
 
         void visitprivate(const StringExp &e)
         {
@@ -425,7 +429,7 @@ namespace ast
         void visitprivate(const CommentExp &e)
         {
             /*
-              Nothing to do
+            Nothing to do
             */
         }
 
@@ -433,7 +437,7 @@ namespace ast
         void visitprivate(const IntExp  &e)
         {
             /*
-              Int does not exist, Int8 - 16 - 32 - 64 functions
+            Int does not exist, Int8 - 16 - 32 - 64 functions
             */
         }
 
@@ -441,7 +445,7 @@ namespace ast
         void visitprivate(const FloatExp  &e)
         {
             /*
-              Float does not exist, float function
+            Float does not exist, float function
             */
         }
 
@@ -463,7 +467,7 @@ namespace ast
         void visitprivate(const NilExp &e)
         {
             /*
-              FIXME :
+            FIXME :
             */
         }
 
@@ -514,7 +518,7 @@ namespace ast
             pIL->end_set(pVar);
             result_set(pIL);
             /*
-              : = 1:$
+            : = 1:$
             */
         }
 
@@ -537,14 +541,14 @@ namespace ast
         {
             /*
 
-             */
+            */
         }
 
 
         void visitprivate(const FieldExp &e)
         {
             /*
-              a.b
+            a.b
             */
             T execHead;
             try
@@ -720,8 +724,8 @@ namespace ast
             }
 
             if(e.is_breakable()
-               && ( (&e.else_get())->is_break()
-                    || (&e.then_get())->is_break() ))
+                && ( (&e.else_get())->is_break()
+                || (&e.then_get())->is_break() ))
             {
                 const_cast<IfExp*>(&e)->break_set();
                 const_cast<Exp*>(&e.else_get())->break_reset();
@@ -729,8 +733,8 @@ namespace ast
             }
 
             if(e.is_returnable()
-               && ( (&e.else_get())->is_return()
-                    || (&e.then_get())->is_return() ))
+                && ( (&e.else_get())->is_return()
+                || (&e.then_get())->is_return() ))
             {
                 const_cast<IfExp*>(&e)->return_set();
                 const_cast<Exp*>(&e.else_get())->return_reset();
@@ -794,7 +798,7 @@ namespace ast
             {
                 T execBody;
                 ImplicitList* pVar = execVar.result_get()->getAsImplicitList();
-//			std::cout << "ImplicitList references : " << pVar->getRef() << std::endl;
+                //			std::cout << "ImplicitList references : " << pVar->getRef() << std::endl;
 
                 InternalType *pIT = NULL;
                 pIT = pVar->extract_value(0);
@@ -871,9 +875,36 @@ namespace ast
                 T execVar;
                 e.exp_get().accept(execVar);
 
-                for(int i = 0 ; i < execVar.result_size_get() ; i++)
+                if(execVar.result_size_get() == 1)
                 {
-                    result_set(i, execVar.result_get(i)->clone());
+                    //protect variable
+                    InternalType *pIT = execVar.result_get();
+                    pIT->IncreaseRef();
+                    result_set(pIT);
+                }
+                else
+                {
+                    for(int i = 0 ; i < execVar.result_size_get() ; i++)
+                    {
+                        //protect variable
+                        InternalType *pIT = execVar.result_get(i);
+                        pIT->IncreaseRef();
+                        result_set(i, pIT);
+                    }
+                }
+            }
+
+            if(result_size_get() == 1)
+            {
+                //unprotect variable
+                result_get()->DecreaseRef();
+            }
+            else
+            {
+                for(int i = 0 ; i < result_size_get() ; i++)
+                {
+                    //unprotect variable
+                    result_get(i)->DecreaseRef();
                 }
             }
             const_cast<ReturnExp*>(&e)->return_set();
@@ -984,11 +1015,11 @@ namespace ast
                             throw string(szError);
                         }
                     }
-                    
 
-                    FieldExp* pExp = dynamic_cast<FieldExp*>(*itExp);
-                    //to manage structure field extraction
-                    if(pExp != NULL || execMe.result_get()->isDeletable())
+
+                    SimpleVar* pVar = dynamic_cast<SimpleVar*>(*itExp);
+                    //don't output Silplevar and empty result
+                    if(execMe.result_get() != NULL && pVar == NULL)
                     {
                         symbol::Context::getInstance()->put("ans", *execMe.result_get());
                         if((*itExp)->is_verbose())
@@ -1040,12 +1071,12 @@ namespace ast
         /** \} */
 
         /** \name Visit Single Operation nodes.
-         ** \{ */
+        ** \{ */
 
         void visitprivate(const NotExp &e)
         {
             /*
-              @ or ~= !
+            @ or ~= !
             */
             T execMe;
             e.exp_get().accept(execMe);
@@ -1081,7 +1112,7 @@ namespace ast
         void visitprivate(const TransposeExp &e)
         {
             /*
-              '
+            '
             */
             T execMe;
             e.exp_get().accept(execMe);
@@ -1170,7 +1201,7 @@ namespace ast
         /** \} */
 
         /** \name Visit Declaration nodes.
-         ** \{ */
+        ** \{ */
         /** \brief Visit Var declarations. */
 
         void visitprivate(const VarDec  &e)
@@ -1194,8 +1225,8 @@ namespace ast
         void visitprivate(const FunctionDec  &e)
         {
             /*
-              function foo
-              endfunction
+            function foo
+            endfunction
             */
             std::list<ast::Var *>::const_iterator	i;
 
@@ -1217,13 +1248,13 @@ namespace ast
 
             //types::Macro macro(VarList, RetList, (SeqExp&)e.body_get());
             types::Macro *pMacro = new types::Macro(e.name_get(), *pVarList, *pRetList,
-                                                    static_cast<SeqExp&>(const_cast<Exp&>(e.body_get())), "script");
+                static_cast<SeqExp&>(const_cast<Exp&>(e.body_get())), "script");
             symbol::Context::getInstance()->AddMacro(pMacro);
         }
         /** \} */
 
         /** \name Visit Type dedicated Expressions related node.
-         ** \{ */
+        ** \{ */
 
         void visitprivate(const ListExp &e)
         {

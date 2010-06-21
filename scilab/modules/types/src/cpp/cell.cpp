@@ -394,7 +394,7 @@ namespace types
         {
             for(int i = 0 ; i < _iSeqCount ; i++)
             {
-                vectRet.push_back(m_plData[_piSeqCoord[i] - 1]->clone());
+                vectRet.push_back(m_plData[_piSeqCoord[i] - 1]);
             }
         }
         else
@@ -403,7 +403,7 @@ namespace types
             {
                 //convert vertical indexes to horizontal indexes
                 int iInIndex = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
-                vectRet.push_back(m_plData[iInIndex]->clone());
+                vectRet.push_back(m_plData[iInIndex]);
             }
         }
 
@@ -479,7 +479,7 @@ namespace types
                 {//a([]) = R
                     for(int i = 0 ; i < _iSeqCount ; i++)
                     {
-                        m_plData[_piSeqCoord[i] - 1]	= pIn->get(0)->clone();
+                        set(_piSeqCoord[i] - 1, pIn->get(0));
                     }
                 }
                 else
@@ -487,7 +487,7 @@ namespace types
                     for(int i = 0 ; i < _iSeqCount ; i++)
                     {
                         int iPos = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
-                        m_plData[iPos]	= pIn->get(0)->clone();
+                        set(iPos, pIn->get(0));
                     }
                 }
             }
@@ -497,7 +497,7 @@ namespace types
                 {//a([]) = [R]
                     for(int i = 0 ; i < _iSeqCount ; i++)
                     {
-                        m_plData[_piSeqCoord[i] - 1]	= pIn->get(i)->clone();
+                        set(_piSeqCoord[i] - 1, pIn->get(i));
                     }
                 }
                 else
@@ -509,7 +509,7 @@ namespace types
                         int iTempC = i % pIn->cols_get();
                         int iNew_i = iTempR + iTempC * pIn->rows_get();
 
-                        m_plData[iPos]	= pIn->get(iNew_i)->clone();
+                        set(iPos, pIn->get(iNew_i));
                     }
                 }
             }
@@ -594,8 +594,6 @@ namespace types
         }
 
         ////variable can receive new values.
-        m_plData[_piSeqCoord[0] - 1]	= _poSource;
-        _poSource->IncreaseRef();
-        return true;
+        return set(_piSeqCoord[0] - 1, _poSource);;
     }
 }

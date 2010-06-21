@@ -205,9 +205,16 @@ void visitprivate(const CallExp &e)
             case InternalType::RealList :
             {
                 ResultList = pIT->getAsList()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
-                for(int i = 0 ; i < static_cast<int>(ResultList.size()) ; i++)
+                if(ResultList.size() == 1)
                 {
-                    result_set(i, ResultList[i]);
+                    result_set(ResultList[0]);
+                }
+                else
+                {
+                    for(int i = 0 ; i < static_cast<int>(ResultList.size()) ; i++)
+                    {
+                        result_set(i, ResultList[i]);
+                    }
                 }
                 break;
             }

@@ -23,73 +23,75 @@ using namespace ast;
 namespace types
 {
 
-	/*--------------*/
-	/*	Contructor  */
-	/*--------------*/
-	MacroFile::MacroFile(std::string _stName, string _stPath, string _stModule):
-		Callable(),
-		m_stPath(_stPath),
-		m_pMacro(NULL)
-	{
-	  setName(_stName);
-	  setModule(_stModule);
-	}
+    /*--------------*/
+    /*	Contructor  */
+    /*--------------*/
+    MacroFile::MacroFile(std::string _stName, string _stPath, string _stModule) : Callable(), m_stPath(_stPath), m_pMacro(NULL)
+    {
+        setName(_stName);
+        setModule(_stModule);
+    }
 
-	/*--------------*/
-	/*	whoIAm		  */
-	/*--------------*/
-	void MacroFile::whoAmI()
-	{
-		std::cout << "types::MacroFile";
-	}
+    MacroFile* MacroFile::clone()
+    {
+        IncreaseRef();
+        return this;
+    }
+    /*--------------*/
+    /*	whoIAm		  */
+    /*--------------*/
+    void MacroFile::whoAmI()
+    {
+        std::cout << "types::MacroFile";
+    }
 
-	MacroFile* MacroFile::getAsMacroFile(void)
-	{
-		return this; 
-	}
+    MacroFile* MacroFile::getAsMacroFile(void)
+    {
+        return this; 
+    }
 
-	InternalType::RealType MacroFile::getType(void)
-	{ 
-		return RealMacroFile; 
-	}
-	
-	Macro* MacroFile::macro_get(void)
-	{
-		return m_pMacro;
-	}
+    InternalType::RealType MacroFile::getType(void)
+    { 
+        return RealMacroFile; 
+    }
 
-	std::string MacroFile::toString(int _iPrecision, int _iLineLen)
-	{
-	  std::ostringstream ostr;
+    Macro* MacroFile::macro_get(void)
+    {
+        return m_pMacro;
+    }
 
-	  // FIXME : Implement me.
-	  ostr << "FIXME : Implement MacroFile::toString" << std::endl;
+    std::string MacroFile::toString(int _iPrecision, int _iLineLen)
+    {
+        std::ostringstream ostr;
 
-	  return ostr.str();
-	}
+        // FIXME : Implement me.
+        ostr << "FIXME : Implement MacroFile::toString" << std::endl;
 
-	Callable::ReturnValue MacroFile::call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
-	{
-		ReturnValue RetVal = Callable::OK;
+        return ostr.str();
+    }
 
-		parse();
-		if(m_pMacro)
-		{
-			ReturnValue Val =  m_pMacro->call(in, _iRetCount, out, execFunc);
-			return Val;
-		}
-		else
-		{
-			return Callable::Error;
-		}
-	}
+    Callable::ReturnValue MacroFile::call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
+    {
+        ReturnValue RetVal = Callable::OK;
 
-	bool MacroFile::parse(void)
-	{
+        parse();
+        if(m_pMacro)
+        {
+            ReturnValue Val =  m_pMacro->call(in, _iRetCount, out, execFunc);
+            return Val;
+        }
+        else
+        {
+            return Callable::Error;
+        }
+    }
 
-		if(m_pMacro == NULL)
-		{//load file, only for the first call
-			Parser parser;
+    bool MacroFile::parse(void)
+    {
+
+        if(m_pMacro == NULL)
+        {//load file, only for the first call
+            Parser parser;
             parser.parseFile(m_stPath, "parse macro file");
             if(parser.getExitStatus() !=  Parser::Succeded)
             {
@@ -100,50 +102,50 @@ namespace types
                 return false;
             }
 
-			//find FunctionDec
-			FunctionDec* pFD = NULL;
+            //find FunctionDec
+            FunctionDec* pFD = NULL;
 
-			std::list<Exp *>::iterator j;
-			std::list<Exp *>LExp = ((SeqExp*)parser.getTree())->exps_get();
+            std::list<Exp *>::iterator j;
+            std::list<Exp *>LExp = ((SeqExp*)parser.getTree())->exps_get();
 
-			for(j = LExp.begin() ; j != LExp.end() ; j++)
-			{
-				pFD = dynamic_cast<FunctionDec*>(*j);
-				if(pFD) // &&	pFD->name_get() == m_stName
-				{
-					symbol::Context* pContext = symbol::Context::getInstance();
-					if(pContext->get_fun(pFD->name_get())->isMacroFile())
-					{
-						MacroFile* pMacro = pContext->get_fun(pFD->name_get())->getAsMacroFile();
-						if(pMacro->m_pMacro == NULL)
-						{
-							std::list<Var *>::const_iterator	i;
+            for(j = LExp.begin() ; j != LExp.end() ; j++)
+            {
+                pFD = dynamic_cast<FunctionDec*>(*j);
+                if(pFD) // &&	pFD->name_get() == m_stName
+                {
+                    symbol::Context* pContext = symbol::Context::getInstance();
+                    if(pContext->get_fun(pFD->name_get())->isMacroFile())
+                    {
+                        MacroFile* pMacro = pContext->get_fun(pFD->name_get())->getAsMacroFile();
+                        if(pMacro->m_pMacro == NULL)
+                        {
+                            std::list<Var *>::const_iterator	i;
 
-							//get input parameters list
-							std::list<std::string> *pVarList = new std::list<std::string>();
-							ArrayListVar *pListVar = (ArrayListVar *)&pFD->args_get();
-							for(i = pListVar->vars_get().begin() ; i != pListVar->vars_get().end() ; i++)
-							{
-								pVarList->push_back(((SimpleVar*)(*i))->name_get());
-							}
+                            //get input parameters list
+                            std::list<std::string> *pVarList = new std::list<std::string>();
+                            ArrayListVar *pListVar = (ArrayListVar *)&pFD->args_get();
+                            for(i = pListVar->vars_get().begin() ; i != pListVar->vars_get().end() ; i++)
+                            {
+                                pVarList->push_back(((SimpleVar*)(*i))->name_get());
+                            }
 
-							//get output parameters list
-							std::list<std::string> *pRetList = new std::list<std::string>();
-							ArrayListVar *pListRet = (ArrayListVar *)&pFD->returns_get();
-							for(i = pListRet->vars_get().begin() ; i != pListRet->vars_get().end() ; i++)
-							{
-								pRetList->push_back(((SimpleVar*)(*i))->name_get());
-							}
+                            //get output parameters list
+                            std::list<std::string> *pRetList = new std::list<std::string>();
+                            ArrayListVar *pListRet = (ArrayListVar *)&pFD->returns_get();
+                            for(i = pListRet->vars_get().begin() ; i != pListRet->vars_get().end() ; i++)
+                            {
+                                pRetList->push_back(((SimpleVar*)(*i))->name_get());
+                            }
 
-							//types::Macro macro(VarList, RetList, (SeqExp&)e.body_get());
-							//types::Macro *pMacro = new types::Macro(m_stName, *pVarList, *pRetList, (SeqExp&)e.body_get());
+                            //types::Macro macro(VarList, RetList, (SeqExp&)e.body_get());
+                            //types::Macro *pMacro = new types::Macro(m_stName, *pVarList, *pRetList, (SeqExp&)e.body_get());
 
-							pMacro->m_pMacro = new Macro(m_stName, *pVarList, *pRetList, (SeqExp&)pFD->body_get(), m_stModule);
-						}
-					}
-				}
-			}
-		}
-		return true;
-	}
+                            pMacro->m_pMacro = new Macro(m_stName, *pVarList, *pRetList, (SeqExp&)pFD->body_get(), m_stModule);
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+    }
 }

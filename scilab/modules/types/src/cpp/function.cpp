@@ -33,13 +33,6 @@ namespace types
         setModule(_stModule);
     }
 
-    Function::Function(Function* _pFunction)
-    {
-        m_stModule  = _pFunction->getModule();
-        m_stName    = _pFunction->getName();
-        m_pFunc     = _pFunction->getFunc();
-    }
-        
     Function::~Function()
     {
         if(isDeletable() == true)
@@ -77,7 +70,8 @@ namespace types
 
     Function* Function::clone() 
     {
-        return new Function(this);
+        IncreaseRef();
+        return this;
     }
 
     WrapFunction::WrapFunction(std::string _stName, OLDGW_FUNC _pFunc, std::string _stModule)

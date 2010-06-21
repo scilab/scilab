@@ -17,16 +17,16 @@ using namespace types;
 
 Function::ReturnValue sci_list(typed_list &in, int _piRetCount, typed_list &out)
 {
-  List *pRetVal = new List();
-  typed_list::iterator itInput;
+    List *pRetVal = new List();
+    typed_list::iterator itInput;
 
-  for (itInput = in.begin() ; itInput != in.end() ; ++itInput)
+    for (itInput = in.begin() ; itInput != in.end() ; ++itInput)
     {
-      pRetVal->append((*itInput)->clone());
+        pRetVal->append((*itInput));
     }
-  
 
-  out.push_back(pRetVal);
 
-  return Function::OK;
+    out.push_back(pRetVal);
+
+    return Function::OK;
 }

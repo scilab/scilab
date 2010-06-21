@@ -17,13 +17,13 @@ using namespace types;
 
 Function::ReturnValue sci_insert(typed_list &in, int _piRetCount, typed_list &out)
 {
-	if(in.size() == 0)
-	{
-	  out.push_back(new ListInsert(new ListUndefined()));
-	}
-	else
-	{
-		out.push_back(new ListInsert(in[0]->clone()));
-	}
-  return Function::OK;
+    if(in.size() == 0)
+    {
+        out.push_back(new ListInsert(new ListUndefined()));
+    }
+    else
+    {
+        out.push_back(new ListInsert(in[0]));
+    }
+    return Function::OK;
 }

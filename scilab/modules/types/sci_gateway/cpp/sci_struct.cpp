@@ -17,29 +17,29 @@ using namespace types;
 
 Function::ReturnValue sci_struct(typed_list &in, int _piRetCount, typed_list &out)
 {
-  /* First check if all fields are Strings */
-  typed_list::iterator itInput;
+    /* First check if all fields are Strings */
+    typed_list::iterator itInput;
 
-  for (itInput = in.begin() ; itInput != in.end() ; itInput = itInput + 2)
+    for (itInput = in.begin() ; itInput != in.end() ; itInput = itInput + 2)
     {
-      if (!(*itInput)->isString())
-	{
-	  return Function::Error;
-	}
+        if (!(*itInput)->isString())
+        {
+            return Function::Error;
+        }
     }
 
-  Struct *pRetVal = new Struct();
-  InternalType *pFieldValue = NULL;
+    Struct *pRetVal = new Struct();
+    InternalType *pFieldValue = NULL;
 
-  for (itInput = in.begin() ; itInput != in.end() ; ++itInput)
+    for (itInput = in.begin() ; itInput != in.end() ; ++itInput)
     {
-      std::string psFieldName = std::string((*itInput)->getAsString()->string_get(0));
-      ++itInput;
-      pFieldValue = (*itInput)->clone();
-      pRetVal->add(psFieldName, pFieldValue);
+        std::string psFieldName = std::string((*itInput)->getAsString()->string_get(0));
+        ++itInput;
+        pFieldValue = *itInput;
+        pRetVal->add(psFieldName, pFieldValue);
     }
 
-  out.push_back(pRetVal);
+    out.push_back(pRetVal);
 
-  return Function::OK;
+    return Function::OK;
 }

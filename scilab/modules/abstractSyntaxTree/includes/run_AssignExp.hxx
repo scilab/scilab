@@ -100,9 +100,14 @@ void visitprivate(const AssignExp  &e)
             InternalType *pOut	= NULL;
 
             //fisrt extract implicit list
-            if(execMeR.result_get()->getType() == InternalType::RealImplicitList)
+            if(execMeR.result_get()->isImplicitList())
             {
                 InternalType *pIL = execMeR.result_get()->getAsImplicitList()->extract_matrix();
+                execMeR.result_set(pIL);
+            }
+            else if(execMeR.result_get()->isContainer())
+            {
+                InternalType* pIL = execMeR.result_get()->clone();
                 execMeR.result_set(pIL);
             }
 
@@ -166,7 +171,7 @@ void visitprivate(const AssignExp  &e)
             {//manage a.b(1) = x
                 pCall->name_get().accept(execVar);
 
-                if(execVar.result_get() != NULL && execVar.result_get()->isCallable())
+                if(execVar.result_get() != NULL)
                 {
                     pIT = execVar.result_get();
                 }
@@ -222,9 +227,15 @@ void visitprivate(const AssignExp  &e)
             InternalType *pOut	= NULL;
 
             //fisrt extract implicit list
-            if(execMeR.result_get()->getType() == InternalType::RealImplicitList)
+            if(execMeR.result_get()->isImplicitList())
             {
                 InternalType *pIL = execMeR.result_get()->getAsImplicitList()->extract_matrix();
+                execMeR.result_set(pIL);
+            }
+            else if(execMeR.result_get()->isContainer())
+            {
+                std::cout << "assign container type during insertion" << std::endl;
+                InternalType* pIL = execMeR.result_get()->clone();
                 execMeR.result_set(pIL);
             }
 
@@ -343,10 +354,13 @@ void visitprivate(const AssignExp  &e)
             InternalType *pIT	=	execMeR.result_get();
             if(pIT->isImplicitList())
             {
-                InternalType *pTemp = ((ImplicitList*)pIT)->extract_matrix();
-                delete pIT;
-                execMeR.result_set(NULL);
-                pIT = pTemp;
+                if(pIT->getAsImplicitList()->computable())
+                {
+                    InternalType *pTemp = pIT->getAsImplicitList()->extract_matrix();
+                    delete pIT;
+                    execMeR.result_set(NULL);
+                    pIT = pTemp;
+                }
             }
 
             const ReturnExp *pReturn = dynamic_cast<const ReturnExp*>(&e.right_exp_get());
@@ -430,10 +444,18 @@ void visitprivate(const AssignExp  &e)
             InternalType *pIT = execMeR.result_get();
             if(pIT->isImplicitList())
             {
-                InternalType *pTemp = ((ImplicitList*)pIT)->extract_matrix();
-                delete pIT;
-                execMeR.result_set(NULL);
-                pIT = pTemp;
+                if(pIT->getAsImplicitList()->computable())
+                {
+                    InternalType *pTemp = pIT->getAsImplicitList()->extract_matrix();
+                    delete pIT;
+                    execMeR.result_set(NULL);
+                    pIT = pTemp;
+                }
+            }
+            else if(pIT->isContainer())
+            {
+                std::cout << "assign container type to field" << std::endl;
+                pIT = pIT->clone();
             }
 
             //assign result to new field

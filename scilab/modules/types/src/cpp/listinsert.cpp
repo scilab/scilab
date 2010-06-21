@@ -19,47 +19,56 @@
 namespace types
 {
 
-	ListInsert::ListInsert(InternalType* _pIT)
-	{
-		m_pInsert = _pIT;
-	}
+    ListInsert::ListInsert(InternalType* _pIT)
+    {
+        _pIT->IncreaseRef();
+        m_pInsert = _pIT;
+    }
 
-	ListInsert::~ListInsert()
-	{
-	}
+    ListInsert::~ListInsert()
+    {
+        if(m_pInsert != NULL)
+        {
+            m_pInsert->DecreaseRef();
+            if(m_pInsert->isDeletable())
+            {
+                delete m_pInsert;
+                m_pInsert = NULL;
+            }
+        }
+    }
 
-	void ListInsert::whoAmI()
-	{
-		std::cout << "types::ListInsert";
-	}
+    void ListInsert::whoAmI()
+    {
+        std::cout << "types::ListInsert";
+    }
 
-	ListInsert* ListInsert::clone(void)
-	{
-		return new ListInsert(m_pInsert);
-	}
+    ListInsert* ListInsert::clone(void)
+    {
+        return new ListInsert(m_pInsert);
+    }
 
-	ListInsert* ListInsert::getAsListInsert(void)
-	{
-		return this; 
-	}
+    ListInsert* ListInsert::getAsListInsert(void)
+    {
+        return this; 
+    }
 
-	InternalType::RealType ListInsert::getType(void)
-	{ 
-		return RealListInsertOperation; 
-	}
+    InternalType::RealType ListInsert::getType(void)
+    { 
+        return RealListInsertOperation; 
+    }
 
-	std::string ListInsert::toString(int _iPrecision, int _iLineLen)
-	{
-	  std::ostringstream ostr;
+    std::string ListInsert::toString(int _iPrecision, int _iLineLen)
+    {
+        std::ostringstream ostr;
 
-	  //FIXME : Implement me.
-	  ostr << "FIXME : Implement ListInsert::toString" << std::endl;
+        //FIXME : Implement me.
+        ostr << "FIXME : Implement ListInsert::toString" << std::endl;
+        return ostr.str();
+    }
 
-	  return ostr.str();
-	}
-
-	InternalType* ListInsert::insert_get()
-	{
-		return m_pInsert;
-	}
+    InternalType* ListInsert::insert_get()
+    {
+        return m_pInsert;
+    }
 }

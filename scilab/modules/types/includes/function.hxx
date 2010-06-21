@@ -31,8 +31,6 @@ namespace types
 {
     class Function : public Callable
     {
-    private :
-                            Function(Function* _pfunc);
     public :
         typedef ReturnValue (*GW_FUNC)(typed_list &in, int _iRetCount, typed_list &out); 
         typedef int (*OLDGW_FUNC)(char *fname, int* _piKey);

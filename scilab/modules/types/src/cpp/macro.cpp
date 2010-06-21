@@ -42,32 +42,6 @@ namespace types
         delete m_body;
     }
 
-    Macro::Macro(Macro* _pMacro)
-    {
-        m_inputArgs = _pMacro->inputs_get();
-        //m_inputArgs                 = new list<string>;
-        //list<string>* pInputs       = _pMacro->inputs_get();
-        //list<string>::iterator it;
-
-        //for(it = pInputs->begin() ; it != pInputs->end() ; it++)
-        //{
-        //    m_inputArgs->push_back(*it);
-        //}
-
-        m_outputArgs = _pMacro->outputs_get();
-        //m_outputArgs                = new list<string>;
-        //list<string>* pOutputs      = _pMacro->outputs_get();
-
-        //for(it = pOutputs->begin() ; it != pOutputs->end() ; it++)
-        //{
-        //    m_outputArgs->push_back(*it);
-        //}
-
-        m_body      = _pMacro->body_get();
-        m_stName    = _pMacro->getName();
-        m_stModule  = _pMacro->getModule();
-    }
-
     Macro* Macro::clone()
     {
         IncreaseRef();

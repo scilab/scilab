@@ -23,8 +23,6 @@ namespace types
 {
     class Macro : public Callable
     {
-    private : 
-                                    Macro(Macro* _pMacro);
     public :
                                     Macro(): Callable(){};
                                     Macro(const std::string& _stName, std::list<std::string> &_inputArgs, std::list<std::string> &_outputArgs, ast::SeqExp &_body, const string& _stModule);

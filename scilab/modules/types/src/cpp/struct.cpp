@@ -43,14 +43,14 @@ namespace types
         m_iRows = _oStructCopyMe->rows_get();
         m_iCols = _oStructCopyMe->cols_get();
         std::map<std::string, InternalType *>::iterator itValues;
-        m_plData = new std::map<std::string, InternalType *>();
+        m_plData = new std::map<std::string, InternalType *>;
 
         for (itValues = _oStructCopyMe->getData()->begin();
             itValues != _oStructCopyMe->getData()->end();
             itValues++)
         {
-            (*m_plData)[(*itValues).first] = ((*itValues).second)->clone();
-            (*m_plData)[(*itValues).first]->IncreaseRef();
+            ((*itValues).second)->IncreaseRef();
+            (*m_plData)[(*itValues).first] = (*itValues).second;
         }
     }
 
@@ -91,9 +91,8 @@ namespace types
 
         //it seams std::map implementation is different between windows and linux
         //so cloning in temporary variable before assign it.
-        InternalType* pIT = _typedValue->clone();
-        (*m_plData)[_sKey] = pIT;
-        (*m_plData)[_sKey]->IncreaseRef();
+        _typedValue->IncreaseRef();
+        (*m_plData)[_sKey] = _typedValue;
     }
 
 
@@ -190,7 +189,7 @@ namespace types
 
         for(it = _stFields.begin() ; it != _stFields.end() ; it++)
         {
-            Result.push_back(get(*it)->clone());
+            Result.push_back(get(*it));
         }
         return Result;
     }
