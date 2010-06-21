@@ -1,6 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA - Allan CORNET
+* Copyright (C) DIGITEO - 2010 - Allan CORNET
 * 
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -14,7 +15,7 @@
 #include <stdio.h>
 #include "PATH_MAX.h"
 #include "MALLOC.h"
-#include "tmpdir.h" /* getTMPDIR */
+#include "tmpdir.h"
 #include "FileExist.h"
 #include "scilabmode.h"
 #include "spawncommand.h"
@@ -34,15 +35,15 @@
 #define CMDLINE_FORMAT_NOTDETACHED "%s /A /C \"%s && echo DOS > %s\""
 #define OUTPUT_CHECK_FILENAME_FORMAT "%s\\DOS.OK"
 /*--------------------------------------------------------------------------*/
-extern pipeinfo pipeOut;
-extern pipeinfo pipeErr;
+pipeinfo SCILAB_WINDOWS_IMPEXP pipeSpawnOut = {INVALID_HANDLE_VALUE, NULL,0};
+pipeinfo SCILAB_WINDOWS_IMPEXP pipeSpawnErr = {INVALID_HANDLE_VALUE, NULL,0};
 /*--------------------------------------------------------------------------*/
 static int GetNumberOfLines(char *lines);
 static BOOL removeEOL(char *_string);
 static BOOL removeNotPrintableCharacters(char *_string);
 static char *convertLine(char *_string, BOOL DetachProcess);
 /*--------------------------------------------------------------------------*/
-int spawncommand(char *command,BOOL DetachProcess)
+int spawncommand(char *command, BOOL DetachProcess)
 {
     char shellCmd[PATH_MAX];
     char *CmdLine = NULL;
@@ -56,6 +57,17 @@ int spawncommand(char *command,BOOL DetachProcess)
     HANDLE hProcess = NULL, h = NULL, pipeThreads[2];
     DWORD ExitCode = 0;
 
+    if (strcmp(command, "") == 0)
+    {
+        // do nothing
+        pipeSpawnOut.NumberOfLines = 0;
+        pipeSpawnOut.OutputBuffer = NULL;
+
+        pipeSpawnErr.NumberOfLines = 0;
+        pipeSpawnErr.OutputBuffer = NULL;
+
+        return 1;
+    }
     hProcess = GetCurrentProcess();
 
     ZeroMemory(&pi, sizeof(PROCESS_INFORMATION));
@@ -70,14 +82,14 @@ int spawncommand(char *command,BOOL DetachProcess)
     sa.bInheritHandle = TRUE;
 
     /* create a non-inheritible pipe. */
-    CreatePipe(&pipeOut.pipe, &h, &sa, 0);
+    CreatePipe(&pipeSpawnOut.pipe, &h, &sa, 0);
 
     /* dupe the write side, make it inheritible, and close the original. */
     DuplicateHandle(hProcess, h, hProcess, &si.hStdOutput, 
         0, TRUE, DUPLICATE_SAME_ACCESS | DUPLICATE_CLOSE_SOURCE);
 
     /* Same as above, but for the error side. */
-    CreatePipe(&pipeErr.pipe, &h, &sa, 0);
+    CreatePipe(&pipeSpawnErr.pipe, &h, &sa, 0);
     DuplicateHandle(hProcess, h, hProcess, &si.hStdError, 
         0, TRUE, DUPLICATE_SAME_ACCESS | DUPLICATE_CLOSE_SOURCE);
 
@@ -108,7 +120,7 @@ int spawncommand(char *command,BOOL DetachProcess)
         if (FileExist(FileTMPDir)) DeleteFile(FileTMPDir);
 
         lenCmdLine = (int)(strlen(shellCmd) + strlen(command) + strlen(CMDLINE_FORMAT_NOTDETACHED) + 
-                           strlen(FileTMPDir));
+            strlen(FileTMPDir));
         CmdLine = (char*)MALLOC((lenCmdLine + 1)*sizeof(char));
         sprintf(CmdLine, CMDLINE_FORMAT_NOTDETACHED, shellCmd, command, FileTMPDir);
 
@@ -139,8 +151,8 @@ int spawncommand(char *command,BOOL DetachProcess)
     CloseHandle(pi.hThread);
 
     /* start the pipe reader threads. */
-    pipeThreads[0] = CreateThread(NULL, 0, ReadFromPipe, &pipeOut, 0, &threadID);
-    pipeThreads[1] = CreateThread(NULL, 0, ReadFromPipe, &pipeErr, 0, &threadID);
+    pipeThreads[0] = CreateThread(NULL, 0, ReadFromPipe, &pipeSpawnOut, 0, &threadID);
+    pipeThreads[1] = CreateThread(NULL, 0, ReadFromPipe, &pipeSpawnErr, 0, &threadID);
 
     /* block waiting for the process to end. */
     WaitForSingleObject(pi.hProcess, INFINITE);
@@ -221,29 +233,32 @@ char **CreateOuput(pipeinfo *pipe,BOOL DetachProcess)
     char **OuputStrings = NULL;
     if (pipe)
     {
-        char *buffer = strdup(pipe->OutputBuffer);
-        if (buffer)
+        if (pipe->OutputBuffer)
         {
-            pipe->NumberOfLines = GetNumberOfLines(buffer);
-            if (pipe->NumberOfLines)
+            char *buffer = strdup(pipe->OutputBuffer);
+            if (buffer)
             {
-                OuputStrings = (char**)MALLOC((pipe->NumberOfLines) * sizeof(char*));
-                if (OuputStrings)
+                pipe->NumberOfLines = GetNumberOfLines(buffer);
+                if (pipe->NumberOfLines)
                 {
-                    char *line = strtok(buffer, LF_STR);
-                    int i = 0;
-
-                    while (line)
+                    OuputStrings = (char**)MALLOC((pipe->NumberOfLines) * sizeof(char*));
+                    if (OuputStrings)
                     {
-                        OuputStrings[i] = convertLine(line, DetachProcess);
-                        line = strtok(NULL, LF_STR);
-                        i++;
-                        if (i > pipe->NumberOfLines) break;
+                        char *line = strtok(buffer, LF_STR);
+                        int i = 0;
+
+                        while (line)
+                        {
+                            OuputStrings[i] = convertLine(line, DetachProcess);
+                            line = strtok(NULL, LF_STR);
+                            i++;
+                            if (i > pipe->NumberOfLines) break;
+                        }
                     }
                 }
+                FREE(buffer);
+                buffer = NULL;
             }
-            FREE(buffer);
-            buffer = NULL;
         }
     }
     return OuputStrings;
@@ -333,5 +348,79 @@ char *convertLine(char *_string, BOOL DetachProcess)
 
     }
     return convertedString;
+}
+/*--------------------------------------------------------------------------*/
+int CallWindowsShell(char *command)
+{
+    int returnedExitCode = -1;
+
+    wchar_t shellCmd[PATH_MAX];
+    wchar_t *CmdLine = NULL;
+    wchar_t * wcommand = NULL;
+    size_t iCmdSize = 0;
+
+    PROCESS_INFORMATION piProcInfo; 
+    STARTUPINFOW siStartInfo;
+    SECURITY_ATTRIBUTES saAttr; 
+
+    DWORD ExitCode = 0;
+
+    wchar_t *TMPDir = NULL;
+    wchar_t FileTMPDir[PATH_MAX];
+
+    if (strcmp(command, "") == 0)
+    {
+        // do nothing
+        return 1;
+    }
+
+    saAttr.nLength = sizeof(SECURITY_ATTRIBUTES); 
+    saAttr.bInheritHandle = TRUE; 
+    saAttr.lpSecurityDescriptor = NULL; 
+
+    ZeroMemory( &piProcInfo, sizeof(PROCESS_INFORMATION) );
+
+    ZeroMemory( &siStartInfo, sizeof(STARTUPINFO) );
+    siStartInfo.cb = sizeof(STARTUPINFO); 
+    siStartInfo.dwFlags      = STARTF_USESHOWWINDOW | STARTF_USESTDHANDLES;
+    siStartInfo.wShowWindow  = SW_HIDE;
+    siStartInfo.hStdInput = NULL;
+
+    siStartInfo.hStdOutput = GetStdHandle(STD_OUTPUT_HANDLE);
+    siStartInfo.hStdError = GetStdHandle(STD_ERROR_HANDLE);
+
+    GetEnvironmentVariableW(L"ComSpec", shellCmd, PATH_MAX);
+    TMPDir = getTMPDIRW();
+    swprintf(FileTMPDir, PATH_MAX, L"%s\\DOS.OK", TMPDir);
+    if (TMPDir) {FREE(TMPDir); TMPDir = NULL;}
+
+    wcommand = to_wide_string(command);
+    iCmdSize = (wcslen(shellCmd) + wcslen(wcommand) + wcslen(FileTMPDir) + wcslen(L"%s /a /c \"%s\" && echo DOS>%s") + 1);
+    CmdLine = (wchar_t*)MALLOC(iCmdSize * sizeof(wchar_t));
+    swprintf(CmdLine, iCmdSize, L"%s /a /c \"%s\" && echo DOS>%s", shellCmd, wcommand, FileTMPDir);
+
+    if (CreateProcessW(NULL, CmdLine, NULL, NULL, TRUE, 0, NULL, NULL, &siStartInfo, &piProcInfo))
+    {
+        WaitForSingleObject(piProcInfo.hProcess, INFINITE);
+
+        if ( GetExitCodeProcess(piProcInfo.hProcess, &ExitCode) == STILL_ACTIVE )
+        {
+            TerminateProcess(piProcInfo.hProcess, 0);
+        }
+
+        CloseHandle(piProcInfo.hProcess);
+
+        if (CmdLine) {FREE(CmdLine); CmdLine = NULL;}
+
+        if (FileExistW(FileTMPDir)) DeleteFileW(FileTMPDir);
+
+        returnedExitCode = (int)ExitCode;
+    }
+    else
+    {
+        CloseHandle(piProcInfo.hProcess);
+        if (CmdLine) {FREE(CmdLine); CmdLine = NULL;}
+    }
+    return returnedExitCode;
 }
 /*--------------------------------------------------------------------------*/

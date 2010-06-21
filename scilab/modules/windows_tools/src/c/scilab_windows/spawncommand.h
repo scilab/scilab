@@ -1,6 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA - Allan CORNET
+* Copyright (C) DIGITEO - 2010 - Allan CORNET
 * 
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -15,6 +16,7 @@
 #define __SPAWNCOMMAND_H__
 /*--------------------------------------------------------------------------*/
 #include <Windows.h>
+#include "dynlib_scilab_windows.h"
 #include "BOOL.h" /* BOOL */
 /*--------------------------------------------------------------------------*/
 typedef struct pipeinfo
@@ -23,6 +25,11 @@ typedef struct pipeinfo
     unsigned char *OutputBuffer;
     int NumberOfLines;
 } pipeinfo;
+
+#ifndef SCILAB_WINDOWS_EXPORTS
+pipeinfo SCILAB_WINDOWS_IMPEXP pipeSpawnOut;
+pipeinfo SCILAB_WINDOWS_IMPEXP pipeSpawnErr;
+#endif 
 /*--------------------------------------------------------------------------*/
 /**
 * spawn a command
@@ -30,21 +37,21 @@ typedef struct pipeinfo
 * @param[in] DetachProcess (if we want detach to scilab process)
 * @return 0
 */
-int spawncommand(char *command,BOOL DetachProcess);
+SCILAB_WINDOWS_IMPEXP int spawncommand(char *command, BOOL DetachProcess);
 
 /**
 * ReadFromPipe (in or out)
 * @param[in] pipe handle
 * @return 0
 */
-DWORD WINAPI ReadFromPipe (LPVOID args);
+SCILAB_WINDOWS_IMPEXP DWORD WINAPI ReadFromPipe (LPVOID args);
 
 /**
 * check if we have a '&' (detach process)
 * @param[in] command
 * @return TRUE or FALSE
 */
-BOOL DetectDetachProcessInCommandLine(char *command);
+SCILAB_WINDOWS_IMPEXP BOOL DetectDetachProcessInCommandLine(char *command);
 
 /**
 * CreateOuput
@@ -52,14 +59,21 @@ BOOL DetectDetachProcessInCommandLine(char *command);
 * @param[in] DetachProcess
 * @return output
 */
-char **CreateOuput(pipeinfo *pipe,BOOL DetachProcess);
+SCILAB_WINDOWS_IMPEXP char **CreateOuput(pipeinfo *pipe,BOOL DetachProcess);
 
 /**
 * Close pipe
 * @param[in] pipe
 * @return 0
 */
-int ClosePipeInfo (pipeinfo pipe);
+SCILAB_WINDOWS_IMPEXP int ClosePipeInfo (pipeinfo pipe);
+
+/**
+* Call cmd.exe windows shell
+* @param[in] command to execute
+* @param[out] exit code returned by cmd
+*/
+SCILAB_WINDOWS_IMPEXP int CallWindowsShell(char *command);
 
 #endif /* __SPAWNCOMMAND_H__ */
 /*--------------------------------------------------------------------------*/

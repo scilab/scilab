@@ -927,5 +927,7 @@ Bug fixes:
 * bug 7285 fixed - Open/Save dialog box did not display filenames without
                    extension with filter "*.*"
 
+* bug 7291 fixed - unix('') and dos('') returned a wrong messsage on Windows.
+
 * bug 7312 fixed - isnum() diplayed warnings when using some unusual parameters.
 
