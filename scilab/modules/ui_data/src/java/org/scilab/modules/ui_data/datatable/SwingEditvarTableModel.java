@@ -20,93 +20,103 @@ import javax.swing.table.DefaultTableModel;
  */
 public class SwingEditvarTableModel<Type> extends DefaultTableModel {
 
-	private static final long serialVersionUID = -4255704246347716837L;
-	private int scilabMatrixRowCount;
-	private int scilabMatrixColCount;
-	private Object defaultValue;
-	/**
-	 * Default construction setting table data.
-	 * @param data : the data to store.
-	 */
-	public SwingEditvarTableModel(Type[][] data, Object defaultvalue) {
-		this.defaultValue = defaultvalue;
-		scilabMatrixColCount =  data[0].length;
-		scilabMatrixRowCount =  data.length;
-		this.setDataVector(data);
-		expandTable();
-		
-	}
+    private static final long serialVersionUID = -4255704246347716837L;
+    private int scilabMatrixRowCount;
+    private int scilabMatrixColCount;
+    /**
+     * Default construction setting table data.
+     * @param data : the data to store.
+     */
+    public SwingEditvarTableModel(Type[][] data) {
+        scilabMatrixColCount =  data[0].length;
+        scilabMatrixRowCount =  data.length;
+        this.setDataVector(data);
+        expandTable();
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public void setDataVector(Type[][] data) {
-		int cols = data[0].length;
-		Integer[] identifiers = new Integer[cols]; 
-		for (int i = 0; i < cols; ++i) {
-			identifiers[i] = i+1;
-		}
-		super.setDataVector(data, identifiers);
-		
-	}
-	
-	
-	@Override
-	public void setValueAt(Object value, int row, int col) {
-		
-		for (int i = scilabMatrixRowCount; i <= Math.max(row, scilabMatrixRowCount-1); i++){
-			for(int j = 0; j <= Math.max(col,scilabMatrixColCount-1); j++) {
+    }
 
-				super.setValueAt(defaultValue, i, j);
-			}
-		}
-		
-		for (int i = scilabMatrixColCount; i <= Math.max(col,scilabMatrixColCount-1); i++){
-			for(int j = 0; j <= Math.max(row, scilabMatrixRowCount-1); j++) {
-				super.setValueAt(defaultValue, j, i);
-			}
-		}
-		
-		super.setValueAt(value, row, col);
-		
+    /**
+     * {@inheritDoc}
+     */
+    public void setDataVector(Type[][] data) {
+        int cols = data[0].length;
+        Integer[] identifiers = new Integer[cols]; 
+        for (int i = 0; i < cols; ++i) {
+            identifiers[i] = i+1;
+        }
+        super.setDataVector(data, identifiers);
 
-		if(col > scilabMatrixColCount || row > scilabMatrixRowCount) {
-			if (col > scilabMatrixColCount){
-				scilabMatrixColCount = col+1;
-			}
-			if (row > scilabMatrixRowCount) {
-				scilabMatrixRowCount = row+1;
-			}
-			expandTable();
-		}
-		
+    }
+
+    private Object getDefaultValue(Object value)
+    {
+        if (value instanceof String) {
+            return "";
+        }
+        if (value instanceof Double) {
+            return 0.0;
+        }
+        if (value instanceof Boolean)
+        {
+            return false;
+        }
+
+        return null;
+    }
+
+    @Override
+    public void setValueAt(Object value, int row, int col) {
+
+        for (int i = scilabMatrixRowCount; i <= Math.max(row, scilabMatrixRowCount-1); i++){
+            for(int j = 0; j <= Math.max(col,scilabMatrixColCount-1); j++) {
+                super.setValueAt(getDefaultValue(value), i, j);
+            }
+        }
+
+        for (int i = scilabMatrixColCount; i <= Math.max(col,scilabMatrixColCount-1); i++){
+            for(int j = 0; j <= Math.max(row, scilabMatrixRowCount-1); j++) {
+                super.setValueAt(getDefaultValue(value), j, i);
+            }
+        }
+
+        super.setValueAt(value, row, col);
+
+        if(col > scilabMatrixColCount || row > scilabMatrixRowCount) {
+            if (col > scilabMatrixColCount){
+                scilabMatrixColCount = col+1;
+            }
+            if (row > scilabMatrixRowCount) {
+                scilabMatrixRowCount = row+1;
+            }
+            expandTable();
+        }
 
 
-		
-	}
-	
-	public void expandTable() {
-		int newTableColCount = 42;
-		int newTableRowCount = 42;
-		
-		// row
-		if (getColumnCount() > 32) {
-			newTableColCount = scilabMatrixColCount + 10;
-		}
-		for(int i = getColumnCount(); i < newTableColCount; i++) {
-			addColumn(i+1);
-		}
-		
-		// col
-		if (getRowCount() > 32) {
-			newTableRowCount = scilabMatrixRowCount + 10;
-		}
-		for(Integer i = getRowCount(); i < newTableRowCount; i++) {
-			Type[] newCol =(Type[]) new Object[scilabMatrixRowCount];
-			addRow(newCol);
 
-		}
-	}
-	
+
+    }
+
+    public void expandTable() {
+        int newTableColCount = 42;
+        int newTableRowCount = 42;
+
+        // row
+        if (getColumnCount() > 32) {
+            newTableColCount = scilabMatrixColCount + 10;
+        }
+        for(int i = getColumnCount(); i < newTableColCount; i++) {
+            addColumn(i+1);
+        }
+
+        // col
+        if (getRowCount() > 32) {
+            newTableRowCount = scilabMatrixRowCount + 10;
+        }
+        for(Integer i = getRowCount(); i < newTableRowCount; i++) {
+            Object[] newCol = new Object[scilabMatrixRowCount];
+            addRow(newCol);
+        }
+    }
+
 
 }

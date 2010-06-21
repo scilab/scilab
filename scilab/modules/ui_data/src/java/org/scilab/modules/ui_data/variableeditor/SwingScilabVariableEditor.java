@@ -31,10 +31,6 @@ import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
 import org.scilab.modules.ui_data.rowheader.RowHeader;
 import org.scilab.modules.ui_data.rowheader.RowHeaderModel;
 import org.scilab.modules.ui_data.variableeditor.celleditor.CellEditorFactory;
-import org.scilab.modules.ui_data.variableeditor.celleditor.ScilabBooleanCellEditor;
-import org.scilab.modules.ui_data.variableeditor.celleditor.ScilabDoubleCellEditor;
-import org.scilab.modules.ui_data.variableeditor.celleditor.ScilabStringCellEditor;
-import org.scilab.modules.ui_data.variableeditor.celleditor.VariableEditorCellEditor;
 import org.scilab.modules.ui_data.variableeditor.listeners.ExpandListener;
 import org.scilab.modules.ui_data.variableeditor.renderers.RendererFactory;
 
@@ -89,7 +85,7 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
 	 */
 
 	public void setData(Object[][] data) {
-		dataModel = new SwingEditvarTableModel<Object>(data, getDefaultValue(data));
+		dataModel = new SwingEditvarTableModel<Object>(data);
 
 		table = new JTable(dataModel);
 		table.setDefaultEditor(Object.class, CellEditorFactory.createCellEditor(data));
@@ -119,22 +115,14 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
 	 * {@inheritDoc}
 	 */
 	public void setValueAt(Object value, int row, int col) {
-		dataModel.setValueAt(value, row, col);
+		// Update renderer in case we changed type after openning value
+	    // ex : a = 10; editvar("a"); change value to "hello" 
+	    table.setDefaultRenderer(Object.class, RendererFactory.createRenderer(value));
+	    
+	    dataModel.setValueAt(value, row, col);
 		RowHeaderModel rowHeaderModel = new RowHeaderModel(dataModel);
 		RowHeader rowHeader = new RowHeader(rowHeaderModel, table);
 		scrollPane.setRowHeaderView(rowHeader);
-	}
-
-	public Object getDefaultValue(Object[][] data){
-
-		if (data instanceof String[][]) {
-			return "";
-		} else if (data instanceof Double[][]) {
-			return 0.0;
-		} else if (data instanceof Boolean[][]) {
-			return false;
-		}
-		return "";
 	}
 
 	/**
