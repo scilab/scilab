@@ -10,25 +10,41 @@
 *
 */
 /*--------------------------------------------------------------------------*/
+#include <string.h>
 #include <windows.h> 
 #include "mmapWindows.h"
 /*--------------------------------------------------------------------------*/
-static int g_sl = 0;
+#ifdef _WIN64
+typedef LONG64 LOCKLONG;
+#else
+typedef LONG LOCKLONG;
+#endif
+static LOCKLONG g_sl = 0;
 /*--------------------------------------------------------------------------*/
 /* Wait for spin lock */
-static int slwait (int *sl) 
+static int slwait (LOCKLONG *sl) 
 {
-    while (InterlockedCompareExchange ((void **) sl, (void *) 1, (void *) 0) != 0)
+
+    LOCKLONG Destination = *sl;
+    LONG Exchange = 1;
+    LONG Comparand = 0;
+#if _WIN64
+    while (InterlockedCompareExchange64(&Destination, Exchange, Comparand))
+
+#else
+    while (InterlockedCompareExchange (&Destination, Exchange, Comparand))
+#endif
     {
         Sleep (0);
     }
+    *sl = Destination;
     return 0;
 }
 /*--------------------------------------------------------------------------*/
 /* Release spin lock */
-static int slrelease (int *sl) 
+static int slrelease (LOCKLONG *sl) 
 {
-    InterlockedExchange (sl, 0);
+    InterlockedExchange ((volatile LONG*)sl, 0);
     return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -78,10 +94,6 @@ void *mmap (void *ptr, long size, long prot, long type, long handle, long arg)
 
     /* Allocate this */
     ptr = VirtualAlloc (ptr, size, MEM_RESERVE | MEM_COMMIT | MEM_TOP_DOWN, PAGE_READWRITE);
-    if (! ptr) 
-    {
-        ptr = MMAP_FAILURE;
-    }
     /* Release spin lock */
     slrelease (&g_sl);
     return ptr;
