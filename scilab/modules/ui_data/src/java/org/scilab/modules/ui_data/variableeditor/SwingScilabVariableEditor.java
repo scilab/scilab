@@ -59,31 +59,8 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
 	 */
 	public SwingScilabVariableEditor(Object[][] data) {
 		super(Messages.gettext("Variable Browser"));
-
-		dataModel = new SwingEditvarTableModel<Object>(data, getDefaultValue(data));
-
-		table = new JTable(dataModel);
-		table.setDefaultEditor(Object.class, CellEditorFactory.createCellEditor(data));
-		table.setFillsViewportHeight(true);
-		table.setAutoResizeMode(CENTER);
-		table.setRowHeight(25);
-		table.setDefaultRenderer(Object.class, RendererFactory.createRenderer(data));
-
-		//table.getColumnModel().setColumnMargin(2);
-
-		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		table.setCellSelectionEnabled(true);		
-
-		RowHeaderModel rowHeaderModel = new RowHeaderModel(dataModel);
-		RowHeader rowHeader = new RowHeader(rowHeaderModel, table);
-
-
-		scrollPane = new JScrollPane(table);
-		scrollPane.setRowHeaderView(rowHeader);
-		scrollPane.getHorizontalScrollBar().addAdjustmentListener(new ExpandListener());
-
-		table.setBackground(Color.WHITE);
-		setContentPane(scrollPane);
+		
+		setData(data);
 	}
 
 	/**
@@ -112,7 +89,30 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
 	 */
 
 	public void setData(Object[][] data) {
-		dataModel.setDataVector(data);
+		dataModel = new SwingEditvarTableModel<Object>(data, getDefaultValue(data));
+
+		table = new JTable(dataModel);
+		table.setDefaultEditor(Object.class, CellEditorFactory.createCellEditor(data));
+		table.setFillsViewportHeight(true);
+		table.setAutoResizeMode(CENTER);
+		table.setRowHeight(25);
+		table.setDefaultRenderer(Object.class, RendererFactory.createRenderer(data));
+
+		//table.getColumnModel().setColumnMargin(2);
+
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setCellSelectionEnabled(true);		
+
+		RowHeaderModel rowHeaderModel = new RowHeaderModel(dataModel);
+		RowHeader rowHeader = new RowHeader(rowHeaderModel, table);
+
+
+		scrollPane = new JScrollPane(table);
+		scrollPane.setRowHeaderView(rowHeader);
+		scrollPane.getHorizontalScrollBar().addAdjustmentListener(new ExpandListener());
+
+		table.setBackground(Color.WHITE);
+		setContentPane(scrollPane);
 	}
 
 	/**
