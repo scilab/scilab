@@ -2,11 +2,11 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) DIGITEO - 2010 - Allan CORNET
 # Copyright (C) DIGITEO - 2010 - Bruno JOFRET
-# 
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 #
 
@@ -27,9 +27,9 @@ libscitypes_la_etc_DATA = etc/types.quit \
 include $(top_srcdir)/Makefile.incl.am
 
 
-TYPES_JNI_SOURCES = 
+TYPES_JNI_SOURCES =
 
-TYPES_C_SOURCES = 
+TYPES_C_SOURCES =
 
 TYPES_CPP_SOURCES = \
 			src/cpp/types.cpp \
@@ -53,14 +53,14 @@ TYPES_CPP_SOURCES = \
 			src/cpp/struct.cpp \
 			src/cpp/cell.cpp
 
-GIWS_WRAPPERS = 
+GIWS_WRAPPERS =
 
 if GIWS
 BUILT_SOURCES=giws
 endif
 
 
-GATEWAY_C_SOURCES = 
+GATEWAY_C_SOURCES =
 
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/types_gw.cpp \
 			sci_gateway/cpp/sci_list.cpp \
@@ -68,9 +68,10 @@ GATEWAY_CPP_SOURCES = sci_gateway/cpp/types_gw.cpp \
 			sci_gateway/cpp/sci_insert.cpp \
 			sci_gateway/cpp/sci_null.cpp \
 			sci_gateway/cpp/sci_cell.cpp \
-			sci_gateway/cpp/sci_makecell.cpp
+			sci_gateway/cpp/sci_makecell.cpp \
+			sci_gateway/cpp/sci_usertype.cpp
 
-libscitypes_la_CFLAGS= 
+libscitypes_la_CFLAGS=
 
 
 libscitypes_la_CPPFLAGS = 	-Iincludes/ \
@@ -84,7 +85,7 @@ libscitypes_la_CPPFLAGS = 	-Iincludes/ \
 				-I ../functions_manager/includes \
 				-I src/cpp
 
-pkglib_LTLIBRARIES = libscitypes.la 
+pkglib_LTLIBRARIES = libscitypes.la
 
 libscitypes_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 
@@ -96,7 +97,7 @@ INCLUDE_FLAGS = $(libscitypes_la_CFLAGS)
 
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = 
+SWIG_WRAPPERS =
 
 if SWIG
 BUILT_SOURCES=swig
@@ -109,7 +110,7 @@ $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 #### types : gateway declaration ####
 libscitypes_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscitypes_la_sci_gateway_DATA = 
+libscitypes_la_sci_gateway_DATA =
 
 if GUI
 USEANT=1

@@ -139,7 +139,7 @@ namespace types
       */
 
       /**
-      ** Callable 
+      ** Callable
       ** \{
       */
       virtual bool                      isCallable(void) { return false; }
@@ -213,7 +213,7 @@ namespace types
   private :
       int                               m_iRef;
       //use to know if we can delete this variables or if it's link to a scilab variable.
-      bool                              m_bAllowDelete; 
+      bool                              m_bAllowDelete;
   };
 
   /*

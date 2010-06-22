@@ -19,11 +19,11 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) DIGITEO - 2010 - Allan CORNET
 # Copyright (C) DIGITEO - 2010 - Bruno JOFRET
-# 
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 #
 
@@ -124,7 +124,7 @@ am__objects_1 =
 am__objects_2 = libscitypes_la-types_gw.lo libscitypes_la-sci_list.lo \
 	libscitypes_la-sci_struct.lo libscitypes_la-sci_insert.lo \
 	libscitypes_la-sci_null.lo libscitypes_la-sci_cell.lo \
-	libscitypes_la-sci_makecell.lo
+	libscitypes_la-sci_makecell.lo libscitypes_la-sci_usertype.lo
 am__objects_3 = libscitypes_la-types.lo libscitypes_la-int.lo \
 	libscitypes_la-string.lo libscitypes_la-double.lo \
 	libscitypes_la-bool.lo libscitypes_la-float.lo \
@@ -523,7 +523,8 @@ GATEWAY_CPP_SOURCES = sci_gateway/cpp/types_gw.cpp \
 			sci_gateway/cpp/sci_insert.cpp \
 			sci_gateway/cpp/sci_null.cpp \
 			sci_gateway/cpp/sci_cell.cpp \
-			sci_gateway/cpp/sci_makecell.cpp
+			sci_gateway/cpp/sci_makecell.cpp \
+			sci_gateway/cpp/sci_usertype.cpp
 
 libscitypes_la_CFLAGS = 
 libscitypes_la_CPPFLAGS = -Iincludes/ \
@@ -537,7 +538,7 @@ libscitypes_la_CPPFLAGS = -Iincludes/ \
 				-I ../functions_manager/includes \
 				-I src/cpp
 
-pkglib_LTLIBRARIES = libscitypes.la 
+pkglib_LTLIBRARIES = libscitypes.la
 libscitypes_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 libscitypes_la_SOURCES = $(TYPES_C_SOURCES) $(TYPES_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(TYPES_CPP_SOURCES)
 
@@ -674,6 +675,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-sci_makecell.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-sci_null.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-sci_struct.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-sci_usertype.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-string.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-struct.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-tostring_common.Plo@am__quote@
@@ -750,6 +752,13 @@ libscitypes_la-sci_makecell.lo: sci_gateway/cpp/sci_makecell.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_makecell.cpp' object='libscitypes_la-sci_makecell.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscitypes_la-sci_makecell.lo `test -f 'sci_gateway/cpp/sci_makecell.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_makecell.cpp
+
+libscitypes_la-sci_usertype.lo: sci_gateway/cpp/sci_usertype.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscitypes_la-sci_usertype.lo -MD -MP -MF $(DEPDIR)/libscitypes_la-sci_usertype.Tpo -c -o libscitypes_la-sci_usertype.lo `test -f 'sci_gateway/cpp/sci_usertype.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_usertype.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscitypes_la-sci_usertype.Tpo $(DEPDIR)/libscitypes_la-sci_usertype.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_usertype.cpp' object='libscitypes_la-sci_usertype.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscitypes_la-sci_usertype.lo `test -f 'sci_gateway/cpp/sci_usertype.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_usertype.cpp
 
 libscitypes_la-types.lo: src/cpp/types.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscitypes_la-types.lo -MD -MP -MF $(DEPDIR)/libscitypes_la-types.Tpo -c -o libscitypes_la-types.lo `test -f 'src/cpp/types.cpp' || echo '$(srcdir)/'`src/cpp/types.cpp

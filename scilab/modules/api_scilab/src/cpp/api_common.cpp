@@ -36,7 +36,7 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 /* Defined in SCI/modules/core/src/fortran/cvname.f */
 extern "C" {
-extern int C2F(cvnamel)(int *id,char *str,int *jobptr,int *str_len); 
+extern int C2F(cvnamel)(int *id,char *str,int *jobptr,int *str_len);
 /* *jobptr==0: Get Scilab codes from C-string */
 /* *jobptr==1: Get C-string from Scilab codes */
 
@@ -95,7 +95,7 @@ SciErr getNamedVarDimension(void* _pvCtx, char *_pstName, int* _piRows, int* _pi
 SciErr getVarAddressFromPosition(void* _pvCtx, int _iVar, int** _piAddress)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-	
+
 	if(_pvCtx == NULL)
 	{
 		addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getVarAddressFromPosition");
@@ -235,9 +235,9 @@ SciErr getVarType(void* _pvCtx, int* _piAddress, int* _piType)
 	//case GenericType::RealMList :
 	//	*_piType = sci_mlist;
 	//	break;
-	//case GenericType::RealPointer :
-	//	*_piType = sci_pointer;
-	//	break;
+	case GenericType::RealUserType :
+		*_piType = sci_pointer;
+		break;
 	case GenericType::RealImplicitList :
 		*_piType = sci_implicit_poly;
 		break;
@@ -247,7 +247,7 @@ SciErr getVarType(void* _pvCtx, int* _piAddress, int* _piType)
 	default :
 		*_piType = 0;
 	}
-	
+
 	return sciErr;
 }
 /*--------------------------------------------------------------------------*/
@@ -262,7 +262,7 @@ SciErr getNamedVarType(void* _pvCtx, char* _pstName, int* _piType)
 		addErrorMessage(&sciErr, API_ERROR_NAMED_TYPE, _("%s: Unable to get type of variable \"%s\""), "getNamedVarType", _pstName);
 		return sciErr;
 	}
-	
+
 	sciErr = getVarType(_pvCtx, piAddr, _piType);
 	if(sciErr.iErr)
 	{
@@ -342,14 +342,14 @@ int isVarMatrixType(void* _pvCtx, int* _piAddress)
 		switch(iType)
 		{
 		case sci_matrix :
-		case sci_poly : 
-		case sci_boolean : 
-		case sci_sparse : 
-		case sci_boolean_sparse : 
-		case sci_matlab_sparse : 
-		case sci_ints : 
-		case sci_handles : 
-		case sci_strings : 
+		case sci_poly :
+		case sci_boolean :
+		case sci_sparse :
+		case sci_boolean_sparse :
+		case sci_matlab_sparse :
+		case sci_ints :
+		case sci_handles :
+		case sci_strings :
 			return 1;
 		default :
 			return 0;
@@ -406,7 +406,7 @@ SciErr getProcessMode(void* _pvCtx, int _iPos, int* _piAddRef, int *_piMode)
 		addErrorMessage(&sciErr, API_ERROR_GET_PROCESSMODE, _("%s: Unable to get argument type"), "getProcessMode");
 		return sciErr;
 	}
-		
+
 	if(iType2 == sci_matrix && !isVarComplex(_pvCtx, piAddr2))
 	{
 		double *pdblReal2 = NULL;
@@ -712,7 +712,7 @@ int isNamedRowVector(void* _pvCtx, char* _pstName)
 	{
 		return 0;
 	}
- 
+
 	sciErr = getNamedVarDimension(_pvCtx, _pstName, &iRows, &iCols);
 	if(sciErr.iErr)
 	{
