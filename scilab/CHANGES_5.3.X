@@ -49,9 +49,11 @@ Text Editor:
 * bug 5102 fixed - It was not possible to choose the font weight or the font
                    style for a kind of keyword.
 
+* bug 5113 fixed - Bad refresh of the title.
+
 * bug 5124 fixed - Editor's title was not updated when a file was saved as...
 
-* bug 5126 fixed - Problems appeared when we played with undo a few times.
+* bugs 5126, 6519 fixed - Problems appeared when we played with undo a few times.
 
 * bug 5175 fixed - Ghost text appeared in the view.
 
@@ -87,12 +89,18 @@ Text Editor:
 
 * bug 5652 fixed - Bad line numbering when several files were opened.
 
+* bug 5654 fixed - The editor didn't save the user preferences.
+
 * bug 5655 fixed - The selection was lost after an unsuccessful search.
 
 * bug 5656 fixed - When a text was selected word was searched in the entire
                    document.
 
+* bug 5657 fixed - Control+End didn't move the cursor to the end of the file.
+
 * bugs 5646, 5658 fixed - The undo/redo strategy was not good.
+
+* bug 5681 fixed - The search window was not put in front of the editor's one.
 
 * bug 5682 fixed - There was a problem with the replace action.
 
@@ -113,6 +121,9 @@ Text Editor:
                    considered as a special char.
 
 * bug 7032 fixed - There was a problem when filename contained a ' or a ".
+
+* bug 7088 fixed - The editor freezed when a user played several times with
+                   copy/paste.
 
 * bug 7112 fixed - Two transpositions gave a string (if a'==1 then a=b').
 
