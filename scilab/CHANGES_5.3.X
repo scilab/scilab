@@ -299,6 +299,8 @@ Xcos:
 * bug 5596 fixed - It was not possible to change text block properties (font
                    and color)
 
+* bug 5640 fixed - Toolbar and menubar were sometimes not visible at startup.
+
 * bug 6440 fixed - xcos demos did not work and returned an error "Unable to
                    open file".
 
