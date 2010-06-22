@@ -245,6 +245,12 @@ API_Scilab:
 * Error(x) is now deprecated and will be removed in Scilab 5.4.
   Please consider SciError(x).
 
+Call_Scilab:
+============
+
+* Function "sci_types getVariableType(char *varName)" added into call_scilab.h
+This function provides an easy way to retrieve the type of a variable.
+
 Documentation:
 ==============
 

@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2009 - DIGITEO - Allan CORNET 
+ * Copyright (C) 2010 - DIGITEO - Sylvestre LEDRU 
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -22,6 +23,7 @@ extern "C" {
 /*--------------------------------------------------------------------------*/
 #include "machine.h"
 #include "BOOL.h"
+#include "sci_types.h"
 /*--------------------------------------------------------------------------*/
 /**
  * Disable TCL/TK and graphic interfaces 
@@ -36,7 +38,7 @@ void DisableInteractiveMode(void);
  * @param Stacksize : Default --> NULL 
  * @return TRUE if it is OK else FALSE
 */
-BOOL StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize);
+BOOL StartScilab(char *SCIpath, char *ScilabStartup, int *Stacksize);
 
 /**
  * Terminate Scilab
@@ -62,7 +64,7 @@ int SendScilabJob(char *job);
  * @endcode
  * @return last error code operation 0 : OK
 **/
-int SendScilabJobs(char **jobs,int numberjobs);
+int SendScilabJobs(char **jobs, int numberjobs);
 
 /**
  * Returns last job send to scilab by SendScilabJobs or SendScilabJob
@@ -93,11 +95,22 @@ void ScilabDoOneEvent(void);
 
 /**
  * Get the information is a graphic windows is opened or not
- * @Return Returns TRUE if a graphic windows is opened 
+ * @return Returns TRUE if a graphic windows is opened 
 */
 int ScilabHaveAGraph(void);
 
+/**
+ * Return the type of a variable
+ * This function is supposed to be used only in the call_scilab context
+ * 
+ * @param varName the variable name
+ * @return the type of the variable (the enum is defined in sci_types)
+ */
+sci_types getVariableType(char *varName);
+
+
 /********************* DATATYPES MANAGEMENT FUNCTIONS ************/
+/* Note that all these functions are obsolete */
 
 /****** READ FUNCTIONS ******/
 
