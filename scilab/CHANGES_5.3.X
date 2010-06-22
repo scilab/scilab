@@ -894,6 +894,8 @@ Bug fixes:
 
 * bug 7094 fixed - If badly called, ode made Scilab crash.
 
+* bug 7108 fixed - It was not possible to set the callback_type property via uicontrol.
+
 * bug 7109 fixed - 'lu' function with some complex matrices crashed on Windows.
 
 * bug 7123 fixed - No completion was possible if the name of a variable is
@@ -926,3 +928,4 @@ Bug fixes:
                    extension with filter "*.*"
 
 * bug 7312 fixed - isnum() diplayed warnings when using some unusual parameters.
+
