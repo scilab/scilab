@@ -132,6 +132,9 @@ Text Editor:
 * bug 7281 fixed - The menu "Evaluate selection" didn't change when nothing
                    was selected.
 
+* bug 7299 fixed - There was a bad matching by the right for the expression
+                   n=size(x,"*"); r=(x*x') 
+
 Incompatibilities:
 ==================
 * The bug 4583 fix makes the default element value in string array assignment

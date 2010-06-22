@@ -23,6 +23,7 @@ import javax.swing.text.Element;
 
 %{
     public int start = 0;
+    public int beginString;
     public static Set<String> commands = new HashSet();
     public static Set<String> variables = new HashSet();
 
@@ -53,10 +54,11 @@ import javax.swing.text.Element;
     }
 
     public int scan() throws IOException {
-    	if (elem.getElementIndex(start) == breakstring + 1) {
-	    yybegin(QSTRING);
-	}
-	return yylex();
+        if (elem.getElementIndex(start) == breakstring + 1) {
+            beginString = 0;
+            yybegin(QSTRING);
+        }
+        return yylex();
     }
 
     public int getKeyword(int pos, boolean strict) {
@@ -139,7 +141,7 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
   {comment}                      {
                                    transposable = false;
                                    yypushback(2);
-				   yybegin(COMMENT);
+                                   yybegin(COMMENT);
                                  }
 
   {operator}                     {
@@ -209,8 +211,9 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
                                     if (transposable) {
                                        return ScilabLexerConstants.TRANSP;
                                     } else {
+                                       beginString = zzStartRead;
                                        yybegin(QSTRING);
-				       return ScilabLexerConstants.STRING;
+                                       return ScilabLexerConstants.STRING;
                                     }
                                  }
 
@@ -226,8 +229,9 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
 
   {dquote}                       {
                                    transposable = false;
+                                   beginString = zzStartRead;
                                    yybegin(QSTRING);
-				   return ScilabLexerConstants.STRING;	
+                                   return ScilabLexerConstants.STRING;
                                  }
 
   " "                            {
@@ -301,30 +305,30 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
 }
 
 <QSTRING> {
-  {break}			 {
-				   yypushback(yylength());
-				   yybegin(BREAKSTRING);
-				   transposable = false;
-  				   return ScilabLexerConstants.STRING;
-				 }
+  {break}                        {
+                                   yypushback(yylength());
+                                   yybegin(BREAKSTRING);
+                                   transposable = false;
+                                   return ScilabLexerConstants.STRING;
+                                 }
 
-  " "				 {
-    				   return ScilabLexerConstants.WHITE_STRING;
-				 }
+  " "                            {
+                                   return ScilabLexerConstants.WHITE_STRING;
+                                 }
 
-  "\t"				 {
-    				   return ScilabLexerConstants.TAB_STRING;
-				 }
+  "\t"                           {
+                                   return ScilabLexerConstants.TAB_STRING;
+                                 }
 
   {string}                       |
-  "."				 {
-				   return ScilabLexerConstants.STRING;
-				 }
+  "."                            {
+                                   return ScilabLexerConstants.STRING;
+                                 }
 
   (\'|\")                        {
                                    transposable = false;
-				   breakstring = -2;
-				   yybegin(YYINITIAL);
+                                   breakstring = -2;
+                                   yybegin(YYINITIAL);
                                    return ScilabLexerConstants.STRING;
                                  }
 
@@ -347,13 +351,13 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
                                    return ScilabLexerConstants.LATEX;
                                  }
 
-  " "				 {
-    				   return ScilabLexerConstants.WHITE_COMMENT;
-				 }
+  " "                            {
+                                   return ScilabLexerConstants.WHITE_COMMENT;
+                                 }
 
-  "\t"				 {
-    				   return ScilabLexerConstants.TAB_COMMENT;
-				 }
+  "\t"                           {
+                                   return ScilabLexerConstants.TAB_COMMENT;
+                                 }
 
   .                              |
   {eol}                          {
@@ -362,11 +366,11 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
 }
 
 <BREAKSTRING> {
-  {break}			 {
-  				   yybegin(YYINITIAL);
-				   breakstring = elem.getElementIndex(start);
-  				   return ScilabLexerConstants.SPECIAL;
-				 }
+  {break}                        {
+                                   yybegin(YYINITIAL);
+                                   breakstring = elem.getElementIndex(start);
+                                   return ScilabLexerConstants.SPECIAL;
+                                 }
 }
 
 <<EOF>>                          {
