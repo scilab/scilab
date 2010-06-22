@@ -244,7 +244,7 @@
  // Function Call
 %type <t_call_exp>	functionCall
 %type <t_call_exp>	specificFunctionCall
-%type <t_call_exp>	recursiveFunctionCall
+ //%type <t_call_exp>	recursiveFunctionCall
 %type <t_call_exp>	simpleFunctionCall
 %type <t_list_exp>	functionArgs
 %type <t_seq_exp>	functionBody
@@ -476,7 +476,7 @@ ID						{ $$ = new ast::StringExp(@$, *$1); }
 functionCall :
 simpleFunctionCall		%prec FUNCTIONCALL	{ $$ = $1; }
 | specificFunctionCall		%prec FUNCTIONCALL	{ $$ = $1; }
-| recursiveFunctionCall		%prec FUNCTIONCALL	{ $$ = $1; }
+//| recursiveFunctionCall		%prec FUNCTIONCALL	{ $$ = $1; }
 | LPAREN functionCall RPAREN	%prec FUNCTIONCALL	{ $$ = $2; }
 ;
 
@@ -508,12 +508,12 @@ ID LPAREN functionArgs RPAREN				{ $$ = new ast::CallExp(@$, *new ast::SimpleVar
 ** foo{a}(b){c} <=> ((foo{a})(b)){c}
 ** foo(a){b}(c) <=> ((foo(a)){b})(c)
 */
-recursiveFunctionCall :
-simpleFunctionCall LPAREN functionArgs RPAREN		{ $$ = new ast::CallExp(@$, *$1, *$3); }
-| recursiveFunctionCall LPAREN functionArgs RPAREN	{ $$ = new ast::CallExp(@$, *$1, *$3); }
-| simpleFunctionCall LBRACE functionArgs RBRACE		{ $$ = new ast::CellCallExp(@$, *$1, *$3); }
-| recursiveFunctionCall LBRACE functionArgs RBRACE	{ $$ = new ast::CellCallExp(@$, *$1, *$3); }
-;
+//recursiveFunctionCall :
+//simpleFunctionCall LPAREN functionArgs RPAREN		{ $$ = new ast::CallExp(@$, *$1, *$3); }
+//| recursiveFunctionCall LPAREN functionArgs RPAREN	{ $$ = new ast::CallExp(@$, *$1, *$3); }
+//| simpleFunctionCall LBRACE functionArgs RBRACE		{ $$ = new ast::CellCallExp(@$, *$1, *$3); }
+//| recursiveFunctionCall LBRACE functionArgs RBRACE	{ $$ = new ast::CellCallExp(@$, *$1, *$3); }
+//;
 
 /*
 ** -*- FUNCTION ARGS -*-
@@ -1005,6 +1005,8 @@ NOT variable				%prec NOT	{ $$ = new ast::NotExp(@$, *$2); }
 | LPAREN variable RPAREN				{ $$ = $2; }
 | LPAREN variableFields RPAREN				{ $$ = $2; }
 | comparison						{ $$ = $1; }
+| variable LPAREN functionArgs RPAREN { $$ = new ast::CallExp(@$, *$1, *$3); }
+| functionCall LPAREN functionArgs RPAREN { $$ = new ast::CallExp(@$, *$1, *$3); }
 ;
 
 /*
@@ -1213,6 +1215,8 @@ variable DOT ID			%prec UPLEVEL		{ $$ = new ast::FieldExp(@$, *$1, *new ast::Sim
 | functionCall DOT functionCall				{ $$ = new ast::FieldExp(@$, *$1, *$3); }
 | ID					%prec LISTABLE	{ $$ = new ast::SimpleVar(@$, *$1); }
 | multipleResults					{ $$ = $1; }
+| variable LPAREN functionArgs RPAREN { $$ = new ast::CallExp(@$, *$1, *$3); }
+| functionCall LPAREN functionArgs RPAREN { $$ = new ast::CallExp(@$, *$1, *$3); }
 ;
 
 /*
