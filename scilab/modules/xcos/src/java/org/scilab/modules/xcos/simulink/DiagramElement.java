@@ -98,7 +98,8 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 			} 
 			
 			if (cell != null) {
-				//FIXME: diag.addCell(cell);
+				//FIXME: 
+				diag.addCell(cell);
 			}
 			i++;
 		}
