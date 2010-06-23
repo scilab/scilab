@@ -1,10 +1,10 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Serge Steer
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [kp,s]=krac2(sys)
@@ -20,7 +20,7 @@ function [kp,s]=krac2(sys)
   case 'state-space' then
     sys=ss2tf(sys);
   else
-     error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"),"krac2",1))
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"),"krac2",1))
   end
   if size(sys,'*')<>1 then
     error(msprintf(gettext("%s: Wrong size for input argument #%d: Single input, single output system expected.\n"),"krac2",1))
@@ -31,9 +31,11 @@ function [kp,s]=krac2(sys)
   //collect the real roots only
   i=find(abs(imag(s))<=10*%eps)
   if i==[] then kp=[],s=[];return,end
-  s=s(i)'
-  kp=-real(freq(den,num,real(s)))
-  i=find(kp>=0)
+  s=s(i)';
+  s=s(horner(num,s)<>0);
+
+  kp=-real(freq(den,num,real(s)));
+  i=find(kp>=0);
   kp=kp(i)
   s=s(i)
 endfunction
