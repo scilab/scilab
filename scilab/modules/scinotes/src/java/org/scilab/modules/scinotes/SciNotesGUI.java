@@ -99,6 +99,7 @@ import org.scilab.modules.scinotes.actions.SetFontAction;
 import org.scilab.modules.scinotes.actions.TabifyAction;
 import org.scilab.modules.scinotes.actions.UnTabifyAction;
 import org.scilab.modules.scinotes.actions.UndoAction;
+import org.scilab.modules.scinotes.actions.SciNotesCompletionAction;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
@@ -110,7 +111,11 @@ public class SciNotesGUI {
     private static JRadioButtonMenuItem[] radioTypes;
     private static JRadioButtonMenuItem[] radioEolTypes;
     private static TextBox infoBar;
-    private static Map<String, KeyStroke> map;
+    private static Map<String, KeyStroke> map = new HashMap();
+
+    static {
+        ConfigSciNotesManager.addMapActionNameKeys(map);
+    }
 
     /**
      * Constructor
@@ -125,9 +130,6 @@ public class SciNotesGUI {
         // Set SciNotes Window position /size
         mainWindow.setPosition(ConfigSciNotesManager.getMainWindowPosition());
         mainWindow.setDims(ConfigSciNotesManager.getMainWindowSize());
-
-        map = new HashMap();
-        ConfigSciNotesManager.addMapActionNameKeys(map);
 
         MenuBar menuBar = ScilabMenuBar.createMenuBar();
         //Create FILE menubar
@@ -487,7 +489,7 @@ public class SciNotesGUI {
      * Create the popup menu on the help
      * @param c The graphic component
      */
-    public static void createPopupMenu(final JEditorPane c) {
+    public static void createPopupMenu(final JEditorPane c, final SciNotes editor) {
 
         final JPopupMenu popup = new JPopupMenu();
 
@@ -535,29 +537,38 @@ public class SciNotesGUI {
                 }
             };
 
-
-
         menuItem = new JMenuItem(Messages.gettext("Edit selection in a new tab"));
         menuItem.addActionListener(actionListenerLoadIntoTextEditor);
         popup.add(menuItem);
         popup.addSeparator();
 
-
         /* Copy */
         menuItem = new JMenuItem(new DefaultEditorKit.CopyAction());
         menuItem.setText(Messages.gettext("Copy"));
         popup.add(menuItem);
-        popup.addSeparator();
 
         /* Cut */
         menuItem = new JMenuItem(new DefaultEditorKit.CutAction());
         menuItem.setText(Messages.gettext("Cut"));
         popup.add(menuItem);
-        popup.addSeparator();
 
         /* Paste */
         menuItem = new JMenuItem(new DefaultEditorKit.PasteAction());
         menuItem.setText(Messages.gettext("Paste"));
+
+        /* Completion */
+        menuItem = new JMenuItem();
+        menuItem.addActionListener(new ActionListener() {
+                SciNotesCompletionAction action;
+                public void actionPerformed(ActionEvent actionEvent) {
+                    if (action == null) {
+                         action = new SciNotesCompletionAction(c, editor);
+                    }
+                    action.actionPerformed(actionEvent);
+                }
+            });
+        menuItem.setAccelerator(map.get("SciNotesCompletionAction"));
+        menuItem.setText(Messages.gettext("Complete"));
         popup.add(menuItem);
         popup.addSeparator();
 

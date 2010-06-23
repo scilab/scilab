@@ -53,7 +53,7 @@ public final class SciNotesCompletionAction extends CompletionAction {
      * Constructor
      * @param editor SciNotes
      */
-    private SciNotesCompletionAction(JComponent textPane, SciNotes editor) {
+    public SciNotesCompletionAction(JComponent textPane, SciNotes editor) {
         this.editor = editor;
         configuration = new SciNotesCompletionConfiguration(textPane);
     }

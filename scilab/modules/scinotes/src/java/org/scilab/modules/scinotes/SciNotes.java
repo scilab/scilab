@@ -858,7 +858,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
 
         DropFilesListener dndTarget = new DropFilesListener(pane);
 
-        SciNotesGUI.createPopupMenu(pane);
+        SciNotesGUI.createPopupMenu(pane, this);
     }
 
     /**
