@@ -49,7 +49,9 @@ namespace ast
 
       // Control
       // FIXME : What the hell is this ???
+      /** \brief "*." */		controltimes,
       /** \brief "/." */		controldivide,
+      /** \brief "\." */		controlrdivide,
 
       // Comparison.
       /** \brief "==" */		eq,
@@ -161,7 +163,7 @@ namespace ast
     }
     /** \} */
 
-    
+
     /** \name Setters.
      ** \{ */
   public :
