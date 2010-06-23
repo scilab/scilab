@@ -303,13 +303,13 @@ namespace
             if (dynamic_scheduling)
             {
 #pragma omp parallel for private(i) schedule(dynamic, chunk_size)
-                for(i=0; (size_t)i < n; ++i)
+                for(i=0; i < n; ++i)
                 {
                     callF(i);
                 }
             } else {
 #pragma omp parallel for private(i)  schedule(static, chunk_size)
-                for(i=0; (size_t)i < n; ++i)
+                for(i=0; i < n; ++i)
                 {
                     callF(i);
                 }

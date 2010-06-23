@@ -9,12 +9,6 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
-#ifdef _MSC_VER
-/* remove warning about : 'std::fill_n': Function call with parameters that may be unsafe */
-#define _SCL_SECURE_NO_WARNINGS
-#endif
-
 extern "C" {
 #include <stdio.h>
 #include "api_scilab.h"
@@ -599,7 +593,7 @@ namespace
                 double* unused;
                 err= allocMatrixOfDouble(pvApiCtx, ++currentTop, 0, 0, &unused);
             }
-            Nbvars = Rhs + Lhs + sciRhs;
+            Nbvars = Rhs+Lhs+sciRhs;
             bool success(byName
                           ? C2F(scistring)(&sciArgPos, scilabFunctionName, &sciLhs, &sciRhs, static_cast<unsigned long>(scilabFunctionNameLength))
                           : C2F(scifunction)(&sciArgPos, &scilabFunction, &sciLhs, &sciRhs)
