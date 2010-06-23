@@ -101,10 +101,10 @@
 
           <para>The type of callback transmitted to the uicontrol.</para>
           <itemizedlist>
-            <listitem><para><literal>-1</literal> none (callback desactivated)</para>
-            <listitem><para><literal>0</literal> a Scilab instruction</para>
-            <listitem><para><literal>1</literal> a C or a Fortran function</para>
-            <listitem><para><literal>2</literal> a Scilab function</para>
+            <listitem><para><literal>-1</literal> none (callback desactivated)</para></listitem>
+            <listitem><para><literal>0</literal> a Scilab instruction</para></listitem>
+            <listitem><para><literal>1</literal> a C or a Fortran function</para></listitem>
+            <listitem><para><literal>2</literal> a Scilab function</para></listitem>
           </itemizedlist>
         </listitem>
       </varlistentry>
