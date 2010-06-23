@@ -110,7 +110,9 @@ krontimes		".*."
 krondivide		"./."
 kronrdivide		".\\."
 
-controldivide		"/."
+controltimes        ("*."[^0-9])
+controldivide		("/."[^0-9])
+controlrdivide      ("\\."[^0-9])
 
 assign			"="
 
@@ -368,8 +370,17 @@ assign			"="
 }
 
 
+<INITIAL,MATRIX>{controltimes}		{
+    unput(yytext[yyleng - 1]);
+    return scan_throw(CONTROLTIMES);
+}
 <INITIAL,MATRIX>{controldivide}		{
-  return scan_throw(CONTROLDIVIDE);
+    unput(yytext[yyleng - 1]);
+    return scan_throw(CONTROLDIVIDE);
+}
+<INITIAL,MATRIX>{controlrdivide}		{
+    unput(yytext[yyleng - 1]);
+    return scan_throw(CONTROLRDIVIDE);
 }
 
 

@@ -64,59 +64,61 @@
      TIMES = 279,
      DOTTIMES = 280,
      KRONTIMES = 281,
-     DIVIDE = 282,
-     DOTDIVIDE = 283,
-     CONTROLDIVIDE = 284,
-     KRONDIVIDE = 285,
-     RDIVIDE = 286,
-     DOTRDIVIDE = 287,
-     KRONRDIVIDE = 288,
-     POWER = 289,
-     DOTPOWER = 290,
-     EQ = 291,
-     NE = 292,
-     LT = 293,
-     LE = 294,
-     GT = 295,
-     GE = 296,
-     AND = 297,
-     ANDAND = 298,
-     OR = 299,
-     OROR = 300,
-     ASSIGN = 301,
-     IF = 302,
-     THEN = 303,
-     ELSE = 304,
-     ELSEIF = 305,
-     END = 306,
-     SELECT = 307,
-     SWITCH = 308,
-     CASE = 309,
-     OTHERWISE = 310,
-     FUNCTION = 311,
-     ENDFUNCTION = 312,
-     HIDDENFUNCTION = 313,
-     HIDDEN = 314,
-     FOR = 315,
-     WHILE = 316,
-     DO = 317,
-     BREAK = 318,
-     TRY = 319,
-     CATCH = 320,
-     RETURN = 321,
-     STR = 322,
-     ID = 323,
-     VARINT = 324,
-     VARFLOAT = 325,
-     NUM = 326,
-     PATH = 327,
-     COMMENT = 328,
-     BLOCKCOMMENT = 329,
-     TOPLEVEL = 330,
-     HIGHLEVEL = 331,
-     UPLEVEL = 332,
-     LISTABLE = 333,
-     FUNCTIONCALL = 334
+     CONTROLTIMES = 282,
+     DIVIDE = 283,
+     DOTDIVIDE = 284,
+     CONTROLDIVIDE = 285,
+     KRONDIVIDE = 286,
+     RDIVIDE = 287,
+     DOTRDIVIDE = 288,
+     CONTROLRDIVIDE = 289,
+     KRONRDIVIDE = 290,
+     POWER = 291,
+     DOTPOWER = 292,
+     EQ = 293,
+     NE = 294,
+     LT = 295,
+     LE = 296,
+     GT = 297,
+     GE = 298,
+     AND = 299,
+     ANDAND = 300,
+     OR = 301,
+     OROR = 302,
+     ASSIGN = 303,
+     IF = 304,
+     THEN = 305,
+     ELSE = 306,
+     ELSEIF = 307,
+     END = 308,
+     SELECT = 309,
+     SWITCH = 310,
+     CASE = 311,
+     OTHERWISE = 312,
+     FUNCTION = 313,
+     ENDFUNCTION = 314,
+     HIDDENFUNCTION = 315,
+     HIDDEN = 316,
+     FOR = 317,
+     WHILE = 318,
+     DO = 319,
+     BREAK = 320,
+     TRY = 321,
+     CATCH = 322,
+     RETURN = 323,
+     STR = 324,
+     ID = 325,
+     VARINT = 326,
+     VARFLOAT = 327,
+     NUM = 328,
+     PATH = 329,
+     COMMENT = 330,
+     BLOCKCOMMENT = 331,
+     TOPLEVEL = 332,
+     HIGHLEVEL = 333,
+     UPLEVEL = 334,
+     LISTABLE = 335,
+     FUNCTIONCALL = 336
    };
 #endif
 /* Tokens.  */
@@ -145,59 +147,61 @@
 #define TIMES 279
 #define DOTTIMES 280
 #define KRONTIMES 281
-#define DIVIDE 282
-#define DOTDIVIDE 283
-#define CONTROLDIVIDE 284
-#define KRONDIVIDE 285
-#define RDIVIDE 286
-#define DOTRDIVIDE 287
-#define KRONRDIVIDE 288
-#define POWER 289
-#define DOTPOWER 290
-#define EQ 291
-#define NE 292
-#define LT 293
-#define LE 294
-#define GT 295
-#define GE 296
-#define AND 297
-#define ANDAND 298
-#define OR 299
-#define OROR 300
-#define ASSIGN 301
-#define IF 302
-#define THEN 303
-#define ELSE 304
-#define ELSEIF 305
-#define END 306
-#define SELECT 307
-#define SWITCH 308
-#define CASE 309
-#define OTHERWISE 310
-#define FUNCTION 311
-#define ENDFUNCTION 312
-#define HIDDENFUNCTION 313
-#define HIDDEN 314
-#define FOR 315
-#define WHILE 316
-#define DO 317
-#define BREAK 318
-#define TRY 319
-#define CATCH 320
-#define RETURN 321
-#define STR 322
-#define ID 323
-#define VARINT 324
-#define VARFLOAT 325
-#define NUM 326
-#define PATH 327
-#define COMMENT 328
-#define BLOCKCOMMENT 329
-#define TOPLEVEL 330
-#define HIGHLEVEL 331
-#define UPLEVEL 332
-#define LISTABLE 333
-#define FUNCTIONCALL 334
+#define CONTROLTIMES 282
+#define DIVIDE 283
+#define DOTDIVIDE 284
+#define CONTROLDIVIDE 285
+#define KRONDIVIDE 286
+#define RDIVIDE 287
+#define DOTRDIVIDE 288
+#define CONTROLRDIVIDE 289
+#define KRONRDIVIDE 290
+#define POWER 291
+#define DOTPOWER 292
+#define EQ 293
+#define NE 294
+#define LT 295
+#define LE 296
+#define GT 297
+#define GE 298
+#define AND 299
+#define ANDAND 300
+#define OR 301
+#define OROR 302
+#define ASSIGN 303
+#define IF 304
+#define THEN 305
+#define ELSE 306
+#define ELSEIF 307
+#define END 308
+#define SELECT 309
+#define SWITCH 310
+#define CASE 311
+#define OTHERWISE 312
+#define FUNCTION 313
+#define ENDFUNCTION 314
+#define HIDDENFUNCTION 315
+#define HIDDEN 316
+#define FOR 317
+#define WHILE 318
+#define DO 319
+#define BREAK 320
+#define TRY 321
+#define CATCH 322
+#define RETURN 323
+#define STR 324
+#define ID 325
+#define VARINT 326
+#define VARFLOAT 327
+#define NUM 328
+#define PATH 329
+#define COMMENT 330
+#define BLOCKCOMMENT 331
+#define TOPLEVEL 332
+#define HIGHLEVEL 333
+#define UPLEVEL 334
+#define LISTABLE 335
+#define FUNCTIONCALL 336
 
 
 

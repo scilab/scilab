@@ -134,12 +134,14 @@
 %token TIMES		"*"
 %token DOTTIMES		".*"
 %token KRONTIMES	".*."
+%token CONTROLTIMES "*."
 %token DIVIDE		"/"
 %token DOTDIVIDE	"./"
 %token CONTROLDIVIDE	"/."
 %token KRONDIVIDE	"./."
 %token RDIVIDE		"\\"
 %token DOTRDIVIDE	".\\"
+%token CONTROLRDIVIDE "\\."
 %token KRONRDIVIDE	".\\."
 
 %token POWER		"** or ^"
@@ -287,7 +289,7 @@
 %left COLON
 %nonassoc EQ NE LT LE GT GE
 %left MINUS PLUS
-%left TIMES DOTTIMES KRONTIMES DIVIDE DOTDIVIDE KRONDIVIDE RDIVIDE DOTRDIVIDE KRONRDIVIDE CONTROLDIVIDE
+%left TIMES DOTTIMES KRONTIMES CONTROLTIMES DIVIDE DOTDIVIDE KRONDIVIDE CONTROLDIVIDE RDIVIDE DOTRDIVIDE KRONRDIVIDE CONTROLRDIVIDE
 %left POWER DOTPOWER
 
 %left QUOTE DOTQUOTE
@@ -923,17 +925,19 @@ rightOperand :
 /*   '+'   '.+'   '.+.'?   */
 PLUS variable				{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::plus, *$2); }
 | PLUS functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::plus, *$2); }
-/*   '-'   '.-'   '.-.'?   */
+/*   '-'   '.-'   */
 | MINUS variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::minus, *$2); }
 | MINUS functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::minus, *$2); }
-/*   '*'   '.*'   '.*.'   */
+/*   '*'   '.*'   '.*.'   '*.'   */
 | TIMES variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::times, *$2); }
 | TIMES functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::times, *$2); }
 | DOTTIMES variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::dottimes, *$2); }
 | DOTTIMES functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::dottimes, *$2); }
 | KRONTIMES variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::krontimes, *$2); }
 | KRONTIMES functionCall		{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::krontimes, *$2); }
-/*   '/'   './'   './.'  '/.' */
+| CONTROLTIMES variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::controltimes, *$2); }
+| CONTROLTIMES functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::controltimes, *$2); }
+/*   '/'   './'   './.'   '/.'   */
 | DIVIDE variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::divide, *$2); }
 | DIVIDE functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::divide, *$2); }
 | DOTDIVIDE variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::dotdivide, *$2); }
@@ -942,13 +946,15 @@ PLUS variable				{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::str
 | KRONDIVIDE functionCall		{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::krondivide, *$2); }
 | CONTROLDIVIDE variable		{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::controldivide, *$2); }
 | CONTROLDIVIDE functionCall		{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::controldivide, *$2); }
-/*   '\'   '.\'   '.\.'?   */
+/*   '\'   '.\'   '.\.'   '\.'   */
 | RDIVIDE variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::rdivide, *$2); }
 | RDIVIDE functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::rdivide, *$2); }
 | DOTRDIVIDE variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::dotrdivide, *$2); }
 | DOTRDIVIDE functionCall		{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::dotrdivide, *$2); }
 | KRONRDIVIDE variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::kronrdivide, *$2); }
 | KRONRDIVIDE functionCall		{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::kronrdivide, *$2); }
+| CONTROLRDIVIDE variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::controlrdivide, *$2); }
+| CONTROLRDIVIDE functionCall		{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::controlrdivide, *$2); }
 ;
 
 /*
