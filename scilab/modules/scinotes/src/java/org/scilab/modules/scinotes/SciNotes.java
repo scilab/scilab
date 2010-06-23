@@ -110,7 +110,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
 
     private static final long serialVersionUID = -6410183357490518676L;
 
-    private static final String SCINOTES = "Editor";
+    private static final String SCINOTES = "SciNotes";
     private static final String SCI_EXTENSION = ".sci";
     private static final String SCE_EXTENSION = ".sce";
     private static final String ALL_SCI_FILES = "*.sci";

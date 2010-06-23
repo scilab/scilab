@@ -41,10 +41,10 @@
       <OpenCloseHighlighter color="#e40087" inside="false" type="framed"/>
     </Matching>
 
-    <Editor>
+    <SciNotes>
       <BackgroundColor default="#FFFFFF" useCache="true" value="#FFFFFF"/>
       <ForegroundColor default="#000000" useCache="true" value="#000000"/>
-    </Editor>
+    </SciNotes>
 
     <styles>
 

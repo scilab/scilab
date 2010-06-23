@@ -23,7 +23,7 @@ public class SciNotesMessages {
 
     public static final String DOTS = "...";
 
-    public static final String SCILAB_EDITOR = Messages.gettext("Scilab text editor");
+    public static final String SCILAB_EDITOR = Messages.gettext("SciNotes");
     /** FILE MENU */
     public static final String FILE = Messages.gettext("File");
     public static final String NEW = Messages.gettext("New") + DOTS;
@@ -115,10 +115,10 @@ public class SciNotesMessages {
     public static final String EXECUTE_FILE_INTO_SCILAB = Messages.gettext("Execute File Into Scilab");
 
     /** HELP MENU */
-    public static final String HELP = Messages.gettext("Scilab text editor help") + DOTS;
+    public static final String HELP = Messages.gettext("SciNotes help") + DOTS;
     public static final String HELP_ON_KEYWORD = Messages.gettext("Help on the current keyword");
     public static final String ABOUT = Messages.gettext("About") + DOTS;
-    public static final String SCINOTES_VERSION = Messages.gettext("Scilab text editor");
+    public static final String SCINOTES_VERSION = Messages.gettext("SciNotes");
 
     /** FIND/REPLACE DIALOG */
     public static final String FIND = Messages.gettext("Find:");
@@ -180,7 +180,7 @@ public class SciNotesMessages {
     public static final String DIGITEO = "The Scilab Consortium (DIGITEO)";
     public static final String COPYRIGHT = Messages.gettext("Copyright (c)") + " 2009-2010";
 
-    public static final String SCINOTES_ERROR = Messages.gettext("Editor error");
+    public static final String SCINOTES_ERROR = Messages.gettext("SciNotes error");
     public static final String COULD_NOT_SAVE_FILE = Messages.gettext("The file could not be saved.");
     public static final String COULD_NOT_CONVERT_FILE = Messages.gettext("The file could not be converted.");
     public static final String CANNOT_LOAD_DIRECTORY = Messages.gettext("%s is a directory.");
@@ -211,5 +211,5 @@ public class SciNotesMessages {
     /**
      * Exit confirm message
      */
-    public static final String EXIT_CONFIRM = Messages.gettext("Are you sure that you want to close Text Editor ?");
+    public static final String EXIT_CONFIRM = Messages.gettext("Are you sure that you want to close SciNotes ?");
 }

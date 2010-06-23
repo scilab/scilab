@@ -90,7 +90,7 @@ public final class ConfigSciNotesManager {
     private static final String LINEHIGHLIGHTER = "LineHighlighter";
     private static final String HELPONTYPING = "HelpOnTyping";
     private static final String LINENUMBERING = "LineNumbering";
-    private static final String EDITOR = "Editor";
+    private static final String EDITOR = "SciNotes";
 
     private static final String FOREGROUNDCOLOR = "ForegroundColor";
     private static final String BACKGROUNDCOLOR = "BackgroundColor";
@@ -234,7 +234,6 @@ public final class ConfigSciNotesManager {
         NodeList fontSizeElement = scinotesProfile.getElementsByTagName(FONT_SIZE);
         Element fontSize = (Element) fontSizeElement.item(0);
         return Integer.parseInt(fontSize.getAttribute(VALUE));
-
     }
 
     /**
