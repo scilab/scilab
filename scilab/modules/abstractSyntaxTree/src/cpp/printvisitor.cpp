@@ -226,8 +226,12 @@ namespace ast {
         case OpExp::kronrdivide:
             *ostr << SCI_KRONRDIVIDE; break;
             // Control
+        case OpExp::controltimes:
+            *ostr << SCI_CONTROLTIMES; break;
         case OpExp::controldivide:
             *ostr << SCI_CONTROLDIVIDE; break;
+        case OpExp::controlrdivide:
+            *ostr << SCI_CONTROLRDIVIDE; break;
             // Comparisons
         case OpExp::eq:
             *ostr << SCI_EQ; break;
@@ -449,7 +453,7 @@ namespace ast {
         e.test_get()->accept(*this);
         *ostr << SCI_CLOSE_TEST << std::endl;
         this->apply_indent();
-        e.body_get()->accept(*this);	
+        e.body_get()->accept(*this);
     }
 
     void PrintVisitor::visit (const SeqExp  &e)

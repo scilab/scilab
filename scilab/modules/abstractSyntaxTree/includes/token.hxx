@@ -48,7 +48,9 @@
 #define SCI_KRONDIVIDE		"./."
 #define SCI_KRONRDIVIDE		".\\."
 
+#define SCI_CONTROLTIMES	"*."
 #define SCI_CONTROLDIVIDE	"/."
+#define SCI_CONTROLRDIVIDE	"\\."
 
 #define SCI_EQ			"=="
 #define SCI_NE			"<>"
