@@ -475,6 +475,8 @@ Tests:
 
 * Mechanism of unitary tests for Java code based on TestNG added and used.
 
+* test_run() now accepts ATOMS modules as input argument.
+
 Text Rendering:
 ===============
 
