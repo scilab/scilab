@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <toolbar>
-    <!-- xpad -->
+    <!-- scinotes -->
     <button icon="accessories-text-editor.png" tooltiptext="Launch Scilab text editor">
         <callback 
         instruction='editor()' type="0"/>

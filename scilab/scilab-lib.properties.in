@@ -81,8 +81,8 @@ library.hdf5.name=org.scilab.modules.hdf5.jar
 library.xcos.dir=${modules.dir}/xcos/${build.jar.dir}/
 library.xcos.name=org.scilab.modules.xcos.jar
 
-library.xpad.dir=${modules.dir}/xpad/${build.jar.dir}/
-library.xpad.name=org.scilab.modules.xpad.jar
+library.scinotes.dir=${modules.dir}/scinotes/${build.jar.dir}/
+library.scinotes.name=org.scilab.modules.scinotes.jar
 
 library.ui_data.dir=${modules.dir}/ui_data/${build.jar.dir}/
 library.ui_data.name=org.scilab.modules.ui_data.jar

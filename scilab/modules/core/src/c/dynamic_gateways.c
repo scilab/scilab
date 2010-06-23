@@ -271,27 +271,20 @@ int gw_dynamic_xcos(void)
         &ptr_gw_xcos);
 }
 /*--------------------------------------------------------------------------*/
-/* xpad module */
-#define XPAD_MODULE_NAME "xpad"
-static DynLibHandle hXpadLib = NULL;
-static PROC_GATEWAY ptr_gw_xpad = NULL;
-static char* dynlibname_xpad = NULL;
-static char* gatewayname_xpad = NULL;
+/* scinotes module */
+#define SCINOTES_MODULE_NAME "scinotes"
+static DynLibHandle hSciNotesLib = NULL;
+static PROC_GATEWAY ptr_gw_scinotes = NULL;
+static char* dynlibname_scinotes = NULL;
+static char* gatewayname_scinotes = NULL;
 /*--------------------------------------------------------------------------*/
-int gw_dynamic_xpad(void)
+int gw_dynamic_scinotes(void)
 {
-#ifdef _MSC_VER
-    if (dynlibname_xpad == NULL)
-    {
-        dynlibname_xpad = buildModuleDynLibraryName(XPAD_MODULE_NAME, DYNLIB_NAME_FORMAT_2);
-    }
-#endif
-
-    return gw_dynamic_generic(XPAD_MODULE_NAME,
-        &dynlibname_xpad,
-        &gatewayname_xpad,
-        &hXpadLib,
-        &ptr_gw_xpad);
+    return gw_dynamic_generic(SCINOTES_MODULE_NAME,
+        &dynlibname_scinotes,
+        &gatewayname_scinotes,
+        &hSciNotesLib,
+        &ptr_gw_scinotes);
 }
 /*--------------------------------------------------------------------------*/
 /* hdf5 module */

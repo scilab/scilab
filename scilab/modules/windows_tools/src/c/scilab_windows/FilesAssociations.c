@@ -35,9 +35,9 @@ static BOOL isGoodExtension(char *chainefichier,char *ext);
 static BOOL IsAScicosFileCOS(char *chainefichier);
 static BOOL IsAScicosFileCOSF(char *chainefichier);
 static BOOL IsAScicosFileXCOS(char *chainefichier);
-static BOOL IsAXpadFileSCE(char *chainefichier);
-static BOOL IsAXpadFileSCI(char *chainefichier);
-static BOOL IsAXpadFileTST(char *chainefichier);
+static BOOL IsASciNotesFileSCE(char *chainefichier);
+static BOOL IsASciNotesFileSCI(char *chainefichier);
+static BOOL IsASciNotesFileTST(char *chainefichier);
 static BOOL IsAFile(char *chainefichier);
 /*--------------------------------------------------------------------------*/
 #define MSG_SCIMSG1 "%s -e load(getlongpathname('%s'));disp(getlongpathname('%s')+ascii(32)+'loaded');"
@@ -96,25 +96,25 @@ BOOL IsAScicosFileXCOS(char *chainefichier)
 	return isGoodExtension(chainefichier,".XCOS");
 }
 /*--------------------------------------------------------------------------*/
-BOOL IsAXpadFile(char *chainefichier)
+BOOL IsASciNotesFile(char *chainefichier)
 {
-	if ( IsAXpadFileSCE(chainefichier) || 
-		IsAXpadFileSCI(chainefichier) ||
-		IsAXpadFileTST(chainefichier) ) return TRUE;
+	if ( IsASciNotesFileSCE(chainefichier) || 
+		IsASciNotesFileSCI(chainefichier) ||
+		IsASciNotesFileTST(chainefichier) ) return TRUE;
 	return FALSE;
 }
 /*--------------------------------------------------------------------------*/
-BOOL IsAXpadFileSCE(char *chainefichier)
+BOOL IsASciNotesFileSCE(char *chainefichier)
 {
 	return isGoodExtension(chainefichier,".SCE");
 }
 /*--------------------------------------------------------------------------*/
-BOOL IsAXpadFileSCI(char *chainefichier)
+BOOL IsASciNotesFileSCI(char *chainefichier)
 {
 	return isGoodExtension(chainefichier,".SCI");
 }
 /*--------------------------------------------------------------------------*/
-BOOL IsAXpadFileTST(char *chainefichier)
+BOOL IsASciNotesFileTST(char *chainefichier)
 {
 	return isGoodExtension(chainefichier,".TST");
 }
@@ -140,7 +140,7 @@ int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 			{
 				if ( (!HaveAnotherWindowScilab()) || (haveMutexClosingScilab()) )
 				{
-					if (with_module("xpad"))
+					if (with_module("scinotes"))
 					{
 						wsprintf(Cmd,MSG_SCIMSG5_EDITOR,PathWScilex,FinalFileName);
 					}
@@ -154,7 +154,7 @@ int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 				{
 					char *ScilabDestination = NULL;
 
-					if (with_module("xpad"))
+					if (with_module("scinotes"))
 					{
 						wsprintf(Cmd,MSG_SCIMSG6_EDITOR,FinalFileName);
 					}
@@ -173,7 +173,7 @@ int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 					}
 					else
 					{
-						if (with_module("xpad"))
+						if (with_module("scinotes"))
 						{
 							wsprintf(Cmd,MSG_SCIMSG5_EDITOR,PathWScilex,FinalFileName);
 						}

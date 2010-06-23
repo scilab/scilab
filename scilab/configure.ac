@@ -1706,7 +1706,7 @@ modules/parameters/Makefile
 modules/matio/Makefile
 modules/atoms/Makefile
 modules/xcos/Makefile
-modules/xpad/Makefile
+modules/scinotes/Makefile
 modules/ui_data/Makefile
 modules/graph/Makefile
 modules/parallel/Makefile

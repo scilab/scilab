@@ -84,7 +84,7 @@ types \
 hdf5 \
 graph\
 xcos \
-xpad \
+scinotes \
 parallel \
 modules_manager \
 ui_data
@@ -136,7 +136,7 @@ GUI_LIBS = 	$(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/action_binding/libsciaction_binding.la \
 	$(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/modules/xcos/libscixcos.la \
-	$(top_builddir)/modules/xpad/libscixpad.la \
+	$(top_builddir)/modules/scinotes/libscinotes.la \
 	$(top_builddir)/modules/ui_data/libsciui_data.la
 
 if HDF5
@@ -151,7 +151,7 @@ NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/action_binding/libsciaction_binding-disable.la \
 	$(top_builddir)/modules/jvm/libscijvm-disable.la \
 	$(top_builddir)/modules/xcos/libscixcos-disable.la \
-	$(top_builddir)/modules/xpad/libscixpad-disable.la \
+	$(top_builddir)/modules/scinotes/libscinotes-disable.la \
 	$(top_builddir)/modules/ui_data/libsciui_data-disable.la
 
 if HDF5

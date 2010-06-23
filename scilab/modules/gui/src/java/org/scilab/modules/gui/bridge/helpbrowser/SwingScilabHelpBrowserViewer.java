@@ -141,31 +141,31 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
 					ScilabHelpBrowser.getHelpBrowser().getInfoBar().setText(Messages.gettext("No text selected"));
 				} else {
 					try {
-						/* Dynamic load of the Xpad class. 
-						 * This is done to avoid a cyclic dependency on gui <=> xpad
+						/* Dynamic load of the SciNotes class. 
+						 * This is done to avoid a cyclic dependency on gui <=> scinotes
 						 */
-						Class xpadClass = Class.forName("org.scilab.modules.xpad.Xpad");
+						Class scinotesClass = Class.forName("org.scilab.modules.scinotes.SciNotes");
 						Class arguments[] = new Class[] { String.class };
-						Method method = xpadClass.getMethod("xpadWithText", arguments);
-						method.invoke(xpadClass, new Object[]{selection});
+						Method method = scinotesClass.getMethod("scinotesWithText", arguments);
+						method.invoke(scinotesClass, new Object[]{selection});
 
 					} catch (ClassNotFoundException e) {
-						System.err.println("Could not find Xpad class");
+						System.err.println("Could not find SciNotes class");
 						e.printStackTrace();
 					} catch (SecurityException e) {
-						System.err.println("Security error: Could not access to Xpad class");
+						System.err.println("Security error: Could not access to SciNotes class");
 						e.printStackTrace();
 					} catch (NoSuchMethodException e) {
-						System.err.println("Could not access to xpathWithText method from object Xpad");
+						System.err.println("Could not access to xpathWithText method from object SciNotes");
 						e.printStackTrace();
 					} catch (IllegalArgumentException e) {
-						System.err.println("Wrong argument used with xpathWithText method from object Xpad");
+						System.err.println("Wrong argument used with xpathWithText method from object SciNotes");
 						e.printStackTrace();
 					} catch (IllegalAccessException e) {
-						System.err.println("Illegal access with xpathWithText method from object Xpad");
+						System.err.println("Illegal access with xpathWithText method from object SciNotes");
 						e.printStackTrace();
 					} catch (InvocationTargetException e) {
-						System.err.println("Error of invocation with xpathWithText method from object Xpad");
+						System.err.println("Error of invocation with xpathWithText method from object SciNotes");
 						e.printStackTrace();
 					}
 				}
@@ -176,9 +176,9 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
 
 		menuItem = new JMenuItem(Messages.gettext("Edit in the Scilab Text Editor"));
 		try {
-			Class xpadClass = Class.forName("org.scilab.modules.xpad.Xpad");
+			Class scinotesClass = Class.forName("org.scilab.modules.scinotes.SciNotes");
 		} catch (ClassNotFoundException e) {
-			/* Xpad not available */
+			/* SciNotes not available */
 			menuItem.setEnabled(false);
 		}
 		menuItem.addActionListener(actionListenerLoadIntoTextEditor);

@@ -34,11 +34,11 @@ int gw_dynamic_pvm(void);
 int gw_dynamic_xcos(void);
 
 /**
-* xpad gateway
+* scinotes gateway
 * functions is loaded dynamically at runtime
-* load gw_functions in SCI/modules/xpad/sci_gateway/gw_xpad.c
+* load gw_functions in SCI/modules/scinotes/sci_gateway/gw_scinotes.c
 */
-int gw_dynamic_xpad(void);
+int gw_dynamic_scinotes(void);
 
 /**
 * functions gateway

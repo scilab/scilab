@@ -11,7 +11,7 @@
  */
 /*--------------------------------------------------------------------------*/
 /**
- * This function is a wrapper / fake when Scilab is compiled without xpad
+ * This function is a wrapper / fake when Scilab is compiled without ui_data
  *
  * @return 0
  */
