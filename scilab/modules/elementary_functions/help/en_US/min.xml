@@ -111,13 +111,9 @@
 
   <refsection>
     <title>See Also</title>
-
     <simplelist type="inline">
       <member><link linkend="gsort">gsort</link></member>
-
       <member><link linkend="find">find</link></member>
-
-      <member><link linkend="mini">mini</link></member>
     </simplelist>
   </refsection>
 </refentry>
