@@ -4,12 +4,12 @@
 		<!--Zero or more repetitions:-->
 		<string sim="string" xcos="string" description="string">
 			<!--1 or more repetitions:-->
-			<parMap simVal="string" xcosVal="string"/>
+			<map simVal="string" xcosVal="string"/>
 		</string>
 		<!--Zero or more repetitions:-->
 		<integer sim="string" xcos="string" description="string">
 			<!--1 or more repetitions:-->
-			<parMap simVal="100" xcosVal="100"/>
+			<map simVal="100" xcosVal="100"/>
 		</integer>
 		<!--Zero or more repetitions:-->
 		<simple sim="string" xcos="string" description="string"/>
@@ -22,18 +22,18 @@
 		<!--Zero or more repetitions:-->
 		<string sim="string" xcos="string" description="string">
 			<!--1 or more repetitions:-->
-			<parMap simVal="string" xcosVal="string"/>
+			<map simVal="string" xcosVal="string"/>
 		</string>
 		<!--Zero or more repetitions:-->
 		<integer sim="string" xcos="string" description="string">
 			<!--1 or more repetitions:-->
-			<parMap simVal="100" xcosVal="100"/>
+			<map simVal="100" xcosVal="100"/>
 		</integer>
 		<!--Zero or more repetitions:-->
 		<simple sim="string" xcos="string" description="string"/>
 		<str2int sim="ZeroCross" xcos="zero_crossing" description="Enable zero-crossing detection">
-			<parMap simVal="off" xcosVal="0"/>
-			<parMap simVal="on" xcosVal="1"/>
+			<map simVal="off" xcosVal="0"/>
+			<map simVal="on" xcosVal="1"/>
 		</str2int>
 	<!--
 		 *	 - "interfaceFunctionName"
@@ -95,23 +95,23 @@
 			<simple sim="BlockType" xcos="c"></simple>
 			
 			<str2int sim="ZeroCross" xcos="nzcross" description="Enable zero-crossing detection">
-				<parMap simVal="off" xcosVal="0"/>
-				<parMap simVal="on" xcosVal="1"/>
+				<map simVal="off" xcosVal="0"/>
+				<map simVal="on" xcosVal="1"/>
 			</str2int>
 			<str2int sim="ExternalReset" xcos="With re-initialization" description="">
 				<!-- TODO: {'none'} | 'rising' | 'falling' | 'either' | 'level' | 'level hold' -->
-				<parMap simVal="none" xcosVal="0"/>
+				<map simVal="none" xcosVal="0"/>
 			</str2int>
 			<str2int sim="LimitOutput" xcos="rpar" description="">
-				<parMap simVal="off" xcosVal="0"/>
-				<parMap simVal="on" xcosVal="1"/>
+				<map simVal="off" xcosVal="0"/>
+				<map simVal="on" xcosVal="1"/>
 			</str2int>
 			<real xcos="rpar">
-				<parMap simName="UpperStaturationLimit" xcosIndex="0"/>
-				<parMap simName="LowerSaturationLimit" xcosIndex="1"/>
+				<map simName="UpperStaturationLimit" index="0,0"/>
+				<map simName="LowerSaturationLimit" index="0,1"/>
 			</real>
 			<real xcos="state">
-				<parMap simName="InitialCondition" xcosIndex="0"/>
+				<map simName="InitialCondition" index="0,0"/>
 			</real>
 		</block>
 		<!-- StateSpace Block compatibility pattern -->
@@ -120,13 +120,13 @@
 			<simple sim="FunctionType" xcos="4"></simple>
 			<simple sim="BlockType" xcos="c"></simple>
 			<real xcos="rpar">
-				<parMap simName="A" xcosIndex="0"/>
-				<parMap simName="B" xcosIndex="1"/>
-				<parMap simName="C" xcosIndex="2"/>
-				<parMap simName="D" xcosIndex="3"/>
+				<map simName="A" index="0,0"/>
+				<map simName="B" index="0,1"/>
+				<map simName="C" index="0,2"/>
+				<map simName="D" index="0,3"/>
 			</real>	
 			<real xcos="state">
-				<parMap simName="X0" xcosIndex="0"/>
+				<map simName="X0" index="0,0"/>
 			</real>
 		</block>
 		<!-- Transport-Delay Block compatibility pattern -->
@@ -135,12 +135,12 @@
 			<simple sim="FunctionType" xcos="4"></simple>
 			<simple sim="BlockType" xcos="x"></simple>
 			<str2int sim="FixedBuffer" xcos="???" description="">
-				<parMap simVal="off" xcosVal="0"/>
-				<parMap simVal="on" xcosVal="1"/>
+				<map simVal="off" xcosVal="0"/>
+				<map simVal="on" xcosVal="1"/>
 			</str2int>
 			<real xcos="rpar">
-				<parMap simName="DelayTime" xcosIndex="0"/>
-				<parMap simName="InitialOutput" xcosIndex="1"/>
+				<map simName="DelayTime" index="0,0"/>
+				<map simName="InitialOutput" index="0,1"/>
 			</real>	
 			<!-- 
 			<integer xcos="ipar" count="1">
@@ -154,12 +154,12 @@
 			<simple sim="FunctionType" xcos="4"></simple>
 			<simple sim="BlockType" xcos="d"></simple>
 			<str2int sim="FixedBuffer" xcos="???" description="">
-				<parMap simVal="off" xcosVal="0"/>
-				<parMap simVal="on" xcosVal="1"/>
+				<map simVal="off" xcosVal="0"/>
+				<map simVal="on" xcosVal="1"/>
 			</str2int>
 			<real xcos="rpar">
-				<parMap simName="MaximumDelay" xcosIndex="0"/>
-				<parMap simName="InitialOutput" xcosIndex="1"/>
+				<map simName="MaximumDelay" index="0,0"/>
+				<map simName="InitialOutput" index="0,1"/>
 			</real>	
 			<!-- 
 			<integer xcos="ipar" count="1">
@@ -179,8 +179,8 @@
 		">
 			<!-- TODO: ZeroCross for the second time, create general parameter -->
 			<str2int sim="ZeroCross" xcos="zero_crossing" description="Enable zero-crossing detection">
-				<parMap simVal="off" xcosVal="0"/>
-				<parMap simVal="on" xcosVal="1"/>
+				<map simVal="off" xcosVal="0"/>
+				<map simVal="on" xcosVal="1"/>
 			</str2int>
 		</block>
 		<!--Add Block Compatibility Pattern:-->
@@ -199,12 +199,12 @@
 			<simple sim="unavailable" xcos="Datatype" description="should be inherited from inputs"/>
 			<!-- TODO: '++-' to [1 , 1 , -1], some special handling needed -->
 			<str2int sim="Inputs" xcos="Number of inputs or sign vector" description="String with +/- to vec [1/-1]">
-				<parMap simVal="+" xcosVal="1"/>
-				<parMap simVal="-" xcosVal="-1"/>
+				<map simVal="+" xcosVal="1"/>
+				<map simVal="-" xcosVal="-1"/>
 			</str2int>
 			<str2int sim=" SaturateOnIntegerOverflow" xcos="Do on Overflow" description="">
-				<parMap simVal="on" xcosVal="1"/>
-				<parMap simVal="off" xcosVal="0"/>
+				<map simVal="on" xcosVal="1"/>
+				<map simVal="off" xcosVal="0"/>
 			</str2int>
 			</block>
 			<!--Algebraic Constraint Compatibility Pattern:-->
@@ -214,15 +214,15 @@
 		<!--Assignment Compatibility Pattern:-->
 		<block sim="Assignment" xcos="Assignment" description="no description">
 			<integer sim="NumberOfDimensions" xcos="Number of output dimensions" description="">
-				<parMap simVal="1" xcosVal="1"/>
+				<map simVal="1" xcosVal="1"/>
 			</integer>
 			<str2int sim="IndexMode" xcos="Index Base" description="">
-				<parMap simVal="Zero-based" xcosVal="0"/>
-				<parMap simVal="One-based" xcosVal="1"/>
+				<map simVal="Zero-based" xcosVal="0"/>
+				<map simVal="One-based" xcosVal="1"/>
 			</str2int>
 			<str2int sim="IndexOptionArray" xcos="Index Option" description="">
-				<parMap simVal="Zero-based" xcosVal="0"/>
-				<parMap simVal="One-based" xcosVal="1"/>
+				<map simVal="Zero-based" xcosVal="0"/>
+				<map simVal="One-based" xcosVal="1"/>
 			</str2int>
 		<!--TODO: IndexOptions: See IndexOptionArray parameter for more information.
 			 'Assign all' | {'Index vector (dialog)'} | 'Index vector (port)' | 'Starting index (dialog)' | 'Starting index (port)'	

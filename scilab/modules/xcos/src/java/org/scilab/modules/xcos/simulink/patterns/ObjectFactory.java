@@ -34,11 +34,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link StringValueMap }
+     * Create an instance of {@link RealParameters }
      * 
      */
-    public StringValueMap createStringValueMap() {
-        return new StringValueMap();
+    public RealParameters createRealParameters() {
+        return new RealParameters();
     }
 
     /**
@@ -50,51 +50,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link IntegerParameters }
-     * 
-     */
-    public IntegerParameters createIntegerParameters() {
-        return new IntegerParameters();
-    }
-
-    /**
      * Create an instance of {@link Block }
      * 
      */
     public Block createBlock() {
         return new Block();
-    }
-
-    /**
-     * Create an instance of {@link Int2StrParameters }
-     * 
-     */
-    public Int2StrParameters createInt2StrParameters() {
-        return new Int2StrParameters();
-    }
-
-    /**
-     * Create an instance of {@link BlockPalette }
-     * 
-     */
-    public BlockPalette createBlockPalette() {
-        return new BlockPalette();
-    }
-
-    /**
-     * Create an instance of {@link RealValueMap }
-     * 
-     */
-    public RealValueMap createRealValueMap() {
-        return new RealValueMap();
-    }
-
-    /**
-     * Create an instance of {@link RealParameters }
-     * 
-     */
-    public RealParameters createRealParameters() {
-        return new RealParameters();
     }
 
     /**
@@ -106,27 +66,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Int2StrValueMap }
+     * Create an instance of {@link GeneralParameters }
      * 
      */
-    public Int2StrValueMap createInt2StrValueMap() {
-        return new Int2StrValueMap();
+    public GeneralParameters createGeneralParameters() {
+        return new GeneralParameters();
     }
 
     /**
-     * Create an instance of {@link SimpleParameter }
+     * Create an instance of {@link BlockPalette }
      * 
      */
-    public SimpleParameter createSimpleParameter() {
-        return new SimpleParameter();
+    public BlockPalette createBlockPalette() {
+        return new BlockPalette();
     }
 
     /**
-     * Create an instance of {@link StringParameters }
+     * Create an instance of {@link StringValueMap }
      * 
      */
-    public StringParameters createStringParameters() {
-        return new StringParameters();
+    public StringValueMap createStringValueMap() {
+        return new StringValueMap();
     }
 
     /**
@@ -138,11 +98,51 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GeneralParameters }
+     * Create an instance of {@link RealValueMap }
      * 
      */
-    public GeneralParameters createGeneralParameters() {
-        return new GeneralParameters();
+    public RealValueMap createRealValueMap() {
+        return new RealValueMap();
+    }
+
+    /**
+     * Create an instance of {@link SimpleParameter }
+     * 
+     */
+    public SimpleParameter createSimpleParameter() {
+        return new SimpleParameter();
+    }
+
+    /**
+     * Create an instance of {@link Int2StrValueMap }
+     * 
+     */
+    public Int2StrValueMap createInt2StrValueMap() {
+        return new Int2StrValueMap();
+    }
+
+    /**
+     * Create an instance of {@link StringParameters }
+     * 
+     */
+    public StringParameters createStringParameters() {
+        return new StringParameters();
+    }
+
+    /**
+     * Create an instance of {@link Int2StrParameters }
+     * 
+     */
+    public Int2StrParameters createInt2StrParameters() {
+        return new Int2StrParameters();
+    }
+
+    /**
+     * Create an instance of {@link IntegerParameters }
+     * 
+     */
+    public IntegerParameters createIntegerParameters() {
+        return new IntegerParameters();
     }
 
     /**

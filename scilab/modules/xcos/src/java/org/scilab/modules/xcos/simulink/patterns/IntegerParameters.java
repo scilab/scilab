@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="parMap" type="{}IntegerValueMap" maxOccurs="unbounded"/>
+ *         &lt;element name="map" type="{}IntegerValueMap" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *       &lt;attribute name="sim" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="xcos" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
@@ -34,12 +34,12 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "IntegerParameters", propOrder = {
-    "parMap"
+    "map"
 })
 public class IntegerParameters {
 
     @XmlElement(required = true)
-    protected List<IntegerValueMap> parMap;
+    protected List<IntegerValueMap> map;
     @XmlAttribute(required = true)
     protected String sim;
     @XmlAttribute(required = true)
@@ -48,18 +48,18 @@ public class IntegerParameters {
     protected String description;
 
     /**
-     * Gets the value of the parMap property.
+     * Gets the value of the map property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the parMap property.
+     * This is why there is not a <CODE>set</CODE> method for the map property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getParMap().add(newItem);
+     *    getMap().add(newItem);
      * </pre>
      * 
      * 
@@ -69,11 +69,11 @@ public class IntegerParameters {
      * 
      * 
      */
-    public List<IntegerValueMap> getParMap() {
-        if (parMap == null) {
-            parMap = new ArrayList<IntegerValueMap>();
+    public List<IntegerValueMap> getMap() {
+        if (map == null) {
+            map = new ArrayList<IntegerValueMap>();
         }
-        return this.parMap;
+        return this.map;
     }
 
     /**

@@ -137,7 +137,7 @@ public class PatternElement {
 						IntegerParameters integerParam = integerParamIter.next();
 						if(integerParam.getSim().contentEquals(paramName)){
 							String returnValue = integerParam.getXcos() + ": ";
-							Iterator<IntegerValueMap> valueMapIter = integerParam.getParMap().iterator();
+							Iterator<IntegerValueMap> valueMapIter = integerParam.getMap().iterator();
 							//while (valueMapIter.hasNext()){
 								returnValue += simulinkValue;
 							//}
@@ -163,7 +163,7 @@ public class PatternElement {
 						Str2IntParameters str2intParam = str2intParamIter.next();
 						if(str2intParam.getSim().contentEquals(paramName)){
 							String returnValue = str2intParam.getXcos() + ": ";
-							Iterator<Str2IntValueMap> valueMapIter = str2intParam.getParMap().iterator();
+							Iterator<Str2IntValueMap> valueMapIter = str2intParam.getMap().iterator();
 							while (valueMapIter.hasNext()){
 								Str2IntValueMap valueMap = valueMapIter.next();
 								if(valueMap.getSimVal().contentEquals(simulinkValue)){
@@ -339,14 +339,22 @@ public class PatternElement {
 				 * Check if state
 				 */
 				if(realParam.getXcos().contentEquals("state")){
-					Iterator<RealValueMap> valueMapIter = realParam.getParMap().iterator();
+					Iterator<RealValueMap> valueMapIter = realParam.getMap().iterator();
 					stateData=new double[1][10]; //FIXME: add count to realParameters
 					while (valueMapIter.hasNext()){
 						RealValueMap valueMap = valueMapIter.next();
-						stateData[0][valueMap.getXcosIndex().intValue()] = Double.parseDouble(data.getParameter(valueMap.getSimName()));
+						/**
+						 * Position parameter read by parser is string and looks like this "55,43" 
+						 * \\W is used to strip string from non-word characters 
+						 * \\s+ to split string around whitespaces
+						 */
+						String[] position = valueMap.getIndex().replaceAll("\\W", " ").trim().split("\\s+");
+						int x = Integer.parseInt(position[0]);
+						int y = Integer.parseInt(position[1]);
+						stateData[x][y] = Double.parseDouble(data.getParameter(valueMap.getSimName()));
 						if(LOG.isTraceEnabled()){
 							LOG.trace(currentBlock.getXcos() + "state:");
-							LOG.trace(stateData[0][valueMap.getXcosIndex().intValue()]);
+							LOG.trace(stateData[x][y]);
 						}
 					}
 					return new ScilabDouble(stateData);
@@ -369,14 +377,23 @@ public class PatternElement {
 				 * Check if state
 				 */
 				if(realParam.getXcos().contentEquals("dstate")){
-					Iterator<RealValueMap> valueMapIter = realParam.getParMap().iterator();
+					Iterator<RealValueMap> valueMapIter = realParam.getMap().iterator();
 					stateData=new double[1][10]; //FIXME: add count to realParameters
 					while (valueMapIter.hasNext()){
 						RealValueMap valueMap = valueMapIter.next();
-						stateData[0][valueMap.getXcosIndex().intValue()] = Double.parseDouble(data.getParameter(valueMap.getSimName()));
+						/**
+						 * Position parameter read by parser is string and looks like this "55,43" 
+						 * \\W is used to strip string from non-word characters 
+						 * \\s+ to split string around whitespaces
+						 */
+						String[] position = valueMap.getIndex().replaceAll("\\W", " ").trim().split("\\s+");
+						int x = Integer.parseInt(position[0]);
+						int y = Integer.parseInt(position[1]);
+						
+						stateData[x][y] = Double.parseDouble(data.getParameter(valueMap.getSimName()));
 						if(LOG.isTraceEnabled()){
 							LOG.trace(currentBlock.getXcos() + "state:");
-							LOG.trace(stateData[0][valueMap.getXcosIndex().intValue()]);
+							LOG.trace(stateData[x][y]);
 						}
 					}
 					return new ScilabDouble(stateData);
@@ -424,7 +441,7 @@ public class PatternElement {
 				 */
 				if(str2intParam.getXcos().contentEquals("nzcross")){
 					String nzcross = data.getParameter(str2intParam.getSim());
-					Iterator<Str2IntValueMap> valueMapIter = str2intParam.getParMap().iterator();
+					Iterator<Str2IntValueMap> valueMapIter = str2intParam.getMap().iterator();
 					while (valueMapIter.hasNext()){
 						Str2IntValueMap valueMap = valueMapIter.next();
 						if(valueMap.getSimVal().contentEquals(nzcross)){
@@ -454,14 +471,23 @@ public class PatternElement {
 				 * Check if rpar
 				 */
 				if(realParam.getXcos().contentEquals("rpar")){
-					Iterator<RealValueMap> valueMapIter = realParam.getParMap().iterator();
+					Iterator<RealValueMap> valueMapIter = realParam.getMap().iterator();
 					rparData=new double[1][10]; //FIXME: add count to realParameters
 					while (valueMapIter.hasNext()){
 						RealValueMap valueMap = valueMapIter.next();
-						rparData[0][valueMap.getXcosIndex().intValue()] = Double.parseDouble(data.getParameter(valueMap.getSimName()));
+						/**
+						 * Position parameter read by parser is string and looks like this "55,43" 
+						 * \\W is used to strip string from non-word characters 
+						 * \\s+ to split string around whitespaces
+						 */
+						String[] position = valueMap.getIndex().replaceAll("\\W", " ").trim().split("\\s+");
+						int x = Integer.parseInt(position[0]);
+						int y = Integer.parseInt(position[1]);
+						
+						rparData[x][y] = Double.parseDouble(data.getParameter(valueMap.getSimName()));
 						if(LOG.isTraceEnabled()){
 							LOG.trace(currentBlock.getXcos() + "rpar:");
-							LOG.trace(rparData[0][valueMap.getXcosIndex().intValue()]);
+							LOG.trace(rparData[x][y]);
 						}
 					}
 					return new ScilabDouble(rparData);

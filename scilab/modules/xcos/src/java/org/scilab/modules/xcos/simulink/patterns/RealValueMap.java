@@ -1,7 +1,6 @@
 
 package org.scilab.modules.xcos.simulink.patterns;
 
-import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -18,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;attribute name="simName" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="xcosIndex" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
+ *       &lt;attribute name="index" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -33,7 +32,7 @@ public class RealValueMap {
     @XmlAttribute(required = true)
     protected String simName;
     @XmlAttribute(required = true)
-    protected BigInteger xcosIndex;
+    protected String index;
 
     /**
      * Gets the value of the simName property.
@@ -60,27 +59,27 @@ public class RealValueMap {
     }
 
     /**
-     * Gets the value of the xcosIndex property.
+     * Gets the value of the index property.
      * 
      * @return
      *     possible object is
-     *     {@link BigInteger }
+     *     {@link String }
      *     
      */
-    public BigInteger getXcosIndex() {
-        return xcosIndex;
+    public String getIndex() {
+        return index;
     }
 
     /**
-     * Sets the value of the xcosIndex property.
+     * Sets the value of the index property.
      * 
      * @param value
      *     allowed object is
-     *     {@link BigInteger }
+     *     {@link String }
      *     
      */
-    public void setXcosIndex(BigInteger value) {
-        this.xcosIndex = value;
+    public void setIndex(String value) {
+        this.index = value;
     }
 
 }
