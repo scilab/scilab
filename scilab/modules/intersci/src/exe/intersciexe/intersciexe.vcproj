@@ -20,7 +20,7 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(SolutionDir)bin\"
+			OutputDirectory="$(SolutionDir)modules\intersci\bin\"
 			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="1"
 			UseOfMFC="0"
@@ -74,7 +74,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="$(SolutionDir)bin\intersci.exe"
+				OutputFile="$(SolutionDir)modules\intersci\bin\intersci.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				GenerateDebugInformation="true"
@@ -108,7 +108,7 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|x64"
-			OutputDirectory="$(SolutionDir)bin\"
+			OutputDirectory="$(SolutionDir)modules\intersci\bin\"
 			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="1"
 			UseOfMFC="0"
@@ -162,7 +162,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="$(SolutionDir)bin\intersci.exe"
+				OutputFile="$(SolutionDir)modules\intersci\bin\intersci.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				GenerateDebugInformation="true"
@@ -196,7 +196,7 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)bin\"
+			OutputDirectory="$(SolutionDir)modules\intersci\bin\"
 			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="1"
 			UseOfMFC="0"
@@ -253,7 +253,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="$(SolutionDir)bin\intersci.exe"
+				OutputFile="$(SolutionDir)modules\intersci\bin\intersci.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				ProgramDatabaseFile="$(ConfigurationName)/intersci.pdb"
@@ -286,7 +286,7 @@
 		</Configuration>
 		<Configuration
 			Name="Release|x64"
-			OutputDirectory="$(SolutionDir)bin\"
+			OutputDirectory="$(SolutionDir)modules\intersci\bin\"
 			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="1"
 			UseOfMFC="0"
@@ -343,7 +343,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="$(SolutionDir)bin\intersci.exe"
+				OutputFile="$(SolutionDir)modules\intersci\bin\intersci.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				ProgramDatabaseFile="$(ConfigurationName)/intersci.pdb"
