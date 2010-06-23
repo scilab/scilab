@@ -58,7 +58,7 @@ public final class Xcos {
 	private static final Log LOG = LogFactory.getLog(Xcos.class);
 
 	/** common shared instance */
-	private static Xcos sharedInstance;
+	private static volatile Xcos sharedInstance;
 
 	/*
 	 * Instance data
@@ -230,6 +230,11 @@ public final class Xcos {
 			LOG.error(CALLED_OUTSIDE_THE_EDT_THREAD);
 		}
 
+		/* Doesn't instantiate xcos on close operation */
+		if (sharedInstance == null) {
+			return;
+		}
+		
 		final Xcos instance = getInstance();
 		final List<XcosDiagram> diagrams = instance.diagrams;
 
