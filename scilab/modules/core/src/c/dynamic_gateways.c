@@ -280,6 +280,12 @@ static char* gatewayname_scinotes = NULL;
 /*--------------------------------------------------------------------------*/
 int gw_dynamic_scinotes(void)
 {
+#ifdef _MSC_VER
+    if (dynlibname_scinotes == NULL)
+    {
+        dynlibname_scinotes = buildModuleDynLibraryName(SCINOTES_MODULE_NAME, DYNLIB_NAME_FORMAT_2);
+    }
+#endif
     return gw_dynamic_generic(SCINOTES_MODULE_NAME,
         &dynlibname_scinotes,
         &gatewayname_scinotes,
