@@ -19,7 +19,6 @@
 #endif
 #include <stdio.h>
 #include <string.h>
-#include "stack-def.h"
 #include "findfiles.h"
 #include "MALLOC.h"
 #include "localization.h"

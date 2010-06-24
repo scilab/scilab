@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
-	Name="boolean_f2c"
+	Version="9,00"
+	Name="boolean_f"
 	ProjectGUID="{45ECEB36-A12B-42F5-9D7A-216A0E70601D}"
 	RootNamespace="boolean_f2c"
 	Keyword="Win32Proj"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -24,10 +24,10 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
-			CharacterSet="2"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
+			ConfigurationType="2"
+			CharacterSet="1"
 			>
 			<Tool
 				Name="f2c rule"
@@ -35,15 +35,14 @@
 			/>
 			<Tool
 				Name="VCPreBuildEventTool"
+				Description="Build Dependencies"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)boolean_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)boolean.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
 				ExecutionBucket="2"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
 			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-				ExecutionBucket="4"
-			/>
+
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
@@ -56,14 +55,14 @@
 				ExecutionBucket="6"
 				Optimization="0"
 				AdditionalIncludeDirectories="../../../../libs/f2c"
-				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;BOOLEAN_F2C_EXPORTS;FORDLL"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
+				CompileAs="1"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -75,45 +74,63 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				Description="Build boolean_f.def"
+				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n boolean_f.dll %%f &gt;nul&#x0D;&#x0A;copy *.def boolean_f.def &gt;nul&#x0D;&#x0A;copy boolean_f.def ..\boolean_f.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;copy boolean_f_header.def+boolean_f.vcdef boolean_f.def &gt;nul&#x0D;&#x0A;"
 				ExecutionBucket="9"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
+				Name="VCLinkerTool"
 				ExecutionBucket="10"
-				OutputFile="../../../../libs/boolean_f.lib"
+				AdditionalDependencies="Libscilab.lib boolean.lib"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
+				LinkIncremental="2"
+				ModuleDefinitionFile="boolean_f.def"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
+				TargetMachine="1"
 			/>
 			<Tool
 				Name="VCALinkTool"
 				ExecutionBucket="11"
 			/>
 			<Tool
-				Name="VCXDCMakeTool"
+				Name="VCManifestTool"
 				ExecutionBucket="12"
 			/>
 			<Tool
-				Name="VCBscMakeTool"
+				Name="VCXDCMakeTool"
 				ExecutionBucket="13"
 			/>
 			<Tool
-				Name="VCFxCopTool"
+				Name="VCBscMakeTool"
 				ExecutionBucket="14"
 			/>
 			<Tool
-				Name="VCPostBuildEventTool"
-				Description="Build Scicos_f.def"
-				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul&#x0D;&#x0A;copy *.def boolean_f.def &gt;nul&#x0D;&#x0A;copy boolean_f.def ..\..\..\..\..\libs\boolean_f.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;"
+				Name="VCFxCopTool"
 				ExecutionBucket="15"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				ExecutionBucket="17"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
 			/>
 		</Configuration>
 		<Configuration
 			Name="Debug|x64"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
-			CharacterSet="2"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
+			ConfigurationType="2"
+			CharacterSet="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
+				Description="Build Dependencies"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)boolean_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)boolean.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -123,9 +140,6 @@
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
@@ -135,14 +149,14 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="../../../../libs/f2c"
-				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;BOOLEAN_F2C_EXPORTS;FORDLL"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
+				CompileAs="1"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -152,13 +166,27 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				Description="Build boolean_f.def"
+				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n boolean_f.dll %%f &gt;nul&#x0D;&#x0A;copy *.def boolean_f.def &gt;nul&#x0D;&#x0A;copy boolean_f.def ..\boolean_f.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;copy boolean_f_header.def+boolean_f.vcdef boolean_f.def &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../../../libs/boolean_f.lib"
+				Name="VCLinkerTool"
+				AdditionalDependencies="Libscilab.lib boolean.lib"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
+				LinkIncremental="2"
+				ModuleDefinitionFile="boolean_f.def"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
+				TargetMachine="17"
 			/>
 			<Tool
 				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -170,103 +198,109 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
-				Description="Build Scicos_f.def"
-				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul&#x0D;&#x0A;copy *.def boolean_f.def &gt;nul&#x0D;&#x0A;copy boolean_f.def ..\..\..\..\..\libs\boolean_f.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
-			CharacterSet="2"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
+			ConfigurationType="2"
+			CharacterSet="1"
 			WholeProgramOptimization="1"
 			>
 			<Tool
-				Name="f2c rule"
-				ExecutionBucket="1"
-			/>
-			<Tool
 				Name="VCPreBuildEventTool"
-				ExecutionBucket="2"
+				Description="Build Dependencies"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)boolean_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)boolean.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-				ExecutionBucket="4"
+				Name="f2c rule"
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				ExecutionBucket="5"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				ExecutionBucket="6"
 				WholeProgramOptimization="false"
 				AdditionalIncludeDirectories="../../../../libs/f2c"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;BOOLEAN_F2C_EXPORTS;FORDLL"
 				RuntimeLibrary="2"
+				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
-				ExecutionBucket="7"
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				ExecutionBucket="8"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				ExecutionBucket="9"
+				Description="Build boolean_f.def"
+				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n boolean_f.dll %%f &gt;nul&#x0D;&#x0A;copy *.def boolean_f.def &gt;nul&#x0D;&#x0A;copy boolean_f.def ..\boolean_f.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;copy boolean_f_header.def+boolean_f.vcdef boolean_f.def &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
-				ExecutionBucket="10"
-				OutputFile="../../../../libs/boolean_f.lib"
+				Name="VCLinkerTool"
+				AdditionalDependencies="Libscilab.lib boolean.lib"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
+				LinkIncremental="1"
+				ModuleDefinitionFile="boolean_f.def"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				LinkTimeCodeGeneration="0"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
+				TargetMachine="1"
 			/>
 			<Tool
 				Name="VCALinkTool"
-				ExecutionBucket="11"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
-				ExecutionBucket="12"
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-				ExecutionBucket="13"
 			/>
 			<Tool
 				Name="VCFxCopTool"
-				ExecutionBucket="14"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				Description="Build Scicos_f.def"
-				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul&#x0D;&#x0A;copy *.def boolean_f.def &gt;nul&#x0D;&#x0A;copy boolean_f.def ..\..\..\..\..\libs\boolean_f.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;"
-				ExecutionBucket="15"
 			/>
 		</Configuration>
 		<Configuration
 			Name="Release|x64"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
-			CharacterSet="2"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
+			ConfigurationType="2"
+			CharacterSet="1"
 			WholeProgramOptimization="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
+				Description="Build Dependencies"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)boolean_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)boolean.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -276,9 +310,6 @@
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
@@ -288,11 +319,11 @@
 				Name="VCCLCompilerTool"
 				WholeProgramOptimization="false"
 				AdditionalIncludeDirectories="../../../../libs/f2c"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;BOOLEAN_F2C_EXPORTS;FORDLL"
 				RuntimeLibrary="2"
+				EnableEnhancedInstructionSet="1"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -303,13 +334,30 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				Description="Build boolean_f.def"
+				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n boolean_f.dll %%f &gt;nul&#x0D;&#x0A;copy *.def boolean_f.def &gt;nul&#x0D;&#x0A;copy boolean_f.def ..\boolean_f.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;copy boolean_f_header.def+boolean_f.vcdef boolean_f.def &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../../../libs/boolean_f.lib"
+				Name="VCLinkerTool"
+				AdditionalDependencies="Libscilab.lib boolean.lib"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
+				LinkIncremental="1"
+				ModuleDefinitionFile="boolean_f.def"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				LinkTimeCodeGeneration="0"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
+				TargetMachine="17"
 			/>
 			<Tool
 				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -321,9 +369,10 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
-				Description="Build Scicos_f.def"
-				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul&#x0D;&#x0A;copy *.def boolean_f.def &gt;nul&#x0D;&#x0A;copy boolean_f.def ..\..\..\..\..\libs\boolean_f.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -365,7 +414,7 @@
 			>
 		</Filter>
 		<Filter
-			Name="Fortran Files"
+			Name="Fortran files"
 			>
 			<File
 				RelativePath=".\find.f"
@@ -384,6 +433,22 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="Libraries Dependencies"
+			>
+			<File
+				RelativePath=".\boolean_Import.def"
+				>
+			</File>
+			<File
+				RelativePath=".\LibScilab_Import.def"
+				>
+			</File>
+		</Filter>
+		<File
+			RelativePath="..\..\..\..\bin\blasplus.lib"
+			>
+		</File>
 		<File
 			RelativePath="..\..\sci_gateway\boolean_gateway.xml"
 			>

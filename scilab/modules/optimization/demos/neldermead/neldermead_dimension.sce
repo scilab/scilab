@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
+// Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -8,6 +9,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 mprintf("Illustrates the sensitivity to dimension of the Nelder-Mead algorithm\n");
+mprintf("Han and Neumann. ""Effect of dimensionality on the nelder-mead simplex method."" Optimization Methods and Software, 2006.\n");
 
 function [ f , index ] = quadracticn ( x , index )
   f = sum(x.^2);
@@ -37,7 +39,6 @@ function [nbfevals , niter , rho] = solvepb ( n )
   // Perform optimization
   //
   nm = neldermead_search(nm);
-  //neldermead_display(nm);
   si0 = neldermead_get ( nm , "-simplex0" );
   sigma0 = optimsimplex_size ( si0 , "sigmaplus" );
   siopt = neldermead_get ( nm , "-simplexopt" );
@@ -49,8 +50,14 @@ function [nbfevals , niter , rho] = solvepb ( n )
   nm = neldermead_destroy(nm);
 endfunction
 
+nmax = 20;
+mprintf("Maximum dimension:%d\n",nmax);
+mprintf("Column #1: number of dimensions\n");
+mprintf("Column #2: number of function evaluations\n");
+mprintf("Column #3: number of iterations\n");
+mprintf("Column #4: convergence rate (lower is better)\n");
 
-for n = 1:20
+for n = 1:nmax
   [nbfevals niter rho] = solvepb ( n );
   array_rho(n) = rho;
   array_nbfevals(n) = nbfevals;
@@ -58,7 +65,7 @@ for n = 1:20
 end
 // Plot rate of convergence
 hh = scf();
-plot(1:20,array_rho)
+plot(1:nmax,array_rho)
 hh.children.x_label.text = "Number of parameters"
 hh.children.y_label.text = "Rate of convergence"
 hh.children.children.children.mark_mode = "on";
@@ -67,7 +74,7 @@ hh.children.children.children.mark_size = 10;
 
 // Plot number of function evaluations
 hh = scf();
-plot(1:20,array_nbfevals)
+plot(1:nmax,array_nbfevals)
 hh.children.x_label.text = "Number of parameters"
 hh.children.y_label.text = "Number of function evaluations"
 hh.children.children.children.mark_mode = "on";

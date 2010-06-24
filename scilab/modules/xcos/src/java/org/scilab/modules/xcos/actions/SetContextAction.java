@@ -48,8 +48,6 @@ public class SetContextAction extends SimulationNotRunningAction {
 	 * @return the menu
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		SetContextAction action = new SetContextAction(scilabGraph);
-		((XcosDiagram) scilabGraph).setContextAction(action);
 		return createMenu(scilabGraph, SetContextAction.class);
 	}
 	
@@ -58,6 +56,7 @@ public class SetContextAction extends SimulationNotRunningAction {
 	 * @param e the event
 	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
 	 */
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		final XcosDiagram diag = (XcosDiagram) getGraph(e);
 		final SetContextDialog dialog = new SetContextDialog(diag.getAsComponent(), diag.getScicosParameters());

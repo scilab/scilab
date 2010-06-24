@@ -9,7 +9,6 @@ errgst_
 intersci_
 com_
 ref2val_
-israt_
 chkvar_
 putlhsvar_
 vstk_
@@ -23,19 +22,4 @@ indxg_
 indxgc_
 csimp_
 
-;elementary_functions_f
-unsfdcopy_
-dset_
-iset_
-wasum_
-wmul_
-wwdiv_
-waxpy_
-wscal_
-dadd_
-ddif_
-dtild_
-ivimp_
 
-;cacsd_f
-giv_

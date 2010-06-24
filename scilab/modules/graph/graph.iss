@@ -1,20 +1,25 @@
-;##############################################################################################################
-; Scilab ( http://mwww.scilab.org/ ) - This file is part of Scilab
-; Copyright (C) 2010 - DIGITEO - Allan CORNET
+;
+; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+; Copyright (C) DIGITEO - 2010 - Allan CORNET
 ;
 ; This file must be used under the terms of the CeCILL.
 ; This source file is licensed as described in the file COPYING, which
 ; you should have received as part of this distribution.  The terms
 ; are also available at
 ; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-;##############################################################################################################
+;
+;--------------------------------------------------------------------------------------------------------------
+; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
+;
 ;--------------------------------------------------------------------------------------------------------------
 ; graph module
 ;--------------------------------------------------------------------------------------------------------------
 ;
 #define GRAPH "graph"
 ;
-Source: modules\{#GRAPH}\jar\org.scilab.modules.graph.jar;DestDir: {app}\modules\{#GRAPH}\jar; Components: {#COMPN_SCILAB}
+Source: thirdparty\jgraphx.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+;
+Source: modules\{#GRAPH}\jar\org.scilab.modules.{#GRAPH}.jar;DestDir: {app}\modules\{#GRAPH}\jar; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#GRAPH}\VERSION.xml; DestDir: {app}\modules\{#GRAPH}; Components: {#COMPN_SCILAB}
 Source: modules\{#GRAPH}\readme.txt; DestDir: {app}\modules\{#GRAPH}; Components: {#COMPN_SCILAB}

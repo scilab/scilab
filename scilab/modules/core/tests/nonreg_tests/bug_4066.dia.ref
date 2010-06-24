@@ -16,6 +16,7 @@ mputl('clear',TMPDIR+'/foo')
  ans  =
  
   T  
+execstr("exec(TMPDIR+''/foo'')")
  
 clear
  

@@ -14,7 +14,7 @@
 #include "stack-c.h"
 #include "str2sci.h"
 #include "cvstr.h"
-#include "Scierror.h"
+#include "do_error_number.h"
 
 void str2sci(char** x,int n,int m)
 {
@@ -23,7 +23,7 @@ void str2sci(char** x,int n,int m)
       
   if (Top >= Bot) {
     i=18;
-    Error(i);
+    SciError(i);
   } else {
     Top = Top + 1;
     il = iadr(*Lstk(Top));
@@ -33,7 +33,7 @@ void str2sci(char** x,int n,int m)
   err = l + n*m - *Lstk(Bot);
   if (err > 0) {
     i=17;
-    Error(i);
+    SciError(i);
     return;
   }
   *istk(il) = sci_strings;

@@ -1,0 +1,12 @@
+Just a text to test mgetl with UTF-8 (NO-BOM) encoding file.
+Caractéres accentués encodés en UTF-8 (NO-BOM)
+ùàéçµ¤
+&é"'(-è_çà)=
+!:;,§/.?
+
+世界您好
+азеазея
+ハロー・ワールド
+เฮลโลเวิลด์
+حريات وحقوق
+תוכנית

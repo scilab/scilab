@@ -16,7 +16,7 @@ function [sig,resid]=epred(r,s,q,coef,y,u,b0f)
 //!
 
 [n1,n2]=size(y);
-t0=maxi(maxi(r,s+1),1)+1;
+t0=max(max(r,s+1),1)+1;
 if r<>0;XTM1=y((t0-1):-1:(t0-r));else XTM1=[];end
 if s<>-1;UTM1=u(t0-b0f:-1:(t0-s));else UTM1=[];end
 if q<>0;ETM1=0*ones(1,q);else ETM1=[];end

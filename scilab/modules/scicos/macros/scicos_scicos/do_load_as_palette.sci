@@ -29,7 +29,7 @@ function [palettes,windows] = do_load_as_palette(palettes, windows,scs_m)
   end
 
 
-  maxpal = -mini([-200;windows(:,1)]) ; //** look for the last valid palette 
+  maxpal = -min([-200;windows(:,1)]) ; //** look for the last valid palette 
    
   kpal = maxpal+1  ; //** add one 
 

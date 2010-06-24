@@ -14,12 +14,21 @@ libsciatoms_la_rootdir = $(mydatadir)
 libsciatoms_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 #### atoms : init scripts ####
-
 libsciatoms_la_etcdir = $(mydatadir)/etc
 libsciatoms_la_etc_DATA = etc/atoms.quit etc/atoms.start etc/repositories
 
 #### atoms : internal functions ####
-
 MACROSDIRSEXT = macros/atoms_internals macros/atoms_gui
+
+#### atoms : icons files ####
+libsciatoms_la_iconsdir=$(mydatadir)/
+nobase_libsciatoms_la_icons_DATA = images/icons/installed.png \
+images/icons/notinstalled.png \
+images/icons/notuptodate.png \
+images/icons/software-update-available.png \
+images/icons/folder.png \
+images/icons/dialog-information.png \
+images/icons/emblem-default.png \
+images/icons/user-home.png
 
 include $(top_srcdir)/Makefile.incl.am

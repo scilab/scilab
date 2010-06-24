@@ -31,11 +31,11 @@ function [co,u,g,itv,dtv]=icsu(u,simu,nap,imp)
 // or the state at measure time instants of dtv.
 
 df0 = 1;
-if mini(binf) <=0 then
+if min(binf) <=0 then
   error('appel de icsu avec binf non strictement positif');
 end
 for i=1:nu
-  u(1,i) = maxi( [binf(1,i),mini([u(1,i),bsup(1,i)])] );
+  u(1,i) = max( [binf(1,i),min([u(1,i),bsup(1,i)])] );
 end
 ech  = u;
 binf = binf./u;

@@ -29,13 +29,13 @@ function ok = scicos_block_link(funam, txt, flag)
  
   if (flag<>"c")&(flag<>"f") then
      ok = %f;
-     messagebox("Sorry: Only C or FORTRAN languages are supported",'modal');
+     messagebox(gettext("Sorry: Only C or FORTRAN languages are supported",'modal'));
      return; 
   end
   
   if stripblanks(funam)==emptystr() then 
     ok = %f;
-    messagebox("Sorry file name not defined in "+flag+" block",'modal');
+    messagebox(gettext("Sorry file name not defined in "+flag+" block",'modal'));
     return; 
   end
 
@@ -52,7 +52,7 @@ function ok = scicos_block_link(funam, txt, flag)
   file_names = funam + "."+flag  ;
   libs  = ""  ; //** CBLOCKs does not support external libraries 
   //** flag is already defined  
-  makename = "Makelib" ;
+  makename = [] ;
   loadername = "loader.sce" ;
   libname = "" ;
   ldflags = "" ;

@@ -15,7 +15,7 @@ if ierr <> 77 then pause,end
 
 current_dir = pwd()+ filesep();
 
-a = mopen(TMPDIR+'test.sce','wt');
+a = mopen(TMPDIR+'/test.sce','wt');
 d1 = get_absolute_file_path('test.sce');
 mclose(a);
 if d1 <> TMPDIR then pause,end

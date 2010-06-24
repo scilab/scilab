@@ -44,7 +44,7 @@ function [model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout,in_impl
 
   clkin=int(clkin(:));nclkin=size(clkin,1);
   if nclkin>0 then
-    if mini(clkin)<1 then
+    if min(clkin)<1 then
       message('Event input ports sizes must be positive')
       ok=%f
       return
@@ -54,7 +54,7 @@ function [model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout,in_impl
 
   clkout=int(clkout(:));nclkout=size(clkout,1);
   if nclkout>0 then
-    if mini(clkout)<1 then
+    if min(clkout)<1 then
       message('Event output ports sizes must be positive')
       ok=%f
       return

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (C) INRIA -  Serge Steer Serge.Steer@inria.fr
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en_US" xml:id="orthProj">
+  <info>
+    <pubdate>$LastChangedDate: 19-02-2010 $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>orthProj</refname>
+    <refpurpose>Computes the orthogonal projection of a point to a polyline in the plane. </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[d,ptp,ind,c] = orthProj(data,pt)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>data</term>
+        <listitem>
+          <para>
+            a n by 2 array. The first column contains the X
+            coordinates of the poyline, while the second one contains
+            the Y coordinates.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>pt</term>
+        <listitem>
+          <para>
+            an array with 2 entries: the coordinates of the point
+          </para>
+        </listitem>
+      </varlistentry>
+     
+      <varlistentry>
+        <term>d</term>
+        <listitem>
+          <para>
+            The minimum distance between the given point and a  polyline data point.
+          </para>
+        </listitem>
+      </varlistentry>
+     <varlistentry>
+        <term>ptp</term>
+        <listitem>
+          <para>
+            an array with 2 entries: the coordinates of the point that realizes the minimum distance
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ind</term>
+        <listitem>
+	  <para>
+	    The polyline closest point lies on the segment <literal>[ind ind+1]</literal>.
+	  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>c</term>
+        <listitem>
+	  <para>
+	    The interpolation coefficient of the orthonal projection.
+	  </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+      Computes the orthogonal projection of a point to a polyline in the plane.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+    x=linspace(0,1,30)';
+    y=sin(4*x.^3)/2;
+    clf();a=gca();a.isoview='on';
+    plot(x,y)
+    pt=[0.7 0.3];
+    plot(pt(1),pt(2),'xb')
+    [d,ptp,ind,c]=orthProj([x y],pt);
+    plot(x(ind:ind+1),y(ind:ind+1),'+r')
+    xpoly([pt(1);ptp(1)],[pt(2);ptp(2)])
+    e=gce();e.polyline_style=4;e.arrow_size_factor = 1.5;
+
+    pt=[0.75 -0.3];
+    plot(pt(1),pt(2),'xb')
+    [d,ptp,ind,c]=orthProj([x y],pt);
+    plot(x(ind:ind+1),y(ind:ind+1),'+r')
+    xpoly([pt(1);ptp(1)],[pt(2);ptp(2)])
+    e=gce();e.polyline_style=4;e.arrow_size_factor = 1.5;
+
+    ]]></programlisting>
+    <para>
+      <inlinemediaobject>
+	<imageobject>
+	  <imagedata fileref="../../images/orthProj.svg"/>
+	</imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Serge Steer, INRIA</member>
+    </simplelist>
+  </refsection>
+ 
+</refentry>

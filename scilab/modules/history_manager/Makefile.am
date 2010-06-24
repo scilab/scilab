@@ -1,8 +1,7 @@
-##########
-### Allan CORNET
-### INRIA - Scilab 2007
-########## *
-
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2007 - INRIA - Allan CORNET
+#
+# This file is distributed under the same license as the Scilab package.
 
 # List of the cpp files
 HISTORY_MANAGER_CPP_SOURCES = src/cpp/CommandLine.cpp \

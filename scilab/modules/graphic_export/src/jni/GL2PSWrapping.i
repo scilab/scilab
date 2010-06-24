@@ -13,6 +13,8 @@
 
 /* JavaDoc for GL2PSWrappingCallJNI class */
 %pragma(java) jniclassclassmodifiers=%{
+/* It is generated code. Disable checkstyle */
+//CHECKSTYLE:OFF
  /** 
   * Call from the JoGL display thread to figure drawing code using JNI 
   * @author Jean-Baptiste Silvy
@@ -211,6 +213,17 @@ int sci_gl2psDisable(int mode);
   */
 public";
 int sci_gl2psPointSize(float value);
+
+/* JavaDoc */
+%javamethodmodifiers sci_gl2psLineStipple(float value) "
+ /**
+  * Stipple of the line
+  * @param arg0 stipple factor.
+  * @param arg1 stipple patern.
+  * @return GL2PSWrappingJNI.sci_gl2psLineStipple
+  */
+public";
+int sci_gl2psLineStipple(int arg0, int arg1);
 
 /* JavaDoc */
 %javamethodmodifiers sci_gl2psLineWidth(float value) "

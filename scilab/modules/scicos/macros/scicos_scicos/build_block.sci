@@ -1,6 +1,7 @@
 //  Scicos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//  Copyright (C) DIGITEO - 2010 - Jérôme PICARD
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -26,12 +27,16 @@ function [model, ok] = build_block(o)
   model    = o.model;
   graphics = o.graphics;
   if model.sim(1)=='scifunc' then
-    if model.ipar==0 then
+    if model.ipar <> 0 then
+      model.opar=model.ipar;
+      model.ipar=0;
+    end
+    if isempty(model.opar) <> %f then
       messagebox(sprintf(gettext("%s: Error: A scifunc block has not been defined."), "build_block"),"modal","error");
       ok = %f
       return
     end
-    model.sim = list(genmac(model.ipar,size(model.in,'*'),size(model.out,'*')),3);
+    model.sim = list(genmac(model.opar,size(model.in,'*'),size(model.out,'*')),3);
   elseif type(model.sim) == 15 then
     modsim = modulo(model.sim(2),10000)
     if int(modsim/1000) == 1 then   // Fortran Block
@@ -52,9 +57,9 @@ function [model, ok] = build_block(o)
         tt    = graphics.exprs.funtxt;
       end
       [dirF, nameF, extF] = fileparts(funam);
-      tarpath = pathconvert(fullfile(TMPDIR,'Modelica'), %f, %t);
-      if (extF == '') then
-        funam = fullfile(tarpath, nameF + '.mo');
+      [modelica_path, modelica_directory] = getModelicaPath();
+      if (extF == "") then
+        funam = modelica_directory + nameF + ".mo";
         mputl(tt, funam);
       end
 
@@ -66,7 +71,7 @@ function [model, ok] = build_block(o)
 //         ok = %f
 //       end
 
-  
+
 //       compilerpath = 'modelicac' //** thanks to automatic detection
 
 //       // build compilation command line, execute it and test for result

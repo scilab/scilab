@@ -19,8 +19,8 @@
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] =
 {
-	{C2F(sci_getfield),"getfield"},
-	{C2F(sci_setfield),"setfield"}
+	{sci_getfield, "getfield"},
+	{sci_setfield, "setfield"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_data_structures2(void)
@@ -29,7 +29,7 @@ int gw_data_structures2(void)
 	if (Top - Rhs + Lhs + 1 >= Bot)
 	{
 		static int codeerror = 18;
-		Error(codeerror);
+		SciError(codeerror);
 		return 0;
 	}
 

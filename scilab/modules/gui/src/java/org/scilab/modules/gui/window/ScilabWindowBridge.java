@@ -15,12 +15,12 @@
 package org.scilab.modules.gui.window;
 
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
+import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.menubar.MenuBar;
 
 /**
  * Bridge for Scilab windows in GUIs
@@ -141,10 +141,6 @@ public class ScilabWindowBridge {
 	public static void addTab(Window window, Tab newTab) {
 		window.getAsSimpleWindow().addTab(newTab);
 		newTab.getAsSimpleTab().setParentWindowId(window.getAsSimpleWindow().getElementId());
-		// Manages menuBar
-			window.addMenuBar(newTab.getMenuBar());
-		// Manages toolBar
-			window.addToolBar(newTab.getToolBar());
 	}
 	
 	/**

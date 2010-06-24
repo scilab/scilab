@@ -19,6 +19,7 @@
 * See the file ./license.txt
 */
 /*--------------------------------------------------------------------------*/
+#include <string.h>
 #include "MlistGetFieldNumber.h"
 #include "cvstr.h"
 #include "MALLOC.h"

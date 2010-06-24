@@ -19,7 +19,7 @@ demo_viewCode("anim6.sce");
 
 drawnow();
 
-xselect(); //raise the graphic window
+show_window(); //raise the graphic window
 
 //The initial chain position definition 
 //-------------------------------------

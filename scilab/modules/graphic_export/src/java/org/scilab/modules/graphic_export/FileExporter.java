@@ -17,6 +17,7 @@ package org.scilab.modules.graphic_export;
 import java.lang.reflect.Method;
 
 import java.io.File;
+import java.io.IOException;
 import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
 
@@ -29,8 +30,8 @@ public class FileExporter {
     /** Export waiting message */
     private static final String exportingMessage = "Exporting figure, please wait...";
 
-	/** The id used on classpath.xml to load vectorial export JARs */
-	private static final String CLASSPATH_PDF_PS_EPS_EXPORT_NAME = "pdf_ps_eps_graphic_export";
+    /** The id used on classpath.xml to load vectorial export JARs */
+    private static final String CLASSPATH_PDF_PS_EPS_EXPORT_NAME = "pdf_ps_eps_graphic_export";
 
     /**
      * Default constructor
@@ -49,93 +50,98 @@ public class FileExporter {
      *         depending on the kind of error
      */
     public static int fileExport(int figureIndex, String fileName, int fileType, int fileOrientation) {
-	int saveFileType = -1;
-	String saveFileName = "";
-	
-	DrawableFigureGL exportedFig = FigureMapper.getCorrespondingFigure(figureIndex);
+        int saveFileType = -1;
+        String saveFileName = "";
+    
+        DrawableFigureGL exportedFig = FigureMapper.getCorrespondingFigure(figureIndex);
 
-	if (exportedFig == null) {
-	    // figure no longer exists
-	    return ExportRenderer.IOEXCEPTION_ERROR;
-	}
-
-	//When the graphic-export is too long, we inform the user that the figure is exporting
-	String oldInfoMessage = exportedFig.getInfoMessage();
-	exportedFig.setInfoMessage(exportingMessage);
-	if (fileType == ExportRenderer.PDF_EXPORT || fileType == ExportRenderer.EPS_EXPORT || fileType == ExportRenderer.PS_EXPORT ) {
-
-        /* Under !Windows, make sure that the library for ps export
-         * are already loaded
-         * Note that this code is an ugly workaround to avoid the explicit call
-         * to:
-         * LoadClassPath.loadOnUse(CLASSPATH_PDF_PS_EPS_EXPORT_NAME);
-         * which creates a cyclic dependencies on:
-         *  graphic_export => jvm => gui => graphic_export
-         * This code will retrieve on the fly the object and call the method
-         */
-        try {
-            Class jvmLoadClassPathClass = Class.forName("org.scilab.modules.jvm.LoadClassPath");
-            Method loadOnUseMethod = jvmLoadClassPathClass.getDeclaredMethod("loadOnUse", new Class[] { String.class });
-            loadOnUseMethod.invoke(null, CLASSPATH_PDF_PS_EPS_EXPORT_NAME);
-        } catch (java.lang.ClassNotFoundException ex) {
-            System.err.println("Could not find the Scilab class to load the export dependencies: "+ex);
-        } catch (java.lang.NoSuchMethodException ex) {
-            System.err.println("Could not find the Scilab method to load the export dependencies: "+ex);
-        } catch (java.lang.IllegalAccessException ex) {
-            System.err.println("Could not access to the Scilab method to load the export dependencies: "+ex);
-        } catch (java.lang.reflect.InvocationTargetException ex) {
-            System.err.println("Could not invoke the Scilab method to load the export dependencies: "+ex);
+        if (exportedFig == null) {
+            // figure no longer exists
+            return ExportRenderer.IOEXCEPTION_ERROR;
         }
 
-	    String ext = "";
+        //When the graphic-export is too long, we inform the user that the figure is exporting
+        String oldInfoMessage = exportedFig.getInfoMessage();
+        exportedFig.setInfoMessage(exportingMessage);
+        if (fileType == ExportRenderer.PDF_EXPORT || fileType == ExportRenderer.EPS_EXPORT || fileType == ExportRenderer.PS_EXPORT ) {
 
-	    switch (fileType) {
-	    case ExportRenderer.PDF_EXPORT:
-		ext = ".pdf";
-		break;
-	    case ExportRenderer.EPS_EXPORT:
-		ext = ".eps";
-		break;
-	    case ExportRenderer.PS_EXPORT:
-		ext = ".ps";
-		break;
-	    default: /* Do not the extension. Probably an error */
-		return ExportRenderer.IOEXCEPTION_ERROR;
-	    }
+            /* Under !Windows, make sure that the library for ps export
+             * are already loaded
+             * Note that this code is an ugly workaround to avoid the explicit call
+             * to:
+             * LoadClassPath.loadOnUse(CLASSPATH_PDF_PS_EPS_EXPORT_NAME);
+             * which creates a cyclic dependencies on:
+             *  graphic_export => jvm => gui => graphic_export
+             * This code will retrieve on the fly the object and call the method
+             */
+            try {
+                Class jvmLoadClassPathClass = Class.forName("org.scilab.modules.jvm.LoadClassPath");
+                Method loadOnUseMethod = jvmLoadClassPathClass.getDeclaredMethod("loadOnUse", new Class[] { String.class });
+                loadOnUseMethod.invoke(null, CLASSPATH_PDF_PS_EPS_EXPORT_NAME);
+            } catch (java.lang.ClassNotFoundException ex) {
+                System.err.println("Could not find the Scilab class to load the export dependencies: " + ex);
+            } catch (java.lang.NoSuchMethodException ex) {
+                System.err.println("Could not find the Scilab method to load the export dependencies: " + ex);
+            } catch (java.lang.IllegalAccessException ex) {
+                System.err.println("Could not access to the Scilab method to load the export dependencies: " + ex);
+            } catch (java.lang.reflect.InvocationTargetException ex) {
+                System.err.println("Could not invoke the Scilab method to load the export dependencies: " + ex);
+            }
 
-	    String name = new File(fileName).getName();
-	    int dotPosition = name.lastIndexOf(".");
-	    if (dotPosition > 0) {
-		name = name.substring(0, dotPosition);
-		saveFileName = fileName.substring(0, fileName.lastIndexOf(".")) + ext;
-	    } else {
-		saveFileName = fileName + ext;
-	    }
+            String ext = "";
 
-		/* Temporary SVG file which will be used to convert to PDF */
-	    fileName = System.getenv("TMPDIR") + System.getProperty("file.separator") + name + ".svg";
-	    saveFileType = fileType;
-	    fileType = ExportRenderer.SVG_EXPORT;
-	}
-	
-	ExportRenderer export;
-	export = ExportRenderer.createExporter(figureIndex, fileName, fileType, fileOrientation);
+            switch (fileType) {
+                case ExportRenderer.PDF_EXPORT:
+                    ext = ".pdf";
+                    break;
+                case ExportRenderer.EPS_EXPORT:
+                    ext = ".eps";
+                    break;
+                case ExportRenderer.PS_EXPORT:
+                    ext = ".ps";
+                    break;
+                default: /* Do not the extension. Probably an error */
+                    return ExportRenderer.IOEXCEPTION_ERROR;
+            }
 
-	// To be sure that their is a GLContext active for export
-	exportedFig.openGraphicCanvas();
+            String name = new File(fileName).getName();
+            int dotPosition = name.lastIndexOf(".");
+            if (dotPosition > 0) {
+                name = name.substring(0, dotPosition);
+                saveFileName = fileName.substring(0, fileName.lastIndexOf(".")) + ext;
+            } else {
+                saveFileName = fileName + ext;
+            }
 
-	exportedFig.getRenderingTarget().addGLEventListener(export);
-	exportedFig.drawCanvas();
-	exportedFig.getRenderingTarget().removeGLEventListener(export);
+            try {
+                /* Temporary SVG file which will be used to convert to PDF */
+                fileName = File.createTempFile(name,".svg").getAbsolutePath();
+            } catch (IOException e) {
+                System.err.println("Could not create temporary file " + e.getLocalizedMessage());
+            }
 
-	//Put back the old infoMessage
-	exportedFig.setInfoMessage(oldInfoMessage);
+            saveFileType = fileType;
+            fileType = ExportRenderer.SVG_EXPORT;
+        }
+    
+        ExportRenderer export;
+        export = ExportRenderer.createExporter(figureIndex, fileName, fileType, fileOrientation);
 
-	if (saveFileType != -1) {
-	    ConvertSVG.SVGTo(fileName, saveFileName, saveFileType);
-	    new File(fileName).delete();
-	}
+        // To be sure that their is a GLContext active for export
+        exportedFig.openGraphicCanvas();
 
-	return ExportRenderer.getErrorNumber();
+        exportedFig.getRenderingTarget().addGLEventListener(export);
+        exportedFig.drawCanvas();
+        exportedFig.getRenderingTarget().removeGLEventListener(export);
+
+        //Put back the old infoMessage
+        exportedFig.setInfoMessage(oldInfoMessage);
+
+        if (saveFileType != -1) {
+            ConvertSVG.SVGTo(fileName, saveFileName, saveFileType);
+            new File(fileName).delete();
+        }
+
+        return ExportRenderer.getErrorNumber();
     }
 }

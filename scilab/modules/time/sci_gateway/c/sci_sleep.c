@@ -14,6 +14,10 @@
 #ifdef _MSC_VER
 #include <Windows.h>
 #endif
+#include "machine.h"
+#ifdef HAVE_USLEEP
+#include <unistd.h>
+#endif
 #include "gw_time.h"
 #include "stack-c.h"
 #include "Scierror.h"

@@ -12,9 +12,6 @@
           xmlns:ns4="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate: 16-12-2008 $</pubdate>
-  </info>
 
   <refnamediv>
     <refname>fminsearch</refname>
@@ -44,6 +41,12 @@
     based on the update of a simplex, which is a set of k&gt;=n+1 vertices,
     where each vertex is associated with one point and one function value.
     This algorithm is the Nelder-Mead algorithm.</para>
+    
+    <para>See the demonstrations, in the Optimization section, for an overview
+    of this component.</para>
+    
+    <para>See the "Nelder-Mead User's Manual" on Scilab's wiki and on the
+    Scilab forge for further informations.</para>
   </refsection>
 
   <refsection>
@@ -797,6 +800,9 @@ opt = optimset ( "OutputFcn" , outfun );
 
     <para>"Global Optimization Of Lennard-Jones Atomic Clusters" Ellen Fan,
     Thesis, February 26, 2002, McMaster University</para>
+    
+    <para>"Nelder Mead's User Manual", Consortium Scilab - Digiteo, Michael 
+    Baudin, 2010</para>
   </refsection>
 
   <refsection>

@@ -19,6 +19,7 @@
 * See the file ./license.txt
 */
 /*--------------------------------------------------------------------------*/
+#include <string.h>
 #include "machine.h" /* C2F */
 #include "extractblklist.h"
 #include "MlistGetFieldNumber.h"

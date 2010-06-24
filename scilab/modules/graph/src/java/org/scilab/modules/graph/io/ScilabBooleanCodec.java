@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Clément DAVID
+ * Copyright (C) 2009-2010 - DIGITEO - Clément DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,11 +14,10 @@ package org.scilab.modules.graph.io;
 
 import java.util.Map;
 
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.types.scilabTypes.ScilabBoolean;
-import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.io.mxCodecRegistry;
@@ -28,13 +27,7 @@ import com.mxgraph.io.mxCodecRegistry;
  */
 public class ScilabBooleanCodec extends ScilabObjectCodec {
 
-    
     private static final String VALUE = "value";
-    private static final String COLUMN = "column";
-    private static final String LINE = "line";
-    private static final String DATA = "data";
-    private static final String HEIGHT = "height";
-    private static final String WIDTH = "width";
 
     /**
      * Default constructor
@@ -91,71 +84,71 @@ public class ScilabBooleanCodec extends ScilabObjectCodec {
 	 */
     @Override
     public Object decode(mxCodec dec, Node node, Object into) {
-	Object obj = null;
-	try {
+		ScilabBoolean obj = null;
 
-	    if (!(node instanceof Element)) { return null; }
-	    obj = cloneTemplate(node);
+		try {
+			if (node.getNodeType() != Node.ELEMENT_NODE) {
+				throw new UnrecognizeFormatException();
+			}
+			obj = (ScilabBoolean) cloneTemplate(node);
 
+			// attrs = {"as", "height", "width"}
+			final NamedNodeMap attrs = node.getAttributes();
+			if (attrs == null) {
+				throw new UnrecognizeFormatException();
+			}
 
-	    // attrs = {"as", "height", "width"}
-	    NamedNodeMap attrs = node.getAttributes();
-	    int heightXMLPosition = -1;
-	    int widthXMLPosition = -1;
-	    for (int i = 0; i < attrs.getLength(); i++) {
-		Node attr = attrs.item(i);
-		if (attr.getNodeName().compareToIgnoreCase(WIDTH) == 0) { widthXMLPosition = i; }
-		if (attr.getNodeName().compareToIgnoreCase(HEIGHT) == 0) { heightXMLPosition = i; }
-	    }
-	    if (heightXMLPosition == -1 || widthXMLPosition == -1) { throw new UnrecognizeFormatException(); }
+			final int height = getHeight(attrs);
+			final int width = getWidth(attrs);
 
-	    int height = Integer.parseInt(attrs.item(heightXMLPosition).getNodeValue());
-	    int width = Integer.parseInt(attrs.item(widthXMLPosition).getNodeValue());
+			if (height * width == 0) {
+				return obj;
+			}
+			
+			final boolean[][] data = new boolean[height][width];
+			fillData(node, data);
+			
+			obj.setData(data);
 
-	    boolean[][] data = parseData(node, height, width);
+		} catch (UnrecognizeFormatException e) {
+			LogFactory.getLog(ScilabStringCodec.class).error(e);
+		} catch (NumberFormatException e) {
+			LogFactory.getLog(ScilabStringCodec.class).error(e);
+		}
 
-	    ((ScilabBoolean) obj).setData(data);
-	} catch (UnrecognizeFormatException e) {
-	    e.printStackTrace();
+		return obj;
 	}
-	return obj;
-    }
 
 	/**
-	 * Parse the node data and return them.
-	 * @param node The node we are working on
-	 * @param height the height of the data
-	 * @param width the width of the data
-	 * @return the data
-	 * @throws UnrecognizeFormatException when the data cannot be parsed.
+	 * Fill the data from the node.
+	 * 
+	 * @param node
+	 *            the ScilabBoolean node
+	 * @param data
+	 *            the allocated data
+	 * @throws UnrecognizeFormatException
+	 *             when we are unable to decode the node.
 	 */
-	private boolean[][] parseData(Node node, int height, int width)
+	private void fillData(Node node, final boolean[][] data)
 			throws UnrecognizeFormatException {
-		boolean[][] data = new boolean[height][width];
-	    NodeList allValues = node.getChildNodes();
-	    for (int i = 0; i < allValues.getLength(); ++i) {
-	    	int lineXMLPosition = -1;
-	    	int columnXMLPosition = -1;
-	    	int valueXMLPosition = -1;
-	    	NamedNodeMap dataAttributes = allValues.item(i).getAttributes();
-	    	for (int j = 0; j < dataAttributes.getLength(); j++) {
-	    		Node attr = dataAttributes.item(j);
-	    		if (attr.getNodeName().compareToIgnoreCase(LINE) == 0) { lineXMLPosition = j; }
-	    		if (attr.getNodeName().compareToIgnoreCase(COLUMN) == 0) { columnXMLPosition = j; }
-	    		if (attr.getNodeName().compareToIgnoreCase(VALUE) == 0) { valueXMLPosition = j; }
-	    	}
+		for (Node n = node.getFirstChild(); n != null; n = n.getNextSibling()) {
+			if (n.getNodeType() != Node.ELEMENT_NODE) {
+				continue;
+			}
 
-	    	if (lineXMLPosition == -1 || columnXMLPosition == -1 || valueXMLPosition == -1) { throw new UnrecognizeFormatException(); }
-	    	int line = Integer.parseInt(dataAttributes.item(lineXMLPosition).getNodeValue());
-	    	int column = Integer.parseInt(dataAttributes.item(columnXMLPosition).getNodeValue());
-	    	
-	    	if (dataAttributes.item(valueXMLPosition).getNodeValue().compareToIgnoreCase("false") == 0) {
-	    		data[line][column] = false;
-	    	} else {
-	    		data[line][column] = true;
-	    	}
+			final NamedNodeMap dataAttrs = n.getAttributes();
+			if (dataAttrs == null) {
+				throw new UnrecognizeFormatException();
+			}
 
-	    }
-		return data;
+			final int column = getColumnIndex(dataAttrs);
+			final int line = getLineIndex(dataAttrs);
+
+			final Node v = dataAttrs.getNamedItem(VALUE);
+			if (v == null) {
+				throw new UnrecognizeFormatException();
+			}
+			data[line][column] = Boolean.parseBoolean(v.getNodeValue());
+		}
 	}
 }

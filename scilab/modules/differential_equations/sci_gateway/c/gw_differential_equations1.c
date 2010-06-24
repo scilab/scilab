@@ -12,16 +12,13 @@
  */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
-#ifdef _MSC_VER
-	#include <stdio.h>
-#endif
 /*--------------------------------------------------------------------------*/
 #include "gw_differential_equations1.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] =
 {
-	{C2F(sci_ode),"ode"}
+	{sci_ode,"ode"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_differential_equations1(void)

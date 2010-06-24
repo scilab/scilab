@@ -24,6 +24,7 @@ if haveacompiler() then
     cd(TMPDIR);
     mputl(sourcecode,'incrdoublef90.f90');
     libpath=ilib_for_link('incrdoublef90','incrdoublef90.f90',[],'f');
+    exec('loader.sce');
     n = 1.;
     m = call("incrdoublef90",n,1,"d","out",[1,1],2,"d");
     if abs(m-2.)>%eps then bugmes();quit;end

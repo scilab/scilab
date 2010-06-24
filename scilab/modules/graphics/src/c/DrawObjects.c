@@ -4,6 +4,7 @@
  * Copyright (C) 2002-2004 - INRIA - Djalel Abdemouche
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -111,9 +112,9 @@ void sciGetDisplayedBounds( sciPointObj * pSubWin,
    *****************************************************************/
   if( sciGetZooming( pSubWin ) )
   {
-    *xmin = ppsubwin->ZRect[0] ; 
-    *ymin = ppsubwin->ZRect[1] ; 
-    *xmax = ppsubwin->ZRect[2] ;
+    *xmin = ppsubwin->ZRect[0] ;
+    *ymin = ppsubwin->ZRect[2] ;
+    *xmax = ppsubwin->ZRect[1] ;
     *ymax = ppsubwin->ZRect[3] ;
     *zmin = ppsubwin->ZRect[4] ;
     *zmax = ppsubwin->ZRect[5] ;

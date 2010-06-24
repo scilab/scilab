@@ -1,0 +1,9 @@
+%     VAR1        VAR2        VAR3     VAR4
+0     1           2           3        4 % comment on line 2
+10    11          12          13       14
+20    21          22          23       24
+%     VAR1        VAR2        VAR3     VAR4
+30    31          32          33       34
+40    41          42          43       44
+50    51          52          53       54
+30    61          62          63       64 % comment on last line

@@ -37,13 +37,23 @@
   <refsection>
     <title>Block Screenshot</title>
 
-    <para><inlinemediaobject>
-        <imageobject>
-          <imagedata align="center"
-                     fileref="../../../../images/palettes/DemonstrationBlocks_pal.jpg"
-                     valign="middle"></imagedata>
-        </imageobject>
-      </inlinemediaobject></para>
+    <para>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="BOUNCE" fileref="../../../../../../modules/xcos/images/palettes/BOUNCE.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="BOUNCEXY" fileref="../../../../../../modules/xcos/images/palettes/BOUNCEXY.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="BPLATFORM" fileref="../../../../../../modules/xcos/images/palettes/BPLATFORM.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    </para>
   </refsection>
 
   <refsection id="Module_Demonstrationsblocks_pal">

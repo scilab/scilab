@@ -56,6 +56,7 @@
     <title>Description</title>
     <para>When tcl/tk support is enabled in Scilab, this routine can be used to
     retreive the value of a tcl/tk variable.</para>
+    <para>More information about Tcl/Tk: <ulink url="http://www.tcl.tk/doc/">http://www.tcl.tk/doc/</ulink></para>
   </refsection>
   <refsection>
     <title>Examples</title>

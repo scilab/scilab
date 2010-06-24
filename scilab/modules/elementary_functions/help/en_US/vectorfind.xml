@@ -3,6 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Serge STEER
  * Copyright (C) 2008 - INRIA - Ramine NIKOUKHAH
+ * Copyright (C) 2010 - DIGITEO - Vincent COUVERT
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -25,14 +26,13 @@
   <refnamediv>
     <refname>vectorfind</refname>
 
-    <refpurpose>finds in a matrix rows or columns matching a
-    vector</refpurpose>
+    <refpurpose>finds in a matrix rows or columns matching a vector</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>ind = vectorfind(m,v,job)</synopsis>
+    <synopsis>ind = vectorfind(m,v[,job])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -43,7 +43,7 @@
         <term>m</term>
 
         <listitem>
-          <para>a matrix of any type</para>
+          <para>a matrix of any type (the same type as v).</para>
         </listitem>
       </varlistentry>
 
@@ -51,7 +51,7 @@
         <term>v</term>
 
         <listitem>
-          <para>vector of any type</para>
+          <para>a vector of any type (the same type as m).</para>
         </listitem>
       </varlistentry>
 
@@ -59,8 +59,8 @@
         <term>job</term>
 
         <listitem>
-          <para>string flag with possible values "r" to look for matching rows
-          or "c" to look for matching columns</para>
+          <para>A character string: optional flag with possible values "r" to look for matching rows
+          or "c" to look for matching columns. Default value is "r".</para>
         </listitem>
       </varlistentry>
 
@@ -68,8 +68,7 @@
         <term>ind</term>
 
         <listitem>
-          <para>row vector containing indices of matching rows or
-          columns</para>
+          <para>row vector containing indices of matching rows or columns</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -78,7 +77,7 @@
   <refsection>
     <title>Description</title>
 
-    <para>finds in a matrix rows or columns matching a vector.</para>
+    <para>Finds in a matrix rows or columns matching a vector.</para>
   </refsection>
 
   <refsection>

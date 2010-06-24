@@ -53,6 +53,7 @@
   <refsection>
     <title>Description</title>
     <para>This routine allows to test if a tcl array exists.</para>
+    <para>More information about Tcl/Tk: <ulink url="http://www.tcl.tk/doc/">http://www.tcl.tk/doc/</ulink></para>
   </refsection>
   <refsection>
     <title>Examples</title>

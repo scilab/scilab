@@ -85,7 +85,8 @@ src/c/funcprot.c \
 src/c/eqid.c \
 src/c/exitCodeValue.c \
 src/c/getversion.c \
-src/c/dynamic_tclsci.c
+src/c/dynamic_tclsci.c \
+src/c/storeCommand.c
 
 CORE_CPP_SOURCES = src/cpp/hashtable_core.cpp \
 src/cpp/namstr.cpp \
@@ -133,7 +134,6 @@ src/fortran/getsym.f \
 src/fortran/findequal.f \
 src/fortran/stackg.f \
 src/fortran/find.f \
-src/fortran/israt.f \
 src/fortran/setlnb.f \
 src/fortran/mrknmd.f \
 src/fortran/stackgl.f \
@@ -287,6 +287,7 @@ libscicore_la_CFLAGS = -I$(srcdir)/includes/ \
 	-I$(top_srcdir)/modules/action_binding/includes \
 	-I$(top_srcdir)/modules/output_stream/includes \
 	-I$(top_srcdir)/modules/localization/includes \
+	-I$(top_srcdir)/modules/io/includes \
 	-I$(top_srcdir)/modules/tclsci/includes \
 	-I$(top_srcdir)/modules/dynamic_link/includes \
 	-I$(top_srcdir)/modules/pvm/includes \
@@ -361,6 +362,7 @@ includes/scisparse.h \
 includes/sciquit.h \
 includes/setgetSCIpath.h \
 includes/stack-c.h \
+includes/sci_types.h \
 includes/stack-def.h \
 includes/stack.h \
 includes/stack1.h \
@@ -370,6 +372,7 @@ includes/stackinfo.h \
 includes/stackTypeVariable.h \
 includes/version.h \
 includes/getversion.h \
-includes/warningmode.h
+includes/warningmode.h \
+includes/Thread_Wrapper.h
 
 include $(top_srcdir)/Makefile.incl.am

@@ -9,12 +9,11 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
 #include "gw_sparse.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(intbfinit)(int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_bfinit)(char *fname,unsigned long fname_len)
+int sci_bfinit(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	C2F(intbfinit)(id);

@@ -27,7 +27,7 @@ function [K]=%k(m)
    a=un;
    b=sqrt(un-m);
    c=sqrt(m);
-   while maxi(abs(c)) > %eps,
+   while max(abs(c)) > %eps,
       an=0.5*(a+b);
       bn=sqrt(a.*b);
       cn=0.5*(a-b);

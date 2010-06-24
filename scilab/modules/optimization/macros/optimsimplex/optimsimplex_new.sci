@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
+// Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -228,7 +229,7 @@ function [ newobj , data ] = optimsimplex_coords ( coords , fun , data )
   else
     assert_typefunction ( fun , "fun" , 2 );
   end
-  newobj = tlist(["T_SIMPLEX",...
+  newobj = tlist(["TSIMPLEX",...
     "verbose","x","n","fv","nbve"]);
   newobj.verbose = 0;
   // The dimension of the space

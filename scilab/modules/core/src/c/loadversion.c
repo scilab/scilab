@@ -22,7 +22,7 @@
 #include "scilabDefaults.h"
 #include "localization.h"
 #include "stricmp.h"
-#include "../../../fileio/includes/FileExist.h"
+#include "FileExist.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif

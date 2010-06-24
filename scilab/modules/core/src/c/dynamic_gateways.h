@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -19,13 +19,19 @@
 */
 int gw_dynamic_graphic_objects(void);
 
+/*
+* ui_data gateway
+* ui_data is loaded dynamically at runtime
+* load gw_ui_data in SCI/modules/ui_data/sci_gateway/gw_ui_data.c
+*/
+int gw_dynamic_ui_data(void);
+
 /**
 * pvm gateway
 * pvm is loaded dynamically at runtime
 * load gw_pvm in SCI/modules/pvm/sci_gateway/gw_pvm.c
 */
 int gw_dynamic_pvm(void);
-
 
 /**
 * xcos gateway
@@ -35,11 +41,11 @@ int gw_dynamic_pvm(void);
 int gw_dynamic_xcos(void);
 
 /**
-* xpad gateway
+* scinotes gateway
 * functions is loaded dynamically at runtime
-* load gw_functions in SCI/modules/xpad/sci_gateway/gw_xpad.c
+* load gw_functions in SCI/modules/scinotes/sci_gateway/gw_scinotes.c
 */
-int gw_dynamic_xpad(void);
+int gw_dynamic_scinotes(void);
 
 /**
 * functions gateway
@@ -156,6 +162,21 @@ int gw_dynamic_hdf5(void);
 */
 int gw_dynamic_graphic_export(void);
 
+/**
+* action_binding gateway
+* action_binding is loaded dynamically at runtime
+* load gw_action_binding in SCI/modules/action_binding/sci_gateway/gw_action_binding.c
+*/
+int gw_dynamic_action_binding(void);
+
+/*
+* parallel gateway
+* parallel is loaded dynamically at runtime
+* load gw_parallel in SCI/modules/parallel/sci_gateway/gw_parallel.c
+*/
+int gw_dynamic_parallel(void);
+
 #endif /* __DYNAMIC_GATEWAYS_H__ */
 /*--------------------------------------------------------------------------*/
+
 

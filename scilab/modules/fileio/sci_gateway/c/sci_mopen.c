@@ -102,7 +102,7 @@ int sci_mopen(char *fname,unsigned long fname_len)
 			{
 				case (int)MOPEN_NO_MORE_LOGICAL_UNIT : 
 				{
-					Error(66);/* no more logical units */
+					SciError(66);/* no more logical units */
 					FREE(filename);
 					filename = NULL;
 					return 0;

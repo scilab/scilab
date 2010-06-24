@@ -9,9 +9,6 @@
           xmlns:ns4="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate: 16-12-2008 $</pubdate>
-  </info>
 
   <refnamediv>
     <refname>optimbase</refname>
@@ -32,7 +29,6 @@ value = optimbase_get (this,key)
 this = optimbase_set ( this , key , value )
 [ this , isok ] = optimbase_checkbounds ( this )
 [ opt , isok ] = optimbase_checkx0 ( this )
-this = optimbase_display ( this )
 [ this , f , index [ , data ] ] = optimbase_function ( this , x , index [ , data ] )
 [ this , f , c , index [ , data ] ] = optimbase_function ( this , x , index [ , data ] )
 [ this , f , g , index [ , data ] ] = optimbase_function ( this , x , index [ , data ] )
@@ -585,24 +581,6 @@ g_i(x) &lt;= 0, i = 1,nbineq
         <listitem>
           <para>Returns %T if the initial guess is consistent with the bounds
           and the non linear inequality constraints, if any.</para>
-
-          <variablelist>
-            <varlistentry>
-              <term>this</term>
-
-              <listitem>
-                <para>The current object.</para>
-              </listitem>
-            </varlistentry>
-          </variablelist>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>this = optimbase_display ( this )</term>
-
-        <listitem>
-          <para>Display the current settings in the console.</para>
 
           <variablelist>
             <varlistentry>
@@ -1755,7 +1733,8 @@ opt = optimbase_new();
 opt = optimbase_configure(opt,"-numberofvariables",2);
 nbvar = optimbase_cget(opt,"-numberofvariables");
 opt = optimbase_configure(opt,"-function",rosenbrock);
-[ this , f , index ] = optimbase_function ( opt , [0.0 0.0] , index );
+[ opt , f , index ] = optimbase_function ( opt , [0.0 0.0] , 1 );
+opt
 opt = optimbase_destroy(opt);
  </programlisting>
   </refsection>
@@ -1763,7 +1742,7 @@ opt = optimbase_destroy(opt);
   <refsection>
     <title>Authors</title>
 
-    <para>Michael Baudin, 2008-2009</para>
+    <para>Michael Baudin, 2008-2010</para>
   </refsection>
 
   <refsection>

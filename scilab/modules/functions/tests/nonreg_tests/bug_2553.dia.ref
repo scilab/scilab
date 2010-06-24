@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
 // <-- Non-regression test for bug 2553 -->
 //
 // <-- Bugzilla URL -->
@@ -5,11 +12,9 @@
 //
 // <-- Short Description -->
 //   error recovery problem
-// Serge Steer - Scilab Project
-// Copyright INRIA
-// 6 feb 2008
 function toto();x=1;y=x(3)+1;endfunction
 function titi();execstr('toto();disp ok');endfunction
+ierr=exec(titi,'errcatch',-1)		
  ierr  =
  
     21.  

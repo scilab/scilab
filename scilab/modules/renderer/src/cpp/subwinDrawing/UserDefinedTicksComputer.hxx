@@ -1,8 +1,9 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy 
- * desc : Compute ticks from ticks given by the user 
- * 
+ * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * desc : Compute ticks from ticks given by the user
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
@@ -55,7 +56,12 @@ public:
   virtual bool needTicksDecimation(void) {return false;}
 
   /**
-  * To know if we need to get ticks exposants or not.
+   * To compute the maximum number of ticks decimation iterations
+   */
+  virtual int computeMaxNumberOfDecimationIterations();
+
+  /**
+  * To know if we need to get ticks exponents or not.
   */
   virtual bool isDisplayingLabelsExponents(void) {return false;}
 

@@ -1,6 +1,7 @@
 //  Scicos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//  Copyright (C) DIGITEO - 2010 - Jérôme PICARD
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -20,13 +21,30 @@
 //
 
 function scs_m=do_version(scs_m,version)
-// Copyright INRIA
-//translate scicos data structure to new version
-if version<>'scicos2.2'&version<>'scicos2.3'&version<>'scicos2.3.1'&..
-   version<>'scicos2.4'&version<>'scicos2.5.1'&version<>'scicos2.7'&..
-   version<>'scicos2.7.1'&version<>'scicos2.7.3'&version<>'scicos4'&..
-   version<>'scicos4.0.1'&version<>'scicos4.0.2'&version<>'scicos4.2' then
-   error('No version update defined to '+version+' version')
+
+// available versions of Scicos 
+availableVersions = [ ..
+"scicos2.2"; ..
+"scicos2.3"; ..
+"scicos2.3.1"; ..
+"scicos2.4"; ..
+"scicos2.5.1"; ..
+"scicos2.7"; ..
+"scicos2.7.1"; ..
+"scicos2.7.2"; ..
+"scicos2.7.3"; ..
+"scicos4"; ..
+"scicos4.0.1"; ..
+"scicos4.0.2"; ..
+"scicos4.2"; ..
+"scicos4.0.1"; ..
+"scicos4.0.2"; ..
+"scicos4.2"; ..
+"scicos4.3"; ..
+"scicos4.4"];
+
+if ~or(version==availableVersions) then
+  error('No version update defined to '+version+' version')
 end
 
 if version=='scicos2.2' then scs_m=do_version22(scs_m);version='scicos2.3';end
@@ -43,7 +61,7 @@ if version=='scicos2.5.1' then
   disp('Save the diagram (under a different name just in case)')
   lines(ncl(2))
 end
-if version=='scicos2.7' then 
+if version=='scicos2.7' then
   disp('This is an old scicos diagram. I have to translate. Be patient.')
   scs_m=do_version271(scs_m),
   version='scicos2.7.1';
@@ -67,6 +85,15 @@ if version=='scicos4.2' then
   scs_m=do_version43(scs_m);
   lines(ncl(2))
 end
+
+if or(version==["scicos4.3";"scicos4.4"]) then
+  ncl=lines(); lines(0);
+  version='scicos4.4';
+  scs_m=update_scs_m(scs_m,version);
+  scs_m=do_version43(scs_m);
+  scs_m.version = version;
+  lines(ncl(2))
+end
 endfunction
 
 function scs_m_new=do_version43(scs_m)
@@ -74,8 +101,8 @@ function scs_m_new=do_version43(scs_m)
   scs_m_new=scs_m;
 
   //@@ adjust ID.fonts
-  scs_m_new.props.options.ID(1)=[scs_m.props.options.ID(1)(1),scs_m.props.options.ID(1)(2),2,1]
-  scs_m_new.props.options.ID(2)=[scs_m.props.options.ID(2)(1),scs_m.props.options.ID(2)(2),10,1]
+  scs_m_new.props.options.ID(1)=[scs_m.props.options.ID(1)(1),scs_m.props.options.ID(1)(2),2,1];
+  scs_m_new.props.options.ID(2)=[scs_m.props.options.ID(2)(1),scs_m.props.options.ID(2)(2),10,1];
 
   n=size(scs_m.objs);
   for j=1:n //loop on objects
@@ -84,7 +111,7 @@ function scs_m_new=do_version43(scs_m)
       omod=o.model;
 
       //@@ sbloc
-      if omod.sim=='super'|omod.sim=='csuper' then
+      if omod.sim=='super'|omod.sim=='csuper'|omod.sim(1)=='asuper' then
         rpar=do_version43(omod.rpar)
         scs_m_new.objs(j).model.rpar=rpar
       end
@@ -793,17 +820,17 @@ function scs_m_new=do_version42(scs_m)
       //name of gui and sim list change
       elseif o.gui=='SCOPE_f' then
         scs_m_new.objs(j).gui='CSCOPE'
-	scs_m_new.objs(j).model.dstate=[]
+    scs_m_new.objs(j).model.dstate=[]
         //Alan's patch 01/10/07 : remove the last parameter
         // (inheritance not used in cscope)
         ipar = scs_m_new.objs(j).model.ipar(:);
-	scs_m_new.objs(j).model.ipar = ipar(1:$-1);
+    scs_m_new.objs(j).model.ipar = ipar(1:$-1);
         scs_m_new.objs(j).model.sim=list('cscope', 4)
-	in = scs_m_new.objs(j).model.in(:);
-	a = size(in,1);
-	in2 = ones(a,1);
-	scs_m_new.objs(j).model.in2 = in2;
-	scs_m_new.objs(j).model.intyp = in2;
+    in = scs_m_new.objs(j).model.in(:);
+    a = size(in,1);
+    in2 = ones(a,1);
+    scs_m_new.objs(j).model.in2 = in2;
+    scs_m_new.objs(j).model.intyp = in2;
         //Alan's patch 04/10/07 : update exprs
         exprs = scs_m.objs(j).graphics.exprs;
         if size(exprs)<9 then exprs(9)='0',end // compatibility
@@ -815,11 +842,11 @@ function scs_m_new=do_version42(scs_m)
         if size(exprs)<10 then exprs(10)=emptystr(),end // compatibility
         scs_m_new.objs(j).graphics.exprs=exprs;
       elseif o.gui=='BOUNCEXY' then
-	in = scs_m_new.objs(j).model.in(:);
-	a = size(in,1);
-	in2 = ones(a,1);
-	scs_m_new.objs(j).model.in2 = in2;
-	scs_m_new.objs(j).model.intyp = in2;
+    in = scs_m_new.objs(j).model.in(:);
+    a = size(in,1);
+    in2 = ones(a,1);
+    scs_m_new.objs(j).model.in2 = in2;
+    scs_m_new.objs(j).model.intyp = in2;
       elseif o.gui=='MSCOPE_f' then
         //Alan's patch 04/10/07 : update exprs
         exprs = scs_m.objs(j).graphics.exprs;
@@ -827,80 +854,80 @@ function scs_m_new=do_version42(scs_m)
         if size(exprs)<11 then exprs(11)=emptystr(),end // compatibility
         scs_m_new.objs(j).graphics.exprs=exprs;
         scs_m_new.objs(j).gui='CMSCOPE'
-	scs_m_new.objs(j).model.dstate=[]
+    scs_m_new.objs(j).model.dstate=[]
         scs_m_new.objs(j).model.sim=list('cmscope', 4)
-	in = scs_m_new.objs(j).model.in(:);
-	a = size(in,1);
-	B=stripblanks(scs_m.objs(j).graphics.exprs(8));
-	B(1:a)=B;
+    in = scs_m_new.objs(j).model.in(:);
+    a = size(in,1);
+    B=stripblanks(scs_m.objs(j).graphics.exprs(8));
+    B(1:a)=B;
         B = strcat(B', ' ');
         scs_m_new.objs(j).graphics.exprs(8) = B;
-	rpar=scs_m_new.objs(j).model.rpar(:);
-	N=scs_m_new.objs(j).model.ipar(2);
-	period = [];
-	for i=1:N
-	   period(i)=rpar(2);
-	end
-	scs_m_new.objs(j).model.rpar = [rpar(1);period(:);rpar(3:size(rpar,1))]
-	in2 = ones(a,1);
-	scs_m_new.objs(j).model.in2 = in2;
-	scs_m_new.objs(j).model.intyp = in2;
+    rpar=scs_m_new.objs(j).model.rpar(:);
+    N=scs_m_new.objs(j).model.ipar(2);
+    period = [];
+    for i=1:N
+       period(i)=rpar(2);
+    end
+    scs_m_new.objs(j).model.rpar = [rpar(1);period(:);rpar(3:size(rpar,1))]
+    in2 = ones(a,1);
+    scs_m_new.objs(j).model.in2 = in2;
+    scs_m_new.objs(j).model.intyp = in2;
       elseif o.gui=='ANIMXY_f' then
         scs_m_new.objs(j).gui='CANIMXY'
-	scs_m_new.objs(j).model.dstate=[]
+    scs_m_new.objs(j).model.dstate=[]
         scs_m_new.objs(j).model.sim=list('canimxy', 4)
-	in = scs_m_new.objs(j).model.in(:);
-	a = size(in,1);
-	in2 = ones(a,1);
-	scs_m_new.objs(j).model.in2 = in2;
-	scs_m_new.objs(j).model.intyp = in2;
-	scs_m_new.objs(j).graphics.exprs = [string(1);scs_m_new.objs(j).graphics.exprs(:)]
-	scs_m_new.objs(j).model.ipar = [scs_m_new.objs(j).model.ipar(:);1]
+    in = scs_m_new.objs(j).model.in(:);
+    a = size(in,1);
+    in2 = ones(a,1);
+    scs_m_new.objs(j).model.in2 = in2;
+    scs_m_new.objs(j).model.intyp = in2;
+    scs_m_new.objs(j).graphics.exprs = [string(1);scs_m_new.objs(j).graphics.exprs(:)]
+    scs_m_new.objs(j).model.ipar = [scs_m_new.objs(j).model.ipar(:);1]
         //Alan's patch 04/10/07 : update exprs
         exprs = scs_m_new.objs(j).graphics.exprs(:)
         if size(exprs,'*')==8 then exprs=[1;exprs(1:3);'[]';'[]';exprs(4:8)],end
         scs_m_new.objs(j).graphics.exprs=exprs;
       elseif o.gui=='EVENTSCOPE_f' then
         scs_m_new.objs(j).gui='CEVENTSCOPE'
-	scs_m_new.objs(j).model.dstate=[]
+    scs_m_new.objs(j).model.dstate=[]
         scs_m_new.objs(j).model.sim=list('cevscpe', 4)
-	in = scs_m_new.objs(j).model.in(:);
-	a = size(in,1);
-	in2 = ones(a,1);
-	scs_m_new.objs(j).model.in2 = in2;
-	scs_m_new.objs(j).model.intyp = in2;
+    in = scs_m_new.objs(j).model.in(:);
+    a = size(in,1);
+    in2 = ones(a,1);
+    scs_m_new.objs(j).model.in2 = in2;
+    scs_m_new.objs(j).model.intyp = in2;
       elseif o.gui=='FSCOPE_f' then
         scs_m_new.objs(j).gui='CFSCOPE'
-	scs_m_new.objs(j).model.dstate=[]
+    scs_m_new.objs(j).model.dstate=[]
         scs_m_new.objs(j).model.sim=list('cfscope', 4)
-	in = scs_m_new.objs(j).model.in(:);
-	a = size(in,1);
-	in2 = ones(a,1);
-	scs_m_new.objs(j).model.in2 = in2;
-	scs_m_new.objs(j).model.intyp = in2;
+    in = scs_m_new.objs(j).model.in(:);
+    a = size(in,1);
+    in2 = ones(a,1);
+    scs_m_new.objs(j).model.in2 = in2;
+    scs_m_new.objs(j).model.intyp = in2;
         //Alan's patch 04/10/07 : update exprs
         exprs = scs_m.objs(j).graphics.exprs;
         if size(exprs)<9 then exprs(9)='0',end // compatibility
         scs_m_new.objs(j).graphics.exprs=exprs;
       elseif o.gui=='SCOPXY_f' then
         scs_m_new.objs(j).gui='CSCOPXY'
-	scs_m_new.objs(j).model.dstate=[]
+    scs_m_new.objs(j).model.dstate=[]
         scs_m_new.objs(j).model.sim=list('cscopxy', 4)
-	in = scs_m_new.objs(j).model.in(:);
-	a = size(in,1);
-	in2 = ones(a,1);
-	scs_m_new.objs(j).model.in2 = in2;
-	scs_m_new.objs(j).model.intyp = in2;
-	scs_m_new.objs(j).graphics.exprs = [string(1);scs_m_new.objs(j).graphics.exprs(:)]
-	scs_m_new.objs(j).model.ipar = [scs_m_new.objs(j).model.ipar(:);1]
+    in = scs_m_new.objs(j).model.in(:);
+    a = size(in,1);
+    in2 = ones(a,1);
+    scs_m_new.objs(j).model.in2 = in2;
+    scs_m_new.objs(j).model.intyp = in2;
+    scs_m_new.objs(j).graphics.exprs = [string(1);scs_m_new.objs(j).graphics.exprs(:)]
+    scs_m_new.objs(j).model.ipar = [scs_m_new.objs(j).model.ipar(:);1]
       elseif o.gui=='CMSCOPE' then
         //Alan's patch 04/10/07 : update exprs
         exprs = scs_m.objs(j).graphics.exprs;
         if size(exprs)<11 then exprs(11)=emptystr(),end // compatibility
         scs_m_new.objs(j).graphics.exprs=exprs;
         scs_m_new.objs(j).model.dstate=[]
-	in = scs_m_new.objs(j).model.in(:);
-	a = size(in,1);
+    in = scs_m_new.objs(j).model.in(:);
+    a = size(in,1);
         B=stripblanks(scs_m.objs(j).graphics.exprs(8));
         B(1:a)=B;
         B = strcat(B', ' ');
@@ -940,27 +967,27 @@ function scs_m_new=do_version273(scs_m)
   scs_m_new=scs_m;
   n=size(scs_m.objs);
   for i=1:n //loop on objects
-    o=scs_m.objs(i); 
+    o=scs_m.objs(i);
     if typeof(o)=='Block' then
       omod=o.model;
       T=getfield(1,omod)
       if T($)<>'equations' then
-	T($+1)='equations'
-	setfield(1,T,omod)
-	setfield($+1,list(),omod)
+    T($+1)='equations'
+    setfield(1,T,omod)
+    setfield($+1,list(),omod)
       end
       if omod.sim=='super'|omod.sim=='csuper' then
-	rpar=do_version273(omod.rpar)
-	setfield($+1,getfield($,omod),omod)
-	setfield($-1,0,omod)
-	omod.rpar=rpar
+    rpar=do_version273(omod.rpar)
+    setfield($+1,getfield($,omod),omod)
+    setfield($-1,0,omod)
+    omod.rpar=rpar
       elseif omod.sim(1)=='ifthel' then // |omod.sim(1)=='eselect' then
-	setfield($+1,getfield($,omod),omod)
-	setfield($-1,1,omod)
-	setfield($-2,1,omod)
+    setfield($+1,getfield($,omod),omod)
+    setfield($-1,1,omod)
+    setfield($-2,1,omod)
       else
-	setfield($+1,getfield($,omod),omod)
-	setfield($-1,0,omod)
+    setfield($+1,getfield($,omod),omod)
+    setfield($-1,0,omod)
       end
       xx=getfield(1,omod);
       yy=xx($);
@@ -982,35 +1009,35 @@ function scs_m_new=do_version272(scs_m)
 
   scs_m_new=scs_m
   for i=1:lstsize(scs_m.objs)
-    
+
     if typeof(scs_m.objs(i))=='Block' then
       grphic=scs_m.objs(i).graphics
       chmps=size(getfield(1,grphic))
       if or(getfield(1,grphic)=='in_implicit')&..
-	    size(grphic.in_implicit,'*')==size(grphic.pin,'*') then 
-	in_implicit=grphic.in_implicit
-      else    
-	I='E';
-	in_implicit=I(ones(grphic.pin(:)));
-      end
-      
-      if or(getfield(1,grphic)=='out_implicit')&..
-	    size(grphic.out_implicit,'*')==size(grphic.pout,'*') then
-	out_implicit=grphic.out_implicit
+        size(grphic.in_implicit,'*')==size(grphic.pin,'*') then
+    in_implicit=grphic.in_implicit
       else
-	I='E';
-	out_implicit=I(ones(grphic.pout(:)));
+    I='E';
+    in_implicit=I(ones(grphic.pin(:)));
       end
-      
+
+      if or(getfield(1,grphic)=='out_implicit')&..
+        size(grphic.out_implicit,'*')==size(grphic.pout,'*') then
+    out_implicit=grphic.out_implicit
+      else
+    I='E';
+    out_implicit=I(ones(grphic.pout(:)));
+      end
+
       scs_m_new.objs(i).graphics=mlist(['graphics','orig','sz','flip','exprs','pin',..
-		    'pout','pein','peout','gr_i','id','in_implicit','out_implicit'],..
-				       grphic.orig,grphic.sz,grphic.flip,grphic.exprs,grphic.pin,..
-				       grphic.pout,grphic.pein,grphic.peout,grphic.gr_i,grphic.id,..
-				       in_implicit,out_implicit)
-      
+            'pout','pein','peout','gr_i','id','in_implicit','out_implicit'],..
+                       grphic.orig,grphic.sz,grphic.flip,grphic.exprs,grphic.pin,..
+                       grphic.pout,grphic.pein,grphic.peout,grphic.gr_i,grphic.id,..
+                       in_implicit,out_implicit)
+
       if or(scs_m_new.objs(i).model.sim==['super','csuper']) then
-	rpar=do_version272(scs_m_new.objs(i).model.rpar)
-	scs_m_new.objs(i).model.rpar=rpar 
+    rpar=do_version272(scs_m_new.objs(i).model.rpar)
+    scs_m_new.objs(i).model.rpar=rpar
       end
     end
   end
@@ -1024,17 +1051,17 @@ function scs_m_new=do_version271(scs_m)
     if typeof(o)=='Block' then
       omod=o.model;
       if omod.sim=='super'|omod.sim=='csuper' then
-	rpar=do_version271(omod.rpar)
-	setfield($+1,0,omod)
-	omod.rpar=rpar
+    rpar=do_version271(omod.rpar)
+    setfield($+1,0,omod)
+    omod.rpar=rpar
       elseif omod.sim=='zcross' then
-	setfield($+1,omod.in,omod)
-	omod.sim=list(omod.sim,1)
+    setfield($+1,omod.in,omod)
+    omod.sim=list(omod.sim,1)
       elseif omod.sim=='lusat' then
-	setfield($+1,2*omod.in,omod)
-	omod.sim=list(omod.sim,1)
+    setfield($+1,2*omod.in,omod)
+    omod.sim=list(omod.sim,1)
       else
-	setfield($+1,0,omod)
+    setfield($+1,0,omod)
       end
       setfield(1,[getfield(1,omod),'nzcross'],omod)
       o.model= omod
@@ -1056,27 +1083,27 @@ for k=2:nx
       scs_m(k)=o
     elseif o(5)=='SOM_f' then
       if and(model(8)==1) then
-	model(8)=[]
-	model(1)=list('plusblk',2) 
-	scs_m(k)(3)=model
-	scs_m(k)(5)='SUM_f'
+    model(8)=[]
+    model(1)=list('plusblk',2)
+    scs_m(k)(3)=model
+    scs_m(k)(5)='SUM_f'
       else
-	scs_m(k)(3)(1)=list('sum',2) 
-	obsolete=%t
+    scs_m(k)(3)(1)=list('sum',2)
+    obsolete=%t
       end
-    elseif o(5)=='AFFICH_f' then  
+    elseif o(5)=='AFFICH_f' then
       scs_m(k)(3)(7)=[0;-1;0;0;1;1]
       scs_m(k)(2)(9)=['xset(''font'',ipar(1),ipar(2))';
-	  'str='' ''+part(''0'',ones(1,ipar(5)-ipar(6)-2))+''.''+part(''0'',ones(1,ipar(6)))'
-	  'rr=xstringl(orig(1),orig(2),str)'
-	  'xstring(orig(1)+max(0,(sz(1)-rr(3))/2),orig(2)+max(0,(sz(2)-rr(4))/2),str)']
+      'str='' ''+part(''0'',ones(1,ipar(5)-ipar(6)-2))+''.''+part(''0'',ones(1,ipar(6)))'
+      'rr=xstringl(orig(1),orig(2),str)'
+      'xstring(orig(1)+max(0,(sz(1)-rr(3))/2),orig(2)+max(0,(sz(2)-rr(4))/2),str)']
     elseif o(5)=='c_block' then
       model(1)(2)=model(1)(2)-int(model(1)(2)/1000)*1000+2000
       scs_m(k)(3)=model
       tt=scs_m(k)(2)(4)(2)
       ii=grep(tt,'machine.h')
-      if size(ii,'*')==1 then 
-	tt(ii)='#include <machine.h>',
+      if size(ii,'*')==1 then
+    tt(ii)='#include <machine.h>',
         scs_m(k)(2)(4)(2)=tt
       end
     end
@@ -1091,7 +1118,7 @@ if obsolete then
   messagebox(['Diagram contains obsolete signed blocks sum'
       'They are drawn in brown, they work as before but,'
       'please replace them with the new block sum'],'modal')
-end  
+end
 
 endfunction
 function scs_m=do_version231(scs_m)
@@ -1111,8 +1138,8 @@ end
 if size(scs_m(1)(1),'*') <4 then scs_m(1)(1)=[scs_m(1)(1),0,0],end //compatibility
 
 
-scs_m(1)(1)(2)=maxi(scs_m(1)(1)(2),450)
-if size(scs_m(1))<6 then 
+scs_m(1)(1)(2)=max(scs_m(1)(1)(2),450)
+if size(scs_m(1))<6 then
   options=default_options()
   doc=list() //documentation structure
   wpar=scs_m(1)
@@ -1129,7 +1156,7 @@ if size(wsiz,'*')<6 then //compatibility
   wsiz(5)=wsiz(1);wsiz(6)=wsiz(2);
   scs_m(1)(1)=wsiz;
 end
-if type(scs_m(1)(7))==15 then //options 
+if type(scs_m(1)(7))==15 then //options
   old_opt=scs_m(1)(7)
   options=default_options()
   options('3D')(1)=old_opt(1)
@@ -1151,7 +1178,7 @@ for k=2:nx
       scs_m(k)(3)=model
     elseif model(1)(1)=='eselect' then
       model(1)=list('eselect',-1)
-      scs_m(k)(3)=model  
+      scs_m(k)(3)=model
     end
   end
 end
@@ -1224,11 +1251,11 @@ case 'ANIMXY_f' then
       'xset(''thickness'',thick);']
 case 'BOUND_f' then
   rpar=model(8);in=model(2);nin=sum(in)
-  if nin<>1 then 
+  if nin<>1 then
     write(%io(2),['Pb with BOUND_f block';
-	'previously block has more than one input port';
-	'It is better to change it with the new block version';
-	'preceded by a multiplexer'])
+    'previously block has more than one input port';
+    'It is better to change it with the new block version';
+    'preceded by a multiplexer'])
   end
   thresh=rpar(1:nin),v=rpar(nin+1:2*nin)
   label=[strcat(sci2exp(thresh));
@@ -1377,11 +1404,11 @@ case 'CONST_f' then
       'xstringb(orig(1)+dx,orig(2)+dy,string(C),w,h,''fill'');']
 case 'COSBLK_f' then
   in=model(2);nin=sum(in)
-  if nin<>1 then 
+  if nin<>1 then
     write(%io(2),['Pb with COSBLK_f block';
-	'previously block has more than one input port';
-	'It is better to change it with the new block version';
-	'preceded by a multiplexer and followed by a demultiplxer'])
+    'previously block has more than one input port';
+    'It is better to change it with the new block version';
+    'preceded by a multiplexer and followed by a demultiplxer'])
   end
   label=' '
   gr_i=['xstringb(orig(1),orig(2),[''cos''],sz(1),sz(2),''fill'');']
@@ -1425,8 +1452,8 @@ case 'DELAY_f' then
   label=[]
   gr_i=['b1=xstringl(0,0,''e'');';
       'b2=xstringl(0,0,''-Ts'');';
-      'h=-b1(2)+maxi(0,sz(2)-0.5*b1(4)+b2(4))/2;';
-      'w=maxi(0,sz(1)-b1(3)-b1(4))/2;';
+      'h=-b1(2)+max(0,sz(2)-0.5*b1(4)+b2(4))/2;';
+      'w=max(0,sz(1)-b1(3)-b1(4))/2;';
       'xstring(orig(1)+w,orig(2)+h,''e'');';
       'xstring(orig(1)+w+b1(3)/2,orig(2)+h+b1(4)*0.5,''-Ts'');']
 case 'DLRADAPT_f' then
@@ -1502,9 +1529,9 @@ case 'EVENTSCOPE_f' then
   gr_i=['thick=xget(''thickness'');xset(''thickness'',2);';
       'xrect(orig(1)+sz(1)/10,orig(2)+(1-1/10)*sz(2),sz(1)*8/10,sz(2)*8/10);';
       'xx=[orig(1)+sz(1)/5,orig(1)+sz(1)/5;';
-	  'orig(1)+(1-1/5)*sz(1),orig(1)+sz(1)/5];';
+      'orig(1)+(1-1/5)*sz(1),orig(1)+sz(1)/5];';
       'yy=[orig(2)+sz(2)/5,orig(2)+sz(2)/5;';
-	  'orig(2)+sz(2)/5,orig(2)+(1-1/5)*sz(2)];';
+      'orig(2)+sz(2)/5,orig(2)+(1-1/5)*sz(2)];';
       'xarrows(xx,yy);';
       't=(0:0.3:2*%pi)'';';
       'xx=orig(1)+(1/5+3*t/(10*%pi))*sz(1);';
@@ -1544,14 +1571,14 @@ case 'FOR_f' then
     gain=matrix(model(8),out,in)
     label=[strcat(sci2exp(gain))]
     gr_i=['[nin,nout]=model(2:3);';
-	'if nin*nout==1 then gain=string(model(8)),else gain=''Gain'',end';
-	'dx=sz(1)/5;';
-	'dy=sz(2)/10;';
-	'xx=orig(1)+      [1 4 1 1]*dx;';
-	'yy=orig(2)+sz(2)-[1 5 9 1]*dy;';
-	'xpoly(xx,yy,''lines'');';
-	'w=sz(1)-2*dx;h=sz(2)-2*dy;';
-	'xstringb(orig(1)+dx,orig(2)+dy,gain,w,h,''fill'');']
+    'if nin*nout==1 then gain=string(model(8)),else gain=''Gain'',end';
+    'dx=sz(1)/5;';
+    'dy=sz(2)/10;';
+    'xx=orig(1)+      [1 4 1 1]*dx;';
+    'yy=orig(2)+sz(2)-[1 5 9 1]*dy;';
+    'xpoly(xx,yy,''lines'');';
+    'w=sz(1)-2*dx;h=sz(2)-2*dy;';
+    'xstringb(orig(1)+dx,orig(2)+dy,gain,w,h,''fill'');']
   case 'GENERAL_f' then
     in=model(2);out=model(5)
     label=[strcat(sci2exp(in));strcat(sci2exp(out))]
@@ -1560,13 +1587,13 @@ case 'FOR_f' then
     rpar=model(8)
     label=[string(rpar(1));string(rpar(2));string(rpar(3))]
     gr_i=['txt=[''sinusoid'';''generator''];';
-	'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']
+    'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']
   case 'GENSQR_f' then
     //rpar=model(8); ?
     Amplitude=model(7)
     label=string(Amplitude)
     gr_i=['txt=[''square wave'';''generator''];';
-	'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']
+    'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']
   case 'HALT_f' then
     n=model(9);
     label=string(n)
@@ -1575,7 +1602,7 @@ case 'FOR_f' then
     label=[]
     model(11)=[-1,-1]
     gr_i=['txt=[''If in>=0'';'' '';'' then    else''];';
-	'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']
+    'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']
   case 'INTEGRAL_f' then
     x0=model(6);
     label=strcat(sci2exp(x0))
@@ -1598,42 +1625,42 @@ case 'FOR_f' then
   case 'LOOKUP_f' then
     model(10)='c'
     gr_i=['rpar=model(8);n=size(rpar,''*'')/2;';
-	'thick=xget(''thickness'');xset(''thickness'',2);';
-	'xx=rpar(1:n);yy=rpar(n+1:2*n);';
-	'mnx=mini(xx);xx=xx-mnx*ones(xx);mxx=maxi(xx);';
-	'xx=orig(1)+sz(1)*(1/10+(4/5)*xx/mxx);';
-	'mnx=mini(yy);yy=yy-mnx*ones(yy);mxx=maxi(yy);';
-	'yy=orig(2)+sz(2)*(1/10+(4/5)*yy/mxx);';
-	'xpoly(xx,yy,''lines'');';
-	'xset(''thickness'',thick);']
+    'thick=xget(''thickness'');xset(''thickness'',2);';
+    'xx=rpar(1:n);yy=rpar(n+1:2*n);';
+    'mnx=min(xx);xx=xx-mnx*ones(xx);mxx=max(xx);';
+    'xx=orig(1)+sz(1)*(1/10+(4/5)*xx/mxx);';
+    'mnx=min(yy);yy=yy-mnx*ones(yy);mxx=max(yy);';
+    'yy=orig(2)+sz(2)*(1/10+(4/5)*yy/mxx);';
+    'xpoly(xx,yy,''lines'');';
+    'xset(''thickness'',thick);']
     label=[]
   case 'MAX_f' then
     in=model(2);nin=sum(in)
-    if nin<>1 then 
+    if nin<>1 then
       write(%io(2),['Pb with MAX_f block';
-	  'previously block has more than one input port';
-	  'It is better to change it with the new block version';
-	  'preceded by a multiplexer'])
+      'previously block has more than one input port';
+      'It is better to change it with the new block version';
+      'preceded by a multiplexer'])
     end
     label=' '
     gr_i=['xstringb(orig(1),orig(2),''Max'',sz(1),sz(2),''fill'');']
   case 'MCLOCK_f' then
     label=[]
     gr_i=['txt=[''2freq clock'';''  f/n     f''];';
-	'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')']
+    'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')']
   case 'MFCLCK_f' then
     dt=model(8)
-    nn=model(9)  
+    nn=model(9)
     label=[string(dt);string(nn)]
     gr_i=['txt=[''M. freq'';''clock''];';
-	'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')']
+    'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')']
   case 'MIN_f' then
     in=model(2);nin=sum(in)
-    if nin<>1 then 
+    if nin<>1 then
       write(%io(2),['Pb with MIN_f block';
-	  'previously block has more than one input port';
-	  'It is better to change it with the new block version';
-	  'preceded by a multiplexer'])
+      'previously block has more than one input port';
+      'It is better to change it with the new block version';
+      'preceded by a multiplexer'])
     end
     label=' '
     gr_i=['xstringb(orig(1),orig(2),''MIN'',sz(1),sz(2),''fill'')']
@@ -1650,11 +1677,11 @@ case 'FOR_f' then
     gr_i=['xstringb(orig(1),orig(2),'' + to - '',sz(1),sz(2),''fill'')']
   case 'POWBLK_f' then
     in=model(2);nin=sum(in)
-    if nin<>1 then 
+    if nin<>1 then
       write(%io(2),['Pb with MIN_f block';
-	  'previously block has more than one input port';
-	  'It is better to change it with the new block version';
-	  'preceded by a multiplexer and followed by a demux'])
+      'previously block has more than one input port';
+      'It is better to change it with the new block version';
+      'preceded by a multiplexer and followed by a demux'])
     end
     if model(8)<>[] then
       a=model(8)
@@ -1674,32 +1701,32 @@ case 'FOR_f' then
     meth=ipar
     label=[string(pas);string(meth)]
     gr_i=['thick=xget(''thickness'');xset(''thickness'',2);';
-	'xx=orig(1)+[1;2;2;3;3;4;4]/5*sz(1);';
-	'yy= orig(2)+[1;1;2;2;3;3;4]/5*sz(2);';
-	'xpoly(xx,yy,''lines'');';
-	'xset(''thickness'',thick);']
+    'xx=orig(1)+[1;2;2;3;3;4;4]/5*sz(1);';
+    'yy= orig(2)+[1;1;2;2;3;3;4]/5*sz(2);';
+    'xpoly(xx,yy,''lines'');';
+    'xset(''thickness'',thick);']
   case 'RAND_f' then
     rpar=model(8);flag=model(9);
     out=model(3);nout=sum(out)
-    if nout<>1 then 
+    if nout<>1 then
       write(%io(2),['Pb with RAND_f block';
-	  'previously block has more than one output port';
-	  'It is better to change it with the new block version';
-	  ' followed by a demux'])
+      'previously block has more than one output port';
+      'It is better to change it with the new block version';
+      ' followed by a demux'])
     end
 
     a=rpar(1:nout)
     b=rpar(nout+1:2*nout)
     label=[string(flag);sci2exp(a(:));sci2exp(b(:))]
     gr_i=['txt=[''random'';''generator''];';
-	'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')']
+    'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')']
   case 'REGISTER_f' then
     z0=model(7)
     label=strcat(string(z0),';')
 
     gr_i=['dly=model(8);';
-	'txt=[''Shift'';''Register'';string(dly)];';
-	'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')']
+    'txt=[''Shift'';''Register'';string(dly)];';
+    'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')']
   else
     ok=%f
   end
@@ -1731,35 +1758,35 @@ case 'FOR_f' then
     if lfil>0 then fname=code2str(ipar(5:4+lfil)),else fname=' ',end
     if lfmt>0 then Fmt=code2str(ipar(5+lfil:4+lfil+lfmt)),else Fmt=' ',end
     label=[ sci2exp(tmask);
-	sci2exp(outmask);
-	fname;
-	Fmt;
-	string(N);
-	sci2exp(out)]
+    sci2exp(outmask);
+    fname;
+    Fmt;
+    string(N);
+    sci2exp(out)]
     gr_i=['txt=[''read from'';''input file''];';
-	'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')']
+    'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')']
   case 'SAT_f' then
     rpar=model(8)
     minp=rpar(1),maxp=rpar(2),pente=rpar(3)
     label=[string(minp);string(maxp);string(pente)]
 
     gr_i=['thick=xget(''thickness'');xset(''thickness'',2);';
-	'xx=orig(1)+[4/5;1/2+1/5;1/2-1/5;1/5]*sz(1);';
-	'yy=orig(2)+[1-1/5;1-1/5;1/5;1/5]*sz(2);';
-	'xpoly(xx,yy,''lines'');';
-	'xset(''thickness'',thick)']
+    'xx=orig(1)+[4/5;1/2+1/5;1/2-1/5;1/5]*sz(1);';
+    'yy=orig(2)+[1-1/5;1-1/5;1/5;1/5]*sz(2);';
+    'xpoly(xx,yy,''lines'');';
+    'xset(''thickness'',thick)']
   case 'SAWTOOTH_f' then
     model(10)='c'
     gr_i=['txt=[''sawtooth'';''generator''];';
-	'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']
+    'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']
   case 'SCOPE_f' then
     [in,rpar,ipar]=model([2 8 9])
     in=model(2);nin=sum(in)
-    if nin<>1 then 
+    if nin<>1 then
       write(%io(2),['Pb with SCOPE_f block';
-	  'previously block has more than one input port';
-	  'It is better to change it with the new block version';
-	  'preceded by a multiplexer'])
+      'previously block has more than one input port';
+      'It is better to change it with the new block version';
+      'preceded by a multiplexer'])
     end
     win=ipar(1);N=ipar(3);
     clrs=-ipar(4:nin+3)
@@ -1770,26 +1797,26 @@ case 'FOR_f' then
     model(9)=[win;1;N;clrs;wpos(:);wdim(:)]
     dt=rpar(1);ymin=rpar(2);ymax=rpar(3);per=rpar(4)
     label=[strcat(string(clrs),' ');
-	string(win);
-	sci2exp([]);
-	sci2exp([]);
-	string(ymin);
-	string(ymax);
-	string(per);
-	string(N)];
-    
+    string(win);
+    sci2exp([]);
+    sci2exp([]);
+    string(ymin);
+    string(ymax);
+    string(per);
+    string(N)];
+
     gr_i=['thick=xget(''thickness'');xset(''thickness'',2);';
-	'xrect(orig(1)+sz(1)/10,orig(2)+(1-1/10)*sz(2),sz(1)*8/10,sz(2)*8/10);';
-	'xx=[orig(1)+sz(1)/5,orig(1)+sz(1)/5;';
-	    'orig(1)+(1-1/5)*sz(1),orig(1)+sz(1)/5];';
-	'yy=[orig(2)+sz(2)/5,orig(2)+sz(2)/5;';
-	    'orig(2)+sz(2)/5,orig(2)+(1-1/5)*sz(2)];';
-	'xarrows(xx,yy);';
-	't=(0:0.3:2*%pi)'';';
-	'xx=orig(1)+(1/5+3*t/(10*%pi))*sz(1);';
-	'yy=orig(2)+(1/4.3+(sin(t)+1)*3/10)*sz(2);';
-	'xpoly(xx,yy,''lines'');';
-	'xset(''thickness'',thick)']
+    'xrect(orig(1)+sz(1)/10,orig(2)+(1-1/10)*sz(2),sz(1)*8/10,sz(2)*8/10);';
+    'xx=[orig(1)+sz(1)/5,orig(1)+sz(1)/5;';
+        'orig(1)+(1-1/5)*sz(1),orig(1)+sz(1)/5];';
+    'yy=[orig(2)+sz(2)/5,orig(2)+sz(2)/5;';
+        'orig(2)+sz(2)/5,orig(2)+(1-1/5)*sz(2)];';
+    'xarrows(xx,yy);';
+    't=(0:0.3:2*%pi)'';';
+    'xx=orig(1)+(1/5+3*t/(10*%pi))*sz(1);';
+    'yy=orig(2)+(1/4.3+(sin(t)+1)*3/10)*sz(2);';
+    'xpoly(xx,yy,''lines'');';
+    'xset(''thickness'',thick)']
   case 'SCOPXY_f' then
     [rpar,ipar]=model(8:9)
     win=ipar(1);N=ipar(3);clrs=-ipar(4);siz=ipar(5)
@@ -1797,22 +1824,22 @@ case 'FOR_f' then
     wdim=[-1;-1]
     wpos=[-1;-1]
     label=[sci2exp(clrs);
-	sci2exp(siz);
-	string(win);
-	sci2exp([]);
-	sci2exp([]);
-	string(xmin);
-	string(xmax);
-	string(ymin);
-	string(ymax);
-	string(N)];
+    sci2exp(siz);
+    string(win);
+    sci2exp([]);
+    sci2exp([]);
+    string(xmin);
+    string(xmax);
+    string(ymin);
+    string(ymax);
+    string(N)];
     model(9)=[win;1;N;clrs;siz;1;wpos(:);wdim(:)]
     gr_i=['thick=xget(''thickness'');xset(''thickness'',2);';
-	't=(0:0.2:2*%pi)'';';
-	'xx=orig(1)+(1/5+(cos(3*t)+1)*3/10)*sz(1);';
-	'yy=orig(2)+(1/4.3+(sin(t+1)+1)*3/10)*sz(2);';
-	'xpoly(xx,yy,''lines'');';
-	'xset(''thickness'',thick)']
+    't=(0:0.2:2*%pi)'';';
+    'xx=orig(1)+(1/5+(cos(3*t)+1)*3/10)*sz(1);';
+    'yy=orig(2)+(1/4.3+(sin(t+1)+1)*3/10)*sz(2);';
+    'xpoly(xx,yy,''lines'');';
+    'xset(''thickness'',thick)']
   case 'SELECT_f' then
     z0=model(7);nin=size(model(2),1);
     label=[string(nin);string(z0-1)]
@@ -1820,11 +1847,11 @@ case 'FOR_f' then
     gr_i=['xstringb(orig(1),orig(2),''Selector'',sz(1),sz(2),''fill'');']
   case 'SINBLK_f' then
     in=model(2);nin=sum(in)
-    if nin<>1 then 
+    if nin<>1 then
       write(%io(2),['Pb with MIN_f block';
-	  'previously block has more than one input port';
-	  'It is better to change it with the new block version';
-	  'preceded by a multiplexer and followed by a demux'])
+      'previously block has more than one input port';
+      'It is better to change it with the new block version';
+      'preceded by a multiplexer and followed by a demux'])
     end
     label=' '
     gr_i=['xstringb(orig(1),orig(2),''sin'',sz(1),sz(2),''fill'')']
@@ -1839,20 +1866,20 @@ case 'FOR_f' then
   case 'SUPER_f' then
     label=[]
     gr_i=['thick=xget(''thickness'');xset(''thickness'',2);';
-	'xx=orig(1)+      [2 4 4]*(sz(1)/7);';
-	'yy=orig(2)+sz(2)-[2 2 6]*(sz(2)/10);';
-	'xrects([xx;yy;[sz(1)/7;sz(2)/5]*ones(1,3)]);';
-	'xx=orig(1)+      [1 2 3 4 5 6 3.5 3.5 3.5 4 5 5.5 5.5 5.5]*sz(1)/7;';
-	'yy=orig(2)+sz(2)-[3 3 3 3 3 3 3   7   7   7 7 7   7   3  ]*sz(2)/10;';
-	'xsegs(xx,yy,0);';
-	'xset(''thickness'',thick)']
+    'xx=orig(1)+      [2 4 4]*(sz(1)/7);';
+    'yy=orig(2)+sz(2)-[2 2 6]*(sz(2)/10);';
+    'xrects([xx;yy;[sz(1)/7;sz(2)/5]*ones(1,3)]);';
+    'xx=orig(1)+      [1 2 3 4 5 6 3.5 3.5 3.5 4 5 5.5 5.5 5.5]*sz(1)/7;';
+    'yy=orig(2)+sz(2)-[3 3 3 3 3 3 3   7   7   7 7 7   7   3  ]*sz(2)/10;';
+    'xsegs(xx,yy,0);';
+    'xset(''thickness'',thick)']
   case 'TANBLK_f' then
     in=model(2);nin=sum(in)
-    if nin<>1 then 
+    if nin<>1 then
       write(%io(2),['Pb with TANBLK_f block';
-	  'previously block has more than one input port';
-	  'It is better to change it with the new block version';
-	  'preceded by a multiplexer and followed by a demux'])
+      'previously block has more than one input port';
+      'It is better to change it with the new block version';
+      'preceded by a multiplexer and followed by a demux'])
     end
     label=' '
     gr_i=['xstringb(orig(1),orig(2),''tan'',sz(1),sz(2),''fill'');']
@@ -1860,7 +1887,7 @@ case 'FOR_f' then
     in=model(2);nin=sum(in)
     out=model(3);nout=sum(out)
     x0=model(6),rpar=model(8)
-    
+
     ns=prod(size(x0));nin=nin-ns
     A=matrix(rpar(1:ns*ns),ns,ns)
     B=matrix(rpar(ns*ns+1:ns*(ns+nin)),ns,nin)
@@ -1869,12 +1896,12 @@ case 'FOR_f' then
     nin1=nin;nout1=nout
 
     label=[strcat(sci2exp(A));
-	strcat(sci2exp(B));
-	strcat(sci2exp(C));
-	strcat(sci2exp(D));
-	strcat(sci2exp(x0))]
+    strcat(sci2exp(B));
+    strcat(sci2exp(C));
+    strcat(sci2exp(D));
+    strcat(sci2exp(x0))]
     gr_i=['txt=[''Jump'';''(A,B,C,D)''];';
-	'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')']
+    'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')']
   else
     ok=%f
   end
@@ -1887,7 +1914,7 @@ case 'FOR_f' then
     o(3)=model
     o=replace_firing(o)
     return
-  end  
+  end
   ok=%t
   select blocktype
   case 'TEXT_f' then
@@ -1898,24 +1925,24 @@ case 'FOR_f' then
   case 'TIME_f' then
     label=[]
     gr_i=['wd=xget(''wdim'').*[1.016,1.12];';
-	'thick=xget(''thickness'');xset(''thickness'',2);';
-	'p=wd(2)/wd(1);p=1;';
-	'rx=sz(1)*p/2;ry=sz(2)/2;';
-	'xarc(orig(1)+0.05*sz(1),orig(2)+0.95*sz(2),0.9*sz(1)*p,0.9*sz(2),0,360*64);';
-	'xset(''thickness'',1);';
-	'xx=[orig(1)+rx    orig(1)+rx;';
-	    'orig(1)+rx    orig(1)+rx+0.6*rx*cos(%pi/6)];';
-	'yy=[orig(2)+ry    orig(2)+ry ;';
-	    '	  orig(2)+1.8*ry  orig(2)+ry+0.6*ry*sin(%pi/6)];';
-	'xsegs(xx,yy,0);';
-	'xset(''thickness'',thick);']
+    'thick=xget(''thickness'');xset(''thickness'',2);';
+    'p=wd(2)/wd(1);p=1;';
+    'rx=sz(1)*p/2;ry=sz(2)/2;';
+    'xarc(orig(1)+0.05*sz(1),orig(2)+0.95*sz(2),0.9*sz(1)*p,0.9*sz(2),0,360*64);';
+    'xset(''thickness'',1);';
+    'xx=[orig(1)+rx    orig(1)+rx;';
+        'orig(1)+rx    orig(1)+rx+0.6*rx*cos(%pi/6)];';
+    'yy=[orig(2)+ry    orig(2)+ry ;';
+        '     orig(2)+1.8*ry  orig(2)+ry+0.6*ry*sin(%pi/6)];';
+    'xsegs(xx,yy,0);';
+    'xset(''thickness'',thick);']
   case 'TRASH_f' then
     in=model(2);nin=sum(in)
-    if nin<>1 then 
+    if nin<>1 then
       write(%io(2),['Pb with MIN_f block';
-	  'previously block has more than one input port';
-	  'It is better to change it with the new block version';
-	  'preceded by a multiplexer'])
+      'previously block has more than one input port';
+      'It is better to change it with the new block version';
+      'preceded by a multiplexer'])
     end
     label=' '
     gr_i=['xstringb(orig(1),orig(2),''Trash'',sz(1),sz(2),''fill'')']
@@ -1930,19 +1957,19 @@ case 'FOR_f' then
     if lfil>0 then fname=code2str(ipar(5:4+lfil)),else fname=' ',end
     if lfmt>0 then Fmt=code2str(ipar(5+lfil:4+lfil+lfmt)),else Fmt=' ',end
     label=[sci2exp(in);
-	fname;
-	Fmt;
-	string(N)]
-    
+    fname;
+    Fmt;
+    string(N)]
+
     gr_i=['txt=[''write to'';''output file''];';
-	'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')']
+    'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')']
   case 'ZCROSS_f' then
     in=model(2)
     label=strcat(sci2exp(in))
     gr_i=['xstringb(orig(1),orig(2),''Zcross'',sz(1),sz(2),''fill'');']
   case 'func_block' then
     write(%io(2),['PB with func_block';
-	'version change is not implemented'])
+    'version change is not implemented'])
     label=[]
     gr_i=['xstringb(orig(1),orig(2),''Func'',sz(1),sz(2),''fill'');']
   case 'm_sin' then
@@ -1951,23 +1978,23 @@ case 'FOR_f' then
     gr_i=[]
   case 'sci_block' then
     write(%io(2),['PB with sci_block';
-	'version change is not implemented'])
+    'version change is not implemented'])
     label=[]
     gr_i=['xstringb(orig(1),orig(2),''Sci_Block'',sz(1),sz(2),''fill'');']
   case 'scifunc_block' then
     write(%io(2),['PB with scifunc_block';
-	'version change is not implemented'])
+    'version change is not implemented'])
     i1=model(2);o1=model(3);ci1=model(4);co1=model(5);x1=model(6);
     z1=model(7);auto1=model(11);type_1=model(10);
     tt=model(9),rpar=model(8)
     label=list([sci2exp(i1);sci2exp(o1);sci2exp(ci1);sci2exp(co1);
-	strcat(sci2exp(x1));strcat(sci2exp(z1));type_1;
-	strcat(sci2exp(rpar));sci2exp(auto1)],tt)
-    
+    strcat(sci2exp(x1));strcat(sci2exp(z1));type_1;
+    strcat(sci2exp(rpar));sci2exp(auto1)],tt)
+
     gr_i=['xstringb(orig(1),orig(2),''Scifunc'',sz(1),sz(2),''fill'');']
   case 'standard_block' then
     write(%io(2),['PB with standard_block';
-	'version change is not implemented'])
+    'version change is not implemented'])
     label=[]
     gr_i=[]
   else
@@ -1988,12 +2015,12 @@ endfunction
 function o=replace_firing(o)
 firing=o(3)(11)
 cout=o(3)(5)
-if firing==%f|firing==0 then 
+if firing==%f|firing==0 then
   o(3)(11)=-ones(cout)
   //disp('firing changed from %f to '+sci2exp(o(3)(11))+' in '+o(3)(1)(1))
-elseif firing==%t|firing==1  then 
+elseif firing==%t|firing==1  then
   o(3)(11)=0*cout
-  //disp('firing changed from %t to '+sci2exp(o(3)(11))+' in '+o(3)(1)(1))  
+  //disp('firing changed from %t to '+sci2exp(o(3)(11))+' in '+o(3)(1)(1))
 elseif firing==[] then
   o(3)(11)=[]
 else
@@ -2033,18 +2060,18 @@ end
 endfunction
 
 function scs_m_new=do_version27(scs_m)
-  if typeof(scs_m)=='diagram' then 
+  if typeof(scs_m)=='diagram' then
     //following code reported into do_version273
     //     scs_m_new=scs_m,
     //     nlstsize=lstsize(scs_m_new.objs)
     //     for k=1:nlstsize
     //       if typeof(scs_m_new.objs(k))=='Link' then
-    // 	o=scs_m_new.objs(k)
-    // 	if size(o.from,'*')==2 then o.from(3)=0,end
-    // 	if size(o.to,'*')==2 then o.to(3)=1,end
-    // 	scs_m_new.objs(k)=o
+    //  o=scs_m_new.objs(k)
+    //  if size(o.from,'*')==2 then o.from(3)=0,end
+    //  if size(o.to,'*')==2 then o.to(3)=1,end
+    //  scs_m_new.objs(k)=o
     //       elseif typeof(scs_m_new.objs(k))=='Block' then
-	
+
     //       end
     //     end
     scs_m_new=scs_m
@@ -2059,82 +2086,82 @@ function scs_m_new=do_version27(scs_m)
   if size(tol,'*')<6 then tol(6)=0,end
   for iix=size(scs_m(1))+1:10,scs_m(1)(iix)=[];end
   scs_m_new.props=scicos_params(wpar=scs_m(1)(1),Title=scs_m(1)(2),..
-				tol=tol,tf=tf,..
-				context=scs_m(1)(5),options=scs_m(1)(7),..
-				doc=scs_m(1)(10))
+                tol=tol,tf=tf,..
+                context=scs_m(1)(5),options=scs_m(1)(7),..
+                doc=scs_m(1)(10))
 
-  if scs_m(1)(7).Background==[] then 
+  if scs_m(1)(7).Background==[] then
     scs_m_new.props.options.Background=[8 1]
   end
-  
+
   scs_m_new.objs(1)=mlist('Deleted') // not to change the internal numbering
   n=lstsize(scs_m)
   back_col=8   //white background
-  
+
   mprintf('.')
 
   for i=2:n //loop on objects
     o=scs_m(i);
     if o(1)=='Block' then
       if size(o(2)) > 8 then
-	if type(o(2)(9))==15 then 
-	  gr_io=o(2)(9)(1);
-	  if o(2)(9)(2)<>[] then
-	    back_col=o(2)(9)(2);,
-	  end
-	else
-	  gr_io=o(2)(9);
-	  back_col=8
-	end
-	gr_i=convert_gri(o(5),gr_io);
-	if gr_i==[] then gr_i=gr_io;, end
+    if type(o(2)(9))==15 then
+      gr_io=o(2)(9)(1);
+      if o(2)(9)(2)<>[] then
+        back_col=o(2)(9)(2);,
+      end
+    else
+      gr_io=o(2)(9);
+      back_col=8
+    end
+    gr_i=convert_gri(o(5),gr_io);
+    if gr_i==[] then gr_i=gr_io;, end
       elseif size(o(2)) < 9 then
-	gr_i=[];
-	back_col=8
+    gr_i=[];
+    back_col=8
       end
       gr_i=list(gr_i,back_col)
-      
+
       mdl=o(3);
-      if size(o(3))<=12 then 
-	mdl(13)=''; mdl(14)=[] ; mdl(15)='';
-      elseif size(o(3))<=13 then 
-	mdl(14)=[] ; mdl(15)='';
-      elseif size(o(3))<=14 then 
-	mdl(15)='';
+      if size(o(3))<=12 then
+    mdl(13)=''; mdl(14)=[] ; mdl(15)='';
+      elseif size(o(3))<=13 then
+    mdl(14)=[] ; mdl(15)='';
+      elseif size(o(3))<=14 then
+    mdl(15)='';
       end
-      
+
       if mdl(1)(1)=='super'|mdl(1)(1)=='csuper' then
-	if type(mdl(8))==15 then
-	  mdl(8)=do_version27(mdl(8))
-	end
+    if type(mdl(8))==15 then
+      mdl(8)=do_version27(mdl(8))
+    end
       end
 
       graphics=scicos_graphics27(orig=o(2)(1),sz=o(2)(2),flip=o(2)(3),..
-			       exprs=o(2)(4),pin=o(2)(5),pout=o(2)(6),..
-			       pein=o(2)(7),peout=o(2)(8),gr_i=gr_i,..
-			       id=mdl(15)) 	       
-      
-      
-      model=scicos_model27(sim=mdl(1),in=mdl(2),out=mdl(3),evtin=mdl(4),..
-			 evtout=mdl(5),state=mdl(6),dstate=mdl(7),..
-			 rpar=mdl(8),ipar=mdl(9),blocktype=mdl(10),..
-			 firing=mdl(11),dep_ut=mdl(12),label=mdl(13))
+                   exprs=o(2)(4),pin=o(2)(5),pout=o(2)(6),..
+                   pein=o(2)(7),peout=o(2)(8),gr_i=gr_i,..
+                   id=mdl(15))
 
-      
+
+      model=scicos_model27(sim=mdl(1),in=mdl(2),out=mdl(3),evtin=mdl(4),..
+             evtout=mdl(5),state=mdl(6),dstate=mdl(7),..
+             rpar=mdl(8),ipar=mdl(9),blocktype=mdl(10),..
+             firing=mdl(11),dep_ut=mdl(12),label=mdl(13))
+
+
       objsi=scicos_block(graphics=graphics,model=model,gui=o(5),..
-			 doc=mdl(14))
+             doc=mdl(14))
       if objsi.gui=='ESELECT_f' then objsi.model.sim(2)=-2,end
       scs_m_new.objs(i)=objsi
-      
+
     elseif o(1)=='Link' then
       from=o(8);from(3)=0;
       to=o(9);to(3)=1;
-      
+
       objsi=scicos_link(xx=o(2),yy=o(3),id=o(5),thick=o(6),..
-			ct=o(7),from=from,to=to)
+            ct=o(7),from=from,to=to)
       scs_m_new.objs(i)=objsi
     elseif o(1)=='Text' then
-      
+
       objsi=TEXT_f('define')
       objsi.model.rpar=o(3)(8)
       objsi.model.ipar=o(3)(9)
@@ -2210,9 +2237,9 @@ case 'LOOKUP_f' then
   gr_i=['rpar=model.rpar;n=size(rpar,''*'')/2;';
     'thick=xget(''thickness'');xset(''thickness'',2);';
     'xx=rpar(1:n);yy=rpar(n+1:2*n);';
-    'mnx=mini(xx);xx=xx-mnx*ones(xx);mxx=maxi(xx);';
+    'mnx=min(xx);xx=xx-mnx*ones(xx);mxx=max(xx);';
     'xx=orig(1)+sz(1)*(1/10+(4/5)*xx/mxx);';
-    'mnx=mini(yy);yy=yy-mnx*ones(yy);mxx=maxi(yy);';
+    'mnx=min(yy);yy=yy-mnx*ones(yy);mxx=max(yy);';
     'yy=orig(2)+sz(2)*(1/10+(4/5)*yy/mxx);';
     'xpoly(xx,yy,''lines'');';
     'xset(''thickness'',thick);']
@@ -2229,7 +2256,7 @@ case 'EXPBLK_f' then
   gr_i='xstringb(orig(1),orig(2),''a^u'',sz(1),sz(2),''fill'');'
 case 'POWBLK_f' then
   gr_i='xstringb(orig(1),orig(2),''u^a'',sz(1),sz(2),''fill'');'
-  
+
 end
 endfunction
 
@@ -2247,7 +2274,7 @@ function scs_m_new=do_versionxx(scs_m)
     scs_m_new.objs(i)=o
     if typeof(o)=='Block' then
       if o.model.sim(1)=='super'| o.model.sim(1)=='csuper' then
-	scs_m_new.objs(i).model.rpar=do_versionxx(o.model.rpar)
+    scs_m_new.objs(i).model.rpar=do_versionxx(o.model.rpar)
       end
     end
   end

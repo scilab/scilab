@@ -9,28 +9,6 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-/*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Clément DAVID
- *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
-/*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Clément DAVID
- *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
 
 package org.scilab.modules.xcos.configuration;
 
@@ -53,6 +31,7 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
 import org.apache.commons.logging.LogFactory;
+import org.scilab.modules.jvm.utils.ScilabConstants;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.xcos.actions.OpenAction;
@@ -121,11 +100,11 @@ public final class ConfigurationManager {
 			
 			File f;
 			try {
-				f = new File(XcosConstants.SCIHOME.getAbsoluteFile()
+				f = new File(ScilabConstants.SCIHOME.getAbsoluteFile()
 						+ INSTANCE_FILENAME);
 				
 				if (!f.exists()) {
-					File base = new File(XcosConstants.SCI.getAbsoluteFile()
+					File base = new File(ScilabConstants.SCI.getAbsoluteFile()
 							+ XcosConstants.XCOS_ETC + INSTANCE_FILENAME);
 					FileUtils.forceCopy(base, f);
 				}
@@ -142,7 +121,7 @@ public final class ConfigurationManager {
 						XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
 				
 				try {
-					f = new File(XcosConstants.SCI.getAbsoluteFile()
+					f = new File(ScilabConstants.SCI.getAbsoluteFile()
 							+ XcosConstants.XCOS_ETC + INSTANCE_FILENAME);
 					return (SettingType) unmarshaller.unmarshal(f);
 				} catch (JAXBException ex) {
@@ -164,7 +143,7 @@ public final class ConfigurationManager {
 	 * @throws JAXBException when an unsupported error has occured
 	 */
 	private void initUnmarshaller() throws JAXBException {
-		final String schemaPath = XcosConstants.SCI.getAbsolutePath()
+		final String schemaPath = ScilabConstants.SCI.getAbsolutePath()
 		+ XcosConstants.XCOS_ETC + SCHEMA_FILENAME;
 		
 		JAXBContext jaxbContext = JAXBContext
@@ -195,7 +174,7 @@ public final class ConfigurationManager {
 
 			File f;
 			try {
-				f = new File(XcosConstants.SCIHOME.getAbsoluteFile()
+				f = new File(ScilabConstants.SCIHOME.getAbsoluteFile()
 						+ INSTANCE_FILENAME);
 				marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 				marshaller.marshal(getSettings(), f);
@@ -216,7 +195,7 @@ public final class ConfigurationManager {
 	 * @throws JAXBException when an unsupported error has occured
 	 */
 	private void initMarshaller() throws JAXBException {
-		final String schemaPath = XcosConstants.SCI.getAbsolutePath()
+		final String schemaPath = ScilabConstants.SCI.getAbsolutePath()
 		+ XcosConstants.XCOS_ETC + SCHEMA_FILENAME;
 		
 		JAXBContext jaxbContext = JAXBContext

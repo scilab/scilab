@@ -8,6 +8,7 @@
 // <-- ENGLISH IMPOSED -->
 // <-- LONG TIME EXECUTION -->
 // Unitary test for conversion of Matlab function: HESS
+exec("SCI/modules/m2sci/tests/unit_tests/utils/m2sciTestExecution.sci", -1);
 if ~m2sciTestExecution("HESS") then bugmes();quit;end
   ****** Beginning of mfile2sci() session ******
   File to convert: SCI/modules/m2sci/tests/unit_tests/mfiles/HESS.m

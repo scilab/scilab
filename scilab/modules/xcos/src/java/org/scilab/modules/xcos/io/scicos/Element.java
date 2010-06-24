@@ -21,6 +21,12 @@ import org.scilab.modules.types.scilabTypes.ScilabType;
  *            Type of the Xcos associated data.
  */
 public interface Element<T> {
+	
+	/**
+	 * Perform element decoding initialization.
+	 */
+	void beforeDecode();
+	
 	/**
 	 * Read the element and write the result into the object.
 	 * 
@@ -35,6 +41,11 @@ public interface Element<T> {
 	T decode(ScilabType element, T into) throws ScicosFormatException;
 
 	/**
+	 * Perform element decoding cleanup.
+	 */
+	void afterDecode();
+	
+	/**
 	 * Test if the element instance can be decoded.
 	 * 
 	 * Note that of this method return false the call to
@@ -48,6 +59,11 @@ public interface Element<T> {
 	 */
 	boolean canDecode(ScilabType element);
 
+	/**
+	 * Perform element encoding initialization.
+	 */
+	void beforeEncode();
+	
 	/**
 	 * Write an element from data to a Scilab element.
 	 * 
@@ -67,4 +83,9 @@ public interface Element<T> {
 	 * @return the encoded element
 	 */
 	ScilabType encode(T from);
+	
+	/**
+	 * Perform element encoding cleanup.
+	 */
+	void afterEncode();
 }

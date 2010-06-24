@@ -414,7 +414,7 @@ void ConcreteDrawableSubwin::displayChildren(void)
   // draw the children as usual
   DrawableObject::displayChildren();
 
-  // draw the text after
+  // because of transparency, the text is drawn after.
   displayTexts();
 
 }
@@ -510,17 +510,17 @@ void ConcreteDrawableSubwin::displayLabels(void)
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::displayTexts(void)
 {
- 
+  list<sciPointObj *> displayedTexts = m_oDisplayedTexts;
   // sortDisplayed text if needed
   if (m_bNeedDraw || m_bNeedRedraw || m_bTextListChanged)
   {
-    sortDisplayedTexts();
+    displayedTexts.sort(getTextOrder);
   }
 
   // display all the text registered in the list
   // The list should be sorted
-	list<sciPointObj *>::iterator it = m_oDisplayedTexts.begin();
-  for ( ; it != m_oDisplayedTexts.end(); it++)
+  list<sciPointObj *>::iterator it = displayedTexts.begin();
+  for ( ; it != displayedTexts.end(); it++)
   {
     // HACK here. This patch is to force disepearance
     // of text objects if one of there parents is not visible.
@@ -529,15 +529,6 @@ void ConcreteDrawableSubwin::displayTexts(void)
       getHandleDrawer(*it)->display();
     }
   }
-}
-/*------------------------------------------------------------------------------------------*/
-void ConcreteDrawableSubwin::sortDisplayedTexts(void)
-{
-	// sort the text from back to front
-	m_oDisplayedTexts.sort(getTextOrder);
-
-  // text has been sorted successfully
-  m_bTextListChanged = false;
 }
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::setLabelsDistanceToAxis(double xLabelDist, double yLabelDist,
@@ -616,7 +607,7 @@ double ConcreteDrawableSubwin::getEyeDistance(Camera * cam, sciPointObj * pText)
 bool ConcreteDrawableSubwin::getTextOrder(sciPointObj * pText1, sciPointObj * pText2)
 {
 	Camera * cam = getSubwinDrawer(sciGetParentSubwin(pText1))->getCamera();
-	// find the deepest one
+	// find the deepest witch is the first drawn.
 	return (getEyeDistance(cam, pText1) > getEyeDistance(cam, pText2));
 }
 /*---------------------------------------------------------------------------------*/

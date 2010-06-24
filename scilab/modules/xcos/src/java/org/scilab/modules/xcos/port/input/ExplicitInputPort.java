@@ -26,6 +26,7 @@ public class ExplicitInputPort extends InputPort {
     }
 
     /** @return always Type.EXPLICIT */
+	@Override
     public Type getType() {
 	return Type.EXPLICIT;
     }

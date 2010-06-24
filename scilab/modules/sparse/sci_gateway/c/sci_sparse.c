@@ -14,7 +14,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intsparse)(int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_sparsefunc)(char *fname,unsigned long fname_len)
+int sci_sparsefunc(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	C2F(intsparse)(id);

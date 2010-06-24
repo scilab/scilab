@@ -15,7 +15,7 @@ curFig             = scf(100001);
 clf(curFig,"reset");
 demo_viewCode("anim3.sce");
 
-xselect(); //raise the graphic window
+show_window(); //raise the graphic window
 
 //turn off toolbar
 //----------------

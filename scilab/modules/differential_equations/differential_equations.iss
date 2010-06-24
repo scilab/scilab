@@ -1,21 +1,32 @@
-;##############################################################################################################
-; Script d'installation Inno Setup (5.2.1) pour scilab
-; Allan CORNET
-; Version TRUNK
-; Copyright INRIA 2007
-;##############################################################################################################
+;
+; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+; Copyright (C) INRIA - Allan CORNET
+; Copyright (C) DIGITEO - 2010 - Allan CORNET
+;
+; This file must be used under the terms of the CeCILL.
+; This source file is licensed as described in the file COPYING, which
+; you should have received as part of this distribution.  The terms
+; are also available at
+; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+;
+;--------------------------------------------------------------------------------------------------------------
+; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
+;
 ;--------------------------------------------------------------------------------------------------------------
 ; differential_equations module
 ;--------------------------------------------------------------------------------------------------------------
 ;
 #define DIFFEQU "differential_equations"
 ;
+Source: bin\{#DIFFEQU}_f.dll; DestDir: {app}\bin; Components: {#COMPN_EQUDIF}
+Source: bin\{#DIFFEQU}.dll; DestDir: {app}\bin; Components: {#COMPN_EQUDIF}
+;
 Source: modules\{#DIFFEQU}\VERSION.xml; DestDir: {app}\modules\{#DIFFEQU}; Components: {#COMPN_EQUDIF}
 Source: modules\{#DIFFEQU}\readme.txt; DestDir: {app}\modules\{#DIFFEQU}; Components: {#COMPN_EQUDIF}
 Source: modules\{#DIFFEQU}\license.txt; DestDir: {app}\modules\{#DIFFEQU}; Components: {#COMPN_EQUDIF}
 Source: modules\{#DIFFEQU}\changelog.txt; DestDir: {app}\modules\{#DIFFEQU}; Components: {#COMPN_EQUDIF}
 ;
-Source: modules\{#DIFFEQU}\sci_gateway\differential_equations_gateway.xml; DestDir: {app}\modules\{#DIFFEQU}\sci_gateway; Components: {#COMPN_EQUDIF}
+Source: modules\{#DIFFEQU}\sci_gateway\{#DIFFEQU}_gateway.xml; DestDir: {app}\modules\{#DIFFEQU}\sci_gateway; Components: {#COMPN_EQUDIF}
 ;
 Source: modules\{#DIFFEQU}\etc\{#DIFFEQU}.quit; DestDir: {app}\modules\{#DIFFEQU}\etc; Components: {#COMPN_EQUDIF}
 Source: modules\{#DIFFEQU}\etc\{#DIFFEQU}.start; DestDir: {app}\modules\{#DIFFEQU}\etc; Components: {#COMPN_EQUDIF}

@@ -162,6 +162,7 @@ public final class XcosMessages {
     public static final String TRY_TO_CONTINUE = Messages.gettext("Will try to continue...");
 
     public static final String XCOS_ERROR = Messages.gettext("Xcos error");
+    public static final String UNABLE_TO_DELETE = Messages.gettext("Unable to delete ");
     public static final String NO_BLOCK_SELECTED = Messages.gettext("No block selected");
 
     public static final String EXPORT_TO_XML = Messages.gettext("Export to XML") + DOTS;

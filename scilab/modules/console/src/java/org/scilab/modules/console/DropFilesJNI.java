@@ -9,6 +9,8 @@
 package org.scilab.modules.console;
 
 
+/* It is generated code. Disable checkstyle */
+//CHECKSTYLE:OFF
  /** 
    * @author Allan CORNET
    * @copyright INRIA 2007

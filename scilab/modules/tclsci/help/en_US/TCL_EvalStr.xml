@@ -54,8 +54,10 @@ res = TCL_EvalStr(str [,interp])</synopsis></refsynopsisdiv>
     to evaluate expressions without having to write Tcl/Tk instructions in a
     separated file (this capability is provided by
     <literal>TCL_EvalFile</literal>).</para>
+    
+    <para>More information about Tcl/Tk: <ulink url="http://www.tcl.tk/doc/">http://www.tcl.tk/doc/</ulink></para>
   </refsection>
-
+  
   <refsection><title>Examples</title><programlisting role="example"><![CDATA[ 
 //with one call
 TCL_EvalStr(["toplevel .foo1"

@@ -1,0 +1,27 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - INRIA - Serge Steer
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- Non-regression test for bug 4783 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=4783
+//
+// <-- Short Description -->
+// comparison between sparse complex matrix and a full one is wrong when the sparse matrix contains a full zero row.
+C=sparse([1 1+2*%i;0 0]);
+D=full(C);
+if ~and(full(D==C)) then bugmes();quit;end
+if or(full(D<>C)) then bugmes();quit;end
+if ~and(full(C==D)) then bugmes();quit;end
+if or(full(C<>D)) then bugmes();quit;end
+//real case = OK
+C=sparse([1 2;0 0]);
+D=full(C);
+if ~and(full(D==C)) then bugmes();quit;end
+if or(full(D<>C)) then bugmes();quit;end
+if ~and(full(C==D)) then bugmes();quit;end
+if or(full(C<>D)) then bugmes();quit;end

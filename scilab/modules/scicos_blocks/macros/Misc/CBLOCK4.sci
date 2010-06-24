@@ -86,7 +86,7 @@ select job
          funtyp=2004
       end
       if [ci;co]<>[] then
-        if maxi([ci;co])>1 then
+        if max([ci;co])>1 then
           message('vector event links not supported');
           ok=%f;
         end

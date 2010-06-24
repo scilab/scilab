@@ -84,7 +84,7 @@ auwrite(y,Fs,bits,method,aufile)</synopsis>
 A=matrix(1:6,2,3);
 auwrite(A/6,22050,64,'linear',TMPDIR+'/foo.au');
 B=auread(TMPDIR+'/foo.au');
-maxi(abs(A- round(B*6)))
+max(abs(A- round(B*6)))
  ]]></programlisting>
   </refsection>
   <refsection>

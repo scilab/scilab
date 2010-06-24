@@ -13,4 +13,4 @@ b = rand(size(A,1),1);
 x0 = taucs_chsolve(C_ptr, b);
 firstNorm=norm(A*x0 - b);
 secondNorm=norm(res_with_prec(A, x0, b));
-if firstNorm <> secondNorm then pause, end
+if firstNorm < secondNorm then pause, end

@@ -16,7 +16,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intsdlgamma)(char *id,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_dlgamma)(char *fname,unsigned long fname_len)
+int sci_dlgamma(char *fname,unsigned long fname_len)
 {
 	C2F(intsdlgamma)(fname,fname_len);
 	return 0;

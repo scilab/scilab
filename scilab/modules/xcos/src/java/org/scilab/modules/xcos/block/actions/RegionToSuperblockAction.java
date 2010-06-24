@@ -44,8 +44,8 @@ import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
 import org.scilab.modules.xcos.block.io.ContextUpdate.IOBlocks;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.io.BasicBlockInfo;
-import org.scilab.modules.xcos.io.BlockWriter;
+import org.scilab.modules.xcos.io.scicos.BasicBlockInfo;
+import org.scilab.modules.xcos.io.scicos.DiagramElement;
 import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
@@ -82,7 +82,7 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
 	/**
 	 * Any link which is broken by performing this action
 	 */
-    private class BrokenLink {
+    private static class BrokenLink {
 	private BasicLink link;
 	private BasicPort port;
 	private mxGeometry geom;
@@ -220,8 +220,6 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
 	superBlock.getGeometry().setX((maxX + minX) / 2.0);
 	superBlock.getGeometry().setY((maxY + minY) / 2.0);
 
-
-
 	/*
 	 * Creating the child graph
 	 */
@@ -247,7 +245,9 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
 	/*
 	 * Update block with real parameters
 	 */
-	superBlock.setRealParameters(BlockWriter.convertDiagramToMList(diagram));
+	superBlock.setRealParameters(new DiagramElement().encode(diagram));
+	diagram.installListeners();
+	diagram.installSuperBlockListeners();
 	superBlock.setChild(diagram);
 	
 	/*
@@ -465,14 +465,12 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
 		if (link.getOutGoing()) { // OUT_f
 		    block = BlockFactory.createBlock("OUT_f");
 		    ExplicitInputPort port = new ExplicitInputPort();
-		    port.setDefaultValues();
 		    block.addPort(port);
 		    link.setPortNumber(maxValues.get(0) + 1);
 		    maxValues.set(0, maxValues.get(0) + 1);
 		} else { // IN_f
 		    block = BlockFactory.createBlock("IN_f");
 		    ExplicitOutputPort port = new ExplicitOutputPort();
-		    port.setDefaultValues();
 		    block.addPort(port);
 		    link.setPortNumber(maxValues.get(1) + 1);
 		    maxValues.set(1, maxValues.get(1) + 1);
@@ -481,14 +479,12 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
 		if (link.getOutGoing()) { // OUTIMPL_f
 		    block = BlockFactory.createBlock("OUTIMPL_f");
 		    ImplicitInputPort port = new ImplicitInputPort();
-		    port.setDefaultValues();
 		    block.addPort(port);
 		    link.setPortNumber(maxValues.get(2) + 1);
 		    maxValues.set(2, maxValues.get(2) + 1);
 		} else { // INIMPL_f
 		    block = BlockFactory.createBlock("INIMPL_f");
 		    ImplicitOutputPort port = new ImplicitOutputPort();
-		    port.setDefaultValues();
 		    block.addPort(port);
 		    link.setPortNumber(maxValues.get(3) + 1);
 		    maxValues.set(3, maxValues.get(3) + 1);
@@ -497,20 +493,22 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
 		if (link.getOutGoing()) { // CLKOUTV_f
 		    block = BlockFactory.createBlock("CLKOUTV_f");
 		    ControlPort port = new ControlPort();
-		    port.setDefaultValues();
 		    block.addPort(port);
 		    link.setPortNumber(maxValues.get(4) + 1);
 		    maxValues.set(4, maxValues.get(4) + 1);
 		} else { // CLKINV_f
 		    block = BlockFactory.createBlock("CLKINV_f");
 		    CommandPort port = new CommandPort();
-		    port.setDefaultValues();
 		    block.addPort(port);
 		    link.setPortNumber(maxValues.get(5) + 1);
 		    maxValues.set(5, maxValues.get(5) + 1);
 		}
 	    }
 
+		/**
+		 * FIXME: findbugs found that some execution path may lead to a
+		 * NullPointerException on the next line.
+		 */
 	    block.setGeometry(link.getGeometry());
 	    block.setExprs(new ScilabString(Integer.toString(link
 		    .getPortNumber())));

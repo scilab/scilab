@@ -23,7 +23,7 @@
 #include "sciprint.h"
 #include "GetXmlFileEncoding.h"
 #include "scilabDefaults.h"
-#include "../../../fileio/includes/FileExist.h"
+#include "FileExist.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif

@@ -22,6 +22,10 @@ function d=projaff(x,y,pt)
 //
 //!
 
+if argn(2)<>3 then
+  error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "projaff", 3));
+end
+
 dx=x(2)-x(1);dy=y(2)-y(1)
 m=[dy -dx;dx dy]
 d=m\ [-x(2)*y(1)+x(1)*y(2);m(2,:)*[pt(1);pt(2)]]

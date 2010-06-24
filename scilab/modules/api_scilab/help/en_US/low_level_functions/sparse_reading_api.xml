@@ -106,6 +106,7 @@
                 <listitem>
                     <para>
                         Return address of real data array (size: _iCols * _iRows)
+                        For "Named" function, _pdblReal must be allocated before calling function.
                     </para>
                 </listitem>
             </varlistentry>
@@ -114,6 +115,7 @@
                 <listitem>
                     <para>
                         Return address of imaginary data array (size: _iCols * _iRows)
+                        For "Named" function, _pdblImg must be allocated before calling function.
                     </para>
                 </listitem>
             </varlistentry>

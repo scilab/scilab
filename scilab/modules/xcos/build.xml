@@ -36,17 +36,4 @@
       file="etc/palettes.xml" />
   </target>
 
-  <!-- Overload the test target dependencies -->
-  <target name="test" depends="compile-test, validate">
-    <taskdef name="testng" classpathref="unittest.classpath" classname="org.testng.TestNGAntTask" />
-    <testng verbose="2"  haltonfailure="true">
-	    <classpath>
-        <path refid="unittest.classpath" />
-        <path refid="compile.classpath" />
-        <pathelement location="${classes.test.dir}" />
-      </classpath>
-	    <classfileset dir="${build.test.dir}" includes="**/*.class"/>
-      <jvmarg value="-DdisableLoadJNIScilab=1"/>
-    </testng>
-  </target>
 </project>

@@ -98,7 +98,7 @@ eps = ones(x(ind))*number_properties("eps");
 clf()
 plot2d(x(ind),[er(ind) eps 2*eps],style=[1 2 3],logflag="ll",leg="er@eps_m@2 eps_m")
 xtitle("erro relativo aproximado na computação de beta(1,x)")
-xselect()
+show_window()
 
 // exemplo 3 : plotando a função beta 
 t = linspace(0.2,10,60);
@@ -107,7 +107,7 @@ Z = beta(X,Y);
 clf()
 plot3d(t, t, Z, flag=[2 4 4], leg="x@y@z", alpha=75, theta=30)
 xtitle("A função beta em [0.2,10]x[0.2,10]")
-xselect()
+show_window()
  ]]></programlisting>
   </refsection>
 

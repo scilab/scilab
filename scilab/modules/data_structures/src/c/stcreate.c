@@ -20,7 +20,6 @@
 #define memused(it,mn) ((((mn)*( it % 10))/sizeof(int))+1)
 
 /* Table of constant values */
-static int c17 = 17;
 static int c1 = 1;
 static int c4 = 4;
 
@@ -51,7 +50,7 @@ int C2F(stcreate)(int *lw, int *nz, int *sz, int *nf, char *fnames[], int *retva
     Err = sadr(il+6) + n1 - *Lstk(Bot);
     if (Err > 0)
 	{
-		Error(c17);
+		SciError(17);
 		return 1;
     }
     *istk(il) = 17;

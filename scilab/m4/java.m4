@@ -155,24 +155,30 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&AS_MESSAGE_LOG_FD ; eval $cmd >&AS_MESSAGE_LOG_FD 2>&AS_MESSAGE_LOG_FD) ; then
+    if (echo $cmd >&AS_MESSAGE_LOG_FD ; eval $cmd >&conftest.java.output 2>&AS_MESSAGE_LOG_FD) ; then
        if test "$3" = "no"; then
            echo "yes" >&AS_MESSAGE_LOG_FD
    		   $4
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&AS_MESSAGE_LOG_FD ; eval $cmd >&AS_MESSAGE_LOG_FD 2>&AS_MESSAGE_LOG_FD); then
+	   	   if (echo $cmd >&AS_MESSAGE_LOG_FD ; eval $cmd >&conftest.java.output 2>&AS_MESSAGE_LOG_FD); then
 	           echo "yes" >&AS_MESSAGE_LOG_FD
        		   $4
 			else
 		        echo "configure: failed program was:" >&AS_MESSAGE_LOG_FD
 				cat conftest.java >&AS_MESSAGE_LOG_FD
+                if test -s conftest.java.output; then
+                   STDOUT=`cat conftest.java.output`
+                fi
         		echo "configure: CLASSPATH was $CLASSPATH" >&AS_MESSAGE_LOG_FD
         		m4_ifval([$5],
         		[  $5
         		])dnl
 			fi
 		fi
+        if test -f conftest.java.output; then 
+           rm conftest.java.output
+        fi
     else
         echo "configure: failed program was:" >&AS_MESSAGE_LOG_FD
         cat conftest.java >&AS_MESSAGE_LOG_FD
@@ -813,7 +819,7 @@ AC_DEFUN([AC_JAVA_CHECK_PACKAGE], [
 	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/$1.jar" "$jardir/lib$1.jar" "$jardir/lib$1-java.jar" "$jardir/$1*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`

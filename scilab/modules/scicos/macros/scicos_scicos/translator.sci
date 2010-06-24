@@ -39,16 +39,18 @@ function [ok]=translator(filemo,Mblocks,_Modelica_libs,Flat)
   
   name = basename(filemo);
   namef = name + 'f';
-
+  
+  [modelica_libs,modelica_directory] = getModelicaPath();
+  
   molibs = [];
-  mlibsM = pathconvert(TMPDIR+'/Modelica/',%f,%t);
+  
   for k = 1:size(Mblocks,'r')
     funam = stripblanks(Mblocks(k));
     [dirF, nameF, extF] = fileparts(funam);
     if (extF == '.mo') then
       molibs = [molibs; """" + funam + """"];
     else
-      molibs = [molibs; """" + mlibsM + funam + '.mo' + """"]
+      molibs = [molibs; """" + modelica_directory + funam + '.mo' + """"]
     end
   end
 

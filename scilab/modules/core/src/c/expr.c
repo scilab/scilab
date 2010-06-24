@@ -17,6 +17,7 @@
 #include "stack-def.h"
 #include "stack-c.h"
 #include "Scierror.h"
+#include "do_error_number.h"
 #include "basout.h"
 /*--------------------------------------------------------------------------*/ 
 static int inc = 1;
@@ -86,8 +87,7 @@ int C2F(expr)(void)
 L1:
 	if (C2F(com).sym >= ou && C2F(com).sym <= great) 
 	{
-		int code_error = 40;
-		Error(code_error);
+		SciError(40);
 		return 0;
 	}
 L2:
@@ -207,8 +207,7 @@ L50:
 L60:
 	if (kount > 3) 
 	{
-		int code_error = 33;
-		Error(code_error);
+		SciError(33);
 		if (Err > 0) return 0;
 	}
 	Rhs = kount;

@@ -1,12 +1,18 @@
+;
 ; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-; Copyright (C) 2009 - DIGITEO - Allan CORNET
+; Copyright (C) DIGITEO - 2009 - Allan CORNET
+; Copyright (C) DIGITEO - 2010 - Pierre MARECHAL
+; Copyright (C) DIGITEO - 2010 - Allan CORNET
 ;
-; This file is distributed under the same license as the Scilab package.
+; This file must be used under the terms of the CeCILL.
+; This source file is licensed as described in the file COPYING, which
+; you should have received as part of this distribution.  The terms
+; are also available at
+; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 ;
-;##############################################################################################################
-; Script d'installation Inno Setup (5.2.1) pour scilab
-; Version TRUNK
-;##############################################################################################################
+;--------------------------------------------------------------------------------------------------------------
+; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
+;
 ;--------------------------------------------------------------------------------------------------------------
 ; atoms module
 ;--------------------------------------------------------------------------------------------------------------
@@ -21,6 +27,7 @@ Source: modules\{#ATOMS}\changelog.txt; DestDir: {app}\modules\{#ATOMS}; Compone
 Source: modules\{#ATOMS}\etc\{#ATOMS}.quit; DestDir: {app}\modules\{#ATOMS}\etc; Components: {#COMPN_ATOMS}
 Source: modules\{#ATOMS}\etc\{#ATOMS}.start; DestDir: {app}\modules\{#ATOMS}\etc; Components: {#COMPN_ATOMS}
 Source: modules\{#ATOMS}\etc\repositories; DestDir: {app}\modules\{#ATOMS}\etc; Components: {#COMPN_ATOMS}
+Source: modules\{#ATOMS}\images\icons\*.png; DestDir: {app}\modules\{#ATOMS}\images\icons; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#ATOMS}\macros\lib; DestDir: {app}\modules\{#ATOMS}\macros; Flags: recursesubdirs; Components: {#COMPN_ATOMS}
 Source: modules\{#ATOMS}\macros\names; DestDir: {app}\modules\{#ATOMS}\macros; Flags: recursesubdirs; Components: {#COMPN_ATOMS}
@@ -34,4 +41,4 @@ Source: modules\{#ATOMS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#ATOMS}
 ;
 Source: modules\{#ATOMS}\tests\*.*; DestDir: {app}\modules\{#ATOMS}\tests; Flags: recursesubdirs; Components: {#COMPN_ATOMS} and {#COMPN_TESTS}
 ;
-
+;--------------------------------------------------------------------------------------------------------------

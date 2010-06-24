@@ -1,9 +1,7 @@
-//
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA - Allan CORNET <allan.cornet@inria.fr>
 //
-// This file is distributed under the same license as the Scilab package.
-//
+// This file is released into the public domain
 
 mode(1)
 //Decode ole file, extract and open Excel stream

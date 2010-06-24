@@ -154,7 +154,7 @@ clf(); xset("hidden3d",xget("background"));
 colorbar(vmin,vmax)
 plot3d(XF, YF, list(ZF,color), flag=[-1 6 4])
 xtitle("interpolação por spline 3d da função "+func)
-xselect()
+show_window()
  ]]></programlisting>
   </refsection>
 

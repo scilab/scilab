@@ -93,6 +93,7 @@
                 <listitem>
                     <para>
                         Returns address of array ( size: _piRows * _piCols).
+                        For "Named" function, _pcData must be allocated before calling function.
                     </para>
                 </listitem>
             </varlistentry>

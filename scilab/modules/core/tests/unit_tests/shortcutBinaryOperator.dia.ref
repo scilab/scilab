@@ -1,0 +1,414 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Bruno JOFRET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// | and & operators are shortcuted within if test
+// this test will check this behaviour based on some
+// printed messages (and not on standard test_run/bugme process).
+function r = T()
+  disp("Call return [%T] ...");
+  r = %t;
+endfunction
+function r = F()
+  disp("Call return [%F] ...");
+  r = %f;
+endfunction
+function r = TT()
+    disp("Call return [%T %T] ...");
+  r = [%t %t];
+endfunction
+function r = TF()
+    disp("Call return [%T %F] ...");
+  r = [%t %f];
+endfunction
+function r = FF()
+    disp("Call return [%F %F] ...");
+  r = [%f %f];
+endfunction
+//
+// ** OR
+//
+// normal
+T() | F()
+ 
+ Call return [%T] ...   
+ 
+ Call return [%F] ...   
+ ans  =
+ 
+  T  
+T() | T()
+ 
+ Call return [%T] ...   
+ 
+ Call return [%T] ...   
+ ans  =
+ 
+  T  
+F() | T()
+ 
+ Call return [%F] ...   
+ 
+ Call return [%T] ...   
+ ans  =
+ 
+  T  
+F() | F()
+ 
+ Call return [%F] ...   
+ 
+ Call return [%F] ...   
+ ans  =
+ 
+  F  
+TT() | TT()
+ 
+ Call return [%T %T] ...   
+ 
+ Call return [%T %T] ...   
+ ans  =
+ 
+  T T  
+TT() | TF()
+ 
+ Call return [%T %T] ...   
+ 
+ Call return [%T %F] ...   
+ ans  =
+ 
+  T T  
+TT() | FF()
+ 
+ Call return [%T %T] ...   
+ 
+ Call return [%F %F] ...   
+ ans  =
+ 
+  T T  
+TF() | TT()
+ 
+ Call return [%T %F] ...   
+ 
+ Call return [%T %T] ...   
+ ans  =
+ 
+  T T  
+TF() | TF()
+ 
+ Call return [%T %F] ...   
+ 
+ Call return [%T %F] ...   
+ ans  =
+ 
+  T F  
+TF() | FF()
+ 
+ Call return [%T %F] ...   
+ 
+ Call return [%F %F] ...   
+ ans  =
+ 
+  T F  
+FF() | TT()
+ 
+ Call return [%F %F] ...   
+ 
+ Call return [%T %T] ...   
+ ans  =
+ 
+  T T  
+FF() | TF()
+ 
+ Call return [%F %F] ...   
+ 
+ Call return [%T %F] ...   
+ ans  =
+ 
+  T F  
+FF() | FF()
+ 
+ Call return [%F %F] ...   
+ 
+ Call return [%F %F] ...   
+ ans  =
+ 
+  F F  
+// Shortcuted.
+if T() | F() then disp("Success"); else disp("Failed"); end
+ 
+ Call return [%T] ...   
+ 
+ Success   
+if T() | T() then disp("Success"); else disp("Failed"); end
+ 
+ Call return [%T] ...   
+ 
+ Success   
+// Double evaluation.
+if F() | T() then disp("Success"); else disp("Failed"); end
+ 
+ Call return [%F] ...   
+ 
+ Call return [%T] ...   
+ 
+ Success   
+if F() | F() then disp("Failed"); else disp("Success"); end
+ 
+ Call return [%F] ...   
+ 
+ Call return [%F] ...   
+ 
+ Success   
+//Shortcuted.
+if TT() | TT() then disp("Success"); else disp("Failed"); end
+ 
+ Call return [%T %T] ...   
+ 
+ Success   
+if TT() | TF() then disp("Success"); else disp("Failed"); end
+ 
+ Call return [%T %T] ...   
+ 
+ Success   
+if TT() | FF() then disp("Success"); else disp("Failed"); end
+ 
+ Call return [%T %T] ...   
+ 
+ Success   
+// Double evaluation.
+if TF() | TT() then disp("Success"); else disp("Failed"); end
+ 
+ Call return [%T %F] ...   
+ 
+ Call return [%T %T] ...   
+ 
+ Success   
+if TF() | TF() then disp("Failed"); else disp("Success"); end
+ 
+ Call return [%T %F] ...   
+ 
+ Call return [%T %F] ...   
+ 
+ Success   
+if TF() | FF() then disp("Failed"); else disp("Success"); end
+ 
+ Call return [%T %F] ...   
+ 
+ Call return [%F %F] ...   
+ 
+ Success   
+if FF() | TT() then disp("Success"); else disp("Failed"); end
+ 
+ Call return [%F %F] ...   
+ 
+ Call return [%T %T] ...   
+ 
+ Success   
+if FF() | TF() then disp("Failed"); else disp("Success"); end
+ 
+ Call return [%F %F] ...   
+ 
+ Call return [%T %F] ...   
+ 
+ Success   
+if FF() | FF() then disp("Failed"); else disp("Success"); end
+ 
+ Call return [%F %F] ...   
+ 
+ Call return [%F %F] ...   
+ 
+ Success   
+//
+// ** AND
+//
+// normal
+T() & F()
+ 
+ Call return [%T] ...   
+ 
+ Call return [%F] ...   
+ ans  =
+ 
+  F  
+T() & T()
+ 
+ Call return [%T] ...   
+ 
+ Call return [%T] ...   
+ ans  =
+ 
+  T  
+F() & T()
+ 
+ Call return [%F] ...   
+ 
+ Call return [%T] ...   
+ ans  =
+ 
+  F  
+F() & F()
+ 
+ Call return [%F] ...   
+ 
+ Call return [%F] ...   
+ ans  =
+ 
+  F  
+TT() & TT()
+ 
+ Call return [%T %T] ...   
+ 
+ Call return [%T %T] ...   
+ ans  =
+ 
+  T T  
+TT() & TF()
+ 
+ Call return [%T %T] ...   
+ 
+ Call return [%T %F] ...   
+ ans  =
+ 
+  T F  
+TT() & FF()
+ 
+ Call return [%T %T] ...   
+ 
+ Call return [%F %F] ...   
+ ans  =
+ 
+  F F  
+TF() & TT()
+ 
+ Call return [%T %F] ...   
+ 
+ Call return [%T %T] ...   
+ ans  =
+ 
+  T F  
+TF() & TF()
+ 
+ Call return [%T %F] ...   
+ 
+ Call return [%T %F] ...   
+ ans  =
+ 
+  T F  
+TF() & FF()
+ 
+ Call return [%T %F] ...   
+ 
+ Call return [%F %F] ...   
+ ans  =
+ 
+  F F  
+FF() & TT()
+ 
+ Call return [%F %F] ...   
+ 
+ Call return [%T %T] ...   
+ ans  =
+ 
+  F F  
+FF() & TF()
+ 
+ Call return [%F %F] ...   
+ 
+ Call return [%T %F] ...   
+ ans  =
+ 
+  F F  
+FF() & FF()
+ 
+ Call return [%F %F] ...   
+ 
+ Call return [%F %F] ...   
+ ans  =
+ 
+  F F  
+// Shortcuted.
+if F() & T() then disp("Failed"); else disp("Success"); end
+ 
+ Call return [%F] ...   
+ 
+ Success   
+if F() & F() then disp("Failed"); else disp("Success"); end
+ 
+ Call return [%F] ...   
+ 
+ Success   
+// Double evaluation.
+if T() & F() then disp("Failed"); else disp("Success"); end
+ 
+ Call return [%T] ...   
+ 
+ Call return [%F] ...   
+ 
+ Success   
+if T() & T() then disp("Success"); else disp("Failed"); end
+ 
+ Call return [%T] ...   
+ 
+ Call return [%T] ...   
+ 
+ Success   
+// Shortcuted.
+if FF() & TT() then disp("Failed"); else disp("Success"); end
+ 
+ Call return [%F %F] ...   
+ 
+ Success   
+if FF() & TF() then disp("Failed"); else disp("Success"); end
+ 
+ Call return [%F %F] ...   
+ 
+ Success   
+if FF() & FF() then disp("Failed"); else disp("Success"); end
+ 
+ Call return [%F %F] ...   
+ 
+ Success   
+if TF() & TT() then disp("Failed"); else disp("Success"); end
+ 
+ Call return [%T %F] ...   
+ 
+ Success   
+if TF() & TF() then disp("Failed"); else disp("Success"); end
+ 
+ Call return [%T %F] ...   
+ 
+ Success   
+if TF() & FF() then disp("Failed"); else disp("Success"); end
+ 
+ Call return [%T %F] ...   
+ 
+ Success   
+// Double evaluation.
+if TT() & TT() then disp("Success"); else disp("Failed"); end
+ 
+ Call return [%T %T] ...   
+ 
+ Call return [%T %T] ...   
+ 
+ Success   
+if TT() & TF() then disp("Failed"); else disp("Success"); end
+ 
+ Call return [%T %T] ...   
+ 
+ Call return [%T %F] ...   
+ 
+ Success   
+if TT() & FF() then disp("Failed"); else disp("Success"); end
+ 
+ Call return [%T %T] ...   
+ 
+ Call return [%F %F] ...   
+ 
+ Success   
+clear T;
+clear F;
+clear TT;
+clear TF;
+clear FF;

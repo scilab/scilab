@@ -16,25 +16,6 @@
   </info>
   <refnamediv>
     <refname>VCtoLCCLib</refname>
-    <refpurpose>converts Ms VC libs to LCC-Win32 libs.</refpurpose>
+    <refpurpose>moved as toolbox in ATOMS</refpurpose>
   </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>VCtoLCCLib()</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Description</title>
-    <para>converts Ms VC libs to LCC-Win32 libs.</para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
-bOK=chooselcccompiler();
-VCtoLCCLib()
- ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Allan CORNET</para>
-  </refsection>
 </refentry>

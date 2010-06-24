@@ -18,7 +18,7 @@ if rhs==1 then k=0,end
   if m>1&n>1 then
     l=find(ij(:,1)==(ij(:,2)-k))
     if k<=0 then
-      mn=mini(m+k,n)
+      mn=min(m+k,n)
       i0=-k
     else
       mn=min(m,n-k)

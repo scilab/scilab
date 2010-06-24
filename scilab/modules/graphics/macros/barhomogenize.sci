@@ -16,6 +16,10 @@ function  barhomogenize(varargin)
 // style : a string, 'grouped' or 'stacked' (default: style='grouped')
 // width : a double, the bar width, it's the percentage (0<width<1) of the width max of one bar which is wanted (default: width=0.8).
 
+if and(size(varargin)<>[1:3]) then
+  error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "barhomogenize", 1, 3));
+end
+
 // Default values
 a=gca()
 STYLE="grouped"
@@ -24,10 +28,10 @@ varlist=varargin
 pos='v'
 
 if size(varargin)<>0 then
-if or(varlist($)==['h';'v']) then 
-  pos=varlist($)
-  varlist($)=null()
-end
+  if or(varlist($)==['h';'v']) then 
+    pos=varlist($)
+    varlist($)=null()
+  end
 end
 // detect and set the handle axes, the style and the width
 if size(varlist) == 1 

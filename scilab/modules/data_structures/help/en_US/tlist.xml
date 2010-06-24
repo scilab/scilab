@@ -61,8 +61,11 @@
       insertion
     : <literal>l(i)=a</literal></para>
     <para>
-     deletion
-    : <literal>l(i)=null()</literal> removes the i-th element of the <literal>tlist l</literal>.</para>
+     deletion : <literal>l(i)=null()</literal> removes the i-th
+     element of the <literal>tlist l</literal>. Note that the
+     semantics of <literal>l.x=null()</literal> is undefined, but a
+     definition can be given through the <link
+     linkend="overloading">overloading</link> mechanism.</para>
     <para>
      display</para>
     <para>
@@ -87,7 +90,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"><![CDATA[
 // tlist creation
 t = tlist(["listtype","field1","field2"], [], []);
 t.field1(1) = 10;
@@ -128,9 +131,6 @@ disp(t)
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member>
-        <link linkend="null">null</link>
-      </member>
       <member>
         <link linkend="percent">percent</link>
       </member>

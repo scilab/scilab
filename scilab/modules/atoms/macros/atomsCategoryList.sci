@@ -9,9 +9,9 @@
 
 // End user function
 
-// get the list of repositories
+// Display the list of categories
 
-function categories_mat = atomsCategoryList(section)
+function atomsCategoryList(section)
 
     // Load Atoms Internals lib if it's not already loaded
     // =========================================================================
@@ -57,29 +57,17 @@ function categories_mat = atomsCategoryList(section)
         section = "all";
     end
 
-    // Get the main categories structure
+    // Get the categories matrix
     // =========================================================================
 
-    [packages,categories_flat,categories] = atomsDESCRIPTIONget();
+    categories = atomsCategoryGet("filter:"+section);
 
-    categories_mat      = getfield(1,categories);
-    categories_mat(1:2) = [];
-    categories_mat      = gsort(categories_mat,"lc","i");
-    categories_mat      = categories_mat';
-
-    if section == "all" then
-
-        main_mat       = categories_mat;
-        categories_mat = [];
-
-        for i=1:size(main_mat,"*")
-            categories_mat = [ categories_mat ; main_mat(i) "" ];
-            sub_categories = gsort(categories(main_mat(i)),"lc","i");
-            if sub_categories <> [] then
-                categories_mat = [ categories_mat ; emptystr(size(sub_categories,"*"))+main_mat(i) sub_categories ];
-            end
+    for i=1:size(categories(:,1),"*")
+        if size(categories(i,:),"*")==1 | categories(i,2)=="" then
+            mprintf("%s\n",categories(i,1));
+        else
+            mprintf("%s - %s\n",categories(i,1),categories(i,2));
         end
-
     end
 
 endfunction

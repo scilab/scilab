@@ -7,7 +7,7 @@ c you should have received as part of this distribution.  The terms
 c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine followpath(indtop,listtop,ilindi,voli,ilp,voll,ind,
-     $     count,info,lwork)
+     $     count,info,lwork,job)
 c =============================================================
 c     given
 c     - a path stored in a "linear" index list ind stored in the
@@ -35,11 +35,19 @@ c         2 : current index is a matrix index of an mlist
 c         3 : current index is not a single number
 c         4 : current index points to a leaf of the  L list
 c         5 : end of index list reached
-c         6 : current index is 0 or greater than current sublist # of fields
+c         6 : current index is 0 or greater than current sublist # of
+c             fields
+c     job
+c     if job is true and end of index list is reached, the last index is
+c     a name and the parent of the deapest object is a tlist or an mlist
+c     the procedure returns the pointer and path of the parent instead
+c     of the object itself (null insertion).
+
 c =============================================================
 c
       include 'stack.h'
 c
+      logical job
       integer indtop,listtop,ind(*)
       integer typi,count,oldcount,voll,voli
 
@@ -63,16 +71,12 @@ c
       endif
 c
       illist=iadr(lstk(listtop))
-c      if(istk(illist).lt.0) illist=iadr(istk(illist+1))
-c
       if(istk(ilind).ne.15) then
 c     .  special case if ind is not a list
          nlist=1
          count=1
          ilindi=ilind
          ilindir=ilindi
-c        voli=lstk(itop+1)-lstk(itop)
-
          illistir=illist
          if(istk(illist).lt.0) illist=iadr(istk(illist+1))
          illisti=illist
@@ -80,6 +84,7 @@ c        voli=lstk(itop+1)-lstk(itop)
 
       endif
 
+c     nlist is the size of the path index list
       nlist=istk(ilind+1)
       ll=sadr(ilind+3+nlist)
 
@@ -132,9 +137,12 @@ c     .     first field may contain the fields names
             lfn=ilptr+nn
 c     .     look for corresponding index if any
             n=strpos(istk(ilptr),nn-1,istk(lfn),istk(ilname),nname)
-
             if(n.le.0) then
 c     .        no such name in the field names
+               info=1
+               goto 50
+            elseif(job.and.count.eq.nlist) then
+c     .        null assignment into a named sublist of an tlist or mlist
                info=1
                goto 50
             endif

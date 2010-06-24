@@ -132,7 +132,7 @@ static int sci_diary_no_rhs(char *fname)
 		}
 		else
 		{
-			Scierror(999,_("%s : Memory allocation error.\n"),fname);
+			Scierror(999,_("%s: Memory allocation error.\n"),fname);
 			return 0;
 		}
 	}
@@ -176,7 +176,7 @@ static int sci_diary_no_rhs(char *fname)
 			}
 			else
 			{
-				Scierror(999,_("%s : Memory allocation error.\n"),fname);
+				Scierror(999,_("%s: Memory allocation error.\n"),fname);
 				return 0;
 			}
 		}
@@ -622,12 +622,12 @@ static int sci_diary_three_rhs(char *fname)
 		}
 		else
 		{
-			Scierror(999,_("%s : Memory allocation error.\n"),fname);
+			Scierror(999,_("%s: Memory allocation error.\n"),fname);
 		}
 	}
 	else
 	{
-		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+		Scierror(999,_("%s: Memory allocation error.\n"),fname);
 	}
 	return 0;
 }
@@ -735,12 +735,12 @@ static wchar_t **getInputArgumentOneFilenames(char *fname,int *sizeReturnedArray
 			lenStVarOne = (int *)MALLOC(sizeof(int) * (m1 * n1));
 			if (lenStVarOne == NULL)
 			{
-				Scierror(999,_("%s : Memory allocation error.\n"),fname);
+				Scierror(999,_("%s: Memory allocation error.\n"),fname);
 				*ierror = 1;
 			}
 			else
 			{
-				sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, wcFilenames);
+				sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, NULL);
 				if(sciErr.iErr)
 				{
 					printError(&sciErr, 0);
@@ -750,7 +750,7 @@ static wchar_t **getInputArgumentOneFilenames(char *fname,int *sizeReturnedArray
 				wcFilenames = (wchar_t **)MALLOC(sizeof(wchar_t *) * (m1 * n1));
 				if (wcFilenames == NULL)
 				{
-					Scierror(999,_("%s : Memory allocation error.\n"),fname);
+					Scierror(999,_("%s: Memory allocation error.\n"),fname);
 					*ierror = 1;
 				}
 				else
@@ -760,7 +760,7 @@ static wchar_t **getInputArgumentOneFilenames(char *fname,int *sizeReturnedArray
 						wcFilenames[i] = (wchar_t*)MALLOC(sizeof(wchar_t)* (lenStVarOne[i] + 1));
 						if (wcFilenames[i] == NULL)
 						{
-							Scierror(999,_("%s : Memory allocation error.\n"),fname);
+							Scierror(999,_("%s: Memory allocation error.\n"),fname);
 							*ierror = 1;
 						}
 					}
@@ -832,7 +832,7 @@ static wchar_t *getInputArgumentTwo(char *fname, int *ierror)
 		else
 		{
 			// get length lenStVarTwo
-			sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo,&m2,&n2,&lenStVarTwo,&wcInputArgumentTwo);
+			sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo,&m2,&n2,&lenStVarTwo, NULL);
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
@@ -843,7 +843,7 @@ static wchar_t *getInputArgumentTwo(char *fname, int *ierror)
 
 			if (wcInputArgumentTwo == NULL)
 			{
-				Scierror(999,_("%s : Memory allocation error.\n"),fname);
+				Scierror(999,_("%s: Memory allocation error.\n"),fname);
 				*ierror = 1;
 			}
 
@@ -908,12 +908,12 @@ static wchar_t** getInputArgumentThree(char *fname,int *sizeReturnedArray, int *
 			lenStVarThree = (int *)MALLOC(sizeof(int) * (m3 * n3));
 			if (lenStVarThree == NULL)
 			{
-				Scierror(999,_("%s : Memory allocation error.\n"),fname);
+				Scierror(999,_("%s: Memory allocation error.\n"),fname);
 				*ierror = 1;
 			}
 			else
 			{
-				sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarThree, &m3, &n3, lenStVarThree, wcInputArgumentThree);
+				sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarThree, &m3, &n3, lenStVarThree, NULL);
 				if(sciErr.iErr)
 				{
 					printError(&sciErr, 0);
@@ -923,7 +923,7 @@ static wchar_t** getInputArgumentThree(char *fname,int *sizeReturnedArray, int *
 				wcInputArgumentThree = (wchar_t **)MALLOC(sizeof(wchar_t *) * (m3 * n3));
 				if (wcInputArgumentThree == NULL)
 				{
-					Scierror(999,_("%s : Memory allocation error.\n"),fname);
+					Scierror(999,_("%s: Memory allocation error.\n"),fname);
 					*ierror = 1;
 				}
 				else
@@ -1183,7 +1183,7 @@ static int ExistByFilenames(char *fname)
 	if (resultExist == NULL)
 	{
 		freeArrayOfWideString(wcFilenames,dIDs_size);
-		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+		Scierror(999,_("%s: Memory allocation error.\n"),fname);
 		return 0;
 	}
 	
@@ -1226,7 +1226,7 @@ static int ExistByIds(char *fname)
 	int *resultExist = (int*)MALLOC(sizeof(int)*dIDs_size);
 	if (resultExist == NULL)
 	{
-		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+		Scierror(999,_("%s: Memory allocation error.\n"),fname);
 		return 0;
 	}
 

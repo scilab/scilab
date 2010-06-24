@@ -1,0 +1,39 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Allan CORNET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- JVM NOT MANDATORY -->
+//
+// <-- Non-regression test for bug 6440 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=6440
+//
+// <-- Short Description -->
+// xcos demos did not work and returned an error "Unable to open file".
+//
+dataDirP1 = TMPDIR + '/世界您好';
+dataDirP2 = TMPDIR + '/世界您好/JOSÉDO~1/';
+dataFile = dataDirP2 + '/my_data.h5";
+mkdir(dataDirP1);
+mkdir(dataDirP2);
+if ~isdir(dataDirP2) then bugmes();quit;end
+A = [1 2 3];
+B = [4 5 6];
+data = [A B];
+c1 = pwd();
+ierr = execstr("export_to_hdf5(dataFile, ''data'');","errcatch");
+c2 = pwd();
+if ierr <> 0 then bugmes();quit;end
+if c1 <> c2 then bugmes();quit;end
+if ~isfile(dataFile) then bugmes();quit;end
+clear data;
+c3 = pwd();
+ierr = execstr("import_from_hdf5(dataFile);","errcatch");
+c4 = pwd();
+if ierr <> 0 then bugmes();quit;end
+if c3 <> c4 then bugmes();quit;end
+if ~and(data == [A B]) then bugmes();quit;end

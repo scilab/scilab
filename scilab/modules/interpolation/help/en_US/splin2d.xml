@@ -195,7 +195,7 @@ xtitle("natural")
 subplot(2,2,4)
 plot3d1(xp, yp, ZP4, flag=[2 2 4])
 xtitle("monotone")
-xselect()
+show_window()
 
 // example 3 : not_a_knot spline and monotone sub-spline
 //             on a step function

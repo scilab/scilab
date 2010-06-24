@@ -335,6 +335,13 @@
 	  <parameter type="int" name="objID"/>
 	  <parameter type="String[]" name="text"/>
 	</method>
+	<method name="setListBoxListBoxTop" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="int" name="index"/>
+	</method>
+	<method name="getListBoxListBoxTop" returnType="int" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
 <!-- PopupMenu setting -->
 	<method name="getPopupMenuAllItemsText" returnType="String[]" modifier="static">
 	  <parameter type="int" name="objID"/>

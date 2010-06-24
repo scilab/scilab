@@ -1,0 +1,17 @@
+LIBRARY    data_structures_f.dll
+
+
+EXPORTS
+; --------------------------------------- 
+; data_structures_f
+; --------------------------------------- 
+intlstsize_
+intlstcat_
+intsetfield_
+intgetfield_
+definedfields_
+rattyp_
+lsstyp_
+scilist_
+mtlist_
+gratyp_

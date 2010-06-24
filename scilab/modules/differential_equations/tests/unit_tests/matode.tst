@@ -35,35 +35,35 @@ yref=[0.9851721 0.9055180;0.0000339 0.0000224;0.0147940 0.0944596];
 //
 //  1. fortran called by fydot, without jacobian
 y1=ode(y0,t0,t1,'fex');
-if maxi(y1-yref) > Leps then pause,end
+if max(y1-yref) > Leps then pause,end
 //  2. fortran called by fydot, type given (stiff), no jacobian
 y2=ode('stiff',y0,t0,t1,'fex');
-if maxi(y2-yref) > Leps then pause,end
+if max(y2-yref) > Leps then pause,end
 //  3. fortran called by fydot , fjac, type given
 y3=ode('stiff',y0,t0,t1,'fex','jex');
-if maxi(y3-yref) > Leps then pause,end
+if max(y3-yref) > Leps then pause,end
 //   hot restart
 [z,w,iw]=ode('stiff',y0,0,0.4,'fex','jex');
 z=ode('stiff',z,0.4,4,'fex','jex',w,iw);
-if maxi(z-y3(:,2)) > %eps then pause,end
+if max(z-y3(:,2)) > %eps then pause,end
 
 [y1,w,iw]=ode(y0,t0,t1(1),'fex');
 y2=ode(y0,t1(1),t1(2:nt),'fex',w,iw);
-if maxi([y1 y2]-yref) > Leps then pause,end
+if max([y1 y2]-yref) > Leps then pause,end
 
 [y1,w,iw]=ode(y0,t0,t1(1),'fex','jex');
 y2=ode(y0,t1(1),t1(2:nt),'fex','jex',w,iw);
-if maxi([y1 y2]-yref) > Leps then pause,end
+if max([y1 y2]-yref) > Leps then pause,end
 
 //   variation of tolerances
 atol=[0.001,0.0001,0.001];rtol=atol;
 //    externals 
 //  4. type given , scilab lhs ,jacobian not passed
 y4=ode('stiff',y0,t0,t1(1),atol,rtol,f);
-if maxi(y4(:,1)-yref(:,1)) > 0.01 then pause,end
+if max(y4(:,1)-yref(:,1)) > 0.01 then pause,end
 //  5. type non given, rhs and scilab jacobian
 y5=ode(y0,t0,t1,f,j);
-if maxi(y5-yref) > Leps then pause,end
+if max(y5-yref) > Leps then pause,end
 //  6. type given (stiff),rhs and jacobian  by scilab
 y6=ode('stiff',y0,t0,t1,0.00001,0.00001,f,j);
 if (y6-yref) > 2*0.00001 then pause,end
@@ -72,7 +72,7 @@ if (y6-yref) > 2*0.00001 then pause,end
 a=rand(3,3);ea=expm(a);
 deff('[ydot]=f(t,y)','ydot=a*y')
 t1=1;y=ode('adams',eye(a),t0,t1,f);
-if maxi(ea-y) > Leps then pause,end
+if max(ea-y) > Leps then pause,end
 //
 //   DAE's
 //     dy1/dt = -.04*y1 + 1.e4*y2*y3

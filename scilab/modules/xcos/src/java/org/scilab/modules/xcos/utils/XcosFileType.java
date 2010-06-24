@@ -17,8 +17,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Arrays;
 
-import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
-import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
+import org.apache.commons.logging.LogFactory;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 
 /**
  * All the filetype recognized by Xcos.
@@ -140,10 +141,10 @@ public enum XcosFileType {
 		
 		/* Validate xml header */
 		if (retValue == XcosFileType.XCOS) {
-			byte[] xmlMagic = (new String("<?xml")).getBytes();
+			byte[] xmlMagic = "<?xml".getBytes();
 			byte[] readMagic = new byte[xmlMagic.length];
 
-			FileInputStream stream;
+			FileInputStream stream = null;
 			try {
 				stream = new FileInputStream(theFile);
 				int length;
@@ -154,6 +155,14 @@ public enum XcosFileType {
 				}
 			} catch (IOException e) {
 				retValue = XcosFileType.UNKNOW;
+			} finally {
+				if (stream != null) {
+					try {
+						stream.close();
+					} catch (IOException e) {
+						LogFactory.getLog(XcosFileType.class).error(e);
+					}
+				}
 			}
 		}
 		

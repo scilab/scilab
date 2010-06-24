@@ -9,6 +9,8 @@
 package org.scilab.modules.history_manager;
 
 
+/* It is generated code. Disable checkstyle */
+//CHECKSTYLE:OFF
  /** 
    * All Scilab history management used in Java console 
    * @author Vincent COUVERT

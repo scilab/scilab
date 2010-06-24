@@ -35,8 +35,8 @@ import javax.swing.JPanel;
 import javax.swing.ListSelectionModel;
 
 import org.apache.commons.logging.LogFactory;
-import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
-import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.xcos.actions.DebugLevelAction;
 import org.scilab.modules.xcos.actions.DebugLevelAction.DebugLevel;
 import org.scilab.modules.xcos.graph.ScicosParameters;

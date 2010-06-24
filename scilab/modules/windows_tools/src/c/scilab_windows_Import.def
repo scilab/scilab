@@ -12,3 +12,9 @@ EXPORTS
  CloseScilabConsole
  closeInnosetupMutex
  RestoreExitButton
+ ClosePipeInfo
+ pipeSpawnOut
+ pipeSpawnErr
+ CreateOuput
+ spawncommand
+ DetectDetachProcessInCommandLine

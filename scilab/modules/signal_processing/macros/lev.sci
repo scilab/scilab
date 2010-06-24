@@ -27,7 +27,7 @@ function [ar,sigma2,rc]=lev(r)
 
 //get the size of the correlation vector
  
-   rsize=maxi(size(r));
+   rsize=max(size(r));
    r=matrix(r,1,rsize);
  
 //initialize levinson's algorithm

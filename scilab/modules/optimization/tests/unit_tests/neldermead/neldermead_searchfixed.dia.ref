@@ -6,6 +6,7 @@
 // you should have received as part of this distribution.  The terms
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// <-- JVM NOT MANDATORY -->
 //
 // assert_close --
 //   Returns 1 if the two real matrices computed and expected are close,
@@ -38,6 +39,615 @@ nm = neldermead_configure(nm,"-simplex0length",0.5);
 nm = neldermead_configure(nm,"-method","fixed");
 nm = neldermead_configure(nm,"-function",squarefun);
 nm = neldermead_search(nm);
+xopt = neldermead_get(nm,"-xopt");
+assert_close ( xopt , [0.0;0.0], 1e-6 );
+fopt = neldermead_get(nm,"-fopt");
+assert_close ( fopt , 0.0, 1e-6 );
+nm = neldermead_destroy(nm);
+//
+// Interrupt the algorithm when done.
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+nm = neldermead_configure(nm,"-x0",[1.0 1.0]');
+nm = neldermead_configure(nm,"-method","fixed");
+nm = neldermead_configure(nm,"-function",squarefun);
+nm = neldermead_configure(nm,"-verbose",1);
+// Set the relative size to zero: it should never stop...
+nm = neldermead_configure(nm,"-tolsimplexizerelative",0.0);
+nm = neldermead_search(nm);
+Function Evaluation #1 at [1 1]
+Function Evaluation #2 at [1 1]
+Function Evaluation #3 at [1 1]
+Function Evaluation #4 at [2 1]
+Function Evaluation #5 at [1 2]
+Sort
+=================================================================
+Iteration #1 (total = 1)
+Function Eval #5
+Xopt : 1 1
+Fopt : 2.000000e+000
+DeltaFv : 3.000000e+000
+Center : 1.3333333 1.3333333
+Size : 1.000000e+000
+ATTENTION : optimsimplex_tostring: obsolete use of optimsimplex_tostring, use string instead.
+Optim Simplex Object:
+=====================
+Vertex #1/3 : fv=2.000000e+000, x=1.000000e+000 1.000000e+000
+Reflect
+xbar=1.5 1
+Function Evaluation #6 at [2 0]
+xr=2 0, f(xr)=4.000000
+  > Perform reflect
+=================================================================
+Iteration #2 (total = 2)
+Function Eval #6
+Xopt : 1 1
+Fopt : 2.000000e+000
+DeltaFv : 3.000000e+000
+Center : 1.6666667 0.6666667
+Size : 1.414214e+000
+ATTENTION : optimsimplex_tostring: obsolete use of optimsimplex_tostring, use string instead.
+Optim Simplex Object:
+=====================
+Vertex #1/3 : fv=2.000000e+000, x=1.000000e+000 1.000000e+000
+Reflect
+xbar=1.5 0.5
+Function Evaluation #7 at [1 0]
+xr=1 0, f(xr)=1.000000
+  > Perform reflect
+=================================================================
+Iteration #3 (total = 3)
+Function Eval #7
+Xopt : 1 0
+Fopt : 1.000000e+000
+DeltaFv : 3.000000e+000
+Center : 1.3333333 0.3333333
+Size : 1.000000e+000
+ATTENTION : optimsimplex_tostring: obsolete use of optimsimplex_tostring, use string instead.
+Optim Simplex Object:
+=====================
+Vertex #1/3 : fv=1.000000e+000, x=1.000000e+000 0.000000e+000
+Reflect
+xbar=1 0.5
+Function Evaluation #8 at [0 1]
+xr=0 1, f(xr)=1.000000
+  > Perform reflect
+=================================================================
+Iteration #4 (total = 4)
+Function Eval #8
+Xopt : 1 0
+Fopt : 1.000000e+000
+DeltaFv : 1.000000e+000
+Center : 0.6666667 0.6666667
+Size : 1.414214e+000
+ATTENTION : optimsimplex_tostring: obsolete use of optimsimplex_tostring, use string instead.
+Optim Simplex Object:
+=====================
+Vertex #1/3 : fv=1.000000e+000, x=1.000000e+000 0.000000e+000
+Reflect
+xbar=0.5 0.5
+Function Evaluation #9 at [0 0]
+xr=0 0, f(xr)=0.000000
+  > Perform reflect
+=================================================================
+Iteration #5 (total = 5)
+Function Eval #9
+Xopt : 0 0
+Fopt : 0.000000e+000
+DeltaFv : 1.000000e+000
+Center : 0.3333333 0.3333333
+Size : 1.000000e+000
+ATTENTION : optimsimplex_tostring: obsolete use of optimsimplex_tostring, use string instead.
+Optim Simplex Object:
+=====================
+Vertex #1/3 : fv=0.000000e+000, x=0.000000e+000 0.000000e+000
+Reflect
+xbar=0.5 0
+Function Evaluation #10 at [1 -1]
+xr=1 -1, f(xr)=2.000000
+xbar2=0 0.5
+Function Evaluation #11 at [-1 1]
+xr2=-1 1, f(xr2)=2.000000
+  > Perform Shrink
+Function Evaluation #12 at [0.5 0]
+Function Evaluation #13 at [0 0.5]
+=================================================================
+Iteration #6 (total = 6)
+Function Eval #13
+Xopt : 0 0
+Fopt : 0.000000e+000
+DeltaFv : 2.500000e-001
+Center : 0.1666667 0.1666667
+Size : 5.000000e-001
+ATTENTION : optimsimplex_tostring: obsolete use of optimsimplex_tostring, use string instead.
+Optim Simplex Object:
+=====================
+Vertex #1/3 : fv=0.000000e+000, x=0.000000e+000 0.000000e+000
+Reflect
+xbar=0.25 0
+Function Evaluation #14 at [0.5 -0.5]
+xr=0.5 -0.5, f(xr)=0.500000
+xbar2=0 0.25
+Function Evaluation #15 at [-0.5 0.5]
+xr2=-0.5 0.5, f(xr2)=0.500000
+  > Perform Shrink
+Function Evaluation #16 at [0.25 0]
+Function Evaluation #17 at [0 0.25]
+=================================================================
+Iteration #7 (total = 7)
+Function Eval #17
+Xopt : 0 0
+Fopt : 0.000000e+000
+DeltaFv : 6.250000e-002
+Center : 0.0833333 0.0833333
+Size : 2.500000e-001
+ATTENTION : optimsimplex_tostring: obsolete use of optimsimplex_tostring, use string instead.
+Optim Simplex Object:
+=====================
+Vertex #1/3 : fv=0.000000e+000, x=0.000000e+000 0.000000e+000
+Reflect
+xbar=0.125 0
+Function Evaluation #18 at [0.25 -0.25]
+xr=0.25 -0.25, f(xr)=0.125000
+xbar2=0 0.125
+Function Evaluation #19 at [-0.25 0.25]
+xr2=-0.25 0.25, f(xr2)=0.125000
+  > Perform Shrink
+Function Evaluation #20 at [0.125 0]
+Function Evaluation #21 at [0 0.125]
+=================================================================
+Iteration #8 (total = 8)
+Function Eval #21
+Xopt : 0 0
+Fopt : 0.000000e+000
+DeltaFv : 1.562500e-002
+Center : 0.0416667 0.0416667
+Size : 1.250000e-001
+ATTENTION : optimsimplex_tostring: obsolete use of optimsimplex_tostring, use string instead.
+Optim Simplex Object:
+=====================
+Vertex #1/3 : fv=0.000000e+000, x=0.000000e+000 0.000000e+000
+Reflect
+xbar=0.0625 0
+Function Evaluation #22 at [0.125 -0.125]
+xr=0.125 -0.125, f(xr)=0.031250
+xbar2=0 0.0625
+Function Evaluation #23 at [-0.125 0.125]
+xr2=-0.125 0.125, f(xr2)=0.031250
+  > Perform Shrink
+Function Evaluation #24 at [0.0625 0]
+Function Evaluation #25 at [0 0.0625]
+=================================================================
+Iteration #9 (total = 9)
+Function Eval #25
+Xopt : 0 0
+Fopt : 0.000000e+000
+DeltaFv : 3.906250e-003
+Center : 0.0208333 0.0208333
+Size : 6.250000e-002
+ATTENTION : optimsimplex_tostring: obsolete use of optimsimplex_tostring, use string instead.
+Optim Simplex Object:
+=====================
+Vertex #1/3 : fv=0.000000e+000, x=0.000000e+000 0.000000e+000
+Reflect
+xbar=0.03125 0
+Function Evaluation #26 at [0.0625 -0.0625]
+xr=0.0625 -0.0625, f(xr)=0.007813
+xbar2=0 0.03125
+Function Evaluation #27 at [-0.0625 0.0625]
+xr2=-0.0625 0.0625, f(xr2)=0.007813
+  > Perform Shrink
+Function Evaluation #28 at [0.03125 0]
+Function Evaluation #29 at [0 0.03125]
+=================================================================
+Iteration #10 (total = 10)
+Function Eval #29
+Xopt : 0 0
+Fopt : 0.000000e+000
+DeltaFv : 9.765625e-004
+Center : 0.0104167 0.0104167
+Size : 3.125000e-002
+ATTENTION : optimsimplex_tostring: obsolete use of optimsimplex_tostring, use string instead.
+Optim Simplex Object:
+=====================
+Vertex #1/3 : fv=0.000000e+000, x=0.000000e+000 0.000000e+000
+Reflect
+xbar=0.015625 0
+Function Evaluation #30 at [0.03125 -0.03125]
+xr=0.03125 -0.03125, f(xr)=0.001953
+xbar2=0 0.015625
+Function Evaluation #31 at [-0.03125 0.03125]
+xr2=-0.03125 0.03125, f(xr2)=0.001953
+  > Perform Shrink
+Function Evaluation #32 at [0.015625 0]
+Function Evaluation #33 at [0 0.015625]
+=================================================================
+Iteration #11 (total = 11)
+Function Eval #33
+Xopt : 0 0
+Fopt : 0.000000e+000
+DeltaFv : 2.441406e-004
+Center : 0.0052083 0.0052083
+Size : 1.562500e-002
+ATTENTION : optimsimplex_tostring: obsolete use of optimsimplex_tostring, use string instead.
+Optim Simplex Object:
+=====================
+Vertex #1/3 : fv=0.000000e+000, x=0.000000e+000 0.000000e+000
+Reflect
+xbar=0.0078125 0
+Function Evaluation #34 at [0.015625 -0.015625]
+xr=0.015625 -0.015625, f(xr)=0.000488
+xbar2=0 0.0078125
+Function Evaluation #35 at [-0.015625 0.015625]
+xr2=-0.015625 0.015625, f(xr2)=0.000488
+  > Perform Shrink
+Function Evaluation #36 at [0.0078125 0]
+Function Evaluation #37 at [0 0.0078125]
+=================================================================
+Iteration #12 (total = 12)
+Function Eval #37
+Xopt : 0 0
+Fopt : 0.000000e+000
+DeltaFv : 6.103516e-005
+Center : 0.0026042 0.0026042
+Size : 7.812500e-003
+ATTENTION : optimsimplex_tostring: obsolete use of optimsimplex_tostring, use string instead.
+Optim Simplex Object:
+=====================
+Vertex #1/3 : fv=0.000000e+000, x=0.000000e+000 0.000000e+000
+Reflect
+xbar=0.0039063 0
+Function Evaluation #38 at [0.0078125 -0.0078125]
+xr=0.0078125 -0.0078125, f(xr)=0.000122
+xbar2=0 0.0039063
+Function Evaluation #39 at [-0.0078125 0.0078125]
+xr2=-0.0078125 0.0078125, f(xr2)=0.000122
+  > Perform Shrink
+Function Evaluation #40 at [0.0039063 0]
+Function Evaluation #41 at [0 0.0039063]
+=================================================================
+Iteration #13 (total = 13)
+Function Eval #41
+Xopt : 0 0
+Fopt : 0.000000e+000
+DeltaFv : 1.525879e-005
+Center : 0.0013021 0.0013021
+Size : 3.906250e-003
+ATTENTION : optimsimplex_tostring: obsolete use of optimsimplex_tostring, use string instead.
+Optim Simplex Object:
+=====================
+Vertex #1/3 : fv=0.000000e+000, x=0.000000e+000 0.000000e+000
+Reflect
+xbar=0.0019531 0
+Function Evaluation #42 at [0.0039063 -0.0039063]
+xr=0.0039063 -0.0039063, f(xr)=0.000031
+xbar2=0 0.0019531
+Function Evaluation #43 at [-0.0039063 0.0039063]
+xr2=-0.0039063 0.0039063, f(xr2)=0.000031
+  > Perform Shrink
+Function Evaluation #44 at [0.0019531 0]
+Function Evaluation #45 at [0 0.0019531]
+=================================================================
+Iteration #14 (total = 14)
+Function Eval #45
+Xopt : 0 0
+Fopt : 0.000000e+000
+DeltaFv : 3.814697e-006
+Center : 0.0006510 0.0006510
+Size : 1.953125e-003
+ATTENTION : optimsimplex_tostring: obsolete use of optimsimplex_tostring, use string instead.
+Optim Simplex Object:
+=====================
+Vertex #1/3 : fv=0.000000e+000, x=0.000000e+000 0.000000e+000
+Reflect
+xbar=0.0009766 0
+Function Evaluation #46 at [0.0019531 -0.0019531]
+xr=0.0019531 -0.0019531, f(xr)=0.000008
+xbar2=0 0.0009766
+Function Evaluation #47 at [-0.0019531 0.0019531]
+xr2=-0.0019531 0.0019531, f(xr2)=0.000008
+  > Perform Shrink
+Function Evaluation #48 at [0.0009766 0]
+Function Evaluation #49 at [0 0.0009766]
+=================================================================
+Iteration #15 (total = 15)
+Function Eval #49
+Xopt : 0 0
+Fopt : 0.000000e+000
+DeltaFv : 9.536743e-007
+Center : 0.0003255 0.0003255
+Size : 9.765625e-004
+ATTENTION : optimsimplex_tostring: obsolete use of optimsimplex_tostring, use string instead.
+Optim Simplex Object:
+=====================
+Vertex #1/3 : fv=0.000000e+000, x=0.000000e+000 0.000000e+000
+Reflect
+xbar=0.0004883 0
+Function Evaluation #50 at [0.0009766 -0.0009766]
+xr=0.0009766 -0.0009766, f(xr)=0.000002
+xbar2=0 0.0004883
+Function Evaluation #51 at [-0.0009766 0.0009766]
+xr2=-0.0009766 0.0009766, f(xr2)=0.000002
+  > Perform Shrink
+Function Evaluation #52 at [0.0004883 0]
+Function Evaluation #53 at [0 0.0004883]
+=================================================================
+Iteration #16 (total = 16)
+Function Eval #53
+Xopt : 0 0
+Fopt : 0.000000e+000
+DeltaFv : 2.384186e-007
+Center : 0.0001628 0.0001628
+Size : 4.882813e-004
+ATTENTION : optimsimplex_tostring: obsolete use of optimsimplex_tostring, use string instead.
+Optim Simplex Object:
+=====================
+Vertex #1/3 : fv=0.000000e+000, x=0.000000e+000 0.000000e+000
+Reflect
+xbar=0.0002441 0
+Function Evaluation #54 at [0.0004883 -0.0004883]
+xr=0.0004883 -0.0004883, f(xr)=0.000000
+xbar2=0 0.0002441
+Function Evaluation #55 at [-0.0004883 0.0004883]
+xr2=-0.0004883 0.0004883, f(xr2)=0.000000
+  > Perform Shrink
+Function Evaluation #56 at [0.0002441 0]
+Function Evaluation #57 at [0 0.0002441]
+=================================================================
+Iteration #17 (total = 17)
+Function Eval #57
+Xopt : 0 0
+Fopt : 0.000000e+000
+DeltaFv : 5.960464e-008
+Center : 0.0000814 0.0000814
+Size : 2.441406e-004
+ATTENTION : optimsimplex_tostring: obsolete use of optimsimplex_tostring, use string instead.
+Optim Simplex Object:
+=====================
+Vertex #1/3 : fv=0.000000e+000, x=0.000000e+000 0.000000e+000
+Reflect
+xbar=0.0001221 0
+Function Evaluation #58 at [0.0002441 -0.0002441]
+xr=0.0002441 -0.0002441, f(xr)=0.000000
+xbar2=0 0.0001221
+Function Evaluation #59 at [-0.0002441 0.0002441]
+xr2=-0.0002441 0.0002441, f(xr2)=0.000000
+  > Perform Shrink
+Function Evaluation #60 at [0.0001221 0]
+Function Evaluation #61 at [0 0.0001221]
+=================================================================
+Iteration #18 (total = 18)
+Function Eval #61
+Xopt : 0 0
+Fopt : 0.000000e+000
+DeltaFv : 1.490116e-008
+Center : 0.0000407 0.0000407
+Size : 1.220703e-004
+ATTENTION : optimsimplex_tostring: obsolete use of optimsimplex_tostring, use string instead.
+Optim Simplex Object:
+=====================
+Vertex #1/3 : fv=0.000000e+000, x=0.000000e+000 0.000000e+000
+Reflect
+xbar=0.0000610 0
+Function Evaluation #62 at [0.0001221 -0.0001221]
+xr=0.0001221 -0.0001221, f(xr)=0.000000
+xbar2=0 0.0000610
+Function Evaluation #63 at [-0.0001221 0.0001221]
+xr2=-0.0001221 0.0001221, f(xr2)=0.000000
+  > Perform Shrink
+Function Evaluation #64 at [0.0000610 0]
+Function Evaluation #65 at [0 0.0000610]
+=================================================================
+Iteration #19 (total = 19)
+Function Eval #65
+Xopt : 0 0
+Fopt : 0.000000e+000
+DeltaFv : 3.725290e-009
+Center : 0.0000203 0.0000203
+Size : 6.103516e-005
+ATTENTION : optimsimplex_tostring: obsolete use of optimsimplex_tostring, use string instead.
+Optim Simplex Object:
+=====================
+Vertex #1/3 : fv=0.000000e+000, x=0.000000e+000 0.000000e+000
+Reflect
+xbar=0.0000305 0
+Function Evaluation #66 at [0.0000610 -0.0000610]
+xr=0.0000610 -0.0000610, f(xr)=0.000000
+xbar2=0 0.0000305
+Function Evaluation #67 at [-0.0000610 0.0000610]
+xr2=-0.0000610 0.0000610, f(xr2)=0.000000
+  > Perform Shrink
+Function Evaluation #68 at [0.0000305 0]
+Function Evaluation #69 at [0 0.0000305]
+=================================================================
+Iteration #20 (total = 20)
+Function Eval #69
+Xopt : 0 0
+Fopt : 0.000000e+000
+DeltaFv : 9.313226e-010
+Center : 0.0000102 0.0000102
+Size : 3.051758e-005
+ATTENTION : optimsimplex_tostring: obsolete use of optimsimplex_tostring, use string instead.
+Optim Simplex Object:
+=====================
+Vertex #1/3 : fv=0.000000e+000, x=0.000000e+000 0.000000e+000
+Reflect
+xbar=0.0000153 0
+Function Evaluation #70 at [0.0000305 -0.0000305]
+xr=0.0000305 -0.0000305, f(xr)=0.000000
+xbar2=0 0.0000153
+Function Evaluation #71 at [-0.0000305 0.0000305]
+xr2=-0.0000305 0.0000305, f(xr2)=0.000000
+  > Perform Shrink
+Function Evaluation #72 at [0.0000153 0]
+Function Evaluation #73 at [0 0.0000153]
+=================================================================
+Iteration #21 (total = 21)
+Function Eval #73
+Xopt : 0 0
+Fopt : 0.000000e+000
+DeltaFv : 2.328306e-010
+Center : 0.0000051 0.0000051
+Size : 1.525879e-005
+ATTENTION : optimsimplex_tostring: obsolete use of optimsimplex_tostring, use string instead.
+Optim Simplex Object:
+=====================
+Vertex #1/3 : fv=0.000000e+000, x=0.000000e+000 0.000000e+000
+Reflect
+xbar=0.0000076 0
+Function Evaluation #74 at [0.0000153 -0.0000153]
+xr=0.0000153 -0.0000153, f(xr)=0.000000
+xbar2=0 0.0000076
+Function Evaluation #75 at [-0.0000153 0.0000153]
+xr2=-0.0000153 0.0000153, f(xr2)=0.000000
+  > Perform Shrink
+Function Evaluation #76 at [0.0000076 0]
+Function Evaluation #77 at [0 0.0000076]
+=================================================================
+Iteration #22 (total = 22)
+Function Eval #77
+Xopt : 0 0
+Fopt : 0.000000e+000
+DeltaFv : 5.820766e-011
+Center : 0.0000025 0.0000025
+Size : 7.629395e-006
+ATTENTION : optimsimplex_tostring: obsolete use of optimsimplex_tostring, use string instead.
+Optim Simplex Object:
+=====================
+Vertex #1/3 : fv=0.000000e+000, x=0.000000e+000 0.000000e+000
+Reflect
+xbar=0.0000038 0
+Function Evaluation #78 at [0.0000076 -0.0000076]
+xr=0.0000076 -0.0000076, f(xr)=0.000000
+xbar2=0 0.0000038
+Function Evaluation #79 at [-0.0000076 0.0000076]
+xr2=-0.0000076 0.0000076, f(xr2)=0.000000
+  > Perform Shrink
+Function Evaluation #80 at [0.0000038 0]
+Function Evaluation #81 at [0 0.0000038]
+=================================================================
+Iteration #23 (total = 23)
+Function Eval #81
+Xopt : 0 0
+Fopt : 0.000000e+000
+DeltaFv : 1.455192e-011
+Center : 0.0000013 0.0000013
+Size : 3.814697e-006
+ATTENTION : optimsimplex_tostring: obsolete use of optimsimplex_tostring, use string instead.
+Optim Simplex Object:
+=====================
+Vertex #1/3 : fv=0.000000e+000, x=0.000000e+000 0.000000e+000
+Reflect
+xbar=0.0000019 0
+Function Evaluation #82 at [0.0000038 -0.0000038]
+xr=0.0000038 -0.0000038, f(xr)=0.000000
+xbar2=0 0.0000019
+Function Evaluation #83 at [-0.0000038 0.0000038]
+xr2=-0.0000038 0.0000038, f(xr2)=0.000000
+  > Perform Shrink
+Function Evaluation #84 at [0.0000019 0]
+Function Evaluation #85 at [0 0.0000019]
+=================================================================
+Iteration #24 (total = 24)
+Function Eval #85
+Xopt : 0 0
+Fopt : 0.000000e+000
+DeltaFv : 3.637979e-012
+Center : 0.0000006 0.0000006
+Size : 1.907349e-006
+ATTENTION : optimsimplex_tostring: obsolete use of optimsimplex_tostring, use string instead.
+Optim Simplex Object:
+=====================
+Vertex #1/3 : fv=0.000000e+000, x=0.000000e+000 0.000000e+000
+Reflect
+xbar=0.0000010 0
+Function Evaluation #86 at [0.0000019 -0.0000019]
+xr=0.0000019 -0.0000019, f(xr)=0.000000
+xbar2=0 0.0000010
+Function Evaluation #87 at [-0.0000019 0.0000019]
+xr2=-0.0000019 0.0000019, f(xr2)=0.000000
+  > Perform Shrink
+Function Evaluation #88 at [0.0000010 0]
+Function Evaluation #89 at [0 0.0000010]
+=================================================================
+Iteration #25 (total = 25)
+Function Eval #89
+Xopt : 0 0
+Fopt : 0.000000e+000
+DeltaFv : 9.094947e-013
+Center : 0.0000003 0.0000003
+Size : 9.536743e-007
+ATTENTION : optimsimplex_tostring: obsolete use of optimsimplex_tostring, use string instead.
+Optim Simplex Object:
+=====================
+Vertex #1/3 : fv=0.000000e+000, x=0.000000e+000 0.000000e+000
+Reflect
+xbar=0.0000005 0
+Function Evaluation #90 at [0.0000010 -0.0000010]
+xr=0.0000010 -0.0000010, f(xr)=0.000000
+xbar2=0 0.0000005
+Function Evaluation #91 at [-0.0000010 0.0000010]
+xr2=-0.0000010 0.0000010, f(xr2)=0.000000
+  > Perform Shrink
+Function Evaluation #92 at [0.0000005 0]
+Function Evaluation #93 at [0 0.0000005]
+=================================================================
+Iteration #26 (total = 26)
+Function Eval #93
+Xopt : 0 0
+Fopt : 0.000000e+000
+DeltaFv : 2.273737e-013
+Center : 0.0000002 0.0000002
+Size : 4.768372e-007
+ATTENTION : optimsimplex_tostring: obsolete use of optimsimplex_tostring, use string instead.
+Optim Simplex Object:
+=====================
+Vertex #1/3 : fv=0.000000e+000, x=0.000000e+000 0.000000e+000
+Reflect
+xbar=0.0000002 0
+Function Evaluation #94 at [0.0000005 -0.0000005]
+xr=0.0000005 -0.0000005, f(xr)=0.000000
+xbar2=0 0.0000002
+Function Evaluation #95 at [-0.0000005 0.0000005]
+xr2=-0.0000005 0.0000005, f(xr2)=0.000000
+  > Perform Shrink
+Function Evaluation #96 at [0.0000002 0]
+Function Evaluation #97 at [0 0.0000002]
+=================================================================
+Iteration #27 (total = 27)
+Function Eval #97
+Xopt : 0 0
+Fopt : 0.000000e+000
+DeltaFv : 5.684342e-014
+Center : 7.947D-08 7.947D-08
+Size : 2.384186e-007
+ATTENTION : optimsimplex_tostring: obsolete use of optimsimplex_tostring, use string instead.
+Optim Simplex Object:
+=====================
+Vertex #1/3 : fv=0.000000e+000, x=0.000000e+000 0.000000e+000
+Reflect
+xbar=0.0000001 0
+Function Evaluation #98 at [0.0000002 -0.0000002]
+xr=0.0000002 -0.0000002, f(xr)=0.000000
+xbar2=0 0.0000001
+Function Evaluation #99 at [-0.0000002 0.0000002]
+xr2=-0.0000002 0.0000002, f(xr2)=0.000000
+  > Perform Shrink
+Function Evaluation #100 at [0.0000001 0]
+Function Evaluation #101 at [0 0.0000001]
+=================================================================
+Iteration #28 (total = 28)
+Function Eval #101
+Xopt : 0 0
+Fopt : 0.000000e+000
+DeltaFv : 1.421085e-014
+Center : 3.974D-08 3.974D-08
+Size : 1.192093e-007
+ATTENTION : optimsimplex_tostring: obsolete use of optimsimplex_tostring, use string instead.
+Optim Simplex Object:
+=====================
+Vertex #1/3 : fv=0.000000e+000, x=0.000000e+000 0.000000e+000
+Terminate with status : maxfuneval
 xopt = neldermead_get(nm,"-xopt");
 assert_close ( xopt , [0.0;0.0], 1e-6 );
 fopt = neldermead_get(nm,"-fopt");

@@ -159,6 +159,12 @@
     complexe. Seule l'option <literal>'g'</literal> est accessible avec des
     nombres complexes.</para>
 
+    <para>Pour les nombres complexes, <literal>gsort</literal> peut être
+    surchargé. </para>
+
+    <para>voir la macro:
+    SCI/modules/elementary_functions/macros/%_gsort.sci</para>
+
     <para>Si <literal>A</literal> contient des <literal>%nan</literal> ou des
     <literal>%inf</literal> ceux ci seront placés en début avec l'argument
     <literal>'i'</literal> ou à la fin avec l'argument
@@ -201,6 +207,11 @@ gsort(A,'lc','i')
     <simplelist type="inline">
       <member><link linkend="find">find</link></member>
     </simplelist>
+    
+    <simplelist type="inline">
+      <member><link linkend="overloading">overloading</link></member>
+    </simplelist>
+    
   </refsection>
 
   <refsection>

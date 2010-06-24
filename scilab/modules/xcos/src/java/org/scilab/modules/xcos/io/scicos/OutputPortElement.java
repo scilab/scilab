@@ -54,6 +54,7 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 	private final ScilabMList model;
 	
 	private int alreadyDecodedCount;
+	private boolean allColumnsAreZeros = true;
 	
 	/**
 	 * Default constructor
@@ -119,7 +120,15 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 		if (isEmptyField(outImpl)) {
 			return new ExplicitOutputPort();
 		}
+		
 		final ScilabString outImplicit = (ScilabString) outImpl;
+		
+		/*
+		 * backward compatibility, use explicit as default.
+		 */
+		if (isEmptyField(outImplicit)) {
+			return new ExplicitOutputPort();
+		}
 				
 		final boolean isColumnDominant = outImplicit.getHeight() >= outImplicit.getWidth();
 		final int[] indexes = getIndexes(alreadyDecodedCount, isColumnDominant);
@@ -146,14 +155,29 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 		ScilabDouble dataColumns = (ScilabDouble) model.get(MODEL_OUT_DATACOL_INDEX);
 		ScilabDouble dataType = (ScilabDouble) model.get(MODEL_OUT_DATATYPE_INDEX);
 
+		// The number of row of the port
+		int nbLines;
 		if (dataLines.getRealPart() != null) {
-			int nbLines = (int) dataLines.getRealPart()[alreadyDecodedCount][0];
-			port.setDataLines(nbLines);
+			nbLines = (int) dataLines.getRealPart()[alreadyDecodedCount][0];
+		} else {
+			nbLines = 1;
 		}
+		port.setDataLines(nbLines);
+		
+		// The number of column of the port
+		int nbColumns;
 		if (dataColumns.getRealPart() != null) {
-			int nbColumns = (int) dataColumns.getRealPart()[alreadyDecodedCount][0];
-			port.setDataColumns(nbColumns);
+			try {
+				nbColumns = (int) dataColumns.getRealPart()[alreadyDecodedCount][0];
+			} catch (ArrayIndexOutOfBoundsException e) {
+				nbColumns = 1;
+			}
+		} else {
+			nbColumns = 1;
 		}
+		port.setDataColumns(nbColumns);
+		
+		// port scilab type
 		if (dataType.getRealPart() != null) {
 			int type;
 			
@@ -227,9 +251,6 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 		sciValues = (ScilabDouble) model.get(MODEL_OUT_DATALINE_INDEX);
 		values = sciValues.getRealPart();
 		int datalines = from.getDataLines();
-		if (datalines == 0) {
-			datalines = 1;
-		}
 		values[alreadyDecodedCount][0] = datalines;
 		
 		// out2
@@ -238,6 +259,8 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 		int datacolumns = from.getDataColumns();
 		if (datacolumns == 0) {
 			datacolumns = 1;
+		} else {
+			allColumnsAreZeros = false;
 		}
 		values[alreadyDecodedCount][0] = datacolumns;
 		
@@ -273,5 +296,15 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 		sciStrings = (ScilabString) graphics.get(GRAPHICS_OUTIMPL_INDEX);
 		strings = sciStrings.getData();
 		strings[alreadyDecodedCount][0] = from.getType().getAsString();
+	}
+	
+	/**
+	 * Clear Block.model.out2 if it contains only zeros.
+	 */
+	@Override
+	public void afterEncode() {
+		if (allColumnsAreZeros) {
+			model.set(MODEL_OUT_DATACOL_INDEX, new ScilabDouble());
+		}
 	}
 }

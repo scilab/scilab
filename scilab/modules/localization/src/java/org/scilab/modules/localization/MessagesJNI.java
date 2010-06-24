@@ -9,6 +9,8 @@
 package org.scilab.modules.localization;
 
 
+/* It is generated code. Disable checkstyle */
+//CHECKSTYLE:OFF
  /** 
    * @author Sylvestre LEDRU
    * @copyright DIGITEO 2009

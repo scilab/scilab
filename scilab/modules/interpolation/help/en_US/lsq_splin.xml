@@ -147,7 +147,7 @@ clf()
 plot2d(xd,[ye yd ys],style=[2 -2 3], ...
        leg="exact function@experimental measures (gaussian perturbation)@fitted spline")
 xtitle("a least square spline")
-xselect()
+show_window()
  ]]></programlisting>
   </refsection>
 

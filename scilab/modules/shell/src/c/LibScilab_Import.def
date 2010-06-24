@@ -4,7 +4,7 @@
 EXPORTS
 ;core
   LaunchScilab
-  LaunchScilabLock
+  pLaunchScilabLock
 ;
 getScilabMode
 callFunctionFromGateway
@@ -26,3 +26,5 @@ set_is_reading
 freeArrayOfString
 vartype_
 getWarningMode
+ismenu
+StoreCommand

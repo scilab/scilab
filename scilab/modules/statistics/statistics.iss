@@ -1,7 +1,7 @@
-;##############################################################################################################
-; Script d'installation Inno Setup (5.2.1) pour scilab
+;
 ; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-; Copyright (C) 2006-2008 - INRIA - Allan CORNET
+; Copyright (C) INRIA - Allan CORNET
+; Copyright (C) DIGITEO - 2010 - Allan CORNET
 ;
 ; This file must be used under the terms of the CeCILL.
 ; This source file is licensed as described in the file COPYING, which
@@ -9,36 +9,38 @@
 ; are also available at
 ; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 ;
-;##############################################################################################################
+;--------------------------------------------------------------------------------------------------------------
+; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
+;
 ;--------------------------------------------------------------------------------------------------------------
 ; statistics module
 ;--------------------------------------------------------------------------------------------------------------
 ;
-#define STATS "statistics"
+#define STATISTICS "statistics"
 
-Source: bin\statistics.dll; DestDir: {app}\bin; Components: {#COMPN_STATS}
+Source: bin\{#STATISTICS}.dll; DestDir: {app}\bin; Components: {#COMPN_STATS}
 Source: bin\dcd.dll; DestDir: {app}\bin; Components: {#COMPN_STATS}
 ;
-Source: modules\{#STATS}\VERSION.xml; DestDir: {app}\modules\{#STATS}; Components: {#COMPN_STATS}
-Source: modules\{#STATS}\readme.txt; DestDir: {app}\modules\{#STATS}; Components: {#COMPN_STATS}
-Source: modules\{#STATS}\license.txt; DestDir: {app}\modules\{#STATS}; Components: {#COMPN_STATS}
-Source: modules\{#STATS}\changelog.txt; DestDir: {app}\modules\{#STATS}; Components: {#COMPN_STATS}
+Source: modules\{#STATISTICS}\VERSION.xml; DestDir: {app}\modules\{#STATISTICS}; Components: {#COMPN_STATS}
+Source: modules\{#STATISTICS}\readme.txt; DestDir: {app}\modules\{#STATISTICS}; Components: {#COMPN_STATS}
+Source: modules\{#STATISTICS}\license.txt; DestDir: {app}\modules\{#STATISTICS}; Components: {#COMPN_STATS}
+Source: modules\{#STATISTICS}\changelog.txt; DestDir: {app}\modules\{#STATISTICS}; Components: {#COMPN_STATS}
 ;
-Source: modules\{#STATS}\sci_gateway\statistics_gateway.xml; DestDir: {app}\modules\{#STATS}\sci_gateway; Components: {#COMPN_STATS}
+Source: modules\{#STATISTICS}\sci_gateway\{#STATISTICS}_gateway.xml; DestDir: {app}\modules\{#STATISTICS}\sci_gateway; Components: {#COMPN_STATS}
 ;
-Source: modules\{#STATS}\etc\{#STATS}.quit; DestDir: {app}\modules\{#STATS}\etc; Components: {#COMPN_STATS}
-Source: modules\{#STATS}\etc\{#STATS}.start; DestDir: {app}\modules\{#STATS}\etc; Components: {#COMPN_STATS}
+Source: modules\{#STATISTICS}\etc\{#STATISTICS}.quit; DestDir: {app}\modules\{#STATISTICS}\etc; Components: {#COMPN_STATS}
+Source: modules\{#STATISTICS}\etc\{#STATISTICS}.start; DestDir: {app}\modules\{#STATISTICS}\etc; Components: {#COMPN_STATS}
 ;
-Source: modules\{#STATS}\macros\lib; DestDir: {app}\modules\{#STATS}\macros; Components: {#COMPN_STATS}
-Source: modules\{#STATS}\macros\names; DestDir: {app}\modules\{#STATS}\macros; Components: {#COMPN_STATS}
-Source: modules\{#STATS}\macros\*.bin; DestDir: {app}\modules\{#STATS}\macros; Components: {#COMPN_STATS}
-Source: modules\{#STATS}\macros\*.sci; DestDir: {app}\modules\{#STATS}\macros; Components: {#COMPN_STATS}
-Source: modules\{#STATS}\macros\buildmacros.sce; DestDir: {app}\modules\{#STATS}\macros; Components: {#COMPN_STATS}
-Source: modules\{#STATS}\macros\buildmacros.bat; DestDir: {app}\modules\{#STATS}\macros; Components: {#COMPN_STATS}
-Source: modules\{#STATS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#STATS}\macros; Components: {#COMPN_STATS}
+Source: modules\{#STATISTICS}\macros\lib; DestDir: {app}\modules\{#STATISTICS}\macros; Components: {#COMPN_STATS}
+Source: modules\{#STATISTICS}\macros\names; DestDir: {app}\modules\{#STATISTICS}\macros; Components: {#COMPN_STATS}
+Source: modules\{#STATISTICS}\macros\*.bin; DestDir: {app}\modules\{#STATISTICS}\macros; Components: {#COMPN_STATS}
+Source: modules\{#STATISTICS}\macros\*.sci; DestDir: {app}\modules\{#STATISTICS}\macros; Components: {#COMPN_STATS}
+Source: modules\{#STATISTICS}\macros\buildmacros.sce; DestDir: {app}\modules\{#STATISTICS}\macros; Components: {#COMPN_STATS}
+Source: modules\{#STATISTICS}\macros\buildmacros.bat; DestDir: {app}\modules\{#STATISTICS}\macros; Components: {#COMPN_STATS}
+Source: modules\{#STATISTICS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#STATISTICS}\macros; Components: {#COMPN_STATS}
 ;
-;Source: modules\{#STATS}\demos\*.*; DestDir: {app}\modules\{#STATS}\demos; Flags: recursesubdirs; Components: {#COMPN_STATS}
+;Source: modules\{#STATISTICS}\demos\*.*; DestDir: {app}\modules\{#STATISTICS}\demos; Flags: recursesubdirs; Components: {#COMPN_STATS}
 ;
-Source: modules\{#STATS}\tests\*.*; DestDir: {app}\modules\{#STATS}\tests; Flags: recursesubdirs; Components: {#COMPN_STATS} and {#COMPN_TESTS}
+Source: modules\{#STATISTICS}\tests\*.*; DestDir: {app}\modules\{#STATISTICS}\tests; Flags: recursesubdirs; Components: {#COMPN_STATS} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

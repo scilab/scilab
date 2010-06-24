@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2010 - Digiteo - Vincent LIARD
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,9 +11,14 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="erfinv">
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+          version="5.0-subset Scilab" xml:lang="fr" xml:id="erfinv">
   <info>
-    <pubdate>$LastChangedDate: 2008-04-05 21:39:10 +0200 (sam, 05 avr 2008) $</pubdate>
+    <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>erfinv</refname>
@@ -26,13 +32,13 @@
     <title>Paramètres</title>
     <variablelist>
       <varlistentry>
-        <term>x  </term>
+        <term>x</term>
         <listitem>
           <para>vecteur réel</para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>y  </term>
+        <term>y</term>
         <listitem>
           <para>vecteur réel (de même taille que x)</para>
         </listitem>
@@ -42,10 +48,10 @@
   <refsection>
     <title>Description</title>
     <para>
-      <literal>erfinv</literal> calcule l'inverse de la fonction d'erreur
-      <literal>erf</literal>.
-      <literal>x = erfinv(y)</literal> vérifie <literal>y = erf(x)</literal>,
-      -1 &lt;= <literal>y</literal> &lt; 1, -inf &lt;= <literal>x</literal> &lt;= inf.
+      La fonction <literal>erfinv</literal> calcule l'inverse de la
+      fonction d'erreur <literal>erf</literal>. Donc, erf(erfinv(x)) =
+      x pour tout <literal>x</literal> tel que <literal>-1 ≤ x ≤
+      1</literal>.
     </para>
   </refsection>
   <refsection>
@@ -54,18 +60,15 @@
 x=linspace(-0.99,0.99,100);
 y=erfinv(x);
 plot2d(x,y)
-norm(x-erf(y),'inf')
- ]]></programlisting>
+]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>
     <simplelist type="inline">
-      <member>
-        <link linkend="erf">erf</link>
-      </member>
-         <member>
-        <link linkend="cdfnor">cdfnor</link>
-      </member>
+      <member><link linkend="cdfnor">cdfnor</link></member>
+      <member><link linkend="erf">erf</link></member>
+      <member><link linkend="erfc">erfc</link></member>
+      <member><link linkend="erfcx">erfcx</link></member>
     </simplelist>
   </refsection>
   <refsection>

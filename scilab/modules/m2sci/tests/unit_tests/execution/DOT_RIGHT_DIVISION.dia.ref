@@ -8,6 +8,7 @@
 // <-- ENGLISH IMPOSED -->
 // <-- LONG TIME EXECUTION -->
 // Unitary test for conversion of Matlab function: DOT_RIGHT_DIVISION
+exec("SCI/modules/m2sci/tests/unit_tests/utils/m2sciTestExecution.sci", -1);
 if ~m2sciTestExecution("DOT_RIGHT_DIVISION") then bugmes();quit;end
   ****** Beginning of mfile2sci() session ******
   File to convert: SCI/modules/m2sci/tests/unit_tests/mfiles/DOT_RIGHT_DIVISION.m

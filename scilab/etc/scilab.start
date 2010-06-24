@@ -1,11 +1,11 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA
-// Copyright (C) 2009 - DIGITEO
-// 
+// Copyright (C) 2009-2010 - DIGITEO
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 // Main Scilab initialisation file
@@ -13,7 +13,7 @@
 mode(-1);  // silent execution mode
 
 // clean database when restarted ======================================
-predef('clear'); //unprotect all variables
+predef("clear"); //unprotect all variables
 clear  // erase all variables
 clearglobal();
 
@@ -71,9 +71,9 @@ end
 
 // Default Obsolete Warning policy  ===================================
 global %modalWarning;
-// False -> 	Scilab will only display a Warning message in the console
-// 		if warnings are enabled [warning('on'/'off')].
-// True ->	Scilab will show a blocking popup.
+// False -> Scilab will only display a Warning message in the console
+//          if warnings are enabled [warning('on'/'off')].
+// True  -> Scilab will show a blocking popup.
 %modalWarning = %F;
 clear %modalWarning;
 
@@ -88,8 +88,8 @@ clear demolist;
 
 // loads modules ======================================================
 
-modules = getmodules();
-WITH_DEMOS     = ((with_module("demo_tools")) & (getscilabmode() <> "NWNI"));
+modules    = getmodules();
+WITH_DEMOS = ((with_module("demo_tools")) & (getscilabmode() <> "NWNI"));
 
 for i=1:size(modules,"*")
   exec("SCI/modules/"+modules(i)+"/etc/"+modules(i)+".start",-1);
@@ -110,7 +110,7 @@ end
 setenv("VERSION",getversion());
 
 // ATOMS ===============================================================
-if with_module('atoms') then
+if with_module("atoms") then
   atomsSystemInit();
   atomsAutoload();
   clear atomsSystemInit atomsAutoload
@@ -129,34 +129,34 @@ _DEFAULT_LN_ = lines();
 lines(0);
 
 // load contrib menu if present ========================================
-if fileinfo(SCI+'/contrib/loader.sce') <> [] then
+if isfile(SCI+"/contrib/loader.sce") then
   global %toolboxes;
   global %toolboxes_dir;
-  exec(SCI+'/contrib/loader.sce');
+  exec(SCI+"/contrib/loader.sce");
   clear %toolboxes %toolboxes_dir;
 end
 
 // calling user initialization =========================================
 
-if sciargs()<>'-nouserstartup' then
+if sciargs()<>"-nouserstartup" then
 
   startupfiles = [ SCIHOME + filesep() + ".scilab"     ; .. // Home directory startup
                    SCIHOME + filesep() + "scilab.ini" ];    //  ''      ''    startup
 
   if SCIHOME <> pwd() then
-    startupfiles = [ startupfiles     ; ..                     
+    startupfiles = [ startupfiles     ; ..
                      ".scilab"        ; .. // Working directory startup
                      "scilab.ini" ]   ;    //  ''         ''    startup
   end
 
   for i=1:size(startupfiles,"*")
-    if ~isempty(fileinfo(startupfiles(i))) & ~isdir(startupfiles(i)) then
+    if isfile(startupfiles(i)) then
       exec(startupfiles(i),-1);
     end
   end
 
   clear startupfiles isempty i;
-  
+
 end
 
 // Menus/toolbar can now be enabled ====================================
@@ -166,7 +166,7 @@ if getscilabmode() == "STD" then
   setmenu(gettext("&Preferences"));
   setmenu(gettext("&Control"));
   setmenu(gettext("&Applications"));
-  if ~with_module("xpad") then // Desactivate Editor menu
+  if ~with_module("scinotes") then // Desactivate Editor menu
     unsetmenu(gettext("&Applications"),1);
   end
   if ~with_module("xcos") then // Desactivate xcos menu
@@ -174,6 +174,9 @@ if getscilabmode() == "STD" then
   end
   if ~with_module("m2sci") then // Desactivate mfile2sci menu
     unsetmenu(gettext("&Applications"),5);
+  end
+  if ~with_module("atoms") then // Desactivate atoms menu
+    unsetmenu(gettext("&Applications"),7);
   end
   setmenu(gettext("&?"));
   setmenu(gettext("&Toolboxes"));

@@ -14,7 +14,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intcumsum)(int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_cumsum)(char *fname,unsigned long fname_len)
+int sci_cumsum(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	C2F(intcumsum)(id);

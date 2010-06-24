@@ -15,21 +15,21 @@
 #define __GW_DATA_STRUCTURES1__
 /*--------------------------------------------------------------------------*/
 #include "machine.h"
-#include "api_scilab.h"
+#include "dynlib_data_structures.h"
 /*--------------------------------------------------------------------------*/
 /* it can be called by fortran mklist.f & mkindx.f */
-int C2F(gwdatastructures1)(void); 
-int gw_data_structures1(void);
+DATA_STRUCTURES_IMPEXP int C2F(gwdatastructures1)(void); 
+DATA_STRUCTURES_IMPEXP int gw_data_structures1(void);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_glist)(char *fname,unsigned long fname_len);
-int C2F(sci_scilist)(char *fname,unsigned long fname_len);
-int C2F(sci_lsslist)(char *fname,unsigned long fname_len);
-int C2F(sci_rlist)(char *fname,unsigned long fname_len);
-int C2F(sci_scitlist)(char *fname,unsigned long fname_len);
-int C2F(sci_lstcat)(char *fname,unsigned long fname_len);
-int C2F(sci_scimlist)(char *fname,unsigned long fname_len);
-int C2F(sci_definedfields)(char *fname,unsigned long fname_len);
-int C2F(sci_lstsize)(char *fname,unsigned long fname_len);
+int sci_glist(char *fname, unsigned long fname_len);
+int sci_scilist(char *fname, unsigned long fname_len);
+int sci_lsslist(char *fname, unsigned long fname_len);
+int sci_rlist(char *fname, unsigned long fname_len);
+int sci_scitlist(char *fname, unsigned long fname_len);
+int sci_lstcat(char *fname, unsigned long fname_len);
+int sci_scimlist(char *fname, unsigned long fname_len);
+int sci_definedfields(char *fname, unsigned long fname_len);
+int sci_lstsize(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_DATA_STRUCTURES1__ */
 /*--------------------------------------------------------------------------*/

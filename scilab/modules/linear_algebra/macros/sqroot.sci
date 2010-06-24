@@ -13,7 +13,7 @@ function [S]=sqroot(Q)
   if norm(Q1-Q,1) > 100*%eps then 
     warning(msprintf(gettext("%s: Wrong size for input argument #%d: Symmetric expected"),'sqroot',1));
   end
-  tt=mini(spec(Q1));
+  tt=min(spec(Q1));
   if tt <-10*%eps then 
     warning(msprintf(gettext("%s: Wrong value for input argument #%d: Not semi-definite positive"),'sqroot',1));
   end

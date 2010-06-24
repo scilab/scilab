@@ -1,8 +1,7 @@
-;##############################################################################################################
-; Script d'installation Inno Setup (5.2.1) pour scilab
-; Allan CORNET
+;
 ; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 ; Copyright (C) INRIA - Allan CORNET
+; Copyright (C) DIGITEO - 2010 - Allan CORNET
 ;
 ; This file must be used under the terms of the CeCILL.
 ; This source file is licensed as described in the file COPYING, which
@@ -10,19 +9,24 @@
 ; are also available at
 ; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 ;
-;##############################################################################################################
+;--------------------------------------------------------------------------------------------------------------
+; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
+;
 ;--------------------------------------------------------------------------------------------------------------
 ; boolean module
 ;--------------------------------------------------------------------------------------------------------------
 ;
 #define BOOLEAN "boolean"
 ;
+Source: bin\{#BOOLEAN}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#BOOLEAN}_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#BOOLEAN}\VERSION.xml; DestDir: {app}\modules\{#BOOLEAN}; Components: {#COMPN_SCILAB}
 Source: modules\{#BOOLEAN}\readme.txt; DestDir: {app}\modules\{#BOOLEAN}; Components: {#COMPN_SCILAB}
 Source: modules\{#BOOLEAN}\license.txt; DestDir: {app}\modules\{#BOOLEAN}; Components: {#COMPN_SCILAB}
 Source: modules\{#BOOLEAN}\changelog.txt; DestDir: {app}\modules\{#BOOLEAN}; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#BOOLEAN}\sci_gateway\boolean_gateway.xml; DestDir: {app}\modules\{#BOOLEAN}\sci_gateway; Components: {#COMPN_SCILAB}
+Source: modules\{#BOOLEAN}\sci_gateway\{#BOOLEAN}_gateway.xml; DestDir: {app}\modules\{#BOOLEAN}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#BOOLEAN}\etc\{#BOOLEAN}.quit; DestDir: {app}\modules\{#BOOLEAN}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#BOOLEAN}\etc\{#BOOLEAN}.start; DestDir: {app}\modules\{#BOOLEAN}\etc; Components: {#COMPN_SCILAB}

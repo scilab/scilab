@@ -66,7 +66,7 @@
 
         <listitem>
           <para>la norme l_1 de <literal>x</literal> (la plus grande somme
-          suivant les colonnes : <literal>maxi(sum(abs(x),'r'))</literal>
+          suivant les colonnes : <literal>max(sum(abs(x),'r'))</literal>
           ).</para>
         </listitem>
       </varlistentry>
@@ -76,7 +76,7 @@
 
         <listitem>
           <para>la norme infinie de <literal>x</literal> (la plus grande somme
-          suivant les lignes : <literal>maxi(sum(abs(x),'c'))</literal>
+          suivant les lignes : <literal>max(sum(abs(x),'c'))</literal>
           ).</para>
         </listitem>
       </varlistentry>

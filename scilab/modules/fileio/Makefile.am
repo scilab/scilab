@@ -1,7 +1,8 @@
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006
-##########
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+#
+# This file is distributed under the same license as the Scilab package.
+
 
 FILEIO_SOURCES = src/c/FileExist.c \
 src/c/scanf_functions.c \
@@ -99,7 +100,7 @@ sci_gateway/c/sci_pathconvert.c \
 sci_gateway/c/sci_isfile.c
 
 
-libscifileio_la_CXXFLAGS=	-I$(srcdir)/includes/ \
+libscifileio_la_CPPFLAGS=	-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes \

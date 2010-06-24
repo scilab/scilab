@@ -1,9 +1,17 @@
-;##############################################################################################################
-; Script d'installation Inno Setup (5.2.1) pour scilab
-; Allan CORNET
-; Version TRUNK
-; Copyright INRIA 2007
-;##############################################################################################################
+;
+; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+; Copyright (C) INRIA - Allan CORNET
+; Copyright (C) DIGITEO - 2010 - Allan CORNET
+;
+; This file must be used under the terms of the CeCILL.
+; This source file is licensed as described in the file COPYING, which
+; you should have received as part of this distribution.  The terms
+; are also available at
+; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+;
+;--------------------------------------------------------------------------------------------------------------
+; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
+;
 ;--------------------------------------------------------------------------------------------------------------
 ; tclsci module
 ;--------------------------------------------------------------------------------------------------------------
@@ -15,7 +23,7 @@ Source: modules\{#TCLSCI}\readme.txt; DestDir: {app}\modules\{#TCLSCI}; Componen
 Source: modules\{#TCLSCI}\license.txt; DestDir: {app}\modules\{#TCLSCI}; Components: {#COMPN_TCLSCI}
 Source: modules\{#TCLSCI}\changelog.txt; DestDir: {app}\modules\{#TCLSCI}; Components: {#COMPN_TCLSCI}
 ;
-Source: modules\{#TCLSCI}\sci_gateway\tclsci_gateway.xml; DestDir: {app}\modules\{#TCLSCI}\sci_gateway; Components: {#COMPN_TCLSCI}
+Source: modules\{#TCLSCI}\sci_gateway\{#TCLSCI}_gateway.xml; DestDir: {app}\modules\{#TCLSCI}\sci_gateway; Components: {#COMPN_TCLSCI}
 ;
 Source: modules\{#TCLSCI}\etc\{#TCLSCI}.quit; DestDir: {app}\modules\{#TCLSCI}\etc; Components: {#COMPN_TCLSCI}
 Source: modules\{#TCLSCI}\etc\{#TCLSCI}.start; DestDir: {app}\modules\{#TCLSCI}\etc; Components: {#COMPN_TCLSCI}

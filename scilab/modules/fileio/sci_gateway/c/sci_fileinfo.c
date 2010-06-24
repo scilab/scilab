@@ -37,7 +37,7 @@ int sci_fileinfo(char *fname,unsigned long fname_len)
 
 		if (mn == 0)
 		{
-			Scierror(999,"%s : Memory allocation error.\n",fname);
+			Scierror(999,"%s: Memory allocation error.\n",fname);
 			return 0;
 		}
 

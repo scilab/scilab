@@ -22,6 +22,7 @@ c
       double precision y(ny),gout(ng),t(*)
       common/ierode/iero
 c     
+      character tmpbuf * (bsiz) 
       integer vol,tops,nordre
       data nordre/3/,mlhs/1/
 c
@@ -34,8 +35,8 @@ c     mlhs (mrhs) est le nombre de parametres de sortie (entree)
 c     du simulateur 
 c     
       if (ddt .eq. 4) then
-         write(buf(1:12),'(3i4)') top,r,sym
-         call basout(io,wte,' bsurf   top:'//buf(1:4))
+         write(tmpbuf(1:12),'(3i4)') top,r,sym
+         call basout(io,wte,' bsurf   top:'//tmpbuf(1:4))
       endif
 c
       iero=0

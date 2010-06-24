@@ -40,7 +40,7 @@ function [Q,Z,Ec,Ac,Qd,Zd,numbeps]=quaskro(E,A,tol)
   A=Q*A*Z;
 
   if A~=[] then
-    tol=tol*maxi([norm(A,'fro'),norm(E,'fro')])+10*tol;
+    tol=tol*max([norm(A,'fro'),norm(E,'fro')])+10*tol;
   else
     tol=0
   end

@@ -21,9 +21,9 @@ lang="en_US"; setlanguage(lang); msg="Localization does not exist"; if gettext(m
 // Try to translate from en_US to fr_FR to a string which doesn't exist
 lang="fr_FR"; setlanguage(lang); msg="Localization does not exist"; if gettext(msg) <> msg then pause, end
 
-lang="fr_FR"; setlanguage(lang); msg="Startup execution:"; if gettext(msg) <> "Initialisation:" then pause, end
+lang="fr_FR"; setlanguage(lang); msg="Startup execution:"; if gettext(msg) <> "Initialisation :" then pause, end
 
-lang="fr"; setlanguage(lang); msg="Startup execution:"; if gettext(msg) <> "Initialisation:" then pause, end
+lang="fr"; setlanguage(lang); msg="Startup execution:"; if gettext(msg) <> "Initialisation :" then pause, end
 
 lang="en"; setlanguage(lang); msg="Startup execution:"; if gettext(msg) <> msg then pause, end
 

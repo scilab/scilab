@@ -7,6 +7,11 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [r,g,b]=hsv2rgb(h,s,v)
+
+  if and(argn(2)<>[1 3]) then
+    error(msprintf(gettext("%s: Wrong number of input argument(s): %d or %d expected.\n"), "hsv2rgb", 1, 3));
+  end
+
   if argn(2)==1 then
     v=h(:,3);s=h(:,2);h=h(:,1)
   else

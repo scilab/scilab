@@ -31,6 +31,7 @@ public class ImplicitOutputPort extends OutputPort {
     }
 
     /** @return always Type.IMPLICIT */
+	@Override
     public Type getType() {
 	return Type.IMPLICIT;
     }

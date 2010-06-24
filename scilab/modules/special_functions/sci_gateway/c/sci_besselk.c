@@ -28,7 +28,7 @@ int sci_besselk(char *fname,unsigned long fname_len)
   int un=1,nl2,ierr;
   double zero=0.0;
 
-  static int *Lstk    = C2F(vstk).lstk-1;
+  int *Lstk    = C2F(vstk).lstk-1;
 
   CheckRhs(2,3);
 
@@ -151,7 +151,7 @@ int sci_besselk(char *fname,unsigned long fname_len)
   if (ierr==2) {
     if ( C2F(errgst).ieee==0) { 
       ierr=69;
-      Error(ierr);
+      SciError(ierr);
     }
     else if ( C2F(errgst).ieee==1) {
      ierr=63;
@@ -166,7 +166,7 @@ int sci_besselk(char *fname,unsigned long fname_len)
   else if (ierr==4||ierr==5) {
     if ( C2F(errgst).ieee==0) { 
       ierr=69;
-      Error(ierr);
+      SciError(ierr);
     }
     else if ( C2F(errgst).ieee==1) {
      ierr=107;

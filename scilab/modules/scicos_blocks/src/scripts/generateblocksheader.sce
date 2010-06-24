@@ -43,12 +43,17 @@ cd SCI/modules/scicos_blocks/src/fortran;
 BLOCK_FORTRAN_SOURCES = gsort(ls('*.f'));
 BLOCKS_FORTRAN = strsubst(BLOCK_FORTRAN_SOURCES,'.f','');
 
+cd SCI/modules/scicos_blocks/src/cpp;
+
+BLOCK_CPP_SOURCES = gsort(ls('*.cpp'));
+BLOCKS_CPP = strsubst(BLOCK_CPP_SOURCES,'.cpp','');
+
 BLOCKS_H = [
 '';
 '/*  Scicos';
 '*';
 '*  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>';
-'*  Copyright (C) DIGITEO - 2009';
+'*  Copyright (C) DIGITEO - 2010';
 '*';
 '* This program is free software; you can redistribute it and/or modify';
 '* it under the terms of the GNU General Public License as published by';
@@ -79,6 +84,7 @@ BLOCKS_H = [
 BLOCKS_H = [BLOCKS_H;
 'SCICOS_BLOCKS_IMPEXP void C2F(' + BLOCKS_FORTRAN + ')(ARGS_scicos);' ;
 'SCICOS_BLOCKS_IMPEXP void ' + BLOCKS_C + '(ARGS_scicos);' ;
+'SCICOS_BLOCKS_IMPEXP void ' + BLOCKS_CPP + '(ARGS_scicos);' ;
 ''];
 
 SIZE_TAB_BLOCK_LIST = size(BLOCKS_C,'*') + size(BLOCKS_FORTRAN,'*') + 1;
@@ -92,6 +98,7 @@ BLOCKS_H = [BLOCKS_H;
 BLOCKS_H = [BLOCKS_H;
 '{""' + BLOCKS_FORTRAN + '"",(ScicosF) C2F(' + BLOCKS_FORTRAN + ')},' ;
 '{""' + BLOCKS_C + '"",(ScicosF) ' + BLOCKS_C + '},' ;
+'{""' + BLOCKS_CPP + '"",(ScicosF) ' + BLOCKS_CPP + '},' ;
 '{(char *) 0, (ScicosF) 0}};' ;
 '#endif' ;
 '/****************************************/' ;

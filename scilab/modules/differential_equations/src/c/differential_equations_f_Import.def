@@ -1,0 +1,53 @@
+LIBRARY    differential_equations_f.dll
+
+
+EXPORTS
+; --------------------------------------- 
+; differential_equations_f
+; --------------------------------------- 
+cngu_
+ddassl_
+sciode_
+sciodc_
+scibvode_
+sciimpl_
+cndf_
+cnf_
+cng_
+cndg_
+gr2_
+gr1_
+jac2_
+djac2_
+djac1_
+intg_
+int3d_
+getcodc_
+intgex_
+feval_
+dasrti_
+dassli_
+int3dex_
+int2dex_
+res2_
+res1_
+dres2_
+dres1_
+int2d_ 
+phit_
+phis_
+fexcd_
+fcd1_
+fcd_
+jex_
+loren_
+lcomp_
+fexab_
+fex3_
+fex2_
+fex_
+bcomp_
+dgbydy_
+aplusp_
+resid_
+

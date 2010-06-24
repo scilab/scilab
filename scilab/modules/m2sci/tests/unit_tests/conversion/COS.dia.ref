@@ -8,6 +8,7 @@
 // <-- ENGLISH IMPOSED -->
 // <-- LONG TIME EXECUTION -->
 // Unitary test for conversion of Matlab function: COS
+exec("SCI/modules/m2sci/tests/unit_tests/utils/m2sciTestConversion.sci", -1);
 if ~m2sciTestConversion("COS") then bugmes();quit;end
   ****** Beginning of mfile2sci() session ******
   File to convert: SCI/modules/m2sci/tests/unit_tests/mfiles/COS.m

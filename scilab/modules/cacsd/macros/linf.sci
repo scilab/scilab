@@ -52,7 +52,7 @@ function [n]=linf(g,eps,tol)
   end,
   hsvp=sqrt(spec(pp*qq)),hsvp=gsort(real(hsvp)),
   hsvm=sqrt(spec(pm*qm)),hsvm=gsort(real(hsvm)),
-  gl=maxi([norm(d),hsvp(tp),hsvm(tm)]),
+  gl=max([norm(d),hsvp(tp),hsvm(tm)]),
   gu=norm(d)+2*(sum(hsvp)+sum(hsvm)),
   //2. binary search
   //----------------------
@@ -61,7 +61,7 @@ function [n]=linf(g,eps,tol)
     r=d'*d-(x*x)*eye(),s=d*d'-(x*x)*eye(),
     mx=[a-b/r*d'*c, -x*b/r*b'; ..
 	x*c'/s*c,   -a'+c'*d/r*b'],
-    mp=abs(real(spec(mx))),mp=mini(mp),
+    mp=abs(real(spec(mx))),mp=min(mp),
     if mp>tol then gu=x, else gl=x, end,
   end;
   n=(gu+gl)/2

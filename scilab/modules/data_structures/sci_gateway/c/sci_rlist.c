@@ -16,7 +16,7 @@
 extern int C2F(rattyp)(); /* fortran */
 extern int C2F(mtlist)(); /* fortran */
 /*--------------------------------------------------------------------------*/
-int C2F(sci_rlist)(char *fname,unsigned long fname_len)
+int sci_rlist(char *fname,unsigned long fname_len)
 {
 	C2F(mtlist)(C2F(rattyp));
 	return 0;

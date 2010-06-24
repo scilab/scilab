@@ -191,7 +191,7 @@ xtitle("Extrapolação com o outmode periodic")
 subplot(2,2,4)
 plot3d(xx, yy, zz4, flag=[2 6 4])
 xtitle("Extrapolação com o outmode natural")
-xselect()
+show_window()
  ]]></programlisting>
   </refsection>
 

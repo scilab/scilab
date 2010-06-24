@@ -17,6 +17,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.swing.JColorChooser;
 
@@ -83,10 +84,10 @@ public final class BorderColorAction extends VertexSelectionDependantAction {
 	// Getting the most present color
 	String color = "#FF0000";
 	int max = 0;
-	for (String key : colorStats.keySet()) {
-		int current = colorStats.get(key);
+	for (Entry<String, Integer> entry : colorStats.entrySet()) {
+		final int current = entry.getValue();
 		if (current > max) {
-			color = key;
+			color = entry.getKey();
 			max = current;
 		}
 	}

@@ -137,11 +137,12 @@ c     compare all elements of a with scalar b
             jb=kb        
             jc=kc
             if(nirb.eq.0) then
+c     .        no non zero elements in the ith row of b
                do 23 j=1,nc
                   if(ita.eq.0) then
-                     z1=wcompa(ar(i,j),0.0d0,tr,ti,op)
+                     z1=wcompa(ar(i,j),0.0d0,0.0d0,0.0d0,op)
                   else
-                     z1=wcompa(ar(i,j),ai(i,j),tr,ti,op)
+                     z1=wcompa(ar(i,j),ai(i,j),0.0d0,0.0d0,op)
                   endif
                   if (z1) then
                      if(jc+1.gt.nelmx) goto 99

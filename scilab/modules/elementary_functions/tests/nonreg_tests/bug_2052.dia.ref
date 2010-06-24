@@ -12,7 +12,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=2052
 //
 // <-- Short Description -->
-//    Bug dans la primitive "isequal" (au moins) avec des type de donn�es
+//    Bug dans la primitive "isequal" (au moins) avec des type de donn�es 
 //    utilisateur
 // Serge Steer - Scilab Project
 // Copyright INRIA
@@ -20,7 +20,7 @@
 ilib_verbose(0);
 cur=pwd();
 cd(TMPDIR);
-//first create a function changetype
+//first create a function changetype 
 code=['#include ""stack-c.h""'
 'int intchangetype(fname)'
 '   char *fname;'
@@ -37,6 +37,7 @@ code=['#include ""stack-c.h""'
 '}'];
 mputl(code,'intchangetype.c');
 ilib_build('libtest',['changetype','intchangetype'],'intchangetype',[]);
+exec('loader.sce');
 cd(cur);
 //create variables of type 222
 A=rand(3,2);

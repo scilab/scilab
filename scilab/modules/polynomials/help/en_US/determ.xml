@@ -48,7 +48,7 @@
     of <literal>W</literal>.</para>
     <para>
     The default value of <literal>k</literal> is the smallest power of 2 which is larger
-    than <literal>n*maxi(degree(W))</literal>.</para>
+    than <literal>n*max(degree(W))</literal>.</para>
     <para>
     Method (Only if W size is greater than 2*2) : evaluate the determinant of <literal>W</literal> for the Fourier frequencies
     and apply inverse FFT to the coefficients of the determinant.</para>

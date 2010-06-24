@@ -43,7 +43,7 @@ int intdgesvd(fname)
     LWORK=Maxvol(WORK, "d");  /*  max memory currently available */
     LWORKMIN = MAX(3*MIN(M,N)+MAX(M,N),5*MIN(M,N)-4);
     if (LWORK < LWORKMIN) { sciprint("not enough memory (use stacksize)");
-       Error(9999); };
+       SciError(9999); };
     CreateVar(NRHS+4,MATRIX_OF_DOUBLE_DATATYPE, &LWORK, &un, &lw);   /* WORK */
     LDA=M; LDU=M; LDVT=N;
 

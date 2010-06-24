@@ -37,15 +37,15 @@ RM=del
 EXEC=xml2modelica.exe
 
 all::
-	$(OCAMLC) -c xMLTree.ml
-	$(OCAMLC) -c linenum.ml
-	$(OCAMLC) -c stringParser.ml
-	$(OCAMLC) -c stringLexer.ml
-	$(OCAMLC) -c xMLParser.ml
-	$(OCAMLC) -c xMLLexer.ml
-	$(OCAMLC) -c modelicaCodeGenerator.ml
-	$(OCAMLC) -c xML2Modelica.ml
-	$(OCAMLC) -o $(EXEC) xMLTree.cmo linenum.cmo stringParser.cmo stringLexer.cmo xMLParser.cmo xMLLexer.cmo modelicaCodeGenerator.cmo xML2Modelica.cmo
+	$(OCAMLOPT) -c xMLTree.ml
+	$(OCAMLOPT) -c linenum.ml
+	$(OCAMLOPT) -c stringParser.ml
+	$(OCAMLOPT) -c stringLexer.ml
+	$(OCAMLOPT) -c xMLParser.ml
+	$(OCAMLOPT) -c xMLLexer.ml
+	$(OCAMLOPT) -c modelicaCodeGenerator.ml
+	$(OCAMLOPT) -c xML2Modelica.ml
+	$(OCAMLOPT) -o $(EXEC) xMLTree.cmx linenum.cmx stringParser.cmx stringLexer.cmx xMLParser.cmx xMLLexer.cmx modelicaCodeGenerator.cmx xML2Modelica.cmx
 	@copy  $(EXEC) ..\..\..\..\bin\$(EXEC)
 	
 clean::

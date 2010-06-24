@@ -9,6 +9,10 @@
 
 function zlabel(varargin)
 
+if size(varargin)<>1 then
+  error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "zlabel", 1));
+end
+
 varargin = list('z_label',varargin(1:$));
 TitleLabel(varargin(:));
 endfunction

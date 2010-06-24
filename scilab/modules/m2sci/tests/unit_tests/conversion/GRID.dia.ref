@@ -8,6 +8,7 @@
 // <-- ENGLISH IMPOSED -->
 // <-- LONG TIME EXECUTION -->
 // Unitary test for conversion of Matlab function: GRID
+exec("SCI/modules/m2sci/tests/unit_tests/utils/m2sciTestConversionNoExe.sci", -1);
 mprintf("%s\n", m2sciTestConversionNoExe("GRID"));
   ****** Beginning of mfile2sci() session ******
   File to convert: SCI/modules/m2sci/tests/unit_tests/mfilesnoexec/GRID.m

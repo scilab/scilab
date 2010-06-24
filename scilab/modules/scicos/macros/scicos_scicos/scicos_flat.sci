@@ -114,7 +114,7 @@ for k=1:n //loop on all objects
 	    hilite_path([path,k],"There is another local GOTO in this diagram with the same tag ''"+loc_mat($,3)+"''",%t);
 	  else
 	    gh_wins = gcf();
-	    mxwin=maxi(winsid());
+	    mxwin=max(winsid());
 	    scs_show(scs_m,mxwin+1);
 	    hilite_obj(k);
 	    messagebox("There is another local GOTO in this diagram with the same tag ''"+loc_mat($,3)+"''","modal");

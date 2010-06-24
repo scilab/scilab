@@ -53,3 +53,5 @@ txt=['function testOK()'
 !                   !
 !endfunction        !
 mputl(txt,TMPDIR+'/b2072/testOK.sci');
+if execstr('exec(TMPDIR+''/b2072/test.sci'');','errcatch')<>34 then bugmes();quit;end
+if execstr('exec(TMPDIR+''/b2072/testOK.sci'');','errcatch')<>34 then bugmes();quit;end

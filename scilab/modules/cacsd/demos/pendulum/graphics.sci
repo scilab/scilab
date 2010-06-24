@@ -107,7 +107,7 @@ endfunction
 
 
 function draw1()
-  f=gcf();f.figure_position=[10 10];xselect()
+  f=gcf();f.figure_position=[10 10];show_window()
   clf();
   drawlater();//f.pixmap='on';
   f.background=color('gray');
@@ -158,7 +158,7 @@ function draw1()
 endfunction
 
 function draw2()
-  f=gcf();f.figure_position=[10 10];xselect()
+  f=gcf();f.figure_position=[10 10];show_window()
   clf();
   //f.pixmap='on';
   drawlater()

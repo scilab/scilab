@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
- * Ajouter ici d'Ã©ventuels commentaires sur le fichier XML
--->
 <refentry version="5.0-subset Scilab" xml:id="vec2list" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -9,9 +6,6 @@
           xmlns:ns3="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate: 22-07-2009 $</pubdate>
-  </info>
 
   <refnamediv>
     <refname>vec2list</refname>

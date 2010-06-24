@@ -44,11 +44,11 @@
     S'il est spécifié, <literal>typ(i)</literal> donne le nom formel de l'élément <literal>i+1</literal> (voir plus bas dans les exemples).
   </para>
     <para>
-    Les opérations standard sur les listes fonctionnent similairement pour les listes typées (tlist). 
+    Les opérations standard sur les listes fonctionnent similairement pour les listes typées (tlist).
   </para>
     <para>
-     extraction 
-    : <literal>[x,y,z...]=l(v)</literal> ou <literal>v</literal> est un vecteur d'indices; 
+     extraction
+    : <literal>[x,y,z...]=l(v)</literal> ou <literal>v</literal> est un vecteur d'indices;
     <literal>[x,y,z]=l(:)</literal> extrait tous les éléments.
   </para>
     <para>
@@ -56,14 +56,19 @@
     : <literal>l(i)=a</literal>
   </para>
     <para>
-     suppression
-    : <literal>l(i)=null()</literal> supprime le i-ème élément de la <literal>tlist l</literal>.
+     suppression : <literal>l(i)=null()</literal> supprime le i-ème
+     élément de la <literal>tlist l</literal>. A noter que la
+     sémantique de <literal>l.x=null()</literal> n'est pas définie,
+     mais qu'il est possible de lui donner un sens par surcharge (voir
+     <link linkend="overloading">overloading</link>).
   </para>
     <para>
      affichage
   </para>
     <para>
-    De plus si les composantes <literal>typ(2:n+1)</literal> sont spécifiées, les éléments peuvent être désignés par leur noms formels.
+    De plus si les composantes <literal>typ(2:n+1)</literal> sont
+    spécifiées, les éléments peuvent être désignés par leur noms
+    formels.
   </para>
     <para>
     Voici quelques exemples d'utilisation des liste typées :
@@ -71,7 +76,7 @@
     <para>
     Dans Scilab, les systèmes dynamiques linéaires sont définis par une liste typée :
     le quadruplet <literal>[A,B,C,D]</literal> est représenté par la tlist
-    <literal>Sys=tlist(['lss';'A';'B';'C';'D';'X0';'dt'],A,B,C,D,x0,'c')</literal> 
+    <literal>Sys=tlist(['lss';'A';'B';'C';'D';'X0';'dt'],A,B,C,D,x0,'c')</literal>
     et cette tlist spécifique est créée par la fonction <literal>syslin</literal>.
   </para>
     <para>
@@ -89,7 +94,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"><![CDATA[
 // tlist creation
 t = tlist(["listtype","field1","field2"], [], []);
 t.field1(1) = 10;

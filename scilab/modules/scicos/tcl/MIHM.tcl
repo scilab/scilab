@@ -60,7 +60,7 @@ proc MIHM_Create { WindowsID } {
     set ncolumn [llength $labelx ]
     set der_mode "fixed_states"
     set ParEmbedded "0"
-    set JacobianEnable "1"
+    set JacobianEnable "0"
 
     set NRowMax 20
     set dw  61;#[expr [lindex $bb1 2] - [lindex $bb1 0] + 2] ;# 52 width
@@ -213,7 +213,7 @@ proc MIHM_Init { {WindowsID -1 } } {
     set IncidenceMatrix ""
     set IncidenceMatrixSimplified ""
     set ParEmbedded "0"
-    set JacobianEnable "1"
+    set JacobianEnable "0"
 
     #############
     set WindowsID_new [sciGUICreate $WindowsID "GUIM" ]
@@ -437,8 +437,7 @@ proc Compile { WindowsID } {
 	return
     }
     
-    #ScilabEval "global bllst; global connectmat; global clkconnect; global cor; global corinv; pause;  fw='$Model_name'; paremb='$ParEmbedded'; jaco='$JacobianEnable';compile_init_modelica(fw,paremb,jaco); "
-    ScilabEval "fw='$Model_name'; paremb='$ParEmbedded'; jaco='$JacobianEnable';compile_init_modelica(fw,paremb,jaco); "
+    ScilabEval "fw='$Model_name'; paremb='$ParEmbedded'; jaco='$JacobianEnable'; compile_init_modelica(fw,paremb,jaco); "
     #compile_init_modelica( ) calls Compile_finished ok/nok
 }
 #=======================================================================
@@ -959,7 +958,7 @@ proc button_der_mode  { new_mode WindowsID }   {
 	    set NewStateWeight 0
 	}
     }
-    
+
     set RootNode "root"
     replace_ders_in_tree $WindowsID $ztree  $RootNode $NewDerWeight $NewStateWeight
     #------------------------------------------------
@@ -983,7 +982,11 @@ proc replace_ders_in_tree { WindowsID tree parent NewDerWeight NewStateWeight } 
 	    set rowi  [lindex $data_i $i]	
 	    set namei [lindex $rowi 0] ; # "NAME" column
 	    set idi   [lindex $rowi 2] ; # "ID" column
-	    # set fixed_orig  [lindex $rowi 11] ; # "fixed_orig" column
+	    
+	    # returns the 11 th element from the list $rowi
+	    # boolean fixed_orig
+	    set fixed_orig  [lindex $rowi 11] ; # "fixed_orig" column
+
 	    if { [regexp {__der_(\w*)} $idi -> restOfWord] > 0  } {
 		lappend  VARS $idi
 	    }
@@ -1002,11 +1005,14 @@ proc replace_ders_in_tree { WindowsID tree parent NewDerWeight NewStateWeight } 
 	    for { set i 0 } { $i < $NRow } { incr i } {
 		set rowi  [lindex $data_i $i]	
 		set idi   [lindex $rowi 2] ; # "ID" column
-		# set fixed_orig   [lindex $rowi 11] ; # "Fixed_orig" column
+		set fixed_orig   [lindex $rowi 11] ; # "Fixed_orig" column
 		set vard  [string map {__der_ ""} $var]
-		if { $idi == $vard } {		    
-		    set rowi [lreplace $rowi 5 5 $NewStateWeight ]
-		    set data_i [lreplace $data_i $i $i $rowi]
+		if { $idi == $vard } {	
+		    if { $fixed_orig == "false" } {
+			lappend  VARD $var
+			set rowi [lreplace $rowi 5 5 $NewStateWeight ]
+			set data_i [lreplace $data_i $i $i $rowi]
+		    }
 		    break
 		}
 	    }
@@ -1024,12 +1030,12 @@ proc replace_ders_in_tree { WindowsID tree parent NewDerWeight NewStateWeight } 
 		set rowi  [lindex $data_i $i]	
 		set idi   [lindex $rowi 2] ; # "ID" column
 		if { $idi == $var } {		    	    
-	  		    if { $NewDerWeight ==  1 } {
-		           set rowi [lreplace $rowi 4 4 0.0 ] ;# set the __der_ variable values to 0.0
-		        }
-		        set rowi [lreplace $rowi 5 5 $NewDerWeight ]	       
-		        set data_i [lreplace $data_i $i $i $rowi]	
-			      break
+		    if { $NewDerWeight ==  1 } {
+			set rowi [lreplace $rowi 4 4 0.0 ] ;# set the __der_ variable values to 0.0
+		    }
+		    set rowi [lreplace $rowi 5 5 $NewDerWeight ]
+		    set data_i [lreplace $data_i $i $i $rowi]	
+		    break
 		}
 	    }
 	    $tree itemconfigure $kid -data $data_i;
@@ -1784,10 +1790,10 @@ global scilabpath
                     if { $TrSelected eq "{}" } {set TrSelected ""}   
 		}
 
-		#fixed_orig {
-		#    set ter_node_2  [lindex [lindex $terj 2 ] 0]; 
-		#    set TrFixedOrig [string trim [string map {#text ""} $ter_node_2 ] "\{ \}"]
-		#}
+		fixed_orig {
+		    set ter_node_2  [lindex [lindex $terj 2 ] 0]; 
+		    set TrFixedOrig [string trim [string map {#text ""} $ter_node_2 ] "\{ \}"]
+		}
 
 		output {
 		    set TrOutput  "out"
@@ -1798,14 +1804,13 @@ global scilabpath
   	#$tree insert end $xparent "$xparent$TrName" -image [Bitmap::get file] -text $TrName
 	set data_i [$tree itemcget $xparent -data]
 
-   	if { $TrFixedOrig== "" } { set TrFixedOrig $TrFixed } 
-        if { $TrFixedOrig== "" } {
-	    if { $TrKind == "fixed_parameter" } { 
-		set TrFixed "true" 
-		set TrFixedOrig "false" 
-
+        if { $TrFixedOrig== "" } { set TrFixedOrig $TrFixed } 
+            if { $TrFixedOrig== "" } {
+	      if { $TrKind == "fixed_parameter" } { 
+	  	set TrFixed "true" 
+	  	set TrFixedOrig "false" 
 	    } else { 
-		set TrFixed "false" 
+	 	set TrFixed "false" 
 		set TrFixedOrig "false" 
 	    }
         } 
@@ -1958,7 +1963,7 @@ proc Fill_List { WindowsID xlist tree xparent } {
 	set TrNominal [lindex $data_ij 8]
 	set TrComment [lindex $data_ij 9]
 	set TrSelected [lindex $data_ij 10]
-	# set TrFixedOrig [lindex $data_ij 11]
+	set TrFixedOrig [lindex $data_ij 11]
 	set TrOutput   [lindex $data_ij 12]
 	set TrValue_orig $TrValue
 

@@ -1,28 +1,36 @@
-;##############################################################################################################
-; Script d'installation Inno Setup (5.2.1) pour scilab
-; Allan CORNET
-; Version TRUNK
-; Copyright INRIA 2007
-;##############################################################################################################
+;
+; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+; Copyright (C) INRIA - Allan CORNET
+; Copyright (C) DIGITEO - 2010 - Allan CORNET
+;
+; This file must be used under the terms of the CeCILL.
+; This source file is licensed as described in the file COPYING, which
+; you should have received as part of this distribution.  The terms
+; are also available at
+; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+;
+;--------------------------------------------------------------------------------------------------------------
+; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
+;
 ;--------------------------------------------------------------------------------------------------------------
 ; completion module
 ;--------------------------------------------------------------------------------------------------------------
 ;
 #define COMPLETION "completion"
 ;
-Source: bin\scicompletion.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\scicompletion.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\sci{#COMPLETION}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\sci{#COMPLETION}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#COMPLETION}\jar\org.scilab.modules.completion.jar;DestDir: {app}\modules\{#COMPLETION}\jar; Components: {#COMPN_SCILAB}
+Source: modules\{#COMPLETION}\jar\org.scilab.modules.{#COMPLETION}.jar;DestDir: {app}\modules\{#COMPLETION}\jar; Components: {#COMPN_SCILAB}
 ;
-;Source: bin\noscicompletion.dll; DestDir: {app}\bin; DestName: scicompletion.dll; Components: not ({#COMPN_SCILAB})
+;Source: bin\nosci{#COMPLETION}.dll; DestDir: {app}\bin; DestName: sci{#COMPLETION}.dll; Components: not ({#COMPN_SCILAB})
 ;
 Source: modules\{#COMPLETION}\changelog.txt; DestDir: {app}\modules\{#COMPLETION}; Components: {#COMPN_SCILAB};
 Source: modules\{#COMPLETION}\license.txt; DestDir: {app}\modules\{#COMPLETION}; Components: {#COMPN_SCILAB}
 Source: modules\{#COMPLETION}\readme.txt; DestDir: {app}\modules\{#COMPLETION}; Components: {#COMPN_SCILAB}
 Source: modules\{#COMPLETION}\version.xml; DestDir: {app}\modules\{#COMPLETION}; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#COMPLETION}\sci_gateway\completion_gateway.xml; DestDir: {app}\modules\{#COMPLETION}\sci_gateway; Components: {#COMPN_SCILAB}
+Source: modules\{#COMPLETION}\sci_gateway\{#COMPLETION}_gateway.xml; DestDir: {app}\modules\{#COMPLETION}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#COMPLETION}\includes\*.h; DestDir: {app}\modules\{#COMPLETION}\includes; Components: {#COMPN_SCILAB}
 ;

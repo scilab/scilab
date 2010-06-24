@@ -1,37 +1,33 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Allan CORNET
-// 
+// Copyright (C) DIGITEO - 2010 - Allan CORNET
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 //Load  functions libraries
 // =============================================================================
 load('SCI/modules/dynamic_link/macros/lib');
 
-// Configure Environment Variables for Ms Visual C ====================
+// Configure Environment Variables for Microsoft Visual Studio C and
+// Intel Fortran
 if getos() == 'Windows' then
-	if (~isdef('WSCI')) then
-	 WSCI = getlongpathname( pathconvert(SCI, %f, %f, 'w') );
-	end
-	if (findmsvccompiler()<>'unknown') then
+  if findmsvccompiler() <> 'unknown' then
+    // Configure Ms VC environment
     configure_msvc();
-    clear configure_msvc 
-    if (findmsifortcompiler()<>'unknown') then
+    clear configure_msvc
+    if findmsifortcompiler() <> 'unknown' then
+      // Configure Intel Fortran environment
       configure_msifort();
       clear configure_msifort
     else
-      setenv('USE_F2C','YES');  
+      // Use F2C 
+      setenv('USE_F2C', 'YES');
     end
     clear findmsifortcompiler
-  else
-    if ( findlcccompiler() ) then
-      configure_lcc();
-      clear configure_lcc
-    end
-    clear findlcccompiler
   end
   clear findmsvccompiler
 end
@@ -39,9 +35,8 @@ end
 // Add demos
 // =============================================================================
 if WITH_DEMOS then
-	pathdemos = pathconvert(SCI+"/modules/dynamic_link/demos/dynamic_link.dem.gateway.sce",%f,%t);
-	add_demo(gettext("Dynamic link"),pathdemos);
-	clear pathdemos;
+  pathdemos = pathconvert(SCI + "/modules/dynamic_link/demos/dynamic_link.dem.gateway.sce", %f, %t);
+  add_demo(gettext("Dynamic link"), pathdemos);
+  clear pathdemos;
 end
-
-clear LCC 
+// =============================================================================

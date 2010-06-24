@@ -97,7 +97,7 @@ int C2F(sci_getmd5) (char *fname,unsigned long fname_len)
 			}
 			else
 			{
-				Scierror(999,_("%s : Memory allocation error.\n"), fname);
+				Scierror(999,_("%s: Memory allocation error.\n"), fname);
 			}
 		}
 		else
@@ -147,7 +147,7 @@ int C2F(sci_getmd5) (char *fname,unsigned long fname_len)
 				}
 				else
 				{
-					Scierror(999,_("%s : Memory allocation error.\n"), fname);
+					Scierror(999,_("%s: Memory allocation error.\n"), fname);
 				}
 			}
 			else

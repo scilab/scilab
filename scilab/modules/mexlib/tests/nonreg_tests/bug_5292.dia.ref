@@ -25,6 +25,8 @@ mputl(["#include <mex.h>"
 "  if (nlhs > 1)"
 "   mexErrMsgTxt(""Too many output arguments."");"
 "}"],'mexfunction_5292.cpp');
+exec('builder.sce');
+exec('loader.sce');
 ierr = execstr('mex_5292()','errcatch');
 if ierr <> 999 then bugmes();quit;end
 ierr = execstr('mex_5292(2,2)','errcatch');

@@ -370,37 +370,37 @@ if norm(sqrt(x)^2-x,1) > 10*%eps then pause,end
 if norm(log(exp(x))-x,1) > 10*%eps then pause,end
 // triu
 z=poly(0,'z');a=[z 1 -z+1  8;z*z 10*z 5 -z;3 7 z+1 -1-z];
-[m,n]=size(a);mn=mini([m n]);a1=a;l=1;
+[m,n]=size(a);mn=min([m n]);a1=a;l=1;
 //
 for dg=-(m-1):0,
    if norm(coeff(triu(a,dg)-a1),1)>%eps then dg,pause,end,
-   for k=1:l,a1(-dg+k,k)=0;end,l=mini([l+1,mn]);end
+   for k=1:l,a1(-dg+k,k)=0;end,l=min([l+1,mn]);end
 for dg=1:n,
    if norm(coeff(triu(a,dg)-a1),1)>%eps then dg,pause,end,
    if dg>(n-m),l=l-1;end;for k=1:l,a1(k,dg+k)=0;end;end;
 //
-a=a';a1=a;[m,n]=size(a);mn=mini([m,n]);l=1;
+a=a';a1=a;[m,n]=size(a);mn=min([m,n]);l=1;
 for dg=-(m-1):0,
    if norm(coeff(triu(a,dg)-a1),1)>%eps then dg,pause,end,
-   for k=1:l,a1(-dg+k,k)=0;end,l=mini([l+1,mn]);end
+   for k=1:l,a1(-dg+k,k)=0;end,l=min([l+1,mn]);end
 for dg=1:n,
    if norm(coeff(triu(a,dg)-a1),1)>%eps then dg,pause,end,
    if dg>(n-m),l=l-1;end;for k=1:l,a1(k,dg+k)=0;end;end;
 //
 a=a+%i*[1 2 3 4;5 6 7 8;9 10 11 12]';
-[m,n]=size(a);mn=mini([m n]);a1=a;l=1;
+[m,n]=size(a);mn=min([m n]);a1=a;l=1;
 //
 for dg=-(m-1):0,
    if norm(coeff(triu(a,dg)-a1),1)>%eps then dg,pause,end,
-   for k=1:l,a1(-dg+k,k)=0;end,l=mini([l+1,mn]);end
+   for k=1:l,a1(-dg+k,k)=0;end,l=min([l+1,mn]);end
 for dg=1:n,
    if norm(coeff(triu(a,dg)-a1),1)>%eps then dg,pause,end,
    if dg>(n-m),l=l-1;end;for k=1:l,a1(k,dg+k)=0;end;end;
 //
-a=a';a1=a;[m,n]=size(a);mn=mini([m,n]);l=1;
+a=a';a1=a;[m,n]=size(a);mn=min([m,n]);l=1;
 for dg=-(m-1):0,
    if norm(coeff(triu(a,dg)-a1),1)>%eps then dg,pause,end,
-   for k=1:l,a1(-dg+k,k)=0;end,l=mini([l+1,mn]);end
+   for k=1:l,a1(-dg+k,k)=0;end,l=min([l+1,mn]);end
 for dg=1:n,
    if norm(coeff(triu(a,dg)-a1),1)>%eps then dg,pause,end,
    if dg>(n-m),l=l-1;end;for k=1:l,a1(k,dg+k)=0;end;end;

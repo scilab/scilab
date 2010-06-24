@@ -5,7 +5,8 @@ c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
 c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txtc     -------------------------------
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c     -------------------------------
 c
       subroutine intmaxi(fname,id)
 c     -------------------------------
@@ -52,7 +53,7 @@ c     ------call macro
          il=iadr(lstk(top))
          if(istk(il).lt.0) il=iadr(istk(il+1))
 
-         if(fin.eq.17) then
+         if ((fin.eq.17).or.(fin.eq.54)) then
             call funnam(ids(1,pt+1),'mini',il)
          else
             call funnam(ids(1,pt+1),'maxi',il)
@@ -72,7 +73,7 @@ c     ------simple case one argument which is a matrix or vector
       endif
       if(gettype(top).ne.1) then
          top=topk
-         if(fin.eq.17) then
+         if((fin.eq.17) .or. (fin.eq.54)) then
             call funnam(ids(1,pt+1),'mini',iadr(lstk(top-rhs+1)))
          else
             call funnam(ids(1,pt+1),'maxi',iadr(lstk(top-rhs+1)))
@@ -95,7 +96,7 @@ c     ------simple case one argument which is a matrix or vector
 c     ------------max of each column of a 
          if (.not.cremat(fname,topk,0,1,n,lr,lir)) return
          if (.not.cremat(fname,topk+1,0,1,n,lkr,lkir)) return
-         if(fin.eq.17) then
+         if ((fin.eq.17) .or. (fin.eq.54)) then
 c     .    min
             do 15 j=0,n-1
                k=idmin(m,stk(lr1+m*j),1)
@@ -145,7 +146,7 @@ c     ----- general maxi or mini
 
          x1=stk(lr1)
          k=1
-         if(fin.eq.17) then 
+         if ((fin.eq.17) .or. (fin.eq.54)) then 
 c     .     mini
             k=idmin(m*n,stk(lr1),1)
          else
@@ -238,7 +239,7 @@ c     maxi mini a plusieurs argument
          else
             inc=1
          endif
-         if ( fin.eq.17) then 
+         if ((fin.eq.17) .or. (fin.eq.54)) then 
 c     mini            
             do 111 j=0,m*n-1
                if (stk(lri).lt.stk(lv+j).or.isanan(stk(lri)).eq.1) then 
@@ -305,7 +306,7 @@ c     test si n1 > 1
             endif
             if(.not.checkval(fname,m,mi)) return
             if(.not.checkval(fname,n,ni)) return
-            if ( fin.eq.17) then 
+            if ((fin.eq.17) .or. (fin.eq.54)) then 
 c     mini            
                do 211 j=0,m*n-1
                   x1=stk(lri+j)

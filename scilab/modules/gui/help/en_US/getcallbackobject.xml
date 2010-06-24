@@ -6,10 +6,6 @@
           xmlns:ns3="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate: 2007-12-07 11:59:53 +0100 (ven, 07 dÃ©c 2007)
-    $</pubdate>
-  </info>
 
   <refnamediv>
     <refname>getcallbackobject</refname>

@@ -9,8 +9,9 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#include <stdlib.h>
 #include "MALLOC.h"
-#include "stack-c.h"
+#include "stack-def.h"
 #include "scimem.h"
 #include "sciprint.h"
 #include "localization.h"

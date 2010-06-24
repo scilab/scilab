@@ -1,0 +1,107 @@
+# Polish translation for scilab
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-20 18:25+0100\n"
+"PO-Revision-Date: 2010-03-19 23:41+0000\n"
+"Last-Translator: Piotr Winiarski <Unknown>\n"
+"Language-Team: Polish <pl@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2010-05-04 21:28+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s : Memory allocation error.\n"
+msgstr "%s : Błąd alokacji pamięci.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Brak pamięci.\n"
+
+#, c-format
+msgid "%s: The file \"%s\" does not exist.\n"
+msgstr "%s: Plik %s nie istnieje.\n"
+
+#, c-format
+msgid "%s: The file does not exist.\n"
+msgstr "%s: Plik nie istnieje.\n"
+
+#, c-format
+msgid "%s: The system interpreter does not answer..."
+msgstr "%s: Interpretator systemowy nie odpowiada..."
+
+#, c-format
+msgid "%s: Undefined environment variable %s.\n"
+msgstr "%s: Niezdefiniowana zmienna środowiskowa %s.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument.\n"
+msgstr "%s: Nieprawidłowa liczba argumentów wejściowych.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s).\n"
+msgstr "%s: Nieprawidłowa liczba argumentów wyjściowych.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar dla argumentu wejściowego #%d: Oczekiwany skalar.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar argumentu wejściowego #%d: Oczekiwano wartości "
+"typu string.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A int expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar argumentu wejściowego #%d: Oczekiwano wartości "
+"typu integer.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego #%d: Oczekiwano wartości typu "
+"string.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An int scalar expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego #%d: Oczekiwano wartości typu "
+"integer scalar.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego #%d: Oczekiwano typu string.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' value expected.\n"
+msgstr ""
+"%s: Zła wartość argumentu wejściowego #%d: ''%s'' to oczekiwana wartość.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A int expected.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego #%d: Oczekiwano wartości "
+"typu integer.\n"
+
+#, c-format
+msgid "%s: error during %s execution"
+msgstr "%s: błąd podczas wykonywania %s"
+
+#, c-format
+msgid "Undefined environment variable %s.\n"
+msgstr "Niezdefiniowana zmienna środowiskowa %s.\n"

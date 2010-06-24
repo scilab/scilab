@@ -40,9 +40,9 @@
       <varlistentry>
         <term>up,yp</term>
         <listitem>
-          <para>real matrices (<literal>up</literal> dimension <literal>m</literal>x<literal>(maxi(degree(Den)))</literal> (default values=<literal>0</literal>) ,
+          <para>real matrices (<literal>up</literal> dimension <literal>m</literal>x<literal>(max(degree(Den)))</literal> (default values=<literal>0</literal>) ,
   <literal>yp</literal> dimension <literal>n</literal>x 
-  <literal>(maxi(degree(Den)))</literal>)</para>
+  <literal>(max(degree(Den)))</literal>)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -59,7 +59,7 @@
     the discrete time linear system with transfer matrix <literal>Den^-1 Num</literal> 
     for the input <literal>u</literal>, i.e <literal>y</literal> and <literal>u</literal> are such that <literal>Den y = Num u</literal> at t=0,1,...</para>
     <para>
-    If <literal>d1=maxi(degree(Den))</literal>, and <literal>d2=maxi(degree(Num))</literal> the polynomial 
+    If <literal>d1=max(degree(Den))</literal>, and <literal>d2=max(degree(Num))</literal> the polynomial 
     matrices  <literal>Den(z)</literal> and <literal>Num(z)</literal> may be written respectively as:</para>
     <programlisting role = ""><![CDATA[ 
 D(z) = D_0  + D_1  z + ... + D_d1   z^d1

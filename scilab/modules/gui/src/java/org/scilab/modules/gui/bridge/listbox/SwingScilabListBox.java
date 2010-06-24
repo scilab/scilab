@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent Couvert
  * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
+ * Copyright (C) 2010 - DIGITEO - Vincent COUVERT
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -424,6 +425,25 @@ public class SwingScilabListBox extends JScrollPane implements SimpleListBox {
 	public TextBox getInfoBar() {
 		/* Unimplemented for ListBoxes */
 		throw new UnsupportedOperationException();
+	}
+	
+	/**
+	 * Adjusts the view so that the element given by index is displayed at the top of the ListBox.
+	 * @param index the index of the element to be displayed at the top of the ListBox.
+	 */
+	public void setListBoxTop(int index) {
+		if (index > 0) {
+			getViewport().setViewPosition(getList().getUI().indexToLocation(getList(), index - 1));
+			doLayout();
+		}
+	}
+	
+	/**
+	 * Gets the index of the element displayed at the top of the ListBox
+	 * @return the index of the element displayed at the top of the ListBox
+	 */
+	public int getListBoxTop() {
+		return getList().getUI().locationToIndex(getList(), getViewport().getViewPosition()) + 1;
 	}
 
 }

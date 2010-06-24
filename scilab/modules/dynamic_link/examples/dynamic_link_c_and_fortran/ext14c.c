@@ -30,7 +30,7 @@ int ext14cI(char *fname)
   if ( m3*n3 != m2*n2) 
     {
       sciprint("%s :Incompatible dimensions\n",fname);
-      Error(999); return(0);
+      SciError(999); return(0);
     }
   CreateVar( 4,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l4);
   n=m3*n3;

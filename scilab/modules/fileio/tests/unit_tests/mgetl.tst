@@ -55,3 +55,21 @@ mclose(fd);
 txt = mgetl("SCI/modules/fileio/tests/unit_tests/text.txt");
 if and(size(txt) <> [6 1]) then pause,end
 //==============================================================================
+// creates a file with some differents end of line
+ref = ['A text with different end of line';
+'text with LF:';
+'text with CRLF:';
+'text no EOL.'];
+
+CR = '\r';
+LF = '\n';
+
+fd = mopen(TMPDIR + '/mgetl_text_tst.txt', 'wt');
+mfprintf(fd, ref(1) + CR + LF);
+mfprintf(fd, ref(2) + LF);
+mfprintf(fd, ref(3) + CR + LF);
+mfprintf(fd, ref(4));
+mclose(fd);
+r = mgetl(TMPDIR + '/mgetl_text_tst.txt');
+if ~and(r == ref) then pause,end
+//==============================================================================

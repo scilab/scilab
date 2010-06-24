@@ -38,7 +38,7 @@ m1=(epsilon*epsilon)/(A*A-1);
       vmin=K/n;
    end,
    v=vmin:(2*K/n):K;
-   un=ones(1:maxi(size(v)));
+   un=ones(1:max(size(v)));
    zlambda=-un*Kt+%i*v;
    plambda= u0*un+%i*v;
    ze=%i*imag(%i*omegac*%sn(-%i*zlambda,m));

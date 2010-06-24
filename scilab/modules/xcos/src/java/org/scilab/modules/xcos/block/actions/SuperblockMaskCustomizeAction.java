@@ -15,9 +15,9 @@ package org.scilab.modules.xcos.block.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultCellEditor;
@@ -32,6 +32,7 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -100,6 +101,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 	 * Frame used to customize fields and variables default values. DAC: this
 	 * class is tightly coupled to Swing
 	 */
+	// CSOFF: ClassDataAbstractionCoupling
 	private class CustomizeFrame extends JFrame {
 		private CustomizeFrameControler controler;
 
@@ -145,6 +147,8 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 		/**
 		 * Construct the UI and install the listeners.
 		 */
+		// CSOFF: JavaNCSS
+		// CSOFF: MagicNumber
 		private void initComponents() {
 
 			/* Construct the components */
@@ -292,6 +296,8 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 			}
 			vars.setCellEditor(new DefaultCellEditor(validVars));
 		}
+		// CSON: JavaNCSS
+		// CSON: MagicNumber
 
 		/**
 		 * Implements the models used on the frame.
@@ -310,16 +316,18 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 							XcosMessages.MASK_VARNAME,
 							XcosMessages.MASK_VARDESC,
 							XcosMessages.MASK_EDITABLE }) {
-				private final Class[] types = new Class[] {
+				private final Class< ? >[] types = new Class[] {
 						java.lang.Integer.class, java.lang.String.class,
 						java.lang.String.class, java.lang.Boolean.class };
 				private final boolean[] canEdit = new boolean[] {false, true,
 						true, true };
 
-				public Class getColumnClass(int columnIndex) {
+				@Override
+				public Class< ? > getColumnClass(int columnIndex) {
 					return types[columnIndex];
 				}
 
+				@Override
 				public boolean isCellEditable(int rowIndex, int columnIndex) {
 					if (rowIndex != 0) {
 						return canEdit[columnIndex];
@@ -335,14 +343,16 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 					new Object[][] {new Object[] {XcosMessages.MASK_WINTITLE,
 							"" } }, new String[] {XcosMessages.MASK_VARNAME,
 							XcosMessages.MASK_VARVALUES }) {
-				private final Class[] types = new Class[] {
+				private final Class< ? >[] types = new Class[] {
 						java.lang.String.class, java.lang.String.class };
 				private final boolean[] canEdit = new boolean[] {false, true};
 
-				public Class getColumnClass(int columnIndex) {
+				@Override
+				public Class< ? > getColumnClass(int columnIndex) {
 					return types[columnIndex];
 				}
 
+				@Override
 				public boolean isCellEditable(int rowIndex, int columnIndex) {
 					return canEdit[columnIndex];
 				}
@@ -375,8 +385,8 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 			 */
 			public void exportToBlock() {
 				/** Data vectors are typed when parsing */
-				final List customModel = customizeTableModel.getDataVector();
-				final List valuesModel = valuesTableModel.getDataVector();
+				final List< ? > customModel = customizeTableModel.getDataVector();
+				final List< ? > valuesModel = valuesTableModel.getDataVector();
 
 				/* We have one content that is not a variable : Window Title */
 				final int nbOfVar = valuesModel.size() - 1;
@@ -387,39 +397,49 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 				final ScilabList polFields = new ScilabList();
 
 				/* Title */
-				varDesc[0][0] = (String) ((List) valuesModel.get(0)).get(1);
+				varDesc[0][0] = (String) ((List< ? >) valuesModel.get(0)).get(1);
 
 				/* Other fields */
 				for (int i = 0; i < nbOfVar; i++) {
-					values[i][0] = (String) ((List) valuesModel.get(i + 1))
+					values[i][0] = (String) ((List< ? >) valuesModel.get(i + 1))
 							.get(1);
-					varNames[i][0] = (String) ((List) customModel.get(i + 1))
+					varNames[i][0] = (String) ((List< ? >) customModel.get(i + 1))
 							.get(1);
-					varDesc[i + 1][0] = (String) ((List) customModel
+					varDesc[i + 1][0] = (String) ((List< ? >) customModel
 							.get(i + 1)).get(2);
 
 					/*
-					 * reconstruct pol fields TODO : what are these fields ?
+					 * reconstruct pol fields.
+					 * 
+					 * This field indicate the dimension of each entry (-1.0 is
+					 * automatic).
 					 */
 					polFields.add(new ScilabString("pol"));
 					polFields.add(new ScilabDouble(-1.0));
 				}
 
 				/* Construct fields from data */
-				ScilabList exprs = new ScilabList() {
-					{
-						add(new ScilabString(values));
-						add(new ScilabList() {
-							{
-								add(new ScilabString(varNames));
-								add(new ScilabString(varDesc));
-								add(polFields);
-							}
-						});
-					}
-				};
+				ScilabList exprs = new ScilabList(
+					Arrays.asList(
+						new ScilabString(values),
+						new ScilabList(
+							Arrays.asList(
+								new ScilabString(varNames),
+								new ScilabString(varDesc),
+								polFields
+							)
+						)
+					)
+				);
 
 				getBlock().setExprs(exprs);
+				
+				/*
+				 * Trace the exprs update.
+				 */
+				if (LogFactory.getLog(SuperblockMaskCustomizeAction.class).isTraceEnabled()) {
+					LogFactory.getLog(SuperblockMaskCustomizeAction.class).trace("exprs=" + exprs);
+				}
 			}
 
 			/**
@@ -435,23 +455,22 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 				// Xcos from Scilab 5.2.0 version
 				// so set default values
 				if (rawExprs instanceof ScilabDouble) {
-					rawExprs = new ScilabList() {
-						{
-							add(new ScilabDouble());
-							add(new ScilabList() {
-								{
-									add(new ScilabDouble());
-									add(new ScilabString(
-											XcosMessages.MASK_DEFAULTWINDOWNAME));
-									add(new ScilabList() {
-										{
-											add(new ScilabDouble());
-										}
-									});
-								}
-							});
-						}
-					};
+					rawExprs = new ScilabList(
+						Arrays.asList(
+							new ScilabDouble(),
+							new ScilabList(
+								Arrays.asList(
+									new ScilabDouble(),
+									new ScilabString(XcosMessages.MASK_DEFAULTWINDOWNAME),
+									new ScilabList(
+										Arrays.asList(
+											new ScilabDouble()
+										)
+									)
+								)
+							)
+						)
+					);
 				}
 				DefaultTableModel customModel = customizeTableModel;
 				DefaultTableModel valuesModel = valuesTableModel;
@@ -543,8 +562,8 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 					DefaultTableModel tableModel = model.customizeTableModel;
 
 					for (; rowCount < value; rowCount++) {
-						tableModel
-								.addRow(new Object[] {rowCount + 1, "", true });
+						tableModel.addRow(
+								new Object[] {rowCount + 1, "", "", true });
 					}
 
 					for (; rowCount > value; rowCount--) {
@@ -560,7 +579,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 					 * doesn't need to be checked as the operation doesn't
 					 * depend on it
 					 */
-					List<List> data = model.customizeTableModel
+					List<List< ? >> data = model.customizeTableModel
 							.getDataVector();
 
 					if (selectedRow > 0
@@ -569,8 +588,8 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 						 * doesn't need to be checked as the operation doesn't
 						 * depend on it
 						 */
-						List current = (List) data.get(selectedRow);
-						List next = (List) data.get(selectedRow + 1);
+						List<Integer> current = (List<Integer>) data.get(selectedRow);
+						List<Integer> next = (List<Integer>) data.get(selectedRow + 1);
 
 						/* Inverting data */
 						data.set(selectedRow + 1, current);
@@ -595,7 +614,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 					 * doesn't need to be checked as the operation doesn't
 					 * depend on it
 					 */
-					final List<List> data = model.customizeTableModel
+					final List<List< ? >> data = model.customizeTableModel
 							.getDataVector();
 
 					if (selectedRow > 1) {
@@ -603,8 +622,8 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 						 * doesn't need to be checked as the operation doesn't
 						 * depend on it
 						 */
-						List current = (List) data.get(selectedRow);
-						List next = (List) data.get(selectedRow - 1);
+						List<Integer> current = (List<Integer>) data.get(selectedRow);
+						List<Integer> next = (List<Integer>) data.get(selectedRow - 1);
 
 						/* Inverting data */
 						data.set(selectedRow - 1, current);
@@ -749,6 +768,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 			}
 		}
 	}
+	// CSON: ClassDataAbstractionCoupling
 
 	/**
 	 * Ease the development of the UI (debug).

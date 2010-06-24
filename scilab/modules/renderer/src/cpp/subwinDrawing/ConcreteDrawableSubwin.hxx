@@ -210,11 +210,6 @@ protected:
   void displayTexts(void);
 
   /**
-   * Sort the text objects from back to front relatively to view point.
-   */
-  void sortDisplayedTexts(void);
-
-  /**
    * Set the distance to use between axis and labels.
    * May vary depending on the ticks drawing, the two should not
    * conceal each other.

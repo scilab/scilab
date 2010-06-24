@@ -73,7 +73,7 @@ int sci_beep(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-		sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+		sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne, NULL);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -89,7 +89,7 @@ int sci_beep(char *fname,unsigned long fname_len)
 		pStVarOne = (char*)MALLOC(sizeof(char)*(lenStVarOne + 1));
 		if (pStVarOne == NULL)
 		{
-			Scierror(999,_("%s : Memory allocation error.\n"),fname);
+			Scierror(999,_("%s: Memory allocation error.\n"),fname);
 			return 0;
 		}
 

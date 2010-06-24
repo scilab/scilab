@@ -18,13 +18,12 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "stack-def.h"
 #include "MALLOC.h"
 #include "getDynamicDebugInfo_Windows.h"
 #include "localization.h"
+#include "stack-c.h"
 #include "getos.h"
 #include "api_scilab.h"
-#include "stack-c.h"
 #include "charEncoding.h"
 #include "../../../../libs/GetWindowsVersion/GetWindowsVersion.h"
 /*--------------------------------------------------------------------------*/

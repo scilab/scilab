@@ -20,7 +20,7 @@
 //
 
 function [Path,path,ok]=whereintree(Tree,xc,yc)
-[m,k]=mini((Tree('x')-xc).^2+(Tree('y')-yc).^2)
+[m,k]=min((Tree('x')-xc).^2+(Tree('y')-yc).^2)
 ok=%t;path=[];Path=list()
 if k==1 then return,end
 

@@ -80,6 +80,7 @@
                 <listitem>
                     <para>
                         Return address of data array (size: _iRows * _iCols).
+                        For "Named" function, _piBool must be allocated before calling function.
                     </para>
                 </listitem>
             </varlistentry>

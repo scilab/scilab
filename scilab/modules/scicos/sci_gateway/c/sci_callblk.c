@@ -90,7 +90,7 @@ int sci_callblk(char *fname,unsigned long fname_len)
 	{
 		if ((str=(char *) MALLOC((len_str+1)*sizeof(char)))==NULL) 
 		{
-			Scierror(888,_("%s : Memory allocation error.\n"),fname);
+			Scierror(888,_("%s: Memory allocation error.\n"),fname);
 			return 0;
 		}
 		str[len_str] = '\0';
@@ -115,7 +115,7 @@ int sci_callblk(char *fname,unsigned long fname_len)
 	/* error table */
 	switch (ierr)
 	{
-	case -39 : Scierror(888,_("%s : Memory allocation error.\n"),fname);
+	case -39 : Scierror(888,_("%s: Memory allocation error.\n"),fname);
 		break;
 
 	case 98  : Scierror(888,_("%s : First argument must be a valid scicos_block typed list.\n"),fname);

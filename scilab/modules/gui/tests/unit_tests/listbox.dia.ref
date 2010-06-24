@@ -7,7 +7,8 @@
 // Unitary tests for Scilab Java listbox
 // Exec tests common to all uicontrols
 clear uicontrol_generic_test
-uicontrol_generic_test("listbox");
+exec("SCI/modules/gui/tests/unit_tests/uicontrol_generic_test.sci");
+if uicontrol_generic_test("listbox") <> 0 then bugmes();quit;end
 // Default relief value
 h = uicontrol("parent", scf(), "style", "listbox");
 if get(h, "relief") <> "flat" then bugmes();quit;end

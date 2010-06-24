@@ -101,6 +101,9 @@ ScilabEval "flush"</synopsis>
     </variablelist>
     <para>The evaluation context of all these cases is the current Scilab context
     when the<literal>instruction</literal> evaluation starts.</para>
+    
+    <para>More information about Tcl/Tk: <ulink url="http://www.tcl.tk/doc/">http://www.tcl.tk/doc/</ulink></para>
+    
   </refsection>
   <refsection>
     <title>Examples</title>

@@ -37,7 +37,7 @@ function [Sk,rk,mu]=h_inf(P,r,mumin,mumax,nmax)
   end
   [P2,mu_inf,Uci,Yci,D22]=h_init(P,r,%t)
   //if mu_inf < mumax then write(%io(2),mu_inf,'(3x,''romax too big: max romax= '',f10.5)');end
-  mumax=mini(mu_inf,mumax)
+  mumax=min(mu_inf,mumax)
   //
   //    Gama-iteration P6 = transformed P2 with D11 removed
   [P6,Finf,mu,Uc#i,Yc#i]=h_iter(P2,r,mumin,mumax,nmax)
@@ -120,7 +120,7 @@ function [P2,mu_inf,Uci,Yci,D22]=h_init(P,r,info)
   P12=syslin('c',A,B2,C1,D12);
   [nt,dt]=trzeros(P12),rzt=real(nt./dt),
   if size(nt,'*') > 0 then
-    if mini(abs(rzt)) < sqrt(%eps) then 
+    if min(abs(rzt)) < sqrt(%eps) then 
       warning(msprintf(gettext("%s: %s has a zero on/close the imaginary axis.\n"),"h_inf","P12")),
     end,
   end,
@@ -129,7 +129,7 @@ function [P2,mu_inf,Uci,Yci,D22]=h_init(P,r,info)
   P21=syslin('c',A,B1,C2,D21);
   [nt,dt]=trzeros(P21),rzt=real(nt./dt),
   if size(nt,'*')>0 then
-    if mini(abs(rzt)) < sqrt(%eps) then 
+    if min(abs(rzt)) < sqrt(%eps) then 
       warning(msprintf(gettext("%s: %s has a zero on/close the imaginary axis.\n"),"h_inf","P21")),
     end,
   end,
@@ -180,7 +180,7 @@ function [P2,mu_inf,Uci,Yci,D22]=h_init(P,r,info)
   if M11<>[] then g1=norm(M11);end
   if M22<>[] then g2=norm(M22);end
 
-  gama_inf=maxi(g1,g2);
+  gama_inf=max(g1,g2);
   if gama_inf==0 then mu_inf=1/%eps/%eps, else mu_inf=1/(gama_inf*gama_inf);end
 
   P2=syslin('c',A,[B1,B2],[C1;C2],[D11,D12;D21,0*D22]);
@@ -196,7 +196,7 @@ function [P6ad,Finfad,muad,Uc#iad,Yc#iad]=h_iter(P2,r,mumin,mumax,nmax)
     mu=(mumin+mumax)/2;
     [P6,Finf,tv,Uc#i,Yc#i]=h_test(P2,r,mu)
     
-    test=maxi(tv)
+    test=max(tv)
 
     if test > 0 then
       mumax=mu
@@ -339,7 +339,7 @@ function [P6,Kinf,tv,Uc#i,Yc#i]=h_test(P2,r,mu)
   H=[Ax Rx;
      Qx -Ax'];
 
-  dx=mini(abs(real(spec(H))));
+  dx=min(abs(real(spec(H))));
   //write(%io(2),dx);
   if dx < 1.d-9 then
     mprintf(gettext("%s: An eigenvalue of %s (controller) is close to Imaginary axis.\n"),"h_inf","H");
@@ -363,7 +363,7 @@ function [P6,Kinf,tv,Uc#i,Yc#i]=h_test(P2,r,mu)
 
     J=[Ay' Ry;
        Qy -Ay];
-    dy=mini(abs(real(spec(J))));
+    dy=min(abs(real(spec(J))));
     //write(%io(2),dy);
     if dy < 1.d-9 then
       mprintf(gettext("%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"+.. 
@@ -379,7 +379,7 @@ function [P6,Kinf,tv,Uc#i,Yc#i]=h_test(P2,r,mu)
       //Tests
       //
       //     E=(Y2'*X2-mu*Y1'*X1);
-      //     write(%io(2),mini(svd(E)),'(5x,''mini(svd(E)) = '',f10.2)')
+      //     write(%io(2),min(svd(E)),'(5x,''min(svd(E)) = '',f10.2)')
       [al1,be1]=spec(A*X2 -B2*(S*X2 +B2'*X1 ),X2);
       [al2,be2]=spec(Y2'*A-(Y2'*L+Y1'*C2')*C2,Y2');
       [al3,be3]=spec(mu_test*Y1'*X1,Y2'*X2);
@@ -390,16 +390,16 @@ function [P6,Kinf,tv,Uc#i,Yc#i]=h_test(P2,r,mu)
       w2=find(be2==0);be2(w2)=%eps*ones(be2(w2));
       w3=find(be3==0);be3(w3)=%eps*ones(be3(w3));
 
-      test1=maxi(real(al1./be1));
-      test2=maxi(real(al2./be2));
-      test3=maxi(real(al3./be3))-1;
+      test1=max(real(al1./be1));
+      test2=max(real(al2./be2));
+      test3=max(real(al3./be3))-1;
       tv   =[test1,test2,test3]
     end
   end
 
   //write(%io(2),1/sqrt(mu),'(10x,'' Try gama = '',f18.10)');
-  [answer,no]=maxi(tv);
-  //if exists('tv')==1 then write(%io(2),[tv,maxi(tv)],'(4f15.10)');end
+  [answer,no]=max(tv);
+  //if exists('tv')==1 then write(%io(2),[tv,max(tv)],'(4f15.10)');end
   comm1=_("Unfeasible (Hx hamiltonian)")
   comm2=_("Unfeasible (Hy hamiltonian)")
   comm3=_("Unfeasible (Hy hamiltonian)")
@@ -466,7 +466,7 @@ function [Sk,polesH,polesJ]=h_contr(P,r,mu,U2i,Y2i)
     H=[Ax Rx;
        Qx -Ax'];
     polesH=spec(H);
-    dx=mini(abs(real(polesH)));
+    dx=min(abs(real(polesH)));
     //write(%io(2),dx);
     if dx < 1.d-6 then
       mprintf(gettext("%s: An eigenvalue of %s (controller) is close to Imaginary axis.\n"),"h_inf","H");
@@ -484,7 +484,7 @@ function [Sk,polesH,polesJ]=h_contr(P,r,mu,U2i,Y2i)
     J=[Ay' Ry;
        Qy -Ay];
     polesJ=spec(J);
-    dy=mini(abs(real(polesJ)));
+    dy=min(abs(real(polesJ)));
     //write(%io(2),dy);
     if dy < 1.d-6 then
       mprintf(gettext("%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"),"h_inf","J");

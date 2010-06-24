@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2006-2008 - INRIA - Allan CORNET <allan.cornet@inria.fr>
+ * Copyright (C) 2006-2008 - INRIA - Allan CORNET
+ * Copyright (C) 2010 - DIGITEO - Allan CORNET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,9 +17,9 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intsgamma)(char *id,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_gamma)(char *fname,unsigned long fname_len)
+int sci_gamma(char *fname,unsigned long fname_len)
 {
-	C2F(intsgamma)(fname,fname_len);
-	return 0;
+    C2F(intsgamma)(fname,fname_len);
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -14,6 +14,7 @@
 // <-- Short Description -->
 //  The TOWS_c.sci define the default setting in the wrong order.
 loadScicosLibs;
+// exec(SCI + "/modules/scicos_blocks/macros/Sinks/TOWS_c.sci");
 block = TOWS_c("define", [], []);
 s = size(block.graphics.exprs);
 if s(1) <> 3 then bugmes();quit;end

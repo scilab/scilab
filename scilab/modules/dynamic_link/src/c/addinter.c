@@ -18,7 +18,7 @@
 
 #include "core_math.h"
 #include "dynamic_link.h"
-#include "../../../string/includes/men_Sutils.h"
+#include "men_Sutils.h"
 #include "addinter.h" 
 
 #include "do_error_number.h"

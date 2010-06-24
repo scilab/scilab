@@ -8,13 +8,12 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-07-06 21:32+0000\n"
-"Last-Translator: Daniel de Souza Grilo <soporter@gmail.com>\n"
+"PO-Revision-Date: 2010-04-24 16:56+0000\n"
+"Last-Translator: Eduardo Ferreira Araujo <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-04-16 07:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -105,13 +104,13 @@ msgstr ""
 
 #, c-format
 msgid "%s: Could not add path to java.library.path: %s.\n"
-msgstr "%s: Não foi possível adicionar o endereço a java.library.path: %s.\n"
+msgstr "%s: Não foi possível adicionar o caminho ao java.library.path: %s.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
 msgstr ""
-"%s: Tipo errado para o argumento de entrada #%d ou #%d: Esperava-se um "
-"texto.\n"
+"%s: Tipo errado para o argumento de entrada #%d ou #%d: Esperava-se uma "
+"cadeia.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -152,7 +151,7 @@ msgstr "Erro na criação do Java VM: %s\n"
 
 #, c-format
 msgid "Error: %s\n"
-msgstr ""
+msgstr "Erro: %s\n"
 
 #, c-format
 msgid "Error: Could not parse file %s.\n"
@@ -175,12 +174,16 @@ msgid ""
 "If you are using a binary version of Scilab, please report a bug "
 "http://bugzilla.scilab.org/.\n"
 msgstr ""
+"Se você está usando uma versão binária de Scilab, por favor, reporte um bug "
+"para http://bugzilla.scilab.org/.\n"
 
 #, c-format
 msgid ""
 "If you are using a self-built version of Scilab, update the script "
 "bin/scilab to provide the path to the JVM.\n"
 msgstr ""
+"Se você está usando uma versão do Scilab compilada por você então atualize o "
+"script bin/scilab para fornecer o caminho da JVM.\n"
 
 msgid "JNI version error"
 msgstr "Erro de versão JNI"
@@ -195,7 +198,7 @@ msgid "JVM interface disabled in -nogui or -nwni modes.\n"
 msgstr "Interface JVM desabilitada nos modos -nogui ou -nwni.\n"
 
 msgid "Scilab Console"
-msgstr ""
+msgstr "Console do Scilab"
 
 msgid "Scilab Java module not installed.\n"
 msgstr "Módulo Scilab Java não instalado.\n"
@@ -212,7 +215,7 @@ msgstr ""
 
 #, c-format
 msgid "The problem might be related to SELinux. Try to deactivate it.\n"
-msgstr ""
+msgstr "O problema pode estar relacionado ao SELinux. Tente desativá-lo.\n"
 
 msgid "Thread detached from the VM"
 msgstr "Linha desanexada da VM"

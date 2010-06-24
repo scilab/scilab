@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -25,7 +26,8 @@
     Axes entity is built, the Title and Labels handles come with it and are
     part of the Axes properties. Therefore, the properties of those
     sub-objects are editable via the Axes handle (see <literal>gca</literal> and
-    <literal>gda</literal>). This entity defines the parameters for label
+    <literal>gda</literal>). Also note that Label entities cannot be directly deleted.
+    This entity defines the parameters for label
     drawing:</para>
     <variablelist>
       <varlistentry>

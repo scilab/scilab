@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<menubar>
+    <menu label="&amp;File">
+        <submenu label="&amp;Close">
+            <callback instruction='org.scilab.modules.ui_data.BrowseVar.closeVariableBrowser' type="-3"/>
+        </submenu>
+    </menu>
+
+    <menu label="&amp;?">
+        <submenu label="&amp;About Scilab...">
+            <callback instruction='about()' type="0"/>
+        </submenu>
+    </menu>
+</menubar>

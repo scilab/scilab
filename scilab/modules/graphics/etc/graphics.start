@@ -12,6 +12,7 @@
 // =============================================================================
 if (getscilabmode() <> 'NWNI') then
 	load(SCI+"/modules/graphics/macros/lib");
+	load(SCI+"/modules/graphics/macros/datatips/lib");
 end
 
 

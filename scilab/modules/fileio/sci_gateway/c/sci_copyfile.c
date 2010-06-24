@@ -76,7 +76,7 @@ int sci_copyfile(char *fname,unsigned long fname_len)
 	}
 
 	// get value of lenStVarOne
-	sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
+	sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, NULL);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -87,7 +87,7 @@ int sci_copyfile(char *fname,unsigned long fname_len)
 	pStVarOne = (wchar_t*)MALLOC(sizeof(wchar_t)*(lenStVarOne + 2));
 	if (pStVarOne == NULL)
 	{
-		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+		Scierror(999,_("%s: Memory allocation error.\n"),fname);
 		return 0;
 	}
 	
@@ -134,7 +134,7 @@ int sci_copyfile(char *fname,unsigned long fname_len)
 	}
 
 	// get value of lenStVarTwo
-	sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
+	sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, NULL);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -146,7 +146,7 @@ int sci_copyfile(char *fname,unsigned long fname_len)
 	if (pStVarTwo == NULL)
 	{
 		if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;}
-		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+		Scierror(999,_("%s: Memory allocation error.\n"),fname);
 		return 0;
 	}
 	
@@ -203,7 +203,7 @@ int sci_copyfile(char *fname,unsigned long fname_len)
 						if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;}
 						if (pStVarTwo) {FREE(pStVarTwo); pStVarTwo = NULL;}
 
-						Scierror(999,_("%s : Memory allocation error.\n"),fname);
+						Scierror(999,_("%s: Memory allocation error.\n"),fname);
 						return 0;
 					}
 				}
@@ -276,7 +276,7 @@ static void returnCopyFileResultOnStack(int ierr, char *fname)
 	sciError = (wchar_t**)MALLOC(sizeof(wchar_t*)* 1);
 	if (sciError == NULL)
 	{
-		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+		Scierror(999,_("%s: Memory allocation error.\n"),fname);
 		return;
 	}
 
@@ -300,7 +300,7 @@ static void returnCopyFileResultOnStack(int ierr, char *fname)
 		sciError[0] = (wchar_t*)MALLOC(sizeof(wchar_t)* ((int)wcslen(buffer) + 1));
 		if (sciError[0] == NULL)
 		{
-			Scierror(999,_("%s : Memory allocation error.\n"),fname);
+			Scierror(999,_("%s: Memory allocation error.\n"),fname);
 			return;
 		}
 
@@ -312,7 +312,7 @@ static void returnCopyFileResultOnStack(int ierr, char *fname)
 		sciError[0] = (wchar_t*)MALLOC(sizeof(wchar_t)* 1);
 		if (sciError[0] == NULL)
 		{
-			Scierror(999,_("%s : Memory allocation error.\n"),fname);
+			Scierror(999,_("%s: Memory allocation error.\n"),fname);
 			return;
 		}
 		wcscpy(sciError[0], L"");
@@ -326,7 +326,7 @@ static void returnCopyFileResultOnStack(int ierr, char *fname)
 		sciError[0] = to_wide_string(strerror(errno));
 		if (sciError[0] == NULL)
 		{
-			Scierror(999,_("%s : Memory allocation error.\n"),fname);
+			Scierror(999,_("%s: Memory allocation error.\n"),fname);
 			return;
 		}
 	}
@@ -336,7 +336,7 @@ static void returnCopyFileResultOnStack(int ierr, char *fname)
 		sciError[0] = (wchar_t*)MALLOC(sizeof(wchar_t)* 1);
 		if (sciError[0] == NULL)
 		{
-			Scierror(999,_("%s : Memory allocation error.\n"),fname);
+			Scierror(999,_("%s: Memory allocation error.\n"),fname);
 			return;
 		}
 		wcscpy(sciError[0], L"");

@@ -48,7 +48,7 @@ if rhs==3 then //row or column-wise fft
     end
   end
 else 
-  if mini(size(x))==1 then  //fft of a vector
+  if min(size(x))==1 then  //fft of a vector
     if n<>[] then //pad or truncate
       s=size(x,'*')
       if s>n then //truncated fft

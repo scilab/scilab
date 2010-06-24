@@ -18,7 +18,7 @@ msgstr ""
 
 # File: sci_gateway/c/sci_createGUID.c, line: 56
 #, c-format
-msgid "%s : Memory allocation error.\n"
+msgid "%s: Memory allocation error.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_winqueryreg.c, line: 86

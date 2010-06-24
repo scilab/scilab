@@ -101,6 +101,7 @@ public class PaletteManagerMouseListener implements MouseListener {
 		}
 		
 		create.setCallback(new CallBack(XcosMessages.CREATE) {
+			@Override
 			public void callBack() {
 				Category nonModifiedRoot = currentNode.getParent();
 				TreePath newPath = null;
@@ -148,6 +149,7 @@ public class PaletteManagerMouseListener implements MouseListener {
 			MenuItem remove) {
 		remove.setText(XcosMessages.REMOVE);
 		remove.setCallback(new CallBack(XcosMessages.REMOVE) {
+			@Override
 			public void callBack() {
 				if (path == null) {
 					return;
@@ -169,7 +171,12 @@ public class PaletteManagerMouseListener implements MouseListener {
 
 		final boolean pathNonNull = path != null;
 		final TreeModel model = paletteTree.getModel();
-		final boolean isFirstRow = path.getPathCount() <= 2;
+		final boolean isFirstRow;
+		if (pathNonNull) {
+			isFirstRow = path.getPathCount() <= 2;
+		} else {
+			isFirstRow = false;
+		}
 		final boolean isLastFirstChild = model.getChildCount(model.getRoot()) > 1;
 		remove.setEnabled(pathNonNull && !isFirstRow && !isLastFirstChild);
 	}

@@ -118,7 +118,7 @@ function z=narsimul(x1,x2,x3,x4,x5,x6,x7,x8)
  
     end;
     // 
-    degnum=maxi(degree(den));
+    degnum=max(degree(den));
     yp=[0*ones(al,degnum+1-adeg),yp(:,(adeg-1):-1:1)];
     up=[0*ones(mmu,degnum+1-bdeg),up(:,(bdeg-1):-1:1)];
     y=rtitr(num,den,u,up,yp);
@@ -130,7 +130,7 @@ function z=narsimul(x1,x2,x3,x4,x5,x6,x7,x8)
     matd= d*((s.^[ddeg-1:-1:0]).*.eye(al,al))';
     num=matd*s**(adeg-1)
     den=mata*s**(ddeg-1);
-    degnum=maxi(degree(den));
+    degnum=max(degree(den));
     ep=[0*ones(al,degnum+1-ddeg),ep(:,(ddeg-1):-1:1)];
     // Normal noise 
     br=sig*rand(al,Nu,'normal')

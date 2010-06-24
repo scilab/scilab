@@ -114,7 +114,7 @@ k=mode()</synopsis>
     (voir comp). Par défaut les fonctions Scilab sont
     éxécutées en mode silencieux ("-1").</para>
     
-    <para>Les fonctions incluses dans une librairie de fonctions scilab sont executés avec le mode "-1".</para>
+    <para>Les fonctions incluses dans une bibliothèque de fonctions scilab sont executés avec le mode "-1".</para>
   </refsection>
 
   <refsection>

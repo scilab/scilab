@@ -160,7 +160,7 @@
         </submenu>
         <separator/>
         <submenu label="M&amp;odule manager - ATOMS">
-            <callback instruction='atomsGui();' type="0"/>
+            <callback instruction='if with_module("atoms") then atomsGui(); else disp(gettext("Please install atoms module.")); end' type="0"/>
         </submenu>
     </menu>
 

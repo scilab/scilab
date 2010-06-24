@@ -1,20 +1,21 @@
-c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-c Copyright (C) INRIA
-c ...
-c 
-c This file must be used under the terms of the CeCILL.
-c This source file is licensed as described in the file COPYING, which
-c you should have received as part of this distribution.  The terms
-c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-c
+c     Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c     Copyright (C) INRIA
+c     ...
+c     
+c     This file must be used under the terms of the CeCILL.
+c     This source file is licensed as described in the file COPYING,
+c     which
+c     you should have received as part of this distribution.  The terms
+c     are also available at
+c     http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c     
       subroutine sciode
-c
+c     
 c     ode
-c
+c     
       include 'stack.h'
       integer iadr,sadr
-c
+c     
 c     common de lsode,lsoda,lsodar
       double precision xxxx,yyyy,rlsr
       integer ilsr
@@ -23,16 +24,16 @@ c     common de lsode,lsoda,lsodar
       common/lsr001/ rlsr(5),ilsr(9)
       common/eh0001/kkkk(2)
       save /ls0001/,/lsa001/,/lsr001/,/eh0001/
-c
+c     
 c     commons avec bydot,bjac,....
-c
+c     
       character*(nlgh+1) namef,namej,names
       common/cydot/namef
       common/cjac/namej
       common/csurf/names
       integer       iero
-      common/ierajf/iero 
-c
+      common/ierajf/iero
+c     
       double precision atol,rtol,t0,tout,dir
       double precision h0,hmax,hmin,tcrit,tmax
       integer top1,top2,tope,hsize
@@ -45,19 +46,19 @@ c     meth is simulator number, and jactyp the jacobian type used
       data raide/28,29/,adams/10/,root/27,24/
       data discre/13/,rkf/27,20,15/,rk/27,20/,fix/15,18/
       data params/-235739080,-303896856,669247720,3*673720360/
-c
+c     
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
-      
-            iflagcr=0
-c
+
+      iflagcr=0
+c     
 c     get %ODEOPTIONS variable
       ifin=fin
       fin=-1
       istate=1
       call stackg(params)
       if(fin.eq.0) then
-c         call msgs(72,0)
+c     call msgs(72,0)
          iopt=0
          itask=1
          jactyp=2
@@ -68,7 +69,7 @@ c         call msgs(72,0)
          il=iadr(lstk(fin))
          l=sadr(il+4)
 c     %ODEOPTIONS=[itask,tcrit,h0,hmax,hmin,jactyp,mxstep,..
-c                                  mxordn,mxords,ixpr, ml,mu]
+c     mxordn,mxords,ixpr, ml,mu]
          itask=int(stk(l))
          if(itask.lt.1.or.itask.gt.5) then
             buf=' invalid option (first entry)'
@@ -97,8 +98,8 @@ c                                  mxordn,mxords,ixpr, ml,mu]
          ml=int(stk(l+10))
          mu=int(stk(l+11))
       endif
-c      .....
-c
+c     .....
+c     
       fin=ifin
       withw=.false.
 
@@ -109,15 +110,15 @@ c
          call error(39)
          return
       endif
-c
+c     
 c     lw=premiere adresse libre dans la pile
       lw=lstk(top+1)
-c
+c     
 c     test demarrage a chaud
       ifin=iadr(lstk(top))
       achaud=istk(ifin).eq.1
       if(achaud) then
-c     ilc=adresse of lsod* integer work space  
+c     ilc=adresse of lsod* integer work space
          top=top-2
          il=iadr(lstk(top+2))
          if(istk(il).ne.1) then
@@ -128,7 +129,7 @@ c     ilc=adresse of lsod* integer work space
          liwp=istk(il+2)*istk(il+1)
          lci=sadr(il+4)
          ilc=iadr(lci)
-c     lc=adresse of lsod* real work space  
+c     lc=adresse of lsod* real work space
          il=iadr(lstk(top+1))
          if(istk(il).ne.1) then
             err=rhs-1
@@ -138,11 +139,11 @@ c     lc=adresse of lsod* real work space
          lc=sadr(il+4)
          lrwp=istk(il+1)*istk(il+2)
       endif
-c
+c     
       top2=top-rhs+1
       if(achaud) top2=top2+2
       ile=iadr(lstk(top2))
-c
+c     
       if(istk(ile).eq.10) then
          top2=top2+1
          if(abs(istk(ile+6)).eq.adams) then
@@ -180,7 +181,7 @@ c     rksimp
 c     lsoda
          meth=0
       endif
-c
+c     
       if(meth.lt.3) then
          if(lhs.ne.3.and.lhs.ne.1) then
             call error(41)
@@ -197,9 +198,9 @@ c
             return
          endif
       endif
-c
+c     
       top1=top
-c
+c     
       if(meth.eq.3) then
 c     on recupere le simulateur des equations des surfaces
          ilsurf=iadr(lstk(top1))
@@ -214,9 +215,16 @@ c     on recupere le simulateur des equations des surfaces
             call cvstr(istk(ilsurf+5)-1,istk(ilsurf+6),names,1)
             names(istk(ilsurf+5):istk(ilsurf+5))=char(0)
             call setfsurf(names,irep)
-            if ( irep.eq.1) then 
+            if ( irep.eq.1) then
                buf = names
                call error(50)
+               return
+            endif
+         elseif(istk(ilsurf).eq.15) then
+            le1=sadr(ilsurf+istk(ilsurf+1)+3)
+            if(istk(iadr(le1)).ne.11.and.istk(iadr(le1)).ne.13) then
+               err=rhs-(tope-top1)
+               call error(80)
                return
             endif
          endif
@@ -240,7 +248,7 @@ c     ... et le nombre d'equations
       else
          ksurf=0
       endif
-      
+
       il=iadr(lstk(top1-1))
       if(istk(il).eq.10.or.istk(il).eq.15.or.
      $     istk(il).eq.11.or.istk(il).eq.13) then
@@ -257,9 +265,16 @@ c     JACOBIAN IS GIVEN (variable top1)
             call cvstr(istk(ilj+5)-1,istk(ilj+6),namej,1)
             namej(istk(ilj+5):istk(ilj+5))=char(0)
             call setfjac(namej,irep)
-            if ( irep.eq.1) then 
+            if ( irep.eq.1) then
                buf = namej
                call error(50)
+               return
+            endif
+         elseif(islj.eq.15) then
+            le1=sadr(ilj+istk(ilj+1)+3)
+            if(istk(iadr(le1)).ne.11.and.istk(iadr(le1)).ne.13) then
+               err=rhs-(tope-top1)
+               call error(80)
                return
             endif
          endif
@@ -273,7 +288,7 @@ c     JACOBIAN IS GIVEN (variable top1)
          if(iopt.eq.0) then
 c     set jactyp (jacobian is supposed full)
             jactyp=1
-         else 
+         else
 c     check jactyp
             if(jactyp.eq.2.or.jactyp.eq.5) then
                call msgs(75,0)
@@ -294,13 +309,13 @@ c     %ODEOPTIONS requires the jacobian
                jactyp=jactyp+1
             endif
          endif
-         jaco=.false.         
+         jaco=.false.
          kjac=0
       endif
 
       kytop=top1
 
-c
+c     
 c     rhs
       ilf=iadr(lstk(top1))
       islf=istk(ilf)
@@ -315,58 +330,62 @@ c     rhs
          call cvstr(istk(ilf+5)-1,istk(ilf+6),namef,1)
          namef(istk(ilf+5):istk(ilf+5))=char(0)
          call setfydot(namef,irep)
-         if ( irep.eq.1) then 
+         if ( irep.eq.1) then
             buf = namef
             call error(50)
             return
          endif
-c    test list('fex',w)
+c     test list('fex', ...) or list(fun,...)
       elseif(islf.eq.15) then
-        le1=sadr(ilf+istk(ilf+1)+3)
-        if(istk(iadr(le1)).eq.10) then
-        withw=.true.
-c     next line just to tell to bydot that external is in fortran
-        istk(ilf)=10 
-        if(istk(ilf+1).ne.2) then
-           buf='wrong list passed: needs two elts in list'
-           call error(9999)
-           return
+         le1=sadr(ilf+istk(ilf+1)+3)
+         if(istk(iadr(le1)).eq.10) then
+            withw=.true.
+c     .     next line just to tell to bydot that external is in fortran
+            istk(ilf)=10
+            if(istk(ilf+1).ne.2) then
+               buf='wrong list passed: needs two elts in list'
+               call error(9999)
+               return
+            endif
+            long1=istk(ilf+3)
+            lf=lstk(top1)
+            illl=iadr(lf+istk(ilf+3))
+            nblett=istk(illl-1)-1
+            namef=' '
+            call cvstr(istk(ilf+11)-1,istk(ilf+12),namef,1)
+            namef(istk(ilf+11):istk(ilf+11))=char(0)
+            call setfydot(namef,irep)
+            if ( irep.eq.1) then
+               buf = namef
+               call error(50)
+               return
+            endif
+            ll1=sadr(ilf+5)
+            ll2=ll1+long1-1
+            il2=iadr(ll2)
+            nbw=istk(il2+1)*istk(il2+2)
+            if(istk(il2+3).ne.0) then
+               buf='working array must be real'
+               call error(9999)
+               return
+            endif
+            lww=sadr(il2+4)
+c     .     lww = adr w , nbw = size (w)
+         elseif(istk(iadr(le1)).ne.11.and.istk(iadr(le1)).ne.13) then
+            err=rhs-(tope-top1)
+            call error(80)
+            return
+         endif
       endif
-        long1=istk(ilf+3)
-        lf=lstk(top1)
-        illl=iadr(lf+istk(ilf+3))
-        nblett=istk(illl-1)-1
-        namef=' '
-        call cvstr(istk(ilf+11)-1,istk(ilf+12),namef,1)
-        namef(istk(ilf+11):istk(ilf+11))=char(0)
-        call setfydot(namef,irep)
-        if ( irep.eq.1) then 
-           buf = namef
-           call error(50)
-           return
-        endif
-        ll1=sadr(ilf+5)
-        ll2=ll1+long1-1
-        il2=iadr(ll2)
-        nbw=istk(il2+1)*istk(il2+2)
-        if(istk(il2+3).ne.0) then
-          buf='working array must be real'
-          call error(9999)
-          return
-        endif
-      lww=sadr(il2+4)
-c     lww = adr w , nbw = size (w) 
-      endif
-      endif
-c
+c     
 c     jaco,type and meth initialized ...
 c     top2 point on y0
-c
+c     
 c     y0
       kynew=top2
       il=iadr(lstk(top2))
       it=istk(il+3)
-c
+c     
       if(istk(il).eq.1) then
          hsize=4
          ny=istk(il+1)*istk(il+2)*(istk(il+3)+1)
@@ -389,7 +408,7 @@ c     list('fex',w)
             return
          endif
          top=top+1
-c         kynew=top
+c     .  kynew=top
          ily=iadr(lstk(top))
          err=sadr(ily+4)+ny+nbw-lstk(bot)
          if(err.gt.0) then
@@ -409,7 +428,7 @@ c         kynew=top
       endif
       lw1=lw
       lw=sadr(iadr(lw1)+13)
-c
+c     
 c     t0
       top2=top2+1
       kttop=top2
@@ -434,7 +453,7 @@ c     number of output points
       nn=istk(il+1)*istk(il+2)
 c     pointer on  output time vector
       lt1=sadr(il+4)
-c
+c     
 c     optionnal parameters rtol et atol
       top2=top2+1
 c     default values
@@ -449,9 +468,9 @@ c     default values
       na=1
       jobtol=kytop-top2+1
 c     jobtol=(nothing ,rtol only,rtol and atol)
-c
+c     
       if(jobtol.eq.1) then
-c     default tolerances 
+c     default tolerances
          lr=lw
          la=lr+1
          stk(la)=atol
@@ -475,12 +494,12 @@ c     rtol
          lrt=sadr(il+4)
          call unsfdcopy(nr,stk(lrt),1,stk(lr),1)
          la=lr+nr
-c     atol
+c     .  atol
          if(jobtol.eq.2) then
-c        .   default
+c     .     default
             stk(la)=atol
          else
-c        .  atol given
+c     .     atol given
             top2=top2+1
             il=iadr(lstk(top2))
             if(istk(il).ne.1) then
@@ -502,12 +521,12 @@ c        .  atol given
 
 c     set input top value
       if(achaud) top=top+2
-c
+c     
       if(nr.eq.1.and.na.eq.1) itol=1
       if(nr.eq.1.and.na.gt.1) itol=2
       if(nr.gt.1.and.na.eq.1) itol=3
       if(nr.gt.1.and.na.gt.1) itol=4
-c
+c     
 c     compute integrator workspace  sizes
       if(meth.eq.0) then
 c     lsoda
@@ -570,9 +589,9 @@ c     rksimp
          liw=1
       endif
 
-c
+c     
 c     hot start
-c
+c     
       if(achaud) then
          if(meth.le.3) then
 c     check for input hot start table consistency
@@ -610,19 +629,19 @@ c     integer workspace retrieval
             istk(ilc+k-1)=int(stk(lci+k-1))
  40      continue
       endif
-c
-c
+c     
+c     
 c     compute pointer on ode real and integer work spaces
       lc0=lw
       li=lc0+lrw
-c
+c     
       ili=iadr(li)
       lw=sadr(ili+liw)
-c
+c     
 c     get memory to store results
       lyp=lw
       if(itask.eq.2.or.itask.eq.3.or.itask.eq.5) then
-c     unknown number of output points.  space for  points 
+c     unknown number of output points.  space for  points
 c     will be allocated later
          single=.true.
          lw=lyp
@@ -637,7 +656,7 @@ c     will be allocated later
             return
          endif
       else
-c     number of output points is equal to number of t points all 
+c     number of output points is equal to number of t points all
 c     space allocated here
          single=.false.
          lw=lw+nn*ny
@@ -651,18 +670,18 @@ c     top points on external workspace
          call error(17)
          return
       endif
-c
+c     
       call xsetf(1)
       call xsetun(wte)
-c
+c     
       if(.not.achaud) then
          lc=lc0
          ilc=ili
       endif
-c
+c     
 c     data structure passed to externals, it contains pointer
 c     to externals parameters
-c
+c     
       ilw1=iadr(lw1)
       istk(ilw1)=3
       istk(ilw1+1)=ilw1+4
@@ -687,7 +706,7 @@ c     copy integration options in lsod* workspace
          stk(lc+5)=hmax
          stk(lc+6)=hmin
          if(meth.eq.0.or.meth.eq.3) then
-c   lsoda/lsodar
+c     lsoda/lsodar
             if(jactyp.eq.4.or.jactyp.eq.5) then
                istk(ilc)=ml
                istk(ilc+1)=mu
@@ -698,7 +717,7 @@ c   lsoda/lsodar
             istk(ilc+7)=mxordn
             istk(ilc+8)=mxords
          elseif(meth.lt.3) then
-c   lsode 
+c     lsode
             if(jactyp.eq.4.or.jactyp.eq.5) then
                istk(ilc)=ml
                istk(ilc+1)=mu
@@ -718,7 +737,7 @@ c   lsode
          call writebufodea(buf,itask,meth,jactyp,ml,mu,iopt)
          call basout(io,wte,buf(1:80))
          call writebufodeb(buf,tcrit,stk(lc+4),stk(lc+5),stk(lc+6))
-         call basout(io,wte,buf(1:80)) 
+         call basout(io,wte,buf(1:80))
       endif
       if(single) then
 c     loop til t=tout
@@ -760,7 +779,7 @@ c     --------------
             call rksimp(bydot,ny,stk(ly),t0,tout,itol,rtol,
      1           atol,itask,istate,iopt,stk(lc),lrw,istk(ilc),
      2           liw,bjac,meth)
-         endif         
+         endif
          if(err.gt.0.or.err1.gt.0) return
          if(istate.lt.0) then
             if(meth.le.3) then
@@ -818,7 +837,7 @@ c     tcrit reached
             goto 500
          endif
          goto 50
-c
+c     
       else
 c     
 c     loop on t points
@@ -862,17 +881,17 @@ c--------------------
                call rksimp(bydot,ny,stk(ly),t0,tout,itol,rtol,
      1              atol,itask,istate,iopt,stk(lc),lrw,istk(ilc),
      2              liw,bjac,meth)
-            endif         
+            endif
             if(err.gt.0.or.err1.gt.0) return
 
             if(istate.lt.0) then
-            if(meth.le.3) then
-               if(istate.eq.-3) then
-                  buf='illegal input'
-                  call error(9999)
-                  return
-                endif
-            endif
+               if(meth.le.3) then
+                  if(istate.eq.-3) then
+                     buf='illegal input'
+                     call error(9999)
+                     return
+                  endif
+               endif
                if(meth.eq.5) call msgs(71,0)
                call msgs(4,ierr)
                nn=k-1
@@ -905,7 +924,7 @@ c     tcrit reached
             endif
  60      continue
       endif
-c
+c     
 c     form results for output
  500  continue
       if(lhs.ge.3) then
@@ -920,7 +939,7 @@ c     preserve lsod* working spaces
          call unsfdcopy(lrw,stk(lc),1,stk(lw),1)
          call icopy(liw,istk(ilc),1,istk(ilw),1)
       endif
-c form state output
+c     form state output
       ils=iadr(lstk(kynew))
       top=tope-rhs+1
       call icopy(hsize,istk(ils),1,istk(ile),1)
@@ -996,7 +1015,7 @@ c     lsodar: form roots output
          endif
          lstk(top+1)=l+1
       endif
-c form w and iw output
+c     form w and iw output
       if(lhs.lt.3) return
 c     w
       top=top+1

@@ -31,7 +31,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>ifortv=findmsifortcompiler()</synopsis>
+    <synopsis>ifortv = findmsifortcompiler()</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -41,9 +41,33 @@
       <varlistentry>
         <term>ifortv</term>
 
-        <listitem>
-          <para>returns 'ifort90','ifort10','ifort11','unknown'</para>
-        </listitem>
+      <informaltable border="1">
+      <tr>
+        <td>string</td>
+        <td>Intel Fortran version</td>
+      </tr>
+      <tr>
+        <td>ifort90</td>
+        <td>Intel Fortran 9.x</td>
+      </tr>
+      <tr>
+        <td>ifort10</td>
+        <td>Intel Fortran 10.x</td>
+      </tr>
+      <tr>
+        <td>ifort11</td>
+        <td>Intel Fortran 11.x</td>
+      </tr>
+      <tr>
+        <td>ifort12</td>
+        <td>Intel Fortran 12.x (beta support)</td>
+      </tr>
+      
+      <tr>
+        <td>unknown</td>
+        <td>not detected or unknown version.</td>
+      </tr>
+    </informaltable>
       </varlistentry>
     </variablelist>
   </refsection>

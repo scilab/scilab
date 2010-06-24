@@ -12,7 +12,7 @@
  */
 
 #include "GetMatlabVariable.h"
-
+#include "sci_types.h"
 #include "api_scilab.h"
 
 #include "freeArrayOfString.h"

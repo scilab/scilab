@@ -41,7 +41,7 @@
     <para><literal>xselect</literal> restaura a janela de gráficos corrente.
     Se tal janela não existir, uma é criada.</para>
 
-    <para>Aviso: está função está obsoleta e será removida no Scilab 5.1. Ela
+    <para>Aviso: está função está obsoleta e será removida no Scilab 5.4. Ela
     foi substituída pela função show_window.</para>
   </refsection>
 

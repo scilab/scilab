@@ -13,7 +13,8 @@
 
 package org.scilab.modules.xcos.actions;
 
-import static org.scilab.modules.graph.utils.ScilabInterpreterManagement.buildCall;
+import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.buildCall;
+import static org.scilab.modules.xcos.utils.FileUtils.delete;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,9 +24,9 @@ import java.io.IOException;
 import javax.swing.SwingWorker;
 
 import org.apache.commons.logging.LogFactory;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
-import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.FileUtils;
@@ -96,7 +97,7 @@ public class CompileAction extends SimulationNotRunningAction {
 				final ActionListener action = new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						temp.delete();
+						delete(temp);
 						((XcosDiagram) getGraph(null)).setReadOnly(false);
 						((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
 					}

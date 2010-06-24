@@ -47,11 +47,17 @@ options_codes=[1;2;3;
     H=getvalidchildren(A)
   end
 
+  if H==[] then
+    error(msprintf(gettext("%s: No ''%s'' handle found.\n"), "legend","Polyline"));
+  end
+
   //get all labels
   for k=k0:size(varargin)
-    if type(varargin(k))<>10 then break,end
+    if type(varargin(k))<>10 then
+      error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "legend", k));
+    end
     vk=varargin(k)
-    leg=[vk(:);leg]
+    leg=[leg, vk(:)]
   end
   nleg=size(leg,'*')
 
@@ -119,16 +125,15 @@ function h=getvalidchildren(A)
   for k=1:size(A,'*')
     a=A(k)
     select a.type
-    case "Polyline" then
-      h=[h;a]
-     case 'Axes'
-      ax=a.children
-      h=[h;getvalidchildren(ax)]
-    case 'Compound'
-     for k=1:1:size(a.children,'*')
-	h=[h;getvalidchildren(a.children(k))]
-
-      end
-    end
+      case "Polyline" then
+        h=[h;a]
+      case "Axes"
+        ax=a.children
+        h=[h;getvalidchildren(ax)]
+      case "Compound"
+        for k=1:1:size(a.children,'*')
+          h=[h;getvalidchildren(a.children(k))]
+        end
   end
+end
 endfunction

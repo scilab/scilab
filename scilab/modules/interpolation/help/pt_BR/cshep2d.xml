@@ -95,7 +95,7 @@ plot3d(xx,xx,Z,flag=[2 6 4])
 param3d1(xy(:,1),xy(:,2),list(z,-9), flag=[0 0])
 xtitle("Interpolação cúbica de Shepard de cos(x)cos(y) com pontos de interpolação escolhidos aleatoriamente")
 legends("pontos de interpolação",-9,1)
-xselect()
+show_window()
  ]]></programlisting>
   </refsection>
 

@@ -15,6 +15,7 @@ package org.scilab.modules.xcos.io.scicos;
 import static java.util.Arrays.asList;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,6 +58,10 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 
 	/** Diagram properties MList header (scs_m.props) */
 	private static final String[] PROPS_FIELDS = {"params", "wpar", "title", "tol", "tf", "context", "void1", "options", "void2", "void3", "doc"};
+	
+	/** Index of the title in the props field */
+	private static final int TITLE_INDEX = 2;
+	
 	/** Diagram options MList header (scs_m.props.options) */
 	private static final String[] OPTS_FIELDS = {"scsopt", "3D", "Background", "Link", "ID", "Cmap"};
 	/**
@@ -71,25 +76,25 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 	// As the values are scicos dependent we avoid using constant references.
 	// CSOFF: MagicNumber
 	private static final ScilabTList DIAGRAM_OPTIONS = new ScilabTList(
-			OPTS_FIELDS) {
-		{
-			add(new ScilabList() { // 3D
-				{
-					add(new ScilabBoolean(true));
-					add(new ScilabDouble(33));
-				}
-			});
-			add(new ScilabDouble(new double[][] {{8, 1}})); // Background
-			add(new ScilabDouble(new double[][] {{1, 5}})); // Link
-			add(new ScilabList() { // ID
-				{
-					add(new ScilabDouble(new double[][] {{5, 1}}));
-					add(new ScilabDouble(new double[][] {{4, 1}}));
-				}
-			});
-			add(new ScilabDouble(new double[][] {{0.8, 0.8, 0.8}})); // Cmap
-		}
-	};
+			OPTS_FIELDS,
+		Arrays.asList(
+			new ScilabList( // 3D
+				Arrays.asList(
+					new ScilabBoolean(true),
+					new ScilabDouble(33)
+				)
+			),
+			new ScilabDouble(new double[][] {{8, 1}}), // Background
+			new ScilabDouble(new double[][] {{1, 5}}), // Link
+			new ScilabList( // ID
+				Arrays.asList(
+					new ScilabDouble(new double[][] {{5, 1}}),
+					new ScilabDouble(new double[][] {{4, 1}})
+				)
+			),
+			new ScilabDouble(new double[][] {{0.8, 0.8, 0.8}}) // Cmap
+		)
+	);
 	// CSON: MagicNumber
 	
 	private ScilabMList base;
@@ -104,7 +109,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 	}
 
 	/**
-	 * Decode the diagram
+	 * Decode the diagram with version validation.
 	 * 
 	 * @param element
 	 *            the diagram Scicos element
@@ -118,6 +123,24 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 	@Override
 	public XcosDiagram decode(ScilabType element, XcosDiagram into)
 			throws ScicosFormatException {
+		return decode(element, into, true);
+	}
+	
+	/**
+	 * Decode the diagram
+	 * 
+	 * @param element
+	 *            the diagram Scicos element
+	 * @param into
+	 *            the Xcos instance, if null, a new instance is returned.
+	 * @param validate true, if the diagram version will be checked. false otherwise.
+	 * @return the modified into parameters
+	 * @throws ScicosFormatException when a decoding error occurs
+	 * @see org.scilab.modules.xcos.io.scicos.Element#decode(org.scilab.modules.types.scilabTypes.ScilabType,
+	 *      java.lang.Object)
+	 */
+	public XcosDiagram decode(ScilabType element, XcosDiagram into, boolean validate)
+			throws ScicosFormatException {
 		base = (ScilabMList) element;
 		
 		XcosDiagram diag = into;
@@ -130,7 +153,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 		// Validate the base field
 		String wrongVersion = null;
 		try {
-			validate(true);
+			validate(validate);
 		} catch (VersionMismatchException e) {
 			wrongVersion = e.getWrongVersion();
 		}
@@ -253,51 +276,53 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 		
 		// Have we enough fields ?
 		if (base.size() < BASE_FIELD_NAMES.size()) {
-			throw new WrongStructureException();
+			throw new WrongStructureException(BASE_FIELD_NAMES);
 		}
-
+		
+		int field = 0;
+		
 		/*
 		 * Checking the MList header
 		 */
 
 		// Check the first field
-		if (!(base.get(0) instanceof ScilabString)) {
-			throw new WrongTypeException();
+		if (!(base.get(field) instanceof ScilabString)) {
+			throw new WrongTypeException(BASE_FIELD_NAMES, field);
 		}
-		String[] header = ((ScilabString) base.get(0)).getData()[0];
+		String[] header = ((ScilabString) base.get(field)).getData()[0];
 
 		// Check the number of fields
 		if (header.length < BASE_FIELD_NAMES.size()) {
-			throw new WrongStructureException();
+			throw new WrongStructureException(BASE_FIELD_NAMES);
 		}
 
 		// Check the first fields values
 		for (int i = 0; i < BASE_FIELD_NAMES.size(); i++) {
 			if (!header[i].equals(BASE_FIELD_NAMES.get(i))) {
-				throw new WrongStructureException();
+				throw new WrongStructureException(BASE_FIELD_NAMES);
 			}
 		}
 
 		/*
 		 * Checking the data types
 		 */
-		int field = 1;
 
 		// the second field must contain list of props
+		field++;
 		if (!(base.get(field) instanceof ScilabTList)) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(BASE_FIELD_NAMES, field);
 		}
 
 		// the third field must contains lists of blocks and links
 		field++;
 		if (!(base.get(field) instanceof ScilabList)) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(BASE_FIELD_NAMES, field);
 		}
 
 		// the last field must contain the scicos version used
 		field++;
 		if (!(base.get(field) instanceof ScilabString)) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(BASE_FIELD_NAMES, field);
 		}
 
 		/*
@@ -406,6 +431,10 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 		final ScicosParametersElement paramsElement = new ScicosParametersElement();
 		data = base.get(field);
 		data = paramsElement.encode(from.getScicosParameters(), data);
+		
+		// set the title as it is need for generating files
+		((ScilabTList) data).set(TITLE_INDEX, new ScilabString(from.getTitle()));
+		
 		base.set(field, data);
 	}
 	

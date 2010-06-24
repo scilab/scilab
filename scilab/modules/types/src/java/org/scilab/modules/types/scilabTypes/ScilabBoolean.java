@@ -1,6 +1,7 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2009-2009 - DIGITEO - Bruno JOFRET
+ *  Copyright (C) 2010-2010 - DIGITEO - Clément DAVID
  * 
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -93,7 +94,7 @@ public class ScilabBoolean implements ScilabType {
      *
      * @return true if empty
 	 */
-    public boolean isEmpty(){
+    public boolean isEmpty() {
     	return (data == null);
     }
     
@@ -104,18 +105,19 @@ public class ScilabBoolean implements ScilabType {
      * @return the pretty print
 	 */
 	public String toString() {
-		StringBuffer result = new StringBuffer();
+		StringBuilder result = new StringBuilder();
+		
 		if (isEmpty()) {
 			result.append("[]");
 			return result.toString();
 		}
 
 		result.append("[");
-		for (int i = 0 ; i < getHeight() ; ++i) {
-			for (int j = 0 ; j < getWidth() ; ++j) {
-				if (getData()[i][j] == true){
+		for (int i = 0; i < getHeight(); ++i) {
+			for (int j = 0; j < getWidth(); ++j) {
+				if (getData()[i][j]) {
 					result.append("%t");
-				}else{
+				} else {
 					result.append("%f");
 				}
 				if (j != getWidth() - 1) {

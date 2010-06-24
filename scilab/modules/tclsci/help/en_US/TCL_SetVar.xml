@@ -58,6 +58,7 @@
     the value of a tcl/tk variable. This can be useful to change some value in
     the tcl/tk interpreter without having to build a tcl/tk instruction (and
     use <literal>TCL_EvalStr</literal>).</para>
+    <para>More information about Tcl/Tk: <ulink url="http://www.tcl.tk/doc/">http://www.tcl.tk/doc/</ulink></para>
   </refsection>
   <refsection>
     <title>Examples</title>

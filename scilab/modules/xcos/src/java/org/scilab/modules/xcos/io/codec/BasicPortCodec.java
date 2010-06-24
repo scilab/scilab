@@ -16,6 +16,7 @@ package org.scilab.modules.xcos.io.codec;
 import java.util.Map;
 
 import org.scilab.modules.graph.utils.StyleMap;
+import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.io.XcosObjectCodec;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
@@ -83,6 +84,7 @@ public class BasicPortCodec extends XcosObjectCodec {
 	 * @return Returns the object to be encoded by the default encoding.
 	 * @see com.mxgraph.io.mxObjectCodec#beforeEncode(com.mxgraph.io.mxCodec, java.lang.Object, org.w3c.dom.Node)
 	 */
+	@Override
     public Object beforeEncode(mxCodec enc, Object obj, Node node) {
 	((Element) node).setAttribute(DATA_TYPE,
 		String.valueOf(((BasicPort) obj).getDataType()));
@@ -97,6 +99,7 @@ public class BasicPortCodec extends XcosObjectCodec {
 	 * @return The Object transformed 
 	 * @see org.scilab.modules.xcos.io.XcosObjectCodec#afterDecode(com.mxgraph.io.mxCodec, org.w3c.dom.Node, java.lang.Object)
 	 */
+	@Override
     public Object afterDecode(mxCodec dec, Node node, Object obj) {
 	String attr = ((Element) node).getAttribute(DATA_TYPE);
 
@@ -158,6 +161,13 @@ public class BasicPortCodec extends XcosObjectCodec {
 		
 		flipped = Boolean.parseBoolean(map.get(XcosConstants.STYLE_FLIP));
 		mirrored = Boolean.parseBoolean(map.get(XcosConstants.STYLE_MIRROR));
+		
+		final int baseAngle = orientation.getRelativeAngle(((BasicBlock) obj
+				.getParent()).getAngle(), obj.getClass(), flipped, mirrored);
+		
+		if (rotation == baseAngle) {
+			return;
+		}
 
 		// Calculate the rotation for this kind of port.
 		rotation = orientation.getAbsoluteAngle(obj.getClass(), flipped, mirrored);

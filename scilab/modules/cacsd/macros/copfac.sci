@@ -45,7 +45,7 @@ function [n,m,xt,yt]=copfac(g,polf,polc,tol)
   if n1<>t then
     w1=u1(:,n1+1:t),a1=w1'*a*w1,
     no=norm(a1),
-    if maxi(real(spec(a1)))>no*tol then
+    if max(real(spec(a1)))>no*tol then
       error(msprintf(gettext("%s: Wrong value for input argument #%d: Stabilizable system expected.\n"),"copfac",1)),
     end,
   end,
@@ -53,7 +53,7 @@ function [n,m,xt,yt]=copfac(g,polf,polc,tol)
   if n2<>t then
     w2=u2(:,n2+1:t),a2=w2'*a*w2,
     no=norm(a2),
-    if maxi(real(spec(a2)))>no*tol then
+    if max(real(spec(a2)))>no*tol then
       error(msprintf(gettext("%s: Wrong value for input argument #%d: Detectable system expected.\n"),"copfac",1)),
     end,
   end,

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Allan CORNET
+ * Copyright (C) 2009-2010 - DIGITEO - Allan CORNET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -30,7 +30,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>write_csv(M, filename)</synopsis>
+    <synopsis>write_csv(M, filename [,sep, dec])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -52,6 +52,24 @@
           <para>a matrix of strings.</para>
         </listitem>
       </varlistentry>
+
+      <varlistentry>
+        <term>sep</term>
+
+        <listitem>
+          <para>column separator mark, by default a tabulation: ascii(9)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>dec</term>
+
+        <listitem>
+          <para>decimal mark '.' or ',' by default a ','</para>
+        </listitem>
+      </varlistentry>
+
+      
     </variablelist>
   </refsection>
 
@@ -60,6 +78,7 @@
 
     <para>write_csv(M, filename) writes matrix M into filename as
     comma-separated values. The filename input is a string.</para>
+    <para>if the file 'filename' already exists, it is overwritten.</para>
   </refsection>
 
   <refsection>
@@ -74,7 +93,13 @@ mgetl(TMPDIR + '/datas.csv')
 
 r = read_csv(TMPDIR + '/datas.csv',ascii(9));
 r = strsubst(r,',','.');
-evstr(r)</programlisting>
+evstr(r)
+
+A = [1:10] * 0.1; 
+write_csv(A', TMPDIR+'/foo.csv', ' ', '.');
+mgetl(TMPDIR+'/foo.csv')
+
+</programlisting>
   </refsection>
 
   <refsection>
@@ -86,6 +111,8 @@ evstr(r)</programlisting>
       <member><link linkend="evstr">evstr</link></member>
 
       <member><link linkend="mgetl">mgetl</link></member>
+      
+      <member><link linkend="format">format</link></member>
     </simplelist>
   </refsection>
 

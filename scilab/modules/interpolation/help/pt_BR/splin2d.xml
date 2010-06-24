@@ -196,7 +196,7 @@ xtitle("natural")
 subplot(2,2,4)
 plot3d1(xp, yp, ZP4, flag=[2 2 4])
 xtitle("monotone")
-xselect()
+show_window()
 
 // exemplo 3 : spline not_a_knot e sub-spline monotone
 //             em uma função de degraus

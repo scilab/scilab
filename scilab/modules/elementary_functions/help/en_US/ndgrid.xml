@@ -110,7 +110,7 @@ y = linspace(-1,1,ny);
 deff("z=f(x,y)","z=x.^2 + y.^3")
 Z = f(X,Y);
 clf()
-plot3d(x,y,Z, flag=[2 6 4]); xselect()
+plot3d(x,y,Z, flag=[2 6 4]); show_window()
 
 // create a simple 3d grid
 nx = 10; ny = 6; nz = 4;
@@ -136,7 +136,7 @@ end
 
 clf()
 plot3d(XF,YF,ZF, flag=[0 6 3], leg="X@Y@Z")
-xtitle("A 3d grid !"); xselect()
+xtitle("A 3d grid !"); show_window()
  ]]></programlisting>
   </refsection>
 

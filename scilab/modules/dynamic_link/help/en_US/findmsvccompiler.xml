@@ -20,7 +20,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>msvc=findmsvccompiler()</synopsis>
+    <synopsis>msvc = findmsvccompiler()</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -28,7 +28,57 @@
       <varlistentry>
         <term>msvc</term>
         <listitem>
-          <para>returns 'msvc70','msvc71','msvc80express','msvc80std,'msvc80pro','msvc90express','msvc90std,'msvc90pro','unknown'</para>
+          <para>returns a string to identify Visual studio version.</para>
+      <informaltable border="1">
+      <tr>
+        <td>string</td>
+        <td>Visual Studio version</td>
+      </tr>
+      <tr>
+        <td>msvc70</td>
+        <td>Microsoft Visual Studio 2002 Professional or above.</td>
+      </tr>
+      <tr>
+        <td>msvc71</td>
+        <td>Microsoft Visual Studio 2003 Professional or above.</td>
+      </tr>
+      <tr>
+        <td>msvc80express</td>
+        <td>Microsoft Visual Studio 2005 Express Edition.</td>
+      </tr>
+      <tr>
+        <td>msvc80std</td>
+        <td>Microsoft Visual Studio 2005 Standard Edition.</td>
+      </tr>
+      <tr>
+        <td>msvc80pro</td>
+        <td>Microsoft Visual Studio 2005 Professional or above.</td>
+      </tr>
+      <tr>
+        <td>msvc90express</td>
+        <td>Microsoft Visual Studio 2008 Express Edition.</td>
+      </tr>
+      <tr>
+        <td>msvc90std</td>
+        <td>Microsoft Visual Studio 2008 Standard Edition.</td>
+      </tr>
+      <tr>
+        <td>msvc90pro</td>
+        <td>Microsoft Visual Studio 2008 Professional or above.</td>
+      </tr>
+      <tr>
+        <td>msvc100express</td>
+        <td>Microsoft Visual Studio 2010 Express Edition</td>
+      </tr>
+      <tr>
+        <td>msvc100pro</td>
+        <td>Microsoft Visual Studio 2010 Professional or above.</td>
+      </tr>
+      <tr>
+        <td>unknown</td>
+        <td>not detected or unknown version.</td>
+      </tr>
+    </informaltable>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -40,7 +90,7 @@
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
-msvc=findmsvccompiler()
+msvc = findmsvccompiler()
  ]]></programlisting>
   </refsection>
   <refsection>

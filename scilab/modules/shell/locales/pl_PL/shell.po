@@ -1,0 +1,83 @@
+# Polish translation for scilab
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2010-04-06 19:43+0000\n"
+"Last-Translator: Paweł Dąbrowski <Unknown>\n"
+"Language-Team: Polish <pl@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2010-05-04 21:28+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Not implemented in this mode.\n"
+msgstr "%s: Nie zrealizowane w tym trybie.\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented in this mode.\n"
+msgstr "%s: Ta funkcja nie została zrealizowana w tym trybie.\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented.\n"
+msgstr "%s: Ta funkcja nie została zrealizowana.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s).\n"
+msgstr "%s: Zła liczba parametrów(-u) wejściowych(-ego).\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Zły rozmiar parametru wejściowego #%d: Oczekiwano wartości typu string.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Zły typ parametru wejściowego %d: Oczekiwano wartości typu string.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
+msgstr "%s: Zły typ parametru wejściowego #%d: Oczekiwano macierzy.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr "%s: Zła wartość parametru wejściowego #%d.\n"
+
+msgid "File or Directory"
+msgstr "Plik lub Katalog"
+
+msgid "Graphics handle field"
+msgstr "Okno graficzne"
+
+msgid "Scilab Command"
+msgstr "Polecenie programu Scilab"
+
+msgid "Scilab Function"
+msgstr "Funkcia programu Scilab"
+
+msgid "Scilab Macro"
+msgstr "Polecenie Makro programu Scilab"
+
+msgid "Scilab Variable"
+msgstr "Zmienna programu Scilab"
+
+#, c-format
+msgid ""
+"Type '%s' or '%s' to return to standard level prompt.\n"
+"\n"
+msgstr ""
+"Naciśnij '%s' lub '%s' by powrócić do standardowego poziomu wiersza.\n"
+"\n"
+
+msgid "[Continue display? n (no) to stop, any other key to continue]"
+msgstr ""
+"[Kontynuować wyświetlanie? n (nie) aby zatrzymać, inny klawisz aby "
+"kontynuować]"

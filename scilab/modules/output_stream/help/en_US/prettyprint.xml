@@ -125,6 +125,7 @@ xstring(0.2,0.2,prettyprint(G*s-1)); // Show a polynom through a LaTeX represent
       <member><link linkend="axes_properties">axes_properties</link></member>
       <member><link linkend="label_properties">label_properties</link></member>
       <member><link linkend="legend_properties">legend_properties</link></member>
+      <member><link linkend="sci2exp">sci2exp</link></member>
       <member><link linkend="text_properties">text_properties</link></member>
       <member><link linkend="xstringb">xstringb</link></member>
       <member><link linkend="xstringl">xstringl</link></member>

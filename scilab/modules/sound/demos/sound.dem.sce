@@ -1,11 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2001 - INRIA - Scilab 
-// 
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at    
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// Copyright (C) 2001 - INRIA - Scilab
+//
+// This file is released into the public domain
 
 mode(1)
 // At first we create 0.5 seconds of sound parameters.
@@ -29,7 +25,7 @@ s=s-sum(s)/prod(size(s)); s=s/max(abs(s));
 savewave(TMPDIR+"/test.wav",s);
 // Load it back.
 s1=loadwave(TMPDIR+"/test.wav");
-if maxi(abs(s1-s)) < 1.e-4;end 
+if max(abs(s1-s)) < 1.e-4;end 
 // Now we can make a complete picture of the sound.
 clf(my_handle,"reset");
 mapsound(s);

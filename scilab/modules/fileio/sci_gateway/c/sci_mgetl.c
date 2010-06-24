@@ -30,10 +30,10 @@ int sci_mgetl(char *fname,unsigned long fname_len)
     int *piAddressVarOne = NULL;
     int numberOfLinesToRead = -1;
 
-    Rhs = Max(0,Rhs);
+    Rhs = Max(0, Rhs);
 
-    CheckRhs(1,2);
-    CheckLhs(1,1);
+    CheckRhs(1, 2);
+    CheckLhs(1, 1);
 
     if (Rhs == 2)
     {
@@ -124,6 +124,7 @@ int sci_mgetl(char *fname,unsigned long fname_len)
                     {
                         case MOPEN_NO_ERROR:
                             fileDescriptor = fd;
+                            if (expandedFileName) {FREE(expandedFileName); expandedFileName = NULL;}
                             break;
                         case MOPEN_NO_MORE_LOGICAL_UNIT:
                             {
@@ -175,7 +176,20 @@ int sci_mgetl(char *fname,unsigned long fname_len)
 
             if ( !getScalarDouble(pvApiCtx, piAddressVarOne, &dValue) )
             {
+                FILE *fd = NULL;
                 fileDescriptor = (int)dValue;
+                if ((fileDescriptor == STDIN_ID) || (fileDescriptor == STDOUT_ID))
+                {
+                    SciError(244);
+                    return 0;
+                }
+
+                fd = GetFileOpenedInScilab(fileDescriptor);
+                if (fd == NULL)
+                {
+                    Scierror(245,_("%s: No input file associated to logical unit %d.\n"), fname, fileDescriptor);
+                    return 0;
+                }
             }
             else
             {
@@ -225,10 +239,27 @@ int sci_mgetl(char *fname,unsigned long fname_len)
 
             case MGETL_EOF:
             {
-                if (createEmptyMatrix(pvApiCtx, Rhs + 1) != 0)
+                if (numberOfLinesReaded == 0)
                 {
-                    Scierror(999,_("%s: Memory allocation error.\n"), fname);
-                    return 0;
+                    if (createEmptyMatrix(pvApiCtx, Rhs + 1) != 0)
+                    {
+                        Scierror(999,_("%s: Memory allocation error.\n"), fname);
+                        return 0;
+                    }
+                }
+                else
+                {
+                    int m = numberOfLinesReaded;
+                    int n = 1;
+
+                    sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, m, n, wcReadedStrings);
+                    if(sciErr.iErr)
+                    {
+                        printError(&sciErr, 0);
+                        return 0;
+                    }
+                    freeArrayOfString(wcReadedStrings, numberOfLinesReaded);
+                    wcReadedStrings = NULL;
                 }
             }
             break;

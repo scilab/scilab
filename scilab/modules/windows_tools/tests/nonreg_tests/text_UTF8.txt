@@ -1,0 +1,1 @@
+Les caractères accentués ne sont supportés pas par unix_g() lorsqu'ils sont encodés en UTF8 comme ici

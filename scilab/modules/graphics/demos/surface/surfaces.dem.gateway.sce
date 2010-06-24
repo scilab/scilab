@@ -1,10 +1,7 @@
-//
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 //
-// This file is distributed under the same license as the Scilab package.
-//
-
+// This file is released into the public domain
 
 demopath = get_absolute_file_path("surfaces.dem.gateway.sce");
 exec(demopath+"/Macros.sci",-1);

@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
+ * Copyright (C) 2010 - DIGITEO - Michael Baudin
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -17,9 +18,6 @@
           xmlns:ns4="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>29-Nov-2006</pubdate>
-  </info>
 
   <refnamediv>
     <refname>neigh_func_default</refname>
@@ -31,7 +29,10 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>x_neigh = neigh_func_default(x_current,T,param)</synopsis>
+    <synopsis>
+      x_neigh = neigh_func_default(x_current,T)
+      x_neigh = neigh_func_default(x_current,T,param)
+    </synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -50,7 +51,8 @@
         <term>T</term>
 
         <listitem>
-          <para>the current temperature</para>
+          <para>the current temperature. This parameter is ignored but is 
+          there to make all the neighbour function consistent.</para>
         </listitem>
       </varlistentry>
 
@@ -79,27 +81,38 @@
   <refsection>
     <title>Description</title>
 
-    <itemizedlist>
-      <listitem>
         <para>This function computes a neighbor of a given point. For example,
         for a continuous vector, a neighbor will be produced by adding some
         noise to each component of the vector. For a binary string, a neighbor
         will be produced by changing one bit from 0 to 1 or from 1 to
         0.</para>
-      </listitem>
-    </itemizedlist>
   </refsection>
 
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"><![CDATA[ 
-// We produce a neighbor by adding some noise to each component of a given vector
-function x_neigh = neigh_func_default(x_current, T)
-  sa_min_delta = -0.1*ones(size(x_current,1),size(x_current,2));
-  sa_max_delta = 0.1*ones(size(x_current,1),size(x_current,2));
-  x_neigh = x_current + (sa_max_delta - sa_min_delta).*rand(size(x_current,1),size(x_current,2)) + sa_min_delta;
+    <programlisting role="example">
+      <![CDATA[ 
+function y = rastrigin(x)
+  y = x(1)^2+x(2)^2-cos(12*x(1))-cos(18*x(2));
 endfunction
+    
+x0          = [2 2];
+Proba_start = 0.7;
+It_Pre      = 100;
+It_extern   = 100;
+It_intern   = 1000;
+x_test = neigh_func_default(x0,%nan);
+
+saparams = init_param();
+saparams = add_param(comp_t_params,'neigh_func', neigh_func_default);
+
+T0 = compute_initial_temp(x0, rastrigin, Proba_start, It_Pre, saparams);
+Log = %T;
+[x_opt, f_opt, sa_mean_list, sa_var_list] = optim_sa(x0, rastrigin, It_extern, It_intern, T0, Log,saparams);
+
+printf('optimal solution:\n'); disp(x_opt);
+printf('value of the objective function = %f\n', f_opt);
  ]]></programlisting>
   </refsection>
 
@@ -119,15 +132,8 @@ endfunction
 
   <refsection>
     <title>Authors</title>
-
-    <variablelist>
-      <varlistentry>
-        <term>collette</term>
-
-        <listitem>
-          <para>Yann COLLETTE (ycollet@freesurf.fr)</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
+    <para>Yann Collette - 2008 - ycollet@freesurf.fr</para>
+    <para>Michael Baudin - Digiteo - 2010</para>
   </refsection>
+
 </refentry>

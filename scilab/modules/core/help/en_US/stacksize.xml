@@ -46,6 +46,7 @@ sz=stacksize()</synopsis>
     This function with the <literal>n</literal> argument can now be used everywhere.</para>
     <para><literal>sz=stacksize()</literal> returns a 2-vector which contains  the current
     total and used stack size.</para>
+    <para>On 64 bit platforms, maximum size of the stack is limited to 268435454.</para>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -116,7 +116,7 @@ public class LabelElement extends AbstractElement<TextBlock> {
 		
 		// we test if the structure as enough field
 		if (data.size() != DATA_FIELD_NAMES.size()) {
-			throw new WrongStructureException();
+			throw new WrongStructureException(DATA_FIELD_NAMES);
 		}
 		
 		/*
@@ -125,17 +125,17 @@ public class LabelElement extends AbstractElement<TextBlock> {
 		
 		// Check the first field
 		if (!(data.get(field) instanceof ScilabString)) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
 		final String[] header = ((ScilabString) data.get(field)).getData()[0];
 		
 		// Checking for the field names
 		if (header.length != DATA_FIELD_NAMES.size()) {
-			throw new WrongStructureException();
+			throw new WrongStructureException(DATA_FIELD_NAMES);
 		}
 		for (int i = 0; i < header.length; i++) {
 			if (!header[i].equals(DATA_FIELD_NAMES.get(i))) {
-				throw new WrongStructureException();
+				throw new WrongStructureException(DATA_FIELD_NAMES);
 			}
 		}
 		
@@ -147,27 +147,27 @@ public class LabelElement extends AbstractElement<TextBlock> {
 		// block will be displayed )
 		field++;
 		if (!(data.get(field) instanceof ScilabMList)) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
 		
 		// the third field must contains all the informations needed to compile
 		// the block
 		field++;
 		if (!(data.get(field) instanceof ScilabMList)) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
 
 		// the fourth field must contains an empty string
 		field++;
 		if (!(data.get(field) instanceof ScilabString)) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
 		
 		// the last field must contain a gui name
 		field++;
 		if (!(data.get(field) instanceof ScilabString)
 				&& isEmptyField(data.get(field))) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
 	}
 	// CSON: CyclomaticComplexity

@@ -10,7 +10,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=2618
 //
 // <-- Short Description -->
-// try/catch statement makes Scilab unstable,
+// try/catch statement makes Scilab unstable, 
 //catched error in a compiled function in a try
 function r=ev(str), execstr('r='+str),endfunction
 r=%f;a = 1;
@@ -62,6 +62,7 @@ function r=foo()
 r=%f;a=1;
 try
    str='a*z';
+   exec(ev);
 catch
    r=%t;
 end
@@ -77,6 +78,7 @@ function r=foo()
 r=%f;a=1;
 try
    str='a*z';
+   exec(ev);
 catch
    r=%t;
 end
@@ -148,6 +150,7 @@ mputl('r=a*z',TMPDIR+'/ev');
 function r=foo()
 r=%f;a=1;
 try
+   exec(TMPDIR+'/ev')
 catch
    r=%t;
 end

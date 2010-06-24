@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
+ * Copyright (C) 2010 - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -26,81 +27,59 @@ import org.scilab.modules.localization.Messages;
 /**
  * Class used when Scilab user asks for completion on the current edited line
  * @author Vincent COUVERT
- * @author Allan CORNET 
+ * @author Allan CORNET
  */
 public class CompletionAction extends AbstractConsoleAction {
-	private static final long serialVersionUID = 1L;
+        private static final long serialVersionUID = 1L;
 
-	/**
-	 * Constructor
-	 */
-	public CompletionAction() {
-		super();
-	}
+        /**
+         * Constructor
+         */
+        public CompletionAction() {
+                super();
+        }
 
-	/**
-	 * Threats the event
-	 * @param e the action event that occured
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	public void actionPerformed(ActionEvent e) {
-		Point location = configuration.getInputParsingManager().getWindowCompletionLocation();
-		List<CompletionItem> completionItems = configuration.getCompletionManager().getCompletionItems();
+        /**
+         * Threats the event
+         * @param e the action event that occured
+         * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+         */
+        public void actionPerformed(ActionEvent e) {
+                Point location = configuration.getInputParsingManager().getWindowCompletionLocation();
+                List<CompletionItem> completionItems = configuration.getCompletionManager().getCompletionItems();
+                AbstractSciCompletionWindow win = (AbstractSciCompletionWindow) configuration.getCompletionWindow();
 
-		int caretPosition = configuration.getInputParsingManager().getCaretPosition();
-		String currentLine = configuration.getInputParsingManager().getCommandLine();
-		String lineBeforeCaret = currentLine.substring(0, caretPosition);
-		String lineAfterCaret = currentLine.substring(caretPosition);
-		
-		if (completionItems != null && completionItems.size() == 1) {
-			/* Only one item returned, autoselected and appended to command line */
-			configuration.getCompletionWindow().show(completionItems, location);
-			
-		
-			String stringToAdd = configuration.getCompletionWindow().getCompletionResult();
-			String stringToAddType = ((SciCompletionWindow) configuration.getCompletionWindow()).getCompletionResultType();
-			boolean typeStringIsFile = false;
-			
-			if (stringToAddType.equals(Messages.gettext("File or Directory"))) {
-				typeStringIsFile = true;
-			}
-			
-			String newLine = Completion.completelineforjava(lineBeforeCaret, stringToAdd, typeStringIsFile, lineAfterCaret);
-			
-			configuration.getInputParsingManager().reset();
-			configuration.getInputParsingManager().append(newLine);
-			
-			((SciCompletionWindow) configuration.getCompletionWindow()).setVisible(false);
-		} else if (completionItems != null && completionItems.size() != 0) {
-			String [] completionArray = new String [completionItems.size()];
-			
-			int i = 0;
-			Iterator < CompletionItem >  it = completionItems.iterator(); 
-			while  (it.hasNext()) {  
-				CompletionItem currentItem = it.next();  
-				completionArray[i] = currentItem.getReturnValue();
-				i++;
-			}
-	    
-			java.util.Arrays.sort(completionArray);
-			String commonPartOfWord = Completion.getCommonPart(completionArray, completionItems.size());
-			
-			caretPosition = configuration.getInputParsingManager().getCaretPosition();
-			currentLine = configuration.getInputParsingManager().getCommandLine();
+                int caretPosition = configuration.getInputParsingManager().getCaretPosition();
 
-			if ((commonPartOfWord.length() != 0) && (caretPosition == currentLine.length())) {
-				if (configuration.getInputParsingManager().getPartLevel(0).length() != 0) {
-					
-					lineBeforeCaret = currentLine.substring(0, caretPosition);
-					lineAfterCaret = currentLine.substring(caretPosition);
-					
-					configuration.getInputParsingManager().reset();
-					
-					String newLine = Completion.completelineforjava(lineBeforeCaret, commonPartOfWord, false, lineAfterCaret);
-					configuration.getInputParsingManager().append(newLine);
-				}
-			}
-			configuration.getCompletionWindow().show(completionItems, location);
-		}
-	}
+                if (completionItems != null && completionItems.size() == 1) {
+                        /* Only one item returned, autoselected and appended to command line */
+                        configuration.getCompletionWindow().show(completionItems, location);
+                        win.addCompletedWord(caretPosition);
+
+                        ((AbstractSciCompletionWindow) configuration.getCompletionWindow()).setVisible(false);
+                } else if (completionItems != null && completionItems.size() != 0) {
+                        String [] completionArray = new String [completionItems.size()];
+
+                        int i = 0;
+                        Iterator < CompletionItem >  it = completionItems.iterator();
+                        while  (it.hasNext()) {
+                                CompletionItem currentItem = it.next();
+                                completionArray[i] = currentItem.getReturnValue();
+                                i++;
+                        }
+
+                        java.util.Arrays.sort(completionArray);
+                        String commonPartOfWord = Completion.getCommonPart(completionArray, completionItems.size());
+
+                        caretPosition = configuration.getInputParsingManager().getCaretPosition();
+                        String currentLine = configuration.getInputParsingManager().getCommandLine();
+
+                        if ((commonPartOfWord.length() != 0) && (caretPosition == currentLine.length())) {
+                                if (configuration.getInputParsingManager().getPartLevel(0).length() != 0) {
+                                    win.addCompletedWord(commonPartOfWord, caretPosition);
+                                }
+                        }
+                        configuration.getCompletionWindow().show(completionItems, location);
+                }
+        }
 }

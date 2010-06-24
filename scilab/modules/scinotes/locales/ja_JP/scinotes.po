@@ -1,0 +1,418 @@
+# Japanese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 16:29+0100\n"
+"PO-Revision-Date: 2010-04-16 17:53+0000\n"
+"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+"X-Poedit-Country: Japan\n"
+"X-Poedit-Language: Japanese\n"
+
+msgid ""
+" has been modified since last save\n"
+"save it?"
+msgstr ""
+" 最後の保存の後で修正されました\n"
+"再度保存しますか?"
+
+msgid "%s is a directory."
+msgstr "%s はディレクトリです"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: これ以上のメモリはありません。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
+msgstr "%s: 入力引数 #%d と #%d で不正なサイズ: 同じ次元を想定します。\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgstr "%s: 引数 %d で不正な型: 実行列を想定します。\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: String matrix expected.\n"
+msgstr "%s: 引数 %d で不正な型: 文字行列を想定します。\n"
+
+msgid "?"
+msgstr "その他"
+
+msgid "About"
+msgstr "バージョン情報"
+
+msgid "All"
+msgstr "全て"
+
+msgid "Are you sure that you want to close Text Editor ?"
+msgstr "テキスト・エディタを閉じますか?"
+
+msgid "Auto (Default)"
+msgstr "自動(デフォルト)"
+
+msgid "Backward"
+msgstr "戻る"
+
+msgid "Cancel"
+msgstr "キャンセル"
+
+msgid "Cannot load \"scinotesConfiguration.xml\""
+msgstr "\"scinotesConfiguration.xm\" をロードできません"
+
+msgid "Case sensitive"
+msgstr "大/小文字の区別"
+
+msgid "Change Color"
+msgstr "色変更"
+
+msgid "Change Colors"
+msgstr "色変更"
+
+msgid "Close"
+msgstr "閉じる"
+
+msgid "Close All"
+msgstr "全て閉じる"
+
+msgid "Close All But This"
+msgstr "これを除きすべてを閉じる"
+
+msgid "Colorization canceled"
+msgstr "色付けは取り消されました"
+
+msgid "Colorize"
+msgstr "色付け"
+
+msgid "Comment Selection"
+msgstr "コメント選択"
+
+msgid "Continue?"
+msgstr "続けますか?"
+
+msgid "Copy"
+msgstr "コピー"
+
+msgid "Copyright (c)"
+msgstr "Copyright (c)"
+
+msgid "Correct Indentation"
+msgstr "正しい刻み"
+
+msgid "Could not find the console nor the InterpreterManagement."
+msgstr "インタープリタ・マネージメントもコンソールも見つけることができません。"
+
+msgid "Could not find the temporary file."
+msgstr "一時ファイルを見つけることができません。"
+
+msgid "Cut"
+msgstr "切り取り"
+
+msgid "Default"
+msgstr "初期値"
+
+msgid "Delete"
+msgstr "削除"
+
+msgid "Direction"
+msgstr "方向"
+
+msgid "Document"
+msgstr "ドキュメント"
+
+msgid "Edit"
+msgstr "編集"
+
+msgid "Edit selection in a new tab"
+msgstr "新しいタブの編集選択"
+
+msgid "Editor"
+msgstr "エディタ"
+
+msgid "Editor error"
+msgstr "エディタ エラー"
+
+msgid "Enable Auto Reformat"
+msgstr "自動再フォーマットを有効"
+
+msgid "Encoding"
+msgstr "エンコーディング"
+
+msgid "Enter line number"
+msgstr "行番号を入力"
+
+msgid "Evaluate Selection"
+msgstr "選択の評価"
+
+msgid "Execute"
+msgstr "実行"
+
+msgid "Execute File Into Scilab"
+msgstr "Scilabへファイル実行"
+
+msgid "Exit"
+msgstr "終了"
+
+msgid "File"
+msgstr "ファイル"
+
+msgid "File already exists"
+msgstr "ファイルは既に存在します"
+
+msgid "Find"
+msgstr "検索"
+
+msgid "Find Next"
+msgstr "次を検索"
+
+msgid "Find Previous"
+msgstr "前を検索"
+
+msgid "Find/Replace"
+msgstr "検索/変更"
+
+msgid "Find:"
+msgstr "検索:"
+
+msgid "Forward"
+msgstr "進む"
+
+msgid "Goto line"
+msgstr "行へ移動"
+
+msgid "Help about '"
+msgstr "ヘルプについて’"
+
+msgid "Help about a selected text"
+msgstr "選択テキストについてのヘルプ"
+
+msgid "Highlight current line"
+msgstr "現在の行をハイライト"
+
+msgid "Invalid regular expression : %s"
+msgstr "正規表現の不正 : %s"
+
+msgid "Line Endings"
+msgstr "末尾行"
+
+msgid "Line Numbers"
+msgstr "行番号"
+
+msgid "Load Into Scilab"
+msgstr "Scilabへロード"
+
+msgid "Loading"
+msgstr "取り込み"
+
+msgid "Mac Classic (CR)"
+msgstr "MACクラシック(CR)"
+
+msgid "New"
+msgstr "新規"
+
+msgid "Next tab"
+msgstr "次のタブ"
+
+msgid "No text selected"
+msgstr "いかなるテキストも選択されませんでした。"
+
+msgid "Ok"
+msgstr "OK"
+
+msgid "Open"
+msgstr "開く"
+
+msgid "Options"
+msgstr "オプション"
+
+msgid "Page Setup"
+msgstr "ページ設定"
+
+msgid "Paste"
+msgstr "貼り付け"
+
+msgid "Previous tab"
+msgstr "前のタブ"
+
+msgid "Print"
+msgstr "印刷"
+
+msgid "Print Preview"
+msgstr "印刷プレビュー"
+
+msgid "Recent Files"
+msgstr "最近のファイル"
+
+msgid "Redo"
+msgstr "やり直し"
+
+msgid "Regular expressions"
+msgstr "正規表現"
+
+msgid "Replace"
+msgstr "変更"
+
+msgid "Replace All"
+msgstr "全て変更"
+
+msgid "Replace File?"
+msgstr "ファイルを変更しますか?"
+
+msgid "Replace With :"
+msgstr "取り替え :"
+
+msgid "Replace/Find"
+msgstr "変更/検索"
+
+msgid "Reset default font"
+msgstr "初期値フォントのリセット"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Save All"
+msgstr "全て保存"
+
+msgid "Save as"
+msgstr "保存"
+
+msgid "Scilab"
+msgstr "Scilab"
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr "-nogui または -nwni モードで Scilab '%s' モジュールは無効です。\n"
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "Scilab '%s' モジュールはインストールされていません。\n"
+
+msgid "Scilab text editor"
+msgstr "Scilabテキストエディタ"
+
+msgid "Scilab text editor help"
+msgstr "Scilabテキストエディタ ヘルプ"
+
+msgid "Scope"
+msgstr "範囲"
+
+msgid "Search"
+msgstr "検索"
+
+msgid "Select All"
+msgstr "全て選択"
+
+msgid "Selected lines"
+msgstr "行選択"
+
+msgid "Set Colors"
+msgstr "色の設定"
+
+msgid "Set Font"
+msgstr "フォント設定"
+
+msgid "Shift Left"
+msgstr "左シフト"
+
+msgid "Shift Right"
+msgstr "右シフト"
+
+msgid "Show/Hide ToolBar"
+msgstr "ツールバーの表示/非表示"
+
+msgid "String %s not found"
+msgstr "文字列 %s は見つかりません"
+
+msgid "Syntax Type"
+msgstr "文法型"
+
+msgid ""
+"The file %s doesn't exist\n"
+" Do you want to create it?"
+msgstr ""
+"ファイル %s は存在しません\n"
+"作成しますか?"
+
+msgid ""
+"The file %s has been modified by another program !\n"
+" Overwrite it ?"
+msgstr ""
+"ファイル %s は別のプログラムで修正されました !\n"
+"上書きしますか?"
+
+msgid "The file could not be converted."
+msgstr "ファイルは変換できませんでした。"
+
+msgid "The file could not be saved."
+msgstr "ファイルは保存できませんでした。"
+
+msgid "This file"
+msgstr "ファイル"
+
+msgid "This file is a binary, saving it will result in a corrupt file."
+msgstr "ファイルはバイナリです、保存は正しい結果にならないかもしれません。"
+
+msgid ""
+"This file is very long. \"Execute File Into Scilab\" could be better.\n"
+"Are you sure to continue ?"
+msgstr ""
+"このファイルはとても長いです。\"ScilabへのExecuteファイル\"かもしれません。\n"
+"続けますか?"
+
+msgid "Uncomment Selection"
+msgstr "コメントなし選択"
+
+msgid "Undo"
+msgstr "元に戻す"
+
+msgid "Unix (LF)"
+msgstr "Unix (LF)"
+
+msgid "Untitled "
+msgstr "無題 "
+
+msgid "View"
+msgstr "ビュー"
+
+msgid "Whole word"
+msgstr "全体の語"
+
+msgid "Windows/DOS (CR + LF)"
+msgstr "Windows/DOS (CR + LF)"
+
+msgid "Word Wrap"
+msgstr "ワードラップ"
+
+msgid "Wrap search"
+msgstr "ラップ検索"
+
+msgid "You have passed the beginning of the document"
+msgstr "ドキュメントの始まりを通り過ぎました"
+
+msgid "You have passed the end of the document"
+msgstr "ドキュメントの終りを通り過ぎました"
+
+msgid "You have reached the beginning of the document"
+msgstr "ドキュメントの初めに達しました"
+
+msgid "You have reached the end of the document"
+msgstr "ドキュメントの終りに達しました"
+
+msgid ""
+"You need to save your modifications before executing this file into Scilab."
+msgstr "このファイルをScilabへ取り込んで実行する前に修正を保存する必要があります。"
+
+msgid "Your modifications will be lost, change encoding anyway?"
+msgstr "修正内容を失うかもしれません、エンコーディングを変えますか?"
+
+msgid "close this tab"
+msgstr "このタブを閉じる"

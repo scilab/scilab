@@ -14,7 +14,7 @@
 #include <jni.h>
 #include "addToLibrarypath.h"
 #include "getScilabJNIEnv.h"
-#include "../../fileio/includes/isdir.h"
+#include "isdir.h"
 #include "fromjava.h"
 #
 /*--------------------------------------------------------------------------*/ 

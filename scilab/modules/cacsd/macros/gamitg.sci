@@ -88,14 +88,14 @@ end
  
 //(A,B2,C2) stabilizable + detectable
 //-------------------------------------
-noa=maxi(abs(a));  nob2=maxi(abs(b2)); noc2=maxi(abs(c2));
+noa=max(abs(a));  nob2=max(abs(b2)); noc2=max(abs(c2));
  
-ns=st_ility(syslin('c',a,b2,c2),1.0e-10*maxi(noa,nob2));
+ns=st_ility(syslin('c',a,b2,c2),1.0e-10*max(noa,nob2));
 if ns<na then
   warning(msprintf(gettext("%s: %s is nearly unstabilizable.\n"),"gamitg","(A,B2)"));
 end
  
-nd=dt_ility(syslin('c',a,b2,c2),1.0e-10*maxi(noa,noc2));
+nd=dt_ility(syslin('c',a,b2,c2),1.0e-10*max(noa,noc2));
 if nd>0 then
   warning(msprintf(gettext("%s: %s is nearly unstabilizable.\n"),"gamitg","(C2,A)"));
 end
@@ -106,7 +106,7 @@ end
 ah=a-b2*v12/s12*u12'*c1;  bh=b2*v12; ch=u12'*c1;
 hg=[ah,-bh/(s12**2)*bh';ch'*ch-c1'*c1,-ah'];
 spech=spec(hg);
-if mini(abs(real(spech))) < 1.0e-9*maxi(abs(hg)) then
+if min(abs(real(spech))) < 1.0e-9*max(abs(hg)) then
   warning(msprintf(gettext("%s: %s has zero(s) near the imaginary axis.\n"),"gamitg","G12"));
 end
  
@@ -114,7 +114,7 @@ end
 ah=a-b1*v21/s21*u21'*c2;  ch=u21'*c2; bh=b1*v21;
 jg=[ah',-ch'/(s21**2)*ch;bh*bh'-b1*b1',-ah];
 specj=spec(jg);
-if mini(abs(real(specj))) < 1.0e-9*maxi(abs(jg)) then
+if min(abs(real(specj))) < 1.0e-9*max(abs(jg)) then
     warning(msprintf(gettext("%s: %s has zero(s) near the imaginary axis.\n"),"gamitg","G21"));
 end
  
@@ -134,7 +134,7 @@ sig21=norm(d11*(eye(m1,m1)-v21*v21'));
 else
 sig21=0;
 end
-sigd=maxi(sig12,sig21);
+sigd=max(sig12,sig21);
  
  
  
@@ -221,7 +221,7 @@ hg=h11-(h12/(gs*h22-d1112s))*h21;
  
 if T_EVALH==1 then
    hev=spec(hg);
-   if mini(abs(real(hev))) <= RELACCU*maxi(abs(hev)) then
+   if min(abs(real(hev))) <= RELACCU*max(abs(hev)) then
       lower=ga; DONE=1;   //Hg HAS EVAL ON iR -> NEXT LOOP
       if str_member('t',options) then
 		 mprintf(gettext("%s: %s has pure imaginary eigenvalue(s).\n"),"gamitg","H");
@@ -235,7 +235,7 @@ if DONE==0 then
  
    if T_EVALJ==1 then
      jev=spec(jg);
-     if mini(abs(real(jev))) <= RELACCU*maxi(abs(jev)) then
+     if min(abs(real(jev))) <= RELACCU*max(abs(jev)) then
         lower=ga; DONE=1;   //Jg HAS EVAL ON iR -> NEXT LOOP
         if str_member('t',options) then
 		  mprintf(gettext("%s: %s has pure imaginary eigenvalue(s).\n"),"gamitg","J");
@@ -271,7 +271,7 @@ if DONE==0 then
       [e,f]=spec(qx,px);
       i=1;
       while i<=na,
-        if mini(abs([e(i),f(i)])) >= RELACCU & real(e(i)/f(i)) <= 0 then
+        if min(abs([e(i),f(i)])) >= RELACCU & real(e(i)/f(i)) <= 0 then
           lower=ga;  DONE=1;  T_EVALH=0;  i=na+1;
           if str_member('t',options) then
 			mprintf(gettext("%s: %s is indefinite.\n"),"gamitg","X");
@@ -295,7 +295,7 @@ if DONE==0 then
       [e,f]=spec(qy,py);
       i=1;
       while i<=na,
-        if mini(abs([e(i),f(i)])) >= RELACCU & real(e(i)/f(i)) <= 0 then
+        if min(abs([e(i),f(i)])) >= RELACCU & real(e(i)/f(i)) <= 0 then
           lower=ga;  DONE=1;  T_EVALJ=0;  i=na+1;
           if str_member('t',options) then
 			mprintf(gettext("%s: %s is indefinite.\n"),"gamitg","Y");end;
@@ -315,7 +315,7 @@ end
 if DONE==0 then
  
    [e,f]=spec(qy'*qx,py'*px);
-   if maxi(real(e-gs*f)) <= 0 then
+   if max(real(e-gs*f)) <= 0 then
       upper=ga;
       if str_member('t',options) then
                       write(%io(2),'rho(XY) <= gamma**2'); end

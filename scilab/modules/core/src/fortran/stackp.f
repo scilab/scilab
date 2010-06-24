@@ -1,10 +1,10 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
-c 
+c
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
-c are also available at    
+c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
       subroutine stackp(id,macmod)
@@ -29,10 +29,10 @@ c
       endif
 c
 
-      
+
       if(err1.gt.0) return
 c     compilation  stackp: <1,nom(1:4)>
-      if (compil(1,id,0,0,0)) then 
+      if (compil(1,id,0,0,0)) then
          w=compil(22,sym,0,0,0)
          fin=0
          return
@@ -51,11 +51,11 @@ c     cas des variables modifiees sur place (insertion)
             pntr=istk(il+2)
             top=top-1
             fin=pntr
-            return 
+            return
          endif
       endif
 
-      
+
       new=.true.
 c
 c
@@ -63,6 +63,7 @@ c     find the scope where the variable has to be stored
       if(macr.ne.0.or.paus.ne.0) then
 c     .  inside a macro or a pause
          k=lpt(1) - (13+nsiz)
+
          if(rstk(pt).eq.504) then
 c     .     [...]=resume(....) case , use the upper scope
             lpt1=lin(k+1)
@@ -75,8 +76,6 @@ c     .     [...]=resume(....) case , use the upper scope
 c     .  main scope
          last=isiz
       endif
-
-
 c
 c     does variable already exist
       vtk=0
@@ -88,15 +87,15 @@ c     does variable already exist
 
       if (k .eq. bot-1) then
 c     .  the variable does not exist, check for function redefinition
-         if(macprt.ne.0) then  
+         if(macprt.ne.0) then
 c     SCI_HFUNCTIONS_FIND = 1
             call funtab(id,ifun,1,'NULL_NAME',0)
             if(ifun.gt.0) then
-               if(macprt.eq.2) then  
+               if(macprt.eq.2) then
                   call  putid(ids(1,pt+1),id)
                   call error(223)
                   if(err.gt.0) return
-               elseif(macprt.eq.1) then  
+               elseif(macprt.eq.1) then
                   call  putid(ids(1,pt+1),id)
                   call msgs(42,vt)
                endif
@@ -168,10 +167,10 @@ c     .        are macros identical
                goto 20
 c     .        it not the same
  19            call  putid(ids(1,pt+1),id)
-               if(macprt.eq.2) then  
+               if(macprt.eq.2) then
                   call error(111)
                   return
-               elseif(macprt.eq.1) then  
+               elseif(macprt.eq.1) then
                   call msgs(42,vt)
                endif
  20            continue

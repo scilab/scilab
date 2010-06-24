@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- JVM NOT MANDATORY -->
 // <-- Non-regression test for bug 2509 -->
 //
 // <-- Bugzilla URL -->
@@ -17,12 +18,13 @@ deff('foo','a=aaaa','n')
 if execstr('foo()','errcatch')<>4 then bugmes();quit;end
 [str,n,l,f]=lasterror(%t);
 if l<>2|f<>'foo' then bugmes();quit;end
-try,
+try, 
   foo();
-catch
-  [str,n,l,f]=lasterror(%t);
+catch 
+  [str,n,l,f]=lasterror(%t); 
   if l<>2|f<>'foo' then bugmes();quit;end;
 end
+if exec(foo,'errcatch')<>4 then bugmes();quit;end
  
  
  
@@ -34,12 +36,13 @@ deff('foo','a=aaaa')
 if execstr('foo()','errcatch')<>4 then bugmes();quit;end
 [str,n,l,f]=lasterror(%t);
 if l<>2|f<>'foo' then bugmes();quit;end
-try,
+try, 
   foo();
-catch
-  [str,n,l,f]=lasterror(%t);
+catch 
+  [str,n,l,f]=lasterror(%t); 
   if l<>2|f<>'foo' then bugmes();quit;end;
 end
+if exec(foo,'errcatch')<>4 then bugmes();quit;end
  
 [str,n,l,f]=lasterror(%t);
 if l<>2|f<>'foo' then bugmes();quit;end

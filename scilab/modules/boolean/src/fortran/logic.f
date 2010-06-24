@@ -20,6 +20,8 @@ c
       integer quote,dot,colon
       integer less,great,equal,et,ou,non
       integer insert,extrac
+c
+      character tmpbuf*(bsiz)
 c     
       integer iadr,sadr,op,top0
       logical isany
@@ -36,8 +38,8 @@ c
       top0=top
 c     
       if (ddt .eq. 4) then
-         write(buf(1:4),'(i4)') fin
-         call basout(io,wte,' logic op: '//buf(1:4))
+        write(tmpbuf(1:4),'(i4)') fin
+        call basout(io,wte,' logic op: '//tmpbuf(1:4))
       endif
 c     
       lw=lstk(top+1)

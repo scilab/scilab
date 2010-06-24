@@ -1,11 +1,20 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 2005 - Allan CORNET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include "sci_mem_alloc.h"
 
-/* Allan CORNET */
-/* INRIA 2005 */
-/*-----------------------------------------------------------------------------------*/
 IMPORT_EXPORT_MALLOC_DLL void * MyReAlloc(void * lpAddress,size_t dwSize,const char *fichier,int ligne)
 {
   void * NewPointer=realloc(lpAddress,dwSize);

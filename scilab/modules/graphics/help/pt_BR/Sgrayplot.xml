@@ -355,7 +355,7 @@ x = linspace(0,2*%pi,n);
 y = linspace(0,%pi,n/2);
 z = sin(x')*sin(y);
 t = linspace(0,4*%pi,nt);
-xselect(); clf()
+show_window(); clf()
 f=gcf();
 f.color_map=jetcolormap(64);
 f.pixmap='on';

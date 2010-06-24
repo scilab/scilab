@@ -286,7 +286,7 @@ public class EditBlockFormatAction extends DefaultAction {
 	    
 	    private mxCell cell;
 		
-	    private final ChangeListener defaultChangeListener = new ChangeListener() {
+	    private final transient ChangeListener defaultChangeListener = new ChangeListener() {
         	/**
         	 * Update the text area font
         	 * @param e the event parameters
@@ -298,7 +298,7 @@ public class EditBlockFormatAction extends DefaultAction {
 			}
 		};
 		
-		private final ActionListener defaultActionListener = new ActionListener() {
+		private final transient ActionListener defaultActionListener = new ActionListener() {
         	/**
         	 * Update the text area font
         	 * @param e the event parameters
@@ -380,6 +380,7 @@ public class EditBlockFormatAction extends DefaultAction {
 		 */
 		// CSOFF: JavaNCSS
 		// CSOFF: LineLength
+		// CSOFF: MethodLength
 		private void initComponents() {
 			
 	        mainTab = new javax.swing.JTabbedPane();
@@ -538,6 +539,7 @@ public class EditBlockFormatAction extends DefaultAction {
 		}
 		// CSON: JavaNCSS
 		// CSON: LineLength
+		// CSON: MethodLength
 
 		/**
 		 * Update the text area from the font
@@ -556,6 +558,9 @@ public class EditBlockFormatAction extends DefaultAction {
 			textArea.setFont(f);
 			textArea.setBackground(backgroundColorChooser.getColor());
 			textArea.setForeground(textColorChooser.getColor());
+			
+			// Repaint the parent scroll pane to force a full redraw call. 
+			jScrollPane1.repaint();
 		}
 	}
 	// CSON: ClassDataAbstractionCoupling

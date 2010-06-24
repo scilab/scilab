@@ -961,7 +961,7 @@ void scoAddTitlesScope(ScopeMemory * pScopeMemory, char * label, char * x, char 
 	/* Code for naming the window*/
 	if (label != NULL)
 	{
-		nxname = strlen(label);
+		nxname = (int)strlen(label);
 		if (nxname > 39) 
 		{
 			nxname = 39;

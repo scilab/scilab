@@ -1,15 +1,17 @@
-;##############################################################################################################
-; Scilab ( http://mwww.scilab.org/ ) - This file is part of Scilab
-; Copyright (C) 2008 - INRIA - Allan CORNET
-; Script d'installation Inno Setup (5.2.1) pour scilab
-; Version TRUNK
+;
+; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+; Copyright (C) INRIA - 2008 - Allan CORNET
+; Copyright (C) DIGITEO - 2010 - Allan CORNET
 ;
 ; This file must be used under the terms of the CeCILL.
 ; This source file is licensed as described in the file COPYING, which
 ; you should have received as part of this distribution.  The terms
 ; are also available at
 ; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-;##############################################################################################################
+;
+;--------------------------------------------------------------------------------------------------------------
+; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
+;
 ;--------------------------------------------------------------------------------------------------------------
 ; graphic_export module
 ;--------------------------------------------------------------------------------------------------------------
@@ -17,20 +19,19 @@
 ;
 #define GRAPHIC_EXPORT "graphic_export"
 ;
-Source: bin\scigraphic_export.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
-Source: bin\nographic_export.dll; DestDir: {app}\bin; DestName: scigraphic_export.dll; Components: not ({#COMPN_GRAPHICS})
+Source: bin\sci{#GRAPHIC_EXPORT}.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
+Source: bin\no{#GRAPHIC_EXPORT}.dll; DestDir: {app}\bin; DestName: sci{#GRAPHIC_EXPORT}.dll; Components: not ({#COMPN_GRAPHICS})
 ;
 Source: tools\pstoedit\*.*; DestDir: {app}\tools\pstoedit; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS};
 ;
-Source: modules\{#GRAPHIC_EXPORT}\jar\org.scilab.modules.graphic_export.jar;DestDir: {app}\modules\{#GRAPHIC_EXPORT}\jar; Components: {#COMPN_GRAPHICS}
+Source: modules\{#GRAPHIC_EXPORT}\jar\org.scilab.modules.{#GRAPHIC_EXPORT}.jar;DestDir: {app}\modules\{#GRAPHIC_EXPORT}\jar; Components: {#COMPN_GRAPHICS}
 ;
-
 Source: modules\{#GRAPHIC_EXPORT}\changelog.txt; DestDir: {app}\modules\{#GRAPHIC_EXPORT}; Components: {#COMPN_GRAPHICS};
 Source: modules\{#GRAPHIC_EXPORT}\license.txt; DestDir: {app}\modules\{#GRAPHIC_EXPORT}; Components: {#COMPN_GRAPHICS}
 Source: modules\{#GRAPHIC_EXPORT}\readme.txt; DestDir: {app}\modules\{#GRAPHIC_EXPORT}; Components: {#COMPN_GRAPHICS}
 Source: modules\{#GRAPHIC_EXPORT}\version.xml; DestDir: {app}\modules\{#GRAPHIC_EXPORT}; Components: {#COMPN_GRAPHICS}
 ;
-Source: modules\{#GRAPHIC_EXPORT}\sci_gateway\graphic_export_gateway.xml; DestDir: {app}\modules\{#GRAPHIC_EXPORT}\sci_gateway; Components: {#COMPN_GRAPHICS}
+Source: modules\{#GRAPHIC_EXPORT}\sci_gateway\{#GRAPHIC_EXPORT}_gateway.xml; DestDir: {app}\modules\{#GRAPHIC_EXPORT}\sci_gateway; Components: {#COMPN_GRAPHICS}
 ;
 ;Source: modules\{#GRAPHIC_EXPORT}\includes\*.h; DestDir: {app}\modules\{#GRAPHIC_EXPORT}\includes; Components: {#COMPN_GRAPHICS}
 ;

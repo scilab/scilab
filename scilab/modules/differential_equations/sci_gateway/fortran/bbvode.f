@@ -14,6 +14,8 @@ c     Soft and Fortrans coded externals for colnew
 c ======================================================================
 c
       INCLUDE 'stack.h'
+c      
+      character tmpbuf * (bsiz)      
       integer iadr,sadr
       common/iercol/iero
       double precision z(*), dg(*)
@@ -28,8 +30,8 @@ c
       sadr(l)=(l/2)+1
 
       if (ddt .eq. 4) then
-         write(buf(1:12),'(3i4)') top,r,sym
-         call basout(io,wte,' dgsub  top:'//buf(1:4))
+         write(tmpbuf(1:12),'(3i4)') top,r,sym
+         call basout(io,wte,' dgsub  top:'//tmpbuf(1:4))
       endif
 
       if(itdgsub.eq.10) then
@@ -109,6 +111,8 @@ c ======================================================================
 C     Soft and Fortrans coded externals for colnew 
 c ======================================================================
       INCLUDE 'stack.h'
+c      
+      character tmpbuf * (bsiz) 
       integer iadr,sadr
       common/iercol/iero
       double precision z(*), g(*)
@@ -124,8 +128,8 @@ c ======================================================================
       sadr(l)=(l/2)+1
 
       if (ddt .eq. 4) then
-         write(buf(1:12),'(3i4)') top,r,sym
-         call basout(io,wte,' gsub  top:'//buf(1:4))
+         write(tmpbuf(1:12),'(3i4)') top,r,sym
+         call basout(io,wte,' gsub  top:'//tmpbuf(1:4))
       endif
 
       if(itgsub.eq.10) then
@@ -208,6 +212,8 @@ c ======================================================================
 C     Soft and Fortrans coded externals for colnew 
 c ======================================================================
       INCLUDE 'stack.h'
+c
+      character tmpbuf * (bsiz)       
       integer iadr,sadr
       common/iercol/iero
       double precision z(*), df(*),x
@@ -222,8 +228,8 @@ c ======================================================================
       sadr(l)=(l/2)+1
 
       if (ddt .eq. 4) then
-         write(buf(1:12),'(3i4)') top,r,sym
-         call basout(io,wte,' dfsub  top:'//buf(1:4))
+         write(tmpbuf(1:12),'(3i4)') top,r,sym
+         call basout(io,wte,' dfsub  top:'//tmpbuf(1:4))
       endif
 
       if(itdfsub.eq.10) then
@@ -306,6 +312,8 @@ c ======================================================================
 C     Soft and Fortrans coded externals for colnew 
 c ======================================================================
       INCLUDE 'stack.h'
+c
+      character tmpbuf * (bsiz)        
       integer iadr,sadr
       common/iercol/iero
       double precision z(*), f(*),x
@@ -320,8 +328,8 @@ c ======================================================================
       sadr(l)=(l/2)+1
 
       if (ddt .eq. 4) then
-         write(buf(1:12),'(3i4)') top,r,sym
-         call basout(io,wte,' fsub  top:'//buf(1:4))
+         write(tmpbuf(1:12),'(3i4)') top,r,sym
+         call basout(io,wte,' fsub  top:'//tmpbuf(1:4))
       endif
 
       if(itfsub.eq.10) then
@@ -402,6 +410,8 @@ c ======================================================================
 C     Soft and Fortrans coded externals for colnew 
 c ======================================================================
       INCLUDE 'stack.h'
+c
+      character tmpbuf * (bsiz)       
       integer iadr,sadr
       common/iercol/iero
       double precision z(*), dmval(*),x
@@ -416,8 +426,8 @@ c ======================================================================
       sadr(l)=(l/2)+1
 
       if (ddt .eq. 4) then
-         write(buf(1:12),'(3i4)') top,r,sym
-         call basout(io,wte,' guess  top:'//buf(1:4))
+         write(tmpbuf(1:12),'(3i4)') top,r,sym
+         call basout(io,wte,' guess  top:'//tmpbuf(1:4))
       endif
 
       if(itguess.eq.10) then

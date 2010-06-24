@@ -6,7 +6,7 @@
   <refnamediv>
     <refname>with_atlas</refname>
     <refpurpose>Test si Scilab a ete construit avec la
-  librairie Atlas</refpurpose>
+  bibliothèque Atlas</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
@@ -25,7 +25,7 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>retourne <literal>%t</literal> si Scilab a ete construit avec la librairie
+    <para>retourne <literal>%t</literal> si Scilab a ete construit avec la bibliothèque
     Atlas ou <literal>%f</literal> si ce n'est pas le cas.</para>
   </refsection>
 </refentry>

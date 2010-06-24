@@ -1,0 +1,454 @@
+# Polish translation for scilab
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2008-01-29 14:56+0100\n"
+"PO-Revision-Date: 2010-05-03 17:25+0000\n"
+"Last-Translator: Kamil Strojek <Unknown>\n"
+"Language-Team: Polish <pl@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2010-05-04 21:28+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s : Memory allocation error.\n"
+msgstr "%s : Błąd alokacji pamięci.\n"
+
+#, c-format
+msgid "%s : No more memory.\n"
+msgstr "%s : Zabrakło pamięci.\n"
+
+#, c-format
+msgid "%s : Wrong size for input argument #%d.\n"
+msgstr "%s : Zły rozmiar parametru wejściowego #%d.\n"
+
+#, c-format
+msgid "%s : Wrong size for input argument(s).\n"
+msgstr "%s : Zły rozmiar argumentu(-ów) wejściowego(-ych).\n"
+
+#, c-format
+msgid "%s: Can not compile pattern.\n"
+msgstr "%s: Nie można skompilować wzoru.\n"
+
+#, c-format
+msgid "%s: Capturing subpatterns error.\n"
+msgstr "%s: Błąd przechwytywania subwzorców.\n"
+
+#, c-format
+msgid "%s: Contains explicit CR or LF match.\n"
+msgstr "%s: Zawiera wyrażenie matematyczne CR lub LF.\n"
+
+#, c-format
+msgid "%s: Current PCRE library does not support UTF-8.\n"
+msgstr "%s: Biblioteka PCRE nie obsługuje UTF-8.\n"
+
+#, c-format
+msgid "%s: Delimiter must not be alphameric.\n"
+msgstr "%s: Ograniczniki nie powinny być alfanumeryczne.\n"
+
+#, c-format
+msgid "%s: Duplicate name status changes.\n"
+msgstr "%s: Zduplikowana nazwa status zmieniony.\n"
+
+#, c-format
+msgid "%s: Elements of %dth argument must be in increasing order.\n"
+msgstr "%s: Elementy argumentu numer %d muszą być w porządku rosnącym.\n"
+
+#, c-format
+msgid "%s: Given expression has no value.\n"
+msgstr "%s: Podane wyrażenie nie posiada wartości.\n"
+
+#, c-format
+msgid "%s: Match limit not relevant for DFA matching: ignored.\n"
+msgstr ""
+"%s: Odpowiadający limit nie jest istotny dla dopasowanego DFA: ignorowany.\n"
+
+#, c-format
+msgid "%s: Matched text exceeds buffer limit.\n"
+msgstr "%s: Odpowiadający tekst przekracza limit bufora.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Brak pamięci.\n"
+
+#, c-format
+msgid "%s: Partial matching not supported.\n"
+msgstr "%s: Częściowa zgodność nie jest wspierana.\n"
+
+#, c-format
+msgid "%s: Returned count is too big for offset size.\n"
+msgstr "%s: Zwrócona liczba jest zbyt duża dla wyrównania wielkości.\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented: %s.\n"
+msgstr "%s: Funkcja ta nie została zrealizowana: %s.\n"
+
+#, c-format
+msgid ""
+"%s: This feature has not been implemented: Variable translation of type %s.\n"
+msgstr ""
+"%s: Funkcja ta nie została zrealizowana: Zmienna typu tłumaczenia %s.\n"
+
+#, c-format
+msgid "%s: Unknown error.\n"
+msgstr "%s: Nieznany błąd.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: Niewłaściwa liczba argumentów wejściowych: oczekiwano %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s: Niewłaściwa liczba argumentów wyjściowych: oczekiwano %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: Niewłaściwy rozmiar dla argumentu wejściowego #%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A character expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar dla argumentu wejściowego #%d: Oczekiwano znaku.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A character or vector of characters "
+"expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar argumentu wejściowego #%d: oczekiwany znak lub "
+"wektor znaków.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A character string expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar argumentu wejściowego #%d: oczekiwany ciąg "
+"znaków.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar dla argumentu wejściowego #%d: Oczekiwano "
+"skalaru.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar dla argumentu wejściowego #%d: Oczekiwano łańcuchu "
+"znaków.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar dla argumentu wejściowego #%d: Oczekiwano liczby "
+"całkowitej.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Non-empty matrix expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar dla argumentu wejściowego #%d: Oczekiwano nie "
+"pustej macierzy.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Non-empty matrix of strings "
+"expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar dla argumentu wejściowego #%d: Oczekiwano nie "
+"pustej macierzy łańcuchów znaków.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar dla argumentu wejściowego #%d: Oczekiwano "
+"niepustego łańcuchu znaków.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar dla argumentu wejściowego #%d: Oczekiwano "
+"pojedynczego łańcuchu znaków.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument(s).\n"
+msgstr "%s: Nieprawidłowy rozmiar argumentu(ów) wejściowego(ych).\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar dla argumentów wejściowych: Oczekiwano tego samego "
+"rozmiaru.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Matrix of strings or Integer matrix "
+"expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu #%d: oczekiwana macierz ciągów lub macierz "
+"liczb całkowitych.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: Niewłaściwy typ argumentu wejściowego #%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
+msgstr "%s: Niewłaściwy typ argumentu wejściowego #%d: '%s' oczekiwany.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: ''%s'' expected.\n"
+msgstr "%s: Niewłaściwy typ argumentu wejściowego #%d: ''%s'' oczekiwany.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: Niewłaściwy typ argumentu wejściowego #%d: ''%s'' lub ''%s'' "
+"oczekiwany.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ  argumentu wejściowego #%d: Oczekiwana jest wartość "
+"typu boolean.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A character expected.\n"
+msgstr "%s: Nieprawidłowy typ argumentu wejściowego #%d: oczekiwany znak.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A character or a vector of single "
+"characters expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego #%d: oczekiwany znak lub wektor "
+"pojedynczych znaków.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego #%d: Oczekiwany jest skalar.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego #%d: Oczekiwana jest wartość "
+"typu string.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego #%d: Oczekiwana liczba "
+"całkowita.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Character expected.\n"
+msgstr "%s: Nieprawidłowy typ argumentu wejściowego #%d: Oczekiwany znak.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of character strings.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego #%d: Macierz ciągów znaków.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of integers expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego #%d: oczekiwana macierz liczb "
+"całkowitych.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego #%d: oczekiwana macierz ciągów "
+"znaków.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Matrix of strings or empty matrix "
+"expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego #%d: oczekiwana macierz ciągów "
+"znaków lub macierz pusta.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Matrix of strings or empty real "
+"matrix expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego #%d: oczekiwana macierz ciągów "
+"znaków lub macierz pusta typu real.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr ""
+"%s: Niewłaściwy typ argumentu wejściowego #%d: oczekiwana macierz wartości "
+"real.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real matrix or matrix of strings "
+"expected.\n"
+msgstr ""
+"%s: Niewłaściwy typ argumentu wejściowego #%d: oczekiwana macierz wartości "
+"real lub macierz ciągów znaków.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or Complex matrix, Matrix of "
+"character strings or list expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego #%d: Oczekiwano rzeczywistych "
+"lub zespolonych macierzy, Macierzy ciągu znaków lub listy.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Row vector of strings or column "
+"vector of strings expected.\n"
+msgstr ""
+"%s: Niewłaściwy typ argumentu wejściowego #%d: oczekiwany jest wektor "
+"wierszowy ciągów znaków lub wektora kolumnowy ciągów znaków.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego #%d: oczekiwany jest pojedynczy "
+"ciąg znaków.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego #%d: oczekiwany jest ciąg "
+"znaków.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a string vector expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego #%d: Oczekiwany wektor ciągów "
+"znaków.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument(s).\n"
+msgstr "%s: Nieprawidłowy typ argumentu(ów) wejściowego(ych).\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: String expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego: oczekiwany jest ciąg znaków.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego #%d: oczekiwana %s lub %s.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość parametru wejściowego #%d: oczekiwana '%s' lub "
+"'%s'.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość parametru wejściowego #%d: oczekiwana ''%s''.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego #%d: oczekiwana \"%s\" lub "
+"\"%s\" .\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 's' or 'r' expected.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego #%d: oczekiwana 's' lub "
+"'r'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: 'u' (Upper) or 'l' (Lower) "
+"expected.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego #%d: Oczekiwano wartości 'u' "
+"(górnej) lub 'l' (dolnej)\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A valid string expected (UTF-8 "
+"Encoding problem).\n"
+msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego #%d: Oczekiwana ważna "
+"zmienna typu string (UTF-8 Problem z kodowaniem).\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A value > 0 expected.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego #%d: oczekiwana wartość > "
+"0.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego #%d: musi być pomiędzy %d i "
+"%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: a string expected, not a regexp "
+"pattern.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego #%d: oczekiwano zmienną typu "
+"string, nie wzór regexp.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: ''r'',''l'' or ''c'' expected.\n"
+msgstr ""
+"%s: Nieprawidłowe wartości argumentu wejściowego #%d: oczekiwana ''r'',''l'' "
+"lub ''c''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: An non-negative integer expected.\n"
+msgstr ""
+"%s: Nieprawidłowe wartości argumentu wejściowego #%d: oczekiwana liczba "
+"całkowita nieujemna.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Must be >= 1.\n"
+msgstr ""
+"%s: Nieprawidłowe wartości argumentu wejściowego #%d: musi być >= 1.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
+msgstr ""
+"%s: Nieprawidłowe wartości argumentu wejściowego #%d: oczekiwany niepusty "
+"ciąg znaków.\n"
+
+#, c-format
+msgid "%s: error.\n"
+msgstr "%s: Błąd.\n"
+
+#, c-format
+msgid "%s: impossible to get dimensions of this matrix.\n"
+msgstr "%s: nie można uzyskać wymiaru tej macierzy.\n"
+
+msgid "WARNING : \n"
+msgstr "Uwaga : \n"
+
+#, c-format
+msgid "WARNING: Function %s is obsolete.\n"
+msgstr "UWAGA: Funkcja %s jest zdezaktualizowana.\n"
+
+#, c-format
+msgid "WARNING: Please use %s instead.\n"
+msgstr "UWAGA: Proszę w zamian użyć %s.\n"
+
+#, c-format
+msgid "WARNING: This function will be permanently removed in Scilab %s.\n"
+msgstr "UWAGA: Ta funkcja zostanie na stałe usunięta w Scilab %s.\n"

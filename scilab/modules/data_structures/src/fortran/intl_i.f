@@ -14,6 +14,7 @@ c
 c     Copyright INRIA
       include 'stack.h'
 c
+      character tmpbuf * (bsiz)
       integer vol1,vol2,vol3,volv
       integer top3,top2,top1
 
@@ -24,8 +25,8 @@ c
       sadr(l)=(l/2)+1
 c
       if (ddt .eq. 4) then
-         write(buf(1:8),'(2i4)') pt,rstk(pt)
-         call basout(io,wte,' intl_i   pt:'//buf(1:4)//' rstk(pt):'
+         write(tmpbuf(1:8),'(2i4)') pt,rstk(pt)
+         call basout(io,wte,' intl_i   pt:'//tmpbuf(1:4)//' rstk(pt):'
      &        //buf(5:8))
       endif
 c
@@ -77,6 +78,7 @@ c     get arg2
       else
          vol2=lstk(top+1)-lstk(top)
       endif
+      
 c
 c     get arg1
       top=top-1
@@ -99,7 +101,7 @@ c     protect index list
 c     go ahead along the path
       icount=0
       call followpath(top1,top3,il1ir,vol1,il3ir,vol3,
-     $     istk(ilind),icount,info,lw)
+     $     istk(ilind),icount,info,lw,istk(il2).eq.0)
       if(err.gt.0) return
       il1i=il1ir
       if(istk(il1i).lt.0) il1i=iadr(istk(il1i+1))

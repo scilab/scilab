@@ -22,10 +22,15 @@ typedef enum {
     MGETL_ERROR = 3
 } mgetlError;
 
+/* file descriptor id for stdin */
+#define STDIN_ID 5
+/* file descriptor id for stdout */
+#define STDOUT_ID 6
+
 /**
- * @fn  wchar_t ** mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr) #endif
+ * @fn  char ** mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr) #endif
  *
- * @brief   Mgetls. 
+ * @brief   read lines of a file. 
  *
  * @author  Allan Cornet
  * @date    4/16/2010

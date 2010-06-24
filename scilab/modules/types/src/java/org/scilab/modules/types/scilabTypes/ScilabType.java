@@ -24,19 +24,26 @@ public interface ScilabType extends Serializable, Cloneable {
      *
      * @return the width
 	 */
-	public int getWidth();
+	int getWidth();
 	
     /**
      * Return the height (number of elements) of the stored data
      *
      * @return the height
 	 */
-	public int getHeight();
+	int getHeight();
+	
+	/**
+	 * Check if the current instance is empty.
+	 * 
+	 * @return true, the there is no data; false otherwise.
+	 */
+	boolean isEmpty();
 	
     /**
      * Display the data
      *
      * @return the pretty print
 	 */
-	public String toString();
+	String toString();
 }

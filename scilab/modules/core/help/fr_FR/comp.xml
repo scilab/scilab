@@ -34,7 +34,7 @@
     <literal>function</literal>.  Les fonctions "compilées" et
     interprétées sont équivalentes mais les fonctions
     "compilées" sont plus rapides.  Les fonctions fournies dans les
-    librairies standard de Scilab sont "compilées".</para>
+    bibliothèques standard de Scilab sont "compilées".</para>
 
     <para>La définition en line des fonction ainsi que la forme
     courte des fonctions <literal>exec</literal> et

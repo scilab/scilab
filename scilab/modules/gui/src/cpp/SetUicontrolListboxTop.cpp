@@ -1,6 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
+ * Copyright (C) 2010 - DIGITEO - Vincent COUVERT
+ *
  * Sets the listbox top property of an uicontrol object
  * 
  * This file must be used under the terms of the CeCILL.
@@ -73,7 +75,9 @@ int SetUicontrolListboxTop(sciPointObj* sciObj, size_t stackPointer, int valueTy
   switch(pUICONTROL_FEATURE(sciObj)->style)
     {
     case SCI_LISTBOX:
-      // TODO Set the Java property if necessary
+        CallScilabBridge::setListBoxListBoxTop(getScilabJavaVM(), 
+                                         pUICONTROL_FEATURE(sciObj)->hashMapIndex,
+                                         value);
       return SET_PROPERTY_SUCCEED;
     default:
       /* No Java attribute to set or method to call */

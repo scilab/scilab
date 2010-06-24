@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <toolbar>
-    <!-- xpad -->
+    <!-- scinotes -->
     <button icon="accessories-text-editor.png" tooltiptext="Launch Scilab text editor">
         <callback 
         instruction='editor()' type="0"/>
@@ -59,7 +59,7 @@
 
     <!-- Atoms -->
     <button icon="package-x-generic.png" tooltiptext="Module manager - ATOMS">
-        <callback instruction='atomsGui();' type="0"/>
+        <callback instruction='if with_module("atoms") then atomsGui(); else disp(gettext("Please install atoms module.")); end' type="0"/>
     </button>
 
     <separator/>

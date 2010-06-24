@@ -9,7 +9,7 @@
 function []=zgrid()
 	
 	my_figure = gcf();
-	xselect();
+	show_window();
 	
 	my_figure.immediate_drawing = "off";
 	

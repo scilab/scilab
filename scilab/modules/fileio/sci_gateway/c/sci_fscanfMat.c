@@ -9,11 +9,11 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
+/*--------------------------------------------------------------------------*/
 #if defined(__linux__)
 #define _GNU_SOURCE /* Bug 5673 fix: avoid dependency on GLIBC_2.7 */
 #endif
-
+/*--------------------------------------------------------------------------*/
 #include "gw_fileio.h"
 #include "stack-c.h"
 #include "MALLOC.h"
@@ -25,7 +25,9 @@
 #include "PATH_MAX.h"
 #include "charEncoding.h"
 #include "StringConvert.h"
-#include "NumTokens.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 #define INFOSIZE 1024
 #define DEFAULT_FORMAT_FSCANFMAT "%lf"
@@ -35,6 +37,8 @@ static char *Info = NULL;
 /*--------------------------------------------------------------------------*/
 static int ReadLine(FILE *fd,int *mem);
 static BOOL checkFormat(char *fmt);
+static BOOL checkLineHaveSeparator(char *line);
+static int NumTokens(char *string);
 /*--------------------------------------------------------------------------*/
 int sci_fscanfMat(char *fname,unsigned long fname_len)
 {
@@ -64,8 +68,8 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
     }
 
     Nbvars = 0;
-    CheckRhs(1,2); 
-    CheckLhs(1,2);
+    CheckRhs(1, 2); 
+    CheckLhs(1, 2);
 
     if ( Rhs == 2)
     {
@@ -93,9 +97,9 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
     real_path = expandPathVariable(shortcut_path);
 
 #if _MSC_VER
-#define MODEFD "rt"
+    #define MODEFD "rt"
 #else
-#define MODEFD "r"
+    #define MODEFD "r"
 #endif
 
     if (real_path)
@@ -188,7 +192,7 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
 
     if ( Lhs >= 2 && vl != 0 )
     {
-        if ((Str = (char**)MALLOC((vl+1)*sizeof(char *))) == NULL)
+        if ((Str = (char**)MALLOC((vl + 1) * sizeof(char *))) == NULL)
         {
             if (Info)
             {
@@ -221,7 +225,7 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
 
         if ( Lhs >= 2)
         {
-            if ((Str[i]= (char*)MALLOC((strlen(Info)+1)*sizeof(char))) == NULL)
+            if ((Str[i]= (char*)MALLOC((strlen(Info) + 1) * sizeof(char))) == NULL)
             {
                 if (Info)
                 {
@@ -245,20 +249,20 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
         if ( vl > 0 )
         {
             int i2 = 0;
-            CreateVarFromPtr(Rhs+2,MATRIX_OF_STRING_DATATYPE,&vl,&one,Str);
+            CreateVarFromPtr(Rhs + 2, MATRIX_OF_STRING_DATATYPE, &vl, &one, Str);
             freeArrayOfString(Str, vl);
         }
         else
         {
-            CreateVar(Rhs+2,STRING_DATATYPE, &zero, &zero, &l);
+            CreateVar(Rhs + 2, STRING_DATATYPE, &zero, &zero, &l);
         }
 
         LhsVar(2) = Rhs + 2;
     }
 
-    for (i=0; i < rows ;i++)
+    for (i = 0; i < rows ;i++)
     {
-        for (j=0; j < cols;j++)
+        for (j = 0; j < cols;j++)
         {
             double xloc = 0.;
             fscanf(f, Format, &xloc);
@@ -275,7 +279,7 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
     if ( Info_size > INFOSIZE )
     {
         Info_size = INFOSIZE;
-        Info = (char*)REALLOC(Info,Info_size*sizeof(char));
+        Info = (char*)REALLOC(Info, Info_size * sizeof(char));
     }
     return 0;
 }
@@ -341,5 +345,89 @@ static BOOL checkFormat(char *fmt)
         }
     }
     return FALSE;
+}
+/*--------------------------------------------------------------------------*/
+static int NumTokens(char *string)
+{
+    if (string)
+    {
+        int n = 1;
+        int lnchar = 0;
+        int ntok   = -1;
+        int length = (int)strlen(string)+1;
+
+        if (string != 0)
+        {
+            /** Counting leading white spaces **/
+            int r = sscanf(string, "%*[ \r\t\n]%n", &lnchar);
+            if (!checkLineHaveSeparator(string))
+            {
+                return ntok;
+            }
+        }
+
+        while ( n != 0 && n != EOF && lnchar <= length  )
+        {
+            char buf[128];
+            int nchar1 = 0;
+            int nchar2 = 0;
+            char *strTmp = NULL;
+
+            if (lnchar >= length)
+            {
+                return(ntok);
+            }
+            else
+            {
+                strTmp = strdup(&string[lnchar]);
+            }
+
+            ntok++;
+
+            if (!checkLineHaveSeparator(strTmp))
+            {
+                if (strTmp)
+                {
+                    if (strlen(strTmp) > 0)
+                    {
+                        ntok++;
+                    }
+
+                    FREE(strTmp);
+                    strTmp = NULL;
+                }
+                return ntok;
+            }
+
+            n = sscanf(strTmp, "%[^ \r\t\n]%n%*[ \r\t\n]%n", buf, &nchar1, &nchar2);
+            lnchar += (nchar2 <= nchar1) ? nchar1 : nchar2;
+
+            if (strTmp)
+            {
+                FREE(strTmp);
+                strTmp = NULL;
+            }
+        }
+
+        return(ntok);
+    }
+    return(1);
+}
+/*--------------------------------------------------------------------------*/
+static BOOL checkLineHaveSeparator(char *line)
+{
+#define NUMBER_SEPARATOR_TYPE_1 ' '
+#define NUMBER_SEPARATOR_TYPE_2 '\r'
+#define NUMBER_SEPARATOR_TYPE_3 '\t'
+#define NUMBER_SEPARATOR_TYPE_4 '\n'
+
+    if ((strchr(line, NUMBER_SEPARATOR_TYPE_1) == NULL) &&
+        (strchr(line, NUMBER_SEPARATOR_TYPE_2) == NULL) &&
+        (strchr(line, NUMBER_SEPARATOR_TYPE_3) == NULL) &&
+        (strchr(line, NUMBER_SEPARATOR_TYPE_4) == NULL))
+    {
+        return FALSE;
+    }
+    return TRUE;
 }
 /*--------------------------------------------------------------------------*/

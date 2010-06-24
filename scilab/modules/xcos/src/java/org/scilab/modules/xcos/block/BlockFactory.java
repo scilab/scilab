@@ -18,8 +18,11 @@ import org.scilab.modules.xcos.block.io.ExplicitInBlock;
 import org.scilab.modules.xcos.block.io.ExplicitOutBlock;
 import org.scilab.modules.xcos.block.io.ImplicitInBlock;
 import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
+import org.scilab.modules.xcos.block.positionning.BigSom;
 import org.scilab.modules.xcos.block.positionning.GroundBlock;
+import org.scilab.modules.xcos.block.positionning.Product;
 import org.scilab.modules.xcos.block.positionning.RoundBlock;
+import org.scilab.modules.xcos.block.positionning.Summation;
 import org.scilab.modules.xcos.block.positionning.VoltageSensorBlock;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -99,6 +102,12 @@ public final class BlockFactory {
 		PROD_f(new RoundBlock("PROD_f")),
 		/** @see RoundBlock */
 		CLKSOMV_f(new RoundBlock("CLKSOMV_f")),
+		/** @see BigSom */
+		BIGSOM_f(new BigSom()),
+		/** @see Summation */
+		SUMMATION(new Summation()),
+		/** @see Product */
+		PRODUCT(new Product()),
 		;
 		
 		private BasicBlock block;
@@ -186,7 +195,7 @@ public final class BlockFactory {
 				mxICell port = block.getChildAt(i);
 				clone.insert((mxICell) port.clone());
 			}
-
+			
 			return clone;
 		} catch (CloneNotSupportedException e) {
 			e.printStackTrace();

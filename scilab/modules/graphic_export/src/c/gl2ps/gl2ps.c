@@ -5999,7 +5999,6 @@ GL2PSDLL_API int gl2psDrawImageMap(int width, int height,
 
 GL2PSDLL_API int gl2psEnable(int mode)
 {
-  int tmp;
 
   if(!gl2ps) return GL2PS_UNINITIALIZED;
 
@@ -6015,10 +6014,8 @@ GL2PSDLL_API int gl2psEnable(int mode)
   }else if (mode == GL2PS_LINE_STIPPLE)
   {
 	joglPassThrough(GL2PS_BEGIN_STIPPLE_TOKEN); /*ici*/
-	joglGetLineStipplePattern(&tmp);
-    joglPassThrough((float)tmp); /*ici*/
-	joglGetLineStippleRepeat(&tmp);
-    joglPassThrough((float)tmp); /*ici*/
+	joglPassThrough(gl2ps->lastpattern);
+	joglPassThrough((float)gl2ps->lastfactor);
 
   }else if (mode == GL2PS_BLEND)
   {
@@ -6065,6 +6062,16 @@ GL2PSDLL_API int gl2psPointSize(float value)
   joglPassThrough(GL2PS_POINT_SIZE_TOKEN); /*ici*/
   joglPassThrough(value); /*ici*/
   
+  return GL2PS_SUCCESS;
+}
+
+GL2PSDLL_API int gl2psLineStipple(int factor, int pattern)
+{
+  if(!gl2ps) return GL2PS_UNINITIALIZED;
+
+  gl2ps->lastpattern = pattern;
+  gl2ps->lastfactor = factor;
+
   return GL2PS_SUCCESS;
 }
 

@@ -17,5 +17,5 @@
 
 // often use in old scripts
 // should not display black dots on the edges of the axes
-plot2d([0;1],[0;1],0,"121"," ",[0, 0, 1, 1],[1,10,1,10]);
+plot2d([0;1],[0;1],0,strf="121",leg=" ",rect=[0, 0, 1, 1],nax=[1,10,1,10]);
 

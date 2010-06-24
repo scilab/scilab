@@ -74,6 +74,7 @@ libsciconsole_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 				-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
+				-I$(top_srcdir)/modules/fileio/includes \
 				-I$(top_srcdir)/modules/output_stream/includes
 
 # Name of the library
@@ -94,7 +95,9 @@ INCLUDE_FLAGS = $(libsciconsole_la_CFLAGS)
 
 ## Libraries necessary
 ## Change to include other Scilab modules/lib
-libsciconsole_la_LIBADD =  $(top_builddir)/modules/action_binding/libsciaction_binding.la $(top_builddir)/modules/shell/libscishell.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/libs/MALLOC/libscimalloc.la 
+libsciconsole_la_LIBADD =  	$(top_builddir)/modules/shell/libscishell.la \
+							$(top_builddir)/modules/fileio/libscifileio.la \
+							$(top_builddir)/libs/MALLOC/libscimalloc.la 
 # java code is needed $(top_builddir)/modules/jvm/libscijvm.la
 
 

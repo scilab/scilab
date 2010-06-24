@@ -13,23 +13,59 @@
 package org.scilab.modules.types.scilabTypes;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * This class provides a wrapping on the Scilab TList datatype
  */
 public class ScilabTList extends ArrayList<ScilabType> implements ScilabType {
 
+	/**
+	 * Construct an empty tlist.
+	 * 
+	 * Note that the first element of this collection is the header used by
+	 * Scilab to find each field type.
+	 */
     public ScilabTList() {
 		super();
     }
     
+    /**
+     * Construct a tlist with a specified header.
+     *  
+     * @param types type names of the fields.
+     */
     public ScilabTList(String []types) {
 		super();
 		String [][] typesData = new String[1][types.length];
 		typesData[0] = types;
 		add(new ScilabString(typesData));
     }
+
+	/**
+	 * Construct a tlist containing the elements of the specified collection, in
+	 * the order that they are returned by the specified collection's iterator.
+	 * 
+	 * @param types
+	 *            type names of the fields.
+	 * @param c
+	 *            the collection whose elements are to be placed into this
+	 *            tlist.
+	 */
+    public ScilabTList(String[] types, Collection< ? extends ScilabType> c) {
+    	super(c.size() + 1);
+    	
+    	String[][] typesData = new String[1][types.length];
+    	typesData[0] = types;
+    	add(new ScilabString(typesData));
+    	
+    	addAll(c);
+    }
     
+    /**
+     * @return 1 when there is data on the list, 0 otherwise.
+     * @see org.scilab.modules.types.scilabTypes.ScilabType#getHeight()
+     */
 	public int getHeight() {
 		if (isEmpty()) {
 			return 0;
@@ -37,6 +73,10 @@ public class ScilabTList extends ArrayList<ScilabType> implements ScilabType {
 		return 1;
 	}
 
+	/**
+     * @return 1 when there is data on the list, 0 otherwise.
+	 * @see org.scilab.modules.types.scilabTypes.ScilabType#getWidth()
+	 */
 	public int getWidth() {
 		if (isEmpty()) {
 			return 0;
@@ -44,7 +84,10 @@ public class ScilabTList extends ArrayList<ScilabType> implements ScilabType {
 		return size();
 	}
 	
-
+	/**
+	 * @return the pretty-printed data
+	 * @see java.util.AbstractCollection#toString()
+	 */
 	public String toString() {
 		
 		StringBuffer result = new StringBuffer();
@@ -54,7 +97,7 @@ public class ScilabTList extends ArrayList<ScilabType> implements ScilabType {
 		}
 
 		result.append("tlist(");
-		for (int i = 0 ; i < size() ; i++){
+		for (int i = 0; i < size(); i++) {
 			result.append(get(i).toString());
 			if (i != size() - 1) {
 				result.append(", ");

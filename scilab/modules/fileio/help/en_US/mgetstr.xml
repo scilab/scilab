@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2010 - Digiteo - Vincent LIARD
  * ...
  * 
  * This file must be used under the terms of the CeCILL.
@@ -21,110 +22,94 @@
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
-
   <refnamediv>
     <refname>mgetstr</refname>
-
-    <refpurpose>read a character string</refpurpose>
+    <refpurpose>read a character string from a file</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
-    <synopsis>str=mgetstr(n [,fd] )</synopsis>
+    <synopsis>str = mgetstr(n, [fd])</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Parameters</title>
-
     <variablelist>
       <varlistentry>
         <term>n</term>
-
         <listitem>
-          <para>a positive scalar: The number of character to read.</para>
+          <para>Non negative integer: how many characters should be
+          read.</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>fd</term>
-
         <listitem>
-          <para>scalar. The <literal>fd</literal> parameter returned by the
-          function <literal>mopen</literal>. -1 stands for last opened file.
-          Default value is -1.</para>
+          <para>Integer file descriptor as returned by <link
+          linkend="mopen"><literal>mopen</literal></link>: where
+          characters should be read. The value <literal>-1</literal>
+          stands for the last opened file and is the default.</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>str</term>
-
         <listitem>
-          <para>a character string</para>
+          <para>The character string read.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-
-    <para>mgetstr function allows to read a character string in a binary file.
-    If EOF is reached before read completion only the properly read values
-    will be returned.</para>
+    <para>The <literal>mgetstr</literal> function attempts to read up
+    to <literal>n</literal> characters from a file. If end of file is
+    reached before <literal>n</literal> characters are read,
+    <literal>mgetstr</literal> returns the properly read values
+    only. As a consequence, when the read cursor is already at the end
+    of the file when <literal>mgetstr</literal> is called, it returns
+    an empty string no matter what value is provided for
+    <literal>n</literal>.</para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
-
-    <programlisting role="example">// open file descriptor as text with read mode
-fd_r = mopen(SCI+'/ACKNOWLEDGEMENTS','rt')
-
-// get 100 characters of fd_r
-strs_1 = mgetstr(100, fd_r)
-
-// get 200 next characters of fd_r
-strs_2 = mgetstr(200, fd_r)
-
-// close file descriptor
-mclose(fd_r);</programlisting>
+    <programlisting role="example">
+fn = SCI + '/ACKNOWLEDGEMENTS'; // absolute path to some file
+details = fileinfo(fn);         // retrieve file details
+len = details(1);               // get file length
+fd = mopen(fn, 'rt');           // open file as text with read mode
+str1 = mgetstr(33, fd)          // read 33 characters from fd
+length(str1)                    // 33 characters read
+str2 = mgetstr(272, fd)         // read the next 272 characters from fd
+length(str2)                    // 272 characters read
+mseek(len - 5);                 // jump to the 5th character before end of file
+str3 = mgetstr(10, fd)          // try to read 10 characters: returns 5 characters only, no more available
+length(str3)                    // yes, there are 5 characters: you just can't see the linefeed :)
+str4 = mgetstr(10, fd)          // read 10 characters: returns empty string
+length(str4)                    // empty string
+mclose(fd);                     // close file descriptor
+    </programlisting>
   </refsection>
-
   <refsection>
     <title>See Also</title>
-
     <simplelist type="inline">
       <member><link linkend="mclose">mclose</link></member>
-
       <member><link linkend="meof">meof</link></member>
-
       <member><link linkend="mfprintf">mfprintf</link></member>
-
       <member><link linkend="fprintfMat">fprintfMat</link></member>
-
       <member><link linkend="mfscanf">mfscanf</link></member>
-
       <member><link linkend="fscanfMat">fscanfMat</link></member>
-
       <member><link linkend="mget">mget</link></member>
-
       <member><link linkend="mgetstr">mgetstr</link></member>
-
       <member><link linkend="mopen">mopen</link></member>
-
       <member><link linkend="mprintf">mprintf</link></member>
-
       <member><link linkend="mput">mput</link></member>
-
       <member><link linkend="mputstr">mputstr</link></member>
-
       <member><link linkend="mscanf">mscanf</link></member>
-
       <member><link linkend="mseek">mseek</link></member>
-
       <member><link linkend="mtell">mtell</link></member>
-
       <member><link linkend="mdelete">mdelete</link></member>
+      <member>"Input/Output functions" section</member>
+      <!-- TODO: link to "Input/Output functions" index page -->
+      <!-- next link doesn't work when reading doc in scilab -->
+      <!-- <member><link linkend="section_efa4cbf5c15e166f34901f827390e756">Input/Output functions</link></member> -->
     </simplelist>
   </refsection>
 </refentry>

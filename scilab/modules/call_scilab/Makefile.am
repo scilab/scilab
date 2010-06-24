@@ -1,7 +1,8 @@
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### DIGITEO - Scilab 2009
-##########
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2009 - DIGITEO - Sylvestre Ledru
+# 
+# This file is distributed under the same license as the Scilab package.
+
 
 ### SOURCES ###
 CALLSCILAB_C_SOURCES = src/c/call_scilab.c \

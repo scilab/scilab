@@ -14,6 +14,7 @@ package org.scilab.modules.xcos.port.output;
 
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
+import org.scilab.modules.xcos.port.input.InputPort;
 
 /**
  * An output port acts as a protection barrier between the internal functions of
@@ -33,5 +34,7 @@ public abstract class OutputPort extends BasicPort {
     public OutputPort(String type) {
 	super(type);
 	setOrientation(Orientation.EAST);
+	
+	setDefaultValues();
     }
 }

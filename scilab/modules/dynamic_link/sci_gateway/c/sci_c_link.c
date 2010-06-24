@@ -103,7 +103,7 @@ int sci_c_link(char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		Error(201);
+		SciError(201);
 	}
 	return 0;
 }

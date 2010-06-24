@@ -2,3 +2,4 @@ LIBRARY    io.dll
 
 
 EXPORTS
+v2cuniterror_

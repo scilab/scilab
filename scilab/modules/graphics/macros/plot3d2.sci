@@ -20,7 +20,9 @@ function plot3d2(x,y,z,vect,theta,alpha,leg,flag,ebox)
 // if vect==-1 means that vect is useless
 //---------------------------------------------------------
 [lhs,rhs]=argn(0);
-if rhs<3, error(' I need at least 3 arguments'),end;
+if rhs<3 then
+  error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "plot3d2", 3))
+end
 isvect=1
 if exists('vect','local')==0 then isvect=1 ;vect=-1,end
 if vect<>-1 then

@@ -33,7 +33,7 @@ function []=square(xmin,ymin,xmax,ymax)
 	end
 	
 	my_figure           = gcf();
-	my_figure.axes_size = maxi(my_figure.axes_size) * ones(1,2);
+	my_figure.axes_size = max(my_figure.axes_size) * ones(1,2);
 	plot2d(0,0,1,"010"," ",[xmin,ymin,xmax,ymax]);
 	
 endfunction

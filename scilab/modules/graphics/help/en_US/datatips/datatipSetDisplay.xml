@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (C) INRIA -  Serge Steer Serge.Steer@inria.fr
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en_US" xml:id="datatipSetDisplay">
+  <info>
+    <pubdate>$LastChangedDate: 19-02-2010 $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>datatipSetDisplay</refname>
+    <refpurpose>Search the nearest datatip of a given point. </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      datatipSetDisplay(tip_handle,orient)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>tip_handle</term>
+        <listitem>
+          <para>
+            A handle on a datatip. 
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+	<term>orient</term>
+        <listitem>
+          <para>
+            A character string with possible values:
+            <literal>"automatic"</literal> <literal>"upper
+            left"</literal> <literal>"upper right"</literal>,
+            <literal>"lower left"</literal>, <literal>"lower
+            right"</literal>.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+        Set the position on the text box with respect to the curve
+        point. With the <literal>"automatic"</literal> orientation the
+        program makes the choice to keep the text box within the plot
+        boundaries.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+    x=linspace(-1,1,1000);
+    clf()
+    plot(x,sinc(20*x),x,1-x^2);
+    e=gce();e=e.children;
+    d21=datatipCreate(e(2),600);
+    d22=datatipCreate(e(2),200);
+    d1=datatipCreate(e(1),700);
+
+    function str=mydisplay(curve,pt,index)
+       str=msprintf('sinc(%-0.2g)=%-0.2g', 20*pt(1),pt(2))
+    endfunction
+    datatipSetDisplay(e(2),mydisplay) 
+    ]]></programlisting>
+    <para>
+      <inlinemediaobject>
+	<imageobject>
+	  <imagedata fileref="../../images/datatips5.svg"/>
+	</imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member><link linkend="datatips" >datatips</link></member>
+      <member><link linkend="datatipSetOrientation">datatipSetOrientation</link></member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Serge Steer, INRIA</member>
+    </simplelist>
+  </refsection>
+ 
+</refentry>

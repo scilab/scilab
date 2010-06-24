@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent Couvert
  * Copyright (C) 2007 - INRIA - Bruno Jofret
+ * Copyright (C) 2010 - DIGITEO - Vincent COUVERT
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -4443,6 +4444,24 @@ public class ScilabBridge {
 	 */
 	public static void requestFocus(ListBox listBox) {
 		ScilabListBoxBridge.requestFocus(listBox);
+	}
+
+	/**
+	 * Adjusts the view so that the element given by index is displayed at the top of the ListBox.
+	 * @param listBox the ListBox
+	 * @param index the index of the element to be displayed at the top of the ListBox.
+	 */
+	public static void setListBoxTop(ListBox listBox, int index) {
+		ScilabListBoxBridge.setListBoxTop(listBox, index);
+	}
+	
+	/**
+	 * Gets the index of the element displayed at the top of the ListBox
+	 * @param listBox the ListBox
+	 * @return the index of the element displayed at the top of the ListBox
+	 */
+	public static int getListBoxTop(ListBox listBox) {
+		return ScilabListBoxBridge.getListBoxTop(listBox);
 	}
 
 	/********************/

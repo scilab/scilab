@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
+// Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -12,7 +13,7 @@
 //   Creates a new Nelder-Mead object.
 //
 function newobj = neldermead_new ()
-  newobj = tlist(["T_NELDERMEAD" 
+  newobj = tlist(["TNELDER" 
     "optbase" 
     "method"
     "simplex0"

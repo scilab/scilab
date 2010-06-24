@@ -14,6 +14,7 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "javasci_Scilab2.h"
+#include "sci_types.h"
 #include "call_scilab.h"
 #include "api_scilab.h"
 #include "freeArrayOfString.h"

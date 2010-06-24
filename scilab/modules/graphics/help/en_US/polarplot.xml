@@ -227,7 +227,8 @@ polarplot(theta,rho,&lt;opt_args&gt;)</synopsis>
     <para>polarplot creates a polar coordinate plot of the angle theta versus the
     radius rho. theta is the angle from the x-axis to the radius vector
     specified in radians; rho is the length of the radius vector specified in
-    dataspace units.</para>
+    dataspace units. Note that negative rho values cause the corresponding curve points
+    to be reflected across the origin.</para>
   </refsection>
   <refsection>
     <title>Examples</title>

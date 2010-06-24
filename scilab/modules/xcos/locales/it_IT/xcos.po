@@ -8,13 +8,12 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-02-18 10:43+0000\n"
+"PO-Revision-Date: 2010-05-05 14:25+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-04-16 07:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -257,7 +256,7 @@ msgid "Format"
 msgstr "_Formatta"
 
 msgid "From %s"
-msgstr ""
+msgstr "Da %s"
 
 msgid "Generate SuperBlock, please wait ..."
 msgstr "Generazione di SuperBlock in corso..."
@@ -269,7 +268,7 @@ msgid "Get infos"
 msgstr "Ottieni informazioni"
 
 msgid "Goto %s"
-msgstr ""
+msgstr "Vai a %s"
 
 msgid "Grid"
 msgstr "_Griglia"
@@ -536,7 +535,7 @@ msgid "Superblock mask"
 msgstr "Maschera del superblocco"
 
 msgid "The Scicos libraries are not loaded"
-msgstr ""
+msgstr "Le librerie di Scicos non sono caricate"
 
 msgid "The Scilab Consortium (DIGITEO)"
 msgstr "Il Consorzio Scilab (DIGITEO)"
@@ -568,11 +567,11 @@ msgstr "Impossibile comunicare con l'interprete"
 
 #, c-format
 msgid "Unable to open %s"
-msgstr ""
+msgstr "Impossibile aprire %s"
 
 #, c-format
 msgid "Unable to simulate %s"
-msgstr ""
+msgstr "Impossibile simulare %s"
 
 msgid "Undo"
 msgstr "_Annulla"

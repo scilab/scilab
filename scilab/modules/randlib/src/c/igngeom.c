@@ -44,7 +44,6 @@
  *     Bruno Pincon (<Bruno.Pincon@iecn.u-nancy.fr>)
  *
  */
-#include "stack-c.h"
 #include <math.h>
 #include "grand.h"
 

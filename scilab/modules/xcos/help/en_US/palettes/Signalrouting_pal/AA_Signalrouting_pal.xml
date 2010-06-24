@@ -37,13 +37,88 @@
   <refsection>
     <title>Block Screenshot</title>
 
-    <para><inlinemediaobject>
-        <imageobject>
-          <imagedata align="center"
-                     fileref="../../../../images/palettes/SignalRouting_pal.jpg"
-                     valign="middle"></imagedata>
-        </imageobject>
-      </inlinemediaobject></para>
+    <para>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="DEMUX" fileref="../../../../../../modules/xcos/images/palettes/DEMUX.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="EXTRACTOR" fileref="../../../../../../modules/xcos/images/palettes/EXTRACTOR.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="FROM" fileref="../../../../../../modules/xcos/images/palettes/FROM.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="FROMMO" fileref="../../../../../../modules/xcos/images/palettes/FROMMO.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="GOTO" fileref="../../../../../../modules/xcos/images/palettes/GOTO.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="GOTOMO" fileref="../../../../../../modules/xcos/images/palettes/GOTOMO.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="GotoTagVisibility" fileref="../../../../../../modules/xcos/images/palettes/GotoTagVisibility.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="GotoTagVisibilityMO" fileref="../../../../../../modules/xcos/images/palettes/GotoTagVisibilityMO.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="ISELECT_m" fileref="../../../../../../modules/xcos/images/palettes/ISELECT_m.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="MUX" fileref="../../../../../../modules/xcos/images/palettes/MUX.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="M_SWITCH" fileref="../../../../../../modules/xcos/images/palettes/M_SWITCH.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="NRMSOM_f" fileref="../../../../../../modules/xcos/images/palettes/NRMSOM_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="RELAY_f" fileref="../../../../../../modules/xcos/images/palettes/RELAY_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="SELECT_m" fileref="../../../../../../modules/xcos/images/palettes/SELECT_m.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="SWITCH2_m" fileref="../../../../../../modules/xcos/images/palettes/SWITCH2_m.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="SWITCH_f" fileref="../../../../../../modules/xcos/images/palettes/SWITCH_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    </para>
   </refsection>
 
   <refsection id="Module_Signalrouting_pal">

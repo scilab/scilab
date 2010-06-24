@@ -16,6 +16,7 @@ package org.scilab.modules.xcos.actions;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -68,7 +69,7 @@ public final class NewDiagramAction extends DefaultAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Xcos.createEmptyDiagram();
+		Xcos.getInstance().open(null);
 	}
 
 }

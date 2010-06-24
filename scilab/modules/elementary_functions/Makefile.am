@@ -1,7 +1,8 @@
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006
-##########
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+#
+# This file is distributed under the same license as the Scilab package.
+
 
 ELEMENTARIES_FUNCTIONS_C_SOURCES = src/c/sci_tools.c \
 src/c/finite.c \
@@ -261,6 +262,7 @@ src/fortran/bdiag.f \
 src/fortran/wvmul.f \
 src/fortran/dmmul.f \
 src/fortran/wsqrt.f \
+src/fortran/israt.f \
 src/fortran/rat.f \
 src/fortran/ribesl.f \
 src/fortran/rjbesl.f \
@@ -293,6 +295,7 @@ sci_gateway/c/sci_asin.c \
 sci_gateway/c/sci_sign.c \
 sci_gateway/c/sci_zeros.c \
 sci_gateway/c/sci_ones.c \
+sci_gateway/c/sci_rat.c \
 sci_gateway/c/gw_elementary_functions.c \
 sci_gateway/c/sci_number_properties.c \
 sci_gateway/c/sci_diag.c \
@@ -327,6 +330,7 @@ sci_gateway/fortran/sci_f_expm.f \
 sci_gateway/fortran/sci_f_size.f \
 sci_gateway/fortran/sci_f_tril.f \
 sci_gateway/fortran/sci_f_ceil.f \
+sci_gateway/fortran/sci_f_rat.f \
 sci_gateway/fortran/sci_f_imag.f \
 sci_gateway/fortran/sci_f_log.f \
 sci_gateway/fortran/sci_f_log1p.f \
@@ -399,6 +403,7 @@ libscielementary_functions_la_CPPFLAGS = 	-I$(srcdir)/includes/ \
 libscielementary_functions_la_CFLAGS= 	-I$(srcdir)/includes/ \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(srcdir)/src/c/ \
+-I$(top_srcdir)/modules/core/src/c/ \
 -I$(top_srcdir)/modules/api_scilab/includes \
 -I$(top_srcdir)/modules/output_stream/includes
 

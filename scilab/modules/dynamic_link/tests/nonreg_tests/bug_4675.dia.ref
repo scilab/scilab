@@ -36,6 +36,7 @@ end
 files =['bug_4675.c'];
 ilib_build('test_bug_4675',test_table,files,[]);
 // load the shared library 
+exec('loader.sce');
 //using the new primitive
 for i=1:999,
   execstr("res = fun"+string(i)+"();");
