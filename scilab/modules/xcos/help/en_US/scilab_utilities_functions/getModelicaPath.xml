@@ -59,7 +59,7 @@
     </itemizedlist>
   </refsection>
 
-  <refsection id="Example_get_scicos_version">
+  <refsection id="Example_getModelicaPath">
     <title>Example</title>
 
     <programlisting role="example">
