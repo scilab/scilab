@@ -12,6 +12,7 @@
 
 package org.scilab.modules.scinotes.utils;
 
+import java.awt.Point;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
@@ -21,7 +22,6 @@ import java.awt.dnd.DropTargetDragEvent;
 import java.awt.dnd.DropTargetDropEvent;
 import java.awt.dnd.DropTargetEvent;
 import java.awt.dnd.DropTargetListener;
-import java.awt.Point;
 import java.io.IOException;
 
 import javax.swing.text.BadLocationException;
@@ -112,7 +112,7 @@ public class DropFilesListener implements DropTargetListener {
                 try {
                     java.util.List data = (java.util.List) transferable.getTransferData(DataFlavor.javaFileListFlavor);
                     for (int i = 0; i < data.size(); i++) {
-                        SciNotes.scinotes(data.get(i).toString());
+                        SciNotes.launchSciNotes().openFile(data.get(i).toString(), 0, null);
                     }
                     arg0.dropComplete(true);
                 } catch (UnsupportedFlavorException e) {
@@ -137,7 +137,7 @@ public class DropFilesListener implements DropTargetListener {
                 }
                 java.util.List data = textURIListToFileList(uriData);
                 for (int i = 0; i < data.size(); i++) {
-                    SciNotes.scinotes(data.get(i).toString());
+                    SciNotes.launchSciNotes().openFile(data.get(i).toString(), 0, null);
                 }
                 arg0.dropComplete(true);
             } else if (transferable.isDataFlavorSupported(DataFlavor.stringFlavor)) {

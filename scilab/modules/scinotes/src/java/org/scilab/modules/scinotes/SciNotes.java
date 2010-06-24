@@ -29,20 +29,20 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Collections;
-import java.util.Vector;
-import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import javax.swing.KeyStroke;
 import javax.swing.BorderFactory;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
+import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -51,51 +51,51 @@ import javax.swing.text.ChangedCharSetException;
 import javax.swing.text.EditorKit;
 import javax.swing.undo.UndoManager;
 
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.filechooser.Juigetfile;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.messagebox.MessageBox;
 import org.scilab.modules.gui.messagebox.ScilabMessageBox;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
+import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.ConfigManager;
-import org.scilab.modules.gui.utils.SciFileFilter;
 import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.SciFileFilter;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
-import org.scilab.modules.gui.events.callback.CallBack;
-import org.scilab.modules.scinotes.actions.ExitAction;
-import org.scilab.modules.scinotes.actions.FindAction;
-import org.scilab.modules.scinotes.actions.RecentFileAction;
-import org.scilab.modules.scinotes.actions.SetColorsAction;
-import org.scilab.modules.scinotes.actions.TabifyAction;
-import org.scilab.modules.scinotes.actions.UndoAction;
-import org.scilab.modules.scinotes.actions.RedoAction;
 import org.scilab.modules.scinotes.actions.CopyAction;
 import org.scilab.modules.scinotes.actions.CutAction;
-import org.scilab.modules.scinotes.actions.PasteAction;
-import org.scilab.modules.scinotes.actions.SelectAllAction;
-import org.scilab.modules.scinotes.actions.HighlightCurrentLineAction;
-import org.scilab.modules.scinotes.actions.UnTabifyAction;
+import org.scilab.modules.scinotes.actions.ExitAction;
+import org.scilab.modules.scinotes.actions.FindAction;
 import org.scilab.modules.scinotes.actions.FindNextAction;
 import org.scilab.modules.scinotes.actions.FindPreviousAction;
+import org.scilab.modules.scinotes.actions.HighlightCurrentLineAction;
 import org.scilab.modules.scinotes.actions.LineBeautifierAction;
+import org.scilab.modules.scinotes.actions.PasteAction;
+import org.scilab.modules.scinotes.actions.RecentFileAction;
+import org.scilab.modules.scinotes.actions.RedoAction;
 import org.scilab.modules.scinotes.actions.SciNotesCompletionAction;
+import org.scilab.modules.scinotes.actions.SelectAllAction;
+import org.scilab.modules.scinotes.actions.SetColorsAction;
+import org.scilab.modules.scinotes.actions.TabifyAction;
+import org.scilab.modules.scinotes.actions.UnTabifyAction;
+import org.scilab.modules.scinotes.actions.UndoAction;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 import org.scilab.modules.scinotes.utils.DropFilesListener;
 import org.scilab.modules.scinotes.utils.SaveFile;
@@ -192,6 +192,15 @@ public class SciNotes extends SwingScilabTab implements Tab {
 
                         // Update End Of Line  menu
                         scinotesGUI.updateEolMenu((ScilabDocument) getTextPane().getDocument());
+                        
+                        // Update the title of the parent window
+                        final SwingScilabWindow window = (SwingScilabWindow) SwingUtilities
+                                .getAncestorOfClass(SwingScilabWindow.class,
+                                        (Component) e.getSource());
+                        if (window != null) {
+                            window.setTitle(getTitle());
+                        }
+                        
                     }
                 }
             });
@@ -216,20 +225,25 @@ public class SciNotes extends SwingScilabTab implements Tab {
 
     /**
      * Launch SciNotes with an empty file
+     * @throws RuntimeException on problem
+     * 
+     * This method *must not* be called on the EDT thread.
      */
-    public static void scinotes() {
-        try  {
-            SwingUtilities.invokeAndWait(new Thread() {
-                    public void run() {
-                        SciNotes editorInstance = launchSciNotes();
-                        editorInstance.addEmptyTab();
-                    }
-                });
+    public static void scinotes() throws RuntimeException {
+        try {
+            SwingUtilities.invokeAndWait(new Runnable() {
+                
+                @Override
+                public void run() {
+                    launchSciNotes().openFile(null, 0, null);
+                }
+            });
         } catch (InterruptedException e) {
-            System.err.println("EDT interrupted " + e);
-        } catch (java.lang.reflect.InvocationTargetException e) {
-            System.err.println(" scinotes() throw: " + e);
-            e.printStackTrace();
+            LogFactory.getLog(SciNotes.class).error(e);
+            throw new RuntimeException(e);
+        } catch (InvocationTargetException e) {
+            LogFactory.getLog(SciNotes.class).error(e);
+            throw new RuntimeException(e);
         }
 
     }
@@ -237,48 +251,75 @@ public class SciNotes extends SwingScilabTab implements Tab {
     /**
      * Launch SciNotes with a file name to open.
      * @param filePath the name of the file to open
+     * @throws RuntimeException on problem
+     * 
+     * This method *must not* be called on the EDT thread.
      */
-    public static void scinotes(String filePath) {
-        SciNotes editorInstance = launchSciNotes();
-        File f = FileToCanonicalFile(new File(filePath));
-        if (f.isDirectory()) { /* Bug 5131 */
-            ConfigManager.saveLastOpenedDirectory(f.getPath());
-            scinotes();
-            return;
+    public static void scinotes(final String filePath) throws RuntimeException {
+        try {
+            SwingUtilities.invokeAndWait(new Runnable() {
+                
+                @Override
+                public void run() {
+                    launchSciNotes().openFile(filePath, 0, null);
+                }
+            });
+        } catch (InterruptedException e) {
+            LogFactory.getLog(SciNotes.class).error(e);
+            throw new RuntimeException(e);
+        } catch (InvocationTargetException e) {
+            LogFactory.getLog(SciNotes.class).error(e);
+            throw new RuntimeException(e);
         }
-        ConfigSciNotesManager.saveToRecentOpenedFiles(filePath);
-        editorInstance.updateRecentOpenedFilesMenu();
-        editorInstance.readFileAndWait(f);
     }
 
     /**
      * Launch SciNotes with a file name to open and a line to highlight.
      * @param filePath the name of the file to open
      * @param lineNumber the line to highlight
+     * 
+     * This method *must not* be called on the EDT thread.
      */
-    public static void scinotes(String filePath, int lineNumber) {
-        SciNotes editorInstance = launchSciNotes();
-        File f = FileToCanonicalFile(new File(filePath));
-        ConfigSciNotesManager.saveToRecentOpenedFiles(filePath);
-        editorInstance.updateRecentOpenedFilesMenu();
-        editorInstance.readFileAndWait(f);
-        editorInstance.getTextPane().scrollTextToLineNumber(lineNumber);
+    public static void scinotes(final String filePath, final int lineNumber) {
+        try {
+            SwingUtilities.invokeAndWait(new Runnable() {
+                
+                @Override
+                public void run() {
+                    launchSciNotes().openFile(filePath, lineNumber, null);
+                }
+            });
+        } catch (InterruptedException e) {
+            LogFactory.getLog(SciNotes.class).error(e);
+            throw new RuntimeException(e);
+        } catch (InvocationTargetException e) {
+            LogFactory.getLog(SciNotes.class).error(e);
+            throw new RuntimeException(e);
+        }
     }
 
     /**
      * Launch SciNotes with a file name to open and a line to highlight.
      * @param filePath the name of the file to open
      * @param lineNumber the line to highlight
+     * 
+     * This method *must not* be called on the EDT thread.
      */
-    public static void scinotes(String filePath, String option) {
-        SciNotes editorInstance = launchSciNotes();
-        File f = FileToCanonicalFile(new File(filePath));
-        ConfigSciNotesManager.saveToRecentOpenedFiles(filePath);
-        editorInstance.updateRecentOpenedFilesMenu();
-        editorInstance.readFileAndWait(f);
-        if ("readonly".equals(option.toLowerCase())) {
-            editorInstance.getTextPane().setReadOnly(true);
-            editorInstance.getInfoBar().setText(editorInstance.getTextPane().getInfoBarText());
+    public static void scinotes(final String filePath, final String option) {
+        try {
+            SwingUtilities.invokeAndWait(new Runnable() {
+                
+                @Override
+                public void run() {
+                    launchSciNotes().openFile(filePath, 0, option);
+                }
+            });
+        } catch (InterruptedException e) {
+            LogFactory.getLog(SciNotes.class).error(e);
+            throw new RuntimeException(e);
+        } catch (InvocationTargetException e) {
+            LogFactory.getLog(SciNotes.class).error(e);
+            throw new RuntimeException(e);
         }
     }
 
@@ -331,13 +372,49 @@ public class SciNotes extends SwingScilabTab implements Tab {
      * Create SciNotes instance
      * @return the instance
      */
-    private static SciNotes launchSciNotes() {
+    public static SciNotes launchSciNotes() {
         if (editor == null) {
             editor = createEditor();
         }
         return editor;
     }
 
+    /**
+     * Open a file.
+     * 
+     * This method *must* be called on the EDT thread.
+     * 
+     * @param filePath the file path (may be null)
+     * @param lineNumber the line number (use 0 for unspecified)
+     * @param option the options (may be null)
+     */
+    public void openFile(String filePath, int lineNumber, String option) {
+        if (!SwingUtilities.isEventDispatchThread()) {
+            throw new RuntimeException("called outside the EDT thread.");
+        }
+        
+        if (filePath == null) {
+            addEmptyTab();
+            return;
+        }
+        
+        File f = FileToCanonicalFile(new File(filePath));
+        if (f.isDirectory()) { /* Bug 5131 */
+            ConfigManager.saveLastOpenedDirectory(f.getPath());
+            addEmptyTab();
+            return;
+        }
+        
+        ConfigSciNotesManager.saveToRecentOpenedFiles(filePath);
+        updateRecentOpenedFilesMenu();
+        readFileAndWait(f);
+        getTextPane().scrollTextToLineNumber(lineNumber);
+        if (option != null && "readonly".equals(option.toLowerCase())) {
+            getTextPane().setReadOnly(true);
+            getInfoBar().setText(getTextPane().getInfoBarText());
+        }
+    }
+    
     /**
      * Close SciNotes instance including all tabs.
      */
@@ -1640,14 +1717,28 @@ public class SciNotes extends SwingScilabTab implements Tab {
     }
 
     /**
-     * Close scinotes from scilab
+     * Close scinotes from scilab.
+     * 
+     * This method can be called outside the EDT thread.
      */
     public static void closeSciNotesFromScilab() {
-        for (int i = 0; i < scinotesList.size(); i++) {
-            SciNotes ed = scinotesList.get(i);
-            ed.closeSciNotes();
+        try {
+            SwingUtilities.invokeAndWait(new Runnable() {
+                
+                @Override
+                public void run() {
+                    for (int i = 0; i < scinotesList.size(); i++) {
+                        SciNotes ed = scinotesList.get(i);
+                        ed.closeSciNotes();
+                    }
+                    scinotesList.clear();
+                }
+            });
+        } catch (InterruptedException e) {
+            LogFactory.getLog(SciNotes.class).error(e);
+        } catch (InvocationTargetException e) {
+            LogFactory.getLog(SciNotes.class).error(e);
         }
-        scinotesList.clear();
     }
 
     /**
