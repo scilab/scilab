@@ -949,5 +949,7 @@ Bug fixes:
 
 * bug 7291 fixed - unix('') and dos('') returned a wrong messsage on Windows.
 
+* bug 7278 fixed - strsplit did not work with some particular inputs.
+
 * bug 7312 fixed - isnum() diplayed warnings when using some unusual parameters.
 
