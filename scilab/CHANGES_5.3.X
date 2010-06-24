@@ -358,10 +358,13 @@ Xcos:
                    prompting the user if modified diagrams must be saved before
                    exiting.
 
-* bug 7099 fixed - xml2modelica called ocamlrun (wrong dependency on Windows).
-
 * bug 7053 fixed - Rotated saved blocks were not loaded with the right rotation
                    value.
+
+* bug 7089 fixed - Drawing links when creating superblock throwed an encoding 
+                   exception.
+
+* bug 7099 fixed - xml2modelica called ocamlrun (wrong dependency on Windows).
 
 * bug 7143 fixed - Simulation values were not valid if the exponential sign is
                    an 'e'.
