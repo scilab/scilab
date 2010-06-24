@@ -245,6 +245,10 @@ Graphics:
 
 * bug 7188 fixed - Deleting a Label graphics entity caused Scilab to crash.
 
+* bug 7353 fixed - Setting a Polyline's "interp_color_mode" property to "on" without
+                   having previously set its "interp_color_vector" property caused Scilab
+                   to crash.
+
 Localization:
 =============
 
