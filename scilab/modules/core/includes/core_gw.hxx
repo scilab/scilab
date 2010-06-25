@@ -34,5 +34,9 @@ CPP_GATEWAY_PROTOTYPE(sci_quit);
 CPP_GATEWAY_PROTOTYPE(sci_exit);
 CPP_GATEWAY_PROTOTYPE(sci_exists);
 CPP_GATEWAY_PROTOTYPE(sci_isdef);
+CPP_GATEWAY_PROTOTYPE(sci_argn);
+CPP_GATEWAY_PROTOTYPE(sci_global);
+CPP_GATEWAY_PROTOTYPE(sci_clearglobal);
+CPP_GATEWAY_PROTOTYPE(sci_isglobal);
 
 #endif /* __CORE_GW_HXX__ */

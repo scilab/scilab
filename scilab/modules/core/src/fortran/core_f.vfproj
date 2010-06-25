@@ -146,7 +146,6 @@ cd .."/></Configuration></Configurations>
 		<File RelativePath="putid.f"/>
 		<File RelativePath="ref2val.f"/>
 		<File RelativePath="savlod.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_argn.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_clear.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_clearglobal.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_comp.f"/>
@@ -155,7 +154,6 @@ cd .."/></Configuration></Configurations>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_dispbpt.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_errcatch.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_errclear.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_global.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_ieee.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_intppty.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_iserror.f"/>

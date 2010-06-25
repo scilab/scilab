@@ -209,10 +209,8 @@ sci_gateway/c/sci_getmemory.c \
 sci_gateway/c/sci_havewindow.c \
 sci_gateway/c/sci_delbpt.c \
 sci_gateway/c/sci_macr2lst.c \
-sci_gateway/c/sci_isglobal.c \
 sci_gateway/c/sci_who.c \
 sci_gateway/c/sci_errclear.c \
-sci_gateway/c/sci_global.c \
 sci_gateway/c/sci_funcprot.c \
 sci_gateway/c/sci_newfun.c \
 sci_gateway/c/sci_warning.c \
@@ -228,8 +226,6 @@ sci_gateway/c/sci_clearfun.c \
 sci_gateway/c/sci_setbpt.c \
 sci_gateway/c/sci_what.c \
 sci_gateway/c/sci_predef.c \
-sci_gateway/c/sci_clearglobal.c \
-sci_gateway/c/sci_arg.c \
 sci_gateway/c/sci_type.c \
 sci_gateway/c/sci_typename.c \
 sci_gateway/c/sci_mode.c \
@@ -242,7 +238,6 @@ sci_gateway/c/gw_core.c \
 sci_gateway/c/gw_user.c \
 sci_gateway/c/gw_user2.c \
 sci_gateway/c/sci_error.c \
-sci_gateway/c/sci_sciargs.c \
 sci_gateway/c/sci_with_module.c \
 sci_gateway/c/sci_islittleendian.c \
 sci_gateway/c/sci_getscilabmode.c \
@@ -251,7 +246,6 @@ sci_gateway/c/sci_readgateway.c \
 sci_gateway/c/sci_comp.c
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_errclear.f \
-sci_gateway/fortran/sci_global.f \
 sci_gateway/fortran/sci_mtlb_mode.f \
 sci_gateway/fortran/sci_resume.f \
 sci_gateway/fortran/sci_dispbpt.f \
@@ -260,22 +254,22 @@ sci_gateway/fortran/sci_intppty.f \
 sci_gateway/fortran/sci_ieee.f \
 sci_gateway/fortran/sci_macrovar.f \
 sci_gateway/fortran/sci_errcatch.f \
-sci_gateway/fortran/sci_clear.f \
-sci_gateway/fortran/sci_argn.f \
 sci_gateway/fortran/sci_setbpt.f \
-sci_gateway/fortran/sci_clearglobal.f \
 sci_gateway/fortran/sci_delbpt.f \
 sci_gateway/fortran/where.f \
 sci_gateway/fortran/sci_iserror.f \
 sci_gateway/fortran/sci_debug.f \
-sci_gateway/fortran/sci_comp.f \
-sci_gateway/fortran/sci_isglobal.f
+sci_gateway/fortran/sci_comp.f 
 
 GATEWAY_CPP_SOURCES = 	sci_gateway/cpp/sci_getmodules.cpp \
 						sci_gateway/cpp/sci_clear.cpp \
 						sci_gateway/cpp/sci_banner.cpp \
 						sci_gateway/cpp/sci_quit.cpp \
 						sci_gateway/cpp/sci_exit.cpp \
+						sci_gateway/cpp/sci_argn.cpp \
+						sci_gateway/cpp/sci_clearglobal.cpp \
+						sci_gateway/cpp/sci_global.cpp \
+						sci_gateway/cpp/sci_isglobal.cpp \
 						sci_gateway/cpp/sci_exists.cpp
 
 libscicore_la_CFLAGS = -I$(srcdir)/includes/ \

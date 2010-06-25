@@ -108,12 +108,15 @@ namespace symbol
         {
             InternalType *pOld = (*_scope)[key];
             
-            _scope->erase(key);
-            pOld->DecreaseRef();
-            if(pOld->isDeletable() == true)
+            if(pOld)
             {
-                delete pOld;
-                pOld = NULL;
+                _scope->erase(key);
+                pOld->DecreaseRef();
+                if(pOld->isDeletable() == true)
+                {
+                    delete pOld;
+                    pOld = NULL;
+                }
             }
         }
 
@@ -159,6 +162,16 @@ namespace symbol
         ** of the stack being displayed last. */
         void	print (ostream& ostr) const
         {
+            map<string, InternalType*>::const_iterator it_scope;
+            for(it_scope = _scope->begin() ; it_scope != _scope->end() ; ++it_scope)
+            {
+                ostr << it_scope->first << " = " << it_scope->second->toString(10,75) << std::endl;
+            }
+        }
+
+        map<string, InternalType*>* getInternalMap()
+        {
+            return _scope;
         }
 
     private:

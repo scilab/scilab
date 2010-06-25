@@ -22,7 +22,7 @@ namespace symbol
 			for (i = (*this).l_scope.size() - 1, it_list_scope = (*this).l_scope.begin() ; it_list_scope != (*this).l_scope.end(); --i, ++it_list_scope)
 			{
 				ostr << "Scope level: " << i << std::endl;
-				ostr << *it_list_scope;
+				ostr << *(*it_list_scope);
 			}
 		}
 }

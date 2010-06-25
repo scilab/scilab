@@ -61,6 +61,33 @@ namespace symbol
         /*return function list in the module _stModuleName*/
         std::list<string>& get_funlist(const string& _stModuleName);
 
+
+        /* global functions */
+
+        /*return global variable visibility status*/
+        bool isGlobalVisible(const string& key) const;
+
+        /*return global variable, search in global scope ( highest )*/
+        InternalType* getGlobalValue(const string& key) const;
+
+        /*return global variable existance status*/
+        bool isGlobalExists(const string& key) const;
+
+        /*create or update a global variable*/
+        void setGlobalValue(const string& key, InternalType &value);
+
+        /*remove global variable and all visibility references */
+        void removeGlobal(const string &key);
+
+        /*remove all global variables and references */
+        void removeGlobalAll();
+
+        /*create an empty variable*/
+        void createEmptyGlobalValue(const string& key);
+
+        /*set variable visible/hidden in current global scope*/
+        void setGlobalVisible(const string& key, bool bVisible = true);
+
         /*print all tables*/
         void print();
 

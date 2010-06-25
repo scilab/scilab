@@ -605,15 +605,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_arg.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_clearfun.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_clearglobal.c"
 				>
 			</File>
 			<File
@@ -689,10 +681,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_global.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_gstacksize.c"
 				>
 			</File>
@@ -710,10 +698,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_iserror.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_isglobal.c"
 				>
 			</File>
 			<File

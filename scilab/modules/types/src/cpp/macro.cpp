@@ -114,10 +114,6 @@ namespace types
         // Declare nargin & nargout in function context.
         pContext->put(std::string("nargin"), *new Double(in.size()));
         pContext->put(std::string("nargout"), *new Double(_iRetCount));
-        Double *pDblArgn = new Double(1,2);
-        pDblArgn->val_set(0, 0, _iRetCount);
-        pDblArgn->val_set(0, 1, in.size());
-        pContext->put(std::string("argn"), *pDblArgn);
 
         //assign value to variable in the new context
         for (i = m_inputArgs->begin(), j = in.begin(); j != in.end (); ++j,++i)

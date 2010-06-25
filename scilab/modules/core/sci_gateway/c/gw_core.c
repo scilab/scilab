@@ -21,7 +21,7 @@ static gw_generic_table Tab[]=
 {C2F(sci_debug),"debug"},
 {C2F(sci_who),"who"},
 {C2F(sci_warning),"warning"},
-{C2F(sci_argn),"argn"},
+{NULL, ""}, //argn
 {C2F(sci_getvariablesonstack),"getvariablesonstack"},
 {C2F(sci_comp),"comp"},
 {C2F(sci_getscilabmode),"getscilabmode"},
@@ -51,12 +51,12 @@ static gw_generic_table Tab[]=
 {C2F(sci_mtlb_mode),"mtlb_mode"},
 {NULL,""}, // clear
 {C2F(sci_what),"what"},
-{C2F(sci_sciargs),"sciargs"},
+{NULL, ""}, //sciargs
 {C2F(sci_ieee),"ieee"},
 {NULL,""},//typename
-{C2F(sci_global),"global"},
-{C2F(sci_clearglobal),"clearglobal"},
-{C2F(sci_isglobal),"isglobal"},
+{NULL, ""}, //global
+{NULL, ""}, //clearglobal
+{NULL, ""}, //isglobal
 {C2F(sci_gstacksize),"gstacksize"},
 {C2F(sci_intppty),"intppty"},
 {C2F(sci_lasterror),"lasterror"},

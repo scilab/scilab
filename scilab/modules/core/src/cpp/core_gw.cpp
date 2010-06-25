@@ -32,6 +32,10 @@ bool CoreModule::Load()
     symbol::Context::getInstance()->AddFunction(Function::createFunction("exit", &sci_exit, "core"));
     symbol::Context::getInstance()->AddFunction(Function::createFunction("exists", &sci_exists, "core"));
     symbol::Context::getInstance()->AddFunction(Function::createFunction("isdef", &sci_isdef, "core"));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction("argn", &sci_argn, "core"));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction("global", &sci_global, "core"));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction("clearglobal", &sci_clearglobal, "core"));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction("isglobal", &sci_isglobal, "core"));
     return true;
 }
 
