@@ -1797,7 +1797,7 @@ public class XcosDiagram extends ScilabGraph {
 	public boolean close(boolean force) {
 
 		if (!canClose()) {
-			setVisible(false);
+			close();
 			return false;
 		}
 
@@ -1832,18 +1832,25 @@ public class XcosDiagram extends ScilabGraph {
 		}
 
 		if (wantToClose) {
-			if (getParentTab() != null) {
-				getParentTab().close();
-				setParentTab(null);
-			}
-		    
-			if (viewPort != null) {
-			    viewPort.close();
-			    viewPort = null;
-			}
+			close();
 		}
 		
 		return true;
+	}
+
+	/**
+	 * Close the current diagram without prompting anything
+	 */
+	private void close() {
+		if (getParentTab() != null) {
+			getParentTab().close();
+			setParentTab(null);
+		}
+		
+		if (viewPort != null) {
+		    viewPort.close();
+		    viewPort = null;
+		}
 	}
 
     /**

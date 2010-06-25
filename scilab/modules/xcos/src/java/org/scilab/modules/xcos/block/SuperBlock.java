@@ -243,7 +243,7 @@ public final class SuperBlock extends BasicBlock {
 		
 		/* Remove only when the instance cannot be modified anymore */
 		if (getChild().canClose()) {
-			Xcos.getInstance().getDiagrams().remove(getChild());
+			Xcos.getInstance().close(getChild(), false);
 		}
 	}
 
