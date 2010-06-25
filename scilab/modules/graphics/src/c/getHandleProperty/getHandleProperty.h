@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -180,5 +180,6 @@ int get_color_range_property(          sciPointObj * pobj ) ;
 int get_outside_colors_property(       sciPointObj * pobj ) ;
 int get_grid_position_property(        sciPointObj * pobj ) ;
 int get_anti_aliasing_property(        sciPointObj * pobj ) ;
+int get_UID(                           sciPointObj * pobj ) ;
 
 #endif /* _GET_HANDLE_PROPERTY_H_ */

@@ -12,13 +12,10 @@
 
 package org.scilab.tests.modules.graphic_objects;
 
-import org.testng.annotations.*;
-
-import java.rmi.server.UID;
-
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
+import org.testng.annotations.Test;
 
 /**
  * GraphicObject test class
@@ -34,22 +31,22 @@ public class testGraphicObject {
     public void testGraphicObject() throws NullPointerException {
         GraphicController controller = GraphicController.getController();
         
-        UID axesID = controller.askObject(Type.AXES);
+        String axesID = controller.askObject(Type.AXES);
         GraphicObject axes = (GraphicObject) controller.getObjectFromId(axesID);
 
         if (axes == null) {
         	throw new NullPointerException();
         }
 
-        UID arcID = controller.askObject(Type.ARC);
+        String arcID = controller.askObject(Type.ARC);
         GraphicObject arc = (GraphicObject) controller.getObjectFromId(arcID);
 
       	if (arc == null) {
       		throw new NullPointerException();
       	}
 
-      	UID axesIDret = axes.getIdentifier();
-        UID arcIDret = arc.getIdentifier();
+      	String axesIDret = axes.getIdentifier();
+      	String arcIDret = arc.getIdentifier();
 
         assert axesID.equals(axesIDret);
         assert arcID.equals(arcIDret);

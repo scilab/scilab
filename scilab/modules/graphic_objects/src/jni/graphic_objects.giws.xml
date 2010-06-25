@@ -1,0 +1,16 @@
+<package name="org.scilab.modules.graphic_objects">
+  <object name="CallGraphicController">
+    <method name="askGraphicObject" returnType="String" modifier="static">
+      <parameter name="typeName" type="String" />
+    </method>
+    <method name="getGraphicObjectPropertyAsString" returnType="String" modifier="static">
+      <parameter name="id" type="String"/>
+      <parameter name="propertyName" type="String"/>
+    </method>
+    <method name="setGraphicObjectProperty" returnType="void" modifier="static">
+      <parameter name="id" type="String"/>
+      <parameter name="propertyName" type="String"/>
+      <parameter name="value" type="String"/>
+    </method>
+  </object>
+</package>

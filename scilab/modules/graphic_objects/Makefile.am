@@ -1,11 +1,11 @@
 #
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) DIGITEO - 2010 - Allan CORNET
-# 
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 #
 
@@ -26,13 +26,15 @@ libscigraphic_objects_la_etc_DATA = etc/graphic_objects.quit \
 include $(top_srcdir)/Makefile.incl.am
 
 
-GRAPHIC_OBJECTS_JNI_SOURCES = 
+GRAPHIC_OBJECTS_JNI_SOURCES = src/jni/CallGraphicController.cpp
 
-GRAPHIC_OBJECTS_C_SOURCES = 
+GRAPHIC_OBJECTS_C_SOURCES =
 
-GRAPHIC_OBJECTS_CPP_SOURCES = 
+GRAPHIC_OBJECTS_CPP_SOURCES = 	src/cpp/createGraphicObject.cpp \
+								src/cpp/getGraphicObjectProperty.cpp \
+								src/cpp/setGraphicObjectProperty.cpp
 
-GIWS_WRAPPERS = 
+GIWS_WRAPPERS =
 
 if GIWS
 BUILT_SOURCES=giws
@@ -62,7 +64,7 @@ libscigraphic_objects_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/localization/includes \
 			-I$(top_srcdir)/modules/api_scilab/includes
 
-# Without the graphic_objects module 
+# Without the graphic_objects module
 libscigraphic_objects_disable_la_CFLAGS = -Iincludes/ \
 			-I$(top_srcdir)/modules/output_stream/includes
 
@@ -73,7 +75,7 @@ libscigraphic_objects_disable_la_SOURCES = $(GRAPHIC_OBJECTS_DISABLE_C_SOURCES)
 pkglib_LTLIBRARIES = libscigraphic_objects-disable.la
 
 if GUI
-pkglib_LTLIBRARIES += libscigraphic_objects.la 
+pkglib_LTLIBRARIES += libscigraphic_objects.la
 endif
 
 libscigraphic_objects_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
@@ -86,7 +88,7 @@ INCLUDE_FLAGS = $(libscigraphic_objects_la_CFLAGS)
 
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = 
+SWIG_WRAPPERS =
 
 if SWIG
 BUILT_SOURCES=swig

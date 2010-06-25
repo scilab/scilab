@@ -5,6 +5,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2007 - INRIA - Vincent Couvert
+ * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -47,6 +48,10 @@
 
 #include "MALLOC.h" /* MALLOC */
 #include "Scierror.h"
+
+#include "createGraphicObject.h"
+#include "returnType.h"
+#include "setGraphicObjectProperty.h"
 
 /*-----------------------------------------------------------------------------*/
 
@@ -196,6 +201,9 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
   addNewFigureToList(pobj);
   endGraphicDataWriting();
 
+  // At least, should be only this call.
+  pobj->UID = createGraphicObject("figure");
+  setGraphicObjectProperty(pobj->UID, "Name", "MVC Name !!!", jni_string);
   return pobj;
 }
 
@@ -1080,7 +1088,7 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
 
   /* allocatePolyline created a "fake" relationship, destroy it */
   FREE(pobj->relationShip);
-  
+
   if (sciStandardBuildOperations(pobj, pparentsubwin) == NULL)
   {
     FREE(pobj->pfeatures);
@@ -2509,7 +2517,7 @@ void createDefaultRelationShip(sciPointObj * pObj)
 		/* labels have their relationShip stored in their text objects */
 		return;
 	}
-	
+
 	relationShip = MALLOC(sizeof(sciRelationShip));
 	if (relationShip == NULL)
 	{

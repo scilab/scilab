@@ -36,7 +36,8 @@ libscigraphics_la_CFLAGS = -I$(top_srcdir)/libs/doublylinkedlist/includes/ \
 	-I$(top_srcdir)/modules/api_scilab/includes/ \
 	-I$(top_srcdir)/modules/elementary_functions/includes/ \
 	-I$(top_srcdir)/modules/fileio/includes/ \
-	-I$(top_srcdir)/modules/string/includes/
+	-I$(top_srcdir)/modules/string/includes/ \
+	-I$(top_srcdir)/modules/graphic_objects/includes/
 
 
 GRAPHICS_C_SOURCES = src/c/GetCommandArg.c \
@@ -516,4 +517,4 @@ libscigraphics_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(TCLTK_LIBS
 
 
 include $(top_srcdir)/Makefile.incl.am
- 
+

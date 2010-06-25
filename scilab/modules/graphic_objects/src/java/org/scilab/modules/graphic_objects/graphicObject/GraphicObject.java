@@ -13,7 +13,6 @@
 package org.scilab.modules.graphic_objects.graphicObject;
 
 import java.lang.reflect.Method;
-import java.rmi.server.UID;
 import java.util.ArrayList;
 
 /**
@@ -29,7 +28,7 @@ public abstract class GraphicObject {
 	public enum GraphicObjectPropertyType { PARENT, CHILDREN, VISIBLE, USERDATA, UNKNOWNPROPERTY };
 
 	/** Identifier */
-	private UID identifier;
+	private String identifier;
 	
 	/** Parent object */
 	private GraphicObject parent;
@@ -52,6 +51,68 @@ public abstract class GraphicObject {
 		userData = null;
 	}
 
+	/**
+     * Returns the enum associated to a type name
+     * @param typeName the property name
+     * @return the type enum
+     */
+    public static Type getTypeFromName(String typeName) {
+        if (typeName.equals("arc")) {
+            return Type.ARC;
+        } 
+        else if (typeName.equals("axes")) {
+            return Type.AXES;
+        }
+        else if (typeName.equals("axis")) {
+            return Type.AXIS;
+        }
+        else if (typeName.equals("champ")) {
+            return Type.CHAMP;
+        }
+        else if (typeName.equals("compound")) {
+            return Type.COMPOUND;
+        }
+        else if (typeName.equals("fac3d")) {
+            return Type.FAC3D;
+        }
+        else if (typeName.equals("fec")) {
+            return Type.FEC;
+        }
+        else if (typeName.equals("figure")) {
+            return Type.FIGURE;
+        }
+        else if (typeName.equals("grayplot")) {
+            return Type.GRAYPLOT;
+        }
+        else if (typeName.equals("label")) {
+            return Type.LABEL;
+        }
+        else if (typeName.equals("legend")) {
+            return Type.LEGEND;
+        }
+        else if (typeName.equals("matplot")) {
+            return Type.MATPLOT;
+        }
+        else if (typeName.equals("plot3d")) {
+            return Type.PLOT3D;
+        }
+        else if (typeName.equals("polyline")) {
+            return Type.POLYLINE;
+        }
+        else if (typeName.equals("rectangle")) {
+            return Type.RECTANGLE;
+        }
+        else if (typeName.equals("segs")) {
+            return Type.SEGS;
+        }
+        else if (typeName.equals("text")) {
+            return Type.TEXT;
+        }
+        else {
+            return Type.UNKNOWNOBJECT;
+        }
+	}
+	
 	/**
 	 * Returns the enum associated to a property name
 	 * @param propertyName the property name
@@ -186,14 +247,14 @@ public abstract class GraphicObject {
 	/**
 	 * @return the identifier
 	 */
-	public UID getIdentifier() {
+	public String getIdentifier() {
 		return identifier;
 	}
 
 	/**
 	 * @param identifier the identifier to set
 	 */
-	public void setIdentifier(UID identifier) {
+	public void setIdentifier(String identifier) {
 		this.identifier = identifier;
 	}
 

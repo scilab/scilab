@@ -372,7 +372,19 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
+				RelativePath="..\jni\CallGraphicController.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\createGraphicObject.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\DllmainGraphic_objects.c"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\getGraphicObjectProperty.cpp"
 				>
 			</File>
 			<File
@@ -383,11 +395,19 @@
 				RelativePath="..\..\sci_gateway\cpp\sci_graphicfunction.cpp"
 				>
 			</File>
+			<File
+				RelativePath="..\cpp\setGraphicObjectProperty.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath="..\jni\CallGraphicController.hxx"
+				>
+			</File>
 			<File
 				RelativePath="..\..\includes\dynlib_graphic_objects.h"
 				>

@@ -69,7 +69,7 @@ public class GraphicController {
      * @param id the object id
      * @return the object
      */
-    public Object getObjectFromId(UID id) {
+    public Object getObjectFromId(String id) {
     	Object object;
     	object = GraphicModel.getModel().getObjectFromId(id);
 
@@ -82,7 +82,7 @@ public class GraphicController {
      * @param prop the property name
      * @param value the property value
      */
-    public void setPropertyFast(UID id, String prop, Object value) {
+    public void setPropertyFast(String id, String prop, Object value) {
     	GraphicModel.getModel().setPropertyFast(id, prop, value);
     }
 
@@ -92,7 +92,7 @@ public class GraphicController {
      * @param prop the property name
      * @return the property value
      */
-    public Object getPropertyFast(UID id, String prop) {
+    public Object getPropertyFast(String id, String prop) {
     	return GraphicModel.getModel().getPropertyFast(id, prop);
     }
 
@@ -102,7 +102,7 @@ public class GraphicController {
      * @param prop the property name
      * @param value the property value
      */
-    public void setProperty(UID id, String prop, Object value) {
+    public void setProperty(String id, String prop, Object value) {
     	GraphicModel.getModel().setProperty(id, prop, value);
     	objectUpdate(id);
     }
@@ -113,7 +113,7 @@ public class GraphicController {
      * @param prop the property name
      * @return the null property
      */
-    public Object getNullProperty(UID id, String prop) {
+    public Object getNullProperty(String id, String prop) {
     	return GraphicModel.getModel().getNullProperty(id, prop);
     }
     
@@ -123,7 +123,7 @@ public class GraphicController {
      * @param prop the property name
      * @return the property value
      */
-	public Object getProperty(UID id, String prop) {
+	public Object getProperty(String id, String prop) {
 		return GraphicModel.getModel().getProperty(id, prop);
     }
     
@@ -132,12 +132,12 @@ public class GraphicController {
 	 * @param type the object type
 	 * @return the created object's id
 	 */
-    public UID askObject(Type type) {
+    public String askObject(Type type) {
     	UID id = createUID();
-    	GraphicModel.getModel().createObject(id, type);
-    	objectCreated(id);
+    	GraphicModel.getModel().createObject(id.toString(), type);
+    	objectCreated(id.toString());
 	
-    	return id;
+    	return id.toString();
     }
     
     
@@ -145,7 +145,7 @@ public class GraphicController {
      * Notifies the existing views that an object has been created
      * @param id the created object's id
      */
-    public void objectCreated(UID id) {
+    public void objectCreated(String id) {
    	// TBD, deactivated for now
     
    	/*
@@ -163,7 +163,7 @@ public class GraphicController {
      * Notified the existing views that an object has been updated 
      * @param id the updated object's id
      */
-    public void objectUpdate(UID id) {
+    public void objectUpdate(String id) {
     	
     // TBD, deactivated for now
     /*
@@ -179,7 +179,7 @@ public class GraphicController {
      * Deletes an object
      * @param id the deleted object's id
      */
-    public void deleteObject(UID id) {
+    public void deleteObject(String id) {
 	   GraphicModel.getModel().deleteObject(id);
 	   
 	   // TBD, deactivated for now

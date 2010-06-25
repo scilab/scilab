@@ -44,7 +44,7 @@ import org.scilab.modules.graphic_objects.vectfield.Segs;
  */
 public class GraphicModel {
 
-    private Map<UID, GraphicObject> allObjects = new HashMap<UID, GraphicObject>();
+    private Map<String, GraphicObject> allObjects = new HashMap<String, GraphicObject>();
 
     private static GraphicModel me = null;
 
@@ -69,7 +69,7 @@ public class GraphicModel {
      * @param id the id of the object to get
      * @return the object
      */
-    public Object getObjectFromId(UID id) {
+    public Object getObjectFromId(String id) {
     	return allObjects.get(id);
     }
 
@@ -79,7 +79,7 @@ public class GraphicModel {
      * @param property the property name
      * @return the property
      */
-    public Object getNullProperty(UID id, String property){
+    public Object getNullProperty(String id, String property){
     	GraphicObject object = allObjects.get(id);
     	return object.getNullProperty(property);
     }
@@ -90,7 +90,7 @@ public class GraphicModel {
      * @param property the property name 
      * @return the property value
      */
-    public Object getProperty(UID id, String property) {
+    public Object getProperty(String id, String property) {
     	GraphicObject object = allObjects.get(id);
     	return object.getProperty(property);
     }
@@ -101,7 +101,7 @@ public class GraphicModel {
      * @param property property name
      * @param value property value
      */
-    public void setProperty(UID id, String property, Object value) {
+    public void setProperty(String id, String property, Object value) {
     	GraphicObject object = allObjects.get(id);
     	object.setProperty(property, value);
     }
@@ -112,7 +112,7 @@ public class GraphicModel {
      * @param property property name
      * @return property value
      */
-    public Object getPropertyFast(UID id, String property) {
+    public Object getPropertyFast(String id, String property) {
     	GraphicObject object = allObjects.get(id);
     	Object propertyType = object.getPropertyFromName(property);
     	return object.getPropertyFast(propertyType);
@@ -124,7 +124,7 @@ public class GraphicModel {
      * @param property name
      * @param value property value
      */
-    public void setPropertyFast(UID id, String property, Object value) {
+    public void setPropertyFast(String id, String property, Object value) {
     	GraphicObject object = allObjects.get(id);
     	Object propertyType = object.getPropertyFromName(property);
     	object.setPropertyFast(propertyType, value);
@@ -136,7 +136,7 @@ public class GraphicModel {
      * @param type object type
      * @return the created object's id
      */
-    public UID createObject(UID id, GraphicObject.Type type) {
+    public String createObject(String id, GraphicObject.Type type) {
     	GraphicObject object = createTypedObject(type);
 
     	if (object != null) {
@@ -202,7 +202,7 @@ public class GraphicModel {
      * Deletes an object
      * @param id object id
      */
-    public void deleteObject(UID id) {
+    public void deleteObject(String id) {
     	allObjects.remove(id);
     }
 
