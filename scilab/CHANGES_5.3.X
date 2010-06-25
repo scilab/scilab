@@ -370,6 +370,8 @@ Xcos:
 
 * bug 7099 fixed - xml2modelica called ocamlrun (wrong dependency on Windows).
 
+* bug 7129 fixed - Xcos hangs while opening superblocks with context.
+
 * bug 7143 fixed - Simulation values were not valid if the exponential sign is
                    an 'e'.
 
