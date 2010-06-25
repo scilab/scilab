@@ -11,6 +11,7 @@
  */
 
 package org.scilab.modules.xcos.simulink;
+import java.io.File;
 import java.util.Iterator;
 
 import javax.xml.bind.JAXBContext;
@@ -24,6 +25,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.jvm.utils.ScilabConstants;
 import org.scilab.modules.types.scilabTypes.ScilabDouble;
+import org.scilab.modules.types.scilabTypes.ScilabInteger;
 import org.scilab.modules.types.scilabTypes.ScilabType;
 import org.scilab.modules.xcos.simulink.patterns.Block;
 import org.scilab.modules.xcos.simulink.patterns.BlockPalette;
@@ -36,6 +38,7 @@ import org.scilab.modules.xcos.simulink.patterns.SimpleParameter;
 import org.scilab.modules.xcos.simulink.patterns.Str2IntParameters;
 import org.scilab.modules.xcos.simulink.patterns.Str2IntValueMap;
 import org.scilab.modules.xcos.simulink.patterns.StringParameters;
+import org.scilab.modules.xcos.utils.FileUtils;
 
 import edu.tum.cs.simulink.model.SimulinkBlock;
 
@@ -45,10 +48,23 @@ public class PatternElement {
 	private Unmarshaller u;
 	private BlockPalette blocks;
 	
+	final String file = "simulinkImportBlocks.xml";
+	final String homePath = ScilabConstants.SCIHOME.getAbsolutePath();
+	final File userPatternSheet = new File(homePath + '/' + file);
 	/**
 	 * General version of patternElement initialization
 	 */
 	public PatternElement(){
+	/*
+	 * Copy the base patternsheet into the user dir when it doesn't exist.
+	 */
+	if (!userPatternSheet.exists()) {
+		final String sciPath = ScilabConstants.SCI.getAbsolutePath();
+
+		File baseStyleSheet = new File(sciPath + "/modules/xcos/etc/" + file);
+		FileUtils.forceCopy(baseStyleSheet, userPatternSheet);
+	}
+		
 	try{
 		/*
 		 * Creating Java JAXBContext from compiled xsd schema of compatibility patterns
@@ -79,6 +95,15 @@ public class PatternElement {
 	 * @param simulinkBlockName
 	 */
 	public PatternElement(String simulinkBlockName){
+		/*
+		 * Copy the base patternsheet into the user dir when it doesn't exist.
+		 */
+		if (!userPatternSheet.exists()) {
+			final String sciPath = ScilabConstants.SCI.getAbsolutePath();
+
+			File baseStyleSheet = new File(sciPath + "/modules/xcos/etc/" + file);
+			FileUtils.forceCopy(baseStyleSheet, userPatternSheet);
+		}
 		try{
 			JAXBContext jc = JAXBContext.newInstance( "org.scilab.modules.xcos.simulink.patterns" );
 			Unmarshaller u = jc.createUnmarshaller();
@@ -437,14 +462,16 @@ public class PatternElement {
 			while (str2intParamIter.hasNext()){
 				Str2IntParameters str2intParam = str2intParamIter.next();
 				/*
-				 * Check if nzcross enabled
+				 * Check if nzcross enabled, and set if available
 				 */
 				if(str2intParam.getXcos().contentEquals("nzcross")){
 					String nzcross = data.getParameter(str2intParam.getSim());
 					Iterator<Str2IntValueMap> valueMapIter = str2intParam.getMap().iterator();
 					while (valueMapIter.hasNext()){
 						Str2IntValueMap valueMap = valueMapIter.next();
-						if(valueMap.getSimVal().contentEquals(nzcross)){
+						if(valueMap.getSimVal().contentEquals("nzcross")){
+							//TODO: set if available
+							//TODO: check how simulink stores info about number of zero crossing surfaces
 							return valueMap.getXcosVal();
 						}
 					}
@@ -498,7 +525,41 @@ public class PatternElement {
 	}
 
 	public ScilabType decodeIntegerParameters(SimulinkBlock data) {
-		// TODO Auto-generated method stub
+		int[][] iparData;
+		/*
+		 * Check if current block is well initialized for coresponding SimulinkBlock
+		 */
+		if(currentBlock.getSim().equals(data.getName())){
+			Iterator<RealParameters> realParamIter = currentBlock.getReal().iterator();
+			while (realParamIter.hasNext()){
+				RealParameters realParam = realParamIter.next();
+				/*
+				 * Check if ipar
+				 */
+				if(realParam.getXcos().contentEquals("rpar")){
+					Iterator<RealValueMap> valueMapIter = realParam.getMap().iterator();
+					iparData=new int[1][10]; //FIXME: add count to realParameters
+					while (valueMapIter.hasNext()){
+						RealValueMap valueMap = valueMapIter.next();
+						/**
+						 * Position parameter read by parser is string and looks like this "55,43" 
+						 * \\W is used to strip string from non-word characters 
+						 * \\s+ to split string around whitespaces
+						 */
+						String[] position = valueMap.getIndex().replaceAll("\\W", " ").trim().split("\\s+");
+						int x = Integer.parseInt(position[0]);
+						int y = Integer.parseInt(position[1]);
+						
+						iparData[x][y] = Integer.parseInt(data.getParameter(valueMap.getSimName()));
+						if(LOG.isTraceEnabled()){
+							LOG.trace(currentBlock.getXcos() + "rpar:");
+							LOG.trace(iparData[x][y]);
+						}
+					}
+					return new ScilabInteger(iparData, false);
+				}
+			}
+		}
 		return null;
 	}
 
