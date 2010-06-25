@@ -1167,8 +1167,13 @@ public class XcosDiagram extends ScilabGraph {
     		// Double Click within empty diagram Area
     		if (e.getClickCount() >= 2 && SwingUtilities.isLeftMouseButton(e) && cell == null) {
     			TextBlock textBlock = (TextBlock) BlockFactory.createBlock(BlockInterFunction.TEXT_f);
-    			textBlock.getGeometry().setX((e.getX() / scale) - (textBlock.getGeometry().getWidth() / 2.0));
-    			textBlock.getGeometry().setY((e.getY() / scale) - (textBlock.getGeometry().getWidth() / 2.0));
+    			mxGeometry geom = textBlock.getGeometry();
+    			mxGeometry parent = ((mxICell) getDefaultParent()).getGeometry();
+    			if (parent != null) {
+    				// update the geometry in place
+    				geom.setX(geom.getX() - parent.getX());
+    				geom.setY(geom.getY() - parent.getY());
+    			}
     			addCell(textBlock);
     			return;
     		}
@@ -1183,7 +1188,12 @@ public class XcosDiagram extends ScilabGraph {
     				block.openBlockSettings(getScicosParameters().getContext());
     			}
     			if (cell instanceof BasicLink) {
+    				mxGeometry parent = ((BasicLink) cell).getParent().getGeometry();
     				mxPoint p = new mxPoint(e.getX() / scale, e.getY() / scale);
+    				if (parent != null) {
+    					p.setX(p.getX() - parent.getX());
+    					p.setY(p.getY() - parent.getY());
+    				}
     				BlockPositioning.alignPoint(p, getGridSize(), 0);
     				((BasicLink) cell).insertPoint(p);
     			}
