@@ -85,6 +85,33 @@ public class EditVar {
 		editvar.setVisible(true);
 	}
 	
+	/**
+	 * Open variable Editor with information given by Scilab
+	 * @param data : scilab double matrix
+	 * @param variableName : name of the variable being edited.
+	 */
+	public static void openVariableEditorComplex(double[][] realData, double[][] complexData, String variableName) {
+		int rows = realData.length;
+		int cols = realData[0].length;
+
+		// we need to transpose the matrix as the way to store elements is different in scilab
+		// otherwise 
+		//  1  2  3    would be rendered   1  4  2 (for example)
+		//  4  5  6                        5  3  6 
+		Double[][][] dataDoubleComplex = new Double[rows][cols][2];
+		int k = 0;
+		for (int i = 0; i < rows; ++i) {
+			for (int j = 0; j < cols; ++j) {
+				dataDoubleComplex[k % rows][k / rows][0] = realData[i][j];
+				dataDoubleComplex[k % rows][k / rows][1] = complexData[i][j];	
+				k++;
+			}
+		}
+
+		VariableEditor editvar = ScilabVariableEditor.getVariableEditor(dataDoubleComplex, variableName);
+		editvar.setVisible(true);
+	}
+	
 	
 	/**
 	 * Open variable Editor with information given by Scilab
@@ -121,8 +148,16 @@ public class EditVar {
 	 * @param newValue : the new double value to set.
 	 * @param errCode : the errCode given by Scilab, 0 if no error.
 	 */
+	
+
+	
 	public static void updateVariableEditorDouble(String variableName, int row, int col, double newValue, int errCode) {
 		updateVariableEditor(variableName, row, col, (Double) newValue, errCode);
+	}
+	
+	public static void updateVariableEditorComplex(String variableName, int row, int col, double realValue, double imgValue, int errCode) {
+		Double[] newValue = new Double[]{realValue, imgValue};
+		updateVariableEditor(variableName, row, col, newValue, errCode);
 	}
 	
 	public static void updateVariableEditorBoolean(String variableName, int row, int col, int newValue, int errCode) {

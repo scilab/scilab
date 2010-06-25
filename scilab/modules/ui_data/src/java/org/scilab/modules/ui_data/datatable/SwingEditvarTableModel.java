@@ -53,6 +53,11 @@ public class SwingEditvarTableModel<Type> extends DefaultTableModel {
         if (value instanceof String) {
             return "";
         }
+        
+        if (value instanceof Double[]) {
+        	return new Double[]{0.0, 0.0};
+        }
+        
         if (value instanceof Double) {
             return 0.0;
         }

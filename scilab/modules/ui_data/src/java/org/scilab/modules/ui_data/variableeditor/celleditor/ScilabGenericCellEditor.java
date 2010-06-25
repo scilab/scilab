@@ -133,4 +133,9 @@ public abstract class ScilabGenericCellEditor extends DefaultCellEditor {
         return super.getTableCellEditorComponent(table, value, isSelected, row, col);
     }
 
+	public Component getTableCellEditorComponent(JTable table) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

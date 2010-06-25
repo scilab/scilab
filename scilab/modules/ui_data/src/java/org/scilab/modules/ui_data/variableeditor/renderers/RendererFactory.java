@@ -20,6 +20,8 @@ public class RendererFactory {
     public static DefaultTableCellRenderer createRenderer(Object[][] data){
         if (data instanceof String[][]) {
             return new ScilabStringRenderer();
+        } else if (data instanceof Double[][][]) {
+        	return new ScilabComplexRenderer();
         } else if (data instanceof Double[][]) {
             return new ScilabDoubleRenderer();
         } else if (data instanceof Boolean[][]) {
@@ -32,6 +34,8 @@ public class RendererFactory {
     public static DefaultTableCellRenderer createRenderer(Object data){
         if (data instanceof String) {
             return new ScilabStringRenderer();
+        } else if (data instanceof Double[]) {
+            return new ScilabComplexRenderer();
         } else if (data instanceof Double) {
             return new ScilabDoubleRenderer();
         } else if (data instanceof Boolean) {

@@ -51,6 +51,7 @@ int sci_editvar(char *fname,unsigned long fname_len)
     double *pdblReal = NULL;
     double *pdblImg = NULL;
     double **ppdblRealMatrix = NULL;
+    double **ppdblImgMatrix = NULL;
 
 
     char** pstData = NULL;
@@ -136,11 +137,53 @@ int sci_editvar(char *fname,unsigned long fname_len)
         {
             /* get size and data from Scilab memory */
             sciErr = getComplexMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
+
+            ppdblRealMatrix = new double*[iRows];
+            for (int i = 0; i < iRows; ++i)
+            {
+                ppdblRealMatrix[i] = &pdblReal[i*iCols];
+
+            }
+
+            ppdblImgMatrix = new double*[iRows];
+            for (int i = 0; i < iRows; ++i)
+            {
+                ppdblImgMatrix[i] = &pdblImg[i*iCols];
+
+            }
+            
+            /* Launch Java Variable Editor through JNI */
+            EditVar::openVariableEditorComplex(getScilabJavaVM(),
+                                            ppdblRealMatrix,
+                                            iRows,
+                                            iCols,
+                                            ppdblImgMatrix,
+                                            iRows,
+                                            iCols,
+                                            pStVarOne);
+        
         }
         else
         {
             /* get size and data from Scilab memory */
             sciErr = getMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal);
+
+            /*
+             * we need this to make the links between the API (which return a double*)
+             * and the JNI which needs a double**
+             */
+            ppdblRealMatrix = new double*[iRows];
+            for (int i = 0; i < iRows; ++i)
+            {
+                ppdblRealMatrix[i] = &pdblReal[i*iCols];
+
+            }
+
+            /* Launch Java Variable Editor through JNI */
+            EditVar::openVariableEditorDouble(getScilabJavaVM(), ppdblRealMatrix, iRows, iCols, pStVarOne);
+
+
+        
         }
 
         if(sciErr.iErr)
@@ -148,21 +191,6 @@ int sci_editvar(char *fname,unsigned long fname_len)
             printError(&sciErr, 0);
             return 0;
         }
-
-
-        /*
-         * we need this to make the links between the API (which return a double*)
-         * and the JNI which needs a double**
-         */
-        ppdblRealMatrix = new double*[iRows];
-        for (int i = 0; i < iRows; ++i)
-        {
-            ppdblRealMatrix[i] = &pdblReal[i*iCols];
-
-        }
-
-        /* Launch Java Variable Editor through JNI */
-        EditVar::openVariableEditorDouble(getScilabJavaVM(), ppdblRealMatrix, iRows, iCols, pStVarOne);
 
 
 

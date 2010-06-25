@@ -20,6 +20,8 @@ public class CellEditorFactory {
 		
 		if (data instanceof String[][]) {
 			return new ScilabStringCellEditor();
+		} else if (data instanceof Double[][][]) {
+			return new ScilabComplexCellEditor();
 		} else if (data instanceof Double[][]) {
 			return new ScilabDoubleCellEditor();
 		} else if (data instanceof Boolean[][]) {
