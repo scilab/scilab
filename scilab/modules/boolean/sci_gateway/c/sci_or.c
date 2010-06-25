@@ -73,12 +73,15 @@ int sci_or(char *fname, int* _piKey)
 	{
 	case BY_ALL : 
 		piBool3 = (int*)MALLOC(sizeof(int));
+        memset(piBool3, 0x00, sizeof(int));
 		break;
 	case BY_ROWS : 
 		piBool3 = (int*)MALLOC(sizeof(int) * iCols);
+        memset(piBool3, 0x00, sizeof(int)* iCols);
 		break;
 	case BY_COLS : 
 		piBool3 = (int*)MALLOC(sizeof(int) * iRows);
+        memset(piBool3, 0x00, sizeof(int) * iRows);
 		break;
 	}
 
@@ -87,7 +90,7 @@ int sci_or(char *fname, int* _piKey)
 	switch(iMode)
 	{
 	case BY_ALL : 
-		iRet = createScalarBoolean(_piKey, Rhs + 1, piBool3);
+		iRet = createScalarBoolean(_piKey, Rhs + 1, *piBool3);
 		if(iRet)
 		{
 			return 0;
