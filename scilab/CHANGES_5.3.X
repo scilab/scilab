@@ -147,7 +147,7 @@ Text Editor:
                    was selected.
 
 * bug 7299 fixed - There was a bad matching by the right for the expression
-                   n=size(x,"*"); r=(x*x') 
+                   n=size(x,"*"); r=(x*x')
 
 * bug 7352 fixed - No completion menu on the right click.
 
@@ -323,7 +323,7 @@ Xcos:
 
 * bug 4977 fixed - Some icons were duplicated between Gui and Xcos.
 
-* bug 5022 fixed - When openning some demos, ArrayIndexOutOfBoundsException 
+* bug 5022 fixed - When openning some demos, ArrayIndexOutOfBoundsException
                    were throwed by some Swing components.
 
 * bug 5161 fixed - The export to SVG did not work with images or html.
@@ -365,7 +365,7 @@ Xcos:
 * bug 7053 fixed - Rotated saved blocks were not loaded with the right rotation
                    value.
 
-* bug 7089 fixed - Drawing links when creating superblock throwed an encoding 
+* bug 7089 fixed - Drawing links when creating superblock throwed an encoding
                    exception.
 
 * bug 7099 fixed - xml2modelica called ocamlrun (wrong dependency on Windows).
@@ -508,7 +508,7 @@ Obsolete Functions:
   'findlcccompiler' have been moved as toolbox in ATOMS
   See http://atoms.scilab.org/toolboxes/LCC-windows or atomsInstall('LCC-windows')
   from Scilab.
-  
+
 * 'maxi' obsolete see 'max'.
 
 * 'mini' obsolete see 'min'.
@@ -941,6 +941,8 @@ Bug fixes:
 
 * bug 7250 fixed - In the console, first char of a filename was doubled
                    when completed.
+
+* bug 7260 fixed - read a malformed .csv file with fscanfMat crashed Scilab.
 
 * bug 7285 fixed - Open/Save dialog box did not display filenames without
                    extension with filter "*.*"
