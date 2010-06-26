@@ -35,6 +35,7 @@ import javax.swing.JSplitPane;
 import javax.swing.JScrollBar;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JComponent;
+import javax.swing.SwingUtilities;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.Document;
 import javax.swing.text.Element;
@@ -45,6 +46,7 @@ import javax.swing.event.CaretEvent;
 import javax.swing.text.Highlighter;
 
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
+import org.scilab.modules.scinotes.utils.NavigatorWindow;
 
 /**
  * Class ScilabEditorPane
@@ -64,6 +66,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private boolean matchingEnable;
     private ScilabLexer lexer;
     private SciNotes editor;
+    private NavigatorWindow navigator;
     private IndentManager indent;
     private TabManager tab;
     private CommentManager com;
@@ -104,6 +107,11 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                 public void componentResized(ComponentEvent e) {
                     setSize(scroll.getViewport().getSize());
                     validate();
+                    SwingUtilities.invokeLater(new Runnable() {
+                            public void run() {
+                                scrollTextToPos(getCaretPosition());
+                            }
+                        });
                 }
             });
 
@@ -136,6 +144,33 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     }
 
     /**
+     * @param navigator the NavigatorWindow associated with this pane
+     */
+    public void setNavigator(NavigatorWindow navigator) {
+        this.navigator = navigator;
+    }
+
+    /**
+     * @return true if this pane has a code navigator
+     */
+    public boolean hasNavigator() {
+        return navigator != null;
+    }
+
+    /**
+     * Close this pane
+     */
+    public void close() {
+        SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    if (navigator != null) {
+                        navigator.closeNavigator();
+                    }
+                }
+            });
+    }
+
+    /**
      * Update infos
      */
     public void updateInfosWhenFocused() {
@@ -153,7 +188,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     }
 
     /**
-     * @param return true if an external modif occured
+     * @return true if an external modif occured
      */
     public boolean checkExternalModif() {
         String path = getName();

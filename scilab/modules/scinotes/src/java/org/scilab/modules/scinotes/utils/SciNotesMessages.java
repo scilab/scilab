@@ -10,6 +10,9 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
+//CHECKSTYLE:OFF
+
 package org.scilab.modules.scinotes.utils;
 
 import org.scilab.modules.localization.Messages;
@@ -24,11 +27,14 @@ public class SciNotesMessages {
     public static final String DOTS = "...";
 
     public static final String SCILAB_EDITOR = Messages.gettext("SciNotes");
+    public static final String ERROR_WITH_STRING = Messages.gettext("Error while reading the String");
+
     /** FILE MENU */
     public static final String FILE = Messages.gettext("File");
     public static final String NEW = Messages.gettext("New") + DOTS;
     public static final String OPEN = Messages.gettext("Open") + DOTS;
     public static final String OPEN_SOURCE_FILE_ON_KEYWORD = Messages.gettext("Open function source file") + DOTS;
+    public static final String SOURCE_OF = Messages.gettext("Source of '");
     public static final String RECENT_FILES = Messages.gettext("Recent Files");
     public static final String SAVE = Messages.gettext("Save");
     public static final String SAVE_AS = Messages.gettext("Save as") + DOTS;
@@ -117,6 +123,9 @@ public class SciNotesMessages {
     /** HELP MENU */
     public static final String HELP = Messages.gettext("SciNotes help") + DOTS;
     public static final String HELP_ON_KEYWORD = Messages.gettext("Help on the current keyword");
+    public static final String HELP_ON_SELECTED = Messages.gettext("Help on the selected text");
+    public static final String HELP_ON_FOO = Messages.gettext("Help on selected text or keyword");
+    public static final String HELP_ABOUT = Messages.gettext("Help about '");
     public static final String ABOUT = Messages.gettext("About") + DOTS;
     public static final String SCINOTES_VERSION = Messages.gettext("SciNotes");
 
@@ -185,11 +194,15 @@ public class SciNotesMessages {
     public static final String COULD_NOT_CONVERT_FILE = Messages.gettext("The file could not be converted.");
     public static final String CANNOT_LOAD_DIRECTORY = Messages.gettext("%s is a directory.");
     public static final String MODIFICATIONS_WILL_BE_LOST = Messages.gettext("Your modifications will be lost, change encoding anyway?");
-    public static final String CONTINUE = Messages.gettext("Continue?");
+    public static final String CONTINUE = Messages.gettext("Continue ?");
     public static final String CANNOT_LOAD_COLORIZE = Messages.gettext("Cannot load \"scinotesConfiguration.xml\"");
 
     public static final String COULD_NOT_FIND_CONSOLE = Messages.gettext("Could not find the console nor the InterpreterManagement.");
     public static final String COULD_NOT_FIND_TMPFILE = Messages.gettext("Could not find the temporary file.");
+    public static final String NO_TEXT_SELECTED = Messages.gettext("No text selected.");
+    public static final String NO_TEXT_TO_EXECUTE = Messages.gettext("No text to execute.");
+    public static final String COMPLETE = Messages.gettext("Complete");
+    public static final String EDIT_SELECTION = Messages.gettext("Edit selection in a new tab");
 
     /**
      * "Change Colors" message
@@ -209,6 +222,18 @@ public class SciNotesMessages {
     public static final String SETTINGS = Messages.gettext("Settings");
     public static final String COLOR = Messages.gettext("Color");
     public static final String BOLD = Messages.gettext("Bold");
+
+    /**
+     * Navigator labels
+     */
+    public static final String CODE_NAVIGATOR = Messages.gettext("Code Navigator");
+    public static final String ABSOLUTE = Messages.gettext("Absolute");
+    public static final String RELATIVE = Messages.gettext("Relative");
+    public static final String GO_TO_LINE = Messages.gettext("Go to line: ");
+    public static final String NUMEROTATION = Messages.gettext("Numerotation");
+    public static final String ALPHABETIC_ORDER = Messages.gettext("Alphabetic order");
+    public static final String NATURAL_ORDER = Messages.gettext("Natural order");
+    public static final String ORDER = Messages.gettext("Order");
 
     /**
      * Exit confirm message

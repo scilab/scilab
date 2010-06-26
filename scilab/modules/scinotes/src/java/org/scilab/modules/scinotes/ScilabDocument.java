@@ -15,6 +15,10 @@ package org.scilab.modules.scinotes;
 import java.util.Vector;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeSet;
+import java.util.Set;
+import java.util.Comparator;
+import java.util.Iterator;
 
 import javax.swing.text.GapContent;
 import javax.swing.text.PlainDocument;
@@ -22,6 +26,10 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Element;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.View;
+
+import javax.swing.JTree;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -50,6 +58,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     public static final String EOLUNIX = "\n";
 
     private static final int GAPBUFFERCAPACITY = 2;
+    private static final String LINE_SEPARATOR = "line.separator";
 
     private View view;
     private List<String> saved = new Vector();
@@ -70,7 +79,6 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     private ScilabEditorPane pane;
     private boolean focused;
 
-    private String LINE_SEPARATOR = "line.separator";
     private String eolStyle = System.getProperty(LINE_SEPARATOR);
 
     /**
@@ -376,6 +384,74 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     }
 
     /**
+     * Fill a tree with function's name according to alphabetic order or not
+     * @param tree to fill
+     * @param alphaOrder is true if names must be sorted with alphabetic order
+     */
+    public synchronized void fillTree(JTree tree, boolean alphaOrder) {
+        DefaultMutableTreeNode base = new DefaultMutableTreeNode("Functions");
+        Element root = getDefaultRootElement();
+        int nlines = root.getElementCount();
+        if (!alphaOrder) {
+            for (int i = 0; i < nlines; i++) {
+                Element elem = root.getElement(i);
+                if (elem instanceof ScilabDocument.ScilabLeafElement) {
+                    int type = ((ScilabDocument.ScilabLeafElement) elem).getType();
+                    switch (type) {
+                    case ScilabDocument.ScilabLeafElement.NOTHING :
+                        break;
+                    case ScilabDocument.ScilabLeafElement.FUN :
+                        base.add(new DefaultMutableTreeNode(elem));
+                        break;
+                    case ScilabDocument.ScilabLeafElement.ENDFUN :
+                        break;
+                    default :
+                        break;
+                    }
+                }
+            }
+        } else {
+            Set<DefaultMutableTreeNode> set = new TreeSet(new Comparator<DefaultMutableTreeNode>() {
+                    public int compare(DefaultMutableTreeNode o1, DefaultMutableTreeNode o2) {
+                        ScilabLeafElement l1 = (ScilabLeafElement) o1.getUserObject();
+                        ScilabLeafElement l2 = (ScilabLeafElement) o2.getUserObject();
+                        int n = l1.toString().compareTo(l2.toString());
+                        if (n != 0) {
+                            return n;
+                        }
+                        return l1.getStart() - l2.getStart();
+                    }
+
+                    public boolean equals(DefaultMutableTreeNode o1, DefaultMutableTreeNode o2) {
+                        return false;
+                    }
+                });
+            for (int i = 0; i < nlines; i++) {
+                Element elem = root.getElement(i);
+                if (elem instanceof ScilabDocument.ScilabLeafElement) {
+                    int type = ((ScilabDocument.ScilabLeafElement) elem).getType();
+                    switch (type) {
+                    case ScilabDocument.ScilabLeafElement.NOTHING :
+                        break;
+                    case ScilabDocument.ScilabLeafElement.FUN :
+                        set.add(new DefaultMutableTreeNode(elem));
+                        break;
+                    case ScilabDocument.ScilabLeafElement.ENDFUN :
+                        break;
+                    default :
+                        break;
+                    }
+                }
+            }
+            Iterator<DefaultMutableTreeNode> iter = set.iterator();
+            while (iter.hasNext()) {
+                base.add(iter.next());
+            }
+        }
+        tree.setModel(new DefaultTreeModel(base));
+    }
+
+    /**
      * @return the first function name which appears in this doc or null
      */
     public String getFirstFunctionName() {
@@ -522,6 +598,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
         private boolean visible = true;
         private int type;
         private FunctionScanner.FunctionInfo info;
+        private int start;
 
         /**
          * The same constructor as in LeafElement.
@@ -532,6 +609,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
          */
         public ScilabLeafElement(Element parent, AttributeSet a, int p0, int p1) {
             super(parent, a, p0, p1);
+            start = p0;
             type = funScanner.getLineType(p0, p1);
             if (type == FUN) {
                 info = funScanner.getFunctionInfo();
@@ -588,6 +666,20 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
          */
         public void setVisible(boolean b) {
             visible = b;
+        }
+
+        /**
+         * @return the position of the beginning of this element
+         */
+        public int getStart() {
+            return start;
+        }
+
+        /**
+         * @return String representation
+         */
+        public String toString() {
+            return info.functionName;
         }
     }
 }

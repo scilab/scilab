@@ -16,7 +16,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.io.File;
 import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Map;
@@ -44,7 +43,6 @@ import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.window.Window;
-import org.scilab.modules.localization.Messages;
 import org.scilab.modules.scinotes.actions.SplitHorizontallyAction;
 import org.scilab.modules.scinotes.actions.SplitVerticallyAction;
 import org.scilab.modules.scinotes.actions.NoSplitAction;
@@ -71,7 +69,7 @@ import org.scilab.modules.scinotes.actions.CCloseTabInNewWindowAction;
 import org.scilab.modules.scinotes.actions.FindAction;
 import org.scilab.modules.scinotes.actions.FindNextAction;
 import org.scilab.modules.scinotes.actions.FindPreviousAction;
-import org.scilab.modules.scinotes.actions.GotoLineAction;
+import org.scilab.modules.scinotes.actions.CodeNavigatorAction;
 import org.scilab.modules.scinotes.actions.OverwriteAction;
 import org.scilab.modules.scinotes.actions.ReloadAction;
 import org.scilab.modules.scinotes.actions.HelpAction;
@@ -87,7 +85,6 @@ import org.scilab.modules.scinotes.actions.PageSetupAction;
 import org.scilab.modules.scinotes.actions.PasteAction;
 import org.scilab.modules.scinotes.actions.PrintAction;
 import org.scilab.modules.scinotes.actions.PrintPreviewAction;
-import org.scilab.modules.scinotes.actions.RecentFileAction;
 import org.scilab.modules.scinotes.actions.RedoAction;
 import org.scilab.modules.scinotes.actions.ResetFontAction;
 import org.scilab.modules.scinotes.actions.SaveAction;
@@ -153,7 +150,7 @@ public class SciNotesGUI {
         searchMenu.add(FindAction.createMenu(editorInstance, map.get("FindAction")));
         searchMenu.add(FindNextAction.createMenu(editorInstance, map.get("FindNextAction")));
         searchMenu.add(FindPreviousAction.createMenu(editorInstance, map.get("FindPreviousAction")));
-        searchMenu.add(GotoLineAction.createMenu(editorInstance, map.get("GotoLineAction")));
+        searchMenu.add(CodeNavigatorAction.createMenu(editorInstance, map.get("CodeNavigatorAction")));
         menuBar.add(searchMenu);
 
         // Create VIEW Menubar
@@ -197,9 +194,9 @@ public class SciNotesGUI {
                 public void propertyChange(PropertyChangeEvent arg0) {
                     String select = editorInstance.getTextPane().getSelectedText();
                     if (select == null) {
-                        evaluateSelectionMenuItem.setText(Messages.gettext(SciNotesMessages.EVALUATE_FROM_BEGINNING));
+                        evaluateSelectionMenuItem.setText(SciNotesMessages.EVALUATE_FROM_BEGINNING);
                     } else {
-                        evaluateSelectionMenuItem.setText(Messages.gettext(SciNotesMessages.EVALUATE_SELECTION));
+                        evaluateSelectionMenuItem.setText(SciNotesMessages.EVALUATE_SELECTION);
                     }
                 }
             };
@@ -225,6 +222,13 @@ public class SciNotesGUI {
         editorInstance.setInfoBar(infoBar);
         mainWindow.setTitle(title);
         mainWindow.setVisible(true);
+    }
+
+    /**
+     * @return the Map containing the pairs (Action, KeyStroke).
+     */
+    public static Map<String, KeyStroke> getActionKeyMap() {
+        return map;
     }
 
     /**
@@ -403,7 +407,7 @@ public class SciNotesGUI {
      * @param fileMenu Menu
      * @param editorInstance SciNotes
      */
-    private void createFileMenu(Menu fileMenu,final SciNotes editorInstance) {
+    private void createFileMenu(Menu fileMenu, final SciNotes editorInstance) {
         fileMenu.setText(SciNotesMessages.FILE);
         fileMenu.setMnemonic('F');
         fileMenu.add(NewAction.createMenu(editorInstance, map.get("NewAction")));
@@ -488,11 +492,10 @@ public class SciNotesGUI {
     /**
      * Create the popup menu on the help
      * @param c The graphic component
+     * @param editor the editor where the popup will occur
      */
     public static void createPopupMenu(final JEditorPane c, final SciNotes editor) {
-
         final JPopupMenu popup = new JPopupMenu();
-
         final JMenuItem evalMenuItem = new JMenuItem(SciNotesMessages.EVALUATE_SELECTION);
         JMenuItem menuItem = null;
 
@@ -501,7 +504,7 @@ public class SciNotesGUI {
                 public void actionPerformed(ActionEvent actionEvent) {
                     String selection = ((ScilabEditorPane) c).getCodeToExecute();
                     if (selection == null) {
-                        infoBar.setText(Messages.gettext("No text to execute"));
+                        infoBar.setText(SciNotesMessages.NO_TEXT_TO_EXECUTE);
                     } else {
                         ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(selection, true, true);
                     }
@@ -516,9 +519,9 @@ public class SciNotesGUI {
                 public void propertyChange(PropertyChangeEvent arg0) {
                     String select = c.getSelectedText();
                     if (select == null) {
-                        evalMenuItem.setText(Messages.gettext(SciNotesMessages.EVALUATE_FROM_BEGINNING));
+                        evalMenuItem.setText(SciNotesMessages.EVALUATE_FROM_BEGINNING);
                     } else {
-                        evalMenuItem.setText(Messages.gettext(SciNotesMessages.EVALUATE_SELECTION));
+                        evalMenuItem.setText(SciNotesMessages.EVALUATE_SELECTION);
                     }
                 }
             };
@@ -530,45 +533,45 @@ public class SciNotesGUI {
                 public void actionPerformed(ActionEvent actionEvent) {
                     String selection = c.getSelectedText();
                     if (selection == null) {
-                        infoBar.setText(Messages.gettext("No text selected"));
+                        infoBar.setText(SciNotesMessages.NO_TEXT_SELECTED);
                     } else {
                         SciNotes.scinotesWithText(selection);
                     }
                 }
             };
 
-        menuItem = new JMenuItem(Messages.gettext("Edit selection in a new tab"));
+        menuItem = new JMenuItem(SciNotesMessages.EDIT_SELECTION);
         menuItem.addActionListener(actionListenerLoadIntoTextEditor);
         popup.add(menuItem);
         popup.addSeparator();
 
         /* Copy */
         menuItem = new JMenuItem(new DefaultEditorKit.CopyAction());
-        menuItem.setText(Messages.gettext("Copy"));
+        menuItem.setText(SciNotesMessages.COPY);
         popup.add(menuItem);
 
         /* Cut */
         menuItem = new JMenuItem(new DefaultEditorKit.CutAction());
-        menuItem.setText(Messages.gettext("Cut"));
+        menuItem.setText(SciNotesMessages.CUT);
         popup.add(menuItem);
 
         /* Paste */
         menuItem = new JMenuItem(new DefaultEditorKit.PasteAction());
-        menuItem.setText(Messages.gettext("Paste"));
+        menuItem.setText(SciNotesMessages.PASTE);
 
         /* Completion */
         menuItem = new JMenuItem();
         menuItem.addActionListener(new ActionListener() {
-                SciNotesCompletionAction action;
+                private SciNotesCompletionAction action;
                 public void actionPerformed(ActionEvent actionEvent) {
                     if (action == null) {
-                         action = new SciNotesCompletionAction(c, editor);
+                        action = new SciNotesCompletionAction(c, editor);
                     }
                     action.actionPerformed(actionEvent);
                 }
             });
         menuItem.setAccelerator(map.get("SciNotesCompletionAction"));
-        menuItem.setText(Messages.gettext("Complete"));
+        menuItem.setText(SciNotesMessages.COMPLETE);
         popup.add(menuItem);
         popup.addSeparator();
 
@@ -578,12 +581,12 @@ public class SciNotesGUI {
                     c.selectAll();
                 }
             };
-        menuItem = new JMenuItem(Messages.gettext("Select All"));
+        menuItem = new JMenuItem(SciNotesMessages.SELECT_ALL);
         menuItem.addActionListener(actionListenerSelectAll);
         popup.add(menuItem);
 
         /* Edit in the Scilab Text Editor */
-        final JMenuItem helpMenuItem = new JMenuItem("Help on the selected text");
+        final JMenuItem helpMenuItem = new JMenuItem(SciNotesMessages.HELP_ON_SELECTED);
 
         ActionListener actionListenerHelpOnKeyword = new ActionListener() {
                 public void actionPerformed(ActionEvent actionEvent) {
@@ -595,7 +598,7 @@ public class SciNotesGUI {
                                 selection = c.getDocument().getText(kwe.getStart(), kwe.getLength());
                             } catch (BadLocationException e) { }
                         } else {
-                            infoBar.setText(Messages.gettext("No text selected"));
+                            infoBar.setText(SciNotesMessages.NO_TEXT_SELECTED);
                             return;
                         }
                     }
@@ -620,16 +623,16 @@ public class SciNotesGUI {
                                 keyword = c.getDocument().getText(kwe.getStart(), kwe.getLength());
                             } catch (BadLocationException e) { }
                         } else {
-                            helpMenuItem.setText(Messages.gettext("Help on selected text or keyword"));
+                            helpMenuItem.setText(SciNotesMessages.HELP_ON_FOO);
                             helpMenuItem.setEnabled(false);
                             return;
                         }
                     }
                     int nbOfDisplayedOnlyXChar = 10;
                     if (keyword.length() > nbOfDisplayedOnlyXChar) {
-                        keyword = keyword.substring(0, nbOfDisplayedOnlyXChar) + "...";
+                        keyword = keyword.substring(0, nbOfDisplayedOnlyXChar) + SciNotesMessages.DOTS;
                     }
-                    helpMenuItem.setText(Messages.gettext("Help about '") + keyword + "'");
+                    helpMenuItem.setText(SciNotesMessages.HELP_ABOUT + keyword + "'");
                     helpMenuItem.setEnabled(true);
                 }
             };
@@ -654,7 +657,7 @@ public class SciNotesGUI {
                                     ((ScilabEditorPane) c).scrollTextToPos(pos);
                                 } else {
                                     String path = "get_function_path('" + kw + "')";
-                                    InterpreterManagement.requestScilabExec("if " + path +" ~=[] then editor(" + path + ");end");
+                                    InterpreterManagement.requestScilabExec("if " + path + " ~=[] then editor(" + path + ");end");
                                 }
                             } catch (BadLocationException e) { }
                         }
@@ -680,9 +683,9 @@ public class SciNotesGUI {
                     }
                     int nbOfDisplayedOnlyXChar = 10;
                     if (keyword.length() > nbOfDisplayedOnlyXChar) {
-                        keyword = keyword.substring(0, nbOfDisplayedOnlyXChar) + "...";
+                        keyword = keyword.substring(0, nbOfDisplayedOnlyXChar) + SciNotesMessages.DOTS;
                     }
-                    sourceMenuItem.setText(Messages.gettext("Source of '") + keyword + "'");
+                    sourceMenuItem.setText(SciNotesMessages.SOURCE_OF + keyword + "'");
                     sourceMenuItem.setEnabled(true);
                 }
             };
