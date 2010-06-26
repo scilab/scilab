@@ -127,6 +127,8 @@ Text Editor:
 
 * bug 7112 fixed - Two transpositions gave a string (if a'==1 then a=b').
 
+* bug 7150 fixed - It was impossible to change the background color.
+
 * bug 7237 fixed - Whites and tabs were not visible in strings and in comments.
 
 * bug 7238 fixed - The dot/del key on the numeric pad added a 'suppr' and a dot.

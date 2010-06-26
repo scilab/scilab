@@ -199,6 +199,8 @@ public class SciNotesMessages {
     /**
      * "Change Color" message
      */
+    public static final String CARET_COLOR =  Messages.gettext("Cursor Color");
+    public static final String BGCOLOR =  Messages.gettext("Background Color");
     public static final String CHANGE_COLOR =  Messages.gettext("Change Color");
     public static final String ITALIC = Messages.gettext("Italic");
     public static final String STRIKETHROUGH = Messages.gettext("Strike Through");
