@@ -25,6 +25,7 @@ import javax.swing.text.Element;
     public int start = 0;
     public int beginString;
     public static Set<String> commands = new HashSet();
+    public static Set<String> macros = new HashSet();
     public static Set<String> variables = new HashSet();
 
     private ScilabDocument doc = null;
@@ -37,11 +38,7 @@ import javax.swing.text.Element;
         this.elem = doc.getDefaultRootElement();
         variables.addAll(Arrays.asList(ScilabKeywords.GetVariablesName()));
         commands.addAll(Arrays.asList(ScilabKeywords.GetFunctionsName()));
-        commands.addAll(Arrays.asList(ScilabKeywords.GetMacrosName()));
-        Iterator<String> iter = commands.iterator();
-        while (iter.hasNext()) {
-            variables.remove(iter.next());
-        }
+        macros.addAll(Arrays.asList(ScilabKeywords.GetMacrosName()));
     }
 
     public void setRange(int p0, int p1) {
@@ -180,6 +177,9 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
                                    if (commands.contains(str)) {
                                        yybegin(COMMANDS);
                                        return ScilabLexerConstants.COMMANDS;
+                                   } else if (macros.contains(str)) {
+                                       yybegin(COMMANDS);
+                                       return ScilabLexerConstants.MACROS;
                                    } else if (variables.contains(str)) {
                                        return ScilabLexerConstants.VARIABLES;
                                    } else {

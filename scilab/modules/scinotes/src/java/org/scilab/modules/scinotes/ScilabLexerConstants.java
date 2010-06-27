@@ -25,7 +25,7 @@ public class ScilabLexerConstants {
     /**
      * Number of known tokens
      */
-    public static final int NUMBEROFTOKENS = 29;
+    public static final int NUMBEROFTOKENS = 30;
 
     /**
      * DEFAULT : tokens which are not recognized
@@ -103,79 +103,84 @@ public class ScilabLexerConstants {
     public static final int FKEYWORD = 14;
 
     /**
-     * COMMANDS : Functions in Scilab
+     * COMMANDS : Built-in functions in Scilab
      */
     public static final int COMMANDS = 15;
 
     /**
+     * MACROS : Macros in Scilab
+     */
+    public static final int MACROS = 16;
+
+    /**
      * FIELD : Field of an object, e.g. myobject.myfield
      */
-    public static final int FIELD = 16;
+    public static final int FIELD = 17;
 
     /**
      * AUTHORS : Authors in Scilab
      */
-    public static final int AUTHORS = 17;
+    public static final int AUTHORS = 18;
 
     /**
      * URL : http://...
      */
-    public static final int URL = 18;
+    public static final int URL = 19;
 
     /**
      * WHITE : A white char ' '
      */
-    public static final int WHITE = 19;
+    public static final int WHITE = 20;
 
     /**
      * TAB : A tabulation '\t'
      */
-    public static final int TAB = 20;
+    public static final int TAB = 21;
 
     /**
      * LATEX : $\frac\pi\alpha$
      */
-    public static final int LATEX = 21;
+    public static final int LATEX = 22;
 
     /**
      * VARIABLES : A variable in Scilab
      */
-    public static final int VARIABLES = 22;
+    public static final int VARIABLES = 23;
 
     /**
      * LOCALVARIABLES : A local variable in Scilab
      */
-    public static final int LOCALVARIABLES = 23;
+    public static final int LOCALVARIABLES = 24;
 
     /**
      * WHITE_COMMENT : A white char ' ' in comments
      */
-    public static final int WHITE_COMMENT = 24;
+    public static final int WHITE_COMMENT = 25;
 
     /**
      * TAB_COMMENT : A tabulation '\t' in comments
      */
-    public static final int TAB_COMMENT = 25;
+    public static final int TAB_COMMENT = 26;
 
     /**
      * WHITE_STRING : A white char ' ' in strings
      */
-    public static final int WHITE_STRING = 26;
+    public static final int WHITE_STRING = 27;
 
     /**
      * TAB_STRING : A tabulation '\t' in strings
      */
-    public static final int TAB_STRING = 27;
+    public static final int TAB_STRING = 28;
 
     /**
      * EOF : End Of File
      */
-    public static final int EOF = 28;
+    public static final int EOF = 29;
 
     /**
      * TOKENS : A Map which contains the names of keywords (useful in scinotesConfiguration.xml)
      */
-    public static final Map<String, Integer> TOKENS = new HashMap(19);
+    public static final Map<String, Integer> TOKENS = new HashMap(20);
 
     private static Map<Integer, String> idTokens;
 
@@ -183,7 +188,8 @@ public class ScilabLexerConstants {
         TOKENS.put("Default", DEFAULT);
         TOKENS.put("Special", SPECIAL);
         TOKENS.put("Operator", OPERATOR);
-        TOKENS.put("Command", COMMANDS);
+        TOKENS.put("Primitive", COMMANDS);
+        TOKENS.put("Macro", MACROS);
         TOKENS.put("String", STRING);
         TOKENS.put("Variable", VARIABLES);
         TOKENS.put("LocalVariable", LOCALVARIABLES);
@@ -238,6 +244,7 @@ public class ScilabLexerConstants {
     public static boolean isHelpable(int type) {
         return type == ID
             || type == COMMANDS
+            || type == MACROS
             || type == OPERATOR
             || type == FKEYWORD
             || type == CKEYWORD
@@ -252,7 +259,7 @@ public class ScilabLexerConstants {
      * @return true if the keyword is openable
      */
     public static boolean isOpenable(int type) {
-        return type == COMMANDS || type == ID;
+        return type == MACROS || type == ID;
     }
 
     /**

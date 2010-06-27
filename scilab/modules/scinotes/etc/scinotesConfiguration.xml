@@ -99,9 +99,14 @@
         <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
       </style>
 
-      <style name="Command">
+      <style name="Primitive">
         <ForegroundColor default="#32b9b9" useCache="true" value="#32b9b9"/>
-        <FontStyle default="0" useCache="true" value="0"/> <!-- #b8860b 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+        <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+      </style>
+
+      <style name="Macro">
+        <ForegroundColor default="#ae5cb0" useCache="true" value="#ae5cb0"/>
+        <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
       </style>
 
       <style name="String">
