@@ -20,6 +20,8 @@ import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.TreeMap;
+import java.util.Iterator;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JMenu;
@@ -474,18 +476,34 @@ public class SciNotesGUI {
         encodingTypeMenu.setText(SciNotesMessages.ENCODING_TYPE);
         documentMenu.add(encodingTypeMenu);
 
-        List<String> encodings = EncodingAction.getEcodings();
+        Map<String, List<String>> languages = new TreeMap(EncodingAction.getEncodings());
+        Iterator<String> iter = languages.keySet().iterator();
+        int size = 0;
+        while (iter.hasNext()) {
+            size += languages.get(iter.next()).size();
+        }
 
-        radioTypes = new JRadioButtonMenuItem[encodings.size()];
+        radioTypes = new JRadioButtonMenuItem[size];
         ButtonGroup group = new ButtonGroup();
-        for (int i = 0; i < encodings.size(); i++) {
-            radioTypes[i] = (new EncodingAction(encodings.get(i).toString(), editorInstance)).createRadioButtonMenuItem(editorInstance);
-            group.add(radioTypes[i]);
-            ((JMenu) encodingTypeMenu.getAsSimpleMenu()).add(radioTypes[i]);
 
-            if (encodings.get(i).toString().equals(Charset.defaultCharset().toString())) {
-                radioTypes[i].setSelected(true);
+        iter = languages.keySet().iterator();
+        int psize = 0;
+        while (iter.hasNext()) {
+            String lang = iter.next();
+            List<String> encodings = languages.get(lang);
+            Menu langMenu = ScilabMenu.createMenu();
+            langMenu.setText(lang);
+            encodingTypeMenu.add(langMenu);
+            for (int i = 0; i < encodings.size(); i++) {
+                radioTypes[psize + i] = (new EncodingAction(encodings.get(i), editorInstance)).createRadioButtonMenuItem(editorInstance);
+                group.add(radioTypes[psize + i]);
+                ((JMenu) langMenu.getAsSimpleMenu()).add(radioTypes[psize + i]);
+
+                if (encodings.get(i).toUpperCase().equals(Charset.defaultCharset().toString().toUpperCase())) {
+                    radioTypes[psize + i].setSelected(true);
+                }
             }
+            psize += encodings.size();
         }
     }
 
