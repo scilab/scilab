@@ -43,7 +43,7 @@ public class OpenSourceFileOnKeywordAction extends DefaultAction {
      */
     public void doAction() {
         ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
-        KeywordEvent kwe = sep.getKeywordEvent();
+        KeywordEvent kwe = sep.getKeywordEvent(sep.getSelectionEnd());
         if (ScilabLexerConstants.isOpenable(kwe.getType())) {
             try {
                 ScilabDocument doc = (ScilabDocument) sep.getDocument();

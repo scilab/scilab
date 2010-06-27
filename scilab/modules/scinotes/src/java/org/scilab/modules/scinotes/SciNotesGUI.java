@@ -645,22 +645,19 @@ public class SciNotesGUI {
 
         ActionListener actionListenerOpenSource = new ActionListener() {
                 public void actionPerformed(ActionEvent actionEvent) {
-                    String selection = c.getSelectedText();
-                    if (selection == null) {
-                        KeywordEvent kwe = ((ScilabEditorPane) c).getKeywordEvent();
-                        if (ScilabLexerConstants.isOpenable(kwe.getType())) {
-                            try {
-                                ScilabDocument doc = (ScilabDocument) ((ScilabEditorPane) c).getDocument();
-                                String kw = doc.getText(kwe.getStart(), kwe.getLength());
-                                int pos = doc.searchFunctionByName(kw);
-                                if (pos != -1) {
-                                    ((ScilabEditorPane) c).scrollTextToPos(pos);
-                                } else {
-                                    String path = "get_function_path('" + kw + "')";
-                                    InterpreterManagement.requestScilabExec("if " + path + " ~=[] then editor(" + path + ");end");
-                                }
-                            } catch (BadLocationException e) { }
-                        }
+                    KeywordEvent kwe = ((ScilabEditorPane) c).getKeywordEvent(c.getSelectionEnd());
+                    if (ScilabLexerConstants.isOpenable(kwe.getType())) {
+                        try {
+                            ScilabDocument doc = (ScilabDocument) ((ScilabEditorPane) c).getDocument();
+                            String keyword = doc.getText(kwe.getStart(), kwe.getLength());
+                            int pos = doc.searchFunctionByName(keyword);
+                            if (pos != -1) {
+                                ((ScilabEditorPane) c).scrollTextToPos(pos);
+                            } else {
+                                String path = "get_function_path('" + keyword + "')";
+                                InterpreterManagement.requestScilabExec("if " + path + " ~=[] then editor(" + path + ");end");
+                            }
+                        } catch (BadLocationException e) { }
                     }
                 }
             };
@@ -668,25 +665,21 @@ public class SciNotesGUI {
         /* Not sure it is the best listener */
         PropertyChangeListener listenerSourceItem = new PropertyChangeListener() {
                 public void propertyChange(PropertyChangeEvent arg0) {
-                    String keyword = c.getSelectedText();
-                    if (keyword == null) {
-                        KeywordEvent kwe = ((ScilabEditorPane) c).getKeywordEvent();
-                        if (ScilabLexerConstants.isOpenable(kwe.getType())) {
-                            try {
-                                keyword = c.getDocument().getText(kwe.getStart(), kwe.getLength());
-                            } catch (BadLocationException e) { }
-                        } else {
-                            sourceMenuItem.setText(SciNotesMessages.OPEN_SOURCE_FILE_ON_KEYWORD);
-                            sourceMenuItem.setEnabled(false);
-                            return;
-                        }
+                    KeywordEvent kwe = ((ScilabEditorPane) c).getKeywordEvent(c.getSelectionEnd());
+                    if (ScilabLexerConstants.isOpenable(kwe.getType())) {
+                        try {
+                            String keyword = c.getDocument().getText(kwe.getStart(), kwe.getLength());
+                            int nbOfDisplayedOnlyXChar = 10;
+                            if (keyword.length() > nbOfDisplayedOnlyXChar) {
+                                keyword = keyword.substring(0, nbOfDisplayedOnlyXChar) + SciNotesMessages.DOTS;
+                            }
+                            sourceMenuItem.setText(SciNotesMessages.SOURCE_OF + keyword + "'");
+                            sourceMenuItem.setEnabled(true);
+                        } catch (BadLocationException e) { }
+                    } else {
+                        sourceMenuItem.setText(SciNotesMessages.OPEN_SOURCE_FILE_ON_KEYWORD);
+                        sourceMenuItem.setEnabled(false);
                     }
-                    int nbOfDisplayedOnlyXChar = 10;
-                    if (keyword.length() > nbOfDisplayedOnlyXChar) {
-                        keyword = keyword.substring(0, nbOfDisplayedOnlyXChar) + SciNotesMessages.DOTS;
-                    }
-                    sourceMenuItem.setText(SciNotesMessages.SOURCE_OF + keyword + "'");
-                    sourceMenuItem.setEnabled(true);
                 }
             };
         sourceMenuItem.addPropertyChangeListener(listenerSourceItem);

@@ -202,7 +202,7 @@ public class SciNotesMessages {
     public static final String NO_TEXT_SELECTED = Messages.gettext("No text selected.");
     public static final String NO_TEXT_TO_EXECUTE = Messages.gettext("No text to execute.");
     public static final String COMPLETE = Messages.gettext("Complete");
-    public static final String EDIT_SELECTION = Messages.gettext("Edit selection in a new tab");
+    public static final String EDIT_SELECTION = Messages.gettext("Copy selection in a new tab");
 
     /**
      * "Change Colors" message

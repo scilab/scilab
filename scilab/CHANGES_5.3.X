@@ -153,6 +153,9 @@ Text Editor:
 
 * bug 7352 fixed - No completion menu on the right click.
 
+* bug 7421 fixed - Could not open the source file of a selected name with right
+                   click.
+
 Incompatibilities:
 ==================
 * The bug 4583 fix makes the default element value in string array assignment
