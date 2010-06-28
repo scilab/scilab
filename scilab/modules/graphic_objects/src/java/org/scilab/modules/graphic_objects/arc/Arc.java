@@ -12,6 +12,7 @@
 
 package org.scilab.modules.graphic_objects.arc;
 
+import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
 
 /**
@@ -106,8 +107,9 @@ public class Arc extends ClippableContouredObject {
 	 * Fast property set method
 	 * @param property the property to set
 	 * @param value the property value
+	 * @return true if the property has been set, false otherwise
 	 */
-	public void setPropertyFast(Object property, Object value) {
+	public boolean setPropertyFast(Object property, Object value) {
 		if (property == ArcProperty.UPPERLEFTPOINT) {
 			setUpperLeftPoint((Double[]) value);
 		} else if (property == ArcProperty.WIDTH) {
@@ -121,9 +123,21 @@ public class Arc extends ClippableContouredObject {
 		} else if (property == ArcProperty.ARCDRAWINGMETHOD) {
 			setArcDrawingMethod((ArcDrawingMethod) value);
 		} else {
-			super.setPropertyFast(property, value);
+			return super.setPropertyFast(property, value);
 		}
+
+		return true;
 	}
+
+	/**
+	 * Set the parent axes
+	 * @param axes the parent axes to set
+	 */
+	/*
+	public void setParent(Axes axes) {
+		super.setParent(axes);
+	}
+	*/
 
 	/**
 	 * @return the arcDrawingMethod

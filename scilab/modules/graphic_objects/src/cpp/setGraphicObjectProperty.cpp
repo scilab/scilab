@@ -20,15 +20,19 @@ extern "C"
 
 using namespace org_scilab_modules_graphic_objects;
 
-void setGraphicObjectProperty(char *_pstID, char *_pstName, void *_pvValue, _ReturnType_ _valueType)
+BOOL setGraphicObjectProperty(char *_pstID, char *_pstName, void *_pvValue, _ReturnType_ _valueType)
 {
+ bool result = false;
+
  switch(_valueType)
     {
     case jni_string :
-        CallGraphicController::setGraphicObjectProperty(getScilabJavaVM(), _pstID, _pstName, (char *)_pvValue);
+        result = CallGraphicController::setGraphicObjectProperty(getScilabJavaVM(), _pstID, _pstName, (char *)_pvValue);
         break;
     default :
         /* Do Nothing */
         break;
     }
+
+ return booltoBOOL(result);
 }

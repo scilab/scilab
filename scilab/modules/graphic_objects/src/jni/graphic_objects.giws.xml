@@ -7,7 +7,7 @@
       <parameter name="id" type="String"/>
       <parameter name="propertyName" type="String"/>
     </method>
-    <method name="setGraphicObjectProperty" returnType="void" modifier="static">
+    <method name="setGraphicObjectProperty" returnType="boolean" modifier="static">
       <parameter name="id" type="String"/>
       <parameter name="propertyName" type="String"/>
       <parameter name="value" type="String"/>

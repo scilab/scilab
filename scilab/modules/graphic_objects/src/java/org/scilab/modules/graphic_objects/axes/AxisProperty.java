@@ -121,8 +121,9 @@ public class AxisProperty {
 	 * Fast property set method
 	 * @param property the property to set
 	 * @param value the property value
+	 * @return true if the property has been set, false otherwise
 	 */
-	public void setPropertyFast(Object property, Object value) {
+	public boolean setPropertyFast(Object property, Object value) {
 		if (property == AxisPropertyProperty.VISIBLE) {
 			setVisible((Boolean) value);
 		} else if (property == AxisPropertyProperty.REVERSE) {
@@ -138,6 +139,8 @@ public class AxisProperty {
 		} else if (property == AxisPropertyProperty.TICKS) {
 			setTicks((TicksProperty) value);
 		}
+
+		return true;
 	}
 	
 	/**

@@ -85,8 +85,9 @@ public class Label extends TextObject {
 	 * Fast property set method
 	 * @param property the property to set
 	 * @param value the property value
+	 * @return true if the property has been set, false otherwise
 	 */
-	public void setPropertyFast(Object property, Object value) {
+	public boolean setPropertyFast(Object property, Object value) {
 		if (property == LabelProperty.FONTANGLE) {
 			setFontAngle((Double) value);
 		} else if (property == LabelProperty.AUTOPOSITION) {
@@ -96,8 +97,10 @@ public class Label extends TextObject {
 		} else if (property == LabelProperty.AUTOROTATION) {
 			setAutoRotation((Boolean) value);
 		} else {
-			super.setPropertyFast(property, value);
+			return super.setPropertyFast(property, value);
 		}
+
+		return true;
 	}
 	
 	/**

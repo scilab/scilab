@@ -96,9 +96,9 @@ public abstract class ContouredObject extends GraphicObject {
 		} else if (property == LinePropertyType.LINESTYLE) {
 			return getLineStyle();
 		} else if (property == LinePropertyType.THICKNESS) {
-			return getThickness();
+			return getLineThickness();
 		} else if (property == LinePropertyType.COLOR) {
-			return getColor();
+			return getLineColor();
 		} else if (property == ContouredObjectPropertyType.FILLMODE) {
 			return getFillMode();
 		} else if (property == ContouredObjectPropertyType.BACKGROUND) {
@@ -124,8 +124,9 @@ public abstract class ContouredObject extends GraphicObject {
 	 * Fast property set method
 	 * @param property the property to set
 	 * @param value the property value
+	 * @return true if the property has been set, false otherwise
 	 */
-	public void setPropertyFast(Object property, Object value) {
+	public boolean setPropertyFast(Object property, Object value) {
 		if (property == ContouredObjectPropertyType.LINE) {
 			setLine((Line) value);
 		} else if (property == LinePropertyType.MODE) {
@@ -133,9 +134,9 @@ public abstract class ContouredObject extends GraphicObject {
 		} else if (property == LinePropertyType.LINESTYLE) {
 			setLineStyle((LineType) value);
 		} else if (property == LinePropertyType.THICKNESS) {
-			setThickness((Double) value);
+			setLineThickness((Double) value);
 		} else if (property == LinePropertyType.COLOR) {
-			setColor((Integer) value);
+			setLineColor((Integer) value);
 		} else if (property == ContouredObjectPropertyType.FILLMODE) {
 			setFillMode((Boolean) value);
 		} else if (property == ContouredObjectPropertyType.BACKGROUND) {
@@ -153,8 +154,10 @@ public abstract class ContouredObject extends GraphicObject {
 		} else if (property == MarkPropertyType.BACKGROUND) {
 			this.setMarkBackground((Integer) value);
 		} else {
-			super.setPropertyFast(property, value);
+			return super.setPropertyFast(property, value);
 		}
+
+		return true;
 	}
 
 	/**
@@ -203,7 +206,7 @@ public abstract class ContouredObject extends GraphicObject {
 	 * Get the line color
 	 * @return the color
 	 */
-	public Integer getColor() {
+	public Integer getLineColor() {
 		return line.getColor();
 	}
 
@@ -211,7 +214,7 @@ public abstract class ContouredObject extends GraphicObject {
 	 * Set the line color
 	 * @param color the color to set
 	 */
-	public void setColor(Integer color) {
+	public void setLineColor(Integer color) {
 		line.setColor(color);
 	}
 
@@ -251,7 +254,7 @@ public abstract class ContouredObject extends GraphicObject {
 	 * Get the line thickness
 	 * @return the thickness
 	 */
-	public Double getThickness() {
+	public Double getLineThickness() {
 		return line.getThickness();
 	}
 
@@ -259,10 +262,10 @@ public abstract class ContouredObject extends GraphicObject {
 	 * Set the line thickness
 	 * @param thickness the thickness to set
 	 */
-	public void setThickness(Double thickness) {
+	public void setLineThickness(Double thickness) {
 		line.setThickness(thickness);
 	}
-	
+
 	/**
 	 * @return the mark
 	 */
@@ -276,7 +279,7 @@ public abstract class ContouredObject extends GraphicObject {
 	public void setMark(Mark mark) {
 		this.mark = mark;
 	}
-	
+
 	/**
 	 * Get the mark background
 	 * @return the background

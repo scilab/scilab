@@ -337,8 +337,9 @@ public class Axes extends GraphicObject {
 	 * Fast property set method
 	 * @param property the property to set
 	 * @param value the property value
+	 * @return true if the property has been set, false otherwise
 	 */
-	public void setPropertyFast(Object property, Object value) {
+	public boolean setPropertyFast(Object property, Object value) {
 		if (property == AxesProperty.AXES) {
 			setAxes((AxisProperty[]) value);
 		} else if (property == AxesProperty.XAXIS) {
@@ -452,8 +453,10 @@ public class Axes extends GraphicObject {
 		} else if (property == AxesProperty.AXESBOUNDS) {
 			setAxesBounds((Double[]) value);
 		} else {
-			super.setPropertyFast(property, value);
+			return super.setPropertyFast(property, value);
 		}
+
+		return true;
 	}
 
 	/**

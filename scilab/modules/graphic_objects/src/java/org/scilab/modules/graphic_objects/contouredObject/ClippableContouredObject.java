@@ -72,8 +72,9 @@ public abstract class ClippableContouredObject extends ContouredObject {
 	 * Fast property set method
 	 * @param property the property to set
 	 * @param value the property value
+	 * @return true if the property has been set, false otherwise
 	 */
-	public void setPropertyFast(Object property, Object value) {
+	public boolean setPropertyFast(Object property, Object value) {
 		if (property == ClippableContouredObjectPropertyType.CLIPPROPERTY) {
 			setClipProperty((ClippableProperty) value);
 		} else if (property == ClippablePropertyType.CLIPSTATE) {
@@ -81,8 +82,10 @@ public abstract class ClippableContouredObject extends ContouredObject {
 		} else if (property == ClippablePropertyType.CLIPBOX) {
 			setClipBox((Double[]) value);
 		} else {
-			super.setPropertyFast(property, value);
+			return super.setPropertyFast(property, value);
 		}
+
+		return true;
 	}
 	/**
 	 * @return the clipProperty

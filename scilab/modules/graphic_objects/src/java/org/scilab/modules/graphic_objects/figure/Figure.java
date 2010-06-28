@@ -297,8 +297,9 @@ public class Figure extends GraphicObject {
 	 * Fast property set method
 	 * @param property the property to set
 	 * @param value the property value
+	 * @return true if the property has been set, false otherwise
 	 */
-	public void setPropertyFast(Object property, Object value) {
+	public boolean setPropertyFast(Object property, Object value) {
 		if (property == FigureProperty.DIMENSIONS) {
 			setDimensions((FigureDimensions) value);
 		} else if (property == FigureDimensionsProperty.POSITION) {
@@ -344,8 +345,10 @@ public class Figure extends GraphicObject {
 		} else if (property == FigureProperty.ROTATIONTYPE) {
 			setRotation((RotationType) value);
 		} else {
-			super.setPropertyFast(property, value);
+			return super.setPropertyFast(property, value);
 		}
+
+		return true;
 	}
 
 	/**

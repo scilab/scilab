@@ -81,9 +81,10 @@ public class GraphicController {
      * @param id the object id
      * @param prop the property name
      * @param value the property value
+     * @return true if the property has been set, false otherwise
      */
-    public void setPropertyFast(String id, String prop, Object value) {
-    	GraphicModel.getModel().setPropertyFast(id, prop, value);
+    public boolean setPropertyFast(String id, String prop, Object value) {
+    	return GraphicModel.getModel().setPropertyFast(id, prop, value);
     }
 
     /**

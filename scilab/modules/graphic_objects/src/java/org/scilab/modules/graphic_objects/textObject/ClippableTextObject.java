@@ -69,8 +69,9 @@ public abstract class ClippableTextObject extends TextObject {
 	 * Fast property set method
 	 * @param property the property to set
 	 * @param value the property value
+	 * @return true if the property has been set, false otherwise
 	 */
-	public void setPropertyFast(Object property, Object value) {
+	public boolean setPropertyFast(Object property, Object value) {
 		if (property == ClippableTextObjectProperty.CLIPPROPERTY) {
 			setClipProperty((ClippableProperty) value);
 		} else if (property == ClippableProperty.ClippablePropertyType.CLIPSTATE) {
@@ -78,8 +79,10 @@ public abstract class ClippableTextObject extends TextObject {
 		} else if (property == ClippableProperty.ClippablePropertyType.CLIPBOX) {
 			setClipState((ClipStateType) value);
 		} else {
-			super.setPropertyFast(property, value);
+			return super.setPropertyFast(property, value);
 		}
+
+		return true;
 	}
 
 	/**

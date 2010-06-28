@@ -19,7 +19,7 @@ package org.scilab.modules.graphic_objects.textObject;
 public class Font {
 	/** Font properties names */
 	public enum FontProperty { STYLE, SIZE, COLOR, FRACTIONAL, UNKNOWNPROPERTY };
-	
+
 	/** Font style */
 	private int style;
 
@@ -82,8 +82,9 @@ public class Font {
 	 * Fast property set method
 	 * @param property the property to set
 	 * @param value the property value
+	 * @return true if the property has been set, false otherwise
 	 */
-	public void setPropertyFast(Object property, Object value) {
+	public boolean setPropertyFast(Object property, Object value) {
 		if (property == FontProperty.STYLE) {
 			setStyle((Integer) value);
 		} else if (property == FontProperty.SIZE) {
@@ -93,6 +94,8 @@ public class Font {
 		} else if (property == FontProperty.FRACTIONAL) {
 			setFractional((Boolean) value);
 		}
+
+		return true;
 	}
 
 	/**

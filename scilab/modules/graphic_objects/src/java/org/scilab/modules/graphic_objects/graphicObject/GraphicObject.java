@@ -59,7 +59,7 @@ public abstract class GraphicObject {
     public static Type getTypeFromName(String typeName) {
         if (typeName.equals("arc")) {
             return Type.ARC;
-        } 
+        }
         else if (typeName.equals("axes")) {
             return Type.AXES;
         }
@@ -112,7 +112,7 @@ public abstract class GraphicObject {
             return Type.UNKNOWNOBJECT;
         }
 	}
-	
+
 	/**
 	 * Returns the enum associated to a property name
 	 * @param propertyName the property name
@@ -157,8 +157,9 @@ public abstract class GraphicObject {
 	 * Fast property set method
 	 * @param property the property to set
 	 * @param value the property value
+	 * @return true if the property has been set, false otherwise
 	 */
-	public void setPropertyFast(Object property, Object value) {
+	public boolean setPropertyFast(Object property, Object value) {
 		if (property == GraphicObjectPropertyType.PARENT) {
 			setParent((GraphicObject) value);
 		} else if (property == GraphicObjectPropertyType.CHILDREN) {
@@ -167,7 +168,11 @@ public abstract class GraphicObject {
 			setVisible((Boolean) value);
 		} else if (property == GraphicObjectPropertyType.USERDATA) {
 			setUserData((byte[]) value);
+		} else if (property == GraphicObjectPropertyType.UNKNOWNPROPERTY) {
+			return false;
 		}
+
+		return true;
 	}
 
 	/**

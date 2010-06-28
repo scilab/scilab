@@ -13,9 +13,11 @@
 #ifndef __SETGRAPHICOBJECTPROPERTY_H__
 #define __SETGRAPHICOBJECTPROPERTY_H__
 
+#include "BOOL.h"
+
 #include "returnType.h"
 #include "dynlib_graphic_objects.h"
 
-GRAPHIC_OBJECTS_IMPEXP void setGraphicObjectProperty(char *_psUID, char *_psPropertyName, void *_pvValue, enum _ReturnType_ _valueTtype);
+GRAPHIC_OBJECTS_IMPEXP BOOL setGraphicObjectProperty(char *_psUID, char *_psPropertyName, void *_pvValue, enum _ReturnType_ _valueTtype);
 
 #endif /* !__SETGRAPHICOBJECTPROPERTY_H__ */

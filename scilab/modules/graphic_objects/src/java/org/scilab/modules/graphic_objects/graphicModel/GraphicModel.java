@@ -123,11 +123,12 @@ public class GraphicModel {
      * @param id object id
      * @param property name
      * @param value property value
+     * @return true if the property has been set, false otherwise
      */
-    public void setPropertyFast(String id, String property, Object value) {
+    public boolean setPropertyFast(String id, String property, Object value) {
     	GraphicObject object = allObjects.get(id);
     	Object propertyType = object.getPropertyFromName(property);
-    	object.setPropertyFast(propertyType, value);
+    	return object.setPropertyFast(propertyType, value);
     }
 
     /**

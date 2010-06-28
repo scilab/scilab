@@ -78,8 +78,9 @@ public class Arrow extends ContouredObject {
 	 * Fast property set method
 	 * @param property the property to set
 	 * @param value the property value
+	 * @return true if the property has been set, false otherwise
 	 */
-	public void setPropertyFast(Object property, Object value) {
+	public boolean setPropertyFast(Object property, Object value) {
 		if (property == ArrowProperty.BASE) {
 			setBase((Double[]) value);
 		} else if (property == ArrowProperty.DIRECTION) {
@@ -87,8 +88,10 @@ public class Arrow extends ContouredObject {
 		} else if (property == ArrowProperty.ARROWSIZE) {
 			setArrowSize((Double) value);
 		} else {
-			super.setPropertyFast(property, value);
+			return super.setPropertyFast(property, value);
 		}
+
+		return true;
 	}
 
 	/**

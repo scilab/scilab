@@ -79,8 +79,9 @@ public abstract class Surface extends ClippableContouredObject {
 	 * Fast property set method
 	 * @param property the property to set
 	 * @param value the property value
+	 * @return true if the property has been set, false otherwise
 	 */
-	public void setPropertyFast(Object property, Object value) {
+	public boolean setPropertyFast(Object property, Object value) {
 
 		if (property == SurfaceProperty.SURFACEMODE) {
 			setSurfaceMode((Boolean) value);
@@ -89,8 +90,10 @@ public abstract class Surface extends ClippableContouredObject {
 		} else if (property == SurfaceProperty.COLORFLAG) {
 			setColorFlag((Integer) value);
 		} else {
-			super.setPropertyFast(property, value);
+			return super.setPropertyFast(property, value);
 		}
+
+		return true;
 	}	
 
 	/**

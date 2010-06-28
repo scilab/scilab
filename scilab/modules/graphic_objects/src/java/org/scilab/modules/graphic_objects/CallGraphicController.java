@@ -26,16 +26,16 @@ public final class CallGraphicController {
         return GraphicController.getController().askObject(GraphicObject.getTypeFromName(typeName));
     }
 
-    private static void setGraphicObjectProperty(String id, String propertyName, Object value) {
-        GraphicController.getController().setPropertyFast(id, propertyName, value);
+    private static boolean setGraphicObjectProperty(String id, String propertyName, Object value) {
+        return GraphicController.getController().setPropertyFast(id, propertyName, value);
     }
 
     private static Object getGraphicObjectProperty(String id, String propertyName) {
         return GraphicController.getController().getPropertyFast(id, propertyName);
     }
 
-    public static void setGraphicObjectProperty(String id, String propertyName, String value) {
-        setGraphicObjectProperty(id, propertyName, (Object) value);
+    public static boolean setGraphicObjectProperty(String id, String propertyName, String value) {
+        return setGraphicObjectProperty(id, propertyName, (Object) value);
     }
 
     public static String getGraphicObjectPropertyAsString(String id, String propertyName) {
