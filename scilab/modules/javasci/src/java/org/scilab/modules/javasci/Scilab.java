@@ -79,7 +79,7 @@ public class Scilab {
      * @return if the operation is successful
      */
     public boolean exec(String job) {
-        return (Call_Scilab.SendScilabJob(job) == 1);
+        return (Call_Scilab.SendScilabJob(job) == 0);
     }
 
 
@@ -90,7 +90,7 @@ public class Scilab {
      * @return if the operation is successful
      */
     public boolean exec(String jobs[]) {
-        return (Call_Scilab.SendScilabJobs(jobs, jobs.length) == 1);
+        return (Call_Scilab.SendScilabJobs(jobs, jobs.length) == 0);
     }
 
 
@@ -189,6 +189,11 @@ public class Scilab {
      * @return return the variable 
     */
     public ScilabType get(String varname) {
+		ScilabTypeEnum sciType = this.getVariableType(varname);
+		switch (sciType) {
+			case sci_matrix:
+				return new ScilabDouble(Call_Scilab.getDouble(varname));
+		}
 		return null;
     }
 
@@ -202,10 +207,10 @@ public class Scilab {
     */
     public boolean put(String varname, ScilabType theVariable) {
         if (theVariable instanceof ScilabDouble) {
-			return true;
+			Call_Scilab.putDouble(varname,((ScilabDouble)theVariable).getRealPart());
 		}
 		if (theVariable instanceof ScilabInteger) {
-			return true;
+//			Call_Scilab.putInteger((ScilabInteger)theVariable.getRealPart());
 		}
 		//TODO: a remplacer par la bonne exception return new UnsupportedTypeException();
 		return false;
