@@ -13,6 +13,8 @@
 
 package org.scilab.modules.types.scilabTypes;
 
+import java.util.Arrays;
+
 /**
  * This class provides a wrapping on the Scilab Double datatype<br />
  * Note that double is the default datatype in Scilab
@@ -151,6 +153,23 @@ public class ScilabDouble implements ScilabType {
 		
 		return realPart[0].length;
 	}
+
+    /**
+	 * @see org.scilab.modules.types.scilabTypes.ScilabType#equals(Object)
+     */
+    public boolean equals(Object obj) {
+        if (obj instanceof ScilabDouble) {
+            if (this.isReal()) {
+                return Arrays.deepEquals(this.getRealPart(), ((ScilabDouble)obj).getRealPart());
+            } else {
+                /* Complex */
+                return Arrays.deepEquals(this.getRealPart(), ((ScilabDouble)obj).getRealPart()) && Arrays.deepEquals(this.getImaginaryPart(), ((ScilabDouble)obj).getImaginaryPart());
+            }
+        } else {
+            return false;
+        }
+    }
+
 
 	/**
 	 * @return a Scilab-like String representation of the data.

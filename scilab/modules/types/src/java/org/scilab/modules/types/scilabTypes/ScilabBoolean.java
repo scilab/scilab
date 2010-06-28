@@ -13,6 +13,8 @@
 
 package org.scilab.modules.types.scilabTypes;
 
+import java.util.Arrays;
+
 /**
  * This class provides a wrapping on the Scilab boolean datatype
  */
@@ -98,6 +100,17 @@ public class ScilabBoolean implements ScilabType {
     	return (data == null);
     }
     
+
+    /**
+	 * @see org.scilab.modules.types.scilabTypes.ScilabType#equals(Object)
+     */
+    public boolean equals(Object obj) {
+        if (obj instanceof ScilabBoolean) {
+            return Arrays.deepEquals(this.getData(), ((ScilabBoolean)obj).getData());
+        } else {
+            return false;
+        }
+    }
 
     /**
      * Display the matrix

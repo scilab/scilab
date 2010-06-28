@@ -12,6 +12,8 @@
 
 package org.scilab.modules.types.scilabTypes;
 
+import java.util.Arrays;
+
 /**
  * This class provides a wrapping on the Scilab Integer datatype
  */
@@ -245,6 +247,17 @@ public class ScilabInteger implements ScilabType {
     	return (data == null);
     }
 	
+    /**
+	 * @see org.scilab.modules.types.scilabTypes.ScilabType#equals(Object)
+     */
+    public boolean equals(Object obj) {
+        if (obj instanceof ScilabInteger) {
+            return Arrays.deepEquals(this.getData(), ((ScilabInteger)obj).getData());
+        } else {
+            return false;
+        }
+    }
+
     /**
      * @return the pretty-printed values 
      * @see java.lang.Object#toString()

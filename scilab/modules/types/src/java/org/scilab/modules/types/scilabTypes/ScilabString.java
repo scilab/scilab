@@ -12,6 +12,8 @@
 
 package org.scilab.modules.types.scilabTypes;
 
+import java.util.Arrays;
+
 /**
  * This class provides a wrapping on the Scilab String datatype
  */
@@ -111,6 +113,17 @@ public class ScilabString implements ScilabType {
     	return (data == null);
     }
     
+    /**
+	 * @see org.scilab.modules.types.scilabTypes.ScilabType#equals(Object)
+     */
+    public boolean equals(Object obj) {
+        if (obj instanceof ScilabString) {
+            return Arrays.deepEquals(this.getData(), ((ScilabString)obj).getData());
+        } else {
+            return false;
+        }
+    }
+
 	/**
 	 * @return a Scilab-like String representation of the data.
 	 * @see java.lang.Object#toString()

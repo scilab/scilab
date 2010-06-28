@@ -40,6 +40,14 @@ public interface ScilabType extends Serializable, Cloneable {
 	 */
 	boolean isEmpty();
 	
+
+    /**
+     * Compare if obj is the same object or not
+     * @param obj the object we want to compare
+     * @return true if the two objects are equals, false otherwise
+     */
+    public boolean equals(Object obj);
+
     /**
      * Display the data
      *
