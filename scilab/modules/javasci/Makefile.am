@@ -36,7 +36,9 @@ src/c/fix.c \
 src/c/javasci_SciDoubleArray.c \
 src/c/javasci_Scilab.c \
 src/c/javasci_SciBooleanArray.c \
-src/c/javasci_SciIntegerArray.c
+src/c/javasci_SciIntegerArray.c \
+src/jni/call_scilab_wrap.c \
+src/c/javasci2_helper.c
 
 pkglib_LTLIBRARIES = libjavasci.la
 
@@ -102,6 +104,14 @@ tests/unit_tests/Strings1.dia.ref \
 tests/unit_tests/Strings1.java \
 tests/unit_tests/Strings2.java \
 tests/unit_tests/Strings2.dia.ref
+
+BUILT_SOURCES=
+if SWIG
+BUILT_SOURCES+=swig
+endif
+
+#### SWIG Declaration ####
+SWIG_WRAPPERS = src/jni/Call_Scilab.i
 
 USEANT=1
 
