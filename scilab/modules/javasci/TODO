@@ -1,0 +1,35 @@
+* if the function fails, .exec() should return false
+
+* /usr/share/swig1.3/java/arrays_java.i => factorise typemaps declarations
+
+* check that a java [][] is consistent
+
+* move call_scilab.i into the right module (and helper)
+
+* handle of complex data type
+
+* handle of other data type
+
+* detection of SCI
+
+* 
+multiple access to the engine fails
+
+    @Test(sequential = true)
+    public void typeMatrixTest() throws NullPointerException {
+        sci = new Scilab();
+        sci.open();
+        sci.exec("a = 2*%pi");
+        assert sci.getVariableType("a") == ScilabTypeEnum.sci_matrix;
+        sci.close();
+    }
+
+    @Test(sequential = true)
+    public void typeStringTest() throws NullPointerException {
+        sci = new Scilab();
+        sci.open();
+        sci.exec("b = 'plop'");
+        assert sci.getVariableType("b") == ScilabTypeEnum.sci_strings;
+        sci.close();
+    }
+
