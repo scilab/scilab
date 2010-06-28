@@ -18,8 +18,6 @@ import org.scilab.modules.types.scilabTypes.ScilabTypeEnum;
 
 public class testTypes {
 
-    public final static String myString = "myString";
-	private final static String tempDir = System.getProperty("java.io.tmpdir");
     private Scilab sci;
 
     @Test
