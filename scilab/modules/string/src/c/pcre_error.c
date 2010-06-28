@@ -18,6 +18,8 @@
 #include "pcre_private.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "pcre_error.h"
+
 void pcre_error(char *fname,int errorCode){
 	switch (errorCode)
 		{

@@ -34,7 +34,6 @@ sci_gateway/c/sci_ascii.c \
 sci_gateway/c/sci_code2str.c \
 sci_gateway/c/sci_convstr.c \
 sci_gateway/c/sci_emptystr.c \
-sci_gateway/c/sci_grep.c \
 sci_gateway/c/sci_length.c \
 sci_gateway/c/sci_part.c \
 sci_gateway/c/sci_str2code.c \
@@ -61,7 +60,9 @@ sci_gateway/c/sci_strtod.c \
 sci_gateway/c/sci_strtok.c \
 sci_gateway/c/sci_regexp.c
 
-
+GATEWAY_CPP_SOURCES = \
+	sci_gateway/cpp/sci_grep.cpp \
+	sci_gateway/cpp/string_gw.cpp
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_string.f \
 sci_gateway/fortran/strops.f
@@ -75,11 +76,28 @@ libscistring_la_CFLAGS= $(PCRE_CFLAGS) \
 	-I$(top_srcdir)/modules/localization/includes \
 	-I$(top_srcdir)/modules/output_stream/includes
 
+libscistring_la_CPPFLAGS= $(PCRE_CFLAGS) \
+	-I$(srcdir)/src/c \
+	-I$(srcdir)/includes/ \
+	-I$(top_srcdir)/libs/MALLOC/includes/ \
+	-I$(top_srcdir)/modules/operations/includes \
+	-I$(top_srcdir)/modules/api_scilab/includes \
+	-I$(top_srcdir)/modules/localization/includes \
+	-I$(top_srcdir)/modules/output_stream/includes \
+	-I$(top_srcdir)/modules/functions_manager/includes \
+	-I$(top_srcdir)/modules/symbol/includes \
+	-I$(top_srcdir)/modules/abstractSyntaxTree/includes \
+	-I$(top_srcdir)/modules/elementary_funcions/includes \
+	-I$(top_srcdir)/modules//includes \
+	-I$(top_srcdir)/modules/core/includes \
+	-I$(top_srcdir)/modules/types/includes
+
+
 pkglib_LTLIBRARIES = libscistring.la
 
 libscistring_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(PCRE_LIBS)
 
-libscistring_la_SOURCES = $(STRING_C_SOURCES) $(STRING_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscistring_la_SOURCES = $(STRING_C_SOURCES) $(STRING_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_CPP_SOURCES)
 
 
 # For the code check (splint)

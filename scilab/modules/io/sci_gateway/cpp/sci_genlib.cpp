@@ -53,7 +53,7 @@ using namespace types;
 Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
 	char pstParseFile[PATH_MAX + FILENAME_MAX];
-	char pstVerbose[4096];
+	char pstVerbose[65535];
 
     int iNbFile	            = 0;
 	char *pstParsePath      = NULL;
@@ -120,7 +120,7 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
     if(bVerbose)
     {
 #ifdef _MSC_VER
-        sprintf_s(pstVerbose, 4096, _("-- Creation of [%s] (Macros) --\n"), pstLibName);
+        sprintf_s(pstVerbose, 65535, _("-- Creation of [%s] (Macros) --\n"), pstLibName);
 #else
         sprintf(pstVerbose, _("-- Creation of [%s] (Macros) --\n"), pstLibName);
 #endif
@@ -136,7 +136,7 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
     if(pWriter == NULL)
     {
 #ifdef _MSC_VER
-        sprintf_s(pstVerbose, 4096, _("%s: Cannot open file ''%s''.\n"), "genlib", pstParseFile);
+        sprintf_s(pstVerbose, 65535, _("%s: Cannot open file ''%s''.\n"), "genlib", pstParseFile);
 #else
         sprintf(pstVerbose, _("%s: Cannot open file ''%s''.\n"), pstParseFile);
 #endif
@@ -163,7 +163,7 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
             if(parser.getExitStatus() !=  Parser::Succeded)
             {
 #ifdef _MSC_VER
-                sprintf_s(pstVerbose, 4096, _("%s: Warning: Error in file %s : %s. File ignored\n"), "genlib", pstPath[k], parser.getErrorMessage());
+                sprintf_s(pstVerbose, 65535, _("%s: Warning: Error in file %s : %s. File ignored\n"), "genlib", pstPath[k], parser.getErrorMessage());
 #else
                 sprintf(pstVerbose, _("%s: Warning: Error in file %s : %s. File ignored\n"), "genlib", pstPath[k], parser.getErrorMessage());
 #endif
@@ -183,7 +183,7 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
 					if(AddMacroToXML(pWriter, pair<string, string>(string(pFD->name_get()), string(pstPath[k]))) == false)
                     {
 #ifdef _MSC_VER
-                        sprintf_s(pstVerbose, 4096, _("%s: Warning: %s information cannot be added to file %s. File ignored\n"), "genlib", pFD->name_get() , pstPath[k]);
+                        sprintf_s(pstVerbose, 65535, _("%s: Warning: %s information cannot be added to file %s. File ignored\n"), "genlib", pFD->name_get() , pstPath[k]);
 #else
                         sprintf(pstVerbose, _("%s: Warning: Error in file %s : %s. File ignored\n"), "genlib", pstPath[k], parser.getErrorMessage());
 #endif

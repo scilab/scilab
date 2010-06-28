@@ -25,5 +25,6 @@
 #include "../../fileio/includes/fileio_gw.hxx"
 #include "../../gui/includes/gui_gw.hxx"
 #include "../../time/includes/time_gw.hxx"
+#include "../../string/includes/string_gw.hxx"
 
 #endif /* !__MODULE_DECLARATION_HXX__ */

@@ -27,4 +27,5 @@
     <module name="gui" activate="yes"/>
     <module name="time" activate="yes"/>
     <module name="overloading" activate="yes"/>
+    <module name="string" activate="yes"/>
 </modules>
