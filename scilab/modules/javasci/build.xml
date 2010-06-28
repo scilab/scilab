@@ -49,7 +49,7 @@
                 <javac
                         srcdir="${examples.src.dir}"
                         destdir="${examples.classes.dir}"
-                        classpath="jar/${library.javasci.name}"
+                        classpath="${library.javasci.dir}/${library.javasci.name}"
                         deprecation="on"
                         debug="off"
                         verbose="off"
