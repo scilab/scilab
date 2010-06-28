@@ -12,7 +12,7 @@
 
 /* Call_Scilab.i */
 /**
- * Windows: swig -java -package org.scilab.modules.javasci -outdir ../java/org/scilab/modules/javasci/ Call_Scilab.i 
+ * Windows: swig -java -package org.scilab.modules.javasci -outdir ../java/org/scilab/modules/javasci/ call_scilab.i 
  * Other: Use the option --enable-build-swig to the configure
 */
 
@@ -27,6 +27,7 @@
 #include "../../../core/includes/sci_types.h"
 %}
 %include "../../../jvm/src/jni/scilab_typemaps.i"
+%include "call_scilab_java_typemaps.i"
 //%include "../../../core/includes/sci_types.h"
 %import "../../../types/src/jni/sci_types.i"
 
@@ -107,8 +108,21 @@ int GetLastErrorCode(void);
 
 sci_types getVariableType(char *varname);
 
+//%include "arrays_java.i";
+//int putDouble(double **variable, int, int);
 
-int putScilabDouble(char *varname, double **variable);
+//double** getDouble(char *varname);
 
-int putScilabInteger(char *varname, int *variable[]);
+//int putInteger(char *varname, int variable[][]);
 
+//int putDouble(char * variableName, double *variable, int nbRow, int nbCol);
+
+//int putInteger(char * variableName, int **variable, int nbRow, int nbCol);
+
+double * getDouble(char *variableName, int *nbRow, int *nbCol);
+
+//%include "arrays_java.i";
+//%include "typemaps.i";
+%include "call_scilab_java_typemaps_put.i"
+
+int putDouble(char * variableName, double variable[], int nbRow, int nbCol);

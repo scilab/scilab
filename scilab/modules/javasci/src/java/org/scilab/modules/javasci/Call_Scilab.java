@@ -52,12 +52,12 @@ public class Call_Scilab {
     return ScilabTypeEnum.swigToEnum(Call_ScilabJNI.getVariableType(varname));
   }
 
-  public static int putScilabDouble(String varname, SWIGTYPE_p_p_double variable) {
-    return Call_ScilabJNI.putScilabDouble(varname, SWIGTYPE_p_p_double.getCPtr(variable));
+  public static double[][] getDouble(String variableName) {
+    return Call_ScilabJNI.getDouble(variableName);
   }
 
-  public static int putScilabInteger(String varname, SWIGTYPE_p_p_int variable) {
-    return Call_ScilabJNI.putScilabInteger(varname, SWIGTYPE_p_p_int.getCPtr(variable));
+  public static int putDouble(String variableName, double[][] variable) {
+    return Call_ScilabJNI.putDouble(variableName, variable);
   }
 
 }

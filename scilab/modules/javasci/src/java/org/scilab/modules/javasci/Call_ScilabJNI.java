@@ -45,6 +45,6 @@ class Call_ScilabJNI {
   public final static native int ScilabHaveAGraph();
   public final static native int GetLastErrorCode();
   public final static native int getVariableType(String jarg1);
-  public final static native int putScilabDouble(String jarg1, long jarg2);
-  public final static native int putScilabInteger(String jarg1, long jarg2);
+  public final static native double[][] getDouble(String jarg1);
+  public final static native int putDouble(String jarg1, double[][] jarg2);
 }
