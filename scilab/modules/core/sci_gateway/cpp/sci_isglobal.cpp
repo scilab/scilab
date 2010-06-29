@@ -23,21 +23,21 @@ Function::ReturnValue sci_isglobal(types::typed_list &in, int _iRetCount, types:
 
     if(in.size() != 1)
     {
-        Scierror(77,_("%s: Wrong number of input argument(s): %d expected.\n"), "isgloba", 1);
+        Scierror(77,_("%s: Wrong number of input argument(s): %d expected.\n"), "isglobal", 1);
         return Function::Error;
     }
     else
     {
         if(in[0]->getType() != InternalType::RealString)
         {
-            Scierror(999,_("%s: Wrong type for input argument #%d: Single string expected.\n"), "isgloba", 1);
+            Scierror(999,_("%s: Wrong type for input argument #%d: Single string expected.\n"), "isglobal", 1);
             return Function::Error;
         }
 
         String* pS = in[0]->getAsString();
         if(pS->size_get() != 1)
         {
-            Scierror(999,_("%s: Wrong type for input argument #%d: Single string expected.\n"), "isgloba", 1);
+            Scierror(999,_("%s: Wrong type for input argument #%d: Single string expected.\n"), "isglobal", 1);
             return Function::Error;
         }
 

@@ -193,21 +193,21 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/cpp/banner.cpp src/cpp/overload.cpp \
 	sci_gateway/c/sci_stacksize.c sci_gateway/c/sci_resume.c \
 	sci_gateway/c/sci_mtlb_mode.c sci_gateway/c/sci_where.c \
-	sci_gateway/c/sci_errcatch.c sci_gateway/c/sci_getos.c \
-	sci_gateway/c/sci_format.c sci_gateway/c/sci_getmemory.c \
-	sci_gateway/c/sci_havewindow.c sci_gateway/c/sci_delbpt.c \
-	sci_gateway/c/sci_macr2lst.c sci_gateway/c/sci_who.c \
-	sci_gateway/c/sci_errclear.c sci_gateway/c/sci_funcprot.c \
-	sci_gateway/c/sci_newfun.c sci_gateway/c/sci_warning.c \
-	sci_gateway/c/sci_dispbpt.c sci_gateway/c/sci_intppty.c \
-	sci_gateway/c/sci_ieee.c sci_gateway/c/sci_gstacksize.c \
-	sci_gateway/c/sci_lasterror.c sci_gateway/c/sci_funptr.c \
-	sci_gateway/c/sci_return.c sci_gateway/c/sci_getmd5.c \
-	sci_gateway/c/sci_clearfun.c sci_gateway/c/sci_setbpt.c \
-	sci_gateway/c/sci_what.c sci_gateway/c/sci_predef.c \
-	sci_gateway/c/sci_type.c sci_gateway/c/sci_typename.c \
-	sci_gateway/c/sci_mode.c sci_gateway/c/sci_macr2tree.c \
-	sci_gateway/c/sci_iserror.c sci_gateway/c/sci_getversion.c \
+	sci_gateway/c/sci_errcatch.c sci_gateway/c/sci_format.c \
+	sci_gateway/c/sci_getmemory.c sci_gateway/c/sci_havewindow.c \
+	sci_gateway/c/sci_delbpt.c sci_gateway/c/sci_macr2lst.c \
+	sci_gateway/c/sci_who.c sci_gateway/c/sci_errclear.c \
+	sci_gateway/c/sci_funcprot.c sci_gateway/c/sci_newfun.c \
+	sci_gateway/c/sci_warning.c sci_gateway/c/sci_dispbpt.c \
+	sci_gateway/c/sci_intppty.c sci_gateway/c/sci_ieee.c \
+	sci_gateway/c/sci_gstacksize.c sci_gateway/c/sci_lasterror.c \
+	sci_gateway/c/sci_funptr.c sci_gateway/c/sci_return.c \
+	sci_gateway/c/sci_getmd5.c sci_gateway/c/sci_clearfun.c \
+	sci_gateway/c/sci_setbpt.c sci_gateway/c/sci_what.c \
+	sci_gateway/c/sci_predef.c sci_gateway/c/sci_type.c \
+	sci_gateway/c/sci_typename.c sci_gateway/c/sci_mode.c \
+	sci_gateway/c/sci_macr2tree.c sci_gateway/c/sci_iserror.c \
+	sci_gateway/c/sci_getversion.c \
 	sci_gateway/c/sci_getdebuginfo.c sci_gateway/c/sci_debug.c \
 	sci_gateway/c/gw_core.c sci_gateway/c/gw_user.c \
 	sci_gateway/c/gw_user2.c sci_gateway/c/sci_error.c \
@@ -235,7 +235,7 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	sci_gateway/cpp/sci_argn.cpp \
 	sci_gateway/cpp/sci_clearglobal.cpp \
 	sci_gateway/cpp/sci_global.cpp \
-	sci_gateway/cpp/sci_isglobal.cpp \
+	sci_gateway/cpp/sci_isglobal.cpp sci_gateway/cpp/sci_getos.cpp \
 	sci_gateway/cpp/sci_exists.cpp
 @USE_DYNAMIC_STACK_TRUE@am__objects_1 = libscicore_la-scimem64.lo
 am__objects_2 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
@@ -309,21 +309,20 @@ am__objects_5 = libscicore_la-core_gw.lo \
 am__objects_6 = libscicore_la-sci_stacksize.lo \
 	libscicore_la-sci_resume.lo libscicore_la-sci_mtlb_mode.lo \
 	libscicore_la-sci_where.lo libscicore_la-sci_errcatch.lo \
-	libscicore_la-sci_getos.lo libscicore_la-sci_format.lo \
-	libscicore_la-sci_getmemory.lo libscicore_la-sci_havewindow.lo \
-	libscicore_la-sci_delbpt.lo libscicore_la-sci_macr2lst.lo \
-	libscicore_la-sci_who.lo libscicore_la-sci_errclear.lo \
-	libscicore_la-sci_funcprot.lo libscicore_la-sci_newfun.lo \
-	libscicore_la-sci_warning.lo libscicore_la-sci_dispbpt.lo \
-	libscicore_la-sci_intppty.lo libscicore_la-sci_ieee.lo \
-	libscicore_la-sci_gstacksize.lo libscicore_la-sci_lasterror.lo \
-	libscicore_la-sci_funptr.lo libscicore_la-sci_return.lo \
-	libscicore_la-sci_getmd5.lo libscicore_la-sci_clearfun.lo \
-	libscicore_la-sci_setbpt.lo libscicore_la-sci_what.lo \
-	libscicore_la-sci_predef.lo libscicore_la-sci_type.lo \
-	libscicore_la-sci_typename.lo libscicore_la-sci_mode.lo \
-	libscicore_la-sci_macr2tree.lo libscicore_la-sci_iserror.lo \
-	libscicore_la-sci_getversion.lo \
+	libscicore_la-sci_format.lo libscicore_la-sci_getmemory.lo \
+	libscicore_la-sci_havewindow.lo libscicore_la-sci_delbpt.lo \
+	libscicore_la-sci_macr2lst.lo libscicore_la-sci_who.lo \
+	libscicore_la-sci_errclear.lo libscicore_la-sci_funcprot.lo \
+	libscicore_la-sci_newfun.lo libscicore_la-sci_warning.lo \
+	libscicore_la-sci_dispbpt.lo libscicore_la-sci_intppty.lo \
+	libscicore_la-sci_ieee.lo libscicore_la-sci_gstacksize.lo \
+	libscicore_la-sci_lasterror.lo libscicore_la-sci_funptr.lo \
+	libscicore_la-sci_return.lo libscicore_la-sci_getmd5.lo \
+	libscicore_la-sci_clearfun.lo libscicore_la-sci_setbpt.lo \
+	libscicore_la-sci_what.lo libscicore_la-sci_predef.lo \
+	libscicore_la-sci_type.lo libscicore_la-sci_typename.lo \
+	libscicore_la-sci_mode.lo libscicore_la-sci_macr2tree.lo \
+	libscicore_la-sci_iserror.lo libscicore_la-sci_getversion.lo \
 	libscicore_la-sci_getdebuginfo.lo libscicore_la-sci_debug.lo \
 	libscicore_la-gw_core.lo libscicore_la-gw_user.lo \
 	libscicore_la-gw_user2.lo libscicore_la-sci_error.lo \
@@ -341,7 +340,7 @@ am__objects_8 = libscicore_la-sci_getmodules.lo \
 	libscicore_la-sci_quit.lo libscicore_la-sci_exit.lo \
 	libscicore_la-sci_argn.lo libscicore_la-sci_clearglobal.lo \
 	libscicore_la-sci_global.lo libscicore_la-sci_isglobal.lo \
-	libscicore_la-sci_exists.lo
+	libscicore_la-sci_getos.lo libscicore_la-sci_exists.lo
 am_libscicore_la_OBJECTS = $(am__objects_2) $(am__objects_4) \
 	$(am__objects_5) $(am__objects_6) $(am__objects_7) \
 	$(am__objects_8)
@@ -713,7 +712,6 @@ sci_gateway/c/sci_resume.c \
 sci_gateway/c/sci_mtlb_mode.c \
 sci_gateway/c/sci_where.c \
 sci_gateway/c/sci_errcatch.c \
-sci_gateway/c/sci_getos.c \
 sci_gateway/c/sci_format.c \
 sci_gateway/c/sci_getmemory.c \
 sci_gateway/c/sci_havewindow.c \
@@ -780,6 +778,7 @@ GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_getmodules.cpp \
 						sci_gateway/cpp/sci_clearglobal.cpp \
 						sci_gateway/cpp/sci_global.cpp \
 						sci_gateway/cpp/sci_isglobal.cpp \
+						sci_gateway/cpp/sci_getos.cpp \
 						sci_gateway/cpp/sci_exists.cpp
 
 libscicore_la_CFLAGS = -I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
@@ -1735,13 +1734,6 @@ libscicore_la-sci_errcatch.lo: sci_gateway/c/sci_errcatch.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_errcatch.lo `test -f 'sci_gateway/c/sci_errcatch.c' || echo '$(srcdir)/'`sci_gateway/c/sci_errcatch.c
 
-libscicore_la-sci_getos.lo: sci_gateway/c/sci_getos.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_getos.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_getos.Tpo -c -o libscicore_la-sci_getos.lo `test -f 'sci_gateway/c/sci_getos.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getos.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-sci_getos.Tpo $(DEPDIR)/libscicore_la-sci_getos.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_getos.c' object='libscicore_la-sci_getos.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_getos.lo `test -f 'sci_gateway/c/sci_getos.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getos.c
-
 libscicore_la-sci_format.lo: sci_gateway/c/sci_format.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_format.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_format.Tpo -c -o libscicore_la-sci_format.lo `test -f 'sci_gateway/c/sci_format.c' || echo '$(srcdir)/'`sci_gateway/c/sci_format.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-sci_format.Tpo $(DEPDIR)/libscicore_la-sci_format.Plo
@@ -2154,6 +2146,13 @@ libscicore_la-sci_isglobal.lo: sci_gateway/cpp/sci_isglobal.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_isglobal.cpp' object='libscicore_la-sci_isglobal.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicore_la-sci_isglobal.lo `test -f 'sci_gateway/cpp/sci_isglobal.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_isglobal.cpp
+
+libscicore_la-sci_getos.lo: sci_gateway/cpp/sci_getos.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicore_la-sci_getos.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_getos.Tpo -c -o libscicore_la-sci_getos.lo `test -f 'sci_gateway/cpp/sci_getos.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_getos.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-sci_getos.Tpo $(DEPDIR)/libscicore_la-sci_getos.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_getos.cpp' object='libscicore_la-sci_getos.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicore_la-sci_getos.lo `test -f 'sci_gateway/cpp/sci_getos.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_getos.cpp
 
 libscicore_la-sci_exists.lo: sci_gateway/cpp/sci_exists.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicore_la-sci_exists.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_exists.Tpo -c -o libscicore_la-sci_exists.lo `test -f 'sci_gateway/cpp/sci_exists.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_exists.cpp

@@ -203,7 +203,6 @@ sci_gateway/c/sci_resume.c \
 sci_gateway/c/sci_mtlb_mode.c \
 sci_gateway/c/sci_where.c \
 sci_gateway/c/sci_errcatch.c \
-sci_gateway/c/sci_getos.c \
 sci_gateway/c/sci_format.c \
 sci_gateway/c/sci_getmemory.c \
 sci_gateway/c/sci_havewindow.c \
@@ -270,6 +269,7 @@ GATEWAY_CPP_SOURCES = 	sci_gateway/cpp/sci_getmodules.cpp \
 						sci_gateway/cpp/sci_clearglobal.cpp \
 						sci_gateway/cpp/sci_global.cpp \
 						sci_gateway/cpp/sci_isglobal.cpp \
+						sci_gateway/cpp/sci_getos.cpp \
 						sci_gateway/cpp/sci_exists.cpp
 
 libscicore_la_CFLAGS = -I$(srcdir)/includes/ \

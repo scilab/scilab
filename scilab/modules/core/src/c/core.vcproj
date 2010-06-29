@@ -665,10 +665,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_getos.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_getscilabmode.c"
 				>
 			</File>

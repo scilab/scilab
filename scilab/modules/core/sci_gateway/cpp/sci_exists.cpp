@@ -27,7 +27,7 @@ enum ScopeRange {
     Local,
     NoLocal,
     All,
-    Unknown
+    UnknownRange
 };
 
 enum PrivateResult {
@@ -51,7 +51,7 @@ static ScopeRange getScopeFromOption(const char *_psScope)
         return NoLocal;
     }
 
-    return Unknown;
+    return UnknownRange;
 }
 
 static PrivateResult sci_existsOrIsdef(types::typed_list &in, const char *fname)

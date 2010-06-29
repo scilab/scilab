@@ -62,7 +62,7 @@ static gw_generic_table Tab[]=
 {C2F(sci_lasterror),"lasterror"},
 {NULL, ""}, //getversion
 {C2F(sci_macr2tree),"macr2tree"},
-{C2F(sci_getos),"getos"},
+{NULL, ""}, //getos
 {NULL, ""}, //banner
 {C2F(sci_getmemory),"getmemory"},
 {C2F(sci_getmd5),"getmd5"},

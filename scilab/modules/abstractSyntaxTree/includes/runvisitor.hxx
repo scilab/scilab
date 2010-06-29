@@ -976,6 +976,7 @@ namespace ast
 
                 if(execMe.result_get() != NULL)
                 {
+                    bool bImplicitCall = false;
                     if(execMe.result_get()->getAsCallable())//to manage call without ()
                     {
                         Callable *pCall = execMe.result_get()->getAsCallable();
@@ -997,11 +998,20 @@ namespace ast
                                 }
                             }
 
-                            for(int i = 0 ; i < static_cast<int>(out.size()) ; i++)
+                            if(out.size() == 1)
                             {
-                                out[i]->DecreaseRef();
-                                execMe.result_set(i, out[i]);
+                                out[0]->DecreaseRef();
+                                execMe.result_set(out[0]);
                             }
+                            else
+                            {
+                                for(int i = 0 ; i < static_cast<int>(out.size()) ; i++)
+                                {
+                                    out[i]->DecreaseRef();
+                                    execMe.result_set(i, out[i]);
+                                }
+                            }
+                            bImplicitCall = true;
                         }
                         else if(Ret == Callable::Error)
                         {
@@ -1019,7 +1029,7 @@ namespace ast
 
                     SimpleVar* pVar = dynamic_cast<SimpleVar*>(*itExp);
                     //don't output Silplevar and empty result
-                    if(execMe.result_get() != NULL && pVar == NULL)
+                    if(execMe.result_get() != NULL && (pVar == NULL || bImplicitCall))
                     {
                         symbol::Context::getInstance()->put("ans", *execMe.result_get());
                         if((*itExp)->is_verbose())
