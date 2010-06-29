@@ -52,7 +52,7 @@ public class BlockModelElement extends AbstractElement{
 		// TODO Auto-generated method stub
 		base.setSimulationFunctionName(patternElement.decodeFunctionName(data));
 		base.setSimulationFunctionType(patternElement.decodeFunctionType(data));
-		
+		base.setInterfaceFunctionName(patternElement.decodeInterfaceFunctionName(data));
 	}
 
 	private void fillParameters(BasicBlock base) {

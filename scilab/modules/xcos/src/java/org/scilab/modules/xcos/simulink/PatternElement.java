@@ -12,6 +12,7 @@
 
 package org.scilab.modules.xcos.simulink;
 import java.io.File;
+import java.io.IOException;
 import java.util.Iterator;
 
 import javax.xml.bind.JAXBContext;
@@ -58,29 +59,13 @@ public class PatternElement {
 	/*
 	 * Copy the base patternsheet into the user dir when it doesn't exist.
 	 */
-	if (!userPatternSheet.exists()) {
-		final String sciPath = ScilabConstants.SCI.getAbsolutePath();
-
-		File baseStyleSheet = new File(sciPath + "/modules/xcos/etc/" + file);
-		FileUtils.forceCopy(baseStyleSheet, userPatternSheet);
-	}
+		if (!userPatternSheet.exists()) {
+			final String sciPath = ScilabConstants.SCI.getAbsolutePath();
 		
-	try{
-		/*
-		 * Creating Java JAXBContext from compiled xsd schema of compatibility patterns
-		 */
-		JAXBContext jc = JAXBContext.newInstance( "org.scilab.modules.xcos.simulink.patterns" );
-		Unmarshaller u = jc.createUnmarshaller();
-		//FIXME: now you have to manually copy compatibility pattern to SCIHOME
-		JAXBElement<BlockPalette> element = u.unmarshal(
-				new StreamSource(ScilabConstants.SCIHOME + "/simulinkImportBlocks.xml"),
-				BlockPalette.class );
-		blocks = element.getValue();
-	} catch( UnmarshalException ue ) {
-		LogFactory.getLog(PatternElement.class).error(ue);
-	} catch( JAXBException je ) {
-		LogFactory.getLog(PatternElement.class).error(je);
-	}
+			File baseStyleSheet = new File(sciPath + "/modules/xcos/etc/" + file);
+			FileUtils.forceCopy(baseStyleSheet, userPatternSheet);
+		}
+		bindPatterns();
 	}
 	/*
 	 * block that compatibility patterns are being processed for
@@ -104,6 +89,24 @@ public class PatternElement {
 			File baseStyleSheet = new File(sciPath + "/modules/xcos/etc/" + file);
 			FileUtils.forceCopy(baseStyleSheet, userPatternSheet);
 		}
+		bindPatterns();
+		Iterator<Block> blockIter = blocks.getBlock().iterator();
+		while (blockIter.hasNext()){
+			Block block = blockIter.next();
+			if(block.getSim().contentEquals(simulinkBlockName)){
+				currentBlock = block;
+			}
+			if(block.getSim().contentEquals("GeneralParameters")){
+				generalParameters = block;
+			}
+		}
+		if(LOG.isTraceEnabled()){
+			LOG.trace(currentBlock.getSim());
+			LOG.trace(currentBlock.getXcos());
+		}
+	}
+	
+	private void bindPatterns(){
 		try{
 			JAXBContext jc = JAXBContext.newInstance( "org.scilab.modules.xcos.simulink.patterns" );
 			Unmarshaller u = jc.createUnmarshaller();
@@ -116,19 +119,6 @@ public class PatternElement {
 			LogFactory.getLog(PatternElement.class).error(ue);
 		} catch( JAXBException je ) {
 			LogFactory.getLog(PatternElement.class).error(je);
-		}
-		Iterator<Block> blockIter = blocks.getBlock().iterator();
-		while (blockIter.hasNext()){
-			Block block = blockIter.next();
-			if(LOG.isTraceEnabled()){
-				LOG.trace(block.getSim());
-			}
-			if(block.getSim().contentEquals(simulinkBlockName)){
-				currentBlock = block;
-			}
-			if(block.getSim().contentEquals("GeneralParameters")){
-				generalParameters = block;
-			}
 		}
 	}
 	
@@ -319,6 +309,9 @@ public class PatternElement {
 				}
 			}
 		}
+		else {
+			LOG.trace("FunctionName: wrong block!");
+		}
 		return null;
 	}
 	/**
@@ -347,6 +340,9 @@ public class PatternElement {
 					}
 				}
 			}
+		}
+		else {
+			LOG.trace("FunctionType: wrong block!");
 		}
 		return 0;
 	}
@@ -386,6 +382,9 @@ public class PatternElement {
 				}
 			}
 		}
+		else {
+			LOG.trace("state: wrong block!");
+		}
 		return null;
 	}
 
@@ -417,13 +416,16 @@ public class PatternElement {
 						
 						stateData[x][y] = Double.parseDouble(data.getParameter(valueMap.getSimName()));
 						if(LOG.isTraceEnabled()){
-							LOG.trace(currentBlock.getXcos() + "state:");
+							LOG.trace(currentBlock.getXcos() + "dstate:");
 							LOG.trace(stateData[x][y]);
 						}
 					}
 					return new ScilabDouble(stateData);
 				}
 			}
+		}
+		else {
+			LOG.trace("dstate: wrong block!");
 		}
 		return null;
 	}
@@ -449,6 +451,9 @@ public class PatternElement {
 					return simpleParam.getXcos();
 				}
 			}
+		}
+		else {
+			LOG.trace("blocktype: wrong block!");
 		}
 		return null;
 	}
@@ -477,6 +482,9 @@ public class PatternElement {
 					}
 				}
 			}
+		}
+		else {
+			LOG.trace("nzcross: wrong block!");
 		}
 		return null;
 	}
@@ -507,19 +515,30 @@ public class PatternElement {
 						 * \\W is used to strip string from non-word characters 
 						 * \\s+ to split string around whitespaces
 						 */
-						String[] position = valueMap.getIndex().replaceAll("\\W", " ").trim().split("\\s+");
-						int x = Integer.parseInt(position[0]);
-						int y = Integer.parseInt(position[1]);
-						
-						rparData[x][y] = Double.parseDouble(data.getParameter(valueMap.getSimName()));
-						if(LOG.isTraceEnabled()){
-							LOG.trace(currentBlock.getXcos() + "rpar:");
-							LOG.trace(rparData[x][y]);
+						if(data.getParameter(valueMap.getSimName()).equals("inf")) {
+							rparData[0][0] = 0.0;
+						}
+						else if(data.getParameter(valueMap.getSimName()).equals("-inf")) {
+							rparData[0][0] = 0.0;
+						}
+						else{
+							String[] position = valueMap.getIndex().replaceAll("\\W", " ").trim().split("\\s+");
+							int x = Integer.parseInt(position[0]);
+							int y = Integer.parseInt(position[1]);
+							rparData[x][y] = Double.parseDouble(data.getParameter(valueMap.getSimName()));
+							if(LOG.isTraceEnabled()){
+								LOG.trace(currentBlock.getXcos() + "rpar:");
+								LOG.trace(rparData[x][y]);
+							}
+							
 						}
 					}
 					return new ScilabDouble(rparData);
 				}
 			}
+		}
+		else {
+			LOG.trace("rpar: wrong block!");
 		}
 		return null;
 	}
@@ -552,13 +571,16 @@ public class PatternElement {
 						
 						iparData[x][y] = Integer.parseInt(data.getParameter(valueMap.getSimName()));
 						if(LOG.isTraceEnabled()){
-							LOG.trace(currentBlock.getXcos() + "rpar:");
+							LOG.trace(currentBlock.getXcos() + "ipar:");
 							LOG.trace(iparData[x][y]);
 						}
 					}
 					return new ScilabInteger(iparData, false);
 				}
 			}
+		}
+		else {
+			LOG.trace("ipar: wrong block!");
 		}
 		return null;
 	}
@@ -570,6 +592,13 @@ public class PatternElement {
 
 	public ScilabType decodeEquations(SimulinkBlock data) {
 		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String decodeInterfaceFunctionName(SimulinkBlock data) {
+		if(currentBlock.getSim().equals(data.getName())){
+			return currentBlock.getXcos();
+		}
 		return null;
 	}
 }
