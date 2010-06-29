@@ -436,6 +436,8 @@ Compilation:
 * Option --enable-compilation-tests added to the configure. With this option,
   if TestNG has been found, tests will be launched at compilation time.
 
+* Added /usr/lib to JNI search path. Gluegen-rt needed it on openSUSE.
+
 * bug 4300 fixed - Moving Command Queue management to core.
 
 * bug 6432 fixed - Checkstyle disabled on SWIG (Java/JNI) generated files
