@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
+ * Copyright (C) 2009-2009 - DIGITEO - Antoine ELIAS <antoine.elias@scilab.org>
+ * Copyright (C) 2009-2010 - DIGITEO - Clément DAVID <clement.david@scilab.org>
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,18 +13,8 @@
 
 package org.scilab.modules.xcos.block.io;
 
-import org.scilab.modules.types.scilabTypes.ScilabDouble;
-import org.scilab.modules.types.scilabTypes.ScilabType;
-
-import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.utils.XcosConstants;
-import org.scilab.modules.xcos.utils.XcosEvent;
-
-import com.mxgraph.util.mxEventObject;
-
 /**
- * @author Antoine ELIAS
- *
+ * Implement an explicit input point of a {@link org.scilab.modules.xcos.block.SuperBlock}.
  */
 public final class ExplicitInBlock extends ContextUpdate {
 
@@ -53,29 +44,4 @@ public final class ExplicitInBlock extends ContextUpdate {
 		setInterfaceFunctionName("IN_f");
 		setSimulationFunctionName("input");
 	}
-    
-    public void setExprs(ScilabType exprs) {
-	super.setExprs(exprs);
-    }
-
-    public void updateBlockSettings(BasicBlock modifiedBlock) {
-
-	double oldValue = ((ScilabDouble) getIntegerParameters()).getRealPart()[0][0];
-	super.updateBlockSettings(modifiedBlock);
-	double newValue = ((ScilabDouble) getIntegerParameters()).getRealPart()[0][0];
-
-	if (oldValue != newValue) {
-	    getParentDiagram().fireEvent(new mxEventObject(XcosEvent.IN_EXPLICIT_VALUE_UPDATED, XcosConstants.EVENT_CHANGE_OLD,
-		    oldValue, XcosConstants.EVENT_CHANGE_NEW, newValue));
-	}
-    }
-
-    public void setIntegerParameters(ScilabType integerParameters) {
-	super.setIntegerParameters(integerParameters);
-	setValue((int) ((ScilabDouble) getIntegerParameters()).getRealPart()[0][0]);
-	if (getParentDiagram() != null) {
-	    getParentDiagram().refresh();
-	}
-    }
-
 }

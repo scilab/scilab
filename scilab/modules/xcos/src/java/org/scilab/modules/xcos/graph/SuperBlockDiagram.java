@@ -111,24 +111,14 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
     }
     
     /**
-     * 
+     * Install the specific listeners for {@link SuperBlockDiagram}.
      */
     public void installSuperBlockListeners() {
 	addListener(XcosEvent.CELLS_ADDED, GenericSuperBlockListener.getInstance());
 
 	addListener(XcosEvent.CELLS_REMOVED, GenericSuperBlockListener.getInstance());
 
-	addListener(XcosEvent.IN_EXPLICIT_VALUE_UPDATED, GenericSuperBlockListener.getInstance());
-
-	addListener(XcosEvent.IN_IMPLICIT_VALUE_UPDATED, GenericSuperBlockListener.getInstance());
-
-	addListener(XcosEvent.IN_EVENT_VALUE_UPDATED, GenericSuperBlockListener.getInstance());
-
-	addListener(XcosEvent.OUT_EXPLICIT_VALUE_UPDATED, GenericSuperBlockListener.getInstance());
-
-	addListener(XcosEvent.OUT_IMPLICIT_VALUE_UPDATED, GenericSuperBlockListener.getInstance());
-
-	addListener(XcosEvent.OUT_EVENT_VALUE_UPDATED, GenericSuperBlockListener.getInstance());
+	addListener(XcosEvent.IO_PORT_VALUE_UPDATED, GenericSuperBlockListener.getInstance());
     }
 
     /**

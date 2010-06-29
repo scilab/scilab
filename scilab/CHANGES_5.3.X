@@ -34,6 +34,9 @@ Bug Fixes:
 
 * bug 7183 fixed - update help file of link about the output argument.
 
+* bug 7396 fixed - On I/O blocks used in SuperBlocks, empty index threw a 
+                   decoding exception.
+
 * bug 7228 fixed - update help file of strcat about the third input argument.
 
 * bug 7282 fixed - eval failed on some functions without output arguments.
