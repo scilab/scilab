@@ -40,6 +40,25 @@ public class testEquals {
 
 
 	@Test
+    public void compareDoubleComplexTest() throws NullPointerException {
+        double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};
+        double [][]aImg={{210.2, 220.0, 420.0, 390.0},{230.2, 240.0, 440.0, 400.0}};
+        double [][]b={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};
+        double [][]bImg={{210.2, 220.0, 420.0, 390.0},{230.2, 240.0, 440.0, 400.0}};
+        double [][]c={{42,43},{21,22}};
+        double [][]cImg={{420,430},{210,220}};
+        ScilabDouble aMatrix = new ScilabDouble(a, aImg);
+        ScilabDouble bMatrix = new ScilabDouble(b, bImg);
+        ScilabDouble cMatrix = new ScilabDouble(c, cImg);
+        assert aMatrix.equals(bMatrix) == true;
+        assert bMatrix.equals(aMatrix) == true;
+        assert cMatrix.equals(aMatrix) == false;
+        assert Arrays.deepEquals(aMatrix.getRealPart(), bMatrix.getRealPart()) == true;
+        assert Arrays.deepEquals(aMatrix.getImaginaryPart(), bMatrix.getImaginaryPart()) == true;
+    }
+
+
+	@Test
     public void compareIntegerTest() throws NullPointerException {
         int [][]a={{32,42,41}, {12,13,32}};
         int [][]b={{32,42,41}, {12,13,32}};
