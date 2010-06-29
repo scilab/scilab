@@ -294,6 +294,7 @@ images/icons/document-save-as.png \
 images/icons/document-save.png \
 images/icons/edit-copy.png \
 images/icons/edit-cut.png \
+images/icons/edit-delete.png \
 images/icons/edit-find.png \
 images/icons/edit-find-replace.png \
 images/icons/edit-paste.png \

@@ -17,4 +17,5 @@ freeArrayOfString
 getSCIHOME 
 com_
 callFunctionFromGateway 
+getScilabMode
 ;

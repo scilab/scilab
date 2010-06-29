@@ -35,6 +35,16 @@ HISTORY_MANAGER_C_SOURCES += src/jni/HistoryManagement_wrap.c
 
 USEANT=1
 
+GIWS_WRAPPERS = \
+src/jni/CommandHistory.giws.xml
+
+if GIWS
+BUILT_SOURCES=giws
+endif
+
+HISTORY_MANAGER_CPP_SOURCES += src/jni/CommandHistory.cpp \
+src/jni/GiwsException.cpp
+
 endif
 
 
@@ -44,11 +54,13 @@ libscihistory_manager_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) \
 -I$(srcdir)/includes/ \
 -I$(srcdir)/src/cpp/ \
 -I$(srcdir)/src/c/ \
+-I$(srcdir)/src/jni/ \
 -I$(top_srcdir)/modules/api_scilab/includes \
 -I$(top_srcdir)/modules/localization/includes \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes/ \
--I$(top_srcdir)/modules/fileio/includes/
+-I$(top_srcdir)/modules/fileio/includes/ \
+-I$(top_srcdir)/modules/jvm/includes/
 
 # Includes need for the compilation
 libscihistory_manager_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
@@ -104,6 +116,8 @@ SWIG_WRAPPERS = src/jni/HistoryManagement.i
 if SWIG
 BUILT_SOURCES = swig
 endif
+
+libscihistory_manager_la_LIBADD = $(top_builddir)/modules/jvm/libscijvm.la
 
 # Provides macros compilation, Java compilation, cleaning
 include $(top_srcdir)/Makefile.incl.am

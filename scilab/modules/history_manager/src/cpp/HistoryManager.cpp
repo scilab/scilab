@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Allan CORNET
+ * Copyright (C) 2010 - DIGITEO - Vincent COUVERT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -11,6 +12,7 @@
  */
 
 /*------------------------------------------------------------------------*/
+#include "CommandHistory.hxx"
 #include "HistoryManager.hxx"
 #include "HistoryManager.h"
 #include "getCommentDateSession.h"
@@ -18,162 +20,202 @@
 /*------------------------------------------------------------------------*/
 extern "C"
 {
-	#include <stdio.h>
-	#include <string.h>
-	#include <stdlib.h>
-	#include "sciprint.h"
-	#include "SCIHOME.h"
-	#include "inffic.h"
-	#include "InitializeHistoryManager.h"
-	#include "TerminateHistoryManager.h"
-	#include "freeArrayOfString.h"
-	#ifdef _MSC_VER
-	#include "strdup_windows.h"
-	#endif
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include "sciprint.h"
+#include "SCIHOME.h"
+#include "inffic.h"
+#include "InitializeHistoryManager.h"
+#include "TerminateHistoryManager.h"
+#include "freeArrayOfString.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
+#include "scilabmode.h"
+#include "getScilabJavaVM.h"
 };
 /*------------------------------------------------------------------------*/
 #define MAXBUF	1024
+/*------------------------------------------------------------------------*/
+using namespace org_scilab_modules_history_manager_commandhistory;
 /*------------------------------------------------------------------------*/
 static HistoryManager *ScilabHistory = NULL;
 /*------------------------------------------------------------------------*/
 BOOL historyIsEnabled(void)
 {
-	BOOL bOK = FALSE;
-	if (ScilabHistory) bOK = TRUE;
-	return bOK;
+    if (ScilabHistory)
+    {
+        return TRUE;
+    }
+    return FALSE;
 }
 /*------------------------------------------------------------------------*/
 BOOL InitializeHistoryManager(void)
 {
-	BOOL bOK = FALSE;
-	if (!ScilabHistory)
-	{
-		ScilabHistory = new HistoryManager();
-		if (ScilabHistory) bOK = TRUE;
-	}
-	return bOK;
+    BOOL bOK = FALSE;
+    if (!ScilabHistory)
+    {
+        ScilabHistory = new HistoryManager();
+        if (ScilabHistory)
+        {
+            bOK = TRUE;
+        }
+    }
+    return bOK;
 }
 /*------------------------------------------------------------------------*/
 BOOL TerminateHistoryManager(void)
 {
-	BOOL bOK = FALSE;
-	if (ScilabHistory)
-	{
-		delete ScilabHistory;
-		ScilabHistory = NULL;
-		bOK = TRUE;
-	}
-	return bOK;
+    BOOL bOK = FALSE;
+    if (ScilabHistory)
+    {
+        delete ScilabHistory;
+        ScilabHistory = NULL;
+        bOK = TRUE;
+    }
+    return bOK;
 }
 /*------------------------------------------------------------------------*/
 BOOL setSearchedTokenInScilabHistory(char *token)
 {
-	BOOL bOK = FALSE;
-	if (ScilabHistory) bOK = ScilabHistory->setToken(token);
-	return bOK;
+    BOOL bOK = FALSE;
+    if (ScilabHistory)
+    {
+        bOK = ScilabHistory->setToken(token);
+    }
+    return bOK;
 }
 /*------------------------------------------------------------------------*/
 BOOL resetSearchedTokenInScilabHistory(void)
 {
-	BOOL bOK = FALSE;
-	if (ScilabHistory) bOK = ScilabHistory->resetToken();
-	return bOK;
+    BOOL bOK = FALSE;
+    if (ScilabHistory)
+    {
+        bOK = ScilabHistory->resetToken();
+    }
+    return bOK;
 }
 /*------------------------------------------------------------------------*/
 char *getSearchedTokenInScilabHistory(void)
 {
-	char *token = NULL;
-	if (ScilabHistory) token = ScilabHistory->getToken();
-	return token;
+    char *token = NULL;
+    if (ScilabHistory)
+    {
+        token = ScilabHistory->getToken();
+    }
+    return token;
 }
 /*------------------------------------------------------------------------*/
 BOOL appendLineToScilabHistory(char *line)
 {
-	BOOL bOK = FALSE;
+    BOOL bOK = FALSE;
 
-	if (line)
-	{
-		int i = 0;
-		char *cleanedline = NULL;
-		/* remove space & carriage return at the end of line */
-		cleanedline = strdup(line);
+    if (line)
+    {
+        int i = 0;
+        char *cleanedline = NULL;
+        /* remove space & carriage return at the end of line */
+        cleanedline = strdup(line);
 
-		/* remove carriage return at the end of line */
-		for (i = (int) strlen(cleanedline); i > 0 ; i--)
-		{
-			if (cleanedline[i]=='\n')
-			{
-				cleanedline[i] = '\0';
-				break;
-			}
-		}
+        /* remove carriage return at the end of line */
+        for (i = (int) strlen(cleanedline); i > 0 ; i--)
+        {
+            if (cleanedline[i]=='\n')
+            {
+                cleanedline[i] = '\0';
+                break;
+            }
+        }
 
-		/* remove spaces at the end of line */
-		i = (int)strlen(cleanedline) - 1;
-		while (i>=0)
-		{
-			if ( cleanedline[i] == ' ')
-			{
-				cleanedline[i] = '\0';
-			}
-			else break;
+        /* remove spaces at the end of line */
+        i = (int)strlen(cleanedline) - 1;
+        while (i>=0)
+        {
+            if ( cleanedline[i] == ' ')
+            {
+                cleanedline[i] = '\0';
+            }
+            else
+            {
+                break;
+            }
 
-			i--;
-		}
+            i--;
+        }
 
-		if (ScilabHistory) bOK = ScilabHistory->appendLine(cleanedline);
+        if (ScilabHistory)
+        {
+            bOK = ScilabHistory->appendLine(cleanedline);
+        }
 
+        if (cleanedline)
+        {
+            FREE(cleanedline);
+            cleanedline = NULL;
+        }
+    }
 
-		if (cleanedline) {FREE(cleanedline);cleanedline = NULL;}
-	}
-	return bOK;
+    return bOK;
 }
 /*------------------------------------------------------------------------*/
 BOOL appendLinesToScilabHistory(char **lines,int numberoflines)
 {
-	BOOL bOK = FALSE;
-	if (ScilabHistory) bOK = ScilabHistory->appendLines(lines,numberoflines);
-	return bOK;
+    if (ScilabHistory)
+    {
+        return ScilabHistory->appendLines(lines,numberoflines);
+    }
+    return FALSE;
 }
 /*------------------------------------------------------------------------*/
 void displayScilabHistory(void)
 {
-	if (ScilabHistory) ScilabHistory->displayHistory();
+    if (ScilabHistory)
+    {
+        ScilabHistory->displayHistory();
+    }
 }
 /*------------------------------------------------------------------------*/
 BOOL writeScilabHistoryToFile(char *filename)
 {
-	BOOL bOK = FALSE;
-	if (ScilabHistory) bOK = ScilabHistory->writeToFile(filename);
-	return bOK;
+    if (ScilabHistory)
+    {
+        return ScilabHistory->writeToFile(filename);
+    }
+    return FALSE;
 }
 /*------------------------------------------------------------------------*/
 BOOL loadScilabHistoryFromFile(char *filename)
 {
-	BOOL bOK = FALSE;
-	if (ScilabHistory) bOK = ScilabHistory->loadFromFile(filename);
-	return bOK;
+    BOOL bOK = FALSE;
+    if (ScilabHistory)
+    {
+        bOK = ScilabHistory->loadFromFile(filename);
+    }
+    return bOK;
 }
 /*------------------------------------------------------------------------*/
 BOOL setFilenameScilabHistory(char *filename)
 {
-	BOOL bOK = FALSE;
-	if (filename)
-	{
-		if (ScilabHistory)
-		{
-			ScilabHistory->setFilename(filename);
-			bOK = TRUE;
-		}
-	}
-	return bOK;
+    if (filename)
+    {
+        if (ScilabHistory)
+        {
+            ScilabHistory->setFilename(filename);
+            return TRUE;
+        }
+    }
+    return FALSE;
 }
 /*------------------------------------------------------------------------*/
 char *getFilenameScilabHistory(void)
 {
-	char *filename = NULL;
-	if (ScilabHistory) filename = ScilabHistory->getFilename();
-	return filename;
+    char *filename = NULL;
+    if (ScilabHistory)
+    {
+        filename = ScilabHistory->getFilename();
+    }
+    return filename;
 }
 /*------------------------------------------------------------------------*/
 BOOL setDefaultFilenameScilabHistory(void)
@@ -286,15 +328,20 @@ int getSizeScilabHistory(void)
 /*------------------------------------------------------------------------*/
 HistoryManager::HistoryManager()
 {
-	CommandsList.clear();
-	saveconsecutiveduplicatelines = FALSE;
-	afterhowmanylineshistoryissaved = 0;
-	numberoflinesbeforehistoryissaved = 0;
+    CommandsList.clear();
+    saveconsecutiveduplicatelines = FALSE;
+    afterhowmanylineshistoryissaved = 0;
+    numberoflinesbeforehistoryissaved = 0;
+
+    if (getScilabMode() == SCILAB_STD)
+    {
+        CommandHistory::initialize(getScilabJavaVM());
+    }
 }
 /*------------------------------------------------------------------------*/
 HistoryManager::~HistoryManager()
 {
-	CommandsList.clear();
+    CommandsList.clear();
 }
 /*------------------------------------------------------------------------*/
 BOOL HistoryManager::appendLine(char *cline)
@@ -317,8 +364,17 @@ BOOL HistoryManager::appendLine(char *cline)
 				CommandsList.push_back(Line);
 				numberoflinesbeforehistoryissaved++;
 				bOK = TRUE;
+
+                if (getScilabMode() == SCILAB_STD)
+                {
+                    CommandHistory::appendLine(getScilabJavaVM(), cline);
+                }
 			}
-			if (previousline) {FREE(previousline);previousline = NULL;}
+			if (previousline)
+            {
+                FREE(previousline);
+                previousline = NULL;
+            }
 		}
 		else
 		{
@@ -327,6 +383,11 @@ BOOL HistoryManager::appendLine(char *cline)
 
 			numberoflinesbeforehistoryissaved++;
 			bOK = TRUE;
+
+            if (getScilabMode() == SCILAB_STD)
+            {
+                CommandHistory::appendLine(getScilabJavaVM(), cline);
+            }
 		}
 	}
 
@@ -415,53 +476,66 @@ BOOL HistoryManager::writeToFile(char *filename)
 /*------------------------------------------------------------------------*/
 BOOL HistoryManager::loadFromFile(char *filename)
 {
-	BOOL bOK = FALSE;
+    BOOL bOK = FALSE;
 
-	if (filename)
-	{
-		char *commentbeginsession = NULL;
-		std::string name;
-		name.assign(filename);
+    if (filename)
+    {
+        char *commentbeginsession = NULL;
+        std::string name;
+        name.assign(filename);
 
-		my_file.loadFromFile(name);
+        my_file.loadFromFile(name);
 
-		CommandsList.clear();
-		CommandsList = my_file.getHistory();
+        CommandsList.clear();
+        CommandsList = my_file.getHistory();
 
-		/* add date & time @ begin session */
-		commentbeginsession = getCommentDateSession(TRUE);
-		if (commentbeginsession)
-		{
-			appendLine(commentbeginsession);
-			FREE(commentbeginsession);commentbeginsession=NULL;
-		}
-		bOK = TRUE;
-	}
-	return bOK;
+        /* add date & time @ begin session */
+        commentbeginsession = getCommentDateSession(TRUE);
+        if (commentbeginsession)
+        {
+            appendLine(commentbeginsession);
+            FREE(commentbeginsession);
+            commentbeginsession=NULL;
+        }
+
+        if (getScilabMode() == SCILAB_STD)
+        {
+            CommandHistory::loadFromFile(getScilabJavaVM());
+        }
+
+        bOK = TRUE;
+    }
+    return bOK;
 }
 /*--------------------------------------------------------------------------*/
 void HistoryManager::reset(void)
 {
-	char *commentbeginsession = NULL;
+    char *commentbeginsession = NULL;
 
-	CommandsList.clear();
+    CommandsList.clear();
 
-	my_file.reset();
-	my_file.setDefaultFilename();
+    my_file.reset();
+    my_file.setDefaultFilename();
 
-	my_search.reset();
+    my_search.reset();
 
-	saveconsecutiveduplicatelines = FALSE;
-	afterhowmanylineshistoryissaved = 0;
-	numberoflinesbeforehistoryissaved = 0;
+    saveconsecutiveduplicatelines = FALSE;
+    afterhowmanylineshistoryissaved = 0;
+    numberoflinesbeforehistoryissaved = 0;
 
-	/* Add date & time begin session */
-	commentbeginsession = getCommentDateSession(TRUE);
-	if (commentbeginsession)
-	{
-		appendLine(commentbeginsession);
-		FREE(commentbeginsession);commentbeginsession=NULL;
-	}
+    if (getScilabMode() == SCILAB_STD)
+    {
+        CommandHistory::reset(getScilabJavaVM());
+    }
+
+    /* Add date & time begin session */
+    commentbeginsession = getCommentDateSession(TRUE);
+    if (commentbeginsession)
+    {
+        appendLine(commentbeginsession);
+        FREE(commentbeginsession);commentbeginsession=NULL;
+    }
+
 }
 /*--------------------------------------------------------------------------*/
 char **HistoryManager::getAllLines(int *numberoflines)
@@ -558,13 +632,19 @@ BOOL HistoryManager::deleteNthLine(int N)
 					// After a remove , we update search
 					my_search.setHistory(CommandsList);
 					my_search.setToken(str);
+
+                    if (getScilabMode() == SCILAB_STD)
+                    {
+                        CommandHistory::deleteLine(getScilabJavaVM(), N);
+                    }
 					return TRUE;
 				}
 			}
 			i++;
 		}
-	}
-	return bOK;
+    }
+
+    return bOK;
 }
 /*--------------------------------------------------------------------------*/
 void HistoryManager::setSaveConsecutiveDuplicateLines(BOOL doit)

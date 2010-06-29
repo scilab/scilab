@@ -60,13 +60,16 @@ host_triplet = @host@
 
 # List of the c files
 @GUI_TRUE@am__append_1 = src/jni/HistoryManagement_wrap.c
+@GUI_TRUE@am__append_2 = src/jni/CommandHistory.cpp \
+@GUI_TRUE@src/jni/GiwsException.cpp
+
 DIST_COMMON = $(libscihistory_manager_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_2 = java
+@NEED_JAVA_TRUE@am__append_3 = java
 
 # With --enable-compilation-tests, launch java unitary tests
-@COMPILATION_TESTS_TRUE@am__append_3 = test
+@COMPILATION_TESTS_TRUE@am__append_4 = test
 subdir = modules/history_manager
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -117,14 +120,12 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscihistory_manager_la_includedir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscihistory_manager_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(top_builddir)/modules/fileio/libscifileio.la
+	$(top_builddir)/modules/jvm/libscijvm.la
 am__libscihistory_manager_la_SOURCES_DIST =  \
 	src/c/getCommentDateSession.c src/jni/HistoryManagement_wrap.c \
 	src/cpp/CommandLine.cpp src/cpp/HistoryFile.cpp \
 	src/cpp/HistoryManager.cpp src/cpp/HistorySearch.cpp \
+	src/jni/CommandHistory.cpp src/jni/GiwsException.cpp \
 	sci_gateway/c/gw_history_manager.c \
 	sci_gateway/c/sci_addhistory.c \
 	sci_gateway/c/sci_displayhistory.c \
@@ -143,11 +144,13 @@ am__libscihistory_manager_la_SOURCES_DIST =  \
 @GUI_TRUE@	libscihistory_manager_la-HistoryManagement_wrap.lo
 am__objects_2 = libscihistory_manager_la-getCommentDateSession.lo \
 	$(am__objects_1)
-am__objects_3 = libscihistory_manager_la-CommandLine.lo \
+@GUI_TRUE@am__objects_3 = libscihistory_manager_la-CommandHistory.lo \
+@GUI_TRUE@	libscihistory_manager_la-GiwsException.lo
+am__objects_4 = libscihistory_manager_la-CommandLine.lo \
 	libscihistory_manager_la-HistoryFile.lo \
 	libscihistory_manager_la-HistoryManager.lo \
-	libscihistory_manager_la-HistorySearch.lo
-am__objects_4 = libscihistory_manager_la-gw_history_manager.lo \
+	libscihistory_manager_la-HistorySearch.lo $(am__objects_3)
+am__objects_5 = libscihistory_manager_la-gw_history_manager.lo \
 	libscihistory_manager_la-sci_addhistory.lo \
 	libscihistory_manager_la-sci_displayhistory.lo \
 	libscihistory_manager_la-sci_gethistory.lo \
@@ -162,7 +165,7 @@ am__objects_4 = libscihistory_manager_la-gw_history_manager.lo \
 	libscihistory_manager_la-sci_sethistoryfile.lo \
 	libscihistory_manager_la-sci_historymanager.lo
 am_libscihistory_manager_la_OBJECTS = $(am__objects_2) \
-	$(am__objects_3) $(am__objects_4)
+	$(am__objects_4) $(am__objects_5)
 libscihistory_manager_la_OBJECTS =  \
 	$(am_libscihistory_manager_la_OBJECTS)
 libscihistory_manager_la_LINK = $(LIBTOOL) --tag=CXX \
@@ -447,10 +450,8 @@ top_srcdir = @top_srcdir@
 
 # List of the cpp files
 HISTORY_MANAGER_CPP_SOURCES = src/cpp/CommandLine.cpp \
-src/cpp/HistoryFile.cpp \
-src/cpp/HistoryManager.cpp \
-src/cpp/HistorySearch.cpp
-
+	src/cpp/HistoryFile.cpp src/cpp/HistoryManager.cpp \
+	src/cpp/HistorySearch.cpp $(am__append_2)
 
 # List of the c files
 HISTORY_MANAGER_C_SOURCES = src/c/getCommentDateSession.c \
@@ -473,17 +474,24 @@ sci_gateway/c/sci_sethistoryfile.c  \
 sci_gateway/c/sci_historymanager.c
 
 @GUI_TRUE@USEANT = 1
+@GUI_TRUE@GIWS_WRAPPERS = \
+@GUI_TRUE@src/jni/CommandHistory.giws.xml
+
+@GIWS_TRUE@@GUI_TRUE@BUILT_SOURCES = giws
+@SWIG_TRUE@BUILT_SOURCES = swig
 
 # Includes need for the compilation
 libscihistory_manager_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 -I$(srcdir)/includes/ \
 -I$(srcdir)/src/cpp/ \
 -I$(srcdir)/src/c/ \
+-I$(srcdir)/src/jni/ \
 -I$(top_srcdir)/modules/api_scilab/includes \
 -I$(top_srcdir)/modules/localization/includes \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes/ \
--I$(top_srcdir)/modules/fileio/includes/
+-I$(top_srcdir)/modules/fileio/includes/ \
+-I$(top_srcdir)/modules/jvm/includes/
 
 
 # Includes need for the compilation
@@ -509,7 +517,7 @@ libscihistory_manager_la_SOURCES = $(HISTORY_MANAGER_C_SOURCES) $(HISTORY_MANAGE
 # For the code check (splint)
 CHECK_SRC = $(HISTORY_MANAGER_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscihistory_manager_la_CFLAGS)
-libscihistory_manager_la_LIBADD = $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/fileio/libscifileio.la
+libscihistory_manager_la_LIBADD = $(top_builddir)/modules/jvm/libscijvm.la
 modulename = history_manager
 
 #### history_manager : Conf files ####
@@ -535,7 +543,6 @@ includes/dynlib_history_manager.h
 
 #### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/HistoryManagement.i
-@SWIG_TRUE@BUILT_SOURCES = swig
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -548,7 +555,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_2) $(am__append_3)
+TARGETS_ALL = $(am__append_3) $(am__append_4)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -674,7 +681,9 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_manager_la-CommandHistory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_manager_la-CommandLine.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_manager_la-GiwsException.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_manager_la-HistoryFile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_manager_la-HistoryManagement_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_manager_la-HistoryManager.Plo@am__quote@
@@ -876,6 +885,20 @@ libscihistory_manager_la-HistorySearch.lo: src/cpp/HistorySearch.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/HistorySearch.cpp' object='libscihistory_manager_la-HistorySearch.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihistory_manager_la-HistorySearch.lo `test -f 'src/cpp/HistorySearch.cpp' || echo '$(srcdir)/'`src/cpp/HistorySearch.cpp
+
+libscihistory_manager_la-CommandHistory.lo: src/jni/CommandHistory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihistory_manager_la-CommandHistory.lo -MD -MP -MF $(DEPDIR)/libscihistory_manager_la-CommandHistory.Tpo -c -o libscihistory_manager_la-CommandHistory.lo `test -f 'src/jni/CommandHistory.cpp' || echo '$(srcdir)/'`src/jni/CommandHistory.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihistory_manager_la-CommandHistory.Tpo $(DEPDIR)/libscihistory_manager_la-CommandHistory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/CommandHistory.cpp' object='libscihistory_manager_la-CommandHistory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihistory_manager_la-CommandHistory.lo `test -f 'src/jni/CommandHistory.cpp' || echo '$(srcdir)/'`src/jni/CommandHistory.cpp
+
+libscihistory_manager_la-GiwsException.lo: src/jni/GiwsException.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihistory_manager_la-GiwsException.lo -MD -MP -MF $(DEPDIR)/libscihistory_manager_la-GiwsException.Tpo -c -o libscihistory_manager_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihistory_manager_la-GiwsException.Tpo $(DEPDIR)/libscihistory_manager_la-GiwsException.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/GiwsException.cpp' object='libscihistory_manager_la-GiwsException.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihistory_manager_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

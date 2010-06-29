@@ -162,6 +162,10 @@
         <submenu label="M&amp;odule manager - ATOMS">
             <callback instruction='if with_module("atoms") then atomsGui(); else disp(gettext("Please install atoms module.")); end' type="0"/>
         </submenu>
+        <separator/>
+        <submenu label="&amp;Command History">
+            <callback instruction='org.scilab.modules.history_manager.commandhistory.CommandHistory.toggleVisibility' type="3"/>
+        </submenu>
     </menu>
 
     <!-- Help menu -->
