@@ -159,11 +159,12 @@ public class ScilabDouble implements ScilabType {
      */
     public boolean equals(Object obj) {
         if (obj instanceof ScilabDouble) {
-            if (this.isReal()) {
-                return Arrays.deepEquals(this.getRealPart(), ((ScilabDouble)obj).getRealPart());
+            ScilabDouble sciDouble = ((ScilabDouble)obj);
+            if (this.isReal() && sciDouble.isReal()) {
+                return Arrays.deepEquals(this.getRealPart(), sciDouble.getRealPart());
             } else {
                 /* Complex */
-                return Arrays.deepEquals(this.getRealPart(), ((ScilabDouble)obj).getRealPart()) && Arrays.deepEquals(this.getImaginaryPart(), ((ScilabDouble)obj).getImaginaryPart());
+                return Arrays.deepEquals(this.getRealPart(), sciDouble.getRealPart()) && Arrays.deepEquals(this.getImaginaryPart(), sciDouble.getImaginaryPart());
             }
         } else {
             return false;
