@@ -15,8 +15,6 @@ package org.scilab.modules.xcos.graph;
 
 import java.awt.Color;
 import java.awt.MouseInfo;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
@@ -95,10 +93,8 @@ import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.ExplicitInputPort;
 import org.scilab.modules.xcos.port.input.ImplicitInputPort;
-import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
-import org.scilab.modules.xcos.port.output.OutputPort;
 import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosConstants;
@@ -147,25 +143,9 @@ public class XcosDiagram extends ScilabGraph {
     private BasicPort splitPort;
     private mxPoint dragSplitPos;
     private boolean waitSplitRelease;
-    
-    /*to manage path link*/
-    private BasicLink drawLink;
-    private boolean waitPathAddEdge;
-    private boolean waitPathRelease;
 
     private CheckBoxMenuItem viewPortMenu;
     private CheckBoxMenuItem gridMenu;
-    
-    protected mxIEventListener deleteLinkOnMultiPointLinkCreation = new mxIEventListener() {
-		public void invoke(Object sender, mxEventObject evt) {
-			if (waitPathAddEdge) {
-			    if (drawLink != null) {
-				getModel().remove(drawLink);
-			    }
-			    cancelDrawLinkAction();
-			}
-		}
-	};
 
 	/**
 	 * Add an edge from a source to the target.
@@ -311,31 +291,6 @@ public class XcosDiagram extends ScilabGraph {
     		}
     	}
 
-    	
-    	if (source != null && target == null) {
-    	    drawLink = null;
-    	    if (source instanceof ExplicitInputPort || source instanceof ExplicitOutputPort) {
-    		drawLink = (BasicLink) super.addEdge(new ExplicitLink(), getDefaultParent(), source, null, index);
-    	    } else if (source instanceof ImplicitInputPort || source instanceof ImplicitOutputPort) {
-    		drawLink = (BasicLink) super.addEdge(new ImplicitLink(), getDefaultParent(), source, null, index);
-    	    } else if (source instanceof ControlPort || source instanceof CommandPort) {
-    		drawLink = (BasicLink) super.addEdge(new CommandControlLink(), getDefaultParent(), source, null, index);
-    	    } else if (source instanceof BasicLink) {
-				/*
-				 * This is a very specific case: user wants to put a split block
-				 * on a link and start a new partial link. It's not handled as a
-				 * SplitBlock must not be partially initialized.
-				 */
-    	    	return null;
-    	    }
-
-    	    if (drawLink != null) {
-    	    	waitPathRelease = true;
-    	    }
-
-    	    info(XcosMessages.DRAW_LINK);
-    	    return drawLink;
-    	}
     	return null;
     }
 
@@ -461,20 +416,15 @@ public class XcosDiagram extends ScilabGraph {
 			setModified(true);
 		}
 	});
-	
-	
-	getUndoManager().addListener(mxEvent.UNDO, deleteLinkOnMultiPointLinkCreation);
-	
-	installStylesheet();
 
-	getAsComponent().setToolTips(true);
+	initComponent();
+	installStylesheet();
 
 	// Forbid disconnecting cells once it is connected.
 	setCellsDisconnectable(false);
 
 	// Forbid pending edges.
-	//setAllowDanglingEdges(false);
-	setAllowDanglingEdges(true);
+	setAllowDanglingEdges(false);
 
 	// Cannot connect port to itself.
 	setAllowLoops(false);
@@ -494,26 +444,56 @@ public class XcosDiagram extends ScilabGraph {
 
 	// Override isCellEditable to filter what the user can edit
 	setCellsEditable(true);
-	// This enable stop editing cells when pressing Enter.
-	getAsComponent().setEnterStopsCellEditing(false);
 
 	setConnectableEdges(true);
-	getAsComponent().setTolerance(1);
-	
-	getAsComponent().getViewport().setOpaque(false);
-	getAsComponent().setBackground(Color.WHITE);
 
 	setMultiplicities();
 	
 	// Add a listener to track when model is changed
 	getModel().addListener(XcosEvent.CHANGE, new ModelTracker());
 	
-	setGridVisible(true);
-	
 	((mxCell) getDefaultParent()).setId((new UID()).toString());
 	((mxCell) getModel().getRoot()).setId((new UID()).toString());
     }
 
+    /**
+     * Initialize component settings for a graph.
+     * 
+     * This method *must* be used to setup the component after any
+     * reassociation.
+     */
+    public void initComponent() {
+    	getAsComponent().setToolTips(true);
+    	
+    	// This enable stop editing cells when pressing Enter.
+    	getAsComponent().setEnterStopsCellEditing(false);
+    	
+    	getAsComponent().setTolerance(1);
+    	
+    	getAsComponent().getViewport().setOpaque(false);
+    	getAsComponent().setBackground(Color.WHITE);
+    	
+    	setGridVisible(true);
+    	
+    	/*
+    	 * Reinstall related listeners
+    	 */
+    	
+    	// Property change Listener
+    	// Will say if a diagram has been modified or not.
+    	getAsComponent().addPropertyChangeListener(new PropertyChangeListener() {
+    	    public void propertyChange(PropertyChangeEvent e) {
+    		if (e.getPropertyName().compareTo("modified") == 0) {
+    		    if (!e.getOldValue().equals(e.getNewValue())) {
+    			updateTabTitle();
+    		    }
+    		}
+    	    }
+    	});
+    	
+    	getAsComponent().getGraphControl().addMouseListener(new XcosMouseListener(this));
+    }
+    
 	/**
 	 * Install the default style sheet and the user stylesheet on the diagram.
 	 */
@@ -647,18 +627,6 @@ public class XcosDiagram extends ScilabGraph {
      */
     public void installListeners() {
 
-	// Property change Listener
-	// Will say if a diagram has been modified or not.
-	getAsComponent().addPropertyChangeListener(new PropertyChangeListener() {
-	    public void propertyChange(PropertyChangeEvent e) {
-		if (e.getPropertyName().compareTo("modified") == 0) {
-		    if (!e.getOldValue().equals(e.getNewValue())) {
-			updateTabTitle();
-		    }
-		}
-	    }
-	});
-
 	// Track when superblock ask a parent refresh.
 	addListener(XcosEvent.SUPER_BLOCK_UPDATED, new SuperBlockUpdateTracker()); 
 	
@@ -667,7 +635,6 @@ public class XcosDiagram extends ScilabGraph {
 	addListener(XcosEvent.CELLS_ADDED, getEngine());
 	
 	// Track when cells are deleted.
-	addListener(XcosEvent.CELLS_REMOVED, new CellRemovedTracker(this)); 
 	addListener(XcosEvent.CELLS_REMOVED, getEngine());
 	
 	// Track when resizing a cell.
@@ -681,10 +648,6 @@ public class XcosDiagram extends ScilabGraph {
 	getUndoManager().addListener(mxEvent.UNDO, new UndoUpdateTracker());
 	getUndoManager().addListener(mxEvent.REDO, new UndoUpdateTracker());
 	
-	getAsComponent().getGraphControl().addMouseListener(new XcosMouseListener(this));
-
-	getAsComponent().addKeyListener(new XcosKeyListener(this));
-
 	addListener(XcosEvent.ADD_PORTS, new mxIEventListener() {
 	    public void invoke(Object source, mxEventObject evt) {
 		getModel().beginUpdate();
@@ -893,126 +856,6 @@ public class XcosDiagram extends ScilabGraph {
     }
 
     /**
-     * CellRemovedTracker
-     * Called when mxEvents.CELLS_REMOVED is fired.
-     */
-    private class CellRemovedTracker implements mxIEventListener {
-	/**
-	 * @param diagram diagram
-	 */
-	public CellRemovedTracker(XcosDiagram diagram) {
-	}
-
-	/**
-	 * Clear any currently drawn link 
-	 * @param source the source instance
-	 * @param evt the event data
-	 * @see com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object, com.mxgraph.util.mxEventObject)
-	 */
-	public void invoke(Object source, mxEventObject evt) {
-	    Object[] cells = (Object[]) evt.getProperty("cells");
-	    for (int i = 0; i < cells.length; i++) {
-		if (cells[i] instanceof BasicLink) {
-		    BasicLink link = (BasicLink) cells[i];
-		    removeLink(link);
-		    if (waitPathAddEdge) {
-			cancelDrawLinkAction();
-		    }
-		}
-	    }
-
-	}
-    }
-
-    /**
-     * @param link link to remove
-     */
-    private void removeLink(BasicLink link) {
-	if (!(link.getSource() instanceof BasicPort)) {
-	    return;
-	}
-
-	if (!(link.getTarget() instanceof BasicPort)) {
-	    return;
-	}
-
-	BasicPort portSource = (BasicPort) link.getSource();
-	BasicPort portTarget = (BasicPort) link.getTarget();
-
-	SplitBlock split = null;
-	BasicPort saveSource = null;
-	BasicPort saveTarget = null;
-
-	if (portSource == null) { return; }
-	if (portTarget == null) { return; }
-
-	//remove input link
-	if (portTarget.getParent() instanceof SplitBlock) {
-	    split = (SplitBlock) portTarget.getParent();
-
-	    Object[] outLinks = getAllEdges(new Object[] {split.getOut1(), split.getOut2()});
-	    for (int i = 0; i < outLinks.length; i++) {
-		BasicLink outLink = (BasicLink) outLinks[i];
-		if (outLink.getTarget().getParent() instanceof SplitBlock) {
-		    removeCells(new Object[]{outLink});
-		}
-	    }
-	}
-    	
-	//Finally delete split and old associated links
-	if (split != null) {
-	    removeCells(new Object[]{split});
-	}
-
-	//reset variables
-	split = null;
-	saveSource = null;
-	saveTarget = null;
-
-	if (portSource.getParent() instanceof SplitBlock) {
-	    split = (SplitBlock) portSource.getParent();
-
-	    //remove out1, so link between in.source and out2.target
-	    if (split.getOut1() == portSource) {
-		//save source and target ports 
-		saveSource = getOppositePort(split.getIn());
-		saveTarget = getOppositePort(split.getOut2());
-	    } else if (split.getOut2() == portSource) {
-		//save source and target ports 
-		saveSource = getOppositePort(split.getIn());
-		saveTarget = getOppositePort(split.getOut1());
-	    }
-	}
-
-	if (saveSource != null && saveTarget != null) {
-	    //create new link
-	    BasicLink newLink = BasicLink.createLinkFromPorts(saveSource, saveTarget);
-	    newLink.setGeometry(new mxGeometry(0, 0, 80, 80));
-
-	    Object[] saveLinks = getAllEdges(new Object[]{saveSource, saveTarget});
-	    for (int k = 0; k < saveLinks.length; k++) {
-		mxPoint[] savePts = ((BasicLink) saveLinks[k]).getPoints(0, false);
-		if (savePts != null) {
-		    for (int j = 0; j < savePts.length; j++) {
-			newLink.addPoint(savePts[j].getX(), savePts[j].getY());
-		    }
-		}
-	    }
-
-	    newLink.setSource(saveSource);
-	    newLink.setTarget(saveTarget);
-	    addCell(newLink);
-
-	    //unlink split and delete unlinked links
-	}
-
-	if (split != null) {
-	    split.unlinkAndClean();
-	    removeCells(new Object[]{split});
-	}
-    }
-
-    /**
      * @param source origin port
      * @return opposite port
      */
@@ -1098,49 +941,7 @@ public class XcosDiagram extends ScilabGraph {
             refresh();
         }
     };
-    
-    /**
-     * @author Antoine ELIAS
-     *
-     */
-    private class XcosKeyListener implements KeyListener {
 
-	/**
-	 * @param diagram diagram
-	 */
-	public XcosKeyListener(XcosDiagram diagram) { }
-
-	/**
-	 * Do nothing
-	 * @param e the event
-	 * @see java.awt.event.KeyListener#keyTyped(java.awt.event.KeyEvent)
-	 */
-	@Override
-	public void keyTyped(KeyEvent e) { }
-
-	/**
-	 * Do nothing
-	 * @param e the event
-	 * @see java.awt.event.KeyListener#keyTyped(java.awt.event.KeyEvent)
-	 */
-	@Override
-	public void keyPressed(KeyEvent e) { }	
-
-	/**
-	 * Cancel current link on escape
-	 * @param e the event
-	 * @see java.awt.event.KeyListener#keyTyped(java.awt.event.KeyEvent)
-	 */
-	@Override
-	public void keyReleased(KeyEvent e) {
-	    if (e.getKeyChar() == KeyEvent.VK_ESCAPE) {
-		if (drawLink != null) {
-		    getModel().remove(drawLink);
-		    cancelDrawLinkAction();
-		}		    
-	    }
-	}
-    }
     /**
      * MouseListener inner class
      */
@@ -1168,6 +969,9 @@ public class XcosDiagram extends ScilabGraph {
     		if (e.getClickCount() >= 2 && SwingUtilities.isLeftMouseButton(e) && cell == null) {
     			TextBlock textBlock = (TextBlock) BlockFactory.createBlock(BlockInterFunction.TEXT_f);
     			mxGeometry geom = textBlock.getGeometry();
+    			geom.setX((e.getX() * scale) - (geom.getWidth() / 2));
+    			geom.setY((e.getY() * scale) - (geom.getHeight() / 2));
+    			
     			mxGeometry parent = ((mxICell) getDefaultParent()).getGeometry();
     			if (parent != null) {
     				// update the geometry in place
@@ -1326,80 +1130,6 @@ public class XcosDiagram extends ScilabGraph {
     				dragSplitPos = new mxPoint(e.getX() / scale, e.getY() / scale);
     				waitSplitRelease = false;
     				addSplitEdge(splitLink, splitPort);
-    			} else if (waitPathRelease) {
-    				//Tips for ignore first mouse release after drag
-    				waitPathRelease = false;
-    				waitPathAddEdge = true;
-
-    				if (!e.isControlDown()) {
-    					//adjust final point
-    					mxGeometry geoPort = drawLink.getSource().getGeometry();
-    					mxGeometry geoBlock;
-    					final mxICell parent = drawLink.getSource().getParent();
-    					if (parent == null) {
-    						geoBlock = new mxGeometry();
-    					} else {
-    						geoBlock = drawLink.getSource().getParent().getGeometry();
-    					}
-    					mxPoint lastPoint = new mxPoint(geoBlock.getX() + geoPort.getCenterX(),
-    						geoBlock.getY() + geoPort.getCenterY());
-    					mxPoint click = new mxPoint(e.getX() / scale, e.getY() / scale);
-    					mxPoint point = getPointPosition(lastPoint, click);
-
-    					getModel().beginUpdate();
-    					drawLink.getGeometry().setTargetPoint(point);
-    					getModel().endUpdate();
-    					refresh();
-    				}
-    			} else if (waitPathAddEdge) {
-    				if (drawLink != null) {
-    					getModel().beginUpdate();
-    					//move end of link and add point at old position
-    					mxGeometry geo = drawLink.getGeometry();
-    					drawLink.addPoint(geo.getTargetPoint().getX(), geo.getTargetPoint().getY());
-    					setSelectionCell(drawLink);
-
-    					if (cell != null) {
-    						mxICell source = drawLink.getSource();
-
-    						StringBuffer error = checkMultiplicities(drawLink, source, cell);
-    						if (error == null) {
-    							if (cell instanceof BasicLink && cell != drawLink) { //no loop
-    								//draw link with a SplitBlock
-    								dragSplitPos = new mxPoint(e.getX() / scale, e.getY() / scale);
-    								addSplitEdge((BasicLink) cell, drawLink);
-    							} else {
-    								getModel().setTerminal(drawLink, cell, false);
-    							}
-
-    							//invert source and target if needed
-    							if (!checkEdgeDirection(source, cell)) {
-    								getModel().beginUpdate();
-    								drawLink.invertDirection();
-    								getModel().endUpdate();
-    							}
-
-    							//reset info, flags and object
-    							cancelDrawLinkAction();
-    						} else {
-    							if (cell != drawLink) {
-    								JOptionPane.showMessageDialog(getAsComponent(), error);
-    							}
-    							setSelectionCell(drawLink);
-    						}
-    					} else {
-    						mxPoint click = new mxPoint(e.getX() / scale, e.getY() / scale);
-    						if (!e.isControlDown()) {
-    							geo.setTargetPoint(getPointPosition(geo.getTargetPoint(), click));
-    						} else {
-    							geo.setTargetPoint(click);
-    						}
-    					}
-    					getModel().endUpdate();
-    					refresh();
-    				} else {
-    					cancelDrawLinkAction();
-    				}
     			} else {
     				dragSplitPos = null;
     			}
@@ -1552,17 +1282,6 @@ public class XcosDiagram extends ScilabGraph {
     public boolean isCellEditable(Object cell) {
     	return (cell instanceof TextBlock) && super.isCellDeletable(cell);
     }
-
-	/**
-	 * Return true if disconnectable
-	 * @param cell the cell
-	 * @return status
-	 * @see com.mxgraph.view.mxGraph#isCellDisconnectable(java.lang.Object)
-	 */
-	@Override
-    public boolean isCellDisconnectable(Object cell, Object terminal,boolean source) {
-        return super.isCellDisconnectable(cell, terminal, source);
-    }
     
 	/**
 	 * Return true if connectable
@@ -1572,17 +1291,7 @@ public class XcosDiagram extends ScilabGraph {
 	 */
 	@Override
     public boolean isCellConnectable(Object cell) {
-	//currently in draw link action
-	if (waitPathAddEdge) {
-	    if (drawLink != null) {
-		StringBuffer error = checkMultiplicities(drawLink, drawLink.getSource(), cell);
-		if (error == null) {
-		    return true;
-		}
-		return false;
-	    }
-	}
-	
+
 	if (cell instanceof BasicBlock)  {
 	    return false;
 	}
@@ -2198,17 +1907,6 @@ public class XcosDiagram extends ScilabGraph {
     }
 
     /**
-     * For each block in the argument, call its setParentDiagram method
-     * @param diagram The new parent of the blocks.
-     * 
-     * @deprecated please use {@link #setChildrenParentDiagram()} instead
-     */
-    @Deprecated
-    private void setChildrenParentDiagram(XcosDiagram diagram) {
-    	diagram.setChildrenParentDiagram();
-    }
-
-    /**
      * Getting the root diagram of a decomposed diagram
      * @return Root parent of the whole parent
      */
@@ -2411,67 +2109,6 @@ public class XcosDiagram extends ScilabGraph {
 		}
 	    }
 	}
-    }
-    
-    /**
-     * @param edge new edge
-     * @param source egde source
-     * @param target edge target
-     * @return string error
-     */
-    private StringBuffer checkMultiplicities(Object edge, Object source, Object target) {
-	mxMultiplicity[] multi = getMultiplicities();
-	StringBuffer error = new StringBuffer();
-	for (mxMultiplicity current : multi) {
-	    if (current instanceof PortCheck) {
-		int sourceOut = mxGraphModel.getDirectedEdgeCount(getModel(), source, true);
-		int targetIn = mxGraphModel.getDirectedEdgeCount(getModel(), target, false);
-		
-		String str = ((PortCheck) current).checkDrawLink(source, target, sourceOut, targetIn);
-		if (str != null) {
-		    error.append(str);
-		}
-	    }
-	}
-	
-	if (error.length() > 0) {
-	    return error;
-	}
-	return null;
-    }
-
-    /**
-     * Check the direction of an edge.
-     * 
-     * @param source edge source
-     * @param target edge target
-     * @return true, if the two parameters are in the right order, false if 
-     *         they must be inverted.
-     */
-    private boolean checkEdgeDirection(Object source, Object target) {
-		if (source instanceof InputPort && target instanceof OutputPort) {
-		    return false;
-		}
-	
-		if (source instanceof ControlPort && target instanceof CommandPort) {
-		    return false;
-		}
-	
-		if ((source instanceof InputPort || source instanceof ControlPort) &&  target instanceof BasicLink) {
-		    return false;
-		}
-		
-		return true;
-    }
-    
-    /**
-     * cancel draw link action 
-     */
-    private void cancelDrawLinkAction() {
-	waitPathAddEdge = false;
-	waitPathRelease = false;
-	drawLink = null;
-	info(XcosMessages.EMPTY_INFO);
     }
     
     /**

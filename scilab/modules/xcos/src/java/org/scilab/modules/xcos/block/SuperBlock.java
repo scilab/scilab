@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.logging.LogFactory;
+import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.menu.Menu;
@@ -192,19 +193,25 @@ public final class SuperBlock extends BasicBlock {
 		 */
 		if (getChild() == null) {
 			createChildDiagram();
+		} else {
+			// reassociate (useful on clone and load operation)
+			getChild().setContainer(this);
+			getChild().setComponent(new ScilabComponent(getChild()));
+			
+			getChild().initComponent();
+			getChild().installListeners();
+			getChild().installSuperBlockListeners();
 		}
 		
 		/*
 		 * Construct the view or set it visible.
 		 */
-		if (getChild() != null && !getChild().isVisible()) {
+		if (!getChild().isVisible()) {
 			updateAllBlocksColor();
 			getChild().setModifiedNonRecursively(false);
 			
 			new XcosTab(getChild()).setVisible(true);
-			
-		} else {
-			getChild().setVisible(true);
+			getChild().getView().invalidate();
 		}
 		
 		/*
@@ -239,6 +246,8 @@ public final class SuperBlock extends BasicBlock {
 		if (getChild().getParentTab() != null) {
 			getChild().getParentTab().close();
 			getChild().setParentTab(null);
+			
+			getChild().setComponent(null);
 		}
 		
 		/* Remove only when the instance cannot be modified anymore */
