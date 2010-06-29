@@ -14,15 +14,11 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-04-13 09:16+0100\n"
+"Revision-Date: 2010-06-29 10:00+0100\n"
 
-# File: sci_gateway/c/sci_exec.c, line: 188
 # File: sci_gateway/c/sci_exec.c, line: 267
-# File: sci_gateway/c/sci_execstr.c, line: 162
-# File: sci_gateway/c/sci_execstr.c, line: 231
-# File: sci_gateway/c/sci_whereis.c, line: 101
 #, c-format
-msgid "%s: Memory allocation error.\n"
+msgid "%s : Memory allocation error.\n"
 msgstr ""
 #
 # File: macros/recompilefunction.sci, line: 44
@@ -82,6 +78,14 @@ msgstr ""
 # File: sci_gateway/c/sci_libraryinfo.c, line: 75
 #, c-format
 msgid "%s: Invalid library %s.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_exec.c, line: 188
+# File: sci_gateway/c/sci_execstr.c, line: 162
+# File: sci_gateway/c/sci_execstr.c, line: 231
+# File: sci_gateway/c/sci_whereis.c, line: 101
+#, c-format
+msgid "%s: Memory allocation error.\n"
 msgstr ""
 #
 # File: macros/genlib.sci, line: 77
@@ -170,7 +174,7 @@ msgstr ""
 # File: sci_gateway/c/sci_execstr.c, line: 94
 # File: sci_gateway/c/sci_execstr.c, line: 122
 # File: sci_gateway/c/sci_execstr.c, line: 191
-# File: sci_gateway/c/sci_lib.c, line: 60
+# File: sci_gateway/c/sci_lib.c, line: 66
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
@@ -295,21 +299,6 @@ msgstr ""
 #
 # File: macros/plotprofile.sci, line: 92
 msgid "Tools"
-msgstr ""
-#
-# File: sci_gateway/c/sci_getf.c, line: 27
-#, c-format
-msgid "WARNING: Function %s is obsolete.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_getf.c, line: 28
-#, c-format
-msgid "WARNING: Please use %s instead.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_getf.c, line: 29
-#, c-format
-msgid "WARNING: This function will be permanently removed in Scilab %s.\n"
 msgstr ""
 #
 # File: macros/plotprofile.sci, line: 154

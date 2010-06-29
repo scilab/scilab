@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-04-13 09:16+0100\n"
+"Revision-Date: 2010-06-29 10:00+0100\n"
 
 # File: macros/h_inf.sci, line: 45
 #, c-format
@@ -213,22 +213,22 @@ msgstr ""
 msgid "%s: Incompatible input arguments #%d and #%d: "
 msgstr ""
 #
-# File: macros/black.sci, line: 83
-# File: macros/black.sci, line: 90
-# File: macros/black.sci, line: 94
+# File: macros/black.sci, line: 84
+# File: macros/black.sci, line: 91
+# File: macros/black.sci, line: 95
 # File: macros/csim.sci, line: 91
-# File: macros/nyquist.sci, line: 50
-# File: macros/nyquist.sci, line: 57
+# File: macros/nyquist.sci, line: 52
+# File: macros/nyquist.sci, line: 58
 # File: macros/nyquist.sci, line: 61
 # File: macros/syslin.sci, line: 101
 # File: macros/syslin.sci, line: 127
-# File: macros/gainplot.sci, line: 47
-# File: macros/gainplot.sci, line: 55
+# File: macros/gainplot.sci, line: 48
+# File: macros/gainplot.sci, line: 56
 # File: macros/sylv.sci, line: 19
 # File: macros/reglin.sci, line: 23
-# File: macros/bode.sci, line: 47
-# File: macros/bode.sci, line: 54
-# File: macros/bode.sci, line: 58
+# File: macros/bode.sci, line: 49
+# File: macros/bode.sci, line: 56
+# File: macros/bode.sci, line: 60
 #, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same column dimensions "
@@ -242,10 +242,10 @@ msgid ""
 "expected.\n"
 msgstr ""
 #
-# File: macros/black.sci, line: 112
-# File: macros/nyquist.sci, line: 80
-# File: macros/gainplot.sci, line: 68
-# File: macros/bode.sci, line: 74
+# File: macros/black.sci, line: 113
+# File: macros/nyquist.sci, line: 79
+# File: macros/gainplot.sci, line: 70
+# File: macros/bode.sci, line: 76
 #, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same number of elements "
@@ -481,19 +481,19 @@ msgstr ""
 # File: macros/findBDK.sci, line: 90
 # File: macros/findAC.sci, line: 60
 # File: macros/repfreq.sci, line: 45
-# File: macros/black.sci, line: 68
-# File: macros/black.sci, line: 98
-# File: macros/nyquist.sci, line: 35
-# File: macros/nyquist.sci, line: 67
-# File: macros/gainplot.sci, line: 33
-# File: macros/gainplot.sci, line: 59
+# File: macros/black.sci, line: 69
+# File: macros/black.sci, line: 99
+# File: macros/nyquist.sci, line: 36
+# File: macros/nyquist.sci, line: 66
+# File: macros/gainplot.sci, line: 34
+# File: macros/gainplot.sci, line: 60
 # File: macros/findx0BD.sci, line: 61
 # File: macros/narsimul.sci, line: 29
 # File: macros/narsimul.sci, line: 44
 # File: macros/arsimul.sci, line: 18
 # File: macros/findABCD.sci, line: 84
-# File: macros/bode.sci, line: 32
-# File: macros/bode.sci, line: 62
+# File: macros/bode.sci, line: 34
+# File: macros/bode.sci, line: 64
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
@@ -540,14 +540,14 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr ""
 #
-# File: macros/black.sci, line: 61
-# File: macros/black.sci, line: 79
-# File: macros/nyquist.sci, line: 28
-# File: macros/nyquist.sci, line: 46
-# File: macros/gainplot.sci, line: 26
-# File: macros/gainplot.sci, line: 43
-# File: macros/bode.sci, line: 25
-# File: macros/bode.sci, line: 43
+# File: macros/black.sci, line: 62
+# File: macros/black.sci, line: 80
+# File: macros/nyquist.sci, line: 30
+# File: macros/nyquist.sci, line: 49
+# File: macros/gainplot.sci, line: 27
+# File: macros/gainplot.sci, line: 44
+# File: macros/bode.sci, line: 27
+# File: macros/bode.sci, line: 45
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A row vector with length>%d "
@@ -688,10 +688,10 @@ msgid ""
 "%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"
 msgstr ""
 #
-# File: macros/black.sci, line: 101
-# File: macros/nyquist.sci, line: 70
-# File: macros/gainplot.sci, line: 62
-# File: macros/bode.sci, line: 65
+# File: macros/black.sci, line: 102
+# File: macros/nyquist.sci, line: 69
+# File: macros/gainplot.sci, line: 63
+# File: macros/bode.sci, line: 67
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Linear dynamical system or row vector "
@@ -972,6 +972,7 @@ msgid "%s: time domains are not compatible.\n"
 msgstr ""
 #
 # File: macros/chart.sci, line: 11
+# File: macros/nicholschart.sci, line: 22
 msgid "Amplitude and phase contours of y/(1+y)"
 msgstr ""
 #
@@ -992,9 +993,9 @@ msgstr ""
 msgid "Evans root locus"
 msgstr ""
 #
-# File: macros/gainplot.sci, line: 87
-# File: macros/bode.sci, line: 102
-# File: macros/bode.sci, line: 123
+# File: macros/gainplot.sci, line: 79
+# File: macros/bode.sci, line: 111
+# File: macros/bode.sci, line: 137
 msgid "Frequency (Hz)"
 msgstr ""
 #
@@ -1002,6 +1003,31 @@ msgstr ""
 msgid "Gain :"
 msgstr ""
 #
+# File: macros/hallchart.sci, line: 49
+msgid "Hall chart"
+msgstr ""
+#
+# File: macros/black.sci, line: 226
+# File: macros/nyquist.sci, line: 235
+# File: macros/gainplot.sci, line: 108
+# File: macros/bode.sci, line: 151
+# File: macros/bode.sci, line: 156
+msgid "Hz"
+msgstr ""
+#
+# File: macros/nyquist.sci, line: 109
+msgid "Im"
+msgstr ""
+#
+# File: macros/nyquist.sci, line: 106
+msgid "Im(h(2if))"
+msgstr ""
+#
+# File: macros/nyquist.sci, line: 112
+msgid "Im(h(exp(2if*dt)))"
+msgstr ""
+#
+# File: macros/hallchart.sci, line: 48
 # File: macros/evans.sci, line: 179
 # File: macros/plzr.sci, line: 99
 msgid "Imaginary axis"
@@ -1017,27 +1043,25 @@ msgid ""
 "factor (click below)"
 msgstr ""
 #
-# File: macros/black.sci, line: 185
-# File: macros/gainplot.sci, line: 87
-# File: macros/bode.sci, line: 102
-msgid "Magnitude (Db)"
+# File: macros/black.sci, line: 148
+# File: macros/gainplot.sci, line: 80
+# File: macros/bode.sci, line: 111
+msgid "Magnitude (dB)"
 msgstr ""
 #
 # File: macros/trfmod.sci, line: 97
 msgid "Numerator :"
 msgstr ""
 #
-# File: macros/nyquist.sci, line: 196
-# File: macros/nyquist.sci, line: 198
-# File: macros/nyquist.sci, line: 200
+# File: macros/nyquist.sci, line: 103
 msgid "Nyquist plot"
 msgstr ""
 #
-# File: macros/black.sci, line: 185
+# File: macros/black.sci, line: 147
 msgid "Phase (deg)"
 msgstr ""
 #
-# File: macros/bode.sci, line: 123
+# File: macros/bode.sci, line: 137
 msgid "Phase (degree)"
 msgstr ""
 #
@@ -1045,6 +1069,19 @@ msgstr ""
 msgid "Poles"
 msgstr ""
 #
+# File: macros/nyquist.sci, line: 108
+msgid "Re"
+msgstr ""
+#
+# File: macros/nyquist.sci, line: 105
+msgid "Re(h(2if))"
+msgstr ""
+#
+# File: macros/nyquist.sci, line: 111
+msgid "Re(h(exp(2if*dt)))"
+msgstr ""
+#
+# File: macros/hallchart.sci, line: 47
 # File: macros/evans.sci, line: 179
 # File: macros/plzr.sci, line: 98
 msgid "Real axis"
@@ -1077,8 +1114,22 @@ msgstr ""
 msgid "asymptotic directions"
 msgstr ""
 #
+# File: macros/black.sci, line: 226
+# File: macros/hallchart.sci, line: 84
+# File: macros/hallchart.sci, line: 127
+# File: macros/gainplot.sci, line: 108
+# File: macros/nicholschart.sci, line: 187
+# File: macros/bode.sci, line: 151
+# File: macros/bode.sci, line: 156
+msgid "dB"
+msgstr ""
+#
 # File: macros/chart.sci, line: 84
 msgid "magnitude(y) (Db)"
+msgstr ""
+#
+# File: macros/nicholschart.sci, line: 24
+msgid "magnitude(y) (dB)"
 msgstr ""
 #
 # File: macros/evans.sci, line: 136
@@ -1090,5 +1141,13 @@ msgid "open loop zeroes"
 msgstr ""
 #
 # File: macros/chart.sci, line: 84
+# File: macros/nicholschart.sci, line: 23
 msgid "phase(y) (degree)"
+msgstr ""
+#
+# File: macros/black.sci, line: 226
+# File: macros/hallchart.sci, line: 108
+# File: macros/hallchart.sci, line: 133
+# File: macros/nicholschart.sci, line: 193
+msgid ""
 msgstr ""
