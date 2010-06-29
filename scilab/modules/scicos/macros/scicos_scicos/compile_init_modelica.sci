@@ -62,7 +62,7 @@ function   [ok]=compile_init_modelica(xmlmodel,paremb,jaco)
  Flati = ' ""' + Flati + '""';
  
  // generates the computational C function associated to the flat model
- instr = exe + Flati + '' + JAC + '-with-init-in ""' + strsubst(xmlfile,'\','/') + ..
+ instr = exe + Flati + '' + JAC + ' -with-init-in ""' + strsubst(xmlfile,'\','/') + ..
          '"" -with-init-out ""' + strsubst(xmlfile,'\','/') + '"" -o ""' + ..
          FlatCi + '"" > ""' + tmpdir + 'imodelicac.err""';
 

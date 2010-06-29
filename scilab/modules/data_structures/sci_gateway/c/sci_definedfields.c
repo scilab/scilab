@@ -15,7 +15,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(definedfields)(); /* fortran */
 /*--------------------------------------------------------------------------*/
-int C2F(sci_definedfields)(char *fname,unsigned long fname_len)
+int sci_definedfields(char *fname,unsigned long fname_len)
 {
 	C2F(definedfields)();
 	return 0;

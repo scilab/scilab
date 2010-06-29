@@ -35,6 +35,7 @@ c
       common/odecd/nd,iflag
 c
 c
+      character tmpbuf * (bsiz)  
       double precision atol,rtol,t0,tleft,tright,tf,hf
       double precision h0,hmax,hmin,tcrit,tmax,hstep,delta
       integer meth,jactyp
@@ -52,8 +53,8 @@ c
 c     
 c
       if (ddt .eq. 4) then
-         write(buf(1:4),'(i4)') fin
-         call basout(io,wte,' matodc '//buf(1:4))
+         write(tmpbuf(1:4),'(i4)') fin
+         call basout(io,wte,' matodc '//tmpbuf(1:4))
       endif
 
 c
@@ -772,11 +773,11 @@ c   lsode
       niter=nn
 c     
       if(ixpr.eq.1.and.iopt.eq.1) then
-         write(buf,'(''itask = '',i3,'' meth = '',i3,'' jactyp = '','//
+         write(buf, '(''itask = '',i3,'' meth = '',i3,'' jactyp = '','//
      $        'i3,'' ml = '',i3,'' mu = '',i3)') itask,meth,jactyp,ml
      $        ,mu
-         call basout(io,wte,buf(1:80))
-      write(buf,'(''tcrit= '',e9.4,'' h0= '',e9.4, '' hmax= '','//
+         call basout(io,wte,tmpbuf(1:80))
+      write(buf, '(''tcrit= '',e9.4,'' h0= '',e9.4, '' hmax= '','//
      $       'e9.4,'' hmin = '',e9.4)')
      $    tcrit,stk(lc+4),stk(lc+5),stk(lc+6)
          call basout(io,wte,buf(1:80)) 
@@ -799,10 +800,10 @@ c     set continuuous integration time
          if(abs(tleft-hf).le.1.d-12) goto 52
          istore=1
          if(ixpr.eq.1.and.iopt.eq.1) then
-            write(buf
+            write(tmpbuf
      $           ,'(''integ. from tleft='',e10.3,'' to tf= '','//
      $           'e10.3)') tleft,tright 
-            call basout(io,wte,buf(1:50))
+            call basout(io,wte,tmpbuf(1:50))
          endif
          tright=hf
          tcrit=hf
@@ -915,9 +916,9 @@ c     set continuous integration time
                nhpass=nhpass+1
                istore=1
                if(ixpr.eq.1.and.iopt.eq.1) then
-                  write(buf,'(''integ. from tleft='',e10.3,'//
+                  write(tmpbuf,'(''integ. from tleft='',e10.3,'//
      $                 ''' to hf=tf= '',e10.3)') tleft,tright 
-                  call basout(io,wte,buf(1:50))
+                  call basout(io,wte,tmpbuf(1:50))
                endif
                update=.true.
             elseif(tf.lt.hf) then

@@ -27,7 +27,7 @@ lib /DEF:&quot;$(InputDir)Scicos_blocks_Import.def&quot; /SUBSYSTEM:WINDOWS /MAC
 				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="Release|Win32" OutputDirectory="$(SolutionDir)bin\" IntermediateDirectory="$(ProjectDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
-				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDLL"/>
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" Parallelization="true" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDLL"/>
 				<Tool Name="VFLinkerTool" OutputFile="$(SolutionDir)bin\$(ProjectName).dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="scicos_blocks_f.def" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib" LinkDLL="true" AdditionalDependencies="LibScilab.lib output_stream.lib string.lib scicos_f.lib scicos.lib scicos_blocks.lib output_stream_f.lib"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
@@ -71,7 +71,7 @@ lib /DEF:&quot;$(InputDir)Scicos_blocks_Import.def&quot; /SUBSYSTEM:WINDOWS /MAC
 				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="Release|x64" OutputDirectory="$(SolutionDir)bin\" IntermediateDirectory="$(ProjectDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
-				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDLL"/>
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" Parallelization="true" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDLL"/>
 				<Tool Name="VFLinkerTool" OutputFile="$(SolutionDir)bin\$(ProjectName).dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="scicos_blocks_f.def" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib" LinkDLL="true" AdditionalDependencies="LibScilab.lib output_stream.lib string.lib scicos_f.lib scicos.lib scicos_blocks.lib output_stream_f.lib"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
@@ -106,7 +106,6 @@ lib /DEF:&quot;$(InputDir)Scicos_blocks_Import.def&quot; /SUBSYSTEM:WINDOWS /MAC
 		<File RelativePath=".\scicos_blocks_f.rc"/></Filter>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath=".\affich.f"/>
-		<File RelativePath=".\affich2.f"/>
 		<File RelativePath=".\csslti.f"/>
 		<File RelativePath=".\cstblk.f"/>
 		<File RelativePath=".\delay.f"/>

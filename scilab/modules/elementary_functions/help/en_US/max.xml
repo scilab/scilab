@@ -23,10 +23,12 @@
 
   <refnamediv>
     <refname>max</refname>
-
     <refpurpose>maximum</refpurpose>
   </refnamediv>
-
+  <refnamediv xml:id="maxi">
+    <refname>maxi</refname>
+    <refpurpose>Obsolete alias of max</refpurpose>
+  </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
@@ -89,7 +91,10 @@
     <para><literal>[m,k]=max(list(A1,...,An))</literal> is an equivalent
     syntax of <literal>[m,k]=max(A1,A2,...,An)</literal></para>
   </refsection>
-
+  <refsection>
+    <title>Remark</title>
+    <para>The <literal>maxi</literal> function is an obsolete alias of <literal>max</literal>.</para>
+ </refsection>
   <refsection>
     <title>Examples</title>
 
@@ -110,7 +115,7 @@
 
       <member><link linkend="find">find</link></member>
 
-      <member><link linkend="mini">mini</link></member>
+      <member><link linkend="min">min</link></member>
     </simplelist>
   </refsection>
 </refentry>

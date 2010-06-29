@@ -17,7 +17,6 @@ import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManag
 import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.buildCall;
 import static org.scilab.modules.xcos.utils.FileUtils.delete;
 
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -34,9 +33,6 @@ import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.H5RWHandler;
 import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosMessages;
-
-import com.mxgraph.util.mxConstants;
-import com.mxgraph.util.mxUtils;
 
 /**
  * Generate code for the current graph.
@@ -105,7 +101,13 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
 				
 				final ActionListener callback = new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
+						
+						block.getParentDiagram().getModel().beginUpdate();
 						doAction(block, tempInput);
+						block.getParentDiagram().getModel().endUpdate();
+						
+						block.getParentDiagram().getView().clear(block, true, false);
+						block.getParentDiagram().getView().validate();
 						
 						delete(tempOutput);
 						delete(tempInput);
@@ -143,8 +145,7 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
 	    block.setInterfaceFunctionName(modifiedBlock.getInterfaceFunctionName());
 	    block.setSimulationFunctionName(modifiedBlock.getSimulationFunctionName());
 	    block.setSimulationFunctionType(modifiedBlock.getSimulationFunctionType());
-	    mxUtils.setCellStyles(block.getParentDiagram().getModel(),
-		    new Object[] {block} , mxConstants.STYLE_SHAPE, mxConstants.SHAPE_RECTANGLE);
+	    block.setStyle(block.getStyle() + ";blockWithLabel");
 	    block.setValue(block.getSimulationFunctionName());
 	    block.setChild(null);
 	}

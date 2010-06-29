@@ -18,7 +18,7 @@ if  or(imag(s)<>0)|or(int(s)<>s) then error('%p_p_s: integer power only'),end
 if ms==1&ns==1 then
   if m==1|n==1 then //Element wise exponentiation p.^s with p vector
     if s<0 then 
-      if or(abs(coeff(p(:)))*ones(maxi(degree(p))+1,1)==0) then
+      if or(abs(coeff(p(:)))*ones(max(degree(p))+1,1)==0) then
 	error(27)
       end
       f=tlist(['r','num','den','dt'],ones(p),p.^(-s),[])

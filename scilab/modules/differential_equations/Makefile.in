@@ -319,6 +319,10 @@ OCAMLDEP = @OCAMLDEP@
 OCAMLLEX = @OCAMLLEX@
 OCAMLOPT = @OCAMLOPT@
 OCAMLYACC = @OCAMLYACC@
+OPENMP_CFLAGS = @OPENMP_CFLAGS@
+OPENMP_CXXFLAGS = @OPENMP_CXXFLAGS@
+OPENMP_ENABLE = @OPENMP_ENABLE@
+OPENMP_LIBS = @OPENMP_LIBS@
 OTOOL = @OTOOL@
 OTOOL64 = @OTOOL64@
 PACKAGE = @PACKAGE@
@@ -563,6 +567,7 @@ sci_gateway/fortran/bbvode.f
 libscidifferential_equations_la_CFLAGS = -I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/api_scilab/includes \
 -I$(top_srcdir)/modules/output_stream/includes \
+-I$(top_srcdir)/modules/elementary_functions/includes \
 -I$(top_srcdir)/modules/dynamic_link/includes
 
 pkglib_LTLIBRARIES = libscidifferential_equations.la
@@ -1583,7 +1588,8 @@ clean-macros:
 
 test:
 # More tests could be added here
-	@if test -f build.xml; then \
+	@if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
+	if test -f build.xml -a $$USEANT -eq 1; then \
 		$(ANT) test; \
 	fi
 

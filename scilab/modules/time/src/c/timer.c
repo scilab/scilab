@@ -1,7 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA - Allan CORNET
-* Copyright (C) DIGITEO - 2009 - Allan CORNET
+* Copyright (C) DIGITEO - 2009-2010 - Allan CORNET
 * 
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -16,10 +16,10 @@
 #include <time.h>
 
 #ifndef _MSC_VER
-	#include <sys/time.h>
-	#include <sys/resource.h> /* getrusage */
+    #include <sys/time.h>
+    #include <sys/resource.h> /* getrusage */
 #else 
-	#include <windows.h>
+    #include <windows.h>
 #endif 
 #include "timer.h"
 /*
@@ -33,65 +33,71 @@ static int init_clock = 1;
 /*--------------------------------------------------------------------------*/
 int C2F(timer)(double *etime)
 {
-	*etime = scilab_timer();
-	return(0);
+    *etime = scilab_timer();
+    return(0);
 }
 /*--------------------------------------------------------------------------*/
 double scilab_timer(void)
 {
-	double etime = 0.0;
-	double now = 0.0;
-	double usertime = 0.0, systime = 0.0;
+    double etime = 0.0;
+    double now = 0.0;
+    double usertime = 0.0, systime = 0.0;
 
 #ifdef _MSC_VER 
-	FILETIME creation_time, exit_time, kernel_time, user_time;
-	unsigned long long utime, stime;
+    FILETIME creation_time, exit_time, kernel_time, user_time;
+    unsigned long long utime, stime;
 
-	GetProcessTimes (GetCurrentProcess (), &creation_time, &exit_time,
-		&kernel_time, &user_time);
+    GetProcessTimes (GetCurrentProcess (), &creation_time, &exit_time,
+        &kernel_time, &user_time);
 
-	utime = ((unsigned long long) user_time.dwHighDateTime << 32)
-		+ (unsigned) user_time.dwLowDateTime;
+    utime = ((unsigned long long) user_time.dwHighDateTime << 32)
+        + (unsigned) user_time.dwLowDateTime;
 
-	stime = ((unsigned long long) kernel_time.dwHighDateTime << 32)
-		+ (unsigned) kernel_time.dwLowDateTime;
+    stime = ((unsigned long long) kernel_time.dwHighDateTime << 32)
+        + (unsigned) kernel_time.dwLowDateTime;
 
-	usertime = utime / 1.0e7;
-	systime = stime / 1.0e7;
+    usertime = (double)(utime / 1.0e7);
+    systime = (double)(stime / 1.0e7);
 
-	now = usertime + systime;
+    now = (double)(usertime + systime);
 
-	if (init_clock == 1)
-	{
-		init_clock = 0;
-		previousTimerValue = now ;
-		// initialization forced here 0 - 0 > -0 or +0
-		etime = 0.0;
-	}
-	else etime =  (double)(now - previousTimerValue);
-	previousTimerValue = now ;
+    if (init_clock == 1)
+    {
+        init_clock = 0;
+        previousTimerValue = now ;
+        // initialization forced here 0 - 0 > -0 or +0
+        etime = 0.0;
+    }
 #else
-	struct rusage rbuff;
-	getrusage (RUSAGE_SELF, &rbuff);
+    struct rusage rbuff;
+    getrusage (RUSAGE_SELF, &rbuff);
 
-	usertime = ((float) (rbuff.ru_utime).tv_sec +
-		(float) (rbuff.ru_utime).tv_usec / 1000000.0);
+    usertime = (double)((float) (rbuff.ru_utime).tv_sec +
+        (float) (rbuff.ru_utime).tv_usec / 1000000.0);
 
-	systime = ((float) (rbuff.ru_stime).tv_sec +
-		(float) (rbuff.ru_stime).tv_usec / 1000000.0);
+    systime = (double)((float) (rbuff.ru_stime).tv_sec +
+        (float) (rbuff.ru_stime).tv_usec / 1000000.0);
 
-	now = usertime + systime;
+    now = (double)(usertime + systime);
 
-	if (init_clock == 1)
-	{
-		init_clock = 0;
-		previousTimerValue = now ;
-		// initialization forced here 0 - 0 > -0 or +0
-		etime = 0.0;
-	}
-	else etime =  (double)(now - previousTimerValue);
-	previousTimerValue = now ;
+    if (init_clock == 1)
+    {
+        init_clock = 0;
+        previousTimerValue = now ;
+        // initialization forced here 0 - 0 > -0 or +0
+        etime = 0.0;
+    }
 #endif
-	return etime;
+    else 
+    {
+        etime =  (double)(now - previousTimerValue);
+        if (etime < 0.0) 
+        {
+            previousTimerValue = 0.0;
+            etime = 0.0;
+        }
+    }
+    previousTimerValue = now ;
+    return etime;
 }
 /*--------------------------------------------------------------------------*/

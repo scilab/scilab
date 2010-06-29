@@ -20,7 +20,7 @@ function contourf(x,y,z,nv,style,strf,leg,rect,nax)
 if nin <= 0 then x=1:10;end
 if nin <= 1 then y=1:10;end
 if nin <= 2 then z=rand(size(x,'*'),size(y,'*'));end
-if nin <= 3 then zmin=mini(z);zmax=maxi(z);nv = zmin + (1:10)*(zmax-zmin)/(11);end
+if nin <= 3 then zmin=min(z);zmax=max(z);nv = zmin + (1:10)*(zmax-zmin)/(11);end
 if nin <= 5 then strf="121";end
 if nin <= 6 then leg=" ";end
 if nin <= 7 then rect=[0,0,1,1];end
@@ -29,9 +29,9 @@ if x==[] then x=1:size(z,'r');end
 if y==[] then y=1:size(z,'c');end 
 
 nvs=size(nv,'*') ;
-if nvs==1 then nvs=nv;zmin=mini(z);zmax=maxi(z);nv = zmin + (1:nvs)*(zmax-zmin)/(nvs+1);end;
+if nvs==1 then nvs=nv;zmin=min(z);zmax=max(z);nv = zmin + (1:nvs)*(zmax-zmin)/(nvs+1);end;
 if nin <= 4 then style = -1*ones(1,nvs);end
-if nin <= 7 then rect=[mini(x),mini(y),maxi(x),maxi(y)]; end 
+if nin <= 7 then rect=[min(x),min(y),max(x),max(y)]; end 
 nv1=nv
 [mz,nz] = size(z);
 minz = min(z);
@@ -73,10 +73,10 @@ else
   if nv > lp ; write(%io(2),'Colormap too small');return ;end 
 end
 
-min_nv=mini(nv);
-max_nv=maxi(nv);
+min_nv=min(nv);
+max_nv=max(nv);
 
-plot2d([mini(xx);maxi(xx)],[mini(yy);maxi(yy)],0,strf,leg,rect,nax);
+plot2d([min(xx);max(xx)],[min(yy);max(yy)],0,strf,leg,rect,nax);
 
 // Plot patches in order of decreasing size. This makes sure that
 // all the lev1es get drawn, not matter if we are going up a hill or

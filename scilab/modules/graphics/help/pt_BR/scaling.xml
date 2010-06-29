@@ -30,7 +30,7 @@
   <refsynopsisdiv>
     <title>Seqüência de Chamamento</title>
 
-    <synopsis>xy1=scaling(xy,factor,[orig])</synopsis>
+    <synopsis>xy1=scaling(xy,scalingFactor,[orig])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -54,7 +54,7 @@
       </varlistentry>
 
       <varlistentry>
-        <term>factor</term>
+        <term>scalingFactor</term>
 
         <listitem>
           <para>escalar real, coeficiente da transformação linear. </para>
@@ -78,6 +78,6 @@
     conjunto de pontos definidos pelas coordenadas
     <literal>xy</literal>:</para>
 
-    <para><literal>xy1(:,i) = factor * xy(:,i) + orig</literal>.</para>
+    <para><literal>xy1(:,i) = scalingFactor * (xy(:,i) - orig) + orig</literal>.</para>
   </refsection>
 </refentry>

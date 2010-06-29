@@ -28,7 +28,7 @@ D=Sl(5);
 n=size(D);n1=n(1);n2=n(2);
 Ws=syslin([],[],[],[],eye(n2,n2));
 Stmp=Sl;
-m=maxi(degree(D));
+m=max(degree(D));
 //     moving poles @ infinity to poles @ Alfa
 while m>0
   Dm=coeff(D,m);
@@ -39,7 +39,7 @@ while m>0
   Ws=Ws*Wstmp;
   Stmp=Stmp*Wstmp;
   D=clean(Stmp(5));
-  m=maxi(degree(D));
+  m=max(degree(D));
 end
 Stmp(5)=coeff(Stmp(5),0);
 

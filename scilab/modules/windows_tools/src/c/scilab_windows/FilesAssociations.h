@@ -32,11 +32,11 @@ SCILAB_WINDOWS_IMPEXP BOOL IsABinOrSavFile(char *chainefichier);
 SCILAB_WINDOWS_IMPEXP BOOL IsAScicosFile(char *chainefichier);
 
 /**
-* check if it is a Xpad file
+* check if it is a SciNotes file
 * @param[in]
 * @return TRUE or FALSE
 */
-SCILAB_WINDOWS_IMPEXP BOOL IsAXpadFile(char *chainefichier);
+SCILAB_WINDOWS_IMPEXP BOOL IsASciNotesFile(char *chainefichier);
 
 /**
 * get command to do by file extension

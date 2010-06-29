@@ -34,6 +34,7 @@ libscigraphics_la_CFLAGS = -I$(top_srcdir)/libs/doublylinkedlist/includes/ \
 	-I$(top_srcdir)/modules/gui/includes/ \
 	-I$(top_srcdir)/modules/localization/includes \
 	-I$(top_srcdir)/modules/api_scilab/includes/ \
+	-I$(top_srcdir)/modules/elementary_functions/includes/ \
 	-I$(top_srcdir)/modules/fileio/includes/ \
 	-I$(top_srcdir)/modules/string/includes/
 

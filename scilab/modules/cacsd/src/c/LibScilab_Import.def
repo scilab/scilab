@@ -1,0 +1,24 @@
+	LIBRARY    Libscilab.dll
+
+
+EXPORTS
+;
+;core
+;
+callFunctionFromGateway
+stack_
+com_
+checklhs_
+checkrhs_
+vstk_
+recu_
+putlhsvar_
+intersci_
+vartype_
+fortran_mex_gateway
+ExceptionMessage
+getrhsvar_
+createvar_
+sci_gateway
+GetData
+errorinfo_

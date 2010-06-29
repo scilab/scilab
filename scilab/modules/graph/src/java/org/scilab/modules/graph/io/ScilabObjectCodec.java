@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Clément DAVID
+ * Copyright (C) 2009-2010 - DIGITEO - Clément DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -31,6 +31,17 @@ import com.mxgraph.model.mxCell;
  * Codec for any Scilab object
  */
 public abstract class ScilabObjectCodec extends mxObjectCodec {
+	/** Height of the data */
+	protected static final String HEIGHT = "height";
+	/** Width of the data */
+	protected static final String WIDTH = "width";
+	/** columns index of the data */
+	protected static final String COLUMN = "column";
+	/** line index of the data */
+	protected static final String LINE = "line";
+	/** Data field */
+	protected static final String DATA = "data";
+	
 	/**
 	 * Throw when we cannot load the XML.
 	 */
@@ -40,6 +51,14 @@ public abstract class ScilabObjectCodec extends mxObjectCodec {
 		 */
 		public UnrecognizeFormatException() {
 			super();
+		}
+		
+		/**
+		 * Constructor from another exception
+		 * @param cause the source exception.
+		 */
+		public UnrecognizeFormatException(Exception cause) {
+			super(cause);
 		}
 	}
 
@@ -104,5 +123,85 @@ public abstract class ScilabObjectCodec extends mxObjectCodec {
 			}
 		}
 		return obj;
+	}
+	
+	/**
+	 * get an integer value from a attributes.
+	 * 
+	 * @param dataAttrs the attributes
+	 * @param attribute the key to search
+	 * @return the value
+	 * @throws UnrecognizeFormatException when the key is not valid.
+	 */
+	private int getIntegerAttribute(final NamedNodeMap dataAttrs,
+			final String attribute) throws UnrecognizeFormatException {
+		final Node node = dataAttrs.getNamedItem(attribute);
+		if (node == null) {
+			throw new UnrecognizeFormatException();
+		}
+		
+		final int value;
+		try {
+			value = Integer.parseInt(node.getNodeValue());
+		} catch (NumberFormatException e) {
+			throw new UnrecognizeFormatException(e);
+		}
+		return value;
+	}
+	
+	/**
+	 * Get the height of the data attributes.
+	 * 
+	 * @param attrs
+	 *            the data attributes
+	 * @return the height
+	 * @throws UnrecognizeFormatException
+	 *             when the height hasn't been found.
+	 */
+	protected int getHeight(final NamedNodeMap attrs)
+			throws UnrecognizeFormatException {
+		return getIntegerAttribute(attrs, HEIGHT);
+	}
+	
+	/**
+	 * Get the width of the data attributes.
+	 * 
+	 * @param attrs
+	 *            the data attributes
+	 * @return the width
+	 * @throws UnrecognizeFormatException
+	 *             when the width hasn't been found.
+	 */
+	protected int getWidth(final NamedNodeMap attrs)
+			throws UnrecognizeFormatException {
+		return getIntegerAttribute(attrs, WIDTH);
+	}
+	
+	/**
+	 * Get the column index of the data attributes.
+	 * 
+	 * @param dataAttrs
+	 *            the data attributes
+	 * @return the column index
+	 * @throws UnrecognizeFormatException
+	 *             when the column index hasn't been found.
+	 */
+	protected int getColumnIndex(final NamedNodeMap dataAttrs)
+			throws UnrecognizeFormatException {
+		return getIntegerAttribute(dataAttrs, COLUMN);
+	}
+	
+	/**
+	 * Get the line index of the data attributes.
+	 * 
+	 * @param dataAttrs
+	 *            the data attributes
+	 * @return the column index
+	 * @throws UnrecognizeFormatException
+	 *             when the column index hasn't been found.
+	 */
+	protected int getLineIndex(final NamedNodeMap dataAttrs)
+			throws UnrecognizeFormatException {
+		return getIntegerAttribute(dataAttrs, LINE);
 	}
 }

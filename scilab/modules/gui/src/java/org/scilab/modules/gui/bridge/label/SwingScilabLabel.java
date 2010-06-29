@@ -57,6 +57,8 @@ public class SwingScilabLabel extends JScrollPane implements SimpleLabel {
 	
 	private JPanel alignmentPanel; /* Used for alignment */
 	
+	private String labelText = ""; /* Used to save user given text */
+	
 	/**
 	 * Constructor
 	 */
@@ -302,7 +304,7 @@ public class SwingScilabLabel extends JScrollPane implements SimpleLabel {
 	 * @see org.scilab.modules.gui.text.SimpleText#getText()
 	 */
 	public String getText() {
-		return getLabel().getText();
+		return labelText;
 	}
 
 	/**
@@ -311,6 +313,9 @@ public class SwingScilabLabel extends JScrollPane implements SimpleLabel {
 	 * @see org.scilab.modules.gui.text.SimpleText#setText(java.lang.String)
 	 */
 	public void setText(String newText) {
+		// Save the data given by the user so that it can be retrieved 
+		// (Java adds HTML tags in the getlabel().getText() returned value)
+		labelText = newText;  
 		getLabel().setText(newText);
 	}
 

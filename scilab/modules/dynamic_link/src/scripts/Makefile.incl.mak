@@ -31,7 +31,7 @@ CC__OPTIMISATION_MODE=-Z7 -O2 -MT
 !ENDIF
 
 CC_COMMON=-D__MSC__ -DFORDLL $(DWIN) -c -DSTRICT -D_CRT_SECURE_NO_DEPRECATE -D__MAKEFILEVC__ -nologo $(INCLUDES)
-LINKER_FLAGS=/NOLOGO $(MACHINE) $(LINKER_OPTIMISATION_MODE)
+LINKER_FLAGS=/NOLOGO $(MACHINE) /DYNAMICBASE:NO /NXCOMPAT:NO $(LINKER_OPTIMISATION_MODE)
 CC_OPTIONS = $(CC_COMMON) -W3 -Gd $(CC__OPTIMISATION_MODE) /Fo"$(DIR_OBJ)/" /Fd"$(DIR_OBJ)/"
 
 # include options 
@@ -74,7 +74,7 @@ USE_F2C=NO
 !IF "$(USE_F2C)" == "NO"
 FC=ifort 
 FC_OPTIONS_COMMON=/nologo /DFORDLL /assume:underscore \
-/noaltparam /f77rtl /arch:IA32 /fpscomp:nolibs /names:lowercase \
+/noaltparam /f77rtl /fpscomp:nolibs /names:lowercase \
 /iface:cref /threads /c /Qvc9 \
 /Fo"$(DIR_OBJ)/" /Fd"$(DIR_OBJ)/" \
 /include:"$(SCIDIR1)/modules/core/includes"

@@ -186,7 +186,7 @@ y=impl([1;0;0],[-0.04;0.04;0],0,0.4,'resid','aplusp');
 //[x1,w,iw]=impl([1;0;0],[-0.04;0.04;0],0,0.2,'resid','aplusp');
 // inicialização rápida da chamada anterior 
 //[x1]=impl([1;0;0],[-0.04;0.04;0],0.2,0.4,'resid','aplusp',w,iw);
-//maxi(abs(x1-x))
+//max(abs(x1-x))
  ]]></programlisting>
   </refsection>
 

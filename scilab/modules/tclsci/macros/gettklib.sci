@@ -25,7 +25,7 @@ function tklib=gettklib()
 		// to the LD_LIBRARY_PATH (or SHLIB_PATH).
 		// So, If libtk8.X.so (or .sl) exists in SCI/bin ... it's ok
 		libname = 'libtk' + major + '.' + minor;
-		if fileinfo('SCI/bin/'+libname+getdynlibext()) <> [] then
+		if isfile('SCI/bin/'+libname+getdynlibext()) then
 			tklib = libname + getdynlibext();
 			ilib_verbose(cur_verbose);
 			return;

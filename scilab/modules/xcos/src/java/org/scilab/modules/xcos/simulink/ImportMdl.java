@@ -14,23 +14,15 @@ package org.scilab.modules.xcos.simulink;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Iterator;
 
-import edu.tum.cs.commons.collections.UnmodifiableIterator;
+import org.apache.commons.logging.LogFactory;
+import org.scilab.modules.xcos.XcosTab;
+import org.scilab.modules.xcos.graph.XcosDiagram;
+
 import edu.tum.cs.commons.logging.SimpleLogger;
 import edu.tum.cs.simulink.builder.SimulinkModelBuilder;
 import edu.tum.cs.simulink.builder.SimulinkModelBuildingException;
-import edu.tum.cs.simulink.model.SimulinkBlock;
-import edu.tum.cs.simulink.model.SimulinkInPort;
-import edu.tum.cs.simulink.model.SimulinkLine;
 import edu.tum.cs.simulink.model.SimulinkModel;
-import edu.tum.cs.simulink.model.SimulinkOutPort;
-
-import org.apache.commons.logging.LogFactory;
-import org.scilab.modules.xcos.Xcos;
-import org.scilab.modules.xcos.XcosTab;
-import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.simulink.DiagramElement;
 
 /**
  *  
@@ -52,9 +44,9 @@ public class ImportMdl {
 		SimulinkModel model = builder.buildModel();
 		DiagramElement diagram = new DiagramElement();
 		try {
-			XcosDiagram xcosDiagram = Xcos.createANotShownDiagram();
+			XcosDiagram xcosDiagram = new XcosDiagram();
 			xcosDiagram = diagram.decode(model,xcosDiagram);
-			XcosTab.showTabFromDiagram(xcosDiagram);
+			new XcosTab(xcosDiagram).setVisible(true);
 		} catch(SimulinkFormatException e1) {
 			LogFactory.getLog(ImportMdl.class).error(e1);
 		}

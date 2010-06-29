@@ -59,6 +59,7 @@ public class PaletteComponent extends ScilabComponent {
     /**
      * @return The filename
      */
+	@Override
     public String toString() {
 	if (getGraph() instanceof PaletteDiagram) {
 	    String fileName = ((PaletteDiagram) getGraph()).getName();

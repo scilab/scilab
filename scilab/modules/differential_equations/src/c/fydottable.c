@@ -11,6 +11,7 @@
  *
  */
 #include "GetFunctionByName.h"
+#include "dynlib_differential_equations.h"
 #include "arnol.h"
 	/***********************************
 	* ode   (fydot and fjac )
@@ -34,8 +35,9 @@ extern void C2F(fexab)(int*,double *,double *,double *);
 extern void C2F(loren)(int*,double *,double *,double *);
 extern void C2F(bcomp)(int*,double *,double *,double *);
 extern void C2F(lcomp)(int*,double *,double *,double *);
-void C2F(fydot)(int*,double *,double *,double *);
-void C2F(setfydot)(char *name, int *rep);
+
+DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(fydot)(int*,double *,double *,double *);
+DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(setfydot)(char *name, int *rep);
 
 FTAB FTab_fydot[] ={
 	{"arnol", (voidf)  C2F(arnol)},
@@ -50,8 +52,10 @@ FTAB FTab_fydot[] ={
 
 /**************** fjac ***************/
 extern void C2F(jex)(ARGS_fjac);
-void C2F(fjac)(ARGS_fjac);
-void C2F(setfjac)(char *name, int *rep);
+
+DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(fjac)(ARGS_fjac);
+DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(setfjac)(char *name, int *rep);
+
 FTAB FTab_fjac[] =
 {
 	{"jex", (voidf)  C2F(jex)},

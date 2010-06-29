@@ -32,7 +32,7 @@ function hilite_path(path,mess,with_intermediates)
   if argn(2)<3 then with_intermediates=%f,end
   if argn(2)<2 then mess=' ',end
   scs_m;
-  mxwin=maxi(winsid()),opened_windows=[]
+  mxwin=max(winsid()),opened_windows=[]
 
   //** save the current figure handle
   gh_wins = gcf();

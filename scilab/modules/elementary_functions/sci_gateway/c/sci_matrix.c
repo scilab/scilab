@@ -14,7 +14,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intmatrix)(int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_scimatrix)(char *fname,unsigned long fname_len)
+int sci_scimatrix(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	C2F(intmatrix)(id);

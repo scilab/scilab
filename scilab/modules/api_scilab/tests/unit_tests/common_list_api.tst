@@ -1,6 +1,6 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2009 - DIGITEO - Scilab Consortium Operational Team
+// Copyright (C) 2009-2010 - DIGITEO - Scilab Consortium Operational Team
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -12,7 +12,7 @@ mkdir(pathconvert(TMPDIR+"/common_list_api"));
 cd(pathconvert(TMPDIR+"/common_list_api"));
 copyfile(SCI+"/modules/api_scilab/tests/unit_tests/common_list_api.c",pathconvert(TMPDIR+"/common_list_api/common_list_api.c",%F));
 cflags = "-I"+SCI+"/modules/localization/includes";
-ilib_build("common_list",["common_list","common_list"],"common_list_api.c",[],"Makefile","",cflags);
+ilib_build("common_list",["common_list","common_list"],"common_list_api.c",[],"","",cflags);
 exec("loader.sce");
 
              
@@ -25,4 +25,4 @@ l6 = uint16([1000,2000,3000]);
 l = list(l1,l2,l3,l6,l4,l5);
 common_list(l)
  
-        
+       

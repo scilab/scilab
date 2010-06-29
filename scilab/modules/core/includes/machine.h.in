@@ -206,6 +206,9 @@
 /* Define to 1 if you have the <nlist.h> header file. */
 #undef HAVE_NLIST_H
 
+/* Define to 1 if you have the <omp.h> header file. */
+#undef HAVE_OMP_H
+
 /* Define to 1 if you have the <pcre.h> header file. */
 #undef HAVE_PCRE_H
 

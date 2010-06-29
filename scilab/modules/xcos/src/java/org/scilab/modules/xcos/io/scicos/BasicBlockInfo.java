@@ -75,6 +75,8 @@ public final class BasicBlockInfo {
 	}
 
 	/**
+	 * Get the block' children list of the specified type. 
+	 * 
 	 * @param block
 	 *            the block we are working on
 	 * @param revert
@@ -85,14 +87,23 @@ public final class BasicBlockInfo {
 	 *            The type to search for.
 	 * @return control ports of given block
 	 */
+	@SuppressWarnings("unchecked")
 	public static <T extends BasicPort> List<T> getAllTypedPorts(
 			BasicBlock block, boolean revert, Class<T> type) {
 		List<T> data = new ArrayList<T>();
 		int childrenCount = block.getChildCount();
+		
+		/*
+		 * type must be first child of BasicPort 
+		 */
+		Class<T> realType = type; 
+		while (!realType.getSuperclass().equals(BasicPort.class)) {
+			realType = (Class<T>) realType.getSuperclass();
+		}
 
 		for (int i = 0; i < childrenCount; ++i) {
 			mxICell cell = block.getChildAt(i);
-			if (type.isInstance(cell)) {
+			if (realType.isInstance(cell)) {
 				// There we are sure that the cell is an instance of the type
 				// class. Thus we can safely cast it and add it to the result
 				// vector.

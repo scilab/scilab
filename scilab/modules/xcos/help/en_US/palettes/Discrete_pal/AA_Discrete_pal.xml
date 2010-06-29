@@ -37,13 +37,53 @@
   <refsection>
     <title>Block Screenshot</title>
 
-    <para><inlinemediaobject>
-        <imageobject>
-          <imagedata align="center"
-                     fileref="../../../../images/palettes/Discrete_pal.jpg"
-                     valign="middle"></imagedata>
-        </imageobject>
-      </inlinemediaobject></para>
+    <para>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="AUTOMAT" fileref="../../../../../../modules/xcos/images/palettes/AUTOMAT.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="DELAYV_f" fileref="../../../../../../modules/xcos/images/palettes/DELAYV_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="DELAY_f" fileref="../../../../../../modules/xcos/images/palettes/DELAY_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="DLR" fileref="../../../../../../modules/xcos/images/palettes/DLR.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="DLRADAPT_f" fileref="../../../../../../modules/xcos/images/palettes/DLRADAPT_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="DLSS" fileref="../../../../../../modules/xcos/images/palettes/DLSS.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="DOLLAR_f" fileref="../../../../../../modules/xcos/images/palettes/DOLLAR_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="SAMPHOLD_m" fileref="../../../../../../modules/xcos/images/palettes/SAMPHOLD_m.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="TCLSS" fileref="../../../../../../modules/xcos/images/palettes/TCLSS.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    </para>
   </refsection>
 
   <refsection id="Module_Discrete_pal">

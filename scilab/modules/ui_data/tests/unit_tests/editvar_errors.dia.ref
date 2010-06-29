@@ -1,0 +1,49 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//editvar
+// <-- ENGLISH IMPOSED -->
+ierr = execstr("editvar();", "errcatch")
+ ierr  =
+ 
+    77.  
+lasterror()
+ ans  =
+ 
+ editvar: Wrong number of input argument(s): 1 expected.   
+ierr = execstr("editvar(1,2,3);", "errcatch")
+ ierr  =
+ 
+    77.  
+lasterror()
+ ans  =
+ 
+ editvar: Wrong number of input argument(s): 1 expected.   
+ierr = execstr("editvar([]);", "errcatch")
+ ierr  =
+ 
+    999.  
+lasterror()
+ ans  =
+ 
+ editvar: Wrong type for input argument #1: A String expected.   
+ierr = execstr("editvar(12);", "errcatch")
+ ierr  =
+ 
+    999.  
+lasterror()
+ ans  =
+ 
+ editvar: Wrong type for input argument #1: A String expected.   
+clear __ghost
+ierr = execstr("editvar(""__ghost"");", "errcatch")
+ ierr  =
+ 
+    4.  
+lasterror()
+ ans  =
+ 
+ editvar: Undefined variable __ghost.   

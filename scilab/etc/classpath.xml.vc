@@ -31,7 +31,7 @@ The option is "disableUnderMode" and can be:
 
 <path value="$SCILAB/thirdparty/flexdock-0.5.1.jar" load="startup"/>
 <path value="$SCILAB/thirdparty/jrosetta-API.jar" load="startup" disableUnderMode="NW"/>
-<path value="$SCILAB/thirdparty/jrosetta-engine.jar" load="startup" disableUnderMode="NW"/>
+<path value="$SCILAB/thirdparty/jrosetta-engine.jar" load="startup"/>
 <path value="$SCILAB/thirdparty/skinlf.jar" load="startup"/>
 <path value="$SCILAB/thirdparty/looks-2.1.1.jar" load="startup"/>
 <path value="$SCILAB/thirdparty/commons-logging-1.1.jar" load="startup"/>
@@ -160,12 +160,16 @@ The option is "disableUnderMode" and can be:
 
 <path value="$SCILAB/modules/graphic_export/jar/org.scilab.modules.graphic_export.jar"/>
 
-<!-- xpad module -->
-<path value="$SCILAB/modules/xpad/jar/org.scilab.modules.xpad.jar" load="onUse">
-	<load on="Xpad"/>
+<!-- scinotes module -->
+<path value="$SCILAB/modules/scinotes/jar/org.scilab.modules.scinotes.jar" load="onUse">
+	<load on="SciNotes"/>
 </path>
 
 <!-- TO DO Load only when we need -->
+<path value="$SCILAB/modules/ui_data/jar/org.scilab.modules.ui_data.jar"/>
+
+<!-- TO DO Load only when we need -->
 <path value="$SCILAB/modules/graph/jar/org.scilab.modules.graph.jar"/>
+
 
 </classpaths>

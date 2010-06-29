@@ -942,7 +942,7 @@ endfunction
 
 function primary=discardprimary(primary)
 // discard
-  mma=maxi(primary(:,2))+1
+  mma=max(primary(:,2))+1
   con=mma*primary(:,1)+primary(:,2)
   [junk,ind]=gsort(-con);con=-junk
   primary=primary(ind,:)
@@ -1120,7 +1120,7 @@ function [clkconnectj_cons]=discard(clkptr,cliptr,clkconnect,exe_cons)
 
   if exe_cons<>[] then
     clkconnectj=exe_cons
-    mma=maxi(clkconnectj(:,2))+1
+    mma=max(clkconnectj(:,2))+1
     con=mma*(clkconnectj(:,1))+clkconnectj(:,2)
     [junk,ind]=gsort(-con);con=-junk
     clkconnectj=clkconnectj(ind,:)
@@ -1404,7 +1404,7 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
   //store unconnected outputs, if any, at the end of outtb
   unco=find(outlnk==0);
   for j=unco
-    m=maxi(find(outptr<=j))
+    m=max(find(outptr<=j))
     n=j-outptr(m)+1
     nm=bllst(m).out(n)
     if nm<1 then
@@ -1417,13 +1417,13 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
     lnksz($+1,1)=bllst(m).out(n);
     lnksz($,2)=bllst(m).out2(n);
     lnktyp($+1)=bllst(m).outtyp(n);
-    outlnk(j)=maxi(outlnk)+1
+    outlnk(j)=max(outlnk)+1
   end
 
   //store unconnected inputs, if any, at the end of outtb
   unco=find(inplnk==0);
   for j=unco
-    m=maxi(find(inpptr<=j))
+    m=max(find(inpptr<=j))
     n=j-inpptr(m)+1
     nm=bllst(m).in(n)
     if nm<1 then 
@@ -1436,7 +1436,7 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
     lnksz($+1,1)=bllst(m).in(n);
     lnksz($,2)=bllst(m).in2(n);
     lnktyp($+1)=bllst(m).intyp(n);
-    inplnk(j)=maxi([inplnk;maxi(outlnk)])+1
+    inplnk(j)=max([inplnk;max(outlnk)])+1
   end
 
 endfunction
@@ -1452,7 +1452,7 @@ function [outoin,outoinptr]=conn_mat(inpptr,outptr,inplnk,outlnk)
     end
     outoini=[];jj=0
     for j=ii
-      m=maxi(find(inpptr<=j))
+      m=max(find(inpptr<=j))
       n=j-inpptr(m)+1
       outoini=[outoini;[m,n]]
       jj=jj+1
@@ -1639,12 +1639,12 @@ function [ok,bllst]=adjust_inout(bllst,connectmat)
                  //of the output ports of the target block
                  if ndim==1 then
                    ww=find(bllst(connectmat(jj,3)).out==0)
-                   if (ww<>[]&mini(bllst(connectmat(jj,3)).in(:))>0) then
+                   if (ww<>[]&min(bllst(connectmat(jj,3)).in(:))>0) then
                       bllst(connectmat(jj,3)).out(ww)=sum(bllst(connectmat(jj,3)).in(:))
                    end
                  elseif ndim==2 then
                    ww=find(bllst(connectmat(jj,3)).out2==0)
-                   if (ww<>[]&mini(bllst(connectmat(jj,3)).in2(:))>0) then
+                   if (ww<>[]&min(bllst(connectmat(jj,3)).in2(:))>0) then
                       bllst(connectmat(jj,3)).out2(ww)=sum(bllst(connectmat(jj,3)).in2(:))
                    end
                  end
@@ -1689,12 +1689,12 @@ function [ok,bllst]=adjust_inout(bllst,connectmat)
                  //of the input ports of the source block
                  if ndim==1 then
                    ww=find(bllst(connectmat(jj,1)).in==0)
-                   if (ww<>[]&mini(bllst(connectmat(jj,1)).out(:))>0) then
+                   if (ww<>[]&min(bllst(connectmat(jj,1)).out(:))>0) then
                       bllst(connectmat(jj,1)).in(ww)=sum(bllst(connectmat(jj,1)).out(:))
                    end
                  elseif ndim==2 then
                    ww=find(bllst(connectmat(jj,1)).in2==0)
-                   if (ww<>[]&mini(bllst(connectmat(jj,1)).out2(:))>0) then
+                   if (ww<>[]&min(bllst(connectmat(jj,1)).out2(:))>0) then
                       bllst(connectmat(jj,1)).in2(ww)=sum(bllst(connectmat(jj,1)).out2(:))
                    end
                  end
@@ -1725,7 +1725,7 @@ function [ok,bllst]=adjust_inout(bllst,connectmat)
 
                  //test if all size of the ndim dimension of input
                  //port of the source block is positive
-                 if mini(ww)>0 then
+                 if min(ww)>0 then
                     //test if the dimension of the target port
                     //is positive
                     if nin(1,ndim)>0 then
@@ -1815,7 +1815,7 @@ function [ok,bllst]=adjust_inout(bllst,connectmat)
 
                  //test if all size of the ndim dimension of output
                  //port of the target block is positive
-                 if mini(ww)>0 then
+                 if min(ww)>0 then
                     //test if the dimension of the source port
                     //is positive
                     if nout(1,ndim)>0 then
@@ -1966,12 +1966,12 @@ function [ok,bllst]=adjust_inout(bllst,connectmat)
             bllst(connectmat(jj,1)).in2(ww)=ninnout(1,2)
             //
             ww=find(bllst(connectmat(jj,1)).in==0)
-            if (ww<>[]&mini(bllst(connectmat(jj,1)).out(:))>0) then 
+            if (ww<>[]&min(bllst(connectmat(jj,1)).out(:))>0) then 
                bllst(connectmat(jj,1)).in(ww)=sum(bllst(connectmat(jj,1)).out)
             end
 
             ww=find(bllst(connectmat(jj,1)).in2==0)
-            if (ww<>[]&mini(bllst(connectmat(jj,1)).out2(:))>0) then 
+            if (ww<>[]&min(bllst(connectmat(jj,1)).out2(:))>0) then 
                  bllst(connectmat(jj,1)).in2(ww)=sum(bllst(connectmat(jj,1)).out2)
             end
             //
@@ -2009,11 +2009,11 @@ function [ok,bllst]=adjust_inout(bllst,connectmat)
             bllst(connectmat(jj,3)).out2(ww)=ninnout(1,2)
             //
             ww=find(bllst(connectmat(jj,3)).out==0)
-            if (ww<>[]&mini(bllst(connectmat(jj,3)).in(:))>0) then
+            if (ww<>[]&min(bllst(connectmat(jj,3)).in(:))>0) then
                bllst(connectmat(jj,3)).out(ww)=sum(bllst(connectmat(jj,3)).in(:))
             end
             ww=find(bllst(connectmat(jj,3)).out2==0)
-            if (ww<>[]&mini(bllst(connectmat(jj,3)).in2(:))>0) then
+            if (ww<>[]&min(bllst(connectmat(jj,3)).in2(:))>0) then
                bllst(connectmat(jj,3)).out2(ww)=sum(bllst(connectmat(jj,3)).in2(:))
             end
         end
@@ -2057,7 +2057,7 @@ function ninnout=under_connection(path_out,prt_out,nout,path_in,prt_in,nin,flagg
     return
   end
 
-  lp=mini(size(path_out,'*'),size(path_in,'*'))
+  lp=min(size(path_out,'*'),size(path_in,'*'))
   k=find(path_out(1:lp)<>path_in(1:lp))
   path=path_out(1:k(1)-1) // common superbloc path
   if (k <> []) then
@@ -2065,7 +2065,7 @@ function ninnout=under_connection(path_out,prt_out,nout,path_in,prt_in,nin,flagg
     path_in=path_in(k(1))   // "to" block number
   end
   if isdef('Code_gene_run') then
-    mxwin=maxi(winsid())
+    mxwin=max(winsid())
     path=path+1 // Consider locally compiled superblock as a superblock
     for k=1:size(path,'*')
       //hilite_obj(all_scs_m.objs(numk(k)))
@@ -2124,7 +2124,7 @@ function ninnout=under_connection(path_out,prt_out,nout,path_in,prt_in,nin,flagg
       end
       unhilite_obj(kk)
     else
-      mxwin=maxi(winsid())
+      mxwin=max(winsid())
       kk=[];
       for k=1:size(path,'*')
 	//hilite_obj(scs_m.objs(path(k)))
@@ -2367,12 +2367,12 @@ function [bllst,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,dep_u,dep_uptr,dep_t,.
 
   //store unconnected outputs, if any, at the end of outtb
   for unco=find(outlnk==0);
-    outlnk(unco)=maxi(outlnk)+1
+    outlnk(unco)=max(outlnk)+1
   end
 
   //store unconnected inputs, if any, at the end of outtb
   for unco=find(inplnk==0);
-    inplnk(unco)=maxi([inplnk;maxi(outlnk)])+1
+    inplnk(unco)=max([inplnk;max(outlnk)])+1
   end
 endfunction
 
@@ -2391,7 +2391,7 @@ function [evoutoin,evoutoinptr]=synch_clkconnect(typ_l,clkconnect)
 endfunction
 
 function   clkconnect=cleanup(clkconnect)
-  mm=maxi(clkconnect)+1
+  mm=max(clkconnect)+1
   cc=clkconnect(:,4)+mm*clkconnect(:,3)+clkconnect(:,2)*mm^2+..
      clkconnect(:,1)*mm^3
   [cc1,ind]=gsort(-cc)
@@ -2401,7 +2401,7 @@ function   clkconnect=cleanup(clkconnect)
 endfunction
 
 //function mat=cleanup1(mat)
-//  mm=maxi(mat)+1
+//  mm=max(mat)+1
 //  cc=mat(:,1)*mm
 //  [cc1,ind]=gsort(-cc)
 //  mat=mat(ind,:)
@@ -2470,7 +2470,7 @@ function [critev]=critical_events(connectmat,clkconnect,dep_t,typ_r,..
   while ~done1
     done1=%t
     [clkr,clkc]=size(clkconnect);
-    mm=maxi(clkconnect)+1;
+    mm=max(clkconnect)+1;
 
     cll=clkconnect(:,1)*mm+clkconnect(:,2);
     [cll,ind]=gsort(-cll);

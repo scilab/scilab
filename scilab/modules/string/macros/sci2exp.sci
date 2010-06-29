@@ -175,7 +175,7 @@ function t=mat2exp(a,lmax)
       k1=1;l=0;I=[];
       while %t
 	if lx-l<lmax|k1>length(ind) then,break,end
-	k2=k1-1+maxi(find(ind(k1:$)<l+lmax))
+	k2=k1-1+max(find(ind(k1:$)<l+lmax))
 	I=[I ind(k2)];
 //	t=[t;part(x,l+1:ind(k2))]
 	k1=k2+1
@@ -193,7 +193,7 @@ function t=mat2exp(a,lmax)
       k1=1;l=0;I=[];
       while %t
 	if lx-l<lmax|k1>length(ind) then break,end
-	k2=k1-1+maxi(find(ind(k1:$)<l+lmax))
+	k2=k1-1+max(find(ind(k1:$)<l+lmax))
 	I=[I ind(k2)];
 //	t=[t;part(x,l+1:ind(k2))+dots]
 	k1=k2+1
@@ -216,7 +216,7 @@ function t=mat2exp(a,lmax)
 	k1=1;l=0;I=[];
 	while %t
 	  if lx-l<lmax|k1>length(ind) then break,end
-	  k2=k1-1+maxi(find(ind(k1:$)<l+lmax))
+	  k2=k1-1+max(find(ind(k1:$)<l+lmax))
 	  I=[I ind(k2)];
 //	  t=[t;part(x,l+1:ind(k2))+dots]
 	  k1=k2+1
@@ -340,7 +340,7 @@ function t=list2exp(l,lmax)
     else
       t1=sci2exp(lk,lmax)
     end
-    if size(t1,'*')==1&(lmax==0|maxi(length(t1))+length(t($))<lmax) then
+    if size(t1,'*')==1&(lmax==0|max(length(t1))+length(t($))<lmax) then
       t($)=t($)+sep+t1
     else
       t($)=t($)+sep+dots
@@ -370,7 +370,7 @@ function t=tlist2exp(l,lmax)
     else
       t1=sci2exp(lk,lmax)
     end
-    if size(t1,'*')==1&(lmax==0|maxi(length(t1))+length(t($))<lmax) then
+    if size(t1,'*')==1&(lmax==0|max(length(t1))+length(t($))<lmax) then
       t($)=t($)+sep+t1
     else
       t($)=t($)+sep+dots
@@ -400,7 +400,7 @@ function t=mlist2exp(l,lmax)
     else
       t1=sci2exp(lk,lmax)
     end
-    if size(t1,'*')==1&(lmax==0|maxi(length(t1))+length(t($))<lmax) then
+    if size(t1,'*')==1&(lmax==0|max(length(t1))+length(t($))<lmax) then
       t($)=t($)+sep+t1
     else
       t($)=t($)+sep+dots

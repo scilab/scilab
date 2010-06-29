@@ -12,6 +12,7 @@
 *
 */
 /*--------------------------------------------------------------------------*/ 
+#include <string.h>
 #include "cluni0.h"
 #include "expandPathVariable.h"
 #include "MALLOC.h"

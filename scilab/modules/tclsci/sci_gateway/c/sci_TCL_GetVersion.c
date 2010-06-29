@@ -14,7 +14,6 @@
 #include "gw_tclsci.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "../../localization/includes/localization.h"
 #if _MSC_VER
   #include "strdup_windows.h"
 #endif

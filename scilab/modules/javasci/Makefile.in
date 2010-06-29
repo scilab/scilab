@@ -289,6 +289,10 @@ OCAMLDEP = @OCAMLDEP@
 OCAMLLEX = @OCAMLLEX@
 OCAMLOPT = @OCAMLOPT@
 OCAMLYACC = @OCAMLYACC@
+OPENMP_CFLAGS = @OPENMP_CFLAGS@
+OPENMP_CXXFLAGS = @OPENMP_CXXFLAGS@
+OPENMP_ENABLE = @OPENMP_ENABLE@
+OPENMP_LIBS = @OPENMP_LIBS@
 OTOOL = @OTOOL@
 OTOOL64 = @OTOOL64@
 PACKAGE = @PACKAGE@
@@ -1119,7 +1123,8 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 
 @JAVASCI_TRUE@test:
 # More tests could be added here
-@JAVASCI_TRUE@	@if test -f build.xml; then \
+@JAVASCI_TRUE@	@if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
+@JAVASCI_TRUE@	if test -f build.xml -a $$USEANT -eq 1; then \
 @JAVASCI_TRUE@		$(ANT) test; \
 @JAVASCI_TRUE@	fi
 

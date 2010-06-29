@@ -1,0 +1,46 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Allan CORNET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- JVM NOT MANDATORY -->
+//
+// =============================================================================
+// unit tests evstr
+// =============================================================================
+a = 1;
+b = 2;
+Z = ['a','b'];
+res = evstr(Z);
+if res(1) <> a then bugmes();quit;end
+if res(2) <> b then bugmes();quit;end
+// =============================================================================
+a = 1;
+b = 2;
+Z = list(['%(1)','%(1)-%(2)'], ['a+1','b+1']);
+res = evstr(Z);
+if or(res <> [2 -1]) then bugmes();quit;end
+// =============================================================================
+if isnan(evstr(%nan)) <> %t then bugmes();quit;end
+if isinf(evstr(%inf)) <> %t then bugmes();quit;end
+if isnan(evstr('%nan')) <> %t then bugmes();quit;end
+if isinf(evstr('%inf')) <> %t then bugmes();quit;end
+if isnan(evstr('Nan')) <> %t then bugmes();quit;end
+if isinf(evstr('Inf')) <> %t then bugmes();quit;end
+if isnan(evstr('NaN')) <> %t then bugmes();quit;end
+if isinf(evstr(-%inf)) <> %t then bugmes();quit;end
+if isinf(evstr('-%inf')) <> %t then bugmes();quit;end
+if isinf(evstr('-Inf')) <> %t then bugmes();quit;end
+// =============================================================================
+Scilab_value = 3;
+if Scilab_value <> evstr('Scilab_value') then bugmes();quit;end 
+// =============================================================================
+clear toto;
+if execstr("evstr(''toto'')", "errcatch") <> 4 then bugmes();quit;end
+if execstr("evstr(toto)", "errcatch") <> 4 then bugmes();quit;end
+// =============================================================================
+s = rand(3,3,3);
+if execstr("evstr(s)", "errcatch") <> 10000 then bugmes();quit;end
+// =============================================================================

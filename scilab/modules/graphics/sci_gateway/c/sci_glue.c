@@ -21,7 +21,7 @@
 #include "BuildObjects.h"
 #include "MALLOC.h"
 #include "GetProperty.h"
-#include "../../elementary_functions/includes/elementary_functions.h"
+#include "elementary_functions.h"
 #include "CurrentObjectsManagement.h"
 #include "localization.h"
 #include "Scierror.h"

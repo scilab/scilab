@@ -14,7 +14,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intspmax)(char *minmax,int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_spmin)(char *fname,unsigned long fname_len)
+int sci_spmin(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	char job[]="min";

@@ -22,8 +22,8 @@
    h=eqfir(nf,bedge,des,wate);
 
 //filter white data to obtain colored data
-   h1=[h 0*ones(1:maxi(size(x))-1)];
-   x1=[x 0*ones(1:maxi(size(h))-1)];
+   h1=[h 0*ones(1:max(size(x))-1)];
+   x1=[x 0*ones(1:max(size(h))-1)];
    hf=fft(h1,-1);
    xf=fft(x1,-1);
    yf=hf.*xf;
@@ -33,7 +33,7 @@
    h2=[h 0*ones(1:167)];
    hf2=fft(h2,-1);
    hf2=real(hf2.*conj(hf2));
-   hsize=maxi(size(hf2));
+   hsize=max(size(hf2));
    fr=(1:hsize)/hsize;
 
    my_handle = scf(100001);
@@ -45,7 +45,7 @@
 
 //pspect example
    [sm1]=pspect(100,200,'tr',y);
-   smsize=maxi(size(sm1));
+   smsize=max(size(sm1));
    fr=(1:smsize)/smsize;
    clf(my_handle,"reset");
    plot2d(fr',log(sm1)')
@@ -54,7 +54,7 @@
 
 //cspect example
    [sm2]=cspect(100,200,'tr',y);
-   smsize=maxi(size(sm2));
+   smsize=max(size(sm2));
    fr=(1:smsize)/smsize;
    clf(my_handle,"reset");
    plot2d(fr',log(sm2)');

@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA
-// Copyright (C) 2009 - DIGITEO - Allan CORNET
+// Copyright (C) 2009-2010 - DIGITEO - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -30,6 +30,7 @@ function mat = read_csv(fname,sep)
   end
   
   v = mgetl(fname);
+  v(v == '') = [];
   ns = length(sep);
   mat = [];
   ki = 1;
@@ -47,9 +48,10 @@ function mat = read_csv(fname,sep)
       if size(row,2) > size(mat,2) then
         mat($,size(row,2)) = '';
       elseif size(row,2) < size(mat,2) then
-        row(size(mat,2)) = '';
+        row(1, size(mat,2)) = '';
       end
     end
     mat = [mat; row];
   end
 endfunction
+

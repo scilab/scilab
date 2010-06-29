@@ -12,8 +12,9 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "gw_differential_equations3.h"
+#include "machine.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_odc)(char *fname,unsigned long l)
+int sci_odc(char *fname,unsigned long l)
 {
 	extern int C2F(sciodc)();
 	C2F(sciodc)();

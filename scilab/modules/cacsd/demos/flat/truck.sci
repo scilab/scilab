@@ -26,7 +26,7 @@ function state=truck_solve(initial,final)
 
   // computation of  intermediate configuration 
   LL=bigL+d1+d2
-  x0 = maxi(initial(1),final(2))   ....
+  x0 = max(initial(1),final(2))   ....
        + LL*abs(tan(initial(3))) ...
        + LL*abs(tan(initial(4))) ...
        + LL*abs(tan(initial(5))) ...
@@ -203,8 +203,8 @@ function display_truck_trajectory(state)
   a=gca();
   drawlater();
   a.isoview="on"
-  a.data_bounds=[mini(state(:,1))-1.5*(d1+d2), mini(state(:,2))-bigL
-		 maxi(state(:,1))+1.5*bigL, maxi(state(:,2))+bigL]
+  a.data_bounds=[min(state(:,1))-1.5*(d1+d2), min(state(:,2))-bigL
+		 max(state(:,1))+1.5*bigL, max(state(:,2))+bigL]
   rect=matrix(a.data_bounds',-1,1)
   xpoly(rect([1 3 3 1]),rect([2,2,4,4]),'lines',1)
   C=build_truck()

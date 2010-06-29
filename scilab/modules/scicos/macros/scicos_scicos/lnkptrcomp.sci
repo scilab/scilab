@@ -37,7 +37,7 @@ end
 if inplnk<>[] | outlnk<>[] then
   unco=find(inplnk>max(outlnk))
   for j=unco
-    m=maxi(find(inpptr<=j))
+    m=max(find(inpptr<=j))
     n=j-inpptr(m)+1
     lnksz($+1,1)=bllst(m).in(n);
     lnksz($,2)=bllst(m).in2(n);

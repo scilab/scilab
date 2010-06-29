@@ -35,11 +35,11 @@ int sci_helpbrowser(char *fname,unsigned long fname_len)
   CheckRhs(2,4);
   CheckLhs(0,1);
 
-  /* We load Xpad when calling javahelp because we have no way to know
-   * to load it when using Javahelp because it can call Xpad directly */
+  /* We load SciNotes when calling javahelp because we have no way to know
+   * to load it when using Javahelp because it can call SciNotes directly */
   if (!loadedDep) 
   {
-	  loadOnUseClassPath("Xpad");
+	  loadOnUseClassPath("SciNotes");
 	  loadedDep = TRUE;
   }
 

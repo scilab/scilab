@@ -24,7 +24,7 @@ function [f1]=%r_m_p(f1,n2)
     n2=n2+0;l2=1;m2=1;
     if l1*m1==1 then indef=%t,else error(14),end
   end 
-  if mini([l1*m1,l2*m2])==1 then,
+  if min([l1*m1,l2*m2])==1 then,
     num=n1*n2,
     den=d1*ones(l2,m2),
   else,

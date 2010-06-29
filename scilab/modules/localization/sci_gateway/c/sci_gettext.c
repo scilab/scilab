@@ -94,7 +94,7 @@ int sci_gettext(char *fname,unsigned long fname_len)
 
 			tmpStr1 = strsub(TranslatedString, "\\", "\\\\"); /* backslash */
 
-			tmpStr2 = strsub(tmpStr1, "\"", "\\\""); /* double quote */
+			tmpStr2 = strsub(tmpStr1, "\f", "\\f"); /* form feed */
 			if (tmpStr1) {FREE(tmpStr1); tmpStr1 = NULL;}
 
 			tmpStr1 = strsub(tmpStr2, "\n", "\\n"); /* linefeed */
@@ -109,12 +109,9 @@ int sci_gettext(char *fname,unsigned long fname_len)
 			tmpStr2 = strsub(tmpStr1, "\v", "\\v"); /* vertical tab */
 			if (tmpStr1) {FREE(tmpStr1); tmpStr1 = NULL;}
 
-			tmpStr1 = strsub(tmpStr2, "\f", "\\f"); /* form feed */
-			if (tmpStr2) {FREE(tmpStr2); tmpStr2 = NULL;}
-
 			if (TranslatedString) {FREE(TranslatedString); TranslatedString = NULL;}
-			TranslatedString = strdup(tmpStr1);
-			if (tmpStr1) {FREE(tmpStr1); tmpStr1 = NULL;}
+			TranslatedString = strdup(tmpStr2);
+			if (tmpStr2) {FREE(tmpStr2); tmpStr2 = NULL;}
 		}
 
 		n1 = 1;

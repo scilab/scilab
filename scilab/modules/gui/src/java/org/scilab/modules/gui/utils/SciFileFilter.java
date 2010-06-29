@@ -1,11 +1,12 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent Couvert
- * 
+ * Copyright (C) 2010 - DIGITEO - Allan CORNET
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -14,6 +15,8 @@ package org.scilab.modules.gui.utils;
 
 import java.io.File;
 import javax.swing.filechooser.FileFilter;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.scilab.modules.gui.filechooser.FileChooserInfos;
 import org.scilab.modules.localization.Messages;
@@ -22,6 +25,7 @@ import org.scilab.modules.localization.Messages;
  * Generic file filter used for Scilab file selection GUIs
  * @author Vincent COUVERT
  * @author Sylvestre KOUMAR
+ * @author Allan CORNET
  */
 public class SciFileFilter extends FileFilter {
 
@@ -37,7 +41,7 @@ public class SciFileFilter extends FileFilter {
 	 * @param filterIndex index the mask from the mask matrix
 	 */
 	public SciFileFilter(String fileMask, String maskdescription, int filterIndex) {
-		
+
 		if (maskdescription == null) {
 
 			if (fileMask.equals("*.sci")) {
@@ -67,9 +71,30 @@ public class SciFileFilter extends FileFilter {
 		// Create a regexp
 		mask = fileMask.replaceAll("\\.", "\\\\."); // Point is a special regexp character
 		mask = mask.replaceAll("\\*", ".\\*");
-		
+
 		this.filterIndex = filterIndex;
-		//this.lastFilterIndex = lastFilterIndex;
+	}
+
+	/**
+	 * check if it is Windows
+	 * @return boolean true if it is Windows
+	 */
+	private boolean isWindows() {
+		return System.getProperty("os.name").toLowerCase().contains("windows");
+	}
+
+	/**
+	 * get file extension
+	 * @param file File
+	 * @return a string file extension with .
+	 */
+	private String getFileExtension(File file) {
+		String fileName = file.getName();
+		int dotIndex = fileName.lastIndexOf('.');
+		if (dotIndex == -1 || dotIndex == fileName.length() - 1) {
+			return new String("");
+		}
+		return fileName.substring(dotIndex);
 	}
 
 	/**
@@ -81,16 +106,25 @@ public class SciFileFilter extends FileFilter {
 	public boolean accept(File pathname) {
 		if (pathname.isDirectory()) {
 			return true;
-		}		
-		
-		if (mask.equals("")) { // Bug 2861: have to return true for all files if no mask given
+		}
+		if (mask.equals("")) {
+			// Bug 2861: have to return true for all files if no mask given
 			return true;
-		} else {			
-			
+		} else if (mask.equals(".*\\..*")) {
+			// bug 7285: *.* as filter returns also files without extension
+			return true;
+		} else {
 			int selectedIndex = this.filterIndex + 1;
 			FileChooserInfos.getInstance().setFilterIndex(selectedIndex);
-			//System.out.println("JAVA this.filterIndex: "+selectedIndex);			
-			return pathname.getAbsolutePath().matches(mask);
+			/* bug 4224 */
+			/* On Windows, files are not case sensitive */
+			if (isWindows()) {
+				Pattern patternExt = Pattern.compile(mask, Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
+				Matcher matchExt = patternExt.matcher(getFileExtension(pathname));
+				return matchExt.find();
+			} else {
+				return pathname.getAbsolutePath().matches(mask);
+			}
 		}
 	}
 

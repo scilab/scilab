@@ -1,6 +1,6 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2008 - DIGITEO - Allan CORNET
+* Copyright (C) 2008-2010 - DIGITEO - Allan CORNET
 * 
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -27,6 +27,13 @@ char *getLanguagePreferences(void);
 * @return TRUE or FALSE
 */
 BOOL setLanguagePreferences(void);
+
+/**
+* Set language from Command line (wscilex.exe -l lang)
+* @param[in] language string
+* @return TRUE or FALSE
+*/
+BOOL setLanguageFromCommandLine(char *lang);
 
 /**
 * check if it is valid language format

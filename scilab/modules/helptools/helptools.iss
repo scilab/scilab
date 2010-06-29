@@ -1,6 +1,7 @@
 ;
 ; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-; Copyright (C) 2007-2008 - INRIA - Allan CORNET <allan.cornet@inria.fr>
+; Copyright (C) INRIA - Allan CORNET
+; Copyright (C) DIGITEO - 2010 - Allan CORNET
 ;
 ; This file must be used under the terms of the CeCILL.
 ; This source file is licensed as described in the file COPYING, which
@@ -8,26 +9,26 @@
 ; are also available at
 ; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 ;
-;##############################################################################################################
-; Script d'installation Inno Setup (5.2.1) pour scilab
-; Version TRUNK
-;##############################################################################################################
+;--------------------------------------------------------------------------------------------------------------
+; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
+;
 ;--------------------------------------------------------------------------------------------------------------
 ; helptools module
 ;--------------------------------------------------------------------------------------------------------------
 ;
 #define HELPTOOLS "helptools"
 
-Source: bin\helptools.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#HELPTOOLS}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: modules\{#HELPTOOLS}\jar\*.jar; DestDir: {app}\modules\{#HELPTOOLS}\jar; Components: {#COMPN_SCILAB}
 
 #ifdef WITH_CHM
 Source: modules\{#HELPTOOLS}\chm\*.chm; DestDir: {app}\modules\{#HELPTOOLS}\chm; Components: {#COMPN_SCILAB}
 #endif
 
-Source: modules\{#HELPTOOLS}\sci_gateway\helptools_gateway.xml; DestDir: {app}\modules\{#HELPTOOLS}\sci_gateway; Components: {#COMPN_SCILAB}
+Source: modules\{#HELPTOOLS}\sci_gateway\{#HELPTOOLS}_gateway.xml; DestDir: {app}\modules\{#HELPTOOLS}\sci_gateway; Components: {#COMPN_SCILAB}
+;
 Source: thirdparty\docbook\*.*;DestDir: {app}\thirdparty\docbook; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
-
+;
 Source: thirdparty\jhall.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 Source: thirdparty\avalon-framework.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 Source: thirdparty\avalon-framework.LICENSE;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
@@ -59,7 +60,6 @@ Source: thirdparty\xmlgraphics-commons-1.3.1.jar;DestDir: {app}\thirdparty; Comp
 Source: thirdparty\xmlgraphics-commons.LICENSE;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 Source: thirdparty\xmlgraphics-commons.README;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 Source: thirdparty\xalan.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
-;
 Source: thirdparty\batik-all-1.7.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#HELPTOOLS}\VERSION.xml; DestDir: {app}\modules\{#HELPTOOLS}; Components: {#COMPN_SCILAB}
@@ -85,11 +85,6 @@ Source: modules\{#HELPTOOLS}\macros\lib; DestDir: {app}\modules\{#HELPTOOLS}\mac
 Source: modules\{#HELPTOOLS}\macros\names; DestDir: {app}\modules\{#HELPTOOLS}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#HELPTOOLS}\macros\*.bin; DestDir: {app}\modules\{#HELPTOOLS}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#HELPTOOLS}\macros\*.sci; DestDir: {app}\modules\{#HELPTOOLS}\macros; Components: {#COMPN_SCILAB}
-;
-Source: modules\{#HELPTOOLS}\bin\man2sci.bat; DestDir: {app}\modules\{#HELPTOOLS}\bin; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
-Source: modules\{#HELPTOOLS}\bin\manrev2sci.bat; DestDir: {app}\modules\{#HELPTOOLS}\bin; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
-Source: modules\{#HELPTOOLS}\bin\scivalid.bat; DestDir: {app}\modules\{#HELPTOOLS}\bin; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
-Source: modules\{#HELPTOOLS}\bin\sciviewhelp.bat; DestDir: {app}\modules\{#HELPTOOLS}\bin; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
 ;
 Source: modules\{#HELPTOOLS}\examples\*.*; DestDir: {app}\modules\{#HELPTOOLS}\examples; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;

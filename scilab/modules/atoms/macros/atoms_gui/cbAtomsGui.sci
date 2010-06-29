@@ -28,16 +28,36 @@ function cbAtomsGui()
     if or(UItag == ["LeftListbox";"HomeListbox"]) then
 
         // Get the selected module
-        module = getSelected(UItag);
+        selected = getSelected(UItag);
 
-        // Save the module name
-        set(DescFrame,"userdata",module);
 
-        // Update the description frame
-        updateDescFrame();
+       if selected(1)=="module" then
 
-        // Show the description frame
-        showDesc();
+            // Save the module name
+            set(DescFrame,"userdata",selected(2));
+
+            // Update the description frame
+            updateDescFrame();
+
+            // Show the description frame
+            showDesc();
+
+       elseif selected(1)=="category" then
+
+            LeftListbox             = findobj("tag","LeftListbox");
+            LeftElements            = atomsGetLeftListboxElts(selected(2));
+            LeftListbox("String")   = LeftElements("items_str");
+            LeftListbox("UserData") = LeftElements("items_mat");
+
+            LeftFrame               = findobj("tag","LeftFrame");
+            LeftFrame("UserData")   = selected(2);
+
+            // Figure name
+            atomsfig                = findobj("tag","atomsFigure");
+            atomsfig("figure_name") = LeftElements("title")+" - ATOMS";
+
+       end
+
     end
 
     // A button has been pressed
@@ -55,41 +75,58 @@ function cbAtomsGui()
     // =========================================================================
 
     if UItag == "installButton" then
+
+        updateStatusBar("info",gettext("Installing")+" &hellip;");
+
         if execstr("atomsInstall("""+module+""")","errcatch")<>0 then
-            messagebox(gettext("Installation failed!"),gettext("Atoms error"),"error");
+            updateStatusBar();
+            messagebox(gettext("Installation failed!"),gettext("ATOMS error"),"error");
         else
-            messagebox(gettext("Installation done! Please restart Scilab to take changes into account."),gettext("Atoms"),"info");
+            updateDescFrame();
+            updateStatusBar("success",gettext("Installation done! Please restart Scilab to take changes into account."));
         end
 
     // Remove selected module
     // =========================================================================
 
     elseif UItag == "removeButton" then // Remove selected module
+        updateStatusBar("info",gettext("Removing")+" &hellip;");
+
         if execstr("atomsRemove("""+module+""")", "errcatch")<>0 then
-            messagebox(gettext("Remove failed!"),gettext("Atoms error"),"error");
+            updateStatusBar();
+            messagebox(gettext("Remove failed!"),gettext("ATOMS error"),"error");
         else
-            messagebox(gettext("Remove done! Please restart Scilab to take changes into account. "),gettext("Atoms"),"info");
+            updateDescFrame();
+            updateStatusBar("success",gettext("Remove done! Please restart Scilab to take changes into account. "));
         end
 
     // Update selected module
     // =========================================================================
 
     elseif UItag == "updateButton" then // Update selected module
+
+        updateStatusBar("info",gettext("Updating")+" &hellip;");
+
         if execstr("atomsUpdate("""+module+""")","errcatch")<>0 then
-            messagebox(gettext("Update failed!"),gettext("Atoms error"),"error");
+            updateStatusBar();
+            messagebox(gettext("Update failed!"),gettext("ATOMS error"),"error");
         else
-            messagebox(gettext("Update done! Please restart Scilab to take changes into account."),gettext("Atoms"),"info");
+            updateDescFrame();
+            updateStatusBar("success",gettext("Update done! Please restart Scilab to take changes into account."));
         end
+
     end
 
     // End of the button action
     // =========================================================================
 
     if or(UItag == ["installButton";"removeButton";"updateButton"]) then
-        updateDescFrame();
+        // Left listbox:
+        //  - Enable it
+        //  - Reload it
         enableLeftListbox();
+        reloadLeftListbox();
     end
-
 
     // Menu
     // =========================================================================
@@ -113,28 +150,15 @@ endfunction
 
 // =============================================================================
 // getSelected()
-//  + Return the module name selected from a listbox.
-//  + Accepted listboxes:
-//    - LeftListbox
-//    - HomeListbox
+//  + Return the type: category / module
+//  + Return the name selected from a listbox.
 // =============================================================================
 
-function name = getSelected(listbox)
+function selected = getSelected(listbox)
 
-    selected = get(findobj("Tag",listbox),"Value");
-
-    if listbox == "HomeListbox" then
-        modulesNames       = atomsGetInstalled();
-        modulesNames       = modulesNames(:,1);
-    elseif listbox == "LeftListbox" then
-        allModules         = get(findobj("Tag", "atomsFigure"), "userdata");
-        modulesNames       = getfield(1, allModules);
-        modulesNames (1:2) = [];
-    else
-        error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"),"getSelected",1,"HomeListbox","LeftListbox"));
-    end
-
-    name = modulesNames(selected);
+    index    = get(findobj("Tag",listbox),"Value");
+    UserData = get(findobj("Tag",listbox),"UserData");
+    selected = UserData(index,:);
 
 endfunction
 
@@ -143,7 +167,6 @@ endfunction
 // disableAtomsGui()
 //  + Disable all callback
 // =============================================================================
-
 
 function disableAtomsGui()
 
@@ -163,6 +186,17 @@ function enableLeftListbox()
     set(findobj("tag", "LeftListbox"),"ForegroundColor",[0 0 0]);
 endfunction
 
+// =============================================================================
+// reloadLeftListbox()
+// =============================================================================
+
+function reloadLeftListbox()
+    category                = get(findobj("tag","LeftFrame"),"UserData");
+    LeftListbox             = findobj("tag","LeftListbox");
+    LeftElements            = atomsGetLeftListboxElts(category);
+    LeftListbox("String")   = LeftElements("items_str");
+    LeftListbox("UserData") = LeftElements("items_mat");
+endfunction
 
 // =============================================================================
 // updateDescFrame()
@@ -324,7 +358,7 @@ function updateDescFrame()
     if atomsIsInstalled(thisModuleName) & atomsVersionCompare(MRVersionInstalled,MRVersionAvailable) == -1 then
         // Not up-to-date
         canUpdate = "on";
-        showWarning(sprintf(gettext("A new version (''%s'') of ''%s'' is available"),MRVersionAvailable,thisModuleDetails.Title));
+        updateStatusBar("warning",sprintf(gettext("A new version (''%s'') of ''%s'' is available"),MRVersionAvailable,thisModuleDetails.Title));
     end
 
     // Can be removed
@@ -412,6 +446,12 @@ function showHome()
     hide("installButton");
     hide("updateButton");
 
+    // update the left listbox
+    LeftListbox             = findobj("tag","LeftListbox");
+    LeftElements            = atomsGetLeftListboxElts("filter:main");
+    LeftListbox("String")   = LeftElements("items_str");
+    LeftListbox("UserData") = LeftElements("items_mat");
+
     // Show the Home page
     show("HomeFrame");
     show("HomeTitle");
@@ -444,20 +484,39 @@ endfunction
 
 
 // =============================================================================
-// showWarning
+// updateStatusBar
 // + Update the string in the msg Frame
 // =============================================================================
 
-function showWarning(msg)
+function updateStatusBar(status,msg)
+
+    rhs = argn(2);
+
+    msgText = findobj("tag","msgText");
+
+    if rhs==0 then
+        set(msgText,"String","");
+        return
+    end
+
+    select status
+        case "warning" then
+            fontcolor = "#ff0000"; // red
+            icon      = "software-update-available.png";
+        case "success" then
+            fontcolor = "#009a1b"; // dark green
+            icon      = "emblem-default.png";
+        case "info" then
+            fontcolor = "#7d7d7d"; // dark green
+            icon      = "dialog-information.png";
+    end
 
     str =       "<html>";
     str = str + "<table><tr>";
-    str = str + "<td><img src=""file:///"+SCI+"/modules/atoms/images/icons/software-update-available.png"" /></td>";
-    str = str + "<td><div style=""color:red;font-style:italic;"">"+msg+"</div></td>";
+    str = str + "<td><img src=""file:///"+SCI+"/modules/atoms/images/icons/"+icon+""" /></td>";
+    str = str + "<td><div style=""color:"+fontcolor+";font-style:italic;"">"+msg+"</div></td>";
     str = str + "</tr></table>";
     str = str + "</html>";
-
-    msgText = findobj("tag","msgText");
 
     set(msgText,"String",str);
 
@@ -465,17 +524,14 @@ endfunction
 
 // =============================================================================
 // processHTMLLinks
-// + Find URLs and emails
-// + Convert them in HTML
+// + Find URLs
+// + Convert them in HTML (hyperlinks)
 // =============================================================================
 
 function txtout = processHTMLLinks(txtin)
 
     regexUrl   = "/((((H|h)(T|t)|(F|f))(T|t)(P|p)((S|s)?))\:\/\/)(www|[a-zA-Z0-9])[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,6}(\:[0-9]{1,5})*(\/($|[a-zA-Z0-9\.\,\;\?\''\\\+&amp;%\$#\=~_\-\/]+))*/";
-    regexEmail = "/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}/";
     txtout     = "";
-
-    // Process URLs
 
     [mat_start,mat_end,mat_match] = regexp(txtin,regexUrl);
 
@@ -484,23 +540,6 @@ function txtout = processHTMLLinks(txtin)
         for i=1:size(mat_match,"*")
             txtout = txtout + part(txtin,[mat_end(i)+1:mat_start(i)-1]) ..
                             + "<a href="""+mat_match(i)+""" target=""_blank"">" ..
-                            + mat_match(i) ..
-                            + "</a>";
-        end
-        txtout = txtout + part(txtin,mat_end(size(mat_end,"*"))+1:length(txtin));
-        txtin  = txtout;
-        txtout = "";
-    end
-
-    // Process Emails
-
-    [mat_start,mat_end,mat_match] = regexp(txtin,regexEmail);
-
-    if ~isempty(mat_match) then
-        mat_end = [ 0 mat_end ];
-        for i=1:size(mat_match,"*")
-            txtout = txtout + part(txtin,[mat_end(i)+1:mat_start(i)-1]) ..
-                            + "<a href=""mailto:"+mat_match(i)+""" target=""_blank"">" ..
                             + mat_match(i) ..
                             + "</a>";
         end
@@ -522,3 +561,4 @@ function txtout = txt2title(txtin)
              "</div>";
 
 endfunction
+

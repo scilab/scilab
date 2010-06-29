@@ -18,7 +18,7 @@
 #include "PATH_MAX.h"
 #include "createdirectory.h"
 #include "isdir.h"
-#include "../../../io/includes/getenvc.h"
+#include "getenvc.h"
 #include "scilabDefaults.h"
 #ifdef _MSC_VER
 #include "getshortpathname.h"

@@ -83,9 +83,12 @@
 <module name="types" activate="yes"/>
 <module name="hdf5" activate="yes"/>
 <module name="xcos" activate="yes"/>
-<module name="xpad" activate="yes"/>
+<module name="scinotes" activate="yes"/>
+<module name="ui_data" activate="yes"/>
 <module name="api_scilab" activate="yes"/>
 <module name="helptools" activate="yes"/>
 <module name="graph" activate="yes"/>
+<module name="parallel" activate="yes"/>
+<module name="modules_manager" activate="yes"/>
 <!-- comments -->
 </modules>

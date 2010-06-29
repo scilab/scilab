@@ -380,6 +380,7 @@ public class EditBlockFormatAction extends DefaultAction {
 		 */
 		// CSOFF: JavaNCSS
 		// CSOFF: LineLength
+		// CSOFF: MethodLength
 		private void initComponents() {
 			
 	        mainTab = new javax.swing.JTabbedPane();
@@ -538,6 +539,7 @@ public class EditBlockFormatAction extends DefaultAction {
 		}
 		// CSON: JavaNCSS
 		// CSON: LineLength
+		// CSON: MethodLength
 
 		/**
 		 * Update the text area from the font
