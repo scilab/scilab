@@ -57,7 +57,7 @@ case "Block" then
     ligne_5 = list('Super Blocks', 2, boutons)
     //
     titre = ['This is a super block, Select additional '
-	'informations you want to get on its'
+	'information you want to get on its'
 	'components']
     reponse = x_choices(titre, list(ligne_1, ligne_2, ligne_3, ligne_4, ligne_5))
     if reponse <>[] then

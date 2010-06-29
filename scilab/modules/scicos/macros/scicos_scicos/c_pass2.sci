@@ -1529,7 +1529,7 @@ endfunction
 //
 //04/01/07, Fady : Can test the case of negatives equals target's dimensions.
 //
-//19/01/07, Alan : - Return correct informations for user in editor
+//19/01/07, Alan : - Return correct information for user in editor
 //                   with preceding test of Fady in the first pass
 //                 - Second pass reviewed : under_connection returns two dimensions now
 //
