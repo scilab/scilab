@@ -14,20 +14,25 @@ package org.scilab.modules.xcos.simulink;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.scilab.modules.types.scilabTypes.ScilabList;
+import org.scilab.modules.types.scilabTypes.ScilabMList;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.simulink.BlockElement;
 import org.scilab.modules.xcos.simulink.AnnotationElement;
 import com.mxgraph.model.mxCell;
+import com.mxgraph.model.mxICell;
 
 import edu.tum.cs.commons.collections.UnmodifiableIterator;
 import edu.tum.cs.simulink.model.SimulinkAnnotation;
 import edu.tum.cs.simulink.model.SimulinkBlock;
+import edu.tum.cs.simulink.model.SimulinkLine;
 import edu.tum.cs.simulink.model.SimulinkModel;
 
 public class DiagramElement extends AbstractElement<XcosDiagram> {
@@ -104,9 +109,45 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 			i++;
 		}
 		/*
+		 * Decode links
+		 */
+		LineElement lineElement = new LineElement(blocks);
+		blockIter = base.getSubBlocks().iterator();
+		while(blockIter.hasNext()) {
+			SimulinkBlock blockData = blockIter.next();
+			Object cell = null;
+			Iterator<SimulinkLine> dataIter = blockData.getInLines().iterator();
+			while(dataIter.hasNext()){
+				SimulinkLine data = dataIter.next();
+				if (lineElement.canDecode(data)) {
+					BasicLink link = lineElement.decode(data, null);
+					cell = link;
+					
+					minimalYaxisValue = Math.min(minimalYaxisValue, ((mxCell) cell).getGeometry().getY());
+				}
+				
+				if (cell != null) {
+					diag.addCell(cell);
+				}
+			}
+			dataIter = blockData.getOutLines().iterator();
+			while(dataIter.hasNext()){
+				SimulinkLine data = dataIter.next();
+				if (lineElement.canDecode(data)) {
+					BasicLink link = lineElement.decode(data, null);
+					cell = link;
+					
+					minimalYaxisValue = Math.min(minimalYaxisValue, ((mxCell) cell).getGeometry().getY());
+				}
+				
+				if (cell != null) {
+					diag.addCell(cell);
+				}
+			}
+		}
+		/*
 		 * Decode Annotations
 		 */
-		i=0;
 		UnmodifiableIterator<SimulinkAnnotation> annotationIter = base.getAnnotations().iterator();
 		while(annotationIter.hasNext()) {
 			SimulinkAnnotation data = annotationIter.next();
@@ -122,15 +163,11 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 				//FIXME:
 				diag.addCell(cell);
 			}
-			i++;
 		}
 		/*
-		 * Decode Links
-		 * TODO: This should be done differently then in io.scicos
-		 * 		 there are inLines and outLines for each structure
-		 * 		 just like ports.
+		 * Perform post-calculus
 		 */
-		
+		final mxICell defaultParent = ((mxICell) diag.getDefaultParent());
 	}
 }
 
