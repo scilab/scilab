@@ -15,6 +15,7 @@ package org.scilab.modules.scinotes;
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Font;
 import java.awt.event.ComponentAdapter;
@@ -24,6 +25,12 @@ import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.Desktop;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.io.IOException;
 import java.io.File;
 import java.util.List;
 import java.util.ArrayList;
@@ -55,7 +62,8 @@ import org.scilab.modules.scinotes.utils.NavigatorWindow;
  */
 public class ScilabEditorPane extends JEditorPane implements Highlighter.HighlightPainter,
                                                              CaretListener, MouseListener,
-                                                             MouseMotionListener, Cloneable {
+                                                             MouseMotionListener, Cloneable,
+                                                             KeyListener {
 
     private static ScilabEditorPane focused;
 
@@ -87,6 +95,11 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private JScrollPane scroll;
     private JSplitPane split;
     private ScilabEditorPane rightTextPane;
+
+    private static final Cursor handCursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
+    private static final Cursor textCursor = Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR);
+    private boolean hand;
+    private boolean ctrlHit;
 
     private List<KeywordListener> kwListeners = new ArrayList();
 
@@ -129,7 +142,75 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                     ((ScilabDocument) getDocument()).setFocused(false);
                 }
             });
+
+        addKeywordListener(new KeywordAdaptater.MouseOverAdaptater() {
+                public void caughtKeyword(KeywordEvent e) {
+                    if (ctrlHit && ScilabLexerConstants.URL == e.getType()) {
+                        setCursor(handCursor);
+                        hand = true;
+                    } else if (hand) {
+                        setCursor(textCursor);
+                        hand = false;
+                    }
+                }
+            });
+
+        addKeywordListener(new KeywordAdaptater.MouseClickedAdaptater() {
+                public void caughtKeyword(KeywordEvent e) {
+                    if (ctrlHit && ScilabLexerConstants.URL == e.getType()) {
+                        try {
+                            hand = false;
+                            ctrlHit = false;
+                            setCursor(textCursor);
+                            String url = ((ScilabDocument) getDocument()).getText(e.getStart(), e.getLength());
+                            Desktop.getDesktop().browse(new URI(url));
+                        } catch (BadLocationException ex) { }
+                        catch (IOException ex) {
+                            System.err.println(ex.toString());
+                        }
+                        catch (URISyntaxException ex) {
+                            System.err.println(ex.toString());
+                        }
+                    }
+                }
+            });
+
+        addKeyListener(this);
     }
+
+    /**
+     * Nothing !
+     * @param e the event
+     */
+    public void keyPressed(KeyEvent e) {
+        // Workaround for bug 7238
+        if (e.getKeyLocation() == KeyEvent.KEY_LOCATION_NUMPAD
+            && e.getKeyCode() == KeyEvent.VK_DELETE
+            && e.getKeyChar() != KeyEvent.VK_DELETE) {
+            e.setKeyCode(KeyEvent.VK_DECIMAL);
+            ctrlHit = false;
+        } else if (e.getKeyCode() == KeyEvent.VK_CONTROL) {
+            ctrlHit = true;
+        } else {
+            ctrlHit = false;
+        }
+    }
+
+    /**
+     * Nothing !
+     * @param e the event
+     */
+    public void keyReleased(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_CONTROL) {
+            ctrlHit = false;
+        }
+    }
+
+    /**
+     * Nothing !
+     * @param e the event
+     */
+    public void keyTyped(KeyEvent e) { }
 
     /**
      * @overload #setDocument
