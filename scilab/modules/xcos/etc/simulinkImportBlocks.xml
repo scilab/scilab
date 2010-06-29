@@ -107,7 +107,7 @@
 				<map simVal="on" xcosVal="1"/>
 			</str2int>
 			<real xcos="rpar">
-				<map simName="UpperStaturationLimit" index="0,0"/>
+				<map simName="UpperSaturationLimit" index="0,0"/>
 				<map simName="LowerSaturationLimit" index="0,1"/>
 			</real>
 			<real xcos="state">
@@ -235,7 +235,9 @@
 	<!-- C -->
 		<!-- Constant Block Compatibility Pattern -->
 		<block sim="Constant" xcos="CONST_m" description="4">
-			<simple sim="Value" xcos="Constant" description="no description"/>
+			<real xcos="rpar">
+				<map simName="Value" index="0,0"/>
+			</real>
 		</block>
 
 </blocks>
