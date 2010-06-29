@@ -18,6 +18,11 @@ import java.util.Iterator;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.xcos.port.BasicPort;
+import org.scilab.modules.xcos.port.input.ImplicitInputPort;
+import org.scilab.modules.xcos.port.input.InputPort;
+import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
+import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
+import org.scilab.modules.xcos.port.output.OutputPort;
 
 import edu.tum.cs.simulink.model.SimulinkBlock;
 import edu.tum.cs.simulink.model.SimulinkLine;
@@ -33,19 +38,23 @@ public class OutputPortElement {
 
 	public BasicPort decode(SimulinkOutPort simulinkOutPort, Object object) {
 		// TODO Auto-generated method stub
+		OutputPort port;
 		if (LOG.isTraceEnabled()) {
-			LOG.trace("InPort" + simulinkOutPort.toString());
+			LOG.error("InPort" + simulinkOutPort.toString());
 		}
+		port = allocatePort();
 		/*
 		 * Set out lines
 		 */
-		LineElement lineElement = new LineElement();
-		Iterator<SimulinkLine> lineOutIter = simulinkOutPort.getLines().iterator();
-	    while(lineOutIter.hasNext()) {
-    		lineElement.decode(lineOutIter.next());
-	    }
 		
-		return null;
+		return port;
+	}
+
+	private OutputPort allocatePort() {
+		// TODO Auto-generated method stub
+		OutputPort ret;
+		ret = new ExplicitOutputPort();
+		return ret;
 	}
 
 }

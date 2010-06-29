@@ -18,6 +18,9 @@ import java.util.Iterator;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.xcos.port.BasicPort;
+import org.scilab.modules.xcos.port.input.ExplicitInputPort;
+import org.scilab.modules.xcos.port.input.ImplicitInputPort;
+import org.scilab.modules.xcos.port.input.InputPort;
 
 import edu.tum.cs.simulink.model.SimulinkBlock;
 import edu.tum.cs.simulink.model.SimulinkInPort;
@@ -31,18 +34,23 @@ public class InputPortElement {
 		// TODO Auto-generated constructor stub
 	}
 
-	public BasicPort decode(SimulinkInPort simulinkInPort, Object object) {
-		// TODO Auto-generated method stub
+	public InputPort decode(SimulinkInPort simulinkInPort, Object object) {
+		
+		InputPort port;
 		if (LOG.isTraceEnabled()) {
-			LOG.trace("InPort" + simulinkInPort.toString());
+			LOG.error("InPort" + simulinkInPort.toString());
 		}
-		/*
-		 * Set in line
-		 */
 		
-		LineElement lineElement = new LineElement();
-		lineElement.decode(simulinkInPort.getLine());
+		port = allocatePort();
+		/*fillParameters(port);*/
 		
-		return null;
+		return port;
+	}
+ 
+	private InputPort allocatePort() { 
+		// TODO Auto-generated method stub
+		InputPort ret;
+		ret = new ExplicitInputPort();
+		return ret;
 	}
 }

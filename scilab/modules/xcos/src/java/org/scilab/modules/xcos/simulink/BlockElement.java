@@ -47,6 +47,11 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 	public BlockElement() {
 		blocks = new HashMap<Integer, BasicBlock>();
 	}
+	/**
+	 * Current block ordering, the ordering change on each {@link BlockElement}
+	 * instance so be careful when allocated a new {@link BlockElement}.
+	 */
+	private int ordering;
 	
 	/* 
 	 * here there will be some neccessery functions, checking if import is possible etc.
@@ -73,17 +78,13 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 		OutputPortElement outElement = new OutputPortElement(base);
 		UnmodifiableIterator<SimulinkOutPort> portOutIter = base.getOutPorts().iterator();
 		while(portOutIter.hasNext()) {
-			//TODO: block.addPort(outElement.decode(portOutIter.next(), null);
-			//outElement.decode(portOutIter.next(), null);
-			portOutIter.next();
+			block.addPort(outElement.decode(portOutIter.next(), null));
 		}
 		
 		InputPortElement inElement = new InputPortElement(base);
 		UnmodifiableIterator<SimulinkInPort> portInIter = base.getInPorts().iterator();
 		while(portInIter.hasNext()) {
-			//TODO:block.addPort(inElement.decode(portInIter.next(), null);
-			//inElement.decode(portInIter.next(), null);
-			portInIter.next();
+			block.addPort(inElement.decode(portInIter.next(), null));
 		}
 		/*
 		 * decode graphics elements of BasicBlock
@@ -95,6 +96,11 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 		} catch(SimulinkFormatException se) {
 			LogFactory.getLog(BlockElement.class).error(se);
 		}
+		/*
+		 * Set state dependent informations.
+		 */
+		block.setOrdering(ordering);
+		ordering++;
 		/*
 		 * recursively decode all of the Block subBlocks
 		 */
