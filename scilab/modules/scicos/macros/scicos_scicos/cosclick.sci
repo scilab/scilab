@@ -78,7 +78,7 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
   // If the event is a TCL event then win=[]
   global inactive_windows
   if win<>[] & find(win==inactive_windows(2))<>[] then
-    //the event occured into an inactive window
+    //the event occurred into an inactive window
     global Scicos_commands
     pathh = inactive_windows(1)(find(win==inactive_windows(2)))
  

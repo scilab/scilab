@@ -551,7 +551,7 @@ return
 
 	  if ierr > 0 then
 	    messagebox([
-		msprintf(_("An unexpected  error occured while executing the menu\n""%s"":\n"),CmenuLabel)
+		msprintf(_("An unexpected  error occurred while executing the menu\n""%s"":\n"),CmenuLabel)
 		''
 		lasterror()
 		''
