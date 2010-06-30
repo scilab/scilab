@@ -12,6 +12,7 @@
 
 package org.scilab.modules.scinotes;
 
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
@@ -22,6 +23,9 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.TreeMap;
 import java.util.Iterator;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JMenu;
@@ -82,6 +86,7 @@ import org.scilab.modules.scinotes.actions.LineNumbersAction;
 import org.scilab.modules.scinotes.actions.LoadIntoScilabAction;
 import org.scilab.modules.scinotes.actions.NewAction;
 import org.scilab.modules.scinotes.actions.OpenAction;
+import org.scilab.modules.scinotes.actions.OpenURLAction;
 import org.scilab.modules.scinotes.actions.OpenSourceFileOnKeywordAction;
 import org.scilab.modules.scinotes.actions.PageSetupAction;
 import org.scilab.modules.scinotes.actions.PasteAction;
@@ -424,8 +429,20 @@ public class SciNotesGUI {
                     }
                 }
             });
-
         fileMenu.add(openSource);
+
+        final MenuItem openUrl = OpenURLAction.createMenu(editorInstance, map.get("OpenURLAction"));
+        ((JMenuItem) openUrl.getAsSimpleMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
+                public void propertyChange(PropertyChangeEvent arg0) {
+                    String keyword = editorInstance.getTextPane().getSelectedText();
+                    if (keyword == null) {
+                        KeywordEvent kwe = editorInstance.getTextPane().getKeywordEvent();
+                        openUrl.setEnabled(ScilabLexerConstants.URL == kwe.getType());
+                    }
+                }
+            });
+
+        fileMenu.add(openUrl);
 
         Menu recentsMenu = editorInstance.getRecentsMenu();
         recentsMenu.setText(SciNotesMessages.RECENT_FILES);
@@ -702,7 +719,46 @@ public class SciNotesGUI {
             };
         sourceMenuItem.addPropertyChangeListener(listenerSourceItem);
         sourceMenuItem.addActionListener(actionListenerOpenSource);
+
         popup.add(sourceMenuItem);
+
+        /* Open URL default web browser */
+        final JMenuItem urlMenuItem = new JMenuItem(SciNotesMessages.OPEN_URL);
+
+        ActionListener actionListenerOpenURL = new ActionListener() {
+                public void actionPerformed(ActionEvent actionEvent) {
+                    KeywordEvent kwe = ((ScilabEditorPane) c).getKeywordEvent(c.getSelectionEnd());
+                    if (ScilabLexerConstants.URL == kwe.getType()) {
+                        try {
+                            ScilabDocument doc = (ScilabDocument) ((ScilabEditorPane) c).getDocument();
+                            String url = doc.getText(kwe.getStart(), kwe.getLength());
+                            Desktop.getDesktop().browse(new URI(url));
+                        } catch (BadLocationException e) { }
+                        catch (IOException e) {
+                            System.err.println(e.toString());
+                        }
+                        catch (URISyntaxException e) {
+                            System.err.println(e.toString());
+                        }
+                    }
+                }
+            };
+
+        /* Not sure it is the best listener */
+        PropertyChangeListener listenerURLItem = new PropertyChangeListener() {
+                public void propertyChange(PropertyChangeEvent arg0) {
+                    KeywordEvent kwe = ((ScilabEditorPane) c).getKeywordEvent(c.getSelectionEnd());
+                    if (ScilabLexerConstants.URL == kwe.getType()) {
+                        urlMenuItem.setEnabled(true);
+                    } else {
+                        urlMenuItem.setEnabled(false);
+                    }
+                }
+            };
+        urlMenuItem.addPropertyChangeListener(listenerURLItem);
+        urlMenuItem.addActionListener(actionListenerOpenURL);
+
+        popup.add(urlMenuItem);
 
         /* Creates the Popupmenu on the component */
         c.setComponentPopupMenu(popup);

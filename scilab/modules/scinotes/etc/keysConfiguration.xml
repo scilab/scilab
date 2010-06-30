@@ -23,6 +23,7 @@
 
   <entry key="NewAction">control N</entry>
   <entry key="OpenAction">control O</entry>
+  <entry key="OpenURLAction">control U</entry>
   <entry key="OpenSourceFileOnKeywordAction">control alt O</entry>
   <entry key="SaveAction">control S</entry>
   <entry key="SaveAsAction">control alt S</entry>

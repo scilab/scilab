@@ -34,6 +34,7 @@ public class SciNotesMessages {
     public static final String NEW = Messages.gettext("New") + DOTS;
     public static final String OPEN = Messages.gettext("Open") + DOTS;
     public static final String OPEN_SOURCE_FILE_ON_KEYWORD = Messages.gettext("Open function source file") + DOTS;
+    public static final String OPEN_URL = Messages.gettext("Open URL in web browser") + DOTS;
     public static final String SOURCE_OF = Messages.gettext("Source of '");
     public static final String RECENT_FILES = Messages.gettext("Recent Files");
     public static final String SAVE = Messages.gettext("Save");
