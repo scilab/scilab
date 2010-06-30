@@ -20,7 +20,7 @@
         <submenu label="&amp;Open a file...">
             <callback
             instruction='
-              %fileToOpen = uigetfile("*.sc*", "", gettext("Select a file to open with Scilab text editor"));
+              %fileToOpen = uigetfile("*.sc*", "", gettext("Select a file to open with SciNotes"));
               if ~(%fileToOpen == "") then
                 editor(%fileToOpen);
               end
@@ -147,7 +147,7 @@
 
     <!-- Applications menu -->
     <menu label="&amp;Applications" enabled="false">
-        <submenu label="&amp;Editor">
+        <submenu label="&amp;SciNotes">
             <callback instruction='editor();' type="0"/>
         </submenu>
         <separator/>
