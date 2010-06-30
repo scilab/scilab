@@ -49,7 +49,7 @@ public class CommandHistoryMouseListener implements MouseListener {
 	public void mouseClicked(MouseEvent e) {
 		
 		// Right click management
-		if ((e.getClickCount() == 1 && SwingUtilities.isRightMouseButton(e)) || e.isPopupTrigger()) {
+		if ((e.getClickCount() == 1 && SwingUtilities.isRightMouseButton(e)) || e.isPopupTrigger() || isMacOsPopupTrigger(e)) {
 			
 			// Does nothing if no node selected
 			if (CommandHistory.getTree().getSelectionPath() != null) {
@@ -116,4 +116,18 @@ public class CommandHistoryMouseListener implements MouseListener {
 				MouseInfo.getPointerInfo().getLocation().y);
 
 	}
+	
+    /**
+     * This function checks for the popup menu activation under MacOS with Java version 1.5
+     * @param e Click event
+     * @return true if Java 1.5 and MacOS and mouse clic and ctrl activated
+     */
+	public static boolean isMacOsPopupTrigger(MouseEvent e) {
+		return (SwingUtilities.isLeftMouseButton(e)
+				&& e.isControlDown()
+				&& (System.getProperty("os.name").toLowerCase().indexOf("mac") != -1) && (System
+				.getProperty("java.specification.version").equals("1.5") || System
+				.getProperty("java.specification.version").equals("1.6")));
+	}
+
 }
