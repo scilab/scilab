@@ -199,6 +199,8 @@ public final class SuperBlock extends BasicBlock {
 			getChild().setComponent(new ScilabComponent(getChild()));
 			
 			getChild().initComponent();
+			getChild().installStylesheet();
+			
 			getChild().installListeners();
 			getChild().installSuperBlockListeners();
 		}

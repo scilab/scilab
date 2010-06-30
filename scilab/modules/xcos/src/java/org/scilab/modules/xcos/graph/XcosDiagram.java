@@ -497,7 +497,7 @@ public class XcosDiagram extends ScilabGraph {
 	/**
 	 * Install the default style sheet and the user stylesheet on the diagram.
 	 */
-	private void installStylesheet() {
+	public void installStylesheet() {
 		final mxStylesheet styleSheet = Xcos.getInstance().getStyleSheet();
 		setStylesheet(styleSheet);
 		

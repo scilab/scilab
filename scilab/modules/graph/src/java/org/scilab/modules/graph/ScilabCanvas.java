@@ -250,17 +250,27 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 		
 		if (image != null) {
 			if (image.endsWith(".svg")) {
+				// Remove the "Graphics2D from BufferedImage lacks BUFFERED_IMAGE hint"
+				// message and tweak Batik rendering options to increase performance.
+				g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+						RenderingHints.VALUE_ANTIALIAS_ON);
+				g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+						RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
+				g.setRenderingHint(RenderingHintsKeyExt.KEY_TRANSCODING,
+						RenderingHintsKeyExt.VALUE_TRANSCODING_PRINTING);
+				
 				Rectangle rect = bounds.getRectangle();
 				
 				// Translate from (0,0) to icon base point.
 				g.translate(rect.x, rect.y);
-
+				
 				// Paint the background image if applicable
 				if (svgBackgroundImage != null) {
 					paintSvgBackgroundImage(rect.width, rect.height);
 				}
 
 				paintSvgForegroundImage(rect.width, rect.height, image);
+
 			} else {
 				super.paintImage(bounds, style);
 			}
@@ -280,15 +290,6 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 		if (background == null) {
 			return;
 		}
-
-		// Remove the "Graphics2D from BufferedImage lacks BUFFERED_IMAGE hint"
-		// message and tweak Batik rendering options to increase performance.
-		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-				RenderingHints.VALUE_ANTIALIAS_ON);
-		g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
-				RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
-		g.setRenderingHint(RenderingHintsKeyExt.KEY_TRANSCODING,
-				RenderingHintsKeyExt.VALUE_TRANSCODING_PRINTING);
 
 		// Scale to the bounds
 		Rectangle2D bounds = background.getBounds();
