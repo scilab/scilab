@@ -253,6 +253,18 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     }
 
     /**
+     * Init the pane
+     */
+    public void init() {
+        SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    requestFocus();
+                    setCaretPosition(0);
+                }
+            });
+    }
+
+    /**
      * Close this pane
      */
     public void close() {

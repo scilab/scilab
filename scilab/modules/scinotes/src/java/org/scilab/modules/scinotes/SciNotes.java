@@ -186,6 +186,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
                         }
                         updateUI();
                         getTextPane().updateInfosWhenFocused();
+
                         // Update encoding menu
                         scinotesGUI.updateEncodingMenu((ScilabDocument) getTextPane().getDocument());
 
@@ -901,6 +902,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         updateTabTitle();
         getInfoBar().setText(sep.getInfoBarText());
         repaint();
+        sep.init();
         return sep;
     }
 
@@ -933,8 +935,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
 
         pane.setFocusable(true);
         pane.setRequestFocusEnabled(true);
-        pane.requestFocus();
-        pane.grabFocus();
         pane.setDragEnabled(true); /* Bug 5497 */
 
         DropFilesListener dndTarget = new DropFilesListener(pane);
@@ -1574,7 +1574,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
             // Empty the undo Manager
             UndoManager undo = ((ScilabDocument) getTextPane().getDocument()).getUndoManager();
             undo.discardAllEdits();
-            theTextPane.setCaretPosition(0);
         }
     }
 
