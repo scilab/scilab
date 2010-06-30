@@ -184,6 +184,7 @@ public class SciNotesMessages {
     public static final String COLORIZATION_CANCELED = Messages .gettext("Colorization canceled");
     public static final String BINARY_FILE_MODE = Messages .gettext("Binary file: read-only mode");
     public static final String READ_ONLY_MODE = Messages .gettext("Read-only mode");
+    public static final String CLICKABLE_URL = Messages .gettext("Press CTRL and move the mouse over the URL to activate it");
 
     /* About box */
     public static final String VERSION = Messages.gettext("SciNotes") + " 1.1";

@@ -99,6 +99,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private static final Cursor handCursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
     private static final Cursor textCursor = Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR);
     private boolean hand;
+    private boolean infoBarChanged = false;
     private boolean ctrlHit;
 
     private List<KeywordListener> kwListeners = new ArrayList();
@@ -145,12 +146,23 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
 
         addKeywordListener(new KeywordAdaptater.MouseOverAdaptater() {
                 public void caughtKeyword(KeywordEvent e) {
-                    if (ctrlHit && ScilabLexerConstants.URL == e.getType()) {
-                        setCursor(handCursor);
-                        hand = true;
-                    } else if (hand) {
-                        setCursor(textCursor);
-                        hand = false;
+                    if (ScilabLexerConstants.URL == e.getType()) {
+                        if (ctrlHit) {
+                            setCursor(handCursor);
+                            hand = true;
+                        } else {
+                            ScilabEditorPane.this.editor.getInfoBar().setText(SciNotesMessages.CLICKABLE_URL);
+                            infoBarChanged = true;
+                        }
+                    } else {
+                        if (hand) {
+                            setCursor(textCursor);
+                            hand = false;
+                        }
+                        if (infoBarChanged) {
+                            ScilabEditorPane.this.editor.getInfoBar().setText(infoBar);
+                            infoBarChanged = false;
+                        }
                     }
                 }
             });
@@ -161,7 +173,9 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                         try {
                             hand = false;
                             ctrlHit = false;
+                            infoBarChanged = false;
                             setCursor(textCursor);
+                            ScilabEditorPane.this.editor.getInfoBar().setText(infoBar);
                             String url = ((ScilabDocument) getDocument()).getText(e.getStart(), e.getLength());
                             Desktop.getDesktop().browse(new URI(url));
                         } catch (BadLocationException ex) { }
