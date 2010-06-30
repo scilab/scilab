@@ -568,7 +568,7 @@ Obsolete Functions:
 
 * 'with_lcc', 'VCtoLCCLib', 'chooselcccompiler', 'configure_lcc',
   'findlcccompiler' have been moved as toolbox in ATOMS
-  See http://atoms.scilab.org/toolboxes/LCC-windows or atomsInstall('LCC-windows')
+  See http://atoms.scilab.org/toolboxes/LCC-windows or atomsInstall('lcc_windows')
   from Scilab.
 
 * 'maxi' obsolete see 'max'.
