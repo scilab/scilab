@@ -307,6 +307,7 @@ images/icons/help-browser.png \
 images/icons/list-add.png \
 images/icons/list-remove.png \
 images/icons/media-floppy.png \
+images/icons/media-playback-start.png \
 images/icons/original-view.png \
 images/icons/package-x-generic.png \
 images/icons/printer.png \
