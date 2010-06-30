@@ -353,7 +353,7 @@ return
        enable_undo = gh_current_window.user_data(3) ;
        scs_m_save  = gh_current_window.user_data(4) ;
        nc_save     = gh_current_window.user_data(5) ;
-       xselect();
+       show_window();
      end
 
   else //** diagram is NOT open

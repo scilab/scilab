@@ -27,7 +27,7 @@ function hilite_path(path,mess,with_intermediates)
   global   Scicos_commands
 
   Scicos_commands=['%diagram_path_objective='+sci2exp(path(1:$-1))+';%scicos_navig=1';
-		   'Cmenu=[];xselect();%scicos_navig=[];']
+		   'Cmenu=[];show_window();%scicos_navig=[];']
 
   if argn(2)<3 then with_intermediates=%f,end
   if argn(2)<2 then mess=' ',end
