@@ -119,8 +119,14 @@ public final class CommandHistory {
 		reset();
 		int nbEntries = HistoryManagement.getSizeAllLinesOfScilabHistory();
 		for (int entryIndex = 0; entryIndex < nbEntries; entryIndex++) {
-			appendLine(HistoryManagement.getNthLineInScilabHistory(entryIndex));
+			/* Do not expand at each insertion for performances reasons */
+			appendLineAndExpand(HistoryManagement.getNthLineInScilabHistory(entryIndex), false);
 		}
+		/* Expand all sessions tree */
+		for (int i = 0; i < scilabHistoryTree.getRowCount(); i++) {
+			scilabHistoryTree.expandRow(i);
+		}
+		scilabHistoryTree.scrollPathToVisible(scilabHistoryTree.getPathForRow(scilabHistoryTree.getRowCount() - 1));
 	}
 	
 	/**
@@ -128,22 +134,35 @@ public final class CommandHistory {
 	 * @param lineToAppend the line to append
 	 */
 	public static void appendLine(String lineToAppend) {
+		appendLineAndExpand(lineToAppend, true);
+	}
+	
+	/**
+	 * Add a new line the the History Browser
+	 * @param lineToAppend the line to append
+	 * @param expand do we need to expand all session nodes?
+	 */
+	public static void appendLineAndExpand(String lineToAppend, boolean expand) {
 		if (lineToAppend.startsWith(CommandHistoryMessages.SESSION_BEGINNING)) {
 			// Create a new session node
 			currentSessionNode = new DefaultMutableTreeNode(lineToAppend);
 			scilabHistoryTreeModel.insertNodeInto(currentSessionNode, scilabHistoryRootNode, scilabHistoryRootNode.getChildCount());
 			scilabHistoryTreeModel.nodeStructureChanged((TreeNode) scilabHistoryTreeModel.getRoot());
-			/* Expand all sessions tree by default */
-			for (int i = 0; i < scilabHistoryTree.getRowCount(); i++) {
-				scilabHistoryTree.expandRow(i);
+			if (expand) {
+				/* Expand all sessions tree */
+				for (int i = 0; i < scilabHistoryTree.getRowCount(); i++) {
+					scilabHistoryTree.expandRow(i);
+				}
+				scilabHistoryTree.scrollPathToVisible(new TreePath(currentSessionNode.getPath()));	
 			}
-			scilabHistoryTree.scrollPathToVisible(new TreePath(currentSessionNode.getPath()));	
 		} else {
 			DefaultMutableTreeNode childNode = new DefaultMutableTreeNode(lineToAppend);
 			scilabHistoryTreeModel.insertNodeInto(childNode, currentSessionNode, currentSessionNode.getChildCount());
 			scilabHistoryTreeModel.nodeStructureChanged((TreeNode) currentSessionNode);
-			scilabHistoryTree.expandRow(scilabHistoryTree.getRowCount() - 1);
-			scilabHistoryTree.scrollPathToVisible(new TreePath(childNode.getPath()));	
+			if (expand) {
+			        scilabHistoryTree.expandRow(scilabHistoryTree.getRowCount() - 1);
+			        scilabHistoryTree.scrollPathToVisible(new TreePath(childNode.getPath()));	
+			}
 		}
 	}
 	
