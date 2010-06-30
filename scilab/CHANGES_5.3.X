@@ -1,5 +1,5 @@
-               Changes between version 5.2.X and 5.3.0 of Scilab
-               =================================================
+               Changes between version 5.2.X and 5.3.0-beta1 of Scilab
+               =======================================================
 
 
 Performance:
@@ -10,20 +10,23 @@ Performance:
 
 * Improved access to the list of functions increases the performances.
 
-Text Editor:
-============
+SciNotes (Text Editor):
+=======================
 
-* Complete refactorization of the text editor.
+* Distributed with a new name: SciNotes
 
-* Add the possibility to autocomplete some characters (e.g. type '[' gives '[]')
-  or keywords (e.g. type 'if ' gives 'if <CR>end')
+* Complete refactorization of the text editor. These changes improve the speed,
+  the stability of the editor and also improves many aspects of SciNotes.
 
-* Add the possibility to have several instances of the editor and to dock (or not)
-  them.
+* Add the possibility to complete on-the-fly typing
+  Ex: type '[' gives '[]') or keywords (e.g. type 'if ' gives 'if <CR>end')
+
+* Add the possibility to have several instances of the editor and to dock
+  (or not) them.
 
 * Add the possibility to remove trailing whitespaces.
 
-* Add help on keyword in the popup menu
+* Improve the "help on keyword" from the popup menu
 
 * bugs 4399, 4922 fixed - The line numbering could not be compatible with the
                           output of the whereami function.
@@ -44,12 +47,12 @@ Text Editor:
 * bug 4992 fixed - There was no possibility to split the window with the same
                    contents.
 
-* bug 5087 fixed - The different keywords were not splited in different category.
+* bug 5087 fixed - Different keywords were not split in different categories.
 
 * bug 5102 fixed - It was not possible to choose the font weight or the font
-                   style for a kind of keyword.
+                   style for a category of keyword.
 
-* bug 5113 fixed - Bad refresh of the title.
+* bug 5113 fixed - Bad refresh of the title in some cases.
 
 * bug 5124 fixed - Editor's title was not updated when a file was saved as...
 
@@ -57,8 +60,8 @@ Text Editor:
 
 * bug 5175 fixed - Ghost text appeared in the view.
 
-* bug 5178 fixed - the kind of the tabulations (hard tabulations or spaces) could
-                   not be choosen.
+* bug 5178 fixed - The kind of the tabulations (hard tabulations or spaces) 
+                   could not be specified.
 
 * bug 5204 fixed - Weird display of keyword 'else'.
 
@@ -66,15 +69,15 @@ Text Editor:
 
 * bug 5269 fixed - Could not have help on a keyword with CTRL+F1.
 
-* bug 5320 fixed - A good name was not proposed on the 'Save as' action.
+* bug 5320 fixed - A correct name was not proposed on the 'Save as' action.
 
-* bug 5321 fixed - There was not the possibility to choose the length of a
+* bug 5321 fixed - There was no possibility to choose the length of a
                    tabulation.
 
-* bug 5473 fixed - It was not possibile to generate a function help template
+* bug 5473 fixed - It was not possible to generate a function help template
                    using help_from_sci.
 
-* bug 5534 fixed - There was not auto-completion
+* bug 5534 fixed - Auto-completion was not available.
 
 * bug 5632 fixed - Could not open a file in read-only mode.
 
@@ -89,22 +92,23 @@ Text Editor:
 
 * bug 5652 fixed - Bad line numbering when several files were opened.
 
-* bug 5654 fixed - The editor didn't save the user preferences.
+* bug 5654 fixed - The editor did not save the user preferences.
 
 * bug 5655 fixed - The selection was lost after an unsuccessful search.
 
-* bug 5656 fixed - When a text was selected word was searched in the entire
+* bug 5656 fixed - When a text was selected, the search was done on the full
                    document.
 
-* bug 5657 fixed - Control+End didn't move the cursor to the end of the file.
+* bug 5657 fixed - Control+End did not move the cursor to the end of the file.
 
-* bugs 5646, 5658 fixed - The undo/redo strategy was not good.
+* bugs 5646, 5658 fixed - The undo/redo strategy was failing in some cases.
 
 * bug 5681 fixed - The search window was not put in front of the editor's one.
 
-* bug 5682 fixed - There was a problem with the replace action.
+* bug 5682 fixed - A problem occured in some cases with the replace action.
 
-* bug 6479 fixed - There was a problem when a '{' was in comments.
+* bug 6479 fixed - A problem occured in some cases when a '{' was used in
+                   comments.
 
 * bug 6515 fixed - The DragN'Droped text was copied at the end of the file.
 
@@ -156,32 +160,22 @@ Text Editor:
 * bug 7421 fixed - Could not open the source file of a selected name with right
                    click.
 
-Incompatibilities:
-==================
-* The bug 4583 fix makes the default element value in string array assignment
-  be an empty string instead of " ".
-
-
-FFTW:
-=====
-
-* On Windows, Scilab can use FFTW3 wrapper of Intel Math Kernel Library.
-  Select "Download FFTW3 wrapper optimized by Intel Math Kernel Library" during
-  installation.
 
 Graphics:
 =========
 
-* the set, get and uicontrol functions are now overloadable.
+* The set, get and uicontrol functions are now overloadable.
 
-* Datatips tools added, the frequency response plots ("bode", "black",
-  "nyquist", "gainplot",...) supports cutomized datatips.
+* Datatips tools added
+
+* The frequency response plots ("bode", "black", "nyquist", "gainplot",...) 
+  support cutomized datatips.
 
 * bug 2651 fixed - "plot2d" was not working when the x argument was not given
                    and some optional arguments were given.
 
-* bug 3100 fixed - The "xselect" function has been made obsolete, in accordance
-                   with its help page.
+* bug 3100 fixed - The "xselect" function has been made obsolete and replaced 
+                   by "show_window", in accordance with its help page.
 
 * bug 3975 fixed - The "xload" function was not able to load the contents of a
                    previously saved graphics figure into a different one.
@@ -189,13 +183,14 @@ Graphics:
 * bug 4531 fixed - "legend" macros was not displaying any error when no
                    'Polyline' exist.
 
-* bug 4658 fixed - When some graphic functions were called without any arguments,
-                   the error was not explicit enough.
+* bug 4658 fixed - When some graphic functions were called without any
+                   arguments, the error was not explicit enough.
 
-* bug 5284 fixed - In some case function "legend" drew line segments in its box
-                   in a reverse order.
+* bug 5284 fixed - In some cases, the function "legend" drew line segments in
+                   its box in a reverse order.
 
-* bug 5606 fixed - In certain cases, user-defined x-axis ticks were not correctly aligned.
+* bug 5606 fixed - In certain cases, user-defined x-axis ticks were not
+                   correctly aligned.
 
 * bug 6098 fixed - It was not possible get values by clicking on point of
                    Bode diagram.
@@ -206,7 +201,7 @@ Graphics:
                    (superseed "m_circle") and "nicholschart" (superseed
                    "chart").
 
-* bug 6532 fixed - In some case text entity rendering order was wrong.
+* bug 6532 fixed - In some cases, the text entity rendering order was wrong.
 
 * bug 6676 fixed - When we executed "twinkle(gca())", data related to the
                    current axes were not twinkling.
@@ -240,19 +235,21 @@ Graphics:
 * bug 7079 fixed - The "mtlb_get" used a "h" global variable instead of the
                    given "H" argument.
 
-* bug 7172 fixed - Executing the "scaling" function caused a function redefinition
-                   warning due to its "factor" input argument.
+* bug 7172 fixed - Executing the "scaling" function caused a function
+                   redefinition warning due to its "factor" input argument.
 
 * bug 7173 fixed - The equation in the "scaling" help page was incorrect.
 
-* bug 7187 fixed - Plotting a curve, zooming, and then plotting an additional curve
-                   caused Scilab to freeze, depending on the zoomed-in area.
+* bug 7187 fixed - Plotting a curve, zooming, and then plotting an additional
+                   curve caused Scilab to freeze, depending on the zoomed-in
+                   area.
 
 * bug 7188 fixed - Deleting a Label graphics entity caused Scilab to crash.
 
-* bug 7353 fixed - Setting a Polyline's "interp_color_mode" property to "on" without
-                   having previously set its "interp_color_vector" property caused Scilab
-                   to crash.
+* bug 7353 fixed - Setting a Polyline's "interp_color_mode" property to "on"
+                   without having previously set its "interp_color_vector"
+                   property caused Scilab to crash.
+
 
 Localization:
 =============
@@ -269,22 +266,11 @@ Localization:
 * bug 7220 fixed - On Windows, when you started Scilab with "WScilex -l ru_RU",
                    some menus were disabled.
 
-Source reorganization:
-======================
-
-* 'tbx_builder_src', 'tbx_build_macros', 'tbx_builder_gateway', ... functions
-   has been moved in modules_manager module.
-
-API_Scilab:
-===========
-
-* Error(x) is now deprecated and will be removed in Scilab 5.4.
-  Please consider SciError(x).
 
 Documentation:
 ==============
 
-* It is now possible to use LaTeX inline in the documentation. Thanks to
+* It is now possible to use LaTeX inlined in the documentation. Thanks to
   Calixte Denizet for this feature. (See bug #4329)
 
 * bug 6630 fixed - JavaHelp does not update existing image files when
@@ -292,16 +278,6 @@ Documentation:
 
 * bug 6852 fixed - JavaHelp did not center the LaTeX formulas containing an
                    attribute align="center"
-
-Optimization:
-=============
-
-* Simulated annealing: Added documentation for accept_func_default and
-  accept_func_vfsa.
-
-* fminsearch: updated printing of neldermead, optimbase and optimsimplex objects.
-
-* fminsearch: added demo for dimensionnality effect of the Nelder-Mead algorithm.
 
 Xcos:
 =====
@@ -385,6 +361,54 @@ Xcos:
 * bug 7214 fixed - Modelica demos did not generate a .mo file in TMPDIR/modelica
                    directory.
 
+
+ATOMS:
+======
+
+* ATOMS client: Categories are now managed.
+  - atomsList(category) limits the list of modules to a category.
+  - atomsCategoryList() lists available categories.
+
+* The ATOMS GUI ergonomics has been improved.
+
+* ATOMS GUI: Modules can be filtered by category (See request 5276).
+
+* ATOMS GUI: When a module is not up-to-date, a warning is displayed on the
+  corresponding sheet.
+
+* ATOMS GUI: Display the release date of the watched module.
+
+* bug 5276 fixed - ATOMS GUI: It was not possible to filter modules by category.
+
+* bug 6596 fixed - When the ATOMS GUI started, nothing was displayed. Now, the
+                   list of already installed modules appears on the home page.
+
+* bug 6842 fixed - If the installed version of a module was not the most recent
+                   one, the ATOMS GUI claimed that the newest version was
+                   installed.
+
+* bug 6976 fixed - ATOMS GUI: Webpages URLs linked with a module were missing
+                   from the presentation frame.
+
+* bug 6977 fixed - ATOMS GUI: In the presentation frame, URLs and emails were
+                   not hyperlinked.
+
+* bug 7149 fixed - An error message of atomsDESCRIPTIONread() was badly formated.
+
+
+Matlab to Scilab conversion tools:
+==================================
+
+* Unitary tests added.
+
+* Matlab-Scilab equivalents dictionnary added in documentation.
+
+* In 'mfile2sci', option only_double is now set to %T as default.
+
+* Conversion updated with new Scilab functions:
+  - 'filesep' now converted by 'filesep' instead of 'pathconvert'.
+
+
 Dynamic link:
 =============
 
@@ -409,6 +433,46 @@ Dynamic link:
 * bug 5737 fixed - loader.sce generated by ilib_gen_loader did not detect
                    if it was a x86 dll or a x64 dll used with a scilab x64 or x86,
                    on Windows.
+
+
+Optimization:
+=============
+
+* Simulated annealing: Added documentation for accept_func_default and
+  accept_func_vfsa.
+
+* fminsearch: updated printing of neldermead, optimbase and optimsimplex objects.
+
+* fminsearch: added demo for dimensionnality effect of the Nelder-Mead algorithm.
+
+
+Incompatibilities:
+==================
+* The bug 4583 fix makes the default element value in string array assignment
+  be an empty string instead of " ".
+
+
+FFTW:
+=====
+
+* On Windows, Scilab can use FFTW3 wrapper of Intel Math Kernel Library.
+  Select "Download FFTW3 wrapper optimized by Intel Math Kernel Library" during
+  installation.
+
+
+API_Scilab:
+===========
+
+* Error(x) is now deprecated and will be removed in Scilab 5.4.
+  Please consider SciError(x).
+
+
+Source reorganization:
+======================
+
+* 'tbx_builder_src', 'tbx_build_macros', 'tbx_builder_gateway', ... functions
+   has been moved in modules_manager module.
+
 
 Compilation:
 ============
@@ -452,23 +516,13 @@ Compilation:
 
 * bug 6857 fixed - make CXXFLAGS="-myflag" was removing some C++ arguments.
 
+
 helptools:
 ==========
 
 * %helps_modules (global variable in Scilab) is defined only when
   Scilab build help and no more at Scilab's startup.
 
-Matlab to Scilab conversion tools:
-==================================
-
-* Unitary tests added.
-
-* Matlab-Scilab equivalents dictionnary added in documentation.
-
-* In 'mfile2sci', option only_double is now set to %T as default.
-
-* Conversion updated with new Scilab functions:
-  - 'filesep' now converted by 'filesep' instead of 'pathconvert'.
 
 Core:
 =====
@@ -493,16 +547,19 @@ Tests:
 
 * test_run() now accepts ATOMS modules as input argument.
 
+
 Text Rendering:
 ===============
 
 * Antialiasing activated by default to render text
+
 
 License:
 ========
 
 * The demos files (modules/*/demos/**/*.dem.*) are now released in the public
   domain. (See bug #4902)
+
 
 Obsolete Functions:
 ===================
@@ -517,6 +574,9 @@ Obsolete Functions:
 * 'maxi' obsolete see 'max'.
 
 * 'mini' obsolete see 'min'.
+
+* 'xselect' obsolete see 'show_window'
+
 
 Removed functions (previously declared as obsolete):
 ====================================================
@@ -553,39 +613,6 @@ Removed functions (previously declared as obsolete):
 
 * 'readc_' replaced by 'input'.
 
-
-ATOMS:
-======
-
-* ATOMS client: Categories are now managed.
-  - atomsList(category) limits the list of modules to a category.
-  - atomsCategoryList() lists available categories.
-
-* The ATOMS GUI ergonomics has been improved.
-
-* ATOMS GUI: Modules can be filtered by category (See request 5276).
-
-* ATOMS GUI: When a module is not up-to-date, a warning is displayed on the
-  corresponding sheet.
-
-* ATOMS GUI: Display the release date of the watched module.
-
-* bug 5276 fixed - ATOMS GUI: It was not possible to filter modules by category.
-
-* bug 6596 fixed - When the ATOMS GUI started, nothing was displayed. Now, the
-                   list of already installed modules appears on the home page.
-
-* bug 6842 fixed - If the installed version of a module was not the most recent
-                   one, the ATOMS GUI claimed that the newest version was
-                   installed.
-
-* bug 6976 fixed - ATOMS GUI: Webpages URLs linked with a module were missing
-                   from the presentation frame.
-
-* bug 6977 fixed - ATOMS GUI: In the presentation frame, URLs and emails were
-                   not hyperlinked.
-
-* bug 7149 fixed - An error message of atomsDESCRIPTIONread() was badly formated.
 
 Bug fixes:
 ==========
@@ -740,7 +767,7 @@ Bug fixes:
 
 * bug 6332 fixed - stacksize had problems on Mac OS X and 64 bit platforms.
 
-* bug 6349 fixed -  The callback of an 'edit' uicontrol was only executed when it lost focus.
+* bug 6349 fixed - The callback of an 'edit' uicontrol was only executed when it lost focus.
 
 * bug 6419 fixed - gstacksize() There was no way to retrieve minimum
                    from Scilab.
