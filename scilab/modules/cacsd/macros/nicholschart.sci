@@ -190,5 +190,5 @@ function str=formatNicholsPhaseTip(curve,pt,index)
 //This function is called by the datatip mechanism to format the tip
 //string for the Nichols chart iso phase curves.
   ud=datatipGetStruct(curve);
-  str=msprintf("%.2g"+_("°"),ud.phase)
+  str=msprintf("%.2g°",ud.phase)
 endfunction
