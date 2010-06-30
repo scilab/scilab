@@ -11,6 +11,10 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+#include <string.h>
+#if defined(__linux__)
+#define __USE_FORTIFY_LEVEL 0 /* Avoid dependency on GLIBC_2.11 (__longjmp_chk) */
+#endif
 #include <setjmp.h>
 #include <stdio.h>
 #include <ctype.h>
