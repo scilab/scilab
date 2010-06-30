@@ -351,7 +351,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         scinotesWithText(cdoc.getText());
         String title = current.getTabPane().getTitleAt(current.getTabPane().getSelectedIndex());
         editor.getTabPane().setTitleAt(0, title);
-        editor.getTextPane().setName(current.getTextPane().getName());
+        current.getTextPane().copyProps(editor.getTextPane());
         editor.setTitle(current.getTitle());
         ScilabDocument sdoc = (ScilabDocument) editor.getTextPane().getDocument();
         sdoc.setContentModified(cdoc.isContentModified());
@@ -1141,8 +1141,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         tabPane.remove(index);
         File f = new File(textPaneAt.getName());
         if (f.exists()) {
-            ReadFileThread myReadThread = new ReadFileThread(f, index);
-            myReadThread.start();
+            loadFile(f, index);
         } else {
             createNewFile(f);
         }
@@ -1167,8 +1166,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
 
         if (!alreadyOpened) {
             if (f.exists()) {
-                ReadFileThread myReadThread = new ReadFileThread(f);
-                myReadThread.start();
+                loadFile(f);
             } else {
                 createNewFile(f);
             }
@@ -1237,21 +1235,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
 
         if (!alreadyOpened) {
             if (f.exists()) {
-                ReadFileThread myReadThread;
-                if (index == -1) {
-                    myReadThread = new ReadFileThread(f);
-                } else {
-                    myReadThread = new ReadFileThread(f, index);
-                }
-                myReadThread.start();
-                synchronized (synchro) {
-                    try {
-                        synchro.wait();
-                    } catch (InterruptedException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                }
+                loadFile(f, index);
             } else {
                 createNewFile(f);
             }
@@ -1531,106 +1515,66 @@ public class SciNotes extends SwingScilabTab implements Tab {
         return fileFullPath;
     }
 
-    /**
-     * Dedicated class to read the file.
-     */
-    private class ReadFileThread extends Thread {
+    public void loadFile(File f) {
+        loadFile(f, -1);
+    }
 
-        private File fileToRead;
-        private int index = -1;
+    public void loadFile(File f, int index) {
+        setFileToEncode(f);
+        getInfoBar().setText(SciNotesMessages.LOADING);
+        // Get current file path for Execute file into Scilab
+        fileFullPath = f.getAbsolutePath();
 
-        /**
-         * ReadFileThread
-         * @param f File
-         */
-        public ReadFileThread(File f) {
-            this.fileToRead = f;
-            setFileToEncode(f);
-        }
+        ScilabDocument styleDocument = null;
+        ScilabEditorPane theTextPane;
 
-        /**
-         * ReadFileThread
-         * @param f File
-         * @param index the index where to put the opened file
-         */
-        public ReadFileThread(File f, int index) {
-            this(f);
-            this.index = index;
-        }
-
-        /**
-         * Function Run
-         */
-        public void run() {
-            readFile(fileToRead);
-            this.interrupt();
-        }
-
-        /**
-         * readFile
-         * @param f File
-         */
-        public void readFile(File f) {
-            getInfoBar().setText(SciNotesMessages.LOADING);
-            // Get current file path for Execute file into Scilab
-            fileFullPath = f.getAbsolutePath();
-
-            ScilabDocument styleDocument = null;
-            ScilabEditorPane theTextPane;
-
-            // File exist
-            if (f.exists()) {
-                if (index != -1) {
-                    theTextPane = addTab(f.getName(), index);
-                } else {
-                    theTextPane = addTab(f.getName());
-                }
-                styleDocument = (ScilabDocument) theTextPane.getDocument();
-                styleDocument.disableUndoManager();
-                theTextPane.setLastModified(f.lastModified());
-
-                try {
-                    synchronized (styleDocument) {
-                        styleDocument.setUpdater(false);
-                        boolean indentMode = styleDocument.getAutoIndent();
-                        styleDocument.setAutoIndent(false);
-                        try {
-                            try {
-                                editorKit.read(new BufferedReader(new InputStreamReader(new FileInputStream(f), styleDocument.getEncoding())), styleDocument, 0);
-                            } catch (ChangedCharSetException e) {
-                                editorKit.read(new BufferedReader(new InputStreamReader(new FileInputStream(f), e.getCharSetSpec())), styleDocument, 0);
-                            }
-
-                        } catch (BadLocationException e) {
-                            e.printStackTrace();
-                        }
-                        styleDocument.setAutoIndent(indentMode);
-                        styleDocument.setUpdater(true);
-                    }
-                } catch (IOException ioex) {
-                    ioex.printStackTrace();
-                }
-
-                theTextPane.setName(f.getAbsolutePath());
-                getTabPane().setTitleAt(getTabPane().getSelectedIndex() , f.getName());
-                styleDocument.setContentModified(false);
-                styleDocument.enableUndoManager();
-
-                if (styleDocument.getBinary()) {
-                    theTextPane.setBinary(true);
-                }
-                getInfoBar().setText(theTextPane.getInfoBarText());
-
-                scinotesGUI.updateEncodingMenu((ScilabDocument) getTextPane().getDocument());
+        // File exist
+        if (f.exists()) {
+            if (index != -1) {
+                theTextPane = addTab(f.getName(), index);
+            } else {
+                theTextPane = addTab(f.getName());
             }
+            styleDocument = (ScilabDocument) theTextPane.getDocument();
+            styleDocument.disableUndoManager();
+            theTextPane.setLastModified(f.lastModified());
+
+            try {
+                styleDocument.setUpdater(false);
+                boolean indentMode = styleDocument.getAutoIndent();
+                styleDocument.setAutoIndent(false);
+                try {
+                    try {
+                        editorKit.read(new BufferedReader(new InputStreamReader(new FileInputStream(f), styleDocument.getEncoding())), styleDocument, 0);
+                    } catch (ChangedCharSetException e) {
+                        editorKit.read(new BufferedReader(new InputStreamReader(new FileInputStream(f), e.getCharSetSpec())), styleDocument, 0);
+                    }
+
+                } catch (BadLocationException e) {
+                    e.printStackTrace();
+                }
+                styleDocument.setAutoIndent(indentMode);
+                styleDocument.setUpdater(true);
+            } catch (IOException ioex) {
+                ioex.printStackTrace();
+            }
+
+            theTextPane.setName(f.getAbsolutePath());
+            getTabPane().setTitleAt(getTabPane().getSelectedIndex() , f.getName());
+            styleDocument.setContentModified(false);
+            styleDocument.enableUndoManager();
+
+            if (styleDocument.getBinary()) {
+                theTextPane.setBinary(true);
+            }
+            getInfoBar().setText(theTextPane.getInfoBarText());
+
+            scinotesGUI.updateEncodingMenu((ScilabDocument) getTextPane().getDocument());
 
             // Empty the undo Manager
             UndoManager undo = ((ScilabDocument) getTextPane().getDocument()).getUndoManager();
             undo.discardAllEdits();
-
-            synchronized (synchro) {
-                synchro.notify();
-            }
+            theTextPane.setCaretPosition(0);
         }
     }
 

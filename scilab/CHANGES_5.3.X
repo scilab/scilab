@@ -160,6 +160,7 @@ SciNotes (Text Editor):
 * bug 7421 fixed - Could not open the source file of a selected name with right
                    click.
 
+* bug 7429 fixed - Impossible to open two files on Mandriva 64 with openJDK.
 
 Graphics:
 =========
