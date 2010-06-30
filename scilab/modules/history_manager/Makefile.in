@@ -60,16 +60,16 @@ host_triplet = @host@
 
 # List of the c files
 @GUI_TRUE@am__append_1 = src/jni/HistoryManagement_wrap.c
-@GUI_TRUE@am__append_2 = src/jni/CommandHistory.cpp \
-@GUI_TRUE@src/jni/GiwsException.cpp
-
+@GUI_TRUE@am__append_2 = src/cpp/CommandHistory_Wrap.cpp \
+@GUI_TRUE@	src/jni/CommandHistory.cpp src/jni/GiwsException.cpp
+@GUI_FALSE@am__append_3 = src/nohistory_manager/CommandHistory_Warp_Fake.c
 DIST_COMMON = $(libscihistory_manager_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_3 = java
+@NEED_JAVA_TRUE@am__append_4 = java
 
 # With --enable-compilation-tests, launch java unitary tests
-@COMPILATION_TESTS_TRUE@am__append_4 = test
+@COMPILATION_TESTS_TRUE@am__append_5 = test
 subdir = modules/history_manager
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -123,10 +123,11 @@ libscihistory_manager_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/jvm/libscijvm.la
 am__libscihistory_manager_la_SOURCES_DIST =  \
 	src/c/getCommentDateSession.c src/jni/HistoryManagement_wrap.c \
+	src/nohistory_manager/CommandHistory_Warp_Fake.c \
 	src/cpp/CommandLine.cpp src/cpp/HistoryFile.cpp \
 	src/cpp/HistoryManager.cpp src/cpp/HistorySearch.cpp \
-	src/jni/CommandHistory.cpp src/jni/GiwsException.cpp \
-	sci_gateway/c/gw_history_manager.c \
+	src/cpp/CommandHistory_Wrap.cpp src/jni/CommandHistory.cpp \
+	src/jni/GiwsException.cpp sci_gateway/c/gw_history_manager.c \
 	sci_gateway/c/sci_addhistory.c \
 	sci_gateway/c/sci_displayhistory.c \
 	sci_gateway/c/sci_gethistory.c \
@@ -142,15 +143,18 @@ am__libscihistory_manager_la_SOURCES_DIST =  \
 	sci_gateway/c/sci_historymanager.c
 @GUI_TRUE@am__objects_1 =  \
 @GUI_TRUE@	libscihistory_manager_la-HistoryManagement_wrap.lo
-am__objects_2 = libscihistory_manager_la-getCommentDateSession.lo \
-	$(am__objects_1)
-@GUI_TRUE@am__objects_3 = libscihistory_manager_la-CommandHistory.lo \
+@GUI_FALSE@am__objects_2 = libscihistory_manager_la-CommandHistory_Warp_Fake.lo
+am__objects_3 = libscihistory_manager_la-getCommentDateSession.lo \
+	$(am__objects_1) $(am__objects_2)
+@GUI_TRUE@am__objects_4 =  \
+@GUI_TRUE@	libscihistory_manager_la-CommandHistory_Wrap.lo \
+@GUI_TRUE@	libscihistory_manager_la-CommandHistory.lo \
 @GUI_TRUE@	libscihistory_manager_la-GiwsException.lo
-am__objects_4 = libscihistory_manager_la-CommandLine.lo \
+am__objects_5 = libscihistory_manager_la-CommandLine.lo \
 	libscihistory_manager_la-HistoryFile.lo \
 	libscihistory_manager_la-HistoryManager.lo \
-	libscihistory_manager_la-HistorySearch.lo $(am__objects_3)
-am__objects_5 = libscihistory_manager_la-gw_history_manager.lo \
+	libscihistory_manager_la-HistorySearch.lo $(am__objects_4)
+am__objects_6 = libscihistory_manager_la-gw_history_manager.lo \
 	libscihistory_manager_la-sci_addhistory.lo \
 	libscihistory_manager_la-sci_displayhistory.lo \
 	libscihistory_manager_la-sci_gethistory.lo \
@@ -164,8 +168,8 @@ am__objects_5 = libscihistory_manager_la-gw_history_manager.lo \
 	libscihistory_manager_la-sci_savehistory.lo \
 	libscihistory_manager_la-sci_sethistoryfile.lo \
 	libscihistory_manager_la-sci_historymanager.lo
-am_libscihistory_manager_la_OBJECTS = $(am__objects_2) \
-	$(am__objects_4) $(am__objects_5)
+am_libscihistory_manager_la_OBJECTS = $(am__objects_3) \
+	$(am__objects_5) $(am__objects_6)
 libscihistory_manager_la_OBJECTS =  \
 	$(am_libscihistory_manager_la_OBJECTS)
 libscihistory_manager_la_LINK = $(LIBTOOL) --tag=CXX \
@@ -452,10 +456,9 @@ top_srcdir = @top_srcdir@
 HISTORY_MANAGER_CPP_SOURCES = src/cpp/CommandLine.cpp \
 	src/cpp/HistoryFile.cpp src/cpp/HistoryManager.cpp \
 	src/cpp/HistorySearch.cpp $(am__append_2)
-
 # List of the c files
 HISTORY_MANAGER_C_SOURCES = src/c/getCommentDateSession.c \
-	$(am__append_1)
+	$(am__append_1) $(am__append_3)
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_history_manager.c \
@@ -555,7 +558,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_3) $(am__append_4)
+TARGETS_ALL = $(am__append_4) $(am__append_5)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -682,6 +685,8 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_manager_la-CommandHistory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_manager_la-CommandHistory_Warp_Fake.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_manager_la-CommandHistory_Wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_manager_la-CommandLine.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_manager_la-GiwsException.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_manager_la-HistoryFile.Plo@am__quote@
@@ -738,6 +743,13 @@ libscihistory_manager_la-HistoryManagement_wrap.lo: src/jni/HistoryManagement_wr
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/HistoryManagement_wrap.c' object='libscihistory_manager_la-HistoryManagement_wrap.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(libscihistory_manager_la_CFLAGS) $(CFLAGS) -c -o libscihistory_manager_la-HistoryManagement_wrap.lo `test -f 'src/jni/HistoryManagement_wrap.c' || echo '$(srcdir)/'`src/jni/HistoryManagement_wrap.c
+
+libscihistory_manager_la-CommandHistory_Warp_Fake.lo: src/nohistory_manager/CommandHistory_Warp_Fake.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(libscihistory_manager_la_CFLAGS) $(CFLAGS) -MT libscihistory_manager_la-CommandHistory_Warp_Fake.lo -MD -MP -MF $(DEPDIR)/libscihistory_manager_la-CommandHistory_Warp_Fake.Tpo -c -o libscihistory_manager_la-CommandHistory_Warp_Fake.lo `test -f 'src/nohistory_manager/CommandHistory_Warp_Fake.c' || echo '$(srcdir)/'`src/nohistory_manager/CommandHistory_Warp_Fake.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscihistory_manager_la-CommandHistory_Warp_Fake.Tpo $(DEPDIR)/libscihistory_manager_la-CommandHistory_Warp_Fake.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/nohistory_manager/CommandHistory_Warp_Fake.c' object='libscihistory_manager_la-CommandHistory_Warp_Fake.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(libscihistory_manager_la_CFLAGS) $(CFLAGS) -c -o libscihistory_manager_la-CommandHistory_Warp_Fake.lo `test -f 'src/nohistory_manager/CommandHistory_Warp_Fake.c' || echo '$(srcdir)/'`src/nohistory_manager/CommandHistory_Warp_Fake.c
 
 libscihistory_manager_la-gw_history_manager.lo: sci_gateway/c/gw_history_manager.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(libscihistory_manager_la_CFLAGS) $(CFLAGS) -MT libscihistory_manager_la-gw_history_manager.lo -MD -MP -MF $(DEPDIR)/libscihistory_manager_la-gw_history_manager.Tpo -c -o libscihistory_manager_la-gw_history_manager.lo `test -f 'sci_gateway/c/gw_history_manager.c' || echo '$(srcdir)/'`sci_gateway/c/gw_history_manager.c
@@ -885,6 +897,13 @@ libscihistory_manager_la-HistorySearch.lo: src/cpp/HistorySearch.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/HistorySearch.cpp' object='libscihistory_manager_la-HistorySearch.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihistory_manager_la-HistorySearch.lo `test -f 'src/cpp/HistorySearch.cpp' || echo '$(srcdir)/'`src/cpp/HistorySearch.cpp
+
+libscihistory_manager_la-CommandHistory_Wrap.lo: src/cpp/CommandHistory_Wrap.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihistory_manager_la-CommandHistory_Wrap.lo -MD -MP -MF $(DEPDIR)/libscihistory_manager_la-CommandHistory_Wrap.Tpo -c -o libscihistory_manager_la-CommandHistory_Wrap.lo `test -f 'src/cpp/CommandHistory_Wrap.cpp' || echo '$(srcdir)/'`src/cpp/CommandHistory_Wrap.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihistory_manager_la-CommandHistory_Wrap.Tpo $(DEPDIR)/libscihistory_manager_la-CommandHistory_Wrap.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/CommandHistory_Wrap.cpp' object='libscihistory_manager_la-CommandHistory_Wrap.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihistory_manager_la-CommandHistory_Wrap.lo `test -f 'src/cpp/CommandHistory_Wrap.cpp' || echo '$(srcdir)/'`src/cpp/CommandHistory_Wrap.cpp
 
 libscihistory_manager_la-CommandHistory.lo: src/jni/CommandHistory.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihistory_manager_la-CommandHistory.lo -MD -MP -MF $(DEPDIR)/libscihistory_manager_la-CommandHistory.Tpo -c -o libscihistory_manager_la-CommandHistory.lo `test -f 'src/jni/CommandHistory.cpp' || echo '$(srcdir)/'`src/jni/CommandHistory.cpp

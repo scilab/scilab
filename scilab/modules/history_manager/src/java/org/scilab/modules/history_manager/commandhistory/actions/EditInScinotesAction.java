@@ -20,7 +20,6 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.history_manager.commandhistory.CommandHistory;
 import org.scilab.modules.history_manager.commandhistory.CommandHistoryMessages;
-import org.scilab.modules.jvm.LoadClassPath;
 
 /**
  * Manage Clear Actions
@@ -50,7 +49,7 @@ public final class EditInScinotesAction extends CallBack {
 		menuItem.setText(LABEL);
 		menuItem.setMnemonic(MNEMONIC);
 		menuItem.setCallback(getCallBack());
-		LoadClassPath.loadOnUse("SciNotes"); /* Load SciNotes if not already loaded */
+
 		try {
 			Class.forName(SCINOTES_PACKAGE);
 		} catch (ClassNotFoundException e) {
