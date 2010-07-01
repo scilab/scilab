@@ -65,8 +65,10 @@ public final class Xcos {
 	
 	private static final String UNABLE_TO_LOAD_JGRAPHX = 
 		Messages.gettext("Unable to load the jgraphx library.\nExpecting version %s ; Getting version %s .");
+	private static final String UNABLE_TO_LOAD_JHDF5 = 
+		Messages.gettext("Unable to load the hdf5-java (jhdf5) library. \nExpecting version %s ; Getting version %s .");
 	private static final String UNABLE_TO_LOAD_HDF5 = 
-		Messages.gettext("Unable to load the HDF5 library. \nExpecting version %s ; Getting version %s .");
+		Messages.gettext("Unable to load the native HDF5 library.");
 	private static final String UNABLE_TO_LOAD_BATIK = 
 		Messages.gettext("Unable to load the Batik library. \nExpecting version %s ; Getting version %s .");
 	
@@ -158,6 +160,8 @@ public final class Xcos {
 		int[] libVersion = new int[3]; 
 		try {
 			Class< ? > klass = loader.loadClass("ncsa.hdf.hdf5lib.H5");
+			
+			/* hdf5-java */
 			int ret = (Integer) klass.getMethod("H5get_libversion", libVersion.getClass())
 									.invoke(null, libVersion);
 			if (ret < 0) {
@@ -168,9 +172,20 @@ public final class Xcos {
 				throw new Exception();
 			}
 			
+			
+			/* hdf5 */
+			ret = (Integer) klass.getMethod("H5check_version", int.class,
+					int.class, int.class).invoke(null, libVersion[0],
+					libVersion[1], libVersion[2]);
+			if (ret < 0) {
+				throw new RuntimeException(UNABLE_TO_LOAD_HDF5);
+			}
+			
 		} catch (Throwable e) {
-			throw new RuntimeException(String.format(UNABLE_TO_LOAD_HDF5,
-					HDF5_VERSIONS.get(0), Arrays.toString(libVersion)), e);
+			if (!(e instanceof RuntimeException)) {
+				throw new RuntimeException(String.format(UNABLE_TO_LOAD_JHDF5,
+						HDF5_VERSIONS.get(0), Arrays.toString(libVersion)), e);
+			}
 		}
 		
 		/* Batik */
