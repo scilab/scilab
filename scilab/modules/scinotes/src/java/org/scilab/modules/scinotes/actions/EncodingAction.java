@@ -142,6 +142,10 @@ public class EncodingAction extends DefaultCheckAction {
      * @return Map : Language -> {enc1, enc2, ...}
      */
     public static Map<String, List<String>> getEncodings() {
+        if (!language.isEmpty()) {
+            return language;
+        }
+
         Set<String> keys = encodings.keySet();
         Iterator<String> iterator = keys.iterator();
         while (iterator.hasNext()) {
