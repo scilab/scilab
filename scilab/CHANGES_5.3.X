@@ -10,8 +10,21 @@ Performance:
 
 * Improved access to the list of functions increases the performances.
 
+
+Parallel execution:
+===================
+
+* Function "parallel_run" has been introduced for all supported architectures.
+  This function allows parallel computations and leverages multicore
+  architectures and their capacities.
+  For more information, see the help page of parallel_run or SEP #43.
+
+
 SciNotes (Text Editor):
 =======================
+
+* The Scilab consortium would like to express their congratulations to Calixte
+  Denizet for his impressive work on the recent developments on SciNotes.
 
 * Distributed with a new name: SciNotes
 
