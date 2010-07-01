@@ -14,6 +14,12 @@ History Manager:
 
 * Begin session line identified by "// -- " and finished by " -- //"
 
+Compilation:
+============
+
+* fix the "warning: deprecated conversion from string constant to ‘char*’"
+  message when compiling a toolbox using Scierror(...) and sciprint(...)
+
 Bug Fixes:
 ==========
 
@@ -631,7 +637,6 @@ Obsolete Functions:
   from Scilab.
 
 * 'maxi' obsolete see 'max'.
->>>>>>> 1d472bd... bug 7316 oldbessel functions declared obsolete + special_functions module dynamically loaded by scilab
 
 * 'maxi' obsolete. Please use 'max' instead.
 
