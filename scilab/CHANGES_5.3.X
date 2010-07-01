@@ -173,12 +173,27 @@ SciNotes (Text Editor):
                    click could not be opened.
 
 
+editvar (variable editor):
+==========================
+
+* New variable editor
+  Note that this editor will be improved in the next beta releases.
+
+
+browsevar (variable browser):
+=============================
+
+* New variable browser
+  Note that this browser will be improved in the next beta releases.
+
+
 Graphics:
 =========
 
 * The set, get and uicontrol functions are now overloadable.
 
 * Datatips tools added.
+  For more information, see the help page of datatips or SEP #29.
 
 * The frequency response plots ("bode", "black", "nyquist", "gainplot",...) 
   support cutomized datatips.
@@ -296,6 +311,9 @@ Xcos:
 =====
 
 * Modelica compiler 1.12.1
+
+* New set of icons added (the previous set of icons will be available as an
+  external module)
 
 * The default palettes can now be manipulated by the user.
 
