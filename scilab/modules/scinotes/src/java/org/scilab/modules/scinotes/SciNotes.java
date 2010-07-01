@@ -1681,9 +1681,9 @@ public class SciNotes extends SwingScilabTab implements Tab {
 
                     @Override
                     public void run() {
-                        for (int i = 0; i < scinotesList.size(); i++) {
-                            SciNotes ed = scinotesList.get(i);
-                            ExitAction.doExit(ed);
+                        SciNotes[] arr = scinotesList.toArray(new SciNotes[0]);
+                        for (int i = 0; i < arr.length; i++) {
+                            ExitAction.doExit(arr[i]);
                         }
                         scinotesList.clear();
                     }
