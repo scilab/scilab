@@ -17,7 +17,9 @@
     <add as="noLabel" value="1"/>
   </add>
 
-  <add as="blockWithLabel" extend="defaultVertex" />
+  <add as="blockWithLabel" extend="defaultVertex">
+  	<add as="spacing" value="13" />
+  </add>
 
 <!-- *** BLOCK DEFINITION *** -->
 
@@ -1013,6 +1015,10 @@
 				        &lt;TD&gt;&lt;/TD&gt;
 				      &lt;/TR&gt;
 				    &lt;/TABLE&gt;" />
+		<add as="spacing" value="0" />
+		<add as="spacingRight" value="5" />
+		<add as="spacingTop" value="7" />
+		<add as="spacingBottom" value="7" />
 	</add>
 	<add as="PMOS" extend="Icon">
 		<add as="image" value="$SCILAB/modules/xcos/images/blocks/PMOS.svg" />
