@@ -201,7 +201,7 @@ namespace ast
     class RunVisitorT : public RunVisitor
     {
     protected :
-        int  GetIndexList(std::list<ast::Exp *>const& _plstArg, int** _piIndexSeq, int** _piMaxDim, InternalType *_pRefVar, int *_iDimSize)
+        int  GetIndexList(InternalType* _pRef, std::list<ast::Exp *>const& _plstArg, int** _piIndexSeq, int** _piMaxDim, InternalType *_pRefVar, int *_iDimSize)
         {
             //Create list of indexes
             //std::vector<std::vector<int>> IndexList;
@@ -259,8 +259,8 @@ namespace ast
                 }
                 else if(execMeArg.result_get()->getType() == InternalType::RealBool)
                 {
-                    Bool *pB			= execMeArg.result_get()->getAsBool();
-                    int *piB			= pB->bool_get();
+                    Bool *pB    = execMeArg.result_get()->getAsBool();
+                    int *piB    = pB->bool_get();
 
                     //find true item count
                     int iItemCount = 0;
@@ -273,8 +273,8 @@ namespace ast
                     }
 
                     //allow new Double variable
-                    pDbl					= new Double(iItemCount, 1);
-                    double* pdbl	= pDbl->real_get();
+                    pDbl            = new Double(iItemCount, 1);
+                    double* pdbl    = pDbl->real_get();
 
                     int j = 0;
                     for(int l = 0 ; l < pB->size_get() ; l++)
@@ -303,6 +303,39 @@ namespace ast
                         Double dbl(0);
                         pDbl = pPoly->evaluate(&dbl);
 
+                    }
+                }
+                else if(execMeArg.result_get()->getType() == InternalType::RealString)
+                {
+                    String* pS	= execMeArg.result_get()->getAsString();
+                    if(_pRef != NULL && _pRef->isTList())
+                    {
+                        TList* pTL      = _pRef->getAsTList();
+                        pDbl            = new Double(pS->size_get(), 1);
+                        double* pdbl    = pDbl->real_get();
+
+                        for(int i = 0 ; i < pS->size_get() ; i++)
+                        {
+                            pdbl[i] =  pTL->getIndexFromString(pS->string_get(i));
+
+                            if(pdbl[i] == -1)
+                            {//field not found
+                                return 0;
+                            }
+                            else
+                            {
+                                pdbl[i]++; //indexed at 1
+                            }
+                        }
+
+                        bDeleteDbl		= true;
+                    }
+                    else if(_pRef != NULL && _pRef->isStruct())
+                    {
+
+                    }
+                    else
+                    {//Heu ... ?
                     }
                 }
                 else if(execMeArg.result_get()->getType() == InternalType::RealDouble)
@@ -555,32 +588,18 @@ namespace ast
             {
                 e.head_get()->accept(execHead);
             }
-            catch (string sz)
+            catch(string sz)
             {
                 throw sz;
             }
 
-            if (execHead.result_get() != NULL && !execHead.result_get()->isStruct())
+            if(execHead.result_get() != NULL && execHead.result_get()->isStruct())
             {
-                char szError[bsiz];
-#ifdef _MSC_VER
-                sprintf_s(szError, bsiz, _("Attempt to reference field of non-structure array.\n"));
-#else
-                sprintf(szError, _("Attempt to reference field of non-structure array.\n"));
-#endif
-                throw string(szError);
-            }
-            else
-            {
-                // Manage 3 cases
-                // head.ID
-                // head.variable
-                // head.functionCall
                 SimpleVar *psvRightMember = dynamic_cast<SimpleVar *>(const_cast<Exp *>(e.tail_get()));
-                if (psvRightMember != NULL)
+                if(psvRightMember != NULL)
                 {
                     Struct* psValue = execHead.result_get()->getAsStruct();
-                    if ( psValue->exists(psvRightMember->name_get()) )
+                    if(psValue->exists(psvRightMember->name_get()))
                     {
                         InternalType* pIT = psValue->get(psvRightMember->name_get());
                         result_set(pIT);
@@ -598,7 +617,6 @@ namespace ast
                 }
                 else
                 {
-
                     char szError[bsiz];
 #ifdef _MSC_VER
                     sprintf_s(szError, bsiz, _("/!\\ Unmanaged FieldExp.\n"));
@@ -607,6 +625,49 @@ namespace ast
 #endif 
                     throw string(szError);
                 }
+            }
+            else if(execHead.result_get() != NULL && execHead.result_get()->isTList())
+            {
+                SimpleVar *psvRightMember = dynamic_cast<SimpleVar *>(const_cast<Exp *>(e.tail_get()));
+                if(psvRightMember != NULL)
+                {
+                    TList* psValue = execHead.result_get()->getAsTList();
+                    if(psValue->exists(psvRightMember->name_get()))
+                    {
+                        InternalType* pIT = psValue->get(psvRightMember->name_get());
+                        result_set(pIT);
+                    }
+                    else
+                    {
+                        char szError[bsiz];
+#ifdef _MSC_VER
+                        sprintf_s(szError, bsiz, _("Unknown field : %s.\n"), psvRightMember->name_get().c_str());
+#else
+                        sprintf(szError, _("Unknown field : %s.\n"), psvRightMember->name_get().c_str());
+#endif
+                        throw string(szError);
+                    }
+                }
+                else
+                {
+                    char szError[bsiz];
+#ifdef _MSC_VER
+                    sprintf_s(szError, bsiz, _("/!\\ Unmanaged FieldExp.\n"));
+#else
+                    sprintf(szError, _("/!\\ Unmanaged FieldExp.\n"));
+#endif 
+                    throw string(szError);
+                }
+            }
+            else
+            {
+                char szError[bsiz];
+#ifdef _MSC_VER
+                sprintf_s(szError, bsiz, _("Attempt to reference field of non-structure array.\n"));
+#else
+                sprintf(szError, _("Attempt to reference field of non-structure array.\n"));
+#endif
+                throw string(szError);
             }
         }
 
@@ -633,7 +694,7 @@ namespace ast
                     int *piIndexSeq		= NULL;
                     int *piMaxDim       = NULL;
                     int *piDimSize		= new int[iArgDim];
-                    int iTotalCombi		= GetIndexList(e.args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
+                    int iTotalCombi		= GetIndexList(pIT, e.args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
 
                     //check we don't have bad indexes like "< 1"
                     for(int i = 0 ; i < iTotalCombi * iArgDim; i++)

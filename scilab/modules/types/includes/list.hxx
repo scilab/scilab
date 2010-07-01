@@ -10,6 +10,9 @@
  * 
  */
 
+#ifndef __LIST_HH__
+#define __LIST_HH__
+
 #include <list>
 #include "container.hxx"
 
@@ -23,6 +26,7 @@ namespace types
 
     private :
                                         List(List *_oListCopyMe);
+    protected :
         std::vector<InternalType *>*    getData();
 
     public :
@@ -56,7 +60,9 @@ namespace types
         /* return type as short string ( s, i, ce, l, ... )*/
         virtual std::string             getShortTypeStr() {return string("l");}
 
-    private :
+    protected :
         std::vector<InternalType *>*    m_plData;
     };
 }
+
+#endif /* __LIST_HH__ */

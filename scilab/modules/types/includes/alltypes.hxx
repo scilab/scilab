@@ -42,5 +42,7 @@
 #include "listinsert.hxx"
 #include "listundefined.hxx"
 #include "cell.hxx"
+#include "tlist.hxx"
+#include "mlist.hxx"
 
 #endif /* !ALL_TYPES_HXX */

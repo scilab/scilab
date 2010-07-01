@@ -51,7 +51,9 @@ TYPES_CPP_SOURCES = \
 			src/cpp/listoperation.cpp \
 			src/cpp/listundefined.cpp \
 			src/cpp/struct.cpp \
-			src/cpp/cell.cpp
+			src/cpp/cell.cpp \
+			src/cpp/tlist.cpp \
+			src/cpp/mlist.cpp
 
 GIWS_WRAPPERS =
 
@@ -70,7 +72,9 @@ GATEWAY_CPP_SOURCES = sci_gateway/cpp/types_gw.cpp \
 			sci_gateway/cpp/sci_cell.cpp \
 			sci_gateway/cpp/sci_makecell.cpp \
 			sci_gateway/cpp/sci_usertype.cpp \
-			sci_gateway/cpp/sci_typeof.cpp
+			sci_gateway/cpp/sci_typeof.cpp \
+			sci_gateway/cpp/sci_tlist.cpp \
+			sci_gateway/cpp/sci_mlist.cpp
 
 libscitypes_la_CFLAGS=
 

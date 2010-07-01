@@ -40,6 +40,8 @@ namespace types
     class ListInsert;
     class ListUndefined;
     class Cell;
+    class TList;
+    class MList;
 }
 
 #endif /* !__ANY_TYPES_HXX__ */

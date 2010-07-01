@@ -23,6 +23,7 @@ bool TypesModule::Load()
   symbol::Context::getInstance()->AddFunction(Function::createFunction("makecell", &sci_makecell, MODULE_NAME));
   symbol::Context::getInstance()->AddFunction(Function::createFunction("usertype", &sci_usertype, MODULE_NAME));
   symbol::Context::getInstance()->AddFunction(Function::createFunction("typeof", &sci_typeof, MODULE_NAME));
+  symbol::Context::getInstance()->AddFunction(Function::createFunction("tlist", &sci_tlist, MODULE_NAME));
 
   return true;
 }

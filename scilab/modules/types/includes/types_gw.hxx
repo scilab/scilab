@@ -37,5 +37,6 @@ CPP_GATEWAY_PROTOTYPE(sci_cell);
 CPP_GATEWAY_PROTOTYPE(sci_makecell);
 CPP_GATEWAY_PROTOTYPE(sci_usertype);
 CPP_GATEWAY_PROTOTYPE(sci_typeof);
+CPP_GATEWAY_PROTOTYPE(sci_tlist);
 
 #endif /* !__TYPES_GW_HXX__ */

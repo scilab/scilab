@@ -151,18 +151,7 @@ void visitprivate(const OpExp &e)
         else
         {
             // Don't know how to manage this Addition : Call Overloading
-            types::typed_list in;
-            types::typed_list out;
-            T execOverload;
-            in.push_back(execMeL.result_get());
-            in.push_back(execMeR.result_get());
-
-            Overload::generateNameAndCall(Overload::getNameFromOper(OpExp::plus), in, 1, out, &execOverload);
-            if(out.size() == 1)
-            {
-                out[0]->IncreaseRef();
-                result_set(out[0]);
-            }
+            result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
         }
         break;
     }
@@ -230,18 +219,7 @@ void visitprivate(const OpExp &e)
         }
         else
         {
-            types::typed_list in;
-            types::typed_list out;
-            T execOverload;
-            in.push_back(execMeL.result_get());
-            in.push_back(execMeR.result_get());
-
-            Overload::generateNameAndCall(Overload::getNameFromOper(OpExp::minus), in, 1, out, &execOverload);
-            if(out.size() == 1)
-            {
-                out[0]->IncreaseRef();
-                result_set(out[0]);
-            }
+            result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
         }
 
         break;
@@ -317,18 +295,7 @@ void visitprivate(const OpExp &e)
         }
         else
         {
-            types::typed_list in;
-            types::typed_list out;
-            T execOverload;
-            in.push_back(execMeL.result_get());
-            in.push_back(execMeR.result_get());
-
-            Overload::generateNameAndCall(Overload::getNameFromOper(OpExp::times), in, 1, out, &execOverload);
-            if(out.size() == 1)
-            {
-                out[0]->IncreaseRef();
-                result_set(out[0]);
-            }
+            result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
         }
        break;
     }
@@ -382,18 +349,7 @@ void visitprivate(const OpExp &e)
         }
         else
         {
-            types::typed_list in;
-            types::typed_list out;
-            T execOverload;
-            in.push_back(execMeL.result_get());
-            in.push_back(execMeR.result_get());
-
-            Overload::generateNameAndCall(Overload::getNameFromOper(OpExp::divide), in, 1, out, &execOverload);
-            if(out.size() == 1)
-            {
-                out[0]->IncreaseRef();
-                result_set(out[0]);
-            }
+            result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
         }
         break;
     }
@@ -418,18 +374,7 @@ void visitprivate(const OpExp &e)
         }
         else
         {
-            types::typed_list in;
-            types::typed_list out;
-            T execOverload;
-            in.push_back(execMeL.result_get());
-            in.push_back(execMeR.result_get());
-
-            Overload::generateNameAndCall(Overload::getNameFromOper(OpExp::dottimes), in, 1, out, &execOverload);
-            if(out.size() == 1)
-            {
-                out[0]->IncreaseRef();
-                result_set(out[0]);
-            }
+            result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
         }
         break;
     }
@@ -566,18 +511,7 @@ void visitprivate(const OpExp &e)
         }
         else
         {
-            types::typed_list in;
-            types::typed_list out;
-            T execOverload;
-            in.push_back(execMeL.result_get());
-            in.push_back(execMeR.result_get());
-
-            Overload::generateNameAndCall(Overload::getNameFromOper(OpExp::eq), in, 1, out, &execOverload);
-            if(out.size() == 1)
-            {
-                out[0]->IncreaseRef();
-                result_set(out[0]);
-            }
+            result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
         }
         break;
     }
@@ -632,18 +566,7 @@ void visitprivate(const OpExp &e)
         }
         else
         {
-            types::typed_list in;
-            types::typed_list out;
-            T execOverload;
-            in.push_back(execMeL.result_get());
-            in.push_back(execMeR.result_get());
-
-            Overload::generateNameAndCall(Overload::getNameFromOper(OpExp::ne), in, 1, out, &execOverload);
-            if(out.size() == 1)
-            {
-                out[0]->IncreaseRef();
-                result_set(out[0]);
-            }
+            result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
         }
         break;
     }
@@ -698,18 +621,7 @@ void visitprivate(const OpExp &e)
         }
         else
         {
-            types::typed_list in;
-            types::typed_list out;
-            T execOverload;
-            in.push_back(execMeL.result_get());
-            in.push_back(execMeR.result_get());
-
-            Overload::generateNameAndCall(Overload::getNameFromOper(OpExp::lt), in, 1, out, &execOverload);
-            if(out.size() == 1)
-            {
-                out[0]->IncreaseRef();
-                result_set(out[0]);
-            }
+            result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
         }
         break;
     }
@@ -764,18 +676,7 @@ void visitprivate(const OpExp &e)
         }
         else
         {
-            types::typed_list in;
-            types::typed_list out;
-            T execOverload;
-            in.push_back(execMeL.result_get());
-            in.push_back(execMeR.result_get());
-
-            Overload::generateNameAndCall(Overload::getNameFromOper(OpExp::le), in, 1, out, &execOverload);
-            if(out.size() == 1)
-            {
-                out[0]->IncreaseRef();
-                result_set(out[0]);
-            }
+            result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
         }
         break;
     }
@@ -831,18 +732,7 @@ void visitprivate(const OpExp &e)
         }
         else
         {
-            types::typed_list in;
-            types::typed_list out;
-            T execOverload;
-            in.push_back(execMeL.result_get());
-            in.push_back(execMeR.result_get());
-
-            Overload::generateNameAndCall(Overload::getNameFromOper(OpExp::gt), in, 1, out, &execOverload);
-            if(out.size() == 1)
-            {
-                out[0]->IncreaseRef();
-                result_set(out[0]);
-            }
+            result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
         }
         break;
     }
@@ -897,18 +787,7 @@ void visitprivate(const OpExp &e)
         }
         else
         {
-            types::typed_list in;
-            types::typed_list out;
-            T execOverload;
-            in.push_back(execMeL.result_get());
-            in.push_back(execMeR.result_get());
-
-            Overload::generateNameAndCall(Overload::getNameFromOper(OpExp::ge), in, 1, out, &execOverload);
-            if(out.size() == 1)
-            {
-                out[0]->IncreaseRef();
-                result_set(out[0]);
-            }
+            result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
         }
         break;
     }
@@ -946,35 +825,13 @@ void visitprivate(const OpExp &e)
         }
         else
         {
-            types::typed_list in;
-            types::typed_list out;
-            T execOverload;
-            in.push_back(execMeL.result_get());
-            in.push_back(execMeR.result_get());
-
-            Overload::generateNameAndCall(Overload::getNameFromOper(OpExp::power), in, 1, out, &execOverload);
-            if(out.size() == 1)
-            {
-                out[0]->IncreaseRef();
-                result_set(out[0]);
-            }
+            result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
         }
         break;
     }
     default :
         // By default call overload if we do not know this operator ...
-        types::typed_list in;
-        types::typed_list out;
-        T execOverload;
-        in.push_back(execMeL.result_get());
-        in.push_back(execMeR.result_get());
-
-        Overload::generateNameAndCall(Overload::getNameFromOper(e.oper_get()), in, 1, out, &execOverload);
-        if(out.size() == 1)
-        {
-            out[0]->IncreaseRef();
-            result_set(out[0]);
-        }
+        result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
         break;
     }
 }
@@ -996,30 +853,15 @@ void visitprivate(const LogicalOpExp &e)
     {
         //TODO YaSp : Overloading %*_oper_*
         e.right_get().accept(execMeR);
-        types::typed_list in;
-        types::typed_list out;
-        T execOverload;
-        in.push_back(execMeL.result_get());
-        in.push_back(execMeR.result_get());
         switch(e.oper_get())
         {
         case LogicalOpExp::logicalShortCutOr :
         case LogicalOpExp::logicalOr :
-            Overload::generateNameAndCall(Overload::getNameFromOper(LogicalOpExp::logicalOr), in, 1, out, &execOverload);
-            if(out.size() == 1)
-            {
-                out[0]->IncreaseRef();
-                result_set(out[0]);
-            }
+            result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
             break;
         case LogicalOpExp::logicalShortCutAnd :
         case LogicalOpExp::logicalAnd :
-            Overload::generateNameAndCall(Overload::getNameFromOper(LogicalOpExp::logicalAnd), in, 1, out, &execOverload);
-            if(out.size() == 1)
-            {
-                out[0]->IncreaseRef();
-                result_set(out[0]);
-            }
+            result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
             break;
         }
         return;
@@ -1112,18 +954,7 @@ void visitprivate(const LogicalOpExp &e)
         }
         else
         {
-            types::typed_list in;
-            types::typed_list out;
-            T execOverload;
-            in.push_back(execMeL.result_get());
-            in.push_back(execMeR.result_get());
-
-            Overload::generateNameAndCall(Overload::getNameFromOper(LogicalOpExp::logicalOr), in, 1, out, &execOverload);
-            if(out.size() == 1)
-            {
-                out[0]->IncreaseRef();
-                result_set(out[0]);
-            }
+            result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
         }
         break;
     }
@@ -1204,21 +1035,29 @@ void visitprivate(const LogicalOpExp &e)
         }
         else
         {
-            types::typed_list in;
-            types::typed_list out;
-            T execOverload;
-            in.push_back(execMeL.result_get());
-            in.push_back(execMeR.result_get());
-
-            Overload::generateNameAndCall(Overload::getNameFromOper(LogicalOpExp::logicalAnd), in, 1, out, &execOverload);
-            if(out.size() == 1)
-            {
-                out[0]->IncreaseRef();
-                result_set(out[0]);
-            }
+            result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
         }
         break;
     }
     }
 }
 
+InternalType* callOverload(OpExp::Oper _oper, T *_paramL, T *_paramR)
+{
+    T execMe;
+    types::typed_list in;
+    types::typed_list out;
+    _paramL->result_get()->IncreaseRef();
+    _paramR->result_get()->IncreaseRef();
+    in.push_back(_paramL->result_get());
+    in.push_back(_paramR->result_get());
+
+    Overload::generateNameAndCall(Overload::getNameFromOper(_oper), in, 1, out, &execMe);
+    if(out[0] != NULL)
+    {
+        out[0]->IncreaseRef();
+    }
+    _paramL->result_get()->DecreaseRef();
+    _paramR->result_get()->DecreaseRef();
+    return out[0];
+}

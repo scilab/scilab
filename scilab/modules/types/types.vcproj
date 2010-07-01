@@ -345,6 +345,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\cpp\mlist.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\poly.cpp"
 				>
 			</File>
@@ -354,6 +358,10 @@
 			</File>
 			<File
 				RelativePath=".\src\cpp\struct.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\tlist.cpp"
 				>
 			</File>
 			<File
@@ -455,6 +463,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\mlist.hxx"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\poly.hxx"
 				>
 			</File>
@@ -464,6 +476,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\struct.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\tlist.hxx"
 				>
 			</File>
 			<File

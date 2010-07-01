@@ -47,6 +47,8 @@ namespace types
           /* Container */
           RealContainer,
           RealList,
+          RealTList,
+          RealMList,
           RealStruct,
           RealCell,
           /* User */
@@ -179,6 +181,14 @@ namespace types
       /* Cell */
       bool                              isCell(void) { return (getType() == RealCell); }
       virtual Cell*                     getAsCell(void) { return NULL; }
+
+      /* TList */
+      bool                              isTList(void) { return (getType() == RealTList); }
+      virtual TList*                    getAsTList(void) { return NULL; }
+
+      /* MList */
+      bool                              isMList(void) { return (getType() == RealMList); }
+      virtual MList*                    getAsMList(void) { return NULL; }
 
       /**
       ** \}

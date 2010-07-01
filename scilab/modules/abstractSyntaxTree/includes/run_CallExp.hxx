@@ -158,12 +158,90 @@ void visitprivate(const CallExp &e)
                         stFields.push_back(string(pString->string_get(i)));
                     }
                 }
+                else
+                {//manage error
+                }
             }
 
             ResultList = pIT->getAsStruct()->extract(stFields);
             for(int i = 0 ; i < static_cast<int>(ResultList.size()) ; i++)
             {
                 result_set(i, ResultList[i]);
+            }
+        }
+        else if(pIT->isTList())
+        {
+            list<string> stFields;
+            list<Exp*>::const_iterator it1;
+
+            InternalType::RealType rtIndex = InternalType::RealInternal;
+            bool bTypeSet = false;
+            for(it1 = e.args_get().begin() ; it1 != e.args_get().end() ; it1++)
+            {
+                T execArg;
+                (*it1)->accept(execArg);
+
+                if(bTypeSet == true && execArg.result_get()->getType() != rtIndex)
+                {//error
+                    YaspWrite("merdouille");
+                }
+
+                if(execArg.result_get()->isString())
+                {
+                    rtIndex = InternalType::RealString;
+                    bTypeSet = true;
+                    String *pString = execArg.result_get()->getAsString();
+                    for(int i = 0 ; i < pString->size_get() ; i++)
+                    {
+                        stFields.push_back(string(pString->string_get(i)));
+                    }
+                }
+                else if(execArg.result_get()->isDouble())
+                {//manage error
+                    rtIndex = InternalType::RealDouble;
+                    bTypeSet = true;
+                    break;
+                }
+            }
+
+            if(rtIndex  == InternalType::RealDouble)
+            {
+                //Create list of indexes
+                bool bSeeAsVector   = iArgDim == 1;
+                int *piIndexSeq		= NULL;
+                int *piMaxDim       = NULL;
+                int *piDimSize		= new int[iArgDim];
+                int iTotalCombi		= GetIndexList(pIT, e.args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
+
+                //check we don't have bad indexes like "< 1"
+                for(int i = 0 ; i < iTotalCombi * iArgDim; i++)
+                {
+                    if(piIndexSeq[i] < 1)
+                    {
+                        //manage error
+                        std::ostringstream os;
+                        os << _("Indexes must be positive .\n");
+                        os << ((Location)e.name_get().location_get()).location_string_get() << std::endl;
+                        throw os.str();
+                    }
+                }
+                ResultList = pIT->getAsTList()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
+            }
+            else if(rtIndex  == InternalType::RealString)
+            {
+                ResultList = pIT->getAsTList()->extract_string(stFields);
+            }
+
+            if(ResultList.size() == 1)
+            {
+                result_set(ResultList[0]);
+            }
+            else
+            {
+                for(int i = 0 ; i < static_cast<int>(ResultList.size()) ; i++)
+                {
+                    result_set(i, ResultList[i]);
+                }
             }
         }
         else
@@ -173,7 +251,7 @@ void visitprivate(const CallExp &e)
             int *piIndexSeq		= NULL;
             int *piMaxDim       = NULL;
             int *piDimSize		= new int[iArgDim];
-            int iTotalCombi		= GetIndexList(e.args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
+            int iTotalCombi		= GetIndexList(pIT, e.args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
 
             //check we don't have bad indexes like "< 1"
             for(int i = 0 ; i < iTotalCombi * iArgDim; i++)
@@ -231,7 +309,7 @@ void visitprivate(const CallExp &e)
         }
 
         //List extraction can return multiple items
-        if(pIT->isList() == false && pIT->isStruct() == false)
+        if(pIT->isList() == false && pIT->isStruct() == false && pIT->isTList() == false)
         {
             if(pOut == NULL)
             {

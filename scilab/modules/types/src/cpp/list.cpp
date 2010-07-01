@@ -30,6 +30,11 @@ namespace types
     {
         if(isDeletable() == true)
         {
+            std::vector<InternalType *>::iterator itValues;
+            for (itValues = m_plData->begin() ; itValues != m_plData->end() ; ++itValues)
+            {
+                (*itValues)->DecreaseRef();
+            }
             delete m_plData;
         }
     }

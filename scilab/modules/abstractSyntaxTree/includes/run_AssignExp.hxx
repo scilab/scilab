@@ -81,7 +81,7 @@ void visitprivate(const AssignExp  &e)
             int *piIndexSeq     = NULL;
             int *piMaxDim       = NULL;
             int *piDimSize      = new int[iProductElem];
-            int iTotalCombi		= GetIndexList(pCall->args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
+            int iTotalCombi		= GetIndexList(pIT, pCall->args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
             /*We have the indexlist expanded and the max index*/
 
             //check we don't have bad indexes like "< 1"
@@ -208,7 +208,7 @@ void visitprivate(const AssignExp  &e)
             int *piIndexSeq     = NULL;
             int *piMaxDim       = NULL;
             int *piDimSize      = new int[iProductElem];
-            int iTotalCombi		= GetIndexList(pCall->args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
+            int iTotalCombi		= GetIndexList(pIT, pCall->args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
             /*We have the indexlist expanded and the max index*/
 
             //check we don't have bad indexes like "< 1"
@@ -284,6 +284,9 @@ void visitprivate(const AssignExp  &e)
                     break;
                 case InternalType::RealList : 
                     bRet = pIT->getAsList()->insert(iTotalCombi, piIndexSeq, piMaxDim, execMeR.result_list_get(), bSeeAsVector);
+                    break;
+                case InternalType::RealTList : 
+                    bRet = pIT->getAsTList()->insert(iTotalCombi, piIndexSeq, piMaxDim, execMeR.result_list_get(), bSeeAsVector);
                     break;
                 case InternalType::RealCell : 
                     if(execMeR.result_list_get()->size() ==1)
