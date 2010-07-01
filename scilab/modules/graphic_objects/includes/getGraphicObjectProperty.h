@@ -17,9 +17,19 @@
 #include "dynlib_graphic_objects.h"
 
 /*
-** Retrive Graphic object property from Model.
-** Specify type exepected as parameter for JNI.
+** Retrieve Graphic object property from Model.
+** Specify type expected as parameter for JNI.
 */
+
 GRAPHIC_OBJECTS_IMPEXP void *getGraphicObjectProperty(char *_pstID, char *_pstName, enum _ReturnType_ _returnType );
+
+GRAPHIC_OBJECTS_IMPEXP char* getGraphicObjectStringProperty(char *_pstID, char *_pstName);
+GRAPHIC_OBJECTS_IMPEXP char** getGraphicObjectStringVectorProperty(char *_pstID, char *_pstName);
+GRAPHIC_OBJECTS_IMPEXP double getGraphicObjectDoubleProperty(char *_pstID, char *_pstName);
+GRAPHIC_OBJECTS_IMPEXP double* getGraphicObjectDoubleVectorProperty(char *_pstID, char *_pstName);
+GRAPHIC_OBJECTS_IMPEXP int getGraphicObjectIntegerProperty(char *_pstID, char *_pstName);
+GRAPHIC_OBJECTS_IMPEXP int* getGraphicObjectIntegerVectorProperty(char *_pstID, char *_pstName);
+GRAPHIC_OBJECTS_IMPEXP int getGraphicObjectBooleanProperty(char *_pstID, char *_pstName);
+GRAPHIC_OBJECTS_IMPEXP int* getGraphicObjectBooleanVectorProperty(char *_pstID, char *_pstName);
 
 #endif /* !__GETGRAPHICOBJECTPROPERTY_H__ */
