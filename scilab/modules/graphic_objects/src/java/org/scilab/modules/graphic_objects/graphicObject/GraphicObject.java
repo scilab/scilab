@@ -20,12 +20,15 @@ import java.util.ArrayList;
  * @author Manuel JULIACHS
  */
 public abstract class GraphicObject {
+	/** User data array default size */
+	public static final int USER_DATA_DEFAULT_SIZE = 0;
+
 	/** Graphic objects types */
 	public enum Type { ARC, AXES, AXIS, CHAMP, COMPOUND, FAC3D, FEC, FIGURE, GRAYPLOT,
 		LABEL, LEGEND, MATPLOT, PLOT3D, POLYLINE, RECTANGLE, SEGS, TEXT, UNKNOWNOBJECT };
 	
 	/** GraphicObject properties */
-	public enum GraphicObjectPropertyType { PARENT, CHILDREN, VISIBLE, USERDATA, UNKNOWNPROPERTY };
+	public enum GraphicObjectPropertyType { PARENT, CHILDREN, VISIBLE, USERDATA, USERDATASIZE, UNKNOWNPROPERTY };
 
 	/** Identifier */
 	private String identifier;
@@ -40,7 +43,7 @@ public abstract class GraphicObject {
 	private boolean visible;
 
 	/** User data */
-	private byte[] userData;
+	private int[] userData;
 
 	/** Constructor */
 	public GraphicObject() {
@@ -48,7 +51,7 @@ public abstract class GraphicObject {
 		parent = null;
 		children = null;
 		visible = false;
-		userData = null;
+		userData = new int[USER_DATA_DEFAULT_SIZE];
 	}
 
 	/**
@@ -127,6 +130,8 @@ public abstract class GraphicObject {
 			return GraphicObjectPropertyType.VISIBLE;
 		} else if (propertyName.equals("UserData")) {
 			return GraphicObjectPropertyType.USERDATA;
+		} else if (propertyName.equals("UserDataSize")) {
+			return GraphicObjectPropertyType.USERDATASIZE;
 		} else {
 			return GraphicObjectPropertyType.UNKNOWNPROPERTY;
 		}
@@ -146,6 +151,8 @@ public abstract class GraphicObject {
 			return getVisible();
 		} else if (property == GraphicObjectPropertyType.USERDATA) {
 			return getUserData();
+		} else if (property == GraphicObjectPropertyType.USERDATASIZE) {
+			return getUserDataSize();
 		} else if (property == GraphicObjectPropertyType.UNKNOWNPROPERTY) {
 			return null;
 		} else {
@@ -167,7 +174,9 @@ public abstract class GraphicObject {
 		} else if (property == GraphicObjectPropertyType.VISIBLE) {
 			setVisible((Boolean) value);
 		} else if (property == GraphicObjectPropertyType.USERDATA) {
-			setUserData((byte[]) value);
+			setUserData((Integer[]) value);
+		} else if (property == GraphicObjectPropertyType.USERDATASIZE) {
+			return false;
 		} else if (property == GraphicObjectPropertyType.UNKNOWNPROPERTY) {
 			return false;
 		}
@@ -180,22 +189,21 @@ public abstract class GraphicObject {
 	 * @param property property name
 	 * @param value property value
 	 */
-    public void setProperty(String property, Object value) {
-    	try {
-    	    Method setter = this.getClass().getMethod("set" + property, value.getClass());
-    	    setter.invoke(this, value);
-    	} catch (Exception e) {
-    	    System.err.println("Got Exception " + e.getMessage());
-    	    e.printStackTrace();
-    	}
+	public void setProperty(String property, Object value) {
+		try {
+			Method setter = this.getClass().getMethod("set" + property, value.getClass());
+			setter.invoke(this, value);
+		} catch (Exception e) {
+			System.err.println("Got Exception " + e.getMessage());
+			e.printStackTrace();
+		}
+	}
 
-    }
-    
-    /**
-     * Returns a null property
-     * @param property property name
-     * @return null property
-     */
+	/**
+	 * Returns a null property
+	 * @param property property name
+	 * @return null property
+	 */
 	public Object getNullProperty(String property) {
 		return null;
 	}
@@ -214,12 +222,11 @@ public abstract class GraphicObject {
 		} // TODO Auto-generated method stub
 		return null;
 	}
-	
 
-    /**
-     * Void property get method
-     * @param property the property name
-     */
+	/**
+	 * Void property get method
+	 * @param property the property name
+	 */
 	public Object getPropertyVoid(String property) {
 		// TBD
 		return null;
@@ -280,15 +287,34 @@ public abstract class GraphicObject {
 	/**
 	 * @return the userData
 	 */
-	public byte[] getUserData() {
-		return userData;
+	public Integer[] getUserData() {
+		Integer[] returnedData = new Integer[userData.length];
+
+		for (int i=0; i < userData.length; i++) {
+			returnedData[i] = userData[i];
+		}
+
+		return returnedData;
 	}
 
 	/**
 	 * @param userData the userData to set
 	 */
-	public void setUserData(byte[] userData) {
-		this.userData = userData;
+	public void setUserData(Integer[] userData) {
+		if (userData.length != this.userData.length) {
+			this.userData = new int[userData.length];
+		}
+
+		for(int i = 0; i < userData.length; i++) {
+			this.userData[i] = userData[i];
+		}
+	}
+
+	/**
+	 * @return the userDataSize
+	 */
+	public Integer getUserDataSize() {
+		return userData.length;
 	}
 
 	/**

@@ -20,16 +20,79 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
  */
 public class Figure extends GraphicObject {
 	/** Figure properties names */
-	private enum FigureProperty { DIMENSIONS, CANVAS, NAME, INFOMESSAGE, COLORMAP, RENDERINGMODE,
+	private enum FigureProperty { DIMENSIONS, CANVAS, NAME, INFOMESSAGE, COLORMAP, COLORMAPSIZE, RENDERINGMODE,
 		BACKGROUND, EVENTHANDLER, TAG, ROTATIONTYPE
 	};
 	
 	/** Specifies whether rotation applies to a single subwindow or to all the figure's subwindows */
-	private enum RotationType { UNARY, MULTIPLE };
+	private enum RotationType { UNARY, MULTIPLE;
+
+		/**
+		 * Converts an integer to the corresponding enum
+		 * @param intValue the integer value
+		 * @return the rotation type enum
+		 */
+		public static RotationType intToEnum(Integer intValue) {
+			switch(intValue) {
+				case 0:
+					return RotationType.UNARY;
+				case 1:
+					return RotationType.MULTIPLE;
+				default:
+					return null;
+			}
+		}
+	}
 	
 	/** Pixel drawing logical operations */
-	private enum PixelDrawingMode { CLEAR, AND, ANDREVERSE, COPY, ANDINVERTED, NOOP, XOR, OR,
-		EQUIV, INVERT, ORREVERSE, COPYINVERTED, ORINVERTED, NAND, SET };
+	private enum PixelDrawingMode { CLEAR, AND, ANDREVERSE, COPY, ANDINVERTED, NOOP, XOR, OR, NOR,
+		EQUIV, INVERT, ORREVERSE, COPYINVERTED, ORINVERTED, NAND, SET;
+
+		/**
+		 * Converts an integer to the corresponding enum
+		 * @param intValue the integer value
+		 * @return the pixel drawing mode enum
+		 */
+		public static PixelDrawingMode intToEnum(Integer intValue) {
+			switch(intValue) {
+				case 0:
+					return PixelDrawingMode.CLEAR;
+				case 1:
+					return PixelDrawingMode.AND;
+				case 2:
+					return PixelDrawingMode.ANDREVERSE;
+				case 3:
+					return PixelDrawingMode.COPY;
+				case 4:
+					return PixelDrawingMode.ANDINVERTED;
+				case 5:
+					return PixelDrawingMode.NOOP;
+				case 6:
+					return PixelDrawingMode.XOR;
+				case 7:
+					return PixelDrawingMode.OR;
+				case 8:
+					return PixelDrawingMode.NOR;
+				case 9:
+					return PixelDrawingMode.EQUIV;
+				case 10:
+					return PixelDrawingMode.INVERT;
+				case 11:
+					return PixelDrawingMode.ORREVERSE;
+				case 12:
+					return PixelDrawingMode.COPYINVERTED;
+				case 13:
+					return PixelDrawingMode.ORINVERTED;
+				case 14:
+					return PixelDrawingMode.NAND;
+				case 15:
+					return PixelDrawingMode.SET;
+				default:
+					return null;
+			}
+		}
+
+	};
 
 	/** FigureDimensions properties names */
 	public enum FigureDimensionsProperty { POSITION, SIZE };
@@ -125,7 +188,7 @@ public class Figure extends GraphicObject {
 	}
 
 	/** EventHandler properties names */
-	public enum EventHandlerProperty { EVENTHANDLER };
+	public enum EventHandlerProperty { EVENTHANDLER, EVENTHANDLERENABLED };
 
 	/**
 	 * EventHandler class
@@ -133,6 +196,9 @@ public class Figure extends GraphicObject {
 	private class EventHandler{
 		/** Event handler string */
 		private String eventHandler;
+
+		/** Specifies whether the event handler is enabled or not */
+		private boolean eventHandlerEnabled;
 	}
 
 	/** Figure dimensions */
@@ -149,9 +215,9 @@ public class Figure extends GraphicObject {
 
 	/**
 	 * Default colormap: (3 x N) matrix, where N is the
-	 * number of colors
+	 * number of colors and 3 the number of color channels
 	 */
-	private int[][] colorMap;
+	private double[][] colorMap;
 
 	/** Rendering mode */
 	private RenderingMode renderingMode;
@@ -175,10 +241,15 @@ public class Figure extends GraphicObject {
 		canvas = new Canvas();
 		figureName = new FigureName();
 		infoMessage = null;
-		colorMap = null;
+		colorMap = new double[3][];
+
+		for(int i = 0; i < colorMap.length; i++) {
+			colorMap[i] = new double[0];
+		}
+
 		renderingMode = new RenderingMode();
 		background = 0;
-		eventHandler = null;
+		eventHandler = new EventHandler();
 		tag = 0;
 		rotation = RotationType.UNARY;
 	}
@@ -213,6 +284,8 @@ public class Figure extends GraphicObject {
 			return FigureProperty.INFOMESSAGE;
 		} else if (propertyName.equals("ColorMap")) {
 			return FigureProperty.COLORMAP;
+		} else if (propertyName.equals("ColorMapSize")) {
+			return FigureProperty.COLORMAPSIZE;
 		} else if (propertyName.equals("RenderingMode")) {
 			return FigureProperty.RENDERINGMODE;
 		} else if (propertyName.equals("Pixmap")) {
@@ -229,6 +302,8 @@ public class Figure extends GraphicObject {
 			return FigureProperty.EVENTHANDLER;
 		} else if (propertyName.equals("EventHandlerName")) {
 			return EventHandlerProperty.EVENTHANDLER;
+		} else if (propertyName.equals("EventHandlerEnabled")) {
+			return EventHandlerProperty.EVENTHANDLERENABLED;
 		} else if (propertyName.equals("Tag")) {
 			return FigureProperty.TAG;
 		} else if (propertyName.equals("RotationType")) {
@@ -268,6 +343,8 @@ public class Figure extends GraphicObject {
 			return getInfoMessage();
 		} else if (property == FigureProperty.COLORMAP) {
 			return getColorMap();
+		} else if (property == FigureProperty.COLORMAPSIZE) {
+			return getColorMapSize();
 		} else if (property == FigureProperty.RENDERINGMODE) {
 			return getRenderingMode();
 		} else if (property == RenderingModeProperty.PIXMAP) {
@@ -284,6 +361,8 @@ public class Figure extends GraphicObject {
 			return getEventHandler();
 		} else if (property == EventHandlerProperty.EVENTHANDLER) {
 			return getEventHandlerString();
+		} else if (property == EventHandlerProperty.EVENTHANDLERENABLED) {
+			return getEventHandlerEnabled();
 		} else if (property == FigureProperty.TAG) {
 			return getTag();
 		} else if (property == FigureProperty.ROTATIONTYPE) {
@@ -323,13 +402,13 @@ public class Figure extends GraphicObject {
 		} else if (property == FigureProperty.INFOMESSAGE) {
 			setInfoMessage((String) value);
 		} else if (property == FigureProperty.COLORMAP) {
-			setColorMap((int[][]) value);
+			setColorMap((Double[]) value);
 		} else if (property == FigureProperty.RENDERINGMODE) {
 			setRenderingMode((RenderingMode) value);
 		} else if (property == RenderingModeProperty.PIXMAP) {
 			setPixmap((Boolean) value);
 		} else if (property == RenderingModeProperty.PIXELDRAWINGMODE) {
-			setPixelDrawingMode((PixelDrawingMode) value);
+			setPixelDrawingMode((Integer) value);
 		} else if (property == RenderingModeProperty.ANTIALIASING) {
 			setAntialiasing((Integer) value);
 		} else if (property == RenderingModeProperty.IMMEDIATEDRAWING) {
@@ -340,10 +419,12 @@ public class Figure extends GraphicObject {
 			setEventHandler((EventHandler) value);
 		} else if (property == EventHandlerProperty.EVENTHANDLER) {
 			setEventHandlerString((String) value);
+		} else if (property == EventHandlerProperty.EVENTHANDLERENABLED) {
+			setEventHandlerEnabled((Boolean) value);
 		} else if (property == FigureProperty.TAG) {
 			setTag((Integer) value);
 		} else if (property == FigureProperty.ROTATIONTYPE) {
-			setRotation((RotationType) value);
+			setRotation((Integer) value);
 		} else {
 			return super.setPropertyFast(property, value);
 		}
@@ -436,15 +517,61 @@ public class Figure extends GraphicObject {
 	/**
 	 * @return the colorMap
 	 */
-	public int[][] getColorMap() {
+	public Double[] getColorMap() {
+		Double[] colorMap = new Double[getColorMapSize()];
+		int channelLength = getColorMapChannelLength();
+
+		for(int i = 0; i < this.colorMap.length; i++) {
+			for (int j = 0; j < channelLength; j++) {
+				colorMap[i*channelLength + j] = this.colorMap[i][j];
+			}
+		}
+
 		return colorMap;
 	}
 
 	/**
 	 * @param colorMap the colorMap to set
 	 */
-	public void setColorMap(int[][] colorMap) {
-		this.colorMap = colorMap;
+	public void setColorMap(Double[] colorMap) {
+		int colorMapSize;
+		int numChannels = getColorMapNumChannels();
+		int channelLength = colorMap.length / numChannels;
+
+		colorMapSize = getColorMapSize();
+
+		if (colorMap.length != colorMapSize) {
+			for(int j = 0; j < numChannels; j++) {
+				this.colorMap[j] = new double[channelLength];
+			}
+		}
+
+		for(int i = 0; i < numChannels; i++) {
+			for (int j = 0; j < channelLength; j++) {
+				this.colorMap[i][j] = colorMap[i*channelLength + j];
+			}
+		}
+	}
+
+	/**
+	 * @return the colormap size
+	 */
+	public Integer getColorMapSize() {
+		return colorMap.length * this.colorMap[0].length;
+	}
+
+	/**
+	 * @return the colormap's number of channels
+	 */
+	public int getColorMapNumChannels() {
+		return colorMap.length;
+	}
+
+	/**
+	 * @return the size of the array corresponding to a single channel
+	 */
+	public int getColorMapChannelLength() {
+		return colorMap[0].length;
 	}
 
 	/**
@@ -527,6 +654,20 @@ public class Figure extends GraphicObject {
 	 */
 	public void setEventHandlerString(String eventHandlerString) {
 		eventHandler.eventHandler = eventHandlerString;
+	}
+
+	/**
+	 * @return the eventHandlerEnabled
+	 */
+	public Boolean getEventHandlerEnabled() {
+		return eventHandler.eventHandlerEnabled;
+	}
+
+	/**
+	 * @param eventHandlerEnabled the eventHandlerEnabled to set
+	 */
+	public void setEventHandlerEnabled(Boolean eventHandlerEnabled) {
+		eventHandler.eventHandlerEnabled = eventHandlerEnabled;
 	}
 
 	/**
@@ -614,10 +755,17 @@ public class Figure extends GraphicObject {
 	}
 
 	/**
+	 * @return the pixel drawing mode enum
+	 */
+	public PixelDrawingMode getPixelDrawingModeAsEnum() {
+		return renderingMode.pixelDrawingMode;
+	}
+
+	/**
 	 * @return the pixel drawing mode
 	 */
-	public PixelDrawingMode getPixelDrawingMode() {
-		return renderingMode.pixelDrawingMode;
+	public Integer getPixelDrawingMode() {
+		return getPixelDrawingModeAsEnum().ordinal();
 	}
 
 	/**
@@ -625,6 +773,13 @@ public class Figure extends GraphicObject {
 	 */
 	public void setPixelDrawingMode(PixelDrawingMode pixelDrawingMode) {
 		renderingMode.pixelDrawingMode = pixelDrawingMode;
+	}
+
+	/**
+	 * @param pixelDrawingMode the pixel drawing mode to set
+	 */
+	public void setPixelDrawingMode(Integer pixelDrawingMode) {
+		renderingMode.pixelDrawingMode = PixelDrawingMode.intToEnum(pixelDrawingMode);
 	}
 
 	/**
@@ -658,8 +813,15 @@ public class Figure extends GraphicObject {
 	/**
 	 * @return the rotation
 	 */
-	public RotationType getRotation() {
+	public RotationType getRotationAsEnum() {
 		return rotation;
+	}
+
+	/**
+	 * @return the rotation
+	 */
+	public Integer getRotation() {
+		return getRotationAsEnum().ordinal();
 	}
 
 	/**
@@ -667,6 +829,13 @@ public class Figure extends GraphicObject {
 	 */
 	public void setRotation(RotationType rotation) {
 		this.rotation = rotation;
+	}
+
+	/**
+	 * @param rotation the rotation to set
+	 */
+	public void setRotation(Integer rotation) {
+		this.rotation = RotationType.intToEnum(rotation);
 	}
 
 	/**
