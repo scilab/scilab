@@ -18,7 +18,7 @@ import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
-import java.awt.geom.Rectangle2D;
+import java.awt.geom.Dimension2D;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
@@ -292,7 +292,7 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 		}
 
 		// Scale to the bounds
-		Rectangle2D bounds = background.getBounds();
+		Dimension2D bounds = ScilabGraphUtils.getSVGDocumentSizes(svgBackgroundImage);
 
 		double sh = h / bounds.getHeight();
 		double sw = w / bounds.getWidth();
@@ -339,7 +339,7 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 		 */
 
 		// Iso scale to the bounds - border size
-		Rectangle2D bounds = icon.getBounds();
+		Dimension2D bounds = ScilabGraphUtils.getSVGDocumentSizes(url);
 
 		// Calculating icon bordered bounds
 		final double ih = bounds.getHeight();
@@ -360,17 +360,13 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 		// Adding borders
 		ratio *= BORDER_RATIO;
 
-		// Translate the icon origin to the drawing origin.
-		double tx = -bounds.getX() * ratio;
-		double ty = -bounds.getY() * ratio;
-
 		// Calculate scaled height and width
 		final double sh = ratio * ih;
 		final double sw = ratio * iw;
 
 		// Center the image on the block
-		tx += (w - sw) / 2;
-		ty += (h - sh) / 2;
+		double tx = (w - sw) / 2;
+		double ty = (h - sh) / 2;
 
 		/*
 		 * Everything has been calculated, render now.
