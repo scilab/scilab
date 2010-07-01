@@ -168,7 +168,7 @@
         </submenu>
         <separator/>
         <submenu label="&amp;Command History">
-            <callback instruction='org.scilab.modules.history_manager.commandhistory.CommandHistory.toggleVisibility' type="3"/>
+            <callback instruction='org.scilab.modules.history_browser.CommandHistory.toggleVisibility' type="3"/>
         </submenu>
     </menu>
 
