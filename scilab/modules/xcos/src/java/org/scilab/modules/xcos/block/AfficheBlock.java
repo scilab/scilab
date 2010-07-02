@@ -35,7 +35,7 @@ import com.mxgraph.view.mxGraphView;
 public final class AfficheBlock extends BasicBlock {
 
 	/**
-	 * 
+	 * Default refresh rate used on the simulation to update block.
 	 */
 	private static final int DEFAULT_TIMER_RATE = 200;
 
@@ -128,6 +128,8 @@ public final class AfficheBlock extends BasicBlock {
 		updateAction = new UpdateValueListener(this);
 		printTimer = new Timer(DEFAULT_TIMER_RATE, updateAction);
 		printTimer.setRepeats(false);
+		
+		setValue("0.0");
 	}
 
 	/**
