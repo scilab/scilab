@@ -24,6 +24,6 @@ function demo_viewCode(this_script)
 	my_menu = uimenu( "parent"          , my_fig                       , ..
 	    "label"           , gettext(" -- View Code -- ") , ..
 	    "Foregroundcolor" , [ 0/255 81/255 6/255 ]       , ..
-	    "callback"        , "editor("""+path+""")" );
+	    "callback"        , "editor("""+path+""", ""readonly"")" );
 	
 endfunction
