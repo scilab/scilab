@@ -357,6 +357,8 @@ public class SciNotesGUI {
         toolBar.add(PasteAction.createButton(editorInstance)); // PASTE
         toolBar.addSeparator();
         toolBar.add(FindAction.createButton(editorInstance)); // FIND / REPLACE
+        toolBar.addSeparator();
+        toolBar.add(ExecuteFileIntoScilabAction.createButton(editorInstance)); // EXECUTE FILE
 
         editorInstance.setToolBar(toolBar);
     }
