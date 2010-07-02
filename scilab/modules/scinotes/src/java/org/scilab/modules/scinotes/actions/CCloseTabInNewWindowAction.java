@@ -46,6 +46,6 @@ public final class CCloseTabInNewWindowAction extends DefaultAction {
      * Action
      */
     public void doAction() {
-        getEditor().cloneAndCloseCurrentTab(true);
+        getEditor().cloneAndCloseCurrentTab(getEditor(), true);
     }
 }

@@ -46,6 +46,6 @@ public final class OpenTabInNewWindowAction extends DefaultAction {
      * Action
      */
     public void doAction() {
-        getEditor().cloneAndCloseCurrentTab(false);
+        getEditor().cloneAndCloseCurrentTab(getEditor(), false);
     }
 }
