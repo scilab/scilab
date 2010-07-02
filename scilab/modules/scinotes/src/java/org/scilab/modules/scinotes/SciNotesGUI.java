@@ -12,7 +12,6 @@
 
 package org.scilab.modules.scinotes;
 
-import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
@@ -24,8 +23,6 @@ import java.util.HashMap;
 import java.util.TreeMap;
 import java.util.Iterator;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JMenu;
@@ -437,7 +434,7 @@ public class SciNotesGUI {
                     String keyword = editorInstance.getTextPane().getSelectedText();
                     if (keyword == null) {
                         KeywordEvent kwe = editorInstance.getTextPane().getKeywordEvent();
-                        openUrl.setEnabled(ScilabLexerConstants.URL == kwe.getType());
+                        openUrl.setEnabled(ScilabLexerConstants.URL == kwe.getType() || ScilabLexerConstants.MAIL == kwe.getType());
                     }
                 }
             });
@@ -728,18 +725,12 @@ public class SciNotesGUI {
         ActionListener actionListenerOpenURL = new ActionListener() {
                 public void actionPerformed(ActionEvent actionEvent) {
                     KeywordEvent kwe = ((ScilabEditorPane) c).getKeywordEvent(c.getSelectionEnd());
-                    if (ScilabLexerConstants.URL == kwe.getType()) {
+                    if (ScilabLexerConstants.URL == kwe.getType() || ScilabLexerConstants.MAIL == kwe.getType()) {
                         try {
                             ScilabDocument doc = (ScilabDocument) ((ScilabEditorPane) c).getDocument();
                             String url = doc.getText(kwe.getStart(), kwe.getLength());
-                            Desktop.getDesktop().browse(new URI(url));
+                            OpenURLAction.openURL(url);
                         } catch (BadLocationException e) { }
-                        catch (IOException e) {
-                            System.err.println(e.toString());
-                        }
-                        catch (URISyntaxException e) {
-                            System.err.println(e.toString());
-                        }
                     }
                 }
             };
@@ -748,7 +739,7 @@ public class SciNotesGUI {
         PropertyChangeListener listenerURLItem = new PropertyChangeListener() {
                 public void propertyChange(PropertyChangeEvent arg0) {
                     KeywordEvent kwe = ((ScilabEditorPane) c).getKeywordEvent(c.getSelectionEnd());
-                    if (ScilabLexerConstants.URL == kwe.getType()) {
+                    if (ScilabLexerConstants.URL == kwe.getType() || ScilabLexerConstants.MAIL == kwe.getType()) {
                         urlMenuItem.setEnabled(true);
                     } else {
                         urlMenuItem.setEnabled(false);

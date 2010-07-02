@@ -49,18 +49,12 @@ public class OpenURLAction extends DefaultAction {
     public void doAction() {
         ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
         KeywordEvent kwe = sep.getKeywordEvent(sep.getSelectionEnd());
-        if (ScilabLexerConstants.URL == kwe.getType()) {
+        if (ScilabLexerConstants.URL == kwe.getType() || ScilabLexerConstants.MAIL == kwe.getType()) {
             try {
                 ScilabDocument doc = (ScilabDocument) sep.getDocument();
                 String url = doc.getText(kwe.getStart(), kwe.getLength());
-		Desktop.getDesktop().browse(new URI(url));
+                openURL(url);
             } catch (BadLocationException e) { }
-	    catch (IOException e) { 
-		System.err.println(e.toString());
-	    }
-	    catch (URISyntaxException e) {
-		System.err.println(e.toString());
-	    }
         }
     }
 
@@ -72,5 +66,27 @@ public class OpenURLAction extends DefaultAction {
      */
     public static MenuItem createMenu(SciNotes editor, KeyStroke key) {
         return createMenu(SciNotesMessages.OPEN_URL, null, new OpenURLAction(editor), key);
+    }
+
+    public static void openURL(String url) {
+        if (url == null || url.length() == 0) {
+            return;
+        }
+
+        try {
+            if (url.charAt(0) == 'h') {
+                // We have something like http://...
+                Desktop.getDesktop().browse(new URI(url));
+            } else {
+                // We have <pierre.marechal@scilab.org>
+                String mail = "mailto:" + url.substring(1, url.length() - 1);
+                Desktop.getDesktop().mail(new URI(mail));
+            }
+        } catch (IOException e) {
+            System.err.println(e.toString());
+        }
+        catch (URISyntaxException e) {
+            System.err.println(e.toString());
+        }
     }
 }

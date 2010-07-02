@@ -69,6 +69,11 @@
         <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
       </style>
 
+      <style name="Mail" underline="true" defaultUnderline="true">
+        <ForegroundColor default="#0000ff" useCache="true" value="#0000ff"/>
+        <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+      </style>
+
       <style name="Constantes">
         <ForegroundColor default="#da70d6" useCache="true" value="#da70d6"/>
         <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->

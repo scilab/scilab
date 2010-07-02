@@ -123,6 +123,7 @@ id = ([a-zA-Z%_#!?][a-zA-Z0-9_#!$?]*)|("$"[a-zA-Z0-9_#!$?]+)
 dot = "."
 
 url = "http://"[^ \t\f\n\r]+
+mail = "<"[ \t]*[a-zA-Z0-9_\.\-]+"@"([a-zA-Z0-9\-]+".")+[a-zA-Z]{2,5}[ \t]*">"
 
 latex = "$"(([^$]*|"\\$")+)"$"
 
@@ -345,6 +346,10 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
 
   {url}                          {
                                    return ScilabLexerConstants.URL;
+                                 }
+
+  {mail}                         {
+                                   return ScilabLexerConstants.MAIL;
                                  }
 
   {latex}                        {

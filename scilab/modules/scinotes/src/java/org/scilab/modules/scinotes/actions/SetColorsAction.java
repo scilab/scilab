@@ -345,6 +345,7 @@ public final class SetColorsAction extends DefaultAction {
         previewEditorPane = new ScilabEditorPane(getEditor());
         previewEditorPane.setEditorKit(new ScilabEditorKit());
         previewEditorPane.setText("// A comment with whites    and tabulations \t\t\n"
+                                  + "// Email: <scilab.support@scilab.org>\n"
                                   + "// Scilab editor: http://www.scilab.org/\n"
                                   + "function [a, b] = myfunction(d, e, f)\n"
                                   + "\ta = 2.71828 + %pi + f($, :);\n"

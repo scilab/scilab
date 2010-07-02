@@ -25,7 +25,7 @@ public class ScilabLexerConstants {
     /**
      * Number of known tokens
      */
-    public static final int NUMBEROFTOKENS = 30;
+    public static final int NUMBEROFTOKENS = 31;
 
     /**
      * DEFAULT : tokens which are not recognized
@@ -128,59 +128,64 @@ public class ScilabLexerConstants {
     public static final int URL = 19;
 
     /**
+     * MAIL : <pierre.marechal@scilab.org>
+     */
+    public static final int MAIL = 20;
+
+    /**
      * WHITE : A white char ' '
      */
-    public static final int WHITE = 20;
+    public static final int WHITE = 21;
 
     /**
      * TAB : A tabulation '\t'
      */
-    public static final int TAB = 21;
+    public static final int TAB = 22;
 
     /**
      * LATEX : $\frac\pi\alpha$
      */
-    public static final int LATEX = 22;
+    public static final int LATEX = 23;
 
     /**
      * VARIABLES : A variable in Scilab
      */
-    public static final int VARIABLES = 23;
+    public static final int VARIABLES = 24;
 
     /**
      * LOCALVARIABLES : A local variable in Scilab
      */
-    public static final int LOCALVARIABLES = 24;
+    public static final int LOCALVARIABLES = 25;
 
     /**
      * WHITE_COMMENT : A white char ' ' in comments
      */
-    public static final int WHITE_COMMENT = 25;
+    public static final int WHITE_COMMENT = 26;
 
     /**
      * TAB_COMMENT : A tabulation '\t' in comments
      */
-    public static final int TAB_COMMENT = 26;
+    public static final int TAB_COMMENT = 27;
 
     /**
      * WHITE_STRING : A white char ' ' in strings
      */
-    public static final int WHITE_STRING = 27;
+    public static final int WHITE_STRING = 28;
 
     /**
      * TAB_STRING : A tabulation '\t' in strings
      */
-    public static final int TAB_STRING = 28;
+    public static final int TAB_STRING = 29;
 
     /**
      * EOF : End Of File
      */
-    public static final int EOF = 29;
+    public static final int EOF = 30;
 
     /**
      * TOKENS : A Map which contains the names of keywords (useful in scinotesConfiguration.xml)
      */
-    public static final Map<String, Integer> TOKENS = new HashMap(20);
+    public static final Map<String, Integer> TOKENS = new HashMap(21);
 
     private static Map<Integer, String> idTokens;
 
@@ -198,6 +203,7 @@ public class ScilabLexerConstants {
         TOKENS.put("Field", FIELD);
         TOKENS.put("FunctionKwd", FKEYWORD);
         TOKENS.put("Url", URL);
+        TOKENS.put("Mail", MAIL);
         TOKENS.put("Number", NUMBER);
         TOKENS.put("Control", CKEYWORD);
         TOKENS.put("Structure", SKEYWORD);
