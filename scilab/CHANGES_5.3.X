@@ -4,6 +4,7 @@
 Bug Fixes:
 ==========
 
+* bug 7360 fixed - Modelica Hydraulics Xcos demo was not simulating
 
 
 
