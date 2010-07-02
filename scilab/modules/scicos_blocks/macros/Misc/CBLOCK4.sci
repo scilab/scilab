@@ -86,7 +86,7 @@ select job
          funtyp=2004
       end
       if [ci;co]<>[] then
-        if maxi([ci;co])>1 then
+        if max([ci;co])>1 then
           message('vector event links not supported');
           ok=%f;
         end
@@ -172,7 +172,7 @@ select job
                 'n';
                 sci2exp([model.in model.in2]);
                 sci2exp(model.intyp);
-                sci2exp([model.out model.out2])
+                sci2exp([model.out model.out2]);
                 sci2exp(model.outtyp);
                 sci2exp(model.evtin);
                 sci2exp(model.evtout);

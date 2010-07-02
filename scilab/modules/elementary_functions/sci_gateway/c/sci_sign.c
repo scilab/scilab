@@ -14,7 +14,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intsign)(int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_sign)(char *fname,unsigned long fname_len)
+int sci_sign(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	C2F(intsign)(id);

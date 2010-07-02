@@ -12,6 +12,7 @@
  */
 #include "GetFunctionByName.h"
 #include "machine.h"
+#include "dynlib_differential_equations.h"
 /***********************************
 * Search Table for int3d
 ***********************************/
@@ -21,8 +22,8 @@ typedef void (*fint3df)(ARGS_fint3d);
 
 /**************** fint3d ***************/
 extern void C2F(int3dex)(ARGS_fint3d);
-void C2F(fint3d)(ARGS_fint3d);
-void C2F(setfint3d)(char *name, int *rep);
+DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(fint3d)(ARGS_fint3d);
+DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(setfint3d)(char *name, int *rep);
 
 FTAB FTab_fint3d[] =
 {

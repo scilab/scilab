@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Scilab Consortium Operational Team
- * 
+ * Copyright (C) 2009-2010 - DIGITEO - Scilab Consortium Operational Team
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
+ * you should have received as part of this distribution. The terms
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -17,7 +17,6 @@
 #include "api_scilab.h"
 #include "MALLOC.h"
 
-	 
 int write_string(char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
@@ -25,7 +24,6 @@ int write_string(char *fname,unsigned long fname_len)
 	int iRows		= 2;
 	int iCols		= 3;
 	char** pstData	= NULL;
-
 	//data to put in the new variable
 	char string11[]	= "may";
 	char string21[]	= "be";
@@ -33,10 +31,8 @@ int write_string(char *fname,unsigned long fname_len)
 	char string22[]	= "with";
 	char string13[]	= "puffin";
 	char string23[]	= "you";
-
 	//alloc new array
 	pstData			= (char**)malloc(sizeof(char*) * iRows * iCols);
-
 	//copy data address to the "main" array
 	pstData[0]		= string11;
 	pstData[1]		= string21;
@@ -44,7 +40,6 @@ int write_string(char *fname,unsigned long fname_len)
 	pstData[3]		= string22;
 	pstData[4]		= string13;
 	pstData[5]		= string23;
-
 	//create the variable
 	sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, iRows, iCols, pstData);
 	if(sciErr.iErr)
@@ -52,12 +47,9 @@ int write_string(char *fname,unsigned long fname_len)
 		printError(&sciErr, 0);
 		return 0;
 	}
-
 	//free container
 	free(pstData);
-
 	//assign allocated variables to Lhs position
 	LhsVar(1) = Rhs + 1;
 	return 0;
 }
- 

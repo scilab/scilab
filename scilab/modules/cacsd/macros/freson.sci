@@ -30,7 +30,7 @@ if k==[] then fr=[],g=[],return,end
 w=real(w(k))
 
 //find maximums
-wx=maxi(w)+0.5
+wx=max(w)+0.5
 if horner(modul_d,wx)<0 then
   w=w($:-2:1)
 else

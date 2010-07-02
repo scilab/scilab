@@ -1,6 +1,6 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2009 - DIGITEO - Scilab Consortium Operational Team
+// Copyright (C) 2009-2010 - DIGITEO - Scilab Consortium Operational Team
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -12,7 +12,7 @@ mkdir(pathconvert(TMPDIR+"/common_read_api"));
 cd(pathconvert(TMPDIR+"/common_read_api"));
 copyfile(SCI+"/modules/api_scilab/tests/unit_tests/common_read_api.c",pathconvert(TMPDIR+"/common_read_api/common_read_api.c",%F));
 cflags = "-I"+SCI+"/modules/localization/includes";
-ilib_build("common_read",["common_read","common_read"],"common_read_api.c",[],"Makefile","",cflags);
+ilib_build("common_read",["common_read","common_read"],"common_read_api.c",[],"","",cflags);
 exec("loader.sce");
 
              
@@ -35,4 +35,4 @@ common_read(l)
 endfunction
 read_all;
  
-        
+       

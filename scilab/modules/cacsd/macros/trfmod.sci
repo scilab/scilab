@@ -28,7 +28,7 @@ function h=trfmod(h,job)
     den=real(poly(h('A'),'s'))
     na=degree(den)
     c=h(4)
-    [m,i]=maxi(abs(c))
+    [m,i]=max(abs(c))
     ci=c(i)
     t=eye(h(2))*ci;t(i,:)=[-c(1:i-1), 1, -c(i+1:na)]
     al=h(2)*t;

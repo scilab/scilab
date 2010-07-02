@@ -60,7 +60,7 @@
     <literal>(ptd(1,i),ptd(2,i))</literal>. The components
     <literal>ptd(1,:)</literal> must be in ascending order. The default value
     for the step is
-    <literal>abs(maxi(ptd(1,:))-mini(ptd(1,:)))/100</literal></para>
+    <literal>abs(max(ptd(1,:))-min(ptd(1,:)))/100</literal></para>
   </refsection>
 
   <refsection>

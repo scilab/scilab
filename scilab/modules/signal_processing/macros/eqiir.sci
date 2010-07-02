@@ -55,11 +55,11 @@ function [cells,fact,zzeros,zpoles]=eqiir(ftype,approx,om,deltap,deltas)
   else 
     error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),"eqiir",1,"''lp'',''hp'',''bp'',''sb''"))
   end
-  if maxi(size(om))==2 then
+  if max(size(om))==2 then
     om=matrix([matrix(om,1,2),0,0],1,4),
   end
   [fact,b2,b1,b0,c1,c0,zzeros,zpoles]=syredi(ityp,iapro,om,deltap,deltas);
-  nb=maxi(size(b0));
+  nb=max(size(b0));
   coeffs=[b0;b1;b2;c0;c1];
   coeffs=coeffs(:,1:nb);
   coeffs=[coeffs;ones(1,nb)];

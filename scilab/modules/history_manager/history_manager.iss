@@ -1,6 +1,7 @@
 ;
 ; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-; Copyright (C) 2007-2008 - INRIA - Allan CORNET <allan.cornet@inria.fr>
+; Copyright (C) INRIA - Allan CORNET
+; Copyright (C) DIGITEO - 2010 - Allan CORNET
 ;
 ; This file must be used under the terms of the CeCILL.
 ; This source file is licensed as described in the file COPYING, which
@@ -8,28 +9,27 @@
 ; are also available at
 ; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 ;
-;##############################################################################################################
-; Script d'installation Inno Setup (5.2.1) pour scilab
-; Version TRUNK
-;##############################################################################################################
+;--------------------------------------------------------------------------------------------------------------
+; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
+;
 ;--------------------------------------------------------------------------------------------------------------
 ; history_manager module
 ;--------------------------------------------------------------------------------------------------------------
 ;
 #define HISTORY_MANAGER "history_manager"
 ;
-Source: bin\scihistory_manager.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\sci{#HISTORY_MANAGER}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#HISTORY_MANAGER}\jar\org.scilab.modules.history_manager.jar;DestDir: {app}\modules\{#HISTORY_MANAGER}\jar; Components: {#COMPN_SCILAB}
+Source: modules\{#HISTORY_MANAGER}\jar\org.scilab.modules.{#HISTORY_MANAGER}.jar;DestDir: {app}\modules\{#HISTORY_MANAGER}\jar; Components: {#COMPN_SCILAB}
 ;
-;Source: bin\noscihistory_manger.dll; DestDir: {app}\bin; DestName: scihistory_manager.dll; Components: not ({#COMPN_SCILAB})
+;Source: bin\nosci{#HISTORY_MANAGER}.dll; DestDir: {app}\bin; DestName: sci{#HISTORY_MANAGER}.dll; Components: not ({#COMPN_SCILAB})
 ;
 Source: modules\{#HISTORY_MANAGER}\changelog.txt; DestDir: {app}\modules\{#HISTORY_MANAGER}; Components: {#COMPN_SCILAB};
 Source: modules\{#HISTORY_MANAGER}\license.txt; DestDir: {app}\modules\{#HISTORY_MANAGER}; Components: {#COMPN_SCILAB}
 Source: modules\{#HISTORY_MANAGER}\readme.txt; DestDir: {app}\modules\{#HISTORY_MANAGER}; Components: {#COMPN_SCILAB}
 Source: modules\{#HISTORY_MANAGER}\version.xml; DestDir: {app}\modules\{#HISTORY_MANAGER}; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#HISTORY_MANAGER}\sci_gateway\history_manager_gateway.xml; DestDir: {app}\modules\{#HISTORY_MANAGER}\sci_gateway; Components: {#COMPN_SCILAB}
+Source: modules\{#HISTORY_MANAGER}\sci_gateway\{#HISTORY_MANAGER}_gateway.xml; DestDir: {app}\modules\{#HISTORY_MANAGER}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#HISTORY_MANAGER}\includes\*.h; DestDir: {app}\modules\{#HISTORY_MANAGER}\includes; Components: {#COMPN_SCILAB}
 ;

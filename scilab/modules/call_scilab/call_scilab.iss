@@ -1,7 +1,6 @@
-;##############################################################################################################
-; Script d'installation Inno Setup (5.2.1) pour scilab
+;
 ; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-; Copyright (C) 2009 - DIGITEO - Allan CORNET
+; Copyright (C) DIGITEO - 2009-2010 - Allan CORNET
 ;
 ; This file must be used under the terms of the CeCILL.
 ; This source file is licensed as described in the file COPYING, which
@@ -9,16 +8,18 @@
 ; are also available at
 ; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 ;
-
-;##############################################################################################################
 ;--------------------------------------------------------------------------------------------------------------
-; call_scilab module
-;--------------------------------------------------------------------------------------------------------------
+; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
 ;
+;--------------------------------------------------------------------------------------------------------------
+; MODULE_CALL_SCILAB module
+;--------------------------------------------------------------------------------------------------------------
+;{#CALL_WORD} ... is a reserved macro in inno setup
+; we rename to {#MODULE_CALL_SCILAB}
 #define MODULE_CALL_SCILAB "call_scilab"
 ;
-Source: bin\call_scilab.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\call_scilab.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#MODULE_CALL_SCILAB}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#MODULE_CALL_SCILAB}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#MODULE_CALL_SCILAB}\changelog.txt; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}; Components: {#COMPN_SCILAB}
 Source: modules\{#MODULE_CALL_SCILAB}\license.txt; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}; Components: {#COMPN_SCILAB}
@@ -26,11 +27,11 @@ Source: modules\{#MODULE_CALL_SCILAB}\readme.txt; DestDir: {app}\modules\{#MODUL
 Source: modules\{#MODULE_CALL_SCILAB}\version.xml; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#MODULE_CALL_SCILAB}\includes\*.h; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\includes; Components: {#COMPN_SCILAB}
-Source: modules\{#MODULE_CALL_SCILAB}\includes\call_scilab.h; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#MODULE_CALL_SCILAB}\includes\{#MODULE_CALL_SCILAB}.h; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#MODULE_CALL_SCILAB}\includes\CallScilab.h; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\includes; Components: {#COMPN_SCILAB}
-Source: modules\{#MODULE_CALL_SCILAB}\includes\dynlib_call_scilab.h; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#MODULE_CALL_SCILAB}\includes\dynlib_{#MODULE_CALL_SCILAB}.h; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\includes; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#MODULE_CALL_SCILAB}\sci_gateway\call_scilab_gateway.xml; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\sci_gateway; Components: {#COMPN_SCILAB}
+Source: modules\{#MODULE_CALL_SCILAB}\sci_gateway\{#MODULE_CALL_SCILAB}_gateway.xml; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#MODULE_CALL_SCILAB}\etc\{#MODULE_CALL_SCILAB}.quit; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#MODULE_CALL_SCILAB}\etc\{#MODULE_CALL_SCILAB}.start; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\etc; Components: {#COMPN_SCILAB}

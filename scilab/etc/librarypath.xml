@@ -26,11 +26,14 @@
 <path value="$SCILAB/modules/localization/.libs"/>
 <path value="$SCILAB/modules/renderer/.libs"/>
 <path value="$SCILAB/modules/graphic_export/.libs"/>
-<path value="$SCILAB/modules/xpad/.libs"/>
+<path value="$SCILAB/modules/scinotes/.libs"/>
 <path value="$SCILAB/.libs"/>
 
 <!-- Default path to the JNI classes under some Linux (JoGL under Debian for example) -->
 <path value="/usr/lib/jni/"/>
+
+<!-- Some distributions (like openSUSE) put gluegen-rt in /usr/lib instead pf /usr/lib/jni -->
+<path value="/usr/lib" />
 
 <!-- Make install with prefix -->
 <path value="$SCILAB/../../lib/scilab/"/>

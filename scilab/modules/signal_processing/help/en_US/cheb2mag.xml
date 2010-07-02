@@ -62,7 +62,7 @@ h2=cheb2mag(n,omegar,A,sample);
 plot(sample,log(h2)/log(10),'frequencies','magnitude in dB')
 
 //Plotting of frequency edges
-minval=(-maxi(-log(h2)))/log(10);
+minval=(-max(-log(h2)))/log(10);
 plot2d([omegar;omegar],[minval;0],[2],"000");
 
 //Computation of the attenuation in dB at the stopband edge

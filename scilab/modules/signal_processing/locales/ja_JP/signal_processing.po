@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2010-02-13 14:59+0000\n"
-"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"PO-Revision-Date: 2010-05-23 05:58+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,12 +18,9 @@ msgstr ""
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
-#
-# File: macros/cspect.sci, line: 67
-# File: macros/pspect.sci, line: 75
 #, c-format
 msgid "%s: Arguments #%d and #%d must have the same sizes.\n"
-msgstr "%s: 引数 #%d と #%d は小さいサイズを持たなくてはなりません。\n"
+msgstr "%s: 引数 #%d と #%d の大きさは同じにする必要があります.\n"
 
 #
 # File: macros/pspect.sci, line: 38
@@ -34,39 +31,27 @@ msgid ""
 msgstr ""
 "%1$s: 入力引数 #%2$d と #%3$d で互換性がありません: 引数 #%5$d よりも小さい引数 #%4$d を想定します。\n"
 
-#
-# File: macros/bilt.sci, line: 49
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same degree expected.\n"
-msgstr "%s: 入力引数 #%d と #%d で互換性がありません: 多少小さくなくてはなりません。\n"
+msgstr "%s: 入力引数 #%d と #%d で互換性がありません: 次数を同じにしてください.\n"
 
-#
-# File: macros/cepstrum.sci, line: 36
 #, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same numbers of elements "
 "expected.\n"
-msgstr "%s: 入力引数 #%d と #%d で互換性がありません: 小さい数、または要素を想定します。\n"
+msgstr "%s: 入力引数 #%d と #%d は互換性がありません: 要素数を同じにしてください.\n"
 
-#
-# File: macros/remezb.sci, line: 45
-# File: macros/remezb.sci, line: 48
-# File: macros/yulewalk.sci, line: 44
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
-msgstr "%s: 入力引数 #%d と #%d に互換性がありません: 小さいサイズを想定します。\n"
+msgstr "%s: 入力引数 #%d と #%d で互換性がありません: 大きさを同じにしてください.\n"
 
-#
-# File: macros/cepstrum.sci, line: 18
-# File: macros/cepstrum.sci, line: 21
-# File: macros/hilbert.sci, line: 26
 #, c-format
 msgid "%s: Input argument #%d must be real.\n"
-msgstr "%s: 入力引数 #%d は実でなくてはなりません。\n"
+msgstr "%s: 入力引数 #%d は実数でなくてはなりません.\n"
 
 #, c-format
 msgid "%s: Too abrupt change near end of frequency range.\n"
-msgstr "%s: 周波数範囲の終端近くで突然の変化です。\n"
+msgstr "%s: 周波数範囲の終端近くで急峻過ぎる変化です.\n"
 
 #
 # File: macros/lattn.sci, line: 47
@@ -84,11 +69,9 @@ msgstr "%s: 入力引数の数が不正です: %d を想定します。\n"
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s: 入力引数の数が不正です: %d または、%d を想定します。\n"
 
-#
-# File: macros/detrend.sci, line: 32
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%1$s: 入力引数の数が不正です: %3$d への %2$d を想定します。\n"
+msgstr "%s: 入力引数の数が正しくありません: %d から %d の範囲で指定してください.\n"
 
 #
 # File: macros/trans.sci, line: 62
@@ -131,43 +114,21 @@ msgid ""
 "expected.\n"
 msgstr "%s: 入力引数 #%d で不正なサイズ: 単一入力、単一出力を想定します。\n"
 
-#
-# File: macros/lattn.sci, line: 73
-# File: macros/levin.sci, line: 52
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A tall matrix expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 大きい行列を想定します。\n"
+msgstr "%s: 入力引数 #%d の大きさが正しくありません: 縦長の行列を指定してください.\n"
 
-#
-# File: macros/frmag.sci, line: 53
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d:  Linear dynamical system or row "
 "vector of floats expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 直線方程式、または、浮動行ベクトルを想定します。\n"
+msgstr "%s: 入力引数 #%d の型が正しくありません:  線形動的システムまたは浮動小数点数の行ベクトルを指定してください.\n"
 
-#
-# File: macros/bilt.sci, line: 25
-# File: macros/bilt.sci, line: 28
-# File: macros/bilt.sci, line: 31
-# File: macros/detrend.sci, line: 40
-# File: macros/detrend.sci, line: 43
-# File: macros/detrend.sci, line: 46
-# File: macros/hilbert.sci, line: 19
-# File: macros/iir.sci, line: 40
-# File: macros/iir.sci, line: 56
-# File: macros/iir.sci, line: 59
-# File: macros/lattn.sci, line: 50
-# File: macros/lattn.sci, line: 59
-# File: macros/lattn.sci, line: 68
-# File: macros/trans.sci, line: 36
-# File: macros/trans.sci, line: 39
-# File: macros/trans.sci, line: 53
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Array of floating point numbers "
 "expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 浮動小数点の配列を想定します。\n"
+msgstr "%s: 入力引数 #%d の型が正しくありません:  浮動小数点数の配列を指定してください.\n"
 
 #
 # File: macros/trans.sci, line: 24
@@ -185,38 +146,21 @@ msgid ""
 "%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
 msgstr "%s: 入力引数 #%d で不正な値: [%s, %s] の間でなくてはなりません。\n"
 
-#
-# File: macros/analpf.sci, line: 58
-# File: macros/cspect.sci, line: 33
-# File: macros/detrend.sci, line: 89
-# File: macros/eqiir.sci, line: 43
-# File: macros/eqiir.sci, line: 56
-# File: macros/hilb.sci, line: 42
-# File: macros/iir.sci, line: 50
-# File: macros/iir.sci, line: 53
-# File: macros/pspect.sci, line: 41
-# File: macros/sincd.sci, line: 40
-# File: macros/trans.sci, line: 50
-# File: macros/window.sci, line: 154
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr "%s: 入力引数 #%d で不正な値: set {%s} しなくてはなりません。\n"
+msgstr "%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してください.\n"
 
-#
-# File: macros/cepstrum.sci, line: 32
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Distance between Max and Min "
 "elements must be greater than %g.\n"
-msgstr "%s: 入力引数 #%d で不正な値: 最大から最小の要素は %g よりも大きくなくてはなりません。\n"
+msgstr "%s: 入力引数 #%d の値が正しくありません: 最大要素と最小要素の距離は %g よりも大きくなくてはなりません.\n"
 
-#
-# File: macros/yulewalk.sci, line: 62
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Elements must be in increasing "
 "order.\n"
-msgstr "%s: 入力引数 #%d で不正な値: 要素は、増加順序を持たなくてはなりません。\n"
+msgstr "%s: 入力引数 #%d の値が正しくありません: 要素は昇順としてください.\n"
 
 #
 # File: macros/iir.sci, line: 63
@@ -228,13 +172,9 @@ msgid ""
 "[%s, %s].\n"
 msgstr "%s: 入力引数 #%d で不正な値: 要素は、[%s, %s] の間でなくてはなりません。\n"
 
-#
-# File: macros/cepstrum.sci, line: 29
-# File: macros/cepstrum.sci, line: 45
-# File: macros/window.sci, line: 65
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Elements must be positive.\n"
-msgstr "%s: 入力引数 #%d で不正な値: 要素は明確でなくてはいけません。\n"
+msgstr "%s: 入力引数 #%d の値が正しくありません: 要素は正としてください.\n"
 
 #
 # File: macros/iir.sci, line: 46
@@ -250,13 +190,11 @@ msgstr "%s: 入力引数 #%d で不正な値: 負数でない整数を想定し�
 msgid "%s: Wrong values for input argument #%d: Not sampled high enough.\n"
 msgstr "%s: 入力引数 #%d で不正な値: 十分に高いサンプルになりません。\n"
 
-#
-# File: macros/yulewalk.sci, line: 53
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: The first element must be %s and "
 "the last %s.\n"
-msgstr "%s: 入力引数 #%d で不正な値: 最初の要素は、 %s で 最後の %s でなくてはなりません。\n"
+msgstr "%s: 入力引数 #%d の値が正しくありません: 最初の要素は %s、最後の要素は %s としてください.\n"
 
 #
 # File: macros/bilt.sci, line: 46
@@ -266,11 +204,10 @@ msgid ""
 msgstr "%s: 入力引数 #%d で不正な値: set {%s} をしなくてはなりません。\n"
 
 msgid "Arma identification"
-msgstr "ARMA識別"
+msgstr "ARMA同定"
 
-# File: etc/signal_processing.start, line: 13
 msgid "Signal Processing"
-msgstr "シグナル処理"
+msgstr "信号処理"
 
 msgid "Spectral power"
 msgstr "パワースペクトル"

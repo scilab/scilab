@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-09-22 14:07+0100\n"
-"PO-Revision-Date: 2009-11-25 13:40+0000\n"
+"PO-Revision-Date: 2010-06-10 09:02+0000\n"
 "Last-Translator: Sylvestre Ledru <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -78,7 +78,7 @@ msgstr "%s : Traitement du fichier: %s\n"
 
 #, c-format
 msgid "%s: Regenerate names and lib\n"
-msgstr "%s : Régénère noms et librairie\n"
+msgstr "%s : Régénère noms et bibliothèques\n"
 
 #, c-format
 msgid "%s: The function has not been built for profiling"
@@ -87,8 +87,8 @@ msgstr "%s : La fonction n'a pas été construite pour le profiling"
 #, c-format
 msgid "%s: There is no file named %s.sci in the library directory %s.\n"
 msgstr ""
-"%s : Il n'y a pas de fichier nommé %s.sci dans le répertoire de la librairie "
-"%s.\n"
+"%s : Il n'y a pas de fichier nommé %s.sci dans le répertoire de la "
+"bibliothèque %s.\n"
 
 #, c-format
 msgid "%s: Undefined variable %s.\n"
@@ -223,7 +223,7 @@ msgid ""
 "Library file %s has been updated,\n"
 "but cannot be loaded into Scilab because %s is a protected variable.\n"
 msgstr ""
-"Le fichier librairie %s a été mis à jour,\n"
+"Le fichier bibliothèque %s a été mis à jour,\n"
 "mais ne peut pas être chargé dans Scilab car %s est une variable protégée.\n"
 
 msgid "No comment available.\n"

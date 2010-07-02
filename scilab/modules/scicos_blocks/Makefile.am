@@ -345,7 +345,8 @@ src/c/scicos_evalhermite.c \
 src/c/scicos_indexfinder.c
 
 NON_BLOCK_CPP_SOURCES = \
-src/jni/XcosDiagram.cpp
+src/jni/GiwsException.cpp \
+src/jni/AfficheBlock.cpp
 
 SCICOS_BLOCKS_FORTRAN_SOURCES = \
 src/fortran/affich.f \

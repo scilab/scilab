@@ -20,9 +20,9 @@ x = [1:2]';
 y = [1:4];
 z = cos(x)*cos(y);
 grayplot(x,y,z);
-save(TMPDIR + "save.scg", gcf());
+save(TMPDIR + "/save.scg", gcf());
 close
-load(TMPDIR + "save.scg")
+load(TMPDIR + "/save.scg");
 e = gce();
 if or(e.data.x <> x) then pause; end
 if or(e.data.y <> y') then pause; end

@@ -19,9 +19,10 @@
 #include "errmsg.h"
 #include "errmds.h"
 /*--------------------------------------------------------------------------*/ 
-extern int C2F(errloc)(); /* fortran */
+extern int C2F(errloc)(int *n); /* fortran */
 extern int C2F(errmgr)(); /* fortran */
 extern int C2F(errcontext)(); /* fortran */
+extern int C2F(whatln)(int *lpt1,int *lpt2,int *lpt6,int *nct,int *idebut,int *ifin); /* fortran */
 
 /*--------------------------------------------------------------------------*/ 
 int error_internal(int *n,char *buffer,int mode)
@@ -52,12 +53,19 @@ int error_internal(int *n,char *buffer,int mode)
 		}
 		else
 		{
-			/* output error message */
+			/* get the number of the line where the error occurs */
+			int nlc = 0;
+			int l1 = 0;
+			int ifin = 0;
+			C2F(whatln)(C2F(iop).lpt,C2F(iop).lpt+1,C2F(iop).lpt+5,&nlc,&l1,&ifin);
+			C2F(iop).lct[7] = C2F(iop).lct[7]-nlc;
+			/* disable error display */
 			C2F(iop).lct[0] = -1;
 		}
 
 		if (mode == ERROR_FROM_FORTRAN)
 		{
+			/* output and store error message */
 			C2F(errmsg)(n, &errtyp);
 		}
 		else /* ERROR_FROM_C */

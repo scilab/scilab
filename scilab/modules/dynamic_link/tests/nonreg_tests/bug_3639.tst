@@ -36,19 +36,16 @@ chdir(TEST_DIR);
 
 files=['bug_3639.c'];
 ilib_build('libc_fun1',['c_sum1','c_intsum';'c_sub1','c_intsub'],files,[]);
-copyfile('loader.sce','loader1.sce');
-
-ilib_build('libc_fun2',['c_sum2','c_intsum';'c_sub2','c_intsub'],files,[]);
-
 // load the shared library 
 info_link = link();
 if info_link <> [] then pause,end
+exec loader.sce;
 
-exec loader1.sce;
+ilib_build('libc_fun2',['c_sum2','c_intsum';'c_sub2','c_intsub'],files,[]);
 info_link = link();
 if info_link <> 'libc_fun1' then pause,end
-
 exec loader.sce;
+
 info_link = link();
 if or(info_link <> ['libc_fun2','libc_fun1']) then pause,end
 

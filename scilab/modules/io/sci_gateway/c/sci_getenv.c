@@ -21,7 +21,7 @@
 #include "getenvc.h"
 #include "PATH_MAX.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_getenv)(char *fname,unsigned long fname_len)
+int sci_getenv(char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
 	int ierr = 0;

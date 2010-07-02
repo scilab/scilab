@@ -52,7 +52,7 @@
     polynomial matrix <literal>Mp</literal> . <literal>C</literal> is partitioned
     as <literal>C=[C0,C1,...,Ck]</literal>
     where the <literal>Ci</literal> are arranged in increasing order
-    <literal>k = maxi(degree(Mp))</literal></para>
+    <literal>k = max(degree(Mp))</literal></para>
     <para><literal>C=coeff(Mp,v)</literal> returns the matrix of coefficients with
     degree in <literal>v</literal> . (<literal>v</literal> is a row or column vector).</para>
   </refsection>

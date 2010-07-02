@@ -36,6 +36,7 @@ Source: bin\Microsoft.VC90.CRT.manifest; DestDir: {app}\bin; Components: {#COMPN
 Source: bin\LIBMMD.DLL; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libifcoremd.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libifcorertd.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\libiomp5md.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: bin\dynamiclibrary.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;

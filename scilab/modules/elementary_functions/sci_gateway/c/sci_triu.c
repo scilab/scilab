@@ -14,7 +14,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(inttriu)(int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_triu)(char *fname,unsigned long fname_len)
+int sci_triu(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	C2F(inttriu)(id);

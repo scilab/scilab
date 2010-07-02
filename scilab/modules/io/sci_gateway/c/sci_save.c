@@ -12,7 +12,9 @@
 
 #include "gw_io.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_save)(char *fname,unsigned long fname_len)
+extern int C2F(intsave)(); /* fortran subroutine */
+/*--------------------------------------------------------------------------*/
+int sci_save(char *fname,unsigned long fname_len)
 {
 	C2F(intsave)();
 	return 0;

@@ -8,6 +8,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 // <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
 
 //
 // assert_close --
@@ -45,8 +46,8 @@ function flag = assert_equal ( computed , expected )
   end
   if flag <> 1 then pause,end
 endfunction
-function [ y , index ] = rosenbrock ( x , index )
-  y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
+function [ y , index ] = myquad ( x , index )
+  y = x(1)^2 + x(2)^2
 endfunction
 
 
@@ -82,12 +83,14 @@ function myoutputcmd ( state , data )
   _OUTPUCMDFLAG_ = 1
 endfunction
 
+
+// Test the variable algorithm
 global _OUTPUCMDFLAG_;
 _OUTPUCMDFLAG_ = 0;
 
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",2);
-nm = neldermead_configure(nm,"-function",rosenbrock);
+nm = neldermead_configure(nm,"-function",myquad);
 nm = neldermead_configure(nm,"-x0",[-1.2 1.0]');
 nm = neldermead_configure(nm,"-maxiter",200);
 nm = neldermead_configure(nm,"-maxfunevals",300);
@@ -96,6 +99,52 @@ nm = neldermead_configure(nm,"-tolxrelative",10*%eps);
 nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-simplex0length",1.0);
 nm = neldermead_configure(nm,"-method","variable");
+nm = neldermead_configure(nm,"-outputcommand",myoutputcmd);
+nm = neldermead_search(nm);
+// We are here, that means that the output command has been correctly
+// called
+assert_equal ( _OUTPUCMDFLAG_ , 1 );
+nm = neldermead_destroy(nm);
+
+// Test the fixed algorithm
+global _OUTPUCMDFLAG_;
+_OUTPUCMDFLAG_ = 0;
+
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+nm = neldermead_configure(nm,"-function",myquad);
+nm = neldermead_configure(nm,"-x0",[-1.2 1.0]');
+nm = neldermead_configure(nm,"-maxiter",200);
+nm = neldermead_configure(nm,"-maxfunevals",300);
+nm = neldermead_configure(nm,"-tolfunrelative",10*%eps);
+nm = neldermead_configure(nm,"-tolxrelative",10*%eps);
+nm = neldermead_configure(nm,"-simplex0method","axes");
+nm = neldermead_configure(nm,"-simplex0length",1.0);
+nm = neldermead_configure(nm,"-method","fixed");
+nm = neldermead_configure(nm,"-outputcommand",myoutputcmd);
+nm = neldermead_search(nm);
+// We are here, that means that the output command has been correctly
+// called
+assert_equal ( _OUTPUCMDFLAG_ , 1 );
+nm = neldermead_destroy(nm);
+
+// Test the Box algorithm
+global _OUTPUCMDFLAG_;
+_OUTPUCMDFLAG_ = 0;
+
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+nm = neldermead_configure(nm,"-function",myquad);
+nm = neldermead_configure(nm,"-x0",[-1.2 1.0]');
+nm = neldermead_configure(nm,"-maxiter",200);
+nm = neldermead_configure(nm,"-maxfunevals",300);
+nm = neldermead_configure(nm,"-tolfunrelative",10*%eps);
+nm = neldermead_configure(nm,"-tolxrelative",10*%eps);
+nm = neldermead_configure(nm,"-simplex0method","axes");
+nm = neldermead_configure(nm,"-simplex0length",1.0);
+nm = neldermead_configure(nm,"-method","box");
+nm = neldermead_configure(nm,"-boundsmin",[-10.0 -10.0]);
+nm = neldermead_configure(nm,"-boundsmax",[10.0 10.0]);
 nm = neldermead_configure(nm,"-outputcommand",myoutputcmd);
 nm = neldermead_search(nm);
 // We are here, that means that the output command has been correctly

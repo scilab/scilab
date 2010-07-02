@@ -179,6 +179,12 @@ GL2PSDLL_API int gl2psDrawPixels(int width, int height,
 GL2PSDLL_API int gl2psEnable(int mode);
 GL2PSDLL_API int gl2psDisable(int mode);
 GL2PSDLL_API int gl2psPointSize(float value);
+
+/**
+ * Added by scilab team.
+ **/
+GL2PSDLL_API int gl2psLineStipple(int factor, int pattern);
+
 GL2PSDLL_API int gl2psLineWidth(float value);
 GL2PSDLL_API int gl2psBlendFunc(int sfactor, int dfactor);
 

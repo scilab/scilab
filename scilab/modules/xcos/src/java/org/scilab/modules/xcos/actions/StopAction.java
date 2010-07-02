@@ -67,6 +67,7 @@ public class StopAction extends DefaultAction {
 	 * @param e source event
 	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
 	 */
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (!GraphActionManager.getEnable(StartAction.class)) {
 		ScilabInterpreterManagement.requestScilabExec("haltscicos");

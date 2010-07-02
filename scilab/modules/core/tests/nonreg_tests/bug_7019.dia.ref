@@ -13,6 +13,7 @@
 // <-- Short Description -->
 // resume() produces an error instead of beeing equivalent to resume
 mputl(["y=33;";"resume()";"y=44"],TMPDIR+"/bug7019.sce");
+if execstr("exec(TMPDIR+""/bug7019.sce"")","errcatch")<>46 then bugmes();quit;end
  
 y=33;
  

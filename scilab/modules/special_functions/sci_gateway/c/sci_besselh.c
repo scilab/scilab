@@ -25,7 +25,7 @@ int sci_besselh(char *fname,unsigned long fname_len)
   int un=1,ierr;
   int K;
 
-  static int *Lstk    = C2F(vstk).lstk-1;
+  int *Lstk    = C2F(vstk).lstk-1;
 
  
   CheckRhs(2,4);

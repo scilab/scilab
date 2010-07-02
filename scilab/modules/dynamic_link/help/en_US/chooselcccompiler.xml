@@ -16,35 +16,6 @@
   </info>
   <refnamediv>
     <refname>chooselcccompiler</refname>
-    <refpurpose>choose LCC-Win32 as the default C Compiler.</refpurpose>
+    <refpurpose>moved as toolbox in ATOMS</refpurpose>
   </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>bOK=chooselcccompiler()</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Parameters</title>
-    <variablelist>
-      <varlistentry>
-        <term>bOK</term>
-        <listitem>
-          <para>returns %T if LCC-Win32 is the default C Compiler.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>choose LCC-Win32 as the default C Compiler.</para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
-bOK=chooselcccompiler() 
- ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Allan CORNET</para>
-  </refsection>
 </refentry>

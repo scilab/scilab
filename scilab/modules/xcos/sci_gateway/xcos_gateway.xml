@@ -29,4 +29,11 @@
 <PRIMITIVE gatewayId="64" primitiveId="4" primitiveName="xcosDiagramToHDF5" />
 <PRIMITIVE gatewayId="64" primitiveId="5" primitiveName="xcosDiagramOpen" />
 <PRIMITIVE gatewayId="64" primitiveId="6" primitiveName="xcosDiagramClose" />
+<PRIMITIVE gatewayId="64" primitiveId="7" primitiveName="xcosPalLoad" />
+<PRIMITIVE gatewayId="64" primitiveId="8" primitiveName="xcosPalCategoryAdd" />
+<PRIMITIVE gatewayId="64" primitiveId="9" primitiveName="xcosPalDelete" />
+<PRIMITIVE gatewayId="64" primitiveId="10" primitiveName="xcosPalMove" />
+<PRIMITIVE gatewayId="64" primitiveId="11" primitiveName="xcosPalEnable" />
+<PRIMITIVE gatewayId="64" primitiveId="12" primitiveName="xcosPalDisable" />
+<PRIMITIVE gatewayId="64" primitiveId="13" primitiveName="xcosPalGenerateIcon" />
 </GATEWAY>

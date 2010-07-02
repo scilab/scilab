@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-02-27 18:16+0100\n"
-"PO-Revision-Date: 2010-04-10 18:49+0000\n"
+"PO-Revision-Date: 2010-05-22 18:58+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -659,6 +659,7 @@ msgstr "%s: Tipus de valor incorrecte.\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: \"%s\" expected.\n"
 msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser \"%s\".\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"

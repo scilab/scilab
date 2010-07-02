@@ -71,7 +71,9 @@ INCLUDE_FLAGS = $(libscitypes_la_CFLAGS)
 
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = 
+SWIG_WRAPPERS = src/jni/sci_types.i
+
+
 
 if SWIG
 BUILT_SOURCES=swig

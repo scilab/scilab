@@ -39,7 +39,7 @@ function r=routh_t(h,k)
     if size(n,'*')<>1 then
       error(msprintf(gettext("%s: Wrong size for input argument #%d: Single input, single output system expected.\n"),"routh_t",1))
     end
-    nd=maxi([degree(d) degree(n)])+1;
+    nd=max([degree(d) degree(n)])+1;
     cod=coeff(d,0:nd-1);//coeff du denominateur
     con=coeff(n,0:nd-1);//coeff du numerateur
     cobf=cod+k*con //coeff de la boucle fermee

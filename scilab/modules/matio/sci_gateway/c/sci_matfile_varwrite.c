@@ -17,7 +17,7 @@
 #ifdef _MSC_VER
 #include "strdup_Windows.h"
 #endif
-
+#include "stack-c.h"
 #include "api_scilab.h"
 
 #define MATIO_ERROR if(_SciErr.iErr)	     \

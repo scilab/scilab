@@ -22,7 +22,7 @@ function [f,d]=invr(h,flag)
   case 'polynomial' then //POLYNOMIAL MATRIX
     [m,n]=size(h);
     if m<>n then error(20),end
-    ndeg=maxi(degree(h));
+    ndeg=max(degree(h));
     if ndeg==1 then   //MATRIX PENCIL
       E=coeff(h,1);A=-coeff(h,0);
       if norm(E-eye(E),1) < 100*%eps then

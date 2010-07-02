@@ -22,6 +22,6 @@ if nr*nc==0 then a=[],return,end
 if r(1)<>c(1) then
   error(msprintf(gettext("%s: Wrong values for input arguments #%d and #%d: c(1) must be equal to r(1).\n"),"toeplitz",1,2));
 end
-a(nc,nr)=r(1);k=mini([nr,nc]);
+a(nc,nr)=r(1);k=min([nr,nc]);
 for l=1:k,a(l,l:nr)=r(1:nr-l+1),a(l:nc,l)=c(1:nc-l+1),end
 endfunction

@@ -16,7 +16,6 @@
 
 #include "matfile_manager.h"
 #include "MALLOC.h"
-#include "stack-c.h" /* stack-def.h, stack1.h, stack2.h, stack3.h included */
 #include "localization.h"
 #include "Scierror.h"
 #include "sciprint.h"

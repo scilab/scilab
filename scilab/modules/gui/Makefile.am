@@ -294,6 +294,7 @@ images/icons/document-save-as.png \
 images/icons/document-save.png \
 images/icons/edit-copy.png \
 images/icons/edit-cut.png \
+images/icons/edit-delete.png \
 images/icons/edit-find.png \
 images/icons/edit-find-replace.png \
 images/icons/edit-paste.png \
@@ -306,6 +307,7 @@ images/icons/help-browser.png \
 images/icons/list-add.png \
 images/icons/list-remove.png \
 images/icons/media-floppy.png \
+images/icons/media-playback-start.png \
 images/icons/original-view.png \
 images/icons/package-x-generic.png \
 images/icons/printer.png \

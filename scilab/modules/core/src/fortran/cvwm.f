@@ -35,10 +35,8 @@ c!
       integer maxc,mode,fl,typ
       integer str(*),istr(*)
       character cw*256,sgn*1
-      character*10 form(2)
 c     
       eps=dlamch('p')
-      write(form(1),130) maxc,maxc-7
 c     
       lstr=1
       istr(1)=1
@@ -58,34 +56,16 @@ c     traitement du coeff (l,k)
 c     .        non zero real part
                typ=1
                if(mode.eq.1) call fmt(abs(ar),maxc,typ,n1,n2)
-
-               if(typ.eq.1) then
-                  fl=maxc
-                  write(cw(l1:l1+fl-1),form(1)) ar
-               elseif(typ.eq.-1) then
-                  if(ar.gt.0) then
-                     fl=3
-                     cw(l1:l1+fl-1)='Inf'
-                  else
-                     fl=4
-                     cw(l1:l1+fl-1)='-Inf'
-                  endif
-                  n2=1
-               elseif(typ.eq.-2) then
-                  fl=3
-                  cw(l1:l1+fl-1)='Nan'
-                  n2=1
+               if(typ.eq.2) then
+                  ifmt=n2+32*n1
+               elseif(typ.lt.0) then
+                  ifmt=typ
                else
-                  fl=n1
-                  if(ar.lt.0.0d0) fl=fl+1
-                  write(form(2),120) fl,n2
-                  write(cw(l1:l1+fl-1),form(2)) ar
+                  ifmt=1
                endif
-               if (cw(l1:l1).eq.' ') then
-                  cw(l1:l1+fl-2)=cw(l1+1:l1+fl-1)
-                  cw(l1+fl-1:l1+fl-1)=' '
-                  fl=fl-1
-               endif
+c
+               call formatnumber(abs(ar),ifmt,maxc,cw(l1:),fl)
+               if (ar.lt.0.0d0)  cw(l1:l1)='-'
                l1=l1+fl
                if(n2.eq.0) l1=l1-1
                if (ai.ne.0.0d0) then
@@ -96,31 +76,26 @@ c     .           non zero imaginary part
                   cw(l1:l1+3)=sgn//'%i*'
                   l1=l1+4
                   typ=1
-                  if(mode.eq.1) call fmt(abs(ai),maxc,typ,n1,n2)
-                  if(typ.eq.1) then
-                     fl=maxc
-                     write(cw(l1:l1+fl-1),form(1)) ai
-                  elseif(typ.eq.-1) then
-                     fl=3
-                     cw(l1:l1+fl-1)='Inf'
-                     n2=1
-                  elseif(typ.eq.-2) then
-                     fl=3
-                     cw(l1:l1+fl-1)='Nan'
-                     n2=1
+                  if(mode.eq.1) call fmt(ai,maxc,typ,n1,n2)
+                  if(typ.eq.2) then
+                     ifmt=n2+32*n1
+                  elseif(typ.lt.0) then
+                     ifmt=typ
                   else
-                     fl=n1
-                     write(form(2),120) fl,n2
-                     write(cw(l1:l1+fl-1),form(2)) ai
+                     ifmt=1
                   endif
-                  l11=l1
+                  call formatnumber(ai,ifmt,maxc,cw(l1:),fl)
+                 
                   if (cw(l1:l1).eq.' ') then
+c     .              remove leading blanks
                      cw(l1:l1+fl-2)=cw(l1+1:l1+fl-1)
                      cw(l1+fl-1:l1+fl-1)=' '
                      fl=fl-1
                   endif
+                  l11=l1
                   l1=l1+fl
-                  if(n2.eq.0) then
+                  if(n2.eq.0.and.cw(l1-1:l1-1).eq.'.') then
+c     .              remove the final dot
                      l1=l1-1
                      cw(l1:l1)=' '
                   endif
@@ -143,35 +118,29 @@ c     .        imaginary case
                   endif
                   typ=1
                   if(mode.eq.1) call fmt(abs(ai),maxc,typ,n1,n2)
-                  if(typ.eq.1) then
-                     fl=maxc
-                     write(cw(l1:l1+fl-1),form(1)) ai
-                  elseif(typ.eq.-1) then
-                     fl=3
-                     cw(l1:l1+fl-1)='Inf'
-                     n2=1
-                  elseif(typ.eq.-2) then
-                     fl=3
-                     cw(l1:l1+fl-1)='Nan'
-                     n2=1
+                  if(typ.eq.2) then
+                     ifmt=n2+32*n1
+                  elseif(typ.lt.0) then
+                     ifmt=typ
                   else
-                     fl=n1
-                     write(form(2),120) fl,n2
-                     write(cw(l1:l1+fl-1),form(2)) abs(ai)
+                     ifmt=1
                   endif
+                  call formatnumber(ai,ifmt,maxc,cw(l1:),fl)
                   if (cw(l1:l1).eq.' ') then
+c     .              remove leading blanks
                      cw(l1:l1+fl-2)=cw(l1+1:l1+fl-1)
                      cw(l1+fl-1:l1+fl-1)=' '
                      fl=fl-1
                   endif
                   l11=l1
                   l1=l1+fl
-                  if(n2.eq.0) then
+                  if(n2.eq.0.and.cw(l1-1:l1-1).eq.'.') then
+c     .              remove the final dot
                      l1=l1-1
                      cw(l1:l1)=' '
                   endif
                   if (cw(l11:l1-1).eq.'1') then
-                     cw(l11-1:l1-1)=' '
+                     cw(l1-1:l1-1)=' '
                      l1=l11-1
                   endif
                else
@@ -185,6 +154,4 @@ c     .           zero case
             istr((k-1)*m+l+1)=lstr
  20      continue
          return
- 120     format('(f',i2,'.',i2,')')
- 130     format('(1pd',i2,'.',i2,')')
          end

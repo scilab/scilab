@@ -129,4 +129,18 @@ public abstract class AbstractElement<T> implements Element<T> {
 			indexes[1]++;
 		}
 	}
+
+	/**
+	 * Check if the data can be extracted without throwing an exception.
+	 * 
+	 * @param data
+	 *            the data
+	 * @param indexes
+	 *            the current indexes (length=2).
+	 * @return true if the data can be extracted without throwing an exception,
+	 *         false if not.
+	 */
+	protected static boolean canGet(ScilabType data, int[] indexes) {
+		return data.getHeight() > indexes[0] && data.getWidth() > indexes[1];
+	}
 }

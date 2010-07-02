@@ -35,7 +35,7 @@ import com.mxgraph.model.mxCell;
 public class BasicBlockCodec extends XcosObjectCodec {
 
 	private static final String SIMULATION_FUNCTION_TYPE = "simulationFunctionType";
-	private static final String[] IGNORED_FIELDS = new String[] {SIMULATION_FUNCTION_TYPE, "locked", "parameters"};
+	private static final String[] IGNORED_FIELDS = new String[] {SIMULATION_FUNCTION_TYPE, "locked", "parametersPCS"};
 
 	/**
 	 * The constructor used on for configuration
@@ -71,6 +71,14 @@ public class BasicBlockCodec extends XcosObjectCodec {
 		mxCellCodec cellCodec = new mxCellCodec(new mxCell(), null,
 				REFS, null);
 		mxCodecRegistry.register(cellCodec);
+		
+		/*
+		 * per block specific codec setup 
+		 */
+		BasicBlockCodec codec = (BasicBlockCodec) mxCodecRegistry.getCodec("AfficheBlock");
+		codec.exclude.add("printTimer");
+		codec.exclude.add("updateAction");
+		
 	}
 	
 	/**
@@ -81,6 +89,7 @@ public class BasicBlockCodec extends XcosObjectCodec {
 	 * @return Returns the object to be encoded by the default encoding.
 	 * @see com.mxgraph.io.mxObjectCodec#beforeEncode(com.mxgraph.io.mxCodec, java.lang.Object, org.w3c.dom.Node)
 	 */
+	@Override
 	public Object beforeEncode(mxCodec enc, Object obj, Node node) {
 		((Element) node).setAttribute(SIMULATION_FUNCTION_TYPE,
 				String.valueOf(((BasicBlock) obj).getSimulationFunctionType()));
@@ -95,6 +104,7 @@ public class BasicBlockCodec extends XcosObjectCodec {
 	 * @return The Object transformed 
 	 * @see org.scilab.modules.xcos.io.XcosObjectCodec#afterDecode(com.mxgraph.io.mxCodec, org.w3c.dom.Node, java.lang.Object)
 	 */
+	@Override
 	public Object afterDecode(mxCodec dec, Node node, Object obj) {
 	    ((BasicBlock) obj).setSimulationFunctionType(SimulationFunctionType.DEFAULT);
 

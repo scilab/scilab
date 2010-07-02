@@ -55,7 +55,7 @@ function [ok]=translator(filemo,Mblocks,_Modelica_libs,Flat)
   end
 
   // directories for translator libraries
-  for k = 1:(size(mlibs,'*')-1)
+  for k = 1:size(mlibs,'*')
     modelica_directories = mlibs(k); 
     if modelica_directories<> [] then 
       molibs = [molibs; """" + modelica_directories + """"];

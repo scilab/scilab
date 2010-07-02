@@ -61,7 +61,7 @@ if flag=='d' then
 while %T
 wkk=w(kk);
  if abs(imag(wkk))<=%eps then
-     [themin,which]=mini([abs(wkk),1/(abs(wkk))]);
+     [themin,which]=min([abs(wkk),1/(abs(wkk))]);
      if which==2 then g=-g*real(wkk);end
      resn(k)=poly(sign(real(wkk))*themin,varn(pol));
      kk=kk+1;k=k+1;

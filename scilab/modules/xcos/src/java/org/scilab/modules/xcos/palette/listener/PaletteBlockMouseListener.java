@@ -54,7 +54,7 @@ public final class PaletteBlockMouseListener implements MouseListener {
 
 			ContextMenu menu = ScilabContextMenu.createContextMenu();
 
-			final List<XcosDiagram> allDiagrams = Xcos.getDiagrams();
+			final List<XcosDiagram> allDiagrams = Xcos.getInstance().getDiagrams();
 			final PaletteBlockCtrl control = ((PaletteBlockView) e.getSource()).getController();
 			
 			// No diagram opened: should never happen as Xcos opens an empty diagram when it is launched
@@ -67,6 +67,7 @@ public final class PaletteBlockMouseListener implements MouseListener {
 				addTo.setText(XcosMessages.ADDTO + " " + allDiagrams.get(0).getParentTab().getName());
 				final XcosDiagram theDiagram = allDiagrams.get(0);
 				addTo.setCallback(new CallBack(e.toString()) {
+					@Override
 					public void callBack() {
 						BasicBlock current = loadAndSetupBlock(control);
 						theDiagram.addCell(current);
@@ -86,6 +87,7 @@ public final class PaletteBlockMouseListener implements MouseListener {
 					final XcosDiagram theDiagram = allDiagrams.get(i);
 					diagram.setText(allDiagrams.get(i).getParentTab().getName());
 					diagram.setCallback(new CallBack(e.toString()) {
+						@Override
 						public void callBack() {
 							BasicBlock current = loadAndSetupBlock(control);
 							theDiagram.addCell(current);
@@ -103,6 +105,7 @@ public final class PaletteBlockMouseListener implements MouseListener {
 			MenuItem help = ScilabMenuItem.createMenuItem();
 			help.setText("Block help");
 			help.setCallback(new CallBack(e.toString()) {
+				@Override
 				public void callBack() {
 					try {
 						ScilabInterpreterManagement.synchronousScilabExec("help", control.getModel().getName());

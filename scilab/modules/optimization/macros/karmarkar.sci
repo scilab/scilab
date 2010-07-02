@@ -35,7 +35,7 @@ w=size(x0)
 if w(1)<>p then
   error(msprintf(gettext("%s: Wrong size for input argument #%d."),'karmarkar',4));
 end
-if mini(x0)<0|norm(a*x0-b)>eps then 
+if min(x0)<0|norm(a*x0-b)>eps then 
   error(msprintf(gettext("%s: x0 is not feasible."),'karmarkar'));
 end
 //
@@ -52,11 +52,11 @@ while test>eps&count<=maxiter
 //    y=(ax*ax')\(ax*xc)
     d=-xc+ax'*y;
     dk=x1.*d;
-    if mini(dk)>0 then 
+    if min(dk)>0 then 
       error(msprintf(gettext("%s: Unbounded problem!"),'karmarkar'));
     end
-    alpha=-Gamma/mini(d);
-    test=alpha*(norm(d)**2)/maxi(1,abs(crit));
+    alpha=-Gamma/min(d);
+    test=alpha*(norm(d)**2)/max(1,abs(crit));
     x1=x1+alpha*dk;
     crit=tc*x1;
     write(%io(2),[count,crit,test],'(f3.0,3x,e10.3,3x,e10.3)')

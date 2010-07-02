@@ -149,12 +149,12 @@ int sci_data2sig(char *fname, unsigned long fname_len)
 		it2 = il2[3];
 		if ((m2*n2)!=1) 
 		{
-			Scierror(888, _("%s : Secong argument must be a scalar.\n"),fname);
+			Scierror(888, _("%s : Second argument must be a scalar.\n"),fname);
 			return 0;
 		}
 		if ((il2[0]!=1) || (it2!=0)) 
 		{
-			Scierror(888, _("%s : Secong argument must be a real.\n"),fname);
+			Scierror(888, _("%s : Second argument must be a real.\n"),fname);
 			return 0;
 		}
 		step_time = *((double *) &il2[4]);

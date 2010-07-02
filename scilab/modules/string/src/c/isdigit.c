@@ -13,7 +13,7 @@
 
 /*--------------------------------------------------------------------------*/
 #include <string.h>
-#include <ctype.h>
+#include <wctype.h>
 #include "isletter.h"
 #include "MALLOC.h"
 #include "isdigit.h"

@@ -34,7 +34,7 @@
 /*--------------------------------------------------------------------------*/
 static int gsort_complex(char *fname, char *mode, char *order);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_gsort)(char *fname, unsigned long fname_len)
+int sci_gsort(char *fname, unsigned long fname_len)
 {
 	char iord[2] ;
 	char typex[10];

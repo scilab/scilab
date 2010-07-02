@@ -120,7 +120,9 @@ public class SwingScilabEditBox extends JTextField implements SimpleEditBox {
 			}
 			public void focusLost(FocusEvent arg0) {
 				// Validates user input
-				callback.actionPerformed(null);
+				if (getParent() != null) { // To avoid to execute the callback when then parent figure is destroyed
+					callback.actionPerformed(null);
+				}
 			}
 		};
 		addFocusListener(focusListener);
@@ -129,8 +131,8 @@ public class SwingScilabEditBox extends JTextField implements SimpleEditBox {
 		actionListener = new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
-				// Transfert the focus to generate a FocusEvent
-				transferFocus();
+				// Validates user input
+				callback.actionPerformed(null);
 			}
 			
 		};

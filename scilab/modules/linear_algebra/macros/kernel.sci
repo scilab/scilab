@@ -31,7 +31,7 @@ function kerA=kernel(A,tol,flag)
       error(msprintf(gettext("%s: SVD and QR not implemented in sparse.\n"),'kernel'));
     end
     if rhs==2 then tol=1.d-10;else tol=%eps;end
-    %tol=tol*maxi(abs(A))*max(ma,na);
+    %tol=tol*max(abs(A))*max(ma,na);
     if ma<na then 
       A=[A;sparse([],[],[na-ma,na])];
     end

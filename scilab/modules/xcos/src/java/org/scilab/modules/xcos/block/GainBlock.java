@@ -44,6 +44,7 @@ public final class GainBlock extends BasicBlock {
     /**
      * @param exprs new exprs
      */
+	@Override
     public void setExprs(ScilabType exprs) {
 	super.setExprs(exprs);
 	setValue(((ScilabString) getExprs()).getData()[0][0]);

@@ -1,0 +1,7 @@
+LIBRARY    data_structures_f.dll
+
+
+EXPORTS
+; --------------------------------------- 
+; data_structures_f
+; --------------------------------------- 

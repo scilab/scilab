@@ -1,0 +1,4 @@
+scinotes (0.1-1) stable; urgency=medium
+
+  * First version of the module
+

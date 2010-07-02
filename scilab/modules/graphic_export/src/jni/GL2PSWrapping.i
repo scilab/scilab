@@ -215,6 +215,17 @@ public";
 int sci_gl2psPointSize(float value);
 
 /* JavaDoc */
+%javamethodmodifiers sci_gl2psLineStipple(float value) "
+ /**
+  * Stipple of the line
+  * @param arg0 stipple factor.
+  * @param arg1 stipple patern.
+  * @return GL2PSWrappingJNI.sci_gl2psLineStipple
+  */
+public";
+int sci_gl2psLineStipple(int arg0, int arg1);
+
+/* JavaDoc */
 %javamethodmodifiers sci_gl2psLineWidth(float value) "
  /**
   * Width of the line

@@ -19,8 +19,8 @@
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] =
 {
-	{C2F(sci_getfield),"getfield"},
-	{C2F(sci_setfield),"setfield"}
+	{sci_getfield, "getfield"},
+	{sci_setfield, "setfield"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_data_structures2(void)

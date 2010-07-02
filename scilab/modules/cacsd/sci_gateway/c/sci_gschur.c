@@ -17,7 +17,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(scigschur)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_gschur)(char *fname,unsigned long fname_len)
+int sci_gschur(char *fname,unsigned long fname_len)
 {
 	C2F(scigschur)(fname,fname_len);
 	return 0;

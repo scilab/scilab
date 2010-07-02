@@ -1,10 +1,10 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) ????-2008 - INRIA
-//
-//  This file is distributed under the same license as the Scilab package.
+// Copyright (C) 1998-2010 - INRIA - Serge Steer
+// This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- JVM NOT MANDATORY -->
+clear foo
 deff("foo()","a=1,b=2,c=3;[x,y]=resume(a,b)")
 foo(); if x<>1|y<>2 then bugmes();quit;end
 clear foo x y z
@@ -79,6 +79,7 @@ foo(); if x<>1|y<>2|z<>3 then bugmes();quit;end
 clear foo x y z
 // Nested functions
 // =============================================================================
+clear  foo1  foo2  foo3
 function foo1()
 	clear var_a var_b var_c var_d;
 	foo2()
@@ -121,4 +122,4 @@ if or( vb <> ref_b ) then bugmes();quit;end
 if or( vc <> ref_c ) then bugmes();quit;end
 if or( vd <> ref_d ) then bugmes();quit;end
 clear va vb vc vd;
-clear foo1() foo2() foo3() ref_a ref_b ref_c ref_d;
+clear foo1 foo2 foo3 ref_a ref_b ref_c ref_d;

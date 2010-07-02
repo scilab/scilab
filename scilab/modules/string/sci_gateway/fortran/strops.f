@@ -1,26 +1,27 @@
-c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-c Copyright (C) INRIA
-c 
-c This file must be used under the terms of the CeCILL.
-c This source file is licensed as described in the file COPYING, which
-c you should have received as part of this distribution.  The terms
-c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c     Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c     Copyright (C) INRIA
+c     
+c     This file must be used under the terms of the CeCILL.
+c     This source file is licensed as described in the file COPYING,
+c     which
+c     you should have received as part of this distribution.  The terms
+c     are also available at
+c     http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
       subroutine strops
-c ====================================================================
-c
-c   operations sur les matrices de chaines de caracteres
-c
-c ====================================================================
+c     =================================================================
+c     
+c     operations sur les matrices de chaines de caracteres
+c     
+c     =================================================================
 c
 c     Copyright INRIA
       include 'stack.h'
-      
-Cc (DLL Intel Fortran)
-cDEC$ IF DEFINED (FORDLL)
-cDEC$ ATTRIBUTES DLLIMPORT:: /mtlbc/
-cDEC$ ENDIF
+
+C     c (DLL Intel Fortran)
+c     DEC$ IF DEFINED (FORDLL)
+c     DEC$ ATTRIBUTES DLLIMPORT:: /mtlbc/
+c     DEC$ ENDIF
       common /mtlbc/ mmode
 c
       integer plus,quote,equal,less,great,insert,extrac,dot
@@ -29,15 +30,15 @@ c
 c
       data plus/45/,quote/53/,dot/51/
       data equal/50/,less/59/,great/60/,insert/2/,extrac/3/
-c     
+c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
-c 
+c
       op=fin
 c
       if (ddt .eq. 4) then
-c         write(buf(1:4),'(i4)') fin
-c         call basout(io,wte,' strops '//buf(1:4))
+c     write(buf(1:4),'(i4)') fin
+c     call basout(io,wte,' strops '//buf(1:4))
       endif
 c
       fun=0
@@ -61,7 +62,7 @@ c
       l3r=lw
 c
       top = top-1
-   05 il1=iadr(lstk(top))
+ 05   il1=iadr(lstk(top))
       ilrs=il1
       if(istk(il1).lt.0) il1=iadr(istk(il1+1))
       m1=istk(il1+1)
@@ -85,7 +86,7 @@ c     operations non implantees
 
 
 c
-c addition
+c     addition
 c
  20   continue
       if(m1*n1.eq.0) then
@@ -102,10 +103,10 @@ c     .  a+[]
          m2n2 = m2 * n2
          if (m1n1.eq.1 .or. m2n2.eq.1) then
 c     overload %c_a_c
-           goto 10
+            goto 10
          else
-         call error(8)
-         return
+            call error(8)
+            return
          endif
       endif
       if(istk(il1).ne.istk(il2)) goto 10
@@ -119,27 +120,27 @@ c
       l=lr
       i1=1
       do 11 i=1,mn1
-      la=istk(id1+i)-i1
-      lb=istk(id2+i)-istk(id2+i-1)
-      i1=istk(id1+i)
-      istk(id1+i)=istk(id1+i-1)+la+lb
-      call icopy(la,istk(l1r),1,istk(l),1)
-      l1r=l1r+la
-      l=l+la
-      call icopy(lb,istk(l2r),1,istk(l),1)
-      l2r=l2r+lb
-      l=l+lb
-11    continue
+         la=istk(id1+i)-i1
+         lb=istk(id2+i)-istk(id2+i-1)
+         i1=istk(id1+i)
+         istk(id1+i)=istk(id1+i-1)+la+lb
+         call icopy(la,istk(l1r),1,istk(l),1)
+         l1r=l1r+la
+         l=l+la
+         call icopy(lb,istk(l2r),1,istk(l),1)
+         l2r=l2r+lb
+         l=l+lb
+ 11   continue
       call icopy(l-lr,istk(lr),1,istk(il1+5+mn1),1)
       lstk(top+1)=sadr(il1+5+mn1+l-lr)
       goto 999
 c
-c concatenation [a, b]
+c     concatenation [a, b]
 c
-   60 continue
+ 60   continue
       if(m1.lt.0.or.m2.lt.0) then
-            call error(14)
-            return
+         call error(14)
+         return
       endif
       if(m2.eq.0) then
          return
@@ -163,7 +164,7 @@ c
          return
       endif
       call impcnc(istk(l1r),istk(id1),m1,istk(l2r),istk(id2),m1,
-     & istk(l3r),istk(id3),m1,n1,n2,1)
+     &     istk(l3r),istk(id3),m1,n1,n2,1)
 c
       istk(il1)=10
       istk(il1+1)=m1
@@ -176,8 +177,8 @@ c
 c     concatenation [a;b]
  65   continue
       if(n1.lt.0.or.n2.lt.0) then
-            call error(14)
-            return
+         call error(14)
+         return
       endif
       if(n2.eq.0) then
          return
@@ -201,7 +202,7 @@ c
          return
       endif
       call impcnc(istk(l1r),istk(id1),m1,istk(l2r),istk(id2),m2,
-     & istk(l3r),istk(id3),m1,m2,n2,-1)
+     &     istk(l3r),istk(id3),m1,m2,n2,-1)
 c
       istk(il1)=10
       istk(il1+1)=m1+m2
@@ -211,9 +212,9 @@ c
       lstk(top+1)=sadr(il1+5+mn1+mn2+vol)
       goto 999
 c
-c transposition
+c     transposition
 c
-  110 continue
+ 110  continue
       id2=iadr(lw)
       l2r=id2+mn1+1
       err=sadr(l2r+vol)-lstk(bot)
@@ -227,9 +228,9 @@ c
       call icopy(mn1+1+vol,istk(id2),1,istk(id1),1)
       goto 999
 c
-c insertion
+c     insertion
 c
-  120 continue
+ 120  continue
       if(rhs.gt.4) then
          top=top0
          fin=-fin
@@ -237,7 +238,7 @@ c
       endif
       if(rhs.eq.4) goto 125
 c     arg3(arg1)=arg2
-c     
+c
 c     get arg3
       il3=iadr(lstk(top))
       if(istk(il3).lt.0) il3=iadr(istk(il3+1))
@@ -285,7 +286,7 @@ c     get arg1
       n1=istk(il1+2)
 c
       if (m2.eq.0) then
-c     .  arg3(arg1)=[] 
+c     .  arg3(arg1)=[]
          if(m1.eq.-1) then
 c     .    arg3(:)=[] -->[]
             istk(ilrs)=1
@@ -357,7 +358,7 @@ c     .  reshape arg2 according to arg3
       if(mi.eq.0) then
 c     .  arg3([])=arg2
          if(mn2.eq.1) then
-c     .  arg3([])=c  --> arg3 
+c     .  arg3([])=c  --> arg3
             if(mn3.eq.0) then
                istk(ilrs)=1
                istk(ilrs+1)=0
@@ -414,28 +415,29 @@ c
 c     set result pointers
       idr=iadr(lw)
       lr=idr+mr*nr+1
-      lw=sadr(lr)
+      ilw=lr
+      lw=sadr(ilw+mnr+1)
       err=lw-lstk(bot)
       if(err.gt.0) then
          call error(17)
          return
       endif
       call mpinsp(istk(id3),m3*n3,1,istk(ili),mi,1,1,istk(id2),m2*n2,1
-     $     ,istk(idr),mnr,1,err)
+     $     ,istk(idr),mnr,1,0,istk(ilw),err)
       if(err.gt.0) then
          call error(15)
          return
       endif
       volr=istk(idr)
 c     set result coefficients
-      
+
       lw=sadr(lr+volr)
       err=lw-lstk(bot)
       if(err.gt.0) then
          call error(17)
          return
       endif
-c     
+c
       call impins(istk(l3r),istk(id3),m3*n3,1,istk(l2r),istk(id2),
      $     m2*n2,1,istk(lr),istk(idr),mnr,1)
 
@@ -547,18 +549,18 @@ c     .     arg4(:,arg2)=[] --> arg4(:,compl(arg2))
 c     .     call extraction
             goto 133
          else
-c     .     arg4(arg1,arg2)=[] 
+c     .     arg4(arg1,arg2)=[]
             lw1=lw
             call indxgc(il2,n4,ilj,nj,mxj,lw)
             if(err.gt.0) return
             if(nj.eq.0) then
-c     .        arg4(arg1,1:n4)=[] 
+c     .        arg4(arg1,1:n4)=[]
                call indxgc(il1,m4,ili,mi,mxi,lw)
                lw2=lw
                if(err.gt.0) return
 c     .        arg2=1:n4
                if(mi.eq.0) then
-c     .           arg4(1:m4,1:n4)=[] 
+c     .           arg4(1:m4,1:n4)=[]
                   istk(ilrs)=1
                   istk(ilrs+1)=0
                   istk(ilrs+2)=0
@@ -566,7 +568,7 @@ c     .           arg4(1:m4,1:n4)=[]
                   lstk(top+1)=sadr(ilrs+4)+1
                   goto 999
                else
-c     .           arg4(arg1,1:n4)=[] 
+c     .           arg4(arg1,1:n4)=[]
 c     .           replace arg2 by ":"
                   il2=iadr(lw2)
                   istk(il2)=1
@@ -586,7 +588,7 @@ c     .           call extraction
                   goto 133
                endif
             elseif(nj.eq.n4) then
-c              arg4(arg1,[])=[] --> arg4
+c     arg4(arg1,[])=[] --> arg4
                istk(ilrs)=10
                istk(ilrs+1)=m4
                istk(ilrs+2)=n4
@@ -596,11 +598,11 @@ c              arg4(arg1,[])=[] --> arg4
                lstk(top+1)=sadr(ilrs+5+mn4+volr)
                goto 999
             else
-c               lw=lw1
+c     lw=lw1
                call indxgc(il1,m4,ili,mi,mxi,lw)
                if(err.gt.0) return
                if(mi.eq.0) then
-c     .           arg4(1:m4,arg2)=[] 
+c     .           arg4(1:m4,arg2)=[]
                   call indxg(il1,m4,ili,mi,mxi,lw,1)
                   if(err.gt.0) return
                   l3r=l4r
@@ -611,7 +613,7 @@ c     .           arg4(1:m4,arg2)=[]
 c     .           call extraction
                   goto 133
                elseif(mi.eq.m4) then
-c                 arg4([],arg2)=[] --> arg4
+c     arg4([],arg2)=[] --> arg4
                   istk(ilrs)=10
                   istk(ilrs+1)=m4
                   istk(ilrs+2)=n4
@@ -710,14 +712,15 @@ c
 c     set result pointers
       idr=iadr(lw)
       lr=idr+mr*nr+1
-      lw=sadr(lr)
+      ilw=lr
+      lw=sadr(ilw+mr+nr)
       err=lw-lstk(bot)
       if(err.gt.0) then
          call error(17)
          return
       endif
       call mpinsp(istk(id4),m4,n4,istk(ili),mi,istk(ilj),mj,istk(id3)
-     $     ,m3,n3,istk(idr),mr,nr,err)
+     $     ,m3,n3,istk(idr),mr,nr,0,istk(ilw),err)
       if(err.gt.0) then
          call error(15)
          return
@@ -730,7 +733,7 @@ c     set result coefficients
          call error(17)
          return
       endif
-c     
+c
       call impins(istk(l4r),istk(id4),m4,n4,istk(l3r),istk(id3),m3,n3
      $     ,istk(lr),istk(idr),mr,nr)
 c     set output variable
@@ -743,9 +746,9 @@ c     set output variable
       lstk(top+1)=sadr(ilrs+5+mnr+volr)
       goto 999
 c
-c extraction
+c     extraction
 c
-  130 continue
+ 130  continue
       if(rhs.lt.2) then
          call error(227)
          return
@@ -772,7 +775,7 @@ c     get arg1
       m1=istk(il1+1)
       n1=istk(il1+2)
 
-      if(mn2.eq.0) then 
+      if(mn2.eq.0) then
 c     .  arg2=[]
          ilrs=iadr(lstk(top))
          istk(ilrs)=1
@@ -828,17 +831,17 @@ c     get memory for the result
 c     set result pointers
       if (m2 .gt. 1.or.m1.lt.0) then
          call impext(istk(l2r),istk(id2),m2,n2,istk(ili),mi,1,1,istk(lr)
-     $     ,istk(idr),0,err)
+     $        ,istk(idr),0,err)
       else
          call impext(istk(l2r),istk(id2),m2,n2,1,1,istk(ili),mi,istk(lr)
-     $     ,istk(idr),0,err)
+     $        ,istk(idr),0,err)
       endif
       if(err.gt.0) then
          call error(21)
          return
       endif
 
-c     set result coefficients 
+c     set result coefficients
       volr=istk(idr+mi)-1
       lw=sadr(lr+volr)
       err=lw-lstk(bot)
@@ -848,17 +851,17 @@ c     set result coefficients
       endif
       if (m2.eq.1.and.n2.eq.1.and.m1.gt.0) then
          call impext(istk(l2r),istk(id2),m2,n2,istk(ili),mi,1,1,istk(lr)
-     $     ,istk(idr),1,err)
+     $        ,istk(idr),1,err)
          m = m1
          n = min(n1,mi)
       elseif (m2 .gt. 1.or.m1.lt.0) then
          call impext(istk(l2r),istk(id2),m2,n2,istk(ili),mi,1,1,istk(lr)
-     $     ,istk(idr),1,err)
+     $        ,istk(idr),1,err)
          m = mi
          n = 1
       else
          call impext(istk(l2r),istk(id2),m2,n2,1,1,istk(ili),mi,istk(lr)
-     $     ,istk(idr),1,err)
+     $        ,istk(idr),1,err)
          n = mi
          m = 1
       endif
@@ -896,7 +899,7 @@ c     get arg1
       m1=istk(il1+1)
       l1=sadr(il1+4)
 c
-      if(mn3.eq.0) then 
+      if(mn3.eq.0) then
 c     .  arg3=[]
          ilrs=iadr(lstk(top))
          istk(ilrs)=1
@@ -927,8 +930,8 @@ c     check and convert indices variables
 c
 c     perform extraction
  133  mnr=mi*nj
-      if(mnr.eq.0) then 
-c     .  arg1=[] or arg2=[] 
+      if(mnr.eq.0) then
+c     .  arg1=[] or arg2=[]
          ilrs=iadr(lstk(top))
          istk(ilrs)=1
          istk(ilrs+1)=0
@@ -952,7 +955,7 @@ c     set result pointers
          call error(21)
          return
       endif
-c     set result coefficients 
+c     set result coefficients
       volr=istk(idr+mnr)-1
       lw=sadr(lr+volr)
       err=lw-lstk(bot)
@@ -1062,5 +1065,5 @@ c     des valeurs
 
 c
 
-  999 return
+ 999  return
       end

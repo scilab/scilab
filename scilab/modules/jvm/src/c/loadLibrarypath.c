@@ -16,7 +16,7 @@
 #include <stdio.h>
 #include "loadLibrarypath.h"
 #include "GetXmlFileEncoding.h"
-#include "../../fileio/includes/FileExist.h"
+#include "FileExist.h"
 #include "addToLibrarypath.h"
 #include "setgetSCIpath.h"
 #include "MALLOC.h"

@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- JVM NOT MANDATORY -->
 //===============================
 // unit tests completion
 //===============================
@@ -22,7 +23,7 @@ if s <> 0 then bugmes();quit;end
 //===============================
 variables1 = completion('%','variables');
 s = size(variables1,'*');
-if s < 23 then bugmes();quit;end
+if s < 22 then bugmes();quit;end
 //===============================
 macros1 = completion('%','macros');
 s = size(macros1,'*');

@@ -21,7 +21,7 @@ end
 
 select flag
 case 1 then
-  res=maxi(ones(1,m)*abs(S))
+  res=max(ones(1,m)*abs(S))
 case 2 then
   if m<n then
     S=S*S'
@@ -40,9 +40,9 @@ case 2 then
   end
   if m<>n then res=sqrt(res),end
 case %inf then
-  res=maxi(abs(S)*ones(n,1))
+  res=max(abs(S)*ones(n,1))
 case 'inf' then
-  res=maxi(abs(S)*ones(n,1))
+  res=max(abs(S)*ones(n,1))
 case 'fro' then
   [ij,v]=spget(S);
   res=sqrt(sum(abs(v.*v)))

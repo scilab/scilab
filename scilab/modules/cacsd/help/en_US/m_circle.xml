@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>m_circle</refname>
-    <refpurpose> plots the complex plane iso-gain contours of y/(1+y) </refpurpose>
+    <refpurpose> plots the complex plane iso-gain contours of y/(1+y) (obsolete) </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -52,10 +52,11 @@ m_circle(gain)</synopsis>
     <literal>[-12 -8 -6 -5 -4 -3 -2 -1.4 -1 -.5 0.25 0.5 0.7 1 1.4 2 2.3 3 4 5 6 8 12]</literal>
     </para>
     <para><literal>m_circle</literal> is used with <literal>nyquist</literal>.</para>
+   <para>This function is superseeded by the <link linkend="hallchart">hallchart</link> function.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"><![CDATA[
 //Example 1 :
 s=poly(0,'s')
 h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))

@@ -39,12 +39,3 @@ isbyref_
 btof_
 errgst_
 ;
-;elementary_functions
-;
-vfinite_
-;
-;elementary_functions_f
-;
-dset_
-unsfdcopy_
-iset_

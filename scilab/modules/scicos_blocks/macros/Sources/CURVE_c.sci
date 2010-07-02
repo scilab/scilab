@@ -173,11 +173,11 @@ select job
   gr_i=['rpar=arg1.model.rpar;n=model.ipar(1);order=model.ipar(2);';
 	'xx=rpar(1:n);yy=rpar(n+1:2*n);';
 	'[XX,YY,rpardummy]=Do_Spline(n,order,xx,yy)';
-	'xmx=maxi(XX);xmn=mini(XX);';
-	'ymx=maxi(YY);ymn=mini(YY);';
-	'dx=xmx-xmn;if dx==0 then dx=maxi(xmx/2,1);end';
+	'xmx=max(XX);xmn=min(XX);';
+	'ymx=max(YY);ymn=min(YY);';
+	'dx=xmx-xmn;if dx==0 then dx=max(xmx/2,1);end';
 	'xmn=xmn-dx/20;xmx=xmx+dx/20;';
-	'dy=ymx-ymn;if dy==0 then dy=maxi(ymx/2,1);end;';
+	'dy=ymx-ymn;if dy==0 then dy=max(ymx/2,1);end;';
 	'ymn=ymn-dy/20;ymx=ymx+dy/20;';
 	'xx2=orig(1)+sz(1)*((XX-xmn)/(xmx-xmn));';
 	'yy2=orig(2)+sz(2)*((YY-ymn)/(ymx-ymn));';
@@ -269,14 +269,14 @@ min5=[];max5=[];seed5=[];sample5=[];np5=[];
 random_u_exprs=list(string(min5), string(max5), string(seed5),string(sample5),string(np5))
 
 // bornes initiales du graphique
-xmx = maxi(xy(:,1));xmn=mini(xy(:,1)),xmn=max(xmn,0);
-ymx = maxi(xy(:,2));ymn=mini(xy(:,2));
+xmx = max(xy(:,1));xmn=min(xy(:,1)),xmn=max(xmn,0);
+ymx = max(xy(:,2));ymn=min(xy(:,2));
 dx = xmx-xmn; dy = ymx-ymn
 
-if dx==0 then dx=maxi(xmx/2,1),end;
+if dx==0 then dx=max(xmx/2,1),end;
 xmx = xmx+dx/50;
 
-if dy==0 then dy=maxi(ymx/2,1),end;
+if dy==0 then dy=max(ymx/2,1),end;
 ymn = ymn-dy/50; ymx = ymx+dy/50;
 
 rect = [xmn,ymn;xmx,ymx];
@@ -594,7 +594,7 @@ while %t then //=================================================
     if N<>0 then
       xt=xy(:,1);yt=xy(:,2);
       dist=((xt-ones(N,1)*xc))^2+((yt-ones(N,1)*yc))^2
-      [dca,k]=mini(dist);
+      [dca,k]=min(dist);
       rectx=a.data_bounds;
       ex=abs(rectx(2,1)-rectx(1,1))/80;
       ey=abs(rectx(2,2)-rectx(1,2))/80;
@@ -678,7 +678,7 @@ function [orpar,oipar] = drawSplin(a,xy,iipar,irpar)
     X=[X;X($)];
     Y=[Y;Y(1)];
   else
-    xmx=maxi(points.data(:,1));  xmn=mini(points.data(:,1));
+    xmx=max(points.data(:,1));  xmn=min(points.data(:,1));
     XMX=max(0,xmx); XMN=max(0,xmn);
     xmx1=max(a.x_ticks.locations)
     XMX=max(XMX,xmx1);    
@@ -750,17 +750,17 @@ function rectx = findrect(a)
 
   ymx1=max(splines.data(:,2));  ymn1=min(splines.data(:,2))
   
-  xmx=maxi(points.data(:,1));xmn=mini(points.data(:,1));
-  ymx=maxi(points.data(:,2));ymn=mini(points.data(:,2));
+  xmx=max(points.data(:,1));xmn=min(points.data(:,1));
+  ymx=max(points.data(:,2));ymn=min(points.data(:,2));
 
   
   XMX=max(0,xmx);            XMN=max(0,xmn);
   YMX=max(ymx,ymx1);  YMN=min(ymn,ymn1);
   
   dx=XMX-XMN;dy=YMX-YMN
-  if dx==0 then dx=maxi(XMX/2,1),end;
+  if dx==0 then dx=max(XMX/2,1),end;
   XMX=XMX+dx/50
-  if dy==0 then dy=maxi(YMX/2,1),end;
+  if dy==0 then dy=max(YMX/2,1),end;
   YMN=YMN-dy/50;YMX=YMX+dy/50;  
   rectx=[XMN,YMN;XMX,YMX];
 endfunction

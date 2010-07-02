@@ -237,7 +237,7 @@ function this = neldermead_variable ( this )
       this = neldermead_log (this,sprintf("DeltaFv : %e",deltafv));
       this = neldermead_log (this,sprintf("Center : %s",_strvec(currentcenter)));
       this = neldermead_log (this,sprintf("Size : %e",ssize));
-      str = optimsimplex_tostring ( simplex )
+      str = string ( simplex )
       for i = 1:n+1
         this = neldermead_log (this,str(i));
       end
@@ -483,7 +483,7 @@ function this = neldermead_fixed (this)
       this = neldermead_log (this,sprintf("DeltaFv : %e",deltafv));
       this = neldermead_log (this,sprintf("Center : %s",_strvec(currentcenter)));
       this = neldermead_log (this,sprintf("Size : %e",ssize));
-      str = optimsimplex_tostring ( simplex )
+      str = string ( simplex )
       for i = 1:n+1
         this = neldermead_log (this,str(i));
       end
@@ -1245,7 +1245,7 @@ function this = neldermead_box ( this )
       this = neldermead_log (this,sprintf("DeltaFv : %e",deltafv));
       this = neldermead_log (this,sprintf("Center : [%s]",_strvec(currentcenter)));
       this = neldermead_log (this,sprintf("Size : %e",ssize));
-      str = optimsimplex_tostring ( simplex )
+      str = string ( simplex )
       for i = 1:nbve
         this = neldermead_log (this,str(i));
       end

@@ -48,6 +48,7 @@ public class GL2PSWrappingJNI {
   public final static native int sci_gl2psEnable(int jarg1);
   public final static native int sci_gl2psDisable(int jarg1);
   public final static native int sci_gl2psPointSize(float jarg1);
+  public final static native int sci_gl2psLineStipple(int jarg1, int jarg2);
   public final static native int sci_gl2psLineWidth(float jarg1);
   public final static native int sci_gl2psBlendFunc(int jarg1, int jarg2);
   public final static native int sci_gl2psDrawImageMap(int jarg1, int jarg2, float[] jarg3, String jarg4);

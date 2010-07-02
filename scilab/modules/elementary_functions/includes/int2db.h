@@ -14,6 +14,7 @@
 #define __INT2DB_H__
 
 #include "machine.h" /* C2F */
+#include "dynlib_elementary_functions.h"
 
 /**
 * translate a int vector to double precision vector
@@ -23,7 +24,7 @@
 * @param dy double precision vector
 * @param incy increment order
 */
-int C2F(int2db)(int *n, int *dx, int *incx, double *dy, int *incy);
+ELEMENTARY_FUNCTIONS_IMPEXP int C2F(int2db)(int *n, int *dx, int *incx, double *dy, int *incy);
 
 #endif /* __INT2DB_H__ */
 /*--------------------------------------------------------------------------*/

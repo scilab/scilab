@@ -75,7 +75,7 @@ while %t
       Kpid,1];Winv=inv(W);
 
   disp(spec(Winv(2)),'closed loop eigenvalues');//Check internal stability
-  if maxi(real(spec(Winv(2)))) > 0 then 
+  if max(real(spec(Winv(2)))) > 0 then 
     messagebox('You loose: closed-loop is UNSTABLE!!!',"modal");
   else
     messagebox('Congratulations: closed-loop is STABLE !!!',"modal");

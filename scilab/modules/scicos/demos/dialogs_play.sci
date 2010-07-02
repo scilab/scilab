@@ -100,7 +100,7 @@ endfunction
 function [btn,xc,yc,win,Cmenu]=xclick();
 // Copyright INRIA
   global %PT
-  xselect()
+  show_window()
   str=readline()
 //  disp(str)
   rep=evstr('list('+str+')')

@@ -1,24 +1,32 @@
-;##############################################################################################################
-; Script d'installation Inno Setup (5.2.1) pour scilab
-; Allan CORNET
-; Version TRUNK
-; Copyright INRIA 2007
-;##############################################################################################################
+;
+; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+; Copyright (C) INRIA - Allan CORNET
+; Copyright (C) DIGITEO - 2010 - Allan CORNET
+;
+; This file must be used under the terms of the CeCILL.
+; This source file is licensed as described in the file COPYING, which
+; you should have received as part of this distribution.  The terms
+; are also available at
+; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+;
+;--------------------------------------------------------------------------------------------------------------
+; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
+;
 ;--------------------------------------------------------------------------------------------------------------
 ; io module
 ;--------------------------------------------------------------------------------------------------------------
 ;
 #define IO "io"
 ;
-Source: bin\io.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\io_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#IO}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#IO}_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#IO}\VERSION.xml; DestDir: {app}\modules\{#IO}; Components: {#COMPN_SCILAB}
 Source: modules\{#IO}\readme.txt; DestDir: {app}\modules\{#IO}; Components: {#COMPN_SCILAB}
 Source: modules\{#IO}\license.txt; DestDir: {app}\modules\{#IO}; Components: {#COMPN_SCILAB}
 Source: modules\{#IO}\changelog.txt; DestDir: {app}\modules\{#IO}; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#IO}\sci_gateway\io_gateway.xml; DestDir: {app}\modules\{#IO}\sci_gateway; Components: {#COMPN_SCILAB}
+Source: modules\{#IO}\sci_gateway\{#IO}_gateway.xml; DestDir: {app}\modules\{#IO}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#IO}\etc\{#IO}.quit; DestDir: {app}\modules\{#IO}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#IO}\etc\{#IO}.start; DestDir: {app}\modules\{#IO}\etc; Components: {#COMPN_SCILAB}

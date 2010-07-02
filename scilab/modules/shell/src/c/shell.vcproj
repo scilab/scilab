@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -36,13 +36,16 @@
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
 				Name="VCMIDLTool"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions=""
 				Optimization="0"
-				AdditionalIncludeDirectories=".;windows;../../includes;../../../../libs/MALLOC/includes;../../../localization/includes;../../../../libs/intl;../../../console/includes/;../../../windows_tools/includes;../../../core/includes;../../../completion/includes;../../../output_stream/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../history_manager/includes/;../../../action_binding/includes;../../../fileio/includes;../../../api_scilab/includes"
+				AdditionalIncludeDirectories=".;windows;../../includes;../../../../libs/MALLOC/includes;../../../localization/includes;../../../../libs/intl;../../../console/includes/;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../core/includes;../../../completion/includes;../../../output_stream/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../history_manager/includes/;../../../action_binding/includes;../../../fileio/includes;../../../api_scilab/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCISHELL_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -116,13 +119,16 @@
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;windows;../../includes;../../../../libs/MALLOC/includes;../../../localization/includes;../../../../libs/intl;../../../console/includes/;../../../windows_tools/includes;../../../core/includes;../../../completion/includes;../../../output_stream/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../history_manager/includes/;../../../action_binding/includes;../../../fileio/includes;../../../api_scilab/includes"
+				AdditionalIncludeDirectories=".;windows;../../includes;../../../../libs/MALLOC/includes;../../../localization/includes;../../../../libs/intl;../../../console/includes/;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../core/includes;../../../completion/includes;../../../output_stream/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../history_manager/includes/;../../../action_binding/includes;../../../fileio/includes;../../../api_scilab/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCISHELL_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -197,6 +203,9 @@
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
 				Name="VCMIDLTool"
 			/>
 			<Tool
@@ -205,7 +214,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;windows;../../includes;../../../../libs/MALLOC/includes;../../../localization/includes;../../../../libs/intl;../../../console/includes/;../../../windows_tools/includes;../../../core/includes;../../../completion/includes;../../../output_stream/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../history_manager/includes/;../../../action_binding/includes;../../../fileio/includes;../../../api_scilab/includes"
+				AdditionalIncludeDirectories=".;windows;../../includes;../../../../libs/MALLOC/includes;../../../localization/includes;../../../../libs/intl;../../../console/includes/;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../core/includes;../../../completion/includes;../../../output_stream/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../history_manager/includes/;../../../action_binding/includes;../../../fileio/includes;../../../api_scilab/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCISHELL_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -283,6 +292,9 @@
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
 			/>
@@ -291,7 +303,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;windows;../../includes;../../../../libs/MALLOC/includes;../../../localization/includes;../../../../libs/intl;../../../console/includes/;../../../windows_tools/includes;../../../core/includes;../../../completion/includes;../../../output_stream/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../history_manager/includes/;../../../action_binding/includes;../../../fileio/includes;../../../api_scilab/includes"
+				AdditionalIncludeDirectories=".;windows;../../includes;../../../../libs/MALLOC/includes;../../../localization/includes;../../../../libs/intl;../../../console/includes/;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../core/includes;../../../completion/includes;../../../output_stream/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../history_manager/includes/;../../../action_binding/includes;../../../fileio/includes;../../../api_scilab/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCISHELL_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"

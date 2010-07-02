@@ -15,3 +15,5 @@ realmain
 InitializeLaunchScilabSignal
 with_module
 StoreCommand
+getTMPDIRW
+getTMPDIR

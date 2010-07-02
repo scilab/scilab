@@ -90,9 +90,9 @@ void C2F(siflibs)(int* id, int* k_ptr, int* istr, int* lbibn_ptr, int* nbibn_ptr
             il += nbibn+2;
             ilp = il+1;
 #ifdef _MSC_VER
-            ip = max(1, id_char(id)-9);
+            ip = min(nclas,max(1, id_char(id)-9));
 #else
-            ip = std::max(1, id_char(id)-9);
+            ip =  std::min(nclas,std::max(1, id_char(id)-9));
 #endif
             if (ip <= nclas)
             {

@@ -155,7 +155,7 @@ function gh_blk = drawobj(o, gh_window)
 
         xpoly(o.xx, o.yy,'lines')  ; //** draw the polyline "Link"
         gh_e = gce()               ;
-         gh_e.thickness = maxi( o.thick(1) , 1) * maxi(o.thick(2), 1) ; //** thickness
+         gh_e.thickness = max( o.thick(1) , 1) * max(o.thick(2), 1) ; //** thickness
          gh_e.foreground = o.ct(1)  ; //** link color
          gh_e.mark_size_unit = "point" ;
          gh_e.mark_size = mark_size    ; // size of the square selection boxes

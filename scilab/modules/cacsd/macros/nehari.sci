@@ -52,12 +52,12 @@ function [nk]=nophkel(sl,tol)
   if rhs==1 then tol=1000*%eps,end,
   if sl==0 then nk=0,return,end,
   lf=spec(sl(2)),
-  if mini(abs(lf))<=tol then
+  if min(abs(lf))<=tol then
     error(msprintf(gettext("%s: Wrong value for input argument #%d: Pure imaginary poles unexpected.\n"),"nehari",1))
   end,
-  if maxi(real(lf))<tol then nk=0,return,end,
+  if max(real(lf))<tol then nk=0,return,end,
   sl=dtsi(sl);
   lc=ctr_gram(sl),lo=obs_gram(sl),
-  vp=spec(lc*lo),vmax=maxi(real(vp)),
+  vp=spec(lc*lo),vmax=max(real(vp)),
   nk=sqrt(vmax)
 endfunction

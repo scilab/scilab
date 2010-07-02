@@ -14,21 +14,18 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-04-13 09:16+0100\n"
+"Revision-Date: 2010-06-29 10:00+0100\n"
 
 # File: src/c/hmops.c, line: 651
 msgid " An hypermatrix extraction must have at least 2 arguments. "
 msgstr ""
 #
 # File: src/c/hmops.c, line: 825
-msgid " An hypermatrix insertion must have at least 3 arguments "
-msgstr ""
-#
-# File: src/c/hmops.c, line: 832
-msgid " Argument is not an hypermatrix "
+msgid " An hypermatrix insertion must have at least 3 arguments. "
 msgstr ""
 #
 # File: src/c/hmops.c, line: 657
+# File: src/c/hmops.c, line: 832
 msgid " Argument is not an hypermatrix. "
 msgstr ""
 #
@@ -82,6 +79,6 @@ msgstr ""
 msgid "Bad (%d th) index in hypermatrix extraction. "
 msgstr ""
 #
-# File: src/c/stcreate.c, line: 43
+# File: src/c/stcreate.c, line: 42
 msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
 msgstr ""

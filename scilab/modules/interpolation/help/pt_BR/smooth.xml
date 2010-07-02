@@ -60,7 +60,7 @@
     <literal>(ptd(1,i),ptd(2,i))</literal>. Os componentes
     <literal>ptd(1,:)</literal> devem estar em ordem crescente. O valor padrão
     para o para step é
-    <literal>abs(maxi(ptd(1,:))-mini(ptd(1,:)))/100</literal></para>
+    <literal>abs(max(ptd(1,:))-min(ptd(1,:)))/100</literal></para>
   </refsection>
 
   <refsection>

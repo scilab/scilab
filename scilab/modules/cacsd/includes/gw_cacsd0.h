@@ -15,15 +15,14 @@
 #ifndef __GW_CACSD0__
 #define __GW_CACSD0__
 /*--------------------------------------------------------------------------*/
-#include "machine.h"
-#include "api_scilab.h"
+#include "dynlib_cacsd.h"
 /*--------------------------------------------------------------------------*/
-int gw_cacsd0(void);
+CACSD_IMPEXP int gw_cacsd0(void);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_gschur)(char *fname,unsigned long fname_len);
-int C2F(sci_gspec)(char *fname,unsigned long fname_len);
-int C2F(sci_ereduc)(char *fname,unsigned long fname_len);
-int C2F(sci_fstair)(char *fname,unsigned long fname_len);
+int sci_gschur(char *fname,unsigned long fname_len);
+int sci_gspec(char *fname,unsigned long fname_len);
+int sci_ereduc(char *fname,unsigned long fname_len);
+int sci_fstair(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_CACSD0__ */
 /*--------------------------------------------------------------------------*/

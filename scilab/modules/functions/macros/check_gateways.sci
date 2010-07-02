@@ -16,7 +16,7 @@ function ret=check_gateways(varargin)
   for i=1:1:szmodules(1)
     file_to_check=SCI+'/modules/'+modules(i)+'/sci_gateway/'+modules(i)+'_gateway.xml';
     printf(gettext("Checking: %s.\n"),modules(i))
-    if (fileinfo(file_to_check)<>[]) then
+    if isfile(file_to_check) then
       try
         if getos() == 'Windows' then
           stat = unix_w(SCI+"\modules\helptools\bin\xmllint\xmllint --noout --valid "+file_to_check);

@@ -107,7 +107,7 @@ int sci_import_from_hdf5(char *fname,unsigned long fname_len)
 
     if(iFile < 0)
     {
-        Scierror(999, "Unable to open file: %s", pstVarName);
+        Scierror(999, _("%s: Unable to open file: %s\n"), fname, pstVarName);
         return 0;
     }
 
@@ -226,12 +226,12 @@ static bool import_data(int _iDatasetId, int _iItemPos, int* _piAddress, char* _
 
 static bool import_double(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
 {
-    int iRet						= 0;
-    double *pdblReal		= NULL;
-    double *pdblImg			= NULL;
-    int	iRows						= 0;
-    int iCols						= 0;
-    int iComplex				= 0;
+    int iRet            = 0;
+    double *pdblReal    = NULL;
+    double *pdblImg     = NULL;
+    int	iRows           = 0;
+    int iCols           = 0;
+    int iComplex        = 0;
     SciErr sciErr;
 
 #ifdef TIME_DEBUG
@@ -240,8 +240,8 @@ static bool import_double(int _iDatasetId, int _iItemPos, int* _piAddress, char*
     QueryPerformanceCounter(&iStart);
 #endif
 
-    iRet				= getDatasetDims(_iDatasetId, &iRows, &iCols);
-    iComplex		= isComplexData(_iDatasetId);
+    iRet        = getDatasetDims(_iDatasetId, &iRows, &iCols);
+    iComplex    = isComplexData(_iDatasetId);
     if(iRet)
     {
         return false;
@@ -253,13 +253,23 @@ static bool import_double(int _iDatasetId, int _iItemPos, int* _piAddress, char*
         {
             pdblReal	= (double *) MALLOC(iRows * iCols * sizeof(double));
             pdblImg		= (double *) MALLOC(iRows * iCols * sizeof(double));
-            iRet			= readDoubleComplexMatrix(_iDatasetId, iRows, iCols, pdblReal, pdblImg);
+            iRet        = readDoubleComplexMatrix(_iDatasetId, iRows, iCols, pdblReal, pdblImg);
         }
         else
         {
             pdblReal	= (double *) MALLOC(iRows * iCols * sizeof(double));
-            iRet			= readDoubleMatrix(_iDatasetId, iRows, iCols, pdblReal);
+            iRet        = readDoubleMatrix(_iDatasetId, iRows, iCols, pdblReal);
         }
+
+        if(iRet)
+        {
+            return false;
+        }
+    }
+    else
+    {
+        /*bug 7224 : to close dataset*/
+        iRet    = readEmptyMatrix(_iDatasetId);
         if(iRet)
         {
             return false;

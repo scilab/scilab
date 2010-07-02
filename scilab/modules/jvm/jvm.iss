@@ -1,7 +1,7 @@
-;##############################################################################################################
-; Script d'installation Inno Setup (5.2.1) pour scilab
+;
 ; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 ; Copyright (C) INRIA - Allan CORNET
+; Copyright (C) DIGITEO - 2010 - Allan CORNET
 ;
 ; This file must be used under the terms of the CeCILL.
 ; This source file is licensed as described in the file COPYING, which
@@ -9,30 +9,32 @@
 ; are also available at
 ; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 ;
-;##############################################################################################################
+;--------------------------------------------------------------------------------------------------------------
+; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
+;
 ;--------------------------------------------------------------------------------------------------------------
 ; jvm module
 ;--------------------------------------------------------------------------------------------------------------
 ;
 #DEFINE JVM "jvm"
 ;
-Source: bin\libjvm.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\libjvm.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\lib{#JVM}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\lib{#JVM}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: etc\classpath.xml; DestDir: {app}\etc; Components: {#COMPN_SCILAB}
 Source: etc\librarypath.xml; DestDir: {app}\etc; Components: {#COMPN_SCILAB}
-Source: etc\jvm_options.xml; DestDir: {app}\etc; Components: {#COMPN_SCILAB}
+Source: etc\{#JVM}_options.xml; DestDir: {app}\etc; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#JVM}\xml\*.dtd; DestDir: {app}\modules\{#JVM}\xml; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#JVM}\jar\org.scilab.modules.jvm.jar;DestDir: {app}\modules\{#JVM}\jar; Components: {#COMPN_SCILAB}
+Source: modules\{#JVM}\jar\org.scilab.modules.{#JVM}.jar;DestDir: {app}\modules\{#JVM}\jar; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#JVM}\license.txt; DestDir: {app}\modules\{#JVM}; Components: {#COMPN_SCILAB}
 Source: modules\{#JVM}\readme.txt; DestDir: {app}\modules\{#JVM}; Components: {#COMPN_SCILAB}
 Source: modules\{#JVM}\VERSION.xml; DestDir: {app}\modules\{#JVM}; Components: {#COMPN_SCILAB}
 Source: modules\{#JVM}\changelog.txt; DestDir: {app}\modules\{#JVM}; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#JVM}\sci_gateway\jvm_gateway.xml; DestDir: {app}\modules\{#JVM}\sci_gateway; Components: {#COMPN_SCILAB}
+Source: modules\{#JVM}\sci_gateway\{#JVM}_gateway.xml; DestDir: {app}\modules\{#JVM}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#JVM}\includes\*.h; DestDir: {app}\modules\{#JVM}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#JVM}\includes\getScilabJavaVM.h; DestDir: {app}\modules\{#JVM}\includes; Components: {#COMPN_SCILAB}

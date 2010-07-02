@@ -25,7 +25,7 @@ s=s-sum(s)/prod(size(s)); s=s/max(abs(s));
 savewave(TMPDIR+"/test.wav",s);
 // Load it back.
 s1=loadwave(TMPDIR+"/test.wav");
-if maxi(abs(s1-s)) < 1.e-4;end 
+if max(abs(s1-s)) < 1.e-4;end 
 // Now we can make a complete picture of the sound.
 clf(my_handle,"reset");
 mapsound(s);

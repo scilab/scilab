@@ -30,10 +30,12 @@
 #define FILE_OPEN_STR "open"
 #define FILE_OLD_STR "old"
 /*--------------------------------------------------------------------------*/
+extern int C2F(intfile)(); /* fortran subroutine */
+/*--------------------------------------------------------------------------*/
 static int sci_file_no_rhs(char *fname);
 static int sci_file_one_rhs(char *fname);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_file)(char *fname,unsigned long fname_len)
+int sci_file(char *fname,unsigned long fname_len)
 {
 	if (Rhs == 0)
 	{

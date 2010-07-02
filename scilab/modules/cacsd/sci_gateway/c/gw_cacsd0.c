@@ -2,6 +2,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
+ * Copyright (C) DIGITEO - 2010 - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -19,15 +20,15 @@
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] =
 {
-	{C2F(sci_gschur),"gschur"},
-	{C2F(sci_gspec),"gspec"},
-	{C2F(sci_ereduc),"ereduc"},
-	{C2F(sci_fstair),"fstair"}
+    {sci_gschur, "gschur"},
+    {sci_gspec, "gspec"},
+    {sci_ereduc, "ereduc"},
+    {sci_fstair, "fstair"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_cacsd0(void)
 {  
-	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
-	return 0;
+    callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

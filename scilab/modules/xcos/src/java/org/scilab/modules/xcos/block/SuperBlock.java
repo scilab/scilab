@@ -14,8 +14,10 @@ package org.scilab.modules.xcos.block;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.logging.LogFactory;
+import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.menu.Menu;
@@ -23,6 +25,7 @@ import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.types.scilabTypes.ScilabDouble;
 import org.scilab.modules.types.scilabTypes.ScilabList;
 import org.scilab.modules.types.scilabTypes.ScilabMList;
+import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.actions.CodeGenerationAction;
 import org.scilab.modules.xcos.block.actions.RegionToSuperblockAction;
@@ -38,7 +41,6 @@ import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
 import org.scilab.modules.xcos.block.io.ContextUpdate.IOBlocks;
 import org.scilab.modules.xcos.graph.PaletteDiagram;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
-import org.scilab.modules.xcos.io.scicos.BasicBlockInfo;
 import org.scilab.modules.xcos.io.scicos.DiagramElement;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
 import org.scilab.modules.xcos.port.BasicPort;
@@ -46,6 +48,7 @@ import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
+import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxEventObject;
 
 /**
@@ -190,24 +193,27 @@ public final class SuperBlock extends BasicBlock {
 		 */
 		if (getChild() == null) {
 			createChildDiagram();
+		} else {
+			// reassociate (useful on clone and load operation)
+			getChild().setContainer(this);
+			getChild().setComponent(new ScilabComponent(getChild()));
+			
+			getChild().initComponent();
+			getChild().installStylesheet();
+			
+			getChild().installListeners();
+			getChild().installSuperBlockListeners();
 		}
 		
 		/*
 		 * Construct the view or set it visible.
 		 */
-		if (!getChild().isOpened()) {
+		if (!getChild().isVisible()) {
 			updateAllBlocksColor();
 			getChild().setModifiedNonRecursively(false);
-			XcosTab.createTabFromDiagram(getChild());
-			XcosTab.showTabFromDiagram(getChild());
-			getChild().setOpened(true);
-			getChild().setVisible(true);
 			
-			getChild().installListeners();
-			getChild().installSuperBlockListeners();
-			
-		} else {
-			getChild().setVisible(true);
+			new XcosTab(getChild()).setVisible(true);
+			getChild().getView().invalidate();
 		}
 		
 		/*
@@ -215,12 +221,7 @@ public final class SuperBlock extends BasicBlock {
 		 */
 		getChild().updateCellsContext();
 		
-		/*
-		 * Register the diagram container
-		 */
-		getChild().setContainer(this);
-		
-		XcosTab.getAllDiagrams().add(getChild());
+		Xcos.getInstance().getDiagrams().add(getChild());
 		
 		setLocked(false);
 	}
@@ -244,14 +245,23 @@ public final class SuperBlock extends BasicBlock {
 		/*
 		 * Hide the current child window
 		 */
-		getChild().setVisible(false);
-		setLocked(false);
-		XcosTab.getAllDiagrams().remove(getChild());
+		if (getChild().getParentTab() != null) {
+			getChild().getParentTab().close();
+			getChild().setParentTab(null);
+			
+			getChild().setComponent(null);
+		}
+		
+		/* Remove only when the instance cannot be modified anymore */
+		if (getChild().canClose()) {
+			Xcos.getInstance().close(getChild(), false);
+		}
 	}
 
 	/**
 	 * @param graph parent diagram
 	 */
+	@Override
 	public void openContextMenu(ScilabGraph graph) {
 		ContextMenu menu = null;
 
@@ -490,40 +500,33 @@ public final class SuperBlock extends BasicBlock {
 			return;
 		}
 
+		final Map<IOBlocks, List<mxICell>> blocksMap = IOBlocks.getAllBlocks(this);
+		final Map<IOBlocks, List<mxICell>> portsMap = IOBlocks.getAllPorts(this);
 		for (IOBlocks block : IOBlocks.values()) {
-			updateExportedTypedPort(block);
-		}
-		getParentDiagram().fireEvent(new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED, XcosConstants.EVENT_BLOCK_UPDATED, this));
-	}
-
-	/**
-	 * Update the superblock IO ports according to the values of its child.
-	 * @param block The blocks to work on
-	 */
-	private void updateExportedTypedPort(IOBlocks block) {
-		int blockCount = getBlocksConsecutiveUniqueValueCount(getAllTypedBlock(block.getReferencedClass()));
-		List< ? extends BasicPort> ports = BasicBlockInfo
-				.getAllTypedPorts(this, false, block.getReferencedPortClass());
-
-		int portCount = ports.size();
-
-		try {
-			while (blockCount > portCount) { // add if required
-				BasicPort port;
+			final int blockCount = blocksMap.get(block).size();
+			int portCount = portsMap.get(block).size();
+			
+			// add ports if required
+			while (blockCount > portCount) {
+				try {
+					BasicPort port;
 					port = block.getReferencedPortClass().newInstance();
 					addPort(port);
-					portCount++;
+				} catch (InstantiationException e) {
+					LogFactory.getLog(SuperBlock.class).error(e);
+				} catch (IllegalAccessException e) {
+					LogFactory.getLog(SuperBlock.class).error(e);
+				}
+				portCount++;
 			}
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+			
+			// remove ports if required
+			while (portCount > blockCount) {
+				removePort((BasicPort) portsMap.get(block).get(portCount - 1));
+				portCount--;
+			}
 		}
-
-		while (portCount > blockCount) { // remove if required
-			removePort(ports.get(portCount - 1));
-			portCount--;
-		}
+		getParentDiagram().fireEvent(new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED, XcosConstants.EVENT_BLOCK_UPDATED, this));
 	}
 
 	/**

@@ -13,9 +13,12 @@
 #ifndef __HMOPS_H__
 #define __HMOPS_H__
 
+#include "dynlib_data_structures.h"
 
-int C2F(ishm)(void);
-int C2F(intehm)(void);
-int C2F(intihm)(void);
+DATA_STRUCTURES_IMPEXP int C2F(ishm)(void);
+
+DATA_STRUCTURES_IMPEXP int C2F(intehm)(void);
+
+DATA_STRUCTURES_IMPEXP int C2F(intihm)(void);
 
 #endif /* __HMOPS_H__ */

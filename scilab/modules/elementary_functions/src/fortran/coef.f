@@ -36,6 +36,9 @@ c internal variables
       integer m, i, ir, id, ie, j, j1, n1, im1, ip1, k
       double precision a, b1, b2, b3, zero, one, two, cnst, half
       dimension a(41), m(21)
+cDEC$ IF DEFINED (FORDLL)
+cDEC$ ATTRIBUTES DLLIMPORT:: /dcoeff/
+cDEC$ ENDIF
       common /dcoeff/ b, n
       data zero, one, two, cnst, half /0.0d+0,1.0d+0,2.0d+0,
      * 0.556930d+0,0.50d+0/

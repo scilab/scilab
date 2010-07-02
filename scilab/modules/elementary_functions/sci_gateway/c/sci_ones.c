@@ -14,7 +14,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intones)(int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_ones)(char *fname,unsigned long fname_len)
+int sci_ones(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	C2F(intones)(id);

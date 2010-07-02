@@ -86,7 +86,7 @@ c
       if(p.eq.0) goto 203
       if(rstk(p).eq.808.or.rstk(p).eq.618) then
          call cvstr(8,name,'errcatch',0)
-         call namstr(ids(1,pt),name,8,0)
+         call namstr(ids(1,pt+1),name,8,0)
          call error(72)
          return
       endif

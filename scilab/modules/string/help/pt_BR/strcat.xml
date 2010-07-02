@@ -32,7 +32,7 @@
     <title>Seqüência de Chamamento</title>
 
     <synopsis>txt=strcat(vector_of_strings [,string_added])
-txt=strcat(vector_of_strings [,string_added],["flag"])</synopsis>
+txt=strcat(vector_of_strings [,string_added, ["flag"]])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -106,6 +106,12 @@ strcat('A')
 strcat('A','B')
 strcat(['A','B'])
 strcat(['A','B'],'')
+
+m =["a" "b" ; "c" "d"];
+strcat(m, "r")
+strcat(m, "", "r")
+strcat(m, "", "c")
+
  ]]></programlisting>
   </refsection>
 

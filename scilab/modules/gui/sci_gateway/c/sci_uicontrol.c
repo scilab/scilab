@@ -38,7 +38,7 @@
 #include "SetUicontrolPosition.h"
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
-#define NBPROPERTIES 26
+#define NBPROPERTIES 27
 #define MAXPROPERTYNAMELENGTH 20
 /*--------------------------------------------------------------------------*/
 int sci_uicontrol(char *fname, unsigned long fname_len)
@@ -64,7 +64,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
 
   /* @TODO remove this crappy initialization */
   /* DO NOT CHANGE ORDER !! */
-  char propertiesNames[NBPROPERTIES][MAXPROPERTYNAMELENGTH] = {"style", "parent", "backgroundcolor", "foregroundcolor","string", "units", "fontweight", "min", "max", "tag", "position", "relief", "horizontalalignment", "verticalalignment", "sliderstep", "fontname", "callback", "fontangle", "fontunits", "fontsize", "listboxtop", "user_data", "value", "userdata", "visible", "enable"};
+  char propertiesNames[NBPROPERTIES][MAXPROPERTYNAMELENGTH] = {"style", "parent", "backgroundcolor", "foregroundcolor","string", "units", "fontweight", "min", "max", "tag", "position", "relief", "horizontalalignment", "verticalalignment", "sliderstep", "fontname", "callback", "fontangle", "fontunits", "fontsize", "listboxtop", "user_data", "value", "userdata", "visible", "enable", "callback_type"};
   int *propertiesValuesIndices = NULL;
   int lw = 0;
   char *propertyPart = NULL;
@@ -263,6 +263,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                         {
                           propertiesValuesIndices[k] = inputIndex+1; /* Position of value for property */
                           found = 1;
+                          break;
                         }
                     }
                 }

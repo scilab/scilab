@@ -816,114 +816,114 @@ a=sparse([1 2;-3 4;5 -6]+0*%i);
 
 //maxi
 a=[1 2;-3 4;5 -6];
-if or(maxi(a)<>5) then pause,end
-if or(maxi(a+0)<>5) then pause,end
-if or(maxi(a,'r')<>[5 4]) then pause,end
-if or(maxi(a+0,'r')<>[5 4]) then pause,end
+if or(max(a)<>5) then pause,end
+if or(max(a+0)<>5) then pause,end
+if or(max(a,'r')<>[5 4]) then pause,end
+if or(max(a+0,'r')<>[5 4]) then pause,end
 n='r';
-if or(maxi(a,n)<>[5 4]) then pause,end
-if or(maxi(a+0,n)<>[5 4]) then pause,end
+if or(max(a,n)<>[5 4]) then pause,end
+if or(max(a+0,n)<>[5 4]) then pause,end
 
-if or(maxi(a,'c')<>[2;4;5]) then pause,end
-if or(maxi(a+0,'c')<>[2;4;5]) then pause,end
+if or(max(a,'c')<>[2;4;5]) then pause,end
+if or(max(a+0,'c')<>[2;4;5]) then pause,end
 n='c';
-if or(maxi(a,n)<>[2;4;5]) then pause,end
-if or(maxi(a+0,n)<>[2;4;5]) then pause,end
+if or(max(a,n)<>[2;4;5]) then pause,end
+if or(max(a+0,n)<>[2;4;5]) then pause,end
 
 //a=[1 2;-3 4;5 -6]+0*%i;
-//if maxi(a)<>[1 -30;-3 -120;-15 720]+0*%i then pause,end
-//if maxi(a+0)<>[1 -30;-3 -120;-15 720]+0*%i then pause,end
-//if or(maxi(a,'r')<>[5 4]+0*%i) then pause,end
-//if or(maxi(a+0,'r')<>[5 4]+0*%i) then pause,end
+//if max(a)<>[1 -30;-3 -120;-15 720]+0*%i then pause,end
+//if max(a+0)<>[1 -30;-3 -120;-15 720]+0*%i then pause,end
+//if or(max(a,'r')<>[5 4]+0*%i) then pause,end
+//if or(max(a+0,'r')<>[5 4]+0*%i) then pause,end
 //n='r';
-//if or(maxi(a,n)<>[5 4]+0*%i) then pause,end
-//if or(maxi(a+0,n)<>[5 4]+0*%i) then pause,end
+//if or(max(a,n)<>[5 4]+0*%i) then pause,end
+//if or(max(a+0,n)<>[5 4]+0*%i) then pause,end
 
-//if or(maxi(a,'c')<>[2;4;5]+0*%i) then pause,end
-//if or(maxi(a+0,'c')<>[2;4;5]+0*%i) then pause,end
+//if or(max(a,'c')<>[2;4;5]+0*%i) then pause,end
+//if or(max(a+0,'c')<>[2;4;5]+0*%i) then pause,end
 //n='c';
-//if or(maxi(a,n)<>[2;4;5]+0*%i) then pause,end
-//if or(maxi(a+0,n)<>[2;4;5]+0*%i) then pause,end
+//if or(max(a,n)<>[2;4;5]+0*%i) then pause,end
+//if or(max(a+0,n)<>[2;4;5]+0*%i) then pause,end
 
 a=[];
-if maxi(a)<>[] then pause,end
-if maxi([])<>[] then pause,end
+if max(a)<>[] then pause,end
+if max([])<>[] then pause,end
 
-if maxi(a,'r')<>[] then pause,end
-if maxi([],'r')<>[] then pause,end
+if max(a,'r')<>[] then pause,end
+if max([],'r')<>[] then pause,end
 n='r';
-if maxi(a,n)<>[] then pause,end
-if maxi([],n)<>[] then pause,end
+if max(a,n)<>[] then pause,end
+if max([],n)<>[] then pause,end
 
-if maxi(a,'c')<>[] then pause,end
-if maxi([],'c')<>[] then pause,end
+if max(a,'c')<>[] then pause,end
+if max([],'c')<>[] then pause,end
 n='c';
-if maxi(a,n)<>[] then pause,end
-if maxi([],n)<>[] then pause,end
+if max(a,n)<>[] then pause,end
+if max([],n)<>[] then pause,end
 
 
 a=sparse([1 2;-3 4;5 -6]);
-//if maxi(a)<>5 then pause,end
-//if maxi(a+0*a)<>5 then pause,end
+//if max(a)<>5 then pause,end
+//if max(a+0*a)<>5 then pause,end
 a=sparse([1 2;-3 4;5 -6]+0*%i);
-//if maxi(a)<>[1 -30;-3 -120;-15 720]+0*%i then pause,end
-//if maxi(a+0*a)<>[1 -30;-3 -120;-15 720]+0*%i then pause,end
+//if max(a)<>[1 -30;-3 -120;-15 720]+0*%i then pause,end
+//if max(a+0*a)<>[1 -30;-3 -120;-15 720]+0*%i then pause,end
 
 
 //mini
 a=[1 2;-3 4;5 -6];
-if or(mini(a)<>-6) then pause,end
-if or(mini(a+0)<>-6) then pause,end
-if or(mini(a,'r')<>[-3 -6]) then pause,end
-if or(mini(a+0,'r')<>[-3 -6]) then pause,end
+if or(min(a)<>-6) then pause,end
+if or(min(a+0)<>-6) then pause,end
+if or(min(a,'r')<>[-3 -6]) then pause,end
+if or(min(a+0,'r')<>[-3 -6]) then pause,end
 n='r';
-if or(mini(a,n)<>[-3 -6]) then pause,end
-if or(mini(a+0,n)<>[-3 -6]) then pause,end
+if or(min(a,n)<>[-3 -6]) then pause,end
+if or(min(a+0,n)<>[-3 -6]) then pause,end
 
-if or(mini(a,'c')<>[1;-3;-6]) then pause,end
-if or(mini(a+0,'c')<>[1;-3;-6]) then pause,end
+if or(min(a,'c')<>[1;-3;-6]) then pause,end
+if or(min(a+0,'c')<>[1;-3;-6]) then pause,end
 n='c';
-if or(mini(a,n)<>[1;-3;-6]) then pause,end
-if or(mini(a+0,n)<>[1;-3;-6]) then pause,end
+if or(min(a,n)<>[1;-3;-6]) then pause,end
+if or(min(a+0,n)<>[1;-3;-6]) then pause,end
 
 //a=[1 2;-3 4;5 -6]+0*%i;
-//if mini(a)<>[1 -30;-3 -120;-15 720]+0*%i then pause,end
-//if mini(a+0)<>[1 -30;-3 -120;-15 720]+0*%i then pause,end
-//if or(mini(a,'r')<>[-3 -6]+0*%i) then pause,end
-//if or(mini(a+0,'r')<>[-3 -6]+0*%i) then pause,end
+//if min(a)<>[1 -30;-3 -120;-15 720]+0*%i then pause,end
+//if min(a+0)<>[1 -30;-3 -120;-15 720]+0*%i then pause,end
+//if or(min(a,'r')<>[-3 -6]+0*%i) then pause,end
+//if or(min(a+0,'r')<>[-3 -6]+0*%i) then pause,end
 //n='r';
-//if or(mini(a,n)<>[-3 -6]+0*%i) then pause,end
-//if or(mini(a+0,n)<>[-3 -6]+0*%i) then pause,end
+//if or(min(a,n)<>[-3 -6]+0*%i) then pause,end
+//if or(min(a+0,n)<>[-3 -6]+0*%i) then pause,end
 
-//if or(mini(a,'c')<>[1;-3;-6]+0*%i) then pause,end
-//if or(mini(a+0,'c')<>[1;-3;-6]+0*%i) then pause,end
+//if or(min(a,'c')<>[1;-3;-6]+0*%i) then pause,end
+//if or(min(a+0,'c')<>[1;-3;-6]+0*%i) then pause,end
 //n='c';
-//if or(mini(a,n)<>[1;-3;-6]+0*%i) then pause,end
-//if or(mini(a+0,n)<>[1;-3;-6]+0*%i) then pause,end
+//if or(min(a,n)<>[1;-3;-6]+0*%i) then pause,end
+//if or(min(a+0,n)<>[1;-3;-6]+0*%i) then pause,end
 
 a=[];
-if mini(a)<>[] then pause,end
-if mini([])<>[] then pause,end
+if min(a)<>[] then pause,end
+if min([])<>[] then pause,end
 
-if mini(a,'r')<>[] then pause,end
-if mini([],'r')<>[] then pause,end
+if min(a,'r')<>[] then pause,end
+if min([],'r')<>[] then pause,end
 n='r';
-if mini(a,n)<>[] then pause,end
-if mini([],n)<>[] then pause,end
+if min(a,n)<>[] then pause,end
+if min([],n)<>[] then pause,end
 
-if mini(a,'c')<>[] then pause,end
-if mini([],'c')<>[] then pause,end
+if min(a,'c')<>[] then pause,end
+if min([],'c')<>[] then pause,end
 n='c';
-if mini(a,n)<>[] then pause,end
-if mini([],n)<>[] then pause,end
+if min(a,n)<>[] then pause,end
+if min([],n)<>[] then pause,end
 
 
 a=sparse([1 2;-3 4;5 -6]);
-//if mini(a)<>-6 then pause,end
-//if mini(a+0*a)<>-6 then pause,end
+//if min(a)<>-6 then pause,end
+//if min(a+0*a)<>-6 then pause,end
 a=sparse([1 2;-3 4;5 -6]+0*%i);
-//if mini(a)<>[1 -30;-3 -120;-15 720]+0*%i then pause,end
-//if mini(a+0*a)<>[1 -30;-3 -120;-15 720]+0*%i then pause,end
+//if min(a)<>[1 -30;-3 -120;-15 720]+0*%i then pause,end
+//if min(a+0*a)<>[1 -30;-3 -120;-15 720]+0*%i then pause,end
 
 //kron
 a=[1 2];b=[3;4];

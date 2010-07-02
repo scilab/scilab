@@ -11,69 +11,72 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "gw_io.h"
+#include "api_scilab.h"
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "callFunctionFromGateway.h"
 #include "recursionFunction.h"
 /*--------------------------------------------------------------------------*/
+extern int C2F(intsave)(); /* fortran subroutine */
+/*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] =
 {
-{C2F(sci_setenv),"setenv"},
-{C2F(sci_read),"read"},
-{C2F(sci_getenv),"getenv"},
-{C2F(sci_getio),"getio"},
-{NULL,""},
-{NULL,""},
-{C2F(sci_write),"write"},
-{C2F(sci_rat),"rat"},
-{C2F(sci_file),"file"},
-{C2F(sci_host),"host"},
-{C2F(sci_unix),"unix"},
-{C2F(sci_readb),"readb"},
-{C2F(sci_writb),"writb"},
-{C2F(sci_getpid),"getpid"},
-{C2F(sci_read4b),"read4b"},
-{C2F(sci_write4b),"write4b"},
-{C2F(sci_save),"save"},
-{C2F(sci_load),"load"}
+    {sci_setenv, "setenv"},
+    {sci_read, "read"},
+    {sci_getenv, "getenv"},
+    {sci_getio, "getio"},
+    {NULL, ""},
+    {NULL, ""},
+    {sci_write, "write"},
+    {NULL, ""},
+    {sci_file, "file"},
+    {sci_host, "host"},
+    {sci_unix, "unix"},
+    {sci_readb, "readb"},
+    {sci_writb, "writb"},
+    {sci_getpid, "getpid"},
+    {sci_read4b, "read4b"},
+    {sci_write4b, "write4b"},
+    {sci_save, "save"},
+    {sci_load, "load"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_io(void)
 {  
-	/* Recursion from a function */
-	if(pvApiCtx == NULL)
-	{
-		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
-	}
+    /* Recursion from a function */
+    if(pvApiCtx == NULL)
+    {
+        pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
+    }
 
-	if ( isRecursionCallToFunction() )
-	{
-		switch ( getRecursionFunctionToCall() )
-		{
-			case RECURSION_CALL_SAVE:
-				{
-					pvApiCtx->pstName = "save";
-					C2F(intsave)(); 
-					return 0;
-				}
-				break;
-			case RECURSION_CALL_LOAD:
-				{
-					pvApiCtx->pstName = "load";
-					C2F(sci_load)("load",(unsigned long)strlen("load"));
-					return 0;
-				}
-				break;
-			default:
-				break;
-		}
-	}
-	else
-	{
-		Rhs = Max(0, Rhs);
-		pvApiCtx->pstName = (char*)Tab[Fin-1].name;
-		callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
-	}
-	return 0;
+    if ( isRecursionCallToFunction() )
+    {
+        switch ( getRecursionFunctionToCall() )
+        {
+        case RECURSION_CALL_SAVE:
+            {
+                pvApiCtx->pstName = "save";
+                C2F(intsave)(); 
+                return 0;
+            }
+            break;
+        case RECURSION_CALL_LOAD:
+            {
+                pvApiCtx->pstName = "load";
+                sci_load("load",(unsigned long)strlen("load"));
+                return 0;
+            }
+            break;
+        default:
+            break;
+        }
+    }
+    else
+    {
+        Rhs = Max(0, Rhs);
+        pvApiCtx->pstName = (char*)Tab[Fin-1].name;
+        callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
+    }
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

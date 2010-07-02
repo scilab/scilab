@@ -17,10 +17,7 @@
           xmlns:ns3="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-
+ 
   <refnamediv>
     <refname>min</refname>
 
@@ -104,13 +101,9 @@
 
   <refsection>
     <title>Ver Também</title>
-
     <simplelist type="inline">
       <member><link linkend="gsort">gsort</link></member>
-
       <member><link linkend="find">find</link></member>
-
-      <member><link linkend="mini">mini</link></member>
     </simplelist>
   </refsection>
 </refentry>

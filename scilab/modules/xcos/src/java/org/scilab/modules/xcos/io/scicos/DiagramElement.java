@@ -276,51 +276,53 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 		
 		// Have we enough fields ?
 		if (base.size() < BASE_FIELD_NAMES.size()) {
-			throw new WrongStructureException();
+			throw new WrongStructureException(BASE_FIELD_NAMES);
 		}
-
+		
+		int field = 0;
+		
 		/*
 		 * Checking the MList header
 		 */
 
 		// Check the first field
-		if (!(base.get(0) instanceof ScilabString)) {
-			throw new WrongTypeException();
+		if (!(base.get(field) instanceof ScilabString)) {
+			throw new WrongTypeException(BASE_FIELD_NAMES, field);
 		}
-		String[] header = ((ScilabString) base.get(0)).getData()[0];
+		String[] header = ((ScilabString) base.get(field)).getData()[0];
 
 		// Check the number of fields
 		if (header.length < BASE_FIELD_NAMES.size()) {
-			throw new WrongStructureException();
+			throw new WrongStructureException(BASE_FIELD_NAMES);
 		}
 
 		// Check the first fields values
 		for (int i = 0; i < BASE_FIELD_NAMES.size(); i++) {
 			if (!header[i].equals(BASE_FIELD_NAMES.get(i))) {
-				throw new WrongStructureException();
+				throw new WrongStructureException(BASE_FIELD_NAMES);
 			}
 		}
 
 		/*
 		 * Checking the data types
 		 */
-		int field = 1;
 
 		// the second field must contain list of props
+		field++;
 		if (!(base.get(field) instanceof ScilabTList)) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(BASE_FIELD_NAMES, field);
 		}
 
 		// the third field must contains lists of blocks and links
 		field++;
 		if (!(base.get(field) instanceof ScilabList)) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(BASE_FIELD_NAMES, field);
 		}
 
 		// the last field must contain the scicos version used
 		field++;
 		if (!(base.get(field) instanceof ScilabString)) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(BASE_FIELD_NAMES, field);
 		}
 
 		/*

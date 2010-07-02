@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2010-04-10 18:45+0000\n"
+"PO-Revision-Date: 2010-05-22 18:57+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -86,7 +86,7 @@ msgstr "%s: ''%s'' no està instal·lat.\n"
 
 #, c-format
 msgid "%s: An error occurred while loading ''%s-%s'':\n"
-msgstr ""
+msgstr "%s: S'ha produït un error en carregar el ''%s-%s'':\n"
 
 #, c-format
 msgid "%s: Another version of the package %s is already loaded : %s\n"
@@ -275,6 +275,8 @@ msgid ""
 "%s: Wrong length for input argument #%d: String which has 32-characters "
 "length expected.\n"
 msgstr ""
+"%s: L'argument d'entrada #%d té una longitud incorrecta: Ha de ser una "
+"cadena de text de 32 caràcters.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -370,11 +372,14 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
 msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un booleà.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Boolean or single string expected.\n"
 msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un booleà o "
+"una cadena de text.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
@@ -502,24 +507,32 @@ msgid ""
 "%s: Wrong value for input argument #%d: Single string that ends with "
 ".tar.gz, .tgz or .zip expected.\n"
 msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser una cadena de "
+"text acabada en .tar.gz, .tgz o .zip.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: String that contains ''TOOLBOXES'' "
 "or ''DESCRIPTION'' expected.\n"
 msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser una cadena de "
+"text que contingui ''TOOLBOXES'' o ''DESCRIPTION''.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: String that ends with DESCRIPTION "
 "expected.\n"
 msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser una cadena de "
+"text que acabi amb DESCRIPTION.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: String that start with "
 "''http://'',''ftp://'' or ''file://'' expected.\n"
 msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser una cadena de "
+"text que comenci amb ''http://'',''ftp://'' o ''file://''.\n"
 
 #, c-format
 msgid ""

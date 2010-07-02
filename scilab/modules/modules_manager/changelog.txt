@@ -1,0 +1,1 @@
+changelog modules_manager module

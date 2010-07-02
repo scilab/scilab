@@ -8,47 +8,48 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
+//=============================================================================
 function cmd = gencompilationflags_unix(ldflags, cflags, fflags, cc, flagsType)
-	
-	// This function is restricted to Linux/Unix user only
-	if getos() == 'Windows' then
-	  error(msprintf(gettext("%s: Feature not available under Microsoft Windows.\n"),'gencompilationflags_unix'));
-	  return;
-	end
-	
-	[lhs,rhs] = argn(0);
-	if rhs <> 5 then
-		error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"gencompilationflags_unix",5));
-		return
-	end
-	
-	cmd=''
-	
-	// CFLAGS
-	if cflags <> '' then
-		cmd = cmd +" CFLAGS="""+cflags+""""
-	end
-	
-	// CXXFLAGS ... use the same as C
-	if cflags <> '' then
-		cmd = cmd +" CXXFLAGS="""+cflags+""""
-	end
-	
-	// LDFLAGS
-	// Do not set the LDFLAGS See bug #4787
-	if ldflags <> '' & flagsType <> "configure" then
-		cmd = cmd +" LDFLAGS="""+ldflags+""""
-	end
-	
-	// FFLAGS
-	if fflags <> '' then
-		cmd = cmd +" FFLAGS="""+fflags+""""
-	end
-	
-	// CC
-	if cc <> '' then
-		cmd = cmd +" CC="""+cc+""""
-	end
-	
+
+  // This function is restricted to Linux/Unix user only
+  if getos() == 'Windows' then
+    error(msprintf(gettext("%s: Feature not available under Microsoft Windows.\n"),'gencompilationflags_unix'));
+    return;
+  end
+
+  [lhs,rhs] = argn(0);
+  if rhs <> 5 then
+    error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"gencompilationflags_unix",5));
+    return
+  end
+
+  cmd=''
+
+  // CFLAGS
+  if cflags <> '' then
+    cmd = cmd +" CFLAGS="""+cflags+""""
+  end
+
+  // CXXFLAGS ... use the same as C
+  if cflags <> '' then
+    cmd = cmd +" CXXFLAGS="""+cflags+""""
+  end
+
+  // LDFLAGS
+  // Do not set the LDFLAGS See bug #4787
+  if ldflags <> '' & flagsType <> "configure" then
+    cmd = cmd +" LDFLAGS="""+ldflags+""""
+  end
+
+  // FFLAGS
+  if fflags <> '' then
+    cmd = cmd +" FFLAGS="""+fflags+""""
+  end
+
+  // CC
+  if cc <> '' then
+    cmd = cmd +" CC="""+cc+""""
+  end
+
 endfunction
+//=============================================================================

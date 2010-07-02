@@ -54,7 +54,7 @@
 
 
 #include "stack-c.h"
-#include "../../elementary_functions/includes/elementary_functions.h"
+#include "elementary_functions.h"
 
 #include "mex.h"
 

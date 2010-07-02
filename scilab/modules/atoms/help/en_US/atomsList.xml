@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
+ * Copyright (C) 2009-2010 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -21,17 +21,37 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  atomsList()
-	</synopsis>
+    atomsList([category])
+  </synopsis>
   </refsynopsisdiv>
+  <!-- ===================================================================== -->
+  <!-- Parameters -->
+  <!-- ===================================================================== -->
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>category</term>
+        <listitem>
+          <para>
+            This argument limits the list of modules to a category.
+          </para>
+          <para>
+            <literal>category</literal> is a single-string and its value should
+            be a valid category (See <link linkend="atomsCategoryList">atomsCategoryList</link>).
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
   <!-- ===================================================================== -->
   <!-- Description -->
   <!-- ===================================================================== -->
   <refsection>
     <title>Description</title>
     <para>
-	  List available external modules
-	</para>
+      List available external modules
+    </para>
   </refsection>
   <!-- ===================================================================== -->
   <!-- Examples -->
@@ -39,8 +59,8 @@
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
-atomsRepositoryAdd("http://scene1.test.atoms.scilab.org");
-atomsList()
+atomsList();
+atomsList("Data Analysis And Statistics");
  ]]></programlisting>
   </refsection>
   <!-- ===================================================================== -->
@@ -54,6 +74,9 @@ atomsList()
       </member>
       <member>
         <link linkend="atomsDepTreeShow">atomsDepTreeShow</link>
+      </member>
+      <member>
+        <link linkend="atomsCategoryList">atomsCategoryList</link>
       </member>
     </simplelist>
   </refsection>

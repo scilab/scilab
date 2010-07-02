@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -34,6 +34,9 @@
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
@@ -115,6 +118,9 @@
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
 			/>
@@ -193,6 +199,9 @@
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
@@ -278,6 +287,9 @@
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
@@ -372,6 +384,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\jni\Palette.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\cpp\sci_closeXcosFromScilab.cpp"
 				>
 			</File>
@@ -396,7 +412,39 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\cpp\sci_xcosPalCategoryAdd.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\cpp\sci_xcosPalDelete.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\cpp\sci_xcosPalDisable.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\cpp\sci_xcosPalEnable.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\cpp\sci_xcosPalGenerateIcon.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\cpp\sci_xcosPalLoad.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\cpp\sci_xcosPalMove.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\jni\Xcos.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\cpp\xcosUtilities.cpp"
 				>
 			</File>
 		</Filter>
@@ -413,7 +461,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\jni\GiwsException.hxx"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\gw_xcos.h"
+				>
+			</File>
+			<File
+				RelativePath="..\jni\Palette.hxx"
 				>
 			</File>
 			<File

@@ -13,8 +13,8 @@
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=3075
 //
-a=mopen(TMPDIR+'test.sce','wt');
-if get_absolute_file_path('test.sce') <> TMPDIR then bugmes();quit;end 
+a=mopen(TMPDIR+'/test.sce','wt');
+if get_absolute_file_path('test.sce') <> TMPDIR then bugmes();quit;end
 mclose(a);
 ierr = execstr('get_absolute_file_path('''')','errcatch');
 if ierr <> 999 then bugmes();quit;end

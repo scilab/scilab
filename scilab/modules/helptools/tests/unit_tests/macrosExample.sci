@@ -50,7 +50,7 @@ function [helptxt,demotxt]=macrosExample(funname,helpdir,demodir)
 //  </itemizedlist>
 //
 // Examples
-//  help_from_sci()   // Open an empty source code template in the xpad editor.
+//  help_from_sci()   // Open an empty source code template in the scinotes editor.
 //  // Save this template as test_fun.sci in the current directory before running
 //  // the next example commands.
 //

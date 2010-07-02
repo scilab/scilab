@@ -1,6 +1,6 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2009 - DIGITEO - Scilab Consortium Operational Team
+// Copyright (C) 2009-2010 - DIGITEO - Scilab Consortium Operational Team
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -10,7 +10,7 @@ mkdir(pathconvert(TMPDIR+"/poly_reading_api"));
 cd(pathconvert(TMPDIR+"/poly_reading_api"));
 copyfile(SCI+"/modules/api_scilab/tests/unit_tests/poly_reading_api.c",pathconvert(TMPDIR+"/poly_reading_api/poly_reading_api.c",%F));
 cflags = "-I"+SCI+"/modules/localization/includes";
-ilib_build("poly_reading",["read_poly","read_poly"],"poly_reading_api.c",[],"Makefile","",cflags);
+ilib_build("poly_reading",["read_poly","read_poly"],"poly_reading_api.c",[],"","",cflags);
 exec("loader.sce");
 coeff1 = [ ..
 29*%i,22*%i,16*%i,11*%i,7*%i,30,23,17,12,8,-31*%i,-24*%i,-18*%i,-13*%i,-9*%i,32,25,19,14,10,-33*%i,-26*%i,-20*%i,-15*%i,0,34,27,21,0,0,0,-28*%i,0,0,0,36-35*%i,0,0,0,0; ..

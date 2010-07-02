@@ -20,11 +20,19 @@ import java.nio.channels.FileChannel;
 
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.jvm.utils.ScilabConstants;
+import org.w3c.dom.Document;
+
+import com.mxgraph.io.mxCodec;
+import com.mxgraph.util.mxUtils;
+import com.mxgraph.view.mxStylesheet;
 
 /**
  * Contains useful method for managing files.
  */
 public final class FileUtils {
+	public static String STYLE_FILENAME = "Xcos-style.xml";
+	
+	
 	/**
 	 * Default constructor
 	 */
@@ -121,5 +129,42 @@ public final class FileUtils {
 		if (!f.delete()) {
 			LogFactory.getLog(FileUtils.class).error(XcosMessages.UNABLE_TO_DELETE + f);
 		}
+	}
+	
+	/**
+	 * Decode the style into the passed stylesheet.
+	 * 
+	 * @param styleSheet the current stylesheet
+	 * @throws IOException on I/O errors
+	 */
+	public static void decodeStyle(final mxStylesheet styleSheet)
+			throws IOException {
+		/*
+		 * Initialize constants
+		 */
+		final String homePath = ScilabConstants.SCIHOME.getAbsolutePath();
+		final File userStyleSheet = new File(homePath + '/' + STYLE_FILENAME);
+		
+		/*
+		 * Copy the base stylesheet into the user dir when it doesn't exist.
+		 */
+		if (!userStyleSheet.exists()) {
+			final String sciPath = ScilabConstants.SCI.getAbsolutePath();
+
+			File baseStyleSheet = new File(sciPath + "/modules/xcos/etc/" + STYLE_FILENAME);
+			FileUtils.forceCopy(baseStyleSheet, userStyleSheet);
+		}
+		
+		/*
+		 * Load the stylesheet
+		 */
+		final String sciURL = ScilabConstants.SCI.toURI().toURL().toString();
+		final String homeURL = ScilabConstants.SCIHOME.toURI().toURL().toString();
+		
+		String xml = mxUtils.readFile(userStyleSheet.getAbsolutePath());
+		xml = xml.replaceAll("\\$SCILAB", sciURL);
+		xml = xml.replaceAll("\\$SCIHOME", homeURL);
+		Document document = mxUtils.parse(xml);
+		new mxCodec().decode(document.getDocumentElement(), styleSheet);
 	}
 }

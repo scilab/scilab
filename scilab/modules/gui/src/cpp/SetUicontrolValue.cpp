@@ -54,7 +54,7 @@ int SetUicontrolValue(sciPointObj* sciObj, size_t stackPointer, int valueType, i
     }
   else if (valueType == sci_strings) // Ascendant compatibility
     {
-      if(nbCol > 1 || nbRow > 1)
+        if(nbCol > 1)
         {
           /* Wrong value size */
           Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string expected.\n")), "Value");
@@ -66,7 +66,7 @@ int SetUicontrolValue(sciPointObj* sciObj, size_t stackPointer, int valueType, i
       if(nbValue != 1)
         {
           /* Wrong value size */
-          Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: A string expected.\n")), "Value");
+          Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: A String containing a numeric value expected.\n")), "Value");
           return SET_PROPERTY_ERROR;
         }
 

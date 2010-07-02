@@ -34,7 +34,7 @@ uigetdir
         </td>
         <td>
           <programlisting role="example"><![CDATA[
-tk_getdir
+uigetdir
 ]]></programlisting>
         </td>
       </tr>

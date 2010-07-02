@@ -120,7 +120,15 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 		if (isEmptyField(outImpl)) {
 			return new ExplicitOutputPort();
 		}
+		
 		final ScilabString outImplicit = (ScilabString) outImpl;
+		
+		/*
+		 * backward compatibility, use explicit as default.
+		 */
+		if (isEmptyField(outImplicit)) {
+			return new ExplicitOutputPort();
+		}
 				
 		final boolean isColumnDominant = outImplicit.getHeight() >= outImplicit.getWidth();
 		final int[] indexes = getIndexes(alreadyDecodedCount, isColumnDominant);
@@ -147,14 +155,29 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 		ScilabDouble dataColumns = (ScilabDouble) model.get(MODEL_OUT_DATACOL_INDEX);
 		ScilabDouble dataType = (ScilabDouble) model.get(MODEL_OUT_DATATYPE_INDEX);
 
+		// The number of row of the port
+		int nbLines;
 		if (dataLines.getRealPart() != null) {
-			int nbLines = (int) dataLines.getRealPart()[alreadyDecodedCount][0];
-			port.setDataLines(nbLines);
+			nbLines = (int) dataLines.getRealPart()[alreadyDecodedCount][0];
+		} else {
+			nbLines = 1;
 		}
+		port.setDataLines(nbLines);
+		
+		// The number of column of the port
+		int nbColumns;
 		if (dataColumns.getRealPart() != null) {
-			int nbColumns = (int) dataColumns.getRealPart()[alreadyDecodedCount][0];
-			port.setDataColumns(nbColumns);
+			try {
+				nbColumns = (int) dataColumns.getRealPart()[alreadyDecodedCount][0];
+			} catch (ArrayIndexOutOfBoundsException e) {
+				nbColumns = 1;
+			}
+		} else {
+			nbColumns = 1;
 		}
+		port.setDataColumns(nbColumns);
+		
+		// port scilab type
 		if (dataType.getRealPart() != null) {
 			int type;
 			

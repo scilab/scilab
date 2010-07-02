@@ -130,6 +130,7 @@ sci_gateway/fortran/bbvode.f
 libscidifferential_equations_la_CFLAGS=  	-I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/api_scilab/includes \
 -I$(top_srcdir)/modules/output_stream/includes \
+-I$(top_srcdir)/modules/elementary_functions/includes \
 -I$(top_srcdir)/modules/dynamic_link/includes
 
 pkglib_LTLIBRARIES = libscidifferential_equations.la

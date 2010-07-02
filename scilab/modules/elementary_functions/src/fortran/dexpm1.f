@@ -41,6 +41,9 @@ c
       double precision anorm,alpha,bvec,bbvec,rn,zero,c(41)
       logical fail
 c
+cDEC$ IF DEFINED (FORDLL)
+cDEC$ ATTRIBUTES DLLIMPORT:: /dcoeff/
+cDEC$ ENDIF
       common /dcoeff/ c,ndng
       data zero /0.0d+0/
       ndng=-1

@@ -15,9 +15,9 @@
 #define __GW_DIFFERENTIAL_EQUATIONS6__
 /*--------------------------------------------------------------------------*/ 
 #include "machine.h"
-#include "api_scilab.h"
+#include "dynlib_differential_equations.h"
 /*--------------------------------------------------------------------------*/ 
-int gw_differential_equations6(void);
+DIFFERENTIAL_EQUATIONS_IMPEXP int gw_differential_equations6(void);
 /*--------------------------------------------------------------------------*/ 
 int C2F(scibvode)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/ 

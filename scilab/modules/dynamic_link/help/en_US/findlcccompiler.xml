@@ -16,35 +16,6 @@
   </info>
   <refnamediv>
     <refname>findlcccompiler</refname>
-    <refpurpose>detects LCC-Win32 C Compiler</refpurpose>
+    <refpurpose>moved as toolbox in ATOMSr</refpurpose>
   </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>ret=findlcccompiler()</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Parameters</title>
-    <variablelist>
-      <varlistentry>
-        <term>ret</term>
-        <listitem>
-          <para>returns %T or %F</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>detects LCC-Win32 C Compiler.</para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
-ret=findlcccompiler()
- ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Allan CORNET</para>
-  </refsection>
 </refentry>

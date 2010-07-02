@@ -27,7 +27,7 @@ function a=sprand(m,n,density,typ)
   if part(typ,1)<>'u'&part(typ,1)<>'n' then
     error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"),"sprand",4,"uniform","normal"));
   end 
-  density=maxi(mini(density,1),0);
+  density=max(min(density,1),0);
   
   nel=m*n*density; //the objective number of non zero elements
   if nel==0 then a=sparse([],[],[m,n]);return,end

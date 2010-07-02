@@ -1,0 +1,65 @@
+<package name="org.scilab.modules.ui_data">
+    <object name="EditVar">
+        <method name="openVariableEditorDouble" returnType="void" modifier="static">
+          <parameter type="double[][]" name="data"/>
+          <parameter type="String" name="variableName"/>
+        </method>
+
+        <method name="openVariableEditorComplex" returnType="void" modifier="static">
+          <parameter type="double[][]" name="realData"/>
+          <parameter type="double[][]" name="imgData"/>
+          <parameter type="String" name="variableName"/>
+        </method>
+
+        <method name="openVariableEditorString" returnType="void" modifier="static">
+          <parameter type="String[][]" name="data"/>
+          <parameter type="String" name="variableName"/>
+        </method>
+
+        <method name="openVariableEditorBoolean" returnType="void" modifier="static">
+          <parameter type="int[][]" name="data"/>
+          <parameter type="String" name="variableName"/>
+        </method>
+ 
+        
+        <method name="closeVariableEditor" returnType="void" modifier="static"/>
+
+        <method name="updateVariableEditorDouble" returnType="void" modifier="static">
+          <parameter type="String" name="variableName"/>
+          <parameter type="int" name="row"/>
+          <parameter type="int" name="col"/>
+          <parameter type="double" name="newValue"/>
+          <parameter type="int" name="errCode"/>
+        </method>
+
+
+        <method name="updateVariableEditorComplex" returnType="void" modifier="static">
+          <parameter type="String" name="variableName"/>
+          <parameter type="int" name="row"/>
+          <parameter type="int" name="col"/>
+          <parameter type="double" name="realValue"/>
+          <parameter type="double" name="imgValue"/>
+          <parameter type="int" name="errCode"/>
+        </method>
+
+
+
+        <method name="updateVariableEditorBoolean" returnType="void" modifier="static">
+          <parameter type="String" name="variableName"/>
+          <parameter type="int" name="row"/>
+          <parameter type="int" name="col"/>
+          <parameter type="int" name="newValue"/>
+          <parameter type="int" name="errCode"/>
+        </method>
+
+
+        
+        <method name="updateVariableEditorString" returnType="void" modifier="static">
+          <parameter type="String" name="variableName"/>
+          <parameter type="int" name="row"/>
+          <parameter type="int" name="col"/>
+          <parameter type="String" name="newValue"/>
+          <parameter type="int" name="errCode"/>
+        </method>
+    </object>
+</package>

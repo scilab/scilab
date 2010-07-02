@@ -23,12 +23,19 @@
 static BOOL loadedDep = FALSE;
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] = {
-  {sci_Xcos, "xcos"},
-  {sci_warnBlockByUID, "warnBlockByUID"},
-  {sci_closeXcosFromScilab, "closeXcos"},
-  {sci_xcosDiagramToHDF5, "xcosDiagramToHDF5"},
-  {sci_xcosDiagramOpen, "xcosDiagramOpen"},
-  {sci_xcosDiagramClose, "xcosDiagramClose"}
+  {sci_Xcos,                            "xcos"},
+  {sci_warnBlockByUID,                  "warnBlockByUID"},
+  {sci_closeXcosFromScilab,             "closeXcos"},
+  {sci_xcosDiagramToHDF5,               "xcosDiagramToHDF5"},
+  {sci_xcosDiagramOpen,                 "xcosDiagramOpen"},
+  {sci_xcosDiagramClose,                "xcosDiagramClose"},
+  {sci_xcosPalLoad,                     "xcosPalLoad"},
+  {sci_xcosPalCategoryAdd,              "xcosPalCategoryAdd"},
+  {sci_xcosPalDelete,                   "xcosPalDelete"},
+  {sci_xcosPalMove,                     "xcosPalMove"},
+  {sci_xcosPalEnable,                   "xcosPalEnable"},
+  {sci_xcosPalDisable,                  "xcosPalDisable"},
+  {sci_xcosPalGenerateIcon,             "xcosPalGenerateIcon"}
 };
 
 /*--------------------------------------------------------------------------*/

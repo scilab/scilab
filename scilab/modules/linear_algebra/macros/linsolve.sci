@@ -36,7 +36,7 @@ function [x0,kerA]=linsolve(A,b,x0)
   case 5 then        //sparse matrix
 
     [ma,na]=size(A);
-    %tol=1.D-10*maxi(abs(A))*max(ma,na);
+    %tol=1.D-10*max(abs(A))*max(ma,na);
     if ma<na then 
       A=[A;sparse([],[],[na-ma,na])];b=[b;zeros(na-ma,1)];end
       if ma>na then

@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-# Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
+# Copyright (C) 2009-2010 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
 #
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
@@ -248,8 +248,7 @@ sub get_xml_list
 		{
 			unless( open(XMLFILE,$list_dir) )
 			{
-				print 'Le fichier "'.$current_directory.'/'.$list_dir.'" n\'a pu être ouvert en lecture'."\n";
-				exit(0);
+				die 'get_xml_list: The file "'.$current_directory.'/'.$list_dir.'" cannot be opened'."\n";
 			}
 			
 			while(<XMLFILE>)
@@ -282,8 +281,7 @@ sub get_tag_values
 	
 	unless( open(XMLFILE,$xmlfile) )
 	{
-		print 'Le fichier "'.$xmlfile.'" n\'a pu être ouvert en lecture'."\n";
-		exit(0);
+		die 'get_tag_values: The file "'.$xmlfile.'" cannot be opened'."\n";
 	}
 	
 	while(<XMLFILE>)
@@ -335,6 +333,7 @@ sub get_gateway_code
 		if(  (exists($field->{'programlisting'}->{'role'}) ) &&
 		   ($field->{'programlisting'}->{'role'} eq 'code_gateway') )
 		{
+			$field->{'programlisting'}->{'content'} =~ s/\s+\n/\n/g;
 			return $field->{'programlisting'}->{'content'}."\n";
 		}
 	}
@@ -359,6 +358,7 @@ sub get_scilab_code
 		   && ($field->{'programlisting'}->{'role'} eq 'code_scilab'))
 		{
 			my $scilab_code = $field->{'programlisting'}->{'content'}."\n";
+			$scilab_code =~ s/\s+\n/\n/g;
 			$scilab_code =~ s/then(\s)+error\((\s)*\"failed\"(\s)*\)(\s)*[;,](\s)*end/then pause;end/g;
 			return $scilab_code;
 		}
@@ -417,6 +417,7 @@ sub write_gateway_code
 	
 	# Ecriture du code
 	# ==========================================================================
+	$tags{'gateway_code'} =~ s/\s+\n/\n/g;
 	print FILEOUT $tags{'gateway_code'};
 	
 	# Fermeture du fichier de sortie
@@ -509,7 +510,7 @@ sub write_scilab_code
 	print FILEOUT $table_str.',';                                      # table
 	print FILEOUT '"'.basename(substr($tags{'File_gateway'},3)).'",';  # files
 	print FILEOUT '[],';                                               # libs
-	print FILEOUT '"Makefile",';                                       # makename
+	print FILEOUT '"",';                                               # makename
 	print FILEOUT '"",';                                               # ldflags
 	print FILEOUT 'cflags);'."\n";                                     # cflags
 	

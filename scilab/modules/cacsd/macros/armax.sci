@@ -41,7 +41,7 @@ function [archap,la,lb,sig,resid]=armax(r,s,y,u,b0f,prf)
 //     lb est la liste list(b,b+etb,b-etb);(etb : ecart type estime)
 //        b=[b0,.....,b_s] bi(nu,nu)
 //     sig est l'ecart type estime du bruit
-//     et resid=[ sig*e(t0),....]; t0=maxi(maxi(r,s)+1,1));
+//     et resid=[ sig*e(t0),....]; t0=max(max(r,s)+1,1));
 //
 // Exemple :
 //     taper [a,b,sig,resid]=armax(); pour voir un exemple
@@ -67,7 +67,7 @@ if rhs<=4,b0f=0;end
 // calul de la matrice zz telle que
 // zz(:,j)=[ y(t-1),...,y(t-r),u(t),...,u(t-s)]', avec  t=t0-1+j
 // on peut calcule zz a partir de t=t0;
- t0=maxi(maxi(r,s)+1,1);
+ t0=max(max(r,s)+1,1);
  if r==0;if s==-1;error(msprintf(gettext("%s: Wrong value for input arguments: If %s and %s nothing to identify.\n"),"armax","r==0","s==-1"))
  end;end
  z=[];

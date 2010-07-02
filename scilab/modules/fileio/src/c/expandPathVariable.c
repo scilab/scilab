@@ -11,7 +11,7 @@
 *
 */
 /*--------------------------------------------------------------------------*/
-#include "stack-c.h"
+#include "sci_types.h"
 #include "expandPathVariable.h"
 #include "charEncoding.h"
 #include "MALLOC.h"

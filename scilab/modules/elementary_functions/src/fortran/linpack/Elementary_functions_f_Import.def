@@ -1,0 +1,25 @@
+	LIBRARY    elementary_functions_f.dll
+
+
+EXPORTS
+;
+;elementary_functions_f
+dmcopy_
+dmmul_
+dclmat_
+cerr_
+coef_
+sdot_
+wdotci_
+wdotcr_
+waxpy_
+wmul_
+wdiv_
+wrscal_
+wsign_
+wasum_
+wscal_
+iwamax_
+wmmul_
+wclmat_
+wcerr_

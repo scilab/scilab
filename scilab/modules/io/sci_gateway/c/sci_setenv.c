@@ -21,7 +21,7 @@
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_setenv)(char *fname,unsigned long fname_len)
+int sci_setenv(char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
 	int m1 = 0, n1 = 0;

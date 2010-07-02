@@ -12,7 +12,6 @@ cha1_
 gettype_
 getmatdims_
 freeArrayOfString
-dsort_
 check_dims
 numopt_
 check_scalar

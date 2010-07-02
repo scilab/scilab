@@ -215,14 +215,14 @@ x=xmacro(100,1);
 [cc1,mm1]=corr(x,2^3);
 [cc,mm]=corr('fft',xmacro,100,2^3);
 [cc2,mm2]=corr('fft','corexx',100,2^3);
-[maxi(abs(cc-cc1)),maxi(abs(mm-mm1)),maxi(abs(cc-cc2)),maxi(abs(mm-mm2))]
+[max(abs(cc-cc1)),max(abs(mm-mm1)),max(abs(cc-cc2)),max(abs(mm-mm2))]
 
 deff('[y]=ymacro(sec,ist)','y=cos(ist:(ist+sec-1))');
 y=ymacro(100,1);
 [cc1,mm1]=corr(x,y,2^3);
 [cc,mm]=corr('fft',xmacro,ymacro,100,2^3);
 [cc2,mm2]=corr('fft','corexx','corexy',100,2^3);
-[maxi(abs(cc-cc1)),maxi(abs(mm-mm1)),maxi(abs(cc-cc2)),maxi(abs(mm-mm2))]
+[max(abs(cc-cc1)),max(abs(mm-mm1)),max(abs(cc-cc2)),max(abs(mm-mm2))]
  ]]></programlisting>
   </refsection>
   <refsection>

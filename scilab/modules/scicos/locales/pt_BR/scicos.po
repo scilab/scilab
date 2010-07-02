@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-09-22 14:07+0100\n"
-"PO-Revision-Date: 2009-07-06 19:54+0000\n"
-"Last-Translator: Daniel de Souza Grilo <soporter@gmail.com>\n"
+"PO-Revision-Date: 2010-05-23 11:44+0000\n"
+"Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,7 +42,7 @@ msgstr "%s: O diagrama não compila na passagem %d.\n"
 
 #, c-format
 msgid "%s: Error : the following command line failed to execute: %s.\n"
-msgstr "%s: Erro : a seguinte linha de comando não pôde ser executada: %s.\n"
+msgstr "%s: Erro: a seguinte linha de comando não pôde ser executada: %s.\n"
 
 #, c-format
 msgid "%s: Error: A scifunc block has not been defined."
@@ -54,50 +54,52 @@ msgstr "%s: Erro: O compilador Modelica (MODELICAC) não está disponível."
 
 #, c-format
 msgid "%s: Input ports are not numbered properly.\n"
-msgstr "%s: As portas de entrada não estão numeradas propriamente.\n"
+msgstr "%s: As portas de entrada não estão numeradas apropriadamente.\n"
 
 #, c-format
 msgid "%s: Output ports are not numbered properly.\n"
-msgstr "%s: As portas de saída não estão numeradas propriamente.\n"
+msgstr "%s: As portas de saída não estão numeradas apropriadamente.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
 msgstr ""
-"%s: Número errado de argumentos de entrada. Deve estar entre %d e %d.\n"
+"%s: Quantidade incorreta de argumentos de entrada: deve estar entre %d e "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: Quantidade errada de argumentos de entrada. Esperava-se %d.\n"
+msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr "%s: Quantidade errada de argumentos de saída: Esperava-se %d.\n"
+msgstr "%s: Quantidade incorreta de argumentos de saída: esperava-se %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single integer expected.\n"
 msgstr ""
-"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se um único "
-"inteiro.\n"
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um único "
+"número inteiro.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
 msgstr ""
-"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um único "
-"string.\n"
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um único "
+"texto.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d.\n"
-msgstr "%s: Tamanho errado para os argumentos de entrada #%d e #%d.\n"
+msgstr "%s: Tamanho incorreto para os argumentos de entrada #%d e #%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr ""
-"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um inteiro.\n"
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um número "
+"inteiro.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
-"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um string.\n"
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
 
 msgid "&?"
 msgstr "&?"
@@ -106,27 +108,28 @@ msgid "&Edit"
 msgstr "&Editar"
 
 msgid "&File"
-msgstr "&File"
+msgstr "&Arquivo"
 
 msgid "&Tools"
 msgstr "&Ferramentas"
 
 msgid "''scicos'' is no more available, please use ''xcos'' instead.\n"
 msgstr ""
+"\"scicos\" não está mais disponível. Por favor, use \"xcos\" no lugar.\n"
 
 msgid "A compatible C compiler required."
-msgstr ""
+msgstr "É necessário um compilador C compatível."
 
 msgid "Only one block can be selected in current window for this operation."
 msgstr ""
-"Apenas um bloco pode ser selecionado na janela corrente para esta operação."
+"Apenas um bloco pode ser selecionado na janela atual para esta operação."
 
 #, c-format
 msgid "Problem while building library %s\n"
 msgstr "Problema na construção da biblioteca %s\n"
 
 msgid "Sorry compiling problem"
-msgstr ""
+msgstr "Desculpe, problema de compilação"
 
 msgid "The current icon depends on block parameter\n"
-msgstr "O ícone corrente depende de um parâmetro bloco.\n"
+msgstr "O ícone atual depende de um parâmetro do bloco.\n"

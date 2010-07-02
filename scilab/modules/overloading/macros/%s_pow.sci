@@ -35,7 +35,7 @@ if m*n==1&mp==np then  //a^P
     end
   else
     [s,u,bs]=bdiag(p+0*%i);
-    if maxi(bs)>1 then
+    if max(bs)>1 then
       error('g_pow: unable to diagonalize!');
     end
     w=diag(s);
@@ -58,7 +58,7 @@ elseif m==n&mp*np==1 then  //A^p  p non integer
     //General matrix
     r=and(imag(a)==0)
     [s,u,bs]=bdiag(a+0*%i);
-    if maxi(bs)>1 then
+    if max(bs)>1 then
       error('g_pow: unable to diagonalize!');
     end
     x=u*diag(diag(s).^p)*inv(u);

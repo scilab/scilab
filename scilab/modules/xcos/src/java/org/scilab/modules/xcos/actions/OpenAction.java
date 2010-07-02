@@ -27,8 +27,6 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.utils.SciFileFilter;
 import org.scilab.modules.xcos.Xcos;
-import org.scilab.modules.xcos.configuration.ConfigurationManager;
-import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -100,15 +98,7 @@ public final class OpenAction extends DefaultAction {
 	    if (fc.getSelection() == null || fc.getSelection().length == 0 || fc.getSelection()[0].equals("")) {
 		return;
 	    }
-	    ConfigurationManager.getInstance().addToRecentFiles(fc.getSelection()[0]);
 
-	    if (getGraph(null) == null) { // Called from palettes
-		//save to recentopenedfile while opening from palettes is handle in Xcos.xcos(filename)
-		Xcos.xcos(fc.getSelection()[0]);
-	    } else {
-		((XcosDiagram) getGraph(null)).openDiagramFromFile(fc.getSelection()[0]);
-	    }
-	    
-	    ConfigurationManager.getInstance().saveConfig();
+		Xcos.getInstance().open(fc.getSelection()[0]);
 	}
 }

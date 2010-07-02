@@ -20,7 +20,7 @@ if ms==1&ns==1 then
   if m==1|n==1 then //Element wise exponentiation f.^s with f vector
     if s<0 then 
       num=f('num')
-      if or(abs(coeff(num(:)))*ones(maxi(degree(num))+1,1)==0) then
+      if or(abs(coeff(num(:)))*ones(max(degree(num))+1,1)==0) then
 	error(27)
       end
       s=-s

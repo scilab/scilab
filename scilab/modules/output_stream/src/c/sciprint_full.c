@@ -25,7 +25,7 @@
 #include "sciprint.h"
 #include "MALLOC.h"
 #include "localization.h"
-#include "../../shell/includes/scilines.h"
+#include "scilines.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 #define vsnprintf _vsnprintf

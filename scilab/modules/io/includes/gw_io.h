@@ -15,40 +15,25 @@
 /*--------------------------------------------------------------------------*/
 #include "machine.h"
 #include "dynlib_io.h"
-#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
 IO_IMPEXP int gw_io(void);
 /*--------------------------------------------------------------------------*/
-IO_IMPEXP int C2F(sci_read)(char *fname,unsigned long fname_len);
-IO_IMPEXP int C2F(sci_oldsave)(char *fname,unsigned long fname_len);
-IO_IMPEXP int C2F(sci_write)(char *fname,unsigned long fname_len);
-IO_IMPEXP int C2F(sci_rat)(char *fname,unsigned long fname_len);
-IO_IMPEXP int C2F(sci_file)(char *fname,unsigned long fname_len);
-IO_IMPEXP int C2F(sci_host)(char *fname,unsigned long fname_len);
-IO_IMPEXP int C2F(sci_unix)(char *fname,unsigned long fname_len);
-IO_IMPEXP int C2F(sci_readb)(char *fname,unsigned long fname_len);
-IO_IMPEXP int C2F(sci_writb)(char *fname,unsigned long fname_len);
-IO_IMPEXP int C2F(sci_getpid)(char *fname,unsigned long fname_len);
-IO_IMPEXP int C2F(sci_getenv)(char *fname,unsigned long fname_len);
-IO_IMPEXP int C2F(sci_read4b)(char *fname,unsigned long fname_len);
-IO_IMPEXP int C2F(sci_write4b)(char *fname,unsigned long fname_len);
-IO_IMPEXP int C2F(sci_save)(char *fname,unsigned long fname_len);
-IO_IMPEXP int C2F(sci_load)(char *fname,unsigned long fname_len);
-IO_IMPEXP int C2F(sci_getio)(char *fname,unsigned long fname_len);
-IO_IMPEXP int C2F(sci_setenv)(char *fname,unsigned long fname_len);
-
-IO_IMPEXP int C2F(intgetenv)(char *fname,unsigned long fname_len);
-IO_IMPEXP int C2F(intload) (int *id1, int *k1); /* FORTRAN subroutine */
-IO_IMPEXP int C2F(intsave)(void);
-IO_IMPEXP int C2F(intfile)(void);
-IO_IMPEXP int C2F(intrat)(void);
-IO_IMPEXP int C2F(intread)(void);
-IO_IMPEXP int C2F(intread4b)(void);
-IO_IMPEXP int C2F(intreadb)(void);
-IO_IMPEXP int C2F(intwrite)(void);
-IO_IMPEXP int C2F(intwrite4b)(void);
-IO_IMPEXP int C2F(intwritb)(void);
-
+int sci_read(char *fname,unsigned long fname_len);
+int sci_oldsave(char *fname,unsigned long fname_len);
+int sci_write(char *fname,unsigned long fname_len);
+int sci_file(char *fname,unsigned long fname_len);
+int sci_host(char *fname,unsigned long fname_len);
+int sci_unix(char *fname,unsigned long fname_len);
+int sci_readb(char *fname,unsigned long fname_len);
+int sci_writb(char *fname,unsigned long fname_len);
+int sci_getpid(char *fname,unsigned long fname_len);
+int sci_getenv(char *fname,unsigned long fname_len);
+int sci_read4b(char *fname,unsigned long fname_len);
+int sci_write4b(char *fname,unsigned long fname_len);
+int sci_save(char *fname,unsigned long fname_len);
+int sci_load(char *fname,unsigned long fname_len);
+int sci_getio(char *fname,unsigned long fname_len);
+int sci_setenv(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_IO_H__ */
 /*--------------------------------------------------------------------------*/

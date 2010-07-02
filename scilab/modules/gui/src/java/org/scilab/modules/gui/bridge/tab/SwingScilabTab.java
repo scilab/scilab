@@ -21,13 +21,13 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Iterator;
-import java.util.Set;
 
 import javax.swing.Action;
 import javax.swing.SwingUtilities;
 
 import org.flexdock.docking.DockingConstants;
+import org.flexdock.docking.activation.ActiveDockableTracker;
+import org.flexdock.docking.props.PropertyChangeListenerFactory;
 import org.flexdock.view.View;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
 import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
@@ -66,8 +66,6 @@ import org.scilab.modules.gui.utils.BarUpdater;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.SciUndockingAction;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.utils.UIElementMapper;
-import org.scilab.modules.gui.window.Window;
 
 /**
  * Swing implementation for Scilab tabs in GUIs
@@ -82,6 +80,10 @@ public class SwingScilabTab extends View implements SimpleTab {
     private static final long serialVersionUID = 1L;
 
     private static final int VIEWPORT_SIZE = 4;
+    
+    static {
+    	PropertyChangeListenerFactory.addFactory(new BarUpdater.UpdateBarFactory());
+    }
 
     private int parentWindowId;
 
@@ -145,36 +147,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	this.setVisible(true);
 
     }
-
-    /**
-     * Repaint it
-     */
-    public void repaint() {
-    	super.repaint();
-
-    	/** Update toolbar / menubar / infobar / title */
-    	Window parentWindow = (Window) UIElementMapper.getCorrespondingUIElement(parentWindowId);
-    	if (parentWindow != null) {
-    		Set<Dockable> dockables = ((SwingScilabWindow) parentWindow.getAsSimpleWindow()).getDockingPort().getDockables();
-    	
-    		if ((isShowing() && dockables.size() == 1) || isActive() || dockables.size() == 1) {
-    			BarUpdater.updateBars(getParentWindowId(), getMenuBar(), getToolBar(), getInfoBar(), getName());
-    		} else {
-    			/** Try to find active tab */
-    			Iterator<Dockable> it =  dockables.iterator();
-    			while (it.hasNext()) {
-    				SwingScilabTab dock = (SwingScilabTab) it.next();
-    				if (((SwingScilabTab) dock).isActive()) {
-    					BarUpdater.updateBars(
-    							getParentWindowId(), dock.getMenuBar(), dock.getToolBar(), 
-    							dock.getInfoBar(), dock.getName());
-    					return;
-    				}
-    			}
-    		}
-    	}
-    }
-
+    
     /**
      * Sets the Name of a swing Scilab tab
      * @param newTabName the Name of the tab
@@ -182,10 +155,12 @@ public class SwingScilabTab extends View implements SimpleTab {
      */
     public void setName(String newTabName) {
 	    setTitle(newTabName, true);
+	    
+	    getTitlePane().repaint();
 	    if (isActive()) {
-	        BarUpdater.updateBars(getParentWindowId(), getMenuBar(), getToolBar(), getInfoBar(), getName());
+			SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, this)
+					.setName(newTabName);
 	    }
-      repaint();
     }
 
     /**
@@ -203,9 +178,6 @@ public class SwingScilabTab extends View implements SimpleTab {
     public void paintImmediately() {
 	// paint all
 	paintImmediately(0, 0, getWidth(), getHeight());
-	if (isActive()) {
-	    BarUpdater.updateBars(getParentWindowId(), getMenuBar(), getToolBar(), getInfoBar(), getName());
-	}
     }
 
     /**
@@ -847,7 +819,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * Set this tab as the current tab of its parent Window
      */
     public void setCurrent() {
-	super.setActive(true);
+    	ActiveDockableTracker.requestDockableActivation(this);
     }
 
     /**

@@ -46,7 +46,7 @@ function texte = tabule(tab)
 //- Largeur des colonnes
 for i = 1 : n_colonnes
   //- Largeur maximale 
-  largeur = maxi(length(tab(:, i)))
+  largeur = max(length(tab(:, i)))
   //- Formatage de la colonne 
   for j = 1 : n_lignes
     if tab(j, i) <> '-' then

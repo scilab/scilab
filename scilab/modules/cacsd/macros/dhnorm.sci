@@ -48,7 +48,7 @@ phi12=ws(n+1:2*n,:);
 if rcond(x12) > 1.d-6 then
 X=phi12/x12;
 z=eye()-B'*X*B
-ok= mini(real(spec(z))) > -%eps
+ok= min(real(spec(z))) > -%eps
 else
 ok=%t;end
 endfunction

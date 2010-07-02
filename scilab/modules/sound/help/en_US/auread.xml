@@ -82,7 +82,7 @@ y=wavread('SCI/modules/sound/demos/chimes.wav');
 // default is 8-bits mu-law
 auwrite(y,TMPDIR+'/tmp.au');
 y1=auread(TMPDIR+'/tmp.au');
-maxi(abs(y-y1))
+max(abs(y-y1))
  ]]></programlisting>
   </refsection>
   <refsection>

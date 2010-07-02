@@ -152,7 +152,7 @@ function [%Xlist,%OPT]=lmisolver(%Xinit,%evalfunc,%options)
 
   if %blck_szs == [] then
     // is objective constant on LME constraint set, Xinit is feasible 
-    if maxi(abs(%O+0)) < %to then
+    if max(abs(%O+0)) < %to then
       lmisolvertrace(msprintf(_('%s: Objective constant.'),'lmisolver'));
       %Xlist=vec2list(%x0,%dim_X,%ind_X);
       %Xopt=%O0;
@@ -417,7 +417,7 @@ function [ok,%sm,%nor]=lmicheck(E,I)
   %sm=100;
   for %w=I
     if %w~=[] then 
-      s=mini(real(spec(%w)))
+      s=min(real(spec(%w)))
       %sm=min(%sm,s)
     end
   end  

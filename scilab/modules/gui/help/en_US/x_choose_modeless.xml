@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="x_choose_modeless">
-  <info>
-    <pubdate>$LastChangedDate: 2006-08-24 08:05:42 +0200 (jeu, 24 aoÃ» 2006) $</pubdate>
-  </info>
   <refnamediv>
     <refname>x_choose_modeless</refname>
     <refpurpose> interactive window choice (not modal dialog)</refpurpose>
