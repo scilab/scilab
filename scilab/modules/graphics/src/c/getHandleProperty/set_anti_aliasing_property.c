@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -28,12 +29,14 @@
 #include "SetPropertyStatus.h"
 #include "GraphicSynchronizerInterface.h"
 
+#include "setGraphicObjectProperty.h"
+
 /*------------------------------------------------------------------------*/
 int set_anti_aliasing_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
 
 	int quality = 0;
-	int status;
+	BOOL status;
 
   if ( !isParameterStringMatrix( valueType ) )
   {
@@ -73,10 +76,24 @@ int set_anti_aliasing_property( sciPointObj * pobj, size_t stackPointer, int val
     return SET_PROPERTY_ERROR ;
   }
 
+  status = setGraphicObjectProperty(pobj->UID, "Antialiasing", &quality, jni_int, 1);
+
+  if (status == TRUE)
+  {
+    return SET_PROPERTY_SUCCEED;
+  }
+  else
+  {
+    return SET_PROPERTY_ERROR;
+  }
+
+/* deactivated for now since it involves drawing operations, to be implemented */
+#if 0
 	/* Modifying the antialaising may ask for a redraw */
 	disableFigureSynchronization(pobj);
 	status = sciSetAntialiasingQuality(pobj, quality);
 	enableFigureSynchronization(pobj);
+#endif
 
 	return status;
 }

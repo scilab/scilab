@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -27,11 +28,13 @@
 #include "SetPropertyStatus.h"
 #include "GraphicSynchronizerInterface.h"
 
+#include "setGraphicObjectProperty.h"
+
 /*------------------------------------------------------------------------*/
 int set_screen_position_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
   double * values;
-  int status;
+  BOOL status;
  
   if ( !isParameterDoubleMatrix( valueType ) )
   {
@@ -53,6 +56,24 @@ int set_screen_position_property( sciPointObj * pobj, size_t stackPointer, int v
     return SET_PROPERTY_ERROR ;
   }
 
+  int intValues[2];
+
+  intValues[0] = (int)values[0];
+  intValues[1] = (int)values[1];
+
+  status = setGraphicObjectProperty(pobj->UID, "Position", intValues, jni_int_vector, 2);
+
+  if(status == TRUE)
+  {
+    return SET_PROPERTY_SUCCEED;
+  }
+  else
+  {
+    return SET_PROPERTY_ERROR;
+  } 
+
+/* deactivated for now since it involves drawing operations, to be implemented */
+#if 0
   /* disable protection since this function will call Java */
   disableFigureSynchronization(pobj);
   status = sciSetScreenPosition( pobj, (int)values[0], (int)values[1]);
@@ -60,5 +81,6 @@ int set_screen_position_property( sciPointObj * pobj, size_t stackPointer, int v
 
   /* return set property unchanged since repaint is not really needed */
 	return sciSetNoRedrawStatus((SetPropertyStatus)status);
+#endif
 }
 /*------------------------------------------------------------------------*/

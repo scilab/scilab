@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -27,10 +28,12 @@
 #include "SetPropertyStatus.h"
 #include "GraphicSynchronizerInterface.h"
 
+#include "setGraphicObjectProperty.h"
+
 /*------------------------------------------------------------------------*/
 int set_info_message_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  int status;
+  BOOL status;
   if ( !isParameterStringMatrix( valueType ) )
   {
     Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "info_message");
@@ -43,6 +46,19 @@ int set_info_message_property( sciPointObj * pobj, size_t stackPointer, int valu
     return SET_PROPERTY_ERROR ;
   }
 
+  status = setGraphicObjectProperty(pobj->UID, "InfoMessage", getStringFromStack( stackPointer ), jni_string, 1);
+
+  if (status == TRUE)
+  {
+    return SET_PROPERTY_SUCCEED;
+  }
+  else
+  {
+    return SET_PROPERTY_ERROR;
+  }
+
+  /* deactivated for now since it involves drawing operations, to be implemented */
+#if 0
   /* disable protection since this function will call Java */
   disableFigureSynchronization(pobj);
   status = sciSetInfoMessage( pobj, getStringFromStack( stackPointer ) ) ;
@@ -50,5 +66,7 @@ int set_info_message_property( sciPointObj * pobj, size_t stackPointer, int valu
 
 	/* return set property unchanged since repaint is not really needed */
 	return sciSetNoRedrawStatus((SetPropertyStatus)status);
+#endif
+
 }
 /*------------------------------------------------------------------------*/

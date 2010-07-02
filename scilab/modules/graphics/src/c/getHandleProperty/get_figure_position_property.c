@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -24,12 +25,13 @@
 #include "Scierror.h"
 #include "localization.h"
 
+#include "getGraphicObjectProperty.h"
+
 /*------------------------------------------------------------------------*/
 int get_figure_position_property( sciPointObj * pobj )
 {
-  int posX ;
-  int posY ;
   double figurePos[2] ;
+  int* position;
 
   if ( sciGetEntityType (pobj) != SCI_FIGURE )
   {
@@ -37,12 +39,11 @@ int get_figure_position_property( sciPointObj * pobj )
     return -1;
   }
 
-  sciGetScreenPosition( pobj, &posX, &posY ) ;
+  position = getGraphicObjectIntegerVectorProperty(pobj->UID, "Position");
 
-  figurePos[0] = (double) posX ; 
-  figurePos[1] = (double) posY ;
-
-  
+  figurePos[0] = (double) position[0] ; 
+  figurePos[1] = (double) position[1] ;
+ 
   return sciReturnRowVector( figurePos, 2 ) ;
 
 }

@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -25,6 +26,7 @@
 #include "MALLOC.h"
 #include "localization.h"
 
+#include "getGraphicObjectProperty.h"
 
 /*--------------------------------------------------------------------------*/
 int get_color_map_property( sciPointObj * pobj )
@@ -38,20 +40,12 @@ int get_color_map_property( sciPointObj * pobj )
     return -1;
   }
 
-  cmapSize = sciGetNumColors(pobj) ;
-  colorMap = MALLOC( cmapSize * 3 * sizeof(double) ) ;
-  if ( colorMap == NULL )
-  {
-    Scierror(999, _("%s: No more memory.\n"),"get_color_map_property");
-    return -1;
-  }
+  cmapSize = (int)getGraphicObjectIntegerProperty(pobj->UID, "ColorMapSize");
 
-  sciGetColormap(pobj, colorMap);
+  double* mycolormap = (double*)getGraphicObjectDoubleVectorProperty(pobj->UID, "ColorMap");
 
-  status = sciReturnMatrix( colorMap, sciGetNumColors( pobj ), 3 ) ;
+  status = sciReturnMatrix ( mycolormap, cmapSize/3, 3);
 
-  FREE(colorMap) ;
-
-  return status ;
+  return status;
 }
 /*--------------------------------------------------------------------------*/

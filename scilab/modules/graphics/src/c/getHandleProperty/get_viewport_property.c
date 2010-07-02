@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -22,6 +23,8 @@
 #include "Scierror.h"
 #include "localization.h"
 
+#include "getGraphicObjectProperty.h"
+
 /*------------------------------------------------------------------------*/
 int get_viewport_property( sciPointObj * pobj )
 {
@@ -33,11 +36,6 @@ int get_viewport_property( sciPointObj * pobj )
     return -1 ;
   }
 
-  sciGetViewport( pobj, viewport ) ;
-
-  /* For now we just give viewport position */
-  /* until we have a better management of tab sizes */
-  return sciReturnRowIntVector( viewport, 2 ) ;
-
+  return sciReturnRowIntVector( getGraphicObjectIntegerVectorProperty(pobj->UID, "Viewport"), 2 );
 }
 /*------------------------------------------------------------------------*/

@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -26,10 +27,14 @@
 #include "GetProperty.h"
 #include "SetPropertyStatus.h"
 
+#include "setGraphicObjectProperty.h"
+
 /*------------------------------------------------------------------------*/
 int set_pixmap_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
 	int b =  (int)FALSE;
+	BOOL status;
+
 	if ( sciGetEntityType (pobj) != SCI_FIGURE )
 	{
 		Scierror(999, _("'%s' property does not exist for this handle.\n"),"pixmap");
@@ -39,7 +44,15 @@ int set_pixmap_property( sciPointObj * pobj, size_t stackPointer, int valueType,
 	b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "pixmap");
 	if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
 
-	sciSetPixmapMode(pobj, b);
-	return SET_PROPERTY_SUCCEED;
+	status = setGraphicObjectProperty(pobj->UID, "Pixmap", &b, jni_bool, 1);
+
+	if (status == TRUE)
+	{
+		return SET_PROPERTY_SUCCEED;
+	}
+	else
+	{
+		return SET_PROPERTY_ERROR;
+	}
 }
 /*------------------------------------------------------------------------*/

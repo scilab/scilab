@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -25,6 +26,8 @@
 #include "localization.h"
 #include "MALLOC.h"
 
+#include "getGraphicObjectProperty.h"
+
 /*------------------------------------------------------------------------*/
 int get_background_property( sciPointObj * pobj )
 {
@@ -34,6 +37,11 @@ int get_background_property( sciPointObj * pobj )
 		Scierror(999, _("'%s' property does not exist for this handle.\n"),"background");
 	}
 
+  return sciReturnDouble( getGraphicObjectIntegerProperty(pobj->UID, "Background") );
+
+/* deactivated for now, to be implemented */
+#if 0
   return sciReturnDouble( sciGetBackgroundToDisplay( pobj ) ) ;
+#endif
 }
 /*------------------------------------------------------------------------*/

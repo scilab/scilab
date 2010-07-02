@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -24,13 +25,16 @@
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
+
+#include "getGraphicObjectProperty.h"
+
 /*------------------------------------------------------------------------*/
 
 int get_pixel_drawing_mode_property( sciPointObj * pobj )
 {
   if ( sciGetEntityType (pobj) == SCI_FIGURE )
   {
-    return sciReturnString( getPixelMode( pFIGURE_FEATURE (pobj)->gmode.xormode ) ) ;
+    return sciReturnString( getPixelMode ( getGraphicObjectIntegerProperty(pobj->UID, "PixelDrawingMode") ) );
   }
   else
   {

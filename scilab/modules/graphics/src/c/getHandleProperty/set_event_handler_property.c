@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -25,9 +26,12 @@
 #include "Scierror.h"
 #include "localization.h"
 
+#include "setGraphicObjectProperty.h"
+
 /*------------------------------------------------------------------------*/
 int set_event_handler_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
+  BOOL status;
 
   if ( !isParameterStringMatrix( valueType ) )
   {
@@ -41,7 +45,21 @@ int set_event_handler_property( sciPointObj * pobj, size_t stackPointer, int val
     return SET_PROPERTY_ERROR ;
   }
 
+  status = setGraphicObjectProperty(pobj->UID, "EventHandlerName", getStringFromStack(stackPointer), jni_string, 1);
+
+  if (status == TRUE)
+  {
+    return SET_PROPERTY_SUCCEED;
+  }
+  else
+  {
+    return SET_PROPERTY_ERROR;
+  }
+
+/* deactivated for now since it involves drawing operations, to be implemented later */
+#if 0
   return sciSetNoRedrawStatus((SetPropertyStatus) sciSetEventHandler( pobj, getStringFromStack( stackPointer ) )) ;
+#endif
 
 }
 /*------------------------------------------------------------------------*/

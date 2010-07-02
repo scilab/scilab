@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - Digiteo - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -22,6 +23,8 @@
 #include "Scierror.h"
 #include "localization.h"
 
+#include "getGraphicObjectProperty.h"
+
 /*------------------------------------------------------------------------*/
 int get_anti_aliasing_property( sciPointObj * pobj )
 {
@@ -32,7 +35,7 @@ int get_anti_aliasing_property( sciPointObj * pobj )
     return -1;
   }
 
-  switch(sciGetAntialiasingQuality(pobj))
+  switch(getGraphicObjectIntegerProperty(pobj->UID, "Antialiasing"))
 	{
 	case 0:
 		return sciReturnString("off");
@@ -47,11 +50,11 @@ int get_anti_aliasing_property( sciPointObj * pobj )
 		return sciReturnString("8x");
 		break;
 	case 16:
-		break;
 		return sciReturnString("16x");
+		break;
 	default:
-    Scierror(999, _("Wrong value for '%s' property.\n"),"anti_aliasing");
-    return -1 ;
+		Scierror(999, _("Wrong value for '%s' property.\n"),"anti_aliasing");
+		return -1 ;
 		break;
 	}
 

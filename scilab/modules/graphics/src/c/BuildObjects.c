@@ -25,6 +25,7 @@
  - binding the newly created object tyo the entire existing hierarchy
  --------------------------------------------------------------------------*/
 #include <string.h>
+#include <stdio.h>
 
 #include "BuildObjects.h"
 #include "GetProperty.h"
@@ -203,7 +204,38 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
 
   // At least, should be only this call.
   pobj->UID = createGraphicObject("figure");
-  setGraphicObjectProperty(pobj->UID, "Name", "MVC Name !!!", jni_string);
+  setGraphicObjectProperty(pobj->UID, "Name", "MVC Name !!!", jni_string, 1);
+
+  setGraphicObjectProperty(pobj->UID, "InfoMessage", "MVC info message", jni_string, 1);
+
+  setGraphicObjectProperty(pobj->UID, "EventHandlerName", "MVC event handler", jni_string, 1);
+
+  /*
+   * Default colormap, temporary code
+   * the following code has been copied from the sciSetDefaultColorMap function
+   */
+  {
+    int numDefaultColors =  sciGetNumColors(getFigureModel());
+
+    double* tempDefaultColorMap = MALLOC(3*numDefaultColors*sizeof(double));
+
+    if(tempDefaultColorMap == NULL)
+    {
+      sciprint(_("%s: No more memory.\n"),"ConstructFigure");
+      return NULL;
+    }
+
+    sciGetColormap(getFigureModel(), tempDefaultColorMap);
+
+    setGraphicObjectProperty(pobj->UID, "ColorMap", tempDefaultColorMap, jni_double_vector, 3*numDefaultColors);
+
+    FREE(tempDefaultColorMap);
+  }
+
+
+  sciInitNumColors(pobj, 0);
+  sciSetDefaultColorMap(pobj);
+
   return pobj;
 }
 

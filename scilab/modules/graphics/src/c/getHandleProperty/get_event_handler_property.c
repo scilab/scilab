@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,7 +14,7 @@
  */
 
 /*------------------------------------------------------------------------*/
-/* file: get_margins_property.c                                           */
+/* file: get_event_handler_property.c                                     */
 /* desc : function to retrieve in Scilab the event_handler field of       */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
@@ -23,6 +24,8 @@
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
+
+#include "getGraphicObjectProperty.h"
 
 /*------------------------------------------------------------------------*/
 int get_event_handler_property( sciPointObj * pobj )
@@ -34,7 +37,6 @@ int get_event_handler_property( sciPointObj * pobj )
     return -1 ;
   }
 
-  return sciReturnString( sciGetEventHandler( pobj ) ) ;
-
+  return sciReturnString( getGraphicObjectProperty(pobj->UID, "EventHandlerName", jni_string));
 }
 /*------------------------------------------------------------------------*/

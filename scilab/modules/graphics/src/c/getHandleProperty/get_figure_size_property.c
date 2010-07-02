@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -24,10 +25,13 @@
 #include "Scierror.h"
 #include "localization.h"
 
+#include "getGraphicObjectProperty.h"
+
 /*------------------------------------------------------------------------*/
 int get_figure_size_property( sciPointObj * pobj )
 {
   double figureSize[2] ;
+  int* intSize;
 
   if ( sciGetEntityType (pobj) != SCI_FIGURE )
   {
@@ -35,10 +39,11 @@ int get_figure_size_property( sciPointObj * pobj )
     return -1;
   }
 
-  figureSize[0] = sciGetWindowWidth(pobj) ;
-  figureSize[1] = sciGetWindowHeight(pobj) ;
+  intSize = (int*)getGraphicObjectIntegerVectorProperty(pobj->UID, "Size");
 
-  return sciReturnRowVector( figureSize, 2 ) ;
+  figureSize[0] = (double)intSize[0];
+  figureSize[1] = (double)intSize[1];
 
+  return sciReturnRowVector(figureSize, 2);
 }
 /*------------------------------------------------------------------------*/

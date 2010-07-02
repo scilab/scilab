@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -25,11 +26,13 @@
 #include "localization.h"
 #include "GraphicSynchronizerInterface.h"
 
+#include "setGraphicObjectProperty.h"
+
 /*------------------------------------------------------------------------*/
 int set_viewport_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
   int values[4];
-  int status;
+  BOOL status;
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
@@ -56,6 +59,20 @@ int set_viewport_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
   values[2] = 0;
   values[3] = 0;
 
+  status = setGraphicObjectProperty(pobj->UID, "Viewport", values, jni_int_vector, 2);
+
+  if (status == TRUE)
+  {
+    return SET_PROPERTY_SUCCEED;
+  }
+  else
+  {
+    return SET_PROPERTY_ERROR;
+  }
+
+/* deactivated for now since it involves drawing operations, to be implemented */
+#if 0
+
   /* force auto_resize. With auto_resize disable, resize does not work */
 
   /* disable protection since this function will call Java */
@@ -65,5 +82,7 @@ int set_viewport_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
 
   /* return set property unchanged since repaint is not really needed */
 	return sciSetNoRedrawStatus((SetPropertyStatus)status);
+#endif
+
 }
 /*------------------------------------------------------------------------*/

@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -23,24 +24,26 @@
 #include "returnProperty.h"
 #include "MALLOC.h"
 
+#include "getGraphicObjectProperty.h"
+
 /*------------------------------------------------------------------------*/
 int get_user_data_property( sciPointObj * pobj )
 {
   /* user_data */
-  int *size_ptr, data_size;
-  int **user_data_ptr,*data_ptr;
-  sciGetPointerToUserData (pobj,&user_data_ptr, &size_ptr);
+  int userDataSize;
+  int* userData;
 
-  data_ptr=*user_data_ptr;
-  data_size=0;
-  if ( *user_data_ptr == NULL || *size_ptr == 0 )
+  userDataSize = getGraphicObjectIntegerProperty(pobj->UID, "UserDataSize");
+
+  userData = getGraphicObjectIntegerVectorProperty(pobj->UID, "UserData");
+
+  if ( userData == NULL || userDataSize == 0 )
   {
     return sciReturnEmptyMatrix() ;
   }
   else
   {
-    return sciReturnUserData( *user_data_ptr, *size_ptr ) ;
+    return sciReturnUserData( userData, userDataSize);
   }
-
 }
 /*------------------------------------------------------------------------*/

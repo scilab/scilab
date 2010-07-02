@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -31,13 +32,13 @@
 /*------------------------------------------------------------------------*/
 int get_figure_name_property( sciPointObj * pobj )
 {
+
   if ( sciGetEntityType(pobj) != SCI_FIGURE )
   {
     Scierror(999, _("'%s' property does not exist for this handle.\n"),"figure_name");
     return -1;
   }
-  //return sciReturnString( sciGetName( pobj ) ) ;
 
-  return sciReturnString( (char *) getGraphicObjectProperty(pobj->UID, "Name", jni_string));
+  return sciReturnString( (char *) getGraphicObjectStringProperty(pobj->UID, "Name"));
 }
 /*------------------------------------------------------------------------*/

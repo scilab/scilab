@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -23,6 +24,8 @@
 #include "GetUiobjectVisible.h"
 #include "GetProperty.h"
 
+#include "getGraphicObjectProperty.h"
+
 /*------------------------------------------------------------------------*/
 
 int get_visible_property( sciPointObj * pobj )
@@ -33,7 +36,7 @@ int get_visible_property( sciPointObj * pobj )
       return GetUiobjectVisible(pobj);
     }
 
-  if ( sciGetVisibility( pobj ) )
+  if ( getGraphicObjectBooleanProperty(pobj->UID, "Visible") )
   {
     return sciReturnString( "on" ) ;
   }
