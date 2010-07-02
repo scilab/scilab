@@ -115,7 +115,6 @@ import com.mxgraph.model.mxIGraphModel.mxAtomicGraphModelChange;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxPoint;
-import com.mxgraph.util.mxRectangle;
 import com.mxgraph.util.mxUndoableEdit;
 import com.mxgraph.util.mxUtils;
 import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
@@ -736,14 +735,6 @@ public class XcosDiagram extends ScilabGraph {
 		    if (getCellStyle(cell).get("displayedLabel") != null) {
 			((mxCell) cell).setValue("<html><body> " + getCellStyle(cell).get("displayedLabel") + " </body></html>");
 		    }
-
-		    mxRectangle preferedSize = getPreferredSizeForCell(cell);
-		    mxGeometry cellSize = ((mxCell) cell).getGeometry();
-
-		    ((mxCell) cell).setGeometry(new mxGeometry(cellSize.getX(), cellSize.getY(),
-			    Math.max(preferedSize.getWidth(), cellSize.getWidth()),
-			    Math.max(preferedSize.getHeight(), cellSize.getHeight())));
-		    cellsResized(new Object[] {cell}, new mxRectangle[]{((mxCell) cell).getGeometry()});
 		}
 	    }
 	    getModel().endUpdate();
@@ -841,16 +832,14 @@ public class XcosDiagram extends ScilabGraph {
     		Object[] cells = (Object[]) evt.getProperty("cells");
     		
     		diagram.getModel().beginUpdate();
+    		
     		for (int i = 0; i < cells.length; ++i) {
-
-//    			((mxCell) cells[i]).setId((new UID()).toString());
-
 				if (cells[i] instanceof BasicBlock) {
 					// Update parent on cell addition
 					((BasicBlock) cells[i]).setParentDiagram(diagram);
 				}
     		}
-    		//fireEvent(XcosEvent.FORCE_CELL_VALUE_UPDATE, new mxEventObject(new Object[] {cells}));
+    		
     		diagram.getModel().endUpdate();
     	}
     }

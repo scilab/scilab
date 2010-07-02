@@ -13,6 +13,7 @@
 package org.scilab.modules.xcos.palette;
 
 import java.awt.Point;
+import java.awt.datatransfer.Transferable;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DragGestureEvent;
 import java.awt.dnd.DragGestureListener;
@@ -28,17 +29,16 @@ import org.scilab.modules.localization.Messages;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.H5RWHandler;
 import org.scilab.modules.xcos.palette.listener.PaletteBlockMouseListener;
 import org.scilab.modules.xcos.palette.model.PaletteBlock;
 import org.scilab.modules.xcos.palette.view.PaletteBlockView;
 import org.scilab.modules.xcos.palette.view.PaletteManagerView;
-import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-import com.mxgraph.swing.util.mxGraphTransferable;
+import com.mxgraph.swing.handler.mxGraphTransferHandler;
 import com.mxgraph.util.mxConstants;
-import com.mxgraph.util.mxRectangle;
 
 /**
  * A palette block is the representation of the block in the palette. All the
@@ -51,12 +51,21 @@ public final class PaletteBlockCtrl {
 	
 	private static final String UNABLE_TO_LOAD_BLOCK = Messages.gettext("Unable to load block from %s .");
 	
+	/*
+	 * Internal graph used to render each block.
+	 */
+	private static final XcosDiagram INTERNAL_GRAPH;
+	static {
+		INTERNAL_GRAPH = new XcosDiagram();
+		INTERNAL_GRAPH.installListeners();
+	}
+	
 	private static PaletteBlockCtrl previouslySelected;
 	
 	private final PaletteBlock model;
 	private final PaletteBlockView view;
 	
-	private mxGraphTransferable transferable;
+	private Transferable transferable;
 	
 	/**
 	 * Default constructor
@@ -95,8 +104,9 @@ public final class PaletteBlockCtrl {
 	 * This function is the only access to get the block.
 	 * @return the transferable object
 	 */
-	public mxGraphTransferable getTransferable() {
+	public Transferable getTransferable() {
 		if (transferable == null) {
+			/* Load the block from the H5 file */
 			BasicBlock block = loadBlock();
 			if (block == null) {
 				if (LOG.isInfoEnabled()) {
@@ -107,9 +117,18 @@ public final class PaletteBlockCtrl {
 				return null;
 			}
 			getView().setEnabled(true);
-			BlockPositioning.updateBlockView(block);
-			transferable = new mxGraphTransferable(new Object[] {block},
-					(mxRectangle) block.getGeometry().clone());
+			
+			/* Render it and export it */
+			INTERNAL_GRAPH.addCell(block);
+			INTERNAL_GRAPH.selectAll();
+			
+			INTERNAL_GRAPH.updateCellSize(block);
+			
+			mxGraphTransferHandler handler = ((mxGraphTransferHandler) INTERNAL_GRAPH
+					.getAsComponent().getTransferHandler());
+			transferable = handler.createTransferable(INTERNAL_GRAPH.getAsComponent());
+			
+			INTERNAL_GRAPH.removeCells();
 		}
 		return transferable;
 	}
@@ -168,7 +187,7 @@ public final class PaletteBlockCtrl {
 			public void dragGestureRecognized(DragGestureEvent e) {
 				try {
 					// handle null case: the block cannot be loaded.
-					final mxGraphTransferable transfer  = getTransferable();
+					final Transferable transfer  = getTransferable();
 					if (transfer != null) {
 						e.startDrag(null, mxConstants.EMPTY_IMAGE, new Point(),
 								transfer, null);
