@@ -181,11 +181,11 @@ am__objects_5 = libscigui_la-InitUIMenu.lo \
 	libscigui_la-PushButton.lo libscigui_la-EditBox.lo \
 	libscigui_la-Label.lo libscigui_la-CheckBox.lo \
 	libscigui_la-RadioButton.lo libscigui_la-ImageRender.lo \
-	libscigui_la-Slider.lo libscigui_la-PopupMenu.lo \
-	libscigui_la-ContextMenu.lo libscigui_la-ListBox.lo \
-	libscigui_la-Frame.lo libscigui_la-Toolbar.lo \
-	libscigui_la-Widget.lo libscigui_la-SetUimenuLabel.lo \
-	libscigui_la-GetUimenuLabel.lo \
+	libscigui_la-UiTable.lo libscigui_la-Slider.lo \
+	libscigui_la-PopupMenu.lo libscigui_la-ContextMenu.lo \
+	libscigui_la-ListBox.lo libscigui_la-Frame.lo \
+	libscigui_la-Toolbar.lo libscigui_la-Widget.lo \
+	libscigui_la-SetUimenuLabel.lo libscigui_la-GetUimenuLabel.lo \
 	libscigui_la-GetUicontrolStyle.lo \
 	libscigui_la-SetUicontrolString.lo \
 	libscigui_la-GetUicontrolString.lo \
@@ -208,7 +208,14 @@ am__objects_5 = libscigui_la-InitUIMenu.lo \
 	libscigui_la-GetUicontrolFontAngle.lo \
 	libscigui_la-SetUiobjectCallback.lo \
 	libscigui_la-GetUiobjectCallback.lo \
-	libscigui_la-SetUiobjectTag.lo libscigui_la-GetUiobjectTag.lo \
+	libscigui_la-SetUiobjectTag.lo \
+	libscigui_la-SetUiobjectRotate.lo \
+	libscigui_la-SetUiobjectShear.lo \
+	libscigui_la-SetUiobjectScale.lo \
+	libscigui_la-SetUiobjectColnames.lo \
+	libscigui_la-SetUiobjectRownames.lo \
+	libscigui_la-SetUiobjectTabledata.lo \
+	libscigui_la-GetUiobjectTag.lo \
 	libscigui_la-SetUiobjectEnable.lo \
 	libscigui_la-GetUiobjectEnable.lo \
 	libscigui_la-SetUimenuChecked.lo \
@@ -646,6 +653,7 @@ src/cpp/Label.cpp \
 src/cpp/CheckBox.cpp \
 src/cpp/RadioButton.cpp \
 src/cpp/ImageRender.cpp \
+src/cpp/UiTable.cpp \
 src/cpp/Slider.cpp \
 src/cpp/PopupMenu.cpp \
 src/cpp/ContextMenu.cpp \
@@ -678,6 +686,12 @@ src/cpp/GetUicontrolFontAngle.cpp \
 src/cpp/SetUiobjectCallback.cpp \
 src/cpp/GetUiobjectCallback.cpp \
 src/cpp/SetUiobjectTag.cpp \
+src/cpp/SetUiobjectRotate.cpp \
+src/cpp/SetUiobjectShear.cpp \
+src/cpp/SetUiobjectScale.cpp \
+src/cpp/SetUiobjectColnames.cpp \
+src/cpp/SetUiobjectRownames.cpp \
+src/cpp/SetUiobjectTabledata.cpp \
 src/cpp/GetUiobjectTag.cpp \
 src/cpp/SetUiobjectEnable.cpp \
 src/cpp/GetUiobjectEnable.cpp \
@@ -1038,13 +1052,20 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUimenuChecked.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUimenuLabel.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUiobjectCallback.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUiobjectColnames.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUiobjectEnable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUiobjectForegroundColor.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUiobjectRotate.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUiobjectRownames.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUiobjectScale.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUiobjectShear.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUiobjectTabledata.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUiobjectTag.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUiobjectVisible.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-Slider.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-TerminateGui.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-Toolbar.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-UiTable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-UicontrolStyleToString.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-UnitsConversion.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-Widget.Plo@am__quote@
@@ -1639,6 +1660,13 @@ libscigui_la-ImageRender.lo: src/cpp/ImageRender.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-ImageRender.lo `test -f 'src/cpp/ImageRender.cpp' || echo '$(srcdir)/'`src/cpp/ImageRender.cpp
 
+libscigui_la-UiTable.lo: src/cpp/UiTable.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-UiTable.lo -MD -MP -MF $(DEPDIR)/libscigui_la-UiTable.Tpo -c -o libscigui_la-UiTable.lo `test -f 'src/cpp/UiTable.cpp' || echo '$(srcdir)/'`src/cpp/UiTable.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_la-UiTable.Tpo $(DEPDIR)/libscigui_la-UiTable.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/UiTable.cpp' object='libscigui_la-UiTable.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-UiTable.lo `test -f 'src/cpp/UiTable.cpp' || echo '$(srcdir)/'`src/cpp/UiTable.cpp
+
 libscigui_la-Slider.lo: src/cpp/Slider.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-Slider.lo -MD -MP -MF $(DEPDIR)/libscigui_la-Slider.Tpo -c -o libscigui_la-Slider.lo `test -f 'src/cpp/Slider.cpp' || echo '$(srcdir)/'`src/cpp/Slider.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_la-Slider.Tpo $(DEPDIR)/libscigui_la-Slider.Plo
@@ -1862,6 +1890,48 @@ libscigui_la-SetUiobjectTag.lo: src/cpp/SetUiobjectTag.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/SetUiobjectTag.cpp' object='libscigui_la-SetUiobjectTag.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-SetUiobjectTag.lo `test -f 'src/cpp/SetUiobjectTag.cpp' || echo '$(srcdir)/'`src/cpp/SetUiobjectTag.cpp
+
+libscigui_la-SetUiobjectRotate.lo: src/cpp/SetUiobjectRotate.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-SetUiobjectRotate.lo -MD -MP -MF $(DEPDIR)/libscigui_la-SetUiobjectRotate.Tpo -c -o libscigui_la-SetUiobjectRotate.lo `test -f 'src/cpp/SetUiobjectRotate.cpp' || echo '$(srcdir)/'`src/cpp/SetUiobjectRotate.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_la-SetUiobjectRotate.Tpo $(DEPDIR)/libscigui_la-SetUiobjectRotate.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/SetUiobjectRotate.cpp' object='libscigui_la-SetUiobjectRotate.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-SetUiobjectRotate.lo `test -f 'src/cpp/SetUiobjectRotate.cpp' || echo '$(srcdir)/'`src/cpp/SetUiobjectRotate.cpp
+
+libscigui_la-SetUiobjectShear.lo: src/cpp/SetUiobjectShear.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-SetUiobjectShear.lo -MD -MP -MF $(DEPDIR)/libscigui_la-SetUiobjectShear.Tpo -c -o libscigui_la-SetUiobjectShear.lo `test -f 'src/cpp/SetUiobjectShear.cpp' || echo '$(srcdir)/'`src/cpp/SetUiobjectShear.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_la-SetUiobjectShear.Tpo $(DEPDIR)/libscigui_la-SetUiobjectShear.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/SetUiobjectShear.cpp' object='libscigui_la-SetUiobjectShear.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-SetUiobjectShear.lo `test -f 'src/cpp/SetUiobjectShear.cpp' || echo '$(srcdir)/'`src/cpp/SetUiobjectShear.cpp
+
+libscigui_la-SetUiobjectScale.lo: src/cpp/SetUiobjectScale.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-SetUiobjectScale.lo -MD -MP -MF $(DEPDIR)/libscigui_la-SetUiobjectScale.Tpo -c -o libscigui_la-SetUiobjectScale.lo `test -f 'src/cpp/SetUiobjectScale.cpp' || echo '$(srcdir)/'`src/cpp/SetUiobjectScale.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_la-SetUiobjectScale.Tpo $(DEPDIR)/libscigui_la-SetUiobjectScale.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/SetUiobjectScale.cpp' object='libscigui_la-SetUiobjectScale.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-SetUiobjectScale.lo `test -f 'src/cpp/SetUiobjectScale.cpp' || echo '$(srcdir)/'`src/cpp/SetUiobjectScale.cpp
+
+libscigui_la-SetUiobjectColnames.lo: src/cpp/SetUiobjectColnames.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-SetUiobjectColnames.lo -MD -MP -MF $(DEPDIR)/libscigui_la-SetUiobjectColnames.Tpo -c -o libscigui_la-SetUiobjectColnames.lo `test -f 'src/cpp/SetUiobjectColnames.cpp' || echo '$(srcdir)/'`src/cpp/SetUiobjectColnames.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_la-SetUiobjectColnames.Tpo $(DEPDIR)/libscigui_la-SetUiobjectColnames.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/SetUiobjectColnames.cpp' object='libscigui_la-SetUiobjectColnames.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-SetUiobjectColnames.lo `test -f 'src/cpp/SetUiobjectColnames.cpp' || echo '$(srcdir)/'`src/cpp/SetUiobjectColnames.cpp
+
+libscigui_la-SetUiobjectRownames.lo: src/cpp/SetUiobjectRownames.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-SetUiobjectRownames.lo -MD -MP -MF $(DEPDIR)/libscigui_la-SetUiobjectRownames.Tpo -c -o libscigui_la-SetUiobjectRownames.lo `test -f 'src/cpp/SetUiobjectRownames.cpp' || echo '$(srcdir)/'`src/cpp/SetUiobjectRownames.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_la-SetUiobjectRownames.Tpo $(DEPDIR)/libscigui_la-SetUiobjectRownames.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/SetUiobjectRownames.cpp' object='libscigui_la-SetUiobjectRownames.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-SetUiobjectRownames.lo `test -f 'src/cpp/SetUiobjectRownames.cpp' || echo '$(srcdir)/'`src/cpp/SetUiobjectRownames.cpp
+
+libscigui_la-SetUiobjectTabledata.lo: src/cpp/SetUiobjectTabledata.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-SetUiobjectTabledata.lo -MD -MP -MF $(DEPDIR)/libscigui_la-SetUiobjectTabledata.Tpo -c -o libscigui_la-SetUiobjectTabledata.lo `test -f 'src/cpp/SetUiobjectTabledata.cpp' || echo '$(srcdir)/'`src/cpp/SetUiobjectTabledata.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_la-SetUiobjectTabledata.Tpo $(DEPDIR)/libscigui_la-SetUiobjectTabledata.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/SetUiobjectTabledata.cpp' object='libscigui_la-SetUiobjectTabledata.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-SetUiobjectTabledata.lo `test -f 'src/cpp/SetUiobjectTabledata.cpp' || echo '$(srcdir)/'`src/cpp/SetUiobjectTabledata.cpp
 
 libscigui_la-GetUiobjectTag.lo: src/cpp/GetUiobjectTag.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-GetUiobjectTag.lo -MD -MP -MF $(DEPDIR)/libscigui_la-GetUiobjectTag.Tpo -c -o libscigui_la-GetUiobjectTag.lo `test -f 'src/cpp/GetUiobjectTag.cpp' || echo '$(srcdir)/'`src/cpp/GetUiobjectTag.cpp

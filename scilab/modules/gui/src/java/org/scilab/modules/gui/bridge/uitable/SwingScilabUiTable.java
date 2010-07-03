@@ -9,22 +9,22 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-package org.scilab.modules.gui.bridge.imagerender;
+package org.scilab.modules.gui.bridge.uitable;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
 import java.awt.Dimension;
-import java.awt.Graphics2D;
 
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
+import javax.swing.JList;
+import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
+import javax.swing.SwingUtilities;
+
+import java.util.StringTokenizer;
 
 import org.scilab.modules.gui.events.callback.CallBack;
-import org.scilab.modules.gui.imagerender.SimpleImageRender;
+import org.scilab.modules.gui.uitable.SimpleUiTable;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
@@ -36,32 +36,36 @@ import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
 
 /**
- * Swing implementation for Scilab ImageRender in GUIs
+ * Swing implementation for Scilab UiTable in GUIs
  * @author Han DONG
  */
-public class SwingScilabImageRender extends JScrollPane implements SimpleImageRender {
+public class SwingScilabUiTable extends JScrollPane implements SimpleUiTable {
 
-	private static final long serialVersionUID = -3394912554085956130L;
+	private static final long serialVersionUID = -5497171010652701217L;
 
-	private JLabel imageRender;
-	private ImageIcon imi;
-	private Image img;
-	private String directory;
+	private JTable uiTable;
+	private JList rowHeader;
+
+	private Object[] colNames = {};
+	private Object[] rowNames = {};
+	private Object[][] data = {};	
+
+	private int nCol = 0;
+	private int nRow = 0;
+
+	private JLabel label;
 
 	/**
 	 * Constructor
 	 */
-	public SwingScilabImageRender() {
+	public SwingScilabUiTable() {
 		super();
-		getViewport().add(getLabel());
-		setBorder(BorderFactory.createEmptyBorder());
-		setViewportBorder(BorderFactory.createEmptyBorder());
-		setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+		getViewport().add(getUiTable());
+		setRowHeaderView(getCustomRowHeader());
 	}
 
 	/**
-	 * Apply a new font for the imageRender.
+	 * Apply a new font for the uiTable.
 	 * @param font new font to use.
 	 */
 	public void setFont(Font font) {
@@ -124,7 +128,7 @@ public class SwingScilabImageRender extends JScrollPane implements SimpleImageRe
 	 */
 	public void setVisible(boolean newVisibleState) {
 		super.setVisible(newVisibleState);
-		getLabel().setVisible(newVisibleState);
+		//getLabel().setVisible(newVisibleState);
 	}
 
 	/**
@@ -165,7 +169,7 @@ public class SwingScilabImageRender extends JScrollPane implements SimpleImageRe
 	}
 
 	/**
-	 * Add a callback to the ImageRender
+	 * Add a callback to the UiTable
 	 * @param callback the callback to set.
 	 */
 	public void setCallback(CallBack callback) {
@@ -174,42 +178,42 @@ public class SwingScilabImageRender extends JScrollPane implements SimpleImageRe
 
 	/**
 	 * Setter for MenuBar
-	 * @param menuBarToAdd the MenuBar associated to the ImageRender.
+	 * @param menuBarToAdd the MenuBar associated to the UiTable.
 	 */
 	public void addMenuBar(MenuBar menuBarToAdd) {
-		/* Unimplemented for ImageRenders */
+		/* Unimplemented for UiTables */
 		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * Setter for ToolBar
-	 * @param toolBarToAdd the ToolBar associated to the ImageRender.
+	 * @param toolBarToAdd the ToolBar associated to the UiTable.
 	 */
 	public void addToolBar(ToolBar toolBarToAdd) {
-		/* Unimplemented for ImageRenders */
+		/* Unimplemented for UiTables */
 		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * Getter for MenuBar
-	 * @return MenuBar: the MenuBar associated to the ImageRender.
+	 * @return MenuBar: the MenuBar associated to the UiTable.
 	 */
 	public MenuBar getMenuBar() {
-		/* Unimplemented for ImageRenders */
+		/* Unimplemented for UiTables */
 		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * Getter for ToolBar
-	 * @return ToolBar: the ToolBar associated to the ImageRender.
+	 * @return ToolBar: the ToolBar associated to the UiTable.
 	 */
 	public ToolBar getToolBar() {
-		/* Unimplemented for ImageRenders */
+		/* Unimplemented for UiTables */
 		throw new UnsupportedOperationException();
 	}
 
 	/**
-	 * Set the horizontal alignment for the ImageRender text
+	 * Set the horizontal alignment for the UiTable text
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)
 	 */
 	public void setHorizontalAlignment(String alignment) {
@@ -217,7 +221,7 @@ public class SwingScilabImageRender extends JScrollPane implements SimpleImageRe
 	}
 
 	/**
-	 * Set the vertical alignment for the ImageRender text
+	 * Set the vertical alignment for the UiTable text
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)
 	 */
 	public void setVerticalAlignment(String alignment) {
@@ -225,7 +229,7 @@ public class SwingScilabImageRender extends JScrollPane implements SimpleImageRe
 	}
 
 	/**
-	 * Set the Relief of the ImageRender
+	 * Set the Relief of the UiTable
 	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
 	 */
 	public void setRelief(String reliefType) {
@@ -233,7 +237,7 @@ public class SwingScilabImageRender extends JScrollPane implements SimpleImageRe
 	}
 
 	/**
-	 * Destroy the ImageRender
+	 * Destroy the UiTable
 	 */
 	public void destroy() {
 		ScilabSwingUtilities.removeFromParent(this);
@@ -241,36 +245,57 @@ public class SwingScilabImageRender extends JScrollPane implements SimpleImageRe
 
 	/**
 	 * Setter for InfoBar
-	 * @param infoBarToAdd the InfoBar associated to the ImageRender.
+	 * @param infoBarToAdd the InfoBar associated to the UiTable.
 	 */
 	public void addInfoBar(TextBox infoBarToAdd) {
-		/* Unimplemented for ImageRenders */
+		/* Unimplemented for UiTables */
 		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * Getter for InfoBar
-	 * @return the InfoBar associated to the ImageRender.
+	 * @return the InfoBar associated to the UiTable.
 	 */
 	public TextBox getInfoBar() {
-		/* Unimplemented for ImageRenders */
+		/* Unimplemented for UiTables */
 		throw new UnsupportedOperationException();
+	}
+	
+	/**
+	 * Create/Return the uiTable Java object
+	 * @return the uiTable
+	 */
+	private JTable getUiTable() {
+		if (uiTable == null) {
+			uiTable = new JTable(data, colNames);
+			uiTable.setFillsViewportHeight(true);
+		}
+		return uiTable;
 	}
 
 	/**
-	 * Create/Return the imageRender Java object
-	 * @return the imageRender
+	 * Create/Return the rowHeader Java Object
+	 * @return the rowHeader
+	 */
+	private JList getCustomRowHeader() {
+		if (rowHeader == null) {
+			rowHeader = new JList(rowNames);
+			rowHeader.setFixedCellWidth(50);
+			rowHeader.setFixedCellHeight(uiTable.getRowHeight());
+			rowHeader.setCellRenderer(new RowHeaderRenderer(uiTable));
+		}
+		return rowHeader;
+	}
+
+	/**
+	 * Create/Return the uiTable Java object
+	 * @return the uiTable
 	 */
 	private JLabel getLabel() {
-		if (imageRender == null) {
-			imageRender = new JLabel();
-			directory = "";
-			imageRender.setOpaque(true);
-			imi = new ImageIcon();
-			img = imi.getImage();
-			imageRender.setIcon(imi);
+		if (label == null) {
+			label = new JLabel();
 		}
-		return imageRender;
+		return label;
 	}
 
 	/**
@@ -279,7 +304,7 @@ public class SwingScilabImageRender extends JScrollPane implements SimpleImageRe
 	 * @see org.scilab.modules.gui.text.SimpleText#getText()
 	 */
 	public String getText() {
-		return directory;
+		return getLabel().getText();
 	}
 
 	/**
@@ -287,58 +312,118 @@ public class SwingScilabImageRender extends JScrollPane implements SimpleImageRe
 	 * @param newText the new directory to image
 	 */
 	public void setText(String newText) {
-		directory = newText;
-		imi = new ImageIcon(directory);
-		img = imi.getImage();
-		imageRender.setIcon(imi);	
-		setPreferredSize(new Dimension(imi.getIconWidth(), imi.getIconHeight()));
+		getLabel().setText(newText);
 	}
 
 	/**
-	 * Rotates the image
-	 * @param indices the double value of the angle to rotate
+	 * Sets the column names for uitable
+	 * @param text the String that contains column names delimited by a '|'. Example: 1|2|3|4
 	 */
-	public void setRotate(double[] indices) {
-		if(img != null) {
-		int h = img.getHeight(this);
-		int w = img.getWidth(this);
-		BufferedImage bim = new BufferedImage(h, w, BufferedImage.TYPE_INT_RGB);
-		Graphics2D g2 = bim.createGraphics();
-		g2.rotate(Math.toRadians(indices[0]), w/2, h/2);
-		g2.drawImage(img, 0, 0, this);
-		imageRender.setIcon(new ImageIcon(bim));
+	public void setColnames(String text) {
+		int i = 0;
+		
+		StringTokenizer stk = new StringTokenizer(text, "|");
+
+		//sets the number of columns from string tokenizer		
+		nCol = stk.countTokens();
+
+		//initializes colNames
+		colNames = new Object[nCol];
+		while(stk.hasMoreTokens()) {
+			colNames[i] = stk.nextToken().trim();
+			i ++;
 		}
+
+		//updates table with new column names
+		uiTable = new JTable(data, colNames);
+		getViewport().add(uiTable);
 	}
 
 	/**
-	 * Shears the image
-	 * @param indices the double array of x, y values to shear
+	 * Sets the row names for uitable
+	 * @param text the String that contains row names delimited by a '|'. Example: 1|2|3|4
 	 */
-	public void setShear(double[] indices) {
-		if(img != null) {
-		int h = img.getHeight(this);
-		int w = img.getWidth(this);
-		BufferedImage bim = new BufferedImage(h, w, BufferedImage.TYPE_INT_RGB);
-		Graphics2D g2 = bim.createGraphics();
-		g2.shear(indices[0], indices[1]);
-		g2.drawImage(img, 0, 0, this);
-		imageRender.setIcon(new ImageIcon(bim));
+	public void setRownames(String text) {
+		int i = 0;
+		
+		//sets the number of rows from string tokenizer
+		StringTokenizer stk = new StringTokenizer(text, "|");
+		nRow = stk.countTokens();
+		rowNames = new Object[nRow];
+
+		//initializes rowNames
+		while(stk.hasMoreTokens()) {
+			rowNames[i] = stk.nextToken().trim();
+			i ++;
 		}
+		
+		//updates table with new row names
+		rowHeader = new JList(rowNames);
+		rowHeader.setFixedCellWidth(50);
+		rowHeader.setFixedCellHeight(uiTable.getRowHeight());
+		rowHeader.setCellRenderer(new RowHeaderRenderer(uiTable));
+		setRowHeaderView(rowHeader);	
 	}
 
 	/**
-	 * Scaless the image
-	 * @param indices the double array of x, y values to scale
+	 * Sets the Data for uitable
+	 * @param uiTable the UiTable
+	 * @param text the String that contains row data delimited by a '|'
+         *        and column data delimited by " ". Example: 1.26 3.47 | a b | d e | a b
 	 */
-	public void setScale(double[] indices) {
-		if(img != null) {
-		int h = img.getHeight(this) * (int) Math.ceil(indices[0]);
-		int w = img.getWidth(this) * (int) Math.ceil(indices[1]);
-		BufferedImage bim = new BufferedImage(h, w, BufferedImage.TYPE_INT_RGB);
-		Graphics2D g2 = bim.createGraphics();
-		g2.scale(indices[0], indices[1]);
-		g2.drawImage(img, 0, 0, this);
-		imageRender.setIcon(new ImageIcon(bim));
+	public void setData(String text) {
+		StringTokenizer stk = new StringTokenizer(text, "|");
+		StringTokenizer stk2 = null;
+		String s1, s2 = null;
+
+		//if no row names were provided, it will set numeric ones according to number of rows. (1, 2, 3, 4, ...)
+		if(nRow == 0)
+		{
+			nRow = stk.countTokens();
+			rowNames = new Object[nRow];
+			for(int k = 0; k < nRow; k ++)
+			{
+				rowNames[k] = k;
+			}
+			rowHeader = new JList(rowNames);
+			rowHeader.setFixedCellWidth(50);
+			rowHeader.setFixedCellHeight(uiTable.getRowHeight());
+			rowHeader.setCellRenderer(new RowHeaderRenderer(uiTable));
+			setRowHeaderView(rowHeader);	
 		}
+
+		//initializes data structure with number of rows and columns
+		data = new Object[nRow][nCol];
+		int i = 0;
+		int j = 0;
+
+		//gets each row delimited by "|"
+		while(stk.hasMoreTokens())
+		{
+			s1 = stk.nextToken().trim();
+			stk2 = new StringTokenizer(s1, " ");
+			
+			//gets each value in column delimited by " "
+			while(stk2.hasMoreTokens())
+			{
+				s2 = stk2.nextToken().trim();
+				
+				//if i, j are larger than the specified data size, it will not add them to table
+				if(i >= nRow || j >= nCol) 
+				{
+				}
+				else
+				{
+					data[i][j] = s2;
+					j ++;
+				}
+			}
+			i ++;
+			j = 0;
+		}
+
+		//adds and updates table with new data
+		uiTable = new JTable(data, colNames);
+		getViewport().add(uiTable);
 	}
 }

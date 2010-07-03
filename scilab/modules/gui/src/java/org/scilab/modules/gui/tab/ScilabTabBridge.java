@@ -28,6 +28,7 @@ import org.scilab.modules.gui.popupmenu.PopupMenu;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.imagerender.ImageRender;
+import org.scilab.modules.gui.uitable.UiTable;
 import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tree.Tree;
 import org.scilab.modules.gui.utils.Position;
@@ -305,6 +306,25 @@ public class ScilabTabBridge {
 	 * @param member the ImageRender to add
 	 */
 	public static void removeMember(Tab tab, ImageRender member) {
+		tab.getAsSimpleTab().removeMember(member);
+	}
+
+	/**
+	 * Add a member (dockable element) to a tab and returns the index of this member
+	 * @param tab the tab which we want to add the UiTable to
+	 * @param member the UiTable to add
+	 * @return the position of the UiTable in the member list.
+	 */
+	public static int addMember(Tab tab, UiTable member) {
+		return (tab.getAsSimpleTab().addMember(member));
+	}
+
+	/**
+	 * Remove a UiTable member from a tab
+	 * @param tab the tab which we want to remove the UiTable from
+	 * @param member the UiTable to add
+	 */
+	public static void removeMember(Tab tab, UiTable member) {
 		tab.getAsSimpleTab().removeMember(member);
 	}
 

@@ -41,6 +41,7 @@ import org.scilab.modules.gui.bridge.popupmenu.SwingScilabPopupMenu;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
 import org.scilab.modules.gui.bridge.imagerender.SwingScilabImageRender;
+import org.scilab.modules.gui.bridge.uitable.SwingScilabUiTable;
 import org.scilab.modules.gui.bridge.slider.SwingScilabSlider;
 import org.scilab.modules.gui.bridge.tree.SwingScilabTree;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
@@ -59,6 +60,7 @@ import org.scilab.modules.gui.popupmenu.PopupMenu;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.imagerender.ImageRender;
+import org.scilab.modules.gui.uitable.UiTable;
 import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.textbox.TextBox;
@@ -596,6 +598,40 @@ public class SwingScilabTab extends View implements SimpleTab {
 	contentPane.removeWidget(member);
     }
 	
+    /**
+     * Add a member (dockable element) to container and returns its index
+     * @param member the member to add
+     * @return index of member in ArrayList
+     */
+    public int addMember(UiTable member) {
+	return this.addMember((SwingScilabUiTable) member.getAsSimpleUiTable());
+    }
+
+    /**
+     * Add a member (dockable element) to container and returns its index
+     * @param member the member to add
+     * @return index of member in ArrayList
+     */
+    private int addMember(SwingScilabUiTable member) {
+	return contentPane.addWidget(member);
+    }
+
+    /**
+     * Remove a UiTable from its container
+     * @param member the UiTable to remove
+     */
+    public void removeMember(UiTable member) {
+	this.removeMember((SwingScilabUiTable) member.getAsSimpleUiTable());
+    }
+
+    /**
+     * Remove a UiTable from its container
+     * @param member the UiTable to remove
+     */
+    private void removeMember(SwingScilabUiTable member) {
+	contentPane.removeWidget(member);
+    }
+
     /**
      * Add a member (dockable element) to container and returns its index
      * @param member the member to add

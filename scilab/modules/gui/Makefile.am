@@ -76,6 +76,7 @@ src/cpp/Label.cpp \
 src/cpp/CheckBox.cpp \
 src/cpp/RadioButton.cpp \
 src/cpp/ImageRender.cpp \
+src/cpp/UiTable.cpp \
 src/cpp/Slider.cpp \
 src/cpp/PopupMenu.cpp \
 src/cpp/ContextMenu.cpp \
@@ -111,6 +112,9 @@ src/cpp/SetUiobjectTag.cpp \
 src/cpp/SetUiobjectRotate.cpp \
 src/cpp/SetUiobjectShear.cpp \
 src/cpp/SetUiobjectScale.cpp \
+src/cpp/SetUiobjectColnames.cpp \
+src/cpp/SetUiobjectRownames.cpp \
+src/cpp/SetUiobjectTabledata.cpp \
 src/cpp/GetUiobjectTag.cpp \
 src/cpp/SetUiobjectEnable.cpp \
 src/cpp/GetUiobjectEnable.cpp \

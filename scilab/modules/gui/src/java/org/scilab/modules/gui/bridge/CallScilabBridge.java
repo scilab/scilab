@@ -94,6 +94,8 @@ import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.radiobutton.ScilabRadioButton;
 import org.scilab.modules.gui.imagerender.ImageRender;
 import org.scilab.modules.gui.imagerender.ScilabImageRender;
+import org.scilab.modules.gui.uitable.UiTable;
+import org.scilab.modules.gui.uitable.ScilabUiTable;
 import org.scilab.modules.gui.slider.ScilabSlider;
 import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tab.ScilabTab;
@@ -448,6 +450,27 @@ public class CallScilabBridge {
     public static int newImageRender() {
         ImageRender imageRender = ScilabImageRender.createImageRender();
         int id = UIElementMapper.add(imageRender);
+
+        /* Default font */
+        setWidgetFontName(id, DEFAULTFONTNAME);
+        setWidgetFontWeight(id, NORMALFONT);
+        setWidgetFontSize(id, DEFAULTFONTSIZE);
+
+        setWidgetRelief(id, ScilabRelief.FLAT);
+
+        /* Default colors */
+        setWidgetBackgroundColor(id, (int) DEFAULT_RED_BACKGROUND, (int) DEFAULT_GREEN_BACKGROUND, (int) DEFAULT_BLUE_BACKGROUND);
+        setWidgetForegroundColor(id, (int) DEFAULT_RED_FOREGROUND, (int) DEFAULT_GREEN_FOREGROUND, (int) DEFAULT_BLUE_FOREGROUND);
+        return id;
+    }
+
+    /**
+     * Create a new UiTable in Scilab GUIs
+     * @return the ID of the UiTable in the UIElementMapper
+     */
+    public static int newUiTable() {
+        UiTable uiTable = ScilabUiTable.createUiTable();
+        int id = UIElementMapper.add(uiTable);
 
         /* Default font */
         setWidgetFontName(id, DEFAULTFONTNAME);
@@ -862,6 +885,28 @@ public class CallScilabBridge {
         Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         ImageRender imageRender = (ImageRender) UIElementMapper.getCorrespondingUIElement(objID);
         ScilabBridge.removeMember(parentTab, imageRender);
+    }
+
+    /**
+     * Set a figure as parent for a UiTable
+     * @param figureID the ID of the figure in the FigureMapper
+     * @param objID the ID of the PushButton in the UIElementMapper
+     */
+    public static void setUiTableParent(int figureID, int objID) {
+        Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+        UiTable uiTable = (UiTable) UIElementMapper.getCorrespondingUIElement(objID);
+        ScilabBridge.addMember(parentTab, uiTable);
+    }
+
+    /**
+     * Remove a UiTable from its parent figure
+     * @param figureID the ID of the figure in the FigureMapper
+     * @param objID the ID of the PushButton in the UIElementMapper
+     */
+    public static void removeUiTableFromParent(int figureID, int objID) {
+        Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+        UiTable uiTable = (UiTable) UIElementMapper.getCorrespondingUIElement(objID);
+        ScilabBridge.removeMember(parentTab, uiTable);
     }
 
     /**
@@ -2951,6 +2996,12 @@ public class CallScilabBridge {
         ScilabAboutBox.displayAndWait();
     }
 
+    /**********************/
+    /*                    */
+    /* IMAGERENDER BRIDGE */
+    /*                    */
+    /**********************/
+
     /**
      * Rotates an image by certain degrees
      */
@@ -2970,5 +3021,32 @@ public class CallScilabBridge {
      */
     public static void setImageRenderScale(int id, double[] indices) {
 	((ImageRender) UIElementMapper.getCorrespondingUIElement(id)).setScale(indices);
+    }
+
+    /******************/
+    /*                */
+    /* UITABLE BRIDGE */
+    /*                */
+    /******************/
+
+    /**
+     * Sets the column names for the uitable
+     */
+    public static void setUiTableColnames(int id, String text) {
+	((UiTable) UIElementMapper.getCorrespondingUIElement(id)).setColnames(text);
+    }
+
+    /**
+     * Sets the row names for the uitable
+     */
+    public static void setUiTableRownames(int id, String text) {
+	((UiTable) UIElementMapper.getCorrespondingUIElement(id)).setRownames(text);
+    }
+
+    /**
+     * Sets the data for the uitable
+     */
+    public static void setUiTableData(int id, String text) {
+	((UiTable) UIElementMapper.getCorrespondingUIElement(id)).setData(text);
     }
 }

@@ -24,6 +24,7 @@
 #include "ListBox.h"
 #include "Frame.h"
 #include "ImageRender.h"
+#include "UiTable.h"
 #include "DestroyObjects.h" /* sciStandardDestroyOperations */
 
 /**CreateUIControl
@@ -160,6 +161,11 @@ sciPointObj * CreateUIControl(char *style)
     {
       createImageRender((sciPointObj *) pobj);
       pUICONTROL_FEATURE (pobj)->style = SCI_IMAGERENDER;
+    }
+  else if (strcmp(style,"uitable")==0)
+    {
+      createUiTable((sciPointObj *) pobj);
+      pUICONTROL_FEATURE (pobj)->style = SCI_UITABLE;
     }
   else
     {

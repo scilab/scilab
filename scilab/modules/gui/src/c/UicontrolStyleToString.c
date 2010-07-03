@@ -38,6 +38,8 @@ char * UicontrolStyleToString(int style)
       return "popupmenu";
     case SCI_IMAGERENDER:
       return "imagerender";
+    case SCI_UITABLE:
+      return "uitable";
     default:
       return "Unknown";
     }
