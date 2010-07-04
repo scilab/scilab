@@ -70,11 +70,11 @@ public class PatternElement {
 	/*
 	 * block that compatibility patterns are being processed for
 	 */
-	private Block currentBlock;
+	private Block currentBlock = null;
 	/*
 	 * block containing all general parameters
 	 */
-	private Block generalParameters;
+	private Block generalParameters = null;
 	/**
 	 * specific block patternElement initialization
 	 * @param simulinkBlockName
@@ -90,6 +90,9 @@ public class PatternElement {
 			FileUtils.forceCopy(baseStyleSheet, userPatternSheet);
 		}
 		bindPatterns();
+		/*
+		 * Initialize patterns for specific block
+		 */
 		Iterator<Block> blockIter = blocks.getBlock().iterator();
 		while (blockIter.hasNext()){
 			Block block = blockIter.next();
@@ -296,7 +299,7 @@ public class PatternElement {
 		/*
 		 * Check if current block is well initialized for coresponding SimulinkBlock
 		 */
-		if(currentBlock.getSim().equals(data.getName())){
+		if(currentBlock!=null){
 			Iterator<SimpleParameter> simpleParamIter = currentBlock.getSimple().iterator();
 			while (simpleParamIter.hasNext()){
 				SimpleParameter simpleParam = simpleParamIter.next();
@@ -312,7 +315,7 @@ public class PatternElement {
 		else {
 			LOG.trace("FunctionName: wrong block!");
 		}
-		return null;
+		return "xcos_simulate";
 	}
 	/**
 	 * As the Simulink blocks don't have explicit function types as xcos ones,
@@ -324,7 +327,7 @@ public class PatternElement {
 		/*
 		 * Check if current block is well initialized for coresponding SimulinkBlock
 		 */
-		if(currentBlock.getSim().equals(data.getName())){
+		if(currentBlock!=null){
 			Iterator<SimpleParameter> simpleParamIter = currentBlock.getSimple().iterator();
 			while (simpleParamIter.hasNext()){
 				SimpleParameter simpleParam = simpleParamIter.next();
@@ -344,6 +347,9 @@ public class PatternElement {
 		else {
 			LOG.trace("FunctionType: wrong block!");
 		}
+		/*
+		 * return default function type
+		 */
 		return 0;
 	}
 
@@ -352,7 +358,7 @@ public class PatternElement {
 		/*
 		 * Check if current block is well initialized for coresponding SimulinkBlock
 		 */
-		if(currentBlock.getSim().equals(data.getName())){
+		if(currentBlock!=null){
 			Iterator<RealParameters> realParamIter = currentBlock.getReal().iterator();
 			while (realParamIter.hasNext()){
 				RealParameters realParam = realParamIter.next();
@@ -361,7 +367,7 @@ public class PatternElement {
 				 */
 				if(realParam.getXcos().contentEquals("state")){
 					Iterator<RealValueMap> valueMapIter = realParam.getMap().iterator();
-					stateData=new double[1][10]; //FIXME: add count to realParameters
+					stateData=new double[1][realParam.getMap().size()]; //FIXME: add count to realParameters
 					while (valueMapIter.hasNext()){
 						RealValueMap valueMap = valueMapIter.next();
 						/**
@@ -385,7 +391,7 @@ public class PatternElement {
 		else {
 			LOG.trace("state: wrong block!");
 		}
-		return null;
+		return new ScilabDouble();
 	}
 
 	public ScilabType decodeDState(SimulinkBlock data) {
@@ -393,7 +399,7 @@ public class PatternElement {
 		/*
 		 * Check if current block is well initialized for coresponding SimulinkBlock
 		 */
-		if(currentBlock.getSim().equals(data.getName())){
+		if(currentBlock!=null){
 			Iterator<RealParameters> realParamIter = currentBlock.getReal().iterator();
 			while (realParamIter.hasNext()){
 				RealParameters realParam = realParamIter.next();
@@ -402,7 +408,7 @@ public class PatternElement {
 				 */
 				if(realParam.getXcos().contentEquals("dstate")){
 					Iterator<RealValueMap> valueMapIter = realParam.getMap().iterator();
-					stateData=new double[1][10]; //FIXME: add count to realParameters
+					stateData=new double[1][realParam.getMap().size()]; //FIXME: add count to realParameters
 					while (valueMapIter.hasNext()){
 						RealValueMap valueMap = valueMapIter.next();
 						/**
@@ -427,19 +433,19 @@ public class PatternElement {
 		else {
 			LOG.trace("dstate: wrong block!");
 		}
-		return null;
+		return new ScilabDouble();
 	}
 
 	public ScilabType decodeODState(SimulinkBlock data) {
 		// TODO Auto-generated method stub
-		return null;
+		return new ScilabDouble();
 	}
 
 	public String decodeBlockType(SimulinkBlock data) {
 		/*
 		 * Check if current block is well initialized for coresponding SimulinkBlock
 		 */
-		if(currentBlock.getSim().equals(data.getName())){
+		if(currentBlock!=null){
 			Iterator<SimpleParameter> simpleParamIter = currentBlock.getSimple().iterator();
 			while (simpleParamIter.hasNext()){
 				SimpleParameter simpleParam = simpleParamIter.next();
@@ -458,11 +464,11 @@ public class PatternElement {
 		return null;
 	}
 
-	public Object decodeNbZerosCrossing(SimulinkBlock data) {
+	public ScilabType decodeNbZerosCrossing(SimulinkBlock data) {
 		/*
 		 * Check if current block is well initialized for coresponding SimulinkBlock
 		 */
-		if(currentBlock.getSim().equals(data.getName())){
+		if(currentBlock!=null){
 			Iterator<Str2IntParameters> str2intParamIter = currentBlock.getStr2Int().iterator();
 			while (str2intParamIter.hasNext()){
 				Str2IntParameters str2intParam = str2intParamIter.next();
@@ -477,7 +483,7 @@ public class PatternElement {
 						if(valueMap.getSimVal().contentEquals("nzcross")){
 							//TODO: set if available
 							//TODO: check how simulink stores info about number of zero crossing surfaces
-							return valueMap.getXcosVal();
+							return new ScilabDouble(Double.parseDouble(valueMap.getXcosVal().toString()));
 						}
 					}
 				}
@@ -486,19 +492,19 @@ public class PatternElement {
 		else {
 			LOG.trace("nzcross: wrong block!");
 		}
-		return null;
+		return new ScilabDouble();
 	}
 
-	public Object decodeNmode(SimulinkBlock data) {
+	public ScilabType decodeNmode(SimulinkBlock data) {
 		// TODO Auto-generated method stub
-		return null;
+		return new ScilabDouble();
 	}
 	public ScilabType decodeRealParameters(SimulinkBlock data) {
 		double[][] rparData;
 		/*
 		 * Check if current block is well initialized for coresponding SimulinkBlock
 		 */
-		if(currentBlock.getSim().equals(data.getName())){
+		if(currentBlock!=null){
 			Iterator<RealParameters> realParamIter = currentBlock.getReal().iterator();
 			while (realParamIter.hasNext()){
 				RealParameters realParam = realParamIter.next();
@@ -507,7 +513,7 @@ public class PatternElement {
 				 */
 				if(realParam.getXcos().contentEquals("rpar")){
 					Iterator<RealValueMap> valueMapIter = realParam.getMap().iterator();
-					rparData=new double[1][10]; //FIXME: add count to realParameters
+					rparData=new double[1][realParam.getMap().size()]; //FIXME: add count to realParameters
 					while (valueMapIter.hasNext()){
 						RealValueMap valueMap = valueMapIter.next();
 						/**
@@ -515,16 +521,16 @@ public class PatternElement {
 						 * \\W is used to strip string from non-word characters 
 						 * \\s+ to split string around whitespaces
 						 */
+						String[] position = valueMap.getIndex().replaceAll("\\W", " ").trim().split("\\s+");
+						int x = Integer.parseInt(position[0]);
+						int y = Integer.parseInt(position[1]);
 						if(data.getParameter(valueMap.getSimName()).equals("inf")) {
-							rparData[0][0] = 0.0;
+							rparData[x][y] = 0.0;
 						}
 						else if(data.getParameter(valueMap.getSimName()).equals("-inf")) {
-							rparData[0][0] = 0.0;
+							rparData[x][y] = 0.0;
 						}
 						else{
-							String[] position = valueMap.getIndex().replaceAll("\\W", " ").trim().split("\\s+");
-							int x = Integer.parseInt(position[0]);
-							int y = Integer.parseInt(position[1]);
 							rparData[x][y] = Double.parseDouble(data.getParameter(valueMap.getSimName()));
 							if(LOG.isTraceEnabled()){
 								LOG.trace(currentBlock.getXcos() + "rpar:");
@@ -540,7 +546,7 @@ public class PatternElement {
 		else {
 			LOG.trace("rpar: wrong block!");
 		}
-		return null;
+		return new ScilabDouble();
 	}
 
 	public ScilabType decodeIntegerParameters(SimulinkBlock data) {
@@ -548,16 +554,16 @@ public class PatternElement {
 		/*
 		 * Check if current block is well initialized for coresponding SimulinkBlock
 		 */
-		if(currentBlock.getSim().equals(data.getName())){
+		if(currentBlock!=null){
 			Iterator<RealParameters> realParamIter = currentBlock.getReal().iterator();
 			while (realParamIter.hasNext()){
 				RealParameters realParam = realParamIter.next();
 				/*
 				 * Check if ipar
 				 */
-				if(realParam.getXcos().contentEquals("rpar")){
+				if(realParam.getXcos().contentEquals("ipar")){
 					Iterator<RealValueMap> valueMapIter = realParam.getMap().iterator();
-					iparData=new int[1][10]; //FIXME: add count to realParameters
+					iparData=new int[1][realParam.getMap().size()]; //FIXME: add count to realParameters
 					while (valueMapIter.hasNext()){
 						RealValueMap valueMap = valueMapIter.next();
 						/**
@@ -582,23 +588,28 @@ public class PatternElement {
 		else {
 			LOG.trace("ipar: wrong block!");
 		}
-		return null;
+		return new ScilabInteger();
 	}
 
 	public ScilabType decodeObjectsParameters(SimulinkBlock data) {
 		// TODO Auto-generated method stub
-		return null;
+		return new ScilabDouble();
 	}
 
 	public ScilabType decodeEquations(SimulinkBlock data) {
 		// TODO Auto-generated method stub
-		return null;
+		return new ScilabDouble();
 	}
 
 	public String decodeInterfaceFunctionName(SimulinkBlock data) {
-		if(currentBlock.getSim().equals(data.getName())){
-			return currentBlock.getXcos();
+		if(currentBlock!=null){
+			if(currentBlock.getSim().equals(data.getName())){
+				return currentBlock.getXcos();
+			}
 		}
-		return null;
+		else {
+			LOG.trace("interface: wrong block!");
+		}
+		return "xcos_block";
 	}
 }
