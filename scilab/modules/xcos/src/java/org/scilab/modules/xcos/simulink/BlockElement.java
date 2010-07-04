@@ -20,6 +20,9 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
+import org.scilab.modules.xcos.port.BasicPort;
+import org.scilab.modules.xcos.port.input.InputPort;
+import org.scilab.modules.xcos.port.output.OutputPort;
 import org.scilab.modules.xcos.simulink.BlockGraphicElement;
 import org.scilab.modules.xcos.simulink.InputPortElement;
 import org.scilab.modules.xcos.simulink.OutputPortElement;
@@ -74,28 +77,39 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 
 	private void decodeParams(BasicBlock block) {
 		// TODO Auto-generated method stub
+		/*
+		 * decode graphics elements of BasicBlock
+		 */
+		graphicElement.decode(base, block);
 		
 		OutputPortElement outElement = new OutputPortElement(base);
 		UnmodifiableIterator<SimulinkOutPort> portOutIter = base.getOutPorts().iterator();
 		while(portOutIter.hasNext()) {
-			block.addPort(outElement.decode(portOutIter.next(), null));
+			OutputPort portAdd = outElement.decode(portOutIter.next(), null);
+			if (LOG.isTraceEnabled()) {
+				LOG.trace(portAdd.getId().toString());
+			}
+			block.addPort(portAdd);
 		}
 		
 		InputPortElement inElement = new InputPortElement(base);
 		UnmodifiableIterator<SimulinkInPort> portInIter = base.getInPorts().iterator();
 		while(portInIter.hasNext()) {
-			block.addPort(inElement.decode(portInIter.next(), null));
+			InputPort portAdd = inElement.decode(portInIter.next(), null);
+			if (LOG.isTraceEnabled()) {
+				LOG.trace(portAdd.getId().toString());
+			}
+			block.addPort(portAdd);
 		}
-		/*
-		 * decode graphics elements of BasicBlock
-		 */
-		graphicElement.decode(base, block);
+
 		specificElement.decode(base, block);
 		try {
 			modelElement.decode(base, block);
 		} catch(SimulinkFormatException se) {
 			LogFactory.getLog(BlockElement.class).error(se);
 		}
+		
+		block.generateId();
 		/*
 		 * Set state dependent informations.
 		 */
