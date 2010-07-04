@@ -45,7 +45,7 @@ public final class SaveAsAction extends DefaultAction {
      * DoAction
      */
     public void doAction() {
-        if (!getEditor().saveAs(getEditor().getTextPane())) {
+        if (!getEditor().saveAs()) {
             ScilabModalDialog.show(getEditor(), SciNotesMessages.COULD_NOT_SAVE_FILE,
                                    SciNotesMessages.SCINOTES_ERROR, IconType.ERROR_ICON);
         }

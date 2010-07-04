@@ -113,9 +113,16 @@ public class SciNotes extends SwingScilabTab implements Tab {
     private static final String SCINOTES = "SciNotes";
     private static final String SCI_EXTENSION = ".sci";
     private static final String SCE_EXTENSION = ".sce";
+    private static final String TST_EXTENSION = ".tst";
+    private static final String QUIT_EXTENSION = ".quit";
+    private static final String START_EXTENSION = ".start";
+    private static final String ALL_TST_FILES = "*.tst";
+    private static final String ALL_QUIT_FILES = "*.quit";
+    private static final String ALL_START_FILES = "*.start";
     private static final String ALL_SCI_FILES = "*.sci";
     private static final String ALL_SCE_FILES = "*.sce";
     private static final String ALL_SCX_FILES = "*.sc*";
+    private static final String ALL_SCILAB = "all";
     private static final String ALL_FILES = "*.*";
     private static final String TIRET = " - ";
     private static final String DOT = ".";
@@ -124,6 +131,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
     private static final int ONE = 1;
     private static final int TWO = 2;
     private static final int THREE = 3;
+    private static final int FOUR = 4;
 
     private static List<SciNotes> scinotesList = new ArrayList();
     private static SciNotes editor;
@@ -592,7 +600,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         String fileToSave = textPaneAt.getName();
         if (fileToSave == null) {
             //need a filename, call chooseFileToSave
-            fileToSave = chooseFileToSave();
+            fileToSave = chooseFileToSave(SciNotesMessages.SAVE);
         } else {
             //check if the file has been modified by external software
             fileToSave = checkExternalModification(fileToSave);
@@ -669,7 +677,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
             if (ScilabModalDialog.show(this, String.format(SciNotesMessages.EXTERNAL_MODIFICATION, newSavedFile.getPath()),
                                        SciNotesMessages.REPLACE_FILE_TITLE, IconType.QUESTION_ICON,
                                        ButtonType.YES_NO) == AnswerOption.NO_OPTION) {
-                return chooseFileToSave();
+                return chooseFileToSave(SciNotesMessages.SAVE);
             }
         }
         return filename;
@@ -678,9 +686,10 @@ public class SciNotes extends SwingScilabTab implements Tab {
     /**
      * Return through a file selector the name of the selected
      * file.
+     * @param title the title for JFileChooser
      * @return the file picked up by the user
      */
-    public String chooseFileToSave() {
+    public String chooseFileToSave(String title) {
         String extension = new String();
 
         String initialDirectoryPath = getTextPane().getName();
@@ -688,10 +697,14 @@ public class SciNotes extends SwingScilabTab implements Tab {
             initialDirectoryPath =  ConfigManager.getLastOpenedDirectory();
         }
 
-        SciFileFilter sceFilter = new SciFileFilter(ALL_SCE_FILES , null , ZERO);
-        SciFileFilter sciFilter = new SciFileFilter(ALL_SCI_FILES , null , ONE);
-        SciFileFilter scxFilter = new SciFileFilter(ALL_SCX_FILES , null , TWO);
-        SciFileFilter allFilter = new SciFileFilter(ALL_FILES , null , THREE);
+        SciFileFilter sceFilter = new SciFileFilter(ALL_SCE_FILES, null, 0);
+        SciFileFilter sciFilter = new SciFileFilter(ALL_SCI_FILES, null, 1);
+        SciFileFilter scxFilter = new SciFileFilter(ALL_SCX_FILES, null, 2);
+        SciFileFilter tstFilter = new SciFileFilter(ALL_TST_FILES, null, 3);
+        SciFileFilter startFilter = new SciFileFilter(ALL_START_FILES, null, 4);
+        SciFileFilter quitFilter = new SciFileFilter(ALL_QUIT_FILES, null, 5);
+        SciFileFilter allFilter = new SciFileFilter(ALL_FILES, null, 6);
+        SciFileFilter allScilabFilter = new SciFileFilter(ALL_SCILAB, null, 7);
 
         SwingScilabFileChooser fileChooser = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
 
@@ -704,10 +717,15 @@ public class SciNotes extends SwingScilabTab implements Tab {
         fileChooser.addChoosableFileFilter(sceFilter);
         fileChooser.addChoosableFileFilter(sciFilter);
         fileChooser.addChoosableFileFilter(scxFilter);
+        fileChooser.addChoosableFileFilter(tstFilter);
+        fileChooser.addChoosableFileFilter(startFilter);
+        fileChooser.addChoosableFileFilter(quitFilter);
         fileChooser.addChoosableFileFilter(allFilter);
+        fileChooser.addChoosableFileFilter(allScilabFilter);
 
         //select default file type
         fileChooser.setFileFilter(sceFilter);
+        fileChooser.setTitle(title);
 
         String name = ((ScilabDocument) getTextPane().getDocument()).getFirstFunctionName();
         if (name != null) {
@@ -723,7 +741,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
                 if (ScilabModalDialog.show(this, SciNotesMessages.REPLACE_FILE_TITLE,
                                            SciNotesMessages.FILE_ALREADY_EXIST, IconType.QUESTION_ICON,
                                            ButtonType.YES_NO) == AnswerOption.NO_OPTION) {
-                    return chooseFileToSave();
+                    return chooseFileToSave(SciNotesMessages.SAVE);
                 }
             }
 
@@ -739,17 +757,8 @@ public class SciNotes extends SwingScilabTab implements Tab {
                     && fileName.substring(fileName.lastIndexOf(DOT), fileName.length()).length() <= 4) {
                     hasNoExtension = false;
                 }
-
             }
-            /*
-              for (int i = 0; i < Juigetfile.DEFAULT_MASK.length; i++) {
-              if (f.getName().endsWith(SCI_EXTENSION) || f.getName().endsWith(SCE_EXTENSION)) {
-              hasNoExtension = false;
-              break;
-              }
 
-              }
-            */
             /*if no extension , we add it */
             if (hasNoExtension) {
 
@@ -759,122 +768,59 @@ public class SciNotes extends SwingScilabTab implements Tab {
                     extension = SCE_EXTENSION;
                 } else if (fileChooser.getFileFilter() == scxFilter) {
                     extension = SCE_EXTENSION;
+                } else if (fileChooser.getFileFilter() == tstFilter) {
+                    extension = TST_EXTENSION;
+                } else if (fileChooser.getFileFilter() == startFilter) {
+                    extension = START_EXTENSION;
+                } else if (fileChooser.getFileFilter() == quitFilter) {
+                    extension = QUIT_EXTENSION;
                 } else {
                     extension = "";
                 }
                 return f.getPath() + extension;
             }
             return f.getPath();
+        } else if (retval == JFileChooser.CANCEL_OPTION) {
+            return "";
         }
+
         return null;
     }
 
     /**
      * Save a file.
-     * @param textPane the textPane containing the file contents
      * @return execution status
      */
-    public boolean saveAs(ScilabEditorPane textPane) {
+    public boolean saveAs() {
         boolean isSuccess = false;
-        String extension = new String();
-
-        String initialDirectoryPath = getTextPane().getName();
-        if (initialDirectoryPath == null) {
-            initialDirectoryPath =  ConfigManager.getLastOpenedDirectory();
+        String filename = chooseFileToSave(SciNotesMessages.SAVE_AS);
+        if (filename == null) {
+            return false;
+        } else if (filename.length() == 0) {
+            return true;
         }
 
-        //prefer to use chooseFileToSave function !
-        SciFileFilter sceFilter = new SciFileFilter(ALL_SCE_FILES , null , 0);
-        SciFileFilter sciFilter = new SciFileFilter(ALL_SCI_FILES , null , 1);
-        SciFileFilter scxFilter = new SciFileFilter(ALL_SCX_FILES , null , 2);
-        SciFileFilter allFilter = new SciFileFilter(ALL_FILES , null , 3);
+        File f = new File(filename);
+        ScilabDocument styledDocument = (ScilabDocument) getTextPane().getDocument();
 
-        SwingScilabFileChooser fileChooser = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
-
-        fileChooser.setInitialDirectory(ConfigManager.getLastOpenedDirectory());
-        fileChooser.setAcceptAllFileFilterUsed(false);
-        fileChooser.setInitialDirectory(initialDirectoryPath);
-        fileChooser.setUiDialogType(Juigetfile.SAVE_DIALOG);
-
-        // order is also important here
-        fileChooser.addChoosableFileFilter(sceFilter);
-        fileChooser.addChoosableFileFilter(sciFilter);
-        fileChooser.addChoosableFileFilter(scxFilter);
-        fileChooser.addChoosableFileFilter(allFilter);
-
-        //select default file type
-        fileChooser.setFileFilter(sceFilter);
-        fileChooser.setTitle(SciNotesMessages.SAVE_AS); /* Bug 4869 */
-
-        String name = ((ScilabDocument) textPane.getDocument()).getFirstFunctionName();
-        if (name != null) {
-            fileChooser.setSelectedFile(new File(name + SCI_EXTENSION));
-        } else if (textPane.getName() != null) { /* Bug 5319 */
-            fileChooser.setSelectedFile(new File(textPane.getName()));
+        if (!SaveFile.doSave(getTextPane(), f, editorKit)) {
+            return false;
         }
 
-        int retval = fileChooser.showSaveDialog(this);
+        ConfigManager.saveLastOpenedDirectory(f.getPath());
+        ConfigSciNotesManager.saveToRecentOpenedFiles(f.getPath());
+        getTextPane().setName(f.getPath());
+        getTabPane().setTitleAt(getTabPane().getSelectedIndex() , f.getName());
+        setTitle(f.getPath() + TIRET + SciNotesMessages.SCILAB_EDITOR);
+        updateRecentOpenedFilesMenu();
 
-        if (retval == JFileChooser.APPROVE_OPTION) {
-            File f = fileToCanonicalFile(fileChooser.getSelectedFile());
-            initialDirectoryPath = f.getPath();
-            if (f.exists()) {
-                AnswerOption ans = ScilabModalDialog.show(this, SciNotesMessages.REPLACE_FILE_TITLE,
-                                                          SciNotesMessages.FILE_ALREADY_EXIST,
-                                                          IconType.QUESTION_ICON, ButtonType.YES_NO);
-                if (ans == AnswerOption.NO_OPTION) {
-                    return this.saveAs(this.getTextPane());
-                }
-            }
+        styledDocument.setContentModified(false);
+        getTextPane().setLastModified(f.lastModified());
+        isSuccess = true;
 
-            /*we test if the file has already a scilab extension*/
-            boolean hasNoExtension = true;
+        // Get current file path for Execute file into Scilab
+        fileFullPath = f.getAbsolutePath();
 
-            for (int i = 0; i < Juigetfile.DEFAULT_MASK.length; i++) {
-                if (f.getName().endsWith(SCI_EXTENSION) || f.getName().endsWith(SCE_EXTENSION)) {
-                    hasNoExtension = false;
-                    break;
-                }
-
-            }
-            /*if no extension , we add it */
-            if (hasNoExtension) {
-                if (fileChooser.getFileFilter() == sciFilter) {
-                    extension = SCI_EXTENSION;
-                } else if (fileChooser.getFileFilter() == sceFilter) {
-                    extension = SCE_EXTENSION;
-                } else if (fileChooser.getFileFilter() == scxFilter) {
-                    extension = SCE_EXTENSION;
-                } else {
-                    extension = "";
-                }
-                f = new File(f.getPath() + extension);
-            }
-
-            ScilabDocument styledDocument = (ScilabDocument) textPane.getDocument();
-
-            if (!SaveFile.doSave(textPane, f, editorKit)) {
-                return false;
-            }
-
-            ConfigManager.saveLastOpenedDirectory(f.getPath());
-            ConfigSciNotesManager.saveToRecentOpenedFiles(f.getPath());
-            textPane.setName(f.getPath());
-            getTabPane().setTitleAt(getTabPane().getSelectedIndex() , f.getName());
-            setTitle(f.getPath() + TIRET + SciNotesMessages.SCILAB_EDITOR);
-            updateRecentOpenedFilesMenu();
-
-            styledDocument.setContentModified(false);
-            getTextPane().setLastModified(f.lastModified());
-            isSuccess = true;
-
-            // Get current file path for Execute file into Scilab
-            fileFullPath = f.getAbsolutePath();
-
-        } else if (retval == JFileChooser.CANCEL_OPTION) {
-            /* Bug 5189: The user cancels ==> do not want an error message */
-            isSuccess = true;
-        }
         return isSuccess;
     }
 

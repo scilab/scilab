@@ -54,7 +54,7 @@ public final class OpenAction extends DefaultAction {
             initialDirectoryPath = ConfigManager.getLastOpenedDirectory() ;
         }
 
-        String[] mask = new String[]{"*.cos*", "*.sci", "*.sce", "*.sc*"};
+        String[] mask = new String[]{"*.cos*", "*.sci", "*.sce", "*.tst", "*.start", "*.quit", "*.sc*", "all"};
 
         SwingScilabFileChooser fileChooser = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
         fileChooser.setInitialDirectory(initialDirectoryPath);
