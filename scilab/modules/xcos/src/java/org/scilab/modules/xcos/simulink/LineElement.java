@@ -14,18 +14,23 @@ package org.scilab.modules.xcos.simulink;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.types.scilabTypes.ScilabDouble;
 import org.scilab.modules.types.scilabTypes.ScilabType;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.io.scicos.BasicBlockInfo;
 import org.scilab.modules.xcos.io.scicos.LinkElement;
 import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.link.LinkPortMap;
 import org.scilab.modules.xcos.port.BasicPort;
+import org.scilab.modules.xcos.port.input.InputPort;
+import org.scilab.modules.xcos.port.output.OutputPort;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.util.mxPoint;
@@ -70,7 +75,7 @@ public class LineElement extends AbstractElement<BasicLink>{
 		/*
 		 * Setting up points of line
 		 */
-		searchForPorts(link);
+		searchForPorts(from, link);
 		List<mxPoint> points = getPoints(from);
 		/*
 		 * Fill the data
@@ -94,9 +99,8 @@ public class LineElement extends AbstractElement<BasicLink>{
 		/*
 		 * Set start and end point
 		 */
-		double x = 100;
-		double y = 100;
-		mxPoints.add(new mxPoint(x, y));
+		double x = 0;
+		double y = 0;
 		/*
 		 * Set line breaking points
 		 * Simulink line contains realative points positions
@@ -119,14 +123,47 @@ public class LineElement extends AbstractElement<BasicLink>{
 		}
 		LOG.trace(from.getParameterNames().toString());
 		
-		mxPoints.add(new mxPoint(0, 10));
-		
 		return mxPoints;
 	}
 
-	private void searchForPorts(BasicLink link) {
-		// TODO Auto-generated method stub
-		
+	private void searchForPorts(SimulinkLine simulinkLine,BasicLink link) {
+		Iterator<Entry<Integer, BasicBlock>> blockIter = blocks.entrySet().iterator();
+		while(blockIter.hasNext()){
+			BasicBlock block = blockIter.next().getValue();
+			List<OutputPort> portList = BasicBlockInfo.getAllTypedPorts(block, false, OutputPort.class);
+			Iterator<OutputPort> portIter = portList.iterator();
+			while(portIter.hasNext()){
+				OutputPort port = portIter.next();
+				if (LOG.isTraceEnabled()) {
+					LOG.trace("SRC: " + port.toString());
+					LOG.trace("SRC: " + port.getId().toString());
+				}
+				if(port.getId().equals(simulinkLine.getSrcPort())){
+					start = port;
+				}
+			}
+			
+			List<InputPort> inPortList = BasicBlockInfo.getAllTypedPorts(block, false, InputPort.class);
+			Iterator<InputPort> inPortIter = inPortList.iterator();
+			while(inPortIter.hasNext()){
+				BasicPort port = inPortIter.next();
+				if (LOG.isTraceEnabled()) {
+					LOG.trace("DST: " + port.toString());
+					LOG.trace("DST: " + port.getId().toString());
+				}
+				if(port.getId().equals(simulinkLine.getDstPort())){
+					end = port;
+				}
+			}
+			if (LOG.isTraceEnabled()) {
+				if(start!=null) {
+					LOG.trace("start: " + start.getId().toString());
+				}
+				if(end!=null) {
+					LOG.trace("end: " + end.getId().toString());
+				}
+			}
+		}
 	}
 
 	private BasicLink allocateLink() {
