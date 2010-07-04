@@ -23,42 +23,54 @@ import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
+/**
+ * Class to set the font
+ * @author DIGITEO
+ * @author Calixte DENIZET
+ */
 public class SetFontAction extends DefaultAction {
 
-        private SetFontAction(SciNotes editor) {
-                super(SciNotesMessages.SET_FONT, editor);
-        }
+    /**
+     * Constructor
+     * @param editor associated with this action
+     */
+    private SetFontAction(SciNotes editor) {
+        super(SciNotesMessages.SET_FONT, editor);
+    }
 
-        public void doAction() {
-                SwingScilabFontChooser _fontChooser = new SwingScilabFontChooser(ConfigSciNotesManager.getFont());
-                _fontChooser.displayAndWait();
+    /**
+     * DoAction
+     */
+    public void doAction() {
+        SwingScilabFontChooser _fontChooser = new SwingScilabFontChooser(ConfigSciNotesManager.getFont(), false);
+        _fontChooser.displayAndWait();
 
-                Font newFont = _fontChooser.getSelectedFont();
+        Font newFont = _fontChooser.getSelectedFont();
 
-                if (newFont != null) {
+        if (newFont != null) {
 
-                        List<String> listStylesName = ConfigSciNotesManager.getAllStyleName();
+            List<String> listStylesName = ConfigSciNotesManager.getAllStyleName();
 
-                        getEditor().getTextPane().setFont(newFont);
-
-                        /*we need to loop on every style , if not after the second change, styles will not change anymore
-                  except default*/
-                        int numberOfTab = getEditor().getTabPane().getComponentCount();
-                        for (int j = 0; j < numberOfTab; j++) {
-                            ScilabEditorPane textPane = getEditor().getTextPane(j);
-                            textPane.resetFont(newFont);
-                            if (textPane.getOtherPaneInSplit() != null) {
-                                textPane.getOtherPaneInSplit().resetFont(newFont);
-                            }
-                        }
-                        getEditor().getTextPane().setFocusable(true);
-                        ConfigSciNotesManager.saveFont(newFont);
+            int numberOfTab = getEditor().getTabPane().getComponentCount();
+            for (int i = 0; i < numberOfTab; i++) {
+                ScilabEditorPane textPane = getEditor().getTextPane(i);
+                textPane.resetFont(newFont);
+                if (textPane.getOtherPaneInSplit() != null) {
+                    textPane.getOtherPaneInSplit().resetFont(newFont);
                 }
-
+            }
+            getEditor().getTextPane().setFocusable(true);
+            ConfigSciNotesManager.saveFont(newFont);
         }
+    }
 
-        public static MenuItem createMenu(SciNotes editor) {
-                return createMenu(SciNotesMessages.SET_FONT, null, new SetFontAction(editor), null);
-        }
-
+    /**
+     * Create Menu
+     * @param editor SciNotes
+     * @param key KeyStroke
+     * @return MenuItem
+     */
+    public static MenuItem createMenu(SciNotes editor) {
+        return createMenu(SciNotesMessages.SET_FONT, null, new SetFontAction(editor), null);
+    }
 }
