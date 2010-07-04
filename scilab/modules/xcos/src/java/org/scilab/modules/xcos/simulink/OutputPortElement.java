@@ -36,13 +36,10 @@ public class OutputPortElement {
 		// TODO Auto-generated constructor stub
 	}
 
-	public BasicPort decode(SimulinkOutPort simulinkOutPort, Object object) {
+	public OutputPort decode(SimulinkOutPort simulinkOutPort, Object object) {
 		// TODO Auto-generated method stub
 		OutputPort port;
-		if (LOG.isTraceEnabled()) {
-			LOG.error("InPort" + simulinkOutPort.toString());
-		}
-		port = allocatePort();
+		port = allocatePort(simulinkOutPort);
 		/*
 		 * Set out lines
 		 */
@@ -50,10 +47,15 @@ public class OutputPortElement {
 		return port;
 	}
 
-	private OutputPort allocatePort() {
+	private OutputPort allocatePort(SimulinkOutPort simulinkOutPort) {
 		// TODO Auto-generated method stub
 		OutputPort ret;
 		ret = new ExplicitOutputPort();
+		ret.setId(simulinkOutPort.toString());
+		if (LOG.isTraceEnabled()) {
+			LOG.trace("OutPort" + ret);	
+			LOG.trace("OutPort" + ret.getId());
+		}
 		return ret;
 	}
 

@@ -37,20 +37,21 @@ public class InputPortElement {
 	public InputPort decode(SimulinkInPort simulinkInPort, Object object) {
 		
 		InputPort port;
-		if (LOG.isTraceEnabled()) {
-			LOG.error("InPort" + simulinkInPort.toString());
-		}
-		
-		port = allocatePort();
+		port = allocatePort(simulinkInPort);
 		/*fillParameters(port);*/
 		
 		return port;
 	}
  
-	private InputPort allocatePort() { 
+	private InputPort allocatePort(SimulinkInPort simulinkInPort) { 
 		// TODO Auto-generated method stub
 		InputPort ret;
 		ret = new ExplicitInputPort();
+		ret.setId(simulinkInPort.toString());
+		if (LOG.isTraceEnabled()) {
+			LOG.trace("InPort" + ret);	
+			LOG.trace("InPort" + ret.getId());
+		}
 		return ret;
 	}
 }
