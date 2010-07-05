@@ -1,11 +1,17 @@
          Changes between version 5.3.0-beta-1 and 5.3.0-beta-2 of Scilab
          ===============================================================
 
+Obsolete Functions:
+===================
+
+* 'oldbesseli', 'oldbesselj', 'oldbesselk', 'oldbessely' are obsoletes
+  see 'besseli', 'besselj', 'besselk', 'bessely'.
+
+
 Bug Fixes:
 ==========
 
 * bug 7360 fixed - Modelica Hydraulics Xcos demo was not simulating
-
 
 
            Changes between version 5.2.X and 5.3.0-beta1 of Scilab
@@ -530,6 +536,8 @@ Compilation:
 * Under Mac OS X, uses /usr/libexec/java_home instead of hardcoded paths to
   retrieve JAVA_HOME
 
+* special_functions module is dynamically loaded by Scilab.
+
 * tclsci module is dynamically loaded by Scilab.
 
 * pvm module is dynamically loaded by Scilab.
@@ -611,14 +619,16 @@ Obsolete Functions:
   See http://atoms.scilab.org/toolboxes/LCC-windows or atomsInstall('lcc-windows')
   from Scilab.
 
+* 'maxi' obsolete see 'max'.
+>>>>>>> 1d472bd... bug 7316 oldbessel functions declared obsolete + special_functions module dynamically loaded by scilab
+
 * 'maxi' obsolete. Please use 'max' instead.
 
 * 'mini' obsolete. Please use 'min' instead.
 
 * 'xselect' obsolete. Please use 'show_window' instead.
 
-
-Removed Functions (previously declared as obsolete):
+Removed functions (previously declared as obsolete):
 ====================================================
 
 * 'textprint', 'pol2tex' replaced by 'prettyprint'.
@@ -654,7 +664,40 @@ Removed Functions (previously declared as obsolete):
 * 'readc_' replaced by 'input'.
 
 
-Bug Fixes:
+ATOMS:
+======
+
+* ATOMS client: Categories are now managed.
+  - atomsList(category) limits the list of modules to a category.
+  - atomsCategoryList() lists available categories.
+
+* The ATOMS GUI ergonomics has been improved.
+
+* ATOMS GUI: Modules can be filtered by category (See request 5276).
+
+* ATOMS GUI: When a module is not up-to-date, a warning is displayed on the
+  corresponding sheet.
+
+* ATOMS GUI: Display the release date of the watched module.
+
+* bug 5276 fixed - ATOMS GUI: It was not possible to filter modules by category.
+
+* bug 6596 fixed - When the ATOMS GUI started, nothing was displayed. Now, the
+                   list of already installed modules appears on the home page.
+
+* bug 6842 fixed - If the installed version of a module was not the most recent
+                   one, the ATOMS GUI claimed that the newest version was
+                   installed.
+
+* bug 6976 fixed - ATOMS GUI: Webpages URLs linked with a module were missing
+                   from the presentation frame.
+
+* bug 6977 fixed - ATOMS GUI: In the presentation frame, URLs and emails were
+                   not hyperlinked.
+
+* bug 7149 fixed - An error message of atomsDESCRIPTIONread() was badly formated.
+
+Bug fixes:
 ==========
 
 * bug 1041 fixed - An error inside a loop was reported as if it occurred on

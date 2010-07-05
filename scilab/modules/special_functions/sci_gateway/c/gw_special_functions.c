@@ -12,7 +12,7 @@
 
 #include <math.h>
 /*--------------------------------------------------------------------------*/
-#include "gw_special_functions2.h"
+#include "gw_special_functions.h"
 #include "callFunctionFromGateway.h"
 #include "stack-c.h"
 #include "xerhlt.h"
@@ -25,10 +25,18 @@ static gw_generic_table Tab[] = {
     {sci_besselj, "besselj"},
     {sci_besselk, "besselk"},
     {sci_bessely, "bessely"},
-    {sci_besselh, "besselh"}
+    {sci_besselh, "besselh"},
+    {sci_oldbesseli,"oldbesseli"},
+    {sci_oldbesselj, "oldbesselj"},
+    {sci_oldbesselk,"oldbesselk"},
+    {sci_oldbessely,"oldbessely"},
+    {sci_gamma,"gamma"},
+    {sci_lgamma,"gammaln"},
+    {sci_dlgamma,"dlgamma"},
+    {sci_calerf,"calerf"}
 };
 /*--------------------------------------------------------------------------*/
-int gw_special_functions2(void)
+int gw_special_functions(void)
 {
     Rhs = Max(0, Rhs);
     if (setjmp_slatec_jmp_env())
@@ -37,8 +45,6 @@ int gw_special_functions2(void)
         return 0;
     }
     callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
-
-    C2F(putlhsvar)();
     return 0;
 }
 /*--------------------------------------------------------------------------*/

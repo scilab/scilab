@@ -15,6 +15,22 @@
 #include "gw_dynamic_generic.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
+/* special_functions module */
+#define SPECIAL_FUNCTIONS_MODULE_NAME "special_functions"
+static DynLibHandle hSpecial_functionsLib = NULL;
+static PROC_GATEWAY ptr_gw_special_functions = NULL;
+static char* dynlibname_special_functions = NULL;
+static char* gatewayname_special_functions = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_special_functions(void)
+{
+    return gw_dynamic_generic(SPECIAL_FUNCTIONS_MODULE_NAME,
+        &dynlibname_special_functions,
+        &gatewayname_special_functions,
+        &hSpecial_functionsLib,
+        &ptr_gw_special_functions);
+}
+/*--------------------------------------------------------------------------*/
 /* pvm module */
 #define PVM_MODULE_NAME "pvm"
 static DynLibHandle hPvmLib = NULL;
