@@ -37,8 +37,6 @@ public final class CommandHistoryMessages {
 	
 	public static final String EDIT_IN_SCINOTES = Messages.gettext("Edit in SciNotes");
 	
-	public static final String SESSION_BEGINNING = Messages.gettext("// Begin Session : ");
-	
 	public static final String ERROR = Messages.gettext("Error");
 	public static final String CANNOT_DELETE_CURRENT_SESSION_NODE = Messages.gettext("Cannot delete current session beginning line.");
 	

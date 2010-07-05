@@ -33,7 +33,7 @@ Source: modules\{#HISTORY_BROWSER}\macros\buildmacros.sce; DestDir: {app}\module
 Source: modules\{#HISTORY_BROWSER}\macros\buildmacros.bat; DestDir: {app}\modules\{#HISTORY_BROWSER}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#HISTORY_BROWSER}\macros\cleanmacros.bat; DestDir: {app}\modules\{#HISTORY_BROWSER}\macros; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#HISTORY_BROWSER}\tests\*.*; DestDir: {app}\modules\{#HISTORY_BROWSER}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
+Source: modules\{#HISTORY_BROWSER}\tests\*.*; DestDir: {app}\modules\{#HISTORY_BROWSER}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
 ;
 ;
 ;--------------------------------------------------------------------------------------------------------------

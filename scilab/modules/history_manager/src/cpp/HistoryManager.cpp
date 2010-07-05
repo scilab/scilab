@@ -230,7 +230,16 @@ char **getAllLinesOfScilabHistory(void)
 {
     int nbElements = 0;
     char **lines = NULL;
-    if (ScilabHistory) lines = ScilabHistory->getAllLines(&nbElements);
+    if (ScilabHistory) 
+    {
+        lines = ScilabHistory->getAllLines(&nbElements);
+        /* SWIG need array finish with NULL */
+        if (lines)
+        {
+            lines = (char**)REALLOC(lines, sizeof(char*)*(nbElements + 1));
+            lines[nbElements] = NULL;
+        }
+    }
     return lines;
 }
 /*------------------------------------------------------------------------*/
@@ -318,9 +327,6 @@ int getSizeScilabHistory(void)
     if (ScilabHistory) val = ScilabHistory->getNumberOfLines() - 1;
     return val;
 }
-/*------------------------------------------------------------------------*/
-
-
 /*------------------------------------------------------------------------*/
 HistoryManager::HistoryManager()
 {
@@ -476,14 +482,25 @@ BOOL HistoryManager::loadFromFile(char *filename)
         CommandsList.clear();
         CommandsList = my_file.getHistory();
 
-        /* add date & time @ begin session */
-        commentbeginsession = getCommentDateSession(TRUE);
-        if (commentbeginsession)
+        if (CommandsList.size() > 0)
         {
-            appendLine(commentbeginsession);
-            FREE(commentbeginsession);
-            commentbeginsession=NULL;
+            char *firstLine = getFirstLine();
+            if (firstLine)
+            {
+                if (!isBeginningSessionLine(firstLine))
+                {
+                    fixHistorySession();
+                }
+                FREE(firstLine);
+                firstLine = NULL;
+            }
         }
+
+        /* add date & time @ begin session */
+        commentbeginsession = getCommentDateSession();
+        appendLine(commentbeginsession);
+        FREE(commentbeginsession);
+        commentbeginsession = NULL;
 
         CommandHistoryLoadFromFile();
 
@@ -510,7 +527,7 @@ void HistoryManager::reset(void)
     CommandHistoryReset();
 
     /* Add date & time begin session */
-    commentbeginsession = getCommentDateSession(TRUE);
+    commentbeginsession = getCommentDateSession();
     if (commentbeginsession)
     {
         appendLine(commentbeginsession);
@@ -543,6 +560,22 @@ char **HistoryManager::getAllLines(int *numberoflines)
         *numberoflines = i;
     }
     return lines;
+}
+/*--------------------------------------------------------------------------*/
+char *HistoryManager::getFirstLine(void)
+{
+    char *line = NULL;
+    if (!CommandsList.empty())
+    {
+        std::string str;
+        list<CommandLine>::iterator it_commands = CommandsList.begin();
+        str = (*it_commands).get();
+        if (!str.empty())
+        {
+            line = strdup(str.c_str());
+        }
+    }
+    return line;
 }
 /*--------------------------------------------------------------------------*/
 char *HistoryManager::getLastLine(void)
@@ -621,7 +654,6 @@ BOOL HistoryManager::deleteNthLine(int N)
             i++;
         }
     }
-
     return bOK;
 }
 /*--------------------------------------------------------------------------*/
@@ -701,5 +733,39 @@ char * HistoryManager::getToken(void)
 BOOL HistoryManager::resetToken(void)
 {
     return my_search.reset();
+}
+/*--------------------------------------------------------------------------*/
+BOOL HistoryManager::isBeginningSessionLine(char *line)
+{
+    if (line)
+    {
+        if (strlen(line) > strlen(SESSION_PRAGMA_BEGIN) + strlen(SESSION_PRAGMA_END))
+        {
+            #define STR_LEN_MAX 64
+            char str_start[STR_LEN_MAX];
+            char str_end[STR_LEN_MAX];
+            strncpy(str_start, line, (int)strlen(SESSION_PRAGMA_BEGIN));
+            strncpy(str_end, &line[strlen(line) - strlen(SESSION_PRAGMA_END)], (int)strlen(SESSION_PRAGMA_END));
+            if ((strcmp(str_start, SESSION_PRAGMA_BEGIN) == 0) &&
+                (strcmp(str_end, SESSION_PRAGMA_END) == 0))
+            {
+                return TRUE;
+            }
+        }
+    }
+    return FALSE;
+}
+/*--------------------------------------------------------------------------*/
+void HistoryManager::fixHistorySession(void)
+{
+    /* add date & time @ begin session */
+    char *commentbeginsession = getCommentDateSession();
+    if (commentbeginsession)
+    {
+        CommandLine Line(commentbeginsession);
+        CommandsList.push_front(Line);
+        FREE(commentbeginsession);
+        commentbeginsession = NULL;
+    }
 }
 /*--------------------------------------------------------------------------*/

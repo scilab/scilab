@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2010 - DIGITEO - Allan CORNET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -60,6 +61,8 @@ public final class CommandHistory {
         private static final int DEFAULT_WIDTH = 450;
         private static final int DEFAULT_HEIGHT = 550;
         private static final String NEWLINE = "\n";
+        private static final String SESSION_BEGINNING = "// -- ";
+        private static final String SESSION_ENDING = " -- //";
 
         private static JTree scilabHistoryTree;
 
@@ -107,11 +110,10 @@ public final class CommandHistory {
                 scilabHistoryTree.addMouseListener(new CommandHistoryMouseListener());
 
                 scrollPane = new JScrollPane(scilabHistoryTree);
-        JPanel contentPane = new JPanel(new BorderLayout());
-        contentPane.add(scrollPane);
-        ((SwingScilabTab) browserTab.getAsSimpleTab()).setContentPane(contentPane);
-
-        setVisible(false);
+                JPanel contentPane = new JPanel(new BorderLayout());
+                contentPane.add(scrollPane);
+                ((SwingScilabTab) browserTab.getAsSimpleTab()).setContentPane(contentPane);
+                setVisible(false);
         }
 
         /**
@@ -119,16 +121,16 @@ public final class CommandHistory {
          */
         public static void loadFromFile() {
                 reset();
-                int nbEntries = HistoryManagement.getSizeAllLinesOfScilabHistory();
-
+                String historyLines[] = HistoryManagement.getAllLinesOfScilabHistory();
+                int nbEntries = historyLines.length;
                 for (int entryIndex = 0; entryIndex < nbEntries; entryIndex++) {
-                        /* Do not expand at each insertion for performances reasons */
-                        appendLineAndExpand(HistoryManagement.getNthLineInScilabHistory(entryIndex), false);
+                   /* Do not expand at each insertion for performances reasons */
+                   appendLineAndExpand(historyLines[entryIndex], false);
                 }
                 /* Expand all sessions tree */
                 scilabHistoryTreeModel.nodeStructureChanged((TreeNode) scilabHistoryTreeModel.getRoot());
                 for (int i = 0; i < scilabHistoryTree.getRowCount(); i++) {
-                        scilabHistoryTree.expandRow(i);
+                   scilabHistoryTree.expandRow(i);
                 }
                 scilabHistoryTree.scrollPathToVisible(scilabHistoryTree.getPathForRow(scilabHistoryTree.getRowCount() - 1));
         }
@@ -142,12 +144,25 @@ public final class CommandHistory {
         }
 
         /**
+        * check if line is a begin session
+        * @param line to check
+        * @retour true or false
+        */
+        private static boolean isBeginSessionLine(String lineToAppend) {
+                if (lineToAppend.startsWith(SESSION_BEGINNING) &&
+                    lineToAppend.endsWith(SESSION_ENDING)) {
+                       return true;
+                    }
+               return false;
+        }
+
+        /**
          * Add a new line the the History Browser
          * @param lineToAppend the line to append
          * @param expand do we need to expand all session nodes?
          */
         public static void appendLineAndExpand(String lineToAppend, boolean expand) {
-                if (lineToAppend.startsWith(CommandHistoryMessages.SESSION_BEGINNING)) {
+                if (isBeginSessionLine(lineToAppend)) {
                         // Create a new session node
                         currentSessionNode = new DefaultMutableTreeNode(lineToAppend);
                         scilabHistoryTreeModel.insertNodeInto(currentSessionNode, scilabHistoryRootNode, scilabHistoryRootNode.getChildCount());
@@ -356,4 +371,3 @@ public final class CommandHistory {
                 return selectedEntries;
         }
 }
-
