@@ -24,6 +24,7 @@ int C2F(sci_bool2s)(char *fname,unsigned long fname_len);
 
 //YaSp
 int sci_or(char *fname, int* _piKey);
+int sci_and(char *fname, int* _piKey);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_BOOLEAN__ */
 /*--------------------------------------------------------------------------*/

@@ -20,7 +20,7 @@ static gw_generic_table Tab[] =
 	{C2F(sci_find),"find"},
 	{C2F(sci_bool2s),"bool2s"},
 	{NULL, ""}, //or
-	{C2F(intand),"and"}
+	{NULL, ""} //and
 };
 /*--------------------------------------------------------------------------*/
 int gw_boolean(void)

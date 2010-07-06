@@ -22,6 +22,7 @@ using namespace types;
 bool BooleanModule::Load()
 {
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("or", &sci_or, "boolean"));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("and", &sci_and, "boolean"));
 	return true;
 }
 
