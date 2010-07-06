@@ -31,6 +31,9 @@ Bug Fixes:
 
 * bug 7441 fixed - history browser crashed if language was changed by user.
 
+* bug 7477 fixed - Bad detection of a function declaration when the line was
+                   ended with a comment.
+
            Changes between version 5.2.X and 5.3.0-beta1 of Scilab
            =======================================================
 
