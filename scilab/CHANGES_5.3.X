@@ -29,7 +29,11 @@ Bug Fixes:
 
 * bug 7158 fixed - help chapter about texmacs was empty.
 
+* bug 7282 fixed - eval failed on some functions without output arguments.
+
 * bug 7360 fixed - Modelica Hydraulics Xcos demo was not simulating.
+
+* bug 7391 fixed - add links between help files about evstr, eval, execstr.
 
 * bug 7437 fixed - if history file was invalid, history browser crashed.
 
