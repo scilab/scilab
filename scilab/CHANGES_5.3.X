@@ -60,6 +60,10 @@ Bug Fixes:
 * bug 7480 fixed - Xcos conditional compilation produce a too long script on
                    the Scilab queue.
 
+* bug 7481 fixed - 6th input argument of ilib_for_link did not allow to set 
+                   library name on Windows.
+
+
            Changes between version 5.2.X and 5.3.0-beta1 of Scilab
            =======================================================
 
