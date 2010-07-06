@@ -527,25 +527,7 @@ public final class ConfigSciNotesManager {
         Element fontName = (Element) fontNameElement.item(0);
         String name = fontName.getAttribute(VALUE);
 
-        NodeList fontStyleElement = scinotesProfile.getElementsByTagName(FONT_STYLE);
-        Element fontStyle = (Element) fontStyleElement.item(0);
-        int style = Integer.parseInt(fontStyle.getAttribute(VALUE));
-
-        if (style == PLAIN) {
-            font = new Font(name, Font.PLAIN, size);
-
-        } else if (style == BOLD) {
-            font = new Font(name, Font.BOLD, size);
-
-        } else if (style == ITALIC) {
-            font = new Font(name, Font.ITALIC, size);
-
-        } else if (style == BOLDITALIC) {
-            font = new Font(name, Font.BOLD | Font.ITALIC , size);
-
-        } else {
-            font = new Font(name, Font.PLAIN, size);
-        }
+        font = new Font(name, Font.PLAIN, size);
 
         return font;
     }
@@ -573,25 +555,7 @@ public final class ConfigSciNotesManager {
         Element fontName = (Element) fontNameElement.item(0);
         String name = fontName.getAttribute(DEFAULT);
 
-        NodeList fontStyleElement = scinotesProfile.getElementsByTagName(FONT_STYLE);
-        Element fontStyle = (Element) fontStyleElement.item(0);
-        int style = Integer.parseInt(fontStyle.getAttribute(DEFAULT));
-
-        if (style == PLAIN) {
-            font = new Font(name, Font.PLAIN, size);
-
-        } else if (style == BOLD) {
-            font = new Font(name, Font.BOLD, size);
-
-        } else if (style == ITALIC) {
-            font = new Font(name, Font.ITALIC, size);
-
-        } else if (style == BOLDITALIC) {
-            font = new Font(name, Font.BOLD | Font.ITALIC , size);
-
-        } else {
-            font = new Font(name, Font.PLAIN, size);
-        }
+        font = new Font(name, Font.PLAIN, size);
 
         return font;
     }
@@ -615,19 +579,6 @@ public final class ConfigSciNotesManager {
         NodeList fontNameElement = scinotesProfile.getElementsByTagName(FONT_NAME);
         Element fontName = (Element) fontNameElement.item(0);
         fontName.setAttribute(VALUE, font.getFontName());
-
-        NodeList fontStyleElement = scinotesProfile.getElementsByTagName(FONT_STYLE);
-        Element fontStyle = (Element) fontStyleElement.item(0);
-
-        if (!font.isBold() && !font.isItalic()) {
-            fontStyle.setAttribute(VALUE, "0");
-        } else if (font.isBold() && font.isItalic()) {
-            fontStyle.setAttribute(VALUE, "3");
-        } else if (font.isBold()) {
-            fontStyle.setAttribute(VALUE, "1");
-        } else {
-            fontStyle.setAttribute(VALUE, "2");
-        }
 
         /* Save changes */
         writeDocument();
