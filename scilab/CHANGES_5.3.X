@@ -23,7 +23,11 @@ Compilation:
 Bug Fixes:
 ==========
 
+* bug 5366 fixed - help of modules_manager was not built.
+
 * bug 7121 fixed - update help file about saveafterncommands(0).
+
+* bug 7158 fixed - help chapter about texmacs was empty.
 
 * bug 7360 fixed - Modelica Hydraulics Xcos demo was not simulating.
 
