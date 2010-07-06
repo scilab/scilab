@@ -29,6 +29,10 @@ Bug Fixes:
 
 * bug 7158 fixed - help chapter about texmacs was empty.
 
+* bug 7182 fixed - update help file of ulink about the input argument.
+
+* bug 7183 fixed - update help file of link about the output argument.
+
 * bug 7228 fixed - update help file of strcat about the third input argument.
 
 * bug 7282 fixed - eval failed on some functions without output arguments.
