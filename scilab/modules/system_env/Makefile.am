@@ -10,23 +10,26 @@
 ##
 ##
 
-SYSTEM_ENV_CPP_SOURCES 		= 	\
-            src/cpp/setenvvar.cpp \
-            src/cpp/sci_path.cpp \
-            src/cpp/sci_home.cpp \
-            src/cpp/sci_tmpdir.cpp \
-            src/cpp/configvariable.cpp
+SYSTEM_ENV_CPP_SOURCES 	= \
+	src/cpp/setenvvar.cpp \
+	src/cpp/sci_path.cpp \
+	src/cpp/sci_home.cpp \
+	src/cpp/sci_tmpdir.cpp \
+	src/cpp/sci_mode.cpp \
+	src/cpp/configvariable.cpp
 
-pkglib_LTLIBRARIES 		= libscisystem_env.la
+pkglib_LTLIBRARIES = libscisystem_env.la
 
-libscisystem_env_la_SOURCES 	= $(SYSTEM_ENV_CPP_SOURCES)
+libscisystem_env_la_SOURCES = $(SYSTEM_ENV_CPP_SOURCES)
 
-libscisystem_env_la_CPPFLAGS	= 	-I includes/ \
-									-I src/cpp \
-									-I $(top_srcdir)/modules/symbol/includes \
-									-I $(top_srcdir)/modules/types/includes \
-									-I $(top_srcdir)/modules/io/includes \
-									-I $(top_srcdir)/modules/abstractSyntaxTree/includes
+libscisystem_env_la_CPPFLAGS = \
+	-I includes/ \
+	-I src/cpp \
+	-I $(top_srcdir)/modules/symbol/includes \
+	-I $(top_srcdir)/modules/types/includes \
+	-I $(top_srcdir)/modules/io/includes \
+	-I $(top_srcdir)/modules/fileio/includes \
+	-I $(top_srcdir)/modules/abstractSyntaxTree/includes
 
 
 libscisystem_env_la_includedir=$(pkgincludedir)/system_env

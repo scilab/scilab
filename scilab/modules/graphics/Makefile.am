@@ -36,6 +36,7 @@ libscigraphics_la_CFLAGS = -I$(top_srcdir)/libs/doublylinkedlist/includes/ \
 	-I$(top_srcdir)/modules/api_scilab/includes/ \
 	-I$(top_srcdir)/modules/fileio/includes/ \
 	-I$(top_srcdir)/modules/string/includes/ \
+	-I$(top_srcdir)/modules/system_env/includes/ \
 	-I$(top_srcdir)/modules/operations/includes/
 
 
@@ -432,7 +433,8 @@ libscigraphics_la_CPPFLAGS =  	-Iincludes/ \
 				-Isrc/c/ $(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/jvm/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes/ \
-			 	-I$(top_srcdir)/modules/graphic_export/includes/
+			 	-I$(top_srcdir)/modules/graphic_export/includes/ \
+			 	-I$(top_srcdir)/modules/system_env/includes/
 
 libscigraphics_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GATEWAY_C_SOURCES) $(GRAPHICS_CPP_SOURCES)
 

@@ -88,6 +88,7 @@ am__objects_1 = libscisystem_env_la-setenvvar.lo \
 	libscisystem_env_la-sci_path.lo \
 	libscisystem_env_la-sci_home.lo \
 	libscisystem_env_la-sci_tmpdir.lo \
+	libscisystem_env_la-sci_mode.lo \
 	libscisystem_env_la-configvariable.lo
 am_libscisystem_env_la_OBJECTS = $(am__objects_1)
 libscisystem_env_la_OBJECTS = $(am_libscisystem_env_la_OBJECTS)
@@ -357,20 +358,23 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 SYSTEM_ENV_CPP_SOURCES = \
-            src/cpp/setenvvar.cpp \
-            src/cpp/sci_path.cpp \
-            src/cpp/sci_home.cpp \
-            src/cpp/sci_tmpdir.cpp \
-            src/cpp/configvariable.cpp
+	src/cpp/setenvvar.cpp \
+	src/cpp/sci_path.cpp \
+	src/cpp/sci_home.cpp \
+	src/cpp/sci_tmpdir.cpp \
+	src/cpp/sci_mode.cpp \
+	src/cpp/configvariable.cpp
 
 pkglib_LTLIBRARIES = libscisystem_env.la
 libscisystem_env_la_SOURCES = $(SYSTEM_ENV_CPP_SOURCES)
-libscisystem_env_la_CPPFLAGS = -I includes/ \
-									-I src/cpp \
-									-I $(top_srcdir)/modules/symbol/includes \
-									-I $(top_srcdir)/modules/types/includes \
-									-I $(top_srcdir)/modules/io/includes \
-									-I $(top_srcdir)/modules/abstractSyntaxTree/includes
+libscisystem_env_la_CPPFLAGS = \
+	-I includes/ \
+	-I src/cpp \
+	-I $(top_srcdir)/modules/symbol/includes \
+	-I $(top_srcdir)/modules/types/includes \
+	-I $(top_srcdir)/modules/io/includes \
+	-I $(top_srcdir)/modules/fileio/includes \
+	-I $(top_srcdir)/modules/abstractSyntaxTree/includes
 
 libscisystem_env_la_includedir = $(pkgincludedir)/system_env
 libscisystem_env_la_include_HEADERS = includes/setenvvar.hxx
@@ -450,6 +454,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisystem_env_la-configvariable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisystem_env_la-sci_home.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisystem_env_la-sci_mode.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisystem_env_la-sci_path.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisystem_env_la-sci_tmpdir.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisystem_env_la-setenvvar.Plo@am__quote@
@@ -502,6 +507,13 @@ libscisystem_env_la-sci_tmpdir.lo: src/cpp/sci_tmpdir.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/sci_tmpdir.cpp' object='libscisystem_env_la-sci_tmpdir.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscisystem_env_la-sci_tmpdir.lo `test -f 'src/cpp/sci_tmpdir.cpp' || echo '$(srcdir)/'`src/cpp/sci_tmpdir.cpp
+
+libscisystem_env_la-sci_mode.lo: src/cpp/sci_mode.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscisystem_env_la-sci_mode.lo -MD -MP -MF $(DEPDIR)/libscisystem_env_la-sci_mode.Tpo -c -o libscisystem_env_la-sci_mode.lo `test -f 'src/cpp/sci_mode.cpp' || echo '$(srcdir)/'`src/cpp/sci_mode.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscisystem_env_la-sci_mode.Tpo $(DEPDIR)/libscisystem_env_la-sci_mode.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/sci_mode.cpp' object='libscisystem_env_la-sci_mode.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscisystem_env_la-sci_mode.lo `test -f 'src/cpp/sci_mode.cpp' || echo '$(srcdir)/'`src/cpp/sci_mode.cpp
 
 libscisystem_env_la-configvariable.lo: src/cpp/configvariable.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscisystem_env_la-configvariable.lo -MD -MP -MF $(DEPDIR)/libscisystem_env_la-configvariable.Tpo -c -o libscisystem_env_la-configvariable.lo `test -f 'src/cpp/configvariable.cpp' || echo '$(srcdir)/'`src/cpp/configvariable.cpp

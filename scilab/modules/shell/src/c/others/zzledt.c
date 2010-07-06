@@ -46,7 +46,7 @@
 #include "completion.h"
 #include "getPartLine.h"
 #include "localization.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 #include "sciprint.h"
 #include "HistoryManager.h"
 #include "ConsoleRead.h"

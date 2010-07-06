@@ -2,4 +2,5 @@ LIBRARY    system_env.dll
 
 
 EXPORTS
- getSCI
+getSCI
+getScilabMode

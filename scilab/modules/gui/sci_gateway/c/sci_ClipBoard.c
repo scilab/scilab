@@ -19,7 +19,7 @@
 #include "Scierror.h"
 #include "MALLOC.h"
 #include "sciprint.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 #include "localization.h"
 #include "IsAScalar.h"
 #include "freeArrayOfString.h"

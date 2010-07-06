@@ -13,7 +13,7 @@
 #include <string.h>
 #include "getversion.h"
 #include "version.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 #include "scilabDefaults.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"

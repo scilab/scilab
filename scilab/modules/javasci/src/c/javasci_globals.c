@@ -21,7 +21,7 @@
 #include "javasci_globals.h"
 #include "inisci-c.h"
 #include "sci_path.h"
-#include "tmpdir.h"
+#include "sci_tmpdir.h"
 #include "PATH_MAX.h"
 #include "getcommandlineargs.h"
 #ifdef _MSC_VER

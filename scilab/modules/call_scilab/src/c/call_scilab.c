@@ -12,17 +12,16 @@
 #include <stdio.h>
 #include "call_scilab.h"
 #include "MALLOC.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 #include "fromc.h"
 #include "LaunchScilabSignal.h"
 #include "localization.h"
 #include "isdir.h"
 #include "sci_path.h"
 #include "scilabDefaults.h"
-#include "tmpdir.h"
+#include "sci_tmpdir.h"
 #include "inisci-c.h"
 #include "scirun.h"
-#include "scilabmode.h"
 #include "sciquit.h"
 #include "storeCommand.h"
 #include "WindowList.h"
@@ -123,7 +122,7 @@ BOOL StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 	}
 
 	/* creates TMPDIR */
-	C2F(settmpdir)();
+	defineTMPDIR();
 
 	/* Scilab Initialization */
 	C2F(inisci)(&iflag,&StacksizeUsed,&ierr);

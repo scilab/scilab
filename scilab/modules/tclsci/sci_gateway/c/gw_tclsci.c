@@ -19,7 +19,7 @@
 #include "gw_tclsci.h"
 #include "stack-c.h"
 #include "inisci-c.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 #include "callFunctionFromGateway.h"
 #include "InitTclTk.h" /* isTkStarted */
 #include "InitializeTclTk.h"

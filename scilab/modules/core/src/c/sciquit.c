@@ -28,7 +28,7 @@
 #include "../../../windows_tools/src/c/scilab_windows/killScilabProcess.h"
 #endif
 #include "../../../gui/includes/TerminateGui.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 /*--------------------------------------------------------------------------*/ 
 int ExitScilab(void)
 {

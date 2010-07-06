@@ -27,7 +27,7 @@ extern "C"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
-#include "scilabmode.h"
+#include "sci_mode.h"
 #include "splitpath.h"
 #include "scicurdir.h"
 }

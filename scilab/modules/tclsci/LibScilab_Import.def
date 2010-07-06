@@ -2,7 +2,6 @@ LIBRARY    LibScilab.dll
 
 
 EXPORTS
- getScilabMode
  gettype_
  vstk_
  IsAScalar

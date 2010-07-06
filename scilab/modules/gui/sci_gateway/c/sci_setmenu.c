@@ -16,7 +16,7 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "InitUIMenu.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 /*--------------------------------------------------------------------------*/
 int sci_setmenu(char *fname,unsigned long fname_len)
 {

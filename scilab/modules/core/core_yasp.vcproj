@@ -366,6 +366,10 @@
 			RelativePath="..\..\bin\lapack.lib"
 			>
 		</File>
+		<File
+			RelativePath="..\..\bin\libintl.lib"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

@@ -38,6 +38,6 @@ CPP_GATEWAY_PROTOTYPE(sci_argn);
 CPP_GATEWAY_PROTOTYPE(sci_global);
 CPP_GATEWAY_PROTOTYPE(sci_clearglobal);
 CPP_GATEWAY_PROTOTYPE(sci_isglobal);
-CPP_GATEWAY_PROTOTYPE(sci_getos);
+CPP_GATEWAY_PROTOTYPE(sci_getscilabmode);
 
 #endif /* __CORE_GW_HXX__ */

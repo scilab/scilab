@@ -4,3 +4,5 @@ LIBRARY    system_env.dll
 EXPORTS
 ;
 setSCI
+setScilabMode
+getScilabMode

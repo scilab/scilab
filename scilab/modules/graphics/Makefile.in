@@ -793,6 +793,7 @@ libscigraphics_la_CFLAGS =  \
 	-I$(top_srcdir)/modules/api_scilab/includes/ \
 	-I$(top_srcdir)/modules/fileio/includes/ \
 	-I$(top_srcdir)/modules/string/includes/ \
+	-I$(top_srcdir)/modules/system_env/includes/ \
 	-I$(top_srcdir)/modules/operations/includes/ \
 	$(JAVA_JNI_INCLUDE) -Isrc/cpp $(TCL_INC_PATH) $(TK_INC_PATH) \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -1184,7 +1185,8 @@ libscigraphics_la_CPPFLAGS = -Iincludes/ \
 				-Isrc/c/ $(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/jvm/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes/ \
-			 	-I$(top_srcdir)/modules/graphic_export/includes/
+			 	-I$(top_srcdir)/modules/graphic_export/includes/ \
+			 	-I$(top_srcdir)/modules/system_env/includes/
 
 libscigraphics_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GATEWAY_C_SOURCES) $(GRAPHICS_CPP_SOURCES)
 

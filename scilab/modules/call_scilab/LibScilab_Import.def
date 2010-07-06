@@ -2,7 +2,6 @@ LIBRARY    LibScilab.dll
 
 
 EXPORTS
-setScilabMode
 scirun_
 inisci_
 settmpdir_
@@ -17,7 +16,6 @@ freeArrayOfString
 cwritechain_
 cmatptr_
 creadmat_
-getScilabMode
 ExitScilab
 TerminateCorePart2
 InitializeLaunchScilabSignal

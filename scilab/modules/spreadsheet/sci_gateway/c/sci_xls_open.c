@@ -26,7 +26,7 @@
 #include "../../../fileio/includes/mopen.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "tmpdir.h"
+#include "sci_tmpdir.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"

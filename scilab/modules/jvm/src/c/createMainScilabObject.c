@@ -16,7 +16,7 @@
 #include "getScilabJNIEnv.h"
 #include "getScilabJavaVM.h"
 #include "catchIfJavaException.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/ 
 static jobject ScilabObject;

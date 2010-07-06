@@ -25,7 +25,7 @@
 #include "sciprint.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 #include "ScilabEval.h"
 #include "TCL_Command.h"
 #include "GlobalTclInterp.h"

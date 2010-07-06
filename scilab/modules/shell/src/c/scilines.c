@@ -45,7 +45,7 @@
 #include "stack-def.h"
 #ifdef _MSC_VER
 #include "../../../windows_tools/src/c/scilab_windows/console.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 #endif
 /*--------------------------------------------------------------------------*/
 #define DEFAULT_NUMBERS_LINES 28

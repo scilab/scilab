@@ -19,7 +19,6 @@ putlhsvar_
 createvar_
 freeArrayOfString
 com_
-getScilabMode
 callFunctionFromGateway
 sciReturnInt
 sciReturnStringMatrix

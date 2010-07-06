@@ -12,7 +12,7 @@
 /*--------------------------------------------------------------------------*/ 
 #include "TerminateGui.h"
 #include "CallMainWindow.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 /*--------------------------------------------------------------------------*/ 
 BOOL TerminateGUI(void)
 {

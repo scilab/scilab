@@ -14,7 +14,7 @@
 #endif
 #include <stdio.h>
 #include "version.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/ 
 void disp_scilab_version(void)

@@ -219,12 +219,14 @@ libscigui_la_CFLAGS=	-I$(srcdir)/src/c/ \
 			-I$(top_srcdir)/modules/dynamic_link/includes \
 			-I$(srcdir)/src/cpp/ \
 			-I$(top_srcdir)/modules/api_scilab/includes \
+			-I$(top_srcdir)/modules/system_env/includes \
 			-I$(top_srcdir)/modules/graphics/src/c/getHandleProperty/
 
 libscigui_la_CFLAGS += $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/jvm/includes/ \
 			-I$(top_srcdir)/modules/renderer/includes/ \
 			-I$(top_srcdir)/modules/string/includes/ \
+			-I$(top_srcdir)/modules/system_env/includes/ \
 			-I$(top_srcdir)/modules/operations/includes/
 
 libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
@@ -249,6 +251,7 @@ libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/operations/includes/ \
 			-I$(top_srcdir)/modules/types/includes/ \
 			-I$(top_srcdir)/modules/abstractSyntaxTree/includes/ \
+			-I$(top_srcdir)/modules/system_env/includes/ \
 			-I$(top_srcdir)/modules/symbol/includes/
 
 # Without the GUI module

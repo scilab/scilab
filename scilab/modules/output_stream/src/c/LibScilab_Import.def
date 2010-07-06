@@ -24,7 +24,6 @@ checklhs_
 intersci_
 createvar_
 getwsmat_
-getScilabMode
 cvname_
 getIntermediateMemoryNeeded
 getstackinfo_

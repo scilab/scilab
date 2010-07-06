@@ -23,7 +23,7 @@
 #include "core_math.h"
 #include "cvstr.h"
 #include "msgs.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 #include "stack-def.h" /* C2F(basbrk) */
 #include "Scierror.h"
 #include "do_error_number.h"

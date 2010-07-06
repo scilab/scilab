@@ -293,7 +293,6 @@ GATEWAY_C_SOURCES = \
 sci_gateway/c/sci_matrix.c \
 sci_gateway/c/sci_prod.c \
 sci_gateway/c/sci_expm.c \
-sci_gateway/c/sci_size.c \
 sci_gateway/c/sci_tril.c \
 sci_gateway/c/sci_ceil.c \
 sci_gateway/c/sci_imag.c \
@@ -384,8 +383,9 @@ sci_gateway/fortran/sci_f_chinesehat.f \
 sci_gateway/fortran/sci_f_exp.f
 
 GATEWAY_CPP_SOURCES =  \
-sci_gateway/cpp/sci_isequal.cpp \
-sci_gateway/cpp/elem_func_gw.cpp
+	sci_gateway/cpp/sci_isequal.cpp \
+	sci_gateway/cpp/elem_func_gw.cpp \
+	sci_gateway/cpp/sci_size.cpp
 
 
 EISPACK_SOURCES = src/fortran/eispack/balbak.f

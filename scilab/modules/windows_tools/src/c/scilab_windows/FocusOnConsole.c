@@ -13,7 +13,7 @@
 /*--------------------------------------------------------------------------*/
 #include <windows.h>
 #include "dynlib_scilab_windows.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 /*--------------------------------------------------------------------------*/
 SCILAB_WINDOWS_IMPEXP void setFocusOnConsole(void)
 {

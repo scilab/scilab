@@ -22,7 +22,7 @@
 #include "GlobalTclInterp.h"
 #include "localization.h"
 #include "ConvertSlash.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 /*--------------------------------------------------------------------------*/
 extern void	TclSetLibraryPath(Tcl_Obj * pathPtr);
 /*--------------------------------------------------------------------------*/

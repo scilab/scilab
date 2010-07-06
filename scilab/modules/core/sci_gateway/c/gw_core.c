@@ -24,7 +24,7 @@ static gw_generic_table Tab[]=
 {NULL, ""}, //argn
 {C2F(sci_getvariablesonstack),"getvariablesonstack"},
 {C2F(sci_comp),"comp"},
-{C2F(sci_getscilabmode),"getscilabmode"},
+{NULL, ""}, //getscilabmode
 {C2F(sci_mode),"mode"},
 {NULL ,""}, //type
 {C2F(sci_error),"error"},

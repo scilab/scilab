@@ -17,7 +17,7 @@
 #include <signal.h>
 
 #include "scilab_main.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 #include "realmain.h"
 #include "sciprint.h"
 #include "sciquit.h"

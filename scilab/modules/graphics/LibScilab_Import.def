@@ -28,7 +28,6 @@ checkrhs_
 checklhs_
 convert2sci_
 scistring_
-getScilabMode
 callFunctionFromGateway
 putlhsvar_
 getlistrhsvar_

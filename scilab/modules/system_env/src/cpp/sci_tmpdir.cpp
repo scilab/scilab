@@ -32,6 +32,7 @@ extern "C"
 #include "getenvc.h"
 #include "localization.h"
 #include <errno.h>
+#include "removedir.h"
 }
 
 char *getTMPDIR(void)
@@ -203,3 +204,7 @@ void defineTMPDIR()
     FREE(sci_tmpdir);
 }
 
+void clearTMPDIR()
+{
+    removedir(getTMPDIR());
+}

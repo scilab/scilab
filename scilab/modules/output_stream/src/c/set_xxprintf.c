@@ -13,7 +13,7 @@
 /*--------------------------------------------------------------------------*/
 #include "set_xxprintf.h"
 #include "sciprint.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 /*--------------------------------------------------------------------------*/
 /* local function used to flush with sprintf */
 static int voidflush(FILE *fp);

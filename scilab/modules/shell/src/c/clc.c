@@ -12,7 +12,7 @@
 /*--------------------------------------------------------------------------*/
 #include <stdlib.h>
 #include "clc.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 #include "ClearConsole.h"
 #include "ClearConsolePart.h"
 #ifdef _MSC_VER

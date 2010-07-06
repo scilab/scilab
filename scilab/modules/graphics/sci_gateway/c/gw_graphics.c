@@ -14,7 +14,7 @@
 /*--------------------------------------------------------------------------*/ 
 #include "gw_graphics.h"
 #include "stack-c.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "BOOL.h"

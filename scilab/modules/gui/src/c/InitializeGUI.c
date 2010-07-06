@@ -12,7 +12,7 @@
  
 #include <stdlib.h>
 #include "InitializeGUI.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 #include "setMainWindowTitle.h"
 #include "MALLOC.h"
 #include "buildMainWindowTitle.h"

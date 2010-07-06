@@ -176,3 +176,23 @@ int ConfigVariable::getConsoleWidth(void)
 /*
 ** \}
 */
+
+/*
+** Scilab mode
+** \{
+*/
+
+int ConfigVariable::m_iScilabMode = 0;
+
+void ConfigVariable::setScilabMode(int _iScilabMode)
+{
+    m_iScilabMode = _iScilabMode;
+}
+
+int ConfigVariable::getScilabMode(void)
+{
+    return m_iScilabMode;
+}
+/*
+** \}
+*/

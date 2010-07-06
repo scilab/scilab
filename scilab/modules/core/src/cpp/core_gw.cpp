@@ -36,7 +36,7 @@ bool CoreModule::Load()
     symbol::Context::getInstance()->AddFunction(Function::createFunction("global", &sci_global, "core"));
     symbol::Context::getInstance()->AddFunction(Function::createFunction("clearglobal", &sci_clearglobal, "core"));
     symbol::Context::getInstance()->AddFunction(Function::createFunction("isglobal", &sci_isglobal, "core"));
-    symbol::Context::getInstance()->AddFunction(Function::createFunction("getos", &sci_getos, "core"));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction("getscilabmode", &sci_getscilabmode, "core"));
     return true;
 }
 

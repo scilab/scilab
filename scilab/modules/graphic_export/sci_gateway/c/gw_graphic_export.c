@@ -15,7 +15,7 @@
 #include <string.h>
 #include "gw_graphic_export.h"
 #include "stack-c.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 #include "callFunctionFromGateway.h"
 #include "localization.h"
 #include "Scierror.h"

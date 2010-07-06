@@ -16,7 +16,7 @@
 #include "console_main.h"
 #include "core_math.h"
 #include "getcommandlineargs.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 #include "forbiddenToUseScilab.h"
 #include "realmain.h"
 #include "version.h"

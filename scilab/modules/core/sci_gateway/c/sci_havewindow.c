@@ -12,7 +12,7 @@
 #include "gw_core.h"
 #include "stack-c.h"
 #include "MALLOC.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_havewindow)(char *fname,unsigned long fname_len)
 {

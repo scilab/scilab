@@ -124,6 +124,7 @@ libscifileio_la_CFLAGS=		-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/io/includes \
 				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/string/includes \
+				-I$(top_srcdir)/modules/system_env/includes \
 				-I$(top_srcdir)/modules/localization/includes \
 				-I$(top_srcdir)/modules/operations/includes \
 				$(HDF5_CFLAGS)

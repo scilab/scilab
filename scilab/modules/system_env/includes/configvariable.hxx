@@ -84,6 +84,14 @@ private :
 public : 
     static void setConsoleWidth(int _iConsoleWidth);
     static int getConsoleWidth(void);
+
+    // Scilab mode
+private :
+    static int m_iScilabMode;
+
+public : 
+    static void setScilabMode(int _iScilabMode);
+    static int getScilabMode(void);
 };
 
 #endif /* __CONFIGVARIABLE_HXX__ */

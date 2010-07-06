@@ -16,7 +16,7 @@
 #include <stdio.h>
 #include "WinConsole.h"
 #include "version.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 #include "MALLOC.h"
 #include "scilab_windows/console.h"
 /*--------------------------------------------------------------------------*/

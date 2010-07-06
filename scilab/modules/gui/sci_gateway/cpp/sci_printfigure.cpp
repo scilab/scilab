@@ -15,7 +15,7 @@ extern "C"
 {
 #include "stack-c.h"
 #include "Scierror.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 #include "localization.h"
 #include "IsAScalar.h"
 #include "gw_gui.h"

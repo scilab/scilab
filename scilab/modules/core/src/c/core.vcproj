@@ -665,10 +665,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_getscilabmode.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_getvariablesonstack.c"
 				>
 			</File>
@@ -781,10 +777,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\scilabmode.c"
-				>
-			</File>
-			<File
 				RelativePath=".\scimem.c"
 				>
 			</File>
@@ -850,10 +842,6 @@
 			</File>
 			<File
 				RelativePath=".\timer.c"
-				>
-			</File>
-			<File
-				RelativePath=".\tmpdir.c"
 				>
 			</File>
 			<File
@@ -1182,10 +1170,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\scilabmode.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\includes\scimem.h"
 				>
 			</File>
@@ -1263,10 +1247,6 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\timerEvents.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\tmpdir.h"
 				>
 			</File>
 			<File

@@ -16,18 +16,14 @@ intersci_
 createvar_
 gettype_
 vstk_
-getTMPDIR
-getScilabMode
 ExitScilab
 disp_scilab_version
 settexmacs
 setCommandLineArgs
-setScilabMode
 realmain
 sciquit_
 IsAScalar
 freeArrayOfString
-getSCIHOME
 getWarningMode
 ;
 

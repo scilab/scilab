@@ -31,7 +31,7 @@
 #include "parse.h"
 #include "localization.h"
 #include "core_math.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 #include "stack-def.h" /* C2F(basbrk) */
 #include "storeCommand.h"
 #include "do_error_number.h"

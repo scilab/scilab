@@ -20,7 +20,7 @@
 #include "BOOL.h"
 #include "ConsoleRead.h"
 #include "SetConsolePrompt.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 #include "MALLOC.h"
 #include "prompt.h"
 #include "HistoryManager.h"

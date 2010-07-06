@@ -27,7 +27,7 @@
 #include "sci_home.h"
 #include "MALLOC.h"
 #include "inisci-c.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 #include "PATH_MAX.h"
 #include "scilabDefaults.h"
 /*--------------------------------------------------------------------------*/

@@ -26,8 +26,5 @@ getwsmat_
 mkmlistfromvars_
 freeArrayOfString
 transposeMatrixDouble
-getScilabMode
 GetData
 freeArrayOfWideString
-getTMPDIRW
-getSCIpathW

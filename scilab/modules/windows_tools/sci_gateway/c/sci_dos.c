@@ -18,7 +18,7 @@
 #include "MALLOC.h" /* MALLOC */
 #include "spawncommand.h"
 #include "sciprint.h"
-#include "tmpdir.h"
+#include "sci_tmpdir.h"
 #include "FileExist.h"
 #include "localization.h"
 #include "Scierror.h"

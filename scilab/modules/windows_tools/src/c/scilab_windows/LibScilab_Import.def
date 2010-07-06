@@ -6,8 +6,6 @@ EXPORTS
 ExitScilab
 disp_scilab_version
 setCommandLineArgs
-setScilabMode
-getScilabMode
 settexmacs
 sciquit
 realmain

@@ -78,6 +78,7 @@ libscihdf5_la_CPPFLAGS=	-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/operations/includes \
 				-I$(top_srcdir)/modules/jvm/includes/ \
 				-I$(top_srcdir)/modules/fileio/includes \
+				-I$(top_srcdir)/modules/system_env/includes \
 				$(JAVA_JNI_INCLUDE) \
 				$(HDF5_CFLAGS)
 
@@ -88,6 +89,7 @@ libscihdf5_la_CFLAGS=		-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/localization/includes \
 				-I$(top_srcdir)/modules/operations/includes \
+				-I$(top_srcdir)/modules/system_env/includes \
 				-I$(top_srcdir)/modules/fileio/includes \
 				$(HDF5_CFLAGS)
 

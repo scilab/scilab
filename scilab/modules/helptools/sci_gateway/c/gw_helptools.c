@@ -13,7 +13,7 @@
 #include <string.h>
 #include "gw_helptools.h"
 #include "stack-c.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 #include "callFunctionFromGateway.h"
 #include "localization.h"
 #include "Scierror.h"

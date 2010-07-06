@@ -28,7 +28,7 @@ extern "C"
 #include "MALLOC.h"
 #include "sci_path.h"
 #include "inisci-c.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 #ifdef _MSC_VER
 #include "../src/c/scilab_windows/getScilabDirectory.h"
 #endif
@@ -47,7 +47,6 @@ extern "C"
 #endif
 #include "../../../gui/includes/InitializeGUI.h"
 #include "../../../string/includes/InitializeString.h"
-#include "scilabmode.h"
 #include "../../../jvm/includes/loadBackGroundClassPath.h"
 
 #include "../../../history_manager/includes/HistoryManager.h"
@@ -223,7 +222,6 @@ extern "C"
 #ifndef _MSC_VER
 #include <unistd.h>
 #endif
-#include "scilabmode.h"
     extern char *TermReadAndProcess(void);
     extern void ConsolePrintf(char*);
 }

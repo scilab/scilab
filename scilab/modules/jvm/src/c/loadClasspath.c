@@ -23,7 +23,7 @@
 #include "sci_path.h"
 #include "MALLOC.h"
 #include "localization.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 #include "stricmp.h"
 #ifdef _MSC_VER
 	#include "strdup_windows.h"

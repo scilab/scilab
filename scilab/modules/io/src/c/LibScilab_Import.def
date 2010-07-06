@@ -16,7 +16,6 @@ checklhs_
 checkrhs_
 gettype_
 vstk_
-getTMPDIR
 IsAScalar
 vartype_
 createvar_

@@ -6,7 +6,6 @@ EXPORTS
   LaunchScilab
   LaunchScilabLock
 ;
-getScilabMode
 callFunctionFromGateway
 com_
 iop_

@@ -13,7 +13,7 @@
 #include "dynamic_tclsci.h"
 #include "callDynamicGateway.h"
 #include "gw_dynamic_generic.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 #include "with_module.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/

@@ -14,7 +14,7 @@
 #include <string.h>
 #include "gw_jvm.h"
 #include "stack-c.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 #include "Scierror.h"
 #include "callFunctionFromGateway.h"
 #include "localization.h"

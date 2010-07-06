@@ -20,7 +20,7 @@
 #include "do_xxprintf.h"
 #include "Scierror.h"
 #include "Scierror.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 #include "localization.h"
 #include "set_xxprintf.h"
 #include "scistrtostr.h"

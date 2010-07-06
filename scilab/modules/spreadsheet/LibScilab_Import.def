@@ -13,7 +13,6 @@ EXPORTS
  createvarfromptr_
  callFunctionFromGateway
  returnanan_
- getTMPDIR
  vartype_
  freeArrayOfString
  ;

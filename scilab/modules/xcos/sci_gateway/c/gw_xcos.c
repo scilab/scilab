@@ -14,7 +14,7 @@
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
 #include "BOOL.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "BOOL.h"

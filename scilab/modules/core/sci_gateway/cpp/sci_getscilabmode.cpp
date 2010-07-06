@@ -9,46 +9,35 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include <string.h>
-#include "gw_core.h"
-#include "stack-c.h"
-#include "MALLOC.h"
-#include "scilabmode.h"
+#include "funcmanager.hxx"
+#include "context.hxx"
+#include "core_gw.hxx"
+
+extern "C"
+{
+#include "sci_mode.h"
+#include "Scierror.h"
+#include "localization.h"
+#include "sci_mode.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
+}
 /*--------------------------------------------------------------------------*/
-int C2F(sci_getscilabmode)(char *fname,unsigned long fname_len)
+Function::ReturnValue sci_getscilabmode(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
 	int n1 = 0, m1 = 0;
 	char *output = NULL ;
 
-	Rhs=Max(Rhs,0);
-	CheckRhs(0,0) ;
-	CheckLhs(1,1) ;
+    if(in.size() != 0)
+    {
+        Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "getscilabmode", 0);
+        return Function::Error;
+    }
 
-	switch (getScilabMode())
-	{
-		case SCILAB_API: default :
-			output = strdup("API");
-		break;
-		case SCILAB_STD:
-			output = strdup("STD");
-		break;
-		case SCILAB_NW:
-			output = strdup("NW");
-		break;
-		case SCILAB_NWNI:
-			output = strdup("NWNI");
-		break;
-	}
+    String* pS = new String(getScilabModeString());
+    out.push_back(pS);
 
-	n1=1;
-	CreateVarFromPtr(Rhs+1,STRING_DATATYPE,(m1=(int)strlen(output), &m1),&n1,&output);
-	if (output) {FREE(output);output=NULL;}
-
-	LhsVar(1) = Rhs+1;
-	C2F(putlhsvar)();
-	return 0;
+    return Function::OK;
 }
 /*--------------------------------------------------------------------------*/

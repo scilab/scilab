@@ -13,7 +13,7 @@
 
 /*--------------------------------------------------------------------------*/
 #include "InitializeConsole.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 #include "ScilabLinesUpdate.h"
 /*--------------------------------------------------------------------------*/
 BOOL InitializeConsole(void)

@@ -36,8 +36,7 @@ public :
 };
 
 
-//Function::ReturnValue sci_cos(types::typed_list &in, int* _piRetCount, types::typed_list &out);
-//Function::ReturnValue sci_sin(types::typed_list &in, int* _piRetCount, types::typed_list &out);
 Function::ReturnValue sci_isequal(types::typed_list &in, int _iRetCount, types::typed_list &out);
+Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typed_list &out);
 
 #endif /* __ELEM_FUNC_H__ */

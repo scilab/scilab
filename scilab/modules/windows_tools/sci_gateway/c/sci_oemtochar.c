@@ -14,7 +14,7 @@
 #include "gw_windows_tools.h"
 #include "stack-c.h"
 #include "MALLOC.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/

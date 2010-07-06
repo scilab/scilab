@@ -14,7 +14,7 @@
 #include "sciprint.h"
 #include "diary.h"
 #include "stack-def.h" /* bsiz */
-#include "scilabmode.h"
+#include "sci_mode.h"
 #include "../../console/includes/ConsolePrintf.h"
 #ifdef _MSC_VER
 #include "TermPrintf.h"

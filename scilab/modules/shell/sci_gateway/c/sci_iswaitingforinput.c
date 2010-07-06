@@ -15,7 +15,7 @@
 #include "gw_shell.h"
 #include "stack-c.h"
 #include "ConsoleIsWaitingForInput.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"

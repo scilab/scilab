@@ -14,9 +14,9 @@
 #include <stdio.h>
 #include "PATH_MAX.h"
 #include "MALLOC.h"
-#include "tmpdir.h" /* getTMPDIR */
+#include "sci_tmpdir.h" /* getTMPDIR */
 #include "FileExist.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 #include "spawncommand.h"
 #include "strdup_windows.h"
 #include "charEncoding.h"

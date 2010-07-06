@@ -11,7 +11,6 @@
 CORE_C_SOURCES = \
 src/c/inffic.c \
 src/c/cs2st.c \
-src/c/tmpdir.c \
 src/c/intmacr2tree.c \
 src/c/run.c \
 src/c/InitScilab.c \
@@ -50,7 +49,6 @@ src/c/TerminateCore.c \
 src/c/coretable.c \
 src/c/returnProperty.c \
 src/c/returnPropertyList.c \
-src/c/scilabmode.c \
 src/c/GetXmlFileEncoding.c \
 src/c/islittleendian.c \
 src/c/terme.c \
@@ -239,7 +237,6 @@ sci_gateway/c/gw_user2.c \
 sci_gateway/c/sci_error.c \
 sci_gateway/c/sci_with_module.c \
 sci_gateway/c/sci_islittleendian.c \
-sci_gateway/c/sci_getscilabmode.c \
 sci_gateway/c/sci_getvariablesonstack.c \
 sci_gateway/c/sci_readgateway.c \
 sci_gateway/c/sci_comp.c
@@ -260,17 +257,19 @@ sci_gateway/fortran/sci_iserror.f \
 sci_gateway/fortran/sci_debug.f \
 sci_gateway/fortran/sci_comp.f 
 
-GATEWAY_CPP_SOURCES = 	sci_gateway/cpp/sci_getmodules.cpp \
-						sci_gateway/cpp/sci_clear.cpp \
-						sci_gateway/cpp/sci_banner.cpp \
-						sci_gateway/cpp/sci_quit.cpp \
-						sci_gateway/cpp/sci_exit.cpp \
-						sci_gateway/cpp/sci_argn.cpp \
-						sci_gateway/cpp/sci_clearglobal.cpp \
-						sci_gateway/cpp/sci_global.cpp \
-						sci_gateway/cpp/sci_isglobal.cpp \
-						sci_gateway/cpp/sci_getos.cpp \
-						sci_gateway/cpp/sci_exists.cpp
+GATEWAY_CPP_SOURCES = 	\
+	sci_gateway/cpp/sci_getmodules.cpp \
+	sci_gateway/cpp/sci_clear.cpp \
+	sci_gateway/cpp/sci_banner.cpp \
+	sci_gateway/cpp/sci_quit.cpp \
+	sci_gateway/cpp/sci_exit.cpp \
+	sci_gateway/cpp/sci_argn.cpp \
+	sci_gateway/cpp/sci_clearglobal.cpp \
+	sci_gateway/cpp/sci_global.cpp \
+	sci_gateway/cpp/sci_isglobal.cpp \
+	sci_gateway/cpp/sci_getscilabmode.cpp \
+	sci_gateway/cpp/sci_getos.cpp \
+	sci_gateway/cpp/sci_exists.cpp
 
 libscicore_la_CFLAGS = -I$(srcdir)/includes/ \
 	-I$(srcdir)/src/c/ \
@@ -364,7 +363,6 @@ includes/machine.h \
 includes/mode_exec.h \
 includes/PATH_MAX.h \
 includes/scilabDefaults.h \
-includes/scilabmode.h \
 includes/scisparse.h \
 includes/sciquit.h \
 includes/stack-c.h \

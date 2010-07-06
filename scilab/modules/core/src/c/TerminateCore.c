@@ -18,10 +18,10 @@
 #include "scirun.h" /* scirun */
 #include "getmodules.h"
 #include "scimem.h" /* freegmem */
-#include "tmpdir.h" /* tmpdirc */
+#include "sci_tmpdir.h" /* tmpdirc */
 #include "hashtable_core.h" /* destroy_hashtable_scilab_functions */
 #include "filesmanagement.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 /*--------------------------------------------------------------------------*/ 
 BOOL TerminateCorePart1(void)
 {
@@ -61,7 +61,7 @@ BOOL TerminateCorePart2(void)
 	xmlCleanupParser();
 
 	/** clean tmpfiles **/
-	C2F(tmpdirc)();
+	clearTMPDIR();
 
 	return TRUE;
 }

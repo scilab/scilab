@@ -22,7 +22,7 @@
 #endif
 #include "../../../gui/includes/InitializeGUI.h"
 #include "../../../string/includes/InitializeString.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 #include "SetScilabEnvironment.h"
 #include "../../../jvm/includes/loadBackGroundClassPath.h"
 /*--------------------------------------------------------------------------*/

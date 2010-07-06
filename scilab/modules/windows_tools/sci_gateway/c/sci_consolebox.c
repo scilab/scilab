@@ -13,7 +13,7 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "gw_windows_tools.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 #include "MALLOC.h" /* MALLOC */
 #include "stack-c.h"
 #include "sciprint.h"

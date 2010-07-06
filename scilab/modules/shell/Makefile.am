@@ -51,6 +51,7 @@ libscishell_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/fileio/src/c/ \
 			-I$(top_srcdir)/modules/fileio/includes/ \
 			-I$(top_srcdir)/modules/api_scilab/includes \
+			-I$(top_srcdir)/modules/system_env/includes \
 			-I$(top_srcdir)/modules/operations/includes/
 
 if IS_MACOSX

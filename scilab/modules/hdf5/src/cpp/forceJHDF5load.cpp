@@ -15,7 +15,7 @@ extern "C"
 #include "BOOL.h"
 #include "getScilabJavaVM.h"
 #include "loadOnUseClassPath.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 
 }
 #include "jhdf5load.hxx"

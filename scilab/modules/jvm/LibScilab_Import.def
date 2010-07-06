@@ -14,9 +14,7 @@ freeArrayOfString
 vstk_
 gettype_
 getrhsvar_
-getScilabModeString
 com_
 callFunctionFromGateway
 GetXmlFileEncoding
-getScilabMode
 ;

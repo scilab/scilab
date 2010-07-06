@@ -34,6 +34,8 @@ EXTERN_SYSTEM_ENV void putenvTMPDIR(const char* _sci_tmpdir);
 
 EXTERN_SYSTEM_ENV void defineTMPDIR();
 
+EXTERN_SYSTEM_ENV void clearTMPDIR();
+
 #ifdef __cplusplus
 }
 #endif

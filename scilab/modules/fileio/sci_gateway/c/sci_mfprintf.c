@@ -17,7 +17,7 @@
 #include "filesmanagement.h"
 #include "localization.h"
 #include "BOOL.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 /*--------------------------------------------------------------------------*/ 
 #ifdef _MSC_VER
 static BOOL forceSTDERRredirect = TRUE;

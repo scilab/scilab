@@ -17,7 +17,7 @@
 #include "scirun.h"
 #include "realmain.h" /* enum InitScriptType */
 #include "sciquit.h"
-#include "tmpdir.h"
+#include "sci_tmpdir.h"
 #include "inisci-c.h"
 #include "PATH_MAX.h"
 /*--------------------------------------------------------------------------*/
@@ -43,7 +43,7 @@ int realmain(int no_startup_flag_l, char *initial_script, InitScriptType initial
     Set_no_startup_flag(no_startup_flag_l);
 
     /* create temp directory */
-    C2F(settmpdir)();
+    defineTMPDIR();
 
     /* signals */
 #ifdef _MSC_VER

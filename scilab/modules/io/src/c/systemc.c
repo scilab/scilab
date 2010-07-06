@@ -21,7 +21,7 @@
 #include "MALLOC.h" /* MALLOC */
 #include "PATH_MAX.h"
 #include "systemc.h"
-#include "tmpdir.h"
+#include "sci_tmpdir.h"
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
