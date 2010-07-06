@@ -97,27 +97,43 @@ public class LineElement extends AbstractElement<BasicLink>{
 		
 		List<mxPoint> mxPoints = new ArrayList<mxPoint>();
 		/*
-		 * Set start and end point
+		 * Set start and end point, should be SRC port posision
 		 */
 		double x = 0;
 		double y = 0;
+		if(start!=null) {
+			/*
+			 * get position of the parent block of start port, then add position of port
+			 */
+			x = start.getParent().getGeometry().getX() + start.getGeometry().getCenterX();
+			y = start.getParent().getGeometry().getY() + start.getGeometry().getCenterY();
+			if (LOG.isTraceEnabled()) {
+				LOG.trace("Point: x:" + x);
+				LOG.trace("Point: y:" + y);	
+			}
+		}
 		/*
 		 * Set line breaking points
 		 * Simulink line contains realative points positions
 		 */
 		/** 
-		 * \\W is used to strip string from non-word characters 
+		 * stripping from [,],;,, characters that exist in Points parameter string
 		 * \\s+ to split string around whitespaces
 		 */
-		try{
-		String[] points = from.getParameter("Points").replaceAll("\\W", " ").trim().split("\\s+");
-		for(int i = 0 ; i<points.length ; i+=2){
-			x+= Double.parseDouble(points[i]);
-			y+= Double.parseDouble(points[i+1]);
-			LOG.trace("Point: x:" + points[i]);
-			LOG.trace("Point: y:" + points[i+1]);
-			mxPoints.add(new mxPoint(x, y));
+		if (LOG.isTraceEnabled()) {
+			LOG.trace(from.getParameter("Points"));
 		}
+		try {
+		String[] points = from.getParameter("Points").replaceAll("[\\[\\];,]", " ").trim().split("\\s+");
+		for(int i = 0 ; i<points.length ; i+=2) {
+			x += Double.parseDouble(points[i]);
+			y += Double.parseDouble(points[i+1]);
+			if (LOG.isTraceEnabled()) {
+				LOG.trace("Point: x:" + x);
+				LOG.trace("Point: y:" + y);
+			}
+			mxPoints.add(new mxPoint(x, y));
+		} 
 		} catch (NullPointerException e) {
 			LOG.trace("No points info available");
 		}
@@ -134,33 +150,19 @@ public class LineElement extends AbstractElement<BasicLink>{
 			Iterator<OutputPort> portIter = portList.iterator();
 			while(portIter.hasNext()){
 				OutputPort port = portIter.next();
-				if (LOG.isTraceEnabled()) {
-					LOG.trace("SRC: " + port.toString());
-					LOG.trace("SRC: " + port.getId().toString());
-				}
-				if(port.getId().equals(simulinkLine.getSrcPort())){
+				if(port.getId().equals("Output" + simulinkLine.getSrcPort().toString())){
 					start = port;
+					LOG.trace("start set to" + start.getId());
 				}
 			}
 			
 			List<InputPort> inPortList = BasicBlockInfo.getAllTypedPorts(block, false, InputPort.class);
 			Iterator<InputPort> inPortIter = inPortList.iterator();
 			while(inPortIter.hasNext()){
-				BasicPort port = inPortIter.next();
-				if (LOG.isTraceEnabled()) {
-					LOG.trace("DST: " + port.toString());
-					LOG.trace("DST: " + port.getId().toString());
-				}
-				if(port.getId().equals(simulinkLine.getDstPort())){
+				InputPort port = inPortIter.next();
+				if(port.getId().toString().equals("Input" + simulinkLine.getDstPort().toString())){
 					end = port;
-				}
-			}
-			if (LOG.isTraceEnabled()) {
-				if(start!=null) {
-					LOG.trace("start: " + start.getId().toString());
-				}
-				if(end!=null) {
-					LOG.trace("end: " + end.getId().toString());
+					LOG.trace("end set to" + end.getId());
 				}
 			}
 		}

@@ -18,6 +18,7 @@ import java.util.Iterator;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.xcos.port.BasicPort;
+import org.scilab.modules.xcos.port.BasicPort.DataType;
 import org.scilab.modules.xcos.port.input.ImplicitInputPort;
 import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
@@ -43,15 +44,27 @@ public class OutputPortElement {
 		/*
 		 * Set out lines
 		 */
+		fillParameters(port);
 		
 		return port;
+	}
+
+	private void fillParameters(OutputPort port) {
+		// TODO Get port parameters from simulink
+		int nbLines = 1;
+		int nbColumns = 1;
+		int type = 1;
+		
+		port.setDataLines(nbLines);
+		port.setDataColumns(nbColumns);
+		port.setDataType(DataType.convertScilabValue(type));
 	}
 
 	private OutputPort allocatePort(SimulinkOutPort simulinkOutPort) {
 		// TODO Auto-generated method stub
 		OutputPort ret;
 		ret = new ExplicitOutputPort();
-		ret.setId(simulinkOutPort.toString());
+		ret.setId("Output" + simulinkOutPort.toString());
 		if (LOG.isTraceEnabled()) {
 			LOG.trace("OutPort" + ret);	
 			LOG.trace("OutPort" + ret.getId());

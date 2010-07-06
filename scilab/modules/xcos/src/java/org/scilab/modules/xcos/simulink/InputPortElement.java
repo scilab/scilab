@@ -18,6 +18,7 @@ import java.util.Iterator;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.xcos.port.BasicPort;
+import org.scilab.modules.xcos.port.BasicPort.DataType;
 import org.scilab.modules.xcos.port.input.ExplicitInputPort;
 import org.scilab.modules.xcos.port.input.ImplicitInputPort;
 import org.scilab.modules.xcos.port.input.InputPort;
@@ -38,16 +39,27 @@ public class InputPortElement {
 		
 		InputPort port;
 		port = allocatePort(simulinkInPort);
-		/*fillParameters(port);*/
+		fillParameters(port);
 		
 		return port;
 	}
  
+	private void fillParameters(InputPort port) {
+		// TODO Get port parameters from simulink
+		int nbLines = 1;
+		int nbColumns = 1;
+		int type = 1;
+		
+		port.setDataLines(nbLines);
+		port.setDataColumns(nbColumns);
+		port.setDataType(DataType.convertScilabValue(type));
+	}
+
 	private InputPort allocatePort(SimulinkInPort simulinkInPort) { 
 		// TODO Auto-generated method stub
 		InputPort ret;
 		ret = new ExplicitInputPort();
-		ret.setId(simulinkInPort.toString());
+		ret.setId("Input"+simulinkInPort.toString());
 		if (LOG.isTraceEnabled()) {
 			LOG.trace("InPort" + ret);	
 			LOG.trace("InPort" + ret.getId());
