@@ -64,7 +64,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 		BasicBlock block = into;
 		base = from;
 		if (block == null) {
-			block = BlockFactory.createBlock(from.getId());
+			block = BlockFactory.createBlock(modelElement.getInterFunctionName(base));
 		}
 		
 		/*
@@ -109,7 +109,8 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 			LogFactory.getLog(BlockElement.class).error(se);
 		}
 		
-		block.generateId();
+		//block.generateId();
+		block.setId(base.getId());
 		/*
 		 * Set state dependent informations.
 		 */

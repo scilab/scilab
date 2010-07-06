@@ -461,7 +461,7 @@ public class PatternElement {
 		else {
 			LOG.trace("blocktype: wrong block!");
 		}
-		return null;
+		return "c";
 	}
 
 	public ScilabType decodeNbZerosCrossing(SimulinkBlock data) {
@@ -492,7 +492,7 @@ public class PatternElement {
 		else {
 			LOG.trace("nzcross: wrong block!");
 		}
-		return new ScilabDouble();
+		return new ScilabDouble(0);
 	}
 
 	public ScilabType decodeNmode(SimulinkBlock data) {
@@ -546,7 +546,7 @@ public class PatternElement {
 		else {
 			LOG.trace("rpar: wrong block!");
 		}
-		return new ScilabDouble();
+		return new ScilabDouble(0);
 	}
 
 	public ScilabType decodeIntegerParameters(SimulinkBlock data) {
@@ -588,7 +588,7 @@ public class PatternElement {
 		else {
 			LOG.trace("ipar: wrong block!");
 		}
-		return new ScilabInteger();
+		return new ScilabDouble();
 	}
 
 	public ScilabType decodeObjectsParameters(SimulinkBlock data) {
@@ -603,9 +603,7 @@ public class PatternElement {
 
 	public String decodeInterfaceFunctionName(SimulinkBlock data) {
 		if(currentBlock!=null){
-			if(currentBlock.getSim().equals(data.getName())){
-				return currentBlock.getXcos();
-			}
+			return currentBlock.getXcos();
 		}
 		else {
 			LOG.trace("interface: wrong block!");

@@ -36,9 +36,9 @@ public class BlockModelElement extends AbstractElement{
 	BasicBlock base = into;
 	data = from;
 	/*
-	 * initialize patterns for particular block
+	 * initialize patterns for particular block type
 	 */
-	patternElement = new PatternElement(data.getName());
+	patternElement = new PatternElement(data.getParameter("BlockType"));
 	/*
 	 * fill the data
 	 */
@@ -92,6 +92,12 @@ public class BlockModelElement extends AbstractElement{
 		// firing
 		// Vector of initial event firing times of size equal to the number of activation output ports (see evout). It contains output initial event dates (Events generated before any input event arises). Negative values stands for no initial event on the corresponding port.
 		base.setInterfaceFunctionName(patternElement.decodeInterfaceFunctionName(data));
+	}
+	
+	public String getInterFunctionName(SimulinkBlock from){
+		//FIXME: shouldn't have to multiple initialize
+		patternElement = new PatternElement(from.getParameter("BlockType"));
+		return patternElement.decodeInterfaceFunctionName(from);
 	}
 
 	private void validate() {
