@@ -41,6 +41,8 @@ subwindow is not docked.
 
 Bug Fixes:
 ==========
+* bug 3842 fixed - "native" and "double" evaluation mode added to the sum, 
+                   cumsum, prod and cumprod functions
 
 * bug 4370 fixed - Help page for alufunction, figure_properties was not
                    up-to-date and the help page for pixel_drawing_mode was missing.

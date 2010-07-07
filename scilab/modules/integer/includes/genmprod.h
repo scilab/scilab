@@ -19,5 +19,6 @@
 #include "def.h"
 
 INTEGER_IMPEXP int C2F(genmprod)(int *typ,int *job, int *a, int *na, int *m, int *n, int *v, int *nv);
+INTEGER_IMPEXP int C2F(genmprod_double)(int *typ,int *job, int *a, int *na, int *m, int *n, double *v, int *nv);
 
 #endif /* __GENMPROD_H__ */

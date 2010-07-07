@@ -12,16 +12,16 @@
 
 #include "gensum.h"
 
-#define SUM(Type) {\
-Type *DX;\
- DX=(Type *)dx;\
+#define SUM(Typein,Typeout) {                          \
+Typein *DX;\
+ DX=(Typein *)dx;\
  --DX;\
  if (*incx == 1) {\
-   for (i = 1; i <= *n; ++i) dtemp += (int) DX[i];\
+   for (i = 1; i <= *n; ++i) dtemp += (Typeout) DX[i];\
  }\
  else {\
    i1 = *n * *incx;i2 = *incx;\
-   for (i = 1; i2 < 0 ? i >= i1 : i <= i1; i += i2) dtemp += (int) DX[i];\
+   for (i = 1; i2 < 0 ? i >= i1 : i <= i1; i += i2) dtemp += (Typeout) DX[i];\
  }\
 }
 
@@ -36,25 +36,57 @@ int C2F(gensum)(int *typ, int *n, void *dx, int *incx)
 
     switch (*typ) {
     case 1:
-      SUM(integer1);
+      SUM(integer1,int);
       break;
     case 2:
-      SUM(integer2);
+      SUM(integer2,int);
       break;
     case 4:
-      SUM(int) ;
+      SUM(int,int) ;
       break;
     case 11:
-      SUM(unsigned char);
+      SUM(unsigned char,int);
       break;
     case 12:
-      SUM(unsigned short);
+      SUM(unsigned short,int);
       break;
     case 14:
-      SUM(unsigned int);
+      SUM(unsigned int,int);
       break;
     }
     return dtemp;
 }
 
+double C2F(gensum_double)(int *typ, int *n, void *dx, int *incx)
+{
+    int  i1, i2;
+    static int i;
+    static double dtemp;
 
+
+    dtemp = 0.0;
+    if (*n <= 0) return dtemp;
+
+    switch (*typ) {
+    case 1:
+      SUM(integer1,double);
+      break;
+    case 2:
+      SUM(integer2,double);
+      break;
+    case 4:
+      SUM(int,double) ;
+      break;
+    case 11:
+      SUM(unsigned char,double);
+      break;
+    case 12:
+      SUM(unsigned short,double);
+      break;
+    case 14:
+      SUM(unsigned int,double);
+      break;
+    }
+    return dtemp;
+    sciprint("gensum,%f\n",dtemp);
+}

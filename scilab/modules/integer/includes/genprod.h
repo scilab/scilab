@@ -18,5 +18,6 @@
 #include "machine.h"
 #include "def.h"
 
-INTEGER_IMPEXP int C2F(genprod)(int *typ, int *n, int *dx, int *incx);
+INTEGER_IMPEXP int C2F(genprod)(int *typ, int *n, void *dx, int *incx);
+double C2F(genprod_double)(int *typ, int *n, void *dx, int *incx);
 #endif /* __GENPROD_H__ */

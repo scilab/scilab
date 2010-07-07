@@ -22,12 +22,14 @@
  * TODO : comment 
  * @param typ
  * @param job
- * @param a
+ * @param in
+ * @param out
  * @param na
  * @param m
  * @param n
  * @return 
  */
-INTEGER_IMPEXP int C2F(genmcuprod)(int *typ,int *job,int * a,int * na,int * m,int * n);
+INTEGER_IMPEXP int C2F(genmcuprod)(int *typ,int *job,void * in, void * out, int * na,int * m,int * n);
+INTEGER_IMPEXP int C2F(genmcuprodd)(int *typ,int *job,void * in, double * out, int * na,int * m,int * n);
 #endif /* __GENMCUPROD_H__ */
 
