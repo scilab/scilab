@@ -76,8 +76,6 @@ public class DefaultAction extends CallBack {
      */
     protected static PushButton createButton(String title, String icon, ActionListener listener) {
         PushButton button = ScilabPushButton.createPushButton();
-        ((SwingScilabPushButton) button.getAsSimplePushButton()).setContentAreaFilled(true);
-        ((SwingScilabPushButton) button.getAsSimplePushButton()).setOpaque(false);
         ((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(listener);
         button.setToolTipText(title);
         if (icon == null) {
