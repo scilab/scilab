@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.scinotes.utils;
+package org.scilab.modules.gui.utils;
 
 import java.awt.image.BufferedImage;
 import java.awt.Font;
