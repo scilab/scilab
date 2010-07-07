@@ -268,6 +268,10 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		setVisible(true);
 		setVertex(true);
 		
+		if (getStyle().isEmpty() && !getInterfaceFunctionName().isEmpty()) {
+			setStyle(getInterfaceFunctionName());
+		}
+		
 		parametersPCS.addPropertyChangeListener("interfaceFunctionName",
 				styleUpdater);
 		
