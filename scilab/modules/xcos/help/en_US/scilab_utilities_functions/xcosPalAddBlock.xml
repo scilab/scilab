@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * 
+ * This help file was generated from xcosPalAddBlock.sci using help_from_sci().
+ * 
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="xcosPalAddBlock" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <info>
+    <pubdate>$LastChangedDate: 08-Juil-2010 $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>xcosPalAddBlock</refname><refpurpose>Add a block to a Scilab/Xcos palette instance. Some optional properties can be added to customize the palette icon and the style of the block.</refpurpose>
+  </refnamediv>
+
+
+
+<refsynopsisdiv>
+   <title>Calling Sequence</title>
+   <synopsis>
+   pal = xcosPalAddBlock(pal, block);
+   pal = xcosPalAddBlock(pal, block, pal_block_img);
+   pal = xcosPalAddBlock(pal, block, [], style);
+   pal = xcosPalAddBlock(pal, block, pal_block_img, style);
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>pal:</term>
+      <listitem><para> the palette to update</para></listitem></varlistentry>
+   <varlistentry><term>block:</term>
+      <listitem><para> the block to add to the palette</para></listitem></varlistentry>
+   <varlistentry><term>pal_block_img:</term>
+      <listitem><para> the block icon to use on the palette manager.</para></listitem></varlistentry>
+   <varlistentry><term>style:</term>
+      <listitem><para> the style to apply to the block</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+This macros add a block instance to a palette. This block parameter can be an instantiated block or a name (interface-function) or a path to a saved instance. Some operations are performed to load this block and check it's availability so it's interface-function must be loaded on Scilab. Some temporary files are also generated without full path arguments.
+   </para>
+   <para>
+The optional pal_block_img argument is generated on the <link linkend="TMPDIR">TMPDIR</link> using Scilab graphics if not specified. Be careful that if you use our palette to be persistent you then need to specify it. Otherwise the generated image will be deleted at the end of the Scilab session.
+   </para>
+   <para>
+The optional style argument allow the user to determine the kind of style to be used by this block. This argument can be typed as a path <link linkend="string">string</link> or a <link linkend="struct">struct</link>. If it is a string then a default style value is generated and formatted as a style else a struct is wrapped to a key-value jgraphx settings.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+loadScicosLibs();
+pal = xcosPal();
+
+sumPath = TMPDIR + "/sum.h5";
+bigSomPath = TMPDIR + "/sum.h5";
+
+scs_m = SUM_f("define");
+export_to_hdf5(sumPath, "scs_m");
+scs_m = BIGSOM("define");
+export_to_hdf5(bigSomPath, "scs_m");
+
+pal = xcosPalAddBlock(pal, sumPath);
+pal = xcosPalAddBlock(pal, bigSomPath);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Clément DAVID</member>
+   </simplelist>
+</refsection>
+</refentry>

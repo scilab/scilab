@@ -1,0 +1,258 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) DIGITEO - 2010-2010 - Clément DAVID <clement.david@scilab.org>
+//
+// This file is distributed under the same license as the Scilab package.
+// <-- TEST WITH XCOS -->
+// <-- ENGLISH IMPOSED -->
+//
+// <-- Short Description -->
+// White-box test for the xcosPalAddBlock macro.
+// Init
+loadScicosLibs;
+iconPath = SCI + "/modules/xcos/images/palettes/NPN.png";
+// Test block argument
+scs_m = SUM_f("define");
+blockPath = TMPDIR + "/block.h5";
+pal = xcosPal();
+pal = xcosPalAddBlock(pal, "SUM_f")
+ pal  =
+ 
+ 
+       pal(1)
+ 
+!palette  name  blockNames  blocks  icons  style  !
+ 
+       pal(2)
+ 
+ New palette   
+ 
+       pal(3)
+ 
+ SUM_f   
+ 
+       pal(4)
+ 
+ TMPDIR/SCI_TMP_5567_v04meb/SUM_f.h5   
+ 
+       pal(5)
+ 
+ TMPDIR/SCI_TMP_5567_v04meb/SUM_f.gif   
+ 
+       pal(6)
+ 
+ noLabel=1;image=file:TMPDIR/SCI_TMP_5567_v04meb/SUM_ 
+      f.svg;                                                            
+pal = xcosPal();
+pal = xcosPalAddBlock(pal, scs_m)
+ pal  =
+ 
+ 
+       pal(1)
+ 
+!palette  name  blockNames  blocks  icons  style  !
+ 
+       pal(2)
+ 
+ New palette   
+ 
+       pal(3)
+ 
+ SUM_f   
+ 
+       pal(4)
+ 
+ TMPDIR/SCI_TMP_5567_v04meb/SUM_f.h5   
+ 
+       pal(5)
+ 
+ TMPDIR/SCI_TMP_5567_v04meb/SUM_f.gif   
+ 
+       pal(6)
+ 
+ noLabel=1;image=file:TMPDIR/SCI_TMP_5567_v04meb/SUM_ 
+      f.svg;                                                            
+pal = xcosPal();
+export_to_hdf5(blockPath, "scs_m");
+pal = xcosPalAddBlock(pal, blockPath)
+ pal  =
+ 
+ 
+       pal(1)
+ 
+!palette  name  blockNames  blocks  icons  style  !
+ 
+       pal(2)
+ 
+ New palette   
+ 
+       pal(3)
+ 
+ SUM_f   
+ 
+       pal(4)
+ 
+ TMPDIR/SCI_TMP_5567_v04meb/block.h5   
+ 
+       pal(5)
+ 
+ TMPDIR/SCI_TMP_5567_v04meb/SUM_f.gif   
+ 
+       pal(6)
+ 
+ noLabel=1;image=file:TMPDIR/SCI_TMP_5567_v04meb/SUM_ 
+      f.svg;                                                            
+pal = xcosPal();
+pal = xcosPalAddBlock(pal, blockPath, [], [])
+ pal  =
+ 
+ 
+       pal(1)
+ 
+!palette  name  blockNames  blocks  icons  style  !
+ 
+       pal(2)
+ 
+ New palette   
+ 
+       pal(3)
+ 
+ SUM_f   
+ 
+       pal(4)
+ 
+ TMPDIR/SCI_TMP_5567_v04meb/block.h5   
+ 
+       pal(5)
+ 
+ TMPDIR/SCI_TMP_5567_v04meb/SUM_f.gif   
+ 
+       pal(6)
+ 
+ noLabel=1;image=file:TMPDIR/SCI_TMP_5567_v04meb/SUM_ 
+      f.svg;                                                            
+// Test pal_block_img argument
+pal = xcosPal();
+pal = xcosPalAddBlock(pal, blockPath, iconPath)
+ pal  =
+ 
+ 
+       pal(1)
+ 
+!palette  name  blockNames  blocks  icons  style  !
+ 
+       pal(2)
+ 
+ New palette   
+ 
+       pal(3)
+ 
+ SUM_f   
+ 
+       pal(4)
+ 
+ TMPDIR/SCI_TMP_5567_v04meb/block.h5   
+ 
+       pal(5)
+ 
+ SCI/modules/xcos/images/palettes/NPN.pn 
+      g                                                                 
+ 
+       pal(6)
+ 
+ noLabel=1;image=file:TMPDIR/SCI_TMP_5567_v04meb/SUM_ 
+      f.svg;                                                            
+current = pwd();
+cd(SCI);
+pal = xcosPal();
+pal = xcosPalAddBlock(pal, blockPath, "modules/xcos/images/palettes/NPN.pn?")
+ pal  =
+ 
+ 
+       pal(1)
+ 
+!palette  name  blockNames  blocks  icons  style  !
+ 
+       pal(2)
+ 
+ New palette   
+ 
+       pal(3)
+ 
+ SUM_f   
+ 
+       pal(4)
+ 
+ TMPDIR/SCI_TMP_5567_v04meb/block.h5   
+ 
+       pal(5)
+ 
+ SCI/modules/xcos/images/palettes/NPN.pn 
+      g                                                                 
+ 
+       pal(6)
+ 
+ noLabel=1;image=file:TMPDIR/SCI_TMP_5567_v04meb/SUM_ 
+      f.svg;                                                            
+cd(current);
+// Test style argument
+myStyle = struct();
+myStyle.block = [];
+myStyle.image = iconPath;
+pal = xcosPal();
+pal = xcosPalAddBlock(pal, blockPath, [], myStyle)
+ pal  =
+ 
+ 
+       pal(1)
+ 
+!palette  name  blockNames  blocks  icons  style  !
+ 
+       pal(2)
+ 
+ New palette   
+ 
+       pal(3)
+ 
+ SUM_f   
+ 
+       pal(4)
+ 
+ TMPDIR/SCI_TMP_5567_v04meb/block.h5   
+ 
+       pal(5)
+ 
+ TMPDIR/SCI_TMP_5567_v04meb/SUM_f.gif   
+ 
+       pal(6)
+ 
+ noLabel=1;image=file:TMPDIR/SCI_TMP_5567_v04meb/SUM_ 
+      f.svg;                                                            
+pal = xcosPal();
+pal = xcosPalAddBlock(pal, blockPath, [], iconPath)
+ pal  =
+ 
+ 
+       pal(1)
+ 
+!palette  name  blockNames  blocks  icons  style  !
+ 
+       pal(2)
+ 
+ New palette   
+ 
+       pal(3)
+ 
+ SUM_f   
+ 
+       pal(4)
+ 
+ TMPDIR/SCI_TMP_5567_v04meb/block.h5   
+ 
+       pal(5)
+ 
+ TMPDIR/SCI_TMP_5567_v04meb/SUM_f.gif   
+ 
+       pal(6)
+ 
+ noLabel=1;image=file:TMPDIR/SCI_TMP_5567_v04meb/SUM_ 
+      f.svg;                                                            
