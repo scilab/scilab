@@ -46,6 +46,8 @@ public abstract class ClippableContouredObject extends ContouredObject {
 			return ClippablePropertyType.CLIPSTATE;
 		} else if (propertyName.equals("ClipBox")) {
 			return ClippablePropertyType.CLIPBOX;
+		} else if (propertyName.equals("ClipBoxSet")) {
+			return ClippablePropertyType.CLIPBOXSET;
 		} else {
 			return super.getPropertyFromName(propertyName);
 		}
@@ -63,6 +65,8 @@ public abstract class ClippableContouredObject extends ContouredObject {
 			return getClipState();
 		} else if (property == ClippablePropertyType.CLIPBOX) {
 			return getClipBox();
+		} else if (property == ClippablePropertyType.CLIPBOXSET) {
+			return getClipBoxSet();
 		} else {
 			return super.getPropertyFast(property);
 		}
@@ -78,9 +82,11 @@ public abstract class ClippableContouredObject extends ContouredObject {
 		if (property == ClippableContouredObjectPropertyType.CLIPPROPERTY) {
 			setClipProperty((ClippableProperty) value);
 		} else if (property == ClippablePropertyType.CLIPSTATE) {
-			setClipState((ClipStateType) value);
+			setClipState((Integer) value);
 		} else if (property == ClippablePropertyType.CLIPBOX) {
 			setClipBox((Double[]) value);
+		} else if (property == ClippablePropertyType.CLIPBOXSET) {
+			setClipBoxSet((Boolean) value);
 		} else {
 			return super.setPropertyFast(property, value);
 		}
@@ -118,15 +124,43 @@ public abstract class ClippableContouredObject extends ContouredObject {
 	/**
 	 * @return the clipState
 	 */
-	public ClipStateType getClipState() {
+	public Integer getClipState() {
+		return getClipStateAsEnum().ordinal();
+	}
+
+	/**
+	 * @return the clipState
+	 */
+	public ClipStateType getClipStateAsEnum() {
 		return clipProperty.getClipState();
 	}
 
 	/**
 	 * @param clipState the clipState to set
 	 */
-	public void setClipState(ClipStateType clipState) {
+	public void setClipState(Integer clipState) {
+		setClipStateAsEnum(ClipStateType.intToEnum(clipState));
+	}
+
+	/**
+	 * @param clipState the clipState to set
+	 */
+	public void setClipStateAsEnum(ClipStateType clipState) {
 		clipProperty.setClipState(clipState);
+	}
+
+	/**
+	 * @return the clipBoxSet
+	 */
+	public Boolean getClipBoxSet() {
+		return clipProperty.getClipBoxSet();
+	}
+
+	/**
+	 * @param clipBoxSet the clipBoxSet to set
+	 */
+	public void setClipBoxSet(Boolean clipBoxSet) {
+		clipProperty.setClipBoxSet(clipBoxSet);
 	}
 
 }

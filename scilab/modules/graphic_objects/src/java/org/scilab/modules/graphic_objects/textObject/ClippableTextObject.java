@@ -13,6 +13,7 @@
 package org.scilab.modules.graphic_objects.textObject;
 
 import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty;
+import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty.ClippablePropertyType;
 import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty.ClipStateType;
 
 /**
@@ -40,9 +41,11 @@ public abstract class ClippableTextObject extends TextObject {
 		if (propertyName.equals("ClipProperty")) {
 			return ClippableTextObjectProperty.CLIPPROPERTY;
 		} else if (propertyName.equals("ClipState")) {
-			return ClippableProperty.ClippablePropertyType.CLIPSTATE;
+			return ClippablePropertyType.CLIPSTATE;
 		} else if (propertyName.equals("ClipBox")) {
-			return ClippableProperty.ClippablePropertyType.CLIPBOX;
+			return ClippablePropertyType.CLIPBOX;
+		} else if (propertyName.equals("ClipBoxSet")) {
+			return ClippablePropertyType.CLIPBOXSET;
 		} else {
 			return super.getPropertyFromName(propertyName);
 		}
@@ -56,10 +59,12 @@ public abstract class ClippableTextObject extends TextObject {
 	public Object getPropertyFast(Object property) {
 		if (property == ClippableTextObjectProperty.CLIPPROPERTY) {
 			return getClipProperty();
-		} else if (property == ClippableProperty.ClippablePropertyType.CLIPSTATE) {
+		} else if (property == ClippablePropertyType.CLIPSTATE) {
 			return getClipState();
-		} else if (property == ClippableProperty.ClippablePropertyType.CLIPBOX) {
+		} else if (property == ClippablePropertyType.CLIPBOX) {
 			return getClipBox();
+		} else if (property == ClippablePropertyType.CLIPBOXSET) {
+			return getClipBoxSet();
 		} else {
 			return super.getPropertyFast(property);	
 		}
@@ -74,10 +79,12 @@ public abstract class ClippableTextObject extends TextObject {
 	public boolean setPropertyFast(Object property, Object value) {
 		if (property == ClippableTextObjectProperty.CLIPPROPERTY) {
 			setClipProperty((ClippableProperty) value);
-		} else if (property == ClippableProperty.ClippablePropertyType.CLIPSTATE) {
+		} else if (property == ClippablePropertyType.CLIPSTATE) {
 			setClipBox((Double[]) value);
-		} else if (property == ClippableProperty.ClippablePropertyType.CLIPBOX) {
-			setClipState((ClipStateType) value);
+		} else if (property == ClippablePropertyType.CLIPBOX) {
+			setClipState((Integer) value);
+		} else if (property == ClippablePropertyType.CLIPBOXSET) {
+			setClipBoxSet((Boolean) value);
 		} else {
 			return super.setPropertyFast(property, value);
 		}
@@ -116,15 +123,43 @@ public abstract class ClippableTextObject extends TextObject {
 	/**
 	 * @return the clipState
 	 */
-	public ClipStateType getClipState() {
+	public Integer getClipState() {
+		return getClipStateAsEnum().ordinal();
+	}
+
+	/**
+	 * @return the clipState
+	 */
+	public ClipStateType getClipStateAsEnum() {
 		return clipProperty.getClipState();
 	}
 
 	/**
 	 * @param clipState the clipState to set
 	 */
-	public void setClipState(ClipStateType clipState) {
+	public void setClipState(Integer clipState) {
+		setClipStateAsEnum(ClipStateType.intToEnum(clipState));
+	}
+
+	/**
+	 * @param clipState the clipState to set
+	 */
+	public void setClipStateAsEnum(ClipStateType clipState) {
 		clipProperty.setClipState(clipState);
+	}
+
+	/**
+	 * @return the clipBoxSet
+	 */
+	public Boolean getClipBoxSet() {
+		return clipProperty.getClipBoxSet();
+	}
+
+	/**
+	 * @param clipBoxSet the clipBoxSet to set
+	 */
+	public void setClipBoxSet(Boolean clipBoxSet) {
+		clipProperty.setClipBoxSet(clipBoxSet);
 	}
 
 }

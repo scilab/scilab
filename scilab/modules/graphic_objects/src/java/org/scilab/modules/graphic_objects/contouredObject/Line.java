@@ -21,7 +21,34 @@ public class Line {
 	public enum LinePropertyType { MODE, LINESTYLE, THICKNESS, COLOR };
 	
 	/** Line style */
-	enum LineType { SOLID, STYLE1, STYLE2, STYLE3, STYLE4, STYLE5, STYLE6 };
+	enum LineType { SOLID, STYLE1, STYLE2, STYLE3, STYLE4, STYLE5, STYLE6;
+
+		/**
+		 * Converts an integer to the corresponding enum
+		 * @param intValue the integer value
+		 * @return the line type enum
+		 */
+		public static LineType intToEnum(Integer intValue) {
+			switch (intValue) {
+				case 0:
+					return LineType.SOLID;
+				case 1:
+					return LineType.STYLE1;
+				case 2:
+					return LineType.STYLE2;
+				case 3:
+					return LineType.STYLE3;
+				case 4:
+					return LineType.STYLE4;
+				case 5:
+					return LineType.STYLE5;
+				case 6:
+					return LineType.STYLE6;
+				default:
+					return null;
+			}
+		}
+	}
 	
 	/** Specifies whether the line is drawn or not */
 	private boolean mode;

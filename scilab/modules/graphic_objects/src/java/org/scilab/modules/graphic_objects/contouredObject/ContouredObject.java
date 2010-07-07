@@ -73,7 +73,9 @@ public abstract class ContouredObject extends GraphicObject {
 		} else if (propertyName.equals("MarkStyle")) {
 			return MarkPropertyType.STYLE;
 		} else if (propertyName.equals("MarkSizeUnit")) {
-			return MarkPropertyType.MARKSIZEUNIT;
+			return MarkPropertyType.SIZEUNIT;
+		} else if (propertyName.equals("MarkSize")) {
+			return MarkPropertyType.SIZE;
 		} else if (propertyName.equals("MarkForeground")) {
 			return MarkPropertyType.FOREGROUND;
 		} else if (propertyName.equals("MarkBackground")) {
@@ -109,8 +111,10 @@ public abstract class ContouredObject extends GraphicObject {
 			return getMarkMode();
 		} else if (property == MarkPropertyType.STYLE) {
 			return getMarkStyle();
-		} else if (property == MarkPropertyType.MARKSIZEUNIT) {
+		} else if (property == MarkPropertyType.SIZEUNIT) {
 			return getMarkSizeUnit();
+		} else if (property == MarkPropertyType.SIZE) {
+			return getMarkSize();
 		} else if (property == MarkPropertyType.FOREGROUND) {
 			return getMarkForeground();
 		} else if (property == MarkPropertyType.BACKGROUND) {
@@ -132,7 +136,7 @@ public abstract class ContouredObject extends GraphicObject {
 		} else if (property == LinePropertyType.MODE) {
 			setLineMode((Boolean) value);
 		} else if (property == LinePropertyType.LINESTYLE) {
-			setLineStyle((LineType) value);
+			setLineStyle((Integer) value);
 		} else if (property == LinePropertyType.THICKNESS) {
 			setLineThickness((Double) value);
 		} else if (property == LinePropertyType.COLOR) {
@@ -147,8 +151,10 @@ public abstract class ContouredObject extends GraphicObject {
 			setMarkMode((Boolean) value);
 		} else if (property == MarkPropertyType.STYLE) {
 			setMarkStyle((Integer) value);
-		} else if (property == MarkPropertyType.MARKSIZEUNIT) {
-			setMarkSizeUnit((MarkSizeUnitType) value);
+		} else if (property == MarkPropertyType.SIZEUNIT) {
+			setMarkSizeUnit((Integer) value);
+		} else if (property == MarkPropertyType.SIZE) {
+			setMarkSize((Integer) value);
 		} else if (property == MarkPropertyType.FOREGROUND) {
 			this.setMarkForeground((Integer) value);
 		} else if (property == MarkPropertyType.BACKGROUND) {
@@ -222,7 +228,15 @@ public abstract class ContouredObject extends GraphicObject {
 	 * Get the line style
 	 * @return the lineStyle
 	 */
-	public LineType getLineStyle() {
+	public Integer getLineStyle() {
+		return getLineStyleAsEnum().ordinal();
+	}
+
+	/**
+	 * Get the line style
+	 * @return the lineStyle
+	 */
+	public LineType getLineStyleAsEnum() {
 		return line.getLineStyle();
 	}
 
@@ -230,7 +244,15 @@ public abstract class ContouredObject extends GraphicObject {
 	 * Set the line style
 	 * @param lineStyle the lineStyle to set
 	 */
-	public void setLineStyle(LineType lineStyle) {
+	public void setLineStyle(Integer lineStyle) {
+		setLineStyleAsEnum(LineType.intToEnum(lineStyle));
+	}
+
+	/**
+	 * Set the line style
+	 * @param lineStyle the lineStyle to set
+	 */
+	public void setLineStyleAsEnum(LineType lineStyle) {
 		line.setLineStyle(lineStyle);
 	}
 
@@ -316,7 +338,15 @@ public abstract class ContouredObject extends GraphicObject {
 	 * Get the mark size unit
 	 * @return the markSizeUnit
 	 */
-	public MarkSizeUnitType getMarkSizeUnit() {
+	public Integer getMarkSizeUnit() {
+		return getMarkSizeUnitAsEnum().ordinal();
+	}
+
+	/**
+	 * Get the mark size unit
+	 * @return the markSizeUnit
+	 */
+	public MarkSizeUnitType getMarkSizeUnitAsEnum() {
 		return mark.getMarkSizeUnit();
 	}
 
@@ -324,8 +354,32 @@ public abstract class ContouredObject extends GraphicObject {
 	 * Set the mark size unit
 	 * @param markSizeUnit the markSizeUnit to set
 	 */
-	public void setMarkSizeUnit(MarkSizeUnitType markSizeUnit) {
+	public void setMarkSizeUnit(Integer markSizeUnit) {
+		setMarkSizeUnitAsEnum(MarkSizeUnitType.intToEnum(markSizeUnit));
+	}
+
+	/**
+	 * Set the mark size unit
+	 * @param markSizeUnit the markSizeUnit to set
+	 */
+	public void setMarkSizeUnitAsEnum(MarkSizeUnitType markSizeUnit) {
 		mark.setMarkSizeUnit(markSizeUnit);
+	}
+
+	/**
+	 * Get the mark size
+	 * @return the size
+	 */
+	public Integer getMarkSize() {
+		return mark.getSize();
+	}
+
+	/**
+	 * Set the mark size
+	 * @param size the size to set
+	 */
+	public void setMarkSize(Integer size) {
+		mark.setSize(size);
 	}
 
 	/**

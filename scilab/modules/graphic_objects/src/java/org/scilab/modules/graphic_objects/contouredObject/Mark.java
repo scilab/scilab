@@ -18,10 +18,28 @@ package org.scilab.modules.graphic_objects.contouredObject;
  */
 public class Mark {
 	/** Mark properties */
-	public enum MarkPropertyType { MODE, STYLE, MARKSIZEUNIT, FOREGROUND, BACKGROUND };
+	public enum MarkPropertyType { MODE, STYLE, SIZEUNIT, SIZE, FOREGROUND, BACKGROUND };
 
 	/** Mark size unit type */
-	public enum MarkSizeUnitType { POINT, TABULATED };
+	public enum MarkSizeUnitType { POINT, TABULATED;
+
+		/**
+		 * Converts an integer to the corresponding enum
+		 * @param intValue the integer value
+		 * @return the mark size unit type enum
+		 */
+		public static MarkSizeUnitType intToEnum(Integer intValue) {
+			switch (intValue) {
+				case 0:
+					return MarkSizeUnitType.POINT;
+				case 1:
+					return MarkSizeUnitType.TABULATED;
+				default:
+					return null;
+			}
+		}
+	}
+
 
 	/** Specifies whether marks must be drawn or not */
 	private boolean mode;
@@ -31,6 +49,9 @@ public class Mark {
 
 	/** Mark size unit */
 	private MarkSizeUnitType markSizeUnit;
+
+	/** Mark size */
+	private int size;
 
 	/** Foreground color */
 	private int foreground;
@@ -88,6 +109,20 @@ public class Mark {
 	 */
 	public void setMarkSizeUnit(MarkSizeUnitType markSizeUnit) {
 		this.markSizeUnit = markSizeUnit;
+	}
+
+	/**
+	 * @return the size
+	 */
+	public Integer getSize() {
+		return size;
+	}
+
+	/**
+	 * @param size the size to set
+	 */
+	public void setSize(Integer size) {
+		this.size = size;
 	}
 
 	/**

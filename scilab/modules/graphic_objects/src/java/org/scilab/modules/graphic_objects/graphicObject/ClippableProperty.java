@@ -19,10 +19,30 @@ package org.scilab.modules.graphic_objects.graphicObject;
  */
 public class ClippableProperty {
 	/** ClippableProperty properties */
-	public enum ClippablePropertyType { CLIPSTATE, CLIPBOX };
+	public enum ClippablePropertyType { CLIPSTATE, CLIPBOX, CLIPBOXSET };
 
 	/** Indicates how clipping is performed */
-	public static enum ClipStateType { OFF, CLIPGRF, ON };
+	public static enum ClipStateType { OFF, CLIPGRF, ON;
+
+		/**
+		 * Converts an integer to the corresponding enum
+		 * @param intValue the integer value
+		 * @return the clip state type enum
+		 */
+		public static ClipStateType intToEnum(Integer intValue) {
+			switch (intValue) {
+				case 0:
+					return ClipStateType.OFF;
+				case 1:
+					return ClipStateType.CLIPGRF;
+				case 2:
+					return ClipStateType.ON;
+				default:
+					return null;
+			}
+		}
+
+	}
 
 	/** Clipping state */
 	private ClipStateType clipState;
@@ -30,10 +50,14 @@ public class ClippableProperty {
 	/** Clip box (4- or 6-element array) */
 	private double[] clipBox;
 
+	/** Specifies whether the clip box has been set at least once */
+	private boolean clipBoxSet;
+
 	/** Constructor */
 	public ClippableProperty() {
 		clipState = ClipStateType.OFF;
 		clipBox = new double[4];
+		clipBoxSet = false;
 	}
 
 	/**
@@ -53,6 +77,10 @@ public class ClippableProperty {
 	 * @param clipBox the clipBox to set
 	 */
 	public void setClipBox(Double[] clipBox) {
+		if (clipBoxSet == false) {
+			clipBoxSet = true;
+		}
+
 		for (int i = 0; i < clipBox.length; i++) {
 			this.clipBox[i] = clipBox[i];
 		}
@@ -70,6 +98,20 @@ public class ClippableProperty {
 	 */
 	public void setClipState(ClipStateType clipState) {
 		this.clipState = clipState;
+	}
+
+	/**
+	 * @return the clipBoxSet
+	 */
+	public Boolean getClipBoxSet() {
+		return clipBoxSet;
+	}
+
+	/**
+	 * @param clipBoxSet the clipBoxSet to set
+	 */
+	public void setClipBoxSet(Boolean clipBoxSet) {
+		this.clipBoxSet = clipBoxSet;
 	}
 
 }
