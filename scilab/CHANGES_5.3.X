@@ -40,6 +40,8 @@ Bug Fixes:
 * bug 7477 fixed - Bad detection of a function declaration when the line was
                    ended with a comment.
 
+* bug 7480 fixed - Xcos conditional compilation produce a too long script on
+                   the Scilab queue.
 
            Changes between version 5.2.X and 5.3.0-beta1 of Scilab
            =======================================================
