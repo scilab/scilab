@@ -43,10 +43,11 @@ public final class ExecuteFileIntoScilabAction extends DefaultAction {
 
     /**
      * Constructor
+     * @param name the name of the action
      * @param editor SciNotes
      */
-    private ExecuteFileIntoScilabAction(SciNotes editor) {
-        super(SciNotesMessages.EXECUTE_FILE_INTO_SCILAB, editor);
+    public ExecuteFileIntoScilabAction(String name, SciNotes editor) {
+        super(name, editor);
     }
 
     /**
@@ -54,12 +55,13 @@ public final class ExecuteFileIntoScilabAction extends DefaultAction {
      * @param editor the Scilab editor
      */
     private void executeFile(SciNotes editor) {
-
         String filePath = editor.getTextPane().getName();
-        /*TODO : check if that fixes 7032 */
+        if (filePath == null) {
+            return;
+        }
+
         filePath = filePath.replaceAll("\"", "\"\"");
         filePath = filePath.replaceAll("'", "''");
-        /* end */
         if (filePath.compareTo("") != 0) {
             String cmdToExec = "exec('" + filePath + "', -1)";
             try {
@@ -76,8 +78,6 @@ public final class ExecuteFileIntoScilabAction extends DefaultAction {
      * doAction
      */
     public void doAction() {
-        /* Will execute the document file (file sould be saved)*/
-
         SciNotes editor = getEditor();
 
         if (((ScilabDocument) getEditor().getTextPane().getDocument()).isContentModified()) {
@@ -93,21 +93,24 @@ public final class ExecuteFileIntoScilabAction extends DefaultAction {
     }
 
     /**
+     * createButton
+     * @param tooltip the tooltip
+     * @param icon an icon name searched in SCI/modules/gui/images/icons/
+     * @param editor SciNotes
+     * @return PushButton
+     */
+    public static PushButton createButton(String tooltip, String icon, SciNotes editor) {
+        return createButton(tooltip, icon, new ExecuteFileIntoScilabAction(tooltip, editor));
+    }
+
+    /**
      * createMenu
+     * @param label label of the menu
      * @param editor SciNotes
      * @param key KeyStroke
      * @return MenuItem
      */
-    public static MenuItem createMenu(SciNotes editor, KeyStroke key) {
-        return createMenu(SciNotesMessages.EXECUTE_FILE_INTO_SCILAB, null, new ExecuteFileIntoScilabAction(editor), key);
-    }
-
-    /**
-     * createButton
-     * @param editor SciNotes
-     * @return PushButton
-     */
-    public static PushButton createButton(SciNotes editor) {
-        return createButton(SciNotesMessages.EXECUTE_FILE_INTO_SCILAB, "media-playback-start.png", new ExecuteFileIntoScilabAction(editor));
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new ExecuteFileIntoScilabAction(label, editor), key);
     }
 }

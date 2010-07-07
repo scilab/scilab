@@ -37,10 +37,11 @@ public final class OpenAction extends DefaultAction {
 
     /**
      * Constructor
+     * @param name the name of the action
      * @param editor associated SciNotes instance
      */
-    private OpenAction(SciNotes editor) {
-        super(SciNotesMessages.OPEN, editor);
+    public OpenAction(String name, SciNotes editor) {
+        super(name, editor);
     }
 
     /**
@@ -51,7 +52,7 @@ public final class OpenAction extends DefaultAction {
 
         String initialDirectoryPath = getEditor().getTextPane().getName();
         if (initialDirectoryPath == null) {
-            initialDirectoryPath = ConfigManager.getLastOpenedDirectory() ;
+            initialDirectoryPath = ConfigManager.getLastOpenedDirectory();
         }
 
         String[] mask = new String[]{"*.cos*", "*.sci", "*.sce", "*.tst", "*.start", "*.quit", "*.sc*", "all"};
@@ -69,27 +70,30 @@ public final class OpenAction extends DefaultAction {
             ConfigSciNotesManager.saveToRecentOpenedFiles(f.getPath());
 
             getEditor().setTitle(f.getPath() + " - " + SciNotesMessages.SCILAB_EDITOR);
-            getEditor().updateRecentOpenedFilesMenu();
+            RecentFileAction.updateRecentOpenedFilesMenu(getEditor());
             getEditor().readFile(f);
         }
     }
 
     /**
      * Create a menu to add to SciNotes menu bar
+     * @param label label of the menu
      * @param editor associated SciNotes instance
      * @param key KeyStroke
      * @return the menu
      */
-    public static MenuItem createMenu(SciNotes editor, KeyStroke key) {
-        return createMenu(SciNotesMessages.OPEN, null, new OpenAction(editor), key);
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new OpenAction(label, editor), key);
     }
 
     /**
-     * Create a button to add to SciNotes tool bar
-     * @param editor associated SciNotes instance
-     * @return the button
+     * createButton
+     * @param tooltip the tooltip
+     * @param icon an icon name searched in SCI/modules/gui/images/icons/
+     * @param editor SciNotes
+     * @return PushButton
      */
-    public static PushButton createButton(SciNotes editor) {
-        return createButton(SciNotesMessages.OPEN, "document-open.png", new OpenAction(editor));
+    public static PushButton createButton(String tooltip, String icon, SciNotes editor) {
+        return createButton(tooltip, icon, new OpenAction(tooltip, editor));
     }
 }

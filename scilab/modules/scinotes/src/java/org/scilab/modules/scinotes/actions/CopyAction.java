@@ -12,14 +12,12 @@
 
 package org.scilab.modules.scinotes.actions;
 
-import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 import javax.swing.text.DefaultEditorKit;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.scinotes.SciNotes;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
  * CopyAction Class
@@ -32,48 +30,42 @@ public final class CopyAction extends DefaultAction {
      * serialVersionUID
      */
     private static final long serialVersionUID = -8858655782952121924L;
-    
+
     /**
      * Constructor
+     * @param name the name of the action
      * @param editor SciNotes
      */
-    private CopyAction(SciNotes editor) {
-	super(SciNotesMessages.COPY, editor);
+    public CopyAction(String name, SciNotes editor) {
+        super(name, editor);
     }
-    
+
     /**
      * doAction
      */
     public void doAction() {
-	getEditor().getTextPane().getActionMap().get(DefaultEditorKit.copyAction).actionPerformed(null);
+        getEditor().getTextPane().getActionMap().get(DefaultEditorKit.copyAction).actionPerformed(null);
     }
-    
+
     /**
      * createMenu
+     * @param label label of the menu
      * @param editor SciNotes
      * @param key KeyStroke
      * @return createMenu
      */
-    public static MenuItem createMenu(SciNotes editor, KeyStroke key) {
-	return createMenu(SciNotesMessages.COPY, null, new CopyAction(editor), key);
-    }
-    
-    /**
-     * createButton
-     * @param editor SciNotes
-     * @return PushButton
-     */
-    public static PushButton createButton(SciNotes editor) {
-	return createButton(SciNotesMessages.COPY, "edit-copy.png", new CopyAction(editor));
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new CopyAction(label, editor), key);
     }
 
     /**
-     * Put input map
-     * @param textPane JTextpane
-     * @param key KeyStroke
-     * @param editor Editor
+     * createButton
+     * @param tooltip the tooltip
+     * @param icon an icon name searched in SCI/modules/gui/images/icons/
+     * @param editor SciNotes
+     * @return PushButton
      */
-    public static void putInInputMap(JComponent textPane, SciNotes editor, KeyStroke key) {
-	textPane.getInputMap().put(key, new CopyAction(editor));
+    public static PushButton createButton(String tooltip, String icon, SciNotes editor) {
+        return createButton(tooltip, icon, new CopyAction(tooltip, editor));
     }
 }

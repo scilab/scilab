@@ -67,7 +67,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     private boolean contentModified;
 
     // Editor's default encoding is UTF-8
-    private String encoding = "UTF-8";
+    private String encoding = "utf-8";
     private boolean updater = true;
     private boolean binary;
     private boolean autoIndent;

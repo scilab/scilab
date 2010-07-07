@@ -13,10 +13,12 @@
 package org.scilab.modules.scinotes.actions;
 
 import java.awt.Desktop;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-
+import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 import javax.swing.text.BadLocationException;
 
@@ -26,8 +28,6 @@ import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.ScilabLexerConstants;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.KeywordEvent;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
-import org.scilab.modules.action_binding.InterpreterManagement;
 
 /**
  * OpenURLAction Class
@@ -37,10 +37,11 @@ public class OpenURLAction extends DefaultAction {
 
     /**
      * Constructor
+     * @param name the name of the action
      * @param editor SciNotes
      */
-    private OpenURLAction(SciNotes editor) {
-        super(SciNotesMessages.OPEN_URL, editor);
+    public OpenURLAction(String name, SciNotes editor) {
+        super(name, editor);
     }
 
     /**
@@ -60,14 +61,29 @@ public class OpenURLAction extends DefaultAction {
 
     /**
      * createMenu
+     * @param label label of the menu
      * @param editor SciNotes
      * @param key Keystroke
      * @return MenuItem
      */
-    public static MenuItem createMenu(SciNotes editor, KeyStroke key) {
-        return createMenu(SciNotesMessages.OPEN_URL, null, new OpenURLAction(editor), key);
+    public static MenuItem createMenu(String label, final SciNotes editor, KeyStroke key) {
+        final MenuItem menuitem = createMenu(label, null, new OpenURLAction(label, editor), key);
+        ((JMenuItem) menuitem.getAsSimpleMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
+                public void propertyChange(PropertyChangeEvent arg0) {
+                    String keyword = editor.getTextPane().getSelectedText();
+                    if (keyword == null) {
+                        KeywordEvent kwe = editor.getTextPane().getKeywordEvent();
+                        menuitem.setEnabled(ScilabLexerConstants.URL == kwe.getType());
+                    }
+                }
+            });
+
+        return menuitem;
     }
 
+    /**
+     * @param url the url to open
+     */
     public static void openURL(String url) {
         if (url == null || url.length() == 0) {
             return;
@@ -84,8 +100,7 @@ public class OpenURLAction extends DefaultAction {
             }
         } catch (IOException e) {
             System.err.println(e.toString());
-        }
-        catch (URISyntaxException e) {
+        } catch (URISyntaxException e) {
             System.err.println(e.toString());
         }
     }

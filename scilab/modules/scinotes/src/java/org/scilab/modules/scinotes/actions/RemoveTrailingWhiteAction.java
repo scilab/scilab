@@ -18,7 +18,6 @@ import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.TrailingWhiteManager;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
  * RemoveTrailingWhiteAction Class
@@ -28,46 +27,48 @@ public final class RemoveTrailingWhiteAction extends DefaultAction {
 
     /**
      * Construtor
+     * @param name the name of the action
      * @param editor SciNotes
      */
-    private RemoveTrailingWhiteAction(SciNotes editor) {
-        super(SciNotesMessages.REMOVE_TRAILING_WHITE, editor);
+    public RemoveTrailingWhiteAction(String name, SciNotes editor) {
+        super(name, editor);
     }
 
     /**
      * doAction
      */
     public void doAction() {
-            ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
-            int start = sep.getSelectionStart();
-            int end = sep.getSelectionEnd();
-            TrailingWhiteManager trailing = sep.getTrailingWhiteManager();
-            ScilabDocument doc = (ScilabDocument) sep.getDocument();
+        ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
+        int start = sep.getSelectionStart();
+        int end = sep.getSelectionEnd();
+        TrailingWhiteManager trailing = sep.getTrailingWhiteManager();
+        ScilabDocument doc = (ScilabDocument) sep.getDocument();
 
-            doc.mergeEditsBegin();
-            if (start == end) {
-                int ret = trailing.removeTrailingWhite(start);
-                if (ret != -1) {
-                    sep.setCaretPosition(ret);
-                }
-            } else {
-                int[] ret = new int[2];
-                ret = trailing.removeTrailingWhite(start, end - 1);
-                if (ret != null) {
-                    sep.setSelectionStart(ret[0]);
-                    sep.setSelectionEnd(ret[1]);
-                }
+        doc.mergeEditsBegin();
+        if (start == end) {
+            int ret = trailing.removeTrailingWhite(start);
+            if (ret != -1) {
+                sep.setCaretPosition(ret);
             }
-            doc.mergeEditsEnd();
+        } else {
+            int[] ret = new int[2];
+            ret = trailing.removeTrailingWhite(start, end - 1);
+            if (ret != null) {
+                sep.setSelectionStart(ret[0]);
+                sep.setSelectionEnd(ret[1]);
+            }
+        }
+        doc.mergeEditsEnd();
     }
 
     /**
      * createMenu
+     * @param label label of the menu
      * @param editor SciNotes
      * @param key KeyStroke
-     * @return createMenu
+     * @return a MenuItem
      */
-    public static MenuItem createMenu(SciNotes editor, KeyStroke key) {
-        return  createMenu(SciNotesMessages.REMOVE_TRAILING_WHITE, null, new RemoveTrailingWhiteAction(editor), key);
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new RemoveTrailingWhiteAction(label, editor), key);
     }
 }

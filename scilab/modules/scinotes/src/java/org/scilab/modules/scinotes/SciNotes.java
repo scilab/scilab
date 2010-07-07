@@ -30,11 +30,13 @@ import java.io.OutputStreamWriter;
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Iterator;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFileChooser;
@@ -53,14 +55,11 @@ import javax.swing.undo.UndoManager;
 
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
-import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.filechooser.Juigetfile;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
-import org.scilab.modules.gui.menu.Menu;
-import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.messagebox.MessageBox;
 import org.scilab.modules.gui.messagebox.ScilabMessageBox;
@@ -79,23 +78,14 @@ import org.scilab.modules.gui.utils.SciFileFilter;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
-import org.scilab.modules.scinotes.actions.CopyAction;
-import org.scilab.modules.scinotes.actions.CutAction;
 import org.scilab.modules.scinotes.actions.ExitAction;
 import org.scilab.modules.scinotes.actions.FindAction;
-import org.scilab.modules.scinotes.actions.FindNextAction;
-import org.scilab.modules.scinotes.actions.FindPreviousAction;
-import org.scilab.modules.scinotes.actions.HighlightCurrentLineAction;
-import org.scilab.modules.scinotes.actions.LineBeautifierAction;
-import org.scilab.modules.scinotes.actions.PasteAction;
-import org.scilab.modules.scinotes.actions.RecentFileAction;
-import org.scilab.modules.scinotes.actions.RedoAction;
-import org.scilab.modules.scinotes.actions.SciNotesCompletionAction;
-import org.scilab.modules.scinotes.actions.SelectAllAction;
 import org.scilab.modules.scinotes.actions.SetColorsAction;
-import org.scilab.modules.scinotes.actions.TabifyAction;
-import org.scilab.modules.scinotes.actions.UnTabifyAction;
-import org.scilab.modules.scinotes.actions.UndoAction;
+import org.scilab.modules.scinotes.actions.LineBeautifierAction;
+import org.scilab.modules.scinotes.actions.RecentFileAction;
+import org.scilab.modules.scinotes.actions.SciNotesCompletionAction;
+import org.scilab.modules.scinotes.actions.EncodingAction;
+import org.scilab.modules.scinotes.actions.EndOfLineAction;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 import org.scilab.modules.scinotes.utils.DropFilesListener;
 import org.scilab.modules.scinotes.utils.SaveFile;
@@ -127,6 +117,8 @@ public class SciNotes extends SwingScilabTab implements Tab {
     private static final String TIRET = " - ";
     private static final String DOT = ".";
 
+    private static final String DEFAULTACTIONPATH = "org.scilab.modules.scinotes.actions";
+
     private static final int ZERO = 0;
     private static final int ONE = 1;
     private static final int TWO = 2;
@@ -136,13 +128,11 @@ public class SciNotes extends SwingScilabTab implements Tab {
     private static List<SciNotes> scinotesList = new ArrayList();
     private static SciNotes editor;
 
-    private static SciNotesGUI scinotesGUI;
     private final Window parentWindow;
 
     private JTabbedPane tabPane;
     private ScilabEditorPane textPane;
     private JScrollPane scrollingText;
-    private Menu recentsMenu;
     private int numberOfUntitled;
     private EditorKit editorKit;
     private Object synchro = new Object();
@@ -174,7 +164,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
         super(SCINOTES);
         scinotesList.add(this);
         this.parentWindow = parentWindow;
-        recentsMenu = ScilabMenu.createMenu();
         numberOfUntitled = 0;
         editorKit = new ScilabEditorKit();
         setDefaultHighlight();
@@ -196,10 +185,10 @@ public class SciNotes extends SwingScilabTab implements Tab {
                         getTextPane().updateInfosWhenFocused();
 
                         // Update encoding menu
-                        scinotesGUI.updateEncodingMenu((ScilabDocument) getTextPane().getDocument());
+                        EncodingAction.updateEncodingMenu((ScilabDocument) getTextPane().getDocument());
 
                         // Update End Of Line  menu
-                        scinotesGUI.updateEolMenu((ScilabDocument) getTextPane().getDocument());
+                        EndOfLineAction.updateEolMenu((ScilabDocument) getTextPane().getDocument());
                         setTitle(tabPane.getTitleAt(tabPane.getSelectedIndex()) + path + TIRET + SciNotesMessages.SCILAB_EDITOR);
                     }
                 }
@@ -207,6 +196,9 @@ public class SciNotes extends SwingScilabTab implements Tab {
         this.setContentPane(tabPane);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void setTitle(String title) {
         super.setTitle(title);
         final SwingScilabWindow window = (SwingScilabWindow) SwingUtilities
@@ -214,14 +206,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
         if (window != null) {
             window.setTitle(title);
         }
-    }
-
-    /**
-     * Return the text editor GUI.
-     * @return The text editor gui
-     */
-    public final SciNotesGUI getSciNotesGUI() {
-        return scinotesGUI;
     }
 
     /**
@@ -234,11 +218,10 @@ public class SciNotes extends SwingScilabTab implements Tab {
 
     /**
      * Launch SciNotes with an empty file
-     * @throws RuntimeException on problem
      *
      * This method *must not* be called on the EDT thread.
      */
-    public static void scinotes() throws RuntimeException {
+    public static void scinotes() {
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
 
@@ -252,19 +235,18 @@ public class SciNotes extends SwingScilabTab implements Tab {
             throw new RuntimeException(e);
         } catch (InvocationTargetException e) {
             LogFactory.getLog(SciNotes.class).error(e);
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
-
     }
 
     /**
      * Launch SciNotes with a file name to open.
      * @param filePath the name of the file to open
-     * @throws RuntimeException on problem
      *
      * This method *must not* be called on the EDT thread.
      */
-    public static void scinotes(final String filePath) throws RuntimeException {
+    public static void scinotes(final String filePath) {
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
 
@@ -310,7 +292,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
     /**
      * Launch SciNotes with a file name to open and a line to highlight.
      * @param filePath the name of the file to open
-     * @param lineNumber the line to highlight
+     * @param option such as 'readonly'
      *
      * This method *must not* be called on the EDT thread.
      */
@@ -418,7 +400,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         }
 
         ConfigSciNotesManager.saveToRecentOpenedFiles(filePath);
-        updateRecentOpenedFilesMenu();
+        RecentFileAction.updateRecentOpenedFilesMenu(this);
         readFileAndWait(f);
         getTextPane().scrollTextToLineNumber(lineNumber);
         if (option != null && "readonly".equals(option.toLowerCase())) {
@@ -457,7 +439,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
 
         final SciNotes editorInstance = new SciNotes(mainWindow);
 
-        scinotesGUI = new SciNotesGUI(mainWindow, editorInstance, SCINOTES);
+        SciNotesGUI.init(mainWindow, editorInstance, SCINOTES);
         editorInstance.setCallback(new CallBack(SciNotesMessages.DEFAULT + SciNotesMessages.DOTS) {
                 /**
                  * serialVersionUID
@@ -812,7 +794,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         getTextPane().setName(f.getPath());
         getTabPane().setTitleAt(getTabPane().getSelectedIndex() , f.getName());
         setTitle(f.getPath() + TIRET + SciNotesMessages.SCILAB_EDITOR);
-        updateRecentOpenedFilesMenu();
+        RecentFileAction.updateRecentOpenedFilesMenu(this);
 
         styledDocument.setContentModified(false);
         getTextPane().setLastModified(f.lastModified());
@@ -842,9 +824,9 @@ public class SciNotes extends SwingScilabTab implements Tab {
     public ScilabEditorPane addTab(String title, int index) {
         ScilabEditorPane sep = new ScilabEditorPane(this);
         initPane(sep);
-        index = Math.min(Math.max(0, index), tabPane.getTabCount());
-        tabPane.insertTab(title, null, sep.getParentComponent(), "", index);
-        tabPane.setSelectedIndex(index);
+        int ind = Math.min(Math.max(0, index), tabPane.getTabCount());
+        tabPane.insertTab(title, null, sep.getParentComponent(), "", ind);
+        tabPane.setSelectedIndex(ind);
         setContentPane(tabPane);
         initInputMap(sep);
         setTitle(title + TIRET + SciNotesMessages.SCILAB_EDITOR);
@@ -888,7 +870,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
 
         DropFilesListener dndTarget = new DropFilesListener(pane);
 
-        SciNotesGUI.createPopupMenu(pane, this);
+        pane.setComponentPopupMenu(SciNotesGUI.generateRightClickPopup(this));
     }
 
     /**
@@ -896,21 +878,8 @@ public class SciNotes extends SwingScilabTab implements Tab {
      * @param pane the EditorPane
      */
     public void initInputMap(ScilabEditorPane pane) {
-        Map<String, KeyStroke> map = new HashMap();
-        ConfigSciNotesManager.addMapActionNameKeys(map);
-        TabifyAction.putInInputMap(pane, this, map.get("TabifyAction"));
-        UndoAction.putInInputMap(pane, this, map.get("UndoAction"));
-        RedoAction.putInInputMap(pane, this, map.get("RedoAction"));
-        PasteAction.putInInputMap(pane, this, map.get("PasteAction"));
-        CopyAction.putInInputMap(pane, this, map.get("CopyAction"));
-        CutAction.putInInputMap(pane, this, map.get("CutAction"));
-        UnTabifyAction.putInInputMap(pane, this, map.get("UnTabifyAction"));
-        FindNextAction.putInInputMap(pane, this, map.get("FindNextAction"));
-        FindPreviousAction.putInInputMap(pane, this, map.get("FindPreviousAction"));
-        HighlightCurrentLineAction.putInInputMap(pane, this, map.get("HighlightCurrentLineAction"));
-        SelectAllAction.putInInputMap(pane, this, map.get("SelectAllAction"));
+        setKeyStrokeAction(pane, this);
         LineBeautifierAction.putInInputMap(pane);
-        SciNotesCompletionAction.putInInputMap(pane, this, map.get("SciNotesCompletionAction"));
     }
 
     /**
@@ -1127,10 +1096,11 @@ public class SciNotes extends SwingScilabTab implements Tab {
 
     /**
      * Load a file inside SciNotes.
-     * @param f the file to open
+     * @param file the file to open
      */
-    public void readFileAndWait(File f) {
+    public void readFileAndWait(File file) {
         /** Is this file already opened */
+        File f = file;
         boolean alreadyOpened = false;
         int index = -1;
         for (int i = 0; i < tabPane.getTabCount(); i++) {
@@ -1437,26 +1407,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
     }
 
     /**
-     * Get recent file menu.
-     * @return the menu
-     */
-    public Menu getRecentsMenu() {
-        return this.recentsMenu;
-    }
-
-    /**
-     * Update menu displaying recent opened files.
-     */
-    public void updateRecentOpenedFilesMenu() {
-        List<File> recentFiles = ConfigSciNotesManager.getAllRecentOpenedFiles();
-
-        ((SwingScilabMenu) getRecentsMenu().getAsSimpleMenu()).removeAll();
-        for (int i = recentFiles.size() - 1; i >= 0; i--) {
-            getRecentsMenu().add(RecentFileAction.createMenu(this, recentFiles.get(i)));
-        }
-    }
-
-    /**
      * Return the Full path of the file.
      * @return the full path
      */
@@ -1464,10 +1414,19 @@ public class SciNotes extends SwingScilabTab implements Tab {
         return fileFullPath;
     }
 
+    /**
+     * Load a file and add it at the end
+     * @param f the file to load
+     */
     public void loadFile(File f) {
         loadFile(f, -1);
     }
 
+    /**
+     * Load a file and add it at the index
+     * @param f the file to load
+     * @param index the index where to put the file
+     */
     public void loadFile(File f, int index) {
         setFileToEncode(f);
         getInfoBar().setText(SciNotesMessages.LOADING);
@@ -1518,7 +1477,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
             }
             getInfoBar().setText(theTextPane.getInfoBarText());
 
-            scinotesGUI.updateEncodingMenu((ScilabDocument) getTextPane().getDocument());
+            EncodingAction.updateEncodingMenu((ScilabDocument) getTextPane().getDocument());
 
             // Empty the undo Manager
             UndoManager undo = ((ScilabDocument) getTextPane().getDocument()).getUndoManager();
@@ -1526,6 +1485,10 @@ public class SciNotes extends SwingScilabTab implements Tab {
         }
     }
 
+    /**
+     * Creates a file if it doesn't exist
+     * @param f the file to create
+     */
     public void createNewFile(File f) {
         ScilabEditorPane theTextPane = addEmptyTab();
         ScilabDocument styleDocument = null;
@@ -1560,7 +1523,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
             theTextPane.setName(f.getPath());
             getTabPane().setTitleAt(getTabPane().getSelectedIndex() , f.getName());
             setTitle(f.getPath() + TIRET + SciNotesMessages.SCILAB_EDITOR);
-            updateRecentOpenedFilesMenu();
+            RecentFileAction.updateRecentOpenedFilesMenu(this);
 
             styleDocument.setContentModified(false);
             styleDocument.enableUndoManager();
@@ -1582,7 +1545,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
     }
 
     /**
-     * @param editor the focused editor
+     * @param scinotes the focused editor
      */
     public static void setEditor(SciNotes scinotes) {
         editor = scinotes;
@@ -1645,14 +1608,58 @@ public class SciNotes extends SwingScilabTab implements Tab {
     }
 
     /**
+     * @param f the file
      * @return the canonical file if possible
      */
     public static File fileToCanonicalFile(File f) {
         /* Fix bug 5648 */
         try {
             return f.getCanonicalFile();
-        } catch(IOException e) {
+        } catch (IOException e) {
             return f;
+        }
+    }
+
+    /**
+     * Set the shortcuts in the pane relatively to the file keysConfiguration.xml
+     * @param sep the textpane
+     * @param ed the SciNotes editor
+     */
+    private static void setKeyStrokeAction(ScilabEditorPane sep, SciNotes ed) {
+        Map<String, KeyStroke> map = new HashMap();
+        ConfigSciNotesManager.addMapActionNameKeys(map);
+
+        ClassLoader loader = ClassLoader.getSystemClassLoader();
+        Iterator<String> iter = map.keySet().iterator();
+        while (iter.hasNext()) {
+            String action = iter.next();
+            if (!action.equals("SciNotesCompletionAction")) {
+                String className;
+                if (action.lastIndexOf(DOT) != -1)  {
+                    className = action;
+                } else {
+                    className = DEFAULTACTIONPATH + DOT + action;
+                }
+                try {
+                    Class clazz = loader.loadClass(className);
+                    Constructor constructor = clazz.getConstructor(new Class[]{String.class, SciNotes.class});
+                    Object act = constructor.newInstance(new Object[]{"", ed});
+                    sep.getInputMap().put(map.get(action), act);
+                } catch (ClassNotFoundException e) {
+                    System.err.println("No action: " + className);
+                } catch (InstantiationException e) {
+                    System.err.println("Problem to instantiate in action: " + className);
+                } catch (NoSuchMethodException e) {
+                    System.err.println("No valid constructor in action: " + className);
+                } catch (IllegalAccessException e) {
+                    System.err.println("The constructor must be public: " + className);
+                } catch (InvocationTargetException e) {
+                    System.err.println("The constructor in " + className + " threw an exception :");
+                    e.printStackTrace();
+                }
+            } else {
+                sep.getInputMap().put(map.get(action), new SciNotesCompletionAction(sep, ed));
+            }
         }
     }
 }

@@ -138,10 +138,11 @@ public final class FindAction extends DefaultAction {
 
     /**
      * Constructor
+     * @param name the name of the action
      * @param editor SciNotes
      */
-    private FindAction(SciNotes editor) {
-        super(SciNotesMessages.FIND_REPLACE +  SciNotesMessages.DOTS, editor);
+    public FindAction(String name, SciNotes editor) {
+        super(name, editor);
         editor.addFindActionWindow(this);
     }
 
@@ -198,21 +199,24 @@ public final class FindAction extends DefaultAction {
 
     /**
      * createMenu
+     * @param label label of the menu
      * @param editor SciNotes
      * @param key Keystroke
      * @return MenuItem
      */
-    public static MenuItem createMenu(SciNotes editor, KeyStroke key) {
-        return createMenu(SciNotesMessages.FIND_REPLACE + SciNotesMessages.DOTS, null, new FindAction(editor), key);
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new FindAction(label, editor), key);
     }
 
     /**
      * createButton
+     * @param tooltip the tooltip
+     * @param icon an icon name searched in SCI/modules/gui/images/icons/
      * @param editor SciNotes
      * @return PushButton
      */
-    public static PushButton createButton(SciNotes editor) {
-        return createButton(SciNotesMessages.FIND_REPLACE +  "...", "edit-find-replace.png", new FindAction(editor));
+    public static PushButton createButton(String tooltip, String icon, SciNotes editor) {
+        return createButton(tooltip, icon, new FindAction(tooltip, editor));
     }
 
     /**

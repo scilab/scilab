@@ -15,13 +15,13 @@ package org.scilab.modules.scinotes.actions;
 
 import java.awt.Font;
 import java.util.List;
+import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.bridge.fontchooser.SwingScilabFontChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
  * Class to set the font
@@ -32,20 +32,21 @@ public class SetFontAction extends DefaultAction {
 
     /**
      * Constructor
+     * @param name the name of the action
      * @param editor associated with this action
      */
-    private SetFontAction(SciNotes editor) {
-        super(SciNotesMessages.SET_FONT, editor);
+    public SetFontAction(String name, SciNotes editor) {
+        super(name, editor);
     }
 
     /**
      * DoAction
      */
     public void doAction() {
-        SwingScilabFontChooser _fontChooser = new SwingScilabFontChooser(ConfigSciNotesManager.getFont(), false);
-        _fontChooser.displayAndWait();
+        SwingScilabFontChooser fontChooser = new SwingScilabFontChooser(ConfigSciNotesManager.getFont(), false);
+        fontChooser.displayAndWait();
 
-        Font newFont = _fontChooser.getSelectedFont();
+        Font newFont = fontChooser.getSelectedFont();
 
         if (newFont != null) {
 
@@ -65,12 +66,13 @@ public class SetFontAction extends DefaultAction {
     }
 
     /**
-     * Create Menu
-     * @param editor SciNotes
+     * Create the MenuItem
+     * @param label label of the menu
+     * @param editor Editor
      * @param key KeyStroke
-     * @return MenuItem
+     * @return a MenuItem
      */
-    public static MenuItem createMenu(SciNotes editor) {
-        return createMenu(SciNotesMessages.SET_FONT, null, new SetFontAction(editor), null);
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new SetFontAction(label, editor), key);
     }
 }

@@ -12,6 +12,9 @@
 
 package org.scilab.modules.scinotes.actions;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 import javax.swing.text.BadLocationException;
 
@@ -21,7 +24,6 @@ import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.ScilabLexerConstants;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.KeywordEvent;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
 import org.scilab.modules.action_binding.InterpreterManagement;
 
 /**
@@ -32,10 +34,11 @@ public class OpenSourceFileOnKeywordAction extends DefaultAction {
 
     /**
      * Constructor
+     * @param name the name of the action
      * @param editor SciNotes
      */
-    private OpenSourceFileOnKeywordAction(SciNotes editor) {
-        super(SciNotesMessages.OPEN_SOURCE_FILE_ON_KEYWORD, editor);
+    public OpenSourceFileOnKeywordAction(String name, SciNotes editor) {
+        super(name, editor);
     }
 
     /**
@@ -53,7 +56,7 @@ public class OpenSourceFileOnKeywordAction extends DefaultAction {
                     sep.scrollTextToPos(pos);
                 } else {
                     String path = "get_function_path('" + kw + "')";
-                    InterpreterManagement.requestScilabExec("if " + path +" ~=[] then editor(" + path + ");end");
+                    InterpreterManagement.requestScilabExec("if " + path + " ~=[] then editor(" + path + ");end");
                 }
             } catch (BadLocationException e) { }
         }
@@ -61,11 +64,23 @@ public class OpenSourceFileOnKeywordAction extends DefaultAction {
 
     /**
      * createMenu
+     * @param label label of the menu
      * @param editor SciNotes
      * @param key Keystroke
      * @return MenuItem
      */
-    public static MenuItem createMenu(SciNotes editor, KeyStroke key) {
-        return createMenu(SciNotesMessages.OPEN_SOURCE_FILE_ON_KEYWORD, null, new OpenSourceFileOnKeywordAction(editor), key);
+    public static MenuItem createMenu(String label, final SciNotes editor, KeyStroke key) {
+        final MenuItem menuitem = createMenu(label, null, new OpenSourceFileOnKeywordAction(label, editor), key);
+        ((JMenuItem) menuitem.getAsSimpleMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
+                public void propertyChange(PropertyChangeEvent e) {
+                    String keyword = editor.getTextPane().getSelectedText();
+                    if (keyword == null) {
+                        KeywordEvent kwe = editor.getTextPane().getKeywordEvent();
+                        menuitem.setEnabled(ScilabLexerConstants.isOpenable(kwe.getType()));
+                    }
+                }
+            });
+
+        return menuitem;
     }
 }

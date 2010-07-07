@@ -12,119 +12,81 @@
 
 package org.scilab.modules.scinotes;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.nio.charset.Charset;
-import java.util.List;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.TreeMap;
-import java.util.Iterator;
+import java.io.File;
 import java.io.IOException;
 
-import javax.swing.ButtonGroup;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
-import javax.swing.JRadioButtonMenuItem;
-import javax.swing.JEditorPane;
-import javax.swing.text.DefaultEditorKit;
-import javax.swing.text.BadLocationException;
 import javax.swing.KeyStroke;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
-import org.scilab.modules.action_binding.InterpreterManagement;
-import org.scilab.modules.gui.console.ScilabConsole;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
+import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
+import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
+import org.scilab.modules.gui.bridge.checkboxmenuitem.SwingScilabCheckBoxMenuItem;
+import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.window.Window;
-import org.scilab.modules.scinotes.actions.SplitHorizontallyAction;
-import org.scilab.modules.scinotes.actions.SplitVerticallyAction;
-import org.scilab.modules.scinotes.actions.NoSplitAction;
-import org.scilab.modules.scinotes.actions.ActivateHelpOnTypingAction;
-import org.scilab.modules.scinotes.actions.GenerateHelpFromFunctionAction;
-import org.scilab.modules.scinotes.actions.AboutAction;
-import org.scilab.modules.scinotes.actions.AutoIndentAction;
-import org.scilab.modules.scinotes.actions.CloseAction;
-import org.scilab.modules.scinotes.actions.CloseAllAction;
-import org.scilab.modules.scinotes.actions.CloseAllButThisAction;
-import org.scilab.modules.scinotes.actions.CommentAction;
-import org.scilab.modules.scinotes.actions.UnCommentAction;
-import org.scilab.modules.scinotes.actions.RemoveTrailingWhiteAction;
-import org.scilab.modules.scinotes.actions.CopyAction;
-import org.scilab.modules.scinotes.actions.CutAction;
-import org.scilab.modules.scinotes.actions.DeleteAction;
-import org.scilab.modules.scinotes.actions.EncodingAction;
-import org.scilab.modules.scinotes.actions.EndOfLineAction;
-import org.scilab.modules.scinotes.actions.EvaluateSelectionAction;
-import org.scilab.modules.scinotes.actions.ExecuteFileIntoScilabAction;
-import org.scilab.modules.scinotes.actions.ExitAction;
-import org.scilab.modules.scinotes.actions.OpenTabInNewWindowAction;
-import org.scilab.modules.scinotes.actions.CCloseTabInNewWindowAction;
-import org.scilab.modules.scinotes.actions.FindAction;
-import org.scilab.modules.scinotes.actions.FindNextAction;
-import org.scilab.modules.scinotes.actions.FindPreviousAction;
-import org.scilab.modules.scinotes.actions.CodeNavigatorAction;
-import org.scilab.modules.scinotes.actions.OverwriteAction;
-import org.scilab.modules.scinotes.actions.ReloadAction;
-import org.scilab.modules.scinotes.actions.HelpAction;
-import org.scilab.modules.scinotes.actions.HelpOnKeywordAction;
-import org.scilab.modules.scinotes.actions.HighlightCurrentLineAction;
-import org.scilab.modules.scinotes.actions.IndentAction;
-import org.scilab.modules.scinotes.actions.LineNumbersAction;
-import org.scilab.modules.scinotes.actions.LoadIntoScilabAction;
-import org.scilab.modules.scinotes.actions.NewAction;
-import org.scilab.modules.scinotes.actions.OpenAction;
-import org.scilab.modules.scinotes.actions.OpenURLAction;
-import org.scilab.modules.scinotes.actions.OpenSourceFileOnKeywordAction;
-import org.scilab.modules.scinotes.actions.PageSetupAction;
-import org.scilab.modules.scinotes.actions.PasteAction;
-import org.scilab.modules.scinotes.actions.PrintAction;
-import org.scilab.modules.scinotes.actions.PrintPreviewAction;
-import org.scilab.modules.scinotes.actions.RedoAction;
-import org.scilab.modules.scinotes.actions.ResetFontAction;
-import org.scilab.modules.scinotes.actions.SaveAction;
-import org.scilab.modules.scinotes.actions.SaveAllAction;
-import org.scilab.modules.scinotes.actions.SaveAsAction;
-import org.scilab.modules.scinotes.actions.SelectAllAction;
-import org.scilab.modules.scinotes.actions.SetColorsAction;
-import org.scilab.modules.scinotes.actions.SetFontAction;
-import org.scilab.modules.scinotes.actions.TabifyAction;
-import org.scilab.modules.scinotes.actions.UnTabifyAction;
-import org.scilab.modules.scinotes.actions.UndoAction;
-import org.scilab.modules.scinotes.actions.SciNotesCompletionAction;
+import org.scilab.modules.localization.Messages;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
  * Class SciNotesGUI handles menus, bar, ...
  */
-public class SciNotesGUI {
+public final class SciNotesGUI {
 
-    private static JRadioButtonMenuItem[] radioTypes;
-    private static JRadioButtonMenuItem[] radioEolTypes;
+    private static final String MENU_CONF = System.getenv("SCI") + "/modules/scinotes/etc/scinotesGUIConfiguration.xml";
+    private static final String ERROR_READ = "Could not load file: ";
+    private static final String MENUBAR = "MenuBar";
+    private static final String TOOLBAR = "ToolBar";
+    private static final String RIGHTCLICKMENU = "RightClickMenu";
+    private static final String MENU = "menu";
+    private static final String MNEMONIC = "mnemonic";
+    private static final String LABEL = "label";
+    private static final String MENUITEM = "menuitem";
+    private static final String ACTION = "action";
+    private static final String SEPARATOR = "separator";
+    private static final String TOOLTIP = "tooltip";
+    private static final String ICON = "icon";
+    private static final String BUTTON = "button";
+    private static final String DOT = ".";
+
+    private static final String DEFAULTACTIONPATH = "org.scilab.modules.scinotes.actions";
+
     private static TextBox infoBar;
     private static Map<String, KeyStroke> map = new HashMap();
+    private static Document menuConf;
 
     static {
         ConfigSciNotesManager.addMapActionNameKeys(map);
     }
 
     /**
-     * Constructor
+     * initialize the window
      * @param mainWindow Windows
      * @param editorInstance SciNotes
      * @param title the title
      */
-    public SciNotesGUI(Window mainWindow, final SciNotes editorInstance, String title) {
+    public static void init(Window mainWindow, final SciNotes editorInstance, String title) {
         mainWindow.setTitle(title);
         mainWindow.addTab(editorInstance);
 
@@ -132,97 +94,10 @@ public class SciNotesGUI {
         mainWindow.setPosition(ConfigSciNotesManager.getMainWindowPosition());
         mainWindow.setDims(ConfigSciNotesManager.getMainWindowSize());
 
-        MenuBar menuBar = ScilabMenuBar.createMenuBar();
-        //Create FILE menubar
-        Menu fileMenu = ScilabMenu.createMenu();
-        createFileMenu(fileMenu, editorInstance);
-        menuBar.add(fileMenu);
-
-        //Create EDIT menubar
-        Menu editMenu = ScilabMenu.createMenu();
-        createEditMenu(editMenu, editorInstance);
-        menuBar.add(editMenu);
-
-        Menu toolsMenu = ScilabMenu.createMenu();
-        createToolsMenu(toolsMenu, editorInstance);
-        menuBar.add(toolsMenu);
-
-        // Create SEARCH menubar
-        Menu searchMenu = ScilabMenu.createMenu();
-        searchMenu.setText(SciNotesMessages.SEARCH);
-        searchMenu.setMnemonic('S');
-        searchMenu.add(FindAction.createMenu(editorInstance, map.get("FindAction")));
-        searchMenu.add(FindNextAction.createMenu(editorInstance, map.get("FindNextAction")));
-        searchMenu.add(FindPreviousAction.createMenu(editorInstance, map.get("FindPreviousAction")));
-        searchMenu.add(CodeNavigatorAction.createMenu(editorInstance, map.get("CodeNavigatorAction")));
-        menuBar.add(searchMenu);
-
-        // Create VIEW Menubar
-        Menu viewMenu = ScilabMenu.createMenu();
-        viewMenu.setText(SciNotesMessages.VIEW);
-        viewMenu.setMnemonic('S');
-        viewMenu.add(HighlightCurrentLineAction.createCheckBoxMenu(editorInstance, map.get("HighlightCurrentLineAction")));
-        viewMenu.add(LineNumbersAction.createMenu(editorInstance, map.get("LineNumbersAction")));
-        viewMenu.add(SetColorsAction.createMenu(editorInstance));
-        viewMenu.add(SetFontAction.createMenu(editorInstance));
-        viewMenu.add(ResetFontAction.createMenu(editorInstance));
-        viewMenu.addSeparator();
-        viewMenu.add(SplitVerticallyAction.createMenu(editorInstance, map.get("SplitVerticallyAction")));
-        viewMenu.add(SplitHorizontallyAction.createMenu(editorInstance, map.get("SplitHorizontallyAction")));
-        viewMenu.add(NoSplitAction.createMenu(editorInstance, map.get("NoSplitAction")));
-        menuBar.add(viewMenu);
-
-        // Create DOCUMENT MenuBar
-        Menu documentMenu = ScilabMenu.createMenu();
-        documentMenu.setText(SciNotesMessages.DOCUMENT);
-        documentMenu.setMnemonic('D');
-        Menu syntaxTypeMenu = ScilabMenu.createMenu();
-
-        createEncodingSubMenu(documentMenu, editorInstance);
-        createEolSubMenu(documentMenu, editorInstance);
-
-        documentMenu.addSeparator();
-        documentMenu.add(AutoIndentAction.createCheckBoxMenu(editorInstance));
-        menuBar.add(documentMenu);
-
-        // Create EXECUTE menubar
-        Menu executeMenu = ScilabMenu.createMenu();
-        executeMenu.setText(SciNotesMessages.EXECUTE);
-        executeMenu.setMnemonic('e');
-        executeMenu.add(LoadIntoScilabAction.createMenu(editorInstance, map.get("LoadIntoScilabAction")));
-        final MenuItem evaluateSelectionMenuItem = EvaluateSelectionAction.createMenu(editorInstance, map.get("EvaluateSelectionAction"));
-        if (!ScilabConsole.isExistingConsole()) { /* Only available in STD mode */
-            ((JMenuItem) evaluateSelectionMenuItem.getAsSimpleMenuItem()).setEnabled(false);
-        }
-        PropertyChangeListener listenerEvalItem = new PropertyChangeListener() {
-                public void propertyChange(PropertyChangeEvent arg0) {
-                    String select = editorInstance.getTextPane().getSelectedText();
-                    if (select == null) {
-                        evaluateSelectionMenuItem.setText(SciNotesMessages.EVALUATE_FROM_BEGINNING);
-                    } else {
-                        evaluateSelectionMenuItem.setText(SciNotesMessages.EVALUATE_SELECTION);
-                    }
-                }
-            };
-        ((JMenuItem) evaluateSelectionMenuItem.getAsSimpleMenuItem()).addPropertyChangeListener(listenerEvalItem);
-        executeMenu.add(evaluateSelectionMenuItem);
-        executeMenu.add(ExecuteFileIntoScilabAction.createMenu(editorInstance, map.get("ExecuteFileIntoScilabAction")));
-        menuBar.add(executeMenu);
-
-        //Create HELP menubar
-        Menu helpMenu = ScilabMenu.createMenu();
-        helpMenu.setText(SciNotesMessages.QUESTION_MARK);
-        helpMenu.add(HelpAction.createMenu(editorInstance));
-        helpMenu.add(HelpOnKeywordAction.createMenu(editorInstance, map.get("HelpOnKeywordAction")));
-        helpMenu.add(AboutAction.createMenu(editorInstance));
-        menuBar.add(helpMenu);
-
-        // Create Toolbar
-        createToolBar(editorInstance);
-
         infoBar = ScilabTextBox.createTextBox();
 
-        editorInstance.setMenuBar(menuBar);
+        editorInstance.setMenuBar(generateMenuBar(editorInstance));
+        editorInstance.setToolBar(generateToolBar(editorInstance));
         editorInstance.setInfoBar(infoBar);
         mainWindow.setTitle(title);
         mainWindow.setVisible(true);
@@ -236,524 +111,209 @@ public class SciNotesGUI {
     }
 
     /**
-     * Update the selected item in the encoding pull down menu of the document.
-     * @param scilabDocument the document for which the encoding menu should
-     * be updated
+     * @param editor the editor
+     * @return the JPopupMenu read in the conf file
      */
-    public void updateEncodingMenu(ScilabDocument scilabDocument) {
-        if (radioTypes != null) {
-            for (int k = 0; k < radioTypes.length; k++) {
-                if (scilabDocument.getEncoding().equals(radioTypes[k].getText())) {
-                    radioTypes[k].setSelected(true);
+    public static JPopupMenu generateRightClickPopup(SciNotes editor) {
+        readMenusConf();
+        JPopupMenu popup = new JPopupMenu();
+        Element root = menuConf.getDocumentElement();
+        Element rightmenu = (Element) root.getElementsByTagName(RIGHTCLICKMENU).item(0);
+        NodeList menus = rightmenu.getChildNodes();
+        for (int i = 0; i < menus.getLength(); i++) {
+            Node item = menus.item(i);
+            if (MENUITEM.equals(item.getNodeName())) {
+                Element elem = (Element) item;
+                Object menuitem = getMenuItem(elem.getAttribute(ACTION), elem.getAttribute(LABEL), editor);
+                if (menuitem != null) {
+                    if (menuitem instanceof CheckBoxMenuItem) {
+                        SwingScilabCheckBoxMenuItem checkbox = (SwingScilabCheckBoxMenuItem) ((CheckBoxMenuItem) menuitem).getAsSimpleCheckBoxMenuItem();
+                        popup.add(checkbox);
+                    } else if (menuitem instanceof MenuItem) {
+                        SwingScilabMenuItem smi = (SwingScilabMenuItem) ((MenuItem) menuitem).getAsSimpleMenuItem();
+                        popup.add(smi);
+                    } else if (menuitem instanceof Menu) {
+                        SwingScilabMenu sm = (SwingScilabMenu) ((Menu) menuitem).getAsSimpleMenu();
+                        popup.add(sm);
+                    }
                 }
+            } else if (SEPARATOR.equals(item.getNodeName())) {
+                popup.addSeparator();
+            } else if (MENU.equals(item.getNodeName())) {
+                SwingScilabMenu sm = (SwingScilabMenu) getMenu(editor, (Element) item).getAsSimpleMenu();
+                popup.add(sm);
             }
         }
+
+        return popup;
     }
 
     /**
-     * Update the selected item in the EOL pull down menu of the document.
-     * @param scilabDocument the document for which the End Of Line menu should
-     * be updated
+     * @param editor the editor
+     * @return the ToolBar read in the conf file
      */
-    public void updateEolMenu(ScilabDocument scilabDocument) {
-        String eolLinux = ScilabDocument.EOLUNIX;
-        String eolMacOs = ScilabDocument.EOLMAC;
-        String eolWindows = ScilabDocument.EOLWIN;
-
-        String eolUsedLabel = SciNotesMessages.EOL_LINUX;
-        String eolUsed = scilabDocument.getEOL();
-
-        if (eolUsed.compareTo(eolLinux) == 0) {
-            eolUsedLabel = SciNotesMessages.EOL_LINUX;
-        }
-
-        if (eolUsed.compareTo(eolMacOs) == 0) {
-            eolUsedLabel = SciNotesMessages.EOL_MACOS;
-        }
-
-        if (eolUsed.compareTo(eolWindows) == 0) {
-            eolUsedLabel = SciNotesMessages.EOL_WINDOWS;
-        }
-
-        for (int k = 0; k < radioEolTypes.length; k++) {
-            if (radioEolTypes[k].getText().compareTo(eolUsedLabel) == 0) {
-                radioEolTypes[k].setSelected(true);
-            }
-        }
-    }
-
-    /**
-     * create End Of Line sub Menu
-     * @param documentMenu Menu
-     * @param editorInstance SciNotes
-     */
-    private void createEolSubMenu(Menu documentMenu, SciNotes editorInstance) {
-        String eolLinux = ScilabDocument.EOLUNIX;
-        String eolMacOs = ScilabDocument.EOLMAC;
-        String eolWindows = ScilabDocument.EOLWIN;
-        String defaultEolLabel = SciNotesMessages.EOL_LINUX;
-
-        // selected by default O.S
-        String systemEolValue = System.getProperty("line.separator");
-
-        if (systemEolValue.compareTo(eolLinux) == 0) {
-            defaultEolLabel = SciNotesMessages.EOL_LINUX;
-        }
-
-        if (systemEolValue.compareTo(eolWindows) == 0) {
-            defaultEolLabel = SciNotesMessages.EOL_WINDOWS;
-        }
-
-        if (systemEolValue.compareTo(eolMacOs) == 0) {
-            defaultEolLabel = SciNotesMessages.EOL_MACOS;
-        }
-
-        Menu eolTypeMenu = ScilabMenu.createMenu();
-        eolTypeMenu.setText(SciNotesMessages.EOL_TYPE);
-        documentMenu.add(eolTypeMenu);
-
-        radioEolTypes = new JRadioButtonMenuItem[3];
-        ButtonGroup groupEol = new ButtonGroup();
-
-        radioEolTypes[0] =  (new EndOfLineAction(SciNotesMessages.EOL_LINUX, editorInstance)).createRadioButtonMenuItem(editorInstance);
-        groupEol.add(radioEolTypes[0]);
-        ((JMenu) eolTypeMenu.getAsSimpleMenu()).add(radioEolTypes[0]);
-
-        radioEolTypes[1] =  (new EndOfLineAction(SciNotesMessages.EOL_WINDOWS, editorInstance)).createRadioButtonMenuItem(editorInstance);
-        groupEol.add(radioEolTypes[1]);
-        ((JMenu) eolTypeMenu.getAsSimpleMenu()).add(radioEolTypes[1]);
-
-        radioEolTypes[2] =  (new EndOfLineAction(SciNotesMessages.EOL_MACOS, editorInstance)).createRadioButtonMenuItem(editorInstance);
-        groupEol.add(radioEolTypes[2]);
-        ((JMenu) eolTypeMenu.getAsSimpleMenu()).add(radioEolTypes[2]);
-
-        // selected menu
-        for (int k = 0; k < radioEolTypes.length; k++) {
-            if (radioEolTypes[k].getText().compareTo(defaultEolLabel) == 0) {
-                radioEolTypes[k].setSelected(true);
-            }
-        }
-    }
-
-    /**
-     * Create TOOLBAR
-     * @param editorInstance SciNotes
-     */
-    private void createToolBar(SciNotes editorInstance) {
+    public static ToolBar generateToolBar(SciNotes editor) {
+        readMenusConf();
         ToolBar toolBar = ScilabToolBar.createToolBar();
-        toolBar.add(NewAction.createButton(editorInstance)); // NEW
-        toolBar.add(OpenAction.createButton(editorInstance)); // OPEN
-        toolBar.addSeparator();
-        toolBar.add(SaveAction.createButton(editorInstance)); // SAVE
-        toolBar.add(SaveAsAction.createButton(editorInstance)); // SAVE AS
-        toolBar.addSeparator();
-        toolBar.add(PrintAction.createButton(editorInstance)); // PRINT
-        toolBar.addSeparator();
-        toolBar.add(UndoAction.createButton(editorInstance));
-        toolBar.add(RedoAction.createButton(editorInstance));
-        toolBar.addSeparator();
-        toolBar.add(CutAction.createButton(editorInstance)); // CUT
-        toolBar.add(CopyAction.createButton(editorInstance)); // COPY
-        toolBar.add(PasteAction.createButton(editorInstance)); // PASTE
-        toolBar.addSeparator();
-        toolBar.add(FindAction.createButton(editorInstance)); // FIND / REPLACE
-        toolBar.addSeparator();
-        toolBar.add(ExecuteFileIntoScilabAction.createButton(editorInstance)); // EXECUTE FILE
-
-        editorInstance.setToolBar(toolBar);
-    }
-
-    /**
-     * createEditMenu
-     * @param editMenu Menu
-     * @param editorInstance SciNotes
-     */
-    private void createEditMenu(Menu editMenu, SciNotes editorInstance) {
-        editMenu.setText(SciNotesMessages.EDIT);
-        editMenu.setMnemonic('E');
-        editMenu.add(UndoAction.createMenu(editorInstance, map.get("UndoAction")));
-        editMenu.add(RedoAction.createMenu(editorInstance, map.get("RedoAction")));
-        editMenu.addSeparator();
-        editMenu.add(CutAction.createMenu(editorInstance, map.get("CutAction")));
-        editMenu.add(CopyAction.createMenu(editorInstance, map.get("CopyAction")));
-        editMenu.add(PasteAction.createMenu(editorInstance, map.get("PasteAction")));
-        editMenu.addSeparator();
-        editMenu.add(SelectAllAction.createMenu(editorInstance, map.get("SelectAllAction")));
-        editMenu.add(DeleteAction.createMenu(editorInstance));
-    }
-
-    /**
-     * createToolsMenu
-     * @param toolsMenu Menu
-     * @param editorInstance SciNotes
-     */
-    private void createToolsMenu(Menu toolsMenu, SciNotes editorInstance) {
-        toolsMenu.setText(SciNotesMessages.TOOLS);
-        toolsMenu.setMnemonic('o');
-        toolsMenu.add(ActivateHelpOnTypingAction.createCheckBoxMenu(editorInstance, map.get("ActivateHelpOnTypingAction")));
-        toolsMenu.addSeparator();
-        toolsMenu.add(OpenTabInNewWindowAction.createMenu(editorInstance, map.get("OpenTabInNewWindowAction")));
-        toolsMenu.add(CCloseTabInNewWindowAction.createMenu(editorInstance, map.get("CCloseTabInNewWindowAction")));
-        toolsMenu.addSeparator();
-        toolsMenu.add(CommentAction.createMenu(editorInstance, map.get("CommentAction")));
-        toolsMenu.add(UnCommentAction.createMenu(editorInstance, map.get("UnCommentAction")));
-        toolsMenu.addSeparator();
-        toolsMenu.add(TabifyAction.createMenu(editorInstance, map.get("TabifyAction")));
-        toolsMenu.add(UnTabifyAction.createMenu(editorInstance, map.get("UnTabifyAction")));
-        toolsMenu.addSeparator();
-        toolsMenu.add(IndentAction.createMenu(editorInstance, map.get("IndentAction")));
-        toolsMenu.addSeparator();
-        toolsMenu.add(GenerateHelpFromFunctionAction.createMenu(editorInstance, map.get("GenerateHelpFromFunctionAction")));
-        toolsMenu.addSeparator();
-        toolsMenu.add(RemoveTrailingWhiteAction.createMenu(editorInstance, map.get("RemoveTrailingWhiteAction")));
-    }
-
-    /**
-     * createFileMenu
-     * @param fileMenu Menu
-     * @param editorInstance SciNotes
-     */
-    private void createFileMenu(Menu fileMenu, final SciNotes editorInstance) {
-        fileMenu.setText(SciNotesMessages.FILE);
-        fileMenu.setMnemonic('F');
-        fileMenu.add(NewAction.createMenu(editorInstance, map.get("NewAction")));
-        fileMenu.add(OpenAction.createMenu(editorInstance, map.get("OpenAction")));
-        final MenuItem openSource = OpenSourceFileOnKeywordAction.createMenu(editorInstance, map.get("OpenSourceFileOnKeywordAction"));
-        ((JMenuItem) openSource.getAsSimpleMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
-                public void propertyChange(PropertyChangeEvent arg0) {
-                    String keyword = editorInstance.getTextPane().getSelectedText();
-                    if (keyword == null) {
-                        KeywordEvent kwe = editorInstance.getTextPane().getKeywordEvent();
-                        openSource.setEnabled(ScilabLexerConstants.isOpenable(kwe.getType()));
-                    }
-                }
-            });
-        fileMenu.add(openSource);
-
-        final MenuItem openUrl = OpenURLAction.createMenu(editorInstance, map.get("OpenURLAction"));
-        ((JMenuItem) openUrl.getAsSimpleMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
-                public void propertyChange(PropertyChangeEvent arg0) {
-                    String keyword = editorInstance.getTextPane().getSelectedText();
-                    if (keyword == null) {
-                        KeywordEvent kwe = editorInstance.getTextPane().getKeywordEvent();
-                        openUrl.setEnabled(ScilabLexerConstants.URL == kwe.getType() || ScilabLexerConstants.MAIL == kwe.getType());
-                    }
-                }
-            });
-
-        fileMenu.add(openUrl);
-
-        Menu recentsMenu = editorInstance.getRecentsMenu();
-        recentsMenu.setText(SciNotesMessages.RECENT_FILES);
-        editorInstance.updateRecentOpenedFilesMenu();
-        fileMenu.add(recentsMenu);
-
-        fileMenu.addSeparator();
-        fileMenu.add(SaveAction.createMenu(editorInstance, map.get("SaveAction")));
-        fileMenu.add(SaveAsAction.createMenu(editorInstance, map.get("SaveAsAction")));
-        fileMenu.add(SaveAllAction.createMenu(editorInstance, map.get("SaveAllAction")));
-        fileMenu.addSeparator();
-        final MenuItem overitem = OverwriteAction.createMenu(editorInstance, map.get("OverwriteAction"));
-        ((JMenuItem) overitem.getAsSimpleMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
-                public void propertyChange(PropertyChangeEvent arg0) {
-                    overitem.setEnabled(editorInstance.getTextPane().checkExternalModif());
-                }
-            });
-        fileMenu.add(overitem);
-
-        final MenuItem reloaditem = ReloadAction.createMenu(editorInstance, map.get("ReloadAction"));
-        ((JMenuItem) reloaditem.getAsSimpleMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
-                public void propertyChange(PropertyChangeEvent arg0) {
-                    reloaditem.setEnabled(editorInstance.getTextPane().checkExternalModif());
-                }
-            });
-        fileMenu.add(reloaditem);
-
-        fileMenu.addSeparator();
-        fileMenu.add(PageSetupAction.createMenu(editorInstance));
-        fileMenu.add(PrintPreviewAction.createMenu(editorInstance, map.get("PrintPreviewAction")));
-        fileMenu.add(PrintAction.createMenu(editorInstance, map.get("PrintAction")));
-        fileMenu.addSeparator();
-        fileMenu.add(CloseAction.createMenu(editorInstance, map.get("CloseAction")));
-        fileMenu.add(CloseAllAction.createMenu(editorInstance));
-        fileMenu.add(CloseAllButThisAction.createMenu(editorInstance));
-        fileMenu.addSeparator();
-        fileMenu.add(ExitAction.createMenu(editorInstance, map.get("ExitAction")));
-    }
-
-    /**
-     * createEncodingSubMenu
-     * @param documentMenu Menu
-     * @param editorInstance SciNotes
-     */
-    private void createEncodingSubMenu(Menu documentMenu, SciNotes editorInstance) {
-
-        Menu encodingTypeMenu = ScilabMenu.createMenu();
-        encodingTypeMenu.setText(SciNotesMessages.ENCODING_TYPE);
-        documentMenu.add(encodingTypeMenu);
-
-        Map<String, List<String>> languages = new TreeMap(EncodingAction.getEncodings());
-        Iterator<String> iter = languages.keySet().iterator();
-        int size = 0;
-        while (iter.hasNext()) {
-            size += languages.get(iter.next()).size();
-        }
-
-        radioTypes = new JRadioButtonMenuItem[size];
-        ButtonGroup group = new ButtonGroup();
-
-        iter = languages.keySet().iterator();
-        int psize = 0;
-        while (iter.hasNext()) {
-            String lang = iter.next();
-            List<String> encodings = languages.get(lang);
-            Menu langMenu = ScilabMenu.createMenu();
-            langMenu.setText(lang);
-            encodingTypeMenu.add(langMenu);
-            for (int i = 0; i < encodings.size(); i++) {
-                radioTypes[psize + i] = (new EncodingAction(encodings.get(i), editorInstance)).createRadioButtonMenuItem(editorInstance);
-                group.add(radioTypes[psize + i]);
-                ((JMenu) langMenu.getAsSimpleMenu()).add(radioTypes[psize + i]);
-
-                if (encodings.get(i).toUpperCase().equals(Charset.defaultCharset().toString().toUpperCase())) {
-                    radioTypes[psize + i].setSelected(true);
-                }
+        Element root = menuConf.getDocumentElement();
+        Element toolbar = (Element) root.getElementsByTagName(TOOLBAR).item(0);
+        NodeList buttons = toolbar.getChildNodes();
+        for (int i = 0; i < buttons.getLength(); i++) {
+            Node node = buttons.item(i);
+            if (BUTTON.equals(node.getNodeName())) {
+                Element elem = (Element) node;
+                PushButton pb = (PushButton) getButton(elem.getAttribute(ACTION), elem.getAttribute(TOOLTIP), elem.getAttribute(ICON), editor);
+                toolBar.add(pb);
+            } else if (SEPARATOR.equals(node.getNodeName())) {
+                toolBar.addSeparator();
             }
-            psize += encodings.size();
+        }
+
+        return toolBar;
+    }
+
+    /**
+     * @param editor the editor
+     * @return the MenuBar read in the conf file
+     */
+    public static MenuBar generateMenuBar(SciNotes editor) {
+        readMenusConf();
+        MenuBar menuBar = ScilabMenuBar.createMenuBar();
+        Element root = menuConf.getDocumentElement();
+        Element menubar = (Element) root.getElementsByTagName(MENUBAR).item(0);
+        NodeList menus = menubar.getChildNodes();
+        for (int i = 0; i < menus.getLength(); i++) {
+            Node node = menus.item(i);
+            if (MENU.equals(node.getNodeName())) {
+                menuBar.add(getMenu(editor, (Element) node));
+            }
+        }
+
+        return menuBar;
+    }
+
+    /**
+     * Read the conf file
+     */
+    private static void readMenusConf() {
+        File xml = null;
+        DocumentBuilder docBuilder = null;
+
+        try {
+            if (menuConf == null) {
+                DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+                docBuilder = factory.newDocumentBuilder();
+                xml = new File(MENU_CONF);
+                menuConf = docBuilder.parse(xml);
+            }
+        } catch (ParserConfigurationException pce) {
+            System.err.println(ERROR_READ + MENU_CONF);
+        } catch (SAXException se) {
+            System.err.println(ERROR_READ + MENU_CONF);
+        } catch (IOException ioe) {
+            System.err.println(ERROR_READ + MENU_CONF);
         }
     }
 
     /**
-     * Create the popup menu on the help
-     * @param c The graphic component
-     * @param editor the editor where the popup will occur
+     * @param editor the editor
+     * @param node the node containing the informations
+     * @return the Menu
      */
-    public static void createPopupMenu(final JEditorPane c, final SciNotes editor) {
-        final JPopupMenu popup = new JPopupMenu();
-        final JMenuItem evalMenuItem = new JMenuItem(SciNotesMessages.EVALUATE_SELECTION);
-        JMenuItem menuItem = null;
-
-        /* Execute into Scilab */
-        ActionListener actionListenerExecuteIntoScilab = new ActionListener() {
-                public void actionPerformed(ActionEvent actionEvent) {
-                    String selection = ((ScilabEditorPane) c).getCodeToExecute();
-                    if (selection == null) {
-                        infoBar.setText(SciNotesMessages.NO_TEXT_TO_EXECUTE);
-                    } else {
-                        ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(selection, true, true);
-                    }
-                }
-            };
-
-        evalMenuItem.addActionListener(actionListenerExecuteIntoScilab);
-        if (!ScilabConsole.isExistingConsole()) { /* Only available in STD mode */
-            evalMenuItem.setEnabled(false);
+    private static Menu getMenu(SciNotes editor, Element node) {
+        Menu menu = ScilabMenu.createMenu();
+        menu.setText(Messages.gettext(node.getAttribute(LABEL)));
+        String mnemonic = node.getAttribute(MNEMONIC);
+        if (mnemonic != null && mnemonic.length() != 0) {
+            menu.setMnemonic(mnemonic.charAt(0));
         }
-        PropertyChangeListener listenerEvalItem = new PropertyChangeListener() {
-                public void propertyChange(PropertyChangeEvent arg0) {
-                    String select = c.getSelectedText();
-                    if (select == null) {
-                        evalMenuItem.setText(SciNotesMessages.EVALUATE_FROM_BEGINNING);
-                    } else {
-                        evalMenuItem.setText(SciNotesMessages.EVALUATE_SELECTION);
+        NodeList elements = node.getChildNodes();
+        for (int i = 0; i < elements.getLength(); i++) {
+            Node item = elements.item(i);
+            if (MENUITEM.equals(item.getNodeName())) {
+                Element elem = (Element) item;
+                Object menuitem = getMenuItem(elem.getAttribute(ACTION), elem.getAttribute(LABEL), editor);
+                if (menuitem != null) {
+                    if (menuitem instanceof CheckBoxMenuItem) {
+                        menu.add((CheckBoxMenuItem) menuitem);
+                    } else if (menuitem instanceof MenuItem) {
+                        menu.add((MenuItem) menuitem);
+                    } else if (menuitem instanceof Menu) {
+                        menu.add((Menu) menuitem);
                     }
                 }
-            };
-        evalMenuItem.addPropertyChangeListener(listenerEvalItem);
-        popup.add(evalMenuItem);
+            } else if (SEPARATOR.equals(item.getNodeName())) {
+                menu.addSeparator();
+            } else if (MENU.equals(item.getNodeName())) {
+                menu.add(getMenu(editor, (Element) item));
+            }
+        }
 
-        /* Edit in the Scilab Text Editor */
-        ActionListener actionListenerLoadIntoTextEditor = new ActionListener() {
-                public void actionPerformed(ActionEvent actionEvent) {
-                    String selection = c.getSelectedText();
-                    if (selection == null) {
-                        infoBar.setText(SciNotesMessages.NO_TEXT_SELECTED);
-                    } else {
-                        SciNotes.scinotesWithText(selection);
-                    }
-                }
-            };
+        return menu;
+    }
 
-        menuItem = new JMenuItem(SciNotesMessages.EDIT_SELECTION);
-        menuItem.addActionListener(actionListenerLoadIntoTextEditor);
-        popup.add(menuItem);
-        popup.addSeparator();
+    /**
+     * @param action a string with the action associated with the button
+     * @param label the title of the menu
+     * @param editor the editor
+     * @return a MenuItem or a CheckBoxMenuItem or a Menu
+     */
+    private static Object getMenuItem(String action, String label, SciNotes editor) {
+        ClassLoader loader = ClassLoader.getSystemClassLoader();
+        String className = "";
+        try {
+            if (action.lastIndexOf(DOT) != -1)  {
+                className = action;
+            } else {
+                className = DEFAULTACTIONPATH + DOT + action;
+            }
+            Class clazz = loader.loadClass(className);
+            Method method = clazz.getMethod("createMenu", new Class[]{String.class, SciNotes.class, KeyStroke.class});
+            return method.invoke(null, new Object[]{Messages.gettext(label), editor, map.get(action)});
+        } catch (ClassNotFoundException e) {
+            System.err.println("No action: " + className);
+        } catch (NoSuchMethodException e) {
+            System.err.println("No valid method createMenu in action: " + className);
+        } catch (IllegalAccessException e) {
+            System.err.println("The method createMenu must be public: " + className);
+        } catch (InvocationTargetException e) {
+            System.err.println("The method createMenu in " + className + " threw an exception :");
+            e.printStackTrace();
+        }
 
-        /* Copy */
-        menuItem = new JMenuItem(new DefaultEditorKit.CopyAction());
-        menuItem.setText(SciNotesMessages.COPY);
-        popup.add(menuItem);
+        return null;
+    }
 
-        /* Cut */
-        menuItem = new JMenuItem(new DefaultEditorKit.CutAction());
-        menuItem.setText(SciNotesMessages.CUT);
-        popup.add(menuItem);
+    /**
+     * @param action a string with the action associated with the button
+     * @param tooltip a string with the tooltip
+     * @param icon the icon name
+     * @param editor the editor
+     * @return the button
+     */
+    private static Object getButton(String action, String tooltip, String icon, SciNotes editor) {
+        ClassLoader loader = ClassLoader.getSystemClassLoader();
+        String className = "";
+        try {
+            if (action.lastIndexOf(DOT) != -1)  {
+                className = action;
+            } else {
+                className = DEFAULTACTIONPATH + DOT + action;
+            }
+            Class clazz = loader.loadClass(className);
+            Method method = clazz.getMethod("createButton", new Class[]{String.class, String.class, SciNotes.class});
+            return method.invoke(null, new Object[]{Messages.gettext(tooltip), icon, editor});
+        } catch (ClassNotFoundException e) {
+            System.err.println("No action: " + className);
+        } catch (NoSuchMethodException e) {
+            System.err.println("No valid method createButton in action: " + className);
+        } catch (IllegalAccessException e) {
+            System.err.println("The method createButton must be public: " + className);
+        } catch (InvocationTargetException e) {
+            System.err.println("The method createButton in " + className + " threw an exception :");
+            e.printStackTrace();
+        }
 
-        /* Paste */
-        menuItem = new JMenuItem(new DefaultEditorKit.PasteAction());
-        menuItem.setText(SciNotesMessages.PASTE);
-
-        /* Completion */
-        menuItem = new JMenuItem();
-        menuItem.addActionListener(new ActionListener() {
-                private SciNotesCompletionAction action;
-                public void actionPerformed(ActionEvent actionEvent) {
-                    if (action == null) {
-                        action = new SciNotesCompletionAction(c, editor);
-                    }
-                    action.actionPerformed(actionEvent);
-                }
-            });
-        menuItem.setAccelerator(map.get("SciNotesCompletionAction"));
-        menuItem.setText(SciNotesMessages.COMPLETE);
-        popup.add(menuItem);
-        popup.addSeparator();
-
-        /* Select all */
-        ActionListener actionListenerSelectAll = new ActionListener() {
-                public void actionPerformed(ActionEvent actionEvent) {
-                    c.selectAll();
-                }
-            };
-        menuItem = new JMenuItem(SciNotesMessages.SELECT_ALL);
-        menuItem.addActionListener(actionListenerSelectAll);
-        popup.add(menuItem);
-
-        /* Edit in the Scilab Text Editor */
-        final JMenuItem helpMenuItem = new JMenuItem(SciNotesMessages.HELP_ON_SELECTED);
-
-        ActionListener actionListenerHelpOnKeyword = new ActionListener() {
-                public void actionPerformed(ActionEvent actionEvent) {
-                    String selection = c.getSelectedText();
-                    if (selection == null) {
-                        KeywordEvent kwe = ((ScilabEditorPane) c).getKeywordEvent();
-                        if (ScilabLexerConstants.isHelpable(kwe.getType())) {
-                            try {
-                                selection = c.getDocument().getText(kwe.getStart(), kwe.getLength());
-                            } catch (BadLocationException e) { }
-                        } else {
-                            infoBar.setText(SciNotesMessages.NO_TEXT_SELECTED);
-                            return;
-                        }
-                    }
-                    /* Double the quote/double quote in order to avoid
-                     * and error with the call of help()
-                     */
-                    selection = selection.replaceAll("'", "''");
-                    selection = selection.replaceAll("\"", "\"\"");
-
-                    InterpreterManagement.requestScilabExec("help('" + selection + "')");
-                }
-            };
-
-        /* Not sure it is the best listener */
-        PropertyChangeListener listenerTextItem = new PropertyChangeListener() {
-                public void propertyChange(PropertyChangeEvent arg0) {
-                    String keyword = c.getSelectedText();
-                    if (keyword == null) {
-                        KeywordEvent kwe = ((ScilabEditorPane) c).getKeywordEvent();
-                        if (ScilabLexerConstants.isHelpable(kwe.getType())) {
-                            try {
-                                keyword = c.getDocument().getText(kwe.getStart(), kwe.getLength());
-                            } catch (BadLocationException e) { }
-                        } else {
-                            helpMenuItem.setText(SciNotesMessages.HELP_ON_FOO);
-                            helpMenuItem.setEnabled(false);
-                            return;
-                        }
-                    }
-                    int nbOfDisplayedOnlyXChar = 10;
-                    if (keyword.length() > nbOfDisplayedOnlyXChar) {
-                        keyword = keyword.substring(0, nbOfDisplayedOnlyXChar) + SciNotesMessages.DOTS;
-                    }
-                    helpMenuItem.setText(SciNotesMessages.HELP_ABOUT + keyword + "'");
-                    helpMenuItem.setEnabled(true);
-                }
-            };
-        helpMenuItem.addPropertyChangeListener(listenerTextItem);
-        helpMenuItem.addActionListener(actionListenerHelpOnKeyword);
-        popup.add(helpMenuItem);
-
-        /* Open source file in the Scilab Text Editor */
-        final JMenuItem sourceMenuItem = new JMenuItem(SciNotesMessages.OPEN_SOURCE_FILE_ON_KEYWORD);
-
-        ActionListener actionListenerOpenSource = new ActionListener() {
-                public void actionPerformed(ActionEvent actionEvent) {
-                    KeywordEvent kwe = ((ScilabEditorPane) c).getKeywordEvent(c.getSelectionEnd());
-                    if (ScilabLexerConstants.isOpenable(kwe.getType())) {
-                        try {
-                            ScilabDocument doc = (ScilabDocument) ((ScilabEditorPane) c).getDocument();
-                            String keyword = doc.getText(kwe.getStart(), kwe.getLength());
-                            int pos = doc.searchFunctionByName(keyword);
-                            if (pos != -1) {
-                                ((ScilabEditorPane) c).scrollTextToPos(pos);
-                            } else {
-                                String path = "get_function_path('" + keyword + "')";
-                                InterpreterManagement.requestScilabExec("if " + path + " ~=[] then editor(" + path + ");end");
-                            }
-                        } catch (BadLocationException e) { }
-                    }
-                }
-            };
-
-        /* Not sure it is the best listener */
-        PropertyChangeListener listenerSourceItem = new PropertyChangeListener() {
-                public void propertyChange(PropertyChangeEvent arg0) {
-                    KeywordEvent kwe = ((ScilabEditorPane) c).getKeywordEvent(c.getSelectionEnd());
-                    if (ScilabLexerConstants.isOpenable(kwe.getType())) {
-                        try {
-                            String keyword = c.getDocument().getText(kwe.getStart(), kwe.getLength());
-                            int nbOfDisplayedOnlyXChar = 10;
-                            if (keyword.length() > nbOfDisplayedOnlyXChar) {
-                                keyword = keyword.substring(0, nbOfDisplayedOnlyXChar) + SciNotesMessages.DOTS;
-                            }
-                            sourceMenuItem.setText(SciNotesMessages.SOURCE_OF + keyword + "'");
-                            sourceMenuItem.setEnabled(true);
-                        } catch (BadLocationException e) { }
-                    } else {
-                        sourceMenuItem.setText(SciNotesMessages.OPEN_SOURCE_FILE_ON_KEYWORD);
-                        sourceMenuItem.setEnabled(false);
-                    }
-                }
-            };
-        sourceMenuItem.addPropertyChangeListener(listenerSourceItem);
-        sourceMenuItem.addActionListener(actionListenerOpenSource);
-
-        popup.add(sourceMenuItem);
-
-        /* Open URL default web browser */
-        final JMenuItem urlMenuItem = new JMenuItem(SciNotesMessages.OPEN_URL);
-
-        ActionListener actionListenerOpenURL = new ActionListener() {
-                public void actionPerformed(ActionEvent actionEvent) {
-                    KeywordEvent kwe = ((ScilabEditorPane) c).getKeywordEvent(c.getSelectionEnd());
-                    if (ScilabLexerConstants.URL == kwe.getType() || ScilabLexerConstants.MAIL == kwe.getType()) {
-                        try {
-                            ScilabDocument doc = (ScilabDocument) ((ScilabEditorPane) c).getDocument();
-                            String url = doc.getText(kwe.getStart(), kwe.getLength());
-                            OpenURLAction.openURL(url);
-                        } catch (BadLocationException e) { }
-                    }
-                }
-            };
-
-        /* Not sure it is the best listener */
-        PropertyChangeListener listenerURLItem = new PropertyChangeListener() {
-                public void propertyChange(PropertyChangeEvent arg0) {
-                    KeywordEvent kwe = ((ScilabEditorPane) c).getKeywordEvent(c.getSelectionEnd());
-                    if (ScilabLexerConstants.URL == kwe.getType() || ScilabLexerConstants.MAIL == kwe.getType()) {
-                        urlMenuItem.setEnabled(true);
-                    } else {
-                        urlMenuItem.setEnabled(false);
-                    }
-                }
-            };
-        urlMenuItem.addPropertyChangeListener(listenerURLItem);
-        urlMenuItem.addActionListener(actionListenerOpenURL);
-
-        popup.add(urlMenuItem);
-
-        /* Creates the Popupmenu on the component */
-        c.setComponentPopupMenu(popup);
+        return null;
     }
 }

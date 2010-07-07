@@ -23,7 +23,7 @@
     <HorizontalWrapAllowed useCache="true" value="false"/>
     <AutoIndent default="true" useCache="true" value="true"/>
     <AutoColorize default="true" useCach="true" value="true"/>
-    <DefaultEncoding value="UTF-8"/> <!-- Initialized to system default at first launch -->
+    <DefaultEncoding value="utf-8"/> <!-- Initialized to system default at first launch -->
 
     <!-- linecolor or contourcolor can be "null" to be transparent -->
     <LineHighlighter value="false" linecolor="#e4e9f4" contourcolor="#323232"/>
