@@ -31,6 +31,9 @@ Bug Fixes:
 
 * bug 7441 fixed - history browser crashed if language was changed by user.
 
+* bug 7457 fixed - Under Linux and MacOS, the datatip mode icon was missing in
+                   the graphic windows toolbar.
+
 * bugs 7462,7463 fixed - The editor didn't manage files with extensions *.tst,
                          *.start,*.quit.
 
