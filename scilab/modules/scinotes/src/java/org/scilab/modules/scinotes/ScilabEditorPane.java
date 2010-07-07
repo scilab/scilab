@@ -27,7 +27,6 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.IOException;
 import java.io.File;
 import java.util.List;
 import java.util.ArrayList;
@@ -49,9 +48,9 @@ import javax.swing.event.CaretListener;
 import javax.swing.event.CaretEvent;
 import javax.swing.text.Highlighter;
 
+import org.scilab.modules.gui.utils.WebBrowser;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
 import org.scilab.modules.scinotes.utils.NavigatorWindow;
-import org.scilab.modules.scinotes.actions.OpenURLAction;
 
 /**
  * Class ScilabEditorPane
@@ -175,7 +174,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                             setCursor(textCursor);
                             ScilabEditorPane.this.editor.getInfoBar().setText(infoBar);
                             String url = ((ScilabDocument) getDocument()).getText(e.getStart(), e.getLength());
-                            OpenURLAction.openURL(url);
+                            WebBrowser.openUrl(url);
                         } catch (BadLocationException ex) { }
                     }
                 }
