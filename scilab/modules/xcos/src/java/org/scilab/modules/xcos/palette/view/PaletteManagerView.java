@@ -18,6 +18,8 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
+import org.flexdock.docking.Dockable;
+import org.flexdock.docking.DockingManager;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
@@ -159,5 +161,37 @@ public class PaletteManagerView extends ScilabTab {
 	/** @param info the information to write on the infobar */
 	public void setInfo(String info) {
 		getAsSimpleTab().getInfoBar().setText(info);
+	}
+	
+	/**
+	 * Handle the associated Tab removing and recreation 
+	 * 
+	 * @param newVisibleState the new status
+	 * @see org.scilab.modules.gui.tab.ScilabTab#setVisible(boolean)
+	 */
+	@Override
+	public void setVisible(boolean newVisibleState) {
+		super.setVisible(newVisibleState);
+		
+		/*
+		 * Recreate the window if applicable
+		 */
+		if (newVisibleState && getParentWindow() == null) {
+			Window paletteWindow = ScilabWindow.createWindow();
+			paletteWindow.setVisible(true);
+			super.setVisible(true);
+			paletteWindow.addTab(this);
+		}
+		
+		if (getParentWindow() != null) {
+			if (getParentWindow().getNbDockedObjects() == 1) {
+				getParentWindow().setVisible(newVisibleState);
+			} else {
+				if (!newVisibleState) {
+					DockingManager.undock((Dockable) getAsSimpleTab());
+					setParentWindowId(-1);
+				}
+			}
+		}
 	}
 }

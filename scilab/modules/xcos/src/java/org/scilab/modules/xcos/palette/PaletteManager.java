@@ -12,6 +12,8 @@
 
 package org.scilab.modules.xcos.palette;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.File;
 
 import javax.swing.SwingUtilities;
@@ -55,9 +57,11 @@ public final class PaletteManager {
 	
 	private PaletteManagerView view;
 	private Category root;
+	private PropertyChangeSupport pcs;
 
 	/** Default constructor */
 	private PaletteManager() {
+		pcs = new PropertyChangeSupport(this);
 	}
 
 	/**
@@ -88,6 +92,22 @@ public final class PaletteManager {
 		return root;
 	}
 
+	/**
+	 * Add a PropertyChangeListener to the listener list.
+	 * @param listener the listener
+	 */
+	public void addPropertyChangeListener(PropertyChangeListener listener) {
+		pcs.addPropertyChangeListener(listener);
+	}
+	
+	/**
+	 * Add a PropertyChangeListener from the listener list.
+	 * @param listener the listener
+	 */
+	public void removePropertyChangeListener(PropertyChangeListener listener) {
+		pcs.removePropertyChangeListener(listener);
+	}
+	
 	/** @return the default instance */
 	public static synchronized PaletteManager getInstance() {
 		if (instance == null) {
@@ -114,6 +134,8 @@ public final class PaletteManager {
 			getInstance().setView(new PaletteManagerView(getInstance()));
 		}
 		getInstance().getView().setVisible(status);
+		
+		getInstance().pcs.firePropertyChange("visible", !status, status);		
 	}
 
 	/**
