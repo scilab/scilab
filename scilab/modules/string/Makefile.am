@@ -3,8 +3,9 @@
 #
 # This file is distributed under the same license as the Scilab package.
 
+STRING_CPP_SOURCES = src/cpp/stripblanks.cpp
+
 STRING_C_SOURCES = src/c/code2str.c \
-src/c/stripblanks.c \
 src/c/convstr.c \
 src/c/men_Sutils.c \
 src/c/tokens.c \
@@ -40,7 +41,6 @@ sci_gateway/c/sci_str2code.c \
 sci_gateway/c/sci_strcat.c \
 sci_gateway/c/sci_strindex.c \
 sci_gateway/c/sci_string.c \
-sci_gateway/c/sci_stripblanks.c \
 sci_gateway/c/sci_strsplit.c \
 sci_gateway/c/sci_strsubst.c \
 sci_gateway/c/sci_tokens.c \
@@ -61,6 +61,7 @@ sci_gateway/c/sci_strtok.c \
 sci_gateway/c/sci_regexp.c
 
 GATEWAY_CPP_SOURCES = \
+    sci_gateway/cpp/sci_stripblanks.cpp \
 	sci_gateway/cpp/sci_grep.cpp \
 	sci_gateway/cpp/string_gw.cpp
 
@@ -79,6 +80,7 @@ libscistring_la_CFLAGS= $(PCRE_CFLAGS) \
 
 libscistring_la_CPPFLAGS= $(PCRE_CFLAGS) \
 	-I$(srcdir)/src/c \
+	-I$(srcdir)/src/cpp \
 	-I$(srcdir)/includes/ \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
 	-I$(top_srcdir)/modules/operations/includes \
@@ -98,7 +100,7 @@ pkglib_LTLIBRARIES = libscistring.la
 
 libscistring_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(PCRE_LIBS)
 
-libscistring_la_SOURCES = $(STRING_C_SOURCES) $(STRING_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_CPP_SOURCES)
+libscistring_la_SOURCES = $(STRING_CPP_SOURCES) $(STRING_C_SOURCES) $(STRING_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_CPP_SOURCES)
 
 
 # For the code check (splint)

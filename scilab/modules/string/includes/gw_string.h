@@ -30,7 +30,6 @@ STRING_IMPEXP int sci_strcat(char *fname,unsigned long fname_len);
 STRING_IMPEXP int sci_strindex(char *fname,unsigned long fname_len);
 STRING_IMPEXP int sci_ascii(char *fname,unsigned long fname_len);
 STRING_IMPEXP int sci_tokens(char *fname,unsigned long fname_len);
-STRING_IMPEXP int sci_stripblanks(char *fname,unsigned long fname_len);
 STRING_IMPEXP int sci_strcmp(char *fname,unsigned long fname_len);
 STRING_IMPEXP int sci_isletter(char *fname,unsigned long fname_len);
 STRING_IMPEXP int sci_strcspn(char *fname,unsigned long fname_len);

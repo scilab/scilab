@@ -33,7 +33,7 @@ static gw_generic_table Tab[] =
 	{NULL, ""}, //grep
 	{sci_tokens,"tokens"},
 	{NULL, ""}, //strsplit
-	{sci_stripblanks,"stripblank"},
+	{NULL, ""}, //stripblank
 	{sci_strcmp,"strcmp"},
 	{sci_isletter,"isletter"},
 	{NULL, ""}, //isdigit
