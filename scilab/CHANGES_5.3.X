@@ -1,3 +1,4 @@
+
          Changes between version 5.3.0-beta-1 and 5.3.0-beta-2 of Scilab
          ===============================================================
 
@@ -50,6 +51,8 @@ Bug Fixes:
 
 * bug 7457 fixed - Under Linux and MacOS, the datatip mode icon was missing in
                    the graphic windows toolbar.
+
+* bug 7459 fixed - Fix some characters issues with japanese systems.
 
 * bugs 7462,7463 fixed - The editor didn't manage files with extensions *.tst,
                          *.start,*.quit.
