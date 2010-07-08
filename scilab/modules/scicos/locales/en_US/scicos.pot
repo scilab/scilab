@@ -724,7 +724,7 @@ msgstr ""
 #, c-format
 msgid ""
 "****SUNDIALS.Cvode: too much work at time=%g (stiff region, change RTOL and "
-e"ATOL)\n"
+"ATOL)\n"
 msgstr ""
 #
 # File: src/c/scicos.c, line: 2218
