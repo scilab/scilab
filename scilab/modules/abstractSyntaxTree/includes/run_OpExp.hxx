@@ -564,7 +564,81 @@ void visitprivate(const OpExp &e)
 
             result_set(pResult);
         }
-        else
+        else if(TypeL == GenericType::RealString && TypeR == GenericType::RealString)
+        {
+            String *pL			= execMeL.result_get()->getAsString();
+            String *pR			= execMeR.result_get()->getAsString();
+
+            if(pL->size_get() == 1)
+            {
+                pResult = new Bool(pR->rows_get(), pR->cols_get());
+
+                char* pstL = pL->string_get()[0];
+                for(int i = 0 ; i < pR->rows_get() ; i++)
+                {
+                    for(int j = 0 ; j < pR->cols_get() ; j++)
+                    {
+                        char* pstR = pR->string_get(i,j);
+                        if(strcmp(pstL, pstR) == 0)
+                        {
+                            pResult->getAsBool()->bool_set(i,j,false);
+                        }
+                        else
+                        {
+                            pResult->getAsBool()->bool_set(i,j,true);
+                        }
+                    }
+                }
+            }
+            else if(pR->size_get() == 1)
+            {
+                pResult = new Bool(pL->rows_get(), pL->cols_get());
+
+                char* pstR = pR->string_get()[0];
+                for(int i = 0 ; i < pL->rows_get() ; i++)
+                {
+                    for(int j = 0 ; j < pL->cols_get() ; j++)
+                    {
+                        char* pstL = pL->string_get(i,j);
+                        if(strcmp(pstL, pstR) == 0)
+                        {
+                            pResult->getAsBool()->bool_set(i,j,false);
+                        }
+                        else
+                        {
+                            pResult->getAsBool()->bool_set(i,j,true);
+                        }
+                    }
+                }
+            }
+            else if(pL->rows_get() == pR->rows_get() && pL->cols_get() == pR->cols_get())
+            {
+                pResult = new Bool(pL->rows_get(), pL->cols_get());
+
+                for(int i = 0 ; i < pL->rows_get() ; i++)
+                {
+                    for(int j = 0 ; j < pL->cols_get() ; j++)
+                    {
+                        char* pstR = pR->string_get(i,j);
+                        char* pstL = pL->string_get(i,j);
+                        if(strcmp(pstL, pstR) == 0)
+                        {
+                            pResult->getAsBool()->bool_set(i,j,false);
+                        }
+                        else
+                        {
+                            pResult->getAsBool()->bool_set(i,j,true);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                pResult = new Bool(true);
+            }
+            result_set(pResult);
+        }
+       else
         {
             result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
         }
