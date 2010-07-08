@@ -6,6 +6,12 @@
 
 #include "context.hxx"
 
+extern "C"
+{
+#include "charEncoding.h"
+#include "MALLOC.h"
+}
+
 static int comment_level = 0;
 static int last_token = 0;
 static int exit_status = PARSE_ERROR;
@@ -247,9 +253,9 @@ assign			"="
 <BEGINID>
 {
     {id}                        {
-        yylval.str = new std::string(yytext);
-        if (symbol::Context::getInstance()->get(yytext) != NULL
-            && symbol::Context::getInstance()->get(yytext)->isCallable())
+        yylval.str = new std::wstring(to_wide_string(yytext));
+        if (symbol::Context::getInstance()->get(*yylval.str) != NULL
+            && symbol::Context::getInstance()->get(*yylval.str)->isCallable())
         {
             scan_throw(ID);
             BEGIN(SHELLMODE);
@@ -471,7 +477,7 @@ assign			"="
 
 
 <INITIAL,MATRIX>{id}			{
-  yylval.str = new std::string(yytext);
+    yylval.str = new std::wstring(to_wide_string(yytext));
 #ifdef TOKENDEV
   std::cout << "--> [DEBUG] ID : " << yytext << std::endl;
 #endif
@@ -481,7 +487,7 @@ assign			"="
 
 
 <INITIAL,MATRIX>{startblockcomment}	{
-  yylval.comment = new std::string();
+  yylval.comment = new std::wstring();
   comment_level = 1;
   ParserSingleInstance::pushControlStatus(Parser::WithinBlockComment);
   yy_push_state(REGIONCOMMENT);
@@ -489,13 +495,13 @@ assign			"="
 
 
 <INITIAL,MATRIX>{startcomment}		{
-  yylval.comment = new std::string();
+  yylval.comment = new std::wstring();
   yy_push_state(LINECOMMENT);
 }
 
 
 <INITIAL,MATRIX,SHELLMODE>{dquote}		{
-  yylval.str = new std::string();
+  yylval.str = new std::wstring();
   yy_push_state(DOUBLESTRING);
 }
 
@@ -513,7 +519,7 @@ assign			"="
       return scan_throw(QUOTE);
     }
   else {
-    yylval.str = new std::string();
+    yylval.str = new std::wstring();
     yy_push_state(SIMPLESTRING);
   }
 }
@@ -712,7 +718,7 @@ assign			"="
 
   {id}					{
     yy_pop_state();
-    yylval.str = new std::string(yytext);
+    yylval.str = new std::wstring(to_wide_string(yytext));
 #ifdef TOKENDEV
     std::cout << "--> [DEBUG] ID : " << yytext << std::endl;
 #endif
@@ -750,7 +756,7 @@ assign			"="
 
   {startcomment}			{
     scan_throw(DOTS);
-    yylval.comment = new std::string();
+    yylval.comment = new std::wstring();
     yy_push_state(LINECOMMENT);
   }
 
@@ -793,7 +799,7 @@ assign			"="
   }
 
   .		{
-    *yylval.comment += yytext;
+      *yylval.comment += to_wide_string(yytext);
   }
 }
 
@@ -818,11 +824,11 @@ assign			"="
     yylloc.last_line += 1;
     yylloc.last_column = 1;
     scan_step();
-    *yylval.comment += "\n//";
+    *yylval.comment += L"\n//";
   }
 
   .						{
-    *yylval.comment += yytext;
+      *yylval.comment += to_wide_string(yytext);
   }
 
  <<EOF>>					{
@@ -838,19 +844,19 @@ assign			"="
 <SIMPLESTRING>
 {
   {dquote}{dquote}				{
-    *yylval.str += "\"";
+    *yylval.str += L"\"";
   }
 
   {dquote}{quote}				{
-    *yylval.str += "'";
+    *yylval.str += L"'";
   }
 
   {quote}{dquote}				{
-    *yylval.str += "\"";
+    *yylval.str += L"\"";
   }
 
   {quote}{quote}				{
-    *yylval.str += "'";
+    *yylval.str += L"'";
   }
 
   {quote}					{
@@ -870,7 +876,8 @@ assign			"="
     scan_error(str);
     yylloc.last_line += 1;
     yylloc.last_column = 1;
-    *yylval.str += yytext;
+    // ???????
+    *yylval.str += to_wide_string(yytext);
     yy_pop_state();
     yyterminate();
   }
@@ -885,7 +892,7 @@ assign			"="
 
   .						{
     scan_step();
-    *yylval.str += yytext;
+    *yylval.str += to_wide_string(yytext);
   }
 }
 
@@ -893,19 +900,19 @@ assign			"="
 <DOUBLESTRING>
 {
   {dquote}{dquote}				{
-    *yylval.str += "\"";
+    *yylval.str += L"\"";
   }
 
   {dquote}{quote}				{
-    *yylval.str += "'";
+    *yylval.str += L"'";
   }
 
   {quote}{dquote}				{
-    *yylval.str += "\"";
+    *yylval.str += L"\"";
   }
 
   {quote}{quote}				{
-    *yylval.str += "'";
+    *yylval.str += L"'";
   }
 
   {dquote}					{
@@ -920,7 +927,8 @@ assign			"="
     scan_error(str);
     yylloc.last_line += 1;
     yylloc.last_column = 1;
-    *yylval.str += yytext;
+    // ??????
+    *yylval.str += to_wide_string(yytext);
     yyterminate();
   }
 
@@ -939,7 +947,7 @@ assign			"="
 
   .         {
     scan_step();
-    *yylval.str += yytext;
+    *yylval.str += to_wide_string(yytext);
   }
 }
 
@@ -970,7 +978,7 @@ assign			"="
     }
 
     [^ \t\v\f\r\n,;'"]+               {
-        yylval.str = new std::string(yytext);
+        yylval.str = new std::wstring(to_wide_string(yytext));
         return scan_throw(STR);
     }
 
@@ -997,8 +1005,10 @@ void scan_step() {
 
 void scan_error(std::string msg)
 {
-  ParserSingleInstance::PrintError(msg);
+  wchar_t* pstMsg = to_wide_string(msg.c_str());
+  ParserSingleInstance::PrintError(pstMsg);
   ParserSingleInstance::setExitStatus(Parser::Failed);
+  FREE(pstMsg);
 }
 
 /*

@@ -213,9 +213,9 @@ typedef union YYSTYPE
 
   /* Tokens. */
   double		number;
-  std::string*		str;
-  std::string*		path;
-  std::string*		comment;
+  std::wstring*		str;
+  std::wstring*		path;
+  std::wstring*		comment;
 
   bool			mute;
 

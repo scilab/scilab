@@ -30,6 +30,8 @@
 #include "parse.hxx"
 #include "parser_private.hxx"
 #include "location.hxx"
+#include "charEncoding.h"
+#include "MALLOC.h"
 
 #define StopOnError()                                           \
     {                                                           \
@@ -52,9 +54,9 @@
 {
   /* Tokens. */
   double		number;
-  std::string*		str;
-  std::string*		path;
-  std::string*		comment;
+  std::wstring*		str;
+  std::wstring*		path;
+  std::wstring*		comment;
 
   bool			mute;
 
@@ -409,7 +411,7 @@ functionDeclaration				{ $$ = $1; }
 | returnControl					{ $$ = $1; }
 | COMMENT					{ $$ = new ast::CommentExp(@$, $1); }
 | error						{
-  $$ = new ast::CommentExp(@$, new std::string("@@ ERROR RECOVERY @@"));
+  $$ = new ast::CommentExp(@$, new std::wstring(L"@@ ERROR RECOVERY @@"));
   StopOnError();
   }
 ;
@@ -442,32 +444,32 @@ implicitFunctionCall implicitCallable		{
 implicitCallable :
 ID						{ $$ = new ast::StringExp(@$, *$1); }
 | VARINT					{
-						  std::stringstream tmp;
+						  std::wstringstream tmp;
 						  tmp << $1;
 						  $$ = new ast::StringExp(@$, tmp.str());
 						}
 | NUM						{
-						  std::stringstream tmp;
+						  std::wstringstream tmp;
 						  tmp << $1;
 						  $$ = new ast::StringExp(@$, tmp.str());
 						}
 | VARFLOAT					{
-						  std::stringstream tmp;
+						  std::wstringstream tmp;
 						  tmp << $1;
 						  $$ = new ast::StringExp(@$, tmp.str());
 						}
 | STR						{ $$ = new ast::StringExp(@$, *$1); }
-| DOLLAR					{ $$ = new ast::StringExp(@$, *new std::string("$")); }
-| BOOLTRUE					{ $$ = new ast::StringExp(@$, *new std::string("%t")); }
-| BOOLFALSE					{ $$ = new ast::StringExp(@$, *new std::string("%f")); }
+| DOLLAR					{ $$ = new ast::StringExp(@$, *new std::wstring(L"$")); }
+| BOOLTRUE					{ $$ = new ast::StringExp(@$, *new std::wstring(L"%t")); }
+| BOOLFALSE					{ $$ = new ast::StringExp(@$, *new std::wstring(L"%f")); }
 | implicitCallable DOT ID			{
-						  std::stringstream tmp;
+						  std::wstringstream tmp;
 						  tmp << $1->value_get() << "." << *$3;
 						  $$ = new ast::StringExp(@$, tmp.str());
 						}
-| implicitCallable DOT functionCall		{ $$ = new ast::StringExp(@$, *new std::string("!! FIXME : implicitCallable implicitCallable DOT functionCall !!")); }
-| simpleFunctionCall				{ $$ = new ast::StringExp(@$, *new std::string("!! FIXME : implicitCallable simpleFunctionCall !!")); }
-| implicitCallable rightOperand			{ $$ = new ast::StringExp(@$, *new std::string("!! FIXME : implicitCallable implicitCallable rightOperand !!")); }
+| implicitCallable DOT functionCall		{ $$ = new ast::StringExp(@$, *new std::wstring(L"!! FIXME : implicitCallable implicitCallable DOT functionCall !!")); }
+| simpleFunctionCall				{ $$ = new ast::StringExp(@$, *new std::wstring(L"!! FIXME : implicitCallable simpleFunctionCall !!")); }
+| implicitCallable rightOperand			{ $$ = new ast::StringExp(@$, *new std::wstring(L"!! FIXME : implicitCallable implicitCallable rightOperand !!")); }
 | PATH						{ $$ = new ast::StringExp(@$, *$1); }
 ;
 
@@ -487,8 +489,8 @@ simpleFunctionCall		%prec FUNCTIONCALL	{ $$ = $1; }
 */
 /* To manage %t(a, b) and %f(a, b) */
 specificFunctionCall :
-BOOLTRUE LPAREN functionArgs RPAREN			{ $$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, "%t"), *$3); }
-| BOOLFALSE LPAREN functionArgs RPAREN			{ $$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, "%f"), *$3); }
+BOOLTRUE LPAREN functionArgs RPAREN			{ $$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, L"%t"), *$3); }
+| BOOLFALSE LPAREN functionArgs RPAREN			{ $$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, L"%f"), *$3); }
 ;
 
 /*
@@ -803,7 +805,7 @@ expressions			{ $$ = $1; }
 | /* Epsilon */			{
 				  ast::exps_t *tmp = new ast::exps_t;
 				  #ifdef BUILD_DEBUG_AST
-				    tmp->push_front(new ast::CommentExp(@$, new std::string("Empty function body")));
+				    tmp->push_front(new ast::CommentExp(@$, new std::wstring(L"Empty function body")));
 				  #endif
 				  $$ = new ast::SeqExp(@$, *tmp);
 				}
@@ -841,45 +843,45 @@ variable rightComparable		{
 /* rightComparable for comparison */
 rightComparable :
 /* & */
-AND variable				{ $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::LogicalOpExp::logicalAnd, *$2); }
-| AND functionCall			{ $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::LogicalOpExp::logicalAnd, *$2); }
-| AND COLON				{ $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::LogicalOpExp::logicalAnd, * new ast::ColonVar(@$)); }
+AND variable				{ $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::LogicalOpExp::logicalAnd, *$2); }
+| AND functionCall			{ $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::LogicalOpExp::logicalAnd, *$2); }
+| AND COLON				{ $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::LogicalOpExp::logicalAnd, * new ast::ColonVar(@$)); }
 /* && */
-| ANDAND variable			{ $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::LogicalOpExp::logicalShortCutAnd, *$2); }
-| ANDAND functionCall			{ $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::LogicalOpExp::logicalShortCutAnd, *$2); }
-| ANDAND COLON				{ $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::LogicalOpExp::logicalShortCutAnd, * new ast::ColonVar(@$)); }
+| ANDAND variable			{ $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::LogicalOpExp::logicalShortCutAnd, *$2); }
+| ANDAND functionCall			{ $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::LogicalOpExp::logicalShortCutAnd, *$2); }
+| ANDAND COLON				{ $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::LogicalOpExp::logicalShortCutAnd, * new ast::ColonVar(@$)); }
 /* | */
-| OR variable				{ $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::LogicalOpExp::logicalOr, *$2); }
-| OR functionCall			{ $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::LogicalOpExp::logicalOr, *$2); }
-| OR COLON				{ $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::LogicalOpExp::logicalOr, * new ast::ColonVar(@$)); }
+| OR variable				{ $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::LogicalOpExp::logicalOr, *$2); }
+| OR functionCall			{ $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::LogicalOpExp::logicalOr, *$2); }
+| OR COLON				{ $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::LogicalOpExp::logicalOr, * new ast::ColonVar(@$)); }
 /* || */
-| OROR variable				{ $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::LogicalOpExp::logicalShortCutOr, *$2); }
-| OROR functionCall			{ $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::LogicalOpExp::logicalShortCutOr, *$2); }
-| OROR COLON				{ $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::LogicalOpExp::logicalShortCutOr, * new ast::ColonVar(@$)); }
+| OROR variable				{ $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::LogicalOpExp::logicalShortCutOr, *$2); }
+| OROR functionCall			{ $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::LogicalOpExp::logicalShortCutOr, *$2); }
+| OROR COLON				{ $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::LogicalOpExp::logicalShortCutOr, * new ast::ColonVar(@$)); }
 /* == */
-| EQ variable				{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::eq, *$2); }
-| EQ functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::eq, *$2); }
-| EQ COLON				{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::eq, * new ast::ColonVar(@$)); }
+| EQ variable				{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::eq, *$2); }
+| EQ functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::eq, *$2); }
+| EQ COLON				{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::eq, * new ast::ColonVar(@$)); }
 /* ~= */
-| NE variable				{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::ne, *$2); }
-| NE functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::ne, *$2); }
-| NE COLON				{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::ne, * new ast::ColonVar(@$)); }
+| NE variable				{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::ne, *$2); }
+| NE functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::ne, *$2); }
+| NE COLON				{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::ne, * new ast::ColonVar(@$)); }
 /* > */
-| GT variable				{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::gt, *$2); }
-| GT functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::gt, *$2); }
-| GT COLON				{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::gt, * new ast::ColonVar(@$)); }
+| GT variable				{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::gt, *$2); }
+| GT functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::gt, *$2); }
+| GT COLON				{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::gt, * new ast::ColonVar(@$)); }
 /* < */
-| LT variable				{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::lt, *$2); }
-| LT functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::lt, *$2); }
-| LT COLON				{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::lt, * new ast::ColonVar(@$)); }
+| LT variable				{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::lt, *$2); }
+| LT functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::lt, *$2); }
+| LT COLON				{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::lt, * new ast::ColonVar(@$)); }
 /* >= */
-| GE variable				{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::ge, *$2); }
-| GE functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::ge, *$2); }
-| GE COLON				{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::ge, * new ast::ColonVar(@$)); }
+| GE variable				{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::ge, *$2); }
+| GE functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::ge, *$2); }
+| GE COLON				{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::ge, * new ast::ColonVar(@$)); }
 /* <= */
-| LE variable				{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::le, *$2); }
-| LE functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::le, *$2); }
-| LE COLON				{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::le, * new ast::ColonVar(@$)); }
+| LE variable				{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::le, *$2); }
+| LE functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::le, *$2); }
+| LE COLON				{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::le, * new ast::ColonVar(@$)); }
 ;
 
 /*
@@ -923,38 +925,38 @@ variable rightOperand			{
 /* rightOperand for operation */
 rightOperand :
 /*   '+'   '.+'   '.+.'?   */
-PLUS variable				{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::plus, *$2); }
-| PLUS functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::plus, *$2); }
+PLUS variable				{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::plus, *$2); }
+| PLUS functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::plus, *$2); }
 /*   '-'   '.-'   */
-| MINUS variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::minus, *$2); }
-| MINUS functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::minus, *$2); }
+| MINUS variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::minus, *$2); }
+| MINUS functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::minus, *$2); }
 /*   '*'   '.*'   '.*.'   '*.'   */
-| TIMES variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::times, *$2); }
-| TIMES functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::times, *$2); }
-| DOTTIMES variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::dottimes, *$2); }
-| DOTTIMES functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::dottimes, *$2); }
-| KRONTIMES variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::krontimes, *$2); }
-| KRONTIMES functionCall		{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::krontimes, *$2); }
-| CONTROLTIMES variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::controltimes, *$2); }
-| CONTROLTIMES functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::controltimes, *$2); }
+| TIMES variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::times, *$2); }
+| TIMES functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::times, *$2); }
+| DOTTIMES variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::dottimes, *$2); }
+| DOTTIMES functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::dottimes, *$2); }
+| KRONTIMES variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::krontimes, *$2); }
+| KRONTIMES functionCall		{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::krontimes, *$2); }
+| CONTROLTIMES variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::controltimes, *$2); }
+| CONTROLTIMES functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::controltimes, *$2); }
 /*   '/'   './'   './.'   '/.'   */
-| DIVIDE variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::divide, *$2); }
-| DIVIDE functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::divide, *$2); }
-| DOTDIVIDE variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::dotdivide, *$2); }
-| DOTDIVIDE functionCall		{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::dotdivide, *$2); }
-| KRONDIVIDE variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::krondivide, *$2); }
-| KRONDIVIDE functionCall		{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::krondivide, *$2); }
-| CONTROLDIVIDE variable		{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::controldivide, *$2); }
-| CONTROLDIVIDE functionCall		{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::controldivide, *$2); }
+| DIVIDE variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::divide, *$2); }
+| DIVIDE functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::divide, *$2); }
+| DOTDIVIDE variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::dotdivide, *$2); }
+| DOTDIVIDE functionCall		{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::dotdivide, *$2); }
+| KRONDIVIDE variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::krondivide, *$2); }
+| KRONDIVIDE functionCall		{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::krondivide, *$2); }
+| CONTROLDIVIDE variable		{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::controldivide, *$2); }
+| CONTROLDIVIDE functionCall		{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::controldivide, *$2); }
 /*   '\'   '.\'   '.\.'   '\.'   */
-| RDIVIDE variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::rdivide, *$2); }
-| RDIVIDE functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::rdivide, *$2); }
-| DOTRDIVIDE variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::dotrdivide, *$2); }
-| DOTRDIVIDE functionCall		{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::dotrdivide, *$2); }
-| KRONRDIVIDE variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::kronrdivide, *$2); }
-| KRONRDIVIDE functionCall		{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::kronrdivide, *$2); }
-| CONTROLRDIVIDE variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::controlrdivide, *$2); }
-| CONTROLRDIVIDE functionCall		{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), ast::OpExp::controlrdivide, *$2); }
+| RDIVIDE variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::rdivide, *$2); }
+| RDIVIDE functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::rdivide, *$2); }
+| DOTRDIVIDE variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::dotrdivide, *$2); }
+| DOTRDIVIDE functionCall		{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::dotrdivide, *$2); }
+| KRONRDIVIDE variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::kronrdivide, *$2); }
+| KRONRDIVIDE functionCall		{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::kronrdivide, *$2); }
+| CONTROLRDIVIDE variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::controlrdivide, *$2); }
+| CONTROLRDIVIDE functionCall		{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::controlrdivide, *$2); }
 ;
 
 /*
@@ -971,9 +973,9 @@ COLON variable				{ $$ = $2; }
 */
 /* Stride parameter or not. */
 listableEnd :
-listableBegin COLON variable		{ $$ = new ast::ListExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), *$1, *$3); }
-| listableBegin COLON functionCall	{ $$ = new ast::ListExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), *$1, *$3); }
-| listableBegin %prec LISTABLE		{ $$ = new ast::ListExp(@$, *new ast::CommentExp(@$, new std::string("Should not stay in that state")), *new ast::DoubleExp(@$, 1.0), *$1); }
+listableBegin COLON variable		{ $$ = new ast::ListExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), *$1, *$3); }
+| listableBegin COLON functionCall	{ $$ = new ast::ListExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), *$1, *$3); }
+| listableBegin %prec LISTABLE		{ $$ = new ast::ListExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), *new ast::DoubleExp(@$, 1.0), *$1); }
 ;
 
 /*
@@ -1252,7 +1254,7 @@ expressions						{ $$ = $1; }
 | /* Epsilon */						{
 							  ast::exps_t *tmp = new ast::exps_t;
 							  #ifdef BUILD_DEBUG_AST
-							  tmp->push_front(new ast::CommentExp(@$, new std::string("Empty then body")));
+							  tmp->push_front(new ast::CommentExp(@$, new std::wstring(L"Empty then body")));
 							  #endif
 							  $$ = new ast::SeqExp(@$, *tmp);
 							}
@@ -1267,7 +1269,7 @@ expressions						{ $$ = $1; }
 | /* Epsilon */						{
 							  ast::exps_t *tmp = new ast::exps_t;
 							  #ifdef BUILD_DEBUG_AST
-							  tmp->push_front(new ast::CommentExp(@$, new std::string("Empty else body")));
+							  tmp->push_front(new ast::CommentExp(@$, new std::wstring(L"Empty else body")));
 							  #endif
 							  $$ = new ast::SeqExp(@$, *tmp);
 							}
@@ -1334,7 +1336,7 @@ ELSEIF condition then thenBody						{
 									}
 ;
 
-//| ELSEIF condition then thenBody else elseBody elseIfControl		{ $$ = new ast::CommentExp(@$, new std::string("!! FIXME !! Elseif additionnal control ??")); }
+//| ELSEIF condition then thenBody else elseBody elseIfControl		{ $$ = new ast::CommentExp(@$, new std::wstring("!! FIXME !! Elseif additionnal control ??")); }
 
 
 /*
@@ -1428,7 +1430,7 @@ expressions				{ $$ = $1; }
 | /* Epsilon */			{
 						  ast::exps_t *tmp = new ast::exps_t;
 						#ifdef BUILD_DEBUG_AST
-						  tmp->push_front(new ast::CommentExp(@$, new std::string("Empty case body")));
+						  tmp->push_front(new ast::CommentExp(@$, new std::wstring(L"Empty case body")));
 						#endif
 						  $$ = new ast::SeqExp(@$, *tmp);
 						}
@@ -1489,7 +1491,7 @@ expressions			{ $$ = $1; }
 | /* Epsilon */			{
 				  ast::exps_t *tmp = new ast::exps_t;
 				  #ifdef BUILD_DEBUG_AST
-				    tmp->push_front(new ast::CommentExp(@$, new std::string("Empty for body")));
+				    tmp->push_front(new ast::CommentExp(@$, new std::wstring(L"Empty for body")));
 				  #endif
 				  $$ = new ast::SeqExp(@$, *tmp);
 				}
@@ -1512,7 +1514,7 @@ expressions			{ $$ = $1; }
 | /* Epsilon */			{
 				  ast::exps_t *tmp = new ast::exps_t;
 				  #ifdef BUILD_DEBUG_AST
-				    tmp->push_front(new ast::CommentExp(@$, new std::string("Empty while body")));
+				    tmp->push_front(new ast::CommentExp(@$, new std::wstring(L"Empty while body")));
 				  #endif
 				  $$ = new ast::SeqExp(@$, *tmp);
 				}
@@ -1594,7 +1596,9 @@ void yyerror(std::string msg) {
     if(!ParserSingleInstance::isStrictMode()
        || ParserSingleInstance::getExitStatus() == Parser::Succeded)
     {
-        ParserSingleInstance::PrintError(msg);
+        wchar_t* pstMsg = to_wide_string(msg.c_str());
+        ParserSingleInstance::PrintError(pstMsg);
         ParserSingleInstance::setExitStatus(Parser::Failed);
+        FREE(pstMsg);
     }
 }
