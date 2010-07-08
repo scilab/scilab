@@ -56,7 +56,7 @@ public abstract class ClippableTextObject extends TextObject {
 	 * @param property the property to get
 	 * @return the property value
 	 */
-	public Object getPropertyFast(Object property) {
+	public Object getProperty(Object property) {
 		if (property == ClippableTextObjectProperty.CLIPPROPERTY) {
 			return getClipProperty();
 		} else if (property == ClippablePropertyType.CLIPSTATE) {
@@ -66,7 +66,7 @@ public abstract class ClippableTextObject extends TextObject {
 		} else if (property == ClippablePropertyType.CLIPBOXSET) {
 			return getClipBoxSet();
 		} else {
-			return super.getPropertyFast(property);	
+			return super.getProperty(property);	
 		}
 	}
 
@@ -76,7 +76,7 @@ public abstract class ClippableTextObject extends TextObject {
 	 * @param value the property value
 	 * @return true if the property has been set, false otherwise
 	 */
-	public boolean setPropertyFast(Object property, Object value) {
+	public boolean setProperty(Object property, Object value) {
 		if (property == ClippableTextObjectProperty.CLIPPROPERTY) {
 			setClipProperty((ClippableProperty) value);
 		} else if (property == ClippablePropertyType.CLIPSTATE) {
@@ -86,7 +86,7 @@ public abstract class ClippableTextObject extends TextObject {
 		} else if (property == ClippablePropertyType.CLIPBOXSET) {
 			setClipBoxSet((Boolean) value);
 		} else {
-			return super.setPropertyFast(property, value);
+			return super.setProperty(property, value);
 		}
 
 		return true;

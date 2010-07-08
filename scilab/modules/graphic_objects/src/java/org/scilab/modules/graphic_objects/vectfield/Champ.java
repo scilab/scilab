@@ -12,8 +12,6 @@
 
 package org.scilab.modules.graphic_objects.vectfield;
 
-import java.util.ArrayList;
-
 
 /**
  * Champ class
@@ -50,11 +48,11 @@ public class Champ extends VectField {
 	 * @param property the property to get
 	 * @return the property value
 	 */
-	public Object getPropertyFast(Object property) {
+	public Object getProperty(Object property) {
 		if (property == ChampProperty.COLORED) {
 			return getColored();
 		} else {
-			return super.getPropertyFast(property);
+			return super.getProperty(property);
 		}
 	}
 
@@ -64,11 +62,11 @@ public class Champ extends VectField {
 	 * @param value the property value
 	 * @return true if the property has been set, false otherwise
 	 */
-	public boolean setPropertyFast(Object property, Object value) {
+	public boolean setProperty(Object property, Object value) {
 		if (property == ChampProperty.COLORED) {
 			setColored((Boolean) value);
 		} else {
-			return super.setPropertyFast(property, value);
+			return super.setProperty(property, value);
 		}
 
 		return true;

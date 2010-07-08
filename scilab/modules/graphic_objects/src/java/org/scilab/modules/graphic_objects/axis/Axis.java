@@ -14,10 +14,8 @@ package org.scilab.modules.graphic_objects.axis;
 
 import java.util.ArrayList;
 
-import org.scilab.modules.graphic_objects.arc.Arc.ArcDrawingMethod;
 import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
 import org.scilab.modules.graphic_objects.textObject.Font;
-import org.scilab.modules.graphic_objects.textObject.Font.FontProperty;
 
 /**
  * Axis class
@@ -111,7 +109,7 @@ public class Axis extends ClippableContouredObject {
 	 * @param property the property to get
 	 * @return the property value
 	 */
-	public Object getPropertyFast(Object property) {
+	public Object getProperty(Object property) {
 		if (property == AxisProperty.TICKSDIRECTION) {
 			return getTicksDirection();
 		} else if (property == AxisProperty.XTICKSCOORDS) {
@@ -137,7 +135,7 @@ public class Axis extends ClippableContouredObject {
 		} else if (property == Font.FontProperty.FRACTIONAL) {
 			return getFractional();
 		} else {
-			return super.getPropertyFast(property);	
+			return super.getProperty(property);	
 		}
 	}
 
@@ -147,7 +145,7 @@ public class Axis extends ClippableContouredObject {
 	 * @param value the property value
 	 * @return true if the property has been set, false otherwise
 	 */
-	public boolean setPropertyFast(Object property, Object value) {
+	public boolean setProperty(Object property, Object value) {
 		if (property == AxisProperty.TICKSDIRECTION) {
 			setTicksDirection((TicksDirection) value);
 		} else if (property == AxisProperty.XTICKSCOORDS) {
@@ -173,7 +171,7 @@ public class Axis extends ClippableContouredObject {
 		} else if (property == Font.FontProperty.FRACTIONAL) {
 			setFractional((Boolean) value);
 		} else {
-			return super.setPropertyFast(property, value);
+			return super.setProperty(property, value);
 		}
 
 		return true;

@@ -318,7 +318,7 @@ public class Figure extends GraphicObject {
 	 * @param property the property to get
 	 * @return the property value
 	 */
-	public Object getPropertyFast(Object property) {
+	public Object getProperty(Object property) {
 		if (property == FigureProperty.DIMENSIONS) {
 			return getDimensions();
 		} else if (property == FigureDimensionsProperty.POSITION) {
@@ -368,7 +368,7 @@ public class Figure extends GraphicObject {
 		} else if (property == FigureProperty.ROTATIONTYPE) {
 			return getRotation();
 		} else {
-			return super.getPropertyFast(property);
+			return super.getProperty(property);
 		}
 	}
 
@@ -378,7 +378,7 @@ public class Figure extends GraphicObject {
 	 * @param value the property value
 	 * @return true if the property has been set, false otherwise
 	 */
-	public boolean setPropertyFast(Object property, Object value) {
+	public boolean setProperty(Object property, Object value) {
 		if (property == FigureProperty.DIMENSIONS) {
 			setDimensions((FigureDimensions) value);
 		} else if (property == FigureDimensionsProperty.POSITION) {
@@ -426,7 +426,7 @@ public class Figure extends GraphicObject {
 		} else if (property == FigureProperty.ROTATIONTYPE) {
 			setRotation((Integer) value);
 		} else {
-			return super.setPropertyFast(property, value);
+			return super.setProperty(property, value);
 		}
 
 		return true;

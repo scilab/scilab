@@ -97,7 +97,7 @@ public class AxisProperty {
 	 * @param property the property to get
 	 * @return the property value
 	 */
-	public Object getPropertyFast(Object property) {
+	public Object getProperty(Object property) {
 		if (property == AxisPropertyProperty.VISIBLE) {
 			return getVisible();
 		} else if (property == AxisPropertyProperty.REVERSE) {
@@ -123,7 +123,7 @@ public class AxisProperty {
 	 * @param value the property value
 	 * @return true if the property has been set, false otherwise
 	 */
-	public boolean setPropertyFast(Object property, Object value) {
+	public boolean setProperty(Object property, Object value) {
 		if (property == AxisPropertyProperty.VISIBLE) {
 			setVisible((Boolean) value);
 		} else if (property == AxisPropertyProperty.REVERSE) {

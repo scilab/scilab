@@ -27,11 +27,11 @@ public final class CallGraphicController {
     }
 
     private static boolean setGraphicObjectProperty(String id, String propertyName, Object value) {
-        return GraphicController.getController().setPropertyFast(id, propertyName, value);
+        return GraphicController.getController().setProperty(id, propertyName, value);
     }
 
     private static Object getGraphicObjectProperty(String id, String propertyName) {
-        return GraphicController.getController().getPropertyFast(id, propertyName);
+        return GraphicController.getController().getProperty(id, propertyName);
     }
 
     public static boolean setGraphicObjectProperty(String id, String propertyName, String value) {

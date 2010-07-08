@@ -12,10 +12,22 @@
 
 package org.scilab.tests.modules.graphic_objects;
 
+import org.scilab.modules.graphic_objects.arc.Arc;
+import org.scilab.modules.graphic_objects.axes.Axes;
+import org.scilab.modules.graphic_objects.axis.Axis;
+import org.scilab.modules.graphic_objects.compound.Compound;
+import org.scilab.modules.graphic_objects.fec.Fec;
+import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
+import org.scilab.modules.graphic_objects.imageplot.Grayplot;
+import org.scilab.modules.graphic_objects.label.Label;
+import org.scilab.modules.graphic_objects.legend.Legend;
+import org.scilab.modules.graphic_objects.surface.Fac3d;
+import org.scilab.modules.graphic_objects.vectfield.Champ;
 import org.testng.annotations.Test;
+
 
 /**
  * GraphicObject test class
@@ -28,22 +40,18 @@ public class testGraphicObject {
     public static final String PARENT_PROP_NAME = "Parent";
 
 	@Test
-    public void testGraphicObject() throws NullPointerException {
+    public void simpleTest() throws NullPointerException {
         GraphicController controller = GraphicController.getController();
         
         String axesID = controller.askObject(Type.AXES);
         GraphicObject axes = (GraphicObject) controller.getObjectFromId(axesID);
 
-        if (axes == null) {
-        	throw new NullPointerException();
-        }
+        assert(axes != null);
 
         String arcID = controller.askObject(Type.ARC);
         GraphicObject arc = (GraphicObject) controller.getObjectFromId(arcID);
 
-      	if (arc == null) {
-      		throw new NullPointerException();
-      	}
+      	assert(arc != null);
 
       	String axesIDret = axes.getIdentifier();
       	String arcIDret = arc.getIdentifier();
@@ -53,28 +61,168 @@ public class testGraphicObject {
 
         Boolean arcVisible = new Boolean(true);
 
-        controller.setPropertyFast(arcID, VISIBLE_PROP_NAME, arcVisible);
-        Boolean arcVisibleRet = (Boolean) controller.getPropertyFast(arcID, VISIBLE_PROP_NAME);
+        controller.setProperty(arcID, VISIBLE_PROP_NAME, arcVisible);
+        Boolean arcVisibleRet = (Boolean) controller.getProperty(arcID, VISIBLE_PROP_NAME);
 
-        if (arcVisibleRet == null) {
-        	throw new NullPointerException();
-        }
+        assert (arcVisibleRet != null);
 
         assert arcVisible.equals(arcVisibleRet);
 
-        Object nonExistingProp = (Object) controller.getPropertyFast(arcID, NONEXISTING_PROP_NAME);
+        Object nonExistingProp = (Object) controller.getProperty(arcID, NONEXISTING_PROP_NAME);
 
         assert nonExistingProp == null;
 
-        controller.setPropertyFast(arcID, PARENT_PROP_NAME, axes);
+        controller.setProperty(arcID, PARENT_PROP_NAME, axes);
 
-        GraphicObject arcParent = (GraphicObject) controller.getPropertyFast(arcID, PARENT_PROP_NAME);
+        GraphicObject arcParent = (GraphicObject) controller.getProperty(arcID, PARENT_PROP_NAME);
 
-        if (arcParent == null) {
-        	throw new NullPointerException();
-        }
+        assert(arcParent != null);
 
         assert arcParent.equals(axes);
 
     }
+	
+	@Test
+    public void arcCreationTest() {
+	    GraphicController controller = GraphicController.getController();
+	    
+	    String objectId = null;
+	    objectId = controller.askObject(Type.ARC);
+	    assert(objectId != null);
+	    
+	    Object graphicObject = controller.getObjectFromId(objectId);
+	    assert(graphicObject != null);
+	    assert(graphicObject instanceof Arc);
+	}
+
+    @Test
+    public void axesCreationTest() {
+        GraphicController controller = GraphicController.getController();
+        
+        String objectId = null;
+        objectId = controller.askObject(Type.AXES);
+        assert(objectId != null);
+        
+        Object graphicObject = controller.getObjectFromId(objectId);
+        assert(graphicObject != null);
+        assert(graphicObject instanceof Axes);
+    }
+    
+    @Test
+    public void axisCreationTest() {
+        GraphicController controller = GraphicController.getController();
+        
+        String objectId = null;
+        objectId = controller.askObject(Type.AXIS);
+        assert(objectId != null);
+        
+        Object graphicObject = controller.getObjectFromId(objectId);
+        assert(graphicObject != null);
+        assert(graphicObject instanceof Axis);
+    }
+
+    @Test
+    public void champCreationTest() {
+        GraphicController controller = GraphicController.getController();
+        
+        String objectId = null;
+        objectId = controller.askObject(Type.CHAMP);
+        assert(objectId != null);
+        
+        Object graphicObject = controller.getObjectFromId(objectId);
+        assert(graphicObject != null);
+        assert(graphicObject instanceof Champ);
+    } 
+
+    @Test
+    public void compoundCreationTest() {
+        GraphicController controller = GraphicController.getController();
+        
+        String objectId = null;
+        objectId = controller.askObject(Type.COMPOUND);
+        assert(objectId != null);
+        
+        Object graphicObject = controller.getObjectFromId(objectId);
+        assert(graphicObject != null);
+        assert(graphicObject instanceof Compound);
+    } 
+    
+    @Test
+    public void fac3dCreationTest() {
+        GraphicController controller = GraphicController.getController();
+        
+        String objectId = null;
+        objectId = controller.askObject(Type.FAC3D);
+        assert(objectId != null);
+        
+        Object graphicObject = controller.getObjectFromId(objectId);
+        assert(graphicObject != null);
+        assert(graphicObject instanceof Fac3d);
+    }
+
+    @Test
+    public void fecCreationTest() {
+        GraphicController controller = GraphicController.getController();
+        
+        String objectId = null;
+        objectId = controller.askObject(Type.FEC);
+        assert(objectId != null);
+        
+        Object graphicObject = controller.getObjectFromId(objectId);
+        assert(graphicObject != null);
+        assert(graphicObject instanceof Fec);
+    } 
+    
+    @Test
+    public void figureCreationTest() {
+        GraphicController controller = GraphicController.getController();
+        
+        String objectId = null;
+        objectId = controller.askObject(Type.FIGURE);
+        assert(objectId != null);
+        
+        Object graphicObject = controller.getObjectFromId(objectId);
+        assert(graphicObject != null);
+        assert(graphicObject instanceof Figure);
+    }
+    
+    @Test
+    public void grayplotCreationTest() {
+        GraphicController controller = GraphicController.getController();
+        
+        String objectId = null;
+        objectId = controller.askObject(Type.GRAYPLOT);
+        assert(objectId != null);
+        
+        Object graphicObject = controller.getObjectFromId(objectId);
+        assert(graphicObject != null);
+        assert(graphicObject instanceof Grayplot);
+    }
+    
+    @Test
+    public void labelCreationTest() {
+        GraphicController controller = GraphicController.getController();
+        
+        String objectId = null;
+        objectId = controller.askObject(Type.LABEL);
+        assert(objectId != null);
+        
+        Object graphicObject = controller.getObjectFromId(objectId);
+        assert(graphicObject != null);
+        assert(graphicObject instanceof Label);
+    } 
+
+    @Test
+    public void legendCreationTest() {
+        GraphicController controller = GraphicController.getController();
+        
+        String objectId = null;
+        objectId = controller.askObject(Type.LEGEND);
+        assert(objectId != null);
+        
+        Object graphicObject = controller.getObjectFromId(objectId);
+        assert(graphicObject != null);
+        assert(graphicObject instanceof Legend);
+    }   
+    
 }

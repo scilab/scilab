@@ -67,7 +67,7 @@ public class Label extends TextObject {
 	 * @param property the property to get
 	 * @return the property value
 	 */
-	public Object getPropertyFast(Object property) {
+	public Object getProperty(Object property) {
 		if (property == LabelProperty.FONTANGLE) {
 			return getFontAngle();
 		} else if (property == LabelProperty.AUTOPOSITION) {
@@ -77,7 +77,7 @@ public class Label extends TextObject {
 		} else if (property == LabelProperty.AUTOROTATION) {
 			return getAutoRotation();
 		} else {
-			return super.getPropertyFast(property);	
+			return super.getProperty(property);	
 		}
 	}
 
@@ -87,7 +87,7 @@ public class Label extends TextObject {
 	 * @param value the property value
 	 * @return true if the property has been set, false otherwise
 	 */
-	public boolean setPropertyFast(Object property, Object value) {
+	public boolean setProperty(Object property, Object value) {
 		if (property == LabelProperty.FONTANGLE) {
 			setFontAngle((Double) value);
 		} else if (property == LabelProperty.AUTOPOSITION) {
@@ -97,7 +97,7 @@ public class Label extends TextObject {
 		} else if (property == LabelProperty.AUTOROTATION) {
 			setAutoRotation((Boolean) value);
 		} else {
-			return super.setPropertyFast(property, value);
+			return super.setProperty(property, value);
 		}
 
 		return true;

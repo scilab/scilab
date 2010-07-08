@@ -64,7 +64,7 @@ public class Font {
 	 * @param property the property to get
 	 * @return the property value
 	 */
-	public Object getPropertyFast(Object property) {
+	public Object getProperty(Object property) {
 		if (property == FontProperty.STYLE) {
 			return getStyle();
 		} else if (property == FontProperty.SIZE) {
@@ -84,7 +84,7 @@ public class Font {
 	 * @param value the property value
 	 * @return true if the property has been set, false otherwise
 	 */
-	public boolean setPropertyFast(Object property, Object value) {
+	public boolean setProperty(Object property, Object value) {
 		if (property == FontProperty.STYLE) {
 			setStyle((Integer) value);
 		} else if (property == FontProperty.SIZE) {

@@ -63,7 +63,7 @@ public abstract class Surface extends ClippableContouredObject {
 	 * @param property the property to get
 	 * @return the property value
 	 */
-	public Object getPropertyFast(Object property) {
+	public Object getProperty(Object property) {
 		if (property == SurfaceProperty.SURFACEMODE) {
 			return getSurfaceMode();
 		} else if (property == SurfaceProperty.COLORMODE) {
@@ -71,7 +71,7 @@ public abstract class Surface extends ClippableContouredObject {
 		} else if (property == SurfaceProperty.COLORFLAG) {
 			return getColorFlag();
 		} else {
-			return super.getPropertyFast(property);	
+			return super.getProperty(property);	
 		}
 	}
 
@@ -81,7 +81,7 @@ public abstract class Surface extends ClippableContouredObject {
 	 * @param value the property value
 	 * @return true if the property has been set, false otherwise
 	 */
-	public boolean setPropertyFast(Object property, Object value) {
+	public boolean setProperty(Object property, Object value) {
 
 		if (property == SurfaceProperty.SURFACEMODE) {
 			setSurfaceMode((Boolean) value);
@@ -90,7 +90,7 @@ public abstract class Surface extends ClippableContouredObject {
 		} else if (property == SurfaceProperty.COLORFLAG) {
 			setColorFlag((Integer) value);
 		} else {
-			return super.setPropertyFast(property, value);
+			return super.setProperty(property, value);
 		}
 
 		return true;

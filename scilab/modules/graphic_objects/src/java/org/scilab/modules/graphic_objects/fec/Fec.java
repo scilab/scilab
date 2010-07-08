@@ -66,7 +66,7 @@ public class Fec extends ClippableContouredObject {
 	 * @param property the property to get
 	 * @return the property value
 	 */
-	public Object getPropertyFast(Object property) {
+	public Object getProperty(Object property) {
 		if (property == FecProperty.ZBOUNDS) {
 			return getZBounds();
 		} else if (property == FecProperty.OUTSIDECOLOR) {
@@ -74,7 +74,7 @@ public class Fec extends ClippableContouredObject {
 		} else if (property == FecProperty.COLORRANGE) {
 			return getColorRange();
 		} else {
-			return super.getPropertyFast(property);
+			return super.getProperty(property);
 		}
 	}
 
@@ -84,7 +84,7 @@ public class Fec extends ClippableContouredObject {
 	 * @param value the property value
 	 * @return true if the property has been set, false otherwise
 	 */
-	public boolean setPropertyFast(Object property, Object value) {
+	public boolean setProperty(Object property, Object value) {
 		if (property == FecProperty.ZBOUNDS) {
 			setZBounds((Double[]) value);
 		} else if (property == FecProperty.OUTSIDECOLOR) {
@@ -92,7 +92,7 @@ public class Fec extends ClippableContouredObject {
 		} else if (property == FecProperty.COLORRANGE) {
 			setColorRange((Integer[]) value);
 		} else {
-			return super.setPropertyFast(property, value);
+			return super.setProperty(property, value);
 		}
 
 		return true;

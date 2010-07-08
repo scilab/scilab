@@ -101,7 +101,7 @@ public class Polyline extends ClippableContouredObject {
 	 * @param property the property to get
 	 * @return the property value
 	 */
-	public Object getPropertyFast(Object property) {
+	public Object getProperty(Object property) {
 		if (property == PolylineProperty.CLOSED) {
 			return getClosed();
 		} else if (property == PolylineProperty.ARROWSIZEFACTOR) {
@@ -121,7 +121,7 @@ public class Polyline extends ClippableContouredObject {
 		} else if (property == PolylineProperty.BARWIDTH) {
 			return getBarWidth();
 		} else {
-			return super.getPropertyFast(property);	
+			return super.getProperty(property);	
 		}
 	}
 
@@ -131,7 +131,7 @@ public class Polyline extends ClippableContouredObject {
 	 * @param value the property value
 	 * @return true if the property has been set, false otherwise
 	 */
-	public boolean setPropertyFast(Object property, Object value) {
+	public boolean setProperty(Object property, Object value) {
 		if (property == PolylineProperty.CLOSED) {
 			setClosed((Boolean) value);
 		} else if (property == PolylineProperty.ARROWSIZEFACTOR) {
@@ -151,7 +151,7 @@ public class Polyline extends ClippableContouredObject {
 		} else if (property == PolylineProperty.BARWIDTH) {
 			setBarWidth((Double) value);
 		} else {
-			return super.setPropertyFast(property, value);
+			return super.setProperty(property, value);
 		}
 
 		return true;

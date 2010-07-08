@@ -19,6 +19,8 @@ import java.util.Set;
 
 import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
+import org.scilab.modules.graphic_objects.graphicView.GraphicView;
+import org.scilab.modules.graphic_objects.graphicView.LogView;
 
 
 /**
@@ -27,15 +29,20 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
  */
 public class GraphicController {
 
-    // TBD, deactivated for now
-    //private Set<IView> allViews = new HashSet<IView>();
+    
+    private Set<GraphicView> allViews = new HashSet<GraphicView>();
     
     private static GraphicController me = null; 
     
     /**
      * Default constructor
      */
-    private GraphicController() { }
+    private GraphicController() { 
+        /**
+         * Debug Only !
+         */
+        this.register(LogView.createLogView());
+    }
     
     /**
      * Returns the controller
@@ -49,12 +56,14 @@ public class GraphicController {
 	return me;
     }
     
-    // TBD, deactivated for now
-    /*
-    public void register(IView view) {
-	allViews.add(view);
+    /**
+     * Register a view that will receive notification
+     * of any model changes.
+     * @param view
+     */
+    public void register(GraphicView view) {
+        allViews.add(view);
     }
-    */
     
     /**
      * Creates a UID
@@ -83,8 +92,12 @@ public class GraphicController {
      * @param value the property value
      * @return true if the property has been set, false otherwise
      */
-    public boolean setPropertyFast(String id, String prop, Object value) {
-    	return GraphicModel.getModel().setPropertyFast(id, prop, value);
+    public boolean setProperty(String id, String prop, Object value) {
+    	if (GraphicModel.getModel().setProperty(id, prop, value) == true) {
+    	    objectUpdate(id);
+    	    return true;
+    	}
+    	return false;
     }
 
     /**
@@ -93,21 +106,10 @@ public class GraphicController {
      * @param prop the property name
      * @return the property value
      */
-    public Object getPropertyFast(String id, String prop) {
-    	return GraphicModel.getModel().getPropertyFast(id, prop);
+    public Object getProperty(String id, String prop) {
+    	return GraphicModel.getModel().getProperty(id, prop);
     }
 
-    /**
-     * Sets a property
-     * @param id the object id
-     * @param prop the property name
-     * @param value the property value
-     */
-    public void setProperty(String id, String prop, Object value) {
-    	GraphicModel.getModel().setProperty(id, prop, value);
-    	objectUpdate(id);
-    }
-    
     /**
      * Returns a null property
      * @param id the object id
@@ -116,16 +118,6 @@ public class GraphicController {
      */
     public Object getNullProperty(String id, String prop) {
     	return GraphicModel.getModel().getNullProperty(id, prop);
-    }
-    
-    /**
-     * Returns a property
-     * @param id the object id
-     * @param prop the property name
-     * @return the property value
-     */
-	public Object getProperty(String id, String prop) {
-		return GraphicModel.getModel().getProperty(id, prop);
     }
     
 	/**
@@ -147,17 +139,10 @@ public class GraphicController {
      * @param id the created object's id
      */
     public void objectCreated(String id) {
-   	// TBD, deactivated for now
-    
-   	/*
-	Iterator<IView> itr = allViews.iterator();
-	while (itr.hasNext()) {
-		System.out.format("createObject: %s\n", id.toString());
-	    IView currentView = itr.next();
-	    currentView.createObject(id);
-	}
-	objectUpdate(id);
-	*/
+        Iterator<GraphicView> itr = allViews.iterator();
+        while (itr.hasNext()) {
+            itr.next().createObject(id);
+        }
     }
 
     /**
@@ -165,14 +150,10 @@ public class GraphicController {
      * @param id the updated object's id
      */
     public void objectUpdate(String id) {
-    	
-    // TBD, deactivated for now
-    /*
-	Iterator<IView> itr = allViews.iterator();
-	while (itr.hasNext()) {
-	    itr.next().updateObject(id);
-	}
-	*/
+        Iterator<GraphicView> itr = allViews.iterator();
+        while (itr.hasNext()) {
+            itr.next().updateObject(id);
+        }
     }
 
 
@@ -181,14 +162,10 @@ public class GraphicController {
      * @param id the deleted object's id
      */
     public void deleteObject(String id) {
-	   GraphicModel.getModel().deleteObject(id);
-	   
-	   // TBD, deactivated for now
-	   /*
-	   Iterator<IView> itr = allViews.iterator();
-		while (itr.hasNext()) {
-		    itr.next().deleteObject(id);
-		}
-		*/
+        GraphicModel.getModel().deleteObject(id);
+        Iterator<GraphicView> itr = allViews.iterator();
+        while (itr.hasNext()) {
+            itr.next().deleteObject(id);
+        }
     }
 }

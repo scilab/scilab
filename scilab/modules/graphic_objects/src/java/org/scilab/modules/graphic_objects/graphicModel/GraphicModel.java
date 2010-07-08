@@ -12,12 +12,11 @@
 
 package org.scilab.modules.graphic_objects.graphicModel;
 
-import java.rmi.server.UID;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.scilab.modules.graphic_objects.arc.Arc;
-import org.scilab.modules.graphic_objects.axes.*;
+import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.axis.Axis;
 import org.scilab.modules.graphic_objects.compound.Compound;
 import org.scilab.modules.graphic_objects.fec.Fec;
@@ -30,7 +29,8 @@ import org.scilab.modules.graphic_objects.label.Label;
 import org.scilab.modules.graphic_objects.legend.Legend;
 import org.scilab.modules.graphic_objects.polyline.Polyline;
 import org.scilab.modules.graphic_objects.rectangle.Rectangle;
-import org.scilab.modules.graphic_objects.surface.*;
+import org.scilab.modules.graphic_objects.surface.Fac3d;
+import org.scilab.modules.graphic_objects.surface.Plot3d;
 import org.scilab.modules.graphic_objects.textObject.Text;
 import org.scilab.modules.graphic_objects.vectfield.Champ;
 import org.scilab.modules.graphic_objects.vectfield.Segs;
@@ -85,37 +85,15 @@ public class GraphicModel {
     }
 
     /**
-     * Returns a property
-     * @param id the id of the object
-     * @param property the property name 
-     * @return the property value
-     */
-    public Object getProperty(String id, String property) {
-    	GraphicObject object = allObjects.get(id);
-    	return object.getProperty(property);
-    }
-
-    /**
-     * Sets a property
-     * @param id object id
-     * @param property property name
-     * @param value property value
-     */
-    public void setProperty(String id, String property, Object value) {
-    	GraphicObject object = allObjects.get(id);
-    	object.setProperty(property, value);
-    }
-
-    /**
      * Fast property get
      * @param id object id
      * @param property property name
      * @return property value
      */
-    public Object getPropertyFast(String id, String property) {
+    public Object getProperty(String id, String property) {
     	GraphicObject object = allObjects.get(id);
     	Object propertyType = object.getPropertyFromName(property);
-    	return object.getPropertyFast(propertyType);
+    	return object.getProperty(propertyType);
     }
 
     /**
@@ -125,10 +103,10 @@ public class GraphicModel {
      * @param value property value
      * @return true if the property has been set, false otherwise
      */
-    public boolean setPropertyFast(String id, String property, Object value) {
+    public boolean setProperty(String id, String property, Object value) {
     	GraphicObject object = allObjects.get(id);
     	Object propertyType = object.getPropertyFromName(property);
-    	return object.setPropertyFast(propertyType, value);
+    	return object.setProperty(propertyType, value);
     }
 
     /**

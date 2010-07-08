@@ -62,7 +62,7 @@ public class Arrow extends ContouredObject {
 	 * @param property the property to get
 	 * @return the property value
 	 */
-	public Object getPropertyFast(Object property) {
+	public Object getProperty(Object property) {
 		if (property == ArrowProperty.BASE) {
 			return getBase();
 		} else if (property == ArrowProperty.DIRECTION) {
@@ -70,7 +70,7 @@ public class Arrow extends ContouredObject {
 		} else if (property == ArrowProperty.ARROWSIZE) {
 			return getArrowSize();
 		} else {
-			return super.getPropertyFast(property);	
+			return super.getProperty(property);	
 		}
 	}
 
@@ -80,7 +80,7 @@ public class Arrow extends ContouredObject {
 	 * @param value the property value
 	 * @return true if the property has been set, false otherwise
 	 */
-	public boolean setPropertyFast(Object property, Object value) {
+	public boolean setProperty(Object property, Object value) {
 		if (property == ArrowProperty.BASE) {
 			setBase((Double[]) value);
 		} else if (property == ArrowProperty.DIRECTION) {
@@ -88,7 +88,7 @@ public class Arrow extends ContouredObject {
 		} else if (property == ArrowProperty.ARROWSIZE) {
 			setArrowSize((Double) value);
 		} else {
-			return super.setPropertyFast(property, value);
+			return super.setProperty(property, value);
 		}
 
 		return true;

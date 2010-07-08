@@ -12,7 +12,6 @@
 
 package org.scilab.modules.graphic_objects.graphicObject;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 /**
@@ -142,7 +141,7 @@ public abstract class GraphicObject {
 	 * @param property the property to get
 	 * @return the property value
 	 */
-	public Object getPropertyFast(Object property) {
+	public Object getProperty(Object property) {
 		if (property == GraphicObjectPropertyType.PARENT) {
 			return getParent();
 		} else if (property == GraphicObjectPropertyType.CHILDREN) {
@@ -166,7 +165,7 @@ public abstract class GraphicObject {
 	 * @param value the property value
 	 * @return true if the property has been set, false otherwise
 	 */
-	public boolean setPropertyFast(Object property, Object value) {
+	public boolean setProperty(Object property, Object value) {
 		if (property == GraphicObjectPropertyType.PARENT) {
 			setParent((GraphicObject) value);
 		} else if (property == GraphicObjectPropertyType.CHILDREN) {
@@ -185,41 +184,11 @@ public abstract class GraphicObject {
 	}
 
 	/**
-	 * Set property method
-	 * @param property property name
-	 * @param value property value
-	 */
-	public void setProperty(String property, Object value) {
-		try {
-			Method setter = this.getClass().getMethod("set" + property, value.getClass());
-			setter.invoke(this, value);
-		} catch (Exception e) {
-			System.err.println("Got Exception " + e.getMessage());
-			e.printStackTrace();
-		}
-	}
-
-	/**
 	 * Returns a null property
 	 * @param property property name
 	 * @return null property
 	 */
 	public Object getNullProperty(String property) {
-		return null;
-	}
-
-	/**
-	 * Get property method
-	 * @param property the property name string
-	 * @return the property value
-	 */
-	public Object getProperty(String property) {
-		try {
-			Method getter = this.getClass().getMethod("get" + property, (Class[]) null);
-			return getter.invoke(this, (Object[]) null);
-		} catch (Exception e) {
-			System.err.println("Got Exception " + e.getMessage());
-		} // TODO Auto-generated method stub
 		return null;
 	}
 
