@@ -39,6 +39,9 @@ Bug Fixes:
 
 * bug 7360 fixed - Modelica Hydraulics Xcos demo was not simulating.
 
+* bug 7372 fixed - No message was displayed in the Xcos info bar during the
+                   first drag and drop of a block (may take some times).
+
 * bug 7391 fixed - add links between help files about evstr, eval, execstr.
 
 * bug 7437 fixed - if history file was invalid, history browser crashed.

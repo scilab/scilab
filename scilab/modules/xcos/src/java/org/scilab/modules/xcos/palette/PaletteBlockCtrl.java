@@ -50,6 +50,7 @@ public final class PaletteBlockCtrl {
 	private static final Log LOG = LogFactory.getLog(PaletteBlockCtrl.class);
 	
 	private static final String UNABLE_TO_LOAD_BLOCK = Messages.gettext("Unable to load block from %s .");
+	private static final String LOADING_THE_BLOCK = Messages.gettext("Loading the block") + XcosMessages.DOTS;
 	
 	/*
 	 * Internal graph used to render each block.
@@ -185,28 +186,33 @@ public final class PaletteBlockCtrl {
 		// Install the handler for dragging nodes into a graph
 		DragGestureListener dragGestureListener = new DragGestureListener() {
 			public void dragGestureRecognized(DragGestureEvent e) {
+				final PaletteManagerView winView = PaletteManager.getInstance()
+						.getView();
+				final DragGestureEvent event = e;
+				final String msg = String.format(UNABLE_TO_LOAD_BLOCK,
+						getModel().getData().getEvaluatedPath());
+
+				winView.setInfo(LOADING_THE_BLOCK);
 				try {
-					// handle null case: the block cannot be loaded.
-					final Transferable transfer  = getTransferable();
+					Transferable transfer = getTransferable();
+
 					if (transfer != null) {
-						e.startDrag(null, mxConstants.EMPTY_IMAGE, new Point(),
+						event.startDrag(null, mxConstants.EMPTY_IMAGE, new Point(),
 								transfer, null);
 					} else {
-						final PaletteManagerView winView = PaletteManager
-								.getInstance().getView();
-						final String msg = String.format(UNABLE_TO_LOAD_BLOCK,
-								getModel().getData().getEvaluatedPath());
-						ScilabModalDialog.show(winView, msg,
-								XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
+						throw new NullPointerException();
 					}
 				} catch (InvalidDnDOperationException exception) {
-					LOG.warn(exception);
+					ScilabModalDialog.show(winView, msg,
+							XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
+				} finally {
+					winView.setInfo(XcosMessages.EMPTY_INFO);
 				}
 			}
 
 		};
 
-		DragSource dragSource = new DragSource();
+		DragSource dragSource = DragSource.getDefaultDragSource();
 		dragSource.createDefaultDragGestureRecognizer(this.getView(),
 				DnDConstants.ACTION_COPY, dragGestureListener);
 	}

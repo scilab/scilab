@@ -14,6 +14,7 @@ package org.scilab.modules.xcos.palette.view;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
+import javax.swing.RepaintManager;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
@@ -21,6 +22,7 @@ import javax.swing.tree.TreePath;
 import org.flexdock.docking.Dockable;
 import org.flexdock.docking.DockingManager;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -161,6 +163,14 @@ public class PaletteManagerView extends ScilabTab {
 	/** @param info the information to write on the infobar */
 	public void setInfo(String info) {
 		getAsSimpleTab().getInfoBar().setText(info);
+		
+		/*
+		 * Force repaint
+		 */
+		((SwingScilabTextBox) getAsSimpleTab().getInfoBar()
+				.getAsSimpleTextBox()).repaint();
+		RepaintManager.currentManager((SwingScilabTab) this.getAsSimpleTab())
+				.paintDirtyRegions();
 	}
 	
 	/**
