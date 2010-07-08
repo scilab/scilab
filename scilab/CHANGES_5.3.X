@@ -25,7 +25,7 @@ Bug Fixes:
 
 * bug 5366 fixed - help of modules_manager was not built.
 
-* bug 7121 fixed - update help file about saveafterncommands(0).
+* bug 7121 fixed - Update help file about saveafterncommands(0).
 
 * bug 7158 fixed - help chapter about texmacs was empty.
 
@@ -44,9 +44,9 @@ Bug Fixes:
 
 * bug 7391 fixed - add links between help files about evstr, eval, execstr.
 
-* bug 7437 fixed - if history file was invalid, history browser crashed.
+* bug 7437 fixed - If history file was invalid, history browser crashed.
 
-* bug 7441 fixed - history browser crashed if language was changed by user.
+* bug 7441 fixed - The history browser crashed if language was changed.
 
 * bug 7457 fixed - Under Linux and MacOS, the datatip mode icon was missing in
                    the graphic windows toolbar.
