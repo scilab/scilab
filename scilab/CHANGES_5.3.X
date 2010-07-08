@@ -26,6 +26,10 @@ SciNotes:
 
 * Add the possibility to restore the last session (thanks to Paul Griffiths)
 
+File input/output:
+==================
+
+* Rewrite 'mputl' as a built-in function for speed improvements. 
 
 Bug Fixes:
 ==========
@@ -45,6 +49,8 @@ Bug Fixes:
 * bug 6968 fixed - Modelica Chaos Xcos demo was not simulating.
 
 * bug 7121 fixed - Update help file about saveafterncommands(0).
+
+* bug 7124 fixed - mputl returned a wrong error message if file did not exist.
 
 * bug 7158 fixed - help chapter about texmacs was empty.
 
