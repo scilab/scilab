@@ -11,7 +11,6 @@
  *
  */
 #include <stdlib.h>
-#include "scilabmode.h"
 #include "realmain.h"
 #include "initMacOSXEnv.h"
 
@@ -34,9 +33,9 @@ typedef struct {
 /*
 Some parts of the next three functions have been taken from simpleJavaLauncher.
 
-                        
+
   Copyright:   ¬© Copyright 2003 Apple Computer, Inc. All rights reserved.
-  
+
   Disclaimer:  IMPORTANT:  This Apple software is supplied to you by Apple Computer, Inc.
         ("Apple") in consideration of your agreement to the following terms, and your
         use, installation, modification or redistribution of this Apple software
@@ -73,7 +72,7 @@ Some parts of the next three functions have been taken from simpleJavaLauncher.
         ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-/** 
+/**
  * Set the name of the application (the mac os x way)
  * @param name the name of the application
  */
@@ -169,20 +168,20 @@ static int launchMacOSXEnv(thread_parm_t *param){
     /* Call the actual startup script of Scilab */
     ret=StartScilabEngine(p->argc, p->argv, p->iFileIndex);
 	free(p);
-	exit(ret);  
+	exit(ret);
   }
   free(p);
   return ret;
 
-} 
+}
 
 /* call back for dummy source used to make sure the CFRunLoop doesn't exit right away */
 /* This callback is called when the source has fired. */
 static void sourceCallBack (  void *info  ) {}
 
 /* Specific wrapper for mac os X which is going to call realmin in a specific thread.
- * Takes the same args as realmain 
- */ 
+ * Takes the same args as realmain
+ */
 int initMacOSXEnv(int argc, char *argv[], int iFileIndex) {
 
   CFRunLoopSourceContext sourceContext;

@@ -57,7 +57,6 @@ libscishell_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
 if IS_MACOSX
 libscishell_la_CFLAGS += -msse2
 endif
->>>>>>> origin/master:scilab/modules/shell/Makefile.am
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)

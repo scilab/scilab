@@ -1100,8 +1100,6 @@ uninstall-am: uninstall-libscishell_la_etcDATA \
 	uninstall-libscishell_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
->>>>>>> origin/master:scilab/modules/shell/Makefile.am
-
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin
 	@COMMAND="test_run('$(modulename)');quit";\
