@@ -66,6 +66,8 @@ Bug Fixes:
 * bug 7481 fixed - 6th input argument of ilib_for_link did not allow to set 
                    library name on Windows.
 
+* bug 7491 fixed - Lines broken with a .. were not correctly handled and caused
+                   a freeze of SciNotes.
 
            Changes between version 5.2.X and 5.3.0-beta1 of Scilab
            =======================================================

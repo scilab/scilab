@@ -96,8 +96,6 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
         addUndoableEditListener(undo);
         undoManagerEnabled = true;
         contentModified = false;
-
-        funScanner = new FunctionScanner(this);
         addDocumentListener(this);
     }
 
@@ -551,11 +549,10 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * @return the element base
      */
     protected AbstractElement createDefaultRoot() {
+        funScanner = new FunctionScanner(this);
         BranchElement map = (BranchElement) createBranchElement(null, null);
-        Element line = super.createLeafElement(map, null, 0, 1);
-        Element[] lines = new Element[1];
-        lines[0] = line;
-        map.replace(0, 0, lines);
+        Element line = createLeafElement(map, null, 0, 1);
+        map.replace(0, 0, new Element[]{line});
         return map;
     }
 
@@ -599,6 +596,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
         private int type;
         private FunctionScanner.FunctionInfo info;
         private int start;
+        private boolean broken;
 
         /**
          * The same constructor as in LeafElement.
@@ -666,6 +664,20 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
          */
         public void setVisible(boolean b) {
             visible = b;
+        }
+
+        /**
+         * @return if this line is broken
+         */
+        public boolean isBroken() {
+            return broken;
+        }
+
+        /**
+         * @param b true if this line is broken
+         */
+        public void setBroken(boolean b) {
+            broken = b;
         }
 
         /**
