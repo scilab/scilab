@@ -23,7 +23,7 @@
     <HorizontalWrapAllowed useCache="true" value="false"/>
     <AutoIndent default="true" useCache="true" value="true"/>
     <AutoColorize default="true" useCach="true" value="true"/>
-    <DefaultEncoding value="UTF-8"/> <!-- Initialized to system default at first launch -->
+    <DefaultEncoding value="utf-8"/> <!-- Initialized to system default at first launch -->
 
     <!-- linecolor or contourcolor can be "null" to be transparent -->
     <LineHighlighter value="false" linecolor="#e4e9f4" contourcolor="#323232"/>
@@ -69,6 +69,11 @@
         <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
       </style>
 
+      <style name="Mail" underline="true" defaultUnderline="true">
+        <ForegroundColor default="#0000ff" useCache="true" value="#0000ff"/>
+        <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+      </style>
+
       <style name="Constantes">
         <ForegroundColor default="#da70d6" useCache="true" value="#da70d6"/>
         <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
@@ -99,9 +104,14 @@
         <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
       </style>
 
-      <style name="Command">
+      <style name="Primitive">
         <ForegroundColor default="#32b9b9" useCache="true" value="#32b9b9"/>
-        <FontStyle default="0" useCache="true" value="0"/> <!-- #b8860b 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+        <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+      </style>
+
+      <style name="Macro">
+        <ForegroundColor default="#ae5cb0" useCache="true" value="#ae5cb0"/>
+        <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
       </style>
 
       <style name="String">

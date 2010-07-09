@@ -36,88 +36,90 @@ import org.scilab.modules.scinotes.utils.SciNotesMessages;
  */
 public final class LoadIntoScilabAction extends DefaultAction {
 
-        /**
-         * serialVersionUID
-         */
-        private static final long serialVersionUID = -5659317486404897280L;
+    /**
+     * serialVersionUID
+     */
+    private static final long serialVersionUID = -5659317486404897280L;
 
-        private static final int MAX_LINES_RECOMMANDED = 100;
-        private static final int NB_STANDARD_COLUMNS = 80;
-        private static final int MAX_CHARACTERS_RECOMMANDED = MAX_LINES_RECOMMANDED * NB_STANDARD_COLUMNS;
+    private static final int MAX_LINES_RECOMMANDED = 100;
+    private static final int NB_STANDARD_COLUMNS = 80;
+    private static final int MAX_CHARACTERS_RECOMMANDED = MAX_LINES_RECOMMANDED * NB_STANDARD_COLUMNS;
 
-        /**
-         * Constructor
-         * @param editor SciNotes
-         */
-        private LoadIntoScilabAction(SciNotes editor) {
-                super(SciNotesMessages.LOAD_INTO_SCILAB, editor);
+    /**
+     * Constructor
+     * @param name the name of the action
+     * @param editor SciNotes
+     */
+    public LoadIntoScilabAction(String name, SciNotes editor) {
+        super(name, editor);
+    }
+
+    /**
+     * doAction
+     */
+    public void doAction() {
+        String text = getEditor().getTextPane().getText();
+
+        if (text.compareTo("") != 0) {
+            boolean bContinue = false;
+
+            if (maxLinesRecommandedDetected(text)) {
+                if (ScilabModalDialog.show(getEditor(), SciNotesMessages.BIG_FILE_WARNING, SciNotesMessages.LOAD_INTO_SCILAB,
+                                           IconType.QUESTION_ICON, ButtonType.YES_NO) == AnswerOption.YES_OPTION) {
+                    bContinue = true;
+                } else {
+                    bContinue = false;
+                }
+            } else {
+                bContinue = true;
+            }
+
+            if (bContinue) {
+                String tmpFilename = "LOAD_INTO_SCILAB-";
+
+                // save file as UTF-8
+                try {
+                    File f = File.createTempFile(tmpFilename, ".sce");
+                    String tmpFullFilename = f.getAbsolutePath();
+                    OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(f) , "UTF-8");
+                    out.write(text);
+                    out.flush();
+                    out.close();
+                    String cmdToExec = "exec('" + tmpFullFilename + "', 1)";
+                    InterpreterManagement.requestScilabExec(cmdToExec);
+                } catch (IOException e) {
+                    ScilabModalDialog.show(getEditor(), SciNotesMessages.COULD_NOT_FIND_TMPFILE);
+                }
+            }
+        }
+    }
+
+    /**
+     * createMenu
+     * @param label label of the menu
+     * @param editor SciNotes
+     * @param key KeyStroke
+     * @return MenuItem
+     */
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new LoadIntoScilabAction(label, editor), key);
+    }
+
+    /**
+     * check if string is not too big
+     * @param text to scan
+     * @return true or false
+     */
+    private static boolean maxLinesRecommandedDetected(String text) {
+        if (text.length() > MAX_CHARACTERS_RECOMMANDED) {
+            return true;
         }
 
-        /**
-         * doAction
-         */
-        public void doAction() {
-                String text = getEditor().getTextPane().getText();
-
-                if (text.compareTo("") != 0) {
-                        boolean bContinue = false;
-
-                        if (maxLinesRecommandedDetected(text)) {
-                                if (ScilabModalDialog.show(getEditor(), SciNotesMessages.BIG_FILE_WARNING, SciNotesMessages.LOAD_INTO_SCILAB,
-                                 IconType.QUESTION_ICON, ButtonType.YES_NO) == AnswerOption.YES_OPTION) {
-                                        bContinue = true;
-                                } else {
-                                        bContinue = false;
-                                }
-                        } else {
-                                bContinue = true;
-                        }
-
-                        if (bContinue) {
-                            String tmpFilename = "LOAD_INTO_SCILAB-";
-
-                                // save file as UTF-8
-                                try {
-                                        File f = File.createTempFile(tmpFilename, ".sce");
-                                        String tmpFullFilename = f.getAbsolutePath();
-                                        OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(f) , "UTF-8");
-                                        out.write(text);
-                                        out.flush();
-                                        out.close();
-                                        String cmdToExec = "exec('" + tmpFullFilename + "', 1)";
-                                        InterpreterManagement.requestScilabExec(cmdToExec);
-                                } catch (IOException e) {
-                                        ScilabModalDialog.show(getEditor(), SciNotesMessages.COULD_NOT_FIND_TMPFILE);
-                                }
-                        }
-                }
+        String[] splitedStringOnLineSeparator = text.split(System.getProperty("line.separator"));
+        if (splitedStringOnLineSeparator.length > MAX_LINES_RECOMMANDED) {
+            return true;
         }
 
-        /**
-         * createMenu
-         * @param editor SciNotes
-         * @param key KeyStroke
-         * @return MenuItem
-         */
-         public static MenuItem createMenu(SciNotes editor, KeyStroke key) {
-                return createMenu(SciNotesMessages.LOAD_INTO_SCILAB, null, new LoadIntoScilabAction(editor), key);
-         }
-
-         /**
-          * check if string is not too big
-          * @param text to scan
-          * @return true or false
-          */
-        private static boolean maxLinesRecommandedDetected(String text) {
-               if (text.length() > MAX_CHARACTERS_RECOMMANDED) {
-                        return true;
-                }
-
-                String[] splitedStringOnLineSeparator = text.split(System.getProperty("line.separator"));
-                if (splitedStringOnLineSeparator.length > MAX_LINES_RECOMMANDED) {
-                        return true;
-                }
-
-                return false;
-        }
+        return false;
+    }
 }

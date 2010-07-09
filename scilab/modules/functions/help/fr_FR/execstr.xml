@@ -134,7 +134,7 @@ end
         <link linkend="whereami">whereami</link>
       </member>
       <member>
-        <link linkend="execstr">execstr</link>
+        <link linkend="evstr">evstr</link>
       </member>
     </simplelist>
   </refsection>

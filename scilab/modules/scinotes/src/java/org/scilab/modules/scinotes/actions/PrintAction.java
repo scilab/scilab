@@ -22,7 +22,6 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.utils.PrinterWriter;
 import org.scilab.modules.scinotes.SciNotes;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
  * Class Print action for SciNotes
@@ -31,65 +30,69 @@ import org.scilab.modules.scinotes.utils.SciNotesMessages;
  */
 public class PrintAction extends DefaultAction {
 
-	/**
-	 * Default constructor
-	 * @param editor the editor
-	 */
-	private PrintAction(SciNotes editor) {
-		super(SciNotesMessages.PRINT, editor);
-	}
+    /**
+     * Default constructor
+     * @param name the name of the action
+     * @param editor the editor
+     */
+    public PrintAction(String name, SciNotes editor) {
+        super(name, editor);
+    }
 
-	/**
-	 * Function doAction
-	 */
-	public void doAction() {
-		printSciNotesDocument(getEditor());
-	}
+    /**
+     * Function doAction
+     */
+    public void doAction() {
+        printSciNotesDocument(getEditor());
+    }
 
-	/**
-	 * Create the MenuItem for print action
-	 * @param editor Editor
-	 * @param key KeyStroke
-	 * @return a MenuItem
-	 */
-        public static MenuItem createMenu(SciNotes editor, KeyStroke key) {
-	    return createMenu(SciNotesMessages.PRINT, null, new PrintAction(editor), key);
-	}
+    /**
+     * Create the MenuItem for print action
+     * @param label label of the menu
+     * @param editor Editor
+     * @param key KeyStroke
+     * @return a MenuItem
+     */
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new PrintAction(label, editor), key);
+    }
 
-	/**
-	 * Create print button
-	 * @param editor Editor
-	 * @return a pushbutton
-	 */
-	public static PushButton createButton(SciNotes editor) {
-		return createButton(SciNotesMessages.PRINT, "document-print.png", new PrintAction(editor));
-	}
+    /**
+     * createButton
+     * @param tooltip the tooltip
+     * @param icon an icon name searched in SCI/modules/gui/images/icons/
+     * @param editor SciNotes
+     * @return PushButton
+     */
+    public static PushButton createButton(String tooltip, String icon, SciNotes editor) {
+        return createButton(tooltip, icon, new PrintAction(tooltip, editor));
+    }
 
-	/**
-	 * This function allow to print a document
-	 * by calling a printer job
-	 * @param editor Editor
-	 * @return a boolean
-	 */
-	public static boolean printSciNotesDocument(SciNotes editor) {
+    /**
+     * This function allow to print a document
+     * by calling a printer job
+     * @param editor Editor
+     * @return a boolean
+     */
+    public static boolean printSciNotesDocument(SciNotes editor) {
 
-		PrinterJob printTask = PrinterJob.getPrinterJob();
+        PrinterJob printTask = PrinterJob.getPrinterJob();
 
-		PageFormat pageFormat = PageSetupAction.getPageFormat();
-		if (pageFormat != null) {
-			printTask.setPrintable(new PrinterWriter(editor.getTextPane()), pageFormat);
-		} else {
-			printTask.setPrintable(new PrinterWriter(editor.getTextPane()));
-		}
+        PageFormat pageFormat = PageSetupAction.getPageFormat();
+        if (pageFormat != null) {
+            printTask.setPrintable(new PrinterWriter(editor.getTextPane()), pageFormat);
+        } else {
+            printTask.setPrintable(new PrinterWriter(editor.getTextPane()));
+        }
 
-		if (printTask.printDialog()) { 
-			try {
-				printTask.print();
-			} catch (PrinterException e) {
-				e.printStackTrace();
-				return false;
-			}
-		}
-		return true;
-	}
+        if (printTask.printDialog()) {
+            try {
+                printTask.print();
+            } catch (PrinterException e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
+        return true;
+    }
 }

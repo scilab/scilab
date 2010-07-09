@@ -12,6 +12,10 @@
 
 package org.scilab.modules.scinotes.actions;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 import javax.swing.text.BadLocationException;
 
@@ -20,7 +24,6 @@ import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabLexerConstants;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.KeywordEvent;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
 import org.scilab.modules.action_binding.InterpreterManagement;
 
 /**
@@ -28,35 +31,45 @@ import org.scilab.modules.action_binding.InterpreterManagement;
  * @author Calixte DENIZET
  */
 public class HelpOnKeywordAction extends DefaultAction {
-    
+
     /**
      * Constructor
+     * @param name the name of the action
      * @param editor SciNotes
      */
-    private HelpOnKeywordAction(SciNotes editor) {
-	super(SciNotesMessages.HELP_ON_KEYWORD, editor);
+    public HelpOnKeywordAction(String name, SciNotes editor) {
+        super(name, editor);
     }
-    
+
     /**
      * doAction
      */
     public void doAction() {
-	KeywordEvent kwe = ((ScilabEditorPane) getEditor().getTextPane()).getKeywordEvent();
-	if (ScilabLexerConstants.isHelpable(kwe.getType())) {
-	    try {
-		String kw = getEditor().getTextPane().getDocument().getText(kwe.getStart(), kwe.getLength());
-	    InterpreterManagement.requestScilabExec("help('" + kw + "')");    
-	    } catch (BadLocationException e) { }
-	}
+        KeywordEvent kwe = ((ScilabEditorPane) getEditor().getTextPane()).getKeywordEvent();
+        if (ScilabLexerConstants.isHelpable(kwe.getType())) {
+            try {
+                String kw = getEditor().getTextPane().getDocument().getText(kwe.getStart(), kwe.getLength());
+            InterpreterManagement.requestScilabExec("help('" + kw + "')");
+            } catch (BadLocationException e) { }
+        }
     }
-    
+
     /**
      * createMenu
+     * @param label label of the menu
      * @param editor SciNotes
      * @param key Keystroke
      * @return MenuItem
      */
-    public static MenuItem createMenu(SciNotes editor, KeyStroke key) {
-	return createMenu(SciNotesMessages.HELP_ON_KEYWORD, null, new HelpOnKeywordAction(editor), key);
+    public static MenuItem createMenu(String label, final SciNotes editor, KeyStroke key) {
+        final MenuItem menuitem = createMenu(label, null, new HelpOnKeywordAction(label, editor), key);
+        ((JMenuItem) menuitem.getAsSimpleMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
+                public void propertyChange(PropertyChangeEvent e) {
+                    KeywordEvent kwe = ((ScilabEditorPane) editor.getTextPane()).getKeywordEvent();
+                    menuitem.setEnabled(ScilabLexerConstants.isHelpable(kwe.getType()));
+                }
+            });
+
+        return menuitem;
     }
 }

@@ -89,7 +89,7 @@ xcos();
     </programlisting>
   </refsection>
 
-  <refsection id="Authors_get_scicos_version">
+  <refsection id="Authors_getModelicaPath">
     <title>Authors</title>
 
     <para><emphasis role="bold">Jérôme Picard</emphasis> - "DIGITEO"</para>

@@ -42,7 +42,9 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
 	private static final String[] SUPERBLOCKDIAGRAM_IGNORED_FIELDS = {
 			"stylesheet", "parentTab", "viewPort", "viewPortMenu", "view",
 			"selectionModel", "multiplicities", "opened", "modified",
-			"undoManager", "savedFile", "container"};
+			"undoManager", "savedFile", "container",
+			"integratorAbsoluteTolerance", "integratorRelativeTolerance",
+			"maxIntegrationTimeInterval", "toleranceOnTime" };
 	// CSON: MultipleStringLiterals
 
 	/**

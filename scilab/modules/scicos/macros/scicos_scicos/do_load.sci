@@ -127,11 +127,11 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
   
   if ierr<>0 then
     if ext=='xml' then
-      messagebox([msprintf(_('An error has occured during parsing of file %s.\n'+..
+      messagebox([msprintf(_('An error has occurred during parsing of file %s.\n'+..
 			     'Please check the format of your XML file\n'),fname)
 		  lasterror()],"modal")
     else
-      messagebox([msprintf(_('An error has occured during loading of file %s.\n'),fname)
+      messagebox([msprintf(_('An error has occurred during loading of file %s.\n'),fname)
 		  lasterror()],"modal")
     end
     ok=%f
@@ -156,7 +156,7 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
   //##update version
   [ierr,scicos_ver,scs_m]=update_version(scs_m)
   if ierr<>0 then
-    messagebox('An error has occured during the update of '+name+'.', 'modal')
+    messagebox('An error has occurred during the update of '+name+'.', 'modal')
     ok=%f
     scs_m = get_new_scs_m();
     //scs_m=scicos_diagram(version=current_version)
@@ -302,7 +302,7 @@ for i=1:n
     sim=o.model.sim;
     ierr=execstr('o='+o.gui+'(""define"",o);','errcatch');
      if ierr<>0 then
-       messagebox([_('An error occured while opening the diagram:');
+       messagebox([_('An error occurred while opening the diagram:');
 		   lasterror();
 		   _('The diagram will not be opened')],'error','modal')
        ok=%f;
@@ -332,7 +332,7 @@ for i=1:n
     else
      ierr=execstr('o='+o.gui+'(""set"",o);','errcatch');
      if ierr<>0 then
-       messagebox([_('An error occured while opening the diagram:');
+       messagebox([_('An error occurred while opening the diagram:');
 		   lasterror();
 		   _('The diagram will not be opened')],'error','modal')
        ok=%f;

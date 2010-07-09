@@ -295,7 +295,16 @@ public final class Xcos {
 		if (status) {
 		    diagram.setOpened(false);
 		    diagrams.remove(diagram);
+		    
 		    if (diagrams.isEmpty()) {
+		    	Xcos.closeSession();
+		    } else {
+		    	// we must also close the session is no diagram is visible
+		    	for (XcosDiagram diag : diagrams) {
+					if (diag.getParentTab() != null) {
+						return true;
+					}
+		    	}
 		    	Xcos.closeSession();
 		    }
 		    return true;

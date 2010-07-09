@@ -29,7 +29,9 @@ public class RoundBlock extends BasicBlock {
 	/**
 	 * Default constructor
 	 */
-	public RoundBlock() { }
+	public RoundBlock() {
+		super();
+	}
 	
 	/**
 	 * Set default values

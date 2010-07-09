@@ -45,7 +45,6 @@ MSGMERGE=/usr/bin/msgmerge
 FROM_CODE=ISO-8859-1
 EXTENSIONS=( c h cpp hxx java sci sce start quit )
 TARGETDIR=locales/
-LANGS=( fr_FR )
 HEADER_TEMPLATE=$SCI/modules/localization/locales/en_US/header.pot
 GUI_FILES="etc/*.xml"
 FAKE_C_FILE=scilab_fake_localization_file.c
@@ -127,26 +126,7 @@ for MODULE in $MODULES; do
 	fi
 	cat $LOCALIZATION_FILE_US.tmp >> $LOCALIZATION_FILE_US
 	rm $LOCALIZATION_FILE_US.tmp
-	if test -z "$NOSTRING"; then
-# merge/create the other locales
-		for l in $LANGS; do
-			DIR_LANG=$TARGETDIR/$l/
-			LOCALIZATION_FILE_LANG=$DIR_LANG/$MODULE_NAME.po
-			if test -f $LOCALIZATION_FILE_LANG; then
-				echo "........ Merging new locales for $l"
-				$MSGMERGE $LOCALIZATION_FILE_LANG $LOCALIZATION_FILE_US --sort-output --output-file $LOCALIZATION_FILE_LANG > /dev/null
-			else
-				echo "........ Localization file for $l in this module not existing"
-				echo "........ Creating it ..."
-				if test ! -d $DIR_LANG; then
-					# Locale dir doesn't exist
-					mkdir $DIR_LANG
-				fi
-				# Copy the current english localization as default
-				cp $LOCALIZATION_FILE_US $LOCALIZATION_FILE_LANG
-			fi
-		done #Browse langs
-	fi
+
 	# Remove fake file used to extract string from XML
 	rm $FAKE_C_FILE
 	cd $SCI/

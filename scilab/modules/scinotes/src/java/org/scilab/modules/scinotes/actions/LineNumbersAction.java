@@ -12,11 +12,11 @@
  */
 package org.scilab.modules.scinotes.actions;
 
+import java.util.StringTokenizer;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.scinotes.SciNotes;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 
 /**
@@ -31,15 +31,20 @@ public final class LineNumbersAction extends DefaultAction {
      */
     private static final long serialVersionUID = -2778300710964013775L;
 
+    private static String labelWhereami = "";
+    private static String labelNormal = "";
+    private static String labelNoLine = "";
+
     private MenuItem menu;
     private int state = 1;
 
     /**
      * Construtor
+     * @param name the name of the action
      * @param editor SciNotes
      */
-    private LineNumbersAction(SciNotes editor) {
-        super(SciNotesMessages.LINE_NUMBERS_WHEREAMI, editor);
+    public LineNumbersAction(String name, SciNotes editor) {
+        super(name, editor);
     }
 
     /**
@@ -53,13 +58,18 @@ public final class LineNumbersAction extends DefaultAction {
 
     /**
      * createMenu
+     * @param label label of the menu
      * @param editor SciNotes
      * @param key KeyStroke
      * @return createMenu
      */
-    public static MenuItem createMenu(SciNotes editor, KeyStroke key) {
-        LineNumbersAction ln = new LineNumbersAction(editor);
-        MenuItem mi = createMenu(SciNotesMessages.LINE_NUMBERS_WHEREAMI, null, ln, key);
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        StringTokenizer tokens = new StringTokenizer(label, ";");
+        labelWhereami = tokens.nextToken();
+        labelNormal = tokens.nextToken();
+        labelNoLine = tokens.nextToken();
+        LineNumbersAction ln = new LineNumbersAction(labelWhereami, editor);
+        MenuItem mi = createMenu(label, null, ln, key);
         ln.state = ConfigSciNotesManager.getLineNumberingState();
         ln.menu = mi;
         ln.setMenu();
@@ -73,13 +83,13 @@ public final class LineNumbersAction extends DefaultAction {
         state = (state + 1) % 3;
         switch (state) {
         case 0 :
-            menu.setText(SciNotesMessages.LINE_NUMBERS_NOWHEREAMI);
+            menu.setText(labelNormal);
             break;
         case 1 :
-            menu.setText(SciNotesMessages.LINE_NUMBERS_WHEREAMI);
+            menu.setText(labelWhereami);
             break;
         default :
-            menu.setText(SciNotesMessages.NO_LINE_NUMBERS);
+            menu.setText(labelNoLine);
         }
     }
 }

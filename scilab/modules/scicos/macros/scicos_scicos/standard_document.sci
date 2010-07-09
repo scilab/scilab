@@ -219,7 +219,7 @@ function texte = standard_document(objet, k)
 
       //- Sorties standard
       for i = 1 : min(size(modele.out,'*'),size(graphique.pout,'*'))
-        //General informations.
+        //General information.
         txt = ['Regular output', string(i)]
         // Info. for implicit/explicit port
         ierr=execstr('tt=string(graphique.out_implicit(i))','errcatch')
@@ -343,8 +343,8 @@ function texte = standard_document(objet, k)
       values=[sous_type;
 	      identification;
 	      string(k)];
-      texte = [_('General informations');
-	       part('-',ones(1,length(_('General informations'))))
+      texte = [_('General information');
+	       part('-',ones(1,length(_('General information'))))
                ' '
                part(labels,1:max(length(labels)+10))+':'+values]
 

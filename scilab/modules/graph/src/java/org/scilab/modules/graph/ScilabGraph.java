@@ -17,7 +17,6 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
-import org.scilab.modules.jvm.utils.ScilabConstants;
 import org.scilab.modules.graph.utils.ScilabGraphConstants;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.graph.view.ScilabGraphView;
@@ -205,11 +204,15 @@ public class ScilabGraph extends mxGraph {
 	/**
 	 * @param component The graphical component associated with this graph
 	 */
-	protected void setComponent(ScilabComponent component) {
+	public void setComponent(ScilabComponent component) {
 		this.component = component;
 		
-		// Adds rubberband selection
-		rubberBand = new mxRubberband(component);
+		if (component != null) {
+			// Adds rubberband selection
+			rubberBand = new mxRubberband(component);
+		} else {
+			rubberBand = null;
+		}
 	}
 
 	/**

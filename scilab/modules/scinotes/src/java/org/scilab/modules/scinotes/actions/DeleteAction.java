@@ -12,46 +12,49 @@
 
 package org.scilab.modules.scinotes.actions;
 
+import javax.swing.KeyStroke;
 import javax.swing.text.DefaultEditorKit;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.scinotes.SciNotes;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
- * 
+ * Delete action
  * @author Bruno JOFRET
  *
  */
 public final class DeleteAction extends DefaultAction {
 
-	/**
-	 * serialVersionUID
-	 */
-	private static final long serialVersionUID = -1818764947112443369L;
+    /**
+     * serialVersionUID
+     */
+    private static final long serialVersionUID = -1818764947112443369L;
 
-	/**
-	 * Constructor
-	 * @param editor SciNotes
-	 */
-	private DeleteAction(SciNotes editor) {
-	super(SciNotesMessages.DELETE, editor);
+    /**
+     * Constructor
+     * @param name the name of the action
+     * @param editor SciNotes
+     */
+    public DeleteAction(String name, SciNotes editor) {
+        super(name, editor);
     }
-    
-	/**
-	 * DoAction
-	 */
+
+    /**
+     * DoAction
+     */
     public void doAction() {
-	getEditor().getTextPane().getActionMap().get(DefaultEditorKit.deleteNextCharAction).actionPerformed(null);
+        getEditor().getTextPane().getActionMap().get(DefaultEditorKit.deleteNextCharAction).actionPerformed(null);
     }
 
     /**
      * createMenu
+     * @param label label of the menu
      * @param editor SciNotes
+     * @param key KeyStroke
      * @return MenuItem
      */
-    public static MenuItem createMenu(SciNotes editor) {
-	return createMenu(SciNotesMessages.DELETE, null, new DeleteAction(editor), null);
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new DeleteAction(label, editor), key);
     }
-    
+
 }

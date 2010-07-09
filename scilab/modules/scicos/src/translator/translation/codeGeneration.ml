@@ -44,7 +44,7 @@
       and abstract relations in a file named filename_relations.xml.
       {ul
         {- [ generate_flatten_XML ]: Generates an XML description of initialization problem }
-        {- [ generate_relations ]: Generates an XML description of abstract relations and other informations }
+        {- [ generate_relations ]: Generates an XML description of abstract relations and other information }
       }
     }
     }

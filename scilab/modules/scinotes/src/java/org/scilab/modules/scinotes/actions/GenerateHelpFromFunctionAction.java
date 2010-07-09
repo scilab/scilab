@@ -23,7 +23,6 @@ import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.FunctionScanner;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
  * Generate help from a function definition
@@ -34,7 +33,7 @@ public class GenerateHelpFromFunctionAction extends DefaultAction {
     /**
      * The help template
      */
-    public static final String template = "//\n"
+    public static final String TEMPLATE = "//\n"
         + "//\n"
         + "// Calling Sequence\n"
         + "// [returnValues] = functionName(argsValues) // \n"
@@ -57,10 +56,11 @@ public class GenerateHelpFromFunctionAction extends DefaultAction {
 
     /**
      * Constructor
+     * @param name the name of the action
      * @param editor SciNotes
      */
-    private GenerateHelpFromFunctionAction(SciNotes editor) {
-        super(SciNotesMessages.GENERATE_HELP, editor);
+    public GenerateHelpFromFunctionAction(String name, SciNotes editor) {
+        super(name, editor);
     }
 
     /**
@@ -76,7 +76,7 @@ public class GenerateHelpFromFunctionAction extends DefaultAction {
             ScilabDocument.ScilabLeafElement se = (ScilabDocument.ScilabLeafElement) e;
             if (se.isFunction()) {
                 FunctionScanner.FunctionInfo info = se.getFunctionInfo();
-                String help = template.replaceFirst("functionName", info.functionName);
+                String help = TEMPLATE.replaceFirst("functionName", info.functionName);
                 help = help.replaceFirst("returnValues", generateList(info.returnValues, ", ", ""));
                 help = help.replaceFirst("argsValues", generateList(info.argsValues, ", ", ""));
                 help = help.replaceFirst("returnValuesOnColumn", generateList(info.returnValues, ": \n// ", ": "));
@@ -98,7 +98,7 @@ public class GenerateHelpFromFunctionAction extends DefaultAction {
      */
     private String generateList(List<String> list, String sep, String end) {
         String str = "";
-        for(int i = 0; i < list.size() - 1; i++) {
+        for (int i = 0; i < list.size() - 1; i++) {
             str += list.get(i) + sep;
         }
         if (list.size() >= 1) {
@@ -110,11 +110,12 @@ public class GenerateHelpFromFunctionAction extends DefaultAction {
 
     /**
      * createMenu
+     * @param label label of the menu
      * @param editor SciNotes
      * @param key Keystroke
      * @return MenuItem
      */
-    public static MenuItem createMenu(SciNotes editor, KeyStroke key) {
-        return createMenu(SciNotesMessages.GENERATE_HELP, null, new GenerateHelpFromFunctionAction(editor), key);
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new GenerateHelpFromFunctionAction(label, editor), key);
     }
 }

@@ -28,8 +28,6 @@ import javax.swing.KeyStroke;
 
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.ui_data.variableeditor.ScilabVariableEditor;
-import org.scilab.modules.ui_data.variableeditor.renderers.ScilabDoubleRenderer;
-import org.scilab.modules.ui_data.variableeditor.renderers.ScilabStringRenderer;
 
 /**
  * class VariableEditorCellEditor

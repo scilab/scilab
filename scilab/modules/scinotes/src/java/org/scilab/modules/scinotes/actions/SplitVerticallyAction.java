@@ -16,7 +16,6 @@ import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.scinotes.SciNotes;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
  * Split vertically
@@ -24,29 +23,31 @@ import org.scilab.modules.scinotes.utils.SciNotesMessages;
  */
 public final class SplitVerticallyAction extends DefaultAction {
 
-        /**
-         * Constructor
-         * @param editor associated editor
-         */
-        public SplitVerticallyAction(SciNotes editor) {
-                super(SciNotesMessages.SPLIT_VERTICALLY, editor);
-        }
+    /**
+     * Constructor
+     * @param name the name of the action
+     * @param editor associated editor
+     */
+    public SplitVerticallyAction(String name, SciNotes editor) {
+        super(name, editor);
+    }
 
-        /**
-         * Create the MenuItem
-         * @param editor Editor
-         * @param key KeyStroke
-         * @return a MenuItem
-         */
-        public static MenuItem createMenu(SciNotes editor, KeyStroke key) {
-            return createMenu(SciNotesMessages.SPLIT_VERTICALLY, null, new SplitVerticallyAction(editor), key);
-        }
+    /**
+     * Create the MenuItem
+     * @param label label of the menu
+     * @param editor Editor
+     * @param key KeyStroke
+     * @return a MenuItem
+     */
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new SplitVerticallyAction(label, editor), key);
+    }
 
-        /**
-         * Action !!
-         * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
-         */
-        public void doAction() {
-            getEditor().splitTab(true);
-        }
+    /**
+     * Action !!
+     * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+     */
+    public void doAction() {
+        getEditor().splitTab(true);
+    }
 }

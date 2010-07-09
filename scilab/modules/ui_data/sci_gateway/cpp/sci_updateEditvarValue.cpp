@@ -205,6 +205,7 @@ int sci_updateEditvarValue(char *fname,unsigned long fname_len)
 
     int iType = 0;
     void* pVarFour = NULL;
+    void* pImgVarFour = NULL;
     int *piAddressVarFour = NULL;
     int m4 = 0, n4 = 0;
     /* get address */
@@ -230,30 +231,51 @@ int sci_updateEditvarValue(char *fname,unsigned long fname_len)
         if(iComplex)
         {
             /* get size and data from Scilab memory */
-            /* sciErr = getComplexMatrixOfDouble(pvApiCtx, piAddr, &m4, &n4, &pdblReal, &pdblImg);*/
-            Scierror(42,"Complex not handle by editvar yet");
-            return 0;
-        
+            sciErr = getComplexMatrixOfDouble(pvApiCtx,
+                                            piAddressVarFour,
+                                            &m4,
+                                            &n4,
+                                            (double**)&pVarFour,
+                                            (double**)&pImgVarFour);
+
+            if(sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 0;
+            }
+
+            /* Launch Java Variable Editor through JNI */
+            EditVar::updateVariableEditorComplex(getScilabJavaVM(),
+                                          pStVarOne,
+                                          (int)pdblVarTwo[0],
+                                          (int)pdblVarThree[0],
+                                          ((double*)pVarFour)[0],
+                                          ((double*)pImgVarFour)[0],
+                                          (int)pdblVarFive[0]);
+                   
         }
         else
         {
             /* get size and data from Scilab memory */
             sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarFour, &m4, &n4, (double**)&pVarFour);
+
+            if(sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 0;
+            }
+
+            /* Launch Java Variable Editor through JNI */
+            EditVar::updateVariableEditorDouble(getScilabJavaVM(),
+                                          pStVarOne,
+                                          (int)pdblVarTwo[0],
+                                          (int)pdblVarThree[0],
+                                          ((double*)pVarFour)[0],
+                                          (int)pdblVarFive[0]);
+            
         }
 
-        if(sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            return 0;
-        }
 
-        /* Launch Java Variable Editor through JNI */
-        EditVar::updateVariableEditorDouble(getScilabJavaVM(),
-                                      pStVarOne,
-                                      (int)pdblVarTwo[0],
-                                      (int)pdblVarThree[0],
-                                      ((double*)pVarFour)[0],
-                                      (int)pdblVarFive[0]);
 
         break;
 

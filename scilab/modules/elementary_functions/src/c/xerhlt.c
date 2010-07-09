@@ -12,6 +12,9 @@
 
 /*--------------------------------------------------------------------------*/ 
 #include <string.h>
+#if defined(__linux__)
+#define __USE_FORTIFY_LEVEL 0 /* Avoid dependency on GLIBC_2.11 (__longjmp_chk) */
+#endif
 #include <setjmp.h>
 #include "xerhlt.h"
 /*--------------------------------------------------------------------------*/ 
@@ -19,7 +22,7 @@ jmp_buf slatec_jmp_env;
 /*--------------------------------------------------------------------------*/ 
 void C2F(xerhlt) (char *messg, unsigned long l)
 {
-  longjmp(slatec_jmp_env,1); 
+    longjmp(slatec_jmp_env,1); 
 }
 /*--------------------------------------------------------------------------*/ 
 int setjmp_slatec_jmp_env(void)

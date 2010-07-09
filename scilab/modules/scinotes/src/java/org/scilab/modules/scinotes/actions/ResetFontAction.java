@@ -15,19 +15,31 @@ package org.scilab.modules.scinotes.actions;
 
 import java.awt.Font;
 import java.util.List;
+import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
+/**
+ * ResetFontAction Class
+ * @author Calixte DENIZET
+ */
 public class ResetFontAction extends DefaultAction {
 
-    private ResetFontAction(SciNotes editor) {
-        super(SciNotesMessages.RESET_DEFAULT_FONT, editor);
+    /**
+     * Constructor
+     * @param name the name of the action
+     * @param editor SciNotes
+     */
+    public ResetFontAction(String name, SciNotes editor) {
+        super(name, editor);
     }
 
+    /**
+     * doAction
+     */
     public void doAction() {
         Font oldFont = ConfigSciNotesManager.getDefaultFont();
         List<String> listStylesName = ConfigSciNotesManager.getAllStyleName();
@@ -50,8 +62,15 @@ public class ResetFontAction extends DefaultAction {
         ConfigSciNotesManager.saveFont(oldFont);
     }
 
-    public static MenuItem createMenu(SciNotes editor) {
-        return createMenu(SciNotesMessages.RESET_DEFAULT_FONT, null, new ResetFontAction(editor), null);
+    /**
+     * createMenu
+     * @param label label of the menu
+     * @param editor SciNotes
+     * @param key KeyStroke
+     * @return a MenuItem
+     */
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new ResetFontAction(label, editor), key);
     }
 
 }

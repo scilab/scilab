@@ -22,31 +22,36 @@ import javax.swing.text.Element;
 %switch
 
 %{
-    public int start = 0;
+    public int start;
+    public int end;
     public int beginString;
     public static Set<String> commands = new HashSet();
+    public static Set<String> macros = new HashSet();
     public static Set<String> variables = new HashSet();
 
-    private ScilabDocument doc = null;
-    private boolean transposable = false;
+    private ScilabDocument doc;
+    private boolean transposable;
     private Element elem;
-    private int breakstring = -2;
+    private boolean breakstring;
 
     public ScilabLexer(ScilabDocument doc) {
         this.doc = doc;
         this.elem = doc.getDefaultRootElement();
         variables.addAll(Arrays.asList(ScilabKeywords.GetVariablesName()));
         commands.addAll(Arrays.asList(ScilabKeywords.GetFunctionsName()));
-        commands.addAll(Arrays.asList(ScilabKeywords.GetMacrosName()));
-        Iterator<String> iter = commands.iterator();
-        while (iter.hasNext()) {
-            variables.remove(iter.next());
-        }
+        macros.addAll(Arrays.asList(ScilabKeywords.GetMacrosName()));
     }
 
     public void setRange(int p0, int p1) {
         start = p0;
+        end = p1;
+        transposable = false;
+        breakstring = false;
         yyreset(new ScilabDocumentReader(doc, p0, p1));
+        int currentLine = elem.getElementIndex(start);
+        if (currentLine != 0 && ((ScilabDocument.ScilabLeafElement) elem.getElement(currentLine - 1)).isBroken()) {
+           yybegin(QSTRING);
+        }
     }
 
     public int yychar() {
@@ -54,11 +59,12 @@ import javax.swing.text.Element;
     }
 
     public int scan() throws IOException {
-        if (elem.getElementIndex(start) == breakstring + 1) {
-            beginString = 0;
-            yybegin(QSTRING);
+        int ret = yylex();
+        if (start + yychar + yylength() == end - 1) {
+           ((ScilabDocument.ScilabLeafElement) elem.getElement(elem.getElementIndex(start))).setBroken(breakstring);
+           breakstring = false;
         }
-        return yylex();
+        return ret;
     }
 
     public int getKeyword(int pos, boolean strict) {
@@ -126,6 +132,7 @@ id = ([a-zA-Z%_#!?][a-zA-Z0-9_#!$?]*)|("$"[a-zA-Z0-9_#!$?]+)
 dot = "."
 
 url = "http://"[^ \t\f\n\r]+
+mail = "<"[ \t]*[a-zA-Z0-9_\.\-]+"@"([a-zA-Z0-9\-]+".")+[a-zA-Z]{2,5}[ \t]*">"
 
 latex = "$"(([^$]*|"\\$")+)"$"
 
@@ -180,6 +187,9 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
                                    if (commands.contains(str)) {
                                        yybegin(COMMANDS);
                                        return ScilabLexerConstants.COMMANDS;
+                                   } else if (macros.contains(str)) {
+                                       yybegin(COMMANDS);
+                                       return ScilabLexerConstants.MACROS;
                                    } else if (variables.contains(str)) {
                                        return ScilabLexerConstants.VARIABLES;
                                    } else {
@@ -327,7 +337,6 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
 
   (\'|\")                        {
                                    transposable = false;
-                                   breakstring = -2;
                                    yybegin(YYINITIAL);
                                    return ScilabLexerConstants.STRING;
                                  }
@@ -345,6 +354,10 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
 
   {url}                          {
                                    return ScilabLexerConstants.URL;
+                                 }
+
+  {mail}                         {
+                                   return ScilabLexerConstants.MAIL;
                                  }
 
   {latex}                        {
@@ -367,9 +380,27 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
 
 <BREAKSTRING> {
   {break}                        {
-                                   yybegin(YYINITIAL);
-                                   breakstring = elem.getElementIndex(start);
+                                   breakstring = true;
                                    return ScilabLexerConstants.SPECIAL;
+                                 }
+
+  " "                            {
+                                   return ScilabLexerConstants.WHITE;
+                                 }
+
+  "\t"                           {
+                                   return ScilabLexerConstants.TAB;
+                                 }
+
+  {comment}                      {
+                                   transposable = false;
+                                   yypushback(2);
+                                   yybegin(COMMENT);
+                                 }
+
+  .                              |
+  {eol}                          {
+                                   return ScilabLexerConstants.DEFAULT;
                                  }
 }
 

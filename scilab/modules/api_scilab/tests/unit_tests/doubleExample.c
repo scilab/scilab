@@ -28,7 +28,7 @@ int doubleExample(char *fname,unsigned long fname_len)
 	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
 	if(sciErr.iErr)
 	{
-        printError(&sciErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 	if(isEmptyMatrix(pvApiCtx, piAddr))
@@ -38,6 +38,7 @@ int doubleExample(char *fname,unsigned long fname_len)
 		{
 			return iRet;
 		}
+		LhsVar(1) = 0;
 	}
 	else if(isDoubleType(pvApiCtx, piAddr))
 	{
@@ -109,6 +110,7 @@ int doubleExample(char *fname,unsigned long fname_len)
 				}
 			}
 		}
+		LhsVar(1) = Rhs+1;
 	}
 	return 0;
 }

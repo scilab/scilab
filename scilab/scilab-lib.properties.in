@@ -93,3 +93,5 @@ library.graphic_objects.name=org.scilab.modules.graphic_objects.jar
 library.graph.dir=${modules.dir}/graph/${build.jar.dir}/
 library.graph.name=org.scilab.modules.graph.jar
 
+library.history_browser.dir=${modules.dir}/history_browser/${build.jar.dir}/
+library.history_browser.name=org.scilab.modules.history_browser.jar

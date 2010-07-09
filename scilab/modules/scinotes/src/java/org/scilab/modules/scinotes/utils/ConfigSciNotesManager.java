@@ -140,8 +140,6 @@ public final class ConfigSciNotesManager {
     private static final int MAX_RECENT_SEARCH = 20;
     private static final int MAX_RECENT_REPLACE = 20;
 
-    private static final String packActionName = "org.scilab.modules.scinotes.actions";
-
     private static Document document;
     private static Properties keysMap;
 
@@ -529,25 +527,7 @@ public final class ConfigSciNotesManager {
         Element fontName = (Element) fontNameElement.item(0);
         String name = fontName.getAttribute(VALUE);
 
-        NodeList fontStyleElement = scinotesProfile.getElementsByTagName(FONT_STYLE);
-        Element fontStyle = (Element) fontStyleElement.item(0);
-        int style = Integer.parseInt(fontStyle.getAttribute(VALUE));
-
-        if (style == PLAIN) {
-            font = new Font(name, Font.PLAIN, size);
-
-        } else if (style == BOLD) {
-            font = new Font(name, Font.BOLD, size);
-
-        } else if (style == ITALIC) {
-            font = new Font(name, Font.ITALIC, size);
-
-        } else if (style == BOLDITALIC) {
-            font = new Font(name, Font.BOLD | Font.ITALIC , size);
-
-        } else {
-            font = new Font(name, Font.PLAIN, size);
-        }
+        font = new Font(name, Font.PLAIN, size);
 
         return font;
     }
@@ -575,25 +555,7 @@ public final class ConfigSciNotesManager {
         Element fontName = (Element) fontNameElement.item(0);
         String name = fontName.getAttribute(DEFAULT);
 
-        NodeList fontStyleElement = scinotesProfile.getElementsByTagName(FONT_STYLE);
-        Element fontStyle = (Element) fontStyleElement.item(0);
-        int style = Integer.parseInt(fontStyle.getAttribute(DEFAULT));
-
-        if (style == PLAIN) {
-            font = new Font(name, Font.PLAIN, size);
-
-        } else if (style == BOLD) {
-            font = new Font(name, Font.BOLD, size);
-
-        } else if (style == ITALIC) {
-            font = new Font(name, Font.ITALIC, size);
-
-        } else if (style == BOLDITALIC) {
-            font = new Font(name, Font.BOLD | Font.ITALIC , size);
-
-        } else {
-            font = new Font(name, Font.PLAIN, size);
-        }
+        font = new Font(name, Font.PLAIN, size);
 
         return font;
     }
@@ -617,19 +579,6 @@ public final class ConfigSciNotesManager {
         NodeList fontNameElement = scinotesProfile.getElementsByTagName(FONT_NAME);
         Element fontName = (Element) fontNameElement.item(0);
         fontName.setAttribute(VALUE, font.getFontName());
-
-        NodeList fontStyleElement = scinotesProfile.getElementsByTagName(FONT_STYLE);
-        Element fontStyle = (Element) fontStyleElement.item(0);
-
-        if (!font.isBold() && !font.isItalic()) {
-            fontStyle.setAttribute(VALUE, "0");
-        } else if (font.isBold() && font.isItalic()) {
-            fontStyle.setAttribute(VALUE, "3");
-        } else if (font.isBold()) {
-            fontStyle.setAttribute(VALUE, "1");
-        } else {
-            fontStyle.setAttribute(VALUE, "2");
-        }
 
         /* Save changes */
         writeDocument();
@@ -765,6 +714,26 @@ public final class ConfigSciNotesManager {
     }
 
     /**
+     * Get the default background Color
+     * @return the default background Color
+     */
+    public static Color getSciNotesDefaultBackgroundColor() {
+        /* Load file */
+        readDocument();
+
+        Element root = document.getDocumentElement();
+
+        NodeList profiles = root.getElementsByTagName(EDITOR);
+        Element scinotesProfile = (Element) profiles.item(0);
+
+        NodeList allElements = scinotesProfile.getElementsByTagName(BACKGROUNDCOLOR);
+        Element scinotesBackground = (Element) allElements.item(0);
+
+        /*direct create a Color with "#FF00FF" string from the xml */
+        return Color.decode(scinotesBackground.getAttribute(DEFAULT));
+    }
+
+    /**
      * Get the foreground Color
      * @return the foreground Color
      */
@@ -782,6 +751,26 @@ public final class ConfigSciNotesManager {
 
         /*direct create a Color with "#FF00FF" string from the xml */
         return Color.decode(scinotesForeground.getAttribute(VALUE));
+    }
+
+    /**
+     * Get the default foreground Color
+     * @return the foreground Color
+     */
+    public static Color getSciNotesDefaultForegroundColor() {
+        /* Load file */
+        readDocument();
+
+        Element root = document.getDocumentElement();
+
+        NodeList profiles = root.getElementsByTagName(EDITOR);
+        Element scinotesProfile = (Element) profiles.item(0);
+
+        NodeList allElements = scinotesProfile.getElementsByTagName(FOREGROUNDCOLOR);
+        Element scinotesForeground = (Element) allElements.item(0);
+
+        /*direct create a Color with "#FF00FF" string from the xml */
+        return Color.decode(scinotesForeground.getAttribute(DEFAULT));
     }
 
     /**

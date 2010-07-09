@@ -14,13 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-04-13 09:16+0100\n"
+"Revision-Date: 2010-06-29 10:00+0100\n"
 
-# File: sci_gateway/c/sci_createGUID.c, line: 56
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr ""
-#
 # File: sci_gateway/c/sci_winqueryreg.c, line: 86
 #, c-format
 msgid "%s: Cannot open Windows registry.\n"
@@ -36,26 +31,35 @@ msgstr ""
 msgid "%s: Cannot query value of this type.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_dos.c, line: 116
-# File: sci_gateway/c/sci_dos.c, line: 295
+# File: sci_gateway/c/sci_createGUID.c, line: 56
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_dos.c, line: 113
+# File: sci_gateway/c/sci_dos.c, line: 292
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_dos.c, line: 89
-# File: sci_gateway/c/sci_dos.c, line: 150
+# File: macros/powershell.sci, line: 40
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_dos.c, line: 86
+# File: sci_gateway/c/sci_dos.c, line: 147
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_dos.c, line: 76
-# File: sci_gateway/c/sci_dos.c, line: 137
+# File: sci_gateway/c/sci_dos.c, line: 73
+# File: sci_gateway/c/sci_dos.c, line: 134
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 #
-# File: macros/powershell.sci, line: 42
-# File: macros/powershell.sci, line: 45
+# File: macros/powershell.sci, line: 37
 # File: sci_gateway/c/sci_findfileassociation.c, line: 38
 # File: sci_gateway/c/sci_getsystemmetrics.c, line: 31
 # File: sci_gateway/c/sci_oemtochar.c, line: 48
@@ -83,7 +87,7 @@ msgstr ""
 msgid "%s: Wrong type for input arguments: Strings expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_dos.c, line: 106
+# File: sci_gateway/c/sci_dos.c, line: 103
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr ""
@@ -98,11 +102,11 @@ msgstr ""
 msgid "%s: Wrong value for input argument: Non-negative integers expected.\n"
 msgstr ""
 #
-# File: macros/powershell.sci, line: 14
+# File: macros/powershell.sci, line: 15
 msgid "Error(s) : see help powershell"
 msgstr ""
 #
-# File: macros/powershell.sci, line: 20
+# File: macros/powershell.sci, line: 21
 msgid "Only for Microsoft Windows."
 msgstr ""
 #
@@ -111,12 +115,12 @@ msgstr ""
 msgid "Only on Windows Mode, not in Console Mode.\n"
 msgstr ""
 #
-# File: macros/powershell.sci, line: 27
-msgid "Powershell not found."
+# File: macros/powershell.sci, line: 15
+msgid "Please verify your powershell command without Scilab."
 msgstr ""
 #
-# File: macros/powershell.sci, line: 14
-msgid "Verify your script without Scilab."
+# File: macros/powershell.sci, line: 28
+msgid "Powershell 1.0 not found."
 msgstr ""
 #
 # File: sci_gateway/c/sci_getsystemmetrics.c, line: 50

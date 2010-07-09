@@ -145,7 +145,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
 						 * This is done to avoid a cyclic dependency on gui <=> scinotes
 						 */
 						Class scinotesClass = Class.forName("org.scilab.modules.scinotes.SciNotes");
-						Class arguments[] = new Class[] { String.class };
+						Class[] arguments = new Class[] {String.class};
 						Method method = scinotesClass.getMethod("scinotesWithText", arguments);
 						method.invoke(scinotesClass, new Object[]{selection});
 
@@ -156,16 +156,16 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
 						System.err.println("Security error: Could not access to SciNotes class");
 						e.printStackTrace();
 					} catch (NoSuchMethodException e) {
-						System.err.println("Could not access to xpathWithText method from object SciNotes");
+						System.err.println("Could not access to scinotesWithText method from object SciNotes");
 						e.printStackTrace();
 					} catch (IllegalArgumentException e) {
-						System.err.println("Wrong argument used with xpathWithText method from object SciNotes");
+						System.err.println("Wrong argument used with scinotesWithText method from object SciNotes");
 						e.printStackTrace();
 					} catch (IllegalAccessException e) {
-						System.err.println("Illegal access with xpathWithText method from object SciNotes");
+						System.err.println("Illegal access with scinotesWithText method from object SciNotes");
 						e.printStackTrace();
 					} catch (InvocationTargetException e) {
-						System.err.println("Error of invocation with xpathWithText method from object SciNotes");
+						System.err.println("Error of invocation with scinotesWithText method from object SciNotes");
 						e.printStackTrace();
 					}
 				}

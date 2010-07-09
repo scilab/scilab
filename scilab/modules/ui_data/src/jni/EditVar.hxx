@@ -64,11 +64,13 @@ jobject instance;
 
 jclass instanceClass; // cache class
 jmethodID voidopenVariableEditorDoublejobjectArray__jstringID; // cache method id
+jmethodID voidopenVariableEditorComplexjobjectArray__jobjectArray__jstringID; // cache method id
 jmethodID voidopenVariableEditorStringjobjectArray__jstringID; // cache method id
 jclass stringArrayClass;
 jmethodID voidopenVariableEditorBooleanjobjectArray__jstringID; // cache method id
 jmethodID voidcloseVariableEditorID; // cache method id
 jmethodID voidupdateVariableEditorDoublejstringjintjintjdoublejintID; // cache method id
+jmethodID voidupdateVariableEditorComplexjstringjintjintjdoublejdoublejintID; // cache method id
 jmethodID voidupdateVariableEditorBooleanjstringjintjintjintjintID; // cache method id
 jmethodID voidupdateVariableEditorStringjstringjintjintjstringjintID; // cache method id
 
@@ -114,6 +116,8 @@ void endSynchronize();
 // Methods
 static void openVariableEditorDouble(JavaVM * jvm_, double** data, int dataSize, int dataSizeCol, char * variableName);
 
+static void openVariableEditorComplex(JavaVM * jvm_, double** realData, int realDataSize, int realDataSizeCol, double** imgData, int imgDataSize, int imgDataSizeCol, char * variableName);
+
 static void openVariableEditorString(JavaVM * jvm_, char *** data, int dataSize, int dataSizeCol, char * variableName);
 
 static void openVariableEditorBoolean(JavaVM * jvm_, int** data, int dataSize, int dataSizeCol, char * variableName);
@@ -121,6 +125,8 @@ static void openVariableEditorBoolean(JavaVM * jvm_, int** data, int dataSize, i
 static void closeVariableEditor(JavaVM * jvm_);
 
 static void updateVariableEditorDouble(JavaVM * jvm_, char * variableName, int row, int col, double newValue, int errCode);
+
+static void updateVariableEditorComplex(JavaVM * jvm_, char * variableName, int row, int col, double realValue, double imgValue, int errCode);
 
 static void updateVariableEditorBoolean(JavaVM * jvm_, char * variableName, int row, int col, int newValue, int errCode);
 

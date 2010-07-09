@@ -9,7 +9,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 //=============================================================================
 function bOK = chooselcccompiler()
-  warnobsolete(_('LCC in Atoms: atomsInstall(""LCC-windows"")'), '5.3.1');
+  warnobsolete(_('LCC in Atoms: atomsInstall(""lcc_windows"")'), '5.3.1');
   bOK = %F;
 endfunction
 //=============================================================================

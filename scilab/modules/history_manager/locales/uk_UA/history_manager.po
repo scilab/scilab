@@ -52,11 +52,11 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
 "у інтервалі [%d, %d]\n"
 
-msgid "// Begin Session : "
-msgstr "// Початок сеансу: "
+msgid "Begin Session : "
+msgstr "Початок сеансу: "
 
-msgid "// End Session   : "
-msgstr "// Завершення сеансу: "
+msgid "End Session   : "
+msgstr "Завершення сеансу: "
 
 msgid "Apr"
 msgstr "кві"

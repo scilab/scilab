@@ -21,8 +21,14 @@ function SDKpath = dlwGetSdkPath()
       // remove last file separator if it exists
       if SDKpath <> [] then
         SDKpath = pathconvert(SDKpath, %f, %t);
+        // We check that returned path exists
+        // case: install and uninstall sdk, uninstaller does not remove registry key
+        if isdir(SDKpath) then
+          break;
+        else
+          SDKpath = [];
+        end
       end
-      break;
     catch
     end
 

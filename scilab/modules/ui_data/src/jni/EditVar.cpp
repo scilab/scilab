@@ -113,10 +113,12 @@ curEnv->DeleteLocalRef(localInstance);
 
                 /* Methods ID set to NULL */
 voidopenVariableEditorDoublejobjectArray__jstringID=NULL; 
+voidopenVariableEditorComplexjobjectArray__jobjectArray__jstringID=NULL; 
 voidopenVariableEditorStringjobjectArray__jstringID=NULL; 
 voidopenVariableEditorBooleanjobjectArray__jstringID=NULL; 
 voidcloseVariableEditorID=NULL; 
 voidupdateVariableEditorDoublejstringjintjintjdoublejintID=NULL; 
+voidupdateVariableEditorComplexjstringjintjintjdoublejdoublejintID=NULL; 
 voidupdateVariableEditorBooleanjstringjintjintjintjintID=NULL; 
 voidupdateVariableEditorStringjstringjintjintjstringjintID=NULL; 
 
@@ -148,10 +150,12 @@ exit(EXIT_FAILURE);
         }
         /* Methods ID set to NULL */
         voidopenVariableEditorDoublejobjectArray__jstringID=NULL; 
+voidopenVariableEditorComplexjobjectArray__jobjectArray__jstringID=NULL; 
 voidopenVariableEditorStringjobjectArray__jstringID=NULL; 
 voidopenVariableEditorBooleanjobjectArray__jstringID=NULL; 
 voidcloseVariableEditorID=NULL; 
 voidupdateVariableEditorDoublejstringjintjintjdoublejintID=NULL; 
+voidupdateVariableEditorComplexjstringjintjintjdoublejdoublejintID=NULL; 
 voidupdateVariableEditorBooleanjstringjintjintjintjintID=NULL; 
 voidupdateVariableEditorStringjstringjintjintjstringjintID=NULL; 
 
@@ -203,6 +207,49 @@ curEnv->DeleteLocalRef(dataLocal);
 jstring variableName_ = curEnv->NewStringUTF( variableName );
 
                          curEnv->CallStaticVoidMethod(cls, voidopenVariableEditorDoublejobjectArray__jstringID ,data_, variableName_);curEnv->DeleteLocalRef(data_);
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
+}
+
+}
+
+void EditVar::openVariableEditorComplex (JavaVM * jvm_, double** realData, int realDataSize, int realDataSizeCol, double** imgData, int imgDataSize, int imgDataSizeCol, char * variableName){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidopenVariableEditorComplexjobjectArray__jobjectArray__jstringID = curEnv->GetStaticMethodID(cls, "openVariableEditorComplex", "([[D[[DLjava/lang/String;)V" ) ;
+if (voidopenVariableEditorComplexjobjectArray__jobjectArray__jstringID == NULL) {
+std::cerr << "Could not access to the method " << "openVariableEditorComplex" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
+}
+
+ jobjectArray realData_ = curEnv->NewObjectArray(realDataSize, curEnv->FindClass("[D"),NULL);
+
+ for (int i=0; i<realDataSize; i++){
+ 
+jdoubleArray realDataLocal = curEnv->NewDoubleArray( realDataSizeCol ) ;
+curEnv->SetDoubleArrayRegion( realDataLocal, 0, realDataSizeCol, (jdouble*)(realData[i]) ) ;
+curEnv->SetObjectArrayElement(realData_, i, realDataLocal);
+curEnv->DeleteLocalRef(realDataLocal);
+}
+
+ jobjectArray imgData_ = curEnv->NewObjectArray(imgDataSize, curEnv->FindClass("[D"),NULL);
+
+ for (int i=0; i<imgDataSize; i++){
+ 
+jdoubleArray imgDataLocal = curEnv->NewDoubleArray( imgDataSizeCol ) ;
+curEnv->SetDoubleArrayRegion( imgDataLocal, 0, imgDataSizeCol, (jdouble*)(imgData[i]) ) ;
+curEnv->SetObjectArrayElement(imgData_, i, imgDataLocal);
+curEnv->DeleteLocalRef(imgDataLocal);
+}
+
+jstring variableName_ = curEnv->NewStringUTF( variableName );
+
+                         curEnv->CallStaticVoidMethod(cls, voidopenVariableEditorComplexjobjectArray__jobjectArray__jstringID ,realData_, imgData_, variableName_);curEnv->DeleteLocalRef(realData_);
+curEnv->DeleteLocalRef(imgData_);
 if (curEnv->ExceptionCheck()) {
 curEnv->ExceptionDescribe() ;
 }
@@ -329,6 +376,27 @@ exit(EXIT_FAILURE);
 jstring variableName_ = curEnv->NewStringUTF( variableName );
 
                          curEnv->CallStaticVoidMethod(cls, voidupdateVariableEditorDoublejstringjintjintjdoublejintID ,variableName_, row, col, newValue, errCode);if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
+}
+
+}
+
+void EditVar::updateVariableEditorComplex (JavaVM * jvm_, char * variableName, int row, int col, double realValue, double imgValue, int errCode){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidupdateVariableEditorComplexjstringjintjintjdoublejdoublejintID = curEnv->GetStaticMethodID(cls, "updateVariableEditorComplex", "(Ljava/lang/String;IIDDI)V" ) ;
+if (voidupdateVariableEditorComplexjstringjintjintjdoublejdoublejintID == NULL) {
+std::cerr << "Could not access to the method " << "updateVariableEditorComplex" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
+}
+
+jstring variableName_ = curEnv->NewStringUTF( variableName );
+
+                         curEnv->CallStaticVoidMethod(cls, voidupdateVariableEditorComplexjstringjintjintjdoublejdoublejintID ,variableName_, row, col, realValue, imgValue, errCode);if (curEnv->ExceptionCheck()) {
 curEnv->ExceptionDescribe() ;
 }
 

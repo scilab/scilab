@@ -10,9 +10,9 @@
  *
  */
 
-#include "gw_special_functions1.h"
-#include "stack-c.h"
 #include <string.h>
+#include "gw_special_functions.h"
+#include "machine.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(intslgamma)(char *id,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/

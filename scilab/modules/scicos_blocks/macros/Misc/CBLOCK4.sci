@@ -172,7 +172,7 @@ select job
                 'n';
                 sci2exp([model.in model.in2]);
                 sci2exp(model.intyp);
-                sci2exp([model.out model.out2])
+                sci2exp([model.out model.out2]);
                 sci2exp(model.outtyp);
                 sci2exp(model.evtin);
                 sci2exp(model.evtout);

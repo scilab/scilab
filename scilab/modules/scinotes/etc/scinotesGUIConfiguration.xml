@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration>
+
+  <MenuBar>
+    <menu label="File" mnemonic="F">
+      <menuitem action="NewAction" label="New"/>
+      <menuitem action="OpenAction" label="Open"/>
+      <menuitem action="OpenSourceFileOnKeywordAction" label="Open function source file"/>
+      <menuitem action="OpenURLAction" label="Open URL"/>
+      <menuitem action="RecentFileAction" label="Recent Files"/>
+      <separator/>
+      <menuitem action="SaveAction" label="Save"/>
+      <menuitem action="SaveAsAction" label="Save as"/>
+      <menuitem action="SaveAllAction" label="Save All"/>
+      <separator/>
+      <menuitem action="OverwriteAction" label="Overwrite"/>
+      <menuitem action="ReloadAction" label="Reload"/>
+      <separator/>
+      <menuitem action="PageSetupAction" label="Page Setup"/>
+      <menuitem action="PrintPreviewAction" label="Print Preview"/>
+      <menuitem action="PrintAction" label="Print"/>
+      <separator/>
+      <menuitem action="CloseAction" label="Close"/>
+      <menuitem action="CloseAllAction" label="Close All"/>
+      <menuitem action="CloseAllButThisAction" label="Close All But This"/>
+      <separator/>
+      <menuitem action="ExitAction" label="Exit"/>
+    </menu>
+
+    <menu label="Edition" mnemonic="E">
+      <menuitem action="UndoAction" label="Undo"/>
+      <menuitem action="RedoAction" label="Redo"/>
+      <separator/>
+      <menuitem action="CutAction" label="Cut"/>
+      <menuitem action="CopyAction" label="Copy"/>
+      <menuitem action="PasteAction" label="Paste"/>
+      <separator/>
+      <menuitem action="SelectAllAction" label="Select All"/>
+      <menuitem action="DeleteAction" label="Delete"/>
+    </menu>
+
+    <menu label="Tools" mnemonic="T">
+      <menuitem action="ActivateHelpOnTypingAction" label="Help on typing"/>
+      <separator/>
+      <menuitem action="OpenTabInNewWindowAction" label="Clone tab in new window"/>
+      <menuitem action="CCloseTabInNewWindowAction" label="Clone and close tab"/>
+      <separator/>
+      <menuitem action="CommentAction" label="Comment Selection"/>
+      <menuitem action="UnCommentAction" label="Uncomment Selection"/>
+      <separator/>
+      <menuitem action="IndentAction" label="Correct Indentation"/>
+      <menuitem action="TabifyAction" label="Shift Right"/>
+      <menuitem action="UnTabifyAction" label="Shift Left"/>
+      <separator/>
+      <menuitem action="GenerateHelpFromFunctionAction" label="Generate help from function"/>
+      <separator/>
+      <menuitem action="RemoveTrailingWhiteAction" label="Remove trailing whitespaces"/>
+    </menu>
+
+    <menu label="Search" mnemonic="S">
+      <menuitem action="FindAction" label="Find/Replace"/>
+      <menuitem action="FindNextAction" label="Find Next"/>
+      <menuitem action="FindPreviousAction" label="Find Previous"/>
+      <menuitem action="CodeNavigatorAction" label="Code Navigator"/>
+    </menu>
+
+    <menu label="View" mnemonic="V">
+      <menuitem action="HighlightCurrentLineAction" label="Highlight current line"/>
+      <menuitem action="LineNumbersAction" label="Whereami Line Numbering;Normal Line Numbering;No Line Numbering"/>
+      <menuitem action="SetColorsAction" label="Set Colors"/>
+      <menuitem action="SetFontAction" label="Set Font"/>
+      <menuitem action="ResetFontAction" label="Reset default font"/>
+      <separator/>
+      <menuitem action="SplitVerticallyAction" label="Split vertically"/>
+      <menuitem action="SplitHorizontallyAction" label="Split horizontally"/>
+      <menuitem action="NoSplitAction" label="No split"/>
+    </menu>
+
+    <menu label="Document" mnemonic="D">
+      <menuitem action="EncodingAction" label="Encoding"/>
+      <menuitem action="EndOfLineAction" label="Line Endings"/>
+      <separator/>
+      <menuitem action="AutoIndentAction" label="Enable Auto Reformat"/>
+    </menu>
+
+    <menu label="Execute" mnemonic="E">
+      <menuitem action="LoadIntoScilabAction" label="Load Into Scilab"/>
+      <menuitem action="EvaluateSelectionAction" label="Evaluate Selection;Evaluate from beginning"/>
+      <menuitem action="ExecuteFileIntoScilabAction" label="Execute File Into Scilab"/>
+    </menu>
+
+    <menu label="?">
+      <menuitem action="HelpAction" label="SciNotes help"/>
+      <menuitem action="HelpOnKeywordAction" label="Help on the current keyword"/>
+      <menuitem action="AboutAction" label="About"/>
+    </menu>
+  </MenuBar>
+
+  <RightClickMenu>
+    <menuitem action="EvaluateSelectionAction" label="Evaluate Selection;Evaluate from beginning"/>
+    <menuitem action="CopySelectionInNewTabAction" label="Copy selection in a new tab"/>
+    <menuitem action="SciNotesCompletionAction" label="Complete"/>
+    <separator/>
+    <menuitem action="SelectAllAction" label="Select All"/>
+    <menuitem action="CopyAction" label="Copy"/>
+    <menuitem action="CutAction" label="Cut"/>
+    <menuitem action="PasteAction" label="Paste"/>
+    <separator/>
+    <menuitem action="HelpOnKeywordAction" label="Help on the current keyword"/>
+    <menuitem action="OpenSourceFileOnKeywordAction" label="Open function source file"/>
+    <menuitem action="OpenURLAction" label="Open URL"/>
+  </RightClickMenu>
+
+  <ToolBar>
+    <button action="NewAction" tooltip="New" icon="document-new.png"/>
+    <button action="OpenAction" tooltip="Open" icon="document-open.png"/>
+    <separator/>
+    <button action="SaveAction" tooltip="Save" icon="media-floppy.png"/>
+    <button action="SaveAsAction" tooltip="Save as" icon="document-save-as.png"/>
+    <separator/>
+    <button action="PrintAction" tooltip="Print" icon="document-print.png"/>
+    <separator/>
+    <button action="UndoAction" tooltip="Undo" icon="edit-undo.png"/>
+    <button action="RedoAction" tooltip="Redo" icon="edit-redo.png"/>
+    <separator/>
+    <button action="CutAction" tooltip="Cut" icon="edit-cut.png"/>
+    <button action="CopyAction" tooltip="Copy" icon="edit-copy.png"/>
+    <button action="PasteAction" tooltip="Paste" icon="edit-paste.png"/>
+    <separator/>
+    <button action="FindAction" tooltip="Find/Replace" icon="edit-find-replace.png"/>
+    <separator/>
+    <button action="ExecuteFileIntoScilabAction" tooltip="Execute" icon="media-playback-start.png"/>
+  </ToolBar>
+
+</Configuration>

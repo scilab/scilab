@@ -27,7 +27,7 @@ function XcosMenuUpToMain()
     //%diagram_path_objective=[] stands for up to main
       Scicos_commands=['%diagram_path_objective=[];%scicos_navig=1';
 		       'Cmenu=[];%scicos_navig=[]';
-		       'xselect()'
+		       'show_window()'
 		      ]
   else
       messagebox('This is already the main diagram;','modal')

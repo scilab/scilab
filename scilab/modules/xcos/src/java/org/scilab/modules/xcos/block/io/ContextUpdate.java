@@ -222,7 +222,7 @@ public abstract class ContextUpdate extends BasicBlock {
 
 			String cmd = ScilabInterpreterManagement.buildCall("xcosBlockEval",
 					tempOutput.getAbsolutePath(), tempInput.getAbsolutePath(),
-					getInterfaceFunctionName(), tempContext.getAbsolutePath());
+					getInterfaceFunctionName().toCharArray(), tempContext.getAbsolutePath());
 
 			try {
 				ScilabInterpreterManagement.synchronousScilabExec(cmd);

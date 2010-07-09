@@ -68,8 +68,8 @@ txt=strcat(vector_of_strings [,string_added, ["flag"]])</synopsis>
         <term>"flag"</term>
 
         <listitem>
-          <para>string ( "r" para retornar uma matriz coluna, "c" para
-          retornar uma matriz linha)</para>
+          <para>string ( "r" para retornar uma matriz linha, "c" para
+          retornar uma matriz coluna)</para>
         </listitem>
       </varlistentry>
     </variablelist>

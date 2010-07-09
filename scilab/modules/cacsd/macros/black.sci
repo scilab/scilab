@@ -223,5 +223,5 @@ function str=formatBlackTip(curve,pt,index)
     [d,ptp,i,c]=orthProj(curve.data,pt)
     f=ud.freq(i)+(ud.freq(i+1)-ud.freq(i))*c
   end
-  str=msprintf("%.4g"+_("°")+"\n%.4g"+_("dB")+"\n%.4g"+_("Hz"), pt,f);
+  str=msprintf("%.4g°\n%.4g"+_("dB")+"\n%.4g"+_("Hz"), pt,f);
 endfunction

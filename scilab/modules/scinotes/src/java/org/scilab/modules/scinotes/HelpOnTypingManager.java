@@ -33,14 +33,7 @@ public class HelpOnTypingManager implements KeyListener {
      * Nothing !
      * @param e the event
      */
-    public void keyPressed(KeyEvent e) {
-        // Workaround for bug 7238
-        if (e.getKeyLocation() == KeyEvent.KEY_LOCATION_NUMPAD
-            && e.getKeyCode() == KeyEvent.VK_DELETE
-            && e.getKeyChar() != KeyEvent.VK_DELETE) {
-            e.setKeyCode(KeyEvent.VK_DECIMAL);
-        }
-    }
+    public void keyPressed(KeyEvent e) { }
 
     /**
      * Nothing !

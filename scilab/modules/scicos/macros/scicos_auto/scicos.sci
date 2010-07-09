@@ -353,7 +353,7 @@ return
        enable_undo = gh_current_window.user_data(3) ;
        scs_m_save  = gh_current_window.user_data(4) ;
        nc_save     = gh_current_window.user_data(5) ;
-       xselect();
+       show_window();
      end
 
   else //** diagram is NOT open
@@ -551,7 +551,7 @@ return
 
 	  if ierr > 0 then
 	    messagebox([
-		msprintf(_("An unexpected  error occured while executing the menu\n""%s"":\n"),CmenuLabel)
+		msprintf(_("An unexpected  error occurred while executing the menu\n""%s"":\n"),CmenuLabel)
 		''
 		lasterror()
 		''
