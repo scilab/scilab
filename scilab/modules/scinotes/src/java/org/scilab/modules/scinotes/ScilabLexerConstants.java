@@ -265,7 +265,7 @@ public class ScilabLexerConstants {
      * @return true if the keyword is openable
      */
     public static boolean isOpenable(int type) {
-        return type == MACROS || type == ID;
+        return type == MACROS;
     }
 
     /**

@@ -82,6 +82,7 @@ import org.scilab.modules.scinotes.actions.ExitAction;
 import org.scilab.modules.scinotes.actions.FindAction;
 import org.scilab.modules.scinotes.actions.SetColorsAction;
 import org.scilab.modules.scinotes.actions.LineBeautifierAction;
+import org.scilab.modules.scinotes.actions.OpenSourceFileOnKeywordAction;
 import org.scilab.modules.scinotes.actions.RecentFileAction;
 import org.scilab.modules.scinotes.actions.SciNotesCompletionAction;
 import org.scilab.modules.scinotes.actions.EncodingAction;
@@ -417,6 +418,8 @@ public class SciNotes extends SwingScilabTab implements Tab {
             find.closeFindReplaceWindow();
         }
         SetColorsAction.closeSetColorsWindow();
+        OpenSourceFileOnKeywordAction.closeOpenSourceWindow();
+
         while (getTabPane().getComponentCount() > 0) {
             closeTabAt(0, true);
         }

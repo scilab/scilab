@@ -238,6 +238,12 @@ public class SciNotesMessages {
     public static final String ORDER = Messages.gettext("Order");
 
     /**
+     * Open source
+     */
+    public static final String OPEN_SOURCE_FILE_OF = Messages.gettext("Open source file of the function:");
+    public static final String OPEN_SOURCE = Messages.gettext("Open source") + DOTS;
+
+    /**
      * Exit confirm message
      */
     public static final String EXIT_CONFIRM = Messages.gettext("Are you sure that you want to close SciNotes ?");
