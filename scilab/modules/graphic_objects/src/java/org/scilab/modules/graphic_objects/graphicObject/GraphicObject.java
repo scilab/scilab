@@ -12,7 +12,9 @@
 
 package org.scilab.modules.graphic_objects.graphicObject;
 
-import java.util.ArrayList;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
+
+import java.util.List;
 
 /**
  * GraphicObject class
@@ -36,7 +38,7 @@ public abstract class GraphicObject {
 	private GraphicObject parent;
 
 	/** Child objects list */
-	private ArrayList <GraphicObject> children;
+	private List <GraphicObject> children;
 
 	/** Specifies whether the object is visible or not */
 	private boolean visible;
@@ -61,56 +63,39 @@ public abstract class GraphicObject {
     public static Type getTypeFromName(String typeName) {
         if (typeName.equals("arc")) {
             return Type.ARC;
-        }
-        else if (typeName.equals("axes")) {
+        } else if (typeName.equals(__GO_AXES__)) {
             return Type.AXES;
-        }
-        else if (typeName.equals("axis")) {
+        } else if (typeName.equals(__GO_AXIS__)) {
             return Type.AXIS;
-        }
-        else if (typeName.equals("champ")) {
+        } else if (typeName.equals(__GO_CHAMP__)) {
             return Type.CHAMP;
-        }
-        else if (typeName.equals("compound")) {
+        } else if (typeName.equals(__GO_COMPOUND__)) {
             return Type.COMPOUND;
-        }
-        else if (typeName.equals("fac3d")) {
+        } else if (typeName.equals(__GO_FAC3D__)) {
             return Type.FAC3D;
-        }
-        else if (typeName.equals("fec")) {
+        } else if (typeName.equals(__GO_FEC__)) {
             return Type.FEC;
-        }
-        else if (typeName.equals("figure")) {
+        } else if (typeName.equals(__GO_FIGURE__)) {
             return Type.FIGURE;
-        }
-        else if (typeName.equals("grayplot")) {
+        } else if (typeName.equals(__GO_GRAYPLOT__)) {
             return Type.GRAYPLOT;
-        }
-        else if (typeName.equals("label")) {
+        } else if (typeName.equals(__GO_LABEL__)) {
             return Type.LABEL;
-        }
-        else if (typeName.equals("legend")) {
+        } else if (typeName.equals(__GO_LEGEND__)) {
             return Type.LEGEND;
-        }
-        else if (typeName.equals("matplot")) {
+        } else if (typeName.equals(__GO_MATPLOT__)) {
             return Type.MATPLOT;
-        }
-        else if (typeName.equals("plot3d")) {
+        } else if (typeName.equals(__GO_PLOT3D__)) {
             return Type.PLOT3D;
-        }
-        else if (typeName.equals("polyline")) {
+        } else if (typeName.equals(__GO_POLYLINE__)) {
             return Type.POLYLINE;
-        }
-        else if (typeName.equals("rectangle")) {
+        } else if (typeName.equals(__GO_RECTANGLE__)) {
             return Type.RECTANGLE;
-        }
-        else if (typeName.equals("segs")) {
+        } else if (typeName.equals(__GO_SEGS__)) {
             return Type.SEGS;
-        }
-        else if (typeName.equals("text")) {
+        } else if (typeName.equals(__GO_TEXT__)) {
             return Type.TEXT;
-        }
-        else {
+        } else {
             return Type.UNKNOWNOBJECT;
         }
 	}
@@ -121,15 +106,15 @@ public abstract class GraphicObject {
 	 * @return the property enum
 	 */
 	public Object getPropertyFromName(String propertyName) {
-		if (propertyName.equals("Parent")) {
+		if (propertyName.equals(__GO_PARENT__)) {
 			return  GraphicObjectPropertyType.PARENT;
-		} else if (propertyName.equals("Children")) {
+		} else if (propertyName.equals(__GO_CHILDREN__)) {
 			return GraphicObjectPropertyType.CHILDREN;
-		} else if (propertyName.equals("Visible")) {
+		} else if (propertyName.equals(__GO_VISIBLE__)) {
 			return GraphicObjectPropertyType.VISIBLE;
-		} else if (propertyName.equals("UserData")) {
+		} else if (propertyName.equals(__GO_USER_DATA__)) {
 			return GraphicObjectPropertyType.USERDATA;
-		} else if (propertyName.equals("UserDataSize")) {
+		} else if (propertyName.equals(__GO_USER_DATA_SIZE__)) {
 			return GraphicObjectPropertyType.USERDATASIZE;
 		} else {
 			return GraphicObjectPropertyType.UNKNOWNPROPERTY;
@@ -169,7 +154,7 @@ public abstract class GraphicObject {
 		if (property == GraphicObjectPropertyType.PARENT) {
 			setParent((GraphicObject) value);
 		} else if (property == GraphicObjectPropertyType.CHILDREN) {
-			setChildren((ArrayList<GraphicObject>) value);
+			setChildren((List<GraphicObject>) value);
 		} else if (property == GraphicObjectPropertyType.VISIBLE) {
 			setVisible((Boolean) value);
 		} else if (property == GraphicObjectPropertyType.USERDATA) {
@@ -214,14 +199,14 @@ public abstract class GraphicObject {
 	/**
 	 * @return the children
 	 */
-	public ArrayList<GraphicObject> getChildren() {
+	public List<GraphicObject> getChildren() {
 		return children;
 	}
 
 	/**
 	 * @param children the children to set
 	 */
-	public void setChildren(ArrayList<GraphicObject> children) {
+	public void setChildren(List<GraphicObject> children) {
 		this.children = children;
 	}
 
@@ -259,7 +244,7 @@ public abstract class GraphicObject {
 	public Integer[] getUserData() {
 		Integer[] returnedData = new Integer[userData.length];
 
-		for (int i=0; i < userData.length; i++) {
+		for (int i = 0; i < userData.length; i++) {
 			returnedData[i] = userData[i];
 		}
 
@@ -274,7 +259,7 @@ public abstract class GraphicObject {
 			this.userData = new int[userData.length];
 		}
 
-		for(int i = 0; i < userData.length; i++) {
+		for (int i = 0; i < userData.length; i++) {
 			this.userData[i] = userData[i];
 		}
 	}

@@ -26,7 +26,7 @@ BOOL setGraphicObjectProperty(char *_pstID, char *_pstName, void *_pvValue, _Ret
 
  double doubleValue;
  int intValue;
- bool boolValue;
+ BOOL boolValue;
 
  switch(_valueType)
     {
@@ -60,9 +60,9 @@ BOOL setGraphicObjectProperty(char *_pstID, char *_pstName, void *_pvValue, _Ret
 
     case jni_bool :
 
-	boolValue = *(bool*)_pvValue;
+	boolValue = *(BOOL*)_pvValue;
 
-        result = CallGraphicController::setGraphicObjectProperty(getScilabJavaVM(), _pstID, _pstName, (bool)boolValue);
+    result = CallGraphicController::setGraphicObjectProperty(getScilabJavaVM(), _pstID, _pstName, BOOLtobool(boolValue));
         break;
 
     case jni_bool_vector :

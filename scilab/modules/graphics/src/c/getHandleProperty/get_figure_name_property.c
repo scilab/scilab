@@ -28,6 +28,7 @@
 #include "localization.h"
 
 #include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
 int get_figure_name_property( sciPointObj * pobj )
@@ -39,6 +40,6 @@ int get_figure_name_property( sciPointObj * pobj )
     return -1;
   }
 
-  return sciReturnString( (char *) getGraphicObjectStringProperty(pobj->UID, "Name"));
+  return sciReturnString( (char *) getGraphicObjectStringProperty(pobj->UID, __GO_NAME__));
 }
 /*------------------------------------------------------------------------*/

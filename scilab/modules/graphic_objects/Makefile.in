@@ -68,7 +68,9 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 
 # With --enable-compilation-tests, launch java unitary tests
 @COMPILATION_TESTS_TRUE@am__append_2 = test
-@GUI_TRUE@am__append_3 = libscigraphic_objects.la
+@GIWS_TRUE@am__append_3 = giws
+@GUI_TRUE@am__append_4 = libscigraphic_objects.la
+@SWIG_TRUE@am__append_5 = swig
 subdir = modules/graphic_objects
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -499,6 +501,10 @@ JARMASK = *.jar
 HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
 HELP_CHAPTERLANG = en_US fr_FR pt_BR
+BUILT_SOURCES = includes/graphicObjectsProperties.h $(am__append_3) \
+	$(am__append_5)
+#This file is also generated, but can not be listed to prevent GCJ call.
+#src/java/org/scilab/modules/graphic_objects/graphicObject/GraphicObjectProperties.java
 GRAPHIC_OBJECTS_JNI_SOURCES = src/jni/CallGraphicController.cpp
 GRAPHIC_OBJECTS_C_SOURCES = 
 GRAPHIC_OBJECTS_CPP_SOURCES = src/cpp/createGraphicObject.cpp \
@@ -506,8 +512,6 @@ GRAPHIC_OBJECTS_CPP_SOURCES = src/cpp/createGraphicObject.cpp \
 								src/cpp/setGraphicObjectProperty.cpp
 
 GIWS_WRAPPERS = 
-@GIWS_TRUE@BUILT_SOURCES = giws
-@SWIG_TRUE@BUILT_SOURCES = swig
 GATEWAY_C_SOURCES = sci_gateway/c/gw_graphic_objects.c
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_graphicfunction.cpp
 libscigraphic_objects_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
@@ -536,9 +540,9 @@ libscigraphic_objects_disable_la_CFLAGS = -Iincludes/ \
 GRAPHIC_OBJECTS_DISABLE_C_SOURCES = src/nographic_objects/nographic_objects.c
 libscigraphic_objects_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libscigraphic_objects_disable_la_SOURCES = $(GRAPHIC_OBJECTS_DISABLE_C_SOURCES)
-pkglib_LTLIBRARIES = libscigraphic_objects-disable.la $(am__append_3)
+pkglib_LTLIBRARIES = libscigraphic_objects-disable.la $(am__append_4)
 libscigraphic_objects_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
-libscigraphic_objects_la_SOURCES = $(GRAPHIC_OBJECTS_C_SOURCES) $(GRAPHIC_OBJECTS_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GRAPHIC_OBJECTS_CPP_SOURCES)
+libscigraphic_objects_la_SOURCES = $(GRAPHIC_OBJECTS_GEN_SOURCES) $(GRAPHIC_OBJECTS_C_SOURCES) $(GRAPHIC_OBJECTS_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GRAPHIC_OBJECTS_CPP_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC = $(GRAPHIC_OBJECTS_C_SOURCES) $(GATEWAY_C_SOURCES)
@@ -1209,6 +1213,12 @@ distclean-local:
 	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*
 
 .PHONY: macros java swig giws
+
+includes/graphicObjectsProperties.h: Makefile.am src/scripts/propertiesMap.properties
+	@echo "-- Building includes/graphicObjectProperties.h --"
+	@$(top_srcdir)/modules/graphic_objects/src/scripts/genPropertiesName.sh --C $(top_srcdir)/modules/graphic_objects/src/scripts/propertiesMap.properties $(top_srcdir)/modules/graphic_objects/includes/graphicObjectProperties.h
+	@echo "-- Building GraphicObjectProperties.java --"
+	@$(top_srcdir)/modules/graphic_objects/src/scripts/genPropertiesName.sh --java $(top_srcdir)/modules/graphic_objects/src/scripts/propertiesMap.properties $(top_srcdir)/modules/graphic_objects/src/java/org/scilab/modules/graphic_objects/graphicObject/GraphicObjectProperties.java
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

@@ -25,6 +25,9 @@ libscigraphic_objects_la_etc_DATA = etc/graphic_objects.quit \
 
 include $(top_srcdir)/Makefile.incl.am
 
+BUILT_SOURCES = 	includes/graphicObjectsProperties.h
+#This file is also generated, but can not be listed to prevent GCJ call.
+#src/java/org/scilab/modules/graphic_objects/graphicObject/GraphicObjectProperties.java
 
 GRAPHIC_OBJECTS_JNI_SOURCES = src/jni/CallGraphicController.cpp
 
@@ -37,7 +40,7 @@ GRAPHIC_OBJECTS_CPP_SOURCES = 	src/cpp/createGraphicObject.cpp \
 GIWS_WRAPPERS =
 
 if GIWS
-BUILT_SOURCES=giws
+BUILT_SOURCES += giws
 endif
 
 
@@ -80,7 +83,7 @@ endif
 
 libscigraphic_objects_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 
-libscigraphic_objects_la_SOURCES = $(GRAPHIC_OBJECTS_C_SOURCES) $(GRAPHIC_OBJECTS_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GRAPHIC_OBJECTS_CPP_SOURCES)
+libscigraphic_objects_la_SOURCES = $(GRAPHIC_OBJECTS_GEN_SOURCES) $(GRAPHIC_OBJECTS_C_SOURCES) $(GRAPHIC_OBJECTS_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GRAPHIC_OBJECTS_CPP_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(GRAPHIC_OBJECTS_C_SOURCES) $(GATEWAY_C_SOURCES)
@@ -91,7 +94,7 @@ INCLUDE_FLAGS = $(libscigraphic_objects_la_CFLAGS)
 SWIG_WRAPPERS =
 
 if SWIG
-BUILT_SOURCES=swig
+BUILT_SOURCES += swig
 endif
 
 libscigraphic_objects_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
@@ -103,6 +106,11 @@ $(top_builddir)/modules/output_stream/libscioutput_stream.la
 libscigraphic_objects_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscigraphic_objects_la_sci_gateway_DATA = sci_gateway/graphic_objects_gateway.xml
 
+includes/graphicObjectsProperties.h: Makefile.am src/scripts/propertiesMap.properties
+	@echo "-- Building includes/graphicObjectProperties.h --"
+	@$(top_srcdir)/modules/graphic_objects/src/scripts/genPropertiesName.sh --C $(top_srcdir)/modules/graphic_objects/src/scripts/propertiesMap.properties $(top_srcdir)/modules/graphic_objects/includes/graphicObjectProperties.h
+	@echo "-- Building GraphicObjectProperties.java --"
+	@$(top_srcdir)/modules/graphic_objects/src/scripts/genPropertiesName.sh --java $(top_srcdir)/modules/graphic_objects/src/scripts/propertiesMap.properties $(top_srcdir)/modules/graphic_objects/src/java/org/scilab/modules/graphic_objects/graphicObject/GraphicObjectProperties.java
 if GUI
 USEANT=1
 endif

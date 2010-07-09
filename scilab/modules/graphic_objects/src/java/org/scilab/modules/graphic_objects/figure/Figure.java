@@ -13,7 +13,7 @@
 package org.scilab.modules.graphic_objects.figure;
 
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
-
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 /**
  * Figure class
  * @author Manuel JULIACHS
@@ -260,53 +260,53 @@ public class Figure extends GraphicObject {
 	 * @return the property enum
 	 */
 	public Object getPropertyFromName(String propertyName) {
-	    if (propertyName.equals("Dimensions")) {
+	    if (propertyName.equals(__GO_DIMENSIONS__)) {
 			return FigureProperty.DIMENSIONS;
-		} else if (propertyName.equals("Position")) {
+		} else if (propertyName.equals(__GO_POSITION__)) {
 			return FigureDimensionsProperty.POSITION;
-		} else if (propertyName.equals("Size")) {
+		} else if (propertyName.equals(__GO_SIZE__)) {
 			return FigureDimensionsProperty.SIZE;
-		} else if (propertyName.equals("Canvas")) {
+		} else if (propertyName.equals(__GO_CANVAS__)) {
 			return FigureProperty.CANVAS;
-		} else if (propertyName.equals("AutoResize")) {
+		} else if (propertyName.equals(__GO_AUTORESIZE__)) {
 			return CanvasProperty.AUTORESIZE;
-		} else if (propertyName.equals("Viewport")) {
+		} else if (propertyName.equals(__GO_VIEWPORT__)) {
 			return CanvasProperty.VIEWPORT;
-		} else if (propertyName.equals("AxesSize")) {
+		} else if (propertyName.equals(__GO_AXES_SIZE__)) {
 			return CanvasProperty.AXESSIZE;
-		} else if (propertyName.equals("FigureName")) {
+		} else if (propertyName.equals(__GO_FIGURE_NAME__)) {
 			return FigureProperty.NAME;
-		} else if (propertyName.equals("Name")) {
+		} else if (propertyName.equals(__GO_NAME__)) {
 			return FigureNameProperty.NAME;
-		} else if (propertyName.equals("Id")) {
+		} else if (propertyName.equals(__GO_ID__)) {
 			return FigureNameProperty.ID;
-		} else if (propertyName.equals("InfoMessage")) {
+		} else if (propertyName.equals(__GO_INFO_MESSAGE__)) {
 			return FigureProperty.INFOMESSAGE;
-		} else if (propertyName.equals("ColorMap")) {
+		} else if (propertyName.equals(__GO_COLORMAP__)) {
 			return FigureProperty.COLORMAP;
-		} else if (propertyName.equals("ColorMapSize")) {
+		} else if (propertyName.equals(__GO_COLORMAP_SIZE__)) {
 			return FigureProperty.COLORMAPSIZE;
-		} else if (propertyName.equals("RenderingMode")) {
+		} else if (propertyName.equals(__GO_RENDERING_MODE__)) {
 			return FigureProperty.RENDERINGMODE;
-		} else if (propertyName.equals("Pixmap")) {
+		} else if (propertyName.equals(__GO_PIXMAP__)) {
 			return RenderingModeProperty.PIXMAP;
-		} else if (propertyName.equals("PixelDrawingMode")) {
+		} else if (propertyName.equals(__GO_PIXEL_DRAWING_MODE__)) {
 			return RenderingModeProperty.PIXELDRAWINGMODE;
-		} else if (propertyName.equals("Antialiasing")) {
+		} else if (propertyName.equals(__GO_ANTIALIASING__)) {
 			return RenderingModeProperty.ANTIALIASING;
-		} else if (propertyName.equals("ImmediateDrawing")) {
+		} else if (propertyName.equals(__GO_IMMEDIATE_DRAWING__)) {
 			return RenderingModeProperty.IMMEDIATEDRAWING;
-		} else if (propertyName.equals("Background")) {
+		} else if (propertyName.equals(__GO_BACKGROUND__)) {
 			return FigureProperty.BACKGROUND;
-		} else if (propertyName.equals("EventHandler")) {
+		} else if (propertyName.equals(__GO_EVENTHANDLER__)) {
 			return FigureProperty.EVENTHANDLER;
-		} else if (propertyName.equals("EventHandlerName")) {
+		} else if (propertyName.equals(__GO_EVENTHANDLER_NAME__)) {
 			return EventHandlerProperty.EVENTHANDLER;
-		} else if (propertyName.equals("EventHandlerEnable")) {
+		} else if (propertyName.equals(__GO_EVENTHANDLER_ENABLE__)) {
 			return EventHandlerProperty.EVENTHANDLERENABLE;
-		} else if (propertyName.equals("Tag")) {
+		} else if (propertyName.equals(__GO_TAG__)) {
 			return FigureProperty.TAG;
-		} else if (propertyName.equals("RotationType")) {
+		} else if (propertyName.equals(__GO_ROTATION_TYPE__)) {
 			return FigureProperty.ROTATIONTYPE;
 		} else {
 			return super.getPropertyFromName(propertyName);
