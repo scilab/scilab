@@ -19,7 +19,7 @@ public interface GraphicView {
      * has been updated.
      * @param id
      */
-    void updateObject(String id);
+    void updateObject(String id, String property);
     
     /**
      * Notify an object with ID : id

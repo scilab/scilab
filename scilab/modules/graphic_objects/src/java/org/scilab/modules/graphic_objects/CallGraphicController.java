@@ -125,7 +125,7 @@ public final class CallGraphicController {
     }
 
     public static boolean getGraphicObjectPropertyAsBoolean(String id, String propertyName) {
-	return (Boolean) getGraphicObjectProperty(id, propertyName);
+        return ((Boolean) getGraphicObjectProperty(id, propertyName)).booleanValue();
     }
 
     public static boolean[] getGraphicObjectPropertyAsBooleanVector(String id, String propertyName) {

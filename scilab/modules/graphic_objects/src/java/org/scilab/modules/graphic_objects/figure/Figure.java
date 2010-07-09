@@ -188,7 +188,7 @@ public class Figure extends GraphicObject {
 	}
 
 	/** EventHandler properties names */
-	public enum EventHandlerProperty { EVENTHANDLER, EVENTHANDLERENABLED };
+	public enum EventHandlerProperty { EVENTHANDLER, EVENTHANDLERENABLE };
 
 	/**
 	 * EventHandler class
@@ -198,7 +198,7 @@ public class Figure extends GraphicObject {
 		private String eventHandler;
 
 		/** Specifies whether the event handler is enabled or not */
-		private boolean eventHandlerEnabled;
+		private Boolean eventHandlerEnabled = false;
 	}
 
 	/** Figure dimensions */
@@ -260,7 +260,7 @@ public class Figure extends GraphicObject {
 	 * @return the property enum
 	 */
 	public Object getPropertyFromName(String propertyName) {
-		if (propertyName.equals("Dimensions")) {
+	    if (propertyName.equals("Dimensions")) {
 			return FigureProperty.DIMENSIONS;
 		} else if (propertyName.equals("Position")) {
 			return FigureDimensionsProperty.POSITION;
@@ -302,8 +302,8 @@ public class Figure extends GraphicObject {
 			return FigureProperty.EVENTHANDLER;
 		} else if (propertyName.equals("EventHandlerName")) {
 			return EventHandlerProperty.EVENTHANDLER;
-		} else if (propertyName.equals("EventHandlerEnabled")) {
-			return EventHandlerProperty.EVENTHANDLERENABLED;
+		} else if (propertyName.equals("EventHandlerEnable")) {
+			return EventHandlerProperty.EVENTHANDLERENABLE;
 		} else if (propertyName.equals("Tag")) {
 			return FigureProperty.TAG;
 		} else if (propertyName.equals("RotationType")) {
@@ -361,8 +361,8 @@ public class Figure extends GraphicObject {
 			return getEventHandler();
 		} else if (property == EventHandlerProperty.EVENTHANDLER) {
 			return getEventHandlerString();
-		} else if (property == EventHandlerProperty.EVENTHANDLERENABLED) {
-			return getEventHandlerEnabled();
+		} else if (property == EventHandlerProperty.EVENTHANDLERENABLE) {
+			return getEventHandlerEnable();
 		} else if (property == FigureProperty.TAG) {
 			return getTag();
 		} else if (property == FigureProperty.ROTATIONTYPE) {
@@ -419,8 +419,8 @@ public class Figure extends GraphicObject {
 			setEventHandler((EventHandler) value);
 		} else if (property == EventHandlerProperty.EVENTHANDLER) {
 			setEventHandlerString((String) value);
-		} else if (property == EventHandlerProperty.EVENTHANDLERENABLED) {
-			setEventHandlerEnabled((Boolean) value);
+		} else if (property == EventHandlerProperty.EVENTHANDLERENABLE) {
+			setEventHandlerEnable((Boolean) value);
 		} else if (property == FigureProperty.TAG) {
 			setTag((Integer) value);
 		} else if (property == FigureProperty.ROTATIONTYPE) {
@@ -659,14 +659,14 @@ public class Figure extends GraphicObject {
 	/**
 	 * @return the eventHandlerEnabled
 	 */
-	public Boolean getEventHandlerEnabled() {
-		return eventHandler.eventHandlerEnabled;
+	public Boolean getEventHandlerEnable() {
+	    return eventHandler.eventHandlerEnabled;
 	}
 
 	/**
 	 * @param eventHandlerEnabled the eventHandlerEnabled to set
 	 */
-	public void setEventHandlerEnabled(Boolean eventHandlerEnabled) {
+	public void setEventHandlerEnable(Boolean eventHandlerEnabled) {
 		eventHandler.eventHandlerEnabled = eventHandlerEnabled;
 	}
 

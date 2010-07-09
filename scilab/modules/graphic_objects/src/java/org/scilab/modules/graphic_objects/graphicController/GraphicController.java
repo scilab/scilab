@@ -94,7 +94,7 @@ public class GraphicController {
      */
     public boolean setProperty(String id, String prop, Object value) {
     	if (GraphicModel.getModel().setProperty(id, prop, value) == true) {
-    	    objectUpdate(id);
+    	    objectUpdate(id, prop);
     	    return true;
     	}
     	return false;
@@ -148,11 +148,12 @@ public class GraphicController {
     /**
      * Notified the existing views that an object has been updated 
      * @param id the updated object's id
+     * @param prop the property that has been updated
      */
-    public void objectUpdate(String id) {
+    public void objectUpdate(String id, String prop) {
         Iterator<GraphicView> itr = allViews.iterator();
         while (itr.hasNext()) {
-            itr.next().updateObject(id);
+            itr.next().updateObject(id, prop);
         }
     }
 
