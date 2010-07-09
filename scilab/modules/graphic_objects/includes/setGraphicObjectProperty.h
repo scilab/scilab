@@ -19,10 +19,5 @@
 #include "dynlib_graphic_objects.h"
 
 GRAPHIC_OBJECTS_IMPEXP BOOL setGraphicObjectProperty(char *_psUID, char *_psPropertyName, void *_pvValue, enum _ReturnType_ _valueTtype, int numElements);
-GRAPHIC_OBJECTS_IMPEXP BOOL setGraphicObjectStringVectorProperty(char *_pstID, char *_pstName, void *_pvValue, int numElements);
-GRAPHIC_OBJECTS_IMPEXP BOOL setGraphicObjectDoubleProperty(char *_pstID, char *_pstName, double value);
-GRAPHIC_OBJECTS_IMPEXP BOOL setGraphicObjectDoubleVectorProperty(char *_pstID, char *_pstName, void *_pvValue, int numElements);
-GRAPHIC_OBJECTS_IMPEXP BOOL setGraphicObjectIntegerVectorProperty(char *_pstID, char *_pstName, void *_pvValue, int numElements);
-GRAPHIC_OBJECTS_IMPEXP BOOL setGraphicObjectBooleanVectorProperty(char *_pstID, char *_pstName, void *_pvValue, int numElements);
 
 #endif /* !__SETGRAPHICOBJECTPROPERTY_H__ */
