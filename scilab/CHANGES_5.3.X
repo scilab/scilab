@@ -90,6 +90,9 @@ Bug Fixes:
 
 * bug 7533 fixed - On Xcos, it was possible to drop a block into another block.
 
+* bug 7550 fixed - In SciNotes, the "case" keyword was misplaced in some conditions.
+
+
            Changes between version 5.2.X and 5.3.0-beta1 of Scilab
            =======================================================
 
