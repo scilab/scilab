@@ -1,0 +1,7 @@
+	LIBRARY    Libscilab.dll
+
+
+EXPORTS
+;
+;core
+;

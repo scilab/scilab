@@ -141,6 +141,7 @@ The option is "disableUnderMode" and can be:
 
 <!-- Mandatory on startup -->
 <path value="$SCILAB/modules/jvm/jar/org.scilab.modules.jvm.jar"/>
+<path value="$SCILAB/modules/commons/jar/org.scilab.modules.commons.jar"/>
 
 <!-- Console GUI dep -->
 <path value="$SCILAB/modules/shell/jar/org.scilab.modules.shell.jar" disableUnderMode="NW"/>

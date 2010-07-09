@@ -76,6 +76,7 @@
 		<pathelement location="${library.action_binding.dir}/${library.action_binding.name}"/>
 		
 		<pathelement location="${library.gui.dir}/${library.gui.name}"/>
+		<pathelement location="${library.commons.dir}/${library.commons.name}"/>
 		<pathelement location="${library.jvm.dir}/${library.jvm.name}"/>
 		<pathelement location="${library.renderer.dir}/${library.renderer.name}"/>
 		<pathelement location="${library.graphic_export.dir}/${library.graphic_export.name}"/>

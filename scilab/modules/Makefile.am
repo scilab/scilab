@@ -36,6 +36,7 @@ console \
 graphic_export \
 gui \
 jvm \
+commons \
 graphics \
 optimization \
 symbolic \
@@ -195,7 +196,8 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/fftw/libscifftw.la \
 	$(top_builddir)/modules/hdf5/libscihdf5.la \
 	$(top_builddir)/modules/functions/libscifunctions.la \
-	$(top_builddir)/modules/parallel/libsciparallel.la
+	$(top_builddir)/modules/parallel/libsciparallel.la \
+	$(top_builddir)/modules/commons/libscicommons.la
 
 
 # These libraries are loaded dynamically from Scilab.

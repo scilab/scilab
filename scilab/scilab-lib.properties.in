@@ -42,6 +42,9 @@ avalon-framework.jar=@AVALON_FRAMEWORK@
 library.jvm.dir=${modules.dir}/jvm/${build.jar.dir}/
 library.jvm.name=org.scilab.modules.jvm.jar
 
+library.commons.dir=${modules.dir}/commons/${build.jar.dir}/
+library.commons.name=org.scilab.modules.commons.jar
+
 library.shell.dir=${modules.dir}/shell/${build.jar.dir}/
 library.shell.name=org.scilab.modules.shell.jar
 
