@@ -20,7 +20,7 @@ int sum_matrix(int _iMode);
 int sum_sparse();
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_sum) (char *fname,unsigned long fname_len)
+int sci_sum (char *fname,unsigned long fname_len)
 {
 	int iType				= 0;
 	int iMode				= 0;

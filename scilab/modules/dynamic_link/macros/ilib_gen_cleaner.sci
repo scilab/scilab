@@ -1,12 +1,12 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) DIGITEO - 2009 - Allan CORNET
-// 
+// Copyright (C) DIGITEO - 2009-2010 - Allan CORNET
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-//==========================================
+//=============================================================================
 function ilib_gen_cleaner(makename,loadername,files)
 
   [lhs,rhs] = argn(0);
@@ -18,7 +18,7 @@ function ilib_gen_cleaner(makename,loadername,files)
   if (rhs < 2) then
     loadername = 'loader.sce';
   end
-  
+
   if (rhs < 3) then
     files = [];
   end
@@ -38,17 +38,17 @@ function ilib_gen_cleaner(makename,loadername,files)
   mfprintf(fd,"  mdelete(''%s'');\n",loadername);
   mfprintf(fd,"end\n");
   mfprintf(fd,"// ------------------------------------------------------\n");
-  
+
   if getos() == 'Windows' then
-    make_command = get_make_command(makename);  
+    make_command = get_make_command(makename);
     mfprintf(fd,"if fileinfo(''%s%s'') <> [] then\n",makename,get_makefile_ext());
-    mfprintf(fd,"  unix_s(''%s'');\n",make_command);  
+    mfprintf(fd,"  unix_s(''%s'');\n",make_command);
     mfprintf(fd,"  mdelete(''%s%s'');\n",makename,get_makefile_ext());
     mfprintf(fd,"end\n");
     mfprintf(fd,"// ------------------------------------------------------\n");
-  end 
+  end
 
-  if files <> [] then 
+  if files <> [] then
     for i = 1:size(files,'*')
       if ( files(i) <> '' ) then
         mfprintf(fd,"if fileinfo(''%s'') <> [] then\n", files(i));
@@ -60,47 +60,35 @@ function ilib_gen_cleaner(makename,loadername,files)
   end
 
   mfprintf(fd,"chdir(curdir);\n");
-  mfprintf(fd,"// ------------------------------------------------------\n");  
+  mfprintf(fd,"// ------------------------------------------------------\n");
   mclose(fd);
 
   if ilib_verbose() > 1 then
     disp(mgetl('cleaner.sce'));
   end
 endfunction
-//==========================================
+//=============================================================================
 function cmd = get_make_command(makename)
   if getos() == 'Windows' then // WINDOWS
-    // Visual Studio C++ 
-    if ( findmsvccompiler() <> 'unknown' ) then 
-      cmd = 'nmake /Y /nologo /f ' + makename + '.mak' + ' clean';
-    else
-      // LCC-WIN32
-      if findlcccompiler() then
-        cmd = 'make -f ' + makename + '.lcc' + ' clean';
-      else
-      // TO DO : Add another compiler here
-      end
+    // Load dynamic_link Internal lib if it's not already loaded
+    if ~ exists("dynamic_linkwindowslib") then
+      load("SCI/modules/dynamic_link/macros/windows/lib");
     end
+    cmd = dlwGetMakefileCmdCleaner(makename);
   else // LINUX
-    cmd = 'make ' + makename + ' clean'; 
-  end  
+    cmd = 'make ' + makename + ' clean';
+  end
 endfunction
-//==========================================
+//=============================================================================
 function ext = get_makefile_ext()
   if getos() == 'Windows' then // WINDOWS
-    // Visual Studio C++ 
-    if ( findmsvccompiler() <> 'unknown' ) then 
-      ext = '.mak';
-    else
-      // LCC-WIN32
-      if findlcccompiler() then
-        ext = '.lcc';
-      else
-      // TO DO : Add another compiler here
-      end
+    // Load dynamic_link Internal lib if it's not already loaded
+    if ~ exists("dynamic_linkwindowslib") then
+      load("SCI/modules/dynamic_link/macros/windows/lib");
     end
+    ext = dlwGetMakefileExt();
   else // LINUX
     ext = '';
-  end  
+  end
 endfunction
-//==========================================
+//=============================================================================

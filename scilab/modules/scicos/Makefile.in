@@ -133,8 +133,6 @@ am__base_list = \
   sed '$$!N;$$!N;$$!N;$$!N;s/\n/ /g'
 am__installdirs = "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(bindir)" \
 	"$(DESTDIR)$(libsciscicos_la_etcdir)" \
-	"$(DESTDIR)$(libsciscicos_la_help_en_USdir)" \
-	"$(DESTDIR)$(libsciscicos_la_help_fr_FRdir)" \
 	"$(DESTDIR)$(libsciscicos_la_rootdir)" \
 	"$(DESTDIR)$(libsciscicos_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libsciscicos_la_tcldir)" \
@@ -388,9 +386,7 @@ DIST_SOURCES = $(am__libsciscicos_la_SOURCES_DIST) \
 	$(am__libscisundials_la_SOURCES_DIST) \
 	$(am__XML2Modelica_SOURCES_DIST) $(am__modelicac_SOURCES_DIST) \
 	$(am__modelicat_SOURCES_DIST)
-DATA = $(libsciscicos_la_etc_DATA) $(libsciscicos_la_help_en_US_DATA) \
-	$(libsciscicos_la_help_fr_FR_DATA) \
-	$(libsciscicos_la_root_DATA) \
+DATA = $(libsciscicos_la_etc_DATA) $(libsciscicos_la_root_DATA) \
 	$(libsciscicos_la_sci_gateway_DATA) \
 	$(libsciscicos_la_tcl_DATA) \
 	$(nobase_libsciscicos_la_cosf_DATA)
@@ -1029,12 +1025,6 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @SCICOS_TRUE@-I$(top_srcdir)/modules/scicos/src/scicos_sundials/src/sundials
 
 @SCICOS_TRUE@libscisundials_la_SOURCES = $(SUNDIALS_SOURCES)
-
-#### scicos : help files scripts ####
-@SCICOS_TRUE@libsciscicos_la_help_en_USdir = $(mydatadir)/help/en_US
-@SCICOS_TRUE@libsciscicos_la_help_en_US_DATA = 
-@SCICOS_TRUE@libsciscicos_la_help_fr_FRdir = $(mydatadir)/help/fr_FR
-@SCICOS_TRUE@libsciscicos_la_help_fr_FR_DATA = 
 @SCICOS_FALSE@NO_SCICOS_C_SOURCES = src/c/noscicos/noscicos.c
 all: all-am
 
@@ -1834,46 +1824,6 @@ uninstall-libsciscicos_la_etcDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libsciscicos_la_etcdir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libsciscicos_la_etcdir)" && rm -f $$files
-install-libsciscicos_la_help_en_USDATA: $(libsciscicos_la_help_en_US_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libsciscicos_la_help_en_USdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciscicos_la_help_en_USdir)"
-	@list='$(libsciscicos_la_help_en_US_DATA)'; test -n "$(libsciscicos_la_help_en_USdir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciscicos_la_help_en_USdir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciscicos_la_help_en_USdir)" || exit $$?; \
-	done
-
-uninstall-libsciscicos_la_help_en_USDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libsciscicos_la_help_en_US_DATA)'; test -n "$(libsciscicos_la_help_en_USdir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libsciscicos_la_help_en_USdir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libsciscicos_la_help_en_USdir)" && rm -f $$files
-install-libsciscicos_la_help_fr_FRDATA: $(libsciscicos_la_help_fr_FR_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libsciscicos_la_help_fr_FRdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciscicos_la_help_fr_FRdir)"
-	@list='$(libsciscicos_la_help_fr_FR_DATA)'; test -n "$(libsciscicos_la_help_fr_FRdir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciscicos_la_help_fr_FRdir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciscicos_la_help_fr_FRdir)" || exit $$?; \
-	done
-
-uninstall-libsciscicos_la_help_fr_FRDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libsciscicos_la_help_fr_FR_DATA)'; test -n "$(libsciscicos_la_help_fr_FRdir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libsciscicos_la_help_fr_FRdir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libsciscicos_la_help_fr_FRdir)" && rm -f $$files
 install-libsciscicos_la_rootDATA: $(libsciscicos_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libsciscicos_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciscicos_la_rootdir)"
@@ -2066,7 +2016,7 @@ check: check-am
 all-am: Makefile $(LTLIBRARIES) $(PROGRAMS) $(DATA) $(HEADERS) \
 		all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(bindir)" "$(DESTDIR)$(libsciscicos_la_etcdir)" "$(DESTDIR)$(libsciscicos_la_help_en_USdir)" "$(DESTDIR)$(libsciscicos_la_help_fr_FRdir)" "$(DESTDIR)$(libsciscicos_la_rootdir)" "$(DESTDIR)$(libsciscicos_la_sci_gatewaydir)" "$(DESTDIR)$(libsciscicos_la_tcldir)" "$(DESTDIR)$(libsciscicos_la_cosfdir)" "$(DESTDIR)$(libsciscicos_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(bindir)" "$(DESTDIR)$(libsciscicos_la_etcdir)" "$(DESTDIR)$(libsciscicos_la_rootdir)" "$(DESTDIR)$(libsciscicos_la_sci_gatewaydir)" "$(DESTDIR)$(libsciscicos_la_tcldir)" "$(DESTDIR)$(libsciscicos_la_cosfdir)" "$(DESTDIR)$(libsciscicos_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -2119,8 +2069,6 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local install-libsciscicos_la_etcDATA \
-	install-libsciscicos_la_help_en_USDATA \
-	install-libsciscicos_la_help_fr_FRDATA \
 	install-libsciscicos_la_includeHEADERS \
 	install-libsciscicos_la_rootDATA \
 	install-libsciscicos_la_sci_gatewayDATA \
@@ -2172,8 +2120,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-binPROGRAMS uninstall-libsciscicos_la_etcDATA \
-	uninstall-libsciscicos_la_help_en_USDATA \
-	uninstall-libsciscicos_la_help_fr_FRDATA \
 	uninstall-libsciscicos_la_includeHEADERS \
 	uninstall-libsciscicos_la_rootDATA \
 	uninstall-libsciscicos_la_sci_gatewayDATA \
@@ -2193,8 +2139,6 @@ uninstall-am: uninstall-binPROGRAMS uninstall-libsciscicos_la_etcDATA \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
 	install-info-am install-libsciscicos_la_etcDATA \
-	install-libsciscicos_la_help_en_USDATA \
-	install-libsciscicos_la_help_fr_FRDATA \
 	install-libsciscicos_la_includeHEADERS \
 	install-libsciscicos_la_rootDATA \
 	install-libsciscicos_la_sci_gatewayDATA \
@@ -2207,8 +2151,6 @@ uninstall-am: uninstall-binPROGRAMS uninstall-libsciscicos_la_etcDATA \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
 	uninstall-am uninstall-binPROGRAMS \
 	uninstall-libsciscicos_la_etcDATA \
-	uninstall-libsciscicos_la_help_en_USDATA \
-	uninstall-libsciscicos_la_help_fr_FRDATA \
 	uninstall-libsciscicos_la_includeHEADERS \
 	uninstall-libsciscicos_la_rootDATA \
 	uninstall-libsciscicos_la_sci_gatewayDATA \

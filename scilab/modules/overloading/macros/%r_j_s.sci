@@ -17,7 +17,7 @@ if  or(imag(s)<>0)|or(int(s)<>s) then error(30),end
 if ms==1&ns==1 then
   if s<0 then 
     num=f('num')
-    if or(abs(coeff(num(:)))*ones(maxi(degree(num))+1,1)==0) then
+    if or(abs(coeff(num(:)))*ones(max(degree(num))+1,1)==0) then
       error(27)
     end
     s=-s
@@ -45,7 +45,7 @@ elseif ms==m&ns==n then  // Element wise exponentiation
   num(kp)=num(kp).^s(kp)
   den(kp)=den(kp).^s(kp)
 
-  if or(abs(coeff(num(kn)))*ones(maxi(degree(num(kn)))+1,1)==0) then
+  if or(abs(coeff(num(kn)))*ones(max(degree(num(kn)))+1,1)==0) then
     error(27)
   end
   num(kn)=den(kn).^(-s(kn))

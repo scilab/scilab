@@ -14,11 +14,15 @@ package org.scilab.modules.xcos.palette.view;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
+import javax.swing.RepaintManager;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
+import org.flexdock.docking.Dockable;
+import org.flexdock.docking.DockingManager;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -27,6 +31,7 @@ import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.utils.BarUpdater;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.window.ScilabWindow;
@@ -115,6 +120,8 @@ public class PaletteManagerView extends ScilabTab {
 		
 		setCallback(new ClosePalettesAction(null));
 		window.addTab(this);
+		BarUpdater.updateBars(getParentWindowId(), getMenuBar(), getToolBar(),
+				getInfoBar(), getName());
 		window.setVisible(true);
 		
 		getTree().revalidate();
@@ -156,5 +163,45 @@ public class PaletteManagerView extends ScilabTab {
 	/** @param info the information to write on the infobar */
 	public void setInfo(String info) {
 		getAsSimpleTab().getInfoBar().setText(info);
+		
+		/*
+		 * Force repaint
+		 */
+		((SwingScilabTextBox) getAsSimpleTab().getInfoBar()
+				.getAsSimpleTextBox()).repaint();
+		RepaintManager.currentManager((SwingScilabTab) this.getAsSimpleTab())
+				.paintDirtyRegions();
+	}
+	
+	/**
+	 * Handle the associated Tab removing and recreation 
+	 * 
+	 * @param newVisibleState the new status
+	 * @see org.scilab.modules.gui.tab.ScilabTab#setVisible(boolean)
+	 */
+	@Override
+	public void setVisible(boolean newVisibleState) {
+		super.setVisible(newVisibleState);
+		
+		/*
+		 * Recreate the window if applicable
+		 */
+		if (newVisibleState && getParentWindow() == null) {
+			Window paletteWindow = ScilabWindow.createWindow();
+			paletteWindow.setVisible(true);
+			super.setVisible(true);
+			paletteWindow.addTab(this);
+		}
+		
+		if (getParentWindow() != null) {
+			if (getParentWindow().getNbDockedObjects() == 1) {
+				getParentWindow().setVisible(newVisibleState);
+			} else {
+				if (!newVisibleState) {
+					DockingManager.undock((Dockable) getAsSimpleTab());
+					setParentWindowId(-1);
+				}
+			}
+		}
 	}
 }

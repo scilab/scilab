@@ -183,7 +183,7 @@ int readVectorString(int rhsPosition, char*** out, int* vectorLength, char* fnam
         return -1;
     }
 
-    value = (char**) MALLOC(sizeof(char) * rowsArgument * colsArgument);
+    value = (char**) MALLOC(sizeof(char*) * rowsArgument * colsArgument);
     for (int i = 0; i < rowsArgument * colsArgument; ++i)
     {
         value[i] = (char*) MALLOC(sizeof(char) * (lenArgument[i] + 1)); // +1 for null termination
@@ -206,5 +206,6 @@ int readVectorString(int rhsPosition, char*** out, int* vectorLength, char* fnam
 
     *out = value;
     *vectorLength = rowsArgument * colsArgument;
+    
     return 0;
 }

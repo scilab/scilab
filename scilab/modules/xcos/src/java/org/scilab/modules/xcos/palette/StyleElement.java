@@ -14,11 +14,9 @@ package org.scilab.modules.xcos.palette;
 
 import static java.util.Arrays.asList;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.types.scilabTypes.ScilabString;
 import org.scilab.modules.types.scilabTypes.ScilabTList;
 import org.scilab.modules.types.scilabTypes.ScilabType;
@@ -107,8 +105,8 @@ public class StyleElement extends AbstractElement<mxStylesheet> {
 
 		for (int i = 0; i < blockNames.length; i++) {
 			for (int j = 0; j < blockNames[i].length; j++) {
-				final Map<String, Object> style = new HashMap<String, Object>(
-						new StyleMap(styles[i][j]));
+				final Map<String, Object> style = styleSheet.getCellStyle(
+						styles[i][j], styleSheet.getDefaultVertexStyle());
 				styleSheet.putCellStyle(blockNames[i][j], style);
 			}
 		}

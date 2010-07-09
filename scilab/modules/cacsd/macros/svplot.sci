@@ -38,7 +38,7 @@ function svm = svplot(Sl,w)
     if argn(2) == 1
       w = logspace(-3,3);
     end
-    nf = maxi(size(w)); nsv = mini(size(d)); j = sqrt(-1);
+    nf = max(size(w)); nsv = min(size(d)); j = sqrt(-1);
     svm(nsv,nf) = 0;
     for i = 1:nf
       svm(:,i) = svd(c*((j*w(i)*eye()-a)\b)+d);
@@ -47,7 +47,7 @@ function svm = svplot(Sl,w)
     if argn(2) == 1
       w = logspace(-3,3);
     end
-    nf = maxi(size(w)); nsv = mini(size(d)); j = sqrt(-1);
+    nf = max(size(w)); nsv = min(size(d)); j = sqrt(-1);
     svm(nsv,nf) = 0;
     for i = 1:nf
       svm(:,i) = svd(c*((j*w(i)*eye()-a)\b)+d);
@@ -56,7 +56,7 @@ function svm = svplot(Sl,w)
     if argn(2) == 1
       w = logspace(-3,%pi);
     end
-    nf = maxi(size(w)); nsv = mini(size(d)); j = sqrt(-1);
+    nf = max(size(w)); nsv = min(size(d)); j = sqrt(-1);
     svm(nsv,nf) = 0;
     for i = 1:nf
       svm(:,i) = svd(c*((exp(j*w(i))*eye()-a)\b)+d);
@@ -65,7 +65,7 @@ function svm = svplot(Sl,w)
     if argn(2) == 1
       w = logspace(-3,%pi);
     end
-    nf = maxi(size(w)); nsv = mini(size(d)); j = sqrt(-1);
+    nf = max(size(w)); nsv = min(size(d)); j = sqrt(-1);
     svm(nsv,nf) = 0;
     for i = 1:nf
       svm(:,i) = svd(c*((exp(j*w(i)*T)*eye()-a)\b)+d);

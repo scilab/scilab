@@ -21,7 +21,7 @@ SciErr ceil_poly(int* _piAddress);
 SciErr ceil_int(int* _piAddress);
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_ceil) (char *fname,unsigned long fname_len)
+int sci_ceil(char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
 	int iType 		= 0;

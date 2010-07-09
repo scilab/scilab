@@ -17,7 +17,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(inttan) (int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_tan) (char *fname,unsigned long fname_len)
+int sci_tan(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	int iRows = 0;

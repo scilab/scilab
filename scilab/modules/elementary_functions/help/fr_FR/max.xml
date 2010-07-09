@@ -12,10 +12,13 @@
 
   <refnamediv>
     <refname>max</refname>
-
     <refpurpose>maximum</refpurpose>
   </refnamediv>
-
+  <refnamediv xml:id="maxi">
+    <refname>maxi</refname>
+    <refpurpose>Equivalent obsolete de la fonction max</refpurpose>
+  </refnamediv>
+  
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
 
@@ -79,6 +82,11 @@
     <para><literal>[m,k]=max(list(A1,...,An))</literal> est une syntaxe
     équivalente de <literal>[m,k]=max(A1,A2,...,An)</literal></para>
   </refsection>
+  <refsection>
+    <title>Remarque</title>
+    <para>La fonction <literal>maxi</literal> est un equivalent
+    obsolete de la fonction <literal>max</literal>.</para>
+ </refsection>
 
   <refsection>
     <title>Exemples</title>
@@ -104,3 +112,4 @@
     </simplelist>
   </refsection>
 </refentry>
+ 

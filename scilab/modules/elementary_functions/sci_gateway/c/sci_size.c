@@ -22,7 +22,7 @@ SciErr size_list(int* _piAddress);
 
 extern int C2F(intsize)(int* id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_size) (char *fname,unsigned long fname_len)
+int sci_size(char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
 	int iType 	= 0;

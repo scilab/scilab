@@ -33,7 +33,7 @@ using namespace org_scilab_modules_xcos_palette;
 int
 sci_xcosPalLoad(char *fname, unsigned long fname_len)
 {
-    CheckRhs(2, 2);
+    CheckRhs(1, 2);
     CheckLhs(0, 1);
 
     char* path = NULL;
@@ -48,7 +48,7 @@ sci_xcosPalLoad(char *fname, unsigned long fname_len)
     }
 
     /* category setup */
-    if(readVectorString(2, &category, &lenCategory, fname))
+    if (Rhs == 2 && readVectorString(2, &category, &lenCategory, fname))
     {
         FREE(path);
         return 0;
@@ -57,11 +57,25 @@ sci_xcosPalLoad(char *fname, unsigned long fname_len)
     /* Call the java implementation */
     try
     {
-        Palette::loadPal(getScilabJavaVM(), path, category, lenCategory);
+        // FIXME #7266 workaround
+        // check category emptyness
+        if (category == NULL || (lenCategory == 1 && *category == '\0'))
+        {
+            Palette::loadPal(getScilabJavaVM(), path);
+        }
+        else
+        {
+            Palette::loadPal(getScilabJavaVM(), path, category, lenCategory);
+        }
     }
-    catch (GiwsException::JniCallMethodException& exception)
+    catch (GiwsException::JniCallMethodException exception)
     {
-        Scierror(999, "%s: %s", fname, exception.getJavaDescription().c_str());
+        Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
+        return 0;
+    }
+    catch (GiwsException::JniException exception)
+    {
+        Scierror(999, "%s: %s\n", fname, exception.what());
         return 0;
     }
 

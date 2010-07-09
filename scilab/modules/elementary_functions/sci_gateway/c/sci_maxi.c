@@ -29,7 +29,7 @@ SciErr compare_double_inside(int* _piAddress, int _iIsMini, int _iMode);
 static SciErr compare_double(int _iIsMini, int** _piAddr, int _iNbItem);
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_maxi) (char *fname,unsigned long fname_len)
+int sci_maxi (char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
 	int i;
@@ -157,9 +157,9 @@ int C2F(sci_maxi) (char *fname,unsigned long fname_len)
 		C2F(ref2val)();
 		Fin -= 6; //Ugly !!!
 		if(iMini)
-			C2F(sci_spmin)(fname, fname_len);
+			sci_spmin(fname, fname_len);
 		else
-			C2F(sci_spmax)(fname, fname_len);
+			sci_spmax(fname, fname_len);
 		break;
 	default:
 		OverLoad(1);

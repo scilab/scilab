@@ -102,7 +102,7 @@ function [h,num,den]=ss2tf(sl,rmax)
     [m,n]=size(sl(5))
     c=sl(4)
     for l=1:m
-      [m,i]=maxi(abs(c(l,:)));
+      [m,i]=max(abs(c(l,:)));
       if m<>0 then
 	ci=c(l,i)
 	t=eye(na,na)*ci;t(i,:)=[-c(l,1:i-1), 1, -c(l,i+1:na)]

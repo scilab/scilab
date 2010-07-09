@@ -102,10 +102,8 @@ function status = generateBlockImage(block, path, file, handle, imageType)
     
     if imageType == "svg" then
         xs2svg(handle.figure_id, outFile);
-        disp(outFile);
     elseif imageType == "gif" then
         xs2gif(handle.figure_id, outFile);
-        disp(outFile);
     end
     
     // post operations

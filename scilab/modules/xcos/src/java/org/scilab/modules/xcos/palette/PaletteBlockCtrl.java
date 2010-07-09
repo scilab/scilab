@@ -13,6 +13,7 @@
 package org.scilab.modules.xcos.palette;
 
 import java.awt.Point;
+import java.awt.datatransfer.Transferable;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DragGestureEvent;
 import java.awt.dnd.DragGestureListener;
@@ -20,19 +21,24 @@ import java.awt.dnd.DragSource;
 import java.awt.dnd.InvalidDnDOperationException;
 import java.awt.event.MouseListener;
 
+import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
+import org.scilab.modules.localization.Messages;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.H5RWHandler;
 import org.scilab.modules.xcos.palette.listener.PaletteBlockMouseListener;
 import org.scilab.modules.xcos.palette.model.PaletteBlock;
 import org.scilab.modules.xcos.palette.view.PaletteBlockView;
-import org.scilab.modules.xcos.utils.BlockPositioning;
+import org.scilab.modules.xcos.palette.view.PaletteManagerView;
+import org.scilab.modules.xcos.utils.XcosMessages;
 
-import com.mxgraph.swing.util.mxGraphTransferable;
+import com.mxgraph.swing.handler.mxGraphTransferHandler;
 import com.mxgraph.util.mxConstants;
-import com.mxgraph.util.mxRectangle;
 
 /**
  * A palette block is the representation of the block in the palette. All the
@@ -41,12 +47,26 @@ import com.mxgraph.util.mxRectangle;
 public final class PaletteBlockCtrl {
 
 	private static final MouseListener MOUSE_LISTENER = new PaletteBlockMouseListener();
+	private static final Log LOG = LogFactory.getLog(PaletteBlockCtrl.class);
+	
+	private static final String UNABLE_TO_LOAD_BLOCK = Messages.gettext("Unable to load block from %s .");
+	private static final String LOADING_THE_BLOCK = Messages.gettext("Loading the block") + XcosMessages.DOTS;
+	
+	/*
+	 * Internal graph used to render each block.
+	 */
+	private static final XcosDiagram INTERNAL_GRAPH;
+	static {
+		INTERNAL_GRAPH = new XcosDiagram();
+		INTERNAL_GRAPH.installListeners();
+	}
+	
 	private static PaletteBlockCtrl previouslySelected;
 	
 	private final PaletteBlock model;
 	private final PaletteBlockView view;
 	
-	private mxGraphTransferable transferable;
+	private Transferable transferable;
 	
 	/**
 	 * Default constructor
@@ -85,12 +105,31 @@ public final class PaletteBlockCtrl {
 	 * This function is the only access to get the block.
 	 * @return the transferable object
 	 */
-	public mxGraphTransferable getTransferable() {
+	public Transferable getTransferable() {
 		if (transferable == null) {
+			/* Load the block from the H5 file */
 			BasicBlock block = loadBlock();
-			BlockPositioning.updateBlockView(block);
-			transferable = new mxGraphTransferable(new Object[] {block},
-					(mxRectangle) block.getGeometry().clone());
+			if (block == null) {
+				if (LOG.isInfoEnabled()) {
+					LOG.info(String.format(UNABLE_TO_LOAD_BLOCK,
+							getModel().getData().getEvaluatedPath()));
+				}
+				getView().setEnabled(false);
+				return null;
+			}
+			getView().setEnabled(true);
+			
+			/* Render it and export it */
+			INTERNAL_GRAPH.addCell(block);
+			INTERNAL_GRAPH.selectAll();
+			
+			INTERNAL_GRAPH.updateCellSize(block);
+			
+			mxGraphTransferHandler handler = ((mxGraphTransferHandler) INTERNAL_GRAPH
+					.getAsComponent().getTransferHandler());
+			transferable = handler.createTransferable(INTERNAL_GRAPH.getAsComponent());
+			
+			INTERNAL_GRAPH.removeCells();
 		}
 		return transferable;
 	}
@@ -147,18 +186,33 @@ public final class PaletteBlockCtrl {
 		// Install the handler for dragging nodes into a graph
 		DragGestureListener dragGestureListener = new DragGestureListener() {
 			public void dragGestureRecognized(DragGestureEvent e) {
+				final PaletteManagerView winView = PaletteManager.getInstance()
+						.getView();
+				final DragGestureEvent event = e;
+				final String msg = String.format(UNABLE_TO_LOAD_BLOCK,
+						getModel().getData().getEvaluatedPath());
+
+				winView.setInfo(LOADING_THE_BLOCK);
 				try {
-				e.startDrag(null, mxConstants.EMPTY_IMAGE, new Point(),
-						getTransferable(), null);
+					Transferable transfer = getTransferable();
+
+					if (transfer != null) {
+						event.startDrag(null, mxConstants.EMPTY_IMAGE, new Point(),
+								transfer, null);
+					} else {
+						throw new NullPointerException();
+					}
 				} catch (InvalidDnDOperationException exception) {
-					LogFactory.getLog(PaletteBlockCtrl.class)
-						.warn(exception);
+					ScilabModalDialog.show(winView, msg,
+							XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
+				} finally {
+					winView.setInfo(XcosMessages.EMPTY_INFO);
 				}
 			}
 
 		};
 
-		DragSource dragSource = new DragSource();
+		DragSource dragSource = DragSource.getDefaultDragSource();
 		dragSource.createDefaultDragGestureRecognizer(this.getView(),
 				DnDConstants.ACTION_COPY, dragGestureListener);
 	}

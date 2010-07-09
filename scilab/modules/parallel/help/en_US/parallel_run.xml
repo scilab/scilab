@@ -54,7 +54,7 @@
         <term>f</term>
 
         <listitem>
-          <para>string containing the name of the function to call.</para>
+          <para>A scilab macro or a string containing the name of the function to call.</para>
         </listitem>
       </varlistentry>
 
@@ -137,6 +137,8 @@ For now, parallel_run only handles arguments and results of scalar  matrices of 
     <para>Furthermore, no locking primitives are available in Scilab to handle concurrent accesses to shared variables.
 For this reason, the concurrent execution of Scilab macros cannot be safe in a shared memory environment and each parallel execution must be done in a separate memory space. As a result, one should not rely on side effects such as modifying variables from outer scope : only the data stored into the result  variables will be copied back into the calling environment.
 </para>
+    <para>As it is not possible to synchronize the access to Java Virtual Machine accross separate memory spaces, Scilab macros called by parallel_run are not allowed to use the JVM. This unfortunately encompass all the graphics functions as the Scilab GUI is based on Java. The spawned Scilab process are run in "nwni" mode their calls to <link linkend="disp">disp()</link> are redirected to the standard output.
+</para>
     <para>A last limitation imposed by the aim to minimize data shuffling info memory is that no stack resizing (via <link linkend="gstacksize">gstacksize()</link> or via <link linkend="stacksize">stacksize()</link>) should take place during a call to <literal>parallel_run</literal> (neither by the function f nor by the prologue or epilogue cf. infra.).
 </para>
   </refsection>
@@ -160,7 +162,7 @@ function a= g(arg1)
   a=arg1*arg1
 endfunction
 
-res=parallel_run(1:10, "g"); // res = [1., 4., 9., 16., 25., 36., 49., 64., 81., 100.]; ]]></programlisting>
+res=parallel_run(1:10, g); // res = [1., 4., 9., 16., 25., 36., 49., 64., 81., 100.]; ]]></programlisting>
 The matrix res was filled with res(i)= g(i), with concurrent calls to g(). To see that the calls to <literal>g</literal> are not sequential, we can add some output to the function :
  <programlisting role="example"><![CDATA[function a= g(arg1)
 disp("called on "+string(arg1));
@@ -168,7 +170,7 @@ disp("called on "+string(arg1));
 disp("computed "+string(a));
 endfunction
 
-res=parallel_run(1:6, "g"); // the actual output depends on the architecture (i.e. 4 cores) and current load
+res=parallel_run(1:6, g); // the actual output depends on the architecture (i.e. 4 cores) and current load
  called on 3
 
  computed 9

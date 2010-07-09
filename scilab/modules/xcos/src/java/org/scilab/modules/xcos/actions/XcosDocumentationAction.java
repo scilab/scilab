@@ -67,6 +67,7 @@ public final class XcosDocumentationAction extends DefaultAction {
 	 * @param e the event
 	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
 	 */
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		ScilabInterpreterManagement.requestScilabExec("help xcos");
 	}

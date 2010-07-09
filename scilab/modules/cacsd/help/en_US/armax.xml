@@ -105,7 +105,7 @@ B(z) = b0+b1*z+...+b_s z^s ( s=-1 => B(z)=0)
     we can write 
     <literal>y(t)= coef* z(t) + sig*e(t) </literal> and the algorithm minimises 
     <literal>sum_{t=1}^N ( [y(t)- coef'z(t)]^2)</literal>
-    where t0=maxi(maxi(r,s)+1,1))).</para>
+    where t0=max(max(r,s)+1,1))).</para>
   </refsection>
   <refsection>
     <title>Examples</title>

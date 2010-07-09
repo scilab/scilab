@@ -19,6 +19,8 @@
 #define CACSD "cacsd"
 ;
 Source: bin\slicot_f.dll; DestDir: {app}\bin; Components: {#COMPN_CACSD}
+Source: bin\{#CACSD}_f.dll; DestDir: {app}\bin; Components: {#COMPN_CACSD}
+Source: bin\{#CACSD}.dll; DestDir: {app}\bin; Components: {#COMPN_CACSD}
 ;
 Source: modules\{#CACSD}\VERSION.xml; DestDir: {app}\modules\{#CACSD}; Components: {#COMPN_CACSD}
 Source: modules\{#CACSD}\readme.txt; DestDir: {app}\modules\{#CACSD}; Components: {#COMPN_CACSD}

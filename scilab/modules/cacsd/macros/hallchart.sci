@@ -105,7 +105,7 @@ function hallchart(modules,args,colors)
     ec.line_style=7;
     ec.clip_state="clipgrf";
     datatipInitStruct(ec,"formatfunction","formatHallPhaseTip","phase",args(i))
-    xstring(xc,yc(i)+radius(i),msprintf("%g"+_("°"),args(i)));
+    xstring(xc,yc(i)+radius(i),msprintf("%g°",args(i)));
     el=gce();
     el.font_foreground=colors(2);
     el.clip_state="clipgrf";
@@ -130,6 +130,6 @@ function str=formatHallPhaseTip(curve,pt,index)
 //This function is called by the datatip mechanism to format the tip
 //string for the Hall charts iso phase curves
   ud=datatipGetStruct(curve);
-  str=msprintf("%.2g"+_("°"), ud.phase);
+  str=msprintf("%.2g°", ud.phase);
 endfunction
 

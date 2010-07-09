@@ -133,7 +133,7 @@ function black(varargin)
     kk=kk+1
     dst=dst+min(sqrt(((phi(:,kk-1)-phi(:,kk))^2)/dx2+((d(:,kk-1)-d(:,kk))^2)/dy2))
     if dst>0.2 then
-      if mini(abs(frq(:,ks(prod(size(ks))))-frq(:,kk))./frq(:,kk))>0.2 then
+      if min(abs(frq(:,ks(prod(size(ks))))-frq(:,kk))./frq(:,kk))>0.2 then
         ks=[ks kk]
         dst=0
       end
@@ -223,5 +223,5 @@ function str=formatBlackTip(curve,pt,index)
     [d,ptp,i,c]=orthProj(curve.data,pt)
     f=ud.freq(i)+(ud.freq(i+1)-ud.freq(i))*c
   end
-  str=msprintf("%.4g"+_("°")+"\n%.4g"+_("dB")+"\n%.4g"+_("Hz"), pt,f);
+  str=msprintf("%.4g°\n%.4g"+_("dB")+"\n%.4g"+_("Hz"), pt,f);
 endfunction

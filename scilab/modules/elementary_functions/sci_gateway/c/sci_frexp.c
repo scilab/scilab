@@ -19,7 +19,7 @@
 #include "Scierror.h"
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_frexp) (char *fname,unsigned long fname_len)
+int sci_frexp(char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
 	int i;

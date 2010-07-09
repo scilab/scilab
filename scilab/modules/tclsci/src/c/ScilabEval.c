@@ -18,7 +18,6 @@
 #include "sciprint_full.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "../../localization/includes/localization.h"
 #include "syncexec.h"
 #include "storeCommand.h"
 #ifdef _MSC_VER

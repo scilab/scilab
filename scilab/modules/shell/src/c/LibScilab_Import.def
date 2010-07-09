@@ -4,7 +4,7 @@
 EXPORTS
 ;core
   LaunchScilab
-  LaunchScilabLock
+  pLaunchScilabLock
 ;
 getScilabMode
 callFunctionFromGateway

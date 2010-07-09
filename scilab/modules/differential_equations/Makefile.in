@@ -564,6 +564,7 @@ sci_gateway/fortran/bbvode.f
 libscidifferential_equations_la_CFLAGS = -I$(srcdir)/includes/ \
 						-I$(top_srcdir)/modules/output_stream/includes \
 						-I$(top_srcdir)/modules/dynamic_link/includes \
+						-I$(top_srcdir)/modules/elementary_functions/includes \
 						-I$(top_srcdir)/modules/api_scilab/includes \
 						-I$(top_srcdir)/modules/operations/includes
 
@@ -1514,6 +1515,9 @@ uninstall-am: uninstall-libscidifferential_equations_la_etcDATA \
 	uninstall-libscidifferential_equations_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
+						-I$(top_srcdir)/modules/api_scilab/includes \
+						-I$(top_srcdir)/modules/elementary_functions/includes \
+						-I$(top_srcdir)/modules/dynamic_link/includes
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin test

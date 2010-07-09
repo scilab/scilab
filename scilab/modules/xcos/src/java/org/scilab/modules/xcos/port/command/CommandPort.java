@@ -42,6 +42,7 @@ public class CommandPort extends BasicPort {
      * This port is untyped
      * @return always null
      */
+	@Override
     public Type getType() {
 	return null;
     }

@@ -11,11 +11,11 @@
  */
 /*--------------------------------------------------------------------------*/
 
-#ifndef __READ2DB__
-#define __READ2DB__
+#ifndef __READ2DB_H__
+#define __READ2DB_H__
 
 #include "machine.h"
-
+#include "dynlib_elementary_functions.h"
 /*--------------------------------------------------------------------------*/
 /* cette subroutine traduit un vecteur dx, de taille n, sur un
    vecteur double precision dy.
@@ -25,6 +25,6 @@
    fonction prend les composantes en ordre inverse.
 */
 /*--------------------------------------------------------------------------*/
-int C2F(rea2db)(int *n, float *dx, int *incx, double *dy, int *incy);
+ELEMENTARY_FUNCTIONS_IMPEXP int C2F(rea2db)(int *n, float *dx, int *incx, double *dy, int *incy);
 
-#endif /* !__READ2DB__ */
+#endif /* __READ2DB_H__ */

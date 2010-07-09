@@ -103,6 +103,7 @@ curEnv->DeleteLocalRef(localInstance);
 
                 /* Methods ID set to NULL */
 voidloadPaljstringjobjectArray_ID=NULL; 
+voidloadPaljstringID=NULL; 
 voidaddCategoryjobjectArray_jbooleanID=NULL; 
 voidremovejobjectArray_ID=NULL; 
 voidenablejobjectArray_jbooleanID=NULL; 
@@ -131,6 +132,7 @@ throw GiwsException::JniObjectCreationException(curEnv, this->className());
         }
         /* Methods ID set to NULL */
         voidloadPaljstringjobjectArray_ID=NULL; 
+voidloadPaljstringID=NULL; 
 voidaddCategoryjobjectArray_jbooleanID=NULL; 
 voidremovejobjectArray_ID=NULL; 
 voidenablejobjectArray_jbooleanID=NULL; 
@@ -193,6 +195,24 @@ curEnv->DeleteLocalRef(TempString);
                          curEnv->CallStaticVoidMethod(cls, voidloadPaljstringjobjectArray_ID ,path_, category_);curEnv->DeleteLocalRef(stringArrayClass);
 curEnv->DeleteLocalRef(category_);
 if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void Palette::loadPal (JavaVM * jvm_, char * path){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidloadPaljstringID = curEnv->GetStaticMethodID(cls, "loadPal", "(Ljava/lang/String;)V" ) ;
+if (voidloadPaljstringID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "loadPal");
+}
+
+jstring path_ = curEnv->NewStringUTF( path );
+
+                         curEnv->CallStaticVoidMethod(cls, voidloadPaljstringID ,path_);if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
 }

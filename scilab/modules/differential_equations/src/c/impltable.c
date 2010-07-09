@@ -12,6 +12,7 @@
  */
 #include "GetFunctionByName.h"
 #include "machine.h"
+#include "dynlib_differential_equations.h"
 /***********************************
 * impl   (  fres, fadda, fj2 )
 ***********************************/
@@ -28,16 +29,18 @@ typedef void (*fj2f)(ARGS_fj2);
 
 /**************** fres ***************/
 extern void C2F(resid)(ARGS_fres);
-void C2F(fres)(ARGS_fres);
-void C2F(setfres)(char *name, int *rep);
+
+DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(fres)(ARGS_fres);
+DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(setfres)(char *name, int *rep);
 
 FTAB FTab_fres[] ={
 	{"resid", (voidf)  C2F(resid)},
 	{(char *) 0, (voidf) 0}};
 /**************** fadda ***************/
 extern void C2F(aplusp)(ARGS_fadda);
-void C2F(fadda)(ARGS_fadda);
-void C2F(setfadda)(char *name, int *rep);
+
+DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(fadda)(ARGS_fadda);
+DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(setfadda)(char *name, int *rep);
 
 FTAB FTab_fadda[] ={
 {"aplusp", (voidf)  C2F(aplusp)},
@@ -45,8 +48,9 @@ FTAB FTab_fadda[] ={
 
 /**************** fj2 ***************/
 extern void C2F(dgbydy)(ARGS_fj2);
-void C2F(fj2)(ARGS_fj2);
-void C2F(setfj2)(char *name, int *rep);
+
+DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(fj2)(ARGS_fj2);
+DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(setfj2)(char *name, int *rep);
 
 FTAB FTab_fj2[] ={
 	{"dgbydy", (voidf)  C2F(dgbydy)},

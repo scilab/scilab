@@ -25,7 +25,7 @@ function []=m_circle(gain)
   rayon=lambda./(lambda.*lambda-ones(lambda))
   centre=-lambda.*rayon
   rayon=abs(rayon)
-  rect=[mini(centre-rayon),mini(-rayon),maxi(centre+rayon),maxi(rayon)];
+  rect=[min(centre-rayon),min(-rayon),max(centre+rayon),max(rayon)];
   //
   drawlater()
   ax=gca();

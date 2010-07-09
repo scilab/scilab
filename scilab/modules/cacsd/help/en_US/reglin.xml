@@ -40,8 +40,8 @@ bb=[9;10;11]
 y=aa*x +bb*ones(1,100)+ 0.1*rand(3,100);
 // identification 
 [a,b,sig]=reglin(x,y);
-maxi(abs(aa-a))
-maxi(abs(bb-b))
+max(abs(aa-a))
+max(abs(bb-b))
 // an other example : fitting a polynom 
 f=1:100; x=[f.*f; f];
 y= [ 2,3]*x+ 10*ones(f) + 0.1*rand(f);

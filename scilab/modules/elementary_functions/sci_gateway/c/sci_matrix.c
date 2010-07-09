@@ -29,8 +29,7 @@ SciErr matrix_int(int* _piAddress, int _iRowsRet, int _iColsRet);
 SciErr matrix_bool(int* _piAddress, int _iRowsRet, int _iColsRet);
 
 /*--------------------------------------------------------------------------*/
-/*--------------------------------------------------------------------------*/
-int C2F(sci_scimatrix) (char *fname,unsigned long fname_len)
+int sci_scimatrix(char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
 	int iRows1			= 0;

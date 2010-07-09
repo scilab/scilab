@@ -23,7 +23,7 @@ extern int sci_ptriu(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 extern int C2F(inttriu) (int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_triu) (char *fname,unsigned long fname_len)
+int sci_triu(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 #ifdef _NEW_TONIO_

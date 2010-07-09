@@ -101,6 +101,7 @@ public class PaletteManagerMouseListener implements MouseListener {
 		}
 		
 		create.setCallback(new CallBack(XcosMessages.CREATE) {
+			@Override
 			public void callBack() {
 				Category nonModifiedRoot = currentNode.getParent();
 				TreePath newPath = null;
@@ -148,6 +149,7 @@ public class PaletteManagerMouseListener implements MouseListener {
 			MenuItem remove) {
 		remove.setText(XcosMessages.REMOVE);
 		remove.setCallback(new CallBack(XcosMessages.REMOVE) {
+			@Override
 			public void callBack() {
 				if (path == null) {
 					return;

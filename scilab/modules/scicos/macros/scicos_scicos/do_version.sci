@@ -1138,7 +1138,7 @@ end
 if size(scs_m(1)(1),'*') <4 then scs_m(1)(1)=[scs_m(1)(1),0,0],end //compatibility
 
 
-scs_m(1)(1)(2)=maxi(scs_m(1)(1)(2),450)
+scs_m(1)(1)(2)=max(scs_m(1)(1)(2),450)
 if size(scs_m(1))<6 then
   options=default_options()
   doc=list() //documentation structure
@@ -1452,8 +1452,8 @@ case 'DELAY_f' then
   label=[]
   gr_i=['b1=xstringl(0,0,''e'');';
       'b2=xstringl(0,0,''-Ts'');';
-      'h=-b1(2)+maxi(0,sz(2)-0.5*b1(4)+b2(4))/2;';
-      'w=maxi(0,sz(1)-b1(3)-b1(4))/2;';
+      'h=-b1(2)+max(0,sz(2)-0.5*b1(4)+b2(4))/2;';
+      'w=max(0,sz(1)-b1(3)-b1(4))/2;';
       'xstring(orig(1)+w,orig(2)+h,''e'');';
       'xstring(orig(1)+w+b1(3)/2,orig(2)+h+b1(4)*0.5,''-Ts'');']
 case 'DLRADAPT_f' then
@@ -1627,9 +1627,9 @@ case 'FOR_f' then
     gr_i=['rpar=model(8);n=size(rpar,''*'')/2;';
     'thick=xget(''thickness'');xset(''thickness'',2);';
     'xx=rpar(1:n);yy=rpar(n+1:2*n);';
-    'mnx=mini(xx);xx=xx-mnx*ones(xx);mxx=maxi(xx);';
+    'mnx=min(xx);xx=xx-mnx*ones(xx);mxx=max(xx);';
     'xx=orig(1)+sz(1)*(1/10+(4/5)*xx/mxx);';
-    'mnx=mini(yy);yy=yy-mnx*ones(yy);mxx=maxi(yy);';
+    'mnx=min(yy);yy=yy-mnx*ones(yy);mxx=max(yy);';
     'yy=orig(2)+sz(2)*(1/10+(4/5)*yy/mxx);';
     'xpoly(xx,yy,''lines'');';
     'xset(''thickness'',thick);']
@@ -2237,9 +2237,9 @@ case 'LOOKUP_f' then
   gr_i=['rpar=model.rpar;n=size(rpar,''*'')/2;';
     'thick=xget(''thickness'');xset(''thickness'',2);';
     'xx=rpar(1:n);yy=rpar(n+1:2*n);';
-    'mnx=mini(xx);xx=xx-mnx*ones(xx);mxx=maxi(xx);';
+    'mnx=min(xx);xx=xx-mnx*ones(xx);mxx=max(xx);';
     'xx=orig(1)+sz(1)*(1/10+(4/5)*xx/mxx);';
-    'mnx=mini(yy);yy=yy-mnx*ones(yy);mxx=maxi(yy);';
+    'mnx=min(yy);yy=yy-mnx*ones(yy);mxx=max(yy);';
     'yy=orig(2)+sz(2)*(1/10+(4/5)*yy/mxx);';
     'xpoly(xx,yy,''lines'');';
     'xset(''thickness'',thick);']

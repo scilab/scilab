@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2006-2008 - INRIA - Allan CORNET <allan.cornet@inria.fr>
+ * Copyright (C) 2006-2008 - INRIA - Allan CORNET
+ * Copyright (C) 2010 - DIGITEO - Allan CORNET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -9,16 +10,30 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
-#include "gw_special_functions1.h"
-#include "stack-c.h"
 #include <string.h>
+#include "gw_special_functions.h"
+#include "machine.h"
+#include "warningmode.h"
+#include "localization.h"
+#include "sciprint.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(intsbessely)(char *id,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_oldbessely)(char *fname,unsigned long fname_len)
+int sci_oldbessely(char *fname,unsigned long fname_len)
 {
-	C2F(intsbessely)(fname,fname_len);
-	return 0;
+    if (getWarningMode())
+    {
+        sciprint(_("Warning: "));
+        sciprint(_("Function %s is obsolete."), fname);
+        sciprint("\n");
+        sciprint(_("Warning: "));
+        sciprint(_("Please use %s instead."), "bessely");
+        sciprint("\n");
+        sciprint(_("Warning: "));
+        sciprint(_("This function will be permanently removed in Scilab %s"), "5.3.1");
+        sciprint("\n");
+    }
+    C2F(intsbessely)(fname,fname_len);
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

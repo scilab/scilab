@@ -18,7 +18,7 @@
 SciErr int_double(int* _piAddress);
 SciErr int_poly(int* _piAddress);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_int) (char *fname,unsigned long fname_len)
+int sci_int(char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
 	int iType			= 0;

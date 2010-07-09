@@ -54,7 +54,7 @@ function pal = xcosPal(name, scs_m)
     for block = scs_m.objs
         if typeof(block)=="Block" & block.gui == "PAL_f" then
             // customize palette name
-            name = block.model.rpar.props.title;
+            name = block.model.rpar.props.title(1);
             
             // Add PAL_f children blocks
             children = block.model.rpar.objs;

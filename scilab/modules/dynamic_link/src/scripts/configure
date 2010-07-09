@@ -19388,12 +19388,8 @@ case "$host" in
 	 CFLAGS=" $CFLAGS -I/sw/include "
 	 CPPFLAGS=" $CPPFLAGS -I/sw/include "
 	 LDFLAGS=" $LDFLAGS -L/sw/lib/ "
-         case "$host" in
-          x86_64-apple-darwin*|i386-apple-darwin*)
-	        CC=" $CC -arch x86_64 "
-	        CXX=" $CXX -arch x86_64 "
-                ;;
-     esac
+     CC=" $CC -arch x86_64 "
+     CXX=" $CXX -arch x86_64 "
 esac
 
 # Configure the Makefile

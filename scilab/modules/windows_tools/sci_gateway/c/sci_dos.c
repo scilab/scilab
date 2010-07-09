@@ -28,9 +28,6 @@
 /*--------------------------------------------------------------------------*/
 #define BUFSIZE 4096
 /*--------------------------------------------------------------------------*/
-pipeinfo pipeOut = {INVALID_HANDLE_VALUE, NULL,0};
-pipeinfo pipeErr = {INVALID_HANDLE_VALUE, NULL,0};
-/*--------------------------------------------------------------------------*/
 static int PrintOuput(char **ouput,int nbrlines);
 /*--------------------------------------------------------------------------*/
 int sci_dos(char *fname,unsigned long l)
@@ -173,19 +170,19 @@ int sci_dos(char *fname,unsigned long l)
 
 		if (DetachProcessOption)
 		{
-			if ( strlen(pipeErr.OutputBuffer) )
+			if ( strlen(pipeSpawnErr.OutputBuffer) )
 			{
 				/* StdErr will be "Output" */
 				*StatusExit = FALSE;
-				Output = CreateOuput(&pipeErr,DetachProcessOption);
-				numberoflines = pipeErr.NumberOfLines;
+				Output = CreateOuput(&pipeSpawnErr,DetachProcessOption);
+				numberoflines = pipeSpawnErr.NumberOfLines;
 			}
 			else
 			{
 				/* StdOut will be "Output" */
 				*StatusExit = TRUE;
-				Output = CreateOuput(&pipeOut,DetachProcessOption);
-				numberoflines = pipeOut.NumberOfLines;
+				Output = CreateOuput(&pipeSpawnOut,DetachProcessOption);
+				numberoflines = pipeSpawnOut.NumberOfLines;
 			}
 		}
 		else
@@ -205,15 +202,15 @@ int sci_dos(char *fname,unsigned long l)
 				DeleteFile(FileTMPDir);
 				/* StdOut will be "Output" */
 				*StatusExit = TRUE;
-				Output = CreateOuput(&pipeOut,DetachProcessOption);
-				numberoflines = pipeOut.NumberOfLines;
+				Output = CreateOuput(&pipeSpawnOut,DetachProcessOption);
+				numberoflines = pipeSpawnOut.NumberOfLines;
 			}
 			else
 			{
 				/* StdErr will be "Output" */
 				*StatusExit = FALSE;
-				Output = CreateOuput(&pipeErr,DetachProcessOption);
-				numberoflines = pipeErr.NumberOfLines;
+				Output = CreateOuput(&pipeSpawnErr,DetachProcessOption);
+				numberoflines = pipeSpawnErr.NumberOfLines;
 			}
 		}
 
@@ -236,7 +233,7 @@ int sci_dos(char *fname,unsigned long l)
 			int m_out2 = 1;
 			int n_out2 = 1;
 
-			if (Output[0])
+			if (Output && Output[0])
 			{
 				int m_out1 = numberoflines;
 				int n_out1 = 1;
@@ -286,8 +283,8 @@ int sci_dos(char *fname,unsigned long l)
 		if (StatusExit) {FREE(StatusExit); StatusExit = NULL;}
 		freeArrayOfString(Output, numberoflines);
 
-		ClosePipeInfo (pipeOut);
-		ClosePipeInfo (pipeErr);
+		ClosePipeInfo (pipeSpawnOut);
+		ClosePipeInfo (pipeSpawnErr);
 
 	}
 	else

@@ -22,10 +22,10 @@ function [nk,W]=hankelsv(sl,tol)
   [lhs,rhs]=argn(0),
   if rhs==1 then tol=1000*%eps,end,
   lf=spec(sl(2)),
-  if mini(abs(lf))<=tol then
+  if min(abs(lf))<=tol then
     error(msprintf(gettext("%s: Wrong value for input argument #%d: Pure imaginary poles unexpected.\n"),"hankelsv",1)),
   end
-  if maxi(real(lf)) > tol then 
+  if max(real(lf)) > tol then 
     error(msprintf(gettext("%s: Wrong value for input argument #%d: Stable system expected.\n"),"hankelsv",1)),
   end,
   [sla,sls,d]=dtsi(sl);

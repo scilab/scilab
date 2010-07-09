@@ -15,12 +15,10 @@
 
 package org.scilab.modules.gui.bridge.window;
 
-import java.awt.Image;
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.Frame;
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.Iterator;
 import java.util.Set;
@@ -37,12 +35,11 @@ import org.flexdock.docking.DockingPort;
 import org.flexdock.docking.activation.ActiveDockableTracker;
 import org.flexdock.docking.defaults.DefaultDockingPort;
 import org.flexdock.view.View;
-
+import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.gui.bridge.menubar.SwingScilabMenuBar;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
 import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
-import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.SimpleMenuBar;
 import org.scilab.modules.gui.tab.Tab;
@@ -298,12 +295,11 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	 * @see org.scilab.modules.gui.window.Window#addTab(org.scilab.modules.gui.tab.Tab)
 	 */
 	public void addTab(Tab newTab) {
-		((SwingScilabTab) newTab.getAsSimpleTab()).setParentWindowId(this.elementId);
-		DockingManager.dock((SwingScilabTab) newTab.getAsSimpleTab(), this.getDockingPort());
-		// Adding the MenuBar of the last added Tab
-		this.addMenuBar(newTab.getMenuBar());
-		this.addToolBar(newTab.getToolBar());
-		this.addInfoBar(newTab.getInfoBar());
+		final SwingScilabTab tabImpl = ((SwingScilabTab) newTab.getAsSimpleTab());
+		
+		tabImpl.setParentWindowId(this.elementId);
+		DockingManager.dock(tabImpl, this.getDockingPort());
+		ActiveDockableTracker.requestDockableActivation(tabImpl);
 	}
 	
 	/**
@@ -323,9 +319,6 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 			if (menuBar != null) {
 				UIElementMapper.removeMapping(menuBar.getElementId());
 			}
-			addMenuBar(null);
-			addToolBar(null);
-			addInfoBar(null);
 			UIElementMapper.removeMapping(this.elementId);
 			
 			// clean all
@@ -341,7 +334,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 			/* Make sur a Tab is active */
 			Set<SwingScilabTab> docks = sciDockingPort.getDockables();
 			Iterator<SwingScilabTab> it = docks.iterator();
-			((SwingScilabTab) it.next()).setActive(true);
+			ActiveDockableTracker.requestDockableActivation((SwingScilabTab) it.next());
 		}
 	}
 	
@@ -496,5 +489,4 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	public void windowNormal() {
 		super.setState(Frame.NORMAL);
 	}
-
 }

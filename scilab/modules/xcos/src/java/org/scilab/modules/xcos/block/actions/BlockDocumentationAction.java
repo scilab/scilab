@@ -69,6 +69,7 @@ public final class BlockDocumentationAction extends VertexSelectionDependantActi
 	 * @param e the event
 	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
 	 */
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		BasicBlock selectedBlock = ((BasicBlock) getGraph(e).getSelectionCell());
 		if (selectedBlock != null) {

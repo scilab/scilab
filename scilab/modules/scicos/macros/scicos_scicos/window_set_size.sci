@@ -99,6 +99,6 @@ function window_set_size(gh_window, viewport)
   end 
  
   gh_curwin.viewport = [%XSHIFT, %YSHIFT];
-  xselect(); //** put the current window in foreground
+  show_window(); //** put the current window in foreground
 endfunction
 

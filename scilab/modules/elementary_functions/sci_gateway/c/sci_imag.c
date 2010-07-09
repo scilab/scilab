@@ -20,7 +20,7 @@ SciErr img_poly(int* _piAddress);
 SciErr img_sparse(int* _piAddress);
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_imag) (char *fname,unsigned long fname_len)
+int sci_imag(char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
 	int* piAddr		= NULL;

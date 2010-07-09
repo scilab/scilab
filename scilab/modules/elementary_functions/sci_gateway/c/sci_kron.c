@@ -32,7 +32,7 @@ extern int C2F(dcopy)();
 extern int C2F(dscal)();
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_kron) (char *fname,unsigned long fname_len)
+int sci_kron (char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
 	int iRows1					= 0;

@@ -416,6 +416,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\mmapWindows.c"
+				>
+			</File>
+			<File
 				RelativePath=".\MutexClosingScilab.c"
 				>
 			</File>
@@ -425,6 +429,10 @@
 			</File>
 			<File
 				RelativePath=".\SetScilabEnvironmentVariables.c"
+				>
+			</File>
+			<File
+				RelativePath=".\spawncommand.c"
 				>
 			</File>
 			<File
@@ -517,6 +525,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\mmapWindows.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\includes\MutexClosingScilab.h"
 				>
 			</File>
@@ -538,6 +550,10 @@
 			</File>
 			<File
 				RelativePath=".\SetScilabEnvironmentVariables.h"
+				>
+			</File>
+			<File
+				RelativePath=".\spawncommand.h"
 				>
 			</File>
 			<File

@@ -61,6 +61,8 @@ public class SetupDialog extends JDialog {
 	 * Without formatting the entry, bug #7143 appears on jdk6.
 	 */
 	private static final InputVerifier VALIDATE_POSITIVE_DOUBLE = new InputVerifier() {
+
+		@Override
 	    public boolean verify(javax.swing.JComponent arg0) {
 		boolean ret = false;
 		JFormattedTextField textField = (JFormattedTextField) arg0;

@@ -5,13 +5,13 @@ EXPORTS
 ;
 ;core
 ;
+vstk_
 intersci_
 adre_
 iop_
 funnam_
 recu_
 stack_
-vstk_
 com_
 errgst_
 ref2val_
@@ -37,6 +37,3 @@ objvide_
 getscalar_
 returnananfortran_
 
-;cacsd_f
-shrslv_
-giv_

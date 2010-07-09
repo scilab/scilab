@@ -41,10 +41,12 @@ public class ModifiedFlowLayout extends FlowLayout {
 		super(align, hgap, vgap);
 	}
 
+	@Override
 	public Dimension minimumLayoutSize(Container target) {
 		return computeSize(target, false);
 	}
 
+	@Override
 	public Dimension preferredLayoutSize(Container target) {
 		return computeSize(target, true);
 	}

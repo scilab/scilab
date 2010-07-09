@@ -24,7 +24,7 @@ double GetNextRandValue();
 /*--------------------------------------------------------------------------*/
 extern int C2F(intrand) (char *fname,int *id, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_rand) (char *fname,unsigned long fname_len)
+int sci_rand(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 #ifdef _NEW_TONIO_

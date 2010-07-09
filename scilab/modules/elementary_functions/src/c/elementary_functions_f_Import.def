@@ -5,8 +5,6 @@ EXPORTS
 ; --------------------------------------- 
 ; elementary_functions_f
 ; --------------------------------------- 
-dclmat_
-dmcopy_
 intabs_
 intacos_
 intasin_
@@ -54,7 +52,10 @@ inttriu_
 intzeros_
 intclean_
 intimag_
+intrat_
+dad_
+dmcopy_
 dmmul_
 cerr_
-coef_ 
-dad_
+coef_
+dclmat_

@@ -22,7 +22,7 @@ SciErr isreal_sparse(int* _piAddress, double _dblRef, int* _piIsReal);
 SciErr isreal_common(double *_pdblData, int _iSize, double _dblRef, int* _piIsReal);
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_isreal) (char *fname,unsigned long fname_len)
+int sci_isreal(char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
 	int iRows					= 0;

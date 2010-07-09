@@ -17,7 +17,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(sciresidu)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_residu)(char *fname,unsigned long fname_len)
+int sci_residu(char *fname,unsigned long fname_len)
 {
 	C2F(sciresidu)(fname,fname_len);
 	return 0;

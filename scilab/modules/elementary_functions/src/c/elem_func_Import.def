@@ -5,9 +5,6 @@ EXPORTS
 ;
 ;elem_func
 ;
-iLeftDivisionOfRealMatrix
-iMultiRealMatrixByRealMatrix
-iRightDivisionRealMatrixByRealMatrix
 dtans
 ztans
 zsins

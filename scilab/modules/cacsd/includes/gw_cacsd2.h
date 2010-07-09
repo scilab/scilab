@@ -15,16 +15,15 @@
 #ifndef __GW_CACSD2__
 #define __GW_CACSD2__
 /*--------------------------------------------------------------------------*/ 
-#include "machine.h"
-#include "api_scilab.h"
+#include "dynlib_cacsd.h"
 /*--------------------------------------------------------------------------*/ 
-int gw_cacsd2(void);
+CACSD_IMPEXP int gw_cacsd2(void);
 /*--------------------------------------------------------------------------*/ 
-int C2F(sci_ppol)(char *fname,unsigned long fname_len);
-int C2F(sci_tzer)(char *fname,unsigned long fname_len);
-int C2F(sci_freq)(char *fname,unsigned long fname_len);
-int C2F(sci_ltitr)(char *fname,unsigned long fname_len);
-int C2F(sci_rtitr)(char *fname,unsigned long fname_len);
+int sci_ppol(char *fname,unsigned long fname_len);
+int sci_tzer(char *fname,unsigned long fname_len);
+int sci_freq(char *fname,unsigned long fname_len);
+int sci_ltitr(char *fname,unsigned long fname_len);
+int sci_rtitr(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_GW_CACSD2__ */
 /*--------------------------------------------------------------------------*/

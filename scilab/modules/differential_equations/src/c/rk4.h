@@ -14,7 +14,7 @@
 #define __RK4_H__
 /*--------------------------------------------------------------------------*/
 #include "machine.h" /* C2F */
-
+#include "dynlib_differential_equations.h"
 /**
 * Runge-Kutta (RK4) method
 * @param y
@@ -26,7 +26,7 @@
 * @param derivs
 * @return 0
 */
-int C2F(rk4)(double *y, double *dydx, int *n,double *x, double *h, double *yout,void (*derivs)());
+DIFFERENTIAL_EQUATIONS_IMPEXP int C2F(rk4)(double *y, double *dydx, int *n,double *x, double *h, double *yout,void (*derivs)());
 /*--------------------------------------------------------------------------*/
 #endif /* __RK4_H__ */
 /*--------------------------------------------------------------------------*/

@@ -172,13 +172,13 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
 		if (!isEmptyField(data.get(field))) {
 			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
-
+		
 		// options
 		field++;
 		if (!(data.get(field) instanceof ScilabTList)) {
 			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
-
+		
 		// void2
 		field++;
 		if (!isEmptyField(data.get(field))) {

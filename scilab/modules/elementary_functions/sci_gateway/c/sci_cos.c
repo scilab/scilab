@@ -15,8 +15,7 @@
 #include "basic_functions.h"
 #include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
-
-int C2F(sci_cos) (char *fname,unsigned long fname_len)
+int sci_cos(char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
 	int i;

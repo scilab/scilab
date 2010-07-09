@@ -12,12 +12,14 @@
  */
 #include "GetFunctionByName.h"
 #include "machine.h"
+#include "dynlib_differential_equations.h"
 #define ARGS_fintg double *
 
 /**************** fintg ***************/
 extern void C2F(intgex)(ARGS_fintg);
-double *C2F(fintg)(ARGS_fintg);
-void C2F(setfintg)(char *name, int *rep);
+
+DIFFERENTIAL_EQUATIONS_IMPEXP double *C2F(fintg)(ARGS_fintg);
+DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(setfintg)(char *name, int *rep);
 
 FTAB FTab_fintg[] ={
 	{"intgex", (voidf)  C2F(intgex)},

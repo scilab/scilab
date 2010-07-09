@@ -67,6 +67,7 @@ jobject instance;
 jclass instanceClass; // cache class
 jmethodID voidloadPaljstringjobjectArray_ID; // cache method id
 jclass stringArrayClass;
+jmethodID voidloadPaljstringID; // cache method id
 jmethodID voidaddCategoryjobjectArray_jbooleanID; // cache method id
 jmethodID voidremovejobjectArray_ID; // cache method id
 jmethodID voidenablejobjectArray_jbooleanID; // cache method id
@@ -114,6 +115,8 @@ void endSynchronize();
 
 // Methods
 static void loadPal(JavaVM * jvm_, char * path, char ** category, int categorySize);
+
+static void loadPal(JavaVM * jvm_, char * path);
 
 static void addCategory(JavaVM * jvm_, char ** name, int nameSize, bool visible);
 

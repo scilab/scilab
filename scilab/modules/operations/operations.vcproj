@@ -61,10 +61,11 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				CommandLine="lib /DEF:&quot;$(InputDir)elementary_functions_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)elementary_functions.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)linear_algebra_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)linear_algebra_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)elem_func_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)elem_func.lib&quot; 1&gt;NUL 2&gt;NUL"
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="&quot;$(IFORT_COMPILER11)lib\ia32\ifconsol.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\libifcoremdd.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\libmmdd.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\libirc.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\svml_disp.lib&quot;"
+				AdditionalDependencies="elementary_functions.lib elementary_functions_f.lib linear_algebra_f.lib elem_func.lib"
 				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
 				LinkIncremental="2"
 				IgnoreDefaultLibraryNames=""
@@ -138,10 +139,11 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				CommandLine="lib /DEF:&quot;$(InputDir)elementary_functions_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)elementary_functions.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)linear_algebra_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)linear_algebra_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)elem_func_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)elem_func.lib&quot; 1&gt;NUL 2&gt;NUL"
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="&quot;$(IFORT_COMPILER11)lib\intel64\ifconsol.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\libifcoremdd.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\libmmdd.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\libirc.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\svml_disp.lib&quot;"
+				AdditionalDependencies="elementary_functions.lib elementary_functions_f.lib linear_algebra_f.lib elem_func.lib"
 				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
 				LinkIncremental="2"
 				IgnoreDefaultLibraryNames=""
@@ -215,10 +217,11 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				CommandLine="lib /DEF:&quot;$(InputDir)elementary_functions_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)elementary_functions.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)linear_algebra_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)linear_algebra_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)elem_func_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)elem_func.lib&quot; 1&gt;NUL 2&gt;NUL"
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="&quot;$(IFORT_COMPILER11)lib\ia32\ifconsol.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\libifcoremd.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\libmmd.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\libirc.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\svml_disp.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\libiomp5md.lib&quot;"
+				AdditionalDependencies="elementary_functions.lib elementary_functions_f.lib linear_algebra_f.lib elem_func.lib"
 				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames=""
@@ -295,10 +298,11 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				CommandLine="lib /DEF:&quot;$(InputDir)elementary_functions_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)elementary_functions.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)linear_algebra_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)linear_algebra_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)elem_func_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)elem_func.lib&quot; 1&gt;NUL 2&gt;NUL"
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="&quot;$(IFORT_COMPILER11)lib\intel64\ifconsol.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\libifcoremd.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\libmmd.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\libirc.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\svml_disp.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\libiomp5md.lib&quot;"
+				AdditionalDependencies="elementary_functions.lib elementary_functions_f.lib linear_algebra_f.lib elem_func.lib"
 				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames=""
@@ -448,6 +452,26 @@
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
+		</Filter>
+		<Filter
+			Name="Libraries dependencies"
+			>
+			<File
+				RelativePath=".\elem_func_Import.def"
+				>
+			</File>
+			<File
+				RelativePath=".\elementary_functions_f_Import.def"
+				>
+			</File>
+			<File
+				RelativePath=".\elementary_functions_Import.def"
+				>
+			</File>
+			<File
+				RelativePath=".\linear_algebra_f_Import.def"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath="..\..\bin\blasplus.lib"

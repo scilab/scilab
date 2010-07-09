@@ -23,8 +23,8 @@ function [w,rk]=colcomp(a,flag,tol)
   [lhs,rhs]=argn(0)
   if a==[] then w=[];rk=0;return;end
   if norm(a,1) < sqrt(%eps)/10 then rk=0,w=eye(na,na),return,end
-  if rhs ==2 then tol=sqrt(%eps)*norm(a,1)*maxi(ma,na),end
-  if rhs==1 then flag='svd',tol=sqrt(%eps)*norm(a,1)*maxi(ma,na);end
+  if rhs ==2 then tol=sqrt(%eps)*norm(a,1)*max(ma,na),end
+  if rhs==1 then flag='svd',tol=sqrt(%eps)*norm(a,1)*max(ma,na);end
   select flag
   case 'qr' then [q,r,rk,e]=qr(a',tol);
     //w=[q(:,rk+1:ma),q(:,1:rk)]; <-- le  ma me parait suspect je met na 

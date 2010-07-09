@@ -14,7 +14,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intblkslvi)(int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_blkslvi)(char *fname,unsigned long fname_len)
+int sci_blkslvi(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	C2F(intblkslvi)(id);

@@ -98,7 +98,7 @@ extern int C2F(wexpm1)();
 extern int C2F(drot)();
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_expm) (char *fname,unsigned long fname_len)
+int sci_expm (char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
 	int iRet						= 0;

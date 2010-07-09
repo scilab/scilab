@@ -58,13 +58,13 @@ msgstr "%s: 入力引数 #%d で不正な値: [%d、%d] 間隔であるべきで
 
 #
 # File: src/c/getCommentDateSession.c, line: 25
-msgid "// Begin Session : "
-msgstr "// セッションの開始 : "
+msgid "Begin Session : "
+msgstr "セッションの開始 : "
 
 #
 # File: src/c/getCommentDateSession.c, line: 26
-msgid "// End Session   : "
-msgstr "// セッションの終わり : "
+msgid "End Session   : "
+msgstr "セッションの終わり : "
 
 #
 # File: src/c/getCommentDateSession.c, line: 129

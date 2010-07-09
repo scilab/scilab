@@ -171,20 +171,20 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/fortran/createref.f src/fortran/btof.f src/fortran/matzs.f \
 	src/fortran/getnum.f src/fortran/btofm.f src/fortran/getsym.f \
 	src/fortran/findequal.f src/fortran/stackg.f \
-	src/fortran/find.f src/fortran/israt.f src/fortran/setlnb.f \
-	src/fortran/mrknmd.f src/fortran/stackgl.f \
-	src/fortran/allops.f src/fortran/mname.f src/fortran/command.f \
-	src/fortran/ref2val.f src/fortran/stack.f src/fortran/isbrk.f \
-	src/fortran/majmin.f src/fortran/xerbla.f src/fortran/dtosci.f \
-	src/fortran/bexec.f src/fortran/varfunptr.f \
-	src/fortran/getfun.f src/fortran/savlod.f src/fortran/error.f \
-	src/fortran/cvdm.f src/fortran/tradsl.f src/fortran/mkindx.f \
-	src/fortran/whatln.f src/fortran/errmgr.f src/fortran/defmat.f \
-	src/fortran/mklist.f src/fortran/sigbas.f src/fortran/indxg.f \
-	src/fortran/matz.f src/fortran/istrue.f src/fortran/inisci.f \
-	src/fortran/ptover.f src/fortran/getfunction.f \
-	src/fortran/stackp.f src/fortran/dbasin.f src/fortran/macro.f \
-	src/fortran/extlarg.f src/fortran/getstr.f src/fortran/cvwm.f \
+	src/fortran/find.f src/fortran/setlnb.f src/fortran/mrknmd.f \
+	src/fortran/stackgl.f src/fortran/allops.f src/fortran/mname.f \
+	src/fortran/command.f src/fortran/ref2val.f \
+	src/fortran/stack.f src/fortran/isbrk.f src/fortran/majmin.f \
+	src/fortran/xerbla.f src/fortran/dtosci.f src/fortran/bexec.f \
+	src/fortran/varfunptr.f src/fortran/getfun.f \
+	src/fortran/savlod.f src/fortran/error.f src/fortran/cvdm.f \
+	src/fortran/tradsl.f src/fortran/mkindx.f src/fortran/whatln.f \
+	src/fortran/errmgr.f src/fortran/defmat.f src/fortran/mklist.f \
+	src/fortran/sigbas.f src/fortran/indxg.f src/fortran/matz.f \
+	src/fortran/istrue.f src/fortran/inisci.f src/fortran/ptover.f \
+	src/fortran/getfunction.f src/fortran/stackp.f \
+	src/fortran/dbasin.f src/fortran/macro.f src/fortran/extlarg.f \
+	src/fortran/getstr.f src/fortran/cvwm.f \
 	src/fortran/storeglobal.f src/fortran/lst2vars.f \
 	src/fortran/basnms.f src/fortran/matc.f src/fortran/ptrback.f \
 	src/fortran/getch.f src/fortran/ftob.f src/fortran/seteol.f \
@@ -298,17 +298,17 @@ am__objects_5 = clunit.lo getlin.lo allowptr.lo isany.lo hmcreate.lo \
 	logops.lo atome.lo hndlops.lo cmplxt.lo skpins.lo folhp.lo \
 	cvname.lo funs.lo fact.lo inibrk.lo typ2cod.lo prompt.lo \
 	intstr.lo createref.lo btof.lo matzs.lo getnum.lo btofm.lo \
-	getsym.lo findequal.lo stackg.lo find.lo israt.lo setlnb.lo \
-	mrknmd.lo stackgl.lo allops.lo mname.lo command.lo ref2val.lo \
-	stack.lo isbrk.lo majmin.lo xerbla.lo dtosci.lo bexec.lo \
-	varfunptr.lo getfun.lo savlod.lo error.lo cvdm.lo tradsl.lo \
-	mkindx.lo whatln.lo errmgr.lo defmat.lo mklist.lo sigbas.lo \
-	indxg.lo matz.lo istrue.lo inisci.lo ptover.lo getfunction.lo \
-	stackp.lo dbasin.lo macro.lo extlarg.lo getstr.lo cvwm.lo \
-	storeglobal.lo lst2vars.lo basnms.lo matc.lo ptrback.lo \
-	getch.lo ftob.lo seteol.lo basin.lo clause.lo compcl.lo \
-	termf.lo expsum.lo copyvar.lo putid.lo itosci.lo stackr2d.lo \
-	stacki2d.lo stackc2i.lo isinstring.lo $(am__objects_4)
+	getsym.lo findequal.lo stackg.lo find.lo setlnb.lo mrknmd.lo \
+	stackgl.lo allops.lo mname.lo command.lo ref2val.lo stack.lo \
+	isbrk.lo majmin.lo xerbla.lo dtosci.lo bexec.lo varfunptr.lo \
+	getfun.lo savlod.lo error.lo cvdm.lo tradsl.lo mkindx.lo \
+	whatln.lo errmgr.lo defmat.lo mklist.lo sigbas.lo indxg.lo \
+	matz.lo istrue.lo inisci.lo ptover.lo getfunction.lo stackp.lo \
+	dbasin.lo macro.lo extlarg.lo getstr.lo cvwm.lo storeglobal.lo \
+	lst2vars.lo basnms.lo matc.lo ptrback.lo getch.lo ftob.lo \
+	seteol.lo basin.lo clause.lo compcl.lo termf.lo expsum.lo \
+	copyvar.lo putid.lo itosci.lo stackr2d.lo stacki2d.lo \
+	stackc2i.lo isinstring.lo $(am__objects_4)
 am__objects_6 = libscicore_la-sci_stacksize.lo \
 	libscicore_la-sci_resume.lo libscicore_la-sci_mtlb_mode.lo \
 	libscicore_la-sci_banner.lo libscicore_la-sci_where.lo \
@@ -682,20 +682,20 @@ CORE_FORTRAN_SOURCES = src/fortran/clunit.f src/fortran/getlin.f \
 	src/fortran/createref.f src/fortran/btof.f src/fortran/matzs.f \
 	src/fortran/getnum.f src/fortran/btofm.f src/fortran/getsym.f \
 	src/fortran/findequal.f src/fortran/stackg.f \
-	src/fortran/find.f src/fortran/israt.f src/fortran/setlnb.f \
-	src/fortran/mrknmd.f src/fortran/stackgl.f \
-	src/fortran/allops.f src/fortran/mname.f src/fortran/command.f \
-	src/fortran/ref2val.f src/fortran/stack.f src/fortran/isbrk.f \
-	src/fortran/majmin.f src/fortran/xerbla.f src/fortran/dtosci.f \
-	src/fortran/bexec.f src/fortran/varfunptr.f \
-	src/fortran/getfun.f src/fortran/savlod.f src/fortran/error.f \
-	src/fortran/cvdm.f src/fortran/tradsl.f src/fortran/mkindx.f \
-	src/fortran/whatln.f src/fortran/errmgr.f src/fortran/defmat.f \
-	src/fortran/mklist.f src/fortran/sigbas.f src/fortran/indxg.f \
-	src/fortran/matz.f src/fortran/istrue.f src/fortran/inisci.f \
-	src/fortran/ptover.f src/fortran/getfunction.f \
-	src/fortran/stackp.f src/fortran/dbasin.f src/fortran/macro.f \
-	src/fortran/extlarg.f src/fortran/getstr.f src/fortran/cvwm.f \
+	src/fortran/find.f src/fortran/setlnb.f src/fortran/mrknmd.f \
+	src/fortran/stackgl.f src/fortran/allops.f src/fortran/mname.f \
+	src/fortran/command.f src/fortran/ref2val.f \
+	src/fortran/stack.f src/fortran/isbrk.f src/fortran/majmin.f \
+	src/fortran/xerbla.f src/fortran/dtosci.f src/fortran/bexec.f \
+	src/fortran/varfunptr.f src/fortran/getfun.f \
+	src/fortran/savlod.f src/fortran/error.f src/fortran/cvdm.f \
+	src/fortran/tradsl.f src/fortran/mkindx.f src/fortran/whatln.f \
+	src/fortran/errmgr.f src/fortran/defmat.f src/fortran/mklist.f \
+	src/fortran/sigbas.f src/fortran/indxg.f src/fortran/matz.f \
+	src/fortran/istrue.f src/fortran/inisci.f src/fortran/ptover.f \
+	src/fortran/getfunction.f src/fortran/stackp.f \
+	src/fortran/dbasin.f src/fortran/macro.f src/fortran/extlarg.f \
+	src/fortran/getstr.f src/fortran/cvwm.f \
 	src/fortran/storeglobal.f src/fortran/lst2vars.f \
 	src/fortran/basnms.f src/fortran/matc.f src/fortran/ptrback.f \
 	src/fortran/getch.f src/fortran/ftob.f src/fortran/seteol.f \
@@ -795,6 +795,7 @@ libscicore_la_CFLAGS = -I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
 	-I$(top_srcdir)/modules/action_binding/includes \
 	-I$(top_srcdir)/modules/output_stream/includes \
 	-I$(top_srcdir)/modules/localization/includes \
+	-I$(top_srcdir)/modules/io/includes \
 	-I$(top_srcdir)/modules/tclsci/includes \
 	-I$(top_srcdir)/modules/dynamic_link/includes \
 	-I$(top_srcdir)/modules/pvm/includes \
@@ -871,7 +872,8 @@ includes/stackinfo.h \
 includes/stackTypeVariable.h \
 includes/version.h \
 includes/getversion.h \
-includes/warningmode.h
+includes/warningmode.h \
+includes/Thread_Wrapper.h
 
 
 # Where all the Scilab stuff is installed (macros, help, ...)
@@ -2287,9 +2289,6 @@ stackg.lo: src/fortran/stackg.f
 
 find.lo: src/fortran/find.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o find.lo `test -f 'src/fortran/find.f' || echo '$(srcdir)/'`src/fortran/find.f
-
-israt.lo: src/fortran/israt.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o israt.lo `test -f 'src/fortran/israt.f' || echo '$(srcdir)/'`src/fortran/israt.f
 
 setlnb.lo: src/fortran/setlnb.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o setlnb.lo `test -f 'src/fortran/setlnb.f' || echo '$(srcdir)/'`src/fortran/setlnb.f

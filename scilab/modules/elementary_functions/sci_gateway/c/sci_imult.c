@@ -16,7 +16,7 @@
 #include "api_scilab.h"
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_imult) (char *fname,unsigned long fname_len)
+int sci_imult(char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
 	int i;

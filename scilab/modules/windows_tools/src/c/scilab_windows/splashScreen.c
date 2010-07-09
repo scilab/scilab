@@ -13,6 +13,7 @@
 /*--------------------------------------------------------------------------*/ 
 #include <Windows.h>
 #include "splashScreen.h"
+#include "localization.h"
 #include "resource.h"
 #include "version.h"
 #include "WndThread.h"
@@ -69,8 +70,8 @@ static BOOL stopSplashScreen(void)
 	}
 	else
 	{
-		wsprintf(titleMainWindow,"Console");
-		hWndMainScilab = FindWindow(NULL,titleMainWindow);
+		wsprintf(titleMainWindow, _("Scilab Console"));
+		hWndMainScilab = FindWindow(NULL, titleMainWindow);
 
 		if ( hWndMainScilab && (timeSplashScreen > 1000) )
 		{

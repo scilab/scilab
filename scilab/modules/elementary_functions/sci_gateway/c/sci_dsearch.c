@@ -21,7 +21,7 @@
 static SciErr getMode(int _iPos, char *_pcMode);
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_dsearch) (char *fname,unsigned long fname_len)
+int sci_dsearch (char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
 	int i;

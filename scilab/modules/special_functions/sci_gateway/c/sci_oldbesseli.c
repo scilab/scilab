@@ -10,15 +10,31 @@
  *
  */
 
-#include "gw_special_functions1.h"
-#include "stack-c.h"
 #include <string.h>
+#include "gw_special_functions.h"
+#include "machine.h"
+#include "warningmode.h"
+#include "localization.h"
+#include "sciprint.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(intsbesseli)(char *id,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_oldbesseli)(char *fname,unsigned long fname_len)
+int sci_oldbesseli(char *fname,unsigned long fname_len)
 {
-	C2F(intsbesseli)(fname,fname_len);
-	return 0;
+    if (getWarningMode())
+    {
+        sciprint(_("Warning: "));
+        sciprint(_("Function %s is obsolete."), fname);
+        sciprint("\n");
+        sciprint(_("Warning: "));
+        sciprint(_("Please use %s instead."), "besseli");
+        sciprint("\n");
+        sciprint(_("Warning: "));
+        sciprint(_("This function will be permanently removed in Scilab %s"), "5.3.1");
+        sciprint("\n");
+    }
+
+    C2F(intsbesseli)(fname,fname_len);
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

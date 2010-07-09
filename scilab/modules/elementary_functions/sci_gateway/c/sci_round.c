@@ -20,7 +20,7 @@ SciErr round_double(int* _piAddress);
 SciErr round_poly(int* _piAddress);
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_round) (char *fname,unsigned long fname_len)
+int sci_round(char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
 	int iType 		= 0;

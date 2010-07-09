@@ -9,7 +9,6 @@ errgst_
 intersci_
 com_
 ref2val_
-israt_
 chkvar_
 putlhsvar_
 vstk_
@@ -24,5 +23,3 @@ indxgc_
 csimp_
 
 
-;cacsd_f
-giv_

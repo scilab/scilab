@@ -19,7 +19,7 @@
 
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_log) (char *fname,unsigned long fname_len)
+int sci_log(char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
 	int i;

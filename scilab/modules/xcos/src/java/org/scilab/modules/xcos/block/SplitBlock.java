@@ -169,6 +169,7 @@ public final class SplitBlock extends BasicBlock {
 	 * @param geometry
 	 *            change split block geometry
 	 */
+	@Override
 	public void setGeometry(mxGeometry geometry) {
 		if (geometry != null) {
 			geometry.setWidth(DEFAULT_SIZE);

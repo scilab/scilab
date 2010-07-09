@@ -220,8 +220,6 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
 	superBlock.getGeometry().setX((maxX + minX) / 2.0);
 	superBlock.getGeometry().setY((maxY + minY) / 2.0);
 
-
-
 	/*
 	 * Creating the child graph
 	 */
@@ -248,6 +246,8 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
 	 * Update block with real parameters
 	 */
 	superBlock.setRealParameters(new DiagramElement().encode(diagram));
+	diagram.installListeners();
+	diagram.installSuperBlockListeners();
 	superBlock.setChild(diagram);
 	
 	/*

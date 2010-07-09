@@ -20,8 +20,7 @@ SciErr abs_poly(int* _piAddress);
 SciErr abs_sparse(int* _piAddress);
 
 /*--------------------------------------------------------------------------*/
-/*--------------------------------------------------------------------------*/
-int C2F(sci_abs) (char *fname,unsigned long fname_len)
+int sci_abs(char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
 	int iType			= 0;

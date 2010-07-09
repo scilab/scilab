@@ -2,6 +2,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
+ * Copyright (C) DIGITEO - 2010 - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,26 +15,21 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_cacsd2.h"
 #include "callFunctionFromGateway.h"
-/*--------------------------------------------------------------------------*/
-static int C2F(sci_xxxx)(char *fname,unsigned long fname_len)
-{
-	/* not used */
-	return 0;
-}
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[]=
 {
-	{C2F(sci_xxxx),"xxxx"}, /* not used */
-	{C2F(sci_ppol),"ppol"},
-	{C2F(sci_tzer),"tzer"},
-	{C2F(sci_freq),"freq"},
-	{C2F(sci_ltitr),"ltitr"},
-	{C2F(sci_rtitr),"rtitr"}
+    {NULL, ""}, /* not used */
+    {sci_ppol, "ppol"},
+    {sci_tzer, "tzer"},
+    {sci_freq, "freq"},
+    {sci_ltitr, "ltitr"},
+    {sci_rtitr, "rtitr"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_cacsd2(void)
 {  
-	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
-	return 0;
+    callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

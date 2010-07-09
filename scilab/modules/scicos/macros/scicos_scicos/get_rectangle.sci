@@ -55,8 +55,8 @@ hei    = final_rect(4) ;
   xc1 = xc + wid ;
   yc1 = yc - hei ;
 
-  ox = mini(xc, xc1) ; 
-  oy = maxi(yc, yc1) ;
+  ox = min(xc, xc1) ; 
+  oy = max(yc, yc1) ;
   w  = abs(xc - xc1) ;
   h  = abs(yc - yc1) ;
   ok = %t            ;

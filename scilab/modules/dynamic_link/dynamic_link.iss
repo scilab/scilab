@@ -36,7 +36,6 @@ Source: modules\{#DYNAMIC_LINK}\sci_gateway\{#DYNAMIC_LINK}_gateway.xml; DestDir
 ;
 Source: modules\{#DYNAMIC_LINK}\src\scripts\Makedll.incl; DestDir: {app}\modules\{#DYNAMIC_LINK}\src\scripts; Components: {#COMPN_SCILAB}
 Source: modules\{#DYNAMIC_LINK}\src\scripts\TEMPLATE_MAKEFILE.VC; DestDir: {app}\modules\{#DYNAMIC_LINK}\src\scripts; Components: {#COMPN_SCILAB}
-Source: modules\{#DYNAMIC_LINK}\src\scripts\TEMPLATE_MAKEFILE.LCC; DestDir: {app}\modules\{#DYNAMIC_LINK}\src\scripts; Components: {#COMPN_SCILAB}
 Source: modules\{#DYNAMIC_LINK}\src\scripts\Makefile.incl.mak; DestDir: {app}\modules\{#DYNAMIC_LINK}\src\scripts; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#DYNAMIC_LINK}\includes\*.h; DestDir: {app}\modules\{#DYNAMIC_LINK}\includes; Components: {#COMPN_SCILAB}

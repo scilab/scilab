@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
+#include "cmp.h"
 #include "isanan.h"
 
 
@@ -34,8 +34,6 @@ static void   idcmp_less(double x[],double y[],int *n,int res[]) ;
 static void   idcmp_great(double x[],double y[],int *n,int res[]) ;
 static void   idcmp_lessequal(double x[],double y[],int *n,int res[]) ;
 static void   idcmp_greatequal(double x[],double y[],int *n,int res[]) ;
-
-int  C2F(idcmp)(double x[],double y[],int *n,int res[],int *op);
 
 int  C2F(idcmp)(double x[],double y[],int *n,int res[],int *op) 
 {

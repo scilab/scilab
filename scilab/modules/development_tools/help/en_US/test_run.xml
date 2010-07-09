@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="test_run" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate: 2008-03-14 11:58:09 +0100 (ven, 14 mar 2008) $</pubdate>
-  </info>
   <refnamediv>
     <refname>test_run</refname>
     <refpurpose>Launch tests</refpurpose>
@@ -31,19 +28,31 @@
       <varlistentry>
         <term>module</term>
         <listitem>
-          <para>a vector of string. It can be the name of a module or the absolute path of a toolbox.</para>
+          <para>A String array. This input argument must be</para>
+          <itemizedlist>
+            <listitem>
+              <para>the name of an internal Scilab module ("core", "time", ...)</para>
+            </listitem>
+            <listitem>
+              <para>the name of an ATOMS module ("module_lycee", "nisp", ...). To
+              be taken into account, the module must be loaded when test_run() is called.</para>
+            </listitem>
+            <listitem>
+              <para>the absolute path of a module</para>
+            </listitem>
+          </itemizedlist>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>test_name</term>
         <listitem>
-          <para>a vector of string</para>
+          <para>A string array</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>options</term>
         <listitem>
-          <para>a vector of string</para>
+          <para>A string array</para>
           <itemizedlist>
             <listitem>
               <para>no_check_ref : does not check if the .dia and .dia.ref are equal</para>

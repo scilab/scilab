@@ -9,12 +9,12 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
+#include "machine.h"
 #include "gw_sparse.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(intlufact)(int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_lufact)(char *fname,unsigned long fname_len)
+int sci_lufact(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	C2F(intlufact)(id);

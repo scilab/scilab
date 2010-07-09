@@ -18,7 +18,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intsqrt) (int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_sqrt) (char *fname,unsigned long fname_len)
+int sci_sqrt(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 #ifdef _NEW_TONIO_

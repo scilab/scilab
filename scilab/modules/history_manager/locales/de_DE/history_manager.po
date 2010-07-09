@@ -47,11 +47,11 @@ msgid ""
 msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: muß sich im Intervall [%d, %d].\n"
 
-msgid "// Begin Session : "
-msgstr "//Beginne Sitzung: "
+msgid "Begin Session : "
+msgstr "Beginne Sitzung: "
 
-msgid "// End Session   : "
-msgstr "//Ende Sitzung: "
+msgid "End Session   : "
+msgstr "Ende Sitzung: "
 
 msgid "Apr"
 msgstr "April"

@@ -51,12 +51,12 @@ C     See: http://gcc.gnu.org/bugzilla/show_bug.cgi?id=37863
           if (str(1:n1).eq.' 2.'.and.a.lt.1.0d0) str(2:2)='1'
        elseif (ifmt .eq. -1) then
 C     Inf
-          fl = 3
-          str = 'Inf'
+          fl = 4
+          str = ' Inf'
        elseif (ifmt .eq. -2) then
 C     Nan
-          fl = 3
-          str = 'Nan'
+          fl = 4
+          str = ' Nan'
        endif
 
       return

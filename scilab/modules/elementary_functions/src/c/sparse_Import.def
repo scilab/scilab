@@ -1,0 +1,10 @@
+	LIBRARY    sparse.dll
+
+
+EXPORTS
+;
+;sparse
+;
+sci_spclean
+sci_spmax
+sci_spmin

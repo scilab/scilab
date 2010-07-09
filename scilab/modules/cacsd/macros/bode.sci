@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA Serge Steer
+// Copyright (C)  1985-2010 - INRIA - Serge Steer
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
@@ -15,9 +15,11 @@ function []=bode(varargin)
   end
   fname="bode";//for error messages
   fmax=[]
+  discr=%f //for shannon limit
   if or(typeof(varargin(1))==["state-space" "rational"]) then
     //sys,fmin,fmax [,pas] or sys,frq
     refdim=1 //for error message
+    discr=varargin(1).dt<>'c';
     if rhs==1 then //sys
       [frq,repf]=repfreq(varargin(1),1d-3,1d3)
     elseif rhs==2 then //sys,frq
@@ -102,7 +104,7 @@ function []=bode(varargin)
     datatipInitStruct(e.children(i),"formatfunction","formatBodeMagTip")
   end
 
-  if fmax<>[]&max(frq)<fmax then
+  if discr&fmax<>[]&max(frq)<fmax then
     xpoly(max(frq)*[1;1],axes.y_ticks.locations([1 $]));e=gce();
     e.foreground=5;
   end
@@ -112,7 +114,7 @@ function []=bode(varargin)
 
   axes=newaxes();
   axes.axes_bounds=[wrect(1)+0,wrect(2)+wrect(4)*hx,wrect(3)*1.0,wrect(4)*hx*0.95];
-  axes.data_bounds = [mini(frq),mini(phi);maxi(frq),maxi(phi)];
+  axes.data_bounds = [min(frq),min(phi);max(frq),max(phi)];
   axes.log_flags = "lnn" ;
   axes.grid=color("lightgrey")*ones(1,3);
   axes.axes_visible="on";
@@ -128,7 +130,7 @@ function []=bode(varargin)
     datatipInitStruct(ephi.children(i),"formatfunction","formatBodePhaseTip")
   end
 
-  if fmax<>[]&max(frq)<fmax then
+  if discr&fmax<>[]&max(frq)<fmax then
     xpoly(max(frq)*[1;1],axes.y_ticks.locations([1 $]));e=gce();
     e.foreground=5;
   end

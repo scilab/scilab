@@ -19,7 +19,7 @@ SciErr floor_poly(int* _piAddress);
 SciErr floor_double(int* _piAddress);
 SciErr floor_int(int* _piAddress);
 
-int C2F(sci_floor) (char *fname,unsigned long fname_len)
+int sci_floor (char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
 

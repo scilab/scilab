@@ -115,7 +115,6 @@ all: simple_call_scilab.c
 	export LD_LIBRARY_PATH=$(PATH_TO_LIB_SCILAB):$(PATH_TO_LIB_CALL_SCILAB)
 	gcc -o myExample $(SCILAB_LDFLAGS) -L$(PATH_TO_LIB_SCILAB) -L$(PATH_TO_LIB_CALL_SCILAB) $(SCILAB_CFLAGS) simple_call_scilab.c
  ]]></programlisting>
-  </refsection>
 
     <para>The following example is a Makefile to build against Scilab source tree</para>
 
@@ -130,7 +129,8 @@ PATH_TO_LIB_CALL_SCILAB = $(PATH_SCILAB)/modules/call_scilab/.libs/
 all: simple_call_scilab.c
 	export LD_LIBRARY_PATH=$(PATH_TO_LIB_SCILAB):$(PATH_TO_LIB_CALL_SCILAB)
 	gcc -o myExample $(SCILAB_LDFLAGS) -L$(PATH_TO_LIB_SCILAB) -L$(PATH_TO_LIB_CALL_SCILAB) $(SCILAB_CFLAGS) simple_call_scilab.c
- ]]></programlisting>
+ ]]>
+    </programlisting>
   </refsection>
 
   <refsection>

@@ -94,6 +94,22 @@
       </varlistentry>
 
       <varlistentry>
+        <term>Callback_Type</term>
+
+        <listitem>
+          <para>Integer</para>
+
+          <para>The type of callback transmitted to the uicontrol.</para>
+          <itemizedlist>
+            <listitem><para><literal>-1</literal> none (callback desactivated)</para></listitem>
+            <listitem><para><literal>0</literal> a Scilab instruction</para></listitem>
+            <listitem><para><literal>1</literal> a C or a Fortran function</para></listitem>
+            <listitem><para><literal>2</literal> a Scilab function</para></listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
         <term>Enable</term>
 
         <listitem>

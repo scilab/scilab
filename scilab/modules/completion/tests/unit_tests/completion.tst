@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 //===============================
 // unit tests completion
 //===============================
@@ -24,7 +26,7 @@ if s <> 0 then pause,end
 //===============================
 variables1 = completion('%','variables');
 s = size(variables1,'*');
-if s < 23 then pause,end
+if s < 22 then pause,end
 //===============================
 macros1 = completion('%','macros');
 s = size(macros1,'*');

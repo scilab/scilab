@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
+ * Copyright (C) 2010 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -31,6 +32,7 @@
 /*--------------------------------------------------------------------------*/
 #define INFOSIZE 1024
 #define DEFAULT_FORMAT_FSCANFMAT "%lf"
+#define NUMTOKENS_ERROR -1
 /*--------------------------------------------------------------------------*/
 static int  Info_size = 0;
 static char *Info = NULL;
@@ -45,17 +47,14 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
     char **Str = NULL;
     int mem = 0;
     double x = 0.;
-    static int l1 = 0, m1 = 0, n1 = 0, l2 = 0, m2 = 0,n2 = 0;
-    int i = 0,j = 0,rows = 0,cols = 0,lres = 0,n = 0;
+    int l1 = 0, m1 = 0, n1 = 0, l2 = 0, m2 = 0,n2 = 0;
+    int i = 0, j = 0,rows = 0,cols = 0,lres = 0,n = 0;
     int vl = -1;
     FILE  *f = NULL;
     char *Format = NULL;
 
     char *shortcut_path = NULL;	// filename process
     char *real_path     = NULL; //       "
-    long int lout = 0;          //       "
-    int out_n = 0;              //       "
-
 
     if ( Info == NULL )
     {
@@ -97,9 +96,9 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
     real_path = expandPathVariable(shortcut_path);
 
 #if _MSC_VER
-    #define MODEFD "rt"
+#define MODEFD "rt"
 #else
-    #define MODEFD "r"
+#define MODEFD "r"
 #endif
 
     if (real_path)
@@ -148,7 +147,7 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
     }
 
     cols = NumTokens(Info);
-    if (cols == -1)
+    if (cols == NUMTOKENS_ERROR)
     {
         if (Info)
         {
@@ -184,7 +183,7 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
 
     if ( cols == 0 || rows == 0) rows = cols = 0;
 
-    CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE, &rows, &cols, &lres);
+    CreateVar(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &rows, &cols, &lres);
 
     /** second pass to read data **/
     rewind(f);
@@ -353,8 +352,8 @@ static int NumTokens(char *string)
     {
         int n = 1;
         int lnchar = 0;
-        int ntok   = -1;
-        int length = (int)strlen(string)+1;
+        int ntok   = NUMTOKENS_ERROR;
+        int length = (int)strlen(string) + 1;
 
         if (string != 0)
         {
@@ -408,10 +407,9 @@ static int NumTokens(char *string)
                 strTmp = NULL;
             }
         }
-
-        return(ntok);
+        if (ntok) return(ntok);
     }
-    return(1);
+    return NUMTOKENS_ERROR;
 }
 /*--------------------------------------------------------------------------*/
 static BOOL checkLineHaveSeparator(char *line)

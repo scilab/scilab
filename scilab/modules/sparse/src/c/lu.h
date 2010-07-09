@@ -22,22 +22,23 @@
 #include "machine.h"
 #include "localization.h"
 #include "MALLOC.h"
+#include "dynlib_sparse.h"
 
-int addluptr (char *ptr); /* */
-int getluptr (int sel, char **ptr);
-int removeluptr (int sel);
-void resetluptr (void); /* to be used to free the lu pointer table */
+SPARSE_IMPEXP int addluptr (char *ptr); /* */
+SPARSE_IMPEXP int getluptr (int sel, char **ptr);
+SPARSE_IMPEXP int removeluptr (int sel);
+SPARSE_IMPEXP void resetluptr (void); /* to be used to free the lu pointer table */
 
-void C2F(lufact1)(double *val, int *lln, int *col, int *n, int *nel,
+SPARSE_IMPEXP void C2F(lufact1)(double *val, int *lln, int *col, int *n, int *nel,
 		  int *fmatindex, double *eps, double *releps, int *nrank, int *ierr);
 
-void C2F(lusolve1)(int *fmatindex, double *b, double *x, int *ierr);
+SPARSE_IMPEXP void C2F(lusolve1)(int *fmatindex, double *b, double *x, int *ierr);
 
-void C2F(ludel1)(int *fmatindex, int *ierr);
+SPARSE_IMPEXP void C2F(ludel1)(int *fmatindex, int *ierr);
 
-void C2F(lusiz1)(int *fmatindex, int* lsize, int* usize, int *ierr);
+SPARSE_IMPEXP void C2F(lusiz1)(int *fmatindex, int* lsize, int* usize, int *ierr);
 
-void C2F(luget1)(int *fmatindex, int *indP, double *P,
+SPARSE_IMPEXP void C2F(luget1)(int *fmatindex, int *indP, double *P,
 		 int *indl, double *l, int *indu, double *u,
 		 int *indQ, double *Q, int *ierr);
 #endif /* !__LU_H__ */

@@ -20,7 +20,7 @@ extern int C2F(dscal)();
 SciErr conj_double(int* _piAddress);
 SciErr conj_poly(int* _piAddress);
 
-int C2F(sci_conj) (char *fname,unsigned long fname_len)
+int sci_conj(char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
 	int iType 		= 0;

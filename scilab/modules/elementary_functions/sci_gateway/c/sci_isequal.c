@@ -20,7 +20,7 @@
 extern int C2F(intisequal) (int *id);
 int C2F(intisequalvar)(char * fname, int *job, long int fl); /* the gateway */
 /*--------------------------------------------------------------------------*/
-int C2F(sci_isequal) (char *fname,unsigned long fname_len)
+int sci_isequal(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 #ifdef _NEW_TONIO_

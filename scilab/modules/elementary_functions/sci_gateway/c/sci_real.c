@@ -21,7 +21,7 @@ SciErr real_sparse(int* _piAddress);
 SciErr real_double(int* _piAddress);
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_real) (char *fname,unsigned long fname_len)
+int sci_real(char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
 	int iType 		= 0;

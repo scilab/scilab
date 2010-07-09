@@ -21,7 +21,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intspones) (char *fname,int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_spones) (char *fname,unsigned long fname_len)
+int sci_spones(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 #ifdef _NEW_TONIO_

@@ -1,0 +1,13 @@
+LIBRARY    elem_func.dll
+
+
+EXPORTS
+; --------------------------------------- 
+; elem_func
+; --------------------------------------- 
+dsqrts
+dsins
+dcoss
+dexps
+wlog
+dabss

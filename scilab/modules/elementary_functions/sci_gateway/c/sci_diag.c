@@ -23,7 +23,7 @@ int diag_poly(int* _piAddress, int _iStartPos);
 
 extern int sci_pdiag(char *fname,unsigned long fname_len);
 
-int C2F(sci_diag) (char *fname,unsigned long fname_len)
+int sci_diag (char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
 	int iRows						= 0;

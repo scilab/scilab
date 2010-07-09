@@ -34,3 +34,34 @@ pal = xcosPal(scs_m);
 xcosPalExport(pal, exportedFile);
 xcosPalAdd(exportedFile);
 
+
+// unit test for a custom simple block
+pal = xcosPal("My custom palette");
+MYSUM = BIGSOM_f;
+myIcon = SCI + "/modules/xcos/images/palettes/VVsourceAC.png";
+
+style= struct();
+style.labelPosition = "middle";
+style.verticalLabelPosition = "bottom";
+style.image = "file:" + SCI + "/modules/xcos/images/blocks/SUM.svg";
+style.noLabel = "0";
+style.displayedLabel = "My custom block";
+
+pal = xcosPalAddBlock(pal, MYSUM("define"), myIcon, style);
+xcosPalAdd(pal);
+
+// move the pal to another place
+palettePath = ["Customs" "first try"];
+xcosPalMove("My custom palette", palettePath);
+palettePath = [palettePath "My custom palette"];
+
+// Enable and disable the palette
+xcosPalEnable(palettePath);
+xcosPalDisable(palettePath);
+
+// Remove the palette and the palette path
+for i=size(palettePath, '*'):-1:1
+	xcosPalDelete(palettePath(1:i));
+end
+
+

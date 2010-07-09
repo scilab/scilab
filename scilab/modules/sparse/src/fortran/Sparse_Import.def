@@ -1,0 +1,11 @@
+	LIBRARY    sparse.dll
+
+
+EXPORTS
+
+; sparse
+lufact1_
+lusiz1_
+luget1_
+lusolve1_
+ludel1_ 

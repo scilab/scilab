@@ -17,7 +17,7 @@
 #include "Scierror.h"
 #include "sciprint.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_ones) (char *fname,unsigned long fname_len)
+int sci_ones(char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
 	int iRows					= 0;

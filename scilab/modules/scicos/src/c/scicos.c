@@ -2118,7 +2118,7 @@ L30:
 						if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
 						{
 							if (flagr>=0) {
-								sciprint(_("**** SUNDIALS.IDA succesfully initialized *****\n") );
+								sciprint(_("**** SUNDIALS.IDA successfully initialized *****\n") );
 							}
 							else{
 								sciprint(_("**** SUNDIALS.IDA failed to initialize ->try again *****\n") );
@@ -3057,7 +3057,7 @@ static void addevs(double t, int *evtnb, int *ierr1)
 				}
 				evtspt[i]=evtspt[*evtnb]; /* remove old evtnb from chain */
 				if (TCritWarning==0){
-					sciprint(_("\n Warning:an event is reprogrammed at t=%g by removing another"),t );
+					sciprint(_("\n Warning: an event is reprogrammed at t=%g by removing another"),t );
 					sciprint(_("\n         (already programmed) event. There may be an error in"));
 					sciprint(_("\n         your model. Please check your model\n"));
 					TCritWarning=1;

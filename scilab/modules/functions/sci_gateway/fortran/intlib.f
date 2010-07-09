@@ -1,10 +1,10 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
-c 
+c
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
-c are also available at    
+c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine intlib(lendirlib, libdir)
       INCLUDE 'stack.h'
@@ -15,10 +15,10 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 c
       data percen/56/
       data nclas/29/
-c     
+c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
-c     
+c
 
 c     path  du repertoire
       il=iadr(lstk(top))
@@ -30,7 +30,7 @@ c     path  du repertoire
       il0=il+2+lendirlib
       ilc=il0+1
       iln=ilc+nclas+1
-c     
+c
 c     ouverture du fichier names
       call cvstr(n,istk(il+2),buf,1)
       buf=libdir(1:n)//'names'
@@ -78,7 +78,7 @@ c     tri dans l'ordre alphabetique
          if(ic.eq.percen) then
             ic=abs(id(2))
          endif
-         ic=max(1,ic-9)
+         ic=min(nclas,max(1,ic-9))
          istk(ilc+ic)=istk(ilc+ic)+1
          istk(il1)=ic
          il=il+nsiz
@@ -102,7 +102,7 @@ c     table des pointeurs
       istk(il0)=m
       lstk(top+1)=sadr(iln+m*nsiz)
       goto 999
-c     
+c
  139  call error(49)
       call clunit(-lunit,buf,mode)
  999  return

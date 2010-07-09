@@ -22,7 +22,7 @@ function state=car_solve(initial,final)
   bigL = 1 ;// car length (m) 
 
   // computation of  intermediate configuration 
-  x0 = maxi(initial(1),final(2))   ....
+  x0 = max(initial(1),final(2))   ....
        + bigL*abs(tan(initial(3))) ...
        + bigL*abs(tan(final(3))) ...
        + bigL*(abs(initial(2)-final(2))/bigL)^(1/2) ;
@@ -78,8 +78,8 @@ function display_car_trajectory(state)
   a=gca()
   drawlater()
   a.isoview="on"
-  a.data_bounds=[mini(state(:,1))-0.5*bigL, mini(state(:,2))-1.5*bigL
-		 maxi(state(:,1))+1.5*bigL, maxi(state(:,2))+1.5*bigL]
+  a.data_bounds=[min(state(:,1))-0.5*bigL, min(state(:,2))-1.5*bigL
+		 max(state(:,1))+1.5*bigL, max(state(:,2))+1.5*bigL]
   rect=matrix(a.data_bounds',-1,1)
   xpoly(rect([1 3 3 1]),rect([2,2,4,4]),'lines',1)
   C=build_car()

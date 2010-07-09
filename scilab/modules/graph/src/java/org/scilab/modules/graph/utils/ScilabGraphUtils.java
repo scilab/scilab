@@ -12,6 +12,7 @@
 
 package org.scilab.modules.graph.utils;
 
+import java.awt.geom.Dimension2D;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.net.URL;
@@ -53,6 +54,10 @@ public final class ScilabGraphUtils extends mxUtils {
 	 * Cache for the generated SVG components
 	 */
 	private static Map<URL, WeakReference<GraphicsNode>> generatedSVGComponents = new HashMap<URL, WeakReference<GraphicsNode>>();
+	/**
+	 * Cache for the generated SVG document sizes
+	 */
+	private static Map<URL, Dimension2D> generatedSVGSizes = new HashMap<URL, Dimension2D>();
 	
 	/**
 	 * Cache for the generated latex icons
@@ -141,11 +146,32 @@ public final class ScilabGraphUtils extends mxUtils {
 				node = builder.build(ctx, doc);
 				
 				generatedSVGComponents.put(filename, node.getWeakReference());
+				generatedSVGSizes.put(filename, ctx.getDocumentSize());
 			} catch (IOException e) {
 				LOG.error(e.getLocalizedMessage());
 			}
 		}
 		return node;
+	}
+
+	/**
+	 * Get the document size for a given URL.
+	 * 
+	 * This method use the Document size cache to get the svg element dimension
+	 * and not the real size of the graphical tree.
+	 * 
+	 * @param filename the file
+	 * @return the dimension of the file
+	 */
+	public static Dimension2D getSVGDocumentSizes(URL filename) {
+		Dimension2D ret = generatedSVGSizes.get(filename);
+		
+		// Generate the GraphicsNode if not available
+		if (ret == null) {
+			getSVGComponent(filename);
+			ret = generatedSVGSizes.get(filename);
+		}
+		return ret;
 	}
 	
 	/**
