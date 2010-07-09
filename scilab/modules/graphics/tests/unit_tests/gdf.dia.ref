@@ -1,0 +1,28 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Bruno JOFRET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- TEST WITH GRAPHIC -->
+// test gdf()
+// Check each default property
+f = gdf();
+if or(f.figure_position <> [200,200]) then bugmes();quit;end
+if or(f.figure_size <> [620,590]) then bugmes();quit;end
+if or(f.axes_size <> [610,460]) then bugmes();quit;end
+if f.auto_resize <> "on" then bugmes();quit;end
+if or(f.viewport <> [0,0]) then bugmes();quit;end
+if f.figure_name <> gettext("Graphic window number %d") then bugmes();quit;end
+if f.figure_id <> 0 then bugmes();quit;end
+if f.pixmap <> "off" then bugmes();quit;end
+if f.pixel_drawing_mode <> "copy" then bugmes();quit;end
+if f.anti_aliasing <> "off" then bugmes();quit;end
+if f.immediate_drawing <> "on" then bugmes();quit;end
+if f.background <> -2 then bugmes();quit;end
+if f.visible <> "on" then bugmes();quit;end
+if f.rotation_style <> "unary" then bugmes();quit;end
+if f.event_handler <> "" then bugmes();quit;end
+if f.event_handler_enable <> "off" then bugmes();quit;end
+if f.user_data <> [] then bugmes();quit;end
+if f.tag <> "" then bugmes();quit;end
