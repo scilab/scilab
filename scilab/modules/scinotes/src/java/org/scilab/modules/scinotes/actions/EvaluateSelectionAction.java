@@ -75,9 +75,9 @@ public final class EvaluateSelectionAction extends DefaultAction {
                 public void propertyChange(PropertyChangeEvent e) {
                     String select = editor.getTextPane().getSelectedText();
                     if (select == null) {
-                        menuitem.setText(label1);
-                    } else {
                         menuitem.setText(label2);
+                    } else {
+                        menuitem.setText(label1);
                     }
                 }
             });
