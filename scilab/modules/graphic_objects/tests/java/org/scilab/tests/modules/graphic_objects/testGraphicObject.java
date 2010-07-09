@@ -22,10 +22,16 @@ import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
 import org.scilab.modules.graphic_objects.imageplot.Grayplot;
+import org.scilab.modules.graphic_objects.imageplot.Matplot;
 import org.scilab.modules.graphic_objects.label.Label;
 import org.scilab.modules.graphic_objects.legend.Legend;
+import org.scilab.modules.graphic_objects.polyline.Polyline;
+import org.scilab.modules.graphic_objects.rectangle.Rectangle;
 import org.scilab.modules.graphic_objects.surface.Fac3d;
+import org.scilab.modules.graphic_objects.surface.Plot3d;
+import org.scilab.modules.graphic_objects.textObject.Text;
 import org.scilab.modules.graphic_objects.vectfield.Champ;
+import org.scilab.modules.graphic_objects.vectfield.Segs;
 import org.testng.annotations.Test;
 
 
@@ -87,7 +93,7 @@ public class testGraphicObject {
 	    GraphicController controller = GraphicController.getController();
 	    
 	    String objectId = null;
-	    objectId = controller.askObject(Type.ARC);
+	    objectId = controller.askObject(GraphicObject.getTypeFromName("arc"));
 	    assert(objectId != null);
 	    
 	    Object graphicObject = controller.getObjectFromId(objectId);
@@ -100,7 +106,7 @@ public class testGraphicObject {
         GraphicController controller = GraphicController.getController();
         
         String objectId = null;
-        objectId = controller.askObject(Type.AXES);
+        objectId = controller.askObject(GraphicObject.getTypeFromName("axes"));
         assert(objectId != null);
         
         Object graphicObject = controller.getObjectFromId(objectId);
@@ -113,7 +119,7 @@ public class testGraphicObject {
         GraphicController controller = GraphicController.getController();
         
         String objectId = null;
-        objectId = controller.askObject(Type.AXIS);
+        objectId = controller.askObject(GraphicObject.getTypeFromName("axis"));
         assert(objectId != null);
         
         Object graphicObject = controller.getObjectFromId(objectId);
@@ -126,7 +132,7 @@ public class testGraphicObject {
         GraphicController controller = GraphicController.getController();
         
         String objectId = null;
-        objectId = controller.askObject(Type.CHAMP);
+        objectId = controller.askObject(GraphicObject.getTypeFromName("champ"));
         assert(objectId != null);
         
         Object graphicObject = controller.getObjectFromId(objectId);
@@ -139,7 +145,7 @@ public class testGraphicObject {
         GraphicController controller = GraphicController.getController();
         
         String objectId = null;
-        objectId = controller.askObject(Type.COMPOUND);
+        objectId = controller.askObject(GraphicObject.getTypeFromName("compound"));
         assert(objectId != null);
         
         Object graphicObject = controller.getObjectFromId(objectId);
@@ -152,7 +158,7 @@ public class testGraphicObject {
         GraphicController controller = GraphicController.getController();
         
         String objectId = null;
-        objectId = controller.askObject(Type.FAC3D);
+        objectId = controller.askObject(GraphicObject.getTypeFromName("fac3d"));
         assert(objectId != null);
         
         Object graphicObject = controller.getObjectFromId(objectId);
@@ -165,7 +171,7 @@ public class testGraphicObject {
         GraphicController controller = GraphicController.getController();
         
         String objectId = null;
-        objectId = controller.askObject(Type.FEC);
+        objectId = controller.askObject(GraphicObject.getTypeFromName("fec"));
         assert(objectId != null);
         
         Object graphicObject = controller.getObjectFromId(objectId);
@@ -178,7 +184,7 @@ public class testGraphicObject {
         GraphicController controller = GraphicController.getController();
         
         String objectId = null;
-        objectId = controller.askObject(Type.FIGURE);
+        objectId = controller.askObject(GraphicObject.getTypeFromName("figure"));
         assert(objectId != null);
         
         Object graphicObject = controller.getObjectFromId(objectId);
@@ -191,7 +197,7 @@ public class testGraphicObject {
         GraphicController controller = GraphicController.getController();
         
         String objectId = null;
-        objectId = controller.askObject(Type.GRAYPLOT);
+        objectId = controller.askObject(GraphicObject.getTypeFromName("grayplot"));
         assert(objectId != null);
         
         Object graphicObject = controller.getObjectFromId(objectId);
@@ -204,7 +210,7 @@ public class testGraphicObject {
         GraphicController controller = GraphicController.getController();
         
         String objectId = null;
-        objectId = controller.askObject(Type.LABEL);
+        objectId = controller.askObject(GraphicObject.getTypeFromName("label"));
         assert(objectId != null);
         
         Object graphicObject = controller.getObjectFromId(objectId);
@@ -217,12 +223,90 @@ public class testGraphicObject {
         GraphicController controller = GraphicController.getController();
         
         String objectId = null;
-        objectId = controller.askObject(Type.LEGEND);
+        objectId = controller.askObject(GraphicObject.getTypeFromName("legend"));
         assert(objectId != null);
         
         Object graphicObject = controller.getObjectFromId(objectId);
         assert(graphicObject != null);
         assert(graphicObject instanceof Legend);
+    }   
+    
+    @Test
+    public void matplotCreationTest() {
+        GraphicController controller = GraphicController.getController();
+        
+        String objectId = null;
+        objectId = controller.askObject(GraphicObject.getTypeFromName("matplot"));
+        assert(objectId != null);
+        
+        Object graphicObject = controller.getObjectFromId(objectId);
+        assert(graphicObject != null);
+        assert(graphicObject instanceof Matplot);
+    }   
+   
+    @Test
+    public void plot3dCreationTest() {
+        GraphicController controller = GraphicController.getController();
+        
+        String objectId = null;
+        objectId = controller.askObject(GraphicObject.getTypeFromName("plot3d"));
+        assert(objectId != null);
+        
+        Object graphicObject = controller.getObjectFromId(objectId);
+        assert(graphicObject != null);
+        assert(graphicObject instanceof Plot3d);
+    }   
+
+    @Test
+    public void polylineCreationTest() {
+        GraphicController controller = GraphicController.getController();
+        
+        String objectId = null;
+        objectId = controller.askObject(GraphicObject.getTypeFromName("polyline"));
+        assert(objectId != null);
+        
+        Object graphicObject = controller.getObjectFromId(objectId);
+        assert(graphicObject != null);
+        assert(graphicObject instanceof Polyline);
+    }   
+    
+    @Test
+    public void retangleCreationTest() {
+        GraphicController controller = GraphicController.getController();
+        
+        String objectId = null;
+        objectId = controller.askObject(GraphicObject.getTypeFromName("rectangle"));
+        assert(objectId != null);
+        
+        Object graphicObject = controller.getObjectFromId(objectId);
+        assert(graphicObject != null);
+        assert(graphicObject instanceof Rectangle);
+    }   
+    
+    @Test
+    public void segsCreationTest() {
+        GraphicController controller = GraphicController.getController();
+        
+        String objectId = null;
+        objectId = controller.askObject(GraphicObject.getTypeFromName("segs"));
+        assert(objectId != null);
+        
+        Object graphicObject = controller.getObjectFromId(objectId);
+        assert(graphicObject != null);
+        assert(graphicObject instanceof Segs);
+    }   
+
+    @Test
+    public void textCreationTest() {
+        GraphicController controller = GraphicController.getController();
+        
+        String objectId = null;
+        objectId = controller.askObject(GraphicObject.getTypeFromName("text"));
+        assert(objectId != null);
+        
+        Object graphicObject = controller.getObjectFromId(objectId);
+        assert(graphicObject != null);
+        assert(graphicObject instanceof Text);
     }   
     
 }
