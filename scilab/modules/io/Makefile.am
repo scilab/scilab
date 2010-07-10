@@ -20,7 +20,6 @@ IO_CPP_SOURCES = src/cpp/io_gw.cpp
 GATEWAY_C_SOURCES = sci_gateway/c/sci_read4b.c \
 sci_gateway/c/sci_getio.c \
 sci_gateway/c/sci_readb.c \
-sci_gateway/c/sci_host.c \
 sci_gateway/c/sci_getenv.c \
 sci_gateway/c/sci_write.c \
 sci_gateway/c/sci_writeb.c \
@@ -29,9 +28,7 @@ sci_gateway/c/gw_io.c \
 sci_gateway/c/sci_read.c \
 sci_gateway/c/sci_getpid.c \
 sci_gateway/c/sci_write4b.c \
-sci_gateway/c/sci_unix.c \
 sci_gateway/c/sci_save.c
-# sci_gateway/c/sci_load.c
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/intwrite4b.f \
 sci_gateway/fortran/intwritb.f \
@@ -44,7 +41,9 @@ sci_gateway/fortran/intfile.f
 GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_genlib.cpp \
 	sci_gateway/cpp/sci_load.cpp \
-	sci_gateway/cpp/sci_file.cpp
+	sci_gateway/cpp/sci_file.cpp \
+	sci_gateway/cpp/sci_host.cpp \
+	sci_gateway/cpp/sci_unix.cpp
 
 libsciio_la_CFLAGS=  	-I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \

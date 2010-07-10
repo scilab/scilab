@@ -424,3 +424,90 @@ int CallWindowsShell(char *command)
     return returnedExitCode;
 }
 /*--------------------------------------------------------------------------*/
+int CallWindowsShellW(wchar_t* _pstCommand)
+{
+    int returnedExitCode = -1;
+
+    wchar_t shellCmd[PATH_MAX];
+    wchar_t *CmdLine = NULL;
+    size_t iCmdSize = 0;
+
+    PROCESS_INFORMATION piProcInfo; 
+    STARTUPINFOW siStartInfo;
+    SECURITY_ATTRIBUTES saAttr; 
+
+    DWORD ExitCode = 0;
+
+    wchar_t *TMPDir = NULL;
+    wchar_t FileTMPDir[PATH_MAX];
+
+    if (wcscmp(_pstCommand, L"") == 0)
+    {
+        // do nothing
+        return 1;
+    }
+
+    saAttr.nLength              = sizeof(SECURITY_ATTRIBUTES); 
+    saAttr.bInheritHandle       = TRUE; 
+    saAttr.lpSecurityDescriptor = NULL; 
+
+    ZeroMemory(&piProcInfo, sizeof(PROCESS_INFORMATION));
+
+    ZeroMemory(&siStartInfo, sizeof(STARTUPINFO));
+    siStartInfo.cb              = sizeof(STARTUPINFO); 
+    siStartInfo.dwFlags         = STARTF_USESHOWWINDOW | STARTF_USESTDHANDLES;
+    siStartInfo.wShowWindow     = SW_HIDE;
+    siStartInfo.hStdInput       = NULL;
+
+    siStartInfo.hStdOutput      = GetStdHandle(STD_OUTPUT_HANDLE);
+    siStartInfo.hStdError       = GetStdHandle(STD_ERROR_HANDLE);
+
+    GetEnvironmentVariableW(L"ComSpec", shellCmd, PATH_MAX);
+    TMPDir = getTMPDIRW();
+    swprintf(FileTMPDir, PATH_MAX, L"%s\\DOS.OK", TMPDir);
+    if(TMPDir)
+    {
+        FREE(TMPDir);
+        TMPDir = NULL;
+    }
+
+    iCmdSize    = (wcslen(shellCmd) + wcslen(_pstCommand) + wcslen(FileTMPDir) + wcslen(L"%s /a /c \"%s\" && echo DOS>%s") + 1);
+    CmdLine     = (wchar_t*)MALLOC(iCmdSize * sizeof(wchar_t));
+    swprintf(CmdLine, iCmdSize, L"%s /a /c \"%s\" && echo DOS>%s", shellCmd, _pstCommand, FileTMPDir);
+
+    if(CreateProcessW(NULL, CmdLine, NULL, NULL, TRUE, 0, NULL, NULL, &siStartInfo, &piProcInfo))
+    {
+        WaitForSingleObject(piProcInfo.hProcess, INFINITE);
+
+        if(GetExitCodeProcess(piProcInfo.hProcess, &ExitCode) == STILL_ACTIVE)
+        {
+            TerminateProcess(piProcInfo.hProcess, 0);
+        }
+
+        CloseHandle(piProcInfo.hProcess);
+
+        if(CmdLine)
+        {
+            FREE(CmdLine); 
+            CmdLine = NULL;
+        }
+
+        if(FileExistW(FileTMPDir))
+        {
+            DeleteFileW(FileTMPDir);
+        }
+
+        returnedExitCode = (int)ExitCode;
+    }
+    else
+    {
+        CloseHandle(piProcInfo.hProcess);
+        if(CmdLine)
+        {
+            FREE(CmdLine);
+            CmdLine = NULL;
+        }
+    }
+    return returnedExitCode;
+}
+/*--------------------------------------------------------------------------*/

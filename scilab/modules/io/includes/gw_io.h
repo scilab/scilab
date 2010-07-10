@@ -27,7 +27,6 @@ IO_IMPEXP int sci_setenv(char *fname, int* _piKey);
 int sci_read(char *fname,unsigned long fname_len);
 int sci_oldsave(char *fname,unsigned long fname_len);
 int sci_write(char *fname,unsigned long fname_len);
-int sci_host(char *fname,unsigned long fname_len);
 int sci_unix(char *fname,unsigned long fname_len);
 int sci_readb(char *fname,unsigned long fname_len);
 int sci_writb(char *fname,unsigned long fname_len);
