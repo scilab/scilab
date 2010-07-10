@@ -32,12 +32,7 @@ types::Function::ReturnValue sci_argn(types::typed_list &in, int _iRetCount, typ
     }
 
     //check output arguments
-    if(iRhs == 1 && _iRetCount != 1)
-    {//argn(x) returns only one value
-        Scierror(41,_("%s: Wrong number of output arguments: %d expected.\n"), "argn", 1);
-        return Function::Error;
-    }
-    else if(iRhs == 0 && _iRetCount > 2)
+    if(iRhs == 0 && _iRetCount > 2)
     {
         Scierror(41,_("%s: Wrong number of output arguments: %d expected.\n"), "argn", 2);
         return Function::Error;
@@ -75,8 +70,7 @@ types::Function::ReturnValue sci_argn(types::typed_list &in, int _iRetCount, typ
 
     if(pIn == NULL || pOut == NULL)
     {
-        Double* pD = new Double(0,0);
-        out.push_back(pD);
+        Double* pD = new Double(0);
         out.push_back(pD);
     }
     else
@@ -92,9 +86,17 @@ types::Function::ReturnValue sci_argn(types::typed_list &in, int _iRetCount, typ
             {
                 out.push_back(pIn);
             }
+            else if(dblVal == 0)
+            {
+                out.push_back(pOut);
+                if(_iRetCount == 2)
+                {
+                    out.push_back(pIn);
+                }
+            }
             else
             {
-                Scierror(999,_("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "argn", 1, "1", "2");
+                Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s' or '%s'.\n"), "argn", 1, "0", "1", "2");
                 return Function::Error;
             }
         }
