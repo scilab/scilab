@@ -15,7 +15,7 @@
           xmlns:db="http://docbook.org/ns/docbook">
 
   <info>
-    <pubdate>$LastChangedDate: 08-Juil-2010 $</pubdate>
+    <pubdate>$LastChangedDate: 12-Juil-2010 $</pubdate>
   </info>
 
   <refnamediv>
@@ -81,12 +81,16 @@ export_to_hdf5(bigSomPath, "scs_m");
 pal = xcosPalAddBlock(pal, sumPath);
 pal = xcosPalAddBlock(pal, bigSomPath);
 
+xcosPalAdd(pal);
+
    ]]></programlisting>
 </refsection>
 
 <refsection>
    <title>See also</title>
    <simplelist type="inline">
+   <member><link linkend="xcosPal">xcosPal</link></member>
+   <member><link linkend="xcosPalAdd">xcosPalAdd</link></member>
    </simplelist>
 </refsection>
 

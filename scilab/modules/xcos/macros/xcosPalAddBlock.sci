@@ -38,7 +38,7 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
 //   
 //   sumPath = TMPDIR + "/sum.h5";
 //   bigSomPath = TMPDIR + "/sum.h5";
-//
+//   
 //   scs_m = SUM_f("define");
 //   export_to_hdf5(sumPath, "scs_m");
 //   scs_m = BIGSOM("define");
@@ -46,9 +46,12 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
 //   
 //   pal = xcosPalAddBlock(pal, sumPath);
 //   pal = xcosPalAddBlock(pal, bigSomPath);
+//   
+//   xcosPalAdd(pal);
 //
 // See also
-//   
+//   xcosPal
+//   xcosPalAdd
 //
 // Authors
 //   Clément DAVID
