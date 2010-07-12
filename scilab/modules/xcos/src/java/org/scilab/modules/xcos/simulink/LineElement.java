@@ -12,7 +12,6 @@
 
 package org.scilab.modules.xcos.simulink;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -21,8 +20,6 @@ import java.util.Map.Entry;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.scilab.modules.types.scilabTypes.ScilabDouble;
-import org.scilab.modules.types.scilabTypes.ScilabType;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.io.scicos.BasicBlockInfo;
 import org.scilab.modules.xcos.io.scicos.LinkElement;
@@ -35,8 +32,6 @@ import org.scilab.modules.xcos.port.output.OutputPort;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.util.mxPoint;
 
-import edu.tum.cs.commons.collections.UnmodifiableIterator;
-import edu.tum.cs.simulink.model.SimulinkBlock;
 import edu.tum.cs.simulink.model.SimulinkLine;
 
 public class LineElement extends AbstractElement<BasicLink>{

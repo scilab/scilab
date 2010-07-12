@@ -12,7 +12,6 @@
 
 package org.scilab.modules.xcos.simulink;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,12 +19,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
-import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
-import org.scilab.modules.xcos.simulink.BlockGraphicElement;
-import org.scilab.modules.xcos.simulink.InputPortElement;
-import org.scilab.modules.xcos.simulink.OutputPortElement;
 
 import com.mxgraph.model.mxCell;
 
@@ -109,8 +104,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 			LogFactory.getLog(BlockElement.class).error(se);
 		}
 		
-		//block.generateId();
-		block.setId(base.getId());
+		block.generateId();
 		/*
 		 * Set state dependent informations.
 		 */

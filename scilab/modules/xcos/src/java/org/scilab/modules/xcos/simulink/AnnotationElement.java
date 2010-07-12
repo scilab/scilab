@@ -12,13 +12,10 @@
 
 package org.scilab.modules.xcos.simulink;
 
-import java.io.IOException;
-
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.xcos.block.TextBlock;
 
 import edu.tum.cs.simulink.model.SimulinkAnnotation;
-import edu.tum.cs.simulink.model.SimulinkBlock;
 
 public class AnnotationElement extends AbstractElement<TextBlock>{
 
