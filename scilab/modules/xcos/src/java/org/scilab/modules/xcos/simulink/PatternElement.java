@@ -12,7 +12,6 @@
 
 package org.scilab.modules.xcos.simulink;
 import java.io.File;
-import java.io.IOException;
 import java.util.Iterator;
 
 import javax.xml.bind.JAXBContext;
@@ -27,6 +26,8 @@ import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.jvm.utils.ScilabConstants;
 import org.scilab.modules.types.scilabTypes.ScilabDouble;
 import org.scilab.modules.types.scilabTypes.ScilabInteger;
+import org.scilab.modules.types.scilabTypes.ScilabList;
+import org.scilab.modules.types.scilabTypes.ScilabString;
 import org.scilab.modules.types.scilabTypes.ScilabType;
 import org.scilab.modules.xcos.simulink.patterns.Block;
 import org.scilab.modules.xcos.simulink.patterns.BlockPalette;
@@ -367,7 +368,7 @@ public class PatternElement {
 				 */
 				if(realParam.getXcos().contentEquals("state")){
 					Iterator<RealValueMap> valueMapIter = realParam.getMap().iterator();
-					stateData=new double[1][realParam.getMap().size()]; //FIXME: add count to realParameters
+					stateData=new double[realParam.getMap().size()][1]; //FIXME: add count to realParameters
 					while (valueMapIter.hasNext()){
 						RealValueMap valueMap = valueMapIter.next();
 						/**
@@ -378,9 +379,13 @@ public class PatternElement {
 						String[] position = valueMap.getIndex().replaceAll("\\W", " ").trim().split("\\s+");
 						int x = Integer.parseInt(position[0]);
 						int y = Integer.parseInt(position[1]);
-						stateData[x][y] = Double.parseDouble(data.getParameter(valueMap.getSimName()));
+						if(data.getParameter(valueMap.getSimName())!= null){
+							stateData[x][y] = Double.parseDouble(data.getParameter(valueMap.getSimName()));
+						} else {
+							stateData[x][y] =  Double.parseDouble(valueMap.getSimName());
+						}
 						if(LOG.isTraceEnabled()){
-							LOG.trace(currentBlock.getXcos() + "state:");
+							LOG.trace(currentBlock.getXcos() + "exprs:");
 							LOG.trace(stateData[x][y]);
 						}
 					}
@@ -408,7 +413,7 @@ public class PatternElement {
 				 */
 				if(realParam.getXcos().contentEquals("dstate")){
 					Iterator<RealValueMap> valueMapIter = realParam.getMap().iterator();
-					stateData=new double[1][realParam.getMap().size()]; //FIXME: add count to realParameters
+					stateData=new double[realParam.getMap().size()][1]; //FIXME: add count to realParameters
 					while (valueMapIter.hasNext()){
 						RealValueMap valueMap = valueMapIter.next();
 						/**
@@ -419,10 +424,13 @@ public class PatternElement {
 						String[] position = valueMap.getIndex().replaceAll("\\W", " ").trim().split("\\s+");
 						int x = Integer.parseInt(position[0]);
 						int y = Integer.parseInt(position[1]);
-						
-						stateData[x][y] = Double.parseDouble(data.getParameter(valueMap.getSimName()));
+						if(data.getParameter(valueMap.getSimName())!= null){
+							stateData[x][y] = Double.parseDouble(data.getParameter(valueMap.getSimName()));
+						} else {
+							stateData[x][y] =  Double.parseDouble(valueMap.getSimName());
+						}
 						if(LOG.isTraceEnabled()){
-							LOG.trace(currentBlock.getXcos() + "dstate:");
+							LOG.trace(currentBlock.getXcos() + "exprs:");
 							LOG.trace(stateData[x][y]);
 						}
 					}
@@ -438,7 +446,7 @@ public class PatternElement {
 
 	public ScilabType decodeODState(SimulinkBlock data) {
 		// TODO Auto-generated method stub
-		return new ScilabDouble();
+		return new ScilabList();
 	}
 
 	public String decodeBlockType(SimulinkBlock data) {
@@ -497,7 +505,7 @@ public class PatternElement {
 
 	public ScilabType decodeNmode(SimulinkBlock data) {
 		// TODO Auto-generated method stub
-		return new ScilabDouble();
+		return new ScilabDouble(0);
 	}
 	public ScilabType decodeRealParameters(SimulinkBlock data) {
 		double[][] rparData;
@@ -513,7 +521,7 @@ public class PatternElement {
 				 */
 				if(realParam.getXcos().contentEquals("rpar")){
 					Iterator<RealValueMap> valueMapIter = realParam.getMap().iterator();
-					rparData=new double[1][realParam.getMap().size()]; //FIXME: add count to realParameters
+					rparData=new double[realParam.getMap().size()][1]; //FIXME: add count to realParameters
 					while (valueMapIter.hasNext()){
 						RealValueMap valueMap = valueMapIter.next();
 						/**
@@ -524,19 +532,18 @@ public class PatternElement {
 						String[] position = valueMap.getIndex().replaceAll("\\W", " ").trim().split("\\s+");
 						int x = Integer.parseInt(position[0]);
 						int y = Integer.parseInt(position[1]);
-						if(data.getParameter(valueMap.getSimName()).equals("inf")) {
-							rparData[x][y] = 0.0;
-						}
-						else if(data.getParameter(valueMap.getSimName()).equals("-inf")) {
-							rparData[x][y] = 0.0;
-						}
-						else{
-							rparData[x][y] = Double.parseDouble(data.getParameter(valueMap.getSimName()));
-							if(LOG.isTraceEnabled()){
-								LOG.trace(currentBlock.getXcos() + "rpar:");
-								LOG.trace(rparData[x][y]);
+						if(data.getParameter(valueMap.getSimName())!= null){
+							if(data.getParameter(valueMap.getSimName()).equals("inf") || data.getParameter(valueMap.getSimName()).equals("-inf")){
+								rparData[x][y] = 0;
+							} else {
+								rparData[x][y] = Double.parseDouble(data.getParameter(valueMap.getSimName()));
 							}
-							
+						} else {
+							rparData[x][y] =  Double.parseDouble(valueMap.getSimName());
+						}
+						if(LOG.isTraceEnabled()){
+							LOG.trace(currentBlock.getXcos() + "exprs:");
+							LOG.trace(rparData[x][y]);
 						}
 					}
 					return new ScilabDouble(rparData);
@@ -563,7 +570,7 @@ public class PatternElement {
 				 */
 				if(realParam.getXcos().contentEquals("ipar")){
 					Iterator<RealValueMap> valueMapIter = realParam.getMap().iterator();
-					iparData=new int[1][realParam.getMap().size()]; //FIXME: add count to realParameters
+					iparData=new int[realParam.getMap().size()][1]; //FIXME: add count to realParameters
 					while (valueMapIter.hasNext()){
 						RealValueMap valueMap = valueMapIter.next();
 						/**
@@ -575,9 +582,17 @@ public class PatternElement {
 						int x = Integer.parseInt(position[0]);
 						int y = Integer.parseInt(position[1]);
 						
-						iparData[x][y] = Integer.parseInt(data.getParameter(valueMap.getSimName()));
+						if(data.getParameter(valueMap.getSimName())!= null){
+							if(data.getParameter(valueMap.getSimName()).equals("inf") || data.getParameter(valueMap.getSimName()).equals("-inf")){
+								iparData[x][y] = 0;
+							} else {
+								iparData[x][y] = Integer.parseInt(data.getParameter(valueMap.getSimName()));
+							}
+						} else {
+							iparData[x][y] = Integer.parseInt(valueMap.getSimName());
+						}
 						if(LOG.isTraceEnabled()){
-							LOG.trace(currentBlock.getXcos() + "ipar:");
+							LOG.trace(currentBlock.getXcos() + "exprs:");
 							LOG.trace(iparData[x][y]);
 						}
 					}
@@ -593,12 +608,12 @@ public class PatternElement {
 
 	public ScilabType decodeObjectsParameters(SimulinkBlock data) {
 		// TODO Auto-generated method stub
-		return new ScilabDouble();
+		return new ScilabList();
 	}
 
 	public ScilabType decodeEquations(SimulinkBlock data) {
 		// TODO Auto-generated method stub
-		return new ScilabDouble();
+		return new ScilabList();
 	}
 
 	public String decodeInterfaceFunctionName(SimulinkBlock data) {
@@ -609,5 +624,57 @@ public class PatternElement {
 			LOG.trace("interface: wrong block!");
 		}
 		return "xcos_block";
+	}
+
+	public boolean decodeDependsOnT(SimulinkBlock data) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	public ScilabType decodeExprs(SimulinkBlock data) {
+		// TODO Auto-generated method stub
+		
+		String[][] exprsData;
+		/*
+		 * Check if current block is well initialized for coresponding SimulinkBlock
+		 */
+		if(currentBlock!=null){
+			Iterator<RealParameters> realParamIter = currentBlock.getReal().iterator();
+			while (realParamIter.hasNext()){
+				RealParameters realParam = realParamIter.next();
+				/*
+				 * Check if ipar
+				 */
+				if(realParam.getXcos().contentEquals("exprs")){
+					Iterator<RealValueMap> valueMapIter = realParam.getMap().iterator();
+					exprsData=new String[realParam.getMap().size()][1]; //FIXME: add count to realParameters
+					while (valueMapIter.hasNext()){
+						RealValueMap valueMap = valueMapIter.next();
+						/**
+						 * Position parameter read by parser is string and looks like this "55,43" 
+						 * \\W is used to strip string from non-word characters 
+						 * \\s+ to split string around whitespace
+						 */
+						String[] position = valueMap.getIndex().replaceAll("\\W", " ").trim().split("\\s+");
+						int x = Integer.parseInt(position[0]);
+						int y = Integer.parseInt(position[1]);
+						if(data.getParameter(valueMap.getSimName())!= null){
+							exprsData[x][y] = data.getParameter(valueMap.getSimName());
+						} else {
+							exprsData[x][y] = valueMap.getSimName();
+						}
+						if(LOG.isTraceEnabled()){
+							LOG.trace(currentBlock.getXcos() + "exprs:");
+							LOG.trace(exprsData[x][y]);
+						}
+					}
+					return new ScilabString(exprsData);
+				}
+			}
+		}
+		else {
+			LOG.trace("ipar: wrong block!");
+		}
+		return new ScilabDouble();
 	}
 }

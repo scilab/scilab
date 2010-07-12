@@ -12,15 +12,12 @@
 
 package org.scilab.modules.xcos.simulink;
 
-import org.scilab.modules.types.scilabTypes.ScilabString;
 import org.scilab.modules.types.scilabTypes.ScilabType;
 import org.scilab.modules.xcos.block.BasicBlock;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
-
 import edu.tum.cs.simulink.model.SimulinkBlock;
 
-public class BlockModelElement extends AbstractElement{
+public class BlockModelElement{
 
 	private PatternElement patternElement;
 	SimulinkBlock data;
@@ -56,7 +53,8 @@ public class BlockModelElement extends AbstractElement{
 
 	private void fillParameters(BasicBlock base) {
 		// TODO Auto-generated method stub
-		
+		// Strings including formal expressions used in the dialog box of the block. 
+		base.setExprs(patternElement.decodeExprs(data));
 		// state - vector conaining initial values of continous-time state
 		base.setState((ScilabType)patternElement.decodeState(data));
 
@@ -78,6 +76,9 @@ public class BlockModelElement extends AbstractElement{
 		// blocktype - Character that can be set to 'c' or 'd' indifferently for standard blocks. 'x' is used if we want to force the computational function to be called during the simulation phase even if the block does not contribute to computation of the state derivative. 
 		// l', 'm' and 's' are reserved. Not to be used. 
 		base.setBlockType(patternElement.decodeBlockType(data));
+		
+		// depends on time
+		base.setDependsOnT(patternElement.decodeDependsOnT(data));
 
 		// nzcross - Number of zero-crossing surfaces. 
 		base.setNbZerosCrossing(patternElement.decodeNbZerosCrossing(data));
@@ -87,7 +88,7 @@ public class BlockModelElement extends AbstractElement{
 
 		// equation Used in case of implicit blocks. 
 		//Data structure of type modelica which contains modelica code description if any. That list contains four entries :
-		//base.setEquations((ScilabType)patternElement.decodeEquations(data));
+		base.setEquations((ScilabType)patternElement.decodeEquations(data));
 		
 		// firing
 		// Vector of initial event firing times of size equal to the number of activation output ports (see evout). It contains output initial event dates (Events generated before any input event arises). Negative values stands for no initial event on the corresponding port.
