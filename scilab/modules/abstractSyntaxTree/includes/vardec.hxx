@@ -59,7 +59,7 @@ namespace ast
      ** \li "2097" is the initial value of the variable
      */
     VarDec (const Location& location,
-			std::string name, Exp& init) :
+			std::wstring name, Exp& init) :
       Dec (location),
       _name (name),
       _init (&init),
@@ -96,7 +96,7 @@ namespace ast
      ** \{ */
   public:
     /** \brief Return the variable name (read only). */
-		const std::string& name_get (void) const
+	const std::wstring& name_get (void) const
     {
       return _name;
     }
@@ -127,7 +127,7 @@ namespace ast
 
   protected:
     /** \brief Name of the declared variable. */
-		std::string _name;
+	std::wstring _name;
     /** \brief The initial value (expression) assigned to the variable. */
     Exp* _init;
 

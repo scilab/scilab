@@ -233,21 +233,21 @@ namespace types
 		return true;	
 	}
 
-	string Bool::toString(int _iPrecision, int _iLineLen)
+	wstring Bool::toString(int _iPrecision, int _iLineLen)
 	{
-		std::ostringstream ostr;
+		wostringstream ostr;
 		ostr << std::endl;
 		/*Comment tenir compte de la longueur des lignes dans le formatage de variable ? */
 		if(cols_get() == 1 && rows_get() == 1)
 		{//scalar
-				ostr << (m_piData[0] == 1 ? "T" : "F");
+				ostr << (m_piData[0] == 1 ? L"T" : L"F");
 				ostr << std::endl;
 		}
 		else if(cols_get() == 1)
 		{//column vector
 			for(int i = 0 ; i < rows_get() ; i++)
 			{
-				ostr << (m_piData[i] == 1 ? "T" : "F");
+				ostr << (m_piData[i] == 1 ? L"T" : L"F");
 				ostr << std::endl;
 			}
 			ostr << std::endl;
@@ -256,7 +256,7 @@ namespace types
 		{//row vector
 			bool bWordWarp = false;
 			int iLineTag = 5000; //or not Oo
-			string szTemp;
+			wstring szTemp;
 
 			if(_iLineLen == -1)
 			{
@@ -267,10 +267,10 @@ namespace types
 			{
 				if(i != 0)
 				{
-					szTemp += "  ";
+					szTemp += L"  ";
 				}
 
-				if(bWordWarp == false && static_cast<int>(szTemp.size() + strlen(m_piData[i] ? "T" : "F")) >= _iLineLen)
+				if(bWordWarp == false && static_cast<int>(szTemp.size() + wcslen(m_piData[i] ? L"T" : L"F")) >= _iLineLen)
 				{
 					bWordWarp = true;
 					iLineTag	= i;
@@ -278,16 +278,16 @@ namespace types
 
 				if(bWordWarp == true && i%iLineTag == 0)
 				{
-					ostr << std::endl << "\t\tcolumn " << (i - 1) / (iLineTag + 1) * iLineTag + 1 << " to " << i << std::endl;
+					ostr << std::endl << L"\t\tcolumn " << (i - 1) / (iLineTag + 1) * iLineTag + 1 << L" to " << i << std::endl;
 					ostr << szTemp << std::endl;
-					szTemp	= "";
+					szTemp	= L"";
 				}
 
-				szTemp += m_piData[i] ? "T" : "F";
+				szTemp += m_piData[i] ? L"T" : L"F";
 			}
 			if(bWordWarp == true)
 			{
-				ostr << std::endl << "\t\tcolumn " << (cols_get() - 1) / (iLineTag + 1) * iLineTag + 1 << " to " << cols_get() << std::endl;
+				ostr << std::endl << L"\t\tcolumn " << (cols_get() - 1) / (iLineTag + 1) * iLineTag + 1 << L" to " << cols_get() << std::endl;
 			}
 			ostr << szTemp;
 			ostr << std::endl;
@@ -296,7 +296,7 @@ namespace types
 		{
 			bool bWordWarp = false;
 			int iLineTag = 5000; //or not Oo
-			string szTemp;
+			wstring szTemp;
 
 			if(_iLineLen == -1)
 			{
@@ -307,19 +307,19 @@ namespace types
 			{
 				if(i != 0)
 				{
-					szTemp += "  ";
+					szTemp += L"  ";
 				}
 
-				if(bWordWarp == false && static_cast<int>(szTemp.size() + strlen(m_piData[i * rows_get()] ? "T" : "F")) >= _iLineLen)
+				if(bWordWarp == false && static_cast<int>(szTemp.size() + wcslen(m_piData[i * rows_get()] ? L"T" : L"F")) >= _iLineLen)
 				{
 					bWordWarp = true;
 					iLineTag	= i;
-					ostr << "elem by line : " << i << std::endl;
+					ostr << L"elem by line : " << i << std::endl;
 				}
 
 				if(bWordWarp == true && i%iLineTag == 0)
 				{
-					ostr << std::endl << "\t\tcolumn " << (i - 1) / (iLineTag + 1) * iLineTag + 1 << " to " << i << std::endl;
+					ostr << std::endl << L"\t\tcolumn " << (i - 1) / (iLineTag + 1) * iLineTag + 1 << L" to " << i << std::endl;
 					ostr << szTemp << std::endl;
 					for(int j = 1 ; j < rows_get() ; j++)
 					{
@@ -327,20 +327,20 @@ namespace types
 						{
 							if(k != (i - 1) / (iLineTag + 1) * iLineTag)
 							{
-								ostr << "\t,";
+								ostr << L"\t,";
 							}
-							ostr << (m_piData[k * cols_get() + j] ? "T" : "F");
+							ostr << (m_piData[k * cols_get() + j] ? L"T" : L"F");
 						}
-						ostr << " ;" << std::endl;
+						ostr << L" ;" << std::endl;
 					}
-					szTemp	= "";
+					szTemp	= L"";
 				}
 
-				szTemp += m_piData[i * rows_get()] ? "T" : "F";
+				szTemp += m_piData[i * rows_get()] ? L"T" : L"F";
 			}
 			if(bWordWarp == true)
 			{
-				ostr << std::endl << "\t\tcolumn " << (cols_get() - 1) / (iLineTag + 1) * iLineTag + 1 << " to " << cols_get() << std::endl;
+				ostr << std::endl << L"\t\tcolumn " << (cols_get() - 1) / (iLineTag + 1) * iLineTag + 1 << L" to " << cols_get() << std::endl;
 			}
 			ostr << szTemp;
 			ostr << std::endl;

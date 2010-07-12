@@ -24,7 +24,7 @@ namespace ast
   {
   public:
     CommentExp (const Location& location,
-	       std::string* comment) :
+	       std::wstring* comment) :
       ConstExp (location),
       _comment (comment)
     {
@@ -58,13 +58,13 @@ namespace ast
      ** \{ */
   public:
     /** \brief Return the comment (read only). */
-    std::string &comment_get () const
+    std::wstring &comment_get () const
     {
       return *_comment;
     }
     /** \} */
   protected:
-    std::string* _comment;
+    std::wstring* _comment;
   };
 
 } // namespace ast

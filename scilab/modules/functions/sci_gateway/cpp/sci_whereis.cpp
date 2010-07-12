@@ -17,7 +17,7 @@
 Function::ReturnValue sci_whereis(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
 	InternalType *pIT = NULL;
-	std::string stModule;
+	wstring stModule;
 
 	/* Check the number of input argument */
 	if(in.size() != 1)
@@ -40,10 +40,10 @@ Function::ReturnValue sci_whereis(types::typed_list &in, int _iRetCount, types::
 			return Function::Error;
 		}
 
-		char* pstFuncName = pS->string_get(0);
+		wchar_t* pstFuncName = pS->string_get(0);
 		symbol::Context* pContext = symbol::Context::getInstance();
 
-		string funcName(pstFuncName);
+		wstring funcName(pstFuncName);
 		pIT = pContext->get_fun(funcName);
 		if(pIT == NULL)
 		{

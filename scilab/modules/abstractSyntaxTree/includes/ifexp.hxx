@@ -66,7 +66,7 @@ namespace ast
             ControlExp (location),
             _test (&test),
             _then (&t),
-            _else (new ast::CommentExp(location, new std::string("No else !!"))),
+            _else (new ast::CommentExp(location, new std::wstring(L"No else !!"))),
             // For first display in order to see what appends
             _has_else (false)
             {

@@ -55,9 +55,9 @@ namespace types
         Float*				getAsFloat(void);
 
         /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::string getTypeStr() {return string("float");}
+        virtual std::wstring getTypeStr() {return L"float";}
         /* return type as short string ( s, i, ce, l, ... )*/
-        virtual std::string getShortTypeStr() {return string("f");}
+        virtual std::wstring getShortTypeStr() {return L"f";}
     protected :
         RealType            getType(void);
 
@@ -68,7 +68,7 @@ namespace types
 
         /*Internal "constructor*/
         void                CreateFloat(int _iRows, int _iCols, float **_pfReal, float **_pfImg);
-        std::string         toString(int _iPrecision, int _iLineLen);
+        std::wstring        toString(int _iPrecision, int _iLineLen);
 
         bool                operator==(const InternalType& it);
         bool                operator!=(const InternalType& it);

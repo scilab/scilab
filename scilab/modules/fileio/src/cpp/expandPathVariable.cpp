@@ -22,6 +22,10 @@ extern "C"
 #include "PATH_MAX.h"
 #include "api_scilab.h"
 #include "getlongpathname.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
+
 }
 
 #include "context.hxx"
@@ -139,24 +143,16 @@ char *expandPathVariable(char* str)
 /*--------------------------------------------------------------------------*/
 wchar_t *getVariableValueDefinedInScilab(wchar_t *wcVarName)
 {
-	wchar_t *VARVALUE = NULL;
-	char *varname = NULL;
-	int iType	= 0;
-
 	if (wcVarName)
 	{
-		varname = wide_string_to_UTF8(wcVarName);
-		if (varname)
-		{
-            InternalType *pIT = symbol::Context::getInstance()->get("SCI");
-            if(pIT->isString() == false)
-            {
-                return NULL;
-            }
-
-            String* pS = pIT->getAsString();
-            return to_wide_string(pS->string_get(0));
+        InternalType *pIT = symbol::Context::getInstance()->get(wcVarName);
+        if(pIT->isString() == false)
+        {
+            return NULL;
         }
+
+        String* pS = pIT->getAsString();
+        return wcsdup(pS->string_get(0));
 	}
 	return NULL;
 }

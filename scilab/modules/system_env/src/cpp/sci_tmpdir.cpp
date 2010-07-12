@@ -35,29 +35,42 @@ extern "C"
 #include "removedir.h"
 }
 
-char *getTMPDIR(void)
+char* getTMPDIR(void)
 {
-    return strdup(ConfigVariable::getSCIPath().c_str());
+    return wide_string_to_UTF8(ConfigVariable::getSCIPath().c_str());
+}
+/*--------------------------------------------------------------------------*/
+wchar_t* getTMPDIRW(void)
+{
+    return wcsdup(ConfigVariable::getTMPDIR().c_str());
 }
 
 /*--------------------------------------------------------------------------*/
-wchar_t *getTMPDIRW(void)
-{
-    return to_wide_string(const_cast<char*>(ConfigVariable::getTMPDIR().c_str()));
-}
-
-/*--------------------------------------------------------------------------*/
-void setTMPDIR(const char* _sci_tmpdir)
+void setTMPDIRW(const wchar_t* _sci_tmpdir)
 {
     //add SCI value in context as variable
     types::String *pS = new types::String(_sci_tmpdir);
-    symbol::Context::getInstance()->put("TMPDIR", *pS);
+    symbol::Context::getInstance()->put(L"TMPDIR", *pS);
 
     //add SCI value ConfigVariable
-    std::string sci_tmpdir(_sci_tmpdir);
+    std::wstring sci_tmpdir(_sci_tmpdir);
     ConfigVariable::setTMPDIR(sci_tmpdir);
 }
-
+/*--------------------------------------------------------------------------*/
+void setTMPDIR(const char* _sci_tmpdir)
+{
+    const wchar_t* pstTemp = to_wide_string(_sci_tmpdir);
+    setTMPDIRW(pstTemp);
+    FREE(pstTemp);
+}
+/*--------------------------------------------------------------------------*/
+void putenvTMPDIRW(const wchar_t* _sci_tmpdir)
+{
+    const char* pstTemp = wide_string_to_UTF8(_sci_tmpdir);
+    putenvTMPDIR(pstTemp);
+    FREE(pstTemp);
+    return;
+}
 /*--------------------------------------------------------------------------*/
 void putenvTMPDIR(const char *_sci_tmpdir)
 {
@@ -90,6 +103,14 @@ void putenvTMPDIR(const char *_sci_tmpdir)
 }
 
 /*--------------------------------------------------------------------------*/
+wchar_t* getenvTMPDIRW()
+{
+    char *SciTemp = getenvTMPDIR();
+    wchar_t* pstTemp = to_wide_string(SciTemp);
+    delete[] SciTemp;
+    return pstTemp;
+}
+/*--------------------------------------------------------------------------*/
 char* getenvTMPDIR()
 {
     int ierr, iflag = 0;
@@ -108,7 +129,14 @@ char* getenvTMPDIR()
 
     return SciPath;
 }
-
+/*--------------------------------------------------------------------------*/
+wchar_t* computeTMPDIRW(void)
+{
+    char* pstTemp = computeTMPDIR();
+    wchar_t* pstReturn = to_wide_string(pstTemp);
+    FREE(pstTemp);
+    return pstReturn;
+}
 /*--------------------------------------------------------------------------*/
 //windows : find main DLL and extract path
 //linux and macos : scilab script fill SCI env variable
@@ -186,7 +214,7 @@ char* computeTMPDIR()
     /* XXXXXX will be randomized by mkdtemp */
     sprintf(env_dir, "%s/SCI_TMP_%d_XXXXXX", env_dir, (int) getpid());
 
-    if(mkdtemp(env_dir) < 0)
+    if(mkdtemp(env_dir) == NULL)
     {
         fprintf(stderr,_("Error: Could not create %s: %s\n"), env_dir, strerror(errno));
     }
@@ -198,9 +226,9 @@ char* computeTMPDIR()
 /*--------------------------------------------------------------------------*/
 void defineTMPDIR()
 {
-    char* sci_tmpdir = computeTMPDIR();
-    setTMPDIR(sci_tmpdir);
-    putenvTMPDIR(sci_tmpdir);
+    const wchar_t* sci_tmpdir = computeTMPDIRW();
+    setTMPDIRW(sci_tmpdir);
+    putenvTMPDIRW(sci_tmpdir);
     FREE(sci_tmpdir);
 }
 

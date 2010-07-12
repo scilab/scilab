@@ -1,13 +1,13 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
- * 
+ *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
  *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- * 
+ *
  */
 
 // This code is separated in run_CallExp.hxx
@@ -40,7 +40,7 @@ void visitprivate(const CallExp &e)
                 execVar[j].result_set(pIL->extract_matrix());
                 delete pIL;
             }
-				
+
             if(execVar[j].is_single_result())
             {
                 in.push_back(execVar[j].result_get());
@@ -55,20 +55,20 @@ void visitprivate(const CallExp &e)
                 }
             }
         }
-			
+
         int iRetCount = Max(1, expected_size_get());
 
         T execCall;
         Function::ReturnValue Ret = pCall->call(in, iRetCount, out, &execCall);
-			
+
         if(Ret == Callable::OK)
         {
             if(expected_size_get() == 1 && out.size() == 0) //to manage ans
             {
                 if(static_cast<int>(out.size()) < expected_size_get())
                 {
-                    std::ostringstream os;
-                    os << "bad lhs, expected : " << expected_size_get() << " returned : " << out.size() << std::endl;
+                    std::wostringstream os;
+                    os << L"bad lhs, expected : " << expected_size_get() << L" returned : " << out.size() << std::endl;
                     throw os.str();
                 }
             }
@@ -78,7 +78,7 @@ void visitprivate(const CallExp &e)
                 out[0]->IncreaseRef();
                 result_set(out[0]);
             }
-            else 
+            else
             {
                 for(int i = 0 ; i < static_cast<int>(out.size()) ; i++)
                 {//protect output values
@@ -89,22 +89,22 @@ void visitprivate(const CallExp &e)
         }
         else if(Ret == Callable::Error)
         {
-            std::ostringstream os;
-            char szError[bsiz];
+            std::wostringstream os;
+            wchar_t szError[bsiz];
 #ifdef _MSC_VER
-            sprintf_s(szError, bsiz, _("Function \"%s\" failed\n"), pCall->getName().c_str());
+            swprintf_s(szError, bsiz, _W("Function \"%s\" failed\n"), pCall->getName().c_str());
 #else
-            sprintf(szError, _("Function \"%s\" failed\n"), pCall->getName().c_str());
+            swprintf(szError, bsiz, _W("Function \"%S\" failed\n"), pCall->getName().c_str());
 #endif
-            throw string(szError);
+            throw wstring(szError);
         }
 
-			
+
         for (unsigned int k = 0; k < e.args_get().size(); k++)
         {
             execVar[k].result_get()->DecreaseRef();
         }
-			
+
         //std::cout << "before delete[]" << std::endl;
         delete[] execVar;
         //std::cout << "after delete[]" << std::endl;
@@ -113,7 +113,7 @@ void visitprivate(const CallExp &e)
         {//unprotect output values
             out[0]->DecreaseRef();
         }
-        else 
+        else
         {
             for(int i = 0 ; i < static_cast<int>(out.size()) ; i++)
             {//unprotect output values
@@ -144,7 +144,7 @@ void visitprivate(const CallExp &e)
 
         if(pIT->isStruct())
         {
-            list<string> stFields;
+            list<wstring> stFields;
             list<Exp*>::const_iterator it1;
             for(it1 = e.args_get().begin() ; it1 != e.args_get().end() ; it1++)
             {
@@ -155,7 +155,7 @@ void visitprivate(const CallExp &e)
                     String *pString = execArg.result_get()->getAsString();
                     for(int i = 0 ; i < pString->size_get() ; i++)
                     {
-                        stFields.push_back(string(pString->string_get(i)));
+                        stFields.push_back(pString->string_get(i));
                     }
                 }
                 else
@@ -171,7 +171,7 @@ void visitprivate(const CallExp &e)
         }
         else if(pIT->isTList())
         {
-            list<string> stFields;
+            list<wstring> stFields;
             list<Exp*>::const_iterator it1;
 
             InternalType::RealType rtIndex = InternalType::RealInternal;
@@ -182,8 +182,8 @@ void visitprivate(const CallExp &e)
                 (*it1)->accept(execArg);
 
                 if(bTypeSet == true && execArg.result_get()->getType() != rtIndex)
-                {//error
-                    YaspWrite("merdouille");
+                {//TODO: error
+                    YaspWriteW(L"merdouille");
                 }
 
                 if(execArg.result_get()->isString())
@@ -193,7 +193,7 @@ void visitprivate(const CallExp &e)
                     String *pString = execArg.result_get()->getAsString();
                     for(int i = 0 ; i < pString->size_get() ; i++)
                     {
-                        stFields.push_back(string(pString->string_get(i)));
+                        stFields.push_back(pString->string_get(i));
                     }
                 }
                 else if(execArg.result_get()->isDouble())
@@ -219,8 +219,8 @@ void visitprivate(const CallExp &e)
                     if(piIndexSeq[i] < 1)
                     {
                         //manage error
-                        std::ostringstream os;
-                        os << _("Indexes must be positive .\n");
+                        std::wostringstream os;
+                        os << _W("Indexes must be positive .\n");
                         os << ((Location)e.name_get().location_get()).location_string_get() << std::endl;
                         throw os.str();
                     }
@@ -259,8 +259,8 @@ void visitprivate(const CallExp &e)
                 if(piIndexSeq[i] < 1)
                 {
                     //manage error
-                    std::ostringstream os;
-                    os << _("Indexes must be positive .\n");
+                    std::wostringstream os;
+                    os << _W("Indexes must be positive .\n");
                     os << ((Location)e.name_get().location_get()).location_string_get() << std::endl;
                     throw os.str();
                 }
@@ -271,7 +271,7 @@ void visitprivate(const CallExp &e)
             case InternalType::RealDouble :
                 pOut = pIT->getAsDouble()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
                 break;
-            case InternalType::RealBool : 
+            case InternalType::RealBool :
                 pOut = pIT->getAsBool()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
                 break;
             case InternalType::RealInt :
@@ -313,19 +313,19 @@ void visitprivate(const CallExp &e)
         {
             if(pOut == NULL)
             {
-                std::ostringstream os;
-                os << "inconsistent row/column dimensions";
+                std::wostringstream os;
+                os << L"inconsistent row/column dimensions";
                 os << ((*e.args_get().begin())->location_get()).location_string_get() << std::endl;
                 throw os.str();
             }
             result_set(pOut);
         }
-        else 
+        else
         {
             if(ResultList.size() == 0)
             {
-                std::ostringstream os;
-                os << "inconsistent row/column dimensions";
+                std::wostringstream os;
+                os << L"inconsistent row/column dimensions";
                 os << ((*e.args_get().begin())->location_get()).location_string_get() << std::endl;
                 throw os.str();
             }

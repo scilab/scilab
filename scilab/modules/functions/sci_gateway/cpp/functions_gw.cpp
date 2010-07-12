@@ -17,16 +17,16 @@ extern "C"
 	#include "gw_functions.h"
 }
 
-#define MODULE_NAME "functions"
+#define MODULE_NAME L"functions"
 
 using namespace types;
 
 bool FunctionsModule::Load()
 {
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("exec", &sci_exec, MODULE_NAME));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("execstr", &sci_execstr, MODULE_NAME));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("funclist", &sci_funclist, MODULE_NAME));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("whereis", &sci_whereis, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"exec", &sci_exec, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"execstr", &sci_execstr, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"funclist", &sci_funclist, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"whereis", &sci_whereis, MODULE_NAME));
 	return true;
 }
 

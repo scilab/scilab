@@ -15,16 +15,16 @@
 
 #include <sstream>
 
-#define SIZE_BETWEEN_TWO_VALUES			2
-#define SPACE_BETWEEN_TWO_VALUES		"  "
-#define SIZE_BETWEEN_REAL_COMPLEX		1
-#define SPACE_BETWEEN_REAL_COMPLEX	" "
-#define SIGN_LENGTH									2
-#define NO_SIGN											"  "
-#define MINUS_STRING								"- "
-#define PLUS_STRING									"+ "
-#define MINUS_STRING_INT						" -"
-#define SYMBOL_I										"i"
+#define SIZE_BETWEEN_TWO_VALUES         2
+#define SPACE_BETWEEN_TWO_VALUES        L"  "
+#define SIZE_BETWEEN_REAL_COMPLEX       1
+#define SPACE_BETWEEN_REAL_COMPLEX      L" "
+#define SIGN_LENGTH                     2
+#define NO_SIGN                         L"  "
+#define MINUS_STRING                    L"- "
+#define PLUS_STRING                     L"+ "
+#define MINUS_STRING_INT                L" -"
+#define SYMBOL_I                        L"i"
 
 #ifndef _MSC_VER
 #include <inttypes.h>
@@ -34,13 +34,13 @@
 /*double*/
 void GetDoubleFormat(double _dblVal, int _iPrecNeeded, int *_piWidth, int *_piPrec, bool* _pbFloatingPoint);
 void GetComplexFormat(double _dblR, double _dblI, int _iPrecNeeded, int *_piTotalWidth, int *_piWidthR, int *_piWidthI, int *_piPrecR,  int *_piPrecI, bool* _pbFloatingPointR,  bool* _pbFloatingPointI);
-void AddDoubleValue(std::ostringstream *_postr, double _dblVal, int _iWidth, int _iPrec, bool bPrintPlusSign = false, bool bPrintOne = true, bool bPaddSign = true);
-void AddDoubleComplexValue(std::ostringstream *_postr, double _dblR, double _dblI, int _iTotalWitdh, int _iWidthR, int _iWidthI, int _iPrec);
-void PrintDoubleVar(std::ostringstream *_postr,  double _dblVal);
+void AddDoubleValue(std::wostringstream *_postr, double _dblVal, int _iWidth, int _iPrec, bool bPrintPlusSign = false, bool bPrintOne = true, bool bPaddSign = true);
+void AddDoubleComplexValue(std::wostringstream *_postr, double _dblR, double _dblI, int _iTotalWitdh, int _iWidthR, int _iWidthI, int _iPrec);
+void PrintDoubleVar(std::wostringstream *_postr,  double _dblVal);
 
 /*Common*/
-void Config_Stream(std::ostringstream *_postr, int _iWidth, int _iPrec, char _cFill);
-void Add_Space(std::ostringstream *_postr, int _iSpace);
+void Config_Stream(std::wostringstream *_postr, int _iWidth, int _iPrec, char _cFill);
+void Add_Space(std::wostringstream *_postr, int _iSpace);
 
 /*int*/
 /*
@@ -67,7 +67,7 @@ void GetSignedIntFormat(T _TVal, int *_piWidth)
 }
 
 template <typename T>
-void AddUnsignedIntValue(std::ostringstream *_postr, T _TVal, int _iWidth, bool bPrintPlusSign = false, bool bPrintOne = true)
+void AddUnsignedIntValue(std::wostringstream *_postr, T _TVal, int _iWidth, bool bPrintPlusSign = false, bool bPrintOne = true)
 {
 	if(bPrintPlusSign == true)
 	{
@@ -87,7 +87,7 @@ void AddUnsignedIntValue(std::ostringstream *_postr, T _TVal, int _iWidth, bool 
 }
 
 template <typename T>
-void AddSignedIntValue(std::ostringstream *_postr, T _TVal, int _iWidth, bool bPrintPlusSign = false, bool bPrintOne = true)
+void AddSignedIntValue(std::wostringstream *_postr, T _TVal, int _iWidth, bool bPrintPlusSign = false, bool bPrintOne = true)
 {
 	if(bPrintPlusSign == true)
 	{

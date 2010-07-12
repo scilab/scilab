@@ -20,16 +20,20 @@
 extern "C"
 {
 #endif
+
+EXTERN_SYSTEM_ENV wchar_t* getTMPDIRW(void);
 EXTERN_SYSTEM_ENV char* getTMPDIR(void);
 
-EXTERN_SYSTEM_ENV wchar_t *getTMPDIRW(void);
-
+EXTERN_SYSTEM_ENV void setTMPDIRW(const wchar_t* _sci_tmpdir);
 EXTERN_SYSTEM_ENV void setTMPDIR(const char* _sci_tmpdir);
 
+EXTERN_SYSTEM_ENV wchar_t* computeTMPDIRW();
 EXTERN_SYSTEM_ENV char* computeTMPDIR();
 
+EXTERN_SYSTEM_ENV wchar_t* getenvTMPDIRW(void);
 EXTERN_SYSTEM_ENV char* getenvTMPDIR(void);
 
+EXTERN_SYSTEM_ENV void putenvTMPDIRW(const wchar_t* _sci_tmpdir);
 EXTERN_SYSTEM_ENV void putenvTMPDIR(const char* _sci_tmpdir);
 
 EXTERN_SYSTEM_ENV void defineTMPDIR();

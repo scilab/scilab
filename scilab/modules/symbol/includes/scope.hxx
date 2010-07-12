@@ -20,6 +20,12 @@
 #include "alltypes.hxx"
 #include "export_symbol.h"
 
+extern "C"
+{
+#include "charEncoding.h"
+#include "MALLOC.h"
+}
+
 using namespace types;
 
 namespace symbol
@@ -33,19 +39,19 @@ namespace symbol
         /** \brief Construct a Scope */
         explicit Scope()
         {
-            _scope = new map<string, InternalType*>();
-            _name = "";
+            _scope = new map<wstring, InternalType*>();
+            _name = L"";
         }
         /** \brief Construct a named Scope i.e Namespace */
-        explicit Scope(string name)
+        explicit Scope(wstring name)
         {
-            _scope = new map<string, InternalType*>();
+            _scope = new map<wstring, InternalType*>();
             _name = name;
         }
 
         ~Scope()
         {
-            map<string, InternalType*>::const_iterator i;
+            map<wstring, InternalType*>::const_iterator i;
             for(i = _scope->begin() ; i != _scope->end() ; ++i)
             {
                 //std::cout << i->first << std::endl;
@@ -65,7 +71,7 @@ namespace symbol
 
         bool isUsed(InternalType* pIT) const
         {
-            map<string, InternalType*>::const_iterator it_scope;
+            map<wstring, InternalType*>::const_iterator it_scope;
             for(it_scope = _scope->begin() ; it_scope != _scope->end() ; ++it_scope)
             {
                 if((*it_scope).second == pIT)
@@ -75,7 +81,7 @@ namespace symbol
         }
 
         /** Associate value to key in the current scope. */
-        InternalType*	put (const string& key, InternalType &value)
+        InternalType*	put (const wstring& key, InternalType &value)
         {
             InternalType *pOld = (*_scope)[key];
 
@@ -104,7 +110,7 @@ namespace symbol
             return NULL;
         }
 
-        void remove(const string& key)
+        void remove(const wstring& key)
         {
             InternalType *pOld = (*_scope)[key];
             
@@ -122,9 +128,9 @@ namespace symbol
 
         /** If key was associated to some Entry_T in the open scopes, return the
         ** most recent insertion. Otherwise return the empty pointer. */
-        InternalType*	get (const string& key) const
+        InternalType*	get (const wstring& key) const
         {
-            map<string, InternalType*>::const_iterator it_scope;
+            map<wstring, InternalType*>::const_iterator it_scope;
 
             it_scope = (*_scope).find(key);
             if (it_scope == (*_scope).end())
@@ -133,16 +139,16 @@ namespace symbol
         }
 
         /** Return name of current scope, use for namespace. */
-        string get_name() const
+        wstring get_name() const
         {
             return _name;
         }
 
         /** Return name of current scope, use for namespace. */
-        list<string>& get_names(const string& _stModuleName) const
+        list<wstring>& get_names(const wstring& _stModuleName) const
         {
-            list<string>* pNames = new list<string>;
-            map<string, InternalType*>::const_iterator it_scope;
+            list<wstring>* pNames = new list<wstring>;
+            map<wstring, InternalType*>::const_iterator it_scope;
             for(it_scope = _scope->begin() ; it_scope != _scope->end() ; ++it_scope)
             {
                 if(it_scope->second->isFunction() || it_scope->second->isMacro() || it_scope->second->isMacroFile())
@@ -160,26 +166,26 @@ namespace symbol
 
         /** Send the content of this table on ostr in a readable manner, the top
         ** of the stack being displayed last. */
-        void	print (ostream& ostr) const
+        void	print (wostream& ostr) const
         {
-            map<string, InternalType*>::const_iterator it_scope;
+            map<wstring, InternalType*>::const_iterator it_scope;
             for(it_scope = _scope->begin() ; it_scope != _scope->end() ; ++it_scope)
             {
                 ostr << it_scope->first << " = " << it_scope->second->toString(10,75) << std::endl;
             }
         }
 
-        map<string, InternalType*>* getInternalMap()
+        map<wstring, InternalType*>* getInternalMap()
         {
             return _scope;
         }
 
     private:
-        map<string, InternalType*>* 	_scope;
-        string				_name;
+        map<wstring, InternalType*>* 	_scope;
+        wstring				            _name;
     };
 
-    inline ostream& operator<< (ostream& ostr,
+    inline wostream& operator<< (wostream& ostr,
         const Scope &scope)
     {
         scope.print(ostr);

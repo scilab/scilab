@@ -59,13 +59,13 @@ namespace types
         bool                    append(int _iRows, int _iCols, Int *_poSource);
 
 
-        virtual std::string     toString(int _iPrecision, int _iLineLen) = 0;
+        virtual wstring         toString(int _iPrecision, int _iLineLen) = 0;
         virtual Int*            clone() = 0;
 
         /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::string     getTypeStr() {return string("int");}
+        virtual wstring         getTypeStr() {return L"int";}
         /* return type as short string ( s, i, ce, l, ... )*/
-        virtual std::string     getShortTypeStr() {return string("i");}
+        virtual wstring         getShortTypeStr() {return L"i";}
     protected :
         /* Only used by Int8,16, ... */
         bool                    extract_size_get(int* _piMaxDim, int* _piDimSize, bool _bAsVector, int* _piRows, int* _piCols);

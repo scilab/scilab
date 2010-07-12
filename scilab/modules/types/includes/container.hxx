@@ -21,24 +21,24 @@ namespace types
     {
 
     public :
-                            Container() : GenericType() {}
-        virtual             ~Container() {}
+                                Container() : GenericType() {}
+        virtual                 ~Container() {}
 
-        virtual void        whoAmI(void) { std::cout << "types::Container"; }
+        virtual void            whoAmI(void) { std::cout << "types::Container"; }
 
-        virtual int         size_get() = 0 ;
+        virtual int             size_get() = 0 ;
 
         virtual Container*  getAsContainer(void) { return this; }
 
         virtual bool        isAssignable(void) { return true; }
 
-        virtual RealType    getType(void) { return RealContainer; }
-        virtual bool        isContainer(void) { return true; }
+        virtual RealType        getType(void) { return RealContainer; }
+        virtual bool            isContainer(void) { return true; }
 
         /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::string getTypeStr() = 0;
+        virtual std::wstring    getTypeStr() = 0;
         /* return type as short string ( s, i, ce, l, ... )*/
-        virtual std::string	getShortTypeStr() = 0;
+        virtual std::wstring    getShortTypeStr() = 0;
     };
 }
 

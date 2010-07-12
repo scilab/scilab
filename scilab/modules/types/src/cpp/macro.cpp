@@ -29,7 +29,7 @@ namespace types
     /*--------------*/
     /*	Contructor  */
     /*--------------*/
-    Macro::Macro(const string& _stName, list<string> &_inputArgs, list<string> &_outputArgs, ast::SeqExp &_body, const string& _stModule) :
+    Macro::Macro(const wstring& _stName, list<wstring> &_inputArgs, list<wstring> &_outputArgs, ast::SeqExp &_body, const wstring& _stModule) :
     Callable(), m_inputArgs(&_inputArgs), m_outputArgs(&_outputArgs), m_body(&_body)
     {
         setName(_stName);
@@ -70,12 +70,12 @@ namespace types
         return m_body;
     }
 
-    std::string Macro::toString(int _iPrecision, int _iLineLen)
+    wstring Macro::toString(int _iPrecision, int _iLineLen)
     {
-        std::ostringstream ostr;
+        wostringstream ostr;
 
         //FIXME : Implement me.
-        ostr << "FIXME : Implement Macro::toString" << std::endl;
+        ostr << L"FIXME : Implement Macro::toString" << std::endl;
 
         return ostr.str();
     }
@@ -90,20 +90,20 @@ namespace types
         // TODO: Manage varargin here
 		if(in.size() > m_inputArgs->size())
 		{
-            std::ostringstream ostr;
-            ostr << _("Wrong number of input arguments:") << std::endl << std::endl;
-            ostr << _("Arguments are:") << std::endl << std::endl;
+            wostringstream ostr;
+            ostr << _W("Wrong number of input arguments:") << std::endl << std::endl;
+            ostr << _W("Arguments are:") << std::endl << std::endl;
             ostr << " ";
-            for (std::list<std::string>::iterator it =  m_inputArgs->begin() ; it != m_inputArgs->end() ; ++it)
+            for (list<wstring>::iterator it =  m_inputArgs->begin() ; it != m_inputArgs->end() ; ++it)
             {
-                ostr << *it << "    ";
+                ostr << *it << L"    ";
             }
             ostr << std::endl << std::endl;
-            Scierror(58, const_cast<char *>(ostr.str().c_str()));
+            ScierrorW(58, ostr.str().c_str());
 			return Callable::Error;
 		}
 
-        std::list<std::string>::const_iterator i;
+        list<wstring>::const_iterator i;
         typed_list::const_iterator j;
         //ast::ExecVisitor execFunc;
 
@@ -112,8 +112,8 @@ namespace types
         pContext->scope_begin();
 
         // Declare nargin & nargout in function context.
-        pContext->put(std::string("nargin"), *new Double(in.size()));
-        pContext->put(std::string("nargout"), *new Double(_iRetCount));
+        pContext->put(wstring(L"nargin"), *new Double(static_cast<double>(in.size())));
+        pContext->put(wstring(L"nargout"), *new Double(static_cast<double>(_iRetCount)));
 
         //assign value to variable in the new context
         for (i = m_inputArgs->begin(), j = in.begin(); j != in.end (); ++j,++i)
@@ -141,20 +141,20 @@ namespace types
                 }
                 else
                 {
-                    char sz[bsiz];
+                    wchar_t sz[bsiz];
 #ifdef _MSC_VER
-                    sprintf_s(sz, bsiz, _("Undefined variable %s.\n"), (*i).c_str());
+                    swprintf_s(sz, bsiz, _W("Undefined variable %s.\n"), (*i).c_str());
 #else
-                    sprintf(sz, _("Undefined variable %s.\n"), (*i).c_str());
+                    swprintf(sz, bsiz, _W("Undefined variable %S.\n"), (*i).c_str());
 #endif
-                    YaspWrite(sz);
+                    YaspWriteW(sz);
                 }
             }
         }
-        catch(string sz)
+        catch(wstring sz)
         {
-            YaspWrite((char *) sz.c_str());
-            YaspWrite("\n");
+            YaspWriteW(sz.c_str());
+            YaspWriteW(L"\n");
             RetVal = Callable::Error;
         }
 
@@ -168,12 +168,12 @@ namespace types
         return RetVal;
     }
 
-    std::list<std::string>* Macro::inputs_get()
+    std::list<wstring>* Macro::inputs_get()
     {
         return m_inputArgs;
     }
 
-    std::list<std::string>* Macro::outputs_get()
+    std::list<wstring>* Macro::outputs_get()
     {
         return m_outputArgs;
     }

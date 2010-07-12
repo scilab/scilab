@@ -33,29 +33,43 @@ extern "C"
 
 char *getSCI(void)
 {
-    return strdup(ConfigVariable::getSCIPath().c_str());
+    return wide_string_to_UTF8(ConfigVariable::getSCIPath().c_str());
 }
 
 /*--------------------------------------------------------------------------*/
 wchar_t *getSCIW(void)
 {
-    return to_wide_string(const_cast<char*>(ConfigVariable::getSCIPath().c_str()));
+    return wcsdup(ConfigVariable::getSCIPath().c_str());
 }
 
 /*--------------------------------------------------------------------------*/
-void setSCI(const char* _sci_path)
+void setSCIW(const wchar_t* _sci_path)
 {
     //add SCI value in context as variable
     types::String *pS = new types::String(_sci_path);
-    symbol::Context::getInstance()->put("SCI", *pS);
+    symbol::Context::getInstance()->put(L"SCI", *pS);
 
     //add SCI value ConfigVariable
-    std::string sci_path(_sci_path);
+    std::wstring sci_path(_sci_path);
     ConfigVariable::setSCIPath(sci_path);
 }
-
 /*--------------------------------------------------------------------------*/
-void putenvSCI(const char *_sci_path)
+void setSCI(const char* _sci_path)
+{
+    const wchar_t* pstTemp = to_wide_string(_sci_path);
+    setSCIW(pstTemp);
+    FREE(pstTemp);
+}
+/*--------------------------------------------------------------------------*/
+void putenvSCIW(const wchar_t* _sci_path)
+{
+    const char* pstTemp = wide_string_to_UTF8(_sci_path);
+    putenvSCI(pstTemp);
+    FREE(pstTemp);
+    return;
+}
+/*--------------------------------------------------------------------------*/
+void putenvSCI(const char* _sci_path)
 {
     char *ShortPath = NULL;
     char *CopyOfDefaultPath = NULL;
@@ -84,7 +98,14 @@ void putenvSCI(const char *_sci_path)
     }
     return;
 }
-
+/*--------------------------------------------------------------------------*/
+wchar_t* getenvSCIW()
+{
+    char *SciPath = getenvSCI();
+    wchar_t* pstTemp = to_wide_string(SciPath);
+    delete[] SciPath;
+    return pstTemp;
+}
 /*--------------------------------------------------------------------------*/
 char* getenvSCI()
 {
@@ -104,7 +125,14 @@ char* getenvSCI()
 
     return SciPath;
 }
-
+/*--------------------------------------------------------------------------*/
+wchar_t* computeSCIW()
+{
+    char* pstTemp = computeSCI();
+    wchar_t* pstReturn = to_wide_string(pstTemp);
+    delete[] pstTemp;
+    return pstReturn;
+}
 /*--------------------------------------------------------------------------*/
 //windows : find main DLL and extract path
 //linux and macos : scilab script fill SCI env variable
@@ -182,9 +210,9 @@ char* computeSCI()
 /*--------------------------------------------------------------------------*/
 void defineSCI()
 {
-    char* sci_path = computeSCI();
-    setSCI(sci_path);
-    putenvSCI(sci_path);
-    delete[] sci_path;
+    const wchar_t* sci_path = computeSCIW();
+    setSCIW(sci_path);
+    putenvSCIW(sci_path);
+    FREE(sci_path);
 }
 

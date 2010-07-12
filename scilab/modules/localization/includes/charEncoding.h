@@ -53,24 +53,18 @@ extern "C" {
 * @param[in] UTF string
 * @return wide char string converted
 */
-wchar_t *to_wide_string(char *_UTFStr);
+wchar_t *to_wide_string(const char *_UTFStr);
 
 /**
 * convert a wide char string to UTF-8
 * @param[in] wide char string
 * @return UTF string converted
 */
-char *wide_string_to_UTF8(wchar_t *_wide);
+char *wide_string_to_UTF8(const wchar_t *_wide);
 
 /*file management with UTF filename*/
 #ifdef _MSC_VER
 int wcstat(char* filename, struct _stat *st);
-#endif
-
-#ifdef _MSC_VER
-#define wcsicmp _wcsicmp
-#else
-#define wcsicmp wcsicmp_others
 #endif
 
 /**

@@ -59,7 +59,7 @@ BOOL isdirW(const wchar_t * wcpath)
 	else
 	{
 		DWORD attr = 0;
-		wchar_t *tmpPath = wstrdup(wcpath);
+		wchar_t *tmpPath = wcsdup(wcpath);
 
 		if ( (tmpPath[wcslen(tmpPath) - 1] == L'\\') || (tmpPath[wcslen(tmpPath) - 1] == L'/') )
 		{

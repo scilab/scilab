@@ -21,7 +21,7 @@ namespace types
     */
     Struct::Struct() : Container()
     {
-        m_plData = new std::map<std::string, InternalType *>();
+        m_plData = new std::map<std::wstring, InternalType *>();
         m_iRows = 0;
         m_iCols = 0;
         m_iSize = 0;
@@ -42,8 +42,8 @@ namespace types
     {
         m_iRows = _oStructCopyMe->rows_get();
         m_iCols = _oStructCopyMe->cols_get();
-        std::map<std::string, InternalType *>::iterator itValues;
-        m_plData = new std::map<std::string, InternalType *>;
+        std::map<std::wstring, InternalType *>::iterator itValues;
+        m_plData = new std::map<std::wstring, InternalType *>;
 
         for (itValues = _oStructCopyMe->getData()->begin();
             itValues != _oStructCopyMe->getData()->end();
@@ -54,7 +54,7 @@ namespace types
         }
     }
 
-    std::map<std::string, InternalType *> *Struct::getData()
+    std::map<std::wstring, InternalType *> *Struct::getData()
     {
         return m_plData;
     }
@@ -72,7 +72,7 @@ namespace types
     ** add(symbol::Symbol*_psKey, InternalType *_typedValue)
     ** Append the given value to the struct
     */ 
-    void Struct::add(const std::string& _sKey, InternalType *_typedValue)
+    void Struct::add(const std::wstring& _sKey, InternalType *_typedValue)
     {
         m_iRows = 1;
         m_iCols = 1;
@@ -100,7 +100,7 @@ namespace types
     ** add(symbol::Symbol*_psKey)
     ** Append an null value to the struct
     */ 
-    void Struct::add(const std::string& _sKey)
+    void Struct::add(const std::wstring& _sKey)
     {
         /* Look if we are replacing some existing value */
         if (exists(_sKey))
@@ -114,14 +114,14 @@ namespace types
     ** get(symbol::Symbol*_psKey)
     ** Append the given value to the end of the List
     */
-    InternalType* Struct::get(const std::string& _sKey)
+    InternalType* Struct::get(const std::wstring& _sKey)
     {
         return (*m_plData)[_sKey];
     }
 
-    bool Struct::exists(const std::string& _sKey)
+    bool Struct::exists(const std::wstring& _sKey)
     {
-        std::map<std::string, InternalType *>::iterator it = m_plData->find(_sKey);
+        std::map<std::wstring, InternalType *>::iterator it = m_plData->find(_sKey);
         if (it ==  m_plData->end())
         {
             return false;
@@ -142,27 +142,27 @@ namespace types
     ** toString to display Structs
     ** FIXME : Find a better indentation process
     */
-    std::string Struct::toString(int _iPrecision, int _iLineLen)
+    wstring Struct::toString(int _iPrecision, int _iLineLen)
     {
-        std::ostringstream ostr;
+        wostringstream ostr;
 
         if (size_get() == 0)
         {
-            ostr << "Empty struct" << std::endl;
+            ostr << L"Empty struct" << std::endl;
         }
         else
         {
             int iPosition = 1;
-            std::map<std::string, InternalType *>::iterator itValues;
+            std::map<std::wstring, InternalType *>::iterator itValues;
             for (itValues = m_plData->begin() ; itValues != m_plData->end() ; ++itValues)
             {
-                ostr << itValues->first << " : ";
+                ostr << itValues->first << L" : ";
                 switch  ((itValues->second)->getType()) 
                 {
                 case RealStruct :
-                    ostr << "[ " << (itValues->second)->getAsStruct()->rows_get()
-                        << " x " << (itValues->second)->getAsStruct()->cols_get()
-                        << " struct ]";
+                    ostr << L"[ " << (itValues->second)->getAsStruct()->rows_get()
+                        << L" x " << (itValues->second)->getAsStruct()->cols_get()
+                        << L" struct ]";
                     break;
                 default :
                     ostr << (itValues->second)->toString(_iPrecision, _iLineLen);
@@ -174,11 +174,11 @@ namespace types
         return ostr.str();
     }
 
-    std::vector<InternalType*> Struct::extract(list<string> _stFields)
+    std::vector<InternalType*> Struct::extract(list<wstring> _stFields)
     {
         std::vector<InternalType*> Result;
 
-        std::list<string>::const_iterator it;
+        std::list<wstring>::const_iterator it;
         for(it = _stFields.begin() ; it != _stFields.end() ; it++)
         {
             if(exists(*it) == false)

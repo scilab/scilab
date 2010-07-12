@@ -17,17 +17,17 @@
 
 namespace types
 {
-    Function *Function::createFunction(std::string _stName, GW_FUNC _pFunc, std::string _stModule)
+    Function *Function::createFunction(wstring _stName, GW_FUNC _pFunc, wstring _stModule)
     {
         return new Function(_stName, _pFunc, _stModule);
     }
 
-    Function *Function::createFunction(std::string _stName, OLDGW_FUNC _pFunc, std::string _stModule)
+    Function *Function::createFunction(wstring _stName, OLDGW_FUNC _pFunc, wstring _stModule)
     {
         return new WrapFunction(_stName, _pFunc, _stModule);
     }
 
-    Function::Function(std::string _stName, GW_FUNC _pFunc, std::string _stModule) : Callable(), m_pFunc(_pFunc)
+    Function::Function(wstring _stName, GW_FUNC _pFunc, wstring _stModule) : Callable(), m_pFunc(_pFunc)
     {
         setName(_stName);
         setModule(_stModule);
@@ -58,12 +58,12 @@ namespace types
         std::cout << "types::Function"; 
     }
 
-    std::string Function::toString(int _iPrecision, int _iLineLen)
+    wstring Function::toString(int _iPrecision, int _iLineLen)
     {
-        std::ostringstream ostr;
+        wostringstream ostr;
 
         // FIXME : Implement me.
-        ostr << "FIXME : Implement Function::toString" << std::endl;
+        ostr << L"FIXME : Implement Function::toString" << std::endl;
 
         return ostr.str();
     }
@@ -74,7 +74,7 @@ namespace types
         return this;
     }
 
-    WrapFunction::WrapFunction(std::string _stName, OLDGW_FUNC _pFunc, std::string _stModule)
+    WrapFunction::WrapFunction(wstring _stName, OLDGW_FUNC _pFunc, wstring _stModule)
     {
         m_stName = _stName;
         m_pOldFunc = _pFunc;
@@ -102,7 +102,7 @@ namespace types
         pStr->m_pIn = &in;
         pStr->m_pOut = m_pTempOut;
         pStr->m_piRetCount = &_iRetCount;
-        pStr->m_pstName = (char*)m_stName.c_str();
+        pStr->m_pstName = const_cast<wchar_t*>(m_stName.c_str());
         pStr->m_pOutOrder = new int[_iRetCount < 1 ? 1 : _iRetCount];
         memset(pStr->m_pOutOrder, 0xFF, (_iRetCount < 1 ? 1 : _iRetCount) * sizeof(int));
         memset(pStr->m_pOut, 0x00, MAX_OUTPUT_VARIABLE * sizeof(InternalType*));

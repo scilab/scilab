@@ -24,23 +24,24 @@ namespace types
     {
     public :
                                 String(int _iRows, int _iCols);
-                                String(const char *_pcData);
+                                String(const wchar_t *_pstData);
+                            	String(const char *_pstData);
         virtual                 ~String();
 
         GenericType*            get_col_value(int _iPos);
 
-        char**                  string_get() const;
-        char*                   string_get(int _iRows, int _iCols) const;
-        char*                   string_get(int _iPos) const;
+        wchar_t**               string_get() const;
+        wchar_t*                string_get(int _iRows, int _iCols) const;
+        wchar_t*                string_get(int _iPos) const;
 
-        bool                    string_set(char **_pcData);
-        bool                    string_set(int _iRows, int _iCols, const char *_pcData);
-        bool                    string_set(int _iPos, const char *_pcData);
+        bool                    string_set(wchar_t **_pstData);
+        bool                    string_set(int _iRows, int _iCols, const wchar_t *_pstData);
+        bool                    string_set(int _iPos, const wchar_t *_pstData);
 
         void                    whoAmI();
 
         String*                 getAsString(void);
-        string                  toString(int _iPrecision, int _iLineLen);
+        wstring                  toString(int _iPrecision, int _iLineLen);
 
         bool                    resize(int _iNewRows, int _iNewCols);
         bool                    insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector);
@@ -52,16 +53,16 @@ namespace types
         bool                    operator!=(const InternalType& it);
 
         /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::string     getTypeStr() {return string("string");}
+        virtual wstring         getTypeStr() {return L"string";}
         /* return type as short string ( s, i, ce, l, ... )*/
-        virtual std::string     getShortTypeStr() {return string("c");}
+        virtual wstring         getShortTypeStr() {return L"c";}
         String*                 clone();
 
     protected :
         RealType                getType();//			{ return RealString; }
 
     private :
-        char**                  m_pstData;
+        wchar_t**               m_pstData;
 
         void                    all_delete();
         void                    string_delete(int _iRows, int _iCols);

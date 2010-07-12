@@ -24,106 +24,111 @@
 #include "exp.hxx"
 #include "arraylistvar.hxx"
 
+using namespace std;
+
 namespace ast
 {
 
-  /*
-  ** \brief Abstract a Function Declaration node.
-  **
-  ** \b Example: function foo(s : string) : int = (print(s); 2097)
-  */
-  class FunctionDec : public Dec
-  {
-    // \name Ctor & dtor.
-  public:
     /*
-    ** \brief Construct a Function Declaration node.
-    ** \param location scanner position informations
-    ** \param name of function
-    ** \param list of params
-    ** \param list of returns
-    ** \param body
+    ** \brief Abstract a Function Declaration node.
+    **
+    ** \b Example: function foo(s : string) : int = (print(s); 2097)
     */
-    FunctionDec (const Location& location,
-			const std::string name,
-		 ArrayListVar& args,
-		 ArrayListVar& returns,
-		 Exp& body) :
-      Dec (location),
-      _name (name),
-      _args (&args),
-      _returns (&returns),
-      _body (&body)
+    class FunctionDec : public Dec
     {
-    }
+        // \name Ctor & dtor.
+    public:
+        /*
+        ** \brief Construct a Function Declaration node.
+        ** \param location scanner position informations
+        ** \param name of function
+        ** \param list of params
+        ** \param list of returns
+        ** \param body
+        */
+        FunctionDec (const Location& location,
+            const std::wstring name,
+            ArrayListVar& args,
+            ArrayListVar& returns,
+            Exp& body) :
+        Dec (location),
+            _name (name),
+            _args (&args),
+            _returns (&returns),
+            _body (&body)
+        {
+        }
 
-    virtual ~FunctionDec ()
-    {
-      delete _body;
-			delete _args;
-			delete _returns;
-    }
-
-
-    // \name Visitors entry point.
-  public:
-    // \brief Accept a const visitor
-    virtual void accept (Visitor& v)
-    {
-      v.visit (*this);
-    }
-    // \brief Accept a non-const visitor
-    virtual void accept (ConstVisitor& v) const
-    {
-      v.visit (*this);
-    }
+        virtual ~FunctionDec ()
+        {
+            delete _body;
+            delete _args;
+            delete _returns;
+        }
 
 
-    // \name Accessors.
-  public:
-		const std::string& name_get (void) const
-    {
-      return _name;
-    }
+        // \name Visitors entry point.
+    public:
+        // \brief Accept a const visitor
+        virtual void accept (Visitor& v)
+        {
+            v.visit (*this);
+        }
+        // \brief Accept a non-const visitor
+        virtual void accept (ConstVisitor& v) const
+        {
+            v.visit (*this);
+        }
 
-    const Exp& body_get (void) const
-    {
-      return *_body;
-    }
-    Exp&	body_get (void)
-    {
-      return *_body;
-    }
 
-    const ArrayListVar&	args_get () const
-    {
-      return *_args;
-    }
-    ArrayListVar&	args_get ()
-    {
-      return *_args;
-    }
+        // \name Accessors.
+    public:
+        const wstring& name_get (void) const
+        {
+            return _name;
+        }
 
-    const ArrayListVar&	returns_get () const
-    {
-      return *_returns;
-    }
-    ArrayListVar&	returns_get ()
-    {
-      return *_returns;
-    }
+        const Exp& body_get (void) const
+        {
+            return *_body;
+        }
 
-    void body_set(Exp *body)
-    {
-      _body = body;
-    }
+        Exp& body_get (void)
+        {
+            return *_body;
+        }
 
-  protected:
-		std::string	_name;
-    ArrayListVar*	_args;
-    ArrayListVar*	_returns;
-    Exp*		_body;
-  };
+        const ArrayListVar& args_get () const
+        {
+            return *_args;
+        }
+
+        ArrayListVar& args_get ()
+        {
+            return *_args;
+        }
+
+        const ArrayListVar& returns_get () const
+        {
+            return *_returns;
+        }
+
+        ArrayListVar& returns_get ()
+        {
+            return *_returns;
+        }
+
+        void body_set(Exp *body)
+        {
+            _body = body;
+        }
+
+    protected:
+        std::wstring	_name;
+        ArrayListVar*	_args;
+        ArrayListVar*	_returns;
+        Exp*		_body;
+    };
 
 } // namespace ast
 

@@ -24,7 +24,7 @@ namespace ast
   {
   public:
     StringExp (const Location& location,
-	       std::string value) :
+	       std::wstring value) :
       ConstExp (location),
       _value (value)
     {
@@ -57,13 +57,13 @@ namespace ast
      ** \{ */
   public:
     /** \brief Return the name of the type name (read only). */
-    const std::string value_get () const
+    const std::wstring value_get () const
     {
       return _value;
     }
     /** \} */
   protected:
-    const std::string _value;
+    const std::wstring _value;
   };
 
 } // namespace ast

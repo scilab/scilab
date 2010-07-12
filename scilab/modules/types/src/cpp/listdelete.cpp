@@ -42,12 +42,12 @@ namespace types
 		return RealListDeleteOperation; 
 	}
 
-	std::string ListDelete::toString(int _iPrecision, int _iLineLen)
+	wstring ListDelete::toString(int _iPrecision, int _iLineLen)
 	{
-	  std::ostringstream ostr;
+	  wostringstream ostr;
 
 	  //FIXME : Implement me.
-	  ostr << "FIXME : Implement ListDelete::toString" << std::endl;
+	  ostr << L"FIXME : Implement ListDelete::toString" << std::endl;
 
 	  return ostr.str();
 	}

@@ -17,40 +17,41 @@
 #include <string>
 #include "dynlib_system_env.h"
 
+using namespace std;
 class EXTERN_SYSTEM_ENV ConfigVariable
 {
     //module list
 private :
-    static std::list<std::string> m_ModuleList;
+    static list<wstring> m_ModuleList;
 
 public :
-    static void setModuleList(std::list<std::string>& _module_list);
-    static std::list<std::string> getModuleList();
+    static void setModuleList(list<wstring>& _module_list);
+    static std::list<wstring> getModuleList();
 
 
     //SCI
 private :
-    static std::string m_SCIPath;
+    static wstring m_SCIPath;
 
 public :
-    static void setSCIPath(std::string& _SCIPath);
-    static std::string getSCIPath();
+    static void setSCIPath(wstring& _SCIPath);
+    static wstring getSCIPath();
 
     //HOME
 private :
-    static std::string m_SCIHOME;
+    static wstring m_SCIHOME;
 
 public :
-    static void setSCIHOME(std::string& _m_SCIHOME);
-    static std::string getSCIHOME();
+    static void setSCIHOME(wstring& _m_SCIHOME);
+    static wstring getSCIHOME();
 
     //TMPDIR
 private :
-    static std::string m_TMPDIR;
+    static wstring m_TMPDIR;
 
 public :
-    static void setTMPDIR(std::string& _TMPDIR);
-    static std::string getTMPDIR();
+    static void setTMPDIR(wstring& _TMPDIR);
+    static wstring getTMPDIR();
 
     // Force Quit
 private :

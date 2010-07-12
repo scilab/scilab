@@ -54,7 +54,7 @@ namespace types
         void                        complex_set(bool _bComplex);
 
         Double*                     getAsDouble(void);
-        string                      toString(int _iPrecision, int _iLineLen);
+        wstring                     toString(int _iPrecision, int _iLineLen);
 
         Double*                     clone();
         bool                        append(int _iRows, int _iCols, Double *_poSource);
@@ -71,9 +71,9 @@ namespace types
         bool                        operator!=(const InternalType& it);
 
         /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::string         getTypeStr() {return string("constant");}
+        virtual std::wstring        getTypeStr() {return L"constant";}
         /* return type as short string ( s, i, ce, l, ... )*/
-        virtual std::string	        getShortTypeStr() {return string("s");}
+        virtual std::wstring        getShortTypeStr() {return L"s";}
     protected :
         RealType                    getType(void);
 

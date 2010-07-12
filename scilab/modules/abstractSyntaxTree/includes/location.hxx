@@ -70,11 +70,11 @@ public:
   }
   /** \} */
 	
-  std::string location_string_get() const
+  std::wstring location_string_get() const
   {
-      std::ostringstream os;
-      os << " (" << first_line << "," << first_column << ")";
-      return std::string(os.str());
+      std::wostringstream os;
+      os << L" (" << first_line << L"," << first_column << L")";
+      return os.str();
   }
   
 public:

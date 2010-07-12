@@ -42,12 +42,12 @@ namespace types
 		return RealListUndefinedOperation; 
 	}
 
-	std::string ListUndefined::toString(int _iPrecision, int _iLineLen)
+	wstring ListUndefined::toString(int _iPrecision, int _iLineLen)
 	{
-	  std::ostringstream ostr;
+	  wostringstream ostr;
 
 	  //FIXME : Implement me.
-	  ostr << "    Undefined" << std::endl;
+	  ostr << L"    Undefined" << std::endl;
 
 	  return ostr.str();
 	}

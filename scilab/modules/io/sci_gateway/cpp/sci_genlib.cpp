@@ -1,11 +1,11 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2006 - INRIA - Allan CORNET
-* 
+*
 7* This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -16,7 +16,7 @@
 
 #define DEFAULT_ENCODING "UTF-8"
 
-#define FILE_SEPARATOR "/"
+#define FILE_SEPARATOR L"/"
 
 //XML API
 #include <libxml/xpath.h>
@@ -43,22 +43,22 @@ extern "C"
 }
 
 
-xmlTextWriterPtr openXMLFile(const char *_pstFilename, const char* _pstLibName);
+xmlTextWriterPtr openXMLFile(const wchar_t *_pstFilename, const wchar_t* _pstLibName);
 void closeXMLFile(xmlTextWriterPtr _pWriter);
-bool AddMacroToXML(xmlTextWriterPtr _pWriter, pair<string, string> _pair);
+bool AddMacroToXML(xmlTextWriterPtr _pWriter, pair<wstring, wstring> _pair);
 
 
 using namespace types;
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-	char pstParseFile[PATH_MAX + FILENAME_MAX];
-	char pstVerbose[65535];
-
+	wchar_t pstParseFile[PATH_MAX + FILENAME_MAX];
+	wchar_t pstVerbose[65535];
+	
     int iNbFile	            = 0;
-	char *pstParsePath      = NULL;
+	wchar_t *pstParsePath      = NULL;
 	int iParsePathLen		= 0;
-	char* pstLibName		= NULL;
+	wchar_t* pstLibName		= NULL;
     bool bVerbose           = false;
 
 	if(in.size() < 2 && in.size() > 4)
@@ -108,39 +108,40 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
         bVerbose = pIT->getAsBool()->bool_get()[0] == 1;
     }
 
-	char* pstFile = pS->string_get(0);
-    pstParsePath = expandPathVariable(pstFile);
+	wchar_t* pstFile = pS->string_get(0);
+    pstParsePath = expandPathVariableW(pstFile);
 
 #ifdef _MSC_VER
-	sprintf_s(pstParseFile, PATH_MAX + FILENAME_MAX, "%s%slib", pstParsePath, DIR_SEPARATOR);
+	swprintf_s(pstParseFile, PATH_MAX + FILENAME_MAX, L"%s%slib", pstParsePath, FILE_SEPARATOR);
 #else
-	sprintf(pstParseFile, "%s%slib", pstParsePath, DIR_SEPARATOR);
+	swprintf(pstParseFile, PATH_MAX + FILENAME_MAX, L"%S%Slib", pstParsePath, FILE_SEPARATOR);
 #endif
 
     if(bVerbose)
     {
 #ifdef _MSC_VER
-        sprintf_s(pstVerbose, 65535, _("-- Creation of [%s] (Macros) --\n"), pstLibName);
+        swprintf_s(pstVerbose, 65535, _W("-- Creation of [%s] (Macros) --\n"), pstLibName);
 #else
-        sprintf(pstVerbose, _("-- Creation of [%s] (Macros) --\n"), pstLibName);
+        swprintf(pstVerbose, 65535, _W("-- Creation of [%S] (Macros) --\n"), pstLibName);
 #endif
-        YaspWrite(pstVerbose);
+        YaspWriteW(pstVerbose);
     }
 
-    if(FileExist(pstParseFile))
+    if(FileExistW(pstParseFile))
     {
-        deleteafile(pstParseFile);
+        deleteafileW(pstParseFile);
     }
 
 	xmlTextWriterPtr pWriter = openXMLFile(pstParseFile, pstLibName);
+
     if(pWriter == NULL)
     {
 #ifdef _MSC_VER
-        sprintf_s(pstVerbose, 65535, _("%s: Cannot open file ''%s''.\n"), "genlib", pstParseFile);
+        swprintf_s(pstVerbose, 65535, _W("%s: Cannot open file ''%s''.\n"), L"genlib", pstParseFile);
 #else
-        sprintf(pstVerbose, _("%s: Cannot open file ''%s''.\n"), pstParseFile);
+        swprintf(pstVerbose, 65535, _W("%S: Cannot open file ''%S''.\n"), L"genlib", pstParseFile);
 #endif
-        YaspWrite(pstVerbose);
+        YaspWriteW(pstVerbose);
 
         out.push_back(new Bool(0));
         FREE(pstParsePath);
@@ -148,7 +149,7 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
     }
 
 
-	char **pstPath = findfiles(pstParsePath, const_cast<char*>("*.sci"), &iNbFile, FALSE);
+	wchar_t **pstPath = findfilesW(pstParsePath, L"*.sci", &iNbFile, FALSE);
 
 	if(pstPath)
 	{
@@ -156,18 +157,18 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
 		{
 			//version with direct parsing
 			//parse the file to find all functions
-			string stFullPath = string(pstParsePath) + string(DIR_SEPARATOR) + string(pstPath[k]);
+			wstring stFullPath = wstring(pstParsePath) + wstring(FILE_SEPARATOR) + wstring(pstPath[k]);
 
             Parser parser;
 			parser.parseFile(stFullPath, ConfigVariable::getSCIPath());
             if(parser.getExitStatus() !=  Parser::Succeded)
             {
 #ifdef _MSC_VER
-                sprintf_s(pstVerbose, 65535, _("%s: Warning: Error in file %s : %s. File ignored\n"), "genlib", pstPath[k], parser.getErrorMessage());
+                swprintf_s(pstVerbose, 65535, _W("%s: Warning: Error in file %s : %s. File ignored\n"), L"genlib", pstPath[k], parser.getErrorMessage());
 #else
-                sprintf(pstVerbose, _("%s: Warning: Error in file %s : %s. File ignored\n"), "genlib", pstPath[k], parser.getErrorMessage());
+                swprintf(pstVerbose, 65535, _W("%S: Warning: Error in file %S : %S. File ignored\n"), L"genlib", pstPath[k], parser.getErrorMessage());
 #endif
-                YaspWrite(pstVerbose);
+                YaspWriteW(pstVerbose);
                 parser.freeTree();
                 continue;
             }
@@ -180,14 +181,14 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
 				ast::FunctionDec* pFD = dynamic_cast<ast::FunctionDec*>(*j);
 				if(pFD)
 				{
-					if(AddMacroToXML(pWriter, pair<string, string>(string(pFD->name_get()), string(pstPath[k]))) == false)
+					if(AddMacroToXML(pWriter, pair<wstring, wstring>(pFD->name_get(), pstPath[k])) == false)
                     {
 #ifdef _MSC_VER
-                        sprintf_s(pstVerbose, 65535, _("%s: Warning: %s information cannot be added to file %s. File ignored\n"), "genlib", pFD->name_get() , pstPath[k]);
+                        swprintf_s(pstVerbose, 65535, _W("%s: Warning: %s information cannot be added to file %s. File ignored\n"), L"genlib", pFD->name_get() , pstPath[k]);
 #else
-                        sprintf(pstVerbose, _("%s: Warning: Error in file %s : %s. File ignored\n"), "genlib", pstPath[k], parser.getErrorMessage());
+                        swprintf(pstVerbose, 65535, _W("%S: Warning: Error in file %S : %S. File ignored\n"), L"genlib", pstPath[k], parser.getErrorMessage());
 #endif
-                        YaspWrite(pstVerbose);
+                        YaspWriteW(pstVerbose);
                     }
 				}
 			}
@@ -224,13 +225,16 @@ void closeXMLFile(xmlTextWriterPtr _pWriter)
 	xmlFreeTextWriter(_pWriter);
 }
 
-xmlTextWriterPtr openXMLFile(const char *_pstFilename, const char* _pstLibName)
+xmlTextWriterPtr openXMLFile(const wchar_t *_pstFilename, const wchar_t* _pstLibName)
 {
 	int iLen;
 	xmlTextWriterPtr pWriter = NULL;;
+    char *pstFilename = wide_string_to_UTF8(_pstFilename);
+    char *pstLibName = wide_string_to_UTF8(_pstLibName);
+
 
 	//create a writer
-	pWriter = xmlNewTextWriterFilename(_pstFilename, 0);
+	pWriter = xmlNewTextWriterFilename(pstFilename, 0);
 	if(pWriter == NULL)
 	{
 		return NULL;
@@ -255,16 +259,19 @@ xmlTextWriterPtr openXMLFile(const char *_pstFilename, const char* _pstLibName)
 	}
 
 	//Add attribute "name"
-	iLen = xmlTextWriterWriteAttribute(pWriter, (xmlChar*)"name", (xmlChar*)_pstLibName);
+	iLen = xmlTextWriterWriteAttribute(pWriter, (xmlChar*)"name", (xmlChar*)pstLibName);
 	if (iLen < 0)
 	{
 		return false;
 	}
 
+    FREE(pstFilename);
+    FREE(pstLibName);
+
 	return pWriter;
 }
 
-bool AddMacroToXML(xmlTextWriterPtr _pWriter, pair<string, string> _pair)
+bool AddMacroToXML(xmlTextWriterPtr _pWriter, pair<wstring, wstring> _pair)
 {
 	int iLen;
 
@@ -281,18 +288,22 @@ bool AddMacroToXML(xmlTextWriterPtr _pWriter, pair<string, string> _pair)
 	}
 
 	//Add attribute "name"
-	iLen = xmlTextWriterWriteAttribute(_pWriter, (xmlChar*)"name", (xmlChar*)_pair.first.c_str());
+    char* pstFirst = wide_string_to_UTF8(_pair.first.c_str());
+	iLen = xmlTextWriterWriteAttribute(_pWriter, (xmlChar*)"name", (xmlChar*)pstFirst);
 	if (iLen < 0)
 	{
 		return false;
 	}
+    FREE(pstFirst);
 
 	//Add attribute "file"
-	iLen = xmlTextWriterWriteAttribute(_pWriter, (xmlChar*)"file", (xmlChar*)_pair.second.c_str());
+    char* pstSecond = wide_string_to_UTF8(_pair.second.c_str());
+	iLen = xmlTextWriterWriteAttribute(_pWriter, (xmlChar*)"file", (xmlChar*)pstSecond);
 	if (iLen < 0)
 	{
 		return false;
 	}
+    FREE(pstSecond);
 
 	//close "macro" node
 	iLen = xmlTextWriterEndElement(_pWriter);

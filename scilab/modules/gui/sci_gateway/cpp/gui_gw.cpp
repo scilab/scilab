@@ -14,7 +14,7 @@
 #include "function.hxx"
 #include "context.hxx"
 
-#define MODULE_NAME "gui"
+#define MODULE_NAME L"gui"
 extern "C"
 {
 	#include "gw_gui.h"
@@ -24,6 +24,6 @@ using namespace types;
 
 bool GuiModule::Load()
 {
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("about", &sci_about, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"about", &sci_about, MODULE_NAME));
     return true;
 }

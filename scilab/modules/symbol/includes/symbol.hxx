@@ -29,31 +29,31 @@ namespace symbol
 
   /** \brief Define class Symbol.
    **
-   ** Map any string to a unique reference.
+   ** Map any wstring to a unique reference.
    ** This allows to avoid an "strcmp()" style comparison of strings:
    ** reference comparison is much faster.
    */
   class EXTERN_SYMBOL Symbol
   {
-    /** \brief Define the type "set of string". */
-    typedef std::set < std::string > string_set_type;
-    /** \brief Define the type used for the size of string set. */
+    /** \brief Define the type "set of wstring". */
+    typedef std::set < std::wstring > string_set_type;
+    /** \brief Define the type used for the size of wstring set. */
     typedef string_set_type::size_type size_type;
 
     /** \name Ctor & Dtor.
      ** \{ */
   public:
     /** \brief Construct a Symbol (explicit).
-     ** \param s referenced string */
-    explicit Symbol (const std::string &s);
+     ** \param s referenced wstring */
+    explicit Symbol (const std::wstring &s);
     /** \} */
 
 
     /** \name Accessors.
      ** \{ */
   public:
-    /** \brief Return the string referenced by this Symbol. */
-    const std::string& name_get () const;
+    /** \brief Return the wstring referenced by this Symbol. */
+    const std::wstring& name_get () const;
     /** \brief Return the number of referenced strings. */
     static size_type map_size ();
     /** \} */
@@ -77,7 +77,7 @@ namespace symbol
   private:
     /** \brief Static (global to all instance of Symbol) strings container. */
     static string_set_type _set;
-    /** \brief Pointer to the node containing the unique referenced string. */
+    /** \brief Pointer to the node containing the unique referenced wstring. */
     const string_set_type::const_iterator _set_node;
   };
 

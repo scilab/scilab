@@ -12,7 +12,7 @@
 
 #include "matio_gw.hxx"
 
-#define MODULE_NAME "matio"
+#define MODULE_NAME L"matio"
 extern "C"
 {
 #include "gw_matio.h"
@@ -22,11 +22,11 @@ using namespace types;
 
 bool MatioModule::Load()
 {
-  symbol::Context::getInstance()->AddFunction(Function::createFunction("matfile_open", &sci_matfile_open, MODULE_NAME));
-  symbol::Context::getInstance()->AddFunction(Function::createFunction("matfile_close", &sci_matfile_close, MODULE_NAME));
-  symbol::Context::getInstance()->AddFunction(Function::createFunction("matfile_listvar", &sci_matfile_listvar, MODULE_NAME));
-  symbol::Context::getInstance()->AddFunction(Function::createFunction("matfile_varreadnext", &sci_matfile_varreadnext, MODULE_NAME));
-  symbol::Context::getInstance()->AddFunction(Function::createFunction("matfile_varwrite", &sci_matfile_varwrite, MODULE_NAME));
+  symbol::Context::getInstance()->AddFunction(Function::createFunction(L"matfile_open", &sci_matfile_open, MODULE_NAME));
+  symbol::Context::getInstance()->AddFunction(Function::createFunction(L"matfile_close", &sci_matfile_close, MODULE_NAME));
+  symbol::Context::getInstance()->AddFunction(Function::createFunction(L"matfile_listvar", &sci_matfile_listvar, MODULE_NAME));
+  symbol::Context::getInstance()->AddFunction(Function::createFunction(L"matfile_varreadnext", &sci_matfile_varreadnext, MODULE_NAME));
+  symbol::Context::getInstance()->AddFunction(Function::createFunction(L"matfile_varwrite", &sci_matfile_varwrite, MODULE_NAME));
   
   return true;
 }

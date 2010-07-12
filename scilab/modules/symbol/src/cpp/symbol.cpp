@@ -20,13 +20,13 @@ symbol::Symbol::string_set_type symbol::Symbol::_set;
 namespace symbol
 {
   // Constructor
-  Symbol::Symbol (const std::string &s):
+  Symbol::Symbol (const std::wstring &s):
     _set_node (_set.insert(s).first)
   {
   }
 
   // Accessor
-  const std::string& Symbol::name_get () const
+  const std::wstring& Symbol::name_get () const
   {
     return (*_set_node);
   }
@@ -53,7 +53,7 @@ namespace symbol
     return this->name_get() < rhs.name_get();
   }
 
-  std::ostream& operator<< (std::ostream &ostr, const Symbol &the)
+  std::wostream& operator<< (std::wostream &ostr, const Symbol &the)
   {
     return ostr << the.name_get();
   }

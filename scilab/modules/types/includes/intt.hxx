@@ -135,7 +135,7 @@ namespace types
             return true;
         }
 
-        void*	data_get()
+        void* data_get()
         {
             return m_pData;
         }
@@ -187,7 +187,7 @@ namespace types
                 return NULL;
             }
 
-            pOut	= Int::createInt(iRowsOut, iColsOut, getIntType());
+            pOut = Int::createInt(iRowsOut, iColsOut, getIntType());
             return extract(pOut, _iSeqCount, _piSeqCoord, _piMaxDim, _piDimSize, _bAsVector);
         }
 
@@ -198,7 +198,7 @@ namespace types
             {
                 for(int i = 0 ; i < _iSeqCount ; i++)
                 {
-                    T TTemp = data_get(_piSeqCoord[i] - 1);
+                    T TTemp = static_cast<T>(data_get(_piSeqCoord[i] - 1));
                     _poOut->data_set(i, TTemp);
                 }
             }
@@ -207,8 +207,8 @@ namespace types
                 for(int i = 0 ; i < _iSeqCount ; i++)
                 {
                     //convert vertical indexes to horizontal indexes
-                    int iOutIndex				= (i % _poOut->cols_get()) * _poOut->rows_get() + (i / _poOut->cols_get());
-                    int iInIndex				= (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * m_iRows;
+                    int iOutIndex   = (i % _poOut->cols_get()) * _poOut->rows_get() + (i / _poOut->cols_get());
+                    int iInIndex    = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * m_iRows;
                     _poOut->data_set(iOutIndex,data_get(iInIndex));
                 }
             }
@@ -275,9 +275,9 @@ namespace types
         }
 
 
-        std::string toString(int _iPrecision, int _iLineLen)
+        wstring toString(int _iPrecision, int _iLineLen)
         {
-           std::ostringstream ostr;
+           wostringstream ostr;
             if(m_iRows == 1 && m_iCols == 1)
             {//scalar
                 int iWidth = 0;
@@ -297,19 +297,19 @@ namespace types
             }
             else if(m_iRows == 1)
             {//row vector
-                std::ostringstream ostemp;
+                wostringstream ostemp;
                 int iLastVal = 0;
 
                 for(int i = 0 ; i < m_iCols ; i++)
                 {
                     int iWidth = 0;
                     GetIntFormat(m_pData[i], &iWidth);
-                    int iLen = iWidth + ostemp.str().size();
+                    int iLen = iWidth + static_cast<int>(ostemp.str().size());
                     if(iLen > _iLineLen)
                     {//Max length, new line
-                        ostr << std::endl << "       column " << iLastVal + 1 << " to " << i << std::endl << std::endl;
+                        ostr << std::endl << L"       column " << iLastVal + 1 << L" to " << i << std::endl << std::endl;
                         ostr << ostemp.str() << std::endl;
-                        ostemp.str("\x00");
+                        ostemp.str(L"");
                         iLastVal = i;
                     }
 
@@ -318,14 +318,14 @@ namespace types
 
                 if(iLastVal != 0)
                 {
-                    ostr << std::endl << "       column " << iLastVal + 1 << " to " << m_iCols << std::endl << std::endl;
+                    ostr << std::endl << L"       column " << iLastVal + 1 << L" to " << m_iCols << std::endl << std::endl;
                 }
                 ostemp << std::endl;
                 ostr << ostemp.str();
             }
             else // matrix
             {
-                std::ostringstream ostemp;
+                wostringstream ostemp;
                 int iLen = 0;
                 int iLastCol = 0;
 
@@ -363,9 +363,9 @@ namespace types
                             ostemp << std::endl;
                         }
                         iLen = 0;
-                        ostr << std::endl << "       column " << iLastCol + 1 << " to " << iCols1 << std::endl << std::endl;;
+                        ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << iCols1 << std::endl << std::endl;;
                         ostr << ostemp.str();
-                        ostemp.str("");
+                        ostemp.str(L"");
                         iLastCol = iCols1;
 
                     }
@@ -384,7 +384,7 @@ namespace types
                 }
                 if(iLastCol != 0)
                 {
-                    ostr << std::endl << "       column " << iLastCol + 1 << " to " << m_iCols << std::endl << std::endl;
+                    ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << m_iCols << std::endl << std::endl;
                 }
                 ostr << ostemp.str();
             }
@@ -393,7 +393,7 @@ namespace types
         virtual IntType getIntType() = 0;
 
     private :
-        virtual void AddIntValue(std::ostringstream *_postr, T _TVal, int _iWidth, bool bPrintPlusSign = false, bool bPrintOne = true) = 0;
+        virtual void AddIntValue(std::wostringstream *_postr, T _TVal, int _iWidth, bool bPrintPlusSign = false, bool bPrintOne = true) = 0;
         virtual void GetIntFormat(T _TVal, int *_piWidth) = 0;
 
     };
@@ -413,7 +413,7 @@ namespace types
     protected :
         SignedIntT(int _iRows, int _iCols) : IntT<T>(_iRows, _iCols) {}
 
-        void AddIntValue(std::ostringstream *_postr, T _TVal, int _iWidth, bool bPrintPlusSign, bool bPrintOne)
+        void AddIntValue(std::wostringstream *_postr, T _TVal, int _iWidth, bool bPrintPlusSign, bool bPrintOne)
         {
             AddSignedIntValue(_postr, _TVal, _iWidth, bPrintPlusSign, bPrintOne);
         }
@@ -438,7 +438,7 @@ namespace types
     {
     protected :
         UnsignedIntT(int _iRows, int _iCols) : IntT<T>(_iRows, _iCols) {}
-        void AddIntValue(std::ostringstream *_postr, T _TVal, int _iWidth, bool bPrintPlusSign, bool bPrintOne)
+        void AddIntValue(std::wostringstream *_postr, T _TVal, int _iWidth, bool bPrintPlusSign, bool bPrintOne)
         {
             AddUnsignedIntValue(_postr, _TVal, _iWidth, bPrintPlusSign, bPrintOne);
         }
@@ -456,7 +456,7 @@ namespace types
     public :
         Int8(int _iRows, int _iCols) : SignedIntT<char>(_iRows, _iCols) {}
         IntType getIntType() { return Type8; }
-        string getTypeStr(){return "int8";}
+        wstring getTypeStr(){return L"int8";}
     };
 
     /*
@@ -467,7 +467,7 @@ namespace types
     public :
         UInt8(int _iRows, int _iCols) : UnsignedIntT<unsigned char>(_iRows, _iCols) {}
         IntType getIntType() { return TypeUnsigned8; }
-        string getTypeStr(){return "uint8";}
+        wstring getTypeStr(){return L"uint8";}
     };
 
 //16 bits
@@ -479,7 +479,7 @@ namespace types
     public :
         Int16(int _iRows, int _iCols) : SignedIntT<short>(_iRows, _iCols) {}
         IntType getIntType() { return Type16; }
-        string getTypeStr(){return "int16";}
+        wstring getTypeStr(){return L"int16";}
     };
 
     /*
@@ -490,7 +490,7 @@ namespace types
     public :
         UInt16(int _iRows, int _iCols) : UnsignedIntT<unsigned short>(_iRows, _iCols) {}
         IntType getIntType() { return TypeUnsigned16; }
-        string getTypeStr(){return "uint16";}
+        wstring getTypeStr(){return L"uint16";}
     };
 
 //32 bits
@@ -502,7 +502,7 @@ namespace types
     public :
         Int32(int _iRows, int _iCols) : SignedIntT<int>(_iRows, _iCols) {}
         IntType getIntType() { return Type32; }
-        string getTypeStr(){return "int32";}
+        wstring getTypeStr(){return L"int32";}
     };
 
     /*
@@ -513,7 +513,7 @@ namespace types
     public :
         UInt32(int _iRows, int _iCols) : UnsignedIntT<unsigned int>(_iRows, _iCols) {}
         IntType getIntType() { return TypeUnsigned32; }
-        string getTypeStr(){return "uint32";}
+        wstring getTypeStr(){return L"uint32";}
     };
 
 //64 bits
@@ -525,7 +525,7 @@ namespace types
     public :
         Int64(int _iRows, int _iCols) : SignedIntT<long long>(_iRows, _iCols) {}
         IntType getIntType() { return Type64; }
-        string getTypeStr(){return "int64";}
+        wstring getTypeStr(){return L"int64";}
     };
 
     /*
@@ -536,7 +536,7 @@ namespace types
     public :
         UInt64(int _iRows, int _iCols) : UnsignedIntT<unsigned long long>(_iRows, _iCols) {}
         IntType getIntType() { return TypeUnsigned64; }
-        string getTypeStr(){return "uint64";}
+        wstring getTypeStr(){return L"uint64";}
     };
 }
 #endif /* __INTT_HH__ */

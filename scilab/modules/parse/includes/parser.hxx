@@ -18,6 +18,8 @@
 #include <string>
 #include <stdlib.h>
 #include "parse.hxx"
+#include "charEncoding.h"
+#include "MALLOC.h"
 
 #ifdef _MSC_VER
 #if PARSE_EXPORTS
@@ -29,6 +31,7 @@
 #define EXTERN_PARSE
 #endif
 
+using namespace std;
 
 class EXTERN_PARSE Parser
 {
@@ -78,10 +81,10 @@ public:
 public:
 
     /** \brief parse the given file name */
-    void parseFile(const std::string& name, const std::string& progName);
+    void parseFile(const wstring& name, const wstring& progName);
 
     /** \brief parse the given file command */
-    void parse(char *command);
+    void parse(wchar_t *command);
 
     /** \brief enable Bison trace mode */
     void setParseTrace(bool parseTrace) { _parse_trace = parseTrace; }
@@ -102,8 +105,8 @@ public:
     ControlStatus getControlStatus(void) { return _control_status; }
     void setControlStatus(ControlStatus controlStatus) { _control_status = controlStatus; }
 
-    char *getErrorMessage(void) { return const_cast<char *>(_error_message->c_str()); }
-    void setErrorMessage(std::string *errorMessage) { _error_message = errorMessage; }
+    wchar_t *getErrorMessage(void) { return const_cast<wchar_t *>(_error_message->c_str()); }
+    void setErrorMessage(wstring *errorMessage) { _error_message = errorMessage; }
 
     void enableStrictMode(void) { _strict_mode = true; }
     void disableStrictMode(void) { _strict_mode = false; }
@@ -114,9 +117,9 @@ public:
     /** \} */
 
 private :
-    const std::string* _file_name;
-    const std::string* _prog_name;
-    std::string* _error_message;
+    const wstring* _file_name;
+    const wstring* _prog_name;
+    wstring* _error_message;
     bool _parse_trace;
     bool _strict_mode;
     bool _stop_on_first_error;

@@ -48,7 +48,7 @@ namespace types
         */
         List*                           clone();
 
-        std::string                     toString(int _iPrecision, int _iLineLen);
+        wstring                         toString(int _iPrecision, int _iLineLen);
 
         List*                           getAsList(void) { return this; }
 
@@ -56,9 +56,9 @@ namespace types
         std::vector<InternalType*>      extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector);
 
         /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::string             getTypeStr() {return string("list");}
+        virtual wstring                 getTypeStr() {return L"list";}
         /* return type as short string ( s, i, ce, l, ... )*/
-        virtual std::string             getShortTypeStr() {return string("l");}
+        virtual wstring                 getShortTypeStr() {return L"l";}
 
     protected :
         std::vector<InternalType *>*    m_plData;

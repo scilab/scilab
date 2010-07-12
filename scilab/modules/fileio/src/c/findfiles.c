@@ -33,37 +33,42 @@ static BOOL find_spec( char *filename ,char *filespec);
 #endif
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
-char **findfiles(char *path, char *filespec, int *sizeListReturned, BOOL warning)
+wchar_t** findfilesW(wchar_t *path, wchar_t *filespec, int *sizeListReturned, BOOL warning)
 {
-	char **ListFiles = NULL;
+	wchar_t **ListFiles = NULL;
 	wchar_t *wcstrPattern = NULL;
-	wchar_t *wcfilespec = NULL;
-	wchar_t *wcpath = NULL;
 	HANDLE hFile;
 	WIN32_FIND_DATAW FileInformation;
 	int nbElements = 0;
 	int len = 0;
 
-	wcfilespec = to_wide_string(filespec);
-	wcpath = to_wide_string(path);
-
-	len = (int)( wcslen(wcpath) + wcslen(wcfilespec) + 8);
+	len = (int)( wcslen(path) + wcslen(filespec) + 8);
 	wcstrPattern = (wchar_t*)MALLOC(sizeof(wchar_t)*len);
-	swprintf(wcstrPattern,len,L"%s/%s", wcpath, wcfilespec);
+	swprintf(wcstrPattern,len,L"%s/%s", path, filespec);
 
 	hFile = FindFirstFileW(wcstrPattern, &FileInformation);
-	if (wcstrPattern) {FREE(wcstrPattern); wcstrPattern = NULL;}
+	if (wcstrPattern) 
+    {
+        FREE(wcstrPattern); 
+        wcstrPattern = NULL;
+    }
 
 	if(hFile != INVALID_HANDLE_VALUE)
 	{
 		do
 		{
-			if (  wcscmp(FileInformation.cFileName,L".") &&  wcscmp(FileInformation.cFileName,L"..") )
+			if(wcscmp(FileInformation.cFileName,L".") &&  wcscmp(FileInformation.cFileName,L".."))
 			{
 				nbElements++;
-				if (ListFiles) ListFiles = (char**)REALLOC(ListFiles,sizeof(char*)*(nbElements));
-				else ListFiles = (char**)MALLOC(sizeof(char*)*(nbElements));
-				ListFiles[nbElements-1] = wide_string_to_UTF8(FileInformation.cFileName);
+				if(ListFiles)
+                {
+                    ListFiles = (wchar_t**)REALLOC(ListFiles,sizeof(char*)*(nbElements));
+                }
+				else
+                {
+                    ListFiles = (wchar_t**)MALLOC(sizeof(wchar_t*)*(nbElements));
+                }
+				ListFiles[nbElements-1] = wcsdup(FileInformation.cFileName);
 			}
 		} while(FindNextFileW(hFile, &FileInformation) == TRUE);
 	}
@@ -71,12 +76,34 @@ char **findfiles(char *path, char *filespec, int *sizeListReturned, BOOL warning
 	{
 		if (warning)
 		{
-			sciprint(_("Warning: Could not open directory %s: %s\n"), path, strerror(errno));
+            sciprintW(_W("Warning: Could not open directory %s: %s\n"), path, _wcserror(errno));
 		}
 	}
 	FindClose(hFile);
 	*sizeListReturned = nbElements;
 	return ListFiles;
+}
+
+char** findfiles(char *path, char *filespec, int *sizeListReturned, BOOL warning)
+{
+    int i = 0;
+    wchar_t** wListFiles = NULL;
+    char** ListFiles = NULL;
+    wchar_t* pstPath = to_wide_string(path);
+    wchar_t* pstFileSpec = to_wide_string(filespec);
+    wListFiles = findfilesW(pstPath, pstFileSpec, sizeListReturned, warning);
+
+    ListFiles = (char**)MALLOC(sizeof(char*) * *sizeListReturned);
+
+    for(i = 0 ; i < *sizeListReturned ; i++)
+    {
+        ListFiles[i] = wide_string_to_UTF8(wListFiles[i]);
+        FREE(wListFiles[i]);
+    }
+    FREE(wListFiles);
+    FREE(pstPath);
+    FREE(pstFileSpec);
+    return ListFiles;
 }
 #else
 /*--------------------------------------------------------------------------*/
@@ -123,6 +150,33 @@ char **findfiles(char *path, char *filespec, int *sizeListReturned, BOOL warning
 
 	*sizeListReturned = nbElements;
 	return ListFiles;
+}
+/*--------------------------------------------------------------------------*/
+wchar_t** findfilesW(wchar_t* path, wchar_t* filespec, int* sizeListReturned, BOOL warning)
+{
+    int i = 0;
+    char* pstPath = wide_string_to_UTF8(path);
+    char* pstFileSpec = wide_string_to_UTF8(filespec);
+
+    wchar_t** wListFiles = NULL;
+    char** ListFiles = findfiles(pstPath, pstFileSpec, sizeListReturned, warning);
+    
+    if(*sizeListReturned != 0)
+    {
+        wListFiles = (wchar_t**)MALLOC(sizeof(wchar_t*) * (*sizeListReturned));
+
+        for(i = 0 ; i < (*sizeListReturned) ; i++)
+        {
+            wListFiles[i] = to_wide_string(ListFiles[i]);
+            FREE(ListFiles[i]);
+        }
+
+        FREE(ListFiles);
+    }
+
+    FREE(pstPath);
+    FREE(pstFileSpec);
+    return wListFiles;
 }
 #endif
 /*--------------------------------------------------------------------------*/

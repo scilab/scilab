@@ -32,13 +32,13 @@ namespace types
 
         void                    whoAmI();
 
-        std::string             toString(int _iPrecision, int _iLineLen);
+        wstring                 toString(int _iPrecision, int _iLineLen);
         InternalType*           insert_get();
 
         /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::string     getTypeStr() {return string("listinsert");}
+        virtual wstring         getTypeStr() {return L"listinsert";}
         /* return type as short string ( s, i, ce, l, ... )*/
-        virtual std::string     getShortTypeStr() {return string("");}
+        virtual wstring         getShortTypeStr() {return L"";}
 
     private :
         InternalType*           m_pInsert;

@@ -43,9 +43,10 @@ extern "C"
 using namespace std;
 using namespace ast;
 
-#define BASENAMEMODULESFILE "etc/yasp_modules.xml"
+#define BASENAMEMODULESFILE L"etc/yasp_modules.xml"
 
 bool FileExist(std::string _szFile);
+bool FileExist(std::wstring _szFile);
 char *GetXmlFileEncoding(string _filename);
 
 FuncManager::FuncManager(void)
@@ -73,22 +74,22 @@ bool FuncManager::LoadModules(bool _bNoStart)
             return false;
         }
 	}
-	
+
     return LoadFuncByModule();
 }
 
 bool FuncManager::GetModules()
 {
-	string szModulesFilename;
+	wstring szModulesFilename;
 
-	string szPath = ConfigVariable::getSCIPath();
-	if(szPath == "")
+	wstring szPath = ConfigVariable::getSCIPath();
+	if(szPath == L"")
 	{
-		std::cout << "The SCI environment variable is not set." << std::endl;
+		std::wcout << L"The SCI environment variable is not set." << std::endl;
 		return false;
 	}
 
-	szModulesFilename = szPath + "/";
+	szModulesFilename = szPath + L"/";
 	szModulesFilename += BASENAMEMODULESFILE;
 
 	if(FileExist(szModulesFilename))
@@ -97,7 +98,7 @@ bool FuncManager::GetModules()
 	}
 	else
 	{
-		std::cout << "Cannot load the module declaration file: " << szModulesFilename << std::endl;
+		std::wcout << L"Cannot load the module declaration file: " << szModulesFilename << std::endl;
 		return false;
 	}
 	return true;
@@ -105,7 +106,9 @@ bool FuncManager::GetModules()
 
 bool FuncManager::AppendModules()
 {
-	char *encoding=GetXmlFileEncoding(m_szXmlFile);
+    char* pstTemp = wide_string_to_UTF8(m_szXmlFile.c_str());
+
+	char *encoding=GetXmlFileEncoding(pstTemp);
 
 	/* Don't care about line return / empty line */
 	xmlKeepBlanksDefault(0);
@@ -119,16 +122,17 @@ bool FuncManager::AppendModules()
 		int activate									= 0;
 		int indice										= 0;
 
-		doc = xmlParseFile (m_szXmlFile.c_str());
+		doc = xmlParseFile (pstTemp);
 
 		if(doc == NULL)
 		{
-			std::cout << "Error: Could not parse file " << m_szXmlFile << std::endl;
+			std::cout << "Error: Could not parse file " << pstTemp << std::endl;
 			if(encoding)
 			{
 				free(encoding);
 				encoding=NULL;
 			}
+            FREE(pstTemp);
 			return false;
 		}
 
@@ -166,29 +170,18 @@ bool FuncManager::AppendModules()
 
 				if((name) && (strlen(name) > 0) && (activate))
 				{
-					if(VerifyModule(name))
+                    wchar_t* pstName = to_wide_string(name);
+					if(VerifyModule(pstName))
 					{
-						m_ModuleName.push_back(name);
-						/*
-						if (indice==0)
-						{
-						ScilabModules->ModuleList = new char*[indice+1];
-						}
-						else
-						{
-						ScilabModules->ModuleList=(char**)REALLOC(ScilabModules->ModuleList,sizeof(char*)*(indice+1));
-						}
-
-						ScilabModules->numberofModules=indice+1;
-
-						ScilabModules->ModuleList[indice]= strdup(name);
-						indice++;
-						*/					}
+						m_ModuleName.push_back(pstName);
+                    }
 					else
 					{
-						std::cout << name << " module not found." << std::endl;
+						std::wcout << pstName << " module not found." << std::endl;
 					}
+                    FREE(pstName);
 				}
+
 				if(name)
 				{
 					free(name);
@@ -208,7 +201,7 @@ bool FuncManager::AppendModules()
 	}
 	else
 	{
-		std::cout << "Error: Not a valid module file " << m_szXmlFile << " (encoding not 'utf-8') Encoding '" << encoding << "' found." << std::endl;
+		std::cout << "Error: Not a valid module file " << pstTemp << " (encoding not 'utf-8') Encoding '" << encoding << "' found." << std::endl;
 	}
 	if (encoding)
 	{
@@ -218,26 +211,29 @@ bool FuncManager::AppendModules()
 
     String *pS  = new String(static_cast<int>(m_ModuleName.size()), 1);
 
-    list<string>::iterator it = m_ModuleName.begin();
+    list<wstring>::iterator it = m_ModuleName.begin();
     for(int i = 0; it != m_ModuleName.end() ; it++,i++)
     {
         pS->string_set(i, it->c_str());
     }
 
-    symbol::Context::getInstance()->put("modules_list", *pS);
+    symbol::Context::getInstance()->put(L"modules_list", *pS);
+
+    FREE(pstTemp);
+
 	return true;
 }
 
-bool FuncManager::VerifyModule(char *_pszModuleName)
+bool FuncManager::VerifyModule(wchar_t* _pszModuleName)
 {
-	string SciPath = ConfigVariable::getSCIPath();
-	if(SciPath == "")
+	wstring SciPath = ConfigVariable::getSCIPath();
+	if(SciPath == L"")
 	{
-		std::cout << "The SCI environment variable is not set." << std::endl;
+		std::wcout << L"The SCI environment variable is not set." << std::endl;
 		return false;
 	}
 
-	string FullPathModuleName = SciPath + "/modules/" + _pszModuleName + "/etc/" + _pszModuleName + START_EXT;
+	wstring FullPathModuleName = SciPath + L"/modules/" + _pszModuleName + L"/etc/" + _pszModuleName + START_EXT;
 
 	/* ajouter d'autres tests d'existences */
 
@@ -255,6 +251,17 @@ bool FileExist(std::string _szFile)
 	fstream filestr(_szFile.c_str(), fstream::in);
 	bReturn = !filestr.fail();
 	filestr.close();
+	return bReturn;
+}
+
+bool FileExist(std::wstring _szFile)
+{
+	bool bReturn = false;
+    char *pstFile = wide_string_to_UTF8(_szFile.c_str());
+	wfstream filestr(pstFile, wfstream::in);
+	bReturn = !filestr.fail();
+	filestr.close();
+    FREE(pstFile);
 	return bReturn;
 }
 
@@ -288,31 +295,31 @@ char *GetXmlFileEncoding(string _filename)
 
 bool FuncManager::CreateModuleList(void)
 {
-	m_ModuleMap.insert(pair<string, GW_MOD>("elementary_functions", &ElemFuncModule::Load));
-	m_ModuleMap.insert(pair<string, GW_MOD>("types", &TypesModule::Load));
-	m_ModuleMap.insert(pair<string, GW_MOD>("boolean", &BooleanModule::Load));
-	m_ModuleMap.insert(pair<string, GW_MOD>("integer", &IntegerModule::Load));
-	m_ModuleMap.insert(pair<string, GW_MOD>("core", &CoreModule::Load));
-	m_ModuleMap.insert(pair<string, GW_MOD>("io", &IoModule::Load));
-	m_ModuleMap.insert(pair<string, GW_MOD>("functions", &FunctionsModule::Load));
-	m_ModuleMap.insert(pair<string, GW_MOD>("output_stream", &OutputStreamModule::Load));
-	m_ModuleMap.insert(pair<string, GW_MOD>("matio", &MatioModule::Load));
-    m_ModuleMap.insert(pair<string, GW_MOD>("fileio", &FileioModule::Load));
-	m_ModuleMap.insert(pair<string, GW_MOD>("gui", &GuiModule::Load));
-	m_ModuleMap.insert(pair<string, GW_MOD>("time", &TimeModule::Load));
-	m_ModuleMap.insert(pair<string, GW_MOD>("string", &StringModule::Load));
+	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"elementary_functions", &ElemFuncModule::Load));
+	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"types", &TypesModule::Load));
+	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"boolean", &BooleanModule::Load));
+	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"integer", &IntegerModule::Load));
+	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"core", &CoreModule::Load));
+	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"io", &IoModule::Load));
+	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"functions", &FunctionsModule::Load));
+	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"output_stream", &OutputStreamModule::Load));
+	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"matio", &MatioModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"fileio", &FileioModule::Load));
+	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"gui", &GuiModule::Load));
+	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"time", &TimeModule::Load));
+	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"string", &StringModule::Load));
 	return true;
 }
 
 bool FuncManager::LoadFuncByModule(void)
 {
 	bool bRet	= true;
-	list<string>::const_iterator itName;
+	list<wstring>::const_iterator itName;
 
     //load gateways
 	for(itName = m_ModuleName.begin() ; itName != m_ModuleName.end() ; itName++)
 	{
-		map<string, GW_MOD>::iterator itModule = m_ModuleMap.find(*itName);
+		map<wstring, GW_MOD>::iterator itModule = m_ModuleMap.find(*itName);
 		if(itModule != m_ModuleMap.end())
 		{
             //check if module have gateways
@@ -336,10 +343,10 @@ bool FuncManager::LoadFuncByModule(void)
 	return bRet;
 }
 
-bool FuncManager::ExecuteStartFile(string _stModule)
+bool FuncManager::ExecuteStartFile(wstring _stModule)
 {
     //build .start filename
-	string stPath = ConfigVariable::getSCIPath();
+	wstring stPath = ConfigVariable::getSCIPath();
 	stPath += MODULE_DIR;
 	stPath += _stModule;
 	stPath += ETC_DIR;
@@ -352,9 +359,9 @@ bool FuncManager::ExecuteStartFile(string _stModule)
 
     if(parser.getExitStatus() == Parser::Failed)
     {
-        std::ostringstream ostr;
-        ostr << _("Unable to execute : ") << stPath << endl;
-        YaspWrite(const_cast<char*>(ostr.str().c_str()));
+        std::wostringstream ostr;
+        ostr << _W("Unable to execute : ") << stPath << endl;
+        YaspWriteW(ostr.str().c_str());
         parser.freeTree();
         return false;
     }
@@ -365,91 +372,14 @@ bool FuncManager::ExecuteStartFile(string _stModule)
     {
         parser.getTree()->accept(execStart);
     }
-    catch(string sz)
+    catch(wstring sz)
     {
-        YaspWrite((char *) sz.c_str());
-        YaspWrite("\n");
+        YaspWriteW(sz.c_str());
+        YaspWriteW(L"\n");
         parser.freeTree();
         return false;
     }
 
     parser.freeTree();
     return true;
-}
-
-bool FuncManager::LoadMacroFile(string _stModule)
-{
-    YaspWrite("Old \"LoadMacroFile\" function, no more called !");
-    return true;
-	//macros
-	string stPath = ConfigVariable::getSCIPath();
-	stPath += MODULE_DIR;
-	stPath += _stModule;
-	stPath += MACRO_DIR;
-	int iSize = 0;
-	char **pstPath = findfiles(const_cast<char*>(stPath.c_str()), const_cast<char*>("*.sci"), &iSize, FALSE);
-
-	if(pstPath)
-	{
-		for(int k = 0 ; k < iSize ; k++)
-		{
-			//version with direct parsing
-			//parse the file to find all functions
-			//string stFullPath = stPath + string(pstPath[k]);
-			//Parser::getInstance()->parseFile(stFullPath, ConfigVariable::getInstance()->get("SCI"));
-			//FunctionDec* pFD = NULL;
-
-			//std::list<Exp *>::iterator j;
-			//std::list<Exp *>LExp = ((SeqExp*)Parser::getInstance()->getTree())->exps_get();
-			//if(Parser::getInstance()->getExitStatus() == Parser::Failed)
-			//{
-			//	continue;
-			//}
-
-			//for(j = LExp.begin() ; j != LExp.end() ; j++)
-			//{
-			//	pFD = dynamic_cast<FunctionDec*>(*j);
-			//	if(pFD)
-			//	{
-			//		std::list<ast::Var *>::const_iterator	i;
-
-			//		//get input parameters list
-			//		std::list<symbol::Symbol> *pVarList = new std::list<symbol::Symbol>();
-			//		ArrayListVar *pListVar = (ArrayListVar *)&pFD->args_get();
-			//		for(i = pListVar->vars_get().begin() ; i != pListVar->vars_get().end() ; i++)
-			//		{
-			//			string sz = ((SimpleVar*)(*i))->name_get();
-			//			pVarList->push_back(((SimpleVar*)(*i))->name_get());
-			//		}
-
-			//		//get output parameters list
-			//		std::list<symbol::Symbol> *pRetList = new std::list<symbol::Symbol>();
-			//		ArrayListVar *pListRet = (ArrayListVar *)&pFD->returns_get();
-			//		for(i = pListRet->vars_get().begin() ; i != pListRet->vars_get().end() ; i++)
-			//		{
-			//			pRetList->push_back(((SimpleVar*)(*i))->name_get());
-			//		}
-
-			//		//types::Macro macro(VarList, RetList, (SeqExp&)e.body_get());
-			//		types::Macro *pMacro = new types::Macro(pFD->name_get(), *pVarList, *pRetList, (SeqExp&)pFD->body_get(), _stModule);
-			//		symbol::Context::getInstance()->AddMacro(pMacro);
-			//	}
-			//}
-
-			//version with macrofile
-
-			string stFullPath = stPath + string(pstPath[k]);
-			string stTemp = pstPath[k];
-			size_t iPos = stTemp.find(".sci");
-			if(iPos < stTemp.size())
-			{
-				string stFullName = stTemp.substr(0,iPos);
-				symbol::Context::getInstance()->AddMacroFile(new MacroFile(stFullName, stFullPath, _stModule));
-			}
-			
-			FREE(pstPath[k]);
-		}
-		FREE(pstPath);
-	}
-	return true;
 }

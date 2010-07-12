@@ -13,6 +13,7 @@
 #include "core_gw.hxx"
 #include "context.hxx"
 
+#define MODULE_NAME L"core"
 extern "C"
 {
 #include "gw_core.h"
@@ -22,22 +23,22 @@ using namespace types;
 
 bool CoreModule::Load()
 {
-    symbol::Context::getInstance()->AddFunction(Function::createFunction("type", &sci_type, "core"));
-    symbol::Context::getInstance()->AddFunction(Function::createFunction("getmodules", &sci_getmodules, "core"));
-    symbol::Context::getInstance()->AddFunction(Function::createFunction("getdebuginfo", &sci_getdebuginfo, "core"));
-    symbol::Context::getInstance()->AddFunction(Function::createFunction("getversion", &sci_getversion, "core"));
-    symbol::Context::getInstance()->AddFunction(Function::createFunction("clear", &sci_clear, "core"));
-    symbol::Context::getInstance()->AddFunction(Function::createFunction("banner", &sci_banner, "core"));
-    symbol::Context::getInstance()->AddFunction(Function::createFunction("quit", &sci_quit, "core"));
-    symbol::Context::getInstance()->AddFunction(Function::createFunction("exit", &sci_exit, "core"));
-    symbol::Context::getInstance()->AddFunction(Function::createFunction("exists", &sci_exists, "core"));
-    symbol::Context::getInstance()->AddFunction(Function::createFunction("isdef", &sci_isdef, "core"));
-    symbol::Context::getInstance()->AddFunction(Function::createFunction("argn", &sci_argn, "core"));
-    symbol::Context::getInstance()->AddFunction(Function::createFunction("global", &sci_global, "core"));
-    symbol::Context::getInstance()->AddFunction(Function::createFunction("clearglobal", &sci_clearglobal, "core"));
-    symbol::Context::getInstance()->AddFunction(Function::createFunction("isglobal", &sci_isglobal, "core"));
-    symbol::Context::getInstance()->AddFunction(Function::createFunction("getscilabmode", &sci_getscilabmode, "core"));
-    symbol::Context::getInstance()->AddFunction(Function::createFunction("getos", &sci_getos, "core"));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"type", &sci_type, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"getmodules", &sci_getmodules, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"getdebuginfo", &sci_getdebuginfo, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"getversion", &sci_getversion, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"clear", &sci_clear, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"banner", &sci_banner, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"quit", &sci_quit, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"exit", &sci_exit, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"exists", &sci_exists, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"isdef", &sci_isdef, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"argn", &sci_argn, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"global", &sci_global, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"clearglobal", &sci_clearglobal, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"isglobal", &sci_isglobal, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"getos", &sci_getos, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"getscilabmode", &sci_getscilabmode, MODULE_NAME));
     return true;
 }
 

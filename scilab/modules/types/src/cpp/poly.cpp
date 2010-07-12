@@ -304,22 +304,22 @@ namespace types
 		}
 	}
 
-	std::string Poly::toString(int _iPrecision, int _iLineLen)
+	wstring Poly::toString(int _iPrecision, int _iLineLen)
 	{
-	  std::ostringstream ostr;
+	  wostringstream ostr;
 
 	  // FIXME : implement this.
-	  ostr << "FIXME : implement Poly::toString" << std::endl;
+	  ostr << L"FIXME : implement Poly::toString" << std::endl;
 
 	  return ostr.str();
 	}
 
-	void Poly::toStringReal(int _iPrecision, int _iLineLen, string _szVar, list<string>* _pListExp , list<string>* _pListCoef)
+	void Poly::toStringReal(int _iPrecision, int _iLineLen, wstring _szVar, list<wstring>* _pListExp , list<wstring>* _pListCoef)
 	{
 		toStringInternal(m_pdblCoef->real_get(),_iPrecision, _iLineLen, _szVar, _pListExp, _pListCoef);
 	}
 
-	void Poly::toStringImg(int _iPrecision, int _iLineLen, string _szVar, list<string>* _pListExp , list<string>* _pListCoef)
+	void Poly::toStringImg(int _iPrecision, int _iLineLen, wstring _szVar, list<wstring>* _pListExp , list<wstring>* _pListCoef)
 	{
 		if(isComplex() == false)
 		{
@@ -331,12 +331,12 @@ namespace types
 		toStringInternal(m_pdblCoef->img_get(),_iPrecision, _iLineLen, _szVar, _pListExp, _pListCoef);
 	}
 
-	void Poly::toStringInternal(double *_pdblVal, int _iPrecision, int _iLineLen, string _szVar, list<string>* _pListExp , list<string>* _pListCoef)
+	void Poly::toStringInternal(double *_pdblVal, int _iPrecision, int _iLineLen, wstring _szVar, list<wstring>* _pListExp , list<wstring>* _pListCoef)
 	{
-		ostringstream ostemp;
-		ostringstream ostemp2;
+		wostringstream ostemp;
+		wostringstream ostemp2;
 
-		ostemp << "  ";
+		ostemp << L"  ";
 
 		//to add exponant value a the good place
 		int *piIndexExp = new int[m_iRank];
@@ -361,17 +361,17 @@ namespace types
 							continue;
 						}
 
-						Add_Space(&ostemp2, piIndexExp[j] - ostemp2.str().size());
+						Add_Space(&ostemp2, piIndexExp[j] - static_cast<int>(ostemp2.str().size()));
 						if(isZero(_pdblVal[j]) == false)
 							ostemp2 << j;
 					}
 					iLastFlush = i;
 					_pListExp->push_back(ostemp2.str());
-					ostemp2.str("\x00"); //reset stream
+					ostemp2.str(L""); //reset stream
 					Add_Space(&ostemp2, 12); //take from scilab ... why not ...
 
 					_pListCoef->push_back(ostemp.str());
-					ostemp.str("\x00"); //reset stream
+					ostemp.str(L""); //reset stream
 					Add_Space(&ostemp, 12); //take from scilab ... why not ...
 				}
 				AddDoubleValue(&ostemp, _pdblVal[i], iWidth, iPrec, ostemp.str().size() != 2, i == 0);
@@ -379,10 +379,10 @@ namespace types
 				if(i != 0)
 				{
 					ostemp << _szVar;
-					piIndexExp[i] = ostemp.str().size();
+					piIndexExp[i] = static_cast<int>(ostemp.str().size());
 				}
-				ostemp << " ";
-				iLen = ostemp.str().size();
+				ostemp << L" ";
+				iLen = static_cast<int>(ostemp.str().size());
 			}
 		}
 
@@ -395,17 +395,17 @@ namespace types
 					continue;
 				}
 
-				Add_Space(&ostemp2, piIndexExp[j] - ostemp2.str().size());
+				Add_Space(&ostemp2, piIndexExp[j] - static_cast<int>(ostemp2.str().size()));
 				if(isZero(_pdblVal[j]) == false)
 				{
 					ostemp2 << j;
 				}
 			}
 
-			if(ostemp.str() == "  ")
+			if(ostemp.str() == L"  ")
 			{
-				ostemp << "  0";
-				Add_Space(&ostemp2, ostemp.str().size());
+				ostemp << L"  0";
+				Add_Space(&ostemp2, static_cast<int>(ostemp.str().size()));
 			}
 
 			_pListExp->push_back(ostemp2.str());

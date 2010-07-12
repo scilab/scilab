@@ -16,68 +16,68 @@
 /** Scilab tokens and key words
  ** \{ */
 
-#define SCI_DOT			"."
+#define SCI_DOT			L"."
 
-#define SCI_TRUE		"%T"
-#define SCI_FALSE		"%F"
+#define SCI_TRUE		L"%T"
+#define SCI_FALSE		L"%F"
 
-#define SCI_INT8		"int8"
-#define SCI_INT16		"int16"
-#define SCI_INT32		"int32"
-#define SCI_INT64		"int64"
-#define SCI_LPAREN		"("
-#define SCI_RPAREN		")"
-#define SCI_LBRACE		"{"
-#define SCI_RBRACE		"}"
-#define SCI_LBRACK		"["
-#define SCI_RBRACK		"]"
+#define SCI_INT8		L"int8"
+#define SCI_INT16		L"int16"
+#define SCI_INT32		L"int32"
+#define SCI_INT64		L"int64"
+#define SCI_LPAREN		L"("
+#define SCI_RPAREN		L")"
+#define SCI_LBRACE		L"{"
+#define SCI_RBRACE		L"}"
+#define SCI_LBRACK		L"["
+#define SCI_RBRACK		L"]"
 
-#define SCI_PLUS		"+"
-#define SCI_MINUS		"-"
-#define SCI_TIMES		"*"
-#define SCI_DIVIDE		"/"
-#define SCI_RDIVIDE		"\\"
-#define SCI_POWER		"^"
+#define SCI_PLUS		L"+"
+#define SCI_MINUS		L"-"
+#define SCI_TIMES		L"*"
+#define SCI_DIVIDE		L"/"
+#define SCI_RDIVIDE		L"\\"
+#define SCI_POWER		L"^"
 
-#define SCI_DOTTIMES		".*"
-#define SCI_DOTDIVIDE		"./"
-#define SCI_DOTRDIVIDE		".\\"
-#define SCI_DOTPOWER		".^"
+#define SCI_DOTTIMES		L".*"
+#define SCI_DOTDIVIDE		L"./"
+#define SCI_DOTRDIVIDE		L".\\"
+#define SCI_DOTPOWER		L".^"
 
-#define SCI_KRONTIMES		".*."
-#define SCI_KRONDIVIDE		"./."
-#define SCI_KRONRDIVIDE		".\\."
+#define SCI_KRONTIMES		L".*."
+#define SCI_KRONDIVIDE		L"./."
+#define SCI_KRONRDIVIDE		L".\\."
 
-#define SCI_CONTROLTIMES	"*."
-#define SCI_CONTROLDIVIDE	"/."
-#define SCI_CONTROLRDIVIDE	"\\."
+#define SCI_CONTROLTIMES	L"*."
+#define SCI_CONTROLDIVIDE	L"/."
+#define SCI_CONTROLRDIVIDE	L"\\."
 
-#define SCI_EQ			"=="
-#define SCI_NE			"<>"
-#define SCI_GE			">="
-#define SCI_GT			">"
-#define SCI_LE			"<="
-#define SCI_LT			"<"
+#define SCI_EQ			L"=="
+#define SCI_NE			L"<>"
+#define SCI_GE			L">="
+#define SCI_GT			L">"
+#define SCI_LE			L"<="
+#define SCI_LT			L"<"
 
-#define SCI_AND			"&"
-#define SCI_OR			"|"
-#define SCI_ANDAND	"&&"
-#define SCI_OROR		"||"
-#define SCI_NOT			"~"
+#define SCI_AND			L"&"
+#define SCI_OR			L"|"
+#define SCI_ANDAND	L"&&"
+#define SCI_OROR		L"||"
+#define SCI_NOT			L"~"
 
-#define SCI_CONJUGATE_TRANSPOSE	"'"
-#define SCI_TRANSPOSE		".'"
+#define SCI_CONJUGATE_TRANSPOSE	L"'"
+#define SCI_TRANSPOSE		L".'"
 
-#define SCI_QUOTE		"\'"
-#define SCI_DQUOTE		"\""
-#define SCI_COMMA		","
-#define SCI_SEMICOLON		";"
-#define SCI_COLON		":"
+#define SCI_QUOTE		L"\'"
+#define SCI_DQUOTE		L"\""
+#define SCI_COMMA		L","
+#define SCI_SEMICOLON		L";"
+#define SCI_COLON		L":"
 
-#define SCI_DOLLAR		"$"
+#define SCI_DOLLAR		L"$"
 
-#define SCI_ASSIGN		"="
-#define SCI_OPEN_COMMENT	"//"
+#define SCI_ASSIGN		L"="
+#define SCI_OPEN_COMMENT	L"//"
 
 // Syntax to acces field 'bar' in variable 'foo'
 // foo.var
@@ -98,44 +98,44 @@
 #define SCI_ARGS_SEPARATOR	SCI_COMMA
 
 // Syntax to have if control structure
-#define SCI_IF			"if"
-#define SCI_THEN		"then"
-#define SCI_ELSE		"else"
-#define SCI_ENDIF		"end"
+#define SCI_IF			L"if"
+#define SCI_THEN		L"then"
+#define SCI_ELSE		L"else"
+#define SCI_ENDIF		L"end"
 #define SCI_OPEN_TEST		SCI_LPAREN
 #define SCI_CLOSE_TEST		SCI_RPAREN
 
 // Syntax to have while control structure
-#define SCI_WHILE		"while"
-#define SCI_DO			"do"
-#define SCI_ENDWHILE		"end"
+#define SCI_WHILE		L"while"
+#define SCI_DO			L"do"
+#define SCI_ENDWHILE		L"end"
 
 // Syntax to have for control structure
-#define SCI_FOR			"for"
-#define SCI_ENDFOR		"end"
-#define SCI_BREAK		"break"
+#define SCI_FOR			L"for"
+#define SCI_ENDFOR		L"end"
+#define SCI_BREAK		L"break"
 
 // Syntax to have try/catch control structure
-#define SCI_TRY			"try"
-#define SCI_CATCH		"catch"
-#define SCI_ENDTRY		"end"
+#define SCI_TRY			L"try"
+#define SCI_CATCH		L"catch"
+#define SCI_ENDTRY		L"end"
 
 // Syntax to have function declaration
-#define SCI_FUNCTION		"function"
+#define SCI_FUNCTION		L"function"
 #define SCI_OPEN_RETURNS	SCI_LBRACK
 #define SCI_CLOSE_RETURNS	SCI_RBRACK
 #define SCI_OPEN_ARGS		SCI_LPAREN
 #define SCI_CLOSE_ARGS		SCI_RPAREN
-#define SCI_ENDFUNCTION		"endfunction"
+#define SCI_ENDFUNCTION		L"endfunction"
 
 // Syntax to have select control structure
-#define SCI_SELECT		"select"
-#define SCI_CASE		"case"
-#define SCI_DEFAULT_CASE "else"
-#define SCI_ENDSELECT	"end"
+#define SCI_SELECT		L"select"
+#define SCI_CASE		L"case"
+#define SCI_DEFAULT_CASE L"else"
+#define SCI_ENDSELECT	L"end"
 
 // Syntax to have return control structure
-#define SCI_RETURN		"return"
+#define SCI_RETURN		L"return"
 
 // Syntax to describe implicit list
 #define SCI_IMPLICIT_LIST	SCI_COLON

@@ -22,16 +22,19 @@ extern "C"
 {
 #endif
 
-EXTERN_SYSTEM_ENV char* getSCIHOME(void);
-
 EXTERN_SYSTEM_ENV wchar_t *getSCIHOMEW(void);
+EXTERN_SYSTEM_ENV char *getSCIHOME(void);
 
+EXTERN_SYSTEM_ENV void setSCIHOMEW(const wchar_t* _sci_path);
 EXTERN_SYSTEM_ENV void setSCIHOME(const char* _sci_path);
 
+EXTERN_SYSTEM_ENV wchar_t* computeSCIHOMEW();
 EXTERN_SYSTEM_ENV char* computeSCIHOME();
 
+EXTERN_SYSTEM_ENV wchar_t* getenvSCIHOMEW(void);
 EXTERN_SYSTEM_ENV char* getenvSCIHOME(void);
 
+EXTERN_SYSTEM_ENV void putenvSCIHOMEW(const wchar_t* _sci_path);
 EXTERN_SYSTEM_ENV void putenvSCIHOME(const char* _sci_path);
 
 EXTERN_SYSTEM_ENV void defineSCIHOME();

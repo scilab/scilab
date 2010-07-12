@@ -15,6 +15,12 @@
 #include "yaspio.hxx"
 #include "configvariable.hxx"
 
+extern "C"
+{
+#include "Scierror.h"
+#include "localization.h"
+}
+
 using namespace types;
 
 Function::ReturnValue sci_disp(typed_list &in, int _piRetCount, typed_list &out)
@@ -23,16 +29,16 @@ Function::ReturnValue sci_disp(typed_list &in, int _piRetCount, typed_list &out)
 
 	if(in.empty())
 	{
-		YaspWrite("Pas bien pas de parametre\n");
+		Scierror(999, _("%s: Wrong number of input arguments: At least %d expected.\n"), "disp", 1);
 		return Function::Error;
 	}
 
 	for(it = in.rbegin() ; it != in.rend() ; it++)
 	{
-		YaspWrite("\n");
-		YaspWrite(const_cast<char*>((*it)->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()).c_str()));
+		YaspWriteW(L"\n");
+		YaspWriteW((*it)->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()).c_str());
 	}
 
-	YaspWrite("\n");
+	YaspWriteW(L"\n");
   return Function::OK;
 }

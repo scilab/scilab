@@ -26,7 +26,7 @@ using namespace types;
 class MyDataType : public User<MyDataType>
 {
 public:
-    MyDataType(std::string _shortName, std::string _longName) :
+    MyDataType(std::wstring _shortName, std::wstring _longName) :
         m_shortName(_shortName),
         m_longName(_longName)
     {
@@ -39,20 +39,20 @@ public :
     }
 
     /* This will be used when calling typeof */
-    std::string getTypeStr()            { return m_longName; }
+    std::wstring getTypeStr()            { return m_longName; }
 
     /* This will be used to generate Overloading functions name. */
-    std::string getShortTypeStr()       { return m_shortName; }
+    std::wstring getShortTypeStr()       { return m_shortName; }
 
     /* This is Scilab standard display or in disp. */
-    std::string toString(int _iPrecision, int _iLineLen)
+    std::wstring toString(int _iPrecision, int _iLineLen)
     {
-        return "I'm a user dataType: "+m_longName+" ("+m_shortName+").";
+        return L"I'm a user dataType: " + m_longName + L" (" + m_shortName + L").";
     }
 
 private :
-    std::string m_shortName;
-    std::string m_longName;
+    std::wstring m_shortName;
+    std::wstring m_longName;
 };
 
 Function::ReturnValue sci_usertype(typed_list &in, int _piRetCount, typed_list &out)

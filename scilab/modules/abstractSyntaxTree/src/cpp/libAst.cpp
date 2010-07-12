@@ -22,7 +22,7 @@ namespace ast
 
   // Print the TREE on OSTR.
   // This refers to the syntax only.
-  void print(const Exp &tree, std::ostream &ostr)
+  void print(const Exp &tree, std::wostream &ostr)
   {
     PrintVisitor visitor = PrintVisitor(ostr);
     tree.accept (visitor);

@@ -31,10 +31,10 @@ namespace types
 		return m_iSize;
 	}
 
-	std::string GenericType::DimToString()
+	wstring GenericType::DimToString()
 	{
-		std::ostringstream ostr;
-		ostr << "(" << rows_get() << " x " << cols_get() << ")";
+		wostringstream ostr;
+		ostr << L"(" << rows_get() << L" x " << cols_get() << L")";
 		return ostr.str();
 	}
 

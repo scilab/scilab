@@ -25,7 +25,7 @@ namespace types
 	{
 	}
 
-	MatrixPoly::MatrixPoly(string _szVarName, int _iRows, int _iCols, int *_piRank)
+	MatrixPoly::MatrixPoly(wstring _szVarName, int _iRows, int _iCols, int *_piRank)
 	{
 		m_iRows			= _iRows;
 		m_iCols			= _iCols;
@@ -128,7 +128,7 @@ namespace types
 		return m_bComplex;
 	}
 
-	string MatrixPoly::var_get()
+	wstring MatrixPoly::var_get()
 	{
 		return m_szVarName;
 	}
@@ -323,28 +323,28 @@ namespace types
 		}
 	}
 
-	std::string	MatrixPoly::toString(int _iPrecison, int _iLineLen)
+	wstring	MatrixPoly::toString(int _iPrecison, int _iLineLen)
 	{
-		ostringstream ostr;
-		ostringstream osExp;
-		ostringstream osCoef;
+		wostringstream ostr;
+		wostringstream osExp;
+		wostringstream osCoef;
 
-		list<string>::const_iterator it_Exp;
-		list<string>::const_iterator it_Coef;
-		list<string> listExpR, listCoefR, listExpI, listCoefI;
+		list<wstring>::const_iterator it_Exp;
+		list<wstring>::const_iterator it_Coef;
+		list<wstring> listExpR, listCoefR, listExpI, listCoefI;
 
 		if(m_iRows == 1 && m_iCols == 1)
 		{
 			if(m_bComplex)
 			{
-				ostr << "Real part" << endl << endl << endl;
+				ostr << L"Real part" << endl << endl << endl;
 				poly_get(0)->toStringReal(_iPrecison, _iLineLen, var_get(), &listExpR, &listCoefR);
 				for(it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; it_Coef++,it_Exp++)
 				{
 					ostr << *it_Exp << endl << *it_Coef << endl;
 				}
 
-				ostr << "Imaginary part" << endl << endl << endl ;
+				ostr << L"Imaginary part" << endl << endl << endl ;
 				poly_get(0)->toStringImg(_iPrecison, _iLineLen, var_get(), &listExpI, &listCoefI);
 				for(it_Coef = listCoefI.begin(), it_Exp = listExpI.begin() ; it_Coef != listCoefI.end() ; it_Coef++,it_Exp++)
 				{
@@ -365,9 +365,9 @@ namespace types
 		{
 			if(m_bComplex)
 			{
-				ostr << "Real part" << endl << endl;
+				ostr << L"Real part" << endl << endl;
 				ostr << GetRowString(_iPrecison, _iLineLen, false);
-				ostr << "Imaginary part" << endl << endl;
+				ostr << L"Imaginary part" << endl << endl;
 				ostr << GetRowString(_iPrecison, _iLineLen, true);
 			}
 			else
@@ -379,9 +379,9 @@ namespace types
 		{
 			if(m_bComplex)
 			{
-				ostr << "Real part" << endl << endl;
+				ostr << L"Real part" << endl << endl;
 				ostr << GetColString(_iPrecison, _iLineLen, false);
-				ostr << "Imaginary part" << endl << endl;
+				ostr << L"Imaginary part" << endl << endl;
 				ostr << GetColString(_iPrecison, _iLineLen, true);
 			}
 			else
@@ -393,9 +393,9 @@ namespace types
 		{//Matrix
 			if(m_bComplex)
 			{
-				ostr << "Real part" << endl << endl;
+				ostr << L"Real part" << endl << endl;
 				ostr << GetMatrixString(_iPrecison, _iLineLen, false);
-				ostr << "Imaginary part" << endl << endl;
+				ostr << L"Imaginary part" << endl << endl;
 				ostr << GetMatrixString(_iPrecison, _iLineLen, true);
 			}
 			else
@@ -407,20 +407,20 @@ namespace types
 		return ostr.str();
 	}
 
-	string MatrixPoly::GetMatrixString(int _iPrecison, int _iLineLen, bool _bComplex)
+	wstring MatrixPoly::GetMatrixString(int _iPrecison, int _iLineLen, bool _bComplex)
 	{
-		ostringstream ostr;
-		ostringstream osExp;
-		ostringstream osCoef;
+		wostringstream ostr;
+		wostringstream osExp;
+		wostringstream osCoef;
 
-		list<string>::const_iterator it_Exp;
-		list<string>::const_iterator it_Coef;
-		list<string> listExpR, listCoefR, listExpI, listCoefI;
+		list<wstring>::const_iterator it_Exp;
+		list<wstring>::const_iterator it_Coef;
+		list<wstring> listExpR, listCoefR, listExpI, listCoefI;
 
-		int iLen				= 0;
-		int iLastCol		= 0;
+		int iLen        = 0;
+		int iLastCol    = 0;
 
-		string szExp, szCoef;
+		wstring szExp, szCoef;
 
 		int *piMaxLen = new int[m_iCols];
 		memset(piMaxLen, 0x00, sizeof(int) * m_iCols);
@@ -468,7 +468,7 @@ namespace types
 
 			if(static_cast<int>(iLen + piMaxLen[iCols1]) >= _iLineLen && iLen != 0)
 			{//if the max length exceeded
-				ostringstream ostemp;
+				wostringstream ostemp;
 				for(int iRows2 = 0 ; iRows2 < m_iRows ; iRows2++)
 				{
 					bool bMultiLine = false;
@@ -516,8 +516,8 @@ namespace types
 					}
 					ostemp << osExp.str();
 					ostemp << osCoef.str() << endl;
-					osExp.str("\x00");
-					osCoef.str("\x00");
+					osExp.str(L"");
+					osCoef.str(L"");
 
 				}
 				iLen	= piMaxLen[iCols1];
@@ -525,11 +525,11 @@ namespace types
 				//write "column x to y"
 				if(iLastCol + 1 == iCols1)
 				{
-					ostr << endl << "         Column " << iCols1 << endl << endl;
+					ostr << endl << L"         Column " << iCols1 << endl << endl;
 				}
 				else
 				{
-					ostr << endl << "         Column " << iLastCol + 1 << " to " << iCols1 << endl << endl;
+					ostr << endl << L"         Column " << iLastCol + 1 << L" to " << iCols1 << endl << endl;
 				}
 
 				ostr << ostemp.str() << endl;
@@ -544,11 +544,11 @@ namespace types
 
 		if(iLastCol + 1 == m_iCols)
 		{
-			ostr << endl << "         Column " << m_iCols << endl << endl;
+			ostr << endl << L"         Column " << m_iCols << endl << endl;
 		}
 		else
 		{
-			ostr << endl << "         Column " << iLastCol + 1 << " to " << m_iCols << endl << endl;
+			ostr << endl << L"         Column " << iLastCol + 1 << L" to " << m_iCols << endl << endl;
 		}
 		//print the end
 		for(int iRows2 = 0 ; iRows2 < m_iRows ; iRows2++)
@@ -599,28 +599,28 @@ namespace types
 			osCoef << endl;
 			ostr << osExp.str();
 			ostr << osCoef.str() << endl;
-			osExp.str("\x00");
-			osCoef.str("\x00");
+			osExp.str(L"");
+			osCoef.str(L"");
 		}
 		return ostr.str();
 	}
 
-	string MatrixPoly::GetRowString(int _iPrecison, int _iLineLen, bool _bComplex)
+	wstring MatrixPoly::GetRowString(int _iPrecison, int _iLineLen, bool _bComplex)
 	{
-		int iLen				= 0;
-		int iLastFlush	= 0;
+		int iLen        = 0;
+		int iLastFlush  = 0;
 
-		ostringstream ostr;
-		ostringstream osExp;
-		ostringstream osCoef;
+		wostringstream ostr;
+		wostringstream osExp;
+		wostringstream osCoef;
 
-		list<string>::const_iterator it_Exp;
-		list<string>::const_iterator it_Coef;
-		list<string> listExpR, listCoefR, listExpI, listCoefI;
+		list<wstring>::const_iterator it_Exp;
+		list<wstring>::const_iterator it_Coef;
+		list<wstring> listExpR, listCoefR, listExpI, listCoefI;
 
 		for(int i = 0 ; i < m_iSize ; i++)
 		{
-			string szExp, szCoef;
+			wstring szExp, szCoef;
 
 			if(_bComplex)
 			{
@@ -634,19 +634,19 @@ namespace types
 			{//flush strean
 				if(i == iLastFlush + 1)
 				{
-					ostr << endl << "         Column " << i << endl << endl;
+					ostr << endl << L"         Column " << i << endl << endl;
 				}
 				else
 				{
-					ostr << endl << "         Column " << iLastFlush + 1 /* 2 is better than 1, no ? */<< " to " << i << endl << endl;
+					ostr << endl << L"         Column " << iLastFlush + 1 /* 2 is better than 1, no ? */<< L" to " << i << endl << endl;
 				}
 
 				iLastFlush	= i;
 				iLen				= 0;
 				ostr << osExp.str() << endl;
 				ostr << osCoef.str() << endl;
-				osExp.str("\x00");
-				osCoef.str("\x00");
+				osExp.str(L"");
+				osCoef.str(L"");
 			}
 
 			if(listCoefR.size() > 1)
@@ -679,11 +679,11 @@ namespace types
 		{//last line of a multiline output
 			if(iLastFlush + 1 == m_iSize)
 			{
-				ostr << endl << "         Column " << m_iSize << endl << endl;
+				ostr << endl << L"         Column " << m_iSize << endl << endl;
 			}
 			else
 			{
-				ostr << endl << "         Column " << iLastFlush + 1 << " to " << m_iSize << endl << endl;
+				ostr << endl << L"         Column " << iLastFlush + 1 << L" to " << m_iSize << endl << endl;
 			}
 		}
 		ostr << osExp.str() << endl;
@@ -691,19 +691,19 @@ namespace types
 		return ostr.str();
 	}
 
-	string MatrixPoly::GetColString(int _iPrecison, int _iLineLen, bool _bComplex)
+	wstring MatrixPoly::GetColString(int _iPrecison, int _iLineLen, bool _bComplex)
 	{
-		ostringstream ostr;
-		ostringstream osExp;
-		ostringstream osCoef;
+		wostringstream ostr;
+		wostringstream osExp;
+		wostringstream osCoef;
 
-		list<string>::const_iterator it_Exp;
-		list<string>::const_iterator it_Coef;
-		list<string> listExpR, listCoefR, listExpI, listCoefI;
+		list<wstring>::const_iterator it_Exp;
+		list<wstring>::const_iterator it_Coef;
+		list<wstring> listExpR, listCoefR, listExpI, listCoefI;
 
 		for(int i = 0 ; i < m_iSize ; i++)
 		{
-			string szExp, szCoef;
+			wstring szExp, szCoef;
 
 			if(_bComplex)
 			{

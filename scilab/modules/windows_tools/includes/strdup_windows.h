@@ -1,11 +1,11 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -22,12 +22,12 @@
 	#undef strdup
 	#endif
 	#define strdup	strdup_windows
-	#define wstrdup wstrdup_windows
+	#define wcsdup  wstrdup_windows
 
 	/**
 	* Duplicate strings
 	* @param[in] string source
-	* @return a pointer to the storage location for the copied string 
+	* @return a pointer to the storage location for the copied string
 	*/
 #ifdef __cplusplus
 	extern "C"

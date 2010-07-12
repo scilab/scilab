@@ -12,6 +12,8 @@
 
 #include "integer_gw.hxx"
 
+#define MODULE_NAME L"integer"
+
 extern "C"
 {
 	#include "gw_integer.h"
@@ -21,15 +23,15 @@ using namespace types;
 
 bool IntegerModule::Load()
 {
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("int8", &sci_int8, "integer"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("uint8", &sci_uint8, "integer"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("int16", &sci_int16, "integer"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("uint16", &sci_uint16, "integer"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("int32", &sci_int32, "integer"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("uint32", &sci_uint32, "integer"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("int64", &sci_int64, "integer"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("uint64", &sci_uint64, "integer"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("inttype", &sci_inttype, "integer"));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"int8", &sci_int8, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"uint8", &sci_uint8, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"int16", &sci_int16, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"uint16", &sci_uint16, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"int32", &sci_int32, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"uint32", &sci_uint32, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"int64", &sci_int64, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"uint64", &sci_uint64, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"inttype", &sci_inttype, MODULE_NAME));
 	return true;
 }
 

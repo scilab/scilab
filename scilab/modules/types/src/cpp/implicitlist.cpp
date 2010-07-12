@@ -20,8 +20,8 @@ extern "C"
     #include "elem_common.h"
 }
 
-string printInLinePoly(types::Poly* _pPoly, string _stVar, int _iPrecision, int _iLineLen);
-string printDouble(types::Double* _pD, int _iPrecision, int _iLineLen);
+wstring printInLinePoly(types::Poly* _pPoly, wstring _stVar, int _iPrecision, int _iLineLen);
+wstring printDouble(types::Double* _pD, int _iPrecision, int _iLineLen);
 long long convert_input(types::InternalType* _poIT);
 unsigned long long convert_unsigned_input(types::InternalType* _poIT);
 
@@ -246,7 +246,7 @@ namespace types
         return true;
     }
 
-    string ImplicitList::toString(int _iPrecision, int _iLineLen)
+    wstring ImplicitList::toString(int _iPrecision, int _iLineLen)
     {
         if(computable())
         {
@@ -254,8 +254,8 @@ namespace types
         }
         else
         {
-            ostringstream ostr;
-            ostr << " ";
+            wostringstream ostr;
+            ostr << L" ";
             if(m_eStartType == RealDouble)
             {
                 Double *pD = m_poStart->getAsDouble();
@@ -267,7 +267,7 @@ namespace types
                 ostr << printInLinePoly(pMP->poly_get(0,0), pMP->var_get(), _iPrecision, _iLineLen);
             }
 
-            ostr << ":";
+            ostr << L":";
 
             if(m_eStepType == RealDouble)
             {
@@ -280,7 +280,7 @@ namespace types
                 ostr << printInLinePoly(pMP->poly_get(0,0), pMP->var_get(), _iPrecision, _iLineLen);
             }
 
-            ostr << ":";
+            ostr << L":";
 
             if(m_eEndType == RealDouble)
             {
@@ -383,9 +383,9 @@ namespace types
     }
 }
 
-string printInLinePoly(types::Poly* _pPoly, string _stVar, int _iPrecision, int _iLineLen)
+wstring printInLinePoly(types::Poly* _pPoly, wstring _stVar, int _iPrecision, int _iLineLen)
 {
-    ostringstream ostr;
+    wostringstream ostr;
     for(int i = 0 ; i < _pPoly->rank_get() ; i++)
     {
         double dbl = _pPoly->coef_get()->real_get()[i];
@@ -408,9 +408,9 @@ string printInLinePoly(types::Poly* _pPoly, string _stVar, int _iPrecision, int 
     return ostr.str();
 }
 
-string printDouble(types::Double* _pD, int _iPrecision, int _iLineLen)
+wstring printDouble(types::Double* _pD, int _iPrecision, int _iLineLen)
 {
-    ostringstream ostr;
+    wostringstream ostr;
     int iWidth = 0, iPrec = 0;
     bool bFP = false; // FloatingPoint
     GetDoubleFormat(_pD->real_get(0,0), _iPrecision, &iWidth, &iPrec, &bFP);

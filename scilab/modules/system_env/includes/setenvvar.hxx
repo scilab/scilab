@@ -17,8 +17,10 @@
 /* DIR_SEPARATOR : Under Windows by default is \ */
 #ifdef _MSC_VER
 #define DIR_SEPARATOR "\\"
+#define DIR_SEPARATORW L"\\"
 #else
 #define DIR_SEPARATOR "/"
+#define DIR_SEPARATORW L"/"
 #endif
 
 #define UNIX_SEPATATOR '/'

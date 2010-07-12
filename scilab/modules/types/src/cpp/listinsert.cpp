@@ -58,12 +58,12 @@ namespace types
         return RealListInsertOperation; 
     }
 
-    std::string ListInsert::toString(int _iPrecision, int _iLineLen)
+    wstring ListInsert::toString(int _iPrecision, int _iLineLen)
     {
-        std::ostringstream ostr;
+        wostringstream ostr;
 
         //FIXME : Implement me.
-        ostr << "FIXME : Implement ListInsert::toString" << std::endl;
+        ostr << L"FIXME : Implement ListInsert::toString" << std::endl;
         return ostr.str();
     }
 

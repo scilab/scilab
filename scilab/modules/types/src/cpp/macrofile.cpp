@@ -26,7 +26,7 @@ namespace types
     /*--------------*/
     /*	Contructor  */
     /*--------------*/
-    MacroFile::MacroFile(std::string _stName, string _stPath, string _stModule) : Callable(), m_stPath(_stPath), m_pMacro(NULL)
+    MacroFile::MacroFile(wstring _stName, wstring _stPath, wstring _stModule) : Callable(), m_stPath(_stPath), m_pMacro(NULL)
     {
         setName(_stName);
         setModule(_stModule);
@@ -60,12 +60,12 @@ namespace types
         return m_pMacro;
     }
 
-    std::string MacroFile::toString(int _iPrecision, int _iLineLen)
+    wstring MacroFile::toString(int _iPrecision, int _iLineLen)
     {
-        std::ostringstream ostr;
+        wostringstream ostr;
 
         // FIXME : Implement me.
-        ostr << "FIXME : Implement MacroFile::toString" << std::endl;
+        ostr << L"FIXME : Implement MacroFile::toString" << std::endl;
 
         return ostr.str();
     }
@@ -92,13 +92,13 @@ namespace types
         if(m_pMacro == NULL)
         {//load file, only for the first call
             Parser parser;
-            parser.parseFile(m_stPath, "parse macro file");
+            parser.parseFile(m_stPath, L"parse macro file");
             if(parser.getExitStatus() !=  Parser::Succeded)
             {
-                YaspWrite("Unable to parse ");
-                YaspWrite(const_cast<char*>(m_stPath.c_str()));
-                YaspWrite("\n\n");
-                YaspWrite(parser.getErrorMessage());
+                YaspWriteW(L"Unable to parse ");
+                YaspWriteW(m_stPath.c_str());
+                YaspWriteW(L"\n\n");
+                YaspWriteW(parser.getErrorMessage());
                 return false;
             }
 
@@ -122,7 +122,7 @@ namespace types
                             std::list<Var *>::const_iterator	i;
 
                             //get input parameters list
-                            std::list<std::string> *pVarList = new std::list<std::string>();
+                            std::list<std::wstring> *pVarList = new std::list<std::wstring>();
                             ArrayListVar *pListVar = (ArrayListVar *)&pFD->args_get();
                             for(i = pListVar->vars_get().begin() ; i != pListVar->vars_get().end() ; i++)
                             {
@@ -130,7 +130,7 @@ namespace types
                             }
 
                             //get output parameters list
-                            std::list<std::string> *pRetList = new std::list<std::string>();
+                            std::list<std::wstring> *pRetList = new std::list<std::wstring>();
                             ArrayListVar *pListRet = (ArrayListVar *)&pFD->returns_get();
                             for(i = pListRet->vars_get().begin() ; i != pListRet->vars_get().end() ; i++)
                             {

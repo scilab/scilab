@@ -32,7 +32,7 @@ namespace ast
      ** \param name the name of the variable
      */
     SimpleVar (const Location& location,
-			const std::string name):
+			const std::wstring name):
       Var (location),
       _name (name)
     {
@@ -65,7 +65,7 @@ namespace ast
      ** \{ */
   public:
     /** \brief Return the Variable's name. */
-		const std::string& name_get () const
+		const std::wstring& name_get () const
     {
       return _name;
     }
@@ -79,7 +79,7 @@ namespace ast
 
   protected:
     /** \brief Variable's name */
-		std::string _name;
+		std::wstring _name;
   };
 
 } // namespace ast

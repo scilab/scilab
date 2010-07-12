@@ -19,7 +19,7 @@ extern "C" {
     #include "localization.h"
 }
 
-#define OPTION "overload"
+#define OPTION L"overload"
 
 using namespace types;
 
@@ -45,7 +45,7 @@ Function::ReturnValue sci_typeof(typed_list &in, int _piRetCount, typed_list &ou
         return Function::Error;
     }
 
-    if(strcmp(in[1]->getAsString()->string_get(0,0), OPTION) == 0)
+    if(wcscmp(in[1]->getAsString()->string_get(0,0), OPTION) == 0)
     {
        out.push_back(new String(in[0]->getShortTypeStr().c_str()));
        return Function::OK;

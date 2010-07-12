@@ -12,7 +12,7 @@
 
 #include "fileio_gw.hxx"
 
-#define MODULE_NAME "fileio"
+#define MODULE_NAME L"fileio"
 
 extern "C"
 {
@@ -23,7 +23,7 @@ using namespace types;
 
 bool FileioModule::Load()
 {
-    symbol::Context::getInstance()->AddFunction(Function::createFunction("cd", &sci_chdir, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(Function::createFunction("pwd", &sci_pwd, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"cd", &sci_chdir, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"pwd", &sci_pwd, MODULE_NAME));
     return true;
 }

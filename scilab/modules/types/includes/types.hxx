@@ -44,7 +44,7 @@ namespace types
         int                         rows_get();
         int                         size_get();
 
-        std::string                 DimToString();
+        wstring                     DimToString();
 
         /* GenericType */
         GenericType*                getAsGenericType(void) { return this; }
@@ -58,9 +58,9 @@ namespace types
         virtual RealType            getType(void) { return RealGeneric; }
 
         /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::string         getTypeStr() {return string("generictype");}
+        virtual wstring             getTypeStr() {return L"generictype";}
         /* return type as short string ( s, i, ce, l, ... )*/
-        virtual std::string         getShortTypeStr() {return string("");}
+        virtual wstring             getShortTypeStr() {return L"";}
 
         virtual GenericType*        clone(void) = 0;
     };

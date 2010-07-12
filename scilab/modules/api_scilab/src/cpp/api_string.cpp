@@ -85,7 +85,7 @@ SciErr getMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCo
 	//non cummulative length
 	for(int i = 0 ; i < *_piRows * *_piCols ; i++)
 	{
-		_piLength[i] = (int)strlen(pS->string_get(i));
+		_piLength[i] = (int)wcslen(pS->string_get(i));
 	}
 
 	if(_pstStrings == NULL || *_pstStrings == NULL)
@@ -101,7 +101,9 @@ SciErr getMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCo
 			return sciErr;
 		}
 
-		strcpy(_pstStrings[i], pS->string_get(i));
+        char* pstTemp = wide_string_to_UTF8(pS->string_get(i));
+		strcpy(_pstStrings[i], pstTemp);
+        FREE(pstTemp);
 	}
 	return sciErr;
 }
@@ -122,7 +124,9 @@ SciErr createMatrixOfString(void* _pvCtx, int _iVar, int _iRows, int _iCols, cha
 
 	for(int i = 0 ; i < pS->size_get() ; i++)
 	{
-		pS->string_set(i, _pstStrings[i]);
+        wchar_t* pstTemp = to_wide_string(_pstStrings[i]);
+		pS->string_set(i, pstTemp);
+        FREE(pstTemp);
 	}
 
 	int rhs = _iVar - api_Rhs((int*)_pvCtx);

@@ -14,14 +14,14 @@
 
 namespace symbol
 {
-	void	Table::print (std::ostream& ostr) const
+	void	Table::print (std::wostream& ostr) const
 		{
 			std::list<Scope*>::const_iterator it_list_scope;
 			std::list<Scope*>::size_type	i;
 
 			for (i = (*this).l_scope.size() - 1, it_list_scope = (*this).l_scope.begin() ; it_list_scope != (*this).l_scope.end(); --i, ++it_list_scope)
 			{
-				ostr << "Scope level: " << i << std::endl;
+				ostr << L"Scope level: " << i << std::endl;
 				ostr << *(*it_list_scope);
 			}
 		}

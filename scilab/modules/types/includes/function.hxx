@@ -35,63 +35,63 @@ namespace types
         typedef ReturnValue (*GW_FUNC)(typed_list &in, int _iRetCount, typed_list &out); 
         typedef int (*OLDGW_FUNC)(char *fname, int* _piKey);
 
-                            Function() : Callable() {};
-                            Function(std::string _szName, GW_FUNC _pFunc, std::string _szModule);
-                            ~Function();
+                                Function() : Callable() {};
+                                Function(std::wstring _szName, GW_FUNC _pFunc, std::wstring _szModule);
+                                ~Function();
 
         //FIXME : Should not return NULL
-        Function*           clone();
+        Function*               clone();
 
-        static Function*    createFunction(std::string _szName, GW_FUNC _pFunc, std::string _szModule);
-        static Function*    createFunction(std::string _szName, OLDGW_FUNC _pFunc, std::string _szModule);
+        static Function*        createFunction(std::wstring _szName, GW_FUNC _pFunc, std::wstring _szModule);
+        static Function*        createFunction(std::wstring _szName, OLDGW_FUNC _pFunc, std::wstring _szModule);
 
-        Function*           getAsFunction(void);
-        RealType            getType(void) { return RealFunction; }
+        Function*               getAsFunction(void);
+        RealType                getType(void) { return RealFunction; }
 
-        void                whoAmI();
+        void                    whoAmI();
 
-        std::string         toString(int _iPrecision, int _iLineLen);
+        std::wstring            toString(int _iPrecision, int _iLineLen);
 
-        virtual ReturnValue call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
+        virtual ReturnValue     call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
 
         /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::string getTypeStr() {return string("fptr");}
+        virtual std::wstring    getTypeStr() {return L"fptr";}
         /* return type as short string ( s, i, ce, l, ... )*/
-        virtual std::string getShortTypeStr() {return string("fptr");}
+        virtual std::wstring    getShortTypeStr() {return L"fptr";}
 
-        GW_FUNC             getFunc() { return m_pFunc; }
+        GW_FUNC                 getFunc() { return m_pFunc; }
     private :
-        GW_FUNC             m_pFunc;
+        GW_FUNC                 m_pFunc;
     };
 
     class WrapFunction : public Function
     {
     private :
-                            WrapFunction(WrapFunction* _pWrapFunction);
+                                WrapFunction(WrapFunction* _pWrapFunction);
     public :
-                            WrapFunction(std::string _szName, OLDGW_FUNC _pFunc, std::string _szModule);
+                                WrapFunction(std::wstring _szName, OLDGW_FUNC _pFunc, std::wstring _szModule);
 
-                            Callable::ReturnValue call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
-   WrapFunction*            clone();
+                                Callable::ReturnValue call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
+   WrapFunction*                clone();
 
-    OLDGW_FUNC              getFunc() { return m_pOldFunc; }
+    OLDGW_FUNC                  getFunc() { return m_pOldFunc; }
 
     private :
-        OLDGW_FUNC          m_pOldFunc;
-        InternalType*       m_pTempOut[MAX_OUTPUT_VARIABLE];
+        OLDGW_FUNC              m_pOldFunc;
+        InternalType*           m_pTempOut[MAX_OUTPUT_VARIABLE];
     };
 
     class GatewayStruct
     {
     public :
-        typed_list*         m_pIn;
-        InternalType**      m_pOut;
-        int*                m_piRetCount;
-        char*               m_pstName;
-        int*                m_pOutOrder;
+        typed_list*             m_pIn;
+        InternalType**          m_pOut;
+        int*                    m_piRetCount;
+        wchar_t*                m_pstName;
+        int*                    m_pOutOrder;
 
-                            GatewayStruct(){};
-                            ~GatewayStruct(){};
+                                GatewayStruct(){};
+                                ~GatewayStruct(){};
     };
 }
 

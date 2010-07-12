@@ -13,23 +13,38 @@
 
 #include "yaspio.hxx"
 
+extern "C"
+{
+#include "charEncoding.h"
+#include "MALLOC.h"
+}
+
 static YASP_OUTPUT _writer;
 static YASP_INPUT _reader;
 
 void setYaspOutputMethod(YASP_OUTPUT writer)
 {
-  _writer = writer;
+    _writer = writer;
 }
 
 void setYaspInputMethod(YASP_INPUT reader)
 {
-  _reader = reader;
+    _reader = reader;
 }
 
-char *YaspRead() {
-  return (*_reader)();
+char *YaspRead()
+{
+    return (*_reader)();
 }
 
-void YaspWrite(char* text) {
-  (*_writer)(text);
+void YaspWrite(const char* text)
+{
+    (*_writer)(const_cast<char*>(text));
+}
+
+void YaspWriteW(const wchar_t* text)
+{
+    char* pstTemp = wide_string_to_UTF8(text);
+    (*_writer)(pstTemp);
+    FREE(pstTemp);
 }

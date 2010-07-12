@@ -20,14 +20,14 @@
 **
 ** Parse the given file and create the AST.
 */
-void parseFileTask(Parser *parser, bool timed, const char* file_name, const char* prog_name);
+void parseFileTask(Parser *parser, bool timed, const wchar_t* file_name, const wchar_t* prog_name);
 
 /*
 ** Parse
 **
 ** Parse the given command and create the AST.
 */
-void parseCommandTask(Parser *parser, bool timed, char *command);
+void parseCommandTask(Parser *parser, bool timed, wchar_t *command);
 
 /*
 ** Dump AST

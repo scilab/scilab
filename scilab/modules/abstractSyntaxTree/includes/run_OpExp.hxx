@@ -63,8 +63,8 @@ void visitprivate(const OpExp &e)
             int iResult = AddDoubleToDouble(pL, pR, (Double**)&pResult);
             if(iResult != 0)
             {
-                std::ostringstream os;
-                os << "inconsistent row/column dimensions";
+                std::wostringstream os;
+                os << L"inconsistent row/column dimensions";
                 os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
                 throw os.str();
             }
@@ -83,8 +83,8 @@ void visitprivate(const OpExp &e)
 
             if(iResult != 0)
             {
-                std::ostringstream os;
-                os << "inconsistent row/column dimensions";
+                std::wostringstream os;
+                os << L"inconsistent row/column dimensions";
                 os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
                 throw os.str();
             }
@@ -101,8 +101,8 @@ void visitprivate(const OpExp &e)
             int iResult = AddDoubleToPoly(pR, pL, (MatrixPoly**)&pResult);
             if(iResult != 0)
             {
-                std::ostringstream os;
-                os << "inconsistent row/column dimensions";
+                std::wostringstream os;
+                os << L"inconsistent row/column dimensions";
                 os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
                 throw os.str();
             }
@@ -116,8 +116,8 @@ void visitprivate(const OpExp &e)
             int iResult = AddDoubleToPoly(pL, pR, (MatrixPoly**)&pResult);
             if(iResult != 0)
             {
-                std::ostringstream os;
-                os << "inconsistent row/column dimensions";
+                std::wostringstream os;
+                os << L"inconsistent row/column dimensions";
                 os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
                 throw os.str();
             }
@@ -133,15 +133,15 @@ void visitprivate(const OpExp &e)
             {
                 if(iResult == 1)
                 {
-                    std::ostringstream os;
-                    os << "inconsistent row/column dimensions";
+                    std::wostringstream os;
+                    os << L"inconsistent row/column dimensions";
                     os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
                     throw os.str();
                 }
                 else if(iResult == 2)
                 {
-                    std::ostringstream os;
-                    os << "variables don't have the same formal variable";
+                    std::wostringstream os;
+                    os << L"variables don't have the same formal variable";
                     os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
                     throw os.str();
                 }
@@ -165,8 +165,8 @@ void visitprivate(const OpExp &e)
             int iResult = SubstractDoubleToDouble(pL, pR, (Double**)&pResult);
             if(iResult != 0)
             {
-                std::ostringstream os;
-                os << _("Inconsistent row/column dimensions.\n");
+                std::wostringstream os;
+                os << _W("Inconsistent row/column dimensions.\n");
                 os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
                 throw os.str();
             }
@@ -180,8 +180,8 @@ void visitprivate(const OpExp &e)
             int iResult = SubstractPolyToDouble(pL, pR, (MatrixPoly**)&pResult);
             if(iResult != 0)
             {
-                std::ostringstream os;
-                os << _("Inconsistent row/column dimensions.\n");
+                std::wostringstream os;
+                os << _W("Inconsistent row/column dimensions.\n");
                 os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
                 throw os.str();
             }
@@ -195,8 +195,8 @@ void visitprivate(const OpExp &e)
             int iResult = SubstractDoubleToPoly(pL, pR, (MatrixPoly**)&pResult);
             if(iResult != 0)
             {
-                std::ostringstream os;
-                os << _("Inconsistent row/column dimensions.\n");
+                std::wostringstream os;
+                os << _W("Inconsistent row/column dimensions.\n");
                 os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
                 throw os.str();
             }
@@ -210,8 +210,8 @@ void visitprivate(const OpExp &e)
             int iResult = SubstractPolyToPoly(pL, pR, (MatrixPoly**)&pResult);
             if(iResult != 0)
             {
-                std::ostringstream os;
-                os << _("Inconsistent row/column dimensions.\n");
+                std::wostringstream os;
+                os << _W("Inconsistent row/column dimensions.\n");
                 os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
                 throw os.str();
             }
@@ -234,8 +234,8 @@ void visitprivate(const OpExp &e)
             int iResult = MultiplyDoubleByDouble(pL, pR, (Double**)&pResult);
             if(iResult)
             {
-                std::ostringstream os;
-                os << _("Inconsistent row/column dimensions.\n");
+                std::wostringstream os;
+                os << _W("Inconsistent row/column dimensions.\n");
                 os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
                 throw os.str();
             }
@@ -251,8 +251,8 @@ void visitprivate(const OpExp &e)
 
             if(iResult)
             {
-                std::ostringstream os;
-                os << _("Inconsistent row/column dimensions.\n");
+                std::wostringstream os;
+                os << _W("Inconsistent row/column dimensions.\n");
                 os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
                 throw os.str();
             }
@@ -268,8 +268,8 @@ void visitprivate(const OpExp &e)
 
             if(iResult)
             {
-                std::ostringstream os;
-                os << _("Inconsistent row/column dimensions.\n");
+                std::wostringstream os;
+                os << _W("Inconsistent row/column dimensions.\n");
                 os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
                 throw os.str();
             }
@@ -285,8 +285,8 @@ void visitprivate(const OpExp &e)
 
             if(iResult)
             {
-                std::ostringstream os;
-                os << _("Inconsistent row/column dimensions.\n");
+                std::wostringstream os;
+                os << _W("Inconsistent row/column dimensions.\n");
                 os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
                 throw os.str();
             }
@@ -309,8 +309,8 @@ void visitprivate(const OpExp &e)
             int iResult = DivideDoubleByDouble(pL, pR, (Double**)&pResult);
             if(iResult)
             {//manage errors
-                std::ostringstream os;
-                os << _("Inconsistent row/column dimensions.\n");
+                std::wostringstream os;
+                os << _W("Inconsistent row/column dimensions.\n");
                 os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
                 throw os.str();
             }
@@ -324,8 +324,8 @@ void visitprivate(const OpExp &e)
             int iResult = DividePolyByDouble(pL, pR, (MatrixPoly**)&pResult);
             if(iResult)
             {//manage errors
-                std::ostringstream os;
-                os << _("Inconsistent row/column dimensions.\n");
+                std::wostringstream os;
+                os << _W("Inconsistent row/column dimensions.\n");
                 os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
                 throw os.str();
             }
@@ -340,8 +340,8 @@ void visitprivate(const OpExp &e)
             int iResult = DivideDoubleByPoly(pL, pR, (MatrixPoly**)&pResult);
             if(iResult)
             {//manage errors
-                std::ostringstream os;
-                os << _("Inconsistent row/column dimensions.\n");
+                std::wostringstream os;
+                os << _W("Inconsistent row/column dimensions.\n");
                 os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
                 throw os.str();
             }
@@ -364,8 +364,8 @@ void visitprivate(const OpExp &e)
             int iResult = DotMultiplyDoubleByDouble(pL, pR, (Double**)&pResult);
             if(iResult)
             {
-                std::ostringstream os;
-                os << _("Inconsistent row/column dimensions.\n");
+                std::wostringstream os;
+                os << _W("Inconsistent row/column dimensions.\n");
                 os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
                 throw os.str();
             }
@@ -444,13 +444,13 @@ void visitprivate(const OpExp &e)
             {
                 pResult = new Bool(pR->rows_get(), pR->cols_get());
 
-                char* pstL = pL->string_get()[0];
+                wchar_t* pstL = pL->string_get()[0];
                 for(int i = 0 ; i < pR->rows_get() ; i++)
                 {
                     for(int j = 0 ; j < pR->cols_get() ; j++)
                     {
-                        char* pstR = pR->string_get(i,j);
-                        if(strcmp(pstL, pstR) == 0)
+                        wchar_t* pstR = pR->string_get(i,j);
+                        if(wcscmp(pstL, pstR) == 0)
                         {
                             pResult->getAsBool()->bool_set(i,j,true);
                         }
@@ -465,13 +465,13 @@ void visitprivate(const OpExp &e)
             {
                 pResult = new Bool(pL->rows_get(), pL->cols_get());
 
-                char* pstR = pR->string_get()[0];
+                wchar_t* pstR = pR->string_get()[0];
                 for(int i = 0 ; i < pL->rows_get() ; i++)
                 {
                     for(int j = 0 ; j < pL->cols_get() ; j++)
                     {
-                        char* pstL = pL->string_get(i,j);
-                        if(strcmp(pstL, pstR) == 0)
+                        wchar_t* pstL = pL->string_get(i,j);
+                        if(wcscmp(pstL, pstR) == 0)
                         {
                             pResult->getAsBool()->bool_set(i,j,true);
                         }
@@ -490,9 +490,9 @@ void visitprivate(const OpExp &e)
                 {
                     for(int j = 0 ; j < pL->cols_get() ; j++)
                     {
-                        char* pstR = pR->string_get(i,j);
-                        char* pstL = pL->string_get(i,j);
-                        if(strcmp(pstL, pstR) == 0)
+                        wchar_t* pstR = pR->string_get(i,j);
+                        wchar_t* pstL = pL->string_get(i,j);
+                        if(wcscmp(pstL, pstR) == 0)
                         {
                             pResult->getAsBool()->bool_set(i,j,true);
                         }
@@ -573,13 +573,13 @@ void visitprivate(const OpExp &e)
             {
                 pResult = new Bool(pR->rows_get(), pR->cols_get());
 
-                char* pstL = pL->string_get()[0];
+                wchar_t* pstL = pL->string_get()[0];
                 for(int i = 0 ; i < pR->rows_get() ; i++)
                 {
                     for(int j = 0 ; j < pR->cols_get() ; j++)
                     {
-                        char* pstR = pR->string_get(i,j);
-                        if(strcmp(pstL, pstR) == 0)
+                        wchar_t* pstR = pR->string_get(i,j);
+                        if(wcscmp(pstL, pstR) == 0)
                         {
                             pResult->getAsBool()->bool_set(i,j,false);
                         }
@@ -594,13 +594,13 @@ void visitprivate(const OpExp &e)
             {
                 pResult = new Bool(pL->rows_get(), pL->cols_get());
 
-                char* pstR = pR->string_get()[0];
+                wchar_t* pstR = pR->string_get()[0];
                 for(int i = 0 ; i < pL->rows_get() ; i++)
                 {
                     for(int j = 0 ; j < pL->cols_get() ; j++)
                     {
-                        char* pstL = pL->string_get(i,j);
-                        if(strcmp(pstL, pstR) == 0)
+                        wchar_t* pstL = pL->string_get(i,j);
+                        if(wcscmp(pstL, pstR) == 0)
                         {
                             pResult->getAsBool()->bool_set(i,j,false);
                         }
@@ -619,9 +619,9 @@ void visitprivate(const OpExp &e)
                 {
                     for(int j = 0 ; j < pL->cols_get() ; j++)
                     {
-                        char* pstR = pR->string_get(i,j);
-                        char* pstL = pL->string_get(i,j);
-                        if(strcmp(pstL, pstR) == 0)
+                        wchar_t* pstR = pR->string_get(i,j);
+                        wchar_t* pstL = pL->string_get(i,j);
+                        if(wcscmp(pstL, pstR) == 0)
                         {
                             pResult->getAsBool()->bool_set(i,j,false);
                         }
@@ -875,8 +875,8 @@ void visitprivate(const OpExp &e)
             int iResult = PowerDoubleByDouble(pL, pR, (Double**)&pResult);
             if(iResult != 0)
             {
-                std::ostringstream os;
-                os << _("Inconsistent row/column dimensions.\n");
+                std::wostringstream os;
+                os << _W("Inconsistent row/column dimensions.\n");
                 os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
                 throw os.str();
             }
@@ -890,8 +890,8 @@ void visitprivate(const OpExp &e)
             int iResult = PowerPolyByDouble(pL, pR, (MatrixPoly**)&pResult);
             if(iResult != 0)
             {
-                std::ostringstream os;
-                os << _("Inconsistent row/column dimensions.\n");
+                std::wostringstream os;
+                os << _W("Inconsistent row/column dimensions.\n");
                 os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
                 throw os.str();
             }
@@ -1020,8 +1020,8 @@ void visitprivate(const LogicalOpExp &e)
             }
             else
             {
-                std::ostringstream os;
-                os << _("Inconsistent row/column dimensions.\n");
+                std::wostringstream os;
+                os << _W("Inconsistent row/column dimensions.\n");
                 os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
                 throw os.str();
             }
@@ -1101,8 +1101,8 @@ void visitprivate(const LogicalOpExp &e)
             }
             else
             {
-                std::ostringstream os;
-                os << _("Inconsistent row/column dimensions.\n");
+                std::wostringstream os;
+                os << _W("Inconsistent row/column dimensions.\n");
                 os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
                 throw os.str();
             }

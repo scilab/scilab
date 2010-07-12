@@ -40,20 +40,20 @@ namespace types
 
       virtual ReturnValue   call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc) = 0;
 
-      void                  setName(std::string _stName) { m_stName = _stName; }
-      std::string           getName() { return m_stName; }
-      void                  setModule(std::string _stModule) { m_stModule = _stModule; }
-      std::string           getModule() { return m_stModule; }
+      void                  setName(std::wstring _stName) { m_stName = _stName; }
+      std::wstring          getName() { return m_stName; }
+      void                  setModule(std::wstring _stModule) { m_stModule = _stModule; }
+      std::wstring          getModule() { return m_stModule; }
 
       /* return type as string ( double, int, cell, list, ... )*/
-      virtual std::string   getTypeStr() {return string("callable");}
+      virtual std::wstring  getTypeStr() {return L"callable";}
       /* return type as short string ( s, i, ce, l, ... )*/
-      virtual std::string	getShortTypeStr() = 0;
+      virtual std::wstring  getShortTypeStr() = 0;
       virtual Callable*     clone(void) = 0;
 
   protected :
-      std::string           m_stName;
-      std::string           m_stModule;
+      std::wstring           m_stName;
+      std::wstring           m_stModule;
   };
 }
 

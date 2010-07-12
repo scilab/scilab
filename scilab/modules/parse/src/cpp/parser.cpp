@@ -19,13 +19,15 @@
 
 #ifdef _MSC_VER
 #include "windows.h"
+#include "charEncoding.h"
+#include "MALLOC.h"
 #endif
 
 extern FILE*    yyin;
 extern int      yyparse();
 extern int      yydebug;
 
-void Parser::parseFile(const std::string& fileName, const std::string& progName)
+void Parser::parseFile(const wstring& fileName, const wstring& progName)
 {
     // Calling Parse state machine in C with global values
     // Must be locked to avoid concurrent access
@@ -53,19 +55,21 @@ void Parser::parseFile(const std::string& fileName, const std::string& progName)
 
 
 /** \brief parse the given file name */
-void ParserSingleInstance::parseFile(const std::string& fileName, const std::string& progName)
+void ParserSingleInstance::parseFile(const wstring& fileName, const wstring& progName)
 {
     yylloc.first_line = yylloc.last_line = 1;
     yylloc.first_column = yylloc.last_column = 1;
 #ifdef _MSC_VER
-	fopen_s(&yyin, fileName.c_str (), "r");
+    _wfopen_s(&yyin, fileName.c_str(), L"r");
 #else
-    yyin = fopen(fileName.c_str (), "r");
+    char* pstTemp = wide_string_to_UTF8(fileName.c_str());
+    yyin = fopen(pstTemp, "r");
+    FREE(pstTemp);
 #endif
 
     if (!yyin)
     {
-        std::cerr << "*** Error -> cannot open `" << fileName << "`" << std::endl;
+        wcerr << L"*** Error -> cannot open `" << fileName << L"`" << std::endl;
         exit (SYSTEM_ERROR);
     }
 
@@ -81,7 +85,7 @@ void ParserSingleInstance::parseFile(const std::string& fileName, const std::str
     fclose(yyin);
 }
 
-void Parser::parse(char *command) {
+void Parser::parse(wchar_t *command) {
     // Calling Parse state machine in C with global values
     // Must be locked to avoid concurrent access
     // FIXME : LOCK
@@ -93,7 +97,9 @@ void Parser::parse(char *command) {
     {
         ParserSingleInstance::disableParseTrace();
     }
-    ParserSingleInstance::parse(command);
+
+    char* pstCommand = wide_string_to_UTF8(command);
+    ParserSingleInstance::parse(pstCommand);
     this->setExitStatus(ParserSingleInstance::getExitStatus());
     this->setControlStatus(ParserSingleInstance::getControlStatus());
     if (getExitStatus() == Parser::Succeded) {
@@ -103,6 +109,7 @@ void Parser::parse(char *command) {
     {
         this->setErrorMessage(ParserSingleInstance::getErrorMessage());
     }
+    FREE(pstCommand);
     // FIXME : UNLOCK
 }
 
@@ -115,9 +122,9 @@ void ParserSingleInstance::parse(char *command)
     yylloc.first_line = yylloc.last_line = 1;
     yylloc.first_column = yylloc.last_column = 1;
 #ifdef _MSC_VER
-	TCHAR szFile[] = TEXT("command.temp");
+	wchar_t szFile[] = L"command.temp";
 	fopen_s(&yyin, "command.temp", "w");
-	fwrite(command, 1, strlen(command), yyin);
+	fwrite(command, sizeof(char), strlen(command), yyin);
 	fclose(yyin);
 	fopen_s(&yyin, "command.temp", "r");
 #endif
@@ -137,7 +144,7 @@ void ParserSingleInstance::parse(char *command)
 #endif
 
     ParserSingleInstance::disableStrictMode();
-    ParserSingleInstance::setFileName(*new std::string("prompt"));
+    ParserSingleInstance::setFileName(*new wstring(L"prompt"));
     ParserSingleInstance::setExitStatus(Parser::Succeded);
     ParserSingleInstance::resetControlStatus();
     ParserSingleInstance::resetErrorMessage();
@@ -171,12 +178,12 @@ char *ParserSingleInstance::getCodeLine(int line, char **codeLine) {
     return *codeLine;
 }
 
-std::string *ParserSingleInstance::getErrorMessage(void)
+wstring *ParserSingleInstance::getErrorMessage(void)
 {
     return _error_message;
 }
 
-void ParserSingleInstance::appendErrorMessage(std::string message)
+void ParserSingleInstance::appendErrorMessage(wstring message)
 {
     *_error_message += message;
 }
@@ -202,9 +209,9 @@ void Parser::freeTree()
 	}
 }
 
-const std::string* ParserSingleInstance::_file_name = NULL;
-const std::string* ParserSingleInstance::_prog_name = NULL;
-std::string* ParserSingleInstance::_error_message = new std::string();
+const wstring* ParserSingleInstance::_file_name = NULL;
+const wstring* ParserSingleInstance::_prog_name = NULL;
+wstring* ParserSingleInstance::_error_message = new wstring();
 bool ParserSingleInstance::_strict_mode = false;
 bool ParserSingleInstance::_stop_on_first_error = false;
 ast::Exp* ParserSingleInstance::_the_program = NULL;

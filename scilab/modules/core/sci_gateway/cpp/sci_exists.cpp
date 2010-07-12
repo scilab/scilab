@@ -36,17 +36,17 @@ enum PrivateResult {
     FunctionFailed
 };
 
-static ScopeRange getScopeFromOption(const char *_psScope)
+static ScopeRange getScopeFromOption(const wchar_t *_psScope)
 {
-    if (strcmp(_psScope, "all") == 0 || strcmp(_psScope, "a") == 0)
+    if (wcscmp(_psScope, L"all") == 0 || wcscmp(_psScope, L"a") == 0)
     {
         return All;
     }
-    if (strcmp(_psScope, "local") == 0 || strcmp(_psScope, "l") == 0)
+    if (wcscmp(_psScope, L"local") == 0 || wcscmp(_psScope, L"l") == 0)
     {
         return Local;
     }
-    if (strcmp(_psScope, "nolocal") == 0 || strcmp(_psScope, "n") == 0)
+    if (wcscmp(_psScope, L"nolocal") == 0 || wcscmp(_psScope, L"n") == 0)
     {
         return NoLocal;
     }
@@ -74,7 +74,7 @@ static PrivateResult sci_existsOrIsdef(types::typed_list &in, const char *fname)
         return FunctionFailed;
     }
 
-    const char *psScope = NULL;
+    const wchar_t *psScope = NULL;
     if (in.size() == 2)
     {
         psScope = in[1]->getAsString()->string_get(0,0);
@@ -82,7 +82,7 @@ static PrivateResult sci_existsOrIsdef(types::typed_list &in, const char *fname)
     else
     {
         // Default option is "all"
-        psScope = "all";
+        psScope = L"all";
     }
 
 

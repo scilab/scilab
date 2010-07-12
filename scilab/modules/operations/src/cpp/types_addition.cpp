@@ -595,18 +595,18 @@ int AddStringToString(String *_pString1, String *_pString2, String **_pStringOut
 
 	if(bScalar1)
 	{//concat pL with each element of pR
-		(*_pStringOut) = new String(_pString2->rows_get(), _pString2->cols_get());
-		int iCommonLen	=	(int)strlen(_pString1->string_get(0,0));
+		(*_pStringOut)  = new String(_pString2->rows_get(), _pString2->cols_get());
+		int iCommonLen	=	(int)wcslen(_pString1->string_get(0,0));
 
 		for(int i = 0 ; i < _pString2->rows_get() ; i++)
 		{
 			for(int j = 0 ; j < _pString2->cols_get() ; j++)
 			{
-				int iLen	= (int)strlen(_pString2->string_get(i, j));
-				char* psz = new char[iLen + iCommonLen + 1];
-				memset(psz, 0x00, iLen + iCommonLen + 1);
-				memcpy(psz, _pString1->string_get(0,0), iCommonLen * sizeof(char));
-				memcpy(psz + iCommonLen, _pString2->string_get(i, j), iLen * sizeof(char));
+				int iLen	= (int)wcslen(_pString2->string_get(i, j));
+				wchar_t* psz = new wchar_t[iLen + iCommonLen + 1];
+				memset(psz, 0x00, (iLen + iCommonLen + 1) * sizeof(wchar_t));
+				memcpy(psz, _pString1->string_get(0,0), iCommonLen * sizeof(wchar_t));
+				memcpy(psz + iCommonLen, _pString2->string_get(i, j), iLen * sizeof(wchar_t));
 				(*_pStringOut)->string_set(i, j, psz);
 				delete[] psz;
 			}
@@ -614,19 +614,19 @@ int AddStringToString(String *_pString1, String *_pString2, String **_pStringOut
 	}
 	else if(bScalar2)
 	{//concat each element of pL with pR
-		(*_pStringOut) = new String(_pString1->rows_get(), _pString1->cols_get());
-		int iCommonLen	=	(int)strlen(_pString2->string_get(0,0));
+		(*_pStringOut)  = new String(_pString1->rows_get(), _pString1->cols_get());
+		int iCommonLen	=	(int)wcslen(_pString2->string_get(0,0));
 
 		for(int i = 0 ; i < _pString1->rows_get() ; i++)
 		{
 			for(int j = 0 ; j < _pString1->cols_get() ; j++)
 			{
-				int iLen	= (int)strlen(_pString1->string_get(i, j));
-				char* psz = new char[iLen + iCommonLen + 1];
-				memset(psz, 0x00, iLen + iCommonLen + 1);
+				int iLen = (int)wcslen(_pString1->string_get(i, j));
+				wchar_t* psz = new wchar_t[iLen + iCommonLen + 1];
+				memset(psz, 0x00, (iLen + iCommonLen + 1) * sizeof(wchar_t));
 
-				memcpy(psz, _pString1->string_get(i, j), iLen * sizeof(char));
-				memcpy(psz + iLen, _pString2->string_get(0,0), iCommonLen * sizeof(char));
+				memcpy(psz, _pString1->string_get(i, j), iLen * sizeof(wchar_t));
+				memcpy(psz + iLen, _pString2->string_get(0,0), iCommonLen * sizeof(wchar_t));
 
 				(*_pStringOut)->string_set(i, j, psz);
 				delete[] psz;
@@ -640,13 +640,13 @@ int AddStringToString(String *_pString1, String *_pString2, String **_pStringOut
 		{
 			for(int j = 0 ; j < _pString1->cols_get() ; j++)
 			{
-				int iLenL	= (int)strlen(_pString1->string_get(i, j));
-				int iLenR	= (int)strlen(_pString2->string_get(i, j));
-				char* psz = new char[iLenL + iLenR + 1];
-				memset(psz, 0x00, iLenL + iLenR + 1);
+				int iLenL	= (int)wcslen(_pString1->string_get(i, j));
+				int iLenR	= (int)wcslen(_pString2->string_get(i, j));
+				wchar_t* psz = new wchar_t[iLenL + iLenR + 1];
+				memset(psz, 0x00, (iLenL + iLenR + 1) * sizeof(wchar_t));
 
-				memcpy(psz					, _pString1->string_get(i, j), iLenL * sizeof(char));
-				memcpy(psz + iLenL	, _pString2->string_get(i, j), iLenR * sizeof(char));
+				memcpy(psz          , _pString1->string_get(i, j), iLenL * sizeof(wchar_t));
+				memcpy(psz + iLenL  , _pString2->string_get(i, j), iLenR * sizeof(wchar_t));
 
 				(*_pStringOut)->string_set(i, j, psz);
 				delete[] psz;

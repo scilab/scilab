@@ -73,10 +73,10 @@ namespace ast {
      ** \{ */
     void PrintVisitor::visit (const StringExp &e)
     {
-        std::string::const_iterator it;
+        std::wstring::const_iterator it;
 
         *ostr << SCI_OPEN_STRING;
-        std::string value = e.value_get();
+        std::wstring value = e.value_get();
 
         for (it = value.begin() ; it != value.end() ; ++it)
         {

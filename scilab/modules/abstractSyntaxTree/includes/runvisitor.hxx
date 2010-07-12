@@ -421,8 +421,8 @@ namespace ast
 
                 if(iColMax != static_cast<int>((*row)->columns_get().size()))
                 {
-                    std::ostringstream os;
-                    os << "inconsistent row/column dimensions";
+                    std::wostringstream os;
+                    os << L"inconsistent row/column dimensions";
                     os << ((Location)(*row)->location_get()).location_string_get() << std::endl;
                     throw os.str();
                 }
@@ -513,22 +513,22 @@ namespace ast
                 result_set(pI);
                 if(pI != NULL && pI->getAsCallable() == false && e.is_verbose())
                 {
-                    std::ostringstream ostr;
-                    ostr << e.name_get() << " = " << "(" << pI->getRef() << ")"<< std::endl;
+                    std::wostringstream ostr;
+                    ostr << e.name_get() << L" = " << L"(" << pI->getRef() << L")"<< std::endl;
                     ostr << std::endl;
                     ostr << pI->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
-                    YaspWrite(const_cast<char *>(ostr.str().c_str()));
+                    YaspWriteW(ostr.str().c_str());
                 }
             }
             else
             {
-                char szError[bsiz];
+                wchar_t szError[bsiz];
 #ifdef _MSC_VER
-                sprintf_s(szError, bsiz, _("Undefined variable: %s\n"), e.name_get().c_str());
+                swprintf_s(szError, bsiz, _W("Undefined variable: %s\n"), e.name_get().c_str());
 #else
-                sprintf(szError, _("Undefined variable: %s\n"), e.name_get().c_str());
+                swprintf(szError, bsiz, _W("Undefined variable: %S\n"), e.name_get().c_str());
 #endif
-                throw string(szError);
+                throw wstring(szError);
                 //Err, SimpleVar doesn't exist in Scilab scopes.
             }
         }
@@ -541,8 +541,8 @@ namespace ast
             dblCoef.val_set(0, 0, 0);
             dblCoef.val_set(0, 1, 1);
 
-            MatrixPoly *pVar	= new MatrixPoly("$", 1, 1, pRank);
-            Poly *poPoly			= pVar->poly_get(0,0);
+            MatrixPoly *pVar = new MatrixPoly(L"$", 1, 1, pRank);
+            Poly *poPoly = pVar->poly_get(0,0);
             poPoly->coef_set(&dblCoef);
 
             ImplicitList *pIL = new ImplicitList();
@@ -563,8 +563,8 @@ namespace ast
             dblCoef.val_set(0, 0, 0);
             dblCoef.val_set(0, 1, 1);
 
-            MatrixPoly *pVar	= new MatrixPoly("$", 1, 1, pRank);
-            Poly *poPoly			= pVar->poly_get(0,0);
+            MatrixPoly *pVar = new MatrixPoly(L"$", 1, 1, pRank);
+            Poly *poPoly = pVar->poly_get(0,0);
             poPoly->coef_set(&dblCoef);
             result_set(pVar);
         }
@@ -588,7 +588,7 @@ namespace ast
             {
                 e.head_get()->accept(execHead);
             }
-            catch(string sz)
+            catch(wstring sz)
             {
                 throw sz;
             }
@@ -606,24 +606,24 @@ namespace ast
                     }
                     else
                     {
-                        char szError[bsiz];
+                        wchar_t szError[bsiz];
 #ifdef _MSC_VER
-                        sprintf_s(szError, bsiz, _("Unknown field : %s.\n"), psvRightMember->name_get().c_str());
+                        swprintf_s(szError, bsiz, _W("Unknown field : %s.\n"), psvRightMember->name_get().c_str());
 #else
-                        sprintf(szError, _("Unknown field : %s.\n"), psvRightMember->name_get().c_str());
+                        swprintf(szError, bsiz, _W("Unknown field : %S.\n"), psvRightMember->name_get().c_str());
 #endif
-                        throw string(szError);
+                        throw wstring(szError);
                     }
                 }
                 else
                 {
-                    char szError[bsiz];
+                    wchar_t szError[bsiz];
 #ifdef _MSC_VER
-                    sprintf_s(szError, bsiz, _("/!\\ Unmanaged FieldExp.\n"));
+                    swprintf_s(szError, bsiz, _W("/!\\ Unmanaged FieldExp.\n"));
 #else
-                    sprintf(szError, _("/!\\ Unmanaged FieldExp.\n"));
-#endif 
-                    throw string(szError);
+                    swprintf(szError, bsiz, _W("/!\\ Unmanaged FieldExp.\n"));
+#endif
+                    throw wstring(szError);
                 }
             }
             else if(execHead.result_get() != NULL && execHead.result_get()->isTList())
@@ -639,35 +639,35 @@ namespace ast
                     }
                     else
                     {
-                        char szError[bsiz];
+                        wchar_t szError[bsiz];
 #ifdef _MSC_VER
-                        sprintf_s(szError, bsiz, _("Unknown field : %s.\n"), psvRightMember->name_get().c_str());
+                        swprintf_s(szError, bsiz, _W("Unknown field : %s.\n"), psvRightMember->name_get().c_str());
 #else
-                        sprintf(szError, _("Unknown field : %s.\n"), psvRightMember->name_get().c_str());
+                        swprintf(szError, bsiz, _W("Unknown field : %S.\n"), psvRightMember->name_get().c_str());
 #endif
-                        throw string(szError);
+                        throw wstring(szError);
                     }
                 }
                 else
                 {
-                    char szError[bsiz];
+                    wchar_t szError[bsiz];
 #ifdef _MSC_VER
-                    sprintf_s(szError, bsiz, _("/!\\ Unmanaged FieldExp.\n"));
+                    swprintf_s(szError, bsiz, _W("/!\\ Unmanaged FieldExp.\n"));
 #else
-                    sprintf(szError, _("/!\\ Unmanaged FieldExp.\n"));
-#endif 
-                    throw string(szError);
+                    swprintf(szError, bsiz, _W("/!\\ Unmanaged FieldExp.\n"));
+#endif
+                    throw wstring(szError);
                 }
             }
             else
             {
-                char szError[bsiz];
+                wchar_t szError[bsiz];
 #ifdef _MSC_VER
-                sprintf_s(szError, bsiz, _("Attempt to reference field of non-structure array.\n"));
+                swprintf_s(szError, bsiz, _W("Attempt to reference field of non-structure array.\n"));
 #else
-                sprintf(szError, _("Attempt to reference field of non-structure array.\n"));
+                swprintf(szError, bsiz, _W("Attempt to reference field of non-structure array.\n"));
 #endif
-                throw string(szError);
+                throw wstring(szError);
             }
         }
 
@@ -702,8 +702,8 @@ namespace ast
                         if(piIndexSeq[i] < 1)
                         {
                             //manage error
-                            std::ostringstream os;
-                            os << _("Indexes must be positive .\n");
+                            std::wostringstream os;
+                            os << _W("Indexes must be positive .\n");
                             os << ((Location)e.name_get().location_get()).location_string_get() << std::endl;
                             throw os.str();
                         }
@@ -717,8 +717,8 @@ namespace ast
 
                     if(ResultList.size() == 0)
                     {
-                        std::ostringstream os;
-                        os << "inconsistent row/column dimensions";
+                        std::wostringstream os;
+                        os << L"inconsistent row/column dimensions";
                         os << ((*e.args_get().begin())->location_get()).location_string_get() << std::endl;
                         throw os.str();
                     }
@@ -863,7 +863,7 @@ namespace ast
 
                 InternalType *pIT = NULL;
                 pIT = pVar->extract_value(0);
-                string varName = e.vardec_get().name_get();
+                wstring varName = e.vardec_get().name_get();
                 symbol::Context::getInstance()->put(varName, *pIT);
 
                 for(int i = 0 ; i < pVar->size_get() ; i++)
@@ -1053,8 +1053,8 @@ namespace ast
                             {
                                 if(static_cast<int>(out.size()) < expected_size_get())
                                 {
-                                    std::ostringstream os;
-                                    os << "bad lhs, expected : " << expected_size_get() << " returned : " << out.size() << std::endl;
+                                    std::wostringstream os;
+                                    os << L"bad lhs, expected : " << expected_size_get() << L" returned : " << out.size() << std::endl;
                                     throw os.str();
                                 }
                             }
@@ -1076,14 +1076,14 @@ namespace ast
                         }
                         else if(Ret == Callable::Error)
                         {
-                            std::ostringstream os;
-                            char szError[bsiz];
+                            std::wostringstream os;
+                            wchar_t szError[bsiz];
 #ifdef _MSC_VER
-                            sprintf_s(szError, bsiz, _("Function \"%s\" failed\n"), pCall->getName().c_str());
+                            swprintf_s(szError, bsiz, _W("Function \"%s\" failed\n"), pCall->getName().c_str());
 #else
-                            sprintf(szError, _("Function \"%s\" failed\n"), pCall->getName().c_str());
+                            swprintf(szError, bsiz, _W("Function \"%S\" failed\n"), pCall->getName().c_str());
 #endif
-                            throw string(szError);
+                            throw wstring(szError);
                         }
                     }
 
@@ -1092,15 +1092,14 @@ namespace ast
                     //don't output Silplevar and empty result
                     if(execMe.result_get() != NULL && (pVar == NULL || bImplicitCall))
                     {
-                        symbol::Context::getInstance()->put("ans", *execMe.result_get());
+                        symbol::Context::getInstance()->put(L"ans", *execMe.result_get());
                         if((*itExp)->is_verbose())
                         {
                             //TODO manage multiple returns
-                            std::ostringstream ostr;
-                            ostr << "ans = " << std::endl;
-                            ostr << std::endl;
+                            std::wostringstream ostr;
+                            ostr << L"ans = " << std::endl << std::endl;
                             ostr << execMe.result_get()->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
-                            YaspWrite(const_cast<char *>(ostr.str().c_str()));
+                            YaspWriteW(ostr.str().c_str());
                         }
                     }
 
@@ -1286,7 +1285,7 @@ namespace ast
                 result_set(execMe.result_get());
                 result_get()->IncreaseRef();
             }
-            catch(string sz)
+            catch(wstring sz)
             {
                 throw sz;
             }
@@ -1302,7 +1301,7 @@ namespace ast
             std::list<ast::Var *>::const_iterator	i;
 
             //get input parameters list
-            std::list<string> *pVarList = new std::list<string>();
+            std::list<wstring> *pVarList = new std::list<wstring>();
             const ArrayListVar *pListVar = &e.args_get();
             for(i = pListVar->vars_get().begin() ; i != pListVar->vars_get().end() ; i++)
             {
@@ -1310,7 +1309,7 @@ namespace ast
             }
 
             //get output parameters list
-            std::list<string> *pRetList = new std::list<string>();
+            std::list<wstring> *pRetList = new std::list<wstring>();
             const ArrayListVar *pListRet = &e.returns_get();
             for(i = pListRet->vars_get().begin() ; i != pListRet->vars_get().end() ; i++)
             {
@@ -1319,7 +1318,7 @@ namespace ast
 
             //types::Macro macro(VarList, RetList, (SeqExp&)e.body_get());
             types::Macro *pMacro = new types::Macro(e.name_get(), *pVarList, *pRetList,
-                static_cast<SeqExp&>(const_cast<Exp&>(e.body_get())), "script");
+                static_cast<SeqExp&>(const_cast<Exp&>(e.body_get())), L"script");
             symbol::Context::getInstance()->AddMacro(pMacro);
         }
         /** \} */
@@ -1437,7 +1436,7 @@ namespace ast
 #endif
                 throw string(st);
             }
-            catch(string sz)
+            catch(wstring sz)
             {
                 //TODO YaSp : Overloading
                 throw sz;

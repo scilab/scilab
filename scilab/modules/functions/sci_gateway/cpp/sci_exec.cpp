@@ -1,11 +1,11 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2006 - INRIA - Antoine ELIAS
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -29,8 +29,7 @@ extern "C"
 #ifndef _MSC_VER
 #include "stricmp.h"
 #endif
-#include "cluni0.h"
-#include "PATH_MAX.h"
+#include "expandPathVariable.h"
 #include "prompt.h"
 }
 
@@ -69,20 +68,20 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 			{
 				return Function::Error;
 			}
-			
-			if(stricmp(pS->string_get(0), "errcatch") == 0)
+
+			if(wcsicmp(pS->string_get(0), L"errcatch") == 0)
 			{
 				bErrCatch = true;
 			}
 			else
 			{
-				char stErr[1024];
+				wchar_t stErr[1024];
 #ifdef _MSC_VER
-				sprintf_s(stErr, 1024, "\"%s\" value is not a valid value for exec function", pS->string_get(0));
+				swprintf_s(stErr, 1024, L"\"%s\" value is not a valid value for exec function", pS->string_get(0));
 #else
-				sprintf(stErr, "\"%s\" value is not a valid value for exec function", pS->string_get(0));
+				swprintf(stErr, 1024, L"\"%S\" value is not a valid value for exec function", pS->string_get(0));
 #endif
-				YaspWrite(stErr);
+				YaspWriteW(stErr);
 				return Function::Error;
 			}
 
@@ -101,7 +100,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 			}
 			else
 			{
-				YaspWrite("Bad 3rd parameter type in exec call");
+				YaspWriteW(L"Bad 3rd parameter type in exec call");
 				return Function::Error;
 			}
 		}
@@ -117,7 +116,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 		}
 		else
 		{//not managed
-			YaspWrite("Bad 2nd parameter type in exec call");
+			YaspWriteW(L"Bad 2nd parameter type in exec call");
 			return Function::Error;
 		}
 	}
@@ -132,12 +131,12 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 			return Function::Error;
 		}
 
-		char* pstFile = pS->string_get(0);
-		C2F(cluni0)(pstFile, pstParsePath, &iParsePathLen, (long)strlen(pstFile), PATH_MAX + FILENAME_MAX);
-        parser.parseFile(pstParsePath, "exec");
+		wchar_t* pstFile = pS->string_get(0);
+        wchar_t *expandedPath = expandPathVariableW(pstFile);
+        parser.parseFile(expandedPath, L"exec");
 		if(parser.getExitStatus() !=  Parser::Succeded)
 		{
-			YaspWrite(parser.getErrorMessage());
+			YaspWriteW(parser.getErrorMessage());
 			parser.freeTree();
 			return Function::Error;
 		}
@@ -168,7 +167,9 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 	//get prompt
 	GetCurrentPrompt(stPrompt);
 
-	std::ifstream file(in[0]->getAsString()->string_get(0));
+    char *pstFilename = wide_string_to_UTF8(in[0]->getAsString()->string_get(0));
+	std::ifstream file(pstFilename);
+    FREE(pstFilename);
 
 	char str[1024];
 	int iCurrentLine = -1; //no data in str
@@ -195,25 +196,25 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 			//update ans variable.
 			if(execMe.result_get() != NULL && execMe.result_get()->isDeletable())
 			{
-				string varName = "ans";
+				wstring varName = L"ans";
 				symbol::Context::getInstance()->put(varName, *execMe.result_get());
 				if((*j)->is_verbose() && !checkPrompt(iMode, EXEC_MODE_MUTE) && checkPrompt(iMode, EXEC_MODE_VERBOSE))
 				{
-					std::ostringstream ostr;
-					ostr << "ans = " << std::endl;
+					std::wostringstream ostr;
+					ostr << L"ans = " << std::endl;
 					ostr << std::endl;
 					ostr << execMe.result_get()->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
-					YaspWrite((char *)ostr.str().c_str());
+					YaspWriteW(ostr.str().c_str());
 				}
 			}
 
 			if(!checkPrompt(iMode, EXEC_MODE_MUTE) && checkPrompt(iMode, EXEC_MODE_VERBOSE))
 			{
-				YaspWrite("\n");
+				YaspWriteW(L"\n");
 			}
 
 		}
-		catch(std::string st)
+		catch(std::wstring st)
 		{
 			//print last line
 			if(checkPrompt(iMode, EXEC_MODE_MUTE))
@@ -222,7 +223,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 			}
 
 			//print error
-			YaspWrite(const_cast<char*>(st.c_str()));
+			YaspWriteW(st.c_str());
 			file.close();
 			return Function::Error;
 		}
@@ -243,13 +244,13 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
 	char strLastLine[1024];
 	//case 1, exp is on 1 line and take the entire line
 
-	//case 2, exp is multiline 
+	//case 2, exp is multiline
 
 	//case 3, exp is part of a line.
 	//ex : 3 exp on the same line a = 1; b = 2; c = 3;
 
 	//case 4, exp is multiline but start and/or finish in the middle of a line
-	//ex : 
+	//ex :
 	//a = 10;for i = 1 : a
 	//	a
 	//end, b = 1;

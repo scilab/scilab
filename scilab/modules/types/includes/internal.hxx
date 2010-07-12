@@ -20,6 +20,7 @@
 #include <string.h>
 #include "anytype.hxx"
 
+using namespace std;
 
 namespace types
 {
@@ -71,7 +72,7 @@ namespace types
       virtual RealType                  getType(void) { return RealInternal; }
 
 
-      virtual std::string	            toString(int _iPrecison, int _iLineLen) = 0;
+      virtual wstring	                toString(int _iPrecison, int _iLineLen) = 0;
       virtual InternalType*             clone(void) = 0;
 
 
@@ -93,9 +94,9 @@ namespace types
       int                               getRef() { return m_iRef; }
 
       /* return type as string ( double, int, cell, list, ... )*/
-      virtual std::string               getTypeStr() = 0;
+      virtual wstring                   getTypeStr() = 0;
       /* return type as short string ( s, i, ce, l, ... )*/
-      virtual std::string               getShortTypeStr() = 0;
+      virtual wstring                   getShortTypeStr() = 0;
 
       virtual bool                      operator==(const InternalType& it) { return (getType() == (const_cast<InternalType *>(&it))->getType()); }
       virtual bool                      operator!=(const InternalType& it) { return !(*this == it); }

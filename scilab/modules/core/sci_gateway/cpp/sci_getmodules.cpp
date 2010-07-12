@@ -21,7 +21,7 @@ Function::ReturnValue sci_getmodules(types::typed_list &in, int _iRetCount, type
         return Function::Error;
     }
 
-    out.push_back(symbol::Context::getInstance()->get("modules_list"));
+    out.push_back(symbol::Context::getInstance()->get(L"modules_list"));
     return Function::OK;
 }
 /*--------------------------------------------------------------------------*/

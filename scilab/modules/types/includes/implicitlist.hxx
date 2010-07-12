@@ -65,7 +65,7 @@ namespace types
         bool                    compute();
         bool                    computable();
 
-        string                  toString(int _iPrecision, int _iLineLen);
+        wstring                 toString(int _iPrecision, int _iLineLen);
 
 
         InternalType::RealType  start_type_get();
@@ -82,9 +82,9 @@ namespace types
         InternalType*           extract_matrix();
 
         /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::string     getTypeStr() {return string("implicitlist");}
+        virtual wstring         getTypeStr() {return L"implicitlist";}
         /* return type as short string ( s, i, ce, l, ... )*/
-        virtual std::string     getShortTypeStr() {return string("");}
+        virtual wstring         getShortTypeStr() {return L"";}
 
         // templated extract for
         // double / char / short / int / long long / unsigned ...

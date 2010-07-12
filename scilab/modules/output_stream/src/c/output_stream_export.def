@@ -6,8 +6,11 @@ EXPORTS
 ; output_stream explicit export (SEP 35)
 ; --------------------------------------- 
 Scierror
+ScierrorW
 sciprint
+sciprintW
 scivprint
+scivprintW
 error_
 SciError
 SciStoreError

@@ -1,11 +1,11 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2006 - INRIA - Antoine ELIAS
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -34,6 +34,7 @@ extern "C"
 #include "cluni0.h"
 #include "PATH_MAX.h"
 #include "prompt.h"
+#include "stricmp.h"
 }
 
 
@@ -44,9 +45,9 @@ using namespace ast;
 Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
 	bool bErrCatch		= false;
-	char* pstMsg			= NULL;
-	Exp* pExp					= NULL;
-	char *pstCommand	= NULL;
+	wchar_t* pstMsg     = NULL;
+	Exp* pExp           = NULL;
+	wchar_t *pstCommand = NULL;
     Parser parser;
 
 	if(in.size() < 1 || in.size() > 3)
@@ -63,26 +64,26 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 			{
 				return Function::Error;
 			}
-			
-			if(stricmp(pS->string_get(0), "errcatch") == 0)
+
+			if(wcsicmp(pS->string_get(0), L"errcatch") == 0)
 			{
 				bErrCatch = true;
 			}
 			else
 			{
-				char stErr[1024];
+				wchar_t stErr[1024];
 #ifdef _MSC_VER
-				sprintf_s(stErr, 1024, "\"%s\" value is not a valid value for exec function", pS->string_get(0));
+				swprintf_s(stErr, 1024, L"\"%s\" value is not a valid value for exec function", pS->string_get(0));
 #else
-				sprintf(stErr, "\"%s\" value is not a valid value for exec function", pS->string_get(0));
+				swprintf(stErr, 1024, L"\"%S\" value is not a valid value for exec function", pS->string_get(0));
 #endif
-				YaspWrite(stErr);
+				YaspWriteW(stErr);
 				return Function::Error;
 			}
 		}
 		else
 		{//not managed
-			YaspWrite("Bad 2nd parameter type in execstr call");
+			YaspWriteW(L"Bad 2nd parameter type in execstr call");
 			return Function::Error;
 		}
 
@@ -96,12 +97,12 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 				{
 					return Function::Error;
 				}
-			
+
 				pstMsg = pS->string_get(0);
 			}
 			else
 			{//not managed
-				YaspWrite("Bad 3rd parameter type in execstr call");
+				YaspWriteW(L"Bad 3rd parameter type in execstr call");
 				return Function::Error;
 			}
 		}
@@ -120,24 +121,24 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 		int iTotalLen = pS->size_get(); //add \n after each string
 		for(int i = 0 ; i < pS->size_get() ; i++)
 		{
-			iTotalLen += (int)strlen(pS->string_get(i));
+			iTotalLen += (int)wcslen(pS->string_get(i));
 		}
 
-		pstCommand = (char*)MALLOC(sizeof(char) * (iTotalLen + 1));//+1 for null termination
+		pstCommand = (wchar_t*)MALLOC(sizeof(wchar_t) * (iTotalLen + 1));//+1 for null termination
 
 		int iPos = 0;
 		for(int i = 0 ; i < pS->size_get() ; i++)
 		{
-			strcpy(pstCommand + iPos, pS->string_get(i));
-			iPos = (int)strlen(pstCommand);
-			pstCommand[iPos++] = '\n';
+			wcscpy(pstCommand + iPos, pS->string_get(i));
+			iPos = (int)wcslen(pstCommand);
+			pstCommand[iPos++] = L'\n';
 			pstCommand[iPos] = 0;
 		}
 
 		parser.parse(pstCommand);
 		if(parser.getExitStatus() !=  Parser::Succeded)
 		{
-			YaspWrite(parser.getErrorMessage());
+			YaspWriteW(parser.getErrorMessage());
 			FREE(pstCommand);
 			return Function::Error;
 		}
@@ -146,7 +147,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 	}
 	else
 	{//not managed
-		YaspWrite("Bad 1st parameter type in execstr call");
+		YaspWriteW(L"Bad 1st parameter type in execstr call");
 		return Function::Error;
 	}
 
@@ -169,12 +170,12 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 			ExecVisitor execMe;
 			(*j)->accept(execMe);
 		}
-		catch(std::string st)
+		catch(std::wstring st)
 		{
 			//print error
-			YaspWrite(const_cast<char*>(pstCommand));
-			YaspWrite("\n");
-			YaspWrite(const_cast<char*>(st.c_str()));
+			YaspWriteW(pstCommand);
+			YaspWriteW(L"\n");
+			YaspWriteW(st.c_str());
 			return Function::Error;
 		}
 	}

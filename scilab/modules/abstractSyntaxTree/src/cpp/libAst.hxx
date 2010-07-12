@@ -29,10 +29,10 @@ namespace ast
   /** \brief Print an abstract syntax tree.
    ** \param tree abstract syntax tree's root node
    ** \param ostr output stream  */
-  void print (const Exp &tree, std::ostream &ostr);
+  void print (const Exp &tree, std::wostream &ostr);
 
   /** \brief Intercept output stream redirection. */
-  inline std::ostream& operator<< (std::ostream& ostr, const Exp &tree)
+  inline std::wostream& operator<< (std::wostream& ostr, const Exp &tree)
   {
     print (tree, ostr);
     return ostr;

@@ -14,6 +14,7 @@
 #ifndef __STORECOMMAND_H__
 #define __STORECOMMAND_H__
 
+#include <wchar.h>
 #include "machine.h"
 
 /*
@@ -29,7 +30,7 @@ int ismenu(void);
  * @param command the command
  * @return <ReturnValue>
  */
-int StoreCommand (char *command);
+int StoreCommand (wchar_t *command);
 
 /**
  * try to execute a command or add it to the end of command queue
@@ -38,7 +39,7 @@ int StoreCommand (char *command);
  * @param flag a internal execution flag for sequential execution
  * @return <ReturnValue>
  */
-int StoreCommandWithFlag (char *command, int flag);
+int StoreCommandWithFlag (wchar_t *command, int flag);
 
 /**
  * @TODO add comment
@@ -53,7 +54,7 @@ int GetCommand (char *str);
 * flag = 0 : the command is not shown in scilab window
 * flag = 1 : the command is shown in scilab window (if at prompt) and executed sequentially
 */
-int StorePrioritaryCommandWithFlag (char *command,int flag);
+int StorePrioritaryCommandWithFlag (wchar_t *command,int flag);
 
 /**
 *

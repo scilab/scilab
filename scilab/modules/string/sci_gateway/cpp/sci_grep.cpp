@@ -106,7 +106,7 @@ Function::ReturnValue sci_grep(typed_list &in, int _piRetCount, typed_list &out)
 
     for(int i = 0 ; i < pS2->size_get() ; i++)
     {
-        if(strlen(pS2->string_get(i)) == 0)
+        if(wcslen(pS2->string_get(i)) == 0)
         {
 			Scierror(249,_("%s: Wrong values for input argument #%d: Non-empty strings expected.\n"), "grep", 2);
         }
@@ -120,13 +120,25 @@ Function::ReturnValue sci_grep(typed_list &in, int _piRetCount, typed_list &out)
 	grepresults.positions = NULL;
 	grepresults.values = NULL;
 
+    char** pStr1 = (char**)MALLOC(sizeof(char*) * pS1->size_get());
+    for(int i = 0 ; i < pS1->size_get() ; i++)
+    {
+        pStr1[i] = wide_string_to_UTF8(pS1->string_get(i));
+    }
+
+    char** pStr2 = (char**)MALLOC(sizeof(char*) * pS2->size_get());
+    for(int i = 0 ; i < pS2->size_get() ; i++)
+    {
+        pStr2[i] = wide_string_to_UTF8(pS2->string_get(i));
+    }
+
     if(bRegularExpression)
     {
-        code_error_grep = GREP_NEW(&grepresults, pS1->string_get(), pS1->size_get(), pS2->string_get(), pS2->size_get());
+        code_error_grep = GREP_NEW(&grepresults, pStr1, pS1->size_get(), pStr2, pS2->size_get());
     }
     else
     {
-        code_error_grep = GREP_OLD(&grepresults, pS1->string_get(), pS1->size_get(), pS2->string_get(), pS2->size_get());
+        code_error_grep = GREP_OLD(&grepresults, pStr1, pS1->size_get(), pStr2, pS2->size_get());
     }
 
     switch (code_error_grep)
@@ -168,6 +180,18 @@ Function::ReturnValue sci_grep(typed_list &in, int _piRetCount, typed_list &out)
         }
         break;
     }
+
+    for(int i = 0 ; i < pS1->size_get() ; i++)
+    {
+        FREE(pStr1[i]);
+    }
+    FREE(pStr1);
+
+    for(int i = 0 ; i < pS2->size_get() ; i++)
+    {
+        FREE(pStr2[i]);
+    }
+    FREE(pStr2);
 
     return Function::OK;
 }

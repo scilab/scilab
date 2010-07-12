@@ -1,13 +1,13 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
- * 
+ *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
  *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- * 
+ *
  */
 
 #include <sstream>
@@ -15,7 +15,7 @@
 #include "tlist.hxx"
 #include "string.hxx"
 
-namespace types 
+namespace types
 {
     /**
     ** Constructor & Destructor (public)
@@ -24,7 +24,7 @@ namespace types
     {
     }
 
-    /** 
+    /**
     ** Private Copy Constructor and data Access
     */
     TList::TList(TList *_oTListCopyMe)
@@ -50,7 +50,7 @@ namespace types
         return new TList(this);
     }
 
-    bool TList::exists(const std::string& _sKey)
+    bool TList::exists(const std::wstring& _sKey)
     {
         if(size_get() < 1)
         {
@@ -62,7 +62,7 @@ namespace types
         //first field is the tlist type
         for(int i = 1 ; i < pS->size_get() ; i++)
         {
-            if(string(pS->string_get(i)) == _sKey)
+            if(wstring(pS->string_get(i)) == _sKey)
             {
                 return true;
             }
@@ -70,7 +70,7 @@ namespace types
         return false;
     }
 
-    InternalType* TList::get(const std::string& _sKey)
+    InternalType* TList::get(const std::wstring& _sKey)
     {
         return get(getIndexFromString(_sKey));
     }
@@ -89,7 +89,7 @@ namespace types
         return NULL;
     }
 
-    int TList::getIndexFromString(const std::string _sKey)
+    int TList::getIndexFromString(const std::wstring _sKey)
     {
         if(size_get() < 1)
         {
@@ -100,7 +100,7 @@ namespace types
         //first field is the tlist type
         for(int i = 1 ; i < pS->size_get() ; i++)
         {
-            if(string(pS->string_get(i)) == _sKey)
+            if(wstring(pS->string_get(i)) == _sKey)
             {
                 return i;
             }
@@ -108,11 +108,11 @@ namespace types
         return -1;
     }
 
-    std::vector<InternalType*> TList::extract_string(list<string> _stFields)
+    std::vector<InternalType*> TList::extract_string(list<wstring> _stFields)
     {
         std::vector<InternalType*> Result;
 
-        std::list<string>::const_iterator it;
+        std::list<wstring>::const_iterator it;
         for(it = _stFields.begin() ; it != _stFields.end() ; it++)
         {
             if(exists(*it) == false)
@@ -127,18 +127,18 @@ namespace types
         }
         return Result;
     }
-    
-    std::string TList::getTypeStr() 
+
+    std::wstring TList::getTypeStr()
     {
         if(size_get() < 1)
         {
-            return "";
+            return L"";
         }
 
         return (*m_plData)[0]->getAsString()->string_get(0);
     }
 
-    std::string TList::getShortTypeStr() 
+    std::wstring TList::getShortTypeStr()
     {
         return getTypeStr();
     }

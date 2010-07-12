@@ -151,7 +151,7 @@ SciErr allocCommonMatrixOfDouble(void* _pvCtx, int _iVar, int _iComplex, int _iR
   typed_list in = *pStr->m_pIn;
   InternalType** out = pStr->m_pOut;
   int*	piRetCount = pStr->m_piRetCount;
-  char* pstName = pStr->m_pstName;
+  wchar_t* pstName = pStr->m_pstName;
 
 	Double* pDbl = new Double(_iRows, _iCols, _iComplex == 1);
 	if(pDbl == NULL)

@@ -1,13 +1,13 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
- * 
+ *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
  *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- * 
+ *
  */
 /*--------------------------------------------------------------------------*/
 extern "C"
@@ -46,7 +46,7 @@ IMPORT_SIGNAL __threadSignal LaunchScilab;
 static CommandRec *commandQueue = NULL;
 static __threadLock commandQueueSingleAccess = __StaticInitLock;
 /*--------------------------------------------------------------------------*/
-int StoreCommand (char *command)
+int StoreCommand (wchar_t *command)
 {
 	return (StoreCommandWithFlag (command, 0));
 }
@@ -56,7 +56,7 @@ int StoreCommand (char *command)
  * flag = 0 : the command is not shown in scilab window
  * flag = 1 : the command is shown in scilab window (if at prompt) and executed sequentially
  */
-int StoreCommandWithFlag (char *command,int flag)
+int StoreCommandWithFlag (wchar_t *command,int flag)
 {
     Parser parser;
     try
@@ -65,15 +65,15 @@ int StoreCommandWithFlag (char *command,int flag)
         ast::ExecVisitor exec;
         parser.getTree()->accept(exec);
     }
-    catch (std::string error)
+    catch (std::wstring error)
     {
-        YaspWrite("\n");
-        YaspWrite("\n");
-        YaspWrite(command);
-        YaspWrite("\n");
-        YaspWrite(const_cast<char *>(error.c_str()));
-        YaspWrite("\n");
-        YaspWrite(_("while executing a callback"));
+        YaspWriteW(L"\n");
+        YaspWriteW(L"\n");
+        YaspWriteW(command);
+        YaspWriteW(L"\n");
+        YaspWriteW(error.c_str());
+        YaspWriteW(L"\n");
+        YaspWriteW(_W("while executing a callback"));
     }
 
     parser.freeTree();
@@ -85,7 +85,7 @@ int StoreCommandWithFlag (char *command,int flag)
  * flag = 0 : the command is not shown in scilab window
  * flag = 1 : the command is shown in scilab window (if at prompt) and executed sequentially
  */
-int StorePrioritaryCommandWithFlag (char *command,int flag)
+int StorePrioritaryCommandWithFlag (wchar_t *command,int flag)
 {
     Parser parser;
 
@@ -95,24 +95,24 @@ int StorePrioritaryCommandWithFlag (char *command,int flag)
         ast::ExecVisitor exec;
         parser.getTree()->accept(exec);
     }
-    catch (std::string error)
+    catch (std::wstring error)
     {
-        YaspWrite("\n");
-        YaspWrite("\n");
-        YaspWrite(command);
-        YaspWrite("\n");
-        YaspWrite(const_cast<char *>(error.c_str()));
-        YaspWrite("\n");
-        YaspWrite(_("while executing a callback"));
+        YaspWriteW(L"\n");
+        YaspWriteW(L"\n");
+        YaspWriteW(command);
+        YaspWriteW(L"\n");
+        YaspWriteW(error.c_str());
+        YaspWriteW(L"\n");
+        YaspWriteW(_W("while executing a callback"));
     }
-    
+
     parser.freeTree();
 	return (0);
 }
 /*--------------------------------------------------------------------------*/
 int isEmptyCommandQueue(void)
 {
-#pragma warning("isEmptyCommandQueue is deprecated. It will be removed _BEFORE_ Scilab 6.0.")
+#pragma message("WARNING : isEmptyCommandQueue is deprecated. It will be removed _BEFORE_ Scilab 6.0.")
 	// FIXME : Do not forget to remove me.
     return 0;
 }
@@ -123,14 +123,14 @@ int isEmptyCommandQueue(void)
  */
 int GetCommand ( char *str)
 {
-#pragma warning("GetCommand is deprecated. It will be removed _BEFORE_ Scilab 6.0.")
+#pragma message("WARNING : GetCommand is deprecated. It will be removed _BEFORE_ Scilab 6.0.")
 	// FIXME : Do not forget to remove me.
     return 0;
 }
 /*--------------------------------------------------------------------------*/
 int ismenu(void)
 {
-#pragma warning("ismenu is deprecated. It will be removed _BEFORE_ Scilab 6.0.")
+#pragma message("WARNING : ismenu is deprecated. It will be removed _BEFORE_ Scilab 6.0.")
 	// FIXME : Do not forget to remove me.
     return 0;
 }
@@ -138,7 +138,7 @@ int ismenu(void)
 /* menu/button info for Scilab */
 int C2F(getmen)(char * btn_cmd,int * lb, int * entry)
 {
-#pragma warning("C2F(getmen) is deprecated. It will be removed _BEFORE_ Scilab 6.0.")
+#pragma message("WARNING : C2F(getmen) is deprecated. It will be removed _BEFORE_ Scilab 6.0.")
 	// FIXME : Do not forget to remove me.
     return 0;
 }

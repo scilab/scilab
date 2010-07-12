@@ -44,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\types\includes;..\..\..\..\core\includes;..\..\..\..\symbol\includes;..\..\..\..\abstractSyntaxTree\includes;../../../../system_env/includes"
+				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\types\includes;..\..\..\..\core\includes;..\..\..\..\symbol\includes;..\..\..\..\abstractSyntaxTree\includes;../../../../system_env/includes;../../../../localization/includes;../../../../../libs/intl"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;OUTPUT_STREAM_GW_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -118,7 +118,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\types\includes;..\..\..\..\core\includes;..\..\..\..\symbol\includes;..\..\..\..\abstractSyntaxTree\includes;../../../../system_env/includes"
+				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\types\includes;..\..\..\..\core\includes;..\..\..\..\symbol\includes;..\..\..\..\abstractSyntaxTree\includes;../../../../system_env/includes;../../../../localization/includes;../../../../../libs/intl"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;OUTPUT_STREAM_GW_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -193,7 +193,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\types\includes;..\..\..\..\core\includes;..\..\..\..\symbol\includes;..\..\..\..\abstractSyntaxTree\includes;../../../../system_env/includes"
+				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\types\includes;..\..\..\..\core\includes;..\..\..\..\symbol\includes;..\..\..\..\abstractSyntaxTree\includes;../../../../system_env/includes;../../../../localization/includes;../../../../../libs/intl"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;OUTPUT_STREAM_GW_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -270,7 +270,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\types\includes;..\..\..\..\core\includes;..\..\..\..\symbol\includes;..\..\..\..\abstractSyntaxTree\includes;../../../../system_env/includes"
+				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\types\includes;..\..\..\..\core\includes;..\..\..\..\symbol\includes;..\..\..\..\abstractSyntaxTree\includes;../../../../system_env/includes;../../../../localization/includes;../../../../../libs/intl"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;OUTPUT_STREAM_GW_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -353,6 +353,10 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 		</Filter>
+		<File
+			RelativePath="..\..\..\..\..\bin\libintl.lib"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

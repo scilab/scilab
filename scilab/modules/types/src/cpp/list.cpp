@@ -94,13 +94,13 @@ namespace types
     ** toString to display Lists
     ** FIXME : Find a better indentation process
     */
-    std::string List::toString(int _iPrecision, int _iLineLen)
+    wstring List::toString(int _iPrecision, int _iLineLen)
     {
-        std::ostringstream ostr;
+        wostringstream ostr;
 
         if (size_get() == 0)
         {
-            ostr << "()" << std::endl;
+            ostr << L"()" << std::endl;
         }
         else
         {
@@ -108,7 +108,7 @@ namespace types
             std::vector<InternalType *>::iterator itValues;
             for (itValues = m_plData->begin() ; itValues != m_plData->end() ; ++itValues, ++iPosition)
             {
-                ostr << "     (" << iPosition << ")" << std::endl;
+                ostr << L"     (" << iPosition << L")" << std::endl;
                 ostr << (*itValues)->toString(_iPrecision, _iLineLen) << std::endl;
             }
         }

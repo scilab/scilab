@@ -28,7 +28,7 @@ namespace types
 
     private :
                                                 Struct(Struct *_oListCopyMe);
-        std::map<std::string, InternalType *>*  getData();
+        std::map<std::wstring, InternalType *>* getData();
 
     public :
         int                                     size_get(); 
@@ -41,26 +41,26 @@ namespace types
         ** add(Symbol *_psKey, InternalType *_typedValue)
         ** Append the given value to the struct
         */
-        void                                    add(const std::string& _sKey, InternalType *_typedValue);
+        void                                    add(const std::wstring& _sKey, InternalType *_typedValue);
 
         /**
         ** add(Symbol *_psKey)
         ** Append an null value to the struct
         */
-        void                                    add(const std::string& _sKey);
+        void                                    add(const std::wstring& _sKey);
 
         /**
         ** get(Symbol *_psKey)
         ** Append the given value to the end of the List
         */
-        InternalType*                           get(const std::string& _sKey);
+        InternalType*                           get(const std::wstring& _sKey);
 
         /**
         **
         */
-        bool                                    exists(const std::string& _sKey);
+        bool                                    exists(const std::wstring& _sKey);
 
-        std::vector<InternalType*>              extract(list<string> _stFields);
+        std::vector<InternalType*>              extract(list<wstring> _stFields);
 
         /**
         ** Clone
@@ -68,16 +68,16 @@ namespace types
         */
         Struct*                                 clone();
 
-        std::string                             toString(int _iPrecision, int _iLineLen);
+        wstring                                 toString(int _iPrecision, int _iLineLen);
 
         Struct*                                 getAsStruct(void) { return this; }
 
         /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::string                     getTypeStr() {return string("struct");}
+        virtual wstring                         getTypeStr() {return L"struct";}
         /* return type as short string ( s, i, ce, l, ... )*/
-        virtual std::string                     getShortTypeStr() {return string("st");}
+        virtual wstring                         getShortTypeStr() {return L"st";}
     private :
-        std::map<std::string, InternalType *>*  m_plData;
+        std::map<std::wstring, InternalType *>*  m_plData;
     };
 }
 

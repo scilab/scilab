@@ -53,7 +53,7 @@ namespace symbol
         HeapVarTable.scope_end();
     }
 
-    InternalType*	Context::get(const string& key) const
+    InternalType* Context::get(const wstring& key) const
     {
         InternalType* pI = NULL;
 
@@ -95,7 +95,7 @@ namespace symbol
         return NULL;
     }
 
-    InternalType*	Context::getCurrentLevel(const string& key) const
+    InternalType* Context::getCurrentLevel(const wstring& key) const
     {
         // FIXME
         InternalType* pI = NULL;
@@ -119,7 +119,7 @@ namespace symbol
         }
     }
 
-    InternalType*	Context::getAllButCurrentLevel(const string& key) const
+    InternalType* Context::getAllButCurrentLevel(const wstring& key) const
     {
        // FIXME
         InternalType* pI = NULL;
@@ -143,18 +143,18 @@ namespace symbol
         }
     }
 
-    InternalType*	Context::get_fun(const string& key) const
+    InternalType* Context::get_fun(const wstring& key) const
     {
         //FIXME Global
         return EnvFunTable.get(key);
     }
 
-    std::list<string>& Context::get_funlist(const string& _stModuleName)
+    std::list<wstring>& Context::get_funlist(const wstring& _stModuleName)
     {
         return EnvFunTable.get_funlist(_stModuleName);
     }
 
-    bool Context::put(const string& key, InternalType &type)
+    bool Context::put(const wstring& key, InternalType &type)
     {
         if(HeapVarTable.isGlobalVisible(key))
         {
@@ -168,7 +168,7 @@ namespace symbol
         return true;
     }
 
-    bool Context::remove(const string& key)
+    bool Context::remove(const wstring& key)
     {
         // look in local global scope
         if(HeapVarTable.isGlobalVisible(key))
@@ -195,7 +195,7 @@ namespace symbol
         return true;
     }
 
-    bool Context::put_in_previous_scope(const string& key, InternalType &type)
+    bool Context::put_in_previous_scope(const wstring& key, InternalType &type)
     {
         // FIXME
         EnvVarTable.put_in_previous_scope(key, type);
@@ -204,18 +204,18 @@ namespace symbol
 
     void Context::print()
     {
-        //std::cout << "PrivateFunTable : " << std::endl;
-        //std::cout << PrivateFunTable << std::endl << std::endl;
-        //std::cout << "PrivateVarTable : " << std::endl;
-        //std::cout << PrivateVarTable << std::endl << std::endl;
-        //std::cout << "EnvFunTable : " << std::endl;
-        //std::cout << EnvFunTable << std::endl << std::endl;
-        std::cout << "EnvVarTable : " << std::endl;
-        std::cout << EnvVarTable << std::endl << std::endl;
-        //std::cout << "HeapFunTable : " << std::endl;
-        //std::cout << HeapFunTable << std::endl << std::endl;
-        std::cout << "HeapVarTable : " << std::endl;
-        std::cout << HeapVarTable << std::endl << std::endl;
+        //std::wcout << "PrivateFunTable : " << std::endl;
+        //std::wcout << PrivateFunTable << std::endl << std::endl;
+        //std::wcout << "PrivateVarTable : " << std::endl;
+        //std::wcout << PrivateVarTable << std::endl << std::endl;
+        //std::wcout << "EnvFunTable : " << std::endl;
+        //std::wcout << EnvFunTable << std::endl << std::endl;
+        std::wcout << "EnvVarTable : " << std::endl;
+        std::wcout << EnvVarTable << std::endl << std::endl;
+        //std::wcout << "HeapFunTable : " << std::endl;
+        //std::wcout << HeapFunTable << std::endl << std::endl;
+        std::wcout << "HeapVarTable : " << std::endl;
+        std::wcout << HeapVarTable << std::endl << std::endl;
         //FIXME
     }
 
@@ -237,39 +237,39 @@ namespace symbol
         return true;
     }
 
-    bool Context::isGlobalVisible(const string& key) const
+    bool Context::isGlobalVisible(const wstring& key) const
     {
         return HeapVarTable.isGlobalVisible(key);
     }
 
     /*return global variable, search in global scope ( highest )*/
-    InternalType* Context::getGlobalValue(const string& key) const
+    InternalType* Context::getGlobalValue(const wstring& key) const
     {
         return HeapVarTable.getGlobalValue(key);
     }
 
     /*return global variable existance status*/
-    bool Context::isGlobalExists(const string& key) const
+    bool Context::isGlobalExists(const wstring& key) const
     {
         return HeapVarTable.isGlobalExists(key);
     }
 
-    void Context::setGlobalValue(const string& key, InternalType &value)
+    void Context::setGlobalValue(const wstring& key, InternalType &value)
     {
         HeapVarTable.setGlobalValue(key, value);
     }
 
-    void Context::createEmptyGlobalValue(const string& key)
+    void Context::createEmptyGlobalValue(const wstring& key)
     {
         HeapVarTable.createEmptyGlobalValue(key);
     }
 
-    void Context::setGlobalVisible(const string& key, bool bVisible)
+    void Context::setGlobalVisible(const wstring& key, bool bVisible)
     {
         HeapVarTable.setGlobalVisible(key, bVisible);
     }
 
-    void Context::removeGlobal(const string &key)
+    void Context::removeGlobal(const wstring &key)
     {
         HeapVarTable.removeGlobal(key);
     }

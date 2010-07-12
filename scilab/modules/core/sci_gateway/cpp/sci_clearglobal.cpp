@@ -15,6 +15,7 @@
 #include "context.hxx"
 #include "Scierror.h"
 #include "localization.h"
+#include "charEncoding.h"
 
 Function::ReturnValue sci_clearglobal(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {

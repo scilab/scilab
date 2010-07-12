@@ -19,13 +19,14 @@
 #include "symbol.hxx"
 #include "seqexp.hxx"
 
+using namespace std;
 namespace types
 {
     class Macro : public Callable
     {
     public :
                                     Macro(): Callable(){};
-                                    Macro(const std::string& _stName, std::list<std::string> &_inputArgs, std::list<std::string> &_outputArgs, ast::SeqExp &_body, const string& _stModule);
+                                    Macro(const wstring& _stName, list<wstring> &_inputArgs, list<wstring> &_outputArgs, ast::SeqExp &_body, const wstring& _stModule);
         virtual                     ~Macro();
 
         // FIXME : Should not return NULL;
@@ -36,23 +37,23 @@ namespace types
 
         void                        whoAmI();
 
-        std::string                 toString(int _iPrecision, int _iLineLen);
+        wstring                     toString(int _iPrecision, int _iLineLen);
 
         Callable::ReturnValue       call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
 
         ast::SeqExp*                body_get();
 
         /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::string         getTypeStr() {return string("macro");}
+        virtual wstring             getTypeStr() {return L"macro";}
         /* return type as short string ( s, i, ce, l, ... )*/
-        virtual std::string         getShortTypeStr() {return string("function");}
+        virtual wstring             getShortTypeStr() {return L"function";}
 
-        std::list<std::string>*     inputs_get();
-        std::list<std::string>*     outputs_get();
+        list<wstring>*              inputs_get();
+        list<wstring>*              outputs_get();
 
     private :
-        std::list<std::string>*     m_inputArgs;
-        std::list<std::string>*     m_outputArgs;
+        list<wstring>*              m_inputArgs;
+        list<wstring>*              m_outputArgs;
         ast::SeqExp*                m_body;
         bool                        bAutoAlloc;
 

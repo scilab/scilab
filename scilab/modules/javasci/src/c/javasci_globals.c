@@ -159,7 +159,7 @@ void Initialize(void)
 
 #endif
 	/* set TMPDIR */
-	C2F(settmpdir)();
+	defineTMPDIR();
 
 	/* For the initialization of the Scilab primivite : fromjava() */
 	SetFromJavaToON();

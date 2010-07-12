@@ -33,12 +33,12 @@ namespace types
 
         void                    whoAmI();
 
-        std::string             toString(int _iPrecision, int _iLineLen);
+        wstring                 toString(int _iPrecision, int _iLineLen);
 
         /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::string     getTypeStr() {return string("listundefined");}
+        virtual wstring         getTypeStr() {return L"listundefined";}
         /* return type as short string ( s, i, ce, l, ... )*/
-        virtual std::string     getShortTypeStr() {return string("");}
+        virtual wstring         getShortTypeStr() {return L"";}
     };
 }
 

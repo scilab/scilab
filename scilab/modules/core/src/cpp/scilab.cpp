@@ -77,8 +77,8 @@ extern "C"
 
 #define INTERACTIVE     -1
 
-const char* prog_name;
-const char* file_name;
+const wchar_t* prog_name;
+const wchar_t* file_name;
 
 bool parseTrace = false;
 bool printAst = false;
@@ -103,10 +103,10 @@ void Add_false(void);
 void Add_WITH_DEMOS(void); //temporary variable
 void Add_All_Variables(void);
 
-void Add_Double_Constant(string _szName, double _dblReal, double _dblImg, bool _bComplex);
-void Add_Poly_Constant(string _szName, string _szPolyVar, int _iRank, Double *_pdblReal);
-void Add_Boolean_Constant(string _szName, bool _bBool);
-void Add_String_Constant(string _szName, const char* _pstString);
+void Add_Double_Constant(wstring _szName, double _dblReal, double _dblImg, bool _bComplex);
+void Add_Poly_Constant(wstring _szName, wstring _szPolyVar, int _iRank, Double *_pdblReal);
+void Add_Boolean_Constant(wstring _szName, bool _bBool);
+void Add_String_Constant(wstring _szName, const char* _pstString);
 
 int InitializeEnvironnement(void);
 bool execScilabStart(void);
@@ -245,7 +245,7 @@ static int batchMain (void)
 
     if (parser->getExitStatus() != Parser::Succeded)
     {
-        YaspWrite(parser->getErrorMessage());
+        YaspWriteW(parser->getErrorMessage());
         return PARSE_ERROR;
     }
 
@@ -366,10 +366,11 @@ static int interactiveMain (void)
 
         if (strcmp(command, "") != 0)
         {
+            wchar_t* pstCommand = to_wide_string(command);
             /*
             ** -*- PARSING -*-
             */
-            parseCommandTask(parser, timed, command);
+            parseCommandTask(parser, timed, pstCommand);
 
             /*
             ** -*- DUMPING TREE -*-
@@ -395,11 +396,11 @@ static int interactiveMain (void)
             }
             else if(parser->getExitStatus() == Parser::Failed && parser->getControlStatus() == Parser::AllControlClosed)
             {
-                YaspWrite(parser->getErrorMessage());
-                //std::cerr << "Parser control : " << parser->getControlStatus() << std::endl;
+                YaspWriteW(parser->getErrorMessage());
             }
 
             parser->freeTree();
+            FREE(pstCommand);
         }
     }
 #ifdef DEBUG
@@ -421,7 +422,7 @@ int main(int argc, char *argv[])
     int iFileIndex = INTERACTIVE;
     int iLangIndex = 0;
 
-    prog_name = argv[0];
+    prog_name = to_wide_string(argv[0]);
 
     setScilabMode(SCILAB_STD);
     get_option(argc, argv, &iFileIndex, &iLangIndex);
@@ -517,12 +518,12 @@ int StartScilabEngine(int argc, char*argv[], int iFileIndex)
 
     if (iFileIndex == INTERACTIVE)
     {
-        file_name = "prompt";
+        file_name = L"prompt";
         iMainRet = interactiveMain();
     }
     else
     {
-        file_name = argv[iFileIndex];
+        file_name = to_wide_string(argv[iFileIndex]);
         iMainRet = batchMain();
     }
 
@@ -556,27 +557,27 @@ void Add_All_Variables(void)
 
 void Add_WITH_DEMOS(void)
 {
-    Add_Boolean_Constant("WITH_DEMOS", false);
+    Add_Boolean_Constant(L"WITH_DEMOS", false);
 }
 
 void Add_false(void)
 {
-    Add_Boolean_Constant("%f", false);
+    Add_Boolean_Constant(L"%f", false);
 }
 
 void Add_true(void)
 {
-    Add_Boolean_Constant("%t", true);
+    Add_Boolean_Constant(L"%t", true);
 }
 
 void Add_pi(void)
 {
-    Add_Double_Constant("%pi", 3.1415926535897931159980, 0, false);
+    Add_Double_Constant(L"%pi", 3.1415926535897931159980, 0, false);
 }
 
 void Add_i(void)
 {
-    Add_Double_Constant("%i", 0, 1, true);
+    Add_Double_Constant(L"%i", 0, 1, true);
 }
 
 void Add_s(void)
@@ -585,7 +586,7 @@ void Add_s(void)
     dblCoef.val_set(0, 0, 0);
     dblCoef.val_set(0, 1, 1);
 
-    Add_Poly_Constant("%s","s", 2, &dblCoef);
+    Add_Poly_Constant(L"%s",L"s", 2, &dblCoef);
 }
 
 void Add_z(void)
@@ -594,10 +595,10 @@ void Add_z(void)
     dblCoef.val_set(0, 0, 0);
     dblCoef.val_set(0, 1, 1);
 
-    Add_Poly_Constant("%z","z", 2, &dblCoef);
+    Add_Poly_Constant(L"%z",L"z", 2, &dblCoef);
 }
 
-void Add_Poly_Constant(string _szName, string _szPolyVar, int _iRank, Double *_pdbl)
+void Add_Poly_Constant(wstring _szName, wstring _szPolyVar, int _iRank, Double *_pdbl)
 {
     types::MatrixPoly *pVar = new types::MatrixPoly(_szPolyVar, 1, 1, &_iRank);
     Poly *poPoly = pVar->poly_get(0,0);
@@ -605,20 +606,20 @@ void Add_Poly_Constant(string _szName, string _szPolyVar, int _iRank, Double *_p
     Context::getInstance()->put(_szName, *pVar);
 }
 
-void Add_Double_Constant(string _szName, double _dblReal, double _dblImg, bool _bComplex)
+void Add_Double_Constant(wstring _szName, double _dblReal, double _dblImg, bool _bComplex)
 {
     types::Double* pVal = new types::Double(1,1,_bComplex);
     pVal->val_set(0,0,_dblReal,_dblImg);
     symbol::Context::getInstance()->put(_szName, *pVal);
 }
 
-void Add_Boolean_Constant(string _szName, bool _bBool)
+void Add_Boolean_Constant(wstring _szName, bool _bBool)
 {
     types::Bool* pVal = new types::Bool(_bBool);
     symbol::Context::getInstance()->put(_szName, *pVal);
 }
 
-void Add_String_Constant(string _szName, const char* _pstString)
+void Add_String_Constant(wstring _szName, const char* _pstString)
 {
     types::String* ps = new types::String(_pstString);
     symbol::Context::getInstance()->put(_szName, *ps);

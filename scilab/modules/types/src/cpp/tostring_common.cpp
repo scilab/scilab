@@ -123,7 +123,7 @@ void GetComplexFormat(double _dblR, double _dblI, int _iPrecNeeded, int *_piTota
 	}
 }
 
-void AddDoubleValue(ostringstream *_postr, double _dblVal, int _iWidth, int _iPrec, bool bPrintPlusSign, bool bPrintOne, bool bPaddSign)
+void AddDoubleValue(wostringstream *_postr, double _dblVal, int _iWidth, int _iPrec, bool bPrintPlusSign, bool bPrintOne, bool bPaddSign)
 {
 	if(bPrintPlusSign == true)
 	{
@@ -137,7 +137,7 @@ void AddDoubleValue(ostringstream *_postr, double _dblVal, int _iWidth, int _iPr
 		}
 		else
 		{
-			*_postr << (_dblVal < 0 ? MINUS_STRING : "");
+			*_postr << (_dblVal < 0 ? MINUS_STRING : L"");
 		}
 	}
 
@@ -149,9 +149,9 @@ void AddDoubleValue(ostringstream *_postr, double _dblVal, int _iWidth, int _iPr
 	}
 }
 
-void AddDoubleComplexValue(ostringstream *_postr, double _dblR, double _dblI, int _iTotalWitdh, int _iWidthR, int _iWidthI, int _iPrec)
+void AddDoubleComplexValue(wostringstream *_postr, double _dblR, double _dblI, int _iTotalWitdh, int _iWidthR, int _iWidthI, int _iPrec)
 {
-	ostringstream ostemp;
+	wostringstream ostemp;
 	/*
 	if R && !C -> R
 	if R && C -> R + Ci
@@ -223,7 +223,7 @@ void AddDoubleComplexValue(ostringstream *_postr, double _dblR, double _dblI, in
 
 }
 
-void PrintDoubleVar(ostringstream *_postr,  double _dblVal)
+void PrintDoubleVar(wostringstream *_postr,  double _dblVal)
 {
 	if(ISNAN(_dblVal) == 1)
 	{//NaN
@@ -241,7 +241,7 @@ void PrintDoubleVar(ostringstream *_postr,  double _dblVal)
 	}	
 
 }
-void Add_Space(ostringstream *_postr, int _iSpace)
+void Add_Space(wostringstream *_postr, int _iSpace)
 {
 	for(int i = 0 ; i < _iSpace ; i++)
 	{
@@ -249,7 +249,7 @@ void Add_Space(ostringstream *_postr, int _iSpace)
 	}
 }
 
-void Config_Stream(ostringstream *_postr, int _iWidth, int _iPrec, char _cFill)
+void Config_Stream(wostringstream *_postr, int _iWidth, int _iPrec, char _cFill)
 {
 	_postr->width(_iWidth);
 	_postr->precision(_iPrec);

@@ -424,11 +424,11 @@ namespace types
 		return true;
 	}
 
-	std::string Float::toString(int _iPrecision, int _iLineLen) 
+	wstring Float::toString(int _iPrecision, int _iLineLen) 
 	{
-		std::ostringstream ostr;
+		wostringstream ostr;
 		// FIXME : Implement display method.
-		ostr << "Float Values" << std::endl;
+		ostr << L"Float Values" << std::endl;
 
 		return ostr.str();
 	}

@@ -513,7 +513,7 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
 	return NULL;
 }
 
-const std::string* getStructNameFromExp(const Exp* _pExp)
+const std::wstring* getStructNameFromExp(const Exp* _pExp)
 {
     const FieldExp* pField =  dynamic_cast<const FieldExp*>(_pExp);
     const SimpleVar* pVar =  dynamic_cast<const SimpleVar*>(_pExp);

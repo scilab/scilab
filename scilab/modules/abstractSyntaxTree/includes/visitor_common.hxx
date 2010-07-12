@@ -38,7 +38,7 @@ EXTERN_AST types::InternalType* AddElementToVariableFromRow(
                         int _iRows, int _iCols, int *_piRows);
 
 
-EXTERN_AST const std::string* getStructNameFromExp(const ast::Exp* _pExp);
+EXTERN_AST const std::wstring* getStructNameFromExp(const ast::Exp* _pExp);
 
 EXTERN_AST types::Struct* getStructFromExp(const ast::Exp* _pExp);
 

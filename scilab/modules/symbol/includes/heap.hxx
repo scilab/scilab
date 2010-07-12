@@ -18,7 +18,7 @@
 #include "symbol.hxx"
 #include "table.hxx"
 
-#define UNNAMED "unnamed"
+#define UNNAMED L"unnamed"
 
 namespace symbol
 {
@@ -46,7 +46,7 @@ namespace symbol
         }
 
         /** Open a new scope */
-        void scope_begin(const string& name)
+        void scope_begin(const wstring& name)
         {
             this->l_scope.push_front(new Scope(name));
         }
@@ -72,7 +72,7 @@ namespace symbol
         */
 
         /** Associate value to key in the global scope. */
-        void put(const string& key, InternalType &value)
+        void put(const wstring& key, InternalType &value)
         {
             (*this->l_scope.back()).put(key, value);
         }
@@ -82,7 +82,7 @@ namespace symbol
         ** most recent insertion. Otherwise return the empty pointer.
         ** \param key : the key to look for
         */
-        InternalType* get(const string& key) const
+        InternalType* get(const wstring& key) const
         {
             InternalType* result = 0;
 
@@ -102,7 +102,7 @@ namespace symbol
         ** \param key : the key.
         ** \param value : the value associated to the key.
         */
-        void put(const string& name, string key, InternalType &value)
+        void put(const wstring& name, wstring key, InternalType &value)
         {
             list<Scope*>::iterator it_list_scope;
 
@@ -121,7 +121,7 @@ namespace symbol
         /** \brief Check if key is visible in the current global scope
         ** \param key : the key to look for
         */
-        bool isGlobalVisible(const string& key) const
+        bool isGlobalVisible(const wstring& key) const
         {
             list<Scope*>::const_iterator it_list_scope;
 
@@ -146,7 +146,7 @@ namespace symbol
         /** \brief Check if key exists in globals
         ** \param key : the key to look for
         */
-        bool isGlobalExists(const string& key) const
+        bool isGlobalExists(const wstring& key) const
         {
             InternalType* pIT = getGlobalValue(key);
             if(pIT)
@@ -159,7 +159,7 @@ namespace symbol
         /** \brief Return value associated to key in current global scope
         ** \param key : the key to look for
         */
-        InternalType* getGlobalValue(const string& key) const
+        InternalType* getGlobalValue(const wstring& key) const
         {
             bool isVisible = isGlobalVisible(key);
 
@@ -179,7 +179,7 @@ namespace symbol
         ** \param key : the key to look for
         ** \param value : the value to associete
         */
-        void setGlobalValue(const string& key, InternalType &value)
+        void setGlobalValue(const wstring& key, InternalType &value)
         {
             list<Scope*>::const_reverse_iterator it_list_scope;
 
@@ -196,7 +196,7 @@ namespace symbol
         /** \brief Create a "empty" global value
         ** \param key : the key to create
         */
-        void createEmptyGlobalValue(const string& key)
+        void createEmptyGlobalValue(const wstring& key)
         {
             setGlobalValue(key, *new Double(0, 0));
         }
@@ -206,7 +206,7 @@ namespace symbol
         ** \param key : the key to manage
         ** \param bVisible : status ( true to visible, false to hide )
         */
-        void setGlobalVisible(const string& key, bool bVisible)
+        void setGlobalVisible(const wstring& key, bool bVisible)
         {
             list<Scope*>::const_iterator it_list_scope;
 
@@ -230,7 +230,7 @@ namespace symbol
         /** \brief Remove a variable from global scope
         ** \param key : the key to remove
         */
-        void removeGlobal(const string &key)
+        void removeGlobal(const wstring &key)
         {
             //remove variable and all variable references
             list<Scope*>::const_iterator it_list_scope;
@@ -252,8 +252,8 @@ namespace symbol
             {
                 if ((*it_list_scope)->get_name() == UNNAMED)
                 {
-                    map<string, InternalType*>::const_iterator it_scope;
-                    map<string, InternalType*>* pScope = (*it_list_scope)->getInternalMap();
+                    map<wstring, InternalType*>::const_iterator it_scope;
+                    map<wstring, InternalType*>* pScope = (*it_list_scope)->getInternalMap();
 
                     it_scope = pScope->begin();
                     while(it_scope != pScope->end())
@@ -270,7 +270,7 @@ namespace symbol
         ** most recent insertion. Otherwise return the empty pointer.
         ** \param key : the key to look for
         */
-        InternalType* get(const string& name, const string& key) const
+        InternalType* get(const wstring& name, const wstring& key) const
         {
             list<Scope*>::const_iterator it_list_scope;
 
@@ -285,7 +285,7 @@ namespace symbol
         }
     };
 
-    inline ostream& operator<< (ostream& ostr, const Heap &tbl)
+    inline wostream& operator<< (wostream& ostr, const Heap &tbl)
     {
         tbl.print (ostr);
         return ostr;

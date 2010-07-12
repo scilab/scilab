@@ -78,7 +78,7 @@ SciErr allocMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, int
   typed_list in = *pStr->m_pIn;
   InternalType** out = pStr->m_pOut;
   int*	piRetCount = pStr->m_piRetCount;
-  char* pstName = pStr->m_pstName;
+  wchar_t* pstName = pStr->m_pstName;
 
 	Bool *pBool = new Bool(_iRows, _iCols);
 	if(pBool == NULL)

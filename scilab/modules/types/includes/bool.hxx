@@ -45,8 +45,8 @@ namespace types
         void                    whoAmI();
 		bool                    isComplex();
 
-       Bool*                    getAsBool(void);
-		string                  toString(int _iPrecision, int _iLineLen);
+        Bool*                   getAsBool(void);
+		wstring                 toString(int _iPrecision, int _iLineLen);
 
 		bool                    resize(int _iNewRows, int _iNewCols);
 		bool                    insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector);
@@ -57,9 +57,9 @@ namespace types
 		bool                    operator!=(const InternalType& it);
 
         /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::string     getTypeStr() {return string("boolean");}
+        virtual std::wstring     getTypeStr() {return L"boolean";}
         /* return type as short string ( s, i, ce, l, ... )*/
-        virtual std::string     getShortTypeStr() {return string("b");}
+        virtual std::wstring     getShortTypeStr() {return L"b";}
 
     protected :
 		RealType				getType(void);

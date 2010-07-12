@@ -13,8 +13,13 @@
 #include "function.hxx"
 #include "callable.hxx"
 #include "context.hxx"
+
+extern "C"
+{
 #include "Scierror.h"
 #include "localization.h"
+#include "charEncoding.h"
+}
 
 Function::ReturnValue sci_clear(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {

@@ -13,18 +13,22 @@
 #include <sstream>
 #include "core_math.h"
 #include "string.hxx"
+#include "tostring_common.hxx"
+
+extern "C"
+{
+#include "charEncoding.h"
+}
 
 #ifdef _MSC_VER
 	#define strdup _strdup
+    #define wcsdup _wcsdup
 #endif
 
 using namespace std;
 
 #define SIZE_BETWEEN_TWO_VALUES			2
-#define SPACE_BETWEEN_TWO_VALUES		"  "
-
-void Config_Stream(ostringstream *_postr, int _iWidth, int _iPrec, char _cFill);
-
+#define SPACE_BETWEEN_TWO_VALUES		L"  "
 
 namespace types
 {
@@ -36,10 +40,16 @@ namespace types
 		}
 	}
 
-	String::String(const char *_pcData)
+	String::String(const wchar_t *_pstData)
 	{
 		CreateString(1,1);
-		string_set(0,0, _pcData);
+		string_set(0,0, _pstData);
+	}
+
+	String::String(const char *_pstData)
+	{
+		CreateString(1,1);
+		string_set(0,0, to_wide_string(const_cast<char*>(_pstData)));
 	}
 
 	String::String(int _iRows, int _iCols)
@@ -62,10 +72,10 @@ namespace types
 		m_iCols		= _iCols;
 		m_iSize		= m_iRows * m_iCols;
 
-		m_pstData	= new char*[m_iSize];
+		m_pstData	= new wchar_t*[m_iSize];
 		for(int iIndex = 0 ; iIndex < m_iSize ; iIndex++)
 		{
-			m_pstData[iIndex] = strdup("");
+			m_pstData[iIndex] = wcsdup(L"");
 		}
 	}
 
@@ -74,12 +84,12 @@ namespace types
 		cout << "types::String";
 	}
 
-	char** String::string_get() const
+	wchar_t** String::string_get() const
 	{
 		return m_pstData;
 	}
 
-	char* String::string_get(int _iRows, int _iCols) const
+	wchar_t* String::string_get(int _iRows, int _iCols) const
 	{
 		if(_iRows >= m_iRows || _iCols >= m_iCols)
 		{
@@ -88,7 +98,7 @@ namespace types
 		return string_get(_iCols * m_iRows + _iRows);
 	}
 
-	char* String::string_get(int _iPos) const
+	wchar_t* String::string_get(int _iPos) const
 	{
 		if(m_pstData != NULL && _iPos < m_iSize)
 		{
@@ -100,20 +110,20 @@ namespace types
 		}
 	}
 
-	bool String::string_set(int _iRows, int _iCols, const char *_pcData)
+	bool String::string_set(int _iRows, int _iCols, const wchar_t *_pstData)
 	{
-		return string_set(_iCols * m_iRows + _iRows, _pcData);
+		return string_set(_iCols * m_iRows + _iRows, _pstData);
 	}
 
-	bool String::string_set(char **_pcData)
+	bool String::string_set(wchar_t **_pstData)
 	{
-		if(_pcData != NULL)
+		if(_pstData != NULL)
 		{
 			for(int iIndex = 0 ; iIndex < m_iSize ; iIndex++)
 			{
-				if(_pcData[iIndex] != 0)
+				if(_pstData[iIndex] != 0)
 				{
-					bool bRet = string_set(iIndex, _pcData[iIndex]);
+					bool bRet = string_set(iIndex, _pstData[iIndex]);
 					if(bRet == false)
 					{
 						return false;
@@ -132,7 +142,7 @@ namespace types
 		return true;
 	}
 
-	bool String::string_set(int _iPos, const char *_pcData)
+	bool String::string_set(int _iPos, const wchar_t *_pstData)
 	{
 		if(m_pstData == NULL)
 		{
@@ -144,14 +154,14 @@ namespace types
 			delete[] m_pstData[_iPos];
 		}
 
-		m_pstData[_iPos] = new char[strlen(_pcData) + 1];
-		//memcpy(m_pstData[_iPos], _pcData, strlen(_pcData) * sizeof(char));
+		m_pstData[_iPos] = new wchar_t[wcslen(_pstData) + 1];
+		//memcpy(m_pstData[_iPos], _pcData, strlen(_pcData) * sizeof(wchar_t));
 		//m_pstData[_iPos][strlen(_pcData)] = '\0';
 
 #ifdef _MSC_VER
-        strcpy_s(m_pstData[_iPos], strlen(_pcData) + 1, _pcData);
+        wcscpy_s(m_pstData[_iPos], wcslen(_pstData) + 1, _pstData);
 #else
-        strcpy(m_pstData[_iPos], _pcData);
+        wcscpy(m_pstData[_iPos], _pstData);
 #endif
 
 		return true;
@@ -191,9 +201,9 @@ namespace types
 		return GenericType::RealString;
 	}
 
-	string String::toString(int _iPrecision, int _iLineLen)
+	wstring String::toString(int _iPrecision, int _iLineLen)
 	{
-		ostringstream ostr;
+		wostringstream ostr;
 
 		if(m_iRows == 1 && m_iCols == 1)
 		{
@@ -204,47 +214,47 @@ namespace types
 			int iMaxLen = 0;
 			for(int i = 0 ; i < m_iSize ; i++)
 			{
-				iMaxLen = Max(iMaxLen, static_cast<int>(strlen(string_get(i,0))));
+				iMaxLen = Max(iMaxLen, static_cast<int>(wcslen(string_get(i,0))));
 			}
 
 			iMaxLen += 2;
 
 			for(int i = 0 ; i < m_iSize ; i++)
 			{
-				ostr << "!";
+				ostr << L"!";
 				Config_Stream(&ostr, iMaxLen, _iPrecision, ' ');
 				ostr << left << string_get(i,0);
-				ostr << "!" << endl;
+				ostr << L"!" << endl;
 				if((i+1) < m_iSize)
 				{
-					ostr << "!";
+					ostr << L"!";
 					Config_Stream(&ostr, iMaxLen, _iPrecision, ' ');
-					ostr << left << " ";
-					ostr << "!" << endl;
+					ostr << left << L" ";
+					ostr << L"!" << endl;
 				}
 			}
 		}
 		else if(m_iRows == 1)
 		{
-			ostringstream ostemp;
+			wostringstream ostemp;
 			int iLastVal = 0;
 			for(int i = 0 ; i < m_iCols ; i++)
 			{
 				int iLen = 0;
-				int iCurLen = static_cast<int>(strlen(string_get(0, i)));
+				int iCurLen = static_cast<int>(wcslen(string_get(0, i)));
 				iLen = iCurLen + SIZE_BETWEEN_TWO_VALUES + static_cast<int>(ostemp.str().size());
 				if(iLen > _iLineLen)
 				{//Max length, new line
 					if(iLastVal + 1 == i)
 					{
-						cout << endl << "       column " << iLastVal + 1 << endl << endl;
+						cout << endl << L"       column " << iLastVal + 1 << endl << endl;
 					}
 					else
 					{
-						cout << endl << "       column " << iLastVal + 1 << " to " << i << endl << endl;
+						cout << endl << L"       column " << iLastVal + 1 << L" to " << i << endl << endl;
 					}
-					cout << ostemp.str() << "!" << endl;
-					ostemp.str("\x00");
+					wcout << ostemp.str() << L"!" << endl;
+					ostemp.str(L"");
 					iLastVal = i;
 				}
 
@@ -256,18 +266,18 @@ namespace types
 			{
 				if(iLastVal + 1 == m_iCols)
 				{
-					cout << endl << "       column " << iLastVal + 1 << endl << endl;
+					cout << endl << L"       column " << iLastVal + 1 << endl << endl;
 				}
 				else
 				{
-					ostr << endl << "       column " << iLastVal + 1 << " to " << m_iCols << endl << endl;
+					ostr << endl << L"       column " << iLastVal + 1 << L" to " << m_iCols << endl << endl;
 				}
 			}
-			ostr << "!" << ostemp.str() << "!" << endl;
+			ostr << L"!" << ostemp.str() << L"!" << endl;
 		}
 		else //Matrix
 		{
-			ostringstream ostemp;
+			wostringstream ostemp;
 			int iLen = 0;
 			int iLastCol = 0;
 
@@ -279,41 +289,41 @@ namespace types
 			{
 				for(int iRows1 = 0 ; iRows1 < rows_get() ; iRows1++)
 				{
-					piSize[iCols1] = Max(piSize[iCols1], static_cast<int>(strlen(string_get(iRows1,iCols1))));
+					piSize[iCols1] = Max(piSize[iCols1], static_cast<int>(wcslen(string_get(iRows1,iCols1))));
 				}
 
 				if(iLen + piSize[iCols1] > _iLineLen)
 				{//find the limit, print this part
 					for(int iRows2 = 0 ; iRows2 < rows_get() ; iRows2++)
 					{
-						ostemp << "!";
+						ostemp << L"!";
 						for(int iCols2 = iLastCol ; iCols2 < iCols1 ; iCols2++)
 						{
 							Config_Stream(&ostemp, piSize[iCols2], _iPrecision, ' ');
 							ostemp << left << string_get(iRows2, iCols2) << SPACE_BETWEEN_TWO_VALUES;
 						}
 
-						ostemp << "!" << endl;
+						ostemp << L"!" << endl;
 						if((iRows2 + 1) != m_iRows)
 						{
-							ostemp << "!";
+							ostemp << L"!";
 							Config_Stream(&ostemp, iLen, _iPrecision, ' ');
-							ostemp << left << " ";
-							ostemp << "!" << endl;
+							ostemp << left << L" ";
+							ostemp << L"!" << endl;
 						}
 					}
 
 					iLen = 0;
 					if(iCols1 + 1 == m_iCols)
 					{
-						ostr << endl << "       column " << iCols1 << endl << endl;
+						ostr << endl << L"       column " << iCols1 << endl << endl;
 					}
 					else
 					{
-						ostr << endl << "       column " << iLastCol + 1 << " to " << iCols1 << endl << endl;
+						ostr << endl << L"       column " << iLastCol + 1 << L" to " << iCols1 << endl << endl;
 					}
 					ostr << ostemp.str();
-					ostemp.str("");
+					ostemp.str(L"");
 					iLastCol = iCols1;
 				}
 				iLen += piSize[iCols1] + SIZE_BETWEEN_TWO_VALUES;
@@ -322,20 +332,20 @@ namespace types
 			for(int iRows2 = 0 ; iRows2 < rows_get() ; iRows2++)
 			{
 				iLen = 0;
-				ostemp << "!";
+				ostemp << L"!";
 				for(int iCols2 = iLastCol ; iCols2 < cols_get() ; iCols2++)
 				{
 					Config_Stream(&ostemp, piSize[iCols2], _iPrecision, ' ');
 					ostemp << left << string_get(iRows2, iCols2) << SPACE_BETWEEN_TWO_VALUES;
 					iLen += piSize[iCols2] + SIZE_BETWEEN_TWO_VALUES;
 				}
-				ostemp << "!" << endl;
+				ostemp << L"!" << endl;
 				if((iRows2 + 1) != m_iRows)
 				{
-					ostemp << "!";
+					ostemp << L"!";
 					Config_Stream(&ostemp, iLen, _iPrecision, ' ');
-					ostemp << left << " ";
-					ostemp << "!" << endl;
+					ostemp << left << L" ";
+					ostemp << L"!" << endl;
 				}
 			}
 
@@ -343,11 +353,11 @@ namespace types
 			{
 				if(iLastCol + 1 == m_iCols)
 				{
-					ostr << endl << "       column " << m_iCols << endl << endl;
+					ostr << endl << L"       column " << m_iCols << endl << endl;
 				}
 				else
 				{
-					ostr << endl << "       column " << iLastCol + 1 << " to " << m_iCols << endl << endl;
+					ostr << endl << L"       column " << iLastCol + 1 << L" to " << m_iCols << endl << endl;
 				}
 			}
 			ostr << ostemp.str();
@@ -369,12 +379,12 @@ namespace types
 			return false;
 		}
 
-		char **p1 = string_get();
-		char **p2 = pS->string_get();
+		wchar_t **p1 = string_get();
+		wchar_t **p2 = pS->string_get();
 
 		for(int i = 0 ; i < size_get() ; i++)
 		{
-			if(strcmp(p1[i], p2[i]) != 0)
+			if(wcscmp(p1[i], p2[i]) != 0)
 			{
 				return false;
 			}
@@ -465,7 +475,7 @@ namespace types
 					return false;
 				}
 
-				char** pstIn = pIn->string_get();
+				wchar_t** pstIn = pIn->string_get();
 
 				//variable can receive new values.
 				if(pIn->size_get() == 1)
@@ -474,7 +484,7 @@ namespace types
 					{//a([]) = R
 						for(int i = 0 ; i < _iSeqCount ; i++)
 						{
-							m_pstData[_piSeqCoord[i] - 1]	= strdup(pstIn[0]);
+							m_pstData[_piSeqCoord[i] - 1]	= wcsdup(pstIn[0]);
 						}
 					}
 					else
@@ -482,7 +492,7 @@ namespace types
 						for(int i = 0 ; i < _iSeqCount ; i++)
 						{
 							int iPos = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
-							m_pstData[iPos]	= strdup(pstIn[0]);
+							m_pstData[iPos]	= wcsdup(pstIn[0]);
 						}
 					}
 				}
@@ -492,7 +502,7 @@ namespace types
 					{//a([]) = [R]
 						for(int i = 0 ; i < _iSeqCount ; i++)
 						{
-							m_pstData[_piSeqCoord[i] - 1]	= strdup(pstIn[i]);
+							m_pstData[_piSeqCoord[i] - 1]	= wcsdup(pstIn[i]);
 						}
 					}
 					else
@@ -504,7 +514,7 @@ namespace types
 							int iTempC = i % pIn->cols_get();
 							int iNew_i = iTempR + iTempC * pIn->rows_get();
 
-							m_pstData[iPos]	= strdup(pstIn[iNew_i]);
+							m_pstData[iPos]	= wcsdup(pstIn[iNew_i]);
 						}
 					}
 				}
@@ -558,12 +568,12 @@ namespace types
 		}
 
 		//alloc new data array
-		char** pst = NULL;
+		wchar_t** pst = NULL;
 
-		pst	= new char*[_iNewRows * _iNewCols];
+		pst	= new wchar_t*[_iNewRows * _iNewCols];
 		for(int i = 0 ; i < _iNewRows * _iNewCols ; i++)
 		{
-			pst[i] = strdup("");
+			pst[i] = wcsdup(L"");
 		}
 
 		//copy existing values
@@ -623,14 +633,14 @@ namespace types
 		}
 
 		pOut				= new String(iRowsOut, iColsOut);
-		char** pst	= pOut->string_get();
+		wchar_t** pst	= pOut->string_get();
 
 
 		if(_bAsVector)
 		{
 			for(int i = 0 ; i < _iSeqCount ; i++)
 			{
-				pst[i] = strdup(m_pstData[_piSeqCoord[i] - 1]);
+				pst[i] = wcsdup(m_pstData[_piSeqCoord[i] - 1]);
 			}
 		}
 		else
@@ -638,9 +648,9 @@ namespace types
 			for(int i = 0 ; i < _iSeqCount ; i++)
 			{
 				//convert vertical indexes to horizontal indexes
-				int iCurIndex		= (i % iColsOut) * iRowsOut + (i / iColsOut);
-				int iInIndex		= (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
-				pst[iCurIndex]	= strdup(m_pstData[iInIndex]);
+				int iCurIndex   = (i % iColsOut) * iRowsOut + (i / iColsOut);
+				int iInIndex    = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
+				pst[iCurIndex]  = wcsdup(m_pstData[iInIndex]);
 			}
 		}
 		

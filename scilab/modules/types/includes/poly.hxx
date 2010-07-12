@@ -50,23 +50,23 @@ namespace types
         void                    update_rank(void);
 
         void                    CreatePoly(double**_pdblCoefR, double**_pdblCoefI, int _iRank);
-        void                    toStringReal(int _iPrecision, int _iLineLen, string _szVar, list<string>* _pListExp , list<string>* _pListCoef);
-        void                    toStringImg(int _iPrecision, int _iLineLen, string _szVar, list<string>* _pListExp , list<string>* _pListCoef);
+        void                    toStringReal(int _iPrecision, int _iLineLen, wstring _szVar, list<wstring>* _pListExp , list<wstring>* _pListCoef);
+        void                    toStringImg(int _iPrecision, int _iLineLen, wstring _szVar, list<wstring>* _pListExp , list<wstring>* _pListCoef);
 
-        std::string             toString(int _iPrecision, int _iLineLen);
+        wstring                 toString(int _iPrecision, int _iLineLen);
 
         bool                    operator==(const InternalType& it);
         bool                    operator!=(const InternalType& it);
 
         /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::string     getTypeStr() {return string("poly");}
+        virtual wstring         getTypeStr() {return L"poly";}
         /* return type as short string ( s, i, ce, l, ... )*/
-        virtual std::string     getShortTypeStr() {return string("p");}
+        virtual wstring         getShortTypeStr() {return L"p";}
     protected :
         RealType                getType(void);
 
     private : 
-        void                    toStringInternal(double *_pdblVal, int _iPrecision, int _iLineLen, string _szVar, list<string>* _pListExp , list<string>* _pListCoef);
+        void                    toStringInternal(double *_pdblVal, int _iPrecision, int _iLineLen, wstring _szVar, list<wstring>* _pListExp , list<wstring>* _pListCoef);
 
 
     private :

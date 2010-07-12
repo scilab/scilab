@@ -12,10 +12,10 @@
 
 #include "string_gw.hxx"
 
-#define MODULE_NAME "string"
+#define MODULE_NAME L"string"
 bool StringModule::Load()
 {
-  symbol::Context::getInstance()->AddFunction(Function::createFunction("grep", &sci_grep, MODULE_NAME));
+  symbol::Context::getInstance()->AddFunction(Function::createFunction(L"grep", &sci_grep, MODULE_NAME));
 
   return true;
 }

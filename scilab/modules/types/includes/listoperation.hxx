@@ -31,13 +31,13 @@ namespace types
 
         void                    whoAmI();
 
-        std::string             toString(int _iPrecision, int _iLineLen);
+        wstring                 toString(int _iPrecision, int _iLineLen);
         virtual bool            isAssignable(void) { return false; }
 
         /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::string     getTypeStr() {return string("listoperation");}
+        virtual wstring         getTypeStr() {return L"listoperation";}
         /* return type as short string ( s, i, ce, l, ... )*/
-        virtual std::string     getShortTypeStr() {return string("");}
+        virtual wstring         getShortTypeStr() {return L"";}
     };
 }
 

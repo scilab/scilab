@@ -19,41 +19,42 @@ extern "C"
 #include <math.h>
 #include "version.h"
 #include "localization.h"
+#include "charEncoding.h"
 }
 
 void banner(void)
 {
-	int i;
-	char *line = "        ___________________________________________        ";
-	int startVersion = (int)(floor((double)(strlen(line)/2)) - floor((double)(strlen(SCI_VERSION_STRING)/2)));
-	
-   YaspWrite(line);
-    YaspWrite("\n");
+    int i;
+    wchar_t *line = L"        ___________________________________________        ";
+    int startVersion = (int)(floor((double)(wcslen(line)/2)) - floor((double)(wcslen(SCI_VERSION_STRING)/2)));
 
-/* To center the version name */
-    for( i=0 ; i<startVersion ; i++ )
+    YaspWriteW(line);
+    YaspWriteW(L"\n");
+
+    /* To center the version name */
+    for(i = 0 ; i < startVersion ; i++ )
     {
-        YaspWrite(" ");
+        YaspWriteW(L" ");
     }
 
-    YaspWrite(SCI_VERSION_STRING);
-    YaspWrite("\n\n");
+    YaspWriteW(SCI_VERSION_STRING);
+    YaspWriteW(L"\n\n");
 
-    YaspWrite(_("                 Consortium Scilab (DIGITEO)\n"));
+    YaspWriteW(_W("                 Consortium Scilab (DIGITEO)\n"));
 
-    YaspWrite(_("               Copyright (c) 1989-2009 (INRIA)\n"));
-    YaspWrite(_("               Copyright (c) 1989-2007 (ENPC)\n"));
-    YaspWrite(line);
-    YaspWrite("\n");
-    YaspWrite("\n");
-    YaspWrite("           -*- THIS IS SCILAB 6.0 aka YaSp -*-\n");
-    YaspWrite("\n");
-    YaspWrite(line);
-    YaspWrite("\n");
+    YaspWriteW(_W("               Copyright (c) 1989-2009 (INRIA)\n"));
+    YaspWriteW(_W("               Copyright (c) 1989-2007 (ENPC)\n"));
+    YaspWriteW(line);
+    YaspWriteW(L"\n");
+    YaspWriteW(L"\n");
+    YaspWriteW(L"           -*- THIS IS SCILAB 6.0 aka YaSp -*-\n");
+    YaspWriteW(L"\n");
+    YaspWriteW(line);
+    YaspWriteW(L"\n");
 
 #if ( defined(_MSC_VER) && ( (_MSC_VER >= 1200) && (_MSC_VER < 1300) ) )
-    YaspWrite("\n\n");
-    YaspWrite(_("Warning: the operational team of the Scilab Consortium\ndoesn't provide and doesn't support this version of Scilab built with\n"));
-    YaspWrite("   ");
+    YaspWriteW(L"\n\n");
+    YaspWriteW(_W("Warning: the operational team of the Scilab Consortium\ndoesn't provide and doesn't support this version of Scilab built with\n"));
+    YaspWriteW(L"   ");
 #endif
 }

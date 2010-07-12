@@ -12,7 +12,7 @@
 
 #include "time_gw.hxx"
 
-#define MODULE_NAME "time"
+#define MODULE_NAME L"time"
 extern "C"
 {
    #include "gw_time.h"
@@ -20,14 +20,14 @@ extern "C"
 
 bool TimeModule::Load()
 {
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction("getdate", &sci_getdate, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction("Calendar", &sci_calendar, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction("timer", &sci_timer, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction("sleep", &sci_sleep, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction("xpause", &sci_xpause, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction("realtimeinit", &sci_realtimeinit, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction("realtime", &sci_realtime, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction("tic", &sci_tic, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction("toc", &sci_toc, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"getdate", &sci_getdate, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"Calendar", &sci_calendar, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"timer", &sci_timer, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"sleep", &sci_sleep, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"xpause", &sci_xpause, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"realtimeinit", &sci_realtimeinit, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"realtime", &sci_realtime, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"tic", &sci_tic, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"toc", &sci_toc, MODULE_NAME));
     return true;
 }

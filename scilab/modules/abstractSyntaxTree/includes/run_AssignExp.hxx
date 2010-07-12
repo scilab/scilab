@@ -50,8 +50,8 @@ void visitprivate(const AssignExp  &e)
                 }
                 else
                 {//never append ?
-                    std::ostringstream os;
-                    os << _("Unable to extract left part expression.\n");
+                    std::wostringstream os;
+                    os << _W("Unable to extract left part expression.\n");
                     os << ((Location)e.left_exp_get().location_get()).location_string_get() << std::endl;
                     throw os.str();
                 }
@@ -90,8 +90,8 @@ void visitprivate(const AssignExp  &e)
                 if(piIndexSeq[i] < 1)
                 {
                     //manage error
-                    std::ostringstream os;
-                    os << _("Indexes must be positive .\n");
+                    std::wostringstream os;
+                    os << _W("Indexes must be positive .\n");
                     os << ((Location)e.left_exp_get().location_get()).location_string_get() << std::endl;
                     throw os.str();
                 }
@@ -130,25 +130,25 @@ void visitprivate(const AssignExp  &e)
 
                 if(e.is_verbose())
                 {
-                    std::ostringstream ostr;
+                    std::wostringstream ostr;
                     if(pVar)
                     {
-                        ostr << pVar->name_get() << " = " << std::endl;
+                        ostr << pVar->name_get() << L" = " << std::endl;
                     }
                     else
                     {
-                        ostr << "???" << " = " << std::endl;
+                        ostr << L"???" << L" = " << std::endl;
                     }
                     ostr << std::endl;
                     ostr << pOut->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
-                    YaspWrite((char *)ostr.str().c_str());
+                    YaspWriteW(ostr.str().c_str());
                 }
             }
             else
             {
                 //manage error
-                std::ostringstream os;
-                os << _("Submatrix incorrectly defined.\n");
+                std::wostringstream os;
+                os << _W("Submatrix incorrectly defined.\n");
                 os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
                 throw os.str();
             }
@@ -177,8 +177,8 @@ void visitprivate(const AssignExp  &e)
                 }
                 else
                 {//never append ?
-                    std::ostringstream os;
-                    os << _("Unable to extract left part expression.\n");
+                    std::wostringstream os;
+                    os << _W("Unable to extract left part expression.\n");
                     os << ((Location)e.left_exp_get().location_get()).location_string_get() << std::endl;
                     throw os.str();
                 }
@@ -217,8 +217,8 @@ void visitprivate(const AssignExp  &e)
                 if(piIndexSeq[i] < 1)
                 {
                     //manage error
-                    std::ostringstream os;
-                    os << _("Indexes must be positive .\n");
+                    std::wostringstream os;
+                    os << _W("Indexes must be positive .\n");
                     os << ((Location)e.left_exp_get().location_get()).location_string_get() << std::endl;
                     throw os.str();
                 }
@@ -315,25 +315,25 @@ void visitprivate(const AssignExp  &e)
 
                 if(e.is_verbose())
                 {
-                    std::ostringstream ostr;
+                    std::wostringstream ostr;
                     if(pVar)
                     {
-                        ostr << pVar->name_get() << " = " << std::endl;
+                        ostr << pVar->name_get() << L" = " << std::endl;
                     }
                     else
                     {
-                        ostr << "???" << " = " << std::endl;
+                        ostr << L"???" << L" = " << std::endl;
                     }
                     ostr << std::endl;
                     ostr << pOut->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
-                    YaspWrite((char *)ostr.str().c_str());
+                    YaspWriteW(ostr.str().c_str());
                 }
             }
             else
             {
                 //manage error
-                std::ostringstream os;
-                os << _("Submatrix incorrectly defined.\n");
+                std::wostringstream os;
+                os << _W("Submatrix incorrectly defined.\n");
                 os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
                 throw os.str();
             }
@@ -348,8 +348,8 @@ void visitprivate(const AssignExp  &e)
 
             if(execMeR.result_size_get() != 1)
             {
-                std::ostringstream os;
-                os << "Lhs != Rhs";
+                std::wostringstream os;
+                os << L"Lhs != Rhs";
                 os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
                 throw os.str();
             }
@@ -379,11 +379,10 @@ void visitprivate(const AssignExp  &e)
 
             if(e.is_verbose())
             {
-                std::ostringstream ostr;
-                ostr << pVar->name_get() << " = " << std::endl;
-                ostr << std::endl;
+                std::wostringstream ostr;
+                ostr << pVar->name_get() << L" = " << std::endl << std::endl;
                 ostr << pIT->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
-                YaspWrite((char *)ostr.str().c_str());
+                YaspWriteW(ostr.str().c_str());
             }
         }
         else if(pList)
@@ -397,8 +396,8 @@ void visitprivate(const AssignExp  &e)
 
             if(execMeR.result_size_get() != execMeR.expected_size_get())
             {
-                std::ostringstream os;
-                os << "Lhs != Rhs";
+                std::wostringstream os;
+                os << L"Lhs != Rhs";
                 throw os.str();
             }
 
@@ -411,11 +410,11 @@ void visitprivate(const AssignExp  &e)
                 symbol::Context::getInstance()->put(pListVar->name_get(), *((GenericType*)execMeR.result_get(i)));
                 if(e.is_verbose())
                 {
-                    std::ostringstream ostr;
-                    ostr << pListVar->name_get() << " = " << std::endl;
+                    std::wostringstream ostr;
+                    ostr << pListVar->name_get() << L" = " << std::endl;
                     ostr << std::endl;
                     ostr << execMeR.result_get(i)->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
-                    YaspWrite((char *)ostr.str().c_str());
+                    YaspWriteW(ostr.str().c_str());
                 }
                 i--;
             }
@@ -427,7 +426,7 @@ void visitprivate(const AssignExp  &e)
             if(pStr->isRef(1) == true)
             {
                 pStr = pStr->clone();
-                const string *pstName = getStructNameFromExp(pField);
+                const wstring *pstName = getStructNameFromExp(pField);
                 symbol::Context::getInstance()->put(*pstName, *pStr);
             }
 
@@ -438,8 +437,8 @@ void visitprivate(const AssignExp  &e)
             //we can assign only one value
             if(execMeR.result_size_get() != 1)
             {
-                std::ostringstream os;
-                os << "Lhs != Rhs";
+                std::wostringstream os;
+                os << L"Lhs != Rhs";
                 os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
                 throw os.str();
             }
@@ -467,24 +466,23 @@ void visitprivate(const AssignExp  &e)
             pStr->add(pTail->name_get(), pIT);
             if(e.is_verbose())
             {
-                const string *pstName = getStructNameFromExp(pField);
+                const wstring *pstName = getStructNameFromExp(pField);
 
-                std::ostringstream ostr;
-                ostr << *pstName << " = " << std::endl;
-                ostr << std::endl;
+                std::wostringstream ostr;
+                ostr << *pstName << L" = " << std::endl << std::endl;
                 ostr << symbol::Context::getInstance()->get(*pstName)->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
-                YaspWrite((char *)ostr.str().c_str());
+                YaspWriteW(ostr.str().c_str());
             }
         }
         else
         {//Houston ...
-            std::ostringstream os;
-            os << "unknow script form";
+            std::wostringstream os;
+            os << L"unknow script form";
             os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
             throw os.str();
         }
     }
-    catch(string sz)
+    catch(wstring sz)
     {
         throw sz;
     }

@@ -18,6 +18,8 @@ static int exit_status = PARSE_ERROR;
 static std::string current_file;
 static std::string program_name;
 
+static std::string *pstBuffer;
+
  static bool rejected = false;
 
 #define YY_USER_ACTION                          \
@@ -25,7 +27,6 @@ static std::string program_name;
 /* -*- Verbose Special Debug -*- */
 //#define DEV
 //#define TOKENDEV
-
 %}
 
 %option stack
@@ -53,9 +54,22 @@ floating		({little}|{number}|{integer})[deDE][+-]?{integer}
 hex             [0]x[0-9a-fA-F]+
 oct             [0]o[0-7]+
 
-id              ([a-zA-Z_%#?][a-zA-Z_0-9#?]*)
 
-keywords        ("function"|"if")
+utf2            ([\xC2-\xDF][\x80-\xBF])
+utf31           ([\xE0][\xA0-\xBF][\x80-\xBF])
+utf32           ([\xE1-\xEC][\x80-\xBF][\x80-\xBF])
+utf33           ([\xED][\x80-\x9F][\x80-\xBF])
+utf34           ([\xEE-\xEF][\x80-\xBF][\x80-\xBF])
+utf41           ([\xF0][\x90-\xBF][\x80-\xBF][\x80-\xBF])
+utf42           ([\xF1-\xF3][\x80-\xBF][\x80-\xBF][\x80-\xBF])
+utf43           ([\xF4][\x80-\x8F][\x80-\xBF][\x80-\xBF])
+
+utf3            ({utf31}|{utf32}|{utf33}|{utf34})
+utf4            ({utf41}|{utf42}|{utf43})
+
+utf             ({utf2}|{utf3}|{utf4})
+id              (([a-zA-Z_%#?]|{utf})([a-zA-Z_0-9#?]|{utf})*)
+
 
 newline			("\n"|"\r\n"|"\r")
 blankline		^[ \t\v\f]+{newline}
@@ -495,13 +509,13 @@ assign			"="
 
 
 <INITIAL,MATRIX>{startcomment}		{
-  yylval.comment = new std::wstring();
+  pstBuffer = new std::string();
   yy_push_state(LINECOMMENT);
 }
 
 
 <INITIAL,MATRIX,SHELLMODE>{dquote}		{
-  yylval.str = new std::wstring();
+  pstBuffer = new std::string();
   yy_push_state(DOUBLESTRING);
 }
 
@@ -519,7 +533,7 @@ assign			"="
       return scan_throw(QUOTE);
     }
   else {
-    yylval.str = new std::wstring();
+    pstBuffer = new std::string();
     yy_push_state(SIMPLESTRING);
   }
 }
@@ -550,12 +564,12 @@ assign			"="
 
 
 .					{
-  std::string str = "unexpected token '";
-  str += yytext;
-  str += "'";
-  exit_status = SCAN_ERROR;
-  scan_error(str);
-  yyterminate();
+    std::string str = "unexpected token '";
+    str += yytext;
+    str += "'";
+    exit_status = SCAN_ERROR;
+    scan_error(str);
+    yyterminate();
 }
 
 
@@ -756,7 +770,7 @@ assign			"="
 
   {startcomment}			{
     scan_throw(DOTS);
-    yylval.comment = new std::wstring();
+    pstBuffer = new std::string();
     yy_push_state(LINECOMMENT);
   }
 
@@ -787,20 +801,30 @@ assign			"="
     ** To forgot comments after lines break
     */
     if (last_token != DOTS)
-      {
-	return scan_throw(COMMENT);
-      }
-
+    {
+        wchar_t *pwstBuffer = to_wide_string(pstBuffer->c_str());
+        yylval.comment = new std::wstring(pwstBuffer);
+        delete pstBuffer;
+        FREE (pwstBuffer);
+        return scan_throw(COMMENT);
+    }
   }
 
   <<EOF>>	{
     yy_pop_state();
+    wchar_t *pwstBuffer = to_wide_string(pstBuffer->c_str());
+    yylval.comment = new std::wstring(pwstBuffer);
+    delete pstBuffer;
+    FREE (pwstBuffer);
     return scan_throw(COMMENT);
   }
 
-  .		{
-      *yylval.comment += to_wide_string(yytext);
+  .         {
+     // Put the char in a temporary CHAR buffer to go through UTF-8 trouble
+     // only translate to WCHAR_T when popping state.
+     *pstBuffer += yytext;
   }
+
 }
 
 
@@ -828,7 +852,7 @@ assign			"="
   }
 
   .						{
-      *yylval.comment += to_wide_string(yytext);
+      *yylval.comment += std::wstring(to_wide_string(yytext));
   }
 
  <<EOF>>					{
@@ -844,24 +868,28 @@ assign			"="
 <SIMPLESTRING>
 {
   {dquote}{dquote}				{
-    *yylval.str += L"\"";
+    *pstBuffer += "\"";
   }
 
   {dquote}{quote}				{
-    *yylval.str += L"'";
+    *pstBuffer += "'";
   }
 
   {quote}{dquote}				{
-    *yylval.str += L"\"";
+    *pstBuffer += "\"";
   }
 
   {quote}{quote}				{
-    *yylval.str += L"'";
+    *pstBuffer += "'";
   }
 
   {quote}					{
     yy_pop_state();
     scan_step();
+    wchar_t *pwstBuffer = to_wide_string(pstBuffer->c_str());
+    yylval.str = new std::wstring(pwstBuffer);
+    delete pstBuffer;
+    FREE(pwstBuffer);
     return scan_throw(STR);
   }
 
@@ -876,8 +904,6 @@ assign			"="
     scan_error(str);
     yylloc.last_line += 1;
     yylloc.last_column = 1;
-    // ???????
-    *yylval.str += to_wide_string(yytext);
     yy_pop_state();
     yyterminate();
   }
@@ -892,7 +918,7 @@ assign			"="
 
   .						{
     scan_step();
-    *yylval.str += to_wide_string(yytext);
+    *pstBuffer += yytext;
   }
 }
 
@@ -900,24 +926,28 @@ assign			"="
 <DOUBLESTRING>
 {
   {dquote}{dquote}				{
-    *yylval.str += L"\"";
+    *pstBuffer += "\"";
   }
 
   {dquote}{quote}				{
-    *yylval.str += L"'";
+    *pstBuffer += "'";
   }
 
-  {quote}{dquote}				{
-    *yylval.str += L"\"";
+  {quote}{dquote}               {
+    *pstBuffer += "\"";
   }
 
   {quote}{quote}				{
-    *yylval.str += L"'";
+    *pstBuffer += "'";
   }
 
-  {dquote}					{
+  {dquote}                      {
     yy_pop_state();
     scan_step();
+    wchar_t *pwstBuffer = to_wide_string(pstBuffer->c_str());
+    yylval.str = new std::wstring(pwstBuffer);
+    delete pstBuffer;
+    FREE(pwstBuffer);
     return scan_throw(STR);
   }
 
@@ -927,8 +957,6 @@ assign			"="
     scan_error(str);
     yylloc.last_line += 1;
     yylloc.last_column = 1;
-    // ??????
-    *yylval.str += to_wide_string(yytext);
     yyterminate();
   }
 
@@ -947,7 +975,7 @@ assign			"="
 
   .         {
     scan_step();
-    *yylval.str += to_wide_string(yytext);
+    *pstBuffer += yytext;
   }
 }
 
@@ -1006,6 +1034,7 @@ void scan_step() {
 void scan_error(std::string msg)
 {
   wchar_t* pstMsg = to_wide_string(msg.c_str());
+  std::wcerr << pstMsg << std::endl;
   ParserSingleInstance::PrintError(pstMsg);
   ParserSingleInstance::setExitStatus(Parser::Failed);
   FREE(pstMsg);

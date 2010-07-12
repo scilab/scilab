@@ -105,7 +105,7 @@ SciErr getVarAddressFromPosition(void* _pvCtx, int _iVar, int** _piAddress)
 	GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
   typed_list in = *pStr->m_pIn;
   int*	piRetCount = pStr->m_piRetCount;
-  char* pstName = pStr->m_pstName;
+  wchar_t* pstName = pStr->m_pstName;
 
 	int iAddr			= 0;
 

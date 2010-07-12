@@ -419,15 +419,15 @@ namespace types
 		return true;
 	}
 
-	string Double::toString(int _iPrecision, int _iLineLen)
+	wstring Double::toString(int _iPrecision, int _iLineLen)
 	{
-		ostringstream ostr;
+		wostringstream ostr;
 		//if(isComplex() == false)
 		{
 			/*Comment tenir compte de la longueur des lignes dans le formatage de variable ? */
 			if(isIdentity())
 			{
-				ostr << "eye *" << endl << endl;
+				ostr << L"eye *" << endl << endl;
 				if(isComplex() == false)
 				{
 					int iWidth = 0, iPrec = 0;
@@ -450,7 +450,7 @@ namespace types
 			}
 			else if(cols_get() == 0 || rows_get() == 0)
 			{
-				ostr << "   []";
+				ostr << L"   []";
 				ostr << endl;
 			}
 			else if(cols_get() == 1 && rows_get() == 1)
@@ -509,7 +509,7 @@ namespace types
 			}
 			else if(rows_get() == 1)
 			{//row vector
-				ostringstream ostemp;
+				wostringstream ostemp;
 				int iLastVal = 0;
 
 				//1 test and two loops or 1 loop and many tests ? good question isn't it ?
@@ -528,9 +528,9 @@ namespace types
 						iLen = iWidth + bFP + static_cast<int>(ostemp.str().size());
 						if(iLen > _iLineLen)
 						{//Max length, new line
-							ostr << endl << "       column " << iLastVal + 1 << " to " << i << endl << endl;
+							ostr << endl << L"       column " << iLastVal + 1 << L" to " << i << endl << endl;
 							ostr << ostemp.str() << endl;
-							ostemp.str("\x00");
+							ostemp.str(L"");
 							iLastVal = i;
 						}
 
@@ -544,7 +544,7 @@ namespace types
 
 					if(iLastVal != 0)
 					{
-						ostr << endl << "       column " << iLastVal + 1 << " to " << cols_get() << endl << endl;
+						ostr << endl << L"       column " << iLastVal + 1 << L" to " << cols_get() << endl << endl;
 					}
 				}
 				else //complex case
@@ -588,9 +588,9 @@ namespace types
 
 						if(iLen > _iLineLen)
 						{//Max length, new line
-							ostr << endl << "       column " << iLastVal + 1 << " to " << i << endl << endl;
+							ostr << endl << L"       column " << iLastVal + 1 << L" to " << i << endl << endl;
 							ostr << ostemp.str() << endl;
-							ostemp.str("");
+							ostemp.str(L"");
 							iLastVal = i;
 						}
 
@@ -604,7 +604,7 @@ namespace types
 
 					if(iLastVal != 0)
 					{
-						ostr << endl << "       column " << iLastVal + 1 << " to " << cols_get() << endl << endl;
+						ostr << endl << L"       column " << iLastVal + 1 << L" to " << cols_get() << endl << endl;
 					}
 				}
 				ostemp << endl;
@@ -612,7 +612,7 @@ namespace types
 			}
 			else // matrix
 			{
-				ostringstream ostemp;
+				wostringstream ostemp;
 				int iLen = 0;
 				int iLastCol = 0;
 
@@ -662,9 +662,9 @@ namespace types
 								ostemp << endl;
 							}
 							iLen = 0;
-							ostr << endl << "       column " << iLastCol + 1 << " to " << iCols1 << endl << endl;;
+							ostr << endl << L"       column " << iLastCol + 1 << L" to " << iCols1 << endl << endl;;
 							ostr << ostemp.str();
-							ostemp.str("");
+							ostemp.str(L"");
 							iLastCol = iCols1;
 
 						}
@@ -686,7 +686,7 @@ namespace types
 					}
 					if(iLastCol != 0)
 					{
-						ostr << endl << "       column " << iLastCol + 1 << " to " << cols_get() << endl << endl;
+						ostr << endl << L"       column " << iLastCol + 1 << L" to " << cols_get() << endl << endl;
 					}
 					ostr << ostemp.str();
 				}
@@ -743,9 +743,9 @@ namespace types
 								ostemp << endl;
 							}
 							iLen = 0;
-							ostr << endl << "       column " << iLastCol + 1 << " to " << iCols1 << endl << endl;;
+							ostr << endl << L"       column " << iLastCol + 1 << L" to " << iCols1 << endl << endl;;
 							ostr << ostemp.str();
-							ostemp.str("");
+							ostemp.str(L"");
 							iLastCol = iCols1;
 
 						}
@@ -772,7 +772,7 @@ namespace types
 
 					if(iLastCol != 0)
 					{
-						ostr << endl << "       column " << iLastCol + 1 << " to " << cols_get() << endl << endl;
+						ostr << endl << L"       column " << iLastCol + 1 << L" to " << cols_get() << endl << endl;
 					}
 					ostr << ostemp.str();
 				}

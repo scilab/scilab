@@ -27,6 +27,8 @@ extern "C" {
 
 
 #define _(String)  gettext(String)/** for console message*/
+#define _W(String)  to_wide_string(gettext(String))/** for console message*/
+    
 #define _t(String1,String2,n) ngettext (String1,String2,n)
 
 #else

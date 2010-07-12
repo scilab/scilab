@@ -22,7 +22,7 @@
 
 #include "yaspio.hxx"
 
-#define SCILAB_START "/etc/scilab.start"
+#define SCILAB_START L"/etc/scilab.start"
 
 Timer _timer;
 
@@ -33,7 +33,7 @@ Timer _timer;
 **
 ** Parse the given file and create the AST.
 */
-void parseFileTask(Parser *parser, bool timed, const char* file_name, const char* prog_name)
+void parseFileTask(Parser *parser, bool timed, const wchar_t* file_name, const wchar_t* prog_name)
 {
 #ifdef DEBUG
     std::cerr << "*** Processing " << file_name << " file..." << std::endl;
@@ -57,7 +57,7 @@ void parseFileTask(Parser *parser, bool timed, const char* file_name, const char
 **
 ** Parse the given command and create the AST.
 */
-void parseCommandTask(Parser *parser, bool timed, char *command)
+void parseCommandTask(Parser *parser, bool timed, wchar_t *command)
 {
 #ifdef DEBUG
     std::cerr << "*** Processing [" <<  command << "]..." << std::endl;
@@ -114,7 +114,7 @@ void printAstTask(ast::Exp *tree, bool timed)
 
     if (tree)
     {
-        ast::PrintVisitor printMe = *new ast::PrintVisitor(std::cout);
+        ast::PrintVisitor printMe = *new ast::PrintVisitor(std::wcout);
         tree->accept(printMe);
     }
 
@@ -156,10 +156,10 @@ void execAstTask(ast::Exp* tree, bool timed, bool ASTtimed)
     {
         tree->accept(*exec);
     }
-    catch(string sz)
+    catch(wstring sz)
     {
-        YaspWrite((char *) sz.c_str());
-        YaspWrite("\n");
+        YaspWriteW(sz.c_str());
+        YaspWriteW(L"\n");
     }
 
     delete exec;
@@ -198,15 +198,15 @@ void execScilabStartTask(void)
 {
     return;
     Parser parse;
-    string stSCI = ConfigVariable::getSCIPath();
+    wstring stSCI = ConfigVariable::getSCIPath();
 
     stSCI += SCILAB_START;
-    parse.parseFile(stSCI, "");
+    parse.parseFile(stSCI, L"");
 
     if(parse.getExitStatus() != Parser::Succeded)
     {
-        YaspWrite(parse.getErrorMessage());
-        YaspWrite("Failed to parse scilab.start");
+        YaspWriteW(parse.getErrorMessage());
+        YaspWriteW(L"Failed to parse scilab.start");
         return;
     }
 

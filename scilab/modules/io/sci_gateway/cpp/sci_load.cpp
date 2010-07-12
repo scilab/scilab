@@ -39,14 +39,14 @@ extern "C"
 #include <libxml/xmlreader.h>
 
 char *GetXmlFileEncoding(string _filename);
-bool getMacros(string _stXMLFile);
+bool getMacros(wstring _stXMLFile);
 
 using namespace types;
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_load(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
 	int iXMLFileLen = 0;
-	char* pstXMLFile = NULL;
+	wchar_t* pstXMLFile = NULL;
 
 	if(in.size() != 1)
 	{
@@ -67,8 +67,8 @@ Function::ReturnValue sci_load(types::typed_list &in, int _iRetCount, types::typ
 		return Function::Error;
 	}
 
-	char* pstFile = pS->string_get(0);
-    pstXMLFile = expandPathVariable(pstFile);
+	wchar_t* pstFile = pS->string_get(0);
+    pstXMLFile = expandPathVariableW(pstFile);
 
 	if(getMacros(pstXMLFile) == false)
 	{
@@ -77,10 +77,12 @@ Function::ReturnValue sci_load(types::typed_list &in, int _iRetCount, types::typ
 	return Function::OK;
 }
 
-bool getMacros(string _stXMLFile)
+bool getMacros(wstring _stXMLFile)
 {
 	symbol::Context* pContext = symbol::Context::getInstance();
-	char *encoding=GetXmlFileEncoding(_stXMLFile);
+
+    char* pstXMLFile = wide_string_to_UTF8(_stXMLFile.c_str());
+	char *encoding=GetXmlFileEncoding(pstXMLFile);
 
 	/* Don't care about line return / empty line */
 	xmlKeepBlanksDefault(0);
@@ -88,19 +90,20 @@ bool getMacros(string _stXMLFile)
 	if(stricmp("utf-8", encoding)==0)
 	{
 		xmlDocPtr doc;
-		xmlXPathContextPtr xpathCtxt	= NULL;
-		xmlXPathObjectPtr xpathObj		= NULL;
-		char *pstName									= NULL;
-		char *pstLibName							= NULL;
-		char *pstFileName							= NULL;
+		xmlXPathContextPtr xpathCtxt    = NULL;
+		xmlXPathObjectPtr xpathObj      = NULL;
+		wchar_t* pstName                = NULL;
+		wchar_t* pstLibName             = NULL;
+		wchar_t* pstFileName            = NULL;
+        wchar_t* pstLibNameW            = NULL;
 
-		int indice										= 0;
+		int indice                      = 0;
 
-		doc = xmlParseFile (_stXMLFile.c_str());
+		doc = xmlParseFile(pstXMLFile);
 
 		if(doc == NULL)
 		{
-			std::cout << "Error: Could not parse file " << _stXMLFile << std::endl;
+			std::cout << "Error: Could not parse file " << pstXMLFile << std::endl;
 			if(encoding)
 			{
 				free(encoding);
@@ -118,7 +121,7 @@ bool getMacros(string _stXMLFile)
 			{
 				/* we found the tag name */
 				const char *str = (const char*)attrib->children->content;
-				pstLibName = strdup(str);
+				pstLibName = to_wide_string(str);
 			}
 			else
 			{
@@ -142,21 +145,21 @@ bool getMacros(string _stXMLFile)
 					{
 						/* we found the tag name */
 						const char *str = (const char*)attrib->children->content;
-						pstName = strdup(str);
+						pstName = to_wide_string(str);
 					}
 					else if(xmlStrEqual(attrib->name, (const xmlChar*)"file"))
 					{
 						/* we found the tag activate */
 						const char *str = (const char*)attrib->children->content;
-						pstFileName = strdup(str);
+						pstFileName = to_wide_string(str);
 					}
 					attrib = attrib->next;
 				}
 
 				if(pstName && pstFileName)
 				{
-				  size_t iPos = _stXMLFile.rfind(DIR_SEPARATOR);
-					string stFilename = _stXMLFile.substr(0,iPos + 1) + pstFileName;
+                    size_t iPos = _stXMLFile.rfind(DIR_SEPARATORW);
+					wstring stFilename = _stXMLFile.substr(0,iPos + 1) + pstFileName;
 					pContext->AddMacroFile(new MacroFile(pstName, stFilename, pstLibName));
 				}
 				else
@@ -166,13 +169,13 @@ bool getMacros(string _stXMLFile)
 
 				if(pstName)
 				{
-					free(pstName);
+					FREE(pstName);
 					pstName = NULL;
 				}
 
 				if(pstFileName)
 				{
-					free(pstFileName);
+					FREE(pstFileName);
 					pstFileName = NULL;
 				}
 			}
@@ -188,13 +191,15 @@ bool getMacros(string _stXMLFile)
 	}
 	else
 	{
-		std::cout << "Error: Not a valid module file " << _stXMLFile << " (encoding not 'utf-8') Encoding '" << encoding << "' found." << std::endl;
+		std::wcout << "Error: Not a valid module file " << pstXMLFile << " (encoding not 'utf-8') Encoding '" << encoding << "' found." << std::endl;
 	}
 	if (encoding)
 	{
 		free(encoding);
 		encoding = NULL;
 	}
+
+    FREE(pstXMLFile);
 	return true;
 }
 

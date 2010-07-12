@@ -18,12 +18,16 @@
 
 /* compare two strings ignoring the case */
 
-#if _MSC_VER
+#ifdef _MSC_VER
 	#define stricmp _stricmp 
 	#define strnicmp _strnicmp 
+	#define wcsicmp _wcsicmp 
+	#define wcsnicmp _wcsnicmp 
  #else
     #define stricmp strcasecmp
     #define strnicmp strncasecmp
+    #define wcsicmp wcscasecmp
+    #define wcsnicmp wcsncasecmp
 #endif
 
 #endif /* __STRICMP_H__ */

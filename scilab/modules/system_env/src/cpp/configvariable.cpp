@@ -16,22 +16,22 @@
 ** Module List
 ** \{
 */
-std::list<std::string> ConfigVariable::m_ModuleList;
+list<wstring> ConfigVariable::m_ModuleList;
 
-void ConfigVariable::setModuleList(std::list<std::string>& _pModule_list)
+void ConfigVariable::setModuleList(list<wstring>& _pModule_list)
 {
     m_ModuleList.clear();
 
-    std::list<std::string>::iterator it;
+    list<wstring>::iterator it;
     for(it = _pModule_list.begin() ; it != _pModule_list.end() ; it++)
     {
         m_ModuleList.push_back(*it);
     }
 }
 
-std::list<std::string> ConfigVariable::getModuleList()
+list<wstring> ConfigVariable::getModuleList()
 {
-    std::list<std::string> moduleList;
+    list<wstring> moduleList;
     return moduleList;
 }
 /*
@@ -42,14 +42,14 @@ std::list<std::string> ConfigVariable::getModuleList()
 ** SCI
 ** \{
 */
-std::string ConfigVariable::m_SCIPath;
+wstring ConfigVariable::m_SCIPath;
 
-void ConfigVariable::setSCIPath(std::string& _SCIPath)
+void ConfigVariable::setSCIPath(wstring& _SCIPath)
 {
     m_SCIPath = _SCIPath;
 }
 
-std::string ConfigVariable::getSCIPath()
+wstring ConfigVariable::getSCIPath()
 {
     return m_SCIPath;
 }
@@ -63,14 +63,14 @@ std::string ConfigVariable::getSCIPath()
 ** \{
 */
 
-std::string ConfigVariable::m_SCIHOME;
+wstring ConfigVariable::m_SCIHOME;
 
-void ConfigVariable::setSCIHOME(std::string& _SCIHOME)
+void ConfigVariable::setSCIHOME(wstring& _SCIHOME)
 {
     m_SCIHOME = _SCIHOME;
 }
 
-std::string ConfigVariable::getSCIHOME()
+wstring ConfigVariable::getSCIHOME()
 {
     return m_SCIHOME;
 }
@@ -83,14 +83,14 @@ std::string ConfigVariable::getSCIHOME()
 ** \{
 */
 
-std::string ConfigVariable::m_TMPDIR;
+wstring ConfigVariable::m_TMPDIR;
 
-void ConfigVariable::setTMPDIR(std::string& _TMPDIR)
+void ConfigVariable::setTMPDIR(wstring& _TMPDIR)
 {
     m_TMPDIR = _TMPDIR;
 }
 
-std::string ConfigVariable::getTMPDIR()
+wstring ConfigVariable::getTMPDIR()
 {
     return m_TMPDIR;
 }

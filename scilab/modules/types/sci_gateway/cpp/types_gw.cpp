@@ -12,18 +12,18 @@
 
 #include "types_gw.hxx"
 
-#define MODULE_NAME "types"
+#define MODULE_NAME L"types"
 bool TypesModule::Load()
 {
-  symbol::Context::getInstance()->AddFunction(Function::createFunction("list", &sci_list, MODULE_NAME));
-  symbol::Context::getInstance()->AddFunction(Function::createFunction("struct", &sci_struct, MODULE_NAME));
-  symbol::Context::getInstance()->AddFunction(Function::createFunction("null", &sci_null, MODULE_NAME));
-  symbol::Context::getInstance()->AddFunction(Function::createFunction("insert", &sci_insert, MODULE_NAME));
-  symbol::Context::getInstance()->AddFunction(Function::createFunction("cell", &sci_cell, MODULE_NAME));
-  symbol::Context::getInstance()->AddFunction(Function::createFunction("makecell", &sci_makecell, MODULE_NAME));
-  symbol::Context::getInstance()->AddFunction(Function::createFunction("usertype", &sci_usertype, MODULE_NAME));
-  symbol::Context::getInstance()->AddFunction(Function::createFunction("typeof", &sci_typeof, MODULE_NAME));
-  symbol::Context::getInstance()->AddFunction(Function::createFunction("tlist", &sci_tlist, MODULE_NAME));
+  symbol::Context::getInstance()->AddFunction(Function::createFunction(L"list", &sci_list, MODULE_NAME));
+  symbol::Context::getInstance()->AddFunction(Function::createFunction(L"struct", &sci_struct, MODULE_NAME));
+  symbol::Context::getInstance()->AddFunction(Function::createFunction(L"null", &sci_null, MODULE_NAME));
+  symbol::Context::getInstance()->AddFunction(Function::createFunction(L"insert", &sci_insert, MODULE_NAME));
+  symbol::Context::getInstance()->AddFunction(Function::createFunction(L"cell", &sci_cell, MODULE_NAME));
+  symbol::Context::getInstance()->AddFunction(Function::createFunction(L"makecell", &sci_makecell, MODULE_NAME));
+  symbol::Context::getInstance()->AddFunction(Function::createFunction(L"usertype", &sci_usertype, MODULE_NAME));
+  symbol::Context::getInstance()->AddFunction(Function::createFunction(L"typeof", &sci_typeof, MODULE_NAME));
+  symbol::Context::getInstance()->AddFunction(Function::createFunction(L"tlist", &sci_tlist, MODULE_NAME));
 
   return true;
 }

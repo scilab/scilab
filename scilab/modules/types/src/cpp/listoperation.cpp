@@ -49,12 +49,12 @@ namespace types
 		return RealListOperation; 
 	}
 
-	std::string ListOperation::toString(int _iPrecision, int _iLineLen)
+	wstring ListOperation::toString(int _iPrecision, int _iLineLen)
 	{
-	  std::ostringstream ostr;
+	  wostringstream ostr;
 
 	  //FIXME : Implement me.
-	  ostr << "FIXME : Implement ListOperation::toString" << std::endl;
+	  ostr << L"FIXME : Implement ListOperation::toString" << std::endl;
 
 	  return ostr.str();
 	}

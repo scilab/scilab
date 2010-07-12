@@ -149,13 +149,13 @@ namespace types
     ** toString to display Structs
     ** FIXME : Find a better indentation process
     */
-    std::string Cell::toString(int _iPrecision, int _iLineLen)
+    wstring Cell::toString(int _iPrecision, int _iLineLen)
     {
-        std::ostringstream ostr;
+        wostringstream ostr;
 
         if(size_get() == 0)
         {
-            ostr << "   {}";
+            ostr << L"   {}";
         }
         else
         {
@@ -176,7 +176,7 @@ namespace types
                 {
                     InternalType* pIT = get(i,j);
 
-                    std::string strType = pIT->getTypeStr();
+                    wstring strType = pIT->getTypeStr();
                     if(pIT->isAssignable())
                     {
                         //compute number of digits to write rows and cols
@@ -212,28 +212,28 @@ namespace types
                 {
                     InternalType* pIT = get(i,j);
 
-                    ostr << "  [";
+                    ostr << L"  [";
                     if(pIT->isAssignable())
                     {
-                        std::ostringstream ostemp;
+                        wostringstream ostemp;
                         Config_Stream(&ostemp, piILen[j], _iPrecision, ' ');
                         ostemp << right << pIT->getAsGenericType()->rows_get();
-                        ostemp << "x";
+                        ostemp << L"x";
                         Config_Stream(&ostemp, piJLen[j], _iPrecision, ' ');
                         ostemp << left << pIT->getAsGenericType()->cols_get();
                         Config_Stream(&ostemp, piSumLen[j] - static_cast<int>(ostemp.str().size()), _iPrecision, ' ');
-                        ostemp << "";//fill with space
+                        ostemp << L"";//fill with space
                         ostr << ostemp.str();
                     }
                     else
                     {
                         Config_Stream(&ostr, piSumLen[j], _iPrecision, ' ');
-                        ostr << "";//fill with space
+                        ostr << L"";//fill with space
                     }
-                    ostr << " ";
+                    ostr << L" ";
                     Config_Stream(&ostr, piColLen[j], _iPrecision, ' ');
                     ostr << left << pIT->getTypeStr();
-                    ostr << "]";
+                    ostr << L"]";
                 }
                 ostr << std::endl;
             }

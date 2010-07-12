@@ -2,11 +2,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -15,6 +15,7 @@
 #define __SCIERROR__
 
 #include <stdarg.h>
+#include <wchar.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -22,17 +23,18 @@ extern "C" {
 #include "do_error_number.h"
 
 #define bsiz 4096
-/* 
-* as sciprint but with an added first argument 
-* which is ignored (used in do_printf) 
+/*
+* as sciprint but with an added first argument
+* which is ignored (used in do_printf)
 * @param iv error code
 * @param fmt
 * @param ...
 */
-int  Scierror(int iv,char *fmt,...);
+int  Scierror(int iv, const char *fmt,...);
+int  ScierrorW(int iv, const wchar_t *fmt,...);
 
 #ifdef __cplusplus
 }
 #endif
 #endif /* __SCIERROR__ */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

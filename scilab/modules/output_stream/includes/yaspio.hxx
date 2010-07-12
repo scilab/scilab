@@ -24,6 +24,8 @@ OUTPUT_STREAM_IMPEXP void setYaspInputMethod(YASP_INPUT reader);
 
 OUTPUT_STREAM_IMPEXP char *YaspRead();
 
-OUTPUT_STREAM_IMPEXP void YaspWrite(char* text);
+OUTPUT_STREAM_IMPEXP void YaspWrite(const char* text);
+
+OUTPUT_STREAM_IMPEXP void YaspWriteW(const wchar_t* text);
 
 #endif /* __YASPIO_HXX__ */

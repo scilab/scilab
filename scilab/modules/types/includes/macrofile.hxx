@@ -24,7 +24,7 @@ namespace types
     {
     public :
                                 MacroFile(): Callable(){};
-                                MacroFile(std::string _stName, string _stPath, string _stModule);
+                                MacroFile(wstring _stName, wstring _stPath, wstring _stModule);
         virtual                 ~MacroFile(){};
 
         //FIXME : Should not return NULL
@@ -35,7 +35,7 @@ namespace types
 
         void                    whoAmI();
 
-        std::string             toString(int _iPrecision, int _iLineLen);
+        wstring                 toString(int _iPrecision, int _iLineLen);
 
         Callable::ReturnValue   call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
         bool                    parse(void);
@@ -43,13 +43,13 @@ namespace types
         Macro*                  macro_get(void);
 
         /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::string     getTypeStr() {return string("macrofile");}
+        virtual wstring         getTypeStr() {return L"macrofile";}
         /* return type as short string ( s, i, ce, l, ... )*/
-        virtual std::string     getShortTypeStr() {return string("function");}
+        virtual wstring         getShortTypeStr() {return L"function";}
 
     private :
         Macro*                  m_pMacro;
-        std::string             m_stPath;
+        wstring                 m_stPath;
     };
 }
 

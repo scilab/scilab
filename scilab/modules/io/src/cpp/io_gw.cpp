@@ -12,6 +12,8 @@
 
 #include "io_gw.hxx"
 
+#define MODULE_NAME L"io"
+
 extern "C"
 {
 	#include "gw_io.h"
@@ -21,8 +23,8 @@ using namespace types;
 
 bool IoModule::Load()
 {
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("load", &sci_load, "io"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("genlib", &sci_genlib, "io"));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"load", &sci_load, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"genlib", &sci_genlib, MODULE_NAME));
 	return true;
 }
 
