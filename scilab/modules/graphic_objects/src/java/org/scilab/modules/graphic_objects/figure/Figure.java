@@ -229,7 +229,7 @@ public class Figure extends GraphicObject {
 	private EventHandler eventHandler;
 
 	/** Tag */
-	private int tag;
+	private String tag;
 
 	/** Rotation type */
 	private RotationType rotation;
@@ -250,7 +250,7 @@ public class Figure extends GraphicObject {
 		renderingMode = new RenderingMode();
 		background = 0;
 		eventHandler = new EventHandler();
-		tag = 0;
+		tag = "";
 		rotation = RotationType.UNARY;
 	}
 
@@ -415,14 +415,12 @@ public class Figure extends GraphicObject {
 			setImmediateDrawing((Boolean) value);
 		} else if (property == FigureProperty.BACKGROUND) {
 			setBackground((Integer) value);
-		} else if (property == FigureProperty.EVENTHANDLER) {
-			setEventHandler((EventHandler) value);
 		} else if (property == EventHandlerProperty.EVENTHANDLER) {
 			setEventHandlerString((String) value);
 		} else if (property == EventHandlerProperty.EVENTHANDLERENABLE) {
 			setEventHandlerEnable((Boolean) value);
 		} else if (property == FigureProperty.TAG) {
-			setTag((Integer) value);
+			setTag((String) value);
 		} else if (property == FigureProperty.ROTATIONTYPE) {
 			setRotation((Integer) value);
 		} else {
@@ -841,14 +839,14 @@ public class Figure extends GraphicObject {
 	/**
 	 * @return the tag
 	 */
-	public Integer getTag() {
+	public String getTag() {
 		return tag;
 	}
 
 	/**
 	 * @param tag the tag to set
 	 */
-	public void setTag(Integer tag) {
+	public void setTag(String tag) {
 		this.tag = tag;
 	}
 

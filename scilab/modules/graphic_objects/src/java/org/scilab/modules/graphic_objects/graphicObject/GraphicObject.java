@@ -34,25 +34,25 @@ public abstract class GraphicObject {
 	/** Identifier */
 	private String identifier;
 	
-	/** Parent object */
-	private GraphicObject parent;
+	/** Parent object is known by it's UID */
+	private String parent;
 
-	/** Child objects list */
-	private List <GraphicObject> children;
+	/** Child objects list. Known by their UID */
+	private List <String> children;
 
 	/** Specifies whether the object is visible or not */
 	private boolean visible;
 
 	/** User data */
-	private int[] userData;
+	private Object userData;
 
 	/** Constructor */
 	public GraphicObject() {
 		identifier = null;
-		parent = null;
+		parent = "";
 		children = null;
 		visible = false;
-		userData = new int[USER_DATA_DEFAULT_SIZE];
+		userData = null;
 	}
 
 	/**
@@ -152,13 +152,13 @@ public abstract class GraphicObject {
 	 */
 	public boolean setProperty(Object property, Object value) {
 		if (property == GraphicObjectPropertyType.PARENT) {
-			setParent((GraphicObject) value);
+			setParent((String) value);
 		} else if (property == GraphicObjectPropertyType.CHILDREN) {
-			setChildren((List<GraphicObject>) value);
+			setChildren((List<String>) value);
 		} else if (property == GraphicObjectPropertyType.VISIBLE) {
 			setVisible((Boolean) value);
 		} else if (property == GraphicObjectPropertyType.USERDATA) {
-			setUserData((Integer[]) value);
+			setUserData(value);
 		} else if (property == GraphicObjectPropertyType.USERDATASIZE) {
 			return false;
 		} else if (property == GraphicObjectPropertyType.UNKNOWNPROPERTY) {
@@ -199,14 +199,14 @@ public abstract class GraphicObject {
 	/**
 	 * @return the children
 	 */
-	public List<GraphicObject> getChildren() {
+	public List<String> getChildren() {
 		return children;
 	}
 
 	/**
 	 * @param children the children to set
 	 */
-	public void setChildren(List<GraphicObject> children) {
+	public void setChildren(List<String> children) {
 		this.children = children;
 	}
 
@@ -227,48 +227,36 @@ public abstract class GraphicObject {
 	/**
 	 * @return the parent
 	 */
-	public GraphicObject getParent() {
+	public String getParent() {
 		return parent;
 	}
 
 	/**
 	 * @param parent the parent to set
 	 */
-	public void setParent(GraphicObject parent) {
+	public void setParent(String parent) {
 		this.parent = parent;
 	}
 
 	/**
 	 * @return the userData
 	 */
-	public Integer[] getUserData() {
-		Integer[] returnedData = new Integer[userData.length];
-
-		for (int i = 0; i < userData.length; i++) {
-			returnedData[i] = userData[i];
-		}
-
-		return returnedData;
+	public Object getUserData() {
+		return userData;
 	}
 
 	/**
 	 * @param userData the userData to set
 	 */
-	public void setUserData(Integer[] userData) {
-		if (userData.length != this.userData.length) {
-			this.userData = new int[userData.length];
-		}
-
-		for (int i = 0; i < userData.length; i++) {
-			this.userData[i] = userData[i];
-		}
+	public void setUserData(Object userData) {
+	    this.userData = userData;
 	}
 
 	/**
 	 * @return the userDataSize
 	 */
 	public Integer getUserDataSize() {
-		return userData.length;
+		return 0;
 	}
 
 	/**

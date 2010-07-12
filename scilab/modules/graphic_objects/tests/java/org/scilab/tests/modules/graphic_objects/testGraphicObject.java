@@ -12,6 +12,8 @@
 
 package org.scilab.tests.modules.graphic_objects;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
+
 import org.scilab.modules.graphic_objects.arc.Arc;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.axis.Axis;
@@ -41,9 +43,7 @@ import org.testng.annotations.Test;
  */
 public class testGraphicObject {
 
-    public static final String VISIBLE_PROP_NAME = "Visible"; 
     public static final String NONEXISTING_PROP_NAME = "NonExistingProperty";
-    public static final String PARENT_PROP_NAME = "Parent";
 
 	@Test
     public void simpleTest() throws NullPointerException {
@@ -67,8 +67,8 @@ public class testGraphicObject {
 
         Boolean arcVisible = new Boolean(true);
 
-        controller.setProperty(arcID, VISIBLE_PROP_NAME, arcVisible);
-        Boolean arcVisibleRet = (Boolean) controller.getProperty(arcID, VISIBLE_PROP_NAME);
+        controller.setProperty(arcID, __GO_VISIBLE__, arcVisible);
+        Boolean arcVisibleRet = (Boolean) controller.getProperty(arcID, __GO_VISIBLE__);
 
         assert (arcVisibleRet != null);
 
@@ -78,9 +78,10 @@ public class testGraphicObject {
 
         assert nonExistingProp == null;
 
-        controller.setProperty(arcID, PARENT_PROP_NAME, axes);
+        controller.setProperty(arcID, __GO_PARENT__, axes.getIdentifier());
 
-        GraphicObject arcParent = (GraphicObject) controller.getProperty(arcID, PARENT_PROP_NAME);
+        String arcParentId = (String) controller.getProperty(arcID, __GO_PARENT__);
+        GraphicObject arcParent = (GraphicObject) controller.getObjectFromId(arcParentId);
 
         assert(arcParent != null);
 
