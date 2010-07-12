@@ -39,7 +39,7 @@ generateJavaFile()
 
     cat $PropertiesFile | sed s/"@DECLARE@"/"public static final String"/g \
         | sed s/"@EQUAL@"/"="/g \
-        | sed s/"@END@"/";"/g >> $OutFile
+        | sed s/" @END@"/";"/g >> $OutFile
 
     echo ""  >> $OutFile
     echo "}"  >> $OutFile
@@ -55,7 +55,7 @@ generateCFile()
 
      cat $PropertiesFile | sed s/"@DECLARE@"/"#define"/g \
          | sed s/"@EQUAL@"/"    "/g \
-         | sed s/"@END@"/""/g >> $OutFile
+         | sed s/" @END@"/""/g >> $OutFile
 
      echo ""  >> $OutFile
      echo "#endif /* !__GRAPHIC_OBJECT_PROPERTIES_H__ */" >> $OutFile
@@ -78,7 +78,9 @@ generateHeader()
     echo ""  >> $OutFile
 
     echo "/*" >> $OutFile
-    echo " * -=- This is a generated file, please do not edit by hand -=-" >> $OutFile
+    echo " * -=- This is a generated file, please do not edit by hand             -=-" >> $OutFile
+    echo " * -=- Please see properties definitions in                             -=-" >> $OutFile
+    echo " * -=- SCI/modules/graphic_objects/src/scripts/propertiesMap.properties -=-" >> $OutFile
     echo " */" >> $OutFile
 
     echo "" >> $OutFile
