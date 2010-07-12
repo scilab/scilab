@@ -32,16 +32,15 @@ pal = xcosPalAddBlock(pal, "SUM_f")
  
        pal(4)
  
- TMPDIR/SCI_TMP_5567_v04meb/SUM_f.h5   
+ TMPDIR/SUM_f.h5   
  
        pal(5)
  
- TMPDIR/SCI_TMP_5567_v04meb/SUM_f.gif   
+ TMPDIR/SUM_f.gif   
  
        pal(6)
  
- noLabel=1;image=file:TMPDIR/SCI_TMP_5567_v04meb/SUM_ 
-      f.svg;                                                            
+ noLabel=1;image=file:TMPDIR/SUM_f.svg;   
 pal = xcosPal();
 pal = xcosPalAddBlock(pal, scs_m)
  pal  =
@@ -61,16 +60,15 @@ pal = xcosPalAddBlock(pal, scs_m)
  
        pal(4)
  
- TMPDIR/SCI_TMP_5567_v04meb/SUM_f.h5   
+ TMPDIR/SUM_f.h5   
  
        pal(5)
  
- TMPDIR/SCI_TMP_5567_v04meb/SUM_f.gif   
+ TMPDIR/SUM_f.gif   
  
        pal(6)
  
- noLabel=1;image=file:TMPDIR/SCI_TMP_5567_v04meb/SUM_ 
-      f.svg;                                                            
+ noLabel=1;image=file:TMPDIR/SUM_f.svg;   
 pal = xcosPal();
 export_to_hdf5(blockPath, "scs_m");
 pal = xcosPalAddBlock(pal, blockPath)
@@ -91,16 +89,15 @@ pal = xcosPalAddBlock(pal, blockPath)
  
        pal(4)
  
- TMPDIR/SCI_TMP_5567_v04meb/block.h5   
+ TMPDIR/block.h5   
  
        pal(5)
  
- TMPDIR/SCI_TMP_5567_v04meb/SUM_f.gif   
+ TMPDIR/SUM_f.gif   
  
        pal(6)
  
- noLabel=1;image=file:TMPDIR/SCI_TMP_5567_v04meb/SUM_ 
-      f.svg;                                                            
+ noLabel=1;image=file:TMPDIR/SUM_f.svg;   
 pal = xcosPal();
 pal = xcosPalAddBlock(pal, blockPath, [], [])
  pal  =
@@ -120,16 +117,15 @@ pal = xcosPalAddBlock(pal, blockPath, [], [])
  
        pal(4)
  
- TMPDIR/SCI_TMP_5567_v04meb/block.h5   
+ TMPDIR/block.h5   
  
        pal(5)
  
- TMPDIR/SCI_TMP_5567_v04meb/SUM_f.gif   
+ TMPDIR/SUM_f.gif   
  
        pal(6)
  
- noLabel=1;image=file:TMPDIR/SCI_TMP_5567_v04meb/SUM_ 
-      f.svg;                                                            
+ noLabel=1;image=file:TMPDIR/SUM_f.svg;   
 // Test pal_block_img argument
 pal = xcosPal();
 pal = xcosPalAddBlock(pal, blockPath, iconPath)
@@ -150,7 +146,7 @@ pal = xcosPalAddBlock(pal, blockPath, iconPath)
  
        pal(4)
  
- TMPDIR/SCI_TMP_5567_v04meb/block.h5   
+ TMPDIR/block.h5   
  
        pal(5)
  
@@ -159,8 +155,7 @@ pal = xcosPalAddBlock(pal, blockPath, iconPath)
  
        pal(6)
  
- noLabel=1;image=file:TMPDIR/SCI_TMP_5567_v04meb/SUM_ 
-      f.svg;                                                            
+ noLabel=1;image=file:TMPDIR/SUM_f.svg;   
 current = pwd();
 cd(SCI);
 pal = xcosPal();
@@ -182,7 +177,7 @@ pal = xcosPalAddBlock(pal, blockPath, "modules/xcos/images/palettes/NPN.pn?")
  
        pal(4)
  
- TMPDIR/SCI_TMP_5567_v04meb/block.h5   
+ TMPDIR/block.h5   
  
        pal(5)
  
@@ -191,8 +186,7 @@ pal = xcosPalAddBlock(pal, blockPath, "modules/xcos/images/palettes/NPN.pn?")
  
        pal(6)
  
- noLabel=1;image=file:TMPDIR/SCI_TMP_5567_v04meb/SUM_ 
-      f.svg;                                                            
+ noLabel=1;image=file:TMPDIR/SUM_f.svg;   
 cd(current);
 // Test style argument
 myStyle = struct();
@@ -217,16 +211,15 @@ pal = xcosPalAddBlock(pal, blockPath, [], myStyle)
  
        pal(4)
  
- TMPDIR/SCI_TMP_5567_v04meb/block.h5   
+ TMPDIR/block.h5   
  
        pal(5)
  
- TMPDIR/SCI_TMP_5567_v04meb/SUM_f.gif   
+ TMPDIR/SUM_f.gif   
  
        pal(6)
  
- noLabel=1;image=file:TMPDIR/SCI_TMP_5567_v04meb/SUM_ 
-      f.svg;                                                            
+ noLabel=1;image=file:TMPDIR/SUM_f.svg;   
 pal = xcosPal();
 pal = xcosPalAddBlock(pal, blockPath, [], iconPath)
  pal  =
@@ -246,13 +239,12 @@ pal = xcosPalAddBlock(pal, blockPath, [], iconPath)
  
        pal(4)
  
- TMPDIR/SCI_TMP_5567_v04meb/block.h5   
+ TMPDIR/block.h5   
  
        pal(5)
  
- TMPDIR/SCI_TMP_5567_v04meb/SUM_f.gif   
+ TMPDIR/SUM_f.gif   
  
        pal(6)
  
- noLabel=1;image=file:TMPDIR/SCI_TMP_5567_v04meb/SUM_ 
-      f.svg;                                                            
+ noLabel=1;image=file:TMPDIR/SUM_f.svg;   
