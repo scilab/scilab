@@ -74,6 +74,8 @@ Bug Fixes:
 * bug 7491 fixed - Lines broken with a .. were not correctly handled and caused
                    a freeze of SciNotes.
 
+* bug 7520 fixed - The Xcos context was not translated from parent diagram to child.
+
            Changes between version 5.2.X and 5.3.0-beta1 of Scilab
            =======================================================
 

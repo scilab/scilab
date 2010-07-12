@@ -978,7 +978,7 @@ public class XcosDiagram extends ScilabGraph {
     			if (cell instanceof BasicBlock) {
     				BasicBlock block = (BasicBlock) cell;
     				e.consume();
-    				block.openBlockSettings(getScicosParameters().getContext());
+    				block.openBlockSettings(getContext());
     			}
     			if (cell instanceof BasicLink) {
     				mxGeometry parent = ((BasicLink) cell).getParent().getGeometry();
@@ -1434,6 +1434,14 @@ public class XcosDiagram extends ScilabGraph {
     }
 
     /**
+     * Get the current diagram context
+     * @return the context at the current node
+     */
+    public String[] getContext() {
+		return scicosParameters.getContext();
+    }
+    
+    /**
      * Set the associated ViewPort
      * @param viewPort the Viewport
      */
@@ -1690,7 +1698,7 @@ public class XcosDiagram extends ScilabGraph {
 	for (int i = 0; i < childCount; ++i) {
 	    Object obj = getModel().getChildAt(rootParent, i);
 	    if (obj instanceof ContextUpdate) {
-		String[] globalContext = getScicosParameters().getContext();
+		String[] globalContext = getContext();
 
 		/* Determine if the context is not empty */
 		int nbOfDetectedChar = 0;
@@ -1985,7 +1993,7 @@ public class XcosDiagram extends ScilabGraph {
 		try {
 			StringBuilder str = new StringBuilder();
 			str.append('[');
-			for (String s : getScicosParameters().getContext()) {
+			for (String s : getContext()) {
 				str.append('\"');
 				str.append(s);
 				str.append("\" ");
