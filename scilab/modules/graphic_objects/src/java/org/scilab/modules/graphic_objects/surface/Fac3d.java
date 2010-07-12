@@ -21,7 +21,24 @@ public class Fac3d extends Surface {
 	private enum Fac3dProperty { DATAMAPPING };
 	
 	/** Data mapping type */
-	private enum DataMapping { SCALED, DIRECT };
+	private enum DataMapping { SCALED, DIRECT;
+
+		/**
+		 * Converts an integer to the corresponding enum
+		 * @param intValue the integer value
+		 * @return the data mapping enum
+		 */
+		public static DataMapping intToEnum(Integer intValue) {
+			switch (intValue) {
+				case 0:
+					return DataMapping.SCALED;
+				case 1:
+					return DataMapping.DIRECT;
+				default:
+					return null;
+			}
+		}
+	}
 
 	/** Specifies how colors are mapped to scalar values */
 	private DataMapping dataMapping;
@@ -66,7 +83,7 @@ public class Fac3d extends Surface {
 	 */
 	public boolean setProperty(Object property, Object value) {
 		if (property == Fac3dProperty.DATAMAPPING) {
-			setDataMapping((DataMapping) value);
+			setDataMapping((Integer) value);
 		} else {
 			return super.setProperty(property, value);
 		}
@@ -77,14 +94,28 @@ public class Fac3d extends Surface {
 	/**
 	 * @return the dataMapping
 	 */
-	public DataMapping getDataMapping() {
+	public Integer getDataMapping() {
+		return getDataMappingAsEnum().ordinal();
+	}
+
+	/**
+	 * @return the dataMapping
+	 */
+	public DataMapping getDataMappingAsEnum() {
 		return dataMapping;
 	}
 
 	/**
 	 * @param dataMapping the dataMapping to set
 	 */
-	public void setDataMapping(DataMapping dataMapping) {
+	public void setDataMapping(Integer dataMapping) {
+		setDataMappingAsEnum(DataMapping.intToEnum(dataMapping));
+	}
+
+	/**
+	 * @param dataMapping the dataMapping to set
+	 */
+	public void setDataMappingAsEnum(DataMapping dataMapping) {
 		this.dataMapping = dataMapping;
 	}
 

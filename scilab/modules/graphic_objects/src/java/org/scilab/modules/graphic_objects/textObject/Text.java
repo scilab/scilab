@@ -20,11 +20,51 @@ public class Text extends ClippableTextObject {
 	/** Text properties names */
 	private enum TextProperty { FONTANGLE, POSITION, ALIGNMENT, BOX, TEXTBOX, TEXTBOXMODE, AUTODIMENSIONING };
 
-	/** Alignement */
-	private enum Alignment { LEFT, CENTER, RIGHT };
+	/** Alignment */
+	private enum Alignment { LEFT, CENTER, RIGHT;
+
+		/**
+		 * Converts an integer to the corresponding enum
+		 * @param intValue the integer value
+		 * @return the alignment enum
+		 */
+		public static Alignment intToEnum(Integer intValue) {
+			switch (intValue) {
+				case 0:
+					return Alignment.LEFT;
+				case 1:
+					return Alignment.CENTER;
+				case 2:
+					return Alignment.RIGHT;
+				default:
+					return null;
+			}
+		}
+
+	};
 
 	/** Text box mode */
-	private enum TextBoxMode { OFF, CENTERED, FILLED };
+	private enum TextBoxMode { OFF, CENTERED, FILLED;
+
+		/**
+		 * Converts an integer to the corresponding enum
+		 * @param intValue the integer value
+		 * @return the text box mode enum
+		 */
+		public static TextBoxMode intToEnum(Integer intValue) {
+			switch (intValue) {
+				case 0:
+					return TextBoxMode.OFF;
+				case 1:
+					return TextBoxMode.CENTERED;
+				case 2:
+					return TextBoxMode.FILLED;
+				default:
+					return null;
+			}
+		}
+
+	};
 
 	/** Text angle */
 	private double fontAngle;
@@ -122,13 +162,13 @@ public class Text extends ClippableTextObject {
 		} else if (property == TextProperty.POSITION) {
 			setPosition((Double[]) value);
 		} else if (property == TextProperty.ALIGNMENT) {
-			setAlignment((Alignment) value);
+			setAlignment((Integer) value);
 		} else if (property == TextProperty.BOX) {
 			setBox((Boolean) value);
 		} else if (property == TextProperty.TEXTBOX) {
 			setTextBox((Double[]) value);
 		} else if (property == TextProperty.TEXTBOXMODE) {
-			setTextBoxMode((TextBoxMode) value);
+			setTextBoxMode((Integer) value);
 		} else if (property == TextProperty.AUTODIMENSIONING) {
 			setAutoDimensioning((Boolean) value);
 		} else {
@@ -141,14 +181,28 @@ public class Text extends ClippableTextObject {
 	/**
 	 * @return the alignment
 	 */
-	public Alignment getAlignment() {
+	public Integer getAlignment() {
+		return getAlignmentAsEnum().ordinal();
+	}
+
+	/**
+	 * @return the alignment
+	 */
+	public Alignment getAlignmentAsEnum() {
 		return alignment;
 	}
 
 	/**
 	 * @param alignment the alignment to set
 	 */
-	public void setAlignment(Alignment alignment) {
+	public void setAlignment(Integer alignment) {
+		setAlignmentAsEnum(Alignment.intToEnum(alignment));
+	}
+
+	/**
+	 * @param alignment the alignment to set
+	 */
+	public void setAlignmentAsEnum(Alignment alignment) {
 		this.alignment = alignment;
 	}
 
@@ -237,14 +291,28 @@ public class Text extends ClippableTextObject {
 	/**
 	 * @return the textBoxMode
 	 */
-	public TextBoxMode getTextBoxMode() {
+	public Integer getTextBoxMode() {
+		return getTextBoxModeAsEnum().ordinal();
+	}
+
+	/**
+	 * @return the textBoxMode
+	 */
+	public TextBoxMode getTextBoxModeAsEnum() {
 		return textBoxMode;
 	}
 
 	/**
 	 * @param textBoxMode the textBoxMode to set
 	 */
-	public void setTextBoxMode(TextBoxMode textBoxMode) {
+	public void setTextBoxMode(Integer textBoxMode) {
+		setTextBoxModeAsEnum(TextBoxMode.intToEnum(textBoxMode));
+	}
+
+	/**
+	 * @param textBoxMode the textBoxMode to set
+	 */
+	public void setTextBoxModeAsEnum(TextBoxMode textBoxMode) {
 		this.textBoxMode = textBoxMode;
 	}
 	

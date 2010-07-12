@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Manuel JULIACHS
+ * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -11,6 +12,8 @@
  */
 
 package org.scilab.modules.graphic_objects.axes;
+
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 import java.util.ArrayList;
 
@@ -27,15 +30,15 @@ import org.scilab.modules.graphic_objects.textObject.FormattedText;
  */
 public class Axes extends GraphicObject {
 	/** Axes properties names */
-	private enum AxesProperty { AXES,
-		XAXIS, XAXISVISIBLE, XAXISREVERSE, XAXISGRIDCOLOR, XAXISLABEL, XAXISLOCATION, XAXISLOGFLAG,
+	private enum AxesProperty {
+		XAXISVISIBLE, XAXISREVERSE, XAXISGRIDCOLOR, XAXISLABEL, XAXISLOCATION, XAXISLOGFLAG,
 		XAXISTICKS, XAXISAUTOTICKS, XAXISTICKSLOCATIONS, XAXISTICKSLABELS, XAXISSUBTICKS,
-		YAXIS, YAXISVISIBLE, YAXISREVERSE, YAXISGRIDCOLOR, YAXISLABEL, YAXISLOCATION, YAXISLOGFLAG,
+		YAXISVISIBLE, YAXISREVERSE, YAXISGRIDCOLOR, YAXISLABEL, YAXISLOCATION, YAXISLOGFLAG,
 		YAXISTICKS, YAXISAUTOTICKS, YAXISTICKSLOCATIONS, YAXISTICKSLABELS, YAXISSUBTICKS,
-		ZAXIS, ZAXISVISIBLE, ZAXISREVERSE, ZAXISGRIDCOLOR, ZAXISLABEL, ZAXISLOCATION, ZAXISLOGFLAG,
+		ZAXISVISIBLE, ZAXISREVERSE, ZAXISGRIDCOLOR, ZAXISLABEL, ZAXISLOCATION, ZAXISLOGFLAG,
 		ZAXISTICKS, ZAXISAUTOTICKS, ZAXISTICKSLOCATIONS, ZAXISTICKSLABELS, ZAXISSUBTICKS,
 		GRIDPOSITION, TITLE, AUTOCLEAR, FILLED,
-		CAMERA, BOX, MARGINS, AXESBOUNDS };
+		MARGINS, AXESBOUNDS };
 
 	/** Specifies the grid position relative to the graphics entities */
 	public static enum GridPosition { FOREGROUND, BACKGROUND };
@@ -46,8 +49,8 @@ public class Axes extends GraphicObject {
 	/** Grid position */
 	private GridPosition gridPosition;
 
-	/** Title label */
-	private Label title;
+	/** Title label known by it's UID. */
+	private String title;
 
 	/** Specifies whether the Axes subwindow is cleared when a new plot command is performed */ 
 	private boolean autoClear;
@@ -93,117 +96,105 @@ public class Axes extends GraphicObject {
 	 * @return the property enum
 	 */
 	public Object getPropertyFromName(String propertyName) {
-		if (propertyName.equals("Axes")) {
-			return AxesProperty.AXES;
-		} else if (propertyName.equals("XAxis")) {
-			return AxesProperty.XAXIS;
-		} else if (propertyName.equals("XAxisVisible")) {
+		if (propertyName.equals(__GO_X_AXIS_VISIBLE__)) {
 			return AxesProperty.XAXISVISIBLE;
-		} else if (propertyName.equals("XAxisReverse")) {
+		} else if (propertyName.equals(__GO_X_AXIS_REVERSE__)) {
 			return AxesProperty.XAXISREVERSE;
-		} else if (propertyName.equals("XAxisGridColor")) {
+		} else if (propertyName.equals(__GO_X_AXIS_GRID_COLOR__)) {
 			return AxesProperty.XAXISGRIDCOLOR;
-		} else if (propertyName.equals("XAxisLabel")) {
+		} else if (propertyName.equals(__GO_X_AXIS_LABEL__)) {
 			return AxesProperty.XAXISLABEL;
-		} else if (propertyName.equals("XAxisLocation")) {
+		} else if (propertyName.equals(__GO_X_AXIS_LOCATION__)) {
 			return AxesProperty.XAXISLOCATION;
-		} else if (propertyName.equals("XAxisLogFlag")) {
+		} else if (propertyName.equals(__GO_X_AXIS_LOG_FLAG__)) {
 			return AxesProperty.XAXISLOGFLAG;
-		} else if (propertyName.equals("XAxisTicks")) {
+		} else if (propertyName.equals(__GO_X_AXIS_TICKS__)) {
 			return AxesProperty.XAXISTICKS;
-		} else if (propertyName.equals("XAxisAutoTicks")) {
+		} else if (propertyName.equals(__GO_X_AXIS_AUTO_TICKS__)) {
 			return AxesProperty.XAXISAUTOTICKS;
-		} else if (propertyName.equals("XAxisTicksLocations")) {
+		} else if (propertyName.equals(__GO_X_AXIS_TICKS_LOCATIONS__)) {
 			return AxesProperty.XAXISTICKSLOCATIONS;
-		} else if (propertyName.equals("XAxisTicksLabels")) {
+		} else if (propertyName.equals(__GO_X_AXIS_TICKS_LABELS__)) {
 			return AxesProperty.XAXISTICKSLABELS;
-		} else if (propertyName.equals("XAxisSubticks")) {
+		} else if (propertyName.equals(__GO_X_AXIS_SUBTICKS__)) {
 			return AxesProperty.XAXISSUBTICKS;
-		} else if (propertyName.equals("YAxis")) {
-			return AxesProperty.YAXIS;
-		} else if (propertyName.equals("YAxisVisible")) {
+		} else if (propertyName.equals(__GO_Y_AXIS_VISIBLE__)) {
 			return AxesProperty.YAXISVISIBLE;
-		} else if (propertyName.equals("YAxisReverse")) {
+		} else if (propertyName.equals(__GO_Y_AXIS_REVERSE__)) {
 			return AxesProperty.YAXISREVERSE;
-		} else if (propertyName.equals("YAxisGridColor")) {
+		} else if (propertyName.equals(__GO_Y_AXIS_GRID_COLOR__)) {
 			return AxesProperty.YAXISGRIDCOLOR;
-		} else if (propertyName.equals("YAxisLabel")) {
+		} else if (propertyName.equals(__GO_Y_AXIS_LABEL__)) {
 			return AxesProperty.YAXISLABEL;
-		} else if (propertyName.equals("YAxisLocation")) {
+		} else if (propertyName.equals(__GO_Y_AXIS_LOCATION__)) {
 			return AxesProperty.YAXISLOCATION;
-		} else if (propertyName.equals("YAxisLogFlag")) {
+		} else if (propertyName.equals(__GO_Y_AXIS_LOG_FLAG__)) {
 			return AxesProperty.YAXISLOGFLAG;
-		} else if (propertyName.equals("YAxisTicks")) {
+		} else if (propertyName.equals(__GO_Y_AXIS_TICKS__)) {
 			return AxesProperty.YAXISTICKS;
-		} else if (propertyName.equals("YAxisAutoTicks")) {
+		} else if (propertyName.equals(__GO_Y_AXIS_AUTO_TICKS__)) {
 			return AxesProperty.YAXISAUTOTICKS;
-		} else if (propertyName.equals("YAxisTicksLocations")) {
+		} else if (propertyName.equals(__GO_Y_AXIS_TICKS_LOCATIONS__)) {
 			return AxesProperty.YAXISTICKSLOCATIONS;
-		} else if (propertyName.equals("YAxisTicksLabels")) {
+		} else if (propertyName.equals(__GO_Y_AXIS_TICKS_LABELS__)) {
 			return AxesProperty.YAXISTICKSLABELS;
-		} else if (propertyName.equals("YAxisSubticks")) {
+		} else if (propertyName.equals(__GO_Y_AXIS_SUBTICKS__)) {
 			return AxesProperty.YAXISSUBTICKS;
-		} else if (propertyName.equals("ZAxis")) {
-			return AxesProperty.ZAXIS;
-		} else if (propertyName.equals("ZAxisVisible")) {
+		} else if (propertyName.equals(__GO_Z_AXIS_VISIBLE__)) {
 			return AxesProperty.ZAXISVISIBLE;
-		} else if (propertyName.equals("ZAxisReverse")) {
+		} else if (propertyName.equals(__GO_Z_AXIS_REVERSE__)) {
 			return AxesProperty.ZAXISREVERSE;
-		} else if (propertyName.equals("ZAxisGridColor")) {
+		} else if (propertyName.equals(__GO_Z_AXIS_GRID_COLOR__)) {
 			return AxesProperty.ZAXISGRIDCOLOR;
-		} else if (propertyName.equals("ZAxisLabel")) {
+		} else if (propertyName.equals(__GO_Z_AXIS_LABEL__)) {
 			return AxesProperty.ZAXISLABEL;
-		} else if (propertyName.equals("ZAxisLocation")) {
+		} else if (propertyName.equals(__GO_Z_AXIS_LOCATION__)) {
 			return AxesProperty.ZAXISLOCATION;
-		} else if (propertyName.equals("ZAxisLogFlag")) {
+		} else if (propertyName.equals(__GO_Z_AXIS_LOG_FLAG__)) {
 			return AxesProperty.ZAXISLOGFLAG;
-		} else if (propertyName.equals("ZAxisTicks")) {
+		} else if (propertyName.equals(__GO_Z_AXIS_TICKS__)) {
 			return AxesProperty.ZAXISTICKS;
-		} else if (propertyName.equals("ZAxisAutoTicks")) {
+		} else if (propertyName.equals(__GO_Z_AXIS_AUTO_TICKS__)) {
 			return AxesProperty.ZAXISAUTOTICKS;
-		} else if (propertyName.equals("ZAxisTicksLocations")) {
+		} else if (propertyName.equals(__GO_Z_AXIS_TICKS_LOCATIONS__)) {
 			return AxesProperty.ZAXISTICKSLOCATIONS;
-		} else if (propertyName.equals("ZAxisTicksLabels")) {
+		} else if (propertyName.equals(__GO_Z_AXIS_TICKS_LABELS__)) {
 			return AxesProperty.ZAXISTICKSLABELS;
-		} else if (propertyName.equals("ZAxisSubticks")) {
+		} else if (propertyName.equals(__GO_Z_AXIS_SUBTICKS__)) {
 			return AxesProperty.ZAXISSUBTICKS;
-		} else if (propertyName.equals("GridPosition")) {
+		} else if (propertyName.equals(__GO_GRID_POSITION__)) {
 			return AxesProperty.GRIDPOSITION;
-		} else if (propertyName.equals("Title")) {
+		} else if (propertyName.equals(__GO_TITLE__)) {
 			return AxesProperty.TITLE;
-		} else if (propertyName.equals("AutoClear")) {
+		} else if (propertyName.equals(__GO_AUTO_CLEAR__)) {
 			return AxesProperty.AUTOCLEAR;
-		} else if (propertyName.equals("Filled")) {
+		} else if (propertyName.equals(__GO_FILLED__)) {
 			return AxesProperty.FILLED;
-		} else if (propertyName.equals("Camera")) {
-			return AxesProperty.CAMERA;
-		} else if (propertyName.equals("View")) {
+		} else if (propertyName.equals(__GO_VIEW__)) {
 			return Camera.CameraProperty.VIEW;
-		} else if (propertyName.equals("Isoview")) {
+		} else if (propertyName.equals(__GO_ISOVIEW__)) {
 			return Camera.CameraProperty.ISOVIEW;
-		} else if (propertyName.equals("CubeScaling")) {
+		} else if (propertyName.equals(__GO_CUBE_SCALING__)) {
 			return Camera.CameraProperty.CUBESCALING;
-		} else if (propertyName.equals("RotationAngles")) {
+		} else if (propertyName.equals(__GO_ROTATION_ANGLES__)) {
 			return Camera.CameraProperty.ROTATIONANGLES;
-		} else if (propertyName.equals("Box")) {
-			return AxesProperty.BOX;
-		} else if (propertyName.equals("BoxType")) {
+		} else if (propertyName.equals(__GO_BOX_TYPE__)) {
 			return Box.BoxProperty.BOX;
-		} else if (propertyName.equals("HiddenAxisColor")) {
+		} else if (propertyName.equals(__GO_HIDDEN_AXIS_COLOR__)) {
 			return Box.BoxProperty.HIDDENAXISCOLOR;
-		} else if (propertyName.equals("TightLimits")) {
+		} else if (propertyName.equals(__GO_TIGHT_LIMITS__)) {
 			return Box.BoxProperty.TIGHTLIMITS;
-		} else if (propertyName.equals("DataBounds")) {
+		} else if (propertyName.equals(__GO_DATA_BOUNDS__)) {
 			return Box.BoxProperty.DATABOUNDS;
-		} else if (propertyName.equals("RealDataBounds")) {
+		} else if (propertyName.equals(__GO_REAL_DATA_BOUNDS__)) {
 			return Box.BoxProperty.REALDATABOUNDS;
-		} else if (propertyName.equals("ZoomBox")) {
+		} else if (propertyName.equals(__GO_ZOOM_BOX__)) {
 			return Box.BoxProperty.ZOOMBOX;
-		} else if (propertyName.equals("AutoScale")) {
+		} else if (propertyName.equals(__GO_AUTO_SCALE__)) {
 			return Box.BoxProperty.AUTOSCALE;
-		} else if (propertyName.equals("Margins")) {
+		} else if (propertyName.equals(__GO_MARGINS__)) {
 			return AxesProperty.MARGINS;
-		} else if (propertyName.equals("AxesBounds")) {
+		} else if (propertyName.equals(__GO_AXES_BOUNDS__)) {
 			return AxesProperty.AXESBOUNDS;
 		} else {
 			return super.getPropertyFromName(propertyName);
@@ -216,11 +207,7 @@ public class Axes extends GraphicObject {
 	 * @return the property value
 	 */
 	public Object getProperty(Object property) {
-		if (property == AxesProperty.AXES) {
-			return getAxes();
-		} else if (property == AxesProperty.XAXIS) {
-			return getXAxis();
-		} else if (property == AxesProperty.XAXISVISIBLE) {
+		if (property == AxesProperty.XAXISVISIBLE) {
 			return getXAxisVisible();
 		} else if (property == AxesProperty.XAXISREVERSE) {
 			return getXAxisReverse();
@@ -242,8 +229,6 @@ public class Axes extends GraphicObject {
 			return getXAxisTicksLabels();
 		} else if (property == AxesProperty.XAXISSUBTICKS) {
 			return getXAxisSubticks();
-		} else if (property == AxesProperty.YAXIS) {
-			return getYAxis();
 		} else if (property == AxesProperty.YAXISVISIBLE) {
 			return getYAxisVisible();
 		} else if (property == AxesProperty.YAXISREVERSE) {
@@ -266,8 +251,6 @@ public class Axes extends GraphicObject {
 			return getYAxisTicksLabels();
 		} else if (property == AxesProperty.YAXISSUBTICKS) {
 			return getYAxisSubticks();
-		} else if (property == AxesProperty.ZAXIS) {
-			return getZAxis();
 		} else if (property == AxesProperty.ZAXISVISIBLE) {
 			return getZAxisVisible();
 		} else if (property == AxesProperty.ZAXISREVERSE) {
@@ -298,8 +281,6 @@ public class Axes extends GraphicObject {
 			return getAutoClear();
 		} else if (property == AxesProperty.FILLED) {
 			return getFilled();
-		} else if (property == AxesProperty.CAMERA) {
-			return getCamera();
 		} else if (property == Camera.CameraProperty.VIEW) {
 			return getView();
 		} else if (property == Camera.CameraProperty.ISOVIEW) {
@@ -308,8 +289,6 @@ public class Axes extends GraphicObject {
 			return getCubeScaling();
 		} else if (property == Camera.CameraProperty.ROTATIONANGLES) {
 			return getRotationAngles();
-		} else if (property == AxesProperty.BOX) {
-			return getBox();
 		} else if (property == Box.BoxProperty.BOX) {
 			return getBoxType();
 		} else if (property == Box.BoxProperty.HIDDENAXISCOLOR) {
@@ -340,11 +319,7 @@ public class Axes extends GraphicObject {
 	 * @return true if the property has been set, false otherwise
 	 */
 	public boolean setProperty(Object property, Object value) {
-		if (property == AxesProperty.AXES) {
-			setAxes((AxisProperty[]) value);
-		} else if (property == AxesProperty.XAXIS) {
-			setXAxis((AxisProperty) value);
-		} else if (property == AxesProperty.XAXISVISIBLE) {
+		if (property == AxesProperty.XAXISVISIBLE) {
 			setXAxisVisible((Boolean) value);
 		} else if (property == AxesProperty.XAXISREVERSE) {
 			setXAxisReverse((Boolean) value);	
@@ -366,8 +341,6 @@ public class Axes extends GraphicObject {
 			setXAxisTicksLabels((ArrayList<FormattedText>) value);
 		} else if (property == AxesProperty.XAXISSUBTICKS) {
 			setXAxisSubticks((Integer) value);
-		} else if (property == AxesProperty.YAXIS) {
-			setYAxis((AxisProperty) value);
 		} else if (property == AxesProperty.YAXISVISIBLE) {
 			setYAxisVisible((Boolean) value);
 		} else if (property == AxesProperty.YAXISREVERSE) {
@@ -390,8 +363,6 @@ public class Axes extends GraphicObject {
 			setYAxisTicksLabels((ArrayList<FormattedText>) value);
 		} else if (property == AxesProperty.YAXISSUBTICKS) {
 			setYAxisSubticks((Integer) value);
-		} else if (property == AxesProperty.ZAXIS) {
-			setZAxis((AxisProperty) value);
 		} else if (property == AxesProperty.ZAXISVISIBLE) {
 			setZAxisVisible((Boolean) value);
 		} else if (property == AxesProperty.ZAXISREVERSE) {
@@ -417,13 +388,11 @@ public class Axes extends GraphicObject {
 		} else if (property == AxesProperty.GRIDPOSITION) {
 			setGridPosition((GridPosition) value);
 		} else if (property == AxesProperty.TITLE) {
-			setTitle((Label) value);
+			setTitle((String) value);
 		} else if (property == AxesProperty.AUTOCLEAR) {
 			setAutoClear((Boolean) value);
 		} else if (property == AxesProperty.FILLED) {
 			setFilled((Boolean) value);
-		} else if (property == AxesProperty.CAMERA) {
-			setCamera((Camera) value);
 		} else if (property == Camera.CameraProperty.VIEW) {
 			setView((ViewType) value);
 		} else if (property == Camera.CameraProperty.ISOVIEW) {
@@ -432,10 +401,6 @@ public class Axes extends GraphicObject {
 			setCubeScaling((Boolean) value);
 		} else if (property == Camera.CameraProperty.ROTATIONANGLES) {
 			setRotationAngles((Double[]) value);
-		} else if (property == AxesProperty.BOX) {
-			setBox((Box) value);
-		} else if (property == Box.BoxProperty.BOX) {
-			setBoxType((BoxType) value);
 		} else if (property == Box.BoxProperty.HIDDENAXISCOLOR) {
 			setHiddenAxisColor((Integer) value);
 		} else if (property == Box.BoxProperty.TIGHTLIMITS) {
@@ -1250,16 +1215,16 @@ public class Axes extends GraphicObject {
 	}
 
 	/**
-	 * @return the title
+	 * @return the title UID
 	 */
-	public Label getTitle() {
+	public String getTitle() {
 		return title;
 	}
 
 	/**
 	 * @param title the title to set
 	 */
-	public void setTitle(Label title) {
+	public void setTitle(String title) {
 		this.title = title;
 	}
 

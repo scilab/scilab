@@ -18,10 +18,31 @@ package org.scilab.modules.graphic_objects.axes;
  */
 public class Box {
 	/** Box properties names */
-	public enum BoxProperty { BOX, HIDDENAXISCOLOR, TIGHTLIMITS, DATABOUNDS, REALDATABOUNDS, ZOOMBOX, AUTOSCALE };
+	public enum BoxProperty { BOX, HIDDENAXISCOLOR, TIGHTLIMITS, DATABOUNDS, REALDATABOUNDS, ZOOMENABLED, ZOOMBOX, AUTOSCALE };
 
 	/** Box type */
-	public static enum BoxType { ON, OFF, HIDDEN_AXES, BACK_HALF };
+	public static enum BoxType { OFF, ON, HIDDEN_AXES, BACK_HALF;
+
+		/**
+		 * Converts an integer to the corresponding enum
+		 * @param intValue the integer value
+		 * @return the box type enum
+		 */
+		public static BoxType intToEnum(Integer intValue) {
+			switch (intValue) {
+				case 0:
+					return BoxType.OFF;
+				case 1:
+					return BoxType.ON;
+				case 2:
+					return BoxType.HIDDEN_AXES;
+				case 3:
+					return BoxType.BACK_HALF;
+				default:
+					return null;
+			}
+		}
+	}
 
 	/** Box type */
 	private BoxType box;
@@ -38,6 +59,9 @@ public class Box {
 	/** Data bounding box, as modified by automatic ticks computation (6-element array) */
 	private double[] realDataBounds;
 
+	/** Speficied whether zooming is enabled or not */
+	private boolean zoomEnabled;
+
 	/** Magnified 3D sub-region (6-element array) */
 	private double[] zoomBox;
 
@@ -51,6 +75,7 @@ public class Box {
 		tightLimits = false;
 		dataBounds = new double[6];
 		realDataBounds = new double[6];
+		zoomEnabled = false;
 		zoomBox = new double[6];
 		autoScale = false;
 	}
@@ -153,6 +178,20 @@ public class Box {
 	 */
 	public void setTightLimits(Boolean tightLimits) {
 		this.tightLimits = tightLimits;
+	}
+
+	/**
+	 * @return the zoomEnabled
+	 */
+	public Boolean getZoomEnabled() {
+		return zoomEnabled;
+	}
+
+	/**
+	 * @param zoomEnabled the zoomEnabled to set
+	 */
+	public void setZoomEnabled(Boolean zoomEnabled) {
+		this.zoomEnabled = zoomEnabled;
 	}
 
 	/**

@@ -28,7 +28,42 @@ public class Legend extends ClippableTextObject {
 	/** Legend location */
 	private enum LegendLocation { IN_UPPER_RIGHT, IN_UPPER_LEFT, IN_LOWER_RIGHT, IN_LOWER_LEFT,
 		OUT_UPPER_RIGHT, OUT_UPPER_LEFT, OUT_LOWER_RIGHT, OUT_LOWER_LEFT,
-		UPPER_CAPTION, LOWER_CAPTION, BY_COORDINATES };
+		UPPER_CAPTION, LOWER_CAPTION, BY_COORDINATES;
+
+		/**
+		 * Converts an integer to the corresponding enum
+		 * @param intValue the integer value
+		 * @return the legend location enum
+		 */
+		public static LegendLocation intToEnum(Integer intValue) {
+			switch (intValue) {
+				case 0:
+					return LegendLocation.IN_UPPER_RIGHT;
+				case 1:
+					return LegendLocation.IN_UPPER_LEFT;
+				case 2:
+					return LegendLocation.IN_LOWER_RIGHT;
+				case 3:
+					return LegendLocation.IN_LOWER_LEFT;
+				case 4:
+					return LegendLocation.OUT_UPPER_RIGHT;
+				case 5:
+					return LegendLocation.OUT_UPPER_LEFT;
+				case 6:
+					return LegendLocation.OUT_LOWER_RIGHT;
+				case 7:
+					return LegendLocation.OUT_LOWER_LEFT;
+				case 8:
+					return LegendLocation.UPPER_CAPTION;
+				case 9:
+					return LegendLocation.LOWER_CAPTION;
+				case 10:
+					return LegendLocation.BY_COORDINATES;
+				default:
+					return null;
+			}
+		}
+	};
 	
 	/** List of the polylines referred to */
 	private ArrayList <Polyline> links;
@@ -91,7 +126,7 @@ public class Legend extends ClippableTextObject {
 		if (property == LegendProperty.LINKS) {
 			setLinks((ArrayList<Polyline>) value);
 		} else if (property == LegendProperty.LEGENDLOCATION) {
-			setLegendLocation((LegendLocation) value);
+			setLegendLocation((Integer) value);
 		} else if (property == LegendProperty.POSITION) {
 			setPosition((Double[]) value);
 		} else {
@@ -104,14 +139,28 @@ public class Legend extends ClippableTextObject {
 	/**
 	 * @return the legendLocation
 	 */
-	public LegendLocation getLegendLocation() {
+	public Integer getLegendLocation() {
+		return getLegendLocationAsEnum().ordinal();
+	}
+
+	/**
+	 * @return the legendLocation
+	 */
+	public LegendLocation getLegendLocationAsEnum() {
 		return legendLocation;
 	}
 
 	/**
 	 * @param legendLocation the legendLocation to set
 	 */
-	public void setLegendLocation(LegendLocation legendLocation) {
+	public void setLegendLocation(Integer legendLocation) {
+		setLegendLocationAsEnum(LegendLocation.intToEnum(legendLocation));
+	}
+
+	/**
+	 * @param legendLocation the legendLocation to set
+	 */
+	public void setLegendLocationAsEnum(LegendLocation legendLocation) {
 		this.legendLocation = legendLocation;
 	}
 

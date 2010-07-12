@@ -29,7 +29,7 @@ public class FormattedText {
 	/** Constructor */
 	public FormattedText() {
 		text = null;
-		font = null;
+		font = new Font();
 	}
 
 	/**

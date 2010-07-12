@@ -14,8 +14,10 @@ package org.scilab.modules.graphic_objects.axis;
 
 import java.util.ArrayList;
 
+import org.scilab.modules.graphic_objects.arc.Arc.ArcDrawingMethod;
 import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
 import org.scilab.modules.graphic_objects.textObject.Font;
+import org.scilab.modules.graphic_objects.textObject.Font.FontProperty;
 
 /**
  * Axis class
@@ -23,14 +25,35 @@ import org.scilab.modules.graphic_objects.textObject.Font;
  */
 public class Axis extends ClippableContouredObject {
 	/** Axis properties */
-	private enum AxisProperty { TICKSDIRECTION, XTICKSCOORDS, YTICKSCOORDS, TICKSCOLOR, TICKSSEGMENT, TICKSLABELS,
+	private enum AxisProperty { TICKSDIRECTION, XTICKSCOORDS, YTICKSCOORDS, TICKSCOLOR, TICKSSEGMENT, TICKSSTYLE, TICKSLABELS,
 		FORMATN, FONT };
 		
 	/** Default number of ticks */
 	private static final int DEFAULT_NUMBER_OF_TICKS = 10;
 
 	/** Ticks direction */
-	private enum TicksDirection { TOP, BOTTOM, LEFT, RIGHT };
+	private enum TicksDirection { TOP, BOTTOM, LEFT, RIGHT;
+
+		/**
+		 * Converts an integer to the corresponding enum
+		 * @param intValue the integer value
+		 * @return the ticks direction enum
+		 */
+		public static TicksDirection intToEnum(Integer intValue) {
+			switch (intValue) {
+				case 0:
+					return TicksDirection.TOP;
+				case 1:
+					return TicksDirection.BOTTOM;
+				case 2:
+					return TicksDirection.LEFT;
+				case 3:
+					return TicksDirection.RIGHT;
+				default:
+					return null;
+			}
+		}
+	}
 	
 	/** Ticks direction */
 	private TicksDirection ticksDirection;
@@ -46,6 +69,9 @@ public class Axis extends ClippableContouredObject {
 
 	/** Specifies whether the axis segment is drawn */
 	private boolean ticksSegment;
+
+	/** Specifies the ticks style (either 0, 1, or 2) */
+	private int ticksStyle;
 
 	/** Ticks labels list */
 	private ArrayList <String> ticksLabels;
@@ -85,6 +111,8 @@ public class Axis extends ClippableContouredObject {
 			return AxisProperty.TICKSCOLOR;
 		} else if (propertyName.equals("TicksSegment")) {
 			return AxisProperty.TICKSSEGMENT;
+		} else if (propertyName.equals("TicksStyle")) {
+			return AxisProperty.TICKSSTYLE;
 		} else if (propertyName.equals("TicksLabels")) {
 			return AxisProperty.TICKSLABELS;
 		} else if (propertyName.equals("Formatn")) {
@@ -120,6 +148,8 @@ public class Axis extends ClippableContouredObject {
 			return getTicksColor();
 		} else if (property == AxisProperty.TICKSSEGMENT) {
 			return getTicksSegment();
+		} else if (property == AxisProperty.TICKSSTYLE) {
+			return getTicksStyle();
 		} else if (property == AxisProperty.TICKSLABELS) {
 			return getTicksLabels();
 		} else if (property == AxisProperty.FORMATN) {
@@ -147,7 +177,7 @@ public class Axis extends ClippableContouredObject {
 	 */
 	public boolean setProperty(Object property, Object value) {
 		if (property == AxisProperty.TICKSDIRECTION) {
-			setTicksDirection((TicksDirection) value);
+			setTicksDirection((Integer) value);
 		} else if (property == AxisProperty.XTICKSCOORDS) {
 			setXTicksCoords((Double[]) value);
 		} else if (property == AxisProperty.YTICKSCOORDS) {
@@ -156,6 +186,8 @@ public class Axis extends ClippableContouredObject {
 			setTicksColor((Integer) value);
 		} else if (property == AxisProperty.TICKSSEGMENT) {
 			setTicksSegment((Boolean) value);
+		} else if (property == AxisProperty.TICKSSTYLE) {
+			setTicksStyle((Integer) value);
 		} else if (property == AxisProperty.TICKSLABELS) {
 			setTicksLabels((ArrayList<String>) value);
 		} else if (property == AxisProperty.FORMATN) {
@@ -278,14 +310,28 @@ public class Axis extends ClippableContouredObject {
 	/**
 	 * @return the ticksDirection
 	 */
-	public TicksDirection getTicksDirection() {
+	public Integer getTicksDirection() {
+		return getTicksDirectionAsEnum().ordinal();
+	}
+
+	/**
+	 * @return the ticksDirection
+	 */
+	public TicksDirection getTicksDirectionAsEnum() {
 		return ticksDirection;
 	}
 
 	/**
 	 * @param ticksDirection the ticksDirection to set
 	 */
-	public void setTicksDirection(TicksDirection ticksDirection) {
+	public void setTicksDirection(Integer ticksDirection) {
+		setTicksDirectionAsEnum(TicksDirection.intToEnum(ticksDirection));
+	}
+
+	/**
+	 * @param ticksDirection the ticksDirection to set
+	 */
+	public void setTicksDirectionAsEnum(TicksDirection ticksDirection) {
 		this.ticksDirection = ticksDirection;
 	}
 
@@ -315,6 +361,20 @@ public class Axis extends ClippableContouredObject {
 	 */
 	public void setTicksSegment(Boolean ticksSegment) {
 		this.ticksSegment = ticksSegment;
+	}
+
+	/**
+	 * @return the ticksStyle
+	 */
+	public Integer getTicksStyle() {
+		return ticksStyle;
+	}
+
+	/**
+	 * @param ticksStyle the ticksStyle to set
+	 */
+	public void setTicksStyle(Integer ticksStyle) {
+		this.ticksStyle = ticksStyle;
 	}
 
 	/**

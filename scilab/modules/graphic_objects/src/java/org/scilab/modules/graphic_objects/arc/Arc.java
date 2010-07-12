@@ -24,7 +24,24 @@ public class Arc extends ClippableContouredObject {
 	private enum ArcProperty { UPPERLEFTPOINT, WIDTH, HEIGHT, STARTANGLE, ENDANGLE, ARCDRAWINGMETHOD  };
 
 	/** Arc drawing method */
-	public enum ArcDrawingMethod { NURBS, LINES };
+	public enum ArcDrawingMethod { NURBS, LINES;
+
+		/**
+		 * Converts an integer to the corresponding enum
+		 * @param intValue the integer value
+		 * @return the arc drawing method enum
+		 */
+		public static ArcDrawingMethod intToEnum(Integer intValue) {
+			switch (intValue) {
+				case 0:
+					return ArcDrawingMethod.NURBS;
+				case 1:
+					return ArcDrawingMethod.LINES;
+				default:
+					return null;
+			}
+		}
+	}
 
 	/** Bounding box upper-left point (x,y,z) coordinates */
 	private double[] upperLeftPoint;
@@ -121,7 +138,7 @@ public class Arc extends ClippableContouredObject {
 		} else if (property == ArcProperty.ENDANGLE) {
 			setEndAngle((Double) value);
 		} else if (property == ArcProperty.ARCDRAWINGMETHOD) {
-			setArcDrawingMethod((ArcDrawingMethod) value);
+			setArcDrawingMethod((Integer) value);
 		} else {
 			return super.setProperty(property, value);
 		}
@@ -142,14 +159,28 @@ public class Arc extends ClippableContouredObject {
 	/**
 	 * @return the arcDrawingMethod
 	 */
-	public ArcDrawingMethod getArcDrawingMethod() {
+	public Integer getArcDrawingMethod() {
+		return getArcDrawingMethodAsEnum().ordinal();
+	}
+
+	/**
+	 * @return the arcDrawingMethod
+	 */
+	public ArcDrawingMethod getArcDrawingMethodAsEnum() {
 		return arcDrawingMethod;
 	}
 
 	/**
 	 * @param arcDrawingMethod the arcDrawingMethod to set
 	 */
-	public void setArcDrawingMethod(ArcDrawingMethod arcDrawingMethod) {
+	public void setArcDrawingMethod(Integer arcDrawingMethod) {
+		setArcDrawingMethodAsEnum(ArcDrawingMethod.intToEnum(arcDrawingMethod));
+	}
+
+	/**
+	 * @param arcDrawingMethod the arcDrawingMethod to set
+	 */
+	public void setArcDrawingMethodAsEnum(ArcDrawingMethod arcDrawingMethod) {
 		this.arcDrawingMethod = arcDrawingMethod;
 	}
 

@@ -94,7 +94,7 @@ public class testGraphicObject {
 	    GraphicController controller = GraphicController.getController();
 	    
 	    String objectId = null;
-	    objectId = controller.askObject(GraphicObject.getTypeFromName("arc"));
+	    objectId = controller.askObject(GraphicObject.getTypeFromName(__GO_ARC__));
 	    assert(objectId != null);
 	    
 	    Object graphicObject = controller.getObjectFromId(objectId);
@@ -107,7 +107,7 @@ public class testGraphicObject {
         GraphicController controller = GraphicController.getController();
         
         String objectId = null;
-        objectId = controller.askObject(GraphicObject.getTypeFromName("axes"));
+        objectId = controller.askObject(GraphicObject.getTypeFromName(__GO_AXES__));
         assert(objectId != null);
         
         Object graphicObject = controller.getObjectFromId(objectId);
@@ -120,7 +120,7 @@ public class testGraphicObject {
         GraphicController controller = GraphicController.getController();
         
         String objectId = null;
-        objectId = controller.askObject(GraphicObject.getTypeFromName("axis"));
+        objectId = controller.askObject(GraphicObject.getTypeFromName(__GO_AXIS__));
         assert(objectId != null);
         
         Object graphicObject = controller.getObjectFromId(objectId);
@@ -133,7 +133,7 @@ public class testGraphicObject {
         GraphicController controller = GraphicController.getController();
         
         String objectId = null;
-        objectId = controller.askObject(GraphicObject.getTypeFromName("champ"));
+        objectId = controller.askObject(GraphicObject.getTypeFromName(__GO_CHAMP__));
         assert(objectId != null);
         
         Object graphicObject = controller.getObjectFromId(objectId);
@@ -146,7 +146,7 @@ public class testGraphicObject {
         GraphicController controller = GraphicController.getController();
         
         String objectId = null;
-        objectId = controller.askObject(GraphicObject.getTypeFromName("compound"));
+        objectId = controller.askObject(GraphicObject.getTypeFromName(__GO_COMPOUND__));
         assert(objectId != null);
         
         Object graphicObject = controller.getObjectFromId(objectId);
@@ -159,7 +159,7 @@ public class testGraphicObject {
         GraphicController controller = GraphicController.getController();
         
         String objectId = null;
-        objectId = controller.askObject(GraphicObject.getTypeFromName("fac3d"));
+        objectId = controller.askObject(GraphicObject.getTypeFromName(__GO_FAC3D__));
         assert(objectId != null);
         
         Object graphicObject = controller.getObjectFromId(objectId);
@@ -172,7 +172,7 @@ public class testGraphicObject {
         GraphicController controller = GraphicController.getController();
         
         String objectId = null;
-        objectId = controller.askObject(GraphicObject.getTypeFromName("fec"));
+        objectId = controller.askObject(GraphicObject.getTypeFromName(__GO_FEC__));
         assert(objectId != null);
         
         Object graphicObject = controller.getObjectFromId(objectId);
@@ -185,7 +185,7 @@ public class testGraphicObject {
         GraphicController controller = GraphicController.getController();
         
         String objectId = null;
-        objectId = controller.askObject(GraphicObject.getTypeFromName("figure"));
+        objectId = controller.askObject(GraphicObject.getTypeFromName(__GO_FIGURE__));
         assert(objectId != null);
         
         Object graphicObject = controller.getObjectFromId(objectId);
@@ -198,7 +198,7 @@ public class testGraphicObject {
         GraphicController controller = GraphicController.getController();
         
         String objectId = null;
-        objectId = controller.askObject(GraphicObject.getTypeFromName("grayplot"));
+        objectId = controller.askObject(GraphicObject.getTypeFromName(__GO_GRAYPLOT__));
         assert(objectId != null);
         
         Object graphicObject = controller.getObjectFromId(objectId);
@@ -211,7 +211,7 @@ public class testGraphicObject {
         GraphicController controller = GraphicController.getController();
         
         String objectId = null;
-        objectId = controller.askObject(GraphicObject.getTypeFromName("label"));
+        objectId = controller.askObject(GraphicObject.getTypeFromName(__GO_LABEL__));
         assert(objectId != null);
         
         Object graphicObject = controller.getObjectFromId(objectId);
@@ -224,7 +224,7 @@ public class testGraphicObject {
         GraphicController controller = GraphicController.getController();
         
         String objectId = null;
-        objectId = controller.askObject(GraphicObject.getTypeFromName("legend"));
+        objectId = controller.askObject(GraphicObject.getTypeFromName(__GO_LEGEND__));
         assert(objectId != null);
         
         Object graphicObject = controller.getObjectFromId(objectId);
@@ -237,7 +237,7 @@ public class testGraphicObject {
         GraphicController controller = GraphicController.getController();
         
         String objectId = null;
-        objectId = controller.askObject(GraphicObject.getTypeFromName("matplot"));
+        objectId = controller.askObject(GraphicObject.getTypeFromName(__GO_MATPLOT__));
         assert(objectId != null);
         
         Object graphicObject = controller.getObjectFromId(objectId);
@@ -250,7 +250,7 @@ public class testGraphicObject {
         GraphicController controller = GraphicController.getController();
         
         String objectId = null;
-        objectId = controller.askObject(GraphicObject.getTypeFromName("plot3d"));
+        objectId = controller.askObject(GraphicObject.getTypeFromName(__GO_PLOT3D__));
         assert(objectId != null);
         
         Object graphicObject = controller.getObjectFromId(objectId);
@@ -263,7 +263,7 @@ public class testGraphicObject {
         GraphicController controller = GraphicController.getController();
         
         String objectId = null;
-        objectId = controller.askObject(GraphicObject.getTypeFromName("polyline"));
+        objectId = controller.askObject(GraphicObject.getTypeFromName(__GO_POLYLINE__));
         assert(objectId != null);
         
         Object graphicObject = controller.getObjectFromId(objectId);
@@ -276,7 +276,7 @@ public class testGraphicObject {
         GraphicController controller = GraphicController.getController();
         
         String objectId = null;
-        objectId = controller.askObject(GraphicObject.getTypeFromName("rectangle"));
+        objectId = controller.askObject(GraphicObject.getTypeFromName(__GO_RECTANGLE__));
         assert(objectId != null);
         
         Object graphicObject = controller.getObjectFromId(objectId);
@@ -289,7 +289,7 @@ public class testGraphicObject {
         GraphicController controller = GraphicController.getController();
         
         String objectId = null;
-        objectId = controller.askObject(GraphicObject.getTypeFromName("segs"));
+        objectId = controller.askObject(GraphicObject.getTypeFromName(__GO_SEGS__));
         assert(objectId != null);
         
         Object graphicObject = controller.getObjectFromId(objectId);
@@ -302,7 +302,7 @@ public class testGraphicObject {
         GraphicController controller = GraphicController.getController();
         
         String objectId = null;
-        objectId = controller.askObject(GraphicObject.getTypeFromName("text"));
+        objectId = controller.askObject(GraphicObject.getTypeFromName(__GO_TEXT__));
         assert(objectId != null);
         
         Object graphicObject = controller.getObjectFromId(objectId);

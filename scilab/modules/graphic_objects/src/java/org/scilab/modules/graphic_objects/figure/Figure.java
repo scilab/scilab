@@ -12,8 +12,9 @@
 
 package org.scilab.modules.graphic_objects.figure;
 
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
+
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 /**
  * Figure class
  * @author Manuel JULIACHS

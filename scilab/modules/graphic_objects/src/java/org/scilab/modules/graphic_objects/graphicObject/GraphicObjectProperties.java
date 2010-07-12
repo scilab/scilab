@@ -20,6 +20,7 @@ package org.scilab.modules.graphic_objects.graphicObject;
 
 public class GraphicObjectProperties {
 
+public static final String __GO_ARC__   =                  "arc";
 public static final String __GO_AXES__   =                 "axes";
 public static final String __GO_AXIS__   =                 "axis";
 public static final String __GO_CHAMP__  =                 "champ";
@@ -74,4 +75,59 @@ public static final String __GO_HEIGHT__ =                 "Height";
 public static final String __GO_START_ANGLE__ =            "StartAngle";
 public static final String __GO_END_ANGLE__ =              "EndAngle";
 public static final String __GO_ARC_DRAWING_METHOD__ =     "ArcDrawingMethod";
+
+public static final String __GO_X_AXIS_VISIBLE__ =         "XAxisVisible";
+public static final String __GO_X_AXIS_REVERSE__ =         "XAxisReverse";
+public static final String __GO_X_AXIS_GRID_COLOR__ =      "XAxisGridColor";
+public static final String __GO_X_AXIS_LABEL__ =           "XAxisLabel";
+public static final String __GO_X_AXIS_LOCATION__ =		"XAxisLocation";
+public static final String __GO_X_AXIS_LOG_FLAG__ =        "XAxisLogFlag";
+public static final String __GO_X_AXIS_TICKS__ =			"XAxisTicks";
+public static final String __GO_X_AXIS_AUTO_TICKS__ =		"XAxisAutoTicks";
+public static final String __GO_X_AXIS_TICKS_LOCATIONS__ = "XAxisTicksLocations";
+public static final String __GO_X_AXIS_TICKS_LABELS__ =    "XAxisTicksLabels";
+public static final String __GO_X_AXIS_SUBTICKS__ =        "XAxisSubticks";
+
+public static final String __GO_Y_AXIS_VISIBLE__ =         "YAxisVisible";
+public static final String __GO_Y_AXIS_REVERSE__ =         "YAxisReverse";
+public static final String __GO_Y_AXIS_GRID_COLOR__ =      "YAxisGridColor";
+public static final String __GO_Y_AXIS_LABEL__ =           "YAxisLabel";
+public static final String __GO_Y_AXIS_LOCATION__ =		"YAxisLocation";
+public static final String __GO_Y_AXIS_LOG_FLAG__ =        "YAxisLogFlag";
+public static final String __GO_Y_AXIS_TICKS__ =			"YAxisTicks";
+public static final String __GO_Y_AXIS_AUTO_TICKS__ =		"YAxisAutoTicks";
+public static final String __GO_Y_AXIS_TICKS_LOCATIONS__ = "YAxisTicksLocations";
+public static final String __GO_Y_AXIS_TICKS_LABELS__ =    "YAxisTicksLabels";
+public static final String __GO_Y_AXIS_SUBTICKS__ =        "YAxisSubticks";
+
+public static final String __GO_Z_AXIS_VISIBLE__ =         "ZAxisVisible";
+public static final String __GO_Z_AXIS_REVERSE__ =         "ZAxisReverse";
+public static final String __GO_Z_AXIS_GRID_COLOR__ =      "ZAxisGridColor";
+public static final String __GO_Z_AXIS_LABEL__ =           "ZAxisLabel";
+public static final String __GO_Z_AXIS_LOCATION__ =		"ZAxisLocation";
+public static final String __GO_Z_AXIS_LOG_FLAG__ =        "ZAxisLogFlag";
+public static final String __GO_Z_AXIS_TICKS__ =			"ZAxisTicks";
+public static final String __GO_Z_AXIS_AUTO_TICKS__ =		"ZAxisAutoTicks";
+public static final String __GO_Z_AXIS_TICKS_LOCATIONS__ = "ZAxisTicksLocations";
+public static final String __GO_Z_AXIS_TICKS_LABELS__ =    "ZAxisTicksLabels";
+public static final String __GO_Z_AXIS_SUBTICKS__ =        "ZAxisSubticks";
+
+public static final String __GO_GRID_POSITION__ =          "GridPosition";
+public static final String __GO_TITLE__ =                  "Title";
+public static final String __GO_AUTO_CLEAR__ =             "AutoClear";
+public static final String __GO_FILLED__ =                 "Filled";
+public static final String __GO_CAMERA__ =                 "Camera";
+public static final String __GO_VIEW__ =                   "View";
+public static final String __GO_ISOVIEW__ =                "Isoview";
+public static final String __GO_CUBE_SCALING__ =           "CubeScaling";
+public static final String __GO_ROTATION_ANGLES__ =        "RotationAngles";
+public static final String __GO_BOX_TYPE__ =               "BoxType";
+public static final String __GO_HIDDEN_AXIS_COLOR__ =      "HiddenAxisColor";
+public static final String __GO_TIGHT_LIMITS__ =           "TightLimits";
+public static final String __GO_DATA_BOUNDS__ =    		"DataBounds";
+public static final String __GO_REAL_DATA_BOUNDS__ =       "RealDataBounds";
+public static final String __GO_ZOOM_BOX__ =               "ZoomBox";
+public static final String __GO_AUTO_SCALE__ =             "AutoScale";
+public static final String __GO_MARGINS__ =                "Margins";
+public static final String __GO_AXES_BOUNDS__ =            "AxesBounds";
 }

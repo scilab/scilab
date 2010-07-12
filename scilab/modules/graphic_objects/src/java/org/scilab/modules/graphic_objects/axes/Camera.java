@@ -21,7 +21,24 @@ public class Camera {
 	public enum CameraProperty { VIEW, ISOVIEW, CUBESCALING, ROTATIONANGLES };
 
 	/** View type */
-	public enum ViewType { VIEW_2D, VIEW_3D };
+	public enum ViewType { VIEW_2D, VIEW_3D;
+
+		/**
+		 * Converts an integer to the corresponding enum
+		 * @param intValue the integer value
+		 * @return the view type type enum
+		 */
+		public static ViewType intToEnum(Integer intValue) {
+			switch (intValue) {
+				case 0:
+					return ViewType.VIEW_2D;
+				case 1:
+					return ViewType.VIEW_3D;
+				default:
+					return null;
+			}
+		}
+	}
 
 	/** Specifies whether the projection must be performed for a 2D or a 3D scene */  
 	private ViewType view;
