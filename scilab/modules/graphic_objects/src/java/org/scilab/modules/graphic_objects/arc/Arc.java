@@ -12,8 +12,8 @@
 
 package org.scilab.modules.graphic_objects.arc;
 
-import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 /**
  * Arc class
@@ -63,17 +63,17 @@ public class Arc extends ClippableContouredObject {
 	 * @return the property enum
 	 */
 	public Object getPropertyFromName(String propertyName) {
-		if (propertyName.equals("UpperLeftPoint")) {
+		if (propertyName.equals(__GO_UPPER_LEFT_POINT__)) {
 			return ArcProperty.UPPERLEFTPOINT;
-		} else if (propertyName.equals("Width")) {
+		} else if (propertyName.equals(__GO_WIDTH__)) {
 			return ArcProperty.WIDTH;
-		} else if (propertyName.equals("Height")) {
+		} else if (propertyName.equals(__GO_HEIGHT__)) {
 			return ArcProperty.HEIGHT;
-		} else if (propertyName.equals("StartAngle")) {
+		} else if (propertyName.equals(__GO_START_ANGLE__)) {
 			return ArcProperty.STARTANGLE;
-		} else if (propertyName.equals("EndAngle")) {
+		} else if (propertyName.equals(__GO_END_ANGLE__)) {
 			return ArcProperty.ENDANGLE;
-		} else if (propertyName.equals("ArcDrawingMethod")) {
+		} else if (propertyName.equals(__GO_ARC_DRAWING_METHOD__)) {
 			return ArcProperty.ARCDRAWINGMETHOD;
 		} else {
 			return super.getPropertyFromName(propertyName);
