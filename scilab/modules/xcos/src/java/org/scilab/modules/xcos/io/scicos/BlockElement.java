@@ -14,6 +14,9 @@ package org.scilab.modules.xcos.io.scicos;
 
 import static java.util.Arrays.asList;
 
+import java.io.ByteArrayInputStream;
+import java.io.DataInputStream;
+import java.io.IOException;
 import java.util.List;
 
 import org.scilab.modules.types.scilabTypes.ScilabDouble;
@@ -178,13 +181,35 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 		 */
 		ScilabList list = (ScilabList) scilabType;
 		
-		if (list.size() > 0) {
-			if (list.get(0) instanceof ScilabString) {
-				ScilabString uid = (ScilabString) list.get(0);
-				into.setId(uid.getData()[0][0]);
+		if (list.size() > 1 && list.get(0) instanceof ScilabString) {
+			String uid = ((ScilabString) list.get(0)).getData()[0][0];
+			if (isValidUid(uid)) {
+				into.setId(uid);
+				return;
 			}
-		} else {
-			into.generateId();
+		}
+		
+		into.generateId();
+	}
+
+	/**
+	 * @param uid The uid to check
+	 * @return true if the uid is valid, false otherwise
+	 */
+	private boolean isValidUid(String uid) {
+		ByteArrayInputStream str = new ByteArrayInputStream(uid.getBytes());
+		DataInputStream inputStream = new DataInputStream(str);
+		
+		try {
+			inputStream.readInt();
+			char sep1 = inputStream.readChar();
+			inputStream.readLong();
+			char sep2 = inputStream.readChar();
+			inputStream.readInt();
+			
+			return inputStream.available() == 0 && sep1 == sep2 && sep1 == ':';
+		} catch (IOException e) {
+			return false;
 		}
 	}
 

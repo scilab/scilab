@@ -104,6 +104,11 @@ public class BasicPortCodec extends XcosObjectCodec {
 	 */
 	@Override
     public Object afterDecode(mxCodec dec, Node node, Object obj) {
+		if (!(obj instanceof BasicPort)) {
+			LOG.error("Unable to decode " + obj);
+			return obj;
+		}
+		
 	String attr = ((Element) node).getAttribute(DATA_TYPE);
 
 	if (attr == null || attr.equals("")) {

@@ -14,6 +14,8 @@ package org.scilab.modules.xcos.io.codec;
 
 import java.util.Map;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
@@ -36,6 +38,7 @@ public class BasicBlockCodec extends XcosObjectCodec {
 
 	private static final String SIMULATION_FUNCTION_TYPE = "simulationFunctionType";
 	private static final String[] IGNORED_FIELDS = new String[] {SIMULATION_FUNCTION_TYPE, "locked", "parametersPCS"};
+	private static final Log LOG = LogFactory.getLog(BasicBlockCodec.class);
 
 	/**
 	 * The constructor used on for configuration
@@ -47,7 +50,6 @@ public class BasicBlockCodec extends XcosObjectCodec {
 	public BasicBlockCodec(Object template, String[] exclude, String[] idrefs, Map<String, String> mapping)
 	{
 		super(template, exclude, idrefs, mapping);
-
 	}
 	
 	/**
@@ -106,6 +108,11 @@ public class BasicBlockCodec extends XcosObjectCodec {
 	 */
 	@Override
 	public Object afterDecode(mxCodec dec, Node node, Object obj) {
+		if (!(obj instanceof BasicBlock)) {
+			LOG.error("Unable to decode " + obj);
+			return obj;
+		}
+		
 	    ((BasicBlock) obj).setSimulationFunctionType(SimulationFunctionType.DEFAULT);
 
 	    String functionType = (((Element) node).getAttribute(SIMULATION_FUNCTION_TYPE));
