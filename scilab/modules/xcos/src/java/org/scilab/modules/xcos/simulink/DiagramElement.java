@@ -12,22 +12,18 @@
 
 package org.scilab.modules.xcos.simulink;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.scilab.modules.types.scilabTypes.ScilabList;
-import org.scilab.modules.types.scilabTypes.ScilabMList;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
 import org.scilab.modules.xcos.link.BasicLink;
-import org.scilab.modules.xcos.simulink.BlockElement;
-import org.scilab.modules.xcos.simulink.AnnotationElement;
+
 import com.mxgraph.model.mxCell;
-import com.mxgraph.model.mxICell;
 
 import edu.tum.cs.commons.collections.UnmodifiableIterator;
 import edu.tum.cs.simulink.model.SimulinkAnnotation;
@@ -75,6 +71,12 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 			}
 		}
 		diag.setTitle(base.getName());
+		try{
+		DiagramParametersElement params = new DiagramParametersElement();
+		params.decode(diag.getScicosParameters());
+		} catch (ScicosFormatException sfe) {
+			LOG.error(sfe);
+		}
 		decodeObjs(diag);
 	}
 	
@@ -164,10 +166,6 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 				diag.addCell(cell);
 			}
 		}
-		/*
-		 * Perform post-calculus
-		 */
-		final mxICell defaultParent = ((mxICell) diag.getDefaultParent());
 	}
 }
 
