@@ -43,6 +43,8 @@ public static final String __GO_PARENT__ =                 "Parent";
 public static final String __GO_USER_DATA__ =              "UserData";
 public static final String __GO_USER_DATA_SIZE__ =         "UserDataSize";
 public static final String __GO_VISIBLE__ =                "Visible";
+public static final String __GO_REFERENCED__ =             "Referenced";
+public static final String __GO_VALID__ =                  "Valid";
 
 public static final String __GO_DIMENSIONS__ =             "Dimensions";
 public static final String __GO_POSITION__ =               "Position";

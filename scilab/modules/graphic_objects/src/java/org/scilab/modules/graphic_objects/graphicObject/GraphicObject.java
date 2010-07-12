@@ -29,7 +29,7 @@ public abstract class GraphicObject {
 		LABEL, LEGEND, MATPLOT, PLOT3D, POLYLINE, RECTANGLE, SEGS, TEXT, UNKNOWNOBJECT };
 	
 	/** GraphicObject properties */
-	public enum GraphicObjectPropertyType { PARENT, CHILDREN, VISIBLE, USERDATA, USERDATASIZE, UNKNOWNPROPERTY };
+	public enum GraphicObjectPropertyType { PARENT, CHILDREN, VISIBLE, USERDATA, USERDATASIZE, REFERENCED, VALID, UNKNOWNPROPERTY };
 
 	/** Identifier */
 	private String identifier;
@@ -43,6 +43,12 @@ public abstract class GraphicObject {
 	/** Specifies whether the object is visible or not */
 	private boolean visible;
 
+	/** Specifies if the "handle" is referenced in scilab */
+	private boolean referenced;
+	
+	/** Specifies if the "handle" is valid, i.e included in a rendered object */
+	private boolean valid;
+	
 	/** User data */
 	private Object userData;
 
@@ -53,6 +59,8 @@ public abstract class GraphicObject {
 		children = null;
 		visible = false;
 		userData = null;
+		valid = true;
+		referenced = false;
 	}
 
 	/**
@@ -116,7 +124,11 @@ public abstract class GraphicObject {
 			return GraphicObjectPropertyType.USERDATA;
 		} else if (propertyName.equals(__GO_USER_DATA_SIZE__)) {
 			return GraphicObjectPropertyType.USERDATASIZE;
-		} else {
+		} else if (propertyName.equals(__GO_REFERENCED__)) {
+            return GraphicObjectPropertyType.REFERENCED;
+        } else if (propertyName.equals(__GO_VALID__)) {
+            return GraphicObjectPropertyType.VALID;
+        } else {
 			return GraphicObjectPropertyType.UNKNOWNPROPERTY;
 		}
 	}
@@ -274,5 +286,36 @@ public abstract class GraphicObject {
 	public void setVisible(Boolean visible) {
 		this.visible = visible;
 	}
+	
+    /**
+     * isValid method
+     * @return valid
+     */
+    public Boolean isValid() {
+        return valid;
+    }
 
+    /**
+     * Set valid method
+     * @param valid the validity to set
+     */
+    public void setValid(Boolean valid) {
+        this.valid = valid;
+    }
+    
+    /**
+     * isReferenced method
+     * @return referenced 
+     */
+    public Boolean isReferenced() {
+        return referenced;
+    }
+
+    /**
+     * Set referenced method
+     * @param referenced the reference status to set
+     */
+    public void setReferenced(Boolean referenced) {
+        this.referenced = referenced;
+    }
 }

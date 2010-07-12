@@ -42,6 +42,8 @@
 #define __GO_USER_DATA__                   "UserData"
 #define __GO_USER_DATA_SIZE__              "UserDataSize"
 #define __GO_VISIBLE__                     "Visible"
+#define __GO_REFERENCED__                  "Referenced"
+#define __GO_VALID__                       "Valid"
 
 #define __GO_DIMENSIONS__                  "Dimensions"
 #define __GO_POSITION__                    "Position"
