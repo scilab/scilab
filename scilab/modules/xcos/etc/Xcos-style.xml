@@ -122,7 +122,8 @@
 		<add as="labelBackgroundColor" value="white" />
 		<!-- To have rounded links -->
 		<!-- <add as="rounded" value="1"/> -->
-		<!-- <add as="edgeStyle" value="elbowEdgeStyle"/> -->
+		<add as="edgeStyle" value="elbowEdgeStyle"/>
+		<add as="elbow" value="horizontal" />
 		<add as="shape" value="connector" />
 		<add as="labelBackgroundColor" value="white" />
 		<add as="endArrow" value="classicnone" />
