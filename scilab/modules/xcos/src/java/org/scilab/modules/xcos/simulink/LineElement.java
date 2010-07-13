@@ -166,7 +166,7 @@ public class LineElement extends AbstractElement<BasicLink>{
 	private BasicLink allocateLink() {
 		BasicLink link = null;
 		//FIXME: type of port
-		int type = 2;
+		int type = 1;
 		try {
 			link = LinkPortMap.getLinkClass(type).newInstance();
 		} catch (InstantiationException e) {

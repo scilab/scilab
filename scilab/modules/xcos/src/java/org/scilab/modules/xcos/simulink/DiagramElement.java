@@ -132,6 +132,8 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 					diag.addCell(cell);
 				}
 			}
+			/*
+			 * no need for adding out lines when already added inLines
 			dataIter = blockData.getOutLines().iterator();
 			while(dataIter.hasNext()){
 				SimulinkLine data = dataIter.next();
@@ -145,7 +147,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 				if (cell != null) {
 					diag.addCell(cell);
 				}
-			}
+			}*/
 		}
 		/*
 		 * Decode Annotations
