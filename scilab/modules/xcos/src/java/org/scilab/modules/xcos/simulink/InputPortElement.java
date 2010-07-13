@@ -15,6 +15,7 @@ package org.scilab.modules.xcos.simulink;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.xcos.port.BasicPort.DataType;
+import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.ExplicitInputPort;
 import org.scilab.modules.xcos.port.input.InputPort;
 
@@ -29,7 +30,7 @@ public class InputPortElement {
 		// TODO Auto-generated constructor stub
 	}
 
-	public InputPort decode(SimulinkInPort simulinkInPort, Object object) {
+	public InputPort decode(SimulinkInPort simulinkInPort, InputPort into) {
 		
 		InputPort port;
 		port = allocatePort(simulinkInPort);
@@ -37,7 +38,23 @@ public class InputPortElement {
 		
 		return port;
 	}
- 
+	
+	public ControlPort decodeControlPort(){
+		ControlPort port;
+		port = allocatePort();
+		return port;
+	}
+
+	private ControlPort allocatePort() {
+		ControlPort ret;
+		ret = new ControlPort();
+		ret.generateId();
+		if (LOG.isTraceEnabled()) {
+			LOG.trace("AbsentInPort" + ret.getId());	
+		}
+		return ret;
+	}
+
 	private void fillParameters(InputPort port) {
 		// TODO Get port parameters from simulink
 		int nbLines = 1;

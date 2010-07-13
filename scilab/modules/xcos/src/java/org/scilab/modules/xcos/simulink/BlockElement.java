@@ -19,6 +19,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
+import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
 
@@ -97,6 +98,14 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 			block.addPort(portAdd);
 		}
 
+		/*
+		 * Add control and command ports
+		 */
+		if(base.getParameter("BlockType").equals("Scope")){ //Get info about control ports from compatibility patterns
+			ControlPort portAdd = inElement.decodeControlPort();
+			block.addPort(portAdd);
+		}
+		
 		specificElement.decode(base, block);
 		try {
 			modelElement.decode(base, block);
