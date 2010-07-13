@@ -10,7 +10,6 @@ intsave_
 intexecstr_
 intexec_
 intfile_
-intmgetl_
 intread_
 intread4b_
 intwrite_
