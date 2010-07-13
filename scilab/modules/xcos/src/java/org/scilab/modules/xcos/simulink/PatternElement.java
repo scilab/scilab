@@ -12,7 +12,11 @@
 
 package org.scilab.modules.xcos.simulink;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
@@ -369,6 +373,7 @@ public class PatternElement {
 				if(realParam.getXcos().contentEquals("state")){
 					Iterator<RealValueMap> valueMapIter = realParam.getMap().iterator();
 					stateData=new double[realParam.getMap().size()][1]; //FIXME: add count to realParameters
+					ArrayList<double[]> parameters = new ArrayList<double[]>();
 					while (valueMapIter.hasNext()){
 						RealValueMap valueMap = valueMapIter.next();
 						/**
@@ -380,16 +385,15 @@ public class PatternElement {
 						int x = Integer.parseInt(position[0]);
 						int y = Integer.parseInt(position[1]);
 						if(data.getParameter(valueMap.getSimName())!= null){
-							stateData[x][y] = Double.parseDouble(data.getParameter(valueMap.getSimName()));
+							parameters.add(MatrixElement.decode(data.getParameter(valueMap.getSimName())));
 						} else {
-							stateData[x][y] =  Double.parseDouble(valueMap.getSimName());
+							parameters.add(MatrixElement.decode(valueMap.getSimName()));
 						}
 						if(LOG.isTraceEnabled()){
-							LOG.trace(currentBlock.getXcos() + "exprs:");
-							LOG.trace(stateData[x][y]);
+							LOG.trace(currentBlock.getXcos() + "state:");
 						}
 					}
-					return new ScilabDouble(stateData);
+					return MatrixElement.concatenate(parameters);
 				}
 			}
 		}
@@ -430,7 +434,7 @@ public class PatternElement {
 							stateData[x][y] =  Double.parseDouble(valueMap.getSimName());
 						}
 						if(LOG.isTraceEnabled()){
-							LOG.trace(currentBlock.getXcos() + "exprs:");
+							LOG.trace(currentBlock.getXcos() + "dstate:");
 							LOG.trace(stateData[x][y]);
 						}
 					}
@@ -522,6 +526,7 @@ public class PatternElement {
 				if(realParam.getXcos().contentEquals("rpar")){
 					Iterator<RealValueMap> valueMapIter = realParam.getMap().iterator();
 					rparData=new double[realParam.getMap().size()][1]; //FIXME: add count to realParameters
+					ArrayList<double[]> parameters = new ArrayList<double[]>();
 					while (valueMapIter.hasNext()){
 						RealValueMap valueMap = valueMapIter.next();
 						/**
@@ -533,20 +538,15 @@ public class PatternElement {
 						int x = Integer.parseInt(position[0]);
 						int y = Integer.parseInt(position[1]);
 						if(data.getParameter(valueMap.getSimName())!= null){
-							if(data.getParameter(valueMap.getSimName()).equals("inf") || data.getParameter(valueMap.getSimName()).equals("-inf")){
-								rparData[x][y] = 0;
-							} else {
-								rparData[x][y] = Double.parseDouble(data.getParameter(valueMap.getSimName()));
-							}
+							parameters.add(MatrixElement.decode(data.getParameter(valueMap.getSimName())));
 						} else {
-							rparData[x][y] =  Double.parseDouble(valueMap.getSimName());
+							parameters.add(MatrixElement.decode(valueMap.getSimName()));
 						}
 						if(LOG.isTraceEnabled()){
-							LOG.trace(currentBlock.getXcos() + "exprs:");
-							LOG.trace(rparData[x][y]);
+							LOG.trace(currentBlock.getXcos() + "rpar:");
 						}
 					}
-					return new ScilabDouble(rparData);
+					return MatrixElement.concatenate(parameters);
 				}
 			}
 		}
@@ -592,7 +592,7 @@ public class PatternElement {
 							iparData[x][y] = Integer.parseInt(valueMap.getSimName());
 						}
 						if(LOG.isTraceEnabled()){
-							LOG.trace(currentBlock.getXcos() + "exprs:");
+							LOG.trace(currentBlock.getXcos() + "ipar:");
 							LOG.trace(iparData[x][y]);
 						}
 					}
