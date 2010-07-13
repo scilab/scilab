@@ -44,6 +44,11 @@ public class TicksProperty {
 		auto = false;
 		locations = new double[DEFAULT_NUMBER_OF_TICKS];
 		labels = new ArrayList<FormattedText>(DEFAULT_NUMBER_OF_TICKS);
+
+		for (int i = 0; i < DEFAULT_NUMBER_OF_TICKS; i++) {
+			labels.add(new FormattedText());
+		}
+
 		subticks = 0;
 	}
 
@@ -79,6 +84,35 @@ public class TicksProperty {
 		for (int i = 0; i < labels.size(); i++) {
 			this.labels.add(i, new FormattedText(labels.get(i)));
 		}
+	}
+
+	/**
+	 * @return the labels strings
+	 */
+	public String[] getLabelsStrings() {
+		String[] labelsStrings = new String[labels.size()];
+
+		for (int i = 0; i < labels.size(); i++) {
+			labelsStrings[i] = new String(labels.get(i).getText());
+		}
+
+		return labelsStrings;
+	}
+
+	/**
+	 * @param labels the labels to set
+	 */
+	public void setLabelsStrings(String[] labels) {
+		for (int i = 0; i < labels.length; i++) {
+			this.labels.get(i).setText(labels[i]);
+		}
+	}
+
+	/**
+	 * @return the number of ticks
+	 */
+	public Integer getNumber() {
+		return locations.length;
 	}
 
 	/**
