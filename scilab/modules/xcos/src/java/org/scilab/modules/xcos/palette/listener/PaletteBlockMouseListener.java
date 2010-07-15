@@ -130,8 +130,17 @@ public final class PaletteBlockMouseListener implements MouseListener {
 	private BasicBlock loadAndSetupBlock(
 			final PaletteBlockCtrl control) {
 		BasicBlock current = control.loadBlock();
+		
 		current.getGeometry().setX(BLOCK_DEFAULT_POSITION);
 		current.getGeometry().setY(BLOCK_DEFAULT_POSITION);
+		
+		PaletteBlockCtrl.INTERNAL_GRAPH.addCell(current);
+		PaletteBlockCtrl.INTERNAL_GRAPH.selectAll();
+		
+		PaletteBlockCtrl.INTERNAL_GRAPH.updateCellSize(current);
+		
+		PaletteBlockCtrl.INTERNAL_GRAPH.removeCells();
+		
 		return current;
 	}
 

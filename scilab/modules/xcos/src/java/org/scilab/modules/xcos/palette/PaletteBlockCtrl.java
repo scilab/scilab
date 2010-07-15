@@ -52,10 +52,10 @@ public final class PaletteBlockCtrl {
 	private static final String UNABLE_TO_LOAD_BLOCK = Messages.gettext("Unable to load block from %s .");
 	private static final String LOADING_THE_BLOCK = Messages.gettext("Loading the block") + XcosMessages.DOTS;
 	
-	/*
+	/**
 	 * Internal graph used to render each block.
 	 */
-	private static final XcosDiagram INTERNAL_GRAPH;
+	public static final XcosDiagram INTERNAL_GRAPH;
 	static {
 		INTERNAL_GRAPH = new XcosDiagram();
 		INTERNAL_GRAPH.installListeners();
