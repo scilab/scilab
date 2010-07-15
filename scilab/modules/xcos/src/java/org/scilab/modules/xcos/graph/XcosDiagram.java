@@ -27,6 +27,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.rmi.server.UID;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -385,7 +386,7 @@ public class XcosDiagram extends ScilabGraph {
     	    BasicLink newLink3 = BasicLink.createLinkFromPorts(splitBlock.getOut2(), (BasicPort) target);
     	    newLink3.setGeometry(new mxGeometry(0, 0, 80, 80));
     	    newLink3.setSource(splitBlock.getOut2());
-    	    newLink3.setTarget((mxCell) target);
+    	    newLink3.setTarget(target);
     	    addCell(newLink3);
     	}
     	
@@ -813,7 +814,7 @@ public class XcosDiagram extends ScilabGraph {
      * Called when mxEvents.CELLS_ADDED is fired.
      */
     private static class CellAddedTracker implements mxIEventListener {
-    	private XcosDiagram diagram;
+    	private final XcosDiagram diagram;
 
     	/**
     	 * @param diagram diagram
@@ -890,7 +891,7 @@ public class XcosDiagram extends ScilabGraph {
 	    getModel().endUpdate();
 	}
     }
-
+    
     /**
      * Update the modified block on undo/redo
      */
@@ -935,7 +936,7 @@ public class XcosDiagram extends ScilabGraph {
      * MouseListener inner class
      */
     private class XcosMouseListener implements MouseListener {
-    	private XcosDiagram diagram;
+    	private final XcosDiagram diagram;
 
     	/**
     	 * @param diagram diagram
@@ -1175,6 +1176,45 @@ public class XcosDiagram extends ScilabGraph {
 		return p;
 	}
 
+	/**
+	 * Removes the given cells from the graph including all connected edges if
+	 * includeEdges is true. The change is carried out using cellsRemoved.
+	 * 
+	 * @param cells the cells to be removed
+	 * @param includeEdges true if the edges must be removed, false otherwise.
+	 * @return the deleted cells
+	 * @see com.mxgraph.view.mxGraph#removeCells(java.lang.Object[], boolean)
+	 */
+	@Override
+	public Object[] removeCells(Object[] cells, boolean includeEdges) {
+		if (cells == null || cells.length == 0) {
+			return super.removeCells(cells, includeEdges);
+		}
+		
+		ArrayList<Object> removedCells = new ArrayList<Object>(Arrays.asList(cells));
+		
+		for (Object cell : cells) {
+			/*
+			 * Remove split blocks
+			 */
+			if (cell instanceof BasicLink) {
+				final BasicBlock src = (BasicBlock) ((BasicLink) cell).getSource().getParent();
+				final BasicBlock target = (BasicBlock) ((BasicLink) cell).getTarget().getParent();
+				
+				if (src instanceof SplitBlock) {
+					removedCells.add(src);
+				}
+				
+				if (target instanceof SplitBlock) {
+					removedCells.add(src);
+				}
+				
+			}
+		}
+		
+		return super.removeCells(removedCells.toArray(), includeEdges);
+	}
+	
 	/**
 	 * Manage Group to be CellFoldable i.e with a (-) to reduce and a (+) to
 	 * expand them. Only non-Block / non-Port Cell are foldable.
