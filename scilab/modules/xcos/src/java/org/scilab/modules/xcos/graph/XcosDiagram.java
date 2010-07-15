@@ -2114,6 +2114,20 @@ public class XcosDiagram extends ScilabGraph {
     }
 
     /**
+     * Returns true if the given cell is a not a block nor a port.
+     * @param cell the drop target
+     * @param cells the cells to be dropped
+     * @return the drop status
+     * @see com.mxgraph.view.mxGraph#isValidDropTarget(java.lang.Object, java.lang.Object[])
+     */
+    @Override
+    public boolean isValidDropTarget(Object cell, Object[] cells) {
+		return !(cell instanceof BasicBlock) && !(cell instanceof BasicBlock)
+				&& !(cell instanceof BasicPort)
+				&& super.isValidDropTarget(cell, cells);
+    }
+    
+    /**
      * @return child visibility
      */
 	public boolean isChildVisible() {
