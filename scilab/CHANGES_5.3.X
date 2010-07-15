@@ -83,6 +83,8 @@ Bug Fixes:
 * bug 7530 fixed - When connecting two links together in a superblock, the split
                    block was not correctly positionned.
 
+* bug 7529 fixed - Using the Xcos block help from the palette froze Scilab.
+
 * bug 7533 fixed - On Xcos, it was possible to drop a block into another block.
 
            Changes between version 5.2.X and 5.3.0-beta1 of Scilab

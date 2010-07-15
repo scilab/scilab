@@ -108,7 +108,7 @@ public final class PaletteBlockMouseListener implements MouseListener {
 				@Override
 				public void callBack() {
 					try {
-						ScilabInterpreterManagement.synchronousScilabExec("help", control.getModel().getName());
+						ScilabInterpreterManagement.asynchronousScilabExec(null, "help", control.getModel().getName());
 					} catch (InterpreterException e) {
 						e.printStackTrace();
 					}
