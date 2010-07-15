@@ -328,9 +328,20 @@ public class XcosDiagram extends ScilabGraph {
     		splitBlock.setConnection(linkSource, linkTarget, (BasicPort) target);
     	}
     	
+    	final mxGeometry parentGeom;
+    	if (linkSource.getParent().getParent() != null) {
+    		parentGeom = linkSource.getParent().getParent().getGeometry();
+    	} else {
+    		parentGeom = null;
+    	}
+    	
     	mxGeometry geom = splitBlock.getGeometry();
-    	geom.setX(dragSplitPos.getX());
-    	geom.setY(dragSplitPos.getY());
+    	
+    	if (parentGeom != null) {
+    		geom.translate(-parentGeom.getX(), -parentGeom.getY());
+    	}
+    	geom.translate(dragSplitPos.getX(), dragSplitPos.getY());
+
     	BlockPositioning.alignPoint(geom, getGridSize(), (SplitBlock.DEFAULT_SIZE / 2));
     	
     	addCell(splitBlock);

@@ -77,7 +77,11 @@ Bug Fixes:
 * bug 7491 fixed - Lines broken with a .. were not correctly handled and caused
                    a freeze of SciNotes.
 
-* bug 7520 fixed - The Xcos context was not translated from parent diagram to child.
+* bug 7520 fixed - The Xcos context was not translated from parent diagram to 
+                   child.
+
+* bug 7530 fixed - When connecting two links together in a superblock, the split
+                   block was not correctly positionned.
 
 * bug 7533 fixed - On Xcos, it was possible to drop a block into another block.
 
