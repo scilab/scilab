@@ -47,7 +47,7 @@ import com.mxgraph.model.mxIGraphModel;
 //CSOFF: ClassFanOutComplexity
 public class DiagramElement extends AbstractElement<XcosDiagram> {
 	private static final List<String> BASE_FIELD_NAMES = asList(
-			"diagram", "props", "objs", "version");
+			"diagram", "props", "objs");
 	private static final String VERSION = "scicos4.2";
 	
 	private static final int OBJS_INDEX = 2;
@@ -321,6 +321,12 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 
 		// the last field must contain the scicos version used
 		field++;
+		
+		// doesn't check version if not present (optional field)
+		if (base.size() <= field) {
+			return;
+		}
+		
 		if (!(base.get(field) instanceof ScilabString)) {
 			throw new WrongTypeException(BASE_FIELD_NAMES, field);
 		}

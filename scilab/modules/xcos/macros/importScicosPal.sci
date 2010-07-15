@@ -10,16 +10,45 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 //
-//
+
 function importScicosPal(palFiles, outPath)
+// Export all palettes to a path as H5 files
+//
+// Calling Sequence
+//   importScicosPal(palFiles, outPath);
+//
+// Parameters
+//   palFiles: string array; the palette files to export
+//   outPath: string; path where to export the palettes
+//
+// Description
+// To export Scicos palettes to an HDF5 instance, use this macro.
+// 
+// Examples
+//   palFiles = ls(SCI + "/modules/scicos/palettes/*.cosf");
+//   importScicosPal(palFiles, SCI + "/modules/scicos_blocks/blocks");
+//
+// See also
+//   xcosPal
+//   xcosPalAddBlock
+//
+// Authors
+//   Vincent COUVERT
+//   Antoine ELIAS
+//   Clément DAVID
 
   rhs = argn(2);
+
+  if ~exists("scicos_diagram") then
+    loadScicosLibs();
+  end
 
   if rhs < 2 then
     error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "importScicosPal", 2));
     return
   end
 
+  // global variables
   exportedBlocks = 0;
 
   // foreach file
