@@ -2,12 +2,13 @@ LIBRARY    elementary_functions_f.dll
 
 
 EXPORTS
+
+wdiv_
+dset_
+dtild_
+dadd_ 
+dmmul_
+ddif_
+entier_
 orthes_
 ortran_
-ddif_
-dset_
-dmmul_
-dtild_
-dadd_
-entier_
-wdiv_

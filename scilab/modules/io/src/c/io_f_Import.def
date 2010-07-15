@@ -5,14 +5,13 @@ EXPORTS
 ; --------------------------------------- 
 ; io_f
 ; --------------------------------------- 
-intload_
+
 intsave_
-intexecstr_
-intexec_
 intfile_
+intload_
 intread_
-intread4b_
+intread4b_ 
+intreadb_ 
 intwrite_
 intwrite4b_
 intwritb_
-intreadb_

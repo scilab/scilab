@@ -2,14 +2,13 @@
 
 
 EXPORTS
-	getMatrixOfDouble
-	getVarType
-	getVarAddressFromPosition
-	getMatrixOfWideString
-	createMatrixOfDouble
-	createMatrixOfWideString
-	createMatrixOfBoolean
-	getVarDimension
-	printError
-	pvApiCtx DATA
-	
+pvApiCtx DATA
+createMatrixOfWideString
+printError
+createMatrixOfDouble
+getVarType
+getVarAddressFromPosition
+getVarDimension
+getMatrixOfDouble
+getMatrixOfWideString
+createMatrixOfBoolean
