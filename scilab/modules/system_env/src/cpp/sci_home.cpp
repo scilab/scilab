@@ -23,6 +23,7 @@ extern "C"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
+#include "os_wcsdup.h"
 #include "charEncoding.h"
 #include "PATH_MAX.h"
 #include "machine.h"
@@ -34,7 +35,7 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 wchar_t* getSCIHOMEW(void)
 {
-    return wcsdup(ConfigVariable::getSCIHOME().c_str());
+    return os_wcsdup(ConfigVariable::getSCIHOME().c_str());
 }
 /*--------------------------------------------------------------------------*/
 char* getSCIHOME(void)
@@ -44,7 +45,7 @@ char* getSCIHOME(void)
 /*--------------------------------------------------------------------------*/
 void setSCIHOME(const char* _sci_home)
 {
-    const wchar_t* pstTemp = to_wide_string(_sci_home);
+    wchar_t* pstTemp = to_wide_string(_sci_home);
     setSCIHOMEW(pstTemp);
     FREE(pstTemp);
 }
@@ -233,7 +234,7 @@ wchar_t* getenvSCIHOMEW(void)
 /*--------------------------------------------------------------------------*/
 void putenvSCIHOMEW(const wchar_t* _sci_home)
 {
-    const char* pstTemp = wide_string_to_UTF8(_sci_home);
+    char* pstTemp = wide_string_to_UTF8(_sci_home);
     putenvSCIHOME(pstTemp);
     FREE(pstTemp);
     return;
@@ -271,7 +272,7 @@ void putenvSCIHOME(const char* _sci_home)
 /*--------------------------------------------------------------------------*/
 void defineSCIHOME()
 {
-    const wchar_t* sci_home = computeSCIHOMEW();
+    wchar_t* sci_home = computeSCIHOMEW();
     setSCIHOMEW(sci_home);
     putenvSCIHOMEW(sci_home);
     FREE(sci_home);

@@ -48,7 +48,7 @@ static __threadLock commandQueueSingleAccess = __StaticInitLock;
 /*--------------------------------------------------------------------------*/
 int StoreCommand (wchar_t *command)
 {
-	return (StoreCommandWithFlag (command, 0));
+	return StoreCommandWithFlag (command, 0);
 }
 /*--------------------------------------------------------------------------*/
 /*
@@ -77,7 +77,7 @@ int StoreCommandWithFlag (wchar_t *command,int flag)
     }
 
     parser.freeTree();
-	return (0);
+	return 0;
 }
 /*--------------------------------------------------------------------------*/
 /*

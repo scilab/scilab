@@ -75,7 +75,7 @@ wchar_t *to_wide_string(const char *_UTFStr)
 int wcstat(char* filename, struct _stat *st)
 {
 	int stat_result = 0;
-	const wchar_t *wfilename = to_wide_string(filename);
+	wchar_t *wfilename = to_wide_string(filename);
 	stat_result = _wstat(wfilename, st);
 	FREE(wfilename);
 	return stat_result;

@@ -26,9 +26,7 @@
 
 extern "C"
 {
-#ifndef _MSC_VER
-#include "stricmp.h"
-#endif
+#include "os_wcsicmp.h"
 #include "expandPathVariable.h"
 #include "prompt.h"
 }
@@ -69,7 +67,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 				return Function::Error;
 			}
 
-			if(wcsicmp(pS->string_get(0), L"errcatch") == 0)
+			if(os_wcsicmp(pS->string_get(0), L"errcatch") == 0)
 			{
 				bErrCatch = true;
 			}

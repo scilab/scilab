@@ -24,8 +24,8 @@ extern "C"
 {
 #ifdef _MSC_VER
 #include <process.h>
-#include "strdup_windows.h"
 #endif
+#include "os_wcsdup.h"
 #include "charEncoding.h"
 #include "PATH_MAX.h"
 #include "setenvc.h"
@@ -42,7 +42,7 @@ char* getTMPDIR(void)
 /*--------------------------------------------------------------------------*/
 wchar_t* getTMPDIRW(void)
 {
-    return wcsdup(ConfigVariable::getTMPDIR().c_str());
+    return os_wcsdup(ConfigVariable::getTMPDIR().c_str());
 }
 
 /*--------------------------------------------------------------------------*/
@@ -59,14 +59,14 @@ void setTMPDIRW(const wchar_t* _sci_tmpdir)
 /*--------------------------------------------------------------------------*/
 void setTMPDIR(const char* _sci_tmpdir)
 {
-    const wchar_t* pstTemp = to_wide_string(_sci_tmpdir);
+    wchar_t* pstTemp = to_wide_string(_sci_tmpdir);
     setTMPDIRW(pstTemp);
     FREE(pstTemp);
 }
 /*--------------------------------------------------------------------------*/
 void putenvTMPDIRW(const wchar_t* _sci_tmpdir)
 {
-    const char* pstTemp = wide_string_to_UTF8(_sci_tmpdir);
+    char* pstTemp = wide_string_to_UTF8(_sci_tmpdir);
     putenvTMPDIR(pstTemp);
     FREE(pstTemp);
     return;
@@ -226,7 +226,7 @@ char* computeTMPDIR()
 /*--------------------------------------------------------------------------*/
 void defineTMPDIR()
 {
-    const wchar_t* sci_tmpdir = computeTMPDIRW();
+    wchar_t* sci_tmpdir = computeTMPDIRW();
     setTMPDIRW(sci_tmpdir);
     putenvTMPDIRW(sci_tmpdir);
     FREE(sci_tmpdir);

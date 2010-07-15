@@ -18,12 +18,8 @@
 extern "C"
 {
 #include "charEncoding.h"
+#include "os_wcsdup.h"
 }
-
-#ifdef _MSC_VER
-	#define strdup _strdup
-    #define wcsdup _wcsdup
-#endif
 
 using namespace std;
 
@@ -60,7 +56,7 @@ namespace types
 	String *String::clone()
 	{
 	  String *pstClone = new String(rows_get(), cols_get());
-	  
+
 	  pstClone->string_set(m_pstData);
 
 	  return pstClone;
@@ -75,7 +71,7 @@ namespace types
 		m_pstData	= new wchar_t*[m_iSize];
 		for(int iIndex = 0 ; iIndex < m_iSize ; iIndex++)
 		{
-			m_pstData[iIndex] = wcsdup(L"");
+			m_pstData[iIndex] = os_wcsdup(L"");
 		}
 	}
 
@@ -484,7 +480,7 @@ namespace types
 					{//a([]) = R
 						for(int i = 0 ; i < _iSeqCount ; i++)
 						{
-							m_pstData[_piSeqCoord[i] - 1]	= wcsdup(pstIn[0]);
+							m_pstData[_piSeqCoord[i] - 1]	= os_wcsdup(pstIn[0]);
 						}
 					}
 					else
@@ -492,7 +488,7 @@ namespace types
 						for(int i = 0 ; i < _iSeqCount ; i++)
 						{
 							int iPos = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
-							m_pstData[iPos]	= wcsdup(pstIn[0]);
+							m_pstData[iPos]	= os_wcsdup(pstIn[0]);
 						}
 					}
 				}
@@ -502,7 +498,7 @@ namespace types
 					{//a([]) = [R]
 						for(int i = 0 ; i < _iSeqCount ; i++)
 						{
-							m_pstData[_piSeqCoord[i] - 1]	= wcsdup(pstIn[i]);
+							m_pstData[_piSeqCoord[i] - 1]	= os_wcsdup(pstIn[i]);
 						}
 					}
 					else
@@ -514,7 +510,7 @@ namespace types
 							int iTempC = i % pIn->cols_get();
 							int iNew_i = iTempR + iTempC * pIn->rows_get();
 
-							m_pstData[iPos]	= wcsdup(pstIn[iNew_i]);
+							m_pstData[iPos]	= os_wcsdup(pstIn[iNew_i]);
 						}
 					}
 				}
@@ -529,8 +525,8 @@ namespace types
 
 	String*	String::insert_new(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, String* _poSource, bool _bAsVector)
 	{
-		String *pS	= NULL ; 
-		
+		String *pS	= NULL ;
+
 		if(_bAsVector)
 		{
 			if(_poSource->cols_get() == 1)
@@ -573,7 +569,7 @@ namespace types
 		pst	= new wchar_t*[_iNewRows * _iNewCols];
 		for(int i = 0 ; i < _iNewRows * _iNewCols ; i++)
 		{
-			pst[i] = wcsdup(L"");
+			pst[i] = os_wcsdup(L"");
 		}
 
 		//copy existing values
@@ -640,7 +636,7 @@ namespace types
 		{
 			for(int i = 0 ; i < _iSeqCount ; i++)
 			{
-				pst[i] = wcsdup(m_pstData[_piSeqCoord[i] - 1]);
+				pst[i] = os_wcsdup(m_pstData[_piSeqCoord[i] - 1]);
 			}
 		}
 		else
@@ -650,10 +646,10 @@ namespace types
 				//convert vertical indexes to horizontal indexes
 				int iCurIndex   = (i % iColsOut) * iRowsOut + (i / iColsOut);
 				int iInIndex    = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
-				pst[iCurIndex]  = wcsdup(m_pstData[iInIndex]);
+				pst[iCurIndex]  = os_wcsdup(m_pstData[iInIndex]);
 			}
 		}
-		
+
 		return pOut;
 	}
 

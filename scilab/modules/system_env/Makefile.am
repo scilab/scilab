@@ -29,6 +29,7 @@ libscisystem_env_la_CPPFLAGS = \
 	-I $(top_srcdir)/modules/types/includes \
 	-I $(top_srcdir)/modules/io/includes \
 	-I $(top_srcdir)/modules/fileio/includes \
+	-I $(top_srcdir)/modules/string/includes \
 	-I $(top_srcdir)/modules/abstractSyntaxTree/includes
 
 

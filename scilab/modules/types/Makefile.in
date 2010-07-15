@@ -302,7 +302,6 @@ PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
 PACKAGE_NAME = @PACKAGE_NAME@
 PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
-PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PCRE_CFLAGS = @PCRE_CFLAGS@
@@ -544,6 +543,7 @@ libscitypes_la_CPPFLAGS = -Iincludes/ \
 				-I../parse/includes \
 				-I../system_env/includes \
 				-I ../functions_manager/includes \
+				-I ../string/includes \
 				-I src/cpp
 
 pkglib_LTLIBRARIES = libscitypes.la
@@ -557,8 +557,8 @@ INCLUDE_FLAGS = $(libscitypes_la_CFLAGS)
 #### SWIG Declaration ####
 SWIG_WRAPPERS = 
 libscitypes_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
-$(top_builddir)/libs/MALLOC/libscimalloc.la \
-$(top_builddir)/modules/output_stream/libscioutput_stream.la
+						$(top_builddir)/libs/MALLOC/libscimalloc.la \
+						$(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 
 #### types : gateway declaration ####

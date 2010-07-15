@@ -54,7 +54,7 @@ SciErr getPolyVariableName(void* _pvCtx, int* _piAddress, char* _pstVarName, int
         return sciErr; //No error
     }
 
-    const char* pstTemp = wide_string_to_UTF8(((InternalType*)_piAddress)->getAsPoly()->var_get().c_str());
+    char* pstTemp = wide_string_to_UTF8(((InternalType*)_piAddress)->getAsPoly()->var_get().c_str());
     strcpy(_pstVarName, pstTemp);
     FREE(pstTemp);
     return sciErr;
@@ -163,7 +163,7 @@ SciErr createCommonMatrixOfPoly(void* _pvCtx, int _iVar, int _iComplex, char* _p
     GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
     InternalType** out = pStr->m_pOut;
 
-    const wchar_t* pstTemp = to_wide_string(_pstVarName);
+    wchar_t* pstTemp = to_wide_string(_pstVarName);
     MatrixPoly* pP = new MatrixPoly(pstTemp, _iRows, _iCols, _piNbCoef);
     FREE(pstTemp);
     if(pP == NULL)

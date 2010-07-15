@@ -88,6 +88,7 @@ libscitypes_la_CPPFLAGS = 	-Iincludes/ \
 				-I../parse/includes \
 				-I../system_env/includes \
 				-I ../functions_manager/includes \
+				-I ../string/includes \
 				-I src/cpp
 
 pkglib_LTLIBRARIES = libscitypes.la
@@ -109,9 +110,8 @@ BUILT_SOURCES=swig
 endif
 
 libscitypes_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
-$(top_builddir)/libs/MALLOC/libscimalloc.la \
-$(top_builddir)/modules/output_stream/libscioutput_stream.la
-
+						$(top_builddir)/libs/MALLOC/libscimalloc.la \
+						$(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 #### types : gateway declaration ####
 libscitypes_la_sci_gatewaydir = $(mydatadir)/sci_gateway

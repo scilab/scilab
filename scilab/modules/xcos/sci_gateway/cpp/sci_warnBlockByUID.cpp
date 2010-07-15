@@ -72,7 +72,6 @@ int sci_warnBlockByUID(char *fname, int* _piKey)
 	sciErr = getMatrixOfString(_piKey, piAddressVarOne, &m1, &n1, &lenStVarOne, NULL);
 	if(sciErr.iErr)
 	{
-		if (lenStVarOne) { FREE(lenStVarOne); lenStVarOne = NULL;}
 		printError(&sciErr, 0);
 		return 0;
 	}
@@ -113,7 +112,6 @@ int sci_warnBlockByUID(char *fname, int* _piKey)
 	sciErr = getMatrixOfString(_piKey, piAddressVarTwo, &m1, &n1, &lenStVarTwo, NULL);
 	if(sciErr.iErr)
 	{
-		FREE(lenStVarTwo);
 		printError(&sciErr, 0);
 		return 0;
 	}

@@ -35,23 +35,27 @@ IMPORT_EXPORT_MALLOC_DLL void MyVirtualFree(LPVOID lpAddress,char *fichier,int l
 #ifdef MALLOC
 #undef MALLOC
 #endif
-#define MALLOC(x) MyHeapAlloc(x,__FILE__,__LINE__)
+//#define MALLOC(x) MyHeapAlloc(x,__FILE__,__LINE__)
+#define MALLOC(x) malloc(x)
 
 #ifdef FREE
 #undef FREE
 #endif
-#define FREE(x) if (x  != NULL) MyHeapFree((char *)x,__FILE__,__LINE__);
+//#define FREE(x) if (x  != NULL) MyHeapFree((char *)x,__FILE__,__LINE__);
+#define FREE(x) if (x  != NULL) free(x);
 
 #ifdef CALLOC
 #undef CALLOC
 #endif
-#define CALLOC(x,y) MyHeapAlloc(((x)*(y)),__FILE__,__LINE__)
+//#define CALLOC(x,y) MyHeapAlloc(((x)*(y)),__FILE__,__LINE__)
+#define CALLOC(x,y) malloc(((x)*(y)))
 
 
 #ifdef REALLOC
 #undef REALLOC
 #endif
-#define REALLOC(x,y) MyHeapRealloc(x, y,__FILE__,__LINE__)
+//#define REALLOC(x,y) MyHeapRealloc(x, y,__FILE__,__LINE__)
+#define REALLOC(x,y) realloc(x, y)
 
 #ifdef SCISTACKMALLOC
 #undef SCISTACKMALLOC

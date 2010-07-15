@@ -22,9 +22,7 @@
 
 extern "C"
 {
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_wcsdup.h"
 #include "charEncoding.h"
 #include "PATH_MAX.h"
 #include "setenvc.h"
@@ -39,7 +37,7 @@ char *getSCI(void)
 /*--------------------------------------------------------------------------*/
 wchar_t *getSCIW(void)
 {
-    return wcsdup(ConfigVariable::getSCIPath().c_str());
+    return os_wcsdup(ConfigVariable::getSCIPath().c_str());
 }
 
 /*--------------------------------------------------------------------------*/
@@ -56,14 +54,14 @@ void setSCIW(const wchar_t* _sci_path)
 /*--------------------------------------------------------------------------*/
 void setSCI(const char* _sci_path)
 {
-    const wchar_t* pstTemp = to_wide_string(_sci_path);
+    wchar_t* pstTemp = to_wide_string(_sci_path);
     setSCIW(pstTemp);
     FREE(pstTemp);
 }
 /*--------------------------------------------------------------------------*/
 void putenvSCIW(const wchar_t* _sci_path)
 {
-    const char* pstTemp = wide_string_to_UTF8(_sci_path);
+    char* pstTemp = wide_string_to_UTF8(_sci_path);
     putenvSCI(pstTemp);
     FREE(pstTemp);
     return;
@@ -210,7 +208,7 @@ char* computeSCI()
 /*--------------------------------------------------------------------------*/
 void defineSCI()
 {
-    const wchar_t* sci_path = computeSCIW();
+    wchar_t* sci_path = computeSCIW();
     setSCIW(sci_path);
     putenvSCIW(sci_path);
     FREE(sci_path);

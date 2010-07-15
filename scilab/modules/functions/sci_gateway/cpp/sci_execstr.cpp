@@ -28,13 +28,10 @@ extern "C"
 {
 #include "MALLOC.h"
 
-#ifndef _MSC_VER
-#include "stricmp.h"
-#endif
+#include "os_wcsicmp.h"
 #include "cluni0.h"
 #include "PATH_MAX.h"
 #include "prompt.h"
-#include "stricmp.h"
 }
 
 
@@ -65,7 +62,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 				return Function::Error;
 			}
 
-			if(wcsicmp(pS->string_get(0), L"errcatch") == 0)
+			if(os_wcsicmp(pS->string_get(0), L"errcatch") == 0)
 			{
 				bErrCatch = true;
 			}

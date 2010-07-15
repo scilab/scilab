@@ -14,27 +14,35 @@
 #include "InterpreterManagement.h"
 #include "storeCommand.h"
 #include "sigbas.h"
+#include "MALLOC.h"
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 int putCommandInScilabQueue(char *command)
 {
-  return StoreCommand(command);
+    wchar_t* pstCommand = to_wide_string(command);
+    int iRet = StoreCommand(pstCommand);
+    FREE(pstCommand);
+    return iRet;
 }
 /*--------------------------------------------------------------------------*/
 /*
- * requestScilabExec
- *
- * WARNING : if the command is taking some time, scilab will not do anything else
- * before the command returns.
- */
+* requestScilabExec
+*
+* WARNING : if the command is taking some time, scilab will not do anything else
+* before the command returns.
+*/
 int requestScilabExec(char *command)
 {
-  return StoreCommandWithFlag(command, 1);
+    wchar_t* pstCommand = to_wide_string(command);
+    int iRet = StoreCommandWithFlag(pstCommand, 1);
+    FREE(pstCommand);
+    return iRet;
 }
 /*--------------------------------------------------------------------------*/
 int interruptScilab(void)
 {
-  int scilabSignal = SIGINT;
-  C2F(sigbas)(&scilabSignal);
-  return 0;
+    int scilabSignal = SIGINT;
+    C2F(sigbas)(&scilabSignal);
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

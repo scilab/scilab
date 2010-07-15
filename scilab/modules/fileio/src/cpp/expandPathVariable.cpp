@@ -2,15 +2,18 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2009 - DIGITEO - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
 /*--------------------------------------------------------------------------*/
+
+#include <wchar.h>
+
 #include "stack-c.h"
 
 #include "expandPathVariable.h"
@@ -26,6 +29,7 @@ extern "C"
 #include "strdup_windows.h"
 #endif
 
+#include "os_wcsdup.h"
 }
 
 #include "context.hxx"
@@ -98,7 +102,7 @@ wchar_t *expandPathVariableW(wchar_t *wcstr)
 									wcscpy(wcexpanded, newBegin);
 									wcscat(wcexpanded, &wcstr[lenAlias]);
 									FREE(wcBegin); wcBegin = NULL;
-									FREE(newBegin); newBegin = NULL;
+									free(newBegin); newBegin = NULL;
 									return convertFileSeparators(wcexpanded);
 								}
 								FREE(newBegin); newBegin = NULL;
@@ -112,7 +116,7 @@ wchar_t *expandPathVariableW(wchar_t *wcstr)
 
 		/* Variables not founded returns a copy of input */
 		wcexpanded = (wchar_t*)MALLOC(sizeof(wchar_t)* ((int)wcslen(wcstr) + 1));
-		if (wcexpanded) 
+		if (wcexpanded)
 		{
 			wcscpy(wcexpanded, wcstr);
 			return convertFileSeparators(wcexpanded);
@@ -152,7 +156,7 @@ wchar_t *getVariableValueDefinedInScilab(wchar_t *wcVarName)
         }
 
         String* pS = pIT->getAsString();
-        return wcsdup(pS->string_get(0));
+        return os_wcsdup(pS->string_get(0));
 	}
 	return NULL;
 }

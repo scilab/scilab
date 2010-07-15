@@ -115,6 +115,7 @@ libscifileio_la_CPPFLAGS=	-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/functions_manager/includes \
 				-I$(top_srcdir)/modules/abstractSyntaxTree/includes \
 				-I$(top_srcdir)/modules/symbol/includes \
+				-I$(top_srcdir)/modules/string/includes \
 				$(HDF5_CFLAGS)
 
 libscifileio_la_CFLAGS=		-I$(srcdir)/includes/ \
