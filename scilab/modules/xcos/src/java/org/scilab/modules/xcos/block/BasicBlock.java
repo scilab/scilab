@@ -230,7 +230,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 			BasicBlock source = (BasicBlock) evt.getSource();
 			
 			StyleMap style = new StyleMap(source.getStyle());
-			style.remove((String) evt.getOldValue());
+			style.remove(evt.getOldValue());
 			style.put((String) evt.getNewValue(), null);
 			source.setStyle(style.toString());
 		}

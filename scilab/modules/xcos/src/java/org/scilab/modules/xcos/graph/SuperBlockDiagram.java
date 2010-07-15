@@ -106,7 +106,7 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
 	 */
 	public void invoke(Object arg0, mxEventObject arg1) {
 	    ((SuperBlockDiagram) arg0).getContainer().updateAllBlocksColor();
-	    ((SuperBlockDiagram) arg0).getContainer().updateExportedPort();	    
+	    ((SuperBlockDiagram) arg0).getContainer().updateExportedPort();
 	}
     }
     

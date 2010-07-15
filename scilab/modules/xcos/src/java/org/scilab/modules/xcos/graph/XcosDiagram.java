@@ -631,7 +631,7 @@ public class XcosDiagram extends ScilabGraph {
 	addListener(XcosEvent.SUPER_BLOCK_UPDATED, new SuperBlockUpdateTracker()); 
 	
 	// Track when cells are added.
-	addListener(XcosEvent.CELLS_ADDED, new CellAddedTracker(this)); 
+	addListener(XcosEvent.CELLS_ADDED, CellAddedTracker.getInstance()); 
 	addListener(XcosEvent.CELLS_ADDED, getEngine());
 	
 	// Track when cells are deleted.
@@ -651,9 +651,10 @@ public class XcosDiagram extends ScilabGraph {
 	addListener(XcosEvent.ADD_PORTS, new mxIEventListener() {
 	    public void invoke(Object source, mxEventObject evt) {
 		getModel().beginUpdate();
-		refresh();
 		BasicBlock updatedBlock = (BasicBlock) evt.getProperty(XcosConstants.EVENT_BLOCK_UPDATED);
 		BlockPositioning.updateBlockView(updatedBlock);
+		getView().clear(updatedBlock, true, true);
+		getView().validate();
 		getModel().endUpdate();
 	    }
 	});	
@@ -814,15 +815,22 @@ public class XcosDiagram extends ScilabGraph {
      * Called when mxEvents.CELLS_ADDED is fired.
      */
     private static class CellAddedTracker implements mxIEventListener {
-    	private final XcosDiagram diagram;
+    	private static CellAddedTracker instance;
+    	/**
+    	 * Default constructor
+    	 */
+    	private CellAddedTracker() { }
 
     	/**
-    	 * @param diagram diagram
-    	 */
-    	public CellAddedTracker(XcosDiagram diagram) {
-    		this.diagram = diagram;
-    	}
-
+		 * @return the instance
+		 */
+		public static synchronized CellAddedTracker getInstance() {
+			if (instance == null) {
+				instance = new CellAddedTracker();
+			}
+			return instance;
+		}
+    	
     	/**
     	 * Update block values on add 
     	 * @param source the source instance
@@ -830,7 +838,8 @@ public class XcosDiagram extends ScilabGraph {
     	 * @see com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object, com.mxgraph.util.mxEventObject)
     	 */
     	public void invoke(Object source, mxEventObject evt) {
-    		Object[] cells = (Object[]) evt.getProperty("cells");
+    		final XcosDiagram diagram = (XcosDiagram) source;
+    		final Object[] cells = (Object[]) evt.getProperty("cells");
     		
     		diagram.getModel().beginUpdate();
     		
@@ -1356,7 +1365,6 @@ public class XcosDiagram extends ScilabGraph {
 		
     	return status;
     }
-
 
     /**
      * @param fileName HDF5 filename

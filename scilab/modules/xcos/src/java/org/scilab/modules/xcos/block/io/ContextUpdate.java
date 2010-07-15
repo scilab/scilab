@@ -16,6 +16,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
@@ -56,7 +57,7 @@ public abstract class ContextUpdate extends BasicBlock {
 	 * Implement a listener which update the value and refresh the view when the
 	 * index of the port change.
 	 */
-	private static final class IndexChangeAdapter implements PropertyChangeListener {
+	private static final class IndexChangeAdapter implements PropertyChangeListener, Serializable {
 		private static IndexChangeAdapter instance;
 		
 		/**
@@ -97,6 +98,7 @@ public abstract class ContextUpdate extends BasicBlock {
 				}
 				
 				ioBlock.setValue(newIndex);
+				
 				if (ioBlock.getParentDiagram() != null) {
 					ioBlock.getParentDiagram().fireEvent(
 							new mxEventObject(XcosEvent.IO_PORT_VALUE_UPDATED,

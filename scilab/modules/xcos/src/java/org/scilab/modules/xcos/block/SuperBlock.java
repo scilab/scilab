@@ -13,6 +13,7 @@
 package org.scilab.modules.xcos.block;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -473,9 +474,7 @@ public final class SuperBlock extends BasicBlock {
 			boolean[] isDone = new boolean[countUnique];
 
 			// Initialize
-			for (int i = 0; i < countUnique; i++) {
-				isDone[i] = false;
-			}
+			Arrays.fill(isDone, false);
 
 			for (int i = 0; i < blocks.size(); i++) {
 				int index = (Integer) ((BasicBlock) blocks.get(i)).getValue();
