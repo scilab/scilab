@@ -3,11 +3,11 @@
 # Copyright (C) INRIA - 2006-2008 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009 - Pierre MARECHAL <pierre.marechal@scilab.org>
-# 
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 #
 
@@ -139,7 +139,7 @@ AC_PROG_GREP
 
 ######
 #### Mac OS X set of fink path with provided
-######                 
+######
 
 AC_ARG_WITH(fink_prefix,
 AC_HELP_STRING([--with-fink-prefix],[Provide a fink prefix. Default: /sw/ ]))
@@ -151,11 +151,11 @@ case "$host" in
 	# use it to detect dependencies (for example, gfortran is not provided in xcode.
 	# Therefor, we use the one in fink)
 	FINK_PREFIX="$with_fink_prefix/"
-  
+
 	# Exec the init script of fink to make sure that the env is set
 	if test -f $with_fink_prefix/bin/init.sh; then
 	   echo "source $with_fink_prefix/bin/init.sh executed to set the env"
-	   source $with_fink_prefix/bin/init.sh	
+	   source $with_fink_prefix/bin/init.sh
         else
 	   AC_MSG_WARN([Could not find the fink init.sh script: $with_fink_prefix/bin/init.sh])
 	fi
@@ -166,7 +166,7 @@ case "$host" in
 esac
 
 #####################################################
-## Look for pkg-config 
+## Look for pkg-config
 #####################################################
 PKG_PROG_PKG_CONFIG
 
@@ -564,7 +564,7 @@ case "$CC" in
 
   *-*-darwin*)
 case "$F77" in
-	     gfortran-*|gfortran) 
+	     gfortran-*|gfortran)
 	         # Extract from gfortran -v the version it has been built for
 	      	 MAC_DETECTED_ARCH="`$F77 -v 2>&1|grep "Target:"|sed -e "s/Target: \([[a-z0-9A-Z_]]*\).*/\1/g"`"
 		 ;;
@@ -654,7 +654,7 @@ AC_CHECK_UNDERSCORE_FORTRAN()
 ### Flex & Yacc
 ###############################
 
-if test "$enable_build_parser" != no; then
+if test "$enable_build_parser" = yes; then
 
    AC_PROG_LEX
    if test -z "$LEX" -o "$LEX" = ":"; then
@@ -675,14 +675,14 @@ if test "$enable_build_parser" != no; then
    fi
 
 fi
-AM_CONDITIONAL(BUILD_PARSER, test "$enable_build_parser" != no)
+AM_CONDITIONAL(BUILD_PARSER, test "$enable_build_parser" = yes)
 
 #################
 ## HDF5
 #################
 
 AC_ARG_WITH(hdf5,
-	AC_HELP_STRING([--without-hdf5],[Disable the interface to the HDF5 library]))	
+	AC_HELP_STRING([--without-hdf5],[Disable the interface to the HDF5 library]))
 
 HDF5_ENABLE=no
 
@@ -764,9 +764,9 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				   LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -L$SCI_SRCDIR/thirdparty/ -L$SCI_SRCDIR/bin/"
 				   AC_CHECK_LIB([jogl], [glTexParameterf], [JOGL_LIBS="-ljogl"],[AC_MSG_WARN([Could not link against -ljogl. Will try against -ljogl -lGL])])
 				   if test -z "$JOGL_LIBS"; then # The previous test failed add more options to the LDFLAGS
-					   # the space after "jogl" in the following line is on	
+					   # the space after "jogl" in the following line is on
 					   # purpose to disable the cache
-				   	   AC_CHECK_LIB([jogl ], [glTexParameterf], 
+				   	   AC_CHECK_LIB([jogl ], [glTexParameterf],
 					   [JOGL_LIBS="-ljogl -lGL"],
 					   [AC_MSG_ERROR(["libjogl: Library
 missing (Cannot find symbol glTexParameterf). Check if libjogl - C/Java (JNI)
@@ -820,7 +820,7 @@ the the JNI libraries."])],
 
 
 				# MathML rendering solution
-				# Used in both graphic & help 
+				# Used in both graphic & help
 				AC_JAVA_CHECK_PACKAGE([jeuclid-core],[net.sourceforge.jeuclid.LayoutContext],[MathML rendering solution (at least version 3.1.X)])
 				JEUCLID_CORE=$PACKAGE_JAR_FILE
 				AC_SUBST(JEUCLID_CORE)
@@ -1131,7 +1131,7 @@ TERMCAP_LIB=no
 
 # Various observations:
 #
-#  ncurses 
+#  ncurses
 #    - installs ncurses.h and possibly curses.h as a link to ncurses.h
 #    - installs -lncurses.
 #    - need to include term.h for tgetent() but tgetent() is in -lncurses.a
@@ -1353,7 +1353,7 @@ if test "$with_tk" != no; then
    if test "$MACOSX" = "1"; then
       AC_MSG_ERROR([Due to technical constraints, Tcl/Tk must be disabled under Mac OS X (--without-tk)])
    fi
-   
+
 	# check user arguments
 	USER_TCL_LIB_PATH=""
 	USER_TCL_INC_PATH=""
@@ -1559,7 +1559,7 @@ AC_C_CONST()
 AC_C_INLINE()
 
 
-########## 
+##########
 ##### Code quality
 ##########
 AC_PATH_PROG(SPLINT, splint, no)
@@ -1816,7 +1816,7 @@ if test "$with_ocaml" != no -a "$OCAMLC" != no -a "$OCAMLOPT" != no; then
 else
 	echo "Will not build Modelica compiler"
 fi
-else 
+else
    echo "Not using Scicos"
 fi
 fi
@@ -1969,7 +1969,7 @@ echo "  Antlr ............... = $ANTLR"
 echo "  TestNG .............. = $TESTNG"
 echo "  splint .............. = $SPLINT"
 
-echo "" 
+echo ""
 echo "TCL/TK configuration:"
 echo "  TK_INC_PATH ........ = $TK_INC_PATH"
 echo "  TCL_INC_PATH ....... = $TCL_INC_PATH"
@@ -1983,7 +1983,7 @@ echo "  XML_FLAGS .......... = $XML_FLAGS"
 echo "  XML_LIBS ........... = $XML_LIBS"
 echo "  XML_VERSION ........ = $XML_VERSION"
 
-echo "" 
+echo ""
 if test $HDF5_ENABLE = yes;  then
    echo "HDF5 configuration:"
    echo "  HDF5 CFLAGS ......... = $HDF5_CFLAGS"
@@ -1994,7 +1994,7 @@ else
    echo "Not using HDF5"
 fi
 
-echo "" 
+echo ""
 echo "PCRE configuration:"
 echo "  PCRE_CFLAGS ........ = $PCRE_CFLAGS"
 echo "  PCRE_LIBS .......... = $PCRE_LIBS"

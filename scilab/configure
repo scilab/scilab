@@ -9487,7 +9487,7 @@ fi
 ### Flex & Yacc
 ###############################
 
-if test "$enable_build_parser" != no; then
+if test "$enable_build_parser" = yes; then
 
    for ac_prog in flex lex
 do
@@ -9743,7 +9743,7 @@ fi
    fi
 
 fi
- if test "$enable_build_parser" != no; then
+ if test "$enable_build_parser" = yes; then
   BUILD_PARSER_TRUE=
   BUILD_PARSER_FALSE='#'
 else
