@@ -20,7 +20,7 @@ import java.util.List;
  * GraphicObject class
  * @author Manuel JULIACHS
  */
-public abstract class GraphicObject {
+public abstract class GraphicObject implements Cloneable {
 	/** User data array default size */
 	public static final int USER_DATA_DEFAULT_SIZE = 0;
 
@@ -63,6 +63,18 @@ public abstract class GraphicObject {
 		referenced = false;
 	}
 
+	public GraphicObject clone() {
+	    Object copy = null;
+        try {
+            copy = super.clone();
+        } catch (CloneNotSupportedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+	    
+	    return (GraphicObject) copy;
+	}
+	
 	/**
      * Returns the enum associated to a type name
      * @param typeName the property name

@@ -21,7 +21,6 @@ import org.scilab.modules.graphic_objects.axes.AxisProperty.AxisLocation;
 import org.scilab.modules.graphic_objects.axes.Box.BoxType;
 import org.scilab.modules.graphic_objects.axes.Camera.ViewType;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
-import org.scilab.modules.graphic_objects.label.Label;
 import org.scilab.modules.graphic_objects.textObject.FormattedText;
 
 /**
@@ -108,6 +107,11 @@ public class Axes extends GraphicObject {
 		axesBounds = new double[4];
 	}
 
+	public Axes clone() {
+	    Axes copy = (Axes) super.clone();
+	    return copy;
+	}
+	
 	/**
 	 * Returns the enum associated to a property name
 	 * @param propertyName the property name

@@ -129,6 +129,22 @@ public class GraphicModel {
     }
 
     /**
+     * Clone object
+     * @param id : id of the object to clone
+     * @param newId : id of the clone
+     * @return newId
+     */
+    public String cloneObject(String id, String newId) {
+        GraphicObject object = allObjects.get(id);
+        GraphicObject objectClone = object.clone();
+        objectClone.setIdentifier(newId);
+        
+        allObjects.put(newId, objectClone);
+        
+        return newId;
+    }
+    
+    /**
      * Creates a typed object
      * @param type the object type
      * @return the created typed object

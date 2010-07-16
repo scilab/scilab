@@ -133,6 +133,18 @@ public class GraphicController {
     	return id.toString();
     }
     
+    /**
+     * Ask the model to clone an object
+     * @param id : the ID of the object to clone.
+     * @return the id of the clone.
+     */
+    public String cloneObject(String id) {
+        UID newId = createUID();
+        GraphicModel.getModel().cloneObject(id, newId.toString());
+        objectCreated(newId.toString());
+        
+        return newId.toString();
+    }
     
     /**
      * Notifies the existing views that an object has been created

@@ -35,6 +35,11 @@ public abstract class ClippableContouredObject extends ContouredObject {
 		clipProperty = new ClippableProperty();
 	}
 
+	public ClippableContouredObject clone() {
+	    ClippableContouredObject copy = (ClippableContouredObject) super.clone();
+	    return copy;
+	}
+	
 	/**
 	 * Returns the enum associated to a property name
 	 * @param propertyName the property name

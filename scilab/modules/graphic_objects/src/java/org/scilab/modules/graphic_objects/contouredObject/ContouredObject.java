@@ -47,6 +47,11 @@ public abstract class ContouredObject extends GraphicObject {
 		mark = new Mark();
 	}
 
+	public ContouredObject clone() {
+	    ContouredObject copy = (ContouredObject) super.clone();
+	    return copy;
+	}
+	
 	/**
 	 * Returns the enum associated to a property name
 	 * @param propertyName the property name

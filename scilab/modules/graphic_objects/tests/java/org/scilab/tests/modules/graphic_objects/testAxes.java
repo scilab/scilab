@@ -125,7 +125,7 @@ public class testAxes {
 		titleID = controller.askObject(Type.LABEL);
 		title = (Label) controller.getObjectFromId(titleID);
 		assert title != null;
-		
+
 		Random randomGen = new Random();
 
 		initAxes = new Axes();

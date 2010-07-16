@@ -102,6 +102,20 @@ public class testGraphicObject {
 	    assert(graphicObject instanceof Arc);
 	}
 
+	@Test
+	public void arcCloneTest() {
+	    GraphicController controller = GraphicController.getController();
+	    String objectId = null;
+        objectId = controller.askObject(GraphicObject.getTypeFromName(__GO_ARC__));
+        String cloneId = null;
+        cloneId = controller.cloneObject(objectId);
+        
+        assert(cloneId != null);
+        Object graphicObject = controller.getObjectFromId(cloneId);
+        assert(graphicObject != null);
+        assert(graphicObject instanceof Arc);
+	}
+	
     @Test
     public void axesCreationTest() {
         GraphicController controller = GraphicController.getController();
@@ -111,6 +125,21 @@ public class testGraphicObject {
         assert(objectId != null);
         
         Object graphicObject = controller.getObjectFromId(objectId);
+        assert(graphicObject != null);
+        assert(graphicObject instanceof Axes);
+    }
+
+    @Test
+    public void axesCloneTest() {
+        GraphicController controller = GraphicController.getController();
+        
+        String objectId = null;
+        objectId = controller.askObject(GraphicObject.getTypeFromName(__GO_AXES__));
+        String cloneId = null;
+        cloneId = controller.cloneObject(objectId);
+        
+        assert(cloneId != null);
+        Object graphicObject = controller.getObjectFromId(cloneId);
         assert(graphicObject != null);
         assert(graphicObject instanceof Axes);
     }

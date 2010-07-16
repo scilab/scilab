@@ -74,6 +74,11 @@ public class Arc extends ClippableContouredObject {
 		endAngle = 0.0;
 	}
 
+	public Arc clone() {
+	    Object copy = super.clone();
+	    return (Arc) copy;
+	}
+	
 	/**
 	 * Returns the enum associated to a property name
 	 * @param propertyName the property name
