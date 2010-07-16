@@ -37,9 +37,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Iterator;
+import java.util.UUID;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
@@ -87,6 +89,7 @@ import org.scilab.modules.scinotes.actions.RecentFileAction;
 import org.scilab.modules.scinotes.actions.SciNotesCompletionAction;
 import org.scilab.modules.scinotes.actions.EncodingAction;
 import org.scilab.modules.scinotes.actions.EndOfLineAction;
+import org.scilab.modules.scinotes.actions.RestoreOpenedFilesAction;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 import org.scilab.modules.scinotes.utils.DropFilesListener;
 import org.scilab.modules.scinotes.utils.SaveFile;
@@ -130,6 +133,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
     private static SciNotes editor;
 
     private final Window parentWindow;
+    private UUID uuid;
 
     private JTabbedPane tabPane;
     private ScilabEditorPane textPane;
@@ -147,7 +151,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
     private Color highlightContourColor;
 
     private boolean helpOnTyping;
-
+    private boolean protectOpenFileList;
     private int whereami;
 
     private List<Integer> tabList = new ArrayList();
@@ -165,6 +169,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         super(SCINOTES);
         scinotesList.add(this);
         this.parentWindow = parentWindow;
+        this.uuid = UUID.randomUUID();
         numberOfUntitled = 0;
         editorKit = new ScilabEditorKit();
         setDefaultHighlight();
@@ -174,6 +179,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         window.setLocation(pos.getX(), pos.getY());
         Size size = ConfigSciNotesManager.getMainWindowSize();
         window.setSize(size.getWidth(), size.getHeight());
+        protectOpenFileList = false;
         tabPane = new JTabbedPane();
         tabPane.addChangeListener(new ChangeListener() {
                 public void stateChanged(ChangeEvent e) {
@@ -228,7 +234,11 @@ public class SciNotes extends SwingScilabTab implements Tab {
 
                     @Override
                     public void run() {
-                        launchSciNotes().openFile(null, 0, null);
+                        SciNotes editorInstance = launchSciNotes();
+                        // Open an empty file if no tabs were opened at launch.
+                        if (editorInstance.getTabPane().getTabCount() == 0)  {
+                            editorInstance.openFile(null, 0, null);
+                        }
                     }
                 });
         } catch (InterruptedException e) {
@@ -361,6 +371,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         editor.getTextPane().setCaretPosition(0);
         editor.enableUndoButton(false);
         editor.enableRedoButton(false);
+        ConfigSciNotesManager.saveToOpenFiles(editor.getTextPane().getName(), editor, editor.getTextPane());
     }
 
     /**
@@ -370,7 +381,44 @@ public class SciNotes extends SwingScilabTab implements Tab {
     public static SciNotes launchSciNotes() {
         if (editor == null) {
             editor = createEditor();
+
+            // If this is the first launch, restore previous session if desired by user.
+            if (editor.isOnlyInstance()) {
+                /* Check the config flag and check that there are files to open. */
+                if (!ConfigSciNotesManager.getRestoreOpenedFiles() ||
+                    ConfigSciNotesManager.countExistingOpenFiles() ==  0)  {
+                    ConfigSciNotesManager.removeAllOpenFiles();
+                    return editor; // Exit without restoring files
+                }
+
+                RestoreOpenedFilesAction.displayDialog((JFrame) editor.parentWindow.getAsSimpleWindow());
+                List<List<File>> list = RestoreOpenedFilesAction.getSelectedFiles();
+
+                if (list != null) {
+                    // Restore previously opened files and create additional editor instances.
+                    int i;
+                    boolean mkeditor;
+
+                    for (i = 0, mkeditor = false; i < list.size(); i++) {
+                        // Retrieve the list of files associated with the i-th editor instance.
+                        List<File> filesToOpen = list.get(i);
+
+                        if (filesToOpen.size() > 0) {
+                            // launch additional editors
+                            if (mkeditor)  {
+                                editor = createEditor();
+                            }
+                            // Open files
+                            for (int j = 0; j < filesToOpen.size(); j++) {
+                                editor.openFile(filesToOpen.get(j).getPath(), 0, null);
+                            }
+                            mkeditor = true; // Next set of files will be opened in a new editor
+                        }
+                    }
+                }
+            }
         }
+
         return editor;
     }
 
@@ -390,6 +438,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
 
         if (filePath == null) {
             addEmptyTab();
+            ConfigSciNotesManager.saveToOpenFiles(getTextPane().getName(), this, getTextPane());
             return;
         }
 
@@ -397,16 +446,19 @@ public class SciNotes extends SwingScilabTab implements Tab {
         if (f.isDirectory()) { /* Bug 5131 */
             ConfigManager.saveLastOpenedDirectory(f.getPath());
             addEmptyTab();
+            ConfigSciNotesManager.saveToOpenFiles(getTextPane().getName(), this, getTextPane());
             return;
         }
 
-        ConfigSciNotesManager.saveToRecentOpenedFiles(filePath);
-        RecentFileAction.updateRecentOpenedFilesMenu(this);
         readFileAndWait(f);
         getTextPane().scrollTextToLineNumber(lineNumber);
         if (option != null && "readonly".equals(option.toLowerCase())) {
             getTextPane().setReadOnly(true);
             getInfoBar().setText(getTextPane().getInfoBarText());
+            ConfigSciNotesManager.removeFromOpenFiles(this, getTextPane());
+        } else {
+            ConfigSciNotesManager.saveToRecentOpenedFiles(filePath);
+            RecentFileAction.updateRecentOpenedFilesMenu(this);
         }
     }
 
@@ -430,6 +482,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         ConfigSciNotesManager.saveMainWindowPosition(new Position(p.x, p.y));
         Dimension d = window.getSize();
         ConfigSciNotesManager.saveMainWindowSize(new Size(d.width, d.height));
+        ConfigSciNotesManager.resetDocument();
     }
 
     /**
@@ -520,10 +573,36 @@ public class SciNotes extends SwingScilabTab implements Tab {
             }
         }
 
+        // Remove the filename associated with the tab from the list of open files.
+        if (!protectOpenFileList) {
+            ConfigSciNotesManager.removeFromOpenFiles(this, textPaneAt);
+        }
+
         textPaneAt.close();
         tabPane.remove(indexTab);
         return true;
 
+    }
+
+    /**
+     * Set or unset protection of the currently open file list.
+     * Call before closing tabs if the tabs should be restored when scinotes restarts.
+     * @param protect Enables protection of the open file list if true.
+     */
+    public void setProtectOpenFileList(boolean protect) {
+        protectOpenFileList = protect;
+    }
+
+    /**
+     * Determines if this editor is the only editor instance.
+     * @return true if this is the last editor instance.
+     */
+    public boolean isOnlyInstance() {
+        if (scinotesList.size() > 1) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
@@ -794,6 +873,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
 
         ConfigManager.saveLastOpenedDirectory(f.getPath());
         ConfigSciNotesManager.saveToRecentOpenedFiles(f.getPath());
+        ConfigSciNotesManager.renameOpenFilesItem(f.getPath(), this, getTextPane());
         getTextPane().setName(f.getPath());
         getTabPane().setTitleAt(getTabPane().getSelectedIndex() , f.getName());
         setTitle(f.getPath() + TIRET + SciNotesMessages.SCILAB_EDITOR);
@@ -1059,6 +1139,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
                 tabPane.removeChangeListener(tabPane.getChangeListeners()[j]);
             }
         }
+        ConfigSciNotesManager.removeFromOpenFiles(this, textPaneAt);
         tabPane.remove(index);
         File f = new File(textPaneAt.getName());
         if (f.exists()) {
@@ -1066,6 +1147,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         } else {
             createNewFile(f);
         }
+        ConfigSciNotesManager.saveToOpenFiles(f.getPath(), this, getTextPane());
     }
 
     /**
@@ -1091,6 +1173,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
             } else {
                 createNewFile(f);
             }
+            ConfigSciNotesManager.saveToOpenFiles(f.getPath(), this, getTextPane());
         }
 
         // Get current file path for Execute file into Scilab
@@ -1161,6 +1244,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
             } else {
                 createNewFile(f);
             }
+            ConfigSciNotesManager.saveToOpenFiles(f.getPath(), this, getTextPane());
         }
     }
 
@@ -1367,6 +1451,14 @@ public class SciNotes extends SwingScilabTab implements Tab {
     }
 
     /**
+     * Get the UUID associated with the editor instance.
+     * @return unique identifier
+     */
+    public UUID getUUID() {
+        return uuid;
+    }
+
+    /**
      * Add a status bar to SciNotes.
      * @param infoBarToAdd the status bar to be added
      * @see org.scilab.modules.gui.uielement.UIElement#addInfoBar(org.scilab.modules.gui.textbox.TextBox)
@@ -1523,6 +1615,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
 
             ConfigManager.saveLastOpenedDirectory(f.getPath());
             ConfigSciNotesManager.saveToRecentOpenedFiles(f.getPath());
+            ConfigSciNotesManager.saveToOpenFiles(editor.getTextPane().getName(), editor, editor.getTextPane());
             theTextPane.setName(f.getPath());
             getTabPane().setTitleAt(getTabPane().getSelectedIndex() , f.getName());
             setTitle(f.getPath() + TIRET + SciNotesMessages.SCILAB_EDITOR);
@@ -1598,6 +1691,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
                     public void run() {
                         SciNotes[] arr = scinotesList.toArray(new SciNotes[0]);
                         for (int i = 0; i < arr.length; i++) {
+                            arr[i].setProtectOpenFileList(true);
                             ExitAction.doExit(arr[i]);
                         }
                         scinotesList.clear();

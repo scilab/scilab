@@ -17,6 +17,7 @@ import javax.swing.KeyStroke;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.scinotes.SciNotes;
+import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 
 /**
  * File creation management
@@ -40,7 +41,9 @@ public final class NewAction extends DefaultAction {
      * @see org.scilab.modules.scinotes.actions.DefaultAction#doAction()
      */
     public void doAction() {
-        getEditor().addEmptyTab();
+        SciNotes ed = getEditor();
+        ed.addEmptyTab();
+        ConfigSciNotesManager.saveToOpenFiles(ed.getTextPane().getName(), ed, ed.getTextPane());
     }
 
     /**

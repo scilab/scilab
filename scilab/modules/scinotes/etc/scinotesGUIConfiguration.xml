@@ -25,6 +25,7 @@
       <menuitem action="CloseAllAction" label="Close All"/>
       <menuitem action="CloseAllButThisAction" label="Close All But This"/>
       <separator/>
+      <menuitem action="RestoreOpenedFilesAction" label="Restore opened files on start-up"/>
       <menuitem action="ExitAction" label="Exit"/>
     </menu>
 

@@ -16,6 +16,7 @@ import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.scinotes.SciNotes;
+import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 
 /**
  * CloseAllButThisAction Class
@@ -42,22 +43,24 @@ public final class CloseAllButThisAction extends DefaultAction {
      * doAction
      */
     public void doAction() {
-        int nbTabCount = getEditor().getTabPane().getTabCount();
+        SciNotes ed = getEditor();
+        int nbTabCount = ed.getTabPane().getTabCount();
         boolean bContinue = true;
         if (nbTabCount > 1) {
-            while ((getEditor().getTabPane().getTabCount() != 1) & (bContinue)) {
-                int currentIndex = getEditor().getTabPane().getSelectedIndex();
+            while ((ed.getTabPane().getTabCount() != 1) & (bContinue)) {
+                int currentIndex = ed.getTabPane().getSelectedIndex();
                 if (currentIndex != 0) {
-                    bContinue = getEditor().closeTabAt(0);
+                    bContinue = ed.closeTabAt(0);
                 } else {
-                    bContinue = getEditor().closeTabAt(1);
+                    bContinue = ed.closeTabAt(1);
                 }
             }
         }
 
         // Close the last opened file create a new file named "Untitled 1"
-        if (getEditor().getTabPane().getTabCount() == 0) {
-            getEditor().addEmptyTab();
+        if (ed.getTabPane().getTabCount() == 0) {
+            ed.addEmptyTab();
+            ConfigSciNotesManager.saveToOpenFiles(ed.getTextPane().getName(), ed, ed.getTextPane());
         }
     }
 

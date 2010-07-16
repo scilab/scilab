@@ -31,6 +31,9 @@
     <!-- Activate or not the help on typing -->
     <HelpOnTyping value="true"/>
 
+    <!-- Restore the open files from the last session  -->
+    <RestoreFiles value="true"/>
+
     <!-- Line numbering : 0 is normal, 1 is for the whereami compatibility and 2 for no numbering-->
     <LineNumbering value="0"/>
 
@@ -188,6 +191,11 @@
     <recentFiles>
 
     </recentFiles>
+
+    <!-- Currently Open Files Section  -->
+    <openFiles>
+      
+    </openFiles>
 
   </Profile>
 </Setting>

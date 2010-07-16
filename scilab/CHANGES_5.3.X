@@ -21,6 +21,12 @@ Compilation:
 * fix the "warning: deprecated conversion from string constant to ‘char*’"
   message when compiling a toolbox using Scierror(...) and sciprint(...)
 
+SciNotes:
+=========
+
+* Add the possibility to restore the last session (thanks to Paul Griffiths)
+
+
 Bug Fixes:
 ==========
 

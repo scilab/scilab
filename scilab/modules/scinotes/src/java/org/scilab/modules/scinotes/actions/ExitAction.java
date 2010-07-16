@@ -20,6 +20,7 @@ import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.scinotes.SciNotes;
 
+
 /**
  * ExitAction class
  * @author Bruno JOFRET
@@ -59,6 +60,9 @@ public final class ExitAction extends DefaultAction {
 
         boolean wantToClose = true;
         int k = 0;
+
+        editor.setProtectOpenFileList(true);
+
         for (int i = 0; i < numberOfTab; i++) {
                 //close and save all editors if they are modified
                 boolean response = editor.closeTabAt(k);
@@ -67,6 +71,8 @@ public final class ExitAction extends DefaultAction {
                 }
                 wantToClose &= response;
         }
+
+        editor.setProtectOpenFileList(false);
 
         if (wantToClose) {
                 scinotesWindow.getAsSimpleWindow().removeTab(editor);
