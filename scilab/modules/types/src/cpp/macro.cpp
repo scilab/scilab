@@ -83,43 +83,86 @@ namespace types
     Callable::ReturnValue Macro::call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
     {
         ReturnValue RetVal = Callable::OK;
+        symbol::Context *pContext = symbol::Context::getInstance();
 
         //check excepted and input/output parameters numbers
         // Scilab Macro can be called with less than prototyped arguments,
         // but not more execpts with varargin
         // TODO: Manage varargin here
-		if(in.size() > m_inputArgs->size())
+        if(m_inputArgs->size() > 0 && m_inputArgs->back() == L"varargin")
+        {
+            //open a new scope
+            pContext->scope_begin();
+
+            int iVarPos = static_cast<int>(in.size());
+            if(iVarPos > static_cast<int>(m_inputArgs->size()) - 1)
+            {
+                iVarPos = static_cast<int>(m_inputArgs->size()) - 1;
+            }
+
+            //add all standard variable in function context but not varargin
+            list<wstring>::const_iterator itName = m_inputArgs->begin();
+            typed_list::const_iterator itValue = in.begin();
+            while(iVarPos > 0)
+            {
+                pContext->put((*itName), **itValue);
+                iVarPos--;
+                itName++;
+                itValue++;
+            }
+
+            //create varargin only if previous variable are assigned
+            if(in.size() >= static_cast<int>(m_inputArgs->size()) - 1)
+            {
+                //create and fill varargin
+                List* pL = new List();
+                while(itValue != in.end())
+                {
+                    pL->append(*itValue);
+                    itValue++;
+                }
+                pContext->put(L"varargin", *pL);
+            }
+        }
+		else if(in.size() > m_inputArgs->size())
 		{
             wostringstream ostr;
             ostr << _W("Wrong number of input arguments:") << std::endl << std::endl;
-            ostr << _W("Arguments are:") << std::endl << std::endl;
-            ostr << " ";
-            for (list<wstring>::iterator it =  m_inputArgs->begin() ; it != m_inputArgs->end() ; ++it)
+            ostr << _W("Excepted: ") << m_inputArgs->size() << std::endl;
+
+            if(m_inputArgs->size() > 0)
             {
-                ostr << *it << L"    ";
+                ostr << _W("Arguments are:") << std::endl << std::endl;
+                ostr << " ";
+                for (list<wstring>::iterator it =  m_inputArgs->begin() ; it != m_inputArgs->end() ; ++it)
+                {
+                    ostr << *it << L"    ";
+                }
+                ostr << std::endl;
             }
-            ostr << std::endl << std::endl;
             ScierrorW(58, ostr.str().c_str());
 			return Callable::Error;
 		}
+        else
+        {
+            //open a new scope
+            pContext->scope_begin();
 
-        list<wstring>::const_iterator i;
-        typed_list::const_iterator j;
-        //ast::ExecVisitor execFunc;
+            //assign value to variable in the new context
+            list<wstring>::const_iterator i;
+            typed_list::const_iterator j;
 
-        //open a new scope
-        symbol::Context *pContext = symbol::Context::getInstance();
-        pContext->scope_begin();
+            for (i = m_inputArgs->begin(), j = in.begin(); j != in.end (); ++j,++i)
+            {
+                pContext->put((*i), **j);
+            }
+        }
+
+        //common part with or without varargin
 
         // Declare nargin & nargout in function context.
         pContext->put(wstring(L"nargin"), *new Double(static_cast<double>(in.size())));
         pContext->put(wstring(L"nargout"), *new Double(static_cast<double>(_iRetCount)));
-
-        //assign value to variable in the new context
-        for (i = m_inputArgs->begin(), j = in.begin(); j != in.end (); ++j,++i)
-        {
-            pContext->put((*i), **j);
-        }
 
         try
         {
@@ -131,6 +174,7 @@ namespace types
             }
 
 
+            list<wstring>::const_iterator i;
             for (i = m_outputArgs->begin(); i != m_outputArgs->end() && _iRetCount; ++i, --_iRetCount)
             {
                 InternalType *pIT = pContext->get((*i));
