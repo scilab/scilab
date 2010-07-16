@@ -91,6 +91,19 @@ function importScicosPal(palFiles, outPath)
       // instanciate a block
       // /!\ may cause an error depending on the implementation
       execstr("out = " + varsToLoad(i) + "(""define"")");
+      
+      // Update on super block
+      if out.model.sim == "super" | out.model.sim == "csuper" then
+        [ierr,scicos_ver,scs_m]=update_version(out.model.rpar);
+        
+        if ierr <> 0 then
+          mprintf("FAILED TO UPDATE AND EXPORT: %s\n", out.gui);
+        else
+          mprintf("%s updated from %s\n", out.gui, scicos_ver);
+        end
+        
+        out.model.rpar = scs_m;
+      end
 
       doExport = %t;
       if isfile(blockFile) then
@@ -110,14 +123,14 @@ function importScicosPal(palFiles, outPath)
         mprintf("%d: %s\n", i, block_name);
         bexport = export_to_hdf5(blockFile, "out");
         if (~bexport) then
-          mprintf(gettext("FAILED TO EXPORT: %s\n"), out.gui);
+          mprintf("FAILED TO EXPORT: %s\n", out.gui);
         end
       
         out2 = out;
         bImport = import_from_hdf5(blockFile);
         
         if bImport == %f | or(out2 <> out) then
-          mprintf(gettext("FAILED TO EXPORT: %s\n"), out.gui);
+          mprintf("FAILED TO EXPORT: %s\n", out.gui);
         end
         exportedBlocks = exportedBlocks + 1;
       end

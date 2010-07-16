@@ -485,10 +485,21 @@ public final class Xcos {
 			}
 		}
 		
-		XcosDiagram diagram = new XcosDiagram();
-		diagram.openDiagramFromFile(file);
-		diagram.dumpToHdf5File(temp.getAbsolutePath());
-		
+		try {
+			SwingUtilities.invokeAndWait(new Runnable() {
+				@Override
+				public void run() {
+					XcosDiagram diagram = new XcosDiagram();
+					diagram.openDiagramFromFile(file);
+					diagram.dumpToHdf5File(temp.getAbsolutePath());
+				}
+			});
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
+		} catch (InvocationTargetException e) {
+			throw new RuntimeException(e.getCause());
+		}
+
 		return 0;
 	}
 
