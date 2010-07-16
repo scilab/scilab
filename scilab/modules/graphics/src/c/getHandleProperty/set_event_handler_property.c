@@ -27,6 +27,7 @@
 #include "localization.h"
 
 #include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
 int set_event_handler_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
@@ -45,7 +46,7 @@ int set_event_handler_property( sciPointObj * pobj, size_t stackPointer, int val
     return SET_PROPERTY_ERROR ;
   }
 
-  status = setGraphicObjectProperty(pobj->UID, "EventHandlerName", getStringFromStack(stackPointer), jni_string, 1);
+  status = setGraphicObjectProperty(pobj->UID, __GO_EVENTHANDLER_NAME__, getStringFromStack(stackPointer), jni_string, 1);
 
   if (status == TRUE)
   {

@@ -30,6 +30,7 @@
 #include "GraphicSynchronizerInterface.h"
 
 #include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
 int set_anti_aliasing_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
@@ -52,7 +53,7 @@ int set_anti_aliasing_property( sciPointObj * pobj, size_t stackPointer, int val
 
   if ( isStringParamEqual( stackPointer, "off" ) )
   {
-		quality = 0;
+    quality = 0;
   }
   else if ( isStringParamEqual( stackPointer, "2x" ) )
   {
@@ -76,7 +77,7 @@ int set_anti_aliasing_property( sciPointObj * pobj, size_t stackPointer, int val
     return SET_PROPERTY_ERROR ;
   }
 
-  status = setGraphicObjectProperty(pobj->UID, "Antialiasing", &quality, jni_int, 1);
+  status = setGraphicObjectProperty(pobj->UID, __GO_ANTIALIASING__, &quality, jni_int, 1);
 
   if (status == TRUE)
   {

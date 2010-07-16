@@ -29,6 +29,7 @@
 #include "GraphicSynchronizerInterface.h"
 
 #include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
 int set_info_message_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
@@ -46,7 +47,7 @@ int set_info_message_property( sciPointObj * pobj, size_t stackPointer, int valu
     return SET_PROPERTY_ERROR ;
   }
 
-  status = setGraphicObjectProperty(pobj->UID, "InfoMessage", getStringFromStack( stackPointer ), jni_string, 1);
+  status = setGraphicObjectProperty(pobj->UID, __GO_INFO_MESSAGE__, getStringFromStack( stackPointer ), jni_string, 1);
 
   if (status == TRUE)
   {

@@ -30,6 +30,7 @@
 #include "BasicAlgos.h"
 
 #include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
 int set_user_data_property( sciPointObj * pobj, size_t stackPointer,  int valueType, int nbRow, int nbCol )
@@ -62,7 +63,7 @@ int set_user_data_property( sciPointObj * pobj, size_t stackPointer,  int valueT
 		}
 	}
 
-	status = setGraphicObjectProperty(pobj->UID, "UserData", data_ptr, jni_int_vector, data_size);
+	status = setGraphicObjectProperty(pobj->UID, __GO_USER_DATA__, data_ptr, jni_int_vector, data_size);
 
 	if (status == TRUE)
 	{

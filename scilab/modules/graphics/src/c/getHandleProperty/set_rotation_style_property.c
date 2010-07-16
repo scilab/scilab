@@ -28,6 +28,7 @@
 #include "SetPropertyStatus.h"
 
 #include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
 int set_rotation_style_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
@@ -65,7 +66,7 @@ int set_rotation_style_property( sciPointObj * pobj, size_t stackPointer, int va
   }
 
 
-  status = setGraphicObjectProperty(pobj->UID, "RotationType", &rotationStyle, jni_int, 1);
+  status = setGraphicObjectProperty(pobj->UID, __GO_ROTATION_TYPE__, &rotationStyle, jni_int, 1);
 
   if (status == TRUE)
   {

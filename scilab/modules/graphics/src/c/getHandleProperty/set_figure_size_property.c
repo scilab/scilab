@@ -30,6 +30,7 @@
 #include "GraphicSynchronizerInterface.h"
 
 #include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
 int set_figure_size_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
@@ -58,7 +59,7 @@ int set_figure_size_property( sciPointObj * pobj, size_t stackPointer, int value
   intValues[0] = (int)values[0];
   intValues[1] = (int)values[1];
 
-  status = setGraphicObjectProperty(pobj->UID, "Size", intValues, jni_int_vector, 2);
+  status = setGraphicObjectProperty(pobj->UID, __GO_SIZE__, intValues, jni_int_vector, 2);
 
   if (status == TRUE)
   {

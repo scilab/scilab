@@ -28,6 +28,7 @@
 #include "SetPropertyStatus.h"
 
 #include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
 int set_background_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
@@ -43,7 +44,7 @@ int set_background_property( sciPointObj * pobj, size_t stackPointer, int valueT
 
   value = (int)getDoubleFromStack(stackPointer);
 
-  status = setGraphicObjectProperty(pobj->UID, "Background", &value, jni_int, 1);
+  status = setGraphicObjectProperty(pobj->UID, __GO_BACKGROUND__, &value, jni_int, 1);
 
   if (status == TRUE)
   {

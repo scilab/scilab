@@ -28,6 +28,7 @@
 #include "SetPropertyStatus.h"
 
 #include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
 int set_color_map_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
@@ -40,7 +41,7 @@ int set_color_map_property( sciPointObj * pobj, size_t stackPointer, int valueTy
     return SET_PROPERTY_ERROR ;
   }
 
-  status = setGraphicObjectProperty(pobj->UID, "ColorMap", getDoubleMatrixFromStack(stackPointer), jni_double_vector, nbRow*nbCol);
+  status = setGraphicObjectProperty(pobj->UID, __GO_COLORMAP__, getDoubleMatrixFromStack(stackPointer), jni_double_vector, nbRow*nbCol);
 
   if (status == TRUE)
   {
