@@ -34,6 +34,11 @@
     <!-- Validate the palette configuration file -->
     <schemavalidate noNamespaceFile="etc/PaletteConfiguration.xsd"
       file="etc/palettes.xml" />
+
+    <!-- Validate the simulink to Xcos configuration file -->
+    <schemavalidate noNamespaceFile="etc/SimulinkImportConfiguration.xsd">
+      <fileset dir="etc" includes="simulinkImportBlocks.xml" />
+    </schemavalidate>
   </target>
 
 </project>
