@@ -156,5 +156,46 @@ public static final String __GO_MARK_SIZE__ =              "MarkSize";
 public static final String __GO_MARK_FOREGROUND__ =        "MarkForeground";
 public static final String __GO_MARK_BACKGROUND__ =        "MarkBackground";
 
+public static final String __GO_TICKS_DIRECTION__ =        "TicksDirection";
+public static final String __GO_X_TICKS_COORDS__ =         "XTicksCoords";
+public static final String __GO_Y_TICKS_COORDS__ =         "YTicksCoords";
+public static final String __GO_TICKS_COLOR__ =            "TicksColor";
+public static final String __GO_TICKS_SEGMENT__ =          "TicksSegment";
+public static final String __GO_TICKS_STYLE__ =            "TicksStyle";
+public static final String __GO_TICKS_LABELS__ =           "TicksLabels";
+public static final String __GO_FORMATN__ =                "Formatn";
+public static final String __GO_FONT__ =                   "Font";
+public static final String __GO_FONT_STYLE__ =             "FontStyle";
+public static final String __GO_FONT_SIZE__ =              "FontSize";
+public static final String __GO_FONT_COLOR__ =             "FontColor";
+public static final String __GO_FONT_FRACTIONAL__ =        "FontFractional";
+
+public static final String __GO_Z_BOUNDS__ =               "ZBounds";
+public static final String __GO_OUTSIDE_COLOR__ =          "OutsideColor";
+public static final String __GO_COLOR_RANGE__ =            "ColorRange";
+
+public static final String __GO_DATA_MAPPING__ =           "DataMapping";
+
+public static final String __GO_CLOSED__ =                 "Closed";
+public static final String __GO_ARROW_SIZE_FACTOR__ =      "ArrowSizeFactor";
+public static final String __GO_POLYLINE_STYLE__ =         "PolylineStyle";
+public static final String __GO_INTERP_COLOR_VECTOR__ =    "InterpColorVector";
+public static final String __GO_INTERP_COLOR_MODE__ =      "InterpColorMode";
+public static final String __GO_X_SHIFT__ =                "XShift";
+public static final String __GO_Y_SHIFT__ =                "YShift";
+public static final String __GO_Z_SHIFT__ =                "ZShift";
+public static final String __GO_BAR_WIDTH__ =              "BarWidth";
+
+public static final String __GO_SURFACE_MODE__ =           "SurfaceMode";
+public static final String __GO_COLOR_MODE__ =             "ColorMode";
+public static final String __GO_COLOR_FLAG__ =             "ColorFlag";
+
+public static final String __GO_BASE__ =                   "Base";
+public static final String __GO_DIRECTION__ =              "Direction";
+public static final String __GO_ARROW_SIZE__ =             "ArrowSize";
+
+public static final String __GO_COLORED__ =                "Colored";
+
+public static final String __GO_ARROWS__ =                 "Arrows";
 
 }

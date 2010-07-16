@@ -12,6 +12,8 @@
 
 package org.scilab.modules.graphic_objects.surface;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
+
 /**
  * Fac3d class
  * @author Manuel JULIACHS
@@ -55,7 +57,7 @@ public class Fac3d extends Surface {
 	 * @return the property enum
 	 */
 	public Object getPropertyFromName(String propertyName) {
-		if (propertyName.equals("DataMapping")) {
+		if (propertyName.equals(__GO_DATA_MAPPING__)) {
 			return Fac3dProperty.DATAMAPPING;
 		} else {
 			return super.getPropertyFromName(propertyName);

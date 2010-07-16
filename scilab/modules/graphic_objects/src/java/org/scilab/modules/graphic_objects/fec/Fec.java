@@ -15,6 +15,7 @@ package org.scilab.modules.graphic_objects.fec;
 import java.util.ArrayList;
 
 import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 /**
  * Fec class
@@ -50,11 +51,11 @@ public class Fec extends ClippableContouredObject {
 	 * @return the property enum
 	 */
 	public Object getPropertyFromName(String propertyName) {
-		if (propertyName.equals("ZBounds")) {
+		if (propertyName.equals(__GO_Z_BOUNDS__)) {
 			return FecProperty.ZBOUNDS;
-		} else if (propertyName.equals("OutsideColor")) {
+		} else if (propertyName.equals(__GO_OUTSIDE_COLOR__)) {
 			return FecProperty.OUTSIDECOLOR;
-		} else if (propertyName.equals("ColorRange")) {
+		} else if (propertyName.equals(__GO_COLOR_RANGE__)) {
 			return FecProperty.COLORRANGE;
 		} else {
 			return super.getPropertyFromName(propertyName);

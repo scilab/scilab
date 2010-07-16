@@ -12,6 +12,7 @@
 
 package org.scilab.modules.graphic_objects.vectfield;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 /**
  * Champ class
@@ -36,7 +37,7 @@ public class Champ extends VectField {
 	 * @return the property enum
 	 */
 	public Object getPropertyFromName(String propertyName) {
-		if (propertyName.equals("Colored")) {
+		if (propertyName.equals(__GO_COLORED__)) {
 			return ChampProperty.COLORED;
 		} else {
 			return super.getPropertyFromName(propertyName);

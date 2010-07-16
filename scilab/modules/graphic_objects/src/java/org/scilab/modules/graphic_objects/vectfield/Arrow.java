@@ -13,6 +13,7 @@
 package org.scilab.modules.graphic_objects.vectfield;
 
 import org.scilab.modules.graphic_objects.contouredObject.ContouredObject;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 
 /**
@@ -46,11 +47,11 @@ public class Arrow extends ContouredObject {
 	 * @return the property enum
 	 */
 	public Object getPropertyFromName(String propertyName) {
-		if (propertyName.equals("Base")) {
+		if (propertyName.equals(__GO_BASE__)) {
 			return ArrowProperty.BASE;
-		} else if (propertyName.equals("Direction")) {
+		} else if (propertyName.equals(__GO_DIRECTION__)) {
 			return ArrowProperty.DIRECTION;
-		} else if (propertyName.equals("ArrowSize")) {
+		} else if (propertyName.equals(__GO_ARROW_SIZE__)) {
 			return ArrowProperty.ARROWSIZE;
 		} else {
 			return super.getPropertyFromName(propertyName);

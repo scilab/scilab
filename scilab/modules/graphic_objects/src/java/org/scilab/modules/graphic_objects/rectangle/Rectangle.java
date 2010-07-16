@@ -13,6 +13,7 @@
 package org.scilab.modules.graphic_objects.rectangle;
 
 import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 /**
  * Class Rectangle
@@ -45,11 +46,11 @@ public class Rectangle extends ClippableContouredObject {
 	 * @return the property enum
 	 */
 	public Object getPropertyFromName(String propertyName) {
-		if (propertyName.equals("UpperLeftPoint")) {
+		if (propertyName.equals(__GO_UPPER_LEFT_POINT__)) {
 			return RectangleProperty.UPPERLEFTPOINT;
-		} else if (propertyName.equals("Width")) {
+		} else if (propertyName.equals(__GO_WIDTH__)) {
 			return RectangleProperty.WIDTH;
-		} else if (propertyName.equals("Height")) {
+		} else if (propertyName.equals(__GO_HEIGHT__)) {
 			return RectangleProperty.HEIGHT;
 		} else {
 			return super.getPropertyFromName(propertyName);

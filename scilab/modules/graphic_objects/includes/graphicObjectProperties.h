@@ -155,5 +155,46 @@
 #define __GO_MARK_FOREGROUND__             "MarkForeground"
 #define __GO_MARK_BACKGROUND__             "MarkBackground"
 
+#define __GO_TICKS_DIRECTION__             "TicksDirection"
+#define __GO_X_TICKS_COORDS__              "XTicksCoords"
+#define __GO_Y_TICKS_COORDS__              "YTicksCoords"
+#define __GO_TICKS_COLOR__                 "TicksColor"
+#define __GO_TICKS_SEGMENT__               "TicksSegment"
+#define __GO_TICKS_STYLE__                 "TicksStyle"
+#define __GO_TICKS_LABELS__                "TicksLabels"
+#define __GO_FORMATN__                     "Formatn"
+#define __GO_FONT__                        "Font"
+#define __GO_FONT_STYLE__                  "FontStyle"
+#define __GO_FONT_SIZE__                   "FontSize"
+#define __GO_FONT_COLOR__                  "FontColor"
+#define __GO_FONT_FRACTIONAL__             "FontFractional"
+
+#define __GO_Z_BOUNDS__                    "ZBounds"
+#define __GO_OUTSIDE_COLOR__               "OutsideColor"
+#define __GO_COLOR_RANGE__                 "ColorRange"
+
+#define __GO_DATA_MAPPING__                "DataMapping"
+
+#define __GO_CLOSED__                      "Closed"
+#define __GO_ARROW_SIZE_FACTOR__           "ArrowSizeFactor"
+#define __GO_POLYLINE_STYLE__              "PolylineStyle"
+#define __GO_INTERP_COLOR_VECTOR__         "InterpColorVector"
+#define __GO_INTERP_COLOR_MODE__           "InterpColorMode"
+#define __GO_X_SHIFT__                     "XShift"
+#define __GO_Y_SHIFT__                     "YShift"
+#define __GO_Z_SHIFT__                     "ZShift"
+#define __GO_BAR_WIDTH__                   "BarWidth"
+
+#define __GO_SURFACE_MODE__                "SurfaceMode"
+#define __GO_COLOR_MODE__                  "ColorMode"
+#define __GO_COLOR_FLAG__                  "ColorFlag"
+
+#define __GO_BASE__                        "Base"
+#define __GO_DIRECTION__                   "Direction"
+#define __GO_ARROW_SIZE__                  "ArrowSize"
+
+#define __GO_COLORED__                     "Colored"
+
+#define __GO_ARROWS__                      "Arrows"
 
 #endif /* !__GRAPHIC_OBJECT_PROPERTIES_H__ */

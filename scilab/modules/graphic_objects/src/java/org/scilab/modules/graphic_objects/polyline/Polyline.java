@@ -13,6 +13,7 @@
 package org.scilab.modules.graphic_objects.polyline;
 
 import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 /**
  * Polyline class
@@ -73,23 +74,23 @@ public class Polyline extends ClippableContouredObject {
 	 * @return the property enum
 	 */
 	public Object getPropertyFromName(String propertyName) {
-		if (propertyName.equals("Closed")) {
+		if (propertyName.equals(__GO_CLOSED__)) {
 			return PolylineProperty.CLOSED;
-		} else if (propertyName.equals("ArrowSizeFactor")) {
+		} else if (propertyName.equals(__GO_ARROW_SIZE_FACTOR__)) {
 			return PolylineProperty.ARROWSIZEFACTOR;
-		} else if (propertyName.equals("PolylineStyle")) {
+		} else if (propertyName.equals(__GO_POLYLINE_STYLE__)) {
 			return PolylineProperty.POLYLINESTYLE;
-		} else if (propertyName.equals("InterpColorVector")) {
+		} else if (propertyName.equals(__GO_INTERP_COLOR_VECTOR__)) {
 			return PolylineProperty.INTERPCOLORVECTOR;
-		} else if (propertyName.equals("InterpColorMode")) {
+		} else if (propertyName.equals(__GO_INTERP_COLOR_MODE__)) {
 			return PolylineProperty.INTERPCOLORMODE;
-		} else if (propertyName.equals("XShift")) {
+		} else if (propertyName.equals(__GO_X_SHIFT__)) {
 			return PolylineProperty.XSHIFT;
-		} else if (propertyName.equals("YShift")) {
+		} else if (propertyName.equals(__GO_Y_SHIFT__)) {
 			return PolylineProperty.YSHIFT;
-		} else if (propertyName.equals("ZShift")) {
+		} else if (propertyName.equals(__GO_Z_SHIFT__)) {
 			return PolylineProperty.ZSHIFT;
-		} else if (propertyName.equals("BarWidth")) {
+		} else if (propertyName.equals(__GO_BAR_WIDTH__)) {
 			return PolylineProperty.BARWIDTH;
 		} else {
 			return super.getPropertyFromName(propertyName);

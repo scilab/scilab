@@ -18,6 +18,7 @@ import org.scilab.modules.graphic_objects.arc.Arc.ArcDrawingMethod;
 import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
 import org.scilab.modules.graphic_objects.textObject.Font;
 import org.scilab.modules.graphic_objects.textObject.Font.FontProperty;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 /**
  * Axis class
@@ -101,31 +102,31 @@ public class Axis extends ClippableContouredObject {
 	 * @return the property enum
 	 */
 	public Object getPropertyFromName(String propertyName) {
-		if (propertyName.equals("TicksDirection")) {
+		if (propertyName.equals(__GO_TICKS_DIRECTION__)) {
 			return AxisProperty.TICKSDIRECTION;
-		} else if (propertyName.equals("XTicksCoords")) {
+		} else if (propertyName.equals(__GO_X_TICKS_COORDS__)) {
 			return AxisProperty.XTICKSCOORDS;
-		} else if (propertyName.equals("YTicksCoords")) {
+		} else if (propertyName.equals(__GO_Y_TICKS_COORDS__)) {
 			return AxisProperty.YTICKSCOORDS;
-		} else if (propertyName.equals("TicksColor")) {
+		} else if (propertyName.equals(__GO_TICKS_COLOR__)) {
 			return AxisProperty.TICKSCOLOR;
-		} else if (propertyName.equals("TicksSegment")) {
+		} else if (propertyName.equals(__GO_TICKS_SEGMENT__)) {
 			return AxisProperty.TICKSSEGMENT;
-		} else if (propertyName.equals("TicksStyle")) {
+		} else if (propertyName.equals(__GO_TICKS_STYLE__)) {
 			return AxisProperty.TICKSSTYLE;
-		} else if (propertyName.equals("TicksLabels")) {
+		} else if (propertyName.equals(__GO_TICKS_LABELS__)) {
 			return AxisProperty.TICKSLABELS;
-		} else if (propertyName.equals("Formatn")) {
+		} else if (propertyName.equals(__GO_FORMATN__)) {
 			return AxisProperty.FORMATN;
-		} else if (propertyName.equals("Font")) {
+		} else if (propertyName.equals(__GO_FONT__)) {
 			return AxisProperty.FONT;
-		} else if (propertyName.equals("Style")) {
+		} else if (propertyName.equals(__GO_FONT_STYLE__)) {
 			return Font.FontProperty.STYLE;
-		} else if (propertyName.equals("Size")) {
+		} else if (propertyName.equals(__GO_FONT_SIZE__)) {
 			return Font.FontProperty.SIZE;
-		} else if (propertyName.equals("Color")) {
+		} else if (propertyName.equals(__GO_FONT_COLOR__)) {
 			return Font.FontProperty.COLOR;
-		} else if (propertyName.equals("Fractional")) {
+		} else if (propertyName.equals(__GO_FONT_FRACTIONAL__)) {
 			return Font.FontProperty.FRACTIONAL;
 		} else {
 			return super.getPropertyFromName(propertyName);

@@ -13,6 +13,7 @@
 package org.scilab.modules.graphic_objects.surface;
 
 import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 /**
  * Surface class
@@ -47,11 +48,11 @@ public abstract class Surface extends ClippableContouredObject {
 	 * @return the property enum
 	 */
 	public Object getPropertyFromName(String propertyName) {
-		if (propertyName.equals("SurfaceMode")) {
+		if (propertyName.equals(__GO_SURFACE_MODE__)) {
 			return SurfaceProperty.SURFACEMODE;
-		} else if (propertyName.equals("ColorMode")) {
+		} else if (propertyName.equals(__GO_COLOR_MODE__)) {
 			return SurfaceProperty.COLORMODE;
-		} else if (propertyName.equals("ColorFlag")) {
+		} else if (propertyName.equals(__GO_COLOR_FLAG__)) {
 			return SurfaceProperty.COLORFLAG;
 		} else {
 			return super.getPropertyFromName(propertyName);

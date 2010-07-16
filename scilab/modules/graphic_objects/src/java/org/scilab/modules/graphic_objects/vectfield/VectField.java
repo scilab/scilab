@@ -15,6 +15,7 @@ package org.scilab.modules.graphic_objects.vectfield;
 import java.util.ArrayList;
 
 import org.scilab.modules.graphic_objects.graphicObject.GraphicClippableObject;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 /**
  * VectField class
@@ -39,7 +40,7 @@ public abstract class VectField extends GraphicClippableObject {
 	 * @return the property enum
 	 */
 	public Object getPropertyFromName(String propertyName) {
-		if (propertyName.equals("Arrows")) {
+		if (propertyName.equals(__GO_ARROWS__)) {
 			return VectFieldProperty.ARROWS;
 		} else {
 			return super.getPropertyFromName(propertyName);

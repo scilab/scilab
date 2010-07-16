@@ -12,6 +12,8 @@
 
 package org.scilab.modules.graphic_objects.imageplot;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
+
 /**
  * Grayplot class
  * @author Manuel JULIACHS
@@ -56,7 +58,7 @@ public class Grayplot extends Imageplot {
 	 * @return the property enum
 	 */
 	public Object getPropertyFromName(String propertyName) {
-		if (propertyName.equals("DataMapping")) {
+		if (propertyName.equals(__GO_DATA_MAPPING__)) {
 			return GrayplotProperty.DATAMAPPING;
 		} else {
 			return super.getPropertyFromName(propertyName);
