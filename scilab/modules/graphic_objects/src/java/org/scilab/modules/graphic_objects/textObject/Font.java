@@ -12,6 +12,8 @@
 
 package org.scilab.modules.graphic_objects.textObject;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
+
 /**
  * Font class
  * @author Manuel JULIACHS
@@ -46,13 +48,13 @@ public class Font {
 	 * @return the property enum
 	 */
 	public Object getPropertyFromName(String propertyName) {
-		if (propertyName.equals("Style")) {
+		if (propertyName.equals(__GO_FONT_STYLE__)) {
 			return FontProperty.STYLE;
-		} else if (propertyName.equals("Size")) {
+		} else if (propertyName.equals(__GO_FONT_SIZE__)) {
 			return FontProperty.SIZE;
-		} else if (propertyName.equals("Color")) {
+		} else if (propertyName.equals(__GO_FONT_COLOR__)) {
 			return FontProperty.COLOR;
-		} else if (propertyName.equals("Fractional")) {
+		} else if (propertyName.equals(__GO_FONT_FRACTIONAL__)) {
 			return FontProperty.FRACTIONAL;
 		} else {
 			return FontProperty.UNKNOWNPROPERTY;

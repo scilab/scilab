@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 import org.scilab.modules.graphic_objects.polyline.Polyline;
 import org.scilab.modules.graphic_objects.textObject.ClippableTextObject;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 /**
  * Legend class
@@ -88,11 +89,11 @@ public class Legend extends ClippableTextObject {
 	 * @return the property enum
 	 */
 	public Object getPropertyFromName(String propertyName) {
-		if (propertyName.equals("Links")) {
+		if (propertyName.equals(__GO_LINKS__)) {
 			return LegendProperty.LINKS;
-		} else if (propertyName.equals("LegendLocation")) {
+		} else if (propertyName.equals(__GO_LEGEND_LOCATION__)) {
 			return LegendProperty.LEGENDLOCATION;
-		} else if (propertyName.equals("Position")) {
+		} else if (propertyName.equals(__GO_POSITION__)) {
 			return LegendProperty.POSITION;
 		} else {
 			return super.getPropertyFromName(propertyName);

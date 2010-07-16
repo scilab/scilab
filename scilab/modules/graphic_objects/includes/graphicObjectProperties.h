@@ -175,6 +175,13 @@
 
 #define __GO_DATA_MAPPING__                "DataMapping"
 
+#define __GO_FONT_ANGLE__                  "FontAngle"
+#define __GO_AUTO_POSITION__               "AutoPosition"
+#define __GO_AUTO_ROTATION__               "AutoRotation"
+
+#define __GO_LINKS__                       "Links"
+#define __GO_LEGEND_LOCATION__             "LegendLocation"
+
 #define __GO_CLOSED__                      "Closed"
 #define __GO_ARROW_SIZE_FACTOR__           "ArrowSizeFactor"
 #define __GO_POLYLINE_STYLE__              "PolylineStyle"
@@ -188,6 +195,15 @@
 #define __GO_SURFACE_MODE__                "SurfaceMode"
 #define __GO_COLOR_MODE__                  "ColorMode"
 #define __GO_COLOR_FLAG__                  "ColorFlag"
+
+#define __GO_ALIGNMENT__                   "Alignment"
+#define __GO_BOX__                         "Box"
+#define __GO_TEXT_BOX__                    "TextBox"
+#define __GO_TEXT_BOX_MODE__               "TextBoxMode"
+#define __GO_AUTO_DIMENSIONING__           "AutoDimensioning"
+
+#define __GO_FORMATTED_TEXT__              "FormattedText"
+#define __GO_TEXT_STRING__                 "TextString"
 
 #define __GO_BASE__                        "Base"
 #define __GO_DIRECTION__                   "Direction"

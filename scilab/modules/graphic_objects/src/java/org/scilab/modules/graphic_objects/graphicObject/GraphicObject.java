@@ -69,7 +69,7 @@ public abstract class GraphicObject {
      * @return the type enum
      */
     public static Type getTypeFromName(String typeName) {
-        if (typeName.equals("arc")) {
+        if (typeName.equals(__GO_ARC__)) {
             return Type.ARC;
         } else if (typeName.equals(__GO_AXES__)) {
             return Type.AXES;

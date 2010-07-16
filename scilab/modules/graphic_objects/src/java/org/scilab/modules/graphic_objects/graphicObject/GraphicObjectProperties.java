@@ -176,6 +176,13 @@ public static final String __GO_COLOR_RANGE__ =            "ColorRange";
 
 public static final String __GO_DATA_MAPPING__ =           "DataMapping";
 
+public static final String __GO_FONT_ANGLE__ =             "FontAngle";
+public static final String __GO_AUTO_POSITION__ =          "AutoPosition";
+public static final String __GO_AUTO_ROTATION__ =          "AutoRotation";
+
+public static final String __GO_LINKS__ =                  "Links";
+public static final String __GO_LEGEND_LOCATION__ =        "LegendLocation";
+
 public static final String __GO_CLOSED__ =                 "Closed";
 public static final String __GO_ARROW_SIZE_FACTOR__ =      "ArrowSizeFactor";
 public static final String __GO_POLYLINE_STYLE__ =         "PolylineStyle";
@@ -189,6 +196,15 @@ public static final String __GO_BAR_WIDTH__ =              "BarWidth";
 public static final String __GO_SURFACE_MODE__ =           "SurfaceMode";
 public static final String __GO_COLOR_MODE__ =             "ColorMode";
 public static final String __GO_COLOR_FLAG__ =             "ColorFlag";
+
+public static final String __GO_ALIGNMENT__ =              "Alignment";
+public static final String __GO_BOX__ =                    "Box";
+public static final String __GO_TEXT_BOX__ =               "TextBox";
+public static final String __GO_TEXT_BOX_MODE__ =          "TextBoxMode";
+public static final String __GO_AUTO_DIMENSIONING__ =      "AutoDimensioning";
+
+public static final String __GO_FORMATTED_TEXT__ =         "FormattedText";
+public static final String __GO_TEXT_STRING__ =            "TextString";
 
 public static final String __GO_BASE__ =                   "Base";
 public static final String __GO_DIRECTION__ =              "Direction";

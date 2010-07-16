@@ -12,6 +12,8 @@
 
 package org.scilab.modules.graphic_objects.textObject;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
+
 /**
  * Text class
  * @author Manuel JULIACHS
@@ -105,19 +107,19 @@ public class Text extends ClippableTextObject {
 	 * @return the property enum
 	 */
 	public Object getPropertyFromName(String propertyName) {
-		if (propertyName.equals("FontAngle")) {
+		if (propertyName.equals(__GO_FONT_ANGLE__)) {
 			return TextProperty.FONTANGLE;
-		} else if (propertyName.equals("Position")) {
+		} else if (propertyName.equals(__GO_POSITION__)) {
 			return TextProperty.POSITION;
-		} else if (propertyName.equals("Alignment")) {
+		} else if (propertyName.equals(__GO_ALIGNMENT__)) {
 			return TextProperty.ALIGNMENT;
-		} else if (propertyName.equals("Box")) {
+		} else if (propertyName.equals(__GO_BOX__)) {
 			return TextProperty.BOX;
-		} else if (propertyName.equals("TextBox")) {
+		} else if (propertyName.equals(__GO_TEXT_BOX__)) {
 			return TextProperty.TEXTBOX;
-		} else if (propertyName.equals("TextBoxMode")) {
+		} else if (propertyName.equals(__GO_TEXT_BOX_MODE__)) {
 			return TextProperty.TEXTBOXMODE;
-		} else if (propertyName.equals("AutoDimensioning")) {
+		} else if (propertyName.equals(__GO_AUTO_DIMENSIONING__)) {
 			return TextProperty.AUTODIMENSIONING;
 		} else {
 			return super.getPropertyFromName(propertyName);

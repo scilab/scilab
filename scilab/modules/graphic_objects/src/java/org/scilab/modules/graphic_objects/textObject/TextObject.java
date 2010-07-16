@@ -15,6 +15,7 @@ package org.scilab.modules.graphic_objects.textObject;
 import org.scilab.modules.graphic_objects.contouredObject.ContouredObject;
 import org.scilab.modules.graphic_objects.textObject.Font.FontProperty;
 import org.scilab.modules.graphic_objects.textObject.FormattedText.FormattedTextProperty;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 
 /**
@@ -40,19 +41,19 @@ public class TextObject extends ContouredObject {
 	 * @return the property enum
 	 */
 	public Object getPropertyFromName(String propertyName) {
-		if (propertyName.equals("Text")) {
+		if (propertyName.equals(__GO_FORMATTED_TEXT__)) {
 			return TextObjectProperty.TEXT;
-		} else if (propertyName.equals("TextString")) { // To be modified
+		} else if (propertyName.equals(__GO_TEXT_STRING__)) { // To be modified
 			return FormattedText.FormattedTextProperty.TEXT;
-		} else if (propertyName.equals("Font")) {
+		} else if (propertyName.equals(__GO_FONT__)) {
 			return FormattedText.FormattedTextProperty.FONT;
-		} else if (propertyName.equals("Style")) {
+		} else if (propertyName.equals(__GO_FONT_STYLE__)) {
 			return Font.FontProperty.STYLE;
-		} else if (propertyName.equals("Size")) {
+		} else if (propertyName.equals(__GO_FONT_SIZE__)) {
 			return Font.FontProperty.SIZE;
-		} else if (propertyName.equals("Color")) {
+		} else if (propertyName.equals(__GO_FONT_COLOR__)) {
 			return Font.FontProperty.COLOR;
-		} else if (propertyName.equals("Fractional")) {
+		} else if (propertyName.equals(__GO_FONT_FRACTIONAL__)) {
 			return Font.FontProperty.FRACTIONAL;
 		} else {
 			return super.getPropertyFromName(propertyName);

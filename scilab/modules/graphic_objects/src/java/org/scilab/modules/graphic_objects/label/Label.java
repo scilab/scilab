@@ -13,6 +13,7 @@
 package org.scilab.modules.graphic_objects.label;
 
 import org.scilab.modules.graphic_objects.textObject.TextObject;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 /**
  * Label class
@@ -49,13 +50,13 @@ public class Label extends TextObject {
 	 * @return the property enum
 	 */
 	public Object getPropertyFromName(String propertyName) {
-		if (propertyName.equals("FontAngle")) {
+		if (propertyName.equals(__GO_FONT_ANGLE__)) {
 			return LabelProperty.FONTANGLE;
-		} else if (propertyName.equals("AutoPosition")) {
+		} else if (propertyName.equals(__GO_AUTO_POSITION__)) {
 			return LabelProperty.AUTOPOSITION;
-		} else if (propertyName.equals("Position")) {
+		} else if (propertyName.equals(__GO_POSITION__)) {
 			return LabelProperty.POSITION;
-		} else if (propertyName.equals("AutoRotation")) {
+		} else if (propertyName.equals(__GO_AUTO_ROTATION__)) {
 			return LabelProperty.AUTOROTATION;
 		} else {
 			return super.getPropertyFromName(propertyName);
