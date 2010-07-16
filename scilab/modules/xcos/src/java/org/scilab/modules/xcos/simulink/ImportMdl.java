@@ -45,6 +45,7 @@ public class ImportMdl {
 		DiagramElement diagram = new DiagramElement();
 		try {
 			XcosDiagram xcosDiagram = new XcosDiagram();
+			xcosDiagram.installListeners();
 			xcosDiagram = diagram.decode(model,xcosDiagram);
 			new XcosTab(xcosDiagram).setVisible(true);
 		} catch(SimulinkFormatException e1) {
