@@ -15,6 +15,7 @@ package org.scilab.modules.graphic_objects.contouredObject;
 import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty;
 import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty.ClipStateType;
 import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty.ClippablePropertyType;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 
 /**
@@ -40,13 +41,13 @@ public abstract class ClippableContouredObject extends ContouredObject {
 	 * @return the property enum
 	 */
 	public Object getPropertyFromName(String propertyName) {
-		if (propertyName.equals("ClipProperty")) {
+		if (propertyName.equals(__GO_CLIP_PROPERTY__)) {
 			return ClippableContouredObjectPropertyType.CLIPPROPERTY;
-		} else if (propertyName.equals("ClipState")) {
+		} else if (propertyName.equals(__GO_CLIP_STATE__)) {
 			return ClippablePropertyType.CLIPSTATE;
-		} else if (propertyName.equals("ClipBox")) {
+		} else if (propertyName.equals(__GO_CLIP_BOX__)) {
 			return ClippablePropertyType.CLIPBOX;
-		} else if (propertyName.equals("ClipBoxSet")) {
+		} else if (propertyName.equals(__GO_CLIP_BOX_SET__)) {
 			return ClippablePropertyType.CLIPBOXSET;
 		} else {
 			return super.getPropertyFromName(propertyName);

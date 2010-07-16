@@ -17,6 +17,7 @@ import org.scilab.modules.graphic_objects.contouredObject.Line.LineType;
 import org.scilab.modules.graphic_objects.contouredObject.Mark.MarkPropertyType;
 import org.scilab.modules.graphic_objects.contouredObject.Mark.MarkSizeUnitType;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 /**
  * Contoured object class 
@@ -52,33 +53,33 @@ public abstract class ContouredObject extends GraphicObject {
 	 * @return the property enum
 	 */
 	public Object getPropertyFromName(String propertyName) {
-		if (propertyName.equals("Line")) {
+		if (propertyName.equals(__GO_LINE__)) {
 			return ContouredObjectPropertyType.LINE;
-		} else if (propertyName.equals("LineMode")) {
+		} else if (propertyName.equals(__GO_LINE_MODE__)) {
 			return LinePropertyType.MODE;
-		} else if (propertyName.equals("LineStyle")) {
+		} else if (propertyName.equals(__GO_LINE_STYLE__)) {
 			return LinePropertyType.LINESTYLE;
-		} else if (propertyName.equals("LineThickness")) {
+		} else if (propertyName.equals(__GO_LINE_THICKNESS__)) {
 			return LinePropertyType.THICKNESS;
-		} else if (propertyName.equals("LineColor")) {
+		} else if (propertyName.equals(__GO_LINE_COLOR__)) {
 			return LinePropertyType.COLOR;
-		} else if (propertyName.equals("FillMode")) {
+		} else if (propertyName.equals(__GO_FILL_MODE__)) {
 			return ContouredObjectPropertyType.FILLMODE;
-		} else if (propertyName.equals("Background")) {
+		} else if (propertyName.equals(__GO_BACKGROUND__)) {
 			return ContouredObjectPropertyType.BACKGROUND;
-		} else if (propertyName.equals("Mark")) {
+		} else if (propertyName.equals(__GO_MARK__)) {
 			return ContouredObjectPropertyType.MARK;
-		} else if (propertyName.equals("MarkMode")) {
+		} else if (propertyName.equals(__GO_MARK_MODE__)) {
 			return MarkPropertyType.MODE;
-		} else if (propertyName.equals("MarkStyle")) {
+		} else if (propertyName.equals(__GO_MARK_STYLE__)) {
 			return MarkPropertyType.STYLE;
-		} else if (propertyName.equals("MarkSizeUnit")) {
+		} else if (propertyName.equals(__GO_MARK_SIZE_UNIT__)) {
 			return MarkPropertyType.SIZEUNIT;
-		} else if (propertyName.equals("MarkSize")) {
+		} else if (propertyName.equals(__GO_MARK_SIZE__)) {
 			return MarkPropertyType.SIZE;
-		} else if (propertyName.equals("MarkForeground")) {
+		} else if (propertyName.equals(__GO_MARK_FOREGROUND__)) {
 			return MarkPropertyType.FOREGROUND;
-		} else if (propertyName.equals("MarkBackground")) {
+		} else if (propertyName.equals(__GO_MARK_BACKGROUND__)) {
 			return MarkPropertyType.BACKGROUND;
 		} else {
 			return super.getPropertyFromName(propertyName);

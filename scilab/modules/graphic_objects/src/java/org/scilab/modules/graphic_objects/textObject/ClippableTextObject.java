@@ -15,6 +15,7 @@ package org.scilab.modules.graphic_objects.textObject;
 import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty;
 import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty.ClippablePropertyType;
 import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty.ClipStateType;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 /**
  * ClippableTextObject
@@ -38,13 +39,13 @@ public abstract class ClippableTextObject extends TextObject {
 	 * @return the property enum
 	 */
 	public Object getPropertyFromName(String propertyName) {
-		if (propertyName.equals("ClipProperty")) {
+		if (propertyName.equals(__GO_CLIP_PROPERTY__)) {
 			return ClippableTextObjectProperty.CLIPPROPERTY;
-		} else if (propertyName.equals("ClipState")) {
+		} else if (propertyName.equals(__GO_CLIP_STATE__)) {
 			return ClippablePropertyType.CLIPSTATE;
-		} else if (propertyName.equals("ClipBox")) {
+		} else if (propertyName.equals(__GO_CLIP_BOX__)) {
 			return ClippablePropertyType.CLIPBOX;
-		} else if (propertyName.equals("ClipBoxSet")) {
+		} else if (propertyName.equals(__GO_CLIP_BOX_SET__)) {
 			return ClippablePropertyType.CLIPBOXSET;
 		} else {
 			return super.getPropertyFromName(propertyName);

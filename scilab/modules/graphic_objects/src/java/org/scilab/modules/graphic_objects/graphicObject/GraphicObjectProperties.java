@@ -137,4 +137,24 @@ public static final String __GO_AUTO_SCALE__ =             "AutoScale";
 public static final String __GO_MARGINS__ =                "Margins";
 public static final String __GO_AXES_BOUNDS__ =            "AxesBounds";
 
+public static final String __GO_CLIP_PROPERTY__ =          "ClipProperty";
+public static final String __GO_CLIP_STATE__ =             "ClipState";
+public static final String __GO_CLIP_BOX__ =               "ClipBox";
+public static final String __GO_CLIP_BOX_SET__ =           "ClipBoxSet";
+
+public static final String __GO_LINE__ =                   "Line";
+public static final String __GO_LINE_MODE__ =              "LineMode";
+public static final String __GO_LINE_STYLE__ =             "LineStyle";
+public static final String __GO_LINE_THICKNESS__ =         "LineThickness";
+public static final String __GO_LINE_COLOR__ =             "LineColor";
+public static final String __GO_FILL_MODE__ =              "FillMode";
+public static final String __GO_MARK__ =                   "Mark";
+public static final String __GO_MARK_MODE__ =              "MarkMode";
+public static final String __GO_MARK_STYLE__ =             "MarkStyle";
+public static final String __GO_MARK_SIZE_UNIT__ =         "MarkSizeUnit";
+public static final String __GO_MARK_SIZE__ =              "MarkSize";
+public static final String __GO_MARK_FOREGROUND__ =        "MarkForeground";
+public static final String __GO_MARK_BACKGROUND__ =        "MarkBackground";
+
+
 }

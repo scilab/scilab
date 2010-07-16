@@ -136,4 +136,24 @@
 #define __GO_MARGINS__                     "Margins"
 #define __GO_AXES_BOUNDS__                 "AxesBounds"
 
+#define __GO_CLIP_PROPERTY__               "ClipProperty"
+#define __GO_CLIP_STATE__                  "ClipState"
+#define __GO_CLIP_BOX__                    "ClipBox"
+#define __GO_CLIP_BOX_SET__                "ClipBoxSet"
+
+#define __GO_LINE__                        "Line"
+#define __GO_LINE_MODE__                   "LineMode"
+#define __GO_LINE_STYLE__                  "LineStyle"
+#define __GO_LINE_THICKNESS__              "LineThickness"
+#define __GO_LINE_COLOR__                  "LineColor"
+#define __GO_FILL_MODE__                   "FillMode"
+#define __GO_MARK__                        "Mark"
+#define __GO_MARK_MODE__                   "MarkMode"
+#define __GO_MARK_STYLE__                  "MarkStyle"
+#define __GO_MARK_SIZE_UNIT__              "MarkSizeUnit"
+#define __GO_MARK_SIZE__                   "MarkSize"
+#define __GO_MARK_FOREGROUND__             "MarkForeground"
+#define __GO_MARK_BACKGROUND__             "MarkBackground"
+
+
 #endif /* !__GRAPHIC_OBJECT_PROPERTIES_H__ */
