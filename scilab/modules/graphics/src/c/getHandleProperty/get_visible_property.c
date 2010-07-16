@@ -25,18 +25,22 @@
 #include "GetProperty.h"
 
 #include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
 
 int get_visible_property( sciPointObj * pobj )
 {
+  int* visible;
 
   if ( (sciGetEntityType(pobj) == SCI_UIMENU) || (sciGetEntityType(pobj) == SCI_UICONTROL) )
     {
       return GetUiobjectVisible(pobj);
     }
 
-  if ( getGraphicObjectBooleanProperty(pobj->UID, "Visible") )
+  visible = (int*)getGraphicObjectProperty(pobj->UID, __GO_VISIBLE__, jni_bool);
+
+  if (*visible)
   {
     return sciReturnString( "on" ) ;
   }

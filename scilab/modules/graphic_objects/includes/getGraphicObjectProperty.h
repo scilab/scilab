@@ -23,13 +23,4 @@
 
 GRAPHIC_OBJECTS_IMPEXP void *getGraphicObjectProperty(char *_pstID, char *_pstName, enum _ReturnType_ _returnType );
 
-GRAPHIC_OBJECTS_IMPEXP char* getGraphicObjectStringProperty(char *_pstID, char *_pstName);
-GRAPHIC_OBJECTS_IMPEXP char** getGraphicObjectStringVectorProperty(char *_pstID, char *_pstName);
-GRAPHIC_OBJECTS_IMPEXP double getGraphicObjectDoubleProperty(char *_pstID, char *_pstName);
-GRAPHIC_OBJECTS_IMPEXP double* getGraphicObjectDoubleVectorProperty(char *_pstID, char *_pstName);
-GRAPHIC_OBJECTS_IMPEXP int getGraphicObjectIntegerProperty(char *_pstID, char *_pstName);
-GRAPHIC_OBJECTS_IMPEXP int* getGraphicObjectIntegerVectorProperty(char *_pstID, char *_pstName);
-GRAPHIC_OBJECTS_IMPEXP int getGraphicObjectBooleanProperty(char *_pstID, char *_pstName);
-GRAPHIC_OBJECTS_IMPEXP int* getGraphicObjectBooleanVectorProperty(char *_pstID, char *_pstName);
-
 #endif /* !__GETGRAPHICOBJECTPROPERTY_H__ */

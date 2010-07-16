@@ -26,6 +26,7 @@
 #include "localization.h"
 
 #include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
 int get_figure_size_property( sciPointObj * pobj )
@@ -39,7 +40,7 @@ int get_figure_size_property( sciPointObj * pobj )
     return -1;
   }
 
-  intSize = (int*)getGraphicObjectIntegerVectorProperty(pobj->UID, "Size");
+  intSize = (int*)getGraphicObjectProperty(pobj->UID, __GO_SIZE__, jni_int_vector);
 
   figureSize[0] = (double)intSize[0];
   figureSize[1] = (double)intSize[1];

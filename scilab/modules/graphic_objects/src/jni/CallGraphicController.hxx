@@ -66,9 +66,9 @@ jmethodID jintgetGraphicObjectPropertyAsIntegerjstringjstringID; // cache method
 jmethodID jbooleansetGraphicObjectPropertyjstringjstringjintID; // cache method id
 jmethodID jintArraygetGraphicObjectPropertyAsIntegerVectorjstringjstringID; // cache method id
 jmethodID jbooleansetGraphicObjectPropertyjstringjstringjintArrayID; // cache method id
-jmethodID jbooleangetGraphicObjectPropertyAsBooleanjstringjstringID; // cache method id
+jmethodID jintgetGraphicObjectPropertyAsBooleanjstringjstringID; // cache method id
 jmethodID jbooleansetGraphicObjectPropertyjstringjstringjbooleanID; // cache method id
-jmethodID jbooleanArraygetGraphicObjectPropertyAsBooleanVectorjstringjstringID; // cache method id
+jmethodID jintArraygetGraphicObjectPropertyAsBooleanVectorjstringjstringID; // cache method id
 jmethodID jbooleansetGraphicObjectPropertyjstringjstringjbooleanArrayID; // cache method id
 
 
@@ -137,11 +137,11 @@ static int * getGraphicObjectPropertyAsIntegerVector(JavaVM * jvm_, char * id, c
 
 static bool setGraphicObjectProperty(JavaVM * jvm_, char * id, char * propertyName, int * value, int valueSize);
 
-static bool getGraphicObjectPropertyAsBoolean(JavaVM * jvm_, char * id, char * propertyName);
+static int getGraphicObjectPropertyAsBoolean(JavaVM * jvm_, char * id, char * propertyName);
 
 static bool setGraphicObjectProperty(JavaVM * jvm_, char * id, char * propertyName, bool value);
 
-static bool * getGraphicObjectPropertyAsBooleanVector(JavaVM * jvm_, char * id, char * propertyName);
+static int * getGraphicObjectPropertyAsBooleanVector(JavaVM * jvm_, char * id, char * propertyName);
 
 static bool setGraphicObjectProperty(JavaVM * jvm_, char * id, char * propertyName, bool * value, int valueSize);
 

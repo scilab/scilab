@@ -26,6 +26,7 @@
 #include "localization.h"
 
 #include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
 int get_figure_position_property( sciPointObj * pobj )
@@ -39,7 +40,7 @@ int get_figure_position_property( sciPointObj * pobj )
     return -1;
   }
 
-  position = getGraphicObjectIntegerVectorProperty(pobj->UID, "Position");
+  position = (int*)getGraphicObjectProperty(pobj->UID, __GO_POSITION__, jni_int_vector);
 
   figurePos[0] = (double) position[0] ; 
   figurePos[1] = (double) position[1] ;

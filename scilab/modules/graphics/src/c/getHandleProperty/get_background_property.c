@@ -27,17 +27,22 @@
 #include "MALLOC.h"
 
 #include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
 int get_background_property( sciPointObj * pobj )
 {
-	if (sciGetGraphicContext(pobj) == NULL)
-	{
-		/* This object has not a background color */
-		Scierror(999, _("'%s' property does not exist for this handle.\n"),"background");
-	}
+  int* background;
 
-  return sciReturnDouble( getGraphicObjectIntegerProperty(pobj->UID, "Background") );
+  if (sciGetGraphicContext(pobj) == NULL)
+  {
+    /* This object has not a background color */
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"background");
+  }
+
+  background = (int*)getGraphicObjectProperty(pobj->UID, __GO_BACKGROUND__, jni_int);
+
+  return sciReturnDouble(*background);
 
 /* deactivated for now, to be implemented */
 #if 0

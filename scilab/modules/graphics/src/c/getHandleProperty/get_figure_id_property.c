@@ -28,16 +28,21 @@
 #include "localization.h"
 
 #include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
 int get_figure_id_property( sciPointObj * pobj )
 {
-	if ( sciGetEntityType(pobj) != SCI_FIGURE )
+  int* figureId;
+
+  if ( sciGetEntityType(pobj) != SCI_FIGURE )
   {
     Scierror(999, _("'%s' property does not exist for this handle.\n"),"figure_id");
     return -1;
   }
 
-  return sciReturnInt( getGraphicObjectIntegerProperty(pobj->UID, "Id"));
+  figureId = (int*)getGraphicObjectProperty(pobj->UID, __GO_ID__, jni_int);
+
+  return sciReturnInt(*figureId);
 }
 /*------------------------------------------------------------------------*/

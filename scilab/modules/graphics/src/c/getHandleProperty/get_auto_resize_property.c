@@ -26,17 +26,22 @@
 #include "Scierror.h"
 
 #include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
 int get_auto_resize_property( sciPointObj * pobj )
 {
-	if ( sciGetEntityType(pobj) != SCI_FIGURE )
-	{
-		Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_resize");
-		return -1 ;
-	}
+  int* autoResize;
 
-  if ( getGraphicObjectBooleanProperty(pobj->UID, "AutoResize") )
+  if ( sciGetEntityType(pobj) != SCI_FIGURE )
+  {
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_resize");
+    return -1 ;
+  }
+
+  autoResize = (int*)getGraphicObjectProperty(pobj->UID, __GO_AUTORESIZE__, jni_bool);
+
+  if (*autoResize)
   {
      return sciReturnString( "on" ) ;
   }

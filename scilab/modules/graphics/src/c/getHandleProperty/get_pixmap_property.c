@@ -26,16 +26,22 @@
 #include "localization.h"
 
 #include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
 int get_pixmap_property( sciPointObj * pobj )
 {
+  int* pixmap;
+
   if ( sciGetEntityType(pobj) != SCI_FIGURE )
   {
     Scierror(999, _("'%s' property does not exist for this handle.\n"),"pixmap");
     return -1;
   }
-  if ( getGraphicObjectBooleanProperty(pobj->UID, "Pixmap") )
+
+  pixmap = (int*)getGraphicObjectProperty(pobj->UID, __GO_PIXMAP__, jni_bool);
+
+  if (*pixmap)
   {
     return sciReturnString( "on" ) ;
   }

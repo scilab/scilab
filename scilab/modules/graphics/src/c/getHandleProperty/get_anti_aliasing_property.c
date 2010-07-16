@@ -24,10 +24,12 @@
 #include "localization.h"
 
 #include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
 int get_anti_aliasing_property( sciPointObj * pobj )
 {
+  int* antialiasing;
 
   if ( sciGetEntityType (pobj) != SCI_FIGURE )
   {
@@ -35,7 +37,9 @@ int get_anti_aliasing_property( sciPointObj * pobj )
     return -1;
   }
 
-  switch(getGraphicObjectIntegerProperty(pobj->UID, "Antialiasing"))
+  antialiasing = (int*)getGraphicObjectProperty(pobj->UID, __GO_ANTIALIASING__, jni_int);
+
+  switch(*antialiasing)
 	{
 	case 0:
 		return sciReturnString("off");

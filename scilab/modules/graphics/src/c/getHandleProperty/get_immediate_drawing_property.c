@@ -26,17 +26,22 @@
 #include "localization.h"
 
 #include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
 int get_immediate_drawing_property( sciPointObj * pobj )
 {
+  int* immediateDrawing;
+
   if (sciGetEntityType (pobj) != SCI_FIGURE)
   { 
-		Scierror(999, _("'%s' property does not exist for this handle.\n"),"immediate_drawing") ;	
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"immediate_drawing") ;	
     return -1;
   }
 
-  if ( getGraphicObjectBooleanProperty(pobj->UID, "ImmediateDrawing") )
+  immediateDrawing = (int*)getGraphicObjectProperty(pobj->UID, __GO_IMMEDIATE_DRAWING__, jni_bool);
+
+  if (*immediateDrawing)
   {
     return sciReturnString( "on" ) ;
   }

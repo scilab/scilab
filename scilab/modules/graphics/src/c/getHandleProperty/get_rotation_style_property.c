@@ -26,11 +26,12 @@
 #include "localization.h"
 
 #include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
 int get_rotation_style_property( sciPointObj * pobj )
 {
-  int rotationStyle;
+  int* rotationStyle;
 
   if ( sciGetEntityType (pobj) != SCI_FIGURE )
   {	
@@ -38,13 +39,13 @@ int get_rotation_style_property( sciPointObj * pobj )
     return -1;
   }
 
-  rotationStyle = getGraphicObjectIntegerProperty(pobj->UID, "RotationType");
+  rotationStyle = (int*)getGraphicObjectProperty(pobj->UID, __GO_ROTATION_TYPE__, jni_int);
 
-  if (rotationStyle == 0)
+  if (*rotationStyle == 0)
   {
     return sciReturnString( "unary" ) ;
   }
-  else if (rotationStyle == 1)
+  else if (*rotationStyle == 1)
   {
     return sciReturnString( "multiple" ) ;
   }

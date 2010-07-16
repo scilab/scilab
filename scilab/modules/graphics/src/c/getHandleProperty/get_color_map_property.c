@@ -27,6 +27,7 @@
 #include "localization.h"
 
 #include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*--------------------------------------------------------------------------*/
 int get_color_map_property( sciPointObj * pobj )
@@ -40,11 +41,11 @@ int get_color_map_property( sciPointObj * pobj )
     return -1;
   }
 
-  cmapSize = (int)getGraphicObjectIntegerProperty(pobj->UID, "ColorMapSize");
+  cmapSize = *(int*)getGraphicObjectProperty(pobj->UID, __GO_COLORMAP_SIZE__, jni_int);
 
-  double* mycolormap = (double*)getGraphicObjectDoubleVectorProperty(pobj->UID, "ColorMap");
+  colorMap = (double*)getGraphicObjectProperty(pobj->UID, __GO_COLORMAP__, jni_double_vector);
 
-  status = sciReturnMatrix ( mycolormap, cmapSize/3, 3);
+  status = sciReturnMatrix (colorMap, cmapSize/3, 3);
 
   return status;
 }

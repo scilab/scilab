@@ -33,6 +33,7 @@
 /*------------------------------------------------------------------------*/
 int get_figure_name_property( sciPointObj * pobj )
 {
+  char* figureName;
 
   if ( sciGetEntityType(pobj) != SCI_FIGURE )
   {
@@ -40,6 +41,8 @@ int get_figure_name_property( sciPointObj * pobj )
     return -1;
   }
 
-  return sciReturnString( (char *) getGraphicObjectStringProperty(pobj->UID, __GO_NAME__));
+  figureName = (char*)getGraphicObjectProperty(pobj->UID, __GO_NAME__, jni_string);
+
+  return sciReturnString((char*)figureName);
 }
 /*------------------------------------------------------------------------*/

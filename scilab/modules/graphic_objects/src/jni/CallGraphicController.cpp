@@ -122,9 +122,9 @@ jintgetGraphicObjectPropertyAsIntegerjstringjstringID=NULL;
 jbooleansetGraphicObjectPropertyjstringjstringjintID=NULL; 
 jintArraygetGraphicObjectPropertyAsIntegerVectorjstringjstringID=NULL; 
 jbooleansetGraphicObjectPropertyjstringjstringjintArrayID=NULL; 
-jbooleangetGraphicObjectPropertyAsBooleanjstringjstringID=NULL; 
+jintgetGraphicObjectPropertyAsBooleanjstringjstringID=NULL; 
 jbooleansetGraphicObjectPropertyjstringjstringjbooleanID=NULL; 
-jbooleanArraygetGraphicObjectPropertyAsBooleanVectorjstringjstringID=NULL; 
+jintArraygetGraphicObjectPropertyAsBooleanVectorjstringjstringID=NULL; 
 jbooleansetGraphicObjectPropertyjstringjstringjbooleanArrayID=NULL; 
 
 
@@ -167,9 +167,9 @@ jintgetGraphicObjectPropertyAsIntegerjstringjstringID=NULL;
 jbooleansetGraphicObjectPropertyjstringjstringjintID=NULL; 
 jintArraygetGraphicObjectPropertyAsIntegerVectorjstringjstringID=NULL; 
 jbooleansetGraphicObjectPropertyjstringjstringjintArrayID=NULL; 
-jbooleangetGraphicObjectPropertyAsBooleanjstringjstringID=NULL; 
+jintgetGraphicObjectPropertyAsBooleanjstringjstringID=NULL; 
 jbooleansetGraphicObjectPropertyjstringjstringjbooleanID=NULL; 
-jbooleanArraygetGraphicObjectPropertyAsBooleanVectorjstringjstringID=NULL; 
+jintArraygetGraphicObjectPropertyAsBooleanVectorjstringjstringID=NULL; 
 jbooleansetGraphicObjectPropertyjstringjstringjbooleanArrayID=NULL; 
 
 
@@ -652,14 +652,14 @@ return (res == JNI_TRUE);
 
 }
 
-bool CallGraphicController::getGraphicObjectPropertyAsBoolean (JavaVM * jvm_, char * id, char * propertyName){
+int CallGraphicController::getGraphicObjectPropertyAsBoolean (JavaVM * jvm_, char * id, char * propertyName){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID jbooleangetGraphicObjectPropertyAsBooleanjstringjstringID = curEnv->GetStaticMethodID(cls, "getGraphicObjectPropertyAsBoolean", "(Ljava/lang/String;Ljava/lang/String;)Z" ) ;
-if (jbooleangetGraphicObjectPropertyAsBooleanjstringjstringID == NULL) {
+jmethodID jintgetGraphicObjectPropertyAsBooleanjstringjstringID = curEnv->GetStaticMethodID(cls, "getGraphicObjectPropertyAsBoolean", "(Ljava/lang/String;Ljava/lang/String;)I" ) ;
+if (jintgetGraphicObjectPropertyAsBooleanjstringjstringID == NULL) {
 std::cerr << "Could not access to the method " << "getGraphicObjectPropertyAsBoolean" << std::endl;
 curEnv->ExceptionDescribe();
 exit(EXIT_FAILURE);
@@ -669,13 +669,13 @@ jstring id_ = curEnv->NewStringUTF( id );
 
 jstring propertyName_ = curEnv->NewStringUTF( propertyName );
 
-                        jboolean res =  (jboolean) curEnv->CallStaticBooleanMethod(cls, jbooleangetGraphicObjectPropertyAsBooleanjstringjstringID ,id_, propertyName_);
+                        jint res =  (jint) curEnv->CallIntMethod(cls, jintgetGraphicObjectPropertyAsBooleanjstringjstringID ,id_, propertyName_);
 
 if (curEnv->ExceptionCheck()) {
 curEnv->ExceptionDescribe() ;
 }
 
-return (res == JNI_TRUE);
+return res;
 
 }
 
@@ -708,14 +708,14 @@ return (res == JNI_TRUE);
 
 }
 
-bool * CallGraphicController::getGraphicObjectPropertyAsBooleanVector (JavaVM * jvm_, char * id, char * propertyName){
+int * CallGraphicController::getGraphicObjectPropertyAsBooleanVector (JavaVM * jvm_, char * id, char * propertyName){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID jbooleanArraygetGraphicObjectPropertyAsBooleanVectorjstringjstringID = curEnv->GetStaticMethodID(cls, "getGraphicObjectPropertyAsBooleanVector", "(Ljava/lang/String;Ljava/lang/String;)[Z" ) ;
-if (jbooleanArraygetGraphicObjectPropertyAsBooleanVectorjstringjstringID == NULL) {
+jmethodID jintArraygetGraphicObjectPropertyAsBooleanVectorjstringjstringID = curEnv->GetStaticMethodID(cls, "getGraphicObjectPropertyAsBooleanVector", "(Ljava/lang/String;Ljava/lang/String;)[I" ) ;
+if (jintArraygetGraphicObjectPropertyAsBooleanVectorjstringjstringID == NULL) {
 std::cerr << "Could not access to the method " << "getGraphicObjectPropertyAsBooleanVector" << std::endl;
 curEnv->ExceptionDescribe();
 exit(EXIT_FAILURE);
@@ -725,17 +725,17 @@ jstring id_ = curEnv->NewStringUTF( id );
 
 jstring propertyName_ = curEnv->NewStringUTF( propertyName );
 
-                        jbooleanArray res =  (jbooleanArray) curEnv->CallObjectMethod(cls, jbooleanArraygetGraphicObjectPropertyAsBooleanVectorjstringjstringID ,id_, propertyName_);
+                        jintArray res =  (jintArray) curEnv->CallObjectMethod(cls, jintArraygetGraphicObjectPropertyAsBooleanVectorjstringjstringID ,id_, propertyName_);
 
 jsize len = curEnv->GetArrayLength(res);
 jboolean isCopy = JNI_FALSE;
 
 /* faster than getXXXArrayElements */
-jboolean *resultsArray = (jboolean *) curEnv->GetPrimitiveArrayCritical(res, &isCopy);
-bool * myArray= new bool[len];
+jint *resultsArray = (jint *) curEnv->GetPrimitiveArrayCritical(res, &isCopy);
+int * myArray= new int[len];
 
 for (jsize i = 0; i < len; i++){
-myArray[i]=(resultsArray[i] == JNI_TRUE);
+myArray[i]=resultsArray[i];
 }
 curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
 

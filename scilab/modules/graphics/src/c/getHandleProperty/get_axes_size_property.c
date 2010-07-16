@@ -26,18 +26,21 @@
 #include "localization.h"
 
 #include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
 int get_axes_size_property( sciPointObj * pobj )
 {
-  double axesSize[2] ;
+  int* axesSize;
 
   if ( sciGetEntityType (pobj) != SCI_FIGURE )
   {
     Scierror(999, _("'%s' property does not exist for this handle.\n"),"axes_size");
     return -1;
   }
+
+  axesSize = (int*)getGraphicObjectProperty(pobj->UID, __GO_AXES_SIZE__, jni_int_vector);
  
-  return sciReturnRowIntVector( getGraphicObjectIntegerVectorProperty(pobj->UID, "AxesSize"), 2 );
+  return sciReturnRowIntVector(axesSize, 2);
 }
 /*------------------------------------------------------------------------*/

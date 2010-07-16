@@ -27,14 +27,19 @@
 #include "localization.h"
 
 #include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
 
 int get_pixel_drawing_mode_property( sciPointObj * pobj )
 {
+  int* pixelDrawingMode;
+
   if ( sciGetEntityType (pobj) == SCI_FIGURE )
   {
-    return sciReturnString( getPixelMode ( getGraphicObjectIntegerProperty(pobj->UID, "PixelDrawingMode") ) );
+    pixelDrawingMode = (int*)getGraphicObjectProperty(pobj->UID, __GO_PIXEL_DRAWING_MODE__, jni_int);
+
+    return sciReturnString( getPixelMode (*pixelDrawingMode) );
   }
   else
   {
