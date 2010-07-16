@@ -137,6 +137,8 @@ Bug Fixes:
 * bug 7551 fixed - An Xcos block could not change the type of a port when it was
                    already present.
 
+* bug 7558 fixed - SciNotes: global variables were reached before local ones.
+
 * bug 7566 fixed - The cacsd module graphic functions (bode, black, nyquist,...) 
                    did not preserve the immediate_drawing property value.
 
