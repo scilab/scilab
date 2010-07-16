@@ -37,7 +37,7 @@ GRAPHIC_OBJECTS_CPP_SOURCES = 	src/cpp/createGraphicObject.cpp \
 								src/cpp/getGraphicObjectProperty.cpp \
 								src/cpp/setGraphicObjectProperty.cpp
 
-GIWS_WRAPPERS =
+GIWS_WRAPPERS = src/jni/graphic_objects.giws.xml
 
 if GIWS
 BUILT_SOURCES += giws

@@ -511,7 +511,7 @@ GRAPHIC_OBJECTS_CPP_SOURCES = src/cpp/createGraphicObject.cpp \
 								src/cpp/getGraphicObjectProperty.cpp \
 								src/cpp/setGraphicObjectProperty.cpp
 
-GIWS_WRAPPERS = 
+GIWS_WRAPPERS = src/jni/graphic_objects.giws.xml
 GATEWAY_C_SOURCES = sci_gateway/c/gw_graphic_objects.c
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_graphicfunction.cpp
 libscigraphic_objects_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
