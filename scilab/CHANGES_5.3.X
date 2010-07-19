@@ -61,6 +61,9 @@ Bug Fixes:
 
 * bug 7360 fixed - Modelica Hydraulics Xcos demo was not simulating.
 
+* bug 7371 fixed - Documentation about cell did not precise that the value 
+                   returned by A.dims could not be used as a subscript.
+
 * bug 7372 fixed - No message was displayed in the Xcos info bar during the
                    first drag and drop of a block (may take some times).
 
