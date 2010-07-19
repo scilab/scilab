@@ -13,8 +13,8 @@ EXPORTS
 	intl_e_
 	intl_i_
 	lsstyp_
-	lstops_
 	strpos_
+	lstops_
 	mtlist_
 	rattyp_
 	definedfields_
@@ -23,6 +23,6 @@ EXPORTS
 	intlstcat_
 	intlstsize_
 	intsetfield_
-	updptr_
 	subptr_
+	updptr_
 

@@ -98,7 +98,6 @@ int sci_editvar(char * fname, int *_piKey)
     sciErr = getMatrixOfString(_piKey,  piAddressVarOne, &m1, &n1, &lenStVarOne, NULL);
     if(sciErr.iErr)
     {
-        if (lenStVarOne) { FREE(lenStVarOne); lenStVarOne = NULL;}
         printError(&sciErr, 0);
         return 0;
     }
