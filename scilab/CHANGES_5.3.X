@@ -92,6 +92,9 @@ Bug Fixes:
 
 * bug 7533 fixed - On Xcos, it was possible to drop a block into another block.
 
+* bug 7534 fixed - On a RegionToSuperBlock action, the exported block parent
+                   field were not updated with the new parent diagram.
+
 * bug 7540 fixed - Xcos did not serialized well ScilabInteger types. This 
                    produced bugs on the LOGIC and BITSET blocks.
 
