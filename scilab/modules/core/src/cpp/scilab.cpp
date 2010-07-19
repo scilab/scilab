@@ -52,6 +52,7 @@ extern "C"
 #include "../../../history_manager/includes/HistoryManager.h"
 #include "../../../history_manager/includes/InitializeHistoryManager.h"
 #include "../../../history_manager/includes/TerminateHistoryManager.h"
+#include "../../../history_manager/src/c/getCommentDateSession.h"
 
 #ifdef __APPLE__
 #include "../../../shell/src/c/others/initMacOSXEnv.h"
@@ -313,17 +314,15 @@ static int interactiveMain (void)
 
     banner();
 
-    char *commentbeginsession = NULL;
     InitializeHistoryManager();
-
 /* add date & time @ begin session */
-//commentbeginsession = getCommentDateSession(TRUE);
-//if (commentbeginsession)
-//  {
-//appendLineToScilabHistory(commentbeginsession);
-//FREE(commentbeginsession);
-//commentbeginsession=NULL;
-//  }
+    char *commentbeginsession = getCommentDateSession();
+    if (commentbeginsession)
+    {
+        appendLineToScilabHistory(commentbeginsession);
+        FREE(commentbeginsession);
+        commentbeginsession=NULL;
+    }
 
 
 

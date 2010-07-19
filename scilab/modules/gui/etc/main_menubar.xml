@@ -146,7 +146,7 @@
     </menu>
 
     <!-- Applications menu -->
-    <menu label="&amp;Applications" enabled="false">
+    <menu label="&amp;Applications" enabled="true">
         <submenu label="&amp;SciNotes">
             <callback instruction='editor();' type="0"/>
         </submenu>
