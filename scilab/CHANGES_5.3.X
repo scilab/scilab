@@ -36,6 +36,9 @@ Bug Fixes:
 
 * bug 7183 fixed - update help file of link about the output argument.
 
+* bug 7388 fixed - A java exception was thrown when we clicked on a menu created
+                   using uimenu and this menu had no child.
+
 * bug 7396 fixed - On I/O blocks used in SuperBlocks, empty index threw a 
                    decoding exception.
 
