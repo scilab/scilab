@@ -35,7 +35,10 @@ function xcosBlockInterface(hdf5FileToLoad, hdf5FileToSave, ...
 	end
 	//end of for backward compatibility for scifunc
 
-	import_from_hdf5(hdf5FileToLoad);
+	status = import_from_hdf5(hdf5FileToLoad);
+	if ~status then
+		mprintf(gettext("%s: Unable to import from data from %s"), "xcosBlockInterface", hdf5FileToLoad);
+	end
 	
 	ierr = execstr("[new_scs_m, y, typ] = interfaceAlias(job, scs_m, [])", 'errcatch');
 	if ierr <> 0 then
