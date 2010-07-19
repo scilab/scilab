@@ -20,7 +20,6 @@
 //        Initial guess for optimization algorithm.
 //  options : an optional struct, as provided by optimset
 //
-// TODO : implement Implement the following fminsearch features : Display, OutputFcn, PlotFcns
 function [x,fval,exitflag,output] = fminsearch ( varargin )
   [lhs,rhs]=argn();
   if rhs<>2 & rhs<>3 then

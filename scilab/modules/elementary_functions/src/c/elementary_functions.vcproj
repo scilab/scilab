@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
 	Name="elementary_functions"
 	ProjectGUID="{5B110267-7C18-437C-B87D-DBA2B50729E9}"
 	RootNamespace="elementary_functions"
+	Keyword="Win32Proj"
 	TargetFrameworkVersion="0"
 	>
 	<Platforms>
@@ -20,11 +21,9 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="false"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
+			ConfigurationType="2"
 			CharacterSet="2"
 			>
 			<Tool
@@ -46,18 +45,13 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions=""
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../output_stream/includes;../../../core/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../localization/includes;../../../double/includes;../../../operations/includes;../../../api_scilab/includes"
-				PreprocessorDefinitions="_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../elementary_functions/includes;../../../api_scilab/includes;../../../operations/includes;../../../double/includes"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;ELEMENTARY_FUNCTIONS_EXPORTS"
+				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=""
-				AssemblerListingLocation="$(ConfigurationName)/"
-				ObjectFile="$(ConfigurationName)/"
-				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
-				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 				CompileAs="0"
 			/>
@@ -66,19 +60,31 @@
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG"
-				Culture="1036"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				Description="Make dependencies"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)elem_func_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)elem_func.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)sparse_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)sparse.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)cacsd_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)cacsd_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)api_scilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)api_scilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)operations_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)operations.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../../../libs/elementary_functions.lib"
-				SuppressStartupBanner="true"
+				Name="VCLinkerTool"
+				AdditionalDependencies="LibScilab.lib elementary_functions_f.lib elem_func.lib sparse.lib cacsd_f.lib operations.lib api_scilab.lib"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
+				LinkIncremental="1"
+				ModuleDefinitionFile=""
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
+				TargetMachine="1"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -90,17 +96,17 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def elementary_functions.def &gt;nul&#x0D;&#x0A;copy elementary_functions.def ..\..\..\..\..\libs\elementary_functions.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
 			Name="Debug|x64"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="false"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
+			ConfigurationType="2"
 			CharacterSet="2"
 			>
 			<Tool
@@ -122,18 +128,13 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../output_stream/includes;../../../core/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../localization/includes;../../../double/includes;../../../operations/includes;../../../api_scilab/includes"
-				PreprocessorDefinitions="_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../elementary_functions/includes;../../../api_scilab/includes;../../../operations/includes;../../../double/includes"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;ELEMENTARY_FUNCTIONS_EXPORTS"
+				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=""
-				AssemblerListingLocation="$(ConfigurationName)/"
-				ObjectFile="$(ConfigurationName)/"
-				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
-				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 				CompileAs="0"
 			/>
@@ -142,19 +143,31 @@
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG"
-				Culture="1036"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				Description="Make dependencies"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)elem_func_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)elem_func.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)sparse_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)sparse.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)cacsd_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)cacsd_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)api_scilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)api_scilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)operations_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)operations.lib&quot; 1&gt;NUL 2&gt;NUL"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../../../libs/elementary_functions.lib"
-				SuppressStartupBanner="true"
+				Name="VCLinkerTool"
+				AdditionalDependencies="LibScilab.lib elementary_functions_f.lib elem_func.lib sparse.lib cacsd_f.lib operations.lib api_scilab.lib"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
+				LinkIncremental="1"
+				ModuleDefinitionFile=""
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
+				TargetMachine="17"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -166,18 +179,19 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def elementary_functions.def &gt;nul&#x0D;&#x0A;copy elementary_functions.def ..\..\..\..\..\libs\elementary_functions.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="false"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
+			ConfigurationType="2"
 			CharacterSet="2"
+			WholeProgramOptimization="0"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -197,23 +211,17 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions=""
-				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories=".;../../includes;../../../output_stream/includes;../../../core/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../localization/includes;../../../double/includes;../../../operations/includes;../../../api_scilab/includes"
-				PreprocessorDefinitions="NDEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE"
+				WholeProgramOptimization="false"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../elementary_functions/includes;../../../api_scilab/includes;../../../operations/includes;../../../double/includes"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;ELEMENTARY_FUNCTIONS_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
-				EnableFunctionLevelLinking="true"
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=""
-				AssemblerListingLocation="$(ConfigurationName)/"
-				ObjectFile="$(ConfigurationName)/"
-				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
-				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="false"
+				DebugInformationFormat="3"
 				CompileAs="0"
 			/>
 			<Tool
@@ -221,19 +229,34 @@
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
-				Culture="1036"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				Description="Make dependencies"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)elem_func_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)elem_func.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)sparse_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)sparse.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)cacsd_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)cacsd_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)api_scilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)api_scilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)operations_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)operations.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../../../libs/elementary_functions.lib"
-				SuppressStartupBanner="true"
+				Name="VCLinkerTool"
+				AdditionalDependencies="LibScilab.lib elementary_functions_f.lib elem_func.lib sparse.lib cacsd_f.lib operations.lib api_scilab.lib"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
+				LinkIncremental="1"
+				ModuleDefinitionFile=""
+				GenerateDebugInformation="false"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				LinkTimeCodeGeneration="0"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
+				TargetMachine="1"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -245,18 +268,19 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def elementary_functions.def &gt;nul&#x0D;&#x0A;copy elementary_functions.def ..\..\..\..\..\libs\elementary_functions.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
 			Name="Release|x64"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="false"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
+			ConfigurationType="2"
 			CharacterSet="2"
+			WholeProgramOptimization="0"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -276,23 +300,17 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories=".;../../includes;../../../output_stream/includes;../../../core/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../localization/includes;../../../double/includes;../../../operations/includes;../../../api_scilab/includes"
-				PreprocessorDefinitions="NDEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE"
+				WholeProgramOptimization="false"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../elementary_functions/includes;../../../api_scilab/includes;../../../operations/includes;../../../double/includes"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;ELEMENTARY_FUNCTIONS_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
-				EnableFunctionLevelLinking="true"
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=""
-				AssemblerListingLocation="$(ConfigurationName)/"
-				ObjectFile="$(ConfigurationName)/"
-				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
-				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="false"
+				DebugInformationFormat="3"
 				CompileAs="0"
 			/>
 			<Tool
@@ -300,19 +318,34 @@
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
-				Culture="1036"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				Description="Make dependencies"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)elem_func_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)elem_func.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)sparse_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)sparse.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)cacsd_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)cacsd_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)api_scilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)api_scilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)operations_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)operations.lib&quot; 1&gt;NUL 2&gt;NUL"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../../../libs/elementary_functions.lib"
-				SuppressStartupBanner="true"
+				Name="VCLinkerTool"
+				AdditionalDependencies="LibScilab.lib elementary_functions_f.lib elem_func.lib sparse.lib cacsd_f.lib operations.lib api_scilab.lib"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
+				LinkIncremental="1"
+				ModuleDefinitionFile=""
+				GenerateDebugInformation="false"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				LinkTimeCodeGeneration="0"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
+				TargetMachine="17"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -324,8 +357,10 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def elementary_functions.def &gt;nul&#x0D;&#x0A;copy elementary_functions.def ..\..\..\..\..\libs\elementary_functions.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -357,15 +392,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\DllmainElementary_functions.c"
+				>
+			</File>
+			<File
 				RelativePath=".\dmsum.c"
 				>
 			</File>
 			<File
 				RelativePath=".\dsearch.c"
-				>
-			</File>
-			<File
-				RelativePath=".\expm.c"
 				>
 			</File>
 			<File
@@ -403,6 +438,38 @@
 			<File
 				RelativePath=".\IsEqualVar.c"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						CompileAs="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						CompileAs="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						CompileAs="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						CompileAs="0"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\matrix_generation.c"
@@ -581,6 +648,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_rat.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_real.c"
 				>
 			</File>
@@ -692,7 +763,7 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath="..\..\includes\basic_functions.h"
+				RelativePath="..\..\includes\dynlib_elementary_functions.h"
 				>
 			</File>
 			<File
@@ -701,10 +772,6 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\finite.h"
-				>
-			</File>
-			<File
-				RelativePath=".\gsort.h"
 				>
 			</File>
 			<File
@@ -724,39 +791,23 @@
 				>
 			</File>
 			<File
-				RelativePath=".\IsEqualVar.h"
-				>
-			</File>
-			<File
-				RelativePath=".\qsort-char.h"
-				>
-			</File>
-			<File
-				RelativePath=".\qsort-double.h"
-				>
-			</File>
-			<File
-				RelativePath=".\qsort-int.h"
-				>
-			</File>
-			<File
-				RelativePath=".\qsort-short.h"
-				>
-			</File>
-			<File
-				RelativePath=".\qsort-string.h"
-				>
-			</File>
-			<File
-				RelativePath=".\qsort.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\includes\rea2b.h"
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\rea2db.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\sci_tools.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\scidcopy.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\unsfdcopy.h"
 				>
 			</File>
 			<File
@@ -779,13 +830,61 @@
 		<Filter
 			Name="Libraries Dependencies"
 			>
+			<Filter
+				Name="Imports"
+				>
+				<File
+					RelativePath=".\api_scilab_Import.def"
+					>
+				</File>
+				<File
+					RelativePath=".\cacsd_f_Import.def"
+					>
+				</File>
+				<File
+					RelativePath=".\elem_func_Import.def"
+					>
+				</File>
+				<File
+					RelativePath=".\elementary_functions_f_Import.def"
+					>
+				</File>
+				<File
+					RelativePath=".\LibScilab_Import.def"
+					>
+				</File>
+				<File
+					RelativePath=".\Operations_Import.def"
+					>
+				</File>
+				<File
+					RelativePath=".\sparse_Import.def"
+					>
+				</File>
+			</Filter>
 		</Filter>
+		<Filter
+			Name="Resource File"
+			>
+			<File
+				RelativePath=".\elementary_functions.rc"
+				>
+			</File>
+		</Filter>
+		<File
+			RelativePath="..\..\..\..\bin\blasplus.lib"
+			>
+		</File>
 		<File
 			RelativePath="..\..\elementary_functions.iss"
 			>
 		</File>
 		<File
 			RelativePath="..\..\sci_gateway\elementary_functions_gateway.xml"
+			>
+		</File>
+		<File
+			RelativePath="..\..\..\..\bin\lapack.lib"
 			>
 		</File>
 		<File

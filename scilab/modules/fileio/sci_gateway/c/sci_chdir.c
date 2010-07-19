@@ -9,7 +9,7 @@
  * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
-/*--------------------------------------------------------------------------*/
+ */
 #include "gw_fileio.h"
 #include "stack-c.h"
 #include "Scierror.h"

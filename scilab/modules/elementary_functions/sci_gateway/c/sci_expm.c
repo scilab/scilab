@@ -26,7 +26,9 @@ typedef struct {
 	double c[41];
 	int ndng;
 } DCOEFF_struct;
-DCOEFF_struct C2F(dcoeff);
+
+__declspec(dllexport) DCOEFF_struct C2F(dcoeff);
+
 #endif
 
 static double spdblExpmC[41] = {0};

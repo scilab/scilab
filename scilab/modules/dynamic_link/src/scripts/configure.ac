@@ -1,6 +1,15 @@
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006/2007
+#
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) INRIA - 2006-2008 - Sylvestre Ledru
+# Copyright (C) DIGITEO - 2009-2010 - Sylvestre Ledru
+# 
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at    
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+#
+
 ##########
 ### Configure.ac is used to create the configure file which will be 
 ### used by the incremental link to detect compilers, flags, linker...
@@ -47,12 +56,8 @@ case "$host" in
 	 CFLAGS=" $CFLAGS -I/sw/include "
 	 CPPFLAGS=" $CPPFLAGS -I/sw/include "
 	 LDFLAGS=" $LDFLAGS -L/sw/lib/ "
-         case "$host" in
-          x86_64-apple-darwin*|i386-apple-darwin*)
-	        CC=" $CC -arch x86_64 "
-	        CXX=" $CXX -arch x86_64 "
-                ;;
-     esac
+     CC=" $CC -arch x86_64 "
+     CXX=" $CXX -arch x86_64 "
 esac
 
 # Configure the Makefile

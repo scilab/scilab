@@ -17,7 +17,7 @@ function add_demo(demotitle,path)
   
   path=pathconvert(path,%f,%t);
   
-  if fileinfo(path)==[] then
+  if ~isfile(path) then
     error(msprintf(gettext("%s: The file %s does not exist.\n"),"add_demo",path));
   end
   

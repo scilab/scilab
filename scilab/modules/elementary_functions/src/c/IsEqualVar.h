@@ -18,6 +18,7 @@
 #include <string.h>
 #include "stack-c.h"
 #include "MALLOC.h"
+#include "stack-def.h"
 
 static int IsEqualDoubleMat(double *d1, double *d2);
 static int IsEqualPolyMat(double *d1, double *d2);
@@ -62,16 +63,6 @@ int MaxRec; /* allocated size for the array Rrec, 0 means not allocated */
 /*#define DEBUG_LIST(fmt, ...) sciprint(fmt, __VA_ARGS__) */ ;
 /*#define DEBUG_OVERLOADING(fmt, ...) sciprint(fmt, __VA_ARGS__) */ ;
 
-
-
-
-/* Scilab parser recursion data and functions*/
-static int *Ids     = C2F(recu).ids-nsiz-1;
-static int *Rstk    = C2F(recu).rstk-1;
-static int *Pstk    = C2F(recu).pstk-1;
-#define Pt (C2F(recu).pt)
-
-int Ptover(int n);
 
 /**intisequalvar
  * Gateway for isequalbitwise and isequal builtins

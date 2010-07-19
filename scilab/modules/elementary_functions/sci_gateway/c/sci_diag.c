@@ -24,6 +24,7 @@ int diag_poly(int* _piKey, int* _piAddress, int _iStartPos);
 
 extern int sci_pdiag(char *fname,unsigned long fname_len);
 
+
 int sci_diag(char *fname, int*_piKey)
 {
 	SciErr sciErr;

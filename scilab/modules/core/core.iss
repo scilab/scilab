@@ -1,9 +1,17 @@
-;##############################################################################################################
-; Script d'installation Inno Setup (5.2.1) pour scilab
-; Allan CORNET
-; Version TRUNK
-; Copyright INRIA 2007
-;##############################################################################################################
+;
+; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+; Copyright (C) INRIA - Allan CORNET
+; Copyright (C) DIGITEO - 2010 - Allan CORNET
+;
+; This file must be used under the terms of the CeCILL.
+; This source file is licensed as described in the file COPYING, which
+; you should have received as part of this distribution.  The terms
+; are also available at
+; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+;
+;--------------------------------------------------------------------------------------------------------------
+; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
+;
 ;--------------------------------------------------------------------------------------------------------------
 ; core module
 ;--------------------------------------------------------------------------------------------------------------
@@ -15,7 +23,7 @@ Source: modules\{#CORE}\readme.txt; DestDir: {app}\modules\{#CORE}; Components: 
 Source: modules\{#CORE}\license.txt; DestDir: {app}\modules\{#CORE}; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\changelog.txt; DestDir: {app}\modules\{#CORE}; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#CORE}\sci_gateway\core_gateway.xml; DestDir: {app}\modules\{#CORE}\sci_gateway; Components: {#COMPN_SCILAB}
+Source: modules\{#CORE}\sci_gateway\{#CORE}_gateway.xml; DestDir: {app}\modules\{#CORE}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#CORE}\etc\{#CORE}.quit; DestDir: {app}\modules\{#CORE}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\etc\{#CORE}.start; DestDir: {app}\modules\{#CORE}\etc; Components: {#COMPN_SCILAB}
@@ -41,6 +49,7 @@ Source: modules\{#CORE}\includes\stack1.h; DestDir: {app}\modules\{#CORE}\includ
 Source: modules\{#CORE}\includes\stack2.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\stack3.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\stack-c.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#CORE}\includes\sci_types.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\stack-def.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\stack.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\stackinfo.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
@@ -48,6 +57,8 @@ Source: modules\{#CORE}\includes\stackTypeVariable.h; DestDir: {app}\modules\{#C
 Source: modules\{#CORE}\includes\version.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\warningmode.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\getversion.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#CORE}\includes\Thread_Wrapper.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
+
 ;
 Source: modules\{#CORE}\macros\buildmacros.sce; DestDir: {app}\modules\{#CORE}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\macros\buildmacros.bat; DestDir: {app}\modules\{#CORE}\macros; Components: {#COMPN_SCILAB}

@@ -102,5 +102,4 @@ AC_DEFUN([AC_JNI_HDF5], [
       ])
       unset LD_LIBRARY_PATH
       LD_LIBRARY_PATH=$LD_LIBRARY_PATH_save
-    fi
 ])

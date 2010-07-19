@@ -1,31 +1,33 @@
-;##############################################################################################################
-; Scilab ( http://mwww.scilab.org/ ) - This file is part of Scilab
-; Copyright (C) 2009 - DIGITEO - Allan CORNET
+;
+; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+
+; Copyright (C) DIGITEO - 2009-2010 - Allan CORNET
 ;
 ; This file must be used under the terms of the CeCILL.
 ; This source file is licensed as described in the file COPYING, which
 ; you should have received as part of this distribution.  The terms
 ; are also available at
 ; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-;##############################################################################################################
+;
+;--------------------------------------------------------------------------------------------------------------
+; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
+;
 ;--------------------------------------------------------------------------------------------------------------
 ; xcos module
 ;--------------------------------------------------------------------------------------------------------------
 ;
 #define XCOS "xcos"
 ;
-Source: bin\xcos.dll; DestDir: {app}\bin; Components: {#COMPN_XCOS}
+Source: bin\{#XCOS}.dll; DestDir: {app}\bin; Components: {#COMPN_XCOS}
 ;
-Source: thirdparty\jgraphx.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
-;
-Source: modules\{#XCOS}\jar\org.scilab.modules.xcos.jar; DestDir: {app}\modules\{#XCOS}\jar; Components: {#COMPN_XCOS}
+Source: modules\{#XCOS}\jar\org.scilab.modules.{#XCOS}.jar; DestDir: {app}\modules\{#XCOS}\jar; Components: {#COMPN_XCOS}
 ;
 Source: modules\{#XCOS}\VERSION.xml; DestDir: {app}\modules\{#XCOS}; Components: {#COMPN_XCOS}
 Source: modules\{#XCOS}\readme.txt; DestDir: {app}\modules\{#XCOS}; Components: {#COMPN_XCOS}
 Source: modules\{#XCOS}\license.txt; DestDir: {app}\modules\{#XCOS}; Components: {#COMPN_XCOS}
 Source: modules\{#XCOS}\changelog.txt; DestDir: {app}\modules\{#XCOS}; Components: {#COMPN_XCOS}
 ;
-Source: modules\{#XCOS}\sci_gateway\xcos_gateway.xml; DestDir: {app}\modules\{#XCOS}\sci_gateway; Components: {#COMPN_XCOS}
+Source: modules\{#XCOS}\sci_gateway\{#XCOS}_gateway.xml; DestDir: {app}\modules\{#XCOS}\sci_gateway; Components: {#COMPN_XCOS}
 ;
 Source: modules\{#XCOS}\etc\{#XCOS}.quit; DestDir: {app}\modules\{#XCOS}\etc; Components: {#COMPN_XCOS}
 Source: modules\{#XCOS}\etc\{#XCOS}.start; DestDir: {app}\modules\{#XCOS}\etc; Components: {#COMPN_XCOS}
@@ -36,7 +38,7 @@ Source: modules\{#XCOS}\includes\*.h; DestDir: {app}\modules\{#XCOS}\includes; C
 ;
 Source: modules\{#XCOS}\images\icons\*.png; DestDir: {app}\modules\{#XCOS}\images\icons; Components: {#COMPN_XCOS}
 Source: modules\{#XCOS}\images\blocks\*.svg; DestDir: {app}\modules\{#XCOS}\images\blocks; Components: {#COMPN_XCOS}
-Source: modules\{#XCOS}\images\palettes\*.jpg; DestDir: {app}\modules\{#XCOS}\images\palettes; Components: {#COMPN_XCOS}
+Source: modules\{#XCOS}\images\palettes\*.png; DestDir: {app}\modules\{#XCOS}\images\palettes; Components: {#COMPN_XCOS}
 ;
 Source: modules\{#XCOS}\macros\buildmacros.sce; DestDir: {app}\modules\{#XCOS}\macros; Components: {#COMPN_XCOS}
 Source: modules\{#XCOS}\macros\buildmacros.bat; DestDir: {app}\modules\{#XCOS}\macros; Components: {#COMPN_XCOS}

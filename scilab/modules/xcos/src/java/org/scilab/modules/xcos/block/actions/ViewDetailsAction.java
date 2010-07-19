@@ -14,17 +14,17 @@
 
 package org.scilab.modules.xcos.block.actions;
 
-import static org.scilab.modules.graph.utils.ScilabInterpreterManagement.buildCall;
+import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.buildCall;
 
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
 
 import org.apache.commons.logging.LogFactory;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.VertexSelectionDependantAction;
-import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
-import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SplitBlock;

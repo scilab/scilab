@@ -69,7 +69,10 @@ libscitclsci_la_SOURCES = $(TCLSCI_C_SOURCES) $(GATEWAY_C_SOURCES)
 CHECK_SRC= $(libscitclsci_la_SOURCES)
 INCLUDE_FLAGS = $(libscitclsci_la_CFLAGS)
 
-libscitclsci_la_LIBADD =  $(top_builddir)/modules/action_binding/libsciaction_binding.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscitclsci_la_LIBADD = 	$(top_builddir)/modules/fileio/libscifileio.la \
+							$(top_builddir)/modules/core/libscicore.la \
+							$(top_builddir)/libs/MALLOC/libscimalloc.la \
+							$(top_builddir)/modules/output_stream/libscioutput_stream.la
 #### Target ######
 modulename=tclsci
 

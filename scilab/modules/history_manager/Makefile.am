@@ -8,7 +8,6 @@ HISTORY_MANAGER_CPP_SOURCES = src/cpp/CommandLine.cpp \
 src/cpp/HistoryFile.cpp \
 src/cpp/HistoryManager.cpp \
 src/cpp/HistorySearch.cpp
-
 # List of the c files
 HISTORY_MANAGER_C_SOURCES = src/c/getCommentDateSession.c
 
@@ -35,6 +34,12 @@ HISTORY_MANAGER_C_SOURCES += src/jni/HistoryManagement_wrap.c
 
 USEANT=1
 
+GIWS_WRAPPERS =
+
+if GIWS
+BUILT_SOURCES=giws
+endif
+
 endif
 
 
@@ -44,24 +49,16 @@ libscihistory_manager_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) \
 -I$(srcdir)/includes/ \
 -I$(srcdir)/src/cpp/ \
 -I$(srcdir)/src/c/ \
+-I$(srcdir)/src/jni/ \
+-I$(top_srcdir)/modules/fileio/includes/ \
 -I$(top_srcdir)/modules/api_scilab/includes \
 -I$(top_srcdir)/modules/localization/includes \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
+-I$(top_srcdir)/modules/console/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes/ \
 -I$(top_srcdir)/modules/system_env/includes/ \
--I$(top_srcdir)/modules/fileio/includes/
-
-# Includes need for the compilation
-libscihistory_manager_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
--I$(srcdir)/includes/ \
--I$(srcdir)/src/c/ \
--I$(top_srcdir)/libs/MALLOC/includes/ \
--I$(top_srcdir)/modules/console/includes/ \
--I$(top_srcdir)/modules/history_manager/includes/ \
--I$(top_srcdir)/modules/output_stream/includes/ \
--I$(top_srcdir)/modules/fileio/includes/ \
--I$(top_srcdir)/modules/api_scilab/includes/ \
--I$(top_srcdir)/modules/operations/includes/
+-I$(top_srcdir)/modules/operations/includes/ \
+-I$(top_srcdir)/modules/history_browser/includes/
 
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding

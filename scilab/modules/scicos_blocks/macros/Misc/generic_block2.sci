@@ -67,7 +67,7 @@ case 'set' then
     funtyp=int(funtyp)
     if funtyp<0 then message('function type cannot be negative');ok=%f;end
     if [ci;co]<>[] then
-      if maxi([ci;co])>1 then message('vector event links not supported');ok=%f;end
+      if max([ci;co])>1 then message('vector event links not supported');ok=%f;end
     end
     depu=stripblanks(depu);if part(depu,1)=='y' then depu=%t; else depu=%f;end
     dept=stripblanks(dept);if part(dept,1)=='y' then dept=%t; else dept=%f;end

@@ -31,7 +31,6 @@ SciErr matrix_int(int* _piKey, int* _piAddress, int _iRowsRet, int _iColsRet);
 SciErr matrix_bool(int* _piKey, int* _piAddress, int _iRowsRet, int _iColsRet);
 
 /*--------------------------------------------------------------------------*/
-/*--------------------------------------------------------------------------*/
 int sci_scimatrix(char *fname, int* _piKey)
 {
 	SciErr sciErr;

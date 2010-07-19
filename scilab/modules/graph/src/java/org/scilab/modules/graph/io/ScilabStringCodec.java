@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2009-2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2010-2010 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,11 +15,10 @@ package org.scilab.modules.graph.io;
 
 import java.util.Map;
 
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.types.scilabTypes.ScilabString;
-import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.io.mxCodecRegistry;
@@ -28,13 +28,7 @@ import com.mxgraph.io.mxCodecRegistry;
  */
 public class ScilabStringCodec extends ScilabObjectCodec {
 
-    
     private static final String VALUE = "value";
-    private static final String COLUMN = "column";
-    private static final String LINE = "line";
-    private static final String DATA = "data";
-    private static final String HEIGHT = "height";
-    private static final String WIDTH = "width";
 
     /**
      * Default constructor
@@ -77,73 +71,86 @@ public class ScilabStringCodec extends ScilabObjectCodec {
 	return node;
     }
 
-    /**
-     * Parses the given node into the object or returns a new object
+	/**
+	 * Parses the given node into the object or returns a new object
 	 * representing the given node.
 	 * 
-	 * @param dec Codec that controls the encoding process.
-	 * @param node XML node to be decoded.
-	 * @param into Optional object to encode the node into.
+	 * @param dec
+	 *            Codec that controls the encoding process.
+	 * @param node
+	 *            XML node to be decoded.
+	 * @param into
+	 *            Optional object to encode the node into.
 	 * @return Returns the resulting object that represents the given XML node
-	 * or the object given to the method as the into parameter.
+	 *         or the object given to the method as the into parameter.
 	 */
-    @Override
-    public Object decode(mxCodec dec, Node node, Object into) {
-	Object obj = null;
-	try {
-	    if (!(node instanceof Element)) { return null; }
-	    obj = cloneTemplate(node);
+	@Override
+	public Object decode(mxCodec dec, Node node, Object into) {
+		ScilabString obj = null;
 
+		try {
+			if (node.getNodeType() != Node.ELEMENT_NODE) {
+				throw new UnrecognizeFormatException();
+			}
+			obj = (ScilabString) cloneTemplate(node);
 
-	    // attrs = {"as", "height", "width"}
-	    NamedNodeMap attrs = node.getAttributes();
-	    int heightXMLPosition = -1;
-	    int widthXMLPosition = -1;
-	    for (int i = 0; i < attrs.getLength(); i++) {
-		Node attr = attrs.item(i);
-		if (attr.getNodeName().compareToIgnoreCase(WIDTH) == 0) { widthXMLPosition = i; }
-		if (attr.getNodeName().compareToIgnoreCase(HEIGHT) == 0) { heightXMLPosition = i; }
-	    }
-	    if (heightXMLPosition == -1 || widthXMLPosition == -1) { throw new UnrecognizeFormatException(); }
+			// attrs = {"as", "height", "width"}
+			final NamedNodeMap attrs = node.getAttributes();
+			if (attrs == null) {
+				throw new UnrecognizeFormatException();
+			}
 
-	    int height = Integer.parseInt(attrs.item(heightXMLPosition).getNodeValue());
-	    int width = Integer.parseInt(attrs.item(widthXMLPosition).getNodeValue());
+			final int height = getHeight(attrs);
+			final int width = getWidth(attrs);
 
-	    String[][] data = new String[height][width];
-	    NodeList allValues = node.getChildNodes();
-	    fillData(data, allValues);
+			if (height * width == 0) {
+				return obj;
+			}
+			
+			final String[][] data = new String[height][width];
+			fillData(node, data);
+			
+			obj.setData(data);
 
-	    ((ScilabString) obj).setData(data);
-	} catch (UnrecognizeFormatException e) {
-	    e.printStackTrace();
-	}
-	return obj;
-    }
-
-	/**
-	 * Fill the data from the node values 
-	 * @param data where to put data
-	 * @param allValues the parsed values
-	 * @throws UnrecognizeFormatException when the values are not recognized
-	 */
-	private void fillData(String[][] data, NodeList allValues)
-			throws UnrecognizeFormatException {
-		for (int i = 0; i < allValues.getLength(); ++i) {
-		int lineXMLPosition = -1;
-		int columnXMLPosition = -1;
-		int valueXMLPosition = -1;
-		NamedNodeMap dataAttributes = allValues.item(i).getAttributes();
-		for (int j = 0; j < dataAttributes.getLength(); j++) {
-		    Node attr = dataAttributes.item(j);
-		    if (attr.getNodeName().compareToIgnoreCase(LINE) == 0) { lineXMLPosition = j; }
-		    if (attr.getNodeName().compareToIgnoreCase(COLUMN) == 0) { columnXMLPosition = j; }
-		    if (attr.getNodeName().compareToIgnoreCase(VALUE) == 0) { valueXMLPosition = j; }
+		} catch (UnrecognizeFormatException e) {
+			LogFactory.getLog(ScilabStringCodec.class).error(e);
+		} catch (NumberFormatException e) {
+			LogFactory.getLog(ScilabStringCodec.class).error(e);
 		}
 
-		if (lineXMLPosition == -1 || columnXMLPosition == -1 || valueXMLPosition == -1) { throw new UnrecognizeFormatException(); }
-		int line = Integer.parseInt(dataAttributes.item(lineXMLPosition).getNodeValue());
-		int column = Integer.parseInt(dataAttributes.item(columnXMLPosition).getNodeValue());
-		data[line][column] = dataAttributes.item(valueXMLPosition).getNodeValue();
-	    }
+		return obj;
+	}
+
+	/**
+	 * Fill the data from the node.
+	 * 
+	 * @param node
+	 *            the ScilabString node
+	 * @param data
+	 *            the allocated data
+	 * @throws UnrecognizeFormatException
+	 *             when we are unable to decode the node.
+	 */
+	private void fillData(Node node, final String[][] data)
+			throws UnrecognizeFormatException {
+		for (Node n = node.getFirstChild(); n != null; n = n.getNextSibling()) {
+			if (n.getNodeType() != Node.ELEMENT_NODE) {
+				continue;
+			}
+
+			final NamedNodeMap dataAttrs = n.getAttributes();
+			if (dataAttrs == null) {
+				throw new UnrecognizeFormatException();
+			}
+
+			final int column = getColumnIndex(dataAttrs);
+			final int line = getLineIndex(dataAttrs);
+
+			final Node v = dataAttrs.getNamedItem(VALUE);
+			if (v == null) {
+				throw new UnrecognizeFormatException();
+			}
+			data[line][column] = v.getNodeValue();
+		}
 	}
 }

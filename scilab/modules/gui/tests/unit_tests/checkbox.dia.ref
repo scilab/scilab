@@ -7,7 +7,8 @@
 // Unitary tests for Scilab Java checkboxes
 // Exec tests common to all uicontrols
 clear uicontrol_generic_test
-uicontrol_generic_test("checkbox");
+exec("SCI/modules/gui/tests/unit_tests/uicontrol_generic_test.sci");
+if uicontrol_generic_test("checkbox") <> 0 then bugmes();quit;end
 // Default relief value
 h = uicontrol("parent", scf(), "style", "checkbox");
 if get(h, "relief") <> "flat" then bugmes();quit;end

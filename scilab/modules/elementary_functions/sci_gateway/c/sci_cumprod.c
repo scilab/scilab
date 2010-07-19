@@ -18,6 +18,7 @@
 #include "api_oldstack.h"
 #include "api_oldstack.h"
 
+
 int sci_cumprod(char *fname, int*_piKey)
 {
 	SciErr sciErr;

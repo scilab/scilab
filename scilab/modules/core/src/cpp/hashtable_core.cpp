@@ -179,7 +179,7 @@ static BOOL doEnterFunction(int *key,char *name, int *scilab_funptr)
 			, key_less_than(tmp.key)), tmp);
 		if(table.size() > hashtable_core_maxFilled)
 		{
-			hashtable_core_maxFilled = table.size();
+			hashtable_core_maxFilled = (unsigned int)table.size();
 		}
 		return TRUE;
 	}
@@ -249,7 +249,7 @@ struct copy_name : std::unary_function<entry const&, char**> {
 /*----------------------------------------------------------------------------*/
 char **GetFunctionsList(int *sizeList)
 {
-	*sizeList= std::count_if(table.begin(), table.end(), has_namefunction());
+	*sizeList= (int)std::count_if(table.begin(), table.end(), has_namefunction());
 	char **ListFunctions = static_cast<char**>(MALLOC(sizeof(char*)*(*sizeList)));
 	if ( ListFunctions )
 	{

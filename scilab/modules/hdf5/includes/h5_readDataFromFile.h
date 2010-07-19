@@ -33,6 +33,8 @@ HDF5_SCILAB_IMPEXP int getDatasetPrecision(int _iDatasetId, int* _piPrec);
 
 HDF5_SCILAB_IMPEXP int getSparseDimension(int _iDatasetId, int* _piRows, int * _piCols, int* _piNbItem);
 
+HDF5_SCILAB_IMPEXP int readEmptyMatrix(int _iDatasetId);
+
 HDF5_SCILAB_IMPEXP int readDoubleMatrix(int _iDatasetId, int _iRows, int _iCols, double *_pdblData);
 HDF5_SCILAB_IMPEXP int readDoubleComplexMatrix(int _iDatasetId, int _iRows, int _iCols, double *_pdblReal, double *_pdblImg);
 

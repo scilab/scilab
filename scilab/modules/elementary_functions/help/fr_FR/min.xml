@@ -12,8 +12,11 @@
 
   <refnamediv>
     <refname>min</refname>
-
     <refpurpose>minimum</refpurpose>
+  </refnamediv>
+ <refnamediv xml:id="mini">
+    <refname>mini</refname>
+    <refpurpose>Equivalent obsolete de la fonction min</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -79,6 +82,11 @@
     <para><literal>[m,k]=min(list(A1,...,An))</literal> est une syntaxe
     équivalente de <literal>[m,k]=min(A1,A2,...,An)</literal></para>
   </refsection>
+  <refsection>
+    <title>Remarque</title>
+    <para>La fonction <literal>mini</literal> est un equivalent
+    obsolete de la fonction <literal>min</literal>.</para>
+ </refsection>
 
   <refsection>
     <title>Exemples</title>

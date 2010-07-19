@@ -50,7 +50,7 @@ function [npl,nzr,ngn]=bilt(pl,zr,gn,num,den)
   end
   n=coeff(num);
   d=coeff(den);
-  ms=maxi(size(pl));ns=maxi(size(zr));
+  ms=max(size(pl));ns=max(size(zr));
 
   select order
     case 1  then

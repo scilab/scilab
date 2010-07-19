@@ -181,6 +181,7 @@ public class PaletteDiagram extends XcosDiagram {
 	 * @return always false
 	 * @see org.scilab.modules.xcos.graph.XcosDiagram#isCellConnectable(java.lang.Object)
 	 */
+	@Override
 	public boolean isCellConnectable(Object cell) {
 		return false;
 	}

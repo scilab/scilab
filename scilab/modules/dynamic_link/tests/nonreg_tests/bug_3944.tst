@@ -20,7 +20,7 @@
 ilib_verbose(0);
 
 cd(TMPDIR);
-mputl('ilib_mex_build(''libmex'',[''mexf16'',''mexfunction16'',''cmex''],[],[],''Makelib'','''','''','''')','builder.sce');
+mputl('ilib_mex_build(''libmex'',[''mexf16'',''mexfunction16'',''cmex''],[],[],'''','''','''','''')','builder.sce');
 
 mputl([
 '#include ""mex.h""'

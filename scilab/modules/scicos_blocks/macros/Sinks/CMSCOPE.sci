@@ -61,7 +61,7 @@ case 'set' then
       mess=[mess;'Block must have at least one input port';' ']
       ok=%f
     end
-    if mini(in)<=0 then
+    if min(in)<=0 then
       mess=[mess;'Port sizes must be positive';' ']
       ok=%f
     end

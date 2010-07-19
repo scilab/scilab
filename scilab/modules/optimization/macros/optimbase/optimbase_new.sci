@@ -13,7 +13,7 @@
 //   Creates a new Optimization object.
 //
 function newobj = optimbase_new ()
-  newobj = tlist(["T_OPTIMIZATION"
+  newobj = tlist(["TOPTIM"
     "verbose"
     "x0"
     "fx0"

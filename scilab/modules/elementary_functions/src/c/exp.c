@@ -11,7 +11,7 @@
  */
 
 #include "elem_common.h"
-
+#include "exp.h"
 double dexps(double _dblVal)
 {
 	return exp(_dblVal);

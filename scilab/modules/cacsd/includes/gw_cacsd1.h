@@ -16,9 +16,9 @@
 #define __GW_CACSD1__
 /*--------------------------------------------------------------------------*/
 #include "machine.h"
-#include "api_scilab.h"
+#include "dynlib_cacsd.h"
 /*--------------------------------------------------------------------------*/
-int gw_cacsd1(void);
+CACSD_IMPEXP int gw_cacsd1(void);
 /*--------------------------------------------------------------------------*/
 int C2F(scilyap)(char *fname,unsigned long fname_len);
 int C2F(scisylv)(char *fname,unsigned long fname_len);

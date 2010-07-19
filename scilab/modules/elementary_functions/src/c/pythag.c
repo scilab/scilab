@@ -10,6 +10,7 @@
  *
  */
 #include "elem_common.h"
+#include "export_ef.h"
 
 /*
 *     PURPOSE
@@ -35,7 +36,7 @@
 *        Bruno Pincon <Bruno.Pincon@iecn.u-nancy.fr>,
 *        Thanks to Lydia van Dijk <lvandijk@hammersmith-consulting.com>
 */
-double dpythags(double _dblVal1, double _dblVal2)
+EXTERN_EF double dpythags(double _dblVal1, double _dblVal2)
 {
 	double dblSqrt2		= 1.41421356237309504;
 	double dblSqrt2p1	= 2.41421356237309504;

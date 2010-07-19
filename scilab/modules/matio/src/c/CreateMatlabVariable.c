@@ -13,7 +13,7 @@
  */
 
 #include "CreateMatlabVariable.h"
-
+#include "stack-c.h"
 #include "api_scilab.h"
 
 int CreateMatlabVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position)

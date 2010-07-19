@@ -13,6 +13,7 @@
 #include <string.h>
 #include "GetMatlabVariable.h"
 #include "api_scilab.h"
+#include "sci_types.h"
 #include "freeArrayOfString.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"

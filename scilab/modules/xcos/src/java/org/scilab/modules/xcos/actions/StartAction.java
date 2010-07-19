@@ -14,8 +14,8 @@
 
 package org.scilab.modules.xcos.actions;
 
-import static org.scilab.modules.graph.utils.ScilabInterpreterManagement.asynchronousScilabExec;
-import static org.scilab.modules.graph.utils.ScilabInterpreterManagement.buildCall;
+import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.asynchronousScilabExec;
+import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.buildCall;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,10 +24,10 @@ import java.io.IOException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.actions.base.GraphActionManager;
-import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.graph.XcosDiagram;
@@ -76,6 +76,7 @@ public class StartAction extends DefaultAction {
      * @param e the source event
      * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
      */
+	@Override
     public void actionPerformed(ActionEvent e) {
 		final XcosDiagram diagram = ((XcosDiagram) getGraph(e)).getRootDiagram();
 		String cmd;
@@ -119,52 +120,26 @@ public class StartAction extends DefaultAction {
 			throws IOException {
 		String cmd;
 		final StringBuilder command = new StringBuilder();
-		final boolean needCompile = diagram.getEngine().isCompilationNeeded();
-
-		File temp = null;
 		
 		/*
 		 * Log compilation info
 		 */
 		final Log log = LogFactory.getLog(StartAction.class);
-		if (needCompile && log.isTraceEnabled()) {
-			log.trace("diagram need compilation.");
-		} else {
-			log.trace("diagram doesn't need compilation.");
-		}
+		log.trace("start simulation");
 		
 		/*
 		 * Import a valid scs_m structure into Scilab
 		 */
-		if (needCompile) {
-			temp = FileUtils.createTempFile();
-			diagram.dumpToHdf5File(temp.getAbsolutePath());
+		final File temp = FileUtils.createTempFile();
+		diagram.dumpToHdf5File(temp.getAbsolutePath());
 
-			command.append(buildCall("import_from_hdf5", temp.getAbsolutePath()));
-			command.append(buildCall("scicos_debug", diagram.getScicosParameters().getDebugLevel()));
-		} else {
-			command.append(diagram.getEngine().getLoadSimulationDataCommand());
-		}
-
-		/*
-		 * Magic numbers come from scicos partial compilation status.
-		 */
-		String compile;
-		if (needCompile) {
-			compile = "4";
-		} else {
-			compile = "0";
-		}
+		command.append(buildCall("import_from_hdf5", temp.getAbsolutePath()));
+		command.append(buildCall("scicos_debug", diagram.getScicosParameters().getDebugLevel()));
 		
 		/*
-		 * Simulate and store results commands
+		 * Simulate
 		 */
-		command.append("%cpr = xcos_simulate(scs_m, " + compile + ");");
-		command.append(diagram.getEngine().getStoreSimulationDataCommand());
-
-		if (needCompile) {
-			command.append("deletefile(\"" + temp.getAbsolutePath() + "\");");
-		}
+		command.append("xcos_simulate(scs_m, 4); ");
 
 		cmd = command.toString();
 		return cmd;

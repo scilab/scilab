@@ -13,6 +13,8 @@
 package org.scilab.modules.xcos.link.commandcontrol;
 
 import org.scilab.modules.xcos.link.BasicLink;
+import org.scilab.modules.xcos.port.command.CommandPort;
+import org.scilab.modules.xcos.port.control.ControlPort;
 
 /**
  * An command control link connect an {@link ControlPort} to an
@@ -31,6 +33,7 @@ public class CommandControlLink extends BasicLink {
     }
 
     /** @return A red colored activation link identifier */
+	@Override
     public double[][] getColorAndType() {
 	return COLOR_AND_TYPE;
     }

@@ -109,7 +109,7 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
 		
 		// we test if the structure as enough field
 		if (data.size() != DATA_FIELD_NAMES.size()) {
-			throw new WrongStructureException();
+			throw new WrongStructureException(DATA_FIELD_NAMES);
 		}
 		
 		/*
@@ -118,17 +118,17 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
 		
 		// Check the first field
 		if (!(data.get(field) instanceof ScilabString)) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
 		final String[] header = ((ScilabString) data.get(field)).getData()[0];
 		
 		// Checking for the field names
 		if (header.length != DATA_FIELD_NAMES.size()) {
-			throw new WrongStructureException();
+			throw new WrongStructureException(DATA_FIELD_NAMES);
 		}
 		for (int i = 0; i < header.length; i++) {
 			if (!header[i].equals(DATA_FIELD_NAMES.get(i))) {
-				throw new WrongStructureException();
+				throw new WrongStructureException(DATA_FIELD_NAMES);
 			}
 		}
 		
@@ -139,63 +139,63 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
 		// wpar
 		field++;
 		if (!(data.get(field) instanceof ScilabDouble)) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
 		
 		// title
 		field++;
 		if (!(data.get(field) instanceof ScilabString)) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
 		
 		// tol
 		field++;
 		if (!(data.get(field) instanceof ScilabDouble)) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
 		
 		// tf
 		field++;
 		if (!(data.get(field) instanceof ScilabDouble)) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
 		
 		// context
 		field++;
 		if (!(data.get(field) instanceof ScilabString)
 				&& !isEmptyField(data.get(field))) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
 		
 		// void1
 		field++;
 		if (!isEmptyField(data.get(field))) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
-
+		
 		// options
 		field++;
 		if (!(data.get(field) instanceof ScilabTList)) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
-
+		
 		// void2
 		field++;
 		if (!isEmptyField(data.get(field))) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
 
 		// void3
 		field++;
 		if (!isEmptyField(data.get(field))) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
 
 		// doc
 		field++;
 		if (!(data.get(field) instanceof ScilabList)
 				&& !isEmptyField(data.get(field))) {
-			throw new WrongTypeException();
+			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
 	}
 	// CSON: CyclomaticComplexity

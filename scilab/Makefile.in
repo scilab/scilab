@@ -460,6 +460,10 @@ OCAMLDEP = @OCAMLDEP@
 OCAMLLEX = @OCAMLLEX@
 OCAMLOPT = @OCAMLOPT@
 OCAMLYACC = @OCAMLYACC@
+OPENMP_CFLAGS = @OPENMP_CFLAGS@
+OPENMP_CXXFLAGS = @OPENMP_CXXFLAGS@
+OPENMP_ENABLE = @OPENMP_ENABLE@
+OPENMP_LIBS = @OPENMP_LIBS@
 OTOOL = @OTOOL@
 OTOOL64 = @OTOOL64@
 PACKAGE = @PACKAGE@
@@ -591,7 +595,7 @@ changelogs = CHANGES CHANGES_5.1.X
 bin_SCRIPTS = bin/scilab bin/scilab-adv-cli bin/scilab-cli
 scilab_bin_LDFLAGS = $(am__append_1)
 scilab_cli_bin_LDFLAGS = 
-scilab_bin_CFLAGS = 
+scilab_bin_CFLAGS = -I$(top_srcdir)/modules/io/includes	
 # --no-undefined --relax
 
 # libshell is mandatory here since main_linux.c depends on it.
@@ -629,7 +633,7 @@ scilab_bin_CPPFLAGS = $(COMMON_CPPFLAGS)
 scilab_cli_bin_SOURCES = $(top_srcdir)/modules/core/src/cpp/scilab.cpp \
 							$(top_srcdir)/modules/core/src/cpp/tasks.cpp
 
-scilab_cli_bin_CFLAGS = -DWITHOUT_GUI
+scilab_cli_bin_CFLAGS = -DWITHOUT_GUI -I$(top_srcdir)/modules/io/includes	
 scilab_cli_bin_LDADD = $(COMMON_LIBS) $(SCILAB_CLI_LIB)
 scilab_cli_bin_CPPFLAGS = -DWITHOUT_GUI $(COMMON_CPPFLAGS)
 @ENABLE_STATIC_TRUE@scilab_static_bin_LDFLAGS = -static -static-libgcc --start-group
@@ -1850,7 +1854,7 @@ distclean-generated:
 @GENERATE_LOCALIZATION_FILES_TRUE@			mkdir -p $$PATHTO; \
 @GENERATE_LOCALIZATION_FILES_TRUE@		fi; \
 @GENERATE_LOCALIZATION_FILES_TRUE@		POFILE=$$PATHTO/$(LANG_DOMAIN).po; \
-@GENERATE_LOCALIZATION_FILES_TRUE@		$(MSGCAT) -o $$POFILE $$FILES; \
+@GENERATE_LOCALIZATION_FILES_TRUE@		$(MSGCAT) --use-first -o $$POFILE $$FILES; \
 @GENERATE_LOCALIZATION_FILES_TRUE@		if test "$(MACOSX)" = "1"; then sed -i -e '/charset=UTF-8/d' $$POFILE; fi; \
 @GENERATE_LOCALIZATION_FILES_TRUE@		$(MSGFMT) $(MSGFMT_OPTS) --statistics -o $$PATHTO/$(LANG_DOMAIN).mo $$POFILE; \
 @GENERATE_LOCALIZATION_FILES_TRUE@	done;

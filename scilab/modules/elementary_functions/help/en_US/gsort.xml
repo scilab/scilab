@@ -166,6 +166,12 @@
     magnitude, i.e., abs(<literal>v</literal>) . Only <literal>'g'</literal>
     as second argument is managed with complex.</para>
 
+    <para>With complex numbers, <literal>gsort</literal> can be overloaded
+    </para>
+
+    <para>see macro:
+    SCI/modules/elementary_functions/macros/%_gsort.sci</para>
+
     <para>if <literal>v</literal> have <literal>%nan</literal> or
     <literal>%inf</literal> as elements. gsort places these at the beginning
     with <literal>'i'</literal> or at the end with <literal>'d'</literal>
@@ -208,6 +214,10 @@ gsort(v,'lc','i')
     <simplelist type="inline">
       <member><link linkend="find">find</link></member>
     </simplelist>
+    <simplelist type="inline">
+      <member><link linkend="overloading">overloading</link></member>
+    </simplelist>
+    
   </refsection>
 
   <refsection>

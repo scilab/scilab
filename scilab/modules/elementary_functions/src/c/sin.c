@@ -10,7 +10,7 @@
  *
  */
 #include "elem_common.h"
-
+#include "sin.h"
 /*sin*/
 double dsins(double _dblVal)
 {

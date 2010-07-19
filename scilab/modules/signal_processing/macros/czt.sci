@@ -23,8 +23,8 @@ function [czx]=czt(x,m,w,phi,a,theta)
 
 //get the size of x and find the maximum of (n,m)
  
-   n=maxi(size(x));
-   nm=maxi([n,m]);
+   n=max(size(x));
+   nm=max([n,m]);
  
 //create sequence h(n)=[w*exp(-j*phi)]**(-n*n/2)
  

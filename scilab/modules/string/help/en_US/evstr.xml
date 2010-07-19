@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="evstr" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>evstr</refname>
+
+    <refpurpose>evaluation of expressions</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>H=evstr(Z)
+[H,ierr]=evstr(Z)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>Z</term>
+
+        <listitem>
+          <para>matrix of character strings <literal>M</literal> or
+          <literal>list(M,Subexp)</literal></para>
+
+          <variablelist>
+            <varlistentry>
+              <term>M</term>
+
+              <listitem>
+                <para>matrix of character strings</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>Subexp</term>
+
+              <listitem>
+                <para>vector of character strings</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>H</term>
+
+        <listitem>
+          <para>matrix</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ierr</term>
+
+        <listitem>
+          <para>integer, error indicator</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>Returns the result of the evaluation of the matrix of character
+    strings <literal>M</literal>. Each element of the matrix must define a
+    valid Scilab expression.</para>
+
+    <para>If the evaluation of <literal>M</literal> expression leads to an
+    error, the single return value version, <literal>H = evstr(M)</literal>,
+    raises the error as usual. The two return values version,
+    <literal>[H,ierr] = evstr(M)</literal>, on the other hand, produces no
+    error, but returns the error number in <literal>ierr</literal>.</para>
+
+    <para>If <literal>Z</literal> is a list, <literal>Subexp</literal> is a
+    vector of character strings, that defines sub_expressions which are
+    evaluated before evaluating <literal>M</literal>. These sub_expressions
+    must be referred to as <literal>%(k)</literal> in <literal>M</literal>,
+    where <literal>k</literal> is the sub-expression's index in
+    <literal>Subexp</literal>.</para>
+
+    <para>evstr('a = 1') is not valid (use <literal>execstr</literal>
+    instead).</para>
+
+    <para>Nan, NaN will be interpreted as %nan.</para>
+
+    <para>Inf will be interpreted as %inf.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">a = 1; b = 2; Z = ['a', 'b'] ; evstr(Z) 
+a = 1; b = 2; Z = list(['%(1)','%(1)-%(2)'],['a+1','b+1']);
+evstr(Z)
+
+evstr('NaN'), evstr('Inf')</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="execstr">execstr</link></member>
+      <member><link linkend="evstr">evstr</link></member>
+      <member><link linkend="execstr">execstr</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

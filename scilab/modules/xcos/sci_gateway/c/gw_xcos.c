@@ -29,7 +29,14 @@ static gw_generic_table Tab[] = {
   {NULL, ""}, //closeXcos
   {NULL, ""}, //xcosDiagramToHDF5
   {NULL, ""}, //xcosDiagramOpen
-  {NULL, ""}  //xcosDiagramClose
+  {NULL, ""},  //xcosDiagramClose
+  {NULL, ""},  //"xcosPalLoad"
+  {NULL, ""},  //"xcosPalCategoryAdd"
+  {NULL, ""},  //"xcosPalDelete"
+  {NULL, ""},  //"xcosPalMove"
+  {NULL, ""},  //"xcosPalEnable"
+  {NULL, ""},  //"xcosPalDisable"
+  {NULL, ""},  //"xcosPalGenerateIcon"
 };
 
 /*--------------------------------------------------------------------------*/

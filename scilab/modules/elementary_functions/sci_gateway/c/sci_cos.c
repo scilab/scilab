@@ -17,7 +17,6 @@
 #include "api_oldstack.h"
 
 /*--------------------------------------------------------------------------*/
-
 int sci_cos(char *fname, int* _piKey)
 {
 	SciErr sciErr;

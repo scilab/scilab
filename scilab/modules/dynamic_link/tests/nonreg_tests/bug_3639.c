@@ -26,12 +26,12 @@ int c_intsum(char *fname)
   /* Check dimensions  */  
   if (!(m1==1)|!(n1==1)) 
   { 
-    SciError(999,"%s: Wrong inputs \r\n", "c_fun");
+    Scierror(999,"%s: Wrong inputs \r\n", "c_fun");
     return 0;
    }
   if (!(m2==1)|!(n2==1)) 
   {
-    Scirror(999,"%s: Wrong inputs \r\n", "c_fun");
+    Scierror(999,"%s: Wrong inputs \r\n", "c_fun");
     return 0;
   }
 
@@ -66,7 +66,7 @@ int c_intsub(char *fname)
    }
   if (!(m2==1)|!(n2==1)) 
   {
-    SciError(999,"%s: Wrong inputs \r\n", "c_fun");
+    Scierror(999,"%s: Wrong inputs \r\n", "c_fun");
     return 0;
   }
 

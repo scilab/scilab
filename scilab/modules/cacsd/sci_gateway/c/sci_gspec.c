@@ -17,7 +17,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(scigspec)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_gspec)(char *fname,unsigned long fname_len)
+int sci_gspec(char *fname,unsigned long fname_len)
 {
 	C2F(scigspec)(fname,fname_len);
 	return 0;

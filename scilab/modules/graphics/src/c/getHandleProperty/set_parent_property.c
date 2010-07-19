@@ -17,7 +17,7 @@
 /* desc : function to modify in Scilab the parent field of                */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
-#include "stack-c.h"
+#include "sci_types.h"
 #include "setHandleProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "Scierror.h"

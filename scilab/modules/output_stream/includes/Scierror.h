@@ -33,6 +33,7 @@ extern "C" {
 int  Scierror(int iv, const char *fmt,...);
 int  ScierrorW(int iv, const wchar_t *fmt,...);
 
+
 #ifdef __cplusplus
 }
 #endif

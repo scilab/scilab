@@ -88,7 +88,7 @@ int gw_core(void)
 			Fin = 6;
 		}
 	}
-
+	
 	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }

@@ -45,47 +45,14 @@ lib
 #
 # Innosetup files (Windows)
 #
-Scilab.iss
 ScilabLogo.bmp
 ScilabLogoSmall.bmp
 scilab.ico
-French.isl
-English.isl
 puffin.ico
-base.iss
-Output
-atlas.iss
-code.iss
-components.iss
-files.iss
-icons.iss
-ini.iss
-languages.iss
-registry.iss
-run.iss
-setup.iss
-tasks.iss
-/types.iss
-isxdl.dll
-uninstalldelete.iss
-custommessages.iss
-en_US_scilab.isl
-fr_FR_scilab.isl
-ru_RU_scilab.isl
-zh_CN.isl
-zh_CN_scilab.isl
-ca_ES.isl
-ca_ES_scilab.isl
-de_DE.isl
-de_DE_scilab.isl
-es_ES.isl
-es_ES_scilab.isl
-pt_BR_scilab.isl
-ja_JP.isl
-ja_JP_scilab.isl
-it_IT_scilab.isl
-uk_UA.isl
-uk_UA_scilab.isl
+/Output
+/isxdl.dll
+/*.iss
+/*.isl
 #
 # VS solution files (windows)
 #
@@ -116,6 +83,20 @@ modules/*/sci_gateway/fortran/*.c
 #
 *.db
 *.manifest
+
+#
+# VS 2010 files
+# 
+*.filters
+*.vcxproj
+*.opensdf
+*.sdf
+*.old
+_UpgradeReport_Files/
+UpgradeLog.XML
+Visual-Studio-settings/f2c.props
+Visual-Studio-settings/f2c.targets
+Visual-Studio-settings/f2c.xml
 
 #
 # scilab/ specific files
@@ -165,3 +146,9 @@ pvm3
 # atoms generated files
 .atoms
 contrib/archives
+
+# SWIG generated files which are not used
+modules/types/src/java/org/scilab/modules/types/scilabTypes/types.java
+modules/types/src/java/org/scilab/modules/types/scilabTypes/typesJNI.java
+modules/types/src/jni/sci_types_wrap.c
+

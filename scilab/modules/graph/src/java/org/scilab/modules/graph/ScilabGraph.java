@@ -17,7 +17,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
-import org.scilab.modules.graph.utils.ScilabConstants;
+import org.scilab.modules.graph.utils.ScilabGraphConstants;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.graph.view.ScilabGraphView;
 import org.scilab.modules.gui.tab.Tab;
@@ -73,7 +73,7 @@ public class ScilabGraph extends mxGraph {
 	private final mxIEventListener undoHandler = new mxIEventListener() {
 		public void invoke(Object source, mxEventObject evt) {
 			undoManager.undoableEditHappened((mxUndoableEdit) evt
-						.getProperty(ScilabConstants.EVENT_CHANGE_EDIT));
+						.getProperty(ScilabGraphConstants.EVENT_CHANGE_EDIT));
 		}
 	};
 
@@ -97,7 +97,7 @@ public class ScilabGraph extends mxGraph {
 	 */
 	private mxIEventListener selectionHandler = new mxIEventListener() {
 		public void invoke(Object source, mxEventObject evt) {
-			List<mxUndoableChange> changes = ((mxUndoableEdit) evt.getProperty(ScilabConstants.EVENT_CHANGE_EDIT)).getChanges();
+			List<mxUndoableChange> changes = ((mxUndoableEdit) evt.getProperty(ScilabGraphConstants.EVENT_CHANGE_EDIT)).getChanges();
 			getSelectionModel().setCells(getSelectionCellsForChanges(changes));
 		}
 	};
@@ -204,11 +204,15 @@ public class ScilabGraph extends mxGraph {
 	/**
 	 * @param component The graphical component associated with this graph
 	 */
-	protected void setComponent(ScilabComponent component) {
+	public void setComponent(ScilabComponent component) {
 		this.component = component;
 		
-		// Adds rubberband selection
-		rubberBand = new mxRubberband(component);
+		if (component != null) {
+			// Adds rubberband selection
+			rubberBand = new mxRubberband(component);
+		} else {
+			rubberBand = null;
+		}
 	}
 
 	/**

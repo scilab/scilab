@@ -12,6 +12,7 @@
  */
 #include "GetFunctionByName.h"
 #include "feval.h"
+#include "dynlib_differential_equations.h"
 /***********************************
 * feval (ffeval)
 ***********************************/
@@ -20,8 +21,8 @@
 typedef void (*ffevalf)(ARGS_ffeval);
 
 /**************** ffeval ***************/
-void C2F(ffeval)(ARGS_ffeval);
-void C2F(setfeval)(char *name, int *rep);
+DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(ffeval)(ARGS_ffeval);
+DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(setfeval)(char *name, int *rep);
 
 FTAB FTab_ffeval[] ={
 	{"parab", (voidf)  C2F(parab)},

@@ -1,17 +1,24 @@
-;##############################################################################################################
-; Script d'installation Inno Setup (5.2.1) pour scilab
-; Allan CORNET
-; Version TRUNK
-; Copyright INRIA 2007
-;##############################################################################################################
+;
+; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+; Copyright (C) INRIA - Allan CORNET
+; Copyright (C) DIGITEO - 2010 - Allan CORNET
+;
+; This file must be used under the terms of the CeCILL.
+; This source file is licensed as described in the file COPYING, which
+; you should have received as part of this distribution.  The terms
+; are also available at
+; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+;
+;--------------------------------------------------------------------------------------------------------------
+; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
+;
 ;--------------------------------------------------------------------------------------------------------------
 ; pvm module
 ;--------------------------------------------------------------------------------------------------------------
 ;
 #define PVM "pvm"
-
-;Source: bin\pvm.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-
+;
+;Source: bin\{#PVM}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#PVM}\changelog.txt; DestDir: {app}\modules\{#PVM}; Components: {#COMPN_PVM}
 ;Source: modules\{#PVM}\license.txt; DestDir: {app}\modules\{#PVM}; Components: {#COMPN_PVM}
@@ -20,7 +27,7 @@
 ;
 ;Source: modules\{#PVM}\includes\*.h; DestDir: {app}\modules\{#PVM}\includes; Components: {#COMPN_PVM}
 ;
-;Source: modules\{#PVM}\sci_gateway\pvm_gateway.xml; DestDir: {app}\modules\{#PVM}\sci_gateway; Components: {#COMPN_PVM}
+;Source: modules\{#PVM}\sci_gateway\{#PVM}_gateway.xml; DestDir: {app}\modules\{#PVM}\sci_gateway; Components: {#COMPN_PVM}
 ;
 ;Source: modules\{#PVM}\etc\{#PVM}.quit; DestDir: {app}\modules\{#PVM}\etc; Components: {#COMPN_PVM}
 ;Source: modules\{#PVM}\etc\{#PVM}.start; DestDir: {app}\modules\{#PVM}\etc; Components: {#COMPN_PVM}

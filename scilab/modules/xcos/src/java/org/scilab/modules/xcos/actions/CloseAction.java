@@ -20,6 +20,7 @@ import java.awt.event.KeyEvent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -63,7 +64,7 @@ public class CloseAction extends DefaultAction {
 		if (getGraph(null) instanceof SuperBlockDiagram) {
 			((SuperBlockDiagram) getGraph(null)).getContainer().closeBlockSettings();
 		} else {
-			((XcosDiagram) getGraph(null)).closeDiagram();
+			Xcos.getInstance().close((XcosDiagram) getGraph(null), false);
 		}
 	}
 

@@ -45,7 +45,7 @@ function evans(n,d,kmax)
     error(msprintf(gettext("%s: Wrong value for input argument #%d: Single input, single output system expected.\n"),"evans",1));
   end
   if kmax<=0 then
-    nm=mini([degree(n),degree(d)])
+    nm=min([degree(n),degree(d)])
     fact=norm(coeff(d),2)/norm(coeff(n),2)
     kmax=round(500*fact),
   end
@@ -53,9 +53,9 @@ function evans(n,d,kmax)
   //calcul de la discretisation en k et racines associees
   nroots=roots(n);racines=roots(d);
   if nroots==[] then
-    nrm=maxi([norm(racines,1),norm(roots(d+kmax*n),1)])
+    nrm=max([norm(racines,1),norm(roots(d+kmax*n),1)])
   else
-    nrm=maxi([norm(racines,1),norm(nroots,1),norm(roots(d+kmax*n),1)])
+    nrm=max([norm(racines,1),norm(nroots,1),norm(roots(d+kmax*n),1)])
   end
   md=degree(d)
   //
@@ -65,7 +65,7 @@ function evans(n,d,kmax)
   while fin=='no' then
     k=k+pas
     r=roots(d+k*n);r=r(ord)
-    dist=maxi(abs(racines(:,nr)-r))/nrm
+    dist=max(abs(racines(:,nr)-r))/nrm
     //
     point='nok'
     if dist <smax then //pas correct
@@ -89,7 +89,7 @@ function evans(n,d,kmax)
 	   ord1=[ord1 kmn]
 	 end
 	 r(ord1)=r
-	 dist=maxi(abs(racines(:,nr)-r))/nrm
+	 dist=max(abs(racines(:,nr)-r))/nrm
 	 if dist <smax then
 	   point='ok',
 	   ord(ord1)=ord
@@ -109,8 +109,8 @@ function evans(n,d,kmax)
   end
   //draw the axis
   x1 =[nroots;matrix(racines,md*nr,1)];
-  xmin=mini(real(x1));xmax=maxi(real(x1))
-  ymin=mini(imag(x1));ymax=maxi(imag(x1))
+  xmin=min(real(x1));xmax=max(real(x1))
+  ymin=min(imag(x1));ymax=max(imag(x1))
   dx=abs(xmax-xmin)*0.05
   dy=abs(ymax-ymin)*0.05
   if dx<1d-10, dx=0.01,end
@@ -137,7 +137,7 @@ function evans(n,d,kmax)
     lhandle=[lhandle; e];
   end
 
-  dx=maxi(abs(xmax-xmin),abs(ymax-ymin));
+  dx=max(abs(xmax-xmin),abs(ymax-ymin));
   //plot the zeros locations
 
 
@@ -158,7 +158,7 @@ function evans(n,d,kmax)
 	x1=0*ones(2),y1=0*ones(2)
       end,
     end;
-    if maxi(k)>0 then
+    if max(k)>0 then
       xpoly(i1,i2);
       e=gce();
       legs=[legs;_("asymptotic directions")]

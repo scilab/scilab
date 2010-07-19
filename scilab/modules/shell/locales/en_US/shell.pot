@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-04-13 09:16+0100\n"
+"Revision-Date: 2010-06-29 10:00+0100\n"
 
 # File: sci_gateway/c/sci_iswaitingforinput.c, line: 38
 #, c-format
@@ -59,32 +59,32 @@ msgid "%s: Wrong value for input argument #%d.\n"
 msgstr ""
 #
 # File: src/c/windows/TermCompletion.c, line: 60
-# File: src/c/others/zzledt.c, line: 807
+# File: src/c/others/zzledt.c, line: 808
 msgid "File or Directory"
 msgstr ""
 #
 # File: src/c/windows/TermCompletion.c, line: 202
-# File: src/c/others/zzledt.c, line: 964
+# File: src/c/others/zzledt.c, line: 965
 msgid "Graphics handle field"
 msgstr ""
 #
 # File: src/c/windows/TermCompletion.c, line: 199
-# File: src/c/others/zzledt.c, line: 961
+# File: src/c/others/zzledt.c, line: 962
 msgid "Scilab Command"
 msgstr ""
 #
 # File: src/c/windows/TermCompletion.c, line: 198
-# File: src/c/others/zzledt.c, line: 960
+# File: src/c/others/zzledt.c, line: 961
 msgid "Scilab Function"
 msgstr ""
 #
 # File: src/c/windows/TermCompletion.c, line: 200
-# File: src/c/others/zzledt.c, line: 962
+# File: src/c/others/zzledt.c, line: 963
 msgid "Scilab Macro"
 msgstr ""
 #
 # File: src/c/windows/TermCompletion.c, line: 201
-# File: src/c/others/zzledt.c, line: 963
+# File: src/c/others/zzledt.c, line: 964
 msgid "Scilab Variable"
 msgstr ""
 #

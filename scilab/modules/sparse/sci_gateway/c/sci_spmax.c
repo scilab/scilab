@@ -14,7 +14,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intspmax)(char *minmax,int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_spmax)(char *fname, int* _piKey)
+int sci_spmax(char *fname, int* _piKey)
 {
 	static int id[6];
 	char job[]="max";

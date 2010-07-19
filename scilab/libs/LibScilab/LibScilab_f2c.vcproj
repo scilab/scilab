@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="LibScilab_f2c"
+	Name="LibScilab"
 	ProjectGUID="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}"
 	RootNamespace="LibScilab"
 	TargetFrameworkVersion="0"
@@ -20,8 +20,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -35,10 +35,6 @@
 			<Tool
 				Name="VCCustomBuildTool"
 				ExecutionBucket="2"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-				ExecutionBucket="3"
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -66,7 +62,6 @@
 				ObjectFile="$(ConfigurationName)/"
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 				CompileAs="0"
 			/>
@@ -98,7 +93,7 @@
 				SubSystem="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="../../bin/LibScilab.lib"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				TargetMachine="1"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -132,8 +127,8 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|x64"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -149,9 +144,6 @@
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
@@ -174,7 +166,6 @@
 				ObjectFile="$(ConfigurationName)/"
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 				CompileAs="0"
 			/>
@@ -202,7 +193,7 @@
 				SubSystem="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="../../bin/LibScilab.lib"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				TargetMachine="17"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -230,8 +221,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -245,10 +236,6 @@
 			<Tool
 				Name="VCCustomBuildTool"
 				ExecutionBucket="2"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-				ExecutionBucket="3"
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -282,7 +269,6 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="false"
 				CompileAs="0"
 			/>
 			<Tool
@@ -311,11 +297,11 @@
 				ModuleDefinitionFile="..\LibScilab.def"
 				ProgramDatabaseFile="$(ConfigurationName)/LibScilab.pdb"
 				SubSystem="2"
-				OptimizeForWindows98="0"
+
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
 				SupportUnloadOfDelayLoadedDLL="true"
-				ImportLibrary="../../bin/LibScilab.lib"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				TargetMachine="1"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -349,8 +335,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|x64"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -366,9 +352,6 @@
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
@@ -397,7 +380,6 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="false"
 				CompileAs="0"
 			/>
 			<Tool
@@ -422,11 +404,11 @@
 				ModuleDefinitionFile="..\LibScilab.def"
 				ProgramDatabaseFile="$(ConfigurationName)/LibScilab.pdb"
 				SubSystem="2"
-				OptimizeForWindows98="0"
+
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
 				SupportUnloadOfDelayLoadedDLL="true"
-				ImportLibrary="../../bin/LibScilab.lib"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				TargetMachine="17"
 				CLRUnmanagedCodeCheck="true"
 			/>

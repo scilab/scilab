@@ -50,6 +50,7 @@ public class PrintBlock extends BasicBlock {
     /**
      * @param exprs new exprs
      */
+	@Override
     public void setExprs(ScilabType exprs) {
     	super.setExprs(exprs);
     	

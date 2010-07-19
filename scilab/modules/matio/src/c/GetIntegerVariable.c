@@ -13,6 +13,7 @@
  */
 
 #include "GetMatlabVariable.h"
+#include "sci_types.h"
 #include "api_scilab.h"
 
 #define MATIO_ERROR if(_SciErr.iErr) \

@@ -34,7 +34,7 @@ if IS_MACOSX
 scilab_bin_LDFLAGS 		+= -framework Cocoa
 endif
 
-scilab_bin_CFLAGS 		=
+scilab_bin_CFLAGS 		= -I$(top_srcdir)/modules/io/includes	
 # --no-undefined --relax
 
 # libshell is mandatory here since main_linux.c depends on it.
@@ -74,7 +74,7 @@ scilab_bin_CPPFLAGS		= $(COMMON_CPPFLAGS)
 scilab_cli_bin_SOURCES	=	$(top_srcdir)/modules/core/src/cpp/scilab.cpp \
 							$(top_srcdir)/modules/core/src/cpp/tasks.cpp
 
-scilab_cli_bin_CFLAGS 		= -DWITHOUT_GUI
+scilab_cli_bin_CFLAGS 		= -DWITHOUT_GUI -I$(top_srcdir)/modules/io/includes	
 scilab_cli_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_CLI_LIB)
 
 scilab_cli_bin_CPPFLAGS	= -DWITHOUT_GUI $(COMMON_CPPFLAGS)
@@ -271,7 +271,7 @@ localization:
 			mkdir -p $$PATHTO; \
 		fi; \
 		POFILE=$$PATHTO/$(LANG_DOMAIN).po; \
-		$(MSGCAT) -o $$POFILE $$FILES; \
+		$(MSGCAT) --use-first -o $$POFILE $$FILES; \
 		if test "$(MACOSX)" = "1"; then sed -i -e '/charset=UTF-8/d' $$POFILE; fi; \
 		$(MSGFMT) $(MSGFMT_OPTS) --statistics -o $$PATHTO/$(LANG_DOMAIN).mo $$POFILE; \
 	done;

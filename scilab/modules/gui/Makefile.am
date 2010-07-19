@@ -4,6 +4,7 @@
 # Copyright (C) INRIA   - 2007 - Vincent COUVERT
 # Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
+# Copyright (C) DIGITEO - 2010 - Clément DAVID
 # 
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
@@ -293,42 +294,47 @@ libscigui_la_sci_gateway_DATA = sci_gateway/gui_gateway.xml
 
 #### gui : icons files ####
 libscigui_la_iconsdir=$(mydatadir)/
-nobase_libscigui_la_icons_DATA = images/icons/accessories-text-editor.png \
+nobase_libscigui_la_icons_DATA = images/icons/aboutscilab.png \
+images/icons/accessories-text-editor.png \
+images/icons/applications-system.png \
+images/icons/datatips.png \
+images/icons/document-new.png \
 images/icons/document-open.png \
+images/icons/document-print.png \
+images/icons/document-print-preview.png \
+images/icons/document-save-as.png \
+images/icons/document-save.png \
 images/icons/edit-copy.png \
 images/icons/edit-cut.png \
+images/icons/edit-delete.png \
+images/icons/edit-find.png \
+images/icons/edit-find-replace.png \
 images/icons/edit-paste.png \
+images/icons/edit-redo.png \
+images/icons/edit-undo.png \
 images/icons/emblem-readonly.png \
 images/icons/folder.png \
 images/icons/format-text-bold.png \
 images/icons/help-browser.png \
+images/icons/list-add.png \
+images/icons/list-remove.png \
+images/icons/media-floppy.png \
+images/icons/media-playback-start.png \
 images/icons/original-view.png \
+images/icons/package-x-generic.png \
 images/icons/printer.png \
 images/icons/process-working.png \
+images/icons/puff.png \
 images/icons/rotate.png \
 images/icons/scilab_close_active.png \
 images/icons/scilab_close_default.png \
 images/icons/scilab.png \
 images/icons/undock_active.png \
 images/icons/undock_default.png \
+images/icons/utilities-system-monitor.png \
 images/icons/window-new.png \
 images/icons/zoom-area-cursor.png \
-images/icons/zoom-area.png \
-images/icons/document-new.png \
-images/icons/document-print-preview.png \
-images/icons/document-print.png \
-images/icons/document-save-as.png \
-images/icons/document-save.png \
-images/icons/edit-find-replace.png \
-images/icons/edit-find.png \
-images/icons/edit-redo.png \
-images/icons/edit-undo.png \
-images/icons/media-floppy.png \
-images/icons/aboutscilab.png \
-images/icons/package-x-generic.png \
-images/icons/utilities-system-monitor.png \
-images/icons/applications-system.png
-
+images/icons/zoom-area.png
 
 if GUI
 USEANT=1

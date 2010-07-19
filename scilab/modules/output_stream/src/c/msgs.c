@@ -1094,9 +1094,9 @@ static int msg_69(int *n, int *ierr)
 static int msg_70(int *n, int *ierr)
 {
 	char localbuf[10];
-	strncpy(localbuf,BUF,10);
-	localbuf[10]='\0';
-	sciprint(_("At time: %s. Too many iteration to achieve required precision.\n"),localbuf);
+	strncpy(localbuf, BUF, 9);
+	localbuf[9] = '\0';
+	sciprint(_("At time: %s. Too many iteration to achieve required precision.\n"), localbuf);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

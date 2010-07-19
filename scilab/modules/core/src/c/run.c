@@ -301,9 +301,10 @@ int C2F(run)(void)
   if (C2F(com).fun != -2) {
     C2F(putid)(&Ids[1 +(Pt + 1) * nsiz ], istk(1 + lc));
     if (C2F(com).fun == 0) {
-      /* the search variable is neither a regular variable nor a library one */
-      /*     Top--; why ???*/
-      SciError(4);
+      /* the search variable is neither a regular variable nor a function in a librar */
+      /* it may be a simple variable in a lib */
+
+      C2F(stackg)(istk(lname));
       if (Err > 0||C2F(errgst).err1 > 0) {
 	lc += 9;
 	goto L10;

@@ -19,7 +19,6 @@ stackc2i_
 cresmat2_
 stackr2d_
 stacki2d_
-unsfdcopy_
 objvide_
 interf_
 createvar_
@@ -35,5 +34,4 @@ checkval_
 gettype_
 setinterf_
 getsmat_
-iset_
 ref2val_

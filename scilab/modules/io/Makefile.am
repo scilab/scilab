@@ -13,8 +13,7 @@ src/c/v2cuniterror.c
 
 IO_FORTRAN_SOURCES = src/fortran/v2unit.f \
 src/fortran/newsave.f \
-src/fortran/v2cunit.f \
-src/fortran/writebuf.f
+src/fortran/v2cunit.f
 
 IO_CPP_SOURCES = src/cpp/io_gw.cpp
 
@@ -23,7 +22,6 @@ sci_gateway/c/sci_getio.c \
 sci_gateway/c/sci_readb.c \
 sci_gateway/c/sci_host.c \
 sci_gateway/c/sci_file.c \
-sci_gateway/c/sci_rat.c \
 sci_gateway/c/sci_getenv.c \
 sci_gateway/c/sci_write.c \
 sci_gateway/c/sci_writeb.c \
@@ -37,7 +35,6 @@ sci_gateway/c/sci_save.c
 # sci_gateway/c/sci_load.c
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/intwrite4b.f \
-sci_gateway/fortran/intrat.f \
 sci_gateway/fortran/intwritb.f \
 sci_gateway/fortran/intwrite.f \
 sci_gateway/fortran/intread4b.f \

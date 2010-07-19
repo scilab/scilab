@@ -214,7 +214,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="&quot;$(IFORT_COMPILER11)lib\ia32\ifconsol.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\libifcoremd.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\libmmd.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\libirc.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\svml_disp.lib&quot;"
+				AdditionalDependencies="&quot;$(IFORT_COMPILER11)lib\ia32\ifconsol.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\libifcoremd.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\libmmd.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\libirc.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\svml_disp.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\libiomp5md.lib&quot;"
 				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
 				IgnoreDefaultLibraryNames=""
 			/>
@@ -288,7 +288,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="&quot;$(IFORT_COMPILER11)lib\intel64\ifconsol.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\libifcoremd.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\libmmd.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\libirc.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\svml_disp.lib&quot;"
+				AdditionalDependencies="&quot;$(IFORT_COMPILER11)lib\intel64\ifconsol.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\libifcoremd.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\libmmd.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\libirc.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\svml_disp.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\libiomp5md.lib&quot;"
 				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
 				IgnoreDefaultLibraryNames=""
 				TargetMachine="17"

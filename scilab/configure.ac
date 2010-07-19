@@ -117,6 +117,9 @@ AC_ARG_WITH(tk,
 AC_ARG_WITH(javasci,
     AC_HELP_STRING([--without-javasci],[Disable the Java/Scilab interface (javasci)]))
 
+AC_ARG_ENABLE(compilation-tests,
+    AC_HELP_STRING([--enable-compilation-tests],[Enable unitary tests and checks at compilation time]))
+
 AC_ARG_WITH(gui,
     AC_HELP_STRING([--without-gui],[Disable the Scilab Graphical User Interface (GUI). Intended for embedded/clustering/grid Scilab ]))
 
@@ -1191,6 +1194,16 @@ if test "$with_scicos" != no -a "$GUI_ENABLE" != no; then
    LIBS="$save_LIBS"
    AC_SUBST(RT_LIB)
 
+
+#################
+## ocaml which only called when using Scicos
+#################
+
+   if test "$with_ocaml" != no; then
+      AC_CHECK_PROG_OCAML()
+   fi
+   SCICOS_ENABLE=yes
+
 # Java HDF5 is only needed for Xcos
 if test $HDF5_ENABLE = yes -a "$with_scicos" != no -a "$with_gui" != no;  then
 AC_JAVA_HDF5()
@@ -1198,6 +1211,8 @@ AC_JAVA_HDF5()
    	  echo "Check of the presence of libjhdf5.jnilib disabled under Mac OS X"
    else
       AC_JNI_HDF5()
+   fi
+
 fi #HDF5_ENABLE
 
 #################
@@ -1267,6 +1282,33 @@ fi
 AC_SUBST(PVM_ENABLE)
 
 AM_CONDITIONAL(PVM, test "$with_pvm" != no)
+
+#################
+## OpenMP
+#################
+
+AC_ARG_WITH(openmp,
+    AC_HELP_STRING([--without-openmp],[Disable the usage of OpenMP (parallelization of some algoritms)]))
+
+OPENMP_ENABLE=no
+if test "$with_openmp" != no; then
+#   AC_OPENMP
+	OPENMP_CFLAGS="-fopenmp"
+	OPENMP_CXXFLAGS="-fopenmp"
+	OPENMP_LIBS="-lgomp"
+
+    AC_CHECK_HEADERS([omp.h], [],
+     [AC_MSG_ERROR([Could not find omp.h])])
+
+	OPENMP_ENABLE=yes
+fi
+AC_SUBST(OPENMP_ENABLE)
+AC_SUBST(OPENMP_CFLAGS)
+AC_SUBST(OPENMP_CXXFLAGS)
+AC_SUBST(OPENMP_LIBS)
+
+AM_CONDITIONAL(OPENMP, test "$with_openmp" != no)
+
 
 #######################
 ## Test for libxml
@@ -1503,6 +1545,23 @@ fi
 
 AC_SUBST(JAVASCI_ENABLE)
 
+
+##############################################################
+## Enable test a compilation time
+##############################################################
+
+COMPILATION_TESTS=no
+if test "$enable_compilation_tests" != no -a "$enable_compilation_tests" != ""; then
+   COMPILATION_TESTS=yes
+fi
+
+if test COMPILATION_TESTS=yes -a "$TESTNG" == ""; then
+   AC_MSG_WARN([--enable-compilation-tests deactivated: Could not find TestNG"])
+   COMPILATION_TESTS=no
+fi
+
+AM_CONDITIONAL(COMPILATION_TESTS, test "$COMPILATION_TESTS" != "")
+
 ##############################################################
 ## demo_tools module
 ##############################################################
@@ -1510,7 +1569,7 @@ AC_SUBST(JAVASCI_ENABLE)
 DEMOTOOLS_ENABLE=yes
 
 if test "$GUI_ENABLE" = no; then
-   DEMOTOOLS_ENABLE=yes
+   DEMOTOOLS_ENABLE=no
 fi
 
 AC_SUBST(DEMOTOOLS_ENABLE)
@@ -1684,8 +1743,12 @@ modules/matio/Makefile
 modules/operations/Makefile
 modules/atoms/Makefile
 modules/xcos/Makefile
-modules/xpad/Makefile
+modules/scinotes/Makefile
+modules/ui_data/Makefile
 modules/graph/Makefile
+modules/parallel/Makefile
+modules/modules_manager/Makefile
+modules/history_browser/Makefile
 modules/Makefile
 libs/Makefile
 Makefile
@@ -1797,6 +1860,7 @@ echo "  TCL library (--with-tcl-library) ................. = $USER_TCL_LIB_PATH"
 echo "  TK include (--with-tk-include) ................... = $USER_TK_INC_PATH"
 echo "  TK library (--with-tk-library) ................... = $USER_TK_LIB_PATH"
 echo "  Install XML Help (--with-install-help-xml) ....... = $with_install_help_xml"
+echo "  Compilation tests (--enable-compilation-tests) ... = $COMPILATION_TESTS"
 echo "  Make the package relocatable (--enable-relocatable)= $RELOCATABLE"
 echo "  Use FFTW (--without-fftw) ........................ = $with_fftw"
 echo "  Use MATIO (--without-matio) ...................... = $with_matio"
@@ -1819,6 +1883,17 @@ fi
 else
    echo "Not using Scicos"
 fi
+fi
+
+echo ""
+if test $OPENMP_ENABLE = yes; then
+   echo "OpenMP Configuration:"
+   echo "OpenMP CFLAGS ...... = $OPENMP_CFLAGS"
+   echo "OpenMP CXXFLAGS .... = $OPENMP_CXXFLAGS"
+   echo "OpenMP LIBS ........ = $OPENMP_LIBS"
+   echo "OpenMP FFLAGS ...... = $OPENMP_LDFLAGS"
+else
+   echo "Not using OpenMP"
 fi
 
 echo ""

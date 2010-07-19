@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="signal_processing_f2c"
+	Name="signal_processing_f"
 	ProjectGUID="{959384FC-016C-4B01-B848-1B18D26B6CC4}"
 	RootNamespace="signal_processing_f2c"
 	Keyword="Win32Proj"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -23,8 +24,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="1"
 			>
@@ -42,15 +43,14 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-				ExecutionBucket="4"
-			/>
-			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
 				ExecutionBucket="5"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
@@ -63,7 +63,6 @@
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -83,15 +82,15 @@
 			<Tool
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
-				AdditionalOptions="/fixed:no"
 				AdditionalDependencies="Libscilab.lib signal_processing.lib output_stream.lib"
-				OutputFile="$(SolutionDir)bin\signal_processing_f.dll"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="2"
 				ModuleDefinitionFile="signal_processing_f.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				TargetMachine="1"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -125,8 +124,8 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|x64"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="1"
 			>
@@ -161,7 +160,6 @@
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -177,15 +175,15 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/fixed:no"
 				AdditionalDependencies="Libscilab.lib signal_processing.lib output_stream.lib"
-				OutputFile="$(SolutionDir)bin\signal_processing_f.dll"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="2"
 				ModuleDefinitionFile="signal_processing_f.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				TargetMachine="17"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -213,8 +211,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="1"
 			WholeProgramOptimization="1"
@@ -248,7 +246,6 @@
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -265,7 +262,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="Libscilab.lib signal_processing.lib output_stream.lib"
-				OutputFile="$(SolutionDir)bin\signal_processing_f.dll"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="signal_processing_f.def"
 				GenerateDebugInformation="true"
@@ -275,6 +272,7 @@
 				LinkTimeCodeGeneration="0"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				TargetMachine="1"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -302,8 +300,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|x64"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="1"
 			WholeProgramOptimization="1"
@@ -338,7 +336,6 @@
 				EnableEnhancedInstructionSet="1"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -355,7 +352,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="Libscilab.lib signal_processing.lib output_stream.lib"
-				OutputFile="$(SolutionDir)bin\signal_processing_f.dll"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="signal_processing_f.def"
 				GenerateDebugInformation="true"
@@ -365,6 +362,7 @@
 				LinkTimeCodeGeneration="0"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				TargetMachine="17"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -617,42 +615,6 @@
 			</File>
 			<File
 				RelativePath=".\rpem.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_amell.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_corr.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_delip.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_ffir.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_fft.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_fiir.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_remez.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_rpem.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_syredi.c"
 				>
 			</File>
 			<File
@@ -929,42 +891,6 @@
 			</File>
 			<File
 				RelativePath=".\rpem.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_amell.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_corr.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_delip.f"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_ffir.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_fft.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_fiir.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_remez.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_rpem.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_syredi.f"
 				>
 			</File>
 			<File

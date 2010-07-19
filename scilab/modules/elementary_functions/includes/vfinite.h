@@ -14,9 +14,11 @@
 #define __VFINITE__
 
 #include "machine.h"
-#include "doublecomplex.h" 
+#include "doublecomplex.h"
+#include "dynlib_elementary_functions.h"
 
-int C2F(vfinite)(int *n, double *v);
-int C2F(vfiniteComplex)(int *n, doublecomplex *v);
+
+ELEMENTARY_FUNCTIONS_IMPEXP int C2F(vfinite)(int *n, double *v);
+ELEMENTARY_FUNCTIONS_IMPEXP int C2F(vfiniteComplex)(int *n, doublecomplex *v);
 
 #endif /* !__VFINITE__ */

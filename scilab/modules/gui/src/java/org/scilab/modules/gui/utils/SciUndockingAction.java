@@ -62,9 +62,6 @@ public class SciUndockingAction extends AbstractAction {
 		DockingManager.dock(associatedTab, ((SwingScilabWindow) newWindow.getAsSimpleWindow()).getDockingPort());
 		
 		/** New Window properties */
-		newWindow.addMenuBar(associatedTab.getMenuBar());
-		newWindow.addToolBar(associatedTab.getToolBar());
-		newWindow.addInfoBar(associatedTab.getInfoBar());
 		newWindow.setPosition(new Position(oldWindowPosition.getX() + UNDOCK_OFFSET, oldWindowPosition.getY() + UNDOCK_OFFSET));
 		
 		newWindow.setVisible(true);

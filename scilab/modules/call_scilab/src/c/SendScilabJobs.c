@@ -16,7 +16,6 @@
 #include "MALLOC.h"
 #include "scirun.h"
 #include "localization.h"
-#include "stack-c.h"
 #include "freeArrayOfString.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"

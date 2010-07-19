@@ -18,7 +18,7 @@ import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
-import java.awt.geom.Rectangle2D;
+import java.awt.geom.Dimension2D;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
@@ -29,7 +29,7 @@ import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.shape.LatexTextShape;
 import org.scilab.modules.graph.shape.MathMLTextShape;
 import org.scilab.modules.graph.utils.MathMLRenderUtils;
-import org.scilab.modules.graph.utils.ScilabConstants;
+import org.scilab.modules.graph.utils.ScilabGraphConstants;
 import org.scilab.modules.graph.utils.ScilabGraphUtils;
 import org.scilab.modules.graph.view.SupportedLabelType;
 import org.xml.sax.SAXException;
@@ -134,45 +134,60 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 	
 	/**
 	 * Scale the graphic context depending on the "flip and "mirror" properties
+	 * @param temporaryGraphics the current graphic surface
 	 * @param style Style contents
+	 * @param bounds the current bounds
 	 */
-	private void applyFlipAndMirror(Map<String, Object> style) {
-		String flip = mxUtils.getString(style, ScilabConstants.STYLE_FLIP,
-				Boolean.FALSE.toString());
-		String mirror = mxUtils.getString(style, ScilabConstants.STYLE_MIRROR,
-				Boolean.FALSE.toString());
+	private void applyFlipAndMirror(Graphics2D temporaryGraphics, Map<String, Object> style, mxRectangle bounds) {
+		if (bounds == null) {
+			return;
+		}
+		
+		final boolean flip = mxUtils.isTrue(style, ScilabGraphConstants.STYLE_FLIP, false);
+		final boolean mirror = mxUtils.isTrue(style, ScilabGraphConstants.STYLE_MIRROR, false);
+		
+		final double x = bounds.getCenterX();
+		final double y = bounds.getCenterY();
 
+		temporaryGraphics.translate(x, y);
+		
 		// scale, 1st flip, 2nd mirror
-		if (Boolean.parseBoolean(flip)) {
-			if (Boolean.parseBoolean(mirror)) {
-				g.scale(-1, -1); // T / T
+		if (flip) {
+			if (mirror) {
+				temporaryGraphics.scale(-1, -1); // T / T
 			} else {
-				g.scale(-1, 1); // T / F
+				temporaryGraphics.scale(-1, 1); // T / F
 			}
 		} else {
-			if (Boolean.parseBoolean(mirror)) {
-				g.scale(1, -1); // F / T
+			if (mirror) {
+				temporaryGraphics.scale(1, -1); // F / T
 			} else {
-				g.scale(1, 1); // F / F
+				temporaryGraphics.scale(1, 1); // F / F
 			}
 		}
+		
+		temporaryGraphics.translate(-x, -y);
 	}
-
+	
 	/**
-	 * Draw the vertex.
+	 * Allocate a new graphic surface and set some properties on it.
 	 * 
 	 * This method handle the flip and the mirror properties.
 	 * 
-	 * @param state the current cell state
-	 * @return the rendered shape
-	 * @see com.mxgraph.canvas.mxGraphics2DCanvas#drawVertex(com.mxgraph.view.mxCellState)
+	 * @param style the current style
+	 * @param opacity the opacity
+	 * @param bounds the bounds
+	 * @return a graphic surface
+	 * @see com.mxgraph.canvas.mxGraphics2DCanvas#createTemporaryGraphics(java.util.Map, float, com.mxgraph.util.mxRectangle)
 	 */
 	@Override
-	public Object drawVertex(mxCellState state) {
+	protected Graphics2D createTemporaryGraphics(Map<String, Object> style,
+			float opacity, mxRectangle bounds) {
+		Graphics2D temporaryGraphics = super.createTemporaryGraphics(style, opacity, bounds);
 		
-		applyFlipAndMirror(state.getStyle());
+		applyFlipAndMirror(temporaryGraphics, style, bounds);
 		
-		return super.drawVertex(state);
+		return temporaryGraphics;
 	}
 
 	/**
@@ -235,17 +250,27 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 		
 		if (image != null) {
 			if (image.endsWith(".svg")) {
+				// Remove the "Graphics2D from BufferedImage lacks BUFFERED_IMAGE hint"
+				// message and tweak Batik rendering options to increase performance.
+				g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+						RenderingHints.VALUE_ANTIALIAS_ON);
+				g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+						RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
+				g.setRenderingHint(RenderingHintsKeyExt.KEY_TRANSCODING,
+						RenderingHintsKeyExt.VALUE_TRANSCODING_PRINTING);
+				
 				Rectangle rect = bounds.getRectangle();
 				
 				// Translate from (0,0) to icon base point.
 				g.translate(rect.x, rect.y);
-
+				
 				// Paint the background image if applicable
 				if (svgBackgroundImage != null) {
 					paintSvgBackgroundImage(rect.width, rect.height);
 				}
 
 				paintSvgForegroundImage(rect.width, rect.height, image);
+
 			} else {
 				super.paintImage(bounds, style);
 			}
@@ -266,17 +291,8 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 			return;
 		}
 
-		// Remove the "Graphics2D from BufferedImage lacks BUFFERED_IMAGE hint"
-		// message and tweak Batik rendering options to increase performance.
-		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-				RenderingHints.VALUE_ANTIALIAS_ON);
-		g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
-				RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
-		g.setRenderingHint(RenderingHintsKeyExt.KEY_TRANSCODING,
-				RenderingHintsKeyExt.VALUE_TRANSCODING_PRINTING);
-
 		// Scale to the bounds
-		Rectangle2D bounds = background.getBounds();
+		Dimension2D bounds = ScilabGraphUtils.getSVGDocumentSizes(svgBackgroundImage);
 
 		double sh = h / bounds.getHeight();
 		double sw = w / bounds.getWidth();
@@ -323,7 +339,7 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 		 */
 
 		// Iso scale to the bounds - border size
-		Rectangle2D bounds = icon.getBounds();
+		Dimension2D bounds = ScilabGraphUtils.getSVGDocumentSizes(url);
 
 		// Calculating icon bordered bounds
 		final double ih = bounds.getHeight();
@@ -344,17 +360,13 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 		// Adding borders
 		ratio *= BORDER_RATIO;
 
-		// Translate the icon origin to the drawing origin.
-		double tx = -bounds.getX() * ratio;
-		double ty = -bounds.getY() * ratio;
-
 		// Calculate scaled height and width
 		final double sh = ratio * ih;
 		final double sw = ratio * iw;
 
 		// Center the image on the block
-		tx += (w - sw) / 2;
-		ty += (h - sh) / 2;
+		double tx = (w - sw) / 2;
+		double ty = (h - sh) / 2;
 
 		/*
 		 * Everything has been calculated, render now.

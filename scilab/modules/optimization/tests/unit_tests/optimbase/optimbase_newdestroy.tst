@@ -237,8 +237,6 @@ opt = optimbase_configure ( opt , "-storehistory" , %t );
 opt = optimbase_histset ( opt , 1 , "-fopt" , 1.0 );
 f0 = optimbase_histget ( opt , 1 , "-fopt" );
 assert_close ( f0 , 1.0, %eps );
-// Check display
-optimbase_display ( opt );
 // Check the boundsmin, boundsmax and nbineqconst
 opt = optimbase_configure ( opt , "-boundsmin" , [-5.0 -5.0] );
 boundsmin = optimbase_cget ( opt , "-boundsmin" );
@@ -358,4 +356,11 @@ assert_equal ( computed , expected );
 // Cleanup
 opt = optimbase_destroy(opt);
 
+//
+// Test the printing system
+//
+opt = optimbase_new ();
+string(opt)
+opt
+opt = optimbase_destroy(opt);
 

@@ -60,6 +60,9 @@ host_triplet = @host@
 DIST_COMMON = $(libmex_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
+
+# With --enable-compilation-tests, launch java unitary tests
+@COMPILATION_TESTS_TRUE@am__append_2 = test
 subdir = modules/mexlib
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -276,6 +279,10 @@ OCAMLDEP = @OCAMLDEP@
 OCAMLLEX = @OCAMLLEX@
 OCAMLOPT = @OCAMLOPT@
 OCAMLYACC = @OCAMLYACC@
+OPENMP_CFLAGS = @OPENMP_CFLAGS@
+OPENMP_CXXFLAGS = @OPENMP_CXXFLAGS@
+OPENMP_ENABLE = @OPENMP_ENABLE@
+OPENMP_LIBS = @OPENMP_LIBS@
 OTOOL = @OTOOL@
 OTOOL64 = @OTOOL64@
 PACKAGE = @PACKAGE@
@@ -403,6 +410,7 @@ src/c/sci_gateway.c
 MEXLIB_FLAGS = -I$(srcdir)/includes/ \
 	-I$(top_srcdir)/modules/output_stream/includes/ \
 	-I$(top_srcdir)/modules/call_scilab/includes/ \
+	-I$(top_srcdir)/modules/elementary_functions/includes/ \
 	-I$(top_srcdir)/modules/operations/includes/ \
 	-I$(top_srcdir)/modules/string/includes
 MEXLIB_DEP = $(top_builddir)/modules/core/libscicore.la \
@@ -457,7 +465,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_1)
+TARGETS_ALL = $(am__append_1) $(am__append_2)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -935,7 +943,7 @@ uninstall-am: uninstall-libmex_la_etcDATA \
 
 
 # This target enables tests for Scilab
-check-local: $(top_builddir)/scilab-bin
+check-local: $(top_builddir)/scilab-bin test
 	@COMMAND="test_run('$(modulename)');quit";\
 	export LANG=C;\
 	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
@@ -1001,6 +1009,13 @@ clean-macros:
 		echo "rm -f $(builddir)/$$dir/$(MACROBINMASK)"; \
 		rm -f $(builddir)/$$dir/$(MACROBINMASK); \
 	done
+
+test:
+# More tests could be added here
+	@if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
+	if test -f build.xml -a $$USEANT -eq 1; then \
+		$(ANT) test; \
+	fi
 
 all-local: $(TARGETS_ALL)
 

@@ -30,7 +30,6 @@ callFunctionFromGateway
 iAllocComplexMatrixOfDouble
 GetRhsVarMatrixDouble
 iAllocMatrixOfDouble
-vfiniteComplex_
 GetRhsVarMatrixComplex
 iIsComplex
 GetVarDimension
@@ -41,11 +40,3 @@ scifunction_
 folhp_
 find_
 ;
-;elementary_functions_f
-;
-wbdiag_
-bdiag_
-vfinite_
-dset_
-wwrdiv_
-pythag_

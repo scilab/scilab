@@ -90,9 +90,9 @@ void C2F(siflibs)(int* id, int* k_ptr, int* istr, int* lbibn_ptr, int* nbibn_ptr
             il += nbibn+2;
             ilp = il+1;
 #ifdef _MSC_VER
-            ip = max(1, id_char(id)-9);
+            ip = min(nclas,max(1, id_char(id)-9));
 #else
-            ip = std::max(1, id_char(id)-9);
+            ip =  std::min(nclas,std::max(1, id_char(id)-9));
 #endif
             if (ip <= nclas)
             {
@@ -143,7 +143,22 @@ void C2F(siflibs)(int* id, int* k_ptr, int* istr, int* lbibn_ptr, int* nbibn_ptr
     return;
 }
 
-/* search for an id in vars, also lifted from Fortran code in funs.f */
+/* search for an id in vars, also lifted from Fortran code in funs.f 
+ 30   k=bot-1
+ 31   k=k+1
+      if(k.gt.isiz) goto 35
+      if(.not.eqid(idstk(1,k),id)) goto 31
+      il=iadr(lstk(k))
+c     modif 1.3 SS
+      if(istk(il).ne.11.and.istk(il).ne.13) then
+         fin=0
+         fun=0
+         return
+      endif
+      fin=k
+      fun=-1
+      return
+*/
 void C2F(sivars)(int* id, int* should_return)
 {
     int* const lstk_ptr = (int*)C2F(vstk).lstk-1;
@@ -159,19 +174,18 @@ void C2F(sivars)(int* id, int* should_return)
 
     if (k <=  C2F(vstk).isiz)
     {/* eq_id */
-        int il=lstk_ptr[k];/* iadr() */
-        il<<=1;
-        ++il;
-
+        int il=lstk_ptr[k];
+        il=il+il-1;/* iadr() */
         if ((*istk(il) != sci_u_function) && (*istk(il) != sci_c_function))
         {
             C2F(com).fun= Fin= 0;
-            *should_return= f_true;
         }
-
-        C2F(com).fun= -1;
-        Fin= k;
+        else
+        {
+          C2F(com).fun= -1;
+          Fin= k;
+        }
         *should_return= f_true;
     }
-    return; /*    *should_return= f_false; */
+    return; 
 }

@@ -13,6 +13,8 @@
 package org.scilab.modules.xcos.block.positionning;
 
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.listener.ProdPortLabelingListener;
+import org.scilab.modules.xcos.block.listener.SumPortLabelingListener;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
 import org.scilab.modules.xcos.port.command.CommandPort;
@@ -27,7 +29,9 @@ public class RoundBlock extends BasicBlock {
 	/**
 	 * Default constructor
 	 */
-	public RoundBlock() { }
+	public RoundBlock() {
+		super();
+	}
 	
 	/**
 	 * Set default values
@@ -35,6 +39,12 @@ public class RoundBlock extends BasicBlock {
 	 */
 	public RoundBlock(String interFunction) {
 		super(interFunction);
+		
+		if (interFunction.equals("SUM_f")) {
+			parametersPCS.addPropertyChangeListener("integerParameters", SumPortLabelingListener.getInstance());
+		} else if (interFunction.equals("PROD_f")) {
+			parametersPCS.addPropertyChangeListener("realParameters", ProdPortLabelingListener.getInstance());
+		}
 	}
 	
 	/**

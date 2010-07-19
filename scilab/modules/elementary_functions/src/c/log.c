@@ -10,7 +10,7 @@
  *
  */
 #include "elem_common.h"
-
+#include "log.h"
 /*log*/
 double dlogs(double _dblVal)
 {

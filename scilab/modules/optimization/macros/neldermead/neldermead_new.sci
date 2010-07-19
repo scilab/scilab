@@ -13,7 +13,7 @@
 //   Creates a new Nelder-Mead object.
 //
 function newobj = neldermead_new ()
-  newobj = tlist(["T_NELDERMEAD" 
+  newobj = tlist(["TNELDER" 
     "optbase" 
     "method"
     "simplex0"

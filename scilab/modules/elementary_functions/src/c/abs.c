@@ -10,7 +10,7 @@
  *
  */
 #include <math.h>
-
+#include "abs.h"
 #include "elem_common.h"
 /*abs*/
 double dabss(double _dblVal)

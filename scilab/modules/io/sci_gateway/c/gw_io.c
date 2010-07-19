@@ -11,60 +11,65 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "gw_io.h"
+#include "api_scilab.h"
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "callFunctionFromGateway.h"
 #include "recursionFunction.h"
 /*--------------------------------------------------------------------------*/
+extern int C2F(intsave)(); /* fortran subroutine */
+/*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] =
 {
+
 {NULL, ""}, //setenv
-{C2F(sci_read),"read"},
+{sci_read,"read"},
 {NULL, ""}, //getenv
-{C2F(sci_getio),"getio"},
+{sci_getio,"getio"},
 {NULL,""},
 {NULL,""},
-{C2F(sci_write),"write"},
-{C2F(sci_rat),"rat"},
+{sci_write,"write"},
+{NULL,"rat"},
 {NULL, ""}, //file
-{C2F(sci_host),"host"},
-{C2F(sci_unix),"unix"},
-{C2F(sci_readb),"readb"},
-{C2F(sci_writb),"writb"},
-{C2F(sci_getpid),"getpid"},
-{C2F(sci_read4b),"read4b"},
-{C2F(sci_write4b),"write4b"},
-{C2F(sci_save),"save"},
+{sci_host,"host"},
+{sci_unix,"unix"},
+{sci_readb,"readb"},
+{sci_writb,"writb"},
+{sci_getpid,"getpid"},
+{sci_read4b,"read4b"},
+{sci_write4b,"write4b"},
+{sci_save,"save"},
 {NULL, ""} //load
 };
 /*--------------------------------------------------------------------------*/
 int gw_io(void)
 {  
-	if ( isRecursionCallToFunction() )
-	{
-		switch ( getRecursionFunctionToCall() )
-		{
-			case RECURSION_CALL_SAVE:
-				{
-					C2F(intsave)(); 
-					return 0;
-				}
-				break;
-			case RECURSION_CALL_LOAD:
-				{
-					//C2F(sci_load)("load",(unsigned long)strlen("load"));
-					return 0;
-				}
-				break;
-			default:
-				break;
-		}
-	}
-	else
-	{
-		Rhs = Max(0, Rhs);
-		callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
-	}
-	return 0;
+    /* Recursion from a function */
+    if ( isRecursionCallToFunction() )
+    {
+        switch ( getRecursionFunctionToCall() )
+        {
+        case RECURSION_CALL_SAVE:
+            {
+                C2F(intsave)(); 
+                return 0;
+            }
+            break;
+        case RECURSION_CALL_LOAD:
+            {
+                //sci_load("load",(unsigned long)strlen("load"));
+                return 0;
+            }
+            break;
+        default:
+            break;
+        }
+    }
+    else
+    {
+        Rhs = Max(0, Rhs);
+        callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
+    }
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

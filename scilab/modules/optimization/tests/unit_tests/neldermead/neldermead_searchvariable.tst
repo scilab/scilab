@@ -9,6 +9,7 @@
 
 
 // <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
 
 //
 // assert_close --

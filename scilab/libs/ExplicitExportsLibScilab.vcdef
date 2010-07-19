@@ -1,27 +1,22 @@
 ;core
-	stack_
-	vstk_
-	recu_
-	iop_
-	errgst_
-	com_
-	adre_
-	cha1_
+    stack_
+    vstk_
+    recu_
+    iop_
+    errgst_
+    com_
+    adre_
+    cha1_
     mtlbc_
     csimp_
-;  
-;intersci  
- 	intersci_ 
+;
+;intersci
+    intersci_
 ;
 ;linear_algebra
 scigsch_
 scisch_
 scizgsch_
-;
-;differential_equations_f	
-	lsr001_
-  lsa001_
-  ls0001_
 ;
 ierode_
 ;
@@ -32,11 +27,8 @@ basbrk_
 ; used to synchronize thread
 ;
 LaunchScilab
-LaunchScilabLock
+pLaunchScilabLock
 ;
-;
-; defined for expm (elementary functions)
-;
-dcoeff_
 ;
 BuildWithVS8ExpressF2C
+

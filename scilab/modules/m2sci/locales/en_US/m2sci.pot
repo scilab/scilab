@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-04-13 09:16+0100\n"
+"Revision-Date: 2010-06-29 10:00+0100\n"
 
 # File: macros/kernel/lst_funcall.sci, line: 94
 # File: macros/kernel/multi_fun_file.sci, line: 98
@@ -292,7 +292,7 @@ msgstr ""
 msgid "All windows will be deleted."
 msgstr ""
 #
-# File: macros/percent/%log2sci.sci, line: 42
+# File: macros/percent/%log2sci.sci, line: 46
 #, c-format
 msgid ""
 "At least one operand is an empty matrix for operator: %s, result set to []."
@@ -386,7 +386,7 @@ msgstr ""
 msgid "Error while executing : [sci_equiv]=sci_%s(mtlb_expr)."
 msgstr ""
 #
-# File: macros/percent/%e2sci.sci, line: 164
+# File: macros/percent/%e2sci.sci, line: 169
 msgid "Extraction from strings with more than two indexes not implemented."
 msgstr ""
 #
@@ -442,13 +442,23 @@ msgstr ""
 msgid "Global variable %s added to M2SCI variable list."
 msgstr ""
 #
-# File: macros/sci_files/sci_atanh.sci, line: 21
-# File: macros/sci_files/sci_asin.sci, line: 21
+# File: macros/sci_files/sci_atanh.sci, line: 24
+# File: macros/sci_files/sci_asin.sci, line: 24
+# File: macros/sci_files/sci_atan.sci, line: 24
 # File: macros/sci_files/sci_acoth.sci, line: 19
 #, c-format
 msgid ""
 "If %s is outside [-1,1]\n"
 "   complex part of output of %s will be the opposite of Matlab one."
+msgstr ""
+#
+# File: macros/sci_files/sci_atanh.sci, line: 22
+# File: macros/sci_files/sci_asin.sci, line: 22
+# File: macros/sci_files/sci_atan.sci, line: 22
+#, c-format
+msgid ""
+"If %s is outside [-1,1]\n"
+"   real part of output of %s will be the opposite of Matlab one."
 msgstr ""
 #
 # File: macros/sci_files/sci_setstr.sci, line: 20
@@ -920,38 +930,19 @@ msgstr ""
 # File: macros/sci_files/sci_any.sci, line: 31
 # File: macros/sci_files/sci_any.sci, line: 73
 # File: macros/sci_files/sci_uint32.sci, line: 42
-# File: macros/sci_files/sci_randn.sci, line: 96
-# File: macros/sci_files/sci_randn.sci, line: 153
-# File: macros/sci_files/sci_zeros.sci, line: 96
-# File: macros/sci_files/sci_zeros.sci, line: 153
-# File: macros/sci_files/sci_triu.sci, line: 28
 # File: macros/sci_files/sci_int8.sci, line: 42
-# File: macros/sci_files/sci_rand.sci, line: 96
-# File: macros/sci_files/sci_rand.sci, line: 153
 # File: macros/sci_files/sci_cell.sci, line: 29
 # File: macros/sci_files/sci_cell.sci, line: 62
-# File: macros/sci_files/sci_repmat.sci, line: 24
-# File: macros/sci_files/sci_repmat.sci, line: 94
-# File: macros/sci_files/sci_repmat.sci, line: 101
 # File: macros/sci_files/sci_int16.sci, line: 42
 # File: macros/sci_files/sci_dec2hex.sci, line: 23
 # File: macros/sci_files/sci_uint8.sci, line: 42
-# File: macros/sci_files/sci_ones.sci, line: 96
-# File: macros/sci_files/sci_ones.sci, line: 153
 # File: macros/sci_files/sci_all.sci, line: 31
 # File: macros/sci_files/sci_all.sci, line: 73
-# File: macros/sci_files/sci_tril.sci, line: 28
 # File: macros/sci_files/sci_log2.sci, line: 30
-# File: macros/sci_files/sci_false.sci, line: 96
-# File: macros/sci_files/sci_false.sci, line: 153
 # File: macros/sci_files/sci_pow2.sci, line: 35
 # File: macros/sci_files/sci_pow2.sci, line: 42
 # File: macros/sci_files/sci_uint16.sci, line: 42
-# File: macros/sci_files/sci_true.sci, line: 96
-# File: macros/sci_files/sci_true.sci, line: 153
 # File: macros/sci_files/sci_int32.sci, line: 42
-# File: macros/sci_files/sci_eye.sci, line: 96
-# File: macros/sci_files/sci_eye.sci, line: 153
 msgid "is Real."
 msgstr ""
 #
@@ -1003,7 +994,7 @@ msgid ""
 "ignored."
 msgstr ""
 #
-# File: macros/kernel/m2sci_syntax.sci, line: 304
+# File: macros/kernel/m2sci_syntax.sci, line: 225
 msgid "m2sciassume is obsolete, used m2scideclare instead."
 msgstr ""
 #

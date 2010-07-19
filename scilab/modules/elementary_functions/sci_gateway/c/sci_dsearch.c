@@ -22,6 +22,7 @@
 static int getMode(int* _piKey, int _iPos, char *_pcMode);
 
 /*--------------------------------------------------------------------------*/
+
 int sci_dsearch(char *fname, int* _piKey)
 {
 	SciErr sciErr;

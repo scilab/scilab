@@ -2,10 +2,11 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="interpolation_f2c"
+	Name="interpolation_f"
 	ProjectGUID="{D98B0986-14E4-44FD-B006-CACE4B291F38}"
 	RootNamespace="interpolation_f2c"
 	Keyword="Win32Proj"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -23,8 +24,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="1"
 			>
@@ -41,10 +42,7 @@
 			<Tool
 				Name="VCCustomBuildTool"
 			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-				ExecutionBucket="4"
-			/>
+
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
@@ -63,7 +61,6 @@
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -83,15 +80,16 @@
 			<Tool
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
-				AdditionalOptions="/fixed:no"
+				AdditionalOptions="/ignore:4049"
 				AdditionalDependencies="Libscilab.lib interpolation.lib"
-				OutputFile="$(SolutionDir)bin\interpolation_f.dll"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="2"
 				ModuleDefinitionFile="interpolation_f.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				TargetMachine="1"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -125,8 +123,8 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|x64"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="1"
 			>
@@ -145,9 +143,6 @@
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
 			/>
@@ -161,7 +156,6 @@
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -177,15 +171,16 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/fixed:no"
+				AdditionalOptions="/ignore:4049"
 				AdditionalDependencies="Libscilab.lib interpolation.lib"
-				OutputFile="$(SolutionDir)bin\interpolation_f.dll"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="2"
 				ModuleDefinitionFile="interpolation_f.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				TargetMachine="17"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -213,8 +208,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="1"
 			WholeProgramOptimization="1"
@@ -234,9 +229,6 @@
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
 				Name="VCMIDLTool"
 			/>
 			<Tool
@@ -248,7 +240,6 @@
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -264,8 +255,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalOptions="/ignore:4049"
 				AdditionalDependencies="Libscilab.lib interpolation.lib"
-				OutputFile="$(SolutionDir)bin\interpolation_f.dll"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="interpolation_f.def"
 				GenerateDebugInformation="true"
@@ -275,6 +267,7 @@
 				LinkTimeCodeGeneration="0"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				TargetMachine="1"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -302,8 +295,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|x64"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="1"
 			WholeProgramOptimization="1"
@@ -323,9 +316,6 @@
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
 			/>
@@ -338,7 +328,6 @@
 				EnableEnhancedInstructionSet="1"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -354,8 +343,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalOptions="/ignore:4049"
 				AdditionalDependencies="Libscilab.lib interpolation.lib"
-				OutputFile="$(SolutionDir)bin\interpolation_f.dll"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="interpolation_f.def"
 				GenerateDebugInformation="true"
@@ -365,6 +355,7 @@
 				LinkTimeCodeGeneration="0"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				TargetMachine="17"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -399,6 +390,10 @@
 			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
+			<File
+				RelativePath=".\common_f2c.c"
+				>
+			</File>
 			<File
 				RelativePath=".\cshep2d.c"
 				>
@@ -438,38 +433,6 @@
 			<File
 				RelativePath=".\somespline.f"
 				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="f2c rule"
-						CommandLine="cd &quot;$(InputDir)&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-						CommandLine="cd &quot;$(InputDir)&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="f2c rule"
-						CommandLine="cd &quot;$(InputDir)&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-						CommandLine="cd &quot;$(InputDir)&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
-					/>
-				</FileConfiguration>
 			</File>
 		</Filter>
 		<File

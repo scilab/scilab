@@ -1972,68 +1972,6 @@ int iGetStringFromPointer(int* _piAddr, int *_piRows, int *_piCols, int *_piLen,
 	*_piString			= _piAddr + (5 + (*_piRows) * (*_piCols));
 	return 0;
 }
-
-/*void vGetPointerFromDoubleComplex(doublecomplex *_poComplex, int _iSize, double *_pdblReal, double *_pdblImg)
-{
-
-	int iTwo	= 2;
-	int iOne	= 1;
-	double *pReal = &_poComplex[0].r;
-	double *pImg = &_poComplex[0].i;
-
-	if(_pdblReal != NULL && _pdblImg != NULL)
-	{
-		C2F(dcopy)(&_iSize, pReal, &iTwo, _pdblReal, &iOne);
-		C2F(dcopy)(&_iSize, pImg, &iTwo, _pdblImg, &iOne);
-	}
-	else if(_pdblReal != NULL && _pdblImg == NULL)
-	{
-		C2F(dcopy)(&_iSize, pReal, &iTwo, _pdblReal, &iOne);
-	}
-	else if(_pdblReal == NULL && _pdblImg != NULL)
-	{
-		C2F(dcopy)(&_iSize, pImg, &iTwo, _pdblImg, &iOne);
-	}
-}
-doublecomplex* oGetDoubleComplexFromPointer(double *_pdblReal, double *_pdblImg, int _iSize)
-{
-	doublecomplex *poComplex = (doublecomplex*)MALLOC(sizeof(doublecomplex) * _iSize);
-	int iTwo	= 2;
-	int iOne	= 1;
-	double *pReal = &poComplex[0].r;
-	double *pImg = &poComplex[0].i;
-
-	if(_pdblReal != NULL && _pdblImg != NULL)
-	{
-
-		C2F(dcopy)(&_iSize, _pdblReal, &iOne, pReal, &iTwo);
-		C2F(dcopy)(&_iSize, _pdblImg, &iOne, pImg, &iTwo);
-	}
-	else if(_pdblReal != NULL && _pdblImg == NULL)
-	{
-		double ZERO = 0.;
-		C2F(dcopy)(&_iSize, _pdblReal, &iOne, pReal, &iTwo);
-		C2F(dset)(&_iSize, &ZERO, pImg, &iTwo);
-	}
-	else if(_pdblReal == NULL && _pdblImg != NULL)
-	{
-		double ZERO = 0.;
-		C2F(dset)(&_iSize, &ZERO, pReal, &iTwo);
-		C2F(dcopy)(&_iSize, _pdblImg, &iOne, pImg, &iTwo);
-	}
-	else
-	{
-		FREE(poComplex);
-		return NULL;
-	}
-	return poComplex;
-}
-void vFreeDoubleComplexFromPointer(doublecomplex *_poComplex)
-{
-	if(_poComplex != NULL)
-		FREE(_poComplex);
-}
-*/
 /*
 Create a list in scilab stack
 This function only "reserves" VarNum

@@ -101,6 +101,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 	 * Frame used to customize fields and variables default values. DAC: this
 	 * class is tightly coupled to Swing
 	 */
+	// CSOFF: ClassDataAbstractionCoupling
 	private class CustomizeFrame extends JFrame {
 		private CustomizeFrameControler controler;
 
@@ -146,6 +147,8 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 		/**
 		 * Construct the UI and install the listeners.
 		 */
+		// CSOFF: JavaNCSS
+		// CSOFF: MagicNumber
 		private void initComponents() {
 
 			/* Construct the components */
@@ -293,6 +296,8 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 			}
 			vars.setCellEditor(new DefaultCellEditor(validVars));
 		}
+		// CSON: JavaNCSS
+		// CSON: MagicNumber
 
 		/**
 		 * Implements the models used on the frame.
@@ -311,16 +316,18 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 							XcosMessages.MASK_VARNAME,
 							XcosMessages.MASK_VARDESC,
 							XcosMessages.MASK_EDITABLE }) {
-				private final Class[] types = new Class[] {
+				private final Class< ? >[] types = new Class[] {
 						java.lang.Integer.class, java.lang.String.class,
 						java.lang.String.class, java.lang.Boolean.class };
 				private final boolean[] canEdit = new boolean[] {false, true,
 						true, true };
 
-				public Class getColumnClass(int columnIndex) {
+				@Override
+				public Class< ? > getColumnClass(int columnIndex) {
 					return types[columnIndex];
 				}
 
+				@Override
 				public boolean isCellEditable(int rowIndex, int columnIndex) {
 					if (rowIndex != 0) {
 						return canEdit[columnIndex];
@@ -336,14 +343,16 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 					new Object[][] {new Object[] {XcosMessages.MASK_WINTITLE,
 							"" } }, new String[] {XcosMessages.MASK_VARNAME,
 							XcosMessages.MASK_VARVALUES }) {
-				private final Class[] types = new Class[] {
+				private final Class< ? >[] types = new Class[] {
 						java.lang.String.class, java.lang.String.class };
 				private final boolean[] canEdit = new boolean[] {false, true};
 
-				public Class getColumnClass(int columnIndex) {
+				@Override
+				public Class< ? > getColumnClass(int columnIndex) {
 					return types[columnIndex];
 				}
 
+				@Override
 				public boolean isCellEditable(int rowIndex, int columnIndex) {
 					return canEdit[columnIndex];
 				}
@@ -376,8 +385,8 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 			 */
 			public void exportToBlock() {
 				/** Data vectors are typed when parsing */
-				final List customModel = customizeTableModel.getDataVector();
-				final List valuesModel = valuesTableModel.getDataVector();
+				final List< ? > customModel = customizeTableModel.getDataVector();
+				final List< ? > valuesModel = valuesTableModel.getDataVector();
 
 				/* We have one content that is not a variable : Window Title */
 				final int nbOfVar = valuesModel.size() - 1;
@@ -388,15 +397,15 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 				final ScilabList polFields = new ScilabList();
 
 				/* Title */
-				varDesc[0][0] = (String) ((List) valuesModel.get(0)).get(1);
+				varDesc[0][0] = (String) ((List< ? >) valuesModel.get(0)).get(1);
 
 				/* Other fields */
 				for (int i = 0; i < nbOfVar; i++) {
-					values[i][0] = (String) ((List) valuesModel.get(i + 1))
+					values[i][0] = (String) ((List< ? >) valuesModel.get(i + 1))
 							.get(1);
-					varNames[i][0] = (String) ((List) customModel.get(i + 1))
+					varNames[i][0] = (String) ((List< ? >) customModel.get(i + 1))
 							.get(1);
-					varDesc[i + 1][0] = (String) ((List) customModel
+					varDesc[i + 1][0] = (String) ((List< ? >) customModel
 							.get(i + 1)).get(2);
 
 					/*
@@ -570,7 +579,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 					 * doesn't need to be checked as the operation doesn't
 					 * depend on it
 					 */
-					List<List> data = model.customizeTableModel
+					List<List< ? >> data = model.customizeTableModel
 							.getDataVector();
 
 					if (selectedRow > 0
@@ -579,8 +588,8 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 						 * doesn't need to be checked as the operation doesn't
 						 * depend on it
 						 */
-						List current = (List) data.get(selectedRow);
-						List next = (List) data.get(selectedRow + 1);
+						List<Integer> current = (List<Integer>) data.get(selectedRow);
+						List<Integer> next = (List<Integer>) data.get(selectedRow + 1);
 
 						/* Inverting data */
 						data.set(selectedRow + 1, current);
@@ -605,7 +614,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 					 * doesn't need to be checked as the operation doesn't
 					 * depend on it
 					 */
-					final List<List> data = model.customizeTableModel
+					final List<List< ? >> data = model.customizeTableModel
 							.getDataVector();
 
 					if (selectedRow > 1) {
@@ -613,8 +622,8 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 						 * doesn't need to be checked as the operation doesn't
 						 * depend on it
 						 */
-						List current = (List) data.get(selectedRow);
-						List next = (List) data.get(selectedRow - 1);
+						List<Integer> current = (List<Integer>) data.get(selectedRow);
+						List<Integer> next = (List<Integer>) data.get(selectedRow - 1);
 
 						/* Inverting data */
 						data.set(selectedRow - 1, current);
@@ -759,6 +768,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 			}
 		}
 	}
+	// CSON: ClassDataAbstractionCoupling
 
 	/**
 	 * Ease the development of the UI (debug).

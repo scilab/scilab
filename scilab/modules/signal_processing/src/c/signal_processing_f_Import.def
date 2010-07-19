@@ -5,3 +5,18 @@ EXPORTS
 ; --------------------------------------- 
 ; signal_processing_f
 ; --------------------------------------- 
+bgetx_
+bgety_
+syredi_
+corexy_
+corexx_
+amell_
+tscccf_
+cmpse2_
+cmpse3_
+delip_
+dfft2_
+fft842_
+remez_
+rpem_
+syredi_

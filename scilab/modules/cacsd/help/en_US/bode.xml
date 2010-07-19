@@ -144,6 +144,10 @@ bode(frq, repf [,comments])</synopsis>
     <literal>1.d-3</literal>, <literal>0.5</literal>/sl.dt (nyquist frequency)
     if <literal>sl</literal> is discrete-time. Automatic discretization of
     frequencies is made by <literal>calfrq</literal>.</para>
+    <para>
+      The <member><link linkend="datatips">datatips</link></member> tool may be used
+      to display data along the phase and modulus curves.
+    </para>
   </refsection>
 
   <refsection>
@@ -152,12 +156,31 @@ bode(frq, repf [,comments])</synopsis>
     <programlisting role="example"><![CDATA[ 
 s=poly(0,'s')
 h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
-tit='(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)';
-bode(h,0.01,100,tit);
-h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
-clf()
-bode([h1;h],0.01,100,['h1';'h'])
+clf();bode(h,0.01,100);
  ]]></programlisting>
+    <para>
+      <inlinemediaobject>
+	<imageobject>
+	  <imagedata fileref="../images/bode1.svg"/>
+	</imageobject>
+      </inlinemediaobject>
+    </para>
+<programlisting role="example"><![CDATA[ 
+s=poly(0,'s')
+h1=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+num=22801+4406.18*s+382.37*s^2+21.02*s^3+s^4;
+den=22952.25+4117.77*s+490.63*s^2+33.06*s^3+s^4
+h2=syslin('c',num/den);
+
+clf();bode([h1;h2],0.01,100,['h1';'h2'])
+ ]]></programlisting>
+    <para>
+      <inlinemediaobject>
+	<imageobject>
+	  <imagedata fileref="../images/bode2.svg"/>
+	</imageobject>
+      </inlinemediaobject>
+    </para>
   </refsection>
 
   <refsection>
@@ -179,6 +202,9 @@ bode([h1;h],0.01,100,['h1';'h'])
       <member><link linkend="calfrq">calfrq</link></member>
 
       <member><link linkend="phasemag">phasemag</link></member>
+
+      <member><link linkend="datatips">datatips</link></member>
+
     </simplelist>
   </refsection>
 </refentry>

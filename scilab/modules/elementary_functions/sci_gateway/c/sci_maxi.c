@@ -31,6 +31,7 @@ SciErr compare_double_inside(int* _piKey, int* _piAddress, int _iIsMini, int _iM
 static SciErr compare_double(int* _piKey, int _iIsMini, int** _piAddr, int _iNbItem);
 
 /*--------------------------------------------------------------------------*/
+
 int sci_maxi(char *fname, int* _piKey)
 {
 	return func_comp(fname, 0, _piKey);
@@ -161,10 +162,10 @@ int func_comp(char* fname, int _iMini, int* _piKey)
 		break;
 	case sci_sparse:
 		Fin -= 6; //Ugly !!!
-		if(_iMini)
-			C2F(sci_spmin)(fname, _piKey);
+		if(iModeActive)
+			sci_spmin(fname,_piKey);
 		else
-			C2F(sci_spmax)(fname, _piKey);
+			sci_spmax(fname,_piKey);
 		break;
 	default:
 		OverLoad(1);

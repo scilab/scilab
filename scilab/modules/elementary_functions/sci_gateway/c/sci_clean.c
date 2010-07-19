@@ -19,7 +19,7 @@
 
 /*Some call to other module ( polynomial et sparse*/
 extern int sci_cleanp(char *fname,unsigned long fname_len);
-extern int C2F(sci_spclean) (char *fname,unsigned long fname_len);
+extern int sci_spclean (char *fname,unsigned long fname_len);
 extern int C2F(ref2val) (void);
 extern double C2F(dasum)();
 
@@ -86,7 +86,7 @@ int clean_poly(int* _piKey, int* _piAddress)
 int clean_sparse(int* _piKey, int* _piAddress)
 {
 	C2F(ref2val)();
-	C2F(sci_spclean)("clean", 5);
+	sci_spclean("clean", 5);
 	return 0;
 }
 

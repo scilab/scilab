@@ -153,6 +153,10 @@ public static int sci_gl2psPointSize(float value) {
     return GL2PSWrappingJNI.sci_gl2psPointSize(value);
   }
 
+  public static int sci_gl2psLineStipple(int arg0, int arg1) {
+    return GL2PSWrappingJNI.sci_gl2psLineStipple(arg0, arg1);
+  }
+
   
  /**
   * Width of the line

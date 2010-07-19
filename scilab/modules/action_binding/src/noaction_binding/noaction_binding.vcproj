@@ -31,9 +31,7 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
+
 			<Tool
 				Name="VCMIDLTool"
 			/>
@@ -47,7 +45,7 @@
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
+				
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -63,7 +61,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/fixed:no"
 				AdditionalDependencies="LibScilab.lib"
 				OutputFile="../../../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
@@ -114,9 +111,7 @@
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
+
 			<Tool
 				Name="VCMIDLTool"
 			/>
@@ -132,7 +127,7 @@
 				EnableEnhancedInstructionSet="1"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
+				
 				DebugInformationFormat="3"
 			/>
 			<Tool

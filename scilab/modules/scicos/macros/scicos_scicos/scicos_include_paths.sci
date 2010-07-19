@@ -1,4 +1,5 @@
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//  Copyright (C) DIGITEO - 2010 - Allan CORNET
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -17,17 +18,25 @@
 // See the file ../license.txt
 //
 
-function p=scicos_include_paths(modules)
-  if argn(2)<1 then modules=["scicos_blocks","dynamic_link","scicos","core"],end
-  if getos()=="Windows" then //Windows
-    p='""'+WSCI+"\modules\"+modules+"\includes"+'""'
-  else //Unix
-    if isdir(SCI+"/modules/core/includes/") then //source version
-      p=SCI+"/modules/"+modules+"/includes"
-    elseif isdir(SCI+"/../../include/scilab/core/") then //binary version
-      p=SCI+"/../../include/scilab/"+modules
-    elseif isdir("/usr/include/scilab/") then //packaged version
-      p=[] //to be done
+function p = scicos_include_paths(modules)
+  if argn(2) < 1 then 
+    modules = ["scicos_blocks", "dynamic_link", "scicos", "core"];
+  end
+  
+  if getos() == "Windows" then 
+    // Windows
+    p= """" + SCI + "/modules/" + modules + "/includes" + """";
+  else 
+    //Unix
+    if isdir(SCI+"/modules/core/includes/") then 
+      // source version
+      p = SCI + "/modules/" + modules + "/includes";
+    elseif isdir(SCI+"/../../include/scilab/core/") then 
+      // binary version
+      p = SCI + "/../../include/scilab/" + modules;
+    elseif isdir("/usr/include/scilab/") then 
+      // packaged version
+      p = [];
     end
   end
 endfunction

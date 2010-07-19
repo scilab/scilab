@@ -1026,6 +1026,22 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1export_GL2PSWrappingJNI
 }
 
 
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1export_GL2PSWrappingJNI_sci_1gl2psLineStipple(JNIEnv *jenv, jclass jcls, jint jarg1, jint jarg2) {
+  jint jresult = 0 ;
+  int arg1 ;
+  int arg2 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = (int)jarg1; 
+  arg2 = (int)jarg2; 
+  result = (int)sci_gl2psLineStipple(arg1,arg2);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1export_GL2PSWrappingJNI_sci_1gl2psLineWidth(JNIEnv *jenv, jclass jcls, jfloat jarg1) {
   jint jresult = 0 ;
   float arg1 ;

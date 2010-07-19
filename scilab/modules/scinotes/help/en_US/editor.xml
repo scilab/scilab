@@ -1,0 +1,701 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Sylvestre KOUMAR
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="editor" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>Editor</refname>
+    <refpurpose>Embedded Scilab text editor</refpurpose>
+  </refnamediv>
+  
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>
+      editor()
+      editor(file)
+      editor([file1, file2])
+      editor(file, line_number)
+      editor([file1, file2], [line_number1, line_number2])
+      editor(file, 'readonly')
+      editor([file1, file2], 'readonly')
+
+    </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>file</term>
+
+        <listitem>
+          <para>a string, the file we want to open.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>[file1, file2]</term>
+
+        <listitem>
+          <para>a matrix of string, files we want to open.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>line_number</term>
+
+        <listitem>
+          <para>an integer, number of the line we want to highlight at the
+          opening of the file.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    
+    <variablelist>
+      <varlistentry>
+        <term>[line_number1, line_number2]</term>
+
+        <listitem>
+          <para>a matrix of integer, each opened file will have it's corresponding
+          line highlighted.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para><literal>Editor</literal> is an embedded Scilab text editor.</para>
+
+    <para>It can be started with a fresh text buffer pressing the "Editor"
+    button on top of the main Scilab window, or from Scilab command line with
+    the instruction <literal>editor()</literal>, or it can open specific files
+    if invoked with any of the calling sequences above (whithout any
+    parameters, it opens editor with a blank file).</para>
+
+    <para>The same invocation adds further files to an already opened
+    Editor.</para>
+    
+    <para>With the option 'readonly', files are opened in read-only mode so
+    they cannot be modified.</para>
+
+    <para>Keyboard shortcuts are defined for most possible editing actions and
+    reported by the menu entries.</para>
+
+    <para></para>
+
+    <para>editor can be started in the following ways :</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>By the menu Applications. Choose Applications =&gt;
+        Editor</para>
+      </listitem>
+
+      <listitem>
+        <para>From the command line:</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>editor()</para>
+          </listitem>
+
+          <listitem>
+            <para>editor(file)</para>
+          </listitem>
+
+          <listitem>
+            <para>editor([file1, file2])</para>
+          </listitem>
+
+          <listitem>
+            <para>editor(file, line_number)</para>
+          </listitem>
+          
+          <listitem>
+            <para>editor([file1, file2], [line_number1, line_number2])</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection>
+    <title>Menus and Shortcuts</title>
+    <itemizedlist>
+      <listitem>
+	<para>Menu File</para>
+
+	<informaltable border="1">
+	  <tr>
+            <td>
+              <para>Commande</para>
+            </td>
+	    
+            <td>
+              <para>Shortcut</para>
+            </td>
+	    
+            <td>
+              <para>Description</para>
+            </td>
+	  </tr>
+	  
+	  <tr>
+            <td>New...</td>
+	    
+            <td>&lt;CTRL-N&gt;</td>
+	    
+            <td>
+              <para>Open a new file</para>
+            </td>
+	  </tr>
+	  
+	  <tr>
+            <td>Open...</td>
+	    
+            <td>&lt;CTRL-O&gt;</td>
+	    
+            <td>
+              <para>Open an existing file</para>
+            </td>
+	  </tr>
+	  
+	  <tr>
+            <td>Recent Files</td>
+	    
+            <td />
+	    
+            <td>
+              <para>Display files recently opened</para>
+            </td>
+	  </tr>
+	  
+	  <tr>
+            <td>Save</td>
+	    
+            <td>&lt;CTRL-S&gt;</td>
+	    
+            <td>
+              <para>Save a file</para>
+            </td>
+	  </tr>
+	  
+	  <tr>
+            <td>Save as...</td>
+	    
+            <td>&lt;CTRL-MAJ-S&gt;</td>
+	    
+            <td>
+              <para>Save a file as</para>
+            </td>
+	  </tr>
+	  
+	  <tr>
+            <td>Page Setup</td>
+	    
+            <td />
+	    
+            <td>
+              <para>Setup page for printing</para>
+            </td>
+	  </tr>
+	  
+	  <tr>
+            <td>Print Preview</td>
+	    
+            <td>&lt;CTRL-MAJ-P&gt;</td>
+	    
+            <td>
+              <para>Open a print preview window</para>
+            </td>
+	  </tr>
+	  
+	  <tr>
+            <td>Print...</td>
+	    
+            <td>&lt;CTRL-P&gt;</td>
+	    
+            <td>
+              <para>Print a file</para>
+            </td>
+	  </tr>
+	  
+	  <tr>
+            <td>Close</td>
+	    
+            <td>&lt;CTRL-W&gt;</td>
+	    
+            <td>
+              <para>Close a file</para>
+            </td>
+	  </tr>
+	  
+	  <tr>
+            <td>Quit</td>
+	    
+            <td>&lt;CTRL-Q&gt;</td>
+	    
+            <td>
+              <para>Close Editor</para>
+            </td>
+	  </tr>
+	</informaltable>
+      </listitem>
+      
+      <listitem>
+	<para>Menu Edit</para>
+	
+	<informaltable border="1">
+	  <tr>
+            <td>
+              <para>Commande</para>
+            </td>
+	    
+            <td>
+              <para>Shortcut</para>
+            </td>
+	    
+            <td>
+              <para>Description</para>
+            </td>
+	  </tr>
+	  
+	  <tr>
+            <td>Undo</td>
+	    
+            <td>&lt;CTRL-Z&gt;</td>
+	    
+            <td>
+              <para>Undo action</para>
+            </td>
+	  </tr>
+	  
+	  <tr>
+            <td>Redo</td>
+	    
+            <td>&lt;CTRL-Y&gt;</td>
+	    
+            <td>
+              <para>Redo action</para>
+            </td>
+	  </tr>
+	  
+	  <tr>
+            <td>Cut</td>
+	    
+            <td>&lt;CTRL-X&gt;</td>
+	    
+            <td>
+              <para>Cut the selection</para>
+            </td>
+	  </tr>
+	  
+	  <tr>
+            <td>Copy</td>
+	    
+            <td>&lt;CTRL-C&gt;</td>
+	    
+            <td>
+              <para>Copy the selection</para>
+            </td>
+	  </tr>
+	  
+	  <tr>
+            <td>Paste</td>
+	    
+            <td>&lt;CTRL-V&gt;</td>
+	    
+            <td>
+              <para>Paste the selection</para>
+            </td>
+	  </tr>
+	  
+	  <tr>
+            <td>Select All</td>
+	    
+            <td>&lt;CTRL-A&gt;</td>
+	    
+            <td>
+              <para>Select the entire document</para>
+            </td>
+	  </tr>
+	  
+	  <tr>
+            <td>Delete</td>
+	    
+            <td />
+	    
+            <td>
+              <para>Delete the selection</para>
+            </td>
+	  </tr>
+	  
+	  <tr>
+            <td>Comment Selection</td>
+	    
+            <td>&lt;CTRL-D&gt;</td>
+	    
+            <td>
+              <para>Comment selected lines</para>
+            </td>
+	  </tr>
+	  
+	  <tr>
+            <td>Uncomment Selection</td>
+	    
+            <td>&lt;CTRL-MAJ-D&gt;</td>
+	    
+            <td>
+              <para>Uncomment selected lines</para>
+            </td>
+	  </tr>
+	  
+	  <tr>
+            <td>Tabify Selection</td>
+	    
+            <td>&lt;TAB&gt;</td>
+	    
+            <td>
+              <para>Tabify selected lines</para>
+            </td>
+	  </tr>
+	  
+	  <tr>
+            <td>Untabify Selection</td>
+	    
+            <td>&lt;MAJ-TAB&gt;</td>
+	    
+            <td>
+              <para>Untabify selected lines</para>
+            </td>
+	  </tr>
+	  
+	  <tr>
+            <td>Indent</td>
+	    
+            <td>&lt;CTRL-I&gt;</td>
+	    
+            <td>
+              <para>Indent selected lines</para>
+            </td>
+	  </tr>
+	</informaltable>
+      </listitem>
+      
+      <listitem>
+	<para>Menu Search</para>
+	
+	<informaltable border="1">
+	  <tr>
+            <td>
+              <para>Commande</para>
+            </td>
+	    
+            <td>
+              <para>Shortcut</para>
+            </td>
+	    
+            <td>
+              <para>Description</para>
+            </td>
+	  </tr>
+	  
+	  <tr>
+            <td>Find/Replace</td>
+	    
+            <td>&lt;CTRL-F&gt;</td>
+	    
+            <td>
+              <para>Find and/or Replace an element</para>
+            </td>
+	  </tr>
+	  
+	  <tr>
+            <td>Goto line</td>
+	    
+            <td>&lt;CTRL-G&gt;</td>
+	    
+            <td>
+              <para>Goto line</para>
+            </td>
+	  </tr>
+	</informaltable>
+      </listitem>
+      
+      <listitem>
+	<para>Menu View</para>
+	
+	<informaltable border="1">
+	  <tr>
+            <td>
+              <para>Commande</para>
+            </td>
+	    
+            <td>
+              <para>Shortcut</para>
+            </td>
+	    
+            <td>
+              <para>Description</para>
+            </td>
+	  </tr>
+	  
+	  <tr>
+            <td>Show/Hide Toolbar</td>
+	    
+            <td />
+	    
+            <td>
+              <para>Option to show or hide the toolbar</para>
+            </td>
+	  </tr>
+	  
+	  <tr>
+            <td>Highlight current line</td>
+	    
+            <td>&lt;CTRL-J&gt;</td>
+	    
+            <td>
+              <para>Highlight the current line</para>
+            </td>
+	  </tr>
+	  
+	  <tr>
+            <td>Line Numbers</td>
+	    
+            <td>&lt;CTRL-B&gt;</td>
+	    
+            <td>
+              <para>Display document's line numbers</para>
+            </td>
+	  </tr>
+	  
+	  <tr>
+            <td>Set Colors...</td>
+	    
+            <td />
+	    
+            <td>
+              <para>Color settings for documents</para>
+            </td>
+	  </tr>
+	  
+	  <tr>
+            <td>Set Fonts...</td>
+	    
+            <td />
+	    
+            <td>
+              <para>Font settings for documents</para>
+            </td>
+	  </tr>
+	  
+	  <tr>
+            <td>Reset default font</td>
+	    
+            <td />
+	    
+            <td>
+              <para>Reset default font settings for documents</para>
+            </td>
+	  </tr>
+	</informaltable>
+      </listitem>
+
+      <listitem>
+	<para>Menu Document</para>
+	
+	<informaltable border="1">
+	  <tr>
+            <td>
+              <para>Commande</para>
+            </td>
+	    
+            <td>
+              <para>Shortcut</para>
+            </td>
+	    
+            <td>
+              <para>Description</para>
+            </td>
+	  </tr>
+	  
+	  <tr>
+            <td>Syntaxe Type</td>
+	    
+            <td />
+	    
+            <td>
+              <para>Syntaxe type settings (default type is Scilab)</para>
+            </td>
+	  </tr>
+	  
+	  <tr>
+            <td>Encoding</td>
+	    
+            <td />
+	    
+            <td>
+              <para>Encoding settings (default type is UTF-8
+		Encoding)</para>
+            </td>
+	  </tr>
+	  
+	  <tr>
+            <td>Colorize</td>
+	    
+            <td />
+	    
+            <td>
+              <para>Colorize the document</para>
+            </td>
+	  </tr>
+	  
+	  <tr>
+            <td>Auto Indent</td>
+	    
+            <td />
+	    
+            <td>
+              <para>Activate the automatic indentation</para>
+            </td>
+	  </tr>
+	</informaltable>
+      </listitem>
+
+      <listitem>
+	<para>Menu Execute</para>
+	
+	<informaltable border="1">
+	  <tr>
+            <td>
+              <para>Commande</para>
+            </td>
+	    
+            <td>
+              <para>Shortcut</para>
+            </td>
+	    
+            <td>
+              <para>Description</para>
+            </td>
+	  </tr>
+	  
+	  <tr>
+            <td>Load Into Scilab</td>
+	    
+            <td>&lt;CTRL-L&gt;</td>
+	    
+            <td>
+              <para>Load the entire document into the Scilab console</para>
+            </td>
+	  </tr>
+	  
+	  <tr>
+            <td>Evaluate Selection</td>
+	    
+            <td />
+	    
+            <td>
+              <para>Load the selection into the Scilab console</para>
+            </td>
+	  </tr>
+	  
+	  <tr>
+            <td>Execute Into Scilab</td>
+	    
+            <td>&lt;CTRL-E&gt;</td>
+	    
+            <td>
+              <para>If the file exist, execute the content of the file</para>
+            </td>
+	  </tr>
+	</informaltable>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection>
+    <title>Remarks</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>Document :</term>
+        <listitem>
+          <para>The default text colourisation is the Scilab's syntaxe
+          colourisation.</para>
+
+          <para>The <literal>auto-indent</literal> mode indent a line
+          according to Scilab's syntaxe (after a return action).</para>
+
+          <para></para>
+        </listitem>
+      </varlistentry>
+      
+      <varlistentry>
+        <term>Bugs:</term>
+        <listitem>
+          <para>You can reported bugs in the Bugzilla <link url="http://bugzilla.scilab.org">http://bugzilla.scilab.org</link></para>
+
+          <para>There are still a few bugs that we are trying to fix, details
+          can be found in the given link by filtering entries with the
+          "Editor" element.</para>
+
+          <para></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example"><![CDATA[ 
+// editor without parameters
+editor();
+    
+// editor with a file name
+editor('SCI/modules/time/macros/datenum.sci');
+    
+// editor with a matrix of files name
+editor(['SCI/modules/time/macros/datenum.sci','SCI/modules/time/macros/datevec.sci']);
+    
+// editor with a file name and the line number to highlight
+editor('SCI/modules/time/macros/datenum.sci', 5);
+
+// editor with a matrix of files name and the corresponding matrix of lines to highlight
+// the files name matrix and the lines to highlight matrix should have the same size
+editor(['SCI/modules/time/macros/datenum.sci','SCI/modules/time/macros/datevec.sci'], [5,10]);
+ ]]></programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Author</title>
+
+    <para>Sylvestre KOUMAR</para>
+  </refsection>
+</refentry>

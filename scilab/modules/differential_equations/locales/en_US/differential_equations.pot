@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-04-13 09:16+0100\n"
+"Revision-Date: 2010-06-29 10:00+0100\n"
 
 # File: macros/dae.sci, line: 168
 #, c-format
@@ -169,15 +169,15 @@ msgstr ""
 msgid "If the function is called without argument, default values are used"
 msgstr ""
 #
-# File: demos/ode/ode_lotka/ode_lotka.dem.sce, line: 55
+# File: demos/ode/ode_lotka/ode_lotka.dem.sce, line: 53
 msgid "Lokta-Volterra vector field"
 msgstr ""
 #
-# File: demos/ode/ode_lorentz/ode_lorentz.dem.sce, line: 37
+# File: demos/ode/ode_lorentz/ode_lorentz.dem.sce, line: 35
 msgid "Lorentz differential equation"
 msgstr ""
 #
-# File: demos/ode/ode_lorentz/ode_lorentz.dem.sce, line: 49
+# File: demos/ode/ode_lorentz/ode_lorentz.dem.sce, line: 47
 msgid "Lorenz differential equation"
 msgstr ""
 #
@@ -193,7 +193,7 @@ msgstr ""
 msgid "Meaning of ml,mu:"
 msgstr ""
 #
-# File: demos/ode/ode_1dvect/ode_1dvect.dem.sce, line: 43
+# File: demos/ode/ode_1dvect/ode_1dvect.dem.sce, line: 41
 msgid "ODE 1D vector field"
 msgstr ""
 #
@@ -209,7 +209,7 @@ msgstr ""
 msgid "Sphere"
 msgstr ""
 #
-# File: demos/ode/ode_vanderpol/ode_vanderpol.dem.sce, line: 50
+# File: demos/ode/ode_vanderpol/ode_vanderpol.dem.sce, line: 48
 msgid "Van der Pol vector field"
 msgstr ""
 #
@@ -225,8 +225,8 @@ msgstr ""
 msgid "bike simulation, unstable trajectory"
 msgstr ""
 #
-# File: demos/ode/ode_chimpl/ode_chimpl.dem.sce, line: 42
-# File: demos/ode/ode_chstiff/ode_chstiff.dem.sce, line: 32
+# File: demos/ode/ode_chimpl/ode_chimpl.dem.sce, line: 40
+# File: demos/ode/ode_chstiff/ode_chstiff.dem.sce, line: 30
 msgid "chemical process (implicit)"
 msgstr ""
 #
@@ -242,7 +242,7 @@ msgstr ""
 msgid "of the banded jacobian: the band is the i,j''s with i-ml <= j <= ny-1"
 msgstr ""
 #
-# File: demos/dae/dae1/pend3d1.dem.sce, line: 104
+# File: demos/dae/dae1/pend3d1.dem.sce, line: 102
 msgid "spherical pendulum simulation"
 msgstr ""
 #

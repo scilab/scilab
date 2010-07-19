@@ -45,7 +45,7 @@ function res=determ(W,k)
 
   //upper bound of the determinant degree
 
-  maj = n1*maxi(degree(W))+1;
+  maj = n1*max(degree(W))+1;
 
   if argn(2)==1 then
     k=1;

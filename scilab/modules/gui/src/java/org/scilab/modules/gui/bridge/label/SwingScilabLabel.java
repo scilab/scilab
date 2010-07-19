@@ -1,7 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Vincent Couvert
+ * Copyright (C) 2007 - INRIA - Vincent COUVERT
  * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
+ * Copyright (C) 2010 - DIGITEO - Vincent COUVERT
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,10 +15,17 @@ package org.scilab.modules.gui.bridge.label;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 
 import javax.swing.BorderFactory;
-import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
+import javax.swing.SwingConstants;
+import javax.swing.event.HyperlinkEvent;
+import javax.swing.event.HyperlinkListener;
+import javax.swing.text.html.HTMLEditorKit;
 
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.label.SimpleLabel;
@@ -30,6 +38,7 @@ import org.scilab.modules.gui.utils.ScilabAlignment;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.utils.WebBrowser;
 
 /**
  * Swing implementation for Scilab Labels in GUIs
@@ -40,17 +49,28 @@ public class SwingScilabLabel extends JScrollPane implements SimpleLabel {
 	
 	private static final long serialVersionUID = 7177323379068859441L;
 	
-	private JLabel label;
+	private JTextPane label;
 
+	private String horizontalAlignment = "left"; /* Horizontal alignment property */
+	
+	private String verticalAlignment = "middle"; /* Vertical alignment property */
+	
+	private JPanel alignmentPanel; /* Used for alignment */
+	
+	private String labelText = ""; /* Used to save user given text */
+	
 	/**
 	 * Constructor
 	 */
 	public SwingScilabLabel() {
 		super();
-		getViewport().add(getLabel());
+		getViewport().add(getAlignmentPanel());
 		setBorder(BorderFactory.createEmptyBorder());
 		setViewportBorder(BorderFactory.createEmptyBorder());
 		setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		
+		// Initialize display 
+		setAlignment();
 	}
 	
 	/**
@@ -90,6 +110,7 @@ public class SwingScilabLabel extends JScrollPane implements SimpleLabel {
 	 * @param color the Color
 	 */
 	public void setBackground(Color color) {
+		getAlignmentPanel().setBackground(color);
 		getLabel().setBackground(color);
 	}
 	
@@ -206,7 +227,8 @@ public class SwingScilabLabel extends JScrollPane implements SimpleLabel {
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)
 	 */
 	public void setHorizontalAlignment(String alignment) {
-		getLabel().setHorizontalAlignment(ScilabAlignment.toSwingAlignment(alignment));
+		horizontalAlignment = alignment;
+		setAlignment();
 	}
 
 	/**
@@ -214,7 +236,8 @@ public class SwingScilabLabel extends JScrollPane implements SimpleLabel {
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)
 	 */
 	public void setVerticalAlignment(String alignment) {
-		getLabel().setVerticalAlignment(ScilabAlignment.toSwingAlignment(alignment));
+		verticalAlignment = alignment;
+		setAlignment();
 	}
 
 	/**
@@ -254,10 +277,22 @@ public class SwingScilabLabel extends JScrollPane implements SimpleLabel {
 	 * Create/Return the label Java object
 	 * @return the label
 	 */
-	private JLabel getLabel() {
+	private JTextPane getLabel() {
 		if (label == null) {
-			label = new JLabel();
-			label.setOpaque(true);
+			label = new JTextPane();
+			label.setContentType("text/html");
+			label.setOpaque(false);
+			label.setBorder(null);
+			label.setEditable(false);
+			((HTMLEditorKit) label.getEditorKit()).setAutoFormSubmission(false);
+			/* Add a listener to make hyperlinks active */
+			label.addHyperlinkListener(new HyperlinkListener() {
+				public void hyperlinkUpdate(HyperlinkEvent event) {
+					if (event.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
+						WebBrowser.openUrl(event.getURL().toString());
+					}
+				}
+			});
 		}
 		return label;
 		
@@ -269,7 +304,7 @@ public class SwingScilabLabel extends JScrollPane implements SimpleLabel {
 	 * @see org.scilab.modules.gui.text.SimpleText#getText()
 	 */
 	public String getText() {
-		return getLabel().getText();
+		return labelText;
 	}
 
 	/**
@@ -278,7 +313,84 @@ public class SwingScilabLabel extends JScrollPane implements SimpleLabel {
 	 * @see org.scilab.modules.gui.text.SimpleText#setText(java.lang.String)
 	 */
 	public void setText(String newText) {
+		// Save the data given by the user so that it can be retrieved 
+		// (Java adds HTML tags in the getlabel().getText() returned value)
+		labelText = newText;  
 		getLabel().setText(newText);
 	}
 
+	/**
+	 * Set alignment of the text component
+	 */
+	private void setAlignment() {
+		
+		getAlignmentPanel().remove(getLabel());
+		
+		GridBagConstraints gbc = new GridBagConstraints();
+	
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.weightx = 1;
+		gbc.weighty = 1;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		
+		switch (ScilabAlignment.toSwingAlignment(horizontalAlignment)) {
+		case SwingConstants.LEFT:
+			switch (ScilabAlignment.toSwingAlignment(verticalAlignment)) {
+			case SwingConstants.TOP:
+				gbc.anchor = GridBagConstraints.NORTHWEST;
+				break;
+			case SwingConstants.CENTER:
+				gbc.anchor = GridBagConstraints.WEST;
+				break;
+			default: // SwingConstants.BOTTOM
+				gbc.anchor = GridBagConstraints.SOUTHWEST;
+				break;
+			}
+			break;
+		case SwingConstants.CENTER:
+			switch (ScilabAlignment.toSwingAlignment(verticalAlignment)) {
+			case SwingConstants.TOP:
+				gbc.anchor = GridBagConstraints.NORTH;
+				break;
+			case SwingConstants.CENTER:
+				gbc.anchor = GridBagConstraints.CENTER;
+				break;
+			default: // SwingConstants.BOTTOM
+				gbc.anchor = GridBagConstraints.SOUTH;
+				break;
+			}
+			break;
+		default: // SwingConstants.RIGHT
+			switch (ScilabAlignment.toSwingAlignment(verticalAlignment)) {
+			case SwingConstants.TOP:
+				gbc.anchor = GridBagConstraints.NORTHEAST;
+				break;
+			case SwingConstants.CENTER:
+				gbc.anchor = GridBagConstraints.EAST;
+				break;
+			default: // SwingConstants.BOTTOM
+				gbc.anchor = GridBagConstraints.SOUTHEAST;
+				break;
+			}
+			break;
+		}
+		
+		getAlignmentPanel().add(getLabel(), gbc);
+		
+	}
+	
+	/**
+	 * Get/Create the panel used for alignment management
+	 * @return the panel
+	 */
+	private JPanel getAlignmentPanel() {
+		if (alignmentPanel == null) {
+			alignmentPanel = new JPanel(new GridBagLayout());
+		}
+		
+		return alignmentPanel;
+	}
+	
 }

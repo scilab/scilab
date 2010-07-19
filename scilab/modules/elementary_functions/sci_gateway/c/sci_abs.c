@@ -21,8 +21,6 @@ SciErr abs_double(int* _piKey, int* _piAddress);
 SciErr abs_poly(int* _piKey, int* _piAddress);
 SciErr abs_sparse(int* _piKey, int* _piAddress);
 
-/*--------------------------------------------------------------------------*/
-/*--------------------------------------------------------------------------*/
 int sci_abs(char *fname, int* _piKey)
 {
 	SciErr sciErr;

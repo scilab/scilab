@@ -12,6 +12,7 @@
  */
 #include "GetFunctionByName.h"
 #include "machine.h"
+#include "dynlib_differential_equations.h"
 /***********************************
 * Search Table for int2d
 ***********************************/
@@ -21,8 +22,9 @@ typedef double * (*fint2df)(ARGS_fint2d);
 
 /**************** fint2d ***************/
 extern void C2F(int2dex)(ARGS_fint2d);
-double *C2F(fint2d)(ARGS_fint2d);
-void C2F(setfint2d)(char *name, int *rep);
+
+DIFFERENTIAL_EQUATIONS_IMPEXP double *C2F(fint2d)(ARGS_fint2d);
+DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(setfint2d)(char *name, int *rep);
 
 FTAB FTab_fint2d[] =
 {

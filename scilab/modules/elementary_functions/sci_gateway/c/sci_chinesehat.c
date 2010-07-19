@@ -16,7 +16,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intchinesehat)(int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_chinesehat)(char *fname,unsigned long fname_len)
+int sci_chinesehat(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	C2F(intchinesehat)(id);

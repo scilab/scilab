@@ -35,7 +35,7 @@
    hn(1:nc-1)=an(nc:-1:2)/2;
    hn(nc)=an(1);
    hn(nc+1:2*nc-1)=an(2:nc)/2;
-   [hm,fr]=frmag(hn,maxi(size(ds)));
+   [hm,fr]=frmag(hn,max(size(ds)));
    clf(my_handle,"reset");
    plot2d(fr',hm'),
    xtitle('Remez Triangular filter','frequency','magnitude');

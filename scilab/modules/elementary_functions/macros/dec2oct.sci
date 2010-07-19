@@ -40,6 +40,7 @@ function y = dec2oct(x)
 			x_bin_length   = length(x_bin);
 			
 			// Add 0 to the right of the string
+
 			while modulo(length(x_bin),3) <> 0
 				x_bin = '0' + x_bin;
 			end

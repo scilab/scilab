@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -34,7 +34,7 @@
 /* 11 */						#include "dynamic_gateways.h" /* optimization */
 /* 12 */						#include "../../differential_equations/includes/gw_differential_equations1.h"
 /* 13 */						#include "gw_core.h"
-/* 14  gw_user(); RESERVED to gw_user (see callinter.h) */						
+/* 14  gw_user(); RESERVED to gw_user (see callinter.h) */
 /* 15  gw_user(); FREE */
 /* 16 */						#include "../../polynomials/includes/gw_polynomials.h"
 /* 17 */						#include "../../data_structures/includes/gw_data_structures1.h"
@@ -57,10 +57,10 @@
 /* 33 */                        #include "../../output_stream/includes/gw_output_stream.h"
 /* 34 */						#include "../../fileio/includes/gw_fileio.h"
 /* 35 */						#include "dynamic_gateways.h" /* arnoldi */
-/* 36 */						#include "../../special_functions/includes/gw_special_functions1.h"
+/* 36 gw_user(); FREE */
 /* 37 */						#include "dynamic_gateways.h" /* statistics */
 /* 38 */						#include "dynamic_gateways.h" /* randlib */
-/* 39 */						#include "../../special_functions/includes/gw_special_functions2.h"
+/* 39 */						#include "dynamic_gateways.h" /* special_functions */
 /* 40 */						#include "dynamic_tclsci.h"
 /* 41 */						#include "../../data_structures/includes/gw_data_structures2.h"
 /* 42 */						#include "dynamic_gateways.h" /* pvm */
@@ -84,8 +84,11 @@
 /* 60 */						#include "dynamic_gateways.h" /* helptools */
 /* 61 */						#include "../../call_scilab/includes/gw_call_scilab.h"
 /* 62 */						#include "dynamic_gateways.h" /* hdf5 */
-/* 63 */						#include "dynamic_gateways.h" /* xpad */
+/* 63 */						#include "dynamic_gateways.h" /* scinotes */
 /* 64 */						#include "dynamic_gateways.h" /* xcos */
+/* 65 */						#include "dynamic_gateways.h" /* action_binding */
+/* 66 */                        #include "dynamic_gateways.h" /* parallel */
+/* 67 */                        #include "dynamic_gateways.h" /* ui_data */
 
 /*-------------------------------------
  * long jump to stop interface computation

@@ -26,6 +26,7 @@ libscidynamic_link_la_CFLAGS = \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/fileio/includes \
 -I$(top_srcdir)/modules/localization/includes \
+-I$(top_srcdir)/modules/string/includes \
 -I$(top_srcdir)/modules/io/includes \
 -I$(top_srcdir)/modules/operations/includes \
 -I$(top_srcdir)/libs/dynamiclibrary/includes \

@@ -74,12 +74,12 @@ function [x,y,ok,gc]=edit_curv(x,y,job,tit,gc)
   // bornes initiales du graphique
   if rhs<5 then
     if mx<>0 then
-      xmx = maxi(x); xmn = mini(x)
-      ymx = maxi(y); ymn = mini(y)
+      xmx = max(x); xmn = min(x)
+      ymx = max(y); ymn = min(y)
       dx = xmx-xmn;  dy = ymx-ymn
-      if dx==0 then dx=maxi(xmx/2,1),end
+      if dx==0 then dx=max(xmx/2,1),end
       xmn=xmn-dx/10;xmx=xmx+dx/10
-      if dy==0 then dy=maxi(ymx/2,1),end;
+      if dy==0 then dy=max(ymx/2,1),end;
       ymn=ymn-dy/10;ymx=ymx+dy/10;
     else
       xmn=0;ymn=0;xmx=1;ymx=1;dx=1;dy=1
@@ -193,8 +193,8 @@ function [x,y,ok,gc]=edit_curv(x,y,job,tit,gc)
       end
       if ok then
 	dx=xmx-xmn;dy=ymx-ymn
-	if dx==0 then dx=maxi(xmx/2,1),xmn=xmn-dx/10;xmx=xmx+dx/10;end
-	if dy==0 then dy=maxi(ymx/2,1),ymn=ymn-dy/5;ymx=ymx+dy/10;end
+	if dx==0 then dx=max(xmx/2,1),xmn=xmn-dx/10;xmx=xmx+dx/10;end
+	if dy==0 then dy=max(ymx/2,1),ymn=ymn-dy/5;ymx=ymx+dy/10;end
 	rect=[xmn,ymn,xmx,ymx];
 	a.data_bounds=[rect(1),rect(2);rect(3),rect(4)]
       end
@@ -214,13 +214,13 @@ function [x,y,ok,gc]=edit_curv(x,y,job,tit,gc)
 
     case "Read" then
       [x,y]=readxy()
-      mx=mini(prod(size(x)),prod(size(y)))
+      mx=min(prod(size(x)),prod(size(y)))
       if mx<>0 then
-	xmx=maxi(x);xmn=mini(x)
-	ymx=maxi(y);ymn=mini(y)
+	xmx=max(x);xmn=min(x)
+	ymx=max(y);ymn=min(y)
 	dx=xmx-xmn;dy=ymx-ymn
-	if dx==0 then dx=maxi(xmx/2,1),xmn=xmn-dx/10;xmx=xmx+dx/10;end
-	if dy==0 then dy=maxi(ymx/2,1),ymn=ymn-dy/5;ymx=ymx+dy/10;end
+	if dx==0 then dx=max(xmx/2,1),xmn=xmn-dx/10;xmx=xmx+dx/10;end
+	if dy==0 then dy=max(ymx/2,1),ymn=ymn-dy/5;ymx=ymx+dy/10;end
       else
 	xmn=0;ymn=0;xmx=1;ymx=1;dx=1;dy=1
       end
@@ -247,7 +247,7 @@ function [x,y,ok,gc]=edit_curv(x,y,job,tit,gc)
       npt=prod(size(x))
       if npt<>0 then
 	dist=((x-ones(npt,1)*c1(1))/dx)^2+((y-ones(npt,1)*c1(2))/dy)^2
-	[m,k]=mini(dist);m=sqrt(m)
+	[m,k]=min(dist);m=sqrt(m)
       else
 	m=3*eps
       end
@@ -330,7 +330,7 @@ function [x,y] = addpt(c1,x,y)
       end
     end
     if d<>[] then
-      [m,i]=mini(d)
+      [m,i]=min(d)
       if m<eps
         k=kk(i)
         pp=pp(:,i)

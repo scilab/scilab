@@ -11,13 +11,16 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+#include <string.h>
+#if defined(__linux__)
+#define __USE_FORTIFY_LEVEL 0 /* Avoid dependency on GLIBC_2.11 (__longjmp_chk) */
+#endif
 #include <setjmp.h>
 #include <stdio.h>
 #include <ctype.h>
 #include <signal.h>
 #include "csignal.h"
 #include "addinter.h" /* for DynInterfStart */
-#include "Os_specific.h" /* for DynInterfStart */
 #include "callinterf.h"
 #include "sciprint.h"
 #include "Scierror.h"
@@ -33,7 +36,7 @@ static void sci_sigint_addinter(int n);
  ** Watch out the positions are crutial !!!
  ** @TODO : Make this less crappy...
  **/
-#define INTERFACES_MAX 64
+#define INTERFACES_MAX 67
 static OpTab Interfaces[INTERFACES_MAX] = {
     /* 01  */ {gw_user}, /* free position may be used */
 	/* 02  */ {gw_linear_algebra},
@@ -69,11 +72,11 @@ static OpTab Interfaces[INTERFACES_MAX] = {
 	/* 32  */ {gw_differential_equations6},
 	/* 33  */ {gw_output_stream},
 	/* 34  */ {gw_fileio},
-	/* 46  */ {gw_dynamic_arnoldi},
-	/* 36  */ {gw_special_functions1},
+	/* 35  */ {gw_dynamic_arnoldi},
+	/* 36  */ {gw_user}, /* free position may be used */
 	/* 37  */ {gw_dynamic_statistics},
 	/* 38  */ {gw_dynamic_randlib},
-	/* 39  */ {gw_special_functions2},
+	/* 39  */ {gw_dynamic_special_functions},
 	/* 40  */ {gw_dynamic_tclsci},
 	/* 41  */ {gw_data_structures2},
 	/* 42  */ {gw_dynamic_pvm},
@@ -97,8 +100,11 @@ static OpTab Interfaces[INTERFACES_MAX] = {
 	/* 60  */ {gw_dynamic_helptools},
 	/* 61  */ {gw_call_scilab},
 	/* 62  */ {gw_dynamic_hdf5},
-	/* 63  */ {gw_dynamic_xpad},
-	/* 64  */ {gw_dynamic_xcos}
+	/* 63  */ {gw_dynamic_scinotes},
+	/* 64  */ {gw_dynamic_xcos},
+    /* 65  */ {gw_dynamic_action_binding},
+    /* 66  */ {gw_dynamic_parallel},
+	/* 67  */ {gw_dynamic_ui_data}
 };
 /*--------------------------------------------------------------------------*/
 static int sig_ok = 0;
@@ -116,18 +122,18 @@ int C2F(callinterf) (int *k)
 
 	if ( count == 0)
     {
-		if (sig_ok) 
+		if (sig_ok)
 		{
-			if (signal(SIGINT,sci_sigint_addinter) == SIG_ERR) 
+			if (signal(SIGINT,sci_sigint_addinter) == SIG_ERR)
 			{
 				fprintf(stderr,"Could not set the signal SIGINT to the handler.\n");
 			}
 		}
 		if (( returned_from_longjump = setjmp(jmp_env)) != 0 )
 		{
-			if (sig_ok) 
+			if (sig_ok)
 			{
-				if (signal(SIGINT, controlC_handler) == SIG_ERR) 
+				if (signal(SIGINT, controlC_handler) == SIG_ERR)
 				{
 					fprintf(stderr,"Could not set the signal SIGINT to the handler.\n");
 				}
@@ -138,10 +144,10 @@ int C2F(callinterf) (int *k)
 		}
 	}
 	count++;
-	if (*k > DynInterfStart) 
+	if (*k > DynInterfStart)
 	{
 		C2F(userlk)(k);
-	} 
+	}
 	else
 	{
 		if ( (*k > INTERFACES_MAX) || (*k < 1) )
@@ -150,17 +156,17 @@ int C2F(callinterf) (int *k)
 			count = 0;
 			return 0;
 		}
-		else 
+		else
 		{
 			(*(Interfaces[*k-1].fonc))();
 		}
 	}
 	count--;
-	if (count == 0) 
+	if (count == 0)
 	{
-		if (sig_ok) 
+		if (sig_ok)
 		{
-			if (signal(SIGINT, controlC_handler) == SIG_ERR) 
+			if (signal(SIGINT, controlC_handler) == SIG_ERR)
 			{
 				fprintf(stderr,"Could not set the signal SIGINT to the handler.\n");
 			}

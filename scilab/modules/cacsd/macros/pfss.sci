@@ -63,7 +63,7 @@ function elts=pfss(S,rmax,cord)
 	  class=[class,real(spec(A))];
 	end
 	if oneortwo>1 then 
-	  class=[class,mini(real(spec(A)))];
+	  class=[class,min(real(spec(A)))];
 	end
       end;
       [cl,indi] = gsort(-class);
@@ -80,7 +80,7 @@ function elts=pfss(S,rmax,cord)
 	  class=[class,abs(spec(A))];
 	end
 	if oneortwo>1 then 
-	  class=[class,maxi(abs(spec(A)))];
+	  class=[class,max(abs(spec(A)))];
 	end
       end;
       [cl,indi] = gsort(-class);

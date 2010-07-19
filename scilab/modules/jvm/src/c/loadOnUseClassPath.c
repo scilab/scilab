@@ -24,7 +24,7 @@
 #include "addToClasspath.h"
 #include "loadOnUseClassPath.h"
 #include "loadClasspath.h"
-#include "../../fileio/includes/FileExist.h"
+#include "FileExist.h"
 #include "GetXmlFileEncoding.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"

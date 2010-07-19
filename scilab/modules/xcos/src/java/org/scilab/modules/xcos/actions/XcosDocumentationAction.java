@@ -16,9 +16,9 @@ package org.scilab.modules.xcos.actions;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
-import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -67,6 +67,7 @@ public final class XcosDocumentationAction extends DefaultAction {
 	 * @param e the event
 	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
 	 */
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		ScilabInterpreterManagement.requestScilabExec("help xcos");
 	}

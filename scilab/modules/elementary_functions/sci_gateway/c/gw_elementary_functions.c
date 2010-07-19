@@ -13,6 +13,8 @@
 #include <stdlib.h>
 #include "gw_elementary_functions.h"
 #include "callFunctionFromGateway.h"
+#include "recursionFunction.h"
+#include "stack-c.h"
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] =
 {
@@ -43,7 +45,7 @@ static gw_generic_table Tab[] =
 	{NULL ,""}, //exp
 	{NULL ,""}, //sqrt
 	{NULL ,""}, //log
-	{C2F(sci_chinesehat),"^"},
+	{sci_chinesehat,"^"},
 	{NULL, ""}, //sign
 	{NULL, ""}, //clean
 	{NULL, ""}, //floor
@@ -64,9 +66,9 @@ static gw_generic_table Tab[] =
 	{NULL, ""}, //nearfloat
 	{NULL, ""}, //dsearch
 	{NULL, ""}, //isequal
-	{C2F(sci_spones),"spones"},
+	{sci_spones,"spones"},
 	{NULL, ""}, //gsort
-	{C2F(sci_isequalbitwise),"isequalbitwise"},
+	{sci_isequalbitwise,"isequalbitwise"},
 	{NULL, ""} //matrix
 };
 /*--------------------------------------------------------------------------*/

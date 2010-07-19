@@ -9,7 +9,7 @@
 
 function del_module_help_chapter(modulename)
   path_removechapter = SCI+"/modules/"+modulename+"/help/"+getlanguage()+'/removechapter.sce';
-  if ( fileinfo(path_removechapter) == [] ) then
+  if ~isfile(path_removechapter) then
     path_removechapter = SCI+"/modules/"+modulename+"/help/"+getdefaultlanguage()+'/removechapter.sce';
   end
   try

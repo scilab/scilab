@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -20,8 +20,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -37,13 +37,6 @@
 				ExecutionBucket="2"
 			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-				ExecutionBucket="3"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
 				Name="VCMIDLTool"
 				ExecutionBucket="4"
 				PreprocessorDefinitions="_DEBUG"
@@ -54,6 +47,9 @@
 				HeaderFileName=""
 			/>
 			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
 				Name="VCCLCompilerTool"
 				ExecutionBucket="5"
 				AdditionalOptions=""
@@ -62,14 +58,17 @@
 				PreprocessorDefinitions="_;LIBSCILAB_EXPORTS;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
+				OpenMP="false"
 				PrecompiledHeaderFile=""
 				AssemblerListingLocation="$(ConfigurationName)/"
 				ObjectFile="$(ConfigurationName)/"
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 				CompileAs="0"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -135,8 +134,8 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|x64"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -172,12 +171,12 @@
 				PreprocessorDefinitions="_;LIBSCILAB_EXPORTS;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
+				OpenMP="false"
 				PrecompiledHeaderFile=""
 				AssemblerListingLocation="$(ConfigurationName)/"
 				ObjectFile="$(ConfigurationName)/"
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 				CompileAs="0"
 			/>
@@ -235,8 +234,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -252,13 +251,6 @@
 				ExecutionBucket="2"
 			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-				ExecutionBucket="3"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
 				Name="VCMIDLTool"
 				ExecutionBucket="4"
 				PreprocessorDefinitions="NDEBUG"
@@ -267,6 +259,9 @@
 				TargetEnvironment="1"
 				TypeLibraryName="$(ConfigurationName)/LibScilab.tlb"
 				HeaderFileName=""
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
@@ -281,6 +276,7 @@
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				EnableEnhancedInstructionSet="0"
+				OpenMP="false"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=""
 				AssemblerListingLocation="$(ConfigurationName)/"
@@ -288,8 +284,10 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="false"
 				CompileAs="0"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -310,7 +308,7 @@
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
 				AdditionalOptions="/FORCE:MULTIPLE "
-				AdditionalDependencies="&quot;$(IFORT_COMPILER11)lib\ia32\ifconsol.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\libifcoremd.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\libmmd.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\libirc.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\svml_disp.lib&quot;"
+				AdditionalDependencies="&quot;$(IFORT_COMPILER11)lib\ia32\ifconsol.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\libifcoremd.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\libmmd.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\libirc.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\svml_disp.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\libiomp5md.lib&quot;"
 				OutputFile="../../bin/LibScilab.dll"
 				LinkIncremental="0"
 				SuppressStartupBanner="true"
@@ -319,7 +317,6 @@
 				ModuleDefinitionFile="..\LibScilab.def"
 				ProgramDatabaseFile="$(ConfigurationName)/LibScilab.pdb"
 				SubSystem="2"
-				OptimizeForWindows98="0"
 				RandomizedBaseAddress="0"
 				DataExecutionPrevention="0"
 				SupportUnloadOfDelayLoadedDLL="true"
@@ -357,8 +354,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|x64"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -398,6 +395,7 @@
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				EnableEnhancedInstructionSet="0"
+				OpenMP="false"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=""
 				AssemblerListingLocation="$(ConfigurationName)/"
@@ -405,7 +403,6 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="false"
 				CompileAs="0"
 			/>
 			<Tool
@@ -423,7 +420,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/FORCE:MULTIPLE "
-				AdditionalDependencies="&quot;$(IFORT_COMPILER11)lib\intel64\ifconsol.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\libifcoremd.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\libmmd.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\libirc.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\svml_disp.lib&quot;"
+				AdditionalDependencies="&quot;$(IFORT_COMPILER11)lib\intel64\ifconsol.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\libifcoremd.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\libmmd.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\libirc.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\svml_disp.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\libiomp5md.lib&quot;"
 				OutputFile="../../bin/LibScilab.dll"
 				LinkIncremental="0"
 				SuppressStartupBanner="true"
@@ -432,7 +429,6 @@
 				ModuleDefinitionFile="..\LibScilab.def"
 				ProgramDatabaseFile="$(ConfigurationName)/LibScilab.pdb"
 				SubSystem="2"
-				OptimizeForWindows98="0"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
 				SupportUnloadOfDelayLoadedDLL="true"

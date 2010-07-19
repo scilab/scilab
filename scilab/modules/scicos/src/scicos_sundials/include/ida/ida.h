@@ -151,9 +151,9 @@ extern "C" {
    * to provide access in res to user data.                                    
    *                                                                
    * A IDAResFn res should return a value of 0 if successful, a positive
-   * value if a recoverable error occured (e.g. yy has an illegal value),
-   * or a negative value if a nonrecoverable error occured. In the latter
-   * case, the program halts. If a recoverable error occured, the integrator
+   * value if a recoverable error occurred (e.g. yy has an illegal value),
+   * or a negative value if a nonrecoverable error occurred. In the latter
+   * case, the program halts. If a recoverable error occurred, the integrator
    * will attempt to correct and retry.
    * ----------------------------------------------------------------
    */
@@ -176,7 +176,7 @@ extern "C" {
    * passed to the user's g function every time it is called.
    *
    * An IDARootFn should return 0 if successful or a non-zero value
-   * if an error occured (in which case the integration will be halted).
+   * if an error occurred (in which case the integration will be halted).
    * -----------------------------------------------------------------
    */
 
@@ -849,7 +849,7 @@ extern "C" {
    * IDAGetNumLinSolvSetups returns the number of calls made to     
    *       the linear solver's setup routine                        
    * IDAGetNumErrTestFails returns the number of local error test   
-   *       failures that have occured                               
+   *       failures that have occurred                               
    * IDAGetNumBacktrackOps returns the number of backtrack          
    *       operations done in the linesearch algorithm in IDACalcIC 
    * IDAGetConsistentIC returns the consistent initial conditions

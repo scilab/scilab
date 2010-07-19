@@ -18,8 +18,8 @@ import java.io.IOException;
 import java.util.Arrays;
 
 import org.apache.commons.logging.LogFactory;
-import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
-import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 
 /**
  * All the filetype recognized by Xcos.

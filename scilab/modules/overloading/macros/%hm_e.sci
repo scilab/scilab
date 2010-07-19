@@ -31,7 +31,7 @@ function [M] = %hm_e(varargin)
       ik=varargin(k)
       type_ik = type(ik)
       if type_ik==1 then                    // usual subscript
-	 if mini(size(ik))<0 then
+	 if min(size(ik))<0 then
 	    if rhs==2 then // subscript is : in fact
 	       M=matrix(M.entries,-1,1)
 	       return

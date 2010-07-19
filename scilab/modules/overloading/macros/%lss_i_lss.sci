@@ -18,12 +18,12 @@ end
 
 if size(i)==[-1,-1] then i=1:m2,end
 if size(j)==[-1,-1] then j=1:p2,end
-if maxi(i)>m2 then
-   s2=[s2;0*ones(maxi(i)-m2,p2)]
+if max(i)>m2 then
+   s2=[s2;0*ones(max(i)-m2,p2)]
    [m2,p2]=size(s2(5));
 end
-if maxi(j)>p2 then
-   s2=[s2,0*ones(m2,maxi(j)-p2)]
+if max(j)>p2 then
+   s2=[s2,0*ones(m2,max(j)-p2)]
    [m2,p2]=size(s2(5));
 end
 jj=0*ones(1,p2);jj(j)=ones(1,prod(size(j)));

@@ -22,6 +22,7 @@ int sum_matrix(int* _piKey, int* _piAddress, int _iMode);
 int sum_sparse(int* _piKey, int* _piAddress);
 
 /*--------------------------------------------------------------------------*/
+
 int sci_sum(char *fname, int* _piKey)
 {
 	SciErr sciErr;

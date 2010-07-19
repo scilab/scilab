@@ -19,7 +19,6 @@ SUBDIRS = core
 SUBDIRS += \
 operations \
 output_stream \
-action_binding \
 arnoldi \
 elementary_functions \
 matio \
@@ -32,6 +31,7 @@ history_manager \
 spreadsheet \
 tclsci \
 localization \
+action_binding \
 renderer \
 shell \
 completion \
@@ -86,12 +86,16 @@ types \
 hdf5 \
 graph \
 xcos \
-xpad \
 system_env \
 abstractSyntaxTree \
 symbol \
 parse \
-types
+types \
+scinotes \
+parallel \
+modules_manager \
+ui_data \
+history_browser
 
 #umfpack
 
@@ -139,7 +143,9 @@ GUI_LIBS = 	$(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/action_binding/libsciaction_binding.la \
 	$(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/modules/xcos/libscixcos.la \
-	$(top_builddir)/modules/xpad/libscixpad.la
+	$(top_builddir)/modules/scinotes/libsciscinotes.la \
+	$(top_builddir)/modules/ui_data/libsciui_data.la \
+	$(top_builddir)/modules/history_browser/libscihistory_browser.la
 
 if HDF5
 GUI_LIBS += $(top_builddir)/modules/hdf5/libscihdf5-forceload.la
@@ -150,9 +156,13 @@ NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/graphics/libscigraphics-disable.la \
 	$(top_builddir)/modules/graphic_export/libscigraphic_export-disable.la \
 	$(top_builddir)/modules/console/libsciconsole-disable.la \
+	$(top_builddir)/modules/action_binding/libsciaction_binding-disable.la \
 	$(top_builddir)/modules/jvm/libscijvm-disable.la \
 	$(top_builddir)/modules/xcos/libscixcos-disable.la \
-	$(top_builddir)/modules/xpad/libscixpad-disable.la
+	$(top_builddir)/modules/scinotes/libsciscinotes-disable.la \
+	$(top_builddir)/modules/ui_data/libsciui_data-disable.la \
+	$(top_builddir)/modules/history_browser/libscihistory_browser-disable.la
+
 
 if HDF5
 NO_GUI_LIBS += $(top_builddir)/modules/hdf5/libscihdf5-forceload-disable.la
@@ -202,7 +212,8 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/parse/libsciparse.la \
 	$(top_builddir)/modules/types/libscitypes.la \
 	$(top_builddir)/modules/system_env/libscisystem_env.la \
-	$(top_builddir)/modules/functions_manager/libscifunctions_manager.la
+	$(top_builddir)/modules/functions_manager/libscifunctions_manager.la \
+	$(top_builddir)/modules/parallel/libsciparallel.la
 
 # These libraries are loaded dynamically from Scilab.
 ENGINE_LIBS_DYNAMIC_LOAD = \

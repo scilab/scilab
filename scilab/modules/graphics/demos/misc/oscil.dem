@@ -48,7 +48,7 @@ xtitle(['main intensity';'resistor'],...
 cw=xget("window");c_c=cw;if cw>=1 then;cw=cw-1;else cw=cw+1;end
 xset("window",cw); clf(cw);
 plot2d2("gnn",t',en',[1,-1],"111",...
-     "en",[mini(t),mini(en)-0.5,maxi(t),maxi(en)+0.5])
+     "en",[min(t),min(en)-0.5,max(t),max(en)+0.5])
 xset("window",c_c); 
 //
 //    save

@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-05-02 02:34+0000\n"
-"Last-Translator: Miguel Mendes Ruiz <Unknown>\n"
+"PO-Revision-Date: 2010-05-14 12:26+0000\n"
+"Last-Translator: Felipe G. Wozniak <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,7 +18,7 @@ msgstr ""
 
 #, c-format
 msgid "   %s: Command: %s\n"
-msgstr ""
+msgstr "   %s: Comando: %s\n"
 
 #, c-format
 msgid "   %s: Copy %s to TMPDIR\n"
@@ -32,7 +32,7 @@ msgstr ""
 #, c-format
 msgid ""
 "   %s: Did not copy %s: Source and target directories are the same (%s).\n"
-msgstr ""
+msgstr "   %s: Não copiou %s: Diretórios fonte e destino são o mesmo (%s).\n"
 
 #, c-format
 msgid "   %s: File %s ignored.\n"
@@ -44,7 +44,7 @@ msgstr "   %s: Modificação do Makefile em TMPDIR.\n"
 
 #, c-format
 msgid "   %s: Need to run the compiler detection (configure).\n"
-msgstr ""
+msgstr "   %s: É necessário rodar a detecção de compilador (configurar).\n"
 
 #, c-format
 msgid "   %s: Substitute the reference by the actual file.\n"
@@ -52,18 +52,18 @@ msgstr ""
 
 #, c-format
 msgid "   %s: Use the previous detection of compiler.\n"
-msgstr ""
+msgstr "   %s: Usar a detecção anterior do compilador.\n"
 
 #, c-format
 msgid "   %s: configure : Generate Makefile.\n"
 msgstr "   %s: Configurar: Gerar Makefile.\n"
 
 msgid "   Building shared library (be patient)\n"
-msgstr ""
+msgstr "   Criando bibioleteca compartilhada (seja paciente)\n"
 
 #, c-format
 msgid "   Command: %s\n"
-msgstr ""
+msgstr "   Comando: %s\n"
 
 msgid "   Compilation of "
 msgstr "   Compilação de "
@@ -79,14 +79,14 @@ msgid "   Generate a cleaner file\n"
 msgstr ""
 
 msgid "   Generate a gateway file\n"
-msgstr ""
+msgstr "   Gerar um arquivo de gateway\n"
 
 msgid "   Generate a loader file\n"
 msgstr ""
 
 #, c-format
 msgid "   Output: %s\n"
-msgstr ""
+msgstr "   Saída: %s\n"
 
 msgid "   Running the Makefile\n"
 msgstr ""
@@ -96,7 +96,7 @@ msgstr ""
 
 #, c-format
 msgid "   stderr: %s\n"
-msgstr ""
+msgstr "   stderr: %s\n"
 
 #, c-format
 msgid "%s : Wrong type for input argument #%d: %s\n"
@@ -131,7 +131,7 @@ msgstr "%s: Já carregado da biblioteca %s\n"
 
 #, c-format
 msgid "%s: An error occurred during the compilation:\n"
-msgstr ""
+msgstr "%s: Ocorreu um erro durante a compilação:\n"
 
 #, c-format
 msgid "%s: An error occurred: %s\n"

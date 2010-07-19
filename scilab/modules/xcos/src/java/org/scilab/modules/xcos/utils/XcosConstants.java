@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Clément David
+ * Copyright (C) 2010 - DIGITEO - ClÃ©ment David
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,22 +12,28 @@
 
 package org.scilab.modules.xcos.utils;
 
-import org.scilab.modules.graph.utils.ScilabConstants;
+import org.scilab.modules.graph.utils.ScilabGraphConstants;
 
 /**
  * Contains all the constants used trough the source code.
  */
-public final class XcosConstants extends ScilabConstants {
+public final class XcosConstants extends ScilabGraphConstants {
 
     /** Define the default block width on the palette */
     public static final int PALETTE_BLOCK_WIDTH = 100;
     /** Define the default block height on the palette */
     public static final int PALETTE_BLOCK_HEIGHT = 100;
+    
+    /** Define the default block height on the palette */
+    public static final double PALETTE_BLOCK_ICON_RATIO = 1.5;
 
     /** Define the default block horizontal margin on the palette */
     public static final int PALETTE_HMARGIN = 5;
     /** Define the default block vertical margin on the palette */
     public static final int PALETTE_VMARGIN = 5;
+    
+    /** Define the maximum number of char that might be represented as style */
+    public static final int MAX_CHAR_IN_STYLE = 24;
     
     /* Events */
     /**

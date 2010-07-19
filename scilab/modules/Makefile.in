@@ -151,20 +151,21 @@ AM_RECURSIVE_TARGETS = $(RECURSIVE_TARGETS:-recursive=) \
 	distdir
 ETAGS = etags
 CTAGS = ctags
-DIST_SUBDIRS = core operations output_stream action_binding arnoldi \
+DIST_SUBDIRS = core operations output_stream arnoldi \
 	elementary_functions matio functions_manager string api_scilab \
 	dynamic_link fileio history_manager spreadsheet tclsci \
-	localization renderer shell completion console graphic_export \
-	gui jvm graphics optimization symbolic randlib statistics \
-	special_functions interpolation linear_algebra integer \
-	data_structures mexlib differential_equations cacsd \
+	localization action_binding renderer shell completion console \
+	graphic_export gui jvm graphics optimization symbolic randlib \
+	statistics special_functions interpolation linear_algebra \
+	integer data_structures mexlib differential_equations cacsd \
 	polynomials boolean double pvm io intersci signal_processing \
 	call_scilab sound time sparse windows_tools functions \
 	overloading maple2scilab m2sci texmacs development_tools \
 	compatibility_functions helptools fftw umfpack demo_tools \
 	genetic_algorithms simulated_annealing parameters atoms types \
-	hdf5 graph xcos xpad system_env abstractSyntaxTree symbol \
-	parse scicos_blocks scicos . javasci
+	hdf5 graph xcos system_env abstractSyntaxTree symbol parse \
+	scinotes parallel modules_manager ui_data history_browser \
+	scicos_blocks scicos . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 am__relativize = \
   dir0=`pwd`; \
@@ -316,6 +317,10 @@ OCAMLDEP = @OCAMLDEP@
 OCAMLLEX = @OCAMLLEX@
 OCAMLOPT = @OCAMLOPT@
 OCAMLYACC = @OCAMLYACC@
+OPENMP_CFLAGS = @OPENMP_CFLAGS@
+OPENMP_CXXFLAGS = @OPENMP_CXXFLAGS@
+OPENMP_ENABLE = @OPENMP_ENABLE@
+OPENMP_LIBS = @OPENMP_LIBS@
 OTOOL = @OTOOL@
 OTOOL64 = @OTOOL64@
 PACKAGE = @PACKAGE@
@@ -440,11 +445,11 @@ yacc_present = @yacc_present@
 
 # core is the main module of Scilab. All the compilation deps has been removed
 # since it already linked almost the whole world
-SUBDIRS = core operations output_stream action_binding arnoldi \
-	elementary_functions matio functions_manager string api_scilab \
-	dynamic_link fileio history_manager spreadsheet tclsci \
-	localization renderer shell completion console graphic_export \
-	gui jvm graphics optimization symbolic randlib statistics \
+SUBDIRS = core operations output_stream arnoldi elementary_functions \
+	matio functions_manager string api_scilab dynamic_link fileio \
+	history_manager spreadsheet tclsci localization action_binding \
+	renderer shell completion console graphic_export gui jvm \
+	graphics optimization symbolic randlib statistics \
 	special_functions interpolation linear_algebra integer \
 	data_structures mexlib differential_equations cacsd \
 	polynomials boolean double pvm io intersci signal_processing \
@@ -452,9 +457,10 @@ SUBDIRS = core operations output_stream action_binding arnoldi \
 	windows_tools functions overloading maple2scilab m2sci texmacs \
 	development_tools compatibility_functions helptools fftw \
 	umfpack demo_tools genetic_algorithms simulated_annealing \
-	parameters atoms types hdf5 graph xcos xpad system_env \
-	abstractSyntaxTree symbol parse types $(am__append_1) scicos . \
-	$(am__append_2)
+	parameters atoms types hdf5 graph xcos system_env \
+	abstractSyntaxTree symbol parse types scinotes parallel \
+	modules_manager ui_data history_browser $(am__append_1) scicos \
+	. $(am__append_2)
 
 #### Basic files ####
 libscilab_la_rootdir = $(mydatadir)
@@ -479,15 +485,21 @@ GUI_LIBS = $(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/action_binding/libsciaction_binding.la \
 	$(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/modules/xcos/libscixcos.la \
-	$(top_builddir)/modules/xpad/libscixpad.la $(am__append_3)
+	$(top_builddir)/modules/scinotes/libsciscinotes.la \
+	$(top_builddir)/modules/ui_data/libsciui_data.la \
+	$(top_builddir)/modules/history_browser/libscihistory_browser.la \
+	$(am__append_3)
 # HDF5 is here because it needs the JVM (see bug #5481)
 NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/graphics/libscigraphics-disable.la \
 	$(top_builddir)/modules/graphic_export/libscigraphic_export-disable.la \
 	$(top_builddir)/modules/console/libsciconsole-disable.la \
+	$(top_builddir)/modules/action_binding/libsciaction_binding-disable.la \
 	$(top_builddir)/modules/jvm/libscijvm-disable.la \
 	$(top_builddir)/modules/xcos/libscixcos-disable.la \
-	$(top_builddir)/modules/xpad/libscixpad-disable.la \
+	$(top_builddir)/modules/scinotes/libsciscinotes-disable.la \
+	$(top_builddir)/modules/ui_data/libsciui_data-disable.la \
+	$(top_builddir)/modules/history_browser/libscihistory_browser-disable.la \
 	$(am__append_4)
 # HDF5 is here because it needs the JVM (see bug #5481)
 ENGINE_LIBS = $(top_builddir)/modules/fileio/libscifileio.la \
@@ -534,7 +546,8 @@ ENGINE_LIBS = $(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/parse/libsciparse.la \
 	$(top_builddir)/modules/types/libscitypes.la \
 	$(top_builddir)/modules/system_env/libscisystem_env.la \
-	$(top_builddir)/modules/functions_manager/libscifunctions_manager.la
+	$(top_builddir)/modules/functions_manager/libscifunctions_manager.la \
+	$(top_builddir)/modules/parallel/libsciparallel.la
 
 
 # These libraries are loaded dynamically from Scilab.
