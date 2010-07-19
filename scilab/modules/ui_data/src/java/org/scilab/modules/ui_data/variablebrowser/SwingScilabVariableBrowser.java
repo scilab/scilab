@@ -66,6 +66,23 @@ import org.scilab.modules.ui_data.variablebrowser.rowfilter.VariableBrowserRowFi
 public final class SwingScilabVariableBrowser extends SwingScilabTab implements Tab, SimpleVariableBrowser {
 
 	private static final long serialVersionUID = 2169382559550113917L;
+
+	private static final int DOUBLE_CLASS_NUMBER = 1;
+	private static final int POLYNOMIAL_CLASS_NUMBER = 2;
+	private static final int BOOLEAN_CLASS_NUMBER = 4;
+	private static final int SPARCE_CLASS_NUMBER = 5;
+	private static final int SPARCE_BOOLEAN_CLASS_NUMBER = 6;
+	private static final int INTEGER_CLASS_NUMBER = 6;
+	private static final int GRAPHIC_HANDLES_CLASS_NUMBER = 6;
+	private static final int STRING_CLASS_NUMBER = 10;
+	private static final int UNCOMPILED_FUNCTION_CLASS_NUMBER = 11;
+	private static final int COMPILED_FUNCTION_CLASS_NUMBER = 13;
+	private static final int FUNCTIONLIB_CLASS_NUMBER = 14;
+	private static final int LIST_CLASS_NUMBER = 15;
+	private static final int TLIST_CLASS_NUMBER = 16;
+	private static final int MLIST_CLASS_NUMBER = 17;
+	private static final int POINTER_CLASS_NUMBER = 128;
+
 	private SwingTableModel<Object> dataModel;
 	private JTable table;
 	private VariableBrowserRowFilter rowFilter;
@@ -89,25 +106,7 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 	private CheckBoxMenuItem filterMListCheckBox;
 	private CheckBoxMenuItem filterPointerCheckBox;
 	
-	private TableRowSorter<?> rowSorter; 
-
-
-	private static final int DOUBLE_CLASS_NUMBER = 1;
-	private static final int POLYNOMIAL_CLASS_NUMBER = 2;
-	private static final int BOOLEAN_CLASS_NUMBER = 4;
-	private static final int SPARCE_CLASS_NUMBER = 5;
-	private static final int SPARCE_BOOLEAN_CLASS_NUMBER = 6;
-	private static final int INTEGER_CLASS_NUMBER = 6;
-	private static final int GRAPHIC_HANDLES_CLASS_NUMBER = 6;
-	private static final int STRING_CLASS_NUMBER = 10;
-	private static final int UNCOMPILED_FUNCTION_CLASS_NUMBER = 11;
-	private static final int COMPILED_FUNCTION_CLASS_NUMBER = 13;
-	private static final int FUNCTIONLIB_CLASS_NUMBER = 14;
-	private static final int LIST_CLASS_NUMBER = 15;
-	private static final int TLIST_CLASS_NUMBER = 16;
-	private static final int MLIST_CLASS_NUMBER = 17;
-	private static final int POINTER_CLASS_NUMBER = 128;
-
+	private TableRowSorter< ? > rowSorter; 
 
 	/**
 	 * Create a JTable with data Model.
@@ -118,9 +117,7 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 
 		buildMenuBar();
 
-		//	MenuBarBuilder.buildMenuBar(MENUBARXMLFILE);
 		addMenuBar(menuBar);
-
 
 		dataModel = new SwingTableModel<Object>(columnsName);
 
@@ -203,17 +200,22 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 	private class BrowseVarMouseListener implements MouseListener {
 
 		/**
-		 * 
+		 * Contructor
 		 */
 		public BrowseVarMouseListener() {
 
 		}
 
+		/**
+		 * Mouse CLICKED event handling
+		 * @param e the event
+		 * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
+		 */
 		public void mouseClicked(MouseEvent e) {
 
 			if (e.getClickCount() >= 2) {
 
-				String variableName = ((JTable)e.getSource()).getValueAt(((JTable)e.getSource()).getSelectedRow(), 1).toString();
+				String variableName = ((JTable) e.getSource()).getValueAt(((JTable) e.getSource()).getSelectedRow(), 1).toString();
 				final ActionListener action = new ActionListener() {
 
 					public void actionPerformed(ActionEvent e) {
@@ -222,7 +224,13 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 				};
 
 				try {
-					asynchronousScilabExec(action, "editvar(\""+variableName+"\")");
+					asynchronousScilabExec(action, "try "
+								+ "editvar(\"" + variableName + "\"); " 
+								+ "catch "
+								+ "messagebox(\"Variables of type \"\"\" + typeof (" 
+								+ variableName + ") + \"\"\" can not be edited.\""
+								+ ",\"Variable editor\", \"error\", \"modal\");"
+								+ "end");
 				} catch (InterpreterException e1) {
 					System.err.println("An error in the interpreter has been catched: " + e1.getLocalizedMessage()); 
 				}
@@ -231,21 +239,44 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 
 		}
 
+		/**
+		 * Mouse ENTERED event handling
+		 * @param e the event
+		 * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
+		 */
 		public void mouseEntered(MouseEvent e) {
 		}
 
+		/**
+		 * Mouse EXITED event handling
+		 * @param e the event
+		 * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
+		 */
 		public void mouseExited(MouseEvent e) {
 		}
 
+		/**
+		 * Mouse PRESSED event handling
+		 * @param e the event
+		 * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
+		 */
 		public void mousePressed(MouseEvent e) {
 		}
 
+		/**
+		 * Mouse RELEASED event handling
+		 * @param e the event
+		 * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
+		 */
 		public void mouseReleased(MouseEvent e) {
 
 		}
 	}
 
-	public MenuBar buildMenuBar() {
+	/**
+	 * Creates the menuBar
+	 */
+	public void buildMenuBar() {
 		menuBar = ScilabMenuBar.createMenuBar();
 
 		fileMenu = ScilabMenu.createMenu();
@@ -313,13 +344,14 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 		filterPointerCheckBox = PointerFilteringAction.createCheckBoxMenu();
 		filterMenu.add(filterPointerCheckBox);
 
-		
 		menuBar.add(filterMenu);
-
-		return menuBar;
 	}
 
 
+	/**
+	 * Filter management
+	 * @return the set of filtered values
+	 */
 	public HashSet<Integer> getFilteredValues() {
 		HashSet<Integer> filteredValues = new HashSet<Integer>();
 		// TODO to replace later by something which smells less
@@ -386,11 +418,13 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 		return filteredValues;
 	}
 
-	public void updateRowFiltering(){
-		
+	/**
+	 * Update the display after filtering
+	 * @see org.scilab.modules.ui_data.variablebrowser.SimpleVariableBrowser#updateRowFiltering()
+	 */
+	public void updateRowFiltering() {
 		rowFilter = new VariableBrowserRowFilter(getFilteredValues());
 		rowSorter.setRowFilter(rowFilter);
 		table.setRowSorter(rowSorter);
-
 	}
 }
