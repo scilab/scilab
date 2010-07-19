@@ -19,12 +19,13 @@
 extern "C" {
 #endif
 /*------------------------------------------------------------------------*/
+#include "dynlib_history_manager.h"
 #include "BOOL.h" /* BOOL */
 /*------------------------------------------------------------------------*/
 #define SESSION_PRAGMA_BEGIN "// -- "
 #define SESSION_PRAGMA_END " -- //"
 /*------------------------------------------------------------------------*/
-char *getCommentDateSession(void);
+HISTORY_MANAGER_IMPEXP char *getCommentDateSession(void);
 /*------------------------------------------------------------------------*/
 #ifdef __cplusplus
 }

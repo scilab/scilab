@@ -34,7 +34,7 @@ if IS_MACOSX
 scilab_bin_LDFLAGS 		+= -framework Cocoa
 endif
 
-scilab_bin_CFLAGS 		= -I$(top_srcdir)/modules/io/includes	
+scilab_bin_CFLAGS 		= -I$(top_srcdir)/modules/io/includes
 # --no-undefined --relax
 
 # libshell is mandatory here since main_linux.c depends on it.
@@ -61,7 +61,8 @@ COMMON_CPPFLAGS = 		-I$(top_srcdir)/modules/shell/includes/ \
 						-I$(top_srcdir)/modules/types/includes/ \
 						-I$(top_srcdir)/modules/system_env/includes/ \
 						-I$(top_srcdir)/modules/operations/includes/ \
-						-I$(top_srcdir)/modules/elementary_functions/includes/
+						-I$(top_srcdir)/modules/elementary_functions/includes/ \
+						-I$(top_srcdir)/modules/history_manager/includes/
 
 scilab_bin_SOURCES		= 	$(top_srcdir)/modules/core/src/cpp/scilab.cpp \
 							$(top_srcdir)/modules/core/src/cpp/tasks.cpp
@@ -74,7 +75,7 @@ scilab_bin_CPPFLAGS		= $(COMMON_CPPFLAGS)
 scilab_cli_bin_SOURCES	=	$(top_srcdir)/modules/core/src/cpp/scilab.cpp \
 							$(top_srcdir)/modules/core/src/cpp/tasks.cpp
 
-scilab_cli_bin_CFLAGS 		= -DWITHOUT_GUI -I$(top_srcdir)/modules/io/includes	
+scilab_cli_bin_CFLAGS 		= -DWITHOUT_GUI -I$(top_srcdir)/modules/io/includes
 scilab_cli_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_CLI_LIB)
 
 scilab_cli_bin_CPPFLAGS	= -DWITHOUT_GUI $(COMMON_CPPFLAGS)

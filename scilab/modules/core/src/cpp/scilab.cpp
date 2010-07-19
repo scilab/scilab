@@ -49,10 +49,10 @@ extern "C"
 #include "../../../string/includes/InitializeString.h"
 #include "../../../jvm/includes/loadBackGroundClassPath.h"
 
-#include "../../../history_manager/includes/HistoryManager.h"
-#include "../../../history_manager/includes/InitializeHistoryManager.h"
-#include "../../../history_manager/includes/TerminateHistoryManager.h"
-#include "../../../history_manager/src/c/getCommentDateSession.h"
+#include "HistoryManager.h"
+#include "InitializeHistoryManager.h"
+#include "TerminateHistoryManager.h"
+#include "getCommentDateSession.h"
 
 #ifdef __APPLE__
 #include "../../../shell/src/c/others/initMacOSXEnv.h"
