@@ -54,7 +54,7 @@ options_codes=[1;2;3;
   //get all labels
   for k=k0:size(varargin)
     if type(varargin(k))<>10 then
-      error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "legend", k));
+      break;
     end
     vk=varargin(k)
     leg=[leg, vk(:)]

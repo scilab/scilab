@@ -79,6 +79,8 @@ Bug Fixes:
 * bug 7491 fixed - Lines broken with a .. were not correctly handled and caused
                    a freeze of SciNotes.
 
+* bug 7505 fixed - Last optionnal parameter of "legend" macros was not readed.
+
 * bug 7520 fixed - The Xcos context was not translated from parent diagram to 
                    child.
 
