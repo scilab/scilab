@@ -36,6 +36,8 @@ Bug Fixes:
 
 * bug 7183 fixed - update help file of link about the output argument.
 
+* bug 7328 fixed - editvar() window title did not contain the name of the edited variable.
+
 * bug 7388 fixed - A java exception was thrown when we clicked on a menu created
                    using uimenu and this menu had no child.
 

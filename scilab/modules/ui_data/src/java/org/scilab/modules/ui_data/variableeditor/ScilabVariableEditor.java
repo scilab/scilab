@@ -43,9 +43,8 @@ public class ScilabVariableEditor extends ScilabWindow implements VariableEditor
 	private ScilabVariableEditor(Object[][] data, String variableName) {
 		super();
 		ScilabVariableEditor.variableName = variableName;
-		setTitle(Messages.gettext("Variable Editor"));
 		editorTab = new SwingScilabVariableEditor(data);
-		//editorTab.getModel().addTableModelListener(this);
+		editorTab.setName(Messages.gettext("Variable Editor") + " - " + variableName);
 		editorTab.setVisible(true);
 		editorTab.setCallback(ScilabCallBack
 				.createCallback("org.scilab.modules.ui_data.EditVar.closeVariableEditor",
