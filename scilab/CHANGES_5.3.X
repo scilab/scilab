@@ -113,6 +113,9 @@ Bug Fixes:
 
 * bug 7550 fixed - In SciNotes, the "case" keyword was misplaced in some conditions.
 
+* bug 7568 fixed - In the completion window, an exception was thrown when an
+                   item was selected.
+
 
            Changes between version 5.2.X and 5.3.0-beta1 of Scilab
            =======================================================
