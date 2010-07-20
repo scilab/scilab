@@ -57,6 +57,8 @@ Bug Fixes:
 
 * bug 7282 fixed - eval failed on some functions without output arguments.
 
+* bug 7343 fixed - editvar could not edit empty matrices.
+
 * bug 7360 fixed - Modelica Hydraulics Xcos demo was not simulating.
 
 * bug 7372 fixed - No message was displayed in the Xcos info bar during the
