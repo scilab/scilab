@@ -16,6 +16,13 @@ Removed functions (previously declared as obsolete):
 * 'oldbesseli', 'oldbesselj', 'oldbesselk' and 'oldbessely' removed.
   Please use 'besseli', 'besselj', 'besselk' and 'bessely' instead.
 
+
+Graphics:
+=========
+
+* bug 7509 fixed - Update of the legend help page regarding some previous
+                   changes.
+
 Quality assurance:
 ==================
 
@@ -1267,7 +1274,6 @@ Compilation:
 
 Bug Fixes:
 ==========
-
 * bug 3842 fixed - "native" and "double" evaluation modes added to the sum,
                    cumsum, prod and cumprod functions
                    For more information, see the SEP #46.
