@@ -149,12 +149,16 @@ public class Figure extends GraphicObject {
 	/**
 	 * FigureName class
 	 */
-	private class FigureName {
+	public class FigureName implements Cloneable {
 		/** Name */
 		private String name;
 
 		/** Identifier */
 		private int id;
+
+		public FigureName clone() throws CloneNotSupportedException {
+		    return (FigureName) super.clone();
+		}
 	}
 
 	/** RenderingMode properties names */
@@ -196,7 +200,7 @@ public class Figure extends GraphicObject {
 	 */
 	private class EventHandler{
 		/** Event handler string */
-		private String eventHandler;
+		private String eventHandler = "";
 
 		/** Specifies whether the event handler is enabled or not */
 		private Boolean eventHandlerEnabled = false;
@@ -254,7 +258,20 @@ public class Figure extends GraphicObject {
 		tag = "";
 		rotation = RotationType.UNARY;
 	}
-
+	
+	@Override
+	public Figure clone() {
+	    Figure copy = null;
+	    //try {
+	        copy = (Figure) super.clone();
+	    
+	    //copy.figureName = (FigureName) this.figureName.clone();
+	    //} catch (CloneNotSupportedException e) {
+        //    e.printStackTrace();
+        //}	    
+	    return copy;
+	}
+	
 	/**
 	 * Returns the enum associated to a property name
 	 * @param propertyName the property name
@@ -645,7 +662,7 @@ public class Figure extends GraphicObject {
 	 * @return the eventHandler string
 	 */
 	public String getEventHandlerString() {
-		return eventHandler.eventHandler;
+	    return eventHandler.eventHandler;
 	}
 
 	/**
@@ -701,7 +718,7 @@ public class Figure extends GraphicObject {
 	 * @return the figure name
 	 */
 	public String getName() {
-		return figureName.name;
+	    return figureName.name;
 	}
 
 	/**
@@ -850,5 +867,9 @@ public class Figure extends GraphicObject {
 	public void setTag(String tag) {
 		this.tag = tag;
 	}
-
+	
+	public String getType() {
+	    return "Figure";
+	}
+	
 }

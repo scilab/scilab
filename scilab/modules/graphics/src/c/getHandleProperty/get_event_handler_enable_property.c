@@ -4,11 +4,12 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -19,8 +20,7 @@
 /*        of a handle                                                     */
 /*------------------------------------------------------------------------*/
 
-#include "getHandleProperty.h"
-#include "GetProperty.h"
+#include "ObjectStructure.h"
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -31,21 +31,19 @@
 /*------------------------------------------------------------------------*/
 int get_event_handler_enable_property( sciPointObj * pobj )
 {
-  int* eventHandlerEnable;
+    int* eventHandlerEnable = (int *)getGraphicObjectProperty(pobj->UID, __GO_EVENTHANDLER_ENABLE__, jni_bool);
 
-  if ( sciGetEntityType (pobj) != SCI_FIGURE )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"event_handler_enable") ;
-    return -1 ;
-  }
+    if ( eventHandlerEnable == NULL )
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"event_handler_enable") ;
+        return -1 ;
+    }
 
-  eventHandlerEnable = (int*)getGraphicObjectProperty(pobj->UID, __GO_EVENTHANDLER_ENABLE__, jni_bool);
-
-  if (*eventHandlerEnable)
-  {
-    return sciReturnString( "on" ) ;
-  }
-  return sciReturnString( "off" ) ;
+    if (*eventHandlerEnable)
+    {
+        return sciReturnString( "on" ) ;
+    }
+    return sciReturnString( "off" ) ;
 
 }
 /*------------------------------------------------------------------------*/

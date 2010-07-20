@@ -65,6 +65,7 @@ JavaVM * jvm;
 jobject instance;
 
 jclass instanceClass; // cache class
+jmethodID voiddeleteGraphicObjectjstringID; // cache method id
 jmethodID jstringcloneGraphicObjectjstringID; // cache method id
 jmethodID jstringaskGraphicObjectjstringID; // cache method id
 jmethodID jstringgetGraphicObjectPropertyAsStringjstringjstringID; // cache method id
@@ -125,6 +126,8 @@ void synchronize();
 void endSynchronize();
 
 // Methods
+static void deleteGraphicObject(JavaVM * jvm_, char * id);
+
 static char * cloneGraphicObject(JavaVM * jvm_, char * id);
 
 static char * askGraphicObject(JavaVM * jvm_, char * typeName);

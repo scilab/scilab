@@ -102,6 +102,7 @@ throw GiwsException::JniObjectCreationException(curEnv, this->className());
 curEnv->DeleteLocalRef(localInstance);
 
                 /* Methods ID set to NULL */
+voiddeleteGraphicObjectjstringID=NULL; 
 jstringcloneGraphicObjectjstringID=NULL; 
 jstringaskGraphicObjectjstringID=NULL; 
 jstringgetGraphicObjectPropertyAsStringjstringjstringID=NULL; 
@@ -142,7 +143,8 @@ throw GiwsException::JniObjectCreationException(curEnv, this->className());
 throw GiwsException::JniObjectCreationException(curEnv, this->className());
         }
         /* Methods ID set to NULL */
-        jstringcloneGraphicObjectjstringID=NULL; 
+        voiddeleteGraphicObjectjstringID=NULL; 
+jstringcloneGraphicObjectjstringID=NULL; 
 jstringaskGraphicObjectjstringID=NULL; 
 jstringgetGraphicObjectPropertyAsStringjstringjstringID=NULL; 
 jbooleansetGraphicObjectPropertyjstringjstringjstringID=NULL; 
@@ -178,6 +180,24 @@ throw GiwsException::JniMonitorException(getCurrentEnv(), "CallGraphicController
 }
 }
 // Method(s)
+
+void CallGraphicController::deleteGraphicObject (JavaVM * jvm_, char * id){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voiddeleteGraphicObjectjstringID = curEnv->GetStaticMethodID(cls, "deleteGraphicObject", "(Ljava/lang/String;)V" ) ;
+if (voiddeleteGraphicObjectjstringID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "deleteGraphicObject");
+}
+
+jstring id_ = curEnv->NewStringUTF( id );
+
+                         curEnv->CallStaticVoidMethod(cls, voiddeleteGraphicObjectjstringID ,id_);if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
 
 char * CallGraphicController::cloneGraphicObject (JavaVM * jvm_, char * id){
 

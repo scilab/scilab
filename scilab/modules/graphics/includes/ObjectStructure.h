@@ -137,6 +137,8 @@ typedef struct
 	struct _sciRelationShip * relationShip;
     /** UID */
     char * UID;
+    /** Scilab Handle */
+    long handleIndex;
 }
 sciPointObj;
 

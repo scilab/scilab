@@ -35,7 +35,8 @@ GRAPHIC_OBJECTS_C_SOURCES =
 
 GRAPHIC_OBJECTS_CPP_SOURCES = 	src/cpp/createGraphicObject.cpp \
 								src/cpp/getGraphicObjectProperty.cpp \
-								src/cpp/setGraphicObjectProperty.cpp
+								src/cpp/setGraphicObjectProperty.cpp \
+								src/cpp/deleteGraphicObject.cpp
 
 GIWS_WRAPPERS = src/jni/graphic_objects.giws.xml
 

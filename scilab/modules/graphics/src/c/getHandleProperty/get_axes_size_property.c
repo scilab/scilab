@@ -4,11 +4,11 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -31,16 +31,14 @@
 /*------------------------------------------------------------------------*/
 int get_axes_size_property( sciPointObj * pobj )
 {
-  int* axesSize;
+  int* axesSize = (int*)getGraphicObjectProperty(pobj->UID, __GO_AXES_SIZE__, jni_int_vector);;
 
-  if ( sciGetEntityType (pobj) != SCI_FIGURE )
+  if ( axesSize == NULL )
   {
     Scierror(999, _("'%s' property does not exist for this handle.\n"),"axes_size");
     return -1;
   }
 
-  axesSize = (int*)getGraphicObjectProperty(pobj->UID, __GO_AXES_SIZE__, jni_int_vector);
- 
   return sciReturnRowIntVector(axesSize, 2);
 }
 /*------------------------------------------------------------------------*/

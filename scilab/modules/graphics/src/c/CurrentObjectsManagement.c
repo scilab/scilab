@@ -2,12 +2,12 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
- * 
- * 
+ *
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -25,6 +25,9 @@
 #include "InitObjects.h"
 #include "MALLOC.h"
 
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*----------------------------------------------------------------------------------*/
 /* root of the graphic hierarchy */
 /* singleton, there is only one screen */
@@ -41,16 +44,21 @@ static sciPointObj * getCurrentPointedFigure(void)
 sciPointObj * sciGetCurrentFigure( void )
 {
   /* debug F.Leray 22.07.04 */
-  sciPointObj * pfigure = getCurrentPointedFigure();
+  sciPointObj * pFigure = getCurrentPointedFigure();
 
   if( !sciHasFigures() )
   {
     /* it would mean that we have change the driver to GIF,Pos or PPM and perform a xinit F.Leray 22.07.04 */
     /* for now, no higher entities than figure */
-    pfigure = createFullFigure(NULL);
+      int iZero = 0;
+      pFigure = sciCloneObj(getFigureModel());
+      setGraphicObjectProperty(pFigure->UID, __GO_ID__, &iZero, jni_int, 1);
+
+      // Register handle to Scilab.
+      sciAddNewHandle(pFigure);
   }
 
-  return pfigure;
+  return pFigure;
 }
 /*----------------------------------------------------------------------------------*/
 BOOL sciIsCurrentFigure(sciPointObj * pFigure)
@@ -99,7 +107,7 @@ long sciGetCurrentHandle( void )
 sciPointObj * sciGetCurrentSubWin( void )
 {
   sciPointObj * currentFigure = sciGetCurrentFigure() ;
-  sciPointObj * currentSubwin = NULL; 
+  sciPointObj * currentSubwin = NULL;
   if ( currentFigure == NULL ) { return NULL ; }
   currentSubwin = sciGetFirstTypedSelectedSon( currentFigure, SCI_SUBWIN ) ;
   return currentSubwin;

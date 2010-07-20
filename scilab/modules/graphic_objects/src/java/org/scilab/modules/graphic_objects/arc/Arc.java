@@ -267,4 +267,7 @@ public class Arc extends ClippableContouredObject {
 		this.width = width;
 	}
 
+	public String getType() {
+	    return "Arc";
+	}
 }

@@ -5,22 +5,24 @@
  * Copyright (C) 2002 - 2004 - INRIA - Serge Steer
  * Copyright (C) 2004 - 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 /*------------------------------------------------------------------------
- *    Graphic library 
+ *    Graphic library
  *    newGraph Library header
  *    Comment:
  *    This file contains all functions used to GET the properties of graphics
  *    objects.
  --------------------------------------------------------------------------*/
+
+#include <stdlib.h>
 
 #include "GetProperty.h"
 #include "Scierror.h"
@@ -66,11 +68,11 @@ sciGetPointerToFeature (sciPointObj * pobj)
     case SCI_POLYLINE:
       return (sciPolyline *) pPOLYLINE_FEATURE (pobj);
       break;
-    case SCI_SEGS:  
-      return (sciSegs *) pSEGS_FEATURE (pobj); 
+    case SCI_SEGS:
+      return (sciSegs *) pSEGS_FEATURE (pobj);
       break;
     case SCI_FEC:
-      return (sciFec *) pFEC_FEATURE (pobj); 
+      return (sciFec *) pFEC_FEATURE (pobj);
       break;
     case SCI_GRAYPLOT:
       return (sciGrayplot *) pGRAYPLOT_FEATURE (pobj);
@@ -111,6 +113,12 @@ sciGetPointerToFeature (sciPointObj * pobj)
 sciEntityType
 sciGetEntityType (sciPointObj * pobj)
 {
+    // TODO
+    // Call assert to force no more call to this method.
+    printf("[ABORT] sciGetEntityType must no more be called.\n");
+    printf("[ABORT] scilab will now abort.\n");
+    abort();
+
   if (pobj != (sciPointObj *) NULL)
     return pobj->entitytype;
   return (sciEntityType)-1;
@@ -123,7 +131,7 @@ sciGetEntityType (sciPointObj * pobj)
 char *
 sciGetCharEntityType (sciPointObj * pobj)
 {
-  
+
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
@@ -140,14 +148,14 @@ sciGetCharEntityType (sciPointObj * pobj)
       break;
     case SCI_ARC:
       return "Arc";
-      break; 
+      break;
     case SCI_POLYLINE:
       return "Polyline";
       break;
     case SCI_SEGS:
       return (pSEGS_FEATURE (pobj)->ptype == 0) ?  "Segs": "Champ";
-      break; 
-    case SCI_FEC: 
+      break;
+    case SCI_FEC:
       return "Fec";
       break;
     case SCI_GRAYPLOT:
@@ -179,13 +187,13 @@ sciGetCharEntityType (sciPointObj * pobj)
     case SCI_LABEL: /* F.Leray 27.05.04 */
       return "Label";
       break;
-    case SCI_UIMENU: 
+    case SCI_UIMENU:
       return "uimenu";
       break;
-    case SCI_UICONTEXTMENU: 
+    case SCI_UICONTEXTMENU:
       return "uicontextmenu";
       break;
-    case SCI_UICONTROL: 
+    case SCI_UICONTROL:
       return "uicontrol";
       break;
     case SCI_WAITBAR:
@@ -201,7 +209,7 @@ sciGetCharEntityType (sciPointObj * pobj)
   return (char *)NULL;
 }
 
- 
+
 /**sciGetGraphicContext
  * Returns the structure of the Graphic Context. Do not use this in the Consturctor Functions !
  */
@@ -219,13 +227,13 @@ sciGetGraphicContext (sciPointObj * pobj)
     case SCI_ARC:
       return  &(pARC_FEATURE (pobj)->graphiccontext);
       break;
-    case SCI_SEGS: 
+    case SCI_SEGS:
       return  &(pSEGS_FEATURE (pobj)->graphiccontext);
-      break; 
+      break;
     case SCI_FEC:
       return  &(pFEC_FEATURE (pobj)->graphiccontext);
       break;
-    case SCI_GRAYPLOT: 
+    case SCI_GRAYPLOT:
       return  &(pGRAYPLOT_FEATURE (pobj)->graphiccontext);
       break;
     case SCI_POLYLINE:
@@ -278,8 +286,8 @@ sciGetNumColors (sciPointObj * pobj)
 
 /**sciGetColormap
  * This function gets a colormap from the figure. It's the same for all sons
- * Gets the colormap rgbmat must be a m x 3 double RGB matrix:  
- * a[i] = RED, a[i+m] = GREEN, a[i+2*m] = BLUE 
+ * Gets the colormap rgbmat must be a m x 3 double RGB matrix:
+ * a[i] = RED, a[i+m] = GREEN, a[i+2*m] = BLUE
  */
 int sciGetColormap(sciPointObj * pobj, double rgbmat[] )
 {
@@ -291,7 +299,7 @@ int sciGetColormap(sciPointObj * pobj, double rgbmat[] )
   {
     sciGetJavaColormap( pobj, rgbmat ) ;
   }
-  
+
   return 0 ;
 }
 
@@ -318,7 +326,7 @@ sciGetForeground (sciPointObj * pobj)
 {
 
   int colorindex = -999;
-  
+
   if(sciGetGraphicContext(pobj) != NULL)
   {
     colorindex = (sciGetGraphicContext(pobj))->foregroundcolor + 1;
@@ -330,7 +338,7 @@ sciGetForeground (sciPointObj * pobj)
   }
 
   colorindex = sciGetGoodIndex(pobj, colorindex);
-  
+
   return colorindex;
 }
 
@@ -343,15 +351,15 @@ sciGetForegroundToDisplay (sciPointObj * pobj)
   int m = sciGetNumColors(pobj);
 
   colorindex = sciGetForeground(pobj);
-  
+
   if((m - colorindex == -1) || (m - colorindex == -2)) colorindex =  m - colorindex;
-    
+
   return colorindex;
 }
 
 
 /**sciGetBackground
- * Gets the color number of the Background. Be carreful the return of the subwindow 
+ * Gets the color number of the Background. Be carreful the return of the subwindow
  * is the feature of its parent figure.
  */
 int
@@ -359,7 +367,7 @@ sciGetBackground (sciPointObj * pobj)
 {
 
   int colorindex = -999;
-  
+
   if(sciGetGraphicContext(pobj) != NULL)
   {
     colorindex = (sciGetGraphicContext(pobj))->backgroundcolor + 1;
@@ -369,9 +377,9 @@ sciGetBackground (sciPointObj * pobj)
     /*printSetGetErrorMessage("background");*/ /* rewrite updatebaw to renable this message */
     return -999;
   }
-  
+
   colorindex = sciGetGoodIndex(pobj, colorindex);
-  
+
   return colorindex;
 }
 
@@ -385,11 +393,11 @@ sciGetBackgroundToDisplay (sciPointObj * pobj)
 
   int colorindex = -999;
   int m = sciGetNumColors(pobj);
-  
+
   colorindex = sciGetBackground(pobj);
 
   if((m - colorindex == -1) || (m - colorindex == -2)) colorindex =  m - colorindex;
-  
+
   return colorindex;
 }
 
@@ -402,7 +410,7 @@ sciGetMarkForeground (sciPointObj * pobj)
 {
 
   int colorindex = -999;
-  
+
   if (sciGetGraphicContext(pobj) != NULL)
   {
     colorindex = sciGetGraphicContext(pobj)->markforeground + 1;
@@ -414,7 +422,7 @@ sciGetMarkForeground (sciPointObj * pobj)
   }
 
   colorindex = sciGetGoodIndex(pobj, colorindex);
-  
+
   return colorindex;
 }
 
@@ -427,16 +435,16 @@ sciGetMarkForegroundToDisplay (sciPointObj * pobj)
   int m = sciGetNumColors(pobj);
 
   colorindex = sciGetMarkForeground(pobj);
-  
+
   if((m - colorindex == -1) || (m - colorindex == -2)) colorindex =  m - colorindex;
-    
+
   return colorindex;
 }
 
 
 
 /**sciGetMarkBackground
- * Gets the color number of the Marks'Background. Be carreful the return of the subwindow 
+ * Gets the color number of the Marks'Background. Be carreful the return of the subwindow
  * is the feature of its parent figure.
  */
 int
@@ -444,7 +452,7 @@ sciGetMarkBackground (sciPointObj * pobj)
 {
 
   int colorindex = -999;
-  
+
   if (sciGetGraphicContext(pobj) != NULL)
   {
     colorindex = sciGetGraphicContext(pobj)->markbackground + 1;
@@ -454,9 +462,9 @@ sciGetMarkBackground (sciPointObj * pobj)
     printSetGetErrorMessage("mark_background");
     return -1;
   }
-  
+
   return sciGetGoodIndex(pobj, colorindex);
-  
+
 }
 
 
@@ -469,11 +477,11 @@ sciGetMarkBackgroundToDisplay (sciPointObj * pobj)
 
   int colorindex = -999;
   int m = sciGetNumColors(pobj);
-  
+
   colorindex = sciGetMarkBackground(pobj);
 
   if((m - colorindex == -1) || (m - colorindex == -2)) colorindex =  m - colorindex;
-  
+
   return colorindex;
 }
 
@@ -552,7 +560,7 @@ sciGetMarkSize (sciPointObj * pobj)
   {
     return sciGetGraphicContext(pobj)->marksize;
   }
-  
+
   printSetGetErrorMessage("mark_size");
   return -1;
 }
@@ -647,7 +655,7 @@ sciGetFontContext (sciPointObj * pobj)
       break;
     case SCI_AXES:
       return  &(pAXES_FEATURE (pobj)->fontcontext);
-       break;  
+       break;
     case SCI_FIGURE: /* F.Leray 08.04.04 THE MOST IMPORTANT*/
       return &(pFIGURE_FEATURE (pobj)->fontcontext);
       break;
@@ -655,9 +663,9 @@ sciGetFontContext (sciPointObj * pobj)
       return sciGetFontContext( pLABEL_FEATURE(pobj)->text ) ;
       break;
     case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
+    case SCI_SEGS:
+    case SCI_FEC:
+    case SCI_GRAYPLOT:
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
@@ -709,11 +717,11 @@ sciGetFontOrientation (sciPointObj * pobj)
 
 
 /**sciGetText
- * Gets the Text in TEXT, TITLE or LEGEND. Be Carreful, 
+ * Gets the Text in TEXT, TITLE or LEGEND. Be Carreful,
  * this return a unterminated string (without \0)
  * To obtain the length of the text, use sciGetTextLength@param  sciPointObj *pobj
  * @param sciPointObj * pobj: the pointer to the entity
- * @return  point to char[] if OK or NULL if not 
+ * @return  point to char[] if OK or NULL if not
  */
 StringMatrix * sciGetText( sciPointObj * pobj )
 {
@@ -733,9 +741,9 @@ StringMatrix * sciGetText( sciPointObj * pobj )
     case SCI_FIGURE:
     case SCI_SUBWIN:
     case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
+    case SCI_SEGS:
+    case SCI_FEC:
+    case SCI_GRAYPLOT:
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
@@ -800,14 +808,14 @@ BOOL sciisTextEmpty( sciPointObj * pobj)
 /**sciGetFontBackground
  * Gets the background color
  * @param sciPointObj * pobj: the pointer to the entity
- * @return  int color if OK, -1 if not 
+ * @return  int color if OK, -1 if not
  */
 int
 sciGetFontBackground (sciPointObj * pobj)
 {
 
   int colorindex = -999;
-  
+
   switch (sciGetEntityType (pobj))
     {
     case SCI_TEXT:
@@ -819,9 +827,9 @@ sciGetFontBackground (sciPointObj * pobj)
       colorindex = (sciGetFontContext(pobj))->backgroundcolor+1; /* +1 added by F.Leray 25.06.04 */
       break;
     case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
+    case SCI_SEGS:
+    case SCI_FEC:
+    case SCI_GRAYPLOT:
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
@@ -831,9 +839,9 @@ sciGetFontBackground (sciPointObj * pobj)
       return -1;
       break;
     }
-  
+
   colorindex = sciGetGoodIndex(pobj, colorindex); /* Adding F.Leray 31.03.04*/
-  return colorindex; 
+  return colorindex;
 }
 
 
@@ -845,7 +853,7 @@ sciGetFontBackgroundToDisplay (sciPointObj * pobj)
 
   int colorindex = -999;
   int m = sciGetNumColors(pobj);
-  
+
   switch (sciGetEntityType (pobj))
     {
     case SCI_TEXT:
@@ -857,9 +865,9 @@ sciGetFontBackgroundToDisplay (sciPointObj * pobj)
       colorindex = (sciGetFontContext(pobj))->backgroundcolor;
       break;
     case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
+    case SCI_SEGS:
+    case SCI_FEC:
+    case SCI_GRAYPLOT:
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
@@ -870,12 +878,12 @@ sciGetFontBackgroundToDisplay (sciPointObj * pobj)
       return -1;
       break;
     }
-  
+
   colorindex = sciGetGoodIndex(pobj, colorindex); /* Adding F.Leray 31.03.04*/
-  
+
   if((m - colorindex == -1) || (m - colorindex == -2)) colorindex =  m - colorindex;
-  
-  return colorindex; 
+
+  return colorindex;
 }
 
 
@@ -890,7 +898,7 @@ sciGetFontForeground (sciPointObj * pobj)
 {
 
   int colorindex = -999;
-  
+
   switch (sciGetEntityType (pobj))
     {
     case SCI_TEXT:
@@ -902,9 +910,9 @@ sciGetFontForeground (sciPointObj * pobj)
       colorindex =  (sciGetFontContext(pobj))->foregroundcolor + 1 ; /* Modif. F.Leray 31.03.04*/
       break;
     case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
+    case SCI_SEGS:
+    case SCI_FEC:
+    case SCI_GRAYPLOT:
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
@@ -929,7 +937,7 @@ sciGetFontForegroundToDisplay (sciPointObj * pobj)
 
   int colorindex = -999;
   int m = sciGetNumColors(pobj);
-  
+
   switch (sciGetEntityType (pobj))
     {
     case SCI_TEXT:
@@ -941,9 +949,9 @@ sciGetFontForegroundToDisplay (sciPointObj * pobj)
       colorindex =  (sciGetFontContext(pobj))->foregroundcolor + 1 ; /* Modif. F.Leray 31.03.04*/
       break;
     case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
+    case SCI_SEGS:
+    case SCI_FEC:
+    case SCI_GRAYPLOT:
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
@@ -956,15 +964,15 @@ sciGetFontForegroundToDisplay (sciPointObj * pobj)
     }
 
   colorindex = sciGetGoodIndex(pobj, colorindex); /* Adding F.Leray 31.03.04*/
-  
+
   if((m - colorindex == -1) || (m - colorindex == -2)) colorindex =  m - colorindex;
-  
+
   return colorindex;
 }
 
 
 /**sciGetFontStyle
- * Gets the font style 
+ * Gets the font style
 
  * @param sciPointObj * pobj: the pointer to the entity
  * @return  int 0 OK, -1 if not
@@ -985,9 +993,9 @@ sciGetFontStyle (sciPointObj * pobj)
       return sciGetFontContext(pobj)->fonttype;
       break;
     case SCI_ARC:
-    case SCI_SEGS: 
+    case SCI_SEGS:
     case SCI_FEC:
-    case SCI_GRAYPLOT: 
+    case SCI_GRAYPLOT:
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
@@ -1067,9 +1075,9 @@ sciGetParentFigure (sciPointObj * pobj)
     case SCI_TEXT:
     case SCI_LEGEND:
     case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
+    case SCI_SEGS:
+    case SCI_FEC:
+    case SCI_GRAYPLOT:
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
@@ -1081,7 +1089,7 @@ sciGetParentFigure (sciPointObj * pobj)
     case SCI_UIMENU:
       {
         return sciGetParentFigure( sciGetParent( pobj ) ) ; /* jbs 06/2006 */
-      }  
+      }
       break;
     default:
       return NULL;
@@ -1100,7 +1108,7 @@ sciGetParentSubwin (sciPointObj * pobj)
 
   subwin = pobj;
   switch (sciGetEntityType (pobj))
-    { 
+    {
     case SCI_FIGURE:
       return sciGetFirstTypedSelectedSon( pobj, SCI_SUBWIN );
       break;
@@ -1108,9 +1116,9 @@ sciGetParentSubwin (sciPointObj * pobj)
     case SCI_TEXT:
     case SCI_LEGEND:
     case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
+    case SCI_SEGS:
+    case SCI_FEC:
+    case SCI_GRAYPLOT:
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
@@ -1119,9 +1127,9 @@ sciGetParentSubwin (sciPointObj * pobj)
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
       while (sciGetEntityType(subwin) != SCI_SUBWIN)
-	subwin=sciGetParent(subwin);      
-      return (sciPointObj *) subwin;  
-      break;                                                     
+	subwin=sciGetParent(subwin);
+      return (sciPointObj *) subwin;
+      break;
     default:
       return NULL;
       break;
@@ -1132,13 +1140,13 @@ sciGetParentSubwin (sciPointObj * pobj)
 /**sciGetNumfigure
  * Returns the the Number of parent figure
  */
-int 
+int
 sciGetNumFigure (sciPointObj * pobj)
 {
   sciPointObj *figure = pobj;
-  
+
   switch (sciGetEntityType (pobj))
-    { 
+    {
     case SCI_FIGURE:
       return  sciGetNum(figure) ;
       break;
@@ -1146,9 +1154,9 @@ sciGetNumFigure (sciPointObj * pobj)
     case SCI_TEXT:
     case SCI_LEGEND:
     case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
+    case SCI_SEGS:
+    case SCI_FEC:
+    case SCI_GRAYPLOT:
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
@@ -1157,16 +1165,16 @@ sciGetNumFigure (sciPointObj * pobj)
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
       while (sciGetEntityType(figure) != SCI_FIGURE)
-	figure=sciGetParent(figure);      
-      return sciGetNum(figure); 
-      break;                                                     
-    default:  
+	figure=sciGetParent(figure);
+      return sciGetNum(figure);
+      break;
+    default:
       return -1;
       break;
     }
   return -1;
 }
- 
+
 /**sciGetGraphicMode
  * Returns the structure of the Graphic Context. Do not use this in the Consturctor Functions !
  */
@@ -1181,9 +1189,9 @@ scigMode *sciGetGraphicMode (sciPointObj * pobj)
       return &(pSUBWIN_FEATURE (pobj)->gmode);
       break;
     case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
+    case SCI_SEGS:
+    case SCI_FEC:
+    case SCI_GRAYPLOT:
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
@@ -1220,14 +1228,14 @@ sciGetIsClipRegionValuated (sciPointObj * pobj)
       break;
     case SCI_RECTANGLE:
       return pRECTANGLE_FEATURE (pobj)->clip_region_set;
-      break;   
-    case SCI_SEGS: 
+      break;
+    case SCI_SEGS:
       return pSEGS_FEATURE (pobj)->clip_region_set;
-      break;      
-    case SCI_TEXT: 
+      break;
+    case SCI_TEXT:
       return pTEXT_FEATURE (pobj)->clip_region_set;
-      break;  
-    case SCI_AXES: 
+      break;
+    case SCI_AXES:
       return pAXES_FEATURE (pobj)->clip_region_set;
       break;
     case SCI_SURFACE:
@@ -1241,14 +1249,14 @@ sciGetIsClipRegionValuated (sciPointObj * pobj)
       break;
     case SCI_LEGEND:
 			return pLEGEND_FEATURE(pobj)->clip_region_set;
-    case SCI_AGREG: 
-    case SCI_FIGURE: 
+    case SCI_AGREG:
+    case SCI_FIGURE:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
     default:
       return -2;
       break;
-    } 
+    }
   return -2;
 }
 
@@ -1259,7 +1267,7 @@ sciGetIsClipping (sciPointObj * pobj)
 {
   switch (sciGetEntityType (pobj))
     {
-   
+
     case SCI_SUBWIN:
       return pSUBWIN_FEATURE (pobj)->isclip;
       break;
@@ -1271,14 +1279,14 @@ sciGetIsClipping (sciPointObj * pobj)
       break;
     case SCI_RECTANGLE:
       return pRECTANGLE_FEATURE (pobj)->isclip;
-      break;   
-    case SCI_SEGS: 
+      break;
+    case SCI_SEGS:
       return pSEGS_FEATURE (pobj)->isclip;
-      break;      
-    case SCI_TEXT: 
+      break;
+    case SCI_TEXT:
       return pTEXT_FEATURE (pobj)->isclip;
-      break;   
-    case SCI_AXES: 
+      break;
+    case SCI_AXES:
       return pAXES_FEATURE (pobj)->isclip;
       break;
     case SCI_SURFACE:
@@ -1292,14 +1300,14 @@ sciGetIsClipping (sciPointObj * pobj)
       break;
     case SCI_LEGEND:
 			return pLEGEND_FEATURE(pobj)->isclip;
-    case SCI_AGREG: 
-    case SCI_FIGURE: 
+    case SCI_AGREG:
+    case SCI_FIGURE:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
     default:
       return -2;
       break;
-    } 
+    }
   return -2;
 }
 
@@ -1313,7 +1321,7 @@ sciGetClipping (sciPointObj * pobj)
 {
   switch (sciGetEntityType (pobj))
     {
-   
+
     case SCI_SUBWIN:
       return pSUBWIN_FEATURE (pobj)->clip_region;
       break;
@@ -1325,14 +1333,14 @@ sciGetClipping (sciPointObj * pobj)
       break;
     case SCI_RECTANGLE:
       return pRECTANGLE_FEATURE (pobj)->clip_region;
-      break;   
-    case SCI_SEGS: 
+      break;
+    case SCI_SEGS:
       return pSEGS_FEATURE (pobj)->clip_region;
-      break;      
-    case SCI_TEXT: 
+      break;
+    case SCI_TEXT:
       return pTEXT_FEATURE (pobj)->clip_region;
-      break;    
-    case SCI_AXES: 
+      break;
+    case SCI_AXES:
       return pAXES_FEATURE (pobj)->clip_region;
       break;
     case SCI_LABEL:
@@ -1350,14 +1358,14 @@ sciGetClipping (sciPointObj * pobj)
     case SCI_GRAYPLOT:
       return pGRAYPLOT_FEATURE (pobj)->clip_region;
       break;
-    case SCI_UIMENU:  
+    case SCI_UIMENU:
     case SCI_AGREG:
-    case SCI_FIGURE: 
+    case SCI_FIGURE:
     default:
       printSetGetErrorMessage("clip_box");
       return (double *) NULL;
       break;
-    }   
+    }
   printSetGetErrorMessage("clip_box");
   return (double *) NULL;
 
@@ -1372,7 +1380,7 @@ sciGetClipping (sciPointObj * pobj)
 /**sciGetAddPlot
  * Returns the mode of the adding plot
  * @param sciPointObj * pobj: the pointer to the entity
- * @return TRUE if yes, FALSE if no 
+ * @return TRUE if yes, FALSE if no
  * @author Djalel ABDEMOUCHE
  * 25/10/2002
  */
@@ -1385,14 +1393,14 @@ sciGetAddPlot (sciPointObj * pobj)
       return (sciGetGraphicMode (pobj))->addplot;
       break;
     case SCI_SUBWIN:
-      return (sciGetGraphicMode (pobj))->addplot; 
+      return (sciGetGraphicMode (pobj))->addplot;
       break;
     case SCI_TEXT:
     case SCI_LEGEND:
     case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
+    case SCI_SEGS:
+    case SCI_FEC:
+    case SCI_GRAYPLOT:
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
@@ -1404,7 +1412,7 @@ sciGetAddPlot (sciPointObj * pobj)
       printSetGetErrorMessage("auto_clear");
       return FALSE;
       break;
-    } 
+    }
   return FALSE;
 }
 
@@ -1426,9 +1434,9 @@ sciGetAutoScale (sciPointObj * pobj)
     case SCI_TEXT:
     case SCI_LEGEND:
     case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
+    case SCI_SEGS:
+    case SCI_FEC:
+    case SCI_GRAYPLOT:
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
@@ -1463,13 +1471,13 @@ sciGetZooming (sciPointObj * pobj)
     case SCI_TEXT:
     case SCI_LEGEND:
     case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
+    case SCI_SEGS:
+    case SCI_FEC:
+    case SCI_GRAYPLOT:
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_AXES:  
+    case SCI_AXES:
     case SCI_AGREG:
     case SCI_UIMENU:
     case SCI_LABEL: /* F.Leray 28.05.04 */
@@ -1497,20 +1505,20 @@ sciGetXorMode (sciPointObj * pobj)
     case SCI_FIGURE:
       return (sciGetGraphicMode (pobj))->xormode;
       break;
-    case SCI_SUBWIN: 
+    case SCI_SUBWIN:
       /* the value is inhirated by the parent */
       return sciGetXorMode (sciGetParentFigure (pobj));
       break;
     case SCI_TEXT:
     case SCI_LEGEND:
     case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
+    case SCI_SEGS:
+    case SCI_FEC:
+    case SCI_GRAYPLOT:
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_AXES:  
+    case SCI_AXES:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
@@ -1575,23 +1583,23 @@ sciGetVisibility (sciPointObj * pobj)
       break;
     case SCI_SURFACE:
       return pSURFACE_FEATURE (pobj)->visible;
-      break;    
-    case SCI_SEGS: 
+      break;
+    case SCI_SEGS:
       return pSEGS_FEATURE (pobj)->visible;
-      break;    
-    case SCI_FEC: 
+      break;
+    case SCI_FEC:
       return pFEC_FEATURE (pobj)->visible;
-      break;    
-    case SCI_GRAYPLOT: 
+      break;
+    case SCI_GRAYPLOT:
       return pGRAYPLOT_FEATURE (pobj)->visible;
-      break;    
-    case SCI_TEXT: 
+      break;
+    case SCI_TEXT:
       return pTEXT_FEATURE (pobj)->visible;
-      break;   
-    case SCI_AXES: 
+      break;
+    case SCI_AXES:
       return pAXES_FEATURE (pobj)->visible;
-      break;    
-    case SCI_AGREG: 
+      break;
+    case SCI_AGREG:
       return pAGREG_FEATURE (pobj)->visible;
       break;
     case SCI_LABEL: /* F.Leray 28.05.04 */
@@ -1633,13 +1641,13 @@ sciGetResize (sciPointObj * pobj)
     case SCI_TEXT:
     case SCI_LEGEND:
     case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
+    case SCI_SEGS:
+    case SCI_FEC:
+    case SCI_GRAYPLOT:
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_AXES: 
+    case SCI_AXES:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
@@ -1702,7 +1710,7 @@ sciGetNum (sciPointObj * pobj)
 /**sciGetWidth
  * Returns the width in pixel of the figure or subwin
  * @param sciPointObj * pobj: the pointer to the entity
- * @return the width of the dimension of the window or figure 
+ * @return the width of the dimension of the window or figure
  * (the visibility dimension) in pixel dimension
  */
 int sciGetWidth (sciPointObj * pobj)
@@ -1719,7 +1727,7 @@ int sciGetWidth (sciPointObj * pobj)
         int size[2] ;
         sciGetJavaFigureSize(pobj, size);
         return size[0];
-      }      
+      }
       break;
     default:
       printSetGetErrorMessage("width");
@@ -1839,10 +1847,10 @@ int sciGetWindowHeight(sciPointObj * pObj)
 
 
 /**sciIsExistingSubWin
- * Determines if this SubWindow is an existing one in the current SCI_FIGURE 
+ * Determines if this SubWindow is an existing one in the current SCI_FIGURE
  * in association with the wrect and frect....
- * @param WRect: Window rectangle dimension in double, 
- * @param FRect: window user's scale dimension in double, 
+ * @param WRect: Window rectangle dimension in double,
+ * @param FRect: window user's scale dimension in double,
  * @param logscale: flag for logarithmic window
  * @return the pointer to the existing SubWindow, or Null if no one is existing
  */
@@ -1963,7 +1971,7 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
           }
 	  for ( i = 0 ; i < *numrow ; i++ )
 	  {
-	    tab[i] = pPOLYLINE_FEATURE (pthis)->pvx[i];	
+	    tab[i] = pPOLYLINE_FEATURE (pthis)->pvx[i];
 	    tab[*numrow+i]= pPOLYLINE_FEATURE (pthis)->pvy[i];
 	    tab[(2*(*numrow))+i]= 0.;
 	  }
@@ -1978,7 +1986,7 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
         }
 	for ( i = 0 ; i < *numrow ; i++ )
 	{
-	  tab[i] = pPOLYLINE_FEATURE (pthis)->pvx[i];	
+	  tab[i] = pPOLYLINE_FEATURE (pthis)->pvx[i];
 	  tab[*numrow+i]= pPOLYLINE_FEATURE (pthis)->pvy[i];
 	  if (*numcol== 3)
           {
@@ -2008,7 +2016,7 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
       else
 	{
 	  tab[2] = pRECTANGLE_FEATURE (pthis)->width;
-	  tab[3] = pRECTANGLE_FEATURE (pthis)->height; 
+	  tab[3] = pRECTANGLE_FEATURE (pthis)->height;
 	}
       return (double*)tab;
       break;
@@ -2037,7 +2045,7 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
 	  tab[3] = pARC_FEATURE (pthis)->height;
 	  tab[4] = RAD2DEG(pARC_FEATURE (pthis)->alphabegin);
 	  tab[5] = RAD2DEG(pARC_FEATURE (pthis)->alphaend);
- 
+
 	}
       return (double*)tab;
       break;
@@ -2059,11 +2067,11 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
 	tab[2] =  pTEXT_FEATURE (pthis)->z;
       return (double*)tab;
       break;
-    
+
     case SCI_SEGS:
       if (pSEGS_FEATURE (pthis)->ptype == 0) {
 	*numrow = pSEGS_FEATURE (pthis)->Nbr1;
-        
+
         /* only two coordinates are displayed if the axe is in 2d
            and the z coordinates has never been modified */
         if (   pSEGS_FEATURE(pthis)->vz != NULL
@@ -2084,7 +2092,7 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
         }
 	for ( i = 0 ; i < *numrow ; i++ )
         {
-          tab[i] = pSEGS_FEATURE (pthis)->vx[i];	
+          tab[i] = pSEGS_FEATURE (pthis)->vx[i];
           tab[*numrow+i]= pSEGS_FEATURE (pthis)->vy[i];
           if ( *numcol == 3 )
           {
@@ -2125,13 +2133,13 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
 	  return (double*)NULL;
         }
 	tab[0]=0;
-	for (i=0;i < nx;i++) 
+	for (i=0;i < nx;i++)
 	  tab[i+1] = pGRAYPLOT_FEATURE (pthis)->pvecx[i];
-	for (i=0;i < ny;i++) 
+	for (i=0;i < ny;i++)
 	  tab[*numrow*(i+1)] = pGRAYPLOT_FEATURE (pthis)->pvecy[i];
 
-	for (i=0;i < ny;i++) 
-	  for (k=0;k < nx;k++) 
+	for (i=0;i < ny;i++)
+	  for (k=0;k < nx;k++)
 	    tab[*numrow*(i+1)+k+1] = pGRAYPLOT_FEATURE (pthis)->pvecz[nx*i+k];
       }
       else  {/* Matplot */
@@ -2143,12 +2151,12 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
           *numcol = -1;
 	  return (double*)NULL;
         }
-        for (i=0;i < nx*ny;i++) 
+        for (i=0;i < nx*ny;i++)
 	  tab[i] = pGRAYPLOT_FEATURE (pthis)->pvecz[i];
       }
       return (double*)tab;
       break;
-    case SCI_FEC: 
+    case SCI_FEC:
       *numcol = 3;
       *numrow = pFEC_FEATURE (pthis)->Nnode;
       if ((tab = CALLOC(*numrow * 3,sizeof(double))) == NULL)
@@ -2185,7 +2193,7 @@ sciGetdrawmode (sciPointObj *pobj)
   static sciPointObj *subwin;
 
   subwin= (sciPointObj *) sciGetParentSubwin (pobj);
-  if  (subwin != (sciPointObj *) NULL) 
+  if  (subwin != (sciPointObj *) NULL)
     return pSUBWIN_FEATURE(subwin)->visible ;
   return FALSE;
 }
@@ -2197,21 +2205,21 @@ sciGetdrawmode (sciPointObj *pobj)
 sciPointObj *
 sciGetAxes (sciPointObj *pparentfigure,sciPointObj *psubwin)
 {
-  sciSons *psonstmp; 
-  
+  sciSons *psonstmp;
+
   psonstmp = sciGetSons (pparentfigure);
-  
-  
-  if (psonstmp != (sciSons *) NULL)	
-    {  
+
+
+  if (psonstmp != (sciSons *) NULL)
+    {
       /* tant que le fils ne corespond pas a l'entite */
       while ((psonstmp->pnext  != (sciSons *) NULL)
 	     && (sciGetEntityType (psonstmp->pointobj) != SCI_SUBWIN))
 	psonstmp = psonstmp->pnext;
-      
+
       if  (psonstmp->pnext  == (sciSons *) NULL)
 	return (sciPointObj *) NULL;
-      else 
+      else
 	if (sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN)
 	  return (sciPointObj *)psonstmp->pointobj;
 	else
@@ -2219,11 +2227,11 @@ sciGetAxes (sciPointObj *pparentfigure,sciPointObj *psubwin)
     }
   else
     return (sciPointObj *) NULL;
-} 
+}
 
 /**sciGetPointerToToUserData
- * Returns the pointer to the user_data and size_of_user_data fields associated with 
-   the pobj object 
+ * Returns the pointer to the user_data and size_of_user_data fields associated with
+   the pobj object
  */
 void sciGetPointerToUserData (sciPointObj * pobj,int ***user_data_ptr, int **size_ptr)
 {
@@ -2255,12 +2263,12 @@ void sciGetPointerToUserData (sciPointObj * pobj,int ***user_data_ptr, int **siz
       *user_data_ptr = &(((sciPolyline *) pPOLYLINE_FEATURE (pobj))->user_data);
       *size_ptr =  &(((sciPolyline *) pPOLYLINE_FEATURE (pobj))->size_of_user_data);
       break;
-    case SCI_SEGS:  
-      *user_data_ptr = &(((sciSegs *) pSEGS_FEATURE (pobj))->user_data); 
+    case SCI_SEGS:
+      *user_data_ptr = &(((sciSegs *) pSEGS_FEATURE (pobj))->user_data);
 	     *size_ptr = &(((sciSegs *) pSEGS_FEATURE (pobj))->size_of_user_data );
       break;
     case SCI_FEC:
-      *user_data_ptr = &(((sciFec *) pFEC_FEATURE (pobj))->user_data); 
+      *user_data_ptr = &(((sciFec *) pFEC_FEATURE (pobj))->user_data);
       *size_ptr =  &(((sciFec *) pFEC_FEATURE (pobj))->size_of_user_data) ;
       break;
     case SCI_GRAYPLOT:
@@ -2307,7 +2315,7 @@ void sciGetPointerToUserData (sciPointObj * pobj,int ***user_data_ptr, int **siz
  * 130 strcmp to know the type of a parameter
  */
 int sciType (char *marker,sciPointObj * pobj)
-{ 
+{
   if      (strcmp(marker,"arrow_size_factor") == 0) { return sci_matrix;}
   else if (strcmp(marker,"x_shift") == 0) { return sci_matrix;}
   else if (strcmp(marker,"y_shift") == 0) { return sci_matrix;}
@@ -2316,96 +2324,96 @@ int sciType (char *marker,sciPointObj * pobj)
   else if (strcmp(marker,"closed") == 0) { return sci_strings;}
   else if (strcmp(marker,"label") == 0) { return sci_strings;}
   else if (strcmp(marker,"callback") == 0) { return sci_strings;}
-  else if (strcmp(marker,"background") == 0) { return sci_matrix;}	
+  else if (strcmp(marker,"background") == 0) { return sci_matrix;}
   else if (strcmp(marker,"position") == 0) {return sci_matrix;}
-  else if (strcmp(marker,"auto_position") == 0)   {return sci_strings;}		
-  else if (strcmp(marker,"auto_rotation") == 0)   {return sci_strings;}		
+  else if (strcmp(marker,"auto_position") == 0)   {return sci_strings;}
+  else if (strcmp(marker,"auto_rotation") == 0)   {return sci_strings;}
   else if (strcmp(marker,"interp_color_vector") == 0) {return sci_matrix;}
   else if (strcmp(marker,"interp_color_mode") == 0) {return sci_strings;}
-  else if (strcmp(marker,"foreground") == 0) {return sci_matrix;}	
+  else if (strcmp(marker,"foreground") == 0) {return sci_matrix;}
   else if (strcmp(marker,"thickness") == 0)   {return sci_matrix;}
   else if (strcmp(marker,"line_style") == 0) {return sci_matrix;}
   else if (strcmp(marker,"line_mode") == 0) {return sci_strings;}
   else if (strcmp(marker,"fill_mode") == 0) {return sci_strings;}
   else if (strcmp(marker,"surface_mode") == 0) {return sci_strings;}
-  else if (strcmp(marker,"mark_style") == 0) {return sci_matrix;}	
+  else if (strcmp(marker,"mark_style") == 0) {return sci_matrix;}
   else if (strcmp(marker,"mark_size") == 0) {return sci_matrix;}
   else if (strcmp(marker,"mark_size_unit") == 0) {return sci_strings;}
   else if (strcmp(marker,"mark_mode") == 0)   {return sci_strings;}
   else if (strcmp(marker,"mark_foreground") == 0)   {return sci_matrix;}
   else if (strcmp(marker,"mark_background") == 0)   {return sci_matrix;}
-  else if (strcmp(marker,"figure_position") == 0) {return sci_matrix;}	 
+  else if (strcmp(marker,"figure_position") == 0) {return sci_matrix;}
   else if (strcmp(marker,"axes_size") == 0)   {return sci_matrix;}
   else if (strcmp(marker,"axes_visible") == 0)   {return sci_strings;}
   else if (strcmp(marker,"hiddencolor") == 0)   {return 1;}/* DJ.A 2003 */
   else if (strcmp(marker,"isoview") == 0)   {return sci_strings;}/**DJ.Abdemouche 2003**/
-  else if (strcmp(marker,"view") == 0)   {return sci_strings;}/**DJ.Abdemouche 2003**/	
-  else if (strcmp(marker,"figure_size") == 0){return sci_matrix;}	
-  else if (strcmp(marker,"figure_id") == 0)   {return sci_matrix;}	
-  else if (strcmp(marker,"figure_name") == 0){return sci_strings;}   
+  else if (strcmp(marker,"view") == 0)   {return sci_strings;}/**DJ.Abdemouche 2003**/
+  else if (strcmp(marker,"figure_size") == 0){return sci_matrix;}
+  else if (strcmp(marker,"figure_id") == 0)   {return sci_matrix;}
+  else if (strcmp(marker,"figure_name") == 0){return sci_strings;}
   else if (strcmp(marker,"figures_id") == 0)   {return sci_matrix;}
   else if (strcmp(marker,"pixmap") == 0)   {return sci_strings;}/*Ajout A.Djalel*/
-  else if (strcmp(marker,"polyline_style") == 0){return sci_matrix;} 
-  else if (strcmp(marker,"font_size") == 0)   {return sci_matrix;}	
-  else if (strcmp(marker,"font_angle") == 0) {return sci_matrix;}		
+  else if (strcmp(marker,"polyline_style") == 0){return sci_matrix;}
+  else if (strcmp(marker,"font_size") == 0)   {return sci_matrix;}
+  else if (strcmp(marker,"font_angle") == 0) {return sci_matrix;}
   else if (strcmp(marker,"font_foreground") == 0){return sci_matrix;}
   else if (strcmp(marker,"font_color") == 0)   {return sci_matrix;} /* F.Leray 09.04.04 : Adding to support font_color user interface */
-  else if (strcmp(marker,"font_style") == 0) {return sci_matrix;}	      
+  else if (strcmp(marker,"font_style") == 0) {return sci_matrix;}
   else if (strcmp(marker,"font_name") == 0)   {return sci_strings;}
   else if (strcmp(marker,"textcolor"          ) == 0) {return sci_matrix;}
   else if (strcmp(marker,"labels_font_size"   ) == 0) {return sci_matrix;}
   else if (strcmp(marker,"labels_font_color"  ) == 0) {return sci_matrix;}
-  else if (strcmp(marker,"text"               ) == 0) {return sci_strings;}	 
-  else if (strcmp(marker,"text_box"           ) == 0) {return sci_matrix;}	
-  else if (strcmp(marker,"text_box_mode"      ) == 0) {return sci_strings;}	
+  else if (strcmp(marker,"text"               ) == 0) {return sci_strings;}
+  else if (strcmp(marker,"text_box"           ) == 0) {return sci_matrix;}
+  else if (strcmp(marker,"text_box_mode"      ) == 0) {return sci_strings;}
   else if (strcmp(marker,"old_style"          ) == 0) {return sci_strings;}
-  else if (strcmp(marker,"figure_style"       ) == 0) {return sci_strings;}        
-  else if (strcmp(marker,"visible"            ) == 0) {return sci_strings;} 
+  else if (strcmp(marker,"figure_style"       ) == 0) {return sci_strings;}
+  else if (strcmp(marker,"visible"            ) == 0) {return sci_strings;}
   else if (strcmp(marker,"auto_resize"        ) == 0) {return sci_strings;}
-  else if (strcmp(marker,"pixel_drawing_mode" ) == 0) {return sci_strings;}    
-  else if (strcmp(marker,"default_values"     ) == 0) {return sci_matrix ;} 
-  else if (strcmp(marker,"color_map"          ) == 0) {return sci_matrix ;}    
-  else if (strcmp(marker,"x_location"         ) == 0) {return sci_strings;} 
-  else if (strcmp(marker,"y_location"         ) == 0) {return sci_strings;}   
-  else if (strcmp(marker,"tics_direction"     ) == 0) {return sci_strings;}   
-  else if (strcmp(marker,"tight_limits"       ) == 0) {return sci_strings;} 
+  else if (strcmp(marker,"pixel_drawing_mode" ) == 0) {return sci_strings;}
+  else if (strcmp(marker,"default_values"     ) == 0) {return sci_matrix ;}
+  else if (strcmp(marker,"color_map"          ) == 0) {return sci_matrix ;}
+  else if (strcmp(marker,"x_location"         ) == 0) {return sci_strings;}
+  else if (strcmp(marker,"y_location"         ) == 0) {return sci_strings;}
+  else if (strcmp(marker,"tics_direction"     ) == 0) {return sci_strings;}
+  else if (strcmp(marker,"tight_limits"       ) == 0) {return sci_strings;}
   else if (strcmp(marker,"box"                ) == 0) {return sci_strings;}
-  else if (strcmp(marker,"tics_color"         ) == 0) {return sci_matrix ;}	 
-  else if (strcmp(marker,"tics_textcolor"     ) == 0) {return sci_matrix ;}	  
+  else if (strcmp(marker,"tics_color"         ) == 0) {return sci_matrix ;}
+  else if (strcmp(marker,"tics_textcolor"     ) == 0) {return sci_matrix ;}
   else if (strcmp(marker,"tics_textsize"      ) == 0) {return sci_matrix ;}
-  else if (strcmp(marker,"xtics_coord"        ) == 0) {return sci_matrix ;}	
-  else if (strcmp(marker,"ytics_coord"        ) == 0) {return sci_matrix ;}	 
-  else if (strcmp(marker,"grid"               ) == 0) {return sci_matrix ;}   
-  else if (strcmp(marker,"tics_segment"       ) == 0) {return sci_strings;} 
-  else if (strcmp(marker,"tics_style"         ) == 0) {return sci_strings;} 
-  else if (strcmp(marker,"format_n"           ) == 0) {return sci_strings;}    
-  else if (strcmp(marker,"tics_labels"        ) == 0) {return sci_strings;}  
+  else if (strcmp(marker,"xtics_coord"        ) == 0) {return sci_matrix ;}
+  else if (strcmp(marker,"ytics_coord"        ) == 0) {return sci_matrix ;}
+  else if (strcmp(marker,"grid"               ) == 0) {return sci_matrix ;}
+  else if (strcmp(marker,"tics_segment"       ) == 0) {return sci_strings;}
+  else if (strcmp(marker,"tics_style"         ) == 0) {return sci_strings;}
+  else if (strcmp(marker,"format_n"           ) == 0) {return sci_strings;}
+  else if (strcmp(marker,"tics_labels"        ) == 0) {return sci_strings;}
   else if (strcmp(marker,"sub_tics"           ) == 0) {return sci_matrix;}
   else if (strcmp(marker,"sub_ticks"          ) == 0) {return sci_matrix;} /* new writing F.Leray 12.10.04 to be consistent with x,y,z _ticks*/
-  else if (strcmp(marker,"zoom_box"           ) == 0) {return sci_matrix;}	
-  else if (strcmp(marker,"zoom_state"         ) == 0) {return sci_strings;}  
-  else if (strcmp(marker,"clip_box"           ) == 0) {return sci_matrix;}	
-  else if (strcmp(marker,"clip_state"         ) == 0) {return sci_strings;} 
-  else if (strcmp(marker,"auto_clear"         ) == 0) {return sci_strings;}		
-  else if (strcmp(marker,"auto_scale"         ) == 0) {return sci_strings;}		  	 
+  else if (strcmp(marker,"zoom_box"           ) == 0) {return sci_matrix;}
+  else if (strcmp(marker,"zoom_state"         ) == 0) {return sci_strings;}
+  else if (strcmp(marker,"clip_box"           ) == 0) {return sci_matrix;}
+  else if (strcmp(marker,"clip_state"         ) == 0) {return sci_strings;}
+  else if (strcmp(marker,"auto_clear"         ) == 0) {return sci_strings;}
+  else if (strcmp(marker,"auto_scale"         ) == 0) {return sci_strings;}
   else if (strcmp(marker,"arrow_size"         ) == 0) {return sci_matrix;}
   else if (strcmp(marker,"segs_color"         ) == 0) {return sci_matrix;}
   else if (strcmp(marker,"colored"            ) == 0) {return sci_strings;}
   else if (strcmp(marker,"data"               ) == 0)
-    if((sciGetEntityType(pobj) == SCI_SURFACE) || 
+    if((sciGetEntityType(pobj) == SCI_SURFACE) ||
        (sciGetEntityType(pobj) == SCI_SEGS     && pSEGS_FEATURE(pobj)->ptype == 1) || /* a champ */
        (sciGetEntityType(pobj) == SCI_GRAYPLOT && pGRAYPLOT_FEATURE(pobj)->type == 0))    /* a grayplot (case == 0) */
       return sci_tlist;
     else
       return 1;
-  else if (strcmp(marker,"hdl"                ) == 0) {return sci_matrix;}		
+  else if (strcmp(marker,"hdl"                ) == 0) {return sci_matrix;}
   else if (strcmp(marker,"callbackmevent"     ) == 0) {return sci_matrix;}
-  else if (strcmp(marker,"callback"           ) == 0) {return sci_strings;} 	
+  else if (strcmp(marker,"callback"           ) == 0) {return sci_strings;}
   else if (strcmp(marker,"log_flags"          ) == 0) {return sci_strings;}
   else if (strcmp(marker,"data_mapping"       ) == 0) {return sci_strings;}
   else if (strcmp(marker,"surface_color"      ) == 0) {return sci_matrix;}
   else if (strcmp(marker,"rotation_angles"    ) == 0) {return sci_matrix;}
-  else if (strcmp(marker,"color_mode"         ) == 0) {return sci_matrix;}/*DJ.A merge*/ 
+  else if (strcmp(marker,"color_mode"         ) == 0) {return sci_matrix;}/*DJ.A merge*/
   else if (strcmp(marker,"color_flag"         ) == 0) {return sci_matrix;}
   else if (strcmp(marker,"cdata_mapping"      ) == 0) {return sci_strings;}
   else if (strcmp(marker,"axes_bounds"        ) == 0) {return sci_matrix;}
@@ -2424,12 +2432,12 @@ int sciType (char *marker,sciPointObj * pobj)
   else if (strcmp(marker,"children"           ) == 0) {return sci_handles;}
   else if (strcmp(marker,"cube_scaling"       ) == 0) {return sci_strings;} /* F.Leray 22.04.04 */
   else if (strcmp(marker,"x_label"            ) == 0) {return sci_handles;}  /* F.Leray 27.05.04 */
-  else if (strcmp(marker,"y_label"            ) == 0) {return sci_handles;} 
+  else if (strcmp(marker,"y_label"            ) == 0) {return sci_handles;}
   else if (strcmp(marker,"z_label"            ) == 0) {return sci_handles;}
-  else if (strcmp(marker,"title"              ) == 0) {return sci_handles;} 
-  else if (strcmp(marker,"x_ticks"            ) == 0) {return sci_tlist;} 
-  else if (strcmp(marker,"y_ticks"            ) == 0) {return sci_tlist;} 
-  else if (strcmp(marker,"z_ticks"            ) == 0) {return sci_tlist;} 
+  else if (strcmp(marker,"title"              ) == 0) {return sci_handles;}
+  else if (strcmp(marker,"x_ticks"            ) == 0) {return sci_tlist;}
+  else if (strcmp(marker,"y_ticks"            ) == 0) {return sci_tlist;}
+  else if (strcmp(marker,"z_ticks"            ) == 0) {return sci_tlist;}
   else if (strcmp(marker,"auto_ticks"         ) == 0) {return sci_strings;}
   else if (strcmp(marker,"axes_reverse"       ) == 0) {return sci_strings;}
   else if (strcmp(marker,"immediate_drawing"  ) == 0) {return sci_strings;}
@@ -2453,7 +2461,7 @@ sciPointObj * sciGetSurface( sciPointObj * pObj )
 {
   sciSons * psonstmp;
   sciPointObj * sonSurface = NULL ;
-  
+
   psonstmp = sciGetSons( pObj ) ;
   while ( psonstmp != NULL )
   {
@@ -2482,7 +2490,7 @@ int CheckForCompound(long *handelsvalue, int number)
 {
   sciPointObj *prevpparent;
   int i;
-  long xtmp; 
+  long xtmp;
 
   prevpparent = sciGetParent(sciGetPointerFromHandle((long) handelsvalue[0]));
 
@@ -2490,14 +2498,14 @@ int CheckForCompound(long *handelsvalue, int number)
   for (i=0;i<number;i++)
     {
       xtmp =  handelsvalue[i];
-       
+
       switch (sciGetEntityType(sciGetPointerFromHandle(xtmp)))
 	{
 	case SCI_ARC:
 	case SCI_RECTANGLE:
-	case SCI_SEGS: 
-	case SCI_FEC: 
-	case SCI_GRAYPLOT: 
+	case SCI_SEGS:
+	case SCI_FEC:
+	case SCI_GRAYPLOT:
 	case SCI_POLYLINE:
 	case SCI_TEXT:
 	case SCI_SURFACE:
@@ -2684,7 +2692,7 @@ BOOL sciGetAutoPosition ( sciPointObj * pObj )
 BOOL sciGetLegendDefined( sciPointObj * pObj )
 {
   sciSubWindow * ppSubWin ;
- 
+
   if ( pObj == NULL )
   {
     return FALSE ;
@@ -2693,13 +2701,13 @@ BOOL sciGetLegendDefined( sciPointObj * pObj )
   ppSubWin = pSUBWIN_FEATURE( pObj ) ;
 
   /* get the text size of labels */
-  if (sciisTextEmpty(ppSubWin->mon_x_label) && 
-      sciisTextEmpty(ppSubWin->mon_y_label) && 
+  if (sciisTextEmpty(ppSubWin->mon_x_label) &&
+      sciisTextEmpty(ppSubWin->mon_y_label) &&
       sciisTextEmpty(ppSubWin->mon_z_label))
     return FALSE ;
   else
     return TRUE ;
- 
+
 }
 /*-----------------------------------------------------------------------------------*/
 BOOL sciGetAutoSize( sciPointObj * pObj )
@@ -2829,7 +2837,7 @@ int sciGetNbAccessibleChildren( sciPointObj * pObj )
 BOOL GetHandleVisibilityOnUimenu( sciPointObj * pobj )
 {
   if (sciGetEntityType(pobj)!=SCI_UIMENU) { return TRUE ; }
-  
+
   return pUIMENU_FEATURE(pobj)->handle_visible;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -3100,7 +3108,7 @@ void sciGetRealDataBounds( sciPointObj * pObj, double bounds[6] )
     for ( i = 0 ; i < 6 ; i++ )
     {
       bounds[i] = 0.0 ;
-    } 
+    }
   }
   return ;
 }
@@ -3146,7 +3154,7 @@ void sciGetDataBounds( sciPointObj * pObj, double bounds[6] )
     for ( i = 0 ; i < 6 ; i++ )
     {
       bounds[i] = 0.0 ;
-    } 
+    }
   }
   return ;
 }
@@ -3566,7 +3574,7 @@ void sciGet2dViewBoundingBox(sciPointObj * pObj, double corner1[2], double corne
 
   /* get bounding box */
   sciGetTextBoundingBox(pObj, corners3d[0], corners3d[1], corners3d[2], corners3d[3]);
-  
+
   /* convert it to 2d view coordinates */
   sciGetJava2dViewCoordinates(parentSubwin, corners3d[0], corner1);
   sciGetJava2dViewCoordinates(parentSubwin, corners3d[1], corner2);

@@ -29,7 +29,7 @@ public abstract class GraphicObject implements Cloneable {
 		LABEL, LEGEND, MATPLOT, PLOT3D, POLYLINE, RECTANGLE, SEGS, TEXT, UNKNOWNOBJECT };
 	
 	/** GraphicObject properties */
-	public enum GraphicObjectPropertyType { PARENT, CHILDREN, VISIBLE, USERDATA, USERDATASIZE, REFERENCED, VALID, UNKNOWNPROPERTY };
+	public enum GraphicObjectPropertyType { PARENT, CHILDREN, VISIBLE, USERDATA, USERDATASIZE, TYPE, REFERENCED, VALID, UNKNOWNPROPERTY };
 
 	/** Identifier */
 	private String identifier;
@@ -64,9 +64,9 @@ public abstract class GraphicObject implements Cloneable {
 	}
 
 	public GraphicObject clone() {
-	    Object copy = null;
+	    GraphicObject copy = null;
         try {
-            copy = super.clone();
+            copy = (GraphicObject) super.clone();
         } catch (CloneNotSupportedException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -140,7 +140,9 @@ public abstract class GraphicObject implements Cloneable {
             return GraphicObjectPropertyType.REFERENCED;
         } else if (propertyName.equals(__GO_VALID__)) {
             return GraphicObjectPropertyType.VALID;
-        } else {
+        } else if (propertyName.equals(__GO_TYPE__)) {
+            return GraphicObjectPropertyType.TYPE;
+        }  else {
 			return GraphicObjectPropertyType.UNKNOWNPROPERTY;
 		}
 	}
@@ -161,7 +163,9 @@ public abstract class GraphicObject implements Cloneable {
 			return getUserData();
 		} else if (property == GraphicObjectPropertyType.USERDATASIZE) {
 			return getUserDataSize();
-		} else if (property == GraphicObjectPropertyType.UNKNOWNPROPERTY) {
+		} else if (property == GraphicObjectPropertyType.TYPE) {
+            return getType();
+        }  else if (property == GraphicObjectPropertyType.UNKNOWNPROPERTY) {
 			return null;
 		} else {
 			return null;
@@ -297,6 +301,16 @@ public abstract class GraphicObject implements Cloneable {
 	 */
 	public void setVisible(Boolean visible) {
 		this.visible = visible;
+	}
+	
+	/**
+	 * Each type should name itself
+	 * @return Type as String
+	 */
+	// TODO : Should be public abstract.
+	//public abstract String getType();
+	public String getType() {
+	    return "???";
 	}
 	
     /**

@@ -29,7 +29,11 @@ public final class CallGraphicController {
     public static String askGraphicObject(String typeName) {
         return GraphicController.getController().askObject(GraphicObject.getTypeFromName(typeName));
     }
-
+    
+    public static void deleteGraphicObject(String id) {
+        GraphicController.getController().deleteObject(id);
+    }
+    
     private static boolean setGraphicObjectProperty(String id, String propertyName, Object value) {
         return GraphicController.getController().setProperty(id, propertyName, value);
     }

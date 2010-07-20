@@ -33,16 +33,14 @@
 /*------------------------------------------------------------------------*/
 int get_figure_name_property( sciPointObj * pobj )
 {
-  char* figureName;
+  char* figureName = (char*)getGraphicObjectProperty(pobj->UID, __GO_NAME__, jni_string);
 
-  if ( sciGetEntityType(pobj) != SCI_FIGURE )
+  if ( figureName == NULL )
   {
     Scierror(999, _("'%s' property does not exist for this handle.\n"),"figure_name");
     return -1;
   }
 
-  figureName = (char*)getGraphicObjectProperty(pobj->UID, __GO_NAME__, jni_string);
-
-  return sciReturnString((char*)figureName);
+  return sciReturnString(strdup(figureName));
 }
 /*------------------------------------------------------------------------*/

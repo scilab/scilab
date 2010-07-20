@@ -5,6 +5,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
+ * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -42,6 +43,10 @@
 
 #include "MALLOC.h" /* MALLOC */
 #include "localization.h"
+
+#include "createGraphicObject.h"
+#include "graphicObjectProperties.h"
+#include "setGraphicObjectProperty.h"
 
 static char error_message[70]; /* DJ.A 08/01/04 */
 unsigned short defcolors[] = {
@@ -108,57 +113,83 @@ int C2F(graphicsmodels) (void)
 {
   sciSubWindow * ppaxesmdl = NULL ;
 
+  /*
+  ** Init Figure Model
+  */
   if ((pfiguremdl = MALLOC ((sizeof (sciPointObj)))) == NULL)
     {
       strcpy(error_message,_("Default figure cannot be create.\n"));
       return 0;
     }
-  sciSetEntityType (pfiguremdl, SCI_FIGURE);
-  if ((pfiguremdl->pfeatures = MALLOC ((sizeof (sciFigure)))) == NULL)
-    {
-      FREE(pfiguremdl);
-      strcpy(error_message,_("Default figure cannot be create.\n"));
-      return 0;
-    }
 
-	createDefaultRelationShip(pfiguremdl);
+  // Create default figure by Asking MVC a new one.
+  pfiguremdl->UID = createGraphicObject(__GO_FIGURE__);
+  // Name
+  setGraphicObjectProperty(pfiguremdl->UID, __GO_NAME__, _("Graphic window number %d"), jni_string, 1);
+  int iZero = 0;
+  // Id
+  setGraphicObjectProperty(pfiguremdl->UID, __GO_ID__, &iZero, jni_int, 1);
+  // pModelData
+  // isselected ?? (No more used)
+  // rotstyle = unary (0)
+  setGraphicObjectProperty(pfiguremdl->UID, __GO_ROTATION_TYPE__, &iZero, jni_int, 1);
+  // visible
+  BOOL bTrue = TRUE;
+  BOOL bFalse = FALSE;
+  setGraphicObjectProperty(pfiguremdl->UID, __GO_VISIBLE__, &bTrue, jni_bool, 1);
+  // immediateDrawingMode
+  setGraphicObjectProperty(pfiguremdl->UID, __GO_IMMEDIATE_DRAWING__, &bTrue, jni_bool, 1);
+  // user data
+  setGraphicObjectProperty(pfiguremdl->UID, __GO_USER_DATA__, NULL, jni_string, 0);
+  // Size of user data
+  setGraphicObjectProperty(pfiguremdl->UID, __GO_USER_DATA_SIZE__, &iZero, jni_int, 1);
+  // Pixmap Mode
+  setGraphicObjectProperty(pfiguremdl->UID, __GO_PIXMAP__, &bFalse, jni_bool, 1);
+  // Info Message
+  setGraphicObjectProperty(pfiguremdl->UID, __GO_INFO_MESSAGE__, "", jni_string, 1);
+  // Event Handler
+  setGraphicObjectProperty(pfiguremdl->UID, __GO_EVENTHANDLER__, "", jni_string, 1);
+  // Event Handler Enable
+  setGraphicObjectProperty(pfiguremdl->UID, __GO_EVENTHANDLER_ENABLE__, &bFalse, jni_bool, 1);
+  // Tag
+  setGraphicObjectProperty(pfiguremdl->UID, __GO_TAG__, "", jni_string, 1);
 
-	/* add the handle in the handle list */
-  if ( sciAddNewHandle(pfiguremdl) == -1 )
+  int m = NUMCOLORS_SCI;
+  int i = 0;
+  double *pdblColorMap = MALLOC(m * 3 * sizeof(double)) ;
+  if (pdblColorMap == NULL)
   {
-    return NULL ;
+	  sprintf(error_message,_("%s: No more memory.\n"),"InitFigureModel");
+	  return -1 ;
   }
 
-  if (!(sciAddThisToItsParent(pfiguremdl, (sciPointObj *)NULL)))
-    {
-      sciDelHandle (pfiguremdl);
-      FREE(pfiguremdl->pfeatures);
-      FREE(pfiguremdl);
-      strcpy(error_message,_("Default figure cannot be create.\n"));
-      return 0;
-    }
-
-  sciInitSelectedSons( pfiguremdl ) ;
-
-  /* set default properties */
-  if ( InitFigureModel() < 0 )
+  for (i = 0 ; i < m ; i++ )
   {
-    sciDelHandle (pfiguremdl);
-    FREE(pfiguremdl->pfeatures);
-    FREE(pfiguremdl);
-    strcpy(error_message,_("Default figure cannot be create.\n"));
-    return 0;
+      pdblColorMap[i        ] = (double) (defcolors[3*i]/255.0) ;
+      pdblColorMap[i + m    ] = (double) (defcolors[3*i+1]/255.0) ;
+      pdblColorMap[i + 2 * m] = (double) (defcolors[3*i+2]/255.0) ;
   }
+  // ColorMap
+  setGraphicObjectProperty(pfiguremdl->UID, __GO_COLORMAP__, pdblColorMap, jni_double_vector, 3 * m);
 
-  /* F.Leray Adding some FontContext Info for InitFontContext function */
-  /*  pFIGURE_FEATURE (pfiguremdl)->fontcontext.backgroundcolor = */
+  // Parent
+  setGraphicObjectProperty(pfiguremdl->UID, __GO_PARENT__, "", jni_string, 1);
 
+  // Register object inside Scilab
+  sciAddNewHandle(pfiguremdl);
 
+  /*
+  ** Init Axes Model
+  */
   if ((paxesmdl = MALLOC ((sizeof (sciPointObj)))) == NULL)
     {
       strcpy(error_message,_("Default axes cannot be create.\n"));
       return 0;
     }
+  // Create default Axes by Asking MVC a new one.
+  paxesmdl->UID = createGraphicObject(__GO_AXES__);
+
+#ifdef IGNORE
   sciSetEntityType (paxesmdl, SCI_SUBWIN);
   if ((paxesmdl->pfeatures = MALLOC ((sizeof (sciSubWindow)))) == NULL)
     {
@@ -174,30 +205,10 @@ int C2F(graphicsmodels) (void)
     return NULL ;
   }
 
-  if (!(sciAddThisToItsParent (paxesmdl, pfiguremdl)))
-    {
-      sciDelHandle (paxesmdl);
-      FREE(paxesmdl->pfeatures);
-      FREE(paxesmdl);
-      strcpy(error_message,_("Default axes cannot be create.\n"));
-      return 0;
-    }
+  // Parent
+  setGraphicObjectProperty(paxesmdl->UID, __GO_PARENT__, pfiguremdl->UID, jni_string, 1);
 
-  ppaxesmdl =  pSUBWIN_FEATURE (paxesmdl);
 
-  /*sciInitSelectedSons( paxesmdl ) ;
-  ppaxesmdl->relationship.psons = (sciSons *) NULL;
-  ppaxesmdl->relationship.plastsons = (sciSons *) NULL;*/
-
-  if ( InitAxesModel() < 0 )
-  {
-    sciDelThisToItsParent (paxesmdl, sciGetParent (paxesmdl));
-    sciDelHandle (paxesmdl);
-    FREE(paxesmdl->pfeatures);
-    FREE(paxesmdl);
-    strcpy(error_message,_("Default axes cannot be create.\n"));
-    return 0;
-  }
 
   /* there are properties not initialized bu InitAxesModel */
   /* Is it a missing ? */
@@ -217,8 +228,7 @@ int C2F(graphicsmodels) (void)
   /* the model has not been changed !!! */
   ppaxesmdl->clip_region_set = 0 ;
 
-
-
+#endif
 
   return 1;
 }
@@ -462,7 +472,7 @@ int InitFigureModel( void )
     /* F.Leray 10.06.04 */
     return -1 ;
   }
-  
+
   sciInitName(pfiguremdl, _("Graphic window number %d"));
   pFIGURE_FEATURE (pfiguremdl)->number          = 0   ;
 
@@ -750,7 +760,7 @@ int ResetFigureToDefaultValues(sciPointObj * pobj)
 	if (!sciGetResize(pobj))
 	{
 		/* window size and axes size may change independently */
-		sciSetWindowDim( pobj, sciGetWindowWidth(pfiguremdl), sciGetWindowHeight(pfiguremdl) ) ;	
+		sciSetWindowDim( pobj, sciGetWindowWidth(pfiguremdl), sciGetWindowHeight(pfiguremdl) ) ;
 	}
 
   sciGetScreenPosition(pfiguremdl, &x[0], &x[1]) ;

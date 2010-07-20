@@ -141,9 +141,19 @@ public class GraphicController {
     public String cloneObject(String id) {
         UID newId = createUID();
         GraphicModel.getModel().cloneObject(id, newId.toString());
+        System.out.println("[DEBUG] object cloned");
         objectCreated(newId.toString());
         
         return newId.toString();
+    }
+ 
+    /**
+     * Deletes an object
+     * @param id the deleted object's id
+     */
+    public void deleteObject(String id) {
+        GraphicModel.getModel().deleteObject(id);
+        objectDeleted(id);
     }
     
     /**
@@ -169,16 +179,16 @@ public class GraphicController {
         }
     }
 
-
     /**
-     * Deletes an object
+     * Notified the existing views that an object has been deleted
      * @param id the deleted object's id
      */
-    public void deleteObject(String id) {
-        GraphicModel.getModel().deleteObject(id);
+    public void objectDeleted(String id) {
         Iterator<GraphicView> itr = allViews.iterator();
         while (itr.hasNext()) {
             itr.next().deleteObject(id);
         }
     }
+
+ 
 }

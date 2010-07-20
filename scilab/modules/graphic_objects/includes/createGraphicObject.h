@@ -21,4 +21,10 @@
 */
 GRAPHIC_OBJECTS_IMPEXP char *createGraphicObject(char *_sType);
 
+/*
+** Ask Controler to clone a graphic object
+** referenced the given _sId.
+*/
+GRAPHIC_OBJECTS_IMPEXP char *cloneGraphicObject(char *_sId);
+
 #endif /* !__CREATEGRAPHICOBJECT_H__ */

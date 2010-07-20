@@ -53,6 +53,7 @@
 #include "createGraphicObject.h"
 #include "returnType.h"
 #include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*-----------------------------------------------------------------------------*/
 
@@ -64,7 +65,11 @@
 /************ 18/01/2002 ***********/
 sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
 {
+    sciPointObj *pClone = sciCloneObj(getFigureModel());
+    setGraphicObjectProperty(pClone->UID, __GO_ID__, figureIndex, jni_int, 1);
+    return pClone;
 
+#ifdef __OLD_IMPLEMENTATION__
   sciPointObj *pobj = (sciPointObj *) NULL;
   int x[2];
   sciPointObj * pfiguremdl = getFigureModel() ;
@@ -237,6 +242,7 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
   sciSetDefaultColorMap(pobj);
 
   return pobj;
+#endif
 }
 
 
@@ -2469,6 +2475,13 @@ void SciWin(void)
  */
 sciPointObj * createFullFigure(int * winNum)
 {
+    sciPointObj *pNewFigure = MALLOC(sizeof(sciPointObj));
+    pNewFigure->UID = createGraphicObject(__GO_FIGURE__);
+    setGraphicObjectProperty(pNewFigure->UID, __GO_ID__, winNum, jni_int, 1);
+    sciAddNewHandle(pNewFigure);
+    return pNewFigure;
+
+#ifdef __OLD_IMPLEMENTATION__
   sciPointObj * newFig = NULL;
   sciPointObj * newSubwin = NULL;
 
@@ -2509,6 +2522,7 @@ sciPointObj * createFullFigure(int * winNum)
 
 
   return newFig;
+#endif
 }
 /*----------------------------------------------------------------------------*/
 /**

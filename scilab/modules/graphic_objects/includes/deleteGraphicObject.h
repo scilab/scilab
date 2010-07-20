@@ -10,22 +10,15 @@
  *
  */
 
-extern "C"
-{
-#include "createGraphicObject.h"
-#include "getScilabJavaVM.h"
-}
+#ifndef __DELETEGRAPHICOBJECT_H__
+#define __DELETEGRAPHICOBJECT_H__
 
-#include "CallGraphicController.hxx"
+#include "dynlib_graphic_objects.h"
 
-using namespace org_scilab_modules_graphic_objects;
+/*
+** Ask Controler to delete a graphic object
+** referenced by the given _sId.
+*/
+GRAPHIC_OBJECTS_IMPEXP void deleteGraphicObject(char *_sId);
 
-char *createGraphicObject(char *_sType)
-{
-    return CallGraphicController::askGraphicObject(getScilabJavaVM(), _sType);
-}
-
-char *cloneGraphicObject(char *_sId)
-{
-    return CallGraphicController::cloneGraphicObject(getScilabJavaVM(), _sId);
-}
+#endif /* !__DELETEGRAPHICOBJECT_H__ */

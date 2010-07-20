@@ -5,16 +5,16 @@
  * Copyright (C) 2002-2004 - INRIA - Djalel Abdemouche
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 /*------------------------------------------------------------------------
- *    Graphic library 
+ *    Graphic library
  *    newGraph Library header
  *    Comment:
  *    This file contains all functions used in graphics handle management.
@@ -48,7 +48,7 @@ static sciPointObj * getPointerFromChildrenJavaIndex(sciPointObj * pObj, int jav
  */
 void sciSetHandle (sciPointObj * pobj, long value)
 {
-  sciGetRelationship(pobj)->handleIndex = value ; /** put the new index handle */
+  pobj->handleIndex = value ; /** put the new index handle */
 }
 
 
@@ -91,11 +91,12 @@ int sciDelHandle(sciPointObj * pobj)
 
 
 /**sciGetHandle
- * Returns the handle 
+ * Returns the handle
  */
 long sciGetHandle (sciPointObj * pobj)
 {
-  return (pobj == NULL ? 0 : (sciGetRelationship(pobj))->handleIndex) ;
+    //return (pobj == NULL ? 0 : (sciGetRelationship(pobj))->handleIndex) ;
+    return pobj->handleIndex;
 }
 
 
@@ -211,7 +212,7 @@ sciGetRelationship (sciPointObj * pobj)
 
 
 /**sciSetParent
- * Sets the parent to this object (that have to be the son). 
+ * Sets the parent to this object (that have to be the son).
  * The parent's FIGURE has to be NULL
  * pson est l'objet courant et *pparent est le parent a lui associer
  */
@@ -235,14 +236,14 @@ sciPointObj * sciGetParent (sciPointObj * pobj)
 
 
 /**sciAddThisToItsParent
- * Sets this object to its parent. 
+ * Sets this object to its parent.
  * The list is pointed from the newer to the older.
  */
 BOOL
 sciAddThisToItsParent (sciPointObj * pthis, sciPointObj * pparent)
 {
   sciSons * OneSon = NULL ;
-  
+
   /* Special case for text, it needs to be registered with its parent subwin */
   if (sciGetEntityType(pthis) == SCI_TEXT)
   {
@@ -266,7 +267,7 @@ sciAddThisToItsParent (sciPointObj * pthis, sciPointObj * pparent)
 
   /* check if there are already sons */
   if ( sciGetRelationship (pparent)->psons != NULL )
-  {			
+  {
     /* Il existe au moins un fils d'affecte */
     /* on cree la nouvelle variable */
     if ( (OneSon = MALLOC(sizeof(sciSons))) == NULL ) { return FALSE ; }
@@ -295,7 +296,7 @@ sciAddThisToItsParent (sciPointObj * pthis, sciPointObj * pparent)
 BOOL sciAddThisToItsParentLastPos(sciPointObj * pthis, sciPointObj * parent)
 {
   sciSons * newSon = NULL ;
-  
+
   /* Special case for text, it needs to be registered with its parent subwin */
   if (sciGetEntityType(pthis) == SCI_TEXT)
   {
@@ -350,9 +351,9 @@ BOOL sciAddThisToItsParentLastPos(sciPointObj * pthis, sciPointObj * parent)
 
 
 /**sciDelThisToItsParent
- * deletes this son object to its parent, 
- * free the son structure, but not the son object structure 
- * (for which its parent is set to null) , 
+ * deletes this son object to its parent,
+ * free the son structure, but not the son object structure
+ * (for which its parent is set to null) ,
  * that have to be free manually or packed to another parent
  */
 BOOL sciDelThisToItsParent (sciPointObj * pthis, sciPointObj * pparent)
@@ -377,7 +378,7 @@ BOOL sciDelThisToItsParent (sciPointObj * pthis, sciPointObj * pparent)
   OneSonprev = OneSon;
   while ( (OneSon != NULL) &&  (OneSon->pointobj != pthis) )
   {
-    OneSonprev = OneSon ; 
+    OneSonprev = OneSon ;
     OneSon = OneSon->pnext;
   }
 
@@ -398,7 +399,7 @@ BOOL sciDelSonFromItsParent(sciSons * son, sciPointObj * parent)
   {
     tmp++ ;
   }
-  else 
+  else
   {
     if ( son->pprev == NULL ) { tmp += 2 ; }
     if ( son->pnext == NULL ) { tmp += 4 ; }
@@ -442,7 +443,7 @@ BOOL sciDelSonFromItsParent(sciSons * son, sciPointObj * parent)
 
 
 /**sciGetSons
- * Returns the pointer to the table of all sons objects. 
+ * Returns the pointer to the table of all sons objects.
  * There is no SetSons, because a new Son calls sciAddThisToItsParent() it self
  */
 sciSons * sciGetSons (sciPointObj * pobj)
@@ -452,7 +453,7 @@ sciSons * sciGetSons (sciPointObj * pobj)
 
 
 /**sciGetLastSons
- * Returns the pointer to the last son (in fact the first created and drawn). 
+ * Returns the pointer to the last son (in fact the first created and drawn).
  * There is no SetSons, because a new Son calls sciAddThisToItsParent() it self
  */
 sciSons * sciGetLastSons (sciPointObj * pobj)
@@ -517,13 +518,13 @@ sciSons * sciFindSon( sciPointObj * searchedObj, sciPointObj * parentObj )
 static int sciRelocateObject( sciPointObj * movedObj, sciPointObj * newParent )
 {
   sciPointObj * oldParent = sciGetParent( movedObj ) ;
-  
+
   if ( oldParent == newParent )
   {
     /* nothing to do */
     return 0 ;
   }
-  
+
   sciDelThisToItsParent( movedObj, oldParent ) ;
   sciAddThisToItsParent( movedObj, newParent ) ;
 
@@ -561,7 +562,7 @@ BOOL sciCanBeSonOf( sciPointObj * son, sciPointObj * parent )
   {
     return FALSE ;
   }
-  
+
   parentType = sciGetEntityType( parent ) ;
   switch ( sciGetEntityType( son ) )
   {
@@ -592,7 +593,7 @@ int sciRelocateHandles( unsigned long handles[], int nbHandles, unsigned long ne
   int nbFigure = 0 ;
   DoublyLinkedList * modifiedFiguresList = DoublyLinkedList_new() ; /* list of modified figures. */
                                                               /* Only the needed figures are redrawn at the end of the function. */
-  
+
   /* check parent */
   if ( parentObj == NULL )
   {
@@ -658,10 +659,10 @@ int sciRelocateHandles( unsigned long handles[], int nbHandles, unsigned long ne
       Scierror(999,_("Error relocating handle %d."), i  ) ;
     }
   }
-  
+
   FREE( movedObjs ) ;
- 
-  
+
+
 
 
   /* redraw the modified figures */
@@ -671,9 +672,9 @@ int sciRelocateHandles( unsigned long handles[], int nbHandles, unsigned long ne
     modifiedFiguresList = List_pop( modifiedFiguresList, (void *)&modifiedFig ) ;
     notifyObservers( modifiedFig ) ;
   }
-  
+
   List_free( modifiedFiguresList ) ;
-  
+
   return 0 ;
 }
 /*--------------------------------------------------------------------------*/
@@ -695,7 +696,7 @@ static int sciSwapObjects( sciPointObj * firstObject, sciPointObj * secondObject
     Scierror(999,_("Handle #%d is not compatible with its new parent.\n"),1) ;
     return -1 ;
   }
-  
+
   if ( !sciCanBeSonOf( secondObject, sciGetParent( firstObject ) ) )
   {
     Scierror(999,_("Handle #%d is not compatible with its new parent.\n"),2) ;
@@ -704,7 +705,7 @@ static int sciSwapObjects( sciPointObj * firstObject, sciPointObj * secondObject
 
   firstSon  = sciFindSon( firstObject , firstParent  ) ;
   secondSon = sciFindSon( secondObject, secondParent ) ;
-  
+
   /* check if the sons are correct. This should always be true. */
   if ( firstSon == NULL )
   {
@@ -723,7 +724,7 @@ static int sciSwapObjects( sciPointObj * firstObject, sciPointObj * secondObject
   /* change their parents */
   sciSetParent( firstObject , secondParent ) ;
   sciSetParent( secondObject, firstParent  ) ;
-  
+
   /* Special case for texts we need to register them with the new parent */
   if (sciGetEntityType(firstObject) == SCI_TEXT)
   {
@@ -757,7 +758,7 @@ int swapHandles( unsigned long firstHdl, unsigned long secondHdl )
   sciPointObj * secondObject = sciGetPointerFromHandle( secondHdl )  ;
   sciPointObj * firstParentFig  = NULL ;
   sciPointObj * secondParentFig = NULL ;
-  
+
   if ( firstObject == NULL )
   {
     Scierror( 999,_("Handle #%d is not or no more valid.\n"),1);
@@ -789,7 +790,7 @@ int swapHandles( unsigned long firstHdl, unsigned long secondHdl )
     notifyObservers( firstParentFig )  ;
     notifyObservers( secondParentFig ) ;
   }
-  
+
   return 0 ;
 
 }

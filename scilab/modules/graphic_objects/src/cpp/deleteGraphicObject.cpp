@@ -12,7 +12,7 @@
 
 extern "C"
 {
-#include "createGraphicObject.h"
+#include "deleteGraphicObject.h"
 #include "getScilabJavaVM.h"
 }
 
@@ -20,12 +20,8 @@ extern "C"
 
 using namespace org_scilab_modules_graphic_objects;
 
-char *createGraphicObject(char *_sType)
+void deleteGraphicObject(char *_sId)
 {
-    return CallGraphicController::askGraphicObject(getScilabJavaVM(), _sType);
+    CallGraphicController::deleteGraphicObject(getScilabJavaVM(), _sId);
 }
 
-char *cloneGraphicObject(char *_sId)
-{
-    return CallGraphicController::cloneGraphicObject(getScilabJavaVM(), _sId);
-}

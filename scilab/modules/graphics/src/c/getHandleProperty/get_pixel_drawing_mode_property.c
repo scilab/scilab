@@ -4,11 +4,12 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -19,7 +20,7 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
-#include "getHandleProperty.h"
+#include "ObjectStructure.h"
 #include "GetProperty.h"
 #include "pixel_mode.h"
 #include "returnProperty.h"
@@ -33,19 +34,15 @@
 
 int get_pixel_drawing_mode_property( sciPointObj * pobj )
 {
-  int* pixelDrawingMode;
+  int* pixelDrawingMode = (int*)getGraphicObjectProperty(pobj->UID, __GO_PIXEL_DRAWING_MODE__, jni_int);
 
-  if ( sciGetEntityType (pobj) == SCI_FIGURE )
+  if ( pixelDrawingMode == NULL)
   {
-    pixelDrawingMode = (int*)getGraphicObjectProperty(pobj->UID, __GO_PIXEL_DRAWING_MODE__, jni_int);
+      Scierror(999, _("'%s' property does not exist for this handle.\n"),"pixel_drawing_mode");
+      return -1 ;
+  }
 
-    return sciReturnString( getPixelMode (*pixelDrawingMode) );
-  }
-  else
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"pixel_drawing_mode");
-    return -1 ;
-  }
+  return sciReturnString( getPixelMode (*pixelDrawingMode) );
 
 }
 
