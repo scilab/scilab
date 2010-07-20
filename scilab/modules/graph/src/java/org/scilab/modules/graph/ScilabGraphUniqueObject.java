@@ -12,6 +12,7 @@
 
 package org.scilab.modules.graph;
 
+import java.io.Serializable;
 import java.rmi.server.UID;
 
 import com.mxgraph.model.mxCell;
@@ -23,7 +24,7 @@ import com.mxgraph.model.mxGeometry;
  * All cells in a ScilabGraph must follow this signature in order to be unique
  * in the graph.
  */
-public abstract class ScilabGraphUniqueObject extends mxCell implements Comparable<ScilabGraphUniqueObject> {
+public abstract class ScilabGraphUniqueObject extends mxCell implements Comparable<ScilabGraphUniqueObject>, Serializable {
 
     private static final long serialVersionUID = -2915277403393545917L;
 

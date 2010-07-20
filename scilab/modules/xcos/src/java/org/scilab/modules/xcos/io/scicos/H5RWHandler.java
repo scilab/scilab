@@ -73,6 +73,15 @@ public class H5RWHandler {
 	 * @return the decoded block
 	 */
 	public BasicBlock readBlock() {
+		return readBlock(null);
+	}
+	
+	/**
+	 * Decode an Xcos block into an instance
+	 * @param into the instance to update
+	 * @return the updated instance.
+	 */
+	public BasicBlock readBlock(BasicBlock into) {
 		final ScilabMList data = new ScilabMList();
 		final BlockElement element = new BlockElement();
 		BasicBlock instance;
@@ -86,7 +95,7 @@ public class H5RWHandler {
 			H5Read.readDataFromFile(fileId, data);
 			H5Read.closeFile(fileId);
 
-			instance = element.decode(data, null);
+			instance = element.decode(data, into);
 			StyleMap style = new StyleMap(instance.getStyle());
 			style.put(instance.getInterfaceFunctionName(), null);
 			instance.setStyle(style.toString());
