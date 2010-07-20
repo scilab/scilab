@@ -80,7 +80,11 @@ function chart(attenu,angl,flags)
   k1=floor(phi_min/180)
   k2=ceil(phi_max/180)
   //
-  drawlater()
+  
+  fig=gcf();
+  immediate_drawing=fig.immediate_drawing;
+  fig.immediate_drawing="off";
+
   if flags(2) then xtitle(titre,_("phase(y) (degree)"),_("magnitude(y) (Db)")),end
   llrect=xstringl(0,0,'1')
   
@@ -163,5 +167,5 @@ function chart(attenu,angl,flags)
   end;
   glue(ax.children(size(angl,'*'):-1:1))
   end
-  drawnow() ;
+  fig.immediate_drawing=immediate_drawing;
 endfunction
