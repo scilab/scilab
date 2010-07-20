@@ -23,9 +23,14 @@ import java.beans.PropertyChangeSupport;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.Deque;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
@@ -749,53 +754,137 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
      * @param modifiedBlock the new settings
      */
     public void updateBlockSettings(BasicBlock modifiedBlock) {
-	doUpdateBlockSettings(modifiedBlock);
-    }
+    	/*
+		 * Update the block settings
+		 */
+		updateFields(modifiedBlock);
 
-    /**
-     * Does the block update without using the undo manager 
-     * @param modifiedBlock the new settings
-     */
-    public void doUpdateBlockSettings(BasicBlock modifiedBlock) {
-	setDependsOnT(modifiedBlock.isDependsOnT());
-	setDependsOnU(modifiedBlock.isDependsOnU());
-	setExprs(modifiedBlock.getExprs());
+		/*
+		 * Update the children ports
+		 */
+		updateChildren(modifiedBlock);
 
-	setRealParameters(modifiedBlock.getRealParameters());
-	setIntegerParameters(modifiedBlock.getIntegerParameters());
-	setObjectsParameters(modifiedBlock.getObjectsParameters());
-
-	setState(modifiedBlock.getState());
-	setDState(modifiedBlock.getDState());
-	setODState(modifiedBlock.getODState());
-
-	setEquations(modifiedBlock.getEquations());
-
-		// Update the children according to the modified block children. We are
-		// working on the last index in order to simplify the List.remove()
-		// call.
-		final int oldChildCount = getChildCount();
-		final int newChildCount = modifiedBlock.getChildCount();
-		final int portStep = newChildCount - oldChildCount;
-		if (portStep > 0) {
-			for (int i = portStep - 1; i >= 0; i--) {
-				addPort((BasicPort) modifiedBlock.getChildAt(oldChildCount + i - 1));
-			}
-		} else {
-			for (int i = -portStep - 1; i >= 0; i--) {
-				removePort((BasicPort) getChildAt(newChildCount + i));
-			}
+		/*
+		 * If the block is in a superblock then update it.
+		 */
+		if (getParentDiagram() instanceof SuperBlockDiagram) {
+			SuperBlock parentBlock = ((SuperBlockDiagram) getParentDiagram())
+					.getContainer();
+			parentBlock.getParentDiagram().fireEvent(
+					new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED,
+							XcosConstants.EVENT_BLOCK_UPDATED, parentBlock));
 		}
-
-	/*
-	 * If the block is in a superblock then update it.
-	 */
-	if (getParentDiagram() instanceof SuperBlockDiagram) {
-	    SuperBlock parentBlock = ((SuperBlockDiagram) getParentDiagram()).getContainer();
-	    parentBlock.getParentDiagram().fireEvent(new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED, 
-		    XcosConstants.EVENT_BLOCK_UPDATED, parentBlock));
-	}
     }
+
+	/**
+	 * Update the instance field.
+	 * 
+	 * @param modifiedBlock the modified instance
+	 */
+	private void updateFields(BasicBlock modifiedBlock) {
+		setDependsOnT(modifiedBlock.isDependsOnT());
+		setDependsOnU(modifiedBlock.isDependsOnU());
+		setExprs(modifiedBlock.getExprs());
+
+		setRealParameters(modifiedBlock.getRealParameters());
+		setIntegerParameters(modifiedBlock.getIntegerParameters());
+		setObjectsParameters(modifiedBlock.getObjectsParameters());
+
+		setState(modifiedBlock.getState());
+		setDState(modifiedBlock.getDState());
+		setODState(modifiedBlock.getODState());
+
+		setEquations(modifiedBlock.getEquations());
+	}
+
+	/**
+	 * Update the children of the block.
+	 * 
+	 * @param modifiedBlock the new block instance
+	 */
+	private void updateChildren(BasicBlock modifiedBlock) {
+		Set<Class<? extends mxICell>> types = new HashSet<Class<? extends mxICell>>(
+				Arrays.asList(InputPort.class, OutputPort.class,
+						ControlPort.class, CommandPort.class));
+
+		Map<Class<? extends mxICell>, Deque<mxICell>> annotatedOlds = getTypedChildren(types);
+		Map<Class<? extends mxICell>, Deque<mxICell>> annotatedNews = modifiedBlock
+				.getTypedChildren(types);
+
+		getParentDiagram().getModel().beginUpdate();
+		try {
+			for (Class<? extends mxICell> klass : types) {
+				final Deque<mxICell> olds = annotatedOlds.get(klass);
+				final Deque<mxICell> news = annotatedNews.get(klass);
+
+				// updated ports
+				while (!olds.isEmpty() && !news.isEmpty()) {
+					mxICell previous = olds.poll();
+					mxICell modified = news.poll();
+
+					final int previousIndex = children.indexOf(previous);
+
+					// relink
+					if (previous.getEdgeCount() != 0) {
+						final mxICell edge = previous.getEdgeAt(0);
+						final boolean isOutgoing = previous == edge
+								.getTerminal(true);
+						previous.removeEdge(edge, isOutgoing);
+						modified.insertEdge(edge, isOutgoing);
+					}
+
+					getParentDiagram().removeCells(new Object[] { previous },
+							false);
+					getParentDiagram().addCells(new Object[] { modified },
+							this, previousIndex);
+				}
+
+				// removed ports
+				if (!olds.isEmpty()) {
+					getParentDiagram().removeCells(olds.toArray(), true);
+				}
+
+				// added ports
+				if (!news.isEmpty()) {
+					getParentDiagram().addCells(news.toArray(), this);
+				}
+			}
+		} finally {
+			getParentDiagram().getModel().endUpdate();
+		}
+	}
+	
+	/**
+	 * Format the children as a typed map for the given class set.
+	 * 
+	 * @param types the classes to search for.
+	 * @return a map which linked foreach type the corresponding cell list. 
+	 */
+	private Map<Class<? extends mxICell>, Deque<mxICell>> getTypedChildren(Set<Class<? extends mxICell>> types) {
+		Map<Class<? extends mxICell>, Deque<mxICell>> oldPorts = new HashMap<Class<? extends mxICell>, Deque<mxICell>>();
+		
+		// Allocate all types set
+		for (Class<? extends mxICell> type : types) {
+			oldPorts.put(type, new LinkedList<mxICell>());
+		}
+		
+		// children lookup
+		for (Object cell : children) {
+			
+			Class<? extends Object> klass = cell.getClass();
+			while (klass != null) {
+				if (types.contains(klass)) {
+					break;
+				}
+				klass = klass.getSuperclass();
+			}
+			
+			final Deque<mxICell> current = oldPorts.get(klass);
+			current.add((mxICell) cell);
+		}
+		
+		return oldPorts;
+	}
 
     /**
      * @param context parent diagram context

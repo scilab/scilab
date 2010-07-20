@@ -116,6 +116,9 @@ Bug Fixes:
 
 * bug 7550 fixed - In SciNotes, the "case" keyword was misplaced in some conditions.
 
+* bug 7551 fixed - An Xcos block could not change the type of a port when it was
+                   already present.
+
 * bug 7568 fixed - In the completion window, an exception was thrown when an
                    item was selected.
 

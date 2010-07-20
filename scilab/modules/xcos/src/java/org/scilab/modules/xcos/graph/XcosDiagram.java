@@ -1318,7 +1318,7 @@ public class XcosDiagram extends ScilabGraph {
     		return false;
     	}
 
-    	return !(cell instanceof BasicPort)	&& super.isCellDeletable(cell);
+    	return super.isCellDeletable(cell);
     }
 
 	/**
