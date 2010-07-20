@@ -9,6 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "call_scilab.h"
