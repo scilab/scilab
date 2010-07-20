@@ -1,10 +1,10 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) XXXX-2008 - INRIA
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
@@ -28,10 +28,10 @@
 //         iter     INTEGER number of iterations performed
 //         resVec      REAL residual vector
 
-//     Details of this algorithm are described in 
+//     Details of this algorithm are described in
 //
-//     "Templates for the Solution of Linear Systems: Building Blocks 
-//     for Iterative Methods", 
+//     "Templates for the Solution of Linear Systems: Building Blocks
+//     for Iterative Methods",
 //     Barrett, Berry, Chan, Demmel, Donato, Dongarra, Eijkhout,
 //     Pozo, Romine, and Van der Vorst, SIAM Publications, 1993
 //     (ftp netlib2.cs.utk.edu; cd linalg; get templates.ps).
@@ -63,7 +63,7 @@ end
 // If A is a matrix (full or sparse)
 if (matrixType == 1),
   if (size(A,1) ~= size(A,2)),
-	  error(msprintf(gettext("%s: Wrong size for input argument #%d: Square matrix expected.\n"),"gmres",1));
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: Square matrix expected.\n"),"gmres",1));
   end
 end
 b=varargin(1);
@@ -73,15 +73,15 @@ end
 if (matrixType==1),
   if (size(b,1) ~= size(A,1)),
   error(msprintf(gettext("%s: Wrong size for input argument #%d: Same size as input argument #%d expected.\n"),"gmres",2,1));
-  end 
+  end
 end
 
 // Number of iterations between restarts
 if (rhs >= 3),
   restrt=varargin(2);
   if (size(restrt) ~= [1 1]),
-	error(msprintf(gettext("%s: Wrong size for input argument #%d: Scalar expected.\n"),"gmres",3));
-  end 
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: Scalar expected.\n"),"gmres",3));
+  end
 else
   restrt=20;
 end
@@ -90,7 +90,7 @@ end
 if (rhs >= 4),
   tol=varargin(3);
   if (size(tol) ~= [1 1]);
-	error(msprintf(gettext("%s: Wrong size for input argument #%d: Scalar expected.\n"),"gmres",4));
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: Scalar expected.\n"),"gmres",4));
   end
 else
   tol = 1e-6;
@@ -100,8 +100,8 @@ end
 if (rhs >= 5),
   max_it=varargin(4);
   if (size(max_it) ~= [1 1]),
-	error(msprintf(gettext("%s: Wrong size for input argument #%d: Scalar expected.\n"),"gmres",5));
-  end 
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: Scalar expected.\n"),"gmres",5));
+  end
 else
   max_it=size(b,1);
 end
@@ -116,16 +116,15 @@ if (rhs >= 6),
     precondType = 1;
   case 13 then
     precondType = 0;
-  end 
+  end
   if (precondType == 1),
     if (size(M,1) ~= size(M,2)),
-	  error(msprintf(gettext("%s: Wrong size for input argument #%d: Square matrix expected.\n"),"gmres",4));
-
-    end 
+      error(msprintf(gettext("%s: Wrong size for input argument #%d: Square matrix expected.\n"),"gmres",4));
+    end
     if (size(M,1) == 0),
       precondType = 2; // no preconditionning
-	elseif ( size(M,1) ~= size(b,1) ), 
-	  error(msprintf(gettext("%s: Wrong size for input argument #%d: Same size as input argument #%d expected.\n"),"gmres",4,2));
+    elseif ( size(M,1) ~= size(b,1) ),
+      error(msprintf(gettext("%s: Wrong size for input argument #%d: Same size as input argument #%d expected.\n"),"gmres",4,2));
     end
   end
   if (precondType == 0),
@@ -139,11 +138,11 @@ end
 if (rhs >= 7),
   x=varargin(6);
   if (size(x,2) ~= 1),
-	error(msprintf(gettext("%s: Wrong size for input argument #%d: Column vector expected.\n"),"gmres",3));
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: Column vector expected.\n"),"gmres",3));
   end
   if ( size(x,1) ~= size(b,1) ),
-	error(msprintf(gettext("%s: Wrong type for size argument #%d: Same size as input argument #%d expected.\n"),"gmres",3,2));
-  end 
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: Same size as input argument #%d expected.\n"),"gmres",3,2));
+  end
 else
   x=zeros(b);
 end
@@ -156,12 +155,12 @@ end
 // Computations
 // ------------
 
-   j = 0; 
+   j = 0;
    flag = 0;
    it2 = 0;
- 
+
    bnrm2 = norm(b);
-   if (bnrm2 == 0.0), 
+   if (bnrm2 == 0.0),
      x = zeros(b);
      resNorm = 0;
      iter = 0;
@@ -169,11 +168,11 @@ end
      flag = 0;
      return
    end
-   
+
    // r = M \ ( b-A*x );
    if (matrixType == 1),
      r = b - A*x;
-   else 
+   else
      r = b - A(x);
    end
    if (precondType == 1),
@@ -183,9 +182,9 @@ end
    end
    resNorm = norm(r)/bnrm2;
    resVec = resNorm;
-   if (resNorm < tol), 
-     iter=0; 
-     return; 
+   if (resNorm < tol),
+     iter=0;
+     return;
    end
 
    n = size(b,1);
@@ -201,7 +200,7 @@ end
      // r = M \ ( b-A*x );
      if (matrixType == 1),
        r = b - A*x;
-     else 
+     else
        r = b - A(x);
      end
      if (precondType == 1),
@@ -209,39 +208,39 @@ end
      elseif (precondType == 0),
        r = M(r);
      end
-     
+
      V(:,1) = r / norm( r );
      s = norm( r )*e1;
      for i = 1:m      // construct orthonormal
        it2 = it2 + 1; // basis using Gram-Schmidt
-       // w = M \ (A*V(:,i)); 
+       // w = M \ (A*V(:,i));
        if (matrixType == 1),
-	 w = A*V(:,i);
-       else 
-	 w = A(V(:,i));
+         w = A*V(:,i);
+       else
+         w = A(V(:,i));
        end
        if (precondType == 1),
-	 w = M \ w;
+         w = M \ w;
        elseif (precondType == 0),
-	 w = M(w);
+         w = M(w);
        end
-       
-       for k = 1:i 
-	 H(k,i)= w'*V(:,k);
-	 w = w - H(k,i)*V(:,k);
+
+       for k = 1:i
+         H(k,i)= w'*V(:,k);
+         w = w - H(k,i)*V(:,k);
        end
        H(i+1,i) = norm( w );
        V(:,i+1) = w / H(i+1,i);
        for k = 1:i-1 // apply Givens rotation
-	 temp     =  cs(k)*H(k,i) + sn(k)*H(k+1,i);
-	 H(k+1,i) = -sn(k)*H(k,i) + cs(k)*H(k+1,i);
-	 H(k,i)   = temp;
+         temp     =  cs(k)*H(k,i) + sn(k)*H(k+1,i);
+         H(k+1,i) = -sn(k)*H(k,i) + cs(k)*H(k+1,i);
+         H(k,i)   = temp;
        end
         // form i-th rotation matrix
        [tp1,tp2] = rotmat( H(i,i), H(i+1,i) );
        cs(i)  = tp1;
        sn(i)  = tp2;
-       temp   = cs(i)*s(i);      
+       temp   = cs(i)*s(i);
        s(i+1) = -sn(i)*s(i);
        s(i)   = temp;
        H(i,i) = cs(i)*H(i,i) + sn(i)*H(i+1,i);
@@ -249,14 +248,14 @@ end
        resNorm  = abs(s(i+1)) / bnrm2;
        resVec = [resVec;resNorm];
        if ( resNorm <= tol ),
-	 y = H(1:i,1:i) \ s(1:i);
-	 x = x + V(:,1:i)*y;
-	 break;
+         y = H(1:i,1:i) \ s(1:i);
+         x = x + V(:,1:i)*y;
+         break;
        end
      end
-     if (resNorm <= tol), 
+     if (resNorm <= tol),
        iter = j-1+it2;
-       break; 
+       break;
      end
      y = H(1:m,1:m) \ s(1:m);
      // update approximation
@@ -264,7 +263,7 @@ end
      // r = M \ ( b-A*x )
      if (matrixType == 1),
        r = b - A*x;
-     else 
+     else
        r = b - A(x);
      end
      if (precondType == 1),
@@ -275,17 +274,17 @@ end
      s(j+1) = norm(r);
      resNorm = s(j+1) / bnrm2;
      resVec = [resVec; resNorm];
-     
+
      if ( resNorm <= tol ),
        iter = j+it2;
-       break; 
+       break;
      end
-     if ( j== max_it ), 
-       iter=j+it2; 
+     if ( j== max_it ),
+       iter=j+it2;
      end
    end
-   if ( resNorm > tol ), 
-     flag = 1; 
+   if ( resNorm > tol ),
+     flag = 1;
      if (lhs < 2),
        warning(msprintf(gettext("%s: Did not converge.\n"),"gmres"));
      end
@@ -310,5 +309,3 @@ else
   s = temp * c;
 end
 endfunction //rotmat
-   
-
