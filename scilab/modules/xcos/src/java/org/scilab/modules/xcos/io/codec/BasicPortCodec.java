@@ -167,8 +167,9 @@ public class BasicPortCodec extends XcosObjectCodec {
 			rotation = 0;
 		}
 		
-		flipped = Boolean.parseBoolean(map.get(XcosConstants.STYLE_FLIP));
-		mirrored = Boolean.parseBoolean(map.get(XcosConstants.STYLE_MIRROR));
+		StyleMap parentBlockMap = new StyleMap(obj.getParent().getStyle());
+		flipped = Boolean.parseBoolean(parentBlockMap.get(XcosConstants.STYLE_FLIP));
+		mirrored = Boolean.parseBoolean(parentBlockMap.get(XcosConstants.STYLE_MIRROR));
 		
 		/*
 		 * Protect against the folowing cast.

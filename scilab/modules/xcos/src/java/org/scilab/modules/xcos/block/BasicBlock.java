@@ -96,6 +96,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxICell;
+import com.mxgraph.model.mxIGraphModel;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxUtils;
 
@@ -1252,16 +1253,14 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
     /**
      * @param flip value
      */
-    public void setFlip(boolean flip) {
-	if (getParentDiagram() != null) {
-	    isFlipped = flip;
-	    if (flip) {
-		mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {this}, XcosConstants.STYLE_FLIP, Boolean.TRUE.toString());
-	    } else {
-		mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {this}, XcosConstants.STYLE_FLIP, Boolean.FALSE.toString());
-	    }
+	public void setFlip(boolean flip) {
+		if (getParentDiagram() != null) {
+			isFlipped = flip;
+			final mxIGraphModel model = getParentDiagram().getModel();
+			mxUtils.setCellStyles(model, new Object[] { this },
+					XcosConstants.STYLE_FLIP, Boolean.toString(flip));
+		}
 	}
-    }
 
     /**
      * Override this to customize contextual menu
@@ -1282,16 +1281,14 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
     /**
      * @param mirror new mirror value
      */
-    public void setMirror(boolean mirror) {
-	if (getParentDiagram() != null) {
-	    isMirrored = mirror;
-	    if (mirror) {
-		mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {this}, XcosConstants.STYLE_MIRROR, "true");
-	    } else {
-		mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {this}, XcosConstants.STYLE_MIRROR, "false");
-	    }
+	public void setMirror(boolean mirror) {
+		if (getParentDiagram() != null) {
+			isMirrored = mirror;
+			final mxIGraphModel model = getParentDiagram().getModel();
+			mxUtils.setCellStyles(model, new Object[] { this },
+					XcosConstants.STYLE_MIRROR, Boolean.toString(mirror));
+		}
 	}
-    }
 
     /**
      * @return flip status

@@ -175,6 +175,8 @@ Bug Fixes:
 * bug 7568 fixed - In the completion window, an exception was thrown when an
                    item was selected.
 
+* bug 7571 fixed - The mirror state of a block was not saved on a diagram.
+
 * bug 7574 fixed - The Xcos diagram configuration settings did not work with 
                    exponential values.
 
