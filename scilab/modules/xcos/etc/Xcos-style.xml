@@ -14,7 +14,7 @@
 <!-- *** GENERIC BLOCKS *** -->
   
   <add as="block" extend="defaultVertex">
-    <add as="noLabel" value="1"/>
+    <add as="verticalLabelPosition" value="bottom" />
   </add>
 
   <add as="blockWithLabel" extend="defaultVertex">
@@ -50,7 +50,7 @@
 	</add>
 
 	<!-- Const -->
-	<add as="Const" extend="block" />
+	<add as="Const" extend="defaultVertex" />
 
 	<!-- Gain -->
 	<add as="Gain" extend="blockWithLabel">
@@ -361,6 +361,7 @@
 	</add>
 	<add as="BIGSOM_f" extend="Icon">
 		<add as="image" value="$SCILAB/modules/xcos/images/blocks/SUM.svg" />
+		<add as="noLabel" value="1" />
 		<!--
 			<add as="displayedLabel" value="&lt;TABLE&gt;&lt;TR&gt;
 			&lt;TD&gt;+&lt;/TD&gt; &lt;TD ROWSPAN=&quot;2&quot;&gt; &lt;FONT
@@ -368,6 +369,7 @@
 			&lt;TR&gt; &lt;TD&gt;+&lt;/TD&gt; &lt;TD/&gt; &lt;/TR&gt;
 			&lt;/TABLE&gt;"/>
 		-->
+		<remove as="verticalLabelPosition"/>
 	</add>
 	<add as="POWBLK_f" extend="blockWithLabel">
 		<add as="displayedLabel" value="u^a" />
@@ -409,6 +411,7 @@
 	</add>
 	<add as="SUMMATION" extend="Icon">
 		<add as="image" value="$SCILAB/modules/xcos/images/blocks/SUM.svg" />
+		<add as="noLabel" value="1" />
 		<!--
 			<add as="displayedLabel" value="&lt;TABLE&gt; &lt;TR&gt;
 			&lt;TD&gt;+&lt;/TD&gt; &lt;TD ROWSPAN=&quot;2&quot;&gt; &lt;FONT
@@ -422,6 +425,7 @@
 	</add>
 	<add as="PRODUCT" extend="Icon">
 		<add as="image" value="$SCILAB/modules/xcos/images/blocks/PRODUCT.svg" />
+		<add as="noLabel" value="1" />
 		<!--
 			<add as="displayedLabel" value="&lt;TABLE&gt; &lt;TR&gt;
 			&lt;TD&gt;*&lt;/TD&gt; &lt;TD ROWSPAN=&quot;2&quot;&gt; &lt;FONT

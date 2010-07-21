@@ -33,6 +33,8 @@ Bug Fixes:
 * bug 4370 fixed - Help page for alufunction, figure_properties was not
                    up-to-date and the help page for pixel_drawing_mode was missing.
 
+* bug 5185 fixed - It was not possible to edit the name of a super block.
+
 * bug 5366 fixed - help of modules_manager was not built.
 
 * bug 6639 fixed - "hypermat"  did not remove higher dimensions equal to 1.

@@ -11,7 +11,7 @@
  *
  */
 
-package org.scilab.modules.xcos.actions;
+package org.scilab.modules.xcos.block.actions;
 
 import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.asynchronousScilabExec;
 import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.buildCall;
@@ -28,9 +28,9 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
-import org.scilab.modules.xcos.block.actions.SuperBlockSelectedAction;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.H5RWHandler;
+import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -102,6 +102,11 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
 				final ActionListener callback = new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						
+						if (!tempInput.exists()) {
+							((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
+							return;
+						}
+						
 						block.getParentDiagram().getModel().beginUpdate();
 						doAction(block, tempInput);
 						block.getParentDiagram().getModel().endUpdate();
@@ -145,8 +150,10 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
 	    block.setInterfaceFunctionName(modifiedBlock.getInterfaceFunctionName());
 	    block.setSimulationFunctionName(modifiedBlock.getSimulationFunctionName());
 	    block.setSimulationFunctionType(modifiedBlock.getSimulationFunctionType());
+	    block.setChild(null);
+	    
 	    block.setStyle(block.getStyle() + ";blockWithLabel");
 	    block.setValue(block.getSimulationFunctionName());
-	    block.setChild(null);
+	    BlockPositioning.updateBlockView(block);
 	}
 }
