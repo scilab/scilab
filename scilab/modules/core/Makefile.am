@@ -43,7 +43,6 @@ src/c/loadversion.c \
 src/c/version.c \
 src/c/stackinfo.c \
 src/c/scirun.c \
-src/c/warningmode.c \
 src/c/InitializeCore.c \
 src/c/TerminateCore.c \
 src/c/coretable.c \
@@ -376,7 +375,6 @@ includes/stackinfo.h \
 includes/stackTypeVariable.h \
 includes/version.h \
 includes/getversion.h \
-includes/warningmode.h \
 includes/Thread_Wrapper.h
 
 include $(top_srcdir)/Makefile.incl.am

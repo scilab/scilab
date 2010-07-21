@@ -447,6 +447,7 @@ libscidynamic_link_la_CFLAGS = \
 -I$(top_srcdir)/libs/dynamiclibrary/includes \
 -I$(srcdir)/src/c/ \
 -I$(top_srcdir)/modules/api_scilab/includes \
+-I$(top_srcdir)/modules/system_env/includes \
 -I$(srcdir)/includes/
 
 pkglib_LTLIBRARIES = libscidynamic_link.la

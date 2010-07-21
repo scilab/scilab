@@ -12,7 +12,7 @@
 #include <string.h>
 #include "gw_special_functions.h"
 #include "machine.h"
-#include "warningmode.h"
+#include "sci_warning.h"
 #include "localization.h"
 #include "sciprint.h"
 /*--------------------------------------------------------------------------*/

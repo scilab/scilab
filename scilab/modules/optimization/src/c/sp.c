@@ -17,7 +17,7 @@
 #include "spd.h"
 #include "sciprint.h"
 #include "localization.h"
-#include "warningmode.h"
+#include "sci_warning.h"
 /*--------------------------------------------------------------------------*/
 /* BLAS 1 */
 extern double F2C(dnrm2)( );

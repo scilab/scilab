@@ -35,4 +35,8 @@ private :
 public :
 	EXTERN_FILEIO_GW static bool Load();
 };
+
+CPP_GATEWAY_PROTOTYPE(sci_mopen);
+CPP_GATEWAY_PROTOTYPE(sci_mclose);
+
 #endif /* !__FILEIO_GW_HXX__ */

@@ -20,7 +20,6 @@ void ParserSingleInstance::PrintError(std::wstring msg) {
     // FIXME : Should work under Windows
     // Need to have getline !!!
     std::wostringstream ostr;
-#ifndef _MSC_VER
     char *codeLine = (char *) malloc(4096 * sizeof(char));
 
     /** First print where in the script the error is located */
@@ -52,7 +51,6 @@ void ParserSingleInstance::PrintError(std::wstring msg) {
         ostr << L"^" ;
     }
     ostr << std::endl;
-#endif
 
     /** Finally display the Lexer / Parser message */
     ostr << L"[" <<*(ParserSingleInstance::getProgName()) << L"] ";

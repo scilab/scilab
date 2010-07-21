@@ -42,6 +42,7 @@ namespace types
     class Cell;
     class TList;
     class MList;
+    class File;
 }
 
 #endif /* !__ANY_TYPES_HXX__ */

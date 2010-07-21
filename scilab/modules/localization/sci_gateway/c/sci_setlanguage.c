@@ -15,7 +15,7 @@
 #include "setgetlanguage.h"
 #include "Scierror.h"
 #include "sciprint.h"
-#include "warningmode.h"
+#include "sci_warning.h"
 #include "defaultlanguage.h"
 #include "MALLOC.h"
 #include "loadhashtableslocalization.h"

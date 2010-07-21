@@ -11,14 +11,73 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+#include "filemanager.hxx"
+
+extern "C"
+{
 #include "mclose.h"
 #include "filesmanagement.h"
 #include "delfile.h"
 #include "core_math.h" /* Min Max */
 #include "sciprint.h"
 #include "localization.h"
-#include "warningmode.h"
+#include "sci_warning.h"
+#include "charEncoding.h"
+}
 /*--------------------------------------------------------------------------*/
+int mcloseCurrentFile()
+{
+    return mclose(FileManager::getCurrentFile());
+}
+
+int mcloseAll()
+{
+    while(FileManager::getFileMaxID() != 0)
+    {
+        int iRet = mclose(FileManager::getFileMaxID());
+        if(iRet)
+        {
+            return iRet;
+        }
+    }
+    
+    //for(int i = 0 ; i < FileManager::getFileMaxID() ; i++)
+    //{
+    //    int iRet = mclose(i+1);
+    //    if(iRet)
+    //    {
+    //        return iRet;
+    //    }
+    //}
+
+    return 0;
+}
+
+int mclose(int _iID)
+{
+    File* pF = FileManager::getFile(_iID);
+    if(pF != NULL)
+    {
+        int iRet = fclose(pF->getFiledesc());
+ 
+        // this function previously called ferror on a just before fclosed FILE* that could lead to crash at exit, depending on libc implementation.
+        if(iRet != 0)
+        {
+            iRet = 1;
+        }
+
+        FileManager::deleteFile(_iID);
+    }
+    else
+    {
+        if (getWarningMode()) 
+        {
+            sciprintW(_W("%ls: Cannot close file whose descriptor is %d: File is not active.\n"), L"mclose", _iID);
+        }
+    }
+    return 0;
+}
+
 void C2F(mclose) (int *fd, double *res)
 {   
 	int fd1 = -1;

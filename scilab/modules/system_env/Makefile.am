@@ -15,6 +15,7 @@ SYSTEM_ENV_CPP_SOURCES 	= \
 	src/cpp/sci_path.cpp \
 	src/cpp/sci_home.cpp \
 	src/cpp/sci_tmpdir.cpp \
+	src/cpp/sci_warning.cpp \
 	src/cpp/sci_mode.cpp \
 	src/cpp/configvariable.cpp
 

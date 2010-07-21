@@ -77,7 +77,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 #ifdef _MSC_VER
 				swprintf_s(stErr, 1024, L"\"%s\" value is not a valid value for exec function", pS->string_get(0));
 #else
-				swprintf(stErr, 1024, L"\"%S\" value is not a valid value for exec function", pS->string_get(0));
+				swprintf(stErr, 1024, L"\"%ls\" value is not a valid value for exec function", pS->string_get(0));
 #endif
 				YaspWriteW(stErr);
 				return Function::Error;
@@ -121,7 +121,6 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 
 	if(in[0]->getType() == InternalType::RealString)
 	{//1st argument is a path, parse file and execute it
-		char pstParsePath[PATH_MAX + FILENAME_MAX];
 		int iParsePathLen		= 0;
 		String* pS = in[0]->getAsString();
 		if(pS->size_get() != 1)
@@ -132,6 +131,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 		wchar_t* pstFile = pS->string_get(0);
         wchar_t *expandedPath = expandPathVariableW(pstFile);
         parser.parseFile(expandedPath, L"exec");
+        FREE(expandedPath);
 		if(parser.getExitStatus() !=  Parser::Succeded)
 		{
 			YaspWriteW(parser.getErrorMessage());

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -34,6 +34,9 @@
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
@@ -117,6 +120,9 @@
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
 			/>
@@ -197,6 +203,9 @@
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
@@ -284,6 +293,9 @@
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
@@ -413,6 +425,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\cpp\filemanager.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\filesmanagement.c"
 				>
 			</File>
@@ -477,7 +493,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\mclose.c"
+				RelativePath=".\src\cpp\mclose.cpp"
 				>
 			</File>
 			<File
@@ -505,7 +521,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\mopen.c"
+				RelativePath=".\src\cpp\mopen.cpp"
 				>
 			</File>
 			<File
@@ -530,6 +546,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\mtell.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\os_wfopen.c"
 				>
 			</File>
 			<File
@@ -637,10 +657,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_mclose.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_merror.c"
 				>
 			</File>
@@ -666,10 +682,6 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\sci_moef.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\c\sci_mopen.c"
 				>
 			</File>
 			<File
@@ -784,6 +796,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\fileinfo.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\filemanager.hxx"
 				>
 			</File>
 			<File
@@ -903,6 +919,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\os_wfopen.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\pathconvert.h"
 				>
 			</File>
@@ -981,6 +1001,10 @@
 				</File>
 			</Filter>
 		</Filter>
+		<File
+			RelativePath="..\..\bin\blasplus.lib"
+			>
+		</File>
 		<File
 			RelativePath=".\fileio.iss"
 			>

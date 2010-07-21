@@ -451,7 +451,8 @@ libscispecial_functions_la_CFLAGS = -I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/api_scilab/includes \
 -I$(top_srcdir)/modules/elementary_functions/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes/ \
--I$(top_srcdir)/modules/operations/includes/
+-I$(top_srcdir)/modules/operations/includes/ \
+-I$(top_srcdir)/modules/system_env/includes/
 
 pkglib_LTLIBRARIES = libscispecial_functions.la
 libscispecial_functions_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)

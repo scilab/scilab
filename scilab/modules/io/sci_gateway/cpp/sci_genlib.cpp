@@ -114,7 +114,7 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
 #ifdef _MSC_VER
 	swprintf_s(pstParseFile, PATH_MAX + FILENAME_MAX, L"%s%slib", pstParsePath, FILE_SEPARATOR);
 #else
-	swprintf(pstParseFile, PATH_MAX + FILENAME_MAX, L"%S%Slib", pstParsePath, FILE_SEPARATOR);
+	swprintf(pstParseFile, PATH_MAX + FILENAME_MAX, L"%ls%Slib", pstParsePath, FILE_SEPARATOR);
 #endif
 
     if(bVerbose)
@@ -122,7 +122,7 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
 #ifdef _MSC_VER
         swprintf_s(pstVerbose, 65535, _W("-- Creation of [%s] (Macros) --\n"), pstLibName);
 #else
-        swprintf(pstVerbose, 65535, _W("-- Creation of [%S] (Macros) --\n"), pstLibName);
+        swprintf(pstVerbose, 65535, _W("-- Creation of [%ls] (Macros) --\n"), pstLibName);
 #endif
         YaspWriteW(pstVerbose);
     }
@@ -139,7 +139,7 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
 #ifdef _MSC_VER
         swprintf_s(pstVerbose, 65535, _W("%s: Cannot open file ''%s''.\n"), L"genlib", pstParseFile);
 #else
-        swprintf(pstVerbose, 65535, _W("%S: Cannot open file ''%S''.\n"), L"genlib", pstParseFile);
+        swprintf(pstVerbose, 65535, _W("%ls: Cannot open file ''%ls''.\n"), L"genlib", pstParseFile);
 #endif
         YaspWriteW(pstVerbose);
 
@@ -166,7 +166,7 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
 #ifdef _MSC_VER
                 swprintf_s(pstVerbose, 65535, _W("%s: Warning: Error in file %s : %s. File ignored\n"), L"genlib", pstPath[k], parser.getErrorMessage());
 #else
-                swprintf(pstVerbose, 65535, _W("%S: Warning: Error in file %S : %S. File ignored\n"), L"genlib", pstPath[k], parser.getErrorMessage());
+                swprintf(pstVerbose, 65535, _W("%ls: Warning: Error in file %ls : %ls. File ignored\n"), L"genlib", pstPath[k], parser.getErrorMessage());
 #endif
                 YaspWriteW(pstVerbose);
                 parser.freeTree();
@@ -186,7 +186,7 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
 #ifdef _MSC_VER
                         swprintf_s(pstVerbose, 65535, _W("%s: Warning: %s information cannot be added to file %s. File ignored\n"), L"genlib", pFD->name_get() , pstPath[k]);
 #else
-                        swprintf(pstVerbose, 65535, _W("%S: Warning: Error in file %S : %S. File ignored\n"), L"genlib", pstPath[k], parser.getErrorMessage());
+                        swprintf(pstVerbose, 65535, _W("%ls: Warning: Error in file %ls : %ls. File ignored\n"), L"genlib", pstPath[k], parser.getErrorMessage());
 #endif
                         YaspWriteW(pstVerbose);
                     }

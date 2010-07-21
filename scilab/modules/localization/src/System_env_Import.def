@@ -4,3 +4,4 @@ LIBRARY    system_env.dll
 EXPORTS
 ;
 getSCI
+getWarningMode

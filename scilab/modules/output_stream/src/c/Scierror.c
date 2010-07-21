@@ -62,7 +62,7 @@ int ScierrorW(int iv, const wchar_t *fmt,...)
 #if _MSC_VER
 	retval = vsnwprintf(s_buf,bsiz-1, fmt, ap );
 #else
-	retval = swprintf(s_buf, bsiz-1, fmt, ap );
+	retval = vswprintf(s_buf, bsiz-1, fmt, ap );
 #endif
 	if (retval < 0) s_buf[bsiz-1]='\0';
 

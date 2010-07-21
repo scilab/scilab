@@ -9,7 +9,6 @@ stack_
 intersci_
 returnanan_
 callFunctionFromGateway
-getWarningMode
 islittleendian
 createvarfromptr_
 putlhsvar_

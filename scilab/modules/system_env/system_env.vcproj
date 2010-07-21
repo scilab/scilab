@@ -343,6 +343,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\cpp\sci_warning.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\setenvvar.cpp"
 				>
 			</File>
@@ -377,6 +381,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\sci_warning.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\setenvvar.hxx"
 				>
 			</File>
@@ -395,6 +403,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath="..\..\bin\blasplus.lib"
+			>
+		</File>
 		<File
 			RelativePath="..\..\bin\lapack.lib"
 			>

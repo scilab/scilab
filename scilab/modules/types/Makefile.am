@@ -53,6 +53,7 @@ TYPES_CPP_SOURCES = \
 			src/cpp/struct.cpp \
 			src/cpp/cell.cpp \
 			src/cpp/tlist.cpp \
+			src/cpp/file.cpp \
 			src/cpp/mlist.cpp
 
 GIWS_WRAPPERS =

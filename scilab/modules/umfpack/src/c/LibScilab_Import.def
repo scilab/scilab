@@ -16,5 +16,4 @@ getrhsvar_
 checklhs_
 checkrhs_
 createvarfromptr_
-getWarningMode 
 

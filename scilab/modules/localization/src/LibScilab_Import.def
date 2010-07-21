@@ -16,7 +16,6 @@ EXPORTS
  vstk_
  createvar_
  getSCIHOME
- getWarningMode
  syncexec_
  getmodules
  GetXmlFileEncoding

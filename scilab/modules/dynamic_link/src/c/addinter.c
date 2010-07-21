@@ -26,7 +26,7 @@
 #include "MALLOC.h" /* MALLOC */
 #include "sciprint.h"
 #include "Funtab.h"
-#include "warningmode.h"
+#include "sci_warning.h"
 #include "GetenvB.h"
 #include "localization.h"
 #include "Scierror.h"

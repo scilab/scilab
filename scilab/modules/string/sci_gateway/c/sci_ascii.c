@@ -25,7 +25,7 @@
 #include "localization.h"
 #include "freeArrayOfString.h"
 #include "getfastcode.h"
-#include "warningmode.h"
+#include "sci_warning.h"
 #include "sciprint.h"
 /*----------------------------------------------------------------------------*/
 static int asciiStrings(char *fname);

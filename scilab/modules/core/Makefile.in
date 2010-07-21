@@ -136,8 +136,8 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/c/xscion.c src/c/SetScilabEnvironment.c src/c/returnanan.c \
 	src/c/LoadFunctionsTab.c src/c/with_module.c \
 	src/c/loadversion.c src/c/version.c src/c/stackinfo.c \
-	src/c/scirun.c src/c/warningmode.c src/c/InitializeCore.c \
-	src/c/TerminateCore.c src/c/coretable.c src/c/returnProperty.c \
+	src/c/scirun.c src/c/InitializeCore.c src/c/TerminateCore.c \
+	src/c/coretable.c src/c/returnProperty.c \
 	src/c/returnPropertyList.c src/c/GetXmlFileEncoding.c \
 	src/c/islittleendian.c src/c/terme.c src/c/ifexpr.c \
 	src/c/expr.c src/c/getcommandlineargs.c src/c/syncexec.c \
@@ -257,9 +257,9 @@ am__objects_2 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-returnanan.lo libscicore_la-LoadFunctionsTab.lo \
 	libscicore_la-with_module.lo libscicore_la-loadversion.lo \
 	libscicore_la-version.lo libscicore_la-stackinfo.lo \
-	libscicore_la-scirun.lo libscicore_la-warningmode.lo \
-	libscicore_la-InitializeCore.lo libscicore_la-TerminateCore.lo \
-	libscicore_la-coretable.lo libscicore_la-returnProperty.lo \
+	libscicore_la-scirun.lo libscicore_la-InitializeCore.lo \
+	libscicore_la-TerminateCore.lo libscicore_la-coretable.lo \
+	libscicore_la-returnProperty.lo \
 	libscicore_la-returnPropertyList.lo \
 	libscicore_la-GetXmlFileEncoding.lo \
 	libscicore_la-islittleendian.lo libscicore_la-terme.lo \
@@ -646,12 +646,11 @@ CORE_C_SOURCES = src/c/inffic.c src/c/cs2st.c src/c/intmacr2tree.c \
 	src/c/stack2.c src/c/xscion.c src/c/SetScilabEnvironment.c \
 	src/c/returnanan.c src/c/LoadFunctionsTab.c \
 	src/c/with_module.c src/c/loadversion.c src/c/version.c \
-	src/c/stackinfo.c src/c/scirun.c src/c/warningmode.c \
-	src/c/InitializeCore.c src/c/TerminateCore.c src/c/coretable.c \
-	src/c/returnProperty.c src/c/returnPropertyList.c \
-	src/c/GetXmlFileEncoding.c src/c/islittleendian.c \
-	src/c/terme.c src/c/ifexpr.c src/c/expr.c \
-	src/c/getcommandlineargs.c src/c/syncexec.c \
+	src/c/stackinfo.c src/c/scirun.c src/c/InitializeCore.c \
+	src/c/TerminateCore.c src/c/coretable.c src/c/returnProperty.c \
+	src/c/returnPropertyList.c src/c/GetXmlFileEncoding.c \
+	src/c/islittleendian.c src/c/terme.c src/c/ifexpr.c \
+	src/c/expr.c src/c/getcommandlineargs.c src/c/syncexec.c \
 	src/c/callFunctionFromGateway.c src/c/getvariablesname.c \
 	src/c/commandwords.c src/c/freeArrayOfString.c \
 	src/c/getstaticdebuginfo.c src/c/getdynamicdebuginfo.c \
@@ -881,7 +880,6 @@ includes/stackinfo.h \
 includes/stackTypeVariable.h \
 includes/version.h \
 includes/getversion.h \
-includes/warningmode.h \
 includes/Thread_Wrapper.h
 
 
@@ -1154,7 +1152,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-transposeMatrix.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-typename.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-version.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-warningmode.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-with_module.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-xscion.Plo@am__quote@
 
@@ -1416,13 +1413,6 @@ libscicore_la-scirun.lo: src/c/scirun.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/scirun.c' object='libscicore_la-scirun.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-scirun.lo `test -f 'src/c/scirun.c' || echo '$(srcdir)/'`src/c/scirun.c
-
-libscicore_la-warningmode.lo: src/c/warningmode.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-warningmode.lo -MD -MP -MF $(DEPDIR)/libscicore_la-warningmode.Tpo -c -o libscicore_la-warningmode.lo `test -f 'src/c/warningmode.c' || echo '$(srcdir)/'`src/c/warningmode.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-warningmode.Tpo $(DEPDIR)/libscicore_la-warningmode.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/warningmode.c' object='libscicore_la-warningmode.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-warningmode.lo `test -f 'src/c/warningmode.c' || echo '$(srcdir)/'`src/c/warningmode.c
 
 libscicore_la-InitializeCore.lo: src/c/InitializeCore.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-InitializeCore.lo -MD -MP -MF $(DEPDIR)/libscicore_la-InitializeCore.Tpo -c -o libscicore_la-InitializeCore.lo `test -f 'src/c/InitializeCore.c' || echo '$(srcdir)/'`src/c/InitializeCore.c

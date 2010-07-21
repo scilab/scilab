@@ -297,6 +297,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\cpp\file.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\float.cpp"
 				>
 			</File>
@@ -404,6 +408,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\double.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\file.hxx"
 				>
 			</File>
 			<File

@@ -94,7 +94,7 @@ void visitprivate(const CallExp &e)
 #ifdef _MSC_VER
             swprintf_s(szError, bsiz, _W("Function \"%s\" failed\n"), pCall->getName().c_str());
 #else
-            swprintf(szError, bsiz, _W("Function \"%S\" failed\n"), pCall->getName().c_str());
+            swprintf(szError, bsiz, _W("Function \"%ls\" failed\n"), pCall->getName().c_str());
 #endif
             throw wstring(szError);
         }

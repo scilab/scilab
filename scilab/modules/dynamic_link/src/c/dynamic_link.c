@@ -18,7 +18,7 @@
 #include "dynamiclibrary.h"
 #include "men_Sutils.h"
 #include "MALLOC.h" /* MALLOC */
-#include "warningmode.h"
+#include "sci_warning.h"
 #include "sciprint.h"
 #include "stack-c.h"
 #include "addinter.h"

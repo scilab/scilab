@@ -27,7 +27,6 @@ getwsmat_
 cvname_
 getIntermediateMemoryNeeded
 getstackinfo_
-getWarningMode
 callFunctionFromGateway
 getmatdims_
 overload_

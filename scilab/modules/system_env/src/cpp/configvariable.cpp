@@ -196,3 +196,23 @@ int ConfigVariable::getScilabMode(void)
 /*
 ** \}
 */
+
+/*
+** Warning Mode
+** \{
+*/
+bool ConfigVariable::m_bWarningMode = true;
+
+void ConfigVariable::setWarningMode(bool _bWarningMode)
+{
+    m_bWarningMode = _bWarningMode;
+}
+
+bool ConfigVariable::getWarningMode(void)
+{
+    return m_bWarningMode;
+}
+/*
+** \}
+*/
+

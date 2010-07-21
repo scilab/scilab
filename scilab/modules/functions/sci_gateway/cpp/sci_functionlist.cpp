@@ -11,22 +11,9 @@
 */
 
 #include <string.h>
-#include "parser.hxx"
 #include "funcmanager.hxx"
 #include "context.hxx"
 #include "functions_gw.hxx"
-#include "setenvvar.hxx"
-#include "execvisitor.hxx"
-
-
-extern "C"
-{
-#ifndef _MSC_VER
-#include "stricmp.h"
-#endif
-#include "cluni0.h"
-#include "PATH_MAX.h"
-}
 
 using namespace types;
 /*--------------------------------------------------------------------------*/

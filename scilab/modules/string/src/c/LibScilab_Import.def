@@ -16,7 +16,6 @@ EXPORTS
  stack_
  putlhsvar_
  intersci_
- getWarningMode
  createvar_
  getrhsvar_
  vartype_

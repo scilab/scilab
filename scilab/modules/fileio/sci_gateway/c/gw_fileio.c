@@ -19,9 +19,9 @@
 /*  interface function */
 /*--------------------------------------------------------------------------*/ 
 static gw_generic_table Tab[]={
-	{sci_mopen, "mopen"},
+	{NULL, ""}, //mopen
 	{sci_mputstr, "mputstr"},
-	{sci_mclose, "mclose"},
+	{NULL, ""}, //mclose
 	{sci_mput, "mput"},
 	{sci_mget, "mget"},
 	{sci_mgetstr, "mgetstr"},

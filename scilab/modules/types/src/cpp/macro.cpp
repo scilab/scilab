@@ -189,7 +189,7 @@ namespace types
 #ifdef _MSC_VER
                     swprintf_s(sz, bsiz, _W("Undefined variable %s.\n"), (*i).c_str());
 #else
-                    swprintf(sz, bsiz, _W("Undefined variable %S.\n"), (*i).c_str());
+                    swprintf(sz, bsiz, _W("Undefined variable %ls.\n"), (*i).c_str());
 #endif
                     YaspWriteW(sz);
                 }

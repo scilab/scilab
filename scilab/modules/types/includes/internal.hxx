@@ -58,7 +58,8 @@ namespace types
           RealListOperation, //parent type
           RealListInsertOperation,
           RealListDeleteOperation,
-          RealListUndefinedOperation
+          RealListUndefinedOperation,
+          RealFile
       };
 
   protected :
@@ -199,6 +200,9 @@ namespace types
       bool                              isImplicitList(void) { return (getType() == RealImplicitList); }
       virtual ImplicitList*             getAsImplicitList(void) { return NULL; }
 
+      /* File */
+      bool                              isFile(void) { return (getType() == RealFile); }
+      virtual File*                     getAsFile(void) { return NULL; }
 
       /**
       ** List Operations

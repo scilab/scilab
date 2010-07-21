@@ -14,7 +14,7 @@
 #include <string.h>
 #include "prompt.h"
 #include "sciprint.h"
-#include "warningmode.h"
+#include "sci_warning.h"
 #include "localization.h"
 #include "MALLOC.h"
 #ifdef _MSC_VER

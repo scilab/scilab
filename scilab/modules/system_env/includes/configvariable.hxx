@@ -17,6 +17,8 @@
 #include <string>
 #include "dynlib_system_env.h"
 
+#include "file.hxx"
+
 using namespace std;
 class EXTERN_SYSTEM_ENV ConfigVariable
 {
@@ -93,6 +95,14 @@ private :
 public : 
     static void setScilabMode(int _iScilabMode);
     static int getScilabMode(void);
+
+    //Warning mode
+private :
+    static bool m_bWarningMode;
+
+public : 
+    static void setWarningMode(bool _bWarningMode);
+    static bool getWarningMode(void);
 };
 
 #endif /* __CONFIGVARIABLE_HXX__ */

@@ -27,8 +27,8 @@
 #include "strdup_windows.h"
 #endif
 #include "strsubst.h"
+#include "sci_warning.h"
 #include "sciprint.h"
-#include "warningmode.h"
 /*-------------------------------------------------------------------------------*/
 /* A number of things vary for Windows builds. Originally, pcretest opened its
 input and output without "b"; then I was told that "b" was needed in some

@@ -14,7 +14,7 @@
 #include "stack-c.h"
 #include "sciprint.h"
 #include "Scierror.h"
-#include "warningmode.h"
+#include "sci_warning.h"
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "localization.h"

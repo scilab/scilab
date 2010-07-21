@@ -72,7 +72,8 @@ libsciumfpack_la_CFLAGS= -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/mexlib/includes \
 			-I$(top_srcdir)/modules/api_scilab/includes \
-			-I$(top_srcdir)/modules/operations/includes
+			-I$(top_srcdir)/modules/operations/includes \
+			-I$(top_srcdir)/modules/system_env/includes
 
 else
 

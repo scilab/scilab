@@ -18,7 +18,7 @@
 #include "createdirectory.h"
 #include "isdir.h"
 #include "expandPathVariable.h"
-#include "warningmode.h"
+#include "sci_warning.h"
 #include "sciprint.h"
 #include "Scierror.h"
 #include "localization.h"

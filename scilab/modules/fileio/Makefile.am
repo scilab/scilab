@@ -16,14 +16,12 @@ src/c/getfiledesc.c \
 src/c/getfileinfo.c \
 src/c/getfiletype.c \
 src/c/mclearerr.c \
-src/c/mclose.c \
 src/c/meof.c \
 src/c/merror.c \
 src/c/mget.c \
 src/c/mgetl.c \
 src/c/mgeti.c \
 src/c/mgetstr.c \
-src/c/mopen.c \
 src/c/mput.c \
 src/c/mputi.c \
 src/c/mputstr.c \
@@ -50,7 +48,8 @@ src/c/movefile.c \
 src/c/basename.c \
 src/c/pathconvert.c \
 src/c/copyfile_others.c \
-src/c/getFullFilename.c
+src/c/getFullFilename.c \
+src/c/os_wfopen.c
 
 GATEWAY_C_SOURCES = \
 sci_gateway/c/gw_fileio.c \
@@ -76,13 +75,11 @@ sci_gateway/c/sci_createdir.c \
 sci_gateway/c/sci_chdir.c \
 sci_gateway/c/sci_pwd.c \
 sci_gateway/c/sci_mclearerr.c \
-sci_gateway/c/sci_mclose.c \
 sci_gateway/c/sci_merror.c \
 sci_gateway/c/sci_mget.c \
 sci_gateway/c/sci_mgetl.c \
 sci_gateway/c/sci_mgetstr.c \
 sci_gateway/c/sci_moef.c \
-sci_gateway/c/sci_mopen.c \
 sci_gateway/c/sci_mput.c \
 sci_gateway/c/sci_mputstr.c \
 sci_gateway/c/sci_mseek.c \
@@ -99,10 +96,15 @@ sci_gateway/c/sci_pathconvert.c \
 sci_gateway/c/sci_isfile.c
 
 GATEWAY_CPP_SOURCES = \
-sci_gateway/cpp/fileio_gw.cpp
+	sci_gateway/cpp/fileio_gw.cpp \
+	sci_gateway/cpp/sci_mopen.cpp \
+	sci_gateway/cpp/sci_mclose.cpp
 
 FILEIO_CPP_SOURCES = \
-src/cpp/expandPathVariable.cpp
+	src/cpp/expandPathVariable.cpp \
+	src/cpp/mopen.cpp \
+	src/cpp/mclose.cpp \
+	src/cpp/filemanager.cpp
 
 
 libscifileio_la_CPPFLAGS=	-I$(srcdir)/includes/ \
@@ -116,6 +118,7 @@ libscifileio_la_CPPFLAGS=	-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/abstractSyntaxTree/includes \
 				-I$(top_srcdir)/modules/symbol/includes \
 				-I$(top_srcdir)/modules/string/includes \
+				-I$(top_srcdir)/modules/system_env/includes \
 				$(HDF5_CFLAGS)
 
 libscifileio_la_CFLAGS=		-I$(srcdir)/includes/ \

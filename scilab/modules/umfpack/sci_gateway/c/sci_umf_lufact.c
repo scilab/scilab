@@ -62,7 +62,7 @@
 #include "taucs_scilab.h"
 #include "common_umfpack.h"
 #include "localization.h"
-#include "warningmode.h"
+#include "sci_warning.h"
 
 CellAdr *ListNumeric = NULL;
 CellAdr *ListCholFactors = NULL;

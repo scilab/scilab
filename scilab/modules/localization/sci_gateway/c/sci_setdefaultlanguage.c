@@ -12,7 +12,7 @@
 
 #include "gw_localization.h"
 #include "stack-c.h"
-#include "warningmode.h"
+#include "sci_warning.h"
 #include "localization.h"
 #include "sciprint.h"
 #ifdef _MSC_VER

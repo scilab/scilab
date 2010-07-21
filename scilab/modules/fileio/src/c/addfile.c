@@ -16,6 +16,7 @@
 /*--------------------------------------------------------------------------*/
 void C2F(addfile)(int *fd, FILE *fa, int *swap2, int *type, int *mode, char *filename, int *ierr)
 {
+    printf("Call of old addfile\n");
 	if (SetFileNameOpenedInScilab(*fd,filename) == FALSE ) 
 	{
 		*ierr=1;

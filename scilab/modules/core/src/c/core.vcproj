@@ -857,10 +857,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\warningmode.c"
-				>
-			</File>
-			<File
 				RelativePath=".\with_module.c"
 				>
 			</File>
@@ -1267,10 +1263,6 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\version.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\warningmode.h"
 				>
 			</File>
 			<File

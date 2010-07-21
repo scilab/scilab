@@ -526,7 +526,7 @@ namespace ast
 #ifdef _MSC_VER
                 swprintf_s(szError, bsiz, _W("Undefined variable: %s\n"), e.name_get().c_str());
 #else
-                swprintf(szError, bsiz, _W("Undefined variable: %S\n"), e.name_get().c_str());
+                swprintf(szError, bsiz, _W("Undefined variable: %ls\n"), e.name_get().c_str());
 #endif
                 throw wstring(szError);
                 //Err, SimpleVar doesn't exist in Scilab scopes.
@@ -610,7 +610,7 @@ namespace ast
 #ifdef _MSC_VER
                         swprintf_s(szError, bsiz, _W("Unknown field : %s.\n"), psvRightMember->name_get().c_str());
 #else
-                        swprintf(szError, bsiz, _W("Unknown field : %S.\n"), psvRightMember->name_get().c_str());
+                        swprintf(szError, bsiz, _W("Unknown field : %ls.\n"), psvRightMember->name_get().c_str());
 #endif
                         throw wstring(szError);
                     }
@@ -643,7 +643,7 @@ namespace ast
 #ifdef _MSC_VER
                         swprintf_s(szError, bsiz, _W("Unknown field : %s.\n"), psvRightMember->name_get().c_str());
 #else
-                        swprintf(szError, bsiz, _W("Unknown field : %S.\n"), psvRightMember->name_get().c_str());
+                        swprintf(szError, bsiz, _W("Unknown field : %ls.\n"), psvRightMember->name_get().c_str());
 #endif
                         throw wstring(szError);
                     }
@@ -1081,7 +1081,7 @@ namespace ast
 #ifdef _MSC_VER
                             swprintf_s(szError, bsiz, _W("Function \"%s\" failed\n"), pCall->getName().c_str());
 #else
-                            swprintf(szError, bsiz, _W("Function \"%S\" failed\n"), pCall->getName().c_str());
+                            swprintf(szError, bsiz, _W("Function \"%ls\" failed\n"), pCall->getName().c_str());
 #endif
                             throw wstring(szError);
                         }

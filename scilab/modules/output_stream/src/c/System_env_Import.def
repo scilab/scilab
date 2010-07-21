@@ -3,3 +3,4 @@
 
 EXPORTS
 getScilabMode
+getWarningMode

@@ -3,7 +3,7 @@
 
 EXPORTS
 ;core
-;
+
 vstk_
 gettype_
 freeArrayOfString
@@ -19,7 +19,6 @@ putlhsvar_
 com_
 iop_
 callFunctionFromGateway
-getWarningMode
 cvname_
 funtab_
 ExceptionMessage

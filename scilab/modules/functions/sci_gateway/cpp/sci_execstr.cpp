@@ -29,7 +29,6 @@ extern "C"
 #include "MALLOC.h"
 
 #include "os_wcsicmp.h"
-#include "cluni0.h"
 #include "PATH_MAX.h"
 #include "prompt.h"
 }
@@ -72,7 +71,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 #ifdef _MSC_VER
 				swprintf_s(stErr, 1024, L"\"%s\" value is not a valid value for exec function", pS->string_get(0));
 #else
-				swprintf(stErr, 1024, L"\"%S\" value is not a valid value for exec function", pS->string_get(0));
+				swprintf(stErr, 1024, L"\"%ls\" value is not a valid value for exec function", pS->string_get(0));
 #endif
 				YaspWriteW(stErr);
 				return Function::Error;
