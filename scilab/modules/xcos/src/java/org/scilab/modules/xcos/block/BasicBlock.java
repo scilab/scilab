@@ -295,7 +295,6 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 	protected BasicBlock(String label) {
 		this();
 		setDefaultValues();
-		setValue(label);
 	}
 
 	/**

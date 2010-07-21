@@ -151,7 +151,6 @@ public final class PaletteBlockCtrl {
 			
 			if (block.getStyle().compareTo("") == 0) {
 				block.setStyle(block.getInterfaceFunctionName());
-				block.setValue(block.getInterfaceFunctionName());
 			}
 		} else {
 			block = BlockFactory.createBlock(BlockInterFunction.TEXT_f);

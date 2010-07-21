@@ -244,15 +244,6 @@ public abstract class ContextUpdate extends BasicBlock {
 	}
 
 	/**
-	 * @param label
-	 *            block labek
-	 */
-	protected ContextUpdate(String label) {
-		this();
-		setValue(label);
-	}
-
-	/**
 	 * Initialize the block with the default values
 	 */
 	@Override

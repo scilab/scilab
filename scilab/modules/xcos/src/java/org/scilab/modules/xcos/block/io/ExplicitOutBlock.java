@@ -28,14 +28,6 @@ public final class ExplicitOutBlock extends ContextUpdate {
 	}
 
 	/**
-	 * @param label block label
-	 */
-	protected ExplicitOutBlock(String label) {
-		this();
-		setValue(label);
-	}
-
-	/**
 	 * Initialize the block with the default values
 	 */
 	@Override

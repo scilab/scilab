@@ -35,10 +35,10 @@ public class LabelElement extends AbstractElement<TextBlock> {
 	private ScilabMList data;
 	
 	/** Element used to decode/encode Scicos model part into a BasicBlock*/
-	private BlockModelElement modelElement = new BlockModelElement();
+	private final BlockModelElement modelElement = new BlockModelElement();
 	
 	/** Element used to decode/encode Scicos model part into a BasicBlock*/
-	private BlockGraphicElement graphicElement = new BlockGraphicElement();
+	private final BlockGraphicElement graphicElement = new BlockGraphicElement();
 	
 	/**
 	 * Default constructor

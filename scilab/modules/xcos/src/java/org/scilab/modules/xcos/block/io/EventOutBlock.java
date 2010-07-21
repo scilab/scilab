@@ -28,14 +28,6 @@ public final class EventOutBlock extends ContextUpdate {
 	}
 
 	/**
-	 * @param label block label
-	 */
-	protected EventOutBlock(String label) {
-		this();
-		setValue(label);
-	}
-
-	/**
 	 * Initialize the block with the default values
 	 */
 	@Override

@@ -28,14 +28,6 @@ public final class ExplicitInBlock extends ContextUpdate {
 	}
 
 	/**
-	 * @param label block label
-	 */
-	protected ExplicitInBlock(String label) {
-		this();
-		setValue(label);
-	}
-
-	/**
 	 * Initialize the block with the default values
 	 */
 	@Override
