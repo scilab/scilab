@@ -66,6 +66,9 @@ Bug Fixes:
 * bug 7330 fixed - browsevar() called editvar() even if the latter did not
                    handle the variable type.
 
+* bug 7332 fixed - browsevar(): The "boolean" menu was reversed, if checked 
+                   booleans were hidden, if unchecked booleans were displayed.
+
 * bug 7343 fixed - editvar could not edit empty matrices.
 
 * bug 7360 fixed - Modelica Hydraulics Xcos demo was not simulating.

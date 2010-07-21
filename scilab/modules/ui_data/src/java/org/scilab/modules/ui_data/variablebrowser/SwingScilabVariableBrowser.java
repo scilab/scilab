@@ -355,7 +355,7 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 	public HashSet<Integer> getFilteredValues() {
 		HashSet<Integer> filteredValues = new HashSet<Integer>();
 		// TODO to replace later by something which smells less
-		if (filterBooleanCheckBox.isChecked()) {
+		if (!filterBooleanCheckBox.isChecked()) {
 			filteredValues.add(BOOLEAN_CLASS_NUMBER);
 		}
 
