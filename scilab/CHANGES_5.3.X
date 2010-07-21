@@ -160,6 +160,9 @@ Bug Fixes:
 
 * bug 7558 fixed - SciNotes: global variables were reached before local ones.
 
+* bug 7564 fixed - In SciNotes, no message was displayed when an unsuccessful
+                   search occured.
+
 * bug 7566 fixed - The cacsd module graphic functions (bode, black, nyquist,...) 
                    did not preserve the immediate_drawing property value.
 

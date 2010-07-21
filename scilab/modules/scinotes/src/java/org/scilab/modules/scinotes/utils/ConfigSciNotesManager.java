@@ -112,6 +112,7 @@ public final class ConfigSciNotesManager {
     private static final String REPLACE = "replace";
     private static final String EXPRESSION = "exp";
     private static final String REGULAR_EXPRESION = "regularExp";
+    private static final String CIRCULAR = "circularSearch";
     private static final String WORD_WARP = "wordWarp";
     private static final String WHOLE_WORD = "wholeWord";
     private static final String CASE_SENSITIVE = "caseSensitive";
@@ -1980,17 +1981,17 @@ public final class ConfigSciNotesManager {
     }
 
     /**
-     * @return true for a wordWrap search
+     * @return true for a circular search
      */
-    public static boolean getWordWarp() {
-        return getBooleanAttribute(WORD_WARP, STATE_FLAG, true);
+    public static boolean getCircularSearch() {
+        return getBooleanAttribute(CIRCULAR, STATE_FLAG, true);
     }
 
     /**
-     * @param wordWarp for a wordWrap search
+     * @param circular is true for a circular search
      */
-    public static void saveWordWarp(boolean wordWarp) {
-        saveBooleanAttribute(WORD_WARP, STATE_FLAG, wordWarp);
+    public static void saveCircularSearch(boolean circular) {
+        saveBooleanAttribute(CIRCULAR, STATE_FLAG, circular);
     }
 
     /**

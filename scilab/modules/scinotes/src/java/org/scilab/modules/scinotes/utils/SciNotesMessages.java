@@ -143,7 +143,8 @@ public class SciNotesMessages {
     public static final String SELECTED_LINES = Messages.gettext("Selected lines");
     public static final String OPTIONS = Messages.gettext("Options");
     public static final String CASE_SENSITIVE = Messages.gettext("Case sensitive");
-    public static final String WRAP_SEARCH = Messages.gettext("Wrap search");
+    public static final String CIRCULAR_SEARCH = Messages.gettext("Circular search");
+    public static final String RESTART_FROM_BEGINNING = Messages.gettext("Restart the search from the beginning");
     public static final String WHOLE_WORD = Messages.gettext("Whole word");
     public static final String REGULAR_EXPRESSIONS = Messages.gettext("Regular expressions");
     public static final String REPLACE = Messages.gettext("Replace");
