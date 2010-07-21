@@ -163,6 +163,7 @@ public static final String __GO_Y_TICKS_COORDS__ =         "YTicksCoords";
 public static final String __GO_TICKS_COLOR__ =            "TicksColor";
 public static final String __GO_TICKS_SEGMENT__ =          "TicksSegment";
 public static final String __GO_TICKS_STYLE__ =            "TicksStyle";
+public static final String __GO_SUBTICKS__ =               "Subticks";
 public static final String __GO_TICKS_LABELS__ =           "TicksLabels";
 public static final String __GO_FORMATN__ =                "Formatn";
 public static final String __GO_FONT__ =                   "Font";

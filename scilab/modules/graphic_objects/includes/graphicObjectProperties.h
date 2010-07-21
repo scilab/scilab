@@ -162,6 +162,7 @@
 #define __GO_TICKS_COLOR__                 "TicksColor"
 #define __GO_TICKS_SEGMENT__               "TicksSegment"
 #define __GO_TICKS_STYLE__                 "TicksStyle"
+#define __GO_SUBTICKS__                    "Subticks"
 #define __GO_TICKS_LABELS__                "TicksLabels"
 #define __GO_FORMATN__                     "Formatn"
 #define __GO_FONT__                        "Font"
