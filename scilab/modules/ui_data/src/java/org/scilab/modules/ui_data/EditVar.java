@@ -59,7 +59,6 @@ public class EditVar {
 		}
 
 		VariableEditor editvar = ScilabVariableEditor.getVariableEditor(dataDouble, variableName);
-		editvar.setVisible(true);
 	}
 
 	/**
@@ -85,7 +84,6 @@ public class EditVar {
 		}
 
 		VariableEditor editvar = ScilabVariableEditor.getVariableEditor(dataString, variableName);
-		editvar.setVisible(true);
 	}
 	
 	/**
@@ -113,7 +111,6 @@ public class EditVar {
 		}
 
 		VariableEditor editvar = ScilabVariableEditor.getVariableEditor(dataDoubleComplex, variableName);
-		editvar.setVisible(true);
 	}
 	
 	
@@ -140,7 +137,6 @@ public class EditVar {
 		}
 
 		VariableEditor editvar = ScilabVariableEditor.getVariableEditor(dataBool, variableName);
-		editvar.setVisible(true);
 	}
 	
 	/**

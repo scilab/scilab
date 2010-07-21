@@ -52,22 +52,19 @@ Bug Fixes:
 
 * bug 7183 fixed - update help file of link about the output argument.
 
-* bug 7328 fixed - editvar() window title did not contain the name of the edited variable.
-
-* bug 7330 fixed - browsevar() called editvar() even if the latter did not
-                   handle the variable type.
-
-* bug 7388 fixed - A java exception was thrown when we clicked on a menu created
-                   using uimenu and this menu had no child.
-
-* bug 7396 fixed - On I/O blocks used in SuperBlocks, empty index threw a
-                   decoding exception.
-
 * bug 7228 fixed - update help file of strcat about the third input argument.
 
 * bug 7282 fixed - eval failed on some functions without output arguments.
 
 * bug 7286 fixed - For some platform eps export of NaN values was buggy.
+
+* bug 7328 fixed - editvar() window title did not contain the name of the edited variable.
+
+* bug 7329 fixed - If editvar() window was docked, calling editvar another time
+                   threw java exceptions and froze editvar().
+
+* bug 7330 fixed - browsevar() called editvar() even if the latter did not
+                   handle the variable type.
 
 * bug 7343 fixed - editvar could not edit empty matrices.
 
@@ -82,7 +79,13 @@ Bug Fixes:
 * bug 7374 fixed - If Scilab is launched via another Scilab, TMPDIR is badly
                    built.
 
+* bug 7388 fixed - A java exception was thrown when we clicked on a menu created
+                   using uimenu and this menu had no child.
+
 * bug 7391 fixed - add links between help files about evstr, eval, execstr.
+
+* bug 7396 fixed - On I/O blocks used in SuperBlocks, empty index threw a
+                   decoding exception.
 
 * bug 7437 fixed - If history file was invalid, history browser crashed.
 
