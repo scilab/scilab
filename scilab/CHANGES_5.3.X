@@ -156,6 +156,8 @@ Bug Fixes:
 * bug 7574 fixed - The Xcos diagram configuration settings did not work with 
                    exponential values.
 
+* bug 7586 fixed - ShortCut for 'Save' action was missing in SciNotes.
+
            Changes between version 5.2.X and 5.3.0-beta1 of Scilab
            =======================================================
 
