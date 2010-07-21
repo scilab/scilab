@@ -63,6 +63,8 @@ Bug Fixes:
 
 * bug 7282 fixed - eval failed on some functions without output arguments.
 
+* bug 7286 fixed - For some platform eps export of NaN values was buggy.
+
 * bug 7343 fixed - editvar could not edit empty matrices.
 
 * bug 7360 fixed - Modelica Hydraulics Xcos demo was not simulating.
