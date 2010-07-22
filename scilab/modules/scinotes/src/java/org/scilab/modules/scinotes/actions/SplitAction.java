@@ -1,6 +1,5 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2010 - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
@@ -24,19 +23,17 @@ import javax.swing.KeyStroke;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.scinotes.SciNotes;
-import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 
 /**
- * LineNumbersAction Class
- * @author Bruno JOFRET
+ * SplitAction Class
  * @author Calixte DENIZET
  */
-public final class LineNumbersAction extends DefaultAction {
+public final class SplitAction extends DefaultAction {
 
     /**
      * serialVersionUID
      */
-    private static final long serialVersionUID = -2778300710964013775L;
+    private static final long serialVersionUID = 1L;
 
     private int state;
 
@@ -45,17 +42,24 @@ public final class LineNumbersAction extends DefaultAction {
      * @param name the name of the action
      * @param editor SciNotes
      */
-    public LineNumbersAction(String name, SciNotes editor) {
+    public SplitAction(String name, SciNotes editor) {
         super(name, editor);
-        state = ConfigSciNotesManager.getLineNumberingState();
     }
 
     /**
      * doAction
      */
     public void doAction() {
-        getEditor().setWhereamiLineNumbering(state);
-        ConfigSciNotesManager.saveLineNumberingState(state);
+        switch (state) {
+        case 0 :
+            getEditor().removeSplit();
+            return;
+        case 1 :
+            getEditor().splitTab(false);
+            return;
+        default :
+            getEditor().splitTab(true);
+        }
     }
 
     /**
@@ -67,19 +71,19 @@ public final class LineNumbersAction extends DefaultAction {
      */
     public static Menu createMenu(String label, SciNotes editor, KeyStroke key) {
         StringTokenizer tokens = new StringTokenizer(label, ";");
-        String labelLineNumbering = tokens.nextToken();
+        String labelSplitView = tokens.nextToken();
         String labelOff = tokens.nextToken();
-        String labelNormal = tokens.nextToken();
-        String labelWhereami = tokens.nextToken();
+        String labelH = tokens.nextToken();
+        String labelV = tokens.nextToken();
 
-        LineNumbersAction ln = new LineNumbersAction(labelLineNumbering, editor);
+        SplitAction ln = new SplitAction(labelSplitView, editor);
         Menu menu = ScilabMenu.createMenu();
-        menu.setText(labelLineNumbering);
-        JRadioButtonMenuItem[] arr = new JRadioButtonMenuItem[3];
-        String[] labels = new String[]{labelOff, labelNormal, labelWhereami};
+        menu.setText(labelSplitView);
 
         ButtonGroup group = new ButtonGroup();
         JRadioButtonMenuItem radio;
+        JRadioButtonMenuItem[] arr = new JRadioButtonMenuItem[3];
+        String[] labels = new String[]{labelOff, labelH, labelV};
 
         for (int i = 0; i < 3; i++) {
             radio = createRadioButtonMenuItem(ln, labels[i], i);
@@ -88,24 +92,24 @@ public final class LineNumbersAction extends DefaultAction {
             arr[i] = radio;
         }
 
-        arr[ln.state].setSelected(true);
+        arr[0].setSelected(true);
 
         return menu;
     }
 
     /**
      * createRadioButtonMenuItem
-     * @param ln the LineNumbersAction
+     * @param split the SplitAction
      * @param title the label of the menuitem
      * @param state the state associated with the menuitem
      * @return JRadioButtonMenuItem
      */
-    private static JRadioButtonMenuItem createRadioButtonMenuItem(final LineNumbersAction ln, String title, final int state) {
+    private static JRadioButtonMenuItem createRadioButtonMenuItem(final SplitAction split, String title, final int state) {
         JRadioButtonMenuItem radio = new JRadioButtonMenuItem(title);
         radio.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent arg0) {
-                    ln.state = state;
-                    ln.doAction();
+                    split.state = state;
+                    split.doAction();
                 }
             });
 

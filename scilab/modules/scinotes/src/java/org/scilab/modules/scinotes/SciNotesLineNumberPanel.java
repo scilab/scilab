@@ -96,14 +96,14 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
 
     /**
      * Set a line numbering compatible with the whereami function
-     * @param state 0 for normal, 1 for whereami and 2 for nothing
+     * @param state 0 for nothing, 1 for normal and 2 for whereami
      */
     public void setWhereamiLineNumbering(int state) {
-        if (state != 2) {
+        if (state != 0) {
             if (!display) {
                 textPane.getScrollPane().setRowHeaderView(this);
             }
-            whereami = state == 1;
+            whereami = state == 2;
             display = true;
         } else {
             textPane.getScrollPane().setRowHeaderView(null);

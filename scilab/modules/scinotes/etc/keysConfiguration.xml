@@ -39,7 +39,6 @@
 
   <entry key="HighlightCurrentLineAction">control J</entry>
   <entry key="HelpOnKeywordAction">control F1</entry>
-  <entry key="LineNumbersAction">control B</entry>
 
   <entry key="LoadIntoScilabAction">control L</entry>
   <entry key="ExecuteFileIntoScilabAction">control shift E</entry>
@@ -51,10 +50,6 @@
   <entry key="CodeNavigatorAction">control G</entry>
 
   <entry key="SciNotesCompletionAction">control SPACE</entry>
-
-  <entry key="SplitHorizontallyAction">control shift H</entry>
-  <entry key="SplitVerticallyAction">control shift V</entry>
-  <entry key="NoSplitAction">control shift N</entry>
 
   <entry key="HelpAction">F1</entry>
   <entry key="AboutAction">shift F1</entry>
