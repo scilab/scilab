@@ -43,7 +43,7 @@ public class ScilabLexerConstants {
     public static final int SKEYWORD = 2;
 
     /**
-     * SKEYWORD : Structure keywords like 'if', 'for' or 'while'
+     * OSKEYWORD : Structure keywords like 'if', 'for' or 'while'
      */
     public static final int OSKEYWORD = 3;
 
@@ -153,9 +153,9 @@ public class ScilabLexerConstants {
     public static final int VARIABLES = 24;
 
     /**
-     * LOCALVARIABLES : A local variable in Scilab
+     * INPUTOUTPUTARGS : A variable as arg in function declaration
      */
-    public static final int LOCALVARIABLES = 25;
+    public static final int INPUTOUTPUTARGS = 25;
 
     /**
      * WHITE_COMMENT : A white char ' ' in comments
@@ -185,7 +185,7 @@ public class ScilabLexerConstants {
     /**
      * TOKENS : A Map which contains the names of keywords (useful in scinotesConfiguration.xml)
      */
-    public static final Map<String, Integer> TOKENS = new HashMap(21);
+    public static final Map<String, Integer> TOKENS = new HashMap(25);
 
     private static Map<Integer, String> idTokens;
 
@@ -196,8 +196,8 @@ public class ScilabLexerConstants {
         TOKENS.put("Primitive", COMMANDS);
         TOKENS.put("Macro", MACROS);
         TOKENS.put("String", STRING);
-        TOKENS.put("Variable", VARIABLES);
-        TOKENS.put("LocalVariable", LOCALVARIABLES);
+        TOKENS.put("ExternalVariable", VARIABLES);
+        TOKENS.put("InputOutputArgs", INPUTOUTPUTARGS);
         TOKENS.put("Identifier", ID);
         TOKENS.put("Comment", COMMENT);
         TOKENS.put("Field", FIELD);

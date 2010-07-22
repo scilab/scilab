@@ -122,12 +122,12 @@
         <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
       </style>
 
-      <style name="Variable">
+      <style name="ExternalVariable">
         <ForegroundColor default="#FF0000" useCache="true" value="#FF0000"/>
         <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
       </style>
 
-      <style name="LocalVariable">
+      <style name="InputOutputArgs">
         <ForegroundColor default="#834310" useCache="true" value="#834310"/>
         <FontStyle default="1" useCache="true" value="1"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
       </style>

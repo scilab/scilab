@@ -37,9 +37,9 @@ import javax.swing.text.Element;
     public ScilabLexer(ScilabDocument doc) {
         this.doc = doc;
         this.elem = doc.getDefaultRootElement();
-	variables.clear();
-	commands.clear();
-	macros.clear();
+        variables.clear();
+        commands.clear();
+        macros.clear();
         variables.addAll(Arrays.asList(ScilabKeywords.GetVariablesName()));
         commands.addAll(Arrays.asList(ScilabKeywords.GetFunctionsName()));
         macros.addAll(Arrays.asList(ScilabKeywords.GetMacrosName()));
@@ -194,12 +194,12 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
                                        yybegin(COMMANDS);
                                        return ScilabLexerConstants.MACROS;
                                    } else {
-                                       List<String>[] arr = doc.getLocalVariables(start + yychar);
+                                       List<String>[] arr = doc.getInOutArgs(start + yychar);
                                        if (arr != null && (arr[0].contains(str) || arr[1].contains(str))) {
-                                           return ScilabLexerConstants.LOCALVARIABLES;
+                                           return ScilabLexerConstants.INPUTOUTPUTARGS;
                                        } else if (variables.contains(str)) {
                                            return ScilabLexerConstants.VARIABLES;
-                                       } 
+                                       }
                                    }
                                    return ScilabLexerConstants.ID;
                                  }

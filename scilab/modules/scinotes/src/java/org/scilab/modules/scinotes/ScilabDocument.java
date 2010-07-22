@@ -467,12 +467,12 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     }
 
     /**
-     * Get the local variables used as arguments or returned valuesof a function
+     * Get the lhs/rhs args used in a function declaration
      * @param pos the position in the document
      * @return the two lists containing args and returned values or null if we are not
      * in a function
      */
-    public List<String>[] getLocalVariables(int pos) {
+    public List<String>[] getInOutArgs(int pos) {
         Element root = getDefaultRootElement();
         int index = root.getElementIndex(pos);
         int compt = 0;
