@@ -121,4 +121,11 @@ public class Fac3d extends Surface {
 		this.dataMapping = dataMapping;
 	}
 
+	/**
+	 * @return Type as String
+	 */
+	public String getType() {
+		return "Fac3d";
+	}
+
 }

@@ -479,4 +479,11 @@ public class Axis extends ClippableContouredObject {
 		}
 	}
 
+	/**
+	 * @return Type as String
+	 */
+	public String getType() {
+		return "Axis";
+	}
+
 }

@@ -122,4 +122,11 @@ public class Grayplot extends Imageplot {
 		this.dataMapping = dataMapping;
 	}
 
+	/**
+	 * @return Type as String
+	 */
+	public String getType() {
+		return "Grayplot";
+	}
+
 }

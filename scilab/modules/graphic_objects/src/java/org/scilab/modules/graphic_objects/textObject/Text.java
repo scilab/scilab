@@ -317,5 +317,12 @@ public class Text extends ClippableTextObject {
 	public void setTextBoxModeAsEnum(TextBoxMode textBoxMode) {
 		this.textBoxMode = textBoxMode;
 	}
-	
+
+	/**
+	 * @return Type as String
+	 */
+	public String getType() {
+		return "Text";
+	}
+
 }

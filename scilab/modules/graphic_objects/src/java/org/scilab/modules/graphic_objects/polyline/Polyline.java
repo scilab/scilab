@@ -290,5 +290,12 @@ public class Polyline extends ClippableContouredObject {
 	public void setZShift(double[] shift) {
 		zShift = shift;
 	}
-	
+
+	/**
+	 * @return Type as String
+	 */
+	public String getType() {
+		return "Polyline";
+	}
+
 }

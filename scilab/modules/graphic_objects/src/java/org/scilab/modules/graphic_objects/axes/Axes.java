@@ -1431,4 +1431,11 @@ public class Axes extends GraphicObject {
 		this.title = title;
 	}
 
+	/**
+	 * @return Type as String
+	 */
+	public String getType() {
+		return "Axes";
+	}
+
 }

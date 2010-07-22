@@ -29,6 +29,8 @@ import org.scilab.modules.graphic_objects.label.Label;
 import org.scilab.modules.graphic_objects.textObject.FormattedText;
 import org.scilab.modules.graphic_objects.textObject.Font;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
+
 import org.testng.annotations.*;
 
 /**
@@ -270,70 +272,70 @@ public class testAxes {
 	/* GraphicObject properties */
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetAxesVisible() {
-		controller.setProperty(axesID, "Visible", initAxes.getVisible());
-		Boolean axesVisible  = (Boolean) controller.getProperty(axesID, "Visible");
+		controller.setProperty(axesID, __GO_VISIBLE__, initAxes.getVisible());
+		Boolean axesVisible  = (Boolean) controller.getProperty(axesID, __GO_VISIBLE__);
 		assert axesVisible.equals(initAxes.getVisible());
 	}
 
 	/* X-Axis properties */
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetXAxisVisible() {
-		controller.setProperty(axesID, "XAxisVisible", initAxes.getXAxisVisible());
-		Boolean retAxisVisible = (Boolean) controller.getProperty(axesID, "XAxisVisible");
+		controller.setProperty(axesID, __GO_X_AXIS_VISIBLE__, initAxes.getXAxisVisible());
+		Boolean retAxisVisible = (Boolean) controller.getProperty(axesID, __GO_X_AXIS_VISIBLE__);
 		assert (retAxisVisible.equals(initAxes.getXAxisVisible()));
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetXAxisReverse() {
-		controller.setProperty(axesID, "XAxisReverse", initAxes.getXAxisReverse());
-		Boolean retAxisReverse = (Boolean) controller.getProperty(axesID, "XAxisReverse");
+		controller.setProperty(axesID, __GO_X_AXIS_REVERSE__, initAxes.getXAxisReverse());
+		Boolean retAxisReverse = (Boolean) controller.getProperty(axesID, __GO_X_AXIS_REVERSE__);
 		assert (retAxisReverse.equals(initAxes.getXAxisReverse()));
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetXAxisGridColor() {
-		controller.setProperty(axesID, "XAxisGridColor", initAxes.getXAxisGridColor());
-		Integer retGridColor = (Integer) controller.getProperty(axesID, "XAxisGridColor");
+		controller.setProperty(axesID, __GO_X_AXIS_GRID_COLOR__, initAxes.getXAxisGridColor());
+		Integer retGridColor = (Integer) controller.getProperty(axesID, __GO_X_AXIS_GRID_COLOR__);
 		assert retGridColor.equals(initAxes.getXAxisGridColor());
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetXAxisLabel() {
-		controller.setProperty(axesID, "XAxisLabel", xlabelID);
-		String retXlabel = (String) controller.getProperty(axesID, "XAxisLabel");
+		controller.setProperty(axesID, __GO_X_AXIS_LABEL__, xlabelID);
+		String retXlabel = (String) controller.getProperty(axesID, __GO_X_AXIS_LABEL__);
 		assert retXlabel.equals(xlabelID);
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetXAxisLocation() {
-		controller.setProperty(axesID, "XAxisLocation", initAxes.getXAxisLocation());
-		Integer retAxisLocation = (Integer) controller.getProperty(axesID, "XAxisLocation");
+		controller.setProperty(axesID, __GO_X_AXIS_LOCATION__, initAxes.getXAxisLocation());
+		Integer retAxisLocation = (Integer) controller.getProperty(axesID, __GO_X_AXIS_LOCATION__);
 		assert retAxisLocation.equals(initAxes.getXAxisLocation());
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetXAxisLogFlag() {
-		controller.setProperty(axesID, "XAxisLogFlag", initAxes.getXAxisLogFlag());
-		Boolean retLogFlag = (Boolean) controller.getProperty(axesID, "XAxisLogFlag");
+		controller.setProperty(axesID, __GO_X_AXIS_LOG_FLAG__, initAxes.getXAxisLogFlag());
+		Boolean retLogFlag = (Boolean) controller.getProperty(axesID, __GO_X_AXIS_LOG_FLAG__);
 		assert retLogFlag.equals(initAxes.getXAxisLogFlag());
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetXAxisAutoTicks() {
-		controller.setProperty(axesID, "XAxisAutoTicks", initAxes.getXAxisAutoTicks());
-		Boolean retAutoTicks = (Boolean) controller.getProperty(axesID, "XAxisAutoTicks");
+		controller.setProperty(axesID, __GO_X_AXIS_AUTO_TICKS__, initAxes.getXAxisAutoTicks());
+		Boolean retAutoTicks = (Boolean) controller.getProperty(axesID, __GO_X_AXIS_AUTO_TICKS__);
 		assert retAutoTicks.equals(initAxes.getXAxisAutoTicks());
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetXAxisSubTicks() {
-		controller.setProperty(axesID, "XAxisSubticks", initAxes.getXAxisSubticks());
-		Integer retSubTicks = (Integer) controller.getProperty(axesID, "XAxisSubticks");
+		controller.setProperty(axesID, __GO_X_AXIS_SUBTICKS__, initAxes.getXAxisSubticks());
+		Integer retSubTicks = (Integer) controller.getProperty(axesID, __GO_X_AXIS_SUBTICKS__);
 		assert retSubTicks.equals(initAxes.getXAxisSubticks());
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetXAxisTicksLocations() {
-		controller.setProperty(axesID, "XAxisTicksLocations", initAxes.getXAxisTicksLocations());
-		Double[] retTicksLocations = (Double[]) controller.getProperty(axesID, "XAxisTicksLocations");
+		controller.setProperty(axesID, __GO_X_AXIS_TICKS_LOCATIONS__, initAxes.getXAxisTicksLocations());
+		Double[] retTicksLocations = (Double[]) controller.getProperty(axesID, __GO_X_AXIS_TICKS_LOCATIONS__);
 		assert Arrays.equals(retTicksLocations, initAxes.getXAxisTicksLocations());
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetXAxisTicksLabels() {
-		controller.setProperty(axesID, "XAxisTicksLabels", initAxes.getXAxisTicksLabels());
-		String[] retTicksLabels = (String[]) controller.getProperty(axesID, "XAxisTicksLabels");
+		controller.setProperty(axesID, __GO_X_AXIS_TICKS_LABELS__, initAxes.getXAxisTicksLabels());
+		String[] retTicksLabels = (String[]) controller.getProperty(axesID, __GO_X_AXIS_TICKS_LABELS__);
 
 		assert Arrays.equals(retTicksLabels, initAxes.getXAxisTicksLabels());
 	}
@@ -341,62 +343,62 @@ public class testAxes {
 	/* Y-Axis properties */
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetYAxisVisible() {
-		controller.setProperty(axesID, "YAxisVisible", initAxes.getYAxisVisible());
-		Boolean retAxisVisible = (Boolean) controller.getProperty(axesID, "YAxisVisible");
+		controller.setProperty(axesID, __GO_Y_AXIS_VISIBLE__, initAxes.getYAxisVisible());
+		Boolean retAxisVisible = (Boolean) controller.getProperty(axesID, __GO_Y_AXIS_VISIBLE__);
 		assert (retAxisVisible.equals(initAxes.getYAxisVisible()));
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetYAxisReverse() {
-		controller.setProperty(axesID, "YAxisReverse", initAxes.getYAxisReverse());
-		Boolean retAxisReverse = (Boolean) controller.getProperty(axesID, "YAxisReverse");
+		controller.setProperty(axesID, __GO_Y_AXIS_REVERSE__, initAxes.getYAxisReverse());
+		Boolean retAxisReverse = (Boolean) controller.getProperty(axesID, __GO_Y_AXIS_REVERSE__);
 		assert (retAxisReverse.equals(initAxes.getYAxisReverse()));
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetYAxisGridColor() {
-		controller.setProperty(axesID, "YAxisGridColor", initAxes.getYAxisGridColor());
-		Integer retGridColor = (Integer) controller.getProperty(axesID, "YAxisGridColor");
+		controller.setProperty(axesID, __GO_Y_AXIS_GRID_COLOR__, initAxes.getYAxisGridColor());
+		Integer retGridColor = (Integer) controller.getProperty(axesID, __GO_Y_AXIS_GRID_COLOR__);
 		assert retGridColor.equals(initAxes.getYAxisGridColor());
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetYAxisLabel() {
-		controller.setProperty(axesID, "YAxisLabel", ylabelID);
-		String retlabel = (String) controller.getProperty(axesID, "YAxisLabel");
+		controller.setProperty(axesID, __GO_Y_AXIS_LABEL__, ylabelID);
+		String retlabel = (String) controller.getProperty(axesID, __GO_Y_AXIS_LABEL__);
 		assert retlabel.equals(ylabelID);
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetYAxisLocation() {
-		controller.setProperty(axesID, "YAxisLocation", initAxes.getYAxisLocation());
-		Integer retAxisLocation = (Integer) controller.getProperty(axesID, "YAxisLocation");
+		controller.setProperty(axesID, __GO_Y_AXIS_LOCATION__, initAxes.getYAxisLocation());
+		Integer retAxisLocation = (Integer) controller.getProperty(axesID, __GO_Y_AXIS_LOCATION__);
 		assert retAxisLocation.equals(initAxes.getYAxisLocation());
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetYAxisLogFlag() {
-		controller.setProperty(axesID, "YAxisLogFlag", initAxes.getYAxisLogFlag());
-		Boolean retLogFlag = (Boolean) controller.getProperty(axesID, "YAxisLogFlag");
+		controller.setProperty(axesID, __GO_Y_AXIS_LOG_FLAG__, initAxes.getYAxisLogFlag());
+		Boolean retLogFlag = (Boolean) controller.getProperty(axesID, __GO_Y_AXIS_LOG_FLAG__);
 		assert retLogFlag.equals(initAxes.getYAxisLogFlag());
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetYAxisAutoTicks() {
-		controller.setProperty(axesID, "YAxisAutoTicks", initAxes.getYAxisAutoTicks());
-		Boolean retAutoTicks = (Boolean) controller.getProperty(axesID, "YAxisAutoTicks");
+		controller.setProperty(axesID, __GO_Y_AXIS_AUTO_TICKS__, initAxes.getYAxisAutoTicks());
+		Boolean retAutoTicks = (Boolean) controller.getProperty(axesID, __GO_Y_AXIS_AUTO_TICKS__);
 		assert retAutoTicks.equals(initAxes.getYAxisAutoTicks());
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetYAxisSubTicks() {
-		controller.setProperty(axesID, "YAxisSubticks", initAxes.getYAxisSubticks());
-		Integer retSubTicks = (Integer) controller.getProperty(axesID, "YAxisSubticks");
+		controller.setProperty(axesID, __GO_Y_AXIS_SUBTICKS__, initAxes.getYAxisSubticks());
+		Integer retSubTicks = (Integer) controller.getProperty(axesID, __GO_Y_AXIS_SUBTICKS__);
 		assert retSubTicks.equals(initAxes.getYAxisSubticks());
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetYAxisTicksLocations() {
-		controller.setProperty(axesID, "YAxisTicksLocations", initAxes.getYAxisTicksLocations());
-		Double[] retTicksLocations = (Double[]) controller.getProperty(axesID, "YAxisTicksLocations");
+		controller.setProperty(axesID, __GO_Y_AXIS_TICKS_LOCATIONS__, initAxes.getYAxisTicksLocations());
+		Double[] retTicksLocations = (Double[]) controller.getProperty(axesID, __GO_Y_AXIS_TICKS_LOCATIONS__);
 		assert Arrays.equals(retTicksLocations, initAxes.getYAxisTicksLocations());
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetYAxisTicksLabels() {
-		controller.setProperty(axesID, "YAxisTicksLabels", initAxes.getYAxisTicksLabels());
-		String[] retTicksLabels = (String[]) controller.getProperty(axesID, "YAxisTicksLabels");
+		controller.setProperty(axesID, __GO_Y_AXIS_TICKS_LABELS__, initAxes.getYAxisTicksLabels());
+		String[] retTicksLabels = (String[]) controller.getProperty(axesID, __GO_Y_AXIS_TICKS_LABELS__);
 
 		assert Arrays.equals(retTicksLabels, initAxes.getYAxisTicksLabels());
 	}
@@ -404,62 +406,62 @@ public class testAxes {
 	/* Z-Axis properties */
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetZAxisVisible() {
-		controller.setProperty(axesID, "ZAxisVisible", initAxes.getZAxisVisible());
-		Boolean retAxisVisible = (Boolean) controller.getProperty(axesID, "ZAxisVisible");
+		controller.setProperty(axesID, __GO_Z_AXIS_VISIBLE__, initAxes.getZAxisVisible());
+		Boolean retAxisVisible = (Boolean) controller.getProperty(axesID, __GO_Z_AXIS_VISIBLE__);
 		assert (retAxisVisible.equals(initAxes.getZAxisVisible()));
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetZAxisReverse() {
-		controller.setProperty(axesID, "ZAxisReverse", initAxes.getZAxisReverse());
-		Boolean retAxisReverse = (Boolean) controller.getProperty(axesID, "ZAxisReverse");
+		controller.setProperty(axesID, __GO_Z_AXIS_REVERSE__, initAxes.getZAxisReverse());
+		Boolean retAxisReverse = (Boolean) controller.getProperty(axesID, __GO_Z_AXIS_REVERSE__);
 		assert (retAxisReverse.equals(initAxes.getZAxisReverse()));
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetZAxisGridColor() {
-		controller.setProperty(axesID, "ZAxisGridColor", initAxes.getZAxisGridColor());
-		Integer retGridColor = (Integer) controller.getProperty(axesID, "ZAxisGridColor");
+		controller.setProperty(axesID, __GO_Z_AXIS_GRID_COLOR__, initAxes.getZAxisGridColor());
+		Integer retGridColor = (Integer) controller.getProperty(axesID, __GO_Z_AXIS_GRID_COLOR__);
 		assert retGridColor.equals(initAxes.getZAxisGridColor());
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetZAxisLabel() {
-		controller.setProperty(axesID, "ZAxisLabel", zlabelID);
-		String retlabel = (String) controller.getProperty(axesID, "ZAxisLabel");
+		controller.setProperty(axesID, __GO_Z_AXIS_LABEL__, zlabelID);
+		String retlabel = (String) controller.getProperty(axesID, __GO_Z_AXIS_LABEL__);
 		assert retlabel.equals(zlabelID);
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetZAxisLocation() {
-		controller.setProperty(axesID, "ZAxisLocation", initAxes.getZAxisLocation());
-		Integer retAxisLocation = (Integer) controller.getProperty(axesID, "ZAxisLocation");
+		controller.setProperty(axesID, __GO_Z_AXIS_LOCATION__, initAxes.getZAxisLocation());
+		Integer retAxisLocation = (Integer) controller.getProperty(axesID, __GO_Z_AXIS_LOCATION__);
 		assert retAxisLocation.equals(initAxes.getZAxisLocation());
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetZAxisLogFlag() {
-		controller.setProperty(axesID, "ZAxisLogFlag", initAxes.getZAxisLogFlag());
-		Boolean retLogFlag = (Boolean) controller.getProperty(axesID, "ZAxisLogFlag");
+		controller.setProperty(axesID, __GO_Z_AXIS_LOG_FLAG__, initAxes.getZAxisLogFlag());
+		Boolean retLogFlag = (Boolean) controller.getProperty(axesID, __GO_Z_AXIS_LOG_FLAG__);
 		assert retLogFlag.equals(initAxes.getZAxisLogFlag());
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetZAxisAutoTicks() {
-		controller.setProperty(axesID, "ZAxisAutoTicks", initAxes.getZAxisAutoTicks());
-		Boolean retAutoTicks = (Boolean) controller.getProperty(axesID, "ZAxisAutoTicks");
+		controller.setProperty(axesID, __GO_Z_AXIS_AUTO_TICKS__, initAxes.getZAxisAutoTicks());
+		Boolean retAutoTicks = (Boolean) controller.getProperty(axesID, __GO_Z_AXIS_AUTO_TICKS__);
 		assert retAutoTicks.equals(initAxes.getZAxisAutoTicks());
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetZAxisSubTicks() {
-		controller.setProperty(axesID, "ZAxisSubticks", initAxes.getZAxisSubticks());
-		Integer retSubTicks = (Integer) controller.getProperty(axesID, "ZAxisSubticks");
+		controller.setProperty(axesID, __GO_Z_AXIS_SUBTICKS__, initAxes.getZAxisSubticks());
+		Integer retSubTicks = (Integer) controller.getProperty(axesID, __GO_Z_AXIS_SUBTICKS__);
 		assert retSubTicks.equals(initAxes.getZAxisSubticks());
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetZAxisTicksLocations() {
-		controller.setProperty(axesID, "ZAxisTicksLocations", initAxes.getZAxisTicksLocations());
-		Double[] retTicksLocations = (Double[]) controller.getProperty(axesID, "ZAxisTicksLocations");
+		controller.setProperty(axesID, __GO_Z_AXIS_TICKS_LOCATIONS__, initAxes.getZAxisTicksLocations());
+		Double[] retTicksLocations = (Double[]) controller.getProperty(axesID, __GO_Z_AXIS_TICKS_LOCATIONS__);
 		assert Arrays.equals(retTicksLocations, initAxes.getZAxisTicksLocations());
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetZAxisTicksLabels() {
-		controller.setProperty(axesID, "ZAxisTicksLabels", initAxes.getZAxisTicksLabels());
-		String[] retTicksLabels = (String[]) controller.getProperty(axesID, "ZAxisTicksLabels");
+		controller.setProperty(axesID, __GO_Z_AXIS_TICKS_LABELS__, initAxes.getZAxisTicksLabels());
+		String[] retTicksLabels = (String[]) controller.getProperty(axesID, __GO_Z_AXIS_TICKS_LABELS__);
 
 		assert Arrays.equals(retTicksLabels, initAxes.getZAxisTicksLabels());
 	}
@@ -467,114 +469,114 @@ public class testAxes {
 	/* Miscellaneous Axes properties */
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetGridPosition() {
-		controller.setProperty(axesID, "GridPosition", initAxes.getGridPosition());
-		Integer retGridPos = (Integer) controller.getProperty(axesID, "GridPosition");
+		controller.setProperty(axesID, __GO_GRID_POSITION__, initAxes.getGridPosition());
+		Integer retGridPos = (Integer) controller.getProperty(axesID, __GO_GRID_POSITION__);
 		assert retGridPos.equals(initAxes.getGridPosition());
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetTitle() {
-		controller.setProperty(axesID, "Title", titleID);
-		String retTitle = (String) controller.getProperty(axesID, "Title");
+		controller.setProperty(axesID, __GO_TITLE__, titleID);
+		String retTitle = (String) controller.getProperty(axesID, __GO_TITLE__);
 		assert retTitle.equals(titleID);
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetAutoClear() {
-		controller.setProperty(axesID, "AutoClear", initAxes.getAutoClear());
-		Boolean retAutoClear = (Boolean) controller.getProperty(axesID, "AutoClear");
+		controller.setProperty(axesID, __GO_AUTO_CLEAR__, initAxes.getAutoClear());
+		Boolean retAutoClear = (Boolean) controller.getProperty(axesID, __GO_AUTO_CLEAR__);
 		assert retAutoClear.equals(initAxes.getAutoClear());
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetFilled() {
-		controller.setProperty(axesID, "Filled", initAxes.getFilled());
-		Boolean retFilled = (Boolean) controller.getProperty(axesID, "Filled");
+		controller.setProperty(axesID, __GO_FILLED__, initAxes.getFilled());
+		Boolean retFilled = (Boolean) controller.getProperty(axesID, __GO_FILLED__);
 		assert retFilled.equals(initAxes.getFilled());
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetMargins() {
-		controller.setProperty(axesID, "Margins", initAxes.getMargins());
-		Double[] retMargins = (Double[]) controller.getProperty(axesID, "Margins");
+		controller.setProperty(axesID, __GO_MARGINS__, initAxes.getMargins());
+		Double[] retMargins = (Double[]) controller.getProperty(axesID, __GO_MARGINS__);
 		assert Arrays.equals(retMargins, initAxes.getMargins());
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetAxesBounds() {
-		controller.setProperty(axesID, "AxesBounds", initAxes.getAxesBounds());
-		Double[] retAxesBounds = (Double[]) controller.getProperty(axesID, "AxesBounds");
+		controller.setProperty(axesID, __GO_AXES_BOUNDS__, initAxes.getAxesBounds());
+		Double[] retAxesBounds = (Double[]) controller.getProperty(axesID, __GO_AXES_BOUNDS__);
 		assert Arrays.equals(retAxesBounds, initAxes.getAxesBounds());
 	}
 
 	/* Camera properties */
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetView() {
-		controller.setProperty(axesID, "View", initAxes.getView());
-		Integer retView = (Integer) controller.getProperty(axesID, "View");
+		controller.setProperty(axesID, __GO_VIEW__, initAxes.getView());
+		Integer retView = (Integer) controller.getProperty(axesID, __GO_VIEW__);
 		assert retView.equals(initAxes.getView());
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetIsoview() {
-		controller.setProperty(axesID, "Isoview", initAxes.getIsoview());
-		Boolean retIsoview = (Boolean) controller.getProperty(axesID, "Isoview");
+		controller.setProperty(axesID, __GO_ISOVIEW__, initAxes.getIsoview());
+		Boolean retIsoview = (Boolean) controller.getProperty(axesID, __GO_ISOVIEW__);
 		assert retIsoview.equals(initAxes.getIsoview());
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetCubeScaling() {
-		controller.setProperty(axesID, "CubeScaling", initAxes.getCubeScaling());
-		Boolean retCubeScaling = (Boolean) controller.getProperty(axesID, "CubeScaling");
+		controller.setProperty(axesID, __GO_CUBE_SCALING__, initAxes.getCubeScaling());
+		Boolean retCubeScaling = (Boolean) controller.getProperty(axesID, __GO_CUBE_SCALING__);
 		assert retCubeScaling.equals(initAxes.getCubeScaling());
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetRotationAngles() {
-		controller.setProperty(axesID, "RotationAngles", initAxes.getRotationAngles());
-		Double[] retRotationAngles = (Double[]) controller.getProperty(axesID, "RotationAngles");
+		controller.setProperty(axesID, __GO_ROTATION_ANGLES__, initAxes.getRotationAngles());
+		Double[] retRotationAngles = (Double[]) controller.getProperty(axesID, __GO_ROTATION_ANGLES__);
 		assert (Arrays.equals(retRotationAngles, initAxes.getRotationAngles()) && retRotationAngles.length == 2);
 	}
 
 	/* Box properties */
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetBoxType() {
-		controller.setProperty(axesID, "BoxType", initAxes.getBoxType());
-		Integer retBoxType = (Integer) controller.getProperty(axesID, "BoxType");
+		controller.setProperty(axesID, __GO_BOX_TYPE__, initAxes.getBoxType());
+		Integer retBoxType = (Integer) controller.getProperty(axesID, __GO_BOX_TYPE__);
 		assert retBoxType.equals(initAxes.getBoxType());
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetHiddenAxisColor() {
-		controller.setProperty(axesID, "HiddenAxisColor", initAxes.getHiddenAxisColor());
-		Integer retHiddenAxisColor = (Integer) controller.getProperty(axesID, "HiddenAxisColor");
+		controller.setProperty(axesID, __GO_HIDDEN_AXIS_COLOR__, initAxes.getHiddenAxisColor());
+		Integer retHiddenAxisColor = (Integer) controller.getProperty(axesID, __GO_HIDDEN_AXIS_COLOR__);
 		assert retHiddenAxisColor.equals(initAxes.getHiddenAxisColor());
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetTightLimits() {
-		controller.setProperty(axesID, "TightLimits", initAxes.getTightLimits());
-		Boolean retTightLimits = (Boolean) controller.getProperty(axesID, "TightLimits");
+		controller.setProperty(axesID, __GO_TIGHT_LIMITS__, initAxes.getTightLimits());
+		Boolean retTightLimits = (Boolean) controller.getProperty(axesID, __GO_TIGHT_LIMITS__);
 		assert retTightLimits.equals(initAxes.getTightLimits());
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetDataBounds() {
-		controller.setProperty(axesID, "DataBounds", initAxes.getDataBounds());
-		Double[] retDataBounds = (Double[]) controller.getProperty(axesID, "DataBounds");
+		controller.setProperty(axesID, __GO_DATA_BOUNDS__, initAxes.getDataBounds());
+		Double[] retDataBounds = (Double[]) controller.getProperty(axesID, __GO_DATA_BOUNDS__);
 		assert Arrays.equals(retDataBounds, initAxes.getDataBounds());
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetRealDataBounds() {
-		controller.setProperty(axesID, "RealDataBounds", initAxes.getRealDataBounds());
-		Double[] retRealDataBounds = (Double[]) controller.getProperty(axesID, "RealDataBounds");
+		controller.setProperty(axesID, __GO_REAL_DATA_BOUNDS__, initAxes.getRealDataBounds());
+		Double[] retRealDataBounds = (Double[]) controller.getProperty(axesID, __GO_REAL_DATA_BOUNDS__);
 		assert Arrays.equals(retRealDataBounds, initAxes.getRealDataBounds());
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetZoomEnabled() {
-		controller.setProperty(axesID, "ZoomEnabled", initAxes.getZoomEnabled());
-		Boolean retZoomEnabled = (Boolean) controller.getProperty(axesID, "ZoomEnabled");
+		controller.setProperty(axesID, __GO_ZOOM_ENABLED__, initAxes.getZoomEnabled());
+		Boolean retZoomEnabled = (Boolean) controller.getProperty(axesID, __GO_ZOOM_ENABLED__);
 		assert retZoomEnabled.equals(initAxes.getZoomEnabled());
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetZoomBox() {
-		controller.setProperty(axesID, "ZoomBox", initAxes.getZoomBox());
-		Double[] retZoomBox = (Double[]) controller.getProperty(axesID, "ZoomBox");
+		controller.setProperty(axesID, __GO_ZOOM_BOX__, initAxes.getZoomBox());
+		Double[] retZoomBox = (Double[]) controller.getProperty(axesID, __GO_ZOOM_BOX__);
 		assert Arrays.equals(retZoomBox, initAxes.getZoomBox());
 	}
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetAutoScale() {
-		controller.setProperty(axesID, "AutoScale", initAxes.getAutoScale());
-		Boolean retAutoScale = (Boolean) controller.getProperty(axesID, "AutoScale");
+		controller.setProperty(axesID, __GO_AUTO_SCALE__, initAxes.getAutoScale());
+		Boolean retAutoScale = (Boolean) controller.getProperty(axesID, __GO_AUTO_SCALE__);
 		assert retAutoScale.equals(initAxes.getAutoScale());
 	}
 
@@ -583,14 +585,14 @@ public class testAxes {
 
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetParent() {
-		controller.setProperty(axesID, "Parent", figureID);
-		String retParent = (String) controller.getProperty(axesID, "Parent");
+		controller.setProperty(axesID, __GO_PARENT__, figureID);
+		String retParent = (String) controller.getProperty(axesID, __GO_PARENT__);
 		assert retParent.equals(figureID);
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetAxesVisible() {
-		controller.setProperty(axesID, "Visible", initAxes.getVisible());
-		Boolean axesVisible  = (Boolean) controller.getProperty(axesID, "Visible");
+		controller.setProperty(axesID, __GO_VISIBLE__, initAxes.getVisible());
+		Boolean axesVisible  = (Boolean) controller.getProperty(axesID, __GO_VISIBLE__);
 		assert axesVisible.equals(initAxes.getVisible());
 	}
 
@@ -598,300 +600,300 @@ public class testAxes {
 	/* X-Axis properties */
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetXAxisVisible() {
-		controller.setProperty(axesID, "XAxisVisible", initAxes.getXAxisVisible());
-		Boolean retAxisVisible = (Boolean) controller.getProperty(axesID, "XAxisVisible");
+		controller.setProperty(axesID, __GO_X_AXIS_VISIBLE__, initAxes.getXAxisVisible());
+		Boolean retAxisVisible = (Boolean) controller.getProperty(axesID, __GO_X_AXIS_VISIBLE__);
 		assert (retAxisVisible.equals(initAxes.getXAxisVisible()));
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetXAxisReverse() {
-		controller.setProperty(axesID, "XAxisReverse", initAxes.getXAxisReverse());
-		Boolean retAxisReverse = (Boolean) controller.getProperty(axesID, "XAxisReverse");
+		controller.setProperty(axesID, __GO_X_AXIS_REVERSE__, initAxes.getXAxisReverse());
+		Boolean retAxisReverse = (Boolean) controller.getProperty(axesID, __GO_X_AXIS_REVERSE__);
 		assert (retAxisReverse.equals(initAxes.getXAxisReverse()));
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetXAxisGridColor() {
-		controller.setProperty(axesID, "XAxisGridColor", initAxes.getXAxisGridColor());
-		Integer retGridColor = (Integer) controller.getProperty(axesID, "XAxisGridColor");
+		controller.setProperty(axesID, __GO_X_AXIS_GRID_COLOR__, initAxes.getXAxisGridColor());
+		Integer retGridColor = (Integer) controller.getProperty(axesID, __GO_X_AXIS_GRID_COLOR__);
 		assert retGridColor.equals(initAxes.getXAxisGridColor());
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetXAxisLabel() {
-		controller.setProperty(axesID, "XAxisLabel", xlabelID);
-		String retXlabel = (String) controller.getProperty(axesID, "XAxisLabel");
+		controller.setProperty(axesID, __GO_X_AXIS_LABEL__, xlabelID);
+		String retXlabel = (String) controller.getProperty(axesID, __GO_X_AXIS_LABEL__);
 		assert retXlabel.equals(xlabelID);
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetXAxisLocation() {
-		controller.setProperty(axesID, "XAxisLocation", initAxes.getXAxisLocation());
-		Integer retAxisLocation = (Integer) controller.getProperty(axesID, "XAxisLocation");
+		controller.setProperty(axesID, __GO_X_AXIS_LOCATION__, initAxes.getXAxisLocation());
+		Integer retAxisLocation = (Integer) controller.getProperty(axesID, __GO_X_AXIS_LOCATION__);
 		assert retAxisLocation.equals(initAxes.getXAxisLocation());
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetXAxisLogFlag() {
-		controller.setProperty(axesID, "XAxisLogFlag", initAxes.getXAxisLogFlag());
-		Boolean retLogFlag = (Boolean) controller.getProperty(axesID, "XAxisLogFlag");
+		controller.setProperty(axesID, __GO_X_AXIS_LOG_FLAG__, initAxes.getXAxisLogFlag());
+		Boolean retLogFlag = (Boolean) controller.getProperty(axesID, __GO_X_AXIS_LOG_FLAG__);
 		assert retLogFlag.equals(initAxes.getXAxisLogFlag());
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetXAxisAutoTicks() {
-		controller.setProperty(axesID, "XAxisAutoTicks", initAxes.getXAxisAutoTicks());
-		Boolean retAutoTicks = (Boolean) controller.getProperty(axesID, "XAxisAutoTicks");
+		controller.setProperty(axesID, __GO_X_AXIS_AUTO_TICKS__, initAxes.getXAxisAutoTicks());
+		Boolean retAutoTicks = (Boolean) controller.getProperty(axesID, __GO_X_AXIS_AUTO_TICKS__);
 		assert retAutoTicks.equals(initAxes.getXAxisAutoTicks());
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetXAxisSubTicks() {
-		controller.setProperty(axesID, "XAxisSubticks", initAxes.getXAxisSubticks());
-		Integer retSubTicks = (Integer) controller.getProperty(axesID, "XAxisSubticks");
+		controller.setProperty(axesID, __GO_X_AXIS_SUBTICKS__, initAxes.getXAxisSubticks());
+		Integer retSubTicks = (Integer) controller.getProperty(axesID, __GO_X_AXIS_SUBTICKS__);
 		assert retSubTicks.equals(initAxes.getXAxisSubticks());
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetXAxisTicksLocations() {
-		controller.setProperty(axesID, "XAxisTicksLocations", initAxes.getXAxisTicksLocations());
-		Double[] retTicksLocations = (Double[]) controller.getProperty(axesID, "XAxisTicksLocations");
+		controller.setProperty(axesID, __GO_X_AXIS_TICKS_LOCATIONS__, initAxes.getXAxisTicksLocations());
+		Double[] retTicksLocations = (Double[]) controller.getProperty(axesID, __GO_X_AXIS_TICKS_LOCATIONS__);
 		assert Arrays.equals(retTicksLocations, initAxes.getXAxisTicksLocations());
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetXAxisTicksLabels() {
-		controller.setProperty(axesID, "XAxisTicksLabels", initAxes.getXAxisTicksLabels());
-		String[] retTicksLabels = (String[]) controller.getProperty(axesID, "XAxisTicksLabels");
+		controller.setProperty(axesID, __GO_X_AXIS_TICKS_LABELS__, initAxes.getXAxisTicksLabels());
+		String[] retTicksLabels = (String[]) controller.getProperty(axesID, __GO_X_AXIS_TICKS_LABELS__);
 		assert Arrays.equals(retTicksLabels, initAxes.getXAxisTicksLabels());
 	}
 
 	/* Y-Axis properties */
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetYAxisVisible() {
-		controller.setProperty(axesID, "YAxisVisible", initAxes.getYAxisVisible());
-		Boolean retAxisVisible = (Boolean) controller.getProperty(axesID, "YAxisVisible");
+		controller.setProperty(axesID, __GO_Y_AXIS_VISIBLE__, initAxes.getYAxisVisible());
+		Boolean retAxisVisible = (Boolean) controller.getProperty(axesID, __GO_Y_AXIS_VISIBLE__);
 		assert (retAxisVisible.equals(initAxes.getYAxisVisible()));
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetYAxisReverse() {
-		controller.setProperty(axesID, "YAxisReverse", initAxes.getYAxisReverse());
-		Boolean retAxisReverse = (Boolean) controller.getProperty(axesID, "YAxisReverse");
+		controller.setProperty(axesID, __GO_Y_AXIS_REVERSE__, initAxes.getYAxisReverse());
+		Boolean retAxisReverse = (Boolean) controller.getProperty(axesID, __GO_Y_AXIS_REVERSE__);
 		assert (retAxisReverse.equals(initAxes.getYAxisReverse()));
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetYAxisGridColor() {
-		controller.setProperty(axesID, "YAxisGridColor", initAxes.getYAxisGridColor());
-		Integer retGridColor = (Integer) controller.getProperty(axesID, "YAxisGridColor");
+		controller.setProperty(axesID, __GO_Y_AXIS_GRID_COLOR__, initAxes.getYAxisGridColor());
+		Integer retGridColor = (Integer) controller.getProperty(axesID, __GO_Y_AXIS_GRID_COLOR__);
 		assert retGridColor.equals(initAxes.getYAxisGridColor());
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetYAxisLabel() {
-		controller.setProperty(axesID, "YAxisLabel", ylabelID);
-		String retlabel = (String) controller.getProperty(axesID, "YAxisLabel");
+		controller.setProperty(axesID, __GO_Y_AXIS_LABEL__, ylabelID);
+		String retlabel = (String) controller.getProperty(axesID, __GO_Y_AXIS_LABEL__);
 		assert retlabel.equals(ylabelID);
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetYAxisLocation() {
-		controller.setProperty(axesID, "YAxisLocation", initAxes.getYAxisLocation());
-		Integer retAxisLocation = (Integer) controller.getProperty(axesID, "YAxisLocation");
+		controller.setProperty(axesID, __GO_Y_AXIS_LOCATION__, initAxes.getYAxisLocation());
+		Integer retAxisLocation = (Integer) controller.getProperty(axesID, __GO_Y_AXIS_LOCATION__);
 		assert retAxisLocation.equals(initAxes.getYAxisLocation());
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetYAxisLogFlag() {
-		controller.setProperty(axesID, "YAxisLogFlag", initAxes.getYAxisLogFlag());
-		Boolean retLogFlag = (Boolean) controller.getProperty(axesID, "YAxisLogFlag");
+		controller.setProperty(axesID, __GO_Y_AXIS_LOG_FLAG__, initAxes.getYAxisLogFlag());
+		Boolean retLogFlag = (Boolean) controller.getProperty(axesID, __GO_Y_AXIS_LOG_FLAG__);
 		assert retLogFlag.equals(initAxes.getYAxisLogFlag());
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetYAxisAutoTicks() {
-		controller.setProperty(axesID, "YAxisAutoTicks", initAxes.getYAxisAutoTicks());
-		Boolean retAutoTicks = (Boolean) controller.getProperty(axesID, "YAxisAutoTicks");
+		controller.setProperty(axesID, __GO_Y_AXIS_AUTO_TICKS__, initAxes.getYAxisAutoTicks());
+		Boolean retAutoTicks = (Boolean) controller.getProperty(axesID, __GO_Y_AXIS_AUTO_TICKS__);
 		assert retAutoTicks.equals(initAxes.getYAxisAutoTicks());
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetYAxisSubTicks() {
-		controller.setProperty(axesID, "YAxisSubticks", initAxes.getYAxisSubticks());
-		Integer retSubTicks = (Integer) controller.getProperty(axesID, "YAxisSubticks");
+		controller.setProperty(axesID, __GO_Y_AXIS_SUBTICKS__, initAxes.getYAxisSubticks());
+		Integer retSubTicks = (Integer) controller.getProperty(axesID, __GO_Y_AXIS_SUBTICKS__);
 		assert retSubTicks.equals(initAxes.getYAxisSubticks());
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetYAxisTicksLocations() {
-		controller.setProperty(axesID, "YAxisTicksLocations", initAxes.getYAxisTicksLocations());
-		Double[] retTicksLocations = (Double[]) controller.getProperty(axesID, "YAxisTicksLocations");
+		controller.setProperty(axesID, __GO_Y_AXIS_TICKS_LOCATIONS__, initAxes.getYAxisTicksLocations());
+		Double[] retTicksLocations = (Double[]) controller.getProperty(axesID, __GO_Y_AXIS_TICKS_LOCATIONS__);
 		assert Arrays.equals(retTicksLocations, initAxes.getYAxisTicksLocations());
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetYAxisTicksLabels() {
-		controller.setProperty(axesID, "YAxisTicksLabels", initAxes.getYAxisTicksLabels());
-		String[] retTicksLabels = (String[]) controller.getProperty(axesID, "YAxisTicksLabels");
+		controller.setProperty(axesID, __GO_Y_AXIS_TICKS_LABELS__, initAxes.getYAxisTicksLabels());
+		String[] retTicksLabels = (String[]) controller.getProperty(axesID, __GO_Y_AXIS_TICKS_LABELS__);
 		assert Arrays.equals(retTicksLabels, initAxes.getYAxisTicksLabels());
 	}
 
 	/* Z-Axis properties */
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetZAxisVisible() {
-		controller.setProperty(axesID, "ZAxisVisible", initAxes.getZAxisVisible());
-		Boolean retAxisVisible = (Boolean) controller.getProperty(axesID, "ZAxisVisible");
+		controller.setProperty(axesID, __GO_Z_AXIS_VISIBLE__, initAxes.getZAxisVisible());
+		Boolean retAxisVisible = (Boolean) controller.getProperty(axesID, __GO_Z_AXIS_VISIBLE__);
 		assert (retAxisVisible.equals(initAxes.getZAxisVisible()));
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetZAxisReverse() {
-		controller.setProperty(axesID, "ZAxisReverse", initAxes.getZAxisReverse());
-		Boolean retAxisReverse = (Boolean) controller.getProperty(axesID, "ZAxisReverse");
+		controller.setProperty(axesID, __GO_Z_AXIS_REVERSE__, initAxes.getZAxisReverse());
+		Boolean retAxisReverse = (Boolean) controller.getProperty(axesID, __GO_Z_AXIS_REVERSE__);
 		assert (retAxisReverse.equals(initAxes.getZAxisReverse()));
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetZAxisGridColor() {
-		controller.setProperty(axesID, "ZAxisGridColor", initAxes.getZAxisGridColor());
-		Integer retGridColor = (Integer) controller.getProperty(axesID, "ZAxisGridColor");
+		controller.setProperty(axesID, __GO_Z_AXIS_GRID_COLOR__, initAxes.getZAxisGridColor());
+		Integer retGridColor = (Integer) controller.getProperty(axesID, __GO_Z_AXIS_GRID_COLOR__);
 		assert retGridColor.equals(initAxes.getZAxisGridColor());
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetZAxisLabel() {
-		controller.setProperty(axesID, "ZAxisLabel", zlabelID);
-		String retlabel = (String) controller.getProperty(axesID, "ZAxisLabel");
+		controller.setProperty(axesID, __GO_Z_AXIS_LABEL__, zlabelID);
+		String retlabel = (String) controller.getProperty(axesID, __GO_Z_AXIS_LABEL__);
 		assert retlabel.equals(zlabelID);
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetZAxisLocation() {
-		controller.setProperty(axesID, "ZAxisLocation", initAxes.getZAxisLocation());
-		Integer retAxisLocation = (Integer) controller.getProperty(axesID, "ZAxisLocation");
+		controller.setProperty(axesID, __GO_Z_AXIS_LOCATION__, initAxes.getZAxisLocation());
+		Integer retAxisLocation = (Integer) controller.getProperty(axesID, __GO_Z_AXIS_LOCATION__);
 		assert retAxisLocation.equals(initAxes.getZAxisLocation());
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetZAxisLogFlag() {
-		controller.setProperty(axesID, "ZAxisLogFlag", initAxes.getZAxisLogFlag());
-		Boolean retLogFlag = (Boolean) controller.getProperty(axesID, "ZAxisLogFlag");
+		controller.setProperty(axesID, __GO_Z_AXIS_LOG_FLAG__, initAxes.getZAxisLogFlag());
+		Boolean retLogFlag = (Boolean) controller.getProperty(axesID, __GO_Z_AXIS_LOG_FLAG__);
 		assert retLogFlag.equals(initAxes.getZAxisLogFlag());
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetZAxisAutoTicks() {
-		controller.setProperty(axesID, "ZAxisAutoTicks", initAxes.getZAxisAutoTicks());
-		Boolean retAutoTicks = (Boolean) controller.getProperty(axesID, "ZAxisAutoTicks");
+		controller.setProperty(axesID, __GO_Z_AXIS_AUTO_TICKS__, initAxes.getZAxisAutoTicks());
+		Boolean retAutoTicks = (Boolean) controller.getProperty(axesID, __GO_Z_AXIS_AUTO_TICKS__);
 		assert retAutoTicks.equals(initAxes.getZAxisAutoTicks());
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetZAxisSubTicks() {
-		controller.setProperty(axesID, "ZAxisSubticks", initAxes.getZAxisSubticks());
-		Integer retSubTicks = (Integer) controller.getProperty(axesID, "ZAxisSubticks");
+		controller.setProperty(axesID, __GO_Z_AXIS_SUBTICKS__, initAxes.getZAxisSubticks());
+		Integer retSubTicks = (Integer) controller.getProperty(axesID, __GO_Z_AXIS_SUBTICKS__);
 		assert retSubTicks.equals(initAxes.getZAxisSubticks());
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetZAxisTicksLocations() {
-		controller.setProperty(axesID, "ZAxisTicksLocations", initAxes.getZAxisTicksLocations());
-		Double[] retTicksLocations = (Double[]) controller.getProperty(axesID, "ZAxisTicksLocations");
+		controller.setProperty(axesID, __GO_Z_AXIS_TICKS_LOCATIONS__, initAxes.getZAxisTicksLocations());
+		Double[] retTicksLocations = (Double[]) controller.getProperty(axesID, __GO_Z_AXIS_TICKS_LOCATIONS__);
 		assert Arrays.equals(retTicksLocations, initAxes.getZAxisTicksLocations());
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetZAxisTicksLabels() {
-		controller.setProperty(axesID, "ZAxisTicksLabels", initAxes.getZAxisTicksLabels());
-		String[] retTicksLabels = (String[]) controller.getProperty(axesID, "ZAxisTicksLabels");
+		controller.setProperty(axesID, __GO_Z_AXIS_TICKS_LABELS__, initAxes.getZAxisTicksLabels());
+		String[] retTicksLabels = (String[]) controller.getProperty(axesID, __GO_Z_AXIS_TICKS_LABELS__);
 		assert Arrays.equals(retTicksLabels, initAxes.getZAxisTicksLabels());
 	}
 
 	/* Miscellaneous Axes properties */
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetGridPosition() {
-		controller.setProperty(axesID, "GridPosition", initAxes.getGridPosition());
-		Integer retGridPos = (Integer) controller.getProperty(axesID, "GridPosition");
+		controller.setProperty(axesID, __GO_GRID_POSITION__, initAxes.getGridPosition());
+		Integer retGridPos = (Integer) controller.getProperty(axesID, __GO_GRID_POSITION__);
 		assert retGridPos.equals(initAxes.getGridPosition());
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetTitle() {
-		controller.setProperty(axesID, "Title", titleID);
-		String retTitle = (String) controller.getProperty(axesID, "Title");
+		controller.setProperty(axesID, __GO_TITLE__, titleID);
+		String retTitle = (String) controller.getProperty(axesID, __GO_TITLE__);
 		assert retTitle.equals(titleID);
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetAutoClear() {
-		controller.setProperty(axesID, "AutoClear", initAxes.getAutoClear());
-		Boolean retAutoClear = (Boolean) controller.getProperty(axesID, "AutoClear");
+		controller.setProperty(axesID, __GO_AUTO_CLEAR__, initAxes.getAutoClear());
+		Boolean retAutoClear = (Boolean) controller.getProperty(axesID, __GO_AUTO_CLEAR__);
 		assert retAutoClear.equals(initAxes.getAutoClear());
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetFilled() {
-		controller.setProperty(axesID, "Filled", initAxes.getFilled());
-		Boolean retFilled = (Boolean) controller.getProperty(axesID, "Filled");
+		controller.setProperty(axesID, __GO_FILLED__, initAxes.getFilled());
+		Boolean retFilled = (Boolean) controller.getProperty(axesID, __GO_FILLED__);
 		assert retFilled.equals(initAxes.getFilled());
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetMargins() {
-		controller.setProperty(axesID, "Margins", initAxes.getMargins());
-		Double[] retMargins = (Double[]) controller.getProperty(axesID, "Margins");
+		controller.setProperty(axesID, __GO_MARGINS__, initAxes.getMargins());
+		Double[] retMargins = (Double[]) controller.getProperty(axesID, __GO_MARGINS__);
 		assert Arrays.equals(retMargins, initAxes.getMargins());
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetAxesBounds() {
-		controller.setProperty(axesID, "AxesBounds", initAxes.getAxesBounds());
-		Double[] retAxesBounds = (Double[]) controller.getProperty(axesID, "AxesBounds");
+		controller.setProperty(axesID, __GO_AXES_BOUNDS__, initAxes.getAxesBounds());
+		Double[] retAxesBounds = (Double[]) controller.getProperty(axesID, __GO_AXES_BOUNDS__);
 		assert Arrays.equals(retAxesBounds, initAxes.getAxesBounds());
 	}
 
 	/* Camera properties */
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetView() {
-		controller.setProperty(axesID, "View", initAxes.getView());
-		Integer retView = (Integer) controller.getProperty(axesID, "View");
+		controller.setProperty(axesID, __GO_VIEW__, initAxes.getView());
+		Integer retView = (Integer) controller.getProperty(axesID, __GO_VIEW__);
 		assert retView.equals(initAxes.getView());
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetIsoview() {
-		controller.setProperty(axesID, "Isoview", initAxes.getIsoview());
-		Boolean retIsoview = (Boolean) controller.getProperty(axesID, "Isoview");
+		controller.setProperty(axesID, __GO_ISOVIEW__, initAxes.getIsoview());
+		Boolean retIsoview = (Boolean) controller.getProperty(axesID, __GO_ISOVIEW__);
 		assert retIsoview.equals(initAxes.getIsoview());
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetCubeScaling() {
-		controller.setProperty(axesID, "CubeScaling", initAxes.getCubeScaling());
-		Boolean retCubeScaling = (Boolean) controller.getProperty(axesID, "CubeScaling");
+		controller.setProperty(axesID, __GO_CUBE_SCALING__, initAxes.getCubeScaling());
+		Boolean retCubeScaling = (Boolean) controller.getProperty(axesID, __GO_CUBE_SCALING__);
 		assert retCubeScaling.equals(initAxes.getCubeScaling());
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetRotationAngles() {
-		controller.setProperty(axesID, "RotationAngles", initAxes.getRotationAngles());
-		Double[] retRotationAngles = (Double[]) controller.getProperty(axesID, "RotationAngles");
+		controller.setProperty(axesID, __GO_ROTATION_ANGLES__, initAxes.getRotationAngles());
+		Double[] retRotationAngles = (Double[]) controller.getProperty(axesID, __GO_ROTATION_ANGLES__);
 		assert (Arrays.equals(retRotationAngles, initAxes.getRotationAngles()) && retRotationAngles.length == 2);
 	}
 
 	/* Box properties */
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetBoxType() {
-		controller.setProperty(axesID, "BoxType", initAxes.getBoxType());
-		Integer retBoxType = (Integer) controller.getProperty(axesID, "BoxType");
+		controller.setProperty(axesID, __GO_BOX_TYPE__, initAxes.getBoxType());
+		Integer retBoxType = (Integer) controller.getProperty(axesID, __GO_BOX_TYPE__);
 		assert retBoxType.equals(initAxes.getBoxType());
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetHiddenAxisColor() {
-		controller.setProperty(axesID, "HiddenAxisColor", initAxes.getHiddenAxisColor());
-		Integer retHiddenAxisColor = (Integer) controller.getProperty(axesID, "HiddenAxisColor");
+		controller.setProperty(axesID, __GO_HIDDEN_AXIS_COLOR__, initAxes.getHiddenAxisColor());
+		Integer retHiddenAxisColor = (Integer) controller.getProperty(axesID, __GO_HIDDEN_AXIS_COLOR__);
 		assert retHiddenAxisColor.equals(initAxes.getHiddenAxisColor());
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetTightLimits() {
-		controller.setProperty(axesID, "TightLimits", initAxes.getTightLimits());
-		Boolean retTightLimits = (Boolean) controller.getProperty(axesID, "TightLimits");
+		controller.setProperty(axesID, __GO_TIGHT_LIMITS__, initAxes.getTightLimits());
+		Boolean retTightLimits = (Boolean) controller.getProperty(axesID, __GO_TIGHT_LIMITS__);
 		assert retTightLimits.equals(initAxes.getTightLimits());
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetDataBounds() {
-		controller.setProperty(axesID, "DataBounds", initAxes.getDataBounds());
-		Double[] retDataBounds = (Double[]) controller.getProperty(axesID, "DataBounds");
+		controller.setProperty(axesID, __GO_DATA_BOUNDS__, initAxes.getDataBounds());
+		Double[] retDataBounds = (Double[]) controller.getProperty(axesID, __GO_DATA_BOUNDS__);
 		assert Arrays.equals(retDataBounds, initAxes.getDataBounds());
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetRealDataBounds() {
-		controller.setProperty(axesID, "RealDataBounds", initAxes.getRealDataBounds());
-		Double[] retRealDataBounds = (Double[]) controller.getProperty(axesID, "RealDataBounds");
+		controller.setProperty(axesID, __GO_REAL_DATA_BOUNDS__, initAxes.getRealDataBounds());
+		Double[] retRealDataBounds = (Double[]) controller.getProperty(axesID, __GO_REAL_DATA_BOUNDS__);
 		assert Arrays.equals(retRealDataBounds, initAxes.getRealDataBounds());
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetZoomEnabled() {
-		controller.setProperty(axesID, "ZoomEnabled", initAxes.getZoomEnabled());
-		Boolean retZoomEnabled = (Boolean) controller.getProperty(axesID, "ZoomEnabled");
+		controller.setProperty(axesID, __GO_ZOOM_ENABLED__, initAxes.getZoomEnabled());
+		Boolean retZoomEnabled = (Boolean) controller.getProperty(axesID, __GO_ZOOM_ENABLED__);
 		assert retZoomEnabled.equals(initAxes.getZoomEnabled());
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetZoomBox() {
-		controller.setProperty(axesID, "ZoomBox", initAxes.getZoomBox());
-		Double[] retZoomBox = (Double[]) controller.getProperty(axesID, "ZoomBox");
+		controller.setProperty(axesID, __GO_ZOOM_BOX__, initAxes.getZoomBox());
+		Double[] retZoomBox = (Double[]) controller.getProperty(axesID, __GO_ZOOM_BOX__);
 		assert Arrays.equals(retZoomBox, initAxes.getZoomBox());
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetAutoScale() {
-		controller.setProperty(axesID, "AutoScale", initAxes.getAutoScale());
-		Boolean retAutoScale = (Boolean) controller.getProperty(axesID, "AutoScale");
+		controller.setProperty(axesID, __GO_AUTO_SCALE__, initAxes.getAutoScale());
+		Boolean retAutoScale = (Boolean) controller.getProperty(axesID, __GO_AUTO_SCALE__);
 		assert retAutoScale.equals(initAxes.getAutoScale());
 	}
 

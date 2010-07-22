@@ -168,4 +168,11 @@ public class Label extends TextObject {
 		this.position[2] = position[2];
 	}
 
+	/**
+	 * @return Type as String
+	 */
+	public String getType() {
+		return "Label";
+	}
+
 }

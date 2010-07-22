@@ -867,9 +867,12 @@ public class Figure extends GraphicObject {
 	public void setTag(String tag) {
 		this.tag = tag;
 	}
-	
+
+	/**
+	 * @return Type as String
+	 */
 	public String getType() {
 	    return "Figure";
 	}
-	
+
 }

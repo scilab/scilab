@@ -143,5 +143,12 @@ public class Rectangle extends ClippableContouredObject {
 	public void setWidth(Double width) {
 		this.width = width;
 	}
-	
+
+	/**
+	 * @return Type as String
+	 */
+	public String getType() {
+		return "Rectangle";
+	}
+
 }

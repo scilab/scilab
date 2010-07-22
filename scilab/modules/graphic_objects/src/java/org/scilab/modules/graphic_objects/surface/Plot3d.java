@@ -26,4 +26,11 @@ public class Plot3d extends Surface {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * @return Type as String
+	 */
+	public String getType() {
+		return "Plot3d";
+	}
+
 }

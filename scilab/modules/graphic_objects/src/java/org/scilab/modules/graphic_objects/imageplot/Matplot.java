@@ -23,4 +23,12 @@ public class Matplot extends Imageplot {
 	public Matplot() {
 		super();
 	}
+
+	/**
+	 * @return Type as String
+	 */
+	public String getType() {
+		return "Matplot";
+	}
+
 }

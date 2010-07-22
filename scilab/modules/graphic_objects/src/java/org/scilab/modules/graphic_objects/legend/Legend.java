@@ -198,4 +198,11 @@ public class Legend extends ClippableTextObject {
 		this.position[1] = position[1];
 	}
 
+	/**
+	 * @return Type as String
+	 */
+	public String getType() {
+		return "Legend";
+	}
+
 }

@@ -24,4 +24,11 @@ public class Segs extends VectField {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * @return Type as String
+	 */
+	public String getType() {
+		return "Segs";
+	}
+
 }

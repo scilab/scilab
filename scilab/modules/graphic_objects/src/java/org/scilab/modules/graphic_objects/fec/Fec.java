@@ -156,4 +156,11 @@ public class Fec extends ClippableContouredObject {
 		this.zBounds[1] = zBounds[1];
 	}
 
+	/**
+	 * @return Type as String
+	 */
+	public String getType() {
+		return "Fec";
+	}
+
 }

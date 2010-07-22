@@ -87,4 +87,10 @@ public class Champ extends VectField {
 		this.colored = colored;
 	}
 
+	/**
+	 * @return Type as String
+	 */
+	public String getType() {
+		return "Champ";
+	}
 }

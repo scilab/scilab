@@ -25,4 +25,11 @@ public class Compound extends GraphicObject {
 		super();
 	}
 
+	/**
+	 * @return Type as String
+	 */
+	public String getType() {
+		return "Compound";
+	}
+
 }
