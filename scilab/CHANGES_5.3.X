@@ -69,6 +69,8 @@ Bug Fixes:
 * bug 7332 fixed - browsevar(): The "boolean" menu was reversed, if checked 
                    booleans were hidden, if unchecked booleans were displayed.
 
+* bug 7333 fixed - browsevar(): The type of global variables had weird values.
+
 * bug 7334 fixed - browsevar(): Some columns had wrong names.
 
 * bug 7337 fixed - browsevar(): Some types could not be filtered

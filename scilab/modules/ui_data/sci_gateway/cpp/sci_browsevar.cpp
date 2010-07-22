@@ -68,9 +68,16 @@ int sci_browsevar(char *fname,unsigned long fname_len)
     // for each global variable get informations
     for (int j = 0 ; j < iGlobalVariablesUsed ; ++j, ++i)
     {
+        // name
         pstAllVariableNames[i] = getGlobalNamefromId(j);
+        // Bytes used
         piAllVariableBytes[i] = getGlobalSizefromId(j);
-        getNamedVarType(pvApiCtx, pstAllVariableNames[i], &piAllVariableTypes[i]);
+        // type
+        // Calling "API Scilab": not yet implemented for global variable
+        //getNamedVarType(pvApiCtx, pstAllVariableNames[i], &piAllVariableTypes[i]);
+        // Using old stack operations...
+        piAllVariableTypes[i] = GetType(C2F(vstk).isiz + 2 + j);
+        // global / local ??
         pstAllVariableVisibility[i] = strdup("global");
     }
 
