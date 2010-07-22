@@ -24,6 +24,7 @@
 #include "HandleManagement.h"
 #include "InitObjects.h"
 #include "MALLOC.h"
+#include "CloneObjects.h"
 
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
