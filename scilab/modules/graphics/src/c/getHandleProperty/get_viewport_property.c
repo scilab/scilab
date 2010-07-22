@@ -18,6 +18,8 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
+#include <stdlib.h>
+
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"

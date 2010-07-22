@@ -20,6 +20,8 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
+#include <stdlib.h>
+
 #include "ObjectStructure.h"
 #include "returnProperty.h"
 #include "Scierror.h"

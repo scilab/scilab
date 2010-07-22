@@ -31,7 +31,7 @@ int get_children_property( sciPointObj * pobj )
 {
     // TODO : return childrens using MVC
     return sciReturnEmptyMatrix() ;
-
+#if 0
   sciSons * curSon = NULL ;
   int nbChildren = sciGetNbAccessibleChildren( pobj ) ;
 
@@ -65,5 +65,6 @@ int get_children_property( sciPointObj * pobj )
 
     return status ;
   }
+#endif
 }
 /*--------------------------------------------------------------------------*/

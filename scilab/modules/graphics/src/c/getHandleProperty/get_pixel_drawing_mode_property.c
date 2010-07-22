@@ -20,6 +20,8 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
+#include <stdlib.h>
+
 #include "ObjectStructure.h"
 #include "GetProperty.h"
 #include "pixel_mode.h"

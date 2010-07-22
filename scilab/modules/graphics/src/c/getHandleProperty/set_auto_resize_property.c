@@ -36,6 +36,8 @@ int set_auto_resize_property( sciPointObj * pobj, size_t stackPointer, int value
 {
 	int b =  (int)FALSE;
 	int status = 0;
+    BOOL result = FALSE;
+
 	if ( sciGetEntityType(pobj) != SCI_FIGURE )
 	{
 		Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_resize");
@@ -45,7 +47,7 @@ int set_auto_resize_property( sciPointObj * pobj, size_t stackPointer, int value
 	b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "auto_resize");
 	if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
 
-	BOOL result = setGraphicObjectProperty(pobj->UID, "AutoResize", &b, jni_bool, 1);
+	result = setGraphicObjectProperty(pobj->UID, "AutoResize", &b, jni_bool, 1);
 
 	if (result == TRUE)
 	{

@@ -380,11 +380,19 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\deleteGraphicObject.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\DllmainGraphic_objects.c"
 				>
 			</File>
 			<File
 				RelativePath="..\cpp\getGraphicObjectProperty.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\jni\GiwsException.cpp"
 				>
 			</File>
 			<File
@@ -410,6 +418,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\dynlib_graphic_objects.h"
+				>
+			</File>
+			<File
+				RelativePath="..\jni\GiwsException.hxx"
 				>
 			</File>
 			<File

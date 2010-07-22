@@ -311,7 +311,7 @@ int cloneUserData( sciPointObj * pObjSource, sciPointObj * pObjDest )
 
 
 
-#ifdef IGNORE
+#if 0
   int ** srcUserData ;
   int *  srcSize   ;
   int ** dstUserData ;

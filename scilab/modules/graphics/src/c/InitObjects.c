@@ -111,31 +111,37 @@ BOOL isAxesModel(sciPointObj * pObj)
 /* DJ.A 08/01/04 */
 int C2F(graphicsmodels) (void)
 {
-  sciSubWindow * ppaxesmdl = NULL ;
+    sciSubWindow * ppaxesmdl = NULL ;
+    int iZero = 0;
+    BOOL bTrue = TRUE;
+    BOOL bFalse = FALSE;
 
-  /*
-  ** Init Figure Model
-  */
-  if ((pfiguremdl = MALLOC ((sizeof (sciPointObj)))) == NULL)
+    int m = NUMCOLORS_SCI;
+    int i = 0;
+    double *pdblColorMap = MALLOC(m * 3 * sizeof(double)) ;
+
+    /*
+    ** Init Figure Model
+    */
+    if ((pfiguremdl = MALLOC ((sizeof (sciPointObj)))) == NULL)
     {
-      strcpy(error_message,_("Default figure cannot be create.\n"));
-      return 0;
+        strcpy(error_message,_("Default figure cannot be create.\n"));
+        return 0;
     }
 
-  // Create default figure by Asking MVC a new one.
-  pfiguremdl->UID = createGraphicObject(__GO_FIGURE__);
-  // Name
-  setGraphicObjectProperty(pfiguremdl->UID, __GO_NAME__, _("Graphic window number %d"), jni_string, 1);
-  int iZero = 0;
-  // Id
-  setGraphicObjectProperty(pfiguremdl->UID, __GO_ID__, &iZero, jni_int, 1);
-  // pModelData
-  // isselected ?? (No more used)
-  // rotstyle = unary (0)
+    // Create default figure by Asking MVC a new one.
+    pfiguremdl->UID = createGraphicObject(__GO_FIGURE__);
+    // Name
+    setGraphicObjectProperty(pfiguremdl->UID, __GO_NAME__, _("Graphic window number %d"), jni_string, 1);
+
+    // Id
+    setGraphicObjectProperty(pfiguremdl->UID, __GO_ID__, &iZero, jni_int, 1);
+    // pModelData
+    // isselected ?? (No more used)
+    // rotstyle = unary (0)
   setGraphicObjectProperty(pfiguremdl->UID, __GO_ROTATION_TYPE__, &iZero, jni_int, 1);
   // visible
-  BOOL bTrue = TRUE;
-  BOOL bFalse = FALSE;
+
   setGraphicObjectProperty(pfiguremdl->UID, __GO_VISIBLE__, &bTrue, jni_bool, 1);
   // immediateDrawingMode
   setGraphicObjectProperty(pfiguremdl->UID, __GO_IMMEDIATE_DRAWING__, &bTrue, jni_bool, 1);
@@ -154,9 +160,7 @@ int C2F(graphicsmodels) (void)
   // Tag
   setGraphicObjectProperty(pfiguremdl->UID, __GO_TAG__, "", jni_string, 1);
 
-  int m = NUMCOLORS_SCI;
-  int i = 0;
-  double *pdblColorMap = MALLOC(m * 3 * sizeof(double)) ;
+
   if (pdblColorMap == NULL)
   {
 	  sprintf(error_message,_("%s: No more memory.\n"),"InitFigureModel");
@@ -189,7 +193,7 @@ int C2F(graphicsmodels) (void)
   // Create default Axes by Asking MVC a new one.
   paxesmdl->UID = createGraphicObject(__GO_AXES__);
 
-#ifdef IGNORE
+#if 0
   sciSetEntityType (paxesmdl, SCI_SUBWIN);
   if ((paxesmdl->pfeatures = MALLOC ((sizeof (sciSubWindow)))) == NULL)
     {

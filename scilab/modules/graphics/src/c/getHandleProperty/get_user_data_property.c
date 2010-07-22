@@ -34,8 +34,9 @@ int get_user_data_property( sciPointObj * pobj )
     // Should not stay in this state.
     return sciReturnEmptyMatrix() ;
 
-
+#if 0
  /* user_data */
+
   int userDataSize;
   int* userData;
 
@@ -51,5 +52,6 @@ int get_user_data_property( sciPointObj * pobj )
   {
     return sciReturnUserData( userData, userDataSize);
   }
+#endif
 }
 /*------------------------------------------------------------------------*/
