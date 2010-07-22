@@ -71,6 +71,9 @@ Bug Fixes:
 
 * bug 7334 fixed - browsevar(): Some columns had wrong names.
 
+* bug 7337 fixed - browsevar(): Some types could not be filtered
+                   (Scilab intrinsic, Matlab sparse and implicit polynomial).
+
 * bug 7343 fixed - editvar could not edit empty matrices.
 
 * bug 7360 fixed - Modelica Hydraulics Xcos demo was not simulating.

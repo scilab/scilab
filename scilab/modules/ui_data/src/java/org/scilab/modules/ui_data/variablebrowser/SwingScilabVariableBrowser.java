@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2010 - DIGITEO - Vincent COUVERT
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -39,14 +40,18 @@ import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.localization.Messages;
+import org.scilab.modules.types.scilabTypes.ScilabTypeEnum;
 import org.scilab.modules.ui_data.actions.BooleanFilteringAction;
 import org.scilab.modules.ui_data.actions.CompiledFunctionFilteringAction;
 import org.scilab.modules.ui_data.actions.DoubleFilteringAction;
 import org.scilab.modules.ui_data.actions.FunctionLibFilteringAction;
 import org.scilab.modules.ui_data.actions.GraphicHandlesFilteringAction;
+import org.scilab.modules.ui_data.actions.ImplicitPolynomialFilteringAction;
 import org.scilab.modules.ui_data.actions.IntegerFilteringAction;
+import org.scilab.modules.ui_data.actions.IntrinsicFunctionFilteringAction;
 import org.scilab.modules.ui_data.actions.ListFilteringAction;
 import org.scilab.modules.ui_data.actions.MListFilteringAction;
+import org.scilab.modules.ui_data.actions.MatlabSparseFilteringAction;
 import org.scilab.modules.ui_data.actions.PointerFilteringAction;
 import org.scilab.modules.ui_data.actions.PolynomialFilteringAction;
 import org.scilab.modules.ui_data.actions.SparseBoolFilteringAction;
@@ -66,22 +71,6 @@ import org.scilab.modules.ui_data.variablebrowser.rowfilter.VariableBrowserRowFi
 public final class SwingScilabVariableBrowser extends SwingScilabTab implements Tab, SimpleVariableBrowser {
 
 	private static final long serialVersionUID = 2169382559550113917L;
-
-	private static final int DOUBLE_CLASS_NUMBER = 1;
-	private static final int POLYNOMIAL_CLASS_NUMBER = 2;
-	private static final int BOOLEAN_CLASS_NUMBER = 4;
-	private static final int SPARSE_CLASS_NUMBER = 5;
-	private static final int SPARSE_BOOLEAN_CLASS_NUMBER = 6;
-	private static final int INTEGER_CLASS_NUMBER = 6;
-	private static final int GRAPHIC_HANDLES_CLASS_NUMBER = 6;
-	private static final int STRING_CLASS_NUMBER = 10;
-	private static final int UNCOMPILED_FUNCTION_CLASS_NUMBER = 11;
-	private static final int COMPILED_FUNCTION_CLASS_NUMBER = 13;
-	private static final int FUNCTIONLIB_CLASS_NUMBER = 14;
-	private static final int LIST_CLASS_NUMBER = 15;
-	private static final int TLIST_CLASS_NUMBER = 16;
-	private static final int MLIST_CLASS_NUMBER = 17;
-	private static final int POINTER_CLASS_NUMBER = 128;
 
 	private SwingTableModel<Object> dataModel;
 	private JTable table;
@@ -105,6 +94,9 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 	private CheckBoxMenuItem filterTListCheckBox;
 	private CheckBoxMenuItem filterMListCheckBox;
 	private CheckBoxMenuItem filterPointerCheckBox;
+	private CheckBoxMenuItem filterIntrinsicFunctionCheckBox;
+	private CheckBoxMenuItem filterMatlabSparseCheckBox;
+	private CheckBoxMenuItem filterImplicitPolynomialCheckBox;
 	
 	private TableRowSorter< ? > rowSorter; 
 
@@ -171,7 +163,7 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 	 */
 	public void setData(Object[][] data) {
 		dataModel.setData(data);
-		HashSet<Integer> filteredValues = getFilteredValues();
+		HashSet<ScilabTypeEnum> filteredValues = getFilteredValues();
 		rowSorter = new TableRowSorter<TableModel>(dataModel);
 		rowFilter = new VariableBrowserRowFilter(filteredValues);
 		rowSorter.setRowFilter(rowFilter);
@@ -345,6 +337,15 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 		filterPointerCheckBox.setChecked(true);
 		filterMenu.add(filterPointerCheckBox);
 
+		filterIntrinsicFunctionCheckBox = IntrinsicFunctionFilteringAction.createCheckBoxMenu();
+		filterMenu.add(filterIntrinsicFunctionCheckBox);
+
+		filterMatlabSparseCheckBox = MatlabSparseFilteringAction.createCheckBoxMenu();
+		filterMenu.add(filterMatlabSparseCheckBox);
+
+		filterImplicitPolynomialCheckBox = ImplicitPolynomialFilteringAction.createCheckBoxMenu();
+		filterMenu.add(filterImplicitPolynomialCheckBox);
+
 		menuBar.add(filterMenu);
 	}
 
@@ -353,67 +354,79 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 	 * Filter management
 	 * @return the set of filtered values
 	 */
-	public HashSet<Integer> getFilteredValues() {
-		HashSet<Integer> filteredValues = new HashSet<Integer>();
+	public HashSet<ScilabTypeEnum> getFilteredValues() {
+		HashSet<ScilabTypeEnum> filteredValues = new HashSet<ScilabTypeEnum>();
 		// TODO to replace later by something which smells less
 		if (!filterBooleanCheckBox.isChecked()) {
-			filteredValues.add(BOOLEAN_CLASS_NUMBER);
+			filteredValues.add(ScilabTypeEnum.sci_boolean);
 		}
 
 		if (!filterDoubleCheckBox.isChecked()) {
-			filteredValues.add(DOUBLE_CLASS_NUMBER);
+			filteredValues.add(ScilabTypeEnum.sci_matrix);
 		}
 
 		if (!filterFunctionLibCheckBox.isChecked()) {
-			filteredValues.add(FUNCTIONLIB_CLASS_NUMBER);
+			filteredValues.add(ScilabTypeEnum.sci_lib);
 		}
 
 		if (!filterStringCheckBox.isChecked()) {
-			filteredValues.add(STRING_CLASS_NUMBER);
+			filteredValues.add(ScilabTypeEnum.sci_strings);
 		}
 
 		if (!filterPolynomialCheckBox.isChecked()) {
-			filteredValues.add(POLYNOMIAL_CLASS_NUMBER);
+			filteredValues.add(ScilabTypeEnum.sci_poly);
 		}
 
 		if (!filterSparseCheckBox.isChecked()) {
-			filteredValues.add(SPARSE_CLASS_NUMBER);
+			filteredValues.add(ScilabTypeEnum.sci_sparse);
 		}
 
 		if (!filterSparseBoolCheckBox.isChecked()) {
-			filteredValues.add(SPARSE_BOOLEAN_CLASS_NUMBER);
+			filteredValues.add(ScilabTypeEnum.sci_boolean_sparse);
 		}
 		
 		if (!filterIntegerCheckBox.isChecked()) {
-			filteredValues.add(INTEGER_CLASS_NUMBER);
+			filteredValues.add(ScilabTypeEnum.sci_ints);
 		}
 		
 		if (!filterGraphicHandlesCheckBox.isChecked()) {
-			filteredValues.add(GRAPHIC_HANDLES_CLASS_NUMBER);
+			filteredValues.add(ScilabTypeEnum.sci_handles);
 		}
 		
 		if (!filterUncompiledFuncCheckBox.isChecked()) {
-			filteredValues.add(UNCOMPILED_FUNCTION_CLASS_NUMBER);
+			filteredValues.add(ScilabTypeEnum.sci_u_function);
 		}
 		
 		if (!filtercompiledFuncCheckBox.isChecked()) {
-			filteredValues.add(COMPILED_FUNCTION_CLASS_NUMBER);
+			filteredValues.add(ScilabTypeEnum.sci_c_function);
 		}
 		
 		if (!filterListCheckBox.isChecked()) {
-			filteredValues.add(LIST_CLASS_NUMBER);
+			filteredValues.add(ScilabTypeEnum.sci_list);
 		}
 		
 		if (!filterTListCheckBox.isChecked()) {
-			filteredValues.add(TLIST_CLASS_NUMBER);
+			filteredValues.add(ScilabTypeEnum.sci_tlist);
 		}
 		
 		if (!filterMListCheckBox.isChecked()) {
-			filteredValues.add(MLIST_CLASS_NUMBER);
+			filteredValues.add(ScilabTypeEnum.sci_mlist);
 		}
 		
 		if (!filterPointerCheckBox.isChecked()) {
-			filteredValues.add(POINTER_CLASS_NUMBER);
+			filteredValues.add(ScilabTypeEnum.sci_pointer);
+		}
+		
+		if (!filterIntrinsicFunctionCheckBox.isChecked()) {
+			filteredValues.add(ScilabTypeEnum.sci_intrinsic_function);
+		}
+		
+		if (!filterMatlabSparseCheckBox.isChecked()) {
+			filteredValues.add(ScilabTypeEnum.sci_matlab_sparse);
+		}
+		
+		if (!filterImplicitPolynomialCheckBox.isChecked()) {
+			filteredValues.add(ScilabTypeEnum.sci_implicit_poly);
 		}
 		
 		return filteredValues;
