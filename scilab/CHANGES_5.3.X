@@ -69,6 +69,8 @@ Bug Fixes:
 * bug 7332 fixed - browsevar(): The "boolean" menu was reversed, if checked 
                    booleans were hidden, if unchecked booleans were displayed.
 
+* bug 7334 fixed - browsevar(): Some columns had wrong names.
+
 * bug 7343 fixed - editvar could not edit empty matrices.
 
 * bug 7360 fixed - Modelica Hydraulics Xcos demo was not simulating.

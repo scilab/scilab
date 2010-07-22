@@ -90,16 +90,16 @@ public class BrowseVar {
      * @param dataNames : scilab variable name
      * @param dataBytes : scilab variable size in bytes
      * @param dataTypes : scilab variable type (as integer)
-     * @param dataStandard : local or global variable
+     * @param dataVisibility : local or global variable
      */
-    public static void openVariableBrowser(String[] columnNames, String[] dataNames, int[] dataBytes, int[] dataTypes, String[] dataStandard) {
+    public static void openVariableBrowser(String[] columnNames, String[] dataNames, int[] dataBytes, int[] dataTypes, String[] dataVisibility) {
 	Object[][] data = new Object[dataNames.length][columnNames.length];
 	for (int i = 0; i < dataNames.length; ++i) {
 	    data[i][0] = getIconFromType(dataTypes[i]);
 	    data[i][1] = dataNames[i];
 	    data[i][2] = dataBytes[i];
 	    data[i][3] = dataTypes[i];
-	    data[i][4] = dataStandard[i];
+	    data[i][4] = dataVisibility[i];
 	}
 	VariableBrowser browsevar = ScilabVariableBrowser.getVariableBrowser(columnNames, data);
 	browsevar.setVisible(true);
