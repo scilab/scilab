@@ -125,6 +125,7 @@ controlKwds = "abort" | "break" | "quit" | "return" | "resume" | "pause" | "cont
 authors = "Calixte Denizet" | "Calixte DENIZET" | "Sylvestre Ledru" | "Sylvestre LEDRU" | "Yann Collette" | "Yann COLLETTE" | "Allan Cornet" | "Allan CORNET" | "Allan Simon" | "Allan SIMON" | "Antoine Elias" | "Antoine ELIAS" | "Bernard Hugueney" | "Bernard HUGUENEY" | "Bruno Jofret" | "Bruno JOFRET" | "Claude Gomez" | "Claude GOMEZ" | "Clement David" | "Clement DAVID" | "Jerome Picard" | "Jerome PICARD" | "Manuel Juliachs" | "Manuel JULIACHS" | "Michael Baudin" | "Michael BAUDIN" | "Pierre Lando" | "Pierre LANDO" | "Pierre Marechal" | "Pierre MARECHAL" | "Serge Steer" | "Serge STEER" | "Vincent Couvert" | "Vincent COUVERT" | "Vincent Liard" | "Vincent LIARD" | "Zhour Madini-Zouine" | "Zhour MADINI-ZOUINE" | "Vincent Lejeune" | "Vincent LEJEUNE" | "Sylvestre Koumar" | "Sylvestre KOUMAR" | "Inria" | "INRIA" | "DIGITEO" | "Digiteo" | "ENPC"
 
 break = ".."(".")*
+breakinstring = {break}[ \t]*{comment}
 
 special = "$" | ":" | {break}
 
@@ -318,7 +319,7 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
 }
 
 <QSTRING> {
-  {break}                        {
+  {breakinstring}                {
                                    yypushback(yylength());
                                    yybegin(BREAKSTRING);
                                    transposable = false;

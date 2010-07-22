@@ -177,6 +177,9 @@ Bug Fixes:
 * bug 7590 fixed - In SciNotes, there was a bad organization of the menus
                    "Split..." and "Line Numbering...". 
 
+* bug 7595 fixed - In SciNotes, a string was broken if '..' was encountered.
+
+
            Changes between version 5.2.X and 5.3.0-beta1 of Scilab
            =======================================================
 
