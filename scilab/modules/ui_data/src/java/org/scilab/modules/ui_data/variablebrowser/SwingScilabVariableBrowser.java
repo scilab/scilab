@@ -49,8 +49,8 @@ import org.scilab.modules.ui_data.actions.ListFilteringAction;
 import org.scilab.modules.ui_data.actions.MListFilteringAction;
 import org.scilab.modules.ui_data.actions.PointerFilteringAction;
 import org.scilab.modules.ui_data.actions.PolynomialFilteringAction;
-import org.scilab.modules.ui_data.actions.SparceBoolFilteringAction;
-import org.scilab.modules.ui_data.actions.SparceFilteringAction;
+import org.scilab.modules.ui_data.actions.SparseBoolFilteringAction;
+import org.scilab.modules.ui_data.actions.SparseFilteringAction;
 import org.scilab.modules.ui_data.actions.StringFilteringAction;
 import org.scilab.modules.ui_data.actions.TListFilteringAction;
 import org.scilab.modules.ui_data.actions.UncompiledFunctionFilteringAction;
@@ -70,8 +70,8 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 	private static final int DOUBLE_CLASS_NUMBER = 1;
 	private static final int POLYNOMIAL_CLASS_NUMBER = 2;
 	private static final int BOOLEAN_CLASS_NUMBER = 4;
-	private static final int SPARCE_CLASS_NUMBER = 5;
-	private static final int SPARCE_BOOLEAN_CLASS_NUMBER = 6;
+	private static final int SPARSE_CLASS_NUMBER = 5;
+	private static final int SPARSE_BOOLEAN_CLASS_NUMBER = 6;
 	private static final int INTEGER_CLASS_NUMBER = 6;
 	private static final int GRAPHIC_HANDLES_CLASS_NUMBER = 6;
 	private static final int STRING_CLASS_NUMBER = 10;
@@ -93,8 +93,8 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 	private CheckBoxMenuItem filterDoubleCheckBox;
 	private CheckBoxMenuItem filterPolynomialCheckBox;
 	private CheckBoxMenuItem filterBooleanCheckBox;
-	private CheckBoxMenuItem filterSparceCheckBox;
-	private CheckBoxMenuItem filterSparceBoolCheckBox;
+	private CheckBoxMenuItem filterSparseCheckBox;
+	private CheckBoxMenuItem filterSparseBoolCheckBox;
 	private CheckBoxMenuItem filterIntegerCheckBox;
 	private CheckBoxMenuItem filterGraphicHandlesCheckBox;
 	private CheckBoxMenuItem filterStringCheckBox;
@@ -308,13 +308,13 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 		filterStringCheckBox.setChecked(true);
 		filterMenu.add(filterStringCheckBox);
 		
-		filterSparceCheckBox = SparceFilteringAction.createCheckBoxMenu();
-		filterSparceCheckBox.setChecked(true);
-		filterMenu.add(filterSparceCheckBox);
+		filterSparseCheckBox = SparseFilteringAction.createCheckBoxMenu();
+		filterSparseCheckBox.setChecked(true);
+		filterMenu.add(filterSparseCheckBox);
 		
-		filterSparceBoolCheckBox = SparceBoolFilteringAction.createCheckBoxMenu();
-		filterSparceBoolCheckBox.setChecked(true);
-		filterMenu.add(filterSparceBoolCheckBox);
+		filterSparseBoolCheckBox = SparseBoolFilteringAction.createCheckBoxMenu();
+		filterSparseBoolCheckBox.setChecked(true);
+		filterMenu.add(filterSparseBoolCheckBox);
 		
 		filterIntegerCheckBox = IntegerFilteringAction.createCheckBoxMenu();
 		filterIntegerCheckBox.setChecked(true);
@@ -342,6 +342,7 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 		filterMenu.add(filterMListCheckBox);
 		
 		filterPointerCheckBox = PointerFilteringAction.createCheckBoxMenu();
+		filterPointerCheckBox.setChecked(true);
 		filterMenu.add(filterPointerCheckBox);
 
 		menuBar.add(filterMenu);
@@ -375,12 +376,12 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 			filteredValues.add(POLYNOMIAL_CLASS_NUMBER);
 		}
 
-		if (!filterSparceCheckBox.isChecked()) {
-			filteredValues.add(SPARCE_CLASS_NUMBER);
+		if (!filterSparseCheckBox.isChecked()) {
+			filteredValues.add(SPARSE_CLASS_NUMBER);
 		}
 
-		if (!filterSparceBoolCheckBox.isChecked()) {
-			filteredValues.add(SPARCE_BOOLEAN_CLASS_NUMBER);
+		if (!filterSparseBoolCheckBox.isChecked()) {
+			filteredValues.add(SPARSE_BOOLEAN_CLASS_NUMBER);
 		}
 		
 		if (!filterIntegerCheckBox.isChecked()) {

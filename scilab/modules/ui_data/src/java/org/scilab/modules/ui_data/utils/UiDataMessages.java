@@ -34,21 +34,21 @@ public final class UiDataMessages {
     
     public static final String FILTER = Messages.gettext("Filter");
     
-    public static final String DOUBLE = Messages.gettext("double");
-    public static final String POLYNOMIAL = Messages.gettext("polynomial");
-    public static final String BOOLEAN = Messages.gettext("boolean");
-    public static final String SPARCE = Messages.gettext("sparce");
-    public static final String SPARCE_BOOLEAN = Messages.gettext("sparce boolean");
-    public static final String INTEGER = Messages.gettext("integer");
-    public static final String GRAPHIC_HANDLES = Messages.gettext("graphic handles");
-    public static final String STRING = Messages.gettext("string");
-    public static final String UNCOMPILED_FUNC = Messages.gettext("un-compiled function");
-    public static final String COMPILED_FUNC = Messages.gettext("compiled function");
-    public static final String FUNCTIONLIB = Messages.gettext("function library");
-    public static final String LIST = Messages.gettext("list");
-    public static final String TLIST = Messages.gettext("tlist");
-    public static final String MLIST = Messages.gettext("mlist");
-    public static final String POINTER = Messages.gettext("pointer");
+    public static final String DOUBLE = Messages.gettext("Double");
+    public static final String POLYNOMIAL = Messages.gettext("Polynomial");
+    public static final String BOOLEAN = Messages.gettext("Boolean");
+    public static final String SPARSE = Messages.gettext("Sparse");
+    public static final String SPARSE_BOOLEAN = Messages.gettext("Sparse boolean");
+    public static final String INTEGER = Messages.gettext("Integer");
+    public static final String GRAPHIC_HANDLES = Messages.gettext("Graphic handles");
+    public static final String STRING = Messages.gettext("String");
+    public static final String UNCOMPILED_FUNC = Messages.gettext("Un-compiled function");
+    public static final String COMPILED_FUNC = Messages.gettext("Compiled function");
+    public static final String FUNCTIONLIB = Messages.gettext("Function library");
+    public static final String LIST = Messages.gettext("List");
+    public static final String TLIST = Messages.gettext("Tlist");
+    public static final String MLIST = Messages.gettext("Mlist");
+    public static final String POINTER = Messages.gettext("Pointer");
     /** This class is a static singleton, thus it must not be instantiated */
     private UiDataMessages() { }
     
