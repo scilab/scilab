@@ -45,7 +45,7 @@ import org.xml.sax.SAXException;
  */
 public final class PaletteManager {
 	private static final String UNABLE_TO_VALIDATE_CONFIG = "Unable to validate the configuration file.\n";
-	private static final String MODEL_CLASS_PACKAGE = "org.scilab.modules.xcos.palette.model";
+	public static final String MODEL_CLASS_PACKAGE = "org.scilab.modules.xcos.palette.model";
 	private static final String SCHEMA_FILENAME = "/PaletteConfiguration.xsd";
 	private static final String INSTANCE_FILENAME = "/palettes.xml";
 	
@@ -57,7 +57,7 @@ public final class PaletteManager {
 	
 	private PaletteManagerView view;
 	private Category root;
-	private PropertyChangeSupport pcs;
+	private final PropertyChangeSupport pcs;
 
 	/** Default constructor */
 	private PaletteManager() {

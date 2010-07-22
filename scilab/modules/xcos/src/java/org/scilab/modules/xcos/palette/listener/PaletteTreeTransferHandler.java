@@ -17,6 +17,7 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
+import java.io.StringWriter;
 import java.util.Arrays;
 
 import javax.swing.JComponent;
@@ -25,7 +26,11 @@ import javax.swing.TransferHandler;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 
+import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.model.Category;
@@ -35,6 +40,9 @@ import org.scilab.modules.xcos.palette.model.PaletteNode;
  * Used to modify the palette tree
  */
 public class PaletteTreeTransferHandler extends TransferHandler {
+
+	private static final Log LOG = LogFactory.getLog(PaletteTreeTransferHandler.class);
+
 	/**
 	 * Default constructor 
 	 */
@@ -61,9 +69,22 @@ public class PaletteTreeTransferHandler extends TransferHandler {
 	 */
 	@Override
 	protected void exportDone(JComponent source, Transferable data, int action) {
-		PaletteManager.getInstance().saveConfig();
+		final PaletteTransferable transferable = (PaletteTransferable) data;
 		
-		final JTree t = (JTree) source;
+		if (action == MOVE && transferable.isMoved()) {
+			updateTree((JTree) source, data);
+		}
+	}
+
+	/**
+	 * Update the palette tree after a drag
+	 * 
+	 * @param t the source component
+	 * @param data the transferable
+	 */
+	private void updateTree(JTree t, Transferable data) {
+		PaletteManager.getInstance().saveConfig();
+
 		final DefaultTreeModel model = (DefaultTreeModel) t.getModel();
 		final TreePath path = t.getSelectionPath();
 		PaletteNode newNode;
@@ -71,10 +92,10 @@ public class PaletteTreeTransferHandler extends TransferHandler {
 		try {
 			newNode = (PaletteNode) data.getTransferData(PaletteTransferable.PALETTE_FLAVOR);
 		} catch (UnsupportedFlavorException e) {
-			e.printStackTrace();
+			LOG.error(e);
 			return;
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOG.error(e);
 			return;
 		} 
 		
@@ -89,6 +110,10 @@ public class PaletteTreeTransferHandler extends TransferHandler {
 	 */
 	@Override
 	protected Transferable createTransferable(JComponent c) {
+		if (c == null) {
+			return null;
+		}
+		
 		final JTree tree = (JTree) c;
 		final PaletteNode node = (PaletteNode) tree.getSelectionPath().getLastPathComponent();
 		
@@ -134,18 +159,18 @@ public class PaletteTreeTransferHandler extends TransferHandler {
 			
 			final Category oldParent = child.getParent();
 			oldParent.getNode().remove(child);
-			child.setParent((Category) newParent);
+			child.setParent(newParent);
 
 			if (index == -1) {
-				((Category) newParent).getNode().add(child);
+				newParent.getNode().add(child);
 			} else {
-				((Category) newParent).getNode().add(index, child);
+				newParent.getNode().add(index, child);
 			}
 		} catch (UnsupportedFlavorException e) {
-			LogFactory.getLog(PaletteTreeTransferHandler.class).error(e);
+			LOG.error(e);
 			return false;
 		} catch (IOException e) {
-			LogFactory.getLog(PaletteTreeTransferHandler.class).error(e);
+			LOG.error(e);
 			return false;
 		}
 		
@@ -153,15 +178,17 @@ public class PaletteTreeTransferHandler extends TransferHandler {
 	}
 	
 	/**
-	 * Implement transferable for any Palette node
+	 * Implement transferable for any Palette node.
 	 */
 	private static class PaletteTransferable implements Transferable {
 		/**
 		 * The palette data flavor
 		 */
 		public static final DataFlavor PALETTE_FLAVOR = new DataFlavor(PaletteNode.class, null);
+		private static final DataFlavor STRING_FLAVOR = DataFlavor.stringFlavor;
 		
-		private PaletteNode node;
+		private final PaletteNode node;
+		private boolean moved;
 		
 		/**
 		 * Default constructor
@@ -169,6 +196,21 @@ public class PaletteTreeTransferHandler extends TransferHandler {
 		 */
 		public PaletteTransferable(PaletteNode node) {
 			this.node = node;
+			moved = false;
+		}
+		
+		/**
+		 * @return the node or null if it has been moved
+		 */
+		public final PaletteNode getNode() {
+			return node;
+		}
+		
+		/**
+		 * @return the moved flag
+		 */
+		public final boolean isMoved() {
+			return moved;
 		}
 		
 		/**
@@ -181,11 +223,30 @@ public class PaletteTreeTransferHandler extends TransferHandler {
 		@Override
 		public Object getTransferData(DataFlavor flavor)
 				throws UnsupportedFlavorException, IOException {
-			if (!isDataFlavorSupported(flavor)) {
-				throw new UnsupportedFlavorException(flavor);
+			Object ret = null;
+			
+			if (flavor.equals(STRING_FLAVOR) && getNode() instanceof Category) {
+				try {
+					final JAXBContext jaxbContext = JAXBContext.newInstance(PaletteManager.MODEL_CLASS_PACKAGE);
+					final Marshaller marshaller = jaxbContext.createMarshaller();
+					marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+					
+					StringWriter writer = new StringWriter();
+					marshaller.marshal(node, writer);
+					ret = writer.toString();
+				} catch (JAXBException e) {
+					throw new IOException(e);
+				}
+			} else if (flavor.equals(PALETTE_FLAVOR)) {
+				ret = node;
+				moved = true;
 			}
 			
-			return node;
+			if (ret == null) {
+				throw new UnsupportedFlavorException(flavor);
+			} else {
+				return ret;
+			}
 		}
 
 		/**
@@ -194,18 +255,24 @@ public class PaletteTreeTransferHandler extends TransferHandler {
 		 */
 		@Override
 		public DataFlavor[] getTransferDataFlavors() {
-			return new DataFlavor[] {PALETTE_FLAVOR};
+			final Category parent = getNode().getParent(); 
+			if (parent.getParent() == null && parent.getChildAt(0) == getNode()) {
+				return new DataFlavor[] {STRING_FLAVOR};
+			} else if (getNode() instanceof Category) {
+				return new DataFlavor[] {PALETTE_FLAVOR, STRING_FLAVOR};
+			} else {
+				return new DataFlavor[] {PALETTE_FLAVOR};
+			}
 		}
 
 		/**
 		 * @param flavor the flavor
-		 * @return true if the flavor match the right mimi type; false otherwise.
+		 * @return true if the flavor match the right mime type; false otherwise.
 		 * @see java.awt.datatransfer.Transferable#isDataFlavorSupported(java.awt.datatransfer.DataFlavor)
 		 */
 		@Override
 		public boolean isDataFlavorSupported(DataFlavor flavor) {
-			return flavor.equals(PALETTE_FLAVOR);
+			return Arrays.asList(getTransferDataFlavors()).contains(flavor);
 		}
-		
 	}
 }
