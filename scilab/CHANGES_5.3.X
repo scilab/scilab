@@ -182,6 +182,9 @@ Bug Fixes:
 
 * bug 7586 fixed - ShortCut for 'Save' action was missing in SciNotes.
 
+* bug 7588 fixed - Scilab installed Xcos palettes were not removed at the end of
+                   the Scilab session.
+
 * bug 7590 fixed - In SciNotes, there was a bad organization of the menus
                    "Split..." and "Line Numbering...". 
 
