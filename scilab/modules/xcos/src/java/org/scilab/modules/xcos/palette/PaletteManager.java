@@ -229,7 +229,6 @@ public final class PaletteManager {
 			try {
 				f = new File(ScilabConstants.SCIHOME.getAbsoluteFile()
 						+ INSTANCE_FILENAME);
-				marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 				marshaller.marshal(getRoot(), f);
 			} catch (JAXBException e) {
 				LOG.warn(
@@ -238,7 +237,7 @@ public final class PaletteManager {
 			}
 
 		} catch (JAXBException e) {
-			e.printStackTrace();
+			LOG.error(e);
 			return;
 		}
 	}
@@ -266,6 +265,8 @@ public final class PaletteManager {
 					UNABLE_TO_VALIDATE_CONFIG
 							+ e);
 		}
+		
+		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 	}
 
 	/**

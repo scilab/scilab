@@ -117,11 +117,6 @@ public final class Xcos {
 		configuration = ConfigurationManager.getInstance();
 		styleSheet = new mxStylesheet();
 
-		/*
-		 * Init handlers
-		 */
-		palette.loadConfig();
-		configuration.loadConfig();
 		try {
 			FileUtils.decodeStyle(styleSheet);
 		} catch (IOException e) {

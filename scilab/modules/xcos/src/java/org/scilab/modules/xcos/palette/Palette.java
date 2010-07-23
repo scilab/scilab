@@ -59,6 +59,7 @@ public final class Palette {
 	private static final String NAME = "name";
 
 	private static final String WRONG_INPUT_ARGUMENT_S_INVALID_TREE_PATH = Messages.gettext("Wrong input argument \"%s\": invalid tree path.\n");
+	private static final String WRONG_INPUT_ARGUMENT_S_INVALID_NODE = Messages.gettext("Wrong input argument \"%s\": invalid node, use 'xcosPalDisable' instead.\n");
 	private static final String UNABLE_TO_IMPORT = Messages.gettext("Unable to import %s .\n");
 
 	private static final Log LOG = LogFactory.getLog(Palette.class);
@@ -269,29 +270,9 @@ public final class Palette {
 			SwingUtilities.invokeAndWait(new Runnable() {
 				@Override
 				public void run() {
-
 					PaletteNode node = getPathNode(name, false);
-					if (node == null) {
-						throw new RuntimeException(String.format(
-								WRONG_INPUT_ARGUMENT_S_INVALID_TREE_PATH, NAME));
-					}
-
-					final Category toBeReloaded = node.getParent();
-					if (toBeReloaded != null) {
-						toBeReloaded.getNode().remove(node);
-					}
-					node.setParent(null);
-
-					if (PaletteManager.getInstance().getView() != null) {
-						final DefaultTreeModel model = (DefaultTreeModel) PaletteManager
-								.getInstance().getView().getTree().getModel();
-						if (toBeReloaded != null) {
-							model.reload(toBeReloaded);
-						} else {
-							model.reload();
-						}
-					}
-
+					checkRemoving(node);
+					remove(node);
 					PaletteManager.getInstance().saveConfig();
 				}
 			});
@@ -300,6 +281,65 @@ public final class Palette {
 		}
 	}
 
+	/**
+	 * Remove the dynamic {@link PaletteNode} palette
+	 * @param node the palette
+	 */
+	private static void remove(PaletteNode node) {
+		if (node == null) {
+			throw new RuntimeException(String.format(
+					WRONG_INPUT_ARGUMENT_S_INVALID_TREE_PATH, NAME));
+		} else if (node instanceof PreLoaded) {
+			throw new RuntimeException(String.format(
+					WRONG_INPUT_ARGUMENT_S_INVALID_NODE, NAME));
+		} else if (node instanceof Category) {
+			// Iterate over all nodes
+			for (PaletteNode n : ((Category) node).getNode()) {
+				remove(n);
+			}
+		} else { // others
+			final Category toBeReloaded = node.getParent();
+			if (toBeReloaded != null) {
+				toBeReloaded.getNode().remove(node);
+			}
+			node.setParent(null);
+
+			if (PaletteManager.getInstance().getView() != null) {
+				final DefaultTreeModel model = (DefaultTreeModel) PaletteManager
+						.getInstance().getView().getTree().getModel();
+				if (toBeReloaded != null) {
+					model.reload(toBeReloaded);
+				} else {
+					model.reload();
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Check that the node can be removed (throw exceptions).
+	 * 
+	 * @param node the node to check
+	 */
+	private static void checkRemoving(PaletteNode node) {
+		if (node == null) {
+			throw new RuntimeException(String.format(
+					WRONG_INPUT_ARGUMENT_S_INVALID_TREE_PATH, NAME));
+		} else if (node instanceof PreLoaded) {
+			throw new RuntimeException(String.format(
+					WRONG_INPUT_ARGUMENT_S_INVALID_NODE, NAME));
+		} else if (node instanceof Category) {
+			// Iterate over all nodes
+			for (PaletteNode n : ((Category) node).getNode()) {
+				checkRemoving(n);
+			}
+		}
+		
+		/*
+		 * others can be removed safely.
+		 */
+	}
+	
 	/**
 	 * Remove a palette or a category of the palette manager
 	 * 
