@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -20,43 +21,62 @@
 /*------------------------------------------------------------------------*/
 
 #include "getHandleProperty.h"
-#include "GetProperty.h"
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
+
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int get_box_property( sciPointObj * pobj )
 {
-  if ( sciGetEntityType ( pobj ) == SCI_SUBWIN )
-  {
-    switch( sciGetBoxType( pobj ) )
-    {
-    case BT_OFF:
-      return sciReturnString( "off" ) ;
-      break ;
-    case BT_ON:
-      return sciReturnString( "on" ) ;
-      break ;
-    case BT_HIDDEN_AXES:
-      return sciReturnString( "hidden_axes" ) ;
-      break ;
-    case BT_BACK_HALF:
-      return sciReturnString( "back_half" ) ;
-      break ;
+    int* boxType;
+
+    boxType = (int*) getGraphicObjectProperty(pobj->UID, __GO_BOX_TYPE__, jni_int);
+
+    if (boxType == NULL) {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"box");
+        return -1;
     }
-  }
+
+    if (*boxType == 0)
+    {
+        return sciReturnString("off");
+    }
+    else if (*boxType == 1)
+    {
+        return sciReturnString("on");
+    }
+    else if (*boxType == 2)
+    {
+        return sciReturnString("hidden_axes");
+    }
+    else if (*boxType == 3)
+    {
+        return sciReturnString("back_half");
+    }
+
+#if 0
+  /*
+   * To be implemented using the MVC framework, since the Text object's "Box" property is
+   * internally represented as a Boolean and its constant is __GO_BOX__ instead of __GO_BOX_TYPE__
+   */
   else if (sciGetEntityType( pobj ) == SCI_TEXT)
   {
-    if ( sciGetIsBoxed(pobj) )
+    int* box;
+    box = (int*) getGraphicObjectProperty(pobj->UID, __GO_BOX__, jni_bool);
+
+    if (*box)
     {
-      return sciReturnString( "on" ) ;
+      return sciReturnString( "on" );
     }
     else
     {
-      return sciReturnString( "off" ) ;  
+      return sciReturnString( "off" );  
     }
   }
-	Scierror(999, _("'%s' property does not exist for this handle.\n"),"box") ;
-  return -1 ;
+#endif
+
 }
 /*------------------------------------------------------------------------*/

@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -21,16 +22,19 @@
 
 #include "setHandleProperty.h"
 #include "SetProperty.h"
-#include "GetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
 #include "CurrentObjectsManagement.h"
 
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int set_auto_clear_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
+	BOOL status;
 	int b =  (int)FALSE;
 	if (pobj == NULL)
 	{
@@ -40,11 +44,17 @@ int set_auto_clear_property( sciPointObj * pobj, size_t stackPointer, int valueT
 	b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "auto_clear");
 	if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
 
-	if(b==TRUE)
+	status = setGraphicObjectProperty(pobj->UID, __GO_AUTO_CLEAR__, &b, jni_bool, 1);
+
+	if (status == TRUE)
 	{
-		return sciSetAddPlot(pobj, FALSE);
+		return SET_PROPERTY_SUCCEED;
 	}
-	return sciSetAddPlot(pobj, TRUE);
+	else
+	{
+		Scierror(999, _("'%s' property does not exist for this handle.\n"), "auto_clear");
+		return SET_PROPERTY_ERROR;
+	}
 }
 /*------------------------------------------------------------------------*/
 

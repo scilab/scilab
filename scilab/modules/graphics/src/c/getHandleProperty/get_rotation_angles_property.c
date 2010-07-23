@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -19,27 +20,35 @@
 /*------------------------------------------------------------------------*/
 
 #include "getHandleProperty.h"
-#include "GetProperty.h"
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
 
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int get_rotation_angles_property( sciPointObj * pobj )
 {
+  double* angles;
+
+#if 0
   /* DJ.A 2003 */
-  double angles[2] ;
   if ( sciGetEntityType (pobj) != SCI_SUBWIN )
   {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"rotation_angle") ;
-    return -1 ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"rotation_angles");
+    return -1;
+  }
+#endif
+
+  angles = (double*) getGraphicObjectProperty(pobj->UID, __GO_ROTATION_ANGLES__, jni_double_vector);
+
+  if (angles == NULL)
+  {
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"rotation_angles");
+    return -1;
   }
 
-  angles[0] = pSUBWIN_FEATURE(pobj)->alpha ;
-  angles[1] = pSUBWIN_FEATURE(pobj)->theta ;
-
-  return sciReturnRowVector( angles, 2 ) ;
-
-
+  return sciReturnRowVector( angles, 2 );
 }
 /*------------------------------------------------------------------------*/

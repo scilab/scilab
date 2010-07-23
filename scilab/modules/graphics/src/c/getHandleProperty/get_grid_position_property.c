@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - Digiteo - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -17,27 +18,41 @@
 /*------------------------------------------------------------------------*/
 
 #include "getHandleProperty.h"
-#include "GetProperty.h"
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
 
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int get_grid_position_property( sciPointObj * pobj )
 {
-	
+  int* gridPosition;
+
+#if 0
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
     Scierror(999, _("'%s' property does not exist for this handle.\n"), "grid_position");
     return -1;
   }
-  if ( sciGetGridFront(pobj) )
+#endif
+
+  gridPosition = (int*) getGraphicObjectProperty(pobj->UID, __GO_GRID_POSITION__, jni_int);
+
+  if (gridPosition == NULL)
   {
-    return sciReturnString( "foreground" ) ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"), "grid_position");
+    return -1;
+  }
+
+  if (*gridPosition)
+  {
+    return sciReturnString("foreground");
   }
   else
   {
-    return sciReturnString( "background" ) ;
+    return sciReturnString("background");
   }
 }
 /*------------------------------------------------------------------------*/

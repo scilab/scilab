@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -19,28 +20,42 @@
 /*------------------------------------------------------------------------*/
 
 #include "getHandleProperty.h"
-#include "GetProperty.h"
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
 
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int get_auto_clear_property( sciPointObj * pobj )
 {
+  int* autoClear;
+
+#if 0
   if (   sciGetEntityType(pobj) != SCI_SUBWIN 
       && sciGetEntityType(pobj) != SCI_FIGURE )
   {
     Scierror(999, _("'%s' property does not exist for this handle.\n"), "auto_clear property") ;
     return -1 ;
   }
+#endif
 
-  if (!sciGetAddPlot((sciPointObj *)pobj))
+  autoClear = (int*) getGraphicObjectProperty(pobj->UID, __GO_AUTO_CLEAR__, jni_bool);
+
+  if (autoClear == NULL)
   {
-    return sciReturnString( "on" ) ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"), "auto_clear property");
+    return -1;
+  }
+
+  if (*autoClear)
+  {
+    return sciReturnString( "on" );
   }
   else
   {
-    return sciReturnString( "off" ) ;
+    return sciReturnString( "off" );
   }
 }
 /*------------------------------------------------------------------------*/
