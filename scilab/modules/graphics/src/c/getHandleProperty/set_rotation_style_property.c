@@ -24,7 +24,6 @@
 #include "getPropertyAssignedValue.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "GetProperty.h"
 #include "SetPropertyStatus.h"
 
 #include "setGraphicObjectProperty.h"
@@ -44,11 +43,13 @@ int set_rotation_style_property( sciPointObj * pobj, size_t stackPointer, int va
     return SET_PROPERTY_ERROR ;
   }
 
+#if 0
   if ( sciGetEntityType (pobj) != SCI_FIGURE ) 
   {
     Scierror(999, _("'%s' property does not exist for this handle.\n"),"rotation_style");
     return SET_PROPERTY_ERROR ;
   }
+#endif
 
   if ( isStringParamEqual( stackPointer, "unary" ) )
   {
@@ -74,6 +75,7 @@ int set_rotation_style_property( sciPointObj * pobj, size_t stackPointer, int va
   }
   else
   {
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"rotation_style");
     return SET_PROPERTY_ERROR;
   }
 }

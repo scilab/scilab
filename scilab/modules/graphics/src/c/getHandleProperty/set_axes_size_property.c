@@ -22,7 +22,6 @@
 
 #include "setHandleProperty.h"
 #include "SetProperty.h"
-#include "GetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "Scierror.h"
 #include "sciprint.h"
@@ -32,6 +31,7 @@
 #include "GraphicSynchronizerInterface.h"
 
 #include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
 int set_axes_size_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
@@ -46,16 +46,18 @@ int set_axes_size_property( sciPointObj * pobj, size_t stackPointer, int valueTy
     return SET_PROPERTY_ERROR ;
   }
 
+#if 0
   if ( sciGetEntityType(pobj) != SCI_FIGURE )
   {
     Scierror(999, _("'%s' property does not exist for this handle.\n"),"axes_size");
     return SET_PROPERTY_ERROR ;
   }
+#endif
 
   intValues[0] = (int) newWindowSize[0];
   intValues[1] = (int) newWindowSize[1];
 
-  status = setGraphicObjectProperty(pobj->UID, "AxesSize", intValues, jni_int_vector, 2);
+  status = setGraphicObjectProperty(pobj->UID, __GO_AXES_SIZE__, intValues, jni_int_vector, 2);
 
   if (status == TRUE)
   {
@@ -63,6 +65,7 @@ int set_axes_size_property( sciPointObj * pobj, size_t stackPointer, int valueTy
   }
   else
   {
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"axes_size");
     return SET_PROPERTY_ERROR;
   }
 

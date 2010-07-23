@@ -54,6 +54,7 @@ int set_visible_property( sciPointObj * pobj, size_t stackPointer, int valueType
 	}
 	else
 	{
+		Scierror(999, _("'%s' property does not exist for this handle.\n"),"visible");
 		return SET_PROPERTY_ERROR;
 	}
 }

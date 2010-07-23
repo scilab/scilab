@@ -36,11 +36,13 @@ int set_pixmap_property( sciPointObj * pobj, size_t stackPointer, int valueType,
 	int b =  (int)FALSE;
 	BOOL status;
 
+#if 0
 	if ( sciGetEntityType (pobj) != SCI_FIGURE )
 	{
 		Scierror(999, _("'%s' property does not exist for this handle.\n"),"pixmap");
 		return SET_PROPERTY_ERROR;
 	}
+#endif
 
 	b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "pixmap");
 	if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
@@ -53,6 +55,7 @@ int set_pixmap_property( sciPointObj * pobj, size_t stackPointer, int valueType,
 	}
 	else
 	{
+		Scierror(999, _("'%s' property does not exist for this handle.\n"),"pixmap");
 		return SET_PROPERTY_ERROR;
 	}
 }

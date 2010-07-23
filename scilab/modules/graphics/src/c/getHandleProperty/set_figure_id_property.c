@@ -26,10 +26,10 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "InitObjects.h"
-#include "GetProperty.h"
 #include "SetPropertyStatus.h"
 
 #include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
 int set_figure_id_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
@@ -43,15 +43,17 @@ int set_figure_id_property( sciPointObj * pobj, size_t stackPointer, int valueTy
     return SET_PROPERTY_ERROR ;
   }
 
-	id = (int) getDoubleFromStack( stackPointer ) ;
+  id = (int) getDoubleFromStack( stackPointer ) ;
 
+#if 0
   if ( sciGetEntityType(pobj) != SCI_FIGURE )
   {
     Scierror(999, _("'%s' property does not exist for this handle.\n"),"figure_id");
     return SET_PROPERTY_ERROR ;
   }
+#endif
 
-  status = setGraphicObjectProperty(pobj->UID, "Id", &id, jni_int, 1);
+  status = setGraphicObjectProperty(pobj->UID, __GO_ID__, &id, jni_int, 1);
 
   if (status == TRUE)
   {
@@ -59,6 +61,7 @@ int set_figure_id_property( sciPointObj * pobj, size_t stackPointer, int valueTy
   }
   else
   {
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"figure_id");
     return SET_PROPERTY_ERROR;
   }
 

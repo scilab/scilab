@@ -45,8 +45,8 @@ int set_event_handler_enable_property( sciPointObj * pobj, size_t stackPointer, 
 
 	b =  tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "event_handler_enable");
 	if (b == NOT_A_BOOLEAN_VALUE) {
-        return SET_PROPERTY_ERROR;
-    }
+		return SET_PROPERTY_ERROR;
+	}
 
 	status = setGraphicObjectProperty(pobj->UID, __GO_EVENTHANDLER_ENABLE__, &b, jni_bool, 1);
 
@@ -56,8 +56,8 @@ int set_event_handler_enable_property( sciPointObj * pobj, size_t stackPointer, 
 	}
 	else
 	{
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"event_handler_enable");
-        return SET_PROPERTY_ERROR;
+		Scierror(999, _("'%s' property does not exist for this handle.\n"),"event_handler_enable");
+		return SET_PROPERTY_ERROR;
 	}
 
 /* deactivated for now sinces it involves drawing operations, to be implemented */

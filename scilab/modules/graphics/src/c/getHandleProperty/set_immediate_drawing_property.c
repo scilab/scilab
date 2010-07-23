@@ -24,7 +24,6 @@
 #include "getPropertyAssignedValue.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "GetProperty.h"
 #include "SetPropertyStatus.h"
 
 #include "setGraphicObjectProperty.h"
@@ -36,11 +35,13 @@ int set_immediate_drawing_property( sciPointObj * pobj, size_t stackPointer, int
 	int b =  (int)FALSE;
 	BOOL status;
 
+#if 0
 	if ( sciGetEntityType (pobj) != SCI_FIGURE )
 	{
 		Scierror(999, _("'%s' property does not exist for this handle.\n"),"immediate_drawing");
 		return SET_PROPERTY_ERROR ;
 	}
+#endif
 
 	b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "immediate_drawing");
 	if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
@@ -53,6 +54,7 @@ int set_immediate_drawing_property( sciPointObj * pobj, size_t stackPointer, int
 	}
 	else
 	{
+		Scierror(999, _("'%s' property does not exist for this handle.\n"),"immediate_drawing");
 		return SET_PROPERTY_ERROR;
 	}
 }

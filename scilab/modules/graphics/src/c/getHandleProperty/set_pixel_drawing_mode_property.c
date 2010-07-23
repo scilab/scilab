@@ -21,7 +21,6 @@
 
 #include "setHandleProperty.h"
 #include "SetProperty.h"
-#include "GetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -43,11 +42,14 @@ int set_pixel_drawing_mode_property( sciPointObj * pobj, size_t stackPointer, in
     return SET_PROPERTY_ERROR ;
   }
 
+#if 0
   if ( sciGetEntityType (pobj) != SCI_FIGURE )
   {
 	  Scierror(999, _("'%s' property does not exist for this handle.\n"),"pixel_drawing_mode");
 	  return SET_PROPERTY_ERROR ;
   }
+#endif
+
   v = getPixelModeIndex( getStringFromStack( stackPointer ) ) ;
 
   if ( v < 0 )
@@ -64,6 +66,7 @@ int set_pixel_drawing_mode_property( sciPointObj * pobj, size_t stackPointer, in
   }
   else
   {
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"pixel_drawing_mode");
     return SET_PROPERTY_ERROR;
   }
 }

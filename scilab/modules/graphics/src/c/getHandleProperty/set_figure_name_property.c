@@ -27,7 +27,6 @@
 #include "localization.h"
 #include "SetPropertyStatus.h"
 #include "GraphicSynchronizerInterface.h"
-#include "GetProperty.h" /* sciGetEntityType */
 
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
@@ -43,11 +42,13 @@ int set_figure_name_property( sciPointObj * pobj, size_t stackPointer, int value
         return SET_PROPERTY_ERROR ;
     }
 
+#if 0
     if ( sciGetEntityType(pobj) != SCI_FIGURE )
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"figure_name");
         return SET_PROPERTY_ERROR ;
     }
+#endif
 
     status = setGraphicObjectProperty(pobj->UID, __GO_NAME__, getStringFromStack( stackPointer ), jni_string, 1);
 
@@ -57,6 +58,7 @@ int set_figure_name_property( sciPointObj * pobj, size_t stackPointer, int value
     }
     else
     {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"figure_name");
         return SET_PROPERTY_ERROR;
     }
 

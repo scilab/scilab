@@ -21,12 +21,12 @@
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "SetPropertyStatus.h"
-#include "GetProperty.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "GraphicSynchronizerInterface.h"
 
 #include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
 int set_viewport_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
@@ -40,11 +40,13 @@ int set_viewport_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
     return SET_PROPERTY_ERROR ;
   }
 
+#if 0
   if ( sciGetEntityType(pobj) != SCI_FIGURE )
   {
     Scierror(999, _("'%s' property does not exist for this handle.\n"),"viewport");
     return SET_PROPERTY_ERROR ;
   }
+#endif
 
   if ( nbRow * nbCol != 2 )
   {
@@ -59,7 +61,7 @@ int set_viewport_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
   values[2] = 0;
   values[3] = 0;
 
-  status = setGraphicObjectProperty(pobj->UID, "Viewport", values, jni_int_vector, 2);
+  status = setGraphicObjectProperty(pobj->UID, __GO_VIEWPORT__, values, jni_int_vector, 2);
 
   if (status == TRUE)
   {
@@ -67,6 +69,7 @@ int set_viewport_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
   }
   else
   {
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"viewport");
     return SET_PROPERTY_ERROR;
   }
 

@@ -49,6 +49,7 @@ int set_color_map_property( sciPointObj * pobj, size_t stackPointer, int valueTy
   }
   else
   {
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"color_map");
     return SET_PROPERTY_ERROR;
   }
 
