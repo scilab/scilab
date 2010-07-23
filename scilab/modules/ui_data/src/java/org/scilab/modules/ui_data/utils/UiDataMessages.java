@@ -52,6 +52,12 @@ public final class UiDataMessages {
     public static final String INTRINSIC_FUNCTION = Messages.gettext("Intrinsic function");
     public static final String MATLAB_SPARSE = Messages.gettext("Matlab sparse");
     public static final String IMPLICIT_POLYNOMIAL = Messages.gettext("Implicit polynomial");
+
+    public static final String VARIABLE_EDITOR = Messages.gettext("Variable Editor");
+    public static final String VARIABLE_BROWSER = Messages.gettext("Variable Browser");
+
+    public static final String GLOBAL_NOT_EDITABLE = Messages.gettext("Global variables can not be edited.");
+    
     /** This class is a static singleton, thus it must not be instantiated */
     private UiDataMessages() { }
     

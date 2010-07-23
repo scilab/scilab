@@ -34,13 +34,15 @@ import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.window.Window;
-import org.scilab.modules.localization.Messages;
 import org.scilab.modules.types.scilabTypes.ScilabTypeEnum;
+import org.scilab.modules.ui_data.BrowseVar;
 import org.scilab.modules.ui_data.actions.BooleanFilteringAction;
 import org.scilab.modules.ui_data.actions.CompiledFunctionFilteringAction;
 import org.scilab.modules.ui_data.actions.DoubleFilteringAction;
@@ -105,7 +107,7 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 	 * @param columnsName : Titles of JTable columns.
 	 */
 	public SwingScilabVariableBrowser(String[] columnsName) {
-		super(Messages.gettext("Variable Browser"));
+		super(UiDataMessages.VARIABLE_BROWSER);
 
 		buildMenuBar();
 
@@ -209,19 +211,30 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 
 				String variableName = ((JTable) e.getSource()).getValueAt(((JTable) e.getSource()).getSelectedRow(), 1).toString();
 				final ActionListener action = new ActionListener() {
-
 					public void actionPerformed(ActionEvent e) {
 
 					}
 				};
 
+				String variableVisibility = ((JTable) e.getSource())
+						.getValueAt(((JTable) e.getSource()).getSelectedRow(), BrowseVar.VISIBILITY_COLUMN_INDEX).toString();
+				
+				// Global variables are not editable yet
+				if (variableVisibility.equals("global")) {
+					ScilabModalDialog.show(getBrowserTab(), 
+								UiDataMessages.GLOBAL_NOT_EDITABLE,
+								UiDataMessages.VARIABLE_EDITOR,
+								IconType.ERROR_ICON);
+					return;
+				}
+				
 				try {
 					asynchronousScilabExec(action, "try "
 								+ "editvar(\"" + variableName + "\"); " 
 								+ "catch "
 								+ "messagebox(\"Variables of type \"\"\" + typeof (" 
 								+ variableName + ") + \"\"\" can not be edited.\""
-								+ ",\"Variable editor\", \"error\", \"modal\");"
+								+ ",\"" + UiDataMessages.VARIABLE_EDITOR + "\", \"error\", \"modal\");"
 								+ "end");
 				} catch (InterpreterException e1) {
 					System.err.println("An error in the interpreter has been catched: " + e1.getLocalizedMessage()); 
@@ -440,5 +453,13 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 		rowFilter = new VariableBrowserRowFilter(getFilteredValues());
 		rowSorter.setRowFilter(rowFilter);
 		table.setRowSorter(rowSorter);
+	}
+	
+	/**
+	 * Get this browser as a Tab object
+	 * @return the tab
+	 */
+	public Tab getBrowserTab() {
+		return this;
 	}
 }
