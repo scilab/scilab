@@ -19,7 +19,7 @@ public class ScilabStringCellEditor extends ScilabGenericCellEditor {
     
     @Override
     protected String getDataAsScilabString() {
-        return "\""+super.getDataAsScilabString()+"\"";
+        return "\"\""+super.getDataAsScilabString()+"\"\"";
     }
 }
 

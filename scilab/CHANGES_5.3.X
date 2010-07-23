@@ -48,6 +48,8 @@ SciNotes:
 Editvar/Browsevar:
 ==================
 
+* bug 7324 fixed - editvar() did not work for string variables.
+
 * bug 7610 fixed - browsevar(): The icons (left column) did not appear in the
                    binary version (Linux & MacOSX).
 
