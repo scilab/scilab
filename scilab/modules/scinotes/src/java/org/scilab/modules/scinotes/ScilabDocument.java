@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
 import java.util.Set;
+import java.util.HashSet;
 import java.util.Comparator;
 import java.util.Iterator;
 
@@ -59,10 +60,13 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
 
     private static final int GAPBUFFERCAPACITY = 2;
     private static final String LINE_SEPARATOR = "line.separator";
+    private static final int INITFUNCTIONSNUMBER = 128;
 
     private View view;
     private List<String> saved = new Vector();
     private FunctionScanner funScanner;
+
+    private Set<String> functions = new HashSet(INITFUNCTIONSNUMBER);
 
     private boolean contentModified;
 
@@ -95,8 +99,10 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
         undo = new CompoundUndoManager(this);
         addUndoableEditListener(undo);
         undoManagerEnabled = true;
-        contentModified = false;
+
         addDocumentListener(this);
+
+        contentModified = false;
     }
 
     /**
@@ -129,6 +135,13 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      */
     public ScilabLexer createLexer() {
         return new ScilabLexer(this);
+    }
+
+    /**
+     * @return the Set containing the functions name
+     */
+    public Set<String> getFunctionsInDoc() {
+        return functions;
     }
 
     /**
@@ -232,7 +245,6 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     public void setUpdater(boolean updaterDisabled) {
         this.updater = updaterDisabled;
     }
-
 
     /**
      * Get document text
@@ -477,26 +489,22 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
         int index = root.getElementIndex(pos);
         int compt = 0;
         while (index != -1) {
-            Element e = root.getElement(index--);
-            if (e instanceof ScilabLeafElement) {
-                ScilabLeafElement se = (ScilabLeafElement) e;
-                int type = se.getType();
-                switch (type) {
-                case ScilabLeafElement.NOTHING :
-                    break;
-                case ScilabLeafElement.FUN :
-                    if (compt == 0) {
-                        FunctionScanner.FunctionInfo info = se.getFunctionInfo();
-                        return new List[]{info.returnValues, info.argsValues};
-                    } else {
-                        compt++;
-                    }
-                    break;
-                case ScilabLeafElement.ENDFUN :
-                    compt--;
-                    break;
-                default :
+            ScilabLeafElement e = (ScilabLeafElement) root.getElement(index--);
+            switch (e.getType()) {
+            case ScilabLeafElement.NOTHING :
+                break;
+            case ScilabLeafElement.FUN :
+                if (compt == 0) {
+                    FunctionScanner.FunctionInfo info = e.getFunctionInfo();
+                    return new List[]{info.returnValues, info.argsValues};
+                } else {
+                    compt++;
                 }
+                break;
+            case ScilabLeafElement.ENDFUN :
+                compt--;
+                break;
+            default :
             }
         }
         return null;
@@ -517,30 +525,60 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     }
 
     /**
-     * Implements DocumentListener
-     * @param documentEvent DocumentEvent
+     * Nothing !
+     * @param e the event
      */
-    public void changedUpdate(DocumentEvent documentEvent) { }
+    public void changedUpdate(DocumentEvent e) { }
 
     /**
-     * Implements DocumentListener
-     * @param documentEvent DocumentEvent
+     * Called when an insertion is made in the doc
+     * @param e the event
      */
-    public void insertUpdate(DocumentEvent documentEvent) {
+    public void insertUpdate(DocumentEvent e) {
+        handleEvent(e);
+    }
+
+    /**
+     * Called when a remove is made in the doc
+     * @param e the event
+     */
+    public void removeUpdate(DocumentEvent e) {
+        handleEvent(e);
+    }
+
+    /**
+     * @param ev the DocumentEvent to handle
+     */
+    private void handleEvent(DocumentEvent ev) {
         if (!contentModified && pane != null) {
             contentModified = true;
             pane.updateTitle();
         }
-    }
 
-    /**
-     * Implements DocumentListener
-     * @param documentEvent DocumentEvent
-     */
-    public void removeUpdate(DocumentEvent documentEvent) {
-        if (!contentModified && pane != null) {
-            contentModified = true;
-            pane.updateTitle();
+        DocumentEvent.ElementChange chg = ev.getChange(getDefaultRootElement());
+        if (chg != null) {
+            Element[] added = chg.getChildrenAdded();
+            Element[] removed = chg.getChildrenRemoved();
+            if ((added != null && added.length > 0) || (removed != null && removed.length > 0)) {
+                for (int i = 0; i < removed.length; i++) {
+                    String name = ((ScilabLeafElement) removed[i]).getFunctionName();
+                    if (name.length() != 0) {
+                        functions.remove(name);
+                    }
+                }
+                for (int i = 0; i < added.length; i++) {
+                    String name = ((ScilabLeafElement) added[i]).getFunctionName();
+                    if (name.length() != 0) {
+                        functions.add(name);
+                    }
+                }
+            }
+        } else {
+            Element root = getDefaultRootElement();
+            Element line = root.getElement(root.getElementIndex(ev.getOffset()));
+            if (((ScilabLeafElement) line).resetType() == ScilabLeafElement.FUN) {
+                pane.repaint();
+            }
         }
     }
 
@@ -616,12 +654,24 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
 
         /**
          * Reset type (normally called on a change in the document)
+         * @return the new type
          */
-        public void resetType() {
+        public int resetType() {
+            String oldName = "";
+            if (type == FUN) {
+                oldName = info.functionName;
+            }
+
             type = funScanner.getLineType(getStartOffset(), getEndOffset());
             if (type == FUN) {
                 info = funScanner.getFunctionInfo();
+                if (!info.functionName.equals(oldName)) {
+                    functions.remove(oldName);
+                    functions.add(info.functionName);
+                }
             }
+
+            return type;
         }
 
         /**
@@ -685,6 +735,16 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
          */
         public int getStart() {
             return start;
+        }
+
+        /**
+         * @return the position of the beginning of this element
+         */
+        public String getFunctionName() {
+            if (type == FUN) {
+                return info.functionName;
+            }
+            return "";
         }
 
         /**

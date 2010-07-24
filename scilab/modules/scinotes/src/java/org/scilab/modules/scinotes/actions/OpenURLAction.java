@@ -12,12 +12,8 @@
 
 package org.scilab.modules.scinotes.actions;
 
-import java.awt.Desktop;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 import javax.swing.text.BadLocationException;
@@ -74,7 +70,7 @@ public class OpenURLAction extends DefaultAction {
                     String keyword = editor.getTextPane().getSelectedText();
                     if (keyword == null) {
                         KeywordEvent kwe = editor.getTextPane().getKeywordEvent();
-                        menuitem.setEnabled(ScilabLexerConstants.URL == kwe.getType());
+                        menuitem.setEnabled(ScilabLexerConstants.MAIL == kwe.getType() || ScilabLexerConstants.URL == kwe.getType());
                     }
                 }
             });

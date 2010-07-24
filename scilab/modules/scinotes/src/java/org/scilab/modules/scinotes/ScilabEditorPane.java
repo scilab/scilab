@@ -52,6 +52,7 @@ import javax.swing.text.Highlighter;
 import org.scilab.modules.gui.utils.WebBrowser;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
 import org.scilab.modules.scinotes.utils.NavigatorWindow;
+import org.scilab.modules.scinotes.actions.OpenSourceFileOnKeywordAction;
 
 /**
  * Class ScilabEditorPane
@@ -64,6 +65,9 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                                                              KeyListener {
 
     private static ScilabEditorPane focused;
+
+    private static final Cursor HANDCURSOR = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
+    private static final Cursor TEXTCURSOR = Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR);
 
     private Color highlightColor;
     private Color highlightContourColor;
@@ -95,10 +99,8 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private ScilabEditorPane rightTextPane;
     private UUID uuid;
 
-    private static final Cursor handCursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
-    private static final Cursor textCursor = Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR);
     private boolean hand;
-    private boolean infoBarChanged = false;
+    private boolean infoBarChanged;
     private boolean ctrlHit;
 
     private List<KeywordListener> kwListeners = new ArrayList();
@@ -146,17 +148,44 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
 
         addKeywordListener(new KeywordAdaptater.MouseOverAdaptater() {
                 public void caughtKeyword(KeywordEvent e) {
-                    if (ScilabLexerConstants.URL == e.getType() || ScilabLexerConstants.MAIL == e.getType()) {
+                    if (ScilabLexerConstants.isClickable(e.getType())) {
                         if (ctrlHit) {
-                            setCursor(handCursor);
+                            setCursor(HANDCURSOR);
                             hand = true;
+                            try {
+                                String url = ((ScilabDocument) getDocument()).getText(e.getStart(), e.getLength());
+                                if (ScilabLexerConstants.isClickable(e.getType())) {
+                                    String text;
+                                    switch (e.getType()) {
+                                    case ScilabLexerConstants.URL :
+                                        text = SciNotesMessages.OPENURL;
+                                        break;
+                                    case ScilabLexerConstants.MAIL :
+                                        text = SciNotesMessages.MAILTO;
+                                        break;
+                                    case ScilabLexerConstants.MACROS :
+                                        text = SciNotesMessages.OPENSOURCE;
+                                        break;
+                                    case ScilabLexerConstants.MACROINFILE :
+                                        text = SciNotesMessages.SHOWSOURCE;
+                                        break;
+                                    default :
+                                        text = null;
+                                    }
+
+                                    if (text != null) {
+                                        ScilabEditorPane.this.editor.getInfoBar().setText(text + url);
+                                        infoBarChanged = true;
+                                    }
+                                }
+                            } catch (BadLocationException ex) { }
                         } else {
                             ScilabEditorPane.this.editor.getInfoBar().setText(SciNotesMessages.CLICKABLE_URL);
                             infoBarChanged = true;
                         }
                     } else {
                         if (hand) {
-                            setCursor(textCursor);
+                            setCursor(TEXTCURSOR);
                             hand = false;
                         }
                         if (infoBarChanged) {
@@ -169,15 +198,19 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
 
         addKeywordListener(new KeywordAdaptater.MouseClickedAdaptater() {
                 public void caughtKeyword(KeywordEvent e) {
-                    if (ctrlHit && (ScilabLexerConstants.URL == e.getType() || ScilabLexerConstants.MAIL == e.getType())) {
+                    if (ctrlHit && ScilabLexerConstants.isClickable(e.getType())) {
                         try {
                             hand = false;
                             ctrlHit = false;
                             infoBarChanged = false;
-                            setCursor(textCursor);
+                            setCursor(TEXTCURSOR);
                             ScilabEditorPane.this.editor.getInfoBar().setText(infoBar);
                             String url = ((ScilabDocument) getDocument()).getText(e.getStart(), e.getLength());
-                            WebBrowser.openUrl(url);
+                            if (ScilabLexerConstants.URL == e.getType() || ScilabLexerConstants.MAIL == e.getType()) {
+                                WebBrowser.openUrl(url);
+                            } else if (ScilabLexerConstants.isOpenable(e.getType())) {
+                                OpenSourceFileOnKeywordAction.openSource(ScilabEditorPane.this, url);
+                            }
                         } catch (BadLocationException ex) { }
                     }
                 }

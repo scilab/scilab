@@ -186,6 +186,10 @@ public class SciNotesMessages {
     public static final String BINARY_FILE_MODE = Messages .gettext("Binary file: read-only mode");
     public static final String READ_ONLY_MODE = Messages .gettext("Read-only mode");
     public static final String CLICKABLE_URL = Messages .gettext("Press CTRL and move the mouse over the link to activate it");
+    public static final String OPENURL = Messages .gettext("Open in the navigator the URL ");
+    public static final String MAILTO = Messages .gettext("Mail to ");
+    public static final String OPENSOURCE = Messages .gettext("Open the source of the macro ");
+    public static final String SHOWSOURCE = Messages .gettext("Show the definition of the macro ");
 
     /* About box */
     public static final String VERSION = Messages.gettext("SciNotes") + " 1.1";

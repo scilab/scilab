@@ -50,9 +50,9 @@ import org.scilab.modules.action_binding.InterpreterManagement;
  */
 public class OpenSourceFileOnKeywordAction extends DefaultAction {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private static final int GAP = 5;
+    private static final int GAP = 5;
     private static boolean windowAlreadyExist;
     private static JFrame mainFrame;
 
@@ -113,6 +113,22 @@ public class OpenSourceFileOnKeywordAction extends DefaultAction {
      */
     public static MenuItem createMenu(String label, final SciNotes editor, KeyStroke key) {
         return createMenu(label, null, new OpenSourceFileOnKeywordAction(label, editor, true), key);
+    }
+
+    /**
+     * Show the source of a macro if it is present in the pane or open the source
+     * @param pane the ScilabEditorPane
+     * @param name the macro's name
+     */
+    public static void openSource(ScilabEditorPane pane, String name) {
+        ScilabDocument doc = (ScilabDocument) pane.getDocument();
+        int pos = doc.searchFunctionByName(name);
+        if (pos != -1) {
+            pane.scrollTextToPos(pos);
+        } else {
+            String path = "get_function_path('" + name + "')";
+            InterpreterManagement.requestScilabExec("if " + path + " ~=[] then editor(" + path + ");end");
+        }
     }
 
     /**
@@ -252,15 +268,7 @@ public class OpenSourceFileOnKeywordAction extends DefaultAction {
      * @param name of the macro
      */
     private void openSource(String name) {
-        ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
-        ScilabDocument doc = (ScilabDocument) sep.getDocument();
-        int pos = doc.searchFunctionByName(name);
-        if (pos != -1) {
-            sep.scrollTextToPos(pos);
-        } else {
-            String path = "get_function_path('" + name + "')";
-            InterpreterManagement.requestScilabExec("if " + path + " ~=[] then editor(" + path + ");end");
-        }
+        openSource((ScilabEditorPane) getEditor().getTextPane(), name);
     }
 
     /**

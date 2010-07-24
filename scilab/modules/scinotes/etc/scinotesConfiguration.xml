@@ -112,8 +112,13 @@
         <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
       </style>
 
-      <style name="Macro">
+      <style name="Macro" underline="true" defaultUnderline="true">
         <ForegroundColor default="#ae5cb0" useCache="true" value="#ae5cb0"/>
+        <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+      </style>
+
+      <style name="MacroInFile" underline="true" defaultUnderline="true">
+	<ForegroundColor default="#000000" useCache="true" value="#000000"/>
         <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
       </style>
 

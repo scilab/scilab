@@ -28,6 +28,7 @@ import javax.swing.text.Element;
     public static Set<String> commands = new HashSet();
     public static Set<String> macros = new HashSet();
     public static Set<String> variables = new HashSet();
+    public Set<String> infile;
 
     private ScilabDocument doc;
     private boolean transposable;
@@ -37,6 +38,7 @@ import javax.swing.text.Element;
     public ScilabLexer(ScilabDocument doc) {
         this.doc = doc;
         this.elem = doc.getDefaultRootElement();
+        this.infile = doc.getFunctionsInDoc();
         variables.clear();
         commands.clear();
         macros.clear();
@@ -194,6 +196,9 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
                                    } else if (macros.contains(str)) {
                                        yybegin(COMMANDS);
                                        return ScilabLexerConstants.MACROS;
+                                   } else if (infile.contains(str)) {
+                                       yybegin(COMMANDS);
+                                       return ScilabLexerConstants.MACROINFILE;
                                    } else {
                                        List<String>[] arr = doc.getInOutArgs(start + yychar);
                                        if (arr != null && (arr[0].contains(str) || arr[1].contains(str))) {
