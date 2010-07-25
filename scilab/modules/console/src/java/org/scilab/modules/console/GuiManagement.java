@@ -20,7 +20,7 @@ public class GuiManagement {
    * Constructor
    */
  protected GuiManagement() {
-	throw new UnsupportedOperationException();
+    throw new UnsupportedOperationException();
  }
   
  /**

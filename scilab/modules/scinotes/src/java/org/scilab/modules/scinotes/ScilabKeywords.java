@@ -18,7 +18,7 @@ public class ScilabKeywords {
    * Constructor
    */
  protected ScilabKeywords() {
-	throw new UnsupportedOperationException();
+    throw new UnsupportedOperationException();
  }
   public static String[] GetVariablesName() {
     return ScilabKeywordsJNI.GetVariablesName();
