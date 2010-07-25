@@ -56,7 +56,7 @@ public final class ExitAction extends DefaultAction {
     public static void doExit(SciNotes editor) {
         ScilabWindow scinotesWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(editor.getParentWindowId());
 
-        int numberOfTab = editor.getTabPane().getComponentCount();
+        int numberOfTab = editor.getTabPane().getTabCount();
 
         boolean wantToClose = true;
         int k = 0;

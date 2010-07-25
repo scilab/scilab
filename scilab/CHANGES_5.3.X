@@ -26,6 +26,8 @@ SciNotes:
 
 * Add the possibility to restore the last session (thanks to Paul Griffiths)
 
+* Add a close-button on the tabs and add the possibility to drag&drop them.
+
 File input/output:
 ==================
 

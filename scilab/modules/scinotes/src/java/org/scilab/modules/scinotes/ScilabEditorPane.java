@@ -424,6 +424,13 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     }
 
     /**
+     * @param editor to set
+     */
+    public void setEditor(SciNotes editor) {
+        this.editor = editor;
+    }
+
+    /**
      * Disable all
      */
     public void disableAll() {

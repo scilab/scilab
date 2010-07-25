@@ -93,6 +93,7 @@ import org.scilab.modules.scinotes.actions.RestoreOpenedFilesAction;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 import org.scilab.modules.scinotes.utils.DropFilesListener;
 import org.scilab.modules.scinotes.utils.SaveFile;
+import org.scilab.modules.scinotes.utils.ScilabTabbedPane;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
@@ -180,7 +181,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         Size size = ConfigSciNotesManager.getMainWindowSize();
         window.setSize(size.getWidth(), size.getHeight());
         protectOpenFileList = false;
-        tabPane = new JTabbedPane();
+        tabPane = new ScilabTabbedPane(this);
         tabPane.addChangeListener(new ChangeListener() {
                 public void stateChanged(ChangeEvent e) {
                     String path = new String("");
@@ -472,7 +473,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         SetColorsAction.closeSetColorsWindow();
         OpenSourceFileOnKeywordAction.closeOpenSourceWindow();
 
-        while (getTabPane().getComponentCount() > 0) {
+        while (getTabPane().getTabCount() > 0) {
             closeTabAt(0, true);
         }
         scinotesList.remove(this);
