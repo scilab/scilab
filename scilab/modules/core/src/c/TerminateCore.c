@@ -25,44 +25,50 @@
 /*--------------------------------------------------------------------------*/ 
 BOOL TerminateCorePart1(void)
 {
-	if ( Get_no_startup_flag() == 0) 
-	{
-		char *quit_script = NULL;
+     if ( Get_no_startup_flag() == 0) 
+     {
+          char *quit_script = NULL;
 
-		/* bug 3672 */
-		if (getScilabMode() == SCILAB_STD) quit_script = get_sci_data_strings(QUIT_ERRCATCH_ID);
-		else quit_script = get_sci_data_strings(QUIT_ID);
+          /* bug 3672 */
+          if (getScilabMode() == SCILAB_STD)
+          {
+               quit_script = get_sci_data_strings(QUIT_ERRCATCH_ID);
+          }
+          else
+          {
+               quit_script = get_sci_data_strings(QUIT_ID);
+          }
 
-		/* launch scilab.quit script */
-		C2F(scirun)(quit_script,(long int)strlen(quit_script));
-	}
-	return TRUE;
+          /* launch scilab.quit script */
+          C2F(scirun)(quit_script, (long int)strlen(quit_script));
+     }
+     return TRUE;
 }
 /*--------------------------------------------------------------------------*/ 
 BOOL TerminateCorePart2(void)
 {
-	#ifdef _MSC_VER /* Bug under Linux when freeing the memory */
-		#ifndef _WIN64
-		C2F(freegmem)();
-		C2F(freemem)();
-		#endif
-	#endif
+     #ifdef _MSC_VER /* Bug under Linux when freeing the memory */
+          #ifndef _WIN64
+          C2F(freegmem)();
+          C2F(freemem)();
+          #endif
+     #endif
 
-	DisposeModulesInfo();
+     DisposeModulesInfo();
 
-	destroy_hashtable_scilab_functions();
+     destroy_hashtable_scilab_functions();
 
-	/* Close all scilab's files */
-	TerminateScilabFilesList();
+     /* Close all scilab's files */
+     TerminateScilabFilesList();
 
-	/*
-	 * Cleanup function for the XML library.
-	 */
-	xmlCleanupParser();
+     /*
+      * Cleanup function for the XML library.
+      */
+     xmlCleanupParser();
 
-	/** clean tmpfiles **/
-	C2F(tmpdirc)();
+     /** clean tmpfiles **/
+     C2F(tmpdirc)();
 
-	return TRUE;
+     return TRUE;
 }
 /*--------------------------------------------------------------------------*/ 
