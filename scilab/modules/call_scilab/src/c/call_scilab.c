@@ -41,7 +41,7 @@
 #define putenv _putenv
 #endif
 /*--------------------------------------------------------------------------*/
-static BOOL StartScilabIsOK = FALSE;
+static BOOL isRunning = FALSE;
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 static void SetSciEnv(void)
@@ -77,10 +77,10 @@ BOOL StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 
 	static int iflag = -1, ierr = 0;
 
-	if (StartScilabIsOK) return FALSE;
+	if (isRunning) return FALSE;
 
 	SetFromCToON();
-
+	DisableInteractiveMode();
 	InitializeLaunchScilabSignal();
 
 	if (SCIpath == NULL) /* No SCIpath provided... */
@@ -141,14 +141,14 @@ BOOL StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 	if (ScilabStartupUsed) {FREE(ScilabStartupUsed);ScilabStartupUsed=NULL;}
 	if (InitStringToScilab) {FREE(InitStringToScilab);InitStringToScilab=NULL;}
 
-	StartScilabIsOK = TRUE;
+	isRunning = TRUE;
 
 	return TRUE;
 }
 /*--------------------------------------------------------------------------*/
 BOOL TerminateScilab(char *ScilabQuit)
 {
-	if (StartScilabIsOK)
+	if (isRunning)
 	{
 		if (getScilabMode() != SCILAB_NWNI)
 		{
@@ -158,7 +158,7 @@ BOOL TerminateScilab(char *ScilabQuit)
 		{
 			TerminateCorePart2();
 		}
-		StartScilabIsOK = FALSE;
+		isRunning = FALSE;
 		return TRUE;
 	}
 
