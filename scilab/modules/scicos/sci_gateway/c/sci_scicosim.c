@@ -2068,7 +2068,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 			break;
 		case 248  : strcpy(C2F(cha1).buf,_("IDA_YP0_NULL: the derivative yp0 = NULL is illegal."));
 			break;
-		case 249  : strcpy(C2F(cha1).buf,_("IDA_RES_NULL: th returned residual res = NULL is illegal."));
+		case 249  : strcpy(C2F(cha1).buf,_("IDA_RES_NULL: the returned residual res = NULL is illegal."));
 			break;
 		case 250  : strcpy(C2F(cha1).buf,_("IDA_YRET_NULL: yret = NULL illegal.."));
 			break;
@@ -2136,7 +2136,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 			break;
 		case 325  : strcpy(C2F(cha1).buf,_("CV_BAD_T: t is not in the interval [tn-hu,tn]."));
 			break;
-		case 326  : strcpy(C2F(cha1).buf,_("CV_BAD_DKY:  The dky argument was NULL. dky is the output derivative vector [((d/dy)^k)y](t)."));
+		case 326  : strcpy(C2F(cha1).buf,_("CV_BAD_DKY:  The dky argument was NULL. dky is the output derivative vector [((d/dt)^k)y](t)."));
 			break;
 		case 327  : strcpy(C2F(cha1).buf,_("CV_TOO_CLOSE: ''tout'' too close to ''t0'' to start integration."));
 			break;
@@ -2208,7 +2208,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 			break;
 		case 411  : strcpy(C2F(cha1).buf,_("KIN_LSETUP_FAIL: The user-supplied routine pset (used to compute the preconditioner) encountered an unrecoverable error ."));
 			break;
-		case 412  : strcpy(C2F(cha1).buf,_("KIN_LSOLVE_FAIL: Either the user-supplied routine psolve (used to to solve the preconditioned linear system) encountered an unrecoverable error, or the linear solver routine  (lsolve) encountered an error condition."));
+		case 412  : strcpy(C2F(cha1).buf,_("KIN_LSOLVE_FAIL: Either the user-supplied routine psolve (used to solve the preconditioned linear system) encountered an unrecoverable error, or the linear solver routine (lsolve) encountered an error condition."));
 			break;
 		case 413  : strcpy(C2F(cha1).buf,_("KIN_SYSFUNC_FAIL: Error in the computing function. Please verify your model."));
 			break;
