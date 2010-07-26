@@ -49,6 +49,8 @@ Bug Fixes:
 
 * bug 5366 fixed - help of modules_manager was not built.
 
+* bug 6496 fixed - Add hyperlinks on macros in SciNotes.
+
 * bug 6639 fixed - "hypermat"  did not remove higher dimensions equal to 1.
 
 * bug 6849 fixed - add_profiling badly handled "else" that made plotprofile
