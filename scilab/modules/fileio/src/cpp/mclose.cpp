@@ -41,15 +41,6 @@ int mcloseAll()
         }
     }
     
-    //for(int i = 0 ; i < FileManager::getFileMaxID() ; i++)
-    //{
-    //    int iRet = mclose(i+1);
-    //    if(iRet)
-    //    {
-    //        return iRet;
-    //    }
-    //}
-
     return 0;
 }
 

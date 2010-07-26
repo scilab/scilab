@@ -18,12 +18,12 @@
 FILEIO_IMPEXP int gw_fileio(void);
 /*--------------------------------------------------------------------------*/ 
 FILEIO_IMPEXP int sci_meof(char *fname,unsigned long fname_len);
-FILEIO_IMPEXP int sci_mopen(char *fname,unsigned long fname_len);
-FILEIO_IMPEXP int sci_mclose(char *fname,unsigned long fname_len);
+//FILEIO_IMPEXP int sci_mopen(char *fname,unsigned long fname_len);
+//FILEIO_IMPEXP int sci_mclose(char *fname,unsigned long fname_len);
 FILEIO_IMPEXP int sci_merror(char *fname,unsigned long fname_len);
 FILEIO_IMPEXP int sci_mputstr(char *fname,unsigned long fname_len);
-FILEIO_IMPEXP int sci_mput(char *fname,unsigned long fname_len);
-FILEIO_IMPEXP int sci_mget(char *fname,unsigned long fname_len);
+//FILEIO_IMPEXP int sci_mput(char *fname,unsigned long fname_len);
+//FILEIO_IMPEXP int sci_mget(char *fname,unsigned long fname_len);
 FILEIO_IMPEXP int sci_mgetstr(char *fname,unsigned long fname_len);
 FILEIO_IMPEXP int sci_mseek(char *fname,unsigned long fname_len);
 FILEIO_IMPEXP int sci_mtell(char *fname,unsigned long fname_len);

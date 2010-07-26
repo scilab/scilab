@@ -12,6 +12,10 @@
  */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
+#include "filemanager.hxx"
+
+extern "C"
+{
 #ifndef _MSC_VER
 #include <stdint.h> 
 #else
@@ -24,9 +28,8 @@
 #include "islittleendian.h"
 #include "../../../libs/libst/misc.h"
 #include "localization.h"
-/*--------------------------------------------------------------------------*/
-struct soundstream ftf;
-int swap = 0;
+#include "charEncoding.h"
+}
 /*--------------------------------------------------------------------------*/
 /* =================================================
 * reads data and store them without type conversion 
@@ -83,7 +86,7 @@ void C2F(mgetnc)(int *fd, void * res, int *n1, char *type, int *ierr)
     *ierr=3;
     return;
   }
-  swap = GetSwapStatus(*fd);
+  int swap = GetSwapStatus(*fd);
   c1 = ( strlen(type) > 1) ? type[1] : ' '; 
   c2 = ( strlen(type) > 2) ? type[2] : ' '; 
   switch ( type[0] )
@@ -133,13 +136,11 @@ void C2F(mgetnc)(int *fd, void * res, int *n1, char *type, int *ierr)
 #define MGET_CHAR(NumType)    MGET_CHAR_NC(NumType);   CONVGD(NumType); 
 /*--------------------------------------------------------------------------*/
 /* reads data and store them in double  */
-void mget2(FILE *fa, int swap2, double *res, int n, char *type, int *ierr)
+void mget2(FILE *fa, int swap, double *res, int n, char *type, int *ierr)
 {  
 	char c1,c2;
 	int i,items=n;
-	ft_t ft = &ftf; 
 	*ierr=0;
-	ft->fp = fa;
 	c1 = ( strlen(type) > 1) ? type[1] : ' '; 
 	c2 = ( strlen(type) > 2) ? type[2] : ' '; 
 	switch ( type[0] )
@@ -175,27 +176,27 @@ void mget2(FILE *fa, int swap2, double *res, int n, char *type, int *ierr)
 /*--------------------------------------------------------------------------*/
 void C2F(mget) (int *fd, double *res, int *n, char *type, int *ierr)
 {  
-  int nc,swap2;
-  FILE *fa;
-  nc=(int)strlen(type);
-  *ierr=0;
-  if ( nc == 0) 
+    *ierr=0;
+    if(strlen(type) == 0) 
     {
-      sciprint(_("%s: Wrong size for input argument #%d: Non-empty string expected.\n"),"mput",4,type);
-      *ierr=2;
-      return;
+        sciprintW(_W("%ls: Wrong size for input argument #%d: Non-empty string expected.\n"), L"mput", 4, type);
+        *ierr=2;
+        return;
     }
-  fa = GetFileOpenedInScilab(*fd);
-  if (fa ) 
+
+    File* pFile = FileManager::getFile(*fd);
+    if(pFile && pFile->getFiledesc()) 
     {
-      swap2 = GetSwapStatus(*fd);
-      mget2(fa,swap2,res,*n,type,ierr);
-      if (*ierr > 0) sciprint(_("%s: Wrong value for input argument #%d: Format not recognized.\n"),"mget",4);
+        mget2(pFile->getFiledesc(), pFile->getFileSwap(), res, *n, type, ierr);
+        if(*ierr > 0)
+        {
+            sciprintW(_W("%ls: Wrong value for input argument #%d: Format not recognized.\n"), L"mget", 4);
+        }
     }
-  else 
+    else 
     {
-      sciprint(_("%s: No input file associated to logical unit %d.\n"),"mget",*fd);
-      *ierr=3;
+        sciprintW(_W("%ls: No input file associated to logical unit %d.\n"), L"mget", *fd);
+        *ierr=3;
     }
 }
 /*--------------------------------------------------------------------------*/

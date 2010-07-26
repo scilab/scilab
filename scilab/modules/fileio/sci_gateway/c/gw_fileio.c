@@ -22,8 +22,8 @@ static gw_generic_table Tab[]={
 	{NULL, ""}, //mopen
 	{sci_mputstr, "mputstr"},
 	{NULL, ""}, //mclose
-	{sci_mput, "mput"},
-	{sci_mget, "mget"},
+	{NULL, ""}, //mput
+	{NULL, ""}, //mget
 	{sci_mgetstr, "mgetstr"},
 	{sci_meof, "meof"},
 	{sci_mseek, "mseek"},

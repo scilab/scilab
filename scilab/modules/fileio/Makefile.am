@@ -18,11 +18,9 @@ src/c/getfiletype.c \
 src/c/mclearerr.c \
 src/c/meof.c \
 src/c/merror.c \
-src/c/mget.c \
 src/c/mgetl.c \
 src/c/mgeti.c \
 src/c/mgetstr.c \
-src/c/mput.c \
 src/c/mputi.c \
 src/c/mputstr.c \
 src/c/mseek.c \
@@ -76,11 +74,9 @@ sci_gateway/c/sci_chdir.c \
 sci_gateway/c/sci_pwd.c \
 sci_gateway/c/sci_mclearerr.c \
 sci_gateway/c/sci_merror.c \
-sci_gateway/c/sci_mget.c \
 sci_gateway/c/sci_mgetl.c \
 sci_gateway/c/sci_mgetstr.c \
 sci_gateway/c/sci_moef.c \
-sci_gateway/c/sci_mput.c \
 sci_gateway/c/sci_mputstr.c \
 sci_gateway/c/sci_mseek.c \
 sci_gateway/c/sci_mtell.c \
@@ -98,12 +94,16 @@ sci_gateway/c/sci_isfile.c
 GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/fileio_gw.cpp \
 	sci_gateway/cpp/sci_mopen.cpp \
-	sci_gateway/cpp/sci_mclose.cpp
+	sci_gateway/cpp/sci_mclose.cpp \
+	sci_gateway/cpp/sci_mget.cpp \
+	sci_gateway/cpp/sci_mput.cpp
 
 FILEIO_CPP_SOURCES = \
 	src/cpp/expandPathVariable.cpp \
 	src/cpp/mopen.cpp \
 	src/cpp/mclose.cpp \
+	src/cpp/mput.cpp \
+	src/cpp/mget.cpp \
 	src/cpp/filemanager.cpp
 
 

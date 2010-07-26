@@ -505,7 +505,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\mget.c"
+				RelativePath=".\src\cpp\mget.cpp"
 				>
 			</File>
 			<File
@@ -529,7 +529,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\mput.c"
+				RelativePath=".\src\cpp\mput.cpp"
 				>
 			</File>
 			<File
@@ -669,10 +669,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_mget.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_mgetl.c"
 				>
 			</File>
@@ -686,10 +682,6 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\sci_movefile.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\c\sci_mput.c"
 				>
 			</File>
 			<File

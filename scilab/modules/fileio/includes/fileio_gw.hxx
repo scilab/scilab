@@ -38,5 +38,7 @@ public :
 
 CPP_GATEWAY_PROTOTYPE(sci_mopen);
 CPP_GATEWAY_PROTOTYPE(sci_mclose);
+CPP_GATEWAY_PROTOTYPE(sci_mput);
+CPP_GATEWAY_PROTOTYPE(sci_mget);
 
 #endif /* !__FILEIO_GW_HXX__ */

@@ -17,13 +17,11 @@
 
 namespace types
 {
-    class File : public Double
+    class File
     {
     public :
                                     File();
                                     ~File();
-
-        virtual File*               getAsFile(void) { return this; }
 
         void                        setFileMode(wstring _pstMode);
         wstring&                    getFileMode();

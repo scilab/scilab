@@ -15,7 +15,7 @@
 namespace types
 {
 
-    File::File() : Double(0)
+    File::File()
     {
         m_fileDesc = NULL;
         m_iSwap = 0;

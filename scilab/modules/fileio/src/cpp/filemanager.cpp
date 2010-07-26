@@ -46,6 +46,11 @@ bool FileManager::isOpened(wstring _stFilename)
 
 types::File* FileManager::getFile(int _iID)
 {
+    if(_iID == -1 && m_iCurrentFile != -1)
+    {
+        return m_fileList[m_iCurrentFile - 1];
+    }
+
     if(_iID <= m_fileList.size())
     {//1-indexed
         return m_fileList[_iID - 1];
@@ -70,16 +75,15 @@ int FileManager::addFile(types::File* _file)
         if(m_fileList[i] == NULL)
         {
             m_fileList[i] = _file;
-            //put ID in "double" part
-            _file->real_get()[0] = i + 1;
-            return i + 1;
+            int iNewId = i + 1;
+            m_iCurrentFile = iNewId;
+            return iNewId;
         }
     }
 
     //no free space, add at the end
     m_fileList.push_back(_file);
     int iNewId = static_cast<int>(m_fileList.size());
-    _file->real_get()[0] = iNewId;
     m_iCurrentFile = iNewId;
     return iNewId;
 }

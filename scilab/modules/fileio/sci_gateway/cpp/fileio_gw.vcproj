@@ -44,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../../functions_manager/includes;../../../types/includes;../../../core/includes;../../../abstractSyntaxTree/includes;../../../symbol/includes;../../../api_scilab/includes;../../../operations/includes;../../../localization/includes;../../../output_stream/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../system_env/includes;../../../string/includes"
+				AdditionalIncludeDirectories="../../includes;../../../functions_manager/includes;../../../types/includes;../../../core/includes;../../../abstractSyntaxTree/includes;../../../symbol/includes;../../../api_scilab/includes;../../../operations/includes;../../../localization/includes;../../../output_stream/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../system_env/includes;../../../string/includes;../../../windows_tools/includes"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;FILEIO_GW_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -118,7 +118,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../../functions_manager/includes;../../../types/includes;../../../core/includes;../../../abstractSyntaxTree/includes;../../../symbol/includes;../../../api_scilab/includes;../../../operations/includes;../../../localization/includes;../../../output_stream/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../system_env/includes;../../../string/includes"
+				AdditionalIncludeDirectories="../../includes;../../../functions_manager/includes;../../../types/includes;../../../core/includes;../../../abstractSyntaxTree/includes;../../../symbol/includes;../../../api_scilab/includes;../../../operations/includes;../../../localization/includes;../../../output_stream/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../system_env/includes;../../../string/includes;../../../windows_tools/includes"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;FILEIO_GW_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -193,7 +193,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="../../includes;../../../functions_manager/includes;../../../types/includes;../../../core/includes;../../../abstractSyntaxTree/includes;../../../symbol/includes;../../../api_scilab/includes;../../../operations/includes;../../../localization/includes;../../../output_stream/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../system_env/includes;../../../string/includes"
+				AdditionalIncludeDirectories="../../includes;../../../functions_manager/includes;../../../types/includes;../../../core/includes;../../../abstractSyntaxTree/includes;../../../symbol/includes;../../../api_scilab/includes;../../../operations/includes;../../../localization/includes;../../../output_stream/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../system_env/includes;../../../string/includes;../../../windows_tools/includes"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;FILEIO_GW_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -270,7 +270,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="../../includes;../../../functions_manager/includes;../../../types/includes;../../../core/includes;../../../abstractSyntaxTree/includes;../../../symbol/includes;../../../api_scilab/includes;../../../operations/includes;../../../localization/includes;../../../output_stream/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../system_env/includes;../../../string/includes"
+				AdditionalIncludeDirectories="../../includes;../../../functions_manager/includes;../../../types/includes;../../../core/includes;../../../abstractSyntaxTree/includes;../../../symbol/includes;../../../api_scilab/includes;../../../operations/includes;../../../localization/includes;../../../output_stream/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../system_env/includes;../../../string/includes;../../../windows_tools/includes"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;FILEIO_GW_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -337,7 +337,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_mget.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_mopen.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_mput.cpp"
 				>
 			</File>
 		</Filter>

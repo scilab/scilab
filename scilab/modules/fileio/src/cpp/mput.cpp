@@ -12,6 +12,9 @@
  */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
+#include "filemanager.hxx"
+extern "C"
+{
 #ifndef _MSC_VER
 #include <stdint.h> 
 #else
@@ -25,11 +28,9 @@
 #include "../../../libs/libst/misc.h"
 #include "localization.h"
 #include "sci_warning.h"
+#include "charEncoding.h"
+}
 /*--------------------------------------------------------------------------*/
-extern struct soundstream ftf; /* defined in mget.c */
-extern int swap; /* defined in mget.c */
-/*--------------------------------------------------------------------------*/
-
 /*===============================================
  * function to write data without type conversion
  *===============================================*/
@@ -72,7 +73,7 @@ extern int swap; /* defined in mget.c */
 void C2F(mputnc) (int *fd, void * res, int *n1, char *type, int *ierr)
 {
   char c1,c2;
-  int i,swap2,n;
+  int i,n;
   FILE *fa;
   n=*n1;
   *ierr=0;
@@ -84,7 +85,7 @@ void C2F(mputnc) (int *fd, void * res, int *n1, char *type, int *ierr)
     *ierr=3;
     return;
   }
-  swap2 = GetSwapStatus(*fd);
+  int swap = GetSwapStatus(*fd);
 
   c1 = ( strlen(type) > 1) ? type[1] : ' ';
   c2 = ( strlen(type) > 2) ? type[2] : ' ';
@@ -157,13 +158,11 @@ void C2F(mputnc) (int *fd, void * res, int *n1, char *type, int *ierr)
       *ierr=1;return;							\
     }
 /*--------------------------------------------------------------------------*/
-void mput2 (FILE *fa, int swap2, double *res, int n, char *type, int *ierr)
+void mput2 (FILE *fa, int swap, double *res, int n, char *type, int *ierr)
 {
   char c1,c2;
   int i;
-  ft_t ft = &ftf;
   *ierr=0;
-  ft->fp = fa;
   c1 = ( strlen(type) > 1) ? type[1] : ' ';
   c2 = ( strlen(type) > 2) ? type[2] : ' ';
   switch ( type[0] )
@@ -191,39 +190,36 @@ void mput2 (FILE *fa, int swap2, double *res, int n, char *type, int *ierr)
 /*--------------------------------------------------------------------------*/
 void C2F(mput) (int *fd, double *res, int *n, char *type, int *ierr)
 {
-  int nc = 0,swap2 = 0;
-  FILE *fa = NULL;
-  *ierr = 0;
-  if ((nc = (int)strlen(type)) == 0)
+    *ierr = 0;
+    if(strlen(type) == 0)
     {
-      if ( getWarningMode() ) sciprint(_("%s: Wrong size for input argument #%d ('%s'): Non-empty string expected.\n"),"mput",4,type);
-      *ierr = 2;
-      return;
+        if(getWarningMode())
+        {
+            sciprintW(_W("%ls: Wrong size for input argument #%d ('%s'): Non-empty string expected.\n"), L"mput", 4, type);
+        }
+        *ierr = 2;
+        return;
     }
 
-  if ( *fd == -1  &&  GetFileOpenedInScilab(*fd) == NULL )
+    File *pFile = FileManager::getFile(*fd);
+    if(pFile && pFile->getFiledesc())
     {
-      sciprint(_("%s: No File opened in Scilab.\n") , "mput" ) ;
-      *ierr = 3 ;
-      return ;
+        mput2(pFile->getFiledesc(), pFile->getFileSwap(), res, *n, type, ierr);
+        if(*ierr > 0) 
+        {
+            if(getWarningMode())
+            {
+                sciprintW(_W("%ls: Wrong value for input argument #%d ('%s'): Format not recognized.\n"), L"mput", 4, type);
+            }
+        }
     }
-
-  if ((fa = GetFileOpenedInScilab(*fd)) !=NULL)
+    else
     {
-      swap2 = GetSwapStatus(*fd);
-      mput2(fa,swap2,res,*n,type,ierr);
-      if (*ierr > 0) {
-	if ( getWarningMode() ) {
-	  sciprint(_("%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"),"mput",4,type);
-	}
-      }
-    }
-  else
-    {
-      if ( getWarningMode() ) {
-	sciprint(_("%s: Error while opening, reading or writing '%s'.\n"),"mput", GetFileNameOpenedInScilab(*fd));
-      }
-      *ierr=3;
+        if(getWarningMode())
+        {
+            sciprintW(_W("%ls: No input file associated to logical unit %d.\n"), L"mput", *fd);
+        }
+        *ierr=3;
     }
 }
 /*--------------------------------------------------------------------------*/

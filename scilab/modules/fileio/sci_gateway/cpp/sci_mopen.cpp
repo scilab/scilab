@@ -32,7 +32,7 @@ Function::ReturnValue sci_mopen(typed_list &in, int _iRetCount, typed_list &out)
     int iID                 = 0;
     wchar_t* pstFilename    = NULL;
     wchar_t* pstMode        = L"wb";
-    int iSwap               = 1;
+    int iSwap               = 0;
 
     //check input parameters
     if(in.size() >= 1)
@@ -108,38 +108,39 @@ Function::ReturnValue sci_mopen(typed_list &in, int _iRetCount, typed_list &out)
 
     iErr = mopen(pstFilename, pstMode, iSwap, &iID);
 
-    
+
     if(iErr != MOPEN_NO_ERROR)
     {//mange file open errors
         if(_iRetCount == 1)
         {
             switch(iErr)
             {
-				case MOPEN_CAN_NOT_OPEN_FILE:
-				{
-					ScierrorW(999, _W("%ls: Cannot open file %ls.\n"), L"mopen", pstFilename);
-					FREE(pstFilename);
-					pstFilename = NULL;
+            case MOPEN_CAN_NOT_OPEN_FILE:
+                {
+                    ScierrorW(999, _W("%ls: Cannot open file %ls.\n"), L"mopen", pstFilename);
+                    FREE(pstFilename);
+                    pstFilename = NULL;
                     return Function::Error;
-				}
-				case MOPEN_INVALID_FILENAME:
-				{
-					ScierrorW(999,_W("%ls: invalid filename.\n"), L"mopen");
-					FREE(pstFilename);
-					pstFilename = NULL;
+                }
+            case MOPEN_INVALID_FILENAME:
+                {
+                    ScierrorW(999,_W("%ls: invalid filename.\n"), L"mopen");
+                    FREE(pstFilename);
+                    pstFilename = NULL;
                     return Function::Error;
-				}
-				case MOPEN_INVALID_STATUS:
-				{
-					ScierrorW(999,_W("%ls: invalid status.\n"), L"mopen");
-					FREE(pstFilename);
-					pstFilename = NULL;
+                }
+            case MOPEN_INVALID_STATUS:
+                {
+                    ScierrorW(999,_W("%ls: invalid status.\n"), L"mopen");
+                    FREE(pstFilename);
+                    pstFilename = NULL;
                     return Function::Error;
-				}
+                }
             }
         }
     }
 
-    out.push_back(FileManager::getFile(iID));
+    Double* pD = new Double(static_cast<double>(iID));
+    out.push_back(pD);
     return Function::OK;
 }
