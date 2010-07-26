@@ -29,8 +29,8 @@ FILE* linux_fopen(const wchar_t* _pstFilename, const wchar_t* _pstMode);
 
 // MacOS X
 #ifdef __APPLE__
-#define os_fopen        macos_fopen
-FILE* macos_fopen(const wchar_t* _pstFilename, const wchar_t* _pstMode);
+#define os_wfopen        linux_fopen
+FILE* linux_fopen(const wchar_t* _pstFilename, const wchar_t* _pstMode);
 #endif
 
 #endif /* !__OS_WFOPEN_H__ */

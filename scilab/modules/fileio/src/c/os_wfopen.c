@@ -14,16 +14,6 @@
 #include "MALLOC.h"
 #include "charEncoding.h"
 
-
-#ifdef __APPLE__
-FILE* macos_fopen(const wchar_t* _pstFilename, const wchar_t* _pstMode)
-{
-    return linux_fopen(_pstFilename, _pstMode);
-}
-
-#endif
-
-
 #ifndef _MSC_VER
 FILE* linux_fopen(const wchar_t* _pstFilename, const wchar_t* _pstMode)
 {
