@@ -113,6 +113,9 @@ Bug Fixes:
 
 * bug 7441 fixed - The history browser crashed if language was changed.
 
+* bug 7443 fixed - The number of arguments of the "title", "xlabel", "ylabel" and
+                   "zlabel" macros was incorrectly checked.
+
 * bug 7457 fixed - Under Linux and MacOS, the datatip mode icon was missing in
                    the graphic windows toolbar.
 
