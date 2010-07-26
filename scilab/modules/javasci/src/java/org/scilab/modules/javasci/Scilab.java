@@ -18,21 +18,59 @@ import org.scilab.modules.types.scilabTypes.ScilabTypeEnum;
 import org.scilab.modules.types.scilabTypes.ScilabDouble;
 import org.scilab.modules.types.scilabTypes.ScilabInteger;
 import org.scilab.modules.javasci.Call_Scilab;
+import org.scilab.modules.javasci.JavasciException.InitializationException;
 
 public class Scilab {
-    private String SCI = "/pro/git/javasci-v2/scilab/";
-    public static int plop = 42;
+    private String SCI = null;
     
-    public void Scilab(String SCI){
-        this.SCI = SCI;
+
+	/**
+	 * Creator of the Scilab Javasci object. 
+	 * Under GNU/Linux / Mac OS X, try to detect with SCI
+	 * Under Windows, use also the registery
+	 * @param SCI provide the path to Scilab data
+	 */
+    public Scilab() throws InitializationException {
+		// Auto detect 
+        try {
+            String detectedSCI = System.getenv("SCI");
+			if (detectedSCI == null || detectedSCI.length() == 0) {
+				throw new InitializationException("Auto detection of SCI failed.\nSCI empty.");
+			}
+			this.initScilab(detectedSCI);
+        } catch (Exception e) {
+			throw new InitializationException("Auto detection of SCI failed.\nCould not retrieve the variable SCI.", e);
+        }
+		// @TODO manage windows through the registery
     }
+
+	/**
+	 * Creator of the Scilab Javasci object. 
+	 * @param SCI provide the path to Scilab data
+	 */
+    public Scilab(String SCI) throws InitializationException {
+		this.initScilab(SCI);
+
+    }
+
+	private void initScilab(String SCI) throws InitializationException {
+
+		File f = new File(SCI);
+		if (!f.isDirectory()) { 
+			throw new InitializationException("Could not find directory " + f.getAbsolutePath());
+		}
+
+		this.SCI = SCI;
+	}
 
     /**
      * Open a connection to the Scilab engine
      * This function is based on StartScilab from call_scilab
+	 * Note: For now, only one instance of Scilab can be launched
+	 * A second launch will return FALSE
      * @return if the operation is successful
      */
-    public boolean open() {
+    public boolean open(){
 //        System.out.println("SCI : " + SCI);
         return Call_Scilab.StartScilab(this.SCI, null, null);
     }
@@ -40,6 +78,8 @@ public class Scilab {
     /**
      * Open a connection to the Scilab engine and run the command job
      * This function is based on StartScilab from call_scilab
+	 * Note: For now, only one instance of Scilab can be launched
+	 * A second launch will return FALSE
      * @param job The job to run on startup
      * @return if the operation is successful
      */
@@ -51,6 +91,8 @@ public class Scilab {
     /**
      * Open a connection to the Scilab engine and run commands job
      * This function is based on StartScilab from call_scilab
+	 * Note: For now, only one instance of Scilab can be launched
+	 * A second launch will return FALSE
      * @param jobs The serie of jobs to run on startup
      * @return if the operation is successful
      */
@@ -63,6 +105,8 @@ public class Scilab {
     /**
      * Open a connection to the Scilab engine and run thefile scriptFilename
      * This function is based on StartScilab from call_scilab
+	 * Note: For now, only one instance of Scilab can be launched
+	 * A second launch will return FALSE
      * @param job The script to execute on startup
      * @return if the operation is successful
      */
@@ -207,7 +251,12 @@ public class Scilab {
     */
     public boolean put(String varname, ScilabType theVariable) {
         if (theVariable instanceof ScilabDouble) {
-			Call_Scilab.putDouble(varname,((ScilabDouble)theVariable).getRealPart());
+            ScilabDouble sciDouble = (ScilabDouble)theVariable;
+            if (sciDouble.isReal()) {
+                Call_Scilab.putDouble(varname,sciDouble.getRealPart());
+            } else {
+				//                Call_Scilab.putDoubleComplex(varname,sciDouble.getRealPart(), sciDouble.getImaginaryPart());
+            }
 		}
 		if (theVariable instanceof ScilabInteger) {
 //			Call_Scilab.putInteger((ScilabInteger)theVariable.getRealPart());
