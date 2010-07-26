@@ -13,43 +13,53 @@
 extern "C"
 {
 #include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 #include "getScilabJavaVM.h"
 }
 
 #include "CallGraphicController.hxx"
+#include "DataController.hxx"
 
 using namespace org_scilab_modules_graphic_objects;
 
 BOOL setGraphicObjectProperty(char *_pstID, char *_pstName, void *_pvValue, _ReturnType_ _valueType, int numElements)
 {
- bool result = false;
+    bool result = false;
 
- double doubleValue;
- int intValue;
- BOOL boolValue;
+    double doubleValue;
+    int intValue;
+    BOOL boolValue;
 
- switch(_valueType)
+    // Special Case for data, no need to go through Java.
+    if (strcmp(_pstName, __GO_DATA__) == 0)
+    {
+        doubleValue = *(double*)_pvValue;
+        result = DataController::setGraphicObjectProperty(_pstID, doubleValue);
+        return result;
+    }
+
+    switch(_valueType)
     {
     case jni_string :
         result = CallGraphicController::setGraphicObjectProperty(getScilabJavaVM(), _pstID, _pstName, (char *)_pvValue);
         break;
 
     case jni_string_vector :
-	result = CallGraphicController::setGraphicObjectProperty(getScilabJavaVM(), _pstID, _pstName, (char**)_pvValue, numElements);
-	break;
+        result = CallGraphicController::setGraphicObjectProperty(getScilabJavaVM(), _pstID, _pstName, (char**)_pvValue, numElements);
+        break;
 
     case jni_double :
-	doubleValue = *(double*)_pvValue;
-	result = CallGraphicController::setGraphicObjectProperty(getScilabJavaVM(), _pstID, _pstName, (double)doubleValue);
-	break;
+        doubleValue = *(double*)_pvValue;
+        result = CallGraphicController::setGraphicObjectProperty(getScilabJavaVM(), _pstID, _pstName, (double)doubleValue);
+        break;
 
     case jni_double_vector :
-	result = CallGraphicController::setGraphicObjectProperty(getScilabJavaVM(), _pstID, _pstName, (double*)_pvValue, numElements);
-	break;
+        result = CallGraphicController::setGraphicObjectProperty(getScilabJavaVM(), _pstID, _pstName, (double*)_pvValue, numElements);
+        break;
 
     case jni_int :
 
-	intValue = *(int*)_pvValue;
+        intValue = *(int*)_pvValue;
 
         result = CallGraphicController::setGraphicObjectProperty(getScilabJavaVM(), _pstID, _pstName, (int)intValue);
         break;
@@ -60,22 +70,22 @@ BOOL setGraphicObjectProperty(char *_pstID, char *_pstName, void *_pvValue, _Ret
 
     case jni_bool :
 
-	boolValue = *(BOOL*)_pvValue;
+        boolValue = *(BOOL*)_pvValue;
 
-    result = CallGraphicController::setGraphicObjectProperty(getScilabJavaVM(), _pstID, _pstName, BOOLtobool(boolValue));
+        result = CallGraphicController::setGraphicObjectProperty(getScilabJavaVM(), _pstID, _pstName, BOOLtobool(boolValue));
         break;
 
     case jni_bool_vector :
 
-	result = CallGraphicController::setGraphicObjectProperty(getScilabJavaVM(), _pstID, _pstName, (bool*)_pvValue, numElements);
+        result = CallGraphicController::setGraphicObjectProperty(getScilabJavaVM(), _pstID, _pstName, (bool*)_pvValue, numElements);
 
-	break;
+        break;
 
     default :
         /* Do Nothing */
         break;
     }
 
- return booltoBOOL(result);
+    return booltoBOOL(result);
 }
 

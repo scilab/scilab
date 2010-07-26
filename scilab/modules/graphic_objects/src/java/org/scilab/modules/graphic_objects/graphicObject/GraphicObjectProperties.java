@@ -44,6 +44,7 @@ public static final String __GO_USER_DATA__ =              "UserData";
 public static final String __GO_USER_DATA_SIZE__ =         "UserDataSize";
 public static final String __GO_VISIBLE__ =                "Visible";
 public static final String __GO_TYPE__ =                   "Type";
+public static final String __GO_DATA__ =                   "Data";
 public static final String __GO_REFERENCED__ =             "Referenced";
 public static final String __GO_VALID__ =                  "Valid";
 

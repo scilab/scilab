@@ -43,6 +43,7 @@
 #define __GO_USER_DATA_SIZE__              "UserDataSize"
 #define __GO_VISIBLE__                     "Visible"
 #define __GO_TYPE__                        "Type"
+#define __GO_DATA__                        "Data"
 #define __GO_REFERENCED__                  "Referenced"
 #define __GO_VALID__                       "Valid"
 

@@ -3,11 +3,11 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -26,6 +26,9 @@
 #include "localization.h"
 #include "MALLOC.h"
 #include "SetPropertyStatus.h"
+
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*--------------------------------------------------------------------------*/
 /* F.Leray 29.04.05 */
@@ -108,14 +111,14 @@ int get3ddata(sciPointObj *pobj)
       addMatrixToReturnedList( tList, pSURFACE_FEATURE (pobj)->pvecx, nbRow, nbCol ) ;
       addMatrixToReturnedList( tList, pSURFACE_FEATURE (pobj)->pvecy, nbRow, nbCol ) ;
       addMatrixToReturnedList( tList, pSURFACE_FEATURE (pobj)->pvecz, nbRow, nbCol ) ;
-      
+
       addMatrixToReturnedList( tList, pSURFACE_FEATURE (pobj)->inputCMoV, pSURFACE_FEATURE (pobj)->m3n, pSURFACE_FEATURE (pobj)->n3n ) ;
 
-      
+
     }
     else if(pSURFACE_FEATURE (pobj)->typeof3d == SCI_PLOT3D)
     {
-      
+
       addMatrixToReturnedList( tList, pSURFACE_FEATURE(pobj)->pvecx, pSURFACE_FEATURE(pobj)->m1, pSURFACE_FEATURE(pobj)->n1 ) ;
       addMatrixToReturnedList( tList, pSURFACE_FEATURE(pobj)->pvecy, pSURFACE_FEATURE(pobj)->m2, pSURFACE_FEATURE(pobj)->n2 ) ;
       addMatrixToReturnedList( tList, pSURFACE_FEATURE(pobj)->pvecz, pSURFACE_FEATURE(pobj)->m3, pSURFACE_FEATURE(pobj)->n3 ) ;
@@ -151,6 +154,22 @@ int get3ddata(sciPointObj *pobj)
   return 0;
 }
 /*------------------------------------------------------------------------*/
+int get_data_property( sciPointObj * pobj )
+{
+    double *pdblData = getGraphicObjectProperty(pobj->UID, __GO_DATA__, jni_double);
+
+    if (pdblData == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"data");
+        return -1;
+    }
+
+    return sciReturnDouble(*pdblData);
+
+}
+
+
+#if 0
 int get_data_property( sciPointObj * pobj )
 {
 
@@ -199,6 +218,7 @@ int get_data_property( sciPointObj * pobj )
 
     return status ;
   }
-  
+
 }
+#endif
 /*------------------------------------------------------------------------*/

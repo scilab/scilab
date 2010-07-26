@@ -4,11 +4,12 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -30,6 +31,9 @@
 #include "set_data_property.h"
 #include "ColorMapManagement.h"
 #include "MALLOC.h"
+
+#include "graphicObjectProperties.h"
+#include "setGraphicObjectProperty.h"
 
 /*--------------------------------------------------------------------------*/
 /* F.Leray 29.04.05 */
@@ -84,7 +88,7 @@ int setchampdata( sciPointObj * pobj, AssignedList * tlist )
     FREE( vfx ) ;
     FREE( vfy ) ;
     return sciReturnEmptyMatrix() ;
-  } 
+  }
 
   /* ok everything ok we can allocate new values */
   /* Update the dimensions Nbr1 and Nbr2 */
@@ -147,7 +151,7 @@ int setgrayplotdata( sciPointObj * pobj, AssignedList * tlist )
     FREE( pvecy ) ;
     FREE( pvecz ) ;
     return sciReturnEmptyMatrix() ;
-  } 
+  }
 
   /* Update the dimensions nx and ny */
   ppgrayplot->nx = nbRow[0] ;
@@ -195,7 +199,7 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
       return SET_PROPERTY_ERROR ;
     }
   }
-  else 
+  else
   {
     if ( m2 * n2 != n3 )
     {
@@ -207,7 +211,7 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
 			Scierror(999, _("%s: Wrong size for arguments #%d and #%d: Incompatible length.\n"),"Tlist",1,3);
       return SET_PROPERTY_ERROR ;
     }
-    if ( m1 * n1 <= 1 || m2 * n2 <= 1 ) 
+    if ( m1 * n1 <= 1 || m2 * n2 <= 1 )
     {
 			Scierror(999, _("%s: Wrong size for arguments #%d and #%d: Should be >= %d.\n"),"Tlist",1,2,2);
       return SET_PROPERTY_ERROR ;
@@ -217,7 +221,7 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
   if ( m1 * n1 == 0 || m2 * n2 == 0 || m3 * n3 == 0 )
   {
     return sciReturnEmptyMatrix() ;
-  } 
+  }
 
   /* get color size if exists */
   if ( getAssignedListNbElement( tlist ) == 4 )
@@ -226,7 +230,7 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
     if ( m3n * n3n == m3 * n3 )
     {
       /* the color is a matrix, with same size as Z */
-      psurf->izcol = 2 ; 
+      psurf->izcol = 2 ;
     }
     else if (m3n * n3n == n3 && (m3n == 1 || n3n == 1))
     {
@@ -255,7 +259,7 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
     }
   }
   else
-  { 
+  {
     /* case isfac=0;*/
     if(psurf->isfac != 0)
     {
@@ -423,7 +427,7 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
       /* We have just enough information to fill the psurf->zcol array*/
       /* nc value is dimzy*/
       doubleArrayCopy( psurf->zcol, psurf->inputCMoV, nc ) ;
-    }  
+    }
     /* case flagcolor == 4*/
     else if(psurf->flagcolor==4 && ( m3n==1 || n3n ==1)) /* it means we have a vector in Color input: 1 color per facet in input*/
     {
@@ -452,7 +456,7 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
     else if(psurf->flagcolor == 3)
     {
       nc = psurf->dimzx *  psurf->dimzy;
-    } 
+    }
     else
     {
       nc=0;
@@ -516,7 +520,7 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
 
   /* We need to rebuild ...->color matrix */
   if( psurf->flagcolor != 0 && psurf->flagcolor != 1 )
-  { 
+  {
     if(psurf->cdatamapping == 0)
     {
       /* scaled */
@@ -631,6 +635,21 @@ int CheckAndUpdate_z_shift(sciPointObj * pobj, int numrow)
 /*------------------------------------------------------------------------*/
 int set_data_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
+    double *pdblValue = getDoubleMatrixFromStack(stackPointer);
+    BOOL bResult = setGraphicObjectProperty(pobj->UID, __GO_DATA__, pdblValue, jni_double, 1);
+
+    if (bResult == FALSE)
+    {
+        return SET_PROPERTY_ERROR;
+    }
+
+    return SET_PROPERTY_SUCCEED;
+}
+
+
+#if 0
+int set_data_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol)
+{
   if( sciGetEntityType(pobj) == SCI_SEGS && pSEGS_FEATURE(pobj)->ptype == 1 )
   {
     AssignedList * tlist = NULL ;
@@ -641,7 +660,7 @@ int set_data_property( sciPointObj * pobj, size_t stackPointer, int valueType, i
       Scierror(999, "Incorrect argument, must be a Tlist!\n") ;
       return SET_PROPERTY_ERROR ;
     }
-  
+
     /* we should have 4 properties in the tlist */
     tlist = createAssignedList( 3, 4 ) ;
     if ( tlist == NULL )
@@ -731,6 +750,7 @@ int set_data_property( sciPointObj * pobj, size_t stackPointer, int valueType, i
     return sciSetPoint( pobj, getDoubleMatrixFromStack( stackPointer ), &nbRow, &nbCol );
   }
   return SET_PROPERTY_ERROR ;
-  
+
 }
+#endif
 /*------------------------------------------------------------------------*/

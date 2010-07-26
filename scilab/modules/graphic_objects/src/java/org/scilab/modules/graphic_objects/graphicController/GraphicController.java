@@ -29,21 +29,21 @@ import org.scilab.modules.graphic_objects.graphicView.LogView;
  */
 public class GraphicController {
 
-    
+
     private Set<GraphicView> allViews = new HashSet<GraphicView>();
-    
-    private static GraphicController me = null; 
-    
+
+    private static GraphicController me = null;
+
     /**
      * Default constructor
      */
-    private GraphicController() { 
+    private GraphicController() {
         /**
          * Debug Only !
          */
         this.register(LogView.createLogView());
     }
-    
+
     /**
      * Returns the controller
      * @return the controller
@@ -52,10 +52,10 @@ public class GraphicController {
 	if (me == null) {
 	    me = new GraphicController();
 	}
-	
+
 	return me;
     }
-    
+
     /**
      * Register a view that will receive notification
      * of any model changes.
@@ -64,7 +64,7 @@ public class GraphicController {
     public void register(GraphicView view) {
         allViews.add(view);
     }
-    
+
     /**
      * Creates a UID
      * @return the created UID
@@ -72,9 +72,9 @@ public class GraphicController {
     public UID createUID() {
     	return new UID();
     }
-    
+
     /**
-     * Returns the object associated to an id 
+     * Returns the object associated to an id
      * @param id the object id
      * @return the object
      */
@@ -84,7 +84,7 @@ public class GraphicController {
 
     	return object;
     }
-    
+
     /**
      * Fast property set method
      * @param id the object id
@@ -119,7 +119,7 @@ public class GraphicController {
     public Object getNullProperty(String id, String prop) {
     	return GraphicModel.getModel().getNullProperty(id, prop);
     }
-    
+
 	/**
 	 * Asks the model to create a new object
 	 * @param type the object type
@@ -129,10 +129,10 @@ public class GraphicController {
     	UID id = createUID();
     	GraphicModel.getModel().createObject(id.toString(), type);
     	objectCreated(id.toString());
-	
+
     	return id.toString();
     }
-    
+
     /**
      * Ask the model to clone an object
      * @param id : the ID of the object to clone.
@@ -141,12 +141,11 @@ public class GraphicController {
     public String cloneObject(String id) {
         UID newId = createUID();
         GraphicModel.getModel().cloneObject(id, newId.toString());
-        System.out.println("[DEBUG] object cloned");
         objectCreated(newId.toString());
-        
+
         return newId.toString();
     }
- 
+
     /**
      * Deletes an object
      * @param id the deleted object's id
@@ -155,7 +154,7 @@ public class GraphicController {
         GraphicModel.getModel().deleteObject(id);
         objectDeleted(id);
     }
-    
+
     /**
      * Notifies the existing views that an object has been created
      * @param id the created object's id
@@ -168,7 +167,7 @@ public class GraphicController {
     }
 
     /**
-     * Notified the existing views that an object has been updated 
+     * Notified the existing views that an object has been updated
      * @param id the updated object's id
      * @param prop the property that has been updated
      */
@@ -190,5 +189,5 @@ public class GraphicController {
         }
     }
 
- 
+
 }

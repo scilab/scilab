@@ -15,10 +15,12 @@ extern "C"
 {
 #include <stdlib.h>
 #include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 #include "getScilabJavaVM.h"
 }
 
 #include "CallGraphicController.hxx"
+#include "DataController.hxx"
 
 
 using namespace org_scilab_modules_graphic_objects;
@@ -28,6 +30,12 @@ void *getGraphicObjectProperty(char *_pstID, char *_pstName, _ReturnType_ _retur
     static int localIntResult;
     static int localBoolResult;
     static double localDoubleResult;
+
+    if (strcmp(_pstName, __GO_DATA__) == 0)
+    {
+        localDoubleResult = DataController::getGraphicObjectProperty(_pstID);
+        return &localDoubleResult;
+    }
 
     switch(_returnType)
     {
@@ -44,18 +52,18 @@ void *getGraphicObjectProperty(char *_pstID, char *_pstName, _ReturnType_ _retur
         return CallGraphicController::getGraphicObjectPropertyAsDoubleVector(getScilabJavaVM(), _pstID, _pstName);
     case jni_bool :
     {
-	localBoolResult = (int)CallGraphicController::getGraphicObjectPropertyAsBoolean(getScilabJavaVM(), _pstID, _pstName);
-	return &localBoolResult;
+        localBoolResult = (int)CallGraphicController::getGraphicObjectPropertyAsBoolean(getScilabJavaVM(), _pstID, _pstName);
+        return &localBoolResult;
     }
     case jni_bool_vector :
-	return CallGraphicController::getGraphicObjectPropertyAsBooleanVector(getScilabJavaVM(), _pstID, _pstName);
+        return CallGraphicController::getGraphicObjectPropertyAsBooleanVector(getScilabJavaVM(), _pstID, _pstName);
     case jni_int :
     {
-	localIntResult = CallGraphicController::getGraphicObjectPropertyAsInteger(getScilabJavaVM(), _pstID, _pstName);
-	return &localIntResult;
+        localIntResult = CallGraphicController::getGraphicObjectPropertyAsInteger(getScilabJavaVM(), _pstID, _pstName);
+        return &localIntResult;
     }
     case jni_int_vector :
-	return CallGraphicController::getGraphicObjectPropertyAsIntegerVector(getScilabJavaVM(), _pstID, _pstName);
+        return CallGraphicController::getGraphicObjectPropertyAsIntegerVector(getScilabJavaVM(), _pstID, _pstName);
 
     default :
         return NULL;
