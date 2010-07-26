@@ -216,7 +216,7 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 					mxConstants.STYLE_LABEL_BACKGROUNDCOLOR);
 			Color border = mxUtils.getColor(style,
 					mxConstants.STYLE_LABEL_BORDERCOLOR);
-			paintRectangle(translatedBounds, bg, border);
+			paintRectangle(translatedBounds.getRectangle(), bg, border);
 
 			// Paints the label and restores the graphics object
 			shape.paintShape(this, text, translatedBounds, style);
@@ -226,26 +226,21 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 		
 		return shape;
 	}
-	
+
 	/**
-	 * Paint the image.
+	 * Draw the image into the bounds
 	 * 
 	 * This function handle all the awt supported {@link Image} plus the SVG
 	 * format.
 	 * 
-	 * @param bounds
-	 *            the current bounds
-	 * @param style
-	 *            the current style
-	 * @see com.mxgraph.canvas.mxGraphics2DCanvas#paintImage(com.mxgraph.util.mxRectangle,
-	 *      java.util.Map)
+	 * @param bounds the bounds of the image
+	 * @param imageUrl the image url
+	 * @see com.mxgraph.canvas.mxGraphics2DCanvas#drawImage(java.awt.Rectangle, java.lang.String)
 	 */
 	@Override
-	public void paintImage(mxRectangle bounds, Map<String, Object> style) {
-		String image = getImageForStyle(style);
-		
-		if (image != null) {
-			if (image.endsWith(".svg")) {
+	public void drawImage(Rectangle bounds, String imageUrl) {
+		if (imageUrl != null) {
+			if (imageUrl.endsWith(".svg")) {
 				// Remove the "Graphics2D from BufferedImage lacks BUFFERED_IMAGE hint"
 				// message and tweak Batik rendering options to increase performance.
 				g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
@@ -255,24 +250,21 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 				g.setRenderingHint(RenderingHintsKeyExt.KEY_TRANSCODING,
 						RenderingHintsKeyExt.VALUE_TRANSCODING_PRINTING);
 				
-				Rectangle rect = bounds.getRectangle();
-				
 				// Translate from (0,0) to icon base point.
-				g.translate(rect.x, rect.y);
+				g.translate(bounds.x, bounds.y);
 				
 				// Paint the background image if applicable
 				if (svgBackgroundImage != null) {
-					paintSvgBackgroundImage(rect.width, rect.height);
+					paintSvgBackgroundImage(bounds.width, bounds.height);
 				}
 
-				paintSvgForegroundImage(rect.width, rect.height, image);
-
+				paintSvgForegroundImage(bounds.width, bounds.height, imageUrl);
 			} else {
-				super.paintImage(bounds, style);
+				super.drawImage(bounds, imageUrl);
 			}
 		}
 	}
-
+	
 	/**
 	 * Paint the background image.
 	 * 

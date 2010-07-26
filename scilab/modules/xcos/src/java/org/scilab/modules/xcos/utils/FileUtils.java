@@ -18,9 +18,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.jvm.utils.ScilabConstants;
 import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.util.mxUtils;
@@ -31,7 +36,7 @@ import com.mxgraph.view.mxStylesheet;
  */
 public final class FileUtils {
 	/**
-	 * Stylesheet filename.
+	 * Name of the xcos style configuration file.
 	 */
 	public static final String STYLE_FILENAME = "Xcos-style.xml";
 	
@@ -168,5 +173,28 @@ public final class FileUtils {
 		xml = xml.replaceAll("\\$SCIHOME", homeURL);
 		Document document = mxUtils.parse(xml);
 		new mxCodec().decode(document.getDocumentElement(), styleSheet);
+	}
+
+	/**
+	 * Load an Xcos file.
+	 * 
+	 * @param xcosFile xcos file
+	 * @return opened document
+	 */
+	public static Document loadXcosDocument(String xcosFile) {
+		DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory
+				.newInstance();
+		DocumentBuilder docBuilder;
+		
+		try {
+			docBuilder = docBuilderFactory.newDocumentBuilder();
+			return docBuilder.parse(xcosFile);
+		} catch (ParserConfigurationException e) {
+			return null;
+		} catch (SAXException e) {
+			return null;
+		} catch (IOException e) {
+			return null;
+		}
 	}
 }

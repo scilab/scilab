@@ -27,6 +27,7 @@ import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.xcos.block.actions.BorderColorAction;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.link.actions.StyleHorizontalAction;
 import org.scilab.modules.xcos.link.actions.StyleStraightAction;
 import org.scilab.modules.xcos.link.actions.StyleVerticalAction;
@@ -116,7 +117,7 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
 	if (size > 0) {
 	    mxPoint[] points = new mxPoint[size];
 	    for (int i = 0; i < size; i++) { 
-		points[i] = (mxPoint) getGeometry().getPoints().get(start + i);
+		points[i] = getGeometry().getPoints().get(start + i);
 	    }
 	    return points;
 	}
@@ -158,18 +159,18 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
 	    if (i == 0) { //first block
 		point1 = new Point2D.Double(startX, startY);
 	    } else {
-				point1 = new Point2D.Double((int) ((mxPoint) getGeometry()
+				point1 = new Point2D.Double((int) (getGeometry()
 						.getPoints().get(i - 1)).getX(),
-						(int) ((mxPoint) getGeometry().getPoints().get(i - 1))
+						(int) (getGeometry().getPoints().get(i - 1))
 								.getY());
 	    }
 
 	    if (i == getGeometry().getPoints().size()) { 
 		point2 = new Point2D.Double(endX, endY);
 	    } else {
-				point2 = new Point2D.Double((int) ((mxPoint) getGeometry()
+				point2 = new Point2D.Double((int) (getGeometry()
 						.getPoints().get(i)).getX(),
-						(int) ((mxPoint) getGeometry().getPoints().get(i))
+						(int) (getGeometry().getPoints().get(i))
 								.getY());
 	    }
 
@@ -226,7 +227,7 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
 	} else {
 	    //check to delete an old point before try to insert
 	    for (int i = 0; i < getGeometry().getPoints().size(); i++) { 
-		mxPoint oldPoint = (mxPoint) getGeometry().getPoints().get(i);
+		mxPoint oldPoint = getGeometry().getPoints().get(i);
 				mxRectangle rect = new mxRectangle(oldPoint.getX()
 						- (DETECTION_RECTANGLE_DIMENSION / 2), oldPoint.getY()
 						- (DETECTION_RECTANGLE_DIMENSION / 2),
@@ -295,7 +296,9 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
 	 * @param from The source
 	 * @param to The target
 	 * @return The new link
+	 * @deprecated Prefer using {@link XcosDiagram#createEdge(Object, String, Object, Object, Object, String)}
 	 */
+    @Deprecated
     public static BasicLink createLinkFromPorts(BasicPort from, BasicPort to) {
     	// Pre-conditions
     	if (to == null || from == null) {
@@ -337,5 +340,17 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
 	    }
 	    
     }
-
+    
+    /*
+     * Overriden methods from jgraphx
+     */
+    
+    /**
+     * @return always true
+     * @see com.mxgraph.model.mxCell#isConnectable()
+     */
+    @Override
+    public boolean isConnectable() {
+    	return true;
+    }
 }

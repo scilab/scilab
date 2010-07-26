@@ -94,6 +94,7 @@ import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
 import org.scilab.modules.xcos.link.implicit.ImplicitLink;
 import org.scilab.modules.xcos.port.BasicPort;
+import org.scilab.modules.xcos.port.BasicPort.Type;
 import org.scilab.modules.xcos.port.PortCheck;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
@@ -111,7 +112,6 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
-import com.mxgraph.model.mxGraphModel;
 import com.mxgraph.model.mxGraphModel.mxChildChange;
 import com.mxgraph.model.mxGraphModel.mxStyleChange;
 import com.mxgraph.model.mxICell;
@@ -148,7 +148,55 @@ public class XcosDiagram extends ScilabGraph {
     private boolean waitSplitRelease;
 
     private CheckBoxMenuItem viewPortMenu;
-    /**
+
+	/**
+	 * Hook method that creates the new edge for insertEdge. This implementation
+	 * does not set the source and target of the edge, these are set when the
+	 * edge is added to the model.
+	 * 
+	 * @param parent
+	 *            Cell that specifies the parent of the new edge.
+	 * @param id
+	 *            Optional string that defines the Id of the new edge.
+	 * @param value
+	 *            Object to be used as the user object.
+	 * @param source
+	 *            Cell that defines the source of the edge.
+	 * @param target
+	 *            Cell that defines the target of the edge.
+	 * @param style
+	 *            Optional string that defines the cell style.
+	 * @return Returns the new edge to be inserted.
+	 * @see com.mxgraph.view.mxGraph#createEdge(java.lang.Object,
+	 *      java.lang.String, java.lang.Object, java.lang.Object,
+	 *      java.lang.Object, java.lang.String)
+	 */
+    @Override
+    public Object createEdge(Object parent, String id, Object value,
+    		Object source, Object target, String style) {
+    	Object ret = null;
+    	
+    	if (source instanceof BasicPort) {
+    		BasicPort src = (BasicPort) source;
+    		
+    		if (src.getType() == Type.EXPLICIT) {
+    			ret = new ExplicitLink();
+    		} else if (src.getType() == Type.IMPLICIT) {
+    			ret = new ImplicitLink();
+    		} else {
+    			ret = new CommandControlLink();
+    		}
+    	}
+    	
+    	if (ret == null) {
+    		ret = super.createEdge(parent, id, value, source, target, style);
+    		LOG.debug("Creating a non typed edge");
+    	}
+    	
+    	return ret;
+    }
+    
+	/**
 	 * Add an edge from a source to the target.
 	 * 
 	 * @param edge the edge to add (may be null)
@@ -166,7 +214,7 @@ public class XcosDiagram extends ScilabGraph {
     	// Command -> Control
     	if (source instanceof CommandPort) {
     		if (target instanceof ControlPort) {
-    			return super.addEdge(new CommandControlLink(), parent, source, target, index);
+    			return super.addEdge(edge, parent, source, target, index);
     		}
     	}
 
@@ -174,49 +222,49 @@ public class XcosDiagram extends ScilabGraph {
     	// Switch source and target !
     	if (target instanceof CommandPort) {
     		if (source instanceof ControlPort) {
-    			return super.addEdge(new CommandControlLink(), parent, target, source, index);
+    			return super.addEdge(edge, parent, target, source, index);
     		}
     	}
 
     	// ExplicitOutput -> ExplicitInput
     	if (source instanceof ExplicitOutputPort) {
     		if (target instanceof ExplicitInputPort) {
-    			return super.addEdge(new ExplicitLink(), parent, source, target, index);
+    			return super.addEdge(edge, parent, source, target, index);
     		}
     	}
     	// ExplicitInput -> ExplicitOutput
     	// Switch source and target !
     	if (target instanceof ExplicitOutputPort) {
     		if (source instanceof ExplicitInputPort) {
-    			return super.addEdge(new ExplicitLink(), parent, target, source, index);
+    			return super.addEdge(edge, parent, target, source, index);
     		}
     	}
 
     	// ImplicitOutput -> ImplicitInput
     	if (source instanceof ImplicitOutputPort) {
     		if (target instanceof ImplicitInputPort) {
-    			return super.addEdge(new ImplicitLink(), parent, source, target, index);
+    			return super.addEdge(edge, parent, source, target, index);
     		}
     	}
     	// ImplicitInput -> ImplicitOutput
     	// Switch source and target !
     	if (target instanceof ImplicitOutputPort) {
     		if (source instanceof ImplicitInputPort) {
-    			return super.addEdge(new ImplicitLink(), parent, target, source, index);
+    			return super.addEdge(edge, parent, target, source, index);
     		}
     	}
 
     	// ImplicitInput -> ImplicitInput
     	if (source instanceof ImplicitInputPort) {
     		if (target instanceof ImplicitInputPort) {
-    			return super.addEdge(new ImplicitLink(), parent, source, target, index);
+    			return super.addEdge(edge, parent, source, target, index);
     		}
     	}
     	// ImplicitOutputPort -> ImplicitOutput
     	// Switch source and target !
     	if (target instanceof ImplicitOutputPort) {
     		if (source instanceof ImplicitOutputPort) {
-    			return super.addEdge(new ImplicitLink(), parent, target, source, index);
+    			return super.addEdge(edge, parent, target, source, index);
     		}
     	}
     	
@@ -1292,30 +1340,6 @@ public class XcosDiagram extends ScilabGraph {
     public boolean isCellEditable(final Object cell) {
     	return (cell instanceof TextBlock) && super.isCellDeletable(cell);
     }
-    
-	/**
-	 * Return true if connectable
-	 * @param cell the cell
-	 * @return status
-	 * @see com.mxgraph.view.mxGraph#isCellConnectable(java.lang.Object)
-	 */
-	@Override
-    public boolean isCellConnectable(final Object cell) {
-
-	if (cell instanceof BasicBlock)  {
-	    return false;
-	}
-	
-	if (cell instanceof BasicPort) {
-	    final int sourceOut = mxGraphModel.getDirectedEdgeCount(getModel(), cell, true);
-	    final int targetIn = mxGraphModel.getDirectedEdgeCount(getModel(), cell, false);
-	    
-	    if (sourceOut > 0 || targetIn > 0) {
-		return false;
-	    }
-	}
-    	return !(cell instanceof BasicBlock) && super.isCellConnectable(cell);
-    }
 
 	/**
 	 * Return true if auto sized
@@ -1904,7 +1928,7 @@ public class XcosDiagram extends ScilabGraph {
 	}
 	return result;
     }
-    
+
     /**
      * generate unique id to all blocks in diagram
      */

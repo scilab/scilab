@@ -60,7 +60,7 @@ public final class Xcos {
 	/*
 	 * Dependencies version
 	 */
-	private static final List<String> MXGRAPH_VERSIONS = Arrays.asList("1.4.0.2");
+	private static final List<String> MXGRAPH_VERSIONS = Arrays.asList("1.4.0.3");
 	private static final List<String> HDF5_VERSIONS = Arrays.asList("[1, 8, 4]");
 	private static final List<String> BATIK_VERSIONS = Arrays.asList("1.7");
 	
