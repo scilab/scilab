@@ -697,7 +697,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				JGRAPHX=$PACKAGE_JAR_FILE
 				AC_SUBST(JGRAPHX)
 
-				AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx],[import com.mxgraph.view.mxGraph;],$JGRAPHX,[1.4.0.4],[mxGraph.VERSION])
+				AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx],[import com.mxgraph.view.mxGraph;],$JGRAPHX,[1.4.0.5],[mxGraph.VERSION])
 
 				# Docking system
 				AC_JAVA_CHECK_PACKAGE([flexdock],[org.flexdock.docking.DockingManager],[Scilab Gui])
