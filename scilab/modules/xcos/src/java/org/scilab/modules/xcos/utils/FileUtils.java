@@ -171,7 +171,7 @@ public final class FileUtils {
 		String xml = mxUtils.readFile(userStyleSheet.getAbsolutePath());
 		xml = xml.replaceAll("\\$SCILAB", sciURL);
 		xml = xml.replaceAll("\\$SCIHOME", homeURL);
-		Document document = mxUtils.parse(xml);
+		Document document = mxUtils.parseXml(xml);
 		new mxCodec().decode(document.getDocumentElement(), styleSheet);
 	}
 
