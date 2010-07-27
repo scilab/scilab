@@ -46,8 +46,9 @@ endif
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_scinotes.c
 
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_scinotes.cpp \
-sci_gateway/cpp/sci_closeSciNotesFromScilab.cpp
+GATEWAY_CPP_SOURCES = 	sci_gateway/cpp/scinotes_gw.cpp \
+						sci_gateway/cpp/sci_scinotes.cpp \
+						sci_gateway/cpp/sci_closeSciNotesFromScilab.cpp
 
 libsciscinotes_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
     -I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -59,7 +60,8 @@ libsciscinotes_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
     -I$(top_srcdir)/modules/system_env/includes \
     -I$(top_srcdir)/modules/core/includes \
     -I$(top_srcdir)/modules/operations/includes \
-    -I$(top_srcdir)/modules/functions/includes
+    -I$(top_srcdir)/modules/functions/includes \
+    -I$(top_srcdir)/modules/string/includes
 
 libsciscinotes_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
     -I$(srcdir)/includes/ \
@@ -72,20 +74,26 @@ libsciscinotes_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
     -I$(top_srcdir)/modules/localization/includes \
     -I$(top_srcdir)/modules/operations/includes \
     -I$(top_srcdir)/modules/system_env/includes \
-    -I$(top_srcdir)/modules/api_scilab/includes
+    -I$(top_srcdir)/modules/api_scilab/includes \
+	-I$(top_srcdir)/modules/abstractSyntaxTree/includes \
+	-I$(top_srcdir)/modules/functions_manager/includes \
+	-I$(top_srcdir)/modules/types/includes \
+	-I$(top_srcdir)/modules/symbol/includes
 
-# Without the scinotes module 
+# Without the scinotes module
 libsciscinotes_disable_la_CFLAGS = -Iincludes/ \
     -I$(top_srcdir)/modules/output_stream/includes
+libsciscinotes_disable_la_CPPFLAGS = -Iincludes/
 
 SCINOTES_DISABLE_C_SOURCES = src/noscinotes/noscinotes.c
+SCINOTES_DISABLE_CPP_SOURCES = src/noscinotes/noscinotes_gw.cpp
 libsciscinotes_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
-libsciscinotes_disable_la_SOURCES = $(SCINOTES_DISABLE_C_SOURCES)
+libsciscinotes_disable_la_SOURCES = $(SCINOTES_DISABLE_C_SOURCES) $(SCINOTES_DISABLE_CPP_SOURCES)
 
 pkglib_LTLIBRARIES = libsciscinotes-disable.la
 
 if GUI
-    pkglib_LTLIBRARIES += libsciscinotes.la 
+    pkglib_LTLIBRARIES += libsciscinotes.la
 endif
 
 libsciscinotes_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
@@ -98,7 +106,7 @@ INCLUDE_FLAGS = $(libsciscinotes_la_CFLAGS)
 
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = src/jni/ScilabKeywords.i 
+SWIG_WRAPPERS = src/jni/ScilabKeywords.i
 
 if SWIG
     BUILT_SOURCES=swig

@@ -68,7 +68,7 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 
 # With --enable-compilation-tests, launch java unitary tests
 @COMPILATION_TESTS_TRUE@am__append_2 = test
-@GUI_TRUE@am__append_3 = libsciscinotes.la 
+@GUI_TRUE@am__append_3 = libsciscinotes.la
 subdir = modules/scinotes
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -119,27 +119,30 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libsciscinotes_disable_la_LIBADD =
 am__objects_1 = libsciscinotes_disable_la-noscinotes.lo
-am_libsciscinotes_disable_la_OBJECTS = $(am__objects_1)
+am__objects_2 = libsciscinotes_disable_la-noscinotes_gw.lo
+am_libsciscinotes_disable_la_OBJECTS = $(am__objects_1) \
+	$(am__objects_2)
 libsciscinotes_disable_la_OBJECTS =  \
 	$(am_libsciscinotes_disable_la_OBJECTS)
-libsciscinotes_disable_la_LINK = $(LIBTOOL) --tag=CC \
-	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
-	$(libsciscinotes_disable_la_CFLAGS) $(CFLAGS) \
+libsciscinotes_disable_la_LINK = $(LIBTOOL) --tag=CXX \
+	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
+	$(AM_CXXFLAGS) $(CXXFLAGS) \
 	$(libsciscinotes_disable_la_LDFLAGS) $(LDFLAGS) -o $@
 libsciscinotes_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
-am__objects_2 = libsciscinotes_la-ScilabKeywords.lo
-am__objects_3 = libsciscinotes_la-ScilabKeywords_wrap.lo
-am__objects_4 = libsciscinotes_la-gw_scinotes.lo
-am__objects_5 = libsciscinotes_la-sci_scinotes.lo \
+am__objects_3 = libsciscinotes_la-ScilabKeywords.lo
+am__objects_4 = libsciscinotes_la-ScilabKeywords_wrap.lo
+am__objects_5 = libsciscinotes_la-gw_scinotes.lo
+am__objects_6 = libsciscinotes_la-scinotes_gw.lo \
+	libsciscinotes_la-sci_scinotes.lo \
 	libsciscinotes_la-sci_closeSciNotesFromScilab.lo
-am__objects_6 = libsciscinotes_la-SciNotes.lo \
+am__objects_7 = libsciscinotes_la-SciNotes.lo \
 	libsciscinotes_la-callscinotes.lo \
 	libsciscinotes_la-GiwsException.lo
-am_libsciscinotes_la_OBJECTS = $(am__objects_2) $(am__objects_3) \
-	$(am__objects_4) $(am__objects_5) $(am__objects_6)
+am_libsciscinotes_la_OBJECTS = $(am__objects_3) $(am__objects_4) \
+	$(am__objects_5) $(am__objects_6) $(am__objects_7)
 libsciscinotes_la_OBJECTS = $(am_libsciscinotes_la_OBJECTS)
 libsciscinotes_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
@@ -514,8 +517,9 @@ GIWS_WRAPPERS = src/jni/SciNotes.giws.xml
 @GIWS_TRUE@BUILT_SOURCES = giws
 @SWIG_TRUE@BUILT_SOURCES = swig
 GATEWAY_C_SOURCES = sci_gateway/c/gw_scinotes.c
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_scinotes.cpp \
-sci_gateway/cpp/sci_closeSciNotesFromScilab.cpp
+GATEWAY_CPP_SOURCES = sci_gateway/cpp/scinotes_gw.cpp \
+						sci_gateway/cpp/sci_scinotes.cpp \
+						sci_gateway/cpp/sci_closeSciNotesFromScilab.cpp
 
 libsciscinotes_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
     -I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -527,7 +531,8 @@ libsciscinotes_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
     -I$(top_srcdir)/modules/system_env/includes \
     -I$(top_srcdir)/modules/core/includes \
     -I$(top_srcdir)/modules/operations/includes \
-    -I$(top_srcdir)/modules/functions/includes
+    -I$(top_srcdir)/modules/functions/includes \
+    -I$(top_srcdir)/modules/string/includes
 
 libsciscinotes_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
     -I$(srcdir)/includes/ \
@@ -540,16 +545,22 @@ libsciscinotes_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
     -I$(top_srcdir)/modules/localization/includes \
     -I$(top_srcdir)/modules/operations/includes \
     -I$(top_srcdir)/modules/system_env/includes \
-    -I$(top_srcdir)/modules/api_scilab/includes
+    -I$(top_srcdir)/modules/api_scilab/includes \
+	-I$(top_srcdir)/modules/abstractSyntaxTree/includes \
+	-I$(top_srcdir)/modules/functions_manager/includes \
+	-I$(top_srcdir)/modules/types/includes \
+	-I$(top_srcdir)/modules/symbol/includes
 
 
-# Without the scinotes module 
+# Without the scinotes module
 libsciscinotes_disable_la_CFLAGS = -Iincludes/ \
     -I$(top_srcdir)/modules/output_stream/includes
 
+libsciscinotes_disable_la_CPPFLAGS = -Iincludes/
 SCINOTES_DISABLE_C_SOURCES = src/noscinotes/noscinotes.c
+SCINOTES_DISABLE_CPP_SOURCES = src/noscinotes/noscinotes_gw.cpp
 libsciscinotes_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
-libsciscinotes_disable_la_SOURCES = $(SCINOTES_DISABLE_C_SOURCES)
+libsciscinotes_disable_la_SOURCES = $(SCINOTES_DISABLE_C_SOURCES) $(SCINOTES_DISABLE_CPP_SOURCES)
 pkglib_LTLIBRARIES = libsciscinotes-disable.la $(am__append_3)
 libsciscinotes_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 libsciscinotes_la_SOURCES = $(SCINOTES_C_SOURCES) $(SCINOTES_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(SCINOTES_CPP_SOURCES)
@@ -559,7 +570,7 @@ CHECK_SRC = $(SCINOTES_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciscinotes_la_CFLAGS)
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = src/jni/ScilabKeywords.i 
+SWIG_WRAPPERS = src/jni/ScilabKeywords.i
 libsciscinotes_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
     $(top_builddir)/libs/MALLOC/libscimalloc.la \
     $(top_builddir)/modules/output_stream/libscioutput_stream.la
@@ -647,6 +658,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscinotes_disable_la-noscinotes.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscinotes_disable_la-noscinotes_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscinotes_la-GiwsException.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscinotes_la-SciNotes.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscinotes_la-ScilabKeywords.Plo@am__quote@
@@ -655,6 +667,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscinotes_la-gw_scinotes.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscinotes_la-sci_closeSciNotesFromScilab.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscinotes_la-sci_scinotes.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscinotes_la-scinotes_gw.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -678,11 +691,11 @@ distclean-compile:
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
 libsciscinotes_disable_la-noscinotes.lo: src/noscinotes/noscinotes.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscinotes_disable_la_CFLAGS) $(CFLAGS) -MT libsciscinotes_disable_la-noscinotes.lo -MD -MP -MF $(DEPDIR)/libsciscinotes_disable_la-noscinotes.Tpo -c -o libsciscinotes_disable_la-noscinotes.lo `test -f 'src/noscinotes/noscinotes.c' || echo '$(srcdir)/'`src/noscinotes/noscinotes.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscinotes_disable_la_CPPFLAGS) $(CPPFLAGS) $(libsciscinotes_disable_la_CFLAGS) $(CFLAGS) -MT libsciscinotes_disable_la-noscinotes.lo -MD -MP -MF $(DEPDIR)/libsciscinotes_disable_la-noscinotes.Tpo -c -o libsciscinotes_disable_la-noscinotes.lo `test -f 'src/noscinotes/noscinotes.c' || echo '$(srcdir)/'`src/noscinotes/noscinotes.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciscinotes_disable_la-noscinotes.Tpo $(DEPDIR)/libsciscinotes_disable_la-noscinotes.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/noscinotes/noscinotes.c' object='libsciscinotes_disable_la-noscinotes.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscinotes_disable_la_CFLAGS) $(CFLAGS) -c -o libsciscinotes_disable_la-noscinotes.lo `test -f 'src/noscinotes/noscinotes.c' || echo '$(srcdir)/'`src/noscinotes/noscinotes.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscinotes_disable_la_CPPFLAGS) $(CPPFLAGS) $(libsciscinotes_disable_la_CFLAGS) $(CFLAGS) -c -o libsciscinotes_disable_la-noscinotes.lo `test -f 'src/noscinotes/noscinotes.c' || echo '$(srcdir)/'`src/noscinotes/noscinotes.c
 
 libsciscinotes_la-ScilabKeywords.lo: src/c/ScilabKeywords.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscinotes_la_CPPFLAGS) $(CPPFLAGS) $(libsciscinotes_la_CFLAGS) $(CFLAGS) -MT libsciscinotes_la-ScilabKeywords.lo -MD -MP -MF $(DEPDIR)/libsciscinotes_la-ScilabKeywords.Tpo -c -o libsciscinotes_la-ScilabKeywords.lo `test -f 'src/c/ScilabKeywords.c' || echo '$(srcdir)/'`src/c/ScilabKeywords.c
@@ -725,6 +738,20 @@ libsciscinotes_la-gw_scinotes.lo: sci_gateway/c/gw_scinotes.c
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
+
+libsciscinotes_disable_la-noscinotes_gw.lo: src/noscinotes/noscinotes_gw.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscinotes_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciscinotes_disable_la-noscinotes_gw.lo -MD -MP -MF $(DEPDIR)/libsciscinotes_disable_la-noscinotes_gw.Tpo -c -o libsciscinotes_disable_la-noscinotes_gw.lo `test -f 'src/noscinotes/noscinotes_gw.cpp' || echo '$(srcdir)/'`src/noscinotes/noscinotes_gw.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciscinotes_disable_la-noscinotes_gw.Tpo $(DEPDIR)/libsciscinotes_disable_la-noscinotes_gw.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/noscinotes/noscinotes_gw.cpp' object='libsciscinotes_disable_la-noscinotes_gw.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscinotes_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciscinotes_disable_la-noscinotes_gw.lo `test -f 'src/noscinotes/noscinotes_gw.cpp' || echo '$(srcdir)/'`src/noscinotes/noscinotes_gw.cpp
+
+libsciscinotes_la-scinotes_gw.lo: sci_gateway/cpp/scinotes_gw.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscinotes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciscinotes_la-scinotes_gw.lo -MD -MP -MF $(DEPDIR)/libsciscinotes_la-scinotes_gw.Tpo -c -o libsciscinotes_la-scinotes_gw.lo `test -f 'sci_gateway/cpp/scinotes_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/scinotes_gw.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciscinotes_la-scinotes_gw.Tpo $(DEPDIR)/libsciscinotes_la-scinotes_gw.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/scinotes_gw.cpp' object='libsciscinotes_la-scinotes_gw.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscinotes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciscinotes_la-scinotes_gw.lo `test -f 'sci_gateway/cpp/scinotes_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/scinotes_gw.cpp
 
 libsciscinotes_la-sci_scinotes.lo: sci_gateway/cpp/sci_scinotes.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscinotes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciscinotes_la-sci_scinotes.lo -MD -MP -MF $(DEPDIR)/libsciscinotes_la-sci_scinotes.Tpo -c -o libsciscinotes_la-sci_scinotes.lo `test -f 'sci_gateway/cpp/sci_scinotes.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_scinotes.cpp

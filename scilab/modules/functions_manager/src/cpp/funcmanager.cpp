@@ -309,6 +309,7 @@ bool FuncManager::CreateModuleList(void)
 	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"gui", &GuiModule::Load));
 	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"time", &TimeModule::Load));
 	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"string", &StringModule::Load));
+	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"scinotes", &ScinotesModule::Load));
 	return true;
 }
 

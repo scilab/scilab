@@ -28,4 +28,5 @@
     <module name="time" activate="yes"/>
     <module name="overloading" activate="yes"/>
     <module name="string" activate="yes"/>
+    <module name="scinotes" activate="yes"/>
 </modules>

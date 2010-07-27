@@ -27,6 +27,7 @@ extern "C"
 #include "Scierror.h"
 #include "MALLOC.h"
 #include "freeArrayOfString.h"
+#include "api_oldstack.h"
 }
 
 /*--------------------------------------------------------------------------*/
