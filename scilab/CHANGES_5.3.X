@@ -1,3 +1,10 @@
+         Changes between version 5.3.0-beta-2 and 5.3.0-beta-3 of Scilab
+         ===============================================================
+
+Bug Fixes:
+==========
+
+
          Changes between version 5.3.0-beta-1 and 5.3.0-beta-2 of Scilab
          ===============================================================
 
