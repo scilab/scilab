@@ -86,6 +86,7 @@ import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.block.actions.ShowParentAction;
 import org.scilab.modules.xcos.block.io.ContextUpdate;
 import org.scilab.modules.xcos.configuration.ConfigurationManager;
+import org.scilab.modules.xcos.graph.swing.GraphComponent;
 import org.scilab.modules.xcos.io.XcosCodec;
 import org.scilab.modules.xcos.io.scicos.DiagramElement;
 import org.scilab.modules.xcos.io.scicos.H5RWHandler;
@@ -100,8 +101,10 @@ import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.ExplicitInputPort;
 import org.scilab.modules.xcos.port.input.ImplicitInputPort;
+import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
+import org.scilab.modules.xcos.port.output.OutputPort;
 import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosConstants;
@@ -122,6 +125,7 @@ import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxUndoableEdit;
 import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
+import com.mxgraph.util.mxUtils;
 import com.mxgraph.view.mxGraphSelectionModel;
 import com.mxgraph.view.mxMultiplicity;
 import com.mxgraph.view.mxStylesheet;
@@ -155,47 +159,52 @@ public class XcosDiagram extends ScilabGraph {
 	 * edge is added to the model.
 	 * 
 	 * @param parent
-	 *            Cell that specifies the parent of the new edge.
+	 *			Cell that specifies the parent of the new edge.
 	 * @param id
-	 *            Optional string that defines the Id of the new edge.
+	 *			Optional string that defines the Id of the new edge.
 	 * @param value
-	 *            Object to be used as the user object.
+	 *			Object to be used as the user object.
 	 * @param source
-	 *            Cell that defines the source of the edge.
+	 *			Cell that defines the source of the edge.
 	 * @param target
-	 *            Cell that defines the target of the edge.
+	 *			Cell that defines the target of the edge.
 	 * @param style
-	 *            Optional string that defines the cell style.
+	 *			Optional string that defines the cell style.
 	 * @return Returns the new edge to be inserted.
 	 * @see com.mxgraph.view.mxGraph#createEdge(java.lang.Object,
-	 *      java.lang.String, java.lang.Object, java.lang.Object,
-	 *      java.lang.Object, java.lang.String)
+	 *	  java.lang.String, java.lang.Object, java.lang.Object,
+	 *	  java.lang.Object, java.lang.String)
 	 */
-    @Override
-    public Object createEdge(Object parent, String id, Object value,
-    		Object source, Object target, String style) {
-    	Object ret = null;
-    	
-    	if (source instanceof BasicPort) {
-    		BasicPort src = (BasicPort) source;
-    		
-    		if (src.getType() == Type.EXPLICIT) {
-    			ret = new ExplicitLink();
-    		} else if (src.getType() == Type.IMPLICIT) {
-    			ret = new ImplicitLink();
-    		} else {
-    			ret = new CommandControlLink();
-    		}
-    	}
-    	
-    	if (ret == null) {
-    		ret = super.createEdge(parent, id, value, source, target, style);
-    		LOG.debug("Creating a non typed edge");
-    	}
-    	
-    	return ret;
-    }
-    
+	@Override
+	public Object createEdge(Object parent, String id, Object value,
+			Object source, Object target, String style) {
+		Object ret = null;
+		
+		if (source instanceof BasicPort) {
+			BasicPort src = (BasicPort) source;
+			BasicLink link = null;
+			
+			if (src.getType() == Type.EXPLICIT) {
+				link = new ExplicitLink();
+			} else if (src.getType() == Type.IMPLICIT) {
+				ret = new ImplicitLink();
+			} else {
+				link = new CommandControlLink();
+			}
+			
+			// allocate the associated geometry
+			link.setGeometry(new mxGeometry());
+			ret = link;
+		}
+		
+		if (ret == null) {
+			ret = super.createEdge(parent, id, value, source, target, style);
+			LOG.debug("Creating a non typed edge");
+		}
+		
+		return ret;
+	}
+
 	/**
 	 * Add an edge from a source to the target.
 	 * 
@@ -411,30 +420,8 @@ public class XcosDiagram extends ScilabGraph {
     	getModel().remove(link);
     	getModel().endUpdate();
 
-    	final BasicLink newLink1 = BasicLink.createLinkFromPorts(linkSource, splitBlock.getIn());
-    	newLink1.setGeometry(new mxGeometry(0, 0, 80, 80));
-    	newLink1.setSource(linkSource);
-    	newLink1.setTarget(splitBlock.getIn());
-
-    	//add points after breaking point in the new link
-    	if (saveStartPoints != null) {
-    		for (final mxPoint saveStartPoint : saveStartPoints) {
-    			newLink1.addPoint(saveStartPoint.getX(), saveStartPoint.getY());
-    		}
-       	}
-    	addCell(newLink1);
-    	
-    	final BasicLink newLink2 = BasicLink.createLinkFromPorts(splitBlock.getOut1(), linkTarget);
-    	newLink2.setGeometry(new mxGeometry(0, 0, 80, 80));
-    	newLink2.setSource(splitBlock.getOut1());
-    	newLink2.setTarget(linkTarget);
-    	//add points after breaking point in the new link
-    	if (saveEndPoints != null) {
-    		for (final mxPoint saveEndPoint : saveEndPoints) {
-    			newLink2.addPoint(saveEndPoint.getX(), saveEndPoint.getY());
-    		}
-       	}
-    	addCell(newLink2);
+    	connect(linkSource, splitBlock.getIn(), saveStartPoints);
+    	connect(splitBlock.getOut1(), linkTarget, saveEndPoints);
 
     	if (target != null) {
     	
@@ -457,6 +444,31 @@ public class XcosDiagram extends ScilabGraph {
 	
     	return splitBlock;
     }
+
+	/**
+	 * Connect two port together with the associated points
+	 * 
+	 * @param src
+	 *            the source port
+	 * @param trg
+	 *            the target port
+	 * @param points
+	 *            the points
+	 */
+	public void connect(BasicPort src, BasicPort trg, mxPoint[] points) {
+		BasicLink newLink1 = BasicLink.createLinkFromPorts(src, trg);
+		newLink1.setGeometry(new mxGeometry(0, 0, 80, 80));
+		newLink1.setSource(src);
+		newLink1.setTarget(trg);
+
+		// add points after breaking point in the new link
+		if (points != null) {
+			for (int i = 0; i < points.length; i++) {
+				newLink1.addPoint(points[i].getX(), points[i].getY());
+			}
+		}
+		addCell(newLink1);
+	}
     
     /**
      * Constructor
@@ -477,6 +489,7 @@ public class XcosDiagram extends ScilabGraph {
 		}
 	});
 
+	setComponent(new GraphComponent(this));
 	initComponent();
 	installStylesheet();
 
@@ -506,6 +519,9 @@ public class XcosDiagram extends ScilabGraph {
 	setCellsEditable(true);
 
 	setConnectableEdges(true);
+	
+	// Do not clear edge points on connect
+	setResetEdgesOnConnect(false);
 
 	setMultiplicities();
 	

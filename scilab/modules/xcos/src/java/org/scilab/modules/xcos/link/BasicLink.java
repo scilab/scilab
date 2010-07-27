@@ -348,6 +348,7 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
     /**
      * @return always true
      * @see com.mxgraph.model.mxCell#isConnectable()
+     * @see XcosDiagram#isValidSource(Object)
      */
     @Override
     public boolean isConnectable() {
