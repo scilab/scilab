@@ -1,11 +1,11 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA -
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -44,10 +44,10 @@ int C2F(genmsum)(int *typ,int *job, int *a, int *na, int *m, int *n, int *v, int
 
   switch (*typ) {
   case 1:
-    MSUM(integer1);
+    MSUM(char);
     break;
   case 2:
-    MSUM(integer2);
+    MSUM(short);
     break;
   case 4:
     MSUM(int) ;
@@ -95,10 +95,10 @@ int C2F(genmsum_double)(int *typ,int *job, int *a, int *na, int *m, int *n, doub
   double t;
   switch (*typ) {
   case 1:
-    MSUM_DOUBLE(integer1);
+    MSUM_DOUBLE(char);
     break;
   case 2:
-    MSUM_DOUBLE(integer2);
+    MSUM_DOUBLE(short);
     break;
   case 4:
     MSUM_DOUBLE(int) ;

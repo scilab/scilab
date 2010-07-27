@@ -1,11 +1,11 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA -
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -36,22 +36,22 @@ int C2F(gensum)(int *typ, int *n, void *dx, int *incx)
 
     switch (*typ) {
     case 1:
-      SUM(integer1,int);
+      SUM(char, int);
       break;
     case 2:
-      SUM(integer2,int);
+      SUM(short, int);
       break;
     case 4:
-      SUM(int,int) ;
+      SUM(int, int) ;
       break;
     case 11:
-      SUM(unsigned char,int);
+      SUM(unsigned char, int);
       break;
     case 12:
-      SUM(unsigned short,int);
+      SUM(unsigned short, int);
       break;
     case 14:
-      SUM(unsigned int,int);
+      SUM(unsigned int, int);
       break;
     }
     return dtemp;
@@ -69,24 +69,23 @@ double C2F(gensum_double)(int *typ, int *n, void *dx, int *incx)
 
     switch (*typ) {
     case 1:
-      SUM(integer1,double);
+      SUM(char, double);
       break;
     case 2:
-      SUM(integer2,double);
+      SUM(short, double);
       break;
     case 4:
-      SUM(int,double) ;
+      SUM(int, double) ;
       break;
     case 11:
-      SUM(unsigned char,double);
+      SUM(unsigned char, double);
       break;
     case 12:
-      SUM(unsigned short,double);
+      SUM(unsigned short, double);
       break;
     case 14:
-      SUM(unsigned int,double);
+      SUM(unsigned int, double);
       break;
     }
     return dtemp;
-    sciprint("gensum,%f\n",dtemp);
 }
