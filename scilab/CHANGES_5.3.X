@@ -1,25 +1,20 @@
-
          Changes between version 5.3.0-beta-1 and 5.3.0-beta-2 of Scilab
          ===============================================================
 
 Obsolete Functions:
 ===================
 
-* 'oldbesseli', 'oldbesselj', 'oldbesselk', 'oldbessely' are obsoletes
-  see 'besseli', 'besselj', 'besselk', 'bessely'.
+* 'oldbesseli', 'oldbesselj', 'oldbesselk' and 'oldbessely' are obsolete
+See 'besseli', 'besselj', 'besselk' and 'bessely'.
+
 
 History Manager:
 ================
 
-* "// End Session" line removed of history file.
+* "// End Session" line removed from the history file.
 
 * Begin session line identified by "// -- " and finished by " -- //"
 
-Compilation:
-============
-
-* fix the "warning: deprecated conversion from string constant to ‘char*’"
-  message when compiling a toolbox using Scierror(...) and sciprint(...)
 
 SciNotes:
 =========
@@ -28,10 +23,38 @@ SciNotes:
 
 * Add a close-button on the tabs and add the possibility to drag&drop them.
 
+* bug 6496 fixed - Add hyperlinks on macros in SciNotes.
+
+* bugs 7462,7463 fixed - The editor did not manage files with extensions *.tst,
+                   *.start,*.quit.
+
+* bug 7477 fixed - Bad detection of a function declaration when the line was
+                   ended with a comment.
+
+* bug 7491 fixed - Lines broken with a .. were not correctly handled and caused
+                   a freeze of SciNotes.
+
+* bug 7550 fixed - In SciNotes, the "case" keyword was misplaced in some conditions.
+
+* bug 7557 fixed - SciNotes: unselected line was tabified.
+
+* bug 7558 fixed - SciNotes: global variables were reached before local ones.
+
+* bug 7564 fixed - In SciNotes, no message was displayed when an unsuccessful
+                   search occured.
+* bug 7586 fixed - ShortCut for 'Save' action was missing in SciNotes.
+
+* bug 7590 fixed - In SciNotes, there was a bad organization of the menus
+                   "Split..." and "Line Numbering...". 
+
+* bug 7595 fixed - In SciNotes, a string was broken if '..' was encountered.
+
+
 File input/output:
 ==================
 
 * Rewrite 'mputl' as a built-in function for speed improvements. 
+
 
 Window management:
 ==================
@@ -39,45 +62,14 @@ Window management:
 * It is no more possible to close a subwindow using its own "cross" when the
 subwindow is not docked.
 
-Bug Fixes:
-==========
-* bug 3842 fixed - "native" and "double" evaluation mode added to the sum, 
-                   cumsum, prod and cumprod functions
-                   For more information, see the SEP #46.
+* bugs 7572,5519 fixed - The cross in the dockbar was confusing when a window
+                         was not docked.
 
-* bug 4370 fixed - Help page for alufunction, figure_properties was not
-                   up-to-date and the help page for pixel_drawing_mode was missing.
+Editvar/Browsevar:
+==================
 
-* bug 5185 fixed - It was not possible to edit the name of a super block.
-
-* bug 5366 fixed - help of modules_manager was not built.
-
-* bug 6496 fixed - Add hyperlinks on macros in SciNotes.
-
-* bug 6639 fixed - "hypermat"  did not remove higher dimensions equal to 1.
-
-* bug 6849 fixed - add_profiling badly handled "else" that made plotprofile
-                   function produce an incorrect report.
-
-* bug 6968 fixed - Modelica Chaos Xcos demo was not simulating.
-
-* bug 7121 fixed - Update help file about saveafterncommands(0).
-
-* bug 7124 fixed - mputl returned a wrong error message if file did not exist.
-
-* bug 7158 fixed - help chapter about texmacs was empty.
-
-* bug 7182 fixed - update help file of ulink about the input argument.
-
-* bug 7183 fixed - update help file of link about the output argument.
-
-* bug 7228 fixed - update help file of strcat about the third input argument.
-
-* bug 7282 fixed - eval failed on some functions without output arguments.
-
-* bug 7286 fixed - For some platform eps export of NaN values was buggy.
-
-* bug 7328 fixed - editvar() window title did not contain the name of the edited variable.
+* bug 7328 fixed - editvar() window title did not contain the name of the
+                   edited variable.
 
 * bug 7329 fixed - If editvar() window was docked, calling editvar another time
                    threw java exceptions and froze editvar().
@@ -97,62 +89,22 @@ Bug Fixes:
 
 * bug 7343 fixed - editvar could not edit empty matrices.
 
-* bug 7360 fixed - Modelica Hydraulics Xcos demo was not simulating.
 
-* bug 7371 fixed - Documentation about cell did not precise that the value 
-                   returned by A.dims could not be used as a subscript.
+Xcos:
+=====
+
+* bug 6968 fixed - Modelica Chaos Xcos demo was not simulating.
 
 * bug 7372 fixed - No message was displayed in the Xcos info bar during the
                    first drag and drop of a block (may take some times).
 
-* bug 7374 fixed - If Scilab is launched via another Scilab, TMPDIR is badly
-                   built.
-
-* bug 7388 fixed - A java exception was thrown when we clicked on a menu created
-                   using uimenu and this menu had no child.
-
-* bug 7391 fixed - add links between help files about evstr, eval, execstr.
-
 * bug 7396 fixed - On I/O blocks used in SuperBlocks, empty index threw a
                    decoding exception.
 
-* bug 7437 fixed - If history file was invalid, history browser crashed.
-
-* bug 7441 fixed - The history browser crashed if language was changed.
-
-* bug 7443 fixed - The number of arguments of the "title", "xlabel", "ylabel" and
-                   "zlabel" macros was incorrectly checked.
-
-* bug 7457 fixed - Under Linux and MacOS, the datatip mode icon was missing in
-                   the graphic windows toolbar.
-
-* bug 7459 fixed - Fix some characters issues with japanese systems.
-
-* bugs 7462,7463 fixed - The editor didn't manage files with extensions *.tst,
-                         *.start,*.quit.
-
-* bug 7477 fixed - Bad detection of a function declaration when the line was
-                   ended with a comment.
-
-* bug 7480 fixed - Xcos conditional compilation produce a too long script on
+* bug 7480 fixed - Xcos conditional compilation produced a too long script on
                    the Scilab queue.
 
-* bug 7481 fixed - 6th input argument of ilib_for_link did not allow to set
-                   library name on Windows.
-
 * bug 7483 fixed - A wrong block id could lead to unopennable files.
-
-* bug 7491 fixed - Lines broken with a .. were not correctly handled and caused
-                   a freeze of SciNotes.
-
-* bug 7505 fixed - Last optionnal parameter of "legend" macros was not readed.
-
-* bug 7507 fixed - There was some issues in the pvm module error messages
-                   that made translation difficult.
-
-* bug 7508 fixed - There was a wrong error message in gmres function.
-
-* bug 7514 fixed - Some demo files were broken due to changes in x_mdialog function.
 
 * bug 7520 fixed - The Xcos context was not translated from parent diagram to 
                    child.
@@ -173,17 +125,96 @@ Bug Fixes:
 * bug 7540 fixed - Xcos did not serialized well ScilabInteger types. This
                    produced bugs on the LOGIC and BITSET blocks.
 
-* bug 7550 fixed - In SciNotes, the "case" keyword was misplaced in some conditions.
-
 * bug 7551 fixed - An Xcos block could not change the type of a port when it was
                    already present.
 
-* bug 7557 fixed - SciNotes: unselected line was tabified.
+* bug 7571 fixed - The mirror state of a block was not saved on a diagram.
 
-* bug 7558 fixed - SciNotes: global variables were reached before local ones.
+* bug 7574 fixed - The Xcos diagram configuration settings did not work with 
+                   exponential values.
 
-* bug 7564 fixed - In SciNotes, no message was displayed when an unsuccessful
-                   search occured.
+* bug 7588 fixed - Scilab installed Xcos palettes were not removed at the end of
+                   the Scilab session.
+
+
+
+Compilation:
+============
+
+* Fix "warning: deprecated conversion from string constant to 'char'"
+  message when compiling a toolbox using Scierror(...) and sciprint(...)
+
+
+Bug Fixes:
+==========
+
+* bug 3842 fixed - "native" and "double" evaluation modes added to the sum, 
+                   cumsum, prod and cumprod functions
+                   For more information, see the SEP #46.
+
+* bug 4370 fixed - Help page for alufunction and figure_properties were not
+                   up-to-date and the help page for pixel_drawing_mode was
+                   missing.
+
+* bug 5185 fixed - It was not possible to edit the name of a super block.
+
+* bug 5366 fixed - Help of modules_manager was not built.
+
+* bug 6639 fixed - "hypermat"  did not remove higher dimensions equal to 1.
+
+* bug 6849 fixed - add_profiling badly handled "else" that made plotprofile
+                   function produce an incorrect report.
+
+* bug 7121 fixed - Update help file about saveafterncommands(0).
+
+* bug 7124 fixed - mputl returned a wrong error message if a file did not exist.
+
+* bug 7158 fixed - Help chapter about texmacs was empty.
+
+* bug 7182 fixed - Update help file of ulink about the input argument.
+
+* bug 7183 fixed - Update help file of link about the output argument.
+
+* bug 7228 fixed - Update help file of strcat about the third input argument.
+
+* bug 7282 fixed - eval failed on some functions without output arguments.
+
+* bug 7286 fixed - On some platforms, eps export of NaN values was buggy.
+
+* bug 7371 fixed - Documentation about cell did not precise that the value 
+                   returned by A.dims could not be used as a subscript.
+
+* bug 7374 fixed - If Scilab is launched via another Scilab, TMPDIR is badly
+                   built.
+
+* bug 7388 fixed - A java exception was thrown when we clicked on a menu created
+                   using uimenu and this menu had no child.
+
+* bug 7391 fixed - Add links between help files about evstr, eval, execstr.
+
+* bug 7437 fixed - If history file was invalid, history browser crashed.
+
+* bug 7441 fixed - The history browser crashed if the language was changed.
+
+* bug 7443 fixed - The number of arguments of the "title", "xlabel", "ylabel" 
+                   and "zlabel" macros were incorrectly checked.
+
+* bug 7457 fixed - Under GNU/Linux and MacOS, the datatip mode icon was
+                   missing in the graphic windows toolbar.
+
+* bug 7459 fixed - Fix some character issues on some japanese systems.
+
+* bug 7481 fixed - 6th input argument of ilib_for_link did not allow to set
+                   library name on Windows.
+
+* bug 7505 fixed - Last optionnal parameter of "legend" macros was not readed.
+
+* bug 7507 fixed - There was some issues in the pvm module error messages
+                   that made translation difficult.
+
+* bug 7508 fixed - There was a wrong error message in gmres function.
+
+* bug 7514 fixed - Some demo files were broken due to changes in x_mdialog function.
 
 * bug 7566 fixed - The cacsd module graphic functions (bode, black, nyquist,...) 
                    did not preserve the immediate_drawing property value.
@@ -191,26 +222,9 @@ Bug Fixes:
 * bug 7568 fixed - In the completion window, an exception was thrown when an
                    item was selected.
 
-
-* bug 7571 fixed - The mirror state of a block was not saved on a diagram.
-
-* bugs 7572,5519 fixed - The cross in the dockbar was confusing when a window
-                   was not docked.
-
-* bug 7574 fixed - The Xcos diagram configuration settings did not work with 
-                   exponential values.
-
-* bug 7586 fixed - ShortCut for 'Save' action was missing in SciNotes.
-
-* bug 7588 fixed - Scilab installed Xcos palettes were not removed at the end of
-                   the Scilab session.
-
-* bug 7590 fixed - In SciNotes, there was a bad organization of the menus
-                   "Split..." and "Line Numbering...". 
-
 * bug 7594 fixed - Undefined variable error was not properly handled since bug 6781 fix.
 
-* bug 7595 fixed - In SciNotes, a string was broken if '..' was encountered.
+
 
            Changes between version 5.2.X and 5.3.0-beta1 of Scilab
            =======================================================
