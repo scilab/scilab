@@ -53,56 +53,58 @@
 %union
 {
   /* Tokens. */
-  double		number;
-  std::wstring*		str;
-  std::wstring*		path;
-  std::wstring*		comment;
+    double                      number;
+    std::wstring*               str;
+    std::wstring*               path;
+    std::wstring*               comment;
 
-  bool			mute;
+    bool                        mute;
 
-  ast::vars_t*		t_list_var;
-  ast::exps_t*		t_list_exp;
-  ast::Exp*		t_exp;
+    ast::vars_t*                t_list_var;
+    ast::exps_t*                t_list_exp;
+    ast::Exp*                   t_exp;
 
-  ast::SeqExp*		t_seq_exp;
-  ast::ReturnExp*	t_return_exp;
+    ast::SeqExp*                t_seq_exp;
+    ast::ReturnExp*             t_return_exp;
 
-  ast::IfExp*		t_if_exp;
-  ast::WhileExp*	t_while_exp;
-  ast::ForExp*		t_for_exp;
-  ast::TryCatchExp*	t_try_exp;
-  ast::SelectExp*	t_select_exp;
-  ast::CaseExp*		t_case_exp;
-  ast::cases_t*		t_list_case;
+    ast::IfExp*                 t_if_exp;
+    ast::WhileExp*              t_while_exp;
+    ast::ForExp*                t_for_exp;
+    ast::TryCatchExp*           t_try_exp;
+    ast::SelectExp*             t_select_exp;
+    ast::CaseExp*               t_case_exp;
+    ast::cases_t*               t_list_case;
 
-  ast::CallExp*		t_call_exp;
+    ast::CallExp*               t_call_exp;
 
-  ast::MathExp*		t_math_exp;
+    ast::MathExp*               t_math_exp;
 
-  ast::OpExp*		t_op_exp;
-  ast::OpExp::Oper	t_op_exp_oper;
-  ast::LogicalOpExp::Oper	t_lop_exp_oper;
+    ast::OpExp*                 t_op_exp;
+    ast::OpExp::Oper            t_op_exp_oper;
+    ast::LogicalOpExp::Oper     t_lop_exp_oper;
 
-  ast::AssignExp*	t_assign_exp;
+    ast::AssignExp*             t_assign_exp;
 
-  ast::StringExp*	t_string_exp;
+    ast::StringExp*             t_string_exp;
 
-  ast::ListExp*		t_implicit_list;
+    ast::ListExp*               t_implicit_list;
 
-  ast::MatrixExp*	t_matrix_exp;
-  ast::MatrixLineExp*	t_matrixline_exp;
-  std::list<ast::MatrixLineExp *>* \
-			t_list_mline;
+    ast::MatrixExp*             t_matrix_exp;
+    ast::MatrixLineExp*         t_matrixline_exp;
+    std::list<ast::MatrixLineExp *>*            \
+                                t_list_mline;
 
-  ast::CellExp*		t_cell_exp;
+    ast::CellExp*               t_cell_exp;
 
-  ast::CellCallExp*	t_cell_call_exp;
+    ast::CellCallExp*           t_cell_call_exp;
 
-  ast::FunctionDec*	t_function_dec;
+    ast::FunctionDec*           t_function_dec;
 
-  ast::ArrayListExp*	t_arraylist_exp;
-  ast::AssignListExp*	t_assignlist_exp;
-  ast::ArrayListVar*	t_arraylist_var;
+    ast::ArrayListExp*          t_arraylist_exp;
+    ast::AssignListExp*         t_assignlist_exp;
+    ast::ArrayListVar*          t_arraylist_var;
+
+    ast::SimpleVar*             t_simple_var;
 }
 
 %token YYEOF    0	"end of file"
@@ -274,6 +276,8 @@
 %type<t_list_mline>	matrixOrCellLines
 
 %type<mute>		expressionLineBreak
+
+%type<t_simple_var> keywords
 
 %nonassoc TOPLEVEL
 %nonassoc HIGHLEVEL
@@ -986,12 +990,14 @@ variable :
 NOT variable				%prec NOT	{ $$ = new ast::NotExp(@$, *$2); }
 | NOT functionCall			%prec NOT	{ $$ = new ast::NotExp(@$, *$2); }
 | variable DOT ID			%prec UPLEVEL	{ $$ = new ast::FieldExp(@$, *$1, *new ast::SimpleVar(@$, *$3)); }
+| variable DOT keywords 	%prec UPLEVEL	{ $$ = new ast::FieldExp(@$, *$1, *$3); }
 | variable DOT functionCall				{
 							  $3->name_set(new ast::FieldExp(@$, *$1, $3->name_get()));
 							  $3->location_set(@$);
 							  $$ = $3;
 }
 | functionCall DOT variable				{ $$ = new ast::FieldExp(@$, *$1, *$3); }
+| functionCall DOT keywords				{ $$ = new ast::FieldExp(@$, *$1, *$3); }
 | functionCall DOT functionCall				{
 							  $3->name_set(new ast::FieldExp(@$, *$1, $3->name_get()));
 							  $3->location_set(@$);
@@ -1214,12 +1220,14 @@ assignable ASSIGN variable		%prec HIGHLEVEL { $$ = new ast::AssignExp(@$, *$1, *
 /* What we can assign something to. */
 assignable :
 variable DOT ID			%prec UPLEVEL		{ $$ = new ast::FieldExp(@$, *$1, *new ast::SimpleVar(@$, *$3)); }
+| variable DOT keywords	%prec UPLEVEL		{ $$ = new ast::FieldExp(@$, *$1, *$3); }
 | variable DOT functionCall                 {
                                                 $3->name_set(new ast::FieldExp(@$, *$1, $3->name_get()));
                                                 $3->location_set(@$);
                                                 $$ = $3;
                                             }
 | functionCall DOT variable				{ $$ = new ast::FieldExp(@$, *$1, *$3); }
+| functionCall DOT keywords				{ $$ = new ast::FieldExp(@$, *$1, *$3); }
 | functionCall DOT functionCall				{ $$ = new ast::FieldExp(@$, *$1, *$3); }
 | ID					%prec LISTABLE	{ $$ = new ast::SimpleVar(@$, *$1); }
 | multipleResults					{ $$ = $1; }
@@ -1589,6 +1597,33 @@ COMMENT EOL
 lineEnd :
 EOL
 | COMMENT EOL
+;
+
+/*
+** -*- KEYWORDS -*-
+*/
+/* Some token can be used as fields var.if var.then */
+keywords :
+IF              { $$ = new ast::SimpleVar(@$, std::wstring(L"if")); }
+| THEN          { $$ = new ast::SimpleVar(@$, std::wstring(L"then")); }
+| ELSE          { $$ = new ast::SimpleVar(@$, std::wstring(L"else")); }
+| ELSEIF        { $$ = new ast::SimpleVar(@$, std::wstring(L"elseif")); }
+| END           { $$ = new ast::SimpleVar(@$, std::wstring(L"end")); }
+| SELECT        { $$ = new ast::SimpleVar(@$, std::wstring(L"select")); }
+| SWITCH        { $$ = new ast::SimpleVar(@$, std::wstring(L"switch")); }
+| OTHERWISE     { $$ = new ast::SimpleVar(@$, std::wstring(L"otherwise")); }
+| CASE          { $$ = new ast::SimpleVar(@$, std::wstring(L"case")); }
+| FUNCTION      { $$ = new ast::SimpleVar(@$, std::wstring(L"function")); }
+| ENDFUNCTION   { $$ = new ast::SimpleVar(@$, std::wstring(L"endfunction")); }
+| HIDDENFUNCTION{ $$ = new ast::SimpleVar(@$, std::wstring(L"#function")); }
+| HIDDEN        { $$ = new ast::SimpleVar(@$, std::wstring(L"hidden")); }
+| FOR           { $$ = new ast::SimpleVar(@$, std::wstring(L"for")); }
+| WHILE         { $$ = new ast::SimpleVar(@$, std::wstring(L"while")); }
+| DO            { $$ = new ast::SimpleVar(@$, std::wstring(L"do")); }
+| BREAK         { $$ = new ast::SimpleVar(@$, std::wstring(L"break")); }
+| TRY           { $$ = new ast::SimpleVar(@$, std::wstring(L"try")); }
+| CATCH         { $$ = new ast::SimpleVar(@$, std::wstring(L"catch")); }
+| RETURN        { $$ = new ast::SimpleVar(@$, std::wstring(L"return")); }
 ;
 
 %%

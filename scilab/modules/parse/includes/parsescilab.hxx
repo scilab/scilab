@@ -212,56 +212,58 @@ typedef union YYSTYPE
 
 
   /* Tokens. */
-  double		number;
-  std::wstring*		str;
-  std::wstring*		path;
-  std::wstring*		comment;
+    double                      number;
+    std::wstring*               str;
+    std::wstring*               path;
+    std::wstring*               comment;
 
-  bool			mute;
+    bool                        mute;
 
-  ast::vars_t*		t_list_var;
-  ast::exps_t*		t_list_exp;
-  ast::Exp*		t_exp;
+    ast::vars_t*                t_list_var;
+    ast::exps_t*                t_list_exp;
+    ast::Exp*                   t_exp;
 
-  ast::SeqExp*		t_seq_exp;
-  ast::ReturnExp*	t_return_exp;
+    ast::SeqExp*                t_seq_exp;
+    ast::ReturnExp*             t_return_exp;
 
-  ast::IfExp*		t_if_exp;
-  ast::WhileExp*	t_while_exp;
-  ast::ForExp*		t_for_exp;
-  ast::TryCatchExp*	t_try_exp;
-  ast::SelectExp*	t_select_exp;
-  ast::CaseExp*		t_case_exp;
-  ast::cases_t*		t_list_case;
+    ast::IfExp*                 t_if_exp;
+    ast::WhileExp*              t_while_exp;
+    ast::ForExp*                t_for_exp;
+    ast::TryCatchExp*           t_try_exp;
+    ast::SelectExp*             t_select_exp;
+    ast::CaseExp*               t_case_exp;
+    ast::cases_t*               t_list_case;
 
-  ast::CallExp*		t_call_exp;
+    ast::CallExp*               t_call_exp;
 
-  ast::MathExp*		t_math_exp;
+    ast::MathExp*               t_math_exp;
 
-  ast::OpExp*		t_op_exp;
-  ast::OpExp::Oper	t_op_exp_oper;
-  ast::LogicalOpExp::Oper	t_lop_exp_oper;
+    ast::OpExp*                 t_op_exp;
+    ast::OpExp::Oper            t_op_exp_oper;
+    ast::LogicalOpExp::Oper     t_lop_exp_oper;
 
-  ast::AssignExp*	t_assign_exp;
+    ast::AssignExp*             t_assign_exp;
 
-  ast::StringExp*	t_string_exp;
+    ast::StringExp*             t_string_exp;
 
-  ast::ListExp*		t_implicit_list;
+    ast::ListExp*               t_implicit_list;
 
-  ast::MatrixExp*	t_matrix_exp;
-  ast::MatrixLineExp*	t_matrixline_exp;
-  std::list<ast::MatrixLineExp *>* \
-			t_list_mline;
+    ast::MatrixExp*             t_matrix_exp;
+    ast::MatrixLineExp*         t_matrixline_exp;
+    std::list<ast::MatrixLineExp *>*            \
+                                t_list_mline;
 
-  ast::CellExp*		t_cell_exp;
+    ast::CellExp*               t_cell_exp;
 
-  ast::CellCallExp*	t_cell_call_exp;
+    ast::CellCallExp*           t_cell_call_exp;
 
-  ast::FunctionDec*	t_function_dec;
+    ast::FunctionDec*           t_function_dec;
 
-  ast::ArrayListExp*	t_arraylist_exp;
-  ast::AssignListExp*	t_assignlist_exp;
-  ast::ArrayListVar*	t_arraylist_var;
+    ast::ArrayListExp*          t_arraylist_exp;
+    ast::AssignListExp*         t_assignlist_exp;
+    ast::ArrayListVar*          t_arraylist_var;
+
+    ast::SimpleVar*             t_simple_var;
 
 
 

@@ -139,8 +139,11 @@ assign			"="
 %%
 
 <INITIAL,BEGINID>"if"            {
-	ParserSingleInstance::pushControlStatus(Parser::WithinIf);
-	BEGIN(INITIAL);
+	if (last_token != DOT)
+    {
+        ParserSingleInstance::pushControlStatus(Parser::WithinIf);
+    }
+    BEGIN(INITIAL);
     return scan_throw(IF);
 }
 
@@ -150,83 +153,119 @@ assign			"="
 }
 
 <INITIAL,BEGINID>"else"          {
-    // Pop to step out IF
-	ParserSingleInstance::popControlStatus();
-	ParserSingleInstance::pushControlStatus(Parser::WithinElse);
-	BEGIN(INITIAL);
+	if (last_token != DOT)
+    {
+        // Pop to step out IF
+        ParserSingleInstance::popControlStatus();
+        ParserSingleInstance::pushControlStatus(Parser::WithinElse);
+    }
+    BEGIN(INITIAL);
 	return scan_throw(ELSE);
 }
 
 <INITIAL,BEGINID>"elseif" {
-	ParserSingleInstance::popControlStatus();
-	ParserSingleInstance::pushControlStatus(Parser::WithinElseIf);
-	BEGIN(INITIAL);
+	if (last_token != DOT)
+    {
+        ParserSingleInstance::popControlStatus();
+        ParserSingleInstance::pushControlStatus(Parser::WithinElseIf);
+    }
+    BEGIN(INITIAL);
 	return scan_throw(ELSEIF);
 }
 
 <INITIAL,BEGINID>"end"		{
-  ParserSingleInstance::popControlStatus();
-	BEGIN(INITIAL);
-  return scan_throw(END);
+	if (last_token != DOT)
+    {
+        ParserSingleInstance::popControlStatus();
+    }
+    BEGIN(INITIAL);
+    return scan_throw(END);
 }
 
 <INITIAL,BEGINID>"select"	{
-  ParserSingleInstance::pushControlStatus(Parser::WithinSelect);
-	BEGIN(INITIAL);
-  return scan_throw(SELECT);
+	if (last_token != DOT)
+    {
+        ParserSingleInstance::pushControlStatus(Parser::WithinSelect);
+    }
+    BEGIN(INITIAL);
+    return scan_throw(SELECT);
 }
 
 <INITIAL,BEGINID>"switch"	{
-  ParserSingleInstance::pushControlStatus(Parser::WithinSwitch);
-	BEGIN(INITIAL);
-  return scan_throw(SWITCH);
+	if (last_token != DOT)
+    {
+        ParserSingleInstance::pushControlStatus(Parser::WithinSwitch);
+    }
+    BEGIN(INITIAL);
+    return scan_throw(SWITCH);
 }
 
 <INITIAL,BEGINID>"otherwise" {
-	ParserSingleInstance::popControlStatus();
-	ParserSingleInstance::pushControlStatus(Parser::WithinOtherwise);
-	BEGIN(INITIAL);
+	if (last_token != DOT)
+    {
+        ParserSingleInstance::popControlStatus();
+        ParserSingleInstance::pushControlStatus(Parser::WithinOtherwise);
+    }
+    BEGIN(INITIAL);
 	return scan_throw(OTHERWISE);
 }
 
 <INITIAL,BEGINID>"case"		{
-  ParserSingleInstance::popControlStatus();
-  ParserSingleInstance::pushControlStatus(Parser::WithinCase);
-	BEGIN(INITIAL);
-  return scan_throw(CASE);
+	if (last_token != DOT)
+    {
+        ParserSingleInstance::popControlStatus();
+        ParserSingleInstance::pushControlStatus(Parser::WithinCase);
+    }
+    BEGIN(INITIAL);
+    return scan_throw(CASE);
 }
 
 <INITIAL,BEGINID>"function" {
-	ParserSingleInstance::pushControlStatus(Parser::WithinFunction);
-	BEGIN(INITIAL);
-	return scan_throw(FUNCTION);
+	if (last_token != DOT)
+    {
+        ParserSingleInstance::pushControlStatus(Parser::WithinFunction);
+    }
+    BEGIN(INITIAL);
+    return scan_throw(FUNCTION);
 }
 
 <INITIAL,BEGINID>"endfunction" {
-	ParserSingleInstance::popControlStatus();
-	BEGIN(INITIAL);
+	if (last_token != DOT)
+    {
+        ParserSingleInstance::popControlStatus();
+    }
+    BEGIN(INITIAL);
 	return scan_throw(ENDFUNCTION);
 }
 
 <INITIAL,BEGINID>"#function"	{
-	ParserSingleInstance::pushControlStatus(Parser::WithinFunction);
-	BEGIN(INITIAL);
+	if (last_token != DOT)
+    {
+        ParserSingleInstance::pushControlStatus(Parser::WithinFunction);
+    }
+    BEGIN(INITIAL);
 	return scan_throw(HIDDENFUNCTION);
 }
 
 <INITIAL,BEGINID>"hidden"	{
  	BEGIN(INITIAL);
-   return scan_throw(HIDDEN);
+    return scan_throw(HIDDEN);
 }
 
 <INITIAL,BEGINID>"for" {
-  ParserSingleInstance::pushControlStatus(Parser::WithinFor);
-	BEGIN(INITIAL);
-  return scan_throw(FOR);
+	if (last_token != DOT)
+    {
+        ParserSingleInstance::pushControlStatus(Parser::WithinFor);
+    }
+    BEGIN(INITIAL);
+    return scan_throw(FOR);
 }
 
 <INITIAL,BEGINID>"while"	{
-	ParserSingleInstance::pushControlStatus(Parser::WithinWhile);
+	if (last_token != DOT)
+    {
+        ParserSingleInstance::pushControlStatus(Parser::WithinWhile);
+    }
 	BEGIN(INITIAL);
 	return scan_throw(WHILE);
 }
@@ -802,7 +841,10 @@ assign			"="
     */
     if (last_token != DOTS)
     {
+        //std::cerr << "pstBuffer = {" << *pstBuffer << "}" << std::endl;
+        //std::cerr << "pstBuffer->c_str() = {" << pstBuffer->c_str() << "}" << std::endl;
         wchar_t *pwstBuffer = to_wide_string(pstBuffer->c_str());
+        //std::wcerr << L"pwstBuffer = W{" << pwstBuffer << L"}" << std::endl;
         yylval.comment = new std::wstring(pwstBuffer);
         delete pstBuffer;
         FREE (pwstBuffer);

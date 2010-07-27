@@ -1763,8 +1763,11 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 YY_RULE_SETUP
 {
-	ParserSingleInstance::pushControlStatus(Parser::WithinIf);
-	BEGIN(INITIAL);
+	if (last_token != DOT)
+    {
+        ParserSingleInstance::pushControlStatus(Parser::WithinIf);
+    }
+    BEGIN(INITIAL);
     return scan_throw(IF);
 }
 	YY_BREAK
@@ -1778,85 +1781,115 @@ YY_RULE_SETUP
 case 3:
 YY_RULE_SETUP
 {
-    // Pop to step out IF
-	ParserSingleInstance::popControlStatus();
-	ParserSingleInstance::pushControlStatus(Parser::WithinElse);
-	BEGIN(INITIAL);
+	if (last_token != DOT)
+    {
+        // Pop to step out IF
+        ParserSingleInstance::popControlStatus();
+        ParserSingleInstance::pushControlStatus(Parser::WithinElse);
+    }
+    BEGIN(INITIAL);
 	return scan_throw(ELSE);
 }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
 {
-	ParserSingleInstance::popControlStatus();
-	ParserSingleInstance::pushControlStatus(Parser::WithinElseIf);
-	BEGIN(INITIAL);
+	if (last_token != DOT)
+    {
+        ParserSingleInstance::popControlStatus();
+        ParserSingleInstance::pushControlStatus(Parser::WithinElseIf);
+    }
+    BEGIN(INITIAL);
 	return scan_throw(ELSEIF);
 }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
 {
-  ParserSingleInstance::popControlStatus();
-	BEGIN(INITIAL);
-  return scan_throw(END);
+	if (last_token != DOT)
+    {
+        ParserSingleInstance::popControlStatus();
+    }
+    BEGIN(INITIAL);
+    return scan_throw(END);
 }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
 {
-  ParserSingleInstance::pushControlStatus(Parser::WithinSelect);
-	BEGIN(INITIAL);
-  return scan_throw(SELECT);
+	if (last_token != DOT)
+    {
+        ParserSingleInstance::pushControlStatus(Parser::WithinSelect);
+    }
+    BEGIN(INITIAL);
+    return scan_throw(SELECT);
 }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
 {
-  ParserSingleInstance::pushControlStatus(Parser::WithinSwitch);
-	BEGIN(INITIAL);
-  return scan_throw(SWITCH);
+	if (last_token != DOT)
+    {
+        ParserSingleInstance::pushControlStatus(Parser::WithinSwitch);
+    }
+    BEGIN(INITIAL);
+    return scan_throw(SWITCH);
 }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
 {
-	ParserSingleInstance::popControlStatus();
-	ParserSingleInstance::pushControlStatus(Parser::WithinOtherwise);
-	BEGIN(INITIAL);
+	if (last_token != DOT)
+    {
+        ParserSingleInstance::popControlStatus();
+        ParserSingleInstance::pushControlStatus(Parser::WithinOtherwise);
+    }
+    BEGIN(INITIAL);
 	return scan_throw(OTHERWISE);
 }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
 {
-  ParserSingleInstance::popControlStatus();
-  ParserSingleInstance::pushControlStatus(Parser::WithinCase);
-	BEGIN(INITIAL);
-  return scan_throw(CASE);
+	if (last_token != DOT)
+    {
+        ParserSingleInstance::popControlStatus();
+        ParserSingleInstance::pushControlStatus(Parser::WithinCase);
+    }
+    BEGIN(INITIAL);
+    return scan_throw(CASE);
 }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
 {
-	ParserSingleInstance::pushControlStatus(Parser::WithinFunction);
-	BEGIN(INITIAL);
-	return scan_throw(FUNCTION);
+	if (last_token != DOT)
+    {
+        ParserSingleInstance::pushControlStatus(Parser::WithinFunction);
+    }
+    BEGIN(INITIAL);
+    return scan_throw(FUNCTION);
 }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
 {
-	ParserSingleInstance::popControlStatus();
-	BEGIN(INITIAL);
+	if (last_token != DOT)
+    {
+        ParserSingleInstance::popControlStatus();
+    }
+    BEGIN(INITIAL);
 	return scan_throw(ENDFUNCTION);
 }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
 {
-	ParserSingleInstance::pushControlStatus(Parser::WithinFunction);
-	BEGIN(INITIAL);
+	if (last_token != DOT)
+    {
+        ParserSingleInstance::pushControlStatus(Parser::WithinFunction);
+    }
+    BEGIN(INITIAL);
 	return scan_throw(HIDDENFUNCTION);
 }
 	YY_BREAK
@@ -1864,21 +1897,27 @@ case 13:
 YY_RULE_SETUP
 {
  	BEGIN(INITIAL);
-   return scan_throw(HIDDEN);
+    return scan_throw(HIDDEN);
 }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
 {
-  ParserSingleInstance::pushControlStatus(Parser::WithinFor);
-	BEGIN(INITIAL);
-  return scan_throw(FOR);
+	if (last_token != DOT)
+    {
+        ParserSingleInstance::pushControlStatus(Parser::WithinFor);
+    }
+    BEGIN(INITIAL);
+    return scan_throw(FOR);
 }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
 {
-	ParserSingleInstance::pushControlStatus(Parser::WithinWhile);
+	if (last_token != DOT)
+    {
+        ParserSingleInstance::pushControlStatus(Parser::WithinWhile);
+    }
 	BEGIN(INITIAL);
 	return scan_throw(WHILE);
 }
@@ -2631,7 +2670,10 @@ YY_RULE_SETUP
     */
     if (last_token != DOTS)
     {
+        //std::cerr << "pstBuffer = {" << *pstBuffer << "}" << std::endl;
+        //std::cerr << "pstBuffer->c_str() = {" << pstBuffer->c_str() << "}" << std::endl;
         wchar_t *pwstBuffer = to_wide_string(pstBuffer->c_str());
+        //std::wcerr << L"pwstBuffer = W{" << pwstBuffer << L"}" << std::endl;
         yylval.comment = new std::wstring(pwstBuffer);
         delete pstBuffer;
         FREE (pwstBuffer);
