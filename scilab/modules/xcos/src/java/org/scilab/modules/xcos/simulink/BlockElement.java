@@ -13,12 +13,18 @@
 package org.scilab.modules.xcos.simulink;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
+import org.scilab.modules.xcos.block.SuperBlock;
+import org.scilab.modules.xcos.graph.SuperBlockDiagram;
+import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.link.BasicLink;
+import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
@@ -26,8 +32,10 @@ import org.scilab.modules.xcos.port.output.OutputPort;
 import com.mxgraph.model.mxCell;
 
 import edu.tum.cs.commons.collections.UnmodifiableIterator;
+import edu.tum.cs.simulink.model.SimulinkAnnotation;
 import edu.tum.cs.simulink.model.SimulinkBlock;
 import edu.tum.cs.simulink.model.SimulinkInPort;
+import edu.tum.cs.simulink.model.SimulinkLine;
 import edu.tum.cs.simulink.model.SimulinkOutPort;
 
 public class BlockElement extends AbstractElement<BasicBlock> {
@@ -56,13 +64,14 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 	 * here there will be some neccessery functions, checking if import is possible etc.
 	 */
 	
-	public BasicBlock decode(SimulinkBlock from, BasicBlock into) {
+	public BasicBlock decode(SimulinkBlock from, BasicBlock into, XcosDiagram diag) {
 		BasicBlock block = into;
 		base = from;
 		if (block == null) {
 			block = BlockFactory.createBlock(modelElement.getInterFunctionName(base));
+			LOG.trace(modelElement.getInterFunctionName(base));
 		}
-		
+		block.setParentDiagram(diag);
 		/*
 		 * TODO: SimulinkBlock decoding, parameters etc.
 		 */
@@ -73,10 +82,6 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 
 	private void decodeParams(BasicBlock block) {
 		// TODO Auto-generated method stub
-		/*
-		 * decode graphics elements of BasicBlock
-		 */
-		graphicElement.decode(base, block);
 		
 		OutputPortElement outElement = new OutputPortElement(base);
 		UnmodifiableIterator<SimulinkOutPort> portOutIter = base.getOutPorts().iterator();
@@ -101,12 +106,23 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 		/*
 		 * Add control and command ports
 		 */
-		if(base.getParameter("BlockType").equals("Scope")){ //Get info about control ports from compatibility patterns
+		for(int i=0 ; i< modelElement.getControlPorts(base) ; i++ ){
 			ControlPort portAdd = inElement.decodeControlPort();
 			block.addPort(portAdd);
 		}
 		
-		specificElement.decode(base, block);
+		/*
+		 * Add control and command ports
+		 */
+		for(int i=0 ; i< modelElement.getCommandPorts(base) ; i++ ){
+			CommandPort portAdd = outElement.decodeCommandPort();
+			block.addPort(portAdd);
+		}
+		/*
+		 * decode graphics elements of BasicBlock
+		 */
+		graphicElement.decode(base, block);
+
 		try {
 			modelElement.decode(base, block);
 		} catch(SimulinkFormatException se) {
@@ -130,32 +146,19 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 		 * TODO: remember about getting subsystems to work (below)
 		 * 		 add also everything about ports and lines to subsystems
 		 */
-		double minimalYaxisValue = 0.0;
-		int i=0;
-		if (LOG.isTraceEnabled()) {
-			LOG.trace("From " + base.getName() + " subblocks:");
-			LOG.trace(base.getSubBlocks().toString());
-		}
-		UnmodifiableIterator<SimulinkBlock> blockIter = base.getSubBlocks().iterator();
-		while(blockIter.hasNext()) {
-			SimulinkBlock data = blockIter.next();
-			Object cell = null;
-			
-			if (this.canDecode(data)) {
-				BasicBlock subBlock = this.decode(data, null);
-				blocks.put(i, subBlock);
-				cell = subBlock;
-				
-				minimalYaxisValue = Math.min(minimalYaxisValue, ((mxCell) cell).getGeometry().getY());
-			} 
-			
-			if (cell != null) {
-				// FIXME: How to create subsystem in existing block?
-				//block.getParentDiagram().addCell(cell); //not that way for sure
+		if(block instanceof SuperBlock){
+			SuperBlock sBlock = (SuperBlock) block;
+			SuperBlockDiagram child = new SuperBlockDiagram();
+			DiagramElement diagram = new DiagramElement();
+			child.setContainer(sBlock);
+			child.installListeners();
+			try {
+			diagram.decode(base, child);
+			} catch(SimulinkFormatException e1) {
+				LogFactory.getLog(ImportMdl.class).error(e1);
 			}
-			i++;
+			sBlock.setChild(child);
 		}
-		
 	}
 
 	public boolean canDecode(SimulinkBlock data) {

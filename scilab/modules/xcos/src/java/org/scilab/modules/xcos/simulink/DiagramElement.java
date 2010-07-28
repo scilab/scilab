@@ -33,7 +33,7 @@ import edu.tum.cs.simulink.model.SimulinkModel;
 
 public class DiagramElement extends AbstractElement<XcosDiagram> {
 
-	private SimulinkModel base;
+	private SimulinkBlock base;
 	private static final Log LOG = LogFactory.getLog(DiagramElement.class);
 	
 	/** Map from index to blocks */
@@ -45,18 +45,33 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 		blocks = new HashMap<Integer, BasicBlock>();
 	}
 	
-	public XcosDiagram decode(SimulinkModel from, XcosDiagram into) 
+	public XcosDiagram decode(SimulinkBlock from, XcosDiagram into) 
 			throws SimulinkFormatException {
 		base = from;
-        XcosDiagram diag = into;
-        if (diag == null) {
-             diag = new XcosDiagram();
-        }
+		XcosDiagram diag = into;
+		if (diag == null) {
+			diag = new XcosDiagram();
+		}
+		
+		diag.getModel().beginUpdate();
+		decodeDiagram(diag);
+		diag.getModel().endUpdate();
+
+		return diag;
+	}
+
+	public XcosDiagram decode(SimulinkModel from, XcosDiagram into) 
+			throws SimulinkFormatException {
+		base = (SimulinkBlock) from;
+		XcosDiagram diag = into;
+		if (diag == null) {
+			diag = new XcosDiagram();
+		}
 
 		diag.getModel().beginUpdate();
-        decodeDiagram(diag);
+		decodeDiagram(diag);
 		diag.getModel().endUpdate();
-        
+
 		return diag;
 	}
 	
@@ -97,7 +112,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 			Object cell = null;
 			
 			if (blockElement.canDecode(data)) {
-				BasicBlock block = blockElement.decode(data, null);
+				BasicBlock block = blockElement.decode(data, null, diag);
 				blocks.put(i, block);
 				cell = block;
 				
@@ -118,23 +133,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 		while(blockIter.hasNext()) {
 			SimulinkBlock blockData = blockIter.next();
 			Object cell = null;
-			Iterator<SimulinkLine> dataIter = blockData.getInLines().iterator();
-			while(dataIter.hasNext()){
-				SimulinkLine data = dataIter.next();
-				if (lineElement.canDecode(data)) {
-					BasicLink link = lineElement.decode(data, null);
-					cell = link;
-					
-					minimalYaxisValue = Math.min(minimalYaxisValue, ((mxCell) cell).getGeometry().getY());
-				}
-				
-				if (cell != null) {
-					diag.addCell(cell);
-				}
-			}
-			/*
-			 * no need for adding out lines when already added inLines
-			dataIter = blockData.getOutLines().iterator();
+			/*Iterator<SimulinkLine> dataIter = blockData.getInLines().iterator();
 			while(dataIter.hasNext()){
 				SimulinkLine data = dataIter.next();
 				if (lineElement.canDecode(data)) {
@@ -148,6 +147,22 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 					diag.addCell(cell);
 				}
 			}*/
+			/*
+			 * no need for adding out lines when already added inLines */
+			Iterator<SimulinkLine> dataIter = blockData.getOutLines().iterator();
+			while(dataIter.hasNext()){
+				SimulinkLine data = dataIter.next();
+				if (lineElement.canDecode(data)) {
+					BasicLink link = lineElement.decode(data, null);
+					cell = link;
+					
+					minimalYaxisValue = Math.min(minimalYaxisValue, ((mxCell) cell).getGeometry().getY());
+				}
+				
+				if (cell != null) {
+					diag.addCell(cell);
+				}
+			}
 		}
 		/*
 		 * Decode Annotations
@@ -159,8 +174,6 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 			
 			if (annotationElement.canDecode(data)) {
 				cell = annotationElement.decode(data, null);
-				
-				minimalYaxisValue = Math.min(minimalYaxisValue, ((mxCell) cell).getGeometry().getY());
 			} 
 			
 			if (cell != null) {

@@ -255,7 +255,9 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		
 		@Override
 		public void propertyChange(PropertyChangeEvent evt) {
-			LOG.trace(evt.getPropertyName() + ": " + evt.getOldValue() + ", " + evt.getNewValue());
+			if (LOG.isTraceEnabled()) {
+				LOG.trace(evt.getPropertyName() + ": " + evt.getOldValue() + ", " + evt.getNewValue());
+			}
 		}
 	}
 	
@@ -745,26 +747,31 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
      */
     public void updateBlockSettings(BasicBlock modifiedBlock) {
 	doUpdateBlockSettings(modifiedBlock);
-    }
+	}
 
-    /**
-     * Does the block update without using the undo manager 
-     * @param modifiedBlock the new settings
-     */
-    public void doUpdateBlockSettings(BasicBlock modifiedBlock) {
-	setDependsOnT(modifiedBlock.isDependsOnT());
-	setDependsOnU(modifiedBlock.isDependsOnU());
-	setExprs(modifiedBlock.getExprs());
+	/**
+	 * Does the block update without using the undo manager 
+	 * @param modifiedBlock the new settings
+	*/
+	public void doUpdateBlockSettings(BasicBlock modifiedBlock) {
+		//FIXME: Somwhere here Null pointers
+		if (LOG.isTraceEnabled()) {
+			LOG.trace("Updating block settings.");
+		}
+		
+		setDependsOnT(modifiedBlock.isDependsOnT());
+		setDependsOnU(modifiedBlock.isDependsOnU());
+		setExprs(modifiedBlock.getExprs());
+		
+		setRealParameters(modifiedBlock.getRealParameters());
+		setIntegerParameters(modifiedBlock.getIntegerParameters());
+		setObjectsParameters(modifiedBlock.getObjectsParameters());
 
-	setRealParameters(modifiedBlock.getRealParameters());
-	setIntegerParameters(modifiedBlock.getIntegerParameters());
-	setObjectsParameters(modifiedBlock.getObjectsParameters());
-
-	setState(modifiedBlock.getState());
-	setDState(modifiedBlock.getDState());
-	setODState(modifiedBlock.getODState());
-
-	setEquations(modifiedBlock.getEquations());
+		setState(modifiedBlock.getState());
+		setDState(modifiedBlock.getDState());
+		setODState(modifiedBlock.getODState());
+		
+		setEquations(modifiedBlock.getEquations());
 
 		// Update the children according to the modified block children. We are
 		// working on the last index in order to simplify the List.remove()
@@ -772,6 +779,9 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		final int oldChildCount = getChildCount();
 		final int newChildCount = modifiedBlock.getChildCount();
 		final int portStep = newChildCount - oldChildCount;
+		if (LOG.isTraceEnabled()) {
+			LOG.trace("Updating ports.");
+		}
 		if (portStep > 0) {
 			for (int i = portStep - 1; i >= 0; i--) {
 				addPort((BasicPort) modifiedBlock.getChildAt(oldChildCount + i - 1));
@@ -781,16 +791,18 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 				removePort((BasicPort) getChildAt(newChildCount + i));
 			}
 		}
-
-	/*
-	 * If the block is in a superblock then update it.
-	 */
-	if (getParentDiagram() instanceof SuperBlockDiagram) {
-	    SuperBlock parentBlock = ((SuperBlockDiagram) getParentDiagram()).getContainer();
-	    parentBlock.getParentDiagram().fireEvent(new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED, 
-		    XcosConstants.EVENT_BLOCK_UPDATED, parentBlock));
+		/*
+		 * If the block is in a superblock then update it.
+		 */
+		if (LOG.isTraceEnabled()) {
+			LOG.trace("Updating superblock.");
+		}
+		if (getParentDiagram() instanceof SuperBlockDiagram) {
+			SuperBlock parentBlock = ((SuperBlockDiagram) getParentDiagram()).getContainer();
+			parentBlock.getParentDiagram().fireEvent(new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED, 
+				XcosConstants.EVENT_BLOCK_UPDATED, parentBlock));
+		}
 	}
-    }
 
     /**
      * @param context parent diagram context
@@ -823,8 +835,9 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (tempInput.exists()) {
-					LOG.trace("Updating data.");
-					
+					if (LOG.isTraceEnabled()) {
+						LOG.trace("Updating data.");
+					}
 				// Now read new Block
 			    BasicBlock modifiedBlock = new H5RWHandler(tempInput).readBlock();
 			    updateBlockSettings(modifiedBlock);
@@ -833,7 +846,9 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 				    currentBlock));
 			    delete(tempInput);
 				} else {
-					LOG.trace("No needs to update data.");
+					if (LOG.isTraceEnabled()) {
+						LOG.trace("No needs to update data.");
+					}
 				}
 				
 			    setLocked(false);
@@ -1076,6 +1091,10 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
     public ContextMenu createContextMenu(ScilabGraph graph) {
 		ContextMenu menu = ScilabContextMenu.createContextMenu();
 		Map<Class< ? extends DefaultAction>, Menu> menuList = new HashMap<Class< ? extends DefaultAction>, Menu>();
+		
+		if(LOG.isTraceEnabled()){
+			LOG.trace("Creating context menu.");
+		}
 		
 		MenuItem value = BlockParametersAction.createMenu(graph);
 		menuList.put(BlockParametersAction.class, value);
