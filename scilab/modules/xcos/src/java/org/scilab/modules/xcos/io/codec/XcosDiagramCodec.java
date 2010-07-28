@@ -188,6 +188,8 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
 	public Object afterDecode(mxCodec dec, Node node, Object obj) {
 		XcosDiagram diag = (XcosDiagram) obj;
 		
+		diag.setChildrenParentDiagram();
+		
 		// pre-5.3 diagram may be saved in a locked state
 		// unlock it
 		diag.setReadOnly(false);

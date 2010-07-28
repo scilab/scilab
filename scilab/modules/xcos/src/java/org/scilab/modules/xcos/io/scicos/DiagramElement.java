@@ -172,6 +172,20 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 		
 		return diag;
 	}
+	
+	/**
+	 * Reassociate the children with the current diagram.
+	 * 
+	 * @param element the encoded element
+	 * @param into the target instance
+	 * @return the modified target instance
+	 * @see org.scilab.modules.xcos.io.scicos.AbstractElement#afterDecode(org.scilab.modules.types.scilabTypes.ScilabType, java.lang.Object)
+	 */
+	@Override
+	public XcosDiagram afterDecode(ScilabType element, XcosDiagram into) {
+		into.setChildrenParentDiagram();
+		return super.afterDecode(element, into);
+	}
 
 	/**
 	 * Decode the diagram

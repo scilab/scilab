@@ -74,10 +74,10 @@ import org.scilab.modules.xcos.actions.XcosDocumentationAction;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
+import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.TextBlock;
-import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.block.actions.ShowParentAction;
 import org.scilab.modules.xcos.block.io.ContextUpdate;
 import org.scilab.modules.xcos.configuration.ConfigurationManager;
@@ -109,16 +109,16 @@ import org.xml.sax.SAXException;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxGraphModel;
-import com.mxgraph.model.mxICell;
 import com.mxgraph.model.mxGraphModel.mxChildChange;
 import com.mxgraph.model.mxGraphModel.mxStyleChange;
+import com.mxgraph.model.mxICell;
 import com.mxgraph.model.mxIGraphModel.mxAtomicGraphModelChange;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxUndoableEdit;
-import com.mxgraph.util.mxUtils;
 import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
+import com.mxgraph.util.mxUtils;
 import com.mxgraph.view.mxGraphSelectionModel;
 import com.mxgraph.view.mxMultiplicity;
 import com.mxgraph.view.mxStylesheet;
@@ -1876,7 +1876,6 @@ public class XcosDiagram extends ScilabGraph {
 		setModified(false);
 		setSavedFile(theFile.getAbsolutePath());
 		setTitle(theFile.getName().substring(0,	theFile.getName().lastIndexOf('.')));
-		setChildrenParentDiagram();
 		generateUID();
 	    } else {
 	    	info(XcosMessages.LOADING_DIAGRAM);
@@ -1885,7 +1884,6 @@ public class XcosDiagram extends ScilabGraph {
 		xcosDiagram.setModified(false);
 		xcosDiagram.setSavedFile(theFile.getAbsolutePath());
 		xcosDiagram.setTitle(theFile.getName().substring(0,	theFile.getName().lastIndexOf('.')));
-		xcosDiagram.setChildrenParentDiagram();
 		xcosDiagram.generateUID();
 		new XcosTab(xcosDiagram).setVisible(true);
 		info(XcosMessages.EMPTY_INFO);
@@ -1953,12 +1951,17 @@ public class XcosDiagram extends ScilabGraph {
      * Update all the children of the current graph.
      */
     public void setChildrenParentDiagram() {
-    	for (int i = 0; i < getModel().getChildCount(getDefaultParent()); i++) {
-    	    mxCell cell = (mxCell) getModel().getChildAt(getDefaultParent(), i);
-    	    if (cell instanceof BasicBlock) {
-    		BasicBlock block = (BasicBlock) cell;
-    		block.setParentDiagram(this);
-    	    }
+    	getModel().beginUpdate();
+    	try {
+	    	for (int i = 0; i < getModel().getChildCount(getDefaultParent()); i++) {
+	    	    mxCell cell = (mxCell) getModel().getChildAt(getDefaultParent(), i);
+	    	    if (cell instanceof BasicBlock) {
+	    		BasicBlock block = (BasicBlock) cell;
+	    		block.setParentDiagram(this);
+	    	    }
+	    	}
+    	} finally {
+    		getModel().endUpdate();
     	}
     }
 
