@@ -86,15 +86,15 @@
 		
 		<!-- 	Integrator Block Compatibility Pattern -->
 		<block sim="Integrator" xcos="INTEGRAL_m" description="
-		ExternalReset - not available;
-		InitialConditionSource - external?internal (?);
-		LimitOutput - switched on by default;
-		ShowSaturationPort - N/A;
-		ShowStatePort - N/A;
-		AbsoluteTolerance- N/A;
-		IgnoreLimit - N/A;
-		ContinuousStateAttributes - N/A;"
-		>
+			ExternalReset - not available;
+			InitialConditionSource - external?internal (?);
+			LimitOutput - switched on by default;
+			ShowSaturationPort - N/A;
+			ShowStatePort - N/A;
+			AbsoluteTolerance- N/A;
+			IgnoreLimit - N/A;
+			ContinuousStateAttributes - N/A;"
+			>
 			<simple sim="FunctionName" xcos="integral_func"></simple>
 			<simple sim="FunctionType" xcos="4"></simple>
 			<simple sim="BlockType" xcos="c"></simple>
@@ -113,15 +113,16 @@
 			</str2int>
 			<real xcos="exprs">
 				<map simName="InitialCondition" index="0,0"/>
-				<map simName="Null" index="1,0"/>
-				<map simName="Null" index="2,0"/>
+				<map simName="0" index="1,0"/> <!-- with reinitialization -->
+				<map simName="0" index="2,0"/> <!-- with saturation -->
 				<map simName="UpperSaturationLimit" index="3,0"/>
 				<map simName="LowerSaturationLimit" index="4,0"/>
 			</real>
+			<!-- 
 			<real xcos="rpar">
 				<map simName="UpperSaturationLimit" index="0,0"/>
 				<map simName="LowerSaturationLimit" index="1,0"/>
-			</real>
+			</real> -->
 			<real xcos="state">
 				<map simName="InitialCondition" index="0,0"/>
 			</real>
@@ -256,6 +257,19 @@
 			-->
 		</block>
 		
+		<!-- Gain Block Compatibility Pattern -->
+		<block sim="Gain" xcos="GAINBLK_f" description="4">
+			<simple sim="FunctionName" xcos="gain"></simple>
+			<simple sim="FunctionType" xcos="null"></simple>
+			<simple sim="BlockType" xcos="c"></simple>
+			<real xcos="exprs">
+				<map simName="1" index="0,0"/>
+			</real>
+			<real xcos="rpar">
+				<map simName="Gain" index="0,0"/>
+			</real>
+		</block>
+		
 	<!-- B -->
 
 <!-- Sources Library Block Parameters -->
@@ -279,6 +293,8 @@
 			<simple sim="FunctionName" xcos="cscope"></simple>
 			<simple sim="FunctionType" xcos="4"></simple>
 			<simple sim="BlockType" xcos="c"></simple>
+			<simple sim="ControlPort" xcos="1"></simple>
+			<simple sim="CommandPort" xcos="0"></simple>
 			<real xcos="exprs">
 				<map simName="1 3 5 7 9 11 13 15" index="0,0"/> <!-- Color, mark, vector 8 entries -->
 				<map simName="-1" index="1,0"/> <!-- Output window number (-1) default -->
@@ -313,6 +329,149 @@
 				<map simName="-1" index="12,0"/>
 				<map simName="600" index="13,0"/> <!-- Window width -->
 				<map simName="400" index="14,0"/> <!-- Height -->
+			</real>
+		</block>
+
+<!-- Math Library Block Parameters -->
+		<!-- 	Sin Block Compatibility Pattern -->
+		<block sim="Sin" xcos="GENSIN_f" description="
+			LinearizePole - not available;
+			">
+			<simple sim="FunctionName" xcos="gensin"></simple>
+			<simple sim="FunctionType" xcos="null"></simple>
+			<simple sim="BlockType" xcos="c"></simple>
+			<real xcos="exprs">
+				<map simName="Amplitude" index="0,0"/><!-- AcceptedHeritedEvents -->
+				<map simName="Frequency" index="1,0"/>
+				<map simName="Phase" index="2,0"/>
+			</real>
+			<real xcos="rpar">
+				<map simName="Amplitude" index="0,0"/><!-- AcceptedHeritedEvents -->
+				<map simName="Frequency" index="1,0"/>
+				<map simName="Phase" index="2,0"/>
+			</real>
+		</block>
+		
+		<!-- Gain Block Compatibility Pattern -->
+		<block sim="Saturation" xcos="SATURATION" description="4">
+			<!-- Zero crossing? -->
+			<simple sim="FunctionName" xcos="satur"></simple>
+			<simple sim="FunctionType" xcos="4"></simple>
+			<simple sim="BlockType" xcos="c"></simple>
+			<real xcos="exprs">
+				<map simName="UpperLimit" index="0,0"/>
+				<map simName="LowerLimit" index="1,0"/>
+				<map simName="0" index="1,0"/> <!-- ZeroCrossing -->
+			</real>
+			<real xcos="rpar">
+				<map simName="UpperLimit" index="0,0"/>
+				<map simName="LowerLimit" index="1,0"/>
+			</real>
+		</block>
+		
+		<!-- FIXME: -->
+		<!-- Product Block Compatibility Pattern -->
+		<block sim="Product" xcos="PRODUCT" description="4">
+			<!-- Zero crossing? -->
+			<simple sim="FunctionName" xcos="product"></simple>
+			<simple sim="FunctionType" xcos="4"></simple>
+			<simple sim="BlockType" xcos="c"></simple>
+			<real xcos="exprs">
+				<map simName="1" index="0,0"/>
+				<map simName="1" index="1,0"/>
+			</real>
+			<real xcos="ipar">
+				<map simName="1" index="0,0"/>
+				<map simName="1" index="1,0"/>
+			</real>
+		</block>
+		<!-- FIXME: -->
+		<!-- Sum Block Compatibility Pattern -->
+		<block sim="Sum FIXME" xcos="SUMMATION" description="4">
+			<!-- Zero crossing? -->
+			<simple sim="FunctionName" xcos="summation"></simple>
+			<simple sim="FunctionType" xcos="4"></simple>
+			<simple sim="BlockType" xcos="c"></simple>
+			<real xcos="exprs">
+				<map simName="1" index="0,0"/><!-- Datatype -->
+				<map simName="1" index="1,0"/><!-- Number of inputs, sign vector -->
+				<map simName="0" index="2,0"/><!-- Do on overflowe -->
+			</real>
+			<!-- FIXME: -->
+			<real xcos="ipar FIXME">
+				<map simName="2" index="0,0"/><!-- Number of inputs, sign vector -->
+			</real>
+		</block>
+		<!-- FIXME: -->
+		<!-- Relay Block Compatibility Pattern -->
+		<block sim="Relay" xcos="RELAY_f" description="">
+			<!-- Zero crossing? -->
+			<simple sim="FunctionName" xcos="relay"></simple>
+			<simple sim="FunctionType" xcos="4"></simple>
+			<simple sim="BlockType" xcos="c"></simple>
+			<real xcos="exprs">
+				<map simName="1" index="0,0"/>
+				<map simName="1" index="1,0"/>
+			</real>
+			<real xcos="rpar">
+				<map simName="1" index="0,0"/>
+				<map simName="1" index="1,0"/>
+			</real>
+		</block>
+		
+		<!-- FIXME: -->
+		<!-- SubSystem Block Compatibility Pattern -->
+		<block sim="SubSystem" xcos="SUPER_f" description="">
+			<!-- Zero crossing? -->
+			<simple sim="FunctionName" xcos="super"></simple>
+			<simple sim="FunctionType" xcos="null"></simple>
+			<simple sim="BlockType" xcos="c"></simple>
+		</block>
+		
+				<!-- FIXME: -->
+		<!-- MultiPortSwitch Block Compatibility Pattern -->
+		<block sim="MultiPortSwitch" xcos="M_SWITCH" description="">
+			<!-- Zero crossing? -->
+			<simple sim="FunctionName" xcos="mswitch"></simple>
+			<simple sim="FunctionType" xcos="4"></simple>
+			<simple sim="BlockType" xcos="c"></simple>
+			<real xcos="exprs">
+				<map simName="2" index="0,0"/><!-- number of inputs -->
+				<map simName="1" index="1,0"/><!-- zero base indexind -->
+				<map simName="3" index="2,0"/><!-- rounding rule -->
+			</real>
+			<real xcos="ipar">
+				<map simName="1" index="0,0"/> <!-- zero base indexind -->
+				<map simName="3" index="1,0"/> <!-- rounding rule -->
+			</real>
+		</block>
+		
+		<!-- FIXME: -->
+		<!-- Mux Block Compatibility Pattern -->
+		<block sim="Mux" xcos="MUX" description="">
+			<!-- Zero crossing? -->
+			<simple sim="FunctionName" xcos="multiplex"></simple>
+			<simple sim="FunctionType" xcos="4"></simple>
+			<simple sim="BlockType" xcos="c"></simple>
+			<real xcos="exprs">
+				<map simName="1" index="0,0"/><!-- Number of input ports -->
+			</real>
+			<real xcos="ipar">
+				<map simName="1" index="0,0"/><!-- Number of input ports -->
+			</real>
+		</block>
+		<!-- FIXME: -->
+		<!-- Demux Block Compatibility Pattern -->
+		<block sim="Demux" xcos="DEMUX" description="">
+			<!-- Zero crossing? -->
+			<simple sim="FunctionName" xcos="multiplex"></simple>
+			<simple sim="FunctionType" xcos="4"></simple>
+			<simple sim="BlockType" xcos="c"></simple>
+			<real xcos="exprs">
+				<map simName="1" index="0,0"/><!-- Number of output ports -->
+			</real>
+			<real xcos="ipar">
+				<map simName="1" index="0,0"/><!-- Number of output ports -->
 			</real>
 		</block>
 
