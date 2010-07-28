@@ -9,7 +9,7 @@
 package org.scilab.modules.scinotes;
 
 
- /** 
+ /**
    * @author Allan CORNET - DIGITEO 2009
    */
 public class ScilabKeywords {
@@ -22,10 +22,6 @@ public class ScilabKeywords {
  }
   public static String[] GetVariablesName() {
     return ScilabKeywordsJNI.GetVariablesName();
-  }
-
-  public static String[] GetCommandsName() {
-    return ScilabKeywordsJNI.GetCommandsName();
   }
 
   public static String[] GetFunctionsName() {

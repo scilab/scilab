@@ -11,7 +11,7 @@ package org.scilab.modules.scinotes;
 
 /* It is generated code. Disable checkstyle */
 //CHECKSTYLE:OFF
- /** 
+ /**
    * @author Allan CORNET - DIGITEO 2009
    */
 public class ScilabKeywordsJNI {
@@ -40,7 +40,6 @@ public class ScilabKeywordsJNI {
   }
 
   public final static native String[] GetVariablesName();
-  public final static native String[] GetCommandsName();
   public final static native String[] GetFunctionsName();
   public final static native String[] GetMacrosName();
 }

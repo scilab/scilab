@@ -1,17 +1,17 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 /* ScilabKeywords.i */
 /**
- * Windows: swig -java -package org.scilab.modules.scinotes -outdir ../java/org/scilab/modules/scinotes/ ScilabKeywords.i 
+ * Windows: swig -java -package org.scilab.modules.scinotes -outdir ../java/org/scilab/modules/scinotes/ ScilabKeywords.i
  * Other: Use the option --enable-build-swig to the configure
  */
 %module ScilabKeywords
@@ -27,7 +27,7 @@
 %pragma(java) jniclassclassmodifiers=%{
 /* It is generated code. Disable checkstyle */
 //CHECKSTYLE:OFF
- /** 
+ /**
    * @author Allan CORNET - DIGITEO 2009
    */
 public class%}
@@ -62,7 +62,7 @@ public class%}
 
 /* JavaDoc for ScilabKeywords class */
 %pragma(java) moduleclassmodifiers="
- /** 
+ /**
    * @author Allan CORNET - DIGITEO 2009
    */
 public class";
@@ -78,28 +78,19 @@ public class";
 
 
 /* JavaDoc */
-%javamethodmodifiers GetMacrosName() "
+%javamethodmodifiers GetVariablesName() "
 /**
-* get Macros Name
-* @return a array of chars 
+* get Variables Name
+* @return a array of chars
 */
 public";
 char **GetVariablesName(void);
 
 /* JavaDoc */
-%javamethodmodifiers GetMacrosName() "
+%javamethodmodifiers GetFunctionsName() "
 /**
-* get Macros Name
-* @return a array of chars 
-*/
-public";
-char **GetCommandsName(void);
-
-/* JavaDoc */
-%javamethodmodifiers GetMacrosName() "
-/**
-* get Macros Name
-* @return a array of chars 
+* get Functions Name
+* @return a array of chars
 */
 public";
 char **GetFunctionsName(void);
@@ -108,7 +99,7 @@ char **GetFunctionsName(void);
 %javamethodmodifiers GetMacrosName() "
 /**
 * get Macros Name
-* @return a array of chars 
+* @return a array of chars
 */
 public";
 char **GetMacrosName(void);
