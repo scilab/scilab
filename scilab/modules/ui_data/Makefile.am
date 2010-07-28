@@ -21,7 +21,9 @@ libsciui_data_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 #### ui_data : init scripts ####
 libsciui_data_la_etcdir = $(mydatadir)/etc
 libsciui_data_la_etc_DATA = etc/ui_data.quit \
-				etc/ui_data.start
+				etc/ui_data.start \
+				etc/variablebrowser_menubar.xml \
+				etc/variableeditor_menubar.xml
 
 include $(top_srcdir)/Makefile.incl.am
 
