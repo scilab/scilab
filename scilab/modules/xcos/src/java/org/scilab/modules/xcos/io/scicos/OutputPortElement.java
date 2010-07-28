@@ -95,10 +95,15 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 		data = (ScilabMList) element;
 		
 		port = allocatePort();
+		
+		port = beforeDecode(element, port);
+		
 		fillParameters(port);
 		
 		// Update the index counter
 		alreadyDecodedCount++;
+		
+		port = afterDecode(element, port);
 		
 		return port;
 	}
@@ -222,11 +227,15 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 			throw new IllegalArgumentException();
 		}
 
+		data = (ScilabMList) beforeEncode(from, data);
+		
 		encodeModel(from);
 		encodeGraphics(from);
 		
 		// Update the index counter
 		alreadyDecodedCount++;
+		
+		data = (ScilabMList) afterEncode(from, data);
 		
 		return data;
 	}
@@ -301,7 +310,6 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 	/**
 	 * Clear Block.model.out2 if it contains only zeros.
 	 */
-	@Override
 	public void afterEncode() {
 		if (allColumnsAreZeros) {
 			model.set(MODEL_OUT_DATACOL_INDEX, new ScilabDouble());

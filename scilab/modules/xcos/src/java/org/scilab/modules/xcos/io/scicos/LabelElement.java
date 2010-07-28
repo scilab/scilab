@@ -66,6 +66,8 @@ public class LabelElement extends AbstractElement<TextBlock> {
 			block = new TextBlock();
 		}
 		
+		block = beforeDecode(element, block);
+		
 		/*
 		 * Fill block with the data structure
 		 */
@@ -91,6 +93,8 @@ public class LabelElement extends AbstractElement<TextBlock> {
 					.getData()[0][0];
 			block.setValue(text);
 		}
+		
+		block = afterDecode(element, block);
 		
 		return block;
 	}

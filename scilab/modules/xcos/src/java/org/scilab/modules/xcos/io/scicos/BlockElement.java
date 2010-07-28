@@ -47,10 +47,10 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 	private ScilabMList data;
 
 	/** Element used to decode/encode Scicos model part into a BasicBlock*/
-	private BlockModelElement modelElement = new BlockModelElement();
+	private final BlockModelElement modelElement = new BlockModelElement();
 	
 	/** Element used to decode/encode Scicos model part into a BasicBlock*/
-	private BlockGraphicElement graphicElement = new BlockGraphicElement();
+	private final BlockGraphicElement graphicElement = new BlockGraphicElement();
 	
 	/*
 	 * Decoder state 
@@ -119,6 +119,8 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 			block = BlockFactory.createBlock(interfunction);
 		}
 		
+		block = beforeDecode(element, block);
+		
 		/*
 		 * Allocate and setup ports
 		 */
@@ -157,6 +159,8 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 		
 		minX = Math.min(minX, block.getGeometry().getX());
 		minY = Math.min(minX, block.getGeometry().getY());
+		
+		block = afterDecode(element, block);
 		
 		return block;
 	}
@@ -327,6 +331,8 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 			setupPortSize(from);
 		}
 		
+		data = (ScilabMList) beforeEncode(from, data);
+		
 		field++;
 		base = data.get(field);
 		base = graphicElement.encode(from, null);
@@ -352,9 +358,6 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 		final OutputPortElement outElement = new OutputPortElement(data);
 		final int numberOfPorts = from.getChildCount();
 		
-		inElement.beforeEncode();
-		outElement.beforeEncode();
-		
 		for (int i = 0; i < numberOfPorts; i++) {
 			final Object instance = from.getChildAt(i);
 			
@@ -365,8 +368,13 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 			}
 		}
 		
+		/*
+		 * post process for element shared fields
+		 */
 		inElement.afterEncode();
 		outElement.afterEncode();
+		
+		data = (ScilabMList) afterEncode(from, data);
 		
 		return data;
 	}
