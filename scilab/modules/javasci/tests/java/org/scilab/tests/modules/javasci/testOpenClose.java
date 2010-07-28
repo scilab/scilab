@@ -14,13 +14,26 @@ package org.scilab.tests.modules.javasci;
 import org.testng.annotations.*;
 
 import org.scilab.modules.javasci.Scilab;
+import org.scilab.modules.javasci.JavasciException.InitializationException;
 
 public class testOpenClose {
 
 	@Test
-    public void openTest() throws NullPointerException {
+    public void openTest() throws NullPointerException, InitializationException {
+        Scilab sci = new Scilab();
+		System.out.println("sci.open(); " +sci.open());
+        assert sci.open() == true;
+// @TODO: uncomment this
+//        sci.close();
+    }
+
+	//	@Test
+    public void multipleOpenCloseTest() throws NullPointerException, InitializationException {
         Scilab sci = new Scilab();
         assert sci.open() == true;
+		sci.close();
+        assert sci.open() == true;
+		sci.close();
 // @TODO: uncomment this
 //        sci.close();
     }

@@ -14,6 +14,7 @@ package org.scilab.tests.modules.javasci;
 import org.testng.annotations.*;
 
 import org.scilab.modules.javasci.Scilab;
+import org.scilab.modules.javasci.JavasciException.InitializationException;
 import org.scilab.modules.types.scilabTypes.ScilabTypeEnum;
 
 public class testTypes {
@@ -21,7 +22,7 @@ public class testTypes {
     private Scilab sci;
 
     @Test
-    public void getVariableTypeTest() throws NullPointerException {
+		public void getVariableTypeTest() throws NullPointerException, InitializationException {
         sci = new Scilab();
         sci.open();
 

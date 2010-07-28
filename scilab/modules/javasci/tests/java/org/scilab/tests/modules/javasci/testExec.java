@@ -14,13 +14,14 @@ package org.scilab.tests.modules.javasci;
 import org.testng.annotations.*;
 
 import org.scilab.modules.javasci.Scilab;
+import org.scilab.modules.javasci.JavasciException.InitializationException;
 import org.scilab.modules.types.scilabTypes.ScilabType;
 import org.scilab.modules.types.scilabTypes.ScilabDouble;
 
 public class testExec {
 
 	@Test
-    public void execAndReadTest() throws NullPointerException {
+		public void execAndReadTest() throws NullPointerException, InitializationException {
         Scilab sci = new Scilab();
         sci.open();
 
