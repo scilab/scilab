@@ -555,9 +555,9 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         int end = getSelectionEnd();
         try {
             if (start == end) {
-                selection = getDocument().getText(0, start + 1);
+                selection = getDocument().getText(0, start);
             } else {
-                selection = getDocument().getText(start, end - start + 1);
+                selection = getDocument().getText(start, end - start);
             }
             if (suppressCom) {
                 selection = selection.replaceAll("[ \t]*//[^\n]*\n", "");
