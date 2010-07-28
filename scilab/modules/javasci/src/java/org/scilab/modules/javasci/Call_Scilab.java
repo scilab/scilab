@@ -60,4 +60,8 @@ public class Call_Scilab {
     return Call_ScilabJNI.putDouble(variableName, variable);
   }
 
+  public static int putDoubleComplex(String variableName, double[][] variable, double[][] variableImg, int nbRow, int nbCol) {
+    return Call_ScilabJNI.putDoubleComplex(variableName, variable, variableImg, nbRow, nbCol);
+  }
+
 }

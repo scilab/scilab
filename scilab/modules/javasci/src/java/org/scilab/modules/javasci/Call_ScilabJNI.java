@@ -33,7 +33,7 @@ class Call_ScilabJNI {
 		System.err.println("A security manager exists and does not allow the loading of the specified dynamic library :");
 		e.printStackTrace(System.err);
 	} catch (UnsatisfiedLinkError e)	{
-		System.err.println("The native library sciaction_binding does not exist or cannot be found.");
+		System.err.println("The native library javasci does not exist or cannot be found.");
 		e.printStackTrace(System.err);
     }
   }
@@ -47,4 +47,5 @@ class Call_ScilabJNI {
   public final static native int getVariableType(String jarg1);
   public final static native double[][] getDouble(String jarg1);
   public final static native int putDouble(String jarg1, double[][] jarg2);
+  public final static native int putDoubleComplex(String jarg1, double[][] jarg2, double[][] jarg3, int jarg4, int jarg5);
 }

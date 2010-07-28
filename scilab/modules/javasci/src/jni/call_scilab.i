@@ -63,7 +63,7 @@ class%}
 		System.err.println("A security manager exists and does not allow the loading of the specified dynamic library :");
 		e.printStackTrace(System.err);
 	} catch (UnsatisfiedLinkError e)	{
-		System.err.println("The native library sciaction_binding does not exist or cannot be found.");
+		System.err.println("The native library javasci does not exist or cannot be found.");
 		e.printStackTrace(System.err);
     }
   }
@@ -108,21 +108,12 @@ int GetLastErrorCode(void);
 
 sci_types getVariableType(char *varname);
 
-//%include "arrays_java.i";
-//int putDouble(double **variable, int, int);
-
-//double** getDouble(char *varname);
-
 //int putInteger(char *varname, int variable[][]);
-
-//int putDouble(char * variableName, double *variable, int nbRow, int nbCol);
 
 //int putInteger(char * variableName, int **variable, int nbRow, int nbCol);
 
 double * getDouble(char *variableName, int *nbRow, int *nbCol);
 
-//%include "arrays_java.i";
-//%include "typemaps.i";
-%include "call_scilab_java_typemaps_put.i"
-
 int putDouble(char * variableName, double variable[], int nbRow, int nbCol);
+
+int putDoubleComplex(char * variableName, double variable[], double variableImg[], int nbRow, int nbCol);

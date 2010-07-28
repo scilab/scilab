@@ -1017,6 +1017,39 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putDoubl
 }
 
 
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putDoubleComplex(JNIEnv *jenv, jclass jcls, jstring jarg1, jobjectArray jarg2, jobjectArray jarg3, jint jarg4, jint jarg5) {
+  jint jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  double *arg2 ;
+  double *arg3 ;
+  int arg4 ;
+  int arg5 ;
+  jdouble *jarr2 ;
+  jdouble *jarr3 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return 0;
+  }
+  if (!SWIG_JavaArrayInDouble(jenv, &jarr2, &arg2, jarg2)) return 0; 
+  if (!SWIG_JavaArrayInDouble(jenv, &jarr3, &arg3, jarg3)) return 0; 
+  arg4 = (int)jarg4; 
+  arg5 = (int)jarg5; 
+  result = (int)putDoubleComplex(arg1,arg2,arg3,arg4,arg5);
+  jresult = (jint)result; 
+  SWIG_JavaArrayArgoutDouble(jenv, jarr2, arg2, jarg2); 
+  SWIG_JavaArrayArgoutDouble(jenv, jarr3, arg3, jarg3); 
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+  free(arg2); 
+  free(arg3); 
+  return jresult;
+}
+
+
 #ifdef __cplusplus
 }
 #endif
