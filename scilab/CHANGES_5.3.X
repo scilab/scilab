@@ -1,6 +1,13 @@
          Changes between version 5.3.0-beta-2 and 5.3.0-beta-3 of Scilab
          ===============================================================
 
+SciNotes:
+=========
+
+* bug 7618 fixed - The change of the background color generated an exception.
+
+* bug 7621 fixed - The change of the font generated an exception.
+
 Bug Fixes:
 ==========
 
@@ -59,7 +66,6 @@ SciNotes:
                    "Split..." and "Line Numbering..." menus. 
 
 * bug 7595 fixed - In SciNotes, a string was broken if '..' was encountered.
-
 
 File input/output:
 ==================

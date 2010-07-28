@@ -396,7 +396,7 @@ public final class SetColorsAction extends DefaultAction {
         okButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     /* Apply all new settings */
-                    int numberOfTab = getEditor().getTabPane().getComponentCount();
+                    int numberOfTab = getEditor().getTabPane().getTabCount();
                     for (int j = 0; j < numberOfTab; j++) {
                         ScilabEditorPane textPane = getEditor().getTextPane(j);
                         for (int i = 0; i < numberOfStyles; i++) {

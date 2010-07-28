@@ -52,7 +52,7 @@ public class SetFontAction extends DefaultAction {
 
             List<String> listStylesName = ConfigSciNotesManager.getAllStyleName();
 
-            int numberOfTab = getEditor().getTabPane().getComponentCount();
+            int numberOfTab = getEditor().getTabPane().getTabCount();
             for (int i = 0; i < numberOfTab; i++) {
                 ScilabEditorPane textPane = getEditor().getTextPane(i);
                 textPane.resetFont(newFont);
