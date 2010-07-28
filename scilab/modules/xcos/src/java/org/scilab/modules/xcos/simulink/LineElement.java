@@ -58,10 +58,11 @@ public class LineElement extends AbstractElement<BasicLink>{
 	public BasicLink decode(SimulinkLine simulinkLine, BasicLink into) {
 		BasicLink link = into;
 		SimulinkLine from = simulinkLine;
+		/*
 		if (LOG.isTraceEnabled()) {
 			LOG.trace("SRC: " + from.getSrcPort().toString());
 			LOG.trace("DST: " + from.getDstPort().toString());
-		}
+		}*/
 		validate();
 		
 		if (into == null) {
@@ -102,10 +103,6 @@ public class LineElement extends AbstractElement<BasicLink>{
 			 */
 			x = start.getParent().getGeometry().getX() + start.getGeometry().getCenterX();
 			y = start.getParent().getGeometry().getY() + start.getGeometry().getCenterY();
-			if (LOG.isTraceEnabled()) {
-				LOG.trace("Point: x:" + x);
-				LOG.trace("Point: y:" + y);	
-			}
 		}
 		/*
 		 * Set line breaking points
@@ -123,10 +120,6 @@ public class LineElement extends AbstractElement<BasicLink>{
 		for(int i = 0 ; i<points.length ; i+=2) {
 			x += Double.parseDouble(points[i]);
 			y += Double.parseDouble(points[i+1]);
-			if (LOG.isTraceEnabled()) {
-				LOG.trace("Point: x:" + x);
-				LOG.trace("Point: y:" + y);
-			}
 			mxPoints.add(new mxPoint(x, y));
 		} 
 		} catch (NullPointerException e) {
@@ -147,7 +140,7 @@ public class LineElement extends AbstractElement<BasicLink>{
 				OutputPort port = portIter.next();
 				if(port.getId().equals("Output" + simulinkLine.getSrcPort().toString())){
 					start = port;
-					LOG.trace("start set to" + start.getId());
+					//LOG.trace("start set to" + start.getId());
 				}
 			}
 			
@@ -157,7 +150,7 @@ public class LineElement extends AbstractElement<BasicLink>{
 				InputPort port = inPortIter.next();
 				if(port.getId().toString().equals("Input" + simulinkLine.getDstPort().toString())){
 					end = port;
-					LOG.trace("end set to" + end.getId());
+					//LOG.trace("end set to" + end.getId());
 				}
 			}
 		}
