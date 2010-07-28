@@ -15,6 +15,8 @@ package org.scilab.modules.xcos.simulink;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.xcos.port.BasicPort.DataType;
+import org.scilab.modules.xcos.port.command.CommandPort;
+import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
 
@@ -60,6 +62,22 @@ public class OutputPortElement {
 		if (LOG.isTraceEnabled()) {
 			LOG.trace("OutPort" + ret);	
 			LOG.trace("OutPort" + ret.getId());
+		}
+		return ret;
+	}
+
+	public CommandPort decodeCommandPort() {
+		CommandPort port;
+		port = allocatePort();
+		return port;
+
+	}
+	private CommandPort allocatePort() {
+		CommandPort ret;
+		ret = new CommandPort();
+		ret.generateId();
+		if (LOG.isTraceEnabled()) {
+			LOG.trace("AbsentInPort" + ret.getId());	
 		}
 		return ret;
 	}

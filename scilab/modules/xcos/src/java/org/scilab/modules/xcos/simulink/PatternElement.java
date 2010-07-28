@@ -33,6 +33,7 @@ import org.scilab.modules.types.scilabTypes.ScilabInteger;
 import org.scilab.modules.types.scilabTypes.ScilabList;
 import org.scilab.modules.types.scilabTypes.ScilabString;
 import org.scilab.modules.types.scilabTypes.ScilabType;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.simulink.patterns.Block;
 import org.scilab.modules.xcos.simulink.patterns.BlockPalette;
 import org.scilab.modules.xcos.simulink.patterns.Int2StrParameters;
@@ -108,9 +109,12 @@ public class PatternElement {
 				generalParameters = block;
 			}
 		}
-		if(LOG.isTraceEnabled()){
+		if(LOG.isTraceEnabled() && currentBlock != null){
 			LOG.trace(currentBlock.getSim());
 			LOG.trace(currentBlock.getXcos());
+		}
+		else if(LOG.isTraceEnabled()) {
+			LOG.trace("unknown block");
 		}
 	}
 	
@@ -130,171 +134,7 @@ public class PatternElement {
 		}
 	}
 	
-	/**
-	 * Function without target functionality yet
-	 * @param String paramName;
-	 * @return responded Xcos parameterName
-	 */
-	public String decode(String simulinkBlockName, String paramName, String simulinkValue){
-		try{
-			Iterator<Block> blockIter = blocks.getBlock().iterator();
-			while (blockIter.hasNext()){
-				Block block = blockIter.next();
-				if(block.getSim().contentEquals(simulinkBlockName)){
-					//TODO: check also in generals section
-					/*
-					 * checking simple parameters
-					 */
-					Iterator<SimpleParameter> simpleParamIter = block.getSimple().iterator();
-					while (simpleParamIter.hasNext()){
-						SimpleParameter simpleParam = simpleParamIter.next();
-						if(simpleParam.getSim().contentEquals(paramName)){
-							return simpleParam.getXcos();
-						}
-					}
-					/*
-					 * checking integer parameters
-					 */
-					Iterator<IntegerParameters> integerParamIter = block.getInteger().iterator();
-					while (integerParamIter.hasNext()){
-						IntegerParameters integerParam = integerParamIter.next();
-						if(integerParam.getSim().contentEquals(paramName)){
-							String returnValue = integerParam.getXcos() + ": ";
-							Iterator<IntegerValueMap> valueMapIter = integerParam.getMap().iterator();
-							//while (valueMapIter.hasNext()){
-								returnValue += simulinkValue;
-							//}
-							//TODO: enable compatibility patterns
-							return returnValue;
-							}
-					}
-					/*
-					 * checking string parameters
-					 */
-					Iterator<StringParameters> stringParamIter = block.getString().iterator();
-					while (stringParamIter.hasNext()){
-						StringParameters stringParam = stringParamIter.next();
-						if(stringParam.getSim().contentEquals(paramName)){
-							return stringParam.getXcos();
-						}
-					}
-					/*
-					 * checking str2int parameters
-					 */
-					Iterator<Str2IntParameters> str2intParamIter = block.getStr2Int().iterator();
-					while (str2intParamIter.hasNext()){
-						Str2IntParameters str2intParam = str2intParamIter.next();
-						if(str2intParam.getSim().contentEquals(paramName)){
-							String returnValue = str2intParam.getXcos() + ": ";
-							Iterator<Str2IntValueMap> valueMapIter = str2intParam.getMap().iterator();
-							while (valueMapIter.hasNext()){
-								Str2IntValueMap valueMap = valueMapIter.next();
-								if(valueMap.getSimVal().contentEquals(simulinkValue)){
-									returnValue +=  valueMap.getXcosVal();
-								}
-							}
-							return returnValue;
-						}
-					}
-					/*
-					 * checking int2str parameters
-					 */
-					Iterator<Int2StrParameters> int2strParamIter = block.getInt2Str().iterator();
-					while (int2strParamIter.hasNext()){
-						Int2StrParameters int2strParam = int2strParamIter.next();
-						if(int2strParam.getSim().contentEquals(paramName)){
-							return int2strParam.getXcos();
-						}
-					}
-					return ".";
-				}
-			}
-		} catch(Exception e1) {
-			LogFactory.getLog(PatternElement.class).error(e1);
-		}
-		return "";
-	}
-	
-	/**
-	 * Functions printPattern is created for debugging compatibility patterns
-	 */
-	public void printPattern() {
-		if (LOG.isTraceEnabled()) {
-			try{
-				Iterator<Block> blockIter = blocks.getBlock().iterator();
-				while (blockIter.hasNext()){
-					Block block = blockIter.next();
-					if(LOG.isTraceEnabled()){
-						LOG.trace("From: " + block.getSim() + 
-								" to: " + block.getXcos() + 
-								" with: " + block.getDescription());
-					}
-					/*
-					 * printing simple parameters
-					 */
-					Iterator<SimpleParameter> simpleParamIter = block.getSimple().iterator();
-					while (simpleParamIter.hasNext()){
-						SimpleParameter simpleParam = simpleParamIter.next();
-						if(LOG.isTraceEnabled()){
-							LOG.trace("  From: " + simpleParam.getSim() + 
-									" to: " + simpleParam.getXcos() + 
-									" with: " + simpleParam.getDescription());
-						}
-					}
-					/*
-					 * printing integer parameters
-					 */
-					Iterator<IntegerParameters> integerParamIter = block.getInteger().iterator();
-					while (integerParamIter.hasNext()){
-						IntegerParameters integerParam = integerParamIter.next();
-						if(LOG.isTraceEnabled()){
-							LOG.trace("  From: " + integerParam.getSim() + 
-									" to: " + integerParam.getXcos() + 
-									" with: " + integerParam.getDescription());
-						}
-					}
-					/*
-					 * printing string parameters
-					 */
-					Iterator<StringParameters> stringParamIter = block.getString().iterator();
-					while (stringParamIter.hasNext()){
-						StringParameters stringParam = stringParamIter.next();
-						if(LOG.isTraceEnabled()){
-							LOG.trace("  From: " + stringParam.getSim() + 
-									" to: " + stringParam.getXcos() + 
-									" with: " + stringParam.getDescription());
-						}
-					}
-					/*
-					 * printing str2int parameters
-					 */
-					Iterator<Str2IntParameters> str2intParamIter = block.getStr2Int().iterator();
-					while (str2intParamIter.hasNext()){
-						Str2IntParameters str2intParam = str2intParamIter.next();
-						if(LOG.isTraceEnabled()){
-							LOG.trace("  From: " + str2intParam.getSim() + 
-									" to: " + str2intParam.getXcos() + 
-									" with: " + str2intParam.getDescription());
-						}
-					}
-					/*
-					 * printing int2str parameters
-					 */
-					Iterator<Int2StrParameters> int2strParamIter = block.getInt2Str().iterator();
-					while (int2strParamIter.hasNext()){
-						Int2StrParameters int2strParam = int2strParamIter.next();
-						if(LOG.isTraceEnabled()){
-							LOG.trace("  From: " + int2strParam.getSim() + 
-									" to: " + int2strParam.getXcos() + 
-									" with: " + int2strParam.getDescription());
-						}
-					}
-				}
-			} catch(Exception e1) {
-				LogFactory.getLog(PatternElement.class).error(e1);
-			}
-		}
-	}
+
 	/**
 	 * For now I'm using simple parameter for translating FunctionName and FunctionType
 	 * @param data
@@ -302,7 +142,7 @@ public class PatternElement {
 	 */
 	public String decodeFunctionName(SimulinkBlock data) {
 		/*
-		 * Check if current block is well initialized for coresponding SimulinkBlock
+		 * Check if current block is well initialized for corresponding SimulinkBlock
 		 */
 		if(currentBlock!=null){
 			Iterator<SimpleParameter> simpleParamIter = currentBlock.getSimple().iterator();
@@ -319,8 +159,37 @@ public class PatternElement {
 		}
 		else {
 			LOG.trace("FunctionName: wrong block!");
+			BlockSpecificElement.print(data);
+			/*
+			 * If compatibility pattern doesn't exist, name the block with it's simulink name. It makes easier to replace it with a propr xcos block by user.
+			 */
+			return data.getParameter("BlockType");
 		}
 		return "xcos_simulate";
+	}
+	
+	public boolean haveFunctionType(SimulinkBlock data){
+		if(currentBlock!=null){
+			Iterator<SimpleParameter> simpleParamIter = currentBlock.getSimple().iterator();
+			while (simpleParamIter.hasNext()){
+				SimpleParameter simpleParam = simpleParamIter.next();
+				if(simpleParam.getSim().contentEquals("FunctionType")){
+					if(simpleParam.getXcos().equals("null")){
+						return false;
+					} else {
+						return true;
+					}
+						
+				}
+			}
+		}
+		else {
+			LOG.trace("FunctionType: wrong block!");
+		}
+		/*
+		 * return default function type
+		 */
+		return false;
 	}
 	/**
 	 * As the Simulink blocks don't have explicit function types as xcos ones,
@@ -512,7 +381,6 @@ public class PatternElement {
 		return new ScilabDouble(0);
 	}
 	public ScilabType decodeRealParameters(SimulinkBlock data) {
-		double[][] rparData;
 		/*
 		 * Check if current block is well initialized for coresponding SimulinkBlock
 		 */
@@ -525,7 +393,6 @@ public class PatternElement {
 				 */
 				if(realParam.getXcos().contentEquals("rpar")){
 					Iterator<RealValueMap> valueMapIter = realParam.getMap().iterator();
-					rparData=new double[realParam.getMap().size()][1]; //FIXME: add count to realParameters
 					ArrayList<double[]> parameters = new ArrayList<double[]>();
 					while (valueMapIter.hasNext()){
 						RealValueMap valueMap = valueMapIter.next();
@@ -557,7 +424,6 @@ public class PatternElement {
 	}
 
 	public ScilabType decodeIntegerParameters(SimulinkBlock data) {
-		int[][] iparData;
 		/*
 		 * Check if current block is well initialized for coresponding SimulinkBlock
 		 */
@@ -570,7 +436,7 @@ public class PatternElement {
 				 */
 				if(realParam.getXcos().contentEquals("ipar")){
 					Iterator<RealValueMap> valueMapIter = realParam.getMap().iterator();
-					iparData=new int[realParam.getMap().size()][1]; //FIXME: add count to realParameters
+					ArrayList<double[]> parameters = new ArrayList<double[]>();
 					while (valueMapIter.hasNext()){
 						RealValueMap valueMap = valueMapIter.next();
 						/**
@@ -581,29 +447,23 @@ public class PatternElement {
 						String[] position = valueMap.getIndex().replaceAll("\\W", " ").trim().split("\\s+");
 						int x = Integer.parseInt(position[0]);
 						int y = Integer.parseInt(position[1]);
-						
 						if(data.getParameter(valueMap.getSimName())!= null){
-							if(data.getParameter(valueMap.getSimName()).equals("inf") || data.getParameter(valueMap.getSimName()).equals("-inf")){
-								iparData[x][y] = 0;
-							} else {
-								iparData[x][y] = Integer.parseInt(data.getParameter(valueMap.getSimName()));
-							}
+							parameters.add(MatrixElement.decode(data.getParameter(valueMap.getSimName())));
 						} else {
-							iparData[x][y] = Integer.parseInt(valueMap.getSimName());
+							parameters.add(MatrixElement.decode(valueMap.getSimName()));
 						}
 						if(LOG.isTraceEnabled()){
 							LOG.trace(currentBlock.getXcos() + "ipar:");
-							LOG.trace(iparData[x][y]);
 						}
 					}
-					return new ScilabInteger(iparData, false);
+					return MatrixElement.concatenate(parameters);
 				}
 			}
 		}
 		else {
-			LOG.trace("ipar: wrong block!");
+			LOG.trace("rpar: wrong block!");
 		}
-		return new ScilabDouble();
+		return new ScilabDouble(0);
 	}
 
 	public ScilabType decodeObjectsParameters(SimulinkBlock data) {
@@ -676,5 +536,220 @@ public class PatternElement {
 			LOG.trace("ipar: wrong block!");
 		}
 		return new ScilabDouble();
+	}
+
+	public int decodeControlPorts(SimulinkBlock from) {
+		/*
+		 * Check if current block is well initialized for coresponding SimulinkBlock
+		 */
+		if(currentBlock!=null){
+			Iterator<SimpleParameter> simpleParamIter = currentBlock.getSimple().iterator();
+			while (simpleParamIter.hasNext()){
+				SimpleParameter simpleParam = simpleParamIter.next();
+				if(simpleParam.getSim().contentEquals("ControlPort")){
+					if(LOG.isTraceEnabled()){
+						LOG.trace(currentBlock.getXcos() + "ControlPort:");
+						LOG.trace(simpleParam.getXcos());
+					}
+					return Integer.parseInt(simpleParam.getXcos());
+				}
+			}
+		}
+		else {
+			LOG.trace("FunctionName: wrong block!");
+		}
+		return 0;
+	}
+
+	public int decodeCommandPorts(SimulinkBlock from) {
+		/*
+		 * Check if current block is well initialized for coresponding SimulinkBlock
+		 */
+		if(currentBlock!=null){
+			Iterator<SimpleParameter> simpleParamIter = currentBlock.getSimple().iterator();
+			while (simpleParamIter.hasNext()){
+				SimpleParameter simpleParam = simpleParamIter.next();
+				if(simpleParam.getSim().contentEquals("CommandPort")){
+					if(LOG.isTraceEnabled()){
+						LOG.trace(currentBlock.getXcos() + "CommandPort:");
+						LOG.trace(simpleParam.getXcos());
+					}
+					return Integer.parseInt(simpleParam.getXcos());
+				}
+			}
+		}
+		else {
+			LOG.trace("FunctionName: wrong block!");
+		}
+		return 0;
+	}
+	
+
+	/**
+	 * Function without target functionality yet
+	 * @param String paramName;
+	 * @return responded Xcos parameterName
+	 */
+	@Deprecated
+	public String decode(String simulinkBlockName, String paramName, String simulinkValue){
+		try{
+			Iterator<Block> blockIter = blocks.getBlock().iterator();
+			while (blockIter.hasNext()){
+				Block block = blockIter.next();
+				if(block.getSim().contentEquals(simulinkBlockName)){
+					//TODO: check also in generals section
+					/*
+					 * checking simple parameters
+					 */
+					Iterator<SimpleParameter> simpleParamIter = block.getSimple().iterator();
+					while (simpleParamIter.hasNext()){
+						SimpleParameter simpleParam = simpleParamIter.next();
+						if(simpleParam.getSim().contentEquals(paramName)){
+							return simpleParam.getXcos();
+						}
+					}
+					/*
+					 * checking integer parameters
+					 */
+					Iterator<IntegerParameters> integerParamIter = block.getInteger().iterator();
+					while (integerParamIter.hasNext()){
+						IntegerParameters integerParam = integerParamIter.next();
+						if(integerParam.getSim().contentEquals(paramName)){
+							String returnValue = integerParam.getXcos() + ": ";
+							Iterator<IntegerValueMap> valueMapIter = integerParam.getMap().iterator();
+							//while (valueMapIter.hasNext()){
+								returnValue += simulinkValue;
+							//}
+							//TODO: enable compatibility patterns
+							return returnValue;
+							}
+					}
+					/*
+					 * checking string parameters
+					 */
+					Iterator<StringParameters> stringParamIter = block.getString().iterator();
+					while (stringParamIter.hasNext()){
+						StringParameters stringParam = stringParamIter.next();
+						if(stringParam.getSim().contentEquals(paramName)){
+							return stringParam.getXcos();
+						}
+					}
+					/*
+					 * checking str2int parameters
+					 */
+					Iterator<Str2IntParameters> str2intParamIter = block.getStr2Int().iterator();
+					while (str2intParamIter.hasNext()){
+						Str2IntParameters str2intParam = str2intParamIter.next();
+						if(str2intParam.getSim().contentEquals(paramName)){
+							String returnValue = str2intParam.getXcos() + ": ";
+							Iterator<Str2IntValueMap> valueMapIter = str2intParam.getMap().iterator();
+							while (valueMapIter.hasNext()){
+								Str2IntValueMap valueMap = valueMapIter.next();
+								if(valueMap.getSimVal().contentEquals(simulinkValue)){
+									returnValue +=  valueMap.getXcosVal();
+								}
+							}
+							return returnValue;
+						}
+					}
+					/*
+					 * checking int2str parameters
+					 */
+					Iterator<Int2StrParameters> int2strParamIter = block.getInt2Str().iterator();
+					while (int2strParamIter.hasNext()){
+						Int2StrParameters int2strParam = int2strParamIter.next();
+						if(int2strParam.getSim().contentEquals(paramName)){
+							return int2strParam.getXcos();
+						}
+					}
+					return ".";
+				}
+			}
+		} catch(Exception e1) {
+			LogFactory.getLog(PatternElement.class).error(e1);
+		}
+		return "";
+	}
+	
+	/**
+	 * Functions printPattern is created for debugging compatibility patterns
+	 */
+	@Deprecated
+	public void printPattern() {
+		if (LOG.isTraceEnabled()) {
+			try{
+				Iterator<Block> blockIter = blocks.getBlock().iterator();
+				while (blockIter.hasNext()){
+					Block block = blockIter.next();
+					if(LOG.isTraceEnabled()){
+						LOG.trace("From: " + block.getSim() + 
+								" to: " + block.getXcos() + 
+								" with: " + block.getDescription());
+					}
+					/*
+					 * printing simple parameters
+					 */
+					Iterator<SimpleParameter> simpleParamIter = block.getSimple().iterator();
+					while (simpleParamIter.hasNext()){
+						SimpleParameter simpleParam = simpleParamIter.next();
+						if(LOG.isTraceEnabled()){
+							LOG.trace("  From: " + simpleParam.getSim() + 
+									" to: " + simpleParam.getXcos() + 
+									" with: " + simpleParam.getDescription());
+						}
+					}
+					/*
+					 * printing integer parameters
+					 */
+					Iterator<IntegerParameters> integerParamIter = block.getInteger().iterator();
+					while (integerParamIter.hasNext()){
+						IntegerParameters integerParam = integerParamIter.next();
+						if(LOG.isTraceEnabled()){
+							LOG.trace("  From: " + integerParam.getSim() + 
+									" to: " + integerParam.getXcos() + 
+									" with: " + integerParam.getDescription());
+						}
+					}
+					/*
+					 * printing string parameters
+					 */
+					Iterator<StringParameters> stringParamIter = block.getString().iterator();
+					while (stringParamIter.hasNext()){
+						StringParameters stringParam = stringParamIter.next();
+						if(LOG.isTraceEnabled()){
+							LOG.trace("  From: " + stringParam.getSim() + 
+									" to: " + stringParam.getXcos() + 
+									" with: " + stringParam.getDescription());
+						}
+					}
+					/*
+					 * printing str2int parameters
+					 */
+					Iterator<Str2IntParameters> str2intParamIter = block.getStr2Int().iterator();
+					while (str2intParamIter.hasNext()){
+						Str2IntParameters str2intParam = str2intParamIter.next();
+						if(LOG.isTraceEnabled()){
+							LOG.trace("  From: " + str2intParam.getSim() + 
+									" to: " + str2intParam.getXcos() + 
+									" with: " + str2intParam.getDescription());
+						}
+					}
+					/*
+					 * printing int2str parameters
+					 */
+					Iterator<Int2StrParameters> int2strParamIter = block.getInt2Str().iterator();
+					while (int2strParamIter.hasNext()){
+						Int2StrParameters int2strParam = int2strParamIter.next();
+						if(LOG.isTraceEnabled()){
+							LOG.trace("  From: " + int2strParam.getSim() + 
+									" to: " + int2strParam.getXcos() + 
+									" with: " + int2strParam.getDescription());
+						}
+					}
+				}
+			} catch(Exception e1) {
+				LogFactory.getLog(PatternElement.class).error(e1);
+			}
+		}
 	}
 }

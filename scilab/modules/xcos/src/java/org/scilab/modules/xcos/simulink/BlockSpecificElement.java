@@ -23,9 +23,19 @@ public class BlockSpecificElement {
 	PatternElement patternElement = new PatternElement();
 	private static final Log LOG = LogFactory.getLog(BlockSpecificElement.class);
 	
+	public static void print(SimulinkBlock from) {
+		if (LOG.isTraceEnabled()) {
+			LOG.trace("From " + from.getName() + ":");
+			UnmodifiableIterator<String> paramNameIter = from.getParameterNames().iterator();
+			while(paramNameIter.hasNext()){
+				String paramName = paramNameIter.next();
+				LOG.trace(paramName + ": " + from.getParameter(paramName));
+			}
+		}
+	}
+	
 	public BasicBlock decode(SimulinkBlock from ,BasicBlock into) {
 		
-		validate();
 		/**
 		 * mutable field used to share decoded BasicBlock with submethods
 		 */
@@ -42,18 +52,9 @@ public class BlockSpecificElement {
 		/*
 		 * fill the data
 		 */
-		fillSpecificParameters(base);
+		//fillSpecificParameters(base);
 		//findCorrespondingParameter(string simulinkParameter);
 		
 		return into;
-	}
-
-	private void fillSpecificParameters(BasicBlock base) {
-		
-	}
-
-	private void validate() {
-		// TODO Auto-generated method stub
-		
 	}
 }

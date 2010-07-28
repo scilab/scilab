@@ -48,7 +48,9 @@ public class BlockModelElement{
 	private void fillSimulationFunction(BasicBlock base) {
 		// TODO Auto-generated method stub
 		base.setSimulationFunctionName(patternElement.decodeFunctionName(data));
-		base.setSimulationFunctionType(patternElement.decodeFunctionType(data));
+		if(patternElement.haveFunctionType(data)){
+			base.setSimulationFunctionType(patternElement.decodeFunctionType(data));
+		}
 	}
 
 	private void fillParameters(BasicBlock base) {
@@ -90,6 +92,7 @@ public class BlockModelElement{
 		//Data structure of type modelica which contains modelica code description if any. That list contains four entries :
 		base.setEquations((ScilabType)patternElement.decodeEquations(data));
 		
+		
 		// firing
 		// Vector of initial event firing times of size equal to the number of activation output ports (see evout). It contains output initial event dates (Events generated before any input event arises). Negative values stands for no initial event on the corresponding port.
 		base.setInterfaceFunctionName(patternElement.decodeInterfaceFunctionName(data));
@@ -100,7 +103,19 @@ public class BlockModelElement{
 		patternElement = new PatternElement(from.getParameter("BlockType"));
 		return patternElement.decodeInterfaceFunctionName(from);
 	}
+	
+	public int getControlPorts(SimulinkBlock from){
+		//FIXME: shouldn't have to multiple initialize
+		patternElement = new PatternElement(from.getParameter("BlockType"));
+		return patternElement.decodeControlPorts(from);
+	}
 
+	public int getCommandPorts(SimulinkBlock from){
+		//FIXME: shouldn't have to multiple initialize
+		patternElement = new PatternElement(from.getParameter("BlockType"));
+		return patternElement.decodeCommandPorts(from);
+	}
+	
 	private void validate() {
 		// TODO Auto-generated method stub
 		
