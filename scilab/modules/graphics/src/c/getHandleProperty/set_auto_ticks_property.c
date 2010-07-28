@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -29,11 +30,17 @@
 #include "Scierror.h"
 #include "localization.h"
 
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int set_auto_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
+  BOOL status[3];
+  BOOL autoTicks;
   char ** values;
   int mSize = nbRow*nbCol;
+  char* axesAutoTicksPropertiesNames[3] = {__GO_X_AXIS_AUTO_TICKS__, __GO_Y_AXIS_AUTO_TICKS__, __GO_Z_AXIS_AUTO_TICKS__};
 
   if ( !isParameterStringMatrix( valueType ) )
   {
@@ -41,46 +48,79 @@ int set_auto_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueT
     return SET_PROPERTY_ERROR ;
   }
 
-	values = getStringMatrixFromStack( stackPointer ) ;
+  values = getStringMatrixFromStack( stackPointer );
 
+#if 0
   if ( sciGetEntityType( pobj ) != SCI_SUBWIN )
   {
     Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_ticks") ;
     return SET_PROPERTY_ERROR ;
   }
+#endif
 
   if( mSize == 1 )
   {
     /* only one parameter to set the value for every axes.*/
     if ( strcmp( values[0], "off" ) == 0 ) 
     {
-      sciSetAutoTicks(pobj, FALSE, FALSE, FALSE);
+      autoTicks = FALSE;
     }
     else if ( strcmp( values[0], "on" ) == 0 )
     {
-      sciSetAutoTicks(pobj, TRUE, TRUE, TRUE);
+      autoTicks = TRUE;
     }
     else
     {
       Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "auto_ticks", "on", "off");
       return SET_PROPERTY_ERROR ; ;
     }
-    return SET_PROPERTY_SUCCEED ;
+
+    int autoTicksTab[3];
+
+    status[0] = setGraphicObjectProperty(pobj->UID, axesAutoTicksPropertiesNames[0], &autoTicks, jni_bool, 1);
+    status[1] = setGraphicObjectProperty(pobj->UID, axesAutoTicksPropertiesNames[1], &autoTicks, jni_bool, 1);
+    status[2] = setGraphicObjectProperty(pobj->UID, axesAutoTicksPropertiesNames[2], &autoTicks, jni_bool, 1);
+
+    if(status[0] == TRUE && status[1] == TRUE && status[2] == TRUE) {
+      return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+      Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_ticks");
+      return SET_PROPERTY_ERROR;
+    }
   }
   else if ( mSize == 2 || mSize == 3)
   {
     int i ;
     BOOL autoTicks[3];
-    sciGetAutoTicks(pobj, autoTicks);
+    int* tmp;
+
+    tmp = (int*) getGraphicObjectProperty(pobj->UID, axesAutoTicksPropertiesNames[0], jni_bool);
+
+    if (tmp == NULL)
+    {
+      Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_ticks");
+      return SET_PROPERTY_ERROR;
+    }
+
+    autoTicks[0] = *tmp;
+
+    tmp = (int*) getGraphicObjectProperty(pobj->UID, axesAutoTicksPropertiesNames[1]);
+    autoTicks[1] = *tmp;
+
+    tmp = (int*) getGraphicObjectProperty(pobj->UID, axesAutoTicksPropertiesNames[2]);
+    autoTicks[2] = *tmp;
+
     for ( i = 0; i < mSize; i++ )
     {
       if ( strcmp(values[i],"off") == 0 )
       {
-        autoTicks[i] = FALSE ;
+        autoTicks[i] = FALSE;
       }
       else if ( strcmp(values[i],"on") == 0 )
       {
-        autoTicks[i] = TRUE ;
+        autoTicks[i] = TRUE;
       }
       else
       {
@@ -88,8 +128,20 @@ int set_auto_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueT
         return SET_PROPERTY_ERROR ;
       }
     }
-    sciSetAutoTicks(pobj, autoTicks[0], autoTicks[1], autoTicks[2]);
-    return SET_PROPERTY_SUCCEED ;
+
+    status[0] = setGraphicObjectProperty(pobj->UID, axesAutoTicksPropertiesNames[0], &autoTicks[0], jni_bool, 1);
+    status[1] = setGraphicObjectProperty(pobj->UID, axesAutoTicksPropertiesNames[1], &autoTicks[1], jni_bool, 1);
+    status[2] = setGraphicObjectProperty(pobj->UID, axesAutoTicksPropertiesNames[2], &autoTicks[2], jni_bool, 1);
+
+    if (status[0] == TRUE && status[1] == TRUE && status[2] == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_ticks");
+        return SET_PROPERTY_ERROR;
+    }
   }
   else
   {

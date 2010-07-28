@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -24,49 +25,69 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "MALLOC.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
+
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
 int get_axes_visible_property( sciPointObj * pobj )
 {
+  char * axes_visible[3]  = { NULL, NULL, NULL };
+  char* axesVisiblePropertiesNames[3] = {__GO_X_AXIS_VISIBLE__, __GO_Y_AXIS_VISIBLE__, __GO_Z_AXIS_VISIBLE__};
+  int* axesVisible;
 
-  char * axes_visible[3]  = { NULL, NULL, NULL } ;
-  int i ;
-  int status = -1 ;
+  int i;
+  int j;
+  int status = -1;
 
+#if 0
   if ( sciGetEntityType (pobj) != SCI_SUBWIN )
   {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"axes_visible") ;
-    return -1 ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"axes_visible");
+    return -1;
   }
+#endif
 
   for ( i = 0 ; i < 3 ; i++ )
   {
-    axes_visible[i] = MALLOC( 4 * sizeof(char) ) ;
-    if ( axes_visible[i] == NULL )
+    axesVisible = (int*) getGraphicObjectProperty(pobj->UID, axesVisiblePropertiesNames[i], jni_bool);
+
+    if (axesVisible == NULL)
     {
-      int j ;
-      for ( j = 0 ; j < i ; j++ )
-      {
-        FREE( axes_visible[j] ) ;
-				Scierror(999, _("%s: No more memory.\n"),"get_axes_visible_property");
-        return -1 ;
-      }
+      Scierror(999, _("'%s' property does not exist for this handle.\n"),"axes_visible");
+      return -1;
     }
-    if ( pSUBWIN_FEATURE (pobj)->axes.axes_visible[i] )
+
+    if (*axesVisible)
     {
-      strcpy( axes_visible[i], "on" ) ;
+      axes_visible[i] = strdup("on");
     }
     else
     {
-      strcpy( axes_visible[i], "off" ) ;
+      axes_visible[i] = strdup("off");
     }
+
+    if (axes_visible[i] == NULL)
+    {
+      for ( j = 0 ; j < i ; j++ )
+      {
+        FREE(axes_visible[j]);
+      }
+
+      Scierror(999, _("%s: No more memory.\n"),"get_axes_visible_property");
+      return -1;
+    }
+
   }
 
-  status = sciReturnRowStringVector( axes_visible, 3 ) ;
+  status = sciReturnRowStringVector( axes_visible, 3 );
 
   for ( i = 0 ; i < 3 ; i++ )
   {
-    FREE( axes_visible[i] ) ;
+    FREE( axes_visible[i] );
   }
 
   return status ;

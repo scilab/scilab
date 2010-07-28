@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -24,30 +25,51 @@
 #include "Scierror.h"
 #include "localization.h"
 
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int get_grid_property( sciPointObj * pobj )
 {
-  double grid[3] ;
+    double grid[3];
+    int* gridColor;
+    int* view;
 
-  if (sciGetEntityType (pobj) != SCI_SUBWIN) 
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"grid") ;
-    return -1 ;
-  }
+#if 0
+    if (sciGetEntityType (pobj) != SCI_SUBWIN)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"grid");
+        return -1;
+    }
+#endif
 
-  /* need converstion for display in double */
-  grid[0] = pSUBWIN_FEATURE(pobj)->grid[0] ;
-  grid[1] = pSUBWIN_FEATURE(pobj)->grid[1] ;
-  grid[2] = pSUBWIN_FEATURE(pobj)->grid[2] ;
+    /* need conversion for display in double */
+    gridColor = (int*) getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_GRID_COLOR__, jni_int);
 
-  if ( sciGetIs3d( pobj ) )
-  {
-    return sciReturnRowVector( grid, 3 ) ;
-  }
-  else
-  {
-    return sciReturnRowVector( grid, 2 ) ;
-  }
+    if (gridColor == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"grid");
+        return -1;
+    }
+
+    grid[0] = (double) *gridColor;
+
+    gridColor = (int*) getGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_GRID_COLOR__, jni_int);
+    grid[1] = (double) *gridColor;
+
+    gridColor = (int*) getGraphicObjectProperty(pobj->UID, __GO_Z_AXIS_GRID_COLOR__, jni_int);
+    grid[2] = (double) *gridColor;
+
+    view = (int*) getGraphicObjectProperty(pobj->UID, __GO_VIEW__, jni_int);
+
+    if (*view)
+    {
+        return sciReturnRowVector( grid, 3 );
+    }
+    else
+    {
+        return sciReturnRowVector( grid, 2 );
+    }
 
 }
 /*------------------------------------------------------------------------*/

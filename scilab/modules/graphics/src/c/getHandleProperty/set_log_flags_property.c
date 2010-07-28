@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -28,6 +29,10 @@
 #include "localization.h"
 #include "MALLOC.h"
 #include "freeArrayOfString.h"
+
+#include "getGraphicObjectProperty.h"
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*--------------------------------------------------------------------------*/
 char ** ReBuildUserTicks( char old_logflag, char new_logflag, double * u_xgrads, int *u_nxgrads, char ** u_xlabels);
@@ -113,9 +118,14 @@ char ** ReBuildUserTicks( char old_logflag, char new_logflag, double * u_xgrads,
 /*------------------------------------------------------------------------*/
 int set_log_flags_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
+  BOOL status[3];
   char * flags;
   sciSubWindow * ppSubWin = NULL ;
   char curLogFlags[4] = "nnn";
+  int* logFlag;
+  int logFlags[3];
+  int i;
+  double* dataBounds;
 
   if ( !isParameterStringMatrix( valueType ) )
   {
@@ -123,11 +133,13 @@ int set_log_flags_property( sciPointObj * pobj, size_t stackPointer, int valueTy
     return SET_PROPERTY_ERROR ;
   }
 
+#if 0
   if (sciGetEntityType (pobj) != SCI_SUBWIN)
   {
     Scierror(999, _("'%s' property does not exist for this handle.\n"),"log_flags") ;
     return SET_PROPERTY_ERROR ;
   }
+#endif
   
   if ( nbRow * nbCol != 2 && nbRow * nbCol != 3 )
   {
@@ -145,36 +157,78 @@ int set_log_flags_property( sciPointObj * pobj, size_t stackPointer, int valueTy
     return SET_PROPERTY_ERROR ;
   }
 
-  ppSubWin = pSUBWIN_FEATURE (pobj) ;
+  /* To be deleted */
+  ppSubWin = pSUBWIN_FEATURE (pobj);
 
   // get a copy of current log flags
+#if 0
   sciGetLogFlags(pobj, curLogFlags);
+#endif
 
+  logFlag = (int*) getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_LOG_FLAG__, jni_bool);
+
+  if (logFlag == NULL)
+  {
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"log_flags");
+    return SET_PROPERTY_ERROR;
+  }
+
+  logFlags[0] = *logFlag;
+
+  logFlag = (int*) getGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_LOG_FLAG__, jni_bool);
+  logFlags[1] = *logFlag;
+
+  logFlag = (int*) getGraphicObjectProperty(pobj->UID, __GO_Z_AXIS_LOG_FLAG__, jni_bool);
+  logFlags[2] = *logFlag;
+
+  for (i = 0; i < 3; i++)
+  {
+    if (logFlags[i] == 1)
+    {
+      curLogFlags[i] = 'l';
+    }
+    else
+    {
+      curLogFlags[i] = 'n';
+    }
+  }
+
+  dataBounds = (double*) getGraphicObjectProperty(pobj->UID, __GO_DATA_BOUNDS__, jni_double_vector);
+
+  if (dataBounds == NULL)
+  {
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"data_bounds");
+    return SET_PROPERTY_ERROR;
+  }
 
   /* X axes */
-  if( ( ppSubWin->SRect[0] <= 0. || ppSubWin->SRect[1] <= 0.) && flags[0] == 'l' )
+  if( ( dataBounds[0] <= 0. || dataBounds[1] <= 0.) && flags[0] == 'l' )
   {
     Scierror(999, _("Error: data_bounds on %s axis must be strictly positive to switch to logarithmic mode.\n"),"x");
     return SET_PROPERTY_ERROR ;
   }
+
+  /* To be implemented using the MVC framework */
   ppSubWin->axes.u_xlabels = ReBuildUserTicks( curLogFlags[0], flags[0],
                                                ppSubWin->axes.u_xgrads, 
                                                &ppSubWin->axes.u_nxgrads, 
-                                               ppSubWin->axes.u_xlabels   );
+                                               ppSubWin->axes.u_xlabels  );
 
 
   curLogFlags[0] = flags[0];
 
   /* Y axes */
-  if( ( ppSubWin->SRect[2] <= 0. || ppSubWin->SRect[3] <= 0. ) && flags[1] == 'l' )
+  if( ( dataBounds[2] <= 0. || dataBounds[3] <= 0. ) && flags[1] == 'l' )
   { 
       Scierror(999, _("Error: data_bounds on %s axis must be strictly positive to switch to logarithmic mode.\n"),"y");
-      return SET_PROPERTY_ERROR ;
+      return SET_PROPERTY_ERROR;
   }
+
+  /* To be implemented using the MVC framework */
   ppSubWin->axes.u_ylabels = ReBuildUserTicks( curLogFlags[1], flags[1],  
                                                ppSubWin->axes.u_ygrads, 
                                                &ppSubWin->axes.u_nygrads, 
-                                               ppSubWin->axes.u_ylabels  ) ;
+                                               ppSubWin->axes.u_ylabels  );
 
   curLogFlags[1] = flags[1];
 
@@ -183,29 +237,49 @@ int set_log_flags_property( sciPointObj * pobj, size_t stackPointer, int valueTy
   {
     if ( flags[2] != 'n' && flags[2] != 'l' )
     {
-      Scierror(999, "flags must be 'n' or 'l'.\n") ;
-      return SET_PROPERTY_ERROR ;
+      Scierror(999, "flags must be 'n' or 'l'.\n");
+      return SET_PROPERTY_ERROR;
     }
 
-    if ( ( ppSubWin->SRect[4] <= 0. || ppSubWin->SRect[5] <= 0. ) && flags[2] == 'l' )
+    if ( ( dataBounds[4] <= 0. || dataBounds[5] <= 0. ) && flags[2] == 'l' )
     {
       Scierror(999, _("Error: data_bounds on %s axis must be strictly positive to switch to logarithmic mode.\n"),"z");
-      return SET_PROPERTY_ERROR ;
+      return SET_PROPERTY_ERROR;
     }
 
+    /* To be implemented using the MVC framework */
     ppSubWin->axes.u_zlabels = ReBuildUserTicks( curLogFlags[2], flags[2],  
                                                  ppSubWin->axes.u_zgrads, 
                                                  &ppSubWin->axes.u_nzgrads, 
-                                                 ppSubWin->axes.u_zlabels) ;
+                                                 ppSubWin->axes.u_zlabels);
     curLogFlags[2] = flags[2];
 
   }
 
-  sciSetLogFlags(pobj, curLogFlags);
+  for (i = 0; i < 3; i++)
+  {
+    if (curLogFlags[i] == 'l')
+    {
+      logFlags[i] = 1;
+    }
+    else
+    {
+      logFlags[i] = 0;
+    }
+  }
 
+  status[0] = setGraphicObjectProperty(pobj->UID, __GO_X_AXIS_LOG_FLAG__, &logFlags[0], jni_bool, 1);
+  status[1] = setGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_LOG_FLAG__, &logFlags[1], jni_bool, 1);
+  status[2] = setGraphicObjectProperty(pobj->UID, __GO_Z_AXIS_LOG_FLAG__, &logFlags[2], jni_bool, 1);
 
-  return SET_PROPERTY_SUCCEED ;
-
-
+  if (status[0] == TRUE && status[1] == TRUE && status[2] == TRUE)
+  {
+    return SET_PROPERTY_SUCCEED;
+  }
+  else
+  {
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"log_flags");
+    return SET_PROPERTY_ERROR;
+  }
 }
 /*------------------------------------------------------------------------*/

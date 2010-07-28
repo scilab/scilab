@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -20,38 +21,55 @@
 /*------------------------------------------------------------------------*/
 
 #include "getHandleProperty.h"
-#include "GetProperty.h"
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
 
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int get_x_location_property( sciPointObj * pobj )
 {
+  int* location;
+
+#if 0
   if (sciGetEntityType (pobj) != SCI_SUBWIN)
   {
     Scierror(999, _("'%s' property does not exist for this handle.\n"),"x_location");
     return -1 ;
   }
+#endif
 
-  switch ( pSUBWIN_FEATURE (pobj)->axes.xdir )
+  location = (int*) getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_LOCATION__, jni_int);
+
+  if (location == NULL)
   {
-  case 'u': 
-    return sciReturnString( "top" ) ; 
-    break;
-  case 'd': 
-    return sciReturnString( "bottom" ) ;
-    break;
-  case 'c': 
-    return sciReturnString( "middle" ) ;
-    break;
-  case 'o': 
-    return sciReturnString( "origin" ) ;
-    break;
-  default : 
-    Scierror(999, _("Wrong value for '%s' property.\n"),"x_location");
-    break;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"x_location");
+    return -1;
   }
-  return -1 ;
+
+  if (*location == 0)
+  {
+    return sciReturnString( "bottom" );
+  }
+  else if (*location == 1)
+  {
+    return sciReturnString( "top" );
+  }
+  else if (*location == 2)
+  {
+    return sciReturnString( "middle" );
+  }
+  else if (*location == 3)
+  {
+    return sciReturnString( "origin" );
+  }
+  else
+  {
+    Scierror(999, _("Wrong value for '%s' property.\n"),"x_location");
+    return -1;
+  }
+
 }
 /*------------------------------------------------------------------------*/

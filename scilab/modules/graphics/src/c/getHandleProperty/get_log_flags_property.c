@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -19,24 +20,59 @@
 /*------------------------------------------------------------------------*/
 
 #include "getHandleProperty.h"
-#include "GetProperty.h"
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
 
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int get_log_flags_property( sciPointObj * pobj )
 {
-  char logFlagsString[4];
-  if ( sciGetEntityType (pobj) != SCI_SUBWIN )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"log_flag") ;
-    return -1 ;
-  }
+    int i;
+    int* logFlag;
+    int logFlags[3];
+    char logFlagsString[4];
 
-  /* Set the three first character of log flags.*/
-  sciGetLogFlags(pobj, logFlagsString);
-  logFlagsString[3] = 0; /* 0 terminating character */
-  return sciReturnString( logFlagsString ) ;
+#if 0
+    if ( sciGetEntityType (pobj) != SCI_SUBWIN )
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"log_flag");
+        return -1;
+    }
+#endif
+
+    logFlag = (int*) getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_LOG_FLAG__, jni_bool);
+
+    if (logFlag == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"log_flag");
+        return -1;
+    }
+
+    logFlags[0] = *logFlag;
+
+    logFlag = (int*) getGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_LOG_FLAG__, jni_bool);
+    logFlags[1] = *logFlag;
+
+    logFlag = (int*) getGraphicObjectProperty(pobj->UID, __GO_Z_AXIS_LOG_FLAG__, jni_bool);
+    logFlags[2] = *logFlag;
+
+    for (i = 0; i < 3; i++)
+    {
+        if (logFlags[i] == 0)
+        {
+            logFlagsString[i] = 'n';
+        }
+        else
+        {
+            logFlagsString[i] = 'l';
+        }
+    }
+
+    /* 0 terminating character */
+    logFlagsString[3] = 0;
+    return sciReturnString( logFlagsString );
 }
 /*------------------------------------------------------------------------*/

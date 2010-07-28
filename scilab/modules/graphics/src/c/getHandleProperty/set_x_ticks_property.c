@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -32,14 +33,23 @@
 #include "freeArrayOfString.h"
 #include "loadTextRenderingAPI.h"
 
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int set_x_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
+  BOOL autoTicks;
+  BOOL status;
   AssignedList * tlist     = NULL ;
   sciSubWindow * ppSubWin  = NULL ;
   int            nbTicsRow = 0    ;
   int            nbTicsCol = 0    ;
   char        ** labels    = NULL ; 
+
+  double* userGrads = NULL;
+  char** userLabels = NULL;
+  int* logFlag;
 
   if ( !isParameterTlist( valueType ) )
   {
@@ -47,50 +57,71 @@ int set_x_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueType
     return SET_PROPERTY_ERROR ;
   }
 
+#if 0
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"x_ticks") ;
-    return SET_PROPERTY_ERROR ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"x_ticks");
+    return SET_PROPERTY_ERROR;
   }
+#endif
 
-  ppSubWin = pSUBWIN_FEATURE(pobj) ;
+  /* To be removed */
+#if 0
+  ppSubWin = pSUBWIN_FEATURE(pobj);
+#endif
 
-  tlist = createTlistForTicks() ;
+  tlist = createTlistForTicks();
 
   if ( tlist == NULL )
   {
-    return SET_PROPERTY_ERROR ;
+    return SET_PROPERTY_ERROR;
   }
 
   /* locations */
-  FREE( ppSubWin->axes.u_xgrads ) ;
-  ppSubWin->axes.u_xgrads = NULL ;
+  /* To be implemented */
+#if 0
+  ppSubWin->axes.u_nxgrads = 0;
+#endif
 
-  destroyStringArray( ppSubWin->axes.u_xlabels, ppSubWin->axes.u_nxgrads ) ;
-  ppSubWin->axes.u_xlabels = NULL ;
+  userGrads = createCopyDoubleMatrixFromList( tlist, &nbTicsRow, &nbTicsCol );
 
-  ppSubWin->axes.u_nxgrads = 0 ;
-
-  ppSubWin->axes.u_xgrads = createCopyDoubleMatrixFromList( tlist, &nbTicsRow, &nbTicsCol ) ;
-
-  if ( ppSubWin->axes.u_xgrads == NULL && nbTicsRow == -1 )
+  if ( userGrads == NULL && nbTicsRow == -1 )
   {
     Scierror(999, _("%s: No more memory.\n"),"set_x_ticks_property");
     return SET_PROPERTY_ERROR ;
   }
 
-  if ( ppSubWin->logflags[0] == 'l' )
+  logFlag = (int*) getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_LOG_FLAG__, jni_bool);
+
+  if (*logFlag)
   {
     int  i ;
     for ( i = 0 ; i < nbTicsCol * nbTicsRow ; i++ )
     {
-      ppSubWin->axes.u_xgrads[i] = log10( ppSubWin->axes.u_xgrads[i] ) ;
+      userGrads[i] = log10(userGrads[i]);
     }
   }
   else
   {
+    int* tmp;
+    int nbSubticks;
+
+    tmp = (int*) getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_SUBTICKS__, jni_int);
+    nbSubticks = *tmp;
+
      /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
-    ppSubWin->axes.nbsubtics[0] = ComputeNbSubTics( pobj,ppSubWin->axes.u_nxgrads,'n',NULL,ppSubWin->axes.nbsubtics[0] ) ;
+    nbSubticks = ComputeNbSubTics(pobj, userGrads, 'n', NULL, nbSubticks);
+
+    setGraphicObjectProperty(pobj->UID, __GO_X_AXIS_SUBTICKS__, &nbSubticks, jni_int, 1);
+  }
+
+  status = setGraphicObjectProperty(pobj->UID, __GO_X_AXIS_TICKS_LOCATIONS__, userGrads, jni_double_vector, nbTicsRow*nbTicsCol);
+
+  if (status == FALSE)
+  {
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"x_ticks");
+    FREE(userGrads);
+    return SET_PROPERTY_ERROR;
   }
 
   /*  labels */
@@ -100,22 +131,37 @@ int set_x_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueType
   // P.Lando
   if( nbTicsCol * nbTicsRow )
   {
-    ppSubWin->axes.u_xlabels = getCurrentStringMatrixFromList( tlist, &nbTicsRow, &nbTicsCol );
+    userLabels = getCurrentStringMatrixFromList( tlist, &nbTicsRow, &nbTicsCol );
     /* Check if we should load LaTex / MathML Java libraries */
-    loadTextRenderingAPI(ppSubWin->axes.u_xlabels, nbTicsCol, nbTicsRow);
+    loadTextRenderingAPI(userLabels, nbTicsCol, nbTicsRow);
+
+    setGraphicObjectProperty(pobj->UID, __GO_X_AXIS_TICKS_LABELS__, userLabels, jni_string_vector, nbTicsRow*nbTicsCol);
   }
   else
   {
+    /* To be implemented */
+#if 0
     ppSubWin->axes.u_xlabels = NULL;
+#endif
   }
 
+  autoTicks = FALSE;
 
-  ppSubWin->axes.u_nxgrads = nbTicsRow * nbTicsCol ;
-  ppSubWin->axes.auto_ticks[0] = FALSE ;
+  setGraphicObjectProperty(pobj->UID, __GO_X_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
 
-  destroyAssignedList( tlist ) ;
+  /* To be implemented */
+#if 0
+  ppSubWin->axes.u_nxgrads = nbTicsRow * nbTicsCol;
+#endif
 
-  return SET_PROPERTY_SUCCEED ;
+  if (userGrads != NULL)
+  {
+    FREE(userGrads);
+  }
+
+  destroyAssignedList( tlist );
+
+  return SET_PROPERTY_SUCCEED;
 
 }
 /*------------------------------------------------------------------------*/
