@@ -102,3 +102,8 @@ matching in Java */
 	  }
 
 }
+
+
+%typemap(argout) (double variable[], int nbRow, int nbCol) {
+// Specific target because it was freeing the wrong argument
+}
