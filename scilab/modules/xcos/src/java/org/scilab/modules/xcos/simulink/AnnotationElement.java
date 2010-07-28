@@ -13,12 +13,16 @@
 package org.scilab.modules.xcos.simulink;
 
 import org.apache.commons.logging.LogFactory;
+import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.TextBlock;
 
 import edu.tum.cs.simulink.model.SimulinkAnnotation;
+import edu.tum.cs.simulink.model.SimulinkBlock;
 
 public class AnnotationElement extends AbstractElement<TextBlock>{
 
+	private BlockGraphicElement graphicElement = new BlockGraphicElement();
+	
 	public boolean canDecode(SimulinkAnnotation data) {
 		// TODO Auto-generated method stub
 		return true;
@@ -26,9 +30,13 @@ public class AnnotationElement extends AbstractElement<TextBlock>{
 
 	public Object decode(SimulinkAnnotation from, Object object) {
 		// TODO Auto-generated method stub
+		TextBlock annotation;
 		LogFactory.getLog(AnnotationElement.class).trace("From " + from.getName() + ":");
 		LogFactory.getLog(AnnotationElement.class).trace(from.getParameterNames().toString());
-		return null;
+		annotation = new TextBlock();
+		annotation.setValue(from.getName());
+		graphicElement.decode(from, annotation);
+		return annotation;
 	}
 
 }

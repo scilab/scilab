@@ -15,8 +15,10 @@ package org.scilab.modules.xcos.simulink;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.utils.BlockPositioning;
 
+import edu.tum.cs.simulink.model.SimulinkAnnotation;
 import edu.tum.cs.simulink.model.SimulinkBlock;
 
 public class BlockGraphicElement{
@@ -30,26 +32,78 @@ public class BlockGraphicElement{
 		 */
 		BasicBlock base = into;
 		validate();
-		
+		LOG.debug("Setting up graphics of:" + into.getInterfaceFunctionName());
 		/*
 		 * fill the data
 		 */
 		fillDimension(from, base);
 		fillOrigin(from, base);
 		fillFlipAndRotation(from, base);
+		fillColors(from, base);
 		
 		return base;
+	}
+	/**
+	 * Function filling strokeColor, fillColor and textColor parameters
+	 * @param from imported SimulinkBlock
+	 * @param base 
+	 */
+	private void fillColors(SimulinkBlock from, BasicBlock base) {
+		// TODO Auto-generated method stub
+		if(from.getParameter("ForegroundColor") != null) {
+			//LOG.debug(base.getStyle());
+			base.setStyle(base.getStyle() + "; strokeColor=" + from.getParameter("ForegroundColor"));
+		}
+		if(from.getParameter("BackgroundColor") != null) {
+			//LOG.debug(base.getStyle());
+			base.setStyle(base.getStyle() + "; fillColor=" + from.getParameter("BackgroundColor"));
+		}
+		if(from.getParameter("TextColor") != null) {
+			//LOG.debug(base.getStyle());
+			base.setStyle(base.getStyle() + "; textColor=" + from.getParameter("BackgroundColor"));
+		}
 	}
 
 	private void fillFlipAndRotation(SimulinkBlock from, BasicBlock into) {
 		// TODO: Check if compatibility pattern needed
 		// TODO: Add Flip handling
+		if(from.getParameter("BlockMirror") != null) {
+			if(from.getParameter("BlockMirror").equals("on")){
+				into.setFlip(true);
+				BlockPositioning.updateBlockView(into);
+				LOG.debug("true " + into.getFlip());
+			} else {
+				into.setFlip(false);
+				BlockPositioning.updateBlockView(into);
+				LOG.debug("false " + into.getFlip());
+			}
+		}
+		if(from.getParameter("Orientation") != null) {
+			/*
+			 * up, down, right
+			 */
+			if(from.getParameter("Orientation").equals("left")){
+				into.setAngle(180);
+				BlockPositioning.updateBlockView(into);
+				LOG.debug("true " + into.getAngle());
+			} else if(from.getParameter("Orientation").equals("up")) {
+				into.setAngle(90);
+				BlockPositioning.updateBlockView(into);
+				LOG.debug("false " + into.getAngle());
+			} else if(from.getParameter("Orientation").equals("down")) {
+				into.setAngle(240);
+				BlockPositioning.updateBlockView(into);
+				LOG.debug("false " + into.getAngle());
+			}
+		}
+		//into.setMirror(false);
 		
 		String rotation = from.getParameter("BlockRotation");
-		int theta = Integer.parseInt(rotation);
-		theta = BlockPositioning.roundAngle(theta);
-		
-		into.setAngle(theta);
+		if(rotation != null){
+			int theta = Integer.parseInt(rotation);
+			theta = BlockPositioning.roundAngle(theta);
+			into.setAngle(theta);
+		}
 	}
 
 	private void fillOrigin(SimulinkBlock from, BasicBlock into) {
@@ -85,5 +139,66 @@ public class BlockGraphicElement{
 	private void validate() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	/*
+	 * Overloaded methods for TextBlocks
+	 */
+	
+	public void decode(SimulinkAnnotation from, TextBlock annotation) {
+		// TODO Auto-generated method stub
+		
+		TextBlock base = annotation;
+		/*
+		 * fill the data
+		 */
+		//fillDimension(from, base);
+		fillOrigin(from, base);
+		fillFlipAndRotation(from, base);
+		fillColors(from, base);
+	}
+	
+	private void fillFlipAndRotation(SimulinkAnnotation from, TextBlock into) {
+		// TODO: Check if compatibility pattern needed
+		// TODO: Add Flip handling
+		
+		String rotation = from.getParameter("BlockRotation");
+		if(rotation != null){
+		int theta = Integer.parseInt(rotation);
+		theta = BlockPositioning.roundAngle(theta);
+		
+		into.setAngle(theta);
+		}
+	}
+
+	private void fillOrigin(SimulinkAnnotation from, TextBlock into) {
+		// TODO: Check if compatibility pattern needed
+		/**
+		 * Position parameter read by parser is string and looks like this [55, 43, 54, 42] 
+		 * \\W is used to strip string from non-word characters 
+		 * \\s+ to split string around whitespaces
+		 */
+		String[] position = from.getParameter("Position").replaceAll("\\W", " ").trim().split("\\s+");
+		double x = Double.parseDouble(position[0]);
+		double y = Double.parseDouble(position[1]);
+		
+		into.getGeometry().setX(x);
+		into.getGeometry().setY(y);
+	}
+	
+	private void fillColors(SimulinkAnnotation from, TextBlock base) {
+		// TODO Auto-generated method stub
+		if(from.getParameter("ForegroundColor") != null) {
+			//LOG.debug(base.getStyle());
+			base.setStyle(base.getStyle() + "; strokeColor=" + from.getParameter("ForegroundColor"));
+		}
+		if(from.getParameter("BackgroundColor") != null) {
+			//LOG.debug(base.getStyle());
+			base.setStyle(base.getStyle() + "; fillColor=" + from.getParameter("BackgroundColor"));
+		}
+		if(from.getParameter("TextColor") != null) {
+			//LOG.debug(base.getStyle());
+			base.setStyle(base.getStyle() + "; textColor=" + from.getParameter("BackgroundColor"));
+		}
 	}
 }
