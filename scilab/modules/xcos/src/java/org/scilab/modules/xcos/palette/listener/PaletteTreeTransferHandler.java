@@ -56,7 +56,7 @@ public class PaletteTreeTransferHandler extends TransferHandler {
 	 * @see javax.swing.TransferHandler#getSourceActions(javax.swing.JComponent)
 	 */
 	@Override
-	public int getSourceActions(JComponent c) {
+	public int getSourceActions(final JComponent c) {
 		return COPY_OR_MOVE;
 	}
 	
@@ -68,7 +68,7 @@ public class PaletteTreeTransferHandler extends TransferHandler {
 	 * @see javax.swing.TransferHandler#exportDone(javax.swing.JComponent, java.awt.datatransfer.Transferable, int)
 	 */
 	@Override
-	protected void exportDone(JComponent source, Transferable data, int action) {
+	protected void exportDone(final JComponent source, final Transferable data, final int action) {
 		final PaletteTransferable transferable = (PaletteTransferable) data;
 		
 		if (action == MOVE && transferable.isMoved()) {
@@ -82,19 +82,17 @@ public class PaletteTreeTransferHandler extends TransferHandler {
 	 * @param t the source component
 	 * @param data the transferable
 	 */
-	private void updateTree(JTree t, Transferable data) {
-		PaletteManager.getInstance().saveConfig();
-
+	private void updateTree(final JTree t, final Transferable data) {
 		final DefaultTreeModel model = (DefaultTreeModel) t.getModel();
 		final TreePath path = t.getSelectionPath();
 		PaletteNode newNode;
 		
 		try {
 			newNode = (PaletteNode) data.getTransferData(PaletteTransferable.PALETTE_FLAVOR);
-		} catch (UnsupportedFlavorException e) {
+		} catch (final UnsupportedFlavorException e) {
 			LOG.error(e);
 			return;
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			LOG.error(e);
 			return;
 		} 
@@ -109,7 +107,7 @@ public class PaletteTreeTransferHandler extends TransferHandler {
 	 * @see javax.swing.TransferHandler#createTransferable(javax.swing.JComponent)
 	 */
 	@Override
-	protected Transferable createTransferable(JComponent c) {
+	protected Transferable createTransferable(final JComponent c) {
 		if (c == null) {
 			return null;
 		}
@@ -126,7 +124,7 @@ public class PaletteTreeTransferHandler extends TransferHandler {
 	 * @see javax.swing.TransferHandler#canImport(javax.swing.TransferHandler.TransferSupport)
 	 */
 	@Override
-	public boolean canImport(TransferSupport support) {
+	public boolean canImport(final TransferSupport support) {
 		final JTree tree = (JTree) support.getComponent();
 		final Point point = support.getDropLocation().getDropPoint();
 		final TreePath path = tree.getPathForLocation(point.x, point.y);
@@ -145,17 +143,17 @@ public class PaletteTreeTransferHandler extends TransferHandler {
 	 * @see javax.swing.TransferHandler#importData(javax.swing.TransferHandler.TransferSupport)
 	 */
 	@Override
-	public boolean importData(TransferSupport support) {
+	public boolean importData(final TransferSupport support) {
 		final JTree tree = PaletteManager.getInstance().getView().getTree();
 		final JTree.DropLocation location = tree.getDropLocation();
 		
-		Category newParent = (Category) location.getPath().getLastPathComponent();
+		final Category newParent = (Category) location.getPath().getLastPathComponent();
 		final int index = location.getChildIndex();
 		
 		final Transferable t = support.getTransferable();
 		
 		try {
-			PaletteNode child = (PaletteNode) t.getTransferData(PaletteTransferable.PALETTE_FLAVOR);
+			final PaletteNode child = (PaletteNode) t.getTransferData(PaletteTransferable.PALETTE_FLAVOR);
 			
 			final Category oldParent = child.getParent();
 			oldParent.getNode().remove(child);
@@ -166,10 +164,10 @@ public class PaletteTreeTransferHandler extends TransferHandler {
 			} else {
 				newParent.getNode().add(index, child);
 			}
-		} catch (UnsupportedFlavorException e) {
+		} catch (final UnsupportedFlavorException e) {
 			LOG.error(e);
 			return false;
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			LOG.error(e);
 			return false;
 		}
@@ -194,7 +192,7 @@ public class PaletteTreeTransferHandler extends TransferHandler {
 		 * Default constructor
 		 * @param node the selected node
 		 */
-		public PaletteTransferable(PaletteNode node) {
+		public PaletteTransferable(final PaletteNode node) {
 			this.node = node;
 			moved = false;
 		}
@@ -221,7 +219,7 @@ public class PaletteTreeTransferHandler extends TransferHandler {
 		 * @see java.awt.datatransfer.Transferable#getTransferData(java.awt.datatransfer.DataFlavor)
 		 */
 		@Override
-		public Object getTransferData(DataFlavor flavor)
+		public Object getTransferData(final DataFlavor flavor)
 				throws UnsupportedFlavorException, IOException {
 			Object ret = null;
 			
@@ -231,10 +229,10 @@ public class PaletteTreeTransferHandler extends TransferHandler {
 					final Marshaller marshaller = jaxbContext.createMarshaller();
 					marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 					
-					StringWriter writer = new StringWriter();
+					final StringWriter writer = new StringWriter();
 					marshaller.marshal(node, writer);
 					ret = writer.toString();
-				} catch (JAXBException e) {
+				} catch (final JAXBException e) {
 					throw new IOException(e);
 				}
 			} else if (flavor.equals(PALETTE_FLAVOR)) {
@@ -271,7 +269,7 @@ public class PaletteTreeTransferHandler extends TransferHandler {
 		 * @see java.awt.datatransfer.Transferable#isDataFlavorSupported(java.awt.datatransfer.DataFlavor)
 		 */
 		@Override
-		public boolean isDataFlavorSupported(DataFlavor flavor) {
+		public boolean isDataFlavorSupported(final DataFlavor flavor) {
 			return Arrays.asList(getTransferDataFlavors()).contains(flavor);
 		}
 	}

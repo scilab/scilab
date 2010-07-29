@@ -16,12 +16,15 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
+import javax.swing.JTree;
 import javax.swing.SwingUtilities;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
 
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
@@ -29,9 +32,9 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.utils.ScilabExported;
 import org.scilab.modules.hdf5.read.H5Read;
-import org.scilab.modules.jvm.utils.ScilabConstants;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.types.scilabTypes.ScilabTList;
+import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.H5RWHandler;
@@ -41,14 +44,11 @@ import org.scilab.modules.xcos.palette.model.PaletteBlock;
 import org.scilab.modules.xcos.palette.model.PaletteNode;
 import org.scilab.modules.xcos.palette.model.PreLoaded;
 import org.scilab.modules.xcos.utils.BlockPositioning;
-import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosConstants;
 
-import com.mxgraph.io.mxCodec;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.util.mxCellRenderer;
 import com.mxgraph.util.mxRectangle;
-import com.mxgraph.util.mxUtils;
 import com.mxgraph.view.mxStylesheet;
 
 /**
@@ -96,23 +96,20 @@ public final class Palette {
 
 		for (int categoryCounter = 0; categoryCounter < path.length; categoryCounter++) {
 
-			for (Iterator<PaletteNode> iter = node.getNode().iterator(); iter
-					.hasNext();) {
-				PaletteNode next = iter.next();
-
-				if (next.toString().equals(path[categoryCounter])
-						&& next instanceof Category) {
-					node = (Category) next;
-					break;
-				} else if (next.toString().equals(path[categoryCounter])
-						&& (categoryCounter == path.length - 1)) {
-					return next; // found the terminal Palette instance
-				}
-			}
+			for (final PaletteNode next : node.getNode()) {
+if (next.toString().equals(path[categoryCounter])
+				&& next instanceof Category) {
+			node = (Category) next;
+			break;
+} else if (next.toString().equals(path[categoryCounter])
+				&& (categoryCounter == path.length - 1)) {
+			return next; // found the terminal Palette instance
+}
+}
 
 			if (!node.toString().equals(path[categoryCounter])) {
 				if (create) {
-					Category cat = new Category();
+					final Category cat = new Category();
 					cat.setName(path[categoryCounter]);
 					cat.setEnable(create);
 
@@ -147,10 +144,10 @@ public final class Palette {
 		final ScilabTList data = new ScilabTList();
 		final String file = new File(path).getAbsolutePath();
 		try {
-			int fileId = H5Read.openFile(file);
+			final int fileId = H5Read.openFile(file);
 			H5Read.readDataFromFile(fileId, data);
 			H5Read.closeFile(fileId);
-		} catch (HDF5Exception e) {
+		} catch (final HDF5Exception e) {
 			throw new Exception(String.format(UNABLE_TO_IMPORT, file), e);
 		}
 
@@ -163,44 +160,34 @@ public final class Palette {
 				/*
 				 * Decode the style part of the palette
 				 */
-				mxStylesheet styleSheet = new mxStylesheet();
+				final mxStylesheet styleSheet = Xcos.getInstance().getStyleSheet();
 				try {
-					FileUtils.decodeStyle(styleSheet);
 					new StyleElement().decode(data, styleSheet);
-					mxUtils.writeFile(mxUtils.getXml(new mxCodec()
-							.encode(styleSheet)), ScilabConstants.SCIHOME
-							.getAbsolutePath()
-							+ '/' + FileUtils.STYLE_FILENAME);
-				} catch (IOException e) {
-					throw new RuntimeException(e);
-				} catch (ScicosFormatException e) {
+				} catch (final ScicosFormatException e) {
 					throw new RuntimeException(e);
 				}
 
-				PaletteNode node = getPathNode(category, true);
+				final PaletteNode node = getPathNode(category, true);
 				if (!(node instanceof Category)) {
 					throw new RuntimeException(String.format(
 							WRONG_INPUT_ARGUMENT_S_INVALID_TREE_PATH,
 							"category"));
 				}
-				Category cat = (Category) node;
+				final Category cat = (Category) node;
 
 				/*
 				 * Adding the palette tree part of the palette
 				 */
+				PreLoaded pal;
 				try {
-					cat.getNode()
-							.add(new PreLoadedElement().decode(data, null));
-				} catch (ScicosFormatException e) {
+					pal = new PreLoadedElement().decode(data, new PreLoaded.Dynamic());
+				} catch (final ScicosFormatException e) {
 					throw new RuntimeException(e);
 				}
-
-				PaletteManager.getInstance().saveConfig();
-				if (PaletteManager.getInstance().getView() != null) {
-					final DefaultTreeModel model = (DefaultTreeModel) PaletteManager
-							.getInstance().getView().getTree().getModel();
-					model.reload(cat);
-				}
+				cat.getNode().add(pal);
+				pal.setParent(cat);
+				
+				refreshView(pal);
 			}
 		});
 	}
@@ -235,7 +222,7 @@ public final class Palette {
 			SwingUtilities.invokeAndWait(new Runnable() {
 				@Override
 				public void run() {
-					PaletteNode node = getPathNode(name, true);
+					final PaletteNode node = getPathNode(name, true);
 					if (node instanceof Category) {
 						node.setEnable(visible);
 					} else {
@@ -243,15 +230,10 @@ public final class Palette {
 								WRONG_INPUT_ARGUMENT_S_INVALID_TREE_PATH, NAME));
 					}
 
-					PaletteManager.getInstance().saveConfig();
-					if (PaletteManager.getInstance().getView() != null) {
-						final DefaultTreeModel model = (DefaultTreeModel) PaletteManager
-								.getInstance().getView().getTree().getModel();
-						model.reload(node);
-					}
+					refreshView(node.getParent());
 				}
 			});
-		} catch (InvocationTargetException exception) {
+		} catch (final InvocationTargetException exception) {
 			throw (Exception) exception.getTargetException();
 		}
 	}
@@ -270,13 +252,12 @@ public final class Palette {
 			SwingUtilities.invokeAndWait(new Runnable() {
 				@Override
 				public void run() {
-					PaletteNode node = getPathNode(name, false);
+					final PaletteNode node = getPathNode(name, false);
 					checkRemoving(node);
 					remove(node);
-					PaletteManager.getInstance().saveConfig();
 				}
 			});
-		} catch (InvocationTargetException exception) {
+		} catch (final InvocationTargetException exception) {
 			throw (Exception) exception.getTargetException();
 		}
 	}
@@ -285,7 +266,7 @@ public final class Palette {
 	 * Remove the dynamic {@link PaletteNode} palette
 	 * @param node the palette
 	 */
-	private static void remove(PaletteNode node) {
+	public static void remove(final PaletteNode node) {
 		if (node == null) {
 			throw new RuntimeException(String.format(
 					WRONG_INPUT_ARGUMENT_S_INVALID_TREE_PATH, NAME));
@@ -294,25 +275,52 @@ public final class Palette {
 					WRONG_INPUT_ARGUMENT_S_INVALID_NODE, NAME));
 		} else if (node instanceof Category) {
 			// Iterate over all nodes
-			for (PaletteNode n : ((Category) node).getNode()) {
+			for (final PaletteNode n : ((Category) node).getNode()) {
 				remove(n);
 			}
 		} else { // others
 			final Category toBeReloaded = node.getParent();
-			if (toBeReloaded != null) {
-				toBeReloaded.getNode().remove(node);
+			if (toBeReloaded == null) {
+				LOG.error("parent node is null");
+				throw new RuntimeException("Parent node is 'null'");
 			}
+			
+			toBeReloaded.getNode().remove(node);
 			node.setParent(null);
 
-			if (PaletteManager.getInstance().getView() != null) {
-				final DefaultTreeModel model = (DefaultTreeModel) PaletteManager
-						.getInstance().getView().getTree().getModel();
-				if (toBeReloaded != null) {
-					model.reload(toBeReloaded);
-				} else {
-					model.reload();
-				}
+			refreshView(toBeReloaded);
+		}
+	}
+
+	/**
+	 * Refresh the palette view if visible.
+	 * 
+	 * @param toBeReloaded the category to refresh
+	 */
+	public static void refreshView(final PaletteNode toBeReloaded) {
+		if (PaletteManager.getInstance().getView() != null) {
+			final JTree tree = PaletteManager.getInstance().getView()
+					.getTree();
+			final DefaultTreeModel model = (DefaultTreeModel) tree
+					.getModel();
+			
+			// getting the current path
+			final LinkedList<TreeNode> objectPath = new LinkedList<TreeNode>();
+			TreeNode parent = toBeReloaded;
+			do {
+				objectPath.addFirst(parent);
+				parent = parent.getParent();
+			} while (parent != null);
+			final TreePath path = new TreePath(objectPath.toArray());
+			
+			if (toBeReloaded.isLeaf()) {
+				model.reload(toBeReloaded.getParent());
+			} else {
+				model.reload(toBeReloaded);
 			}
+			
+			tree.setSelectionPath(path);
+			tree.expandPath(path);
 		}
 	}
 	
@@ -321,16 +329,17 @@ public final class Palette {
 	 * 
 	 * @param node the node to check
 	 */
-	private static void checkRemoving(PaletteNode node) {
+	public static void checkRemoving(final PaletteNode node) {
 		if (node == null) {
 			throw new RuntimeException(String.format(
 					WRONG_INPUT_ARGUMENT_S_INVALID_TREE_PATH, NAME));
-		} else if (node instanceof PreLoaded) {
+		} else if (node instanceof PreLoaded
+				&& !(node instanceof PreLoaded.Dynamic)) {
 			throw new RuntimeException(String.format(
 					WRONG_INPUT_ARGUMENT_S_INVALID_NODE, NAME));
 		} else if (node instanceof Category) {
 			// Iterate over all nodes
-			for (PaletteNode n : ((Category) node).getNode()) {
+			for (final PaletteNode n : ((Category) node).getNode()) {
 				checkRemoving(n);
 			}
 		}
@@ -357,7 +366,7 @@ public final class Palette {
 			SwingUtilities.invokeAndWait(new Runnable() {
 				@Override
 				public void run() {
-					PaletteNode node = getPathNode(name, false);
+					final PaletteNode node = getPathNode(name, false);
 					if (node == null) {
 						throw new RuntimeException(String.format(
 								WRONG_INPUT_ARGUMENT_S_INVALID_TREE_PATH, NAME));
@@ -365,15 +374,10 @@ public final class Palette {
 
 					node.setEnable(status);
 
-					PaletteManager.getInstance().saveConfig();
-					if (PaletteManager.getInstance().getView() != null) {
-						final DefaultTreeModel model = (DefaultTreeModel) PaletteManager
-								.getInstance().getView().getTree().getModel();
-						model.reload(node);
-					}
+					refreshView(node.getParent());
 				}
 			});
-		} catch (InvocationTargetException exception) {
+		} catch (final InvocationTargetException exception) {
 			throw (Exception) exception.getTargetException();
 		}
 	}
@@ -397,20 +401,20 @@ public final class Palette {
 				@Override
 				public void run() {
 
-					PaletteNode src = getPathNode(source, false);
+					final PaletteNode src = getPathNode(source, false);
 					if (src == null) {
 						throw new RuntimeException(String.format(
 								WRONG_INPUT_ARGUMENT_S_INVALID_TREE_PATH,
 								"source"));
 					}
 
-					PaletteNode trg = getPathNode(target, true);
+					final PaletteNode trg = getPathNode(target, true);
 					if (trg == null || !(trg instanceof Category)) {
 						throw new RuntimeException(String.format(
 								WRONG_INPUT_ARGUMENT_S_INVALID_TREE_PATH,
 								"target"));
 					}
-					Category destination = (Category) trg;
+					final Category destination = (Category) trg;
 
 					final Category[] toBeReloaded = new Category[] {
 							src.getParent(), destination };
@@ -421,20 +425,11 @@ public final class Palette {
 					destination.getNode().add(src);
 					src.setParent(destination);
 
-					PaletteManager.getInstance().saveConfig();
-					if (PaletteManager.getInstance().getView() != null) {
-						final DefaultTreeModel model = (DefaultTreeModel) PaletteManager
-								.getInstance().getView().getTree().getModel();
-						if (toBeReloaded[0] != null) {
-							model.reload(toBeReloaded[0]);
-							model.reload(toBeReloaded[1]);
-						} else {
-							model.reload();
-						}
-					}
+					refreshView(toBeReloaded[0]);
+					refreshView(toBeReloaded[1]);
 				}
 			});
-		} catch (InvocationTargetException exception) {
+		} catch (final InvocationTargetException exception) {
 			throw (Exception) exception.getTargetException();
 		}
 	}
@@ -451,7 +446,7 @@ public final class Palette {
 	 *             in case of write errors
 	 */
 	@ScilabExported(module = "xcos", filename = "Palette.giws.xml")
-	public static void generatePaletteIcon(String blockPath, String iconPath)
+	public static void generatePaletteIcon(final String blockPath, final String iconPath)
 			throws IOException {
 		final BasicBlock block = new H5RWHandler(blockPath).readBlock();
 
@@ -461,7 +456,7 @@ public final class Palette {
 		block.getGeometry().setX(XcosConstants.PALETTE_BLOCK_WIDTH);
 		block.getGeometry().setY(XcosConstants.PALETTE_BLOCK_HEIGHT);
 
-		XcosDiagram graph = new XcosDiagram();
+		final XcosDiagram graph = new XcosDiagram();
 		graph.installListeners();
 		graph.getModel().beginUpdate();
 		graph.addCell(block);
@@ -471,7 +466,7 @@ public final class Palette {
 		/*
 		 * Render
 		 */
-		mxGraphComponent graphComponent = graph.getAsComponent();
+		final mxGraphComponent graphComponent = graph.getAsComponent();
 		graphComponent.refresh();
 
 		final mxRectangle bounds = graph.getPaintBounds(new Object[] {block});
@@ -488,7 +483,7 @@ public final class Palette {
 			scale = 1.0;
 		}
 
-		BufferedImage image = mxCellRenderer.createBufferedImage(graph, null,
+		final BufferedImage image = mxCellRenderer.createBufferedImage(graph, null,
 				scale, null, graphComponent.isAntiAlias(), null, graphComponent
 						.getCanvas());
 
@@ -511,46 +506,49 @@ public final class Palette {
 	public static void generateAllPaletteImages() {
 		try {
 			SwingUtilities.invokeAndWait(new Runnable() {
+				@Override
 				public void run() {
 					final PaletteManager current = PaletteManager.getInstance();
 					iterate(current.getRoot().getNode());
 					current.saveConfig();
 				}
 
-				private void iterate(List<PaletteNode> children) {
-					for (Iterator<PaletteNode> iter = children.iterator(); iter
-							.hasNext();) {
-						PaletteNode next = iter.next();
-
+				private void iterate(final List<PaletteNode> children) {
+					for (final PaletteNode next : children) {
 						if (next instanceof Category) {
 							iterate(((Category) next).getNode());
 						} else if (next instanceof PreLoaded) {
-							final PreLoaded current = (PreLoaded) next;
+							generatePreLoadedIcon((PreLoaded) next);
+						}
+					}
+				}
 
-							List<PaletteBlock> blocks = current.getBlock();
-							for (Iterator<PaletteBlock> iterator = blocks
-									.iterator(); iterator.hasNext();) {
-								final PaletteBlock paletteBlock = iterator
-										.next();
-								final String file = paletteBlock.getIcon()
-										.getEvaluatedPath();
+				/**
+				 * Generate PreLoaded icon file.
+				 * 
+				 * @param current the current node
+				 */
+				private void generatePreLoadedIcon(final PreLoaded current) {
+					final List<PaletteBlock> blocks = current
+							.getBlock();
+					for (final PaletteBlock paletteBlock : blocks) {
+						final String file = paletteBlock.getIcon()
+								.getEvaluatedPath();
 
-								try {
-									generatePaletteIcon(paletteBlock.getData()
-											.getEvaluatedPath(), paletteBlock
-											.getIcon().getEvaluatedPath());
-								} catch (IOException e) {
-									LOG.error(file);
-									LOG.error(e);
-								}
-							}
+						try {
+							generatePaletteIcon(paletteBlock.getData()
+									.getEvaluatedPath(), paletteBlock
+									.getIcon().getEvaluatedPath());
+						} catch (final IOException e) {
+							LOG.error(file);
+							LOG.error(e);
 						}
 					}
 				}
 			});
-		} catch (InterruptedException e) {
+		} catch (final InterruptedException e) {
 			LOG.error(e);
-		} catch (InvocationTargetException e) {
+		} catch (final InvocationTargetException e) {
 			LOG.error(e);
 		}
 

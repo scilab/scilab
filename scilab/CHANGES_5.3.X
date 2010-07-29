@@ -40,6 +40,8 @@ Bug Fixes:
 * bug 7628 fixed - When importing Scicos diagram, type each port as "explicit"
                    when not typed.
 
+* bug 7631 fixed - On Xcos, using xcosPalAdd modified the user palatte.xml file.
+
          Changes between version 5.3.0-beta-1 and 5.3.0-beta-2 of Scilab
          ===============================================================
 
