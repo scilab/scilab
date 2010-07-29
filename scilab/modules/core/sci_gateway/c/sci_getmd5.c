@@ -24,9 +24,7 @@
 #include "PATH_MAX.h"
 #include "charEncoding.h"
 #include "isdir.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_getmd5) (char *fname,unsigned long fname_len)
 {
@@ -79,7 +77,7 @@ int C2F(sci_getmd5) (char *fname,unsigned long fname_len)
 					{
 						MD5 = md5_file(fp);
 						fclose(fp);
-						Output_Matrix[i] = strdup(MD5);
+						Output_Matrix[i] = os_strdup(MD5);
 						if (MD5) {FREE(MD5);MD5 = NULL;}
 					}
 					else
@@ -129,7 +127,7 @@ int C2F(sci_getmd5) (char *fname,unsigned long fname_len)
 						char *MD5 = NULL;
 
 						MD5 = md5_str(Input_Matrix[i]);
-						Output_Matrix[i] = strdup(MD5);
+						Output_Matrix[i] = os_strdup(MD5);
 						if (MD5) {FREE(MD5);MD5 = NULL;}
 
 						if (Output_Matrix[i] == NULL)

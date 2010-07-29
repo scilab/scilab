@@ -19,7 +19,7 @@
 #include "version.h"
 #include "wmcopydata.h"
 #include "storeCommand.h"
-#include "strdup_windows.h"
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 static HWND hWndScilab = NULL;
 HANDLE HandleThreadWnd = NULL;
@@ -142,7 +142,7 @@ char *getCurrentTitleScilabHiddenWindow(void)
 	char *currentTitle = NULL;
 	if ( strcmp(titleHiddenScilabWindow,"") )
 	{
-		currentTitle = strdup(titleHiddenScilabWindow);
+		currentTitle = os_strdup(titleHiddenScilabWindow);
 	}
 	return currentTitle;
 }

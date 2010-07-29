@@ -19,7 +19,7 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) INRIA   - 2006 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
-# 
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
@@ -459,7 +459,8 @@ libjavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
 @JAVASCI_TRUE@			-I$(top_srcdir)/modules/fileio/includes \
 @JAVASCI_TRUE@			-I$(top_srcdir)/modules/output_stream/includes \
 @JAVASCI_TRUE@			-I$(top_srcdir)/modules/system_env/includes \
-@JAVASCI_TRUE@			-I$(top_srcdir)/modules/operations/includes
+@JAVASCI_TRUE@			-I$(top_srcdir)/modules/operations/includes \
+@JAVASCI_TRUE@			-I$(top_srcdir)/modules/string/includes
 
 @JAVASCI_TRUE@libjavasci_la_LIBADD = \
 @JAVASCI_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \

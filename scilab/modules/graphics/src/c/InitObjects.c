@@ -25,11 +25,7 @@
 #include <stdio.h>
 #include <string.h>
 
-
-#ifdef _MSC_VER
-#include "strdup_Windows.h"
-#endif
-
+#include "os_strdup.h"
 #include "InitObjects.h"
 #include "SetProperty.h"
 #include "GetProperty.h"
@@ -487,7 +483,7 @@ int InitFigureModel( void )
   ** Otherwise causes a warning.
   */
   // sciInitEventHandler(pfiguremdl, "");
-  pFIGURE_FEATURE(pfiguremdl)->eventHandler = strdup("");
+  pFIGURE_FEATURE(pfiguremdl)->eventHandler = os_strdup("");
   // sciInitIsEventHandlerEnable( pfiguremdl, FALSE ) ;
   pFIGURE_FEATURE(pfiguremdl)->isEventHandlerEnable = FALSE;
 

@@ -18,7 +18,8 @@ libsciparameters_la_CFLAGS=-I$(srcdir)/includes/ \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes/ \
 -I$(top_srcdir)/modules/localization/includes \
--I$(top_srcdir)/modules/operations/includes 
+-I$(top_srcdir)/modules/operations/includes \
+-I$(top_srcdir)/modules/string/includes
 
 pkglib_LTLIBRARIES = libsciparameters.la
 
@@ -28,7 +29,7 @@ libsciparameters_la_SOURCES = $(PARAMETERS_C_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(libsciparameters_la_SOURCES)
-INCLUDE_FLAGS = $(libsciparameters_la_CFLAGS) 
+INCLUDE_FLAGS = $(libsciparameters_la_CFLAGS)
 
 libsciparameters_la_LIBADD =  $(top_builddir)/modules/api_scilab/libsciapi_scilab.la
 

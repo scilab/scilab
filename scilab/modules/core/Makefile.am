@@ -253,7 +253,7 @@ sci_gateway/fortran/sci_delbpt.f \
 sci_gateway/fortran/where.f \
 sci_gateway/fortran/sci_iserror.f \
 sci_gateway/fortran/sci_debug.f \
-sci_gateway/fortran/sci_comp.f 
+sci_gateway/fortran/sci_comp.f
 
 GATEWAY_CPP_SOURCES = 	\
 	sci_gateway/cpp/sci_getmodules.cpp \
@@ -306,6 +306,7 @@ libscicore_la_CPPFLAGS = \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
 			-I$(top_srcdir)/modules/dynamic_link/includes \
 			-I$(top_srcdir)/modules/system_env/includes \
+			-I$(top_srcdir)/modules/string/includes/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/
 
 # Used by sci_getdebuginfo:

@@ -15,9 +15,7 @@
 #include "getshortpathname.h"
 #include "MALLOC.h"
 #include "charEncoding.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 	#ifndef MAX_PATH_SHORT
@@ -72,7 +70,7 @@ char *getshortpathname(char *longpathname,BOOL *convertok)
 			else
 			{
 				/* FAILED */
-				ShortName = strdup(longpathname);
+				ShortName = os_strdup(longpathname);
 				*convertok = FALSE;
 			}
 			if (ptwShortName) {FREE(ptwShortName);ptwShortName = NULL;}
@@ -80,7 +78,7 @@ char *getshortpathname(char *longpathname,BOOL *convertok)
 		else
 		{
 			/* FAILED */
-			ShortName = strdup(longpathname);
+			ShortName = os_strdup(longpathname);
 			*convertok = FALSE;
 		}
 		if (ptwlongpathname) { FREE(ptwlongpathname); ptwlongpathname = NULL;}

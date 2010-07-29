@@ -22,9 +22,7 @@
 #include "MALLOC.h"
 #include "localization.h"
 #include "stricmp.h"
-#ifdef _MSC_VER
-	#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 #include "BOOL.h"
 #include "getshortpathname.h"
 /*--------------------------------------------------------------------------*/ 
@@ -102,7 +100,7 @@ BOOL LoadLibrarypath(char *xmlfilename)
 						}
 						else
 						{
-							FullLibrarypath = strdup(libraryPath);
+							FullLibrarypath = os_strdup(libraryPath);
 						}
 
   					    

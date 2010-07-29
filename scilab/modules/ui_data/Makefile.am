@@ -1,11 +1,11 @@
 #
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) DIGITEO - 2010 - Allan CORNET
-# 
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 #
 
@@ -29,11 +29,11 @@ include $(top_srcdir)/Makefile.incl.am
 UI_DATA_JNI_SOURCES = src/jni/BrowseVar.cpp \
 					  src/jni/EditVar.cpp
 
-UI_DATA_C_SOURCES = 
+UI_DATA_C_SOURCES =
 
-UI_DATA_CPP_SOURCES = 
+UI_DATA_CPP_SOURCES =
 
-GIWS_WRAPPERS = 
+GIWS_WRAPPERS =
 
 if GIWS
 BUILT_SOURCES=giws
@@ -67,9 +67,10 @@ libsciui_data_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/operations/includes \
             -I$(top_srcdir)/modules/system_env/includes \
 			-I$(top_srcdir)/modules/localization/includes \
-			-I$(top_srcdir)/modules/api_scilab/includes
+			-I$(top_srcdir)/modules/api_scilab/includes \
+			-I$(top_srcdir)/modules/string/includes
 
-# Without the ui_data module 
+# Without the ui_data module
 libsciui_data_disable_la_CFLAGS = -Iincludes/ \
 			-I$(top_srcdir)/modules/output_stream/includes
 
@@ -80,7 +81,7 @@ libsciui_data_disable_la_SOURCES = $(UI_DATA_DISABLE_C_SOURCES)
 pkglib_LTLIBRARIES = libsciui_data-disable.la
 
 if GUI
-pkglib_LTLIBRARIES += libsciui_data.la 
+pkglib_LTLIBRARIES += libsciui_data.la
 endif
 
 libsciui_data_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
@@ -93,7 +94,7 @@ INCLUDE_FLAGS = $(libsciui_data_la_CFLAGS)
 
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = 
+SWIG_WRAPPERS =
 
 if SWIG
 BUILT_SOURCES=swig

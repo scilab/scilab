@@ -19,9 +19,7 @@
 #include "Scierror.h"
 #include "commandwords.h"
 #include "localization.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 #include "freeArrayOfString.h"
 #include "getfunctionslist.h"
 
@@ -161,7 +159,7 @@ static int CreateLocalFunctionsTab(void)
 		{
 			if ( !IsACommand(LocalFunctionsTabTmp[i]) ) 
 			{
-				LocalFunctionsTab[j] = strdup(LocalFunctionsTabTmp[i]);
+				LocalFunctionsTab[j] = os_strdup(LocalFunctionsTabTmp[i]);
 				j++;
 			}
 		}

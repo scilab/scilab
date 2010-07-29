@@ -13,7 +13,7 @@
 /*--------------------------------------------------------------------------*/
 #include <unknwn.h>
 #include "createGUID.h"
-#include "strdup_Windows.h"
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 #define _OLEAUT32_
 /*--------------------------------------------------------------------------*/
@@ -27,6 +27,6 @@ char *createGUID(void)
     StringFromCLSID (&guid, wstrGUID);
     WideCharToMultiByte (CP_ACP, 0, *wstrGUID, -1, strGUID, MAX_PATH, NULL, NULL);
     strGUID[strlen(strGUID)-1] = '\0';
-    return strdup(strGUID+1);
+    return os_strdup(strGUID+1);
 }
 /*--------------------------------------------------------------------------*/

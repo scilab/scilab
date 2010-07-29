@@ -1,4 +1,3 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
@@ -18,9 +17,7 @@
 #include <ctype.h>
 #include "stringsstrrchr.h"
 #include "MALLOC.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 /*----------------------------------------------------------------------------*/
 char ** strings_strrchr(char **InputStrings,int Dim_InputStrings,char** InputChar,int Dim_InputChar,BOOL do_strrchr)
 {
@@ -45,11 +42,11 @@ char ** strings_strrchr(char **InputStrings,int Dim_InputStrings,char** InputCha
 
 				if (ptrStr)
 				{
-					Output_Strings[i] = strdup(ptrStr);
+					Output_Strings[i] = os_strdup(ptrStr);
 				}
 				else
 				{
-					Output_Strings[i] = strdup("");
+					Output_Strings[i] = os_strdup("");
 				}
 			}
 		}

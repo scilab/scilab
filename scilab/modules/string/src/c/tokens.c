@@ -17,9 +17,7 @@
 #include <stdio.h>
 #include "MALLOC.h" 
 #include "tokens.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 #include "charEncoding.h"
 /*------------------------------------------------------------------------*/
 char** stringTokens(char *str,char **delim,int sizedelim,int *sizeOutputs)

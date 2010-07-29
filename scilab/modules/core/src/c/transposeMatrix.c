@@ -12,9 +12,7 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "transposeMatrix.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 double *transposeMatrixDouble(int C,int L,double *MatrixDouble)
@@ -70,7 +68,7 @@ int *transposeMatrixInt(int C,int L,int *MatrixInt)
 
 			for (i = 0; i < C; i++) for (j = 0; j <  L; j++) 
 			{
-				buffer[ i*L+j ] = strdup(MatrixStr[ j*C+i ]);
+				buffer[ i*L+j ] = os_strdup(MatrixStr[ j*C+i ]);
 			}
 		}
 	}

@@ -41,7 +41,8 @@ libscicompletion_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/output_stream/includes \
 				-I$(top_srcdir)/modules/functions/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/operations/includes
+				-I$(top_srcdir)/modules/operations/includes \
+				-I$(top_srcdir)/modules/string/includes
 
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding

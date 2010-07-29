@@ -24,9 +24,7 @@
 #include "MALLOC.h"
 #include "GetXmlFileEncoding.h"
 #include "localization.h"
-#if _MSC_VER
-#include "strdup_Windows.h"
-#endif
+#include "os_strdup.h"
 #include "getshortpathname.h"
 #include "BOOL.h"
 /*--------------------------------------------------------------------------*/
@@ -153,7 +151,7 @@ static struct gateway_struct *readGatewayXmlFile(char *filenameXml)
 					{
 						/* we found the tag primitiveName */
 						const char *str = (const char*)attrib->children->content;
-						PRIMITIVE_NAME = strdup(str);
+						PRIMITIVE_NAME = os_strdup(str);
 					}
 					attrib = attrib->next;
 				}
@@ -197,7 +195,7 @@ static struct gateway_struct *readGatewayXmlFile(char *filenameXml)
 							gateway->gatewayIdList[gateway->dimLists - 1] = GATEWAY_ID;
 
 						if (gateway->primitivesList) 
-							gateway->primitivesList[gateway->dimLists - 1] = strdup(PRIMITIVE_NAME);
+							gateway->primitivesList[gateway->dimLists - 1] = os_strdup(PRIMITIVE_NAME);
 
 						if (gateway->primiviteIdList)
 							gateway->primiviteIdList[gateway->dimLists - 1] = PRIMITIVE_ID;

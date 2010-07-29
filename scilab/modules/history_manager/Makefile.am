@@ -43,6 +43,9 @@ endif
 endif
 
 
+libscihistory_manager_la_CFLAGS = \
+-I$(top_srcdir)/modules/string/includes/
+
 
 # Includes need for the compilation
 libscihistory_manager_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) \
@@ -58,7 +61,8 @@ libscihistory_manager_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) \
 -I$(top_srcdir)/modules/output_stream/includes/ \
 -I$(top_srcdir)/modules/system_env/includes/ \
 -I$(top_srcdir)/modules/operations/includes/ \
--I$(top_srcdir)/modules/history_browser/includes/
+-I$(top_srcdir)/modules/history_browser/includes/ \
+-I$(top_srcdir)/modules/string/includes/
 
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding

@@ -18,9 +18,7 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "freeArrayOfString.h"
-#ifdef _MSC_VER
-#include "strdup_Windows.h"
-#endif
+#include "os_strdup.h"
 
 #include "api_scilab.h"
 #include "api_oldstack.h"
@@ -89,7 +87,7 @@ int sci_matfile_listvar(char* fname, int* _piKey)
 	  Scierror(999, _("%s: No more memory.\n"), "matfile_listvar");
 	  return 1;
 	}
-      varnames[nbvar-1] = strdup(matvar->name);
+      varnames[nbvar-1] = os_strdup(matvar->name);
       varclasses = (double*) REALLOC(varclasses, nbvar*sizeof(double));
       if (varnames == NULL)
 	{

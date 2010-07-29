@@ -24,9 +24,7 @@
 #include "stack-def.h"
 #include "stack-c.h"
 #include "MALLOC.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 #ifndef MAXLONG
 #define MAXLONG LONG_MAX
@@ -128,7 +126,7 @@ char *getLocalNamefromId(int n)
 
     if (strlen(fortranName) > 0)
     {
-        Name = strdup(fortranName);
+        Name = os_strdup(fortranName);
     }
     return Name;
 }
@@ -149,7 +147,7 @@ char *getGlobalNamefromId(int n)
 
     if (strlen(fortranName) > 0)
     {
-        Name = strdup(fortranName);
+        Name = os_strdup(fortranName);
     }
     return Name;
 }

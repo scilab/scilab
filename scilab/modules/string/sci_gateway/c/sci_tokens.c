@@ -20,9 +20,7 @@
 #include "tokens.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 #define one 1
@@ -98,8 +96,8 @@ int sci_tokens(char *fname,unsigned long fname_len)
 					Scierror(999,_("%s: Memory allocation error.\n"),fname);
 					return 0;
 				}
-				Delimiters[0] = strdup(" ");
-				Delimiters[1] = strdup("\t");
+				Delimiters[0] = os_strdup(" ");
+				Delimiters[1] = os_strdup("\t");
 				Delimiters[2] = 0;
 			}
 

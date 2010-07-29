@@ -15,9 +15,7 @@
 #include "version.h"
 #include "sci_mode.h"
 #include "scilabDefaults.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 #include "with_module.h"
 #include "loadversion.h"
 #include "MALLOC.h"
@@ -60,7 +58,7 @@ int *getScilabVersion(int *sizeArrayReturned)
 /*--------------------------------------------------------------------------*/
 char *getScilabVersionAsString(void)
 {
-	return strdup(SCI_VERSION_STRING);
+	return os_strdup(SCI_VERSION_STRING);
 }
 /*--------------------------------------------------------------------------*/
 int* getModuleVersion(char *modulename, int *sizeArrayReturned)
@@ -136,7 +134,7 @@ char *getModuleVersionInfoAsString(char *modulename)
 			&version_module_maintenance, versionstring, 
 			&version_module_revision))
 		{
-			infoString = strdup(versionstring);
+			infoString = os_strdup(versionstring);
 		}
 	}
 	return infoString;
@@ -159,7 +157,7 @@ char **getScilabVersionOptions(int *sizeArrayReturned)
 			options = REALLOC(options, sizeof(char*) * (nbOptions + 1));
 			if (options)
 			{
-				options[nbOptions] = strdup(PVM_OPTION_STRING);
+				options[nbOptions] = os_strdup(PVM_OPTION_STRING);
 				nbOptions++;
 			}
 			else
@@ -173,7 +171,7 @@ char **getScilabVersionOptions(int *sizeArrayReturned)
 			options = REALLOC(options, sizeof(char*) * (nbOptions + 1));
 			if (options)
 			{
-				options[nbOptions] = strdup(TCLTK_OPTION_STRING);
+				options[nbOptions] = os_strdup(TCLTK_OPTION_STRING);
 				nbOptions++;
 			}
 			else
@@ -187,7 +185,7 @@ char **getScilabVersionOptions(int *sizeArrayReturned)
 			options = REALLOC(options, sizeof(char*) * (nbOptions + 1));
 			if (options)
 			{
-				options[nbOptions] = strdup(MODELICAC_OPTION_STRING);
+				options[nbOptions] = os_strdup(MODELICAC_OPTION_STRING);
 				nbOptions++;
 			}
 			else
@@ -201,7 +199,7 @@ char **getScilabVersionOptions(int *sizeArrayReturned)
 			options = REALLOC(options, sizeof(char*) * (nbOptions + 1));
 			if (options)
 			{
-				options[nbOptions] = strdup(ATLAS_OPTION_STRING);
+				options[nbOptions] = os_strdup(ATLAS_OPTION_STRING);
 				nbOptions++;
 			}
 			else
@@ -251,40 +249,40 @@ char **getScilabVersionOptions(int *sizeArrayReturned)
 char *getReleaseMode(void)
 {
 	#ifdef NDEBUG
-	return strdup(RELEASE_STRING);
+	return os_strdup(RELEASE_STRING);
 	#else
-	return strdup(DEBUG_STRING);
+	return os_strdup(DEBUG_STRING);
 	#endif
 }
 /*--------------------------------------------------------------------------*/
 char *getReleaseDate(void)
 {
-	return strdup(__DATE__);
+	return os_strdup(__DATE__);
 }
 /*--------------------------------------------------------------------------*/
 char *getReleaseTime(void)
 {
-	return strdup(__TIME__);
+	return os_strdup(__TIME__);
 }
 /*--------------------------------------------------------------------------*/
 char *getCompilerUsedToBuildScilab(void)
 {
 	#ifdef __INTEL_COMPILER
-		return strdup(ICC_STRING);
+		return os_strdup(ICC_STRING);
 	#else
 		#ifdef _MSC_VER
-			return strdup(VC_STRING);
+			return os_strdup(VC_STRING);
 		#else
 			#ifdef __GNUC__
-				return strdup(GCC_STRING);
+				return os_strdup(GCC_STRING);
 			#else
 				#ifdef __PGI
-					return strdup(PGI_STRING);
+					return os_strdup(PGI_STRING);
 				#else
 					#if defined(__SUNPRO_C) || defined(__SUNPRO_CC)
-						return strdup(SUN_STRING);
+						return os_strdup(SUN_STRING);
 					#else
-						return strdup(UNKNOW_STRING);
+						return os_strdup(UNKNOW_STRING);
 					#endif
 				#endif
 			#endif
@@ -296,15 +294,15 @@ char *getCompilerArchitecture(void)
 {
 	#ifdef _MSC_VER
 		#ifdef _WIN64
-			return strdup(X64_STRING);
+			return os_strdup(X64_STRING);
 		#else
-			return strdup(X86_STRING);
+			return os_strdup(X86_STRING);
 		#endif
 	#else
 		#ifdef _LP64
-			return strdup(X64_STRING);
+			return os_strdup(X64_STRING);
 		#else
-			return strdup(X86_STRING);
+			return os_strdup(X86_STRING);
 		#endif
 	#endif
 }

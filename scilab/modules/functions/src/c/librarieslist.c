@@ -16,9 +16,7 @@
 #include "librarieslist.h"
 #include "stackinfo.h"
 #include "MALLOC.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 #include "call_scilab.h"
 /*--------------------------------------------------------------------------*/
 static int getnumberoflibraries(void);
@@ -47,7 +45,7 @@ char **getlibrarieslist(int *sizearray)
 					int *header = istk( iadr(*Lstk(fin)));
 					if ( (header) && (header[0] == sci_lib ) ) 
 					{
-						librarieslist[i] = strdup(NameVariable);
+						librarieslist[i] = os_strdup(NameVariable);
 						i++;
 					}
 				}

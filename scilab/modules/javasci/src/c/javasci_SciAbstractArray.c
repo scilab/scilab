@@ -17,9 +17,7 @@
 #include "call_scilab.h"
 #include "api_scilab.h"
 #include "freeArrayOfString.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 static int JNI_getMatrixOfInteger(JNIEnv *env, jobject obj_this, jclass class_this, int Rows, int Cols, char *name);
 static int JNI_getMatrixOfDouble(JNIEnv *env, jobject obj_this, jclass class_this, char *name);
@@ -585,7 +583,7 @@ static int JNI_setMatrixOfString(JNIEnv *env, jobject obj_this, jclass class_thi
 	{
 		jstring jelement = (jstring)(*env)->GetObjectArrayElement(env, jx, i);
 		const char *element = (*env)->GetStringUTFChars(env, jelement, NULL);
-		pStrings[i] = strdup(element);
+		pStrings[i] = os_strdup(element);
 		(*env)->ReleaseStringUTFChars(env, jelement,  element);
 	}
 

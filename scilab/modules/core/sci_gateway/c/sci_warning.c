@@ -19,9 +19,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_warning)(char *fname,unsigned long fname_len)
 {
@@ -58,11 +56,11 @@ int C2F(sci_warning)(char *fname,unsigned long fname_len)
 
 					if (getWarningMode())
 					{
-						Output = strdup("on");
+						Output = os_strdup("on");
 					}
 					else
 					{
-						Output = strdup("off");
+						Output = os_strdup("off");
 					}
 
 					n1=1;

@@ -1389,7 +1389,8 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/output_stream/includes \
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/localization/includes \
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/api_scilab/includes \
-@SCICOS_TRUE@			-I$(top_srcdir)/modules/elementary_functions/includes
+@SCICOS_TRUE@			-I$(top_srcdir)/modules/elementary_functions/includes \
+@SCICOS_TRUE@			-I$(top_srcdir)/modules/string/includes
 
 @SCICOS_FALSE@libsciscicos_blocks_la_SOURCES = 
 @SCICOS_TRUE@libsciscicos_blocks_la_SOURCES = $(SCICOS_BLOCKS_C_SOURCES) \
@@ -5074,14 +5075,14 @@ distclean-local:
 @SCICOS_TRUE@	@for file in $(SCICOS_BLOCKS_CPP_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.cpp|\1|' ;done > build/CPPblocknames
 
 @SCICOS_TRUE@build/Fblocknames: Makefile.am $(SCICOS_BLOCKS_FORTRAN_SOURCES)
-@SCICOS_TRUE@	@echo "-- Generates build/Fblocknames --" 
+@SCICOS_TRUE@	@echo "-- Generates build/Fblocknames --"
 @SCICOS_TRUE@	@if test ! -d build; then mkdir build; fi
 # Get the filename, strip the extension and put into a file
 @SCICOS_TRUE@	@for file in $(SCICOS_BLOCKS_FORTRAN_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.f|\1|';done > build/Fblocknames
 
 @SCICOS_TRUE@includes/blocks.h: build/Cblocknames build/Fblocknames build/CPPblocknames
 @SCICOS_TRUE@	@echo "-- Building includes/blocks.h --"
-@SCICOS_TRUE@	@$(top_srcdir)/modules/scicos_blocks/src/scripts/GenBlocks.sh $(top_srcdir)/modules/scicos_blocks/build/Fblocknames $(top_srcdir)/modules/scicos_blocks/build/Cblocknames $(top_srcdir)/modules/scicos_blocks/build/CPPblocknames $(top_srcdir)/modules/scicos_blocks/includes/blocks.h 
+@SCICOS_TRUE@	@$(top_srcdir)/modules/scicos_blocks/src/scripts/GenBlocks.sh $(top_srcdir)/modules/scicos_blocks/build/Fblocknames $(top_srcdir)/modules/scicos_blocks/build/Cblocknames $(top_srcdir)/modules/scicos_blocks/build/CPPblocknames $(top_srcdir)/modules/scicos_blocks/includes/blocks.h
 
 .NOTPARALLEL: build/Fblocknames build/Cblocknames
 

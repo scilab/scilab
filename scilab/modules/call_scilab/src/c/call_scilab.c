@@ -27,11 +27,11 @@
 #include "storeCommand.h"
 #include "WindowList.h"
 #include "../../core/src/c/TerminateCore.h"
+#include "os_strdup.h"
 
 #ifdef _MSC_VER
 #include "SetScilabEnvironmentVariables.h"
 #include "getScilabDirectory.h"
-#include "strdup_windows.h"
 #endif
 
 #ifdef _MSC_VER
@@ -106,11 +106,11 @@ BOOL StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 
 	if (ScilabStartup == NULL)
 	{
-		ScilabStartupUsed = strdup(DEFAULTSCILABSTARTUP);
+		ScilabStartupUsed = os_strdup(DEFAULTSCILABSTARTUP);
 	}
 	else
 	{
-		ScilabStartupUsed = strdup(ScilabStartup);
+		ScilabStartupUsed = os_strdup(ScilabStartup);
 	}
 
 	if (Stacksize==NULL)

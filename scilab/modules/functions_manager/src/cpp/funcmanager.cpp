@@ -36,6 +36,7 @@ extern "C"
 #ifndef _MSC_VER
 	#include "stricmp.h"
 #endif
+#include "os_strdup.h"
 }
 
 
@@ -154,7 +155,7 @@ bool FuncManager::AppendModules()
 					{
 						/* we found the tag name */
 						const char *str = (const char*)attrib->children->content;
-						name = strdup(str);
+						name = os_strdup(str);
 					}
 					else if(xmlStrEqual(attrib->name, (const xmlChar*)"activate"))
 					{
@@ -273,7 +274,7 @@ char *GetXmlFileEncoding(string _filename)
 	xmlDocPtr doc = NULL;
 
 	/* default */
-	encoding = strdup(DEFAULT_ENCODING);
+	encoding = os_strdup(DEFAULT_ENCODING);
 
 	doc = xmlParseFile(_filename.c_str());
 	if (doc)
@@ -285,7 +286,7 @@ char *GetXmlFileEncoding(string _filename)
 				free(encoding);
 				encoding = NULL;
 			}
-			encoding = strdup((char*)doc->encoding);
+			encoding = os_strdup((char*)doc->encoding);
 		}
 	}
 

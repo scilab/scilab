@@ -16,9 +16,7 @@
 #include "mopen.h"
 #include "MALLOC.h"
 #include "BOOL.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 #define LINE_MAX 4096
@@ -185,7 +183,7 @@ char *convertAnsiToUtf(char *_inString)
 #ifdef _MSC_VER
         if (IsValidUTF8(_inString))
         {
-            outString = strdup(_inString);
+            outString = os_strdup(_inString);
         }
         else
         {
@@ -207,7 +205,7 @@ char *convertAnsiToUtf(char *_inString)
                 }
                 else
                 {
-                    outString = strdup(_inString);
+                    outString = os_strdup(_inString);
                 }
                 SysFreeString(bstrCode);
                 bstrCode = NULL;
@@ -215,13 +213,13 @@ char *convertAnsiToUtf(char *_inString)
             }
             else
             {
-                outString = strdup(_inString);
+                outString = os_strdup(_inString);
             }
         }
 #else
         if (IsValidUTF8(_inString))
         {
-            outString = strdup(_inString);
+            outString = os_strdup(_inString);
         }
         else
         {

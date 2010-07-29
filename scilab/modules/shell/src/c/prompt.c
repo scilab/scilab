@@ -17,9 +17,7 @@
 #include "sci_warning.h"
 #include "localization.h"
 #include "MALLOC.h"
-#ifdef _MSC_VER
-#include "strdup_Windows.h"
-#endif
+#include "os_strdup.h"
 #include "BOOL.h"
 /*------------------------------------------------------------------------*/
 static char Sci_Prompt[PROMPT_SIZE_MAX];
@@ -77,7 +75,7 @@ void GetCurrentPrompt(char *CurrentPrompt)
 void SetTemporaryPrompt(char *tempPrompt)
 {
 	ClearTemporaryPrompt();
-	temporaryPrompt = strdup(tempPrompt);
+	temporaryPrompt = os_strdup(tempPrompt);
 }
 /*------------------------------------------------------------------------*/
 char *GetTemporaryPrompt(void)

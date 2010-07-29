@@ -16,9 +16,7 @@
 #include <stdlib.h>
 #include "URIFileToFilename.h"
 #include "MALLOC.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 #if _MSC_VER
 #define strnicmp _strnicmp
@@ -37,11 +35,11 @@ char *URIFileToFilename(char *uri)
 		if (isURIFile(uri))
 		{
 			int pos = (int) strlen(URI_BEGIN);
-			filename = strdup(&uri[pos]);
+			filename = os_strdup(&uri[pos]);
 		}
 		else
 		{
-			filename = strdup(uri);
+			filename = os_strdup(uri);
 		}
 	}
 	return filename;

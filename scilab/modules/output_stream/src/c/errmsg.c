@@ -22,9 +22,7 @@
 #include "inffic.h"
 #include "msgstore.h"
 #include "msgout.h"
-#ifdef _MSC_VER
-#include "strdup_Windows.h"
-#endif
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(showstack)(); /* used in error 115 */
 extern int C2F(prntid)(); /* to print variables on stack */
@@ -1655,7 +1653,7 @@ static char *getConvertedNameFromStack(int cvnametype)
     }
 
     strip_blank(local_variable_buffer);
-    return strdup(local_variable_buffer);
+    return os_strdup(local_variable_buffer);
 }
 /*--------------------------------------------------------------------------*/
 static void displayAndStoreError(const char *msg,...)

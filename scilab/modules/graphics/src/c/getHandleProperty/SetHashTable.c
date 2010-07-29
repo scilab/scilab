@@ -22,9 +22,7 @@
 #include "localization.h"
 #include "getDictionarySetProperties.h"
 #include "MALLOC.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 
 /** 
 * use for the singleton to know if the hashtable has already be created.
@@ -278,7 +276,7 @@ char **getDictionarySetProperties(int *sizearray)
 		*sizearray = NB_PROPERTIES;
 		for (i = 0;i < NB_PROPERTIES; i++)
 		{
-			dictionary [i] = strdup(propertyTable[i].key);
+			dictionary [i] = os_strdup(propertyTable[i].key);
 		}
 	}
 	return dictionary;

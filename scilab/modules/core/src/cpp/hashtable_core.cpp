@@ -21,10 +21,7 @@ extern "C" {
 
 unsigned int hashtable_core_maxFilled = 0;
 extern int C2F(cvname)(int *,char *,int const*, unsigned long int);
-#ifdef _MSC_VER
-//#define strdup _strdup
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 }
 /*----------------------------------------------------------------------------*/
 #include <iterator>
@@ -238,7 +235,7 @@ struct copy_name : std::unary_function<entry const&, char**> {
 	{
 		if(e.namefunction[0] != '\0')
 		{
-			*names = strdup(e.namefunction);
+			*names = os_strdup(e.namefunction);
 			++names;
 		}
 		return names;

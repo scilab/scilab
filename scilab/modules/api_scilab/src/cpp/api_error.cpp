@@ -19,9 +19,7 @@
 #include "sciprint.h"
 #include "Scierror.h"
 #include "stack-c.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 #include "localization.h"
 extern "C"
 {
@@ -85,7 +83,7 @@ int addErrorMessage(SciErr* _psciErr, int _iErr, const char* _pstMsg, ...)
 			_psciErr->pstMsg[i - 1] = _psciErr->pstMsg[i];
 		}
 	}
-	_psciErr->pstMsg[_psciErr->iMsgCount++] = strdup(pstMsg);
+	_psciErr->pstMsg[_psciErr->iMsgCount++] = os_strdup(pstMsg);
 	_psciErr->iErr = _iErr;
 	return iRet;
 }

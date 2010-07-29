@@ -18,9 +18,7 @@
 #include "merror.h"
 #include "Scierror.h"
 #include "localization.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 #include "MALLOC.h"
 #include "filesmanagement.h"
 /*--------------------------------------------------------------------------*/
@@ -52,11 +50,11 @@ int sci_merror(char *fname,unsigned long fname_len)
 		{
 			if (ierr == 0)
 			{
-				errmsg = strdup("");
+				errmsg = os_strdup("");
 			}
 			else
 			{
-				errmsg = strdup(strerror(ierr));
+				errmsg = os_strdup(strerror(ierr));
 			}
 			if (errmsg)
 			{
@@ -96,11 +94,11 @@ int sci_merror(char *fname,unsigned long fname_len)
 
 						if (ierr == 0)
 						{
-							errmsg = strdup("");
+							errmsg = os_strdup("");
 						}
 						else
 						{
-							errmsg = strdup(strerror(ierr));
+							errmsg = os_strdup(strerror(ierr));
 						}
 
 						if (errmsg)

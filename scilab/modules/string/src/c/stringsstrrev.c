@@ -19,9 +19,7 @@
 #include "freeArrayOfString.h"
 #include "MALLOC.h"
 #include "charEncoding.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 /*----------------------------------------------------------------------------*/
 char **strings_strrev(char **Input_strings,int Dim_Input_strings)
 {

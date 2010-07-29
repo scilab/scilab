@@ -13,9 +13,10 @@
 
 #include "GetUiobjectEnable.hxx"
 
-#ifdef _MSC_VER
-#include "strdup_Windows.h"
-#endif
+extern "C"
+{
+#include "os_strdup.h"
+}
 
 using namespace org_scilab_modules_gui_bridge;
 
@@ -25,11 +26,11 @@ int GetUiobjectEnable(sciPointObj* sciObj)
     {
       if (CallScilabBridge::isWidgetEnable(getScilabJavaVM(), pUIMENU_FEATURE(sciObj)->hashMapIndex))
         {
-          return sciReturnString(strdup("on"));
+          return sciReturnString(os_strdup("on"));
         }
       else
         {
-          return sciReturnString(strdup("off"));
+          return sciReturnString(os_strdup("off"));
         }
     }
   else if (sciGetEntityType( sciObj ) == SCI_UICONTROL)
@@ -38,22 +39,22 @@ int GetUiobjectEnable(sciPointObj* sciObj)
         {
           if (CallScilabBridge::isFrameEnable(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex))
             {
-              return sciReturnString(strdup("on"));
+              return sciReturnString(os_strdup("on"));
             }
           else
             {
-              return sciReturnString(strdup("off"));
+              return sciReturnString(os_strdup("off"));
             }
         }
       else
         {
           if (CallScilabBridge::isWidgetEnable(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex))
             {
-              return sciReturnString(strdup("on"));
+              return sciReturnString(os_strdup("on"));
             }
           else
             {
-              return sciReturnString(strdup("off"));
+              return sciReturnString(os_strdup("off"));
             }
         }
     }

@@ -23,9 +23,7 @@
 #include "getCommonPart.h"
 #include "completion.h"
 #include "scilines.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 #include "completeLine.h"
 /*--------------------------------------------------------------------------*/
 static void displayCompletionDictionary(char **dictionary,int sizedictionary, char *namedictionary);
@@ -186,7 +184,7 @@ static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, cha
 				{
 					if (sizecommonsDictionary == 1)
 					{
-						commonAll = strdup(commonsDictionary[0]);
+						commonAll = os_strdup(commonsDictionary[0]);
 					}
 					else
 					{

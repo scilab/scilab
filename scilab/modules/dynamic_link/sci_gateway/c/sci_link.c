@@ -20,9 +20,7 @@
 #include "localization.h"
 #include "dl_genErrorMessage.h"
 #include "freeArrayOfString.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 /*-----------------------------------------------------------------------------------*/
 static int linkNoRhs(void);
 static int linkOneRhsShow(void);
@@ -76,7 +74,7 @@ int sci_link(char *fname,unsigned long fname_len)
 
 				if ( (m1 == 1) && (n1 == 1) )
 				{
-					SharedLibraryName = strdup(strings[0]);
+					SharedLibraryName = os_strdup(strings[0]);
 					freeArrayOfString(strings, m1*n1);
 				}
 				else
@@ -139,7 +137,7 @@ int sci_link(char *fname,unsigned long fname_len)
 		}
 		else
 		{
-			param3flag = strdup("f");
+			param3flag = os_strdup("f");
 		}
 
 		if (strcmp("f",param3flag)==0) fflag = TRUE;

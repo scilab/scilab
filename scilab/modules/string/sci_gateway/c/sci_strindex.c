@@ -28,9 +28,7 @@
 #include "pcre_error.h"
 #include "Scierror.h"
 #include "charEncoding.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 /*------------------------------------------------------------------------*/
 #define CHAR_S "s"
 #define CHAR_R "r"
@@ -199,7 +197,7 @@ int sci_strindex(char *fname,unsigned long fname_len)
 				w = pcre_private(Strings_Input1[0],Strings_Input2[x],&Output_Start,&Output_End);
 				if ( w == PCRE_FINISHED_OK)
 				{
-					char *partStr = strdup(Strings_Input1[0]);
+					char *partStr = os_strdup(Strings_Input1[0]);
 					wchar_t *wcpartStr = NULL;
 					partStr[Output_Start] = '\0';
 					wcpartStr = to_wide_string(partStr);

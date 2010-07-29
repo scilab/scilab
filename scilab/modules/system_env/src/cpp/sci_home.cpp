@@ -20,9 +20,7 @@
 
 extern "C"
 {
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 #include "os_wcsdup.h"
 #include "charEncoding.h"
 #include "PATH_MAX.h"
@@ -151,12 +149,12 @@ char* computeSCIHOME(void)
         if(createdirectory(SCIHOMEPATH))
         {
 
-            return strdup(SCIHOMEPATH);
+            return os_strdup(SCIHOMEPATH);
         }
     }
     else
     {
-        return strdup(SCIHOMEPATH);
+        return os_strdup(SCIHOMEPATH);
     }
 
     return NULL;
@@ -193,12 +191,12 @@ char* computeSCIHOME(void)
 
         if(createdirectory(SCIHOMEPATH))
         {
-            return strdup(SCIHOMEPATH);
+            return os_strdup(SCIHOMEPATH);
         }
     }
     else
     {
-        return strdup(SCIHOMEPATH);
+        return os_strdup(SCIHOMEPATH);
     }
 
     return NULL;

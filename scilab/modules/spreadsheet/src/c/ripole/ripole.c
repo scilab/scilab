@@ -1,4 +1,3 @@
-
 /* Microsoft OLE2 stream parser.*/
 
 #include <stdio.h>
@@ -16,9 +15,7 @@
 
 #include "MALLOC.h"
 
-#ifdef _MSC_VER
-	#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 
 #define ROLE_VERSION "0.2.0"
 
@@ -84,12 +81,12 @@ int ROLE_parse_parameters( struct ripOLE_object *role, int argc, char **argv )
 			{
 				case 'i':
 					i++;
-					role->inputfile = strdup(argv[i]);
+					role->inputfile = os_strdup(argv[i]);
 					break;
 
 				case 'd':
 					i++;
-					role->outputdir = strdup(argv[i]);
+					role->outputdir = os_strdup(argv[i]);
 					break;
 
 				case 'v':

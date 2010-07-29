@@ -22,9 +22,7 @@
 #include "TCL_ArrayGetVar.h"
 #include "MALLOC.h"
 #include "GlobalTclInterp.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 int sci_TCL_GetVar(char *fname,unsigned long l)
@@ -118,7 +116,7 @@ int sci_TCL_GetVar(char *fname,unsigned long l)
 			{
 				char *output = NULL ;
 
-				output = strdup(RetStr);
+				output = os_strdup(RetStr);
 
 				n1=1;
 				CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(output), &m1),&n1,&output);

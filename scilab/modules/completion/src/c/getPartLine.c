@@ -11,9 +11,7 @@
 */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 #include "getPartLine.h"
 #include "core_math.h"
 /*--------------------------------------------------------------------------*/
@@ -35,7 +33,7 @@ char *getPartLevel(char *line)
 		}
 	}
 
-	return strdup(&line[index + 1]);
+	return os_strdup(&line[index + 1]);
 }
 /*--------------------------------------------------------------------------*/
 char *getFilePartLevel(char *line)
@@ -145,6 +143,6 @@ char *getFilePartLevel(char *line)
 
 	if ( (index <= 0) || (linebis[index] == '\0') ) return NULL;
 
-	return strdup(&linebis[index]);
+	return os_strdup(&linebis[index]);
 }
 /*--------------------------------------------------------------------------*/

@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <Windows.h>
 #include "LanguagePreferences_Windows.h"
-#include "strdup_windows.h"
+#include "os_strdup.h"
 #include "setgetlanguage.h"
 #include "version.h"
 #include "MALLOC.h"
@@ -57,7 +57,7 @@ BOOL setLanguageFromCommandLine(char *lang)
             languageFromCommandLine = NULL;
         }
 
-        languageFromCommandLine = strdup(convertlanguagealias(lang));
+        languageFromCommandLine = os_strdup(convertlanguagealias(lang));
 
         return TRUE;
     }
@@ -83,20 +83,20 @@ char *getLanguagePreferences(void)
 
         if (LanguageAllUsers == NULL)
         {
-            return strdup("");
+            return os_strdup("");
         }
         else
         {
             if (isValidLanguage(LanguageAllUsers)) return LanguageAllUsers;
-            else return strdup("");
+            else return os_strdup("");
         }
     }
     else
     {
         if (isValidLanguage(LanguageUser)) return LanguageUser;
-        else return strdup("");
+        else return os_strdup("");
     }
-    return strdup("");
+    return os_strdup("");
 }
 /*--------------------------------------------------------------------------*/ 
 static char *readRegistryLanguage(HKEY hKeyRoot,char *keyStringFormat)
@@ -145,7 +145,7 @@ static char *readRegistryLanguage(HKEY hKeyRoot,char *keyStringFormat)
         RegCloseKey(hKey);
         if (keyString) { FREE(keyString); keyString = NULL;}
     }
-    return strdup(LANGUAGE_REGISTRY);
+    return os_strdup(LANGUAGE_REGISTRY);
 }
 /*--------------------------------------------------------------------------*/ 
 static char *getLanguagePreferencesCurrentUser(void)

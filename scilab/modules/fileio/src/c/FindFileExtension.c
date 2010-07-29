@@ -15,11 +15,11 @@
 #include <Windows.h>
 #include <shlwapi.h>
 #pragma comment(lib, "shlwapi.lib")
-#include "strdup_windows.h"
 #else
 #include <string.h>
 #include <stdio.h>
 #endif
+#include "os_strdup.h"
 #include "FindFileExtension.h"
 #include "MALLOC.h"
 #include "charEncoding.h"

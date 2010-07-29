@@ -1,6 +1,6 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2009 - DIGITEO - Sylvestre Ledru
-# 
+#
 # This file is distributed under the same license as the Scilab package.
 
 
@@ -25,6 +25,7 @@ libscicall_scilab_la_CFLAGS=  	-I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/graphics/includes \
 			-I$(top_srcdir)/modules/operations/includes \
 			-I$(top_srcdir)/modules/system_env/includes \
+			-I$(top_srcdir)/modules/string/includes \
 			-I$(top_srcdir)/modules/core/src/c/
 
 pkglib_LTLIBRARIES = libscicall_scilab.la

@@ -14,7 +14,7 @@
 #include "TextToPrint.h"
 #include "win_mem_alloc.h" /* MALLOC */
 #include "charEncoding.h"
-#include "strdup_windows.h"
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 static HDC PrinterHDC=NULL;
 static char PrinterName[2048];
@@ -317,7 +317,7 @@ void PrintFile(char *filename)
 					}
 					else
 					{
-						LignePrint = strdup(line);
+						LignePrint = os_strdup(line);
 						TextOut (PrintDC,(tm.tmMaxCharWidth+10), Index2*HauteurCaractere, LignePrint, (int)strlen(LignePrint));
 						if (LignePrint)
 						{

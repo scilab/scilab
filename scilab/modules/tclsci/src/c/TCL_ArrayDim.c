@@ -20,9 +20,7 @@
 #include "TCL_ArrayDim.h"
 #include "Scierror.h"
 #include "localization.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 #define TCL_ALL_INDEXES "TclScilabTmpVar1"
 #define TCL_NUMERICAL_INDEXES "TclScilabTmpVar2"
@@ -106,7 +104,7 @@ char **TCL_ArrayDim(Tcl_Interp *TCLinterpreter,char *VarName,int *nb_lines, int 
 	  while (current != NULL)
 	    {
 	      tmp_list = REALLOC(tmp_list, (i + 1) * sizeof(char *));
-	      tmp_list[i] = strdup(current);
+	      tmp_list[i] = os_strdup(current);
 	      sscanf(current, "%d,%d", &current_line, &current_column);
 	      *nb_lines = MAX(*nb_lines, current_line);
 	      *nb_columns = MAX(*nb_columns, current_column);
@@ -144,7 +142,7 @@ char **TCL_ArrayDim(Tcl_Interp *TCLinterpreter,char *VarName,int *nb_lines, int 
 	  while (current != NULL)
 	    {
 	      index_list = REALLOC(index_list, (*nb_lines + 1) * sizeof(char *));
-	      index_list[*nb_lines] = strdup(current);
+	      index_list[*nb_lines] = os_strdup(current);
 	      current = strtok (NULL, " ");
 	      ++(*nb_lines);
 	    }

@@ -474,6 +474,7 @@ libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
 @FFTW_TRUE@			-I$(top_srcdir)/modules/output_stream/includes \
 @FFTW_TRUE@			-I$(top_srcdir)/modules/operations/includes \
 @FFTW_TRUE@			-I$(top_srcdir)/modules/api_scilab/includes \
+@FFTW_TRUE@			-I$(top_srcdir)/modules/string/includes \
 @FFTW_TRUE@			$(FFTW3_CFLAGS)
 
 

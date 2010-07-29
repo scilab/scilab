@@ -20,9 +20,7 @@
 #include "localization.h"
 #include "PATH_MAX.h"
 #include "fullpath.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 int sci_fullpath(char *fname,unsigned long fname_len)
 {
@@ -43,7 +41,7 @@ int sci_fullpath(char *fname,unsigned long fname_len)
 
 		if( get_full_path( fullpath, relPath, PATH_MAX*4 ) != NULL )
 		{
-			char *Output = strdup(fullpath);
+			char *Output = os_strdup(fullpath);
 
 			n1=1;
 			CreateVarFromPtr( Rhs+1,STRING_DATATYPE,(m1=(int)strlen(Output), &m1),&n1,&Output);

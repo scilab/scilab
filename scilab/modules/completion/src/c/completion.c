@@ -23,9 +23,7 @@
 #include "getDictionarySetProperties.h"
 #include "getDictionaryGetProperties.h"
 #include "toolsdictionary.h"
-#if _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 char **completionOnDictionary(char **dictionary,int sizedictionary,char *somechars,int *sizearrayreturned);
 /*--------------------------------------------------------------------------*/
@@ -217,7 +215,7 @@ char **completionOnVariablesWithoutMacros(char *somechars, int *sizeArrayReturne
 					/* do a copy of dictionary of Variables */
 					for ( i = 0; i < sizedictionaryVariables; i++)
 					{
-						ListWordsTmp[i] = strdup(dictionaryVariables[i]);
+						ListWordsTmp[i] = os_strdup(dictionaryVariables[i]);
 					}
 
 					for ( i = 0; i < sizedictionaryVariables; i++)
@@ -239,7 +237,7 @@ char **completionOnVariablesWithoutMacros(char *somechars, int *sizeArrayReturne
 						{
 							if (ListWordsTmp[i])
 							{
-								ListWords[k] = strdup(ListWordsTmp[i]);
+								ListWords[k] = os_strdup(ListWordsTmp[i]);
 								if (k <= sizeListWords) k++;
 							}
 						}

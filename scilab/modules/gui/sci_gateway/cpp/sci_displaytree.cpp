@@ -25,10 +25,8 @@ extern "C"
 #include "sciprint.h"
 #include "MALLOC.h"
 #include "getScilabJavaVM.h"
+#include "os_strdup.h"
 }
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
 #include "displaytree.hxx"
 #include "ScilabDisplayTree.hxx"
 
@@ -136,7 +134,7 @@ int sci_displaytree(char *fname,unsigned long fname_len)
 	for(i = 0; i < struct_size; ++i)
 	{
 		size_t element_size = StructList.at(i).size();	
-		tab[i] = strdup(StructList.at(i).c_str());		
+		tab[i] = os_strdup(StructList.at(i).c_str());		
 	}
 	
 	//Java

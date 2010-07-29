@@ -19,9 +19,7 @@
 #include "MALLOC.h"
 #include "cvstr.h"
 #include "expandPathVariable.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 #include "charEncoding.h"
 #include "call_scilab.h"
 /*--------------------------------------------------------------------------*/
@@ -80,7 +78,7 @@ char **getlistmacrosfromlibrary(char *libraryname,int *sizearray)
 						if (macroslist) macroslist = (char**)REALLOC(macroslist,sizeof(char*)*(nbElements+1));
 						else macroslist =(char**)MALLOC(sizeof(char*)*(nbElements+1));
 
-						macroslist[nbElements] = strdup(line);
+						macroslist[nbElements] = os_strdup(line);
 						nbElements++;
 					}
 					fclose(pFile);

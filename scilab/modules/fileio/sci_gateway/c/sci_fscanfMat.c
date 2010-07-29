@@ -26,9 +26,7 @@
 #include "PATH_MAX.h"
 #include "charEncoding.h"
 #include "StringConvert.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 #define INFOSIZE 1024
 #define DEFAULT_FORMAT_FSCANFMAT "%lf"
@@ -378,7 +376,7 @@ static int NumTokens(char *string)
             }
             else
             {
-                strTmp = strdup(&string[lnchar]);
+                strTmp = os_strdup(&string[lnchar]);
             }
 
             ntok++;

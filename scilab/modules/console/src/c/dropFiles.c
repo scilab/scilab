@@ -21,9 +21,7 @@
 #include "URIFileToFilename.h"
 #include "../../../string/includes/stricmp.h"
 #include "../../../core/src/c/with_module.h"
-#if _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 #define BIN_EXTENSION_FILE ".bin"
 #define SAV_EXTENSION_FILE ".sav"
@@ -111,7 +109,7 @@ static char *getCommandByFileExtension(char *File,char *FileExtension)
 			}
 			else
 			{
-				command = strdup(XCOS_NOT_INSTALLED);
+				command = os_strdup(XCOS_NOT_INSTALLED);
 			}
 		}
 		else

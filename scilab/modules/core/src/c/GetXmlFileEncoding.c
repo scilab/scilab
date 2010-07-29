@@ -13,9 +13,7 @@
 #include "GetXmlFileEncoding.h"
 #include "libxml/xmlreader.h"
 #include "MALLOC.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 #include "BOOL.h"
 #include "getshortpathname.h"
 /*--------------------------------------------------------------------------*/ 
@@ -28,7 +26,7 @@ char *GetXmlFileEncoding(const char *filename)
 	char *shortfilename = getshortpathname((char*)filename,&bConvert);
 
 	/* default */
-	encoding = strdup(DEFAULT_ENCODING);
+	encoding = os_strdup(DEFAULT_ENCODING);
 
 	if (shortfilename)
 	{
@@ -39,7 +37,7 @@ char *GetXmlFileEncoding(const char *filename)
 			if (doc->encoding)
 			{
 				if (encoding) {FREE(encoding);encoding=NULL;}
-				encoding = strdup((char*)doc->encoding);
+				encoding = os_strdup((char*)doc->encoding);
 			}
 		}
 		xmlFreeDoc (doc);

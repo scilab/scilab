@@ -2,7 +2,7 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) INRIA   - 2006 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
-# 
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
@@ -59,7 +59,8 @@ libjavasci_la_CFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/fileio/includes \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/system_env/includes \
-			-I$(top_srcdir)/modules/operations/includes
+			-I$(top_srcdir)/modules/operations/includes \
+			-I$(top_srcdir)/modules/string/includes
 
 libjavasci_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \

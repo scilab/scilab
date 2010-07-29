@@ -11,9 +11,7 @@
 #include "localization.h"
 #include "MALLOC.h"
 #include "charEncoding.h"
-#ifdef _MSC_VER
-	#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 
 
 #define DUW if (oleuw->debug)
@@ -256,11 +254,11 @@ int OLEUNWRAP_decode_attachment( struct OLEUNWRAP_object *oleuw, char *stream, s
 		sp += 2;
 
 		/* Full attachment string*/
-		oh.attach_name = strdup( sp );
+		oh.attach_name = os_strdup( sp );
 		sp = sp + strlen(oh.attach_name) +1;
 
 		/* Attachment full path*/
-		oh.fname_1 = strdup( sp );
+		oh.fname_1 = os_strdup( sp );
 		sp += strlen(oh.fname_1) +1;
 
 		/* Unknown memory segment*/
@@ -268,7 +266,7 @@ int OLEUNWRAP_decode_attachment( struct OLEUNWRAP_object *oleuw, char *stream, s
 		sp = sp +8;
 
 		/* Attachment full path*/
-		oh.fname_2 = strdup( sp );
+		oh.fname_2 = os_strdup( sp );
 		sp += strlen(oh.fname_2) +1;
 
 		oh.attach_size = (size_t)get_4byte_value( (unsigned char*) sp );

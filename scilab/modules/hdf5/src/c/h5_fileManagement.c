@@ -21,9 +21,7 @@
 #include "splitpath.h"
 #include "scicurdir.h"
 #include "MALLOC.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/ 
 static char *getPathFilename(char *fullfilename);
 static char *getFilenameWithExtension(char *fullfilename);
@@ -128,12 +126,12 @@ static char *getPathFilename(char *fullfilename)
     char *path = NULL;
     if (fullfilename)
     {
-        char* drv  = strdup(fullfilename);
-        char* dir  = strdup(fullfilename);
-        char* name = strdup(fullfilename);
-        char* ext  = strdup(fullfilename);
+        char* drv  = os_strdup(fullfilename);
+        char* dir  = os_strdup(fullfilename);
+        char* name = os_strdup(fullfilename);
+        char* ext  = os_strdup(fullfilename);
 
-        path = strdup(fullfilename);
+        path = os_strdup(fullfilename);
 
         if (drv && dir && name && ext && path)
         {
@@ -163,12 +161,12 @@ static char *getFilenameWithExtension(char *fullfilename)
     char *filename = NULL;
     if (fullfilename)
     {
-        char* drv  = strdup(fullfilename);
-        char* dir  = strdup(fullfilename);
-        char* name = strdup(fullfilename);
-        char* ext  = strdup(fullfilename);
+        char* drv  = os_strdup(fullfilename);
+        char* dir  = os_strdup(fullfilename);
+        char* name = os_strdup(fullfilename);
+        char* ext  = os_strdup(fullfilename);
 
-        filename = strdup(fullfilename);
+        filename = os_strdup(fullfilename);
 
         if (drv && dir && name && ext && filename)
         {

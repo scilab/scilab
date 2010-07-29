@@ -18,9 +18,7 @@ using regular express .                                         */
 #include "funcmanager.hxx"
 extern "C"
 {
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "pcre.h"
@@ -278,7 +276,7 @@ static int GREP_NEW(GREPRESULTS *results,char **Inputs_param_one,int mn_one,char
 		{
 			int Output_Start = 0;
 			int Output_End = 0;
-			save = strdup(Inputs_param_two[x]);
+			save = os_strdup(Inputs_param_two[x]);
 			answer = pcre_private(Inputs_param_one[y],save,&Output_Start,&Output_End);
 
 			if ( answer == PCRE_FINISHED_OK )

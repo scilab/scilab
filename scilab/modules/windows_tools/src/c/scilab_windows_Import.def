@@ -7,7 +7,6 @@ EXPORTS
 ; --------------------------------------- 
  buildMainWindowTitle_Windows
  getScilexConsoleName
- strdup_windows
  RestoreConsoleColors
  CloseScilabConsole
  closeInnosetupMutex

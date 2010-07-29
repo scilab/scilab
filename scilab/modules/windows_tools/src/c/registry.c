@@ -15,7 +15,7 @@
 #include "PATH_MAX.h"
 #include "win_mem_alloc.h"
 #include "GetWindowsVersion.h"
-#include "strdup_windows.h"
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 #define MAX_KEY_LENGTH 255
 #define MAX_VALUE_NAME 16383
@@ -141,7 +141,7 @@ BOOL WindowsQueryRegistryList(char *ParamIn1,char *ParamIn2,int dimMax,char **Li
 		}
 		else
 		{
-			*ListKeys= strdup(achKey);
+			*ListKeys= os_strdup(achKey);
 			*ListKeys++;
 		}
 	}

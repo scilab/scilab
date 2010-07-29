@@ -17,9 +17,7 @@
 #include "scirun.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 #include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
 static BOOL RemoveCharsFromEOL(char *line,char CharToRemove);
@@ -40,7 +38,7 @@ int SendScilabJob(char *job)
 #define COMMAND_EXECSTR  "Err_Job = execstr(TMP_EXEC_STRING,\"errcatch\",\"n\");quit;"
 #define COMMAND_CLEAR "clear TMP_EXEC_STRING;clear Err_Job;quit;"
 
-	command = strdup(job);
+	command = os_strdup(job);
 	lencommand = (int)strlen(command);
 
 	if (command)
@@ -133,7 +131,7 @@ static BOOL SetLastJob(char *JOB)
 
 	if (JOB)
 	{
-		lastjob = strdup(JOB);
+		lastjob = os_strdup(JOB);
 		if (lastjob)
 		{
 			return TRUE;

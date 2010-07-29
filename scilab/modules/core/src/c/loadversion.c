@@ -23,9 +23,7 @@
 #include "localization.h"
 #include "stricmp.h"
 #include "FileExist.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 #include "getshortpathname.h"
 /*--------------------------------------------------------------------------*/ 
 BOOL getversionmodule(char *modulename,
@@ -122,7 +120,7 @@ BOOL getversionmodule(char *modulename,
 								{
 									/* we found <string> */
 									const char *str = (const char*)attrib->children->content;
-									version_string= strdup(str);
+									version_string= os_strdup(str);
 								}
 
 							attrib = attrib->next;

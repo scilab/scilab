@@ -14,9 +14,7 @@
 #include "gw_tclsci.h"
 #include "Scierror.h"
 #include "localization.h"
-#if _MSC_VER
-  #include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 int sci_TCL_GetVersion(char *fname,unsigned long l)
 {
@@ -53,7 +51,7 @@ int sci_TCL_GetVersion(char *fname,unsigned long l)
 		}
 
 		sprintf(VersionString,"TCL/TK %d.%d.%d %s",major,minor,patchLevel,ReleaseType);
-		output=strdup(VersionString);
+		output=os_strdup(VersionString);
 		n1=1;
 		CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(output), &m1),&n1,&output);
 		if (output) {FREE(output);output=NULL;}

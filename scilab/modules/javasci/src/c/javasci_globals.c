@@ -24,9 +24,9 @@
 #include "sci_tmpdir.h"
 #include "PATH_MAX.h"
 #include "getcommandlineargs.h"
+#include "os_strdup.h"
 #ifdef _MSC_VER
 #include "../../../windows_tools/src/c/scilab_windows/SetScilabEnvironmentVariables.h"
-#include "strdup_windows.h"
 #endif
 #include "LaunchScilabSignal.h"
 /*--------------------------------------------------------------------------*/
@@ -102,7 +102,7 @@ void Initialize(void)
 	}
 	else
 	{
-		char *pathSCI = strdup(sciPath);
+		char *pathSCI = os_strdup(sciPath);
 		SetScilabEnvironmentVariables(pathSCI);
 		if (pathSCI) { FREE(pathSCI); pathSCI  =NULL; }
 	}

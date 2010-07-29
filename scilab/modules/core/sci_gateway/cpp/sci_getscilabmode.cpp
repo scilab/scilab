@@ -19,9 +19,7 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "sci_mode.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 }
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_getscilabmode(types::typed_list &in, int _iRetCount, types::typed_list &out)

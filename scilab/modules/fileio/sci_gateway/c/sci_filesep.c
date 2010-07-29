@@ -16,9 +16,7 @@
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "Scierror.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 int sci_filesep(char *fname,unsigned long fname_len)
 {
@@ -28,7 +26,7 @@ int sci_filesep(char *fname,unsigned long fname_len)
 	CheckRhs(0,0);
 	CheckLhs(1,1);
 
-	separator = strdup(DIR_SEPARATOR);
+	separator = os_strdup(DIR_SEPARATOR);
 
 	n1 = 1;
 	CreateVarFromPtr(Rhs+1,STRING_DATATYPE,(m1=(int)strlen(separator), &m1),&n1,&separator);

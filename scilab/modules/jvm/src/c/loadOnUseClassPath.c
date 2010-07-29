@@ -26,9 +26,7 @@
 #include "loadClasspath.h"
 #include "FileExist.h"
 #include "GetXmlFileEncoding.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/ 
 BOOL loadOnUseClassPath(char *tag)
 {
@@ -98,7 +96,7 @@ BOOL loadOnUseClassPath(char *tag)
 						}
 						else
 						{
-							FullClasspath = strdup(classpath);
+							FullClasspath = os_strdup(classpath);
 						}
 						addToClasspath(FullClasspath,STARTUP);
 						FREE(FullClasspath);

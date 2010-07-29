@@ -28,10 +28,10 @@ FORCE_LOAD_SOURCES = src/cpp/forceJHDF5load.cpp \
 src/jni/jhdf5load.hxx \
 src/jni/jhdf5load.cpp
 else
-HDF5_CPP_SOURCES = 
+HDF5_CPP_SOURCES =
 
 # This is due to an ugly hack for bug #5481
-FORCE_LOAD_SOURCES = 
+FORCE_LOAD_SOURCES =
 endif
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_hdf5.c
@@ -79,6 +79,7 @@ libscihdf5_la_CPPFLAGS=	-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/jvm/includes/ \
 				-I$(top_srcdir)/modules/fileio/includes \
 				-I$(top_srcdir)/modules/system_env/includes \
+				-I$(top_srcdir)/modules/string/includes \
 				$(JAVA_JNI_INCLUDE) \
 				$(HDF5_CFLAGS)
 
@@ -91,6 +92,7 @@ libscihdf5_la_CFLAGS=		-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/operations/includes \
 				-I$(top_srcdir)/modules/system_env/includes \
 				-I$(top_srcdir)/modules/fileio/includes \
+				-I$(top_srcdir)/modules/string/includes \
 				$(HDF5_CFLAGS)
 
 

@@ -14,9 +14,7 @@
 #include "gw_matio.h"
 #include "GetMatlabVariable.h"
 
-#ifdef _MSC_VER
-#include "strdup_Windows.h"
-#endif
+#include "os_strdup.h"
 #include "stack-c.h"
 #include "api_scilab.h"
 #include "api_oldstack.h"

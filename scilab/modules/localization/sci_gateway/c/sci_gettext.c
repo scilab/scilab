@@ -18,9 +18,7 @@
 #include "gw_localization.h"
 #include "Scierror.h"
 #include "strsubst.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 int sci_gettext(char *fname,unsigned long fname_len)
 {
@@ -74,16 +72,16 @@ int sci_gettext(char *fname,unsigned long fname_len)
 			if (tmpStr2) {FREE(tmpStr2); tmpStr2 = NULL;}
 
 			revertStrsub = TRUE;
-			tmpStr = strdup(tmpStr1);
+			tmpStr = os_strdup(tmpStr1);
 			if (tmpStr1) {FREE(tmpStr1); tmpStr1 = NULL;}
 		}
 		else
 		{
 			revertStrsub = FALSE;
-			tmpStr = strdup(msgid);
+			tmpStr = os_strdup(msgid);
 		}
 
-		TranslatedString = strdup(gettext(tmpStr));
+		TranslatedString = os_strdup(gettext(tmpStr));
 		if (tmpStr) {FREE(tmpStr); tmpStr = NULL;}
 
 		/* Add removed slashes */
@@ -110,7 +108,7 @@ int sci_gettext(char *fname,unsigned long fname_len)
 			if (tmpStr1) {FREE(tmpStr1); tmpStr1 = NULL;}
 
 			if (TranslatedString) {FREE(TranslatedString); TranslatedString = NULL;}
-			TranslatedString = strdup(tmpStr2);
+			TranslatedString = os_strdup(tmpStr2);
 			if (tmpStr2) {FREE(tmpStr2); tmpStr2 = NULL;}
 		}
 

@@ -28,9 +28,7 @@ extern "C"
 #include "Scierror.h"
 #include "expandPathVariable.h"
 #include "freeArrayOfString.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 #include "BOOL.h"
 }
 using namespace org_scilab_modules_gui_filechooser;
@@ -100,7 +98,7 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
 			description = (char**)MALLOC( sizeof(char*) * nbRow);
 			for (int i = 0;i < nbRow; i++)
 			{
-				description[i] = strdup(mask[nbRow+i]);
+				description[i] = os_strdup(mask[nbRow+i]);
 			}
 		}
 		else

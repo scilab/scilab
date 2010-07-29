@@ -60,6 +60,7 @@ libscifftw_la_CFLAGS=  	-I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/operations/includes \
 			-I$(top_srcdir)/modules/api_scilab/includes \
+			-I$(top_srcdir)/modules/string/includes \
 			$(FFTW3_CFLAGS)
 
 else

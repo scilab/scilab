@@ -14,9 +14,7 @@
 #include "api_scilab.h"
 #include "CreateMatlabVariable.h"
 #include "freeArrayOfString.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 
 #define MATIO_ERROR if(_SciErr.iErr)	     \
     {					     \
@@ -93,7 +91,7 @@ int CreateCharVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * pa
 	  else
 	    {
 	      char ** tmp_char = (char **)MALLOC(sizeof(char *));
-	      tmp_char[0] = strdup("\0");
+	      tmp_char[0] = os_strdup("\0");
 	      _SciErr = createMatrixOfStringInList(pvApiCtx, iVar, parent, item_position, 1, 1, tmp_char); MATIO_ERROR;
 	      freeArrayOfString(tmp_char, 1);
 	    }

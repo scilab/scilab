@@ -19,9 +19,7 @@
 #include "strsubst.h"
 #include "MALLOC.h"
 #include "pcre_private.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 char **strsubst(char **strings_input,int strings_dim,char *string_to_search,char *replacement_string)
@@ -70,13 +68,13 @@ char *strsub(char* input_string, const char* string_to_search, const char* repla
 
 	if (string_to_search == NULL || replacement_string == NULL) 
 	{
-		return strdup(input_string);
+		return os_strdup(input_string);
 	}
 
 	occurrence_str = strstr (input_string, string_to_search);
 	if (occurrence_str == NULL)
 	{
-		return strdup(input_string);
+		return os_strdup(input_string);
 	}
 
 	if (strlen (replacement_string) > strlen (string_to_search)) 
@@ -142,14 +140,14 @@ char *strsub_reg(char* input_string, const char* string_to_search, const char* r
 
 	if (string_to_search == NULL || replacement_string == NULL) 
 	{
-		return strdup(input_string);
+		return os_strdup(input_string);
 	}
 
     w = pcre_private(input_string,(char*)string_to_search,&Output_Start,&Output_End);
 	if (w != PCRE_FINISHED_OK)
 	{
 		*ierr = (int)w;
-		return strdup(input_string);
+		return os_strdup(input_string);
 	}
 
 	wcreplacement_string = to_wide_string((char*)replacement_string);
@@ -158,7 +156,7 @@ char *strsub_reg(char* input_string, const char* string_to_search, const char* r
 	if (wcreplacement_string == NULL || wcreplacement_string == NULL) 
 	{
 		*ierr = (int)NOT_ENOUGH_MEMORY_FOR_VECTOR;
-		return strdup(input_string);
+		return os_strdup(input_string);
 	}
 
 	if (w == PCRE_FINISHED_OK) 
@@ -181,8 +179,8 @@ char *strsub_reg(char* input_string, const char* string_to_search, const char* r
 		int wcOutput_Start = 0;
 		int wcOutput_End = 0;
 
-		char *	strOutput_Start = strdup(input_string);
-		char *  strOutput_End =  strdup(input_string);
+		char *	strOutput_Start = os_strdup(input_string);
+		char *  strOutput_End =  os_strdup(input_string);
 
 		wchar_t *wcstrOutput_Start = NULL;
 		wchar_t *wcstrOutput_End = NULL;

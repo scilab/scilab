@@ -15,10 +15,10 @@
 #include "sci_warning.h"
 #include "localization.h"
 #include "sciprint.h"
+#include "os_strdup.h"
 #ifdef _MSC_VER
 #include "MALLOC.h"
 #include "Scierror.h"
-#include "strdup_windows.h"
 #include "BOOL.h"
 #include "setgetlanguage.h"
 #include "LanguagePreferences_Windows.h"
@@ -137,19 +137,19 @@ static char *getLanguageFromAlias(char *alias)
 	{
 		if ( strcmp(alias, "en") == 0 )
 		{
-			return strdup("en_US");
+			return os_strdup("en_US");
 		}
 
 		if ( strcmp(alias, "fr") == 0 )
 		{
-			return strdup("fr_FR");
+			return os_strdup("fr_FR");
 		}
 
-		return strdup(alias);
+		return os_strdup(alias);
 	}
 
 	/* "" value fixed by system */
-	return strdup("");
+	return os_strdup("");
 }
 /*--------------------------------------------------------------------------*/
 #endif

@@ -25,9 +25,7 @@
 #include "localization.h"
 #include "sci_mode.h"
 #include "stricmp.h"
-#ifdef _MSC_VER
-	#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 #include "getshortpathname.h"
 #include "BOOL.h"
 /*--------------------------------------------------------------------------*/ 
@@ -153,7 +151,7 @@ BOOL LoadClasspath(char *xmlfilename)
 						}
 						else
 						{
-							FullClasspath = strdup(classpath);
+							FullClasspath = os_strdup(classpath);
 						}
   					    
 						if (FullClasspath)

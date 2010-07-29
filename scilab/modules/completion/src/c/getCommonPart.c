@@ -16,9 +16,7 @@
 #include "getCommonPart.h"
 #include "core_math.h"
 #include "MALLOC.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 static int cmp( const void *a ,const void *b)
 {
@@ -63,7 +61,7 @@ char *getCommonPart(char **dictionary, int sizeDictionary)
 
 	if (sizeDictionary == 1)
 	{
-		return strdup(dictionary[0]);
+		return os_strdup(dictionary[0]);
 	}
 
 	if (sizeDictionary >= 2)
@@ -84,7 +82,7 @@ char *getCommonPart(char **dictionary, int sizeDictionary)
 			}
 		}
 		
-		commonpart = strdup(currentstr);
+		commonpart = os_strdup(currentstr);
 		if (r>0) commonpart[r] = '\0';
 	}
 	return commonpart;

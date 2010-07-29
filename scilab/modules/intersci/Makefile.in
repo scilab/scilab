@@ -126,13 +126,18 @@ libsciintersci_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(libsciintersci_la_CFLAGS) $(CFLAGS) \
 	$(libsciintersci_la_LDFLAGS) $(LDFLAGS) -o $@
 PROGRAMS = $(bin_PROGRAMS)
-am__objects_2 = intersci-n.$(OBJEXT) getrhs.$(OBJEXT) crerhs.$(OBJEXT) \
-	variables.$(OBJEXT) read.$(OBJEXT) fornames.$(OBJEXT) \
-	out-e.$(OBJEXT) outext.$(OBJEXT) declare.$(OBJEXT) \
-	opt.$(OBJEXT) check.$(OBJEXT)
+am__objects_2 = intersci-intersci-n.$(OBJEXT) \
+	intersci-getrhs.$(OBJEXT) intersci-crerhs.$(OBJEXT) \
+	intersci-variables.$(OBJEXT) intersci-read.$(OBJEXT) \
+	intersci-fornames.$(OBJEXT) intersci-out-e.$(OBJEXT) \
+	intersci-outext.$(OBJEXT) intersci-declare.$(OBJEXT) \
+	intersci-opt.$(OBJEXT) intersci-check.$(OBJEXT)
 am_intersci_OBJECTS = $(am__objects_2)
 intersci_OBJECTS = $(am_intersci_OBJECTS)
 intersci_LDADD = $(LDADD)
+intersci_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=link $(CCLD) $(intersci_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
+	$(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -425,6 +430,7 @@ libsciintersci_la_include_HEADERS = includes/libinter.h
 pkglib_LTLIBRARIES = libsciintersci.la
 libsciintersci_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 intersci_SOURCES = $(INTERSCI_EXE_C_SOURCES)
+intersci_CFLAGS = -I$(top_srcdir)/modules/string/includes
 libsciintersci_la_SOURCES = $(INTERSCI_LIB_C_SOURCES)
 libsciintersci_la_CFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes \
@@ -627,7 +633,7 @@ clean-binPROGRAMS:
 	rm -f $$list
 intersci$(EXEEXT): $(intersci_OBJECTS) $(intersci_DEPENDENCIES) 
 	@rm -f intersci$(EXEEXT)
-	$(LINK) $(intersci_OBJECTS) $(intersci_LDADD) $(LIBS)
+	$(intersci_LINK) $(intersci_OBJECTS) $(intersci_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -635,19 +641,19 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/check.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/crerhs.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/declare.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/fornames.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/getrhs.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/intersci-n.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/intersci-check.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/intersci-crerhs.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/intersci-declare.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/intersci-fornames.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/intersci-getrhs.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/intersci-intersci-n.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/intersci-opt.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/intersci-out-e.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/intersci-outext.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/intersci-read.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/intersci-variables.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciintersci_la-libinter.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciintersci_la-out.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/opt.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/out-e.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/outext.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/read.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/variables.Po@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -684,159 +690,159 @@ libsciintersci_la-out.lo: src/lib/out.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciintersci_la_CFLAGS) $(CFLAGS) -c -o libsciintersci_la-out.lo `test -f 'src/lib/out.c' || echo '$(srcdir)/'`src/lib/out.c
 
-intersci-n.o: src/exe/intersci-n.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT intersci-n.o -MD -MP -MF $(DEPDIR)/intersci-n.Tpo -c -o intersci-n.o `test -f 'src/exe/intersci-n.c' || echo '$(srcdir)/'`src/exe/intersci-n.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/intersci-n.Tpo $(DEPDIR)/intersci-n.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/intersci-n.c' object='intersci-n.o' libtool=no @AMDEPBACKSLASH@
+intersci-intersci-n.o: src/exe/intersci-n.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -MT intersci-intersci-n.o -MD -MP -MF $(DEPDIR)/intersci-intersci-n.Tpo -c -o intersci-intersci-n.o `test -f 'src/exe/intersci-n.c' || echo '$(srcdir)/'`src/exe/intersci-n.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/intersci-intersci-n.Tpo $(DEPDIR)/intersci-intersci-n.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/intersci-n.c' object='intersci-intersci-n.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o intersci-n.o `test -f 'src/exe/intersci-n.c' || echo '$(srcdir)/'`src/exe/intersci-n.c
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -c -o intersci-intersci-n.o `test -f 'src/exe/intersci-n.c' || echo '$(srcdir)/'`src/exe/intersci-n.c
 
-intersci-n.obj: src/exe/intersci-n.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT intersci-n.obj -MD -MP -MF $(DEPDIR)/intersci-n.Tpo -c -o intersci-n.obj `if test -f 'src/exe/intersci-n.c'; then $(CYGPATH_W) 'src/exe/intersci-n.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/intersci-n.c'; fi`
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/intersci-n.Tpo $(DEPDIR)/intersci-n.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/intersci-n.c' object='intersci-n.obj' libtool=no @AMDEPBACKSLASH@
+intersci-intersci-n.obj: src/exe/intersci-n.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -MT intersci-intersci-n.obj -MD -MP -MF $(DEPDIR)/intersci-intersci-n.Tpo -c -o intersci-intersci-n.obj `if test -f 'src/exe/intersci-n.c'; then $(CYGPATH_W) 'src/exe/intersci-n.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/intersci-n.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/intersci-intersci-n.Tpo $(DEPDIR)/intersci-intersci-n.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/intersci-n.c' object='intersci-intersci-n.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o intersci-n.obj `if test -f 'src/exe/intersci-n.c'; then $(CYGPATH_W) 'src/exe/intersci-n.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/intersci-n.c'; fi`
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -c -o intersci-intersci-n.obj `if test -f 'src/exe/intersci-n.c'; then $(CYGPATH_W) 'src/exe/intersci-n.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/intersci-n.c'; fi`
 
-getrhs.o: src/exe/getrhs.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT getrhs.o -MD -MP -MF $(DEPDIR)/getrhs.Tpo -c -o getrhs.o `test -f 'src/exe/getrhs.c' || echo '$(srcdir)/'`src/exe/getrhs.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/getrhs.Tpo $(DEPDIR)/getrhs.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/getrhs.c' object='getrhs.o' libtool=no @AMDEPBACKSLASH@
+intersci-getrhs.o: src/exe/getrhs.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -MT intersci-getrhs.o -MD -MP -MF $(DEPDIR)/intersci-getrhs.Tpo -c -o intersci-getrhs.o `test -f 'src/exe/getrhs.c' || echo '$(srcdir)/'`src/exe/getrhs.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/intersci-getrhs.Tpo $(DEPDIR)/intersci-getrhs.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/getrhs.c' object='intersci-getrhs.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o getrhs.o `test -f 'src/exe/getrhs.c' || echo '$(srcdir)/'`src/exe/getrhs.c
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -c -o intersci-getrhs.o `test -f 'src/exe/getrhs.c' || echo '$(srcdir)/'`src/exe/getrhs.c
 
-getrhs.obj: src/exe/getrhs.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT getrhs.obj -MD -MP -MF $(DEPDIR)/getrhs.Tpo -c -o getrhs.obj `if test -f 'src/exe/getrhs.c'; then $(CYGPATH_W) 'src/exe/getrhs.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/getrhs.c'; fi`
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/getrhs.Tpo $(DEPDIR)/getrhs.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/getrhs.c' object='getrhs.obj' libtool=no @AMDEPBACKSLASH@
+intersci-getrhs.obj: src/exe/getrhs.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -MT intersci-getrhs.obj -MD -MP -MF $(DEPDIR)/intersci-getrhs.Tpo -c -o intersci-getrhs.obj `if test -f 'src/exe/getrhs.c'; then $(CYGPATH_W) 'src/exe/getrhs.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/getrhs.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/intersci-getrhs.Tpo $(DEPDIR)/intersci-getrhs.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/getrhs.c' object='intersci-getrhs.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o getrhs.obj `if test -f 'src/exe/getrhs.c'; then $(CYGPATH_W) 'src/exe/getrhs.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/getrhs.c'; fi`
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -c -o intersci-getrhs.obj `if test -f 'src/exe/getrhs.c'; then $(CYGPATH_W) 'src/exe/getrhs.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/getrhs.c'; fi`
 
-crerhs.o: src/exe/crerhs.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT crerhs.o -MD -MP -MF $(DEPDIR)/crerhs.Tpo -c -o crerhs.o `test -f 'src/exe/crerhs.c' || echo '$(srcdir)/'`src/exe/crerhs.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/crerhs.Tpo $(DEPDIR)/crerhs.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/crerhs.c' object='crerhs.o' libtool=no @AMDEPBACKSLASH@
+intersci-crerhs.o: src/exe/crerhs.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -MT intersci-crerhs.o -MD -MP -MF $(DEPDIR)/intersci-crerhs.Tpo -c -o intersci-crerhs.o `test -f 'src/exe/crerhs.c' || echo '$(srcdir)/'`src/exe/crerhs.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/intersci-crerhs.Tpo $(DEPDIR)/intersci-crerhs.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/crerhs.c' object='intersci-crerhs.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o crerhs.o `test -f 'src/exe/crerhs.c' || echo '$(srcdir)/'`src/exe/crerhs.c
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -c -o intersci-crerhs.o `test -f 'src/exe/crerhs.c' || echo '$(srcdir)/'`src/exe/crerhs.c
 
-crerhs.obj: src/exe/crerhs.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT crerhs.obj -MD -MP -MF $(DEPDIR)/crerhs.Tpo -c -o crerhs.obj `if test -f 'src/exe/crerhs.c'; then $(CYGPATH_W) 'src/exe/crerhs.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/crerhs.c'; fi`
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/crerhs.Tpo $(DEPDIR)/crerhs.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/crerhs.c' object='crerhs.obj' libtool=no @AMDEPBACKSLASH@
+intersci-crerhs.obj: src/exe/crerhs.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -MT intersci-crerhs.obj -MD -MP -MF $(DEPDIR)/intersci-crerhs.Tpo -c -o intersci-crerhs.obj `if test -f 'src/exe/crerhs.c'; then $(CYGPATH_W) 'src/exe/crerhs.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/crerhs.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/intersci-crerhs.Tpo $(DEPDIR)/intersci-crerhs.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/crerhs.c' object='intersci-crerhs.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o crerhs.obj `if test -f 'src/exe/crerhs.c'; then $(CYGPATH_W) 'src/exe/crerhs.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/crerhs.c'; fi`
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -c -o intersci-crerhs.obj `if test -f 'src/exe/crerhs.c'; then $(CYGPATH_W) 'src/exe/crerhs.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/crerhs.c'; fi`
 
-variables.o: src/exe/variables.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT variables.o -MD -MP -MF $(DEPDIR)/variables.Tpo -c -o variables.o `test -f 'src/exe/variables.c' || echo '$(srcdir)/'`src/exe/variables.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/variables.Tpo $(DEPDIR)/variables.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/variables.c' object='variables.o' libtool=no @AMDEPBACKSLASH@
+intersci-variables.o: src/exe/variables.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -MT intersci-variables.o -MD -MP -MF $(DEPDIR)/intersci-variables.Tpo -c -o intersci-variables.o `test -f 'src/exe/variables.c' || echo '$(srcdir)/'`src/exe/variables.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/intersci-variables.Tpo $(DEPDIR)/intersci-variables.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/variables.c' object='intersci-variables.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o variables.o `test -f 'src/exe/variables.c' || echo '$(srcdir)/'`src/exe/variables.c
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -c -o intersci-variables.o `test -f 'src/exe/variables.c' || echo '$(srcdir)/'`src/exe/variables.c
 
-variables.obj: src/exe/variables.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT variables.obj -MD -MP -MF $(DEPDIR)/variables.Tpo -c -o variables.obj `if test -f 'src/exe/variables.c'; then $(CYGPATH_W) 'src/exe/variables.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/variables.c'; fi`
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/variables.Tpo $(DEPDIR)/variables.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/variables.c' object='variables.obj' libtool=no @AMDEPBACKSLASH@
+intersci-variables.obj: src/exe/variables.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -MT intersci-variables.obj -MD -MP -MF $(DEPDIR)/intersci-variables.Tpo -c -o intersci-variables.obj `if test -f 'src/exe/variables.c'; then $(CYGPATH_W) 'src/exe/variables.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/variables.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/intersci-variables.Tpo $(DEPDIR)/intersci-variables.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/variables.c' object='intersci-variables.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o variables.obj `if test -f 'src/exe/variables.c'; then $(CYGPATH_W) 'src/exe/variables.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/variables.c'; fi`
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -c -o intersci-variables.obj `if test -f 'src/exe/variables.c'; then $(CYGPATH_W) 'src/exe/variables.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/variables.c'; fi`
 
-read.o: src/exe/read.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT read.o -MD -MP -MF $(DEPDIR)/read.Tpo -c -o read.o `test -f 'src/exe/read.c' || echo '$(srcdir)/'`src/exe/read.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/read.Tpo $(DEPDIR)/read.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/read.c' object='read.o' libtool=no @AMDEPBACKSLASH@
+intersci-read.o: src/exe/read.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -MT intersci-read.o -MD -MP -MF $(DEPDIR)/intersci-read.Tpo -c -o intersci-read.o `test -f 'src/exe/read.c' || echo '$(srcdir)/'`src/exe/read.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/intersci-read.Tpo $(DEPDIR)/intersci-read.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/read.c' object='intersci-read.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o read.o `test -f 'src/exe/read.c' || echo '$(srcdir)/'`src/exe/read.c
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -c -o intersci-read.o `test -f 'src/exe/read.c' || echo '$(srcdir)/'`src/exe/read.c
 
-read.obj: src/exe/read.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT read.obj -MD -MP -MF $(DEPDIR)/read.Tpo -c -o read.obj `if test -f 'src/exe/read.c'; then $(CYGPATH_W) 'src/exe/read.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/read.c'; fi`
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/read.Tpo $(DEPDIR)/read.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/read.c' object='read.obj' libtool=no @AMDEPBACKSLASH@
+intersci-read.obj: src/exe/read.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -MT intersci-read.obj -MD -MP -MF $(DEPDIR)/intersci-read.Tpo -c -o intersci-read.obj `if test -f 'src/exe/read.c'; then $(CYGPATH_W) 'src/exe/read.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/read.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/intersci-read.Tpo $(DEPDIR)/intersci-read.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/read.c' object='intersci-read.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o read.obj `if test -f 'src/exe/read.c'; then $(CYGPATH_W) 'src/exe/read.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/read.c'; fi`
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -c -o intersci-read.obj `if test -f 'src/exe/read.c'; then $(CYGPATH_W) 'src/exe/read.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/read.c'; fi`
 
-fornames.o: src/exe/fornames.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT fornames.o -MD -MP -MF $(DEPDIR)/fornames.Tpo -c -o fornames.o `test -f 'src/exe/fornames.c' || echo '$(srcdir)/'`src/exe/fornames.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/fornames.Tpo $(DEPDIR)/fornames.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/fornames.c' object='fornames.o' libtool=no @AMDEPBACKSLASH@
+intersci-fornames.o: src/exe/fornames.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -MT intersci-fornames.o -MD -MP -MF $(DEPDIR)/intersci-fornames.Tpo -c -o intersci-fornames.o `test -f 'src/exe/fornames.c' || echo '$(srcdir)/'`src/exe/fornames.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/intersci-fornames.Tpo $(DEPDIR)/intersci-fornames.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/fornames.c' object='intersci-fornames.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o fornames.o `test -f 'src/exe/fornames.c' || echo '$(srcdir)/'`src/exe/fornames.c
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -c -o intersci-fornames.o `test -f 'src/exe/fornames.c' || echo '$(srcdir)/'`src/exe/fornames.c
 
-fornames.obj: src/exe/fornames.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT fornames.obj -MD -MP -MF $(DEPDIR)/fornames.Tpo -c -o fornames.obj `if test -f 'src/exe/fornames.c'; then $(CYGPATH_W) 'src/exe/fornames.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/fornames.c'; fi`
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/fornames.Tpo $(DEPDIR)/fornames.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/fornames.c' object='fornames.obj' libtool=no @AMDEPBACKSLASH@
+intersci-fornames.obj: src/exe/fornames.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -MT intersci-fornames.obj -MD -MP -MF $(DEPDIR)/intersci-fornames.Tpo -c -o intersci-fornames.obj `if test -f 'src/exe/fornames.c'; then $(CYGPATH_W) 'src/exe/fornames.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/fornames.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/intersci-fornames.Tpo $(DEPDIR)/intersci-fornames.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/fornames.c' object='intersci-fornames.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o fornames.obj `if test -f 'src/exe/fornames.c'; then $(CYGPATH_W) 'src/exe/fornames.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/fornames.c'; fi`
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -c -o intersci-fornames.obj `if test -f 'src/exe/fornames.c'; then $(CYGPATH_W) 'src/exe/fornames.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/fornames.c'; fi`
 
-out-e.o: src/exe/out-e.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT out-e.o -MD -MP -MF $(DEPDIR)/out-e.Tpo -c -o out-e.o `test -f 'src/exe/out-e.c' || echo '$(srcdir)/'`src/exe/out-e.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/out-e.Tpo $(DEPDIR)/out-e.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/out-e.c' object='out-e.o' libtool=no @AMDEPBACKSLASH@
+intersci-out-e.o: src/exe/out-e.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -MT intersci-out-e.o -MD -MP -MF $(DEPDIR)/intersci-out-e.Tpo -c -o intersci-out-e.o `test -f 'src/exe/out-e.c' || echo '$(srcdir)/'`src/exe/out-e.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/intersci-out-e.Tpo $(DEPDIR)/intersci-out-e.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/out-e.c' object='intersci-out-e.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o out-e.o `test -f 'src/exe/out-e.c' || echo '$(srcdir)/'`src/exe/out-e.c
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -c -o intersci-out-e.o `test -f 'src/exe/out-e.c' || echo '$(srcdir)/'`src/exe/out-e.c
 
-out-e.obj: src/exe/out-e.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT out-e.obj -MD -MP -MF $(DEPDIR)/out-e.Tpo -c -o out-e.obj `if test -f 'src/exe/out-e.c'; then $(CYGPATH_W) 'src/exe/out-e.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/out-e.c'; fi`
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/out-e.Tpo $(DEPDIR)/out-e.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/out-e.c' object='out-e.obj' libtool=no @AMDEPBACKSLASH@
+intersci-out-e.obj: src/exe/out-e.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -MT intersci-out-e.obj -MD -MP -MF $(DEPDIR)/intersci-out-e.Tpo -c -o intersci-out-e.obj `if test -f 'src/exe/out-e.c'; then $(CYGPATH_W) 'src/exe/out-e.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/out-e.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/intersci-out-e.Tpo $(DEPDIR)/intersci-out-e.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/out-e.c' object='intersci-out-e.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o out-e.obj `if test -f 'src/exe/out-e.c'; then $(CYGPATH_W) 'src/exe/out-e.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/out-e.c'; fi`
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -c -o intersci-out-e.obj `if test -f 'src/exe/out-e.c'; then $(CYGPATH_W) 'src/exe/out-e.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/out-e.c'; fi`
 
-outext.o: src/exe/outext.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT outext.o -MD -MP -MF $(DEPDIR)/outext.Tpo -c -o outext.o `test -f 'src/exe/outext.c' || echo '$(srcdir)/'`src/exe/outext.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/outext.Tpo $(DEPDIR)/outext.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/outext.c' object='outext.o' libtool=no @AMDEPBACKSLASH@
+intersci-outext.o: src/exe/outext.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -MT intersci-outext.o -MD -MP -MF $(DEPDIR)/intersci-outext.Tpo -c -o intersci-outext.o `test -f 'src/exe/outext.c' || echo '$(srcdir)/'`src/exe/outext.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/intersci-outext.Tpo $(DEPDIR)/intersci-outext.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/outext.c' object='intersci-outext.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o outext.o `test -f 'src/exe/outext.c' || echo '$(srcdir)/'`src/exe/outext.c
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -c -o intersci-outext.o `test -f 'src/exe/outext.c' || echo '$(srcdir)/'`src/exe/outext.c
 
-outext.obj: src/exe/outext.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT outext.obj -MD -MP -MF $(DEPDIR)/outext.Tpo -c -o outext.obj `if test -f 'src/exe/outext.c'; then $(CYGPATH_W) 'src/exe/outext.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/outext.c'; fi`
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/outext.Tpo $(DEPDIR)/outext.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/outext.c' object='outext.obj' libtool=no @AMDEPBACKSLASH@
+intersci-outext.obj: src/exe/outext.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -MT intersci-outext.obj -MD -MP -MF $(DEPDIR)/intersci-outext.Tpo -c -o intersci-outext.obj `if test -f 'src/exe/outext.c'; then $(CYGPATH_W) 'src/exe/outext.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/outext.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/intersci-outext.Tpo $(DEPDIR)/intersci-outext.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/outext.c' object='intersci-outext.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o outext.obj `if test -f 'src/exe/outext.c'; then $(CYGPATH_W) 'src/exe/outext.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/outext.c'; fi`
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -c -o intersci-outext.obj `if test -f 'src/exe/outext.c'; then $(CYGPATH_W) 'src/exe/outext.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/outext.c'; fi`
 
-declare.o: src/exe/declare.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT declare.o -MD -MP -MF $(DEPDIR)/declare.Tpo -c -o declare.o `test -f 'src/exe/declare.c' || echo '$(srcdir)/'`src/exe/declare.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/declare.Tpo $(DEPDIR)/declare.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/declare.c' object='declare.o' libtool=no @AMDEPBACKSLASH@
+intersci-declare.o: src/exe/declare.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -MT intersci-declare.o -MD -MP -MF $(DEPDIR)/intersci-declare.Tpo -c -o intersci-declare.o `test -f 'src/exe/declare.c' || echo '$(srcdir)/'`src/exe/declare.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/intersci-declare.Tpo $(DEPDIR)/intersci-declare.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/declare.c' object='intersci-declare.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o declare.o `test -f 'src/exe/declare.c' || echo '$(srcdir)/'`src/exe/declare.c
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -c -o intersci-declare.o `test -f 'src/exe/declare.c' || echo '$(srcdir)/'`src/exe/declare.c
 
-declare.obj: src/exe/declare.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT declare.obj -MD -MP -MF $(DEPDIR)/declare.Tpo -c -o declare.obj `if test -f 'src/exe/declare.c'; then $(CYGPATH_W) 'src/exe/declare.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/declare.c'; fi`
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/declare.Tpo $(DEPDIR)/declare.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/declare.c' object='declare.obj' libtool=no @AMDEPBACKSLASH@
+intersci-declare.obj: src/exe/declare.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -MT intersci-declare.obj -MD -MP -MF $(DEPDIR)/intersci-declare.Tpo -c -o intersci-declare.obj `if test -f 'src/exe/declare.c'; then $(CYGPATH_W) 'src/exe/declare.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/declare.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/intersci-declare.Tpo $(DEPDIR)/intersci-declare.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/declare.c' object='intersci-declare.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o declare.obj `if test -f 'src/exe/declare.c'; then $(CYGPATH_W) 'src/exe/declare.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/declare.c'; fi`
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -c -o intersci-declare.obj `if test -f 'src/exe/declare.c'; then $(CYGPATH_W) 'src/exe/declare.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/declare.c'; fi`
 
-opt.o: src/exe/opt.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT opt.o -MD -MP -MF $(DEPDIR)/opt.Tpo -c -o opt.o `test -f 'src/exe/opt.c' || echo '$(srcdir)/'`src/exe/opt.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/opt.Tpo $(DEPDIR)/opt.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/opt.c' object='opt.o' libtool=no @AMDEPBACKSLASH@
+intersci-opt.o: src/exe/opt.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -MT intersci-opt.o -MD -MP -MF $(DEPDIR)/intersci-opt.Tpo -c -o intersci-opt.o `test -f 'src/exe/opt.c' || echo '$(srcdir)/'`src/exe/opt.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/intersci-opt.Tpo $(DEPDIR)/intersci-opt.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/opt.c' object='intersci-opt.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o opt.o `test -f 'src/exe/opt.c' || echo '$(srcdir)/'`src/exe/opt.c
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -c -o intersci-opt.o `test -f 'src/exe/opt.c' || echo '$(srcdir)/'`src/exe/opt.c
 
-opt.obj: src/exe/opt.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT opt.obj -MD -MP -MF $(DEPDIR)/opt.Tpo -c -o opt.obj `if test -f 'src/exe/opt.c'; then $(CYGPATH_W) 'src/exe/opt.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/opt.c'; fi`
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/opt.Tpo $(DEPDIR)/opt.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/opt.c' object='opt.obj' libtool=no @AMDEPBACKSLASH@
+intersci-opt.obj: src/exe/opt.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -MT intersci-opt.obj -MD -MP -MF $(DEPDIR)/intersci-opt.Tpo -c -o intersci-opt.obj `if test -f 'src/exe/opt.c'; then $(CYGPATH_W) 'src/exe/opt.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/opt.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/intersci-opt.Tpo $(DEPDIR)/intersci-opt.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/opt.c' object='intersci-opt.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o opt.obj `if test -f 'src/exe/opt.c'; then $(CYGPATH_W) 'src/exe/opt.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/opt.c'; fi`
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -c -o intersci-opt.obj `if test -f 'src/exe/opt.c'; then $(CYGPATH_W) 'src/exe/opt.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/opt.c'; fi`
 
-check.o: src/exe/check.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT check.o -MD -MP -MF $(DEPDIR)/check.Tpo -c -o check.o `test -f 'src/exe/check.c' || echo '$(srcdir)/'`src/exe/check.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/check.Tpo $(DEPDIR)/check.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/check.c' object='check.o' libtool=no @AMDEPBACKSLASH@
+intersci-check.o: src/exe/check.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -MT intersci-check.o -MD -MP -MF $(DEPDIR)/intersci-check.Tpo -c -o intersci-check.o `test -f 'src/exe/check.c' || echo '$(srcdir)/'`src/exe/check.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/intersci-check.Tpo $(DEPDIR)/intersci-check.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/check.c' object='intersci-check.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o check.o `test -f 'src/exe/check.c' || echo '$(srcdir)/'`src/exe/check.c
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -c -o intersci-check.o `test -f 'src/exe/check.c' || echo '$(srcdir)/'`src/exe/check.c
 
-check.obj: src/exe/check.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT check.obj -MD -MP -MF $(DEPDIR)/check.Tpo -c -o check.obj `if test -f 'src/exe/check.c'; then $(CYGPATH_W) 'src/exe/check.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/check.c'; fi`
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/check.Tpo $(DEPDIR)/check.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/check.c' object='check.obj' libtool=no @AMDEPBACKSLASH@
+intersci-check.obj: src/exe/check.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -MT intersci-check.obj -MD -MP -MF $(DEPDIR)/intersci-check.Tpo -c -o intersci-check.obj `if test -f 'src/exe/check.c'; then $(CYGPATH_W) 'src/exe/check.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/check.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/intersci-check.Tpo $(DEPDIR)/intersci-check.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/exe/check.c' object='intersci-check.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o check.obj `if test -f 'src/exe/check.c'; then $(CYGPATH_W) 'src/exe/check.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/check.c'; fi`
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(intersci_CFLAGS) $(CFLAGS) -c -o intersci-check.obj `if test -f 'src/exe/check.c'; then $(CYGPATH_W) 'src/exe/check.c'; else $(CYGPATH_W) '$(srcdir)/src/exe/check.c'; fi`
 
 mostlyclean-libtool:
 	-rm -f *.lo

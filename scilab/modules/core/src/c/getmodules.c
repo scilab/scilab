@@ -24,9 +24,7 @@
 #include "GetXmlFileEncoding.h"
 #include "scilabDefaults.h"
 #include "FileExist.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 #include "getshortpathname.h"
 /*--------------------------------------------------------------------------*/ 
 static struct MODULESLIST *ScilabModules=NULL;
@@ -192,7 +190,7 @@ static BOOL AppendModules(char *xmlfilename)
 						{ 
 							/* we found the tag name */
 							const char *str=(const char*)attrib->children->content;
-							name = strdup(str);
+							name = os_strdup(str);
 						}
 						else if (xmlStrEqual (attrib->name, (const xmlChar*) "activate"))
 						{ 
@@ -214,7 +212,7 @@ static BOOL AppendModules(char *xmlfilename)
 
 							ScilabModules->numberofModules=indice+1;
 							
-							ScilabModules->ModuleList[indice]= strdup(name);
+							ScilabModules->ModuleList[indice]= os_strdup(name);
 							indice++;
 						}
 						else

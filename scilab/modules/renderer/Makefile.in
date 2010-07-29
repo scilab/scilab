@@ -19,11 +19,11 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) INRIA   - 2007 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
-# 
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 #
 
@@ -941,7 +941,8 @@ libscirenderer_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/graphic_export/includes/ \
 				-I$(top_srcdir)/modules/elementary_functions/includes/ \
 				-I$(top_srcdir)/modules/gui/includes/ \
-				-I$(top_srcdir)/modules/operations/includes/
+				-I$(top_srcdir)/modules/operations/includes/ \
+				-I$(top_srcdir)/modules/string/includes/
 
 libscirenderer_la_CFLAGS = -I$(srcdir)/includes/
 

@@ -23,9 +23,7 @@
 #include "MALLOC.h"
 #include "BOOL.h"
 #include "pcre_private.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 #include "strsubst.h"
 #include "sci_warning.h"
 #include "sciprint.h"
@@ -305,7 +303,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		int erroroffset = 0, len = 0, delimiter;
 
 		LOOP_PCRE_TST = TRUE;
-		p = strdup(INPUT_PAT);
+		p = os_strdup(INPUT_PAT);
 		back_p = p;
 		while (isspace(*p)) p++;
 		if (*p == 0) continue;

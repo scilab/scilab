@@ -21,11 +21,11 @@
 # Copyright (C) INRIA   - 2007 - Vincent COUVERT
 # Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
-# 
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 #
 
@@ -67,7 +67,7 @@ build_triplet = @build@
 host_triplet = @host@
 @GIWS_TRUE@am__append_1 = giws
 @SWIG_TRUE@am__append_2 = swig
-@GUI_TRUE@am__append_3 = libsciconsole.la 
+@GUI_TRUE@am__append_3 = libsciconsole.la
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_4 = java
@@ -480,7 +480,17 @@ libsciconsole_disable_la_SOURCES = src/noconsole/noconsole.c
 libsciconsole_disable_la_CFLAGS = -I$(srcdir)/includes/
 
 # Includes need for the compilation
-libsciconsole_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/modules/api_scilab/includes -I$(srcdir)/includes/ -I$(srcdir)/src/cpp/ -I$(srcdir)/src/c/ -I$(srcdir)/src/jni/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/jvm/includes/ -I$(top_srcdir)/modules/action_binding/includes
+libsciconsole_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
+								-I$(top_srcdir)/modules/api_scilab/includes \
+								-I$(srcdir)/includes/ \
+								-I$(srcdir)/src/cpp/ \
+								-I$(srcdir)/src/c/ \
+								-I$(srcdir)/src/jni/ \
+								-I$(top_srcdir)/libs/MALLOC/includes/ \
+								-I$(top_srcdir)/modules/jvm/includes/ \
+								-I$(top_srcdir)/modules/action_binding/includes \
+								-I$(top_srcdir)/modules/string/includes
+
 
 # Includes need for the compilation
 libsciconsole_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
@@ -489,7 +499,8 @@ libsciconsole_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes \
 				-I$(top_srcdir)/modules/system_env/includes \
-				-I$(top_srcdir)/modules/fileio/includes 
+				-I$(top_srcdir)/modules/fileio/includes \
+				-I$(top_srcdir)/modules/string/includes
 
 
 # Name of the library
@@ -504,7 +515,7 @@ CHECK_SRC = $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES)
 INCLUDE_FLAGS = $(libsciconsole_la_CFLAGS)
 libsciconsole_la_LIBADD = $(top_builddir)/modules/shell/libscishell.la \
 							$(top_builddir)/modules/fileio/libscifileio.la \
-							$(top_builddir)/libs/MALLOC/libscimalloc.la 
+							$(top_builddir)/libs/MALLOC/libscimalloc.la
 
 # java code is needed $(top_builddir)/modules/jvm/libscijvm.la
 

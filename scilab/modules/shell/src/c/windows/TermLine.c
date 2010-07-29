@@ -21,10 +21,9 @@
 #include "TermConsole.h"
 #include "localization.h"
 #include "MALLOC.h"
-#include "strdup_windows.h"
 #include "TermPosition.h"
 #include "../../../windows_tools/src/c/scilab_windows/console.h"
-#include "strdup_windows.h"
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 static int CURRENT_MAX_LINE_SIZE = bsiz;
 static char *cur_line = NULL;	/* current contents of the line */	
@@ -378,7 +377,7 @@ char *getCurrentLine(void)
 	reallocLineBuffer();
 
 	cur_line[max_pos + 1] = '\0';
-	line = strdup_windows(cur_line);
+	line = os_strdup(cur_line);
 	if (line) OemToChar(cur_line, line);
 	return line;
 }
@@ -388,7 +387,7 @@ char *getLineBeforeCaret(void)
 	char *line = NULL;
 
 	reallocLineBuffer();
-	line = strdup_windows(cur_line);
+	line = os_strdup(cur_line);
 	line[cur_pos] = '\0';
 	return line;
 }
@@ -400,12 +399,12 @@ char *getLineAfterCaret(void)
 	reallocLineBuffer();
 	if (cur_pos != max_pos)
 	{
-		line = strdup_windows(&cur_line[cur_pos]);
+		line = os_strdup(&cur_line[cur_pos]);
 		line[(max_pos - cur_pos) + 1] = '\0';
 	}
 	else
 	{
-		line = strdup_windows("");
+		line = os_strdup("");
 	}
 	return line;
 }

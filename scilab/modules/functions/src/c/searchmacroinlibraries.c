@@ -15,9 +15,7 @@
 #include "librarieslist.h"
 #include "libraryinfo.h"
 #include "MALLOC.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif 
+#include "os_strdup.h"
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 char **searchmacroinlibraries(char *macro, int *sizeReturnedArray)
@@ -55,7 +53,7 @@ char **searchmacroinlibraries(char *macro, int *sizeReturnedArray)
 							{
 								returnedArray = (char**)REALLOC(returnedArray, sizeof(char*)*(nbLibsWhereIsMacro));
 							}
-							returnedArray[nbLibsWhereIsMacro - 1] = strdup(libraries[i]);
+							returnedArray[nbLibsWhereIsMacro - 1] = os_strdup(libraries[i]);
 						}
 					}
 					freeArrayOfString(macrosLib, sizemacrosLib);

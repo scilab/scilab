@@ -24,9 +24,7 @@ extern "C"
 #include "h5_fileManagement.h"
 #include "h5_writeDataToFile.h"
 #include "freeArrayOfString.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 #include "sci_mode.h"
 #include "splitpath.h"
 #include "scicurdir.h"

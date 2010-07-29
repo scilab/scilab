@@ -31,6 +31,8 @@ libsciintersci_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 bin_PROGRAMS = intersci
 intersci_SOURCES = $(INTERSCI_EXE_C_SOURCES)
 
+intersci_CFLAGS = -I$(top_srcdir)/modules/string/includes
+
 libsciintersci_la_SOURCES = $(INTERSCI_LIB_C_SOURCES)
 
 libsciintersci_la_CFLAGS = 	-I$(top_srcdir)/libs/MALLOC/includes/ \

@@ -33,7 +33,7 @@
 #include "StartupMessageBox.h"
 #include "splashScreen.h"
 #include "WndThread.h"
-#include "strdup_windows.h"
+#include "os_strdup.h"
 #include "InnosetupMutex.h"
 #include "charEncoding.h"
 #include "WindowShow.h"

@@ -17,7 +17,7 @@
 #include "MALLOC.h"
 #include "TermCommand.h"
 #include "FocusOnConsole.h"
-#include "strdup_Windows.h"
+#include "os_strdup.h"
 #include "TermCompletion.h"
 #include "TermLine.h"
 #include "scilines.h"

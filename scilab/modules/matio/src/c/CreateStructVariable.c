@@ -12,9 +12,7 @@
  */
 
 #include "CreateMatlabVariable.h"
-#ifdef _MSC_VER
-#include "strdup_Windows.h"
-#endif
+#include "os_strdup.h"
 
 #include "freeArrayOfString.h"
 #include "stack-c.h"
@@ -52,13 +50,13 @@ int CreateStructVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * 
       return FALSE;
     }
   
-  fieldNames[0] = strdup("st");
+  fieldNames[0] = os_strdup("st");
   if (fieldNames[0]==NULL)
     {
       Scierror(999, _("%s: No more memory.\n"), "CreateStructVariable");
       return FALSE;
     }
-  fieldNames[1] = strdup("dims");
+  fieldNames[1] = os_strdup("dims");
   if (fieldNames[1]==NULL)
     {
       Scierror(999, _("%s: No more memory.\n"), "CreateStructVariable");
@@ -68,7 +66,7 @@ int CreateStructVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * 
   for (fieldIndex = 1; fieldIndex < nbFields - 1; fieldIndex++)
     {
       fieldMatVar = Mat_VarGetStructField(matVariable, &fieldIndex, BY_INDEX, 0);
-      fieldNames[fieldIndex + 1] = strdup(fieldMatVar->name);
+      fieldNames[fieldIndex + 1] = os_strdup(fieldMatVar->name);
       if (fieldNames[fieldIndex + 1]==NULL)
         {
           Scierror(999, _("%s: No more memory.\n"), "CreateStructVariable");

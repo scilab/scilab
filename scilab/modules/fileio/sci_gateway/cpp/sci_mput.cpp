@@ -22,14 +22,12 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 #include "charEncoding.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 }
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_mput(typed_list &in, int _iRetCount, typed_list &out)
 {
-    char* pstType   = strdup("l");//default type value : long
+    char* pstType   = os_strdup("l");//default type value : long
     int iSize       = 0;
     int iFile       = -1; //default file : last opened file
     double* pData   = NULL;

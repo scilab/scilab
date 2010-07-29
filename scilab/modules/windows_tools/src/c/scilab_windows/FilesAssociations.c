@@ -25,7 +25,7 @@
 #include "win_mem_alloc.h" /* MALLOC */
 #include "FindScilab.h"
 #include "wmcopydata.h"
-#include "strdup_windows.h"
+#include "os_strdup.h"
 #include "MutexClosingScilab.h"
 #include "with_module.h"
 /*--------------------------------------------------------------------------*/
@@ -236,7 +236,7 @@ static void ExtensionFileIntoLowerCase(char *fichier)
 	char *lastdot=NULL;
 	char *ext=NULL;
 
-	tmpfile = strdup(fichier);
+	tmpfile = os_strdup(fichier);
 	buffer=strtok(tmpfile,".");
 	while ( buffer = strtok(NULL,"."))
 	{

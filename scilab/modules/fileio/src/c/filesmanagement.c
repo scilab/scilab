@@ -15,9 +15,7 @@
 #include "filesmanagement.h"
 #include "core_math.h" /* Min Max */
 #include "MALLOC.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 #include "fullpath.h"
 /*--------------------------------------------------------------------------*/
 typedef struct {
@@ -116,13 +114,13 @@ char *GetFileTypeOpenedInScilabAsString(int Id)
 	switch (GetFileTypeOpenedInScilab(Id))
 	{
 		case 1:
-			ret = strdup("F");
+			ret = os_strdup("F");
 			break;
 		case 2:
-			ret = strdup("C");
+			ret = os_strdup("C");
 			break;
 		case 0: default:
-			ret = strdup("Error");
+			ret = os_strdup("Error");
 			break;
 	}
 	return ret;
@@ -161,7 +159,7 @@ BOOL SetFileNameOpenedInScilab(int Id,char *name)
 	/* no filename */
 	if ( strcmp(name,"") == 0 )
 	{
-		ptrName = strdup(name);
+		ptrName = os_strdup(name);
 		if (ptrName)
 		{
 			bOK=TRUE;
@@ -171,7 +169,7 @@ BOOL SetFileNameOpenedInScilab(int Id,char *name)
 	{
 		if( get_full_path( fullpath, name, PATH_MAX*4 ) != NULL )
 		{
-			ptrName = strdup(fullpath);
+			ptrName = os_strdup(fullpath);
 			if (ptrName)
 			{
 				bOK=TRUE;
@@ -179,7 +177,7 @@ BOOL SetFileNameOpenedInScilab(int Id,char *name)
 		}
 		else
 		{
-			ptrName = strdup(name);
+			ptrName = os_strdup(name);
 			if (ptrName)
 			{
 				bOK=TRUE;
@@ -463,11 +461,11 @@ char **GetFilenamesUsed(int *sizeArrayReturned)
 		{
 			if (GetFileNameOpenedInScilab(i))
 			{
-				FilenamesArray[j] = strdup(GetFileNameOpenedInScilab(i));
+				FilenamesArray[j] = os_strdup(GetFileNameOpenedInScilab(i));
 			}
 			else
 			{
-				FilenamesArray[j] = strdup("");
+				FilenamesArray[j] = os_strdup("");
 			}
 			j++;
 		}

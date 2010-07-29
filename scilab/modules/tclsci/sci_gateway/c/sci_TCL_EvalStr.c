@@ -20,9 +20,7 @@
 #include "freeArrayOfString.h"
 #include "TCL_Command.h"
 #include "GlobalTclInterp.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 int sci_TCL_EvalStr(char *fname,unsigned long l)
 {
@@ -62,7 +60,7 @@ int sci_TCL_EvalStr(char *fname,unsigned long l)
 		  Scierror(999,_("%s: No such slave interpreter.\n"),fname);
 		  return 0;
 		}
-	      tclSlave =  strdup(cstk(l2));
+	      tclSlave =  os_strdup(cstk(l2));
 	    }
 	  else
 	    {

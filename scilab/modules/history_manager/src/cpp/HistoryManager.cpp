@@ -27,9 +27,7 @@ extern "C"
 #include "InitializeHistoryManager.h"
 #include "TerminateHistoryManager.h"
 #include "freeArrayOfString.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 #include "CommandHistory_Wrap.h"
 };
 /*------------------------------------------------------------------------*/
@@ -111,7 +109,7 @@ BOOL appendLineToScilabHistory(char *line)
         int i = 0;
         char *cleanedline = NULL;
         /* remove space & carriage return at the end of line */
-        cleanedline = strdup(line);
+        cleanedline = os_strdup(line);
 
         /* remove carriage return at the end of line */
         for (i = (int) strlen(cleanedline); i > 0 ; i--)
@@ -433,7 +431,7 @@ char *HistoryManager::getFilename(void)
 
     if (! my_file.getFilename().empty())
     {
-        filename = strdup(my_file.getFilename().c_str());
+        filename = os_strdup(my_file.getFilename().c_str());
     }
     return filename;
 }
@@ -552,7 +550,7 @@ char **HistoryManager::getAllLines(int *numberoflines)
             string line = (*it_commands).get();
             if (!line.empty())
             {
-                lines[i] = strdup(line.c_str());
+                lines[i] = os_strdup(line.c_str());
                 i++;
             }
         }
@@ -571,7 +569,7 @@ char *HistoryManager::getFirstLine(void)
         str = (*it_commands).get();
         if (!str.empty())
         {
-            line = strdup(str.c_str());
+            line = os_strdup(str.c_str());
         }
     }
     return line;
@@ -588,7 +586,7 @@ char *HistoryManager::getLastLine(void)
         str = (*it_commands).get();
         if (!str.empty())
         {
-            line = strdup(str.c_str());
+            line = os_strdup(str.c_str());
         }
     }
     return line;
@@ -617,7 +615,7 @@ char *HistoryManager::getNthLine(int N)
                 str = (*it_commands).get();
                 if (!str.empty())
                 {
-                    return strdup(str.c_str());
+                    return os_strdup(str.c_str());
                 }
             }
             i++;
@@ -689,7 +687,7 @@ char *HistoryManager::getPreviousLine(void)
         std::string line = my_search.getPreviousLine();
         if (!line.empty())
         {
-            returnedline = strdup(line.c_str());
+            returnedline = os_strdup(line.c_str());
         }
     }
     return returnedline;
@@ -702,7 +700,7 @@ char *HistoryManager::getNextLine(void)
     if (my_search.getSize() > 0)
     {
         std::string line = my_search.getNextLine();
-        returnedline = strdup(line.c_str());
+        returnedline = os_strdup(line.c_str());
     }
     return returnedline;
 }
@@ -724,7 +722,7 @@ char * HistoryManager::getToken(void)
 
     if (!token.empty())
     {
-        returnedtoken = strdup(token.c_str());
+        returnedtoken = os_strdup(token.c_str());
     }
     return returnedtoken;
 }

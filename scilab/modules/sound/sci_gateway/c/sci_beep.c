@@ -20,9 +20,7 @@
 #include "localization.h"
 #include "api_scilab.h"
 #include "BOOL.h"
-#if _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 #define BEEP_ON "on"
 #define BEEP_OFF "off"
@@ -123,11 +121,11 @@ int sci_beep(char *fname, int* _piKey)
 
 	if (beepON)
 	{
-		output = strdup(BEEP_ON);
+		output = os_strdup(BEEP_ON);
 	}
 	else
 	{
-		output = strdup(BEEP_OFF);
+		output = os_strdup(BEEP_OFF);
 	}
 
 	sciErr = createMatrixOfString(_piKey, Rhs + 1, m_out, n_out, &output);

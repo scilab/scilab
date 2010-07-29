@@ -22,9 +22,7 @@
 #include "HandleManagement.h"
 #include "GetProperty.h"
 #include "freeArrayOfString.h"
-#if _MSC_VER
-  #include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 int sci_toolbar(char *fname,unsigned long l)
 {
@@ -132,11 +130,11 @@ int sci_toolbar(char *fname,unsigned long l)
   /* Returned value */
   if (isToolbarVisible(figNum))
     {
-      Output = strdup("on");
+      Output = os_strdup("on");
     }
   else
     {
-      Output = strdup("off");
+      Output = os_strdup("off");
     }
   
   nbCol = 1;

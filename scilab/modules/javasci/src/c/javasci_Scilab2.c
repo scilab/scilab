@@ -18,9 +18,7 @@
 #include "call_scilab.h"
 #include "api_scilab.h"
 #include "freeArrayOfString.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 static jobject getDoubleMatrix(JNIEnv *env,  jclass cl, jstring name, jint nbRow, jint nbCol);
 static jobject getComplexMatrix(JNIEnv *env,  jclass cl, jstring name, jint nbRow, jint nbCol);
@@ -276,7 +274,7 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_sendStringMatrix (JNIEnv *env, jclass
 	{
 		jstring jelement = (jstring)(*env)->GetObjectArrayElement(env, jmatrix, i);
 		const char *element = (*env)->GetStringUTFChars(env, jelement, NULL);
-		pStrings[i] = strdup(element);
+		pStrings[i] = os_strdup(element);
 		(*env)->ReleaseStringUTFChars(env, jelement,  element);
 	}
 

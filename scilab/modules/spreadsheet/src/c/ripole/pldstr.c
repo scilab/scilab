@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -12,8 +11,9 @@
 #include "MALLOC.h"
 #include "localization.h"
 
+#include "os_strdup.h"
+
 #ifdef _MSC_VER
-	#include "strdup_windows.h"
 	#define vsnprintf _vsnprintf
 #endif
 
@@ -44,9 +44,9 @@ char *PLD_strstr(char *haystack, char *needle, int insensitive)
 
 	if (insensitive > 0)
 	{
-		hs = strdup(haystack);
+		hs = os_strdup(haystack);
 		PLD_strlower((unsigned char*) hs);
-		ne = strdup(needle);
+		ne = os_strdup(needle);
 		PLD_strlower((unsigned char*) ne);
 	} else {
 		hs = haystack;

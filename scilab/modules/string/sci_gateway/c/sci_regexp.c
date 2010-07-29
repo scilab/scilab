@@ -25,9 +25,7 @@ using regular expression .                                      */
 #include "pcre_private.h"
 #include "pcre_error.h"
 #include "Scierror.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 #include "charEncoding.h"
 /*------------------------------------------------------------------------*/
 #define CHAR_S 's'
@@ -155,7 +153,7 @@ int sci_regexp(char *fname,unsigned long fname_len)
 
 		for (x = 0; x < mn2; ++x)
 		{
-			char *save = strdup(Str2[x]);
+			char *save = os_strdup(Str2[x]);
 			if (save)
 			{
 				char *pointer = Str[0];
@@ -175,8 +173,8 @@ int sci_regexp(char *fname,unsigned long fname_len)
 						*/
 						if (Output_Start != Output_End)
 						{
-							char *	strOutput_Start = strdup(pointer);
-							char *  strOutput_End =  strdup(pointer);
+							char *	strOutput_Start = os_strdup(pointer);
+							char *  strOutput_End =  os_strdup(pointer);
 
 							wchar_t *wcstrOutput_Start = NULL;
 							wchar_t *wcstrOutput_End = NULL;

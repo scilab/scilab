@@ -61,11 +61,10 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				CommandLine="lib /DEF:&quot;$(InputDir)Scilab_windows_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Scilab_windows.lib&quot; 1&gt;NUL 2&gt;NUL"
+				CommandLine=""
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Scilab_windows.lib"
 				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
 				GenerateDebugInformation="true"
 				ImportLibrary="../../bin/$(ProjectName).lib"
@@ -135,11 +134,10 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				CommandLine="lib /DEF:&quot;$(InputDir)Scilab_windows_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Scilab_windows.lib&quot; 1&gt;NUL 2&gt;NUL"
+				CommandLine=""
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Scilab_windows.lib"
 				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
 				GenerateDebugInformation="true"
 				ImportLibrary="../../bin/$(ProjectName).lib"
@@ -209,11 +207,10 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				CommandLine="lib /DEF:&quot;$(InputDir)Scilab_windows_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Scilab_windows.lib&quot; 1&gt;NUL 2&gt;NUL"
+				CommandLine=""
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Scilab_windows.lib"
 				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
 				ImportLibrary="../../bin/$(ProjectName).lib"
 			/>
@@ -283,11 +280,10 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				CommandLine="lib /DEF:&quot;$(InputDir)Scilab_windows_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Scilab_windows.lib&quot; 1&gt;NUL 2&gt;NUL"
+				CommandLine=""
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Scilab_windows.lib"
 				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
 				ImportLibrary="../../bin/$(ProjectName).lib"
 			/>
@@ -398,10 +394,6 @@
 		<Filter
 			Name="Imports"
 			>
-			<File
-				RelativePath=".\Scilab_windows_Import.def"
-				>
-			</File>
 		</Filter>
 		<File
 			RelativePath="..\..\bin\blasplus.lib"

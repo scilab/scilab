@@ -35,8 +35,8 @@
 #include "scilabDefaults.h"
 #include "setgetlanguage.h"
 #include "isdir.h"
+#include "os_strdup.h"
 #ifdef _MSC_VER
-#include "strdup_windows.h"
 #include "LanguagePreferences_Windows.h"
 #endif
 
@@ -59,7 +59,7 @@ BOOL InitializeLocalization(void)
 	if (bindtextdomain(NAMELOCALIZATIONDOMAIN,pathLocales)==NULL || !isdir(pathLocales))
 	{ 
 		/* source tree and classic build */
-		previousPathLocales = strdup(pathLocales);
+		previousPathLocales = os_strdup(pathLocales);
 		if (pathLocales) {FREE(pathLocales); pathLocales = NULL;}
 
 		pathLocales=(char *)MALLOC(sizeof(char)*(strlen(SCIpath)+strlen("/..")+strlen(PATHLOCALIZATIONFILE)+1));

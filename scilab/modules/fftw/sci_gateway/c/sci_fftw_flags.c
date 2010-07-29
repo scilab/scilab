@@ -17,9 +17,7 @@
 #include "localization.h"
 #include "freeArrayOfString.h"
 #include "Scierror.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 extern unsigned cur_fftw_flags;
 /*--------------------------------------------------------------------------*/
@@ -180,7 +178,7 @@ int sci_fftw_flags(char *fname,unsigned long fname_len)
 			return(0);
 		}
 
-		Str3[0] = strdup(Str[0]);
+		Str3[0] = os_strdup(Str[0]);
 		if (Str3[0] == NULL) 
 		{
 			Scierror(999,_("%s: No more memory.\n"),fname);
@@ -204,7 +202,7 @@ int sci_fftw_flags(char *fname,unsigned long fname_len)
 					return(0);
 				}
 
-				Str3[j-1] = strdup(Str[i]);
+				Str3[j-1] = os_strdup(Str[i]);
 				if (Str3[j-1] == NULL) 
 				{
 					freeArrayOfString(Str3,j);

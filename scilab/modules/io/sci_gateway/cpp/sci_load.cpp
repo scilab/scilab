@@ -24,9 +24,9 @@
 #include "io_gw.hxx"
 #include "setenvvar.hxx"
 
-
 extern "C"
 {
+#include "os_strdup.h"
 #ifndef _MSC_VER
 #include "stricmp.h"
 #endif
@@ -209,7 +209,7 @@ char *GetXmlFileEncoding(string _filename)
 	xmlDocPtr doc = NULL;
 
 	/* default */
-	encoding = strdup(DEFAULT_ENCODING);
+	encoding = os_strdup(DEFAULT_ENCODING);
 
 	doc = xmlParseFile(_filename.c_str());
 	if (doc)
@@ -221,7 +221,7 @@ char *GetXmlFileEncoding(string _filename)
 				free(encoding);
 				encoding = NULL;
 			}
-			encoding = strdup((char*)doc->encoding);
+			encoding = os_strdup((char*)doc->encoding);
 		}
 	}
 

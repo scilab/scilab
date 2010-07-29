@@ -26,9 +26,7 @@ extern "C"
 #include "getScilabJavaVM.h"
 #include "Scierror.h"
 #include "freeArrayOfString.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 }
 using namespace org_scilab_modules_ui_data;
 /*--------------------------------------------------------------------------*/
@@ -62,7 +60,7 @@ int sci_browsevar(char * fname, int *_piKey)
         // Bytes used
         piAllVariableBytes[i] = getLocalSizefromId(i);
         // global / local ??
-        pstAllVariableStandard[i] = strdup("local");
+        pstAllVariableStandard[i] = os_strdup("local");
     }
 
     // for each global variable get informations
@@ -71,7 +69,7 @@ int sci_browsevar(char * fname, int *_piKey)
         pstAllVariableNames[i] = getGlobalNamefromId(j);
         piAllVariableBytes[i] = getGlobalSizefromId(j);
         getNamedVarType(_piKey,  pstAllVariableNames[i], &piAllVariableTypes[i]);
-        pstAllVariableStandard[i] = strdup("global");
+        pstAllVariableStandard[i] = os_strdup("global");
     }
 
     char *pstColumnNames[] = {_("Icon"), 

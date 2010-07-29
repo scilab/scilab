@@ -45,9 +45,7 @@
 
 #include "MALLOC.h"
 
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 
 #ifdef _MSC_VER
 #define snprintf _snprintf
@@ -325,7 +323,7 @@ void ezxml_proc_inst(ezxml_root_t root, char *s, size_t len)
         root->pi[i] = MALLOC(sizeof(char *) * 3);
         root->pi[i][0] = target;
         root->pi[i][1] = (char *)(root->pi[i + 1] = NULL); // terminate pi list
-        root->pi[i][2] = strdup(""); // empty document position list
+        root->pi[i][2] = os_strdup(""); // empty document position list
     }
 
     while (root->pi[i][j]) j++; // find end of instruction list for this target
@@ -945,7 +943,7 @@ ezxml_t ezxml_set_attr(ezxml_t xml, const char *name, char *value)
       if (! value) return xml; // nothing to do
         if (xml->attr == EZXML_NIL) { // first attribute
             xml->attr = MALLOC(4 * sizeof(char *));
-            xml->attr[1] = strdup(""); // empty list of malloced names/vals
+            xml->attr[1] = os_strdup(""); // empty list of malloced names/vals
         }
         else xml->attr = REALLOC(xml->attr, (l + 4) * sizeof(char *));
 
@@ -955,7 +953,7 @@ ezxml_t ezxml_set_attr(ezxml_t xml, const char *name, char *value)
         strcpy(xml->attr[l + 3] + c, " "); // set name/value as not malloced
         if (xml->flags & EZXML_DUP) xml->attr[l + 3][c] = EZXML_NAMEM;
     }
-    else if (xml->flags & EZXML_DUP) FREE((char *)name); // name was strduped
+    else if (xml->flags & EZXML_DUP) FREE((char *)name); // name was os_strduped
 
     for (c = l; xml->attr[c]; c += 2); // find end of attribute list
     if (xml->attr[c + 1][l / 2] & EZXML_TXTM) FREE(xml->attr[l + 1]); //old val
@@ -970,7 +968,7 @@ ezxml_t ezxml_set_attr(ezxml_t xml, const char *name, char *value)
         memmove(xml->attr[c + 1] + (l / 2), xml->attr[c + 1] + (l / 2) + 1,
                 (c / 2) - (l / 2)); // fix list of which name/vals are malloced
     }
-    xml->flags &= ~EZXML_DUP; // clear strdup() flag
+    xml->flags &= ~EZXML_DUP; // clear os_strdup() flag
     return xml;
 }
 

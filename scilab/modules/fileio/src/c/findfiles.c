@@ -23,9 +23,7 @@
 #include "MALLOC.h"
 #include "localization.h"
 #include "sciprint.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
@@ -134,7 +132,7 @@ char **findfiles(char *path, char *filespec, int *sizeListReturned, BOOL warning
 					{
 						ListFiles = (char**)MALLOC(sizeof(char*)*(nbElements));
 					}
-					ListFiles[nbElements-1] = strdup(read->d_name);
+					ListFiles[nbElements-1] = os_strdup(read->d_name);
 				}
 			}
 		}

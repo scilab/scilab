@@ -22,7 +22,7 @@
 #include "WndThread.h"
 #include "console.h"
 #include "version.h"
-#include "strdup_windows.h"
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 #define NameConsole "Console" 
 /*--------------------------------------------------------------------------*/
@@ -167,7 +167,7 @@ char *getScilexConsoleName(void)
 
 	if (strlen(ScilexConsoleName) > 0)
 	{
-		retName = strdup(ScilexConsoleName);
+		retName = os_strdup(ScilexConsoleName);
 	}
 	return retName;
 }

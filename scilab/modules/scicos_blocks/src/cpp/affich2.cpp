@@ -23,9 +23,7 @@ extern "C"
 #include "scicos_block4.h"
 #include "core_math.h"
 #include "getScilabJavaVM.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 
     double C2F (sciround) (double *x);
     void
@@ -92,7 +90,7 @@ affich2(scicos_block * block, int flag)
                 sprintf(pstFormat, "%%0.%df", iPrec);
                 sprintf(pstConv, pstFormat, dblValue);
 #endif
-                pstValue[i][j] = strdup(pstConv);
+                pstValue[i][j] = os_strdup(pstConv);
             }
         }
 
@@ -125,7 +123,7 @@ affich2(scicos_block * block, int flag)
 #else
                 sprintf(pstConv, "%0.2f", 0.0);
 #endif
-                pstValue[i][j] = strdup(pstConv);
+                pstValue[i][j] = os_strdup(pstConv);
             }
         }
 

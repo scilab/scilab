@@ -18,6 +18,7 @@
 #include "intersci-n.h"
 #include "getrhs.h"
 #include "crerhs.h"
+#include "os_strdup.h"
 
 /* global variables */
 
@@ -600,7 +601,7 @@ void WriteFortranCall(FILE *f)
                 bCheck = (variables[ivar-1]->C_name[0] != NULL);
                 if (bCheck)
                 {
-                    char *buffertmp = _strdup(variables[ivar-1]->C_name[0]);
+                    char *buffertmp = os_strdup(variables[ivar-1]->C_name[0]);
                     if (buffertmp)
                     {
                         free(buffertmp);

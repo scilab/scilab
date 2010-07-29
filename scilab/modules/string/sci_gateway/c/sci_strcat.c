@@ -22,9 +22,7 @@
 #include "Scierror.h"
 #include "freeArrayOfString.h"
 #include "localization.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 /*-------------------------------------------------------------------------------------*/ 
 #define STAR '*'
 #define COL 'c'

@@ -21,9 +21,7 @@
 #include "Scierror.h"
 #include "expandPathVariable.h"
 #include "PATH_MAX.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 #define DEFAULT_FILESPEC "*.*"
@@ -58,7 +56,7 @@ int sci_findfiles(char *fname,unsigned long fname_len)
 			}
 			else
 			{
-				filespec = strdup(DEFAULT_FILESPEC);
+				filespec = os_strdup(DEFAULT_FILESPEC);
 			}
 		}
 		break;
@@ -68,8 +66,8 @@ int sci_findfiles(char *fname,unsigned long fname_len)
 			if (GetType(1) == sci_strings)
 			{
 				GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-				path = strdup(cstk(l1));
-				filespec = strdup(DEFAULT_FILESPEC);
+				path = os_strdup(cstk(l1));
+				filespec = os_strdup(DEFAULT_FILESPEC);
 			}
 			else
 			{
@@ -85,10 +83,10 @@ int sci_findfiles(char *fname,unsigned long fname_len)
 			if ( (GetType(1) == sci_strings) && (GetType(2) == sci_strings) )
 			{
 				GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-				path = strdup(cstk(l1));
+				path = os_strdup(cstk(l1));
 
 				GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
-				filespec = strdup(cstk(l1));
+				filespec = os_strdup(cstk(l1));
 			}
 			else
 			{

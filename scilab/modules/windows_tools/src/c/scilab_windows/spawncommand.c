@@ -19,10 +19,10 @@
 #include "sci_mode.h"
 #include "sci_tmpdir.h"
 #include "spawncommand.h"
-#include "strdup_windows.h"
+#include "os_strdup.h"
 #include "charEncoding.h"
 #include "getshortpathname.h"
-#include "strdup_windows.h"
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 #define BUFSIZE 4096
 #define LF_STR "\n"
@@ -235,7 +235,7 @@ char **CreateOuput(pipeinfo *pipe,BOOL DetachProcess)
     {
         if (pipe->OutputBuffer)
         {
-            char *buffer = strdup(pipe->OutputBuffer);
+            char *buffer = os_strdup(pipe->OutputBuffer);
             if (buffer)
             {
                 pipe->NumberOfLines = GetNumberOfLines(buffer);
@@ -321,7 +321,7 @@ char *convertLine(char *_string, BOOL DetachProcess)
     char *convertedString = NULL;
     if (_string)
     {
-        convertedString = strdup(_string);
+        convertedString = os_strdup(_string);
 
         if (getScilabMode() == SCILAB_STD)
         {

@@ -20,9 +20,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 /*----------------------------------------------------------------------------*/
 int sci_strstr(char *fname,unsigned long fname_len)
 {
@@ -94,7 +92,7 @@ int sci_strstr(char *fname,unsigned long fname_len)
 						char *ptrstrstr = strstr(InputString_Parameter1[j],InputString_Parameter2[i]);
 						if (ptrstrstr)
 						{
-							OutputStrings[j] = strdup(ptrstrstr);
+							OutputStrings[j] = os_strdup(ptrstrstr);
 							if (OutputStrings[j] == NULL)
 							{
 								freeArrayOfString(OutputStrings,m1n1);
@@ -106,7 +104,7 @@ int sci_strstr(char *fname,unsigned long fname_len)
 						}
 						else
 						{
-							OutputStrings[j] = strdup("");
+							OutputStrings[j] = os_strdup("");
 							if (OutputStrings[j] == NULL)
 							{
 								freeArrayOfString(OutputStrings,m1n1);

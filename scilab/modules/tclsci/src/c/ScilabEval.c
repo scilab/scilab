@@ -20,9 +20,7 @@
 #include "localization.h"
 #include "syncexec.h"
 #include "storeCommand.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 /* what's the max number of commands in the queue ??*/
 #define arbitrary_max_queued_callbacks 20
@@ -56,7 +54,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
 
   if (argv[1] != (char *)0)
     {
-       command = strdup(argv[1]);
+       command = os_strdup(argv[1]);
       if (command == (char *) 0)
 	{
 	  sciprint(_("%s: No more memory.\n"),"TCL_EvalScilabCmd");

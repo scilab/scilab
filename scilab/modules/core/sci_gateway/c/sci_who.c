@@ -17,9 +17,7 @@
 #include "sciprint.h"
 #include "localization.h"
 #include "Scierror.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 struct VariableStruct
@@ -340,7 +338,7 @@ static BOOL FreeVariableStructArray(struct VariableStruct* Vstruct,int lenStruct
 
 	 for (i=0;i<lenStructArray;i++)
 	 {
-		 Tab[i] = strdup(Vstruct[i].NameVariable);
+		 Tab[i] = os_strdup(Vstruct[i].NameVariable);
 		 Size[i]=Vstruct[i].SizeVariable;
 	 }
 
@@ -376,7 +374,7 @@ static BOOL FreeVariableStructArray(struct VariableStruct* Vstruct,int lenStruct
 	 {
 		 if (strlen(Vstruct[i].NameVariable)>0)
 		 {
-			 LocalTab[i] = strdup(Vstruct[i].NameVariable);
+			 LocalTab[i] = os_strdup(Vstruct[i].NameVariable);
 		 }
 	 }
 

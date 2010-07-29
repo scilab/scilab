@@ -15,8 +15,8 @@
 #include <string.h> /* strlen */
 #ifdef _MSC_VER
 #include <Windows.h> /* GetEnvironmentVariable */
-#include "strdup_windows.h"
 #endif
+#include "os_strdup.h"
 #include "MALLOC.h"
 #include "getenvc.h"
 #include "localization.h"
@@ -187,7 +187,7 @@ char *searchEnv(const char *name,const char *env_var)
 	searchenv_others(name, env_var,fullpath);
 	if (strlen(fullpath) > 0)
 	{
-		buffer = strdup(fullpath);
+		buffer = os_strdup(fullpath);
 	}
 #endif
 	return buffer;

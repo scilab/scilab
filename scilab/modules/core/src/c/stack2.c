@@ -25,10 +25,7 @@
 #include <string.h>
 #include <stdio.h>
 
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
-
+#include "os_strdup.h"
 #include "MALLOC.h"
 #include "stack-c.h"
 #include "sciprint.h"
@@ -2898,19 +2895,19 @@ char * CharPosition(int i)
   switch(i+1)
     {
     case 1:
-      tmp_buffer = strdup(_("first"));
+      tmp_buffer = os_strdup(_("first"));
       break;
     case 2:
-      tmp_buffer = strdup(_("second"));
+      tmp_buffer = os_strdup(_("second"));
       break;
     case 3:
-      tmp_buffer = strdup(_("third"));
+      tmp_buffer = os_strdup(_("third"));
       break;
     case 4:
-      tmp_buffer = strdup(_("fourth"));
+      tmp_buffer = os_strdup(_("fourth"));
       break;
     default:
-      tmp_buffer = strdup(" ");
+      tmp_buffer = os_strdup(" ");
       break;
     }
   return tmp_buffer;

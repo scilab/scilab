@@ -19,16 +19,13 @@
 #include "stack-c.h"
 #include "do_xxprintf.h"
 #include "Scierror.h"
-#include "Scierror.h"
 #include "sci_mode.h"
 #include "localization.h"
 #include "set_xxprintf.h"
 #include "scistrtostr.h"
 #include "charEncoding.h"
 
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 #define  PF_C		0
 #define  PF_S		1
@@ -481,7 +478,7 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 				if (ISNAN(dval)) /* it is a %nan */
 				{
 					char formatnan[3] = "%s";
-					char *valuenan = strdup(NanString);
+					char *valuenan = os_strdup(NanString);
 					conversion_type = PF_S;
 					dval = 0.;
 					/* valuenan FREED in call_printf */
@@ -500,11 +497,11 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 
 						if ( signbit(dval) )
 						{
-							valueinf = strdup(NegInfString);
+							valueinf = os_strdup(NegInfString);
 						}
 						else
 						{
-							valueinf =  strdup(InfString);
+							valueinf =  os_strdup(InfString);
 						}
 
 						conversion_type = PF_S;

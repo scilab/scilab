@@ -2,6 +2,4 @@
 
 
 EXPORTS
-	strdup_windows
 	ANSIToUTF8
-	

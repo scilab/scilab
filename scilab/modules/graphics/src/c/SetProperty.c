@@ -32,9 +32,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#ifdef _MSC_VER
-#include "strdup_Windows.h"
-#endif
+#include "os_strdup.h"
 
 #include "SetProperty.h"
 #include "GetProperty.h"
@@ -3314,7 +3312,7 @@ int sciInitEventHandler( sciPointObj * pObj, char * name )
 	  FREE(ppFigure->eventHandler);
 	}
 
-      ppFigure->eventHandler = strdup(name);
+      ppFigure->eventHandler = os_strdup(name);
 
       /* Java is called to set the listener */
       if (!isFigureModel(pObj))

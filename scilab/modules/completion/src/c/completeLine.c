@@ -15,9 +15,7 @@
 #include <string.h>
 #include "completeLine.h"
 #include "MALLOC.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 #include "getPartLine.h"
 #include "splitpath.h"
 #include "PATH_MAX.h"
@@ -37,7 +35,7 @@ static int findMatchingPrefixSuffix(const char* string, const char* find)
     size_t stringLength = 0;
 
     //get a working copy of find
-    pointerOnFindCopy = strdup(find);
+    pointerOnFindCopy = os_strdup(find);
     //last character of string
     lastchar = *(string+strlen(string)-1);
     stringLength = strlen(string);
@@ -88,18 +86,18 @@ char *completeLine(char *currentline,char *stringToAdd,char *filePattern,
 
     if (currentline == NULL) 
     {
-        return  strdup("");
+        return  os_strdup("");
     }
     lencurrentline = (int)strlen(currentline);
 
     if (postCaretLine == NULL)
     {
-        stringToAddAtTheEnd = strdup("");
+        stringToAddAtTheEnd = os_strdup("");
         lenstringToAddAtTheEnd = (int)strlen(stringToAddAtTheEnd);
     }
     else
     {
-        stringToAddAtTheEnd = strdup(postCaretLine);
+        stringToAddAtTheEnd = os_strdup(postCaretLine);
         lenstringToAddAtTheEnd = (int)strlen(stringToAddAtTheEnd);
     }
 

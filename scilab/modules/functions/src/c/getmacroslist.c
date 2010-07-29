@@ -19,9 +19,7 @@
 #include "MALLOC.h"
 #include "freeArrayOfString.h"
 #include "getvariablesname.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 static char **getmacrosonstacklist(int *sizearray);
 static char **getmacrosinlibrarieslist(int *sizearray);
@@ -57,7 +55,7 @@ char **getmacroslist(int *sizearray)
                 int j = 0;
                 for (i = sizemacrosinlibraries; i < nbMacros; i++)
                 {
-                    macroslist[i] = strdup(macrosonstack[j++]);
+                    macroslist[i] = os_strdup(macrosonstack[j++]);
                 }
 
                 qsort(macroslist, nbMacros, sizeof(char*), cmpstr);
@@ -128,7 +126,7 @@ static char **getmacrosonstacklist(int *sizearray)
                 {
                     if (iType == sci_c_function) 
                     {
-                        macroslist[nbMacros++] = strdup(localvariables[i]);
+                        macroslist[nbMacros++] = os_strdup(localvariables[i]);
                     }
                 }
             }

@@ -34,6 +34,8 @@
 extern "C" {
 #endif
 
+#include "os_strdup.h"
+
 #define EZXML_BUFSIZE 1024 // size of internal memory buffers
 #define EZXML_NAMEM   0x80 // name is malloced
 #define EZXML_TXTM    0x40 // txt is malloced
@@ -119,7 +121,7 @@ const char *ezxml_error(ezxml_t xml);
 ezxml_t ezxml_new(const char *name);
 
 // wrapper for ezxml_new() that strdup()s name
-#define ezxml_new_d(name) ezxml_set_flag(ezxml_new(strdup(name)), EZXML_NAMEM)
+#define ezxml_new_d(name) ezxml_set_flag(ezxml_new(os_strdup(name)), EZXML_NAMEM)
 
 // Adds a child tag. off is the offset of the child tag relative to the start
 // of the parent tag's character content. Returns the child tag.
@@ -127,22 +129,22 @@ ezxml_t ezxml_add_child(ezxml_t xml, const char *name, size_t off);
 
 // wrapper for ezxml_add_child() that strdup()s name
 #define ezxml_add_child_d(xml, name, off) \
-    ezxml_set_flag(ezxml_add_child(xml, strdup(name), off), EZXML_NAMEM)
+    ezxml_set_flag(ezxml_add_child(xml, os_strdup(name), off), EZXML_NAMEM)
 
 // sets the character content for the given tag and returns the tag
 ezxml_t ezxml_set_txt(ezxml_t xml, const char *txt);
 
-// wrapper for ezxml_set_txt() that strdup()s txt
+// wrapper for ezxml_set_txt() that os_strdup()s txt
 #define ezxml_set_txt_d(xml, txt) \
-    ezxml_set_flag(ezxml_set_txt(xml, strdup(txt)), EZXML_TXTM)
+    ezxml_set_flag(ezxml_set_txt(xml, os_strdup(txt)), EZXML_TXTM)
 
 // Sets the given tag attribute or adds a new attribute if not found. A value
 // of NULL will remove the specified attribute. Returns the tag given.
 ezxml_t ezxml_set_attr(ezxml_t xml, const char *name, char *);
 
-// Wrapper for ezxml_set_attr() that strdup()s name/value. Value cannot be NULL
+// Wrapper for ezxml_set_attr() that os_strdup()s name/value. Value cannot be NULL
 #define ezxml_set_attr_d(xml, name, value) \
-    ezxml_set_attr(ezxml_set_flag(xml, EZXML_DUP), strdup(name), strdup(value))
+    ezxml_set_attr(ezxml_set_flag(xml, EZXML_DUP), os_strdup(name), os_strdup(value))
 
 // sets a flag for the given tag and returns the tag
 ezxml_t ezxml_set_flag(ezxml_t xml, short flag);

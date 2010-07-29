@@ -23,9 +23,8 @@
 #include "charEncoding.h"
 #include "filesmanagement.h"
 #include "freeArrayOfString.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
+
 /*--------------------------------------------------------------------------*/
 #define FILE_OPEN_STR "open"
 #define FILE_OLD_STR "old"
@@ -520,11 +519,11 @@ static int sci_file_one_rhs(char *fname, int* _piKey)
 			n_out = 1;
 			if (GetFileNameOpenedInScilab(iID) == NULL)
 			{
-				filename = strdup("");
+				filename = os_strdup("");
 			}
 			else
 			{
-				filename = strdup(GetFileNameOpenedInScilab(iID));
+				filename = os_strdup(GetFileNameOpenedInScilab(iID));
 			}
 
 			sciErr = createMatrixOfString(_piKey, Rhs + 3, m_out, n_out, &filename);

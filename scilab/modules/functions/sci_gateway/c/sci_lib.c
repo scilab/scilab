@@ -21,9 +21,7 @@
 #include "machine.h"
 #include "FileExist.h"
 #include "getFullFilename.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(intlib)();
 /*--------------------------------------------------------------------------*/
@@ -119,7 +117,7 @@ int sci_libfunc(char *fname, int*_piKey)
 	}
 	else
 	{
-		fullfilename = strdup(pStVarOne);
+		fullfilename = os_strdup(pStVarOne);
 	}
 
 	if (fullfilename)

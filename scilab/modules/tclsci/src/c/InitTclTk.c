@@ -18,8 +18,8 @@
 #include <ctype.h>
 #else
 #include "EnvTclTk.h"
-#include "strdup_windows.h"
 #endif
+#include "os_strdup.h"
 #include "InitTclTk.h"
 #include "sci_path.h"
 #include "sciprint.h"
@@ -259,7 +259,7 @@ static char *GetSciPath(void)
 
 	if (SciPathTmp)
 	{
-		PathUnix = strdup(SciPathTmp);
+		PathUnix = os_strdup(SciPathTmp);
 		for (i=0;i<(int)strlen(PathUnix);i++)
 		{
 			if (PathUnix[i]=='\\') PathUnix[i]='/';

@@ -18,9 +18,7 @@
 #include "getCommentDateSession.h"
 #include "MALLOC.h"
 #include "localization.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 #include "freeArrayOfString.h"
 /*------------------------------------------------------------------------*/
 #define STRING_BEGIN_SESSION _("Begin Session : ")
@@ -102,13 +100,13 @@ static char** getDays(void)
     days = (char **)MALLOC(sizeof(char*)*MAX_wday);
     if (days)
     {
-        days[0] = strdup(_("Sun"));
-        days[1] = strdup(_("Mon"));
-        days[2] = strdup(_("Tue"));
-        days[3] = strdup(_("Wed"));
-        days[4] = strdup(_("Thu"));
-        days[5] = strdup(_("Fri"));
-        days[6] = strdup(_("Sat"));
+        days[0] = os_strdup(_("Sun"));
+        days[1] = os_strdup(_("Mon"));
+        days[2] = os_strdup(_("Tue"));
+        days[3] = os_strdup(_("Wed"));
+        days[4] = os_strdup(_("Thu"));
+        days[5] = os_strdup(_("Fri"));
+        days[6] = os_strdup(_("Sat"));
     }
     return days;
 }
@@ -120,18 +118,18 @@ static char** getMonths(void)
     if (months)
     {
         /* initialize month */ 
-        months[0] = strdup(_("Jan"));
-        months[1] = strdup(_("Feb"));
-        months[2] = strdup(_("Mar"));
-        months[3] = strdup(_("Apr"));
-        months[4] = strdup(_("May"));
-        months[5] = strdup(_("Jun"));
-        months[6] = strdup(_("Jul"));
-        months[7] = strdup(_("Aug"));
-        months[8] = strdup(_("Sep"));
-        months[9] = strdup(_("Oct"));
-        months[10] = strdup(_("Nov"));
-        months[11] = strdup(_("Dec"));
+        months[0] = os_strdup(_("Jan"));
+        months[1] = os_strdup(_("Feb"));
+        months[2] = os_strdup(_("Mar"));
+        months[3] = os_strdup(_("Apr"));
+        months[4] = os_strdup(_("May"));
+        months[5] = os_strdup(_("Jun"));
+        months[6] = os_strdup(_("Jul"));
+        months[7] = os_strdup(_("Aug"));
+        months[8] = os_strdup(_("Sep"));
+        months[9] = os_strdup(_("Oct"));
+        months[10] = os_strdup(_("Nov"));
+        months[11] = os_strdup(_("Dec"));
     }
     return months;
 }

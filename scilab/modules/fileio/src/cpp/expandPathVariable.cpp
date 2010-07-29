@@ -25,10 +25,7 @@ extern "C"
 #include "PATH_MAX.h"
 #include "api_scilab.h"
 #include "getlongpathname.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
-
+#include "os_strdup.h"
 #include "os_wcsdup.h"
 }
 

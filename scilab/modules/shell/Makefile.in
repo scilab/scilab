@@ -457,7 +457,8 @@ libscishell_la_CFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ \
 	-I$(top_srcdir)/modules/api_scilab/includes \
 	-I$(top_srcdir)/modules/system_env/includes \
 	-I$(top_srcdir)/modules/fileio/includes/ \
-	-I$(top_srcdir)/modules/operations/includes/ $(am__append_2)
+	-I$(top_srcdir)/modules/operations/includes/ \
+	-I$(top_srcdir)/modules/string/includes/ $(am__append_2)
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
@@ -475,7 +476,7 @@ INCLUDE_FLAGS = $(libscishell_la_CFLAGS)
 libscishell_la_LIBADD = $(top_builddir)/modules/history_manager/libscihistory_manager.la \
 							$(top_builddir)/modules/core/libscicore.la \
 							$(top_builddir)/libs/MALLOC/libscimalloc.la \
-							$(top_builddir)/modules/output_stream/libscioutput_stream.la 
+							$(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 # $(top_builddir)/modules/completion/libscicompletion.la
 modulename = shell

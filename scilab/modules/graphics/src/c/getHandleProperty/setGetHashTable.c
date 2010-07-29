@@ -21,9 +21,7 @@
 
 #include "setGetHashTable.h"
 #include "MALLOC.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 /* see http://www.cse.yorku.ca/~oz/hash.html */
 /* like in hashtable_localization by Allan Cornet */
@@ -72,7 +70,7 @@ int insertGetHashtable( GetPropertyHashTable * hashTable, char * key, getPropert
 {
   /* allocate a new key because the hashtable claims ownership */
   /* and will free it when destroyed */
-  char * copyKey  =  strdup(key);
+  char * copyKey  =  os_strdup(key);
   if ( copyKey == NULL ) { return 0 ; }
   return hashtable_insert( hashTable, copyKey, value ) ;
 }
@@ -97,7 +95,7 @@ int insertSetHashtable( SetPropertyHashTable * hashTable, char * key, setPropert
 {
   /* allocate a new key because the hashtable claims ownership */
   /* and will free it when destroyed */
-  char * copyKey   = strdup(key);
+  char * copyKey   = os_strdup(key);
   if ( copyKey == NULL ) { return 0 ; }
   return hashtable_insert( hashTable, copyKey, value ) ;
 }

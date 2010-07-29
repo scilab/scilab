@@ -31,10 +31,10 @@
 #include "zzledt.h"
 #include "GetCommandLine.h"
 #include "TermReadAndProcess.h"
+#include "os_strdup.h"
 #ifdef _MSC_VER
 
 #include "mmapWindows.h"
-#include "strdup_windows.h"
 
 #else
 #include <sys/mman.h>
@@ -105,7 +105,7 @@ static void getCommandLine(void)
         }
       setSearchedTokenInScilabHistory(NULL);
       /* Call Java Console to get a string */
-      __CommandLine = strdup(ConsoleRead());
+      __CommandLine = os_strdup(ConsoleRead());
     }
   else
     {
@@ -121,7 +121,7 @@ static void getCommandLine(void)
 char *getConsoleInputLine(void)
 {
   getCommandLine();
-  return strdup(__CommandLine);
+  return os_strdup(__CommandLine);
 }
 
 /***********************************************************************/
@@ -217,7 +217,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
       FREE(__CommandLine);
       __CommandLine = NULL;
   }
-  __CommandLine = strdup("");
+  __CommandLine = os_strdup("");
 
   if (ismenu() == 0)
   {

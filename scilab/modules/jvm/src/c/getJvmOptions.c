@@ -21,9 +21,7 @@
 #include "machine.h"
 #include "stricmp.h"
 #include "FileExist.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 #include "strsubst.h"
 #include "getos.h"
 #include "getshortpathname.h"
@@ -85,7 +83,7 @@ JavaVMOption * getJvmOptions(char *SCI_PATH,char *filename_xml_conf,int *size_Ja
 						{
 							/* we found the tag name */
 							const char *str=(const char*)attrib->children->content;
-							jvm_option_string = strdup(str);
+							jvm_option_string = os_strdup(str);
 						}
 						attrib = attrib->next;
 					}
