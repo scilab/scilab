@@ -16,10 +16,13 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.Serializable;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.types.scilabTypes.ScilabDouble;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.input.InputPort;
+import org.scilab.modules.xcos.simulink.MatrixElement;
 
 /**
  * Change the port label on ipar change.
@@ -29,7 +32,7 @@ import org.scilab.modules.xcos.port.input.InputPort;
 public class ProdPortLabelingListener implements PropertyChangeListener, Serializable {
 	
 	private static ProdPortLabelingListener instance;
-	
+	private static final Log LOG = LogFactory.getLog(ProdPortLabelingListener.class);
 	/**
 	 * Default constructor 
 	 */
@@ -56,23 +59,33 @@ public class ProdPortLabelingListener implements PropertyChangeListener, Seriali
 	public void propertyChange(PropertyChangeEvent evt) {
 		final BasicBlock source = (BasicBlock) evt.getSource();
 		final ScilabDouble data = (ScilabDouble) evt.getNewValue();
-
+		LOG.trace(source.getChildCount());
 		for (int i=0; i < source.getChildCount(); i++) {
 			final BasicPort port = (BasicPort) source.getChildAt(i);
-			
+			LOG.trace(port.getId());
 			if (port instanceof InputPort) {
 				
 				final double gain;
 				if (data.isEmpty()) {
 					gain = 1; 
 				} else {
-					gain = data.getRealPart()[port.getOrdering() - 1][0]; 
+					/*
+					 * FIXME: not the most beatifull way to set this.
+					 */
+					LOG.trace(port.getOrdering() - 1);
+					LOG.trace(data.getRealPart().length);
+					if((port.getOrdering() - 1) < data.getRealPart().length) {
+						gain = data.getRealPart()[port.getOrdering() - 1][0]; 
+					} else {
+						gain = 1; 
+					}
 				}
 				
 				port.setValue(getLabel(gain));
+				LOG.trace(port.getValue());
 			}
 		}
-		
+		LOG.trace("ProdPortSet!");
 	}
 	
 	private String getLabel(double gain) {

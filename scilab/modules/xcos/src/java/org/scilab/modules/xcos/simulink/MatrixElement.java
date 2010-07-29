@@ -14,7 +14,6 @@ package org.scilab.modules.xcos.simulink;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -29,6 +28,9 @@ public class MatrixElement {
 	 */
 	public static double[] decode(String from){
 		int width, height;
+		if(LOG.isTraceEnabled()){
+			LOG.trace("FROM:" + from);
+		}
 		String[] rows = from.split(";");
 		width = rows.length;
 		String[] cells = rows[0].replaceAll("[\\[\\];,]", " ").trim().split("\\s+");
@@ -37,8 +39,38 @@ public class MatrixElement {
 		double [] into = new double[height*width];
 		
 		for(int i = 0 ; i < rows.length ; i++ ) {
+			if(LOG.isTraceEnabled()){
+				LOG.trace("row" + i + " " + rows[i]);
+			}
+			/*
+			 * handling of *+ and -/ 
+			 */
+			if(rows[i].endsWith("+") || rows[i].endsWith("*") || rows[i].endsWith("-") || rows[i].endsWith("/")){
+				char[] signArray = rows[i].toCharArray();
+				for(int j = 0 ; j < signArray.length; j++){
+					if(LOG.isTraceEnabled()){
+						LOG.trace("signArray: "+ j + "=" + signArray[j]);
+					}
+					if(signArray[j] == '+' || signArray[j] == '*'){
+						into[i*signArray.length + j] = 1;
+					} else if(signArray[j] == '-' || signArray[j] == '/'){
+						into[i*signArray.length + j] = -1;
+					}
+					if(LOG.isTraceEnabled()){
+						LOG.trace(into[i*cells.length + j]);
+					}
+				}
+				return into;
+			} 
+			
 			cells = rows[i].replaceAll("[\\[\\];,]", " ").trim().split("\\s+");
 			for(int j = 0 ; j < cells.length ; j ++){
+				if(LOG.isTraceEnabled()){
+					LOG.trace(cells[j]);
+				}
+				/*
+				 * handling of inf and -inf
+				 */
 				if(cells[j].equals("inf")){
 					into[i*cells.length + j] = Double.MAX_VALUE;
 				}
@@ -49,13 +81,16 @@ public class MatrixElement {
 					 * should be able to handle expressions like sqrt(1/2)
 					 */
 					try {
-						into[i*cells.length + j] = Double.parseDouble(cells[j].replaceAll("\\w", ""));
+						into[i*cells.length + j] = Double.parseDouble(cells[j].replaceAll("\\D", " ").trim());
 					} catch (NumberFormatException fe) {
 						into[i*cells.length + j] = 0;
+						if(LOG.isTraceEnabled()){
+							LOG.trace("MatrixElement.decode Error");
+						}
 					}
 				}
 				if(LOG.isTraceEnabled()){
-					LOG.trace(into[i*cells.length + j]);
+					LOG.trace("isSetTo:" + into[i*cells.length + j]);
 				}
 			}
 		}
