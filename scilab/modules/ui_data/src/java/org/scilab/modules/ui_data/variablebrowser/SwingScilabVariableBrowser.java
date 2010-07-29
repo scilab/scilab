@@ -40,6 +40,7 @@ import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.types.scilabTypes.ScilabTypeEnum;
 import org.scilab.modules.ui_data.BrowseVar;
@@ -182,11 +183,12 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 	/**
 	 * {@inheritDoc}
 	 */
+	/**
+	 * {@inheritDoc}
+	 */
 	public Window getParentWindow() {
-		// TODO Auto-generated method stub
-		return null;
+		return (Window) UIElementMapper.getCorrespondingUIElement(getParentWindowId());
 	}
-
 
 	/**
 	 * MouseListener inner class

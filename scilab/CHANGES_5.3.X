@@ -16,6 +16,9 @@ Editvar/Browsevar:
 * bug 7610 fixed - browsevar(): The icons (left column) did not appear in the
                    binary version (Linux & MacOSX).
 
+* bug 7627 fixed - When browsevar() window was docked, if browsevar() was called
+                   again an empty window poped up and could not be closed.
+
 Bug Fixes:
 ==========
 

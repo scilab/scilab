@@ -15,7 +15,6 @@ package org.scilab.modules.ui_data;
 import javax.swing.ImageIcon;
 
 import org.scilab.modules.ui_data.variablebrowser.ScilabVariableBrowser;
-import org.scilab.modules.ui_data.variablebrowser.VariableBrowser;
 
 /**
  * 
@@ -87,8 +86,7 @@ public class BrowseVar {
 	 */
 
 	public static void openVariableBrowser(String[] columnNames) {
-		VariableBrowser browsevar = ScilabVariableBrowser.getVariableBrowser(columnNames);
-		browsevar.setVisible(true);
+		ScilabVariableBrowser.getVariableBrowser(columnNames);
 	}
 
 	/**
@@ -108,16 +106,14 @@ public class BrowseVar {
 			data[i][TYPE_COLUMN_INDEX] = dataTypes[i];
 			data[i][VISIBILITY_COLUMN_INDEX] = dataVisibility[i];
 		}
-		VariableBrowser browsevar = ScilabVariableBrowser.getVariableBrowser(columnNames, data);
-		browsevar.setVisible(true);
+		ScilabVariableBrowser.getVariableBrowser(columnNames, data);
 	}
 
 	/**
 	 * Open Variable browser
 	 */
 	public static void openVariableBrowser() {
-		VariableBrowser browsevar = ScilabVariableBrowser.getVariableBrowser();
-		browsevar.setVisible(true);
+		ScilabVariableBrowser.getVariableBrowser();
 	}
 
 	/**

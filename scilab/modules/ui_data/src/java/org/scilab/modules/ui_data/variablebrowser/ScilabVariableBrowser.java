@@ -16,7 +16,7 @@ import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.localization.Messages;
+import org.scilab.modules.ui_data.utils.UiDataMessages;
 
 
 /**
@@ -37,9 +37,7 @@ public final class ScilabVariableBrowser extends ScilabWindow implements Variabl
 	 */
 	private ScilabVariableBrowser(String[] columnNames) {
 		super();
-		setTitle(Messages.gettext("Variable Browser"));
 		browserTab = new SwingScilabVariableBrowser(columnNames);
-		browserTab.setVisible(true);
 		browserTab.setCallback(ScilabCallBack
 				.createCallback("org.scilab.modules.ui_data.BrowseVar.closeVariableBrowser", ScilabCallBack.JAVA_OUT_OF_XCLICK_AND_XGETMOUSE));
 
@@ -76,7 +74,9 @@ public final class ScilabVariableBrowser extends ScilabWindow implements Variabl
 	public static VariableBrowser getVariableBrowser(String[] columnNames) {
 		if (instance == null) {
 			instance = new ScilabVariableBrowser(columnNames);
+			instance.setVisible(true);
 		}
+		browserTab.setName(UiDataMessages.VARIABLE_BROWSER);
 		return instance;
 	}
 
@@ -111,6 +111,14 @@ public final class ScilabVariableBrowser extends ScilabWindow implements Variabl
 	
 	public void updateRowFiltering() {
 		browserTab.updateRowFiltering();
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public void setVisible(boolean status) {
+		super.setVisible(status);
+		browserTab.setVisible(status);
 	}
 
 }
