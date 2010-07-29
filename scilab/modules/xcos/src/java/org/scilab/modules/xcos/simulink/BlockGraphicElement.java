@@ -32,7 +32,13 @@ public class BlockGraphicElement{
 		 */
 		BasicBlock base = into;
 		validate();
-		LOG.debug("Setting up graphics of:" + into.getInterfaceFunctionName());
+		//LOG.debug("Setting up graphics of:" + into.getInterfaceFunctionName());
+		/*
+		 * without this some blocks style weren't set properly
+		 */
+		if(base.getStyle().isEmpty()){
+			base.setStyle(into.getInterfaceFunctionName());
+		}
 		/*
 		 * fill the data
 		 */
@@ -40,6 +46,7 @@ public class BlockGraphicElement{
 		fillOrigin(from, base);
 		fillFlipAndRotation(from, base);
 		fillColors(from, base);
+		BlockPositioning.updateBlockView(into);
 		
 		return base;
 	}
@@ -67,33 +74,32 @@ public class BlockGraphicElement{
 	private void fillFlipAndRotation(SimulinkBlock from, BasicBlock into) {
 		// TODO: Check if compatibility pattern needed
 		// TODO: Add Flip handling
-		if(from.getParameter("BlockMirror") != null) {
-			if(from.getParameter("BlockMirror").equals("on")){
-				into.setFlip(true);
-				BlockPositioning.updateBlockView(into);
-				LOG.debug("true " + into.getFlip());
-			} else {
-				into.setFlip(false);
-				BlockPositioning.updateBlockView(into);
-				LOG.debug("false " + into.getFlip());
-			}
-		}
 		if(from.getParameter("Orientation") != null) {
 			/*
-			 * up, down, right
+			 * left, up, down, (else - right)
 			 */
 			if(from.getParameter("Orientation").equals("left")){
 				into.setAngle(180);
-				BlockPositioning.updateBlockView(into);
-				LOG.debug("true " + into.getAngle());
+				//LOG.debug("true " + into.getFlip());
 			} else if(from.getParameter("Orientation").equals("up")) {
 				into.setAngle(90);
-				BlockPositioning.updateBlockView(into);
-				LOG.debug("false " + into.getAngle());
+				//LOG.debug("false " + into.getAngle());
 			} else if(from.getParameter("Orientation").equals("down")) {
 				into.setAngle(240);
-				BlockPositioning.updateBlockView(into);
-				LOG.debug("false " + into.getAngle());
+				//LOG.debug("false " + into.getAngle());
+			} else {
+				into.setAngle(0);
+				into.setFlip(false);
+			}
+			
+			if(from.getParameter("BlockMirror") != null) {
+				if(from.getParameter("BlockMirror").equals("on")){
+					into.setFlip(true);
+					//LOG.debug("true " + into.getFlip());
+				} else {
+					into.setFlip(false);
+					//LOG.debug("false " + into.getFlip());
+				}
 			}
 		}
 		//into.setMirror(false);
