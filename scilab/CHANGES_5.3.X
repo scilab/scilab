@@ -24,6 +24,9 @@ Bug Fixes:
 
 * bug 7453 fixed - newfun() was broken after clearfun().
 
+* bug 7498 fixed - SPLIT_f were not always deleted when one of its connection
+                   were.
+
 * bug 7519 fixed - Help page of getcallbackobject() did not describe input argument.
 
 * bug 7611 fixed - The cross to close a subwindow and the little arrow to undock

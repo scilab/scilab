@@ -1186,7 +1186,7 @@ public class XcosDiagram extends ScilabGraph {
 				}
 				
 				if (target instanceof SplitBlock) {
-					removedCells.add(src);
+					removedCells.add(target);
 				}
 				
 			}
