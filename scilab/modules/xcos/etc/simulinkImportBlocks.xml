@@ -377,12 +377,10 @@
 			<simple sim="FunctionType" xcos="4"></simple>
 			<simple sim="BlockType" xcos="c"></simple>
 			<real xcos="exprs">
-				<map simName="1" index="0,0"/>
-				<map simName="1" index="1,0"/>
+				<map simName="Inputs" index="0,0"/> <!-- Inputs -->
 			</real>
 			<real xcos="ipar">
-				<map simName="1" index="0,0"/>
-				<map simName="1" index="1,0"/>
+				<map simName="Inputs" index="0,0"/> <!-- Inputs -->
 			</real>
 		</block>
 		<!-- FIXME: -->
@@ -393,13 +391,13 @@
 			<simple sim="FunctionType" xcos="4"></simple>
 			<simple sim="BlockType" xcos="c"></simple>
 			<real xcos="exprs">
-				<map simName="1" index="0,0"/><!-- Datatype -->
-				<map simName="1" index="1,0"/><!-- Number of inputs, sign vector -->
-				<map simName="0" index="2,0"/><!-- Do on overflowe -->
+				<map simName="OutDataTypeStr" index="0,0"/><!-- Datatype -->
+				<map simName="Inputs" index="1,0"/><!-- Number of inputs, sign vector -->
+				<map simName="SaturateOnIntegerOverflow" index="2,0"/><!-- Do on overflowe -->
 			</real>
 			<!-- FIXME: -->
 			<real xcos="ipar FIXME">
-				<map simName="2" index="0,0"/><!-- Number of inputs, sign vector -->
+				<map simName="Inputs" index="0,0"/><!-- Number of inputs, sign vector -->
 			</real>
 		</block>
 		<!-- FIXME: -->
@@ -410,12 +408,11 @@
 			<simple sim="FunctionType" xcos="4"></simple>
 			<simple sim="BlockType" xcos="c"></simple>
 			<real xcos="exprs">
-				<map simName="1" index="0,0"/>
-				<map simName="1" index="1,0"/>
+				<map simName="1" index="0,0"/><!-- Number of inputs -->
+				<map simName="1" index="1,0"/><!-- Initially connected input -->
 			</real>
-			<real xcos="rpar">
-				<map simName="1" index="0,0"/>
-				<map simName="1" index="1,0"/>
+			<real xcos="dstate">
+				<map simName="1" index="0,0"/> <!-- Initially connected input 0-based -->
 			</real>
 		</block>
 		
@@ -436,13 +433,13 @@
 			<simple sim="FunctionType" xcos="4"></simple>
 			<simple sim="BlockType" xcos="c"></simple>
 			<real xcos="exprs">
-				<map simName="2" index="0,0"/><!-- number of inputs -->
-				<map simName="1" index="1,0"/><!-- zero base indexind -->
-				<map simName="3" index="2,0"/><!-- rounding rule -->
+				<map simName="Inputs" index="0,0"/><!-- number of inputs -->
+				<map simName="1" index="1,0"/><!-- zero base indexind --> <!-- in matlab depracated -->
+				<map simName="RndMethod" index="2,0"/><!-- rounding rule -->
 			</real>
 			<real xcos="ipar">
 				<map simName="1" index="0,0"/> <!-- zero base indexind -->
-				<map simName="3" index="1,0"/> <!-- rounding rule -->
+				<map simName="RndMethod" index="1,0"/> <!-- rounding rule -->
 			</real>
 		</block>
 		
@@ -454,10 +451,10 @@
 			<simple sim="FunctionType" xcos="4"></simple>
 			<simple sim="BlockType" xcos="c"></simple>
 			<real xcos="exprs">
-				<map simName="1" index="0,0"/><!-- Number of input ports -->
+				<map simName="Inputs" index="0,0"/><!-- Number of input ports -->
 			</real>
 			<real xcos="ipar">
-				<map simName="1" index="0,0"/><!-- Number of input ports -->
+				<map simName="Inputs" index="0,0"/><!-- Number of input ports -->
 			</real>
 		</block>
 		<!-- FIXME: -->
@@ -468,10 +465,10 @@
 			<simple sim="FunctionType" xcos="4"></simple>
 			<simple sim="BlockType" xcos="c"></simple>
 			<real xcos="exprs">
-				<map simName="1" index="0,0"/><!-- Number of output ports -->
+				<map simName="Inputs" index="0,0"/><!-- Number of output ports -->
 			</real>
 			<real xcos="ipar">
-				<map simName="1" index="0,0"/><!-- Number of output ports -->
+				<map simName="Inputs" index="0,0"/><!-- Number of output ports -->
 			</real>
 		</block>
 
