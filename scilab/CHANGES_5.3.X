@@ -13,7 +13,7 @@ SciNotes:
 Editvar/Browsevar:
 ==================
 
-* bug 7610 fixed - browsevar(): The icons (left column) did not appear in the 
+* bug 7610 fixed - browsevar(): The icons (left column) did not appear in the
                    binary version (Linux & MacOSX).
 
 Bug Fixes:
@@ -22,6 +22,9 @@ Bug Fixes:
 * bug 7453 fixed - newfun() was broken after clearfun().
 
 * bug 7519 fixed - Help page of getcallbackobject() did not describe input argument.
+
+* bug 7611 fixed - The cross to close a subwindow and the little arrow to undock
+                   it was not visible even if the subwindow was docked.
 
 * bug 7615 fixed - When opening a SuperBlock, a non-blocking exception can be
                    thrown.
@@ -82,20 +85,20 @@ SciNotes:
 * bug 7586 fixed - ShortCut for 'Save' action was missing in SciNotes.
 
 * bug 7590 fixed - In SciNotes, there was a bad organization of
-                   "Split..." and "Line Numbering..." menus. 
+                   "Split..." and "Line Numbering..." menus.
 
 * bug 7595 fixed - In SciNotes, a string was broken if '..' was encountered.
 
 File input/output:
 ==================
 
-* Rewrite 'mputl' as a built-in function for speed improvements. 
+* Rewrite 'mputl' as a built-in function for speed improvements.
 
 
 Window Management:
 ==================
 
-* If a subwindow is not docked, it is not possible to close a subwindow with 
+* If a subwindow is not docked, it is not possible to close a subwindow with
 its own "cross" anymore.
 
 * bugs 7572, 5519 fixed - The cross in the dockbar was confusing when a window
@@ -113,7 +116,7 @@ Editvar/Browsevar:
 * bug 7330 fixed - browsevar() called editvar() even if the latter did not
                    handle the variable type.
 
-* bug 7332 fixed - browsevar(): When checked booleans were hidden and unchecked 
+* bug 7332 fixed - browsevar(): When checked booleans were hidden and unchecked
                    booleans were displayed, the "boolean" menu was reversed.
 
 * bug 7333 fixed - browsevar(): The type of global variables had weird values.
@@ -142,7 +145,7 @@ Xcos:
 
 * bug 7483 fixed - A wrong id block could lead to unopenable files.
 
-* bug 7520 fixed - The Xcos context was not translated from parent diagram to 
+* bug 7520 fixed - The Xcos context was not translated from parent diagram to
                    child one.
 
 * bug 7529 fixed - Using the Xcos block help from the palette froze Scilab.
@@ -166,7 +169,7 @@ Xcos:
 
 * bug 7571 fixed - The mirror state of a block was not saved on a diagram.
 
-* bug 7574 fixed - The Xcos diagram configuration settings did not work with 
+* bug 7574 fixed - The Xcos diagram configuration settings did not work with
                    exponential values.
 
 * bug 7588 fixed - When Xcos palettes had been installed in Scilab, they were not
@@ -184,7 +187,7 @@ Compilation:
 Bug Fixes:
 ==========
 
-* bug 3842 fixed - "native" and "double" evaluation modes added to the sum, 
+* bug 3842 fixed - "native" and "double" evaluation modes added to the sum,
                    cumsum, prod and cumprod functions
                    For more information, see the SEP #46.
 
@@ -217,7 +220,7 @@ Bug Fixes:
 
 * bug 7286 fixed - On some platforms, eps export of NaN values was buggy.
 
-* bug 7371 fixed - Documentation about cell did not precise that the value 
+* bug 7371 fixed - Documentation about cell did not precise that the value
                    returned by A.dims could not be used as a subscript.
 
 * bug 7374 fixed - If Scilab was launched via another Scilab, TMPDIR was badly
@@ -232,7 +235,7 @@ Bug Fixes:
 
 * bug 7441 fixed - The history browser crashed if the language was changed.
 
-* bug 7443 fixed - The number of arguments of the "title", "xlabel", "ylabel" 
+* bug 7443 fixed - The number of arguments of the "title", "xlabel", "ylabel"
                    and "zlabel" macros were incorrectly checked.
 
 * bug 7457 fixed - Under GNU/Linux and Mac OS, the datatip mode icon was
@@ -252,7 +255,7 @@ Bug Fixes:
 
 * bug 7514 fixed - Some demo files were broken due to changes in x_mdialog function.
 
-* bug 7566 fixed - The cacsd module graphic functions (bode, black, nyquist,...) 
+* bug 7566 fixed - The cacsd module graphic functions (bode, black, nyquist,...)
                    did not preserve the immediate_drawing property value.
 
 * bug 7568 fixed - In the completion window, an exception was thrown when an
