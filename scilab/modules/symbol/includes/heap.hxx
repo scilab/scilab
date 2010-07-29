@@ -198,7 +198,7 @@ namespace symbol
         */
         void createEmptyGlobalValue(const wstring& key)
         {
-            setGlobalValue(key, *new Double(0, 0));
+            setGlobalValue(key, *Double::Empty());
         }
 
 

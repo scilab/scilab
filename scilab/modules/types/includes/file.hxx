@@ -25,6 +25,7 @@ namespace types
 
         void                        setFileMode(wstring _pstMode);
         wstring&                    getFileMode();
+        double                      getFileModeAsDouble();
 
         void                        setFileDesc(FILE* _fileDesc);
         FILE*                       getFiledesc();
@@ -34,6 +35,7 @@ namespace types
 
         void                        setFileType(int _iType);
         int                         getFileType();
+        wstring                     getFileTypeAsString();
 
         void                        setFilename(wstring _stFilename);
         wstring                     getFilename();

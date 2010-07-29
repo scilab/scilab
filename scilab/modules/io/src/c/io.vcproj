@@ -392,10 +392,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_file.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_getenv.c"
 				>
 			</File>

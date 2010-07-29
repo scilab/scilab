@@ -24,6 +24,7 @@ namespace types
     {
     public :
                                 String(int _iRows, int _iCols);
+                                String(int _iRows, int _iCols, wchar_t** _pstData);
                                 String(const wchar_t *_pstData);
                             	String(const char *_pstData);
         virtual                 ~String();

@@ -74,6 +74,7 @@ int mopen(wchar_t* _pstFilename, wchar_t* _pstMode, int _iSwap, int* _piID)
     types::File* pFile = new types::File();
     pFile->setFileDesc(pF);
     pFile->setFilename(_pstFilename);
+    pFile->setFileType(2); //hard coded value for file opened by C/C++ fopen functions
     pFile->setFileMode(_pstMode);
     pFile->setFileSwap(_iSwap);
 

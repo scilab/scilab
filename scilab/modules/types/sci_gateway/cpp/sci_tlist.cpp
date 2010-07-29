@@ -66,7 +66,7 @@ Function::ReturnValue sci_tlist(typed_list &in, int _piRetCount, typed_list &out
     //fill empty field with []
     while(pRetVal->size_get() < pS->size_get())
     {
-        pRetVal->append(new Double(0,0));
+        pRetVal->append(Double::Empty());
     }
 
     out.push_back(pRetVal);

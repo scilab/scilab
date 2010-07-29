@@ -44,7 +44,7 @@ namespace types
 
         m_plData = new InternalType*[size_get()];
 
-        Double* pEmpty = new Double(0,0);
+        Double* pEmpty = Double::Empty();
         for(int i = 0 ; i < size_get() ; i++)
         {
             pEmpty->IncreaseRef();
@@ -262,7 +262,7 @@ namespace types
         {
             for(int j = 0 ; j < _iNewCols ; j++)
             {
-                pIT[j * _iNewRows + i] = new Double(0,0);
+                pIT[j * _iNewRows + i] = Double::Empty();
             }
         }
 

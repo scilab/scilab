@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -27,7 +27,7 @@
 			>
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit&#x0D;&#x0A;"
+				BuildCommandLine="&quot;$(SolutionDir)bin\YaSp.exe&quot; -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit&#x0D;&#x0A;"
 				ReBuildCommandLine="IF EXIST &quot;$(SolutionDir)locale&quot; rmdir /s /q  &quot;$(SolutionDir)locale&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit&#x0D;&#x0A;"
 				CleanCommandLine="rmdir /s /q  &quot;$(SolutionDir)locale&quot;"
 				Output=""
@@ -47,7 +47,7 @@
 			>
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit&#x0D;&#x0A;"
+				BuildCommandLine="&quot;$(SolutionDir)bin\YaSp.exe&quot; -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit&#x0D;&#x0A;"
 				ReBuildCommandLine="IF EXIST &quot;$(SolutionDir)locale&quot; rmdir /s /q  &quot;$(SolutionDir)locale&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit&#x0D;&#x0A;"
 				CleanCommandLine="rmdir /s /q  &quot;$(SolutionDir)locale&quot;"
 				Output=""
@@ -67,7 +67,7 @@
 			>
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit&#x0D;&#x0A;"
+				BuildCommandLine="&quot;$(SolutionDir)bin\YaSp.exe&quot; -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit&#x0D;&#x0A;"
 				ReBuildCommandLine="IF EXIST &quot;$(SolutionDir)locale&quot; rmdir /s /q  &quot;$(SolutionDir)locale&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit&#x0D;&#x0A;"
 				CleanCommandLine="rmdir /s /q  &quot;$(SolutionDir)locale&quot;"
 				Output=""
@@ -87,7 +87,7 @@
 			>
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit&#x0D;&#x0A;"
+				BuildCommandLine="&quot;$(SolutionDir)bin\YaSp.exe&quot; -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit&#x0D;&#x0A;"
 				ReBuildCommandLine="IF EXIST &quot;$(SolutionDir)locale&quot; rmdir /s /q  &quot;$(SolutionDir)locale&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit&#x0D;&#x0A;"
 				CleanCommandLine="rmdir /s /q  &quot;$(SolutionDir)locale&quot;"
 				Output=""

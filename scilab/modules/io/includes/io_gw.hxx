@@ -29,5 +29,6 @@ public :
 
 #endif /* __IO_GW_HXX__ */
 
-Function::ReturnValue sci_load(types::typed_list &in, int _iRetCount, types::typed_list &out);
-Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::typed_list &out);
+CPP_GATEWAY_PROTOTYPE(sci_load);
+CPP_GATEWAY_PROTOTYPE(sci_genlib);
+CPP_GATEWAY_PROTOTYPE(sci_file);

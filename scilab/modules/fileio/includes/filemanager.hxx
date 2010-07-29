@@ -34,6 +34,12 @@ public :
     static int                  getCurrentFile();
     static int                  addFile(File* _file);
     static void                 deleteFile(int _iID);
+    static int                  getOpenedCount();
+    static wchar_t**            getTypesAsString();
+    static wchar_t**            getFilenames();
+    static double*              getModes();
+    static double*              getSwaps();
+    static int*                 getIDs();
 
 private :
     static std::vector<File*>   m_fileList;

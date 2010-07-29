@@ -11,6 +11,7 @@
 */
 
 #include "filemanager.hxx"
+#include "os_wcsdup.h"
 
 std::vector<types::File*> FileManager::m_fileList;
 int FileManager::m_iCurrentFile = -1;
@@ -112,3 +113,102 @@ int FileManager::getCurrentFile()
 {
     return m_iCurrentFile;
 }
+
+int* FileManager::getIDs()
+{
+    int iFileIndex  = 0;
+    int* piIds       = NULL;
+
+    piIds = new int[getOpenedCount()];
+    for(int i = 0 ; i < m_fileList.size() ; i++)
+    {
+        if(m_fileList[i] != NULL)
+        {
+            piIds[iFileIndex++] = i + 1;
+        }
+    }
+
+    return piIds;
+}
+
+int FileManager::getOpenedCount()
+{
+    int iCount = 0;
+    for(int i = 0 ; i < m_fileList.size() ; i++)
+    {
+        if(m_fileList[i] != NULL)
+        {
+            iCount++;
+        }
+    }
+    return iCount;
+}
+
+wchar_t** FileManager::getTypesAsString()
+{
+    int iFileIndex      = 0;
+    wchar_t** pstTypes  = NULL;
+
+    pstTypes = new wchar_t*[getOpenedCount()];
+    for(int i = 0 ; i < m_fileList.size() ; i++)
+    {
+        if(m_fileList[i] != NULL)
+        {
+            pstTypes[iFileIndex++] = os_wcsdup(m_fileList[i]->getFileTypeAsString().c_str());
+        }
+    }
+
+    return pstTypes;
+}
+
+wchar_t** FileManager::getFilenames()
+{
+    int iFileIndex          = 0;
+    wchar_t** pstFilenames  = NULL;
+
+    pstFilenames = new wchar_t*[getOpenedCount()];
+    for(int i = 0 ; i < m_fileList.size() ; i++)
+    {
+        if(m_fileList[i] != NULL)
+        {
+            pstFilenames[iFileIndex++] = os_wcsdup(m_fileList[i]->getFilename().c_str());
+        }
+    }
+
+    return pstFilenames;
+}
+
+double* FileManager::getModes()
+{
+    int iFileIndex      = 0;
+    double* pdblModes   = NULL;
+
+    pdblModes = new double[getOpenedCount()];
+    for(int i = 0 ; i < m_fileList.size() ; i++)
+    {
+        if(m_fileList[i] != NULL)
+        {
+            pdblModes[iFileIndex++] = m_fileList[i]->getFileModeAsDouble();
+        }
+    }
+
+    return pdblModes;
+}
+
+double* FileManager::getSwaps()
+{
+    int iFileIndex      = 0;
+    double* pdblSwaps   = NULL;
+
+    pdblSwaps = new double[getOpenedCount()];
+    for(int i = 0 ; i < m_fileList.size() ; i++)
+    {
+        if(m_fileList[i] != NULL)
+        {
+            pdblSwaps[iFileIndex++] = static_cast<double>(m_fileList[i]->getFileSwap());
+        }
+    }
+
+    return pdblSwaps;
+}
+

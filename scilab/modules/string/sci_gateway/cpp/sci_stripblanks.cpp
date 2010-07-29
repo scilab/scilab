@@ -76,7 +76,7 @@ types::Function::ReturnValue sci_stripblanks(types::typed_list &in, int _iRetCou
                 return Function::Error;
             }
 
-            out.push_back(new Double(0,0));
+            out.push_back(Double::Empty());
         }
         break;
     default:

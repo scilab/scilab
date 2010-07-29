@@ -48,6 +48,39 @@ namespace types
         return m_pstMode;
     }
 
+    double File::getFileModeAsDouble()
+    {
+        double dblMode  = 0;
+        double dblPlus  = 0;
+        double dblBin   = 0;
+
+        for(int i = 0 ; i < wcslen(m_pstMode.c_str()) ; i++)
+        {
+            if(m_pstMode[i] == L'r')
+            {
+                dblMode = 1;
+            }
+            else if(m_pstMode[i] == L'w')
+            {
+                dblMode = 2;
+            }
+            else if(m_pstMode[i] == L'a')
+            {
+                dblMode = 3;
+            }
+            else if(m_pstMode[i] == L'+')
+            {
+                dblPlus = 1;
+            }
+            else if(m_pstMode[i] == L'b')
+            {
+                dblBin = 1;
+            }
+        }
+        //hummm beautifull thing ....
+        return 100 * dblMode + 10 * dblPlus + dblBin;
+    }
+
     void File::setFileSwap(int _iSwap)
     {
         m_iSwap = _iSwap;
@@ -66,6 +99,22 @@ namespace types
     int File::getFileType()
     {
         return m_iType;
+    }
+
+    wstring File::getFileTypeAsString()
+    {
+        switch(getFileType())
+        {
+        case 1 : 
+            return L"F";
+            break;
+        case 2 : 
+            return L"C";
+            break;
+        default :
+            return L"Error";
+            break;
+        }
     }
 
     void File::setFilename(wstring _stFilename)

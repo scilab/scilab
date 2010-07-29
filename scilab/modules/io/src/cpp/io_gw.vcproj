@@ -333,6 +333,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\cpp\sci_file.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\cpp\sci_genlib.cpp"
 				>
 			</File>

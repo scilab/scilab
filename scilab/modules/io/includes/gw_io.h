@@ -22,7 +22,6 @@ IO_IMPEXP int gw_io(void);
 //YaSp
 IO_IMPEXP int sci_getenv(char *fname, int* _piKey);
 IO_IMPEXP int sci_setenv(char *fname, int* _piKey);
-IO_IMPEXP int sci_file(char *fname, int* _piKey);
 //IO_IMPEXP int sci_load(char *fname, int* _piKey); Now in C++ in io_gw/sci_gateway/cpp/sci_load.cpp
 
 int sci_read(char *fname,unsigned long fname_len);

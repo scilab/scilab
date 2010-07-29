@@ -34,7 +34,7 @@ int DivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDouble
 	if(_pDouble1->size_get() == 0 || _pDouble2->size_get() == 0)
 	{
 		//return an empty matrix of double
-		*_pDoubleOut	= new Double(0,0);
+		*_pDoubleOut	= Double::Empty();
 	}
 	else if(bScalar2)
 	{//[] / x

@@ -60,7 +60,7 @@ Function::ReturnValue sci_grep(typed_list &in, int _piRetCount, typed_list &out)
 
     if(in[0]->getType() == InternalType::RealDouble && in[0]->getAsDouble()->size_get() == 0)
     {
-        Double *pD = new Double(0,0);
+        Double *pD = Double::Empty();
         out.push_back(pD);
         return Function::OK;
     }

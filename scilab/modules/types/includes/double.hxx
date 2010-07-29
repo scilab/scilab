@@ -29,6 +29,7 @@ namespace types
                                     Double(int _iRows, int _iCols, bool _bComplex = false);
                                     Double(int _iRows, int _iCols, double **_pdblReal);
                                     Double(int _iRows, int _iCols, double **_pdblReal, double **_pdblImg);
+        static Double*              Empty();
 
         /*data management*/
         GenericType*                get_col_value(int _iPos);
@@ -38,6 +39,7 @@ namespace types
         double                      img_get(int _iRows, int _iCols) const;
 
         bool                        real_set(double *_pdblReal);
+        bool                        real_set(int* _piReal); //to translate int to double matrix
         bool                        img_set(double *_pdblImg);
 
         bool                        val_set(int _iRows, int _iCols, double _dblReal);

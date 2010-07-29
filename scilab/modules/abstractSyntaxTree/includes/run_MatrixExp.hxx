@@ -36,7 +36,7 @@ void visitprivate(const MatrixExp &e)
         //store all element after evaluation
         if(e.lines_get().size() == 0)
         {
-            poResult = new Double(0,0);
+            poResult = Double::Empty();
         }
         else
         {

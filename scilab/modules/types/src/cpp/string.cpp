@@ -53,6 +53,11 @@ namespace types
 		CreateString(_iRows, _iCols);
 	}
 
+    String::String(int _iRows, int _iCols, wchar_t** _pstData)
+    {
+
+    }
+
 	String *String::clone()
 	{
 	  String *pstClone = new String(rows_get(), cols_get());
@@ -243,13 +248,13 @@ namespace types
 				{//Max length, new line
 					if(iLastVal + 1 == i)
 					{
-						cout << endl << L"       column " << iLastVal + 1 << endl << endl;
+						ostr << endl << L"       column " << iLastVal + 1 << endl << endl;
 					}
 					else
 					{
-						cout << endl << L"       column " << iLastVal + 1 << L" to " << i << endl << endl;
+						ostr << endl << L"       column " << iLastVal + 1 << L" to " << i << endl << endl;
 					}
-					wcout << ostemp.str() << L"!" << endl;
+					ostr << ostemp.str() << L"!" << endl;
 					ostemp.str(L"");
 					iLastVal = i;
 				}
@@ -262,7 +267,7 @@ namespace types
 			{
 				if(iLastVal + 1 == m_iCols)
 				{
-					cout << endl << L"       column " << iLastVal + 1 << endl << endl;
+					ostr << endl << L"       column " << iLastVal + 1 << endl << endl;
 				}
 				else
 				{

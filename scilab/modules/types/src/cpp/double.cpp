@@ -25,7 +25,12 @@ using namespace std;
 
 namespace types
 {
-	/*------------*/
+    Double* Double::Empty()
+    {
+        return new Double(0,0);
+    }
+
+    /*------------*/
 	/*	~Double		*/
 	/*------------*/
 	Double::~Double()
@@ -197,7 +202,7 @@ namespace types
 	}
 
 	/*------------*/
-	/*	real_set	*/
+	/*	real_set  */
 	/*------------*/
 	bool Double::real_set(double *_pdblReal)
 	{
@@ -215,6 +220,31 @@ namespace types
 
 		return true;
 	}
+
+	/*------------*/
+	/*	real_set  */
+	/*------------*/
+    bool Double::real_set(int* _piReal)
+    {
+		if(_piReal != NULL)
+		{
+			if(m_pdblReal == NULL)
+			{
+				m_pdblReal = new double[m_iSize];
+			}
+
+            for(int i = 0 ; i < m_iSize ; i++)
+            {
+                m_pdblReal[i] = static_cast<double>(_piReal[i]);
+            }
+		}
+		else
+        {
+			return false;
+        }
+
+		return true;
+    }
 
 	/*------------*/
 	/*	real_get	*/
