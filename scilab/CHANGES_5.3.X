@@ -21,6 +21,8 @@ Bug Fixes:
 
 * bug 7453 fixed - newfun() was broken after clearfun().
 
+* bug 7519 fixed - Help page of getcallbackobject() did not describe input argument.
+
 * bug 7615 fixed - When opening a SuperBlock, a non-blocking exception can be
                    thrown.
 
