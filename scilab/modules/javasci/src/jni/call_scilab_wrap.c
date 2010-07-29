@@ -939,12 +939,12 @@ SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_
   }
   result = (double *)getDouble(arg1,arg2,arg3);
   {
-    jclass dblArr = (*jenv)->FindClass(jenv, "[D");
+    jclass doubleArr = (*jenv)->FindClass(jenv, "[D");
     int i,j;
-    jresult = (*jenv)->NewObjectArray(jenv, nbRow, dblArr, NULL);
+    jresult = (*jenv)->NewObjectArray(jenv, nbRow,doubleArr, NULL);
     
     for (i=0; i < nbRow; i++) {
-      double array[nbCol];
+      jdouble array[nbCol];
       jdoubleArray jarray = (*jenv)->NewDoubleArray(jenv, nbCol);
       if (jarray == NULL) {
         printf("Could not allocate\n");fflush(NULL);
@@ -1000,7 +1000,7 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putDoubl
         arg4 = (*jenv)->GetArrayLength(jenv, oneDim);
         arg2 = (double*)malloc(sizeof(double)*arg3*arg4);
       }
-      jdouble *element=(*jenv)->GetDoubleArrayElements(jenv, oneDim, 0);
+      jdouble*element=(*jenv)->GetDoubleArrayElements(jenv, oneDim, 0);
       
       for(j=0; j<arg4; j++) {
         arg2[j*arg3+i]=element[j];
@@ -1009,6 +1009,107 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putDoubl
     
   }
   result = (int)putDouble(arg1,arg2,arg3,arg4);
+  jresult = (jint)result; 
+  {
+    // Specific target because it was freeing the wrong argument
+  }
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+  return jresult;
+}
+
+
+SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_getBoolean(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jobjectArray jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  int *arg2 = (int *) 0 ;
+  int *arg3 = (int *) 0 ;
+  int nbRow ;
+  int nbCol ;
+  BOOL *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  {
+    arg2 = &nbRow;
+    arg3 = &nbCol;
+    arg1 = 0;
+    if (jarg1) {
+      arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+      if (!arg1) return 0;
+    }
+  }
+  result = (BOOL *)getBoolean(arg1,arg2,arg3);
+  {
+    jclass BOOLArr = (*jenv)->FindClass(jenv, "[Z");
+    int i,j;
+    jresult = (*jenv)->NewObjectArray(jenv, nbRow,BOOLArr, NULL);
+    
+    for (i=0; i < nbRow; i++) {
+      jboolean array[nbCol];
+      jbooleanArray jarray = (*jenv)->NewBooleanArray(jenv, nbCol);
+      if (jarray == NULL) {
+        printf("Could not allocate\n");fflush(NULL);
+      }
+      
+      for (j=0; j < nbCol; j++) {
+        /* Scilab is storing matrice cols by cols while Java is doing it
+                       row by row. Therefor, we need to convert it */
+        array[j]=result[nbRow*j+i];
+      }
+      
+      (*jenv)->SetBooleanArrayRegion(jenv, jarray, 0, nbCol, array);
+      
+      (*jenv)->SetObjectArrayElement(jenv, jresult, i, jarray);
+      
+      (*jenv)->DeleteLocalRef(jenv, jarray);
+      
+    }
+    
+    
+    if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+    free(result);
+    
+  }
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putBoolean(JNIEnv *jenv, jclass jcls, jstring jarg1, jobjectArray jarg2) {
+  jint jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  BOOL *arg2 ;
+  int arg3 ;
+  int arg4 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return 0;
+  }
+  {
+    // Convert the BOOL[][] => BOOL *
+    arg3 = (*jenv)->GetArrayLength(jenv, jarg2);
+    arg4 = 0;
+    int i=0, j=0;
+    for(i=0; i<arg3; i++) {
+      jbooleanArray oneDim=(jbooleanArray)(*jenv)->GetObjectArrayElement(jenv, jarg2, i);
+      if (arg4==0) {
+        /* First time we are here, init + create the array where we store the data */
+        arg4 = (*jenv)->GetArrayLength(jenv, oneDim);
+        arg2 = (BOOL*)malloc(sizeof(BOOL)*arg3*arg4);
+      }
+      jboolean*element=(*jenv)->GetBooleanArrayElements(jenv, oneDim, 0);
+      
+      for(j=0; j<arg4; j++) {
+        arg2[j*arg3+i]=element[j];
+      }
+    }
+    
+  }
+  result = (int)putBoolean(arg1,arg2,arg3,arg4);
   jresult = (jint)result; 
   {
     // Specific target because it was freeing the wrong argument

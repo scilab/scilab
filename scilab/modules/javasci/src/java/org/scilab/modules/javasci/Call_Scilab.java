@@ -60,6 +60,14 @@ public class Call_Scilab {
     return Call_ScilabJNI.putDouble(variableName, variable);
   }
 
+  public static boolean[][] getBoolean(String variableName) {
+    return Call_ScilabJNI.getBoolean(variableName);
+  }
+
+  public static int putBoolean(String variableName, boolean[][] variable) {
+    return Call_ScilabJNI.putBoolean(variableName, variable);
+  }
+
   public static int putDoubleComplex(String variableName, double[][] variable, double[][] variableImg, int nbRow, int nbCol) {
     return Call_ScilabJNI.putDoubleComplex(variableName, variable, variableImg, nbRow, nbCol);
   }

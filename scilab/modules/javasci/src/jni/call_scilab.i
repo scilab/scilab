@@ -27,8 +27,7 @@
 #include "../../../core/includes/sci_types.h"
 %}
 %include "../../../jvm/src/jni/scilab_typemaps.i"
-%include "call_scilab_java_typemaps.i"
-//%include "../../../core/includes/sci_types.h"
+
 %import "../../../types/src/jni/sci_types.i"
 
 #ifdef SWIGJAVA
@@ -112,8 +111,15 @@ sci_types getVariableType(char *varname);
 
 //int putInteger(char * variableName, int **variable, int nbRow, int nbCol);
 
+// This position matters. It will apply only to the following lines
+%include "call_scilab_java_typemaps.i"
+
 double * getDouble(char *variableName, int *nbRow, int *nbCol);
 
 int putDouble(char * variableName, double variable[], int nbRow, int nbCol);
+
+BOOL * getBoolean(char *variableName, int *nbRow, int *nbCol);
+
+int putBoolean(char * variableName, BOOL variable[], int nbRow, int nbCol);
 
 int putDoubleComplex(char * variableName, double variable[], double variableImg[], int nbRow, int nbCol);
