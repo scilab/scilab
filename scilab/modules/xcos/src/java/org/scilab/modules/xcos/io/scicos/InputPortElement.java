@@ -139,9 +139,17 @@ public class InputPortElement extends AbstractElement<InputPort> {
 		final int[] indexes = getIndexes(alreadyDecodedCount, isColumnDominant);
 		final String[][] inimpl = inImplicit.getData();
 		
-		if (inimpl[indexes[0]][indexes[1]].equals(EXPLICIT)) {
+		// can we safely access the indexed data ?
+		final boolean isSet = indexes[0] < inimpl.length
+				&& indexes[1] < inimpl[indexes[0]].length;
+		
+		/*
+		 * when the type is set, create a new port instance; create an explicit
+		 * typed port otherwise.
+		 */
+		if (isSet && inimpl[indexes[0]][indexes[1]].equals(EXPLICIT)) {
 			ret = new ExplicitInputPort();
-		} else if (inimpl[indexes[0]][indexes[1]].equals(IMPLICIT)) {
+		} else if (isSet && inimpl[indexes[0]][indexes[1]].equals(IMPLICIT)) {
 			ret = new ImplicitInputPort();
 		} else {
 			// when not specified, use explicit
