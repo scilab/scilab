@@ -32,7 +32,7 @@ Bug Fixes:
 * bug 7611 fixed - The cross to close a subwindow and the little arrow to undock
                    it was not visible even if the subwindow was docked.
 
-* bug 7615 fixed - When opening a SuperBlock, a non-blocking exception can be
+* bug 7615 fixed - When opening a SuperBlock, a non-blocking exception could be
                    thrown.
 
 * bug 7617 fixed - Editvar did not have any menu bar.
@@ -44,6 +44,9 @@ Bug Fixes:
                    when not typed.
 
 * bug 7631 fixed - On Xcos, using xcosPalAdd modified the user palatte.xml file.
+
+* bug 7636 fixed - The SUPER_f internal diagram was not coherent with the block
+                   external view.
 
          Changes between version 5.3.0-beta-1 and 5.3.0-beta-2 of Scilab
          ===============================================================
