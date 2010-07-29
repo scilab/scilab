@@ -10,6 +10,12 @@ SciNotes:
 
 * bug 7623 fixed - "Evaluate Selection" evaluated the selection with one added char.
 
+Editvar/Browsevar:
+==================
+
+* bug 7610 fixed - browsevar(): The icons (left column) did not appear in the 
+                   binary version (Linux & MacOSX).
+
 Bug Fixes:
 ==========
 

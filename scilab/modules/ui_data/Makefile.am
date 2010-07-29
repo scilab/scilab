@@ -106,6 +106,20 @@ $(top_builddir)/modules/output_stream/libscioutput_stream.la
 libsciui_data_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciui_data_la_sci_gateway_DATA = sci_gateway/ui_data_gateway.xml
 
+#### ui_data : icons files ####
+libsciui_data_la_iconsdir=$(mydatadir)/
+nobase_libsciui_data_la_icons_DATA = images/icons/tp00.gif \
+images/icons/tp01.gif \
+images/icons/tp02.gif \
+images/icons/tp04.gif \
+images/icons/tp05.gif \
+images/icons/tp06.gif \
+images/icons/tp08.gif \
+images/icons/tp10.gif \
+images/icons/tp15.gif \
+images/icons/tp16.gif \
+images/icons/tp17.gif
+
 if GUI
 USEANT=1
 endif
