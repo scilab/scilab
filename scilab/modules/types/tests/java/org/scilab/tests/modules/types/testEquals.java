@@ -84,6 +84,8 @@ public class testEquals {
         assert bMatrix.equals(aMatrix) == true;
         assert cMatrix.equals(aMatrix) == false;
         assert Arrays.deepEquals(aMatrix.getData(), bMatrix.getData()) == true;
+        assert aMatrix.toString().equals("[%t, %f, %t ; %t, %t, %t]") == true;
+        assert cMatrix.toString().equals("[%t, %f ; %f, %t]") == true;
     }
 
 	@Test
