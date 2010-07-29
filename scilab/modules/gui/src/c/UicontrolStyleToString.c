@@ -40,6 +40,8 @@ char * UicontrolStyleToString(int style)
       return "imagerender";
     case SCI_UITABLE:
       return "uitable";
+    case SCI_UIDISPLAYTREE:
+      return "uidisplaytree";
     default:
       return "Unknown";
     }

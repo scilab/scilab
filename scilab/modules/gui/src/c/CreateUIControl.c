@@ -167,6 +167,10 @@ sciPointObj * CreateUIControl(char *style)
       createUiTable((sciPointObj *) pobj);
       pUICONTROL_FEATURE (pobj)->style = SCI_UITABLE;
     }
+  else if (strcmp(style,"uidisplaytree")==0)
+    {
+      pUICONTROL_FEATURE (pobj)->style = SCI_UIDISPLAYTREE;
+    }
   else
     {
       sciprint(_("%s: Could not create uicontrol of type %s."), "CreateUIControl", style);
