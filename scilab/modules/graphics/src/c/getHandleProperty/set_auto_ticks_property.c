@@ -31,6 +31,7 @@
 #include "localization.h"
 
 #include "setGraphicObjectProperty.h"
+#include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
@@ -40,6 +41,7 @@ int set_auto_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueT
   BOOL autoTicks;
   char ** values;
   int mSize = nbRow*nbCol;
+  
   char* axesAutoTicksPropertiesNames[3] = {__GO_X_AXIS_AUTO_TICKS__, __GO_Y_AXIS_AUTO_TICKS__, __GO_Z_AXIS_AUTO_TICKS__};
 
   if ( !isParameterStringMatrix( valueType ) )
@@ -75,8 +77,6 @@ int set_auto_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueT
       return SET_PROPERTY_ERROR ; ;
     }
 
-    int autoTicksTab[3];
-
     status[0] = setGraphicObjectProperty(pobj->UID, axesAutoTicksPropertiesNames[0], &autoTicks, jni_bool, 1);
     status[1] = setGraphicObjectProperty(pobj->UID, axesAutoTicksPropertiesNames[1], &autoTicks, jni_bool, 1);
     status[2] = setGraphicObjectProperty(pobj->UID, axesAutoTicksPropertiesNames[2], &autoTicks, jni_bool, 1);
@@ -106,10 +106,10 @@ int set_auto_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueT
 
     autoTicks[0] = *tmp;
 
-    tmp = (int*) getGraphicObjectProperty(pobj->UID, axesAutoTicksPropertiesNames[1]);
+    tmp = (int*) getGraphicObjectProperty(pobj->UID, axesAutoTicksPropertiesNames[1], jni_bool);
     autoTicks[1] = *tmp;
 
-    tmp = (int*) getGraphicObjectProperty(pobj->UID, axesAutoTicksPropertiesNames[2]);
+    tmp = (int*) getGraphicObjectProperty(pobj->UID, axesAutoTicksPropertiesNames[2], jni_bool);
     autoTicks[2] = *tmp;
 
     for ( i = 0; i < mSize; i++ )

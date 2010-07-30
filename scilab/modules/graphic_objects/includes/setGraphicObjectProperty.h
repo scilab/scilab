@@ -13,6 +13,8 @@
 #ifndef __SETGRAPHICOBJECTPROPERTY_H__
 #define __SETGRAPHICOBJECTPROPERTY_H__
 
+#include <stdlib.h>
+
 #include "BOOL.h"
 
 #include "returnType.h"

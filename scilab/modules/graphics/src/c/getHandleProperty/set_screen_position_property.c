@@ -35,7 +35,9 @@ int set_screen_position_property( sciPointObj * pobj, size_t stackPointer, int v
 {
   double * values;
   BOOL status;
- 
+  int intValues[2];
+
+
   if ( !isParameterDoubleMatrix( valueType ) )
   {
     Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "screen_position");
@@ -57,8 +59,6 @@ int set_screen_position_property( sciPointObj * pobj, size_t stackPointer, int v
     return SET_PROPERTY_ERROR ;
   }
 #endif
-
-  int intValues[2];
 
   intValues[0] = (int)values[0];
   intValues[1] = (int)values[1];

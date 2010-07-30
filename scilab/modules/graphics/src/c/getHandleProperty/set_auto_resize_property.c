@@ -34,6 +34,7 @@
 /*------------------------------------------------------------------------*/
 int set_auto_resize_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
+    BOOL result = FALSE;
     int b =  (int)FALSE;
     int status = 0;
 
@@ -46,9 +47,12 @@ int set_auto_resize_property( sciPointObj * pobj, size_t stackPointer, int value
 #endif
 
     b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "auto_resize");
-    if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
+    if(b == NOT_A_BOOLEAN_VALUE)
+    {
+        return SET_PROPERTY_ERROR;
+    }
 
-    BOOL result = setGraphicObjectProperty(pobj->UID, __GO_AUTORESIZE__, &b, jni_bool, 1);
+    result = setGraphicObjectProperty(pobj->UID, __GO_AUTORESIZE__, &b, jni_bool, 1);
 
     if (result == TRUE)
     {

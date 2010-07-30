@@ -13,6 +13,8 @@
 #ifndef __GETGRAPHICOBJECTPROPERTY_H__
 #define __GETGRAPHICOBJECTPROPERTY_H__
 
+#include <stdlib.h>
+
 #include "returnType.h"
 #include "dynlib_graphic_objects.h"
 

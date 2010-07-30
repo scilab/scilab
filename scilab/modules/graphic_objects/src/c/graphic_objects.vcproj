@@ -380,6 +380,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\dataModel.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\deleteGraphicObject.cpp"
 				>
 			</File>
