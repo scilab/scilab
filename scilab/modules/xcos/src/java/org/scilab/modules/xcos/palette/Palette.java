@@ -270,7 +270,7 @@ if (next.toString().equals(path[categoryCounter])
 		if (node == null) {
 			throw new RuntimeException(String.format(
 					WRONG_INPUT_ARGUMENT_S_INVALID_TREE_PATH, NAME));
-		} else if (node instanceof PreLoaded) {
+		} else if (node instanceof PreLoaded && !(node instanceof PreLoaded.Dynamic)) {
 			throw new RuntimeException(String.format(
 					WRONG_INPUT_ARGUMENT_S_INVALID_NODE, NAME));
 		} else if (node instanceof Category) {
@@ -304,21 +304,38 @@ if (next.toString().equals(path[categoryCounter])
 			final DefaultTreeModel model = (DefaultTreeModel) tree
 					.getModel();
 			
-			// getting the current path
-			final LinkedList<TreeNode> objectPath = new LinkedList<TreeNode>();
-			TreeNode parent = toBeReloaded;
-			do {
-				objectPath.addFirst(parent);
-				parent = parent.getParent();
-			} while (parent != null);
-			final TreePath path = new TreePath(objectPath.toArray());
-			
+			/*
+			 * Reload the model
+			 */
 			if (toBeReloaded.isLeaf()) {
 				model.reload(toBeReloaded.getParent());
 			} else {
 				model.reload(toBeReloaded);
 			}
+
+			/*
+			 * Select the better path
+			 */
 			
+			// getting the current path
+			final LinkedList<TreeNode> objectPath = new LinkedList<TreeNode>();
+			TreeNode current = toBeReloaded;
+			do {
+				objectPath.addFirst(current);
+				current = current.getParent();
+			} while (current != null);
+			
+			// appending the all first children to the path
+			// this will force a leaf to be selected
+			current = toBeReloaded;
+			while (!current.isLeaf() && current.getAllowsChildren()
+					&& current.children().hasMoreElements()) {
+				current = current.getChildAt(0);
+				objectPath.addLast(current);
+			}
+			
+			// select and expand the better found path 
+			final TreePath path = new TreePath(objectPath.toArray());
 			tree.setSelectionPath(path);
 			tree.expandPath(path);
 		}
