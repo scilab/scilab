@@ -16,15 +16,10 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
-import javax.swing.JTree;
 import javax.swing.SwingUtilities;
-import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.TreeNode;
-import javax.swing.tree.TreePath;
 
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
@@ -56,13 +51,13 @@ import com.mxgraph.view.mxStylesheet;
  * functions.
  */
 public final class Palette {
-	private static final String NAME = "name";
+	public static final String NAME = "name";
 
-	private static final String WRONG_INPUT_ARGUMENT_S_INVALID_TREE_PATH = Messages.gettext("Wrong input argument \"%s\": invalid tree path.\n");
-	private static final String WRONG_INPUT_ARGUMENT_S_INVALID_NODE = Messages.gettext("Wrong input argument \"%s\": invalid node, use 'xcosPalDisable' instead.\n");
-	private static final String UNABLE_TO_IMPORT = Messages.gettext("Unable to import %s .\n");
+	public static final String WRONG_INPUT_ARGUMENT_S_INVALID_TREE_PATH = Messages.gettext("Wrong input argument \"%s\": invalid tree path.\n");
+	public static final String WRONG_INPUT_ARGUMENT_S_INVALID_NODE = Messages.gettext("Wrong input argument \"%s\": invalid node, use 'xcosPalDisable' instead.\n");
+	public static final String UNABLE_TO_IMPORT = Messages.gettext("Unable to import %s .\n");
 
-	private static final Log LOG = LogFactory.getLog(Palette.class);
+	public static final Log LOG = LogFactory.getLog(Palette.class);
 
 	/**
 	 * Default hidden constructor
@@ -187,7 +182,7 @@ if (next.toString().equals(path[categoryCounter])
 				cat.getNode().add(pal);
 				pal.setParent(cat);
 				
-				refreshView(pal);
+				PaletteNode.refreshView(pal);
 			}
 		});
 	}
@@ -230,7 +225,7 @@ if (next.toString().equals(path[categoryCounter])
 								WRONG_INPUT_ARGUMENT_S_INVALID_TREE_PATH, NAME));
 					}
 
-					refreshView(node.getParent());
+					PaletteNode.refreshView(node.getParent());
 				}
 			});
 		} catch (final InvocationTargetException exception) {
@@ -253,8 +248,8 @@ if (next.toString().equals(path[categoryCounter])
 				@Override
 				public void run() {
 					final PaletteNode node = getPathNode(name, false);
-					checkRemoving(node);
-					remove(node);
+					PaletteNode.checkRemoving(node);
+					PaletteNode.remove(node);
 				}
 			});
 		} catch (final InvocationTargetException exception) {
@@ -262,110 +257,6 @@ if (next.toString().equals(path[categoryCounter])
 		}
 	}
 
-	/**
-	 * Remove the dynamic {@link PaletteNode} palette
-	 * @param node the palette
-	 */
-	public static void remove(final PaletteNode node) {
-		if (node == null) {
-			throw new RuntimeException(String.format(
-					WRONG_INPUT_ARGUMENT_S_INVALID_TREE_PATH, NAME));
-		} else if (node instanceof PreLoaded && !(node instanceof PreLoaded.Dynamic)) {
-			throw new RuntimeException(String.format(
-					WRONG_INPUT_ARGUMENT_S_INVALID_NODE, NAME));
-		} else if (node instanceof Category) {
-			// Iterate over all nodes
-			for (final PaletteNode n : ((Category) node).getNode()) {
-				remove(n);
-			}
-		} else { // others
-			final Category toBeReloaded = node.getParent();
-			if (toBeReloaded == null) {
-				LOG.error("parent node is null");
-				throw new RuntimeException("Parent node is 'null'");
-			}
-			
-			toBeReloaded.getNode().remove(node);
-			node.setParent(null);
-
-			refreshView(toBeReloaded);
-		}
-	}
-
-	/**
-	 * Refresh the palette view if visible.
-	 * 
-	 * @param toBeReloaded the category to refresh
-	 */
-	public static void refreshView(final PaletteNode toBeReloaded) {
-		if (PaletteManager.getInstance().getView() != null) {
-			final JTree tree = PaletteManager.getInstance().getView()
-					.getTree();
-			final DefaultTreeModel model = (DefaultTreeModel) tree
-					.getModel();
-			
-			/*
-			 * Reload the model
-			 */
-			if (toBeReloaded.isLeaf()) {
-				model.reload(toBeReloaded.getParent());
-			} else {
-				model.reload(toBeReloaded);
-			}
-
-			/*
-			 * Select the better path
-			 */
-			
-			// getting the current path
-			final LinkedList<TreeNode> objectPath = new LinkedList<TreeNode>();
-			TreeNode current = toBeReloaded;
-			do {
-				objectPath.addFirst(current);
-				current = current.getParent();
-			} while (current != null);
-			
-			// appending the all first children to the path
-			// this will force a leaf to be selected
-			current = toBeReloaded;
-			while (!current.isLeaf() && current.getAllowsChildren()
-					&& current.children().hasMoreElements()) {
-				current = current.getChildAt(0);
-				objectPath.addLast(current);
-			}
-			
-			// select and expand the better found path 
-			final TreePath path = new TreePath(objectPath.toArray());
-			tree.setSelectionPath(path);
-			tree.expandPath(path);
-		}
-	}
-	
-	/**
-	 * Check that the node can be removed (throw exceptions).
-	 * 
-	 * @param node the node to check
-	 */
-	public static void checkRemoving(final PaletteNode node) {
-		if (node == null) {
-			throw new RuntimeException(String.format(
-					WRONG_INPUT_ARGUMENT_S_INVALID_TREE_PATH, NAME));
-		} else if (node instanceof PreLoaded
-				&& !(node instanceof PreLoaded.Dynamic)) {
-			throw new RuntimeException(String.format(
-					WRONG_INPUT_ARGUMENT_S_INVALID_NODE, NAME));
-		} else if (node instanceof Category) {
-			// Iterate over all nodes
-			for (final PaletteNode n : ((Category) node).getNode()) {
-				checkRemoving(n);
-			}
-		}
-		
-		/*
-		 * others can be removed safely.
-		 */
-	}
-	
 	/**
 	 * Remove a palette or a category of the palette manager
 	 * 
@@ -391,7 +282,7 @@ if (next.toString().equals(path[categoryCounter])
 
 					node.setEnable(status);
 
-					refreshView(node.getParent());
+					PaletteNode.refreshView(node.getParent());
 				}
 			});
 		} catch (final InvocationTargetException exception) {
@@ -442,8 +333,8 @@ if (next.toString().equals(path[categoryCounter])
 					destination.getNode().add(src);
 					src.setParent(destination);
 
-					refreshView(toBeReloaded[0]);
-					refreshView(toBeReloaded[1]);
+					PaletteNode.refreshView(toBeReloaded[0]);
+					PaletteNode.refreshView(toBeReloaded[1]);
 				}
 			});
 		} catch (final InvocationTargetException exception) {

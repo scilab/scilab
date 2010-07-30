@@ -125,7 +125,7 @@ public class PaletteManagerMouseListener implements MouseListener {
 					path.getParentPath().pathByAddingChild(c);
 				}
 				
-				org.scilab.modules.xcos.palette.Palette.refreshView(c);
+				PaletteNode.refreshView(c);
 			}
 		});
 
@@ -150,7 +150,7 @@ public class PaletteManagerMouseListener implements MouseListener {
 				
 				try {
 					final PaletteNode currentNode = (PaletteNode) path.getLastPathComponent();
-					org.scilab.modules.xcos.palette.Palette.remove(currentNode);
+					PaletteNode.remove(currentNode);
 				} catch (final Exception exception) {
 					LogFactory.getLog(PaletteManagerMouseListener.class).error(exception);
 				}
@@ -159,7 +159,7 @@ public class PaletteManagerMouseListener implements MouseListener {
 
 		boolean canBeRemoved = true;
 		try {
-			org.scilab.modules.xcos.palette.Palette
+			org.scilab.modules.xcos.palette.model.PaletteNode
 					.checkRemoving((PaletteNode) path.getLastPathComponent());
 		} catch (final Exception exception) {
 			canBeRemoved = false;

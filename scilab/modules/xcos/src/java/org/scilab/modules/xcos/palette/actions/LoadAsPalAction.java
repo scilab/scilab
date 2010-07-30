@@ -25,10 +25,10 @@ import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.utils.SciFileFilter;
-import org.scilab.modules.xcos.palette.Palette;
 import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.model.Category;
 import org.scilab.modules.xcos.palette.model.Custom;
+import org.scilab.modules.xcos.palette.model.PaletteNode;
 import org.scilab.modules.xcos.palette.model.VariablePath;
 import org.scilab.modules.xcos.utils.XcosFileType;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -115,6 +115,6 @@ public final class LoadAsPalAction extends DefaultAction {
 		final Category root = PaletteManager.getInstance().getRoot();
 		root.getNode().add(c);
 		c.setParent(root);
-		Palette.refreshView(c);
+		PaletteNode.refreshView(c);
 	}
 }
