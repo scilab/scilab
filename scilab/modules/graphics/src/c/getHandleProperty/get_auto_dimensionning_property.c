@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -24,21 +25,30 @@
 #include "Scierror.h"
 #include "localization.h"
 
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int get_auto_dimensionning_property( sciPointObj * pobj )
 {
-  if ( sciGetEntityType( pobj ) == SCI_TEXT )
-  {
-    if ( sciGetAutoSize( pobj ) )
+    int* autoDimensioning;
+
+    autoDimensioning = (int*) getGraphicObjectProperty(pobj->UID, __GO_AUTO_DIMENSIONING__, jni_bool);
+
+    if (autoDimensioning == NULL)
     {
-      return sciReturnString( "on" ) ;
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_dimensionning");
+        return -1;
+    }
+
+    if (*autoDimensioning)
+    {
+        return sciReturnString( "on" );
     }
     else
     {
-      return sciReturnString( "off" ) ;
+        return sciReturnString( "off" );
     }
-  }
-  Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_dimensionning") ;
-  return -1 ;
+
 }
 /*------------------------------------------------------------------------*/

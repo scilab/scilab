@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -24,20 +25,27 @@
 #include "Scierror.h"
 #include "localization.h"
 
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int get_font_color_property( sciPointObj * pobj )
 {
-  if (   sciGetEntityType(pobj) == SCI_SUBWIN
-      || sciGetEntityType(pobj) == SCI_FIGURE
-      || sciGetEntityType(pobj) == SCI_LEGEND
-      || sciGetEntityType(pobj) == SCI_AXES)
-  {
-    return sciReturnDouble( sciGetFontForegroundToDisplay(pobj) ) ;
-  }
-  else
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"font_color") ;
-    return -1 ;
-  }
+    int* fontColor;
+
+    fontColor = (int*) getGraphicObjectProperty(pobj->UID, __GO_FONT_COLOR__, jni_int);
+
+    if (fontColor == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"font_color");
+        return -1;
+    }
+
+/* Deactivated for now since it involves color range checks, to be implemented. */
+#if 0
+    return sciReturnDouble( sciGetFontForegroundToDisplay(pobj) );
+#endif
+
+    return sciReturnDouble(*fontColor);
 }
 /*------------------------------------------------------------------------*/
