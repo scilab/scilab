@@ -22,6 +22,7 @@ xopt = [1.0 1.0];
 xdata = linspace(-2,2,100);
 ydata = linspace(-2,2,100);
 mprintf("Draw contours...\n");
+scf();
 contour ( xdata , ydata , rosenbrockC , [1 10 100 500 1000])
 plot(x0(1) , x0(2) , "b.")
 plot(xopt(1) , xopt(2) , "r*")

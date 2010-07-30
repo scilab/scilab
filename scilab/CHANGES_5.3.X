@@ -60,6 +60,9 @@ Bug Fixes:
 
 * bug 7619 fixed - get_function_path did not return all available paths.
 
+* bug 7620 fixed - The Optimization and Simulation/Optimisation/Plot demo did
+                   not plot anything.
+
 * bug 7622 fixed - When opening an Xcos diagram done on 5.2.2, an exception
                    could be thrown.
 
@@ -81,6 +84,7 @@ Bug Fixes:
 
 * bug 7685 fixed - Demo Graphics => More surfaces => Sphere did not appear
                    as spherical.
+                   
 * bug 7688 fixed - set("color_map", hsvcolormap(128)) produced
                    a EXCEPTION_STACK_OVERFLOW.
 
