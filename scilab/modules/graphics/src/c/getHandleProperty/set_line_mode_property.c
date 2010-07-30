@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -25,12 +26,27 @@
 #include "localization.h"
 #include "SetPropertyStatus.h"
 
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int set_line_mode_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  int b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "line_mode");
-  if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
-  
-  return sciSetIsLine(pobj, b);
+    BOOL status;
+    int b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "line_mode");
+    if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
+
+    status = setGraphicObjectProperty(pobj->UID, __GO_LINE_MODE__, &b, jni_bool, 1);
+
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"line_mode");
+        return SET_PROPERTY_ERROR;
+    }
+
 }
 /*------------------------------------------------------------------------*/

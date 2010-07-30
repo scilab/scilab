@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -25,15 +26,38 @@
 #include "localization.h"
 #include "SetPropertyStatus.h"
 
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int set_foreground_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  if ( !isParameterDoubleMatrix( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "foreground");
-    return SET_PROPERTY_ERROR ;
-  }
+    BOOL status;
+    int lineColor;
 
-  return sciSetForeground( pobj, (int) getDoubleFromStack( stackPointer ) ) ;
+    if ( !isParameterDoubleMatrix( valueType ) )
+    {
+        Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "foreground");
+        return SET_PROPERTY_ERROR;
+    }
+
+    lineColor = (int) getDoubleFromStack( stackPointer );
+
+    status = setGraphicObjectProperty(pobj->UID, __GO_LINE_COLOR__, &lineColor, jni_int, 1);
+
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"foreground");
+        return SET_PROPERTY_ERROR;
+    }
+
+    /* To be implemented later since it involves color index range checks */
+#if 0
+    return sciSetForeground( pobj, (int) getDoubleFromStack( stackPointer ) );
+#endif
 }
 /*------------------------------------------------------------------------*/

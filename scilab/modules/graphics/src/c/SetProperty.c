@@ -59,6 +59,9 @@
 
 #include "CallFigure.h"
 
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 #define MAX_MARK_STYLE 14
 
 /*---------------------------------------------------------------------------*/
@@ -595,6 +598,7 @@ int sciSetLineWidth( sciPointObj * pobj, double linewidth )
 int
 sciInitLineWidth (sciPointObj * pobj, double linewidth)
 {
+  BOOL status;
 
   if (linewidth < 0)
     {
@@ -603,10 +607,10 @@ sciInitLineWidth (sciPointObj * pobj, double linewidth)
     }
   else
   {
+    status = setGraphicObjectProperty(pobj->UID, __GO_LINE_THICKNESS__, &linewidth, jni_double, 1);
 
-    if (sciGetGraphicContext(pobj) != NULL)
+    if (status == TRUE)
     {
-      (sciGetGraphicContext(pobj))->linewidth = linewidth;
       return 0;
     }
   }
@@ -631,7 +635,7 @@ int sciSetLineStyle( sciPointObj * pobj, int linestyle )
 int
 sciInitLineStyle (sciPointObj * pobj, int linestyle)
 {
-
+  BOOL status;
   if (linestyle < 0)
     {
       Scierror(999, _("The line style must be greater than %d.\n"),0);
@@ -639,9 +643,10 @@ sciInitLineStyle (sciPointObj * pobj, int linestyle)
     }
   else
   {
-    if (sciGetGraphicContext(pobj) != NULL)
+    status = setGraphicObjectProperty(pobj->UID, __GO_LINE_STYLE__, &linestyle, jni_int, 1);
+
+    if (status == TRUE)
     {
-      (sciGetGraphicContext(pobj))->linestyle = linestyle;
       return 0;
     }
   }
@@ -754,6 +759,8 @@ sciSetMarkBackground (sciPointObj * pobj, int colorindex)
 
 int sciInitMarkStyle( sciPointObj * pobj, int markstyle )
 {
+  BOOL status;
+
   if (markstyle < 0 || markstyle > MAX_MARK_STYLE )
   {
     Scierror(999, _("Wrong value for '%s' property: Must be between %d and %d.\n"), "mark_style", 0, MAX_MARK_STYLE);
@@ -761,9 +768,10 @@ int sciInitMarkStyle( sciPointObj * pobj, int markstyle )
   }
   else
   {
-    if (sciGetGraphicContext(pobj) != NULL)
+    status = setGraphicObjectProperty(pobj->UID, __GO_MARK_STYLE__, &markstyle, jni_int, 1);
+
+    if (status == TRUE)
     {
-      sciGetGraphicContext(pobj)->markstyle = markstyle;
       return 0;
     }
   }
@@ -797,12 +805,14 @@ int sciInitMarkSize( sciPointObj * pobj, int marksize )
   }
   else
   {
-    if (sciGetGraphicContext(pobj) != NULL)
+    BOOL status;
+
+    status = setGraphicObjectProperty(pobj->UID, __GO_MARK_SIZE__, &marksize, jni_int, 1);
+
+    if (status == TRUE)
     {
-      sciGetGraphicContext(pobj)->marksize = marksize;
       return 0;
     }
-
   }
 
   printSetGetErrorMessage("mark_size");
@@ -833,7 +843,6 @@ int sciInitMarkSizeUnit( sciPointObj * pobj, int marksizeunit )
   }
   else
   {
-
     if (sciGetGraphicContext(pobj) != NULL)
     {
       (sciGetGraphicContext(pobj))->marksizeunit = marksizeunit;

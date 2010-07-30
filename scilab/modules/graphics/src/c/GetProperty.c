@@ -22,6 +22,7 @@
  *    objects.
  --------------------------------------------------------------------------*/
 
+#include <stdio.h>
 #include <stdlib.h>
 
 #include "GetProperty.h"
@@ -37,6 +38,9 @@
 #include "HandleManagement.h"
 
 #include "MALLOC.h" /* MALLOC */
+
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 
 
@@ -491,10 +495,15 @@ sciGetMarkBackgroundToDisplay (sciPointObj * pobj)
  */
 double sciGetLineWidth (sciPointObj * pobj)
 {
-  if (sciGetGraphicContext(pobj) != NULL)
+  double* lineThickness;
+
+  lineThickness = (double*) getGraphicObjectProperty(pobj->UID, __GO_LINE_THICKNESS__, jni_double);
+
+  if (lineThickness != NULL)
   {
-    return sciGetGraphicContext(pobj)->linewidth;
+    return *lineThickness;
   }
+
   printSetGetErrorMessage("thickness");
   return -1;
 }
@@ -506,10 +515,15 @@ double sciGetLineWidth (sciPointObj * pobj)
 int
 sciGetLineStyle (sciPointObj * pobj)
 {
-  if (sciGetGraphicContext(pobj) != NULL)
+  int* lineStyle;
+
+  lineStyle = (int*) getGraphicObjectProperty(pobj->UID, __GO_LINE_STYLE__, jni_int);
+
+  if (lineStyle != NULL)
   {
-    return sciGetGraphicContext(pobj)->linestyle;
+    return *lineStyle;
   }
+
   printSetGetErrorMessage("line_style");
   return -1;
 }
@@ -536,10 +550,13 @@ sciGetIsMark (sciPointObj * pobj)
 int
 sciGetMarkStyle (sciPointObj * pobj)
 {
+  int* markStyle;
 
-  if (sciGetGraphicContext(pobj) != NULL)
+  markStyle = (int*) getGraphicObjectProperty(pobj->UID, __GO_MARK_STYLE__, jni_int);
+
+  if (markStyle != NULL)
   {
-    return (sciGetGraphicContext(pobj))->markstyle;
+    return *markStyle;
   }
 
   printSetGetErrorMessage("mark_style");
@@ -555,10 +572,13 @@ sciGetMarkStyle (sciPointObj * pobj)
 int
 sciGetMarkSize (sciPointObj * pobj)
 {
+  int* markSize;
 
-  if (sciGetGraphicContext(pobj) != NULL )
+  markSize = (int*) getGraphicObjectProperty(pobj->UID, __GO_MARK_SIZE__, jni_int);
+
+  if (markSize != NULL)
   {
-    return sciGetGraphicContext(pobj)->marksize;
+    return *markSize;
   }
 
   printSetGetErrorMessage("mark_size");
@@ -1561,6 +1581,18 @@ sciGetRealVisibility (sciPointObj * pobj)
 BOOL
 sciGetVisibility (sciPointObj * pobj)
 {
+  int* visibility;
+
+  visibility = (int*) getGraphicObjectProperty(pobj->UID, __GO_VISIBLE__, jni_bool);
+
+  if (visibility == NULL) {
+      printSetGetErrorMessage("visibility");
+      return FALSE;
+  }
+
+  return *visibility;
+
+#if 0
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
@@ -1610,6 +1642,7 @@ sciGetVisibility (sciPointObj * pobj)
       return TRUE;
       break;
     }
+#endif
 }
 
 
@@ -3183,6 +3216,47 @@ void sciGetViewingAngles( sciPointObj * pObj, double * alpha, double * theta)
  */
 void sciGetLogFlags(sciPointObj * pObj, char flags[3])
 {
+  int* logFlag;
+
+  logFlag = (int*) getGraphicObjectProperty(pObj->UID, __GO_X_AXIS_LOG_FLAG__, jni_bool);
+
+  if (logFlag == NULL)
+  {
+    printSetGetErrorMessage("log_flags");
+    return;
+  }
+
+  if (*logFlag)
+  {
+    flags[0] = 'l';
+  }
+  else
+  {
+    flags[0] = 'n';
+  } 
+
+  logFlag = (int*) getGraphicObjectProperty(pObj->UID, __GO_Y_AXIS_LOG_FLAG__, jni_bool);
+  if (*logFlag)
+  {
+    flags[1] = 'l';
+  }
+  else
+  {
+    flags[1] = 'n';
+  } 
+
+  logFlag = (int*) getGraphicObjectProperty(pObj->UID, __GO_Z_AXIS_LOG_FLAG__, jni_bool);
+  if (*logFlag)
+  {
+    flags[2] = 'l';
+  }
+  else
+  {
+    flags[2] = 'n';
+  } 
+
+
+#if 0
   switch( sciGetEntityType(pObj) )
   {
   case SCI_SUBWIN:
@@ -3194,6 +3268,7 @@ void sciGetLogFlags(sciPointObj * pObj, char flags[3])
     printSetGetErrorMessage("log_flags");
     break;
   }
+#endif
 }
 /*----------------------------------------------------------------------------------*/
 /**

@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -24,25 +25,49 @@
 #include "Scierror.h"
 #include "localization.h"
 
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int get_clip_box_property( sciPointObj * pobj )
 {
-	int clipState = sciGetIsClipping ( pobj );
-  if (clipState > 0)
+  int* tmp;
+  int clipState;
+  double* clipBox;
+
+  tmp = (int*) getGraphicObjectProperty(pobj->UID, __GO_CLIP_STATE__, jni_int);
+
+  if (tmp == NULL)
   {
-		/* clip state on */
-    return sciReturnRowVector( sciGetClipping( pobj ), 4 ) ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"clip_box");
+    return -1;
   }
-  else if (clipState == 0 || clipState == -1)
-	{
-		/* clip state off or clipgrf */
-    return sciReturnEmptyMatrix() ;
-	}
-	else
-  { 
-		/* error in retriveing clipping */
-		Scierror(999, _("'%s' property does not exist for this handle.\n"),"clip_box");
-		return -1;
+
+  clipState = *tmp;
+
+  if (clipState > 1)
+  {
+    /* clip state on */
+
+    clipBox = (double*) getGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX__, jni_double_vector);
+
+    if (clipBox == NULL)
+    {
+      Scierror(999, _("'%s' property does not exist for this handle.\n"),"clip_box");
+      return -1;
+    }
+
+    return sciReturnRowVector(clipBox, 4);
+  }
+  else if (clipState == 0 || clipState == 1)
+  {
+    /* clip state off or clipgrf */
+    return sciReturnEmptyMatrix();
+  }
+  else
+  {
+    Scierror(999, _("Wrong value for '%s' property.\n"),"clip_state");
+    return -1;
   }
 }
 /*------------------------------------------------------------------------*/

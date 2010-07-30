@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -21,17 +22,32 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
+#include "Scierror.h"
+#include "localization.h"
+
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
 int get_fill_mode_property( sciPointObj * pobj )
 {
-  if ( sciGetIsFilled( pobj ) )
-  {
-    return sciReturnString( "on" ) ;
-  }
-  else
-  {
-    return sciReturnString( "off" ) ;
-  }
+    int* fillMode;
+
+    fillMode = (int*) getGraphicObjectProperty(pobj->UID, __GO_FILL_MODE__, jni_bool);
+
+    if (fillMode == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"fill_mode");
+        return -1;
+    }
+
+    if (*fillMode)
+    {
+        return sciReturnString( "on" );
+    }
+    else
+    {
+        return sciReturnString( "off" );
+    }
 }
 /*------------------------------------------------------------------------*/
