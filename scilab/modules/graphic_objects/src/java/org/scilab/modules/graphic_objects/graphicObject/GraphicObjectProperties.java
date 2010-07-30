@@ -39,6 +39,7 @@ public static final String __GO_SEGS__ =                   "segs";
 public static final String __GO_TEXT__ =                   "text";
 
 public static final String __GO_CHILDREN__ =               "Children";
+public static final String __GO_CHILDREN_COUNT__ =         "ChildrenCount";
 public static final String __GO_PARENT__ =                 "Parent";
 public static final String __GO_USER_DATA__ =              "UserData";
 public static final String __GO_USER_DATA_SIZE__ =         "UserDataSize";

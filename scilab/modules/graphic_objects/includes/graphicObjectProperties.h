@@ -38,6 +38,7 @@
 #define __GO_TEXT__                        "text"
 
 #define __GO_CHILDREN__                    "Children"
+#define __GO_CHILDREN_COUNT__              "ChildrenCount"
 #define __GO_PARENT__                      "Parent"
 #define __GO_USER_DATA__                   "UserData"
 #define __GO_USER_DATA_SIZE__              "UserDataSize"

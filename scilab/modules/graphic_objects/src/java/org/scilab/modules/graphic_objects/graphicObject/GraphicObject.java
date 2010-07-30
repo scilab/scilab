@@ -29,7 +29,7 @@ public abstract class GraphicObject implements Cloneable {
 		LABEL, LEGEND, MATPLOT, PLOT3D, POLYLINE, RECTANGLE, SEGS, TEXT, UNKNOWNOBJECT };
 	
 	/** GraphicObject properties */
-	public enum GraphicObjectPropertyType { PARENT, CHILDREN, VISIBLE, USERDATA, USERDATASIZE, TYPE, REFERENCED, VALID, UNKNOWNPROPERTY };
+	public enum GraphicObjectPropertyType { PARENT, CHILDREN, CHILDREN_COUNT, VISIBLE, USERDATA, USERDATASIZE, TYPE, REFERENCED, VALID, UNKNOWNPROPERTY };
 
 	/** Identifier */
 	private String identifier;
@@ -130,7 +130,9 @@ public abstract class GraphicObject implements Cloneable {
 			return  GraphicObjectPropertyType.PARENT;
 		} else if (propertyName.equals(__GO_CHILDREN__)) {
 			return GraphicObjectPropertyType.CHILDREN;
-		} else if (propertyName.equals(__GO_VISIBLE__)) {
+		} else if (propertyName.equals(__GO_CHILDREN_COUNT__)) {
+            return GraphicObjectPropertyType.CHILDREN_COUNT;
+        } else if (propertyName.equals(__GO_VISIBLE__)) {
 			return GraphicObjectPropertyType.VISIBLE;
 		} else if (propertyName.equals(__GO_USER_DATA__)) {
 			return GraphicObjectPropertyType.USERDATA;
@@ -157,7 +159,9 @@ public abstract class GraphicObject implements Cloneable {
 			return getParent();
 		} else if (property == GraphicObjectPropertyType.CHILDREN) {
 			return getChildren();
-		} else if (property == GraphicObjectPropertyType.VISIBLE) {
+		} else if (property == GraphicObjectPropertyType.CHILDREN_COUNT) {
+            return getChildren().length;
+        } else if (property == GraphicObjectPropertyType.VISIBLE) {
 			return getVisible();
 		} else if (property == GraphicObjectPropertyType.USERDATA) {
 			return getUserData();
@@ -227,8 +231,14 @@ public abstract class GraphicObject implements Cloneable {
 	/**
 	 * @return the children
 	 */
-	public List<String> getChildren() {
-		return children;
+	public String[] getChildren() {
+		String[] result = new String[children.size()];
+	    
+		for (int i = 0 ; i < children.size() ; ++i) {
+	        result[i] = children.get(i);
+	    }
+		
+		return result;
 	}
 
 	/**

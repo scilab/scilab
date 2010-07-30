@@ -26,11 +26,49 @@
 #include "localization.h"
 #include "HandleManagement.h"
 
+
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*--------------------------------------------------------------------------*/
 int get_children_property( sciPointObj * pobj )
 {
-    // TODO : return childrens using MVC
-    return sciReturnEmptyMatrix() ;
+    int i = 0;
+    int status = 0;
+    sciPointObj *pobjChildren = NULL;
+    long *plChildren = NULL;
+
+    // All Graphic Objects have __GO_CHILDREN__ & __GO_CHILDREN_COUNT__ properties.
+    int *piChildrenCount = getGraphicObjectProperty(pobj->UID, __GO_CHILDREN_COUNT__, jni_int);
+    char **pstChildrenUID = NULL;
+
+    if (piChildrenCount[0] == 0)
+    {
+        // No Child
+        return sciReturnEmptyMatrix();
+    }
+
+    pstChildrenUID = getGraphicObjectProperty(pobj->UID, __GO_CHILDREN__, jni_string_vector);
+
+    plChildren = MALLOC(piChildrenCount[0] * sizeof(long));
+
+    for (i = 0 ; i < piChildrenCount[0] ; ++i)
+    {
+        // Create temporary
+        pobjChildren = MALLOC(sizeof(sciPointObj));
+        pobjChildren->UID = pstChildrenUID[i];
+
+        sciAddNewHandle(pobjChildren);
+
+        plChildren[i] = sciGetHandle(pobjChildren);
+    }
+
+    status = sciReturnColHandleVector(plChildren, piChildrenCount[0]);
+
+    FREE( plChildren ) ;
+
+    return status ;
+
 #if 0
   sciSons * curSon = NULL ;
   int nbChildren = sciGetNbAccessibleChildren( pobj ) ;
