@@ -2,32 +2,25 @@ LIBRARY    LibScilab.dll
 
 
 EXPORTS
- getScilabMode
- gettype_
- vstk_
- IsAScalar
- iop_
- cf_type
- GetData
- recu_
- syncexec
- putlhsvar_
- createvar_
- stack_
- com_
- getrhsvar_
- checklhs_
- checkrhs_
- intersci_
- createvarfromptr_
- getSCIpath
- callFunctionFromGateway
- freeArrayOfString
- StoreCommand
- StoreCommandWithFlag
- GetCommand
- ismenu
- StorePrioritaryCommandWithFlag
- 
- 
- 
+getScilabMode
+callFunctionFromGateway 
+com_
+getSCIpath
+putlhsvar_
+intersci_
+checklhs_
+checkrhs_
+stack_
+getrhsvar_
+gettype_
+vstk_
+iop_
+createvarfromptr_
+createvar_
+GetData
+StoreCommand
+StoreCommandWithFlag
+GetCommand 
+ismenu
+StorePrioritaryCommandWithFlag
+freeArrayOfString

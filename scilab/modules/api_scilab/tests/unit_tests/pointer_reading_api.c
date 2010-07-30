@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Scilab Consortium Operational Team
- * 
+ * Copyright (C) 2009-2010 - DIGITEO - Scilab Consortium Operational Team
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
+ * you should have received as part of this distribution. The terms
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -17,13 +17,11 @@
 #include "api_scilab.h"
 #include "MALLOC.h"
 
-			 
 int read_pointer(char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
 	CheckRhs(0,1);
 	CheckLhs(1,1);
-
 	if(Rhs == 0)
 	{//create mode
 		double* pdblData	= (double*)malloc(sizeof(double) * 2 * 2);
@@ -31,7 +29,6 @@ int read_pointer(char *fname,unsigned long fname_len)
 		pdblData[1]			= 3;
 		pdblData[2]			= 2;
 		pdblData[3]			= 4;
-
 		sciErr = createPointer(pvApiCtx, Rhs + 1, (void*)pdblData);
 	}
 	else if(Rhs == 1)
@@ -40,38 +37,30 @@ int read_pointer(char *fname,unsigned long fname_len)
 		int* piAddr			= NULL;
 		void* pvPtr			= NULL;
 		double* pdblData	= NULL;
-
 		sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
 			return 0;
 		}
-
 		sciErr = getPointer(pvApiCtx, piAddr, &pvPtr);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
 			return 0;
 		}
-
 		pdblData = (double*)pvPtr;
-
 		sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 2, 2, pdblData);
 	}
 	else
 	{
 		return 0;
 	}
-
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
-
 	LhsVar(1) = Rhs + 1;
 	return 0;
 }
- 
-		

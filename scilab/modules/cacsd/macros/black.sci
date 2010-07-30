@@ -133,14 +133,17 @@ function black(varargin)
     kk=kk+1
     dst=dst+min(sqrt(((phi(:,kk-1)-phi(:,kk))^2)/dx2+((d(:,kk-1)-d(:,kk))^2)/dy2))
     if dst>0.2 then
-      if mini(abs(frq(:,ks(prod(size(ks))))-frq(:,kk))./frq(:,kk))>0.2 then
+      if min(abs(frq(:,ks(prod(size(ks))))-frq(:,kk))./frq(:,kk))>0.2 then
         ks=[ks kk]
         dst=0
       end
     end
   end
   kf=1
-  drawlater()
+  fig=gcf();
+  immediate_drawing=fig.immediate_drawing;
+  fig.immediate_drawing="off";
+
   ax=gca();
   if size(ax.children,"*")==0 then
     ax.data_bounds=[xmn ymn;xmx ymx];
@@ -211,8 +214,9 @@ function black(varargin)
     c=[];for k=1:mn,c=[E(k).children(1),c];end
     legend([c e]',["2.3"+_("dB");comments(:)])
   end
-  drawnow()
+  fig.immediate_drawing=immediate_drawing;
 endfunction
+
 function str=formatBlackTip(curve,pt,index)
 //This function is called by the datatip mechanism to format the tip
 //string for black curves.
@@ -223,5 +227,5 @@ function str=formatBlackTip(curve,pt,index)
     [d,ptp,i,c]=orthProj(curve.data,pt)
     f=ud.freq(i)+(ud.freq(i+1)-ud.freq(i))*c
   end
-  str=msprintf("%.4g"+_("°")+"\n%.4g"+_("dB")+"\n%.4g"+_("Hz"), pt,f);
+  str=msprintf("%.4g°\n%.4g"+_("dB")+"\n%.4g"+_("Hz"), pt,f);
 endfunction

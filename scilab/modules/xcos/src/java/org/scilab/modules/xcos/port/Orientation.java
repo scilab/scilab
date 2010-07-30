@@ -16,6 +16,9 @@ import java.util.NoSuchElementException;
 
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
+import org.scilab.modules.xcos.utils.XcosConstants;
+
+import com.mxgraph.util.mxConstants;
 
 /**
  * Represent a port orientation related to the associated block. These
@@ -79,15 +82,15 @@ public enum Orientation {
 		int angle = base;
 
 		switch (this) {
-		case WEST:
-		case EAST:
+		case NORTH:
+		case SOUTH:
 			if (flipped) {
 				angle = angle + (MAX_ROTATION / 2);
 			}
 			break;
 
-		case NORTH:
-		case SOUTH:
+		case WEST:
+		case EAST:
 			if (mirrored) {
 				angle = angle + (MAX_ROTATION / 2);
 			}
@@ -125,5 +128,78 @@ public enum Orientation {
 		}
 		
 		return orientationAngle;
+	}
+	
+	/**
+	 * @return The label position of the current port.
+	 * @see mxConstants#STYLE_LABEL_POSITION
+	 */
+	public String getLabelPosition() {
+		final String ret;
+		
+		switch (this) {
+			case EAST:
+				ret = XcosConstants.ALIGN_LEFT;
+				break;
+			case WEST:
+				ret = XcosConstants.ALIGN_RIGHT;
+				break;
+			default:
+				ret = XcosConstants.ALIGN_CENTER;
+				break;
+		}
+		
+		return ret;
+	}
+	
+	/**
+	 * @return The vertical label position of the current port.
+	 * @see mxConstants#STYLE_VERTICAL_LABEL_POSITION
+	 */
+	public String getVerticalLabelPosition() {
+		final String ret;
+		
+		switch (this) {
+			case NORTH:
+				ret = XcosConstants.ALIGN_BOTTOM;
+				break;
+			case SOUTH:
+				ret = XcosConstants.ALIGN_TOP;
+				break;
+			default:
+				ret = XcosConstants.ALIGN_MIDDLE;
+				break;
+		}
+		
+		return ret;
+	}
+	
+	/**
+	 * @return the spacing side to increment
+	 * @see mxConstants#STYLE_SPACING_BOTTOM
+	 * @see mxConstants#STYLE_SPACING_LEFT
+	 * @see mxConstants#STYLE_SPACING_RIGHT
+	 * @see mxConstants#STYLE_SPACING_TOP
+	 */
+	public String getSpacingSide() {
+		final String ret;
+		
+		switch (this) {
+			case NORTH:
+				ret = XcosConstants.STYLE_SPACING_TOP;
+				break;
+			case SOUTH:
+				ret = XcosConstants.STYLE_SPACING_BOTTOM;
+				break;
+			case EAST:
+				ret = XcosConstants.STYLE_SPACING_RIGHT;
+				break;
+			case WEST:
+			default:
+				ret = XcosConstants.STYLE_SPACING_LEFT;
+				break;
+		}
+		
+		return ret;
 	}
 }

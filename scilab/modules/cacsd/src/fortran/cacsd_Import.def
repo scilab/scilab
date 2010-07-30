@@ -1,0 +1,11 @@
+LIBRARY    cacsd.dll
+
+
+EXPORTS
+; import required by F2C
+sortie_
+comall_
+temps_
+no2f_
+arl2c_
+;

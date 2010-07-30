@@ -13,12 +13,26 @@
 #define __DYNAMIC_GATEWAYS_H__
 
 /**
+* special_functions gateway
+* special_functions is loaded dynamically at runtime
+* load gw_special_functions in SCI/modules/special_functions/sci_gateway/gw_special_functions.c
+*/
+int gw_dynamic_special_functions(void);
+
+
+/**
+* ui_data gateway
+* ui_data is loaded dynamically at runtime
+* load gw_ui_data in SCI/modules/ui_data/sci_gateway/gw_ui_data.c
+*/
+int gw_dynamic_ui_data(void);
+
+/**
 * pvm gateway
 * pvm is loaded dynamically at runtime
 * load gw_pvm in SCI/modules/pvm/sci_gateway/gw_pvm.c
 */
 int gw_dynamic_pvm(void);
-
 
 /**
 * xcos gateway
@@ -28,11 +42,11 @@ int gw_dynamic_pvm(void);
 int gw_dynamic_xcos(void);
 
 /**
-* xpad gateway
+* scinotes gateway
 * functions is loaded dynamically at runtime
-* load gw_functions in SCI/modules/xpad/sci_gateway/gw_xpad.c
+* load gw_functions in SCI/modules/scinotes/sci_gateway/gw_scinotes.c
 */
-int gw_dynamic_xpad(void);
+int gw_dynamic_scinotes(void);
 
 /**
 * functions gateway

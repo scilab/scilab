@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Clément DAVID
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,10 +16,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Vector;
 
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabGraph;
@@ -49,6 +46,7 @@ import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.utils.BarUpdater;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.window.ScilabWindow;
@@ -56,7 +54,6 @@ import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.xcos.actions.AboutXcosAction;
 import org.scilab.modules.xcos.actions.CloseAction;
 import org.scilab.modules.xcos.actions.CloseViewportAction;
-import org.scilab.modules.xcos.actions.CodeGenerationAction;
 import org.scilab.modules.xcos.actions.CompileAction;
 import org.scilab.modules.xcos.actions.DebugLevelAction;
 import org.scilab.modules.xcos.actions.DiagramBackgroundAction;
@@ -81,10 +78,10 @@ import org.scilab.modules.xcos.actions.ViewGridAction;
 import org.scilab.modules.xcos.actions.ViewViewportAction;
 import org.scilab.modules.xcos.actions.XcosDemonstrationsAction;
 import org.scilab.modules.xcos.actions.XcosDocumentationAction;
-import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.actions.BlockDocumentationAction;
 import org.scilab.modules.xcos.block.actions.BlockParametersAction;
 import org.scilab.modules.xcos.block.actions.BorderColorAction;
+import org.scilab.modules.xcos.block.actions.CodeGenerationAction;
 import org.scilab.modules.xcos.block.actions.FilledColorAction;
 import org.scilab.modules.xcos.block.actions.FlipAction;
 import org.scilab.modules.xcos.block.actions.MirrorAction;
@@ -117,24 +114,14 @@ import com.mxgraph.swing.mxGraphOutline;
  * This class implement specific operation of an Xcos Tab.
  */
 public class XcosTab extends ScilabTab {
-    private static final Size WIN_SIZE = new Size(600, 500);
-    
-    /*
-     * Static fields
-     */
-    private static List<XcosDiagram> diagrams = new Vector<XcosDiagram>();
-    private static Map<Integer, AfficheBlock> afficheBlocks = new HashMap<Integer, AfficheBlock>();
-    
     static {
         DefaultAction.addIconPath(
             System.getenv("SCI") + "/modules/xcos/images/icons/");
     }
-    
+
     /*
      * Instance fields
      */
-    private XcosDiagram diagram;
-    
     private MenuBar menuBar;
     private Menu fileMenu;
     private Menu recentsMenu;
@@ -165,127 +152,43 @@ public class XcosTab extends ScilabTab {
 
     /**
      * Default constructor
-     * @param diagram The associated diagram model
+     * @param diagram The associated diagram
      */
     public XcosTab(XcosDiagram diagram) {
-	super(XcosMessages.XCOS);
-
-	this.diagram = diagram;
-
-	initComponents();
+		super(XcosMessages.XCOS);
 	
-	// No SimpleTab.addMember(ScilabComponent ...) so perform a raw association.
-	((SwingScilabTab) getAsSimpleTab()).setContentPane(diagram.getAsComponent());
-	
-	setCallback(new CloseAction(diagram));
-	diagram.getAsComponent().addKeyListener(new ArrowKeyListener());
-    }
-    
-    /**
-     * @param diag diagram
-     */
-    public static void closeDiagram(XcosDiagram diag) {
-
-	// System.err.println("Xcos::closeDiagram : " + diagram);
-
-	diag.closeChildren();
-	diagrams.remove(diag);
-
-	// for(int i = 0 ; i < diagrams.size(); i++){
-	// System.err.println("diagrams[" + i + "] : " +
-	// diagrams.get(i).getClass());
-	// }
-	if (diagrams.size() == 0) {
-	    // System.err.println("close session");
-	    Xcos.closeSession();
-	}
-
-    }
-
-    /**
-     * Try to focus to an already openned file
-     * 
-     * @param filename filename
-     * @return True when found and focused, False otherwise
-     */
-    public static boolean focusOnExistingFile(String filename) {
-	for (XcosDiagram diagram : diagrams) {
-	    if (diagram.getSavedFile() != null) {
-		if (diagram.getSavedFile().compareTo(filename) == 0) {
-		    diagram.getParentTab().setCurrent();
-		    return true;
+		/** tab association */
+		diagram.setParentTab(this);
+		
+		initComponents(diagram);
+		
+		// No SimpleTab.addMember(ScilabComponent ...) so perform a raw association.
+		((SwingScilabTab) getAsSimpleTab()).setContentPane(diagram.getAsComponent());
+		
+		// Get the palette window position and align on it.
+		if (PaletteManager.isVisible()) {
+			Window win = PaletteManager.getInstance().getView().getParentWindow();
+		    Position palPosition = win.getPosition();
+		    Size palSize = win.getDims();
+		    Position mainPosition = new Position(palPosition.getX()
+			    + palSize.getWidth(), palPosition.getY());
+		    getParentWindow().setPosition(mainPosition);
 		}
-	    }
-	}
-	return false;
-    }
-
-    /**
-     * @return All the AffichBlock and their corresponding UID.
-     */
-    public static Map<Integer, AfficheBlock> getAfficheBlocks() {
-	return afficheBlocks;
-    }
-
-    /**
-     * @return diagram list
-     */
-    public static List<XcosDiagram> getAllDiagrams() {
-	return diagrams;
-    }
-
-    /**
-     * @param xcosDiagram diagram
-     */
-    public static void createTabFromDiagram(XcosDiagram xcosDiagram) {
-    	diagrams.add(xcosDiagram);
-    	
-    	XcosTab tab = new XcosTab(xcosDiagram);
-    	tab.setName(XcosMessages.UNTITLED);
-    	xcosDiagram.setParentTab(tab);
-    	
-	// Get the palette window position and align on it.
-	if (PaletteManager.isVisible()) {
-		Window win = PaletteManager.getInstance().getView().getParentWindow();
-	    Position palPosition = win.getPosition();
-	    Size palSize = win.getDims();
-	    Position mainPosition = new Position(palPosition.getX()
-		    + palSize.getWidth(), palPosition.getY());
-	    tab.getParentWindow().setPosition(mainPosition);
-	}
-	
-	/*
-	 * VIEW PORT
-	 */
-	XcosTab.createViewPort(xcosDiagram);
-    }
-    
-    /**
-     * @param xcosDiagram diagram
-     */
-    public static void showTabFromDiagram(XcosDiagram xcosDiagram) {
-	assert xcosDiagram.isOpened();
-	xcosDiagram.setVisible(true);
-    }
-
-    /**
-     * Close the current diagram 
-     */
-    public void closeDiagram() {
-
-	diagram.closeChildren();
-	diagrams.remove(diagram);
-
-	if (diagrams.size() == 0) {
-	    Xcos.closeSession();
-	}
-
+		
+		/*
+		 * VIEW PORT
+		 */
+		XcosTab.createViewPort(diagram);
+		
+		setCallback(new CloseAction(diagram));
+		diagram.getAsComponent().addKeyListener(new ArrowKeyListener());
     }
 
     /**
      * Instantiate all the subcomponents of this Tab.
+     * @param diagram the diagram
      */
-    private void initComponents() {
+    private void initComponents(XcosDiagram diagram) {
     	Window window = ScilabWindow.createWindow();
     	
 		final ConfigurationManager manager = ConfigurationManager.getInstance();
@@ -295,23 +198,27 @@ public class XcosTab extends ScilabTab {
 		window.setPosition(new Position(p.getX(), p.getY()));
 		
 		/* Create the menu bar */
-		menuBar = createMenuBar();
+		menuBar = createMenuBar(diagram);
 		addMenuBar(menuBar);
 		
 		/* Create the toolbar */
-		ToolBar toolBar = createToolBar();
+		ToolBar toolBar = createToolBar(diagram);
 		addToolBar(toolBar);
 		
 		/* Create the infoBar */
 		addInfoBar(ScilabTextBox.createTextBox());
 		
 		window.addTab(this);
+		BarUpdater.updateBars(getParentWindowId(), getMenuBar(), getToolBar(),
+				getInfoBar(), getName());
     }
     
     /**
      * Create the windows menu bar
+     * @param diagram the diagram
+     * @return the Xcos diagram menu bar
      */
-    private MenuBar createMenuBar() {
+    private MenuBar createMenuBar(XcosDiagram diagram) {
 	
 	menuBar = ScilabMenuBar.createMenuBar();
 
@@ -358,7 +265,7 @@ public class XcosTab extends ScilabTab {
 			
 			URL url;
 			try {
-				url = new URL(((DocumentType)evt.getNewValue()).getUrl());
+				url = new URL(((DocumentType) evt.getNewValue()).getUrl());
 			} catch (MalformedURLException e) {
 				LogFactory.getLog(XcosTab.class).error(e);
 				return;
@@ -505,9 +412,12 @@ public class XcosTab extends ScilabTab {
     }
 
     /**
+     * Create the Tab toolbar
+     * 
+     * @param diagram the associated diagram
      * @return tool bar
      */
-    private ToolBar createToolBar() {
+    private ToolBar createToolBar(XcosDiagram diagram) {
 	ToolBar toolBar = ScilabToolBar.createToolBar();
 
 	newDiagramAction = NewDiagramAction.createButton(diagram);
@@ -607,5 +517,21 @@ public class XcosTab extends ScilabTab {
 	outline.addTab(outlineTab);
 	outline.setVisible(false);
 	outlineTab.setVisible(false);
+    }
+
+	/**
+	 * Set the current tab and the associated window visible when a unique Tab
+	 * is docked.
+	 * 
+	 * @param newVisibleState
+	 * @see org.scilab.modules.gui.tab.ScilabTab#setVisible(boolean)
+	 */
+    @Override
+    public void setVisible(boolean newVisibleState) {
+    	if (getParentWindow().getNbDockedObjects() == 1) {
+    		getParentWindow().setVisible(newVisibleState);
+    	}
+    	
+    	super.setVisible(newVisibleState);
     }
 }

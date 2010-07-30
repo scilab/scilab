@@ -74,6 +74,7 @@ public class DumpAction extends DefaultAction {
      * @param e params
      * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
      */
+	@Override
     public void actionPerformed(ActionEvent e) {
 		try {
 		    File temp = FileUtils.createTempFile();

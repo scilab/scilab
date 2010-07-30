@@ -22,7 +22,7 @@ import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
  */
 public class BlockChange implements mxUndoableChange {
 
-	private BasicBlock updated;
+	private final BasicBlock updated;
 	private BasicBlock old;
 
 	/**
@@ -47,7 +47,7 @@ public class BlockChange implements mxUndoableChange {
 		BasicBlock var;
 
 		var = (BasicBlock) BlockFactory.createClone(updated);
-		updated.doUpdateBlockSettings(old);
+		updated.updateBlockSettings(old);
 		old = var;
 
 	}

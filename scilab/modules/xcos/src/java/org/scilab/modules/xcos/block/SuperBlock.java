@@ -13,9 +13,12 @@
 package org.scilab.modules.xcos.block;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.logging.LogFactory;
+import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.menu.Menu;
@@ -23,22 +26,22 @@ import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.types.scilabTypes.ScilabDouble;
 import org.scilab.modules.types.scilabTypes.ScilabList;
 import org.scilab.modules.types.scilabTypes.ScilabMList;
+import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
-import org.scilab.modules.xcos.actions.CodeGenerationAction;
+import org.scilab.modules.xcos.block.actions.CodeGenerationAction;
 import org.scilab.modules.xcos.block.actions.RegionToSuperblockAction;
 import org.scilab.modules.xcos.block.actions.SuperblockMaskCreateAction;
 import org.scilab.modules.xcos.block.actions.SuperblockMaskCustomizeAction;
 import org.scilab.modules.xcos.block.actions.SuperblockMaskRemoveAction;
+import org.scilab.modules.xcos.block.io.ContextUpdate.IOBlocks;
 import org.scilab.modules.xcos.block.io.EventInBlock;
 import org.scilab.modules.xcos.block.io.EventOutBlock;
 import org.scilab.modules.xcos.block.io.ExplicitInBlock;
 import org.scilab.modules.xcos.block.io.ExplicitOutBlock;
 import org.scilab.modules.xcos.block.io.ImplicitInBlock;
 import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
-import org.scilab.modules.xcos.block.io.ContextUpdate.IOBlocks;
 import org.scilab.modules.xcos.graph.PaletteDiagram;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
-import org.scilab.modules.xcos.io.scicos.BasicBlockInfo;
 import org.scilab.modules.xcos.io.scicos.DiagramElement;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
 import org.scilab.modules.xcos.port.BasicPort;
@@ -46,7 +49,9 @@ import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
+import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxEventObject;
+import com.mxgraph.util.mxUtils;
 
 /**
  * A SuperBlock contains an entire diagram on it. Thus it can be easily
@@ -65,6 +70,7 @@ import com.mxgraph.util.mxEventObject;
  * @see SuperblockMaskRemoveAction
  */
 public final class SuperBlock extends BasicBlock {
+	private static final char UNDERSCORE = '_';
 	private static final long serialVersionUID = 3005281208417373333L;
 	/**
 	 * The simulation name (linked to Xcos-core)
@@ -190,24 +196,27 @@ public final class SuperBlock extends BasicBlock {
 		 */
 		if (getChild() == null) {
 			createChildDiagram();
+		} else {
+			// reassociate (useful on clone and load operation)
+			getChild().setContainer(this);
+			getChild().setComponent(new ScilabComponent(getChild()));
+			
+			getChild().initComponent();
+			getChild().installStylesheet();
+			
+			getChild().installListeners();
+			getChild().installSuperBlockListeners();
 		}
 		
 		/*
 		 * Construct the view or set it visible.
 		 */
-		if (!getChild().isOpened()) {
+		if (!getChild().isVisible()) {
 			updateAllBlocksColor();
 			getChild().setModifiedNonRecursively(false);
-			XcosTab.createTabFromDiagram(getChild());
-			XcosTab.showTabFromDiagram(getChild());
-			getChild().setOpened(true);
-			getChild().setVisible(true);
 			
-			getChild().installListeners();
-			getChild().installSuperBlockListeners();
-			
-		} else {
-			getChild().setVisible(true);
+			new XcosTab(getChild()).setVisible(true);
+			getChild().getView().invalidate();
 		}
 		
 		/*
@@ -215,12 +224,7 @@ public final class SuperBlock extends BasicBlock {
 		 */
 		getChild().updateCellsContext();
 		
-		/*
-		 * Register the diagram container
-		 */
-		getChild().setContainer(this);
-		
-		XcosTab.getAllDiagrams().add(getChild());
+		Xcos.getInstance().getDiagrams().add(getChild());
 		
 		setLocked(false);
 	}
@@ -244,14 +248,23 @@ public final class SuperBlock extends BasicBlock {
 		/*
 		 * Hide the current child window
 		 */
-		getChild().setVisible(false);
-		setLocked(false);
-		XcosTab.getAllDiagrams().remove(getChild());
+		if (getChild().getParentTab() != null) {
+			getChild().getParentTab().close();
+			getChild().setParentTab(null);
+			
+			getChild().setComponent(null);
+		}
+		
+		/* Remove only when the instance cannot be modified anymore */
+		if (getChild().canClose()) {
+			Xcos.getInstance().close(getChild(), false);
+		}
 	}
 
 	/**
 	 * @param graph parent diagram
 	 */
+	@Override
 	public void openContextMenu(ScilabGraph graph) {
 		ContextMenu menu = null;
 
@@ -302,7 +315,6 @@ public final class SuperBlock extends BasicBlock {
 			}
 			
 			child.installSuperBlockListeners();
-			child.setChildrenParentDiagram();
 			updateAllBlocksColor();
 			// only for loading and generate sub block UID
 			if (generatedUID) {
@@ -463,9 +475,7 @@ public final class SuperBlock extends BasicBlock {
 			boolean[] isDone = new boolean[countUnique];
 
 			// Initialize
-			for (int i = 0; i < countUnique; i++) {
-				isDone[i] = false;
-			}
+			Arrays.fill(isDone, false);
 
 			for (int i = 0; i < blocks.size(); i++) {
 				int index = (Integer) ((BasicBlock) blocks.get(i)).getValue();
@@ -490,40 +500,33 @@ public final class SuperBlock extends BasicBlock {
 			return;
 		}
 
+		final Map<IOBlocks, List<mxICell>> blocksMap = IOBlocks.getAllBlocks(this);
+		final Map<IOBlocks, List<mxICell>> portsMap = IOBlocks.getAllPorts(this);
 		for (IOBlocks block : IOBlocks.values()) {
-			updateExportedTypedPort(block);
-		}
-		getParentDiagram().fireEvent(new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED, XcosConstants.EVENT_BLOCK_UPDATED, this));
-	}
-
-	/**
-	 * Update the superblock IO ports according to the values of its child.
-	 * @param block The blocks to work on
-	 */
-	private void updateExportedTypedPort(IOBlocks block) {
-		int blockCount = getBlocksConsecutiveUniqueValueCount(getAllTypedBlock(block.getReferencedClass()));
-		List< ? extends BasicPort> ports = BasicBlockInfo
-				.getAllTypedPorts(this, false, block.getReferencedPortClass());
-
-		int portCount = ports.size();
-
-		try {
-			while (blockCount > portCount) { // add if required
-				BasicPort port;
+			final int blockCount = blocksMap.get(block).size();
+			int portCount = portsMap.get(block).size();
+			
+			// add ports if required
+			while (blockCount > portCount) {
+				try {
+					BasicPort port;
 					port = block.getReferencedPortClass().newInstance();
 					addPort(port);
-					portCount++;
+				} catch (InstantiationException e) {
+					LogFactory.getLog(SuperBlock.class).error(e);
+				} catch (IllegalAccessException e) {
+					LogFactory.getLog(SuperBlock.class).error(e);
+				}
+				portCount++;
 			}
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+			
+			// remove ports if required
+			while (portCount > blockCount) {
+				removePort((BasicPort) portsMap.get(block).get(portCount - 1));
+				portCount--;
+			}
 		}
-
-		while (portCount > blockCount) { // remove if required
-			removePort(ports.get(portCount - 1));
-			portCount--;
-		}
+		getParentDiagram().fireEvent(new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED, XcosConstants.EVENT_BLOCK_UPDATED, this));
 	}
 
 	/**
@@ -547,5 +550,61 @@ public final class SuperBlock extends BasicBlock {
 	 */
 	public boolean isMasked() {
 		return getInterfaceFunctionName().compareTo(INTERFUNCTION_NAME) != 0;
+	}
+	
+	/**
+	 * Customize the parent diagram on name change
+	 * @param value the new name
+	 * @see com.mxgraph.model.mxCell#setValue(java.lang.Object)
+	 */
+	@Override
+	public void setValue(Object value) {
+		super.setValue(value);
+		
+		if (value == null) {
+			return;
+		}
+		
+		if (getChild() != null) {
+			getChild().setTitle(toValidCIdentifier(value.toString()));
+			setRealParameters(new DiagramElement().encode(getChild()));
+		}
+	}
+
+	/**
+	 * Export an HTML label String to a valid C identifier String. 
+	 * 
+	 * @param label the HTML label
+	 * @return a valid C identifier String
+	 */
+	private String toValidCIdentifier(final String label) {
+		final String text = mxUtils.getBodyMarkup(label, true);
+		final StringBuilder cFunctionName = 
+			new StringBuilder();
+		
+		for (int i = 0; i < text.length(); i++) {
+			final char ch = text.charAt(i);
+			
+			// Adding upper case chars
+			if (ch >= 'A' && ch <= 'Z') {
+				cFunctionName.append(ch);
+			} else
+			
+			// Adding lower case chars
+			if (ch >= 'a' && ch <= 'z') {
+				cFunctionName.append(ch);
+			} else
+				
+			// Adding number chars
+			if (ch >= '0' && ch <= '9') {
+				cFunctionName.append(ch);
+			} else
+			
+			// Specific chars
+			if (ch == UNDERSCORE || ch == ' ') {
+				cFunctionName.append(UNDERSCORE);
+			}
+		}
+		return cFunctionName.toString();
 	}
 }

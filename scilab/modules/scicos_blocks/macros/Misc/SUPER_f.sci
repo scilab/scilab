@@ -1,6 +1,7 @@
 //  Scicos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) DIGITEO - 2010-2010 - Clément DAVID <clement.david@scilab.org>
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -32,47 +33,26 @@ case 'getoutputs' then
   [x,y,typ]=standard_outputs(arg1)
 case 'getorigin' then
   [x,y]=standard_origin(arg1)
- case 'set' then
-  y=needcompile // in case leaving with Exit
-  while %t do
-    [x,newparameters,needcompile,edited]=scicos(arg1.model.rpar)
-    arg1.model.rpar=x
-//    x=arg1
-    [ok,arg1]=adjust_s_ports(arg1)
-    if ok then
-      x=arg1
-      y=needcompile
-      typ=newparameters
-      %exit=resume(%f)
-    else
-      %r=2
-      %r=message(['SUPER BLOCK needs to be edited;';
-		  'Edit or exit by removing all recent changes'],['Edit'; ...
-		    'Exit'])
-      if %r==2 then 
-	xdel(curwin)
-	typ=list()
-	%exit=resume(%t),
-      else
-        global %scicos_navig
-        global Scicos_commands 
-        global inactive_windows
-        %scicos_navig=[];Scicos_commands=[]
-        %diagram_open=%t
-        scf(curwin)
-        indx=find(curwin==inactive_windows(2))
-        if size(indx,'*')==1 then
-	   inactive_windows(1)(indx)=null();inactive_windows(2)(indx)=[]
-        elseif size(indx,'*')>1 then
-           disp('SUPER'),pause
-        end
-      end
-    end
-  end
+case 'set' then
+  // not used on Xcos, re-implemented for compatibility
+  xcos(arg1.model.rpar);
   
 case 'define' then
+  // nested diagram settings (2 ports)
   scs=scicos_diagram();
   scs.props.title='Super Block';
+  
+  in = IN_f('define');
+  in.graphics.orig = [40, 40];
+  in.graphics.sz = [40, 40];
+  out = OUT_f('define');
+  out.graphics.orig = [240, 40];
+  out.graphics.sz = [40, 40];
+
+  scs.objs(1) = in;
+  scs.objs(2) = out;
+  
+  // block settings
   model=scicos_model();
   model.sim='super';
   model.in=1;

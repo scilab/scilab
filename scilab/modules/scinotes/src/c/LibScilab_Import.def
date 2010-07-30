@@ -1,0 +1,16 @@
+LIBRARY    LibScilab.dll
+
+
+EXPORTS
+;
+callFunctionFromGateway
+getScilabMode
+com_
+putlhsvar_
+intersci_
+checklhs_
+checkrhs_
+freeArrayOfWideString
+getVariablesName
+getcommandkeywords
+GetFunctionsList

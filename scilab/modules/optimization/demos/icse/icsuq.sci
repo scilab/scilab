@@ -37,11 +37,11 @@ function [co,u,g,itv,dtv,cof]=icsuq(u,simu,nap,imp,obs,ytob)
 // Use the macros icot and icob to extract the state
 
 df0 = 1;
-if mini(binf) <=0 then
+if min(binf) <=0 then
   error('call to icsuq with binf not strictly positive');
 end
 for i=1:nu
-  u(1,i)=maxi([ binf(1,i),mini([u(1,i),bsup(1,i)])] );
+  u(1,i)=max([ binf(1,i),min([u(1,i),bsup(1,i)])] );
 end
 ech  = u;
 binf = binf./u;

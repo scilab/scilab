@@ -69,7 +69,8 @@ public final class BlockPositioning {
 
 		beginUpdate(block);
 		for (int i = 0; i < portsSize; ++i) {
-			mxGeometry portGeom = ((BasicPort) ports.get(i)).getGeometry();
+			final BasicPort port = (ports.get(i));
+			final mxGeometry portGeom = port.getGeometry();
 			
 			double nonVariantPosition = -portGeom.getWidth();
 			double alignedPosition = calculateAlignedPosition(gridSize,
@@ -77,6 +78,8 @@ public final class BlockPositioning {
 			
 			portGeom.setX(nonVariantPosition);
 			portGeom.setY(alignedPosition);
+			
+			port.setLabelPosition(Orientation.WEST);
 		}
 		endUpdate(block);
 	}
@@ -161,7 +164,8 @@ public final class BlockPositioning {
 
 		beginUpdate(block);
 		for (int i = 0; i < portsSize; ++i) {
-			mxGeometry portGeom = ((BasicPort) ports.get(i)).getGeometry();
+			final BasicPort port = (ports.get(i));
+			final mxGeometry portGeom = port.getGeometry();
 			
 			double nonVariantPosition = -portGeom.getHeight();
 			double alignedPosition = calculateAlignedPosition(gridSize,
@@ -169,6 +173,8 @@ public final class BlockPositioning {
 			
 			portGeom.setX(alignedPosition);
 			portGeom.setY(nonVariantPosition);
+			
+			port.setLabelPosition(Orientation.NORTH);
 		}
 		endUpdate(block);
     }
@@ -194,7 +200,8 @@ public final class BlockPositioning {
 
 		beginUpdate(block);
 		for (int i = 0; i < portsSize; ++i) {
-			mxGeometry portGeom = ((BasicPort) ports.get(i)).getGeometry();
+			final BasicPort port = (ports.get(i));
+			final mxGeometry portGeom = port.getGeometry();
 			
 			double nonVariantPosition = blockGeom.getWidth();
 			double alignedPosition = calculateAlignedPosition(gridSize,
@@ -202,6 +209,8 @@ public final class BlockPositioning {
 			
 			portGeom.setX(nonVariantPosition);
 			portGeom.setY(alignedPosition);
+			
+			port.setLabelPosition(Orientation.EAST);
 		}
 		endUpdate(block);
     }
@@ -227,7 +236,8 @@ public final class BlockPositioning {
 
 		beginUpdate(block);
 		for (int i = 0; i < portsSize; ++i) {
-			mxGeometry portGeom = ((BasicPort) ports.get(i)).getGeometry();
+			final BasicPort port = (ports.get(i));
+			final mxGeometry portGeom = port.getGeometry();
 			
 			double nonVariantPosition = blockGeom.getHeight();
 			double alignedPosition = calculateAlignedPosition(gridSize,
@@ -235,6 +245,8 @@ public final class BlockPositioning {
 			
 			portGeom.setX(alignedPosition);
 			portGeom.setY(nonVariantPosition);
+			
+			port.setLabelPosition(Orientation.SOUTH);
 		}
 		endUpdate(block);
     }
@@ -301,6 +313,8 @@ public final class BlockPositioning {
 		Orientation rotated = rotateOrientation(iter, mirrored, flipped);
 		
 		updatePortsPosition(block, rotated, angle, working);
+		
+		
 	}
 
 	/**
@@ -317,13 +331,13 @@ public final class BlockPositioning {
 		Orientation rotated = iter;
 		
 		/* Flip & Mirror management */
-		if (flipped) {
+		if (mirrored) {
 			if (rotated == Orientation.EAST || rotated == Orientation.WEST) {
 				rotated = Orientation.values()[(rotated.ordinal() + 2)
 						% nbOfOrientations];
 			}
 		}
-		if (mirrored) {
+		if (flipped) {
 			if (rotated == Orientation.NORTH || rotated == Orientation.SOUTH) {
 				rotated = Orientation.values()[(rotated.ordinal() + 2)
 						% nbOfOrientations];

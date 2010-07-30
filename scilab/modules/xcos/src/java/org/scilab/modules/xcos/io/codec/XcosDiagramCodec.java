@@ -42,7 +42,9 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
 	private static final String[] SUPERBLOCKDIAGRAM_IGNORED_FIELDS = {
 			"stylesheet", "parentTab", "viewPort", "viewPortMenu", "view",
 			"selectionModel", "multiplicities", "opened", "modified",
-			"undoManager", "savedFile", "container"};
+			"undoManager", "savedFile", "container",
+			"integratorAbsoluteTolerance", "integratorRelativeTolerance",
+			"maxIntegrationTimeInterval", "toleranceOnTime" };
 	// CSON: MultipleStringLiterals
 
 	/**
@@ -185,6 +187,8 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
 	@Override
 	public Object afterDecode(mxCodec dec, Node node, Object obj) {
 		XcosDiagram diag = (XcosDiagram) obj;
+		
+		diag.setChildrenParentDiagram();
 		
 		// pre-5.3 diagram may be saved in a locked state
 		// unlock it

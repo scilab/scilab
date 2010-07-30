@@ -67,7 +67,7 @@
 		<pathelement location="${library.graph.dir}/${library.graph.name}"/>
 		<pathelement location="${library.xcos.dir}/${library.xcos.name}"/>
 		<pathelement location="${library.hdf5.dir}/${library.hdf5.name}"/>
-		<pathelement location="${library.xpad.dir}/${library.xpad.name}"/>
+		<pathelement location="${library.scinotes.dir}/${library.scinotes.name}"/>
 		<pathelement location="${library.localization.dir}/${library.localization.name}"/>
 		<pathelement location="${library.shell.dir}/${library.shell.name}"/>
 		<pathelement location="${library.history_manager.dir}/${library.history_manager.name}"/>
@@ -158,7 +158,7 @@
 		<delete dir="${checkstyle.report.dir}"/>
 	</target>
 
-	<target name="test" depends="compile-test, validate" if="test-present">
+	<target name="test" depends="existing-tests, compile-test, validate" if="test-present">
         <taskdef name="testng" classpathref="unittest.classpath" classname="org.testng.TestNGAntTask" />
 	    <testng verbose="2"  haltonfailure="true">
 		  <classpath>
@@ -184,13 +184,17 @@
 	</target>
 	
 	<!-- Clean sources -->
-	<target name="clean" description="Clean built files">
+	<target name="clean" description="Clean built files" depends="clean-test">
 		<delete dir="${build.dir}"/>
-		<delete dir="${build.test.dir}"/>
 		<delete dir="${build.jar.dir}"/>
 		<delete file="${build.jar.dir}/${library.name}"/>
 	</target>
-	
+
+	<!-- Clean test -->
+	<target name="clean-test" description="Clean test files">
+		<delete dir="${build.test.dir}"/>
+	</target>
+
 	<!-- Compile sources -->
 	<target name="compile" description="Build sources" depends="init">
 		<javac
@@ -208,13 +212,13 @@
 
 	<target name="existing-tests">
 		<available property="test-present"
-			directory="${src.test.dir}"
+			file="${src.test.dir}"
 		/>	
 	</target>
 
 	<!-- Compile test sources -->
-	<target name="compile-test" description="Build tests" depends="jar" if="test-present">
-
+	<target name="compile-test" description="Build tests" depends="existing-tests, clean-test, jar" if="test-present">
+    <!-- clean the test to make sure it will build properly -->
 		<javac
 			srcdir="${src.test.dir}" 
 			destdir="${classes.test.dir}" 

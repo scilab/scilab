@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-04-13 09:16+0100\n"
+"Revision-Date: 2010-06-29 10:00+0100\n"
 
 # File: macros/tree/uiFindNode.sci, line: 115
 # File: macros/tree/uiFindNode.sci, line: 142
@@ -35,13 +35,15 @@ msgstr ""
 msgid "%s: An error occurred: %s.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 108
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 109
 # File: sci_gateway/cpp/sci_toprint.cpp, line: 231
 #, c-format
-msgid "%s: An exception occurred: %s"
+msgid ""
+"%s: An exception occurred: %s\n"
+"%s\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_uicontrol.c, line: 290
+# File: sci_gateway/c/sci_uicontrol.c, line: 299
 #, c-format
 msgid "%s: Could not create 'Uicontrol' handle.\n"
 msgstr ""
@@ -57,8 +59,8 @@ msgstr ""
 msgid "%s: Could not destroy this object.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_uicontrol.c, line: 126
-# File: sci_gateway/c/sci_uicontrol.c, line: 386
+# File: sci_gateway/c/sci_uicontrol.c, line: 127
+# File: sci_gateway/c/sci_uicontrol.c, line: 395
 # File: sci_gateway/c/sci_uimenu.c, line: 155
 #, c-format
 msgid "%s: Could not set property '%s'.\n"
@@ -111,8 +113,8 @@ msgstr ""
 # File: sci_gateway/cpp/sci_uiputfile.cpp, line: 260
 # File: sci_gateway/cpp/sci_setlookandfeel.cpp, line: 52
 # File: sci_gateway/cpp/sci_setlookandfeel.cpp, line: 81
-# File: sci_gateway/c/sci_uicontrol.c, line: 142
-# File: sci_gateway/c/sci_uicontrol.c, line: 242
+# File: sci_gateway/c/sci_uicontrol.c, line: 150
+# File: sci_gateway/c/sci_uicontrol.c, line: 250
 # File: sci_gateway/c/sci_ClipBoard.c, line: 163
 #, c-format
 msgid "%s: No more memory.\n"
@@ -143,7 +145,7 @@ msgstr ""
 msgid "%s: Type %s is not implemented.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_uicontrol.c, line: 266
+# File: sci_gateway/c/sci_uicontrol.c, line: 275
 #, c-format
 msgid "%s: Unknown property: %s for '%s' handles.\n"
 msgstr ""
@@ -239,7 +241,7 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A '%s' handle expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_uicontrol.c, line: 195
+# File: sci_gateway/c/sci_uicontrol.c, line: 203
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A '%s' or a '%s' handle expected.\n"
@@ -281,8 +283,8 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A boolean matrix expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_uicontrol.c, line: 100
-# File: sci_gateway/c/sci_uicontrol.c, line: 179
+# File: sci_gateway/c/sci_uicontrol.c, line: 101
+# File: sci_gateway/c/sci_uicontrol.c, line: 187
 # File: sci_gateway/c/sci_uimenu.c, line: 80
 # File: sci_gateway/c/sci_uiwait.c, line: 52
 # File: sci_gateway/c/sci_progressionbar.c, line: 48
@@ -422,15 +424,15 @@ msgid ""
 "%s: Wrong type for input argument #%d: A '%s' or '%s' handle expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_uicontrol.c, line: 171
-# File: sci_gateway/c/sci_uicontrol.c, line: 185
-# File: sci_gateway/c/sci_uicontrol.c, line: 201
+# File: sci_gateway/c/sci_uicontrol.c, line: 179
+# File: sci_gateway/c/sci_uicontrol.c, line: 193
+# File: sci_gateway/c/sci_uicontrol.c, line: 209
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_uicontrol.c, line: 132
+# File: sci_gateway/c/sci_uicontrol.c, line: 133
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s', '%s' or '%s' handle "
@@ -459,7 +461,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_uicontrol.c, line: 91
 # File: sci_gateway/c/sci_uimenu.c, line: 71
 # File: sci_gateway/c/sci_uiwait.c, line: 70
 #, c-format
@@ -543,8 +544,8 @@ msgstr ""
 # File: sci_gateway/cpp/sci_uiputfile.cpp, line: 122
 # File: sci_gateway/cpp/sci_uiputfile.cpp, line: 146
 # File: sci_gateway/cpp/sci_setlookandfeel.cpp, line: 86
-# File: sci_gateway/c/sci_uicontrol.c, line: 228
-# File: sci_gateway/c/sci_uicontrol.c, line: 281
+# File: sci_gateway/c/sci_uicontrol.c, line: 236
+# File: sci_gateway/c/sci_uicontrol.c, line: 290
 # File: sci_gateway/c/sci_uigetdir.c, line: 53
 # File: sci_gateway/c/sci_uigetdir.c, line: 72
 # File: sci_gateway/c/sci_uigetdir.c, line: 89
@@ -799,25 +800,25 @@ msgstr ""
 msgid "%s: function not available in NWNI mode.\n"
 msgstr ""
 #
-# File: demos/cb_uicontrol_plot3d.dem.sci, line: 62
-# File: demos/uicontrol.dem.sce, line: 90
-# File: scilab_fake_localization_file.c, line: 34
-# File: scilab_fake_localization_file.c, line: 39
-# File: scilab_fake_localization_file.c, line: 74
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 61
+# File: demos/uicontrol.dem.sce, line: 88
+# File: scilab_fake_localization_file.c, line: 36
+# File: scilab_fake_localization_file.c, line: 41
+# File: scilab_fake_localization_file.c, line: 76
 msgid "&?"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 67
+# File: scilab_fake_localization_file.c, line: 69
 msgid "&Abort"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 36
-# File: scilab_fake_localization_file.c, line: 40
-# File: scilab_fake_localization_file.c, line: 83
+# File: scilab_fake_localization_file.c, line: 38
+# File: scilab_fake_localization_file.c, line: 42
+# File: scilab_fake_localization_file.c, line: 85
 msgid "&About Scilab..."
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 69
+# File: scilab_fake_localization_file.c, line: 71
 msgid "&Applications"
 msgstr ""
 #
@@ -829,11 +830,11 @@ msgstr ""
 msgid "&BMP"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 81
+# File: scilab_fake_localization_file.c, line: 83
 msgid "&Bug And Request database"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 46
+# File: scilab_fake_localization_file.c, line: 48
 msgid "&Change current directory..."
 msgstr ""
 #
@@ -841,23 +842,23 @@ msgstr ""
 msgid "&Clear figure"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 38
+# File: scilab_fake_localization_file.c, line: 40
 msgid "&Close"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 58
+# File: scilab_fake_localization_file.c, line: 60
 msgid "&Colors"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 80
+# File: scilab_fake_localization_file.c, line: 82
 msgid "&Contributions"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 65
+# File: scilab_fake_localization_file.c, line: 67
 msgid "&Control"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 53
+# File: scilab_fake_localization_file.c, line: 55
 msgid "&Copy"
 msgstr ""
 #
@@ -865,7 +866,7 @@ msgstr ""
 msgid "&Copy to clipboard"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 47
+# File: scilab_fake_localization_file.c, line: 49
 msgid "&Display current directory"
 msgstr ""
 #
@@ -877,22 +878,22 @@ msgstr ""
 msgid "&EPS"
 msgstr ""
 #
-# File: demos/cb_uicontrol_plot3d.dem.sci, line: 61
-# File: demos/uicontrol.dem.sce, line: 89
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 60
+# File: demos/uicontrol.dem.sce, line: 87
 # File: scilab_fake_localization_file.c, line: 26
-# File: scilab_fake_localization_file.c, line: 51
+# File: scilab_fake_localization_file.c, line: 53
 msgid "&Edit"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 70
+# File: scilab_fake_localization_file.c, line: 72
 msgid "&Editor"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 55
+# File: scilab_fake_localization_file.c, line: 57
 msgid "&Empty clipboard"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 42
+# File: scilab_fake_localization_file.c, line: 44
 msgid "&Execute..."
 msgstr ""
 #
@@ -908,15 +909,15 @@ msgstr ""
 msgid "&Figure properties"
 msgstr ""
 #
-# File: demos/cb_uicontrol_plot3d.dem.sci, line: 59
-# File: demos/uicontrol.dem.sce, line: 87
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 58
+# File: demos/uicontrol.dem.sce, line: 85
 # File: scilab_fake_localization_file.c, line: 1
-# File: scilab_fake_localization_file.c, line: 37
-# File: scilab_fake_localization_file.c, line: 41
+# File: scilab_fake_localization_file.c, line: 39
+# File: scilab_fake_localization_file.c, line: 43
 msgid "&File"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 61
+# File: scilab_fake_localization_file.c, line: 63
 msgid "&Font..."
 msgstr ""
 #
@@ -924,7 +925,7 @@ msgstr ""
 msgid "&GIF"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 68
+# File: scilab_fake_localization_file.c, line: 70
 msgid "&Interrupt"
 msgstr ""
 #
@@ -932,7 +933,7 @@ msgstr ""
 msgid "&JPG"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 44
+# File: scilab_fake_localization_file.c, line: 46
 msgid "&Load environment..."
 msgstr ""
 #
@@ -940,11 +941,11 @@ msgstr ""
 msgid "&Load..."
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 82
+# File: scilab_fake_localization_file.c, line: 84
 msgid "&Mailing lists"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 72
+# File: scilab_fake_localization_file.c, line: 74
 msgid "&Matlab to Scilab translator"
 msgstr ""
 #
@@ -952,7 +953,7 @@ msgstr ""
 msgid "&New figure..."
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 43
+# File: scilab_fake_localization_file.c, line: 45
 msgid "&Open a file..."
 msgstr ""
 #
@@ -964,20 +965,20 @@ msgstr ""
 msgid "&PPM"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 54
+# File: scilab_fake_localization_file.c, line: 56
 msgid "&Paste"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 57
+# File: scilab_fake_localization_file.c, line: 59
 msgid "&Preferences"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 19
-# File: scilab_fake_localization_file.c, line: 49
+# File: scilab_fake_localization_file.c, line: 51
 msgid "&Print..."
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 50
+# File: scilab_fake_localization_file.c, line: 52
 msgid "&Quit"
 msgstr ""
 #
@@ -985,7 +986,7 @@ msgstr ""
 msgid "&Redraw figure"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 66
+# File: scilab_fake_localization_file.c, line: 68
 msgid "&Resume"
 msgstr ""
 #
@@ -993,7 +994,7 @@ msgstr ""
 msgid "&SVG"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 45
+# File: scilab_fake_localization_file.c, line: 47
 msgid "&Save environment..."
 msgstr ""
 #
@@ -1001,11 +1002,11 @@ msgstr ""
 msgid "&Save..."
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 35
+# File: scilab_fake_localization_file.c, line: 37
 msgid "&Scilab Help"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 56
+# File: scilab_fake_localization_file.c, line: 58
 msgid "&Select all"
 msgstr ""
 #
@@ -1013,12 +1014,16 @@ msgstr ""
 msgid "&Select as current figure"
 msgstr ""
 #
+# File: scilab_fake_localization_file.c, line: 34
+msgid "&Start datatip manager"
+msgstr ""
+#
 # File: scilab_fake_localization_file.c, line: 32
 msgid "&Start entity picker"
 msgstr ""
 #
-# File: demos/cb_uicontrol_plot3d.dem.sci, line: 60
-# File: demos/uicontrol.dem.sce, line: 88
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 59
+# File: demos/uicontrol.dem.sce, line: 86
 # File: scilab_fake_localization_file.c, line: 21
 msgid "&Tools"
 msgstr ""
@@ -1031,11 +1036,11 @@ msgstr ""
 msgid "&Vectorial export"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 77
+# File: scilab_fake_localization_file.c, line: 79
 msgid "&Web links"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 71
+# File: scilab_fake_localization_file.c, line: 73
 msgid "&Xcos"
 msgstr ""
 #
@@ -1053,8 +1058,8 @@ msgstr ""
 msgid "2D/3D &Rotation"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 13
-# File: demos/uicontrol.dem.sce, line: 126
+# File: demos/uicontrol.dem.sce, line: 11
+# File: demos/uicontrol.dem.sce, line: 124
 msgid "<Enter color name here>"
 msgstr ""
 #
@@ -1068,21 +1073,25 @@ msgstr ""
 msgid "Acknowledgements"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 133
+# File: demos/uicontrol.dem.sce, line: 131
 msgid "Add color in listbox"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 58
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 62
 msgid "All %s files"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 50
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 54
 msgid "All Scilab files"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 56
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 60
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 49
 msgid "All files"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/gui/utils/PrinterHelper.java, line: 54
+msgid "An error occured: "
 msgstr ""
 #
 # File: macros/getvalue.sci, line: 193
@@ -1107,7 +1116,7 @@ msgid ""
 " is incorrect see error message in scilab window.\n"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 99
+# File: demos/uicontrol.dem.sce, line: 97
 msgid "Application"
 msgstr ""
 #
@@ -1126,7 +1135,7 @@ msgstr ""
 msgid "C&lose"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 52
+# File: scilab_fake_localization_file.c, line: 54
 msgid "C&ut"
 msgstr ""
 #
@@ -1140,19 +1149,19 @@ msgstr ""
 msgid "CeCILL License"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 93
+# File: scilab_fake_localization_file.c, line: 96
 msgid "Change Current Directory"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 94
+# File: scilab_fake_localization_file.c, line: 97
 msgid "Choose Font..."
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 63
+# File: scilab_fake_localization_file.c, line: 65
 msgid "Clear &History"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 64
+# File: scilab_fake_localization_file.c, line: 66
 msgid "Clear C&onsole"
 msgstr ""
 #
@@ -1164,38 +1173,38 @@ msgstr ""
 msgid "Clear History"
 msgstr ""
 #
-# File: demos/cb_uicontrol_plot3d.dem.sci, line: 76
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 75
 # File: src/java/org/scilab/modules/gui/utils/ScilabAboutBox.java, line: 97
 msgid "Close"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 120
+# File: demos/uicontrol.dem.sce, line: 118
 msgid "Colors list edition"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 59
+# File: scilab_fake_localization_file.c, line: 61
 msgid "Console &Background..."
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 60
+# File: scilab_fake_localization_file.c, line: 62
 msgid "Console &Font..."
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2256
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2277
 msgid "Console Background..."
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2237
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2258
 msgid "Console Font..."
 msgstr ""
 #
-# File: demos/cb_uicontrol_plot3d.dem.sci, line: 68
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 67
 msgid "Control Plot3d"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 221
 # File: src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 84
-# File: scilab_fake_localization_file.c, line: 91
+# File: scilab_fake_localization_file.c, line: 94
 msgid "Copy"
 msgstr ""
 #
@@ -1208,15 +1217,15 @@ msgid "Copyright (c) 1989-2010 (INRIA)"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 77
-# File: scilab_fake_localization_file.c, line: 90
+# File: scilab_fake_localization_file.c, line: 93
 msgid "Cut"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 151
+# File: demos/uicontrol.dem.sce, line: 149
 msgid "Display selection"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 71
+# File: demos/uicontrol.dem.sce, line: 69
 msgid "Do you really want to quit Scilab?"
 msgstr ""
 #
@@ -1240,7 +1249,7 @@ msgstr ""
 msgid "Environment saved.\n"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 14
+# File: demos/uicontrol.dem.sce, line: 12
 msgid "Error"
 msgstr ""
 #
@@ -1261,7 +1270,7 @@ msgstr ""
 msgid "Execution done.\n"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 100
+# File: demos/uicontrol.dem.sce, line: 98
 msgid "Exit figure"
 msgstr ""
 #
@@ -1282,7 +1291,7 @@ msgstr ""
 msgid "Figure saved.\n"
 msgstr ""
 #
-# File: demos/cb_uicontrol_plot3d.dem.sci, line: 73
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 72
 msgid "File"
 msgstr ""
 #
@@ -1302,13 +1311,13 @@ msgstr ""
 msgid "GIF image"
 msgstr ""
 #
-# File: etc/gui.start, line: 26
+# File: etc/gui.start, line: 20
 msgid "GUI"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/gui/helpbrowser/ScilabHelpBrowser.java, line: 74
-# File: scilab_fake_localization_file.c, line: 87
-# File: scilab_fake_localization_file.c, line: 99
+# File: scilab_fake_localization_file.c, line: 90
+# File: scilab_fake_localization_file.c, line: 102
 msgid "Help Browser"
 msgstr ""
 #
@@ -1334,15 +1343,15 @@ msgstr ""
 msgid "JPEG image"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 88
+# File: scilab_fake_localization_file.c, line: 91
 msgid "Launch Scilab text editor"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 105
+# File: demos/uicontrol.dem.sce, line: 103
 msgid "Launch plot2d"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 104
+# File: demos/uicontrol.dem.sce, line: 102
 msgid "Launch plot3d"
 msgstr ""
 #
@@ -1360,28 +1369,28 @@ msgstr ""
 msgid "Loading help browser..."
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 73
+# File: scilab_fake_localization_file.c, line: 75
 msgid "M&odule manager - ATOMS"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 107
+# File: demos/uicontrol.dem.sce, line: 105
 msgid "Menu"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 47
+# File: demos/uicontrol.dem.sce, line: 45
 #, c-format
 msgid "Menu ''%s'' is %s."
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 48
+# File: demos/uicontrol.dem.sce, line: 46
 msgid "Menu status"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 96
+# File: scilab_fake_localization_file.c, line: 99
 msgid "Module manager - ATOMS"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 72
+# File: demos/uicontrol.dem.sce, line: 70
 # File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 171
 # File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 174
 msgid "No"
@@ -1402,7 +1411,7 @@ msgstr ""
 # File: src/cpp/SetUicontrolString.cpp, line: 87
 # File: src/cpp/SetUiobjectTag.cpp, line: 78
 # File: src/cpp/SetUiobjectTag.cpp, line: 109
-# File: src/cpp/GetUicontrolListboxTop.cpp, line: 33
+# File: src/cpp/GetUicontrolListboxTop.cpp, line: 43
 # File: src/cpp/SetUimenuChecked.cpp, line: 54
 # File: src/cpp/GetUicontrolBackgroundColor.cpp, line: 69
 # File: src/cpp/SetUiobjectEnable.cpp, line: 72
@@ -1440,8 +1449,12 @@ msgstr ""
 msgid "No '%s' property for uicontrols of style: %s.\n"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 29
+# File: demos/uicontrol.dem.sce, line: 27
 msgid "No color selected."
+msgstr ""
+#
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2412
+msgid "No print service found."
 msgstr ""
 #
 # File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 122
@@ -1459,11 +1472,11 @@ msgstr ""
 msgid "Ok"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 89
+# File: scilab_fake_localization_file.c, line: 92
 msgid "Open a file"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 86
+# File: scilab_fake_localization_file.c, line: 88
 msgid "Original View"
 msgstr ""
 #
@@ -1472,7 +1485,7 @@ msgid "P&NG"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 18
-# File: scilab_fake_localization_file.c, line: 48
+# File: scilab_fake_localization_file.c, line: 50
 msgid "P&age setup..."
 msgstr ""
 #
@@ -1489,11 +1502,11 @@ msgid "PPM image"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 91
-# File: scilab_fake_localization_file.c, line: 92
+# File: scilab_fake_localization_file.c, line: 95
 msgid "Paste"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 14
+# File: demos/uicontrol.dem.sce, line: 12
 msgid "Please enter a color name first."
 msgstr ""
 #
@@ -1501,7 +1514,7 @@ msgstr ""
 msgid "Please specify a file format"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 63
+# File: demos/uicontrol.dem.sce, line: 61
 msgid "Popupmenu selection"
 msgstr ""
 #
@@ -1509,16 +1522,16 @@ msgstr ""
 msgid "Preview"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 95
+# File: scilab_fake_localization_file.c, line: 98
 msgid "Print..."
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 72
-# File: demos/uicontrol.dem.sce, line: 101
+# File: demos/uicontrol.dem.sce, line: 70
+# File: demos/uicontrol.dem.sce, line: 99
 msgid "Quit Scilab"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 192
+# File: demos/uicontrol.dem.sce, line: 190
 msgid "Quit demonstration"
 msgstr ""
 #
@@ -1527,7 +1540,7 @@ msgstr ""
 msgid "Replace existing file?"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 84
+# File: scilab_fake_localization_file.c, line: 86
 msgid "Rotate"
 msgstr ""
 #
@@ -1543,23 +1556,23 @@ msgstr ""
 msgid "Save and execute"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 54
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 58
 msgid "Scicos files"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 79
+# File: scilab_fake_localization_file.c, line: 81
 msgid "Scilab &ATOMS Web Site"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 76
+# File: scilab_fake_localization_file.c, line: 78
 msgid "Scilab &Demonstrations"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 75
+# File: scilab_fake_localization_file.c, line: 77
 msgid "Scilab &Help"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 78
+# File: scilab_fake_localization_file.c, line: 80
 msgid "Scilab &Web Site"
 msgstr ""
 #
@@ -1594,11 +1607,11 @@ msgstr ""
 msgid "Scilab Contributors..."
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 98
+# File: scilab_fake_localization_file.c, line: 101
 msgid "Scilab Demonstrations"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 103
+# File: demos/uicontrol.dem.sce, line: 101
 msgid "Scilab Graphics"
 msgstr ""
 #
@@ -1616,15 +1629,15 @@ msgstr ""
 msgid "Scilab Multiple Values Request"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 46
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 50
 msgid "Scilab SCE files"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 44
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 48
 msgid "Scilab SCI files"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 48
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 52
 msgid "Scilab binary files"
 msgstr ""
 #
@@ -1670,29 +1683,29 @@ msgstr ""
 msgid "Select a file to write"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 33
+# File: demos/uicontrol.dem.sce, line: 31
 msgid "Selected colors"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 31
+# File: demos/uicontrol.dem.sce, line: 29
 #, c-format
 msgid "Selected colors are: %s."
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 38
+# File: demos/uicontrol.dem.sce, line: 36
 msgid "Selected menu"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 22
-# File: scilab_fake_localization_file.c, line: 62
+# File: scilab_fake_localization_file.c, line: 64
 msgid "Show/Hide &Toolbar"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 160
+# File: demos/uicontrol.dem.sce, line: 158
 msgid "Slider demo"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 54
+# File: demos/uicontrol.dem.sce, line: 52
 msgid "Slider value: "
 msgstr ""
 #
@@ -1702,20 +1715,24 @@ msgid ""
 "\n"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 108
+# File: scilab_fake_localization_file.c, line: 35
+msgid "Stop datatip manager"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 106
 msgid "Sub-menu 1"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 109
-# File: demos/uicontrol.dem.sce, line: 112
+# File: demos/uicontrol.dem.sce, line: 107
+# File: demos/uicontrol.dem.sce, line: 110
 msgid "Sub-menu 2"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 110
+# File: demos/uicontrol.dem.sce, line: 108
 msgid "Sub-menu 2-1"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 111
+# File: demos/uicontrol.dem.sce, line: 109
 msgid "Sub-menu 2-2"
 msgstr ""
 #
@@ -1727,7 +1744,7 @@ msgstr ""
 msgid "Tree Overview"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 80
+# File: demos/uicontrol.dem.sce, line: 78
 msgid "Uicontrols demo"
 msgstr ""
 #
@@ -1814,8 +1831,8 @@ msgstr ""
 #
 # File: src/cpp/SetUicontrolMin.cpp, line: 26
 # File: src/cpp/SetUicontrolMax.cpp, line: 26
-# File: src/cpp/SetUicontrolListboxTop.cpp, line: 27
-# File: src/cpp/SetUicontrolListboxTop.cpp, line: 38
+# File: src/cpp/SetUicontrolListboxTop.cpp, line: 29
+# File: src/cpp/SetUicontrolListboxTop.cpp, line: 40
 # File: src/cpp/SetUicontrolValue.cpp, line: 110
 # File: src/cpp/SetUicontrolFontSize.cpp, line: 35
 # File: src/cpp/SetUiobjectCallback.cpp, line: 49
@@ -1906,7 +1923,7 @@ msgstr ""
 #
 # File: src/cpp/SetUicontrolMin.cpp, line: 118
 # File: src/cpp/SetUicontrolMax.cpp, line: 118
-# File: src/cpp/SetUicontrolListboxTop.cpp, line: 54
+# File: src/cpp/SetUicontrolListboxTop.cpp, line: 56
 # File: src/cpp/SetUicontrolFontSize.cpp, line: 56
 #, c-format
 msgid "Wrong type for '%s' property: A real expected.\n"
@@ -2002,12 +2019,18 @@ msgstr ""
 msgid "Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"
 msgstr ""
 #
-# File: src/cpp/SetUicontrolListboxTop.cpp, line: 47
+# File: src/cpp/SetUicontrolValue.cpp, line: 69
+#, c-format
+msgid ""
+"Wrong value for '%s' property: A String containing a numeric value "
+"expected.\n"
+msgstr ""
+#
+# File: src/cpp/SetUicontrolListboxTop.cpp, line: 49
 #, c-format
 msgid "Wrong value for '%s' property: A real expected.\n"
 msgstr ""
 #
-# File: src/cpp/SetUicontrolValue.cpp, line: 69
 # File: src/cpp/SetUiobjectTag.cpp, line: 22
 #, c-format
 msgid "Wrong value for '%s' property: A string expected.\n"
@@ -2020,39 +2043,39 @@ msgid ""
 "expected.\n"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 97
+# File: scilab_fake_localization_file.c, line: 100
 msgid "Xcos"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 52
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 56
 msgid "Xcos files"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 72
+# File: demos/uicontrol.dem.sce, line: 70
 # File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 171
 # File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 174
 msgid "Yes"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 37
+# File: demos/uicontrol.dem.sce, line: 35
 #, c-format
 msgid "You clicked on menu ''%s''."
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 62
+# File: demos/uicontrol.dem.sce, line: 60
 #, c-format
 msgid "You selected ''%s''."
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 85
+# File: scilab_fake_localization_file.c, line: 87
 msgid "Zoom Area"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 137
+# File: demos/uicontrol.dem.sce, line: 135
 msgid "blue"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 43
+# File: demos/uicontrol.dem.sce, line: 41
 msgid "checked"
 msgstr ""
 #
@@ -2081,7 +2104,7 @@ msgid ""
 "update your driver.\")"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 137
+# File: demos/uicontrol.dem.sce, line: 135
 msgid "green"
 msgstr ""
 #
@@ -2089,18 +2112,22 @@ msgstr ""
 msgid "http://www.scilab.org/"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 185
+# File: demos/uicontrol.dem.sce, line: 183
 msgid "item1|item2|item3|item4"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 137
+# File: demos/uicontrol.dem.sce, line: 135
 msgid "red"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 45
+# File: scilab_fake_localization_file.c, line: 89
+msgid "toggle datatip mode"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 43
 msgid "unchecked"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 137
+# File: demos/uicontrol.dem.sce, line: 135
 msgid "yellow"
 msgstr ""

@@ -131,7 +131,7 @@ c=cell(x)
     <literal>A(1,1).entries = zeros(2,2)</literal>.</para>
 
     <para>If A is a cell array, you can get its dimensions by using
-    <literal>A.dims</literal>.</para>
+    <literal>A.dims</literal> which returns an <literal>int32</literal> value that cannot be used as a subscript for the cell array. In this case, the best way to get the cell array dimensions is <literal>size(A)</literal>.</para>
   </refsection>
 
   <refsection>
@@ -165,8 +165,11 @@ b(1:2)
 // Extracting a sub-cell value: result is an array
 b(1).entries
 
-// Dimensions of b
+// Dimensions of b as an int32 value (cannont be used as an index)
 b.dims
+// Dimensions of b as a double value
+size(b)
+
  ]]></programlisting>
   </refsection>
 

@@ -768,7 +768,7 @@
       </varlistentry>
 
       <varlistentry>
-        <term>xselect</term>
+        <term>show_window</term>
 
         <listitem>
           <para>restaura a janela de gráficos corrente</para>

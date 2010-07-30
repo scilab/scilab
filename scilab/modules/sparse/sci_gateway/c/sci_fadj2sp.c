@@ -14,7 +14,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intfadj2sp)(int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_fadj2sp)(char *fname,unsigned long fname_len)
+int sci_fadj2sp(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	C2F(intfadj2sp)(id);

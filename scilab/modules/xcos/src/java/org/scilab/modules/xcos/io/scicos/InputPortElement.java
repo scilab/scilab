@@ -95,10 +95,15 @@ public class InputPortElement extends AbstractElement<InputPort> {
 		data = (ScilabMList) element;
 		
 		port = allocatePort();
+		
+		port = beforeDecode(element, port);
+		
 		fillParameters(port);
 		
 		// Update the index counter
 		alreadyDecodedCount++;
+		
+		port = afterDecode(element, port);
 		
 		return port;
 	}
@@ -134,9 +139,17 @@ public class InputPortElement extends AbstractElement<InputPort> {
 		final int[] indexes = getIndexes(alreadyDecodedCount, isColumnDominant);
 		final String[][] inimpl = inImplicit.getData();
 		
-		if (inimpl[indexes[0]][indexes[1]].equals(EXPLICIT)) {
+		// can we safely access the indexed data ?
+		final boolean isSet = indexes[0] < inimpl.length
+				&& indexes[1] < inimpl[indexes[0]].length;
+		
+		/*
+		 * when the type is set, create a new port instance; create an explicit
+		 * typed port otherwise.
+		 */
+		if (isSet && inimpl[indexes[0]][indexes[1]].equals(EXPLICIT)) {
 			ret = new ExplicitInputPort();
-		} else if (inimpl[indexes[0]][indexes[1]].equals(IMPLICIT)) {
+		} else if (isSet && inimpl[indexes[0]][indexes[1]].equals(IMPLICIT)) {
 			ret = new ImplicitInputPort();
 		} else {
 			// when not specified, use explicit
@@ -223,11 +236,15 @@ public class InputPortElement extends AbstractElement<InputPort> {
 			throw new IllegalArgumentException();
 		}
 
+		data = (ScilabMList) beforeEncode(from, data);
+		
 		encodeModel(from);
 		encodeGraphics(from);
 		
 		// Update the index counter
 		alreadyDecodedCount++;
+		
+		data = (ScilabMList) afterEncode(from, data);
 		
 		return data;
 	}
@@ -302,7 +319,6 @@ public class InputPortElement extends AbstractElement<InputPort> {
 	/**
 	 * Clear Block.model.in2 if it contains only zeros.
 	 */
-	@Override
 	public void afterEncode() {
 		if (allColumnsAreZeros) {
 			model.set(MODEL_IN_DATACOL_INDEX, new ScilabDouble());

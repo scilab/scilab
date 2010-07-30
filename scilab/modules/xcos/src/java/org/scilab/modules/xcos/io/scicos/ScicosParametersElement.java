@@ -67,25 +67,30 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
 	public ScicosParameters decode(ScilabType element, ScicosParameters into)
 			throws ScicosFormatException {
 		data = (ScilabTList) element;
+		ScicosParameters local = into;
 		
 		// Validate the fields
 		validate();
+		
+		local = beforeDecode(element, local);
 		
 		/*
 		 * fill data
 		 */
 		
-		fillWithThirdFields(into);
+		fillWithThirdFields(local);
 		
 		try {
-			into.setFinalIntegrationTime(((ScilabDouble) data.get(TF_INDEX)).getRealPart()[0][0]);
+			local.setFinalIntegrationTime(((ScilabDouble) data.get(TF_INDEX)).getRealPart()[0][0]);
 		} catch (PropertyVetoException e) {
 			LogFactory.getLog(ScicosParametersElement.class).error(e);
 		}
 		
-		fillContext(into);
+		fillContext(local);
 		
-		return into;
+		local = afterDecode(element, local);
+		
+		return local;
 	}
 
 	/**
@@ -172,13 +177,13 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
 		if (!isEmptyField(data.get(field))) {
 			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
-
+		
 		// options
 		field++;
 		if (!(data.get(field) instanceof ScilabTList)) {
 			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
-
+		
 		// void2
 		field++;
 		if (!isEmptyField(data.get(field))) {
@@ -344,6 +349,7 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
 		}
 		
 		data = (ScilabTList) element;
+		data = (ScilabTList) beforeEncode(from, element);
 		
 		/*
 		 * fill the tol field
@@ -373,6 +379,8 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
 		 * fill the context
 		 */
 		data.set(CONTEXT_INDEX, new ScilabString(from.getContext()));
+		
+		data = (ScilabTList) afterEncode(from, data);
 		
 		return data;
 	}

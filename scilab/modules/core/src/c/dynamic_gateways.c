@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -14,6 +14,22 @@
 #include "callDynamicGateway.h"
 #include "gw_dynamic_generic.h"
 #include "MALLOC.h"
+/*--------------------------------------------------------------------------*/
+/* special_functions module */
+#define SPECIAL_FUNCTIONS_MODULE_NAME "special_functions"
+static DynLibHandle hSpecial_functionsLib = NULL;
+static PROC_GATEWAY ptr_gw_special_functions = NULL;
+static char* dynlibname_special_functions = NULL;
+static char* gatewayname_special_functions = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_special_functions(void)
+{
+    return gw_dynamic_generic(SPECIAL_FUNCTIONS_MODULE_NAME,
+        &dynlibname_special_functions,
+        &gatewayname_special_functions,
+        &hSpecial_functionsLib,
+        &ptr_gw_special_functions);
+}
 /*--------------------------------------------------------------------------*/
 /* pvm module */
 #define PVM_MODULE_NAME "pvm"
@@ -271,27 +287,26 @@ int gw_dynamic_xcos(void)
         &ptr_gw_xcos);
 }
 /*--------------------------------------------------------------------------*/
-/* xpad module */
-#define XPAD_MODULE_NAME "xpad"
-static DynLibHandle hXpadLib = NULL;
-static PROC_GATEWAY ptr_gw_xpad = NULL;
-static char* dynlibname_xpad = NULL;
-static char* gatewayname_xpad = NULL;
+/* scinotes module */
+#define SCINOTES_MODULE_NAME "scinotes"
+static DynLibHandle hSciNotesLib = NULL;
+static PROC_GATEWAY ptr_gw_scinotes = NULL;
+static char* dynlibname_scinotes = NULL;
+static char* gatewayname_scinotes = NULL;
 /*--------------------------------------------------------------------------*/
-int gw_dynamic_xpad(void)
+int gw_dynamic_scinotes(void)
 {
 #ifdef _MSC_VER
-    if (dynlibname_xpad == NULL)
+    if (dynlibname_scinotes == NULL)
     {
-        dynlibname_xpad = buildModuleDynLibraryName(XPAD_MODULE_NAME, DYNLIB_NAME_FORMAT_2);
+        dynlibname_scinotes = buildModuleDynLibraryName(SCINOTES_MODULE_NAME, DYNLIB_NAME_FORMAT_2);
     }
 #endif
-
-    return gw_dynamic_generic(XPAD_MODULE_NAME,
-        &dynlibname_xpad,
-        &gatewayname_xpad,
-        &hXpadLib,
-        &ptr_gw_xpad);
+    return gw_dynamic_generic(SCINOTES_MODULE_NAME,
+        &dynlibname_scinotes,
+        &gatewayname_scinotes,
+        &hSciNotesLib,
+        &ptr_gw_scinotes);
 }
 /*--------------------------------------------------------------------------*/
 /* hdf5 module */
@@ -375,6 +390,29 @@ int gw_dynamic_parallel(void)
         &gatewayname_parallel,
         &hParallelLib,
         &ptr_gw_parallel);
+}
+/*--------------------------------------------------------------------------*/
+/* ui_data module */
+#define UI_DATA_MODULE_NAME "ui_data"
+static DynLibHandle hUi_dataLib = NULL;
+static PROC_GATEWAY ptr_gw_ui_data = NULL;
+static char* dynlibname_ui_data = NULL;
+static char* gatewayname_ui_data = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_ui_data(void)
+{
+#ifdef _MSC_VER
+	if (dynlibname_ui_data == NULL)
+	{
+		dynlibname_ui_data = buildModuleDynLibraryName(UI_DATA_MODULE_NAME, DYNLIB_NAME_FORMAT_2);
+	}
+#endif
+
+	return gw_dynamic_generic(UI_DATA_MODULE_NAME,
+		&dynlibname_ui_data,
+		&gatewayname_ui_data,
+		&hUi_dataLib,
+		&ptr_gw_ui_data);
 }
 /*--------------------------------------------------------------------------*/
 

@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Clément DAVID
+ * Copyright (C) 2009-2010 - DIGITEO - Clément DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,11 +14,11 @@ package org.scilab.modules.graph.io;
 
 import java.util.Map;
 
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.types.scilabTypes.ScilabInteger;
-import org.w3c.dom.Element;
+import org.scilab.modules.types.scilabTypes.ScilabInteger.IntegerType;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.io.mxCodecRegistry;
@@ -29,13 +29,8 @@ import com.mxgraph.io.mxCodecRegistry;
 public class ScilabIntegerCodec extends ScilabObjectCodec {
 
     private static final String BUNSIGNED = "bUnsigned";
-	
     private static final String VALUE = "value";
-    private static final String COLUMN = "column";
-    private static final String LINE = "line";
-    private static final String DATA = "data";
-    private static final String HEIGHT = "height";
-    private static final String WIDTH = "width";
+    private static final String PREC = "precision";
 
     /**
      * Default constructor
@@ -66,6 +61,7 @@ public class ScilabIntegerCodec extends ScilabObjectCodec {
 	ScilabInteger scilabInteger = (ScilabInteger) obj;
 	mxCodec.setAttribute(node, WIDTH, scilabInteger.getWidth());
 	mxCodec.setAttribute(node, HEIGHT, scilabInteger.getHeight());
+	mxCodec.setAttribute(node, PREC, scilabInteger.getPrec().name());
 
 	for (int i = 0; i < scilabInteger.getHeight(); ++i) {
 	    for (int j = 0; j < scilabInteger.getWidth(); ++j) {
@@ -80,70 +76,218 @@ public class ScilabIntegerCodec extends ScilabObjectCodec {
 	return node;
     }
 
-    /**
-     * Parses the given node into the object or returns a new object
+	/**
+	 * Parses the given node into the object or returns a new object
 	 * representing the given node.
 	 * 
-	 * @param dec Codec that controls the encoding process.
-	 * @param node XML node to be decoded.
-	 * @param into Optional object to encode the node into.
+	 * @param dec
+	 *            Codec that controls the encoding process.
+	 * @param node
+	 *            XML node to be decoded.
+	 * @param into
+	 *            Optional object to encode the node into.
 	 * @return Returns the resulting object that represents the given XML node
-	 * or the object given to the method as the into parameter.
+	 *         or the object given to the method as the into parameter.
 	 */
-    @Override
-    public Object decode(mxCodec dec, Node node, Object into) {
-	Object obj = null;
-	try {
-	    if (!(node instanceof Element)) { return null; }
-	    obj = cloneTemplate(node);
+	@Override
+	public Object decode(mxCodec dec, Node node, Object into) {
+		ScilabInteger obj = null;
 
+		try {
+			if (node.getNodeType() != Node.ELEMENT_NODE) {
+				throw new UnrecognizeFormatException();
+			}
+			obj = (ScilabInteger) cloneTemplate(node);
 
-	    // attrs = {"as", "height", "width"}
-	    NamedNodeMap attrs = node.getAttributes();
-	    int heightXMLPosition = -1;
-	    int widthXMLPosition = -1;
-	    int bUnsignedXMLPosition = -1;
-	    for (int i = 0; i < attrs.getLength(); i++) {
-		Node attr = attrs.item(i);
-		if (attr.getNodeName().compareToIgnoreCase(WIDTH) == 0) { widthXMLPosition = i; }
-		if (attr.getNodeName().compareToIgnoreCase(HEIGHT) == 0) { heightXMLPosition = i; }
-		if (attr.getNodeName().compareToIgnoreCase(BUNSIGNED) == 0) { bUnsignedXMLPosition = i; }
-	    }
-	    if (heightXMLPosition == -1 || widthXMLPosition == -1) {
-	    	throw new UnrecognizeFormatException();
-	    }
+			// attrs = {"as", "height", "width"}
+			final NamedNodeMap attrs = node.getAttributes();
+			if (attrs == null) {
+				throw new UnrecognizeFormatException();
+			}
 
-	    int height = Integer.parseInt(attrs.item(heightXMLPosition).getNodeValue());
-	    int width = Integer.parseInt(attrs.item(widthXMLPosition).getNodeValue());
-	    boolean bUnsigned  = false; 
+			final int height = getHeight(attrs);
+			final int width = getWidth(attrs);
 
-	    long[][] data = new long[height][width];
-	    NodeList allValues = node.getChildNodes();
-	    for (int i = 0; i < allValues.getLength(); ++i) {
-		int lineXMLPosition = -1;
-		int columnXMLPosition = -1;
-		int valueXMLPosition = -1;
+			if (height * width == 0) {
+				return obj;
+			}
+			
+			final Node u = attrs.getNamedItem(BUNSIGNED);
+			final boolean unsigned;
+			/*
+			 * the default boolean value is false, this value is not serialized
+			 * by jgraphx this if we doesn't have attribute the value is
+			 * "false".
+			 */
+			unsigned = u != null;
+			
+			final Node prec = attrs.getNamedItem(PREC);
+			final IntegerType precision = IntegerType.valueOf(prec.getNodeValue());
+			
+			switch (precision) {
+				case TYPE8:
+					final byte[][] data8 = new byte[height][width];
+					fillData(node, data8);
+					obj.setData(data8, unsigned);
+					break;
+				case TYPE16:
+					final short[][] data16 = new short[height][width];
+					fillData(node, data16);
+					obj.setData(data16, unsigned);
+					break;
+				case TYPE32:
+					final int[][] data32 = new int[height][width];
+					fillData(node, data32);
+					obj.setData(data32, unsigned);
+					break;
+				default:
+					final long[][] data64 = new long[height][width];
+					fillData(node, data64);
+					obj.setData(data64, unsigned);
+					break;
+			}
 
-		NamedNodeMap dataAttributes = allValues.item(i).getAttributes();
-		for (int j = 0; j < dataAttributes.getLength(); j++) {
-		    Node attr = dataAttributes.item(j);
-		    if (attr.getNodeName().compareToIgnoreCase(LINE) == 0) { lineXMLPosition = j; }
-		    if (attr.getNodeName().compareToIgnoreCase(COLUMN) == 0) { columnXMLPosition = j; }
-		    if (attr.getNodeName().compareToIgnoreCase(VALUE) == 0) { valueXMLPosition = j; }
-		   
+		} catch (UnrecognizeFormatException e) {
+			LogFactory.getLog(ScilabIntegerCodec.class).error(e);
+		} catch (NumberFormatException e) {
+			LogFactory.getLog(ScilabIntegerCodec.class).error(e);
 		}
-
-		if (lineXMLPosition == -1 || columnXMLPosition == -1 || valueXMLPosition == -1) { throw new UnrecognizeFormatException(); }
-		int line = Integer.parseInt(dataAttributes.item(lineXMLPosition).getNodeValue());
-		int column = Integer.parseInt(dataAttributes.item(columnXMLPosition).getNodeValue());
-		bUnsigned  = Boolean.parseBoolean(dataAttributes.item(widthXMLPosition).getNodeValue());
-		data[line][column] = Long.parseLong(dataAttributes.item(valueXMLPosition).getNodeValue());
-	    }
-
-	    ((ScilabInteger) obj).setData(data, bUnsigned);
-	} catch (UnrecognizeFormatException e) {
-	    e.printStackTrace();
+		return obj;
 	}
-	return obj;
-    }
+	
+	/**
+	 * Fill the data from the node.
+	 * 
+	 * @param node
+	 *            the ScilabInteger node
+	 * @param data
+	 *            the allocated data
+	 * @throws UnrecognizeFormatException
+	 *             when we are unable to decode the node.
+	 */
+	private void fillData(Node node, byte[][] data)
+			throws UnrecognizeFormatException {
+		for (Node n = node.getFirstChild(); n != null; n = n.getNextSibling()) {
+			if (n.getNodeType() != Node.ELEMENT_NODE) {
+				continue;
+			}
+
+			final NamedNodeMap dataAttrs = n.getAttributes();
+			if (dataAttrs == null) {
+				throw new UnrecognizeFormatException();
+			}
+
+			final int column = getColumnIndex(dataAttrs);
+			final int line = getLineIndex(dataAttrs);
+
+			final Node v = dataAttrs.getNamedItem(VALUE);
+			if (v == null) {
+				throw new UnrecognizeFormatException();
+			}
+			
+			data[line][column] = Byte.parseByte(v.getNodeValue());
+		}
+	}
+	
+	/**
+	 * Fill the data from the node.
+	 * 
+	 * @param node
+	 *            the ScilabInteger node
+	 * @param data
+	 *            the allocated data
+	 * @throws UnrecognizeFormatException
+	 *             when we are unable to decode the node.
+	 */
+	private void fillData(Node node, short[][] data)
+			throws UnrecognizeFormatException {
+		for (Node n = node.getFirstChild(); n != null; n = n.getNextSibling()) {
+			if (n.getNodeType() != Node.ELEMENT_NODE) {
+				continue;
+			}
+
+			final NamedNodeMap dataAttrs = n.getAttributes();
+			if (dataAttrs == null) {
+				throw new UnrecognizeFormatException();
+			}
+
+			final int column = getColumnIndex(dataAttrs);
+			final int line = getLineIndex(dataAttrs);
+
+			final Node v = dataAttrs.getNamedItem(VALUE);
+			if (v == null) {
+				throw new UnrecognizeFormatException();
+			}
+			
+			data[line][column] = Short.parseShort(v.getNodeValue());
+		}
+	}
+	
+	/**
+	 * Fill the data from the node.
+	 * 
+	 * @param node
+	 *            the ScilabInteger node
+	 * @param data
+	 *            the allocated data
+	 * @throws UnrecognizeFormatException
+	 *             when we are unable to decode the node.
+	 */
+	private void fillData(Node node, int[][] data)
+			throws UnrecognizeFormatException {
+		for (Node n = node.getFirstChild(); n != null; n = n.getNextSibling()) {
+			if (n.getNodeType() != Node.ELEMENT_NODE) {
+				continue;
+			}
+
+			final NamedNodeMap dataAttrs = n.getAttributes();
+			if (dataAttrs == null) {
+				throw new UnrecognizeFormatException();
+			}
+
+			final int column = getColumnIndex(dataAttrs);
+			final int line = getLineIndex(dataAttrs);
+
+			final Node v = dataAttrs.getNamedItem(VALUE);
+			if (v == null) {
+				throw new UnrecognizeFormatException();
+			}
+			
+			data[line][column] = Integer.parseInt(v.getNodeValue());
+		}
+	}
+	
+	/**
+	 * Fill the data from the node.
+	 * 
+	 * @param node
+	 *            the ScilabInteger node
+	 * @param data
+	 *            the allocated data
+	 * @throws UnrecognizeFormatException
+	 *             when we are unable to decode the node.
+	 */
+	private void fillData(Node node, long[][] data)
+			throws UnrecognizeFormatException {
+		for (Node n = node.getFirstChild(); n != null; n = n.getNextSibling()) {
+			if (n.getNodeType() != Node.ELEMENT_NODE) {
+				continue;
+			}
+
+			final NamedNodeMap dataAttrs = n.getAttributes();
+			if (dataAttrs == null) {
+				throw new UnrecognizeFormatException();
+			}
+
+			final int column = getColumnIndex(dataAttrs);
+			final int line = getLineIndex(dataAttrs);
+
+			final Node v = dataAttrs.getNamedItem(VALUE);
+			if (v == null) {
+				throw new UnrecognizeFormatException();
+			}
+			
+			data[line][column] = Long.parseLong(v.getNodeValue());
+		}
+	}
 }

@@ -38,7 +38,7 @@ function [Newdims,I]=convertindex(dims,varargin)
     elseif type(ik)==4 then // boolean subscript
       ik=find(ik)
       Newdims(k,1)=max(max(ik),dims(k))
-    elseif mini(size(ik))<0 then // :
+    elseif min(size(ik))<0 then // :
       if dims(k)<>0 then
         ik=1:dims(k)
       else

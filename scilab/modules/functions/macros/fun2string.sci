@@ -884,7 +884,7 @@ function [stk,txt,top]=_e2sci()
 // generate code for extraction
 // Author Serge Steer
   txt=[]
-  rhs=maxi(0,abs(evstr(op(3)))-1)
+  rhs=max(0,abs(evstr(op(3)))-1)
   sn=stk(top);top=top-1
   s2=stk(top)
   if rhs==1 then

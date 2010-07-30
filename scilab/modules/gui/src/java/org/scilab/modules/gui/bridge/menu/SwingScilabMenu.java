@@ -229,7 +229,9 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
 				/* Mouse button released over the menu */
 				/* Deselect the menu and execute the callback */
 				setSelected(false);
-				callback.actionPerformed(null);
+				if (callback != null) {
+					callback.actionPerformed(null);
+				}
 			}
 
 			public void mouseEntered(MouseEvent arg0) {

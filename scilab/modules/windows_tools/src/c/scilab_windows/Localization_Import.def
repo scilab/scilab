@@ -6,4 +6,5 @@ EXPORTS
 wide_string_to_UTF8
 to_wide_string
 setLanguageFromCommandLine
+IsValidUTF8
 

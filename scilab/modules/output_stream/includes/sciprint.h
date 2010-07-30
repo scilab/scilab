@@ -26,7 +26,7 @@ extern "C" {
  * @param fmt Format of the format string
  * @param ...
  */
-void sciprint(char *fmt,...) ;
+void sciprint(const char *fmt,...) ;
 
 
 /**
@@ -38,7 +38,7 @@ void sciprint(char *fmt,...) ;
 * @return nb characters
 */
 
-int scivprint(char *fmt,va_list args);
+int scivprint(const char *fmt,va_list args);
 
 #ifdef __cplusplus
 }

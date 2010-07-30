@@ -10,14 +10,51 @@
 //
 //
 
-// Add a block to a palette instance.
-//
-// @param pal the "Palette" instance
-// @param block the block to add
-// @param[opt] pal_block_img full path to the block image used in the palette.
-// @param[opt] style full path to the block image used in the diagram or block style (jgraphx format)
-// @return pal the modified pal instance
 function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
+// Add a block to a Scilab/Xcos palette instance. Some optional properties can be added to customize the palette icon and the style of the block.
+//
+// Calling Sequence
+//   pal = xcosPalAddBlock(pal, block);
+//   pal = xcosPalAddBlock(pal, block, pal_block_img);
+//   pal = xcosPalAddBlock(pal, block, [], style);
+//   pal = xcosPalAddBlock(pal, block, pal_block_img, style);
+//
+// Parameters
+//   pal: the palette to update
+//   block: the block to add to the palette
+//   pal_block_img: the block icon to use on the palette manager.
+//   style: the style to apply to the block
+//
+// Description
+// This macros add a block instance to a palette. This block parameter can be an instantiated block or a name (interface-function) or a path to a saved instance. Some operations are performed to load this block and check it's availability so it's interface-function must be loaded on Scilab. Some temporary files are also generated without full path arguments.
+//
+// The optional pal_block_img argument is generated on the <link linkend="TMPDIR">TMPDIR</link> using Scilab graphics if not specified. Be careful that if you use our palette to be persistent you then need to specify it. Otherwise the generated image will be deleted at the end of the Scilab session.
+//
+// The optional style argument allow the user to determine the kind of style to be used by this block. This argument can be typed as a path <link linkend="string">string</link> or a <link linkend="struct">struct</link>. If it is a string then a default style value is generated and formatted as a style else a struct is wrapped to a key-value jgraphx settings.
+// 
+// Examples
+//   loadScicosLibs();
+//   pal = xcosPal();
+//   
+//   sumPath = TMPDIR + "/sum.h5";
+//   bigSomPath = TMPDIR + "/sum.h5";
+//   
+//   scs_m = SUM_f("define");
+//   export_to_hdf5(sumPath, "scs_m");
+//   scs_m = BIGSOM("define");
+//   export_to_hdf5(bigSomPath, "scs_m");
+//   
+//   pal = xcosPalAddBlock(pal, sumPath);
+//   pal = xcosPalAddBlock(pal, bigSomPath);
+//   
+//   xcosPalAdd(pal);
+//
+// See also
+//   xcosPal
+//   xcosPalAdd
+//
+// Authors
+//   Clément DAVID
 
     // Checking arguments
     [lhs,rhs] = argn(0)
@@ -84,15 +121,22 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
     // at this point we can assert that `block' is a full path string to a 
     // saved block reference instance (hdf5 format) also kept into 
     // `scs_m'.
-    // now handle pal_block_img and style arguments
     
-    if exists("pal_block_img", 'l') == 0 then
+    // now handle pal_block_img argument
+    pal_block_img_invalid = %t;
+    if exists("pal_block_img", 'l') == 1 then
+        if ~isempty(pal_block_img) then
+            pal_block_img_invalid = %f;
+        end
+    end
+    
+    if pal_block_img_invalid then
         pal_block_img = TMPDIR + "/" + scs_m.gui + ".gif";
         if isfile(pal_block_img) then
             error(msprintf(gettext("%s: Unable to generate the palette icon : ""%s"" already exists.\n"), "xcosPalAddBlock", pal_block_img));
         end
     else
-        if typeof(pal_block_img) <> "string" | ~isfile(pal_block_img) then
+        if typeof(pal_block_img) <> "string" then
             error(msprintf(gettext("%s: Wrong type for input argument ""%s"": path string expected.\n"), "xcosPalAddBlock", "pal_block_img"));
         end
         currentFile = ls(pal_block_img); // evaluate wildcard and path
@@ -102,9 +146,17 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
         pal_block_img = fullpath(currentFile);
     end
     
-    if exists("style", 'l') == 0 then
+    // now handle style argument
+    style_invalid = %t;
+    if exists("style", 'l') == 1 then
+        if ~isempty(style) then
+            style = %f;
+        end
+    end
+    
+    if style_invalid then
         block_img = TMPDIR + "/" + scs_m.gui + ".svg";
-        style = "image=file:" + block_img + ";";
+        style = "noLabel=1;image=file:" + block_img + ";";
         status = generateBlockImage(scs_m, TMPDIR, imageType="svg");
         if ~status then
             error(msprintf(gettext("%s: Unable to generate the image ""%s"".\n"), "xcosPalAddBlock", block_img));
@@ -117,15 +169,19 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
             fields = fieldnames(style);
             fieldsSize = size(fields, '*');
             for i=1:fieldsSize
-                formattedStyle = fields(i) + "=" + ..
-                    getfield(fields(i), style) + ";" + formattedStyle;
+                formattedStyle = formattedStyle + fields(i);
+                fieldValue = getfield(fields(i), style);
+                if ~isempty(fieldValue) then
+                    formattedStyle = formattedStyle+ "=" + string(fieldValue);
+                end
+                formattedStyle = formattedStyle + ";";
             end
             style = formattedStyle;
         elseif typeof(style) == "string" then
             currentFile = ls(style); // evaluate wildcard and path
             if size(currentFile, '*') == 1 then
                 style = fullpath(currentFile);
-                style = "image=file:" + style + ";";
+                style = "noLabel=1;image=file:" + style + ";";
             else
                 // assume well formatted string, do nothing
             end

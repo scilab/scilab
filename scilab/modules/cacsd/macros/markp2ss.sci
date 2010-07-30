@@ -17,7 +17,7 @@ function [Sl]=markp2ss(markpar,n,nout,nin)
 // See also: pol2des
 //!
 
-nmax=maxi(size(markpar));
+nmax=max(size(markpar));
 H=[];H(n*nout,n*nin)=0;
 p=markpar;
 l1=1:nout;k1=1;

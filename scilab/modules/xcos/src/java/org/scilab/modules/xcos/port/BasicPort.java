@@ -13,6 +13,8 @@
 package org.scilab.modules.xcos.port;
 
 import org.scilab.modules.graph.ScilabGraphUniqueObject;
+import org.scilab.modules.graph.utils.StyleMap;
+import org.scilab.modules.types.scilabTypes.ScilabType;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -205,7 +207,10 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
 	 *            The default orientation of this port
 	 */
 	public final void setOrientation(Orientation defaultOrientation) {
-		this.orientation = defaultOrientation;
+		if (this.orientation != defaultOrientation) {
+			this.orientation = defaultOrientation;
+			setLabelPosition(this.orientation);
+		}
 	}
     
 	/**
@@ -226,7 +231,6 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
 	}
 	result.append(XcosConstants.HTML_NEWLINE);
 	
-	result.append("Style : " + getStyle() + XcosConstants.HTML_NEWLINE);
 	result.append(XcosConstants.HTML_END);
 	return result.toString();
     }
@@ -252,5 +256,42 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
 		setDataLines(DEFAULT_DATALINES);
 		setDataColumns(DEFAULT_DATACOLUMNS);
 		setDataType(DataType.UNKNOW_TYPE);
+		
+		setLabelPosition(getOrientation());
 	}
+
+	/**
+	 * Set the label position of the current port according to the orientation.
+	 * 
+	 * @param current the port orientation, if null, does nothing.
+	 */
+	public void setLabelPosition(final Orientation current) {
+		if (current != null) {
+			StyleMap style = new StyleMap(getStyle());
+			
+			// set label position
+			style.put(XcosConstants.STYLE_ALIGN, XcosConstants.ALIGN_CENTER);
+			style.put(XcosConstants.STYLE_LABEL_POSITION, current.getLabelPosition());
+			style.put(XcosConstants.STYLE_VERTICAL_LABEL_POSITION, current.getVerticalLabelPosition());
+			
+			// clean up any spacing values
+			style.remove(XcosConstants.STYLE_SPACING_BOTTOM);
+			style.remove(XcosConstants.STYLE_SPACING_LEFT);
+			style.remove(XcosConstants.STYLE_SPACING_RIGHT);
+			style.remove(XcosConstants.STYLE_SPACING_TOP);
+			
+			// setting spacing values
+			style.put(current.getSpacingSide(), Integer.toString(BasicPort.DEFAULT_PORTSIZE/2 + 1));
+			
+			setStyle(style.toString());
+		}
+	}
+	
+	/**
+	 * Hook to update the port label from the associated block expression.
+	 * 
+	 * The current port index may be found in the ordering data.
+	 * @param exprs the associated block expression.
+	 */
+	public void updateLabel(ScilabType exprs) { }
 }

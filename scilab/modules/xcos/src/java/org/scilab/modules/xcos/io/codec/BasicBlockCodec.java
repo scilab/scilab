@@ -14,11 +14,14 @@ package org.scilab.modules.xcos.io.codec;
 
 import java.util.Map;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.BasicBlock.SimulationFunctionType;
+import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
+import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.io.XcosObjectCodec;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
@@ -35,7 +38,8 @@ import com.mxgraph.model.mxCell;
 public class BasicBlockCodec extends XcosObjectCodec {
 
 	private static final String SIMULATION_FUNCTION_TYPE = "simulationFunctionType";
-	private static final String[] IGNORED_FIELDS = new String[] {SIMULATION_FUNCTION_TYPE, "locked", "parameters"};
+	private static final String[] IGNORED_FIELDS = new String[] {SIMULATION_FUNCTION_TYPE, "locked", "parametersPCS"};
+	private static final Log LOG = LogFactory.getLog(BasicBlockCodec.class);
 
 	/**
 	 * The constructor used on for configuration
@@ -47,7 +51,6 @@ public class BasicBlockCodec extends XcosObjectCodec {
 	public BasicBlockCodec(Object template, String[] exclude, String[] idrefs, Map<String, String> mapping)
 	{
 		super(template, exclude, idrefs, mapping);
-
 	}
 	
 	/**
@@ -89,6 +92,7 @@ public class BasicBlockCodec extends XcosObjectCodec {
 	 * @return Returns the object to be encoded by the default encoding.
 	 * @see com.mxgraph.io.mxObjectCodec#beforeEncode(com.mxgraph.io.mxCodec, java.lang.Object, org.w3c.dom.Node)
 	 */
+	@Override
 	public Object beforeEncode(mxCodec enc, Object obj, Node node) {
 		((Element) node).setAttribute(SIMULATION_FUNCTION_TYPE,
 				String.valueOf(((BasicBlock) obj).getSimulationFunctionType()));
@@ -103,7 +107,13 @@ public class BasicBlockCodec extends XcosObjectCodec {
 	 * @return The Object transformed 
 	 * @see org.scilab.modules.xcos.io.XcosObjectCodec#afterDecode(com.mxgraph.io.mxCodec, org.w3c.dom.Node, java.lang.Object)
 	 */
+	@Override
 	public Object afterDecode(mxCodec dec, Node node, Object obj) {
+		if (!(obj instanceof BasicBlock)) {
+			LOG.error("Unable to decode " + obj);
+			return obj;
+		}
+		
 	    ((BasicBlock) obj).setSimulationFunctionType(SimulationFunctionType.DEFAULT);
 
 	    String functionType = (((Element) node).getAttribute(SIMULATION_FUNCTION_TYPE));
@@ -122,6 +132,12 @@ public class BasicBlockCodec extends XcosObjectCodec {
 		}
 	    }
 
+	    // Re associate the diagram container
+	    if (obj instanceof SuperBlock) {
+	    	final SuperBlock block = (SuperBlock) obj; 
+	    	block.getChild().setContainer(block);
+	    }
+	    
 	    // update style to replace direction by rotation and add the 
 	    // default style if absent
 	    StyleMap map = new StyleMap(((Element) node).getAttribute(STYLE));

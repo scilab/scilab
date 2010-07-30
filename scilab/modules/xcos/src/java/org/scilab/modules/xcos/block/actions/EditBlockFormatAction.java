@@ -100,7 +100,7 @@ public class EditBlockFormatAction extends DefaultAction {
 		/*
 		 * Create and show the dialog
 		 */
-		EditFormatDialog dialog = createDialog(selectedCell, (Frame) window);
+		EditFormatDialog dialog = createDialog(selectedCell, window);
 		dialog.setName(name);
 		dialog.setVisible(true);
 	}
@@ -166,11 +166,11 @@ public class EditBlockFormatAction extends DefaultAction {
 			textColor = mxUtils.parseColor(working);
 		}
 		
-		working = (String) selectedCell.getValue();
-		if (working == null) {
+		Object current = selectedCell.getValue();
+		if (current == null) {
 			text = "";
 		} else {
-			text = mxUtils.getBodyMarkup(working, false);
+			text = mxUtils.getBodyMarkup(current.toString(), false);
 		}
 		
 		EditFormatDialog dialog = new EditFormatDialog(window);
@@ -380,6 +380,7 @@ public class EditBlockFormatAction extends DefaultAction {
 		 */
 		// CSOFF: JavaNCSS
 		// CSOFF: LineLength
+		// CSOFF: MethodLength
 		private void initComponents() {
 			
 	        mainTab = new javax.swing.JTabbedPane();
@@ -538,6 +539,7 @@ public class EditBlockFormatAction extends DefaultAction {
 		}
 		// CSON: JavaNCSS
 		// CSON: LineLength
+		// CSON: MethodLength
 
 		/**
 		 * Update the text area from the font

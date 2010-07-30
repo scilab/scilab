@@ -38,7 +38,10 @@ function hallchart(modules,args,colors)
     end
   end
 
-  drawlater()
+  fig=gcf();
+  immediate_drawing=fig.immediate_drawing;
+  fig.immediate_drawing="off";
+
   ax=gca();
   nc=size(ax.children,"*")
   if nc==0 then
@@ -105,7 +108,7 @@ function hallchart(modules,args,colors)
     ec.line_style=7;
     ec.clip_state="clipgrf";
     datatipInitStruct(ec,"formatfunction","formatHallPhaseTip","phase",args(i))
-    xstring(xc,yc(i)+radius(i),msprintf("%g"+_("°"),args(i)));
+    xstring(xc,yc(i)+radius(i),msprintf("%g°",args(i)));
     el=gce();
     el.font_foreground=colors(2);
     el.clip_state="clipgrf";
@@ -117,19 +120,20 @@ function hallchart(modules,args,colors)
   for k=1:nc
     swap_handles(ax.children(k),ax.children(k+1))
   end
-
-  drawnow()
+  fig.immediate_drawing=immediate_drawing;
 endfunction
+
 function str=formatHallModuleTip(curve,pt,index)
 //this function is called by the datatip mechanism to format the tip
 //string for the Hall charts iso module curves
   ud=datatipGetStruct(curve);
   str=msprintf("%.2g"+_("dB"), ud.module);
 endfunction
+
 function str=formatHallPhaseTip(curve,pt,index)
 //This function is called by the datatip mechanism to format the tip
 //string for the Hall charts iso phase curves
   ud=datatipGetStruct(curve);
-  str=msprintf("%.2g"+_("°"), ud.phase);
+  str=msprintf("%.2g°", ud.phase);
 endfunction
 

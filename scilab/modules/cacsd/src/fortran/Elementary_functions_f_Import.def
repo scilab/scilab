@@ -1,0 +1,14 @@
+LIBRARY    elementary_functions_f.dll
+
+
+EXPORTS
+
+wdiv_
+dset_
+dtild_
+dadd_ 
+dmmul_
+ddif_
+entier_
+orthes_
+ortran_

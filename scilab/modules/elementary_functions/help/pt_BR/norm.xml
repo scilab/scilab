@@ -76,7 +76,7 @@
 
         <listitem>
           <para>a norma l_1 de <literal>x</literal> (a maior soma coluna a
-          coluna : <literal>maxi(sum(abs(x),'r'))</literal> ).</para>
+          coluna : <literal>max(sum(abs(x),'r'))</literal> ).</para>
         </listitem>
       </varlistentry>
 
@@ -85,7 +85,7 @@
 
         <listitem>
           <para>a norma infinitesimal de <literal>x</literal> (a maior soma
-          linha a linha : <literal>maxi(sum(abs(x),'c'))</literal> ).</para>
+          linha a linha : <literal>max(sum(abs(x),'c'))</literal> ).</para>
         </listitem>
       </varlistentry>
 

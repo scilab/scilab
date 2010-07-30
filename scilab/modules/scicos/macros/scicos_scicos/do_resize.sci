@@ -94,7 +94,7 @@ function [%pt, scs_m] = do_resize(%pt, scs_m)
           gh_axes   = gca(); 
           o_size = size(gh_axes.children); 
           gr_k = get_gri(K, o_size(1)) ; 
-          gh_axes.children(gr_k).children(1).thickness = maxi(scs_m.objs(K).thick(1) , 1) * maxi(scs_m.objs(K).thick(2), 1) ;
+          gh_axes.children(gr_k).children(1).thickness = max(scs_m.objs(K).thick(1) , 1) * max(scs_m.objs(K).thick(2), 1) ;
         drawnow(); 
       end
 

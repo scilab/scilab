@@ -67,6 +67,7 @@ public class DebugLevelAction extends SimulationNotRunningAction {
 		 * @return the localized debug name
 		 * @see java.lang.Enum#toString()
 		 */
+		@Override
 		public String toString() {
 			return debugName;
 		}
@@ -85,6 +86,7 @@ public class DebugLevelAction extends SimulationNotRunningAction {
 	 * @param e action parameters
 	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
 	 */
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		final XcosDiagram diag = (XcosDiagram) getGraph(e);
 		final DebugLevelDialog dialog = new DebugLevelDialog(diag.getAsComponent(), diag.getScicosParameters());

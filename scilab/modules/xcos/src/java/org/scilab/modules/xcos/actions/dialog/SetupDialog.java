@@ -52,8 +52,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 //CSOFF: MagicNumber
 public class SetupDialog extends JDialog {
 	private static final DecimalFormatSymbols FORMAT_SYMBOL = DecimalFormatSymbols.getInstance();
-	private static final DecimalFormat CURRENT_FORMAT = new DecimalFormat("0.0####E00;0", FORMAT_SYMBOL);
-//	private static final DecimalFormat CURRENT_FORMAT = new DecimalFormat();
+	private static final DecimalFormat CURRENT_FORMAT = new DecimalFormat("0.0####E00", FORMAT_SYMBOL);
+	private static final BigDecimal MAX_DOUBLE = BigDecimal.valueOf(Double.MAX_VALUE);
 	
 	/**
 	 * Validate the user entry and format it.
@@ -61,17 +61,20 @@ public class SetupDialog extends JDialog {
 	 * Without formatting the entry, bug #7143 appears on jdk6.
 	 */
 	private static final InputVerifier VALIDATE_POSITIVE_DOUBLE = new InputVerifier() {
+
+		@Override
 	    public boolean verify(javax.swing.JComponent arg0) {
 		boolean ret = false;
 		JFormattedTextField textField = (JFormattedTextField) arg0;
 		try {
         		BigDecimal value = new BigDecimal(textField.getText());
-        		if (value.compareTo(new BigDecimal(0)) >= 0) {
+        		if (value.compareTo(BigDecimal.ZERO) >= 0 
+        				&& value.compareTo(MAX_DOUBLE) <= 0) {
         		    ret = true;
-        		    
-        		    // bug #7143 workaround
-        		    textField.setText(value.toString());
         		}
+        		
+        		// bug #7143 workaround
+        		textField.setValue(value);
 		} catch (NumberFormatException e) {
 		    return ret;
 		}

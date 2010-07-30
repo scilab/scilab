@@ -1,0 +1,32 @@
+LIBRARY    cacsd_f.dll
+
+
+EXPORTS
+; --------------------------------------- 
+; cacsd_f
+; --------------------------------------- 
+intricc_
+scisylv_
+scilyap_
+intlinmeq_
+intdhinf_
+inthinf_
+intricc2_
+intmucomp_
+findbd_
+sorder_
+sident_
+sciarl2_
+intereduc_
+scifreq_
+intfstair_
+scigschur_
+scigspec_ 
+scildiv_
+sciltitr_
+scippol_
+intzb03od_
+intmb03od_
+sciresidu_
+scirtitr_
+scitzer_

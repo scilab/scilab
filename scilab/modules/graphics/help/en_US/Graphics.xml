@@ -642,7 +642,7 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term><link linkend="xselect">xselect</link></term>
+        <term><link linkend="show_window">show_window</link></term>
         <listitem>
           <para>Raise the current graphics window</para>
         </listitem>

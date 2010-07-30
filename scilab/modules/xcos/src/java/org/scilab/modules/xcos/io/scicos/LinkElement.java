@@ -94,6 +94,8 @@ public class LinkElement extends AbstractElement<BasicLink> {
 			link = allocateLink();
 		}
 
+		link = beforeDecode(element, link);
+		
 		searchForPorts(link);
 		List<mxPoint> points = getPoints();
 
@@ -110,6 +112,8 @@ public class LinkElement extends AbstractElement<BasicLink> {
 		geom.setPoints(points);
 		link.setGeometry(geom);
 
+		link = afterDecode(element, link);
+		
 		return link;
 	}
 
@@ -395,6 +399,8 @@ public class LinkElement extends AbstractElement<BasicLink> {
 			data = (ScilabMList) element;
 		}
 
+		data = (ScilabMList) beforeEncode(from, data);
+		
 		start = (BasicPort) from.getSource();
 		end = (BasicPort) from.getTarget();
 
@@ -425,6 +431,8 @@ public class LinkElement extends AbstractElement<BasicLink> {
 		double[][] toData = {{toBlockID, toPortID, toType}};
 		data.add(new ScilabDouble(toData)); // to
 
+		data = (ScilabMList) afterEncode(from, data);
+		
 		return data;
 	}
 
@@ -432,17 +440,16 @@ public class LinkElement extends AbstractElement<BasicLink> {
 	 * Encode the link points
 	 * 
 	 * @param from
-	 *            the source instance
+	 *            the link instance
 	 * @param srcGeom
-	 *            the source geometry
+	 *            the source geometry (output port)
 	 * @param endGeom
-	 *            the target geometry
+	 *            the target geometry (input port)
 	 */
 	private void encodePoints(BasicLink from, final mxGeometry srcGeom,
 			final mxGeometry endGeom) {
 		final int ptCount = from.getPointCount();
-		final List<mxPoint> lnkPoints = from.getGeometry().getPoints();
-
+		
 		double[][] xx = new double[2 + ptCount][1];
 		double[][] yy = new double[2 + ptCount][1];
 
@@ -458,9 +465,12 @@ public class LinkElement extends AbstractElement<BasicLink> {
 		/*
 		 * Control points
 		 */
-		for (int i = 0; i < ptCount; i++) {
-			xx[1 + i][0] = ((mxPoint) lnkPoints.get(i)).getX();
-			yy[1 + i][0] = -((mxPoint) lnkPoints.get(i)).getY();
+		if (ptCount > 0 && from.getGeometry() != null) {
+			final List<mxPoint> lnkPoints = from.getGeometry().getPoints();
+			for (int i = 0; i < ptCount; i++) {
+				xx[1 + i][0] = (lnkPoints.get(i)).getX();
+				yy[1 + i][0] = -(lnkPoints.get(i)).getY();
+			}
 		}
 
 		/*

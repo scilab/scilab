@@ -91,8 +91,8 @@
 /* boolean <--> BOOL support */
 
 %typemap(in) BOOL {
-	if ($input == JNI_TRUE) $1 = TRUE;
-	else $1 = FALSE;
+    if ($input == JNI_TRUE) $1 = TRUE;
+    else $1 = FALSE;
 }
 
 %typemap(out) BOOL {

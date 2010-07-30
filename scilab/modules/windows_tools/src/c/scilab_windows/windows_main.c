@@ -169,7 +169,7 @@ int Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, i
             if (
                 ( ( IsAScicosFile(FileName)== TRUE ) && (CodeAction == 1) ) ||
                 ( ( IsABinOrSavFile(FileName)== TRUE ) && (CodeAction == 1) ) ||
-                ( ( IsAXpadFile(FileName)== TRUE  ) ) 
+                ( ( IsASciNotesFile(FileName)== TRUE  ) ) 
                 )
             {
                 my_argc = -1;

@@ -50,7 +50,7 @@ function XcosMenuOpen()
 
   inactive_windows = close_inactive_windows(inactive_windows, super_path);
 
-  xselect();
+  show_window();
 
   [ok, scs_m, %cpr, edited] = do_load(); //** this is the function that really load the diagram
 

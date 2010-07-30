@@ -13,7 +13,12 @@ function show_margins(h,typ)
     error(msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
 		   "show_margins",2,'""nyquist"", ""bode""'))
   end
-  drawlater();clf();
+  
+  fig=gcf();
+  immediate_drawing=fig.immediate_drawing;
+  fig.immediate_drawing="off";
+
+  clf();
   if typ=="bode" then
     bode(h)
     f=gcf();
@@ -80,7 +85,6 @@ function show_margins(h,typ)
       e=gce();e.foreground=color('red');e.thickness=2;
     end
   end
-  
-  
-  drawnow()
+  fig.immediate_drawing=immediate_drawing; 
+
 endfunction

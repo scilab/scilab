@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <comment>
+    Map between action and keys
+    If no path is given, org.scilab.modules.scinotes.actions will be choosen
+  </comment>
+
+  <entry key="ActivateHelpOnTypingAction">control H</entry>
+  <entry key="GenerateHelpFromFunctionAction">control shift G</entry>
+  <entry key="TabifyAction">TAB</entry>
+  <entry key="UnTabifyAction">shift TAB</entry>
+  <entry key="IndentAction">control I</entry>
+  <entry key="CommentAction">control D</entry>
+  <entry key="UnCommentAction">control shift D</entry>
+  <entry key="RemoveTrailingWhiteAction">control shift W</entry>
+  <entry key="SelectAllAction">control A</entry>
+  <entry key="OpenTabInNewWindowAction">control shift T</entry>
+  <entry key="CCloseTabInNewWindowAction">control shift C</entry>
+
+  <entry key="CopyAction">control C</entry>
+  <entry key="CutAction">control X</entry>
+  <entry key="PasteAction">control V</entry>
+  <entry key="UndoAction">control Z</entry>
+  <entry key="RedoAction">control Y</entry>
+
+  <entry key="NewAction">control N</entry>
+  <entry key="OpenAction">control O</entry>
+  <entry key="OpenURLAction">control U</entry>
+  <entry key="OpenSourceFileOnKeywordAction">control shift O</entry>
+  <entry key="SaveAction">control S</entry>
+  <entry key="SaveAsAction">control shift S</entry>
+  <entry key="OverwriteAction">control shift M</entry>
+  <entry key="ReloadAction">control shift R</entry>
+  <entry key="PrintPreviewAction">control shift P</entry>
+  <entry key="PrintAction">control P</entry>
+  <entry key="CloseAction">control W</entry>
+  <entry key="ExitAction">control Q</entry>
+
+  <entry key="HighlightCurrentLineAction">control J</entry>
+  <entry key="HelpOnKeywordAction">control F1</entry>
+
+  <entry key="LoadIntoScilabAction">control L</entry>
+  <entry key="ExecuteFileIntoScilabAction">control shift E</entry>
+  <entry key="EvaluateSelectionAction">control E</entry>
+
+  <entry key="FindAction">control F</entry>
+  <entry key="FindNextAction">control K</entry>
+  <entry key="FindPreviousAction">control shift K</entry>
+  <entry key="CodeNavigatorAction">control G</entry>
+
+  <entry key="SciNotesCompletionAction">control SPACE</entry>
+
+  <entry key="HelpAction">F1</entry>
+  <entry key="AboutAction">shift F1</entry>
+
+  <entry key="NextTabAction">ctrl UP</entry>
+  <entry key="PreviousTabAction">ctrl DOWN</entry>
+
+</properties>

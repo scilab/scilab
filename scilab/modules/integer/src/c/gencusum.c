@@ -12,20 +12,24 @@
 
 
 #include "gencusum.h"
-#define CUSUM(Type) {\
-Type *W;\
-    W=(Type *)w;\
-    t = 0; kk = 0;\
-    for (k = 0; k < *n; ++k) {\
-        t += (int) W[kk];\
-	W[kk] =(Type)t;kk += (*iw);\
-    }\
+#define CUSUM(Type) {                 \
+Type *IN;                             \
+Type *OUT;                            \
+   IN=(Type *)in;                     \
+   OUT=(Type *)out;                   \
+   kk = 0;                            \
+    for (k = 0; k < *n; ++k) {        \
+      t += (int)IN[kk];               \
+	OUT[kk] =(Type)t;kk += (*iw); \
+    }                                 \
 }
 
 
-int C2F(gencusum)(int *typ,int *n, int *w, int *iw)
+int C2F(gencusum)(int *typ,int *n, void *in, void *out, int *iw)
 {
-  int k, kk, t;
+  int k, kk;
+  int t;
+  t=0;
 
   switch (*typ) {
   case 1:
@@ -45,6 +49,45 @@ int C2F(gencusum)(int *typ,int *n, int *w, int *iw)
     break;
   case 14:
     CUSUM(unsigned int);
+    break;
+  }
+  return 0;
+}
+
+#define CUSUM_DOUBLE(Type) {                        \
+Type *IN;\
+   IN=(Type *)in;\
+   kk = 0;                                      \
+    for (k = 0; k < *n; ++k) {\
+      t += (double)IN[kk];                      \
+	out[kk] =t;kk += (*iw);\
+    }\
+}
+
+int C2F(gencusum_double)(int *typ,int *n, void *in, double *out, int *iw)
+{
+  int k, kk;
+  double t;
+  t=0.0;
+
+  switch (*typ) {
+  case 1:
+    CUSUM_DOUBLE(integer1);
+    break;
+  case 2:
+    CUSUM_DOUBLE(integer2);
+    break;
+  case 4:
+    CUSUM_DOUBLE(int) ;
+    break;
+  case 11:
+    CUSUM_DOUBLE(unsigned char);
+    break;
+  case 12:
+    CUSUM_DOUBLE(unsigned short);
+    break;
+  case 14:
+    CUSUM_DOUBLE(unsigned int);
     break;
   }
   return 0;

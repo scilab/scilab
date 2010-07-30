@@ -8,10 +8,10 @@
 
 function []=zgrid()
 	
-	my_figure = gcf();
+	fig = gcf();
 	show_window();
-	
-	my_figure.immediate_drawing = "off";
+	immediate_drawing=fig.immediate_drawing;
+	fig.immediate_drawing = "off";
 	
 	square(-1.1,-1.1,1.1,1.1);
 	xtitle( ["loci with constant damping and constant frequencies";"in discrete plane"]," "," ");
@@ -44,6 +44,6 @@ function []=zgrid()
 	plot2d(real(zw),imag(zw),1*ones(1,nr),"001");
 	plot2d(real(zw),-imag(zw),1*ones(1,nr),"001");
 	
-	my_figure.immediate_drawing = "on";
+	fig.immediate_drawing = immediate_drawing;
 	
 endfunction

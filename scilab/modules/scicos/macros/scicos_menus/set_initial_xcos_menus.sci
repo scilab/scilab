@@ -252,12 +252,12 @@ function [scicos_menu,scicos_lhb_list, scicos_short,CmenuTypeOneVector]= set_ini
   //** "CmenuTypeOneVector" store the list of the commands/function to be called that require both 'Cmenu' AND 'pt'
   //** menus of type 1 (require %pt)
   CmenuTypeOneVector =[
-      'XcosMenuRegionToSuper',         _("Press lef mouse button, drag region and release (right button to cancel)");
-      'XcosMenuRegionToPalette',       _("Press lef mouse button, drag region and release (right button to cancel)");
+      'XcosMenuRegionToSuper',         _("Press left mouse button, drag region and release (right button to cancel)");
+      'XcosMenuRegionToPalette',       _("Press left mouse button, drag region and release (right button to cancel)");
       'XcosMenuSmartMove',             _("Click object to move, drag and click (left to fix, right to cancel)");
       'XcosMenuMove',                  _("Click object to move, drag and click (left to fix, right to cancel)");
       'XcosMenuDuplicate',             _("Click on the object to duplicate, drag, click (left to copy, right to cancel)");
-      'XcosMenuAlign',                 _("Click on an a port, click on a port of object to be moved");
+      'XcosMenuAlign',                 _("Click on a port, click on a port of object to be moved");
       'XcosMenuLink',                  _("Drag, click left for final or intermediate points or right to cancel");
       'XcosMenuSmartLink',             _("Drag, click left for final or intermediate points or right to cancel");
       'XcosMenuDelete',                _("Delete: Click on the object to delete");
@@ -279,7 +279,7 @@ function [scicos_menu,scicos_lhb_list, scicos_short,CmenuTypeOneVector]= set_ini
       'XcosMenuColor',                 _("Click on object to choose its color");
       'XcosMenuIdentification',        _("Click on an object to set or get identification");
       'XcosMenuResize',                _("Click block to resize");
-      'XcosMenuBlockDoc',              _("Click on a block to set or get it''s documentation");
+      'XcosMenuBlockDoc',              _("Click on a block to set or get its documentation");
       'XcosMenuCreateMask',            _("Click on a super block");
       'XcosMenuRemoveMask',            _("Click on a super block")
       'XcosMenuCustomizeMask',         _("Click on a super block")

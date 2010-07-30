@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * desc : Class drawing ticks for the one axis  
  * 
  * This file must be used under the terms of the CeCILL.
@@ -175,6 +176,19 @@ public class TicksDrawerGL extends DrawableObjectGL {
 			return labelsExponents[tickIndex];
 		} else {
 			return "";
+		}
+	}
+
+	/**
+	 * Determine whether the tick label is a Latex or MathML label
+	 * @param tickLabel the tick label string
+	 * @return true if the tick label is a Latex/MathML label
+	 */
+	protected boolean isMathLabel(String tickLabel) {
+		if (tickLabel.charAt(0) == '<' || tickLabel.charAt(0) == '$') {
+			return true;
+		} else {
+			return false;
 		}
 	}
 	
@@ -390,15 +404,17 @@ public class TicksDrawerGL extends DrawableObjectGL {
 	 * Compute label center from its ticks direction and location
 	 * @param textWidth width of the text to place
 	 * @param textHeight height of the text to draw
+	 * @param alignedTextHeight height value used to align the label when bottom-positioned
 	 * @param tickPosPix base of the ticks on the axis segment in pixel
 	 * @param ticksDirPix ticks direction in pixels
-	 * @param centerPosition out argument giving the postions to use for labels drawing.
+	 * @param centerPosition out argument giving the positions to use for labels drawing.
 	 * @param ticksSide define the direction of ticks
 	 * @return distance from the label to the end of ticks in pixels
 	 */
-	private double computeLabelCenter(double textWidth, double textHeight, Vector3D tickPosPix, Vector3D ticksDirPix,
-									  Vector3D centerPosition,
-									  TicksPositionCase ticksSide) {
+	private double computeLabelCenter(double textWidth, double textHeight, double alignedTextHeight,
+									Vector3D tickPosPix, Vector3D ticksDirPix,
+									Vector3D centerPosition,
+									TicksPositionCase ticksSide) {
 				
 		Vector3D textCenter = tickPosPix.add(ticksDirPix);
 		double res;
@@ -420,9 +436,13 @@ public class TicksDrawerGL extends DrawableObjectGL {
 			textCenter.setX(textCenter.getX() - textWidth / 2.0);
 			break;
 		case BOTTOM:
+			/*
+			 * In this case, a precomputed height value is used to align
+			 * the label
+			 */
 			res = textHeight;
 			textCenter.setX(textCenter.getX() - textWidth / 2.0);
-			textCenter.setY(textCenter.getY() - textHeight);
+			textCenter.setY(textCenter.getY() - alignedTextHeight);
 			break;
 		default:
 			res = 0.0;
@@ -460,6 +480,7 @@ public class TicksDrawerGL extends DrawableObjectGL {
 		int nbLabels = ticksPosPix.length;
 		Vector3D textCenter = new Vector3D();
 		double maxDist = 0.0;
+		double maxBboxHeight = 0.0;
 		
 		labelsPositions = new Vector3D[nbLabels];
 		if (isDisplayingExponents()) {
@@ -473,7 +494,25 @@ public class TicksDrawerGL extends DrawableObjectGL {
 		} else {
 			ticksDirPix.scalarMultSelf(LABEL_TO_AXIS_DISTANCE);
 		}
-		
+
+		/*
+		 * Determine the largest bounding box height value,
+		 * only taking into account non-Latex/MathML labels
+		 */
+		if (nbLabels > 0) {
+			if (getTickLabel(0).length() > 0 && !isMathLabel(getTickLabel(0))) {
+				maxBboxHeight = bboxHeight[0];
+			}
+		}
+
+		for (int i = 1; i < nbLabels; i++) {
+			if (getTickLabel(i).length() > 0 && !isMathLabel(getTickLabel(i))) {
+				if (bboxHeight[i] > maxBboxHeight) {
+					maxBboxHeight = bboxHeight[i];
+				}
+			}
+		}
+
 		// compute orientation of ticks
 		TicksPositionCase ticksOrientation = computeGlobalOrientation(ticksDirPix);
 		GL gl = getGL();
@@ -482,17 +521,34 @@ public class TicksDrawerGL extends DrawableObjectGL {
 		renderer.begin3DRendering(gl);
 		
 		for (int i = 0; i < nbLabels; i++) {
+			double curDist;
+			double alignedBboxHeight;
 			
 			if (ticksPosPix[i] == null) { continue; }
-			
-			double curDist = computeLabelCenter(bboxWidth[i],
-												bboxHeight[i],
-												ticksPosPix[i],
-												ticksDirPix,
-												textCenter,
-												ticksOrientation);
-			
-			
+
+			/*
+			 * The following test determines the height value to use in order to align
+			 * user-defined labels to a bottom-positioned x-axis.
+			 * The current label's bounding box height is used if it is a Latex/MathML label
+			 * otherwise, the previously computed maximum height is used. This allows to correctly
+			 * align standard text labels with different heights and yields the most satisfying
+			 * result when mixed ticks are used (standard text + Latex/MathML)
+			 */
+			if (getTickLabel(i).length() > 0 && isMathLabel(getTickLabel(i))) {
+				alignedBboxHeight = bboxHeight[i];
+			} else {
+				alignedBboxHeight = maxBboxHeight;
+			}
+
+			curDist = computeLabelCenter(bboxWidth[i],
+										bboxHeight[i],
+										alignedBboxHeight,
+										ticksPosPix[i],
+										ticksDirPix,
+										textCenter,
+										ticksOrientation);
+
+
 			// find the maximum distance
 			if (curDist > maxDist) {
 				maxDist = curDist;
@@ -527,7 +583,7 @@ public class TicksDrawerGL extends DrawableObjectGL {
 			exponentRenderer.end3DRendering(gl);
 		}
 		
-		gl.glEnable(GL.GL_COLOR_LOGIC_OP); // does not work well with thext rendering
+		gl.glEnable(GL.GL_COLOR_LOGIC_OP); // does not work well with text rendering
 		
 		//labelToAxisDist =  maxDist + ticksDirPix.getNorm();
 		double ticksDirPixNorm = ticksDirPix.getNorm();
@@ -570,7 +626,7 @@ public class TicksDrawerGL extends DrawableObjectGL {
 		int nbLabels = labelsPositions.length;
 		
 		GL gl = getGL();
-		gl.glDisable(GL.GL_COLOR_LOGIC_OP); // does not work well with thext rendering
+		gl.glDisable(GL.GL_COLOR_LOGIC_OP); // does not work well with text rendering
 		
 		renderer.begin3DRendering(gl);
 		
@@ -598,7 +654,7 @@ public class TicksDrawerGL extends DrawableObjectGL {
 		
 		
 		
-		gl.glEnable(GL.GL_COLOR_LOGIC_OP); // does not work well with thext rendering
+		gl.glEnable(GL.GL_COLOR_LOGIC_OP); // does not work well with text rendering
 	}
 	
 	/**

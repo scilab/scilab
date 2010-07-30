@@ -1,0 +1,12 @@
+<package name="org.scilab.modules.ui_data">
+    <object name="BrowseVar">
+        <method name="openVariableBrowser" returnType="void" modifier="static">
+          <parameter type="String[]" name="columnNames"/>
+          <parameter type="String[]" name="variableNames"/>
+          <parameter type="int[]" name="variableBytes"/>
+          <parameter type="int[]" name="variableTypes"/>
+          <parameter type="String[]" name="variableVisibility"/>
+        </method>
+        <method name="closeVariableBrowser" returnType="void" modifier="static"/>
+    </object>
+</package>

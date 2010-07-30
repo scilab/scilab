@@ -432,6 +432,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\spawncommand.c"
+				>
+			</File>
+			<File
 				RelativePath=".\splashScreen.c"
 				>
 			</File>
@@ -546,6 +550,10 @@
 			</File>
 			<File
 				RelativePath=".\SetScilabEnvironmentVariables.h"
+				>
+			</File>
+			<File
+				RelativePath=".\spawncommand.h"
 				>
 			</File>
 			<File

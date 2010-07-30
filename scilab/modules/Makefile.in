@@ -19,11 +19,11 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) INRIA - 2006-2008 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
-# 
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 #
 
@@ -162,8 +162,9 @@ DIST_SUBDIRS = core output_stream arnoldi elementary_functions string \
 	windows_tools functions overloading maple2scilab m2sci texmacs \
 	development_tools compatibility_functions helptools fftw \
 	umfpack demo_tools genetic_algorithms simulated_annealing \
-	parameters matio atoms types hdf5 graph xcos xpad parallel \
-	modules_manager scicos_blocks scicos . javasci
+	parameters matio atoms types hdf5 graph xcos scinotes parallel \
+	modules_manager ui_data history_browser scicos_blocks scicos . \
+	javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 am__relativize = \
   dir0=`pwd`; \
@@ -449,8 +450,9 @@ SUBDIRS = core output_stream arnoldi elementary_functions string \
 	maple2scilab m2sci texmacs development_tools \
 	compatibility_functions helptools fftw umfpack demo_tools \
 	genetic_algorithms simulated_annealing parameters matio atoms \
-	types hdf5 graph xcos xpad parallel modules_manager \
-	$(am__append_1) scicos . $(am__append_2)
+	types hdf5 graph xcos scinotes parallel modules_manager \
+	ui_data history_browser $(am__append_1) scicos . \
+	$(am__append_2)
 
 #### Basic files ####
 libscilab_la_rootdir = $(mydatadir)
@@ -475,7 +477,10 @@ GUI_LIBS = $(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/action_binding/libsciaction_binding.la \
 	$(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/modules/xcos/libscixcos.la \
-	$(top_builddir)/modules/xpad/libscixpad.la $(am__append_3)
+	$(top_builddir)/modules/scinotes/libsciscinotes.la \
+	$(top_builddir)/modules/ui_data/libsciui_data.la \
+	$(top_builddir)/modules/history_browser/libscihistory_browser.la \
+	$(am__append_3)
 # HDF5 is here because it needs the JVM (see bug #5481)
 NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/graphics/libscigraphics-disable.la \
@@ -484,7 +489,9 @@ NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/action_binding/libsciaction_binding-disable.la \
 	$(top_builddir)/modules/jvm/libscijvm-disable.la \
 	$(top_builddir)/modules/xcos/libscixcos-disable.la \
-	$(top_builddir)/modules/xpad/libscixpad-disable.la \
+	$(top_builddir)/modules/scinotes/libsciscinotes-disable.la \
+	$(top_builddir)/modules/ui_data/libsciui_data-disable.la \
+	$(top_builddir)/modules/history_browser/libscihistory_browser-disable.la \
 	$(am__append_4)
 # HDF5 is here because it needs the JVM (see bug #5481)
 ENGINE_LIBS = $(top_builddir)/modules/fileio/libscifileio.la \
@@ -539,7 +546,7 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
 	$(top_builddir)/modules/umfpack/libsciumfpack.la \
 	$(top_builddir)/modules/matio/libscimatio.la \
-	$(top_builddir)/modules/helptools/libscihelptools.la 
+	$(top_builddir)/modules/helptools/libscihelptools.la
 
 
 # Core modules

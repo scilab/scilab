@@ -19,7 +19,7 @@
  *    This file contains all functions used to INTERACT with the graphic
  *    window (zoom by pressing button, callbacks...)
  --------------------------------------------------------------------------*/
-
+#include <string.h>
 #include "Interaction.h"
 #include "SetProperty.h"
 #include "GetProperty.h"

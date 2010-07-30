@@ -22,9 +22,15 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
+import java.util.Arrays;
+import java.util.Deque;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
@@ -53,6 +59,7 @@ import org.scilab.modules.types.scilabTypes.ScilabList;
 import org.scilab.modules.types.scilabTypes.ScilabString;
 import org.scilab.modules.types.scilabTypes.ScilabType;
 import org.scilab.modules.xcos.Xcos;
+import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.actions.ShowHideShadowAction;
 import org.scilab.modules.xcos.block.actions.BlockDocumentationAction;
 import org.scilab.modules.xcos.block.actions.BlockParametersAction;
@@ -88,10 +95,12 @@ import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGeometry;
+import com.mxgraph.model.mxICell;
+import com.mxgraph.model.mxIGraphModel;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxUtils;
 
-public class BasicBlock extends ScilabGraphUniqueObject {
+public class BasicBlock extends ScilabGraphUniqueObject implements Serializable {
 	private static final double DEFAULT_POSITION_X = 10.0;
 	private static final double DEFAULT_POSITION_Y = 10.0;
 	private static final double DEFAULT_WIDTH = 40.0;
@@ -122,7 +131,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 	 *     - "blockType"
 	 *     - "ordering"
 	 */
-	protected PropertyChangeSupport parameters = new PropertyChangeSupport(this);
+	protected PropertyChangeSupport parametersPCS = new PropertyChangeSupport(this);
 	
     private String interfaceFunctionName = "xcos_block";
     private String simulationFunctionName = "xcos_simulate";
@@ -171,7 +180,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 	 */
 	public static enum SimulationFunctionType {
 		ESELECT(-2.0), IFTHENELSE(-1.0), DEFAULT(0.0), TYPE_1(1.0), TYPE_2(2.0),
-		    TYPE_3(3.0), C_OR_FORTRAN(4.0), SCILAB(5.0), MODELICA(30004.0), UNKNOWN(5.0), OLDBLOCKS(10001.0);
+		    TYPE_3(3.0), C_OR_FORTRAN(4.0), SCILAB(5.0), MODELICA(30004.0), UNKNOWN(5.0), OLDBLOCKS(10001.0), IMPLICIT_C_OR_FORTRAN(10004.0);
 
 		private double value;
 
@@ -211,7 +220,10 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 		}
 	};
 
-	private static class UpdateStyleFromInterfunction implements PropertyChangeListener {
+	/**
+	 * Update the source block when the interfunction change. 
+	 */
+	private static class UpdateStyleFromInterfunction implements PropertyChangeListener, Serializable {
 
 		/**
 		 * Update the label on interfunction change.
@@ -224,11 +236,34 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			BasicBlock source = (BasicBlock) evt.getSource();
 			
 			StyleMap style = new StyleMap(source.getStyle());
-			style.remove((String) evt.getOldValue());
+			style.remove(evt.getOldValue());
 			style.put((String) evt.getNewValue(), null);
 			source.setStyle(style.toString());
 		}
 		
+	}
+	
+	private static class TraceParametersListener implements PropertyChangeListener, Serializable {
+		private static TraceParametersListener instance;
+		
+		private TraceParametersListener() {
+			super();
+		}
+		
+		/**
+		 * @return the instance
+		 */
+		public static TraceParametersListener getInstance() {
+			if (instance == null) {
+				instance = new TraceParametersListener();
+			}
+			return instance;
+		}
+		
+		@Override
+		public void propertyChange(PropertyChangeEvent evt) {
+			LOG.trace(evt.getPropertyName() + ": " + evt.getOldValue() + ", " + evt.getNewValue());
+		}
 	}
 	
 	/**
@@ -240,8 +275,19 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 		setVisible(true);
 		setVertex(true);
 		
-		parameters.addPropertyChangeListener("interfaceFunctionName",
+		if (getStyle().isEmpty() && !getInterfaceFunctionName().isEmpty()) {
+			setStyle(getInterfaceFunctionName());
+		}
+		
+		parametersPCS.addPropertyChangeListener("interfaceFunctionName",
 				styleUpdater);
+		
+		/*
+		 * Trace block parameters change if applicable.
+		 */
+		if (LOG.isTraceEnabled()) {
+			parametersPCS.addPropertyChangeListener(TraceParametersListener.getInstance());
+		}
 	}
 
 	/**
@@ -250,7 +296,6 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 	protected BasicBlock(String label) {
 		this();
 		setDefaultValues();
-		setValue(label);
 	}
 
 	/**
@@ -306,7 +351,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			
 			final String oldValue = this.interfaceFunctionName;
 			this.interfaceFunctionName = interfaceFunctionName;
-			parameters.firePropertyChange("interfaceFunctionName", oldValue,
+			parametersPCS.firePropertyChange("interfaceFunctionName", oldValue,
 					interfaceFunctionName);
 		}
     }
@@ -320,7 +365,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			
     		final String oldValue = this.simulationFunctionName;
     		this.simulationFunctionName = simulationFunctionName;
-    		parameters.firePropertyChange("simulationFunctionName", oldValue, simulationFunctionName);
+    		parametersPCS.firePropertyChange("simulationFunctionName", oldValue, simulationFunctionName);
     	}
     }
 
@@ -348,7 +393,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			
 			final SimulationFunctionType oldValue = this.simulationFunctionType;
 			this.simulationFunctionType = simulationFunctionType;
-			parameters.firePropertyChange("simulationFunctionType", oldValue,
+			parametersPCS.firePropertyChange("simulationFunctionType", oldValue,
 					simulationFunctionType);
 		}
 	}
@@ -376,7 +421,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			
 			final ScilabType oldValue = this.realParameters;
 			this.realParameters = realParameters;
-			parameters.firePropertyChange("realParameters", oldValue, realParameters);
+			parametersPCS.firePropertyChange("realParameters", oldValue, realParameters);
 		}
     } 
 
@@ -396,7 +441,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			
 			final ScilabType oldValue = this.integerParameters;
 			this.integerParameters = integerParameters;
-			parameters.firePropertyChange("integerParameters", oldValue, integerParameters);
+			parametersPCS.firePropertyChange("integerParameters", oldValue, integerParameters);
 		}
     }
 
@@ -416,7 +461,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			
 			final ScilabType oldValue = this.objectsParameters;
 			this.objectsParameters = objectsParameters;
-			parameters.firePropertyChange("objectsParameters", oldValue, objectsParameters);
+			parametersPCS.firePropertyChange("objectsParameters", oldValue, objectsParameters);
 		}
     }
 
@@ -428,7 +473,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			
 			final boolean oldValue = this.dependsOnU;
 			this.dependsOnU = dependsOnU;
-			parameters.firePropertyChange("dependsOnU", oldValue, dependsOnU);
+			parametersPCS.firePropertyChange("dependsOnU", oldValue, dependsOnU);
 		}
     }
 
@@ -447,7 +492,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			
 			final boolean oldValue = this.dependsOnT;
 			this.dependsOnT = dependsOnT;
-			parameters.firePropertyChange("dependsOnT", oldValue, dependsOnT);
+			parametersPCS.firePropertyChange("dependsOnT", oldValue, dependsOnT);
 		}
     }
 
@@ -467,7 +512,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			
 			final String oldValue = this.blockType;
 			this.blockType = blockType;
-			parameters.firePropertyChange("blockType", oldValue, blockType);
+			parametersPCS.firePropertyChange("blockType", oldValue, blockType);
 		}
     }
 
@@ -486,7 +531,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			
 			final int oldValue = this.ordering;
 			this.ordering = ordering;
-			parameters.firePropertyChange("ordering", oldValue, ordering);
+			parametersPCS.firePropertyChange("ordering", oldValue, ordering);
 		}
     }
 
@@ -506,7 +551,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			
 			final ScilabType oldValue = this.exprs;
 			this.exprs = exprs;
-			parameters.firePropertyChange("exprs", oldValue, exprs);
+			parametersPCS.firePropertyChange("exprs", oldValue, exprs);
 		}
     }
 
@@ -533,7 +578,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			
 			final ScilabType oldValue = this.nbZerosCrossing;
 			this.nbZerosCrossing = nbZerosCrossing;
-			parameters.firePropertyChange("nbZerosCrossing", oldValue, nbZerosCrossing);
+			parametersPCS.firePropertyChange("nbZerosCrossing", oldValue, nbZerosCrossing);
 		}
     }
 
@@ -553,7 +598,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			
 			final ScilabType oldValue = this.nmode;
 			this.nmode = nmode;
-			parameters.firePropertyChange("nmode", oldValue, nmode);
+			parametersPCS.firePropertyChange("nmode", oldValue, nmode);
 		}
     }
 
@@ -573,7 +618,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			
 			final ScilabType oldValue = this.state;
 			this.state = state;
-			parameters.firePropertyChange("state", oldValue, state);
+			parametersPCS.firePropertyChange("state", oldValue, state);
 		}
     }
 
@@ -593,7 +638,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			
 			final ScilabType oldValue = this.dState;
 			this.dState = dState;
-			parameters.firePropertyChange("dState", oldValue, dState);
+			parametersPCS.firePropertyChange("dState", oldValue, dState);
 		}
     }
 
@@ -613,7 +658,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			
 			final ScilabType oldValue = this.oDState;
 			this.oDState = oDState;
-			parameters.firePropertyChange("oDState", oldValue, oDState);
+			parametersPCS.firePropertyChange("oDState", oldValue, oDState);
 		}
     }
 
@@ -633,7 +678,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			
 			final ScilabType oldValue = this.equations;
 			this.equations = equations;
-			parameters.firePropertyChange("equations", oldValue, equations);
+			parametersPCS.firePropertyChange("equations", oldValue, equations);
 		}
     }
 
@@ -709,53 +754,137 @@ public class BasicBlock extends ScilabGraphUniqueObject {
      * @param modifiedBlock the new settings
      */
     public void updateBlockSettings(BasicBlock modifiedBlock) {
-	doUpdateBlockSettings(modifiedBlock);
-    }
+    	/*
+		 * Update the block settings
+		 */
+		updateFields(modifiedBlock);
 
-    /**
-     * Does the block update without using the undo manager 
-     * @param modifiedBlock the new settings
-     */
-    public void doUpdateBlockSettings(BasicBlock modifiedBlock) {
-	setDependsOnT(modifiedBlock.isDependsOnT());
-	setDependsOnU(modifiedBlock.isDependsOnU());
-	setExprs(modifiedBlock.getExprs());
+		/*
+		 * Update the children ports
+		 */
+		updateChildren(modifiedBlock);
 
-	setRealParameters(modifiedBlock.getRealParameters());
-	setIntegerParameters(modifiedBlock.getIntegerParameters());
-	setObjectsParameters(modifiedBlock.getObjectsParameters());
-
-	setState(modifiedBlock.getState());
-	setDState(modifiedBlock.getDState());
-	setODState(modifiedBlock.getODState());
-
-	setEquations(modifiedBlock.getEquations());
-
-		// Update the children according to the modified block children. We are
-		// working on the last index in order to simplify the List.remove()
-		// call.
-		final int oldChildCount = getChildCount();
-		final int newChildCount = modifiedBlock.getChildCount();
-		final int portStep = newChildCount - oldChildCount;
-		if (portStep > 0) {
-			for (int i = portStep - 1; i >= 0; i--) {
-				addPort((BasicPort) modifiedBlock.getChildAt(oldChildCount + i - 1));
-			}
-		} else {
-			for (int i = -portStep - 1; i >= 0; i--) {
-				removePort((BasicPort) getChildAt(newChildCount + i));
-			}
+		/*
+		 * If the block is in a superblock then update it.
+		 */
+		if (getParentDiagram() instanceof SuperBlockDiagram) {
+			SuperBlock parentBlock = ((SuperBlockDiagram) getParentDiagram())
+					.getContainer();
+			parentBlock.getParentDiagram().fireEvent(
+					new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED,
+							XcosConstants.EVENT_BLOCK_UPDATED, parentBlock));
 		}
-
-	/*
-	 * If the block is in a superblock then update it.
-	 */
-	if (getParentDiagram() instanceof SuperBlockDiagram) {
-	    SuperBlock parentBlock = ((SuperBlockDiagram) getParentDiagram()).getContainer();
-	    parentBlock.getParentDiagram().fireEvent(new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED, 
-		    XcosConstants.EVENT_BLOCK_UPDATED, parentBlock));
-	}
     }
+
+	/**
+	 * Update the instance field.
+	 * 
+	 * @param modifiedBlock the modified instance
+	 */
+	private void updateFields(BasicBlock modifiedBlock) {
+		setDependsOnT(modifiedBlock.isDependsOnT());
+		setDependsOnU(modifiedBlock.isDependsOnU());
+		setExprs(modifiedBlock.getExprs());
+
+		setRealParameters(modifiedBlock.getRealParameters());
+		setIntegerParameters(modifiedBlock.getIntegerParameters());
+		setObjectsParameters(modifiedBlock.getObjectsParameters());
+
+		setState(modifiedBlock.getState());
+		setDState(modifiedBlock.getDState());
+		setODState(modifiedBlock.getODState());
+
+		setEquations(modifiedBlock.getEquations());
+	}
+
+	/**
+	 * Update the children of the block.
+	 * 
+	 * @param modifiedBlock the new block instance
+	 */
+	private void updateChildren(BasicBlock modifiedBlock) {
+		Set<Class<? extends mxICell>> types = new HashSet<Class<? extends mxICell>>(
+				Arrays.asList(InputPort.class, OutputPort.class,
+						ControlPort.class, CommandPort.class));
+
+		Map<Class<? extends mxICell>, Deque<mxICell>> annotatedOlds = getTypedChildren(types);
+		Map<Class<? extends mxICell>, Deque<mxICell>> annotatedNews = modifiedBlock
+				.getTypedChildren(types);
+
+		getParentDiagram().getModel().beginUpdate();
+		try {
+			for (Class<? extends mxICell> klass : types) {
+				final Deque<mxICell> olds = annotatedOlds.get(klass);
+				final Deque<mxICell> news = annotatedNews.get(klass);
+
+				// updated ports
+				while (!olds.isEmpty() && !news.isEmpty()) {
+					mxICell previous = olds.poll();
+					mxICell modified = news.poll();
+
+					final int previousIndex = children.indexOf(previous);
+
+					// relink
+					if (previous.getEdgeCount() != 0) {
+						final mxICell edge = previous.getEdgeAt(0);
+						final boolean isOutgoing = previous == edge
+								.getTerminal(true);
+						previous.removeEdge(edge, isOutgoing);
+						modified.insertEdge(edge, isOutgoing);
+					}
+
+					getParentDiagram().removeCells(new Object[] { previous },
+							false);
+					getParentDiagram().addCells(new Object[] { modified },
+							this, previousIndex);
+				}
+
+				// removed ports
+				if (!olds.isEmpty()) {
+					getParentDiagram().removeCells(olds.toArray(), true);
+				}
+
+				// added ports
+				if (!news.isEmpty()) {
+					getParentDiagram().addCells(news.toArray(), this);
+				}
+			}
+		} finally {
+			getParentDiagram().getModel().endUpdate();
+		}
+	}
+	
+	/**
+	 * Format the children as a typed map for the given class set.
+	 * 
+	 * @param types the classes to search for.
+	 * @return a map which linked foreach type the corresponding cell list. 
+	 */
+	private Map<Class<? extends mxICell>, Deque<mxICell>> getTypedChildren(Set<Class<? extends mxICell>> types) {
+		Map<Class<? extends mxICell>, Deque<mxICell>> oldPorts = new HashMap<Class<? extends mxICell>, Deque<mxICell>>();
+		
+		// Allocate all types set
+		for (Class<? extends mxICell> type : types) {
+			oldPorts.put(type, new LinkedList<mxICell>());
+		}
+		
+		// children lookup
+		for (Object cell : children) {
+			
+			Class<? extends Object> klass = cell.getClass();
+			while (klass != null) {
+				if (types.contains(klass)) {
+					break;
+				}
+				klass = klass.getSuperclass();
+			}
+			
+			final Deque<mxICell> current = oldPorts.get(klass);
+			current.add((mxICell) cell);
+		}
+		
+		return oldPorts;
+	}
 
     /**
      * @param context parent diagram context
@@ -796,12 +925,12 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			    
 			    getParentDiagram().fireEvent(new mxEventObject(XcosEvent.ADD_PORTS, XcosConstants.EVENT_BLOCK_UPDATED, 
 				    currentBlock));
+			    delete(tempInput);
 				} else {
 					LOG.trace("No needs to update data.");
 				}
 				
 			    setLocked(false);
-			    delete(tempInput);
 			    delete(tempOutput);
 			    delete(tempContext);
 			}
@@ -934,7 +1063,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
     public ContextMenu createPaletteContextMenu(ScilabGraph graph) {
 	ContextMenu menu = ScilabContextMenu.createContextMenu();
 
-	final List<XcosDiagram> allDiagrams = Xcos.getDiagrams();
+	final List<XcosDiagram> allDiagrams = Xcos.getInstance().getDiagrams();
 
 	if (allDiagrams.size() == 0) {
 	    // No diagram opened: should never happen if Xcos opens an empty diagram when it is launched
@@ -942,15 +1071,17 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 
 	    addTo.setText(XcosMessages.ADDTO_NEW_DIAGRAM);
 	    addTo.setCallback(new CallBack(XcosMessages.ADDTO_NEW_DIAGRAM) {
-		private static final long serialVersionUID = 8370536280449900878L;
-
+		@Override
 		public void callBack() {
-		    XcosDiagram theDiagram = Xcos.createEmptyDiagram();
+			
+		    XcosDiagram theDiagram = new XcosDiagram();
 		    BasicBlock block = (BasicBlock) BlockFactory.createClone(BasicBlock.this);
 		    theDiagram.getModel().add(theDiagram.getDefaultParent(), block, 0);
 		    mxGeometry geom = BasicBlock.this.getGeometry();
 		    setDefaultPosition(geom);
 		    theDiagram.getModel().setGeometry(block, geom);
+		    
+		    new XcosTab(theDiagram).setVisible(true);
 		    BlockPositioning.updateBlockView(block);
 		}
 	    });
@@ -966,6 +1097,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 	    addTo.setCallback(new CallBack(theDiagram.getTitle()) {
 		private static final long serialVersionUID = -99601763227525686L;
 
+		@Override
 		public void callBack() {
 		    BasicBlock block = (BasicBlock) BlockFactory.createClone(BasicBlock.this);
 		    theDiagram.getModel().add(theDiagram.getDefaultParent(), block, 0);
@@ -992,6 +1124,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 		diagram.setCallback(new CallBack(theDiagram.getTitle()) {
 		    private static final long serialVersionUID = 3345416658377835057L;
 
+			@Override
 		    public void callBack() {
 			BasicBlock block = (BasicBlock) BlockFactory.createClone(BasicBlock.this);
 			theDiagram.getModel().add(theDiagram.getDefaultParent(), block, 0);
@@ -1015,6 +1148,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 	help.setCallback(new CallBack(XcosMessages.BLOCK_DOCUMENTATION) {
 	    private static final long serialVersionUID = -1480947262397441951L;
 
+		@Override
 	    public void callBack() {
 		ScilabInterpreterManagement.requestScilabExec("help " + getInterfaceFunctionName());
 	    }
@@ -1119,16 +1253,14 @@ public class BasicBlock extends ScilabGraphUniqueObject {
     /**
      * @param flip value
      */
-    public void setFlip(boolean flip) {
-	if (getParentDiagram() != null) {
-	    isFlipped = flip;
-	    if (flip) {
-		mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {this}, XcosConstants.STYLE_FLIP, Boolean.TRUE.toString());
-	    } else {
-		mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {this}, XcosConstants.STYLE_FLIP, Boolean.FALSE.toString());
-	    }
+	public void setFlip(boolean flip) {
+		if (getParentDiagram() != null) {
+			isFlipped = flip;
+			final mxIGraphModel model = getParentDiagram().getModel();
+			mxUtils.setCellStyles(model, new Object[] { this },
+					XcosConstants.STYLE_FLIP, Boolean.toString(flip));
+		}
 	}
-    }
 
     /**
      * Override this to customize contextual menu
@@ -1149,16 +1281,14 @@ public class BasicBlock extends ScilabGraphUniqueObject {
     /**
      * @param mirror new mirror value
      */
-    public void setMirror(boolean mirror) {
-	if (getParentDiagram() != null) {
-	    isMirrored = mirror;
-	    if (mirror) {
-		mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {this}, XcosConstants.STYLE_MIRROR, "true");
-	    } else {
-		mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {this}, XcosConstants.STYLE_MIRROR, "false");
-	    }
+	public void setMirror(boolean mirror) {
+		if (getParentDiagram() != null) {
+			isMirrored = mirror;
+			final mxIGraphModel model = getParentDiagram().getModel();
+			mxUtils.setCellStyles(model, new Object[] { this },
+					XcosConstants.STYLE_MIRROR, Boolean.toString(mirror));
+		}
 	}
-    }
 
     /**
      * @return flip status
@@ -1257,6 +1387,48 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 	 * @return the associated {@link PropertyChangeSupport} instance
 	 */
 	public PropertyChangeSupport getParametersPCS() {
-		return parameters;
+		return parametersPCS;
+	}
+	
+	/**
+	 * Re-associate fields with the new instance.
+	 * 
+	 * @return a new clone instance
+	 * @throws CloneNotSupportedException never
+	 * @see com.mxgraph.model.mxCell#clone()
+	 */
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		BasicBlock clone = (BasicBlock) super.clone();
+		
+		/* Reinstall the PropertyChangeSupport and all of it listeners */
+		clone.parametersPCS = new PropertyChangeSupport(clone);
+		PropertyChangeSupport pcs = getParametersPCS();
+		for (PropertyChangeListener iter : pcs.getPropertyChangeListeners()) {
+			clone.parametersPCS.addPropertyChangeListener(iter);
+		}
+		
+		return clone;
+	}
+	
+	/**
+	 * Overriden to correct jgraphx bug fixed in 1.4.0.4
+	 * 
+	 * @param child the child to insert
+	 * @return the previous child
+	 * @see com.mxgraph.model.mxCell#insert(com.mxgraph.model.mxICell)
+	 * @see http://www.jgraphsupport.co.uk/bugzilla/show_bug.cgi?id=39
+	 * @deprecated Will be left after the switch to jgraphx >= 1.4.0.4
+	 */
+	@Deprecated
+	@Override
+	public mxICell insert(mxICell child) {
+		int index = getChildCount();
+		
+		if (child.getParent() == this) {
+			index--;
+		}
+		
+		return insert(child, index);
 	}
 }

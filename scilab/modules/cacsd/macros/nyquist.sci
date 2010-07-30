@@ -94,7 +94,10 @@ function nyquist(varargin)
   dy=(mxy-mny)/30;
   rect=[mnx-dx,mny-dy;mxx+dx,mxy+dy];
 
-  drawlater()
+  fig=gcf();
+  immediate_drawing=fig.immediate_drawing;
+  fig.immediate_drawing="off";
+
   ax=gca();
   if ax.children==[] then
     ax.data_bounds=rect;
@@ -153,13 +156,13 @@ function nyquist(varargin)
   while %t
     ksup=find(Ic-L>DIc);
     if ksup==[] then break,end
-    kk1=mini(ksup);
+    kk1=min(ksup);
     L=Ic(kk1);
     Ic(1:kk1)=[];
     kk=kk+kk1;
 
-    if mini(abs(frq(:,ks($))-frq(:,kk))./abs(frq(:,kk)))>0.001 then
-      if mini(sqrt(((repf(:,ks)-repf(:,kk)*ones(ks)).^2)/dx2+..
+    if min(abs(frq(:,ks($))-frq(:,kk))./abs(frq(:,kk)))>0.001 then
+      if min(sqrt(((repf(:,ks)-repf(:,kk)*ones(ks)).^2)/dx2+..
                    ((repi(:,ks)-repi(:,kk)*ones(ks)).^2)/dy2)) >DIc then
         ks=[ks kk];
         d=0;
@@ -167,7 +170,7 @@ function nyquist(varargin)
     end
   end
   if ks($)~=n then
-    if mini(((repf(:,ks(1))-repf(:,n))^2)/dx2+((repi(:,ks(1))-repi(:,n))^2)/dy2)>0.01 then
+    if min(((repf(:,ks(1))-repf(:,n))^2)/dx2+((repi(:,ks(1))-repi(:,n))^2)/dy2)>0.01 then
       ks=[ks n];
     end
   end
@@ -220,8 +223,9 @@ function nyquist(varargin)
   if comments<>[] then
     legend(Curves($:-1:1),comments);
   end
-  drawnow()
+  fig.immediate_drawing=immediate_drawing;
 endfunction
+
 function str=formatNyquistTip(curve,pt,index)
 //This function is called by the datatip mechanism to format the tip
 //string for the nyquist curves.

@@ -34,6 +34,11 @@ import com.mxgraph.view.mxGraphView;
  */
 public final class AfficheBlock extends BasicBlock {
 
+	/**
+	 * Default refresh rate used on the simulation to update block.
+	 */
+	private static final int DEFAULT_TIMER_RATE = 200;
+
 	private static final long serialVersionUID = 6874403612919831380L;
 
 	/**
@@ -44,12 +49,16 @@ public final class AfficheBlock extends BasicBlock {
 	private static final Map<Integer, AfficheBlock> INSTANCES = Collections
 			.synchronizedMap(new HashMap<Integer, AfficheBlock>());
 	
+	/**
+	 * Update the value of the associated block
+	 */
 	private static class UpdateValueListener implements ActionListener, Serializable {
-		private final AfficheBlock block;
+		private AfficheBlock block;
 		private String[][] data;
 		
 		/**
 		 * Default constructor 
+		 * @param block the current block
 		 */
 		public UpdateValueListener(AfficheBlock block) {
 			this.block = block;
@@ -96,11 +105,12 @@ public final class AfficheBlock extends BasicBlock {
 			 * Update and refresh the values
 			 */
 			block.setValue(blockResult.toString());
+			
 			final mxGraphView view = block.getParentDiagram().getView();
-			final mxCellState state = view.getState(block);
-			state.setInvalid(true);
-			view.validate();
-			block.getParentDiagram().repaint(state.getBoundingBox());
+			final mxCellState parentState = view.getState(block.getParent());
+			
+			view.validateBounds(parentState, block);
+			block.getParentDiagram().repaint(view.validatePoints(parentState, block));
 			
 			if (LogFactory.getLog(UpdateValueListener.class).isTraceEnabled()) {
 				LogFactory.getLog(UpdateValueListener.class).trace(blockResult.toString());
@@ -108,27 +118,27 @@ public final class AfficheBlock extends BasicBlock {
 		}		
 	}
 	
-	private Timer printTimer;  
-	private UpdateValueListener updateAction;
+	private final Timer printTimer;  
+	private final UpdateValueListener updateAction;
 	
 	/** Default constructor */
 	public AfficheBlock() {
 		super();
 		
 		updateAction = new UpdateValueListener(this);
-		printTimer = new Timer(200, updateAction);
+		printTimer = new Timer(DEFAULT_TIMER_RATE, updateAction);
 		printTimer.setRepeats(false);
 	}
-
+	
 	/**
-	 * Constructor with label
-	 * 
-	 * @param value
-	 *            the default value.
+	 * Set the default values
+	 * @see org.scilab.modules.xcos.block.BasicBlock#setDefaultValues()
 	 */
-	protected AfficheBlock(String value) {
-		this();
-		setValue(value);
+	@Override
+	protected void setDefaultValues() {
+		super.setDefaultValues();
+		
+		setValue("0.0");
 	}
 
 	/**
@@ -196,6 +206,21 @@ public final class AfficheBlock extends BasicBlock {
 	protected void finalize() throws Throwable {
 		INSTANCES.remove(hashCode());
 		super.finalize();
+	}
+	
+	/**
+	 * @return a clone of the block
+	 * @throws CloneNotSupportedException on error
+	 * @see com.mxgraph.model.mxCell#clone()
+	 */
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		AfficheBlock clone = (AfficheBlock) super.clone();
+		
+		// reassociate the update action data
+		clone.updateAction.block = clone;
+		
+		return clone;
 	}
 
 }

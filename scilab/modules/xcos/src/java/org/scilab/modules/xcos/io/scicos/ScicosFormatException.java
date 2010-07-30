@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Clément DAVID
+ * Copyright (C) 2010-2010 - DIGITEO - Clément DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,8 +14,6 @@ package org.scilab.modules.xcos.io.scicos;
 
 import java.util.List;
 
-
-
 /**
  * Default exception for a Xcos - Scicos communication
  */
@@ -28,16 +26,19 @@ public abstract class ScicosFormatException extends Exception {
 		/**
 		 * Default constructor
 		 */
-		public WrongElementException() { }
+		public WrongElementException() {
+			super();
+			
+			printStackTrace();
+		}
 	}
 	
 	/**
 	 * Used when the expected data cannot be casted safely.
 	 */
 	public static class WrongTypeException extends ScicosFormatException {
-		
 		/**
-		 * Default constructor
+		 * Default cstr
 		 */
 		public WrongTypeException() { }
 
@@ -64,14 +65,12 @@ public abstract class ScicosFormatException extends Exception {
 		public WrongTypeException(List<String> fields, int index) {
 			super(String.format("Unable to decode \"%s.%s\" : invalid field.", fields.get(0), fields.get(index)));
 		}
-		
 	}
 	
 	/**
 	 * Used when the expected data are not well formatted.
 	 */
 	public static class WrongStructureException extends ScicosFormatException {
-		
 		/**
 		 * Default constructor
 		 */

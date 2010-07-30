@@ -22,12 +22,15 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Iterator;
-import java.util.Set;
 
 import javax.swing.Action;
 import javax.swing.SwingUtilities;
 
 import org.flexdock.docking.DockingConstants;
+import org.flexdock.docking.DockingPort;
+import org.flexdock.docking.event.DockingEvent;
+import org.flexdock.docking.activation.ActiveDockableTracker;
+import org.flexdock.docking.props.PropertyChangeListenerFactory;
 import org.flexdock.view.View;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
 import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
@@ -65,9 +68,8 @@ import org.scilab.modules.gui.tree.Tree;
 import org.scilab.modules.gui.utils.BarUpdater;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.SciUndockingAction;
+import org.scilab.modules.gui.utils.SciClosingAction;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.utils.UIElementMapper;
-import org.scilab.modules.gui.window.Window;
 
 /**
  * Swing implementation for Scilab tabs in GUIs
@@ -82,6 +84,12 @@ public class SwingScilabTab extends View implements SimpleTab {
     private static final long serialVersionUID = 1L;
 
     private static final int VIEWPORT_SIZE = 4;
+    
+    private static final String UNDOCK = "undock";
+
+    static {
+    	PropertyChangeListenerFactory.addFactory(new BarUpdater.UpdateBarFactory());
+    }
 
     private int parentWindowId;
 
@@ -115,7 +123,6 @@ public class SwingScilabTab extends View implements SimpleTab {
 	scrolling = null;
 
 	this.setVisible(true);
-
     }
 
     /**
@@ -141,38 +148,30 @@ public class SwingScilabTab extends View implements SimpleTab {
 	// put in in the back of the tab
 	setContentPane(scrolling.getAsContainer());
 
-
 	this.setVisible(true);
-
     }
 
     /**
-     * Repaint it
+     * {@inheritDoc}
      */
-    public void repaint() {
-    	super.repaint();
+    public void dockingComplete(DockingEvent evt) {
+        super.dockingComplete(evt);
+        DockingPort port = evt.getNewDockingPort();
+        Iterator iter = port.getDockables().iterator();
 
-    	/** Update toolbar / menubar / infobar / title */
-    	Window parentWindow = (Window) UIElementMapper.getCorrespondingUIElement(parentWindowId);
-    	if (parentWindow != null) {
-    		Set<Dockable> dockables = ((SwingScilabWindow) parentWindow.getAsSimpleWindow()).getDockingPort().getDockables();
-    	
-    		if ((isShowing() && dockables.size() == 1) || isActive() || dockables.size() == 1) {
-    			BarUpdater.updateBars(getParentWindowId(), getMenuBar(), getToolBar(), getInfoBar(), getName());
-    		} else {
-    			/** Try to find active tab */
-    			Iterator<Dockable> it =  dockables.iterator();
-    			while (it.hasNext()) {
-    				SwingScilabTab dock = (SwingScilabTab) it.next();
-    				if (((SwingScilabTab) dock).isActive()) {
-    					BarUpdater.updateBars(
-    							getParentWindowId(), dock.getMenuBar(), dock.getToolBar(), 
-    							dock.getInfoBar(), dock.getName());
-    					return;
-    				}
-    			}
-    		}
-    	}
+        if (port.getDockables().size() > 1) {
+            while (iter.hasNext()) {
+                Object d = iter.next();
+                if (d instanceof View) {
+                    View view = (View) d;
+                    view.setActionBlocked(DockingConstants.CLOSE_ACTION, false);
+                    view.setActionBlocked(UNDOCK, false);
+                }
+            }
+        } else {
+            setActionBlocked(UNDOCK, true);
+            setActionBlocked(DockingConstants.CLOSE_ACTION, true);
+        }
     }
 
     /**
@@ -182,10 +181,12 @@ public class SwingScilabTab extends View implements SimpleTab {
      */
     public void setName(String newTabName) {
 	    setTitle(newTabName, true);
+
+	    getTitlePane().repaint();
 	    if (isActive()) {
-	        BarUpdater.updateBars(getParentWindowId(), getMenuBar(), getToolBar(), getInfoBar(), getName());
+			SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, this)
+					.setName(newTabName);
 	    }
-      repaint();
     }
 
     /**
@@ -203,9 +204,6 @@ public class SwingScilabTab extends View implements SimpleTab {
     public void paintImmediately() {
 	// paint all
 	paintImmediately(0, 0, getWidth(), getHeight());
-	if (isActive()) {
-	    BarUpdater.updateBars(getParentWindowId(), getMenuBar(), getToolBar(), getInfoBar(), getName());
-	}
     }
 
     /**
@@ -689,7 +687,7 @@ public class SwingScilabTab extends View implements SimpleTab {
     private void removeMember(SwingScilabPopupMenu member) {
 	contentPane.removeWidget(member);
     }
-    
+
     /**
      * Add a Tree member (dockable element) to container and returns its index
      * @param member the member to add
@@ -708,7 +706,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	return contentPane.addWidget(member.getAsComponent());
     }
 
-    
+
     /**
      * Add a Tree member (dockable element) to container and returns its index
      * @param member the member to add
@@ -734,10 +732,10 @@ public class SwingScilabTab extends View implements SimpleTab {
     private void removeMember(SwingScilabTree member) {
 	contentPane.removeTree(member);
     }
-    
-    
-    
-    
+
+
+
+
     /**
      * Add a member (dockable element) to container and returns its index
      * @param member the member to add
@@ -831,23 +829,28 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @param callback the callback to set.
      */
     public void setCallback(CallBack callback) {
-	if (callback != null) {
-	    callback.putValue(Action.NAME, DockingConstants.CLOSE_ACTION);
-	    this.addAction(callback);
-	} else {
-	    this.addAction(DockingConstants.CLOSE_ACTION);
-	}
-	/* Undock button */
-	SciUndockingAction undockAction = new SciUndockingAction(this);
-	undockAction.putValue(Action.NAME, "undock");
-	this.addAction(undockAction);
+        Action action;
+        if (callback != null) {
+            action = new SciClosingAction(this, callback);
+        } else {
+            this.addAction(DockingConstants.CLOSE_ACTION);
+            action = new SciClosingAction(this, this.getTitlebar().getAction(DockingConstants.CLOSE_ACTION));
+        }
+
+        action.putValue(Action.NAME, DockingConstants.CLOSE_ACTION);
+        this.addAction(action);
+
+        /* Undock button */
+        SciUndockingAction undockAction = new SciUndockingAction(this);
+        undockAction.putValue(Action.NAME, UNDOCK);
+        this.addAction(undockAction);
     }
 
     /**
      * Set this tab as the current tab of its parent Window
      */
     public void setCurrent() {
-	super.setActive(true);
+    	ActiveDockableTracker.requestDockableActivation(this);
     }
 
     /**
@@ -984,7 +987,7 @@ public class SwingScilabTab extends View implements SimpleTab {
     public boolean getRotationDisplacement(int[] displacement) {
 	return contentPane.getRotationDisplacement(displacement);
     }
-	
+
 	/**
 	 * Close the tab and disable it.
 	 */
@@ -996,10 +999,10 @@ public class SwingScilabTab extends View implements SimpleTab {
 		this.setTitlebar(null);
 		this.removeAll();
 		setActive(false);
-		
+
 		scrolling = null;
 		contentPane = null;
-		
+
 		// without this children canvas are not released.
 		Container dummyContainer = new Container();
 		this.setContentPane(dummyContainer);

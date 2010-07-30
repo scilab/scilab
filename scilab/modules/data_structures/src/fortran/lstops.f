@@ -15,6 +15,7 @@ c     Copyright INRIA
       include 'stack.h'
 c
 c
+      character tmpbuf * (bsiz)
       logical	ishm
       integer insert,extrac, toto, gettype
       data insert/2/,extrac/3/
@@ -25,8 +26,8 @@ c     handle recursion
       if(rstk(pt).eq.406.or.rstk(pt).eq.407) goto 21
 c
       if (ddt .eq. 4) then
-         write(buf(1:4),'(i4)') fin
-         call basout(io,wte,' lstops '//buf(1:4))
+         write(tmpbuf(1:4),'(i4)') fin
+         call basout(io,wte,' lstops '//tmpbuf(1:4))
       endif
 c
 

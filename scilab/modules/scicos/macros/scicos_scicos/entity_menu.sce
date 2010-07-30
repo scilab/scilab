@@ -75,7 +75,7 @@ function new_entity()
     r=gce();r.foreground=-1;
     while rep(3)==-1 do
       rep=xgetmouse()
-      r.data=[mini(xc,rep(1)),maxi(yc,rep(2)),abs(xc-rep(1)),abs(yc-rep(2))]
+      r.data=[min(xc,rep(1)),max(yc,rep(2)),abs(xc-rep(1)),abs(yc-rep(2))]
     end 
  
   case 2 then //Segment
@@ -131,7 +131,7 @@ function new_entity()
     r=gce();r.foreground=-1;
     while rep(3)==-1 do
       rep=xgetmouse()
-      r.data=[mini(xc,rep(1)),maxi(yc,rep(2)),abs(xc-rep(1)),abs(yc-rep(2)),0,360]
+      r.data=[min(xc,rep(1)),max(yc,rep(2)),abs(xc-rep(1)),abs(yc-rep(2)),0,360]
     end 
 
   end

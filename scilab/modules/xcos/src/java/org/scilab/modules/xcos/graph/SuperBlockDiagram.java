@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
+ * Copyright (C) 2009-2009 - DIGITEO - Antoine ELIAS
+ * Copyright (C) 2009-2010 - DIGITEO - Clément DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -57,29 +58,24 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
 	this.container = container;
     }
 
-    public String[] buildEntireContext() {
-	
-	String[] parentContext = getContainer().getParentDiagram().getScicosParameters().getContext();
-	String []entireContext = new String[getScicosParameters().getContext().length + parentContext.length];
-	
-	for (int i = 0; i < parentContext.length; ++i) {
-	    entireContext[i] = parentContext[i];
-	}
-
-	for (int i = 0; i < getScicosParameters().getContext().length; ++i) {
-	    entireContext[i + parentContext.length] = getScicosParameters().getContext()[i];
-	}
-	
-	return entireContext;
+    /**
+     * Concatenate the context with the parent one
+     * @return the context
+     * @see org.scilab.modules.xcos.graph.XcosDiagram#getContext()
+     */
+    @Override
+    public String[] getContext() {
+    	final String[] parent = getContainer().getParentDiagram().getContext();
+    	final String[] current = super.getContext();
+    	
+    	String[] full = new String[current.length + parent.length];
+    	System.arraycopy(parent, 0, full, 0, parent.length);
+    	System.arraycopy(current, 0, full, parent.length, current.length);
+    	return full;
     }
     
-    public void closeDiagram() {
-	getContainer().closeBlockSettings();
-    }
-
     /**
-     * @author Antoine ELIAS
-     *
+     * Listener for SuperBlock diagram events.
      */
     private static final class GenericSuperBlockListener implements mxIEventListener {
 	private static GenericSuperBlockListener instance;
@@ -102,31 +98,27 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
 	    return instance;
 	}
 	
+	/**
+	 * Update the IOPorts colors and values.
+	 * @param arg0 the source
+	 * @param arg1 the event data
+	 * @see com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object, com.mxgraph.util.mxEventObject)
+	 */
 	public void invoke(Object arg0, mxEventObject arg1) {
 	    ((SuperBlockDiagram) arg0).getContainer().updateAllBlocksColor();
-	    ((SuperBlockDiagram) arg0).getContainer().updateExportedPort();	    
+	    ((SuperBlockDiagram) arg0).getContainer().updateExportedPort();
 	}
     }
     
     /**
-     * 
+     * Install the specific listeners for {@link SuperBlockDiagram}.
      */
     public void installSuperBlockListeners() {
 	addListener(XcosEvent.CELLS_ADDED, GenericSuperBlockListener.getInstance());
 
 	addListener(XcosEvent.CELLS_REMOVED, GenericSuperBlockListener.getInstance());
 
-	addListener(XcosEvent.IN_EXPLICIT_VALUE_UPDATED, GenericSuperBlockListener.getInstance());
-
-	addListener(XcosEvent.IN_IMPLICIT_VALUE_UPDATED, GenericSuperBlockListener.getInstance());
-
-	addListener(XcosEvent.IN_EVENT_VALUE_UPDATED, GenericSuperBlockListener.getInstance());
-
-	addListener(XcosEvent.OUT_EXPLICIT_VALUE_UPDATED, GenericSuperBlockListener.getInstance());
-
-	addListener(XcosEvent.OUT_IMPLICIT_VALUE_UPDATED, GenericSuperBlockListener.getInstance());
-
-	addListener(XcosEvent.OUT_EVENT_VALUE_UPDATED, GenericSuperBlockListener.getInstance());
+	addListener(XcosEvent.IO_PORT_VALUE_UPDATED, GenericSuperBlockListener.getInstance());
     }
 
     /**
@@ -134,6 +126,7 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
      * modified state or not.
      * @param modified status
      */
+	@Override
     public void setModified(boolean modified) {
         super.setModified(modified);
 

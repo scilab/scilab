@@ -41,7 +41,7 @@
   </para>
     <para>
     La valeur par défaut de <literal>k</literal> est la plus petite
-    puissance de 2 plus grande que <literal>n*maxi(degree(W))</literal>.
+    puissance de 2 plus grande que <literal>n*max(degree(W))</literal>.
   </para>
     <para>
     Méthode (pour les matrices dont la taille est supérieure à 2*2) : évaluation du déterminant de <literal>W</literal> aux

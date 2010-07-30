@@ -75,6 +75,8 @@ public final class BasicBlockInfo {
 	}
 
 	/**
+	 * Get the block' children list of the specified type. 
+	 * 
 	 * @param block
 	 *            the block we are working on
 	 * @param revert

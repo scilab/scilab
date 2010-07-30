@@ -42,10 +42,3 @@ cremat_
 getscalar_
 getvectrow_
 ;
-; sparse
-lufact1_
-ludel1_
-luget1_
-lusiz1_
-lusolve1_
-;

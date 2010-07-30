@@ -11,7 +11,10 @@ function nicholschart(modules,args,colors)
   l10=log(10);
   ratio=%pi/180;
 
-  drawlater()
+  fig=gcf();
+  immediate_drawing=fig.immediate_drawing;
+  fig.immediate_drawing="off";
+
   ax=gca();
   nc=size(ax.children,"*")
   if nc==0 then
@@ -63,8 +66,8 @@ function nicholschart(modules,args,colors)
       colors=colors*ones(1,2)
     end
   end
-  // convert args to radian
-  args = -args * ratio;
+  // convert args to radian and insure negative
+  args = -abs(args) * ratio;
 
   //initialize handles array for chart entities
   chart_handles=[]
@@ -139,12 +142,16 @@ function nicholschart(modules,args,colors)
 
     eps=10*%eps;
     for teta=args,
+      //w = teta produce a 0 gain and consequently a singularity in module
       if teta < -%pi/2 then
         last=teta-eps,
       else
         last=teta+eps,
       end;
-      w=[-170*ratio:0.03:last last]
+      //use logarithmic discretization to have more mesh points near low modules
+      w=real(logspace(log10(-last),log10(170*ratio),150))
+      w=-w($:-1:1)
+
       n=prod(size(w));
       module=real(20*log((sin(w)*cos(teta)/sin(teta)-cos(w)))/l10)
       w=w/ratio
@@ -174,17 +181,19 @@ function nicholschart(modules,args,colors)
     swap_handles(ax.children(k),ax.children(k+1))
   end
 
-  drawnow() ;
+   fig.immediate_drawing=immediate_drawing;
 endfunction
+
 function str=formatNicholsGainTip(curve,pt,index)
 //This function is called by the datatip mechanism to format the tip
 //string for the Nichols chart iso gain curves.
   ud=datatipGetStruct(curve);
   str=msprintf("%.2g"+_("dB"),ud.gain);
 endfunction
+
 function str=formatNicholsPhaseTip(curve,pt,index)
 //This function is called by the datatip mechanism to format the tip
 //string for the Nichols chart iso phase curves.
   ud=datatipGetStruct(curve);
-  str=msprintf("%.2g"+_("°"),ud.phase)
+  str=msprintf("%.2g°",ud.phase)
 endfunction

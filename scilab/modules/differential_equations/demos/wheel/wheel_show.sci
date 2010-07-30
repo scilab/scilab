@@ -51,12 +51,12 @@ function []=wheel_show(xx,t,p)
 	[xu,yu,zu]=wheelg(nu,size(time,'*'),xu,yu,zu,xx(:,time));
 	[xr,yr,zr]=wheelg(nr,size(time,'*'),xr,yr,zr,xx(:,time));
 	
-	xmin=mini(xu);
-	xmax=maxi(xu);
-	ymin=mini(yu);
-	ymax=maxi(yu);
-	zmin=mini(zu);
-	zmax=maxi(zu);
+	xmin=min(xu);
+	xmax=max(xu);
+	ymin=min(yu);
+	ymax=max(yu);
+	zmin=min(zu);
+	zmax=max(zu);
 	
 	//[4] creating the graphic objects
 	drawlater()

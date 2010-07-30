@@ -14,12 +14,11 @@
 #ifndef __GW_DIFFERENTIAL_EQUATIONS3__
 #define __GW_DIFFERENTIAL_EQUATIONS3__
 /*--------------------------------------------------------------------------*/
-#include "machine.h"
-#include "api_scilab.h"
+#include "dynlib_differential_equations.h"
 /*--------------------------------------------------------------------------*/
-int gw_differential_equations3(void);
+DIFFERENTIAL_EQUATIONS_IMPEXP int gw_differential_equations3(void);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_odc)(char *fname,unsigned long l);
+int sci_odc(char *fname,unsigned long l);
 /*--------------------------------------------------------------------------*/
 #endif  /* __GW_DIFFERENTIAL_EQUATIONS3__ */
 /*--------------------------------------------------------------------------*/

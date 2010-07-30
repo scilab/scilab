@@ -66,6 +66,7 @@ public final class XcosDemonstrationsAction extends DefaultAction {
 	 * @param e the event
 	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
 	 */
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		ScilabInterpreterManagement.requestScilabExec("exec(\"" + System.getenv("SCI") + "/modules/xcos/demos/xcos_demos.sce\", -1)");
 	}
