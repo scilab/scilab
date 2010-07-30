@@ -45,6 +45,9 @@ Bug Fixes:
 
 * bug 7631 fixed - On Xcos, using xcosPalAdd modified the user palatte.xml file.
 
+* bug 7635 fixed - Xcos diagram with nested SuperBlocks did not contains a
+                   valid container reference.
+
 * bug 7636 fixed - The SUPER_f internal diagram was not coherent with the block
                    external view.
 
