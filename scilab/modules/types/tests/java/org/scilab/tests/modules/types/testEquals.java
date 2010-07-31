@@ -36,6 +36,8 @@ public class testEquals {
         assert bMatrix.equals(aMatrix) == true;
         assert cMatrix.equals(aMatrix) == false;
         assert Arrays.deepEquals(aMatrix.getRealPart(), bMatrix.getRealPart()) == true;
+		assert aMatrix.toString().equals("[21.2, 22.0, 42.0, 39.0 ; 23.2, 24.0, 44.0, 40.0]") == true;
+		assert cMatrix.toString().equals("[42.0, 43.0 ; 21.0, 22.0]") == true;
     }
 
 
@@ -55,6 +57,9 @@ public class testEquals {
         assert cMatrix.equals(aMatrix) == false;
         assert Arrays.deepEquals(aMatrix.getRealPart(), bMatrix.getRealPart()) == true;
         assert Arrays.deepEquals(aMatrix.getImaginaryPart(), bMatrix.getImaginaryPart()) == true;
+		assert aMatrix.toString().equals("[21.2 + 210.2 * %i, 22.0 + 220.0 * %i, 42.0 + 420.0 * %i, 39.0 + 390.0 * %i ; 23.2 + 230.2 * %i, 24.0 + 240.0 * %i, 44.0 + 440.0 * %i, 40.0 + 400.0 * %i]") == true;
+		assert cMatrix.toString().equals("[42.0 + 420.0 * %i, 43.0 + 430.0 * %i ; 21.0 + 210.0 * %i, 22.0 + 220.0 * %i]") == true;
+
     }
 
 
@@ -70,6 +75,8 @@ public class testEquals {
         assert bMatrix.equals(aMatrix) == true;
         assert cMatrix.equals(aMatrix) == false;
         assert Arrays.deepEquals(aMatrix.getData(), bMatrix.getData()) == true;
+		assert aMatrix.toString().equals("uint32([32, 42, 41 ; 12, 13, 32])") == true;
+		assert cMatrix.toString().equals("uint32([42, 43 ; 21, 22])") == true;
     }
 
 	@Test
@@ -100,6 +107,9 @@ public class testEquals {
         assert bMatrix.equals(aMatrix) == true;
         assert cMatrix.equals(aMatrix) == false;
         assert Arrays.deepEquals(aMatrix.getData(), bMatrix.getData()) == true;
+        assert aMatrix.toString().equals("[\"This\", \"is\", \"my\", \"string\" ; \"and\", \"I want to\", \"compare\", \" them\"]") == true;
+		assert cMatrix.toString().equals("[\"Wrong\", \"string\" ; \"right\", \"string\"]") == true;
+
     }
 
 	@Test
@@ -115,8 +125,12 @@ public class testEquals {
         ScilabList data3 = new ScilabList();
         data3.add(new ScilabDouble(2));
         data3.add(new ScilabDouble(42));
+        data3.add(new ScilabBoolean(true));
         data3.add(new ScilabString("hello"));
         assert data.equals(data2) == true;
         assert data.equals(data3) == false;
+		assert data.toString().equals("list([2.0],\n[51.0],\n[\"hello\"])") == true;
+		assert data3.toString().equals("list([2.0],\n[42.0],\n[%t],\n[\"hello\"])") == true;
+
     }
 }
