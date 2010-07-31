@@ -191,7 +191,7 @@ public class ScilabDouble implements ScilabType {
 				if (isReal()) {
 					result.append(getRealPart()[i][j]);
 				} else {
-					result.append(getRealPart()[i][j] + " + " + getImaginaryPart()[i][j] + " %i");
+					result.append(getRealPart()[i][j] + " + " + getImaginaryPart()[i][j] + " * %i");
 				}
 				if (j != getWidth() - 1) {
 					result.append(", ");

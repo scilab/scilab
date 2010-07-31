@@ -268,7 +268,7 @@ public class ScilabInteger implements ScilabType {
 		
 		
 		if (isEmpty()) {
-			result.append("int()");
+			result.append("int([])");
 			return result.toString();
 		}
 		
@@ -298,9 +298,9 @@ public class ScilabInteger implements ScilabType {
 			break;
 		}
 
-		result.append("(");
+		result.append("([");
 		appendData(result);
-		result.append(")");
+		result.append("])");
 	
 		return result.toString();
 	}
