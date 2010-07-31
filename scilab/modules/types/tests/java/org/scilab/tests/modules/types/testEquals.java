@@ -64,20 +64,82 @@ public class testEquals {
 
 
 	@Test
-    public void compareIntegerTest() throws NullPointerException {
+    public void compareInteger8Test() throws NullPointerException {
+        byte [][]a={{32,42,41}, {12,13,32}};
+        byte [][]b={{32,42,41}, {12,13,32}};
+        byte [][]c={{42,43},{21,22}};
+        ScilabInteger aMatrix = new ScilabInteger(a, true);
+        ScilabInteger bMatrix = new ScilabInteger(b, true);
+        ScilabInteger cMatrix = new ScilabInteger(c, true);
+        ScilabInteger dMatrix = new ScilabInteger(c, false);
+        assert aMatrix.equals(bMatrix) == true;
+        assert bMatrix.equals(aMatrix) == true;
+        assert cMatrix.equals(aMatrix) == false;
+        assert cMatrix.equals(dMatrix) == true;
+        assert Arrays.deepEquals(aMatrix.getData(), bMatrix.getData()) == true;
+		assert aMatrix.toString().equals("uint8([32, 42, 41 ; 12, 13, 32])") == true;
+		assert cMatrix.toString().equals("uint8([42, 43 ; 21, 22])") == true;
+		assert dMatrix.toString().equals("int8([42, 43 ; 21, 22])") == true;
+    }
+
+
+	@Test
+    public void compareInteger16Test() throws NullPointerException {
+        short [][]a={{32,42,41}, {12,13,32}};
+        short [][]b={{32,42,41}, {12,13,32}};
+        short [][]c={{42,43},{21,22}};
+        ScilabInteger aMatrix = new ScilabInteger(a, true);
+        ScilabInteger bMatrix = new ScilabInteger(b, true);
+        ScilabInteger cMatrix = new ScilabInteger(c, true);
+        ScilabInteger dMatrix = new ScilabInteger(c, false);
+        assert aMatrix.equals(bMatrix) == true;
+        assert bMatrix.equals(aMatrix) == true;
+        assert cMatrix.equals(aMatrix) == false;
+        assert cMatrix.equals(dMatrix) == true;
+        assert Arrays.deepEquals(aMatrix.getData(), bMatrix.getData()) == true;
+		assert aMatrix.toString().equals("uint16([32, 42, 41 ; 12, 13, 32])") == true;
+		assert cMatrix.toString().equals("uint16([42, 43 ; 21, 22])") == true;
+		assert dMatrix.toString().equals("int16([42, 43 ; 21, 22])") == true;
+    }
+
+	@Test
+    public void compareInteger32Test() throws NullPointerException {
         int [][]a={{32,42,41}, {12,13,32}};
         int [][]b={{32,42,41}, {12,13,32}};
         int [][]c={{42,43},{21,22}};
         ScilabInteger aMatrix = new ScilabInteger(a, true);
         ScilabInteger bMatrix = new ScilabInteger(b, true);
         ScilabInteger cMatrix = new ScilabInteger(c, true);
+        ScilabInteger dMatrix = new ScilabInteger(c, false);
         assert aMatrix.equals(bMatrix) == true;
         assert bMatrix.equals(aMatrix) == true;
         assert cMatrix.equals(aMatrix) == false;
+        assert cMatrix.equals(dMatrix) == true;
         assert Arrays.deepEquals(aMatrix.getData(), bMatrix.getData()) == true;
 		assert aMatrix.toString().equals("uint32([32, 42, 41 ; 12, 13, 32])") == true;
 		assert cMatrix.toString().equals("uint32([42, 43 ; 21, 22])") == true;
+		assert dMatrix.toString().equals("int32([42, 43 ; 21, 22])") == true;
     }
+
+	@Test
+    public void compareInteger64Test() throws NullPointerException {
+        long [][]a={{32,42,41}, {12,13,32}};
+        long [][]b={{32,42,41}, {12,13,32}};
+        long [][]c={{42,43},{21,22}};
+        ScilabInteger aMatrix = new ScilabInteger(a, true);
+        ScilabInteger bMatrix = new ScilabInteger(b, true);
+        ScilabInteger cMatrix = new ScilabInteger(c, true);
+        ScilabInteger dMatrix = new ScilabInteger(c, false);
+        assert aMatrix.equals(bMatrix) == true;
+        assert bMatrix.equals(aMatrix) == true;
+        assert cMatrix.equals(aMatrix) == false;
+        assert cMatrix.equals(dMatrix) == true;
+        assert Arrays.deepEquals(aMatrix.getData(), bMatrix.getData()) == true;
+		assert aMatrix.toString().equals("uint64([32, 42, 41 ; 12, 13, 32])") == true;
+		assert cMatrix.toString().equals("uint64([42, 43 ; 21, 22])") == true;
+		assert dMatrix.toString().equals("int64([42, 43 ; 21, 22])") == true;
+    }
+
 
 	@Test
     public void compareBooleanTest() throws NullPointerException {
