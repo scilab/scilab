@@ -129,6 +129,8 @@ Bug Fixes:
 
 * bug 7651 fixed - scicos_math.h was missing in binary package.
 
+* bug 7661 fixed - Add some usage examples for the function 'warning'.
+
 * bug 7681 fixed - help_from_sci failed to process tabulated .sci files.
 
 * bug 7685 fixed - Demo Graphics => More surfaces => Sphere did not appear
@@ -152,8 +154,9 @@ Bug Fixes:
 
 * bug 7740 fixed - edit() with a Scilab macro redefined failed.
 
-* bug 7751 fixed - justify() did not work correctly if the subject embedded 
+* bug 7751 fixed - justify() did not work correctly if the subject embedded
                    leading or trailing spaces.
+
 
          Changes between version 5.3.0-beta-1 and 5.3.0-beta-2 of Scilab
          ===============================================================
