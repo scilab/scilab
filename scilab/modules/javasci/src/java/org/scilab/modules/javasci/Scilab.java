@@ -27,18 +27,26 @@ public class Scilab {
 
 	/**
 	 * Creator of the Scilab Javasci object. 
-	 * Under GNU/Linux / Mac OS X, try to detect with SCI
+	 * Under GNU/Linux / Mac OS X, try to detect Scilab base path
+	 * if the property SCI is set, use it
+	 * if not, try with the global variable SCI
+	 * if not, throws a new exception
 	 * Under Windows, use also the registery
 	 * @param SCI provide the path to Scilab data
 	 */
     public Scilab() throws InitializationException {
 		// Auto detect 
+		String detectedSCI;
         try {
-            String detectedSCI = System.getenv("SCI");
+			detectedSCI = System.getProperty("SCI");
 			if (detectedSCI == null || detectedSCI.length() == 0) {
-				throw new InitializationException("Auto detection of SCI failed.\nSCI empty.");
+				detectedSCI = System.getenv("SCI");
+				if (detectedSCI == null || detectedSCI.length() == 0) {
+					throw new InitializationException("Auto detection of SCI failed.\nSCI empty.");
+				}
 			}
 			this.initScilab(detectedSCI);
+
         } catch (Exception e) {
 			throw new InitializationException("Auto detection of SCI failed.\nCould not retrieve the variable SCI.", e);
         }
@@ -51,11 +59,9 @@ public class Scilab {
 	 */
     public Scilab(String SCI) throws InitializationException {
 		this.initScilab(SCI);
-
     }
 
 	private void initScilab(String SCI) throws InitializationException {
-
 		File f = new File(SCI);
 		if (!f.isDirectory()) { 
 			throw new InitializationException("Could not find directory " + f.getAbsolutePath());
@@ -146,6 +152,7 @@ public class Scilab {
      * @return if the operation is successful
      */
     public boolean exec(File scriptFilename) {
+		// @TODO: rajouter le check du fichier et lancer une nosuch file exception
         return this.exec("exec('" + scriptFilename + "');");
     }
 
@@ -240,6 +247,8 @@ public class Scilab {
 				return new ScilabDouble(Call_Scilab.getDouble(varname));
 			case sci_boolean:
 				return new ScilabBoolean(Call_Scilab.getBoolean(varname));
+			default:
+		//		throw new UnsupportedTypeException();
 		}
 		return null;
     }
@@ -256,7 +265,7 @@ public class Scilab {
         if (theVariable instanceof ScilabDouble) {
             ScilabDouble sciDouble = (ScilabDouble)theVariable;
             if (sciDouble.isReal()) {
-                Call_Scilab.putDouble(varname,sciDouble.getRealPart());
+                Call_Scilab.putDouble(varname, sciDouble.getRealPart());
             } else {
 				//                Call_Scilab.putDoubleComplex(varname,sciDouble.getRealPart(), sciDouble.getImaginaryPart());
             }
@@ -269,7 +278,8 @@ public class Scilab {
             Call_Scilab.putBoolean(varname, sciBoolean.getData());
         }
 		//TODO: a remplacer par la bonne exception return new UnsupportedTypeException();
-		return false;
+		//		throw new UnsupportedTypeException();
+		return true;
     }
 
 }
