@@ -64,7 +64,6 @@ public class testReadWrite {
         boolean [][]a={{true, true, false, false},{true, false, true, false}};
         ScilabBoolean aOriginal = new ScilabBoolean(a);
         sci.put("a",aOriginal);
-        assert sci.exec("somme = sum(a);") == true;
 
         ScilabBoolean aFromScilab = (ScilabBoolean)sci.get("a");
 

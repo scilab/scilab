@@ -10,6 +10,7 @@
  *
  */
 #include "api_scilab.h"
+#include "BOOL.h"
 
 double * getDouble(char* variableName, int *nbRow, int *nbCol) {
     SciErr sciErr;
@@ -38,6 +39,46 @@ double * getDouble(char* variableName, int *nbRow, int *nbCol) {
 int putDouble(char* variableName, double *variable, int *nbRow, int *nbCol) {
     SciErr sciErr;
     sciErr = createNamedMatrixOfDouble(pvApiCtx,variableName,nbRow,nbCol, variable);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return -1;
+    }
+    return 0;
+
+
+}
+
+
+
+BOOL * getBoolean(char* variableName, int *nbRow, int *nbCol) {
+    SciErr sciErr;
+    BOOL * matrixOfBoolean = NULL;
+    sciErr = readNamedMatrixOfBoolean(pvApiCtx, variableName, nbRow, nbCol , NULL);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+    }
+
+    /* Alloc the memory */
+    matrixOfBoolean=(BOOL*)malloc(((*nbRow)*(*nbCol))*sizeof(BOOL));
+
+    /* Load the matrix */
+    sciErr = readNamedMatrixOfBoolean(pvApiCtx, variableName, nbRow, nbCol, matrixOfBoolean);
+
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+    }
+
+    return matrixOfBoolean;
+
+}
+
+
+int putBoolean(char* variableName, BOOL *variable, int *nbRow, int *nbCol) {
+    SciErr sciErr;
+    sciErr = createNamedMatrixOfBoolean(pvApiCtx,variableName,nbRow,nbCol, variable);
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);

@@ -16,6 +16,7 @@ import java.io.File;
 import org.scilab.modules.types.scilabTypes.ScilabType;
 import org.scilab.modules.types.scilabTypes.ScilabTypeEnum;
 import org.scilab.modules.types.scilabTypes.ScilabDouble;
+import org.scilab.modules.types.scilabTypes.ScilabBoolean;
 import org.scilab.modules.types.scilabTypes.ScilabInteger;
 import org.scilab.modules.javasci.Call_Scilab;
 import org.scilab.modules.javasci.JavasciException.InitializationException;
@@ -237,6 +238,8 @@ public class Scilab {
 		switch (sciType) {
 			case sci_matrix:
 				return new ScilabDouble(Call_Scilab.getDouble(varname));
+			case sci_boolean:
+				return new ScilabBoolean(Call_Scilab.getBoolean(varname));
 		}
 		return null;
     }
@@ -261,6 +264,10 @@ public class Scilab {
 		if (theVariable instanceof ScilabInteger) {
 //			Call_Scilab.putInteger((ScilabInteger)theVariable.getRealPart());
 		}
+		if (theVariable instanceof ScilabBoolean) {
+            ScilabBoolean sciBoolean = (ScilabBoolean)theVariable;
+            Call_Scilab.putBoolean(varname, sciBoolean.getData());
+        }
 		//TODO: a remplacer par la bonne exception return new UnsupportedTypeException();
 		return false;
     }
