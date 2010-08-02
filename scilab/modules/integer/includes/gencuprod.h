@@ -2,11 +2,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Sylvestre LEDRU
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -19,13 +19,13 @@
 #include "def.h"
 
 /**
- * TODO : comment 
+ * TODO : comment
  * @param typ
  * @param n
  * @param w be carreful using this parameter (crappy way of doing polymorphism)
  * @param iw
- * @return 
+ * @return
  */
 INTEGER_IMPEXP int C2F(gencuprod)(int *typ,int *n, void *in, void *out, int *iw);
-INTEGER_IMPEXP int C2F(gencuprod_double)(int *typ,int *n, void *in, double *out, int *iw);
+INTEGER_IMPEXP int C2F(gencuprodasdouble)(int *typ,int *n, void *in, double *out, int *iw);
 #endif /* __GENCUPROD_H__ */

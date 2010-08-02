@@ -134,7 +134,7 @@ c     .  return an array of doubles
             call error(17)
             return
          endif
-         call genmsum_double(it,sel,istk(l),m,m,n,stk(lr),1)
+         call genmsumasdouble(it,sel,istk(l),m,m,n,stk(lr),1)
          if (.not.ref) then
             call dcopy(mr*nr,stk(lr),1,stk(sadr(ilr+4)),1)
             lr=sadr(ilr+4)

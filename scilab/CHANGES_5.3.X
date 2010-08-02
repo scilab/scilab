@@ -19,6 +19,12 @@ Editvar/Browsevar:
 * bug 7627 fixed - When browsevar() window was docked, if browsevar() was called
                    again an empty window poped up and could not be closed.
 
+Compilation:
+============
+
+* bug 7668 fixed -  Scilab 5.3.0-beta-2 did not build with Visual Studio 2008 Express.
+
+
 Bug Fixes:
 ==========
 

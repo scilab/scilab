@@ -12,11 +12,12 @@
 
 #include "gensum.h"
 #include "genmsum.h"
-
+/*--------------------------------------------------------------------------*/
 static int c__1 = 1;
+/*--------------------------------------------------------------------------*/
 #define MSUM(Type) {\
-Type *A;\
-Type *V;\
+    Type *A;\
+    Type *V;\
     A=(Type *)a;\
     V=(Type *)v;\
     iv = 0;\
@@ -37,12 +38,13 @@ Type *V;\
 	}\
     }\
 }
-
+/*--------------------------------------------------------------------------*/
 int C2F(genmsum)(int *typ,int *job, int *a, int *na, int *m, int *n, int *v, int *nv)
 {
-  static int  i, j, t, iv;
+  int  i = 0, j = 0, t = 0, iv = 0;
 
-  switch (*typ) {
+  switch (*typ) 
+  {
   case 1:
     MSUM(char);
     break;
@@ -64,6 +66,7 @@ int C2F(genmsum)(int *typ,int *job, int *a, int *na, int *m, int *n, int *v, int
   }
   return 0;
 }
+/*--------------------------------------------------------------------------*/
 /* sum of int returning a double */
 #define MSUM_DOUBLE(Type) {\
 Type *A;\
@@ -74,44 +77,46 @@ double *V;\
     if (*job == 0) {\
 	t = 0.0;\
 	for (j = 0; j < *n; ++j) \
-	    t +=  C2F(gensum_double)(typ,m, &A[j * (*na)], &c__1);\
+	    t +=  C2F(gensumasdouble)(typ,m, &A[j * (*na)], &c__1);\
 	v[0] = t;}\
     else if (*job == 1) {\
 	for (j = 0; j < *n; ++j) {\
-	    t =  C2F(gensum_double)(typ,m, &A[j * (*na) ], &c__1);\
+	    t =  C2F(gensumasdouble)(typ,m, &A[j * (*na) ], &c__1);\
 	    v[iv] = t;iv += *nv;\
 	}}\
     else if (*job == 2) {\
 	for (i = 0; i < *m; ++i) {\
-	    t =  C2F(gensum_double)(typ,n, &A[i], m);\
+	    t =  C2F(gensumasdouble)(typ,n, &A[i], m);\
 	    v[iv] = t;iv += *nv;\
 	}\
     }\
 }
-
-int C2F(genmsum_double)(int *typ,int *job, int *a, int *na, int *m, int *n, double *v, int *nv)
+/*--------------------------------------------------------------------------*/
+int C2F(genmsumasdouble)(int *typ,int *job, int *a, int *na, int *m, int *n, double *v, int *nv)
 {
-  static int  i, j, iv;
-  double t;
-  switch (*typ) {
-  case 1:
-    MSUM_DOUBLE(char);
-    break;
-  case 2:
-    MSUM_DOUBLE(short);
-    break;
-  case 4:
-    MSUM_DOUBLE(int) ;
-    break;
-  case 11:
-    MSUM_DOUBLE(unsigned char);
-    break;
-  case 12:
-    MSUM_DOUBLE(unsigned short);
-    break;
-  case 14:
-    MSUM_DOUBLE(unsigned int);
-    break;
-  }
-  return 0;
+    int  i = 0, j = 0, iv = 0;
+    double t = 0.;
+    switch (*typ) 
+    {
+    case 1:
+        MSUM_DOUBLE(char);
+        break;
+    case 2:
+        MSUM_DOUBLE(short);
+        break;
+    case 4:
+        MSUM_DOUBLE(int) ;
+        break;
+    case 11:
+        MSUM_DOUBLE(unsigned char);
+        break;
+    case 12:
+        MSUM_DOUBLE(unsigned short);
+        break;
+    case 14:
+        MSUM_DOUBLE(unsigned int);
+        break;
+    }
+    return 0;
 }
+/*--------------------------------------------------------------------------*/
