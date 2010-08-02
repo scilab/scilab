@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -19,30 +20,45 @@
 /*------------------------------------------------------------------------*/
 
 #include "getHandleProperty.h"
-#include "GetProperty.h"
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "axesScale.h"
 
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int get_zoom_box_property( sciPointObj * pobj )
 {
-  if ( sciGetEntityType(pobj) != SCI_SUBWIN )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"zoom_box") ;
-    return -1 ;
-  }
+    double* zoomBox;
+    int* zoomEnabled;
 
-  if ( sciGetZooming( pobj ) )
-  {
-    double zoomBox[6];
-    sciGetZoom3D(pobj, zoomBox);
-    return sciReturnRowVector( zoomBox, 6 ) ;
-  }
-  else
-  {
-    return sciReturnEmptyMatrix() ;
-  }
+#if 0
+    if ( sciGetEntityType(pobj) != SCI_SUBWIN )
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"zoom_box");
+        return -1;
+    }
+#endif
+
+    zoomEnabled = (int*) getGraphicObjectProperty(pobj->UID, __GO_ZOOM_ENABLED__, jni_bool);
+
+    zoomBox = (double*) getGraphicObjectProperty(pobj->UID, __GO_ZOOM_BOX__, jni_double_vector);
+
+    if (zoomEnabled == NULL || zoomBox == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"zoom_box");
+        return -1;
+    }
+
+    if (*zoomEnabled)
+    {
+        return sciReturnRowVector(zoomBox, 6);
+    }
+    else
+    {
+        return sciReturnEmptyMatrix();
+    }
 }
 /*------------------------------------------------------------------------*/

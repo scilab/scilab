@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -19,41 +20,52 @@
 /*------------------------------------------------------------------------*/
 
 #include "getHandleProperty.h"
-#include "GetProperty.h"
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
 
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int get_data_bounds_property( sciPointObj * pobj )
 {
+    double* dataBounds;
+    int* view;
 
-  if ( sciGetEntityType(pobj) == SCI_SUBWIN )
-  {
-		double bounds[6] ;
-		sciGetDataBounds(pobj, bounds) ;
-    /**DJ.Abdemouche 2003**/
-    if ( sciGetIs3d( pobj ) )
+    dataBounds = (double*) getGraphicObjectProperty(pobj->UID, __GO_DATA_BOUNDS__, jni_double_vector);
+
+    if (dataBounds == NULL)
     {
-      return sciReturnMatrix( bounds, 2, 3 ) ;
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"data_bounds");
+        return -1;
+    }
+
+    view = (int*) getGraphicObjectProperty(pobj->UID, __GO_VIEW__, jni_int);
+
+    /**DJ.Abdemouche 2003**/
+    if (*view == 1)
+    {
+      return sciReturnMatrix( dataBounds, 2, 3 );
     }
     else
     {
-      return sciReturnMatrix( bounds, 2, 2 ) ;
+      return sciReturnMatrix( dataBounds, 2, 2 );
     }
-  }
-  else if ( sciGetEntityType (pobj) == SCI_SURFACE )
+
+  /*
+   * To be implemented using the MVC framework,
+   * though it's probably not relevant nor used anymore
+   * by Surface objects.
+   */
+#if 0
   {
-		double bounds[6] ;
-		sciGetDataBounds(pobj, bounds) ;
+    double bounds[6] ;
+    sciGetDataBounds(pobj, bounds) ;
     /* used for what ? F.Leray 20.04.05 */
     return sciReturnMatrix( bounds, 3, 2 ) ;
   }
-  else
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"data_bounds");
-    return -1;
-  }
+#endif
 
 }
 /*------------------------------------------------------------------------*/
