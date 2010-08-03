@@ -1,6 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
+* Copyright (C) 2010 - DIGITEO - Manuel Juliachs
 * 
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -22,21 +23,44 @@
 #include "Scierror.h"
 #include "localization.h"
 
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int get_arc_drawing_method_property( sciPointObj * pobj )
 {
-  if ( sciGetEntityType(pobj) != SCI_ARC && sciGetEntityType(pobj) != SCI_SUBWIN )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"arc_drawing_method") ;
-    return -1 ;
-  }
-  if (sciGetUseNurbs(pobj))
-  {
-    return sciReturnString("nurbs");
-  }
-  else
-  {
-    return sciReturnString("lines");
-  }
+    int* arcDrawingMethod;
+
+#if 0
+    if ( sciGetEntityType(pobj) != SCI_ARC && sciGetEntityType(pobj) != SCI_SUBWIN )
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"arc_drawing_method");
+        return -1;
+    }
+#endif
+
+    arcDrawingMethod = (int*) getGraphicObjectProperty(pobj->UID, __GO_ARC_DRAWING_METHOD__, jni_int);
+
+    if (arcDrawingMethod == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"arc_drawing_method");
+        return -1;
+    }
+
+    /* 0: nurbs, 1: lines */
+    if (*arcDrawingMethod == 0)
+    {
+        return sciReturnString("nurbs");
+    }
+    else if (*arcDrawingMethod == 1)
+    {
+        return sciReturnString("lines");
+    }
+    else
+    {
+        Scierror(999, _("Wrong value for '%s' property.\n"), "arc_drawing_method");
+        return -1;
+    }
+
 }
 /*------------------------------------------------------------------------*/

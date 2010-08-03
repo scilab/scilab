@@ -38,6 +38,7 @@ int get_background_property( sciPointObj * pobj )
     {
         /* This object has not a background color */
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"background");
+        return -1;
     }
 
     return sciReturnDouble(*background);

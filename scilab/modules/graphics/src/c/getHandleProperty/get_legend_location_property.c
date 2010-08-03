@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -18,61 +19,87 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
+#include <string.h>
+
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
 
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int get_legend_location_property( sciPointObj * pobj )
 {
-  if (sciGetEntityType (pobj) != SCI_LEGEND)
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"legend_location") ;	
-    return -1 ;
-  }
+    int* legendLocation;
 
-  switch ( pLEGEND_FEATURE (pobj)->place )
-  {
-   case SCI_LEGEND_IN_UPPER_RIGHT: 
-    return sciReturnString( "in_upper_right" ) ;
-    break;
-  case SCI_LEGEND_IN_UPPER_LEFT: 
-    return sciReturnString( "in_upper_left" ) ;
-    break;
-  case SCI_LEGEND_IN_LOWER_RIGHT: 
-    return sciReturnString( "in_lower_right" ) ;
-    break;
-  case SCI_LEGEND_IN_LOWER_LEFT: 
-    return sciReturnString( "in_lower_left" ) ;
-    break;
-  case SCI_LEGEND_OUT_UPPER_RIGHT: 
-    return sciReturnString( "out_upper_right" ) ;
-    break;
-  case SCI_LEGEND_OUT_UPPER_LEFT: 
-    return sciReturnString( "out_upper_left" ) ;
-    break;
-  case SCI_LEGEND_OUT_LOWER_RIGHT: 
-    return sciReturnString( "out_lower_right" ) ;
-    break;
-  case SCI_LEGEND_OUT_LOWER_LEFT: 
-    return sciReturnString( "out_lower_left" ) ;
-    break;
-  case SCI_LEGEND_UPPER_CAPTION: 
-    return sciReturnString( "upper_caption" ) ;
-    break;
-  case SCI_LEGEND_LOWER_CAPTION: 
-    return sciReturnString( "lower_caption" ) ;
-    break;
-  case SCI_LEGEND_BY_COORDINATES:
-    return sciReturnString( "by_coordinates" ) ;
-    break;
+#if 0
+    if (sciGetEntityType (pobj) != SCI_LEGEND)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"legend_location");
+        return -1;
+    }
+#endif
 
-  default : 
-    Scierror(999, _("Wrong value for '%s' property.\n"),"legend_location");
-    break;
-  }
-  return -1 ;
+    legendLocation = (int*) getGraphicObjectProperty(pobj->UID, __GO_LEGEND_LOCATION__, jni_int);
+
+    if (legendLocation == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"legend_location");
+        return -1;
+    }
+
+    if (*legendLocation == 0)
+    {
+        return sciReturnString("in_upper_right");
+    }
+    else if (*legendLocation == 1)
+    { 
+        return sciReturnString("in_upper_left");
+    }
+    else if (*legendLocation == 2)
+    {
+        return sciReturnString("in_lower_right");
+    }
+    else if (*legendLocation == 3)
+    {
+        return sciReturnString("in_lower_left");
+    }
+    else if (*legendLocation == 4)
+    {
+        return sciReturnString("out_upper_right");
+    }
+    else if (*legendLocation == 5)
+    {
+        return sciReturnString("out_upper_left");
+    }
+    else if (*legendLocation == 6)
+    {
+        return sciReturnString("out_lower_right");
+    }
+    else if (*legendLocation == 7)
+    {
+        return sciReturnString("out_lower_left");
+    }
+    else if (*legendLocation == 8)
+    {
+        return sciReturnString("upper_caption");
+    }
+    else if (*legendLocation == 9)
+    {
+        return sciReturnString("lower_caption");
+    }
+    else if (*legendLocation == 10)
+    {
+        return sciReturnString("by_coordinates");
+    }
+    else
+    {
+        Scierror(999, _("Wrong value for '%s' property.\n"),"legend_location");
+    }
+
+    return -1;
 }
 /*------------------------------------------------------------------------*/

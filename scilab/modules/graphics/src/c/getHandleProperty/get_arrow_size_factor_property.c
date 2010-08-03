@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -24,14 +25,30 @@
 #include "Scierror.h"
 #include "localization.h"
 
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int get_arrow_size_factor_property( sciPointObj * pobj )
 {
-  if( sciGetEntityType(pobj) != SCI_POLYLINE)
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"), "arrow_size_factor") ;
-    return -1 ;
-  }
-  return sciReturnDouble( pPOLYLINE_FEATURE(pobj)->arsize_factor ) ;
+    double* arrowSizeFactor;
+
+#if 0
+    if( sciGetEntityType(pobj) != SCI_POLYLINE)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "arrow_size_factor");
+        return -1;
+    }
+#endif
+
+    arrowSizeFactor = (double*) getGraphicObjectProperty(pobj->UID, __GO_ARROW_SIZE_FACTOR__, jni_double);
+
+    if (arrowSizeFactor == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "arrow_size_factor");
+        return -1;
+    }
+
+    return sciReturnDouble(*arrowSizeFactor);
 }
 /*------------------------------------------------------------------------*/

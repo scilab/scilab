@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -29,35 +30,54 @@
 #include "Scierror.h"
 #include "localization.h"
 
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int set_data_mapping_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
+    BOOL status;
+    int dataMapping;
 
-  if ( !isParameterStringMatrix( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "data_mapping");
-    return SET_PROPERTY_ERROR ;
-  }
+    if ( !isParameterStringMatrix( valueType ) )
+    {
+        Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "data_mapping");
+        return SET_PROPERTY_ERROR;
+    }
 
-  if ( sciGetEntityType(pobj) != SCI_GRAYPLOT )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"data_mapping") ;
-    return SET_PROPERTY_ERROR ;
-  }
+#if 0
+    if ( sciGetEntityType(pobj) != SCI_GRAYPLOT )
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"data_mapping");
+        return SET_PROPERTY_ERROR;
+    }
+#endif
 
-  if ( isStringParamEqual( stackPointer, "scaled") || isStringParamEqual( stackPointer, "direct") )
-  {
-     strcpy( pGRAYPLOT_FEATURE (pobj)->datamapping, getStringFromStack(stackPointer) ) ;
-     return SET_PROPERTY_SUCCEED ;
-  }
-  else
-  {
-    Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "data_mapping", "'scaled'", "'direct'");
-    return SET_PROPERTY_ERROR ;
-  }
+    if (isStringParamEqual(stackPointer, "scaled"))
+    {
+        dataMapping = 0;
+    }
+    else if (isStringParamEqual(stackPointer, "direct"))
+    {
+        dataMapping = 1;
+    }
+    else
+    {
+        Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "data_mapping", "'scaled'", "'direct'");
+        return SET_PROPERTY_ERROR;
+    }
 
-  return SET_PROPERTY_ERROR ;
+    status = setGraphicObjectProperty(pobj->UID, __GO_DATA_MAPPING__, &dataMapping, jni_int, 1);
 
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"data_mapping");
+        return SET_PROPERTY_ERROR;
+    }
 
 }
 /*------------------------------------------------------------------------*/
