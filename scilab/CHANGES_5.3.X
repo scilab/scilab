@@ -14,6 +14,8 @@ SciNotes:
 
 * bug 7676 fixed - The SaveAs action didn't remove "readonly" mode.
 
+* bug 7682 fixed - The knob of the vertical scrollbar moved badly on resize.
+
 
 Editvar/Browsevar:
 ==================

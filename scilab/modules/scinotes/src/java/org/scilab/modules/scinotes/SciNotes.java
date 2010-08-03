@@ -139,8 +139,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
     private UUID uuid;
 
     private JTabbedPane tabPane;
-    private ScilabEditorPane textPane;
-    private JScrollPane scrollingText;
     private int numberOfUntitled;
     private EditorKit editorKit;
     private Object synchro = new Object();
@@ -770,7 +768,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         SciFileFilter tstFilter = new SciFileFilter(ALL_TST_FILES, null, 3);
         SciFileFilter startFilter = new SciFileFilter(ALL_START_FILES, null, 4);
         SciFileFilter quitFilter = new SciFileFilter(ALL_QUIT_FILES, null, 5);
-	SciFileFilter demFilter = new SciFileFilter(ALL_DEM_FILES, null, 6);
+        SciFileFilter demFilter = new SciFileFilter(ALL_DEM_FILES, null, 6);
         SciFileFilter allFilter = new SciFileFilter(ALL_FILES, null, 7);
         SciFileFilter allScilabFilter = new SciFileFilter(ALL_SCILAB, null, 8);
 
@@ -999,6 +997,8 @@ public class SciNotes extends SwingScilabTab implements Tab {
         } else {
             split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
         }
+        leftPane.setSplitPane(split);
+        rightPane.setSplitPane(split);
         tabPane.setComponentAt(tabPane.getSelectedIndex(), split);
         split.setLeftComponent(leftPane.getScrollPane());
         split.setRightComponent(rightPane.getScrollPane());
