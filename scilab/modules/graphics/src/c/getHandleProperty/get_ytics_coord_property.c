@@ -24,14 +24,33 @@
 #include "Scierror.h"
 #include "localization.h"
 
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int get_ytics_coord_property( sciPointObj * pobj )
 {
-  if ( sciGetEntityType(pobj) != SCI_AXES )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"ytics_coord") ;
-    return -1 ;
-  }
-  return sciReturnRowVector( pAXES_FEATURE(pobj)->vy, pAXES_FEATURE(pobj)->ny ) ;
+    int* yNumberTicks;
+    double* yTicksCoords;
+
+#if 0
+    if ( sciGetEntityType(pobj) != SCI_AXES )
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"ytics_coord");
+        return -1;
+    }
+#endif
+
+    yTicksCoords = (double*) getGraphicObjectProperty(pobj->UID, __GO_Y_TICKS_COORDS__, jni_double_vector);
+
+    if (yTicksCoords == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"ytics_coord");
+        return -1;
+    }
+
+    yNumberTicks = (int*) getGraphicObjectProperty(pobj->UID, __GO_Y_NUMBER_TICKS__, jni_int);
+
+    return sciReturnRowVector(yTicksCoords, *yNumberTicks);
 }
 /*------------------------------------------------------------------------*/

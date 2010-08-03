@@ -132,9 +132,9 @@ public static final String __GO_ROTATION_ANGLES__ =        "RotationAngles";
 public static final String __GO_BOX_TYPE__ =               "BoxType";
 public static final String __GO_HIDDEN_AXIS_COLOR__ =      "HiddenAxisColor";
 public static final String __GO_TIGHT_LIMITS__ =           "TightLimits";
-public static final String __GO_DATA_BOUNDS__ =    		"DataBounds";
+public static final String __GO_DATA_BOUNDS__ =            "DataBounds";
 public static final String __GO_REAL_DATA_BOUNDS__ =       "RealDataBounds";
-public static final String __GO_ZOOM_ENABLED__ =               "ZoomEnabled";
+public static final String __GO_ZOOM_ENABLED__ =           "ZoomEnabled";
 public static final String __GO_ZOOM_BOX__ =               "ZoomBox";
 public static final String __GO_AUTO_SCALE__ =             "AutoScale";
 public static final String __GO_MARGINS__ =                "Margins";
@@ -160,12 +160,15 @@ public static final String __GO_MARK_FOREGROUND__ =        "MarkForeground";
 public static final String __GO_MARK_BACKGROUND__ =        "MarkBackground";
 
 public static final String __GO_TICKS_DIRECTION__ =        "TicksDirection";
+public static final String __GO_X_NUMBER_TICKS__ =         "XNumberTicks";
+public static final String __GO_Y_NUMBER_TICKS__ =         "YNumberTicks";
 public static final String __GO_X_TICKS_COORDS__ =         "XTicksCoords";
 public static final String __GO_Y_TICKS_COORDS__ =         "YTicksCoords";
 public static final String __GO_TICKS_COLOR__ =            "TicksColor";
 public static final String __GO_TICKS_SEGMENT__ =          "TicksSegment";
 public static final String __GO_TICKS_STYLE__ =            "TicksStyle";
 public static final String __GO_SUBTICKS__ =               "Subticks";
+public static final String __GO_NUMBER_TICKS_LABELS__ =    "NumberTicksLabels";
 public static final String __GO_TICKS_LABELS__ =           "TicksLabels";
 public static final String __GO_FORMATN__ =                "Formatn";
 public static final String __GO_FONT__ =                   "Font";
@@ -217,5 +220,8 @@ public static final String __GO_ARROW_SIZE__ =             "ArrowSize";
 public static final String __GO_COLORED__ =                "Colored";
 
 public static final String __GO_ARROWS__ =                 "Arrows";
+
+public static final String __GO_HIDDEN_COLOR__ =           "HiddenColor";
+
 
 }

@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -24,23 +25,38 @@
 #include "Scierror.h"
 #include "localization.h"
 
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int get_tics_color_property( sciPointObj * pobj )
 {
-  if (sciGetEntityType (pobj) == SCI_AXES)
-  {
+    int* ticksColor;
+
+    ticksColor = (int*) getGraphicObjectProperty(pobj->UID, __GO_TICKS_COLOR__, jni_int);
+
+    if (ticksColor == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"tics_color");
+        return -1;
+    }
+
+    return sciReturnDouble(*ticksColor);
+
+/* Deactivated for now since it involves color range checks, to be implemented. */
+#if 0
     return sciReturnDouble( sciGetForegroundToDisplay(pobj) ) ;
-  }
-  else if (sciGetEntityType (pobj) == SCI_SUBWIN)
-  {
-    Scierror(999, _("Warning: %s use is deprecated and no more taken into account, use %s property to edit Axes color.\n"),"'tics_color'","'foreground'");
-    return sciReturnDouble( pSUBWIN_FEATURE(pobj)->axes.ticscolor ) ;
-  }
-  else
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"tics_color");
-    return -1;
-  }
+#endif
+
+
+    /* To be implemented using the MVC framework */
+#if 0
+    if (sciGetEntityType (pobj) == SCI_SUBWIN)
+    {
+        Scierror(999, _("Warning: %s use is deprecated and no more taken into account, use %s property to edit Axes color.\n"),"'tics_color'","'foreground'");
+        return sciReturnDouble( pSUBWIN_FEATURE(pobj)->axes.ticscolor );
+    }
+#endif
 
 }
 /*------------------------------------------------------------------------*/

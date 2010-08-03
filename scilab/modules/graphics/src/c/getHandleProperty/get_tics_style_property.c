@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -24,17 +25,50 @@
 #include "Scierror.h"
 #include "localization.h"
 
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int get_tics_style_property( sciPointObj * pobj )
 {
+    int* tmpTicksStyle;
+    char ticksStyle;
 
-	if ( sciGetEntityType( pobj ) != SCI_AXES )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"), "tics_style") ;
-    return -1 ;
-  }
+#if 0
+    if ( sciGetEntityType( pobj ) != SCI_AXES )
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tics_style");
+        return -1;
+    }
+#endif
 
-  return sciReturnChar( pAXES_FEATURE (pobj)->tics ) ;
+    tmpTicksStyle = (int*) getGraphicObjectProperty(pobj->UID, __GO_TICKS_STYLE__, jni_int);
+
+    if (tmpTicksStyle == NULL)
+    {
+        Scierror(999, _("Wrong value for '%s' property.\n"),"tics_direction");
+        return -1;
+    }
+
+    if (*tmpTicksStyle == 0)
+    {
+        ticksStyle = 'v';
+    }
+    else if (*tmpTicksStyle == 1)
+    {
+        ticksStyle = 'r';
+    }
+    else if (*tmpTicksStyle == 2)
+    {
+        ticksStyle = 'i';
+    }
+    else
+    {
+        Scierror(999, _("Wrong value for '%s' property.\n"),"tics_style");
+        return -1;
+    }
+
+    return sciReturnChar(ticksStyle);
 
 }
 /*------------------------------------------------------------------------*/

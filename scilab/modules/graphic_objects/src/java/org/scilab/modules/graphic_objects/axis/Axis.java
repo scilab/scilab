@@ -26,8 +26,8 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
  */
 public class Axis extends ClippableContouredObject {
 	/** Axis properties */
-	private enum AxisProperty { TICKSDIRECTION, XTICKSCOORDS, YTICKSCOORDS, TICKSCOLOR, TICKSSEGMENT, TICKSSTYLE, SUBTICKS, TICKSLABELS,
-		FORMATN, FONT };
+	private enum AxisProperty { TICKSDIRECTION, XNUMBERTICKS, YNUMBERTICKS, XTICKSCOORDS, YTICKSCOORDS, TICKSCOLOR, TICKSSEGMENT, TICKSSTYLE,
+		SUBTICKS, NUMBERTICKSLABELS, TICKSLABELS, FORMATN, FONT };
 		
 	/** Default number of ticks */
 	private static final int DEFAULT_NUMBER_OF_TICKS = 10;
@@ -91,7 +91,7 @@ public class Axis extends ClippableContouredObject {
 		super();
 		ticksDirection = TicksDirection.TOP;
 		xTicksCoords = new double[DEFAULT_NUMBER_OF_TICKS];
-		yTicksCoords = null;
+		yTicksCoords = new double[1];
 		ticksColor = 0;
 		ticksSegment = false;
 		ticksLabels = new ArrayList<String>(DEFAULT_NUMBER_OF_TICKS);
@@ -107,6 +107,10 @@ public class Axis extends ClippableContouredObject {
 	public Object getPropertyFromName(String propertyName) {
 		if (propertyName.equals(__GO_TICKS_DIRECTION__)) {
 			return AxisProperty.TICKSDIRECTION;
+		} else if (propertyName.equals(__GO_X_NUMBER_TICKS__)) {
+			return AxisProperty.XNUMBERTICKS;
+		} else if (propertyName.equals(__GO_Y_NUMBER_TICKS__)) {
+			return AxisProperty.YNUMBERTICKS;
 		} else if (propertyName.equals(__GO_X_TICKS_COORDS__)) {
 			return AxisProperty.XTICKSCOORDS;
 		} else if (propertyName.equals(__GO_Y_TICKS_COORDS__)) {
@@ -119,6 +123,8 @@ public class Axis extends ClippableContouredObject {
 			return AxisProperty.TICKSSTYLE;
 		} else if (propertyName.equals(__GO_SUBTICKS__)) {
 			return AxisProperty.SUBTICKS;
+		} else if (propertyName.equals(__GO_NUMBER_TICKS_LABELS__)) {
+			return AxisProperty.NUMBERTICKSLABELS;
 		} else if (propertyName.equals(__GO_TICKS_LABELS__)) {
 			return AxisProperty.TICKSLABELS;
 		} else if (propertyName.equals(__GO_FORMATN__)) {
@@ -146,6 +152,10 @@ public class Axis extends ClippableContouredObject {
 	public Object getProperty(Object property) {
 		if (property == AxisProperty.TICKSDIRECTION) {
 			return getTicksDirection();
+		} else if (property == AxisProperty.XNUMBERTICKS) {
+			return getXNumberTicks();
+		} else if (property == AxisProperty.YNUMBERTICKS) {
+			return getYNumberTicks();
 		} else if (property == AxisProperty.XTICKSCOORDS) {
 			return getXTicksCoords();
 		} else if (property == AxisProperty.YTICKSCOORDS) {
@@ -158,6 +168,8 @@ public class Axis extends ClippableContouredObject {
 			return getTicksStyle();
 		} else if (property == AxisProperty.SUBTICKS) {
 			return getSubticks();
+		} else if (property == AxisProperty.NUMBERTICKSLABELS) {
+			return getNumberTicksLabels();
 		} else if (property == AxisProperty.TICKSLABELS) {
 			return getTicksLabels();
 		} else if (property == AxisProperty.FORMATN) {
@@ -346,6 +358,13 @@ public class Axis extends ClippableContouredObject {
 	}
 
 	/**
+	 * @return the number of ticks labels
+	 */
+	public Integer getNumberTicksLabels() {
+		return ticksLabels.size();
+	}
+
+	/**
 	 * @return the ticksLabels
 	 */
 	public String[] getTicksLabels() {
@@ -433,6 +452,20 @@ public class Axis extends ClippableContouredObject {
 	 */
 	public void setSubticks(Integer subticks) {
 		this.subticks = subticks;
+	}
+
+	/**
+	 * @return the number of X ticks
+	 */
+	public Integer getXNumberTicks() {
+		return xTicksCoords.length;
+	}
+
+	/**
+	 * @return the number of X ticks
+	 */
+	public Integer getYNumberTicks() {
+		return yTicksCoords.length;
 	}
 
 	/**

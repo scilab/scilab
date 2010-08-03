@@ -131,9 +131,9 @@
 #define __GO_BOX_TYPE__                    "BoxType"
 #define __GO_HIDDEN_AXIS_COLOR__           "HiddenAxisColor"
 #define __GO_TIGHT_LIMITS__                "TightLimits"
-#define __GO_DATA_BOUNDS__         		"DataBounds"
+#define __GO_DATA_BOUNDS__                 "DataBounds"
 #define __GO_REAL_DATA_BOUNDS__            "RealDataBounds"
-#define __GO_ZOOM_ENABLED__                    "ZoomEnabled"
+#define __GO_ZOOM_ENABLED__                "ZoomEnabled"
 #define __GO_ZOOM_BOX__                    "ZoomBox"
 #define __GO_AUTO_SCALE__                  "AutoScale"
 #define __GO_MARGINS__                     "Margins"
@@ -159,12 +159,15 @@
 #define __GO_MARK_BACKGROUND__             "MarkBackground"
 
 #define __GO_TICKS_DIRECTION__             "TicksDirection"
+#define __GO_X_NUMBER_TICKS__              "XNumberTicks"
+#define __GO_Y_NUMBER_TICKS__              "YNumberTicks"
 #define __GO_X_TICKS_COORDS__              "XTicksCoords"
 #define __GO_Y_TICKS_COORDS__              "YTicksCoords"
 #define __GO_TICKS_COLOR__                 "TicksColor"
 #define __GO_TICKS_SEGMENT__               "TicksSegment"
 #define __GO_TICKS_STYLE__                 "TicksStyle"
 #define __GO_SUBTICKS__                    "Subticks"
+#define __GO_NUMBER_TICKS_LABELS__         "NumberTicksLabels"
 #define __GO_TICKS_LABELS__                "TicksLabels"
 #define __GO_FORMATN__                     "Formatn"
 #define __GO_FONT__                        "Font"
@@ -216,5 +219,8 @@
 #define __GO_COLORED__                     "Colored"
 
 #define __GO_ARROWS__                      "Arrows"
+
+#define __GO_HIDDEN_COLOR__                "HiddenColor"
+
 
 #endif /* !__GRAPHIC_OBJECT_PROPERTIES_H__ */
