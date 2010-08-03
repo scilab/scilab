@@ -10,6 +10,8 @@ SciNotes:
 
 * bug 7623 fixed - "Evaluate Selection" evaluated the selection with one added char.
 
+* bug 7676 fixed - The SaveAs action didn't remove "readonly" mode.
+
 Editvar/Browsevar:
 ==================
 

@@ -876,13 +876,15 @@ public class SciNotes extends SwingScilabTab implements Tab {
         ConfigSciNotesManager.saveToRecentOpenedFiles(f.getPath());
         ConfigSciNotesManager.renameOpenFilesItem(f.getPath(), this, getTextPane());
         getTextPane().setName(f.getPath());
-        getTabPane().setTitleAt(getTabPane().getSelectedIndex() , f.getName());
+        getTabPane().setTitleAt(getTabPane().getSelectedIndex(), f.getName());
         setTitle(f.getPath() + TIRET + SciNotesMessages.SCILAB_EDITOR);
         RecentFileAction.updateRecentOpenedFilesMenu(this);
 
         styledDocument.setContentModified(false);
         getTextPane().setLastModified(f.lastModified());
         isSuccess = true;
+        getTextPane().setReadOnly(false);
+        getInfoBar().setText(getTextPane().getInfoBarText());
 
         // Get current file path for Execute file into Scilab
         fileFullPath = f.getAbsolutePath();
