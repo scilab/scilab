@@ -110,12 +110,14 @@ public class SciNotes extends SwingScilabTab implements Tab {
     private static final String SCE_EXTENSION = ".sce";
     private static final String TST_EXTENSION = ".tst";
     private static final String QUIT_EXTENSION = ".quit";
+    private static final String DEM_EXTENSION = ".dem";
     private static final String START_EXTENSION = ".start";
     private static final String ALL_TST_FILES = "*.tst";
     private static final String ALL_QUIT_FILES = "*.quit";
     private static final String ALL_START_FILES = "*.start";
     private static final String ALL_SCI_FILES = "*.sci";
     private static final String ALL_SCE_FILES = "*.sce";
+    private static final String ALL_DEM_FILES = "*.dem";
     private static final String ALL_SCX_FILES = "*.sc*";
     private static final String ALL_SCILAB = "all";
     private static final String ALL_FILES = "*.*";
@@ -768,8 +770,9 @@ public class SciNotes extends SwingScilabTab implements Tab {
         SciFileFilter tstFilter = new SciFileFilter(ALL_TST_FILES, null, 3);
         SciFileFilter startFilter = new SciFileFilter(ALL_START_FILES, null, 4);
         SciFileFilter quitFilter = new SciFileFilter(ALL_QUIT_FILES, null, 5);
-        SciFileFilter allFilter = new SciFileFilter(ALL_FILES, null, 6);
-        SciFileFilter allScilabFilter = new SciFileFilter(ALL_SCILAB, null, 7);
+	SciFileFilter demFilter = new SciFileFilter(ALL_DEM_FILES, null, 6);
+        SciFileFilter allFilter = new SciFileFilter(ALL_FILES, null, 7);
+        SciFileFilter allScilabFilter = new SciFileFilter(ALL_SCILAB, null, 8);
 
         SwingScilabFileChooser fileChooser = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
 
@@ -785,6 +788,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         fileChooser.addChoosableFileFilter(tstFilter);
         fileChooser.addChoosableFileFilter(startFilter);
         fileChooser.addChoosableFileFilter(quitFilter);
+        fileChooser.addChoosableFileFilter(demFilter);
         fileChooser.addChoosableFileFilter(allFilter);
         fileChooser.addChoosableFileFilter(allScilabFilter);
 
@@ -839,6 +843,8 @@ public class SciNotes extends SwingScilabTab implements Tab {
                     extension = START_EXTENSION;
                 } else if (fileChooser.getFileFilter() == quitFilter) {
                     extension = QUIT_EXTENSION;
+                } else if (fileChooser.getFileFilter() == demFilter) {
+                    extension = DEM_EXTENSION;
                 } else {
                     extension = "";
                 }
