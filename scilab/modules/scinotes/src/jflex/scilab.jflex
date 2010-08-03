@@ -137,7 +137,7 @@ id = ([a-zA-Z%_#!?][a-zA-Z0-9_#!$?]*)|("$"[a-zA-Z0-9_#!$?]+)
 
 dot = "."
 
-url = "http://"[^ \t\f\n\r]+
+url = "http://"[^ \t\f\n\r\'\"]+
 mail = "<"[ \t]*[a-zA-Z0-9_\.\-]+"@"([a-zA-Z0-9\-]+".")+[a-zA-Z]{2,5}[ \t]*">"
 
 latex = "$"(([^$]*|"\\$")+)"$"
@@ -270,6 +270,10 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
 }
 
 <COMMANDS> {
+  [ \t]*"("                      {
+                                   yypushback(yylength());
+                                   yybegin(YYINITIAL);
+                                 }
 
   " "                            {
                                    yybegin(COMMANDSWHITE);

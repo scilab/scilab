@@ -159,7 +159,7 @@ endfun = {white}* "endfunction" {spec}
                                    functionName = yytext();
                                  }
 
-  "("                            {
+  [ \t]*"("                      {
                                    yybegin(ARGS);
                                  }
 
