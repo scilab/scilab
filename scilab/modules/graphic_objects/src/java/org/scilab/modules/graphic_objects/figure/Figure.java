@@ -25,8 +25,8 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
  */
 public class Figure extends GraphicObject {
 	/** Figure properties names */
-	private enum FigureProperty { DIMENSIONS, CANVAS, NAME, INFOMESSAGE, COLORMAP, COLORMAPSIZE, RENDERINGMODE,
-		BACKGROUND, EVENTHANDLER, TAG, ROTATIONTYPE
+	private enum FigureProperty { INFOMESSAGE, COLORMAP, COLORMAPSIZE,
+		BACKGROUND, TAG, ROTATIONTYPE
 	};
 	
 	/** Specifies whether rotation applies to a single subwindow or to all the figure's subwindows */
@@ -289,22 +289,16 @@ public class Figure extends GraphicObject {
 	 * @return the property enum
 	 */
 	public Object getPropertyFromName(String propertyName) {
-	    if (propertyName.equals(__GO_DIMENSIONS__)) {
-			return FigureProperty.DIMENSIONS;
-		} else if (propertyName.equals(__GO_POSITION__)) {
+		if (propertyName.equals(__GO_POSITION__)) {
 			return FigureDimensionsProperty.POSITION;
 		} else if (propertyName.equals(__GO_SIZE__)) {
 			return FigureDimensionsProperty.SIZE;
-		} else if (propertyName.equals(__GO_CANVAS__)) {
-			return FigureProperty.CANVAS;
 		} else if (propertyName.equals(__GO_AUTORESIZE__)) {
 			return CanvasProperty.AUTORESIZE;
 		} else if (propertyName.equals(__GO_VIEWPORT__)) {
 			return CanvasProperty.VIEWPORT;
 		} else if (propertyName.equals(__GO_AXES_SIZE__)) {
 			return CanvasProperty.AXESSIZE;
-		} else if (propertyName.equals(__GO_FIGURE_NAME__)) {
-			return FigureProperty.NAME;
 		} else if (propertyName.equals(__GO_NAME__)) {
 			return FigureNameProperty.NAME;
 		} else if (propertyName.equals(__GO_ID__)) {
@@ -315,8 +309,6 @@ public class Figure extends GraphicObject {
 			return FigureProperty.COLORMAP;
 		} else if (propertyName.equals(__GO_COLORMAP_SIZE__)) {
 			return FigureProperty.COLORMAPSIZE;
-		} else if (propertyName.equals(__GO_RENDERING_MODE__)) {
-			return FigureProperty.RENDERINGMODE;
 		} else if (propertyName.equals(__GO_PIXMAP__)) {
 			return RenderingModeProperty.PIXMAP;
 		} else if (propertyName.equals(__GO_PIXEL_DRAWING_MODE__)) {
@@ -327,8 +319,6 @@ public class Figure extends GraphicObject {
 			return RenderingModeProperty.IMMEDIATEDRAWING;
 		} else if (propertyName.equals(__GO_BACKGROUND__)) {
 			return FigureProperty.BACKGROUND;
-		} else if (propertyName.equals(__GO_EVENTHANDLER__)) {
-			return FigureProperty.EVENTHANDLER;
 		} else if (propertyName.equals(__GO_EVENTHANDLER_NAME__)) {
 			return EventHandlerProperty.EVENTHANDLER;
 		} else if (propertyName.equals(__GO_EVENTHANDLER_ENABLE__)) {
@@ -348,22 +338,16 @@ public class Figure extends GraphicObject {
 	 * @return the property value
 	 */
 	public Object getProperty(Object property) {
-		if (property == FigureProperty.DIMENSIONS) {
-			return getDimensions();
-		} else if (property == FigureDimensionsProperty.POSITION) {
+		if (property == FigureDimensionsProperty.POSITION) {
 			return getPosition();
 		} else if (property == FigureDimensionsProperty.SIZE) {
 			return getSize();
-		} else if (property == FigureProperty.CANVAS) {
-			return getCanvas();
 		} else if (property == CanvasProperty.AUTORESIZE) {
 			return getAutoResize();
 		} else if (property == CanvasProperty.VIEWPORT) {
 			return getViewport();
 		} else if (property == CanvasProperty.AXESSIZE) {
 			return getAxesSize();
-		} else if (property == FigureProperty.NAME) {
-			return getFigureName();
 		} else if (property == FigureNameProperty.NAME) {
 			return getName();
 		} else if (property == FigureNameProperty.ID) {
@@ -374,8 +358,6 @@ public class Figure extends GraphicObject {
 			return getColorMap();
 		} else if (property == FigureProperty.COLORMAPSIZE) {
 			return getColorMapSize();
-		} else if (property == FigureProperty.RENDERINGMODE) {
-			return getRenderingMode();
 		} else if (property == RenderingModeProperty.PIXMAP) {
 			return getPixmap();
 		} else if (property == RenderingModeProperty.PIXELDRAWINGMODE) {
@@ -386,8 +368,6 @@ public class Figure extends GraphicObject {
 			return getImmediateDrawing();
 		} else if (property == FigureProperty.BACKGROUND) {
 			return getBackground();
-		} else if (property == FigureProperty.EVENTHANDLER) {
-			return getEventHandler();
 		} else if (property == EventHandlerProperty.EVENTHANDLER) {
 			return getEventHandlerString();
 		} else if (property == EventHandlerProperty.EVENTHANDLERENABLE) {
@@ -408,22 +388,16 @@ public class Figure extends GraphicObject {
 	 * @return true if the property has been set, false otherwise
 	 */
 	public boolean setProperty(Object property, Object value) {
-		if (property == FigureProperty.DIMENSIONS) {
-			setDimensions((FigureDimensions) value);
-		} else if (property == FigureDimensionsProperty.POSITION) {
+		if (property == FigureDimensionsProperty.POSITION) {
 			setPosition((Integer[]) value);
 		} else if (property == FigureDimensionsProperty.SIZE) {
 			setSize((Integer[]) value);
-		} else if (property == FigureProperty.CANVAS) {
-			setCanvas((Canvas) value);
 		} else if (property == CanvasProperty.AUTORESIZE) {
 			setAutoResize((Boolean) value);
 		} else if (property == CanvasProperty.VIEWPORT) {
 			setViewport((Integer[]) value);
 		} else if (property == CanvasProperty.AXESSIZE) {
 			setAxesSize((Integer[]) value);
-		} else if (property == FigureProperty.NAME) {
-			setFigureName((FigureName) value);
 		} else if (property == FigureNameProperty.NAME) {
 			setName((String) value);
 		} else if (property == FigureNameProperty.ID) {
@@ -432,8 +406,6 @@ public class Figure extends GraphicObject {
 			setInfoMessage((String) value);
 		} else if (property == FigureProperty.COLORMAP) {
 			setColorMap((Double[]) value);
-		} else if (property == FigureProperty.RENDERINGMODE) {
-			setRenderingMode((RenderingMode) value);
 		} else if (property == RenderingModeProperty.PIXMAP) {
 			setPixmap((Boolean) value);
 		} else if (property == RenderingModeProperty.PIXELDRAWINGMODE) {

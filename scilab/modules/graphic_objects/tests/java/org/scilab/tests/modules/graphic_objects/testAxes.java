@@ -239,8 +239,35 @@ public class testAxes {
 		initAxes.setGridPositionAsEnum(GridPosition.BACKGROUND);
 		initAxes.setAutoClear(randomGen.nextBoolean());
 		initAxes.setFilled(randomGen.nextBoolean());
+		initAxes.setBackground(randomGen.nextInt());
 		initAxes.setMargins(margins);
 		initAxes.setAxesBounds(axesBounds);
+
+		/* Properties applied to child objects */
+		initAxes.setHiddenColor(randomGen.nextInt());
+		initAxes.setLineMode(randomGen.nextBoolean());
+		initAxes.setLineStyle(randomGen.nextInt(7));
+		initAxes.setLineThickness(randomGen.nextDouble());
+		initAxes.setLineColor(randomGen.nextInt());
+
+		initAxes.setMarkMode(randomGen.nextBoolean());
+		initAxes.setMarkStyle(randomGen.nextInt());
+		initAxes.setMarkSize(randomGen.nextInt());
+		initAxes.setMarkSizeUnit(randomGen.nextInt(2));
+		initAxes.setMarkForeground(randomGen.nextInt());
+		initAxes.setMarkBackground(randomGen.nextInt());
+
+		initAxes.setClipState(randomGen.nextInt(3));
+
+		Double xShift = randomGen.nextDouble() % 0.2;
+		Double yShift = randomGen.nextDouble() % 0.2;
+		Double xDim = 0.8 + randomGen.nextDouble() % 1.0;
+		Double yDim = 0.8 + randomGen.nextDouble() % 1.0;
+		Double[] clipBox = new Double[] {1.0 - xShift, 1.0 - yShift, xDim, yDim};
+
+		initAxes.setClipBox(clipBox);
+
+		initAxes.setArcDrawingMethod(randomGen.nextInt(2));
 
 		/* Camera properties */
 		Double[] rotationAngles = new Double[] {randomGen.nextDouble() * 90.0, randomGen.nextDouble() * 360.0};
@@ -492,6 +519,12 @@ public class testAxes {
 		assert retFilled.equals(initAxes.getFilled());
 	}
 	@Test(groups = { "ReflectSetGetTest" })
+	public void testReflectSetGetBackground() {
+		controller.setProperty(axesID, __GO_BACKGROUND__, initAxes.getBackground());
+		Integer retBackground = (Integer) controller.getProperty(axesID, __GO_BACKGROUND__);
+		assert retBackground.equals(initAxes.getBackground());
+	}
+	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetMargins() {
 		controller.setProperty(axesID, __GO_MARGINS__, initAxes.getMargins());
 		Double[] retMargins = (Double[]) controller.getProperty(axesID, __GO_MARGINS__);
@@ -578,6 +611,92 @@ public class testAxes {
 		controller.setProperty(axesID, __GO_AUTO_SCALE__, initAxes.getAutoScale());
 		Boolean retAutoScale = (Boolean) controller.getProperty(axesID, __GO_AUTO_SCALE__);
 		assert retAutoScale.equals(initAxes.getAutoScale());
+	}
+
+	/* Default properties */
+	@Test(groups = { "ReflectSetGetTest" })
+	public void testReflectSetGetHiddenColor() {
+		controller.setProperty(axesID, __GO_HIDDEN_COLOR__, initAxes.getHiddenColor());
+		Integer retHiddenColor = (Integer) controller.getProperty(axesID, __GO_HIDDEN_COLOR__);
+		assert retHiddenColor.equals(initAxes.getHiddenColor());
+	}
+	@Test(groups = { "ReflectSetGetTest" })
+	public void testReflectSetGetLineMode() {
+		controller.setProperty(axesID, __GO_LINE_MODE__, initAxes.getLineMode());
+		Boolean retLineMode = (Boolean) controller.getProperty(axesID, __GO_LINE_MODE__);
+		assert retLineMode.equals(initAxes.getLineMode());
+	}
+	@Test(groups = { "ReflectSetGetTest" })
+	public void testReflectSetGetLineStyle() {
+		controller.setProperty(axesID, __GO_LINE_STYLE__, initAxes.getLineStyle());
+		Integer retLineStyle = (Integer) controller.getProperty(axesID, __GO_LINE_STYLE__);
+		assert retLineStyle.equals(initAxes.getLineStyle());
+	}
+	@Test(groups = { "ReflectSetGetTest" })
+	public void testReflectSetGetLineThickness() {
+		controller.setProperty(axesID, __GO_LINE_THICKNESS__, initAxes.getLineThickness());
+		Double retLineThickness = (Double) controller.getProperty(axesID, __GO_LINE_THICKNESS__);
+		assert retLineThickness.equals(initAxes.getLineThickness());
+	}
+	@Test(groups = { "ReflectSetGetTest" })
+	public void testReflectSetGetLineColor() {
+		controller.setProperty(axesID, __GO_LINE_COLOR__, initAxes.getLineColor());
+		Integer retLineColor = (Integer) controller.getProperty(axesID, __GO_LINE_COLOR__);
+		assert retLineColor.equals(initAxes.getLineColor());
+	}
+	@Test(groups = { "ReflectSetGetTest" })
+	public void testReflectSetGetMarkMode() {
+		controller.setProperty(axesID, __GO_MARK_MODE__, initAxes.getMarkMode());
+		Boolean retMarkMode = (Boolean) controller.getProperty(axesID, __GO_MARK_MODE__);
+		assert retMarkMode.equals(initAxes.getMarkMode());
+	}
+	@Test(groups = { "ReflectSetGetTest" })
+	public void testReflectSetGetMarkStyle() {
+		controller.setProperty(axesID, __GO_MARK_STYLE__, initAxes.getMarkStyle());
+		Integer retMarkStyle = (Integer) controller.getProperty(axesID, __GO_MARK_STYLE__);
+		assert retMarkStyle.equals(initAxes.getMarkStyle());
+	}
+	@Test(groups = { "ReflectSetGetTest" })
+	public void testReflectSetGetMarkSize() {
+		controller.setProperty(axesID, __GO_MARK_SIZE__, initAxes.getMarkSize());
+		Integer retMarkSize = (Integer) controller.getProperty(axesID, __GO_MARK_SIZE__);
+		assert retMarkSize.equals(initAxes.getMarkSize());
+	}
+	@Test(groups = { "ReflectSetGetTest" })
+	public void testReflectSetGetMarkSizeUnit() {
+		controller.setProperty(axesID, __GO_MARK_SIZE_UNIT__, initAxes.getMarkSizeUnit());
+		Integer retMarkSizeUnit = (Integer) controller.getProperty(axesID, __GO_MARK_SIZE_UNIT__);
+		assert retMarkSizeUnit.equals(initAxes.getMarkSizeUnit());
+	}
+	@Test(groups = { "ReflectSetGetTest" })
+	public void testReflectSetGetMarkForeground() {
+		controller.setProperty(axesID, __GO_MARK_FOREGROUND__, initAxes.getMarkForeground());
+		Integer retMarkForeground = (Integer) controller.getProperty(axesID, __GO_MARK_FOREGROUND__);
+		assert retMarkForeground.equals(initAxes.getMarkForeground());
+	}
+	@Test(groups = { "ReflectSetGetTest" })
+	public void testReflectSetGetMarkBackground() {
+		controller.setProperty(axesID, __GO_MARK_BACKGROUND__, initAxes.getMarkBackground());
+		Integer retMarkBackground = (Integer) controller.getProperty(axesID, __GO_MARK_BACKGROUND__);
+		assert retMarkBackground.equals(initAxes.getMarkBackground());
+	}
+	@Test(groups = { "ReflectSetGetTest" })
+	public void testReflectSetGetClipState() {
+		controller.setProperty(axesID, __GO_CLIP_STATE__, initAxes.getClipState());
+		Integer retClipState = (Integer) controller.getProperty(axesID, __GO_CLIP_STATE__);
+		assert retClipState.equals(initAxes.getClipState());
+	}
+	@Test(groups = { "ReflectSetGetTest" })
+	public void testReflectSetGetClipBox() {
+		controller.setProperty(axesID, __GO_CLIP_BOX__, initAxes.getClipBox());
+		Double[] retClipBox = (Double[]) controller.getProperty(axesID, __GO_CLIP_BOX__);
+		assert Arrays.equals(retClipBox, initAxes.getClipBox());
+	}
+	@Test(groups = { "ReflectSetGetTest" })
+	public void testReflectSetGetArcDrawingMethod() {
+		controller.setProperty(axesID, __GO_ARC_DRAWING_METHOD__, initAxes.getArcDrawingMethod());
+		Integer retArcDrawingMethod = (Integer) controller.getProperty(axesID, __GO_ARC_DRAWING_METHOD__);
+		assert retArcDrawingMethod.equals(initAxes.getArcDrawingMethod());
 	}
 
 	/* Fast set/get methods tests */
@@ -809,6 +928,12 @@ public class testAxes {
 		assert retFilled.equals(initAxes.getFilled());
 	}
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
+	public void testFastSetGetBackground() {
+		controller.setProperty(axesID, __GO_BACKGROUND__, initAxes.getBackground());
+		Integer retBackground = (Integer) controller.getProperty(axesID, __GO_BACKGROUND__);
+		assert retBackground.equals(initAxes.getBackground());
+	}
+	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetMargins() {
 		controller.setProperty(axesID, __GO_MARGINS__, initAxes.getMargins());
 		Double[] retMargins = (Double[]) controller.getProperty(axesID, __GO_MARGINS__);
@@ -895,6 +1020,92 @@ public class testAxes {
 		controller.setProperty(axesID, __GO_AUTO_SCALE__, initAxes.getAutoScale());
 		Boolean retAutoScale = (Boolean) controller.getProperty(axesID, __GO_AUTO_SCALE__);
 		assert retAutoScale.equals(initAxes.getAutoScale());
+	}
+
+	/* Default properties */
+	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
+	public void testFastSetGetHiddenColor() {
+		controller.setProperty(axesID, __GO_HIDDEN_COLOR__, initAxes.getHiddenColor());
+		Integer retHiddenColor = (Integer) controller.getProperty(axesID, __GO_HIDDEN_COLOR__);
+		assert retHiddenColor.equals(initAxes.getHiddenColor());
+	}
+	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
+	public void testFastSetGetLineMode() {
+		controller.setProperty(axesID, __GO_LINE_MODE__, initAxes.getLineMode());
+		Boolean retLineMode = (Boolean) controller.getProperty(axesID, __GO_LINE_MODE__);
+		assert retLineMode.equals(initAxes.getLineMode());
+	}
+	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
+	public void testFastSetGetLineStyle() {
+		controller.setProperty(axesID, __GO_LINE_STYLE__, initAxes.getLineStyle());
+		Integer retLineStyle = (Integer) controller.getProperty(axesID, __GO_LINE_STYLE__);
+		assert retLineStyle.equals(initAxes.getLineStyle());
+	}
+	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
+	public void testFastSetGetLineThickness() {
+		controller.setProperty(axesID, __GO_LINE_THICKNESS__, initAxes.getLineThickness());
+		Double retLineThickness = (Double) controller.getProperty(axesID, __GO_LINE_THICKNESS__);
+		assert retLineThickness.equals(initAxes.getLineThickness());
+	}
+	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
+	public void testFastSetGetLineColor() {
+		controller.setProperty(axesID, __GO_LINE_COLOR__, initAxes.getLineColor());
+		Integer retLineColor = (Integer) controller.getProperty(axesID, __GO_LINE_COLOR__);
+		assert retLineColor.equals(initAxes.getLineColor());
+	}
+	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
+	public void testFastSetGetMarkMode() {
+		controller.setProperty(axesID, __GO_MARK_MODE__, initAxes.getMarkMode());
+		Boolean retMarkMode = (Boolean) controller.getProperty(axesID, __GO_MARK_MODE__);
+		assert retMarkMode.equals(initAxes.getMarkMode());
+	}
+	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
+	public void testFastSetGetMarkStyle() {
+		controller.setProperty(axesID, __GO_MARK_STYLE__, initAxes.getMarkStyle());
+		Integer retMarkStyle = (Integer) controller.getProperty(axesID, __GO_MARK_STYLE__);
+		assert retMarkStyle.equals(initAxes.getMarkStyle());
+	}
+	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
+	public void testFastSetGetMarkSize() {
+		controller.setProperty(axesID, __GO_MARK_SIZE__, initAxes.getMarkSize());
+		Integer retMarkSize = (Integer) controller.getProperty(axesID, __GO_MARK_SIZE__);
+		assert retMarkSize.equals(initAxes.getMarkSize());
+	}
+	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
+	public void testFastSetGetMarkSizeUnit() {
+		controller.setProperty(axesID, __GO_MARK_SIZE_UNIT__, initAxes.getMarkSizeUnit());
+		Integer retMarkSizeUnit = (Integer) controller.getProperty(axesID, __GO_MARK_SIZE_UNIT__);
+		assert retMarkSizeUnit.equals(initAxes.getMarkSizeUnit());
+	}
+	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
+	public void testFastSetGetMarkForeground() {
+		controller.setProperty(axesID, __GO_MARK_FOREGROUND__, initAxes.getMarkForeground());
+		Integer retMarkForeground = (Integer) controller.getProperty(axesID, __GO_MARK_FOREGROUND__);
+		assert retMarkForeground.equals(initAxes.getMarkForeground());
+	}
+	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
+	public void testFastSetGetMarkBackground() {
+		controller.setProperty(axesID, __GO_MARK_BACKGROUND__, initAxes.getMarkBackground());
+		Integer retMarkBackground = (Integer) controller.getProperty(axesID, __GO_MARK_BACKGROUND__);
+		assert retMarkBackground.equals(initAxes.getMarkBackground());
+	}
+	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
+	public void testFastSetGetClipState() {
+		controller.setProperty(axesID, __GO_CLIP_STATE__, initAxes.getClipState());
+		Integer retClipState = (Integer) controller.getProperty(axesID, __GO_CLIP_STATE__);
+		assert retClipState.equals(initAxes.getClipState());
+	}
+	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
+	public void testFastSetGetClipBox() {
+		controller.setProperty(axesID, __GO_CLIP_BOX__, initAxes.getClipBox());
+		Double[] retClipBox = (Double[]) controller.getProperty(axesID, __GO_CLIP_BOX__);
+		assert Arrays.equals(retClipBox, initAxes.getClipBox());
+	}
+	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
+	public void testFastSetGetArcDrawingMethod() {
+		controller.setProperty(axesID, __GO_ARC_DRAWING_METHOD__, initAxes.getArcDrawingMethod());
+		Integer retArcDrawingMethod = (Integer) controller.getProperty(axesID, __GO_ARC_DRAWING_METHOD__);
+		assert retArcDrawingMethod.equals(initAxes.getArcDrawingMethod());
 	}
 
 	/**

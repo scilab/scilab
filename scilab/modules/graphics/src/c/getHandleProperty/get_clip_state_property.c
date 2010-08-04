@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -24,26 +25,39 @@
 #include "Scierror.h"
 #include "localization.h"
 
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int get_clip_state_property( sciPointObj * pobj )
 {
-  if ( sciGetIsClipping (pobj) == 0 )
-  {
-    return sciReturnString( "clipgrf" ) ;
-  }
-  else if ( sciGetIsClipping (pobj) > 0 )
-  {
-    return sciReturnString( "on" ) ;
-  }
-  else if (sciGetIsClipping (pobj) == -1)
-  {   
-    return sciReturnString( "off" ) ;
-  }
-	else
-	{
-		/* An error occured while getting clip state */
-		Scierror(999, _("'%s' property does not exist for this handle.\n"),"clip_state");
-		return -1;
-	}
+    int* clipState;
+
+    clipState = (int*) getGraphicObjectProperty(pobj->UID, __GO_CLIP_STATE__, jni_int);
+
+    if (clipState == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"clip_state");
+        return -1;
+    }
+
+    if (*clipState == 0)
+    {
+        return sciReturnString("off");
+    }
+    else if (*clipState == 1)
+    {
+        return sciReturnString("clipgrf");
+    }
+    else if (*clipState == 2)
+    {
+        return sciReturnString("on");
+    }
+    else
+    {
+        Scierror(999, _("Wrong value for '%s' property.\n"), "clip_state");
+        return -1;
+    }
+
 }
 /*------------------------------------------------------------------------*/

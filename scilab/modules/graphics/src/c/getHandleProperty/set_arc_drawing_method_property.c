@@ -63,7 +63,6 @@ int set_arc_drawing_method_property( sciPointObj * pobj, size_t stackPointer, in
         return SET_PROPERTY_ERROR;
     }
 
-    /* Note: ArcDrawingMethod is not implemented for the Axes object yet */
     status = setGraphicObjectProperty(pobj->UID, __GO_ARC_DRAWING_METHOD__, &arcDrawingMethod, jni_int, 1);
 
     if (status == TRUE)

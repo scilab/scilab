@@ -97,6 +97,10 @@ public class ClippableProperty {
 	 * @param clipState the clipState to set
 	 */
 	public void setClipState(ClipStateType clipState) {
+		if (clipState == ClipStateType.ON && clipBoxSet == false) {
+			clipState = ClipStateType.CLIPGRF;
+		}
+
 		this.clipState = clipState;
 	}
 

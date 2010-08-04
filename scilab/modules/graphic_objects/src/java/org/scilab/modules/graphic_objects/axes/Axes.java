@@ -17,9 +17,17 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 
 import java.util.ArrayList;
 
+import org.scilab.modules.graphic_objects.arc.Arc.ArcDrawingMethod;
+import org.scilab.modules.graphic_objects.arc.Arc.ArcProperty;
 import org.scilab.modules.graphic_objects.axes.AxisProperty.AxisLocation;
 import org.scilab.modules.graphic_objects.axes.Box.BoxType;
 import org.scilab.modules.graphic_objects.axes.Camera.ViewType;
+import org.scilab.modules.graphic_objects.contouredObject.Line;
+import org.scilab.modules.graphic_objects.contouredObject.Line.*;
+import org.scilab.modules.graphic_objects.contouredObject.Mark;
+import org.scilab.modules.graphic_objects.contouredObject.Mark.*;
+import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty;
+import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty.*;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.textObject.FormattedText;
 
@@ -36,8 +44,9 @@ public class Axes extends GraphicObject {
 		YAXISTICKS, YAXISAUTOTICKS, YAXISNUMBERTICKS, YAXISTICKSLOCATIONS, YAXISTICKSLABELS, YAXISSUBTICKS,
 		ZAXISVISIBLE, ZAXISREVERSE, ZAXISGRIDCOLOR, ZAXISLABEL, ZAXISLOCATION, ZAXISLOGFLAG,
 		ZAXISTICKS, ZAXISAUTOTICKS, ZAXISNUMBERTICKS, ZAXISTICKSLOCATIONS, ZAXISTICKSLABELS, ZAXISSUBTICKS,
-		GRIDPOSITION, TITLE, AUTOCLEAR, FILLED,
-		MARGINS, AXESBOUNDS };
+		GRIDPOSITION, TITLE, AUTOCLEAR, FILLED, BACKGROUND,
+		MARGINS, AXESBOUNDS,
+		HIDDENCOLOR };
 
 	/** Specifies the grid position relative to the graphics entities */
 	public static enum GridPosition { BACKGROUND, FOREGROUND;
@@ -75,6 +84,9 @@ public class Axes extends GraphicObject {
 	/** Specifies whether the Axes background is filled or not  */
 	private boolean filled;
 
+	/** Axes background color and child objects default background color */
+	private int background;
+
 	/** Camera */
 	private Camera camera;
 
@@ -89,6 +101,22 @@ public class Axes extends GraphicObject {
 	 * drawing area (upper-left corner x and y, width, height)
 	 */
 	private double[] axesBounds;
+
+	/** Default hidden surfaces color */
+	private int hiddenColor;
+
+	/** Default Line properties */
+	private Line line;
+
+	/** Default Mark properties */
+	private Mark mark;
+
+	/** Default Arc drawing method */
+	private ArcDrawingMethod arcDrawingMethod;
+
+	/** Default ClippableProperty */
+	private ClippableProperty clipProperty;
+
 
 	/** Constructor */
 	public Axes() {
@@ -105,6 +133,11 @@ public class Axes extends GraphicObject {
 		box = new Box();
 		margins = new double[4];
 		axesBounds = new double[4];
+
+		line = new Line();
+		mark = new Mark();
+		arcDrawingMethod = ArcDrawingMethod.LINES;
+		clipProperty = new ClippableProperty();
 	}
 
 	public Axes clone() {
@@ -198,6 +231,8 @@ public class Axes extends GraphicObject {
 			return AxesProperty.AUTOCLEAR;
 		} else if (propertyName.equals(__GO_FILLED__)) {
 			return AxesProperty.FILLED;
+		} else if (propertyName.equals(__GO_BACKGROUND__)) {
+			return AxesProperty.BACKGROUND;
 		} else if (propertyName.equals(__GO_VIEW__)) {
 			return Camera.CameraProperty.VIEW;
 		} else if (propertyName.equals(__GO_ISOVIEW__)) {
@@ -226,6 +261,34 @@ public class Axes extends GraphicObject {
 			return AxesProperty.MARGINS;
 		} else if (propertyName.equals(__GO_AXES_BOUNDS__)) {
 			return AxesProperty.AXESBOUNDS;
+		} else if (propertyName.equals(__GO_HIDDEN_COLOR__)) {
+			return AxesProperty.HIDDENCOLOR;
+		} else if (propertyName.equals(__GO_LINE_MODE__)) {
+			return LinePropertyType.MODE;
+		} else if (propertyName.equals(__GO_LINE_STYLE__)) {
+			return LinePropertyType.LINESTYLE;
+		} else if (propertyName.equals(__GO_LINE_THICKNESS__)) {
+			return LinePropertyType.THICKNESS;
+		} else if (propertyName.equals(__GO_LINE_COLOR__)) {
+			return LinePropertyType.COLOR;
+		} else if (propertyName.equals(__GO_MARK_MODE__)) {
+			return MarkPropertyType.MODE;
+		} else if (propertyName.equals(__GO_MARK_STYLE__)) {
+			return MarkPropertyType.STYLE;
+		} else if (propertyName.equals(__GO_MARK_SIZE_UNIT__)) {
+			return MarkPropertyType.SIZEUNIT;
+		} else if (propertyName.equals(__GO_MARK_SIZE__)) {
+			return MarkPropertyType.SIZE;
+		} else if (propertyName.equals(__GO_MARK_FOREGROUND__)) {
+			return MarkPropertyType.FOREGROUND;
+		} else if (propertyName.equals(__GO_MARK_BACKGROUND__)) {
+			return MarkPropertyType.BACKGROUND;
+		} else if (propertyName.equals(__GO_CLIP_STATE__)) {
+			return ClippablePropertyType.CLIPSTATE;
+		} else if (propertyName.equals(__GO_CLIP_BOX__)) {
+			return ClippablePropertyType.CLIPBOX;
+		} else if (propertyName.equals(__GO_ARC_DRAWING_METHOD__)) {
+			return ArcProperty.ARCDRAWINGMETHOD;
 		} else {
 			return super.getPropertyFromName(propertyName);
 		}
@@ -317,6 +380,8 @@ public class Axes extends GraphicObject {
 			return getAutoClear();
 		} else if (property == AxesProperty.FILLED) {
 			return getFilled();
+		} else if (property == AxesProperty.BACKGROUND) {
+			return getBackground();
 		} else if (property == Camera.CameraProperty.VIEW) {
 			return getView();
 		} else if (property == Camera.CameraProperty.ISOVIEW) {
@@ -345,6 +410,34 @@ public class Axes extends GraphicObject {
 			return getMargins();
 		} else if (property == AxesProperty.AXESBOUNDS) {
 			return getAxesBounds();
+		} else if (property == AxesProperty.HIDDENCOLOR) {
+			return getHiddenColor();
+		} else if (property == LinePropertyType.MODE) {
+			return getLineMode();
+		} else if (property == LinePropertyType.LINESTYLE) {
+			return getLineStyle();
+		} else if (property == LinePropertyType.THICKNESS) {
+			return getLineThickness();
+		} else if (property == LinePropertyType.COLOR) {
+			return getLineColor();
+		} else if (property == MarkPropertyType.MODE) {
+			return getMarkMode();
+		} else if (property == MarkPropertyType.STYLE) {
+			return getMarkStyle();
+		} else if (property == MarkPropertyType.SIZE) {
+			return getMarkSize();
+		} else if (property == MarkPropertyType.SIZEUNIT) {
+			return getMarkSizeUnit();
+		} else if (property == MarkPropertyType.FOREGROUND) {
+			return getMarkForeground();
+		} else if (property == MarkPropertyType.BACKGROUND) {
+			return getMarkBackground();
+		} else if (property == ClippablePropertyType.CLIPSTATE) {
+			return getClipState();
+		} else if (property == ClippablePropertyType.CLIPBOX) {
+			return getClipBox();
+		} else if (property == ArcProperty.ARCDRAWINGMETHOD) {
+			return getArcDrawingMethod();
 		} else {
 			return super.getProperty(property);
 		}
@@ -431,6 +524,8 @@ public class Axes extends GraphicObject {
 			setAutoClear((Boolean) value);
 		} else if (property == AxesProperty.FILLED) {
 			setFilled((Boolean) value);
+		} else if (property == AxesProperty.BACKGROUND) {
+			setBackground((Integer) value);
 		} else if (property == Camera.CameraProperty.VIEW) {
 			setView((Integer) value);
 		} else if (property == Camera.CameraProperty.ISOVIEW) {
@@ -459,6 +554,34 @@ public class Axes extends GraphicObject {
 			setMargins((Double[]) value);
 		} else if (property == AxesProperty.AXESBOUNDS) {
 			setAxesBounds((Double[]) value);
+		} else if (property == AxesProperty.HIDDENCOLOR) {
+			setHiddenColor((Integer) value);
+		} else if (property == LinePropertyType.MODE) {
+			setLineMode((Boolean) value);
+		} else if (property == LinePropertyType.LINESTYLE) {
+			setLineStyle((Integer) value);
+		} else if (property == LinePropertyType.THICKNESS) {
+			setLineThickness((Double) value);
+		} else if (property == LinePropertyType.COLOR) {
+			setLineColor((Integer) value);
+		} else if (property == MarkPropertyType.MODE) {
+			setMarkMode((Boolean) value);
+		} else if (property == MarkPropertyType.STYLE) {
+			setMarkStyle((Integer) value);
+		} else if (property == MarkPropertyType.SIZE) {
+			setMarkSize((Integer) value);
+		} else if (property == MarkPropertyType.SIZEUNIT) {
+			setMarkSizeUnit((Integer) value);
+		} else if (property == MarkPropertyType.FOREGROUND) {
+			setMarkForeground((Integer) value);
+		} else if (property == MarkPropertyType.BACKGROUND) {
+			setMarkBackground((Integer) value);
+		} else if (property == ClippablePropertyType.CLIPSTATE) {
+			setClipState((Integer) value);
+		} else if (property == ClippablePropertyType.CLIPBOX) {
+			setClipBox((Double[]) value);
+		} else if (property == ArcProperty.ARCDRAWINGMETHOD) {
+			setArcDrawingMethod((Integer) value);
 		} else {
 			return super.setProperty(property, value);
 		}
@@ -1128,6 +1251,202 @@ public class Axes extends GraphicObject {
 	}
 
 	/**
+	 * @return the hiddenColor
+	 */
+	public Integer getHiddenColor() {
+		return hiddenColor;
+	}
+
+	/**
+	 * @param hiddenColor the hiddenColor to set
+	 */
+	public void setHiddenColor(Integer hiddenColor) {
+		this.hiddenColor = hiddenColor;
+	}
+
+	/**
+	 * @return the line mode
+	 */
+	public Boolean getLineMode() {
+		return line.getMode();
+	}
+
+	/**
+	 * @param lineMode the line mode to set
+	 */
+	public void setLineMode(Boolean lineMode) {
+		line.setMode(lineMode);
+	}
+
+	/**
+	 * @return the line style
+	 */
+	public Integer getLineStyle() {
+		return line.getLineStyle().ordinal();
+	}
+
+	/**
+	 * @param lineStyle the line style to set
+	 */
+	public void setLineStyle(Integer lineStyle) {
+		line.setLineStyle(LineType.intToEnum(lineStyle));
+	}
+
+	/**
+	 * @return the line thickness
+	 */
+	public Double getLineThickness() {
+		return line.getThickness();
+	}
+
+	/**
+	 * @param lineThickness the line thickness to set
+	 */
+	public void setLineThickness(Double lineThickness) {
+		line.setThickness(lineThickness);
+	}
+
+	/**
+	 * @return the line color
+	 */
+	public Integer getLineColor() {
+		return line.getColor();
+	}
+
+	/**
+	 * @param lineColor the lineColor to set
+	 */
+	public void setLineColor(Integer lineColor) {
+		line.setColor(lineColor);
+	}
+
+	/**
+	 * @return the mark mode
+	 */
+	public Boolean getMarkMode() {
+		return mark.getMode();
+	}
+
+	/**
+	 * @param markMode the mark mode to set
+	 */
+	public void setMarkMode(Boolean markMode) {
+		mark.setMode(markMode);
+	}
+
+	/**
+	 * @return the mark style
+	 */
+	public Integer getMarkStyle() {
+		return mark.getStyle();
+	}
+
+	/**
+	 * @param markStyle the mark style to set
+	 */
+	public void setMarkStyle(Integer markStyle) {
+		mark.setStyle(markStyle);
+	}
+
+	/**
+	 * @return the mark size
+	 */
+	public Integer getMarkSize() {
+		return mark.getSize();
+	}
+
+	/**
+	 * @param markSize the mark size to set
+	 */
+	public void setMarkSize(Integer markSize) {
+		mark.setSize(markSize);
+	}
+
+	/**
+	 * @return the mark size unit
+	 */
+	public Integer getMarkSizeUnit() {
+		return mark.getMarkSizeUnit().ordinal();
+	}
+
+	/**
+	 * @param markSizeUnit the mark size unit to set
+	 */
+	public void setMarkSizeUnit(Integer markSizeUnit) {
+		mark.setMarkSizeUnit(MarkSizeUnitType.intToEnum(markSizeUnit));
+	}
+
+	/**
+	 * @return the mark foreground
+	 */
+	public Integer getMarkForeground() {
+		return mark.getForeground();
+	}
+
+	/**
+	 * @param markForeground the mark foreground to set
+	 */
+	public void setMarkForeground(Integer markForeground) {
+		mark.setForeground(markForeground);
+	}
+
+	/**
+	 * @return the mark background
+	 */
+	public Integer getMarkBackground() {
+		return mark.getBackground();
+	}
+
+	/**
+	 * @param markBackground the mark background to set
+	 */
+	public void setMarkBackground(Integer markBackground) {
+		mark.setBackground(markBackground);
+	}
+
+	/**
+	 * @return the clip state
+	 */
+	public Integer getClipState() {
+		return clipProperty.getClipState().ordinal();
+	}
+
+	/**
+	 * @param clipState the clip state to set
+	 */
+	public void setClipState(Integer clipState) {
+		clipProperty.setClipState(ClipStateType.intToEnum(clipState));
+	}
+
+	/**
+	 * @return the clip box
+	 */
+	public Double[] getClipBox() {
+		return clipProperty.getClipBox();
+	}
+
+	/**
+	 * @param clipBox the clip box to set
+	 */
+	public void setClipBox(Double[] clipBox) {
+		clipProperty.setClipBox(clipBox);
+	}
+
+	/**
+	 * @return the arcDrawingMethod
+	 */
+	public Integer getArcDrawingMethod() {
+		return arcDrawingMethod.ordinal();
+	}
+
+	/**
+	 * @param arcDrawingMethod the arcDrawingMethod to set
+	 */
+	public void setArcDrawingMethod(Integer arcDrawingMethod) {
+		this.arcDrawingMethod = ArcDrawingMethod.intToEnum(arcDrawingMethod);
+	}
+
+	/**
 	 * @return the box
 	 */
 	public Box getBox() {
@@ -1363,6 +1682,20 @@ public class Axes extends GraphicObject {
 	 */
 	public void setFilled(Boolean filled) {
 		this.filled = filled;
+	}
+
+	/**
+	 * @return the background
+	 */
+	public Integer getBackground() {
+		return background;
+	}
+
+	/**
+	 * @param background the background to set
+	 */
+	public void setBackground(Integer background) {
+		this.background = background;
 	}
 
 	/**

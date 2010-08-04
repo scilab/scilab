@@ -21,7 +21,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
  */
 public class Arc extends ClippableContouredObject {
 	/** Arc properties names */
-	private enum ArcProperty { UPPERLEFTPOINT, WIDTH, HEIGHT, STARTANGLE, ENDANGLE, ARCDRAWINGMETHOD  };
+	public enum ArcProperty { UPPERLEFTPOINT, WIDTH, HEIGHT, STARTANGLE, ENDANGLE, ARCDRAWINGMETHOD  };
 
 	/** Arc drawing method */
 	public enum ArcDrawingMethod { NURBS, LINES;

@@ -26,7 +26,7 @@ public class AxisProperty {
 	 * AxisProperty properties names
 	 */
 	public enum AxisPropertyProperty { VISIBLE, REVERSE, GRIDCOLOR, LABEL, AXISLOCATION,
-		LOGFLAG, TICKS, UNKNOWNPROPERTY };
+		LOGFLAG, UNKNOWNPROPERTY };
 
 	/**
 	 * Axis location type
@@ -111,8 +111,6 @@ public class AxisProperty {
 			return AxisPropertyProperty.AXISLOCATION;
 		} else if (propertyName.equals("LogFlag")) {
 			return AxisPropertyProperty.LOGFLAG;
-		} else if (propertyName.equals("Ticks")) {
-			return AxisPropertyProperty.TICKS;
 		} else {
 			return AxisPropertyProperty.UNKNOWNPROPERTY;
 		}
@@ -136,8 +134,6 @@ public class AxisProperty {
 			return getAxisLocation();
 		} else if (property == AxisPropertyProperty.LOGFLAG) {
 			return getLogFlag();
-		} else if (property == AxisPropertyProperty.TICKS) {
-			return getTicks();
 		} else {
 			return null;
 		}
@@ -162,8 +158,6 @@ public class AxisProperty {
 			setAxisLocation((AxisLocation) value);
 		} else if (property == AxisPropertyProperty.LOGFLAG) {
 			setLogFlag((Boolean) value);
-		} else if (property == AxisPropertyProperty.TICKS) {
-			setTicks((TicksProperty) value);
 		}
 
 		return true;
