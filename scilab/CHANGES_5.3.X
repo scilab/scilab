@@ -77,6 +77,8 @@ Bug Fixes:
 * bug 7644 fixed - The last user palette could not be removed from the palette
                    tree.
 
+* bug 7651 fixed - scicos_math.h was missing in binary package.
+
 * bug 7693 fixed - With a corrupted palettes.xml file, the error message is not
                    coherent with the recovering action.
 
