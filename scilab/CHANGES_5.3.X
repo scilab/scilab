@@ -52,6 +52,8 @@ Bug Fixes:
 
 * bug 7617 fixed - Editvar did not have any menu bar.
 
+* bug 7619 fixed - get_function_path did not return all available paths.
+
 * bug 7622 fixed - When opening an Xcos diagram done on 5.2.2, an exception
                    could be thrown.
 
@@ -69,7 +71,7 @@ Bug Fixes:
 * bug 7644 fixed - The last user palette could not be removed from the palette
                    tree.
 
-* bug 7693 fixed - With a corrupted palettes.xml file, the error message is not 
+* bug 7693 fixed - With a corrupted palettes.xml file, the error message is not
                    coherent with the recovering action.
 
 
