@@ -28,6 +28,7 @@ import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.imagerender.ImageRender;
 import org.scilab.modules.gui.uitable.UiTable;
+import org.scilab.modules.gui.uidisplaytree.UiDisplayTree;
 import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
@@ -166,6 +167,9 @@ public interface SimpleTab {
 	 * @param member the ImageRender to remove
 	 */
 	void removeMember(ImageRender member);
+
+	int addMember(UiDisplayTree member);
+	void removeMember(UiDisplayTree member);
 
 	/**
 	 * We want to be able to add directly a UiTable in a Tab.

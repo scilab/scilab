@@ -29,6 +29,7 @@ import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.imagerender.ImageRender;
 import org.scilab.modules.gui.uitable.UiTable;
+import org.scilab.modules.gui.uidisplaytree.UiDisplayTree;
 import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tree.Tree;
 import org.scilab.modules.gui.utils.Position;
@@ -325,6 +326,13 @@ public class ScilabTabBridge {
 	 * @param member the UiTable to add
 	 */
 	public static void removeMember(Tab tab, UiTable member) {
+		tab.getAsSimpleTab().removeMember(member);
+	}
+
+	public static int addMember(Tab tab, UiDisplayTree member) {
+		return (tab.getAsSimpleTab().addMember(member));
+	}
+	public static void removeMember(Tab tab, UiDisplayTree member) {
 		tab.getAsSimpleTab().removeMember(member);
 	}
 

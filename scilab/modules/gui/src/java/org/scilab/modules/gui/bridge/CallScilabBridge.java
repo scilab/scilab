@@ -96,6 +96,8 @@ import org.scilab.modules.gui.imagerender.ImageRender;
 import org.scilab.modules.gui.imagerender.ScilabImageRender;
 import org.scilab.modules.gui.uitable.UiTable;
 import org.scilab.modules.gui.uitable.ScilabUiTable;
+import org.scilab.modules.gui.uidisplaytree.UiDisplayTree;
+import org.scilab.modules.gui.uidisplaytree.ScilabUiDisplayTree;
 import org.scilab.modules.gui.slider.ScilabSlider;
 import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tab.ScilabTab;
@@ -471,6 +473,27 @@ public class CallScilabBridge {
     public static int newUiTable() {
         UiTable uiTable = ScilabUiTable.createUiTable();
         int id = UIElementMapper.add(uiTable);
+
+        /* Default font */
+        setWidgetFontName(id, DEFAULTFONTNAME);
+        setWidgetFontWeight(id, NORMALFONT);
+        setWidgetFontSize(id, DEFAULTFONTSIZE);
+
+        setWidgetRelief(id, ScilabRelief.FLAT);
+
+        /* Default colors */
+        setWidgetBackgroundColor(id, (int) DEFAULT_RED_BACKGROUND, (int) DEFAULT_GREEN_BACKGROUND, (int) DEFAULT_BLUE_BACKGROUND);
+        setWidgetForegroundColor(id, (int) DEFAULT_RED_FOREGROUND, (int) DEFAULT_GREEN_FOREGROUND, (int) DEFAULT_BLUE_FOREGROUND);
+        return id;
+    }
+
+    /**
+     * Create a new UiDisplayTree in Scilab GUIs
+     * @return the ID of the UiDisplayTree in the UIElementMapper
+     */
+    public static int newUiDisplayTree() {
+        UiDisplayTree uiTree = ScilabUiDisplayTree.createUiDisplayTree();
+        int id = UIElementMapper.add(uiTree);
 
         /* Default font */
         setWidgetFontName(id, DEFAULTFONTNAME);
@@ -907,6 +930,17 @@ public class CallScilabBridge {
         Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         UiTable uiTable = (UiTable) UIElementMapper.getCorrespondingUIElement(objID);
         ScilabBridge.removeMember(parentTab, uiTable);
+    }
+
+    public static void setUiDisplayTreeParent(int figureID, int objID) {
+        Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+        UiDisplayTree uiTree = (UiDisplayTree) UIElementMapper.getCorrespondingUIElement(objID);
+        ScilabBridge.addMember(parentTab, uiTree);
+    }
+    public static void removeUiDisplayTreeFromParent(int figureID, int objID) {
+        Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+        UiDisplayTree uiTree = (UiDisplayTree) UIElementMapper.getCorrespondingUIElement(objID);
+        ScilabBridge.removeMember(parentTab, uiTree);
     }
 
     /**
@@ -3048,5 +3082,14 @@ public class CallScilabBridge {
      */
     public static void setUiTableData(int id, String text) {
 	((UiTable) UIElementMapper.getCorrespondingUIElement(id)).setData(text);
+    }
+
+    /******************/
+    /*                */
+    /* UITABLE BRIDGE */
+    /*                */
+    /******************/
+    public static void setUiTreeData(int id, String[] text) {
+        ((UiDisplayTree) UIElementMapper.getCorrespondingUIElement(id)).setData(text);
     }
 }

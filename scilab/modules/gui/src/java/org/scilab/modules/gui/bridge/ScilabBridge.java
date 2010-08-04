@@ -95,6 +95,9 @@ import org.scilab.modules.gui.imagerender.SimpleImageRender;
 import org.scilab.modules.gui.uitable.UiTable;
 import org.scilab.modules.gui.uitable.ScilabUiTableBridge;
 import org.scilab.modules.gui.uitable.SimpleUiTable;
+import org.scilab.modules.gui.uidisplaytree.UiDisplayTree;
+import org.scilab.modules.gui.uidisplaytree.ScilabUiDisplayTreeBridge;
+import org.scilab.modules.gui.uidisplaytree.SimpleUiDisplayTree;
 import org.scilab.modules.gui.separator.ScilabSeparatorBridge;
 import org.scilab.modules.gui.separator.Separator;
 import org.scilab.modules.gui.slider.ScilabSliderBridge;
@@ -889,6 +892,13 @@ public class ScilabBridge {
 	public static void removeMember(Tab tab, UiTable member) {
 		ScilabTabBridge.removeMember(tab, member);
 	}	
+
+	public static int addMember(Tab tab, UiDisplayTree member) {
+		return ScilabTabBridge.addMember(tab, member);
+	}
+	public static void removeMember(Tab tab, UiDisplayTree member) {
+		ScilabTabBridge.removeMember(tab, member);
+	}
 
 	/**
 	 * Add a member (dockable element) to a tab and returns the index of this member
@@ -5854,5 +5864,236 @@ public class ScilabBridge {
 	 */
 	public static void setData(UiTable uiTable, String text) {
 		ScilabUiTableBridge.setData(uiTable, text);
+	}
+
+	/**********************/
+	/* UiDisplayTree Bridge */
+	/**********************/
+
+	/**
+	 * Creates a new UiDisplayTree
+	 * @return the created UiDisplayTree
+	 */
+	public static SimpleUiDisplayTree createUiDisplayTree() {
+		return ScilabUiDisplayTreeBridge.createUiDisplayTree();
+	}
+	
+	/**
+	 * Sets the Text of a UiDisplayTree
+	 * @param uiTree the UiDisplayTree we want to set the Text of
+	 * @param newText the Text to set for the UiDisplayTree
+	 */
+	public static void setText(UiDisplayTree uiTree, String newText) {
+		ScilabUiDisplayTreeBridge.setText(uiTree, newText);
+	}
+	
+	/**
+	 * Gets the text of an UiDisplayTree
+	 * @param uiTree the UiDisplayTree we want to get the text of
+	 * @return the text of the UiDisplayTree
+	 */
+	public static String getText(UiDisplayTree uiTree) {
+		return ScilabUiDisplayTreeBridge.getText(uiTree);
+	}
+	
+	/**
+	 * Draws a Scilab UiDisplayTree
+	 * @param uiTree the UiDisplayTree to draw
+	 * @see org.scilab.modules.ihm.UIElement#draw()
+	 */
+	public static void draw(UiDisplayTree uiTree) {
+		ScilabUiDisplayTreeBridge.draw(uiTree);
+	}
+	
+	/**
+	 * Gets the dimensions (width and height) of a Scilab UiDisplayTree
+	 * @param uiTree the UiDisplayTree we want to get the dimensions of
+	 * @return the size of the uiTree
+	 * @see org.scilab.modules.ihm.UIElement#getDims()
+	 */
+	public static Size getDims(UiDisplayTree uiTree) {
+		return ScilabUiDisplayTreeBridge.getDims(uiTree);
+	}
+	
+	/**
+	 * Gets the position (X-coordinate and Y-coordinate) of a Scilab uiTree
+	 * @param uiTree the uiTree we want to get the position of
+	 * @return the position of the uiTree
+	 * @see org.scilab.modules.ihm.UIElement#getPosition()
+	 */
+	public static Position getPosition(UiDisplayTree uiTree) {
+		return ScilabUiDisplayTreeBridge.getPosition(uiTree);
+	}
+	
+	/**
+	 * Gets the visibility status of a Scilab UiDisplayTree
+	 * @param uiTree the uiTree we want to get the visiblity status of
+	 * @return the visibility status of the uiTree (true if the uiTree is visible, false if not)
+	 * @see org.scilab.modules.ihm.UIElement#isVisible()
+	 */
+	public static boolean isVisible(UiDisplayTree uiTree) {
+		return ScilabUiDisplayTreeBridge.isVisible(uiTree);
+	}
+	
+	/**
+	 * Sets the dimensions (width and height) of a Scilab UiDisplayTree
+	 * @param uiTree the uiTree we want to set the dimensions of
+	 * @param newSize the size we want to set to the uiTree
+	 * @see org.scilab.modules.ihm.UIElement#setDims(org.scilab.modules.ihm.utils.Size)
+	 */
+	public static void setDims(UiDisplayTree uiTree, Size newSize) {
+		ScilabUiDisplayTreeBridge.setDims(uiTree, newSize);
+	}
+	
+	/**
+	 * Sets the position (X-coordinate and Y-coordinate) of a Scilab uiTree
+	 * @param uiTree the uiTree we want to set the position of
+	 * @param newPosition the position we want to set to the uiTree
+	 * @see org.scilab.modules.ihm.UIElement#setPosition(org.scilab.modules.ihm.utils.Position)
+	 */
+	public static void setPosition(UiDisplayTree uiTree, Position newPosition) {
+		ScilabUiDisplayTreeBridge.setPosition(uiTree, newPosition);
+	}
+	
+	/**
+	 * Sets the visibility status of a Scilab UiDisplayTree
+	 * @param uiTree the uiTree we want to set the visiblity status of
+	 * @param newVisibleState the visibility status we want to set to the uiTree (true to set the uiTree visible, false else)
+	 * @see org.scilab.modules.ihm.UIElement#setVisible(boolean)
+	 */
+	public static void setVisible(UiDisplayTree uiTree, boolean newVisibleState) {
+		ScilabUiDisplayTreeBridge.setVisible(uiTree, newVisibleState);
+	}
+	
+	/**
+	 * Set the Background color of the UiDisplayTree
+	 * @param uiTree the UiDisplayTree we want to set the background of
+	 * @param color the Color
+	 */
+	public static void setBackground(UiDisplayTree uiTree, Color color) {
+		ScilabUiDisplayTreeBridge.setBackground(uiTree, color);
+	}
+	
+	/**
+	 * Get the Background color of the UiDisplayTree
+	 * @param uiTree the UiDisplayTree we want to get the background of
+	 * @return the Color
+	 */
+	public static Color getBackground(UiDisplayTree uiTree) {
+		return ScilabUiDisplayTreeBridge.getBackground(uiTree);
+	}
+	
+	/**
+	 * Set the Foreground color of the UiDisplayTree
+	 * @param uiTree the UiDisplayTree we want to set the foreground of
+	 * @param color the Color
+	 */
+	public static void setForeground(UiDisplayTree uiTree, Color color) {
+		ScilabUiDisplayTreeBridge.setForeground(uiTree, color);
+	}
+	
+	/**
+	 * Get the Foreground color of the UiDisplayTree
+	 * @param uiTree the UiDisplayTree we want to get the foreground of
+	 * @return the Color
+	 */
+	public static Color getForeground(UiDisplayTree uiTree) {
+		return ScilabUiDisplayTreeBridge.getForeground(uiTree);
+	}
+	
+	/**
+	 * Set the font of the UiDisplayTree.
+	 * @param uiTree the UiDisplayTree we want to set the font of
+	 * @param font the font
+	 */
+	public static void setFont(UiDisplayTree uiTree, Font font) {
+		ScilabUiDisplayTreeBridge.setFont(uiTree, font);
+	}
+	
+	/**
+	 * Get the font of the UiDisplayTree.
+	 * @param uiTree the UiDisplayTree we want to get the font of
+	 * @return the font
+	 */
+	public static Font getFont(UiDisplayTree uiTree) {
+		return ScilabUiDisplayTreeBridge.getFont(uiTree);
+	}
+	
+	/**
+	 * Set if the UiDisplayTree is enabled or not
+	 * @param uiTree the UiDisplayTree we want to set the status of
+	 * @param status true if the UiDisplayTree is enabled
+	 */
+	public static void setEnabled(UiDisplayTree uiTree, boolean status) {
+		ScilabUiDisplayTreeBridge.setEnabled(uiTree, status);
+	}
+	
+	/**
+	 * Gets the enable status of a UiDisplayTree
+	 * @param uiTree the UiDisplayTree we want to get the status of
+	 * @return the enable status of the UiDisplayTree (true if the UiDisplayTree is enabled, false if not)
+	 */
+	public static boolean isEnabled(UiDisplayTree uiTree) {
+		return ScilabUiDisplayTreeBridge.isEnabled(uiTree);
+	}
+	
+	/**
+	 * Add a callback to the UiDisplayTree
+	 * @param uiTree the UiDisplayTree we want to set the callback of
+	 * @param callback the Callback to set.
+	 */
+	public static void setCallback(UiDisplayTree uiTree, CallBack callback) {
+		ScilabUiDisplayTreeBridge.setCallback(uiTree, callback);
+	}
+	
+	/**
+	 * Set the horizontal alignment for the UiDisplayTree text
+	 * @param uiTree the UiDisplayTree we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setHorizontalAlignment(UiDisplayTree uiTree, String alignment) {
+		ScilabUiDisplayTreeBridge.setHorizontalAlignment(uiTree, alignment);
+	}
+	
+	/**
+	 * Set the vertical alignment for the UiDisplayTree text
+	 * @param uiTree the UiDisplayTree we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setVerticalAlignment(UiDisplayTree uiTree, String alignment) {
+		ScilabUiDisplayTreeBridge.setVerticalAlignment(uiTree, alignment);
+	}
+	
+	/**
+	 * Set the Relief of the UiDisplayTree
+	 * @param uiTree the UiDisplayTree which we want to set the Relief of
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public static void setRelief(UiDisplayTree uiTree, String reliefType) {
+		ScilabUiDisplayTreeBridge.setRelief(uiTree, reliefType);
+	}
+	
+	/**
+	 * Delete the UiDisplayTree
+	 * @param uiTree the UiDisplayTree to be destroyed
+	 */
+	public static void destroy(UiDisplayTree uiTree) {
+		ScilabUiDisplayTreeBridge.destroy(uiTree);
+	}
+	
+	/**
+	 * Give the focus to the UiDisplayTree
+	 * @param uiTree the UiDisplayTree
+	 */
+	public static void requestFocus(UiDisplayTree uiTree) {
+		ScilabUiDisplayTreeBridge.requestFocus(uiTree);
+	}
+	
+	/**
+	 * Sets the tree data to be added to viewport
+	 * @param text the array of strings containing tree data
+	 */
+	public static void setData(UiDisplayTree uiTree, String[] text) {
+		ScilabUiDisplayTreeBridge.setData(uiTree, text);
 	}
 }

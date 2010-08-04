@@ -79,6 +79,7 @@ jmethodID jintnewListBoxID; // cache method id
 jmethodID jintnewFrameID; // cache method id
 jmethodID jintnewImageRenderID; // cache method id
 jmethodID jintnewUiTableID; // cache method id
+jmethodID jintnewUiDisplayTreeID; // cache method id
 jmethodID jstringnewContextMenujobjectArray_ID; // cache method id
 jclass stringArrayClass;
 jmethodID jintnewContextMenuID; // cache method id
@@ -103,6 +104,8 @@ jmethodID voidsetImageRenderParentjintjintID; // cache method id
 jmethodID voidremoveImageRenderFromParentjintjintID; // cache method id
 jmethodID voidsetUiTableParentjintjintID; // cache method id
 jmethodID voidremoveUiTableFromParentjintjintID; // cache method id
+jmethodID voidsetUiDisplayTreeParentjintjintID; // cache method id
+jmethodID voidremoveUiDisplayTreeFromParentjintjintID; // cache method id
 jmethodID voidsetSliderParentjintjintID; // cache method id
 jmethodID voidremoveSliderFromParentjintjintID; // cache method id
 jmethodID voidsetPopupMenuParentjintjintID; // cache method id
@@ -262,6 +265,7 @@ jmethodID voidsetImageRenderScalejintjobjectArray_ID; // cache method id
 jmethodID voidsetUiTableColnamesjintjstringID; // cache method id
 jmethodID voidsetUiTableRownamesjintjstringID; // cache method id
 jmethodID voidsetUiTableDatajintjstringID; // cache method id
+jmethodID voidsetUiTreeDatajintjobjectArray_ID; // cache method id
 
 
 /**
@@ -331,6 +335,8 @@ static int newImageRender(JavaVM * jvm_);
 
 static int newUiTable(JavaVM * jvm_);
 
+static int newUiDisplayTree(JavaVM * jvm_);
+
 static char * newContextMenu(JavaVM * jvm_, char ** menuLabels, int menuLabelsSize);
 
 static int newContextMenu(JavaVM * jvm_);
@@ -376,6 +382,10 @@ static void removeImageRenderFromParent(JavaVM * jvm_, int parentID, int objID);
 static void setUiTableParent(JavaVM * jvm_, int parentID, int objID);
 
 static void removeUiTableFromParent(JavaVM * jvm_, int parentID, int objID);
+
+static void setUiDisplayTreeParent(JavaVM * jvm_, int parentID, int objID);
+
+static void removeUiDisplayTreeFromParent(JavaVM * jvm_, int parentID, int objID);
 
 static void setSliderParent(JavaVM * jvm_, int parentID, int objID);
 
@@ -694,6 +704,8 @@ static void setUiTableColnames(JavaVM * jvm_, int objID, char * text);
 static void setUiTableRownames(JavaVM * jvm_, int objID, char * text);
 
 static void setUiTableData(JavaVM * jvm_, int objID, char * text);
+
+static void setUiTreeData(JavaVM * jvm_, int objID, char ** tData, int tDataSize);
 
 
                         /**

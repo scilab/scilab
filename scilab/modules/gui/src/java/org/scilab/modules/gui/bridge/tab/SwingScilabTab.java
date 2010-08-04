@@ -42,6 +42,7 @@ import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
 import org.scilab.modules.gui.bridge.imagerender.SwingScilabImageRender;
 import org.scilab.modules.gui.bridge.uitable.SwingScilabUiTable;
+import org.scilab.modules.gui.bridge.uidisplaytree.SwingScilabUiDisplayTree;
 import org.scilab.modules.gui.bridge.slider.SwingScilabSlider;
 import org.scilab.modules.gui.bridge.tree.SwingScilabTree;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
@@ -61,6 +62,7 @@ import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.imagerender.ImageRender;
 import org.scilab.modules.gui.uitable.UiTable;
+import org.scilab.modules.gui.uidisplaytree.UiDisplayTree;
 import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.textbox.TextBox;
@@ -598,6 +600,19 @@ public class SwingScilabTab extends View implements SimpleTab {
 	contentPane.removeWidget(member);
     }
 	
+    public int addMember(UiDisplayTree member) {
+ 	return this.addMember((SwingScilabUiDisplayTree) member.getAsSimpleUiDisplayTree());
+    }
+    private int addMember(SwingScilabUiDisplayTree member) {
+	return contentPane.addWidget(member);
+    }
+    public void removeMember(UiDisplayTree member) {
+	this.removeMember((SwingScilabUiDisplayTree) member.getAsSimpleUiDisplayTree());
+    }
+    private void removeMember(SwingScilabUiDisplayTree member) {
+	contentPane.removeWidget(member);
+    }
+
     /**
      * Add a member (dockable element) to container and returns its index
      * @param member the member to add

@@ -14,6 +14,7 @@
 #include <sstream>
 #include <iostream> 
 #include <string>
+#include "CallScilabBridge.hxx"
 
 extern "C" 
 {
@@ -32,7 +33,8 @@ extern "C"
 #include "ScilabDisplayTree.hxx"
 
 using namespace std;
-extern "C" int displayUiTree(int index)
+
+extern "C" int displayUiTree(int hashMapIndex, int index)
 {
 	int iItemCount = 0;
 
@@ -135,7 +137,7 @@ extern "C" int displayUiTree(int index)
 	}
 
 	//Java
-	org_scilab_modules_gui_tree::ScilabDisplayTree::scilabDisplayTree(getScilabJavaVM(), tab, (int)struct_size);
+	org_scilab_modules_gui_bridge::CallScilabBridge::setUiTreeData(getScilabJavaVM(), hashMapIndex, tab, (int)struct_size);
 
 	//Free
 	for(i = 0; i < struct_size; ++i)

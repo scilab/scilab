@@ -34,6 +34,7 @@
 #include "Frame.h" /* setCurentFigureAsFrameParent */
 #include "ImageRender.h" /* setCurentFigureAsImageRenderParent */
 #include "UiTable.h" /* setCurentFigureAsUiTableParent */
+#include "UiDisplayTree.h" /* setCurentFigureAsUiDisplayTreeParent */
 #include "Scierror.h"
 #include "WindowList.h" /* getFigureFromIndex */
 #include "Widget.h" /* requestWidgetFocus */
@@ -348,7 +349,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
               setCurentFigureAsUiTableParent(graphicObject);
               break;
             case SCI_UIDISPLAYTREE:
-              treeFound = 1;	/* Does not need to create a figure */
+              setCurentFigureAsUiDisplayTreeParent(graphicObject);
               break;
            default:
               break;
@@ -357,7 +358,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
 
       /* If no position given then set the default position */
       /* If user decides to show a tree, no need to set position property */
-      if(propertiesValuesIndices[10]==NOT_FOUND && treeFound == 0)
+      if(propertiesValuesIndices[10]==NOT_FOUND)
         {
           /* See SetUicontrolPosition for the use of -1 as stackPointer */
           SetUicontrolPosition(sciGetPointerFromHandle(GraphicHandle), -1, 0, 0, 0);
@@ -381,17 +382,10 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                   switch (VarType(propertiesValuesIndices[inputIndex]))
                     {
                     case sci_matrix:
-	              /* If property name is uidisplaytree, does not need to set matrix properties */
-		      if(treeFound == 0)
-                      {
                          GetRhsVar(propertiesValuesIndices[inputIndex],MATRIX_OF_DOUBLE_DATATYPE,&nbRow,&nbCol,&stkAdr);
                          setStatus = callSetProperty(sciGetPointerFromHandle(GraphicHandle), stkAdr, sci_matrix, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
-                      }
                       break;
                     case sci_strings:
-		      /* If property name is uidisplaytree, does not need to set string properties */
-                      if(treeFound == 0)
-                      {
                          if (inputIndex == 4) /* Index for String property: Can be mon than one character string */
                            {
                              GetRhsVar(propertiesValuesIndices[inputIndex],MATRIX_OF_STRING_DATATYPE,&nbRow,&nbCol,&stkAdrForStrings);
@@ -403,21 +397,17 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                              GetRhsVar(propertiesValuesIndices[inputIndex],STRING_DATATYPE,&nbRow,&nbCol,&stkAdr);
                              setStatus = callSetProperty(sciGetPointerFromHandle(GraphicHandle), stkAdr, sci_strings, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
                            }
-                      }
                       break;
                     case sci_handles:
                       GetRhsVar(propertiesValuesIndices[inputIndex],GRAPHICAL_HANDLE_DATATYPE,&nbRow,&nbCol,&stkAdr);
                       setStatus = callSetProperty(sciGetPointerFromHandle(GraphicHandle), stkAdr, sci_handles, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
                       break;
 		    case sci_tlist:
-	              /* User passes in a tree property */
-		      if(treeFound == 1)
-                      {
-		         if(displayUiTree(propertiesValuesIndices[inputIndex]) != 0)
+		         if(displayUiTree(pUICONTROL_FEATURE(sciGetPointerFromHandle(GraphicHandle))->hashMapIndex, 
+				propertiesValuesIndices[inputIndex]) != 0)
 	                 {
                             setStatus = SET_PROPERTY_ERROR;
                          }
-                      }
 		      break;
                     default:
                       setStatus = SET_PROPERTY_ERROR;

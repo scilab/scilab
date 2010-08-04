@@ -25,6 +25,7 @@
 #include "Frame.h"
 #include "ImageRender.h"
 #include "UiTable.h"
+#include "UiDisplayTree.h"
 #include "DestroyObjects.h" /* sciStandardDestroyOperations */
 
 /**CreateUIControl
@@ -169,6 +170,7 @@ sciPointObj * CreateUIControl(char *style)
     }
   else if (strcmp(style,"uidisplaytree")==0)
     {
+      createUiDisplayTree((sciPointObj *) pobj);
       pUICONTROL_FEATURE (pobj)->style = SCI_UIDISPLAYTREE;
     }
   else

@@ -116,6 +116,7 @@ jintnewListBoxID=NULL;
 jintnewFrameID=NULL; 
 jintnewImageRenderID=NULL; 
 jintnewUiTableID=NULL; 
+jintnewUiDisplayTreeID=NULL; 
 jstringnewContextMenujobjectArray_ID=NULL; 
 jintnewContextMenuID=NULL; 
 voiddestroyWidgetjintID=NULL; 
@@ -139,6 +140,8 @@ voidsetImageRenderParentjintjintID=NULL;
 voidremoveImageRenderFromParentjintjintID=NULL; 
 voidsetUiTableParentjintjintID=NULL; 
 voidremoveUiTableFromParentjintjintID=NULL; 
+voidsetUiDisplayTreeParentjintjintID=NULL; 
+voidremoveUiDisplayTreeFromParentjintjintID=NULL; 
 voidsetSliderParentjintjintID=NULL; 
 voidremoveSliderFromParentjintjintID=NULL; 
 voidsetPopupMenuParentjintjintID=NULL; 
@@ -298,6 +301,7 @@ voidsetImageRenderScalejintjobjectArray_ID=NULL;
 voidsetUiTableColnamesjintjstringID=NULL; 
 voidsetUiTableRownamesjintjstringID=NULL; 
 voidsetUiTableDatajintjstringID=NULL; 
+voidsetUiTreeDatajintjobjectArray_ID=NULL; 
 
 
 }
@@ -334,6 +338,7 @@ jintnewListBoxID=NULL;
 jintnewFrameID=NULL; 
 jintnewImageRenderID=NULL; 
 jintnewUiTableID=NULL; 
+jintnewUiDisplayTreeID=NULL; 
 jstringnewContextMenujobjectArray_ID=NULL; 
 jintnewContextMenuID=NULL; 
 voiddestroyWidgetjintID=NULL; 
@@ -357,6 +362,8 @@ voidsetImageRenderParentjintjintID=NULL;
 voidremoveImageRenderFromParentjintjintID=NULL; 
 voidsetUiTableParentjintjintID=NULL; 
 voidremoveUiTableFromParentjintjintID=NULL; 
+voidsetUiDisplayTreeParentjintjintID=NULL; 
+voidremoveUiDisplayTreeFromParentjintjintID=NULL; 
 voidsetSliderParentjintjintID=NULL; 
 voidremoveSliderFromParentjintjintID=NULL; 
 voidsetPopupMenuParentjintjintID=NULL; 
@@ -516,6 +523,7 @@ voidsetImageRenderScalejintjobjectArray_ID=NULL;
 voidsetUiTableColnamesjintjstringID=NULL; 
 voidsetUiTableRownamesjintjstringID=NULL; 
 voidsetUiTableDatajintjstringID=NULL; 
+voidsetUiTreeDatajintjobjectArray_ID=NULL; 
 
 
 }
@@ -781,6 +789,24 @@ throw GiwsException::JniMethodNotFoundException(curEnv, "newUiTable");
 }
 
                         jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintnewUiTableID ));if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return res;
+
+}
+
+int CallScilabBridge::newUiDisplayTree (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jintnewUiDisplayTreeID = curEnv->GetStaticMethodID(cls, "newUiDisplayTree", "()I" ) ;
+if (jintnewUiDisplayTreeID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "newUiDisplayTree");
+}
+
+                        jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintnewUiDisplayTreeID ));if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
 return res;
@@ -1190,6 +1216,38 @@ throw GiwsException::JniMethodNotFoundException(curEnv, "removeUiTableFromParent
 }
 
                          curEnv->CallStaticVoidMethod(cls, voidremoveUiTableFromParentjintjintID ,parentID, objID);if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void CallScilabBridge::setUiDisplayTreeParent (JavaVM * jvm_, int parentID, int objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetUiDisplayTreeParentjintjintID = curEnv->GetStaticMethodID(cls, "setUiDisplayTreeParent", "(II)V" ) ;
+if (voidsetUiDisplayTreeParentjintjintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setUiDisplayTreeParent");
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetUiDisplayTreeParentjintjintID ,parentID, objID);if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void CallScilabBridge::removeUiDisplayTreeFromParent (JavaVM * jvm_, int parentID, int objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidremoveUiDisplayTreeFromParentjintjintID = curEnv->GetStaticMethodID(cls, "removeUiDisplayTreeFromParent", "(II)V" ) ;
+if (voidremoveUiDisplayTreeFromParentjintjintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "removeUiDisplayTreeFromParent");
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidremoveUiDisplayTreeFromParentjintjintID ,parentID, objID);if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
 }
@@ -4578,6 +4636,46 @@ throw GiwsException::JniMethodNotFoundException(curEnv, "setUiTableData");
 jstring text_ = curEnv->NewStringUTF( text );
 
                          curEnv->CallStaticVoidMethod(cls, voidsetUiTableDatajintjstringID ,objID, text_);if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void CallScilabBridge::setUiTreeData (JavaVM * jvm_, int objID, char ** tData, int tDataSize){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetUiTreeDatajintjobjectArray_ID = curEnv->GetStaticMethodID(cls, "setUiTreeData", "(I[Ljava/lang/String;)V" ) ;
+if (voidsetUiTreeDatajintjobjectArray_ID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setUiTreeData");
+}
+jclass stringArrayClass = curEnv->FindClass("java/lang/String");
+
+// create java array of strings.
+jobjectArray tData_ = curEnv->NewObjectArray( tDataSize, stringArrayClass, NULL);
+if (tData_ == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+// convert each char * to java strings and fill the java array.
+for ( int i = 0; i < tDataSize; i++)
+{
+jstring TempString = curEnv->NewStringUTF( tData[i] );
+if (TempString == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+curEnv->SetObjectArrayElement( tData_, i, TempString);
+
+// avoid keeping reference on to many strings
+curEnv->DeleteLocalRef(TempString);
+}
+                         curEnv->CallStaticVoidMethod(cls, voidsetUiTreeDatajintjobjectArray_ID ,objID, tData_);curEnv->DeleteLocalRef(stringArrayClass);
+curEnv->DeleteLocalRef(tData_);
+if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
 }
