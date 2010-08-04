@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="nohistory_browser"
-	ProjectGUID="{6EA99B1F-99B4-4528-8195-7508EF70CFED}"
-	RootNamespace="nohistory_browser"
+	Name="nolibjvm"
+	ProjectGUID="{889AD61B-12E9-4F85-8525-B83C16C88C3F}"
+	RootNamespace="nolibjvm"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="0"
 	>
@@ -36,14 +36,17 @@
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
 				Name="VCMIDLTool"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions=""
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../api_scilab/includes"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;HISTORY_BROWSER_EXPORTS"
+				AdditionalIncludeDirectories="../../includes;../../../localization/includes;../../../core/includes;../../../api_scilab/includes;../../../output_stream/includes;../../../../libs/intl;../../../../java/jdk/include;../../../../java/jdk/include/win32"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;LIBJVM_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -64,7 +67,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies=" ../../../../bin/libintl.lib"
+				AdditionalDependencies="../../../../bin/libintl.lib"
 				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile=""
@@ -115,14 +118,17 @@
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../api_scilab/includes"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;HISTORY_BROWSER_EXPORTS"
+				AdditionalIncludeDirectories="../../includes;../../../localization/includes;../../../core/includes;../../../api_scilab/includes;../../../output_stream/includes;../../../../libs/intl;../../../../java/jdk/include;../../../../java/jdk/include/win32"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;LIBJVM_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -143,7 +149,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies=" ../../../../bin/libintl.lib"
+				AdditionalDependencies="../../../../bin/libintl.lib"
 				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile=""
@@ -195,6 +201,9 @@
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
 				Name="VCMIDLTool"
 			/>
 			<Tool
@@ -203,8 +212,8 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../api_scilab/includes"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;HISTORY_BROWSER_EXPORTS"
+				AdditionalIncludeDirectories="../../includes;../../../localization/includes;../../../core/includes;../../../api_scilab/includes;../../../output_stream/includes;../../../../libs/intl;../../../../java/jdk/include;../../../../java/jdk/include/win32"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;LIBJVM_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="0"
@@ -225,7 +234,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies=" ../../../../bin/libintl.lib"
+				AdditionalDependencies="../../../../bin/libintl.lib"
 				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile=""
@@ -280,6 +289,9 @@
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
 			/>
@@ -288,8 +300,8 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../api_scilab/includes"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;HISTORY_BROWSER_EXPORTS"
+				AdditionalIncludeDirectories="../../includes;../../../localization/includes;../../../core/includes;../../../api_scilab/includes;../../../output_stream/includes;../../../../libs/intl;../../../../java/jdk/include;../../../../java/jdk/include/win32"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;;LIBJVM_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="0"
@@ -310,7 +322,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies=" ../../../../bin/libintl.lib"
+				AdditionalDependencies="../../../../bin/libintl.lib"
 				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile=""
@@ -357,7 +369,7 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\CommandHistory_Wrap_Fake.c"
+				RelativePath=".\nojvm.c"
 				>
 			</File>
 		</Filter>
@@ -373,7 +385,7 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 			<File
-				RelativePath=".\nohistory_browser.rc"
+				RelativePath=".\nojvm.rc"
 				>
 			</File>
 		</Filter>

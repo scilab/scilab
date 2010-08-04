@@ -153,34 +153,6 @@ Root: HKCR; Subkey: {#APPLICATION_EXTENSION_COSF}\DefaultIcon; ValueType: string
 Root: HKCR; Subkey: {#APPLICATION_EXTENSION_COSF}\shell\{cm:RegKeyRunWith} {#ScilabName}\command; ValueType: string; ValueData: """{app}\bin\wscilex.exe"" {#ARGUMENT_ACTION_RUN} ""%1"""; Flags: deletekey uninsdeletekey noerror; Tasks: AssociateSCICOS;
 ;
 ;-------------------------------------------------------------------------------
-;Files .sav
-#define APPLICATION_EXTENSION_SAV "Scilab5.sav"
-#define SAV_ENTRY ".sav"
-#define ICON_SAV_POS 6
-;
-Root: HKCR; Subkey: {#SAV_ENTRY}; ValueType: string; ValueData: {#APPLICATION_EXTENSION_SAV}; Flags: deletekey uninsdeletekey noerror; Tasks: AssociateBINSAV
-;
-Root: HKCR; Subkey: {#APPLICATION_EXTENSION_SAV}; ValueType: string; ValueData: "{#ScilabName} Application"; Flags: deletekey uninsdeletekey noerror; Tasks: AssociateBINSAV
-;
-Root: HKCR; Subkey: {#APPLICATION_EXTENSION_SAV}\DefaultIcon; ValueType: string; ValueData: {app}\bin\wscilex.exe,{#ICON_SAV_POS}; Flags: deletekey uninsdeletekey noerror; Tasks: AssociateBINSAV
-;
-Root: HKCR; Subkey: {#APPLICATION_EXTENSION_SAV}\shell\open\command; ValueType: string; ValueData: """{app}\bin\wscilex.exe"" {#ARGUMENT_ACTION_OPEN} ""%1"""; Flags: deletekey uninsdeletekey noerror; Tasks: AssociateBINSAV
-;
-;-------------------------------------------------------------------------------
-;Files .bin
-#define APPLICATION_EXTENSION_BIN "Scilab5.bin"
-#define BIN_ENTRY ".bin"
-#define ICON_BIN_POS 6
-;
-Root: HKCR; Subkey: {#BIN_ENTRY}; ValueType: string; ValueData: {#APPLICATION_EXTENSION_BIN}; Flags: deletekey uninsdeletekey noerror; Tasks: AssociateBINSAV
-;
-Root: HKCR; Subkey: {#APPLICATION_EXTENSION_BIN}; ValueType: string; ValueData: "{#ScilabName} Application"; Flags: deletekey uninsdeletekey noerror; Tasks: AssociateBINSAV
-;
-Root: HKCR; Subkey: {#APPLICATION_EXTENSION_BIN}\DefaultIcon; ValueType: string; ValueData: {app}\bin\wscilex.exe,{#ICON_SAV_POS}; Flags: deletekey uninsdeletekey noerror; Tasks: AssociateBINSAV
-;
-Root: HKCR; Subkey: {#APPLICATION_EXTENSION_BIN}\shell\open\command; ValueType: string; ValueData: """{app}\bin\wscilex.exe"" {#ARGUMENT_ACTION_OPEN} ""%1"""; Flags: deletekey uninsdeletekey noerror; Tasks: AssociateBINSAV
-;
-;-------------------------------------------------------------------------------
 Root: HKCU; Subkey: SOFTWARE\Scilab\{#ScilabName}\Settings; ValueType: string; ValueData: {cm:LANGUAGE}; Flags: createvalueifdoesntexist uninsdeletekey noerror; ValueName: LANGUAGE
 ;
 ;-------------------------------------------------------------------------------

@@ -41,6 +41,23 @@ function [StrFlux, retour] = FindAndReplace(StrFlux, StrFind, StrReplace)
     end
 endfunction
 //------------------------------------------------------------------------------
+function s = getTestsSize()
+  modules = getmodules();
+  total = 0;
+  for i=1:size(modules,'*')
+    files_nonregs = SCI + '/modules/' + modules(i) + '/tests/nonreg_tests/' + findfiles(SCI + '/modules/' + modules(i) + '/tests/nonreg_tests','*.*');
+    files_unit = SCI + '/modules/' + modules(i) + '/tests/unit_tests' + findfiles(SCI + '/modules/' + modules(i) + '/tests/unit_tests','*.*');
+    files_module = [files_nonregs;files_unit];
+    files_nonregs = [];
+    files_unit = [];
+    for j = 1:size(files_module, '*')
+      info = fileinfo(files_module(j));
+      total = total + info(1);
+    end
+  end
+  s = total / 10;
+endfunction
+//------------------------------------------------------------------------------
 function ret = Update_Script_Innosetup(ISSFilenameSource)
 
     printf("Please Waiting ...\n");
@@ -50,6 +67,13 @@ function ret = Update_Script_Innosetup(ISSFilenameSource)
 
     v = getversion("scilab");
     vstr = getversion();
+
+    [SciFile, err] = FindAndReplace(SciFile, "#define TESTS_SIZE", "#define TESTS_SIZE " + sprintf("%20d",getTestsSize()));
+    if err == %F then
+        ret = err;
+        return;
+    end;
+
 
     [SciFile, err] = FindAndReplace(SciFile, "#define BinariesSourcePath", "#define BinariesSourcePath """ + WSCI + """");
     if err == %F then

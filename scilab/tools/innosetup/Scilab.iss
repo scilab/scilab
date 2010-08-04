@@ -19,6 +19,7 @@
 #define ScilabVersion "5.3.0"
 #define CurrentYear "2010"
 #define javaSpecificationVersion "1.6"
+#define TESTS_SIZE 14364741
 ;#define WITH_MODELICAC
 ;#define WITH_CHM
 ;#define SCILAB_X64
@@ -63,6 +64,8 @@
 #include BinariesSourcePath + "\tools\innosetup\registry.iss"
 ;-------------------------------------------------------------------------------
 [Code]
+#include BinariesSourcePath + "\tools\innosetup\code_download.iss"
+#include BinariesSourcePath + "\tools\innosetup\code_modules.iss"
 #include BinariesSourcePath + "\tools\innosetup\code.iss"
 [Run]
 ;-------------------------------------------------------------------------------

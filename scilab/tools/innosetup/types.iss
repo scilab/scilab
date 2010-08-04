@@ -18,5 +18,7 @@ Name: full; Description: {cm:DescriptionFullInstall}
 Name: default; Description: {cm:DescriptionDefaultInstall}
 ;
 Name: custom; Description: {cm:DescriptionCustomInstall}; Flags: iscustom
+
+Name: cli; Description: {cm:DescriptionCLIInstall};
 ;
 ;-------------------------------------------------------------------------------

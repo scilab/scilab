@@ -16,13 +16,9 @@
 
 Name: desktopicon; Description:{cm:DescriptionCreateDesktopIcon}; GroupDescription: Additional icons:; MinVersion: 4,4
 ;
-Name: Quicklaunch; Description:{cm:DescriptionQuickLaunch}; GroupDescription: Additional icons:; MinVersion: 4,4
-;
 Name: AssociateSCESCI; Description:{cm:DescriptionAssociateSceSci}; GroupDescription: Files Association:; Components: {#COMPN_SCINOTES}
 ;
 Name: AssociateTSTDEM; Description:{cm:DescriptionAssociateTstDem}; GroupDescription: Files Association:; Components: {#COMPN_SCINOTES}
-;
-Name: AssociateBINSAV; Description:{cm:DescriptionAssociateBinSav}; GroupDescription: Files Association:; Flags: unchecked
 ;
 Name: AssociateSCICOS; Description:{cm:DescriptionAssociateScicos}; GroupDescription: Files Association:; Components: {#COMPN_XCOS}
 ;

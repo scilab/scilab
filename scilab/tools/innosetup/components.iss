@@ -25,13 +25,15 @@
 #define COMPN_EQUDIF 'scilab\differential_equations'
 #define COMPN_STATS 'scilab\statistics'
 ;
+; by default
+#define COMPN_JVM_MODULE 'scilab\JVM_MODULE'
+#define COMPN_JRE 'JRE_1_6'
+
+;
 #define COMPN_CPU_OPTIMIZATION 'CPU_OPTIMIZATION'
 #define COMPN_REF_CPU_LIBRARY 'CPU_OPTIMIZATION\CPU_REF'
 #define COMPN_ATLAS_CPU_LIBRARY 'CPU_OPTIMIZATION\ATLAS'
 #define COMPN_MKL_CPU_LIBRARY 'CPU_OPTIMIZATION\MKL'
-;
-; by default
-;#define COMPN_JRE 'JRE_1_6_0'
 ;
 #define COMPN_INTERP 'interpolation'
 #define COMPN_SIGPROC 'signal_processing'
@@ -74,20 +76,22 @@
 #define COMPN_PARALLEL 'parallel'
 
 ;
-Name: {#COMPN_SCILAB}; Description: Scilab {#ScilabVersion}; Types: default full custom; Flags: fixed;
+Name: {#COMPN_SCILAB}; Description: Scilab {#ScilabVersion}; Types: default full custom cli; Flags: fixed;
 ;
-Name: {#COMPN_EQUDIF}; Description: {cm:DescriptionEquDif}; Types: default full custom; Flags: fixed;
-Name: {#COMPN_POLY}; Description: {cm:DescriptionPolynomials}; Types: default full custom; Flags: fixed;
-Name: {#COMPN_SYMB}; Description: {cm:DescriptionSymbolic}; Types: default full custom; Flags: fixed;
-Name: {#COMPN_SPARSE}; Description: {cm:DescriptionSparse}; Types: default full custom; Flags: fixed;
-Name: {#COMPN_LINALG}; Description: {cm:DescriptionLinAlg}; Types: default full custom; Flags: fixed;
-Name: {#COMPN_CACSD}; Description: {cm:DescriptionCacsd}; Types: default full custom; Flags: fixed;
+Name: {#COMPN_EQUDIF}; Description: {cm:DescriptionEquDif}; Types: default full custom cli; Flags: fixed;
+Name: {#COMPN_POLY}; Description: {cm:DescriptionPolynomials}; Types: default full custom cli; Flags: fixed;
+Name: {#COMPN_SYMB}; Description: {cm:DescriptionSymbolic}; Types: default full custom cli; Flags: fixed;
+Name: {#COMPN_SPARSE}; Description: {cm:DescriptionSparse}; Types: default full custom cli; Flags: fixed;
+Name: {#COMPN_LINALG}; Description: {cm:DescriptionLinAlg}; Types: default full custom cli; Flags: fixed;
+Name: {#COMPN_CACSD}; Description: {cm:DescriptionCacsd}; Types: default full custom cli; Flags: fixed;
+Name: {#COMPN_STATS}; Description: {cm:DescriptionStats}; Types: default full custom cli; Flags: fixed;
 Name: {#COMPN_GRAPHICS}; Description: {cm:DescriptionGraphics}; Types: default full custom; Flags: fixed;
-Name: {#COMPN_STATS}; Description: {cm:DescriptionStats}; Types: default full custom; Flags: fixed;
+;
+Name: {#COMPN_JVM_MODULE}; Description: {cm:DescriptionModuleJVM}; Types: default full custom; Flags: fixed;
 ;
 Name: {#COMPN_SCINOTES}; Description:{cm:DescriptionSciNotes}; Types: default full custom; Flags: fixed;
 ;
-Name: {#COMPN_CPU_OPTIMIZATION}; Description:{cm:DescriptionCPUOptimization}; Types: default full custom;
+Name: {#COMPN_CPU_OPTIMIZATION}; Description:{cm:DescriptionCPUOptimization}; Types: default full custom cli;
 ;
 Name: {#COMPN_MKL_CPU_LIBRARY}; Description:{cm:DescriptionMKLLibrary}; Flags: exclusive
 ;
@@ -97,7 +101,7 @@ Name: {#COMPN_ATLAS_CPU_LIBRARY}; Description:{cm:DescriptionATLASLibrary}; Flag
 ;
 Name: {#COMPN_REF_CPU_LIBRARY}; Description:{cm:DescriptionRefBlasLibrary}; Flags: exclusive
 ;
-Name: {#COMPN_FFTW}; Description: {cm:DescriptionFftwModule}; Types: default full custom;
+Name: {#COMPN_FFTW}; Description: {cm:DescriptionFftwModule}; Types: default full custom cli;
 Name: {#COMPN_FFTW_MKL_LIBRARY};Description: {cm:DescriptionFftwMKLDownload}; Flags: exclusive
 Name: {#COMPN_FFTW_REF_LIBRARY};Description: {cm:DescriptionRefFftwLibrary}; Flags: exclusive
 ;
@@ -126,11 +130,8 @@ Name: {#COMPN_MAP2SCI}; Description: {cm:DescriptionMaple2sci}; Types: default f
 Name: {#COMPN_TCLSCI}; Description: {cm:DescriptionTclTK}; Types: default full custom;
 ;
 Name: {#COMPN_SPREADSHEET}; Description: {cm:DescriptionSpreadsheet}; Types: default full custom;
-;Name: {#COMPN_PVM}; Description: {cm:DescriptionPvm}; Types: default full custom;
 ;
-#ifdef SCILAB_X64
-;Name: {#COMPN_JRE}; Description: {cm:DescriptionJVM} 1.6.0_18; Types: default full custom;
-#endif
+;Name: {#COMPN_PVM}; Description: {cm:DescriptionPvm}; Types: default full custom;
 ;
 Name: {#COMPN_ATOMS}; Description: {cm:DescriptionAtoms}; Types: default full custom;
 Name: {#COMPN_MODULES_MANAGER}; Description: {cm:DescriptionModulesManager}; Types: default full custom;
@@ -144,8 +145,12 @@ Name: {#COMPN_SIMANNEALING}; Description: {cm:DescriptionSimulAnnealingTlbx}; Ty
 Name: {#COMPN_DEVTOOLS}; Description: {cm:DescriptionDevTools}; Types: full custom;
 ;
 ;
-Name: {#COMPN_TESTS}; Description: {cm:DescriptionTests}; Types: full custom;
+Name: {#COMPN_TESTS}; Description: {cm:DescriptionTests}; Types: full custom; ExtraDiskSpaceRequired: {#TESTS_SIZE}
 Name: {#COMPN_TOOLBOX_SKELETON}; Description: {cm:DescriptionTlbxSkeleton}; Types: full custom;
+;
+#ifndef SCILAB_WITHOUT_JRE
+Name: {#COMPN_JRE}; Description: {cm:DescriptionJVM} (1.6.0_18); Types: default full custom; Flags: fixed;
+#endif
 ;
 ;-------------------------------------------------------------------------------
 ;

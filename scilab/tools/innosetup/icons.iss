@@ -13,9 +13,9 @@
 ;
 ;-------------------------------------------------------------------------------
 
-Name: {commondesktop}\{#ScilabName}; Filename: {app}\bin\wscilex.exe;WorkingDir: "{app}";Comment: "Start Scilab - The open source platform for numerical computation"; MinVersion: 4,4; Tasks: desktopicon
-Name: {group}\{#ScilabName}; Filename: {app}\bin\wscilex.exe;WorkingDir: "{app}"
-
+Name: {commondesktop}\{#ScilabName}; Filename: {code:getExecNameForDesktop};WorkingDir: "{app}";Comment: "Start Scilab - The open source platform for numerical computation"; MinVersion: 4,4; Tasks: desktopicon
+;
+Name: {group}\{#ScilabName}; Filename: {code:getExecNameForDesktop};WorkingDir: "{app}"
 Name: {group}\{cm:ConsoleIconName}; Filename: {app}\bin\scilex.exe;WorkingDir: "{app}"
 
 #ifdef WITH_CHM
@@ -24,11 +24,7 @@ Name: {group}\{cm:DescriptionHelpScilabCHM}; Filename:"{app}\{cm:ScilabCHM}";
 
 Name: "{group}\{cm:WebIconScilab}"; Filename: "{app}\scilabwebsite.url";
 
-;Name: {group}\{cm:ReadMeIcon}; Filename: {app}\README_Windows.txt;
-
 Name: {group}\{cm:UnInstallIcon}; Filename: {uninstallexe};
-
-; Cree un raccourci sur la "Quick Launch Bar"
-Name: {commonappdata}\Microsoft\Internet Explorer\Quick Launch\Scilab; Filename: {app}\bin\wscilex.exe; Tasks: Quicklaunch
+;
 ;-------------------------------------------------------------------------------
 ;

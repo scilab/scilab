@@ -65,12 +65,12 @@ BEGIN
     BEGIN
         BLOCK "040c04b0"
         BEGIN
-            VALUE "FileDescription", "nohistory_browser module"
+            VALUE "FileDescription", "nojvm module"
             VALUE "FileVersion", "5, 3, 0, 0"
-            VALUE "InternalName", "nohistory_browser module"
+            VALUE "InternalName", "nojvm module"
             VALUE "LegalCopyright", "Copyright (C) 2010"
-            VALUE "OriginalFilename", "nohistory_browser.dll"
-            VALUE "ProductName", " nohistory_browser"
+            VALUE "OriginalFilename", "nolibjvm.dll"
+            VALUE "ProductName", " nojvm"
             VALUE "ProductVersion", "5, 3, 0, 0"
         END
     END

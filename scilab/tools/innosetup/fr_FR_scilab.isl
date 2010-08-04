@@ -70,7 +70,7 @@ fr_FR.DescriptionTclTK =TCL/TK pour Scilab
 fr_FR.DescriptionScipad =Scipad Editeur pour Scilab
 fr_FR.DescriptionSpreadsheet =Boite à outils Feuille de Calculs
 fr_FR.DescriptionPvm =Boite à outils PVM Calcul Parallele
-fr_FR.DescriptionJVM =Java Runtime 1.6.0_18
+fr_FR.DescriptionJVM =Java Runtime
 fr_FR.DescriptionAtlas =Librairie Atlas 3.8.0 optimisée selon le CPU
 fr_FR.DescriptionFftwModule = Interface avec la librairie FFTW3 pour Scilab
 fr_FR.DescriptionFftwMKLDownload = Telecharger la librairie FFTW3 optimisée par Intel Math Kernel Library
@@ -86,6 +86,7 @@ fr_FR.DescriptionSciNotes = SciNotes : Editeur de Texte pour Scilab
 fr_FR.DescriptionXcos = XCos 1.1
 fr_FR.DescriptionParallel = Calculs Parallele avec Scilab
 fr_FR.DescriptionModulesManager = Outils pour créer des modules externes
+fr_FR.DescriptionModuleJVM = JVM Module
 ;
 fr_FR.ConsoleIconName =Console Scilab
 ;
@@ -120,6 +121,7 @@ fr_FR.DescriptionAssociateScicos =Associer les fichiers *.xcos *.cos *.cosf avec
 fr_FR.DescriptionDefaultInstall =Installation (Par défaut)
 fr_FR.DescriptionFullInstall =Installation Complete
 fr_FR.DescriptionCustomInstall =Installation avancée
+fr_FR.DescriptionCLIInstall =Ligne de commandes uniquement (sans interface graphique)
 ;
 fr_FR.DescriptionCPUOptimization =Optimisation CPU pour Scilab
 fr_FR.DescriptionATLASLibrary =Librairie Atlas pourScilab

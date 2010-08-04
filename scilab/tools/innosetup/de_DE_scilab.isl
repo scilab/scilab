@@ -85,6 +85,7 @@ de_DE.DescriptionSciNotes = SciNotes: Editor for Scilab
 de_DE.DescriptionXcos = XCos 1.1
 de_DE.DescriptionParallel = Parallel Computing with Scilab
 de_DE.DescriptionModulesManager = Tools for management of extern modules 
+de_DE.DescriptionModuleJVM = JVM Module
 ;
 de_DE.ConsoleIconName =Scilab Console
 ;
@@ -119,6 +120,7 @@ de_DE.DescriptionAssociateScicos =Associate *.xcos *.cos *.cosf files with scila
 de_DE.DescriptionDefaultInstall =Installation (Default)
 de_DE.DescriptionFullInstall =Full installation
 de_DE.DescriptionCustomInstall =Custom installation
+de_DE.DescriptionCLIInstall =Command Line Minimal Installation (no gui)
 ;
 de_DE.DescriptionCPUOptimization =CPU Optimization for Scilab
 de_DE.DescriptionATLASLibrary =Atlas Library for Scilab

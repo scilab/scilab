@@ -31,6 +31,12 @@ Compilation:
 
 * bug 7668 fixed -  Scilab 5.3.0-beta-2 did not build with Visual Studio 2008 Express.
 
+Windows Installer:
+==================
+
+* Add "Command Line - Minimal Installation (no gui)" Configuration.
+  Interpreter in command line without the graphic, java or Tcl/Tk capabilities.
+  Installation requires only 60 Mo on disk.
 
 Bug Fixes:
 ==========
@@ -73,7 +79,6 @@ Bug Fixes:
 
 * bug 7693 fixed - With a corrupted palettes.xml file, the error message is not
                    coherent with the recovering action.
-
 
          Changes between version 5.3.0-beta-1 and 5.3.0-beta-2 of Scilab
          ===============================================================

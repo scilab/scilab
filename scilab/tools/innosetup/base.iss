@@ -43,9 +43,6 @@ Source: ACKNOWLEDGEMENTS; DestDir: {app}; Components: {#COMPN_SCILAB}
 ; contrib directory
 Source: contrib\loader.sce; DestDir: {app}\contrib; Components: {#COMPN_SCILAB}
 ;
-; modules directory
-;Source: etc\modules.xml; DestDir: {app}\etc; Flags: onlyifdestfileexists; Components: {#COMPN_SCILAB}
-;
 ; locale directory
 Source: locale\en_US\LC_MESSAGES\scilab.mo ; DestDir: {app}\locale\en_US\LC_MESSAGES; Components: {#COMPN_SCILAB}
 Source: locale\fr_FR\LC_MESSAGES\scilab.mo ; DestDir: {app}\locale\fr_FR\LC_MESSAGES; Components: {#COMPN_SCILAB}
@@ -63,12 +60,9 @@ Source: locale\pl_PL\LC_MESSAGES\scilab.mo ; DestDir: {app}\locale\pl_PL\LC_MESS
 ;
 ; libs directory
 #include BinariesSourcePath + "\libs\libs.iss"
-;
 ; java directory
-; by default
-;Source: java\JRE\*.*; DestDir: {app}\java\JRE; Flags: recursesubdirs; Components: {#COMPN_JRE}
 #ifndef SCILAB_WITHOUT_JRE
-Source: java\JRE\*.*; DestDir: {app}\java\JRE; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: java\JRE\*.*; DestDir: {app}\java\JRE; Flags: recursesubdirs; Components: {#COMPN_JRE}
 #endif
 ;
 ;-------------------------------------------------------------------------------
