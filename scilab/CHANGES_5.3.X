@@ -65,6 +65,10 @@ Bug Fixes:
 * bug 7644 fixed - The last user palette could not be removed from the palette
                    tree.
 
+* bug 7693 fixed - With a corrupted palettes.xml file, the error message is not 
+                   coherent with the recovering action.
+
+
          Changes between version 5.3.0-beta-1 and 5.3.0-beta-2 of Scilab
          ===============================================================
 
