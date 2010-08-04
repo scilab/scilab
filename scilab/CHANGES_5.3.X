@@ -79,6 +79,9 @@ Bug Fixes:
 
 * bug 7651 fixed - scicos_math.h was missing in binary package.
 
+* bug 7685 fixed - Demo Graphics => More surfaces => Sphere did not appear
+                   as spherical.
+
 * bug 7693 fixed - With a corrupted palettes.xml file, the error message is not
                    coherent with the recovering action.
 
