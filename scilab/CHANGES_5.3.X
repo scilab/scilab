@@ -46,6 +46,8 @@ Bug Fixes:
 * bug 7615 fixed - When opening a SuperBlock, a non-blocking exception could be
                    thrown.
 
+* bug 7616 fixed - fullfile did not work with only one input argument.
+
 * bug 7617 fixed - Editvar did not have any menu bar.
 
 * bug 7622 fixed - When opening an Xcos diagram done on 5.2.2, an exception
