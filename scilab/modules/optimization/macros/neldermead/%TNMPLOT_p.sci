@@ -1,6 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2009 - INRIA - Michael Baudin
-// Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
+// Copyright (C) 2010 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -9,12 +8,15 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 //
-// nmplot_display --
-//   Display a Nelder-Mead engine
-// Arguments
+// %TNMPLOT_p --
+//   Prints the string containing the nelder mead plot component.
 //
-function this = nmplot_display ( this )
-  warnobsolete("disp", "nmplot_display")
-  disp(this)
+function %TNMPLOT_p ( this )
+  str = string ( this )
+  srows = size(str,"r")
+  for i = 1 : srows
+    mprintf("%s\n",str(i))
+  end
 endfunction
+
 

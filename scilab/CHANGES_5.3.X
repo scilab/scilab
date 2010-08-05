@@ -41,6 +41,9 @@ Windows Installer:
 Bug Fixes:
 ==========
 
+* bug 7452 fixed - demos nmplot from Optimization and Simulation -> fminsearch
+                   -> nmplot* did not work.
+
 * bug 7453 fixed - newfun() was broken after clearfun().
 
 * bug 7498 fixed - SPLIT_f were not always deleted when one of its connection
@@ -84,7 +87,7 @@ Bug Fixes:
 
 * bug 7685 fixed - Demo Graphics => More surfaces => Sphere did not appear
                    as spherical.
-                   
+
 * bug 7688 fixed - set("color_map", hsvcolormap(128)) produced
                    a EXCEPTION_STACK_OVERFLOW.
 
