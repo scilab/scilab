@@ -51,6 +51,8 @@ Bug Fixes:
 
 * bug 7519 fixed - Help page of getcallbackobject() did not describe input argument.
 
+* bug 7601 fixed - call_scilab C functions did not check if engine was started.
+
 * bug 7611 fixed - The cross to close a subwindow and the little arrow to undock
                    it was not visible even if the subwindow was docked.
 
