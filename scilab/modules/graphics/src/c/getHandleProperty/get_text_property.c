@@ -35,45 +35,24 @@
 /*------------------------------------------------------------------------*/
 int get_text_property( sciPointObj * pobj )
 {
-  int nbRow = 0;
-  int nbCol = 0;
+    int* dimensions;
+    char** textMatrix;
 
-  char* text;
-  char** textMatrix;
+    dimensions = (int*) getGraphicObjectProperty(pobj->UID, __GO_TEXT_ARRAY_DIMENSIONS__, jni_int_vector);
 
-  /* Deactivated for now, as the text object stores a single string */
-#if 0
-  /* get the size of the text matrix */
-  sciGetTextSize( pobj , &nbRow, &nbCol );
-#endif
+    if (dimensions == NULL) {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"text");
+        return -1;
+    }
 
-  /* Both values set to 1 since only one string is stored */
-  nbRow = 1;
-  nbCol = 1;
+    textMatrix = (char**) getGraphicObjectProperty(pobj->UID, __GO_TEXT_STRINGS__, jni_string_vector);
 
-#if 0
-  if ( nbRow < 0 || nbCol < 0 )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"text");
-    return -1;
-  }
-#endif
+    if (textMatrix == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"text");
+        return -1;
+    }
 
-  text = (char*) getGraphicObjectProperty(pobj->UID, __GO_TEXT_STRING__, jni_string);
-
-  if (text == NULL)
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"text");
-    return -1;
-  }
-
-  textMatrix = &text;
-
-  return sciReturnStringMatrix( textMatrix, nbRow, nbCol);
-
-/* Deactivated for now since the text data is implemented as a single string. To be corrected. */
-#if 0
-  return sciReturnStringMatrix( getStrMatData( sciGetText( pobj ) ), nbRow, nbCol );
-#endif
+    return sciReturnStringMatrix(textMatrix, dimensions[0], dimensions[1]);
 }
 /*------------------------------------------------------------------------*/

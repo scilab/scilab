@@ -210,7 +210,8 @@
 #define __GO_AUTO_DIMENSIONING__           "AutoDimensioning"
 
 #define __GO_FORMATTED_TEXT__              "FormattedText"
-#define __GO_TEXT_STRING__                 "TextString"
+#define __GO_TEXT_ARRAY_DIMENSIONS__       "TextArrayDimensions"
+#define __GO_TEXT_STRINGS__                "TextStrings"
 
 #define __GO_BASE__                        "Base"
 #define __GO_DIRECTION__                   "Direction"

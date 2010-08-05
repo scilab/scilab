@@ -1049,49 +1049,34 @@ int sciSetStrings( sciPointObj * pObjDest, const StringMatrix * pStrings )
  */
 int sciSetText (sciPointObj * pobj, char ** text, int nbRow, int nbCol)
 {
+    int dimensions[2];
+    BOOL status;
 
-/* Check if we should load LaTex / MathML Java libraries */
-	loadTextRenderingAPI(text, nbRow, nbCol);
+    /* Check if we should load LaTex / MathML Java libraries */
+    loadTextRenderingAPI(text, nbRow, nbCol);
 
-	switch (sciGetEntityType (pobj))
+    dimensions[0] = nbRow;
+    dimensions[1] = nbCol;
+
+    status = setGraphicObjectProperty(pobj->UID, __GO_TEXT_ARRAY_DIMENSIONS__, dimensions, jni_int_vector, 2);
+
+    if (status != TRUE)
     {
-    case SCI_TEXT:
-      deleteMatrix( pTEXT_FEATURE (pobj)->pStrings ) ;
-      pTEXT_FEATURE (pobj)->pStrings = newFullStringMatrix( text, nbRow, nbCol ) ;
-      if ( pTEXT_FEATURE (pobj)->pStrings == NULL )
-      {
-        return -1 ;
-      }
-      break;
-    case SCI_LEGEND:
-      deleteMatrix( pLEGEND_FEATURE (pobj)->text.pStrings ) ;
-      pLEGEND_FEATURE (pobj)->text.pStrings = newFullStringMatrix( text, nbRow, nbCol ) ;
-      if ( pLEGEND_FEATURE (pobj)->text.pStrings == NULL )
-      {
-        return -1 ;
-      }
-      break;
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-      return sciSetText( pLABEL_FEATURE(pobj)->text, text, nbRow, nbCol ) ;
-      break;
-    case SCI_UIMENU:
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
-    case SCI_ARC:
-    case SCI_SEGS:
-    case SCI_FEC:
-    case SCI_GRAYPLOT:
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_AXES:
-    case SCI_AGREG:
-    default:
-      printSetGetErrorMessage("text");
-      return -1;
-      break;
+        printSetGetErrorMessage("text");
+        return -1;
     }
-  return 0;
+
+    status = setGraphicObjectProperty(pobj->UID, __GO_TEXT_STRINGS__, text, jni_string_vector, dimensions[0]*dimensions[1]);
+
+    if (status == TRUE)
+    {
+        return 0;
+    }
+    else
+    {
+        printSetGetErrorMessage("text");
+        return -1;
+    }
 }
 
 

@@ -27,43 +27,15 @@
 #include "Scierror.h"
 #include "localization.h"
 
-#include "setGraphicObjectProperty.h"
-#include "graphicObjectProperties.h"
-
 /*------------------------------------------------------------------------*/
 int set_text_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    BOOL status;
-    char* text;
-
     if ( !isParameterStringMatrix( valueType ) )
     {
         Scierror(999, _("Wrong type for '%s' property: String matrix expected.\n"), "text");
-        return SET_PROPERTY_ERROR ;
-    }
-
-    /*
-     * Only one string is used since the MVC framework stores text data as
-     * a single string (for now). To be corrected in order to take into account
-     * the text matrix's dimensions.
-     */
-    text = *getStringMatrixFromStack(stackPointer);
-
-    status = setGraphicObjectProperty(pobj->UID, __GO_TEXT_STRING__, text, jni_string, 1);
-
-    if (status == TRUE)
-    {
-        return SET_PROPERTY_SUCCEED;
-    }
-    else
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"text");
         return SET_PROPERTY_ERROR;
     }
 
-  /* To be corrected when the text matrix is implemented */
-#if 0
-  return sciSetText( pobj, getStringMatrixFromStack( stackPointer ), nbRow, nbCol );
-#endif
+    return sciSetText( pobj, getStringMatrixFromStack( stackPointer ), nbRow, nbCol );
 }
 /*------------------------------------------------------------------------*/

@@ -24,15 +24,28 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
  */
 public class TextObject extends ContouredObject {
 	/** TextObject properties names */
-	private enum TextObjectProperty { TEXT };
+	private enum TextObjectProperty { TEXT, TEXT_ARRAY_DIMENSIONS };
 
-	/** Formatted text object */
-	private FormattedText text;
+	/**
+	 * Formatted text objects array, row-major order.
+	 * For now, elements are supposed to have identical font properties values,
+	 * hence the current associated get/set methods implementation.
+	 */
+	private FormattedText[] text;
+
+	/** Text array dimensions (number of rows, number of columns) */
+	private int[] dimensions;
 
 	/** Constructor */
 	public TextObject() {
 		super();
-		text = new FormattedText();
+
+		dimensions = new int[2];
+		dimensions[0] = 1;
+		dimensions[1] = 1;
+
+		text = new FormattedText[1];
+		text[0] = new FormattedText();
 	}
 
 	/**
@@ -43,10 +56,10 @@ public class TextObject extends ContouredObject {
 	public Object getPropertyFromName(String propertyName) {
 		if (propertyName.equals(__GO_FORMATTED_TEXT__)) {
 			return TextObjectProperty.TEXT;
-		} else if (propertyName.equals(__GO_TEXT_STRING__)) { // To be modified
+		} else if (propertyName.equals(__GO_TEXT_ARRAY_DIMENSIONS__)) {
+			return TextObjectProperty.TEXT_ARRAY_DIMENSIONS;
+		} else if (propertyName.equals(__GO_TEXT_STRINGS__)) {
 			return FormattedText.FormattedTextProperty.TEXT;
-		} else if (propertyName.equals(__GO_FONT__)) {
-			return FormattedText.FormattedTextProperty.FONT;
 		} else if (propertyName.equals(__GO_FONT_STYLE__)) {
 			return Font.FontProperty.STYLE;
 		} else if (propertyName.equals(__GO_FONT_SIZE__)) {
@@ -68,10 +81,10 @@ public class TextObject extends ContouredObject {
 	public Object getProperty(Object property) {
 		if (property == TextObjectProperty.TEXT) {
 			return getText();
+		} else if (property == TextObjectProperty.TEXT_ARRAY_DIMENSIONS) {
+			return getTextArrayDimensions();
 		} else if (property == FormattedText.FormattedTextProperty.TEXT) {
-			return getTextString();
-		} else if (property == FormattedText.FormattedTextProperty.FONT) {
-			return getFont();
+			return getTextStrings();
 		} else if (property == Font.FontProperty.STYLE) {
 			return getFontStyle();
 		} else if (property == Font.FontProperty.SIZE) {
@@ -93,11 +106,11 @@ public class TextObject extends ContouredObject {
 	 */
 	public boolean setProperty(Object property, Object value) {
 		if (property == TextObjectProperty.TEXT) {
-			setText((FormattedText) value);
+			setText((FormattedText[]) value);
+		} else if (property == TextObjectProperty.TEXT_ARRAY_DIMENSIONS) {
+			setTextArrayDimensions((Integer[]) value);
 		} else if (property == FormattedText.FormattedTextProperty.TEXT) {
-			setTextString((String) value);
-		} else if (property == FormattedText.FormattedTextProperty.FONT) {
-			setFont((Font) value);
+			setTextStrings((String[]) value);
 		} else if (property == Font.FontProperty.STYLE) {
 			setFontStyle((Integer) value);
 		} else if (property == Font.FontProperty.SIZE) {
@@ -114,101 +127,154 @@ public class TextObject extends ContouredObject {
 	}
 
 	/**
+	 * @return the text array dimensions
+	 */
+	public Integer[] getTextArrayDimensions() {
+		Integer retDimensions[] = new Integer[2];
+		retDimensions[0] = dimensions[0];
+		retDimensions[1] = dimensions[1];
+
+		return retDimensions;
+	}
+
+	/**
+	 * @param dimensions the text array dimensions to set
+	 */
+	public void setTextArrayDimensions(Integer[] dimensions) {
+		if (dimensions[0]*dimensions[1] != this.dimensions[0]*this.dimensions[1]) {
+			text = new FormattedText[dimensions[0]*dimensions[1]];
+
+			for (int i = 0; i < dimensions[0]*dimensions[1]; i++) {
+				text[i] = new FormattedText();
+			}
+		}
+
+		this.dimensions[0] = dimensions[0];
+		this.dimensions[1] = dimensions[1];
+	}
+
+	/**
 	 * @return the text
 	 */
-	public FormattedText getText() {
-		return text;
+	public FormattedText[] getText() {
+		FormattedText[] retText = new FormattedText[dimensions[0]*dimensions[1]];
+
+		for (int i = 0; i < dimensions[0]*dimensions[1]; i++) {
+			retText[i] = new FormattedText(text[i]);
+		}
+
+		return retText;
 	}
 
 	/**
-	 * @param text the text to set
+	 * @param textArray the textArray to set
 	 */
-	public void setText(FormattedText text) {
-		this.text = text;
+	public void setText(FormattedText[] textArray) {
+		for (int i = 0; i < dimensions[0]*dimensions[1]; i++) {
+			text[i] = new FormattedText(textArray[i]);
+		}
 	}
 
 	/**
-	 * @return the text string
+	 * @return the text strings
 	 */
-	public String getTextString() {
-		return text.getText();
+	public String[] getTextStrings() {
+		String[] textStrings = new String[dimensions[0]*dimensions[1]];
+
+		for (int i = 0; i < dimensions[0]*dimensions[1]; i++) {
+			textStrings[i] = new String(text[i].getText());
+		}
+
+		return textStrings;
 	}
 
 	/**
-	 * @param text the text string to set
+	 * @param textStrings the text strings array to set
 	 */
-	public void setTextString(String text) {
-		this.text.setText(text);
+	public void setTextStrings(String[] textStrings) {
+		for (int i = 0; i < dimensions[0]*dimensions[1]; i++) {
+			text[i].setText(textStrings[i]);
+		}
 	}
 
 	/**
 	 * @return the font
 	 */
 	public Font getFont() {
-		return text.getFont();
+		return text[0].getFont();
 	}
 
 	/**
 	 * @param font the font to set
 	 */
 	public void setFont(Font font) {
-		text.setFont(font);
+		for (int i = 0; i < dimensions[0]*dimensions[1]; i++) {
+			text[i].setFont(font);
+		}
 	}
 
 	/**
 	 * @return the font style
 	 */
 	public Integer getFontStyle() {
-		return text.getFont().getStyle();
+		return text[0].getFont().getStyle();
 	}
 
 	/**
 	 * @param style the font style to set
 	 */
 	public void setFontStyle(Integer style) {
-		text.getFont().setStyle(style);
+		for (int i = 0; i < dimensions[0]*dimensions[1]; i++) {
+			text[i].getFont().setStyle(style);
+		}
 	}
 
 	/**
 	 * @return the font color
 	 */
 	public Integer getFontColor() {
-		return text.getFont().getColor();
+		return text[0].getFont().getColor();
 	}
 
 	/**
 	 * @param color the font color to set 
 	 */
 	public void setFontColor(Integer color) {
-		text.getFont().setColor(color);
+		for (int i = 0; i < dimensions[0]*dimensions[1]; i++) {
+			text[i].getFont().setColor(color);
+		}
 	}
 
 	/**
 	 * @return the font size
 	 */
 	public Double getFontSize() {
-		return text.getFont().getSize();
+		return text[0].getFont().getSize();
 	}
 
 	/**
 	 * @param size the font size to set
 	 */
 	public void setFontSize(Double size) {
-		text.getFont().setSize(size);
+		for (int i = 0; i < dimensions[0]*dimensions[1]; i++) {
+			text[i].getFont().setSize(size);
+		}
 	}
 
 	/**
 	 * @return the font fractional
 	 */
 	public Boolean getFontFractional() {
-		return text.getFont().getFractional();
+		return text[0].getFont().getFractional();
 	}
 
 	/**
 	 * @param fractional the font fractional to set
 	 */
 	public void setFontFractional(Boolean fractional) {
-		text.getFont().setFractional(fractional);
+		for (int i = 0; i < dimensions[0]*dimensions[1]; i++) {
+			text[i].getFont().setFractional(fractional);
+		}
 	}
 
 }

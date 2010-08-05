@@ -211,7 +211,8 @@ public static final String __GO_TEXT_BOX_MODE__ =          "TextBoxMode";
 public static final String __GO_AUTO_DIMENSIONING__ =      "AutoDimensioning";
 
 public static final String __GO_FORMATTED_TEXT__ =         "FormattedText";
-public static final String __GO_TEXT_STRING__ =            "TextString";
+public static final String __GO_TEXT_ARRAY_DIMENSIONS__ =  "TextArrayDimensions";
+public static final String __GO_TEXT_STRINGS__ =           "TextStrings";
 
 public static final String __GO_BASE__ =                   "Base";
 public static final String __GO_DIRECTION__ =              "Direction";
