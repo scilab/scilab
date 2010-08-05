@@ -134,8 +134,10 @@ public class BasicBlockCodec extends XcosObjectCodec {
 
 	    // Re associate the diagram container
 	    if (obj instanceof SuperBlock) {
-	    	final SuperBlock block = (SuperBlock) obj; 
-	    	block.getChild().setContainer(block);
+	    	final SuperBlock block = (SuperBlock) obj;
+	    	if (block.getChild() != null) {
+	    		block.getChild().setContainer(block);
+	    	}
 	    }
 	    
 	    // update style to replace direction by rotation and add the 
