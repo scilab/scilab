@@ -28,6 +28,7 @@ import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
+import org.scilab.modules.xcos.utils.BlockPositioning;
 
 import com.mxgraph.model.mxCell;
 
@@ -85,24 +86,30 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 		
 		OutputPortElement outElement = new OutputPortElement(base);
 		UnmodifiableIterator<SimulinkOutPort> portOutIter = base.getOutPorts().iterator();
+		OutputPort[] outPortTempTable= new OutputPort[base.getOutPorts().size() + 1];
 		while(portOutIter.hasNext()) {
 			OutputPort portAdd = outElement.decode(portOutIter.next(), null);
-			if (LOG.isTraceEnabled()) {
-				LOG.trace(portAdd.getId().toString());
-			}
-			block.addPort(portAdd);
+			outPortTempTable[portAdd.getOrdering()] = portAdd;
+		}
+		for(int i = 1 ; i < outPortTempTable.length ; i++){
+			block.addPort(outPortTempTable[i]);
 		}
 		
 		InputPortElement inElement = new InputPortElement(base);
 		UnmodifiableIterator<SimulinkInPort> portInIter = base.getInPorts().iterator();
+		InputPort[] inPortTempTable= new InputPort[base.getInPorts().size() + 1];
 		while(portInIter.hasNext()) {
 			InputPort portAdd = inElement.decode(portInIter.next(), null);
-			if (LOG.isTraceEnabled()) {
-				LOG.trace(portAdd.getId().toString());
+			if (LOG.isDebugEnabled()) {
+				LOG.debug(inPortTempTable.length);
+				LOG.debug(portAdd.getOrdering());
+				LOG.debug(portAdd.getId().toString());
 			}
-			block.addPort(portAdd);
+			inPortTempTable[portAdd.getOrdering()] = portAdd;
 		}
-
+		for(int i = 1 ; i < inPortTempTable.length ; i++){
+			block.addPort(inPortTempTable[i]);
+		}
 		/*
 		 * Add control and command ports
 		 */
@@ -122,7 +129,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 		 * decode graphics elements of BasicBlock
 		 */
 		graphicElement.decode(base, block);
-
+		
 		try {
 			modelElement.decode(base, block);
 		} catch(SimulinkFormatException se) {

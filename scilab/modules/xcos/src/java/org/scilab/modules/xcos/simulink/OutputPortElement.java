@@ -59,6 +59,7 @@ public class OutputPortElement {
 		OutputPort ret;
 		ret = new ExplicitOutputPort();
 		ret.setId("Output" + simulinkOutPort.toString());
+		ret.setOrdering(Integer.parseInt(simulinkOutPort.toString().split("@")[0].replaceAll("\\D", "")));
 		if (LOG.isTraceEnabled()) {
 			LOG.trace("OutPort" + ret);	
 			LOG.trace("OutPort" + ret.getId());

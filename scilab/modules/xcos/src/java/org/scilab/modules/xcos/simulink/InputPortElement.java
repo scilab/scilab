@@ -71,9 +71,9 @@ public class InputPortElement {
 		InputPort ret;
 		ret = new ExplicitInputPort();
 		ret.setId("Input"+simulinkInPort.toString());
-		if (LOG.isTraceEnabled()) {
-			LOG.trace("InPort" + ret);	
-			LOG.trace("InPort" + ret.getId());
+		ret.setOrdering(Integer.parseInt(simulinkInPort.toString().split("@")[0].replaceAll("\\D", "")));
+		if (LOG.isDebugEnabled()) {
+			LOG.debug("InPort" + simulinkInPort.toString() + " " + simulinkInPort.toString().split("@")[0].replaceAll("\\D", ""));	
 		}
 		return ret;
 	}
