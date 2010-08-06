@@ -12,8 +12,13 @@
 */
 /*--------------------------------------------------------------------------*/
 #include "stripblanks.hxx"
-#include "os_wcsdup.h"
 #include "MALLOC.h"
+
+extern "C"
+{
+#include "os_wcsdup.h"
+}
+
 /*--------------------------------------------------------------------------*/
 #define BLANK_CHARACTER L' '
 #define TAB_CHARACTER L'\t'

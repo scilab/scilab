@@ -130,7 +130,7 @@ am__objects_2 = libscistring_la-code2str.lo libscistring_la-convstr.lo \
 	libscistring_la-stringsstrrev.lo \
 	libscistring_la-stringsCompare.lo \
 	libscistring_la-isalphanum.lo libscistring_la-StringConvert.lo \
-	libscistring_la-scistrtostr.lo
+	libscistring_la-os_wcsdup.lo libscistring_la-scistrtostr.lo
 am__objects_3 =
 am__objects_4 = libscistring_la-gw_string.lo \
 	libscistring_la-sci_ascii.lo libscistring_la-sci_code2str.lo \
@@ -467,6 +467,7 @@ src/c/stringsstrrev.c \
 src/c/stringsCompare.c \
 src/c/isalphanum.c \
 src/c/StringConvert.c \
+src/c/os_wcsdup.c \
 src/c/scistrtostr.c
 
 STRING_FORTRAN_SOURCES = 
@@ -708,6 +709,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-isdigit.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-isletter.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-men_Sutils.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-os_wcsdup.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-partfunction.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-pcre_error.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-pcre_private.Plo@am__quote@
@@ -920,6 +922,13 @@ libscistring_la-StringConvert.lo: src/c/StringConvert.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/StringConvert.c' object='libscistring_la-StringConvert.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-StringConvert.lo `test -f 'src/c/StringConvert.c' || echo '$(srcdir)/'`src/c/StringConvert.c
+
+libscistring_la-os_wcsdup.lo: src/c/os_wcsdup.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-os_wcsdup.lo -MD -MP -MF $(DEPDIR)/libscistring_la-os_wcsdup.Tpo -c -o libscistring_la-os_wcsdup.lo `test -f 'src/c/os_wcsdup.c' || echo '$(srcdir)/'`src/c/os_wcsdup.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscistring_la-os_wcsdup.Tpo $(DEPDIR)/libscistring_la-os_wcsdup.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/os_wcsdup.c' object='libscistring_la-os_wcsdup.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-os_wcsdup.lo `test -f 'src/c/os_wcsdup.c' || echo '$(srcdir)/'`src/c/os_wcsdup.c
 
 libscistring_la-scistrtostr.lo: src/c/scistrtostr.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-scistrtostr.lo -MD -MP -MF $(DEPDIR)/libscistring_la-scistrtostr.Tpo -c -o libscistring_la-scistrtostr.lo `test -f 'src/c/scistrtostr.c' || echo '$(srcdir)/'`src/c/scistrtostr.c
