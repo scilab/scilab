@@ -38,10 +38,12 @@ int set_visible_property( sciPointObj * pobj, size_t stackPointer, int valueType
 	int b = (int)FALSE;
 	BOOL status;
 
+#if 0
 	if ( (sciGetEntityType(pobj) == SCI_UIMENU) || (sciGetEntityType(pobj) == SCI_UICONTROL) )
 	{
 		return SetUiobjectVisible(pobj, stackPointer, valueType, nbRow, nbCol);
 	}
+#endif
 
 	b =  tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "visible");
 	if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;

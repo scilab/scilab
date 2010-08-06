@@ -27,6 +27,7 @@
 #include "CloneObjects.h"
 
 #include "setGraphicObjectProperty.h"
+#include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /*----------------------------------------------------------------------------------*/
@@ -107,10 +108,35 @@ long sciGetCurrentHandle( void )
 /*-----------------------------------------------------------------------------*/
 sciPointObj * sciGetCurrentSubWin( void )
 {
-  sciPointObj * currentFigure = sciGetCurrentFigure() ;
+  sciPointObj * currentFigure = sciGetCurrentFigure();
   sciPointObj * currentSubwin = NULL;
+  int* nbChildren;
+  char** children;
+
   if ( currentFigure == NULL ) { return NULL ; }
+
+  nbChildren = (int*) getGraphicObjectProperty(currentFigure->UID, __GO_CHILDREN_COUNT__, jni_int);
+
+  if (*nbChildren == 0)
+  {
+    return NULL;
+  }
+
+  /*
+   * At the present moment, a figure is considered to have a unique Axes child object.
+   * To be re-implemented, taking into account the last selected child object.
+   */
+  children = (char**) getGraphicObjectProperty(currentFigure->UID, __GO_CHILDREN__, jni_string_vector);
+
+  currentSubwin = MALLOC(sizeof(sciPointObj));
+
+  currentSubwin->UID = children[0];
+  sciAddNewHandle(currentSubwin);
+
+#if 0
   currentSubwin = sciGetFirstTypedSelectedSon( currentFigure, SCI_SUBWIN ) ;
+#endif
+
   return currentSubwin;
 }
 /*-----------------------------------------------------------------------------*/

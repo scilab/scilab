@@ -14,6 +14,7 @@ package org.scilab.modules.graphic_objects.graphicObject;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -56,7 +57,7 @@ public abstract class GraphicObject implements Cloneable {
 	public GraphicObject() {
 		identifier = null;
 		parent = "";
-		children = null;
+		children = new ArrayList<String>(0);
 		visible = false;
 		userData = null;
 		valid = true;
@@ -131,20 +132,20 @@ public abstract class GraphicObject implements Cloneable {
 		} else if (propertyName.equals(__GO_CHILDREN__)) {
 			return GraphicObjectPropertyType.CHILDREN;
 		} else if (propertyName.equals(__GO_CHILDREN_COUNT__)) {
-            return GraphicObjectPropertyType.CHILDREN_COUNT;
-        } else if (propertyName.equals(__GO_VISIBLE__)) {
+			return GraphicObjectPropertyType.CHILDREN_COUNT;
+		} else if (propertyName.equals(__GO_VISIBLE__)) {
 			return GraphicObjectPropertyType.VISIBLE;
 		} else if (propertyName.equals(__GO_USER_DATA__)) {
 			return GraphicObjectPropertyType.USERDATA;
 		} else if (propertyName.equals(__GO_USER_DATA_SIZE__)) {
 			return GraphicObjectPropertyType.USERDATASIZE;
 		} else if (propertyName.equals(__GO_REFERENCED__)) {
-            return GraphicObjectPropertyType.REFERENCED;
-        } else if (propertyName.equals(__GO_VALID__)) {
-            return GraphicObjectPropertyType.VALID;
-        } else if (propertyName.equals(__GO_TYPE__)) {
-            return GraphicObjectPropertyType.TYPE;
-        }  else {
+			return GraphicObjectPropertyType.REFERENCED;
+		} else if (propertyName.equals(__GO_VALID__)) {
+			return GraphicObjectPropertyType.VALID;
+		} else if (propertyName.equals(__GO_TYPE__)) {
+			return GraphicObjectPropertyType.TYPE;
+		}  else {
 			return GraphicObjectPropertyType.UNKNOWNPROPERTY;
 		}
 	}
@@ -160,8 +161,8 @@ public abstract class GraphicObject implements Cloneable {
 		} else if (property == GraphicObjectPropertyType.CHILDREN) {
 			return getChildren();
 		} else if (property == GraphicObjectPropertyType.CHILDREN_COUNT) {
-            return getChildren().length;
-        } else if (property == GraphicObjectPropertyType.VISIBLE) {
+			return getChildren().length;
+		} else if (property == GraphicObjectPropertyType.VISIBLE) {
 			return getVisible();
 		} else if (property == GraphicObjectPropertyType.USERDATA) {
 			return getUserData();
