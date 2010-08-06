@@ -51,7 +51,7 @@
 
     <styles>
 
-      <FontName default="Lucida Sans Typewriter Regular" useCache="true" value="Lucida Sans Typewriter Regular"/>
+      <FontName default="Lucida Sans Typewriter" useCache="true" value="Lucida Sans Typewriter"/>
       <FontSize default="14" useCache="true" value="14"/>
 
       <MainWindowPosition useCache="true" x="150" y="50"/>
