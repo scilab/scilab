@@ -203,10 +203,12 @@ public final class AfficheBlock extends BasicBlock {
 	 * @see java.lang.Object#finalize()
 	 */
 	@Override
+	// CSOFF: IllegalThrows
 	protected void finalize() throws Throwable {
 		INSTANCES.remove(hashCode());
 		super.finalize();
 	}
+	// CSON: IllegalThrows
 	
 	/**
 	 * @return a clone of the block

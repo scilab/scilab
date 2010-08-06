@@ -47,6 +47,7 @@ public final class PaletteBlockMouseListener implements MouseListener {
 	 * Load and perform display update on mouse click
 	 * @param e The associated event 
 	 */
+	@Override
 	public void mouseClicked(MouseEvent e) {
 		if ((e.getClickCount() == 1 && SwingUtilities.isRightMouseButton(e))
 				|| e.isPopupTrigger()
@@ -148,18 +149,21 @@ public final class PaletteBlockMouseListener implements MouseListener {
 	 * Not used
 	 * @param e Not used
 	 */
+	@Override
 	public void mouseEntered(MouseEvent e) { }
 
 	/**
 	 * Not used
 	 * @param e Not used
 	 */
+	@Override
 	public void mouseExited(MouseEvent e) { }
 
 	/**
 	 * Select on mouse press
 	 * @param e The associated event
 	 */
+	@Override
 	public void mousePressed(MouseEvent e) {
 		PaletteBlockView view = (PaletteBlockView) e.getSource();
 		view.getController().setSelected(true);
@@ -169,5 +173,6 @@ public final class PaletteBlockMouseListener implements MouseListener {
 	 * Not used
 	 * @param e Not used
 	 */
+	@Override
 	public void mouseReleased(MouseEvent e) { }
 }

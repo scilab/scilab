@@ -30,8 +30,10 @@ import com.mxgraph.view.mxStylesheet;
  * Contains useful method for managing files.
  */
 public final class FileUtils {
-	public static String STYLE_FILENAME = "Xcos-style.xml";
-	
+	/**
+	 * Stylesheet filename.
+	 */
+	public static final String STYLE_FILENAME = "Xcos-style.xml";
 	
 	/**
 	 * Default constructor

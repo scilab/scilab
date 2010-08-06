@@ -14,14 +14,13 @@ package org.scilab.modules.xcos.port.output;
 
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
-import org.scilab.modules.xcos.port.input.InputPort;
 
 /**
  * An output port acts as a protection barrier between the internal functions of
  * the block and a link.
  * 
  * It's default orientation is on the block's EAST side and it <b>must</b> be
- * connected to an {@link InputPort} .
+ * connected to an {@link org.scilab.modules.xcos.port.input.InputPort} .
  */
 public abstract class OutputPort extends BasicPort {
 

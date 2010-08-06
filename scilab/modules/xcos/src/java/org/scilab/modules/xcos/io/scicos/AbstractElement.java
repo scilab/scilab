@@ -35,6 +35,9 @@ public abstract class AbstractElement<T> implements Element<T> {
 	/**
 	 * Default implementation is empty.
 	 * 
+	 * @param from the source data
+	 * @param element where to encode data
+	 * @return the updated encoded data
 	 * @see org.scilab.modules.xcos.io.scicos.Element#beforeDecode(ScilabType, Object)
 	 */
 	@Override
@@ -61,6 +64,9 @@ public abstract class AbstractElement<T> implements Element<T> {
 	/**
 	 * Default implementation is empty.
 	 * 
+	 * @param from the source data
+	 * @param element where to encode data
+	 * @return the updated encoded data
 	 * @see org.scilab.modules.xcos.io.scicos.Element#afterEncode(Object, ScilabType)
 	 */
 	@Override
@@ -71,6 +77,9 @@ public abstract class AbstractElement<T> implements Element<T> {
 	/**
 	 * Default implementation is empty.
 	 * 
+	 * @param element where to decode data
+	 * @param into where read data
+	 * @return the updated decoded data
 	 * @see org.scilab.modules.xcos.io.scicos.Element#beforeDecode(ScilabType, Object)
 	 */
 	@Override
@@ -81,6 +90,9 @@ public abstract class AbstractElement<T> implements Element<T> {
 	/**
 	 * Default implementation is empty.
 	 * 
+	 * @param element where to decode data
+	 * @param into where read data
+	 * @return the updated decoded data
 	 * @see org.scilab.modules.xcos.io.scicos.Element#afterDecode(ScilabType, Object)
 	 */
 	@Override

@@ -12,8 +12,6 @@
 
 package org.scilab.modules.xcos.utils;
 
-import org.scilab.modules.xcos.block.SuperBlock;
-
 import com.mxgraph.util.mxEvent;
 
 /**
@@ -32,7 +30,7 @@ public final class XcosEvent extends mxEvent {
 	public static final String FORCE_CELL_VALUE_UPDATE = "ForceCellValueUpdate";
 
 	/**
-	 * Fired when a {@link SuperBlock} I/O block as been updated by the user
+	 * Fired when a {@link org.scilab.modules.xcos.block.SuperBlock} I/O block as been updated by the user
 	 */
 	public static final String IO_PORT_VALUE_UPDATED = "IoPortValueUpdated";
 

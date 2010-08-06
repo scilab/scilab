@@ -18,6 +18,7 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.tree.TreeNode;
 import javax.xml.bind.Marshaller;
@@ -54,8 +55,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement
 @XmlType(name = "Category", propOrder = { "node" })
 public class Category extends PaletteNode {
-	private static transient final 
-		HashMap<String, List<PaletteNode>> SAVED_NODELIST = new HashMap<String, List<PaletteNode>>();
+	private static final transient
+		Map<String, List<PaletteNode>> SAVED_NODELIST = new HashMap<String, List<PaletteNode>>();
 	
 	@XmlElement(nillable = true)
 	private List<PaletteNode> node;
@@ -93,7 +94,7 @@ public class Category extends PaletteNode {
 		if (node == null) {
 			node = new ArrayList<PaletteNode>();
 		}
-		return this.node;
+		return node;
 	}
 
 	/*
@@ -162,7 +163,10 @@ public class Category extends PaletteNode {
 	 * Customize the marshalling operation
 	 */
 
-	/* Invoked by Marshaller after it has created an instance of this object. */
+	/**
+	 * Invoked by Marshaller after it has created an instance of this object.
+	 * @param m the marshaller
+	 */
 	void beforeMarshal(Marshaller m) {
 		SAVED_NODELIST.put(getName(), new ArrayList<PaletteNode>(node));
 		
@@ -173,9 +177,11 @@ public class Category extends PaletteNode {
 		}
 	}
 
-	/*
+	/**
 	 * Invoked by Marshaller after it has marshalled all properties of this
 	 * object.
+	 *
+	 * @param m the marshaller
 	 */
 	void afterMarshal(Marshaller m) {
 		node = SAVED_NODELIST.get(getName());

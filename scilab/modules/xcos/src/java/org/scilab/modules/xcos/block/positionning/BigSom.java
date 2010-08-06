@@ -27,7 +27,7 @@ public class BigSom extends BasicBlock {
 	public BigSom() {
 		super();
 
-		parametersPCS.addPropertyChangeListener("realParameters",
+		getParametersPCS().addPropertyChangeListener("realParameters",
 				SumPortLabelingListener.getInstance());
 	}
 

@@ -16,8 +16,6 @@ package org.scilab.modules.xcos.palette.actions;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
@@ -37,8 +35,6 @@ public final class ViewPaletteBrowserAction extends DefaultAction {
 	public static final int MNEMONIC_KEY = 0;
 	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = 0;
-
-    private static List<CheckBoxMenuItem> menus = new ArrayList<CheckBoxMenuItem>();
 
     /**
      * Constructor

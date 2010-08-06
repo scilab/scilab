@@ -121,13 +121,14 @@ public class DebugLevelDialog extends JDialog {
 
 
 		cancelButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
 
 		okButton.addActionListener(new ActionListener() {
-
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				int value = ((DebugLevel) debugList.getSelectedValue()).getValue();
 				try {

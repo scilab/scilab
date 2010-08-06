@@ -36,22 +36,26 @@ public class PaletteComponent extends ScilabComponent {
 	
 	addComponentListener(new ComponentListener() {
 	    
-	    public void componentShown(ComponentEvent arg0) {
+	    @Override
+		public void componentShown(ComponentEvent arg0) {
 		if (getGraph() instanceof PaletteDiagram) {
 		    ((PaletteDiagram) getGraph()).updateDiagram(getSize().getWidth());
 		}		
 	    }
 	    
-	    public void componentResized(ComponentEvent arg0) {
+	    @Override
+		public void componentResized(ComponentEvent arg0) {
 		if (getGraph() instanceof PaletteDiagram) {
 		    ((PaletteDiagram) getGraph()).updateDiagram(getSize().getWidth());
 		}		
 	    }
 	    
-	    public void componentMoved(ComponentEvent arg0) {
+	    @Override
+		public void componentMoved(ComponentEvent arg0) {
 	    }
 	    
-	    public void componentHidden(ComponentEvent arg0) {
+	    @Override
+		public void componentHidden(ComponentEvent arg0) {
 	    }
 	});
     }

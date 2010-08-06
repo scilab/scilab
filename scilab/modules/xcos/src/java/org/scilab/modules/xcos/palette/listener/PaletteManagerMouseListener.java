@@ -138,6 +138,7 @@ public class PaletteManagerMouseListener implements MouseListener {
 	 * @param path the current path
 	 * @param remove the menu item
 	 */
+	// CSOFF: IllegalCatch
 	private void setupRemove(final JTree paletteTree, final TreePath path,
 			final MenuItem remove) {
 		remove.setText(XcosMessages.REMOVE);
@@ -167,6 +168,7 @@ public class PaletteManagerMouseListener implements MouseListener {
 		
 		remove.setEnabled(canBeRemoved);
 	}
+	// CSON: IllegalCatch
 	
 	/**
 	 * Not used

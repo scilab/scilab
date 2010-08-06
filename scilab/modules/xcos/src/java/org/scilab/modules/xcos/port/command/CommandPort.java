@@ -14,16 +14,15 @@ package org.scilab.modules.xcos.port.command;
 
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
-import org.scilab.modules.xcos.port.control.ControlPort;
 
 /**
  * A command port acts generate execution ticks to another block.
  * 
  * The connected block is executed only when a rising edge occurs on this port.
  * As we are writing 'edge', this port can only be connected to a
- * {@link ControlPort}. To specify initial conditions, this block offers a
- * {@link #setInitialState(double)} method. The port default orientation is the
- * SOUTH.
+ * {@link org.scilab.modules.xcos.port.control.ControlPort}. To specify initial
+ * conditions, this block offers a {@link #setInitialState(double)} method. The
+ * port default orientation is the SOUTH.
  */
 public class CommandPort extends BasicPort {
 

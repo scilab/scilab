@@ -14,14 +14,14 @@ package org.scilab.modules.xcos.port.control;
 
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
-import org.scilab.modules.xcos.port.command.CommandPort;
 
 /**
  * A control port acts as the execution tick for the block.
  * 
  * The block is executed only when a rising edge occurs on this port. As we are
- * writing 'edge', this port can only be connected to a {@link CommandPort}. The
- * port default orientation is the NORTH.
+ * writing 'edge', this port can only be connected to a 
+ * {@link org.scilab.modules.xcos.port.command.CommandPort}. The port default
+ * orientation is the NORTH.
  */
 public class ControlPort extends BasicPort {
 

@@ -14,15 +14,14 @@ package org.scilab.modules.xcos.io;
 
 import java.util.Map;
 
+import org.scilab.modules.graph.utils.ScilabGraphConstants;
 import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
 import org.scilab.modules.xcos.link.implicit.ImplicitLink;
-import org.scilab.modules.xcos.utils.XcosConstants;
 
 import com.mxgraph.io.mxCellCodec;
 import com.mxgraph.io.mxCodecRegistry;
-import com.mxgraph.model.mxCell;
 
 /**
  * Codec for any xcos object
@@ -34,7 +33,7 @@ public class XcosObjectCodec extends mxCellCodec {
 	protected static final String[] REFS = {"parent", "source", "target"};
 	
 	/**
-	 * Attribute name containing {@link mxCell} style.
+	 * Attribute name containing {@link com.mxgraph.model.mxCell} style.
 	 */
     protected static final String STYLE = "style";
     private static final String ROTATION = "rotation";
@@ -98,12 +97,12 @@ public class XcosObjectCodec extends mxCellCodec {
 
 		}
 
-		if (!style.containsKey(XcosConstants.STYLE_FLIP)) {
-			style.put(XcosConstants.STYLE_FLIP, Boolean.FALSE.toString());
+		if (!style.containsKey(ScilabGraphConstants.STYLE_FLIP)) {
+			style.put(ScilabGraphConstants.STYLE_FLIP, Boolean.FALSE.toString());
 		}
 
-		if (!style.containsKey(XcosConstants.STYLE_MIRROR)) {
-			style.put(XcosConstants.STYLE_MIRROR, Boolean.FALSE.toString());
+		if (!style.containsKey(ScilabGraphConstants.STYLE_MIRROR)) {
+			style.put(ScilabGraphConstants.STYLE_MIRROR, Boolean.FALSE.toString());
 		}
 	}
 }

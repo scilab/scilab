@@ -476,6 +476,7 @@ class BlockModelElement extends BlockPartsElement {
 	 * @return the element parameter
 	 * @see org.scilab.modules.xcos.io.scicos.Element#encode(java.lang.Object, org.scilab.modules.types.scilabTypes.ScilabType)
 	 */
+	// CSOFF: JavaNCSS
 	@Override
 	public ScilabType encode(BasicBlock from, ScilabType element) {
 		data = (ScilabMList) element;
@@ -496,8 +497,13 @@ class BlockModelElement extends BlockPartsElement {
 		data.set(field, from.getSimulationFunctionNameAndType());
 		
 		/*
-		 * Fields managed by specific elements.
-		 * 
+		 * Fields managed by specific elements :
+		 *  - in
+		 *  - in2
+		 *  - intyp
+		 *  - out
+		 *  - out2
+		 *  - outyp
 		 * see InputPortElement and OutputPortElement.
 		 */
 		field++; // in
@@ -507,6 +513,9 @@ class BlockModelElement extends BlockPartsElement {
 		field++; // out2
 		field++; // outtyp
 		
+		/*
+		 * Event ports
+		 */
 		field++; // evtin
 		final List<ControlPort> ctrlPorts = BasicBlockInfo.getAllTypedPorts(from, false, ControlPort.class);
 		data.set(field, BasicBlockInfo.getAllPortsDataLines(ctrlPorts));
@@ -514,6 +523,9 @@ class BlockModelElement extends BlockPartsElement {
 		final List<CommandPort> cmdPorts = BasicBlockInfo.getAllTypedPorts(from, false, CommandPort.class);
 		data.set(field, BasicBlockInfo.getAllPortsDataLines(cmdPorts));
 		
+		/*
+		 * State
+		 */
 		field++; // state
 		data.set(field, from.getState());
 		field++; // dstate
@@ -521,6 +533,9 @@ class BlockModelElement extends BlockPartsElement {
 		field++; // odstate
 		data.set(field, from.getODState());
 		
+		/*
+		 * Parameters
+		 */
 		field++; // rpar
 		data.set(field, from.getRealParameters());
 		field++; // ipar
@@ -556,7 +571,8 @@ class BlockModelElement extends BlockPartsElement {
 		
 		return data;
 	}
-
+	// CSON: JavaNCSS
+	
 	/**
 	 * Allocate a new element
 	 * @return the new element
