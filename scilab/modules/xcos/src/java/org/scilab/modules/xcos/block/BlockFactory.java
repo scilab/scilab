@@ -37,14 +37,17 @@ public final class BlockFactory {
 	// CSOFF: ClassDataAbstractionCoupling
 	/**
 	 * List the specific block interface function name.
+	 * <BR><BR>
+	 * <EM>Specific instance must be registered before generic ones in order
+	 * to serialized all the non-default values.</EM>
 	 */
 	public static enum BlockInterFunction {
 		/** @see TextBlock */
 		TEXT_f(new TextBlock()),
 		/** @see SuperBlock */
-		SUPER_f(new SuperBlock()),
-		/** @see SuperBlock */
 		DSUPER(new SuperBlock(true)),
+		/** @see SuperBlock */
+		SUPER_f(new SuperBlock()),
 		/** @see ConstBlock */
 		CONST_m(new ConstBlock()),
 		CONST(CONST_m.getSharedInstance()),
@@ -107,8 +110,7 @@ public final class BlockFactory {
 		/** @see Summation */
 		SUMMATION(new Summation()),
 		/** @see Product */
-		PRODUCT(new Product()),
-		;
+		PRODUCT(new Product());
 		
 		private BasicBlock block;
 		/**
