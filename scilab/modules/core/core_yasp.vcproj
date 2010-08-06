@@ -44,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;..\parse\includes;..\abstractSyntaxTree\includes;..\symbol\includes;..\types\includes;..\functions_manager\includes;..\system_env\includes;..\elementary_functions\includes;../operations/includes;../localization/includes;..\windows_tools\includes;&quot;$(SolutionDir)libs\MALLOC\includes&quot;;../shell/includes;&quot;$(SolutionDir)libs\intl&quot;;../console/includes;../output_stream/includes;../history_manager/includes"
+				AdditionalIncludeDirectories="includes;..\parse\includes;..\abstractSyntaxTree\includes;..\symbol\includes;..\types\includes;..\functions_manager\includes;..\system_env\includes;..\elementary_functions\includes;../operations/includes;../localization/includes;..\windows_tools\includes;&quot;$(SolutionDir)libs\MALLOC\includes&quot;;../shell/includes;&quot;$(SolutionDir)libs\intl&quot;;../console/includes;../output_stream/includes;../history_manager/includes;../fileio/includes"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;__CORE_YASP__"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -121,7 +121,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;..\parse\includes;..\abstractSyntaxTree\includes;..\symbol\includes;..\types\includes;..\functions_manager\includes;..\system_env\includes;..\elementary_functions\includes;../operations/includes;../localization/includes;..\windows_tools\includes;&quot;$(SolutionDir)libs\MALLOC\includes&quot;;../shell/includes;&quot;$(SolutionDir)libs\intl&quot;;../console/includes;../output_stream/includes;../history_manager/includes"
+				AdditionalIncludeDirectories="includes;..\parse\includes;..\abstractSyntaxTree\includes;..\symbol\includes;..\types\includes;..\functions_manager\includes;..\system_env\includes;..\elementary_functions\includes;../operations/includes;../localization/includes;..\windows_tools\includes;&quot;$(SolutionDir)libs\MALLOC\includes&quot;;../shell/includes;&quot;$(SolutionDir)libs\intl&quot;;../console/includes;../output_stream/includes;../history_manager/includes;../fileio/includes"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;__CORE_YASP__"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -198,7 +198,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="includes;..\parse\includes;..\abstractSyntaxTree\includes;..\symbol\includes;..\types\includes;..\functions_manager\includes;..\system_env\includes;..\elementary_functions\includes;../operations/includes;../localization/includes;..\windows_tools\includes;&quot;$(SolutionDir)libs\MALLOC\includes&quot;;../shell/includes;&quot;$(SolutionDir)libs\intl&quot;;../console/includes;../output_stream/includes;../history_manager/includes"
+				AdditionalIncludeDirectories="includes;..\parse\includes;..\abstractSyntaxTree\includes;..\symbol\includes;..\types\includes;..\functions_manager\includes;..\system_env\includes;..\elementary_functions\includes;../operations/includes;../localization/includes;..\windows_tools\includes;&quot;$(SolutionDir)libs\MALLOC\includes&quot;;../shell/includes;&quot;$(SolutionDir)libs\intl&quot;;../console/includes;../output_stream/includes;../history_manager/includes;../fileio/includes"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;__CORE_YASP__"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
@@ -275,7 +275,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="includes;..\parse\includes;..\abstractSyntaxTree\includes;..\symbol\includes;..\types\includes;..\functions_manager\includes;..\system_env\includes;..\elementary_functions\includes;../operations/includes;../localization/includes;..\windows_tools\includes;&quot;$(SolutionDir)libs\MALLOC\includes&quot;;../shell/includes;&quot;$(SolutionDir)libs\intl&quot;;../console/includes;../output_stream/includes;../history_manager/includes"
+				AdditionalIncludeDirectories="includes;..\parse\includes;..\abstractSyntaxTree\includes;..\symbol\includes;..\types\includes;..\functions_manager\includes;..\system_env\includes;..\elementary_functions\includes;../operations/includes;../localization/includes;..\windows_tools\includes;&quot;$(SolutionDir)libs\MALLOC\includes&quot;;../shell/includes;&quot;$(SolutionDir)libs\intl&quot;;../console/includes;../output_stream/includes;../history_manager/includes;../fileio/includes"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;__CORE_YASP__"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"

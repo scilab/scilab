@@ -46,7 +46,7 @@ namespace types
 	{
 		int* piVal;
 		CreateBool(1, 1, &piVal);
-		piVal[0] = _iReal;
+        piVal[0] = _iReal == 0 ? 0 : 1;
 		return;
 	}
 

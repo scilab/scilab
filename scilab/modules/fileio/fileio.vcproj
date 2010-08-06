@@ -45,7 +45,7 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions=""
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;src/c;../../libs/MALLOC/includes;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl;../operations/includes;../symbol/includes;../types/includes;../abstractSyntaxTree/includes;../system_env/includes"
+				AdditionalIncludeDirectories="includes;src/c;src/cpp;../../libs/MALLOC/includes;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl;../operations/includes;../symbol/includes;../types/includes;../abstractSyntaxTree/includes;../system_env/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -129,7 +129,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;src/c;../../libs/MALLOC/includes;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl;../operations/includes;../symbol/includes;../types/includes;../abstractSyntaxTree/includes;../system_env/includes"
+				AdditionalIncludeDirectories="includes;src/c;src/cpp;../../libs/MALLOC/includes;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl;../operations/includes;../symbol/includes;../types/includes;../abstractSyntaxTree/includes;../system_env/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -216,7 +216,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;src/c;../../libs/MALLOC/includes;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl;../operations/includes;../symbol/includes;../types/includes;../abstractSyntaxTree/includes;../system_env/includes"
+				AdditionalIncludeDirectories="includes;src/c;src/cpp;../../libs/MALLOC/includes;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl;../operations/includes;../symbol/includes;../types/includes;../abstractSyntaxTree/includes;../system_env/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -306,7 +306,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;src/c;../../libs/MALLOC/includes;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl;../operations/includes;../symbol/includes;../types/includes;../abstractSyntaxTree/includes;../system_env/includes"
+				AdditionalIncludeDirectories="includes;src/c;src/cpp;../../libs/MALLOC/includes;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl;../operations/includes;../symbol/includes;../types/includes;../abstractSyntaxTree/includes;../system_env/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -513,7 +513,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\mgetl.c"
+				RelativePath=".\src\cpp\mgetl.cpp"
 				>
 			</File>
 			<File
@@ -534,6 +534,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\mputi.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\mputl.cpp"
 				>
 			</File>
 			<File
@@ -666,10 +670,6 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\sci_mfscanf.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\c\sci_mgetl.c"
 				>
 			</File>
 			<File
@@ -875,7 +875,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\mgetl.h"
+				RelativePath=".\src\cpp\mgetl.h"
 				>
 			</File>
 			<File
@@ -896,6 +896,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\mputi.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\mputl.h"
 				>
 			</File>
 			<File

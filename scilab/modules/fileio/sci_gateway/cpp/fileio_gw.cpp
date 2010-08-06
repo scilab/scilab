@@ -29,5 +29,7 @@ bool FileioModule::Load()
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"mclose", &sci_mclose, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"mput", &sci_mput, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"mget", &sci_mget, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"mputl", &sci_mputl, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"mgetl", &sci_mgetl, MODULE_NAME));
     return true;
 }

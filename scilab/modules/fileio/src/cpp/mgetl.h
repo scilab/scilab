@@ -12,7 +12,6 @@
 /*--------------------------------------------------------------------------*/
 #ifndef __MGETL_H__
 #define __MGETL_H__
-
 #include "dynlib_fileio.h"
 #include "charEncoding.h"
 
@@ -43,7 +42,8 @@ typedef enum {
  *
  * @return  null if it fails, else strings readed. 
 **/
-FILEIO_IMPEXP char ** mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr);
+FILEIO_IMPEXP wchar_t** mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr);
+
 
 #endif /* __MGETL_H__ */
 /*--------------------------------------------------------------------------*/

@@ -41,6 +41,7 @@ public :
     static double*              getSwaps();
     static int*                 getIDs();
 
+    static void                 initialize();
 private :
     static std::vector<File*>   m_fileList;
     static int                  m_iCurrentFile;     //memorize current using file

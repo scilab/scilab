@@ -13,6 +13,8 @@
 #ifndef __MPUTL_H__
 #define __MPUTL_H__
 
+#include "dynlib_fileio.h"
+
 typedef enum { 
     MPUTL_NO_ERROR = 0,
     MPUTL_ERROR = 1,
@@ -33,7 +35,7 @@ typedef enum {
 * @param[in] numbers of strings to write
 * @return enum error
 */
-mputlError mputl(int fileDescriptor, char **pStrings, int sizeStrings);
+FILEIO_IMPEXP mputlError mputl(int _iFileId, wchar_t **pstStrings, int _iSizeStrings);
 
 #endif /* __MPUTL_H__ */
 /*--------------------------------------------------------------------------*/

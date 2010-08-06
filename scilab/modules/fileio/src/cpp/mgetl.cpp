@@ -1,6 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2010 - DIGITEO - Allan CORNET
+* Copyright (C) 2010 - DIGITEO - Antoine ELIAS
 * 
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -11,47 +12,46 @@
 */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
+#include "filemanager.hxx"
+
+extern "C"
+{
 #include "mgetl.h"
 #include "filesmanagement.h"
 #include "mopen.h"
 #include "MALLOC.h"
-#include "BOOL.h"
+#include "os_wcsdup.h"
 #include "os_strdup.h"
-#include "charEncoding.h"
+}
 /*--------------------------------------------------------------------------*/
 #define LINE_MAX 4096
-#define CR '\r'
-#define LF '\n'
+#define CR L'\r'
+#define LF L'\n'
+#define EMPTYSTRW L""
 #define EMPTYSTR ""
 /*--------------------------------------------------------------------------*/
-static char *removeEOL(char *_inString);
+static wchar_t *removeEOL(wchar_t *_inString);
 static char *convertAnsiToUtf(char *_inString);
+static wchar_t* getLine(wchar_t* _pstLine, int _iLineSize, File* _pFile);
 /*--------------------------------------------------------------------------*/
-char **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
+wchar_t **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
 {
-    char **strLines = NULL;
-    FILE *fa = NULL;
+    wchar_t **strLines = NULL;
+    File* pFile     = NULL;
 
     *ierr = MGETL_ERROR;
     *nbLinesOut = 0;
 
-    if (fd == STDIN_ID) 
-    {
-        fa = stdin;
-    }
-    else
-    {
-        fa = GetFileOpenedInScilab(fd);
-    }
+    pFile = FileManager::getFile(fd);
 
-    if (fa)
+    if (pFile)
     {
-        char Line[LINE_MAX * 2];
+        wchar_t Line[LINE_MAX * 2];
         int nbLines = 0;
 
         if (nbLinesIn < 0)
         {
-            strLines = (char **)MALLOC(sizeof(char *));
+            strLines = (wchar_t **)MALLOC(sizeof(wchar_t *));
             if (strLines == NULL)
             {
                 *nbLinesOut = 0;
@@ -59,10 +59,10 @@ char **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
                 return NULL;
             }
 
-            while ( fgets ( Line, sizeof(Line), fa ) != NULL )
+            while ( getLine ( Line, sizeof(Line), pFile ) != NULL )
             {
                 nbLines++;
-                strLines = (char **)REALLOC(strLines, nbLines * sizeof(char *));
+                strLines = (wchar_t **)REALLOC(strLines, nbLines * sizeof(wchar_t *));
                 if (strLines == NULL)
                 {
                     *nbLinesOut = 0;
@@ -70,14 +70,14 @@ char **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
                     return NULL;
                 }
 
-                strLines[nbLines - 1] = convertAnsiToUtf(removeEOL(Line)); 
+                strLines[nbLines - 1] = os_wcsdup(removeEOL(Line)); 
                 if (strLines[nbLines - 1] == NULL)
                 {
                     *nbLinesOut = 0;
                     *ierr = MGETL_MEMORY_ALLOCATION_ERROR;
                     return NULL;
                 }
-                strcpy(Line, EMPTYSTR);
+                wcscpy(Line, EMPTYSTRW);
             }
             *nbLinesOut = nbLines;
             *ierr = MGETL_NO_ERROR;
@@ -98,7 +98,7 @@ char **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
             {
                 BOOL bContinue = TRUE;
                 BOOL bEOF = FALSE;
-                strLines = (char **)MALLOC(sizeof(char *) * nbLinesIn);
+                strLines = (wchar_t **)MALLOC(sizeof(wchar_t *) * nbLinesIn);
                 if (strLines == NULL)
                 {
                     *nbLinesOut = 0;
@@ -110,22 +110,22 @@ char **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
                 {
                     if (nbLines < nbLinesIn)
                     {
-                        if ( fgets ( Line, sizeof(Line), fa ) != NULL)
+                        if ( getLine ( Line, sizeof(Line), pFile) != NULL)
                         {
                             nbLines++;
-                            strLines[nbLines - 1] = convertAnsiToUtf(removeEOL(Line)); 
+                            strLines[nbLines - 1] = os_wcsdup(removeEOL(Line));
                             if (strLines[nbLines - 1] == NULL)
                             {
                                 *nbLinesOut = 0;
                                 *ierr = MGETL_MEMORY_ALLOCATION_ERROR;
                                 return NULL;
                             }
-                            strcpy(Line, EMPTYSTR);
+                            wcscpy(Line, EMPTYSTRW);
                         }
                         else
                         {
                             /* EOF */
-                            if (feof(fa))
+                            if (feof(pFile->getFiledesc()))
                             {
                                 bEOF = TRUE;
                             }
@@ -153,18 +153,42 @@ char **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
     return strLines;
 }
 /*--------------------------------------------------------------------------*/
-char *removeEOL(char *_inString)
+wchar_t* getLine(wchar_t* _pstLine, int _iLineSize, File* _pFile)
+{
+    if(static_cast<int>(_pFile->getFileModeAsDouble()) % 2 == 1)
+    {//binary mode
+        return fgetws(_pstLine, _iLineSize, _pFile->getFiledesc());
+    }
+    else
+    {
+        char* pstTemp = (char*)MALLOC(sizeof(char*) * _iLineSize);
+        if(fgets(pstTemp, _iLineSize, _pFile->getFiledesc()) == NULL)
+        {
+            FREE(pstTemp);
+            return NULL;
+        }
+        char* pstUtf = convertAnsiToUtf(pstTemp);
+        wchar_t* pstTempWide = to_wide_string(pstUtf);
+        wcscpy(_pstLine, pstTempWide);
+        FREE(pstUtf);
+        FREE(pstTemp);
+        FREE(pstTempWide);
+        return _pstLine;
+    }
+}
+/*--------------------------------------------------------------------------*/
+wchar_t *removeEOL(wchar_t *_inString)
 {
     if (_inString)
     {
-        char *pos = strchr(_inString, LF);
-        if (pos)
+        wchar_t *pos = wcschr(_inString, LF);
+        if(pos)
         {
             *pos = 0;
         }
 
-        pos = strchr(_inString, CR);
-        if (pos)
+        pos = wcschr(_inString, CR);
+        if(pos)
         {
             *pos = 0;
         }
@@ -198,7 +222,7 @@ char *convertAnsiToUtf(char *_inString)
             {
                 MultiByteToWideChar(CP_ACP, 0, _inString, lstrlen(_inString), bstrCode, Len);   
                 newLen = WideCharToMultiByte(CP_UTF8, 0, bstrCode, -1, outString, 0, NULL, NULL);    
-                outString = (char*) MALLOC(newLen + 1);    
+                outString = (char*) MALLOC(sizeof(char) * (newLen + 1));
                 if (outString)
                 {
                     WideCharToMultiByte(CP_UTF8, 0, bstrCode, -1, outString, newLen, NULL, NULL); 
@@ -209,7 +233,6 @@ char *convertAnsiToUtf(char *_inString)
                 }
                 SysFreeString(bstrCode);
                 bstrCode = NULL;
-
             }
             else
             {
@@ -227,16 +250,26 @@ char *convertAnsiToUtf(char *_inString)
             int i = 0;
 
             outString = (char*)MALLOC(((len*3) + 1) * sizeof(char));
-            if (outString == NULL) return NULL;
+            if (outString == NULL)
+            {
+                return NULL;
+            }
+
             strcpy(outString, EMPTYSTR);
 
             for (i = 0; i < len; i++)
             {
-                unsigned char *outUtfChar = NULL;
+                char *outUtfChar = NULL;
                 unsigned char inAnsiChar = 0;
 
-                if (_inString[i] < 0) inAnsiChar = 256 + _inString[i];
-                else inAnsiChar = _inString[i];
+                if (_inString[i] < 0)
+		{
+			 inAnsiChar = 256 + _inString[i];
+		}
+                else
+		{
+			 inAnsiChar = _inString[i];
+		}
 
                 if(inAnsiChar < 128)
                 {

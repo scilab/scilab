@@ -26,6 +26,7 @@
 #include "MALLOC.h"
 #include "charEncoding.h"
 #include "os_strdup.h"
+#include "os_wcsdup.h"
 /*--------------------------------------------------------------------------*/
 BOOL isdir(const char * path)
 {
@@ -57,7 +58,7 @@ BOOL isdirW(const wchar_t * wcpath)
 	else
 	{
 		DWORD attr = 0;
-		wchar_t *tmpPath = wcsdup(wcpath);
+		wchar_t *tmpPath = os_wcsdup(wcpath);
 
 		if ( (tmpPath[wcslen(tmpPath) - 1] == L'\\') || (tmpPath[wcslen(tmpPath) - 1] == L'/') )
 		{

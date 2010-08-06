@@ -18,7 +18,6 @@ src/c/getfiletype.c \
 src/c/mclearerr.c \
 src/c/meof.c \
 src/c/merror.c \
-src/c/mgetl.c \
 src/c/mgeti.c \
 src/c/mgetstr.c \
 src/c/mputi.c \
@@ -47,8 +46,7 @@ src/c/basename.c \
 src/c/pathconvert.c \
 src/c/copyfile_others.c \
 src/c/getFullFilename.c \
-src/c/os_wfopen.c \
-src/c/mputl.c
+src/c/os_wfopen.c 
 
 GATEWAY_C_SOURCES = \
 sci_gateway/c/gw_fileio.c \
@@ -75,7 +73,6 @@ sci_gateway/c/sci_chdir.c \
 sci_gateway/c/sci_pwd.c \
 sci_gateway/c/sci_mclearerr.c \
 sci_gateway/c/sci_merror.c \
-sci_gateway/c/sci_mgetl.c \
 sci_gateway/c/sci_mgetstr.c \
 sci_gateway/c/sci_moef.c \
 sci_gateway/c/sci_mputstr.c \
@@ -90,15 +87,16 @@ sci_gateway/c/sci_fileparts.c \
 sci_gateway/c/sci_movefile.c \
 sci_gateway/c/sci_basename.c \
 sci_gateway/c/sci_pathconvert.c \
-sci_gateway/c/sci_isfile.c \
-sci_gateway/c/sci_mputl.c
+sci_gateway/c/sci_isfile.c
 
 GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/fileio_gw.cpp \
 	sci_gateway/cpp/sci_mopen.cpp \
 	sci_gateway/cpp/sci_mclose.cpp \
 	sci_gateway/cpp/sci_mget.cpp \
-	sci_gateway/cpp/sci_mput.cpp
+	sci_gateway/cpp/sci_mput.cpp \
+	sci_gateway/cpp/sci_mputl.cpp \
+	sci_gateway/cpp/sci_mgetl.cpp
 
 FILEIO_CPP_SOURCES = \
 	src/cpp/expandPathVariable.cpp \
@@ -106,11 +104,14 @@ FILEIO_CPP_SOURCES = \
 	src/cpp/mclose.cpp \
 	src/cpp/mput.cpp \
 	src/cpp/mget.cpp \
+	src/cpp/mputl.cpp \
+	src/cpp/mgetl.cpp \
 	src/cpp/filemanager.cpp
 
 
 libscifileio_la_CPPFLAGS=	-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
+				-I$(srcdir)/src/cpp/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/output_stream/includes \
@@ -121,6 +122,7 @@ libscifileio_la_CPPFLAGS=	-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/symbol/includes \
 				-I$(top_srcdir)/modules/string/includes \
 				-I$(top_srcdir)/modules/system_env/includes \
+				-I$(top_srcdir)/modules/io/includes \
 				$(HDF5_CFLAGS)
 
 libscifileio_la_CFLAGS=		-I$(srcdir)/includes/ \

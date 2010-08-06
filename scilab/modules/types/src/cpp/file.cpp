@@ -77,7 +77,7 @@ namespace types
                 dblBin = 1;
             }
         }
-        //hummm beautifull thing ....
+
         return 100 * dblMode + 10 * dblPlus + dblBin;
     }
 

@@ -106,6 +106,7 @@ Function::ReturnValue sci_mopen(typed_list &in, int _iRetCount, typed_list &out)
     }
 
 
+	std::wcout << L"mode : " << pstMode << std::endl;
     iErr = mopen(pstFilename, pstMode, iSwap, &iID);
 
 

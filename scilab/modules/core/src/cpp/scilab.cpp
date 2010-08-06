@@ -73,6 +73,7 @@ extern "C"
 #include "setenvvar.hxx"
 #include "funcmanager.hxx"
 #include "configvariable.hxx"
+#include "filemanager.hxx"
 
 #include "banner.hxx"
 
@@ -540,6 +541,7 @@ int InitializeEnvironnement(void)
     ConfigVariable::setConsoleWidth(75);
     ConfigVariable::setFormat(16);
     Add_All_Variables();
+    FileManager::initialize();
     return 0;
 }
 

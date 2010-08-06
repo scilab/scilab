@@ -24,6 +24,7 @@
 #include "localization.h"
 #include "sciprint.h"
 #include "os_strdup.h"
+#include "os_wcsdup.h"
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
@@ -66,7 +67,7 @@ wchar_t** findfilesW(wchar_t *path, wchar_t *filespec, int *sizeListReturned, BO
                 {
                     ListFiles = (wchar_t**)MALLOC(sizeof(wchar_t*)*(nbElements));
                 }
-				ListFiles[nbElements-1] = wcsdup(FileInformation.cFileName);
+				ListFiles[nbElements-1] = os_wcsdup(FileInformation.cFileName);
 			}
 		} while(FindNextFileW(hFile, &FileInformation) == TRUE);
 	}

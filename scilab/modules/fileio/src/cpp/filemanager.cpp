@@ -12,6 +12,7 @@
 
 #include "filemanager.hxx"
 #include "os_wcsdup.h"
+#include <stdio.h>
 
 std::vector<types::File*> FileManager::m_fileList;
 int FileManager::m_iCurrentFile = -1;
@@ -20,7 +21,7 @@ int FileManager::getFileID(wstring _stFilename)
 {
     for(int i = 0 ; i < m_fileList.size() ; i++)
     {
-        if(m_fileList[i]->getFilename() == _stFilename)
+        if(m_fileList[i] != NULL && m_fileList[i]->getFilename() == _stFilename)
         {
             return i + 1;
         }
@@ -37,7 +38,7 @@ bool FileManager::isOpened(wstring _stFilename)
 {
     for(int i = 0 ; i < m_fileList.size() ; i++)
     {
-        if(m_fileList[i]->getFilename() == _stFilename)
+        if(m_fileList[i] != NULL && m_fileList[i]->getFilename() == _stFilename)
         {
             return true;
         }
@@ -210,5 +211,33 @@ double* FileManager::getSwaps()
     }
 
     return pdblSwaps;
+}
+
+void FileManager::initialize()
+{
+    File* pIn = new File();
+    pIn->setFileMode(L"rb");
+    pIn->setFileDesc(stdin);
+    pIn->setFileSwap(0);
+    pIn->setFileType(1);
+    pIn->setFilename(L"stdin");
+
+    File* pOut = new File();
+    pOut->setFileMode(L"wb");
+    pOut->setFileDesc(stdout);
+    pOut->setFileSwap(0);
+    pOut->setFileType(1);
+    pOut->setFilename(L"stdout");
+
+    //insert free space
+    m_fileList.push_back(NULL);
+    m_fileList.push_back(NULL);
+    m_fileList.push_back(NULL);
+    m_fileList.push_back(NULL);
+
+    //put pIn at position 5
+    m_fileList.push_back(pIn);
+    //put pOut at position 6
+    m_fileList.push_back(pOut);
 }
 
