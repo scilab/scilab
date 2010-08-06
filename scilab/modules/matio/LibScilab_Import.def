@@ -4,21 +4,10 @@ LIBRARY    LibScilab.dll
 EXPORTS
 
  ;
-
-intersci_
-createvarfromptr_
-stack_
-com_
-vstk_
 freeArrayOfString
-createcvarfromptr_
-mkmlistfromvars_
-createvar_
-putlhsvar_
-checkrhs_
-checklhs_
-vartype_
-getrhsvar_
 callFunctionFromGateway
-getrhsvar_
-getrhscvar_
+com_
+putlhsvar_
+intersci_
+checklhs_
+checkrhs_

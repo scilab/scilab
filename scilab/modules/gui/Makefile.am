@@ -297,6 +297,7 @@ libscigui_la_iconsdir=$(mydatadir)/
 nobase_libscigui_la_icons_DATA = images/icons/aboutscilab.png \
 images/icons/accessories-text-editor.png \
 images/icons/applications-system.png \
+images/icons/close-tab.png \
 images/icons/datatips.png \
 images/icons/document-new.png \
 images/icons/document-open.png \

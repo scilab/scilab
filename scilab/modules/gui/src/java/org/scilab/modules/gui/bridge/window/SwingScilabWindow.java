@@ -275,7 +275,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	 */
 	public void setTitle(String newWindowTitle) {
 		// set only if required
-		if (!newWindowTitle.equals(getTitle())) {
+		if (newWindowTitle != null && !newWindowTitle.equals(getTitle())) {
 			super.setTitle(newWindowTitle);
 		}
 	}

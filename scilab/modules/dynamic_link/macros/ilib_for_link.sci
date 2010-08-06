@@ -151,6 +151,7 @@ function generateMakefile(names, ..
                                     [], ..
                                     files, ..
                                     libs, ..
+                                    libname, ..
                                     makename, ..
                                     %f, ..
                                     ldflags, ..

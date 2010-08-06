@@ -21,7 +21,9 @@ libsciui_data_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 #### ui_data : init scripts ####
 libsciui_data_la_etcdir = $(mydatadir)/etc
 libsciui_data_la_etc_DATA = etc/ui_data.quit \
-				etc/ui_data.start
+				etc/ui_data.start \
+				etc/variablebrowser_menubar.xml \
+				etc/variableeditor_menubar.xml
 
 include $(top_srcdir)/Makefile.incl.am
 
@@ -108,6 +110,20 @@ $(top_builddir)/modules/output_stream/libscioutput_stream.la
 #### ui_data : gateway declaration ####
 libsciui_data_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciui_data_la_sci_gateway_DATA = sci_gateway/ui_data_gateway.xml
+
+#### ui_data : icons files ####
+libsciui_data_la_iconsdir=$(mydatadir)/
+nobase_libsciui_data_la_icons_DATA = images/icons/tp00.gif \
+images/icons/tp01.gif \
+images/icons/tp02.gif \
+images/icons/tp04.gif \
+images/icons/tp05.gif \
+images/icons/tp06.gif \
+images/icons/tp08.gif \
+images/icons/tp10.gif \
+images/icons/tp15.gif \
+images/icons/tp16.gif \
+images/icons/tp17.gif
 
 if GUI
 USEANT=1

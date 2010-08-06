@@ -17,7 +17,7 @@
     <title>Calling Sequence</title>
 
     <synopsis>
-    h = getcallbackobject()
+    h = getcallbackobject(objectIndex)
     </synopsis>
   </refsynopsisdiv>
 
@@ -30,6 +30,12 @@
           <para>Handle: the handle of the object whose callback is executing.</para>
         </listitem>
       </varlistentry>
+      <varlistentry>
+        <term>objectIndex</term>
+        <listitem>
+          <para>Index of the object in the Java Map.</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsection>
 
@@ -40,14 +46,15 @@
     each time a callback in executed.</para>
 
     <para><literal>getcallbackobject</literal> returns [] if no callback is currently executed.</para>
+
+    <para><literal>getcallbackobject</literal> must not be used directly out of a Java callback.</para>
   </refsection>
 
   <refsection>
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link
-      linkend="gcbo">gcbo</link></member>
+      <member><link linkend="gcbo">gcbo</link></member>
     </simplelist>
   </refsection>
 

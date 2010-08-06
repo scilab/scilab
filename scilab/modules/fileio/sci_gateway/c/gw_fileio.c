@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
- * ...
+ * Copyright (C) 2010 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -66,10 +66,10 @@ static gw_generic_table Tab[]={
 /*--------------------------------------------------------------------------*/ 
 int gw_fileio(void)
 {
-	Rhs = Max(0,Rhs);
+    Rhs = Max(0,Rhs);
 
-	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
-	return 0;
+    callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
+    return 0;
 }
 /*--------------------------------------------------------------------------*/ 
 

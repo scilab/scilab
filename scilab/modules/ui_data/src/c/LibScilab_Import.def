@@ -18,5 +18,7 @@ getLocalSizefromId
 getLocalNamefromId 
 getgvariablesinfo_
 getvariablesinfo_
+gettype_
+vstk_
 freeArrayOfString
 

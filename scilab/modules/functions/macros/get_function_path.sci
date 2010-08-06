@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-// Copyright (C) DIGITEO - 2009 - Allan CORNET
+// Copyright (C) DIGITEO - 2009-2010 - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -10,33 +10,24 @@
 
 function path = get_function_path(name)
 
-  if type(name) <> 10 then 
-    error(999,msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),'get_function_path',1));
+  path = [];
+
+  if type(name) <> 10 then
+    error(999,msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"get_function_path",1));
   end
 
-  if size(name,'*') <> 1 then 
-    error(999,msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),'get_function_path',1));
+  if size(name,"*") <> 1 then
+    error(999,msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"get_function_path",1));
   end
 
   libname = whereis(name);
-  if libname == [] then
-    warning(" """+ name +'"" is not a library function');
-    path = [];
-  else
-    execstr('t=string(' + libname + ')');
-    path = t(1) + name + '.sci';
 
-    if strindex(path,['SCI/','SCI\']) == 1 then
-      path = SCI + part(path,4:length(path));
+  if libname <> [] then
+    for i = 1:size(libname,"*")
+      [funcnames, pathlib] = libraryinfo(libname(i));
+      path = [path ; pathlib + name + ".sci"];
     end
-
-    if fileinfo(path) == [] then
-      warning(msprintf(gettext("%s: There is no file named %s.sci in the library directory %s.\n"),"get_function_path",name,t(1)));
-      path = [];
-    else
-      path = pathconvert(path, %f);
-    end
-
+    path = pathconvert(path,%F);
   end
-endfunction
 
+endfunction

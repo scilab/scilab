@@ -118,8 +118,8 @@ public final class AfficheBlock extends BasicBlock {
 		}		
 	}
 	
-	private Timer printTimer;  
-	private UpdateValueListener updateAction;
+	private final Timer printTimer;  
+	private final UpdateValueListener updateAction;
 	
 	/** Default constructor */
 	public AfficheBlock() {
@@ -128,19 +128,17 @@ public final class AfficheBlock extends BasicBlock {
 		updateAction = new UpdateValueListener(this);
 		printTimer = new Timer(DEFAULT_TIMER_RATE, updateAction);
 		printTimer.setRepeats(false);
+	}
+	
+	/**
+	 * Set the default values
+	 * @see org.scilab.modules.xcos.block.BasicBlock#setDefaultValues()
+	 */
+	@Override
+	protected void setDefaultValues() {
+		super.setDefaultValues();
 		
 		setValue("0.0");
-	}
-
-	/**
-	 * Constructor with label
-	 * 
-	 * @param value
-	 *            the default value.
-	 */
-	protected AfficheBlock(String value) {
-		this();
-		setValue(value);
 	}
 
 	/**

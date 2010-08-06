@@ -1560,7 +1560,7 @@ if test COMPILATION_TESTS=yes -a "$TESTNG" == ""; then
    COMPILATION_TESTS=no
 fi
 
-AM_CONDITIONAL(COMPILATION_TESTS, test "$COMPILATION_TESTS" != "")
+AM_CONDITIONAL(COMPILATION_TESTS, test "$COMPILATION_TESTS" != "no")
 
 ##############################################################
 ## demo_tools module

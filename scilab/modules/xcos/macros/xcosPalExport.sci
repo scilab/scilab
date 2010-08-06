@@ -18,6 +18,46 @@
 // @return[opt] msg Contains the error message in case of %F status or an empty
 //                  string when no error as occurred.
 function [status, msg] = xcosPalExport(pal, path)
+// Export a palette instance to a path.
+//
+// Calling Sequence
+//   xcosPalExport(pal, path);
+//   status = xcosPalExport(pal, path);
+//   [status, message] = xcosPalExport(pal, path);
+//
+// Parameters
+//   pal: palette tlist; the palette to export
+//   path: string path; where to export the palette (HDF5 formatted file)
+//   status: boolean; status of the export
+//   msg: string; error message
+//
+// Description
+// Export Scilab palette instance to a file.
+// 
+// Examples
+//   loadScicosLibs();
+//   pal = xcosPal();
+//   
+//   sumPath = TMPDIR + "/sum.h5";
+//   bigSomPath = TMPDIR + "/sum.h5";
+//   
+//   scs_m = SUM_f("define");
+//   export_to_hdf5(sumPath, "scs_m");
+//   scs_m = BIGSOM("define");
+//   export_to_hdf5(bigSomPath, "scs_m");
+//   
+//   pal = xcosPalAddBlock(pal, sumPath);
+//   pal = xcosPalAddBlock(pal, bigSomPath);
+//   
+//   xcosPalExport(pal, TMPDIR + "/palette.h5");
+//
+// See also
+//   xcosPal
+//   xcosPalAdd
+//
+// Authors
+//   Clément DAVID
+
     status = %F;
     msg = "";
     

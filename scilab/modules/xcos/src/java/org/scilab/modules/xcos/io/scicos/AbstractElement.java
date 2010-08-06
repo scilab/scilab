@@ -35,10 +35,12 @@ public abstract class AbstractElement<T> implements Element<T> {
 	/**
 	 * Default implementation is empty.
 	 * 
-	 * @see org.scilab.modules.xcos.io.scicos.Element#beforeEncode()
+	 * @see org.scilab.modules.xcos.io.scicos.Element#beforeDecode(ScilabType, Object)
 	 */
 	@Override
-	public void beforeEncode() { }
+	public ScilabType beforeEncode(T from, ScilabType element) {
+		return element;
+	};
 	
 	/**
 	 * Encode the instance and return a new element.
@@ -59,26 +61,32 @@ public abstract class AbstractElement<T> implements Element<T> {
 	/**
 	 * Default implementation is empty.
 	 * 
-	 * @see org.scilab.modules.xcos.io.scicos.Element#afterEncode()
+	 * @see org.scilab.modules.xcos.io.scicos.Element#afterEncode(Object, ScilabType)
 	 */
 	@Override
-	public void afterEncode() { }
+	public ScilabType afterEncode(T from, ScilabType element) {
+		return element;
+	};
 	
 	/**
 	 * Default implementation is empty.
 	 * 
-	 * @see org.scilab.modules.xcos.io.scicos.Element#beforeDecode()
+	 * @see org.scilab.modules.xcos.io.scicos.Element#beforeDecode(ScilabType, Object)
 	 */
 	@Override
-	public void beforeDecode() { }
+	public T beforeDecode(ScilabType element, T into) {
+		return into;
+	};
 	
 	/**
 	 * Default implementation is empty.
 	 * 
-	 * @see org.scilab.modules.xcos.io.scicos.Element#afterDecode()
+	 * @see org.scilab.modules.xcos.io.scicos.Element#afterDecode(ScilabType, Object)
 	 */
 	@Override
-	public void afterDecode() { }
+	public T afterDecode(ScilabType element, T into) {
+		return into;
+	};
 	
 	/**
 	 * Check the emptiness of a type.

@@ -827,11 +827,11 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1export_GL2PSWrappingJNI
   }
   result = (int)sci_gl2psBeginPage((char const *)arg1,(char const *)arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11,arg12,arg13,arg14,arg15,arg16,(char const *)arg17);
   jresult = (jint)result; 
-  SWIG_JavaArrayArgoutInt(jenv, jarr3, arg3, jarg3); 
-  SWIG_JavaArrayArgoutFloat(jenv, jarr9, arg9, jarg9); 
-  SWIG_JavaArrayArgoutFloat(jenv, jarr10, arg10, jarg10); 
-  SWIG_JavaArrayArgoutFloat(jenv, jarr11, arg11, jarg11); 
-  SWIG_JavaArrayArgoutFloat(jenv, jarr12, arg12, jarg12); 
+  SWIG_JavaArrayArgoutInt(jenv, jarr3, arg3, jarg3);// 
+  SWIG_JavaArrayArgoutFloat(jenv, jarr9, arg9, jarg9);// 
+  SWIG_JavaArrayArgoutFloat(jenv, jarr10, arg10, jarg10);// 
+  SWIG_JavaArrayArgoutFloat(jenv, jarr11, arg11, jarg11);// 
+  SWIG_JavaArrayArgoutFloat(jenv, jarr12, arg12, jarg12);// 
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
   free(arg3); 
@@ -885,7 +885,7 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1export_GL2PSWrappingJNI
   if (!SWIG_JavaArrayInInt(jenv, &jarr1, &arg1, jarg1)) return 0; 
   result = (int)sci_gl2psBeginViewport(arg1);
   jresult = (jint)result; 
-  SWIG_JavaArrayArgoutInt(jenv, jarr1, arg1, jarg1); 
+  SWIG_JavaArrayArgoutInt(jenv, jarr1, arg1, jarg1);// 
   free(arg1); 
   return jresult;
 }
@@ -1097,7 +1097,7 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1export_GL2PSWrappingJNI
   }
   result = (int)sci_gl2psDrawImageMap(arg1,arg2,arg3,(char const *)arg4);
   jresult = (jint)result; 
-  SWIG_JavaArrayArgoutFloat(jenv, jarr3, arg3, jarg3); 
+  SWIG_JavaArrayArgoutFloat(jenv, jarr3, arg3, jarg3);// 
   free(arg3); 
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
   return jresult;

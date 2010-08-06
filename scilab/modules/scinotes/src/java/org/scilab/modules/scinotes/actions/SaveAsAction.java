@@ -35,10 +35,11 @@ public final class SaveAsAction extends DefaultAction {
 
     /**
      * Constructor
+     * @param name the name of the action
      * @param editor SciNotes
      */
-    private SaveAsAction(SciNotes editor) {
-        super(SciNotesMessages.SAVE_AS, editor);
+    public SaveAsAction(String name, SciNotes editor) {
+        super(name, editor);
     }
 
     /**
@@ -53,20 +54,23 @@ public final class SaveAsAction extends DefaultAction {
 
     /**
      * CreateMenu
+     * @param label label of the menu
      * @param editor SciNotes
      * @param key KeyStroke
      * @return MenuItem
      */
-    public static MenuItem createMenu(SciNotes editor, KeyStroke key) {
-        return createMenu(SciNotesMessages.SAVE_AS, null, new SaveAsAction(editor), key);
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new SaveAsAction(label, editor), key);
     }
 
     /**
-     * Create Button
+     * createButton
+     * @param tooltip the tooltip
+     * @param icon an icon name searched in SCI/modules/gui/images/icons/
      * @param editor SciNotes
      * @return PushButton
      */
-    public static PushButton createButton(SciNotes editor) {
-        return createButton(SciNotesMessages.SAVE_AS, "document-save-as.png", new SaveAsAction(editor));
+    public static PushButton createButton(String tooltip, String icon, SciNotes editor) {
+        return createButton(tooltip, icon, new SaveAsAction(tooltip, editor));
     }
 }

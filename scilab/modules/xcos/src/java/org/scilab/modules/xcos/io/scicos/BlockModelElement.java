@@ -82,19 +82,24 @@ class BlockModelElement extends BlockPartsElement {
 		}
 
 		data = (ScilabMList) element;
-
+		BasicBlock local = into;
+		
 		validate();
-
+		
+		local = beforeDecode(element, local);
+		
 		/*
 		 * fill the data
 		 */
-		fillSimulationFunction(into);
-		fillControlCommandPorts(into);
-		fillFirstRawParameters(into);
-		fillFiringParameters(into);
-		fillSecondRawParameters(into);
+		fillSimulationFunction(local);
+		fillControlCommandPorts(local);
+		fillFirstRawParameters(local);
+		fillFiringParameters(local);
+		fillSecondRawParameters(local);
+		
+		local = afterDecode(element, local);
 
-		return into;
+		return local;
 	}
 
 	/**
@@ -482,6 +487,8 @@ class BlockModelElement extends BlockPartsElement {
 			throw new IllegalArgumentException("The element parameter must be null.");
 		}
 		
+		data = (ScilabMList) beforeEncode(from, data);
+		
 		/*
 		 * Fill the element
 		 */
@@ -544,6 +551,8 @@ class BlockModelElement extends BlockPartsElement {
 		if (from.getEquations() != null) {
 			data.set(field, from.getEquations());
 		}
+		
+		data = (ScilabMList) afterEncode(from, data);
 		
 		return data;
 	}

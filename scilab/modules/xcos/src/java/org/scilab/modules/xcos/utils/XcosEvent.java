@@ -12,6 +12,8 @@
 
 package org.scilab.modules.xcos.utils;
 
+import org.scilab.modules.xcos.block.SuperBlock;
+
 import com.mxgraph.util.mxEvent;
 
 /**
@@ -30,39 +32,10 @@ public final class XcosEvent extends mxEvent {
 	public static final String FORCE_CELL_VALUE_UPDATE = "ForceCellValueUpdate";
 
 	/**
-	 * Fired when an {@link EventInputPort} as been updated by the user
+	 * Fired when a {@link SuperBlock} I/O block as been updated by the user
 	 */
-	public static final String IN_EVENT_VALUE_UPDATED = "InEventValueUpdated";
+	public static final String IO_PORT_VALUE_UPDATED = "IoPortValueUpdated";
 
-	/**
-	 * Fired when an
-	 * {@link org.scilab.modules.xcos.port.input.ExplicitInputPort} as been
-	 * updated by the user
-	 */
-	public static final String IN_EXPLICIT_VALUE_UPDATED = "InExplicitValueUpdated";
-	/**
-	 * Fired when an
-	 * {@link org.scilab.modules.xcos.port.input.ImplicitInputPort} as been
-	 * updated by the user
-	 */
-	public static final String IN_IMPLICIT_VALUE_UPDATED = "InImplicitValueUpdated";
-	/**
-	 * Fired when an {@link EventOutputPort} as been updated by the user
-	 */
-	public static final String OUT_EVENT_VALUE_UPDATED = "OutEventValueUpdated";
-
-	/**
-	 * Fired when an
-	 * {@link org.scilab.modules.xcos.port.output.ExplicitOutputPort} as been
-	 * updated by the user
-	 */
-	public static final String OUT_EXPLICIT_VALUE_UPDATED = "OutExplicitValueUpdated";
-	/**
-	 * Fired when an
-	 * {@link org.scilab.modules.xcos.port.output.ImplicitOutputPort} as been
-	 * updated by the user
-	 */
-	public static final String OUT_IMPLICIT_VALUE_UPDATED = "OutImplicitValueUpdated";
 	/**
 	 * Fired when an {@link org.scilab.modules.xcos.block.SuperBlock} as been
 	 * updated by the user

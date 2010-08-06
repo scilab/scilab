@@ -3,3 +3,4 @@ LIBRARY    string.dll
 
 EXPORTS
 cvstr_
+codetoascii_

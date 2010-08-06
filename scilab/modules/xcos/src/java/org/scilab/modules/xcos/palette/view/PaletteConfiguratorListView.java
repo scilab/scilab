@@ -17,7 +17,6 @@ import java.awt.Color;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
-import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.model.Category;
 import org.scilab.modules.xcos.palette.model.PaletteNode;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -32,7 +31,7 @@ public class PaletteConfiguratorListView extends JTable {
 	 * Construct a new view with model
 	 * @param model the model
 	 */
-	public PaletteConfiguratorListView(PaletteListModel model) {
+	public PaletteConfiguratorListView(final PaletteListModel model) {
 		super(model);
 		setBackground(Color.white);
 	}
@@ -41,13 +40,13 @@ public class PaletteConfiguratorListView extends JTable {
 	 * The default model
 	 */
 	public static class PaletteListModel extends AbstractTableModel {
-		private Category category;
+		private final Category category;
 		
 		/**
 		 * Default constructor with data
 		 * @param category the data
 		 */
-		public PaletteListModel(Category category) {
+		public PaletteListModel(final Category category) {
 			super();
 			
 			this.category = category;
@@ -60,7 +59,7 @@ public class PaletteConfiguratorListView extends JTable {
 		 * @see javax.swing.table.AbstractTableModel#isCellEditable(int, int)
 		 */
 		@Override
-		public boolean isCellEditable(int rowIndex, int columnIndex) {
+		public boolean isCellEditable(final int rowIndex, final int columnIndex) {
 			return true;
 		}
 		
@@ -70,7 +69,7 @@ public class PaletteConfiguratorListView extends JTable {
 		 * @see javax.swing.table.AbstractTableModel#getColumnName(int)
 		 */
 		@Override
-		public String getColumnName(int column) {
+		public String getColumnName(final int column) {
 			return COLUMN_TITLE[column];
 		}
 		
@@ -80,7 +79,7 @@ public class PaletteConfiguratorListView extends JTable {
 		 * @see javax.swing.table.AbstractTableModel#getColumnClass(int)
 		 */
 		@Override
-		public Class< ? > getColumnClass(int columnIndex) {
+		public Class< ? > getColumnClass(final int columnIndex) {
 			if (columnIndex == 0) {
 				return Boolean.class;
 			} else {
@@ -113,7 +112,7 @@ public class PaletteConfiguratorListView extends JTable {
 		 * @see javax.swing.table.TableModel#getValueAt(int, int)
 		 */
 		@Override
-		public Object getValueAt(int rowIndex, int columnIndex) {
+		public Object getValueAt(final int rowIndex, final int columnIndex) {
 			final PaletteNode p = category.getNode().get(rowIndex);
 			
 			Object ret;
@@ -133,7 +132,7 @@ public class PaletteConfiguratorListView extends JTable {
 		 * @see javax.swing.table.AbstractTableModel#setValueAt(java.lang.Object, int, int)
 		 */
 		@Override
-		public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+		public void setValueAt(final Object aValue, final int rowIndex, final int columnIndex) {
 			final PaletteNode p = category.getNode().get(rowIndex);
 			
 			if (columnIndex == 0) {
@@ -143,7 +142,6 @@ public class PaletteConfiguratorListView extends JTable {
 			}
 			
 			// Refresh the data
-			PaletteManager.getInstance().saveConfig();
 			PaletteManagerView.updateTree();
 		}
 	}

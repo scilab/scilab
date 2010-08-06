@@ -10,14 +10,43 @@
 //
 //
 
-// Add a palette to the palette manager as a child of the category name.
-//
-// @param pal the current palette
-// @param[opt] the category name
-// @return status %T if the operation is successful, %F otherwise.
-// @return[opt] msg Contains the error message in case of %F status or an empty 
-//              string when no error as occurred.
 function [status, msg] = xcosPalAdd(pal, category)
+// Add a palette to the Scilab/Xcos palette manager. Optional property can be added to set the category of the palette.
+//
+// Calling Sequence
+//   xcosPalAdd(pal);
+//   xcosPalAdd(pal, category);
+//   status = xcosPalAdd(pal);
+//   status = xcosPalAdd(pal, category);
+//   [status, msg] = xcosPalAdd(pal);
+//   [status, msg] = xcosPalAdd(pal, category);
+//
+// Parameters
+//   pal: palette tlist; the palette to add
+//   category: string array; the optional category path to use
+//   status: boolean; the status of the operation
+//   msg: string; the error message
+//
+// Description
+// After setting the blocks into the palette, the user add this function to add a Scilab palette to the Xcos palette manager.
+//
+// The optional category argument can be used to add the palette to a customized category path. If not specified, the root category is used.
+// 
+// Examples
+//   loadScicosLibs();
+//   pal = xcosPal();
+//   pal = xcosPalAddBlock(pal, "SUM_f");
+//   pal = xcosPalAddBlock(pal, "BIGSOM_f");
+//   
+//   xcosPalAdd(pal, "my Summation blocks")
+//
+// See also
+//   xcosPal
+//   xcosPalAddBlock
+//
+// Authors
+//   Clément DAVID
+
     status = %F;
     msg = "";
 
@@ -57,5 +86,6 @@ function [status, msg] = xcosPalAdd(pal, category)
     // call the gateway with a full path string and the category as
     // a string vector
     xcosPalLoad(pal, category);
+    status = %T;
 endfunction
 

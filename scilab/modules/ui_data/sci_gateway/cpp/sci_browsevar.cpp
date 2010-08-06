@@ -46,7 +46,7 @@ int sci_browsevar(char * fname, int *_piKey)
     C2F(getgvariablesinfo)(&iGlobalVariablesTotal, &iGlobalVariablesUsed);
 
     char ** pstAllVariableNames = (char **) MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
-    char ** pstAllVariableStandard = (char **) MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
+    char ** pstAllVariableVisibility = (char **) MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
     int * piAllVariableBytes = (int *) MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
     int * piAllVariableTypes = (int *) MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
 
@@ -56,20 +56,27 @@ int sci_browsevar(char * fname, int *_piKey)
         // name
         pstAllVariableNames[i] = getLocalNamefromId(i+1);
         // type
-        getNamedVarType(_piKey,  pstAllVariableNames[i], &piAllVariableTypes[i]);
+        getNamedVarType(_piKey, pstAllVariableNames[i], &piAllVariableTypes[i]);
         // Bytes used
         piAllVariableBytes[i] = getLocalSizefromId(i);
         // global / local ??
-        pstAllVariableStandard[i] = os_strdup("local");
+        pstAllVariableVisibility[i] = os_strdup("local");
     }
 
     // for each global variable get informations
     for (int j = 0 ; j < iGlobalVariablesUsed ; ++j, ++i)
     {
+        // name
         pstAllVariableNames[i] = getGlobalNamefromId(j);
+        // Bytes used
         piAllVariableBytes[i] = getGlobalSizefromId(j);
-        getNamedVarType(_piKey,  pstAllVariableNames[i], &piAllVariableTypes[i]);
-        pstAllVariableStandard[i] = os_strdup("global");
+        // type
+        // Calling "API Scilab": not yet implemented for global variable
+        //getNamedVarType(pvApiCtx, pstAllVariableNames[i], &piAllVariableTypes[i]);
+        // Using old stack operations...
+        piAllVariableTypes[i] = GetType(C2F(vstk).isiz + 2 + j);
+        // global / local ??
+        pstAllVariableVisibility[i] = os_strdup("global");
     }
 
     char *pstColumnNames[] = {_("Icon"), 
@@ -77,7 +84,7 @@ int sci_browsevar(char * fname, int *_piKey)
         //_("Value"),
         //_("Size"),
         _("Bytes"),
-        _("Class"),
+        _("Type"),
         //_("Min"),
         //_("Max"),
         //_("Range"),
@@ -85,7 +92,8 @@ int sci_browsevar(char * fname, int *_piKey)
         //_("Median"),
         //_("Mode"),
         //_("Var"),
-        _("Std")
+        //_("Std"),
+        _("Visibility")
     };
 
     // Launch Java Variable Browser through JNI
@@ -94,11 +102,11 @@ int sci_browsevar(char * fname, int *_piKey)
         pstAllVariableNames, iLocalVariablesUsed + iGlobalVariablesUsed,
         piAllVariableBytes, iLocalVariablesUsed + iGlobalVariablesUsed,
         piAllVariableTypes, iLocalVariablesUsed + iGlobalVariablesUsed,
-        pstAllVariableStandard, iLocalVariablesUsed + iGlobalVariablesUsed
+        pstAllVariableVisibility, iLocalVariablesUsed + iGlobalVariablesUsed
         );
 
     freeArrayOfString(pstAllVariableNames, iLocalVariablesUsed + iGlobalVariablesUsed);
-    freeArrayOfString(pstAllVariableStandard, iLocalVariablesUsed + iGlobalVariablesUsed);
+    freeArrayOfString(pstAllVariableVisibility, iLocalVariablesUsed + iGlobalVariablesUsed);
     if (piAllVariableBytes)
     {
         FREE(piAllVariableBytes);

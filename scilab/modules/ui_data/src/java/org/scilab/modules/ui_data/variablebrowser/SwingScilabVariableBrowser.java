@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2010 - DIGITEO - Vincent COUVERT
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -33,24 +34,31 @@ import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.Window;
-import org.scilab.modules.localization.Messages;
+import org.scilab.modules.types.scilabTypes.ScilabTypeEnum;
+import org.scilab.modules.ui_data.BrowseVar;
 import org.scilab.modules.ui_data.actions.BooleanFilteringAction;
 import org.scilab.modules.ui_data.actions.CompiledFunctionFilteringAction;
 import org.scilab.modules.ui_data.actions.DoubleFilteringAction;
 import org.scilab.modules.ui_data.actions.FunctionLibFilteringAction;
 import org.scilab.modules.ui_data.actions.GraphicHandlesFilteringAction;
+import org.scilab.modules.ui_data.actions.ImplicitPolynomialFilteringAction;
 import org.scilab.modules.ui_data.actions.IntegerFilteringAction;
+import org.scilab.modules.ui_data.actions.IntrinsicFunctionFilteringAction;
 import org.scilab.modules.ui_data.actions.ListFilteringAction;
 import org.scilab.modules.ui_data.actions.MListFilteringAction;
+import org.scilab.modules.ui_data.actions.MatlabSparseFilteringAction;
 import org.scilab.modules.ui_data.actions.PointerFilteringAction;
 import org.scilab.modules.ui_data.actions.PolynomialFilteringAction;
-import org.scilab.modules.ui_data.actions.SparceBoolFilteringAction;
-import org.scilab.modules.ui_data.actions.SparceFilteringAction;
+import org.scilab.modules.ui_data.actions.SparseBoolFilteringAction;
+import org.scilab.modules.ui_data.actions.SparseFilteringAction;
 import org.scilab.modules.ui_data.actions.StringFilteringAction;
 import org.scilab.modules.ui_data.actions.TListFilteringAction;
 import org.scilab.modules.ui_data.actions.UncompiledFunctionFilteringAction;
@@ -66,6 +74,7 @@ import org.scilab.modules.ui_data.variablebrowser.rowfilter.VariableBrowserRowFi
 public final class SwingScilabVariableBrowser extends SwingScilabTab implements Tab, SimpleVariableBrowser {
 
 	private static final long serialVersionUID = 2169382559550113917L;
+
 	private SwingTableModel<Object> dataModel;
 	private JTable table;
 	private VariableBrowserRowFilter rowFilter;
@@ -76,8 +85,8 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 	private CheckBoxMenuItem filterDoubleCheckBox;
 	private CheckBoxMenuItem filterPolynomialCheckBox;
 	private CheckBoxMenuItem filterBooleanCheckBox;
-	private CheckBoxMenuItem filterSparceCheckBox;
-	private CheckBoxMenuItem filterSparceBoolCheckBox;
+	private CheckBoxMenuItem filterSparseCheckBox;
+	private CheckBoxMenuItem filterSparseBoolCheckBox;
 	private CheckBoxMenuItem filterIntegerCheckBox;
 	private CheckBoxMenuItem filterGraphicHandlesCheckBox;
 	private CheckBoxMenuItem filterStringCheckBox;
@@ -88,39 +97,22 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 	private CheckBoxMenuItem filterTListCheckBox;
 	private CheckBoxMenuItem filterMListCheckBox;
 	private CheckBoxMenuItem filterPointerCheckBox;
+	private CheckBoxMenuItem filterIntrinsicFunctionCheckBox;
+	private CheckBoxMenuItem filterMatlabSparseCheckBox;
+	private CheckBoxMenuItem filterImplicitPolynomialCheckBox;
 	
-	private TableRowSorter<?> rowSorter; 
-
-
-	private static final int DOUBLE_CLASS_NUMBER = 1;
-	private static final int POLYNOMIAL_CLASS_NUMBER = 2;
-	private static final int BOOLEAN_CLASS_NUMBER = 4;
-	private static final int SPARCE_CLASS_NUMBER = 5;
-	private static final int SPARCE_BOOLEAN_CLASS_NUMBER = 6;
-	private static final int INTEGER_CLASS_NUMBER = 6;
-	private static final int GRAPHIC_HANDLES_CLASS_NUMBER = 6;
-	private static final int STRING_CLASS_NUMBER = 10;
-	private static final int UNCOMPILED_FUNCTION_CLASS_NUMBER = 11;
-	private static final int COMPILED_FUNCTION_CLASS_NUMBER = 13;
-	private static final int FUNCTIONLIB_CLASS_NUMBER = 14;
-	private static final int LIST_CLASS_NUMBER = 15;
-	private static final int TLIST_CLASS_NUMBER = 16;
-	private static final int MLIST_CLASS_NUMBER = 17;
-	private static final int POINTER_CLASS_NUMBER = 128;
-
+	private TableRowSorter< ? > rowSorter; 
 
 	/**
 	 * Create a JTable with data Model.
 	 * @param columnsName : Titles of JTable columns.
 	 */
 	public SwingScilabVariableBrowser(String[] columnsName) {
-		super(Messages.gettext("Variable Browser"));
+		super(UiDataMessages.VARIABLE_BROWSER);
 
 		buildMenuBar();
 
-		//	MenuBarBuilder.buildMenuBar(MENUBARXMLFILE);
 		addMenuBar(menuBar);
-
 
 		dataModel = new SwingTableModel<Object>(columnsName);
 
@@ -174,7 +166,7 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 	 */
 	public void setData(Object[][] data) {
 		dataModel.setData(data);
-		HashSet<Integer> filteredValues = getFilteredValues();
+		HashSet<ScilabTypeEnum> filteredValues = getFilteredValues();
 		rowSorter = new TableRowSorter<TableModel>(dataModel);
 		rowFilter = new VariableBrowserRowFilter(filteredValues);
 		rowSorter.setRowFilter(rowFilter);
@@ -191,11 +183,12 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 	/**
 	 * {@inheritDoc}
 	 */
+	/**
+	 * {@inheritDoc}
+	 */
 	public Window getParentWindow() {
-		// TODO Auto-generated method stub
-		return null;
+		return (Window) UIElementMapper.getCorrespondingUIElement(getParentWindowId());
 	}
-
 
 	/**
 	 * MouseListener inner class
@@ -203,26 +196,48 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 	private class BrowseVarMouseListener implements MouseListener {
 
 		/**
-		 * 
+		 * Contructor
 		 */
 		public BrowseVarMouseListener() {
 
 		}
 
+		/**
+		 * Mouse CLICKED event handling
+		 * @param e the event
+		 * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
+		 */
 		public void mouseClicked(MouseEvent e) {
 
 			if (e.getClickCount() >= 2) {
 
-				String variableName = ((JTable)e.getSource()).getValueAt(((JTable)e.getSource()).getSelectedRow(), 1).toString();
+				String variableName = ((JTable) e.getSource()).getValueAt(((JTable) e.getSource()).getSelectedRow(), 1).toString();
 				final ActionListener action = new ActionListener() {
-
 					public void actionPerformed(ActionEvent e) {
 
 					}
 				};
 
+				String variableVisibility = ((JTable) e.getSource())
+						.getValueAt(((JTable) e.getSource()).getSelectedRow(), BrowseVar.VISIBILITY_COLUMN_INDEX).toString();
+				
+				// Global variables are not editable yet
+				if (variableVisibility.equals("global")) {
+					ScilabModalDialog.show(getBrowserTab(), 
+								UiDataMessages.GLOBAL_NOT_EDITABLE,
+								UiDataMessages.VARIABLE_EDITOR,
+								IconType.ERROR_ICON);
+					return;
+				}
+				
 				try {
-					asynchronousScilabExec(action, "editvar(\""+variableName+"\")");
+					asynchronousScilabExec(action, "try "
+								+ "editvar(\"" + variableName + "\"); " 
+								+ "catch "
+								+ "messagebox(\"Variables of type \"\"\" + typeof (" 
+								+ variableName + ") + \"\"\" can not be edited.\""
+								+ ",\"" + UiDataMessages.VARIABLE_EDITOR + "\", \"error\", \"modal\");"
+								+ "end");
 				} catch (InterpreterException e1) {
 					System.err.println("An error in the interpreter has been catched: " + e1.getLocalizedMessage()); 
 				}
@@ -231,21 +246,44 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 
 		}
 
+		/**
+		 * Mouse ENTERED event handling
+		 * @param e the event
+		 * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
+		 */
 		public void mouseEntered(MouseEvent e) {
 		}
 
+		/**
+		 * Mouse EXITED event handling
+		 * @param e the event
+		 * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
+		 */
 		public void mouseExited(MouseEvent e) {
 		}
 
+		/**
+		 * Mouse PRESSED event handling
+		 * @param e the event
+		 * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
+		 */
 		public void mousePressed(MouseEvent e) {
 		}
 
+		/**
+		 * Mouse RELEASED event handling
+		 * @param e the event
+		 * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
+		 */
 		public void mouseReleased(MouseEvent e) {
 
 		}
 	}
 
-	public MenuBar buildMenuBar() {
+	/**
+	 * Creates the menuBar
+	 */
+	public void buildMenuBar() {
 		menuBar = ScilabMenuBar.createMenuBar();
 
 		fileMenu = ScilabMenu.createMenu();
@@ -277,13 +315,13 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 		filterStringCheckBox.setChecked(true);
 		filterMenu.add(filterStringCheckBox);
 		
-		filterSparceCheckBox = SparceFilteringAction.createCheckBoxMenu();
-		filterSparceCheckBox.setChecked(true);
-		filterMenu.add(filterSparceCheckBox);
+		filterSparseCheckBox = SparseFilteringAction.createCheckBoxMenu();
+		filterSparseCheckBox.setChecked(true);
+		filterMenu.add(filterSparseCheckBox);
 		
-		filterSparceBoolCheckBox = SparceBoolFilteringAction.createCheckBoxMenu();
-		filterSparceBoolCheckBox.setChecked(true);
-		filterMenu.add(filterSparceBoolCheckBox);
+		filterSparseBoolCheckBox = SparseBoolFilteringAction.createCheckBoxMenu();
+		filterSparseBoolCheckBox.setChecked(true);
+		filterMenu.add(filterSparseBoolCheckBox);
 		
 		filterIntegerCheckBox = IntegerFilteringAction.createCheckBoxMenu();
 		filterIntegerCheckBox.setChecked(true);
@@ -311,86 +349,119 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 		filterMenu.add(filterMListCheckBox);
 		
 		filterPointerCheckBox = PointerFilteringAction.createCheckBoxMenu();
+		filterPointerCheckBox.setChecked(true);
 		filterMenu.add(filterPointerCheckBox);
 
-		
-		menuBar.add(filterMenu);
+		filterIntrinsicFunctionCheckBox = IntrinsicFunctionFilteringAction.createCheckBoxMenu();
+		filterMenu.add(filterIntrinsicFunctionCheckBox);
 
-		return menuBar;
+		filterMatlabSparseCheckBox = MatlabSparseFilteringAction.createCheckBoxMenu();
+		filterMenu.add(filterMatlabSparseCheckBox);
+
+		filterImplicitPolynomialCheckBox = ImplicitPolynomialFilteringAction.createCheckBoxMenu();
+		filterMenu.add(filterImplicitPolynomialCheckBox);
+
+		menuBar.add(filterMenu);
 	}
 
 
-	public HashSet<Integer> getFilteredValues() {
-		HashSet<Integer> filteredValues = new HashSet<Integer>();
+	/**
+	 * Filter management
+	 * @return the set of filtered values
+	 */
+	public HashSet<ScilabTypeEnum> getFilteredValues() {
+		HashSet<ScilabTypeEnum> filteredValues = new HashSet<ScilabTypeEnum>();
 		// TODO to replace later by something which smells less
-		if (filterBooleanCheckBox.isChecked()) {
-			filteredValues.add(BOOLEAN_CLASS_NUMBER);
+		if (!filterBooleanCheckBox.isChecked()) {
+			filteredValues.add(ScilabTypeEnum.sci_boolean);
 		}
 
 		if (!filterDoubleCheckBox.isChecked()) {
-			filteredValues.add(DOUBLE_CLASS_NUMBER);
+			filteredValues.add(ScilabTypeEnum.sci_matrix);
 		}
 
 		if (!filterFunctionLibCheckBox.isChecked()) {
-			filteredValues.add(FUNCTIONLIB_CLASS_NUMBER);
+			filteredValues.add(ScilabTypeEnum.sci_lib);
 		}
 
 		if (!filterStringCheckBox.isChecked()) {
-			filteredValues.add(STRING_CLASS_NUMBER);
+			filteredValues.add(ScilabTypeEnum.sci_strings);
 		}
 
 		if (!filterPolynomialCheckBox.isChecked()) {
-			filteredValues.add(POLYNOMIAL_CLASS_NUMBER);
+			filteredValues.add(ScilabTypeEnum.sci_poly);
 		}
 
-		if (!filterSparceCheckBox.isChecked()) {
-			filteredValues.add(SPARCE_CLASS_NUMBER);
+		if (!filterSparseCheckBox.isChecked()) {
+			filteredValues.add(ScilabTypeEnum.sci_sparse);
 		}
 
-		if (!filterSparceBoolCheckBox.isChecked()) {
-			filteredValues.add(SPARCE_BOOLEAN_CLASS_NUMBER);
+		if (!filterSparseBoolCheckBox.isChecked()) {
+			filteredValues.add(ScilabTypeEnum.sci_boolean_sparse);
 		}
 		
 		if (!filterIntegerCheckBox.isChecked()) {
-			filteredValues.add(INTEGER_CLASS_NUMBER);
+			filteredValues.add(ScilabTypeEnum.sci_ints);
 		}
 		
 		if (!filterGraphicHandlesCheckBox.isChecked()) {
-			filteredValues.add(GRAPHIC_HANDLES_CLASS_NUMBER);
+			filteredValues.add(ScilabTypeEnum.sci_handles);
 		}
 		
 		if (!filterUncompiledFuncCheckBox.isChecked()) {
-			filteredValues.add(UNCOMPILED_FUNCTION_CLASS_NUMBER);
+			filteredValues.add(ScilabTypeEnum.sci_u_function);
 		}
 		
 		if (!filtercompiledFuncCheckBox.isChecked()) {
-			filteredValues.add(COMPILED_FUNCTION_CLASS_NUMBER);
+			filteredValues.add(ScilabTypeEnum.sci_c_function);
 		}
 		
 		if (!filterListCheckBox.isChecked()) {
-			filteredValues.add(LIST_CLASS_NUMBER);
+			filteredValues.add(ScilabTypeEnum.sci_list);
 		}
 		
 		if (!filterTListCheckBox.isChecked()) {
-			filteredValues.add(TLIST_CLASS_NUMBER);
+			filteredValues.add(ScilabTypeEnum.sci_tlist);
 		}
 		
 		if (!filterMListCheckBox.isChecked()) {
-			filteredValues.add(MLIST_CLASS_NUMBER);
+			filteredValues.add(ScilabTypeEnum.sci_mlist);
 		}
 		
 		if (!filterPointerCheckBox.isChecked()) {
-			filteredValues.add(POINTER_CLASS_NUMBER);
+			filteredValues.add(ScilabTypeEnum.sci_pointer);
+		}
+		
+		if (!filterIntrinsicFunctionCheckBox.isChecked()) {
+			filteredValues.add(ScilabTypeEnum.sci_intrinsic_function);
+		}
+		
+		if (!filterMatlabSparseCheckBox.isChecked()) {
+			filteredValues.add(ScilabTypeEnum.sci_matlab_sparse);
+		}
+		
+		if (!filterImplicitPolynomialCheckBox.isChecked()) {
+			filteredValues.add(ScilabTypeEnum.sci_implicit_poly);
 		}
 		
 		return filteredValues;
 	}
 
-	public void updateRowFiltering(){
-		
+	/**
+	 * Update the display after filtering
+	 * @see org.scilab.modules.ui_data.variablebrowser.SimpleVariableBrowser#updateRowFiltering()
+	 */
+	public void updateRowFiltering() {
 		rowFilter = new VariableBrowserRowFilter(getFilteredValues());
 		rowSorter.setRowFilter(rowFilter);
 		table.setRowSorter(rowSorter);
-
+	}
+	
+	/**
+	 * Get this browser as a Tab object
+	 * @return the tab
+	 */
+	public Tab getBrowserTab() {
+		return this;
 	}
 }

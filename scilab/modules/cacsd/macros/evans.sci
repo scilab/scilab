@@ -117,9 +117,9 @@ function evans(n,d,kmax)
   if dy<1d-10, dy=0.01,end
   legs=[],lstyle=[];lhandle=[]
   rect=[xmin-dx;ymin-dy;xmax+dx;ymax+dy];
-  f=gcf();
-  cur_im_dr= f.immediate_drawing;
-  f.immediate_drawing = 'off';
+  fig=gcf();
+  immediate_drawing = fig.immediate_drawing;
+  fig.immediate_drawing = 'off';
   a=gca()
   a.data_bounds=[rect(1) rect(2);rect(3) rect(4)]
   if nroots<>[] then 
@@ -175,10 +175,9 @@ function evans(n,d,kmax)
   [n1,n2]=size(racines);
 
   plot2d(real(racines)',imag(racines)',style=2+(1:n2));
-  legend(lhandle,legs,1);
+  legend(lhandle,legs);
   xtitle(_("Evans root locus"),_("Real axis"),_("Imaginary axis"));
-  f=gcf();
-  if(cur_im_dr=="on") then f.immediate_drawing = 'on';end
+  fig.immediate_drawing = immediate_drawing;
 
   if fin=='nptmax' then
     warning(msprintf(gettext("%s: Curve truncated to the first %d discretization points.\n"),"evans",nptmax))

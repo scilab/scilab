@@ -22,6 +22,7 @@ libsciscinotes_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 libsciscinotes_la_etcdir = $(mydatadir)/etc
 libsciscinotes_la_etc_DATA = etc/scinotesConfiguration.xml \
     etc/keysConfiguration.xml \
+    etc/scinotesGUIConfiguration.xml \
     etc/scinotes.quit \
     etc/scinotes.start
 

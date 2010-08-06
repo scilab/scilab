@@ -14,6 +14,9 @@ package org.scilab.modules.xcos.io.scicos;
 
 import static java.util.Arrays.asList;
 
+import java.io.ByteArrayInputStream;
+import java.io.DataInputStream;
+import java.io.IOException;
 import java.util.List;
 
 import org.scilab.modules.types.scilabTypes.ScilabDouble;
@@ -44,10 +47,10 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 	private ScilabMList data;
 
 	/** Element used to decode/encode Scicos model part into a BasicBlock*/
-	private BlockModelElement modelElement = new BlockModelElement();
+	private final BlockModelElement modelElement = new BlockModelElement();
 	
 	/** Element used to decode/encode Scicos model part into a BasicBlock*/
-	private BlockGraphicElement graphicElement = new BlockGraphicElement();
+	private final BlockGraphicElement graphicElement = new BlockGraphicElement();
 	
 	/*
 	 * Decoder state 
@@ -116,6 +119,8 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 			block = BlockFactory.createBlock(interfunction);
 		}
 		
+		block = beforeDecode(element, block);
+		
 		/*
 		 * Allocate and setup ports
 		 */
@@ -155,6 +160,8 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 		minX = Math.min(minX, block.getGeometry().getX());
 		minY = Math.min(minX, block.getGeometry().getY());
 		
+		block = afterDecode(element, block);
+		
 		return block;
 	}
 	
@@ -178,13 +185,35 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 		 */
 		ScilabList list = (ScilabList) scilabType;
 		
-		if (list.size() > 0) {
-			if (list.get(0) instanceof ScilabString) {
-				ScilabString uid = (ScilabString) list.get(0);
-				into.setId(uid.getData()[0][0]);
+		if (list.size() > 1 && list.get(0) instanceof ScilabString) {
+			String uid = ((ScilabString) list.get(0)).getData()[0][0];
+			if (isValidUid(uid)) {
+				into.setId(uid);
+				return;
 			}
-		} else {
-			into.generateId();
+		}
+		
+		into.generateId();
+	}
+
+	/**
+	 * @param uid The uid to check
+	 * @return true if the uid is valid, false otherwise
+	 */
+	private boolean isValidUid(String uid) {
+		ByteArrayInputStream str = new ByteArrayInputStream(uid.getBytes());
+		DataInputStream inputStream = new DataInputStream(str);
+		
+		try {
+			inputStream.readInt();
+			char sep1 = inputStream.readChar();
+			inputStream.readLong();
+			char sep2 = inputStream.readChar();
+			inputStream.readInt();
+			
+			return inputStream.available() == 0 && sep1 == sep2 && sep1 == ':';
+		} catch (IOException e) {
+			return false;
 		}
 	}
 
@@ -302,6 +331,8 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 			setupPortSize(from);
 		}
 		
+		data = (ScilabMList) beforeEncode(from, data);
+		
 		field++;
 		base = data.get(field);
 		base = graphicElement.encode(from, null);
@@ -327,9 +358,6 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 		final OutputPortElement outElement = new OutputPortElement(data);
 		final int numberOfPorts = from.getChildCount();
 		
-		inElement.beforeEncode();
-		outElement.beforeEncode();
-		
 		for (int i = 0; i < numberOfPorts; i++) {
 			final Object instance = from.getChildAt(i);
 			
@@ -340,8 +368,13 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 			}
 		}
 		
+		/*
+		 * post process for element shared fields
+		 */
 		inElement.afterEncode();
 		outElement.afterEncode();
+		
+		data = (ScilabMList) afterEncode(from, data);
 		
 		return data;
 	}

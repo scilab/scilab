@@ -15,9 +15,12 @@ package org.scilab.modules.xcos.palette.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.tree.TreeNode;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -26,7 +29,8 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>
- * A category can contain any number of child ({@link Palette} or {@link Category}).
+ * A category can contain any number of child ({@link Palette} or
+ * {@link Category}).
  * 
  * <p>
  * The following schema fragment specifies the expected content contained within
@@ -50,15 +54,18 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement
 @XmlType(name = "Category", propOrder = { "node" })
 public class Category extends PaletteNode {
-
+	private static transient final 
+		HashMap<String, List<PaletteNode>> SAVED_NODELIST = new HashMap<String, List<PaletteNode>>();
+	
 	@XmlElement(nillable = true)
 	private List<PaletteNode> node;
 
 	/**
 	 * Default constructor
 	 */
-	public Category() { }
-	
+	public Category() {
+	}
+
 	/**
 	 * Gets the value of the node property.
 	 * 
@@ -112,7 +119,8 @@ public class Category extends PaletteNode {
 	}
 
 	/**
-	 * @param childIndex the selected child index
+	 * @param childIndex
+	 *            the selected child index
 	 * @return the child at the specified index
 	 * @see javax.swing.tree.TreeNode#getChildAt(int)
 	 */
@@ -131,7 +139,8 @@ public class Category extends PaletteNode {
 	}
 
 	/**
-	 * @param node the node
+	 * @param node
+	 *            the node
 	 * @return the index of the node
 	 * @see javax.swing.tree.TreeNode#getIndex(javax.swing.tree.TreeNode)
 	 */
@@ -149,4 +158,26 @@ public class Category extends PaletteNode {
 		return false;
 	}
 
+	/*
+	 * Customize the marshalling operation
+	 */
+
+	/* Invoked by Marshaller after it has created an instance of this object. */
+	void beforeMarshal(Marshaller m) {
+		SAVED_NODELIST.put(getName(), new ArrayList<PaletteNode>(node));
+		
+		for (Iterator<PaletteNode> it = node.iterator(); it.hasNext();) {
+			if (it.next() instanceof PreLoaded.Dynamic) {
+				it.remove();
+			}
+		}
+	}
+
+	/*
+	 * Invoked by Marshaller after it has marshalled all properties of this
+	 * object.
+	 */
+	void afterMarshal(Marshaller m) {
+		node = SAVED_NODELIST.get(getName());
+	}
 }

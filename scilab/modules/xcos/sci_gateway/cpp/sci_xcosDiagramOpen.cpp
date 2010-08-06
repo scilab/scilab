@@ -65,7 +65,7 @@ int sci_xcosDiagramOpen(char *fname, int* _piKey)
 	if (m1 !=1 || n1 != 1) {
 		Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,1);
 		return 0;
-	} 
+	}
 
 	/* get lengths */
 	sciErr = getMatrixOfString(_piKey, piAddressVarOne, &m1, &n1, &lenStVarOne, NULL);

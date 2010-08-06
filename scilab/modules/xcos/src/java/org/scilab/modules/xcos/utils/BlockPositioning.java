@@ -69,7 +69,7 @@ public final class BlockPositioning {
 
 		beginUpdate(block);
 		for (int i = 0; i < portsSize; ++i) {
-			final BasicPort port = ((BasicPort) ports.get(i));
+			final BasicPort port = (ports.get(i));
 			final mxGeometry portGeom = port.getGeometry();
 			
 			double nonVariantPosition = -portGeom.getWidth();
@@ -164,7 +164,7 @@ public final class BlockPositioning {
 
 		beginUpdate(block);
 		for (int i = 0; i < portsSize; ++i) {
-			final BasicPort port = ((BasicPort) ports.get(i));
+			final BasicPort port = (ports.get(i));
 			final mxGeometry portGeom = port.getGeometry();
 			
 			double nonVariantPosition = -portGeom.getHeight();
@@ -200,7 +200,7 @@ public final class BlockPositioning {
 
 		beginUpdate(block);
 		for (int i = 0; i < portsSize; ++i) {
-			final BasicPort port = ((BasicPort) ports.get(i));
+			final BasicPort port = (ports.get(i));
 			final mxGeometry portGeom = port.getGeometry();
 			
 			double nonVariantPosition = blockGeom.getWidth();
@@ -236,7 +236,7 @@ public final class BlockPositioning {
 
 		beginUpdate(block);
 		for (int i = 0; i < portsSize; ++i) {
-			final BasicPort port = ((BasicPort) ports.get(i));
+			final BasicPort port = (ports.get(i));
 			final mxGeometry portGeom = port.getGeometry();
 			
 			double nonVariantPosition = blockGeom.getHeight();
@@ -331,13 +331,13 @@ public final class BlockPositioning {
 		Orientation rotated = iter;
 		
 		/* Flip & Mirror management */
-		if (flipped) {
+		if (mirrored) {
 			if (rotated == Orientation.EAST || rotated == Orientation.WEST) {
 				rotated = Orientation.values()[(rotated.ordinal() + 2)
 						% nbOfOrientations];
 			}
 		}
-		if (mirrored) {
+		if (flipped) {
 			if (rotated == Orientation.NORTH || rotated == Orientation.SOUTH) {
 				rotated = Orientation.values()[(rotated.ordinal() + 2)
 						% nbOfOrientations];

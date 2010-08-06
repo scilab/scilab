@@ -10,16 +10,45 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 //
-//
+
 function importScicosPal(palFiles, outPath)
+// Export all palettes to a path as H5 files
+//
+// Calling Sequence
+//   importScicosPal(palFiles, outPath);
+//
+// Parameters
+//   palFiles: string array; the palette files to export
+//   outPath: string; path where to export the palettes
+//
+// Description
+// To export Scicos palettes to an HDF5 instance, use this macro.
+// 
+// Examples
+//   palFiles = ls(SCI + "/modules/scicos/palettes/*.cosf");
+//   importScicosPal(palFiles, SCI + "/modules/scicos_blocks/blocks");
+//
+// See also
+//   xcosPal
+//   xcosPalAddBlock
+//
+// Authors
+//   Vincent COUVERT
+//   Antoine ELIAS
+//   Clément DAVID
 
   rhs = argn(2);
+
+  if ~exists("scicos_diagram") then
+    loadScicosLibs();
+  end
 
   if rhs < 2 then
     error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "importScicosPal", 2));
     return
   end
 
+  // global variables
   exportedBlocks = 0;
 
   // foreach file
@@ -62,6 +91,19 @@ function importScicosPal(palFiles, outPath)
       // instanciate a block
       // /!\ may cause an error depending on the implementation
       execstr("out = " + varsToLoad(i) + "(""define"")");
+      
+      // Update on super block
+      if out.model.sim == "super" | out.model.sim == "csuper" then
+        [ierr,scicos_ver,scs_m]=update_version(out.model.rpar);
+        
+        if ierr <> 0 then
+          mprintf("FAILED TO UPDATE AND EXPORT: %s\n", out.gui);
+        else
+          mprintf("%s updated from %s\n", out.gui, scicos_ver);
+        end
+        
+        out.model.rpar = scs_m;
+      end
 
       doExport = %t;
       if isfile(blockFile) then
@@ -81,14 +123,14 @@ function importScicosPal(palFiles, outPath)
         mprintf("%d: %s\n", i, block_name);
         bexport = export_to_hdf5(blockFile, "out");
         if (~bexport) then
-          mprintf(gettext("FAILED TO EXPORT: %s\n"), out.gui);
+          mprintf("FAILED TO EXPORT: %s\n", out.gui);
         end
       
         out2 = out;
         bImport = import_from_hdf5(blockFile);
         
         if bImport == %f | or(out2 <> out) then
-          mprintf(gettext("FAILED TO EXPORT: %s\n"), out.gui);
+          mprintf("FAILED TO EXPORT: %s\n", out.gui);
         end
         exportedBlocks = exportedBlocks + 1;
       end

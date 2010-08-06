@@ -13,14 +13,12 @@
 package org.scilab.modules.scinotes.actions;
 
 import javax.swing.KeyStroke;
-import javax.swing.JComponent;
 import javax.swing.text.DefaultEditorKit;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabDocument;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
  * CutAction Class
@@ -33,51 +31,45 @@ public final class CutAction extends DefaultAction {
      * serialVersionUID
      */
     private static final long serialVersionUID = -4831313579986185630L;
-    
+
     /**
-     * Constructor 
+     * Constructor
+     * @param name the name of the action
      * @param editor SciNotes
      */
-    private CutAction(SciNotes editor) {
-	super(SciNotesMessages.CUT, editor);
+    public CutAction(String name, SciNotes editor) {
+        super(name, editor);
     }
-    
+
     /**
      * doAction
      */
     public void doAction() {
-	ScilabDocument doc = (ScilabDocument) getEditor().getTextPane().getDocument();
-	doc.mergeEditsBegin();
-	getEditor().getTextPane().getActionMap().get(DefaultEditorKit.cutAction).actionPerformed(null);
-	doc.mergeEditsEnd();
+        ScilabDocument doc = (ScilabDocument) getEditor().getTextPane().getDocument();
+        doc.mergeEditsBegin();
+        getEditor().getTextPane().getActionMap().get(DefaultEditorKit.cutAction).actionPerformed(null);
+        doc.mergeEditsEnd();
     }
 
     /**
      * createMenu
-     * @param editor SciNotes 
+     * @param label label of the menu
+     * @param editor SciNotes
      * @param key KeyStroke
      * @return MenuItem
      */
-    public static MenuItem createMenu(SciNotes editor, KeyStroke key) {
-	return createMenu(SciNotesMessages.CUT, null, new CutAction(editor), key);
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new CutAction(label, editor), key);
     }
-    
+
     /**
      * createButton
+     * @param tooltip the tooltip
+     * @param icon an icon name searched in SCI/modules/gui/images/icons/
      * @param editor SciNotes
      * @return PushButton
      */
-    public static PushButton createButton(SciNotes editor) {
-	return createButton(SciNotesMessages.CUT, "edit-cut.png", new CutAction(editor));
-    }
-    
-    /**
-     * Put input map
-     * @param textPane JTextpane
-     * @param editor Editor
-     * @param key KeyStroke
-     */
-    public static void putInInputMap(JComponent textPane, SciNotes editor, KeyStroke key) {
-	textPane.getInputMap().put(key, new CutAction(editor));
+    public static PushButton createButton(String tooltip, String icon, SciNotes editor) {
+        return createButton(tooltip, icon, new CutAction(tooltip, editor));
     }
 }

@@ -39,7 +39,7 @@ import org.scilab.modules.xcos.palette.view.PaletteConfiguratorListView.PaletteL
 public class PaletteManagerTreeSelectionListener implements
 		TreeSelectionListener {
 
-	private JScrollPane panel;
+	private final JScrollPane panel;
 	
 	/**
 	 * Default constructor
