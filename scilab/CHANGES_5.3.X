@@ -96,6 +96,13 @@ Bug Fixes:
 * bug 7693 fixed - With a corrupted palettes.xml file, the error message is not
                    coherent with the recovering action.
 
+* bug 7703 fixed - 'coding_ga_identity' help contained false "See Also".
+
+* bug 7704 fixed - 'init_ga_default' help did not tell the default values of
+                   the optional parameters.
+
+* bug 7706 fixed - example in the help page of 'optim_ga' did not work.
+
 
          Changes between version 5.3.0-beta-1 and 5.3.0-beta-2 of Scilab
          ===============================================================
