@@ -25,6 +25,7 @@ import org.scilab.modules.localization.Messages;
 public class SciNotesMessages {
 
     public static final String DOTS = "...";
+    public static final String QUOTE = "'";
 
     public static final String SCILAB_EDITOR = Messages.gettext("SciNotes");
     public static final String ERROR_WITH_STRING = Messages.gettext("Error while reading the String");
