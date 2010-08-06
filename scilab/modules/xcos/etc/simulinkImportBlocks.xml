@@ -14,6 +14,8 @@
 		<!--Zero or more repetitions:-->
 		<simple sim="string" xcos="string" description="string"/>
 	</block>
+	
+<!-- TODO: Zero Cross -->
 
 <!-- General parameters, common for many blocks -->
 <!-- Ports, ShowName, SID, BlockMirror, DropShadow, FontSize, BackgroundColor, BlockType, NamePlacement, ShowSaturationPort(?), FontName, ShowStatePort, FontWeigh, ContinuousStateAttributes, FontAngle, Name, ForegroundColor, BlockRotation, NumInputPorts, DataFormat -->
@@ -263,7 +265,7 @@
 			<simple sim="FunctionType" xcos="null"></simple>
 			<simple sim="BlockType" xcos="c"></simple>
 			<real xcos="exprs">
-				<map simName="1" index="0,0"/>
+				<map simName="Gain" index="0,0"/>
 			</real>
 			<real xcos="rpar">
 				<map simName="Gain" index="0,0"/>
@@ -280,7 +282,7 @@
 			<simple sim="FunctionType" xcos="4"></simple>
 			<simple sim="BlockType" xcos="d"></simple>
 			<real xcos="exprs">
-				<map simName="1" index="0,0"/>
+				<map simName="Value" index="0,0"/>
 			</real>
 			<real xcos="rpar">
 				<map simName="Value" index="0,0"/>
@@ -289,6 +291,7 @@
 		
 <!-- Sinks -->
 		<!-- Scop Block compatibility pattern -->
+		<!-- FIXME -->
 		<block sim="Scope" xcos="CSCOPE" description="">
 			<simple sim="FunctionName" xcos="cscope"></simple>
 			<simple sim="FunctionType" xcos="4"></simple>
@@ -354,6 +357,7 @@
 		
 		<!-- Gain Block Compatibility Pattern -->
 		<block sim="Saturation" xcos="SATURATION" description="4">
+			<!-- FIXME -->
 			<!-- Zero crossing? -->
 			<simple sim="FunctionName" xcos="satur"></simple>
 			<simple sim="FunctionType" xcos="4"></simple>
@@ -372,7 +376,6 @@
 		<!-- FIXME: -->
 		<!-- Product Block Compatibility Pattern -->
 		<block sim="Product" xcos="PRODUCT" description="4">
-			<!-- Zero crossing? -->
 			<simple sim="FunctionName" xcos="product"></simple>
 			<simple sim="FunctionType" xcos="4"></simple>
 			<simple sim="BlockType" xcos="c"></simple>
@@ -385,8 +388,7 @@
 		</block>
 		<!-- FIXME: -->
 		<!-- Sum Block Compatibility Pattern -->
-		<block sim="Sum FIXME" xcos="SUMMATION" description="4">
-			<!-- Zero crossing? -->
+		<block sim="Sum" xcos="SUMMATION" description="4">
 			<simple sim="FunctionName" xcos="summation"></simple>
 			<simple sim="FunctionType" xcos="4"></simple>
 			<simple sim="BlockType" xcos="c"></simple>
@@ -396,14 +398,13 @@
 				<map simName="SaturateOnIntegerOverflow" index="2,0"/><!-- Do on overflowe -->
 			</real>
 			<!-- FIXME: -->
-			<real xcos="ipar FIXME">
+			<real xcos="ipar">
 				<map simName="Inputs" index="0,0"/><!-- Number of inputs, sign vector -->
 			</real>
 		</block>
 		<!-- FIXME: -->
 		<!-- Relay Block Compatibility Pattern -->
 		<block sim="Relay" xcos="RELAY_f" description="">
-			<!-- Zero crossing? -->
 			<simple sim="FunctionName" xcos="relay"></simple>
 			<simple sim="FunctionType" xcos="4"></simple>
 			<simple sim="BlockType" xcos="c"></simple>
@@ -419,16 +420,15 @@
 		<!-- FIXME: -->
 		<!-- SubSystem Block Compatibility Pattern -->
 		<block sim="SubSystem" xcos="SUPER_f" description="">
-			<!-- Zero crossing? -->
 			<simple sim="FunctionName" xcos="super"></simple>
 			<simple sim="FunctionType" xcos="null"></simple>
 			<simple sim="BlockType" xcos="c"></simple>
 		</block>
 		
-				<!-- FIXME: -->
+		<!-- FIXME: -->
 		<!-- MultiPortSwitch Block Compatibility Pattern -->
 		<block sim="MultiPortSwitch" xcos="M_SWITCH" description="">
-			<!-- Zero crossing? -->
+		<!-- TODO: Zero Cross -->
 			<simple sim="FunctionName" xcos="mswitch"></simple>
 			<simple sim="FunctionType" xcos="4"></simple>
 			<simple sim="BlockType" xcos="c"></simple>
@@ -444,9 +444,30 @@
 		</block>
 		
 		<!-- FIXME: -->
+		<!-- Switch Block Compatibility Pattern -->
+		<block sim="Switch" xcos="SWITCH2_m" description="">
+		<!-- TODO: Zero Cross -->
+			<simple sim="FunctionName" xcos="switch2_m"></simple>
+			<simple sim="FunctionType" xcos="4"></simple>
+			<simple sim="BlockType" xcos="c"></simple>
+			<real xcos="exprs">
+				<map simName="FIXME: OutDataTypeStr" index="0,0"/><!-- Datatype -->
+				<map simName="Criteria" index="1,0"/><!-- past first input if -->
+				<map simName="Threshold" index="2,0"/><!-- threshold -->
+				<map simName="1" index="3,0"/><!-- Use zero crossing -->
+			</real>
+			<real xcos="FIXME: ipar">
+				<map simName="Criteria" index="0,0"/> <!-- zero base indexind -->
+			</real>
+			<real xcos="FIXME: rpar">
+				<map simName="Threshold" index="0,0"/> <!-- zero base indexind -->
+			</real>
+			
+		</block>
+		
+		<!-- FIXME: -->
 		<!-- Mux Block Compatibility Pattern -->
 		<block sim="Mux" xcos="MUX" description="">
-			<!-- Zero crossing? -->
 			<simple sim="FunctionName" xcos="multiplex"></simple>
 			<simple sim="FunctionType" xcos="4"></simple>
 			<simple sim="BlockType" xcos="c"></simple>
@@ -460,7 +481,6 @@
 		<!-- FIXME: -->
 		<!-- Demux Block Compatibility Pattern -->
 		<block sim="Demux" xcos="DEMUX" description="">
-			<!-- Zero crossing? -->
 			<simple sim="FunctionName" xcos="multiplex"></simple>
 			<simple sim="FunctionType" xcos="4"></simple>
 			<simple sim="BlockType" xcos="c"></simple>
@@ -469,6 +489,87 @@
 			</real>
 			<real xcos="ipar">
 				<map simName="Inputs" index="0,0"/><!-- Number of output ports -->
+			</real>
+		</block>
+		
+		<!-- RelationalOperator Block Compatibility Pattern -->
+		<block sim="RelationalOperator" xcos="RELATIONALOP" description="">
+					<!-- FIXME: -->
+			<!-- Zero crossing? -->
+			<simple sim="FunctionName" xcos="relationalop"></simple>
+			<simple sim="FunctionType" xcos="4"></simple>
+			<simple sim="BlockType" xcos="c"></simple>
+			<real xcos="exprs">
+				<map simName="Operator" index="0,0"/><!-- Operator -->
+				<map simName="0" index="0,0"/><!-- Use zero crossing -->
+				<map simName="1" index="0,0"/><!-- Datatype -->
+			</real>
+			<real xcos="ipar">
+				<!--TODO: Translation of Operator: -->
+				<map simName="2" index="0,0"/><!-- Number of output ports -->
+			</real>
+		</block>
+		
+		<!-- Inport Block Compatibility Pattern -->
+		<block sim="Inport" xcos="IN_f" description="">
+			<simple sim="Inport" xcos="input"></simple>
+			<simple sim="FunctionType" xcos="null"></simple>
+			<simple sim="BlockType" xcos="c"></simple>
+			<real xcos="exprs">
+				<map simName="Port" index="0,0"/><!-- Port Number -->
+			</real>
+			<real xcos="ipar">
+				<!--TODO: Translation of Operator: -->
+				<map simName="Port" index="0,0"/><!-- PortNumber -->
+			</real>
+		</block>
+		
+		<!-- Outport Block Compatibility Pattern -->
+		<block sim="Outport" xcos="OUT_f" description="">
+			<!-- Zero crossing? -->
+			<simple sim="FunctionName" xcos="output"></simple>
+			<simple sim="FunctionType" xcos="null"></simple>
+			<simple sim="BlockType" xcos="c"></simple>
+			<real xcos="exprs">
+				<map simName="Port" index="0,0"/><!-- Port Number -->
+			</real>
+			<real xcos="ipar">
+				<!--TODO: Translation of Operator: -->
+				<map simName="Port" index="0,0"/><!-- PortNumber -->
+			</real>
+		</block>
+		
+		<!-- TransferFcn Block Compatibility Pattern -->
+		<block sim="TransferFcn" xcos="CLR" description="">
+		<!-- FIXME: -->
+			<simple sim="FunctionName" xcos="clr"></simple>
+			<simple sim="FunctionType" xcos="4"></simple>
+			<simple sim="BlockType" xcos="c"></simple>
+		</block>
+		
+		<!-- DiscreteTransferFcn Block Compatibility Pattern -->
+		<block sim="DiscreteTransferFcn" xcos="DLR" description="">
+		<!-- FIXME: -->
+			<simple sim="FunctionName" xcos="dlr"></simple>
+			<simple sim="FunctionType" xcos="4"></simple>
+			<simple sim="BlockType" xcos="c"></simple>
+		</block>
+		
+		<!-- CombinatorialLogic Block Compatibility Pattern -->
+		<!-- FIXME: -->
+		<block sim="CombinatorialLogic" xcos="LOGIC" description="">
+			<!-- Zero crossing? -->
+			<simple sim="FunctionName" xcos="logic"></simple>
+			<simple sim="FunctionType" xcos="4"></simple>
+			<simple sim="BlockType" xcos="c"></simple>
+			<real xcos="exprs">
+				<map simName="TruthTable" index="0,0"/><!-- TruthTable -->
+				<map simName="0" index="0,0"/><!-- Inherit -->
+				<map simName="1" index="0,0"/><!-- Datatype -->
+			</real>
+			<real xcos="opar">
+				<!--TODO: Translation of Operator: -->
+				<map simName="TruthTable" index="0,0"/><!-- TruthTable -->
 			</real>
 		</block>
 
