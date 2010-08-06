@@ -45,22 +45,21 @@ public class MatrixElement {
 			/*
 			 * handling of *+ and -/ 
 			 */
+			int k = 0;
 			if(rows[i].endsWith("+") || rows[i].endsWith("*") || rows[i].endsWith("-") || rows[i].endsWith("/")){
 				char[] signArray = rows[i].toCharArray();
+				double [] intoSumProd = new double[signArray.length];
 				for(int j = 0 ; j < signArray.length; j++){
 					if(LOG.isTraceEnabled()){
 						LOG.trace("signArray: "+ j + "=" + signArray[j]);
 					}
 					if(signArray[j] == '+' || signArray[j] == '*'){
-						into[i*signArray.length + j] = 1;
+						intoSumProd[k++] = 1;
 					} else if(signArray[j] == '-' || signArray[j] == '/'){
-						into[i*signArray.length + j] = -1;
-					}
-					if(LOG.isTraceEnabled()){
-						LOG.trace(into[i*cells.length + j]);
+						intoSumProd[k++] = -1;
 					}
 				}
-				return into;
+				return intoSumProd;
 			} 
 			
 			cells = rows[i].replaceAll("[\\[\\];,]", " ").trim().split("\\s+");
