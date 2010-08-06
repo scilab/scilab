@@ -10,6 +10,7 @@ function Makename = dlwGenerateMakefile(name, ..
                                  tables, ..
                                  files, ..
                                  libs, ..
+                                 libname, ..
                                  makename, ..
                                  with_gateway, ..
                                  ldflags, ..
@@ -29,7 +30,7 @@ function Makename = dlwGenerateMakefile(name, ..
     fflags = '';
     cc = '';
   end
-  
+
   if ~isdef('makename') then
     makename = '';
   end
@@ -55,7 +56,7 @@ function Makename = dlwGenerateMakefile(name, ..
       [mt, nt] = size(table);
 
       if nt == 2 then
-        col= "csci";  
+        col= "csci";
         table = [table, col(ones(mt,1))];
         nt=3;
       end
@@ -66,15 +67,18 @@ function Makename = dlwGenerateMakefile(name, ..
       tables(it) = table;
     end
   end
-  
+
   if isempty(makename) then
     Makename = dlwGetDefltMakefileName() + dlwGetMakefileExt();
   else
     Makename = makename + dlwGetMakefileExt();
   end
-  
-  
-  ilib_gen_Make_win32(name, tables, files, libs, Makename, with_gateway, ldflags, cflags, fflags)
+
+  if length(libname) > 0  & strncpy(libname, 3) <> 'lib' then
+    libname = 'lib' + libname;
+  end
+
+  ilib_gen_Make_win32(name, tables, files, libs, libname, Makename, with_gateway, ldflags, cflags, fflags)
 
 endfunction
 //=============================================================================
@@ -82,6 +86,7 @@ function ilib_gen_Make_win32(name, ..
                              table, ..
                              files, ..
                              libs, ..
+                             libname, ..
                              Makename, ..
                              with_gateway, ..
                              ldflags, ..
@@ -105,6 +110,12 @@ function ilib_gen_Make_win32(name, ..
   FFLAGS = fflags;
   MEXFFLAGS = '';
   LDFLAGS = ldflags;
+
+  if isempty(libname) then
+    LIBRARY = name;
+  else
+    LIBRARY = libname;
+  end
 
   FILES_SRC_MATRIX = [];
 
@@ -199,7 +210,7 @@ function ilib_gen_Make_win32(name, ..
   end
 
   for x=libs(:)'
-     if (x <> [] & x <> '') then 
+     if (x <> [] & x <> '') then
        if OTHERLIBS <> '' then
          OTHERLIBS = OTHERLIBS + ' ' + x + '.lib';
        else
@@ -236,9 +247,7 @@ function ilib_gen_Make_win32(name, ..
   MAKEFILE_VC = strsubst(MAKEFILE_VC, "__LDFLAGS__", LDFLAGS);
 
   if ( MAKEFILE_VC <> '') then
-    fd = mopen(Makename, "wt");
-    mputl(MAKEFILE_VC, fd);
-    mclose(fd);
+    mputl(MAKEFILE_VC, Makename);
 
     if ilib_verbose() > 1 then
       disp(MAKEFILE_VC);

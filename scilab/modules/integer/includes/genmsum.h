@@ -32,6 +32,7 @@
  * @return 
  */
 INTEGER_IMPEXP int C2F(genmsum)(int *typ,int *job, int *a, int *na, int *m, int *n, int *v, int *nv);
+INTEGER_IMPEXP int C2F(genmsumasdouble)(int *typ,int *job, int *a, int *na, int *m, int *n, double *v, int *nv);
 
 #endif /* __GENMSUM_H__ */
 

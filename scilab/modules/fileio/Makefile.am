@@ -51,7 +51,8 @@ src/c/expandPathVariable.c \
 src/c/basename.c \
 src/c/pathconvert.c \
 src/c/copyfile_others.c \
-src/c/getFullFilename.c
+src/c/getFullFilename.c \
+src/c/mputl.c
 
 GATEWAY_SOURCES = \
 sci_gateway/c/gw_fileio.c \
@@ -97,7 +98,8 @@ sci_gateway/c/sci_fileparts.c \
 sci_gateway/c/sci_movefile.c \
 sci_gateway/c/sci_basename.c \
 sci_gateway/c/sci_pathconvert.c \
-sci_gateway/c/sci_isfile.c
+sci_gateway/c/sci_isfile.c \
+sci_gateway/c/sci_mputl.c
 
 
 libscifileio_la_CPPFLAGS=	-I$(srcdir)/includes/ \

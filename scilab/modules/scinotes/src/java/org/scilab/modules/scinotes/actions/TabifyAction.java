@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2010 - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,71 +13,62 @@
 
 package org.scilab.modules.scinotes.actions;
 
-import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.TabManager;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
 import org.scilab.modules.scinotes.ScilabDocument;
 
 /**
  * Class Tabify action for SciNotes
  * @author Sylvestre Koumar
+ * @author Calixte DENIZET
  *
  */
 public final class TabifyAction extends DefaultAction {
 
-	/**
-	 * Default constructor
-	 * @param editor the editor
-	 */
-	private TabifyAction(SciNotes editor) {
-	    super(SciNotesMessages.TABIFY_SELECTION, editor);
-	}
-	
-	/**
-	 * Function doAction
-	 */
-	public synchronized void doAction() {
-	    ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
-	    int start = sep.getSelectionStart();
-	    int end   = sep.getSelectionEnd();
-	    TabManager tab = sep.getTabManager();
-	    ScilabDocument doc = (ScilabDocument) sep.getDocument();
-		
-	    doc.mergeEditsBegin();
-	    if (start == end) {
-		tab.insertTab(start);
-	    } else {
-		int[] ret = tab.tabifyLines(start, end - 1);
-		if (ret != null) {
-		    sep.setSelectionStart(ret[0]);
-		    sep.setSelectionEnd(ret[1]);
-		}
-	    }
-	    doc.mergeEditsEnd();
-	}
-	
-	/**
-	 * Create the MenuItem for tabify action
-	 * @param editor Editor
-	 * @param key KeyStroke
-	 * @return a MenuItem
-	 */
-        public static MenuItem createMenu(SciNotes editor, KeyStroke key) {
-		return createMenu(SciNotesMessages.TABIFY_SELECTION , null, new TabifyAction(editor), key);
-	}
+    /**
+     * Default constructor
+     * @param name the name of the action
+     * @param editor the editor
+     */
+    public TabifyAction(String name, SciNotes editor) {
+        super(name, editor);
+    }
 
-        /**
-	 * Put input map
-	 * @param textPane JTextpane
-	 * @param editor Editor
-	 * @param key KeyStroke
-	 */
-        public static void putInInputMap(JComponent textPane, SciNotes editor, KeyStroke key) {
-	    textPane.getInputMap().put(key, new TabifyAction(editor));
-	}
+    /**
+     * Function doAction
+     */
+    public synchronized void doAction() {
+        ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
+        int start = sep.getSelectionStart();
+        int end   = sep.getSelectionEnd();
+        TabManager tab = sep.getTabManager();
+        ScilabDocument doc = (ScilabDocument) sep.getDocument();
+
+        doc.mergeEditsBegin();
+        if (start == end) {
+            tab.insertTab(start);
+        } else {
+            int[] ret = tab.tabifyLines(start, end - 1);
+            if (ret != null) {
+                sep.setSelectionStart(ret[0]);
+                sep.setSelectionEnd(ret[1]);
+            }
+        }
+        doc.mergeEditsEnd();
+    }
+
+    /**
+     * Create the MenuItem for tabify action
+     * @param label label of the menu
+     * @param editor Editor
+     * @param key KeyStroke
+     * @return a MenuItem
+     */
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new TabifyAction(label, editor), key);
+    }
 }

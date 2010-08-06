@@ -15,7 +15,6 @@ import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.scinotes.SciNotes;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 
 /**
@@ -27,10 +26,11 @@ public final class ActivateHelpOnTypingAction extends DefaultCheckAction {
 
     /**
      * Constructor
+     * @param name the name of the action
      * @param editor SciNotes
      */
-    private ActivateHelpOnTypingAction(SciNotes editor) {
-        super(SciNotesMessages.HELP_ON_TYPING, editor);
+    public ActivateHelpOnTypingAction(String name, SciNotes editor) {
+        super(name, editor);
     }
 
     /**
@@ -43,12 +43,13 @@ public final class ActivateHelpOnTypingAction extends DefaultCheckAction {
 
     /**
      * createCheckBoxMenu
+     * @param label label of the menu
      * @param editor SciNotes
      * @param key KeyStroke
      * @return CheckBoxMenuItem
      */
-    public static CheckBoxMenuItem createCheckBoxMenu(SciNotes editor, KeyStroke key) {
-        CheckBoxMenuItem cb = createCheckBoxMenu(SciNotesMessages.HELP_ON_TYPING, null, new ActivateHelpOnTypingAction(editor), key);
+    public static CheckBoxMenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        CheckBoxMenuItem cb = createCheckBoxMenu(label, null, new ActivateHelpOnTypingAction(label, editor), key);
         boolean b = ConfigSciNotesManager.getHelpOnTypingState();
         cb.setChecked(b);
         return cb;

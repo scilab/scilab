@@ -62,8 +62,10 @@ public class SciFileFilter extends FileFilter {
                                 description = Messages.gettext("Scilab Start files") + "(*.start)";
                         } else if (fileMask.equals("*.quit")) {
                                 description = Messages.gettext("Scilab Quit files") + "(*.quit)";
+                        } else if (fileMask.equals("*.dem")) {
+                                description = Messages.gettext("Scilab Demo files") + "(*.dem)";
                         } else if (fileMask.equals("all")) {
-                                description = Messages.gettext("All Scilab files") + "(*.sci,*.sce,*.tst,*.start,*.quit)";
+                                description = Messages.gettext("All Scilab files") + "(*.sci,*.sce,*.tst,*.start,*.quit,*.dem)";
                         } else if (fileMask.equals("*.*")) {
                                 description = Messages.gettext("All files") +  "(*.*)";
                         } else {
@@ -78,7 +80,7 @@ public class SciFileFilter extends FileFilter {
 
                 // Create a regexp
                 if (fileMask.equals("all")) {
-                    fileMask = "(*.sci)|(*.sce)|(*.tst)|(*.start)|(*.quit)";
+                    fileMask = "(*.sci)|(*.sce)|(*.tst)|(*.start)|(*.quit)|(*.dem)";
                 }
 
                 mask = fileMask.replaceAll("\\.", "\\\\."); // Point is a special regexp character

@@ -29,6 +29,7 @@ import java.util.Hashtable;
 import java.util.Properties;
 import java.util.Enumeration;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -49,6 +50,8 @@ import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
 import org.scilab.modules.scinotes.ScilabView;
+import org.scilab.modules.scinotes.ScilabEditorPane;
+import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.TabManager;
 import org.scilab.modules.scinotes.MatchingBlockManager;
 
@@ -103,24 +106,30 @@ public final class ConfigSciNotesManager {
 
     private static final String PROFILE = "Profile";
 
-    private static String RECENT_SEARCH = "recentSearch";
-    private static String SEARCH = "search";
-    private static String RECENT_REPLACE = "recentReplace";
-    private static String REPLACE = "replace";
-    private static String EXPRESSION = "exp";
-    private static String REGULAR_EXPRESION = "regularExp";
-    private static String WORD_WARP = "wordWarp";
-    private static String WHOLE_WORD = "wholeWord";
-    private static String CASE_SENSITIVE = "caseSensitive";
-    private static String STATE_FLAG = "state";
+    private static final String RECENT_SEARCH = "recentSearch";
+    private static final String SEARCH = "search";
+    private static final String RECENT_REPLACE = "recentReplace";
+    private static final String REPLACE = "replace";
+    private static final String EXPRESSION = "exp";
+    private static final String REGULAR_EXPRESION = "regularExp";
+    private static final String CIRCULAR = "circularSearch";
+    private static final String WORD_WARP = "wordWarp";
+    private static final String WHOLE_WORD = "wholeWord";
+    private static final String CASE_SENSITIVE = "caseSensitive";
+    private static final String STATE_FLAG = "state";
 
-    private static String SETTING = "Setting";
-    private static String SCINOTES = "scinotes";
-    private static String TRUE = "true";
-    private static String FALSE = "false";
-    private static String DOCUMENT = "document";
-    private static String PATH = "path";
-    private static String RECENT_FILES = "recentFiles";
+    private static final String SETTING = "Setting";
+    private static final String SCINOTES = "scinotes";
+    private static final String TRUE = "true";
+    private static final String FALSE = "false";
+    private static final String DOCUMENT = "document";
+    private static final String PATH = "path";
+    private static final String RECENT_FILES = "recentFiles";
+    private static final String OPEN_FILES = "openFiles";
+    private static final String RESTOREFILES = "RestoreFiles";
+    private static final String EDITORINST = "editorInstance";
+    private static final String PANEINST = "paneInstance";
+    private static final String PANEINST_EX = "paneInstanceExtra";
 
     private static final String SCINOTES_CONFIG_FILE = System.getenv("SCI") + "/modules/scinotes/etc/scinotesConfiguration.xml";
     private static final String SCINOTES_CONFIG_KEYS_FILE = System.getenv("SCI") + "/modules/scinotes/etc/keysConfiguration.xml";
@@ -1302,7 +1311,6 @@ public final class ConfigSciNotesManager {
 
         /* Save changes */
         writeDocument();
-
     }
 
     /**
@@ -1389,6 +1397,321 @@ public final class ConfigSciNotesManager {
     }
 
     /**
+     * @return true if open files should be restored upon restart.
+     */
+    public static boolean getRestoreOpenedFiles() {
+        readDocument();
+
+        Element root = document.getDocumentElement();
+
+        NodeList profiles = root.getElementsByTagName(PROFILE);
+        Element scinotesProfile = (Element) profiles.item(0);
+
+        NodeList allSizeElements = scinotesProfile.getElementsByTagName(RESTOREFILES);
+        Element restorefiles = (Element) allSizeElements.item(0);
+
+        return TRUE.equals(restorefiles.getAttribute(VALUE));
+    }
+
+    /**
+     * Active/deactive restoration of open files upon restart of scinotes
+     * @param activated active or not
+     */
+    public static void saveRestoreOpenedFiles(boolean activated) {
+        readDocument();
+
+        Element root = document.getDocumentElement();
+
+        NodeList profiles = root.getElementsByTagName(PROFILE);
+        Element scinotesProfile = (Element) profiles.item(0);
+
+        NodeList allSizeElements = scinotesProfile.getElementsByTagName(RESTOREFILES);
+        Element restorefiles = (Element) allSizeElements.item(0);
+        if (restorefiles == null) {
+            Element restore_element = document.createElement(RESTOREFILES);
+            restorefiles.setAttribute(VALUE, new Boolean(activated).toString());
+            restorefiles.appendChild((Node) restore_element);
+        } else {
+            restorefiles.setAttribute(VALUE, new Boolean(activated).toString());
+        }
+        writeDocument();
+    }
+
+    /**
+     * Return a count of the open files that exist. New files, for instance, do not.
+     * @return count
+     */
+    public static int countExistingOpenFiles() {
+        int count = 0;
+        readDocument();
+        Element root = (Element) document.getDocumentElement().getElementsByTagName(OPEN_FILES).item(0);
+        if (root != null) {
+            NodeList openFiles = root.getElementsByTagName(DOCUMENT);
+
+            for (int i = 0; i < openFiles.getLength(); ++i) {
+                Element style = (Element) openFiles.item(i);
+
+                File temp = new File(style.getAttribute(PATH));
+
+                if (temp.exists()) {
+                    count++;
+                }
+                writeDocument();
+            }
+        }
+        return count;
+    }
+
+    /**
+     * Get the list of open files associated with an editor instance hashcode.
+     * Only files that exist are returned.
+     * @param editorID unique id of an editor instance
+     * @return a array of uri
+     */
+    public static List<File> getOpenFilesByEditor(UUID editorID) {
+        List<File> files = new ArrayList<File>();
+        readDocument();
+        Element root = (Element) document.getDocumentElement().getElementsByTagName(OPEN_FILES).item(0);
+        if (root != null) {
+            NodeList openFiles = root.getElementsByTagName(DOCUMENT);
+
+            /* Loop through the list and return only the files with a matching hash code. */
+            for (int i = 0; i < openFiles.getLength(); ++i) {
+                Element style = (Element) openFiles.item(i);
+
+                if( editorID.equals( UUID.fromString(style.getAttribute(EDITORINST)))  ) {
+                    File temp = new File(style.getAttribute(PATH));
+
+                    /* Check that the file exists and add to file list or else remove the node. */
+                    if (temp.exists()) {
+                        files.add(temp);
+                    } else {
+                        root.removeChild((Node) style);
+                        i--;  // Adjust index to account for removed item.
+                    }
+                }
+            }
+            /* Save any changes */
+            writeDocument();
+        }
+        return files;
+    }
+
+    /**
+     * Get a list of unique editor instance identifiers in the list of open files.
+     * @return an array of editor instance identifiers
+     */
+    public static List<UUID> getOpenFilesEditorList() {
+        List<UUID> editorIDlist = new ArrayList<UUID>();
+        readDocument();
+        Element root = (Element) document.getDocumentElement().getElementsByTagName(OPEN_FILES).item(0);
+        if (root != null) {
+            NodeList openFiles = root.getElementsByTagName(DOCUMENT);
+
+            /* Loop through the list and return the list of IDs. */
+            for (int i = 0; i < openFiles.getLength(); ++i) {
+                Element style = (Element) openFiles.item(i);
+
+                UUID editorID = UUID.fromString(style.getAttribute(EDITORINST));
+
+                if( !(editorIDlist.contains( editorID )) )
+                    editorIDlist.add( editorID );
+            }
+        }
+        return editorIDlist;
+    }
+
+    /**
+     * Add a file to currently open files
+     * @param filePath the path of the files to add
+     * @param editorInstance instance of the editor to associate with the open file
+     */
+    public static void saveToOpenFiles(String filePath, SciNotes editorInstance, ScilabEditorPane sep) {
+        readDocument();
+        UUID nil = new UUID(0,0);
+
+        // Find the element containing the list of open files
+        Element root = (Element) document.getDocumentElement().getElementsByTagName(OPEN_FILES).item(0);
+        // Get the list of open files
+        NodeList openFiles = root.getElementsByTagName(DOCUMENT);
+        int numberOfFiles = openFiles.getLength();
+
+        Element newFile =  document.createElement(DOCUMENT);
+        newFile.setAttribute(PATH, filePath);
+        // Record the editor instance's hash code
+        newFile.setAttribute(EDITORINST, editorInstance.getUUID().toString() );
+        root.appendChild((Node) newFile);
+        // Record the text pane's hash code
+        newFile.setAttribute(PANEINST, sep.getUUID().toString() );
+        newFile.setAttribute(PANEINST_EX, nil.toString() );
+        root.appendChild((Node) newFile);
+
+        /* Save changes */
+        writeDocument();
+    }
+
+    /**
+     * Remove a tab with an open file from the list of open files
+     * @param editorInstance instance of the editor
+     * @param sep instance of the editor pane.
+     */
+    public static void removeFromOpenFiles(SciNotes editorInstance, ScilabEditorPane sep) {
+        removeFromOpenFiles(editorInstance.getUUID(), sep.getUUID());
+    }
+
+    /**
+     * Remove from the list of open files all files with a matching editor instance identifer
+     * @param editorID editor instance identifer
+     */
+    public static void removeFromOpenFiles(UUID editorID) {
+        removeFromOpenFiles(editorID, new UUID(0, 0) /* nil UUID */);
+    }
+
+    /**
+     * Remove a tab with an open file from the list of open files
+     * @param editorID editor instance identifer
+     * @param sepID editor pane instance identifer. If a nil UUID is passed,
+     * all files with a matching editor instance identifer are removed.
+     */
+    public static void removeFromOpenFiles(UUID editorID, UUID sepID) {
+        readDocument();
+
+        Element root = (Element) document.getDocumentElement().getElementsByTagName(OPEN_FILES).item(0);
+        NodeList openFiles = root.getElementsByTagName(DOCUMENT);
+
+        // Remove item with matching editorID and sepID.
+        UUID nil = new UUID(0, 0);
+        for (int i = openFiles.getLength() - 1; i >= 0; i--) {
+            Element style = (Element) openFiles.item(i);
+            UUID paneID1 = UUID.fromString(style.getAttribute(PANEINST));
+            UUID paneID2 = UUID.fromString(style.getAttribute(PANEINST_EX));
+
+            if (editorID.equals(UUID.fromString(style.getAttribute(EDITORINST))) &&
+                (sepID.equals(nil) || sepID.equals(paneID1) || sepID.equals(paneID2))) {
+                root.removeChild((Node) style);
+            }
+        }
+
+        /* Save changes */
+        writeDocument();
+    }
+
+    /**
+     * Change a filename.
+     * @param newfilepath new pathname of the file
+     * @param editorInstance instance of the editor
+     * @param sep instance of the editor pane
+     */
+    public static void renameOpenFilesItem(String newfilePath, SciNotes editorInstance, ScilabEditorPane sep) {
+        readDocument();
+
+        Element root = (Element) document.getDocumentElement().getElementsByTagName(OPEN_FILES).item(0);
+        Element style = findOpenFileItem(root, editorInstance.getUUID(), sep.getUUID());
+
+        if( style != null)  {
+            style.setAttribute(PATH, newfilePath);
+        }
+
+        /* Save changes */
+        writeDocument();
+    }
+
+    /**
+     * Replace a single text pane ID with two pane IDs when a tab split occurs
+     * @param newfilepath new pathname of the file
+     * @param editorInstance instance of the editor
+     * @param old1 old instance of the editor pane
+     * @param new1 first new instance of the tabbed editor pane
+     * @param new2 second new instance of the tabbed editor pane
+     */
+    public static void tabSplitOpenFilesItem(SciNotes editorInstance, ScilabEditorPane old1, ScilabEditorPane new1, ScilabEditorPane new2) {
+        readDocument();
+
+        Element root = (Element) document.getDocumentElement().getElementsByTagName(OPEN_FILES).item(0);
+        Element style = findOpenFileItem(root, editorInstance.getUUID(), old1.getUUID());
+
+        if (style != null) {
+            style.setAttribute(PANEINST, new1.getUUID().toString());
+            style.setAttribute(PANEINST_EX, new2.getUUID().toString());
+        }
+
+        /* Save changes */
+        writeDocument();
+    }
+
+    /**
+     * Replace double pane IDs with a single ID when a tabbed pane is replaced by a single pane.
+     * @param newfilepath new pathname of the file
+     * @param editorInstance instance of the editor
+     * @param old1 one of the old tabbed editor pane
+     * @param new1 new editor pane
+     */
+    public static void removeTabSplitInOpenFilesItem(SciNotes editorInstance, ScilabEditorPane old1, ScilabEditorPane new1) {
+        readDocument();
+
+        Element root = (Element) document.getDocumentElement().getElementsByTagName(OPEN_FILES).item(0);
+        Element style = findOpenFileItem(root, editorInstance.getUUID(), old1.getUUID());
+
+        if (style != null) {
+            UUID nil = new UUID(0, 0);
+            style.setAttribute(PANEINST, new1.getUUID().toString());
+            style.setAttribute(PANEINST_EX, nil.toString());
+        }
+
+        /* Save changes */
+        writeDocument();
+    }
+
+    /**
+     * Find the first element with matching editor and pane identifiers
+     * @param root Document root
+     * @param editorID instance of the editor to find
+     * @param sepID instance of the editor pane to find
+     */
+    public static Element findOpenFileItem(Element root, UUID editorID, UUID sepID ) {
+        NodeList openFiles = root.getElementsByTagName(DOCUMENT);
+
+        // Find item with matching editor and pane IDs
+        for (int i = 0; i < openFiles.getLength(); i++) {
+            Element style = (Element) openFiles.item(i);
+            UUID paneID1 = UUID.fromString(style.getAttribute(PANEINST));
+            UUID paneID2 = UUID.fromString(style.getAttribute(PANEINST_EX));
+
+            if (editorID.equals(UUID.fromString(style.getAttribute(EDITORINST))) &&
+                (sepID.equals(paneID1) || sepID.equals(paneID2))) {
+                return style;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Empty the list of open files. Performed when the editor is opened
+     * and the user opts not to restore the open files.
+     */
+    public static void removeAllOpenFiles() {
+        readDocument();
+
+        Element root = (Element) document.getDocumentElement().getElementsByTagName(OPEN_FILES).item(0);
+        NodeList openFiles = root.getElementsByTagName(DOCUMENT);
+
+        // Remove all
+        for (int i = openFiles.getLength() - 1; i >= 0;  --i) {
+            Element style = (Element) openFiles.item(i);
+            root.removeChild((Node) style);
+        }
+        /* Save changes */
+        writeDocument();
+    }
+
+    /**
+     * Reset the current conf file
+     */
+    public static void resetDocument() {
+        document = null;
+    }
+
+    /**
      * Read the file to modify
      */
     private static void readDocument() {
@@ -1436,7 +1759,6 @@ public final class ConfigSciNotesManager {
         }
     }
 
-
     /**
      * Save the modifications
      */
@@ -1459,8 +1781,6 @@ public final class ConfigSciNotesManager {
         } catch (TransformerException e) {
             System.out.println(ERROR_WRITE + USER_SCINOTES_CONFIG_FILE);
         }
-
-
     }
 
     /**
@@ -1661,17 +1981,17 @@ public final class ConfigSciNotesManager {
     }
 
     /**
-     * @return true for a wordWrap search
+     * @return true for a circular search
      */
-    public static boolean getWordWarp() {
-        return getBooleanAttribute(WORD_WARP, STATE_FLAG, true);
+    public static boolean getCircularSearch() {
+        return getBooleanAttribute(CIRCULAR, STATE_FLAG, true);
     }
 
     /**
-     * @param wordWarp for a wordWrap search
+     * @param circular is true for a circular search
      */
-    public static void saveWordWarp(boolean wordWarp) {
-        saveBooleanAttribute(WORD_WARP, STATE_FLAG, wordWarp);
+    public static void saveCircularSearch(boolean circular) {
+        saveBooleanAttribute(CIRCULAR, STATE_FLAG, circular);
     }
 
     /**

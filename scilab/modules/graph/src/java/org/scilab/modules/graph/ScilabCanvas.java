@@ -152,18 +152,14 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 		temporaryGraphics.translate(x, y);
 		
 		// scale, 1st flip, 2nd mirror
+		// The scale operation concatenate AffineTransforms.
+		
 		if (flip) {
-			if (mirror) {
-				temporaryGraphics.scale(-1, -1); // T / T
-			} else {
-				temporaryGraphics.scale(-1, 1); // T / F
-			}
-		} else {
-			if (mirror) {
-				temporaryGraphics.scale(1, -1); // F / T
-			} else {
-				temporaryGraphics.scale(1, 1); // F / F
-			}
+			temporaryGraphics.scale(1.0, -1.0);
+		}
+		
+		if (mirror) {
+			temporaryGraphics.scale(-1.0, 1.0);
 		}
 		
 		temporaryGraphics.translate(-x, -y);

@@ -32,7 +32,10 @@ or(A,'c'), or(A,2)</synopsis>
     éléments de la matrice booléenne <literal>A</literal>.
     <literal>or(A)</literal> est vrai (<literal>%t</literal>) si au moins un
     terme de <literal>A</literal> est <literal>%t</literal>.</para>
-
+    <para>
+      <literal>or([])</literal> retourne <literal>%F</literal>.
+    </para>
+ 
     <para><literal>y=or(A,'r')</literal> (ou <literal>y=or(A,1)</literal>) est
     la disjonction suivant l'indice de ligne. Chaque élément du vecteur ligne
     <literal>y</literal> contient la disjonction de chaque colonne de

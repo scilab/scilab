@@ -94,6 +94,8 @@ public class LinkElement extends AbstractElement<BasicLink> {
 			link = allocateLink();
 		}
 
+		link = beforeDecode(element, link);
+		
 		searchForPorts(link);
 		List<mxPoint> points = getPoints();
 
@@ -110,6 +112,8 @@ public class LinkElement extends AbstractElement<BasicLink> {
 		geom.setPoints(points);
 		link.setGeometry(geom);
 
+		link = afterDecode(element, link);
+		
 		return link;
 	}
 
@@ -395,6 +399,8 @@ public class LinkElement extends AbstractElement<BasicLink> {
 			data = (ScilabMList) element;
 		}
 
+		data = (ScilabMList) beforeEncode(from, data);
+		
 		start = (BasicPort) from.getSource();
 		end = (BasicPort) from.getTarget();
 
@@ -425,6 +431,8 @@ public class LinkElement extends AbstractElement<BasicLink> {
 		double[][] toData = {{toBlockID, toPortID, toType}};
 		data.add(new ScilabDouble(toData)); // to
 
+		data = (ScilabMList) afterEncode(from, data);
+		
 		return data;
 	}
 
@@ -460,8 +468,8 @@ public class LinkElement extends AbstractElement<BasicLink> {
 		if (ptCount > 0 && from.getGeometry() != null) {
 			final List<mxPoint> lnkPoints = from.getGeometry().getPoints();
 			for (int i = 0; i < ptCount; i++) {
-				xx[1 + i][0] = ((mxPoint) lnkPoints.get(i)).getX();
-				yy[1 + i][0] = -((mxPoint) lnkPoints.get(i)).getY();
+				xx[1 + i][0] = (lnkPoints.get(i)).getX();
+				yy[1 + i][0] = -(lnkPoints.get(i)).getY();
 			}
 		}
 

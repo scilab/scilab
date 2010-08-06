@@ -43,10 +43,7 @@ public class ScilabVariableEditor extends ScilabWindow implements VariableEditor
 	private ScilabVariableEditor(Object[][] data, String variableName) {
 		super();
 		ScilabVariableEditor.variableName = variableName;
-		setTitle(Messages.gettext("Variable Editor"));
 		editorTab = new SwingScilabVariableEditor(data);
-		//editorTab.getModel().addTableModelListener(this);
-		editorTab.setVisible(true);
 		editorTab.setCallback(ScilabCallBack
 				.createCallback("org.scilab.modules.ui_data.EditVar.closeVariableEditor",
 						ScilabCallBack.JAVA_OUT_OF_XCLICK_AND_XGETMOUSE));
@@ -102,11 +99,12 @@ public class ScilabVariableEditor extends ScilabWindow implements VariableEditor
 	public static VariableEditor getVariableEditor(Object[][] data, String variableName) {
 		if (instance == null) {
 			instance = new ScilabVariableEditor(data, variableName);
+			instance.setVisible(true);
 		} else {
 			instance.setVariableName(variableName);
 			instance.setData(data);
-			instance.setVisible(true);
 		}
+		editorTab.setName(Messages.gettext("Variable Editor") + " - " + variableName);
 		return instance;
 	}
 
@@ -123,5 +121,12 @@ public class ScilabVariableEditor extends ScilabWindow implements VariableEditor
 	public void setVariableName(String variableName) {
 		ScilabVariableEditor.variableName = variableName;
 	}
-
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public void setVisible(boolean status) {
+		super.setVisible(status);
+		editorTab.setVisible(status);
+	}
 }

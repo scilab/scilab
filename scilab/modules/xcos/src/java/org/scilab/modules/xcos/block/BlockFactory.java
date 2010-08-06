@@ -40,7 +40,7 @@ public final class BlockFactory {
 	 */
 	public static enum BlockInterFunction {
 		/** @see TextBlock */
-		TEXT_f(new TextBlock(XcosMessages.DOTS)),
+		TEXT_f(new TextBlock()),
 		/** @see SuperBlock */
 		SUPER_f(new SuperBlock()),
 		/** @see SuperBlock */

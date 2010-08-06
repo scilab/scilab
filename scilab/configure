@@ -24481,7 +24481,7 @@ $as_echo "$as_me: WARNING: --enable-compilation-tests deactivated: Could not fin
    COMPILATION_TESTS=no
 fi
 
- if test "$COMPILATION_TESTS" != ""; then
+ if test "$COMPILATION_TESTS" != "no"; then
   COMPILATION_TESTS_TRUE=
   COMPILATION_TESTS_FALSE='#'
 else

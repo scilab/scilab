@@ -91,7 +91,7 @@ public abstract class ScilabGenericCellEditor extends DefaultCellEditor {
         }
     }
 
-    private String buildScilabRequest(){
+    private String buildScilabRequest() {
 
         final StringBuilder command = new StringBuilder();
         String variableName = ScilabVariableEditor.getVariableEditor().getVariablename();
@@ -104,12 +104,16 @@ public abstract class ScilabGenericCellEditor extends DefaultCellEditor {
         // only occurs when editing a scalar variable at index (1, 1)
         
         StringBuilder cmdInExecStr = new StringBuilder();
-        cmdInExecStr.append("if (" + row + " == 1 & " + col + " == 1 & size(" + variableName + ",''*'') == 1" + ") ");
+        cmdInExecStr.append("if (" + row + " == 1 & " + col + " == 1 & size(" + variableName + ",\"\"*\"\") == 1" + ") ");
         cmdInExecStr.append("then " + variableName + " = " + data + "; ");
         cmdInExecStr.append("else " + cellInVariable + " = " + data + "; end");
         
-        command.append("temp = " + buildCall("execstr", cmdInExecStr.toString(), "errcatch"));
-        command.append("updateEditvarValue(\"" + variableName + "\"," + row + "," + col + "," + cellInVariable + ",temp);");
+		command.append("if execstr(\"" + cmdInExecStr.toString() + "\", \"errcatch\") <> 0 then ");
+		command.append("messagebox(\"Could not edit variable: \" + lasterror() + \"\"");
+		command.append(",\"Variable editor\", \"error\", \"modal\");");
+		command.append("end ");
+        command.append("updateEditvarValue(\"" + variableName + "\"," + row + "," + col + "," + cellInVariable + ", 0);");
+
         return command.toString();
     }
 

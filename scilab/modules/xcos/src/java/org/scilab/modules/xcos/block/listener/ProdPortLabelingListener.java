@@ -30,7 +30,7 @@ import org.scilab.modules.xcos.port.input.InputPort;
  */
 public class ProdPortLabelingListener implements PropertyChangeListener, Serializable {
 	
-	private static final String NOT_PRINTED_LABEL = "×";
+	private static final String NOT_PRINTED_LABEL = "\u00d7";
 	private static ProdPortLabelingListener instance;
 	
 	/**
@@ -124,7 +124,7 @@ public class ProdPortLabelingListener implements PropertyChangeListener, Seriali
 		if (gain > 0) {
 			return NOT_PRINTED_LABEL;
 		} else {
-			return "÷";
+			return "\u00f7";
 		}
 	}
 }

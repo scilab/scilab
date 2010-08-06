@@ -1,0 +1,1037 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<refentry version="5.0-subset Scilab" xml:id="xcosPalAddBlock" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>xcosPalAddBlock</refname>
+
+    <refpurpose>Add a block to a Scilab/Xcos palette instance. Some optional
+    properties can be added to customize the palette icon and the style of the
+    block.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>
+   pal = xcosPalAddBlock(pal, block);
+   pal = xcosPalAddBlock(pal, block, pal_block_img);
+   pal = xcosPalAddBlock(pal, block, [], style);
+   pal = xcosPalAddBlock(pal, block, pal_block_img, style);
+   
+   </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>pal:</term>
+
+        <listitem>
+          <para>the palette to update</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>block:</term>
+
+        <listitem>
+          <para>the block to add to the palette</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>pal_block_img:</term>
+
+        <listitem>
+          <para>the block icon to use on the palette manager.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>style:</term>
+
+        <listitem>
+          <para>the style to apply to the block. The style can be (these
+          styles correspond to jgraphx version 1.4.0.2. Theses styles can
+          change with new version of jgraphx. So, be careful):</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>"<emphasis role="bold">opacity</emphasis>": Defines the
+              key for the opacity style. The type of the value is float and
+              the possible range is 0-100.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">textOpacity</emphasis>": Defines
+              the key for the text opacity style. The type of the value is
+              float and the possible range is 0-100.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">overflow</emphasis>": Defines the
+              key for the overflow style. Possible values are "visible",
+              "hidden" and "fill". The default value is "visible". This value
+              specifies how overlapping vertex labels are handles. A value of
+              "visible" will show the complete label. A value of "hidden" will
+              clip the label so that it does not overlap the vertex bounds. A
+              value of "fill" will use the vertex bounds for the label.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">orthogonal</emphasis>": Defines if
+              the connection points on either end of the edge should be
+              computed so that the edge is vertical or horizontal if possible
+              and if the point is not at a fixed location. Default is
+              false.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">exitX</emphasis>": Defines the key
+              for the horizontal relative coordinate connection point of an
+              edge with its source terminal.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">exitY</emphasis>": Defines the key
+              for the vertical relative coordinate connection point of an edge
+              with its source terminal.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">exitPerimeter</emphasis>": Defines
+              if the perimeter should be used to find the exact entry point
+              along the perimeter of the source. Possible values are 0 (false)
+              and 1 (true). Default is 1 (true).</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">entryX</emphasis>": Defines the key
+              for the horizontal relative coordinate connection point of an
+              edge with its target terminal.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">entryY</emphasis>": Defines the key
+              for the vertical relative coordinate connection point of an edge
+              with its target terminal.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">entryPerimeter</emphasis>": Defines
+              if the perimeter should be used to find the exact entry point
+              along the perimeter of the target. Possible values are 0 (false)
+              and 1 (true). Default is 1 (true).</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">whiteSpace</emphasis>": Defines the
+              key for the white-space style. Possible values are "nowrap" and
+              "wrap". The default value is "nowrap". This value specifies how
+              white-space inside a HTML vertex label should be handled. A
+              value of "nowrap" means the text will never wrap to the next
+              line until a linefeed is encountered. A value of "wrap" means
+              text will wrap when necessary.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">rotation</emphasis>": Defines the
+              key for the rotation style. The type of the value is double and
+              the possible range is 0-360.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">fillColor</emphasis>": Defines the
+              key for the fillColor style. The value is a string expression
+              described below.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">gradientColor</emphasis>": Defines
+              the key for the gradientColor style. The value is a string
+              expression described below. This is ignored if no fill color is
+              defined.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">gradientDirection</emphasis>":
+              Defines the key for the gradient direction. Possible values are
+              DIRECTION_EAST, DIRECTION_WEST, DIRECTION_NORTH and
+              DIRECTION_SOUTH. Default is DIRECTION_SOUTH. Generally, and by
+              default, gradient painting is done from the value of
+              STYLE_FILLCOLOR to the value of STYLE_GRADIENTCOLOR. Taking the
+              example of DIRECTION_NORTH, this means STYLE_FILLCOLOR color at
+              the bottom of paint pattern and STYLE_GRADIENTCOLOR at top, with
+              a gradient in-between.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">strokeColor</emphasis>": Defines
+              the key for the strokeColor style. The value is a string
+              expression described below.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">separatorColor</emphasis>": Defines
+              the key for the separatorColor style. The value is a string
+              expression described below. This style is only used for
+              SHAPE_SWIMLANE shapes.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">strokeWidth</emphasis>": Defines
+              the key for the strokeWidth style. The type of the value is
+              float and the possible range is any non-negative value. The
+              value reflects the stroke width in pixels.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">align</emphasis>": Defines the key
+              for the align style. Possible values are ALIGN_LEFT,
+              ALIGN_CENTER and ALIGN_RIGHT. This value defines how the lines
+              of the label are horizontally aligned. ALIGN_LEFT mean label
+              text lines are aligned to left of the label bounds, ALIGN_RIGHT
+              to the right of the label bounds and ALIGN_CENTER means the
+              center of the text lines are aligned in the center of the label
+              bounds. Note this value doesn't affect the positioning of the
+              overall label bounds relative to the vertex, to move the label
+              bounds horizontally, use STYLE_LABEL_POSITION.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">verticalAlign</emphasis>": Defines
+              the key for the verticalAlign style. Possible values are
+              ALIGN_TOP, ALIGN_MIDDLE and ALIGN_BOTTOM. This value defines how
+              the lines of the label are vertically aligned. ALIGN_TOP means
+              the topmost label text line is aligned against the top of the
+              label bounds, ALIGN_BOTTOM means the bottom-most label text line
+              is aligned against the bottom of the label bounds and
+              ALIGN_MIDDLE means there is equal spacing between the topmost
+              text label line and the top of the label bounds and the
+              bottom-most text label line and the bottom of the label bounds.
+              Note this value doesn't affect the positioning of the overall
+              label bounds relative to the vertex, to move the label bounds
+              vertically, use STYLE_VERTICAL_LABEL_POSITION.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">labelPosition</emphasis>": Defines
+              the key for the horizontal label position of vertices. Possible
+              values are ALIGN_LEFT, ALIGN_CENTER and ALIGN_RIGHT. Default is
+              ALIGN_CENTER. The label align defines the position of the label
+              relative to the cell. ALIGN_LEFT means the entire label bounds
+              is placed completely just to the left of the vertex, ALIGN_RIGHT
+              means adjust to the right and ALIGN_CENTER means the label
+              bounds are vertically aligned with the bounds of the vertex.
+              Note this value doesn't affect the positioning of label within
+              the label bounds, to move the label horizontally within the
+              label bounds, use STYLE_ALIGN.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">verticalLabelPosition</emphasis>":
+              Defines the key for the vertical label position of vertices.
+              Possible values are ALIGN_TOP, ALIGN_BOTTOM and ALIGN_MIDDLE.
+              Default is ALIGN_MIDDLE. The label align defines the position of
+              the label relative to the cell. ALIGN_TOP means the entire label
+              bounds is placed completely just on the top of the vertex,
+              ALIGN_BOTTOM means adjust on the bottom and ALIGN_MIDDLE means
+              the label bounds are horizontally aligned with the bounds of the
+              vertex. Note this value doesn't affect the positioning of label
+              within the label bounds, to move the label vertically within the
+              label bounds, use STYLE_VERTICAL_ALIGN.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">imageAlign</emphasis>": Defines the
+              key for the align style. Possible values are ALIGN_LEFT,
+              ALIGN_CENTER and ALIGN_RIGHT. The value defines how any image in
+              the vertex label is aligned horizontally within the label bounds
+              of a SHAPE_LABEL shape.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">imageVerticalAlign</emphasis>":
+              Defines the key for the verticalAlign style. Possible values are
+              ALIGN_TOP, ALIGN_MIDDLE and ALIGN_BOTTOM. The value defines how
+              any image in the vertex label is aligned vertically within the
+              label bounds of a SHAPE_LABEL shape.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">image</emphasis>": Defines the key
+              for the image style. Possible values are any image URL, the type
+              of the value is String. This is the path to the image to image
+              that is to be displayed within the label of a vertex.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">imageWidth</emphasis>": Defines the
+              key for the imageWidth style. The type of this value is int, the
+              value is the image width in pixels and must be greated than
+              0.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">imageHeight</emphasis>": Defines
+              the key for the imageHeight style The type of this value is int,
+              the value is the image height in pixels and must be greater than
+              0.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">noLabel</emphasis>": Defines the
+              key for the noLabel style. If this is true then no label is
+              visible for a given cell. Possible values are true or false (1
+              or 0). Default is false.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">noEdgeStyle</emphasis>": Defines
+              the key for the noEdgeStyle style. If this is true then no edge
+              style is applied for a given edge. Possible values are true or
+              false (1 or 0). Default is false.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">labelBackgroundColor</emphasis>":
+              Defines the key for the label background color. The value is a
+              string expression described below.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">labelBorderColor</emphasis>":
+              Defines the key for the label border color. The value is a
+              string expression described below.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">indicatorShape</emphasis>": Defines
+              the key for the indicatorShape style. Possible values are any of
+              the SHAPE_* constants (see in the table below).</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">indicatorImage</emphasis>": Defines
+              the key for the indicatorImage style. Possible values are any
+              image URL, the type of the value is String.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">indicatorColor</emphasis>": Defines
+              the key for the indicatorColor style. The value is a string
+              expression described below.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">indicatorGradientColor</emphasis>":
+              Defines the key for the indicatorGradientColor style. The value
+              is a string expression supported by mxUtils.parseColor. This
+              style is only supported in SHAPE_LABEL shapes.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">indicatorSpacing</emphasis>":
+              Defines the key for the indicatorSpacing style (in px).</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">indicatorWidth</emphasis>": Defines
+              the key for the indicatorWidth style (in px).</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">indicatorHeight</emphasis>":
+              Defines the key for the indicatorHeight style (in px).</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">shadow</emphasis>": Defines the key
+              for the shadow style. The type of the value is boolean. This
+              style applies to vertices and arrow style edges.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">endArrow</emphasis>": Defines the
+              key for the endArrow style. Possible values are all constants in
+              this class that start with ARROW_. This style is described in a
+              table below.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">startArrow</emphasis>": Defines the
+              key for the startArrow style. Possible values are all constants
+              in this class that start with ARROW_. See STYLE_ENDARROW. This
+              style is described in a table below.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">endSize</emphasis>": Defines the
+              key for the endSize style. The type of this value is float and
+              the value represents the size of the end marker in
+              pixels.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">startSize</emphasis>": Defines the
+              key for the startSize style. The type of this value is float and
+              the value represents the size of the start marker or the size of
+              the swimlane title region depending on the shape it is used
+              for.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">dashed</emphasis>": Defines the key
+              for the dashed style. The type of this value is boolean and the
+              value determines whether or not an edge or border is drawn with
+              a dashed pattern along the line. </para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">rounded</emphasis>": Defines the
+              key for the rounded style. The type of this value is boolean.
+              For edges this determines whether or not joins between edges
+              segments are smoothed to a rounded finish. For vertices that
+              have the rectangle shape, this determines whether or not the
+              rectangle is rounded.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">sourcePerimeterSpacing</emphasis>":
+              Defines the key for the source perimeter spacing. The type of
+              this value is double. This is the distance between the source
+              connection point of an edge and the perimeter of the source
+              vertex in pixels. This style only applies to edges.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">targetPerimeterSpacing</emphasis>":
+              Defines the key for the target perimeter spacing. The type of
+              this value is double. This is the distance between the target
+              connection point of an edge and the perimeter of the target
+              vertex in pixels. This style only applies to edges.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">perimeterSpacing</emphasis>":
+              Defines the key for the perimeter spacing. This is the distance
+              between the connection point and the perimeter in pixels. When
+              used in a vertex style, this applies to all incoming edges to
+              floating ports (edges that terminate on the perimeter of the
+              vertex). When used in an edge style, this spacing applies to the
+              source and target separately, if they terminate in floating
+              ports (on the perimeter of the vertex).</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">spacing</emphasis>": Defines the
+              key for the spacing. The value represents the spacing, in
+              pixels, added to each side of a label in a vertex (style applies
+              to vertices only). </para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">spacingTop</emphasis>": Defines the
+              key for the spacingTop style. The value represents the spacing,
+              in pixels, added to the top side of a label in a vertex (style
+              applies to vertices only).</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">spacingLeft</emphasis>": Defines
+              the key for the spacingLeft style. The value represents the
+              spacing, in pixels, added to the left side of a label in a
+              vertex (style applies to vertices only). </para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">spacingBottom</emphasis>": Defines
+              the key for the spacingBottom style The value represents the
+              spacing, in pixels, added to the bottom side of a label in a
+              vertex (style applies to vertices only).</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">spacingRight</emphasis>": Defines
+              the key for the spacingRight style The value represents the
+              spacing, in pixels, added to the right side of a label in a
+              vertex (style applies to vertices only).</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">horizontal</emphasis>": Defines the
+              key for the horizontal style. Possible values are true or false.
+              This value only applies to vertices. If the STYLE_SHAPE is
+              SHAPE_SWIMLANE a value of false indicates that the swimlane
+              should be drawn vertically, true indicates to draw it
+              horizontally. If the shape style does not indicate that this
+              vertex is a swimlane, this value affects only whether the label
+              is drawn horizontally or vertically.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">direction</emphasis>": Defines the
+              key for the direction style. The direction style is used to
+              specify the direction of certain shapes. Possible values are
+              DIRECTION_EAST (default), DIRECTION_WEST, DIRECTION_NORTH and
+              DIRECTION_SOUTH. This value only applies to vertices.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">elbow</emphasis>": Defines the key
+              for the elbow style. Possible values are ELBOW_HORIZONTAL and
+              ELBOW_VERTICAL. Default is ELBOW_HORIZONTAL. This defines how
+              the three segment orthogonal edge style leaves its terminal
+              vertices. The vertical style leaves the terminal vertices at the
+              top and bottom sides.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">fontColor</emphasis>": Defines the
+              key for the fontColor style. The value is type String and of the
+              expression described below.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">fontFamily</emphasis>": Defines the
+              key for the fontFamily style. Possible values are names such as
+              Arial; Dialog; Verdana; Times New Roman. The value is of type
+              String. </para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">fontSize</emphasis>": Defines the
+              key for the fontSize style (in points). The type of the value is
+              int.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">fontStyle</emphasis>": Defines the
+              key for the fontStyle style. Values may be any logical AND (sum)
+              of FONT_BOLD, FONT_ITALIC, FONT_UNDERLINE and FONT_SHADOW. The
+              type of the value is int.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">shape</emphasis>": Defines the key
+              for the shape style. Possible values are any of the SHAPE_*
+              constants (see the table below).</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">edgeStyle</emphasis>": Takes a
+              function that creates points. Possible values are the functions
+              defined in a table below. </para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">loopStyle</emphasis>": Defines the
+              key for the loop style. Possible values are the functions
+              defined in a table below.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">routingCenterX</emphasis>": Defines
+              the key for the horizontal routing center. Possible values are
+              between -0.5 and 0.5. This is the relative offset from the
+              center used for connecting edges. The type of this value is
+              float.</para>
+            </listitem>
+
+            <listitem>
+              <para>"<emphasis role="bold">routingCenterY</emphasis>": Defines
+              the key for the vertical routing center. Possible values are
+              between -0.5 and 0.5. This is the relative offset from the
+              center used for connecting edges. The type of this value is
+              float; </para>
+            </listitem>
+          </itemizedlist>
+
+          <para>In the following tables, you have a correspondance between
+          literal variables used in the documentation and text used in
+          Scilab.</para>
+
+          <table border="1">
+            <caption>Font style</caption>
+
+            <tr>
+              <td>Literal</td>
+
+              <td>Equivalent integer</td>
+            </tr>
+
+            <tr>
+              <td>FONT_BOLD</td>
+
+              <td>1</td>
+            </tr>
+
+            <tr>
+              <td>FONT_ITALIC</td>
+
+              <td>2</td>
+            </tr>
+
+            <tr>
+              <td>FONT_UNDERLINE</td>
+
+              <td>4</td>
+            </tr>
+
+            <tr>
+              <td>FONT_SHADOW</td>
+
+              <td>8</td>
+            </tr>
+          </table>
+
+          <table border="1">
+            <caption>Shape style</caption>
+
+            <tr>
+              <td>Literal</td>
+
+              <td>Equivalent string</td>
+            </tr>
+
+            <tr>
+              <td>SHAPE_RECTANGLE</td>
+
+              <td>"rectangle"</td>
+            </tr>
+
+            <tr>
+              <td>SHAPE_ELLIPSE</td>
+
+              <td>"ellipse"</td>
+            </tr>
+
+            <tr>
+              <td>SHAPE_DOUBLE_ELLIPSE</td>
+
+              <td>"doubleEllipse"</td>
+            </tr>
+
+            <tr>
+              <td>SHAPE_RHOMBUS</td>
+
+              <td>"rhombus"</td>
+            </tr>
+
+            <tr>
+              <td>SHAPE_LINE</td>
+
+              <td>"line"</td>
+            </tr>
+
+            <tr>
+              <td>SHAPE_IMAGE</td>
+
+              <td>"image"</td>
+            </tr>
+
+            <tr>
+              <td>SHAPE_ARROW</td>
+
+              <td>"arrow"</td>
+            </tr>
+
+            <tr>
+              <td>SHAPE_CURVE</td>
+
+              <td>"curve"</td>
+            </tr>
+
+            <tr>
+              <td>SHAPE_LABEL</td>
+
+              <td>"label"</td>
+            </tr>
+
+            <tr>
+              <td>SHAPE_CYLINDER</td>
+
+              <td>"cylinder"</td>
+            </tr>
+
+            <tr>
+              <td>SHAPE_SWIMLANE</td>
+
+              <td>"swimlane"</td>
+            </tr>
+
+            <tr>
+              <td>SHAPE_CONNECTOR</td>
+
+              <td>"connector"</td>
+            </tr>
+
+            <tr>
+              <td>SHAPE_ACTOR</td>
+
+              <td>"actor"</td>
+            </tr>
+
+            <tr>
+              <td>SHAPE_CLOUD</td>
+
+              <td>"cloud"</td>
+            </tr>
+
+            <tr>
+              <td>SHAPE_TRIANGLE</td>
+
+              <td>"triangle"</td>
+            </tr>
+
+            <tr>
+              <td>SHAPE_HEXAGON</td>
+
+              <td>"hexagon"</td>
+            </tr>
+          </table>
+
+          <table border="1">
+            <caption>Arrow style</caption>
+
+            <tr>
+              <td>Literal</td>
+
+              <td>Equivalent string</td>
+            </tr>
+
+            <tr>
+              <td>ARROW_CLASSIC</td>
+
+              <td>"classic"</td>
+            </tr>
+
+            <tr>
+              <td>ARROW_BLOCK</td>
+
+              <td>"block"</td>
+            </tr>
+
+            <tr>
+              <td>ARROW_OPEN</td>
+
+              <td>"open"</td>
+            </tr>
+
+            <tr>
+              <td>ARROW_OVAL</td>
+
+              <td>"oval"</td>
+            </tr>
+
+            <tr>
+              <td>ARROW_DIAMOND</td>
+
+              <td>"diamond"</td>
+            </tr>
+          </table>
+
+          <table border="1">
+            <caption>Alignment style</caption>
+
+            <tr>
+              <td>Literal</td>
+
+              <td>Equivalent string</td>
+            </tr>
+
+            <tr>
+              <td>ALIGN_LEFT</td>
+
+              <td>"left"</td>
+            </tr>
+
+            <tr>
+              <td>ALIGN_CENTER</td>
+
+              <td>"center"</td>
+            </tr>
+
+            <tr>
+              <td>ALIGN_RIGHT</td>
+
+              <td>"right"</td>
+            </tr>
+
+            <tr>
+              <td>ALIGN_TOP</td>
+
+              <td>"top"</td>
+            </tr>
+
+            <tr>
+              <td>ALIGN_MIDDLE</td>
+
+              <td>"middle"</td>
+            </tr>
+
+            <tr>
+              <td>ALIGN_BOTTOM</td>
+
+              <td>"bottom"</td>
+            </tr>
+          </table>
+
+          <table border="1">
+            <caption>Direction style</caption>
+
+            <tr>
+              <td>Literal</td>
+
+              <td>Equivalent string</td>
+            </tr>
+
+            <tr>
+              <td>DIRECTION_NORTH</td>
+
+              <td>"north"</td>
+            </tr>
+
+            <tr>
+              <td>DIRECTION_SOUTH</td>
+
+              <td>"south"</td>
+            </tr>
+
+            <tr>
+              <td>DIRECTION_EAST</td>
+
+              <td>"east"</td>
+            </tr>
+
+            <tr>
+              <td>DIRECTION_WEST</td>
+
+              <td>"west"</td>
+            </tr>
+          </table>
+
+          <table border="1">
+            <caption>Elbow style</caption>
+
+            <tr>
+              <td>Literal</td>
+
+              <td>Equivalent string</td>
+            </tr>
+
+            <tr>
+              <td>ELBOW_VERTICAL</td>
+
+              <td>"vertical"</td>
+            </tr>
+
+            <tr>
+              <td>ELBOW_HORIZONTAL</td>
+
+              <td>"horizontal"</td>
+            </tr>
+          </table>
+
+          <table border="1">
+            <caption>Edge Style</caption>
+
+            <tr>
+              <td>Literal</td>
+
+              <td>Equivalent string</td>
+            </tr>
+
+            <tr>
+              <td>EDGESTYLE_ELBOW</td>
+
+              <td>"elbowEdgeStyle"</td>
+            </tr>
+
+            <tr>
+              <td>EDGESTYLE_ENTITY_RELATION</td>
+
+              <td>"entityRelationEdgeStyle"</td>
+            </tr>
+
+            <tr>
+              <td>EDGESTYLE_LOOP</td>
+
+              <td>"loopEdgeStyle"</td>
+            </tr>
+
+            <tr>
+              <td>EDGESTYLE_SIDETOSIDE</td>
+
+              <td>"sideToSideEdgeStyle"</td>
+            </tr>
+
+            <tr>
+              <td>EDGESTYLE_TOPTOBOTTOM</td>
+
+              <td>"topToBottomEdgeStyle"</td>
+            </tr>
+          </table>
+
+          <table border="1">
+            <caption>Perimeter style</caption>
+
+            <tr>
+              <td>Literal</td>
+
+              <td>Equivalent string</td>
+            </tr>
+
+            <tr>
+              <td>PERIMETER_ELLIPSE</td>
+
+              <td>"ellipsePerimeter"</td>
+            </tr>
+
+            <tr>
+              <td>PERIMETER_RECTANGLE</td>
+
+              <td>"rectanglePerimeter"</td>
+            </tr>
+
+            <tr>
+              <td>PERIMETER_RHOMBUS</td>
+
+              <td>"rhombusPerimeter"</td>
+            </tr>
+
+            <tr>
+              <td>PERIMETER_TRIANGLE</td>
+
+              <td>"trianglePerimeter"</td>
+            </tr>
+          </table>
+
+          <para>The supported colors are:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>"white"</para>
+            </listitem>
+
+            <listitem>
+              <para>"black"</para>
+            </listitem>
+
+            <listitem>
+              <para>"red"</para>
+            </listitem>
+
+            <listitem>
+              <para>"green"</para>
+            </listitem>
+
+            <listitem>
+              <para>"blue"</para>
+            </listitem>
+
+            <listitem>
+              <para>"orange"</para>
+            </listitem>
+
+            <listitem>
+              <para>"yellow"</para>
+            </listitem>
+
+            <listitem>
+              <para>"pink"</para>
+            </listitem>
+
+            <listitem>
+              <para>"turqoise"</para>
+            </listitem>
+
+            <listitem>
+              <para>"gray" </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>This macros add a block instance to a palette. This block parameter
+    can be an instantiated block or a name (interface-function) or a path to a
+    saved instance. Some operations are performed to load this block and check
+    it's availability so it's interface-function must be loaded on Scilab.
+    Some temporary files are also generated without full path
+    arguments.</para>
+
+    <para>The optional pal_block_img argument is generated on the <link
+    linkend="TMPDIR">TMPDIR</link> using Scilab graphics if not specified. Be
+    careful that if you use our palette to be persistent you then need to
+    specify it. Otherwise the generated image will be deleted at the end of
+    the Scilab session.</para>
+
+    <para>The optional style argument allow the user to determine the kind of
+    style to be used by this block. This argument can be typed as a path <link
+    linkend="string">string</link> or a <link linkend="struct">struct</link>.
+    If it is a string then a default style value is generated and formatted as
+    a style else a struct is wrapped to a key-value jgraphx settings.</para>
+
+    <para></para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example"><![CDATA[ 
+loadScicosLibs();
+pal = xcosPal();
+
+sumPath = TMPDIR + "/sum.h5";
+bigSomPath = TMPDIR + "/sum.h5";
+
+scs_m = SUM_f("define");
+export_to_hdf5(sumPath, "scs_m");
+scs_m = BIGSOM("define");
+export_to_hdf5(bigSomPath, "scs_m");
+
+block_style = struct();
+
+block_style.labelPosition = "center";
+
+pal = xcosPalAddBlock(pal, sumPath, block_style);
+pal = xcosPalAddBlock(pal, bigSomPath, block_style);
+
+xcosPalAdd(pal);
+ ]]></programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="xcosPal">xcosPal</link></member>
+
+      <member><link linkend="xcosPalAdd">xcosPalAdd</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <simplelist type="vert">
+      <member>Clément DAVID</member>
+
+      <member>Yann COLLETTE</member>
+    </simplelist>
+  </refsection>
+</refentry>

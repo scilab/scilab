@@ -229,40 +229,6 @@ SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_scinotes_ScilabKeywordsJ
 }
 
 
-SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_scinotes_ScilabKeywordsJNI_GetCommandsName(JNIEnv *jenv, jclass jcls) {
-  jobjectArray jresult = 0 ;
-  char **result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  result = (char **)GetCommandsName();
-  {
-    if (result != NULL)
-    {
-      int i;
-      int len=0;
-      jstring temp_string;
-      const jclass clazz = (*jenv)->FindClass(jenv, "java/lang/String");
-      
-      while (result[len]) len++;    
-      jresult = (*jenv)->NewObjectArray(jenv, len, clazz, NULL);
-      /* exception checking omitted */
-      
-      for (i=0; i<len; i++) {
-        temp_string = (*jenv)->NewStringUTF(jenv, result[i]);
-        (*jenv)->SetObjectArrayElement(jenv, jresult, i, temp_string);
-        (*jenv)->DeleteLocalRef(jenv, temp_string);
-        FREE(result[i]);
-        result[i] = NULL;
-      }
-      FREE(result);
-      result = NULL;
-    }       
-  }
-  return jresult;
-}
-
-
 SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_scinotes_ScilabKeywordsJNI_GetFunctionsName(JNIEnv *jenv, jclass jcls) {
   jobjectArray jresult = 0 ;
   char **result = 0 ;

@@ -524,10 +524,6 @@
 		<Filter
 			Name="Libraries Dependencies"
 			>
-			<File
-				RelativePath="..\..\..\..\bin\MALLOC.lib"
-				>
-			</File>
 			<Filter
 				Name="Imports"
 				>

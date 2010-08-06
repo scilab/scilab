@@ -33,117 +33,117 @@ import org.scilab.modules.scinotes.utils.SciNotesMessages;
  *
  */
 public class DefaultCheckAction extends SwingScilabCheckBoxMenuItem implements CheckBoxMenuItem, ActionListener {
-	/**
-	 * serialVersionUID
-	 */
-	private static final long serialVersionUID = 5618123082228356437L;
-	private SciNotes editorBackup;
+    /**
+     * serialVersionUID
+     */
+    private static final long serialVersionUID = 5618123082228356437L;
+    private SciNotes editorBackup;
 
-	/**
-	 * Constructor
-	 * @param editor SciNotes
-	 */
-	@SuppressWarnings("serial")
-	public DefaultCheckAction(SciNotes editor) {
-		super();
-		setText(SciNotesMessages.DEFAULT + SciNotesMessages.DOTS);
-		setState(true);
-		editorBackup = editor;
+    /**
+     * Constructor
+     * @param editor SciNotes
+     */
+    @SuppressWarnings("serial")
+    public DefaultCheckAction(SciNotes editor) {
+        super();
+        setText(SciNotesMessages.DEFAULT + SciNotesMessages.DOTS);
+        setState(true);
+        editorBackup = editor;
 
-		setCallback(new CallBack(SciNotesMessages.DEFAULT + SciNotesMessages.DOTS) {
-			public void callBack() {
-				doAction();
-			}
+        setCallback(new CallBack(SciNotesMessages.DEFAULT + SciNotesMessages.DOTS) {
+                public void callBack() {
+                    doAction();
+                }
 
-			public void actionPerformed(ActionEvent e) {
-				callBack();
-			} 
-		});
-	}
+                public void actionPerformed(ActionEvent e) {
+                    callBack();
+                }
+            });
+    }
 
-	/**
-	 * 
-	 * @param label label (string)
-	 * @param editor SciNotes
-	 */
-	@SuppressWarnings("serial")
-	protected DefaultCheckAction(String label, SciNotes editor) {
-		super();
-		setText(label);
-		setState(true);
-		editorBackup = editor;
-		setCallback(new CallBack(SciNotesMessages.DEFAULT + SciNotesMessages.DOTS) {
-			public void callBack() {
-				doAction();
-			}
+    /**
+     *
+     * @param label label (string)
+     * @param editor SciNotes
+     */
+    @SuppressWarnings("serial")
+    protected DefaultCheckAction(String label, SciNotes editor) {
+        super();
+        setText(label);
+        setState(true);
+        editorBackup = editor;
+        setCallback(new CallBack(SciNotesMessages.DEFAULT + SciNotesMessages.DOTS) {
+                public void callBack() {
+                    doAction();
+                }
 
-			public void actionPerformed(ActionEvent e) {
-				callBack();
-			} 
-		});
-	}
+                public void actionPerformed(ActionEvent e) {
+                    callBack();
+                }
+            });
+    }
 
-	/**
-	 * get Editor
-	 * @return SciNotes
-	 */
-	public SciNotes getEditor() {
-		return editorBackup;
-	}
+    /**
+     * get Editor
+     * @return SciNotes
+     */
+    public SciNotes getEditor() {
+        return editorBackup;
+    }
 
-	/**
-	 * doAction
-	 */
-	public void doAction() {
-		JOptionPane.showMessageDialog(getEditor(), "Not Implemented Now !!! (state = " + getState() + ")", null, JOptionPane.ERROR_MESSAGE);
-	}
+    /**
+     * doAction
+     */
+    public void doAction() {
+        JOptionPane.showMessageDialog(getEditor(), "Not Implemented Now !!! (state = " + getState() + ")", null, JOptionPane.ERROR_MESSAGE);
+    }
 
-	/**
-	 * actionPerformed
-	 * @param arg0 ActionEvent
-	 */
-	public void actionPerformed(ActionEvent arg0) {
-		doAction();
-	}
+    /**
+     * actionPerformed
+     * @param arg0 ActionEvent
+     */
+    public void actionPerformed(ActionEvent arg0) {
+        doAction();
+    }
 
-	/**
-	 * createCheckBoxMenu
-	 * @param title String
-	 * @param icon  String
-	 * @param defaultCheckAction DefaultCheckAction
-	 * @param keyStroke KeyStroke
-	 * @return CheckBoxMenuItem
-	 */
-	protected static CheckBoxMenuItem createCheckBoxMenu(String title, String icon, DefaultCheckAction defaultCheckAction, KeyStroke keyStroke) {
-		defaultCheckAction.setText(title);
-		defaultCheckAction.setChecked(false);
-		if (keyStroke != null) {
-			((SwingScilabCheckBoxMenuItem) defaultCheckAction.getAsSimpleCheckBoxMenuItem()).setAccelerator(keyStroke);
-		}
-		return defaultCheckAction;
-	}
+    /**
+     * createCheckBoxMenu
+     * @param title String
+     * @param icon  String
+     * @param defaultCheckAction DefaultCheckAction
+     * @param keyStroke KeyStroke
+     * @return CheckBoxMenuItem
+     */
+    protected static CheckBoxMenuItem createCheckBoxMenu(String title, String icon, DefaultCheckAction defaultCheckAction, KeyStroke keyStroke) {
+        defaultCheckAction.setText(title);
+        defaultCheckAction.setChecked(false);
+        if (keyStroke != null) {
+            ((SwingScilabCheckBoxMenuItem) defaultCheckAction.getAsSimpleCheckBoxMenuItem()).setAccelerator(keyStroke);
+        }
+        return defaultCheckAction;
+    }
 
-	/**
-	 * getAsSimpleCheckBoxMenuItem
-	 * @return SimpleCheckBoxMenuItem
-	 */
-	public SimpleCheckBoxMenuItem getAsSimpleCheckBoxMenuItem() {
-		return this;
-	}
+    /**
+     * getAsSimpleCheckBoxMenuItem
+     * @return SimpleCheckBoxMenuItem
+     */
+    public SimpleCheckBoxMenuItem getAsSimpleCheckBoxMenuItem() {
+        return this;
+    }
 
-	/**
-	 * getAsSimpleMenuItem
-	 * @return SimpleMenuItem
-	 */
-	public SimpleMenuItem getAsSimpleMenuItem() {
-		return null;
-	}
+    /**
+     * getAsSimpleMenuItem
+     * @return SimpleMenuItem
+     */
+    public SimpleMenuItem getAsSimpleMenuItem() {
+        return null;
+    }
 
-	/**
-	 * getAsSimpleMenu
-	 * @return SimpleMenu
-	 */
-	public SimpleMenu getAsSimpleMenu() {
-		return null;
-	}
+    /**
+     * getAsSimpleMenu
+     * @return SimpleMenu
+     */
+    public SimpleMenu getAsSimpleMenu() {
+        return null;
+    }
 }

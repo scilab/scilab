@@ -12,15 +12,10 @@
 
 package org.scilab.modules.scinotes.actions;
 
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.scinotes.SciNotes;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
  * Class Previous tab action for SciNotes
@@ -29,29 +24,32 @@ import org.scilab.modules.scinotes.utils.SciNotesMessages;
  */
 public class PreviousTabAction extends DefaultAction {
 
-	/**
-	 * Default constructor
-	 * @param editor Editor
-	 */
-	private PreviousTabAction(SciNotes editor) {
-		super(SciNotesMessages.PREVIOUS_TAB, editor);
-	}
-	
-	/**
-	 * Function Run
-	 */
-	public void doAction() {
-		this.getEditor().getTabPane().getSelectedIndex();
-	}
+    /**
+     * Default constructor
+     * @param name the name of the action
+     * @param editor Editor
+     */
+    public PreviousTabAction(String name, SciNotes editor) {
+        super(name, editor);
+    }
 
-	/**
-	 * Create the MenuItem for previous tab action
-	 * @param editor Editor
-	 * @return a MenuItem
-	 */
-	public static MenuItem createMenu(SciNotes editor) {
-		return createMenu(SciNotesMessages.PREVIOUS_TAB, null, new PreviousTabAction(editor), 
-						  KeyStroke.getKeyStroke(KeyEvent.VK_TAB, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()
-								  				 + ActionEvent.SHIFT_MASK));
-	 }
+    /**
+     * doAction
+     */
+    public void doAction() {
+        int index = getEditor().getTabPane().getSelectedIndex();
+        int count = getEditor().getTabPane().getTabCount();
+        getEditor().getTabPane().setSelectedIndex((count + index - 1) % count);
+    }
+
+    /**
+     * Create the MenuItem for previous tab action
+     * @param label label of the menu
+     * @param editor Editor
+     * @param key KeyStroke
+     * @return a MenuItem
+     */
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new PreviousTabAction(label, editor), key);
+    }
 }

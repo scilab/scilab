@@ -13,6 +13,7 @@
 package org.scilab.modules.xcos.block;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -27,18 +28,18 @@ import org.scilab.modules.types.scilabTypes.ScilabList;
 import org.scilab.modules.types.scilabTypes.ScilabMList;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
-import org.scilab.modules.xcos.actions.CodeGenerationAction;
+import org.scilab.modules.xcos.block.actions.CodeGenerationAction;
 import org.scilab.modules.xcos.block.actions.RegionToSuperblockAction;
 import org.scilab.modules.xcos.block.actions.SuperblockMaskCreateAction;
 import org.scilab.modules.xcos.block.actions.SuperblockMaskCustomizeAction;
 import org.scilab.modules.xcos.block.actions.SuperblockMaskRemoveAction;
+import org.scilab.modules.xcos.block.io.ContextUpdate.IOBlocks;
 import org.scilab.modules.xcos.block.io.EventInBlock;
 import org.scilab.modules.xcos.block.io.EventOutBlock;
 import org.scilab.modules.xcos.block.io.ExplicitInBlock;
 import org.scilab.modules.xcos.block.io.ExplicitOutBlock;
 import org.scilab.modules.xcos.block.io.ImplicitInBlock;
 import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
-import org.scilab.modules.xcos.block.io.ContextUpdate.IOBlocks;
 import org.scilab.modules.xcos.graph.PaletteDiagram;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.io.scicos.DiagramElement;
@@ -50,6 +51,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxEventObject;
+import com.mxgraph.util.mxUtils;
 
 /**
  * A SuperBlock contains an entire diagram on it. Thus it can be easily
@@ -68,6 +70,7 @@ import com.mxgraph.util.mxEventObject;
  * @see SuperblockMaskRemoveAction
  */
 public final class SuperBlock extends BasicBlock {
+	private static final char UNDERSCORE = '_';
 	private static final long serialVersionUID = 3005281208417373333L;
 	/**
 	 * The simulation name (linked to Xcos-core)
@@ -312,7 +315,6 @@ public final class SuperBlock extends BasicBlock {
 			}
 			
 			child.installSuperBlockListeners();
-			child.setChildrenParentDiagram();
 			updateAllBlocksColor();
 			// only for loading and generate sub block UID
 			if (generatedUID) {
@@ -473,9 +475,7 @@ public final class SuperBlock extends BasicBlock {
 			boolean[] isDone = new boolean[countUnique];
 
 			// Initialize
-			for (int i = 0; i < countUnique; i++) {
-				isDone[i] = false;
-			}
+			Arrays.fill(isDone, false);
 
 			for (int i = 0; i < blocks.size(); i++) {
 				int index = (Integer) ((BasicBlock) blocks.get(i)).getValue();
@@ -550,5 +550,61 @@ public final class SuperBlock extends BasicBlock {
 	 */
 	public boolean isMasked() {
 		return getInterfaceFunctionName().compareTo(INTERFUNCTION_NAME) != 0;
+	}
+	
+	/**
+	 * Customize the parent diagram on name change
+	 * @param value the new name
+	 * @see com.mxgraph.model.mxCell#setValue(java.lang.Object)
+	 */
+	@Override
+	public void setValue(Object value) {
+		super.setValue(value);
+		
+		if (value == null) {
+			return;
+		}
+		
+		if (getChild() != null) {
+			getChild().setTitle(toValidCIdentifier(value.toString()));
+			setRealParameters(new DiagramElement().encode(getChild()));
+		}
+	}
+
+	/**
+	 * Export an HTML label String to a valid C identifier String. 
+	 * 
+	 * @param label the HTML label
+	 * @return a valid C identifier String
+	 */
+	private String toValidCIdentifier(final String label) {
+		final String text = mxUtils.getBodyMarkup(label, true);
+		final StringBuilder cFunctionName = 
+			new StringBuilder();
+		
+		for (int i = 0; i < text.length(); i++) {
+			final char ch = text.charAt(i);
+			
+			// Adding upper case chars
+			if (ch >= 'A' && ch <= 'Z') {
+				cFunctionName.append(ch);
+			} else
+			
+			// Adding lower case chars
+			if (ch >= 'a' && ch <= 'z') {
+				cFunctionName.append(ch);
+			} else
+				
+			// Adding number chars
+			if (ch >= '0' && ch <= '9') {
+				cFunctionName.append(ch);
+			} else
+			
+			// Specific chars
+			if (ch == UNDERSCORE || ch == ' ') {
+				cFunctionName.append(UNDERSCORE);
+			}
+		}
+		return cFunctionName.toString();
 	}
 }

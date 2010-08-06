@@ -9,7 +9,7 @@
 
 function zlabel(varargin)
 
-if size(varargin)<>1 then
+if size(varargin)<1 then
   error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "zlabel", 1));
 end
 

@@ -62,7 +62,8 @@ public class StyleStraightAction extends StyleAction {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		BasicLink[] links = getLinks();
-		getGraph(e).setCellStyles(mxConstants.STYLE_EDGE, "", links);
+		
+		getGraph(e).setCellStyles(mxConstants.STYLE_NOEDGESTYLE, "1", links);
 
 		removePointsOnLinks(links);
 	}

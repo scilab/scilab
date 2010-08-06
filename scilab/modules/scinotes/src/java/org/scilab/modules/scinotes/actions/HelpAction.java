@@ -12,14 +12,11 @@
 
 package org.scilab.modules.scinotes.actions;
 
-import java.awt.event.KeyEvent;
-
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.scinotes.SciNotes;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
  * HelpAction Class
@@ -28,38 +25,40 @@ import org.scilab.modules.scinotes.utils.SciNotesMessages;
  */
 public final class HelpAction extends DefaultAction {
 
-	/**
-	 * serialVersionUID
-	 */
-	private static final long serialVersionUID = -3024180292998640447L;
+    /**
+     * serialVersionUID
+     */
+    private static final long serialVersionUID = -3024180292998640447L;
 
-	/**
-	 * Constructor 
-	 * @param editor SciNotes
-	 */
-	private HelpAction(SciNotes editor) {
-		super(SciNotesMessages.HELP, editor);
-	}
+    /**
+     * Constructor
+     * @param name the name of the action
+     * @param editor SciNotes
+     */
+    public HelpAction(String name, SciNotes editor) {
+        super(name, editor);
+    }
 
-	/**
-	 * doAction
-	 */
-	public void doAction() {
-		String selection = getEditor().getTextPane().getSelectedText();
-		if (selection == null || selection.equals("")) {
-			InterpreterManagement.requestScilabExec("help('editor')");
-		} else {
-			InterpreterManagement.requestScilabExec("help('" + selection + "')");
-		}
-	}
+    /**
+     * doAction
+     */
+    public void doAction() {
+        String selection = getEditor().getTextPane().getSelectedText();
+        if (selection == null || selection.equals("")) {
+            InterpreterManagement.requestScilabExec("help('editor')");
+        } else {
+            InterpreterManagement.requestScilabExec("help('" + selection + "')");
+        }
+    }
 
-	/**
-	 * createMenu 
-	 * @param editor SciNotes
-	 * @return MenuItem
-	 */
-	public static MenuItem createMenu(SciNotes editor) {
-		return createMenu(SciNotesMessages.HELP, null, new HelpAction(editor), 
-				KeyStroke.getKeyStroke(KeyEvent.VK_F1, 0));
-	}
+    /**
+     * createMenu
+     * @param label label of the menu
+     * @param editor SciNotes
+     * @param key KeyStroke
+     * @return MenuItem
+     */
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new HelpAction(label, editor), key);
+    }
 }

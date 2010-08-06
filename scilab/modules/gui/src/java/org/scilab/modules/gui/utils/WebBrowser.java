@@ -12,20 +12,23 @@
 
 package org.scilab.modules.gui.utils;
 
+import java.awt.Desktop;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 import javax.swing.JOptionPane;
+
+import org.scilab.modules.localization.Messages;
 
 /**
  * Class used to launch a Web Browser from Scilab
  * @author Vincent COUVERT
  */
 public final class WebBrowser {
-	
-	private static final String ERROR_MSG = "Could not open a Web Browser";
 
+	private static final String ERROR_MSG = Messages.gettext("Could not open: ");
+	
 	/**
 	 * Constructor
 	 */
@@ -34,57 +37,28 @@ public final class WebBrowser {
 	}
 
 	/**
-	 * Open the Browser with Given URL
+	 * Open the Browser/Mailer with Given URL
 	 * @param url the URL to open
 	 */
 	public static void openUrl(String url) {
 		
-		String os = System.getProperty("os.name");
-		
-		Runtime runtime = Runtime.getRuntime();
-		
-		try {
-			if (os.startsWith("Windows")) { /* Windows */
-				
-				String cmd = "rundll32 url.dll,FileProtocolHandler " +  url;
-				Process p = runtime.exec(cmd);
-			
-			} else if (os.startsWith("Mac OS")) { /* MacOS */
-			
-				Class fileMgr = Class.forName("com.apple.eio.FileManager");
-				Method openURL = fileMgr.getDeclaredMethod("openURL", new Class[] {String.class});
-				openURL.invoke(null, new Object[] {url});
-			
-			} else { /* Unix... */
-				
-				String[] browsers = {"xdg-open", "firefox", "opera", "konqueror", "epiphany", "mozilla", "netscape" };
-				String browser = null;
-				
-				for (int count = 0; count < browsers.length && browser == null; count++) {
-					if (runtime.exec(new String[] {"which", browsers[count]}).waitFor() == 0) {
-						browser = browsers[count];
-					}
-				}
-				
-				if (browser == null) {
-					throw new IOException(ERROR_MSG);
-				} else {
-					runtime.exec(new String[] {browser, url});
-				}
-				
-			}
-		} catch (IOException x) {
-			JOptionPane.showMessageDialog(null, ERROR_MSG);
-		} catch (ClassNotFoundException x) {
-			JOptionPane.showMessageDialog(null, ERROR_MSG);
-		} catch (NoSuchMethodException x) {
-			JOptionPane.showMessageDialog(null, ERROR_MSG);
-		} catch (InvocationTargetException x) {
-			JOptionPane.showMessageDialog(null, ERROR_MSG);
-		} catch (IllegalAccessException x) {
-			JOptionPane.showMessageDialog(null, ERROR_MSG);
-		} catch (InterruptedException x) {
-			JOptionPane.showMessageDialog(null, ERROR_MSG);
-		}
+        if (url == null || url.length() == 0) {
+            return;
+        }
+
+        try {
+            if (url.charAt(0) == 'h') {
+                // We have something like http://...
+                Desktop.getDesktop().browse(new URI(url));
+            } else {
+                // We have <pierre.marechal@scilab.org>
+                String mail = "mailto:" + url.substring(1, url.length() - 1);
+                Desktop.getDesktop().mail(new URI(mail));
+            }
+        } catch (IOException e) {
+        	JOptionPane.showMessageDialog(null, ERROR_MSG + url);
+        } catch (URISyntaxException e) {
+        	JOptionPane.showMessageDialog(null, ERROR_MSG + url);	
+        }
 	}
 }

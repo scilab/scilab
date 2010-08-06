@@ -5,16 +5,15 @@ EXPORTS
 ; --------------------------------------- 
 ; scilab_windows
 ; --------------------------------------- 
- buildMainWindowTitle_Windows
- getScilexConsoleName
- strdup_windows
- RestoreConsoleColors
- CloseScilabConsole
- closeInnosetupMutex
- RestoreExitButton
- ClosePipeInfo
- pipeSpawnOut
- pipeSpawnErr
- CreateOuput
- spawncommand
- DetectDetachProcessInCommandLine
+strdup_windows
+ClosePipeInfo
+pipeSpawnOut
+CreateOuput
+pipeSpawnErr
+spawncommand
+DetectDetachProcessInCommandLine
+RestoreExitButton
+RestoreConsoleColors
+closeInnosetupMutex
+CloseScilabConsole
+getScilexConsoleName

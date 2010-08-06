@@ -12,11 +12,18 @@
  */
 package org.scilab.modules.scinotes.actions;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.StringTokenizer;
+
+import javax.swing.ButtonGroup;
+import javax.swing.JMenu;
+import javax.swing.JRadioButtonMenuItem;
 import javax.swing.KeyStroke;
 
-import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.menu.Menu;
+import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.scinotes.SciNotes;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 
 /**
@@ -31,15 +38,16 @@ public final class LineNumbersAction extends DefaultAction {
      */
     private static final long serialVersionUID = -2778300710964013775L;
 
-    private MenuItem menu;
-    private int state = 1;
+    private int state;
 
     /**
      * Construtor
+     * @param name the name of the action
      * @param editor SciNotes
      */
-    private LineNumbersAction(SciNotes editor) {
-        super(SciNotesMessages.LINE_NUMBERS_WHEREAMI, editor);
+    public LineNumbersAction(String name, SciNotes editor) {
+        super(name, editor);
+        state = ConfigSciNotesManager.getLineNumberingState();
     }
 
     /**
@@ -48,38 +56,59 @@ public final class LineNumbersAction extends DefaultAction {
     public void doAction() {
         getEditor().setWhereamiLineNumbering(state);
         ConfigSciNotesManager.saveLineNumberingState(state);
-        setMenu();
     }
 
     /**
      * createMenu
+     * @param label label of the menu
      * @param editor SciNotes
      * @param key KeyStroke
      * @return createMenu
      */
-    public static MenuItem createMenu(SciNotes editor, KeyStroke key) {
-        LineNumbersAction ln = new LineNumbersAction(editor);
-        MenuItem mi = createMenu(SciNotesMessages.LINE_NUMBERS_WHEREAMI, null, ln, key);
-        ln.state = ConfigSciNotesManager.getLineNumberingState();
-        ln.menu = mi;
-        ln.setMenu();
-        return mi;
+    public static Menu createMenu(String label, SciNotes editor, KeyStroke key) {
+        StringTokenizer tokens = new StringTokenizer(label, ";");
+        String labelLineNumbering = tokens.nextToken();
+        String labelOff = tokens.nextToken();
+        String labelNormal = tokens.nextToken();
+        String labelWhereami = tokens.nextToken();
+
+        LineNumbersAction ln = new LineNumbersAction(labelLineNumbering, editor);
+        Menu menu = ScilabMenu.createMenu();
+        menu.setText(labelLineNumbering);
+        JRadioButtonMenuItem[] arr = new JRadioButtonMenuItem[3];
+        String[] labels = new String[]{labelOff, labelNormal, labelWhereami};
+
+        ButtonGroup group = new ButtonGroup();
+        JRadioButtonMenuItem radio;
+
+        for (int i = 0; i < 3; i++) {
+            radio = createRadioButtonMenuItem(ln, labels[i], i);
+            group.add(radio);
+            ((JMenu) menu.getAsSimpleMenu()).add(radio);
+            arr[i] = radio;
+        }
+
+        arr[ln.state].setSelected(true);
+
+        return menu;
     }
 
     /**
-     * Set the menu
+     * createRadioButtonMenuItem
+     * @param ln the LineNumbersAction
+     * @param title the label of the menuitem
+     * @param state the state associated with the menuitem
+     * @return JRadioButtonMenuItem
      */
-    private void setMenu() {
-        state = (state + 1) % 3;
-        switch (state) {
-        case 0 :
-            menu.setText(SciNotesMessages.LINE_NUMBERS_NOWHEREAMI);
-            break;
-        case 1 :
-            menu.setText(SciNotesMessages.LINE_NUMBERS_WHEREAMI);
-            break;
-        default :
-            menu.setText(SciNotesMessages.NO_LINE_NUMBERS);
-        }
+    private static JRadioButtonMenuItem createRadioButtonMenuItem(final LineNumbersAction ln, String title, final int state) {
+        JRadioButtonMenuItem radio = new JRadioButtonMenuItem(title);
+        radio.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent arg0) {
+                    ln.state = state;
+                    ln.doAction();
+                }
+            });
+
+        return radio;
     }
 }

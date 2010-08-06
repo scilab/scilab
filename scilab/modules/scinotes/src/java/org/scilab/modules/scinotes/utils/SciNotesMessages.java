@@ -34,7 +34,7 @@ public class SciNotesMessages {
     public static final String NEW = Messages.gettext("New") + DOTS;
     public static final String OPEN = Messages.gettext("Open") + DOTS;
     public static final String OPEN_SOURCE_FILE_ON_KEYWORD = Messages.gettext("Open function source file") + DOTS;
-    public static final String OPEN_URL = Messages.gettext("Open URL in web browser") + DOTS;
+    public static final String OPEN_URL = Messages.gettext("Open URL") + DOTS;
     public static final String SOURCE_OF = Messages.gettext("Source of '");
     public static final String RECENT_FILES = Messages.gettext("Recent Files");
     public static final String SAVE = Messages.gettext("Save");
@@ -143,7 +143,8 @@ public class SciNotesMessages {
     public static final String SELECTED_LINES = Messages.gettext("Selected lines");
     public static final String OPTIONS = Messages.gettext("Options");
     public static final String CASE_SENSITIVE = Messages.gettext("Case sensitive");
-    public static final String WRAP_SEARCH = Messages.gettext("Wrap search");
+    public static final String CIRCULAR_SEARCH = Messages.gettext("Circular search");
+    public static final String RESTART_FROM_BEGINNING = Messages.gettext("Restart the search from the beginning");
     public static final String WHOLE_WORD = Messages.gettext("Whole word");
     public static final String REGULAR_EXPRESSIONS = Messages.gettext("Regular expressions");
     public static final String REPLACE = Messages.gettext("Replace");
@@ -185,6 +186,10 @@ public class SciNotesMessages {
     public static final String BINARY_FILE_MODE = Messages .gettext("Binary file: read-only mode");
     public static final String READ_ONLY_MODE = Messages .gettext("Read-only mode");
     public static final String CLICKABLE_URL = Messages .gettext("Press CTRL and move the mouse over the link to activate it");
+    public static final String OPENURL = Messages .gettext("Open in the navigator the URL ");
+    public static final String MAILTO = Messages .gettext("Mail to ");
+    public static final String OPENSOURCE = Messages .gettext("Open the source of the macro ");
+    public static final String SHOWSOURCE = Messages .gettext("Show the definition of the macro ");
 
     /* About box */
     public static final String VERSION = Messages.gettext("SciNotes") + " 1.1";
@@ -238,7 +243,19 @@ public class SciNotesMessages {
     public static final String ORDER = Messages.gettext("Order");
 
     /**
+     * Open source
+     */
+    public static final String OPEN_SOURCE_FILE_OF = Messages.gettext("Open source file of the function:");
+    public static final String OPEN_SOURCE = Messages.gettext("Open source") + DOTS;
+
+    /**
      * Exit confirm message
      */
     public static final String EXIT_CONFIRM = Messages.gettext("Are you sure that you want to close SciNotes ?");
+
+    /**
+     * Restore previous session's files query message
+     */
+    public static final String RESTORE_FILES_QUERY = Messages.gettext("Restore files from your last SciNotes session ?");
+    public static final String RESTORE_FILES_TITLE = Messages.gettext("Restore the last sessions");
 }
