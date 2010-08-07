@@ -6,6 +6,7 @@
     <menu label="File" mnemonic="F">
       <menuitem action="NewAction" label="New"/>
       <menuitem action="OpenAction" label="Open"/>
+      <menuitem action="OpenFileInAction" label="Open file in ...;Add a directory;Remove last directory"/>
       <menuitem action="OpenSourceFileOnKeywordAction" label="Open function source file"/>
       <menuitem action="OpenURLAction" label="Open URL"/>
       <menuitem action="RecentFileAction" label="Recent Files"/>
@@ -91,7 +92,7 @@
 
     <menu label="?">
       <menuitem action="HelpAction" label="SciNotes help"/>
-      <menuitem action="HelpOnKeywordAction" label="Help on the current keyword"/>
+      <menuitem action="HelpOnKeywordAction" label="Help on ;Help on selection"/>
       <menuitem action="AboutAction" label="About"/>
     </menu>
   </MenuBar>
@@ -106,7 +107,7 @@
     <menuitem action="CutAction" label="Cut"/>
     <menuitem action="PasteAction" label="Paste"/>
     <separator/>
-    <menuitem action="HelpOnKeywordAction" label="Help on the current keyword"/>
+    <menuitem action="HelpOnKeywordAction" label="Help on ;Help on selection"/>
     <menuitem action="OpenSourceFileOnKeywordAction" label="Open function source file"/>
     <menuitem action="OpenURLAction" label="Open URL"/>
   </RightClickMenu>
@@ -114,6 +115,12 @@
   <ToolBar>
     <button action="NewAction" tooltip="New" icon="document-new.png"/>
     <button action="OpenAction" tooltip="Open" icon="document-open.png"/>
+
+    <!-- The second token of the button OpenFileInAction is the full path of the directory
+	 where to open files.
+	 The shortcuts SCI or MODULES can be used (not in path but alone) -->
+    <button action="OpenFileInAction" tooltip="Open in ;MODULES" icon="document-open-sci.png"/>
+
     <separator/>
     <button action="SaveAction" tooltip="Save" icon="media-floppy.png"/>
     <button action="SaveAsAction" tooltip="Save as" icon="document-save-as.png"/>

@@ -189,8 +189,11 @@
         <ForegroundColor default="#4a55db" useCache="true" value="#4a55db"/>
         <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
       </style>
-
     </styles>
+
+    <!-- Favorite Directories Section  -->
+    <favoriteDirectories>
+    </favoriteDirectories>
 
     <!-- Recent Opened Files Section  -->
     <recentFiles>

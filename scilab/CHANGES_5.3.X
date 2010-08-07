@@ -12,9 +12,12 @@ SciNotes:
 
 * bug 7673 fixed - The extension ".dem" was not available in Open or Save actions.
 
-* bug 7676 fixed - The SaveAs action didn't remove "readonly" mode.
+* bug 7676 fixed - The SaveAs action did not remove "readonly" mode.
 
-* bug 7678 fixed - Help action didn't give help on selection.
+* bug 7677 fixed - User had not the possibilty to open files in his favorite
+                   directories.
+
+* bug 7678 fixed - Help action did not give help on selection.
 
 * bug 7682 fixed - The knob of the vertical scrollbar moved badly on resize.
 

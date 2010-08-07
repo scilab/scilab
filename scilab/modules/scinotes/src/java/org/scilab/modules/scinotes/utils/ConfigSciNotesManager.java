@@ -131,8 +131,12 @@ public final class ConfigSciNotesManager {
     private static final String PANEINST = "paneInstance";
     private static final String PANEINST_EX = "paneInstanceExtra";
 
-    private static final String SCINOTES_CONFIG_FILE = System.getenv("SCI") + "/modules/scinotes/etc/scinotesConfiguration.xml";
-    private static final String SCINOTES_CONFIG_KEYS_FILE = System.getenv("SCI") + "/modules/scinotes/etc/keysConfiguration.xml";
+    private static final String FAVORITE_DIRS = "favoriteDirectories";
+    private static final String DIRECTORY = "Directory";
+
+    private static final String SCI = "SCI";
+    private static final String SCINOTES_CONFIG_FILE = System.getenv(SCI) + "/modules/scinotes/etc/scinotesConfiguration.xml";
+    private static final String SCINOTES_CONFIG_KEYS_FILE = System.getenv(SCI) + "/modules/scinotes/etc/keysConfiguration.xml";
 
     private static final String USER_SCINOTES_CONFIG_FILE = GuiManagement.getSCIHOME() + "/scinotesConfiguration.xml";
     private static final String USER_SCINOTES_CONFIG_KEYS_FILE = GuiManagement.getSCIHOME() + "/keysConfiguration.xml";
@@ -1336,7 +1340,7 @@ public final class ConfigSciNotesManager {
     }
 
     /**
-     * Get all the  recent opened files
+     * Get all the recent opened files
      * @return a array of uri
      */
     public static List<File> getAllRecentOpenedFiles() {
@@ -1355,12 +1359,74 @@ public final class ConfigSciNotesManager {
                 } else {
                     root.removeChild((Node) style);
                 }
-
-                /* Save changes */
-                writeDocument();
             }
         }
+
+        /* Save changes */
+        writeDocument();
+
         return files;
+    }
+
+    /**
+     * Get all the favorite dirs
+     * @return a list of File
+     */
+    public static List<File> getAllFavoriteDirs() {
+        List<File> dirsList = new ArrayList<File>();
+        readDocument();
+        Element root = (Element) document.getDocumentElement().getElementsByTagName(FAVORITE_DIRS).item(0);
+        if (root != null) {
+            NodeList dirs = root.getElementsByTagName(DIRECTORY);
+            for (int i = 0; i < dirs.getLength(); i++) {
+                Element dir = (Element) dirs.item(i);
+                File temp = new File(dir.getAttribute(PATH));
+
+                if (temp.exists()) {
+                    dirsList.add(temp);
+                } else {
+                    root.removeChild((Node) dir);
+                }
+            }
+        }
+
+        /* Save changes */
+        writeDocument();
+
+        return dirsList;
+    }
+
+    /**
+     * Add a path to a favorite directory
+     * @param path the path of the dir
+     */
+    public static void saveFavoriteDirectory(String path) {
+        readDocument();
+
+        Element root = (Element) document.getDocumentElement().getElementsByTagName(FAVORITE_DIRS).item(0);
+        Element newDir =  document.createElement(DIRECTORY);
+        newDir.setAttribute(PATH, path);
+        root.appendChild((Node) newDir);
+
+        /* Save changes */
+        writeDocument();
+    }
+
+    /**
+     * Remove the last favorite directory
+     */
+    public static void rmLastFavoriteDirectory() {
+        readDocument();
+
+        Element root = (Element) document.getDocumentElement().getElementsByTagName(FAVORITE_DIRS).item(0);
+        NodeList dirs = root.getElementsByTagName(DIRECTORY);
+
+        if (dirs.getLength() != 0) {
+            root.removeChild(dirs.item(dirs.getLength() - 1));
+        }
+
+        /* Save changes */
+        writeDocument();
     }
 
     /**
@@ -1428,9 +1494,9 @@ public final class ConfigSciNotesManager {
         NodeList allSizeElements = scinotesProfile.getElementsByTagName(RESTOREFILES);
         Element restorefiles = (Element) allSizeElements.item(0);
         if (restorefiles == null) {
-            Element restore_element = document.createElement(RESTOREFILES);
+            Element restoreElement = document.createElement(RESTOREFILES);
             restorefiles.setAttribute(VALUE, new Boolean(activated).toString());
-            restorefiles.appendChild((Node) restore_element);
+            restorefiles.appendChild((Node) restoreElement);
         } else {
             restorefiles.setAttribute(VALUE, new Boolean(activated).toString());
         }
@@ -1476,10 +1542,11 @@ public final class ConfigSciNotesManager {
             NodeList openFiles = root.getElementsByTagName(DOCUMENT);
 
             /* Loop through the list and return only the files with a matching hash code. */
-            for (int i = 0; i < openFiles.getLength(); ++i) {
+            int i = 0;
+            for (; i < openFiles.getLength(); i++) {
                 Element style = (Element) openFiles.item(i);
 
-                if( editorID.equals( UUID.fromString(style.getAttribute(EDITORINST)))  ) {
+                if (editorID.equals(UUID.fromString(style.getAttribute(EDITORINST)))) {
                     File temp = new File(style.getAttribute(PATH));
 
                     /* Check that the file exists and add to file list or else remove the node. */
@@ -1514,8 +1581,9 @@ public final class ConfigSciNotesManager {
 
                 UUID editorID = UUID.fromString(style.getAttribute(EDITORINST));
 
-                if( !(editorIDlist.contains( editorID )) )
-                    editorIDlist.add( editorID );
+                if (!editorIDlist.contains(editorID)) {
+                    editorIDlist.add(editorID);
+                }
             }
         }
         return editorIDlist;
@@ -1525,10 +1593,11 @@ public final class ConfigSciNotesManager {
      * Add a file to currently open files
      * @param filePath the path of the files to add
      * @param editorInstance instance of the editor to associate with the open file
+     * @param sep the pane
      */
     public static void saveToOpenFiles(String filePath, SciNotes editorInstance, ScilabEditorPane sep) {
         readDocument();
-        UUID nil = new UUID(0,0);
+        UUID nil = new UUID(0, 0);
 
         // Find the element containing the list of open files
         Element root = (Element) document.getDocumentElement().getElementsByTagName(OPEN_FILES).item(0);
@@ -1539,11 +1608,11 @@ public final class ConfigSciNotesManager {
         Element newFile =  document.createElement(DOCUMENT);
         newFile.setAttribute(PATH, filePath);
         // Record the editor instance's hash code
-        newFile.setAttribute(EDITORINST, editorInstance.getUUID().toString() );
+        newFile.setAttribute(EDITORINST, editorInstance.getUUID().toString());
         root.appendChild((Node) newFile);
         // Record the text pane's hash code
-        newFile.setAttribute(PANEINST, sep.getUUID().toString() );
-        newFile.setAttribute(PANEINST_EX, nil.toString() );
+        newFile.setAttribute(PANEINST, sep.getUUID().toString());
+        newFile.setAttribute(PANEINST_EX, nil.toString());
         root.appendChild((Node) newFile);
 
         /* Save changes */
@@ -1586,8 +1655,8 @@ public final class ConfigSciNotesManager {
             UUID paneID1 = UUID.fromString(style.getAttribute(PANEINST));
             UUID paneID2 = UUID.fromString(style.getAttribute(PANEINST_EX));
 
-            if (editorID.equals(UUID.fromString(style.getAttribute(EDITORINST))) &&
-                (sepID.equals(nil) || sepID.equals(paneID1) || sepID.equals(paneID2))) {
+            if (editorID.equals(UUID.fromString(style.getAttribute(EDITORINST)))
+                && (sepID.equals(nil) || sepID.equals(paneID1) || sepID.equals(paneID2))) {
                 root.removeChild((Node) style);
             }
         }
@@ -1598,7 +1667,7 @@ public final class ConfigSciNotesManager {
 
     /**
      * Change a filename.
-     * @param newfilepath new pathname of the file
+     * @param newfilePath new pathname of the file
      * @param editorInstance instance of the editor
      * @param sep instance of the editor pane
      */
@@ -1608,7 +1677,7 @@ public final class ConfigSciNotesManager {
         Element root = (Element) document.getDocumentElement().getElementsByTagName(OPEN_FILES).item(0);
         Element style = findOpenFileItem(root, editorInstance.getUUID(), sep.getUUID());
 
-        if( style != null)  {
+        if (style != null) {
             style.setAttribute(PATH, newfilePath);
         }
 
@@ -1618,7 +1687,6 @@ public final class ConfigSciNotesManager {
 
     /**
      * Replace a single text pane ID with two pane IDs when a tab split occurs
-     * @param newfilepath new pathname of the file
      * @param editorInstance instance of the editor
      * @param old1 old instance of the editor pane
      * @param new1 first new instance of the tabbed editor pane
@@ -1641,7 +1709,6 @@ public final class ConfigSciNotesManager {
 
     /**
      * Replace double pane IDs with a single ID when a tabbed pane is replaced by a single pane.
-     * @param newfilepath new pathname of the file
      * @param editorInstance instance of the editor
      * @param old1 one of the old tabbed editor pane
      * @param new1 new editor pane
@@ -1667,8 +1734,9 @@ public final class ConfigSciNotesManager {
      * @param root Document root
      * @param editorID instance of the editor to find
      * @param sepID instance of the editor pane to find
+     * @return the corresponding element
      */
-    public static Element findOpenFileItem(Element root, UUID editorID, UUID sepID ) {
+    public static Element findOpenFileItem(Element root, UUID editorID, UUID sepID) {
         NodeList openFiles = root.getElementsByTagName(DOCUMENT);
 
         // Find item with matching editor and pane IDs
@@ -1677,11 +1745,12 @@ public final class ConfigSciNotesManager {
             UUID paneID1 = UUID.fromString(style.getAttribute(PANEINST));
             UUID paneID2 = UUID.fromString(style.getAttribute(PANEINST_EX));
 
-            if (editorID.equals(UUID.fromString(style.getAttribute(EDITORINST))) &&
-                (sepID.equals(paneID1) || sepID.equals(paneID2))) {
+            if (editorID.equals(UUID.fromString(style.getAttribute(EDITORINST)))
+                && (sepID.equals(paneID1) || sepID.equals(paneID2))) {
                 return style;
             }
         }
+
         return null;
     }
 
