@@ -41,9 +41,12 @@ import org.scilab.modules.xcos.configuration.ConfigurationManager;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.palette.PaletteManager;
+import org.scilab.modules.xcos.simulink.ImportMdl;
 import org.scilab.modules.xcos.utils.FileUtils;
 
 import com.mxgraph.view.mxStylesheet;
+
+import edu.tum.cs.simulink.builder.SimulinkModelBuildingException;
 
 /**
  * Xcos entry point class
@@ -700,5 +703,58 @@ public final class Xcos {
 			}
 		}
 		return null;
+	}
+	
+	/**
+	 * Entry point without filename.
+	 * 
+	 * This method invoke simulinkImport operation on the EDT thread.
+	 */
+	@ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
+	public static void simulinkImport() {
+		final Xcos instance = getInstance();
+
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				/*
+				 * TODO: should open migration dialog window
+				 */
+				instance.open(null);
+				PaletteManager.setVisible(true);
+			}
+		});
+	}
+
+	/**
+	 * Entry point with filename
+	 * 
+	 * This method invoke simulinkImport operation on the EDT thread.
+	 * 
+	 * @param fileName
+	 *            The filename
+	 */
+	@ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
+	public static void simulinkImport(String fileName) {
+		final String filename = fileName;
+
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					getInstance().add(ImportMdl.fromFile(filename));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SimulinkModelBuildingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+	public void add(XcosDiagram xcosDiagram){
+		if(xcosDiagram != null){
+			diagrams.add(xcosDiagram);
+		}
 	}
 }

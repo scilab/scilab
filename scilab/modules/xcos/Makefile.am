@@ -34,6 +34,7 @@ libscixcos_la_etc_DATA =	etc/xcos.quit \
 XCOS_C_SOURCES =
 
 XCOS_CPP_SOURCES = 	src/cpp/callxcos.cpp \
+			src/cpp/callsimulinkimport.cpp \
 			src/jni/Xcos.cpp \
 			src/jni/Xcos.hxx \
 			src/jni/Palette.cpp \
@@ -68,7 +69,8 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_xcosPalEnable.cpp \
 	sci_gateway/cpp/sci_xcosPalDisable.cpp \
 	sci_gateway/cpp/sci_xcosPalGenerateIcon.cpp \
-	sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp
+	sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp \
+	sci_gateway/cpp/sci_simulinkImport.cpp
 
 libscixcos_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \

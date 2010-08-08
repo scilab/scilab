@@ -298,4 +298,38 @@ throw GiwsException::JniCallMethodException(curEnv);
 }
 }
 
+void Xcos::simulinkImport (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsimulinkImportID = curEnv->GetStaticMethodID(cls, "simulinkImport", "()V" ) ;
+if (voidsimulinkImportID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "simulinkImport");
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidsimulinkImportID );if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void Xcos::simulinkImport (JavaVM * jvm_, char * fileName){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsimulinkImportjstringID = curEnv->GetStaticMethodID(cls, "simulinkImport", "(Ljava/lang/String;)V" ) ;
+if (voidsimulinkImportjstringID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "simulinkImport");
+}
+
+jstring fileName_ = curEnv->NewStringUTF( fileName );
+
+                         curEnv->CallStaticVoidMethod(cls, voidsimulinkImportjstringID ,fileName_);if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
 }

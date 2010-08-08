@@ -37,7 +37,8 @@ static gw_generic_table Tab[] = {
     {sci_xcosPalEnable,                   "xcosPalEnable"},
     {sci_xcosPalDisable,                  "xcosPalDisable"},
     {sci_xcosPalGenerateIcon,             "xcosPalGenerateIcon"},
-    {sci_xcosConfigureXmlFile,            "xcosConfigureXmlFile"}
+    {sci_xcosConfigureXmlFile,            "xcosConfigureXmlFile"},
+    {sci_simulinkImport,             	"simulinkImport"}
 };
 
 /*--------------------------------------------------------------------------*/

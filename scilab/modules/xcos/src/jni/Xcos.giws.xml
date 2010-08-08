@@ -21,5 +21,9 @@
         <method name="xcosDiagramClose" returnType="void" modifier="static">
             <parameter name="UID" type="String"/>
         </method>
+	<method name="simulinkImport" returnType="void" modifier="static"/>
+	<method name="simulinkImport" returnType="void" modifier="static">
+            <parameter name="fileName" type="String"/>
+        </method>
     </object>
 </package>

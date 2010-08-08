@@ -16,7 +16,10 @@ import java.io.File;
 import java.io.IOException;
 
 import org.apache.commons.logging.LogFactory;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.xcos.XcosTab;
+import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 
 import edu.tum.cs.commons.logging.SimpleLogger;
@@ -38,18 +41,20 @@ public class ImportMdl {
 	 * @throws IOException
 	 * @throws SimulinkModelBuildingException
 	 */
-	public static void fromFile(String filename) throws IOException,SimulinkModelBuildingException {
+	public static XcosDiagram fromFile(String filename) throws IOException,SimulinkModelBuildingException {
 		SimulinkModelBuilder builder = new SimulinkModelBuilder(new File(
 			filename), new SimpleLogger());
 		SimulinkModel model = builder.buildModel();
 		DiagramElement diagram = new DiagramElement();
+		XcosDiagram xcosDiagram = new XcosDiagram();
+		xcosDiagram.installListeners();
 		try {
-			XcosDiagram xcosDiagram = new XcosDiagram();
-			xcosDiagram.installListeners();
 			xcosDiagram = diagram.decode(model,xcosDiagram);
-			new XcosTab(xcosDiagram).setVisible(true);
 		} catch(SimulinkFormatException e1) {
 			LogFactory.getLog(ImportMdl.class).error(e1);
+			return null;
 		}
+		new XcosTab(xcosDiagram).setVisible(true);
+		return xcosDiagram;
 	}
 }
