@@ -76,6 +76,7 @@ public class OpenAction extends DefaultAction {
         String[] mask = new String[]{"*.cos*", "*.sci", "*.sce", "*.tst", "*.start", "*.quit", "*.dem", "*.sc*", "all"};
 
         SwingScilabFileChooser fileChooser = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
+        fileChooser.setMultiSelectionEnabled(true);
         fileChooser.setInitialDirectory(path);
         fileChooser.setAcceptAllFileFilterUsed(true);
         fileChooser.addMask(mask, null);
@@ -83,13 +84,15 @@ public class OpenAction extends DefaultAction {
 
         int retval = fileChooser.showOpenDialog(getEditor());
         if (retval == JFileChooser.APPROVE_OPTION) {
-            File f = fileChooser.getSelectedFile();
-            ConfigManager.saveLastOpenedDirectory(f.getPath());
-            ConfigSciNotesManager.saveToRecentOpenedFiles(f.getPath());
+            File[] f = fileChooser.getSelectedFiles();
+            for (int i = 0; i < f.length; i++) {
+                ConfigManager.saveLastOpenedDirectory(f[i].getPath());
+                ConfigSciNotesManager.saveToRecentOpenedFiles(f[i].getPath());
 
-            getEditor().setTitle(f.getPath() + " - " + SciNotesMessages.SCILAB_EDITOR);
-            RecentFileAction.updateRecentOpenedFilesMenu(getEditor());
-            getEditor().readFile(f);
+                getEditor().setTitle(f[i].getPath() + " - " + SciNotesMessages.SCILAB_EDITOR);
+                RecentFileAction.updateRecentOpenedFilesMenu(getEditor());
+                getEditor().readFile(f[i]);
+            }
         }
     }
 
