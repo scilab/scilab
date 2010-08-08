@@ -81,14 +81,17 @@ public final class FindAction extends DefaultAction {
     private static final int GAP = 5;
     private static final int THREE = 3;
 
-    private static final Color colorSelected = new Color(205, 183, 158);
-    private static final Highlighter.HighlightPainter activePainter = new DefaultHighlighter.DefaultHighlightPainter(Color.green);
-    private static final Highlighter.HighlightPainter inactivePainter = new DefaultHighlighter.DefaultHighlightPainter(Color.yellow);
-    private static final Highlighter.HighlightPainter selectedPainter = new DefaultHighlighter.DefaultHighlightPainter(colorSelected);
+    private static final String FILTERNEWLINES = "filterNewlines";
+
+    private static final Color SELECTEDCOLOR = new Color(205, 183, 158);
+    private static final Highlighter.HighlightPainter ACTIVEPAINTER = new DefaultHighlighter.DefaultHighlightPainter(Color.green);
+    private static final Highlighter.HighlightPainter INACTIVEPAINTER = new DefaultHighlighter.DefaultHighlightPainter(Color.yellow);
+    private static final Highlighter.HighlightPainter SELECTEDPAINTER = new DefaultHighlighter.DefaultHighlightPainter(SELECTEDCOLOR);
 
     private static String previousSearch;
 
-    private boolean windowAlreadyExist;
+    private static boolean windowAlreadyExist;
+    private static FindAction current;
 
     private JFrame frame;
     private JButton buttonClose;
@@ -145,18 +148,25 @@ public final class FindAction extends DefaultAction {
      */
     public FindAction(String name, SciNotes editor) {
         super(name, editor);
-        editor.addFindActionWindow(this);
     }
 
     /**
      * doAction
      */
     public void doAction() {
-        if (!windowAlreadyExist) {
-            findReplaceBox();
+        if (windowAlreadyExist) {
+            if (current != this) {
+                current.closeFindReplaceWindow();
+                current = this;
+                findReplaceBox();
+            } else {
+                frame.setVisible(true);
+                buttonFind.requestFocus();
+                frame.toFront();
+            }
         } else {
-            frame.setVisible(true);
-            buttonFind.requestFocus();
+            current = this;
+            findReplaceBox();
         }
 
         previousRegexp = "";
@@ -219,6 +229,15 @@ public final class FindAction extends DefaultAction {
      */
     public static PushButton createButton(String tooltip, String icon, SciNotes editor) {
         return createButton(tooltip, icon, new FindAction(tooltip, editor));
+    }
+
+    /**
+     * Close the eventually opened FindReplaceWindow
+     */
+    public static void close() {
+        if (current != null) {
+            current.closeFindReplaceWindow();
+        }
     }
 
     /**
@@ -365,8 +384,8 @@ public final class FindAction extends DefaultAction {
 
         restoreConfiguration();
 
-        ((JTextField) comboReplace.getEditor().getEditorComponent()).getDocument().putProperty("filterNewlines", Boolean.FALSE);
-        ((JTextField) comboFind.getEditor().getEditorComponent()).getDocument().putProperty("filterNewlines", Boolean.FALSE);
+        ((JTextField) comboReplace.getEditor().getEditorComponent()).getDocument().putProperty(FILTERNEWLINES, Boolean.FALSE);
+        ((JTextField) comboFind.getEditor().getEditorComponent()).getDocument().putProperty(FILTERNEWLINES, Boolean.FALSE);
         checkCase.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     ConfigSciNotesManager.saveCaseSensitive(checkCase.isSelected());
@@ -747,9 +766,9 @@ public final class FindAction extends DefaultAction {
         for (int i = 0; i < foundOffsets.size(); i++) {
             try {
                 if (active) {
-                    highlighters[i] = hl.addHighlight(foundOffsets.get(i)[0], foundOffsets.get(i)[1], activePainter);
+                    highlighters[i] = hl.addHighlight(foundOffsets.get(i)[0], foundOffsets.get(i)[1], ACTIVEPAINTER);
                 } else {
-                    highlighters[i] = hl.addHighlight(foundOffsets.get(i)[0], foundOffsets.get(i)[1], inactivePainter);
+                    highlighters[i] = hl.addHighlight(foundOffsets.get(i)[0], foundOffsets.get(i)[1], INACTIVEPAINTER);
                 }
             } catch (BadLocationException e) {
                 e.printStackTrace();
@@ -772,9 +791,9 @@ public final class FindAction extends DefaultAction {
             hl.removeHighlight(highlighters[n]);
             try {
                 if (active) {
-                    highlighters[n] = hl.addHighlight(foundOffsets.get(n)[0], foundOffsets.get(n)[1], activePainter);
+                    highlighters[n] = hl.addHighlight(foundOffsets.get(n)[0], foundOffsets.get(n)[1], ACTIVEPAINTER);
                 } else {
-                    highlighters[n] = hl.addHighlight(foundOffsets.get(n)[0], foundOffsets.get(n)[1], inactivePainter);
+                    highlighters[n] = hl.addHighlight(foundOffsets.get(n)[0], foundOffsets.get(n)[1], INACTIVEPAINTER);
                 }
             } catch (BadLocationException e) {
                 e.printStackTrace();
@@ -795,7 +814,7 @@ public final class FindAction extends DefaultAction {
             if (selectedHighlight != null) {
                 hl.removeHighlight(selectedHighlight);
             }
-            selectedHighlight = hl.addHighlight(startSelectedLines, endSelectedLines, selectedPainter);
+            selectedHighlight = hl.addHighlight(startSelectedLines, endSelectedLines, SELECTEDPAINTER);
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
@@ -1076,6 +1095,13 @@ public final class FindAction extends DefaultAction {
      * Inner class to handle events (used as a singleton)
      */
     private class MyListener implements CaretListener, FocusListener {
+
+        /**
+         * Constructor
+         */
+        public MyListener() {
+            super();
+        }
 
         /**
          * focusGained in interface FocusListener

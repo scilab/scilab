@@ -19,6 +19,9 @@ SciNotes:
 * bug 7682 fixed - The knob of the vertical scrollbar moved badly on resize.
 
 
+* bug 7722 fixed - Several FindReplace windows could be opened.
+
+
 Editvar/Browsevar:
 ==================
 

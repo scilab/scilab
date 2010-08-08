@@ -142,7 +142,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
     private int numberOfUntitled;
     private EditorKit editorKit;
     private Object synchro = new Object();
-    private FindAction find;
 
     private PushButton undoButton;
     private PushButton redoButton;
@@ -386,8 +385,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
             // If this is the first launch, restore previous session if desired by user.
             if (editor.isOnlyInstance()) {
                 /* Check the config flag and check that there are files to open. */
-                if (!ConfigSciNotesManager.getRestoreOpenedFiles() ||
-                    ConfigSciNotesManager.countExistingOpenFiles() ==  0)  {
+                if (!ConfigSciNotesManager.getRestoreOpenedFiles() || ConfigSciNotesManager.countExistingOpenFiles() ==  0)  {
                     ConfigSciNotesManager.removeAllOpenFiles();
                     return editor; // Exit without restoring files
                 }
@@ -467,9 +465,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
      * Close SciNotes instance including all tabs.
      */
     public void closeSciNotes() {
-        if (find != null) {
-            find.closeFindReplaceWindow();
-        }
+        FindAction.close();
         SetColorsAction.closeSetColorsWindow();
         OpenSourceFileOnKeywordAction.closeOpenSourceWindow();
 
@@ -1657,6 +1653,13 @@ public class SciNotes extends SwingScilabTab implements Tab {
     }
 
     /**
+     * @return the focused editor
+     */
+    public static SciNotes getEditor() {
+        return editor;
+    }
+
+    /**
      * EditorKit Setter
      * @param editorKit EditorKit
      */
@@ -1678,13 +1681,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
      */
     public void setFileToEncode(File fileToEncode) {
         this.fileToEncode = fileToEncode;
-    }
-
-    /**
-     * @param find the FindAction to add
-     */
-    public void addFindActionWindow(FindAction find) {
-        this.find = find;
     }
 
     /**
