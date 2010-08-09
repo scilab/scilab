@@ -101,7 +101,8 @@ public final class ScilabFontUtils {
         for (int i = 1; i < style.length; i++) {
             fm = g2d.getFontMetrics(font.deriveFont(style[i]));
             int[] arr = fm.getWidths();
-            for (int j = 33; j < 127; j++) {
+            // The range 33--126 corresponds to the usual characters in ASCII
+            for (int j = 33; j < 126; j++) {
                 if (arr[j] != widths[j]) {
                     return false;
                 }
@@ -126,6 +127,7 @@ public final class ScilabFontUtils {
     public static boolean isMonospaced(Font font) {
         int[] arr = g2d.getFontMetrics(font).getWidths();
         int w = arr['a'];
+        // The range 33--126 corresponds to the usual characters in ASCII
         for (int i = 33; i < 127; i++) {
             if (arr[i] != w) {
                 return false;

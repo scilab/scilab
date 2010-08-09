@@ -23,7 +23,9 @@ import javax.swing.text.ViewFactory;
 import javax.swing.text.View;
 import javax.swing.text.Element;
 
+import org.scilab.modules.gui.utils.ScilabFontUtils;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
+
 
 /**
  * The class ScilabContext provides a context to render a Scilab's document.
@@ -197,18 +199,24 @@ public class ScilabContext implements ViewFactory {
      */
     public void genFonts(Font font) {
         Map map;
-        if (font != null) {
-            map = ConfigSciNotesManager.getAllFontStyle(font);
-        } else {
-            map = ConfigSciNotesManager.getAllFontStyle();
+        Font f = font;
+        if (f == null) {
+            f = ConfigSciNotesManager.getFont();
         }
+
+        map = ConfigSciNotesManager.getAllFontStyle(f);
+        boolean compatible = ScilabFontUtils.isAllStylesSameWidths(f);
 
         tokenFonts = new Font[ScilabLexerConstants.NUMBEROFTOKENS];
 
         Iterator it = map.keySet().iterator();
         while (it.hasNext()) {
             String tokenType = (String) it.next();
-            tokenFonts[ScilabLexerConstants.TOKENS.get(tokenType)] = (Font) map.get(tokenType);
+            f = (Font) map.get(tokenType);
+            if (!compatible && (f.isBold() || f.isItalic())) {
+                f = f.deriveFont(Font.PLAIN);
+            }
+            tokenFonts[ScilabLexerConstants.TOKENS.get(tokenType)] = f;
         }
 
         for (int i = 0; i < tokenFonts.length; i++) {
@@ -220,10 +228,12 @@ public class ScilabContext implements ViewFactory {
         /* Special case : Scilab's developers in comments */
         Font c = tokenFonts[ScilabLexerConstants.COMMENT];
         int style = c.getStyle();
-        if (c.isBold()) {
-            tokenFonts[ScilabLexerConstants.AUTHORS] = c.deriveFont(style ^ Font.BOLD);
-        } else {
-            tokenFonts[ScilabLexerConstants.AUTHORS] = c.deriveFont(style | Font.BOLD);
+        if (compatible) {
+            if (c.isBold()) {
+                tokenFonts[ScilabLexerConstants.AUTHORS] = c.deriveFont(style ^ Font.BOLD);
+            } else {
+                tokenFonts[ScilabLexerConstants.AUTHORS] = c.deriveFont(style | Font.BOLD);
+            }
         }
 
         tokenFonts[ScilabLexerConstants.OSKEYWORD] = tokenFonts[ScilabLexerConstants.SKEYWORD];

@@ -591,7 +591,7 @@ public final class ConfigSciNotesManager {
 
         NodeList fontNameElement = scinotesProfile.getElementsByTagName(FONT_NAME);
         Element fontName = (Element) fontNameElement.item(0);
-        fontName.setAttribute(VALUE, font.getFontName());
+        fontName.setAttribute(VALUE, font.getName());
 
         /* Save changes */
         writeDocument();
