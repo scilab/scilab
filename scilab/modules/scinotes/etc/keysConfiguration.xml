@@ -30,7 +30,6 @@
   <entry key="OpenSourceFileOnKeywordAction">control shift O</entry>
   <entry key="SaveAction">control S</entry>
   <entry key="SaveAsAction">control shift S</entry>
-  <entry key="OverwriteAction">control shift M</entry>
   <entry key="ReloadAction">control shift R</entry>
   <entry key="PrintPreviewAction">control shift P</entry>
   <entry key="PrintAction">control P</entry>
