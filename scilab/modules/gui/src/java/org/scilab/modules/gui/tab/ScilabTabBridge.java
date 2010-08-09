@@ -27,7 +27,7 @@ import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.popupmenu.PopupMenu;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
-import org.scilab.modules.gui.imagerender.ImageRender;
+import org.scilab.modules.gui.imagerenderer.ImageRenderer;
 import org.scilab.modules.gui.uitable.UiTable;
 import org.scilab.modules.gui.uidisplaytree.UiDisplayTree;
 import org.scilab.modules.gui.slider.Slider;
@@ -293,20 +293,20 @@ public class ScilabTabBridge {
 
 	/**
 	 * Add a member (dockable element) to a tab and returns the index of this member
-	 * @param tab the tab which we want to add the ImageRender to
-	 * @param member the ImageRender to add
-	 * @return the position of the ImageRender in the member list.
+	 * @param tab the tab which we want to add the ImageRenderer to
+	 * @param member the ImageRenderer to add
+	 * @return the position of the ImageRenderer in the member list.
 	 */
-	public static int addMember(Tab tab, ImageRender member) {
+	public static int addMember(Tab tab, ImageRenderer member) {
 		return (tab.getAsSimpleTab().addMember(member));
 	}
 
 	/**
-	 * Remove a ImageRender member from a tab
-	 * @param tab the tab which we want to remove the ImageRender from
-	 * @param member the ImageRender to add
+	 * Remove a ImageRenderer member from a tab
+	 * @param tab the tab which we want to remove the ImageRenderer from
+	 * @param member the ImageRenderer to add
 	 */
-	public static void removeMember(Tab tab, ImageRender member) {
+	public static void removeMember(Tab tab, ImageRenderer member) {
 		tab.getAsSimpleTab().removeMember(member);
 	}
 

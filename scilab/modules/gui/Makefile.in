@@ -151,8 +151,8 @@ am__objects_3 = libscigui_la-sci_x_choice.lo libscigui_la-gw_gui.lo \
 	libscigui_la-sci_x_choose_modeless.lo \
 	libscigui_la-sci_unsetmenu.lo libscigui_la-sci_delmenu.lo \
 	libscigui_la-sci_setmenu.lo libscigui_la-sci_ClipBoard.lo \
-	libscigui_la-sci_toolbar.lo libscigui_la-sci_uicontrol.lo \
-	libscigui_la-sci_uicontextmenu.lo libscigui_la-sci_uimenu.lo \
+	libscigui_la-sci_toolbar.lo libscigui_la-sci_uicontextmenu.lo \
+	libscigui_la-sci_uicontrol.lo libscigui_la-sci_uimenu.lo \
 	libscigui_la-sci_uiwait.lo libscigui_la-sci_mpopup.lo \
 	libscigui_la-sci_messagebox.lo libscigui_la-sci_waitbar.lo \
 	libscigui_la-sci_progressionbar.lo \
@@ -167,7 +167,7 @@ am__objects_4 = libscigui_la-sci_printsetupbox.lo \
 	libscigui_la-sci_getlookandfeel.lo \
 	libscigui_la-sci_uigetdir.lo libscigui_la-sci_uigetfile.lo \
 	libscigui_la-sci_displaytree.lo libscigui_la-sci_uiputfile.lo \
-	libscigui_la-sci_about.lo
+	libscigui_la-displayUiTree.lo libscigui_la-sci_about.lo
 am__objects_5 = libscigui_la-InitUIMenu.lo \
 	libscigui_la-CallScilabBridge.lo libscigui_la-Jxclick.lo \
 	libscigui_la-DestroyUimenu.lo libscigui_la-DestroyUicontrol.lo \
@@ -180,12 +180,13 @@ am__objects_5 = libscigui_la-InitUIMenu.lo \
 	libscigui_la-CallWaitBar.lo libscigui_la-CallHelpBrowser.lo \
 	libscigui_la-PushButton.lo libscigui_la-EditBox.lo \
 	libscigui_la-Label.lo libscigui_la-CheckBox.lo \
-	libscigui_la-RadioButton.lo libscigui_la-ImageRender.lo \
-	libscigui_la-UiTable.lo libscigui_la-Slider.lo \
-	libscigui_la-PopupMenu.lo libscigui_la-ContextMenu.lo \
-	libscigui_la-ListBox.lo libscigui_la-Frame.lo \
-	libscigui_la-Toolbar.lo libscigui_la-Widget.lo \
-	libscigui_la-SetUimenuLabel.lo libscigui_la-GetUimenuLabel.lo \
+	libscigui_la-RadioButton.lo libscigui_la-ImageRenderer.lo \
+	libscigui_la-UiTable.lo libscigui_la-UiDisplayTree.lo \
+	libscigui_la-Slider.lo libscigui_la-PopupMenu.lo \
+	libscigui_la-ContextMenu.lo libscigui_la-ListBox.lo \
+	libscigui_la-Frame.lo libscigui_la-Toolbar.lo \
+	libscigui_la-Widget.lo libscigui_la-SetUimenuLabel.lo \
+	libscigui_la-GetUimenuLabel.lo \
 	libscigui_la-GetUicontrolStyle.lo \
 	libscigui_la-SetUicontrolString.lo \
 	libscigui_la-GetUicontrolString.lo \
@@ -652,8 +653,9 @@ src/cpp/EditBox.cpp \
 src/cpp/Label.cpp \
 src/cpp/CheckBox.cpp \
 src/cpp/RadioButton.cpp \
-src/cpp/ImageRender.cpp \
+src/cpp/ImageRenderer.cpp \
 src/cpp/UiTable.cpp \
+src/cpp/UiDisplayTree.cpp \
 src/cpp/Slider.cpp \
 src/cpp/PopupMenu.cpp \
 src/cpp/ContextMenu.cpp \
@@ -752,8 +754,8 @@ sci_gateway/c/sci_delmenu.c \
 sci_gateway/c/sci_setmenu.c \
 sci_gateway/c/sci_ClipBoard.c \
 sci_gateway/c/sci_toolbar.c \
-sci_gateway/c/sci_uicontrol.c \
 sci_gateway/c/sci_uicontextmenu.c \
+sci_gateway/c/sci_uicontrol.c \
 sci_gateway/c/sci_uimenu.c \
 sci_gateway/c/sci_uiwait.c \
 sci_gateway/c/sci_mpopup.c \
@@ -777,6 +779,7 @@ sci_gateway/cpp/sci_uigetdir.cpp \
 sci_gateway/cpp/sci_uigetfile.cpp \
 sci_gateway/cpp/sci_displaytree.cpp \
 sci_gateway/cpp/sci_uiputfile.cpp \
+sci_gateway/cpp/displayUiTree.cpp \
 sci_gateway/cpp/sci_about.cpp
 
 libscigui_la_CFLAGS = -I$(srcdir)/src/c/ -I$(srcdir)/src/c/xsci/ \
@@ -1016,7 +1019,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUiobjectTag.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUiobjectVisible.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GiwsException.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-ImageRender.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-ImageRenderer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-InitProgressionBar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-InitUIMenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-InitWaitBar.Plo@am__quote@
@@ -1065,12 +1068,14 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-Slider.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-TerminateGui.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-Toolbar.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-UiDisplayTree.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-UiTable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-UicontrolStyleToString.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-UnitsConversion.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-Widget.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-addmenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-buildMainWindowTitle.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-displayUiTree.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-displaytree.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-exportUserInterface.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-getMainWindowTitle.Plo@am__quote@
@@ -1310,19 +1315,19 @@ libscigui_la-sci_toolbar.lo: sci_gateway/c/sci_toolbar.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_toolbar.lo `test -f 'sci_gateway/c/sci_toolbar.c' || echo '$(srcdir)/'`sci_gateway/c/sci_toolbar.c
 
-libscigui_la-sci_uicontrol.lo: sci_gateway/c/sci_uicontrol.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_uicontrol.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_uicontrol.Tpo -c -o libscigui_la-sci_uicontrol.lo `test -f 'sci_gateway/c/sci_uicontrol.c' || echo '$(srcdir)/'`sci_gateway/c/sci_uicontrol.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscigui_la-sci_uicontrol.Tpo $(DEPDIR)/libscigui_la-sci_uicontrol.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_uicontrol.c' object='libscigui_la-sci_uicontrol.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_uicontrol.lo `test -f 'sci_gateway/c/sci_uicontrol.c' || echo '$(srcdir)/'`sci_gateway/c/sci_uicontrol.c
-
 libscigui_la-sci_uicontextmenu.lo: sci_gateway/c/sci_uicontextmenu.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_uicontextmenu.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_uicontextmenu.Tpo -c -o libscigui_la-sci_uicontextmenu.lo `test -f 'sci_gateway/c/sci_uicontextmenu.c' || echo '$(srcdir)/'`sci_gateway/c/sci_uicontextmenu.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscigui_la-sci_uicontextmenu.Tpo $(DEPDIR)/libscigui_la-sci_uicontextmenu.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_uicontextmenu.c' object='libscigui_la-sci_uicontextmenu.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_uicontextmenu.lo `test -f 'sci_gateway/c/sci_uicontextmenu.c' || echo '$(srcdir)/'`sci_gateway/c/sci_uicontextmenu.c
+
+libscigui_la-sci_uicontrol.lo: sci_gateway/c/sci_uicontrol.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_uicontrol.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_uicontrol.Tpo -c -o libscigui_la-sci_uicontrol.lo `test -f 'sci_gateway/c/sci_uicontrol.c' || echo '$(srcdir)/'`sci_gateway/c/sci_uicontrol.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscigui_la-sci_uicontrol.Tpo $(DEPDIR)/libscigui_la-sci_uicontrol.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_uicontrol.c' object='libscigui_la-sci_uicontrol.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_uicontrol.lo `test -f 'sci_gateway/c/sci_uicontrol.c' || echo '$(srcdir)/'`sci_gateway/c/sci_uicontrol.c
 
 libscigui_la-sci_uimenu.lo: sci_gateway/c/sci_uimenu.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_uimenu.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_uimenu.Tpo -c -o libscigui_la-sci_uimenu.lo `test -f 'sci_gateway/c/sci_uimenu.c' || echo '$(srcdir)/'`sci_gateway/c/sci_uimenu.c
@@ -1492,6 +1497,13 @@ libscigui_la-sci_uiputfile.lo: sci_gateway/cpp/sci_uiputfile.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_uiputfile.lo `test -f 'sci_gateway/cpp/sci_uiputfile.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_uiputfile.cpp
 
+libscigui_la-displayUiTree.lo: sci_gateway/cpp/displayUiTree.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-displayUiTree.lo -MD -MP -MF $(DEPDIR)/libscigui_la-displayUiTree.Tpo -c -o libscigui_la-displayUiTree.lo `test -f 'sci_gateway/cpp/displayUiTree.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/displayUiTree.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_la-displayUiTree.Tpo $(DEPDIR)/libscigui_la-displayUiTree.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/displayUiTree.cpp' object='libscigui_la-displayUiTree.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-displayUiTree.lo `test -f 'sci_gateway/cpp/displayUiTree.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/displayUiTree.cpp
+
 libscigui_la-sci_about.lo: sci_gateway/cpp/sci_about.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_about.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_about.Tpo -c -o libscigui_la-sci_about.lo `test -f 'sci_gateway/cpp/sci_about.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_about.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_la-sci_about.Tpo $(DEPDIR)/libscigui_la-sci_about.Plo
@@ -1653,12 +1665,12 @@ libscigui_la-RadioButton.lo: src/cpp/RadioButton.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-RadioButton.lo `test -f 'src/cpp/RadioButton.cpp' || echo '$(srcdir)/'`src/cpp/RadioButton.cpp
 
-libscigui_la-ImageRender.lo: src/cpp/ImageRender.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-ImageRender.lo -MD -MP -MF $(DEPDIR)/libscigui_la-ImageRender.Tpo -c -o libscigui_la-ImageRender.lo `test -f 'src/cpp/ImageRender.cpp' || echo '$(srcdir)/'`src/cpp/ImageRender.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_la-ImageRender.Tpo $(DEPDIR)/libscigui_la-ImageRender.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/ImageRender.cpp' object='libscigui_la-ImageRender.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-ImageRenderer.lo: src/cpp/ImageRenderer.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-ImageRenderer.lo -MD -MP -MF $(DEPDIR)/libscigui_la-ImageRenderer.Tpo -c -o libscigui_la-ImageRenderer.lo `test -f 'src/cpp/ImageRenderer.cpp' || echo '$(srcdir)/'`src/cpp/ImageRenderer.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_la-ImageRenderer.Tpo $(DEPDIR)/libscigui_la-ImageRenderer.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/ImageRenderer.cpp' object='libscigui_la-ImageRenderer.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-ImageRender.lo `test -f 'src/cpp/ImageRender.cpp' || echo '$(srcdir)/'`src/cpp/ImageRender.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-ImageRenderer.lo `test -f 'src/cpp/ImageRenderer.cpp' || echo '$(srcdir)/'`src/cpp/ImageRenderer.cpp
 
 libscigui_la-UiTable.lo: src/cpp/UiTable.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-UiTable.lo -MD -MP -MF $(DEPDIR)/libscigui_la-UiTable.Tpo -c -o libscigui_la-UiTable.lo `test -f 'src/cpp/UiTable.cpp' || echo '$(srcdir)/'`src/cpp/UiTable.cpp
@@ -1666,6 +1678,13 @@ libscigui_la-UiTable.lo: src/cpp/UiTable.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/UiTable.cpp' object='libscigui_la-UiTable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-UiTable.lo `test -f 'src/cpp/UiTable.cpp' || echo '$(srcdir)/'`src/cpp/UiTable.cpp
+
+libscigui_la-UiDisplayTree.lo: src/cpp/UiDisplayTree.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-UiDisplayTree.lo -MD -MP -MF $(DEPDIR)/libscigui_la-UiDisplayTree.Tpo -c -o libscigui_la-UiDisplayTree.lo `test -f 'src/cpp/UiDisplayTree.cpp' || echo '$(srcdir)/'`src/cpp/UiDisplayTree.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_la-UiDisplayTree.Tpo $(DEPDIR)/libscigui_la-UiDisplayTree.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/UiDisplayTree.cpp' object='libscigui_la-UiDisplayTree.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-UiDisplayTree.lo `test -f 'src/cpp/UiDisplayTree.cpp' || echo '$(srcdir)/'`src/cpp/UiDisplayTree.cpp
 
 libscigui_la-Slider.lo: src/cpp/Slider.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-Slider.lo -MD -MP -MF $(DEPDIR)/libscigui_la-Slider.Tpo -c -o libscigui_la-Slider.lo `test -f 'src/cpp/Slider.cpp' || echo '$(srcdir)/'`src/cpp/Slider.cpp

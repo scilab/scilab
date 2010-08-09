@@ -40,7 +40,7 @@ import org.scilab.modules.gui.bridge.listbox.SwingScilabListBox;
 import org.scilab.modules.gui.bridge.popupmenu.SwingScilabPopupMenu;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
-import org.scilab.modules.gui.bridge.imagerender.SwingScilabImageRender;
+import org.scilab.modules.gui.bridge.imagerenderer.SwingScilabImageRenderer;
 import org.scilab.modules.gui.bridge.uitable.SwingScilabUiTable;
 import org.scilab.modules.gui.bridge.uidisplaytree.SwingScilabUiDisplayTree;
 import org.scilab.modules.gui.bridge.slider.SwingScilabSlider;
@@ -60,7 +60,7 @@ import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.popupmenu.PopupMenu;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
-import org.scilab.modules.gui.imagerender.ImageRender;
+import org.scilab.modules.gui.imagerenderer.ImageRenderer;
 import org.scilab.modules.gui.uitable.UiTable;
 import org.scilab.modules.gui.uidisplaytree.UiDisplayTree;
 import org.scilab.modules.gui.slider.Slider;
@@ -571,8 +571,8 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @param member the member to add
      * @return index of member in ArrayList
      */
-    public int addMember(ImageRender member) {
-	return this.addMember((SwingScilabImageRender) member.getAsSimpleImageRender());
+    public int addMember(ImageRenderer member) {
+	return this.addMember((SwingScilabImageRenderer) member.getAsSimpleImageRenderer());
     }
 
     /**
@@ -580,23 +580,23 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @param member the member to add
      * @return index of member in ArrayList
      */
-    private int addMember(SwingScilabImageRender member) {
+    private int addMember(SwingScilabImageRenderer member) {
 	return contentPane.addWidget(member);
     }
 
     /**
-     * Remove a ImageRender from its container
-     * @param member the ImageRender to remove
+     * Remove a ImageRenderer from its container
+     * @param member the ImageRenderer to remove
      */
-    public void removeMember(ImageRender member) {
-	this.removeMember((SwingScilabImageRender) member.getAsSimpleImageRender());
+    public void removeMember(ImageRenderer member) {
+	this.removeMember((SwingScilabImageRenderer) member.getAsSimpleImageRenderer());
     }
 
     /**
-     * Remove a ImageRender from its container
-     * @param member the ImageRender to remove
+     * Remove a ImageRenderer from its container
+     * @param member the ImageRenderer to remove
      */
-    private void removeMember(SwingScilabImageRender member) {
+    private void removeMember(SwingScilabImageRenderer member) {
 	contentPane.removeWidget(member);
     }
 	

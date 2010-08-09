@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-package org.scilab.modules.gui.bridge.imagerender;
+package org.scilab.modules.gui.bridge.imagerenderer;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -24,7 +24,7 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 
 import org.scilab.modules.gui.events.callback.CallBack;
-import org.scilab.modules.gui.imagerender.SimpleImageRender;
+import org.scilab.modules.gui.imagerenderer.SimpleImageRenderer;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
@@ -36,14 +36,14 @@ import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
 
 /**
- * Swing implementation for Scilab ImageRender in GUIs
+ * Swing implementation for Scilab ImageRenderer in GUIs
  * @author Han DONG
  */
-public class SwingScilabImageRender extends JScrollPane implements SimpleImageRender {
+public class SwingScilabImageRenderer extends JScrollPane implements SimpleImageRenderer {
 
 	private static final long serialVersionUID = -3394912554085956130L;
 
-	private JLabel imageRender;
+	private JLabel imageRenderer;
 	private ImageIcon imi;
 	private Image img;
 	private String directory;
@@ -51,7 +51,7 @@ public class SwingScilabImageRender extends JScrollPane implements SimpleImageRe
 	/**
 	 * Constructor
 	 */
-	public SwingScilabImageRender() {
+	public SwingScilabImageRenderer() {
 		super();
 		getViewport().add(getLabel());
 		setBorder(BorderFactory.createEmptyBorder());
@@ -61,7 +61,7 @@ public class SwingScilabImageRender extends JScrollPane implements SimpleImageRe
 	}
 
 	/**
-	 * Apply a new font for the imageRender.
+	 * Apply a new font for the imageRendereri.
 	 * @param font new font to use.
 	 */
 	public void setFont(Font font) {
@@ -165,7 +165,7 @@ public class SwingScilabImageRender extends JScrollPane implements SimpleImageRe
 	}
 
 	/**
-	 * Add a callback to the ImageRender
+	 * Add a callback to the ImageRenderer
 	 * @param callback the callback to set.
 	 */
 	public void setCallback(CallBack callback) {
@@ -174,42 +174,42 @@ public class SwingScilabImageRender extends JScrollPane implements SimpleImageRe
 
 	/**
 	 * Setter for MenuBar
-	 * @param menuBarToAdd the MenuBar associated to the ImageRender.
+	 * @param menuBarToAdd the MenuBar associated to the ImageRenderer.
 	 */
 	public void addMenuBar(MenuBar menuBarToAdd) {
-		/* Unimplemented for ImageRenders */
+		/* Unimplemented for ImageRenderers */
 		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * Setter for ToolBar
-	 * @param toolBarToAdd the ToolBar associated to the ImageRender.
+	 * @param toolBarToAdd the ToolBar associated to the ImageRenderer.
 	 */
 	public void addToolBar(ToolBar toolBarToAdd) {
-		/* Unimplemented for ImageRenders */
+		/* Unimplemented for ImageRenderers */
 		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * Getter for MenuBar
-	 * @return MenuBar: the MenuBar associated to the ImageRender.
+	 * @return MenuBar: the MenuBar associated to the ImageRenderer.
 	 */
 	public MenuBar getMenuBar() {
-		/* Unimplemented for ImageRenders */
+		/* Unimplemented for ImageRenderers */
 		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * Getter for ToolBar
-	 * @return ToolBar: the ToolBar associated to the ImageRender.
+	 * @return ToolBar: the ToolBar associated to the ImageRenderer.
 	 */
 	public ToolBar getToolBar() {
-		/* Unimplemented for ImageRenders */
+		/* Unimplemented for ImageRenderers */
 		throw new UnsupportedOperationException();
 	}
 
 	/**
-	 * Set the horizontal alignment for the ImageRender text
+	 * Set the horizontal alignment for the ImageRenderer text
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)
 	 */
 	public void setHorizontalAlignment(String alignment) {
@@ -217,7 +217,7 @@ public class SwingScilabImageRender extends JScrollPane implements SimpleImageRe
 	}
 
 	/**
-	 * Set the vertical alignment for the ImageRender text
+	 * Set the vertical alignment for the ImageRenderer text
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)
 	 */
 	public void setVerticalAlignment(String alignment) {
@@ -225,7 +225,7 @@ public class SwingScilabImageRender extends JScrollPane implements SimpleImageRe
 	}
 
 	/**
-	 * Set the Relief of the ImageRender
+	 * Set the Relief of the ImageRenderer
 	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
 	 */
 	public void setRelief(String reliefType) {
@@ -233,7 +233,7 @@ public class SwingScilabImageRender extends JScrollPane implements SimpleImageRe
 	}
 
 	/**
-	 * Destroy the ImageRender
+	 * Destroy the ImageRenderer
 	 */
 	public void destroy() {
 		ScilabSwingUtilities.removeFromParent(this);
@@ -241,36 +241,36 @@ public class SwingScilabImageRender extends JScrollPane implements SimpleImageRe
 
 	/**
 	 * Setter for InfoBar
-	 * @param infoBarToAdd the InfoBar associated to the ImageRender.
+	 * @param infoBarToAdd the InfoBar associated to the ImageRenderer.
 	 */
 	public void addInfoBar(TextBox infoBarToAdd) {
-		/* Unimplemented for ImageRenders */
+		/* Unimplemented for ImageRenderers */
 		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * Getter for InfoBar
-	 * @return the InfoBar associated to the ImageRender.
+	 * @return the InfoBar associated to the ImageRenderer.
 	 */
 	public TextBox getInfoBar() {
-		/* Unimplemented for ImageRenders */
+		/* Unimplemented for ImageRenderers */
 		throw new UnsupportedOperationException();
 	}
 
 	/**
-	 * Create/Return the imageRender Java object
-	 * @return the imageRender
+	 * Create/Return the imageRenderer Java object
+	 * @return the imageRenderer
 	 */
 	private JLabel getLabel() {
-		if (imageRender == null) {
-			imageRender = new JLabel();
+		if (imageRenderer == null) {
+			imageRenderer = new JLabel();
 			directory = "";
-			imageRender.setOpaque(true);
+			imageRenderer.setOpaque(true);
 			imi = new ImageIcon();
 			img = imi.getImage();
-			imageRender.setIcon(imi);
+			imageRenderer.setIcon(imi);
 		}
-		return imageRender;
+		return imageRenderer;
 	}
 
 	/**
@@ -290,7 +290,7 @@ public class SwingScilabImageRender extends JScrollPane implements SimpleImageRe
 		directory = newText;
 		imi = new ImageIcon(directory);
 		img = imi.getImage();
-		imageRender.setIcon(imi);	
+		imageRenderer.setIcon(imi);	
 		setPreferredSize(new Dimension(imi.getIconWidth(), imi.getIconHeight()));
 	}
 
@@ -299,14 +299,15 @@ public class SwingScilabImageRender extends JScrollPane implements SimpleImageRe
 	 * @param indices the double value of the angle to rotate
 	 */
 	public void setRotate(double[] indices) {
-		if(img != null) {
+		if(img == null || img.getHeight(this) < 0 || img.getWidth(this) < 0) {}
+		else {
 		int h = img.getHeight(this);
 		int w = img.getWidth(this);
 		BufferedImage bim = new BufferedImage(h, w, BufferedImage.TYPE_INT_RGB);
 		Graphics2D g2 = bim.createGraphics();
 		g2.rotate(Math.toRadians(indices[0]), w/2, h/2);
 		g2.drawImage(img, 0, 0, this);
-		imageRender.setIcon(new ImageIcon(bim));
+		imageRenderer.setIcon(new ImageIcon(bim));
 		}
 	}
 
@@ -315,14 +316,15 @@ public class SwingScilabImageRender extends JScrollPane implements SimpleImageRe
 	 * @param indices the double array of x, y values to shear
 	 */
 	public void setShear(double[] indices) {
-		if(img != null) {
+		if(img == null || img.getHeight(this) < 0 || img.getWidth(this) < 0) {}
+		else {
 		int h = img.getHeight(this);
 		int w = img.getWidth(this);
 		BufferedImage bim = new BufferedImage(h, w, BufferedImage.TYPE_INT_RGB);
 		Graphics2D g2 = bim.createGraphics();
 		g2.shear(indices[0], indices[1]);
 		g2.drawImage(img, 0, 0, this);
-		imageRender.setIcon(new ImageIcon(bim));
+		imageRenderer.setIcon(new ImageIcon(bim));
 		}
 	}
 
@@ -331,14 +333,15 @@ public class SwingScilabImageRender extends JScrollPane implements SimpleImageRe
 	 * @param indices the double array of x, y values to scale
 	 */
 	public void setScale(double[] indices) {
-		if(img != null) {
+		if(img == null || img.getHeight(this) < 0 || img.getWidth(this) < 0) {}
+		else {
 		int h = img.getHeight(this) * (int) Math.ceil(indices[0]);
 		int w = img.getWidth(this) * (int) Math.ceil(indices[1]);
 		BufferedImage bim = new BufferedImage(h, w, BufferedImage.TYPE_INT_RGB);
 		Graphics2D g2 = bim.createGraphics();
 		g2.scale(indices[0], indices[1]);
 		g2.drawImage(img, 0, 0, this);
-		imageRender.setIcon(new ImageIcon(bim));
+		imageRenderer.setIcon(new ImageIcon(bim));
 		}
 	}
 }

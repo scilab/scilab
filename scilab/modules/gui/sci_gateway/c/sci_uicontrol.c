@@ -32,7 +32,7 @@
 #include "PopupMenu.h" /* setCurentFigureAsPopupMenuParent */
 #include "ListBox.h" /* setCurentFigureAsListBoxParent */
 #include "Frame.h" /* setCurentFigureAsFrameParent */
-#include "ImageRender.h" /* setCurentFigureAsImageRenderParent */
+#include "ImageRenderer.h" /* setCurentFigureAsImageRendererParent */
 #include "UiTable.h" /* setCurentFigureAsUiTableParent */
 #include "UiDisplayTree.h" /* setCurentFigureAsUiDisplayTreeParent */
 #include "Scierror.h"
@@ -342,8 +342,8 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
             case SCI_UIFRAME:
               setCurentFigureAsFrameParent(graphicObject);
               break;
-            case SCI_IMAGERENDER:
-              setCurentFigureAsImageRenderParent(graphicObject);
+            case SCI_IMAGERENDERER:
+              setCurentFigureAsImageRendererParent(graphicObject);
               break;
             case SCI_UITABLE:
               setCurentFigureAsUiTableParent(graphicObject);

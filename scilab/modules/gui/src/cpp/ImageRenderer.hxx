@@ -10,12 +10,12 @@
  *
  */
 
-#ifndef __IMAGERENDER_HXX__
-#define __IMAGERENDER_HXX__
+#ifndef __IMAGERENDERER_HXX__
+#define __IMAGERENDERER_HXX__
 
 #include "CallScilabBridge.hxx"
 extern "C"{
-#include "ImageRender.h"
+#include "ImageRenderer.h"
 #include "getScilabJavaVM.h"
 #include "CurrentObjectsManagement.h"
 #include "GetProperty.h"
@@ -25,4 +25,4 @@ extern "C"{
 #include "HandleManagement.h"
 }
 
-#endif /* __IMAGERENDER_HXX__ */
+#endif /* __IMAGERENDERER_HXX__ */

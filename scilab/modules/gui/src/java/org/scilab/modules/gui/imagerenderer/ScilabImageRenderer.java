@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.gui.imagerender;
+package org.scilab.modules.gui.imagerenderer;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -22,54 +22,54 @@ import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.widget.ScilabWidget;
 
 /**
- * Swing implementation for Scilab ImageRender in GUIs
+ * Swing implementation for Scilab ImageRenderer in GUIs
  * @author Han DONG
  */
-public class ScilabImageRender extends ScilabWidget implements ImageRender {
+public class ScilabImageRenderer extends ScilabWidget implements ImageRenderer {
 
-	private SimpleImageRender component;
+	private SimpleImageRenderer component;
 	
 	/**
 	 * Constructor
 	 */
-	protected ScilabImageRender() {
-		component = ScilabBridge.createImageRender();
+	protected ScilabImageRenderer() {
+		component = ScilabBridge.createImageRenderer();
 	}
 
 	/**
-	 * Creates a Scilab ImageRender object
-	 * @return the created ImageRender
+	 * Creates a Scilab ImageRenderer object
+	 * @return the created ImageRenderer
 	 */
-	public static ImageRender createImageRender() {
-		return new ScilabImageRender();
+	public static ImageRenderer createImageRenderer() {
+		return new ScilabImageRenderer();
 	}
 	
 	/**
 	 * Gets this Bridge component object
 	 * @return this Bridge component object
 	 */
-	public SimpleImageRender getAsSimpleImageRender() {
+	public SimpleImageRenderer getAsSimpleImageRenderer() {
 		return component;
 	}
 	
 	/**
-	 * Sets the text of a ImageRender
-	 * @param newText the text to set to the ImageRender
+	 * Sets the text of a ImageRenderer
+	 * @param newText the text to set to the ImageRenderer
 	 */
 	public void setText(String newText) {
 		ScilabBridge.setText(this, newText);
 	}
 	
 	/**
-	 * Gets the text of a ImageRender
-	 * @return text of the ImageRender
+	 * Gets the text of a ImageRenderer
+	 * @return text of the ImageRenderer
 	 */
 	public String getText() {
 		return ScilabBridge.getText(this);
 	}
 	
 	/**
-	 * Draws a ImageRender
+	 * Draws a ImageRenderer
 	 */
 	public void draw() {
 		ScilabBridge.draw(this);
@@ -177,7 +177,7 @@ public class ScilabImageRender extends ScilabWidget implements ImageRender {
 	}
 	
 	/**
-	 * Add a callback to the ImageRender
+	 * Add a callback to the ImageRenderer
 	 * @param callback the CallBack to set.
 	 */
 	public void setCallback(CallBack callback) {
@@ -185,23 +185,23 @@ public class ScilabImageRender extends ScilabWidget implements ImageRender {
 	}
 	
 	/**
-	 * Set if the ImageRender is enabled or not
-	 * @param status true if the ImageRender is enabled
+	 * Set if the ImageRenderer is enabled or not
+	 * @param status true if the ImageRenderer is enabled
 	 */
 	public void setEnabled(boolean status) {
 		ScilabBridge.setEnabled(this, status);
 	}
 
 	/**
-	 * Gets the enable status of a ImageRender
-	 * @return the enable status of the ImageRender (true if the ImageRender is enabled, false if not)
+	 * Gets the enable status of a ImageRenderer
+	 * @return the enable status of the ImageRenderer (true if the ImageRenderer is enabled, false if not)
 	 */
 	public boolean isEnabled() {
 		return ScilabBridge.isEnabled(this);
 	}
 
 	/**
-	 * Set the horizontal alignment for the ImageRender text
+	 * Set the horizontal alignment for the ImageRenderer text
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)
 	 */
 	public void setHorizontalAlignment(String alignment) {
@@ -209,7 +209,7 @@ public class ScilabImageRender extends ScilabWidget implements ImageRender {
 	}
 
 	/**
-	 * Set the vertical alignment for the ImageRender text
+	 * Set the vertical alignment for the ImageRenderer text
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)
 	 */
 	public void setVerticalAlignment(String alignment) {
@@ -217,7 +217,7 @@ public class ScilabImageRender extends ScilabWidget implements ImageRender {
 	}
 	
 	/**
-	 * Set the Relief of the ImageRender
+	 * Set the Relief of the ImageRenderer
 	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
 	 */
 	public void setRelief(String reliefType) {
@@ -225,14 +225,14 @@ public class ScilabImageRender extends ScilabWidget implements ImageRender {
 	}
 
 	/**
-	 * Delete the ImageRender
+	 * Delete the ImageRenderer
 	 */
 	public void destroy() {
 		ScilabBridge.destroy(this);
 	}
 	
 	/**
-	 * Give the focus to the ImageRender
+	 * Give the focus to the ImageRenderer
 	 */
 	public void requestFocus() {
 		ScilabBridge.requestFocus(this);

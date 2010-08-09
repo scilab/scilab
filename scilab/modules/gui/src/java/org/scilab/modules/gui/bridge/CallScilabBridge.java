@@ -92,8 +92,8 @@ import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.radiobutton.ScilabRadioButton;
-import org.scilab.modules.gui.imagerender.ImageRender;
-import org.scilab.modules.gui.imagerender.ScilabImageRender;
+import org.scilab.modules.gui.imagerenderer.ImageRenderer;
+import org.scilab.modules.gui.imagerenderer.ScilabImageRenderer;
 import org.scilab.modules.gui.uitable.UiTable;
 import org.scilab.modules.gui.uitable.ScilabUiTable;
 import org.scilab.modules.gui.uidisplaytree.UiDisplayTree;
@@ -446,12 +446,12 @@ public class CallScilabBridge {
     }
 
     /**
-     * Create a new ImageRender in Scilab GUIs
-     * @return the ID of the ImageRender in the UIElementMapper
+     * Create a new ImageRenderer in Scilab GUIs
+     * @return the ID of the ImageRenderer in the UIElementMapper
      */
-    public static int newImageRender() {
-        ImageRender imageRender = ScilabImageRender.createImageRender();
-        int id = UIElementMapper.add(imageRender);
+    public static int newImageRenderer() {
+        ImageRenderer imageRenderer = ScilabImageRenderer.createImageRenderer();
+        int id = UIElementMapper.add(imageRenderer);
 
         /* Default font */
         setWidgetFontName(id, DEFAULTFONTNAME);
@@ -889,25 +889,25 @@ public class CallScilabBridge {
     }
 
     /**
-     * Set a figure as parent for a ImageRender
+     * Set a figure as parent for a ImageRenderer
      * @param figureID the ID of the figure in the FigureMapper
      * @param objID the ID of the PushButton in the UIElementMapper
      */
-    public static void setImageRenderParent(int figureID, int objID) {
+    public static void setImageRendererParent(int figureID, int objID) {
         Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
-        ImageRender imageRender = (ImageRender) UIElementMapper.getCorrespondingUIElement(objID);
-        ScilabBridge.addMember(parentTab, imageRender);
+        ImageRenderer imageRenderer = (ImageRenderer) UIElementMapper.getCorrespondingUIElement(objID);
+        ScilabBridge.addMember(parentTab, imageRenderer);
     }
 
     /**
-     * Remove a ImageRender from its parent figure
+     * Remove a ImageRenderer from its parent figure
      * @param figureID the ID of the figure in the FigureMapper
      * @param objID the ID of the PushButton in the UIElementMapper
      */
-    public static void removeImageRenderFromParent(int figureID, int objID) {
+    public static void removeImageRendererFromParent(int figureID, int objID) {
         Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
-        ImageRender imageRender = (ImageRender) UIElementMapper.getCorrespondingUIElement(objID);
-        ScilabBridge.removeMember(parentTab, imageRender);
+        ImageRenderer imageRenderer = (ImageRenderer) UIElementMapper.getCorrespondingUIElement(objID);
+        ScilabBridge.removeMember(parentTab, imageRenderer);
     }
 
     /**
@@ -3032,29 +3032,29 @@ public class CallScilabBridge {
 
     /**********************/
     /*                    */
-    /* IMAGERENDER BRIDGE */
+    /* IMAGERENDERER BRIDGE */
     /*                    */
     /**********************/
 
     /**
      * Rotates an image by certain degrees
      */
-    public static void setImageRenderRotate(int id, double[] indices) {
-	((ImageRender) UIElementMapper.getCorrespondingUIElement(id)).setRotate(indices);
+    public static void setImageRendererRotate(int id, double[] indices) {
+	((ImageRenderer) UIElementMapper.getCorrespondingUIElement(id)).setRotate(indices);
     }
 
     /**
      * Shears an image by x, y values
      */
-    public static void setImageRenderShear(int id, double[] indices) {
-	((ImageRender) UIElementMapper.getCorrespondingUIElement(id)).setShear(indices);
+    public static void setImageRendererShear(int id, double[] indices) {
+	((ImageRenderer) UIElementMapper.getCorrespondingUIElement(id)).setShear(indices);
     }
 
     /**
      * Scales an image by x, y values
      */
-    public static void setImageRenderScale(int id, double[] indices) {
-	((ImageRender) UIElementMapper.getCorrespondingUIElement(id)).setScale(indices);
+    public static void setImageRendererScale(int id, double[] indices) {
+	((ImageRenderer) UIElementMapper.getCorrespondingUIElement(id)).setScale(indices);
     }
 
     /******************/

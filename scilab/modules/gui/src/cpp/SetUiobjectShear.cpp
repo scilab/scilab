@@ -67,17 +67,17 @@ int SetUiobjectShear(sciPointObj* sciObj, size_t stackPointer, int valueType, in
       // Set the Java object property if necessary
       switch(pUICONTROL_FEATURE(sciObj)->style)
         {
-        case SCI_IMAGERENDER:
+        case SCI_IMAGERENDERER:
           if (pUICONTROL_FEATURE(sciObj)->valueSize == 0)
             {
-              CallScilabBridge::setImageRenderShear(getScilabJavaVM(), 
+              CallScilabBridge::setImageRendererShear(getScilabJavaVM(), 
                                                           pUICONTROL_FEATURE(sciObj)->hashMapIndex,
                                                           (double*) pUICONTROL_FEATURE(sciObj)->doubleValue,
                                                           0); /* No shear */
             }
           else
             {
-              CallScilabBridge::setImageRenderShear(getScilabJavaVM(), 
+              CallScilabBridge::setImageRendererShear(getScilabJavaVM(), 
                                                           pUICONTROL_FEATURE(sciObj)->hashMapIndex,
                                                           (double*) pUICONTROL_FEATURE(sciObj)->doubleValue,
                                                           pUICONTROL_FEATURE(sciObj)->valueSize);

@@ -10,21 +10,21 @@
  *
  */
 
-package org.scilab.modules.gui.imagerender;
+package org.scilab.modules.gui.imagerenderer;
 
 import org.scilab.modules.gui.text.Text;
 
 /**
- * Interface for ImageRender associated to objects in Scilab GUIs
+ * Interface for ImageRenderer associated to objects in Scilab GUIs
  * @author Han DONG
  */
-public interface ImageRender extends Text {
+public interface ImageRenderer extends Text {
 	
 	/**
 	 * Gets this Bridge component object
 	 * @return this Bridge component object
 	 */
-	SimpleImageRender getAsSimpleImageRender();
+	SimpleImageRenderer getAsSimpleImageRenderer();
  
 	/**
 	 * Rotates an image

@@ -23,7 +23,7 @@
 #include "PopupMenu.h"
 #include "ListBox.h"
 #include "Frame.h"
-#include "ImageRender.h"
+#include "ImageRenderer.h"
 #include "UiTable.h"
 #include "UiDisplayTree.h"
 #include "DestroyObjects.h" /* sciStandardDestroyOperations */
@@ -158,10 +158,10 @@ sciPointObj * CreateUIControl(char *style)
       createFrame((sciPointObj *) pobj);
       pUICONTROL_FEATURE (pobj)->style = SCI_UIFRAME;
     }
-  else if (strcmp(style,"imagerender")==0)
+  else if (strcmp(style,"imagerenderer")==0)
     {
-      createImageRender((sciPointObj *) pobj);
-      pUICONTROL_FEATURE (pobj)->style = SCI_IMAGERENDER;
+      createImageRenderer((sciPointObj *) pobj);
+      pUICONTROL_FEATURE (pobj)->style = SCI_IMAGERENDERER;
     }
   else if (strcmp(style,"uitable")==0)
     {

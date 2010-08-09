@@ -122,8 +122,8 @@ int SetUicontrolParent(sciPointObj* sciObj, size_t stackPointer, int valueType, 
                 case SCI_UIFRAME:
                   CallScilabBridge::removeFrameFromParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
                   break;
-		case SCI_IMAGERENDER:
-                  CallScilabBridge::removeImageRenderFromParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+		case SCI_IMAGERENDERER:
+                  CallScilabBridge::removeImageRendererFromParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
                   break;
                 case SCI_UITABLE:
                   CallScilabBridge::removeUiTableFromParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
@@ -173,8 +173,8 @@ int SetUicontrolParent(sciPointObj* sciObj, size_t stackPointer, int valueType, 
             case SCI_UIFRAME:
               CallScilabBridge::setFrameParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
               break;
-	    case SCI_IMAGERENDER:
-              CallScilabBridge::setImageRenderParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+	    case SCI_IMAGERENDERER:
+              CallScilabBridge::setImageRendererParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
               break;
             case SCI_UITABLE:
               CallScilabBridge::setUiTableParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);

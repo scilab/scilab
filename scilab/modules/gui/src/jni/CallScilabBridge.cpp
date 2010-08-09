@@ -114,7 +114,7 @@ jintnewSliderID=NULL;
 jintnewPopupMenuID=NULL; 
 jintnewListBoxID=NULL; 
 jintnewFrameID=NULL; 
-jintnewImageRenderID=NULL; 
+jintnewImageRendererID=NULL; 
 jintnewUiTableID=NULL; 
 jintnewUiDisplayTreeID=NULL; 
 jstringnewContextMenujobjectArray_ID=NULL; 
@@ -136,8 +136,8 @@ voidsetCheckBoxParentjintjintID=NULL;
 voidremoveCheckBoxFromParentjintjintID=NULL; 
 voidsetRadioButtonParentjintjintID=NULL; 
 voidremoveRadioButtonFromParentjintjintID=NULL; 
-voidsetImageRenderParentjintjintID=NULL; 
-voidremoveImageRenderFromParentjintjintID=NULL; 
+voidsetImageRendererParentjintjintID=NULL; 
+voidremoveImageRendererFromParentjintjintID=NULL; 
 voidsetUiTableParentjintjintID=NULL; 
 voidremoveUiTableFromParentjintjintID=NULL; 
 voidsetUiDisplayTreeParentjintjintID=NULL; 
@@ -295,9 +295,9 @@ voidraiseWindowjintID=NULL;
 voiduseCanvasForDisplayjbooleanID=NULL; 
 jbooleanuseCanvasForDisplayID=NULL; 
 voidscilabAboutBoxID=NULL; 
-voidsetImageRenderRotatejintjobjectArray_ID=NULL; 
-voidsetImageRenderShearjintjobjectArray_ID=NULL; 
-voidsetImageRenderScalejintjobjectArray_ID=NULL; 
+voidsetImageRendererRotatejintjobjectArray_ID=NULL; 
+voidsetImageRendererShearjintjobjectArray_ID=NULL; 
+voidsetImageRendererScalejintjobjectArray_ID=NULL; 
 voidsetUiTableColnamesjintjstringID=NULL; 
 voidsetUiTableRownamesjintjstringID=NULL; 
 voidsetUiTableDatajintjstringID=NULL; 
@@ -336,7 +336,7 @@ jintnewSliderID=NULL;
 jintnewPopupMenuID=NULL; 
 jintnewListBoxID=NULL; 
 jintnewFrameID=NULL; 
-jintnewImageRenderID=NULL; 
+jintnewImageRendererID=NULL; 
 jintnewUiTableID=NULL; 
 jintnewUiDisplayTreeID=NULL; 
 jstringnewContextMenujobjectArray_ID=NULL; 
@@ -358,8 +358,8 @@ voidsetCheckBoxParentjintjintID=NULL;
 voidremoveCheckBoxFromParentjintjintID=NULL; 
 voidsetRadioButtonParentjintjintID=NULL; 
 voidremoveRadioButtonFromParentjintjintID=NULL; 
-voidsetImageRenderParentjintjintID=NULL; 
-voidremoveImageRenderFromParentjintjintID=NULL; 
+voidsetImageRendererParentjintjintID=NULL; 
+voidremoveImageRendererFromParentjintjintID=NULL; 
 voidsetUiTableParentjintjintID=NULL; 
 voidremoveUiTableFromParentjintjintID=NULL; 
 voidsetUiDisplayTreeParentjintjintID=NULL; 
@@ -517,9 +517,9 @@ voidraiseWindowjintID=NULL;
 voiduseCanvasForDisplayjbooleanID=NULL; 
 jbooleanuseCanvasForDisplayID=NULL; 
 voidscilabAboutBoxID=NULL; 
-voidsetImageRenderRotatejintjobjectArray_ID=NULL; 
-voidsetImageRenderShearjintjobjectArray_ID=NULL; 
-voidsetImageRenderScalejintjobjectArray_ID=NULL; 
+voidsetImageRendererRotatejintjobjectArray_ID=NULL; 
+voidsetImageRendererShearjintjobjectArray_ID=NULL; 
+voidsetImageRendererScalejintjobjectArray_ID=NULL; 
 voidsetUiTableColnamesjintjstringID=NULL; 
 voidsetUiTableRownamesjintjstringID=NULL; 
 voidsetUiTableDatajintjstringID=NULL; 
@@ -759,18 +759,18 @@ return res;
 
 }
 
-int CallScilabBridge::newImageRender (JavaVM * jvm_){
+int CallScilabBridge::newImageRenderer (JavaVM * jvm_){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID jintnewImageRenderID = curEnv->GetStaticMethodID(cls, "newImageRender", "()I" ) ;
-if (jintnewImageRenderID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "newImageRender");
+jmethodID jintnewImageRendererID = curEnv->GetStaticMethodID(cls, "newImageRenderer", "()I" ) ;
+if (jintnewImageRendererID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "newImageRenderer");
 }
 
-                        jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintnewImageRenderID ));if (curEnv->ExceptionCheck()) {
+                        jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintnewImageRendererID ));if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
 return res;
@@ -1156,34 +1156,34 @@ throw GiwsException::JniCallMethodException(curEnv);
 }
 }
 
-void CallScilabBridge::setImageRenderParent (JavaVM * jvm_, int parentID, int objID){
+void CallScilabBridge::setImageRendererParent (JavaVM * jvm_, int parentID, int objID){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID voidsetImageRenderParentjintjintID = curEnv->GetStaticMethodID(cls, "setImageRenderParent", "(II)V" ) ;
-if (voidsetImageRenderParentjintjintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "setImageRenderParent");
+jmethodID voidsetImageRendererParentjintjintID = curEnv->GetStaticMethodID(cls, "setImageRendererParent", "(II)V" ) ;
+if (voidsetImageRendererParentjintjintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setImageRendererParent");
 }
 
-                         curEnv->CallStaticVoidMethod(cls, voidsetImageRenderParentjintjintID ,parentID, objID);if (curEnv->ExceptionCheck()) {
+                         curEnv->CallStaticVoidMethod(cls, voidsetImageRendererParentjintjintID ,parentID, objID);if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
 }
 
-void CallScilabBridge::removeImageRenderFromParent (JavaVM * jvm_, int parentID, int objID){
+void CallScilabBridge::removeImageRendererFromParent (JavaVM * jvm_, int parentID, int objID){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID voidremoveImageRenderFromParentjintjintID = curEnv->GetStaticMethodID(cls, "removeImageRenderFromParent", "(II)V" ) ;
-if (voidremoveImageRenderFromParentjintjintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "removeImageRenderFromParent");
+jmethodID voidremoveImageRendererFromParentjintjintID = curEnv->GetStaticMethodID(cls, "removeImageRendererFromParent", "(II)V" ) ;
+if (voidremoveImageRendererFromParentjintjintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "removeImageRendererFromParent");
 }
 
-                         curEnv->CallStaticVoidMethod(cls, voidremoveImageRenderFromParentjintjintID ,parentID, objID);if (curEnv->ExceptionCheck()) {
+                         curEnv->CallStaticVoidMethod(cls, voidremoveImageRendererFromParentjintjintID ,parentID, objID);if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
 }
@@ -4502,15 +4502,15 @@ throw GiwsException::JniCallMethodException(curEnv);
 }
 }
 
-void CallScilabBridge::setImageRenderRotate (JavaVM * jvm_, int objID, double* indices, int indicesSize){
+void CallScilabBridge::setImageRendererRotate (JavaVM * jvm_, int objID, double* indices, int indicesSize){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID voidsetImageRenderRotatejintjobjectArray_ID = curEnv->GetStaticMethodID(cls, "setImageRenderRotate", "(I[D)V" ) ;
-if (voidsetImageRenderRotatejintjobjectArray_ID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "setImageRenderRotate");
+jmethodID voidsetImageRendererRotatejintjobjectArray_ID = curEnv->GetStaticMethodID(cls, "setImageRendererRotate", "(I[D)V" ) ;
+if (voidsetImageRendererRotatejintjobjectArray_ID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setImageRendererRotate");
 }
 
 jdoubleArray indices_ = curEnv->NewDoubleArray( indicesSize ) ;
@@ -4524,21 +4524,21 @@ throw GiwsException::JniBadAllocException(curEnv);
 curEnv->SetDoubleArrayRegion( indices_, 0, indicesSize, (jdouble*)(indices) ) ;
 
 
-                         curEnv->CallStaticVoidMethod(cls, voidsetImageRenderRotatejintjobjectArray_ID ,objID, indices_);curEnv->DeleteLocalRef(indices_);
+                         curEnv->CallStaticVoidMethod(cls, voidsetImageRendererRotatejintjobjectArray_ID ,objID, indices_);curEnv->DeleteLocalRef(indices_);
 if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
 }
 
-void CallScilabBridge::setImageRenderShear (JavaVM * jvm_, int objID, double* indices, int indicesSize){
+void CallScilabBridge::setImageRendererShear (JavaVM * jvm_, int objID, double* indices, int indicesSize){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID voidsetImageRenderShearjintjobjectArray_ID = curEnv->GetStaticMethodID(cls, "setImageRenderShear", "(I[D)V" ) ;
-if (voidsetImageRenderShearjintjobjectArray_ID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "setImageRenderShear");
+jmethodID voidsetImageRendererShearjintjobjectArray_ID = curEnv->GetStaticMethodID(cls, "setImageRendererShear", "(I[D)V" ) ;
+if (voidsetImageRendererShearjintjobjectArray_ID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setImageRendererShear");
 }
 
 jdoubleArray indices_ = curEnv->NewDoubleArray( indicesSize ) ;
@@ -4552,21 +4552,21 @@ throw GiwsException::JniBadAllocException(curEnv);
 curEnv->SetDoubleArrayRegion( indices_, 0, indicesSize, (jdouble*)(indices) ) ;
 
 
-                         curEnv->CallStaticVoidMethod(cls, voidsetImageRenderShearjintjobjectArray_ID ,objID, indices_);curEnv->DeleteLocalRef(indices_);
+                         curEnv->CallStaticVoidMethod(cls, voidsetImageRendererShearjintjobjectArray_ID ,objID, indices_);curEnv->DeleteLocalRef(indices_);
 if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
 }
 
-void CallScilabBridge::setImageRenderScale (JavaVM * jvm_, int objID, double* indices, int indicesSize){
+void CallScilabBridge::setImageRendererScale (JavaVM * jvm_, int objID, double* indices, int indicesSize){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID voidsetImageRenderScalejintjobjectArray_ID = curEnv->GetStaticMethodID(cls, "setImageRenderScale", "(I[D)V" ) ;
-if (voidsetImageRenderScalejintjobjectArray_ID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "setImageRenderScale");
+jmethodID voidsetImageRendererScalejintjobjectArray_ID = curEnv->GetStaticMethodID(cls, "setImageRendererScale", "(I[D)V" ) ;
+if (voidsetImageRendererScalejintjobjectArray_ID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setImageRendererScale");
 }
 
 jdoubleArray indices_ = curEnv->NewDoubleArray( indicesSize ) ;
@@ -4580,7 +4580,7 @@ throw GiwsException::JniBadAllocException(curEnv);
 curEnv->SetDoubleArrayRegion( indices_, 0, indicesSize, (jdouble*)(indices) ) ;
 
 
-                         curEnv->CallStaticVoidMethod(cls, voidsetImageRenderScalejintjobjectArray_ID ,objID, indices_);curEnv->DeleteLocalRef(indices_);
+                         curEnv->CallStaticVoidMethod(cls, voidsetImageRendererScalejintjobjectArray_ID ,objID, indices_);curEnv->DeleteLocalRef(indices_);
 if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }

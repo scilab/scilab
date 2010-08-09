@@ -11,16 +11,16 @@
  */
 
 
-#include "ImageRender.hxx"
+#include "ImageRenderer.hxx"
 
 using namespace org_scilab_modules_gui_bridge;
 
-void createImageRender(sciPointObj* sciObj)
+void createImageRenderer(sciPointObj* sciObj)
 {
-  pUICONTROL_FEATURE(sciObj)->hashMapIndex = CallScilabBridge::newImageRender(getScilabJavaVM());
+  pUICONTROL_FEATURE(sciObj)->hashMapIndex = CallScilabBridge::newImageRenderer(getScilabJavaVM());
 }
 
-int setCurentFigureAsImageRenderParent(sciPointObj* sciObj)
+int setCurentFigureAsImageRendererParent(sciPointObj* sciObj)
 {
   int parentFigureIndex = 0;
   
@@ -29,7 +29,7 @@ int setCurentFigureAsImageRenderParent(sciPointObj* sciObj)
   
   // Java objects
   parentFigureIndex = sciGetNum(sciGetCurrentFigure());
-  CallScilabBridge::setImageRenderParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+  CallScilabBridge::setImageRendererParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
 
   return SET_PROPERTY_SUCCEED;
 }

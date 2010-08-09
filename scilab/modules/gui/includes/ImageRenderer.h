@@ -10,25 +10,25 @@
  *
  */
 
-#ifndef __IMAGERENDER_H__
-#define __IMAGERENDER_H__
+#ifndef __IMAGERENDERER_H__
+#define __IMAGERENDERER_H__
 #include "dynlib_gui.h"
 #include "ObjectStructure.h"
 #include "returnProperty.h"
 
 /**
- * Create a new ImageRender in Scilab GUIs
+ * Create a new ImageRenderer in Scilab GUIs
  *
  * @param sciObj the corresponding Scilab object
  */
-GUI_IMPEXP void createImageRender(sciPointObj* sciObj);
+GUI_IMPEXP void createImageRenderer(sciPointObj* sciObj);
 
 /**
- * Set the current figure as parent for a ImageRender in Scilab GUIs
+ * Set the current figure as parent for a ImageRenderer in Scilab GUIs
  *
  * @param sciObj the corresponding Scilab object   
  * @return true parent setting has be done without error
  */
-GUI_IMPEXP int setCurentFigureAsImageRenderParent(sciPointObj* sciObj);
+GUI_IMPEXP int setCurentFigureAsImageRendererParent(sciPointObj* sciObj);
 
-#endif /* __IMAGERENDER_H__ */
+#endif /* __IMAGERENDERER_H__ */

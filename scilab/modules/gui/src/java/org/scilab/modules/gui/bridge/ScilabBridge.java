@@ -89,9 +89,9 @@ import org.scilab.modules.gui.pushbutton.SimplePushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.radiobutton.ScilabRadioButtonBridge;
 import org.scilab.modules.gui.radiobutton.SimpleRadioButton;
-import org.scilab.modules.gui.imagerender.ImageRender;
-import org.scilab.modules.gui.imagerender.ScilabImageRenderBridge;
-import org.scilab.modules.gui.imagerender.SimpleImageRender;
+import org.scilab.modules.gui.imagerenderer.ImageRenderer;
+import org.scilab.modules.gui.imagerenderer.ScilabImageRendererBridge;
+import org.scilab.modules.gui.imagerenderer.SimpleImageRenderer;
 import org.scilab.modules.gui.uitable.UiTable;
 import org.scilab.modules.gui.uitable.ScilabUiTableBridge;
 import org.scilab.modules.gui.uitable.SimpleUiTable;
@@ -857,20 +857,20 @@ public class ScilabBridge {
 	
 	/**
 	 * Add a member (dockable element) to a tab and returns the index of this member
-	 * @param tab the tab which we want to add the ImageRender to
-	 * @param member the ImageRender to add
-	 * @return the position of the ImageRender in the member list.
+	 * @param tab the tab which we want to add the ImageRenderer to
+	 * @param member the ImageRenderer to add
+	 * @return the position of the ImageRenderer in the member list.
 	 */
-	public static int addMember(Tab tab, ImageRender member) {
+	public static int addMember(Tab tab, ImageRenderer member) {
 		return ScilabTabBridge.addMember(tab, member);
 	}
 	
 	/**
-	 * Remove a ImageRender member from a tab
-	 * @param tab the tab which we want to remove the ImageRender from
-	 * @param member the ImageRender to remove
+	 * Remove a ImageRenderer member from a tab
+	 * @param tab the tab which we want to remove the ImageRenderer from
+	 * @param member the ImageRenderer to remove
 	 */
-	public static void removeMember(Tab tab, ImageRender member) {
+	public static void removeMember(Tab tab, ImageRenderer member) {
 		ScilabTabBridge.removeMember(tab, member);
 	}
 
@@ -5365,254 +5365,254 @@ public class ScilabBridge {
 		
 	}
 
-	/**********************/
-	/* ImageRender Bridge */
-	/**********************/
+	/************************/
+	/* ImageRenderer Bridge */
+	/************************/
 
 	/**
-	 * Creates a new ImageRender
-	 * @return the created ImageRender
+	 * Creates a new ImageRenderer
+	 * @return the created ImageRenderer
 	 */
-	public static SimpleImageRender createImageRender() {
-		return ScilabImageRenderBridge.createImageRender();
+	public static SimpleImageRenderer createImageRenderer() {
+		return ScilabImageRendererBridge.createImageRenderer();
 	}
 	
 	/**
-	 * Sets the Text of a ImageRender
-	 * @param imageRender the ImageRender we want to set the Text of
-	 * @param newText the Text to set for the ImageRender
+	 * Sets the Text of a ImageRenderer
+	 * @param imageRenderer the ImageRenderer we want to set the Text of
+	 * @param newText the Text to set for the ImageRenderer
 	 */
-	public static void setText(ImageRender imageRender, String newText) {
-		ScilabImageRenderBridge.setText(imageRender, newText);
+	public static void setText(ImageRenderer imageRenderer, String newText) {
+		ScilabImageRendererBridge.setText(imageRenderer, newText);
 	}
 	
 	/**
-	 * Gets the text of an ImageRender
-	 * @param imageRender the ImageRender we want to get the text of
-	 * @return the text of the ImageRender
+	 * Gets the text of an ImageRenderer
+	 * @param imageRenderer the ImageRenderer we want to get the text of
+	 * @return the text of the ImageRenderer
 	 */
-	public static String getText(ImageRender imageRender) {
-		return ScilabImageRenderBridge.getText(imageRender);
+	public static String getText(ImageRenderer imageRenderer) {
+		return ScilabImageRendererBridge.getText(imageRenderer);
 	}
 	
 	/**
-	 * Draws a Scilab ImageRender
-	 * @param imageRender the ImageRender to draw
+	 * Draws a Scilab ImageRenderer
+	 * @param imageRenderer the ImageRenderer to draw
 	 * @see org.scilab.modules.ihm.UIElement#draw()
 	 */
-	public static void draw(ImageRender imageRender) {
-		ScilabImageRenderBridge.draw(imageRender);
+	public static void draw(ImageRenderer imageRenderer) {
+		ScilabImageRendererBridge.draw(imageRenderer);
 	}
 	
 	/**
-	 * Gets the dimensions (width and height) of a Scilab ImageRender
-	 * @param imageRender the ImageRender we want to get the dimensions of
-	 * @return the size of the imageRender
+	 * Gets the dimensions (width and height) of a Scilab ImageRenderer
+	 * @param imageRenderer the ImageRenderer we want to get the dimensions of
+	 * @return the size of the imageRenderer
 	 * @see org.scilab.modules.ihm.UIElement#getDims()
 	 */
-	public static Size getDims(ImageRender imageRender) {
-		return ScilabImageRenderBridge.getDims(imageRender);
+	public static Size getDims(ImageRenderer imageRenderer) {
+		return ScilabImageRendererBridge.getDims(imageRenderer);
 	}
 	
 	/**
-	 * Gets the position (X-coordinate and Y-coordinate) of a Scilab imageRender
-	 * @param imageRender the imageRender we want to get the position of
-	 * @return the position of the imageRender
+	 * Gets the position (X-coordinate and Y-coordinate) of a Scilab imageRenderer
+	 * @param imageRenderer the imageRenderer we want to get the position of
+	 * @return the position of the imageRenderer
 	 * @see org.scilab.modules.ihm.UIElement#getPosition()
 	 */
-	public static Position getPosition(ImageRender imageRender) {
-		return ScilabImageRenderBridge.getPosition(imageRender);
+	public static Position getPosition(ImageRenderer imageRenderer) {
+		return ScilabImageRendererBridge.getPosition(imageRenderer);
 	}
 	
 	/**
-	 * Gets the visibility status of a Scilab ImageRender
-	 * @param imageRender the imageRender we want to get the visiblity status of
-	 * @return the visibility status of the imageRender (true if the imageRender is visible, false if not)
+	 * Gets the visibility status of a Scilab ImageRenderer
+	 * @param imageRenderer the imageRenderer we want to get the visiblity status of
+	 * @return the visibility status of the imageRenderer (true if the imageRenderer is visible, false if not)
 	 * @see org.scilab.modules.ihm.UIElement#isVisible()
 	 */
-	public static boolean isVisible(ImageRender imageRender) {
-		return ScilabImageRenderBridge.isVisible(imageRender);
+	public static boolean isVisible(ImageRenderer imageRenderer) {
+		return ScilabImageRendererBridge.isVisible(imageRenderer);
 	}
 	
 	/**
-	 * Sets the dimensions (width and height) of a Scilab ImageRender
-	 * @param imageRender the imageRender we want to set the dimensions of
-	 * @param newSize the size we want to set to the imageRender
+	 * Sets the dimensions (width and height) of a Scilab ImageRenderer
+	 * @param imageRenderer the imageRenderer we want to set the dimensions of
+	 * @param newSize the size we want to set to the imageRenderer
 	 * @see org.scilab.modules.ihm.UIElement#setDims(org.scilab.modules.ihm.utils.Size)
 	 */
-	public static void setDims(ImageRender imageRender, Size newSize) {
-		ScilabImageRenderBridge.setDims(imageRender, newSize);
+	public static void setDims(ImageRenderer imageRenderer, Size newSize) {
+		ScilabImageRendererBridge.setDims(imageRenderer, newSize);
 	}
 	
 	/**
-	 * Sets the position (X-coordinate and Y-coordinate) of a Scilab imageRender
-	 * @param imageRender the imageRender we want to set the position of
-	 * @param newPosition the position we want to set to the imageRender
+	 * Sets the position (X-coordinate and Y-coordinate) of a Scilab imageRenderer
+	 * @param imageRenderer the imageRenderer we want to set the position of
+	 * @param newPosition the position we want to set to the imageRenderer
 	 * @see org.scilab.modules.ihm.UIElement#setPosition(org.scilab.modules.ihm.utils.Position)
 	 */
-	public static void setPosition(ImageRender imageRender, Position newPosition) {
-		ScilabImageRenderBridge.setPosition(imageRender, newPosition);
+	public static void setPosition(ImageRenderer imageRenderer, Position newPosition) {
+		ScilabImageRendererBridge.setPosition(imageRenderer, newPosition);
 	}
 	
 	/**
-	 * Sets the visibility status of a Scilab ImageRender
-	 * @param imageRender the imageRender we want to set the visiblity status of
-	 * @param newVisibleState the visibility status we want to set to the imageRender (true to set the imageRender visible, false else)
+	 * Sets the visibility status of a Scilab ImageRenderer
+	 * @param imageRenderer the imageRenderer we want to set the visiblity status of
+	 * @param newVisibleState the visibility status we want to set to the imageRenderer (true to set the imageRenderer visible, false else)
 	 * @see org.scilab.modules.ihm.UIElement#setVisible(boolean)
 	 */
-	public static void setVisible(ImageRender imageRender, boolean newVisibleState) {
-		ScilabImageRenderBridge.setVisible(imageRender, newVisibleState);
+	public static void setVisible(ImageRenderer imageRenderer, boolean newVisibleState) {
+		ScilabImageRendererBridge.setVisible(imageRenderer, newVisibleState);
 	}
 	
 	/**
-	 * Set the Background color of the ImageRender
-	 * @param imageRender the ImageRender we want to set the background of
+	 * Set the Background color of the ImageRenderer
+	 * @param imageRenderer the ImageRenderer we want to set the background of
 	 * @param color the Color
 	 */
-	public static void setBackground(ImageRender imageRender, Color color) {
-		ScilabImageRenderBridge.setBackground(imageRender, color);
+	public static void setBackground(ImageRenderer imageRenderer, Color color) {
+		ScilabImageRendererBridge.setBackground(imageRenderer, color);
 	}
 	
 	/**
-	 * Get the Background color of the ImageRender
-	 * @param imageRender the ImageRender we want to get the background of
+	 * Get the Background color of the ImageRenderer
+	 * @param imageRenderer the ImageRenderer we want to get the background of
 	 * @return the Color
 	 */
-	public static Color getBackground(ImageRender imageRender) {
-		return ScilabImageRenderBridge.getBackground(imageRender);
+	public static Color getBackground(ImageRenderer imageRenderer) {
+		return ScilabImageRendererBridge.getBackground(imageRenderer);
 	}
 	
 	/**
-	 * Set the Foreground color of the ImageRender
-	 * @param imageRender the ImageRender we want to set the foreground of
+	 * Set the Foreground color of the ImageRenderer
+	 * @param imageRenderer the ImageRenderer we want to set the foreground of
 	 * @param color the Color
 	 */
-	public static void setForeground(ImageRender imageRender, Color color) {
-		ScilabImageRenderBridge.setForeground(imageRender, color);
+	public static void setForeground(ImageRenderer imageRenderer, Color color) {
+		ScilabImageRendererBridge.setForeground(imageRenderer, color);
 	}
 	
 	/**
-	 * Get the Foreground color of the ImageRender
-	 * @param imageRender the ImageRender we want to get the foreground of
+	 * Get the Foreground color of the ImageRenderer
+	 * @param imageRenderer the ImageRenderer we want to get the foreground of
 	 * @return the Color
 	 */
-	public static Color getForeground(ImageRender imageRender) {
-		return ScilabImageRenderBridge.getForeground(imageRender);
+	public static Color getForeground(ImageRenderer imageRenderer) {
+		return ScilabImageRendererBridge.getForeground(imageRenderer);
 	}
 	
 	/**
-	 * Set the font of the ImageRender.
-	 * @param imageRender the ImageRender we want to set the font of
+	 * Set the font of the ImageRenderer.
+	 * @param imageRenderer the ImageRenderer we want to set the font of
 	 * @param font the font
 	 */
-	public static void setFont(ImageRender imageRender, Font font) {
-		ScilabImageRenderBridge.setFont(imageRender, font);
+	public static void setFont(ImageRenderer imageRenderer, Font font) {
+		ScilabImageRendererBridge.setFont(imageRenderer, font);
 	}
 	
 	/**
-	 * Get the font of the ImageRender.
-	 * @param imageRender the ImageRender we want to get the font of
+	 * Get the font of the ImageRenderer.
+	 * @param imageRenderer the ImageRenderer we want to get the font of
 	 * @return the font
 	 */
-	public static Font getFont(ImageRender imageRender) {
-		return ScilabImageRenderBridge.getFont(imageRender);
+	public static Font getFont(ImageRenderer imageRenderer) {
+		return ScilabImageRendererBridge.getFont(imageRenderer);
 	}
 	
 	/**
-	 * Set if the ImageRender is enabled or not
-	 * @param imageRender the ImageRender we want to set the status of
-	 * @param status true if the ImageRender is enabled
+	 * Set if the ImageRenderer is enabled or not
+	 * @param imageRenderer the ImageRenderer we want to set the status of
+	 * @param status true if the ImageRenderer is enabled
 	 */
-	public static void setEnabled(ImageRender imageRender, boolean status) {
-		ScilabImageRenderBridge.setEnabled(imageRender, status);
+	public static void setEnabled(ImageRenderer imageRenderer, boolean status) {
+		ScilabImageRendererBridge.setEnabled(imageRenderer, status);
 	}
 	
 	/**
-	 * Gets the enable status of a ImageRender
-	 * @param imageRender the ImageRender we want to get the status of
-	 * @return the enable status of the ImageRender (true if the ImageRender is enabled, false if not)
+	 * Gets the enable status of a ImageRenderer
+	 * @param imageRenderer the ImageRenderer we want to get the status of
+	 * @return the enable status of the ImageRenderer (true if the ImageRenderer is enabled, false if not)
 	 */
-	public static boolean isEnabled(ImageRender imageRender) {
-		return ScilabImageRenderBridge.isEnabled(imageRender);
+	public static boolean isEnabled(ImageRenderer imageRenderer) {
+		return ScilabImageRendererBridge.isEnabled(imageRenderer);
 	}
 	
 	/**
-	 * Add a callback to the ImageRender
-	 * @param imageRender the ImageRender we want to set the callback of
+	 * Add a callback to the ImageRenderer
+	 * @param imageRenderer the ImageRenderer we want to set the callback of
 	 * @param callback the Callback to set.
 	 */
-	public static void setCallback(ImageRender imageRender, CallBack callback) {
-		ScilabImageRenderBridge.setCallback(imageRender, callback);
+	public static void setCallback(ImageRenderer imageRenderer, CallBack callback) {
+		ScilabImageRendererBridge.setCallback(imageRenderer, callback);
 	}
 	
 	/**
-	 * Set the horizontal alignment for the ImageRender text
-	 * @param imageRender the ImageRender we want to set the alignment of
+	 * Set the horizontal alignment for the ImageRenderer text
+	 * @param imageRenderer the ImageRenderer we want to set the alignment of
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)
 	 */
-	public static void setHorizontalAlignment(ImageRender imageRender, String alignment) {
-		ScilabImageRenderBridge.setHorizontalAlignment(imageRender, alignment);
+	public static void setHorizontalAlignment(ImageRenderer imageRenderer, String alignment) {
+		ScilabImageRendererBridge.setHorizontalAlignment(imageRenderer, alignment);
 	}
 	
 	/**
-	 * Set the vertical alignment for the ImageRender text
-	 * @param imageRender the ImageRender we want to set the alignment of
+	 * Set the vertical alignment for the ImageRenderer text
+	 * @param imageRenderer the ImageRenderer we want to set the alignment of
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)
 	 */
-	public static void setVerticalAlignment(ImageRender imageRender, String alignment) {
-		ScilabImageRenderBridge.setVerticalAlignment(imageRender, alignment);
+	public static void setVerticalAlignment(ImageRenderer imageRenderer, String alignment) {
+		ScilabImageRendererBridge.setVerticalAlignment(imageRenderer, alignment);
 	}
 	
 	/**
-	 * Set the Relief of the ImageRender
-	 * @param imageRender the ImageRender which we want to set the Relief of
+	 * Set the Relief of the ImageRenderer
+	 * @param imageRenderer the ImageRenderer which we want to set the Relief of
 	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
 	 */
-	public static void setRelief(ImageRender imageRender, String reliefType) {
-		ScilabImageRenderBridge.setRelief(imageRender, reliefType);
+	public static void setRelief(ImageRenderer imageRenderer, String reliefType) {
+		ScilabImageRendererBridge.setRelief(imageRenderer, reliefType);
 	}
 	
 	/**
-	 * Delete the ImageRender
-	 * @param imageRender the ImageRender to be destroyed
+	 * Delete the ImageRenderer
+	 * @param imageRenderer the ImageRenderer to be destroyed
 	 */
-	public static void destroy(ImageRender imageRender) {
-		ScilabImageRenderBridge.destroy(imageRender);
+	public static void destroy(ImageRenderer imageRenderer) {
+		ScilabImageRendererBridge.destroy(imageRenderer);
 	}
 	
 	/**
-	 * Give the focus to the ImageRender
-	 * @param imageRender the ImageRender
+	 * Give the focus to the ImageRenderer
+	 * @param imageRenderer the ImageRenderer
 	 */
-	public static void requestFocus(ImageRender imageRender) {
-		ScilabImageRenderBridge.requestFocus(imageRender);
+	public static void requestFocus(ImageRenderer imageRenderer) {
+		ScilabImageRendererBridge.requestFocus(imageRenderer);
 	}
 
 	/**
          * Rotates an image
-	 * @param imageRender the ImageRender we want to rotate
+	 * @param imageRenderer the ImageRenderer we want to rotate
 	 * @param indices the double value that contains an angle to rotate
 	 */
-	public static void setRotate(ImageRender imageRender, double[] indices) {
-		ScilabImageRenderBridge.setRotate(imageRender, indices);
+	public static void setRotate(ImageRenderer imageRenderer, double[] indices) {
+		ScilabImageRendererBridge.setRotate(imageRenderer, indices);
 	}
 
 	/**
          * Shears an image by x, y values
-	 * @param imageRender the ImageRender we want to shear
+	 * @param imageRenderer the ImageRenderer we want to shear
 	 * @param indices the double array that contains x, y values to shear
 	 */
-	public static void setShear(ImageRender imageRender, double[] indices) {
-		ScilabImageRenderBridge.setShear(imageRender, indices);
+	public static void setShear(ImageRenderer imageRenderer, double[] indices) {
+		ScilabImageRendererBridge.setShear(imageRenderer, indices);
 	}
 
 	/**
          * Scaless an image by x, y values
-	 * @param imageRender the ImageRender we want to scale
+	 * @param imageRenderer the ImageRenderer we want to scale
 	 * @param indices the double array that contains x, y values to scale
 	 */
-	public static void setScale(ImageRender imageRender, double[] indices) {
-		ScilabImageRenderBridge.setScale(imageRender, indices);
+	public static void setScale(ImageRenderer imageRenderer, double[] indices) {
+		ScilabImageRendererBridge.setScale(imageRenderer, indices);
 	}
 
 	/**********************/
