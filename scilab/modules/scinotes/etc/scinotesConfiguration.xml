@@ -28,8 +28,11 @@
     <!-- linecolor or contourcolor can be "null" to be transparent -->
     <LineHighlighter value="false" linecolor="#e4e9f4" contourcolor="#323232"/>
 
-    <!-- Activate or not the help on typing -->
-    <HelpOnTyping value="true"/>
+    <!-- Activate or not the help on typing for openers such as '(', '[', '"',... -->
+    <HelpOnTypingOpeners value="true"/>
+
+    <!-- Activate or not the help on typing for keywords such as 'if', 'function',... -->
+    <HelpOnTypingKeywords value="true"/>
 
     <!-- Restore the open files from the last session  -->
     <RestoreFiles value="true"/>
@@ -118,7 +121,7 @@
       </style>
 
       <style name="MacroInFile" underline="true" defaultUnderline="true">
-	<ForegroundColor default="#000000" useCache="true" value="#000000"/>
+        <ForegroundColor default="#000000" useCache="true" value="#000000"/>
         <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
       </style>
 
@@ -200,7 +203,7 @@
     </recentFiles>
 
     <!-- Currently Open Files Section  -->
-    <openFiles>      
+    <openFiles>
     </openFiles>
 
   </Profile>

@@ -248,9 +248,10 @@ public final class ConfigSciNotesManager {
     }
 
     /**
-     * @return true if help on typing is active
+     * @param type "Openers" or "Keywords"
+     * @return true if help on typing for openers is active
      */
-    public static boolean getHelpOnTypingState() {
+    public static boolean getHelpOnTyping(String type) {
         readDocument();
 
         Element root = document.getDocumentElement();
@@ -258,7 +259,7 @@ public final class ConfigSciNotesManager {
         NodeList profiles = root.getElementsByTagName(PROFILE);
         Element scinotesProfile = (Element) profiles.item(0);
 
-        NodeList allSizeElements = scinotesProfile.getElementsByTagName(HELPONTYPING);
+        NodeList allSizeElements = scinotesProfile.getElementsByTagName(HELPONTYPING + type);
         Element helpontyping = (Element) allSizeElements.item(0);
 
         return TRUE.equals(helpontyping.getAttribute(VALUE));
@@ -266,9 +267,10 @@ public final class ConfigSciNotesManager {
 
     /**
      * Save help on typing
+     * @param type "Openers" or "Keywords"
      * @param activated active or not
      */
-    public static void saveHelpOnTypingState(boolean activated) {
+    public static void saveHelpOnTyping(String type, boolean activated) {
         readDocument();
 
         Element root = document.getDocumentElement();
@@ -276,10 +278,10 @@ public final class ConfigSciNotesManager {
         NodeList profiles = root.getElementsByTagName(PROFILE);
         Element scinotesProfile = (Element) profiles.item(0);
 
-        NodeList allSizeElements = scinotesProfile.getElementsByTagName(HELPONTYPING);
+        NodeList allSizeElements = scinotesProfile.getElementsByTagName(HELPONTYPING + type);
         Element helpOnTyping = (Element) allSizeElements.item(0);
         if (helpOnTyping == null) {
-            Element help = document.createElement(HELPONTYPING);
+            Element help = document.createElement(HELPONTYPING + type);
             helpOnTyping.setAttribute(VALUE, new Boolean(activated).toString());
             helpOnTyping.appendChild((Node) help);
         } else {

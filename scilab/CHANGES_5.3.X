@@ -6,6 +6,8 @@ SciNotes:
 
 * bugs 7276, 7726 fixed - There was a problem of highlighting with default font. 
 
+* bug 7554 fixed - Auto-completion on typing was too general.
+
 * bug 7618 fixed - The change of the background color generated an exception.
 
 * bug 7621 fixed - The change of the font generated an exception.

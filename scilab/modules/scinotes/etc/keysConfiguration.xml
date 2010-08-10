@@ -6,7 +6,8 @@
     If no path is given, org.scilab.modules.scinotes.actions will be choosen
   </comment>
 
-  <entry key="ActivateHelpOnTypingAction">control H</entry>
+  <entry key="ActivateHelpOnTypingForOpenersAction">control H</entry>
+  <entry key="ActivateHelpOnTypingForKeywordsAction">control shift H</entry>
   <entry key="GenerateHelpFromFunctionAction">control shift G</entry>
   <entry key="TabifyAction">TAB</entry>
   <entry key="UnTabifyAction">shift TAB</entry>

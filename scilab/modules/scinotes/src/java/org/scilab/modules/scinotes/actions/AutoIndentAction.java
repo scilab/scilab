@@ -12,6 +12,10 @@
 
 package org.scilab.modules.scinotes.actions;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
@@ -43,7 +47,7 @@ public final class AutoIndentAction extends DefaultCheckAction  {
      * doAction
      */
     public void doAction() {
-        getEditor().setAutoIndent(this.getState());
+        SciNotes.setAutoIndent(this.getState());
         ConfigSciNotesManager.saveAutoIndent(this.getState());
     }
 
@@ -55,8 +59,13 @@ public final class AutoIndentAction extends DefaultCheckAction  {
      * @return CheckBoxMenuItem
      */
     public static CheckBoxMenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
-        CheckBoxMenuItem autoIndent = createCheckBoxMenu(label, null, new AutoIndentAction(label, editor), key);
-        autoIndent.setChecked(ConfigSciNotesManager.getAutoIndent());
+        final CheckBoxMenuItem autoIndent = createCheckBoxMenu(label, null, new AutoIndentAction(label, editor), key);
+        ((JCheckBoxMenuItem) autoIndent.getAsSimpleCheckBoxMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
+                public void propertyChange(PropertyChangeEvent e) {
+                    autoIndent.setChecked(ConfigSciNotesManager.getAutoIndent());
+                }
+            });
+
         return autoIndent;
     }
 }

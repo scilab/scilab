@@ -141,25 +141,19 @@ public class SciNotes extends SwingScilabTab implements Tab {
     private JTabbedPane tabPane;
     private int numberOfUntitled;
     private EditorKit editorKit;
-    private Object synchro = new Object();
 
     private PushButton undoButton;
     private PushButton redoButton;
 
-    private boolean highlight;
     private Color highlightColor;
     private Color highlightContourColor;
 
-    private boolean helpOnTyping;
     private boolean protectOpenFileList;
-    private int whereami;
 
     private List<Integer> tabList = new ArrayList();
     private List<Integer> closedTabList = new ArrayList();
 
     private String fileFullPath = "";
-
-    private File fileToEncode;
 
     /**
      * Create SciNotes instance inside parent Window
@@ -172,8 +166,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
         this.uuid = UUID.randomUUID();
         numberOfUntitled = 0;
         editorKit = new ScilabEditorKit();
-        setDefaultHighlight();
-        setDefaultHelpOnTyping();
         SwingScilabWindow window = (SwingScilabWindow) parentWindow.getAsSimpleWindow();
         Position pos = ConfigSciNotesManager.getMainWindowPosition();
         window.setLocation(pos.getX(), pos.getY());
@@ -942,7 +934,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
 
         // Panel of line number for the text pane
         pane.getXln().setWhereamiLineNumbering(ConfigSciNotesManager.getLineNumberingState());
-        setHelpOnTyping(pane);
+        activateHelpOnTyping(pane);
 
         pane.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
         pane.setFont(ConfigSciNotesManager.getFont());
@@ -1000,8 +992,8 @@ public class SciNotes extends SwingScilabTab implements Tab {
         split.setRightComponent(rightPane.getScrollPane());
         split.setResizeWeight(0.5);
         setContentPane(tabPane);
-        setHelpOnTyping(leftPane);
-        setHelpOnTyping(rightPane);
+        activateHelpOnTyping(leftPane);
+        activateHelpOnTyping(rightPane);
         initInputMap(leftPane);
         initInputMap(rightPane);
         if (doc.getBinary()) {
@@ -1025,7 +1017,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
             ScilabDocument doc = (ScilabDocument) textpane.getDocument();
             pane.setDocument(doc);
             pane.setCaretPosition(0);
-            setHelpOnTyping(pane);
+            activateHelpOnTyping(pane);
             tabPane.setComponentAt(tabPane.getSelectedIndex(), pane.getScrollPane());
             setContentPane(tabPane);
             initInputMap(pane);
@@ -1046,7 +1038,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
             Object obj = Collections.min(closedTabList);
             closedTabList.remove(Integer.valueOf(obj.toString()));
             return addTab(SciNotesMessages.UNTITLED + obj.toString());
-
         } else {
             numberOfUntitled++;
             tabList.add(Integer.valueOf(numberOfUntitled));
@@ -1309,30 +1300,33 @@ public class SciNotes extends SwingScilabTab implements Tab {
      * Enable the whereami-line numbering
      * @param state int
      */
-    public void setWhereamiLineNumbering(int state) {
-        int n = tabPane.getTabCount();
-        for (int i = 0; i < n; i++) {
-            ScilabEditorPane sep = (ScilabEditorPane) getTextPane(i);
-            sep.getXln().setWhereamiLineNumbering(state);
-            if (sep.getOtherPaneInSplit() != null) {
-                sep.getOtherPaneInSplit().getXln().setWhereamiLineNumbering(state);
+    public static void setWhereamiLineNumbering(int state) {
+        for (SciNotes ed : scinotesList) {
+            int n = ed.getTabPane().getTabCount();
+            for (int i = 0; i < n; i++) {
+                ScilabEditorPane sep = (ScilabEditorPane) ed.getTextPane(i);
+                sep.getXln().setWhereamiLineNumbering(state);
+                if (sep.getOtherPaneInSplit() != null) {
+                    sep.getOtherPaneInSplit().getXln().setWhereamiLineNumbering(state);
+                }
             }
+            ed.repaint();
         }
-        repaint();
-        whereami = state;
     }
 
     /**
      * Auto-indent mode management
      * @param b true to activate auto-indent mode
      */
-    public void setAutoIndent(boolean b) {
-        int n = tabPane.getTabCount();
-        for (int i = 0; i < n; i++) {
-            ScilabEditorPane sep = (ScilabEditorPane) getTextPane(i);
-            ((ScilabDocument) sep.getDocument()).setAutoIndent(b);
-            if (sep.getOtherPaneInSplit() != null) {
-                ((ScilabDocument) sep.getOtherPaneInSplit().getDocument()).setAutoIndent(b);
+    public static void setAutoIndent(boolean b) {
+        for (SciNotes ed : scinotesList) {
+            int n = ed.getTabPane().getTabCount();
+            for (int i = 0; i < n; i++) {
+                ScilabEditorPane sep = (ScilabEditorPane) ed.getTextPane(i);
+                ((ScilabDocument) sep.getDocument()).setAutoIndent(b);
+                if (sep.getOtherPaneInSplit() != null) {
+                    ((ScilabDocument) sep.getOtherPaneInSplit().getDocument()).setAutoIndent(b);
+                }
             }
         }
     }
@@ -1341,100 +1335,86 @@ public class SciNotes extends SwingScilabTab implements Tab {
      * Enable the highlighted line in this editor
      * @param b boolean
      */
-    public void enableHighlightedLine(boolean b) {
-        int n = tabPane.getTabCount();
-        for (int i = 0; i < n; i++) {
-            ScilabEditorPane sep = (ScilabEditorPane) getTextPane(i);
-            sep.enableHighlightedLine(b);
-            if (sep.getOtherPaneInSplit() != null) {
-                sep.getOtherPaneInSplit().enableHighlightedLine(b);
+    public static void enableHighlightedLine(boolean b) {
+        for (SciNotes ed : scinotesList) {
+            int n = ed.getTabPane().getTabCount();
+            for (int i = 0; i < n; i++) {
+                ScilabEditorPane sep = (ScilabEditorPane) ed.getTextPane(i);
+                sep.enableHighlightedLine(b);
+                if (sep.getOtherPaneInSplit() != null) {
+                    sep.getOtherPaneInSplit().enableHighlightedLine(b);
+                }
             }
         }
-        highlight = b;
     }
 
     /**
      * Enable the help on typing in the current textPane
      * @param pane the pane
      */
-    public void setHelpOnTyping(ScilabEditorPane pane) {
-        pane.activateHelpOnTyping(helpOnTyping);
+    public static void activateHelpOnTyping(ScilabEditorPane pane) {
+        pane.activateHelpOnTyping();
     }
 
     /**
      * Enable the help on typing in this editor
-     * @param b boolean
      */
-    public void setHelpOnTyping(boolean b) {
-        int n = tabPane.getTabCount();
-        for (int i = 0; i < n; i++) {
-            ScilabEditorPane sep = (ScilabEditorPane) getTextPane(i);
-            sep.activateHelpOnTyping(b);
-            if (sep.getOtherPaneInSplit() != null) {
-                sep.getOtherPaneInSplit().activateHelpOnTyping(b);
+    public static void activateHelpOnTyping() {
+        for (SciNotes ed : scinotesList) {
+            int n = ed.getTabPane().getTabCount();
+            for (int i = 0; i < n; i++) {
+                ScilabEditorPane sep = (ScilabEditorPane) ed.getTextPane(i);
+                sep.activateHelpOnTyping();
+                if (sep.getOtherPaneInSplit() != null) {
+                    sep.getOtherPaneInSplit().activateHelpOnTyping();
+                }
             }
         }
-        helpOnTyping = b;
-    }
-
-    /**
-     * Enable the help on typing in this editor according to scinotesConfiguration.xml
-     */
-    public void setDefaultHelpOnTyping() {
-        helpOnTyping = ConfigSciNotesManager.getHelpOnTypingState();
     }
 
     /**
      * Set the color of the highlighted line in this editor
      * @param c Color
      */
-    public void setHighlightedLineColor(Color c) {
-        int n = tabPane.getTabCount();
-        for (int i = 0; i < n; i++) {
-            ScilabEditorPane sep = (ScilabEditorPane) getTextPane(i);
-            sep.setHighlightedLineColor(c);
-            if (sep.getOtherPaneInSplit() != null) {
-                sep.getOtherPaneInSplit().setHighlightedLineColor(c);
+    public static void setHighlightedLineColor(Color c) {
+        for (SciNotes ed : scinotesList) {
+            int n = ed.getTabPane().getTabCount();
+            for (int i = 0; i < n; i++) {
+                ScilabEditorPane sep = (ScilabEditorPane) ed.getTextPane(i);
+                sep.setHighlightedLineColor(c);
+                if (sep.getOtherPaneInSplit() != null) {
+                    sep.getOtherPaneInSplit().setHighlightedLineColor(c);
+                }
             }
         }
-        highlightColor = c;
     }
 
     /**
      * Set the color of the contour of the highlighted line in this editor
      * @param c Color
      */
-    public void setHighlightedContourColor(Color c) {
-        int n = tabPane.getTabCount();
-        for (int i = 0; i < n; i++) {
-            ScilabEditorPane sep = (ScilabEditorPane) getTextPane(i);
-            sep.setHighlightedContourColor(c);
-            if (sep.getOtherPaneInSplit() != null) {
-                sep.getOtherPaneInSplit().setHighlightedContourColor(c);
+    public static void setHighlightedContourColor(Color c) {
+        for (SciNotes ed : scinotesList) {
+            int n = ed.getTabPane().getTabCount();
+            for (int i = 0; i < n; i++) {
+                ScilabEditorPane sep = (ScilabEditorPane) ed.getTextPane(i);
+                sep.setHighlightedContourColor(c);
+                if (sep.getOtherPaneInSplit() != null) {
+                    sep.getOtherPaneInSplit().setHighlightedContourColor(c);
+                }
             }
         }
-        highlightContourColor = c;
-    }
-
-    /**
-     * Set the defaults for the highlighted line in this editor
-     * Defaults read in scinotesConfiguration.xml
-     */
-    public void setDefaultHighlight() {
-        this.highlight = ConfigSciNotesManager.getHighlightState();
-        Color[] arr = ConfigSciNotesManager.getHighlightColors();
-        this.highlightColor = arr[0];
-        this.highlightContourColor = arr[1];
     }
 
     /**
      * Set the highlighted line in this textPane
      * @param sep ScilabEditorPane
      */
-    public void setHighlight(ScilabEditorPane sep) {
-        sep.enableHighlightedLine(highlight);
-        sep.setHighlightedLineColor(highlightColor);
-        sep.setHighlightedContourColor(highlightContourColor);
+    public static void setHighlight(ScilabEditorPane sep) {
+        sep.enableHighlightedLine(ConfigSciNotesManager.getHighlightState());
+        Color[] arr = ConfigSciNotesManager.getHighlightColors();
+        sep.setHighlightedLineColor(arr[0]);
+        sep.setHighlightedContourColor(arr[1]);
     }
 
     /**
@@ -1528,7 +1508,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
      * @param index the index where to put the file
      */
     public void loadFile(File f, int index) {
-        setFileToEncode(f);
         getInfoBar().setText(SciNotesMessages.LOADING);
         // Get current file path for Execute file into Scilab
         fileFullPath = f.getAbsolutePath();
@@ -1665,22 +1644,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
      */
     public void setEditorKit(EditorKit editorKit) {
         this.editorKit = editorKit;
-    }
-
-    /**
-     * Getter for file to encode
-     * @return a File
-     */
-    public File getFileToEncode() {
-        return fileToEncode;
-    }
-
-    /**
-     * Setter for file to encode
-     * @param fileToEncode a File
-     */
-    public void setFileToEncode(File fileToEncode) {
-        this.fileToEncode = fileToEncode;
     }
 
     /**

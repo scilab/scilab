@@ -614,11 +614,11 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
 
     /**
      * Activate or desactivate the help on typing
-     * @param isActive a boolean, true to activate.
      */
-    public void activateHelpOnTyping(boolean isActive) {
+    public void activateHelpOnTyping() {
+        boolean isActive = HelpOnTypingManager.isActive();
         if (isActive && helpOnTyping == null) {
-            helpOnTyping = new HelpOnTypingManager(this);
+            helpOnTyping = HelpOnTypingManager.getInstance();
             addKeyListener(helpOnTyping);
         } else if (!isActive && helpOnTyping != null) {
             removeKeyListener(helpOnTyping);

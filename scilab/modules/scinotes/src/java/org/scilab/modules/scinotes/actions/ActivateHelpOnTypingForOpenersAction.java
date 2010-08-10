@@ -11,25 +11,29 @@
  */
 package org.scilab.modules.scinotes.actions;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.scinotes.SciNotes;
-import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
+import org.scilab.modules.scinotes.HelpOnTypingManager;
 
 /**
- * ActivateHelpOnTypingAction Class
+ * ActivateHelpOnTypingForOpenersAction Class
  * @author Calixte DENIZET
  *
  */
-public final class ActivateHelpOnTypingAction extends DefaultCheckAction {
+public final class ActivateHelpOnTypingForOpenersAction extends DefaultCheckAction {
 
     /**
      * Constructor
      * @param name the name of the action
      * @param editor SciNotes
      */
-    public ActivateHelpOnTypingAction(String name, SciNotes editor) {
+    public ActivateHelpOnTypingForOpenersAction(String name, SciNotes editor) {
         super(name, editor);
     }
 
@@ -37,8 +41,8 @@ public final class ActivateHelpOnTypingAction extends DefaultCheckAction {
      * doAction
      */
     public void doAction() {
-        getEditor().setHelpOnTyping(this.getState());
-        ConfigSciNotesManager.saveHelpOnTypingState(this.getState());
+        HelpOnTypingManager.enableOpeners(getState());
+        SciNotes.activateHelpOnTyping();
     }
 
     /**
@@ -49,9 +53,13 @@ public final class ActivateHelpOnTypingAction extends DefaultCheckAction {
      * @return CheckBoxMenuItem
      */
     public static CheckBoxMenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
-        CheckBoxMenuItem cb = createCheckBoxMenu(label, null, new ActivateHelpOnTypingAction(label, editor), key);
-        boolean b = ConfigSciNotesManager.getHelpOnTypingState();
-        cb.setChecked(b);
+        final CheckBoxMenuItem cb = createCheckBoxMenu(label, null, new ActivateHelpOnTypingForOpenersAction(label, editor), key);
+        ((JCheckBoxMenuItem) cb.getAsSimpleCheckBoxMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
+                public void propertyChange(PropertyChangeEvent e) {
+                    cb.setChecked(HelpOnTypingManager.isOpenersActive());
+                }
+            });
+
         return cb;
     }
 }

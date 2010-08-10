@@ -12,6 +12,9 @@
  */
 package org.scilab.modules.scinotes.actions;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.StringTokenizer;
@@ -54,7 +57,7 @@ public final class LineNumbersAction extends DefaultAction {
      * doAction
      */
     public void doAction() {
-        getEditor().setWhereamiLineNumbering(state);
+        SciNotes.setWhereamiLineNumbering(state);
         ConfigSciNotesManager.saveLineNumberingState(state);
     }
 
@@ -73,10 +76,11 @@ public final class LineNumbersAction extends DefaultAction {
         String labelWhereami = tokens.nextToken();
 
         LineNumbersAction ln = new LineNumbersAction(labelLineNumbering, editor);
-        Menu menu = ScilabMenu.createMenu();
-        menu.setText(labelLineNumbering);
-        JRadioButtonMenuItem[] arr = new JRadioButtonMenuItem[3];
+        final JRadioButtonMenuItem[] arr = new JRadioButtonMenuItem[3];
         String[] labels = new String[]{labelOff, labelNormal, labelWhereami};
+
+        final Menu menu = ScilabMenu.createMenu();
+        menu.setText(labelLineNumbering);
 
         ButtonGroup group = new ButtonGroup();
         JRadioButtonMenuItem radio;
@@ -89,6 +93,12 @@ public final class LineNumbersAction extends DefaultAction {
         }
 
         arr[ln.state].setSelected(true);
+
+        ((JMenu) menu.getAsSimpleMenu()).addPropertyChangeListener(new PropertyChangeListener() {
+                public void propertyChange(PropertyChangeEvent e) {
+                    arr[ConfigSciNotesManager.getLineNumberingState()].setSelected(true);
+                }
+            });
 
         return menu;
     }

@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Sylvestre KOUMAR
+ * Copyright (C) 2010 - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -19,26 +19,21 @@ import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.scinotes.SciNotes;
-import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
+import org.scilab.modules.scinotes.HelpOnTypingManager;
 
 /**
- * HighlightCurrentLineAction Class
- * @author Sylvestre KOUMAR
+ * ActivateHelpOnTypingForKeywordsAction Class
+ * @author Calixte DENIZET
  *
  */
-public final class HighlightCurrentLineAction extends DefaultCheckAction {
-
-    /**
-     * serialVersionUID
-     */
-    private static final long serialVersionUID = -1489762718469013039L;
+public final class ActivateHelpOnTypingForKeywordsAction extends DefaultCheckAction {
 
     /**
      * Constructor
      * @param name the name of the action
      * @param editor SciNotes
      */
-    public HighlightCurrentLineAction(String name, SciNotes editor) {
+    public ActivateHelpOnTypingForKeywordsAction(String name, SciNotes editor) {
         super(name, editor);
     }
 
@@ -46,8 +41,8 @@ public final class HighlightCurrentLineAction extends DefaultCheckAction {
      * doAction
      */
     public void doAction() {
-        SciNotes.enableHighlightedLine(this.getState());
-        ConfigSciNotesManager.saveHighlightState(this.getState());
+        HelpOnTypingManager.enableKeywords(getState());
+        SciNotes.activateHelpOnTyping();
     }
 
     /**
@@ -58,10 +53,10 @@ public final class HighlightCurrentLineAction extends DefaultCheckAction {
      * @return CheckBoxMenuItem
      */
     public static CheckBoxMenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
-        final CheckBoxMenuItem cb = createCheckBoxMenu(label, null, new HighlightCurrentLineAction(label, editor), key);
+        final CheckBoxMenuItem cb = createCheckBoxMenu(label, null, new ActivateHelpOnTypingForKeywordsAction(label, editor), key);
         ((JCheckBoxMenuItem) cb.getAsSimpleCheckBoxMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
                 public void propertyChange(PropertyChangeEvent e) {
-                    cb.setChecked(ConfigSciNotesManager.getHighlightState());
+                    cb.setChecked(HelpOnTypingManager.isKeywordsActive());
                 }
             });
 

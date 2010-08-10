@@ -63,7 +63,9 @@
       <menuitem action="EndOfLineAction" label="Line Endings"/>
       <menuitem action="PageSetupAction" label="Page Setup"/>
       <separator/>
-      <menuitem action="ActivateHelpOnTypingAction" label="Help on typing"/>
+      <menuitem action="ActivateHelpOnTypingForOpenersAction" label="Auto-completion on (,&quot;,..."/>
+      <menuitem action="ActivateHelpOnTypingForKeywordsAction" label="Auto-completion on if,function,..."/>
+      <separator/>
       <menuitem action="AutoIndentAction" label="Enable Auto Reformat"/>
       <menuitem action="HighlightCurrentLineAction" label="Highlight current line"/>
       <separator/>
