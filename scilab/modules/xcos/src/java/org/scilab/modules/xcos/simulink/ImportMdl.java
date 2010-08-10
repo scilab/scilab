@@ -16,11 +16,9 @@ import java.io.File;
 import java.io.IOException;
 
 import org.apache.commons.logging.LogFactory;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.xcos.XcosTab;
-import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.palette.PaletteManager;
 
 import edu.tum.cs.commons.logging.SimpleLogger;
 import edu.tum.cs.simulink.builder.SimulinkModelBuilder;
@@ -55,6 +53,7 @@ public class ImportMdl {
 			return null;
 		}
 		new XcosTab(xcosDiagram).setVisible(true);
+		PaletteManager.setVisible(true);
 		return xcosDiagram;
 	}
 }

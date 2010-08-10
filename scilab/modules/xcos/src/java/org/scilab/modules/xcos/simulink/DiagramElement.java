@@ -147,7 +147,8 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 				blocks.put(i, block);
 				cell = block;
 				
-				minimalYaxisValue = Math.min(minimalYaxisValue, ((mxCell) cell).getGeometry().getY());
+				//FIXME:
+				//minimalYaxisValue = Math.min(minimalYaxisValue, ((mxCell) cell).getGeometry().getY());
 			} 
 			
 			if (cell != null) {

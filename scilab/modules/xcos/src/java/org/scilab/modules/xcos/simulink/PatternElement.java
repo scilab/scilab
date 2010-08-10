@@ -70,7 +70,7 @@ public class PatternElement {
 			File baseStyleSheet = new File(sciPath + "/modules/xcos/etc/" + file);
 			FileUtils.forceCopy(baseStyleSheet, userPatternSheet);
 		}
-		bindPatterns(blocks);
+		bindPatterns(blocks, userPatternSheet);
 	}
 	/*
 	 * block that compatibility patterns are being processed for
@@ -99,7 +99,7 @@ public class PatternElement {
 			File baseStyleSheet = new File(sciPath + "/modules/xcos/etc/" + file);
 			FileUtils.forceCopy(baseStyleSheet, userPatternSheet);
 		}
-		bindPatterns(blocks);
+		bindPatterns(blocks, userPatternSheet);
 		traceElement = trace;
 		/*
 		 * Initialize patterns for specific block
@@ -133,7 +133,7 @@ public class PatternElement {
 			File baseStyleSheet = new File(sciPath + "/modules/xcos/etc/" + file);
 			FileUtils.forceCopy(baseStyleSheet, userPatternSheet);
 		}
-		bindPatterns(blocks);
+		bindPatterns(blocks, userPatternSheet);
 		/*
 		 * Initialize patterns for specific block
 		 * TODO: this is very uncool.
@@ -156,13 +156,13 @@ public class PatternElement {
 		} 
 	}
 
-	private void bindPatterns(BlockPalette blocks) throws PatternBindingException{
+	private void bindPatterns(BlockPalette blocks,File patternsheet) throws PatternBindingException{
 		try{
 			JAXBContext jc = JAXBContext.newInstance( "org.scilab.modules.xcos.simulink.patterns" );
 			Unmarshaller u = jc.createUnmarshaller();
-			//FIXME: now you have to manually copy compatibility pattern to SCIHOME
+
 			JAXBElement<BlockPalette> element = u.unmarshal(
-					new StreamSource(ScilabConstants.SCIHOME + "/simulinkImportBlocks.xml"),
+					new StreamSource(patternsheet),
 					BlockPalette.class );
 			blocks = element.getValue();
 
