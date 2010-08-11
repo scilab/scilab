@@ -36,6 +36,9 @@ SciNotes:
 
 * bug 7722 fixed - Several FindReplace windows could be opened.
 
+* bug 7731 fixed - In Find/Replace window, buttons were not updated when an
+                   item was choosen in the combobox Find.
+
 
 Editvar/Browsevar:
 ==================

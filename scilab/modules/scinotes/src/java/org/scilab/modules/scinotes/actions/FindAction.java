@@ -20,6 +20,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -462,12 +464,16 @@ public final class FindAction extends DefaultAction {
 
         buttonFind.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
+                    updateRecentSearch();
                     findText();
                 }
             });
 
         buttonReplace.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
+                    updateRecentSearch();
+                    updateRecentReplace();
+
                     JEditorPane scinotesTextPane = getEditor().getTextPane();
                     ScilabDocument doc = (ScilabDocument) scinotesTextPane.getDocument();
 
@@ -480,6 +486,9 @@ public final class FindAction extends DefaultAction {
 
         buttonReplaceFind.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
+                    updateRecentSearch();
+                    updateRecentReplace();
+
                     JEditorPane scinotesTextPane = getEditor().getTextPane();
                     ScilabDocument doc = (ScilabDocument) scinotesTextPane.getDocument();
 
@@ -494,6 +503,9 @@ public final class FindAction extends DefaultAction {
 
         buttonReplaceAll.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
+                    updateRecentSearch();
+                    updateRecentReplace();
+
                     int start = 0;
                     JEditorPane scinotesTextPane = getEditor().getTextPane();
                     ScilabDocument doc = (ScilabDocument) scinotesTextPane.getDocument();
@@ -557,6 +569,7 @@ public final class FindAction extends DefaultAction {
                 public void mouseReleased(MouseEvent e) { }
                 public void mousePressed(MouseEvent e) {
                     closeComboPopUp();
+                    updateFindReplaceButtonStatus();
                 }
                 public void mouseExited(MouseEvent e) { }
                 public void mouseEntered(MouseEvent e) { }
@@ -581,16 +594,6 @@ public final class FindAction extends DefaultAction {
                 public void keyPressed(KeyEvent e) { }
             });
 
-        comboReplace.getEditor().getEditorComponent().addFocusListener(new FocusListener() {
-                public void focusGained(FocusEvent e) {
-                    updateRecentReplace();
-                }
-
-                public void focusLost(FocusEvent e) {
-                    ConfigSciNotesManager.saveRecentReplace((String) comboReplace.getEditor().getItem());
-                }
-            });
-
         comboFind.getEditor().getEditorComponent().addMouseListener(new MouseListener() {
                 public void mouseReleased(MouseEvent arg0) { }
                 public void mousePressed(MouseEvent arg0) {
@@ -601,8 +604,8 @@ public final class FindAction extends DefaultAction {
                 public void mouseClicked(MouseEvent arg0) { }
             });
 
-        comboFind.getEditor().addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent arg0) {
+        comboFind.addItemListener(new ItemListener() {
+                public void itemStateChanged(ItemEvent e) {
                     updateFindReplaceButtonStatus();
                 }
             });
@@ -623,16 +626,6 @@ public final class FindAction extends DefaultAction {
                 }
 
                 public void keyPressed(KeyEvent e) { }
-            });
-
-        comboFind.getEditor().getEditorComponent().addFocusListener(new FocusListener() {
-                public void focusGained(FocusEvent e) {
-                    updateRecentSearch();
-                }
-
-                public void focusLost(FocusEvent e) {
-                    ConfigSciNotesManager.saveRecentSearch((String) comboFind.getEditor().getItem());
-                }
             });
 
         frame.addWindowListener(new WindowListener() {
@@ -675,6 +668,7 @@ public final class FindAction extends DefaultAction {
         }
 
         comboFind.getEditor().setItem(old);
+        ConfigSciNotesManager.saveRecentSearch((String) old);
     }
 
     /**
@@ -689,6 +683,7 @@ public final class FindAction extends DefaultAction {
         }
 
         comboReplace.getEditor().setItem(old);
+        ConfigSciNotesManager.saveRecentReplace((String) old);
     }
 
     /**
@@ -730,20 +725,14 @@ public final class FindAction extends DefaultAction {
             if ((matcherWholeWord.end() - matcherWholeWord.start()) == textFind.length()) {
                 checkWhole.setEnabled(true);
             }
-
         }
 
         // if we search a regexp, we first need to know if the regexp is valid or not
         if (checkRegular.isSelected()) {
             try {
                 Pattern.compile(textFind);
-                statusBar.setText("");
-                buttonFind.setEnabled(true);
-                buttonReplaceAll.setEnabled(true);
             } catch (PatternSyntaxException pse) {
-
                 statusBar.setText(String.format(SciNotesMessages.INVALID_REGEXP, textFind));
-
                 buttonFind.setEnabled(false);
                 buttonReplaceAll.setEnabled(false);
             }
