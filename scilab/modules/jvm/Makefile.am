@@ -102,6 +102,7 @@ libscijvm_disable_la_CFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/call_scilab/includes \
 			-I$(srcdir)/src/c \
 			-I$(top_srcdir)/modules/api_scilab/includes \
+			-I$(top_srcdir)/modules/operations/includes \
 			-I$(top_srcdir)/modules/output_stream/includes/
 
 libscijvm_la_SOURCES = $(JVM_C_SOURCES) $(GATEWAY_C_SOURCES)
