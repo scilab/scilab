@@ -27,6 +27,7 @@ import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import edu.tum.cs.simulink.builder.SimulinkModelBuildingException;
@@ -100,14 +101,8 @@ public final class ImportAction extends DefaultAction {
 		}
 		
 		filename = fc.getSelection()[0];
-		
-		try {
-			ImportMdl.fromFile(filename);
-		} catch (IOException e1) {
-			LogFactory.getLog(ImportAction.class).error(e1);
-		} catch (SimulinkModelBuildingException e2) {
-			LogFactory.getLog(ImportAction.class).error(e2);
-		}
+
+		Xcos.simulinkImport(filename);
 	}
 }
 

@@ -255,6 +255,7 @@ public class XcosTab extends ScilabTab {
 		fileMenu.add(SaveAction.createMenu(diagram));
 		fileMenu.add(SaveAsAction.createMenu(diagram));
 		fileMenu.add(ExportAction.createMenu(diagram));
+		fileMenu.add(ImportAction.createMenu(diagram));
 
 		recentsMenu = createRecentMenu();
 
