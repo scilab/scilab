@@ -31,28 +31,14 @@ public class InputPortElement {
 	}
 
 	public InputPort decode(SimulinkInPort simulinkInPort, InputPort into) {
-		
+		if(LOG.isTraceEnabled()){
+			LOG.trace("Decoding Input port:" +  simulinkInPort);
+		}
 		InputPort port;
 		port = allocatePort(simulinkInPort);
 		fillParameters(port);
 		
 		return port;
-	}
-	
-	public ControlPort decodeControlPort(){
-		ControlPort port;
-		port = allocatePort();
-		return port;
-	}
-
-	private ControlPort allocatePort() {
-		ControlPort ret;
-		ret = new ControlPort();
-		ret.generateId();
-		if (LOG.isTraceEnabled()) {
-			LOG.trace("AbsentInPort" + ret.getId());	
-		}
-		return ret;
 	}
 
 	private void fillParameters(InputPort port) {
@@ -72,9 +58,23 @@ public class InputPortElement {
 		ret = new ExplicitInputPort();
 		ret.setId("Input"+simulinkInPort.toString());
 		ret.setOrdering(Integer.parseInt(simulinkInPort.toString().split("@")[0].replaceAll("\\D", "")));
-		if (LOG.isDebugEnabled()) {
-			LOG.debug("InPort" + simulinkInPort.toString() + " " + simulinkInPort.toString().split("@")[0].replaceAll("\\D", ""));	
-		}
 		return ret;
 	}
+	
+	public ControlPort decodeControlPort(){
+		if(LOG.isTraceEnabled()){
+			LOG.trace("Adding control port.");
+		}
+		ControlPort port;
+		port = allocatePort();
+		return port;
+	}
+
+	private ControlPort allocatePort() {
+		ControlPort ret;
+		ret = new ControlPort();
+		ret.generateId();
+		return ret;
+	}
+
 }

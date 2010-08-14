@@ -56,13 +56,13 @@ public class LineElement extends AbstractElement<BasicLink>{
 	}
 	
 	public BasicLink decode(SimulinkLine simulinkLine, BasicLink into) {
+		if(LOG.isTraceEnabled()) {
+			LOG.trace("Decoding link from:" + simulinkLine.getSrcPort() + "to: " + simulinkLine.getDstPort());
+		}
+		
 		BasicLink link = into;
 		SimulinkLine from = simulinkLine;
-		/*
-		if (LOG.isTraceEnabled()) {
-			LOG.trace("SRC: " + from.getSrcPort().toString());
-			LOG.trace("DST: " + from.getDstPort().toString());
-		}*/
+
 		validate();
 		
 		if (into == null) {
@@ -112,9 +112,9 @@ public class LineElement extends AbstractElement<BasicLink>{
 		 * stripping from [,],;,, characters that exist in Points parameter string
 		 * \\s+ to split string around whitespaces
 		 */
-		if (LOG.isTraceEnabled()) {
+		/*if (LOG.isTraceEnabled()) {
 			LOG.trace(from.getParameter("Points"));
-		}
+		}*/
 		try {
 		String[] points = from.getParameter("Points").replaceAll("[\\[\\];,]", " ").trim().split("\\s+");
 		for(int i = 0 ; i<points.length ; i+=2) {
@@ -123,9 +123,10 @@ public class LineElement extends AbstractElement<BasicLink>{
 			mxPoints.add(new mxPoint(x, y));
 		} 
 		} catch (NullPointerException e) {
-			LOG.trace("No points info available");
+			/*
+			 * When no breaks in line do nothing
+			 */
 		}
-		LOG.trace(from.getParameterNames().toString());
 		
 		return mxPoints;
 	}
@@ -140,7 +141,6 @@ public class LineElement extends AbstractElement<BasicLink>{
 				OutputPort port = portIter.next();
 				if(port.getId().equals("Output" + simulinkLine.getSrcPort().toString())){
 					start = port;
-					//LOG.trace("start set to" + start.getId());
 				}
 			}
 			
@@ -150,7 +150,6 @@ public class LineElement extends AbstractElement<BasicLink>{
 				InputPort port = inPortIter.next();
 				if(port.getId().toString().equals("Input" + simulinkLine.getDstPort().toString())){
 					end = port;
-					//LOG.trace("end set to" + end.getId());
 				}
 			}
 		}

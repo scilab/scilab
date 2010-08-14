@@ -20,9 +20,10 @@ import edu.tum.cs.simulink.model.SimulinkBlock;
 public class BlockModelElement{
 
 	private PatternElement patternElement;
+	private TraceElement traceElement;
 	SimulinkBlock data;
 	
-	public BasicBlock decode(SimulinkBlock from, BasicBlock into) throws SimulinkFormatException {
+	public BasicBlock decode(SimulinkBlock from, BasicBlock into, TraceElement trace) throws SimulinkFormatException {
 	if (into == null) {
 		throw new IllegalArgumentException();
 	}
@@ -32,10 +33,11 @@ public class BlockModelElement{
 	 */
 	BasicBlock base = into;
 	data = from;
+	traceElement = trace;
 	/*
 	 * initialize patterns for particular block type
 	 */
-	patternElement = new PatternElement(data.getParameter("BlockType"));
+	patternElement = new PatternElement(data.getParameter("BlockType"), traceElement);
 	/*
 	 * fill the data
 	 */

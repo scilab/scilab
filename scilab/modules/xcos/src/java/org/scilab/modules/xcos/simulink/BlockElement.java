@@ -13,7 +13,6 @@
 package org.scilab.modules.xcos.simulink;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 import org.apache.commons.logging.Log;
@@ -23,31 +22,31 @@ import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
-import org.scilab.modules.xcos.utils.BlockPositioning;
-
-import com.mxgraph.model.mxCell;
 
 import edu.tum.cs.commons.collections.UnmodifiableIterator;
-import edu.tum.cs.simulink.model.SimulinkAnnotation;
 import edu.tum.cs.simulink.model.SimulinkBlock;
 import edu.tum.cs.simulink.model.SimulinkInPort;
-import edu.tum.cs.simulink.model.SimulinkLine;
 import edu.tum.cs.simulink.model.SimulinkOutPort;
 
 public class BlockElement extends AbstractElement<BasicBlock> {
 	
 	private SimulinkBlock base;
 	private BlockGraphicElement graphicElement = new BlockGraphicElement();
-	private BlockSpecificElement specificElement = new BlockSpecificElement();
+	/*
+	 * blockSpecificElement is for trace and debugging
+	 */
+	private TraceElement traceElement;
 	private BlockModelElement modelElement = new BlockModelElement();
 	private static final Log LOG = LogFactory.getLog(BlockElement.class);
 	
-	/** Map from index to blocks */
+	// FIXME: check if those functions are necessary
+	/** 
+	 * Map from index to blocks 
+	 */
 	private final Map<Integer, BasicBlock> blocks;
 	/**
 	 * Default constructor
@@ -61,26 +60,35 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 	 */
 	private int ordering;
 	
-	/* 
-	 * here there will be some neccessery functions, checking if import is possible etc.
+	/**
+	 * @param from - source SimulinkBlock
+	 * @param into - BasicBlock to translate SimulinkBlock into
+	 * @param diag - parent diagram of decoding block
+	 * @return
 	 */
-	
-	public BasicBlock decode(SimulinkBlock from, BasicBlock into, XcosDiagram diag) {
+	public BasicBlock decode(SimulinkBlock from, BasicBlock into, XcosDiagram diag, TraceElement trace) {
+				
 		BasicBlock block = into;
 		base = from;
+		traceElement = trace;
+		
+		if(LOG.isTraceEnabled()) {
+			LOG.trace("== Decoding block: " + from.getName() + " of type: " + modelElement.getInterFunctionName(base) + ".==");
+		}
+		
 		if (block == null) {
 			block = BlockFactory.createBlock(modelElement.getInterFunctionName(base));
-			LOG.trace(modelElement.getInterFunctionName(base));
 		}
 		block.setParentDiagram(diag);
-		/*
-		 * TODO: SimulinkBlock decoding, parameters etc.
-		 */
+
 		decodeParams(block);
 		
 		return block;
 	}
-
+	/**
+	 * Parent function for decoding ports/graphics/model parameters of BasicBlock
+	 * @param block to decode parameters into
+	 */
 	private void decodeParams(BasicBlock block) {
 		// TODO Auto-generated method stub
 		
@@ -100,11 +108,6 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 		InputPort[] inPortTempTable= new InputPort[base.getInPorts().size() + 1];
 		while(portInIter.hasNext()) {
 			InputPort portAdd = inElement.decode(portInIter.next(), null);
-			if (LOG.isDebugEnabled()) {
-				LOG.debug(inPortTempTable.length);
-				LOG.debug(portAdd.getOrdering());
-				LOG.debug(portAdd.getId().toString());
-			}
 			inPortTempTable[portAdd.getOrdering()] = portAdd;
 		}
 		for(int i = 1 ; i < inPortTempTable.length ; i++){
@@ -131,7 +134,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 		graphicElement.decode(base, block);
 		
 		try {
-			modelElement.decode(base, block);
+			modelElement.decode(base, block, traceElement);
 		} catch(SimulinkFormatException se) {
 			LogFactory.getLog(BlockElement.class).error(se);
 		}
@@ -147,11 +150,13 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 		 */
 		decodeSubBlocks(block);
 	}
-
+	/**
+	 * Function for decoding SuperBlock's SubBlocks
+	 * @param block
+	 */
 	private void decodeSubBlocks(BasicBlock block) {
 		/*
-		 * TODO: remember about getting subsystems to work (below)
-		 * 		 add also everything about ports and lines to subsystems
+		 * If block is instance of superblock try to decode its subdiagram.
 		 */
 		if(block instanceof SuperBlock){
 			SuperBlock sBlock = (SuperBlock) block;
@@ -160,16 +165,24 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 			child.setContainer(sBlock);
 			child.installListeners();
 			try {
-			diagram.decode(base, child);
+			diagram.decode(base, child, traceElement);
 			} catch(SimulinkFormatException e1) {
 				LogFactory.getLog(ImportMdl.class).error(e1);
 			}
 			sBlock.setChild(child);
 		}
 	}
-
+	/**
+	 * Function validating compatibility patterns of decoding block
+	 * @param data
+	 * @return boolean canDecode value
+	 */
 	public boolean canDecode(SimulinkBlock data) {
-		// TODO Auto-generated method stub
+		/* TODO:
+		 * If compatibility pattern exist trace description from them
+		 * otherwise trace block name that compatibility pattern is missing
+		 */
+		//LOG.trace(arg0);
 		return true;
 	}
 }

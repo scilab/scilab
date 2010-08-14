@@ -25,14 +25,22 @@ public class BlockGraphicElement{
 	
 	private static final Log LOG = LogFactory.getLog(BlockGraphicElement.class);
 	
+	/**
+	 * Parent function for decoding block graphics
+	 * @param from
+	 * @param into
+	 * @return
+	 */
 	public BasicBlock decode(SimulinkBlock from, BasicBlock into) {
 		
+		if(LOG.isTraceEnabled()) {
+			LOG.trace("Decoding block graphics.");
+		}
 		/**
 		 * mutable field used to share decoded BasicBlock with submethods
 		 */
 		BasicBlock base = into;
 		validate();
-		//LOG.debug("Setting up graphics of:" + into.getInterfaceFunctionName());
 		/*
 		 * without this some blocks style weren't set properly
 		 */
@@ -70,7 +78,11 @@ public class BlockGraphicElement{
 			base.setStyle(base.getStyle() + "; textColor=" + from.getParameter("BackgroundColor"));
 		}
 	}
-
+	/**
+	 * Function for decoding BasicBlock flip and rotation
+	 * @param from
+	 * @param into
+	 */
 	private void fillFlipAndRotation(SimulinkBlock from, BasicBlock into) {
 		// TODO: Check if compatibility pattern needed
 		// TODO: Add Flip handling
@@ -91,15 +103,14 @@ public class BlockGraphicElement{
 				into.setAngle(0);
 				into.setFlip(false);
 			}
-			
-			if(from.getParameter("BlockMirror") != null) {
-				if(from.getParameter("BlockMirror").equals("on")){
-					into.setFlip(true);
-					//LOG.debug("true " + into.getFlip());
-				} else {
-					into.setFlip(false);
-					//LOG.debug("false " + into.getFlip());
-				}
+		}
+		if(from.getParameter("BlockMirror") != null) {
+			if(from.getParameter("BlockMirror").equals("on")){
+				into.setFlip(true);
+				//LOG.debug("true " + into.getFlip());
+			} else {
+				into.setFlip(false);
+				//LOG.debug("false " + into.getFlip());
 			}
 		}
 		//into.setMirror(false);
@@ -111,7 +122,11 @@ public class BlockGraphicElement{
 			into.setAngle(theta);
 		}
 	}
-
+	/**
+	 * Function for decoding BasicBlock position
+	 * @param from
+	 * @param into
+	 */
 	private void fillOrigin(SimulinkBlock from, BasicBlock into) {
 		// TODO: Check if compatibility pattern needed
 		/**
@@ -126,7 +141,11 @@ public class BlockGraphicElement{
 		into.getGeometry().setX(x);
 		into.getGeometry().setY(y);
 	}
-
+	/**
+	 * Function for decoding BasicBlock size
+	 * @param from
+	 * @param into
+	 */
 	private void fillDimension(SimulinkBlock from, BasicBlock into) {
 		// TODO: Check if compatibility pattern needed
 		/**
@@ -150,7 +169,9 @@ public class BlockGraphicElement{
 	/*
 	 * Overloaded methods for TextBlocks
 	 */
-	
+	/**
+	 * Parent function for decoding TextBlock graphics
+	 */
 	public void decode(SimulinkAnnotation from, TextBlock annotation) {
 		// TODO Auto-generated method stub
 		
@@ -163,7 +184,11 @@ public class BlockGraphicElement{
 		fillFlipAndRotation(from, base);
 		fillColors(from, base);
 	}
-	
+	/**
+	 * Function decoding flip and rotation of TextBlock
+	 * @param from
+	 * @param into
+	 */
 	private void fillFlipAndRotation(SimulinkAnnotation from, TextBlock into) {
 		// TODO: Check if compatibility pattern needed
 		// TODO: Add Flip handling
@@ -176,7 +201,11 @@ public class BlockGraphicElement{
 		into.setAngle(theta);
 		}
 	}
-
+	/**
+	 * Function decoding TextBlock position
+	 * @param from
+	 * @param into
+	 */
 	private void fillOrigin(SimulinkAnnotation from, TextBlock into) {
 		// TODO: Check if compatibility pattern needed
 		/**
@@ -191,7 +220,11 @@ public class BlockGraphicElement{
 		into.getGeometry().setX(x);
 		into.getGeometry().setY(y);
 	}
-	
+	/**
+	 * Function decoding TextBlock colors
+	 * @param from
+	 * @param base
+	 */
 	private void fillColors(SimulinkAnnotation from, TextBlock base) {
 		// TODO Auto-generated method stub
 		if(from.getParameter("ForegroundColor") != null) {

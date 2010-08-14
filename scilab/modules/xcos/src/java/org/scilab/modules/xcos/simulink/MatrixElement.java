@@ -26,11 +26,11 @@ public class MatrixElement {
 	 * @param from - string with parameter from simulink parser
 	 * @return
 	 */
-	public static double[] decode(String from){
+	public static double[] decode(String from, String toTrace , TraceElement trace){
 		int width, height;
-		if(LOG.isTraceEnabled()){
-			LOG.trace("FROM:" + from);
-		}
+/*		if(LOG.isTraceEnabled()){
+			LOG.trace("Decoding parameter:" + from + ".");
+		}*/
 		String[] rows = from.split(";");
 		width = rows.length;
 		String[] cells = rows[0].replaceAll("[\\[\\];,]", " ").trim().split("\\s+");
@@ -39,20 +39,14 @@ public class MatrixElement {
 		double [] into = new double[height*width];
 		
 		for(int i = 0 ; i < rows.length ; i++ ) {
-			if(LOG.isTraceEnabled()){
-				LOG.trace("row" + i + " " + rows[i]);
-			}
 			/*
 			 * handling of *+ and -/ 
 			 */
 			int k = 0;
-			if(rows[i].endsWith("+") || rows[i].endsWith("*") || rows[i].endsWith("-") || rows[i].endsWith("/")){
+			if(rows[i].endsWith("+") || rows[i].endsWith("*") || rows[i].endsWith("-") || rows[i].endsWith("/") || rows[i].endsWith("|")){
 				char[] signArray = rows[i].toCharArray();
 				double [] intoSumProd = new double[signArray.length];
-				for(int j = 0 ; j < signArray.length; j++){
-					if(LOG.isTraceEnabled()){
-						LOG.trace("signArray: "+ j + "=" + signArray[j]);
-					}
+				for(int j = 0 ; j < signArray.length; j++) {
 					if(signArray[j] == '+' || signArray[j] == '*'){
 						intoSumProd[k++] = 1;
 					} else if(signArray[j] == '-' || signArray[j] == '/'){
@@ -64,9 +58,6 @@ public class MatrixElement {
 			
 			cells = rows[i].replaceAll("[\\[\\];,]", " ").trim().split("\\s+");
 			for(int j = 0 ; j < cells.length ; j ++){
-				if(LOG.isTraceEnabled()){
-					LOG.trace(cells[j]);
-				}
 				/*
 				 * handling of inf and -inf
 				 */
@@ -83,13 +74,9 @@ public class MatrixElement {
 						into[i*cells.length + j] = Double.parseDouble(cells[j].replaceAll("\\D", " ").trim());
 					} catch (NumberFormatException fe) {
 						into[i*cells.length + j] = 0;
-						if(LOG.isTraceEnabled()){
-							LOG.trace("MatrixElement.decode Error");
-						}
+						LOG.error("NumberFormaException with:" + cells[j].replaceAll("\\D", " ").trim());
+						trace.addFaultParameters(toTrace + "NumberFormaException from:" + from + " with: " + cells[j].replaceAll("\\D", " ").trim());
 					}
-				}
-				if(LOG.isTraceEnabled()){
-					LOG.trace("isSetTo:" + into[i*cells.length + j]);
 				}
 			}
 		}
@@ -109,27 +96,14 @@ public class MatrixElement {
 			length += parts.next().length;
 		}
 		double[][] into = new double[length][1];
-		if(LOG.isTraceEnabled()){
-			LOG.trace(length);
-		}
 		parts = from.iterator();
 		int i = 0;
 		while(parts.hasNext()) {
 			double[] current = parts.next();
 			for(int j = 0 ; j < current.length ; j++ ) {
-				if(LOG.isTraceEnabled()){
-					LOG.trace("i:" + i + "j:" + j);
-					LOG.trace(current[j]);
-				}
 				into[i][0] = current[j];
-				if(LOG.isTraceEnabled()){
-					LOG.trace(into[i][0]);
-				}
 				i++;
 			}
-		}
-		if(LOG.isTraceEnabled()){
-			LOG.trace(into);
 		}
 		return new ScilabDouble(into);
 	}

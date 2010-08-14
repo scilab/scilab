@@ -16,7 +16,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.xcos.port.BasicPort.DataType;
 import org.scilab.modules.xcos.port.command.CommandPort;
-import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
 
@@ -33,6 +32,10 @@ public class OutputPortElement {
 
 	public OutputPort decode(SimulinkOutPort simulinkOutPort, Object object) {
 		// TODO Auto-generated method stub
+		if(LOG.isTraceEnabled()){
+			LOG.trace("Decoding Output port:" +  simulinkOutPort);
+		}
+		
 		OutputPort port;
 		port = allocatePort(simulinkOutPort);
 		/*
@@ -60,14 +63,13 @@ public class OutputPortElement {
 		ret = new ExplicitOutputPort();
 		ret.setId("Output" + simulinkOutPort.toString());
 		ret.setOrdering(Integer.parseInt(simulinkOutPort.toString().split("@")[0].replaceAll("\\D", "")));
-		if (LOG.isTraceEnabled()) {
-			LOG.trace("OutPort" + ret);	
-			LOG.trace("OutPort" + ret.getId());
-		}
 		return ret;
 	}
 
 	public CommandPort decodeCommandPort() {
+		if(LOG.isTraceEnabled()){
+			LOG.trace("Adding command port.");
+		}
 		CommandPort port;
 		port = allocatePort();
 		return port;
@@ -77,9 +79,6 @@ public class OutputPortElement {
 		CommandPort ret;
 		ret = new CommandPort();
 		ret.generateId();
-		if (LOG.isTraceEnabled()) {
-			LOG.trace("AbsentInPort" + ret.getId());	
-		}
 		return ret;
 	}
 

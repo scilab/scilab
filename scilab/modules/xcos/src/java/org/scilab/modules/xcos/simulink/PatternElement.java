@@ -13,10 +13,7 @@
 package org.scilab.modules.xcos.simulink;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
@@ -51,6 +48,7 @@ import edu.tum.cs.simulink.model.SimulinkBlock;
 
 public class PatternElement {
 	private static final Log LOG = LogFactory.getLog(PatternElement.class);
+	private TraceElement traceElement = null;
 	private JAXBContext jc;
 	private Unmarshaller u;
 	private BlockPalette blocks;
@@ -84,12 +82,47 @@ public class PatternElement {
 	/**
 	 * specific block patternElement initialization
 	 * @param simulinkBlockName
+	 * @param trace
 	 */
+	public PatternElement(String simulinkBlockName, TraceElement trace){
+		/*
+		 * Copy the base patternsheet into the user dir when it doesn't exist.
+		 */
+		if(LOG.isTraceEnabled()) {
+			LOG.trace("Initializing compatibility pattern for " + simulinkBlockName + " block." );
+		}
+		if(!userPatternSheet.exists()) {
+			final String sciPath = ScilabConstants.SCI.getAbsolutePath();
+
+			File baseStyleSheet = new File(sciPath + "/modules/xcos/etc/" + file);
+			FileUtils.forceCopy(baseStyleSheet, userPatternSheet);
+		}
+		bindPatterns();
+		traceElement = trace;
+		/*
+		 * Initialize patterns for specific block
+		 */
+		Iterator<Block> blockIter = blocks.getBlock().iterator();
+		while (blockIter.hasNext()){
+			Block block = blockIter.next();
+			if(block.getSim().contentEquals(simulinkBlockName)){
+				currentBlock = block;
+			}
+			if(block.getSim().contentEquals("GeneralParameters")){
+				generalParameters = block;
+			}
+		}
+		if(currentBlock == null) {
+			LOG.trace("Missing compatibility pattern!");
+			traceElement.addUnknownBlock(simulinkBlockName);
+		}
+	}
+	
 	public PatternElement(String simulinkBlockName){
 		/*
 		 * Copy the base patternsheet into the user dir when it doesn't exist.
 		 */
-		if (!userPatternSheet.exists()) {
+		if(!userPatternSheet.exists()) {
 			final String sciPath = ScilabConstants.SCI.getAbsolutePath();
 
 			File baseStyleSheet = new File(sciPath + "/modules/xcos/etc/" + file);
@@ -109,12 +142,8 @@ public class PatternElement {
 				generalParameters = block;
 			}
 		}
-		if(LOG.isTraceEnabled() && currentBlock != null){
-			LOG.trace(currentBlock.getSim());
-			LOG.trace(currentBlock.getXcos());
-		}
-		else if(LOG.isTraceEnabled()) {
-			LOG.trace("unknown block");
+		if(currentBlock == null) {
+			LOG.trace("Missing compatibility pattern!");
 		}
 	}
 	
@@ -149,17 +178,13 @@ public class PatternElement {
 			while (simpleParamIter.hasNext()){
 				SimpleParameter simpleParam = simpleParamIter.next();
 				if(simpleParam.getSim().contentEquals("FunctionName")){
-					if(LOG.isTraceEnabled()){
-						LOG.trace(currentBlock.getXcos() + "FunctionName:");
-						LOG.trace(simpleParam.getXcos());
-					}
 					return simpleParam.getXcos();
 				}
 			}
 		}
 		else {
 			LOG.trace("FunctionName: wrong block!");
-			BlockSpecificElement.print(data);
+			TraceElement.printBasicBlockParameters(data);
 			/*
 			 * If compatibility pattern doesn't exist, name the block with it's simulink name. It makes easier to replace it with a propr xcos block by user.
 			 */
@@ -207,10 +232,10 @@ public class PatternElement {
 				SimpleParameter simpleParam = simpleParamIter.next();
 				if(simpleParam.getSim().contentEquals("FunctionType")){
 					try {
-					if(LOG.isTraceEnabled()){
+					/*if(LOG.isTraceEnabled()){
 						LOG.trace(currentBlock.getXcos() + "FunctionType:");
 						LOG.trace(simpleParam.getXcos());
-					}
+					}*/
 					return Integer.parseInt(simpleParam.getXcos());
 					} catch(NumberFormatException ne) {
 						LogFactory.getLog(PatternElement.class).error(ne);
@@ -254,13 +279,13 @@ public class PatternElement {
 						int x = Integer.parseInt(position[0]);
 						int y = Integer.parseInt(position[1]);
 						if(data.getParameter(valueMap.getSimName())!= null){
-							parameters.add(MatrixElement.decode(data.getParameter(valueMap.getSimName())));
+							parameters.add(MatrixElement.decode(data.getParameter(valueMap.getSimName()), data.getName() + " state: ", traceElement));
 						} else {
-							parameters.add(MatrixElement.decode(valueMap.getSimName()));
+							parameters.add(MatrixElement.decode(valueMap.getSimName(), data.getName() + " state: ", traceElement));
 						}
-						if(LOG.isTraceEnabled()){
+						/*if(LOG.isTraceEnabled()){
 							LOG.trace(currentBlock.getXcos() + "state:");
-						}
+						}*/
 					}
 					return MatrixElement.concatenate(parameters);
 				}
@@ -302,10 +327,10 @@ public class PatternElement {
 						} else {
 							stateData[x][y] =  Double.parseDouble(valueMap.getSimName());
 						}
-						if(LOG.isTraceEnabled()){
+						/*if(LOG.isTraceEnabled()){
 							LOG.trace(currentBlock.getXcos() + "dstate:");
 							LOG.trace(stateData[x][y]);
-						}
+						}*/
 					}
 					return new ScilabDouble(stateData);
 				}
@@ -331,10 +356,10 @@ public class PatternElement {
 			while (simpleParamIter.hasNext()){
 				SimpleParameter simpleParam = simpleParamIter.next();
 				if(simpleParam.getSim().contentEquals("BlockType")){
-					if(LOG.isTraceEnabled()){
+					/*if(LOG.isTraceEnabled()){
 						LOG.trace(currentBlock.getXcos() + "blocktype:");
 						LOG.trace(simpleParam.getXcos());
-					}
+					}*/
 					return simpleParam.getXcos();
 				}
 			}
@@ -405,12 +430,9 @@ public class PatternElement {
 						int x = Integer.parseInt(position[0]);
 						int y = Integer.parseInt(position[1]);
 						if(data.getParameter(valueMap.getSimName())!= null){
-							parameters.add(MatrixElement.decode(data.getParameter(valueMap.getSimName())));
+							parameters.add(MatrixElement.decode(data.getParameter(valueMap.getSimName()), data.getName() + " rpar: ", traceElement));
 						} else {
-							parameters.add(MatrixElement.decode(valueMap.getSimName()));
-						}
-						if(LOG.isTraceEnabled()){
-							LOG.trace(currentBlock.getXcos() + "rpar:");
+							parameters.add(MatrixElement.decode(valueMap.getSimName(), data.getName() + " rpar: ", traceElement));
 						}
 					}
 					return MatrixElement.concatenate(parameters);
@@ -448,12 +470,9 @@ public class PatternElement {
 						int x = Integer.parseInt(position[0]);
 						int y = Integer.parseInt(position[1]);
 						if(data.getParameter(valueMap.getSimName())!= null){
-							parameters.add(MatrixElement.decode(data.getParameter(valueMap.getSimName())));
+							parameters.add(MatrixElement.decode(data.getParameter(valueMap.getSimName()), data.getName() + " rpar: ", traceElement));
 						} else {
-							parameters.add(MatrixElement.decode(valueMap.getSimName()));
-						}
-						if(LOG.isTraceEnabled()){
-							LOG.trace(currentBlock.getXcos() + "ipar:");
+							parameters.add(MatrixElement.decode(valueMap.getSimName(), data.getName() + " rpar: ", traceElement));
 						}
 					}
 					return MatrixElement.concatenate(parameters);
@@ -523,11 +542,11 @@ public class PatternElement {
 						} else {
 							exprsData[x][y] = valueMap.getSimName();
 						}
-						if(LOG.isTraceEnabled()){
+/*						if(LOG.isTraceEnabled()){
 							LOG.trace(currentBlock.getXcos() + "exprs:");
 							LOG.trace(exprsData[x][y]);
 						}
-					}
+*/					}
 					return new ScilabString(exprsData);
 				}
 			}
@@ -547,10 +566,10 @@ public class PatternElement {
 			while (simpleParamIter.hasNext()){
 				SimpleParameter simpleParam = simpleParamIter.next();
 				if(simpleParam.getSim().contentEquals("ControlPort")){
-					if(LOG.isTraceEnabled()){
+					/*if(LOG.isTraceEnabled()){
 						LOG.trace(currentBlock.getXcos() + "ControlPort:");
 						LOG.trace(simpleParam.getXcos());
-					}
+					}*/
 					return Integer.parseInt(simpleParam.getXcos());
 				}
 			}
@@ -570,10 +589,10 @@ public class PatternElement {
 			while (simpleParamIter.hasNext()){
 				SimpleParameter simpleParam = simpleParamIter.next();
 				if(simpleParam.getSim().contentEquals("CommandPort")){
-					if(LOG.isTraceEnabled()){
+					/*if(LOG.isTraceEnabled()){
 						LOG.trace(currentBlock.getXcos() + "CommandPort:");
 						LOG.trace(simpleParam.getXcos());
-					}
+					}*/
 					return Integer.parseInt(simpleParam.getXcos());
 				}
 			}

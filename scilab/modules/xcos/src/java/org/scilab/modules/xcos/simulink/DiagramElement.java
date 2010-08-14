@@ -35,6 +35,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 
 	private SimulinkBlock base;
 	private static final Log LOG = LogFactory.getLog(DiagramElement.class);
+	private TraceElement traceElement;
 	
 	/** Map from index to blocks */
 	private final Map<Integer, BasicBlock> blocks;
@@ -44,9 +45,22 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 	public DiagramElement() {
 		blocks = new HashMap<Integer, BasicBlock>();
 	}
-	
-	public XcosDiagram decode(SimulinkBlock from, XcosDiagram into) 
+	/**
+	 * Parent function for decoding SuperBlock SubDiagram
+	 * @param from
+	 * @param into
+	 * @return
+	 * @throws SimulinkFormatException
+	 */
+	public XcosDiagram decode(SimulinkBlock from, XcosDiagram into, TraceElement trace) 
 			throws SimulinkFormatException {
+		
+		traceElement = trace;
+		
+		if(LOG.isTraceEnabled()) {
+			LOG.trace("Decoding superblock diagram:" + from.getName() + "." );
+		}
+		
 		base = from;
 		XcosDiagram diag = into;
 		if (diag == null) {
@@ -59,9 +73,22 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 
 		return diag;
 	}
-
+	/**
+	 * Parent function for decoding diagram
+	 * @param from
+	 * @param into
+	 * @return
+	 * @throws SimulinkFormatException
+	 */
 	public XcosDiagram decode(SimulinkModel from, XcosDiagram into) 
 			throws SimulinkFormatException {
+		
+		traceElement = new TraceElement();
+		
+		if(LOG.isTraceEnabled()) {
+			LOG.trace("Decoding diagram:" + from.getName() + ".");
+		}
+		
 		base = (SimulinkBlock) from;
 		XcosDiagram diag = into;
 		if (diag == null) {
@@ -71,20 +98,19 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 		diag.getModel().beginUpdate();
 		decodeDiagram(diag);
 		diag.getModel().endUpdate();
-
+		
+		traceElement.printReport();
+		
 		return diag;
 	}
-	
+	/**
+	 * Decode diagram specific parameters (such as title, and simulation parameters)
+	 * @param diag
+	 * @throws SimulinkFormatException
+	 */
 	public void decodeDiagram(XcosDiagram diag) throws SimulinkFormatException {
 		// fill all diagram parameters
-		if (LOG.isTraceEnabled()) {
-			LOG.trace("From " + base.getName() + ":");
-			UnmodifiableIterator<String> paramNameIter = base.getParameterNames().iterator();
-			while(paramNameIter.hasNext()){
-				String paramName = paramNameIter.next();
-				LOG.trace(paramName + ": " + base.getParameter(paramName));
-			}
-		}
+		// traceDiagramParameters();
 		diag.setTitle(base.getName());
 		try{
 		DiagramParametersElement params = new DiagramParametersElement();
@@ -95,6 +121,11 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 		decodeObjs(diag);
 	}
 	
+	/**
+	 * Decode objects present in diagram, blocks, links, annotations
+	 * @param diag - destination diagram
+	 * @throws SimulinkFormatException
+	 */
 	public void decodeObjs(XcosDiagram diag) throws SimulinkFormatException {
 		final BlockElement blockElement = new BlockElement();
 		final AnnotationElement annotationElement = new AnnotationElement();
@@ -112,7 +143,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 			Object cell = null;
 			
 			if (blockElement.canDecode(data)) {
-				BasicBlock block = blockElement.decode(data, null, diag);
+				BasicBlock block = blockElement.decode(data, null, diag, traceElement);
 				blocks.put(i, block);
 				cell = block;
 				
@@ -120,7 +151,6 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 			} 
 			
 			if (cell != null) {
-				//FIXME: 
 				diag.addCell(cell);
 			}
 			i++;
@@ -177,7 +207,6 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 			} 
 			
 			if (cell != null) {
-				//FIXME:
 				diag.addCell(cell);
 			}
 		}
