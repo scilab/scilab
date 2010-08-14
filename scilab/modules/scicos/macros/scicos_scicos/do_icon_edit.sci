@@ -53,7 +53,7 @@ function scs_m = do_icon_edit(%pt,scs_m)
 
   //Create the edition window  
   win=max(winsid())+1;
-  fig=scf(win);xselect();
+  fig=scf(win);show_window();
   fig.axes_size=fig.axes_size*sz(1)/sz(2);
   fig.auto_resize='off';
   ax=gca();

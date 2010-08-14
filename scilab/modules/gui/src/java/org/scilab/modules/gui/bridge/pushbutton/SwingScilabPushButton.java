@@ -104,7 +104,17 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	 * @param filename the path to the icon image to set to the PushButton
 	 */
 	public void setIcon(String filename) {
-		super.setIcon(new ImageIcon(filename));
+		this.setIcon(new ImageIcon(filename));
+	}
+	
+	/**
+	 * Sets the icon of a PushButton
+	 * @param image the icon image to set to the PushButton
+	 */
+	public void setIcon(ImageIcon image) {
+		super.setIcon(image);
+		setContentAreaFilled(true);
+		setOpaque(false);
 	}
 	
 	/**

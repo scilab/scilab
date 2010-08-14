@@ -16,7 +16,6 @@ import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.scinotes.SciNotes;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
  * Display about box for the text editor
@@ -26,26 +25,28 @@ public final class CCloseTabInNewWindowAction extends DefaultAction {
 
     /**
      * Constructor
+     * @param name the name of the action
      * @param editor associated editor
      */
-    public CCloseTabInNewWindowAction(SciNotes editor) {
-        super(SciNotesMessages.CCLOSE_TAB_IN_NEW_WINDOW, editor);
+    public CCloseTabInNewWindowAction(String name, SciNotes editor) {
+        super(name, editor);
     }
 
     /**
      * createMenu
+     * @param label label of the menu
      * @param editor SciNotes
      * @param key Keystroke
      * @return MenuItem
      */
-    public static MenuItem createMenu(SciNotes editor, KeyStroke key) {
-        return createMenu(SciNotesMessages.CCLOSE_TAB_IN_NEW_WINDOW, null, new CCloseTabInNewWindowAction(editor), key);
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new CCloseTabInNewWindowAction(label, editor), key);
     }
 
     /**
      * Action
      */
     public void doAction() {
-        getEditor().cloneAndCloseCurrentTab(true);
+        getEditor().cloneAndCloseCurrentTab(getEditor(), true);
     }
 }

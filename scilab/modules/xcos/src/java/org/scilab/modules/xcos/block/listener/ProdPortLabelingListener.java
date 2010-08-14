@@ -15,6 +15,8 @@ package org.scilab.modules.xcos.block.listener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.scilab.modules.types.scilabTypes.ScilabDouble;
 import org.scilab.modules.xcos.block.BasicBlock;
@@ -28,6 +30,7 @@ import org.scilab.modules.xcos.port.input.InputPort;
  */
 public class ProdPortLabelingListener implements PropertyChangeListener, Serializable {
 	
+	private static final String NOT_PRINTED_LABEL = "\u00d7";
 	private static ProdPortLabelingListener instance;
 	
 	/**
@@ -57,29 +60,71 @@ public class ProdPortLabelingListener implements PropertyChangeListener, Seriali
 		final BasicBlock source = (BasicBlock) evt.getSource();
 		final ScilabDouble data = (ScilabDouble) evt.getNewValue();
 
-		for (int i=0; i < source.getChildCount(); i++) {
+		/**
+		 * Get the input port children
+		 */
+		final List<InputPort> ports = new ArrayList<InputPort>();
+		for (int i = 0; i < source.getChildCount(); i++) {
 			final BasicPort port = (BasicPort) source.getChildAt(i);
 			
 			if (port instanceof InputPort) {
-				
-				final double gain;
-				if (data.isEmpty()) {
-					gain = 1; 
-				} else {
-					gain = data.getRealPart()[port.getOrdering() - 1][0]; 
-				}
-				
-				port.setValue(getLabel(gain));
+				ports.add((InputPort) port);
 			}
 		}
+
+		/**
+		 * Set the ports labels
+		 */
+		for (InputPort port : ports) {
+			final double gain;
+			
+			if (data.isEmpty()) {
+				gain = 1; 
+			} else {
+				gain = data.getRealPart()[port.getOrdering() - 1][0]; 
+			}
+			
+			port.setValue(getLabel(gain));
+		}
 		
+		/**
+		 * Check if all the values are equals to the default one.
+		 */
+		boolean allPortIsDefaultLabel = true;
+		for (InputPort port : ports) {
+			if (port.getValue() instanceof String) {
+				String current = port.getValue().toString();
+				if (!NOT_PRINTED_LABEL.equals(current)) {
+					allPortIsDefaultLabel = false;
+					break;
+				}
+			}
+		}
+
+		if (!allPortIsDefaultLabel) {
+			return;
+		}
+		
+		/**
+		 * When all values are equals to the default one, set it to the block
+		 * and hide the children.
+		 */
+		source.setValue(NOT_PRINTED_LABEL);
+		for (InputPort port : ports) {
+			port.setValue("");
+		}
 	}
 	
+	/**
+	 * Return the symbol for the gain value
+	 * @param gain the current gain
+	 * @return A label representing the gain
+	 */
 	private String getLabel(double gain) {
 		if (gain > 0) {
-			return "*";
+			return NOT_PRINTED_LABEL;
 		} else {
-			return "/";
+			return "\u00f7";
 		}
 	}
 }

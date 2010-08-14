@@ -12,22 +12,19 @@
 
 package org.scilab.modules.scinotes.actions;
 
-import java.awt.Desktop;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 import javax.swing.text.BadLocationException;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.utils.WebBrowser;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.ScilabLexerConstants;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.KeywordEvent;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
-import org.scilab.modules.action_binding.InterpreterManagement;
 
 /**
  * OpenURLAction Class
@@ -37,10 +34,11 @@ public class OpenURLAction extends DefaultAction {
 
     /**
      * Constructor
+     * @param name the name of the action
      * @param editor SciNotes
      */
-    private OpenURLAction(SciNotes editor) {
-        super(SciNotesMessages.OPEN_URL, editor);
+    public OpenURLAction(String name, SciNotes editor) {
+        super(name, editor);
     }
 
     /**
@@ -49,28 +47,34 @@ public class OpenURLAction extends DefaultAction {
     public void doAction() {
         ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
         KeywordEvent kwe = sep.getKeywordEvent(sep.getSelectionEnd());
-        if (ScilabLexerConstants.URL == kwe.getType()) {
+        if (ScilabLexerConstants.URL == kwe.getType() || ScilabLexerConstants.MAIL == kwe.getType()) {
             try {
                 ScilabDocument doc = (ScilabDocument) sep.getDocument();
                 String url = doc.getText(kwe.getStart(), kwe.getLength());
-		Desktop.getDesktop().browse(new URI(url));
+                WebBrowser.openUrl(url);
             } catch (BadLocationException e) { }
-	    catch (IOException e) { 
-		System.err.println(e.toString());
-	    }
-	    catch (URISyntaxException e) {
-		System.err.println(e.toString());
-	    }
         }
     }
 
     /**
      * createMenu
+     * @param label label of the menu
      * @param editor SciNotes
      * @param key Keystroke
      * @return MenuItem
      */
-    public static MenuItem createMenu(SciNotes editor, KeyStroke key) {
-        return createMenu(SciNotesMessages.OPEN_URL, null, new OpenURLAction(editor), key);
+    public static MenuItem createMenu(String label, final SciNotes editor, KeyStroke key) {
+        final MenuItem menuitem = createMenu(label, null, new OpenURLAction(label, editor), key);
+        ((JMenuItem) menuitem.getAsSimpleMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
+                public void propertyChange(PropertyChangeEvent arg0) {
+                    String keyword = editor.getTextPane().getSelectedText();
+                    if (keyword == null) {
+                        KeywordEvent kwe = editor.getTextPane().getKeywordEvent();
+                        menuitem.setEnabled(ScilabLexerConstants.MAIL == kwe.getType() || ScilabLexerConstants.URL == kwe.getType());
+                    }
+                }
+            });
+
+        return menuitem;
     }
 }

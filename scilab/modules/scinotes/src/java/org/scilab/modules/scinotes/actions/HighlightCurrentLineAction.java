@@ -11,12 +11,10 @@
  */
 package org.scilab.modules.scinotes.actions;
 
-import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.scinotes.SciNotes;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 
 /**
@@ -33,11 +31,11 @@ public final class HighlightCurrentLineAction extends DefaultCheckAction {
 
     /**
      * Constructor
+     * @param name the name of the action
      * @param editor SciNotes
      */
-    private HighlightCurrentLineAction(SciNotes editor) {
-        super(SciNotesMessages.HIGHLIGHT_CURRENT_LINE, editor);
-        setState(false);
+    public HighlightCurrentLineAction(String name, SciNotes editor) {
+        super(name, editor);
     }
 
     /**
@@ -50,23 +48,14 @@ public final class HighlightCurrentLineAction extends DefaultCheckAction {
 
     /**
      * createCheckBoxMenu
+     * @param label label of the menu
      * @param editor SciNotes
      * @param key KeyStroke
      * @return CheckBoxMenuItem
      */
-    public static CheckBoxMenuItem createCheckBoxMenu(SciNotes editor, KeyStroke key) {
-        CheckBoxMenuItem cb = createCheckBoxMenu(SciNotesMessages.HIGHLIGHT_CURRENT_LINE, null, new HighlightCurrentLineAction(editor), key);
+    public static CheckBoxMenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        CheckBoxMenuItem cb = createCheckBoxMenu(label, null, new HighlightCurrentLineAction(label, editor), key);
         cb.setChecked(ConfigSciNotesManager.getHighlightState());
         return cb;
-    }
-
-    /**
-     * Put input map
-     * @param textPane JTextpane
-     * @param editor Editor
-     * @param key KeyStroke
-     */
-    public static void putInInputMap(JComponent textPane, SciNotes editor, KeyStroke key) {
-        textPane.getInputMap().put(key, new HighlightCurrentLineAction(editor));
     }
 }

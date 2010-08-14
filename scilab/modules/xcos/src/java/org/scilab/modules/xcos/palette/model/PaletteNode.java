@@ -12,7 +12,12 @@
 
 package org.scilab.modules.xcos.palette.model;
 
+import java.util.LinkedList;
+
+import javax.swing.JTree;
+import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -21,7 +26,10 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.localization.Messages;
+import org.scilab.modules.xcos.palette.PaletteManager;
 
 /**
  * <p>
@@ -47,6 +55,7 @@ import org.scilab.modules.localization.Messages;
 @XmlType(name = "PaletteNode")
 @XmlSeeAlso({ Category.class, Palette.class })
 public abstract class PaletteNode implements TreeNode {
+	private static final Log LOG = LogFactory.getLog(PaletteNode.class);
 
 	@XmlAttribute(required = true)
 	private String name;
@@ -55,6 +64,10 @@ public abstract class PaletteNode implements TreeNode {
 	@XmlTransient
 	private Category parent;
 
+	/*
+	 * Getters and Setters
+	 */
+	
 	/**
 	 * Gets the value of the name property.
 	 * 
@@ -73,7 +86,7 @@ public abstract class PaletteNode implements TreeNode {
 	 * 
 	 */
 	public void setName(String value) {
-		this.name = value;
+		name = value;
 	}
 
 	/**
@@ -89,7 +102,7 @@ public abstract class PaletteNode implements TreeNode {
 	 * @param value the status 
 	 */
 	public void setEnable(boolean value) {
-		this.enable = value;
+		enable = value;
 	}
 
 	/**
@@ -117,6 +130,117 @@ public abstract class PaletteNode implements TreeNode {
 		return Messages.gettext(getName());
 	}
 
+	/*
+	 * Helpers methods
+	 */
+	/**
+	 * Check that the node can be removed (throw exceptions).
+	 * 
+	 * @param node the node to check
+	 */
+	public static void checkRemoving(final PaletteNode node) {
+		if (node == null) {
+			throw new RuntimeException(String.format(
+					org.scilab.modules.xcos.palette.Palette.WRONG_INPUT_ARGUMENT_S_INVALID_TREE_PATH, org.scilab.modules.xcos.palette.Palette.NAME));
+		} else if (node instanceof PreLoaded
+				&& !(node instanceof PreLoaded.Dynamic)) {
+			throw new RuntimeException(String.format(
+					org.scilab.modules.xcos.palette.Palette.WRONG_INPUT_ARGUMENT_S_INVALID_NODE, org.scilab.modules.xcos.palette.Palette.NAME));
+		} else if (node instanceof Category) {
+			// Iterate over all nodes
+			for (final PaletteNode n : ((Category) node).getNode()) {
+				checkRemoving(n);
+			}
+		}
+		
+		/*
+		 * others can be removed safely.
+		 */
+	}
+	
+	/**
+	 * Remove the dynamic {@link PaletteNode} palette
+	 * @param node the palette
+	 */
+	public static void remove(final PaletteNode node) {
+		if (node == null) {
+			throw new RuntimeException(String.format(
+					org.scilab.modules.xcos.palette.Palette.WRONG_INPUT_ARGUMENT_S_INVALID_TREE_PATH, org.scilab.modules.xcos.palette.Palette.NAME));
+		} else if (node instanceof PreLoaded && !(node instanceof PreLoaded.Dynamic)) {
+			throw new RuntimeException(String.format(
+					org.scilab.modules.xcos.palette.Palette.WRONG_INPUT_ARGUMENT_S_INVALID_NODE, org.scilab.modules.xcos.palette.Palette.NAME));
+		} else if (node instanceof Category) {
+			// Iterate over all nodes
+			for (final PaletteNode n : ((Category) node).getNode()) {
+				remove(n);
+			}
+		} else { // others
+			final Category toBeReloaded = node.getParent();
+			if (toBeReloaded == null) {
+				LOG.error("parent node is null");
+				throw new RuntimeException("Parent node is 'null'");
+			}
+			
+			toBeReloaded.getNode().remove(node);
+			node.setParent(null);
+	
+			refreshView(toBeReloaded);
+		}
+	}
+	
+	/**
+	 * Refresh the palette view if visible.
+	 * 
+	 * @param toBeReloaded the category to refresh
+	 */
+	public static void refreshView(final PaletteNode toBeReloaded) {
+		if (PaletteManager.getInstance().getView() != null) {
+			final JTree tree = PaletteManager.getInstance().getView()
+					.getTree();
+			final DefaultTreeModel model = (DefaultTreeModel) tree
+					.getModel();
+			
+			/*
+			 * Reload the model
+			 */
+			if (toBeReloaded.isLeaf()) {
+				model.reload(toBeReloaded.getParent());
+			} else {
+				model.reload(toBeReloaded);
+			}
+	
+			/*
+			 * Select the better path
+			 */
+			
+			// getting the current path
+			final LinkedList<TreeNode> objectPath = new LinkedList<TreeNode>();
+			TreeNode current = toBeReloaded;
+			do {
+				objectPath.addFirst(current);
+				current = current.getParent();
+			} while (current != null);
+			
+			// appending the all first children to the path
+			// this will force a leaf to be selected
+			current = toBeReloaded;
+			while (!current.isLeaf() && current.getAllowsChildren()
+					&& current.children().hasMoreElements()) {
+				current = current.getChildAt(0);
+				objectPath.addLast(current);
+			}
+			
+			// select and expand the better found path 
+			final TreePath path = new TreePath(objectPath.toArray());
+			tree.setSelectionPath(path);
+			tree.expandPath(path);
+		}
+	}
+	
+	/*
+	 * Marshalling/Unmarshalling specific methods
+	 */
+	
 	/**
 	 * This method is called after all the properties (except IDREF) are
 	 * unmarshalled for this object, but before this object is set to the parent

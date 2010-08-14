@@ -79,12 +79,14 @@ import java.util.ArrayList;
 white = [ \t]+
 eol = \n
 
+comments = {white}*("//".*)?{eol}
+
 id = [a-zA-Z%_#!$?][a-zA-Z0-9_#!$?]*
 spec = [^a-zA-Z0-9_#!$?]?
 
 equal = {white}* "=" {white}*
 
-rpar = ")"{white}*{eol}
+rpar = ")"{comments}
 
 fun = {white}* "function" {white}
 funb = {white}* "function["
@@ -142,7 +144,7 @@ endfun = {white}* "endfunction" {spec}
 
   {white}                        { }
 
-  {eol}                          {
+  {comments}                     {
                                    functionName = id;
                                    return ScilabDocument.ScilabLeafElement.FUN;
                                  }
@@ -157,11 +159,11 @@ endfun = {white}* "endfunction" {spec}
                                    functionName = yytext();
                                  }
 
-  "("                            {
+  [ \t]*"("                      {
                                    yybegin(ARGS);
                                  }
 
-  {eol}                          {
+  {comments}                     {
                                    return ScilabDocument.ScilabLeafElement.FUN;
                                  }
 

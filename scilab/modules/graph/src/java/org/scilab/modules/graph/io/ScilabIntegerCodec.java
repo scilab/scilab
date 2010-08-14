@@ -16,6 +16,7 @@ import java.util.Map;
 
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.types.scilabTypes.ScilabInteger;
+import org.scilab.modules.types.scilabTypes.ScilabInteger.IntegerType;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
@@ -29,6 +30,7 @@ public class ScilabIntegerCodec extends ScilabObjectCodec {
 
     private static final String BUNSIGNED = "bUnsigned";
     private static final String VALUE = "value";
+    private static final String PREC = "precision";
 
     /**
      * Default constructor
@@ -59,6 +61,7 @@ public class ScilabIntegerCodec extends ScilabObjectCodec {
 	ScilabInteger scilabInteger = (ScilabInteger) obj;
 	mxCodec.setAttribute(node, WIDTH, scilabInteger.getWidth());
 	mxCodec.setAttribute(node, HEIGHT, scilabInteger.getHeight());
+	mxCodec.setAttribute(node, PREC, scilabInteger.getPrec().name());
 
 	for (int i = 0; i < scilabInteger.getHeight(); ++i) {
 	    for (int j = 0; j < scilabInteger.getWidth(); ++j) {
@@ -117,11 +120,32 @@ public class ScilabIntegerCodec extends ScilabObjectCodec {
 			 * "false".
 			 */
 			unsigned = u != null;
-
-			final long[][] data = new long[height][width];
-			fillData(node, data);
-
-			obj.setData(data, unsigned);
+			
+			final Node prec = attrs.getNamedItem(PREC);
+			final IntegerType precision = IntegerType.valueOf(prec.getNodeValue());
+			
+			switch (precision) {
+				case TYPE8:
+					final byte[][] data8 = new byte[height][width];
+					fillData(node, data8);
+					obj.setData(data8, unsigned);
+					break;
+				case TYPE16:
+					final short[][] data16 = new short[height][width];
+					fillData(node, data16);
+					obj.setData(data16, unsigned);
+					break;
+				case TYPE32:
+					final int[][] data32 = new int[height][width];
+					fillData(node, data32);
+					obj.setData(data32, unsigned);
+					break;
+				default:
+					final long[][] data64 = new long[height][width];
+					fillData(node, data64);
+					obj.setData(data64, unsigned);
+					break;
+			}
 
 		} catch (UnrecognizeFormatException e) {
 			LogFactory.getLog(ScilabIntegerCodec.class).error(e);
@@ -130,7 +154,109 @@ public class ScilabIntegerCodec extends ScilabObjectCodec {
 		}
 		return obj;
 	}
+	
+	/**
+	 * Fill the data from the node.
+	 * 
+	 * @param node
+	 *            the ScilabInteger node
+	 * @param data
+	 *            the allocated data
+	 * @throws UnrecognizeFormatException
+	 *             when we are unable to decode the node.
+	 */
+	private void fillData(Node node, byte[][] data)
+			throws UnrecognizeFormatException {
+		for (Node n = node.getFirstChild(); n != null; n = n.getNextSibling()) {
+			if (n.getNodeType() != Node.ELEMENT_NODE) {
+				continue;
+			}
 
+			final NamedNodeMap dataAttrs = n.getAttributes();
+			if (dataAttrs == null) {
+				throw new UnrecognizeFormatException();
+			}
+
+			final int column = getColumnIndex(dataAttrs);
+			final int line = getLineIndex(dataAttrs);
+
+			final Node v = dataAttrs.getNamedItem(VALUE);
+			if (v == null) {
+				throw new UnrecognizeFormatException();
+			}
+			
+			data[line][column] = Byte.parseByte(v.getNodeValue());
+		}
+	}
+	
+	/**
+	 * Fill the data from the node.
+	 * 
+	 * @param node
+	 *            the ScilabInteger node
+	 * @param data
+	 *            the allocated data
+	 * @throws UnrecognizeFormatException
+	 *             when we are unable to decode the node.
+	 */
+	private void fillData(Node node, short[][] data)
+			throws UnrecognizeFormatException {
+		for (Node n = node.getFirstChild(); n != null; n = n.getNextSibling()) {
+			if (n.getNodeType() != Node.ELEMENT_NODE) {
+				continue;
+			}
+
+			final NamedNodeMap dataAttrs = n.getAttributes();
+			if (dataAttrs == null) {
+				throw new UnrecognizeFormatException();
+			}
+
+			final int column = getColumnIndex(dataAttrs);
+			final int line = getLineIndex(dataAttrs);
+
+			final Node v = dataAttrs.getNamedItem(VALUE);
+			if (v == null) {
+				throw new UnrecognizeFormatException();
+			}
+			
+			data[line][column] = Short.parseShort(v.getNodeValue());
+		}
+	}
+	
+	/**
+	 * Fill the data from the node.
+	 * 
+	 * @param node
+	 *            the ScilabInteger node
+	 * @param data
+	 *            the allocated data
+	 * @throws UnrecognizeFormatException
+	 *             when we are unable to decode the node.
+	 */
+	private void fillData(Node node, int[][] data)
+			throws UnrecognizeFormatException {
+		for (Node n = node.getFirstChild(); n != null; n = n.getNextSibling()) {
+			if (n.getNodeType() != Node.ELEMENT_NODE) {
+				continue;
+			}
+
+			final NamedNodeMap dataAttrs = n.getAttributes();
+			if (dataAttrs == null) {
+				throw new UnrecognizeFormatException();
+			}
+
+			final int column = getColumnIndex(dataAttrs);
+			final int line = getLineIndex(dataAttrs);
+
+			final Node v = dataAttrs.getNamedItem(VALUE);
+			if (v == null) {
+				throw new UnrecognizeFormatException();
+			}
+			
+			data[line][column] = Integer.parseInt(v.getNodeValue());
+		}
+	}
+	
 	/**
 	 * Fill the data from the node.
 	 * 
@@ -160,6 +286,7 @@ public class ScilabIntegerCodec extends ScilabObjectCodec {
 			if (v == null) {
 				throw new UnrecognizeFormatException();
 			}
+			
 			data[line][column] = Long.parseLong(v.getNodeValue());
 		}
 	}

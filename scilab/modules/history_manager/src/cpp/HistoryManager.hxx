@@ -18,7 +18,7 @@
 /*------------------------------------------------------------------------*/
 extern "C"
 {
-	#include <time.h>
+#include <time.h>
 };
 /*------------------------------------------------------------------------*/
 #include <list>
@@ -30,177 +30,194 @@ using namespace std;
 class HistoryManager
 {
 public:
-	/**
-	* Constructor
-	*/
-	HistoryManager();
+    /**
+    * Constructor
+    */
+    HistoryManager();
 
-	/**
-	* Destructor
-	*/
-	~HistoryManager();
+    /**
+    * Destructor
+    */
+    ~HistoryManager();
 
-	/*
-	* add a line to History manager
-	* @param a line to add
-	* line isn't added if it is the same as previous (FALSE)
-	* @return TRUE or FALSE
-	*/
-	BOOL appendLine(char *cline);
+    /*
+    * add a line to History manager
+    * @param a line to add
+    * line isn't added if it is the same as previous (FALSE)
+    * @return TRUE or FALSE
+    */
+    BOOL appendLine(char *cline);
 
-	/**
-	* append lines to History manager
-	* @param array of string
-	* @param size of the array of string
-	* @return TRUE or FALSE
-	*/
-	BOOL appendLines(char **lines,int nbrlines);
+    /**
+    * append lines to History manager
+    * @param array of string
+    * @param size of the array of string
+    * @return TRUE or FALSE
+    */
+    BOOL appendLines(char **lines,int nbrlines);
 
-	/**
-	* Display history
-	*/
-	void displayHistory(void);
+    /**
+    * Display history
+    */
+    void displayHistory(void);
 
-	/**
-	* get filename of history
-	* @return a filename
-	*/
-	char *getFilename(void);
+    /**
+    * get filename of history
+    * @return a filename
+    */
+    char *getFilename(void);
 
-	/**
-	* set filename of history
-	* @param filename of history
-	* @return TRUE or FALSE
-	*/
-	void setFilename(char *filename);
+    /**
+    * set filename of history
+    * @param filename of history
+    * @return TRUE or FALSE
+    */
+    void setFilename(char *filename);
 
-	/**
-	* set default filename of history
-	* @return TRUE or FALSE
-	*/
-	BOOL setDefaultFilename(void);
+    /**
+    * set default filename of history
+    * @return TRUE or FALSE
+    */
+    BOOL setDefaultFilename(void);
 
-	/**
-	* save history in a file
-	* @param a filename if NULL saves in default filename
-	* default filename --> SCIHOME/history.scilab
-	* @return TRUE or FALSE
-	*/
-	BOOL writeToFile(char *filename);
+    /**
+    * save history in a file
+    * @param a filename if NULL saves in default filename
+    * default filename --> SCIHOME/history.scilab
+    * @return TRUE or FALSE
+    */
+    BOOL writeToFile(char *filename);
 
-	/**
-	* load history from a file
-	* @param a filename if NULL load from default filename
-	* default filename --> SCIHOME/<scilab version>history.scilab
-	* @return TRUE or FALSE
-	*/
-	BOOL loadFromFile(char *filename);
+    /**
+    * load history from a file
+    * @param a filename if NULL load from default filename
+    * default filename --> SCIHOME/<scilab version>history.scilab
+    * @return TRUE or FALSE
+    */
+    BOOL loadFromFile(char *filename);
 
-	/**
-	* reset history manager
-	*/
-	void reset(void);
+    /**
+    * reset history manager
+    */
+    void reset(void);
 
-	/**
-	* Get all lines in history
-	* @param output size of the array of string
-	* @return a array of string
-	*/
-	char **getAllLines(int *numberoflines);
+    /**
+    * Get all lines in history
+    * @param output size of the array of string
+    * @return a array of string
+    */
+    char **getAllLines(int *numberoflines);
 
-	/**
-	* returns the last line in history
-	* @return a string
-	*/
-	char *getLastLine(void);
+    /**
+    * returns the first line in history
+    * @return a string
+    */
+    char *getFirstLine(void);
 
-	/**
-	* get number of lines of history
-	* @return a number >= 0
-	*/
-	int getNumberOfLines(void);
+    /**
+    * returns the last line in history
+    * @return a string
+    */
+    char *getLastLine(void);
 
-	/**
-	* Get the Nth Line in history
-	* @param N
-	* @return the Nth Line
-	*/
-	char *getNthLine(int N);
+    /**
+    * get number of lines of history
+    * @return a number >= 0
+    */
+    int getNumberOfLines(void);
 
-	/**
-	* delete the Nth Line in history
-	* @param N
-	* @return TRUE or FALSE
-	*/
-	BOOL deleteNthLine(int N);
+    /**
+    * Get the Nth Line in history
+    * @param N
+    * @return the Nth Line
+    */
+    char *getNthLine(int N);
 
-	/**
-	* Allow to save consecutive duplicate lines
-	* @param doit : TRUE (to allow) or FALSE
-	*/
-	void setSaveConsecutiveDuplicateLines(BOOL doit);
+    /**
+    * delete the Nth Line in history
+    * @param N
+    * @return TRUE or FALSE
+    */
+    BOOL deleteNthLine(int N);
 
-	/**
-	* get state about to save consecutive duplicate lines
-	* @return TRUE or FALSE
-	*/
-	BOOL getSaveConsecutiveDuplicateLines(void);
+    /**
+    * Allow to save consecutive duplicate lines
+    * @param doit : TRUE (to allow) or FALSE
+    */
+    void setSaveConsecutiveDuplicateLines(BOOL doit);
 
-	/**
-	* set after how many lines history is saved
-	* @param num : number of lines
-	*/
-	void setAfterHowManyLinesHistoryIsSaved(int num);
+    /**
+    * get state about to save consecutive duplicate lines
+    * @return TRUE or FALSE
+    */
+    BOOL getSaveConsecutiveDuplicateLines(void);
 
-	/**
-	* get after how many lines history is saved
-	* @return a int : number of lines
-	*/
-	int getAfterHowManyLinesHistoryIsSaved(void);
+    /**
+    * set after how many lines history is saved
+    * @param num : number of lines
+    */
+    void setAfterHowManyLinesHistoryIsSaved(int num);
 
-	/**
-	* set new token to search in history
-	* @param token (a string)
-	* @return TRUE or FALSE
-	*/
-	BOOL setToken(char *token);
+    /**
+    * get after how many lines history is saved
+    * @return a int : number of lines
+    */
+    int getAfterHowManyLinesHistoryIsSaved(void);
 
-	/**
-	* get token searched in history
-	* @return token (a string)
-	*/
-	char *getToken(void);
+    /**
+    * set new token to search in history
+    * @param token (a string)
+    * @return TRUE or FALSE
+    */
+    BOOL setToken(char *token);
 
-	/**
-	* resettoken searched in history
-	* @return TRUE or FALSE
-	*/
-	BOOL resetToken(void);
+    /**
+    * get token searched in history
+    * @return token (a string)
+    */
+    char *getToken(void);
 
-	/**
-	* Get the previous line in search
-	* @return a line
-	*/
-	char *getPreviousLine(void);
+    /**
+    * resettoken searched in history
+    * @return TRUE or FALSE
+    */
+    BOOL resetToken(void);
 
-	/**
-	* Get the next line in Scilab history
-	* @return a line or NULL
-	* after a appendLine iterator go to end
-	*/
-	char *getNextLine(void);
+    /**
+    * Get the previous line in search
+    * @return a line
+    */
+    char *getPreviousLine(void);
+
+    /**
+    * Get the next line in Scilab history
+    * @return a line or NULL
+    * after a appendLine iterator go to end
+    */
+    char *getNextLine(void);
 
 protected:
 
 private:
-	HistoryFile my_file;
-	HistorySearch my_search;
+    HistoryFile my_file;
+    HistorySearch my_search;
 
-	list<CommandLine> CommandsList;
+    list<CommandLine> CommandsList;
 
-	BOOL saveconsecutiveduplicatelines;
-	int afterhowmanylineshistoryissaved;
-	int numberoflinesbeforehistoryissaved;
+    BOOL saveconsecutiveduplicatelines;
+    int afterhowmanylineshistoryissaved;
+    int numberoflinesbeforehistoryissaved;
+
+    /**
+    * search if line is a beginning of a session
+    * @return TRUE or FALSE
+    */
+    BOOL isBeginningSessionLine(char *line);
+
+    /**
+    * add as first line  beginning session info
+    */
+    void fixHistorySession(void);
 
 
 };

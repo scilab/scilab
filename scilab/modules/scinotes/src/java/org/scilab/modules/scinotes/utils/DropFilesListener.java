@@ -46,6 +46,7 @@ public class DropFilesListener implements DropTargetListener {
     private Point previousPoint;
     private Point actualPoint;
     private int actualPos;
+    private boolean enter;
 
     /**
      * Constructor
@@ -62,11 +63,14 @@ public class DropFilesListener implements DropTargetListener {
      * @param arg0 DropTargetDragEvent
      */
     public void dragEnter(DropTargetDragEvent arg0) {
-        int sp0 = pane.getSelectionStart();
-        int sp1 = pane.getSelectionEnd();
-        if (sp1 != sp0) {
-            p1 = sp1;
-            p0 = sp0;
+        if (arg0.isDataFlavorSupported(DataFlavor.stringFlavor)) {
+            int sp0 = pane.getSelectionStart();
+            int sp1 = pane.getSelectionEnd();
+            if (sp1 != sp0) {
+                p1 = sp1;
+                p0 = sp0;
+            }
+            enter = true;
         }
     }
 
@@ -75,14 +79,16 @@ public class DropFilesListener implements DropTargetListener {
      * @param arg0 DropTargetEvent
      */
     public void dragExit(DropTargetEvent arg0) {
-        int y = actualPoint.y - previousPoint.y;
-        ScilabDocument doc = (ScilabDocument) pane.getDocument();
-        Element root = doc.getDefaultRootElement();
-        int line0 = root.getElementIndex(actualPos);
-        int line1 = Math.max(0, line0 + Math.min(root.getElementCount() - 1 - line0, (int) Math.signum(y) * y * y));
-        int diff = actualPos - root.getElement(line0).getStartOffset();
-        Element line = root.getElement(line1);
-        pane.setCaretPosition(Math.min(line.getStartOffset() + diff, line.getEndOffset() - 1));
+        if (enter) {
+            int y = actualPoint.y - previousPoint.y;
+            ScilabDocument doc = (ScilabDocument) pane.getDocument();
+            Element root = doc.getDefaultRootElement();
+            int line0 = root.getElementIndex(actualPos);
+            int line1 = Math.max(0, line0 + Math.min(root.getElementCount() - 1 - line0, (int) Math.signum(y) * y * y));
+            int diff = actualPos - root.getElement(line0).getStartOffset();
+            Element line = root.getElement(line1);
+            pane.setCaretPosition(Math.min(line.getStartOffset() + diff, line.getEndOffset() - 1));
+        }
     }
 
     /**
@@ -90,10 +96,12 @@ public class DropFilesListener implements DropTargetListener {
      * @param arg0 DropTargetDragEven
      */
     public void dragOver(DropTargetDragEvent arg0) {
-        previousPoint = actualPoint;
-        actualPoint = arg0.getLocation();
-        actualPos = pane.viewToModel(actualPoint);
-        pane.setCaretPosition(actualPos);
+        if (arg0.isDataFlavorSupported(DataFlavor.stringFlavor)) {
+            previousPoint = actualPoint;
+            actualPoint = arg0.getLocation();
+            actualPos = pane.viewToModel(actualPoint);
+            pane.setCaretPosition(actualPos);
+        }
     }
 
     /**

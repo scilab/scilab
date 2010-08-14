@@ -48,7 +48,7 @@ v = saveafterncommands()</synopsis>
     <para>Use this option if you don't want to risk losing entries to the saved history because of an abnormal termination,
     such as a power failure.</para>
     <para>saveafterncommands() returns current value.</para>
-    <para>0 is default value.</para>
+    <para>default value is 0. History file saved at the end of scilab session.</para>
   </refsection>
   <refsection>
     <title>Examples</title>

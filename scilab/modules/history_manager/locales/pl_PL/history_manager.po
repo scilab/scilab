@@ -52,11 +52,11 @@ msgstr ""
 "%s: Nieprawidłowa wartość parametru wejściowego #%d: Musi być w przedziale "
 "[%d, %d].\n"
 
-msgid "// Begin Session : "
-msgstr "// Rozpoczęto sesie : "
+msgid "Begin Session : "
+msgstr "Rozpoczęto sesie : "
 
-msgid "// End Session   : "
-msgstr "// Koniec sesji : "
+msgid "End Session   : "
+msgstr "Koniec sesji : "
 
 msgid "Apr"
 msgstr "Kwiecień"

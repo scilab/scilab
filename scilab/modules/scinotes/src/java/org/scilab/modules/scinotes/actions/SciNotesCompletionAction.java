@@ -14,6 +14,8 @@ package org.scilab.modules.scinotes.actions;
 
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
@@ -38,6 +40,10 @@ import org.scilab.modules.console.CompletionAction;
 import org.scilab.modules.console.SciCompletionManager;
 import org.scilab.modules.console.SciInputParsingManager;
 
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.menuitem.ScilabMenuItem;
+import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
+
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.utils.SciNotesCompletionWindow;
@@ -51,6 +57,7 @@ public final class SciNotesCompletionAction extends CompletionAction {
 
     /**
      * Constructor
+     * @param textPane the pane associated
      * @param editor SciNotes
      */
     public SciNotesCompletionAction(JComponent textPane, SciNotes editor) {
@@ -59,13 +66,57 @@ public final class SciNotesCompletionAction extends CompletionAction {
     }
 
     /**
-     * Put input map
-     * @param textPane JTextpane
-     * @param key KeyStroke
-     * @param editor Editor
+     * Constructor
+     * @param editor SciNotes
      */
-    public static void putInInputMap(JComponent textPane, SciNotes editor, KeyStroke key) {
-        textPane.getInputMap().put(key, new SciNotesCompletionAction(textPane, editor));
+    public SciNotesCompletionAction(SciNotes editor) {
+        this.editor = editor;
+    }
+
+    /**
+     * Constructor
+     * @param name unused parameter
+     * @param editor SciNotes
+     */
+    public SciNotesCompletionAction(String name, SciNotes editor) {
+        this.editor = editor;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void actionPerformed(ActionEvent actionEvent) {
+        if (configuration == null) {
+            configuration = new SciNotesCompletionConfiguration(editor.getTextPane());
+        }
+        super.actionPerformed(actionEvent);
+    }
+
+    /**
+     * createMenu
+     * @param label label of the menu
+     * @param editor SciNotes
+     * @param key KeyStroke
+     * @return MenuItem
+     */
+    public static MenuItem createMenu(String label, final SciNotes editor, KeyStroke key) {
+        MenuItem menu = ScilabMenuItem.createMenuItem();
+        menu.setText(label);
+        ((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).addActionListener(new ActionListener() {
+                private SciNotesCompletionAction action;
+                public void actionPerformed(ActionEvent actionEvent) {
+                    if (action == null) {
+                        action = new SciNotesCompletionAction(editor);
+                    }
+                    action.actionPerformed(actionEvent);
+                }
+            });
+
+        if (key != null) {
+            ((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).setAccelerator(key);
+        }
+
+        return menu;
     }
 
     /**
@@ -160,6 +211,7 @@ public final class SciNotesCompletionAction extends CompletionAction {
          * Return an empty string to be sure that word won't be completed
          * into filename.
          * @param level an unused int
+	 * @return a String
          */
         public String getFilePartLevel(int level) {
             return "";
@@ -214,6 +266,7 @@ public final class SciNotesCompletionAction extends CompletionAction {
 
         /**
          * Constructor
+	 * @param textPane where to complete
          */
         public SciNotesCompletionConfiguration(JComponent textPane) {
             scm.setInputParsingManager(xipm);

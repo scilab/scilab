@@ -41,6 +41,6 @@ function window_read_size(gh_window)
   
   gh_window.viewport = [scs_m.props.wpar(7), scs_m.props.wpar(8)]
 		
-  xselect(); //** put the current window in foreground
+  show_window(); //** put the current window in foreground
 
 endfunction

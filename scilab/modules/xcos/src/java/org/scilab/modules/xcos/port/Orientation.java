@@ -82,15 +82,15 @@ public enum Orientation {
 		int angle = base;
 
 		switch (this) {
-		case WEST:
-		case EAST:
+		case NORTH:
+		case SOUTH:
 			if (flipped) {
 				angle = angle + (MAX_ROTATION / 2);
 			}
 			break;
 
-		case NORTH:
-		case SOUTH:
+		case WEST:
+		case EAST:
 			if (mirrored) {
 				angle = angle + (MAX_ROTATION / 2);
 			}

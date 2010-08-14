@@ -901,7 +901,7 @@
       </varlistentry>
 
       <varlistentry>
-        <term><link linkend="xselect">xselect</link></term>
+        <term><link linkend="show_window">show_window</link></term>
 
         <listitem>
           <para>met une fenêtre graphique au premier plan</para>

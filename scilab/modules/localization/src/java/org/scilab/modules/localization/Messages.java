@@ -19,7 +19,7 @@ public class Messages {
    * Constructor
    */
  protected Messages() {
-	throw new UnsupportedOperationException();
+    throw new UnsupportedOperationException();
  }
   public static String gettext(String key) {
     return MessagesJNI.gettext(key);

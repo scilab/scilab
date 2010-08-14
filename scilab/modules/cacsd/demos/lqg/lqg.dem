@@ -104,9 +104,9 @@ while %t do
   case 2
     if Plant(4)=='c' then
       mode(1)
-      defv=['0.1','20'];
-      title='Enter Sampling period and Tmax';
-      rep=x_mdialog(title,['Sampling period?';'Tmax?'],defv)
+      defv=['0.1';'20'];
+      _title='Enter Sampling period and Tmax';
+      rep=x_mdialog(_title,['Sampling period?';'Tmax?'],defv)
       if rep==[] then break,end
       dttmax=evstr(rep)
       dt=evstr(dttmax(1));tmax=evstr(dttmax(2));
@@ -114,41 +114,41 @@ while %t do
       n1=x_choose(['Step response?';'Impulse response?'],'Simulation:');
       select n1
       case 1 then
-	scf(1);clf();show_window();
-	plot2d([t',t'],[(csim('step',t,Tlqg))',ones(t')]);
+        scf(1);clf();show_window();
+        plot2d([t',t'],[(csim('step',t,Tlqg))',ones(t')]);
       case 2 then
-	scf(1);clf();show_window();
-	plot2d([t',t'],[(csim('impul',t,Tlqg))',0*t']);
+        scf(1);clf();show_window();
+        plot2d([t',t'],[(csim('impul',t,Tlqg))',0*t']);
       end
       mode(-1)
     elseif Plant(4)=='d' then
       mode(1)
       defv=['30'];
-      title='Tmax?';
-      rep=x_mdialog(title,['Tmax='],defv)
+      _title='Tmax?';
+      rep=x_mdialog(_title,['Tmax='],defv)
       if rep==[] then break,end
       Tmax=evstr(rep);
       mode(-1)
       n2=x_choose(['Step response?';'Impulse response?'],'Simulation:');
       select n2
       case 0 then
-	break;
+        break;
       case 1 then
-	mode(1)
-	u=ones(1,Tmax);u(1)=0;
-	scf(1);clf();show_window();
-	plot2d([(1:Tmax)',(1:Tmax)'],[(dsimul(Tlqg,u))',(ones(1:Tmax)')])
-	mode(-1)
+        mode(1)
+        u=ones(1,Tmax);u(1)=0;
+        scf(1);clf();show_window();
+        plot2d([(1:Tmax)',(1:Tmax)'],[(dsimul(Tlqg,u))',(ones(1:Tmax)')])
+        mode(-1)
       case 2 then
-	mode(1)
-	u=zeros(1,Tmax);u(1)=1;
-	scf(1);clf();show_window();
-	plot2d((1:Tmax)',(dsimul(Tlqg,u))')
-	mode(-1)
+        mode(1)
+        u=zeros(1,Tmax);u(1)=1;
+        scf(1);clf();show_window();
+        plot2d((1:Tmax)',(dsimul(Tlqg,u))')
+        mode(-1)
       end
     end
   end
 end
 lines(oldln(2))
 clear s z n str rep Plant P22 ny nu nx Qx Qu bigQ Rx Ry bigR  Plqg r 
-clear Klqg Slqg Rlqg Tlqg resp title dttmax dt t n1 defv Tmax n2 u oldln
+clear Klqg Slqg Rlqg Tlqg resp _title dttmax dt t n1 defv Tmax n2 u oldln

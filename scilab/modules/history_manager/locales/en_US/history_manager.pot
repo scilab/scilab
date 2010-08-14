@@ -50,11 +50,11 @@ msgid ""
 msgstr ""
 #
 # File: src/c/getCommentDateSession.c, line: 26
-msgid "// Begin Session : "
+msgid "Begin Session : "
 msgstr ""
 #
 # File: src/c/getCommentDateSession.c, line: 27
-msgid "// End Session   : "
+msgid "End Session   : "
 msgstr ""
 #
 # File: src/c/getCommentDateSession.c, line: 127

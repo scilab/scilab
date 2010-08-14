@@ -231,7 +231,6 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
 	}
 	result.append(XcosConstants.HTML_NEWLINE);
 	
-	result.append("Style : " + getStyle() + XcosConstants.HTML_NEWLINE);
 	result.append(XcosConstants.HTML_END);
 	return result.toString();
     }

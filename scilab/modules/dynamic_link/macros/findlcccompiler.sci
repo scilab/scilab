@@ -11,7 +11,7 @@
 //=============================================================================
 function res = findlcccompiler()
   res = %F;
-  warnobsolete(_('LCC in Atoms: atomsInstall(""LCC-windows"")'), '5.3.1');
+  warnobsolete(_('LCC in Atoms: atomsInstall(""lcc_windows"")'), '5.3.1');
 endfunction
 //=============================================================================
 

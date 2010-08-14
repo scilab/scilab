@@ -21,6 +21,7 @@ import org.scilab.modules.types.scilabTypes.ScilabString;
 import org.scilab.modules.types.scilabTypes.ScilabType;
 import org.scilab.modules.xcos.block.actions.BlockParametersAction;
 import org.scilab.modules.xcos.block.actions.RegionToSuperblockAction;
+import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.util.mxConstants;
 
@@ -73,15 +74,6 @@ public final class TextBlock extends BasicBlock {
 	}
 
 	/**
-	 * Constructor with a default text
-	 * @param label The default text
-	 */
-	protected TextBlock(String label) {
-		this();
-		setValue(label);
-	}
-
-	/**
 	 * Initialize the block with the default values
 	 */
 	@Override
@@ -89,6 +81,8 @@ public final class TextBlock extends BasicBlock {
 		super.setDefaultValues();
 		setInterfaceFunctionName(INTERFUNCTION_NAME);
 		setStyle(INTERFUNCTION_NAME);
+		
+		setValue(XcosMessages.DOTS);
 	}
     
     /**

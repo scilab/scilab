@@ -3,21 +3,21 @@
 
 EXPORTS
 ;core
-com_
-vstk_
 callFunctionFromGateway
-checklhs_
-checkrhs_
-getrhsvar_ 
+com_
 putlhsvar_
 intersci_
 iop_
+check_length
 check_scalar
 stack_
-createvar_ 
-check_length
+createvar_
 check_square
+getrhsvar_ 
+checklhs_
+checkrhs_
 gettype_
-getWarningMode
+vstk_
+getWarningMode 
 ;
 

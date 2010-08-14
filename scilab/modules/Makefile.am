@@ -87,7 +87,8 @@ xcos \
 scinotes \
 parallel \
 modules_manager \
-ui_data
+ui_data \
+history_browser
 
 
 #umfpack
@@ -137,7 +138,8 @@ GUI_LIBS = 	$(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/modules/xcos/libscixcos.la \
 	$(top_builddir)/modules/scinotes/libsciscinotes.la \
-	$(top_builddir)/modules/ui_data/libsciui_data.la
+	$(top_builddir)/modules/ui_data/libsciui_data.la \
+	$(top_builddir)/modules/history_browser/libscihistory_browser.la
 
 if HDF5
 GUI_LIBS += $(top_builddir)/modules/hdf5/libscihdf5-forceload.la
@@ -152,7 +154,9 @@ NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/jvm/libscijvm-disable.la \
 	$(top_builddir)/modules/xcos/libscixcos-disable.la \
 	$(top_builddir)/modules/scinotes/libsciscinotes-disable.la \
-	$(top_builddir)/modules/ui_data/libsciui_data-disable.la
+	$(top_builddir)/modules/ui_data/libsciui_data-disable.la \
+	$(top_builddir)/modules/history_browser/libscihistory_browser-disable.la
+
 
 if HDF5
 NO_GUI_LIBS += $(top_builddir)/modules/hdf5/libscihdf5-forceload-disable.la

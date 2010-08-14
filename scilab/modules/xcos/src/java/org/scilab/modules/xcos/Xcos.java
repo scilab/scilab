@@ -29,7 +29,7 @@ import javax.swing.SwingUtilities;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
+import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.utils.ScilabExported;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.xcos.block.BasicBlock;
@@ -65,8 +65,10 @@ public final class Xcos {
 	
 	private static final String UNABLE_TO_LOAD_JGRAPHX = 
 		Messages.gettext("Unable to load the jgraphx library.\nExpecting version %s ; Getting version %s .");
+	private static final String UNABLE_TO_LOAD_JHDF5 = 
+		Messages.gettext("Unable to load the hdf5-java (jhdf5) library. \nExpecting version %s ; Getting version %s .");
 	private static final String UNABLE_TO_LOAD_HDF5 = 
-		Messages.gettext("Unable to load the HDF5 library. \nExpecting version %s ; Getting version %s .");
+		Messages.gettext("Unable to load the native HDF5 library.");
 	private static final String UNABLE_TO_LOAD_BATIK = 
 		Messages.gettext("Unable to load the Batik library. \nExpecting version %s ; Getting version %s .");
 	
@@ -96,7 +98,7 @@ public final class Xcos {
 	 */
 	private Xcos() {
 		/* load scicos libraries (macros) */
-		ScilabInterpreterManagement.requestScilabExec("loadScicosLibs();");
+		InterpreterManagement.requestScilabExec("loadScicosLibs();");
 
 		/* Check the dependencies at startup time */
 		checkDependencies();
@@ -115,14 +117,9 @@ public final class Xcos {
 		configuration = ConfigurationManager.getInstance();
 		styleSheet = new mxStylesheet();
 
-		/*
-		 * Init handlers
-		 */
-		palette.loadConfig();
-		configuration.loadConfig();
 		try {
 			FileUtils.decodeStyle(styleSheet);
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			LogFactory.getLog(Xcos.class).error(e);
 		}
 	}
@@ -143,21 +140,23 @@ public final class Xcos {
 		/* JGraphx */
 		String mxGraphVersion = "";
 		try {
-			Class< ? > klass = loader.loadClass("com.mxgraph.view.mxGraph");
+			final Class< ? > klass = loader.loadClass("com.mxgraph.view.mxGraph");
 			mxGraphVersion = (String) klass.getDeclaredField("VERSION").get(null);
 				
 			if (!MXGRAPH_VERSIONS.contains(mxGraphVersion)) {
 				throw new Exception();
 			}
-		} catch (Throwable e) {
+		} catch (final Throwable e) {
 			throw new RuntimeException(String.format(UNABLE_TO_LOAD_JGRAPHX,
 					MXGRAPH_VERSIONS.get(0), mxGraphVersion), e);
 		}
 		
 		/* HDF5 */
-		int[] libVersion = new int[3]; 
+		final int[] libVersion = new int[3]; 
 		try {
-			Class< ? > klass = loader.loadClass("ncsa.hdf.hdf5lib.H5");
+			final Class< ? > klass = loader.loadClass("ncsa.hdf.hdf5lib.H5");
+			
+			/* hdf5-java */
 			int ret = (Integer) klass.getMethod("H5get_libversion", libVersion.getClass())
 									.invoke(null, libVersion);
 			if (ret < 0) {
@@ -168,15 +167,26 @@ public final class Xcos {
 				throw new Exception();
 			}
 			
-		} catch (Throwable e) {
-			throw new RuntimeException(String.format(UNABLE_TO_LOAD_HDF5,
-					HDF5_VERSIONS.get(0), Arrays.toString(libVersion)), e);
+			
+			/* hdf5 */
+			ret = (Integer) klass.getMethod("H5check_version", int.class,
+					int.class, int.class).invoke(null, libVersion[0],
+					libVersion[1], libVersion[2]);
+			if (ret < 0) {
+				throw new RuntimeException(UNABLE_TO_LOAD_HDF5);
+			}
+			
+		} catch (final Throwable e) {
+			if (!(e instanceof RuntimeException)) {
+				throw new RuntimeException(String.format(UNABLE_TO_LOAD_JHDF5,
+						HDF5_VERSIONS.get(0), Arrays.toString(libVersion)), e);
+			}
 		}
 		
 		/* Batik */
 		String batikVersion = null;
 		try {
-			Class< ? > klass = loader.loadClass("org.apache.batik.Version");
+			final Class< ? > klass = loader.loadClass("org.apache.batik.Version");
 			batikVersion = klass.getPackage().getImplementationVersion()
 								.split("\\+")[0];
 			
@@ -184,7 +194,7 @@ public final class Xcos {
 				throw new Exception();
 			}
 			
-		} catch (Throwable e) {
+		} catch (final Throwable e) {
 			throw new RuntimeException(String.format(UNABLE_TO_LOAD_BATIK,
 					BATIK_VERSIONS.get(0), batikVersion), e);
 		}
@@ -198,9 +208,18 @@ public final class Xcos {
 	public static synchronized Xcos getInstance() {
 		if (sharedInstance == null) {
 			sharedInstance = new Xcos();
+			LOG.trace("Session started");
 		}
 
 		return sharedInstance;
+	}
+	
+	/**
+	 * Clear the shared instance.
+	 */
+	private static synchronized void clearInstance() {
+		sharedInstance = null;
+		LOG.trace("Session ended");
 	}
 
 	/**
@@ -226,7 +245,7 @@ public final class Xcos {
 	 * @param filename
 	 *            the file to open. If null an empty diagram is created.
 	 */
-	public void open(String filename) {
+	public void open(final String filename) {
 		if (!SwingUtilities.isEventDispatchThread()) {
 			LOG.error(CALLED_OUTSIDE_THE_EDT_THREAD);
 		}
@@ -235,12 +254,11 @@ public final class Xcos {
 
 		if (filename != null) {
 			configuration.addToRecentFiles(filename);
-			configuration.saveConfig();
 
 			/*
 			 * looking for an already opened diagram
 			 */
-			for (XcosDiagram diagram : diagrams) {
+			for (final XcosDiagram diagram : diagrams) {
 				if (diagram.getSavedFile() != null
 						&& diagram.getSavedFile().compareTo(filename) == 0) {
 					diag = diagram;
@@ -285,7 +303,7 @@ public final class Xcos {
 	 * @return the closing status (true, the diagram has been closed; false,
 	 *         otherwise)
 	 */
-	public boolean close(XcosDiagram diagram, boolean force) {
+	public boolean close(final XcosDiagram diagram, final boolean force) {
 		if (!SwingUtilities.isEventDispatchThread()) {
 			LOG.error(CALLED_OUTSIDE_THE_EDT_THREAD);
 		}
@@ -300,7 +318,7 @@ public final class Xcos {
 		    	Xcos.closeSession();
 		    } else {
 		    	// we must also close the session is no diagram is visible
-		    	for (XcosDiagram diag : diagrams) {
+		    	for (final XcosDiagram diag : diagrams) {
 					if (diag.getParentTab() != null) {
 						return true;
 					}
@@ -347,8 +365,6 @@ public final class Xcos {
 			instance.palette.getView().close();
 			instance.palette.setView(null);
 		}
-
-		sharedInstance = null;
 	}
 
 	/**
@@ -357,7 +373,7 @@ public final class Xcos {
 	 * @param args
 	 *            command line args (Not used)
 	 */
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
 		xcos();
 	}
 
@@ -382,6 +398,7 @@ public final class Xcos {
 		final Xcos instance = getInstance();
 
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				instance.open(null);
 				PaletteManager.setVisible(true);
@@ -398,10 +415,11 @@ public final class Xcos {
 	 *            The filename
 	 */
 	@ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
-	public static void xcos(String fileName) {
+	public static void xcos(final String fileName) {
 		final String filename = fileName;
 
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				getInstance().open(filename);
 			}
@@ -418,13 +436,19 @@ public final class Xcos {
 	public static void closeXcosFromScilab() {
 		try {
 			SwingUtilities.invokeAndWait(new Runnable() {
+				@Override
 				public void run() {
+					// Saving modified data
+					getInstance().palette.saveConfig();
+					getInstance().configuration.saveConfig();
+					
 					closeSession();
+					clearInstance();
 				}
 			});
-		} catch (InterruptedException e) {
+		} catch (final InterruptedException e) {
 			LOG.error(e);
-		} catch (InvocationTargetException e) {
+		} catch (final InvocationTargetException e) {
 			LOG.error(e);
 		}
 	}
@@ -441,7 +465,7 @@ public final class Xcos {
 	 *            The message to display.
 	 */
 	@ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
-	public static void warnCellByUID(String uid, String message) {
+	public static void warnCellByUID(final String uid, final String message) {
 		final List<XcosDiagram> diagrams = getInstance().diagrams;
 
 		final String localId = uid;
@@ -471,8 +495,8 @@ public final class Xcos {
 	 * @return Not used (compatibility)
 	 */
 	@ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
-	public static int xcosDiagramToHDF5(String xcosFile, String h5File,
-			boolean forceOverwrite) {
+	public static int xcosDiagramToHDF5(final String xcosFile, final String h5File,
+			final boolean forceOverwrite) {
 		final String file = xcosFile;
 		final File temp = new File(h5File);
 		final boolean overwrite = forceOverwrite;
@@ -485,10 +509,21 @@ public final class Xcos {
 			}
 		}
 		
-		XcosDiagram diagram = new XcosDiagram();
-		diagram.openDiagramFromFile(file);
-		diagram.dumpToHdf5File(temp.getAbsolutePath());
-		
+		try {
+			SwingUtilities.invokeAndWait(new Runnable() {
+				@Override
+				public void run() {
+					final XcosDiagram diagram = new XcosDiagram();
+					diagram.openDiagramFromFile(file);
+					diagram.dumpToHdf5File(temp.getAbsolutePath());
+				}
+			});
+		} catch (final InterruptedException e) {
+			throw new RuntimeException(e);
+		} catch (final InvocationTargetException e) {
+			throw new RuntimeException(e.getCause());
+		}
+
 		return 0;
 	}
 
@@ -503,16 +538,17 @@ public final class Xcos {
 	 *            True if you want the diagram to be shown, false otherwise.
 	 */
 	@ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
-	public static void xcosDiagramOpen(String uid, boolean showed) {
+	public static void xcosDiagramOpen(final String uid, final boolean showed) {
 		final List<XcosDiagram> diagrams = getInstance().diagrams;
 		final String id = uid;
 		final boolean show = showed;
 
 		try {
 			SwingUtilities.invokeAndWait(new Runnable() {
+				@Override
 				public void run() {
 					BasicBlock block = null;
-					for (XcosDiagram diagram : diagrams) {
+					for (final XcosDiagram diagram : diagrams) {
 
 						// exclude SuperBlock from parsing
 						if (diagram instanceof SuperBlockDiagram) {
@@ -521,7 +557,7 @@ public final class Xcos {
 
 						block = diagram.getChildById(id);
 						if (block != null) {
-							SuperBlock newSP = (SuperBlock) BlockFactory
+							final SuperBlock newSP = (SuperBlock) BlockFactory
 									.createBlock("SUPER_f");
 							newSP.setRealParameters(block.getRealParameters());
 							newSP.setParentDiagram(block.getParentDiagram());
@@ -539,9 +575,9 @@ public final class Xcos {
 					}
 				}
 			});
-		} catch (InterruptedException e) {
+		} catch (final InterruptedException e) {
 			LOG.error(e);
-		} catch (InvocationTargetException e) {
+		} catch (final InvocationTargetException e) {
 			LOG.error(e);
 		}
 	}
@@ -555,11 +591,12 @@ public final class Xcos {
 	 *            The diagram id
 	 */
 	@ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
-	public static void xcosDiagramClose(String uid) {
+	public static void xcosDiagramClose(final String uid) {
 		final String id = uid;
 
 		try {
 			SwingUtilities.invokeAndWait(new Runnable() {
+				@Override
 				public void run() {
 
 					SuperBlock sp = getInstance().openedSuperBlock.get(id);
@@ -570,9 +607,9 @@ public final class Xcos {
 					}
 				}
 			});
-		} catch (InterruptedException e) {
+		} catch (final InterruptedException e) {
 			LOG.error(e);
-		} catch (InvocationTargetException e) {
+		} catch (final InvocationTargetException e) {
 			LOG.error(e);
 		}
 	}

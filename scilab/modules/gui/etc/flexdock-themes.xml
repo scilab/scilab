@@ -2,7 +2,7 @@
 <flexview-themes>
 
     <!-- Map the PLAFs to specific themes -->
-    <plaf name="apple.laf.AquaLookAndFeel" ref="scilab-macos" />
+    <plaf name="com.apple.laf.AquaLookAndFeel" ref="scilab-macos" />
     <plaf name="javax.swing.plaf.metal.MetalLookAndFeel" ref="scilab" />
     <plaf name="com.sun.java.swing.plaf.gtk.GTKLookAndFeel" ref="scilab" />
     <plaf name="com.sun.java.swing.plaf.windows.WindowsLookAndFeel" ref="scilab" />

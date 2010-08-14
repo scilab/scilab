@@ -44,6 +44,7 @@ Source: modules\{#SCICOS}\palettes\*.cosf; DestDir: {app}\modules\{#SCICOS}\pale
 Source: modules\{#SCICOS}\includes\scicos.h; DestDir: {app}\modules\{#SCICOS}\includes; Components: {#COMPN_XCOS}
 Source: modules\{#SCICOS}\includes\scicos_free.h; DestDir: {app}\modules\{#SCICOS}\includes; Components: {#COMPN_XCOS}
 Source: modules\{#SCICOS}\includes\scicos_malloc.h; DestDir: {app}\modules\{#SCICOS}\includes; Components: {#COMPN_XCOS}
+Source: modules\{#SCICOS}\includes\scicos_math.h; DestDir: {app}\modules\{#SCICOS}\includes; Components: {#COMPN_XCOS}
 Source: modules\{#SCICOS}\includes\scicos-def.h; DestDir: {app}\modules\{#SCICOS}\includes; Components: {#COMPN_XCOS}
 ;
 Source: modules\{#SCICOS}\macros\buildmacros.sce; DestDir: {app}\modules\{#SCICOS}\macros; Flags: recursesubdirs; Components: {#COMPN_XCOS}

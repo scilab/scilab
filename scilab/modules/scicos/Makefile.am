@@ -171,7 +171,8 @@ libsciscicos_la_includedir=$(pkgincludedir)/scicos
 libsciscicos_la_include_HEADERS = includes/scicos.h \
 includes/scicos-def.h \
 includes/scicos_free.h \
-includes/scicos_malloc.h
+includes/scicos_malloc.h \
+includes/scicos_math.h
 
 
 #### scicos : cosf files ####

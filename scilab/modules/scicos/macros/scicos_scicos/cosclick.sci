@@ -116,7 +116,7 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
     //**----------------------------------------------------------------------------
 
     Scicos_commands = ['%diagram_path_objective='+sci2exp(pathh)+';%scicos_navig=1';
-		       cmd+';%win=curwin;%pt='+sci2exp(%pt)+';xselect();%scicos_navig=[]';
+		       cmd+';%win=curwin;%pt='+sci2exp(%pt)+';show_window();%scicos_navig=[]';
 		      ]
     return ; //** EXIT POINT for the indirect command (to be explored)
   

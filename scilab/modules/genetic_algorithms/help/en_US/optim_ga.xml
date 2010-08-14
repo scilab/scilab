@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
+ * Copyright (C) 2010 - DIGITEO - Michael Baudin
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,16 +11,15 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="optim_ga" xml:lang="en"
+<refentry version="5.0-subset Scilab" 
+          xml:id="optim_ga" 
+          xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
           xmlns:ns3="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>4-Feb-2008</pubdate>
-  </info>
 
   <refnamediv>
     <refname>optim_ga</refname>
@@ -41,8 +41,10 @@
         <term>ga_f</term>
 
         <listitem>
-          <para>the function to be optimized. The prototype if y = f(x) or y =
-          list(f,p1,p2,...).</para>
+          <para>
+            the function to be optimized. The prototype if y = f(x) or y =
+            list(f,p1,p2,...).
+          </para>
         </listitem>
       </varlistentry>
 
@@ -50,8 +52,10 @@
         <term>pop_size</term>
 
         <listitem>
-          <para>the size of the population of individuals (default value:
-          100).</para>
+          <para>
+            the size of the population of individuals (default value:
+            100).
+          </para>
         </listitem>
       </varlistentry>
 
@@ -59,9 +63,11 @@
         <term>nb_generation</term>
 
         <listitem>
-          <para>the number of generations (equivalent to the number of
-          iterations in classical optimization) to be computed (default value:
-          10).</para>
+          <para>
+            the number of generations (equivalent to the number of
+            iterations in classical optimization) to be computed (default value:
+            10).
+          </para>
         </listitem>
       </varlistentry>
 
@@ -85,8 +91,10 @@
         <term>Log</term>
 
         <listitem>
-          <para>if %T, we will display to information message during the run
-          of the genetic algorithm.</para>
+          <para>
+            if %T, we will display to information message during the run
+            of the genetic algorithm.
+          </para>
         </listitem>
       </varlistentry>
 
@@ -98,44 +106,58 @@
 
           <itemizedlist>
             <listitem>
-              <para>'codage_func': the function which will perform the coding
-              and decoding of individuals (default function:
-              codage_identity).</para>
+              <para>
+                "codage_func": the function which will perform the coding
+                and decoding of individuals (default function:
+                coding_ga_identity).
+              </para>
             </listitem>
 
             <listitem>
-              <para>'init_func': the function which will perform the
-              initialization of the population (default function:
-              init_ga_default).</para>
+              <para>
+                "init_func": the function which will perform the
+                initialization of the population (default function:
+                init_ga_default).
+              </para>
             </listitem>
 
             <listitem>
-              <para>'crossover_func': the function which will perform the
-              crossover between two individuals (default function:
-              crossover_ga_default).</para>
+              <para>
+                "crossover_func": the function which will perform the
+                crossover between two individuals (default function:
+                crossover_ga_default).
+              </para>
             </listitem>
 
             <listitem>
-              <para>'mutation_func': the function which will perform the
-              mutation of one individual (default function:
-              mutation_ga_default).</para>
+              <para>
+                "mutation_func": the function which will perform the
+                mutation of one individual (default function:
+                mutation_ga_default).
+              </para>
             </listitem>
 
             <listitem>
-              <para>'selection_func': the function whcih will perform the
-              selection of individuals at the end of a generation (default
-              function: selection_ga_elitist).</para>
+              <para>
+                "selection_func": the function whcih will perform the
+                selection of individuals at the end of a generation (default
+                function: selection_ga_elitist).
+              </para>
             </listitem>
 
             <listitem>
-              <para>'nb_couples': the number of couples which will be selected
-              so as to perform the crossover and mutation (default value:
-              100).</para>
+              <para>
+                "nb_couples": the number of couples which will be selected
+                so as to perform the crossover and mutation (default value:
+                100).
+              </para>
             </listitem>
 
             <listitem>
-              <para>'pressure': the value the efficiency of the worst
-              individual (default value: 0.05).</para>
+              <para>
+                "pressure": the value the efficiency of the worst
+                individual (default value: 0.05).
+              </para>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -153,8 +175,10 @@
         <term>fobj_pop_opt</term>
 
         <listitem>
-          <para>the set of objective function values associated to pop_opt
-          (optional).</para>
+          <para>
+            the set of objective function values associated to pop_opt
+            (optional).
+          </para>
         </listitem>
       </varlistentry>
 
@@ -170,8 +194,10 @@
         <term>fobj_pop_init</term>
 
         <listitem>
-          <para>the set of objective function values associated to pop_init
-          (optional).</para>
+          <para>
+            the set of objective function values associated to pop_init
+            (optional).
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -180,18 +206,48 @@
   <refsection>
     <title>Description</title>
 
-    <itemizedlist>
-      <listitem>
-        <para>This function implements the classical genetic algorithm.</para>
-      </listitem>
-    </itemizedlist>
+    <para>
+      This function implements the classical genetic algorithm.
+    </para>
+
+    <para>
+      A great flexibility is authorized in customizing the behaviour of the
+      <literal>optim_ga</literal> function.
+      This flexibility is provided by the various functions which
+      can be set in the <literal>param</literal> variable.
+      In order to analyze the header of these functions (i.e.
+      the input and output arguments), we may read the help page
+      corresponding to the default function.
+      For example, in order to understand what are the input and output arguments of the
+      "codage_func" function, we may read the page of the <literal>coding_identity</literal> function.
+    </para>
+
+    <para>
+      See in the Demonstrations for more examples for this function.
+    </para>
+
   </refsection>
 
   <refsection>
     <title>Examples</title>
+    
+    <para>
+    The following session presents the simplest possible example.
+    We minimize a quadratic function in dimension 3.
+    By default, all the parameters are taken in the interval 
+    [0,1]^3.
+    The "dimension" field is passed to the function which computes the 
+    initial population, which is <literal>init_ga_default</literal> 
+    function by default.
+    In the case where the "dimension" field is not customized,
+    the default value is used, which is equal to 2.
+    </para>
 
-    <programlisting role="example"><![CDATA[ 
-deff('y=f(x)','y = sum(x.^2)');
+    <programlisting role="example">
+      <![CDATA[ 
+function y=f(x)
+  y = sum(x.^2)
+endfunction
 
 PopSize     = 100;
 Proba_cross = 0.7;
@@ -199,69 +255,223 @@ Proba_mut   = 0.1;
 NbGen       = 10;
 NbCouples   = 110;
 Log         = %T;
-nb_disp     = 10; // Nb point to display from the optimal population
+
+ga_params = init_param();
+// Parameters to control the initial population.
+ga_params = add_param(ga_params,"dimension",3);
+
+[pop_opt, fobj_pop_opt] = ..
+  optim_ga(f, PopSize, NbGen, Proba_mut, Proba_cross, Log, ga_params);
+ ]]>
+    </programlisting>
+
+    <para>
+    Once the algorithm done, we can analyze the results.
+    In the following script, we compute some basic statistics about the
+    optimum population and get the best and the worst points.
+    </para>
+
+    <programlisting role="example">
+      <![CDATA[ 
+// Display basic statistics
+// min, mean and max function values of the population.
+disp([min(fobj_pop_opt) mean(fobj_pop_opt) max(fobj_pop_opt)])
+// Get the best x (i.e. the one which achieves the minimum function value)
+[fmin ,k] = min(fobj_pop_opt)
+xmin = pop_opt(k)
+// Get the worst x
+[fmax ,k] = max(fobj_pop_opt)
+xmax = pop_opt(k)
+ ]]>
+    </programlisting>
+
+    <para>
+    In the following example, we customize all the options 
+    in order to show all the features of the algorithm.
+    </para>
+
+    <programlisting role="example">
+      <![CDATA[ 
+function y=f(x)
+  y = sum(x.^2)
+endfunction
+
+PopSize     = 100;
+Proba_cross = 0.7;
+Proba_mut   = 0.1;
+NbGen       = 10;
+NbCouples   = 110;
+Log         = %T;
 pressure    = 0.05;
 
 ga_params = init_param();
 // Parameters to adapt to the shape of the optimization problem
-ga_params = add_param(ga_params,'minbound',[-2; -2]);
-ga_params = add_param(ga_params,'maxbound',[2; 2]);
-ga_params = add_param(ga_params,'dimension',2);
-ga_params = add_param(ga_params,'beta',0);
-ga_params = add_param(ga_params,'delta',0.1);
-// Parameters to fine tune the Genetic algorithm. All these parameters are optional for continuous optimization
+ga_params = add_param(ga_params,"minbound",[-2; -2]);
+ga_params = add_param(ga_params,"maxbound",[2; 2]);
+ga_params = add_param(ga_params,"dimension",2);
+ga_params = add_param(ga_params,"beta",0);
+ga_params = add_param(ga_params,"delta",0.1);
+// Parameters to fine tune the Genetic algorithm. 
+// All these parameters are optional for continuous optimization
 // If you need to adapt the GA to a special problem, you 
-ga_params = add_param(ga_params,'init_func',init_ga_default);
-ga_params = add_param(ga_params,'crossover_func',crossover_ga_default);
-ga_params = add_param(ga_params,'mutation_func',mutation_ga_default);
-ga_params = add_param(ga_params,'codage_func',codage_ga_identity);
-ga_params = add_param(ga_params,'selection_func',selection_ga_elitist);
-//ga_params = add_param(ga_params,'selection_func',selection_ga_random);
-ga_params = add_param(ga_params,'nb_couples',NbCouples);
-ga_params = add_param(ga_params,'pressure',pressure);
+ga_params = add_param(ga_params,"init_func",init_ga_default);
+ga_params = add_param(ga_params,"crossover_func",crossover_ga_default);
+ga_params = add_param(ga_params,"mutation_func",mutation_ga_default);
+ga_params = add_param(ga_params,"codage_func",coding_ga_identity);
+ga_params = add_param(ga_params,"selection_func",selection_ga_elitist);
+//ga_params = add_param(ga_params,"selection_func",selection_ga_random);
+ga_params = add_param(ga_params,"nb_couples",NbCouples);
+ga_params = add_param(ga_params,"pressure",pressure);
 
-Min = get_param(ga_params,'minbound');
-Max = get_param(ga_params,'maxbound');
-x0  = (Max - Min) .* rand(size(Min,1),size(Min,2)) + Min;
-
-[pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_ga(f, PopSize, NbGen, Proba_mut, Proba_cross, Log, ga_params);
+[pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = ..
+  optim_ga(f, PopSize, NbGen, Proba_mut, Proba_cross, Log, ga_params);
  ]]>
-  </programlisting>
+    </programlisting>
+
+    <para>
+    In the following example, we customize the init function, 
+    which computes the initial population.
+    In the <literal>myinitga</literal> function, we use the grand function 
+    (instead of the default rand used in
+    init_ga_default).
+    We could use any other type of population generator, including, 
+    for example, a low discrepancy sequence such as the Halton or Sobol 
+    sequence.
+    </para>
+
+
+    <programlisting role="example">
+      <![CDATA[ 
+function y=f(x)
+  y = sum(x.^2)
+endfunction
+
+function Pop_init = myinitga ( popsize , param )
+  // This message is to be displayed in the console
+  // for demonstration purpose only : 
+  // remove it in a real application!
+  disp("Initializing the Population with grand")
+  // We deal with some parameters to take into account
+  // the boundary of the domain and the neighborhood size
+  [Dim,err]       = get_param(param,"dimension",2)
+  [MinBounds,err] = get_param(param,"minbound",-2*ones(1,Dim))
+  [MaxBounds,err] = get_param(param,"maxbound",2*ones(1,Dim))
+  
+  // Pop_init must be a list()
+  Pop_init = list()
+  nr = size(MaxBounds,1)
+  nc = size(MaxBounds,2)
+  for i=1:popsize
+    u = grand(nr,nc,"def")
+    Pop_init(i) = (MaxBounds - MinBounds).*u + MinBounds
+  end
+endfunction
+
+PopSize     = 100;
+Proba_cross = 0.7;
+Proba_mut   = 0.1;
+NbGen       = 10;
+NbCouples   = 110;
+Log         = %T;
+
+ga_params = init_param();
+// Parameters to adapt to the shape of the optimization problem
+ga_params = add_param(ga_params,"minbound",[-2; -2]);
+ga_params = add_param(ga_params,"maxbound",[2; 2]);
+ga_params = add_param(ga_params,"dimension",2);
+ga_params = add_param(ga_params,"init_func",myinitga);
+
+[pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = ..
+  optim_ga(f, PopSize, NbGen, Proba_mut, Proba_cross, Log, ga_params);
+ ]]>
+    </programlisting>
+
+  </refsection>
+
+
+  <refsection>
+    <title>Extra parameters for the function</title>
+    
+    <para>
+    In some cases, the objective function needs additionnal parameters
+    in order to be evaluated.
+    In this case, we can pass a list to the <literal>optim_ga</literal> 
+    function, where the first element of the list is the function and the 
+    remaining elements are the extra parameters.
+    </para>
+
+    <para>
+    This is done in the following script, where the function <literal>f</literal>
+    needs the two extra parameters <literal>a1</literal> and <literal>a2</literal>.
+    This is why we define the list <literal>myobjfun</literal> and 
+    pass it to the <literal>optim_ga</literal> solver.
+    </para>
+
+    <programlisting role="example">
+      <![CDATA[ 
+function y = f ( x , a1 , a2 )
+  y = a1*sum(x.^2) + a2
+endfunction
+
+PopSize     = 100;
+Proba_cross = 0.7;
+Proba_mut   = 0.1;
+NbGen       = 10;
+NbCouples   = 110;
+Log         = %T;
+
+ga_params = init_param();
+// Parameters to control the initial population.
+ga_params = add_param(ga_params,"dimension",3);
+
+// Pass the extra parameters to the objective function
+a1 = 12;
+a2 = 7;
+myobjfun = list(f,a1,a2);
+
+// Optimize !
+[pop_opt, fobj_pop_opt] = ..
+  optim_ga(myobjfun, PopSize, NbGen, Proba_mut, Proba_cross, Log, ga_params);
+ ]]>
+    </programlisting>
+
   </refsection>
 
   <refsection>
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="optim_moga"> optim_moga </link></member>
+      <member>
+        <link linkend="optim_moga"> optim_moga </link>
+      </member>
 
-      <member><link linkend="optim_nsga"> optim_nsga </link></member>
+      <member>
+        <link linkend="optim_nsga"> optim_nsga </link>
+      </member>
 
-      <member><link linkend="optim_nsga2"> optim_nsga2 </link></member>
+      <member>
+        <link linkend="optim_nsga2"> optim_nsga2 </link>
+      </member>
     </simplelist>
   </refsection>
 
   <refsection>
     <title>References</title>
 
-    <bibliomixed>
-      <bibliomset relation="book"><surname>Michalewicz</surname>,
-      <firstname>Zbigniew</firstname><title /> Genetic Algorithms + Data
-      Structures = Evolution Programs</bibliomset>
-    </bibliomixed>
+    <itemizedlist>
+      <listitem>
+        <para>
+          Michalewicz Zbigniew "Genetic Algorithms + Data Structures = Evolution Programs"
+        </para>
+      </listitem>
+    </itemizedlist>
   </refsection>
 
   <refsection>
     <title>Authors</title>
-
-    <variablelist>
-      <varlistentry>
-        <term>Yann COLLETTE</term>
-
-        <listitem>
-          <para>ycollet@freesurf.fr</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
+    <para>2008, Yann COLLETTE, ycollet@freesurf.fr</para>
+    <para>2010 - DIGITEO - Michael Baudin (updated this help page)</para>
   </refsection>
+
 </refentry>
+

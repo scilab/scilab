@@ -13,6 +13,14 @@
 #define __DYNAMIC_GATEWAYS_H__
 
 /**
+* special_functions gateway
+* special_functions is loaded dynamically at runtime
+* load gw_special_functions in SCI/modules/special_functions/sci_gateway/gw_special_functions.c
+*/
+int gw_dynamic_special_functions(void);
+
+
+/**
 * ui_data gateway
 * ui_data is loaded dynamically at runtime
 * load gw_ui_data in SCI/modules/ui_data/sci_gateway/gw_ui_data.c

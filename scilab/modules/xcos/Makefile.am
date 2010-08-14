@@ -154,7 +154,6 @@ images/blocks/PerteDP.svg \
 images/blocks/PMOS.svg \
 images/blocks/PNP.svg \
 images/blocks/PotentialSensor.svg \
-images/blocks/PROD_f.svg \
 images/blocks/PRODUCT.svg \
 images/blocks/PuitP.svg \
 images/blocks/QUANT_f.svg \
@@ -164,7 +163,6 @@ images/blocks/SampleCLK.svg \
 images/blocks/SATURATION.svg \
 images/blocks/SourceP.svg \
 images/blocks/STEP_FUNCTION.svg \
-images/blocks/SUM_f.svg \
 images/blocks/SUM.svg \
 images/blocks/SUPER.svg \
 images/blocks/SWITCH.svg \

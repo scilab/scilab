@@ -15,6 +15,8 @@ package org.scilab.modules.xcos.io.codec;
 
 import java.util.Map;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.io.XcosObjectCodec;
@@ -43,7 +45,8 @@ import com.mxgraph.io.mxObjectCodec;
 // CSOFF: ClassDataAbstractionCoupling
 public class BasicPortCodec extends XcosObjectCodec {
 
-    private static final String DATA_TYPE = "dataType";
+	private static final Log LOG = LogFactory.getLog(BasicPortCodec.class);
+	private static final String DATA_TYPE = "dataType";
     private static final String[] IGNORED_FIELDS = new String[] {DATA_TYPE};
 
 	/**
@@ -101,6 +104,11 @@ public class BasicPortCodec extends XcosObjectCodec {
 	 */
 	@Override
     public Object afterDecode(mxCodec dec, Node node, Object obj) {
+		if (!(obj instanceof BasicPort)) {
+			LOG.error("Unable to decode " + obj);
+			return obj;
+		}
+		
 	String attr = ((Element) node).getAttribute(DATA_TYPE);
 
 	if (attr == null || attr.equals("")) {
@@ -159,8 +167,17 @@ public class BasicPortCodec extends XcosObjectCodec {
 			rotation = 0;
 		}
 		
-		flipped = Boolean.parseBoolean(map.get(XcosConstants.STYLE_FLIP));
-		mirrored = Boolean.parseBoolean(map.get(XcosConstants.STYLE_MIRROR));
+		StyleMap parentBlockMap = new StyleMap(obj.getParent().getStyle());
+		flipped = Boolean.parseBoolean(parentBlockMap.get(XcosConstants.STYLE_FLIP));
+		mirrored = Boolean.parseBoolean(parentBlockMap.get(XcosConstants.STYLE_MIRROR));
+		
+		/*
+		 * Protect against the folowing cast.
+		 */
+		if (!(obj.getParent() instanceof BasicBlock)) {
+			LOG.error("Wrong hierarchy, diagram may be corrupted");
+			return;
+		}
 		
 		final int baseAngle = orientation.getRelativeAngle(((BasicBlock) obj
 				.getParent()).getAngle(), obj.getClass(), flipped, mirrored);

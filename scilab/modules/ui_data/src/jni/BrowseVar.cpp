@@ -232,7 +232,7 @@ curEnv->ExceptionDescribe() ;
 
 }
 
-void BrowseVar::openVariableBrowser (JavaVM * jvm_, char ** columnNames, int columnNamesSize, char ** variableNames, int variableNamesSize, int* variableBytes, int variableBytesSize, int* variableTypes, int variableTypesSize, char ** variableStandard, int variableStandardSize){
+void BrowseVar::openVariableBrowser (JavaVM * jvm_, char ** columnNames, int columnNamesSize, char ** variableNames, int variableNamesSize, int* variableBytes, int variableBytesSize, int* variableTypes, int variableTypesSize, char ** variableVisibility, int variableVisibilitySize){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
@@ -305,34 +305,34 @@ curEnv->SetIntArrayRegion( variableTypes_, 0, variableTypesSize, (jint*)(variabl
 
 
 // create java array of strings.
-jobjectArray variableStandard_ = curEnv->NewObjectArray( variableStandardSize, stringArrayClass, NULL);
-if (variableStandard_ == NULL)
+jobjectArray variableVisibility_ = curEnv->NewObjectArray( variableVisibilitySize, stringArrayClass, NULL);
+if (variableVisibility_ == NULL)
 {
 std::cerr << "Could not allocate Java string array, memory full." << std::endl;
 exit(EXIT_FAILURE);
 }
 
 // convert each char * to java strings and fill the java array.
-for ( int i = 0; i < variableStandardSize; i++)
+for ( int i = 0; i < variableVisibilitySize; i++)
 {
-jstring TempString = curEnv->NewStringUTF( variableStandard[i] );
+jstring TempString = curEnv->NewStringUTF( variableVisibility[i] );
 if (TempString == NULL)
 {
 std::cerr << "Could not convert C string to Java UTF string, memory full." << std::endl;
 exit(EXIT_FAILURE);
 }
 
-curEnv->SetObjectArrayElement( variableStandard_, i, TempString);
+curEnv->SetObjectArrayElement( variableVisibility_, i, TempString);
 
 // avoid keeping reference on to many strings
 curEnv->DeleteLocalRef(TempString);
 }
-                         curEnv->CallStaticVoidMethod(cls, voidopenVariableBrowserjobjectArray_jobjectArray_jobjectArray_jobjectArray_jobjectArray_ID ,columnNames_, variableNames_, variableBytes_, variableTypes_, variableStandard_);curEnv->DeleteLocalRef(stringArrayClass);
+                         curEnv->CallStaticVoidMethod(cls, voidopenVariableBrowserjobjectArray_jobjectArray_jobjectArray_jobjectArray_jobjectArray_ID ,columnNames_, variableNames_, variableBytes_, variableTypes_, variableVisibility_);curEnv->DeleteLocalRef(stringArrayClass);
 curEnv->DeleteLocalRef(columnNames_);
 curEnv->DeleteLocalRef(variableNames_);
 curEnv->DeleteLocalRef(variableBytes_);
 curEnv->DeleteLocalRef(variableTypes_);
-curEnv->DeleteLocalRef(variableStandard_);
+curEnv->DeleteLocalRef(variableVisibility_);
 if (curEnv->ExceptionCheck()) {
 curEnv->ExceptionDescribe() ;
 }

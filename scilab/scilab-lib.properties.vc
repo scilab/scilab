@@ -18,9 +18,9 @@ jrosetta-API.jar=${thirdparty.dir}/jrosetta-API.jar
 
 jrosetta-engine.jar=${thirdparty.dir}/jrosetta-engine.jar
 
-jlatexmath.jar=${thirdparty.dir}/jlatexmath-0.9.1.jar
+jlatexmath.jar=${thirdparty.dir}/jlatexmath-0.9.2.jar
 
-jlatexmath-fop.jar=${thirdparty.dir}/jlatexmath-fop-0.9.1.jar
+jlatexmath-fop.jar=${thirdparty.dir}/jlatexmath-fop-0.9.2.jar
 
 checkstyle.jar=${thirdparty.dir}/checkstyle/checkstyle-all-4.3.jar
 
@@ -89,3 +89,5 @@ library.ui_data.name=org.scilab.modules.ui_data.jar
 library.graph.dir=${modules.dir}/graph/${build.jar.dir}/
 library.graph.name=org.scilab.modules.graph.jar
 
+library.history_browser.dir=${modules.dir}/history_browser/${build.jar.dir}/
+library.history_browser.name=org.scilab.modules.history_browser.jar

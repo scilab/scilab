@@ -17,7 +17,7 @@
 /* desc : function to modify in Scilab the log_flags field of             */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
-
+#include <string.h>
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"

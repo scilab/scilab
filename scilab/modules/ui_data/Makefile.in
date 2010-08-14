@@ -115,7 +115,8 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciui_data_la_etcdir)" \
 	"$(DESTDIR)$(libsciui_data_la_rootdir)" \
-	"$(DESTDIR)$(libsciui_data_la_sci_gatewaydir)"
+	"$(DESTDIR)$(libsciui_data_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libsciui_data_la_iconsdir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libsciui_data_disable_la_LIBADD =
 am__objects_1 = libsciui_data_disable_la-noui_data.lo
@@ -171,7 +172,8 @@ SOURCES = $(libsciui_data_disable_la_SOURCES) \
 DIST_SOURCES = $(libsciui_data_disable_la_SOURCES) \
 	$(libsciui_data_la_SOURCES)
 DATA = $(libsciui_data_la_etc_DATA) $(libsciui_data_la_root_DATA) \
-	$(libsciui_data_la_sci_gateway_DATA)
+	$(libsciui_data_la_sci_gateway_DATA) \
+	$(nobase_libsciui_data_la_icons_DATA)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -430,7 +432,9 @@ libsciui_data_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 #### ui_data : init scripts ####
 libsciui_data_la_etcdir = $(mydatadir)/etc
 libsciui_data_la_etc_DATA = etc/ui_data.quit \
-				etc/ui_data.start
+				etc/ui_data.start \
+				etc/variablebrowser_menubar.xml \
+				etc/variableeditor_menubar.xml
 
 
 # Where all the Scilab stuff is installed (macros, help, ...)
@@ -552,6 +556,21 @@ $(top_builddir)/modules/output_stream/libscioutput_stream.la
 #### ui_data : gateway declaration ####
 libsciui_data_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciui_data_la_sci_gateway_DATA = sci_gateway/ui_data_gateway.xml
+
+#### ui_data : icons files ####
+libsciui_data_la_iconsdir = $(mydatadir)/
+nobase_libsciui_data_la_icons_DATA = images/icons/tp00.gif \
+images/icons/tp01.gif \
+images/icons/tp02.gif \
+images/icons/tp04.gif \
+images/icons/tp05.gif \
+images/icons/tp06.gif \
+images/icons/tp08.gif \
+images/icons/tp10.gif \
+images/icons/tp15.gif \
+images/icons/tp16.gif \
+images/icons/tp17.gif
+
 @GUI_TRUE@USEANT = 1
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
@@ -794,6 +813,29 @@ uninstall-libsciui_data_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libsciui_data_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libsciui_data_la_sci_gatewaydir)" && rm -f $$files
+install-nobase_libsciui_data_la_iconsDATA: $(nobase_libsciui_data_la_icons_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libsciui_data_la_iconsdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciui_data_la_iconsdir)"
+	@list='$(nobase_libsciui_data_la_icons_DATA)'; test -n "$(libsciui_data_la_iconsdir)" || list=; \
+	$(am__nobase_list) | while read dir files; do \
+	  xfiles=; for file in $$files; do \
+	    if test -f "$$file"; then xfiles="$$xfiles $$file"; \
+	    else xfiles="$$xfiles $(srcdir)/$$file"; fi; done; \
+	  test -z "$$xfiles" || { \
+	    test "x$$dir" = x. || { \
+	      echo "$(MKDIR_P) '$(DESTDIR)$(libsciui_data_la_iconsdir)/$$dir'"; \
+	      $(MKDIR_P) "$(DESTDIR)$(libsciui_data_la_iconsdir)/$$dir"; }; \
+	    echo " $(INSTALL_DATA) $$xfiles '$(DESTDIR)$(libsciui_data_la_iconsdir)/$$dir'"; \
+	    $(INSTALL_DATA) $$xfiles "$(DESTDIR)$(libsciui_data_la_iconsdir)/$$dir" || exit $$?; }; \
+	done
+
+uninstall-nobase_libsciui_data_la_iconsDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(nobase_libsciui_data_la_icons_DATA)'; test -n "$(libsciui_data_la_iconsdir)" || list=; \
+	$(am__nobase_strip_setup); files=`$(am__nobase_strip)`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(libsciui_data_la_iconsdir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(libsciui_data_la_iconsdir)" && rm -f $$files
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -883,7 +925,7 @@ check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciui_data_la_etcdir)" "$(DESTDIR)$(libsciui_data_la_rootdir)" "$(DESTDIR)$(libsciui_data_la_sci_gatewaydir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciui_data_la_etcdir)" "$(DESTDIR)$(libsciui_data_la_rootdir)" "$(DESTDIR)$(libsciui_data_la_sci_gatewaydir)" "$(DESTDIR)$(libsciui_data_la_iconsdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -938,7 +980,8 @@ info-am:
 
 install-data-am: install-data-local install-libsciui_data_la_etcDATA \
 	install-libsciui_data_la_rootDATA \
-	install-libsciui_data_la_sci_gatewayDATA
+	install-libsciui_data_la_sci_gatewayDATA \
+	install-nobase_libsciui_data_la_iconsDATA
 
 install-dvi: install-dvi-am
 
@@ -987,6 +1030,7 @@ ps-am:
 uninstall-am: uninstall-libsciui_data_la_etcDATA \
 	uninstall-libsciui_data_la_rootDATA \
 	uninstall-libsciui_data_la_sci_gatewayDATA \
+	uninstall-nobase_libsciui_data_la_iconsDATA \
 	uninstall-pkglibLTLIBRARIES
 
 .MAKE: all check check-am install install-am install-strip
@@ -1003,14 +1047,16 @@ uninstall-am: uninstall-libsciui_data_la_etcDATA \
 	install-libsciui_data_la_etcDATA \
 	install-libsciui_data_la_rootDATA \
 	install-libsciui_data_la_sci_gatewayDATA install-man \
-	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
-	install-ps install-ps-am install-strip installcheck \
-	installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
-	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	tags uninstall uninstall-am uninstall-libsciui_data_la_etcDATA \
+	install-nobase_libsciui_data_la_iconsDATA install-pdf \
+	install-pdf-am install-pkglibLTLIBRARIES install-ps \
+	install-ps-am install-strip installcheck installcheck-am \
+	installdirs maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-compile mostlyclean-generic \
+	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
+	uninstall-am uninstall-libsciui_data_la_etcDATA \
 	uninstall-libsciui_data_la_rootDATA \
 	uninstall-libsciui_data_la_sci_gatewayDATA \
+	uninstall-nobase_libsciui_data_la_iconsDATA \
 	uninstall-pkglibLTLIBRARIES
 
 

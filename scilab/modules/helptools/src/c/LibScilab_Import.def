@@ -4,15 +4,15 @@ LIBRARY    LibScilab.dll
 EXPORTS
 
 ; core
-getSCIpath
-checkrhs_
-checklhs_ 
-vstk_
-gettype_
-getrhsvar_ 
-stack_
-intersci_
-putlhsvar_
-com_
-getScilabMode
 callFunctionFromGateway
+getScilabMode
+com_
+putlhsvar_
+intersci_
+stack_
+getrhsvar_
+gettype_
+vstk_
+checklhs_
+checkrhs_
+getSCIpath

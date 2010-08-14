@@ -28,7 +28,7 @@ public class%}
    * Constructor. Should not be called
    */
   protected GL2PSWrappingJNI() {
-	throw new UnsupportedOperationException();
+    throw new UnsupportedOperationException();
   }";
 
 /* static load of library */
@@ -37,11 +37,13 @@ public class%}
     try {
         System.loadLibrary("scigraphic_export");
     } catch (SecurityException e) {
-		System.err.println("A security manager exists and does not allow the loading of the specified dynamic library :");
-		e.printStackTrace(System.err);
-	} catch (UnsatisfiedLinkError e)	{
-		System.err.println("The native library scigraphic_export does not exist or cannot be found.");
-		e.printStackTrace(System.err);
+        System.err.println("A security manager exists and does not allow the loading of the specified dynamic library.");
+        System.err.println(e.getLocalizedMessage());
+        e.printStackTrace(System.err);
+    } catch (UnsatisfiedLinkError e)    {
+        System.err.println("The native library scigraphic_export does not exist or cannot be found.");
+        System.err.println(e.getLocalizedMessage());
+        e.printStackTrace(System.err);
     }
   }
 %}
@@ -61,17 +63,17 @@ public class";
   * Constructor. Should not be called.
   */
  protected GL2PSWrapping() {
-	throw new UnsupportedOperationException();
+    throw new UnsupportedOperationException();
  }";
  
 /* JavaDoc */
 %javamethodmodifiers sci_gl2psBeginPage(const char *title, const char *producer, 
-												   int viewport[4], int format, int sort, 
-												   int options, int colormode, 
-												   int colorsize, float colormap_r[],
-												   float colormap_g[], float colormap_b[], float colormap_a[], 
-												   int nr, int ng, int nb, int buffersize, 
-												   const char *filename) "
+                                                   int viewport[4], int format, int sort, 
+                                                   int options, int colormode, 
+                                                   int colorsize, float colormap_r[],
+                                                   float colormap_g[], float colormap_b[], float colormap_a[], 
+                                                   int nr, int ng, int nb, int buffersize, 
+                                                   const char *filename) "
  /**
   * Begin page
   * @param title of the page
@@ -99,7 +101,7 @@ int sci_gl2psBeginPage(const char *title, const char *producer,
                                   int options, int colormode,
                                   int colorsize, float colormap_r[],
                                   float colormap_g[], float colormap_b[],
-                                  float colormap_a[],								  
+                                  float colormap_a[],                                  
                                   int nr, int ng, int nb, int buffersize,
                                   const char *filename);
 
@@ -181,7 +183,7 @@ int sci_gl2psTextOpt(const char *str, const char *fontname,
   * @return GL2PSWrappingJNI.sci_gl2psSpecial
   */
 public";
-int sci_gl2psSpecial(int format, const char *str);					 
+int sci_gl2psSpecial(int format, const char *str);                     
 
 
 /* JavaDoc */

@@ -18,10 +18,9 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JTree;
 import javax.swing.SwingUtilities;
-import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
@@ -47,7 +46,8 @@ public class PaletteManagerMouseListener implements MouseListener {
 	 * @param e Not used
 	 * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
 	 */
-	public void mouseClicked(MouseEvent e) {
+	@Override
+	public void mouseClicked(final MouseEvent e) {
 		// Right click
 		if ((e.getClickCount() == 1 && SwingUtilities.isRightMouseButton(e))
 				|| e.isPopupTrigger() || XcosMessages.isMacOsPopupTrigger(e)) {
@@ -58,13 +58,13 @@ public class PaletteManagerMouseListener implements MouseListener {
 					.getY());
 			paletteTree.setSelectionPath(path);
 
-			ContextMenu menu = ScilabContextMenu.createContextMenu();
+			final ContextMenu menu = ScilabContextMenu.createContextMenu();
 
-			MenuItem create = ScilabMenuItem.createMenuItem();
+			final MenuItem create = ScilabMenuItem.createMenuItem();
 			setupCreateOrAdd(paletteTree, path, create);
 			menu.add(create);
 			
-			MenuItem remove = ScilabMenuItem.createMenuItem();
+			final MenuItem remove = ScilabMenuItem.createMenuItem();
 			setupRemove(paletteTree, path, remove);
 			menu.add(remove);
 			
@@ -83,7 +83,7 @@ public class PaletteManagerMouseListener implements MouseListener {
 	 * @param create the menu item
 	 */
 	private void setupCreateOrAdd(final JTree paletteTree, final TreePath path,
-			MenuItem create) {
+			final MenuItem create) {
 		PaletteNode node;
 		if (path != null) {
 			node = (PaletteNode) (path.getLastPathComponent());
@@ -104,9 +104,7 @@ public class PaletteManagerMouseListener implements MouseListener {
 			@Override
 			public void callBack() {
 				Category nonModifiedRoot = currentNode.getParent();
-				TreePath newPath = null;
-				
-				Category c = new Category();
+				final Category c = new Category();
 				c.setEnable(true);
 				c.setName(XcosMessages.DEFAULT_CATEGORY_NAME);
 				
@@ -114,7 +112,7 @@ public class PaletteManagerMouseListener implements MouseListener {
 					((Category) currentNode).getNode().add(c);
 					c.setParent((Category) currentNode);
 					if (path != null) {
-						newPath = path.pathByAddingChild(c);
+						path.pathByAddingChild(c);
 					} else {
 						nonModifiedRoot = (Category) currentNode;
 					}
@@ -124,15 +122,10 @@ public class PaletteManagerMouseListener implements MouseListener {
 					c.getNode().add(currentNode);
 					currentNode.setParent(c);
 					c.setParent(nonModifiedRoot);
-					newPath = path.getParentPath().pathByAddingChild(c);
+					path.getParentPath().pathByAddingChild(c);
 				}
 				
-				((DefaultTreeModel) paletteTree.getModel())
-						.reload(nonModifiedRoot);
-				paletteTree.setSelectionPath(newPath);
-				paletteTree.expandPath(newPath);
-				
-				PaletteManager.getInstance().saveConfig();
+				PaletteNode.refreshView(c);
 			}
 		});
 
@@ -146,7 +139,7 @@ public class PaletteManagerMouseListener implements MouseListener {
 	 * @param remove the menu item
 	 */
 	private void setupRemove(final JTree paletteTree, final TreePath path,
-			MenuItem remove) {
+			final MenuItem remove) {
 		remove.setText(XcosMessages.REMOVE);
 		remove.setCallback(new CallBack(XcosMessages.REMOVE) {
 			@Override
@@ -155,30 +148,24 @@ public class PaletteManagerMouseListener implements MouseListener {
 					return;
 				}
 				
-				PaletteNode currentNode = (PaletteNode) (path
-						.getLastPathComponent());
-
-				currentNode.getParent().getNode().remove(currentNode);
-				
-				((DefaultTreeModel) paletteTree.getModel())
-						.reload(currentNode.getParent());
-				paletteTree.setSelectionPath(path.getParentPath());
-				paletteTree.expandPath(path.getParentPath());
-				
-				PaletteManager.getInstance().saveConfig();
+				try {
+					final PaletteNode currentNode = (PaletteNode) path.getLastPathComponent();
+					PaletteNode.remove(currentNode);
+				} catch (final Exception exception) {
+					LogFactory.getLog(PaletteManagerMouseListener.class).error(exception);
+				}
 			}
 		});
 
-		final boolean pathNonNull = path != null;
-		final TreeModel model = paletteTree.getModel();
-		final boolean isFirstRow;
-		if (pathNonNull) {
-			isFirstRow = path.getPathCount() <= 2;
-		} else {
-			isFirstRow = false;
+		boolean canBeRemoved = true;
+		try {
+			org.scilab.modules.xcos.palette.model.PaletteNode
+					.checkRemoving((PaletteNode) path.getLastPathComponent());
+		} catch (final Exception exception) {
+			canBeRemoved = false;
 		}
-		final boolean isLastFirstChild = model.getChildCount(model.getRoot()) > 1;
-		remove.setEnabled(pathNonNull && !isFirstRow && !isLastFirstChild);
+		
+		remove.setEnabled(canBeRemoved);
 	}
 	
 	/**
@@ -186,7 +173,8 @@ public class PaletteManagerMouseListener implements MouseListener {
 	 * @param e Not used
 	 * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)
 	 */
-	public void mouseEntered(MouseEvent e) {
+	@Override
+	public void mouseEntered(final MouseEvent e) {
 	}
 
 	/**
@@ -194,7 +182,8 @@ public class PaletteManagerMouseListener implements MouseListener {
 	 * @param e Not used
 	 * @see java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent)
 	 */
-	public void mouseExited(MouseEvent e) {	
+	@Override
+	public void mouseExited(final MouseEvent e) {	
 	}
 
 	/**
@@ -202,7 +191,8 @@ public class PaletteManagerMouseListener implements MouseListener {
 	 * @param e Not used
 	 * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
 	 */
-	public void mousePressed(MouseEvent e) {
+	@Override
+	public void mousePressed(final MouseEvent e) {
 	}
 
 	/**
@@ -210,7 +200,8 @@ public class PaletteManagerMouseListener implements MouseListener {
 	 * @param e Not used
 	 * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
 	 */
-	public void mouseReleased(MouseEvent e) {
+	@Override
+	public void mouseReleased(final MouseEvent e) {
 	}
 
 }

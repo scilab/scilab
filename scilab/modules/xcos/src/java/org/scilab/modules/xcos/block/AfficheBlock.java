@@ -35,7 +35,7 @@ import com.mxgraph.view.mxGraphView;
 public final class AfficheBlock extends BasicBlock {
 
 	/**
-	 * 
+	 * Default refresh rate used on the simulation to update block.
 	 */
 	private static final int DEFAULT_TIMER_RATE = 200;
 
@@ -118,8 +118,8 @@ public final class AfficheBlock extends BasicBlock {
 		}		
 	}
 	
-	private Timer printTimer;  
-	private UpdateValueListener updateAction;
+	private final Timer printTimer;  
+	private final UpdateValueListener updateAction;
 	
 	/** Default constructor */
 	public AfficheBlock() {
@@ -129,16 +129,16 @@ public final class AfficheBlock extends BasicBlock {
 		printTimer = new Timer(DEFAULT_TIMER_RATE, updateAction);
 		printTimer.setRepeats(false);
 	}
-
+	
 	/**
-	 * Constructor with label
-	 * 
-	 * @param value
-	 *            the default value.
+	 * Set the default values
+	 * @see org.scilab.modules.xcos.block.BasicBlock#setDefaultValues()
 	 */
-	protected AfficheBlock(String value) {
-		this();
-		setValue(value);
+	@Override
+	protected void setDefaultValues() {
+		super.setDefaultValues();
+		
+		setValue("0.0");
 	}
 
 	/**

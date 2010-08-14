@@ -29,14 +29,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
 import java.util.Set;
-import java.util.SortedMap;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.TreeMap;
 
+import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
+import javax.swing.JMenu;
 import javax.swing.JRadioButtonMenuItem;
+import javax.swing.KeyStroke;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.EditorKit;
 
+import org.scilab.modules.gui.menu.Menu;
+import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
@@ -44,7 +50,6 @@ import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
-
 
 /**
  * EncodingAction Class
@@ -59,8 +64,12 @@ public class EncodingAction extends DefaultCheckAction {
      */
     private static final long serialVersionUID = -5421313717126859924L;
 
+    private static final String CHECKICON = System.getenv("SCI") + "/modules/gui/images/icons/check-icon.png";
+
     private static Map<String, String> encodings = new HashMap();
     private static Map<String, List<String>> language = new HashMap();
+    private static JRadioButtonMenuItem[] radioTypes;
+    private static Menu[] menuLang;
 
     static {
         encodings.put("ASMO-708", "Arabic");
@@ -100,7 +109,6 @@ public class EncodingAction extends DefaultCheckAction {
         encodings.put("iso-8859-15", "Latin");
         encodings.put("iso-2022-jp", "Japanese");
         encodings.put("csISO2022JP", "Japanese");
-        encodings.put("iso-2022-jp", "Japanese");
         encodings.put("iso-2022-kr", "Korean");
         encodings.put("euc-jp", "Japanese");
         encodings.put("EUC-CN", "Chinese Simplified");
@@ -138,10 +146,81 @@ public class EncodingAction extends DefaultCheckAction {
     }
 
     /**
+     * createEncodingSubMenu
+     * @param label label of the menu
+     * @param editor SciNotes
+     * @param key KeyStroke
+     * @return a Menu
+     */
+    public static Menu createMenu(String label, SciNotes editor, KeyStroke key) {
+        Menu encodingTypeMenu = ScilabMenu.createMenu();
+        encodingTypeMenu.setText(label);
+
+        Map<String, List<String>> languages = getEncodings();
+        Iterator<String> iter = languages.keySet().iterator();
+        int size = 0;
+        while (iter.hasNext()) {
+            size += languages.get(iter.next()).size();
+        }
+
+        if (radioTypes == null) {
+            radioTypes = new JRadioButtonMenuItem[size];
+            menuLang = new Menu[languages.size()];
+        }
+
+        ButtonGroup group = new ButtonGroup();
+
+        iter = languages.keySet().iterator();
+        int psize = 0;
+        int k = 0;
+        while (iter.hasNext()) {
+            String lang = iter.next();
+            List<String> encodingList = languages.get(lang);
+            menuLang[k] = ScilabMenu.createMenu();
+            menuLang[k].setText(lang);
+            encodingTypeMenu.add(menuLang[k]);
+            for (int i = 0; i < encodingList.size(); i++) {
+                radioTypes[psize + i] = (new EncodingAction(encodingList.get(i), editor)).createRadioButtonMenuItem(editor);
+                group.add(radioTypes[psize + i]);
+                ((JMenu) menuLang[k].getAsSimpleMenu()).add(radioTypes[psize + i]);
+
+                if (encodingList.get(i).toUpperCase().equals(Charset.defaultCharset().toString().toUpperCase())) {
+                    radioTypes[psize + i].setSelected(true);
+                }
+            }
+            psize += encodingList.size();
+            k++;
+        }
+
+        return encodingTypeMenu;
+    }
+
+    /**
+     * Update the selected item in the encoding pull down menu of the document.
+     * @param scilabDocument the document for which the encoding menu should
+     * be updated
+     */
+    public static void updateEncodingMenu(ScilabDocument scilabDocument) {
+        if (radioTypes != null) {
+            for (int i = 0; i < radioTypes.length; i++) {
+                if (scilabDocument.getEncoding().equals(radioTypes[i].getText())) {
+                    radioTypes[i].setSelected(true);
+                    updateIcon(scilabDocument.getEncoding());
+                    return;
+                }
+            }
+        }
+    }
+
+    /**
      * getEncodings
      * @return Map : Language -> {enc1, enc2, ...}
      */
     public static Map<String, List<String>> getEncodings() {
+        if (!language.isEmpty()) {
+            return language;
+        }
+
         Set<String> keys = encodings.keySet();
         Iterator<String> iterator = keys.iterator();
         while (iterator.hasNext()) {
@@ -161,6 +240,7 @@ public class EncodingAction extends DefaultCheckAction {
             }
         }
 
+        language = new TreeMap(language);
         return language;
     }
 
@@ -183,7 +263,7 @@ public class EncodingAction extends DefaultCheckAction {
                     break;
                 case NO_OPTION ://No, exit
                     //Back to previous menu checked
-                    getEditor().getSciNotesGUI().updateEncodingMenu(styleDocument);
+                    updateEncodingMenu(styleDocument);
                     return;
                 default:
                     break;
@@ -198,6 +278,9 @@ public class EncodingAction extends DefaultCheckAction {
 
         styleDocument.setEncoding(encoding);
         ConfigSciNotesManager.saveDefaultEncoding(encoding);
+
+        //Update the menu
+        updateIcon(encoding);
 
         // If file associated then reload
         EditorKit editorKit = getEditor().getEditorKit();
@@ -237,6 +320,22 @@ public class EncodingAction extends DefaultCheckAction {
         if (!isSuccess) {
             ScilabModalDialog.show(getEditor(), SciNotesMessages.COULD_NOT_CONVERT_FILE,
                                    SciNotesMessages.SCINOTES_ERROR, IconType.ERROR_ICON);
+        }
+    }
+
+    /**
+     * Add a check-icon near the current used language
+     * @param enc the actual encoding
+     */
+    private static void updateIcon(String enc) {
+        String lang = encodings.get(enc);
+        for (int i = 0; i < menuLang.length; i++) {
+            if (((JMenu) menuLang[i].getAsSimpleMenu()).getIcon() != null) {
+                ((JMenu) menuLang[i].getAsSimpleMenu()).setIcon(null);
+            }
+            if (menuLang[i].getText().equals(lang)) {
+                ((JMenu) menuLang[i].getAsSimpleMenu()).setIcon(new ImageIcon(CHECKICON));
+            }
         }
     }
 }

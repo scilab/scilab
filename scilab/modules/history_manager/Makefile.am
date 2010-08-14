@@ -8,7 +8,6 @@ HISTORY_MANAGER_CPP_SOURCES = src/cpp/CommandLine.cpp \
 src/cpp/HistoryFile.cpp \
 src/cpp/HistoryManager.cpp \
 src/cpp/HistorySearch.cpp
-
 # List of the c files
 HISTORY_MANAGER_C_SOURCES = src/c/getCommentDateSession.c
 
@@ -35,15 +34,11 @@ HISTORY_MANAGER_C_SOURCES += src/jni/HistoryManagement_wrap.c
 
 USEANT=1
 
-GIWS_WRAPPERS = \
-src/jni/CommandHistory.giws.xml
+GIWS_WRAPPERS =
 
 if GIWS
 BUILT_SOURCES=giws
 endif
-
-HISTORY_MANAGER_CPP_SOURCES += src/jni/CommandHistory.cpp \
-src/jni/GiwsException.cpp
 
 endif
 
@@ -60,7 +55,7 @@ libscihistory_manager_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes/ \
 -I$(top_srcdir)/modules/fileio/includes/ \
--I$(top_srcdir)/modules/jvm/includes/
+-I$(top_srcdir)/modules/history_browser/includes/
 
 # Includes need for the compilation
 libscihistory_manager_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
@@ -116,8 +111,6 @@ SWIG_WRAPPERS = src/jni/HistoryManagement.i
 if SWIG
 BUILT_SOURCES = swig
 endif
-
-libscihistory_manager_la_LIBADD = $(top_builddir)/modules/jvm/libscijvm.la
 
 # Provides macros compilation, Java compilation, cleaning
 include $(top_srcdir)/Makefile.incl.am
