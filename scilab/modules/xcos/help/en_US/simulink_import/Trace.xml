@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry version="5.0-subset Scilab" xml:id="trace_simulinkimport"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>Trace the Simulink import</refname>
+
+    <refpurpose>Trace element, allowing user to give feedback about errors
+    encountered during SimulinkImport</refpurpose>
+  </refnamediv>
+
+  <refsection id="Module_xcos">
+    <title>Module</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="xcos">simulinkImport</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_xcos">
+    <title>Description</title>
+
+    <para>Although trying to make Simulink Import as mistakeless as possible
+    there is high possibility of encountering some problems during translation
+    od Simulink Diagram (especially complicated once). In order to give user
+    chance to easily correct badly translated diagrams, Simulink Import gives
+    user an extensive translation trace, and generates simple report
+    containing information about missing compatibility patterns and blocks
+    that translation were not succesfull.</para>
+  </refsection>
+
+  <refsection id="Example_xcos">
+    <title>Example</title>
+
+    <programlisting role="example">[TRACE] TraceElement - Missing compatibility patterns for 2 blocks:
+[TRACE] TraceElement - Saturate
+[TRACE] TraceElement - Math
+[TRACE] TraceElement - Errors encountered when translating  10 blocks
+[TRACE] TraceElement - sqrt(2/3) rpar: NumberFormaException from:sqrt(2/3) with: 2 3
+[TRACE] TraceElement - sqrt(2)/2 rpar: NumberFormaException from:sqrt(2)/2 with: 2  2
+[TRACE] TraceElement - 1/sqrt(6) rpar: NumberFormaException from:1/sqrt(6) with: 1      6
+[TRACE] TraceElement - sqrt(2/3) rpar: NumberFormaException from:sqrt(2/3) with: 2 3
+[TRACE] TraceElement - sqrt(2)/2 rpar: NumberFormaException from:sqrt(2)/2 with: 2  2
+[TRACE] TraceElement - Gain4 rpar: NumberFormaException from:k*Rr with: 
+[TRACE] TraceElement - Gain6 rpar: NumberFormaException from:k with: 
+[TRACE] TraceElement - Gain5 rpar: NumberFormaException from:k*Rr with: 
+[TRACE] TraceElement - Gain1 rpar: NumberFormaException from:k with: 
+[TRACE] TraceElement - pxpsid0 rpar: NumberFormaException from:k*p with: 
+</programlisting>
+  </refsection>
+
+  <refsection id="SeeAlso_xcos">
+    <title>See Also</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="scicosim" />
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>
