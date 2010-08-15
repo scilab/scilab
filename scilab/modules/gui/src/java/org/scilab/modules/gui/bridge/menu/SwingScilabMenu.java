@@ -55,7 +55,7 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
 	 */
 	public SwingScilabMenu() {
 		super();
-		this.setFocusable(true);
+		this.setFocusable(false);
 	}
 	
 	/**

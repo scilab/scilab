@@ -20,6 +20,8 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Iterator;
 
@@ -79,16 +81,16 @@ import org.scilab.modules.gui.utils.Size;
  * @author Marouane BEN JELLOUL
  * @author Jean-Baptiste SILVY
  */
-public class SwingScilabTab extends View implements SimpleTab {
+public class SwingScilabTab extends View implements SimpleTab, FocusListener {
 
     private static final long serialVersionUID = 1L;
 
     private static final int VIEWPORT_SIZE = 4;
-    
+
     private static final String UNDOCK = "undock";
 
     static {
-    	PropertyChangeListenerFactory.addFactory(new BarUpdater.UpdateBarFactory());
+        PropertyChangeListenerFactory.addFactory(new BarUpdater.UpdateBarFactory());
     }
 
     private int parentWindowId;
@@ -110,20 +112,40 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @param name the name of the tab (used to identify it)
      */
     public SwingScilabTab(String name) {
-	super(name, name, name);
+        super(name, name, name);
+        //This button is "overloaded" when we add a callback
+        //this.addAction(DockingConstants.CLOSE_ACTION);
+        // Removed because make JOGL crash when "Unpin"
+        //this.addAction(DockingConstants.PIN_ACTION);
+        this.addAction(DockingConstants.ACTIVE_WINDOW);
 
-	//This button is "overloaded" when we add a callback
-	//this.addAction(DockingConstants.CLOSE_ACTION);
-	// Removed because make JOGL crash when "Unpin"
-	//this.addAction(DockingConstants.PIN_ACTION);
-	this.addAction(DockingConstants.ACTIVE_WINDOW);
+        // no need for an axes
+        contentPane = null;
+        scrolling = null;
 
-	// no need for an axes
-	contentPane = null;
-	scrolling = null;
+        this.setVisible(true);
 
-	this.setVisible(true);
+        getTitlebar().addFocusListener(this);
+        addFocusListener(this);
     }
+
+    /**
+     * @param e the FocusEvent
+     */
+    public void focusGained(FocusEvent e) {
+        if (contentPane != null) {
+            contentPane.requestFocus();
+        } else if (getContentPane() != null) {
+            getContentPane().requestFocus();
+        } else {
+            SwingScilabTab.this.requestFocusInWindow();
+        }
+    }
+
+    /**
+     * @param e the FocusEvent
+     */
+    public void focusLost(FocusEvent e) { }
 
     /**
      * Create a graphic tab used to display a figure with 3D graphics and/or UIcontrols
@@ -131,24 +153,27 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @param figureId id of the displayed figure
      */
     public SwingScilabTab(String name, int figureId) {
-	super(name, name, name);
+        super(name, name, name);
 
-	// This button is "overloaded" when we add a callback
-	//this.addAction(DockingConstants.CLOSE_ACTION);
-	// Removed because make JOGL crash when "Unpin"
-	//this.addAction(DockingConstants.PIN_ACTION);
-	this.addAction(DockingConstants.ACTIVE_WINDOW);
+        // This button is "overloaded" when we add a callback
+        //this.addAction(DockingConstants.CLOSE_ACTION);
+        // Removed because make JOGL crash when "Unpin"
+        //this.addAction(DockingConstants.PIN_ACTION);
+        this.addAction(DockingConstants.ACTIVE_WINDOW);
 
-	// create the panel in which all the uiobjects will lie.
-	contentPane = new SwingScilabAxes(figureId);
+        // create the panel in which all the uiobjects will lie.
+        contentPane = new SwingScilabAxes(figureId);
 
-	// add it inside a JSCrollPane
-	scrolling = new SwingScilabScrollPane(contentPane);
+        // add it inside a JSCrollPane
+        scrolling = new SwingScilabScrollPane(contentPane);
 
-	// put in in the back of the tab
-	setContentPane(scrolling.getAsContainer());
+        // put in in the back of the tab
+        setContentPane(scrolling.getAsContainer());
 
-	this.setVisible(true);
+        this.setVisible(true);
+
+        getTitlebar().addFocusListener(this);
+        addFocusListener(this);
     }
 
     /**
@@ -180,13 +205,13 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @see org.scilab.modules.gui.tab.Tab#setName()
      */
     public void setName(String newTabName) {
-	    setTitle(newTabName, true);
+            setTitle(newTabName, true);
 
-	    getTitlePane().repaint();
-	    if (isActive()) {
-			SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, this)
-					.setName(newTabName);
-	    }
+            getTitlePane().repaint();
+            if (isActive()) {
+                        SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, this)
+                                        .setName(newTabName);
+            }
     }
 
     /**
@@ -195,15 +220,15 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @see org.scilab.modules.gui.tab.Tab#getTitle()
      */
     public String getName() {
-	return this.getTitle();
+        return this.getTitle();
     }
 
     /**
      * Paint immediately this component
      */
     public void paintImmediately() {
-	// paint all
-	paintImmediately(0, 0, getWidth(), getHeight());
+        // paint all
+        paintImmediately(0, 0, getWidth(), getHeight());
     }
 
     /**
@@ -211,23 +236,23 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @see org.scilab.modules.gui.uielement.UIElement#draw()
      */
     public void draw() {
-	if (SwingUtilities.isEventDispatchThread()) {
-	    setVisible(true);
-	    paintImmediately();
-	} else {
-	    try {
-		SwingUtilities.invokeAndWait(new Runnable() {
-		    public void run() {
-			setVisible(true);
-			paintImmediately();
-		    }
-		});
-	    } catch (InterruptedException e) {
-		e.printStackTrace();
-	    } catch (InvocationTargetException e) {
-		e.printStackTrace();
-	    }
-	}
+        if (SwingUtilities.isEventDispatchThread()) {
+            setVisible(true);
+            paintImmediately();
+        } else {
+            try {
+                SwingUtilities.invokeAndWait(new Runnable() {
+                    public void run() {
+                        setVisible(true);
+                        paintImmediately();
+                    }
+                });
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        }
 
     }
 
@@ -237,7 +262,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @see org.scilab.modules.gui.uielement.UIElement#getDims()
      */
     public Size getDims() {
-	return new Size(this.getSize().width, this.getSize().height);
+        return new Size(this.getSize().width, this.getSize().height);
     }
 
     /**
@@ -245,14 +270,14 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @return size of the axes in pixels
      */
     public Size getAxesSize() {
-	return new Size(contentPane.getWidth(), contentPane.getHeight());
+        return new Size(contentPane.getWidth(), contentPane.getHeight());
     }
 
     /**
      * @param newSize new size to set for the axes
      */
     public void setAxesSize(Size newSize) {
-	contentPane.setSize(new Dimension(newSize.getWidth(), newSize.getHeight()));
+        contentPane.setSize(new Dimension(newSize.getWidth(), newSize.getHeight()));
     }
 
     /**
@@ -261,7 +286,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @see org.scilab.modules.gui.uielement.UIElement#getPosition()
      */
     public Position getPosition() {
-	return new Position(this.getX(), this.getY());
+        return new Position(this.getX(), this.getY());
     }
 
     /**
@@ -270,7 +295,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @see org.scilab.modules.gui.uielement.UIElement#setDims(org.scilab.modules.gui.utils.Size)
      */
     public void setDims(Size newSize) {
-	this.setSize(newSize.getWidth(), newSize.getHeight());
+        this.setSize(newSize.getWidth(), newSize.getHeight());
     }
 
     /**
@@ -279,7 +304,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @see org.scilab.modules.gui.uielement.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
      */
     public void setPosition(Position newPosition) {
-	this.setLocation(newPosition.getX(), newPosition.getY());
+        this.setLocation(newPosition.getX(), newPosition.getY());
     }
 
     /**
@@ -288,33 +313,33 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @return index of member in ArrayList
      */
     public int addMember(Canvas member) {
-    	int result;
+        int result;
 
-    	if (SwingScilabCanvasImpl.isGLCanvasEnabled()) {
-    		int[] currentView = getViewingRegion();
-    		final SwingScilabTab thisF = this;
-    		try {
-    			SwingUtilities.invokeAndWait(new Runnable() {
-    				public void run() {
-    					scrolling = new AwtScilabScrollPane(contentPane, thisF);
-    					setContentPane(scrolling.getAsContainer());
-    					revalidate();
+        if (SwingScilabCanvasImpl.isGLCanvasEnabled()) {
+                int[] currentView = getViewingRegion();
+                final SwingScilabTab thisF = this;
+                try {
+                        SwingUtilities.invokeAndWait(new Runnable() {
+                                public void run() {
+                                        scrolling = new AwtScilabScrollPane(contentPane, thisF);
+                                        setContentPane(scrolling.getAsContainer());
+                                        revalidate();
 
-    				}
-    			});
-    		} catch (InterruptedException e) {
-    			e.printStackTrace();
-    		} catch (InvocationTargetException e) {
-    			e.getCause().printStackTrace();
-    		}
-    		// set the canvas after doing every thing
-    		result = contentPane.addMember(member);
-    		// set the same viewport as before
-    		setViewingRegion(currentView[0], currentView[1], currentView[2], currentView[2 + 1]);
-    	} else {
-    		result = contentPane.addMember(member);
-    	}
-    	return result;
+                                }
+                        });
+                } catch (InterruptedException e) {
+                        e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                        e.getCause().printStackTrace();
+                }
+                // set the canvas after doing every thing
+                result = contentPane.addMember(member);
+                // set the same viewport as before
+                setViewingRegion(currentView[0], currentView[1], currentView[2], currentView[2 + 1]);
+        } else {
+                result = contentPane.addMember(member);
+        }
+        return result;
     }
 
     /**
@@ -322,22 +347,22 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @param member canvas to remove
      */
     public void removeMember(Canvas member) {
-    	contentPane.removeMember(member);
-    	if (SwingScilabCanvasImpl.isGLCanvasEnabled()) {
-    		try {
-    			SwingUtilities.invokeAndWait(new Runnable() {
-    				public void run() {
-    					scrolling = new SwingScilabScrollPane(contentPane);
-    					setContentPane(scrolling.getAsContainer());
-    					revalidate();
-    				}
-    			});
-    		} catch (InterruptedException e) {
-    			e.printStackTrace();
-    		} catch (InvocationTargetException e) {
-    			e.getCause().printStackTrace();
-    		}
-    	}
+        contentPane.removeMember(member);
+        if (SwingScilabCanvasImpl.isGLCanvasEnabled()) {
+                try {
+                        SwingUtilities.invokeAndWait(new Runnable() {
+                                public void run() {
+                                        scrolling = new SwingScilabScrollPane(contentPane);
+                                        setContentPane(scrolling.getAsContainer());
+                                        revalidate();
+                                }
+                        });
+                } catch (InterruptedException e) {
+                        e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                        e.getCause().printStackTrace();
+                }
+        }
     }
 
     /**
@@ -346,7 +371,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @return index of member in ArrayList
      */
     public int addMember(Console member) {
-	return this.addMember((SwingScilabConsole) member.getAsSimpleConsole());
+        return this.addMember((SwingScilabConsole) member.getAsSimpleConsole());
     }
 
     /**
@@ -355,9 +380,9 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @return index of member in ArrayList
      */
     private int addMember(SwingScilabConsole member) {
-	// replace the current content pane
-	this.setContentPane(member);
-	return this.getComponentZOrder(member);
+        // replace the current content pane
+        this.setContentPane(member);
+        return this.getComponentZOrder(member);
     }
 
     /**
@@ -366,7 +391,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @return index of member in ArrayList
      */
     public int addMember(HelpBrowser member) {
-	return this.addMember((SwingScilabHelpBrowser) member.getAsSimpleHelpBrowser());
+        return this.addMember((SwingScilabHelpBrowser) member.getAsSimpleHelpBrowser());
     }
 
     /**
@@ -375,9 +400,9 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @return index of member in ArrayList
      */
     private int addMember(SwingScilabHelpBrowser member) {
-	// replace the current content pane
-	this.setContentPane(member);
-	return this.getComponentZOrder(member);
+        // replace the current content pane
+        this.setContentPane(member);
+        return this.getComponentZOrder(member);
     }
 
     /**
@@ -386,7 +411,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @return index of member in ArrayList
      */
     public int addMember(Frame member) {
-	return this.addMember((SwingScilabFrame) member.getAsSimpleFrame());
+        return this.addMember((SwingScilabFrame) member.getAsSimpleFrame());
     }
 
     /**
@@ -395,7 +420,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @return index of member in ArrayList
      */
     private int addMember(SwingScilabFrame member) {
-	return contentPane.addFrame(member);
+        return contentPane.addFrame(member);
     }
 
     /**
@@ -403,7 +428,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @param member the Frame to remove
      */
     public void removeMember(Frame member) {
-	this.removeMember((SwingScilabFrame) member.getAsSimpleFrame());
+        this.removeMember((SwingScilabFrame) member.getAsSimpleFrame());
     }
 
     /**
@@ -411,7 +436,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @param member the Frame to remove
      */
     private void removeMember(SwingScilabFrame member) {
-	contentPane.removeFrame(member);
+        contentPane.removeFrame(member);
     }
 
     /**
@@ -420,7 +445,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @return index of member in ArrayList
      */
     public int addMember(PushButton member) {
-	return this.addMember((SwingScilabPushButton) member.getAsSimplePushButton());
+        return this.addMember((SwingScilabPushButton) member.getAsSimplePushButton());
     }
 
     /**
@@ -429,9 +454,9 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @return index of member in ArrayList
      */
     private int addMember(SwingScilabPushButton member) {
-	int res = contentPane.addWidget(member);
-	repaint();
-	return res;
+        int res = contentPane.addWidget(member);
+        repaint();
+        return res;
     }
 
     /**
@@ -439,7 +464,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @param member the PushButton to remove
      */
     public void removeMember(PushButton member) {
-	this.removeMember((SwingScilabPushButton) member.getAsSimplePushButton());
+        this.removeMember((SwingScilabPushButton) member.getAsSimplePushButton());
     }
 
     /**
@@ -447,7 +472,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @param member the PushButton to remove
      */
     private void removeMember(SwingScilabPushButton member) {
-	contentPane.remove(member);
+        contentPane.remove(member);
     }
 
     /**
@@ -456,7 +481,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @return index of member in ArrayList
      */
     public int addMember(EditBox member) {
-	return this.addMember((SwingScilabEditBox) member.getAsSimpleEditBox());
+        return this.addMember((SwingScilabEditBox) member.getAsSimpleEditBox());
     }
 
     /**
@@ -465,7 +490,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @return index of member in ArrayList
      */
     private int addMember(SwingScilabEditBox member) {
-	return contentPane.addWidget(member);
+        return contentPane.addWidget(member);
     }
 
     /**
@@ -473,7 +498,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @param member the EditBox to remove
      */
     public void removeMember(EditBox member) {
-	this.removeMember((SwingScilabEditBox) member.getAsSimpleEditBox());
+        this.removeMember((SwingScilabEditBox) member.getAsSimpleEditBox());
     }
 
     /**
@@ -481,7 +506,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @param member the EditBox to remove
      */
     private void removeMember(SwingScilabEditBox member) {
-	contentPane.removeWidget(member);
+        contentPane.removeWidget(member);
     }
 
     /**
@@ -490,7 +515,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @return index of member in ArrayList
      */
     public int addMember(Label member) {
-	return this.addMember((SwingScilabLabel) member.getAsSimpleLabel());
+        return this.addMember((SwingScilabLabel) member.getAsSimpleLabel());
     }
 
     /**
@@ -499,7 +524,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @return index of member in ArrayList
      */
     private int addMember(SwingScilabLabel member) {
-	return contentPane.addWidget(member);
+        return contentPane.addWidget(member);
     }
 
     /**
@@ -507,7 +532,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @param member the Label to remove
      */
     public void removeMember(Label member) {
-	this.removeMember((SwingScilabLabel) member.getAsSimpleLabel());
+        this.removeMember((SwingScilabLabel) member.getAsSimpleLabel());
     }
 
     /**
@@ -515,7 +540,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @param member the Label to remove
      */
     private void removeMember(SwingScilabLabel member) {
-	contentPane.removeWidget(member);
+        contentPane.removeWidget(member);
     }
 
     /**
@@ -524,7 +549,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @return index of member in ArrayList
      */
     public int addMember(CheckBox member) {
-	return this.addMember((SwingScilabCheckBox) member.getAsSimpleCheckBox());
+        return this.addMember((SwingScilabCheckBox) member.getAsSimpleCheckBox());
     }
 
     /**
@@ -533,7 +558,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @return index of member in ArrayList
      */
     private int addMember(SwingScilabCheckBox member) {
-	return contentPane.addWidget(member);
+        return contentPane.addWidget(member);
     }
 
     /**
@@ -541,7 +566,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @param member the CheckBox to remove
      */
     public void removeMember(CheckBox member) {
-	this.removeMember((SwingScilabCheckBox) member.getAsSimpleCheckBox());
+        this.removeMember((SwingScilabCheckBox) member.getAsSimpleCheckBox());
     }
 
     /**
@@ -549,7 +574,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @param member the CheckBox to remove
      */
     private void removeMember(SwingScilabCheckBox member) {
-	contentPane.removeWidget(member);
+        contentPane.removeWidget(member);
     }
 
     /**
@@ -558,7 +583,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @return index of member in ArrayList
      */
     public int addMember(RadioButton member) {
-	return this.addMember((SwingScilabRadioButton) member.getAsSimpleRadioButton());
+        return this.addMember((SwingScilabRadioButton) member.getAsSimpleRadioButton());
     }
 
     /**
@@ -567,7 +592,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @return index of member in ArrayList
      */
     private int addMember(SwingScilabRadioButton member) {
-	return contentPane.addWidget(member);
+        return contentPane.addWidget(member);
     }
 
     /**
@@ -575,7 +600,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @param member the RadioButton to remove
      */
     public void removeMember(RadioButton member) {
-	this.removeMember((SwingScilabRadioButton) member.getAsSimpleRadioButton());
+        this.removeMember((SwingScilabRadioButton) member.getAsSimpleRadioButton());
     }
 
     /**
@@ -583,7 +608,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @param member the RadioButton to remove
      */
     private void removeMember(SwingScilabRadioButton member) {
-	contentPane.removeWidget(member);
+        contentPane.removeWidget(member);
     }
 
     /**
@@ -592,7 +617,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @return index of member in ArrayList
      */
     public int addMember(Slider member) {
-	return this.addMember((SwingScilabSlider) member.getAsSimpleSlider());
+        return this.addMember((SwingScilabSlider) member.getAsSimpleSlider());
     }
 
     /**
@@ -601,7 +626,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @return index of member in ArrayList
      */
     private int addMember(SwingScilabSlider member) {
-	return contentPane.addWidget(member);
+        return contentPane.addWidget(member);
     }
 
     /**
@@ -609,7 +634,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @param member the Slider to remove
      */
     public void removeMember(Slider member) {
-	this.removeMember((SwingScilabSlider) member.getAsSimpleSlider());
+        this.removeMember((SwingScilabSlider) member.getAsSimpleSlider());
     }
 
     /**
@@ -617,7 +642,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @param member the Slider to remove
      */
     private void removeMember(SwingScilabSlider member) {
-	contentPane.removeWidget(member);
+        contentPane.removeWidget(member);
     }
 
     /**
@@ -626,7 +651,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @return index of member in ArrayList
      */
     public int addMember(ListBox member) {
-	return this.addMember((SwingScilabListBox) member.getAsSimpleListBox());
+        return this.addMember((SwingScilabListBox) member.getAsSimpleListBox());
     }
 
     /**
@@ -635,7 +660,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @return index of member in ArrayList
      */
     private int addMember(SwingScilabListBox member) {
-	return contentPane.addWidget(member);
+        return contentPane.addWidget(member);
     }
 
     /**
@@ -643,7 +668,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @param member the ListBox to remove
      */
     public void removeMember(ListBox member) {
-	this.removeMember((SwingScilabListBox) member.getAsSimpleListBox());
+        this.removeMember((SwingScilabListBox) member.getAsSimpleListBox());
     }
 
     /**
@@ -651,7 +676,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @param member the ListBox to remove
      */
     private void removeMember(SwingScilabListBox member) {
-	contentPane.removeWidget(member);
+        contentPane.removeWidget(member);
     }
 
     /**
@@ -660,7 +685,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @return index of member in ArrayList
      */
     public int addMember(PopupMenu member) {
-	return this.addMember((SwingScilabPopupMenu) member.getAsSimplePopupMenu());
+        return this.addMember((SwingScilabPopupMenu) member.getAsSimplePopupMenu());
     }
 
     /**
@@ -669,7 +694,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @return index of member in ArrayList
      */
     private int addMember(SwingScilabPopupMenu member) {
-	return contentPane.addWidget(member);
+        return contentPane.addWidget(member);
     }
 
     /**
@@ -677,7 +702,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @param member the PopupMenu to remove
      */
     public void removeMember(PopupMenu member) {
-	this.removeMember((SwingScilabPopupMenu) member.getAsSimplePopupMenu());
+        this.removeMember((SwingScilabPopupMenu) member.getAsSimplePopupMenu());
     }
 
     /**
@@ -685,7 +710,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @param member the PopupMenu to remove
      */
     private void removeMember(SwingScilabPopupMenu member) {
-	contentPane.removeWidget(member);
+        contentPane.removeWidget(member);
     }
 
     /**
@@ -694,7 +719,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @return index of member in ArrayList
      */
     public int addMember(Tree member) {
-	return this.addMember((SwingScilabTree) member.getAsSimpleTree());
+        return this.addMember((SwingScilabTree) member.getAsSimpleTree());
     }
 
     /**
@@ -703,7 +728,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @return index of member in ArrayList
      */
     public int addMember(SwingScilabTree member) {
-	return contentPane.addWidget(member.getAsComponent());
+        return contentPane.addWidget(member.getAsComponent());
     }
 
 
@@ -713,8 +738,8 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @return index of member in ArrayList
      */
     public int addTree(SwingScilabTree member) {
-    	this.setContentPane(member.getAsComponent());
-    	return this.getComponentZOrder(member.getAsComponent());
+        this.setContentPane(member.getAsComponent());
+        return this.getComponentZOrder(member.getAsComponent());
     }
 
     /**
@@ -722,7 +747,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @param member the PopupMenu to remove
      */
     public void removeMember(Tree member) {
-	this.removeMember((SwingScilabTree) member.getAsSimpleTree());
+        this.removeMember((SwingScilabTree) member.getAsSimpleTree());
     }
 
     /**
@@ -730,7 +755,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @param member the PopupMenu to remove
      */
     private void removeMember(SwingScilabTree member) {
-	contentPane.removeTree(member);
+        contentPane.removeTree(member);
     }
 
 
@@ -742,8 +767,8 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @return index of member in ArrayList
      */
     public int addMember(Dockable member) {
-	// TODO Auto-generated method stub
-	return 0;
+        // TODO Auto-generated method stub
+        return 0;
     }
 
     /**
@@ -751,8 +776,8 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @return true is the tab is the tab currently "on top" in its parent
      */
     public boolean isCurrentTab() {
-	// TODO should not always return TRUE
-	return true;
+        // TODO should not always return TRUE
+        return true;
     }
 
     /**
@@ -760,7 +785,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @return the id of the parent window
      */
     public int getParentWindowId() {
-	return this.parentWindowId;
+        return this.parentWindowId;
     }
 
     /**
@@ -768,7 +793,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @param id the id of the parent window
      */
     public void setParentWindowId(int id) {
-	this.parentWindowId = id;
+        this.parentWindowId = id;
     }
 
     /**
@@ -777,7 +802,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @see org.scilab.modules.gui.tab.SimpleTab#setMenuBar(org.scilab.modules.gui.menubar.MenuBar)
      */
     public void setMenuBar(MenuBar newMenuBar) {
-	this.menuBar = newMenuBar;
+        this.menuBar = newMenuBar;
     }
 
 
@@ -787,7 +812,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @see org.scilab.modules.gui.tab.SimpleTab#getMenuBar()
      */
     public MenuBar getMenuBar() {
-	return this.menuBar;
+        return this.menuBar;
     }
 
     /**
@@ -796,7 +821,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @see org.scilab.modules.gui.tab.SimpleTab#setToolBar(org.scilab.modules.gui.toolbar.ToolBar)
      */
     public void setToolBar(ToolBar newToolBar) {
-	this.toolBar = newToolBar;
+        this.toolBar = newToolBar;
     }
 
     /**
@@ -805,7 +830,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @see org.scilab.modules.gui.tab.SimpleTab#getToolBar()
      */
     public ToolBar getToolBar() {
-	return this.toolBar;
+        return this.toolBar;
     }
 
     /**
@@ -813,7 +838,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @param newInfoBar the InfoBar to set.
      */
     public void setInfoBar(TextBox newInfoBar) {
-	this.infoBar = newInfoBar;
+        this.infoBar = newInfoBar;
     }
 
     /**
@@ -821,7 +846,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @return the InfoBar associated to the Tab.
      */
     public TextBox getInfoBar() {
-	return this.infoBar;
+        return this.infoBar;
     }
 
     /**
@@ -850,7 +875,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * Set this tab as the current tab of its parent Window
      */
     public void setCurrent() {
-    	ActiveDockableTracker.requestDockableActivation(this);
+        ActiveDockableTracker.requestDockableActivation(this);
     }
 
     /**
@@ -860,10 +885,10 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @param blue blue channel
      */
     public void setBackground(double red, double green, double blue) {
-	Color newColor = new Color((float) red, (float) green, (float) blue);
-	contentPane.setBackground(red, green, blue);
-	scrolling.setBackground(red, green, blue);
-	setBackground(newColor);
+        Color newColor = new Color((float) red, (float) green, (float) blue);
+        contentPane.setBackground(red, green, blue);
+        scrolling.setBackground(red, green, blue);
+        setBackground(newColor);
     }
 
     /**
@@ -871,7 +896,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @return [x,y,w,h] array
      */
     public int[] getViewingRegion() {
-	return scrolling.getViewingRegion();
+        return scrolling.getViewingRegion();
     }
 
     /**
@@ -884,66 +909,66 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @param height height of the viewport
      */
     public void setViewingRegion(int posX, int posY, int width, int height) {
-	// Check that the canvas can be resized
-	if (!scrolling.getAutoResizeMode()) {
-	    // don't set viewport size here it should always fit parent tab size
-	    // It seems that we must check the viewport size and positions
-	    // to get coherent values, otherwise the setViewPosition hangs...
-	    // there are three checks that must be performed for the two dimensions
-	    // - be sure that viewport position is greater than 0.
-	    // - if the viewport is larger than the canvas, then it can't be moved
-	    // - if the viewport is smaller than the canvas, then it should remains
-	    //   inside the canvas
+        // Check that the canvas can be resized
+        if (!scrolling.getAutoResizeMode()) {
+            // don't set viewport size here it should always fit parent tab size
+            // It seems that we must check the viewport size and positions
+            // to get coherent values, otherwise the setViewPosition hangs...
+            // there are three checks that must be performed for the two dimensions
+            // - be sure that viewport position is greater than 0.
+            // - if the viewport is larger than the canvas, then it can't be moved
+            // - if the viewport is smaller than the canvas, then it should remains
+            //   inside the canvas
 
-	    int canvasWidth = contentPane.getWidth();
-	    int canvasHeight = contentPane.getHeight();
-	    int[] curViewedRegion = getViewingRegion();
-	    int viewportPosX = curViewedRegion[0];
-	    int viewPortPosY = curViewedRegion[1];
-	    int viewportWidth = curViewedRegion[2];
-	    int viewportHeight = curViewedRegion[VIEWPORT_SIZE - 1];
+            int canvasWidth = contentPane.getWidth();
+            int canvasHeight = contentPane.getHeight();
+            int[] curViewedRegion = getViewingRegion();
+            int viewportPosX = curViewedRegion[0];
+            int viewPortPosY = curViewedRegion[1];
+            int viewportWidth = curViewedRegion[2];
+            int viewportHeight = curViewedRegion[VIEWPORT_SIZE - 1];
 
-	    // use previous values as default ones
-	    int realPosX = 0;
-	    int realPosY = 0;
-
-
-	    if (viewportWidth <= canvasWidth) {
-		// viewport smaller than the canvas
-		// check that the viewport stays in the canvas
-		// the left most position is canvasWidth - viewporwidth
-		realPosX = Math.min(posX, canvasWidth - viewportWidth);
-	    } else {
-		// viewport larger than the canvas
-		// get previous position (should be 0)
-		realPosX = viewportPosX;
-	    }
-	    // last check, greater than 0
-	    realPosX = Math.max(0, realPosX);
-
-	    if (viewportHeight <= canvasHeight) {
-		realPosY = Math.min(posY, canvasHeight - viewportHeight);
-	    } else {
-		realPosY = viewPortPosY;
-	    }
-	    realPosY = Math.max(0, realPosY);
-
-	    // must be called on the Swing thread otherwise some JOGL corruption may appear
-	    final Point realPos = new Point(realPosX, realPosY);
-	    try {
-		SwingUtilities.invokeAndWait(new Runnable() {
-		    public void run() {
-			scrolling.setViewPosition(realPos.x, realPos.y);
-		    }
-		});
-	    } catch (InterruptedException e) {
-		e.printStackTrace();
-	    } catch (InvocationTargetException e) {
-		e.getCause().printStackTrace();
-	    }
+            // use previous values as default ones
+            int realPosX = 0;
+            int realPosY = 0;
 
 
-	}
+            if (viewportWidth <= canvasWidth) {
+                // viewport smaller than the canvas
+                // check that the viewport stays in the canvas
+                // the left most position is canvasWidth - viewporwidth
+                realPosX = Math.min(posX, canvasWidth - viewportWidth);
+            } else {
+                // viewport larger than the canvas
+                // get previous position (should be 0)
+                realPosX = viewportPosX;
+            }
+            // last check, greater than 0
+            realPosX = Math.max(0, realPosX);
+
+            if (viewportHeight <= canvasHeight) {
+                realPosY = Math.min(posY, canvasHeight - viewportHeight);
+            } else {
+                realPosY = viewPortPosY;
+            }
+            realPosY = Math.max(0, realPosY);
+
+            // must be called on the Swing thread otherwise some JOGL corruption may appear
+            final Point realPos = new Point(realPosX, realPosY);
+            try {
+                SwingUtilities.invokeAndWait(new Runnable() {
+                    public void run() {
+                        scrolling.setViewPosition(realPos.x, realPos.y);
+                    }
+                });
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.getCause().printStackTrace();
+            }
+
+
+        }
     }
 
     /**
@@ -951,7 +976,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @param funName the name of the Scilab function to call
      */
     public void setEventHandler(String funName) {
-	contentPane.setEventHandler(funName);
+        contentPane.setEventHandler(funName);
     }
 
 
@@ -960,7 +985,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @param status is true to set the event handler active
      */
     public void setEventHandlerEnabled(boolean status) {
-	contentPane.setEventHandlerEnabled(status);
+        contentPane.setEventHandlerEnabled(status);
     }
 
     /**
@@ -969,14 +994,14 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @param onOrOff true to enable autoresize mode
      */
     public void setAutoResizeMode(boolean onOrOff) {
-	scrolling.setAutoResizeMode(onOrOff);
+        scrolling.setAutoResizeMode(onOrOff);
     }
 
     /**
      * @return whether the resize mode is on or off
      */
     public boolean getAutoResizeMode() {
-	return scrolling.getAutoResizeMode();
+        return scrolling.getAutoResizeMode();
     }
 
     /**
@@ -985,34 +1010,34 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @return true if the displacement recording continue, false otherwise
      */
     public boolean getRotationDisplacement(int[] displacement) {
-	return contentPane.getRotationDisplacement(displacement);
+        return contentPane.getRotationDisplacement(displacement);
     }
 
-	/**
-	 * Close the tab and disable it.
-	 */
-	public void close() {
-		this.getContentPane().removeAll();
-		this.setMenuBar(null);
-		this.setToolBar(null);
-		this.setInfoBar(null);
-		this.setTitlebar(null);
-		this.removeAll();
-		setActive(false);
+        /**
+         * Close the tab and disable it.
+         */
+        public void close() {
+                this.getContentPane().removeAll();
+                this.setMenuBar(null);
+                this.setToolBar(null);
+                this.setInfoBar(null);
+                this.setTitlebar(null);
+                this.removeAll();
+                setActive(false);
 
-		scrolling = null;
-		contentPane = null;
+                scrolling = null;
+                contentPane = null;
 
-		// without this children canvas are not released.
-		Container dummyContainer = new Container();
-		this.setContentPane(dummyContainer);
-	}
+                // without this children canvas are not released.
+                Container dummyContainer = new Container();
+                this.setContentPane(dummyContainer);
+        }
 
     /**
      * Asynchronous stop of rotation tracking.
      */
     public void stopRotationRecording() {
-	contentPane.stopRotationRecording();
+        contentPane.stopRotationRecording();
     }
 
     /**
@@ -1020,15 +1045,15 @@ public class SwingScilabTab extends View implements SimpleTab {
      *  @param g a Graphics
      */
     public void paintChildren(Graphics g) {
-	Component[] children = getComponents();
-	for (int i = 0; i < children.length; i++) {
-	    // AWT children don't draw themselves automatically
-	    // so force their draw
-	    if (!children[i].isLightweight()) {
-		children[i].paint(g);
-	    }
-	}
-	super.paintChildren(g);
+        Component[] children = getComponents();
+        for (int i = 0; i < children.length; i++) {
+            // AWT children don't draw themselves automatically
+            // so force their draw
+            if (!children[i].isLightweight()) {
+                children[i].paint(g);
+            }
+        }
+        super.paintChildren(g);
     }
 
 }
