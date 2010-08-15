@@ -317,7 +317,7 @@
 				<map simName="30" index="3,0"/> <!-- RefreshPeriod -->
 			</real>
 			<real xcos="ipar">
-				<map simName="-1" index="0,0"/> <!--  -->
+				<map simName="-1" index="0,0"/> <!-- Output window number (-1) default -->
 				<map simName="1" index="1,0"/> <!--  -->
 				<map simName="20" index="2,0"/> <!-- BufferSize -->
 				<map simName="1" index="3,0"/> <!-- Color -->
@@ -328,8 +328,8 @@
 				<map simName="11" index="8,0"/>
 				<map simName="13" index="9,0"/>
 				<map simName="15" index="10,0"/> <!-- mark -->
-				<map simName="-1" index="11,0"/>
-				<map simName="-1" index="12,0"/>
+				<map simName="-1" index="11,0"/> <!-- x-origin -->
+				<map simName="-1" index="12,0"/> <!-- y-origin -->
 				<map simName="600" index="13,0"/> <!-- Window width -->
 				<map simName="400" index="14,0"/> <!-- Height -->
 			</real>
@@ -355,8 +355,8 @@
 			</real>
 		</block>
 		
-		<!-- Gain Block Compatibility Pattern -->
-		<block sim="Saturation" xcos="SATURATION" description="4">
+		<!-- Saturation Block Compatibility Pattern -->
+		<block sim="Saturate" xcos="SATURATION" description="4">
 			<!-- FIXME -->
 			<!-- Zero crossing? -->
 			<simple sim="FunctionName" xcos="satur"></simple>
@@ -445,7 +445,7 @@
 		
 		<!-- FIXME: -->
 		<!-- Switch Block Compatibility Pattern -->
-		<block sim="Switch" xcos="SWITCH2_m" description="">
+		<block sim="FIXME: Switch" xcos="SWITCH2_m" description="">
 		<!-- TODO: Zero Cross -->
 			<simple sim="FunctionName" xcos="switch2_m"></simple>
 			<simple sim="FunctionType" xcos="4"></simple>
@@ -572,5 +572,53 @@
 				<map simName="TruthTable" index="0,0"/><!-- TruthTable -->
 			</real>
 		</block>
-
+		
+		<!-- TrigFun Block Compatibility Pattern -->
+		<!-- FIXME: -->
+		<block sim="Trigonometry" xcos="TrigFun" description="">
+			<!-- FIXME Shoud set FunctionName dependen from Operator parameter  -->
+			<simple sim="FunctionName" xcos="sin_blk"></simple>
+			<simple sim="FunctionType" xcos="4"></simple>
+			<simple sim="BlockType" xcos="c"></simple>
+			<real xcos="exprs">
+				<map simName="Operator" index="0,0"/><!-- TruthTable -->
+			</real>
+		</block>
+		
+		<!-- EXPRESSION Block Compatibility Pattern -->
+		<!-- FIXME: should set ipar and rpar -->
+		<block sim="Fcn" xcos="EXPRESSION" description="">
+			<!-- FIXME Shoud set FunctionName dependen from Operator parameter  -->
+			<simple sim="FunctionName" xcos="evaluate_expr"></simple>
+			<simple sim="FunctionType" xcos="4"></simple>
+			<simple sim="BlockType" xcos="c"></simple>
+			<real xcos="exprs">
+				<map simName="Expr" index="0,0"/>
+			</real>
+			<real xcos="rpar">
+				<map simName="Expr" index="0,0"/>
+			</real>
+			<real xcos="ipar">
+				<map simName="Expr" index="0,0"/>
+			</real>
+		</block>
+		
+		<!-- EXPRESSION Block Compatibility Pattern -->
+		<block sim="Step" xcos="STEP" description="">
+			<!-- FIXME STEP interface function name doesn't exist  -->
+			<simple sim="FunctionName" xcos="step_func"></simple>
+			<simple sim="FunctionType" xcos="4"></simple>
+			<simple sim="BlockType" xcos="c"></simple>
+			<simple sim="ControlPort" xcos="1"></simple>
+			<simple sim="CommandPort" xcos="1"></simple>
+			<real xcos="exprs">
+				<map simName="Time" index="0,0"/>
+				<map simName="Before" index="0,0"/>
+				<map simName="After" index="0,0"/>
+			</real>
+			<!-- some weir diagram here -->
+			<real xcos="rpar">
+				<map simName="Expr" index="0,0"/><!-- TruthTable -->
+			</real>
+		</block>
 </blocks>
