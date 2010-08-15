@@ -77,18 +77,29 @@ public final class LoadIntoScilabAction extends DefaultAction {
             if (bContinue) {
                 String tmpFilename = "LOAD_INTO_SCILAB-";
 
+                FileOutputStream fos = null;
+                OutputStreamWriter out = null;
                 // save file as UTF-8
                 try {
                     File f = File.createTempFile(tmpFilename, ".sce");
                     String tmpFullFilename = f.getAbsolutePath();
-                    OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(f) , "UTF-8");
+                    fos = new FileOutputStream(f);
+                    out = new OutputStreamWriter(fos , "UTF-8");
                     out.write(text);
                     out.flush();
-                    out.close();
                     String cmdToExec = "exec('" + tmpFullFilename + "', 1)";
                     InterpreterManagement.requestScilabExec(cmdToExec);
                 } catch (IOException e) {
                     ScilabModalDialog.show(getEditor(), SciNotesMessages.COULD_NOT_FIND_TMPFILE);
+                } finally {
+                    try {
+                        if (fos != null) {
+                            fos.close();
+                        }
+                        if (out != null) {
+                            out.close();
+                        }
+                    } catch (IOException e) { }
                 }
             }
         }

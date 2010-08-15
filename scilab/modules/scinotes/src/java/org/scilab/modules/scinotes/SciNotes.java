@@ -224,7 +224,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
 
-                    @Override
                     public void run() {
                         SciNotes editorInstance = launchSciNotes();
                         // Open an empty file if no tabs were opened at launch.
@@ -253,7 +252,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
 
-                    @Override
                     public void run() {
                         launchSciNotes().openFile(filePath, 0, null);
                     }
@@ -278,7 +276,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
 
-                    @Override
                     public void run() {
                         launchSciNotes().openFile(filePath, lineNumber, null);
                     }
@@ -303,7 +300,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
 
-                    @Override
                     public void run() {
                         launchSciNotes().openFile(filePath, 0, option);
                     }
@@ -1526,17 +1522,25 @@ public class SciNotes extends SwingScilabTab implements Tab {
             styleDocument.disableUndoManager();
             theTextPane.setLastModified(f.lastModified());
 
+            FileInputStream fis = null;
+            InputStreamReader isr = null;
+            BufferedReader br = null;
+
             try {
                 styleDocument.setUpdater(false);
                 boolean indentMode = styleDocument.getAutoIndent();
                 styleDocument.setAutoIndent(false);
+                fis = new FileInputStream(f);
                 try {
                     try {
-                        editorKit.read(new BufferedReader(new InputStreamReader(new FileInputStream(f), styleDocument.getEncoding())), styleDocument, 0);
+                        isr = new InputStreamReader(fis, styleDocument.getEncoding());
+                        br = new BufferedReader(isr);
+                        editorKit.read(br, styleDocument, 0);
                     } catch (ChangedCharSetException e) {
-                        editorKit.read(new BufferedReader(new InputStreamReader(new FileInputStream(f), e.getCharSetSpec())), styleDocument, 0);
+                        isr = new InputStreamReader(fis, e.getCharSetSpec());
+                        br = new BufferedReader(isr);
+                        editorKit.read(br, styleDocument, 0);
                     }
-
                 } catch (BadLocationException e) {
                     e.printStackTrace();
                 }
@@ -1544,6 +1548,18 @@ public class SciNotes extends SwingScilabTab implements Tab {
                 styleDocument.setUpdater(true);
             } catch (IOException ioex) {
                 ioex.printStackTrace();
+            } finally {
+                try {
+                    if (fis != null) {
+                        fis.close();
+                    }
+                    if (isr != null) {
+                        isr.close();
+                    }
+                    if (br != null) {
+                        br.close();
+                    }
+                } catch (IOException e) { }
             }
 
             theTextPane.setName(f.getAbsolutePath());
@@ -1579,22 +1595,32 @@ public class SciNotes extends SwingScilabTab implements Tab {
             styleDocument = (ScilabDocument) theTextPane.getDocument();
             styleDocument.disableUndoManager();
 
-            BufferedWriter out = null;
+            BufferedWriter bw = null;
+            OutputStreamWriter osw = null;
+            FileOutputStream fos = null;
+
             try {
-                out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(f), styleDocument.getEncoding()));
+                fos = new FileOutputStream(f);
+                osw = new OutputStreamWriter(fos, styleDocument.getEncoding());
+                bw = new BufferedWriter(osw);
+                editorKit.write(bw, styleDocument, 0, styleDocument.getLength());
+                bw.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (BadLocationException e) {
+                e.printStackTrace();
+            } finally {
                 try {
-                    editorKit.write(out, styleDocument, 0, styleDocument.getLength());
-                    out.flush();
-                    out.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (BadLocationException e) {
-                    e.printStackTrace();
-                }
-            } catch (UnsupportedEncodingException e2) {
-                e2.printStackTrace();
-            } catch (FileNotFoundException e2) {
-                e2.printStackTrace();
+                    if (fos != null) {
+                        fos.close();
+                    }
+                    if (osw != null) {
+                        osw.close();
+                    }
+                    if (bw != null) {
+                        bw.close();
+                    }
+                } catch (IOException e) { }
             }
 
             ConfigManager.saveLastOpenedDirectory(f.getPath());
@@ -1655,7 +1681,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
 
-                    @Override
                     public void run() {
                         SciNotes[] arr = scinotesList.toArray(new SciNotes[0]);
                         for (int i = 0; i < arr.length; i++) {

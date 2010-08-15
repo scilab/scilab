@@ -321,8 +321,10 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         String path = getName();
         if (path != null) {
             File f = new File(path);
-            if (f != null) {
+            if (f != null && f.exists()) {
                 return lastModified < f.lastModified();
+            } else {
+                return true;
             }
         }
         return false;

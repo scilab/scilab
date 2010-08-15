@@ -39,6 +39,9 @@ SciNotes:
 * bug 7731 fixed - In Find/Replace window, buttons were not updated when an
                    item was choosen in the combobox Find.
 
+* bug 7746 fixed - File streams were not closed. This was causing some issues
+                   under Windows.
+
 
 Editvar/Browsevar:
 ==================
