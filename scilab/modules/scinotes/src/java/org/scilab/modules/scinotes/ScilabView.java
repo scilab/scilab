@@ -29,6 +29,7 @@ import java.io.IOException;
 
 import javax.swing.text.Utilities;
 import javax.swing.text.WrappedPlainView;
+import javax.swing.text.Position;
 import javax.swing.text.Segment;
 import javax.swing.text.Element;
 import javax.swing.text.BadLocationException;
@@ -172,6 +173,16 @@ public class ScilabView extends WrappedPlainView {
             g.drawLine(numOfColumns * whiteWidth, 0, numOfColumns * whiteWidth, getHeight());
         }
         super.paint(g, a);
+    }
+
+    /**
+     * A trick to be sure that all the line is covered by an highlight
+     * {@inheritDoc}
+     */
+    public Shape modelToView(int p0, Position.Bias b0, int p1, Position.Bias b1, Shape a) throws BadLocationException {
+        Rectangle r = (Rectangle) super.modelToView(p0, b0, p1, b1, a);
+        r.width = ((Rectangle) a).width;
+        return r;
     }
 
     /**

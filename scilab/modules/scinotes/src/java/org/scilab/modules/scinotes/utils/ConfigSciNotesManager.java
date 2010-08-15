@@ -610,12 +610,14 @@ public final class ConfigSciNotesManager {
             fis = new FileInputStream(in);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+            return;
         }
         FileOutputStream fos = null;
         try {
             fos = new FileOutputStream(out);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+            return;
         }
         byte[] buf = new byte[BUFSIZE];
         int i = 0;
@@ -681,7 +683,7 @@ public final class ConfigSciNotesManager {
      * @return an Object containing infos
      */
     public static MatchingBlockManager.Parameters getDefaultForMatcher(String kind) {
-        /* <KeywordsHighlighter color="#fff3d2" inside=TRUE type="filled"/> */
+        /* <KeywordsHighlighter color="#fff3d2" inside="true" strict="false" type="filled"/> */
 
         readDocument();
 
@@ -695,6 +697,8 @@ public final class ConfigSciNotesManager {
 
         Color color = Color.decode(matcher.getAttribute("color"));
         boolean inside = TRUE.equals(matcher.getAttribute("inside"));
+        boolean strict = TRUE.equals(matcher.getAttribute("strict"));
+        boolean included = TRUE.equals(matcher.getAttribute("included"));
         String stype = matcher.getAttribute("type");
         int type = 0;
         if ("filled".equals(stype)) {
@@ -705,7 +709,7 @@ public final class ConfigSciNotesManager {
             type = MatchingBlockManager.ScilabKeywordsPainter.FRAMED;
         }
 
-        return new MatchingBlockManager.Parameters(color, inside, type, onmouseover);
+        return new MatchingBlockManager.Parameters(color, inside, strict, included, type, onmouseover);
     }
 
     /**
@@ -1806,16 +1810,25 @@ public final class ConfigSciNotesManager {
             System.err.println(ERROR_READ + USER_SCINOTES_CONFIG_FILE);
         }
 
+        FileInputStream fis = null;
+
         try {
             if (keysMap == null) {
                 xml = new File(USER_SCINOTES_CONFIG_KEYS_FILE);
                 keysMap = new Properties();
-                keysMap.loadFromXML(new FileInputStream(xml));
+                fis = new FileInputStream(xml);
+                keysMap.loadFromXML(fis);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (fis != null) {
+                    fis.close();
+                }
+            } catch (IOException e) { }
         }
     }
 

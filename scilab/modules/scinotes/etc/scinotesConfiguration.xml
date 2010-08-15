@@ -40,11 +40,15 @@
     <!-- Line numbering : 0 is off, 1 is normal and 2 is whereami-->
     <LineNumbering value="1"/>
 
-    <!-- inside is a boolean to indicate if the contents between the keywords must be highlighted
-         if inside is true type can be filled or framed else it can be filled, framed or underlined -->
+
+    <!-- * inside is a boolean to indicate if the contents between the keywords must be highlighted.
+         * included is only used when inside is true to say if keywords or open/close must be highlighted.
+         * If inside is true type can be filled or framed else it can be filled, framed or underlined.
+         * strict is only used for Keywords when inside is true, in this case the lines which contain the keywords
+           are not highlighted. -->
     <Matching onmouseover="true">
-      <KeywordsHighlighter color="#fff3d2" inside="true" type="filled"/>
-      <OpenCloseHighlighter color="#e40087" inside="false" type="framed"/>
+      <KeywordsHighlighter color="#fff3d2" inside="true" included="false" strict="true" type="filled"/>
+      <OpenCloseHighlighter color="#e40087" inside="false" included="true" type="framed"/>
     </Matching>
 
     <SciNotes>
