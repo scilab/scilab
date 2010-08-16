@@ -220,6 +220,8 @@ Bug Fixes:
 
 * bug 7756 fixed - sprand did not produce normal numbers.
 
+* bug 7766 fixed - cdff, cdffnc functions did not display %inf in error messages
+
 * bug 7802 fixed - the graduate function complained about obsolete maxi and mini
                    functions.
 
