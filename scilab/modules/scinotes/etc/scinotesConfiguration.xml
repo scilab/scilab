@@ -11,7 +11,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<Setting>
+<Setting version="0.0">
   <!-- SCINOTES configuration -->
   <Profile name="scinotes">
 

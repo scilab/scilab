@@ -72,6 +72,7 @@ public final class ConfigSciNotesManager {
     private static final String ERROR_READ = "Could not load file: ";
     private static final String ERROR_WRITE = "Could not save file: ";
     private static final String VALUE = "value";
+    private static final String VERSION = "version";
     private static final String STYLE = "style";
     private static final String UNDERLINE = "underline";
     private static final String DEFAULTUNDERLINE = "defaultUnderline";
@@ -156,6 +157,8 @@ public final class ConfigSciNotesManager {
     private static Document document;
     private static Properties keysMap;
 
+    private static boolean updated;
+
     /**
      * Constructor
      */
@@ -167,23 +170,56 @@ public final class ConfigSciNotesManager {
      * Create a copy of Scilab configuration file in the user directory
      */
     public static void createUserCopy() {
-        File fileConfig = new File(USER_SCINOTES_CONFIG_FILE);
-        if (!fileConfig.exists() || (fileConfig.length() == 0)) {
+        if (checkVersion()) {
             /* Create a local copy of the configuration file */
             copyFile(new File(SCINOTES_CONFIG_FILE), new File(USER_SCINOTES_CONFIG_FILE));
-        }
-        fileConfig = new File(USER_SCINOTES_CONFIG_KEYS_FILE);
-        if (!fileConfig.exists() || (fileConfig.length() == 0)) {
-            /* Create a local copy of the configuration file */
             copyFile(new File(SCINOTES_CONFIG_KEYS_FILE), new File(USER_SCINOTES_CONFIG_KEYS_FILE));
+            updated = true;
         }
     }
+
     /**
      * Get the name of the user configuration file
      * @return the name of the configuration file
      */
     public static String getUserConfigFile() {
         return USER_SCINOTES_CONFIG_FILE;
+    }
+
+    /**
+     * @return true if scinotesConfiguration.xml in etc has a version greater than the version in home
+     */
+    public static boolean checkVersion() {
+        if (updated) {
+            return false;
+        }
+
+        File fileConfig = new File(USER_SCINOTES_CONFIG_FILE);
+        File keyConfig = new File(USER_SCINOTES_CONFIG_KEYS_FILE);
+        if (!keyConfig.exists()) {
+            return true;
+        }
+        if (fileConfig.exists()) {
+            document = null;
+            readDocument(SCINOTES_CONFIG_FILE, null);
+            Node setting = getNodeChild(null, SETTING);
+            String str = ((Element) setting).getAttribute(VERSION);
+            if (str != null && str.length() != 0) {
+                float versionEtc = Float.parseFloat(str);
+                document = null;
+                readDocument();
+                setting = getNodeChild(null, SETTING);
+                str = ((Element) setting).getAttribute(VERSION);
+                document = null;
+
+                if (str != null && str.length() != 0) {
+                    float versionHome = Float.parseFloat(str);
+                    return versionEtc != versionHome;
+                }
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -606,29 +642,30 @@ public final class ConfigSciNotesManager {
      */
     private static void copyFile(File in, File out) {
         FileInputStream fis = null;
+
+        FileOutputStream fos = null;
+
         try {
             fis = new FileInputStream(in);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return;
-        }
-        FileOutputStream fos = null;
-        try {
             fos = new FileOutputStream(out);
+            byte[] buf = new byte[BUFSIZE];
+            int i = 0;
+            while ((i = fis.read(buf)) != -1) {
+                fos.write(buf, 0, i);            }
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            return;
-        }
-        byte[] buf = new byte[BUFSIZE];
-        int i = 0;
-        try {
-            while ((i = fis.read(buf)) != -1) {
-                fos.write(buf, 0, i);
-            }
-            fis.close();
-            fos.close();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (fis != null) {
+                    fis.close();
+                }
+                if (fos != null) {
+                    fos.close();
+                }
+            } catch (IOException e) { }
         }
     }
 
@@ -1790,6 +1827,13 @@ public final class ConfigSciNotesManager {
      * Read the file to modify
      */
     private static void readDocument() {
+        readDocument(USER_SCINOTES_CONFIG_FILE, USER_SCINOTES_CONFIG_KEYS_FILE);
+    }
+
+    /**
+     * Read the file to modify
+     */
+    private static void readDocument(String pathConfSci, String pathConfKeys) {
         File xml = null;
         DocumentBuilder docBuilder = null;
 
@@ -1799,22 +1843,22 @@ public final class ConfigSciNotesManager {
                 docBuilder = factory.newDocumentBuilder();
 
                 // read content of a XML file with DOM
-                xml = new File(USER_SCINOTES_CONFIG_FILE);
+                xml = new File(pathConfSci);
                 document = docBuilder.parse(xml);
             }
         } catch (ParserConfigurationException pce) {
-            System.err.println(ERROR_READ + USER_SCINOTES_CONFIG_FILE);
+            System.err.println(ERROR_READ + pathConfSci);
         } catch (SAXException se) {
-            System.err.println(ERROR_READ + USER_SCINOTES_CONFIG_FILE);
+            System.err.println(ERROR_READ + pathConfSci);
         } catch (IOException ioe) {
-            System.err.println(ERROR_READ + USER_SCINOTES_CONFIG_FILE);
+            System.err.println(ERROR_READ + pathConfSci);
         }
 
         FileInputStream fis = null;
 
         try {
-            if (keysMap == null) {
-                xml = new File(USER_SCINOTES_CONFIG_KEYS_FILE);
+            if (keysMap == null && pathConfKeys != null) {
+                xml = new File(pathConfKeys);
                 keysMap = new Properties();
                 fis = new FileInputStream(xml);
                 keysMap.loadFromXML(fis);
