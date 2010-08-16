@@ -41,6 +41,8 @@ Editvar/Browsevar:
 * bug 7610 fixed - browsevar(): The icons (left column) did not appear in the
                    binary version (Linux & MacOSX).
 
+* bug 7617 fixed - editvar() window did not have any menu bar.
+
 * bug 7627 fixed - When browsevar() window was docked, if browsevar() was called
                    again an empty window poped up and could not be closed.
 
@@ -91,8 +93,6 @@ Bug Fixes:
                    thrown.
 
 * bug 7616 fixed - fullfile did not work with only one input argument.
-
-* bug 7617 fixed - Editvar did not have any menu bar.
 
 * bug 7619 fixed - get_function_path did not return all available paths.
 
