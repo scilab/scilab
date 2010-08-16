@@ -18,6 +18,8 @@ import java.util.StringTokenizer;
 
 import javax.swing.JFileChooser;
 import javax.swing.KeyStroke;
+import javax.swing.event.MenuEvent;
+import javax.swing.event.MenuListener;
 
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
@@ -39,7 +41,6 @@ public final class OpenFileInAction extends OpenAction {
     private static final String SCI = "SCI";
     private static final String SEP = ";";
 
-    private static Menu favoriteDirs = ScilabMenu.createMenu();
     private static MenuItem addDir;
     private static MenuItem rmDir;
 
@@ -59,15 +60,26 @@ public final class OpenFileInAction extends OpenAction {
      * @param key KeyStroke
      * @return the menu
      */
-    public static Object createMenu(String label, SciNotes editor, KeyStroke key) {
+    public static Object createMenu(String label, final SciNotes editor, KeyStroke key) {
         StringTokenizer token = new StringTokenizer(label, SEP);
         String label1 = token.nextToken();
         String label2 = token.nextToken();
         String label3 = token.nextToken();
+
+        final Menu favoriteDirs = ScilabMenu.createMenu();
+        ((SwingScilabMenu) favoriteDirs.getAsSimpleMenu()).addMenuListener(new MenuListener() {
+
+                public void menuCanceled(MenuEvent e) { }
+                public void menuDeselected(MenuEvent e) { }
+                public void menuSelected(MenuEvent e) {
+                    updateFavoriteDirsMenu(favoriteDirs, editor);
+                }
+            });
+
         favoriteDirs.setText(label1);
-        addDir = AddDirectoryAction.createMenu(label2, editor, null);
-        rmDir = RmDirectoryAction.createMenu(label3, editor, null);
-        updateFavoriteDirsMenu(editor);
+        addDir = AddDirectoryAction.createMenu(favoriteDirs, label2, editor, null);
+        rmDir = RmDirectoryAction.createMenu(favoriteDirs, label3, editor, null);
+        updateFavoriteDirsMenu(favoriteDirs, editor);
         return favoriteDirs;
     }
 
@@ -102,21 +114,22 @@ public final class OpenFileInAction extends OpenAction {
 
     /**
      * Update menu displaying favorite directories.
+     * @param menu the menu to update
      * @param editor SciNotes
      */
-    public static void updateFavoriteDirsMenu(SciNotes editor) {
-        ((SwingScilabMenu) favoriteDirs.getAsSimpleMenu()).removeAll();
-        favoriteDirs.add(addDir);
-        favoriteDirs.add(rmDir);
+    public static void updateFavoriteDirsMenu(Menu menu, SciNotes editor) {
+        ((SwingScilabMenu) menu.getAsSimpleMenu()).removeAll();
+        menu.add(addDir);
+        menu.add(rmDir);
 
         List<File> dirs = ConfigSciNotesManager.getAllFavoriteDirs();
 
         if (dirs.size() != 0) {
-            favoriteDirs.addSeparator();
+            menu.addSeparator();
         }
 
         for (int i = 0; i < dirs.size(); i++) {
-            favoriteDirs.add(createMenu(editor, dirs.get(i).getPath()));
+            menu.add(createMenu(editor, dirs.get(i).getPath()));
         }
     }
 
@@ -125,13 +138,17 @@ public final class OpenFileInAction extends OpenAction {
      */
     static class AddDirectoryAction extends DefaultAction {
 
+        private Menu menu;
+
         /**
          * Constructor
+         * @param menu the menu associated with this action
          * @param name the name of the action
          * @param editor associated SciNotes instance
          */
-        public AddDirectoryAction(String name, SciNotes editor) {
+        public AddDirectoryAction(Menu menu, String name, SciNotes editor) {
             super(name, editor);
+            this.menu = menu;
         }
 
         /**
@@ -149,19 +166,20 @@ public final class OpenFileInAction extends OpenAction {
                      path = fileChooser.getCurrentDirectory();
                  }
                  ConfigSciNotesManager.saveFavoriteDirectory(path.getPath());
-                 updateFavoriteDirsMenu(getEditor());
+                 updateFavoriteDirsMenu(menu, getEditor());
             }
         }
 
         /**
          * Create a menu to add to SciNotes menu bar
+         * @param menu the menu associated with this action
          * @param label label of the menu
          * @param editor associated SciNotes instance
          * @param key KeyStroke
          * @return the menu
          */
-        public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
-            return createMenu(label, null, new AddDirectoryAction(label, editor), key);
+        public static MenuItem createMenu(Menu menu, String label, SciNotes editor, KeyStroke key) {
+            return createMenu(label, null, new AddDirectoryAction(menu, label, editor), key);
         }
     }
 
@@ -170,13 +188,17 @@ public final class OpenFileInAction extends OpenAction {
      */
     static class RmDirectoryAction extends DefaultAction {
 
+        private Menu menu;
+
         /**
          * Constructor
+         * @param menu the menu associated with this action
          * @param name the name of the action
          * @param editor associated SciNotes instance
          */
-        public RmDirectoryAction(String name, SciNotes editor) {
+        public RmDirectoryAction(Menu menu, String name, SciNotes editor) {
             super(name, editor);
+            this.menu = menu;
         }
 
         /**
@@ -185,18 +207,19 @@ public final class OpenFileInAction extends OpenAction {
          */
         public void doAction() {
             ConfigSciNotesManager.rmLastFavoriteDirectory();
-            updateFavoriteDirsMenu(getEditor());
+            updateFavoriteDirsMenu(menu, getEditor());
         }
 
         /**
          * Create a menu to add to SciNotes menu bar
+         * @param menu the menu associated with this action
          * @param label label of the menu
          * @param editor associated SciNotes instance
          * @param key KeyStroke
          * @return the menu
          */
-        public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
-            return createMenu(label, null, new RmDirectoryAction(label, editor), key);
+        public static MenuItem createMenu(Menu menu, String label, SciNotes editor, KeyStroke key) {
+            return createMenu(label, null, new RmDirectoryAction(menu, label, editor), key);
         }
     }
 }
