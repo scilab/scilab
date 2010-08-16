@@ -113,6 +113,8 @@ Bug Fixes:
 
 * bug 7651 fixed - scicos_math.h was missing in binary package.
 
+* bug 7681 fixed - help_from_sci failed to process tabulated .sci files.
+
 * bug 7685 fixed - Demo Graphics => More surfaces => Sphere did not appear
                    as spherical.
 
