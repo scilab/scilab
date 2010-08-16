@@ -151,6 +151,9 @@ Bug Fixes:
                    than the first one.
 
 
+* bug 7751 fixed - justify() did not work correctly if the subject embedded 
+                   leading or trailing spaces.
+
          Changes between version 5.3.0-beta-1 and 5.3.0-beta-2 of Scilab
          ===============================================================
 
