@@ -42,6 +42,8 @@ SciNotes:
 * bug 7746 fixed - File streams were not closed. This was causing some issues
                    under Windows.
 
+* bug 7764 fixed - The CR in comments was removed when executing from SciNotes.
+
 
 Editvar/Browsevar:
 ==================
