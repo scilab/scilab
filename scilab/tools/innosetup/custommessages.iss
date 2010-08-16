@@ -17,6 +17,7 @@
 #include BinariesSourcePath + "\tools\innosetup\fr_FR_scilab.isl"
 #include BinariesSourcePath + "\tools\innosetup\ru_RU_scilab.isl"
 #include BinariesSourcePath + "\tools\innosetup\zh_CN_scilab.isl"
+#include BinariesSourcePath + "\tools\innosetup\zh_TW_scilab.isl"
 #include BinariesSourcePath + "\tools\innosetup\ca_ES_scilab.isl"
 #include BinariesSourcePath + "\tools\innosetup\es_ES_scilab.isl"
 #include BinariesSourcePath + "\tools\innosetup\de_DE_scilab.isl"
