@@ -16,13 +16,14 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.TextBlock;
+import org.scilab.modules.xcos.utils.XcosConstants;
 
 import edu.tum.cs.simulink.model.SimulinkAnnotation;
 import edu.tum.cs.simulink.model.SimulinkBlock;
 
 public class AnnotationElement extends AbstractElement<TextBlock>{
 
-	private BlockGraphicElement graphicElement = new BlockGraphicElement();
+	private BlockGraphicElement graphicElement = null;
 	private static final Log LOG = LogFactory.getLog(AnnotationElement.class);
 	
 	public boolean canDecode(SimulinkAnnotation data) {
@@ -37,13 +38,18 @@ public class AnnotationElement extends AbstractElement<TextBlock>{
 	 */
 	public Object decode(SimulinkAnnotation from, Object object) {
 		// TODO Auto-generated method stub
-		if(LOG.isTraceEnabled()) {
-			LOG.trace("Decoding annotation: " + from.getName() + ".");
+		if(from == null || from.getName() == null) { 
+			return new TextBlock();
 		}
-		TextBlock annotation;
+		if(LOG.isTraceEnabled()) {
+			LOG.trace("Decoding annotation: " + from.getName());
+		}
+		graphicElement = new BlockGraphicElement();
+		TextBlock annotation = null;
 		
 		annotation = new TextBlock();
-		annotation.setValue(from.getName());
+		annotation.setValue(from.getName().replaceAll("\\\\n", XcosConstants.HTML_NEWLINE));
+		
 		graphicElement.decode(from, annotation);
 		
 		return annotation;
