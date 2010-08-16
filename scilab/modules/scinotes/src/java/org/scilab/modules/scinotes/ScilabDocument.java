@@ -100,8 +100,6 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
         addUndoableEditListener(undo);
         undoManagerEnabled = true;
 
-        addDocumentListener(this);
-
         contentModified = false;
     }
 
@@ -567,6 +565,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
                     }
                 }
                 for (int i = 0; i < added.length; i++) {
+                    ((ScilabLeafElement) added[i]).resetTypeWhenBroken();
                     String name = ((ScilabLeafElement) added[i]).getFunctionName();
                     if (name.length() != 0) {
                         functions.add(name);
@@ -574,9 +573,13 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
                 }
             }
         } else {
+            // change occured only on one line
             Element root = getDefaultRootElement();
-            Element line = root.getElement(root.getElementIndex(ev.getOffset()));
-            if (((ScilabLeafElement) line).resetType() == ScilabLeafElement.FUN) {
+            int index = root.getElementIndex(ev.getOffset());
+            ScilabLeafElement line = (ScilabLeafElement) root.getElement(index);
+            boolean broken = line.isBroken();
+            if (line.resetType() == ScilabLeafElement.FUN || broken != line.isBroken()
+                || (index > 0 && ((ScilabLeafElement) root.getElement(index - 1)).isBroken())) {
                 pane.repaint();
             }
         }
@@ -630,11 +633,17 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
          */
         public static final int ENDFUN = 2;
 
+        /**
+         * broken line
+         */
+        public static final int BROKEN = 4;
+
         private boolean visible = true;
         private int type;
         private FunctionScanner.FunctionInfo info;
         private int start;
         private boolean broken;
+        private boolean brokenString;
 
         /**
          * The same constructor as in LeafElement.
@@ -647,6 +656,11 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
             super(parent, a, p0, p1);
             start = p0;
             type = funScanner.getLineType(p0, p1);
+            if ((type & BROKEN) == BROKEN) {
+                broken = true;
+                type -= BROKEN;
+            }
+
             if (type == FUN) {
                 info = funScanner.getFunctionInfo();
             }
@@ -663,6 +677,14 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
             }
 
             type = funScanner.getLineType(getStartOffset(), getEndOffset());
+
+            if ((type & BROKEN) == BROKEN) {
+                broken = true;
+                type -= BROKEN;
+            } else {
+                broken = false;
+            }
+
             if (type == FUN) {
                 info = funScanner.getFunctionInfo();
                 if (!info.functionName.equals(oldName)) {
@@ -671,7 +693,24 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
                 }
             }
 
+            resetTypeWhenBroken();
+
             return type;
+        }
+
+        /**
+         * If the previous line is broken, then this line is a part of it
+         * so we need to resetType of the previous.
+         */
+        public void resetTypeWhenBroken() {
+            int p0 = getStartOffset();
+            if (p0 != 0) {
+                Element parent = getParentElement();
+                ScilabLeafElement elem = (ScilabLeafElement) parent.getElement(parent.getElementIndex(p0 - 1));
+                if (elem.broken) {
+                    elem.resetType();
+                }
+            }
         }
 
         /**
@@ -728,6 +767,23 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
          */
         public void setBroken(boolean b) {
             broken = b;
+        }
+
+        /**
+         * @return if this line is broken
+         */
+        public boolean isBrokenString() {
+            return brokenString;
+        }
+
+        /**
+         * @param b true if this line is broken in a string
+         */
+        public void setBrokenString(boolean b) {
+            brokenString = b;
+            if (b) {
+                broken = true;
+            }
         }
 
         /**

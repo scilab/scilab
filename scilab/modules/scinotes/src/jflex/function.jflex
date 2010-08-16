@@ -5,6 +5,7 @@ package org.scilab.modules.scinotes;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
+import javax.swing.text.Element;
 
 %%
 
@@ -21,6 +22,7 @@ import java.util.ArrayList;
     List<String> returnValues;
     List<String> argsValues;
     String functionName;
+    int end;
 
     private ScilabDocument doc;
     private String id;
@@ -47,8 +49,24 @@ import java.util.ArrayList;
         try {
             returnValues = new ArrayList();
             argsValues = new ArrayList();
+            end = p1;
             yyreset(new ScilabDocumentReader(doc, p0, p1));
-            return yylex();
+            yybegin(BROKEN);
+            int broken = yylex();
+
+            yyreset(new ScilabDocumentReader(doc, p0, p1));
+            while (true) {
+                int ret = yylex();
+                if (ret != ScilabDocument.ScilabLeafElement.BROKEN) {
+                   return ret | broken;
+                }
+                Element elem = doc.getDefaultRootElement();
+                int start = end + 1;
+                elem = elem.getElement(elem.getElementIndex(end + 1));
+                end = elem.getEndOffset();
+                yyreset(new ScilabDocumentReader(doc, elem.getStartOffset(), end));
+                yybegin(ARGS);
+            }
         } catch (IOException e) {
             return ScilabDocument.ScilabLeafElement.NOTHING;
         }
@@ -80,6 +98,9 @@ white = [ \t]+
 eol = \n
 
 comments = {white}*("//".*)?{eol}
+break = ".."(".")*{comments}
+
+brokenline = ([^\.]* | ([^\.]*"."[^\.]+)+){break}
 
 id = [a-zA-Z%_#!$?][a-zA-Z0-9_#!$?]*
 spec = [^a-zA-Z0-9_#!$?]?
@@ -92,7 +113,7 @@ fun = {white}* "function" {white}
 funb = {white}* "function["
 endfun = {white}* "endfunction" {spec}
 
-%x FUNCTION, TYPEID, FUNNAME, RETS, ARGS,
+%x FUNCTION, TYPEID, FUNNAME, RETS, ARGS, BROKEN
 
 %%
 
@@ -112,6 +133,17 @@ endfun = {white}* "endfunction" {spec}
   .                              |
   {eol}                          {
                                    return ScilabDocument.ScilabLeafElement.NOTHING;
+                                 }
+}
+
+<BROKEN> {
+  {brokenline}                   {
+                                   return ScilabDocument.ScilabLeafElement.BROKEN;
+                                 }
+
+  .                              |
+  {eol}                          {
+                                   return 0;
                                  }
 }
 
@@ -197,6 +229,10 @@ endfun = {white}* "endfunction" {spec}
 
   ","                            |
   {white}                        { }
+
+  {break}                        {
+                                   return ScilabDocument.ScilabLeafElement.BROKEN;
+                                 }
 
   {rpar}                         {
                                    return ScilabDocument.ScilabLeafElement.FUN;

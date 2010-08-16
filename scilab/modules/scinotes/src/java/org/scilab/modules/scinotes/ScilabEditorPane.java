@@ -18,8 +18,6 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.Shape;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseEvent;
@@ -38,7 +36,6 @@ import javax.swing.JEditorPane;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
@@ -877,6 +874,13 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         matchRL.setDefaults();
         lexer = doc.createLexer();
         xln = new SciNotesLineNumberPanel(this);
+
+        /* The order of the next two lines is important: the doc
+           as listener will be called before xln so the resetTypeWhenBroken
+           will be called before ! */
+        doc.addDocumentListener(xln);
+        doc.addDocumentListener(doc);
+
         scroll.setRowHeaderView(xln);
         doc.setEditorPane(this);
     }

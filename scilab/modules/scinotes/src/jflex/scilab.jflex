@@ -54,7 +54,7 @@ import javax.swing.text.Element;
         breakstring = false;
         yyreset(new ScilabDocumentReader(doc, p0, p1));
         int currentLine = elem.getElementIndex(start);
-        if (currentLine != 0 && ((ScilabDocument.ScilabLeafElement) elem.getElement(currentLine - 1)).isBroken()) {
+        if (currentLine != 0 && ((ScilabDocument.ScilabLeafElement) elem.getElement(currentLine - 1)).isBrokenString()) {
            yybegin(QSTRING);
         }
     }
@@ -66,7 +66,7 @@ import javax.swing.text.Element;
     public int scan() throws IOException {
         int ret = yylex();
         if (start + yychar + yylength() == end - 1) {
-           ((ScilabDocument.ScilabLeafElement) elem.getElement(elem.getElementIndex(start))).setBroken(breakstring);
+           ((ScilabDocument.ScilabLeafElement) elem.getElement(elem.getElementIndex(start))).setBrokenString(breakstring);
            breakstring = false;
         }
         return ret;

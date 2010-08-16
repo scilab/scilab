@@ -89,7 +89,6 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
         setBorderGap(PANELGAPSIZE);
         setCurrentLineForeground(Color.RED);
         updateFont(ConfigSciNotesManager.getFont());
-        doc.addDocumentListener(this);
         textPane.addCaretListener(this);
     }
 
@@ -201,7 +200,11 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
             for (int line = root.getElementIndex(rowStartOffset); line <= lineEnd; line++) {
                 String str;
                 if (whereami && lineNumber != null) {
-                    str = Integer.toString(lineNumber[line]);
+                    if (lineNumber[line] != -1) {
+                        str = Integer.toString(lineNumber[line]);
+                    } else {
+                        str = "";
+                    }
                     //g.fillRect(0, view.getLineAllocation(line), availableWidth, metrics.getHeight());
                 } else {
                     str = Integer.toString(line + 1);
@@ -254,27 +257,35 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
             lineNumber = new int[nlines + 1];
             lineNumber[0] = 1;
             int current = 1;
+            boolean previousBroken = false;
+            ScilabDocument.ScilabLeafElement elem;
             for (int i = 0; i < nlines; i++) {
-                Element elem = root.getElement(i);
-                int type = ((ScilabDocument.ScilabLeafElement) elem).getType();
-                switch (type) {
-                case ScilabDocument.ScilabLeafElement.NOTHING :
-                    lineNumber[i] = current++;
-                    break;
-                case ScilabDocument.ScilabLeafElement.FUN :
-                    stk.push(new Integer(current));
-                    current = 2;
-                    lineNumber[i] = 1;
-                    break;
-                case ScilabDocument.ScilabLeafElement.ENDFUN :
-                    lineNumber[i] = current++;
-                    if (!stk.empty()) {
-                        current = stk.pop().intValue() + lineNumber[i];
+                elem = (ScilabDocument.ScilabLeafElement) root.getElement(i);
+                int type = elem.getType();
+                if (!previousBroken) {
+                    switch (type) {
+                    case ScilabDocument.ScilabLeafElement.NOTHING :
+                        lineNumber[i] = current++;
+                        break;
+                    case ScilabDocument.ScilabLeafElement.FUN :
+                        stk.push(new Integer(current));
+                        current = 2;
+                        lineNumber[i] = 1;
+                        break;
+                    case ScilabDocument.ScilabLeafElement.ENDFUN :
+                        lineNumber[i] = current++;
+                        if (!stk.empty()) {
+                            current = stk.pop().intValue() + lineNumber[i];
+                        }
+                        break;
+                    default :
+                        break;
                     }
-                    break;
-                default :
-                    break;
+                } else {
+                    lineNumber[i] = -1;
                 }
+
+                previousBroken = elem.isBroken();
             }
         }
     }
@@ -311,9 +322,10 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
             DocumentEvent.ElementChange chg = e.getChange(root);
             if (chg == null) {
                 // change occured only in one line
-                Element line = root.getElement(root.getElementIndex(e.getOffset()));
-                if (((ScilabDocument.ScilabLeafElement) line).isFunction()) {
+                ScilabDocument.ScilabLeafElement line = (ScilabDocument.ScilabLeafElement) root.getElement(root.getElementIndex(e.getOffset()));
+                if (line.isFunction() || line.isBroken()) {
                     updateLineNumber();
+                    repaint();
                 }
             } else {
                 updateLineNumber();
