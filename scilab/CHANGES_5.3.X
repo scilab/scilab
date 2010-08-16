@@ -64,6 +64,9 @@ Editvar/Browsevar:
 Compilation:
 ============
 
+* -fwritable-strings C argument removed for all architectures under Linux
+  (was causing some build issues under sparc, alpha and powerpc)
+
 * bug 7668 fixed -  Scilab 5.3.0-beta-2 did not build with Visual Studio 2008 Express.
 
 
