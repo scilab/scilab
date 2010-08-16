@@ -87,6 +87,9 @@ Windows Installer:
 Bug Fixes:
 ==========
 
+* bug 7208 fixed - The help for atomsGetLoaded() gave the wrong shape
+                   for the loaded matrix.
+
 * bug 7452 fixed - demos nmplot from Optimization and Simulation -> fminsearch
                    -> nmplot* did not work.
 
