@@ -71,10 +71,10 @@ public class MatrixElement {
 					 * should be able to handle expressions like sqrt(1/2)
 					 */
 					try {
-						into[i*cells.length + j] = Double.parseDouble(cells[j].replaceAll("\\D", " ").trim());
+						into[i*cells.length + j] = Double.parseDouble(cells[j].replaceAll("\\D^.", " ").trim());
 					} catch (NumberFormatException fe) {
 						into[i*cells.length + j] = 0;
-						LOG.error("NumberFormaException with:" + cells[j].replaceAll("\\D", " ").trim());
+						LOG.error("NumberFormaException with:" + cells[j].replaceAll("\\D^.", " ").trim());
 						trace.addFaultParameters(toTrace + "NumberFormaException from:" + from + " with: " + cells[j].replaceAll("\\D", " ").trim());
 					}
 				}
