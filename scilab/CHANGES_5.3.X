@@ -79,6 +79,9 @@ Bug Fixes:
 
 * bug 7519 fixed - Help page of getcallbackobject() did not describe input argument.
 
+* bug 7599 fixed - Intersci-n and intersci did not create code from a .desc file
+                   if it was not ended by an empty line.
+
 * bug 7601 fixed - call_scilab C functions did not check if engine was started.
 
 * bug 7611 fixed - The cross to close a subwindow and the little arrow to undock
