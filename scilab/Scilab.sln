@@ -557,7 +557,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cacsd", "modules\cacsd\src\
 		{A5911CD7-F8E8-440C-A23E-4843A0636F3A} = {A5911CD7-F8E8-440C-A23E-4843A0636F3A}
 	EndProjectSection
 EndProject
-Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "dcd", "modules\statistics\src\dcdflib\dcd_f\dcd.vfproj", "{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}"
+Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "dcd", "modules\statistics\src\dcdflib\dcd_f\dcd_f.vfproj", "{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
