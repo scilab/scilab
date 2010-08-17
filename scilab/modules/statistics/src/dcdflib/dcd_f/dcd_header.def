@@ -1,4 +1,4 @@
-LIBRARY    dcd.dll
+LIBRARY    dcd_f.dll
 
 
 EXPORTS
