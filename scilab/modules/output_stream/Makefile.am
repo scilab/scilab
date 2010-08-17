@@ -109,6 +109,7 @@ libscioutput_stream_la_sci_gateway_DATA = sci_gateway/output_stream_gateway.xml
 libscioutput_stream_la_includedir=$(pkgincludedir)
 libscioutput_stream_la_include_HEADERS = includes/do_error_number.h \
 includes/sciprint.h \
+includes/cerro.h \
 includes/Scierror.h
 
 include $(top_srcdir)/Makefile.incl.am

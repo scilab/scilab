@@ -151,4 +151,9 @@ libscifileio_la_etc_DATA = etc/fileio.quit etc/fileio.start
 libscifileio_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscifileio_la_sci_gateway_DATA = sci_gateway/fileio_gateway.xml
 
+#### fileio : include files ####
+libscifileio_la_includedir=$(pkgincludedir)
+libscifileio_la_include_HEADERS = includes/getFullFilename.h \
+includes/dynlib_fileio.h
+
 include $(top_srcdir)/Makefile.incl.am

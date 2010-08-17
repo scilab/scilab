@@ -37,6 +37,7 @@
 ##########
 
 
+
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkgincludedir = $(includedir)/@PACKAGE@
@@ -56,8 +57,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
-	$(top_srcdir)/Makefile.incl.am
+DIST_COMMON = $(libscifileio_la_include_HEADERS) $(srcdir)/Makefile.am \
+	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
 
 # With --enable-compilation-tests, launch java unitary tests
@@ -108,7 +109,8 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscifileio_la_etcdir)" \
 	"$(DESTDIR)$(libscifileio_la_rootdir)" \
-	"$(DESTDIR)$(libscifileio_la_sci_gatewaydir)"
+	"$(DESTDIR)$(libscifileio_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libscifileio_la_includedir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscifileio_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la \
@@ -200,6 +202,7 @@ SOURCES = $(libscifileio_la_SOURCES)
 DIST_SOURCES = $(libscifileio_la_SOURCES)
 DATA = $(libscifileio_la_etc_DATA) $(libscifileio_la_root_DATA) \
 	$(libscifileio_la_sci_gateway_DATA)
+HEADERS = $(libscifileio_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -589,6 +592,12 @@ libscifileio_la_etc_DATA = etc/fileio.quit etc/fileio.start
 #### fileio : gateway declaration ####
 libscifileio_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscifileio_la_sci_gateway_DATA = sci_gateway/fileio_gateway.xml
+
+#### fileio : include files ####
+libscifileio_la_includedir = $(pkgincludedir)
+libscifileio_la_include_HEADERS = includes/getFullFilename.h \
+includes/dynlib_fileio.h
+
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -1565,6 +1574,26 @@ uninstall-libscifileio_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscifileio_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscifileio_la_sci_gatewaydir)" && rm -f $$files
+install-libscifileio_la_includeHEADERS: $(libscifileio_la_include_HEADERS)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscifileio_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscifileio_la_includedir)"
+	@list='$(libscifileio_la_include_HEADERS)'; test -n "$(libscifileio_la_includedir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscifileio_la_includedir)'"; \
+	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscifileio_la_includedir)" || exit $$?; \
+	done
+
+uninstall-libscifileio_la_includeHEADERS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscifileio_la_include_HEADERS)'; test -n "$(libscifileio_la_includedir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(libscifileio_la_includedir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(libscifileio_la_includedir)" && rm -f $$files
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -1651,9 +1680,9 @@ distdir: $(DISTFILES)
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
-all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
+all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscifileio_la_etcdir)" "$(DESTDIR)$(libscifileio_la_rootdir)" "$(DESTDIR)$(libscifileio_la_sci_gatewaydir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscifileio_la_etcdir)" "$(DESTDIR)$(libscifileio_la_rootdir)" "$(DESTDIR)$(libscifileio_la_sci_gatewaydir)" "$(DESTDIR)$(libscifileio_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1705,6 +1734,7 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local install-libscifileio_la_etcDATA \
+	install-libscifileio_la_includeHEADERS \
 	install-libscifileio_la_rootDATA \
 	install-libscifileio_la_sci_gatewayDATA
 
@@ -1753,6 +1783,7 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscifileio_la_etcDATA \
+	uninstall-libscifileio_la_includeHEADERS \
 	uninstall-libscifileio_la_rootDATA \
 	uninstall-libscifileio_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
@@ -1769,6 +1800,7 @@ uninstall-am: uninstall-libscifileio_la_etcDATA \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
 	install-libscifileio_la_etcDATA \
+	install-libscifileio_la_includeHEADERS \
 	install-libscifileio_la_rootDATA \
 	install-libscifileio_la_sci_gatewayDATA install-man \
 	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
@@ -1777,6 +1809,7 @@ uninstall-am: uninstall-libscifileio_la_etcDATA \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am uninstall-libscifileio_la_etcDATA \
+	uninstall-libscifileio_la_includeHEADERS \
 	uninstall-libscifileio_la_rootDATA \
 	uninstall-libscifileio_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
