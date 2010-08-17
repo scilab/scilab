@@ -108,6 +108,9 @@ Xcos:
 
 * bug 7651 fixed - scicos_math.h was missing in binary package.
 
+* bug 7715 fixed - Performances of xcosDiagramToHDF5 degraded after several
+                   subsequent calls to this function.
+
 
 Bug Fixes:
 ==========
