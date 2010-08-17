@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA -
+ * Copyright (C) INRIA
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,35 +14,35 @@
 #include "stack-c.h"
 #include "msgstore.h"
 #include "freeArrayOfString.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #define MEM_LACK 3
 #define MAX_LINES 2
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 static char *msg_buff[MAX_MSG_LINES];
 static char funname[nlgh+1];    /* Francois VOGEL August 2004 - Replaced 24 by 25 (nlgh+1) (bug 803)*/
 static int where = 0;
 static int err_n = 0;
 static int msg_line_counter=0;
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 int C2F(errstore)(int *n)
 {
   err_n = *n;
   return 0;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 int C2F(linestore)(int *n)
 {
   where = *n;
   return 0;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 int C2F(funnamestore)(char *str,int *n,int lenstr)
 {
   memset(funname,'\0',nlgh+1);    /* Francois VOGEL August 2004 (bug 803)*/
   strncpy(funname, str, (size_t)*n);
   return 0;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 int C2F(msgstore)(char *str,int *n)
 {
   char *line, c;
@@ -53,21 +53,21 @@ int C2F(msgstore)(char *str,int *n)
   }
   if ( (line = (char *) MALLOC((*n + 1)*sizeof(char))) == (char *)0) 
   {
-	  return(MEM_LACK);
+    return(MEM_LACK);
   }
   /* do not store\n" */ 
   for ( i= 0 ; i < *n ; i++ ) 
   {
     if ( (c=str[i]) != '\n' && c != '\r')
-	{
-		line[count++]=c;
-	}
+    {
+      line[count++]=c;
+    }
   }
   line[count]='\0';
   msg_buff[msg_line_counter++]=line;
   return 0;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 void C2F(freemsgtable)()
 {
   int k;
@@ -78,7 +78,7 @@ void C2F(freemsgtable)()
   msg_line_counter=0;
   err_n = 0;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 int C2F(lasterror)(char *fname, unsigned long fname_len)
 {
   int k, one=1, l1, zero=0, m1, n1, clear, lr;
@@ -92,7 +92,7 @@ int C2F(lasterror)(char *fname, unsigned long fname_len)
     CreateVar(1,MATRIX_OF_DOUBLE_DATATYPE,&zero,&zero,&l1);
     LhsVar(1)=1;
     if (Lhs >= 2) 
-	{
+    {
       CreateVar(2,MATRIX_OF_DOUBLE_DATATYPE,&one,&one,&l1);
       *stk(l1) = (double)0.0;
       LhsVar(2)=2;
@@ -122,9 +122,9 @@ int C2F(lasterror)(char *fname, unsigned long fname_len)
       clear = *istk(l1);
     }
     for (k=0;k<msg_line_counter ; k++)
-	{
-		sz[k]=(int)strlen(msg_buff[k])-1;
-	}
+    {
+      sz[k]=(int)strlen(msg_buff[k])-1;
+    }
     CreateVarFromPtr(one,MATRIX_OF_STRING_DATATYPE, &msg_line_counter, &one,(void *) msg_buff);
     LhsVar(1) = 1;
     if (Lhs >= 2)
@@ -158,6 +158,6 @@ int C2F(lasterror)(char *fname, unsigned long fname_len)
 /*--------------------------------------------------------------------------*/
 int GetLastErrorCode(void)
 {
-	return err_n;
+  return err_n;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
