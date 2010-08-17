@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-06-29 10:00+0100\n"
+"Revision-Date: 2010-08-17 12:09+0100\n"
 
 # File: src/c/banier.c, line: 36
 msgid "                 Consortium Scilab (DIGITEO)\n"
@@ -28,7 +28,7 @@ msgstr ""
 msgid "               Copyright (c) 1989-2010 (INRIA)\n"
 msgstr ""
 #
-# File: /pro/git/scilab.clean/scilab/etc/scilab.start, line: 69
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 69
 msgid "  loading initial environment"
 msgstr ""
 #
@@ -118,7 +118,7 @@ msgstr ""
 msgid "%s: %s have incompatible dimensions.\n"
 msgstr ""
 #
-# File: macros/edit.sci, line: 38
+# File: macros/edit.sci, line: 40
 #, c-format
 msgid "%s: %s is a uneditable hard coded function.\n"
 msgstr ""
@@ -201,11 +201,6 @@ msgstr ""
 # File: src/c/stack1.c, line: 2963
 #, c-format
 msgid "%s: Incompatible sizes.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_newfun.c, line: 173
-#, c-format
-msgid "%s: Invalid '%s' value.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_readgateway.c, line: 119
@@ -332,7 +327,7 @@ msgstr ""
 msgid "%s: Recursion problems. Sorry ...\n"
 msgstr ""
 #
-# File: macros/edit.sci, line: 18
+# File: macros/edit.sci, line: 19
 #, c-format
 msgid "%s: Requires scilab editor.\n"
 msgstr ""
@@ -455,7 +450,7 @@ msgstr ""
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 #
-# File: macros/edit.sci, line: 24
+# File: macros/edit.sci, line: 25
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
@@ -917,7 +912,7 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_newfun.c, line: 191
+# File: sci_gateway/c/sci_newfun.c, line: 168
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be %s.\n"
 msgstr ""
@@ -1025,7 +1020,7 @@ msgstr ""
 msgid "%s: entry point %s not found in predefined tables or link table.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_newfun.c, line: 185
+# File: sci_gateway/c/sci_newfun.c, line: 162
 #, c-format
 msgid "%s: function-name is incorrect.\n"
 msgstr ""
@@ -1067,38 +1062,38 @@ msgstr ""
 msgid "%s: wrong code %d.\n"
 msgstr ""
 #
-# File: /pro/git/scilab.clean/scilab/etc/scilab.start, line: 181
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 181
 msgid "&?"
 msgstr ""
 #
-# File: /pro/git/scilab.clean/scilab/etc/scilab.start, line: 168
-# File: /pro/git/scilab.clean/scilab/etc/scilab.start, line: 170
-# File: /pro/git/scilab.clean/scilab/etc/scilab.start, line: 173
-# File: /pro/git/scilab.clean/scilab/etc/scilab.start, line: 176
-# File: /pro/git/scilab.clean/scilab/etc/scilab.start, line: 179
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 168
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 170
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 173
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 176
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 179
 msgid "&Applications"
 msgstr ""
 #
-# File: /pro/git/scilab.clean/scilab/etc/scilab.start, line: 167
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 167
 msgid "&Control"
 msgstr ""
 #
-# File: /pro/git/scilab.clean/scilab/etc/scilab.start, line: 165
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 165
 msgid "&Edit"
 msgstr ""
 #
-# File: /pro/git/scilab.clean/scilab/etc/scilab.start, line: 164
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 164
 msgid "&File"
 msgstr ""
 #
-# File: /pro/git/scilab.clean/scilab/etc/scilab.start, line: 166
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 166
 msgid "&Preferences"
 msgstr ""
 #
 # File: macros/toolboxes.sci, line: 43
 # File: macros/toolboxes.sci, line: 44
 # File: macros/toolboxes.sci, line: 48
-# File: /pro/git/scilab.clean/scilab/etc/scilab.start, line: 182
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 182
 msgid "&Toolboxes"
 msgstr ""
 #
@@ -1124,7 +1119,7 @@ msgstr ""
 msgid "Commands:\n"
 msgstr ""
 #
-# File: src/c/callinterf.c, line: 178
+# File: src/c/callinterf.c, line: 182
 msgid "Do you really want to abort computation (y or n ?) \n"
 msgstr ""
 #
@@ -1143,7 +1138,7 @@ msgid ""
 "SciError(x).\n"
 msgstr ""
 #
-# File: src/c/tmpdir.c, line: 131
+# File: src/c/tmpdir.c, line: 139
 #, c-format
 msgid "Error: Could not create %s: %s\n"
 msgstr ""
@@ -1168,7 +1163,7 @@ msgstr ""
 msgid "Error: Memory allocation.\n"
 msgstr ""
 #
-# File: src/c/callinterf.c, line: 151
+# File: src/c/callinterf.c, line: 155
 #, c-format
 msgid "Error: Not a valid gateway ID %d.\n"
 msgstr ""
@@ -1221,7 +1216,7 @@ msgstr ""
 msgid "Fatal Error: Can't create table for scilab functions.\n"
 msgstr ""
 #
-# File: src/c/run.c, line: 512
+# File: src/c/run.c, line: 520
 msgid "Functions compiled with very old versions are no more handled."
 msgstr ""
 #
@@ -1306,7 +1301,7 @@ msgstr ""
 msgid "SCIHOME not defined.\n"
 msgstr ""
 #
-# File: src/c/callinterf.c, line: 137
+# File: src/c/callinterf.c, line: 141
 msgid "SIGSTP: aborting current computation\n"
 msgstr ""
 #
@@ -1327,7 +1322,7 @@ msgid ""
 "%s\n"
 msgstr ""
 #
-# File: /pro/git/scilab.clean/scilab/etc/scilab.start, line: 68
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 68
 msgid "Startup execution:"
 msgstr ""
 #
@@ -1341,7 +1336,7 @@ msgstr ""
 msgid "The SCI environment variable is not set.\n"
 msgstr ""
 #
-# File: src/c/callinterf.c, line: 177
+# File: src/c/callinterf.c, line: 181
 msgid "Trying to stop scilab in the middle of an interface.\n"
 msgstr ""
 #
@@ -1360,8 +1355,8 @@ msgstr ""
 msgid "Undefined variable %s.\n"
 msgstr ""
 #
-# File: src/c/run.c, line: 353
 # File: src/c/run.c, line: 361
+# File: src/c/run.c, line: 369
 msgid "Unexpected opcode, please report into the Scilab bug tracker."
 msgstr ""
 #

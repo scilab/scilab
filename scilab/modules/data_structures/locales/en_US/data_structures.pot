@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-06-29 10:00+0100\n"
+"Revision-Date: 2010-08-17 12:09+0100\n"
 
 # File: src/c/hmops.c, line: 651
 msgid " An hypermatrix extraction must have at least 2 arguments. "
@@ -44,6 +44,11 @@ msgstr ""
 msgid "%s: ''dims'' can not be used as a field name.\n"
 msgstr ""
 #
+# File: macros/hypermat.sci, line: 37
+#, c-format
+msgid "%s: Number of entries does not match product of dimensions"
+msgstr ""
+#
 # File: macros/struct.sci, line: 25
 #, c-format
 msgid "%s: Wrong number of input argument(s) : an even number is expected.\n"
@@ -67,6 +72,11 @@ msgstr ""
 # File: macros/isfield.sci, line: 24
 #, c-format
 msgid "%s: Wrong type for input argument #%d: struct array expected.\n"
+msgstr ""
+#
+# File: macros/hypermat.sci, line: 21
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Elements"
 msgstr ""
 #
 # File: macros/struct.sci, line: 36

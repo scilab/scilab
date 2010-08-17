@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-06-29 10:00+0100\n"
+"Revision-Date: 2010-08-17 12:09+0100\n"
 
 # File: macros/xcosConfigureModelica.sci, line: 28
 #, c-format
@@ -26,7 +26,7 @@ msgstr ""
 msgid "%s: All paths defined by %s variable must exist.\n"
 msgstr ""
 #
-# File: macros/importScicosPal.sci, line: 28
+# File: macros/importScicosPal.sci, line: 57
 # File: macros/generateBlockImages.sci, line: 56
 #, c-format
 msgid "%s: File ''%s'' does not exist.\n"
@@ -56,25 +56,36 @@ msgid ""
 "access on this directory.\n"
 msgstr ""
 #
-# File: macros/xcosPalAddBlock.sci, line: 43
-# File: macros/xcosPalAddBlock.sci, line: 55
+# File: macros/xcosPalAddBlock.sci, line: 80
+# File: macros/xcosPalAddBlock.sci, line: 92
 #, c-format
 msgid "%s: Unable to export %s to %s.\n"
 msgstr ""
 #
-# File: macros/xcosPalExport.sci, line: 55
+# File: macros/xcosCodeGeneration.sci, line: 40
+#, c-format
+msgid "%s: Unable to export ''XX'' to %s"
+msgstr ""
+#
+# File: macros/xcosPalExport.sci, line: 95
 #, c-format
 msgid "%s: Unable to export the palette to hdf5.\n"
 msgstr ""
 #
-# File: macros/xcosPalAddBlock.sci, line: 110
+# File: macros/xcosPalAddBlock.sci, line: 162
 #, c-format
 msgid "%s: Unable to generate the image %s.\n"
 msgstr ""
 #
-# File: macros/xcosPalAddBlock.sci, line: 92
+# File: macros/xcosPalAddBlock.sci, line: 136
 #, c-format
 msgid "%s: Unable to generate the palette icon : %s already exists.\n"
+msgstr ""
+#
+# File: macros/xcosBlockInterface.sci, line: 40
+# File: macros/xcosCodeGeneration.sci, line: 26
+#, c-format
+msgid "%s: Unable to import from data from %s"
 msgstr ""
 #
 # File: macros/importXcosDiagram.sci, line: 45
@@ -83,12 +94,12 @@ msgstr ""
 msgid "%s: Unable to import xcos file %s.\n"
 msgstr ""
 #
-# File: macros/xcosPalAddBlock.sci, line: 72
+# File: macros/xcosPalAddBlock.sci, line: 109
 #, c-format
 msgid "%s: Unable to load block from %s: hdf5 file expected.\n"
 msgstr ""
 #
-# File: macros/xcosPalAddBlock.sci, line: 76
+# File: macros/xcosPalAddBlock.sci, line: 113
 #, c-format
 msgid "%s: Unable to load block from %s: no `scs_m'' variable found.\n"
 msgstr ""
@@ -99,7 +110,7 @@ msgid "%s: Wrong input argument %s: svg or gif expected.\n"
 msgstr ""
 #
 # File: macros/getDiagramVersion.sci, line: 5
-# File: macros/importScicosPal.sci, line: 19
+# File: macros/importScicosPal.sci, line: 47
 # File: macros/importScicosDiagram.sci, line: 24
 # File: macros/generateBlockImages.sci, line: 25
 # File: macros/importXcosDiagram.sci, line: 37
@@ -107,31 +118,31 @@ msgstr ""
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
 #
-# File: macros/xcosPalExport.sci, line: 27
+# File: macros/xcosPalExport.sci, line: 67
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 #
-# File: macros/xcosPalAdd.sci, line: 27
-# File: macros/xcosPalAddBlock.sci, line: 25
-# File: macros/xcosPal.sci, line: 22
+# File: macros/xcosPalAdd.sci, line: 56
+# File: macros/xcosPalAddBlock.sci, line: 62
+# File: macros/xcosPal.sci, line: 58
 # File: macros/generateBlockImage.sci, line: 32
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 #
-# File: macros/xcosPalAddBlock.sci, line: 29
+# File: macros/xcosPalAddBlock.sci, line: 66
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
 #
-# File: macros/xcosPalAdd.sci, line: 31
-# File: macros/xcosPalExport.sci, line: 31
+# File: macros/xcosPalAdd.sci, line: 60
+# File: macros/xcosPalExport.sci, line: 71
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_xcosDiagramOpen.cpp, line: 108
+# File: sci_gateway/cpp/sci_xcosDiagramOpen.cpp, line: 107
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
 msgstr ""
@@ -139,7 +150,7 @@ msgstr ""
 # File: sci_gateway/cpp/sci_xcosDiagramClose.cpp, line: 62
 # File: sci_gateway/cpp/sci_xcosDiagramOpen.cpp, line: 66
 # File: sci_gateway/cpp/sci_warnBlockByUID.cpp, line: 67
-# File: sci_gateway/cpp/sci_warnBlockByUID.cpp, line: 108
+# File: sci_gateway/cpp/sci_warnBlockByUID.cpp, line: 107
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
@@ -181,7 +192,7 @@ msgstr ""
 msgid "%s: Wrong type for input argument %s: Block type expected.\n"
 msgstr ""
 #
-# File: macros/xcosPalAdd.sci, line: 39
+# File: macros/xcosPalAdd.sci, line: 68
 #, c-format
 msgid "%s: Wrong type for input argument %s: File not found.\n"
 msgstr ""
@@ -191,7 +202,7 @@ msgstr ""
 msgid "%s: Wrong type for input argument %s: boolean expected.\n"
 msgstr ""
 #
-# File: macros/xcosPal.sci, line: 40
+# File: macros/xcosPal.sci, line: 78
 #, c-format
 msgid "%s: Wrong type for input argument %s: diagram type expected.\n"
 msgstr ""
@@ -203,12 +214,12 @@ msgstr ""
 msgid "%s: Wrong type for input argument %s: directory path string expected.\n"
 msgstr ""
 #
-# File: macros/xcosPalExport.sci, line: 39
+# File: macros/xcosPalExport.sci, line: 79
 #, c-format
 msgid "%s: Wrong type for input argument %s: full path string expected.\n"
 msgstr ""
 #
-# File: macros/xcosPalAddBlock.sci, line: 81
+# File: macros/xcosPalAddBlock.sci, line: 118
 #, c-format
 msgid ""
 "%s: Wrong type for input argument %s: function as string or Block type or "
@@ -220,19 +231,19 @@ msgstr ""
 msgid "%s: Wrong type for input argument %s: handle type expected.\n"
 msgstr ""
 #
-# File: macros/xcosPalAddBlock.sci, line: 33
-# File: macros/xcosPalExport.sci, line: 35
+# File: macros/xcosPalAddBlock.sci, line: 70
+# File: macros/xcosPalExport.sci, line: 75
 #, c-format
 msgid "%s: Wrong type for input argument %s: palette type expected.\n"
 msgstr ""
 #
-# File: macros/xcosPalAdd.sci, line: 35
+# File: macros/xcosPalAdd.sci, line: 64
 #, c-format
 msgid "%s: Wrong type for input argument %s: palette type or path expected.\n"
 msgstr ""
 #
-# File: macros/xcosPalAddBlock.sci, line: 96
-# File: macros/xcosPalAddBlock.sci, line: 100
+# File: macros/xcosPalAddBlock.sci, line: 140
+# File: macros/xcosPalAddBlock.sci, line: 144
 #, c-format
 msgid "%s: Wrong type for input argument %s: path string expected.\n"
 msgstr ""
@@ -242,17 +253,17 @@ msgstr ""
 msgid "%s: Wrong type for input argument %s: string expected.\n"
 msgstr ""
 #
-# File: macros/xcosPalAddBlock.sci, line: 114
+# File: macros/xcosPalAddBlock.sci, line: 166
 #, c-format
 msgid "%s: Wrong type for input argument %s: string or struct expected.\n"
 msgstr ""
 #
-# File: macros/xcosPal.sci, line: 36
+# File: macros/xcosPal.sci, line: 74
 #, c-format
 msgid "%s: Wrong type for input argument %s: string type expected.\n"
 msgstr ""
 #
-# File: macros/xcosPalAdd.sci, line: 45
+# File: macros/xcosPalAdd.sci, line: 74
 #, c-format
 msgid "%s: Wrong type for input argument %s: string vector expected.\n"
 msgstr ""
@@ -482,12 +493,6 @@ msgstr ""
 msgid "Export to XML"
 msgstr ""
 #
-# File: macros/importScicosPal.sci, line: 84
-# File: macros/importScicosPal.sci, line: 91
-#, c-format
-msgid "FAILED TO EXPORT: %s\n"
-msgstr ""
-#
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 156
 msgid "Failed to load Diagram"
 msgstr ""
@@ -622,6 +627,10 @@ msgstr ""
 #
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 226
 msgid "Loading palettes"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xcos/palette/PaletteBlockCtrl.java, line: 53
+msgid "Loading the block"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 227
@@ -933,7 +942,7 @@ msgstr ""
 msgid "Unable to delete "
 msgstr ""
 #
-# File: src/java/org/scilab/modules/xcos/palette/Palette.java, line: 62
+# File: src/java/org/scilab/modules/xcos/palette/Palette.java, line: 58
 msgid "Unable to import %s .\n"
 msgstr ""
 #
@@ -941,7 +950,7 @@ msgstr ""
 msgid "Unable to load block from %s ."
 msgstr ""
 #
-# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 71
+# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 73
 msgid ""
 "Unable to load the Batik library. \n"
 "Expecting version %s ; Getting version %s ."
@@ -949,7 +958,7 @@ msgstr ""
 #
 # File: src/java/org/scilab/modules/xcos/Xcos.java, line: 69
 msgid ""
-"Unable to load the HDF5 library. \n"
+"Unable to load the hdf5-java (jhdf5) library. \n"
 "Expecting version %s ; Getting version %s ."
 msgstr ""
 #
@@ -957,6 +966,10 @@ msgstr ""
 msgid ""
 "Unable to load the jgraphx library.\n"
 "Expecting version %s ; Getting version %s ."
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 71
+msgid "Unable to load the native HDF5 library."
 msgstr ""
 #
 # File: macros/importXcosDiagram.sci, line: 30
@@ -1029,7 +1042,12 @@ msgstr ""
 msgid "Window title"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/xcos/palette/Palette.java, line: 61
+# File: src/java/org/scilab/modules/xcos/palette/Palette.java, line: 57
+msgid ""
+"Wrong input argument \"%s\": invalid node, use 'xcosPalDisable' instead.\n"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xcos/palette/Palette.java, line: 56
 msgid "Wrong input argument \"%s\": invalid tree path.\n"
 msgstr ""
 #

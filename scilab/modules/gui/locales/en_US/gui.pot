@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-06-29 10:00+0100\n"
+"Revision-Date: 2010-08-17 12:09+0100\n"
 
 # File: macros/tree/uiFindNode.sci, line: 115
 # File: macros/tree/uiFindNode.sci, line: 142
@@ -48,7 +48,7 @@ msgstr ""
 msgid "%s: Could not create 'Uicontrol' handle.\n"
 msgstr ""
 #
-# File: src/c/CreateUIControl.c, line: 160
+# File: src/c/CreateUIControl.c, line: 161
 #, c-format
 msgid "%s: Could not create uicontrol of type %s."
 msgstr ""
@@ -130,7 +130,7 @@ msgstr ""
 msgid "%s: No results founded.\n"
 msgstr ""
 #
-# File: src/nogui/nogui.c, line: 36
+# File: src/nogui/nogui.c, line: 61
 #, c-format
 msgid "%s: Only available under 'STANDARD' mode.\n"
 msgstr ""
@@ -804,7 +804,7 @@ msgstr ""
 # File: demos/uicontrol.dem.sce, line: 88
 # File: scilab_fake_localization_file.c, line: 36
 # File: scilab_fake_localization_file.c, line: 41
-# File: scilab_fake_localization_file.c, line: 76
+# File: scilab_fake_localization_file.c, line: 78
 msgid "&?"
 msgstr ""
 #
@@ -814,7 +814,7 @@ msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 38
 # File: scilab_fake_localization_file.c, line: 42
-# File: scilab_fake_localization_file.c, line: 85
+# File: scilab_fake_localization_file.c, line: 87
 msgid "&About Scilab..."
 msgstr ""
 #
@@ -830,7 +830,7 @@ msgstr ""
 msgid "&BMP"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 83
+# File: scilab_fake_localization_file.c, line: 85
 msgid "&Bug And Request database"
 msgstr ""
 #
@@ -850,7 +850,11 @@ msgstr ""
 msgid "&Colors"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 82
+# File: scilab_fake_localization_file.c, line: 77
+msgid "&Command History"
+msgstr ""
+#
+# File: scilab_fake_localization_file.c, line: 84
 msgid "&Contributions"
 msgstr ""
 #
@@ -883,10 +887,6 @@ msgstr ""
 # File: scilab_fake_localization_file.c, line: 26
 # File: scilab_fake_localization_file.c, line: 53
 msgid "&Edit"
-msgstr ""
-#
-# File: scilab_fake_localization_file.c, line: 72
-msgid "&Editor"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 57
@@ -941,7 +941,7 @@ msgstr ""
 msgid "&Load..."
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 84
+# File: scilab_fake_localization_file.c, line: 86
 msgid "&Mailing lists"
 msgstr ""
 #
@@ -1002,6 +1002,10 @@ msgstr ""
 msgid "&Save..."
 msgstr ""
 #
+# File: scilab_fake_localization_file.c, line: 72
+msgid "&SciNotes"
+msgstr ""
+#
 # File: scilab_fake_localization_file.c, line: 37
 msgid "&Scilab Help"
 msgstr ""
@@ -1032,11 +1036,15 @@ msgstr ""
 msgid "&UnZoom"
 msgstr ""
 #
+# File: scilab_fake_localization_file.c, line: 76
+msgid "&Variable Browser"
+msgstr ""
+#
 # File: scilab_fake_localization_file.c, line: 11
 msgid "&Vectorial export"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 79
+# File: scilab_fake_localization_file.c, line: 81
 msgid "&Web links"
 msgstr ""
 #
@@ -1077,15 +1085,16 @@ msgstr ""
 msgid "Add color in listbox"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 62
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 72
 msgid "All %s files"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 54
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 68
 msgid "All Scilab files"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 60
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 70
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 49
 msgid "All files"
 msgstr ""
@@ -1120,6 +1129,10 @@ msgstr ""
 msgid "Application"
 msgstr ""
 #
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 158
+msgid "Attributes"
+msgstr ""
+#
 # File: macros/about.sci, line: 18
 msgid ""
 "Authors:\n"
@@ -1129,6 +1142,10 @@ msgstr ""
 #
 # File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 199
 msgid "Back"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 159
+msgid "Bold"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 20
@@ -1142,6 +1159,7 @@ msgstr ""
 # File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 168
 # File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 174
 # File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 177
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 210
 msgid "Cancel"
 msgstr ""
 #
@@ -1149,11 +1167,11 @@ msgstr ""
 msgid "CeCILL License"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 96
+# File: scilab_fake_localization_file.c, line: 98
 msgid "Change Current Directory"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 97
+# File: scilab_fake_localization_file.c, line: 99
 msgid "Choose Font..."
 msgstr ""
 #
@@ -1204,7 +1222,7 @@ msgstr ""
 #
 # File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 221
 # File: src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 84
-# File: scilab_fake_localization_file.c, line: 94
+# File: scilab_fake_localization_file.c, line: 96
 msgid "Copy"
 msgstr ""
 #
@@ -1216,8 +1234,12 @@ msgstr ""
 msgid "Copyright (c) 1989-2010 (INRIA)"
 msgstr ""
 #
+# File: src/java/org/scilab/modules/gui/utils/WebBrowser.java, line: 30
+msgid "Could not open: "
+msgstr ""
+#
 # File: src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 77
-# File: scilab_fake_localization_file.c, line: 93
+# File: scilab_fake_localization_file.c, line: 95
 msgid "Cut"
 msgstr ""
 #
@@ -1258,7 +1280,7 @@ msgstr ""
 msgid "Error on export"
 msgstr ""
 #
-# File: src/nogui/nogui.c, line: 94
+# File: src/nogui/nogui.c, line: 119
 msgid "Error. A signal has been caught.\n"
 msgstr ""
 #
@@ -1303,6 +1325,14 @@ msgstr ""
 msgid "File already exists"
 msgstr ""
 #
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 113
+msgid "Font"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 105
+msgid "Font Chooser"
+msgstr ""
+#
 # File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 214
 msgid "Forward"
 msgstr ""
@@ -1316,8 +1346,8 @@ msgid "GUI"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/gui/helpbrowser/ScilabHelpBrowser.java, line: 74
-# File: scilab_fake_localization_file.c, line: 90
-# File: scilab_fake_localization_file.c, line: 102
+# File: scilab_fake_localization_file.c, line: 92
+# File: scilab_fake_localization_file.c, line: 104
 msgid "Help Browser"
 msgstr ""
 #
@@ -1339,12 +1369,16 @@ msgstr ""
 msgid "Impossible to get current look and feel"
 msgstr ""
 #
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 161
+msgid "Italic"
+msgstr ""
+#
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 41
 msgid "JPEG image"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 91
-msgid "Launch Scilab text editor"
+# File: scilab_fake_localization_file.c, line: 93
+msgid "Launch SciNotes"
 msgstr ""
 #
 # File: demos/uicontrol.dem.sce, line: 103
@@ -1386,8 +1420,12 @@ msgstr ""
 msgid "Menu status"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 99
+# File: scilab_fake_localization_file.c, line: 101
 msgid "Module manager - ATOMS"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 163
+msgid "Monospaced"
 msgstr ""
 #
 # File: demos/uicontrol.dem.sce, line: 70
@@ -1469,14 +1507,15 @@ msgid "OK"
 msgstr ""
 #
 # File: macros/about.sci, line: 20
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 199
 msgid "Ok"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 92
+# File: scilab_fake_localization_file.c, line: 94
 msgid "Open a file"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 88
+# File: scilab_fake_localization_file.c, line: 90
 msgid "Original View"
 msgstr ""
 #
@@ -1502,7 +1541,7 @@ msgid "PPM image"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 91
-# File: scilab_fake_localization_file.c, line: 95
+# File: scilab_fake_localization_file.c, line: 97
 msgid "Paste"
 msgstr ""
 #
@@ -1519,10 +1558,11 @@ msgid "Popupmenu selection"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 117
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 184
 msgid "Preview"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 98
+# File: scilab_fake_localization_file.c, line: 100
 msgid "Print..."
 msgstr ""
 #
@@ -1540,7 +1580,7 @@ msgstr ""
 msgid "Replace existing file?"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 86
+# File: scilab_fake_localization_file.c, line: 88
 msgid "Rotate"
 msgstr ""
 #
@@ -1556,23 +1596,27 @@ msgstr ""
 msgid "Save and execute"
 msgstr ""
 #
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 172
+msgid "SciNotes compatible"
+msgstr ""
+#
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 58
 msgid "Scicos files"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 81
+# File: scilab_fake_localization_file.c, line: 83
 msgid "Scilab &ATOMS Web Site"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 78
+# File: scilab_fake_localization_file.c, line: 80
 msgid "Scilab &Demonstrations"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 77
+# File: scilab_fake_localization_file.c, line: 79
 msgid "Scilab &Help"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 80
+# File: scilab_fake_localization_file.c, line: 82
 msgid "Scilab &Web Site"
 msgstr ""
 #
@@ -1581,9 +1625,9 @@ msgstr ""
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr ""
 #
-# File: src/nogui/nogui.c, line: 25
-# File: src/nogui/nogui.c, line: 128
-# File: src/nogui/nogui.c, line: 132
+# File: src/nogui/nogui.c, line: 33
+# File: src/nogui/nogui.c, line: 153
+# File: src/nogui/nogui.c, line: 157
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr ""
@@ -1607,7 +1651,11 @@ msgstr ""
 msgid "Scilab Contributors..."
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 101
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 66
+msgid "Scilab Demo files"
+msgstr ""
+#
+# File: scilab_fake_localization_file.c, line: 103
 msgid "Scilab Demonstrations"
 msgstr ""
 #
@@ -1629,12 +1677,20 @@ msgstr ""
 msgid "Scilab Multiple Values Request"
 msgstr ""
 #
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 64
+msgid "Scilab Quit files"
+msgstr ""
+#
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 50
 msgid "Scilab SCE files"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 48
 msgid "Scilab SCI files"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 62
+msgid "Scilab Start files"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 52
@@ -1647,7 +1703,7 @@ msgid "Select All"
 msgstr ""
 #
 # File: etc/main_menubar.xml, line: 59
-# File: etc/main_toolbar.xml, line: 39
+# File: etc/main_toolbar.xml, line: 38
 msgid "Select a directory"
 msgstr ""
 #
@@ -1674,8 +1730,8 @@ msgid "Select a file to load"
 msgstr ""
 #
 # File: etc/main_menubar.xml, line: 23
-# File: etc/main_toolbar.xml, line: 12
-msgid "Select a file to open with Scilab text editor"
+# File: etc/main_toolbar.xml, line: 11
+msgid "Select a file to open with SciNotes"
 msgstr ""
 #
 # File: etc/graphics_menubar.xml, line: 23
@@ -1734,6 +1790,10 @@ msgstr ""
 #
 # File: demos/uicontrol.dem.sce, line: 109
 msgid "Sub-menu 2-2"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 60
+msgid "Test files"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/gui/utils/ScilabAboutBox.java, line: 48
@@ -2043,7 +2103,7 @@ msgid ""
 "expected.\n"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 100
+# File: scilab_fake_localization_file.c, line: 102
 msgid "Xcos"
 msgstr ""
 #
@@ -2067,7 +2127,7 @@ msgstr ""
 msgid "You selected ''%s''."
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 87
+# File: scilab_fake_localization_file.c, line: 89
 msgid "Zoom Area"
 msgstr ""
 #
@@ -2120,7 +2180,7 @@ msgstr ""
 msgid "red"
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 89
+# File: scilab_fake_localization_file.c, line: 91
 msgid "toggle datatip mode"
 msgstr ""
 #

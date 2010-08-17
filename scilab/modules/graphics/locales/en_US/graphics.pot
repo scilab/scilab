@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-06-29 10:00+0100\n"
+"Revision-Date: 2010-08-17 12:09+0100\n"
 
 # File: sci_gateway/c/sci_drawaxis.c, line: 186
 msgid "%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
@@ -292,11 +292,11 @@ msgstr ""
 # File: src/c/Plo2dn.c, line: 217
 # File: src/c/Plo2dn.c, line: 246
 # File: src/c/Plo2dn.c, line: 278
-# File: src/c/get_ticks_utils.c, line: 176
-# File: src/c/get_ticks_utils.c, line: 189
-# File: src/c/get_ticks_utils.c, line: 214
-# File: src/c/get_ticks_utils.c, line: 222
-# File: src/c/get_ticks_utils.c, line: 261
+# File: src/c/get_ticks_utils.c, line: 177
+# File: src/c/get_ticks_utils.c, line: 190
+# File: src/c/get_ticks_utils.c, line: 215
+# File: src/c/get_ticks_utils.c, line: 223
+# File: src/c/get_ticks_utils.c, line: 262
 # File: src/c/Gray.c, line: 260
 # File: src/c/BuildObjects.c, line: 809
 #, c-format
@@ -887,7 +887,6 @@ msgstr ""
 #
 # File: macros/name2rgb.sci, line: 17
 # File: macros/getColorIndex.sci, line: 19
-# File: macros/legend.sci, line: 57
 # File: macros/getcolor.sci, line: 18
 # File: macros/getcolor.sci, line: 26
 # File: sci_gateway/c/sci_xlfont.c, line: 130
@@ -1507,10 +1506,10 @@ msgstr ""
 msgid "Colormap"
 msgstr ""
 #
-# File: src/c/GetProperty.c, line: 3300
-# File: src/c/GetProperty.c, line: 3321
-# File: src/c/GetProperty.c, line: 3342
-# File: src/c/GetProperty.c, line: 3367
+# File: src/c/GetProperty.c, line: 3303
+# File: src/c/GetProperty.c, line: 3324
+# File: src/c/GetProperty.c, line: 3345
+# File: src/c/GetProperty.c, line: 3370
 msgid "Coordinates modifications are only applicable on axes objects.\n"
 msgstr ""
 #
@@ -1671,9 +1670,9 @@ msgstr ""
 msgid "Impossible case when building axis\n"
 msgstr ""
 #
-# File: src/c/get_ticks_utils.c, line: 170
-# File: src/c/get_ticks_utils.c, line: 209
-# File: src/c/get_ticks_utils.c, line: 256
+# File: src/c/get_ticks_utils.c, line: 171
+# File: src/c/get_ticks_utils.c, line: 210
+# File: src/c/get_ticks_utils.c, line: 257
 #, c-format
 msgid "Impossible: %s must be freed before re-allocating"
 msgstr ""
@@ -1771,7 +1770,7 @@ msgid ""
 "Old graphic mode is no longer available. Please refer to the set help page.\n"
 msgstr ""
 #
-# File: src/c/GetProperty.c, line: 3594
+# File: src/c/GetProperty.c, line: 3597
 msgid "Only axes handles have a viewing area."
 msgstr ""
 #
@@ -1895,7 +1894,7 @@ msgstr ""
 msgid "This object cannot be deleted.\n"
 msgstr ""
 #
-# File: src/c/GetProperty.c, line: 3905
+# File: src/c/GetProperty.c, line: 3908
 #, c-format
 msgid "This object has no %s property.\n"
 msgstr ""
@@ -1909,15 +1908,15 @@ msgstr ""
 msgid "Ticks location and label vectors must have the same size.\n"
 msgstr ""
 #
-# File: src/c/GetProperty.c, line: 3629
+# File: src/c/GetProperty.c, line: 3632
 msgid "Unable to compute data bounds for this kind of object."
 msgstr ""
 #
-# File: src/c/GetProperty.c, line: 3646
+# File: src/c/GetProperty.c, line: 3649
 msgid "Unable to compute x_location for this kind of object."
 msgstr ""
 #
-# File: src/c/GetProperty.c, line: 3660
+# File: src/c/GetProperty.c, line: 3663
 msgid "Unable to compute y_location for this kind of object."
 msgstr ""
 #
@@ -2360,8 +2359,8 @@ msgstr ""
 msgid "Wrong value for '%s' property: Smaller values expected.\n"
 msgstr ""
 #
-# File: src/c/GetProperty.c, line: 1018
-# File: src/c/GetProperty.c, line: 1043
+# File: src/c/GetProperty.c, line: 1021
+# File: src/c/GetProperty.c, line: 1046
 # File: src/c/SetProperty.c, line: 1283
 # File: src/c/SetProperty.c, line: 1329
 msgid "You are not using a legend object.\n"
