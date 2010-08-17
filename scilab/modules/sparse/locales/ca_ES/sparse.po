@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-10-23 10:23+0000\n"
+"PO-Revision-Date: 2010-07-29 10:06+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -143,12 +143,10 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Must be same size as input argument "
-"#%d"
+msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de tenir la mateixa "
-"que l'argument d'entrada #%d"
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un vector "
+"columna.\n"
 
 #, c-format
 msgid ""
@@ -157,6 +155,11 @@ msgid ""
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser de la mateixa "
 "mida que l'argument d'entrada #%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un escalar.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
@@ -173,22 +176,6 @@ msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
 "columna.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Same size as input argument #%d "
-"expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser de la "
-"mateixa mida que l'argument d'entrada #%d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Same size as the input argument #%d "
-"expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser de la "
-"mateixa mida que l'argument d'entrada #%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
@@ -209,6 +196,14 @@ msgid ""
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser la "
 "transposada de la funció %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for size argument #%d: Same size as input argument #%d "
+"expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de tenir la "
+"mateixa mida que l'argument d'entrada #%d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Column vector expected.\n"

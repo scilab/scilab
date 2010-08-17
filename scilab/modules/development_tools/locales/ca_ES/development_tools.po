@@ -42,9 +42,6 @@ msgid "%s: Wrong type for input argument #%d: %s expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser %s.\n"
 
-msgid "Generating loader.sce...\n"
-msgstr "S'està generant el loader.sce...\n"
-
 #, c-format
 msgid "No variable %s_ref in reference file"
 msgstr "El fitxer de referència no conté la variable %s_ref"

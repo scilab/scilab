@@ -49,11 +49,11 @@ msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte. Ha d'estar a l'interval "
 "[%d,%d].\n"
 
-msgid "Begin Session : "
-msgstr "Inici de sessió : "
+msgid "// Begin Session : "
+msgstr "// Inici de sessió : "
 
-msgid "End Session   : "
-msgstr "Final de sessió  : "
+msgid "// End Session   : "
+msgstr "// Final de sessió  : "
 
 msgid "Apr"
 msgstr "Abr"

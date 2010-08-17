@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-02-27 18:16+0100\n"
-"PO-Revision-Date: 2010-04-14 03:13+0000\n"
+"PO-Revision-Date: 2010-07-09 17:13+0000\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -43,10 +43,6 @@ msgstr " utilizando %10d elementos de um total de %10d.\n"
 #, c-format
 msgid "%f: No more space to store string arguments.\n"
 msgstr "%f: Não há mais espaço para armazenar argumentos textos.\n"
-
-#, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s : Erro na alocação de memória.\n"
 
 #, c-format
 msgid "%s and %s arguments"
@@ -132,24 +128,8 @@ msgstr ""
 "intersiz.\n"
 
 #, c-format
-msgid ""
-"%s: Cannot alloc more memory.\n"
-"Try gstacksize('max').\n"
-msgstr ""
-"%s: Não é possível alocar mais memória.\n"
-"Tente gstacksize('max').\n"
-
-#, c-format
 msgid "%s: Cannot allocate memory.\n"
 msgstr "%s: Não é possível alocar memória.\n"
-
-#, c-format
-msgid ""
-"%s: Cannot allocate more memory.\n"
-"Try stacksize('max').\n"
-msgstr ""
-"%s: Não é possível alocar mais memória.\n"
-"Tente stacksize('max').\n"
 
 #, c-format
 msgid "%s: File doesn''t exist: %s"
@@ -170,6 +150,10 @@ msgstr "%s: O valor de \"%s\" é inválido.\n"
 #, c-format
 msgid "%s: Invalid module name : %s.\n"
 msgstr "%s: O nome de módulo é inválido: %s.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Erro de alocação de memória.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -262,12 +246,8 @@ msgid "%s: Wrong %s value %d instead of %d.\n"
 msgstr "%s: Valor de %s incorreto: %d em vez de %d.\n"
 
 #, c-format
-msgid "%s: Wrong file VERSION %s.\n"
-msgstr "%s: arquivo VERSION incorreto %s.\n"
-
-#, c-format
-msgid "%s: Wrong file VERSION in %s.\n"
-msgstr "%s: VERSÃO errada do arquivo %s.\n"
+msgid "%s: Wrong file version.xml %s.\n"
+msgstr "%s: %s contém um arquivo version.xml incorreto.\n"
 
 #, c-format
 msgid "%s: Wrong fromwhat value %s.\n"
@@ -353,14 +333,20 @@ msgstr ""
 "texto.\n"
 
 #, c-format
-msgid "%s: Wrong size for inputs arguments.\n"
-msgstr "%s: Tamanho incorreto para os argumentos de entrada.\n"
+msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
+"escalar.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento #%d: esperava-se um escalar, \"%s\" ou "
-"\"%s\".\n"
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
+"texto.\n"
+
+#, c-format
+msgid "%s: Wrong size for inputs arguments.\n"
+msgstr "%s: Tamanho incorreto para os argumentos de entrada.\n"
 
 #, c-format
 msgid ""
@@ -600,19 +586,6 @@ msgstr ""
 "compilada.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Named variable expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma variável "
-"nomeada.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Scalar, '%s' or '%s' expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um escalar, "
-"\"%s\" ou \"%s\".\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um escalar, "
@@ -745,13 +718,6 @@ msgid ""
 msgstr ""
 "%s: Valor incorreto para o argumento de entrada #%d: deve estar no intervalo "
 "[%d, %d].\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Scalar, '%s' or '%s' expected.\n"
-msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se um escalar, "
-"\"%s\" ou \"%s\".\n"
 
 #, c-format
 msgid ""
@@ -898,6 +864,17 @@ msgstr "Erro"
 
 msgid "Error returning tlist, memory full.\n"
 msgstr "Erro ao retornar tlist; memória esgotada.\n"
+
+msgid ""
+"Error(x) is deprecated and will be removed in Scilab 5.4. Please consider "
+"SciError(x).\n"
+msgstr ""
+"Error(x) está obsoleto e será removido no Scilab 5.4. Por favor, considere "
+"usar SciError(x).\n"
+
+#, c-format
+msgid "Error: Could not create %s: %s\n"
+msgstr "Erro: Não conseguiu criar %s: %s\n"
 
 #, c-format
 msgid "Error: Could not parse file %s\n"
@@ -1066,6 +1043,14 @@ msgid "Unexpected opcode, please report into the Scilab bug tracker."
 msgstr ""
 "Código de operação inesperado. Por favor, relate ao rastreador de erros do "
 "Scilab."
+
+#, c-format
+msgid "Unqueuing %s - No option.\n"
+msgstr "Retirando %s da fila - Sem opção.\n"
+
+#, c-format
+msgid "Unqueuing %s - seq.\n"
+msgstr "Retirando %s da fila - seq.\n"
 
 msgid "User variables are:"
 msgstr "As variáveis de usuário são:"

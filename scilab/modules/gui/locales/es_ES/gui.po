@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-06-07 00:58+0000\n"
+"PO-Revision-Date: 2010-08-02 14:53+0000\n"
 "Last-Translator: Federico Vera <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -29,8 +29,12 @@ msgid "%s: An error occurred: %s.\n"
 msgstr "%s: A ocurrido un error: %s.\n"
 
 #, c-format
-msgid "%s: An exception occurred: %s"
-msgstr "%s: A ocurrido una excepción: %s"
+msgid ""
+"%s: An exception occurred: %s\n"
+"%s\n"
+msgstr ""
+"%s: Ocurrió una excepción: %s\n"
+"%s\n"
 
 #, c-format
 msgid "%s: Could not create 'Uicontrol' handle.\n"
@@ -748,6 +752,9 @@ msgstr "&Seleccionar todo"
 msgid "&Select as current figure"
 msgstr "&Seleccionar como figura actual"
 
+msgid "&Start datatip manager"
+msgstr ""
+
 msgid "&Start entity picker"
 msgstr "Empezar &selector de entidades"
 
@@ -799,6 +806,9 @@ msgstr "Todos los archivos de Scilab"
 
 msgid "All files"
 msgstr "Todos los archivos"
+
+msgid "An error occured: "
+msgstr "Ocurrió un error: "
 
 #, c-format
 msgid ""
@@ -1044,6 +1054,9 @@ msgstr ""
 msgid "No color selected."
 msgstr "No se seleccionó un color."
 
+msgid "No print service found."
+msgstr "No se encontró un servicio de impresión."
+
 msgid "No text selected"
 msgstr "No hay texto seleccionado"
 
@@ -1222,6 +1235,9 @@ msgid ""
 msgstr ""
 "Algunos de los módulos de Scilab están publicados bajo la licencia GLPv2.\n"
 "\n"
+
+msgid "Stop datatip manager"
+msgstr ""
 
 msgid "Sub-menu 1"
 msgstr "Sub-menú 1"
@@ -1478,6 +1494,14 @@ msgstr ""
 "'%s'.\n"
 
 #, c-format
+msgid ""
+"Wrong value for '%s' property: A String containing a numeric value "
+"expected.\n"
+msgstr ""
+"Valor incorrecto para la propiedad '%s': Se esperaba un String conteniendo "
+"un valor numérico.\n"
+
+#, c-format
 msgid "Wrong value for '%s' property: A real expected.\n"
 msgstr "Valor incorrecto para la propiedad '%s': Se esperaba un real.\n"
 
@@ -1560,6 +1584,9 @@ msgstr "elemento1|elemento2|elemento3|elemento4"
 
 msgid "red"
 msgstr "rojo"
+
+msgid "toggle datatip mode"
+msgstr ""
 
 msgid "unchecked"
 msgstr "sin marcar"

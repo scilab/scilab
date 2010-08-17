@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 17:45+0100\n"
-"PO-Revision-Date: 2010-05-22 11:02+0000\n"
+"PO-Revision-Date: 2010-08-01 02:38+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
@@ -41,30 +41,21 @@ msgstr "%s: %s の不正な入力\n"
 msgid "%s cannot be set in this case.\n"
 msgstr "%s は、この場合セットすることができません。\n"
 
-#
-# File: src/c/Contour.c, line: 277
 #, c-format
 msgid "%s is only made to compute level curves and not display them.\n"
-msgstr "%sは、単に、水準曲線を計算します、それらを表示できません。\n"
+msgstr "%s はレベル曲線の計算にのみ使用され,表示しません.\n"
 
-#
-# File: src/c/Format.c, line: 1279
-# File: src/c/Format.c, line: 1309
 #, c-format
 msgid "%s must be changed FIRST, %s is '%s' and %s dimension < %d.\n"
-msgstr "%s は最初に変更しなければなりません、%s は '%s' と %s 次元 < %d です。\n"
+msgstr "%s をまず変更してください, %s は '%s' で, %s 次元 < %d です.\n"
 
-#
-# File: src/c/getHandleProperty/get_cdata_mapping_property.c, line: 37
 #, c-format
 msgid "%s property only exists for %s surfaces.\n"
-msgstr "%s プロパティは、%s 面のために存在します。\n"
+msgstr "%s プロパティは %s 曲面専用です.\n"
 
-#
-# File: src/c/getHandleProperty/CheckTicksProperty.c, line: 55
 #, c-format
 msgid "%s should be a string vector.\n"
-msgstr "%s は文字ベクトルであるべきです。\n"
+msgstr "%s は文字列ベクトルとしてください.\n"
 
 #, c-format
 msgid "%s should be a vector of double.\n"
@@ -110,11 +101,9 @@ msgstr "%s: VOIDイベントハンドラは使えません。\n"
 msgid "%s: Could not read property '%s' for root object.\n"
 msgstr "%s: ルートオブジェクトで　プロパティ '%s' を読み込めません。\n"
 
-#
-# File: sci_gateway/c/sci_glue.c, line: 57
 #, c-format
 msgid "%s: Each handle should not appear twice.\n"
-msgstr "%s: それぞれのハンドルは、２度現れるべきではありません。\n"
+msgstr "%s: 各ハンドルを重複して指定することはできません.\n"
 
 #, c-format
 msgid "%s: Error : unable to evaluate input function ''%s''."
@@ -130,15 +119,13 @@ msgstr "%s: エラー : 入力関数を評価できません。"
 msgid "%s: Error on input argument #%d: Specified bounds are not correct.\n"
 msgstr "%s: 入力引数 #%d エラー: 指定された範囲は正しくありません.\n"
 
-#
-# File: sci_gateway/c/sci_glue.c, line: 84
 #, c-format
 msgid "%s: Handle %d cannot be glued (invalid parent).\n"
-msgstr "%s: ハンドル%dは付けられません、(無効な親)\n"
+msgstr "%s: ハンドル %d を接続できません (親が無効)\n"
 
 #, c-format
 msgid "%s: Handle %d cannot be glued (invalid type).\n"
-msgstr "%s: ハンドル%dは付けられません、(無効な型)\n"
+msgstr "%s: ハンドル %d を接続できません (型が無効)\n"
 
 #
 # File: sci_gateway/c/sci_show_window.c, line: 62
@@ -152,24 +139,24 @@ msgstr "%s: ハンドルは存在しないか、もはやありません。\n"
 msgid "%s: Handles must be relocated under a single parent.\n"
 msgstr "%s: ハンドルは、単一の親のもとで新しい場所に配置されなくてはなりません。\n"
 
-#
-# File: sci_gateway/c/sci_plot2d.c, line: 236
 #, c-format
 msgid "%s: Impossible status min > max in x or y rect data.\n"
-msgstr "%s: 不可能な事態 x または　y で min > max データです。\n"
+msgstr "%s: 不正なステータス: x または y rect データで min > max となっています\n"
 
-#
-# File: sci_gateway/c/sci_plot3d.c, line: 142
 #, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same element number expected.\n"
-msgstr "%s: 入力引数 #%d と #%d で互換性がありません: 要素の数が同じものを想定します。\n"
+msgstr "%s: 入力引数 #%d と #%d で互換性がありません: 要素の数を同じにしてください.\n"
 
 #
 # File: sci_gateway/c/sci_xrects.c, line: 55
 #, c-format
 msgid "%s: Incompatible length for input arguments #%d and #%d.\n"
 msgstr "%s: 入力引数 #%d と #%d で長さに互換性がありません。\n"
+
+#, c-format
+msgid "%s: Input argument #%d must be a '%s' handle.\n"
+msgstr "%s: 入力引数 #%d は '%s' ハンドルとする必要があります.\n"
 
 #
 # File: sci_gateway/c/sci_fec.c, line: 69
@@ -191,6 +178,10 @@ msgid "%s: Input argument #%d must be real.\n"
 msgstr "%s: 入力引数 #%d は実数でなければなりません.\n"
 
 #, c-format
+msgid "%s: Input argument and the legend must have the same parent axes.\n"
+msgstr "%s: 入力引数と凡例は同じ親軸( parent axes )を有する必要があります.\n"
+
+#, c-format
 msgid "%s: Interpolated shading only works for polygons of size %d or %d\n"
 msgstr "%s: 補間付きの陰影付けは大きさ %d または %d の多角形でのみ動作します.\n"
 
@@ -201,6 +192,10 @@ msgstr "%s: 凡例はカレントのコンテキストに適合しません.　�
 #, c-format
 msgid "%s: Misplaced optional argument: #%d must be at position %d.\n"
 msgstr "%s: 引数オプションの配置が違います: #%d は、位置　%d でなくてはなりません。\n"
+
+#, c-format
+msgid "%s: No ''%s'' handle found.\n"
+msgstr "%s: ''%s'' ハンドルが見つかりません.\n"
 
 #, c-format
 msgid "%s: No more memory\n"
@@ -226,11 +221,9 @@ msgstr "%s: 列数は %d である必要があります。\n"
 msgid "%s: Object must be a %s.\n"
 msgstr "%s: オブジェクトは、%s でなくてはなりません。\n"
 
-#
-# File: sci_gateway/c/sci_unglue.c, line: 74
 #, c-format
 msgid "%s: Object must be a Compound.\n"
-msgstr "%s: オブジェクトは組み合わせるべきです。\n"
+msgstr "%s: オブジェクトは Compound である必要があります.\n"
 
 #
 # File: sci_gateway/c/sci_Legend.c, line: 100
@@ -310,6 +303,10 @@ msgstr "%s: 入力引数の数が不正です: %d または、%d を想定しま
 msgid "%s: Wrong number of input argument(s): %d to %d expected."
 msgstr "%s: 入力引数の数が不正です: %d から %d を想定します。"
 
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr "%s: 入力引数の数が誤っています: %d から %d を指定してください.\n"
+
 #
 # File: macros/plot3d3.sci, line: 16
 #, c-format
@@ -353,6 +350,11 @@ msgstr "%s: 入力引数の数が不正です: %d から %d が想定されま�
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr "%s: 入力引数の数が不正です: 少なくとも %d が予想されます。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong number of mandatory input arguments. At least %d expected.\n"
+msgstr "%s: 必須の入力引数の数に誤りがあります. 最低でも %d 個の引数を指定してください.\n"
 
 #
 # File: sci_gateway/c/sci_xarcs.c, line: 65
@@ -441,6 +443,10 @@ msgid ""
 msgstr "%s: 入力引数 #%d の大きさが正しくありません: '%s' ハンドルまたは'Text'ハンドルを1つ指定してください.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A ''%s'' handle expected.\n"
+msgstr "%s: 入力引数 #%d の大きさに誤りがあります: ''%s'' ハンドルを指定してください.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A 'Text' handle expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが正しくありません: 'Text'ハンドルを1つ指定してください.\n"
 
@@ -467,6 +473,10 @@ msgstr "%s: 入力引数 #%d の大きさが正しくありません: 実数を1
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが正しくありません: スカラーを1つ指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgstr "%s: 入力引数 #%d の大きさに誤りがあります: 文字列を指定してください.\n"
 
 #
 # File: macros/getcolor.sci, line: 21
@@ -646,12 +656,6 @@ msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: %s データ構造を想定します。\n"
 
 #
-# File: sci_gateway/c/sci_delete.c, line: 86
-#, c-format
-msgid "%s: Wrong type for input argument #%d: '%s' or handle expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: '%s' ハンドルを想定します。\n"
-
-#
 # File: sci_gateway/c/sci_StringBox.c, line: 138
 #, c-format
 msgid ""
@@ -766,6 +770,11 @@ msgid ""
 "expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 実配列 または グラフィック・ハンドル配列を想定します。\n"
 
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"
+msgstr "%s: 入力引数 #%d の型に誤りがあります: 実数または複素数の行列を指定してください.\n"
+
 #
 # File: sci_gateway/c/sci_rubberbox.c, line: 193
 #, c-format
@@ -785,6 +794,14 @@ msgstr "%s: 入力引数 #%d で不正な型: 実行ベクトル、または、�
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 実スカラーを想定します。\n"
+
+#
+# File: src/c/getHandleProperty/set_color_flag_property.c, line: 50
+# File: src/c/getHandleProperty/set_xtics_coord_property.c, line: 60
+# File: src/c/getHandleProperty/set_yticks_coord_property.c, line: 54
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: スカラーを想定します。\n"
 
 #
 # File: sci_gateway/c/sci_addcb.c, line: 56
@@ -1022,6 +1039,10 @@ msgstr "%s: ハンドルは扱えません、明確に無視しました。\n"
 msgid "%s: please use %s instead.\n"
 msgstr "%s: どうぞ代わりに %s を使ってください。\n"
 
+#, c-format
+msgid "%s: too many input arguments"
+msgstr "%s: 入力引数の数が多すぎます"
+
 #
 # File: src/c/sciCall.c, line: 631
 # File: src/c/sciCall.c, line: 663
@@ -1223,6 +1244,9 @@ msgstr "'%s' ハンドルは、見つからないか、もうありません。\
 msgid "'%s' property does not exist for this handle.\n"
 msgstr "'%s' プロパティはこのハンドルにありません。\n"
 
+msgid "A Label object cannot be deleted.\n"
+msgstr "ラベルオブジェクトは削除できません.\n"
+
 #
 # File: src/c/getHandleProperty/set_data_bounds_property.c, line: 203
 # File: src/c/getHandleProperty/set_surface_color_property.c, line: 52
@@ -1308,6 +1332,11 @@ msgstr "銅"
 msgid "Customize your complex function"
 msgstr "複雑関数をカスタマイズして下さい"
 
+msgid ""
+"Data tips cannot be attached to this curve,\n"
+"the user_data field is already used"
+msgstr "データtipsはこの曲線には付加できません."
+
 #
 # File: src/c/InitObjects.c, line: 165
 # File: src/c/InitObjects.c, line: 172
@@ -1323,6 +1352,27 @@ msgstr "デフォルトの軸を作成できません。\n"
 # File: src/c/InitObjects.c, line: 155
 msgid "Default figure cannot be create.\n"
 msgstr "デフォルトの構成図を作成できません。\n"
+
+msgid "Delete all datatips"
+msgstr "データtipsを全て削除"
+
+msgid "Delete all datatips for the selected curve"
+msgstr "選択した曲線のデータtipsを全て削除"
+
+msgid "Delete last datatip"
+msgstr "最後のデータtipsを削除"
+
+msgid "Delete nearest datatip"
+msgstr "最も近いデータtipsを削除"
+
+msgid "Disable interpolation"
+msgstr "補間を無効にする"
+
+msgid "Edit the curve tip display function"
+msgstr "曲線tip表示関数を編集"
+
+msgid "Enable interpolation"
+msgstr "補間を有効にする"
 
 #
 # File: src/c/DestroyObjects.c, line: 160
@@ -1575,6 +1625,10 @@ msgstr "内部エラー: 累進 1 のループ\n"
 msgid "Jet"
 msgstr "JET"
 
+msgid ""
+"Left click on a curve to create a datatip, right opens contextual menu"
+msgstr "曲線の左クリックによりデータtipを作成, 右クリックによりコンテキストメニューを開く"
+
 #
 # File: src/c/SetProperty.c, line: 604
 #, c-format
@@ -1585,6 +1639,9 @@ msgstr "線幅は、%d 以上必要です。\n"
 # File: demos/misc/misc.dem.sci, line: 57
 msgid "Misc"
 msgstr "雑務"
+
+msgid "Multiple datatips mode"
+msgstr "複数データtipsモード"
 
 #
 # File: macros/getcolor.sci, line: 161
@@ -1689,6 +1746,9 @@ msgstr "sciInitFontContext の問題\n"
 msgid "Rainbow"
 msgstr "虹"
 
+msgid "Redraw all datatips"
+msgstr "全てのデータtipsを再描画"
+
 #
 # File: src/nographics/nographics.c, line: 23
 msgid "Scilab Graphics module not installed.\n"
@@ -1698,6 +1758,9 @@ msgstr "Scilabグラフィックモジュールはインストールされてい
 # File: sci_gateway/c/gw_graphics.c, line: 120
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
 msgstr "Scilabグラフィック・モジュール は、-nogui または -nwni モード で無効です。\n"
+
+msgid "Select tip orientation"
+msgstr "tipの方向を選択"
 
 #
 # File: demos/misc.dem.sci, line: 184
@@ -1759,6 +1822,18 @@ msgstr "親は、FIGUREである必要があります\n"
 # File: src/c/BuildObjects.c, line: 2323
 msgid "The parent has to be a SUBWIN\n"
 msgstr "親は、SUBWINである必要があります\n"
+
+msgid "The selected file cannot be executed"
+msgstr "選択されたファイルは実行できません"
+
+msgid "The selected file defines more than one function"
+msgstr "選択されたファイルでは複数の関数が定義されています"
+
+msgid "The selected function must have 1 output parameter (str)"
+msgstr "選択された関数は1 個の出力引数 (str) を有する必要があります"
+
+msgid "The selected function must have 3 input parameters (curve,pt,index)"
+msgstr "選択された関数は 3個の入力引数 (curve,pt,index) を有する必要があります"
 
 #
 # File: src/c/Interaction.c, line: 514
@@ -1830,6 +1905,9 @@ msgstr "手を加えられた色モードで、色ベクトルの列次元は、
 # File: src/c/SetProperty.c, line: 2513
 msgid "Unhandled data field\n"
 msgstr "データフィールドはハンドルしません\n"
+
+msgid "Unique datatip mode"
+msgstr "ユニーク データtipモード"
 
 #
 # File: src/c/getHandleProperty/GetHashTable.c, line: 248
@@ -2020,6 +2098,10 @@ msgstr "入力引数で不正なサイズ: %d または %d を想定します。
 msgid "Wrong type for '%s' property: '%s' handle or '%s' handle expected.\n"
 msgstr "プロパティ '%s' で不正な型: '%s' ハンドル または '%s' ハンドルを想定します。\n"
 
+#, c-format
+msgid "Wrong type for '%s' property: Graphic handle array expected.\n"
+msgstr "'%s' プロパティの型が正しくありません: グラフィックハンドルの配列を指定してください\n"
+
 #
 # File: src/c/getHandleProperty/set_parent_property.c, line: 38
 # File: src/c/getHandleProperty/set_parent_property.c, line: 50
@@ -2148,10 +2230,27 @@ msgstr "プロパティ '%s' で不正な値: set {%s} である必要があり�
 msgid "Wrong value for '%s' property: Smaller values expected.\n"
 msgstr "プロパティ '%s' で不正な値: より小さな値を想定します。\n"
 
-#
-# File: src/c/GetProperty.c, line: 1018
-# File: src/c/GetProperty.c, line: 1043
-# File: src/c/SetProperty.c, line: 1283
-# File: src/c/SetProperty.c, line: 1329
 msgid "You are not using a legend object.\n"
-msgstr "あなたは、凡例を使っていません。\n"
+msgstr "legend オブジェクトを使用していません.\n"
+
+#, c-format
+msgid "You must first specify an %s for this object.\n"
+msgstr "このオブジェクトには %s  を指定する必要があります.\n"
+
+msgid "automatic"
+msgstr "自動"
+
+msgid "lower left"
+msgstr "左下"
+
+msgid "lower right"
+msgstr "右下"
+
+msgid "select the curve tip display function"
+msgstr "曲線tip表示関数を選択"
+
+msgid "upper left"
+msgstr "左上"
+
+msgid "upper right"
+msgstr "右上"

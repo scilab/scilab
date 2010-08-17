@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-02-13 11:20+0000\n"
-"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"PO-Revision-Date: 2010-07-03 01:38+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -356,6 +356,27 @@ msgid ""
 msgstr ""
 "%s: "
 "方向づけられたシンプレックスは、n+１点で作られているシンプレックスでのみ計算することができます、しかし、次元は%dで、そして、頂点の数は、%dです。"
+
+#, c-format
+msgid ""
+"%s: The restarteps option is expected to be a scalar, but current shape is "
+"%d x %d"
+msgstr "%s: restarteps オプションはスカラーと思われますが, カレントの shape は %d x %d です"
+
+#, c-format
+msgid "%s: The restarteps option is expected to be positive"
+msgstr "%s: restarteps オプションは正としてください."
+
+#, c-format
+msgid "%s: The restartstep vector is expected to be positive"
+msgstr "%s: restartstep ベクトルは正としてください."
+
+#, c-format
+msgid ""
+"%s: The restartstep vector is expected to have %d x %d shape, but current "
+"shape is %d x %d"
+msgstr ""
+"%s: restartstep ベクトルは %d x %d の shape を有する必要がありますが, カレントの shape は %d x %d です"
 
 #, c-format
 msgid ""

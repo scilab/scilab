@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
 "POT-Creation-Date: 2008-02-27 18:16+0100\n"
-"PO-Revision-Date: 2009-11-14 07:23+0000\n"
-"Last-Translator: TzuYuan Lin <Unknown>\n"
+"PO-Revision-Date: 2010-07-07 12:11+0000\n"
+"Last-Translator: tim loo <timloo0710@gmail.com>\n"
 "Language-Team: Scilab Chinese (traditional) <ade-scilab@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,7 +19,7 @@ msgid "               Copyright (c) 1989-2007 (ENPC)\n"
 msgstr "               版權 (c) 1989-2007 (ENPC)\n"
 
 msgid "               Copyright (c) 1989-2010 (INRIA)\n"
-msgstr ""
+msgstr "               版權 (c) 1989-2010 (INRIA)\n"
 
 #
 # File: etc/scilab.start, line: 42
@@ -49,10 +49,6 @@ msgstr " 使用 %10d 元素 (由  %10d 中選出).\n"
 #, c-format
 msgid "%f: No more space to store string arguments.\n"
 msgstr "%f: 儲存字串參數的空間已用完.\n"
-
-#, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s: 配置記憶體發生錯誤.\n"
 
 #
 # File: src/c/stack2.c, line: 2833
@@ -186,28 +182,9 @@ msgid ""
 "%s: (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"
 msgstr "%s: (%s) 堆疊 (stacj) 上有太多參數, 編輯 stack.h 檔以加大 intersiz 數值.\n"
 
-#
-# File: sci_gateway/c/sci_stacksize.c, line: 90
-# File: sci_gateway/c/sci_gstacksize.c, line: 93
-#, c-format
-msgid ""
-"%s: Cannot alloc more memory.\n"
-"Try gstacksize('max').\n"
-msgstr ""
-"%s: 無法配置記憶體.\n"
-"試試 gstacksize('max') 指令.\n"
-
 #, c-format
 msgid "%s: Cannot allocate memory.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Cannot allocate more memory.\n"
-"Try stacksize('max').\n"
-msgstr ""
-"%s: 無法配置多記憶區.\n"
-"試試指令 stacksize('max').\n"
+msgstr "%s: 無法分配記憶體.\n"
 
 #, c-format
 msgid "%s: File doesn''t exist: %s"
@@ -230,6 +207,10 @@ msgstr "%s: 不正確之 '%s' 值.\n"
 #, c-format
 msgid "%s: Invalid module name : %s.\n"
 msgstr "%s: 模組名稱不正確 : %s.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Memory 分配有誤.\n"
 
 #
 # File: src/c/stack2.c, line: 1868
@@ -419,17 +400,9 @@ msgstr "%s: 變數 %s 找不到.\n"
 msgid "%s: Wrong %s value %d instead of %d.\n"
 msgstr "%s: 錯誤之 %s 值, %d 而非 %d.\n"
 
-#
-# File: sci_gateway/c/sci_getversion.c, line: 218
 #, c-format
-msgid "%s: Wrong file VERSION %s.\n"
-msgstr "%s: 檔案版本錯誤 %s.\n"
-
-#
-# File: sci_gateway/c/sci_getversion.c, line: 306
-#, c-format
-msgid "%s: Wrong file VERSION in %s.\n"
-msgstr "%s: %s 中之檔案版本錯誤 .\n"
+msgid "%s: Wrong file version.xml %s.\n"
+msgstr "%s: 有錯的檔 version.xml %s.\n"
 
 #, c-format
 msgid "%s: Wrong fromwhat value %s.\n"
@@ -519,12 +492,16 @@ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為字串.\n"
 
 #, c-format
-msgid "%s: Wrong size for inputs arguments.\n"
-msgstr "%s: 輸入參數的資料型態大小錯誤.\n"
+msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為純量.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
-msgstr "%s: 參數 %d 型態錯誤: 應為純量, '%s' 或 '%s'.\n"
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為字串.\n"
+
+#, c-format
+msgid "%s: Wrong size for inputs arguments.\n"
+msgstr "%s: 輸入參數的資料型態大小錯誤.\n"
 
 #, c-format
 msgid ""
@@ -703,15 +680,6 @@ msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為編譯後之巨集.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Named variable expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為已命名之變數.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Scalar, '%s' or '%s' expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為純量 '%s' 或 '%s'.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為純量, '%s' 或 '%s'.\n"
 
@@ -751,7 +719,7 @@ msgstr "%s: 型態值錯誤.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: \"%s\" expected.\n"
-msgstr ""
+msgstr "%s: 輸入參數的值有誤 #%d: \"%s\"才對.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
@@ -812,11 +780,6 @@ msgstr "%s: 第 %d 個輸入參數數值錯誤: 必須為 %s.\n"
 msgid ""
 "%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"
 msgstr "%s: 第 %d 輸入參數值錯誤: 應該是在 [%d, %d] 範圍區間.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Scalar, '%s' or '%s' expected.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為純量, '%s' 或 '%s'.\n"
 
 #, c-format
 msgid ""
@@ -1020,6 +983,15 @@ msgstr "錯誤"
 msgid "Error returning tlist, memory full.\n"
 msgstr "傳回 tlist 時錯誤, 記憶體耗盡.\n"
 
+msgid ""
+"Error(x) is deprecated and will be removed in Scilab 5.4. Please consider "
+"SciError(x).\n"
+msgstr "Error(x) 已過時了將在Scilab 5.4移除. 請改用 SciError(x).\n"
+
+#, c-format
+msgid "Error: Could not create %s: %s\n"
+msgstr "Error: 無法生成 %s: %s\n"
+
 #, c-format
 msgid "Error: Could not parse file %s\n"
 msgstr "錯誤: 無法剖析 (parse) 檔案 %s\n"
@@ -1074,6 +1046,8 @@ msgid ""
 "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
 "contain <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
 msgstr ""
+"錯誤:不是一個有效的版本檔%s (開頭應是<MODULE_VERSION>且包含<VERSION major='' minor='' "
+"maintenance='' revision='' string=''>)\n"
 
 #
 # File: src/c/LoadFunctionsTab.c, line: 97
@@ -1236,6 +1210,14 @@ msgstr "未定義參數之 %s.\n"
 
 msgid "Unexpected opcode, please report into the Scilab bug tracker."
 msgstr "非預期之 opcode 碼, 請回報 Scilab bug 追蹤系統."
+
+#, c-format
+msgid "Unqueuing %s - No option.\n"
+msgstr "移除 (Unqueuing) %s - 無選項.\n"
+
+#, c-format
+msgid "Unqueuing %s - seq.\n"
+msgstr "移除 (Unqueuing) %s - seq(選項).\n"
 
 #
 # File: macros/who_user.sci, line: 36

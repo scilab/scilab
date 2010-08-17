@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-04-10 19:05+0000\n"
+"PO-Revision-Date: 2010-07-29 10:00+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -379,6 +379,28 @@ msgid ""
 msgstr ""
 "%s: El símplex orientat es pot calcular amb un símplex de n+1 punts, però la "
 "dimensió és %d i el nombre de vèrtexs és %d"
+
+#, c-format
+msgid ""
+"%s: The restarteps option is expected to be a scalar, but current shape is "
+"%d x %d"
+msgstr ""
+"%s: L'opció restarteps ha de ser un escalar, però actualment és una matriu "
+"de %d x %d"
+
+#, c-format
+msgid "%s: The restarteps option is expected to be positive"
+msgstr "%s: L'opció restarteps ha de ser positiva"
+
+#, c-format
+msgid "%s: The restartstep vector is expected to be positive"
+msgstr "%s: El vector restartstep ha de ser positiu"
+
+#, c-format
+msgid ""
+"%s: The restartstep vector is expected to have %d x %d shape, but current "
+"shape is %d x %d"
+msgstr "%s: El vector restartstep ha de ser de %d x %d, però és de %d x %d"
 
 #, c-format
 msgid ""

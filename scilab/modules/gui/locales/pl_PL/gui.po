@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-05-06 11:12+0000\n"
-"Last-Translator: Sylvestre Ledru <Unknown>\n"
+"PO-Revision-Date: 2010-07-15 16:12+0000\n"
+"Last-Translator: Maciej Jędrusik <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,8 +29,12 @@ msgid "%s: An error occurred: %s.\n"
 msgstr "%s: Wystąpił błąd: %s.\n"
 
 #, c-format
-msgid "%s: An exception occurred: %s"
-msgstr "%s: Wystąpił wyjątek: %s"
+msgid ""
+"%s: An exception occurred: %s\n"
+"%s\n"
+msgstr ""
+"%s: Nastąpił wyjątek: %s\n"
+"%s\n"
 
 #, c-format
 msgid "%s: Could not create 'Uicontrol' handle.\n"
@@ -50,7 +54,7 @@ msgstr "%s: Nie można ustawić właściwości '%s'.\n"
 
 #, c-format
 msgid "%s: Figure number must be given when not in '%s' mode.\n"
-msgstr "%s: Numer figury nie może być ustawiony w trybie '%s'.\n"
+msgstr "%s: Numer okna graficznego nie może być ustawiony w trybie '%s'.\n"
 
 #, c-format
 msgid "%s: Function not available in NWNI mode.\n"
@@ -83,7 +87,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: No results founded.\n"
-msgstr "%s: Nie znaleziono wyniku.\n"
+msgstr "%s: Nie znaleziono wyników.\n"
 
 #, c-format
 msgid "%s: Only available under 'STANDARD' mode.\n"
@@ -99,11 +103,12 @@ msgstr "%s: Typ %s nie jest zaimplementowany.\n"
 
 #, c-format
 msgid "%s: Unknown property: %s for '%s' handles.\n"
-msgstr "%s: Nieznana właściwość: %s dla obsługi '%s'.\n"
+msgstr "%s: Nieznana właściwość: %s dla uchwytu (handle) '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected"
-msgstr "%s: Nieprawidłowy argument wejściowy #%d: oczekiwano '%s' lub '%s'."
+msgstr ""
+"%s: Nieprawidłowy argument wejściowy nr %d: oczekiwano '%s' lub '%s'."
 
 #, c-format
 msgid "%s: Wrong input arguments: %s or %s expected.\n"
@@ -129,7 +134,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
-"%s: Zła liczba parametrów(-u) wejściowych(-ego): Oczekiwano przynajmniej "
+"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano przynajmniej "
 "%d.\n"
 
 #, c-format
@@ -138,7 +143,8 @@ msgstr "%s: Nieprawidłowa liczba parametrów wejściowych: oczekiwano %d\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: Zła liczba parametrów wejściowych: Oczekiwano %d lub %d.\n"
+msgstr ""
+"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d lub %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -163,110 +169,112 @@ msgstr ""
 msgid ""
 "%s: Wrong size for input argument #%d: %d x %d matrix of strings expected.\n"
 msgstr ""
-"%s: Zły rozmiar parametru wejściowego #%d: Oczekiwano macierzy ciągów znaków "
-"o wymiarach %d x %d.\n"
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano macierzy "
+"łańcuchów o wymiarach %d x %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A '%s' handle expected.\n"
 msgstr ""
-"%s: Zły rozmiar parametru wejściowego #%d: Oczekiwano obsługi '%s'.\n"
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano uchwytu "
+"(handle) '%s'.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A '%s' or a '%s' handle expected.\n"
 msgstr ""
-"%s: Zły rozmiar parametru wejściowego #%d: Oczekiwano obsługi '%s' lub "
-"'%s'.\n"
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano uchwytu "
+"(handle) '%s' lub '%s'.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A ''Figure'' handle or a real "
 "expected.\n"
 msgstr ""
-"%s: Zły rozmiar parametru wejściowego #%d: Oczekiwano obsługi \"Figura\" lub "
-"wartości rzeczywistej.\n"
+"%s: Nieprawidłowy  rozmiar parametru wejściowego nr %d: oczekiwano uchwytu "
+"(handle) typu \"Figure\" lub wartości rzeczywistej.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"
 msgstr ""
-"%s: Zły rozmiar parametru wejściowego #%d: Oczekiwano wektora wierszowego o "
-"wymiarze 1 x %d.\n"
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano wektora "
+"wierszowego liczb rzeczywistych o wymiarze 1 x %d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A Real Scalar or a 'Figure' handle "
 "expected.\n"
 msgstr ""
-"%s: Zły rozmiar parametru wejściowego #%d: Oczekiwano rzeczywistego skalara "
-"lub obsługi \"Figura\".\n"
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano "
+"rzeczywistego skalara lub uchwytu (handle) typu \"Figure\".\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar dla argumentu wejściowego #%d: Oczekiwano wartości "
-"boolean.\n"
+"%s:  Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano wartości "
+"logicznej.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean matrix expected.\n"
 msgstr ""
-"%s: Zły rozmiar parametru wejściowego #%d: Oczekiwano macierzy wartości "
-"logicznych.\n"
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano macierzy "
+"wartości logicznych.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
 msgstr ""
-"%s: Zły rozmiar parametru wejściowego #%d: Oczekiwano obsługi graficznej.\n"
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano uchwytu "
+"(handle) graficznego.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar dla argumentu wejściowego #%d: Oczekiwano wartości "
-"typu real.\n"
+"%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d: oczekiwano "
+"wartości typu real.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string  expected.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar dla argumentu wejściowego #%d: Oczekiwano wartości "
-"typu string.\n"
+"%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d: oczekiwano "
+"łańcuch.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar dla argumentu wejściowego #%d: Oczekiwano wartości "
-"typu string.\n"
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano ciągu "
+"znaków.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string matrix expected.\n"
 msgstr ""
-"%s: Zły rozmiar parametru wejściowego #%d: Oczekiwano macierzy ciągów "
-"znaków.\n"
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano macierzy "
+"ciągów znaków.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: It must have same dimensions that "
 "argument #%d.\n"
 msgstr ""
-"%s: Zły rozmiar parametru wejściowego #%d: Musi posiadać takie same wymiary "
-"jak parametr #%d.\n"
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: musi posiadać takie "
+"same wymiary, jak parametr nr %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
-"%s: Zły rozmiar parametru wejściowego #%d: Oczekiwano macierzy ciągów "
-"znaków.\n"
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano macierzy "
+"ciągów znaków.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar dla argumentu wejściowego #%d: Oczekiwano wartości "
-"typu string.\n"
+"%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d: Oczekiwano "
+"łańcuch.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
 msgstr ""
-"%s: Zły rozmiar parametru wejściowego #%d: Oczekiwano wektora ciągów "
-"znaków.\n"
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano wektora "
+"ciągów znaków.\n"
 
 #, c-format
 msgid "%s: Wrong type for %s: A list expected.\n"
@@ -278,7 +286,8 @@ msgstr "%s: Nieprawidłowy typ dla %s: Oczekiwano wartości typu real.\n"
 
 #, c-format
 msgid "%s: Wrong type for %s: A row vector of strings expected.\n"
-msgstr "%s: Zły typ dla %s: Oczekiwano wektora wierszowego ciągów znaków.\n"
+msgstr ""
+"%s: Nieprawidłowy typ dla %s: Oczekiwano wektora wierszowego ciągów znaków.\n"
 
 #, c-format
 msgid "%s: Wrong type for %s: A string expected.\n"
@@ -286,37 +295,42 @@ msgstr "%s: Nieprawidłowy typ dla %s: Oczekiwano wartości typu string.\n"
 
 #, c-format
 msgid "%s: Wrong type for ''%s'' property: A string expected.\n"
-msgstr "%s: Zły typ właściwości ''%s'' : Oczekiwano ciągu znaków.\n"
+msgstr ""
+"%s: Nieprawidłowy typ właściwości ''%s'' : Oczekiwano ciągu znaków.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego #%d lub #%d : Oczekiwano "
-"wartości typu string.\n"
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d lub nr %d : oczekiwano "
+"ciągu znaków.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
-msgstr "%s: Zły typ parametru wejściowego #%d: Oczekiwano obsługi '%s'.\n"
+msgstr ""
+"%s:Nieprawidłowy typ parametru wejściowego nr %d: oczekiwano uchwytu "
+"(handle) '%s'.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s' or '%s' handle expected.\n"
 msgstr ""
-"%s: Zły typ parametru wejściowego #%d: Oczekiwano obsługi '%s' lub '%s'.\n"
+"%s: Nieprawidłowy typ parametru wejściowego nr %d: Oczekiwano uchwytu "
+"(handle) '%s' lub '%s'.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"
 msgstr ""
-"%s: Zły typ parametru wejściowego #%d: Oczekiwano obsługi '%s' lub '%s'.\n"
+"%s: Nieprawidłowy typ parametru wejściowego nr %d: Oczekiwano uchwytu "
+"(handle) '%s' lub '%s'.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s', '%s' or '%s' handle "
 "expected.\n"
 msgstr ""
-"%s: Zły typ parametru wejściowego #%d: Oczekiwano obsługi '%s', '%s' lub "
-"'%s'.\n"
+"%s: Nieprawidłowy typ parametru wejściowego nr %d: oczekiwano uchwytu "
+"(handle) '%s', '%s' lub '%s'.\n"
 
 #, c-format
 msgid ""
@@ -336,19 +350,19 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla argumentu wejściowego #%d: Oczekiwano wartości "
-"typu boolean.\n"
+"%s: Nieprawidłowy typ parametru wejściowego nr %d: Oczekiwano wartości "
+"logicznej.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A graphic handle expected.\n"
 msgstr ""
-"%s: Zły typ parametru wejściowego #%d: Oczekiwano obsługi graficznej.\n"
+"%s: Zły typ parametru wejściowego nr %d: Oczekiwano obsługi graficznej.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A graphic handle or a real expected.\n"
 msgstr ""
-"%s: Zły typ parametru wejściowego #%d: Oczekiwano obsługi graficznej lub "
+"%s: Zły typ parametru wejściowego nr %d: Oczekiwano obsługi graficznej lub "
 "wartości rzeczywistej.\n"
 
 #, c-format
@@ -356,55 +370,55 @@ msgid ""
 "%s: Wrong type for input argument #%d: A graphic handle or a string "
 "expected.\n"
 msgstr ""
-"%s: Zły typ parametru wejściowego #%d: Oczekiwano obsługi graficznej lub "
+"%s: Zły typ parametru wejściowego nr %d: Oczekiwano obsługi graficznej lub "
 "ciągu znaków.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A list expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla argumentu wejściowego #%d: Oczekiwano listy.\n"
+"%s: Nieprawidłowy typ dla argumentu wejściowego nr %d: Oczekiwano listy.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla argumentu wejściowego #%d: Oczekiwano wartości "
-"typu real.\n"
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano wartości typu "
+"real.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or Figure handle expected.\n"
 msgstr ""
-"%s: Zły typ parametru wejściowego #%d: Oczekiwano wartości rzeczywistej lub "
-"obsługi Figury.\n"
+"%s: Zły typ parametru wejściowego nr %d: Oczekiwano wartości rzeczywistej "
+"lub obsługi Figury.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or a Figure handle expected.\n"
 msgstr ""
-"%s: Zły typ parametru wejściowego #%d: Oczekiwano wartości rzeczywistej lub "
-"obsługi Figury.\n"
+"%s: Nieprawidłowy typ parametru wejściowego nr %d: Oczekiwano wartości "
+"rzeczywistej lub uchwytu (handle) typu \"Figure\".\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla argumentu wejściowego #%d: Oczekiwano wartości "
+"%s: Nieprawidłowy typ dla argumentu wejściowego nr %d: Oczekiwano wartości "
 "typu real lub string.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla argumentu wejściowego #%d: Oczekiwano wartości "
-"typu string.\n"
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
 msgstr ""
-"%s: Zły typ parametru wejściowego #%d: Oczekiwano macierzy ciągów znaków.\n"
+"%s:Nieprawidłowy typ parametru wejściowego nr %d: oczekiwano macierzy ciągów "
+"znaków.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string or a real expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla argumentu wejściowego #%d: Oczekiwano wartości "
+"%s: Nieprawidłowy typ dla argumentu wejściowego nr %d: Oczekiwano wartości "
 "typu real lub string.\n"
 
 #, c-format
@@ -412,97 +426,102 @@ msgid ""
 "%s: Wrong type for input argument #%d: A string or a string vector "
 "expected.\n"
 msgstr ""
-"%s: Zły typ parametru wejściowego #%d: Oczekiwano ciągu znaków lub wektora "
-"ciągów znaków.\n"
+"%s: Nieprawidłowy typ parametru wejściowego nr %d: oczekiwano łańcuchu lub "
+"wektora łańcuchów.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
 msgstr ""
-"%s: Zły typ parametru wejściowego #%d: Oczekiwano wektora ciągów znaków.\n"
+"%s: Nieprawidłowy typ parametru wejściowego nr %d: oczekiwano wektora "
+"łańcuchów.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A two-item list expected.\n"
 msgstr ""
-"%s: Zły typ parametru wejściowego #%d: Oczekiwano listy dwuelementowej.\n"
+"%s: Nieprawidłowy typ parametru wejściowego nr %d: oczekiwano listy "
+"dwuelementowej.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla argumentu wejściowego #%d: Oczekiwano wartości "
-"typu boolean.\n"
+"%s: Nieprawidłowy typ parametru wejściowego nr %d: Oczekiwano wartości typu "
+"logicznego (boolean).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
-"%s: Zły typ parametru wejściowego #%d: Oczekiwano macierzy ciągów znaków.\n"
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwana macierz ciągów "
+"znaków.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Non-negative integer expected.\n"
 msgstr ""
-"%s: Zły typ parametru wejściowego #%d: Oczekiwano nieujemnej wartości "
-"całkowitej.\n"
+"%s: Nieprawidłowy typ parametru wejściowego nr %d: oczekiwano nieujemnej "
+"wartości całkowitej.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Non-negative integers expected\n"
 msgstr ""
-"%s: Zły typ parametru wejściowego #%d: Oczekiwano nieujemnych wartości "
-"całkowitych.\n"
+"%s: Nieprawidłowy typ parametru wejściowego nr %d: Oczekiwano nieujemnych "
+"wartości całkowitych.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
 msgstr ""
-"%s: Zły typ parametru wejściowego #%d: Oczekiwano wektora wartości "
-"rzeczywistych lub zespolonych.\n"
+"%s: Nieprawidłowy typ parametru wejściowego nr %d: Oczekiwano wektora "
+"wartości rzeczywistych lub zespolonych.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla argumentu wejściowego #%d: Oczekiwano wartości "
-"typu string.\n"
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String or Tree expected.\n"
 msgstr ""
-"%s: Zły typ parametru wejściowego #%d: Oczekiwano ciągu znaków lub drzewa "
-"katalogowego.\n"
+"%s: Nieprawidłowy typ parametru wejściowego nr %d: oczekiwano ciągu znaków "
+"lub drzewa katalogowego (tree).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Tree expected.\n"
 msgstr ""
-"%s: Zły typ parametru wejściowego #%d: Oczekiwano drzewa katalogowego.\n"
+"%s: Nieprawidłowy typ parametru wejściowego nr %d: Oczekiwano drzewa "
+"katalogowego (tree).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Tree or String expected.\n"
 msgstr ""
-"%s: Zły typ parametru wejściowego #%d: Oczekiwano drzewa katalogowego lub "
-"ciągu znaków.\n"
+"%s: Nieprawidłowy typ parametru wejściowego nr %d: Oczekiwano drzewa "
+"katalogowego (tree) lub ciągu znaków.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
 msgstr ""
-"%s: Zły typ parametru wejściowego #%d: Oczekiwano wektora ciągów znaków.\n"
+"%s: Nieprawidłowy typ parametru wejściowego nr %d: Oczekiwano wektora ciągów "
+"znaków.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: must be ''label'', ''icon'' or "
 "''callback''.\n"
 msgstr ""
-"%s: Zły typ parametru wejściowego #%d: musi być ''etykieta', ''ikona'' lub "
-"''wywołanie'.\n"
+"%s: Nieprawidłowy typ parametru wejściowego nr %d: musi być \"label\", "
+"''icon'' lub ''callback\".\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments from #%d: Tree expected.\n"
 msgstr ""
-"%s: Złe typy parametrów wejściowych z #%d: Oczekiwano drzewa katalogowego.\n"
+"%s: Nieprawidłowe typy parametrów wejściowych zaczynając od nr %d: "
+"Oczekiwano drzewa katalogowego (tree).\n"
 
 #, c-format
 msgid "%s: Wrong type for parent: Figure or uimenu expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla nadrzędnego: Oczekiwana Figura lub menu interfejsu "
-"użytkownika.\n"
+"%s: Nieprawidłowy typ dla rodzica: Oczekiwane typy \"Figure\" lub "
+"\"uimenu\".\n"
 
 #, c-format
 msgid ""
@@ -519,71 +538,72 @@ msgstr "%s: Zła wartość właściwości ''%s'': Oczekiwano %d, %d lub %d.\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość parametru wejściowego #%d: Oczekiwano '%s' lub "
+"%s: Nieprawidłowa wartość parametru wejściowego nr %d: oczekiwano '%s' lub "
 "'%s'.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"%s: Nieprawidłowy wartość dla argumentu wejściowego #%d: Oczekiwano '%s', "
+"%s: Nieprawidłowa wartość dla argumentu wejściowego nr %d: oczekiwana '%s', "
 "'%s' lub '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość argumentu wejściowego #%d: oczekiwany \"%s\" lub "
+"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: oczekiwany \"%s\" lub "
 "\"%s\" .\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość parametru wejściowego #%d: oczekiwano ''%s'', "
-"''%s'' lun ''%s''.\n"
+"%s: Nieprawidłowa wartość parametru wejściowego nr %d: oczekiwano ''%s'', "
+"''%s'' lub ''%s''.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: 'Graphic Window Number %d' does not "
 "exist.\n"
 msgstr ""
-"%s: Zła wartość parametru wejściowego #%d: 'Okno Graficzne Numer %d' nie "
-"istnieje.\n"
+"%s: Nieprawidłowa wartość parametru wejściowego nr %d: okno graficzne nr %d "
+"nie istnieje.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
 msgstr ""
-"%s: Zła wartość parametru wejściowego #%d: Oczekiwano prawidłowej obsługi "
-"'%s'.\n"
+"%s: Nieprawidłowa wartość parametru wejściowego nr %d: oczekiwano poprawnego "
+"uchwytu (handle) '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d expected.\n"
 msgstr ""
-"%s: Zła wartość dla argumentu wejściowego #%d: Oczekiwany parametr musi być "
-"> %d\n"
+"%s:Nieprawidłowa wartość dla argumentu wejściowego nr %d: oczekiwany "
+"parametr musi być > %d\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be >= %d expected.\n"
 msgstr ""
-"%s: Zła wartość dla argumentu wejściowego #%d: Oczekiwany parametr musi być "
-">= %d\n"
+"%s: Nieprawidłowa wartość dla argumentu wejściowego nr %d: oczekiwany "
+"parametr musi być >= %d\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Non-negative integers expected.\n"
 msgstr ""
-"%s: Zła wartość parametru wejściowego #%d: Oczekiwano nieujemnych wartości "
-"całkowitych.\n"
+"%s: Nieprawidłowa wartość parametru wejściowego nr %d: Oczekiwano "
+"nieujemnych wartości całkowitych.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: this handle does not exist.\n"
 msgstr ""
-"%s: Zła wartość parametru wejściowego #%d: Ta obsługa nie istnieje.\n"
+"%s: Nieprawidłowa wartość parametru wejściowego nr %d: Taki uchwyt (handle) "
+"nie istnieje.\n"
 
 #, c-format
 msgid "%s: can not add a menu in console in this mode: %s.\n"
-msgstr "%s: nie można dodać menu w konsoli w takim trybie: %s.\n"
+msgstr "%s: nie można dodać menu do konsoli w takim trybie: %s.\n"
 
 #, c-format
 msgid "%s: can not add a menu in this mode: %s.\n"
@@ -591,7 +611,7 @@ msgstr "%s: nie można dodać menu w takim trybie: %s.\n"
 
 #, c-format
 msgid "%s: function not available in NWNI mode.\n"
-msgstr "%s: funkcje nie dostępne w trybie NWNI.\n"
+msgstr "%s: funkcja nie dostępna w trybie NWNI.\n"
 
 msgid "&?"
 msgstr "&?"
@@ -606,19 +626,19 @@ msgid "&Applications"
 msgstr "&Programy"
 
 msgid "&Axes properties"
-msgstr "właściwości &Axes"
+msgstr "&Właściwości osi"
 
 msgid "&BMP"
 msgstr "&BMP"
 
 msgid "&Bug And Request database"
-msgstr "&baza danych Bug I Żądanie"
+msgstr "&Zawiadomienie o błędzie"
 
 msgid "&Change current directory..."
 msgstr "&Zmiana bieżącego katalogu..."
 
 msgid "&Clear figure"
-msgstr "&Wyczyść rysunek"
+msgstr "&Wyczyść okno graficzne"
 
 msgid "&Close"
 msgstr "&Zamknij"
@@ -627,10 +647,10 @@ msgid "&Colors"
 msgstr "&Kolory"
 
 msgid "&Contributions"
-msgstr "&Udziały"
+msgstr "Weź &udział"
 
 msgid "&Control"
-msgstr "&Kontrola"
+msgstr "&Sterowanie"
 
 msgid "&Copy"
 msgstr "&Kopiuj"
@@ -639,7 +659,7 @@ msgid "&Copy to clipboard"
 msgstr "&Kopiuj do schowka"
 
 msgid "&Display current directory"
-msgstr "&Wyświetl bierzący katalog"
+msgstr "&Wyświetl katalog bierzący"
 
 msgid "&EMF"
 msgstr "&EMF"
@@ -654,10 +674,10 @@ msgid "&Editor"
 msgstr "&Edytor"
 
 msgid "&Empty clipboard"
-msgstr "&Pusty schowek"
+msgstr "&Wyczyść schowek"
 
 msgid "&Execute..."
-msgstr "&Wykonywanie..."
+msgstr "&Wykonaj..."
 
 msgid "&Export to..."
 msgstr "&Eksportuj do..."
@@ -666,7 +686,7 @@ msgid "&FIG"
 msgstr "&FIG"
 
 msgid "&Figure properties"
-msgstr "&Parametry figury"
+msgstr "&Parametry okna graficznego"
 
 msgid "&File"
 msgstr "&Plik"
@@ -678,7 +698,7 @@ msgid "&GIF"
 msgstr "&GIF"
 
 msgid "&Interrupt"
-msgstr "&Przerwnie"
+msgstr "&Zatrzymaj"
 
 msgid "&JPG"
 msgstr "&JPG"
@@ -696,7 +716,7 @@ msgid "&Matlab to Scilab translator"
 msgstr "&Translator Matlab do Scilab"
 
 msgid "&New figure..."
-msgstr "&Nowa figura..."
+msgstr "&Nowe okno graficzne..."
 
 msgid "&Open a file..."
 msgstr "&Otwórz plik..."
@@ -711,7 +731,7 @@ msgid "&Paste"
 msgstr "&Wklej"
 
 msgid "&Preferences"
-msgstr "&Ustawienia"
+msgstr "&Preferencje"
 
 msgid "&Print..."
 msgstr "&Drukuj..."
@@ -720,10 +740,10 @@ msgid "&Quit"
 msgstr "&Zakończ"
 
 msgid "&Redraw figure"
-msgstr "&Przerysuj figure"
+msgstr "&Przerysuj okno graficzne"
 
 msgid "&Resume"
-msgstr "&Wznów"
+msgstr "W&znów"
 
 msgid "&SVG"
 msgstr "&SVG"
@@ -735,16 +755,19 @@ msgid "&Save..."
 msgstr "&Zapisz..."
 
 msgid "&Scilab Help"
-msgstr "&Scilab Pomoc"
+msgstr "&Pomoc Scilab"
 
 msgid "&Select all"
 msgstr "&Zaznacz wszystko"
 
 msgid "&Select as current figure"
-msgstr "&Zaznacz jako bierzącą figure"
+msgstr "&Zaznacz jako bierzące okno graficzne"
+
+msgid "&Start datatip manager"
+msgstr "&Uruchom menedżera datatip"
 
 msgid "&Start entity picker"
-msgstr "&Uruchom wybór przedmiotu"
+msgstr "&Uruchom wybór obiektów"
 
 msgid "&Tools"
 msgstr "&Narzędzia"
@@ -756,7 +779,7 @@ msgid "&Vectorial export"
 msgstr "&Eksportowanie wektorowe"
 
 msgid "&Web links"
-msgstr "&Link web"
+msgstr "&Linki w sieci"
 
 msgid "&Xcos"
 msgstr "&Xcos"
@@ -795,6 +818,9 @@ msgstr "Wszystkie pliki Scilab"
 msgid "All files"
 msgstr "Wszystkie pliki"
 
+msgid "An error occured: "
+msgstr "Wystąpił błąd: "
+
 #, c-format
 msgid ""
 "Answer given for %s \n"
@@ -819,7 +845,7 @@ msgid ""
 " is incorrect see error message in scilab window.\n"
 msgstr ""
 "Odpowiedź dana dla %s \n"
-" jest niewłaściwa zobacz wiadomość błędu w oknie programu Scilab.\n"
+" jest niewłaściwa zobacz komunikat o błędzie w oknie programu Scilab.\n"
 
 msgid "Application"
 msgstr "Program"
@@ -849,7 +875,7 @@ msgid "CeCILL License"
 msgstr "Licencja CeCILL"
 
 msgid "Change Current Directory"
-msgstr "Zmień bieżący katalog"
+msgstr "Zmień katalog bieżący"
 
 msgid "Choose Font..."
 msgstr "Wybierz czcionkę..."
@@ -858,13 +884,13 @@ msgid "Clear &History"
 msgstr "Wyczyść &historię"
 
 msgid "Clear C&onsole"
-msgstr "Wyczyść Kon&solę"
+msgstr "Wyczyść &Konsolę"
 
 msgid "Clear Console"
 msgstr "Wyczyść konsolę"
 
 msgid "Clear History"
-msgstr "Wyczyść Historię"
+msgstr "Wyczyść historię"
 
 msgid "Close"
 msgstr "Zamknij"
@@ -873,10 +899,10 @@ msgid "Colors list edition"
 msgstr "Edycja listy kolorów"
 
 msgid "Console &Background..."
-msgstr "Konsola &Tło..."
+msgstr "&Tło konsoli ..."
 
 msgid "Console &Font..."
-msgstr "Konsola &Czcionka..."
+msgstr "&Czcionka konsoli..."
 
 msgid "Console Background..."
 msgstr "Tło konsoli..."
@@ -885,7 +911,7 @@ msgid "Console Font..."
 msgstr "Czcionka konsoli..."
 
 msgid "Control Plot3d"
-msgstr "Kontrola Plot3d"
+msgstr "Sterowanie Plot3d"
 
 msgid "Copy"
 msgstr "Kopiuj"
@@ -900,25 +926,25 @@ msgid "Cut"
 msgstr "Wytnij"
 
 msgid "Display selection"
-msgstr "Wybór wyświetlania"
+msgstr "Pokaż zaznaczone"
 
 msgid "Do you really want to quit Scilab?"
-msgstr "Czy napewno chcesz wyłączyć Scilab?"
+msgstr "Czy napewno chcesz wyjść ze Scilab?"
 
 msgid "Edit in the Scilab Text Editor"
 msgstr "Edytuj w Edytorze Tekstu programu Scilab"
 
 msgid "Encapsulated PostScript image (EPS)"
-msgstr "obraz Encapsulated PostScript (EPS)"
+msgstr "obraz w formacie Encapsulated PostScript (EPS)"
 
 msgid "Enhanced Metafile image (EMF)"
-msgstr "obraz Enhanced Metafile (EMF)"
+msgstr "obraz wformacie Enhanced Metafile (EMF)"
 
 msgid "Environment loaded.\n"
 msgstr "Środowisko załadowane.\n"
 
 msgid "Environment saved.\n"
-msgstr "środowisko zapisywania\n"
+msgstr "Środowisko zapisane\n"
 
 msgid "Error"
 msgstr "Błąd"
@@ -930,25 +956,25 @@ msgid "Error. A signal has been caught.\n"
 msgstr "Błąd. Sygnał został złapany.\n"
 
 msgid "Execute into Scilab"
-msgstr "Wykonywanie w Scilab"
+msgstr "Wykonaj w Scilab"
 
 msgid "Execution done.\n"
-msgstr "Zakończono wykonywanie.\n"
+msgstr "Wykonywanie zakończono .\n"
 
 msgid "Exit figure"
-msgstr "Wyjdź z figury"
+msgstr "Wyjdź z okna graficznego"
 
 msgid "Export"
 msgstr "Eksportuj"
 
 msgid "FIG image"
-msgstr "obraz FIG"
+msgstr "obraz w formacie FIG"
 
 msgid "Figure loaded.\n"
 msgstr "Figura załadowana.\n"
 
 msgid "Figure saved.\n"
-msgstr "Zapisano figurę .\n"
+msgstr "Zawartość okna graficznego zapisana\n"
 
 msgid "File"
 msgstr "Plik"
@@ -969,7 +995,7 @@ msgid "GUI"
 msgstr "GUI"
 
 msgid "Help Browser"
-msgstr "Przeglądaj pomoc"
+msgstr "Przeglądarka pomocy"
 
 msgid "Help about '"
 msgstr "Pomoc o '"
@@ -978,7 +1004,7 @@ msgid "Help about a selected text"
 msgstr "Pomoc o zaznaczonym tekscie"
 
 msgid "Help on a selected keyword"
-msgstr "Pomoc o wybranem słowie kluczowym"
+msgstr "Pomoc o wybranym słowie kluczowym"
 
 msgid "Impossible to get current look and feel"
 msgstr "Nie można uzyskać bieżącego wyglądu i czucia"
@@ -1040,6 +1066,9 @@ msgstr ""
 msgid "No color selected."
 msgstr "Nie wybrano koloru"
 
+msgid "No print service found."
+msgstr "Nie znaleziono usługi drukowania."
+
 msgid "No text selected"
 msgstr "Nie wybrano tekstu"
 
@@ -1059,7 +1088,7 @@ msgid "P&NG"
 msgstr "P&NG"
 
 msgid "P&age setup..."
-msgstr "ustawienia P&age..."
+msgstr "&Ustawienia strony..."
 
 msgid "PDF image"
 msgstr "Obraz PDF"
@@ -1074,7 +1103,7 @@ msgid "Paste"
 msgstr "Wklej"
 
 msgid "Please enter a color name first."
-msgstr "Proszę najpierw wybrać nazę koloru."
+msgstr "Proszę najpierw wybrać nazwę koloru."
 
 msgid "Please specify a file format"
 msgstr "Proszę określić format pliku"
@@ -1095,13 +1124,13 @@ msgid "Quit demonstration"
 msgstr "Zamknij demonstracje"
 
 msgid "Replace existing file?"
-msgstr "Zastąp istniejący plik?"
+msgstr "Zastąpić istniejący plik?"
 
 msgid "Rotate"
 msgstr "Obróć"
 
 msgid "S&top entity picker"
-msgstr "S&top jednostki zbieranej"
+msgstr "Zatrzymaj wybór objektów"
 
 msgid "SVG image"
 msgstr "Obraz SVG"
@@ -1110,28 +1139,27 @@ msgid "Save and execute"
 msgstr "Zapisz i wykonaj"
 
 msgid "Scicos files"
-msgstr "Plik Scicos"
+msgstr "Pliki Scicos"
 
 msgid "Scilab &ATOMS Web Site"
-msgstr "Strona Web Scilab &ATOMS"
+msgstr "Strona internetowa Scilab &ATOMS"
 
 msgid "Scilab &Demonstrations"
-msgstr "Scilab &Demonstracja"
+msgstr "&Przykłady"
 
 msgid "Scilab &Help"
-msgstr "Scilab &Pomoc"
+msgstr "&Pomoc Scilab"
 
 msgid "Scilab &Web Site"
-msgstr "Scilab &Strona Web"
+msgstr "&Strona internetowa Scilab"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr ""
-"Moduł '%s' programu Scilab jest wyłączony w trybie -nogui lub -nwni.\n"
+msgstr "Moduł '%s' Scilab jest wyłączony w trybie -nogui lub -nwni.\n"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
-msgstr "Scilab '%s' moduł nie zainstalowany.\n"
+msgstr "Moduł %s Scilab nie jest zainstalowany.\n"
 
 msgid ""
 "Scilab 5.0 and future versions are released under the terms of the CeCILL "
@@ -1146,28 +1174,28 @@ msgid "Scilab Choose Message"
 msgstr "Wiadomość Wyboru programu Scilab"
 
 msgid "Scilab Contributors..."
-msgstr "Współpracownicy programu Scilab..."
+msgstr "Uczestnicy projektu"
 
 msgid "Scilab Demonstrations"
-msgstr "Demonstracja Scilab"
+msgstr "Przykłady"
 
 msgid "Scilab Graphics"
-msgstr "Grafika programu Scilab"
+msgstr "Grafika"
 
 msgid "Scilab Input Value Request"
-msgstr "Prośba o Wartość Wejściową programu Scilab"
+msgstr "Wprowadzenie wartości wejścowej"
 
 msgid "Scilab Message"
-msgstr "Wiadomości Scilab"
+msgstr "Komunikat Scilab"
 
 msgid "Scilab Multiple Values Request"
-msgstr "Prośba o Wiele Wartości Wejściowych programu Scilab"
+msgstr "Wprowadzenie wartości wejściowych Scilab"
 
 msgid "Scilab SCE files"
-msgstr "Plik Scilab SCE"
+msgstr "SCE-pliki Scilab"
 
 msgid "Scilab SCI files"
-msgstr "Plik Scilab SCI"
+msgstr "SCE-pliki Scilab"
 
 msgid "Scilab binary files"
 msgstr "Plik binarny Scilab"
@@ -1194,17 +1222,17 @@ msgid "Select a file to write"
 msgstr "Wybierz plik do zapisania"
 
 msgid "Selected colors"
-msgstr "Wybierz kolor"
+msgstr "Wybrane kolory"
 
 #, c-format
 msgid "Selected colors are: %s."
-msgstr "Wybrany kolor to: %s."
+msgstr "Wybrany kolory to: %s."
 
 msgid "Selected menu"
 msgstr "Wybrane menu"
 
 msgid "Show/Hide &Toolbar"
-msgstr "Pokaż/Schowaj &Narzędzia"
+msgstr "Pokaż/ukryj pasek &narzędzi"
 
 msgid "Slider demo"
 msgstr "Demo suwaka"
@@ -1216,8 +1244,11 @@ msgid ""
 "Some Scilab modules are released under the GPLv2 license.\n"
 "\n"
 msgstr ""
-"Niektóre moduły programu Scilab wa wydawane pod licencją GPLv2.\n"
+"Niektóre moduły programu Scilab są wydane pod licencją GPLv2.\n"
 "\n"
+
+msgid "Stop datatip manager"
+msgstr "Zatrzymaj menedżera datatip"
 
 msgid "Sub-menu 1"
 msgstr "Pod-menu 1"
@@ -1238,13 +1269,13 @@ msgid "Tree Overview"
 msgstr "Widok drzewa katalogowego"
 
 msgid "Uicontrols demo"
-msgstr "Niekontrolowana wersja demonstracyjna"
+msgstr "Przykład interfejsu graficznego (uicontrols)"
 
 msgid "Unrecognized extension '"
 msgstr "Nierozpoznane rozszerzenie '"
 
 msgid "Untitled-export"
-msgstr "exportuj bez tytułu"
+msgstr "Untitled-export"
 
 #, c-format
 msgid ""
@@ -1259,8 +1290,8 @@ msgid ""
 "Warning: '%s' 'Value' property should be equal to either '%s' or '%s' "
 "property value.\n"
 msgstr ""
-"Ostrzeżenie: Właściwość '%s' 'Wartość'  powinna być równa albo '%s' lub "
-"wartości właściwości '%s'.\n"
+"Ostrzeżenie: Właściwość '%s' 'Value'  powinna być być równa wartości "
+"właściwości '%s' lub '%s'.\n"
 
 msgid "Windows BMP image"
 msgstr "Obraz Windows BMP"
@@ -1297,8 +1328,8 @@ msgid ""
 "Wrong size for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
 "expected.\n"
 msgstr ""
-"Zły rozmiar właściwości '%s': Oczekiwano wektora wartości rzeczywistych o "
-"rozmiarze 1 x 3 lub ciągu znaków 'R|G|B'.\n"
+"Nieodpowiedni rozmiar właściwości '%s': oczekiwano wektora wartości "
+"rzeczywistych o rozmiarze 1 x 3 lub ciągu znaków typu 'R|G|B'.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
@@ -1308,7 +1339,9 @@ msgstr ""
 
 #, c-format
 msgid "Wrong size for '%s' property: A graphic handle expected.\n"
-msgstr "Zły rozmiar właściwości '%s': Oczekiwano obsługi graficznej.\n"
+msgstr ""
+"Nieodpowiedni rozmiar właściwości '%s': Oczekiwano uchwytu (handle) "
+"graficznego.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: A real expected.\n"
@@ -1373,8 +1406,8 @@ msgid ""
 "Wrong type for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
 "expected.\n"
 msgstr ""
-"Zły typ właściwości '%s': oczekiwano rzeczywistego wektora 1 x 3 lub "
-"łańcucha 'R|G|B'.\n"
+"Nieodpowiedni typ właściwości '%s': oczekiwano rzeczywistego wektora o "
+"wymiarach 1 x 3 lub łańcucha typu 'R|G|B'.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A 1 x %d real row vector expected.\n"
@@ -1411,31 +1444,34 @@ msgstr "Zła wartość właściwości '%s': Oczekiwano '%s' lub '%s'.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n"
-msgstr "Zła wartość dla '%s' właściwości: oczekiwane '%s', '%s' lub '%s'\n"
+msgstr ""
+"Nieprawidłowa wartość dla właściwości '%s': oczekiwano '%s', '%s' lub '%s'\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"Zła wartość dla '%s' właściwości: oczekiwane '%s', '%s', '%s' lub '%s'\n"
+"Nieprawidłowa wartość dla właściwości '%s': oczekiwano '%s', '%s', '%s' lub "
+"'%s'\n"
 
 #, c-format
 msgid ""
 "Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"Zła wartość dla '%s' właściwości: oczekiwane '%s', '%s', '%s' '%s' lub '%s'\n"
+"Nieprawidłowa wartość dla właściwości '%s': oczekiwano '%s', '%s', '%s' '%s' "
+"lub '%s'\n"
 
 #, c-format
 msgid ""
 "Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
-"Nieprawidłowa wartość oczekiwana dla '%s' właściwości: '%s', '%s', '%s', "
+"Nieprawidłowa wartość dla właściwości '%s': oczekiwano '%s', '%s', '%s', "
 "'%s', '%s' lub '%s' .\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr ""
-"Nieprawidłowa wartość oczekiwana dla '%s' właściwości: '%s', '%s', lub '%s' "
+"Nieprawidłowa wartość dla właściwości '%s': oczekiwano '%s', '%s', lub '%s' "
 ".\n"
 
 #, c-format
@@ -1443,7 +1479,7 @@ msgid ""
 "Wrong value for '%s' property: 'light', 'normal', 'demi' or 'bold' "
 "expected.\n"
 msgstr ""
-"Nieprawidłowa wartość oczekiwana dla '%s' właściwości: 'light', 'normal', "
+"Nieprawidłowa wartość dla właściwości '%s': oczekiwano 'light', 'normal', "
 "'demi' lub 'bold'\n"
 
 #, c-format
@@ -1451,8 +1487,8 @@ msgid ""
 "Wrong value for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
 "expected.\n"
 msgstr ""
-"Nieprawidłowa wartość oczekiwana dla '%s' właściwości: 1 x 3 wektor "
-"rzeczywisty lub 'R|G|B' typu string\n"
+"Nieprawidłowa wartość dla właściwości '%s': oczekiwano wektor rzeczywisty o "
+"wymiarach 1 x 3 lub łańcuch typu 'R|G|B'\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"
@@ -1460,22 +1496,29 @@ msgstr ""
 "Nieprawidłowa wartość dla właściwości '%s': Oczekiwano '%s' lub '%s'.\n"
 
 #, c-format
+msgid ""
+"Wrong value for '%s' property: A String containing a numeric value "
+"expected.\n"
+msgstr ""
+"Nieprawidłowa wartość dla właściwości '%s': oczekiwano łańcuch zawierający "
+"wartość liczbową\n"
+
+#, c-format
 msgid "Wrong value for '%s' property: A real expected.\n"
 msgstr ""
-"Nieprawidłowa wartość dla '%s' właściwości: oczekiwane A rzeczywiste\n"
+"Nieprawidłowa wartość dla właściwości '%s': oczekiwano wartość rzeczywistą\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: A string expected.\n"
-msgstr ""
-"Nieprawidłowa wartość dla '%s' właściwości: oczekiwane A typu string\n"
+msgstr "Nieprawidłowa wartość dla właściwości '%s': oczekiwano łańcuch\n"
 
 #, c-format
 msgid ""
 "Wrong value for '%s' property: A string or a 1 x %d real row vector "
 "expected.\n"
 msgstr ""
-"Nieprawidłowa wartość dla '%s' właściwości: oczekiwane A string lub a 1 x %d "
-"wektor wierszowy typu real\n"
+"Nieprawidłowa wartość dla właściwości '%s': oczekiwano łańcuch lub 1 x %d "
+"wektor wierszowy liczb rzeczywistych\n"
 
 msgid "Xcos"
 msgstr "Xcos"
@@ -1488,23 +1531,23 @@ msgstr "Tak"
 
 #, c-format
 msgid "You clicked on menu ''%s''."
-msgstr "Kliknięcie na menu \"%s''."
+msgstr "Klikneleś na menu \"%s''."
 
 #, c-format
 msgid "You selected ''%s''."
-msgstr "Wybranych ''%s''."
+msgstr "Wybrałeś ''%s''."
 
 msgid "Zoom Area"
-msgstr "przybliżona okolica"
+msgstr "Powiększ obszar"
 
 msgid "blue"
 msgstr "niebieski"
 
 msgid "checked"
-msgstr "sprawdzone"
+msgstr "zaznaczony"
 
 msgid "createPopupItems: found an empty cascading menu."
-msgstr "createPopupItems: znaleziono w pustym menu kaskadowym"
+msgstr "createPopupItems: znaleziono puste menu kaskadowe"
 
 msgid ""
 "disp(\"WARNING: Despite of our previous warning, you chose to use Scilab "
@@ -1512,26 +1555,27 @@ msgid ""
 "information.\")"
 msgstr ""
 "disp(\"OSTRZEŻENIE: pomimo naszych wcześniejszych ostrzeżeń, wybrano do "
-"użycia Scilab w zaawansowanej opcji graficznej."
-"Typ \"\"help usecanvas\"\" dla większych informacji.\")"
+"użycia Scilab w zaawansowanej opcji graficznej. Więcej informacji można "
+"uzyskać po \"\"help usecanvas\"\".\")"
 
 msgid ""
 "disp(\"WARNING: Due to your configuration limitations, Scilab switched in a "
 "mode where mixing uicontrols and graphics is not available. Type \"\"help "
 "usecanvas\"\" for more information.\")"
 msgstr ""
-"disp(\"OSTRZEŻENIE: ze względu na ograniczenia konfiguracji,  Scilab "
-"przełączono na tryb gdzie połączenie uicontrols i grafiki jest nie możliwe. "
-"Typ \"\"help usecanvas\"\" dla większych informacji.\")"
+"disp(\"OSTRZEŻENIE: Z powodu ograniczeń Twojej konfiguracji Scilab został "
+"przełączony do trybu, w którym nie jest możliwe jednoczesne używanie "
+"uicontrols i grafiki. Więcej informacji można uzyskać po \"\"help "
+"usecanvas\"\".\")"
 
 msgid ""
 "disp(\"WARNING: Due to your video card drivers limitations, that are not "
 "able to manage OpenGL, Scilab will not be able to draw any graphics. Please "
 "update your driver.\")"
 msgstr ""
-"disp(\"OSTRZEŻENIE: ze względu na ograniczenia sterowników karty wideo, "
-"które nie są w stanie obsłużyć  OpenGL, Scilab nie jest w stanie wygenerować "
-"grafiki. Należy zaktualizować sterownik.\")"
+"disp(\"OSTRZEŻENIE: ze względu na ograniczenia sterowników Twojej karty "
+"wideo, które nie są w stanie obsłużyć OpenGL, Scilab nie jest w stanie "
+"wygenerować grafiki. Należy zaktualizować sterownik.\")"
 
 msgid "green"
 msgstr "zielony"
@@ -1545,8 +1589,11 @@ msgstr "pozycja1|pozycja2|pozycja3|pozycja4"
 msgid "red"
 msgstr "czerwony"
 
+msgid "toggle datatip mode"
+msgstr "Przełącz na tryb datatip"
+
 msgid "unchecked"
-msgstr "niesprawdzony"
+msgstr "odznaczony"
 
 msgid "yellow"
 msgstr "żółty"

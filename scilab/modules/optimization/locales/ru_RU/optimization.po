@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-02-21 22:17+0000\n"
+"PO-Revision-Date: 2010-07-11 22:34+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -120,7 +120,7 @@ msgstr ""
 msgid ""
 "%s: Impossible to scale the vertex #%d/%d at [%s] into inequality constraints"
 msgstr ""
-"%s: Невозможно масштабировать вершину №%d/%d в [%s] из-за ограничений в виде "
+"%s: Невозможно масштабировать вершину №%d/%d в [%s] в ограничения в виде "
 "неравенств"
 
 #, c-format
@@ -367,6 +367,30 @@ msgid ""
 msgstr ""
 "%s: Ориентированный симплекс может быть рассчитан только с симплексом, "
 "который создан из n+1 точек, но размерность - %d и количество вершин - %d"
+
+#, c-format
+msgid ""
+"%s: The restarteps option is expected to be a scalar, but current shape is "
+"%d x %d"
+msgstr ""
+"%s: Значение параметра restarteps должно быть скалярным, но его размерность "
+"%d x %d"
+
+#, c-format
+msgid "%s: The restarteps option is expected to be positive"
+msgstr "%s: Значение параметра restarteps должно быть положительным"
+
+#, c-format
+msgid "%s: The restartstep vector is expected to be positive"
+msgstr "%s: Вектор restarteps должен быть положительно определённым"
+
+#, c-format
+msgid ""
+"%s: The restartstep vector is expected to have %d x %d shape, but current "
+"shape is %d x %d"
+msgstr ""
+"%s: Размерность вектора restarteps должна быть %d x %d, но его текущая "
+"размерность является %d x %d"
 
 #, c-format
 msgid ""
@@ -658,4 +682,4 @@ msgid "nu must be at least 1.0.\n"
 msgstr "nu должно быть не менее 1.0.\n"
 
 msgid "x0 is not strictly primal feasible.\n"
-msgstr "x0 не строго исходно выполнима.\n"
+msgstr "x0 не является строго первично достижимой.\n"

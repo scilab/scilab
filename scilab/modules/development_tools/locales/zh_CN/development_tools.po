@@ -40,9 +40,6 @@ msgstr "%s:输入参数的大小错误。"
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为%s。\n"
 
-msgid "Generating loader.sce...\n"
-msgstr "生成loader.sce中...\n"
-
 #, c-format
 msgid "No variable %s_ref in reference file"
 msgstr "在reference文件中没有 %s_ref 变量"

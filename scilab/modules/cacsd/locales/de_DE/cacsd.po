@@ -736,6 +736,21 @@ msgstr "Frequenz (Hz)"
 msgid "Gain :"
 msgstr "Verstärkung:"
 
+msgid "Hall chart"
+msgstr ""
+
+msgid "Hz"
+msgstr ""
+
+msgid "Im"
+msgstr ""
+
+msgid "Im(h(2if))"
+msgstr ""
+
+msgid "Im(h(exp(2if*dt)))"
+msgstr ""
+
 msgid "Imaginary axis"
 msgstr "imaginäre Achse"
 
@@ -749,8 +764,8 @@ msgstr ""
 "Irreduzible Faktoren der Transferfunktion der natürlichen Frequenzen und des "
 "Dampfungsfaktors (Schaltfläche unten)"
 
-msgid "Magnitude (Db)"
-msgstr "Amplitude (dB)"
+msgid "Magnitude (dB)"
+msgstr ""
 
 msgid "Numerator :"
 msgstr "Numerator:"
@@ -766,6 +781,15 @@ msgstr "Phase (Grad)"
 
 msgid "Poles"
 msgstr "Pole"
+
+msgid "Re"
+msgstr ""
+
+msgid "Re(h(2if))"
+msgstr ""
+
+msgid "Re(h(exp(2if*dt)))"
+msgstr ""
 
 msgid "Real axis"
 msgstr "reale Achse"
@@ -788,8 +812,14 @@ msgstr "Nullen"
 msgid "asymptotic directions"
 msgstr "asymptotische Richtungen"
 
+msgid "dB"
+msgstr ""
+
 msgid "magnitude(y) (Db)"
 msgstr "Amplitude (y) (dB)"
+
+msgid "magnitude(y) (dB)"
+msgstr ""
 
 msgid "open loop poles"
 msgstr "offene Schleifen Pole"

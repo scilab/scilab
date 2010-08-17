@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-12-10 00:35+0000\n"
+"PO-Revision-Date: 2010-08-02 16:15+0000\n"
 "Last-Translator: Federico Vera <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -121,10 +121,6 @@ msgid "%s: Reading from directory %s\n"
 msgstr "%s: Leyendo desde el directorio %s\n"
 
 #, c-format
-msgid "%s: Scilab 5.0 or more is required.\n"
-msgstr "%s: Se requiere Scilab 5.0 o superior.\n"
-
-#, c-format
 msgid "%s: The 2 mlist must not have any field in common .\n"
 msgstr "%s: Los 2 mlist no pueden tener ningún campo en común.\n"
 
@@ -176,7 +172,7 @@ msgstr "%s: Número incorrecto de argumentos de entrada: Se esperaban %d.\n"
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
-"%s: Número incorrecto de argumentos de entrada: Se esperaban %d a %d.\n"
+"%s: Número incorrecto de argumentos de entrada: Se esperaban de %d a %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A integer expected.\n"
@@ -271,8 +267,8 @@ msgstr ""
 "existente.\n"
 
 #, c-format
-msgid "%s: help module is not installed.\n"
-msgstr "%s: El módulo de ayuda no está instalado.\n"
+msgid "%s: help file(.jar) is not installed.\n"
+msgstr "%s: El archivo de ayuda (.jar) no está instalado.\n"
 
 #, c-format
 msgid "%s: hhc.exe not found.\n"

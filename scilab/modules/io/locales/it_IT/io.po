@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-20 18:25+0100\n"
-"PO-Revision-Date: 2009-12-10 16:18+0000\n"
+"PO-Revision-Date: 2010-07-14 14:27+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -23,8 +23,12 @@ msgstr ""
 "stringa.\n"
 
 #, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s : Errore di allocazione della memoria\n"
+msgid "\"%s\" directory write access denied.\n"
+msgstr "non è possibile accedere in scrittura alla directory \"%s\".\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Errore di allocazione della memoria.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -71,16 +75,16 @@ msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un int.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso uno "
+"scalare.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "stringa.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An int scalar expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso uno scalare "
-"di tipo int.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -100,9 +104,33 @@ msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso un int.\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso un "
+"intero.\n"
+
+#, c-format
 msgid "%s: error during %s execution"
 msgstr "%s: si è verificato un errore durante l'esecuzione di %s"
 
 #, c-format
+msgid "File \"%s\" already exists.\n"
+msgstr "Il file \"%s\" esiste già.\n"
+
+#, c-format
+msgid "File \"%s\" does not exist.\n"
+msgstr "Il file \"%s\" non esiste.\n"
+
+#, c-format
+msgid "File \"%s\" read access denied.\n"
+msgstr "Non è possibile accedere in lettura al file \"%s\".\n"
+
+msgid "Too many files opened!\n"
+msgstr "Sono stati aperti troppi file!\n"
+
+#, c-format
 msgid "Undefined environment variable %s.\n"
 msgstr "La variabile d'ambiente %s non è definita.\n"
+
+msgid "unmanaged error by v2cunit.\n"
+msgstr "errore non gestito da v2cunit.\n"

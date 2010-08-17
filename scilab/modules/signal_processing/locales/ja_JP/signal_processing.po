@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2010-05-23 05:58+0000\n"
+"PO-Revision-Date: 2010-08-01 02:42+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
@@ -104,15 +104,11 @@ msgstr "%s: 入力引数 #%d で不正なサイズ: 多項式を想定します�
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr "%s: 入力引数 #%d で不正なサイズ: スカラーを想定します。\n"
 
-#
-# File: macros/frmag.sci, line: 35
-# File: macros/frmag.sci, line: 41
-# File: macros/trans.sci, line: 27
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A single input, single output system "
 "expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 単一入力、単一出力を想定します。\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 1入力1出力システムを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A tall matrix expected.\n"

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 17:45+0100\n"
-"PO-Revision-Date: 2010-04-10 18:56+0000\n"
+"PO-Revision-Date: 2010-07-29 10:07+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -144,12 +144,22 @@ msgstr ""
 "%s: Els arguments d'entrada #%d i #%d tenen longituds incompatibles.\n"
 
 #, c-format
+msgid "%s: Input argument #%d must be a '%s' handle.\n"
+msgstr "%s: L'argument d'entrada #%d ha de ser un tractament '%s'.\n"
+
+#, c-format
 msgid "%s: Input argument #%d must be a handle on a axes.\n"
 msgstr "%s: L'argument d'entrada #%d ha de ser un tractament en un eix.\n"
 
 #, c-format
 msgid "%s: Input argument #%d must be real.\n"
 msgstr "%s: L'argument d'entrada #%d ha de ser un nombre real.\n"
+
+#, c-format
+msgid "%s: Input argument and the legend must have the same parent axes.\n"
+msgstr ""
+"%s: L'argument d'entrada i la llegenda han d'estar relacionats amb el mateix "
+"eix.\n"
 
 #, c-format
 msgid "%s: Interpolated shading only works for polygons of size %d or %d\n"
@@ -165,6 +175,10 @@ msgid "%s: Misplaced optional argument: #%d must be at position %d.\n"
 msgstr ""
 "%s: L'argument opcional està mal colocat: El #%d ha d'estar a la posició "
 "%d.\n"
+
+#, c-format
+msgid "%s: No ''%s'' handle found.\n"
+msgstr "%s: No s'ha trobat el tractament ''%s''.\n"
 
 #, c-format
 msgid "%s: No more memory\n"
@@ -263,6 +277,11 @@ msgid "%s: Wrong number of input argument(s): %d to %d expected."
 msgstr "%s: El nombre d'arguments d'entrada: Han de ser entre %d i %d."
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+"%s: Nombre incorrecte d'arguments d'entrada: Han de ser entre %d i %d.\n"
+
+#, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
 "%s: Nombre d'arguments d'entrada incorrecte: Són necessaris %d com a mínim.\n"
@@ -296,6 +315,13 @@ msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 "%s: El nombre d'arguments d'entrada és incorrecte: Han de ser com a mínim "
 "%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong number of mandatory input arguments. At least %d expected.\n"
+msgstr ""
+"%s: El nombre d'arguments obligatoris d'entrada és incorrecte. Com a mínim "
+"han de ser %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for arguments #%d and #%d.\n"
@@ -371,6 +397,12 @@ msgstr ""
 "'%s' o un escalar real.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A ''%s'' handle expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un tractament "
+"''%s''.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A 'Text' handle expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un tractament "
@@ -407,6 +439,12 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta. Ha de ser un escalar.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una sola "
+"cadena de caràcters.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
@@ -557,12 +595,6 @@ msgstr ""
 "estructura de dades %s.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: '%s' or handle expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser '%s' o un "
-"tractament.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: 2D array of strings expected.\n"
 msgstr ""
@@ -678,6 +710,13 @@ msgstr ""
 "real o de tractaments gràfics.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
+"de nombres reals o complexos.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Real row vector expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
@@ -696,6 +735,12 @@ msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un escalar "
 "real.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un "
+"escalar.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar or string expected.\n"
@@ -890,6 +935,10 @@ msgid "%s: please use %s instead.\n"
 msgstr "%s: Utilitzeu %s.\n"
 
 #, c-format
+msgid "%s: too many input arguments"
+msgstr "%s: hi ha massa arguments d'entrada"
+
+#, c-format
 msgid "%s: x vector is not monotonous.\n"
 msgstr "%s: El vector x no és monòton.\n"
 
@@ -912,6 +961,9 @@ msgstr "El tractament '%s' no existeix.\n"
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
 msgstr "La propietat '%s' no existeix en aquest tractament.\n"
+
+msgid "A Label object cannot be deleted.\n"
+msgstr "No es pot eliminar un objecte Etiqueta.\n"
 
 #, c-format
 msgid "Argument #%d must have %d elements.\n"
@@ -963,11 +1015,39 @@ msgstr "Coure"
 msgid "Customize your complex function"
 msgstr "Personalitzeu la vostra funció complexa"
 
+msgid ""
+"Data tips cannot be attached to this curve,\n"
+"the user_data field is already used"
+msgstr ""
+"Els datatips no es poden afegir a aquesta corba,\n"
+"el camp user_data ja s'està utilitzant"
+
 msgid "Default axes cannot be create.\n"
 msgstr "No es poden crear els eixos predeterminats.\n"
 
 msgid "Default figure cannot be create.\n"
 msgstr "No es pot crear la figura predeterminada.\n"
+
+msgid "Delete all datatips"
+msgstr "Elimina tots els datatips"
+
+msgid "Delete all datatips for the selected curve"
+msgstr "Elimina tots els datatips d'aquesta corba"
+
+msgid "Delete last datatip"
+msgstr "Elimina el darrer datatip"
+
+msgid "Delete nearest datatip"
+msgstr "Elimina el datatip més proper"
+
+msgid "Disable interpolation"
+msgstr "Inhabilita la interpolació"
+
+msgid "Edit the curve tip display function"
+msgstr "Edita la funció de visualització de la corba"
+
+msgid "Enable interpolation"
+msgstr "Habilita la interpolació"
 
 #, c-format
 msgid "Entity with type %d cannot be destroyed.\n"
@@ -1054,12 +1134,21 @@ msgstr "Error intern: Hi ha un bucle a graduate1\n"
 msgid "Jet"
 msgstr "Jet"
 
+msgid ""
+"Left click on a curve to create a datatip, right opens contextual menu"
+msgstr ""
+"Feu clic amb el botó esquerra en una corba per crear un datatip, el botó "
+"dret obre el menú contextual"
+
 #, c-format
 msgid "Line width must be greater than %d.\n"
 msgstr "L'ample de línia ha de ser major que %d.\n"
 
 msgid "Misc"
 msgstr "Miscel·lània"
+
+msgid "Multiple datatips mode"
+msgstr "Mode per múltiples datatips"
 
 msgid "Name"
 msgstr "Nom"
@@ -1123,11 +1212,17 @@ msgstr "Hi ha hagut un problema amb sciInitFontContext\n"
 msgid "Rainbow"
 msgstr "Arc de Sant Martí"
 
+msgid "Redraw all datatips"
+msgstr "Torna a dibuixar tots els datatips"
+
 msgid "Scilab Graphics module not installed.\n"
 msgstr "El mòdul gràfic de Scilab no està instal·lat.\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
 msgstr "S'ha deshabilitat el mòdul gràfic Scilab en mode -nogui o -nwni.\n"
+
+msgid "Select tip orientation"
+msgstr "Seleccioneu la orientació"
 
 msgid "Spring"
 msgstr "Primavera"
@@ -1159,6 +1254,19 @@ msgstr "El pare ha de ser un FIGURE\n"
 
 msgid "The parent has to be a SUBWIN\n"
 msgstr "El pare ha de ser un SUBWIN\n"
+
+msgid "The selected file cannot be executed"
+msgstr "No es pot executar el fitxer seleccionat"
+
+msgid "The selected file defines more than one function"
+msgstr "El fitxer seleccionat defineix més d'una funció"
+
+msgid "The selected function must have 1 output parameter (str)"
+msgstr "La funció seleccionada ha de tenir un paràmetre de sortida (str)"
+
+msgid "The selected function must have 3 input parameters (curve,pt,index)"
+msgstr ""
+"La funció seleccionada ha de tenir tres paràmetres d'entrada (curve,pt,index)"
 
 msgid "This object can not be moved.\n"
 msgstr "No es pot moure aquest objecte.\n"
@@ -1208,6 +1316,9 @@ msgstr ""
 
 msgid "Unhandled data field\n"
 msgstr "Camp de dades no tractat\n"
+
+msgid "Unique datatip mode"
+msgstr "Mode de datatip únic"
 
 #, c-format
 msgid "Unknown property: %s.\n"
@@ -1346,6 +1457,12 @@ msgstr ""
 "'%s'.\n"
 
 #, c-format
+msgid "Wrong type for '%s' property: Graphic handle array expected.\n"
+msgstr ""
+"La propietat '%s' és d'un tipus incorrecte: Ha de ser un vector de "
+"tractaments gràfics.\n"
+
+#, c-format
 msgid "Wrong type for '%s' property: Handle expected.\n"
 msgstr ""
 "La propietat '%s' és d'un tipus incorrecte: Ha de ser un tractament.\n"
@@ -1446,3 +1563,25 @@ msgstr ""
 
 msgid "You are not using a legend object.\n"
 msgstr "No esteu utilitzant un objecte llegenda.\n"
+
+#, c-format
+msgid "You must first specify an %s for this object.\n"
+msgstr "Primer heu d'especificar un %s per aquest objecte.\n"
+
+msgid "automatic"
+msgstr "automàtic"
+
+msgid "lower left"
+msgstr "inferior esquerre"
+
+msgid "lower right"
+msgstr "inferior esquerra"
+
+msgid "select the curve tip display function"
+msgstr "seleccioneu la funció de visualització de la corba"
+
+msgid "upper left"
+msgstr "superior esquerra"
+
+msgid "upper right"
+msgstr "superior dreta"

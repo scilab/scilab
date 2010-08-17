@@ -17,10 +17,6 @@ msgstr ""
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s：内存申请错误。\n"
-
-#, c-format
 msgid "%s : No more memory.\n"
 msgstr "%s：无更多内存。\n"
 
@@ -71,6 +67,10 @@ msgstr "%s：匹配限制跟DFA匹配无关：忽略。\n"
 #, c-format
 msgid "%s: Matched text exceeds buffer limit.\n"
 msgstr "%s：已匹配的文本超出了缓存限制。\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -202,6 +202,10 @@ msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个标量。\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
 
@@ -212,10 +216,6 @@ msgstr "%s：输入参数#%d的类型错误：应该为一个整数。\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Character expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为字符。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of character strings.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为字符串矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of integers expected.\n"
@@ -354,15 +354,3 @@ msgstr "%s：无法得到这个矩阵的维数。\n"
 
 msgid "WARNING : \n"
 msgstr "警告： \n"
-
-#, c-format
-msgid "WARNING: Function %s is obsolete.\n"
-msgstr "警告：函数%s已废弃。\n"
-
-#, c-format
-msgid "WARNING: Please use %s instead.\n"
-msgstr "警告：请用%s代替。\n"
-
-#, c-format
-msgid "WARNING: This function will be permanently removed in Scilab %s.\n"
-msgstr "警告：这个函数将从Scilab %s中永久地移除。\n"

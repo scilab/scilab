@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-06-02 10:00+0100\n"
-"PO-Revision-Date: 2009-10-09 15:36+0000\n"
-"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"PO-Revision-Date: 2010-07-03 00:58+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,15 +18,21 @@ msgstr ""
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
-# File: macros/add_param.sci, line: 20
-# File: macros/get_param.sci, line: 35
-# File: macros/is_param.sci, line: 20
-# File: macros/list_param.sci, line: 20
-# File: macros/remove_param.sci, line: 39
-# File: macros/set_param.sci, line: 25
 #, c-format
-msgid "%s: not a plist"
-msgstr "%s: plistではありません"
+msgid "%s: Wrong number of input argument(s): An even number expected.\n"
+msgstr "%s: 入力引数の数が間違っています: 偶数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています : %s を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています : 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: awaited parameters: "
+msgstr "%s: 必要なパラメータ: "
 
 #
 # File: macros/get_param.sci, line: 28
@@ -39,3 +45,59 @@ msgstr "%s: パラメータ %s は定義されていません"
 #, c-format
 msgid "%s: parameter doesn''t exist"
 msgstr "%s: パラメーターは存在しません"
+
+#, c-format
+msgid "%s: parameter not found. Return default value %d.\n"
+msgstr "%s: パラメータが見つかりません. デフォルト値 %d を返します.\n"
+
+#, c-format
+msgid "%s: parameter not found. Return default value %f.\n"
+msgstr "%s: パラメータが見つかりません. デフォルト値 %f を返します.\n"
+
+#, c-format
+msgid "%s: parameter not found. Return default value %s.\n"
+msgstr "%s: パラメータが見つかりません. デフォルト値 %s を返します.\n"
+
+#, c-format
+msgid "%s: wrong max bound for parameter %s: max bound %d, value %d\n"
+msgstr "%s: パラメータ %s の上界が誤っています: 上界 %d, 値 %d\n"
+
+#, c-format
+msgid "%s: wrong max bound for parameter %s: max bound %f, value %f\n"
+msgstr "%s: パラメータ %s の上界が誤っています: 上界 %f, 値 %f\n"
+
+#, c-format
+msgid "%s: wrong min bound for parameter %s: min bound %d, value %d\n"
+msgstr "%s: パラメータ %s の下界が誤っています: 下界 %d, 値 %d\n"
+
+#, c-format
+msgid "%s: wrong min bound for parameter %s: min bound %f, value %f\n"
+msgstr "%s: パラメータ %s の下界が誤っています: 下界 %f, 値 %f\n"
+
+#, c-format
+msgid "%s: wrong parameter type. %s expected. Return default value %d.\n"
+msgstr "%s: パラメータの型が間違っています. %s を指定してください. デフォルト値 %d を返します.\n"
+
+#, c-format
+msgid "%s: wrong parameter type. %s expected. Return default value %f.\n"
+msgstr "%s: パラメータの型が間違っています. %s を指定してください. デフォルト値 %f を返します.\n"
+
+#, c-format
+msgid "%s: wrong parameter type. %s expected. Return default value %s.\n"
+msgstr "%s: パラメータの型が間違っています. %s を指定してください. デフォルト値 %s を返します.\n"
+
+#, c-format
+msgid "%s: wrong size for parameter %s: %d requested, got %d\n"
+msgstr "%s: パラメータ %s の大きさが間違っています: %d が必要ですが, %d が指定されました.\n"
+
+#, c-format
+msgid "%s: wrong value for parameter %s: value %d\n"
+msgstr "%s: パラメータ %s の値が間違っています: 値 %d\n"
+
+#, c-format
+msgid "%s: wrong value for parameter %s: value %f\n"
+msgstr "%s: パラメータ %s の値が間違っています: 値 %f\n"
+
+#, c-format
+msgid "%s: wrong value for parameter %s: value %s\n"
+msgstr "%s: パラメータ %s の値が間違っています: 値 %s\n"

@@ -17,10 +17,6 @@ msgstr ""
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s: Fehler bei der Speicherbelegung.\n"
-
-#, c-format
 msgid "%s: An error occurred: %s\n"
 msgstr "%s: ein Fehler ist aufgetreten: %s\n"
 
@@ -48,6 +44,10 @@ msgstr "%s: Audio Ausgabemöglichkeiten nicht verfügbar.\n"
 #, c-format
 msgid "%s: Cannot open file %s.\n"
 msgstr "%s: kann Datei nicht öffnen %s.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"

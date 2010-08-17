@@ -21,7 +21,16 @@ msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 "%s : Mauvais type pour l'argument n° %d : Chaîne de caractères attendue.\n"
 
+msgid "A null assignment can have only one non-colon index"
+msgstr ""
+
 msgid "Affection of a string in a matrix of numbers is not implemented."
 msgstr ""
 "Affectation d'une chaîne de caractères dans une matrice de nombres n'est pas "
 "implémentée."
+
+msgid "Incorrect assignment.\n"
+msgstr ""
+
+msgid "Invalid index.\n"
+msgstr ""

@@ -213,9 +213,6 @@ msgstr ""
 msgid "Tcl/TK interface disabled in -nogui mode.\n"
 msgstr "Interfase Tcl/TK deshabilitada en modo -nogui.\n"
 
-msgid "Tcl/Tk interface not loaded."
-msgstr "Interfase Tcl/Tk no cargada."
-
 msgid ""
 "The SCI environment variable is not set.\n"
 "TCL initialisation failed !\n"

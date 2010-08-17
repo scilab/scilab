@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-02-12 16:04+0000\n"
+"PO-Revision-Date: 2010-06-29 12:30+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
@@ -375,6 +375,30 @@ msgid ""
 msgstr ""
 "%s: орієнтований симплекс може бути обчислено лише для симплексів з n+1 "
 "точки, але розмірність дорівнює %d, а кількість вершин — %d"
+
+#, c-format
+msgid ""
+"%s: The restarteps option is expected to be a scalar, but current shape is "
+"%d x %d"
+msgstr ""
+"%s: значення параметра restarteps мало бути скалярним, але у поточній формі "
+"це матриця %d x %d"
+
+#, c-format
+msgid "%s: The restarteps option is expected to be positive"
+msgstr "%s: значення параметра restarteps мало бути додатним"
+
+#, c-format
+msgid "%s: The restartstep vector is expected to be positive"
+msgstr "%s: вектор restartstep мав бути додатним"
+
+#, c-format
+msgid ""
+"%s: The restartstep vector is expected to have %d x %d shape, but current "
+"shape is %d x %d"
+msgstr ""
+"%s: вектор restartstep повинен був мати розмірність %d x %d, але він має "
+"розмірність %d x %d"
 
 #, c-format
 msgid ""

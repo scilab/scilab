@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
 "POT-Creation-Date: 2008-01-30 18:01+0100\n"
-"PO-Revision-Date: 2008-08-17 13:42+0000\n"
-"Last-Translator: Yung-Jang Lee <yjlee123@gmail.com>\n"
+"PO-Revision-Date: 2010-07-18 05:41+0000\n"
+"Last-Translator: tim loo <timloo0710@gmail.com>\n"
 "Language-Team: Scilab Chinese (traditional) <ade-scilab@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,11 +20,11 @@ msgstr "       在函數 %s 之內.\n"
 
 #, c-format
 msgid "     (end) %s\n"
-msgstr ""
+msgstr "     (結束) %s\n"
 
 #, c-format
 msgid "  (cont'd) %s\n"
-msgstr ""
+msgstr "  (持續) %s\n"
 
 #
 # File: src/c/errmsg.c, line: 1351
@@ -78,10 +78,6 @@ msgstr "%d: 邏輯單元已使用.\n"
 msgid "%dth argument type must be boolean.\n"
 msgstr "第 %d 參數型態須為  boolean.\n"
 
-#, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr ""
-
 #
 # File: src/c/errmsg.c, line: 1455
 #, c-format
@@ -123,23 +119,27 @@ msgid ""
 "%s: %s is too small. %s is orthogonal to the columns of the jacobian to "
 "machine precision.\n"
 msgstr ""
+"%s: %s長度太短. %s orthogonal to the columns of the jacobian to 機器運算的精度(machine "
+"precision).\n"
 
 #, c-format
 msgid ""
 "%s: %s is too small. No further reduction in the criterion is possible.\n"
 msgstr ""
+"%s: %s 長度太短. 在這情況下( in the criterion)沒有進一步的減少(No further reduction )的可能( "
+"possible).\n"
 
 #, c-format
 msgid "%s: An error occurred: %s\n"
-msgstr ""
+msgstr "%s: 產生錯誤: %s\n"
 
 #, c-format
 msgid "%s: Bad conversion 'l' or 'h' flag mixed with 'c' directive.\n"
-msgstr ""
+msgstr "%s: 轉換錯誤, 'l' 或 'h' 旗標與 'c' 指示混用.\n"
 
 #, c-format
 msgid "%s: Bad conversion 'l' or 'h' flag mixed with 's' directive.\n"
-msgstr ""
+msgstr "%s: 轉換錯誤, 'l' 或 'h' 旗標與 's' 指示混用.\n"
 
 #
 # File: src/c/errmsg.c, line: 924
@@ -181,13 +181,15 @@ msgstr "%s: 不正確的停止參數.\n"
 
 #, c-format
 msgid "%s: Input arguments should have the same formal variable name.\n"
-msgstr ""
+msgstr "%s: 輸入參數須有相同的正式變數名(formal variable name).\n"
 
-#
-# File: src/c/msgs.c, line: 919
 #, c-format
 msgid "%s: Loop on two orders detected.\n"
-msgstr ""
+msgstr "%s: 迴圈(Loop) on two orders 偵側到(detected).\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Memory 分配有誤.\n"
 
 # File: src/c/sciprint_full.c, line: 38
 # File: src/c/sciprint_full.c, line: 56
@@ -197,7 +199,7 @@ msgstr "%s: 記憶體耗盡.\n"
 
 #, c-format
 msgid "%s: Not enough arguments.\n"
-msgstr ""
+msgstr "%s: 參數不夠.\n"
 
 #, c-format
 msgid "%s: Number of calls to %s has reached or exceeded %s.\n"
@@ -227,7 +229,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: This method is NOT implemented.\n"
-msgstr ""
+msgstr "%s: 此方法(method )並未實作( NOT implemented).\n"
 
 #, c-format
 msgid ""
@@ -237,11 +239,11 @@ msgstr "%s: 找到太多解.\n"
 
 #, c-format
 msgid "%s: Type %s is not handled : Define the function %s2%s."
-msgstr ""
+msgstr "%s: Type %s is not handled : Define the function %s2%s."
 
 #, c-format
 msgid "%s: Wrong export format: %s"
-msgstr ""
+msgstr "%s: Wrong export format: %s"
 
 #
 # File: src/c/errmsg.c, line: 909
@@ -251,7 +253,7 @@ msgstr "%s: 輸入參數錯誤.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr ""
+msgstr "%s: Wrong number of input argument(s): %d to %d expected."
 
 #
 # File: src/c/errmsg.c, line: 545
@@ -261,19 +263,19 @@ msgstr "%s: 輸入參數數目錯誤.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected"
-msgstr ""
+msgstr "%s: Wrong number of input arguments: %d to %d expected"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
-msgstr ""
+msgstr "%s: Wrong number of input arguments: at least %d expected.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at most %d expected.\n"
-msgstr ""
+msgstr "%s: 輸入參數之數目錯誤: 最多應為 %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
-msgstr ""
+msgstr "%s: 輸入參數之數目錯誤: 資料與格式不吻合.\n"
 
 #
 # File: src/c/errmsg.c, line: 556
@@ -295,11 +297,11 @@ msgstr "%s: 參數 %d 長度錯誤: 應為 (%d,%d).\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
-msgstr ""
+msgstr "%s: 第 %d 個輸入參數長度錯誤.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
+msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是字串.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
@@ -598,9 +600,6 @@ msgstr "%s: 共用 archive 未載入.\n"
 msgid "%s: window dimensions have been set less than 2^16.\n"
 msgstr "%s: window 尺寸限制小於 2^16.\n"
 
-msgid "'o' format not allowed."
-msgstr ""
-
 msgid "A sparse matrix entry is defined with two different values.\n"
 msgstr ""
 
@@ -736,17 +735,12 @@ msgstr ""
 msgid "Eye variable undefined in this context.\n"
 msgstr "此語境中 Eye 變數(單位元素)未定義.\n"
 
-#
-# File: src/c/errmsg.c, line: 488
 #, c-format
 msgid ""
 "Fatal error!!! Your variables have been saved in the file : %s\n"
-"Bad call to a scilab function ?\n"
-"Otherwise, send a bug report to :\n"
+"                                   Bad call to a scilab function ?\n"
+"                                   Otherwise, send a bug report to :\n"
 msgstr ""
-"嚴重錯誤!!! 你的變數曾經存在檔案 : %s 內\n"
-"是否錯誤呼叫 scilab 函數 ?\n"
-"否則, 請交問題回報給 :\n"
 
 #, c-format
 msgid "File \"%s\" already exists or directory write access denied.\n"
@@ -1421,6 +1415,9 @@ msgstr "未定義函數.\n"
 # File: src/c/errmsg.c, line: 972
 msgid "Undefined operation for the given operands.\n"
 msgstr "運算元 (operands) 未定義之運算.\n"
+
+msgid "Undefined variable.\n"
+msgstr ""
 
 #
 # File: src/c/errmsg.c, line: 76

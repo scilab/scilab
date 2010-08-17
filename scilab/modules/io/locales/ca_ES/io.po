@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-20 18:25+0100\n"
-"PO-Revision-Date: 2009-12-12 17:39+0000\n"
+"PO-Revision-Date: 2010-07-29 09:55+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,8 +17,12 @@ msgstr ""
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s : Error d'assignació de memòria.\n"
+msgid "\"%s\" directory write access denied.\n"
+msgstr "\"%s\" no teniu accés d'escriptura al directori.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Error de memòria.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -69,16 +73,16 @@ msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un enter.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un "
+"escalar.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
 "de caràcters.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An int scalar expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un escalar "
-"enter.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -96,9 +100,32 @@ msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte. Ha de ser un enter.\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un enter.\n"
+
+#, c-format
 msgid "%s: error during %s execution"
 msgstr "%s: Error durant l'execució %s"
 
 #, c-format
+msgid "File \"%s\" already exists.\n"
+msgstr "Ja existeix el fitxer \"%s\".\n"
+
+#, c-format
+msgid "File \"%s\" does not exist.\n"
+msgstr "No existeix el fitxer \"%s\".\n"
+
+#, c-format
+msgid "File \"%s\" read access denied.\n"
+msgstr "No teniu accés de lectura al fitxer \"%s\".\n"
+
+msgid "Too many files opened!\n"
+msgstr "Hi ha massa fitxers oberts.\n"
+
+#, c-format
 msgid "Undefined environment variable %s.\n"
 msgstr "Variable d'entorn %s no definida.\n"
+
+msgid "unmanaged error by v2cunit.\n"
+msgstr "Error no gestionat de v2cunit.\n"

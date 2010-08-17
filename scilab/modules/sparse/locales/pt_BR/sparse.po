@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-04-17 11:58+0000\n"
+"PO-Revision-Date: 2010-07-09 14:15+0000\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -144,12 +144,10 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Must be same size as input argument "
-"#%d"
+msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
 msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: deve ter o mesmo "
-"tamanho que o argumento de entrada #%d"
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um vetor "
+"coluna.\n"
 
 #, c-format
 msgid ""
@@ -158,6 +156,12 @@ msgid ""
 msgstr ""
 "%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se o mesmo "
 "tamanho do argumento de entrada #%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
+"escalar.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
@@ -174,22 +178,6 @@ msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um vetor "
 "coluna.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Same size as input argument #%d "
-"expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se o mesmo "
-"tamanho do argumento de entrada #%d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Same size as the input argument #%d "
-"expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se o mesmo "
-"tamanho do argumento de entrada #%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
@@ -209,6 +197,14 @@ msgid ""
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se a transposta "
 "da função %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for size argument #%d: Same size as input argument #%d "
+"expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se as mesmas "
+"dimensões do argumento de entrada #%d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Column vector expected.\n"

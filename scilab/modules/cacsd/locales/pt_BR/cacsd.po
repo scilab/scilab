@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-04-03 22:33+0000\n"
+"PO-Revision-Date: 2010-07-09 14:53+0000\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -779,6 +779,21 @@ msgstr "Frequência (Hz)"
 msgid "Gain :"
 msgstr "Ganho:"
 
+msgid "Hall chart"
+msgstr "Carta de Hall"
+
+msgid "Hz"
+msgstr "Hz"
+
+msgid "Im"
+msgstr "Im"
+
+msgid "Im(h(2if))"
+msgstr "Im(h(2if))"
+
+msgid "Im(h(exp(2if*dt)))"
+msgstr "Im(h(exp(2if*dt)))"
+
 msgid "Imaginary axis"
 msgstr "Eixo imaginário"
 
@@ -792,7 +807,7 @@ msgstr ""
 "Fatores irredutíveis da frequência natural e do fator de amortecimento da "
 "função de transferência (clique abaixo)"
 
-msgid "Magnitude (Db)"
+msgid "Magnitude (dB)"
 msgstr "Magnitude (dB)"
 
 msgid "Numerator :"
@@ -809,6 +824,15 @@ msgstr "Fase (grau)"
 
 msgid "Poles"
 msgstr "Pólos"
+
+msgid "Re"
+msgstr "Re"
+
+msgid "Re(h(2if))"
+msgstr "Re(h(2if))"
+
+msgid "Re(h(exp(2if*dt)))"
+msgstr "Re(h(exp(2if*dt)))"
 
 msgid "Real axis"
 msgstr "Eixo real"
@@ -831,7 +855,13 @@ msgstr "Zeros"
 msgid "asymptotic directions"
 msgstr "direções assintóticas"
 
+msgid "dB"
+msgstr "dB"
+
 msgid "magnitude(y) (Db)"
+msgstr "magnitude(y) (dB)"
+
+msgid "magnitude(y) (dB)"
 msgstr "magnitude(y) (dB)"
 
 msgid "open loop poles"

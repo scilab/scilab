@@ -20,12 +20,8 @@ msgid " An hypermatrix extraction must have at least 2 arguments. "
 msgstr ""
 " Eine Extraktion einer Hypermatrix muß mindesten zwei Argumente haben. "
 
-msgid " An hypermatrix insertion must have at least 3 arguments "
+msgid " An hypermatrix insertion must have at least 3 arguments. "
 msgstr ""
-" Ein Einfügen einer Hypermatrix muß mindestens drei Argumente haben. "
-
-msgid " Argument is not an hypermatrix "
-msgstr " Argument ist keine Hypermatrix "
 
 msgid " Argument is not an hypermatrix. "
 msgstr " Argument ist keine Hypermatrix. "

@@ -135,6 +135,12 @@ msgid "%s: An error occurred during the compilation:\n"
 msgstr "%s: ein Fehler ist bei der Kompilation aufgetreten:\n"
 
 #, c-format
+msgid ""
+"%s: An error occurred during the detection of the compiler(s). Set "
+"ilib_verbose(2) for more information.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: An error occurred: %s\n"
 msgstr "%s: ein Fehler ist aufgetreten: %s\n"
 
@@ -208,6 +214,14 @@ msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
 msgstr "%s: falsche Anzahl an Eingangsargumenten: %d, %d oder %d erwartet.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: falsche Größe für Eingangsargument #%d.\n"
 
@@ -263,14 +277,8 @@ msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr "%s: falscher Typ für Eingangsargument #%d: Integer erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgid "%s: Wrong type for input argument #%d: String matrix expected.\n"
 msgstr ""
-"%s: falscher Typ für Eingangsargument #%d: Matrix mit Zeichenketten "
-"erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: falscher Typ für Eingangsargument #%d: Zeichenkette erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument. Strings expected.\n"
@@ -284,6 +292,10 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input arguments: Strings expected.\n"
 msgstr "%s: falscher Typ für Eingangsargument: Variabel erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '''' or ''[]'' expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"

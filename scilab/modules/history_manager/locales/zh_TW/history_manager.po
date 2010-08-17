@@ -41,11 +41,11 @@ msgid ""
 "%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應在區間 [%d, %d] 內\n"
 
-msgid "Begin Session : "
-msgstr "紀錄開始 "
+msgid "// Begin Session : "
+msgstr "//紀錄開始 "
 
-msgid "End Session   : "
-msgstr "紀錄結束 "
+msgid "// End Session   : "
+msgstr "//紀錄結束 "
 
 msgid "Apr"
 msgstr "四月"
