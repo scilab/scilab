@@ -386,6 +386,22 @@
 			<File
 				RelativePath=".\hmops.c"
 				>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_definedfields.c"
