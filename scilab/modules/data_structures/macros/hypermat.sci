@@ -18,8 +18,7 @@ function M=hypermat(dims,v)
   [lhs,rhs]=argn(0)
   dims=double(dims)
   if or(floor(dims)<>dims)|or(dims<0) then
-    error(msprintf(_("%s: Wrong values for input argument #%d: Elements"+...
-                     " must be non negative integers.\n"),"hypermat",1));
+    error(msprintf(_("%s: Wrong values for input argument #%d: Elements must be non-negative integers.\n"),"hypermat",1));
   end
   if  dims==[]|or(dims==0) then dims=[0 0],end
 
