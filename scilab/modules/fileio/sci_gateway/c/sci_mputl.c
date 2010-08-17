@@ -50,7 +50,7 @@ int sci_mputl(char *fname, unsigned long fname_len)
 
     if (Lhs != 1)
     {
-        Scierror(999, _("%s: Wrong number of output argument: %d expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), fname, 1);
         return 0;
     }
 
