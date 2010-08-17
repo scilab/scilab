@@ -44,13 +44,13 @@ int sci_mputl(char *fname, unsigned long fname_len)
 
     if (Rhs != 2)
     {
-        Scierror(999, _("Wrong number of input argument(s).\n"), fname, 2);
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
         return 0;
     }
 
     if (Lhs != 1)
     {
-        Scierror(999, _("Wrong number of output argument(s).\n"), fname, 1);
+        Scierror(999, _("%s: Wrong number of output argument: %d expected.\n"), fname, 1);
         return 0;
     }
 
