@@ -85,6 +85,30 @@ Windows Installer:
   Interpreter in command line without the graphic, java or Tcl/Tk capabilities.
   Installation requires only 60 Mo on disk.
 
+
+Xcos:
+=====
+
+* bug 7622 fixed - When opening an Xcos diagram done on 5.2.2, an exception
+                   could be thrown.
+
+* bug 7628 fixed - When importing Scicos diagram, type each port as "explicit"
+                   when not typed.
+
+* bug 7631 fixed - On Xcos, using xcosPalAdd modified the user palatte.xml file.
+
+* bug 7635 fixed - Xcos diagram with nested SuperBlocks did not contains a
+                   valid container reference.
+
+* bug 7636 fixed - The SUPER_f internal diagram was not coherent with the block
+                   external view.
+
+* bug 7644 fixed - The last user palette could not be removed from the palette
+                   tree.
+
+* bug 7651 fixed - scicos_math.h was missing in binary package.
+
+
 Bug Fixes:
 ==========
 
@@ -121,25 +145,6 @@ Bug Fixes:
 
 * bug 7620 fixed - The Optimization and Simulation/Optimisation/Plot demo did
                    not plot anything.
-
-* bug 7622 fixed - When opening an Xcos diagram done on 5.2.2, an exception
-                   could be thrown.
-
-* bug 7628 fixed - When importing Scicos diagram, type each port as "explicit"
-                   when not typed.
-
-* bug 7631 fixed - On Xcos, using xcosPalAdd modified the user palatte.xml file.
-
-* bug 7635 fixed - Xcos diagram with nested SuperBlocks did not contains a
-                   valid container reference.
-
-* bug 7636 fixed - The SUPER_f internal diagram was not coherent with the block
-                   external view.
-
-* bug 7644 fixed - The last user palette could not be removed from the palette
-                   tree.
-
-* bug 7651 fixed - scicos_math.h was missing in binary package.
 
 * bug 7661 fixed - Add some usage examples for the function 'warning'.
 
