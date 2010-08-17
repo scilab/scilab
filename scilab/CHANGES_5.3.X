@@ -67,15 +67,16 @@ Compilation:
 * -fwritable-strings C argument removed for all architectures under Linux
   (was causing some build issues under sparc, alpha and powerpc)
 
-* bug 7668 fixed -  Scilab 5.3.0-beta-2 did not build with Visual Studio 2008 Express.
+* A problem on startup with GNU/Linux sparc has been fixed.
 
+* bug 7668 fixed - Scilab 5.3.0-beta-2 did not build with Visual Studio 2008
+                   Express.
 
 Documentation:
 ==============
 
 * bug 7755 fixed - Some sparse help pages moved from elementary_functions to
                    the sparse chapter.
-
 
 Windows Installer:
 ==================
