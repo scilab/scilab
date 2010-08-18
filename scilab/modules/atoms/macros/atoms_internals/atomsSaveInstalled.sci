@@ -82,6 +82,9 @@ function  atomsSaveInstalled(installed_struct,section)
         this_package_path     = strsubst(this_package_path,pathconvert(SCI    ,%F),"SCI");
         this_package_path     = strsubst(this_package_path,pathconvert(SCIHOME,%F),"SCIHOME");
 
+        this_package_details(3)       = this_package_path;
+        installed_struct(packages(i)) = this_package_details;
+
         installed_mat = [ installed_mat ; this_package_name this_package_version this_package_allusers this_package_path this_package_status];
         installed_str = [ installed_str ; "[ "+this_package_name+" - "+this_package_version+" - "+this_package_allusers+" - "+this_package_path+" - "+this_package_status+" ]" ];
 
