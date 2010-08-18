@@ -1,0 +1,8 @@
+<package name="org.scilab.modules.xcos.modelica">
+	<object name="Modelica">
+		<method name="load" returnType="void" modifier="static">
+            <parameter name="fileName" type="String"/>
+        </method>
+	</object>
+</package>
+

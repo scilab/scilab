@@ -136,15 +136,6 @@ return
     pal_mode = %f       ;  // Palette edition mode
 
 
-
-
-
-
-
-    TCL_EvalFile(SCI+"/modules/scicos/tcl/MIHM.tcl")
-
-
-
     //**---- Scilab 5 patch for font handling. This patch fix the "Symbol" font issue
 //    scilab5fonts = xlfont() ; //** recover the full font list
 //    xlfont(scilab5fonts(1), 1) ; //** substitute the font in position one

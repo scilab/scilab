@@ -155,12 +155,6 @@ libsciscicos_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 libsciscicos_la_etcdir = $(mydatadir)/etc
 libsciscicos_la_etc_DATA = etc/scicos.quit etc/scicos.start
 
-#### scicos : tcl scripts ####
-libsciscicos_la_tcldir = $(mydatadir)/tcl
-libsciscicos_la_tcl_DATA = tcl/MIHM.tcl \
-tcl/scicos.gif \
-tcl/scicos2.gif
-
 #### scicos : gateway declaration ####
 libsciscicos_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciscicos_la_sci_gateway_DATA = sci_gateway/scicos_gateway.xml

@@ -36,4 +36,5 @@
 <PRIMITIVE gatewayId="64" primitiveId="11" primitiveName="xcosPalEnable" />
 <PRIMITIVE gatewayId="64" primitiveId="12" primitiveName="xcosPalDisable" />
 <PRIMITIVE gatewayId="64" primitiveId="13" primitiveName="xcosPalGenerateIcon" />
+<PRIMITIVE gatewayId="64" primitiveId="14" primitiveName="xcosConfigureXmlFile" />
 </GATEWAY>

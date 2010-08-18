@@ -1,5 +1,5 @@
 Copyright:
-Copyright (c) 2009 - DIGITEO
+Copyright (c) 2010 - DIGITEO
 
 License:
 This module must be used under the terms of the CeCILL.

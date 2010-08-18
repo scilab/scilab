@@ -1,7 +1,7 @@
 #
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-# Copyright (C) DIGITEO - 2009 - Allan CORNET
-# Copyright (C) DIGITEO - 2010 - Clément DAVID
+# Copyright (C) DIGITEO - 2009-2010 - Allan CORNET <allan.cornet@scilab.org>
+# Copyright (C) DIGITEO - 2010-2010 - Clément DAVID <clement.david@scilab.org>
 # 
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
@@ -28,7 +28,8 @@ libscixcos_la_etc_DATA =	etc/xcos.quit \
 				etc/xcos.xml \
 				etc/XcosConfiguration.xsd \
 				etc/palettes.xml \
-				etc/PaletteConfiguration.xsd
+				etc/PaletteConfiguration.xsd \
+				etc/Modelica.xsd
 
 XCOS_C_SOURCES = 
 
@@ -37,10 +38,13 @@ XCOS_CPP_SOURCES = 	src/cpp/callxcos.cpp \
 			src/jni/Xcos.hxx \
 			src/jni/Palette.cpp \
 			src/jni/Palette.hxx \
+			src/jni/Modelica.cpp \
+			src/jni/Modelica.hxx \
 			src/jni/GiwsException.cpp
 
 GIWS_WRAPPERS = src/jni/Xcos.giws.xml \
-			src/jni/Palette.giws.xml
+			src/jni/Palette.giws.xml \
+			src/jni/Modelica.giws.xml
 
 if GIWS
 BUILT_SOURCES=giws
@@ -63,7 +67,8 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_xcosPalMove.cpp \
 	sci_gateway/cpp/sci_xcosPalEnable.cpp \
 	sci_gateway/cpp/sci_xcosPalDisable.cpp \
-	sci_gateway/cpp/sci_xcosPalGenerateIcon.cpp
+	sci_gateway/cpp/sci_xcosPalGenerateIcon.cpp \
+	sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp
 
 libscixcos_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \

@@ -129,6 +129,8 @@ Thanks to Samuel Gougeon.
 Xcos:
 =====
 
+* A new initialization UI for partial differential equations settings has been added.
+
 * bug 7256 fixed - Saving a diagram with a non-ASCII filename create a
                    corrupted file on Windows.
 
