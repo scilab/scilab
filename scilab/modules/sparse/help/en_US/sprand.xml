@@ -94,14 +94,36 @@
     </para>
 
     <para>
+      The <literal>density</literal> parameter is expected to be in the 
+      <literal>[0,1]</literal> interval. If not, it is automatically 
+      projected into this interval. Therefore, using a density which is 
+      lower than 0 or greater than 1 will generate neither an error, 
+      nor a warning: the formula <literal>density=max(min(density,1),0)</literal>
+      is used.
+    </para>
+
+    <para>
       If <literal>typ="uniform"</literal> uniformly distributed values on
       [0,1] are generated. If <literal>typ="normal"</literal> normally
       distributed values are generated (mean=0 and standard deviation=1).
     </para>
 
     <para>
-      The state of the random number generators is modified by this
-      function. The indices of the nonzeros entries are computed from an
+      The entries of the output matrix are computed from the given 
+      distribution function <literal>typ</literal>.
+      The indices of the non-zeros entries are computed 
+      randomly, so that the average number of nonzeros is equal to 
+      <literal>density</literal>.
+      The actual indices values are computed from the exponential distribution
+      function, where the parameter of the distribution function is 
+      computed accordingly.
+    </para>
+
+    <para>
+      As a side effect, the states of the random number generators <literal>rand</literal>
+      and <literal>grand</literal> are modified by this
+      function. 
+      The indices of the nonzeros entries are computed from an
       exponential distribution function and the grand function. The values of
       the matrix are computed from the distribution function given by the user
       (i.e. uniform or normal) and the rand function.

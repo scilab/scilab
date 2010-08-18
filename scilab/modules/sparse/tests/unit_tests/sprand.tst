@@ -43,6 +43,25 @@ function flag = assert_equal ( computed , expected )
   if flag <> 1 then pause,end
 endfunction
 
+// Check default "typ" = "uniform"
+rand("seed",0);
+grand("setsd",0);
+nrows = 1000;
+ncols = 2000;
+density = 1/100;
+s=sprand(nrows,ncols,density);
+assert_equal ( size(s) , [nrows,ncols] );
+nnzs=nnz(s);
+[ij,values]=spget(s);
+assert_equal ( min(values) >= 0 , %t );
+assert_equal ( max(values) <= 1 , %t );
+assert_close ( mean(values) , 0.5 , 1.e-2 );
+
+// Get empty matrix
+s=sprand(0,0,0.01);
+assert_equal ( s , [] );
+
+// Test the scientific part
 // In the following script, we check that the entries of the matrix have the expected distribution. 
 // We use the spget function in order to get the nonzero entries. 
 // Then we compute the min, mean and max of the entries and compare them with the limit values.
@@ -54,6 +73,7 @@ nrows = 1000;
 ncols = 2000;
 density = 1/100;
 s=sprand(nrows,ncols,density,typ);
+assert_equal ( size(s) , [nrows,ncols] );
 nnzs=nnz(s);
 [ij,values]=spget(s);
 assert_equal ( nnzs > 10000 , %t );
@@ -69,6 +89,7 @@ nrows = 1000;
 ncols = 2000;
 density = 1/100;
 s=sprand(nrows,ncols,density,typ);
+assert_equal ( size(s) , [nrows,ncols] );
 nnzs=nnz(s);
 [ij,values]=spget(s);
 assert_equal ( nnzs > 10000 , %t );
@@ -77,13 +98,13 @@ assert_close ( mean(values) , 0.5 , 1.e-2 );
 assert_close ( max(values) , 1 , 1.e-2 );
 assert_close ( variance(values) , 1/12 , 1.e-2 );
 
-// In the following script, we check that the entry indices,
-// which are also chosen at random, have the correct distribution.
-// We generate kmax sparse random matrices with uniform distribution.
-// For each matrix, we consider the indices of the nonzero entries
+// In the following script, we check that the entry indices, 
+// which are also chosen at random, have the correct distribution. 
+// We generate kmax sparse random matrices with uniform distribution. 
+// For each matrix, we consider the indices of the nonzero entries 
 // which were generated, i.e. we see if the event Aij = {the entry (i,j) is nonzero}
-// occured for each i and j, for i=1,2,...,nrows and j=1,2,...,ncols.
-// The matrix C(i,j) stores the number of times that the event Aij occured.
+// occured for each i and j, for i=1,2,...,nrows and j=1,2,...,ncols. 
+// The matrix C(i,j) stores the number of times that the event Aij occured. 
 // The matrix R(k) stores the actual density of the try number k, where k=1,2,...,kmax.
 
 rand("seed",0);
@@ -102,7 +123,7 @@ for k=1:kmax
   R=[R NZratio];
   C(NZ)=C(NZ)+1;
 end
-// Now that this algorithm has been performed (which may require some time),
+// Now that this algorithm has been performed (which may require some time), 
 // we can compute elementary statistics to check that the algorithm performed well.
 
 // The average number should be close to the expectation.
@@ -110,7 +131,7 @@ assert_close ( density*kmax , mean(C) , 1.e-2 );
 // The density should be close to expected density
 assert_close ( density , mean(R) , 1.e-2 );
 
-// More deeper tests should involve the particular distribution of
+// More deeper tests should involve the particular distribution of 
 // C, which follows a binomial law.
 // May be a chi-square test should be used for this.
 
