@@ -10,12 +10,10 @@
  *
  */
 
-
-/* Copyright INRIA 2007 */
-
 package org.scilab.modules.console;
 
 import org.scilab.modules.history_manager.HistoryManagement;
+import org.scilab.modules.commons.gui.ScilabCaret;
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.FontMetrics;
@@ -40,7 +38,7 @@ import com.artenum.rosetta.ui.ConsoleTextPane;
 import com.artenum.rosetta.util.StringConstants;
 
 /**
- * Scilab UI that contains the line edited by th euser
+ * Scilab UI that contains the line edited by the user
  * @author Vincent COUVERT
  */
 public class SciInputCommandView extends ConsoleTextPane implements InputCommandView {
@@ -67,6 +65,7 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 
 	// Input command line is not editable when created
 	this.setEditable(false);
+	setCaret(new ScilabCaret(this));
     }
 
     /**

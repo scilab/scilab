@@ -28,6 +28,7 @@ history_manager \
 spreadsheet \
 tclsci \
 localization \
+commons \
 action_binding \
 renderer \
 shell \
@@ -36,7 +37,6 @@ console \
 graphic_export \
 gui \
 jvm \
-commons \
 graphics \
 optimization \
 symbolic \

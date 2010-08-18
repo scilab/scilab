@@ -1,6 +1,15 @@
          Changes between version 5.3.0-beta-2 and 5.3.0-beta-3 of Scilab
          ===============================================================
 
+Scilab:
+=======
+
+Some long-standing usability bugs have been fixed in this release:
+
+* bug 7625 fixed - Some selection issues were appearing from time to time when
+                   Scilab was losing the focus.
+
+
 SciNotes:
 =========
 
