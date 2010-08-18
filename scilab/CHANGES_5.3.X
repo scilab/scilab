@@ -31,7 +31,7 @@ SciNotes:
 =========
 
 Anchors can be added in the source code and one can navigate between them with
-the Code Navigator. 
+the Code Navigator.
 
 * bugs 7276, 7726 fixed - There was a problem of highlighting with default font.
 
@@ -201,6 +201,9 @@ Bug Fixes:
 
 * bug 7208 fixed - The help for atomsGetLoaded() gave the wrong shape
                    for the loaded matrix.
+
+* bug 7348 fixed - ATOMS: A module was loaded twice if it was installed both in
+                   the "user" and the "allusers" section.
 
 * bug 7405 fixed - The toolbar wasn't updated when an undocking occured.
 
