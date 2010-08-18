@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
+// Copyright (C) 2009-2010 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -221,10 +221,6 @@ function result = atomsInstall(packages,section)
         end
 
     end
-
-    // Force update the system informations
-    // =========================================================================
-    atomsDESCRIPTIONget(%T)
 
     // Get the install list
     // =========================================================================
