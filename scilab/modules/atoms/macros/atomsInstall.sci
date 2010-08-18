@@ -287,13 +287,28 @@ function result = atomsInstall(packages,section)
                 fileprefix = OSNAME;
             end
 
-            fileout = pathconvert(this_package_directory+this_package_details(fileprefix+"Name"),%F);
-            filein  = this_package_details(fileprefix+"Url");
-            filemd5 = this_package_details(fileprefix+"Md5");
+            fileout     = pathconvert(this_package_directory+this_package_details(fileprefix+"Name"),%F);
+            filein      = this_package_details(fileprefix+"Url");
+            filemd5     = this_package_details(fileprefix+"Md5");
+            filearchive = archives_directory + filesep() + this_package_details(fileprefix+"Name");
 
-            // Launch the download
-            // =================================================================
-            atomsDownload(filein,fileout,filemd5);
+            if isfile(filearchive) & getmd5(filearchive)==filemd5 then
+                // Check if the file has already been successfully downloaded
+                // =============================================================
+                if copyfile( filearchive , this_package_directory ) <> 1 then
+                    atomsError("error", ..
+                        msprintf(gettext("%s: Error while copying the file ''%s'' to the directory ''%s''.\n"), ..
+                            "atomsInstall", ..
+                            strsubst(filearchive,"\","\\"), ..
+                            strsubst(this_package_directory,"\","\\") ));
+                end
+                toarchive = %F;
+            else
+                // Launch the download
+                // =============================================================
+                atomsDownload(filein,fileout,filemd5);
+                toarchive = %T;
+            end
 
             // unarchive it
             // =================================================================
@@ -391,18 +406,20 @@ function result = atomsInstall(packages,section)
         // Move the archive file (.tar.gz or .zip file) to the archive directory
         // =====================================================================
 
-        if this_package_details("fromRepository")=="1" then
-            this_package_archive = fileout;
-        else
-            this_package_archive = this_package_details("archiveFile");
-        end
+        if toarchive then
+            if this_package_details("fromRepository")=="1" then
+                this_package_archive = fileout;
+            else
+                this_package_archive = this_package_details("archiveFile");
+            end
 
-        if copyfile( this_package_archive , archives_directory ) <> 1 then
-            atomsError("error", ..
-                msprintf(gettext("%s: Error while copying the file ''%s'' to the directory ''%s''.\n"), ..
-                    "atomsInstall", ..
-                    strsubst(this_package_archive,"\","\\"), ..
-                    strsubst(archives_directory,"\","\\") ));
+            if copyfile( this_package_archive , archives_directory ) <> 1 then
+                atomsError("error", ..
+                    msprintf(gettext("%s: Error while copying the file ''%s'' to the directory ''%s''.\n"), ..
+                        "atomsInstall", ..
+                        strsubst(this_package_archive,"\","\\"), ..
+                        strsubst(archives_directory,"\","\\") ));
+            end
         end
 
         if this_package_details("fromRepository")=="1" then

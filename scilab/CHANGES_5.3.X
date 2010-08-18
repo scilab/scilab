@@ -255,6 +255,10 @@ Bug Fixes:
 * bug 7733 fixed - strstr crashed scilab if the second input argument was longer
                    than the first one.
 
+* bug 7737 fixed - Part 1 - ATOMS: when installing a module, the archive was
+                   automatically downloaded before checking if the archive
+                   already exists in the archive directory.
+
 * bug 7740 fixed - edit() with a Scilab macro redefined failed.
 
 * bug 7747 fixed - xclick(): When the graphic window was docked, keyboard
