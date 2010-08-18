@@ -12,6 +12,7 @@
 // Init
 loadScicosLibs;
 iconPath = SCI + "/modules/xcos/images/palettes/NPN.png";
+stylePath = SCI + "/modules/xcos/images/blocks/NPN.svg";
 
 // Test block argument
 scs_m = SUM_f("define");
@@ -45,4 +46,8 @@ pal = xcosPalAddBlock(pal, blockPath, [], myStyle)
 pal = xcosPal();
 pal = xcosPalAddBlock(pal, blockPath, [], iconPath)
 
+// Test pal_block_img argument and style argument simultaneously
+// an image for the block in the diagram and an image for the icon of the block
+pal = xcosPal();
+pal = xcosPalAddBlock(pal, blockPath, iconPath, stylePath)
 

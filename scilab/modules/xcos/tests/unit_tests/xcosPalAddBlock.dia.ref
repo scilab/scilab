@@ -10,6 +10,7 @@
 // Init
 loadScicosLibs;
 iconPath = SCI + "/modules/xcos/images/palettes/NPN.png";
+stylePath = SCI + "/modules/xcos/images/blocks/NPN.svg";
 // Test block argument
 scs_m = SUM_f("define");
 blockPath = TMPDIR + "/block.h5";
@@ -219,7 +220,7 @@ pal = xcosPalAddBlock(pal, blockPath, [], myStyle)
  
        pal(6)
  
- noLabel=1;image=file:TMPDIR/SUM_f.svg;   
+ noLabel=1;image=file:SCI/modules/xcos/images/palette/NPN.png;   
 pal = xcosPal();
 pal = xcosPalAddBlock(pal, blockPath, [], iconPath)
  pal  =
@@ -247,4 +248,35 @@ pal = xcosPalAddBlock(pal, blockPath, [], iconPath)
  
        pal(6)
  
- noLabel=1;image=file:TMPDIR/SUM_f.svg;   
+ noLabel=1;image=file:SCI/modules/xcos/images/palettes/NPN.png;   
+// Test pal_block_img argument and style argument simultaneously
+// an image for the block in the diagram and an image for the icon of the block
+pal = xcosPal();
+pal = xcosPalAddBlock(pal, blockPath, iconPath, stylePath)
+ pal  =
+ 
+ 
+       pal(1)
+ 
+!palette  name  blockNames  blocks  icons  style  !
+ 
+       pal(2)
+ 
+ New palette   
+ 
+       pal(3)
+ 
+ SUM_f   
+ 
+       pal(4)
+ 
+ TMPDIR/block.h5   
+ 
+       pal(5)
+ 
+ SCI/modules/xcos/images/palettes/NPN.png
+ 
+       pal(6)
+ 
+ noLabel=1;image=file:SCI/modules/xcos/images/blocks/NPN.svg;
+

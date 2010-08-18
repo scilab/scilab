@@ -161,6 +161,9 @@ Xcos:
 
 * bug 7778 fixed - The disabled buttons were badly colorized.
 
+* bug 7834 fixed - The last argument of xcosPalAddBlock about the block style
+                   could not be changed by the user.
+
 call_scilab:
 ============
 

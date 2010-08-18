@@ -41,7 +41,7 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
 //   
 //   scs_m = SUM_f("define");
 //   export_to_hdf5(sumPath, "scs_m");
-//   scs_m = BIGSOM("define");
+//   scs_m = BIGSOM_f("define");
 //   export_to_hdf5(bigSomPath, "scs_m");
 //   
 //   pal = xcosPalAddBlock(pal, sumPath);
@@ -123,19 +123,14 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
     // `scs_m'.
     
     // now handle pal_block_img argument
-    pal_block_img_invalid = %t;
-    if exists("pal_block_img", 'l') == 1 then
-        if ~isempty(pal_block_img) then
-            pal_block_img_invalid = %f;
-        end
-    end
-    
-    if pal_block_img_invalid then
+    if ~exists("pal_block_img", 'l') | isempty(pal_block_img) then
+        // block icon by default
         pal_block_img = TMPDIR + "/" + scs_m.gui + ".gif";
         if isfile(pal_block_img) then
             error(msprintf(gettext("%s: Unable to generate the palette icon : ""%s"" already exists.\n"), "xcosPalAddBlock", pal_block_img));
         end
     else
+        // specified block icon
         if typeof(pal_block_img) <> "string" then
             error(msprintf(gettext("%s: Wrong type for input argument ""%s"": path string expected.\n"), "xcosPalAddBlock", "pal_block_img"));
         end
@@ -147,14 +142,8 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
     end
     
     // now handle style argument
-    style_invalid = %t;
-    if exists("style", 'l') == 1 then
-        if ~isempty(style) then
-            style = %f;
-        end
-    end
-    
-    if style_invalid then
+    if ~exists("style", 'l') | isempty(style) then
+        // style by default
         block_img = TMPDIR + "/" + scs_m.gui + ".svg";
         style = "noLabel=1;image=file:" + block_img + ";";
         status = generateBlockImage(scs_m, TMPDIR, imageType="svg");
@@ -162,6 +151,7 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
             error(msprintf(gettext("%s: Unable to generate the image ""%s"".\n"), "xcosPalAddBlock", block_img));
         end
     else
+        // apply the specified style to the block
         if typeof(style) <> "st" & typeof(style) <> "string" then
             error(msprintf(gettext("%s: Wrong type for input argument ""%s"": string or struct expected.\n"), "xcosPalAddBlock", "style"));
         elseif typeof(style) == "st" then
