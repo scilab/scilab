@@ -13,13 +13,13 @@
 //
 // <-- Short Description -->
 // Performances of xcosDiagramToHDF5 degraded after several subsequent calls to this function.
-tic();
+timer();
 xcosDiagramToHDF5(SCI+"/modules/xcos/demos/susp.xcos",TMPDIR+"/out.h5",%t);
-run1 = toc();
+run1 = timer();
 xcosDiagramToHDF5(SCI+"/modules/xcos/demos/susp.xcos",TMPDIR+"/out.h5",%t);
-tic();
+timer();
 xcosDiagramToHDF5(SCI+"/modules/xcos/demos/susp.xcos",TMPDIR+"/out.h5",%t);
-run3 = toc();
+run3 = timer();
 // If the computer slows for an other reasons, we might have this bug again.
 // Add a XX% error
 errorPercentage=1.1;
