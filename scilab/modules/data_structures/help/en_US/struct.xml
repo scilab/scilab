@@ -47,19 +47,19 @@
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
 // create a struct date
-date=struct('day',25,'month' ,'DEC','year',2006)
+date_st=struct('day',25,'month' ,'DEC','year',2006)
 
 //change the month
-date.month='AUG';
+date_st.month='AUG';
 
 // change the year
-date.year=1973;
+date_st.year=1973;
 
 //change the day
-date.day=19;
+date_st.day=19;
 
 // add a new field
-date.semaine=32
+date_st.semaine=32
  ]]></programlisting>
   </refsection>
   <refsection>

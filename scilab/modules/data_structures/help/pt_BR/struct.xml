@@ -71,19 +71,19 @@
 
     <programlisting role="example"><![CDATA[ 
 // criando um dado struct
-date=struct('dia',25,'mes' ,'DEZ','ano',2006)
+date_st=struct('dia',25,'mes' ,'DEZ','ano',2006)
 
 //mudando o mes
-date.mes='AGO';
+date_st.mes='AGO';
 
 // mudando o ano
-date.ano=1973;
+date_st.ano=1973;
 
 //mudando o dia
-date.dia=19;
+date_st.dia=19;
 
 // adicionando um novo campo
-date.semana=32
+date_st.semana=32
  ]]></programlisting>
   </refsection>
 
