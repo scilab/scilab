@@ -132,6 +132,9 @@ public final class FindAction extends DefaultAction {
     private String newWord;
     private String wordToFind;
 
+    private String lastSearch = "";
+    private String lastReplace = "";
+
     private int startSelectedLines;
     private int endSelectedLines;
 
@@ -396,8 +399,8 @@ public final class FindAction extends DefaultAction {
         radioForward.setSelected(true);
         radioAll.doClick();
 
-        updateRecentSearch();
-        updateRecentReplace();
+        fillSearch();
+        fillReplace();
 
         restoreConfiguration();
 
@@ -700,33 +703,55 @@ public final class FindAction extends DefaultAction {
     }
 
     /**
-     * Update recent search
+     * fill comboFind
      */
-    private void updateRecentSearch() {
-        Object old = comboFind.getEditor().getItem();
+    private void fillSearch() {
         comboFind.removeAllItems();
         List<String> recentFind = ConfigSciNotesManager.getRecentSearch();
         for (String item : recentFind) {
             comboFind.addItem(item);
         }
+    }
 
-        comboFind.getEditor().setItem(old);
-        ConfigSciNotesManager.saveRecentSearch((String) old);
+    /**
+     * fill comboReplace
+     */
+    private void fillReplace() {
+        comboReplace.removeAllItems();
+        List<String> recentReplace = ConfigSciNotesManager.getRecentReplace();
+        for (String item : recentReplace) {
+            comboReplace.addItem(item);
+        }
+    }
+
+    /**
+     * Update recent search
+     */
+    private void updateRecentSearch() {
+        String word = (String) comboFind.getEditor().getItem();
+        if (word != null && word.length() != 0 && !word.equals(lastSearch)) {
+            List<String> recentFind = ConfigSciNotesManager.getRecentSearch();
+            if (!recentFind.contains(word)) {
+                comboFind.addItem(word);
+                ConfigSciNotesManager.saveRecentSearch(word);
+                lastSearch = word;
+            }
+        }
     }
 
     /**
      * Update recent replace
      */
     private void updateRecentReplace() {
-        Object old = comboReplace.getEditor().getItem();
-        comboReplace.removeAllItems();
-        List<String> recentReplace = ConfigSciNotesManager.getRecentReplace();
-        for (String item : recentReplace) {
-            comboReplace.addItem(item);
+        String word = (String) comboReplace.getEditor().getItem();
+        if (word != null && word.length() != 0 && !word.equals(lastReplace)) {
+            List<String> recentReplace = ConfigSciNotesManager.getRecentReplace();
+            if (!recentReplace.contains(word)) {
+                comboReplace.addItem(word);
+                ConfigSciNotesManager.saveRecentReplace(word);
+                lastReplace = word;
+            }
         }
-
-        comboReplace.getEditor().setItem(old);
-        ConfigSciNotesManager.saveRecentReplace((String) old);
     }
 
     /**
