@@ -14,7 +14,10 @@
 package org.scilab.modules.gui.bridge.pushbutton;
 
 import java.awt.Dimension;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -47,9 +50,20 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	public SwingScilabPushButton() {
 		super();
 		setFocusable(false);
+		
 		/* Avoid the L&F to erase user background settings */
 		setContentAreaFilled(false);
 		setOpaque(true);
+		addPropertyChangeListener(ICON_CHANGED_PROPERTY, new PropertyChangeListener() {
+			@Override
+			public void propertyChange(PropertyChangeEvent evt) {
+				final Icon newIcon = (Icon) evt.getNewValue();
+				final boolean iconEnable = newIcon != null;
+				
+				setContentAreaFilled(iconEnable);
+				setOpaque(!iconEnable);
+			}
+		});
 	}
 
 	/**
@@ -110,17 +124,7 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	 */
 	@Override
 	public void setIcon(String filename) {
-		this.setIcon(new ImageIcon(filename));
-	}
-	
-	/**
-	 * Sets the icon of a PushButton
-	 * @param image the icon image to set to the PushButton
-	 */
-	public void setIcon(ImageIcon image) {
-		super.setIcon(image);
-		setContentAreaFilled(true);
-		setOpaque(false);
+		super.setIcon(new ImageIcon(filename));
 	}
 	
 	/**

@@ -125,6 +125,8 @@ Xcos:
 * bug 7715 fixed - Performances of xcosDiagramToHDF5 degraded after several
                    subsequent calls to this function.
 
+* bug 7778 fixed - The disabled buttons were badly colorized.
+
 
 Bug Fixes:
 ==========
