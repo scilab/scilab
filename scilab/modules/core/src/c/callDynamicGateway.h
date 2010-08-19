@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Allan CORNET
+ * Copyright (C) 2010 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -18,16 +19,16 @@
 typedef int (*PROC_GATEWAY) (void);
 
 typedef enum { DYN_GW_NO_ERROR = 0,
-			   DYN_GW_LOAD_LIBRARY_ERROR = 1,
-               DYN_GW_PTR_FUNCTION_ERROR = 2,
-			   DYN_GW_CALL_FUNCTION_ERROR =3
-	
+DYN_GW_LOAD_LIBRARY_ERROR = 1,
+DYN_GW_PTR_FUNCTION_ERROR = 2,
+DYN_GW_CALL_FUNCTION_ERROR =3
+
 } dynamic_gateway_error_code;
 
 typedef enum { DYNLIB_NAME_FORMAT_AUTO = 0, 
-			DYNLIB_NAME_FORMAT_1 = 1,
-			DYNLIB_NAME_FORMAT_2 = 2,
-			DYNLIB_NAME_FORMAT_3 = 3
+DYNLIB_NAME_FORMAT_1 = 1,
+DYNLIB_NAME_FORMAT_2 = 2,
+DYNLIB_NAME_FORMAT_3 = 3
 } dynlib_name_format;
 
 #define FORMATGATEWAYLIBNAME_1 "%s%s"
@@ -44,10 +45,10 @@ typedef enum { DYNLIB_NAME_FORMAT_AUTO = 0,
 * @return error code (DYN_GW_NO_ERROR if it is ok)
 */
 dynamic_gateway_error_code callDynamicGateway(char *moduleName,
-											  char *dynLibName,
-											  char *gw_name,
-											  DynLibHandle *hlib,
-											  PROC_GATEWAY *ptrGateway);
+                                              char *dynLibName,
+                                              char *gw_name,
+                                              DynLibHandle *hlib,
+                                              PROC_GATEWAY *ptrGateway);
 
 /**
 * Build name of dynamic library based on module name
@@ -71,9 +72,18 @@ char *buildGatewayName(char *modulename);
 * @param[in] gateway name
 */
 void displayErrorGateway(dynamic_gateway_error_code err,
-						 char *libraryname,
-						 char *functionname);
+                         char *libraryname,
+                         char *functionname);
 
+
+/**
+* free hlib and ptrGateway associated to a dynamic gateway
+* @return TRUE or FALSE
+*/
+BOOL freeDynamicGateway(char **dynLibName,
+                        char **gw_name,
+                        DynLibHandle *hlib,
+                        PROC_GATEWAY *ptrGateway);
 
 #endif /* __CALLDYNAMICGATEWAY_H__ */
 /*--------------------------------------------------------------------------*/

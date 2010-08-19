@@ -13,6 +13,11 @@
 #define __DYNAMIC_GATEWAYS_H__
 
 /**
+* When we terminate Scilab, we freed dynamic gateways
+*/
+void freeAllDynamicGateways(void);
+
+/**
 * special_functions gateway
 * special_functions is loaded dynamically at runtime
 * load gw_special_functions in SCI/modules/special_functions/sci_gateway/gw_special_functions.c

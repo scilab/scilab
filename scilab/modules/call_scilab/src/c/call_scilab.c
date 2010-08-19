@@ -37,10 +37,6 @@
 #include "getScilabDirectory.h"
 #include "strdup_windows.h"
 #endif
-
-#ifdef _MSC_VER
-#define putenv _putenv
-#endif
 /*--------------------------------------------------------------------------*/
 static CALL_SCILAB_ENGINE_STATE csEngineState = CALL_SCILAB_ENGINE_STOP;
 /*--------------------------------------------------------------------------*/
@@ -101,12 +97,17 @@ BOOL StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
             /* Check if the directory actually exists */
             fprintf(stderr,"StartScilab: Could not find the directory %s\n", SCIpath);
             return FALSE;
-        }else
+        }
+        else
         {
+#ifdef _MSC_VER
             char env[2048];
-            setSCIpath(SCIpath);
             sprintf(env, "SCI=%s", SCIpath);
-            putenv(env);
+            _putenv(env);
+#else
+            setenv("SCI", SCIpath, 0);
+#endif
+            setSCIpath(SCIpath);
         }
     }
 
@@ -160,6 +161,7 @@ BOOL TerminateScilab(char *ScilabQuit)
         {
             TerminateCorePart2();
         }
+        ReleaseLaunchScilabSignal();
         setCallScilabEngineState(CALL_SCILAB_ENGINE_STOP);
         return TRUE;
     }

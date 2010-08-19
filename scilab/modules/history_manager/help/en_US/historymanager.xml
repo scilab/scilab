@@ -43,6 +43,7 @@ state1=historymanager()</synopsis>
   <refsection>
     <title>Description</title>
     <para>enable or disable history manager.</para>
+    <para>in 'API' mode, history manager is disabled.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -58,7 +59,15 @@ historymanager(backupstate)
  ]]></programlisting>
   </refsection>
   <refsection>
-    <title>Authors</title>
-    <para>A.C</para>
-  </refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="getscilabmode">getscilabmode</link>
+      </member>
+      <member>
+        <link linkend="call_scilab">call_scilab</link>
+      </member>
+      
+    </simplelist>
+  </refsection>  
 </refentry>
