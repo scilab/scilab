@@ -103,6 +103,9 @@ Windows Installer:
 Xcos:
 =====
 
+* bug 7256 fixed - Saving a diagram with a non-ASCII filename create a 
+                   corrupted file on Windows.
+
 * bug 7622 fixed - When opening an Xcos diagram done on 5.2.2, an exception
                    could be thrown.
 

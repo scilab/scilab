@@ -35,9 +35,13 @@ import java.util.Map;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMResult;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -104,8 +108,6 @@ import org.scilab.modules.xcos.utils.XcosDialogs;
 import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosFileType;
 import org.scilab.modules.xcos.utils.XcosMessages;
-import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
@@ -120,7 +122,6 @@ import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxUndoableEdit;
 import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
-import com.mxgraph.util.mxUtils;
 import com.mxgraph.view.mxGraphSelectionModel;
 import com.mxgraph.view.mxMultiplicity;
 import com.mxgraph.view.mxStylesheet;
@@ -1345,7 +1346,11 @@ public class XcosDiagram extends ScilabGraph {
 	if (fileName == null) {
 	    final FileChooser fc = ScilabFileChooser.createFileChooser();
 	    if (getSavedFile() != null) {
-	    	fc.setInitialDirectory(getSavedFile().getAbsolutePath());
+	    	try {
+				fc.setInitialDirectory(getSavedFile().getCanonicalPath());
+			} catch (IOException e) {
+				LOG.error(e);
+			}
 	    }
 	    fc.setMultipleSelection(false);
 	    fc.displayAndWait();
@@ -1644,37 +1649,76 @@ public class XcosDiagram extends ScilabGraph {
 	/* Extension checks */
 	if (!writeFile.exists()) {
 		final String filename = writeFile.getName();
-	    if (!filename.endsWith(".xcos")) {
+	    if (!filename.endsWith(XcosFileType.XCOS.getDottedExtension())) {
 	    	/* No extension given --> .xcos added */
-	    	writeFile = new File(writeFile.getPath(), filename + ".xcos");
+	    	writeFile = new File(writeFile.getParent(), filename + XcosFileType.XCOS.getDottedExtension());
 	    }
 	}
-
-	final XcosCodec codec = new XcosCodec();
-	final String xml = mxUtils.getXml(codec.encode(this));
-
+	
 	try {
-	    mxUtils.writeFile(xml, writeFile.getAbsolutePath());
-	    isSuccess = true;
-	} catch (final IOException e1) {
-	    e1.printStackTrace();
-	    isSuccess = false;
-	}
-
-	if (isSuccess) {
+		save(writeFile);
 	    setSavedFile(writeFile);
 	    
 	    setTitle(writeFile.getName().substring(0, writeFile.getName().lastIndexOf('.')));
 	    ConfigurationManager.getInstance().addToRecentFiles(writeFile);
 	    setModified(false);
-	} else {
-	    XcosDialogs.couldNotSaveFile(this);
-	    
+	    isSuccess = true;
+	} catch (TransformerException e) {
+		LogFactory.getLog(XcosDiagram.class).error(e);
+		XcosDialogs.couldNotSaveFile(this);
 	}
+	
 	info(XcosMessages.EMPTY_INFO);
 	return isSuccess;
     }
 
+	/**
+	 * Save to a file
+	 * 
+	 * @param file the file
+	 * @throws TransformerException on error
+	 */
+	private void save(File file) throws TransformerException {
+		final XcosCodec codec = new XcosCodec();
+		final TransformerFactory tranFactory = TransformerFactory.newInstance();
+		final Transformer aTransformer = tranFactory.newTransformer();
+		
+		final DOMSource src = new DOMSource(codec.encode(this));
+		final StreamResult result = new StreamResult(file);
+		aTransformer.transform(src, result);
+	}
+	
+	/**
+	 * Load from a file
+	 * 
+	 * @param file the file
+	 * @throws TransformerException on error
+	 */
+	private void load(File file) throws TransformerException {
+		final XcosCodec codec = new XcosCodec();
+		final TransformerFactory tranFactory = TransformerFactory.newInstance();
+		final Transformer aTransformer = tranFactory.newTransformer();
+		
+		final StreamSource src = new StreamSource(file);
+		final DOMResult result = new DOMResult();
+		aTransformer.transform(src, result);
+		
+		codec.decode(result.getNode().getFirstChild(), this);
+	}
+	
+	/**
+	 * Perform post loading initialization.
+	 * @param file the loaded file
+	 */
+	private void postLoad(File file) {
+		final String name = file.getName();
+
+		setModified(false);
+		setSavedFile(file);
+		setTitle(name.substring(0, name.lastIndexOf('.')));
+		generateUID();
+	}
+	
     /**
      * Set the title of the diagram
      * @param title the title
@@ -1760,10 +1804,16 @@ public class XcosDiagram extends ScilabGraph {
 	    if (diagramFileName.exists()) {
 	    	transformAndLoadFile(diagramFileName, false);
 	    } else {
-		final AnswerOption answer = ScilabModalDialog.show(getParentTab(), String.format(
-			XcosMessages.FILE_DOESNT_EXIST, diagramFileName.getAbsolutePath()),
-			XcosMessages.XCOS, IconType.QUESTION_ICON,
-			ButtonType.YES_NO);
+		AnswerOption answer;
+		try {
+			answer = ScilabModalDialog.show(getParentTab(), String.format(
+				XcosMessages.FILE_DOESNT_EXIST, diagramFileName.getCanonicalFile()),
+				XcosMessages.XCOS, IconType.QUESTION_ICON,
+				ButtonType.YES_NO);
+		} catch (IOException e) {
+			LOG.error(e);
+			answer = AnswerOption.YES_OPTION;
+		}
 
 		if (answer == AnswerOption.YES_OPTION) {
 		    try {
@@ -1786,7 +1836,8 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * Load a file with different method depending on it extension 
      * @param theFile File to load
-     * @param wait wait end transform 
+     * @param wait wait end transform
+     * @return the status of the operation
      */
     protected boolean transformAndLoadFile(final File theFile, final boolean wait) {
 	final File fileToLoad = theFile;
@@ -1820,33 +1871,23 @@ public class XcosDiagram extends ScilabGraph {
 	    break;
 
 	case XCOS:
-	    final Document document = loadXcosDocument(theFile.getAbsolutePath());
-	    if (document == null) {
-		XcosDialogs.couldNotLoadFile(this);
-		return false;
-	    }
-
-	    final XcosCodec codec = new XcosCodec(document);
-
-	    if (getModel().getChildCount(getDefaultParent()) == 0) {
-		codec.decode(document.getDocumentElement(), this);
-		setModified(false);
-		setSavedFile(theFile);
-		setTitle(theFile.getName().substring(0,	theFile.getName().lastIndexOf('.')));
-		generateUID();
-	    } else {
-	    	info(XcosMessages.LOADING_DIAGRAM);
-		final XcosDiagram xcosDiagram = new XcosDiagram();
-		codec.decode(document.getDocumentElement(), xcosDiagram);
-		xcosDiagram.setModified(false);
-		xcosDiagram.setSavedFile(theFile);
-		xcosDiagram.setTitle(theFile.getName().substring(0, theFile.getName().lastIndexOf('.')));
-		xcosDiagram.generateUID();
-		new XcosTab(xcosDiagram).setVisible(true);
-		info(XcosMessages.EMPTY_INFO);
-	    }
-	    
-	    result = true;
+		try {
+			if (getModel().getChildCount(getDefaultParent()) == 0) {
+		    	load(theFile);
+		    	postLoad(theFile);
+		    } else {
+		    	info(XcosMessages.LOADING_DIAGRAM);
+		    	final XcosDiagram xcosDiagram = new XcosDiagram();
+				xcosDiagram.load(theFile);
+				xcosDiagram.postLoad(theFile);
+				new XcosTab(xcosDiagram).setVisible(true);
+				info(XcosMessages.EMPTY_INFO);
+		    }
+			result = true;
+		} catch (TransformerException e) {
+			LOG.error(e);
+			result = false;
+		}
 	    break;
 
 	case HDF5:
@@ -1862,28 +1903,6 @@ public class XcosDiagram extends ScilabGraph {
 	    break;
 	}
 	return result;
-    }
-
-    /**
-     * @param xcosFile xcos file
-     * @return opened document
-     */
-    static Document loadXcosDocument(final String xcosFile) {
-	final DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
-	DocumentBuilder docBuilder;
-	try {
-	    docBuilder = docBuilderFactory.newDocumentBuilder();
-	    return docBuilder.parse(xcosFile);
-	} catch (final ParserConfigurationException e) {
-		LOG.error(e);
-	    return null;
-	} catch (final SAXException e) {
-		LOG.error(e);
-	    return null;
-	} catch (final IOException e) {
-		LOG.error(e);
-	    return null;
-	}
     }
     
     /**
