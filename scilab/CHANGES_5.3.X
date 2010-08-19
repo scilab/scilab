@@ -53,6 +53,7 @@ SciNotes:
 
 * bug 7764 fixed - The CR in comments was removed when executing from SciNotes.
 
+* bug 7807 fixed - The SaveAs or Save actions emitted an error message when cancelled.
 
 Editvar/Browsevar:
 ==================

@@ -655,7 +655,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
             fileToSave = checkExternalModification(fileToSave);
         }
 
-        if (fileToSave == null) {
+        if (fileToSave == null || fileToSave.length() == 0) {
             return true; /* Bug 5189: The user cancels ==> do not want an error message */
         }
 
@@ -845,11 +845,8 @@ public class SciNotes extends SwingScilabTab implements Tab {
      * @return execution status
      */
     public boolean saveAs() {
-        boolean isSuccess = false;
         String filename = chooseFileToSave(SciNotesMessages.SAVE_AS);
-        if (filename == null) {
-            return false;
-        } else if (filename.length() == 0) {
+        if (filename == null || filename.length() == 0) {
             return true;
         }
 
@@ -870,14 +867,13 @@ public class SciNotes extends SwingScilabTab implements Tab {
 
         styledDocument.setContentModified(false);
         getTextPane().setLastModified(f.lastModified());
-        isSuccess = true;
         getTextPane().setReadOnly(false);
         getInfoBar().setText(getTextPane().getInfoBarText());
 
         // Get current file path for Execute file into Scilab
         fileFullPath = f.getAbsolutePath();
 
-        return isSuccess;
+        return true;
     }
 
     /**
