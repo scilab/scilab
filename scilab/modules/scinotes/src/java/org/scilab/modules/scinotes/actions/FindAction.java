@@ -33,6 +33,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -40,6 +41,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -54,6 +56,8 @@ import javax.swing.text.Document;
 import javax.swing.text.Element;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
@@ -84,6 +88,7 @@ public final class FindAction extends DefaultAction {
     private static final int THREE = 3;
 
     private static final String FILTERNEWLINES = "filterNewlines";
+    private static final String ESCAPE = "ESCAPE";
 
     private static final Color SELECTEDCOLOR = new Color(205, 183, 158);
     private static final Highlighter.HighlightPainter ACTIVEPAINTER = new DefaultHighlighter.DefaultHighlightPainter(Color.green);
@@ -142,6 +147,9 @@ public final class FindAction extends DefaultAction {
     private int previousIndex;
     private List<Integer[]> foundOffsets;
     private MyListener myListener = new MyListener();
+
+    private boolean comboReplaceCanceled;
+    private boolean comboFindCanceled;
 
     /**
      * Constructor
@@ -249,6 +257,13 @@ public final class FindAction extends DefaultAction {
 
         //Find & Replace Frame
         frame = new JFrame();
+        frame.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE , 0), ESCAPE);
+        frame.getRootPane().getActionMap().put(ESCAPE, new AbstractAction() {
+                public void actionPerformed(ActionEvent e) {
+                    closeFindReplaceWindow();
+                }
+            });
+
         frame.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.setTitle(SciNotesMessages.FIND_REPLACE);
@@ -565,6 +580,16 @@ public final class FindAction extends DefaultAction {
                 }
             });
 
+        comboReplace.addPopupMenuListener(new PopupMenuListener() {
+                public void popupMenuCanceled(PopupMenuEvent e) {
+                    comboReplaceCanceled = true;
+                }
+
+                public void popupMenuWillBecomeInvisible(PopupMenuEvent e) { }
+
+                public void popupMenuWillBecomeVisible(PopupMenuEvent e) { }
+            });
+
         comboReplace.getEditor().getEditorComponent().addMouseListener(new MouseListener() {
                 public void mouseReleased(MouseEvent e) { }
                 public void mousePressed(MouseEvent e) {
@@ -580,7 +605,11 @@ public final class FindAction extends DefaultAction {
                 public void keyTyped(KeyEvent e) { }
                 public void keyReleased(KeyEvent e) {
                     if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                        closeComboPopUp();
+                        if (comboReplaceCanceled) {
+                            comboReplaceCanceled = false;
+                        } else {
+                            closeFindReplaceWindow();
+                        }
                     }
 
                     if (e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -592,6 +621,16 @@ public final class FindAction extends DefaultAction {
                     updateFindReplaceButtonStatus();
                 }
                 public void keyPressed(KeyEvent e) { }
+            });
+
+        comboFind.addPopupMenuListener(new PopupMenuListener() {
+                public void popupMenuCanceled(PopupMenuEvent e) {
+                    comboFindCanceled = true;
+                }
+
+                public void popupMenuWillBecomeInvisible(PopupMenuEvent e) { }
+
+                public void popupMenuWillBecomeVisible(PopupMenuEvent e) { }
             });
 
         comboFind.getEditor().getEditorComponent().addMouseListener(new MouseListener() {
@@ -614,7 +653,11 @@ public final class FindAction extends DefaultAction {
                 public void keyTyped(KeyEvent e) { }
                 public void keyReleased(KeyEvent e) {
                     if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                        closeFindReplaceWindow();
+                        if (comboFindCanceled) {
+                            comboFindCanceled = false;
+                        } else {
+                            closeFindReplaceWindow();
+                        }
                     }
 
                     if (e.getKeyCode() == KeyEvent.VK_ENTER) {

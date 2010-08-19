@@ -53,6 +53,8 @@ SciNotes:
 
 * bug 7764 fixed - The CR in comments was removed when executing from SciNotes.
 
+* bug 7801 fixed - The FindReplace window could not be cancelled with ESC.
+
 * bug 7807 fixed - The SaveAs or Save actions emitted an error message when cancelled.
 
 * bug 7808 fixed - The RestoreSession window could not be cancelled with ESC.
