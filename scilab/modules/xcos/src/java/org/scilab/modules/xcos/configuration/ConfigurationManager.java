@@ -31,9 +31,9 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
 import org.apache.commons.logging.LogFactory;
-import org.scilab.modules.jvm.utils.ScilabConstants;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
+import org.scilab.modules.jvm.utils.ScilabConstants;
 import org.scilab.modules.xcos.actions.OpenAction;
 import org.scilab.modules.xcos.configuration.model.DocumentType;
 import org.scilab.modules.xcos.configuration.model.ObjectFactory;
@@ -222,7 +222,7 @@ public final class ConfigurationManager {
 	 * 
 	 * @param string the file path to add
 	 */
-	public void addToRecentFiles(String string) {
+	public void addToRecentFiles(File string) {
 		List<DocumentType> files = getSettings().getRecentFiles().getDocument();
 		
 		/*
@@ -230,9 +230,9 @@ public final class ConfigurationManager {
 		 */
 		String url;
 		try {
-			url = new File(string).toURI().toURL().toString();
-		} catch (MalformedURLException e) {
-			LogFactory.getLog(OpenAction.class).error(e);
+			url = string.toURI().toURL().toExternalForm();
+		} catch (MalformedURLException e1) {
+			LogFactory.getLog(ConfigurationManager.class).error(e1);
 			return;
 		}
 		

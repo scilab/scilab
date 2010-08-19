@@ -66,8 +66,7 @@ public final class ViewDiagramBrowserAction extends OneBlockDependantAction {
 		try {
 			File temp = FileUtils.createTempFile();
 			temp.deleteOnExit();
-			((XcosDiagram) getGraph(null)).dumpToHdf5File(temp
-					.getAbsolutePath());
+			((XcosDiagram) getGraph(null)).dumpToHdf5File(temp);
 			try {
 				String cmd = ScilabInterpreterManagement.buildCall("import_from_hdf5", temp.getAbsolutePath());
 				cmd += "tree_show(scs_m); ";

@@ -245,7 +245,7 @@ public final class Xcos {
 	 * @param filename
 	 *            the file to open. If null an empty diagram is created.
 	 */
-	public void open(final String filename) {
+	public void open(final File filename) {
 		if (!SwingUtilities.isEventDispatchThread()) {
 			LOG.error(CALLED_OUTSIDE_THE_EDT_THREAD);
 		}
@@ -260,7 +260,7 @@ public final class Xcos {
 			 */
 			for (final XcosDiagram diagram : diagrams) {
 				if (diagram.getSavedFile() != null
-						&& diagram.getSavedFile().compareTo(filename) == 0) {
+						&& diagram.getSavedFile().equals(filename)) {
 					diag = diagram;
 					break;
 				}
@@ -416,8 +416,8 @@ public final class Xcos {
 	 */
 	@ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
 	public static void xcos(final String fileName) {
-		final String filename = fileName;
-
+		final File filename = new File(fileName);
+		
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -497,7 +497,7 @@ public final class Xcos {
 	@ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
 	public static int xcosDiagramToHDF5(final String xcosFile, final String h5File,
 			final boolean forceOverwrite) {
-		final String file = xcosFile;
+		final File file = new File(xcosFile);
 		final File temp = new File(h5File);
 		final boolean overwrite = forceOverwrite;
 
@@ -515,7 +515,7 @@ public final class Xcos {
 				public void run() {
 					final XcosDiagram diagram = new XcosDiagram();
 					diagram.openDiagramFromFile(file);
-					diagram.dumpToHdf5File(temp.getAbsolutePath());
+					diagram.dumpToHdf5File(temp);
 				}
 			});
 		} catch (final InterruptedException e) {

@@ -75,7 +75,7 @@ public class InitModelicaAction extends DefaultAction {
 	try {
 	    ((XcosDiagram) getGraph(null)).info(XcosMessages.INITIALIZING_MODELICA_COMPILER);
 	    temp = FileUtils.createTempFile();
-	    ((XcosDiagram) getGraph(e)).getRootDiagram().dumpToHdf5File(temp.getAbsolutePath());
+	    ((XcosDiagram) getGraph(e)).getRootDiagram().dumpToHdf5File(temp);
 
 	    String cmd = buildCall("import_from_hdf5", temp.getAbsolutePath());
 	    cmd += buildCall("xcosConfigureModelica");

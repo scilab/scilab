@@ -73,7 +73,7 @@ public final class RecentFileAction extends DefaultAction implements PropertyCha
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Xcos.getInstance().open(recentFile.getAbsolutePath());
+		Xcos.getInstance().open(recentFile);
 	};
 
 	/**

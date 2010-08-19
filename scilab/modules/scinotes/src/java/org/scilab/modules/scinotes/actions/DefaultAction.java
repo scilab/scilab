@@ -84,7 +84,6 @@ public class DefaultAction extends CallBack {
             ((SwingScilabPushButton) button.getAsSimplePushButton())
             .setIcon(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/" + icon));
         }
-
         return button;
     }
 
@@ -118,7 +117,8 @@ public class DefaultAction extends CallBack {
     /**
      * Default action
      */
-    public void callBack() {
+    @Override
+	public void callBack() {
         doAction();
     }
 
