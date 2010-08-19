@@ -303,6 +303,9 @@ Bug Fixes:
 
 * bug 7840 fixed - big lines were splitted by mgetl.
 
+* bug 7775 fixed - ged action 6 (selection and move of a graphic entity) was
+                   broken.
+
 
          Changes between version 5.3.0-beta-1 and 5.3.0-beta-2 of Scilab
          ===============================================================
