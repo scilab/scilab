@@ -55,6 +55,8 @@ SciNotes:
 
 * bug 7807 fixed - The SaveAs or Save actions emitted an error message when cancelled.
 
+* bug 7808 fixed - The RestoreSession window could not be cancelled with ESC.
+
 Editvar/Browsevar:
 ==================
 
