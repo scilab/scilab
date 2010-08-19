@@ -149,6 +149,8 @@ Bug Fixes:
 * bug 6767 fixed - The "uicontrol" help page said the "Style" property of an
                    uicontrol can be set after creation but it does not.
 
+* bug 7095 fixed - the margins unit_test failed.
+
 * bug 7163 fixed - tree2code wrongly replaced every (:) occurence in a function
                    definition with (eye()).
 
