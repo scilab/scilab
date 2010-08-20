@@ -83,6 +83,10 @@
 		<pathelement location="${library.graphic_export.dir}/${library.graphic_export.name}"/>
 		<pathelement location="${library.core.dir}/${library.core.name}"/>
 		
+<!-- Not use at build time but used for unitary tests -->
+		<pathelement location="${library.javasci.dir}/${library.javasci.name}"/>
+
+
 		<pathelement location="${commons-logging.jar}"/>
 		
 		<pathelement location="${flexdock.jar}"/>
