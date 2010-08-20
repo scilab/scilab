@@ -18,24 +18,23 @@ package org.scilab.modules.jvm;
 
 import javax.swing.JPopupMenu;
 
-import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.gui.window.Window;
+import org.flexdock.docking.DockingConstants;
+import org.scilab.modules.gui.console.ScilabConsole;
+import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
-import org.scilab.modules.gui.console.ScilabConsole;
-import org.scilab.modules.gui.events.callback.CallBack;
-import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.LookAndFeelManager;
 import org.scilab.modules.gui.utils.MenuBarBuilder;
 import org.scilab.modules.gui.utils.ToolBarBuilder;
+import org.scilab.modules.gui.window.ScilabWindow;
+import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.jvm.utils.ScilabConstants;
 import org.scilab.modules.localization.Messages;
-
-import org.flexdock.docking.DockingConstants;
 
 /**
  * Main Class for Scilab
@@ -74,11 +73,6 @@ public class Scilab {
      * @param mode Mode Scilab -NW -NWNI -STD -API
      */
     public Scilab(int mode) {
-        /** 
-         * Set Java temporary directory 
-         */
-        System.setProperty("java.io.tmpdir",ScilabConstants.TMPDIR.getAbsolutePath());
-
         /*
          * Set Scilab directory. Note that it is done in the constructor
          * and not as directly when setting the member because we had some
@@ -86,6 +80,13 @@ public class Scilab {
          */
         try {
             SCIDIR = System.getenv("SCI");
+            
+            /*
+             * Set Java directories to Scilab ones 
+             */
+            System.setProperty("java.io.tmpdir", ScilabConstants.TMPDIR.getCanonicalPath());
+            System.setProperty("user.home", ScilabConstants.SCIHOME.getCanonicalPath());
+            
         } catch (Exception e) {
             System.err.println("Cannot retrieve the variable SCI. Please report on http://bugzilla.scilab.org/");
             System.err.println(e.getLocalizedMessage());
