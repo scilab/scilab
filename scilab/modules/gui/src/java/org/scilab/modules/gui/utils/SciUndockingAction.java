@@ -22,6 +22,7 @@ import org.flexdock.docking.Dockable;
 import org.flexdock.docking.DockingConstants;
 import org.flexdock.docking.DockingManager;
 import org.flexdock.docking.DockingPort;
+import org.flexdock.docking.activation.ActiveDockableTracker;
 import org.flexdock.view.View;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
@@ -35,33 +36,33 @@ import org.scilab.modules.gui.window.Window;
  */
 public class SciUndockingAction extends AbstractAction {
 
-	private static final long serialVersionUID = 3906773111254753683L;
+        private static final long serialVersionUID = 3906773111254753683L;
 
-	private static final int UNDOCK_OFFSET = 30;
+        private static final int UNDOCK_OFFSET = 30;
 
-	private SwingScilabTab associatedTab;
+        private SwingScilabTab associatedTab;
 
-	/**
-	 * Constructor
-	 * @param tab the associated tab
-	 */
-	public SciUndockingAction(SwingScilabTab tab) {
-		associatedTab = tab;
-	}
+        /**
+         * Constructor
+         * @param tab the associated tab
+         */
+        public SciUndockingAction(SwingScilabTab tab) {
+                associatedTab = tab;
+        }
 
-	/**
-	 * What do I have to do when the event accurs
-	 * @param arg0 the event
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	public void actionPerformed(ActionEvent arg0) {
-		/** Create a new Window to dock the tab into */
-		Window newWindow = ScilabWindow.createWindow();
+        /**
+         * What do I have to do when the event accurs
+         * @param arg0 the event
+         * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+         */
+        public void actionPerformed(ActionEvent arg0) {
+                /** Create a new Window to dock the tab into */
+                Window newWindow = ScilabWindow.createWindow();
 
-		/** Save the tab dimensions to set them back after docking */
-		Size oldtabSize = associatedTab.getDims();
-		/** Save the old parent Window position to use it to set the new Window position */
-		Position oldWindowPosition = UIElementMapper.getCorrespondingUIElement(associatedTab.getParentWindowId()).getPosition();
+                /** Save the tab dimensions to set them back after docking */
+                Size oldtabSize = associatedTab.getDims();
+                /** Save the old parent Window position to use it to set the new Window position */
+                Position oldWindowPosition = UIElementMapper.getCorrespondingUIElement(associatedTab.getParentWindowId()).getPosition();
                 /* If we undock a tab contained in view with two elements, then
                    the two elements will be alone, so we remove the actions. */
                 DockingPort port = DockingManager.getMainDockingPort(associatedTab);
@@ -77,21 +78,26 @@ public class SciUndockingAction extends AbstractAction {
                     }
                 }
 
-		/** Undock/Dock the tab */
-		DockingManager.undock((Dockable) associatedTab);
-		DockingManager.dock(associatedTab, ((SwingScilabWindow) newWindow.getAsSimpleWindow()).getDockingPort());
+                /** Undock/Dock the tab */
+                DockingManager.undock((Dockable) associatedTab);
+                iter = port.getDockables().iterator();
+                if (iter.hasNext()) {
+                    /** The first component of the old window is activated to get true menubar and toolbar */
+                    ActiveDockableTracker.requestDockableActivation(((Dockable) iter.next()).getComponent());
+                }
+                DockingManager.dock(associatedTab, ((SwingScilabWindow) newWindow.getAsSimpleWindow()).getDockingPort());
 
-		/** New Window properties */
-		newWindow.setPosition(new Position(oldWindowPosition.getX() + UNDOCK_OFFSET, oldWindowPosition.getY() + UNDOCK_OFFSET));
+                /** New Window properties */
+                newWindow.setPosition(new Position(oldWindowPosition.getX() + UNDOCK_OFFSET, oldWindowPosition.getY() + UNDOCK_OFFSET));
 
-		newWindow.setVisible(true);
+                newWindow.setVisible(true);
 
-		/** Set new Window dimensions so that the tab has the same dimensions as before */
-		Size windowSize = newWindow.getDims();
-		Size newTabSize = associatedTab.getDims();
-		newWindow.setDims(new Size((windowSize.getWidth() - newTabSize.getWidth()) + oldtabSize.getWidth(),
-				(windowSize.getHeight() - newTabSize.getHeight()) + oldtabSize.getHeight()));
+                /** Set new Window dimensions so that the tab has the same dimensions as before */
+                Size windowSize = newWindow.getDims();
+                Size newTabSize = associatedTab.getDims();
+                newWindow.setDims(new Size((windowSize.getWidth() - newTabSize.getWidth()) + oldtabSize.getWidth(),
+                                (windowSize.getHeight() - newTabSize.getHeight()) + oldtabSize.getHeight()));
 
-		associatedTab.setParentWindowId(newWindow.getAsSimpleWindow().getElementId());
-	}
+                associatedTab.setParentWindowId(newWindow.getAsSimpleWindow().getElementId());
+        }
 }
