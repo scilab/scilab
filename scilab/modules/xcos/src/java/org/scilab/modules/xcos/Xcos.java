@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
+import java.util.logging.LogManager;
 
 import javax.swing.SwingUtilities;
 
@@ -97,9 +98,21 @@ public final class Xcos {
 	 * There must be only one Xcos instance per Scilab application
 	 */
 	private Xcos() {
+		/*
+		 * Read the configuration to support dynamic (before Xcos launch)
+		 * settings. 
+		 */
+		try {
+			LogManager.getLogManager().readConfiguration();
+		} catch (SecurityException e) {
+			LOG.error(e);
+		} catch (IOException e) {
+			LOG.error(e);
+		}
+		
 		/* load scicos libraries (macros) */
 		InterpreterManagement.requestScilabExec("loadScicosLibs();");
-
+		
 		/* Check the dependencies at startup time */
 		checkDependencies();
 		
@@ -120,7 +133,7 @@ public final class Xcos {
 		try {
 			FileUtils.decodeStyle(styleSheet);
 		} catch (final IOException e) {
-			LogFactory.getLog(Xcos.class).error(e);
+			LOG.error(e);
 		}
 	}
 

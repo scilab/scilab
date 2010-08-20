@@ -107,6 +107,10 @@ public class H5RWHandler {
 			LOG.error(e);
 			instance = null;
 		}
+		
+		if (LOG.isTraceEnabled()) {
+			LOG.trace("End of reading block from " + h5File);
+		}
 
 		return instance;
 	}
@@ -145,6 +149,10 @@ public class H5RWHandler {
 			result.put(key, value);
 		}
 
+		if (LOG.isTraceEnabled()) {
+			LOG.trace("End of reading context from " + h5File);
+		}
+		
 		return result;
 	}
 
@@ -206,6 +214,10 @@ public class H5RWHandler {
 		} finally {
 			diagram.getModel().endUpdate();
 		}
+		
+		if (LOG.isTraceEnabled()) {
+			LOG.trace("End of reading diagram from " + h5File);
+		}
 
 		return diagram;
 	}
@@ -243,6 +255,10 @@ public class H5RWHandler {
 			LOG.error(e);
 			LOG.debug(data);
 		}
+		
+		if (LOG.isTraceEnabled()) {
+			LOG.trace("End of writing block to " + h5File);
+		}
 	}
 
 	/**
@@ -266,6 +282,10 @@ public class H5RWHandler {
 			H5Write.closeFile(fileId);
 		} catch (HDF5Exception e) {
 			LOG.error(e);
+		}
+		
+		if (LOG.isTraceEnabled()) {
+			LOG.trace("End of writing context to " + h5File);
 		}
 	}
 
@@ -297,6 +317,10 @@ public class H5RWHandler {
 		} catch (java.lang.IndexOutOfBoundsException e) {
 			LOG.error(e);
 			LOG.debug(data);
+		}
+		
+		if (LOG.isTraceEnabled()) {
+			LOG.trace("End of writing diagram to " + h5File);
 		}
 	}
 }
