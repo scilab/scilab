@@ -104,6 +104,13 @@ Windows Installer:
   Installation requires only 60 Mo on disk.
 
 
+Graphics:
+=========
+
+Two additionnal Graphics demos about plotyy() and plotyyy() added. See bug #7687
+Thanks to Samuel Gougeon.
+
+
 Xcos:
 =====
 
