@@ -59,6 +59,8 @@ SciNotes:
 
 * bug 7808 fixed - The RestoreSession window could not be cancelled with ESC.
 
+* bug 7830 fixed - There was a problem when opening a file at a line number.
+
 Editvar/Browsevar:
 ==================
 

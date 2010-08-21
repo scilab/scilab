@@ -438,7 +438,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         }
 
         readFileAndWait(f);
-        getTextPane().scrollTextToLineNumber(lineNumber);
+        getTextPane().scrollTextToLineNumber(lineNumber, true);
         if (option != null && "readonly".equals(option.toLowerCase())) {
             getTextPane().setReadOnly(true);
             getInfoBar().setText(getTextPane().getInfoBarText());

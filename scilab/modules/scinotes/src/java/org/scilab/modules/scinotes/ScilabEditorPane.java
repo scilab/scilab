@@ -100,6 +100,11 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private boolean infoBarChanged;
     private boolean ctrlHit;
 
+    private Color saveHighlightContourColor;
+    private Color saveHighlightColor;
+    private boolean hasBeenSaved;
+    private boolean saveHighlightEnable;
+
     private List<KeywordListener> kwListeners = new ArrayList();
 
     /**
@@ -484,11 +489,25 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * Scroll the pane to have the line lineNumber on the top of the pane
      * @param lineNumber the number of the line
      */
-    public void scrollTextToLineNumber(int lineNumber) {
+    public void scrollTextToLineNumber(int lineNumber, final boolean highlight) {
         Element root = getDocument().getDefaultRootElement();
         if (lineNumber >= 1 && lineNumber <= root.getElementCount()) {
-            int pos = root.getElement(lineNumber - 1).getStartOffset();
-            setCaretPosition(pos);
+            final int pos = root.getElement(lineNumber - 1).getStartOffset();
+            SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        scrollTextToPos(pos);
+                        if (highlight) {
+                            saveHighlightContourColor = highlightContourColor;
+                            highlightContourColor = null;
+                            saveHighlightColor = highlightColor;
+                            highlightColor = Color.YELLOW;
+                            saveHighlightEnable = highlightEnable;
+                            hasBeenSaved = true;
+                            enableHighlightedLine(false);
+                            enableHighlightedLine(true);
+                        }
+                    }
+                });
         }
     }
 
@@ -674,6 +693,10 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * @param e event
      */
     public void caretUpdate(CaretEvent e) {
+        if (hasBeenSaved) {
+            removeHighlightForLine();
+        }
+
         if (highlightEnable) {
             repaint();
         }
@@ -800,6 +823,9 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * @param e event
      */
     public void mousePressed(MouseEvent e) {
+        if (hasBeenSaved) {
+            removeHighlightForLine();
+        }
         if (highlightEnable) {
             repaint();
         }
@@ -824,6 +850,9 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * @param e event
      */
     public void mouseDragged(MouseEvent e) {
+        if (hasBeenSaved) {
+            removeHighlightForLine();
+        }
         if (highlightEnable) {
             repaint();
         }
@@ -858,6 +887,19 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      */
     public static ScilabEditorPane getFocusedPane() {
         return focused;
+    }
+
+    /**
+     * Remove the highlight putted to show the line (for editor('foo',123))
+     */
+    private void removeHighlightForLine() {
+        highlightContourColor = saveHighlightContourColor;
+        highlightColor = saveHighlightColor;
+        enableHighlightedLine(false);
+        if (saveHighlightEnable) {
+            enableHighlightedLine(true);
+        }
+        hasBeenSaved = false;
     }
 
     /**
