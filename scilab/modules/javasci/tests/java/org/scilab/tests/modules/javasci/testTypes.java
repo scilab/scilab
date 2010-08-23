@@ -18,13 +18,24 @@ import org.scilab.modules.javasci.JavasciException.InitializationException;
 import org.scilab.modules.types.scilabTypes.ScilabTypeEnum;
 
 public class testTypes {
+	private Scilab sci;
 
-    private Scilab sci;
+	/* 
+	 * This method will be called for each test.
+	 * with @AfterMethod, this ensures that all the time the engine is closed
+	 * especially in case of error.
+	 * Otherwise, the engine might be still running and all subsequent tests
+	 * would fail.
+	 */ 
+	@BeforeMethod
+	public void open() throws NullPointerException, InitializationException {
+		sci = new Scilab();
+	}
 
-    @Test
+	@Test(sequential = true) 
 		public void getVariableTypeTest() throws NullPointerException, InitializationException {
-        sci = new Scilab();
-        sci.open();
+
+        assert sci.open() == true;
 
         sci.exec("a = 2*%pi");
         assert sci.getVariableType("a") == ScilabTypeEnum.sci_matrix;
@@ -82,6 +93,15 @@ public class testTypes {
 
         sci.exec("M=mlist(['V','name','value'],['a','b';'c' 'd'],[1 2; 3 4]);");
         assert sci.getVariableType("M") == ScilabTypeEnum.sci_mlist;
-    }
+		sci.close();
 
+    }
+	/**
+	 * See #open()
+	 */
+	@AfterMethod
+	public void close() {
+		sci.close();
+		
+	}
 }

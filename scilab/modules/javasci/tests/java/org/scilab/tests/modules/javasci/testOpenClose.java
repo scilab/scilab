@@ -17,25 +17,41 @@ import org.scilab.modules.javasci.Scilab;
 import org.scilab.modules.javasci.JavasciException.InitializationException;
 
 public class testOpenClose {
+	private Scilab sci;
 
-	@Test
+	/* 
+	 * This method will be called for each test.
+	 * with @AfterMethod, this ensures that all the time the engine is closed
+	 * especially in case of error.
+	 * Otherwise, the engine might be still running and all subsequent tests
+	 * would fail.
+	 */ 
+	@BeforeMethod
+	public void open() throws NullPointerException, InitializationException {
+		sci = new Scilab();
+        assert sci.open() == true;
+	}
+
+	@Test(sequential = true)
     public void openTest() throws NullPointerException, InitializationException {
-        Scilab sci = new Scilab();
-		System.out.println("sci.open(); " +sci.open());
-        assert sci.open() == true;
 // @TODO: uncomment this
-//        sci.close();
     }
 
-	//	@Test
+	@Test(sequential = true)
     public void multipleOpenCloseTest() throws NullPointerException, InitializationException {
-        Scilab sci = new Scilab();
+        assert sci.close() == true;
         assert sci.open() == true;
-		sci.close();
-        assert sci.open() == true;
-		sci.close();
+        assert sci.close() == true;
 // @TODO: uncomment this
 //        sci.close();
     }
 
+	/**
+	 * See #open()
+	 */
+	@AfterMethod
+	public void close() {
+		sci.close();
+		
+	}
 }

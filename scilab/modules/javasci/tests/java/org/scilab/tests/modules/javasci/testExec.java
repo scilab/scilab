@@ -19,11 +19,23 @@ import org.scilab.modules.types.scilabTypes.ScilabType;
 import org.scilab.modules.types.scilabTypes.ScilabDouble;
 
 public class testExec {
+	private Scilab sci;
 
-	@Test
+	/* 
+	 * This method will be called for each test.
+	 * with @AfterMethod, this ensures that all the time the engine is closed
+	 * especially in case of error.
+	 * Otherwise, the engine might be still running and all subsequent tests
+	 * would fail.
+	 */ 
+	@BeforeMethod
+	public void open() throws NullPointerException, InitializationException {
+		sci = new Scilab();
+        assert sci.open() == true;
+	}
+
+	@Test(sequential = true)
 		public void execAndReadTest() throws NullPointerException, InitializationException {
-        Scilab sci = new Scilab();
-        sci.open();
 
         /* Scalar test */
         assert sci.exec("a = 1+1") == true;
@@ -62,8 +74,14 @@ public class testExec {
         /* Compare if they match */
         assert ((ScilabDouble)sumMatrix).getRealPart()[0][0] == sum;
 
-//        sci.put("cbis",b);
-
     }
 
+	/**
+	 * See #open()
+	 */
+	@AfterMethod
+	public void close() {
+		sci.close();
+		
+	}
 }

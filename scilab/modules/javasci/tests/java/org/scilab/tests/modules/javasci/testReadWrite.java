@@ -21,11 +21,23 @@ import org.scilab.modules.types.scilabTypes.ScilabBoolean;
 import org.scilab.modules.types.scilabTypes.ScilabString;
 
 public class testReadWrite {
+	private Scilab sci;
 
-	@Test
+	/* 
+	 * This method will be called for each test.
+	 * with @AfterMethod, this ensures that all the time the engine is closed
+	 * especially in case of error.
+	 * Otherwise, the engine might be still running and all subsequent tests
+	 * would fail.
+	 */ 
+	@BeforeMethod
+	public void open() throws NullPointerException, InitializationException {
+		sci = new Scilab();
+        assert sci.open() == true;
+	}
+
+	@Test(sequential = true) 
 	public void putAndGetDoubleTest() throws NullPointerException, InitializationException {
-        Scilab sci = new Scilab();
-        sci.open();
         double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};
         ScilabDouble aOriginal = new ScilabDouble(a);
         sci.put("a",aOriginal);
@@ -34,13 +46,10 @@ public class testReadWrite {
         ScilabDouble aFromScilab = (ScilabDouble)sci.get("a");
 
         assert aFromScilab.equals(aOriginal);
-
     }
 
-	@Test
+	@Test(sequential = true) 
 	public void putAndGetComplexDoubleTest() throws NullPointerException, InitializationException {
-        Scilab sci = new Scilab();
-        sci.open();
         double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};
         double [][]aImg={{212.2, 221.0, 423.0, 393.0},{234.2, 244.0, 441.0, 407.0}};
         System.out.println("ici");
@@ -52,15 +61,12 @@ public class testReadWrite {
         ScilabDouble aFromScilab = (ScilabDouble)sci.get("a");
         System.out.println("ici 3"+aFromScilab);
         assert aFromScilab.equals(aOriginal);
-
     }
 
 
 
-	@Test
+	@Test(sequential = true) 
 	public void putAndGetBooleanTest() throws NullPointerException, InitializationException {
-        Scilab sci = new Scilab();
-        sci.open();
         boolean [][]a={{true, true, false, false},{true, false, true, false}};
         ScilabBoolean aOriginal = new ScilabBoolean(a);
         sci.put("a",aOriginal);
@@ -68,13 +74,10 @@ public class testReadWrite {
         ScilabBoolean aFromScilab = (ScilabBoolean)sci.get("a");
 
         assert aFromScilab.equals(aOriginal);
-
     }
 
-	@Test
+	@Test(sequential = true) 
 	public void putAndGetStringTest() throws NullPointerException, InitializationException {
-        Scilab sci = new Scilab();
-        sci.open();
         String [][]a={{"String1", "String2", "String3", "String4"},
 					  {"String5", "String6", "String7", "String8"}};
         ScilabString aOriginal = new ScilabString(a);
@@ -84,7 +87,14 @@ public class testReadWrite {
         ScilabString aFromScilab = (ScilabString)sci.get("a");
 
         assert aFromScilab.equals(aOriginal);
-
     }
 
+	/**
+	 * See #open()
+	 */
+	@AfterMethod
+	public void close() {
+		sci.close();
+		
+	}
 }
