@@ -72,53 +72,75 @@ public class Scilab {
 
     /**
      * Open a connection to the Scilab engine
-     * This function is based on StartScilab from call_scilab
+     * This function is based on Call_ScilabOpen from call_scilab
 	 * Note: For now, only one instance of Scilab can be launched
 	 * A second launch will return FALSE
      * @return if the operation is successful
      */
-    public boolean open(){
+    public boolean open() throws InitializationException {
 //        System.out.println("SCI : " + SCI);
-        return Call_Scilab.StartScilab(this.SCI, null, null);
+		int res = Call_Scilab.Call_ScilabOpen(this.SCI, null, null);
+		switch (res) {
+			case -1: 
+				/* @TODO : update this exception for a new one (already running) */
+				System.err.println("Javasci already running");
+				throw new InitializationException("Javasci already running");
+			case -2:
+				/* Should not occurd (processed before) */
+				throw new InitializationException("Could not find SCI");
+			case -3:
+				throw new InitializationException("No existing directory");
+		}
+		return true;
+		//        return Call_Scilab.Call_ScilabOpen(this.SCI, null, null) == 0;
     }
 
     /**
      * Open a connection to the Scilab engine and run the command job
-     * This function is based on StartScilab from call_scilab
+     * This function is based on Call_ScilabOpen from call_scilab
 	 * Note: For now, only one instance of Scilab can be launched
 	 * A second launch will return FALSE
      * @param job The job to run on startup
      * @return if the operation is successful
      */
-    public boolean open(String job) {
-        this.open();
+    public boolean open(String job) throws InitializationException {
+        if (!this.open()) {
+			return false;
+		}
+
         return this.exec(job);
     }
 
     /**
      * Open a connection to the Scilab engine and run commands job
-     * This function is based on StartScilab from call_scilab
+     * This function is based on Call_ScilabOpen from call_scilab
 	 * Note: For now, only one instance of Scilab can be launched
 	 * A second launch will return FALSE
      * @param jobs The serie of jobs to run on startup
      * @return if the operation is successful
      */
-    public boolean open(String jobs[]) {
-        this.open();
+    public boolean open(String jobs[]) throws InitializationException {
+        if (!this.open()) {
+			return false;
+		}
+
         return this.exec(jobs);
     }
 
 
     /**
      * Open a connection to the Scilab engine and run thefile scriptFilename
-     * This function is based on StartScilab from call_scilab
+     * This function is based on Call_ScilabOpen from call_scilab
 	 * Note: For now, only one instance of Scilab can be launched
 	 * A second launch will return FALSE
      * @param job The script to execute on startup
      * @return if the operation is successful
      */
-    public boolean open(File scriptFilename) {
-        this.open();
+    public boolean open(File scriptFilename) throws InitializationException {
+        if (!this.open()) {
+			return false;
+		}
+
         return this.exec(scriptFilename);
     }
 
