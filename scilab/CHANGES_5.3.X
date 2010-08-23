@@ -107,7 +107,7 @@ Windows Installer:
 Xcos:
 =====
 
-* bug 7256 fixed - Saving a diagram with a non-ASCII filename create a 
+* bug 7256 fixed - Saving a diagram with a non-ASCII filename create a
                    corrupted file on Windows.
 
 * bug 7622 fixed - When opening an Xcos diagram done on 5.2.2, an exception
@@ -212,6 +212,8 @@ Bug Fixes:
                    leading or trailing spaces.
 
 * bug 7756 fixed - sprand did not produce normal numbers.
+
+* bug 7803 fixed - edit edit failed.
 
 
          Changes between version 5.3.0-beta-1 and 5.3.0-beta-2 of Scilab

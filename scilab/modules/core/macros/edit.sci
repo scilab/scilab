@@ -45,10 +45,10 @@ function edit(macroname,ueditor)
           // we take last definition
           libr = libr(1);
         end
-        path = string(evstr(libr));
-        path = path(1);
+        [macrolist, path] = libraryinfo(libr);
+        clear macrolist;
         // convert path according to getos() == "Windows" value and expand SCI
-        path   = pathconvert(path) + macroname + ".sci";
+        fname = pathconvert(path) + macroname + ".sci";
         finded = isfile(fname);
       elseif isdef(macroname)
         if typeof(evstr(macroname)) == "function" then
