@@ -761,16 +761,19 @@ jdoubleArray SWIG_JavaArrayOutDouble (JNIEnv *jenv, double *result, jsize sz) {
 #endif
 
 
+typedef unsigned char byte;
+
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_StartScilab(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jlong jarg3) {
-  jboolean jresult = 0 ;
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_Call_1ScilabOpen(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jlong jarg3) {
+  jint jresult = 0 ;
   char *arg1 = (char *) 0 ;
   char *arg2 = (char *) 0 ;
   int *arg3 = (int *) 0 ;
-  BOOL result;
+  int result;
   
   (void)jenv;
   (void)jcls;
@@ -785,11 +788,8 @@ SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_Star
     if (!arg2) return 0;
   }
   arg3 = *(int **)&jarg3; 
-  result = StartScilab(arg1,arg2,arg3);
-  {
-    if (result) jresult = JNI_TRUE   ;
-    else  jresult = JNI_FALSE   ;
-  }
+  result = (int)Call_ScilabOpen(arg1,arg2,arg3);
+  jresult = (jint)result; 
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
   return jresult;
@@ -849,12 +849,12 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_SendScil
   {
     int i = 0;
     size1 = (*jenv)->GetArrayLength(jenv, jarg1);
-    arg1 = (char **) MALLOC((size1+1)*sizeof(char *));
+    arg1 = (char **) malloc((size1+1)*sizeof(char *));
     /* make a copy of each string */
     for (i = 0; i<size1; i++) {
       jstring j_string = (jstring)(*jenv)->GetObjectArrayElement(jenv, jarg1, i);
       const char * c_string = (*jenv)->GetStringUTFChars(jenv, j_string, 0);
-      arg1[i] = MALLOC((strlen(c_string)+1)*sizeof(const char *));
+      arg1[i] = malloc((strlen(c_string)+1)*sizeof(const char *));
       strcpy(arg1[i], c_string);
       (*jenv)->ReleaseStringUTFChars(jenv, j_string, c_string);
       (*jenv)->DeleteLocalRef(jenv, j_string);
@@ -867,8 +867,8 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_SendScil
   {
     int i;
     for (i=0; i<size1-1; i++)
-    FREE(arg1[i]);
-    FREE(arg1);
+    free(arg1[i]);
+    free(arg1);
   }
   return jresult;
 }
@@ -911,6 +911,25 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_getVaria
     if (!arg1) return 0;
   }
   result = (sci_types)getVariableType(arg1);
+  jresult = (jint)result; 
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_getIntegerPrecision(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jint jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  sci_int_types result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return 0;
+  }
+  result = (sci_int_types)getIntegerPrecision(arg1);
   jresult = (jint)result; 
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
@@ -1040,9 +1059,9 @@ SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_
   }
   result = (BOOL *)getBoolean(arg1,arg2,arg3);
   {
-    jclass BOOLArr = (*jenv)->FindClass(jenv, "[Z");
+    jclass booleanArr = (*jenv)->FindClass(jenv, "[Z");
     int i,j;
-    jresult = (*jenv)->NewObjectArray(jenv, nbRow,BOOLArr, NULL);
+    jresult = (*jenv)->NewObjectArray(jenv, nbRow,booleanArr, NULL);
     
     for (i=0; i < nbRow; i++) {
       jboolean array[nbCol];
@@ -1143,11 +1162,617 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putDoubl
   arg5 = (int)jarg5; 
   result = (int)putDoubleComplex(arg1,arg2,arg3,arg4,arg5);
   jresult = (jint)result; 
-  SWIG_JavaArrayArgoutDouble(jenv, jarr2, arg2, jarg2); 
-  SWIG_JavaArrayArgoutDouble(jenv, jarr3, arg3, jarg3); 
+  SWIG_JavaArrayArgoutDouble(jenv, jarr2, arg2, jarg2);// 
+  SWIG_JavaArrayArgoutDouble(jenv, jarr3, arg3, jarg3);// 
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   free(arg2); 
   free(arg3); 
+  return jresult;
+}
+
+
+SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_getByte(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jobjectArray jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  int *arg2 = (int *) 0 ;
+  int *arg3 = (int *) 0 ;
+  int nbRow ;
+  int nbCol ;
+  byte *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  {
+    arg2 = &nbRow;
+    arg3 = &nbCol;
+    arg1 = 0;
+    if (jarg1) {
+      arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+      if (!arg1) return 0;
+    }
+  }
+  result = (byte *)getByte(arg1,arg2,arg3);
+  {
+    jclass byteArr = (*jenv)->FindClass(jenv, "[B");
+    int i,j;
+    jresult = (*jenv)->NewObjectArray(jenv, nbRow,byteArr, NULL);
+    
+    for (i=0; i < nbRow; i++) {
+      jbyte array[nbCol];
+      jbyteArray jarray = (*jenv)->NewByteArray(jenv, nbCol);
+      if (jarray == NULL) {
+        printf("Could not allocate\n");fflush(NULL);
+      }
+      
+      for (j=0; j < nbCol; j++) {
+        /* Scilab is storing matrice cols by cols while Java is doing it
+                       row by row. Therefor, we need to convert it */
+        array[j]=result[nbRow*j+i];
+      }
+      
+      (*jenv)->SetByteArrayRegion(jenv, jarray, 0, nbCol, array);
+      
+      (*jenv)->SetObjectArrayElement(jenv, jresult, i, jarray);
+      
+      (*jenv)->DeleteLocalRef(jenv, jarray);
+      
+    }
+    
+    
+    if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+    free(result);
+    
+  }
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putByte(JNIEnv *jenv, jclass jcls, jstring jarg1, jobjectArray jarg2) {
+  jint jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  byte *arg2 ;
+  int arg3 ;
+  int arg4 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return 0;
+  }
+  {
+    // Convert the byte[][] => byte *
+    arg3 = (*jenv)->GetArrayLength(jenv, jarg2);
+    arg4 = 0;
+    int i=0, j=0;
+    for(i=0; i<arg3; i++) {
+      jbyteArray oneDim=(jbyteArray)(*jenv)->GetObjectArrayElement(jenv, jarg2, i);
+      if (arg4==0) {
+        /* First time we are here, init + create the array where we store the data */
+        arg4 = (*jenv)->GetArrayLength(jenv, oneDim);
+        arg2 = (byte*)malloc(sizeof(byte)*arg3*arg4);
+      }
+      jbyte*element=(*jenv)->GetByteArrayElements(jenv, oneDim, 0);
+      
+      for(j=0; j<arg4; j++) {
+        arg2[j*arg3+i]=element[j];
+      }
+    }
+    
+  }
+  result = (int)putByte(arg1,arg2,arg3,arg4);
+  jresult = (jint)result; 
+  {
+    // Specific target because it was freeing the wrong argument
+  }
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+  return jresult;
+}
+
+
+SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_getUnsignedByte(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jobjectArray jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  int *arg2 = (int *) 0 ;
+  int *arg3 = (int *) 0 ;
+  int nbRow ;
+  int nbCol ;
+  byte *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  {
+    arg2 = &nbRow;
+    arg3 = &nbCol;
+    arg1 = 0;
+    if (jarg1) {
+      arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+      if (!arg1) return 0;
+    }
+  }
+  result = (byte *)getUnsignedByte(arg1,arg2,arg3);
+  {
+    jclass byteArr = (*jenv)->FindClass(jenv, "[B");
+    int i,j;
+    jresult = (*jenv)->NewObjectArray(jenv, nbRow,byteArr, NULL);
+    
+    for (i=0; i < nbRow; i++) {
+      jbyte array[nbCol];
+      jbyteArray jarray = (*jenv)->NewByteArray(jenv, nbCol);
+      if (jarray == NULL) {
+        printf("Could not allocate\n");fflush(NULL);
+      }
+      
+      for (j=0; j < nbCol; j++) {
+        /* Scilab is storing matrice cols by cols while Java is doing it
+                       row by row. Therefor, we need to convert it */
+        array[j]=result[nbRow*j+i];
+      }
+      
+      (*jenv)->SetByteArrayRegion(jenv, jarray, 0, nbCol, array);
+      
+      (*jenv)->SetObjectArrayElement(jenv, jresult, i, jarray);
+      
+      (*jenv)->DeleteLocalRef(jenv, jarray);
+      
+    }
+    
+    
+    if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+    free(result);
+    
+  }
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putUnsignedByte(JNIEnv *jenv, jclass jcls, jstring jarg1, jobjectArray jarg2) {
+  jint jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  byte *arg2 ;
+  int arg3 ;
+  int arg4 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return 0;
+  }
+  {
+    // Convert the byte[][] => byte *
+    arg3 = (*jenv)->GetArrayLength(jenv, jarg2);
+    arg4 = 0;
+    int i=0, j=0;
+    for(i=0; i<arg3; i++) {
+      jbyteArray oneDim=(jbyteArray)(*jenv)->GetObjectArrayElement(jenv, jarg2, i);
+      if (arg4==0) {
+        /* First time we are here, init + create the array where we store the data */
+        arg4 = (*jenv)->GetArrayLength(jenv, oneDim);
+        arg2 = (byte*)malloc(sizeof(byte)*arg3*arg4);
+      }
+      jbyte*element=(*jenv)->GetByteArrayElements(jenv, oneDim, 0);
+      
+      for(j=0; j<arg4; j++) {
+        arg2[j*arg3+i]=element[j];
+      }
+    }
+    
+  }
+  result = (int)putUnsignedByte(arg1,arg2,arg3,arg4);
+  jresult = (jint)result; 
+  {
+    // Specific target because it was freeing the wrong argument
+  }
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+  return jresult;
+}
+
+
+SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_getShort(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jobjectArray jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  int *arg2 = (int *) 0 ;
+  int *arg3 = (int *) 0 ;
+  int nbRow ;
+  int nbCol ;
+  short *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  {
+    arg2 = &nbRow;
+    arg3 = &nbCol;
+    arg1 = 0;
+    if (jarg1) {
+      arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+      if (!arg1) return 0;
+    }
+  }
+  result = (short *)getShort(arg1,arg2,arg3);
+  {
+    jclass shortArr = (*jenv)->FindClass(jenv, "[S");
+    int i,j;
+    jresult = (*jenv)->NewObjectArray(jenv, nbRow,shortArr, NULL);
+    
+    for (i=0; i < nbRow; i++) {
+      jshort array[nbCol];
+      jshortArray jarray = (*jenv)->NewShortArray(jenv, nbCol);
+      if (jarray == NULL) {
+        printf("Could not allocate\n");fflush(NULL);
+      }
+      
+      for (j=0; j < nbCol; j++) {
+        /* Scilab is storing matrice cols by cols while Java is doing it
+                       row by row. Therefor, we need to convert it */
+        array[j]=result[nbRow*j+i];
+      }
+      
+      (*jenv)->SetShortArrayRegion(jenv, jarray, 0, nbCol, array);
+      
+      (*jenv)->SetObjectArrayElement(jenv, jresult, i, jarray);
+      
+      (*jenv)->DeleteLocalRef(jenv, jarray);
+      
+    }
+    
+    
+    if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+    free(result);
+    
+  }
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putShort(JNIEnv *jenv, jclass jcls, jstring jarg1, jobjectArray jarg2) {
+  jint jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  short *arg2 ;
+  int arg3 ;
+  int arg4 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return 0;
+  }
+  {
+    // Convert the short[][] => short *
+    arg3 = (*jenv)->GetArrayLength(jenv, jarg2);
+    arg4 = 0;
+    int i=0, j=0;
+    for(i=0; i<arg3; i++) {
+      jshortArray oneDim=(jshortArray)(*jenv)->GetObjectArrayElement(jenv, jarg2, i);
+      if (arg4==0) {
+        /* First time we are here, init + create the array where we store the data */
+        arg4 = (*jenv)->GetArrayLength(jenv, oneDim);
+        arg2 = (short*)malloc(sizeof(short)*arg3*arg4);
+      }
+      jshort*element=(*jenv)->GetShortArrayElements(jenv, oneDim, 0);
+      
+      for(j=0; j<arg4; j++) {
+        arg2[j*arg3+i]=element[j];
+      }
+    }
+    
+  }
+  result = (int)putShort(arg1,arg2,arg3,arg4);
+  jresult = (jint)result; 
+  {
+    // Specific target because it was freeing the wrong argument
+  }
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+  return jresult;
+}
+
+
+SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_getUnsignedShort(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jobjectArray jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  int *arg2 = (int *) 0 ;
+  int *arg3 = (int *) 0 ;
+  int nbRow ;
+  int nbCol ;
+  unsigned short *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  {
+    arg2 = &nbRow;
+    arg3 = &nbCol;
+    arg1 = 0;
+    if (jarg1) {
+      arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+      if (!arg1) return 0;
+    }
+  }
+  result = (unsigned short *)getUnsignedShort(arg1,arg2,arg3);
+  {
+    jclass shortArr = (*jenv)->FindClass(jenv, "[C");
+    int i,j;
+    jresult = (*jenv)->NewObjectArray(jenv, nbRow,shortArr, NULL);
+    
+    for (i=0; i < nbRow; i++) {
+      jchar array[nbCol];
+      jcharArray jarray = (*jenv)->NewCharArray(jenv, nbCol);
+      if (jarray == NULL) {
+        printf("Could not allocate\n");fflush(NULL);
+      }
+      
+      for (j=0; j < nbCol; j++) {
+        /* Scilab is storing matrice cols by cols while Java is doing it
+                       row by row. Therefor, we need to convert it */
+        array[j]=result[nbRow*j+i];
+      }
+      
+      (*jenv)->SetCharArrayRegion(jenv, jarray, 0, nbCol, array);
+      
+      (*jenv)->SetObjectArrayElement(jenv, jresult, i, jarray);
+      
+      (*jenv)->DeleteLocalRef(jenv, jarray);
+      
+    }
+    
+    
+    if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+    free(result);
+    
+  }
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putUnsignedShort(JNIEnv *jenv, jclass jcls, jstring jarg1, jobjectArray jarg2) {
+  jint jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  unsigned short *arg2 ;
+  int arg3 ;
+  int arg4 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return 0;
+  }
+  {
+    // Convert the unsigned short[][] => unsigned short *
+    arg3 = (*jenv)->GetArrayLength(jenv, jarg2);
+    arg4 = 0;
+    int i=0, j=0;
+    for(i=0; i<arg3; i++) {
+      jcharArray oneDim=(jcharArray)(*jenv)->GetObjectArrayElement(jenv, jarg2, i);
+      if (arg4==0) {
+        /* First time we are here, init + create the array where we store the data */
+        arg4 = (*jenv)->GetArrayLength(jenv, oneDim);
+        arg2 = (unsigned short*)malloc(sizeof(unsigned short)*arg3*arg4);
+      }
+      jchar*element=(*jenv)->GetCharArrayElements(jenv, oneDim, 0);
+      
+      for(j=0; j<arg4; j++) {
+        arg2[j*arg3+i]=element[j];
+      }
+    }
+    
+  }
+  result = (int)putUnsignedShort(arg1,arg2,arg3,arg4);
+  jresult = (jint)result; 
+  {
+    // Specific target because it was freeing the wrong argument
+  }
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+  return jresult;
+}
+
+
+SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_getInt(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jobjectArray jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  int *arg2 = (int *) 0 ;
+  int *arg3 = (int *) 0 ;
+  int nbRow ;
+  int nbCol ;
+  int *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  {
+    arg2 = &nbRow;
+    arg3 = &nbCol;
+    arg1 = 0;
+    if (jarg1) {
+      arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+      if (!arg1) return 0;
+    }
+  }
+  result = (int *)getInt(arg1,arg2,arg3);
+  {
+    jclass intArr = (*jenv)->FindClass(jenv, "[I");
+    int i,j;
+    jresult = (*jenv)->NewObjectArray(jenv, nbRow,intArr, NULL);
+    
+    for (i=0; i < nbRow; i++) {
+      jint array[nbCol];
+      jintArray jarray = (*jenv)->NewIntArray(jenv, nbCol);
+      if (jarray == NULL) {
+        printf("Could not allocate\n");fflush(NULL);
+      }
+      
+      for (j=0; j < nbCol; j++) {
+        /* Scilab is storing matrice cols by cols while Java is doing it
+                       row by row. Therefor, we need to convert it */
+        array[j]=result[nbRow*j+i];
+      }
+      
+      (*jenv)->SetIntArrayRegion(jenv, jarray, 0, nbCol, array);
+      
+      (*jenv)->SetObjectArrayElement(jenv, jresult, i, jarray);
+      
+      (*jenv)->DeleteLocalRef(jenv, jarray);
+      
+    }
+    
+    
+    if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+    free(result);
+    
+  }
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putInt(JNIEnv *jenv, jclass jcls, jstring jarg1, jobjectArray jarg2) {
+  jint jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  int *arg2 ;
+  int arg3 ;
+  int arg4 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return 0;
+  }
+  {
+    // Convert the int[][] => int *
+    arg3 = (*jenv)->GetArrayLength(jenv, jarg2);
+    arg4 = 0;
+    int i=0, j=0;
+    for(i=0; i<arg3; i++) {
+      jintArray oneDim=(jintArray)(*jenv)->GetObjectArrayElement(jenv, jarg2, i);
+      if (arg4==0) {
+        /* First time we are here, init + create the array where we store the data */
+        arg4 = (*jenv)->GetArrayLength(jenv, oneDim);
+        arg2 = (int*)malloc(sizeof(int)*arg3*arg4);
+      }
+      jint*element=(*jenv)->GetIntArrayElements(jenv, oneDim, 0);
+      
+      for(j=0; j<arg4; j++) {
+        arg2[j*arg3+i]=element[j];
+      }
+    }
+    
+  }
+  result = (int)putInt(arg1,arg2,arg3,arg4);
+  jresult = (jint)result; 
+  {
+    // Specific target because it was freeing the wrong argument
+  }
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+  return jresult;
+}
+
+
+SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_getUnsignedInt(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jobjectArray jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  int *arg2 = (int *) 0 ;
+  int *arg3 = (int *) 0 ;
+  int nbRow ;
+  int nbCol ;
+  unsigned int *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  {
+    arg2 = &nbRow;
+    arg3 = &nbCol;
+    arg1 = 0;
+    if (jarg1) {
+      arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+      if (!arg1) return 0;
+    }
+  }
+  result = (unsigned int *)getUnsignedInt(arg1,arg2,arg3);
+  {
+    jclass intArr = (*jenv)->FindClass(jenv, "[I");
+    int i,j;
+    jresult = (*jenv)->NewObjectArray(jenv, nbRow,intArr, NULL);
+    
+    for (i=0; i < nbRow; i++) {
+      jint array[nbCol];
+      jintArray jarray = (*jenv)->NewIntArray(jenv, nbCol);
+      if (jarray == NULL) {
+        printf("Could not allocate\n");fflush(NULL);
+      }
+      
+      for (j=0; j < nbCol; j++) {
+        /* Scilab is storing matrice cols by cols while Java is doing it
+                       row by row. Therefor, we need to convert it */
+        array[j]=result[nbRow*j+i];
+      }
+      
+      (*jenv)->SetIntArrayRegion(jenv, jarray, 0, nbCol, array);
+      
+      (*jenv)->SetObjectArrayElement(jenv, jresult, i, jarray);
+      
+      (*jenv)->DeleteLocalRef(jenv, jarray);
+      
+    }
+    
+    
+    if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+    free(result);
+    
+  }
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putUnsignedInt(JNIEnv *jenv, jclass jcls, jstring jarg1, jobjectArray jarg2) {
+  jint jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  unsigned int *arg2 ;
+  int arg3 ;
+  int arg4 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return 0;
+  }
+  {
+    // Convert the unsigned int[][] => unsigned int *
+    arg3 = (*jenv)->GetArrayLength(jenv, jarg2);
+    arg4 = 0;
+    int i=0, j=0;
+    for(i=0; i<arg3; i++) {
+      jintArray oneDim=(jintArray)(*jenv)->GetObjectArrayElement(jenv, jarg2, i);
+      if (arg4==0) {
+        /* First time we are here, init + create the array where we store the data */
+        arg4 = (*jenv)->GetArrayLength(jenv, oneDim);
+        arg2 = (unsigned int*)malloc(sizeof(unsigned int)*arg3*arg4);
+      }
+      jint*element=(*jenv)->GetIntArrayElements(jenv, oneDim, 0);
+      
+      for(j=0; j<arg4; j++) {
+        arg2[j*arg3+i]=element[j];
+      }
+    }
+    
+  }
+  result = (int)putUnsignedInt(arg1,arg2,arg3,arg4);
+  jresult = (jint)result; 
+  {
+    // Specific target because it was freeing the wrong argument
+  }
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 

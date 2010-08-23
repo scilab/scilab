@@ -32,9 +32,9 @@
 // retrieve from the native code a CTYPE * => JAVAPRIMITIVETYPE[][] (java)
 %typemap(out) (CTYPE *) (int nbRow, int nbCol) {
   
-  jclass CTYPE##Arr = (*jenv)->FindClass(jenv, JNICODE);
+  jclass JAVAPRIMITIVETYPE##Arr = (*jenv)->FindClass(jenv, JNICODE);
    int i,j;
-    jresult = (*jenv)->NewObjectArray(jenv, nbRow, ##CTYPE##Arr, NULL);
+    jresult = (*jenv)->NewObjectArray(jenv, nbRow, ##JAVAPRIMITIVETYPE##Arr, NULL);
 
     for (i=0; i < nbRow; i++) {
         JNITYPE array[nbCol];
@@ -115,16 +115,33 @@ matching in Java */
 
 }
 %enddef
+// je fais mal les regles pour chopper les profiles 
 
-//JAVASCI_ARRAYS_IMPL(signed char, jbyte, Byte, Schar)     /* signed char[] */
-//JAVASCI_ARRAYS_IMPL(unsigned char, jshort, Short, Uchar) /* unsigned char[] */
-//JAVASCI_ARRAYS_IMPL(short, jshort, Short, Short)         /* short[] */
-//JAVASCI_ARRAYS_IMPL(unsigned short, jint, Int, Ushort)   /* unsigned short[] */
+// See swig documentation for the full list:
+// http://www.swig.org/Doc1.3/Java.html#default_primitive_type_mappings
+
+// Scilab: int8
+JAVASCI_ARRAYS_IMPL(byte, jbyte, Byte, byte, "[B")     /* signed char[] */
+//JAVASCI_ARRAYS_IMPL(char, jshort, Short, unsigned char, "[C") /* unsigned char[] */
+JAVASCI_ARRAYS_IMPL(unsigned char, jshort, Short, jshort, "[C") /* unsigned char */
+
+// Scilab: int16
+
+JAVASCI_ARRAYS_IMPL(short, jshort, Short, short, "[S")         /* short[] */
+JAVASCI_ARRAYS_IMPL(unsigned short, jchar, Char, short, "[C")   /* unsigned short[] */
+
+// Scilab: int32
 JAVASCI_ARRAYS_IMPL(int, jint, Int, int, "[I")                 /* int[] */
-//JAVASCI_ARRAYS_IMPL(unsigned int, jlong, Long, Uint)     /* unsigned int[] */
-//JAVASCI_ARRAYS_IMPL(long, jint, Int, Long)               /* long[] */
-//JAVASCI_ARRAYS_IMPL(unsigned long, jlong, Long, Ulong)   /* unsigned long[] */
-//JAVASCI_ARRAYS_IMPL(jlong, jlong, Long, Longlong)        /* long long[] */
-JAVASCI_ARRAYS_IMPL(float, jfloat, Float, float, "[F?")         /* float[] */
+JAVASCI_ARRAYS_IMPL(unsigned int, jint, Int, int, "[I")     /* unsigned int[] */
+
+#ifdef __SCILAB_INT64__
+// Scilab: int64
+JAVASCI_ARRAYS_IMPL(long, jint, int, long, "[J")               /* long[] */
+JAVASCI_ARRAYS_IMPL(unsigned long, jlong, Long, long, "[J")   /* unsigned long[] */
+#endif
+
+//JAVASCI_ARRAYS_IMPL(float, jfloat, Float, float, )         /* float[] */
+// Scilab: double
 JAVASCI_ARRAYS_IMPL(double, jdouble, Double, double, "[D")     /* double[] */
+// Scilab: boolean
 JAVASCI_ARRAYS_IMPL(BOOL, jboolean, Boolean, boolean, "[Z")     /* double[] */

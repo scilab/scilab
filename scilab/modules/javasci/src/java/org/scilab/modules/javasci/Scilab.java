@@ -15,6 +15,7 @@ import java.io.File;
 
 import org.scilab.modules.types.scilabTypes.ScilabType;
 import org.scilab.modules.types.scilabTypes.ScilabTypeEnum;
+import org.scilab.modules.types.scilabTypes.ScilabIntegerTypeEnum;
 import org.scilab.modules.types.scilabTypes.ScilabDouble;
 import org.scilab.modules.types.scilabTypes.ScilabBoolean;
 import org.scilab.modules.types.scilabTypes.ScilabInteger;
@@ -195,7 +196,9 @@ public class Scilab {
      * @return if the operation is successful
      */
     public boolean close() {
-        return Call_Scilab.TerminateScilab(null);
+		boolean res = Call_Scilab.TerminateScilab(null);
+		System.err.println("Call_Scilab.TerminateScilab(null);"+res);
+        return res;
     }
 
 
@@ -213,7 +216,7 @@ public class Scilab {
      * Return the last error message
      * @return the error message itself
      */
-    String getLastErrorMessage() {
+    public String getLastErrorMessage() {
         return "getLastErrorMessage";
     }
 
@@ -269,6 +272,29 @@ public class Scilab {
 				return new ScilabDouble(Call_Scilab.getDouble(varname));
 			case sci_boolean:
 				return new ScilabBoolean(Call_Scilab.getBoolean(varname));
+			case sci_ints:
+				ScilabIntegerTypeEnum typeInt = Call_Scilab.getIntegerPrecision(varname);
+
+				switch (typeInt) {
+					case sci_int8:
+						return new ScilabInteger(Call_Scilab.getByte(varname), false);
+					case sci_uint8:
+						return new ScilabInteger(Call_Scilab.getUnsignedByte(varname), true);
+					case sci_int16:
+						return new ScilabInteger(Call_Scilab.getShort(varname), false);
+					case sci_uint16:
+						return new ScilabInteger(Call_Scilab.getUnsignedShort(varname), true);
+					case sci_int32:
+						return new ScilabInteger(Call_Scilab.getInt(varname), false);
+					case sci_uint32:
+						return new ScilabInteger(Call_Scilab.getUnsignedInt(varname), true);
+					case sci_int64:
+					case sci_uint64:
+						// Unspported operation
+						// will be available in Scilab 6
+						// Type = long
+				}
+
 			default:
 		//		throw new UnsupportedTypeException();
 		}
@@ -284,23 +310,57 @@ public class Scilab {
      * @return if the operation is successful
     */
     public boolean put(String varname, ScilabType theVariable) {
+		int err = -1;
         if (theVariable instanceof ScilabDouble) {
             ScilabDouble sciDouble = (ScilabDouble)theVariable;
             if (sciDouble.isReal()) {
-                Call_Scilab.putDouble(varname, sciDouble.getRealPart());
+				err = Call_Scilab.putDouble(varname, sciDouble.getRealPart());
             } else {
 				//                Call_Scilab.putDoubleComplex(varname,sciDouble.getRealPart(), sciDouble.getImaginaryPart());
             }
 		}
 		if (theVariable instanceof ScilabInteger) {
-//			Call_Scilab.putInteger((ScilabInteger)theVariable.getRealPart());
+            ScilabInteger sciInteger = (ScilabInteger)theVariable;
+			switch (sciInteger.getPrec()) {
+				case TYPE8: // byte
+					if (sciInteger.isUnsigned()) {
+						err = Call_Scilab.putUnsignedByte(varname, sciInteger.getDataAsByte());
+					} else {
+						err = Call_Scilab.putByte(varname, sciInteger.getDataAsByte());
+					}
+					break;
+				case TYPE16: // short 
+					if (sciInteger.isUnsigned()) {
+						err = Call_Scilab.putUnsignedShort(varname, sciInteger.getDataAsShort());
+					} else {
+						err = Call_Scilab.putShort(varname, sciInteger.getDataAsShort());
+					}
+					break;
+				case TYPE32: // int
+					if (sciInteger.isUnsigned()) {
+						err = Call_Scilab.putUnsignedInt(varname, sciInteger.getDataAsInt());
+					} else {
+						err = Call_Scilab.putInt(varname, sciInteger.getDataAsInt());
+						}
+					break;
+				case TYPE64: // long. unsupported by Scilab 5.X
+					break;
+			}
+
+			//			Call_Scilab.putLong(varname, sciInteger.getData_());
 		}
 		if (theVariable instanceof ScilabBoolean) {
             ScilabBoolean sciBoolean = (ScilabBoolean)theVariable;
-            Call_Scilab.putBoolean(varname, sciBoolean.getData());
+            err = Call_Scilab.putBoolean(varname, sciBoolean.getData());
         }
 		//TODO: a remplacer par la bonne exception return new UnsupportedTypeException();
 		//		throw new UnsupportedTypeException();
+
+		if (err != 0) {
+			// Exception a lancer
+			System.err.println("put failed");
+		}
+
 		return true;
     }
 

@@ -10,6 +10,7 @@ package org.scilab.modules.javasci;
 
 
 import org.scilab.modules.types.scilabTypes.ScilabTypeEnum;
+import org.scilab.modules.types.scilabTypes.ScilabIntegerTypeEnum;
 
  /**
    * Connector for Javasci v2
@@ -24,8 +25,8 @@ public class Call_Scilab {
  protected Call_Scilab() {
 	throw new UnsupportedOperationException();
  }
-  public static boolean StartScilab(String SCIpath, String ScilabStartup, SWIGTYPE_p_int Stacksize) {
-    return Call_ScilabJNI.StartScilab(SCIpath, ScilabStartup, SWIGTYPE_p_int.getCPtr(Stacksize));
+  public static int Call_ScilabOpen(String SCIpath, String ScilabStartup, SWIGTYPE_p_int Stacksize) {
+    return Call_ScilabJNI.Call_ScilabOpen(SCIpath, ScilabStartup, SWIGTYPE_p_int.getCPtr(Stacksize));
   }
 
   public static boolean TerminateScilab(String ScilabQuit) {
@@ -52,6 +53,10 @@ public class Call_Scilab {
     return ScilabTypeEnum.swigToEnum(Call_ScilabJNI.getVariableType(varname));
   }
 
+  public static ScilabIntegerTypeEnum getIntegerPrecision(String varname) {
+    return ScilabIntegerTypeEnum.swigToEnum(Call_ScilabJNI.getIntegerPrecision(varname));
+  }
+
   public static double[][] getDouble(String variableName) {
     return Call_ScilabJNI.getDouble(variableName);
   }
@@ -70,6 +75,54 @@ public class Call_Scilab {
 
   public static int putDoubleComplex(String variableName, double[][] variable, double[][] variableImg, int nbRow, int nbCol) {
     return Call_ScilabJNI.putDoubleComplex(variableName, variable, variableImg, nbRow, nbCol);
+  }
+
+  public static byte[][] getByte(String variableName) {
+    return Call_ScilabJNI.getByte(variableName);
+  }
+
+  public static int putByte(String variableName, byte[][] variable) {
+    return Call_ScilabJNI.putByte(variableName, variable);
+  }
+
+  public static byte[][] getUnsignedByte(String variableName) {
+    return Call_ScilabJNI.getUnsignedByte(variableName);
+  }
+
+  public static int putUnsignedByte(String variableName, byte[][] variable) {
+    return Call_ScilabJNI.putUnsignedByte(variableName, variable);
+  }
+
+  public static short[][] getShort(String variableName) {
+    return Call_ScilabJNI.getShort(variableName);
+  }
+
+  public static int putShort(String variableName, short[][] variable) {
+    return Call_ScilabJNI.putShort(variableName, variable);
+  }
+
+  public static short[][] getUnsignedShort(String variableName) {
+    return Call_ScilabJNI.getUnsignedShort(variableName);
+  }
+
+  public static int putUnsignedShort(String variableName, short[][] variable) {
+    return Call_ScilabJNI.putUnsignedShort(variableName, variable);
+  }
+
+  public static int[][] getInt(String variableName) {
+    return Call_ScilabJNI.getInt(variableName);
+  }
+
+  public static int putInt(String variableName, int[][] variable) {
+    return Call_ScilabJNI.putInt(variableName, variable);
+  }
+
+  public static int[][] getUnsignedInt(String variableName) {
+    return Call_ScilabJNI.getUnsignedInt(variableName);
+  }
+
+  public static int putUnsignedInt(String variableName, int[][] variable) {
+    return Call_ScilabJNI.putUnsignedInt(variableName, variable);
   }
 
 }

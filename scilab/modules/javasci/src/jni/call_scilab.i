@@ -71,6 +71,7 @@ class%}
 /* JavaDoc for Call_Scilab class */
 %pragma(java) moduleclassmodifiers="
 import org.scilab.modules.types.scilabTypes.ScilabTypeEnum;
+import org.scilab.modules.types.scilabTypes.ScilabIntegerTypeEnum;
 
  /**
    * Connector for Javasci v2
@@ -108,6 +109,8 @@ int GetLastErrorCode(void);
 
 sci_types getVariableType(char *varname);
 
+sci_int_types getIntegerPrecision(char* varname);
+
 //int putInteger(char *varname, int variable[][]);
 
 //int putInteger(char * variableName, int **variable, int nbRow, int nbCol);
@@ -124,3 +127,37 @@ BOOL * getBoolean(char *variableName, int *nbRow, int *nbCol);
 int putBoolean(char * variableName, BOOL variable[], int nbRow, int nbCol);
 
 int putDoubleComplex(char * variableName, double variable[], double variableImg[], int nbRow, int nbCol);
+
+%inline %{
+typedef unsigned char byte;
+%}
+
+// byte/char = int8
+byte * getByte(char *variableName, int *nbRow, int *nbCol);
+int putByte(char * variableName, byte variable[], int nbRow, int nbCol);
+
+byte * getUnsignedByte(char *variableName, int *nbRow, int *nbCol);
+int putUnsignedByte(char * variableName, byte variable[], int nbRow, int nbCol);
+
+// short = int16
+short * getShort(char *variableName, int *nbRow, int *nbCol);
+int putShort(char * variableName, short variable[], int nbRow, int nbCol);
+
+unsigned short * getUnsignedShort(char *variableName, int *nbRow, int *nbCol);
+int putUnsignedShort(char * variableName, unsigned short variable[], int nbRow, int nbCol);
+
+// int = int32
+int * getInt(char *variableName, int *nbRow, int *nbCol);
+int putInt(char * variableName, int variable[], int nbRow, int nbCol);
+
+unsigned int * getUnsignedInt(char *variableName, int *nbRow, int *nbCol);
+int putUnsignedInt(char * variableName, unsigned int variable[], int nbRow, int nbCol);
+
+#ifdef __SCILAB_INT64__
+// long = int64
+long * getLong(char *variableName, int *nbRow, int *nbCol);
+int putLong(char * variableName, long variable[], int nbRow, int nbCol);
+
+unsigned long * getUnsignedLong(char *variableName, int *nbRow, int *nbCol);
+int putUnsignedLong(char * variableName, unsigned long variable[], int nbRow, int nbCol);
+#endif
