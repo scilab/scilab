@@ -40,6 +40,19 @@ typedef enum {
 
 } sci_types;
 
+
+typedef enum {
+    sci_int8 = 1,
+    sci_int16 = 2,
+    sci_int32 = 4,
+    sci_int64 = 8,
+    sci_uint8 = 11,
+    sci_uint16 = 12,
+    sci_uint32 = 14,
+    sci_uint64 = 18
+} sci_int_types;
+
+
  /* lufact pointer... Done for backward compatibility. 
   *	sci_lufact_pointer has been added to be able to handle umfpack data type
   * Since the use of pointer data structure is very interesting for Scilab 
