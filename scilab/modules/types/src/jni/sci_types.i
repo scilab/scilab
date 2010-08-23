@@ -20,6 +20,7 @@
 %javaconst(1);
 // Rename the enum datatype
 %rename(ScilabTypeEnum) sci_types;
+%rename(ScilabIntegerTypeEnum) sci_int_types;
 
 %module types
 %{
