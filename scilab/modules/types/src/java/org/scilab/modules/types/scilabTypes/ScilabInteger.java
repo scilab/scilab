@@ -199,6 +199,64 @@ public class ScilabInteger implements ScilabType {
 		return data;
 	}
 	
+
+	/**
+	 * Returns the value as the form of short
+	 * @return the values as short
+	 */
+	public short[][] getDataAsShort() {
+		short[][] array = new short[this.data.length][this.data[0].length] ;
+		for (int i = 0; i < data.length; i++) {
+			for (int j = 0; j < data[0].length; j++) {
+				array[i][j]=this.data[i][j].shortValue();
+			}
+		}
+		return array;
+	}
+
+	/**
+	 * Returns the value as the form of byte
+	 * @return the values as byte
+	 */
+	public byte[][] getDataAsByte() {
+		byte[][] array = new byte[this.data.length][this.data[0].length] ;
+		for (int i = 0; i < data.length; i++) {
+			for (int j = 0; j < data[0].length; j++) {
+				array[i][j]=this.data[i][j].byteValue();
+			}
+		}
+		return array;
+	}
+
+	/**
+	 * Returns the value as the form of int
+	 * @return the values as int
+	 */
+	public int[][] getDataAsInt() {
+		int[][] array = new int[this.data.length][this.data[0].length] ;
+		for (int i = 0; i < data.length; i++) {
+			for (int j = 0; j < data[0].length; j++) {
+				array[i][j]=this.data[i][j].intValue();
+			}
+		}
+		return array;
+	}
+
+	/**
+	 * Returns the value as the form of long
+	 * Only for Scilab 6.X
+	 * @return the values as long
+	 */
+	public long[][] getDataAsLong() {
+		long[][] array = new long[this.data.length][this.data[0].length] ;
+		for (int i = 0; i < data.length; i++) {
+			for (int j = 0; j < data[0].length; j++) {
+				array[i][j]=this.data[i][j].longValue();
+			}
+		}
+		return array;
+	}
+
 	/**
 	 * @return the precision of the values
 	 */
