@@ -80,6 +80,13 @@ public class testEquals {
 		assert aMatrix.toString().equals("uint8([32, 42, 41 ; 12, 13, 32])") == true;
 		assert cMatrix.toString().equals("uint8([42, 43 ; 21, 22])") == true;
 		assert dMatrix.toString().equals("int8([42, 43 ; 21, 22])") == true;
+		assert aMatrix.getDataAsByte().length == a.length;
+		assert aMatrix.getDataAsByte()[0].length == a[0].length;
+		byte [][]d = aMatrix.getDataAsByte();
+		Long [][]d2 = aMatrix.getData();
+		assert d[0][0] == 32;
+		assert d2[0][0] == 32;
+		assert Arrays.deepEquals(a,d);
     }
 
 
@@ -100,6 +107,13 @@ public class testEquals {
 		assert aMatrix.toString().equals("uint16([32, 42, 41 ; 12, 13, 32])") == true;
 		assert cMatrix.toString().equals("uint16([42, 43 ; 21, 22])") == true;
 		assert dMatrix.toString().equals("int16([42, 43 ; 21, 22])") == true;
+		assert aMatrix.getDataAsShort().length == a.length;
+		assert aMatrix.getDataAsShort()[0].length == a[0].length;
+		short [][]d = aMatrix.getDataAsShort();
+		Long [][]d2 = aMatrix.getData();
+		assert d[0][0] == 32;
+		assert d2[0][0] == 32;
+		assert Arrays.deepEquals(a,d);
     }
 
 	@Test
@@ -119,6 +133,13 @@ public class testEquals {
 		assert aMatrix.toString().equals("uint32([32, 42, 41 ; 12, 13, 32])") == true;
 		assert cMatrix.toString().equals("uint32([42, 43 ; 21, 22])") == true;
 		assert dMatrix.toString().equals("int32([42, 43 ; 21, 22])") == true;
+		assert aMatrix.getDataAsInt().length == a.length;
+		assert aMatrix.getDataAsInt()[0].length == a[0].length;
+		int [][]d = aMatrix.getDataAsInt();
+		Long [][]d2 = aMatrix.getData();
+		assert d[0][0] == 32;
+		assert d2[0][0] == 32;
+		assert Arrays.deepEquals(a,d);
     }
 
 	@Test
@@ -138,6 +159,13 @@ public class testEquals {
 		assert aMatrix.toString().equals("uint64([32, 42, 41 ; 12, 13, 32])") == true;
 		assert cMatrix.toString().equals("uint64([42, 43 ; 21, 22])") == true;
 		assert dMatrix.toString().equals("int64([42, 43 ; 21, 22])") == true;
+		assert aMatrix.getDataAsLong().length == a.length;
+		assert aMatrix.getDataAsLong()[0].length == a[0].length;
+		long [][]d = aMatrix.getDataAsLong();
+		Long [][]d2 = aMatrix.getData();
+		assert d[0][0] == 32;
+		assert d2[0][0] == 32;
+		assert Arrays.deepEquals(a,d);
     }
 
 
