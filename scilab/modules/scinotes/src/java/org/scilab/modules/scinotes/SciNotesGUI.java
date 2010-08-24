@@ -72,9 +72,13 @@ public final class SciNotesGUI {
 
     private static final String DEFAULTACTIONPATH = "org.scilab.modules.scinotes.actions";
 
-    private static TextBox infoBar;
     private static Map<String, KeyStroke> map = new HashMap();
     private static Document menuConf;
+
+    private static Map<SciNotes, MenuBar> mapMenuBar = new HashMap();
+    private static Map<SciNotes, ToolBar> mapToolBar = new HashMap();
+    private static Map<SciNotes, JPopupMenu> mapPopup = new HashMap();
+    private static Map<SciNotes, TextBox> mapInfoBar = new HashMap();
 
     static {
         ConfigSciNotesManager.addMapActionNameKeys(map);
@@ -94,11 +98,9 @@ public final class SciNotesGUI {
         mainWindow.setPosition(ConfigSciNotesManager.getMainWindowPosition());
         mainWindow.setDims(ConfigSciNotesManager.getMainWindowSize());
 
-        infoBar = ScilabTextBox.createTextBox();
-
         editorInstance.setMenuBar(generateMenuBar(editorInstance));
         editorInstance.setToolBar(generateToolBar(editorInstance));
-        editorInstance.setInfoBar(infoBar);
+        editorInstance.setInfoBar(generateInfoBar(editorInstance));
         mainWindow.setTitle(title);
         mainWindow.setVisible(true);
     }
@@ -112,9 +114,28 @@ public final class SciNotesGUI {
 
     /**
      * @param editor the editor
+     * @return the infobar of the editor
+     */
+    public static TextBox generateInfoBar(SciNotes editor) {
+        if (mapInfoBar.containsKey(editor)) {
+            return mapInfoBar.get(editor);
+        }
+
+        TextBox info = ScilabTextBox.createTextBox();
+        mapInfoBar.put(editor, info);
+
+        return info;
+    }
+
+    /**
+     * @param editor the editor
      * @return the JPopupMenu read in the conf file
      */
     public static JPopupMenu generateRightClickPopup(SciNotes editor) {
+        if (mapPopup.containsKey(editor)) {
+            return mapPopup.get(editor);
+        }
+
         readMenusConf();
         JPopupMenu popup = new JPopupMenu();
         Element root = menuConf.getDocumentElement();
@@ -144,6 +165,7 @@ public final class SciNotesGUI {
                 popup.add(sm);
             }
         }
+        mapPopup.put(editor, popup);
 
         return popup;
     }
@@ -153,6 +175,10 @@ public final class SciNotesGUI {
      * @return the ToolBar read in the conf file
      */
     public static ToolBar generateToolBar(SciNotes editor) {
+        if (mapToolBar.containsKey(editor)) {
+            return mapToolBar.get(editor);
+        }
+
         readMenusConf();
         ToolBar toolBar = ScilabToolBar.createToolBar();
         Element root = menuConf.getDocumentElement();
@@ -168,6 +194,7 @@ public final class SciNotesGUI {
                 toolBar.addSeparator();
             }
         }
+        mapToolBar.put(editor, toolBar);
 
         return toolBar;
     }
@@ -177,6 +204,10 @@ public final class SciNotesGUI {
      * @return the MenuBar read in the conf file
      */
     public static MenuBar generateMenuBar(SciNotes editor) {
+        if (mapMenuBar.containsKey(editor)) {
+            return mapMenuBar.get(editor);
+        }
+
         readMenusConf();
         MenuBar menuBar = ScilabMenuBar.createMenuBar();
         Element root = menuConf.getDocumentElement();
@@ -188,6 +219,7 @@ public final class SciNotesGUI {
                 menuBar.add(getMenu(editor, (Element) node));
             }
         }
+        mapMenuBar.put(editor, menuBar);
 
         return menuBar;
     }

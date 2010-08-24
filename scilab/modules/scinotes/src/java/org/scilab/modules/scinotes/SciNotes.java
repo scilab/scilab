@@ -92,6 +92,7 @@ import org.scilab.modules.scinotes.actions.EndOfLineAction;
 import org.scilab.modules.scinotes.actions.RestoreOpenedFilesAction;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 import org.scilab.modules.scinotes.utils.DropFilesListener;
+import org.scilab.modules.scinotes.utils.NavigatorWindow;
 import org.scilab.modules.scinotes.utils.SaveFile;
 import org.scilab.modules.scinotes.utils.ScilabTabbedPane;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
@@ -461,6 +462,9 @@ public class SciNotes extends SwingScilabTab implements Tab {
             closeTabAt(0, true);
         }
         scinotesList.remove(this);
+        if (scinotesList.size() == 0) {
+            NavigatorWindow.closeCurrent();
+        }
         editor = null;
         SwingScilabWindow window = (SwingScilabWindow) parentWindow.getAsSimpleWindow();
         Point p = window.getLocation();
@@ -563,10 +567,16 @@ public class SciNotes extends SwingScilabTab implements Tab {
             ConfigSciNotesManager.removeFromOpenFiles(this, textPaneAt);
         }
 
+        NavigatorWindow.removePane(textPaneAt);
+
         textPaneAt.close();
         tabPane.remove(indexTab);
-        return true;
 
+        textPaneAt = getTextPane();
+        if (textPaneAt != null) {
+            NavigatorWindow.updateNavigator((ScilabDocument) textPaneAt.getDocument());
+        }
+        return true;
     }
 
     /**
@@ -588,6 +598,13 @@ public class SciNotes extends SwingScilabTab implements Tab {
         }
 
         return true;
+    }
+
+    /**
+     * @return the list of the different openened editors
+     */
+    public static List<SciNotes> getSciNotesList() {
+        return scinotesList;
     }
 
     /**
@@ -865,6 +882,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         setTitle(f.getPath() + TIRET + SciNotesMessages.SCILAB_EDITOR);
         RecentFileAction.updateRecentOpenedFilesMenu(this);
 
+        NavigatorWindow.updateNavigator(styledDocument);
         styledDocument.setContentModified(false);
         getTextPane().setLastModified(f.lastModified());
         getTextPane().setReadOnly(false);
@@ -960,6 +978,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         ScilabEditorPane pane = getTextPane();
         ScilabEditorPane leftPane = new ScilabEditorPane(editor);
         ScilabEditorPane rightPane = new ScilabEditorPane(editor);
+        NavigatorWindow.changePaneOnSplit(pane, leftPane);
         initPane(leftPane, true);
         initPane(rightPane, true);
         leftPane.setOtherPaneInSplit(rightPane);
@@ -1003,6 +1022,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         if (tabPane.getSelectedComponent() instanceof JSplitPane) {
             ScilabEditorPane pane = new ScilabEditorPane(editor);
             ScilabEditorPane textpane = getTextPane();
+            NavigatorWindow.changePaneOnSplit(textpane, pane);
             initPane(pane);
             textpane.setOtherPaneInSplit(null);
             textpane.copyProps(pane);
@@ -1026,15 +1046,20 @@ public class SciNotes extends SwingScilabTab implements Tab {
      * @return the text component inside the tab
      */
     public ScilabEditorPane addEmptyTab() {
+        ScilabEditorPane sep;
         if (closedTabList.size() > 0) {
             Object obj = Collections.min(closedTabList);
             closedTabList.remove(Integer.valueOf(obj.toString()));
-            return addTab(SciNotesMessages.UNTITLED + obj.toString());
+            sep = addTab(SciNotesMessages.UNTITLED + obj.toString());
+            sep.setShortName(SciNotesMessages.UNTITLED + obj.toString());
         } else {
             numberOfUntitled++;
             tabList.add(Integer.valueOf(numberOfUntitled));
-            return addTab(SciNotesMessages.UNTITLED + numberOfUntitled);
+            sep = addTab(SciNotesMessages.UNTITLED + numberOfUntitled);
+            sep.setShortName(SciNotesMessages.UNTITLED + numberOfUntitled);
         }
+
+        return sep;
     }
 
     /**
@@ -1684,6 +1709,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
                             ExitAction.doExit(arr[i]);
                         }
                         scinotesList.clear();
+                        NavigatorWindow.closeCurrent();
                     }
                 });
         } catch (InterruptedException e) {

@@ -73,7 +73,6 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private boolean matchingEnable;
     private ScilabLexer lexer;
     private SciNotes editor;
-    private NavigatorWindow navigator;
     private IndentManager indent;
     private TabManager tab;
     private CommentManager com;
@@ -81,6 +80,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private TrailingWhiteManager trailingWhite;
     private boolean readonly;
     private String infoBar = "";
+    private String shortName = "";
 
     private long lastModified;
 
@@ -128,6 +128,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         addFocusListener(new FocusListener() {
                 public void focusGained(FocusEvent e) {
                     updateInfosWhenFocused();
+                    NavigatorWindow.updateNavigator((ScilabDocument) getDocument());
                 }
 
                 public void focusLost(FocusEvent e) {
@@ -264,17 +265,27 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     }
 
     /**
-     * @param navigator the NavigatorWindow associated with this pane
+     * {@inheritDoc}
      */
-    public void setNavigator(NavigatorWindow navigator) {
-        this.navigator = navigator;
+    public void setName(String name) {
+        super.setName(name);
+        if (name != null) {
+            this.shortName = new File(name).getName();
+        }
     }
 
     /**
-     * @return true if this pane has a code navigator
+     * @param name the short name
      */
-    public boolean hasNavigator() {
-        return navigator != null;
+    public void setShortName(String name) {
+        this.shortName = name;
+    }
+
+    /**
+     * @return the short name of the file (without the full path)
+     */
+    public String getShortName() {
+        return shortName;
     }
 
     /**
@@ -292,15 +303,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     /**
      * Close this pane
      */
-    public void close() {
-        SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    if (navigator != null) {
-                        navigator.closeNavigator();
-                    }
-                }
-            });
-    }
+    public void close() { }
 
     /**
      * Update infos
@@ -380,6 +383,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         pane.matchingEnable = matchingEnable;
         pane.suppressCom = suppressCom;
         pane.setName(getName());
+        pane.setShortName(getShortName());
         pane.setEditable(isEditable());
     }
 
@@ -488,6 +492,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     /**
      * Scroll the pane to have the line lineNumber on the top of the pane
      * @param lineNumber the number of the line
+     * @param highlight true to highlight the line
      */
     public void scrollTextToLineNumber(int lineNumber, final boolean highlight) {
         Element root = getDocument().getDefaultRootElement();
@@ -887,6 +892,13 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      */
     public static ScilabEditorPane getFocusedPane() {
         return focused;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public String toString() {
+        return shortName;
     }
 
     /**

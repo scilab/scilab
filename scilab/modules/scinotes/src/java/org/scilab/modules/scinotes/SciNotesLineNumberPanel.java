@@ -22,7 +22,8 @@ import java.awt.Toolkit;
 import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Rectangle;
-
+import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseEvent;
 import java.util.Map;
 import java.util.Stack;
 
@@ -39,6 +40,7 @@ import javax.swing.text.Element;
 import javax.swing.text.View;
 
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
+import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
  * This class will display line numbers for a related text component. The text
@@ -50,7 +52,7 @@ import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
  * of a JScrollPane.
  * @author Calixte DENIZET
  */
-public class SciNotesLineNumberPanel extends JPanel implements CaretListener, DocumentListener {
+public class SciNotesLineNumberPanel extends JPanel implements CaretListener, DocumentListener, MouseMotionListener {
 
     private static final int PANELGAPSIZE = 10;
     private static final Border OUTER = new MatteBorder(0, 0, 0, 2, Color.GRAY);
@@ -60,8 +62,10 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
     private ScilabEditorPane textPane;
 
     private int borderGap;
-    private Color currentLineForeground;
     private boolean isHighlighted;
+    private Color currentLineForeground;
+    private Color foreground = Color.BLACK;
+    private Color alternColor = new Color(250, 251, 164);
     private Color currentColor = Color.GRAY;
 
     private int numbers;
@@ -90,6 +94,7 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
         setCurrentLineForeground(Color.RED);
         updateFont(ConfigSciNotesManager.getFont());
         textPane.addCaretListener(this);
+        addMouseMotionListener(this);
     }
 
     /**
@@ -210,10 +215,16 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
                     str = Integer.toString(line + 1);
                 }
 
+                Element elem = root.getElement(line);
+                if (((ScilabDocument.ScilabLeafElement) elem).isAnchor()) {
+                    g.setColor(alternColor);
+                    g.fillRect(0, ((ScilabView) view).getLineAllocation(line), availableWidth, metrics.getHeight());
+                }
+
                 if (line != lastLine) {
-                    g.setColor(getForeground());
+                    g.setColor(foreground);
                 } else {
-                    g.setColor(getCurrentLineForeground());
+                    g.setColor(currentLineForeground);
                 }
 
                 int diff = (availableWidth - metrics.stringWidth(str)) / 2;
@@ -289,6 +300,27 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
             }
         }
     }
+
+    /**
+     * Implements mouseMoved in MouseMotionListener
+     * @param e event
+     */
+    public void mouseMoved(MouseEvent e) {
+        int pos = textPane.viewToModel(e.getPoint());
+        Element root = doc.getDefaultRootElement();
+        ScilabDocument.ScilabLeafElement line = (ScilabDocument.ScilabLeafElement) root.getElement(root.getElementIndex(pos));
+        if (line.isAnchor()) {
+            setToolTipText(SciNotesMessages.ANCHOR + line.toString());
+        } else {
+            setToolTipText(null);
+        }
+    }
+
+    /**
+     * Nothing !
+     * @param e event
+     */
+    public void mouseDragged(MouseEvent e) { }
 
     /**
      * Nothing !

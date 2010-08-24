@@ -174,6 +174,8 @@ public final class ConfigSciNotesManager {
             /* Create a local copy of the configuration file */
             copyFile(new File(SCINOTES_CONFIG_FILE), new File(USER_SCINOTES_CONFIG_FILE));
             copyFile(new File(SCINOTES_CONFIG_KEYS_FILE), new File(USER_SCINOTES_CONFIG_KEYS_FILE));
+            document = null;
+            keysMap = null;
             updated = true;
         }
     }

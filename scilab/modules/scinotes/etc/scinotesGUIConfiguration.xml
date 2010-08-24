@@ -54,6 +54,11 @@
       <menuitem action="FindNextAction" label="Find Next"/>
       <menuitem action="FindPreviousAction" label="Find Previous"/>
       <separator/>
+      <menuitem action="SetAnchorAction" label="Set anchor"/>
+      <menuitem action="RemoveAnchorAction" label="Remove anchor"/>
+      <menuitem action="GotoNextAnchorAction" label="Go to next anchor"/>
+      <menuitem action="GotoPreviousAnchorAction" label="Go to previous anchor"/>
+      <separator/>
       <menuitem action="CodeNavigatorAction" label="Code Navigator"/>
     </menu>
 

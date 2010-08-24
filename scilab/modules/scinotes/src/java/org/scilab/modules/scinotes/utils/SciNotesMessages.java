@@ -242,6 +242,15 @@ public class SciNotesMessages {
     public static final String ALPHABETIC_ORDER = Messages.gettext("Alphabetic order");
     public static final String NATURAL_ORDER = Messages.gettext("Natural order");
     public static final String ORDER = Messages.gettext("Order");
+    public static final String FUNCTIONS = Messages.gettext("Functions");
+    public static final String ANCHORS = Messages.gettext("Anchors");
+
+    /**
+     * Anchor
+     */
+    public static final String ANCHOR_NAME = Messages.gettext("Anchor's name: ");
+    public static final String SET_ANCHOR = Messages.gettext("Set an anchor");
+    public static final String ANCHOR = Messages.gettext("Anchor: ");
 
     /**
      * Open source
