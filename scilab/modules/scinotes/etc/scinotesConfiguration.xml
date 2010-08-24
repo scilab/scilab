@@ -11,7 +11,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<Setting version="0.1">
+<Setting version="0.2">
   <!-- SCINOTES configuration -->
   <Profile name="scinotes">
 
@@ -182,7 +182,7 @@
       <!-- rep can be "doublechevrons", "horizontal" or "vertical" or a single char such as "#" or "none" -->
       <!-- value is the number of space equivalent to a tabulation -->
       <!-- white is a boolean indicating if a \t must be inserted (false) or a sequence of whites -->
-      <style name="Tabulation" rep="doublechevrons" value="4" white="false">
+      <style name="Tabulation" rep="doublechevrons" value="4" white="true">
         <ForegroundColor default="#dcdcdc" useCache="true" value="#dcdcdc"/>
         <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
       </style>
