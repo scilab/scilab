@@ -49,22 +49,14 @@ char **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
 
     if (fa)
     {
-        char *Line = (char*)CALLOC(sizeof(int), LINE_MAX);
+        char *Line = NULL;
         int nbLines = 0;
-
-        if (Line == NULL)
-        {
-            *nbLinesOut = 0;
-            *ierr = MGETL_MEMORY_ALLOCATION_ERROR;
-            return NULL;
-        }
 
         if (nbLinesIn < 0)
         {
             strLines = (char **)MALLOC(sizeof(char *));
             if (strLines == NULL)
             {
-                if (Line) {FREE(Line); Line = NULL;}
                 *nbLinesOut = 0;
                 *ierr = MGETL_MEMORY_ALLOCATION_ERROR;
                 return NULL;
@@ -299,23 +291,23 @@ char *getNextLine(FILE *stream, char **pp_line)
 {
     if (stream != NULL && pp_line != NULL)
     {
-        void *line = NULL;
-        char tmp[LINE_MAX] = "";
+        char *pCurrentLine = NULL;
+        char tmp[LINE_MAX] = EMPTYSTR;
         size_t size = 1;
 
         *pp_line = NULL;
         while (fgets (tmp, LINE_MAX, stream) != NULL)
         {
             size += LINE_MAX;
-            line = REALLOC (*pp_line, sizeof (**pp_line) * size);
-            if (line != NULL)
+            pCurrentLine = (char*)REALLOC (*pp_line, sizeof (**pp_line) * size);
+            if (pCurrentLine != NULL)
             {
                 if (*pp_line == NULL)
                 {
-                    ((char *)line)[0] = '\0';
+                    ((char *)pCurrentLine)[0] = '\0';
                 }
-                *pp_line = line;
-                line = NULL;
+                *pp_line = pCurrentLine;
+                pCurrentLine = NULL;
                 strcat (*pp_line, tmp);
                 if ((*pp_line)[strlen (*pp_line)-1] == '\n')
                 {
