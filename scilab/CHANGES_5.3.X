@@ -81,6 +81,8 @@ the Code Navigator.
 
 * bug 7830 fixed - There was a problem when opening a file at a line number.
 
+* bug 7842 fixed - There was not the filepath in the title bar.
+
 Editvar/Browsevar:
 ==================
 

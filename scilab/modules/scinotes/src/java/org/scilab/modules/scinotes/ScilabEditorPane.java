@@ -61,10 +61,11 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                                                              MouseMotionListener, Cloneable,
                                                              KeyListener {
 
-    private static ScilabEditorPane focused;
-
+    private static final String TIRET = " - ";
     private static final Cursor HANDCURSOR = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
     private static final Cursor TEXTCURSOR = Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR);
+
+    private static ScilabEditorPane focused;
 
     private Color highlightColor;
     private Color highlightContourColor;
@@ -81,6 +82,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private boolean readonly;
     private String infoBar = "";
     private String shortName = "";
+    private String title = "";
 
     private long lastModified;
 
@@ -270,8 +272,24 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     public void setName(String name) {
         super.setName(name);
         if (name != null) {
-            this.shortName = new File(name).getName();
+            File f = new File(name);
+            this.shortName = f.getName();
+            title =  shortName + " (" + f.getAbsolutePath() + ")" + TIRET + SciNotesMessages.SCILAB_EDITOR;
         }
+    }
+
+    /**
+     * @param title the title
+     */
+    public void setTitle(String title) {
+        this.title = title + TIRET + SciNotesMessages.SCILAB_EDITOR;
+    }
+
+    /**
+     * @return the title
+     */
+    public String getTitle() {
+        return title;
     }
 
     /**
@@ -384,6 +402,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         pane.suppressCom = suppressCom;
         pane.setName(getName());
         pane.setShortName(getShortName());
+        pane.setTitle(getTitle());
         pane.setEditable(isEditable());
     }
 
