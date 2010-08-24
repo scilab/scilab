@@ -220,6 +220,9 @@ Bug Fixes:
 
 * bug 7756 fixed - sprand did not produce normal numbers.
 
+* bug 7802 fixed - the graduate function complained about obsolete maxi and mini
+                   functions.
+
 * bug 7803 fixed - edit edit failed.
 
 * bug 7840 fixed - big lines were splitted by mgetl.
