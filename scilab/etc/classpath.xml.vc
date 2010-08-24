@@ -59,12 +59,9 @@ The option is "disableUnderMode" and can be:
 	<load on="HDF5"/>
 </path>
 
-<path value="$SCILAB/thirdparty/jgraphx.jar" load="onUse">
-        <load on="XCos"/>
-</path>
-
 <!-- Temp. loaded at startup -->
 <path value="$SCILAB/modules/types/jar/org.scilab.modules.types.jar"/>
+<path value="$SCILAB/modules/output_stream/jar/org.scilab.modules.output_stream.jar" load="startup"/>
 <path value="$SCILAB/modules/hdf5/jar/org.scilab.modules.hdf5.jar" load="startup"/>
 
 <path value="$SCILAB/modules/xcos/jar/org.scilab.modules.xcos.jar" load="onUse">

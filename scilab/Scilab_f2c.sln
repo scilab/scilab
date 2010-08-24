@@ -1283,6 +1283,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "commons-Ant", "modules\comm
 		{FBA3BC3F-8A2C-4D47-A50D-EB808BE42F43} = {FBA3BC3F-8A2C-4D47-A50D-EB808BE42F43}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "output_stream-Ant", "modules\output_stream\src\java\output_stream-JAVA.vcproj", "{F3943691-FF61-48B4-9CA4-10E9D1F600A6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FBA3BC3F-8A2C-4D47-A50D-EB808BE42F43} = {FBA3BC3F-8A2C-4D47-A50D-EB808BE42F43}
+		{9188FA91-E039-485D-AF1D-781CEA92F541} = {9188FA91-E039-485D-AF1D-781CEA92F541}
+		{E9783492-017E-4811-9CC7-6B71856F847C} = {E9783492-017E-4811-9CC7-6B71856F847C}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -2479,6 +2486,14 @@ Global
 		{9188FA91-E039-485D-AF1D-781CEA92F541}.Release|Win32.Build.0 = Release|Win32
 		{9188FA91-E039-485D-AF1D-781CEA92F541}.Release|x64.ActiveCfg = Release|x64
 		{9188FA91-E039-485D-AF1D-781CEA92F541}.Release|x64.Build.0 = Release|x64
+		{F3943691-FF61-48B4-9CA4-10E9D1F600A6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F3943691-FF61-48B4-9CA4-10E9D1F600A6}.Debug|Win32.Build.0 = Debug|Win32
+		{F3943691-FF61-48B4-9CA4-10E9D1F600A6}.Debug|x64.ActiveCfg = Debug|x64
+		{F3943691-FF61-48B4-9CA4-10E9D1F600A6}.Debug|x64.Build.0 = Debug|x64
+		{F3943691-FF61-48B4-9CA4-10E9D1F600A6}.Release|Win32.ActiveCfg = Release|Win32
+		{F3943691-FF61-48B4-9CA4-10E9D1F600A6}.Release|Win32.Build.0 = Release|Win32
+		{F3943691-FF61-48B4-9CA4-10E9D1F600A6}.Release|x64.ActiveCfg = Release|x64
+		{F3943691-FF61-48B4-9CA4-10E9D1F600A6}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

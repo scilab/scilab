@@ -95,3 +95,7 @@ library.graph.name=org.scilab.modules.graph.jar
 
 library.history_browser.dir=${modules.dir}/history_browser/${build.jar.dir}/
 library.history_browser.name=org.scilab.modules.history_browser.jar
+
+library.output_stream.dir=${modules.dir}/output_stream/${build.jar.dir}/
+library.output_stream.name=org.scilab.modules.output_stream.jar
+
