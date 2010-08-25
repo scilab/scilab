@@ -11,7 +11,7 @@ to fix these issues.
 * bugs 1589, 3994 fixed - On Startup, Scilab console did not have the focus.
                    The user had to click in the main window to gain focus.
 
-* bug 4247 fixed - The command xclick didn't work correctly.
+* bug 4247 fixed - The command xclick did not work correctly.
 
 * bug 4423 fixed - It was not possible to navigate in Scilab's menu with arrow
                    keys.
@@ -28,7 +28,6 @@ to fix these issues.
 * 'whos' function updated, variables sorted by name (case insensitive).
   If a variable is global, a * appears after his type name.
   (Thanks to Samuel Gougeon).
-
 
 SciNotes:
 =========
@@ -121,7 +120,7 @@ Compilation:
 
 * Update Lapack to 3.2.2 on Windows (fix bugs 7754, 7485, 6477).
 
-* Update JLaTeXMath to version 0.9.3
+* Update JLaTeXMath to version 0.9.2
 
 Documentation:
 ==============
@@ -139,8 +138,11 @@ Windows Installer:
 Graphics:
 =========
 
-Two additionnal Graphics demos about plotyy() and plotyyy() added. See bug #7687
-Thanks to Samuel Gougeon.
+* Two additionnal Graphics demos about plotyy() and plotyyy() added. See bug #7687
+  Thanks to Samuel Gougeon.
+
+* It's now possible to use LaTeX or MathML as label for uimenu or pushbutton
+  in uicontrol.
 
 * bug 7137 fixed - In Text uicontrol, fontsize was rounded which was problematic when
                    fontUnits was 'normalized'.
@@ -207,7 +209,7 @@ Bug Fixes:
 
 * bug 6477 fixed - in some case, schur returned wrong values on Windows.
 
-* bug 6504 fixed - Due to a bug in Java, the <br> tag wasn't copied as a CR
+* bug 6504 fixed - Due to a bug in Java, the <br> tag was not copied as a CR
                    in a messagebox.
 
 * bug 6938 fixed - frexp returned a wrong error message with a complex as 
@@ -219,7 +221,9 @@ Bug Fixes:
 * bug 7348 fixed - ATOMS: A module was loaded twice if it was installed both in
                    the "user" and the "allusers" section.
 
-* bug 7405 fixed - The toolbar wasn't updated when an undocking occured.
+* bug 7366 fixed - There was not the possibility to have LaTeX in menus.
+
+* bug 7405 fixed - The toolbar was not updated when an undocking occured.
 
 * bug 7452 fixed - demos nmplot from Optimization and Simulation -> fminsearch
                    -> nmplot* did not work.
