@@ -248,7 +248,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 		messageLabel.addHyperlinkListener(new HyperlinkListener() {
 			public void hyperlinkUpdate(HyperlinkEvent e) {
 				if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
-					WebBrowser.openUrl(e.getURL().toString());
+					WebBrowser.openUrl(e.getURL(), e.getDescription());
 				}
 			}
 		});

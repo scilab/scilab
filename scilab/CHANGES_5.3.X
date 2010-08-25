@@ -251,6 +251,9 @@ Bug Fixes:
 
 * bug 7803 fixed - edit edit failed.
 
+* bug 7821 fixed - In a messagebox, an exception was thrown when clicking on a
+                   mal-formed url.
+
 * bug 7840 fixed - big lines were splitted by mgetl.
 
 

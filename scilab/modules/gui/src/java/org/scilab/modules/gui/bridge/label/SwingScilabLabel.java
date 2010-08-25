@@ -289,7 +289,7 @@ public class SwingScilabLabel extends JScrollPane implements SimpleLabel {
 			label.addHyperlinkListener(new HyperlinkListener() {
 				public void hyperlinkUpdate(HyperlinkEvent event) {
 					if (event.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
-						WebBrowser.openUrl(event.getURL().toString());
+						WebBrowser.openUrl(event.getURL(), event.getDescription());
 					}
 				}
 			});
