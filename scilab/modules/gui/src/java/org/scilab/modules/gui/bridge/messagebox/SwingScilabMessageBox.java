@@ -210,7 +210,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 		int line = 0;
 		message = "<HTML>";
 		for (line = 0; line < mess.length - 1; line++) {
-			message += mess[line] + "<br>";
+			message += "<div>" + mess[line] + "</div>";
 		}
 		message += mess[line] + "</HTML>";
 	}

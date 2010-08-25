@@ -11,6 +11,8 @@ to fix these issues.
 * bugs 1589, 3994 fixed - On Startup, Scilab console did not have the focus.
                    The user had to click in the main window to gain focus.
 
+* bug 4247 fixed - The command xclick didn't work correctly.
+
 * bug 4423 fixed - It was not possible to navigate in Scilab's menu with arrow
                    keys.
 
@@ -22,7 +24,7 @@ to fix these issues.
 
 * 'whos' function updated, variables sorted by name (case insensitive).
   If a variable is global, a * appears after his type name.
-  (Thanks to Samuel Gaugeon).
+  (Thanks to Samuel Gougeon).
 
 
 SciNotes:
@@ -191,6 +193,9 @@ Bug Fixes:
 ==========
 
 * bug 6477 fixed - in some case, schur returned wrong values on Windows.
+
+* bug 6504 fixed - Due to a bug in Java, the <br> tag wasn't copied as a CR
+                   in a messagebox.
 
 * bug 7208 fixed - The help for atomsGetLoaded() gave the wrong shape
                    for the loaded matrix.

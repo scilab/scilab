@@ -16,4 +16,4 @@
 
 unix_x("set")
 
-// Try to select, copy and paste the contents of the message box
+// Try to select, copy and paste the contents of the message box, the lines must be kept.
