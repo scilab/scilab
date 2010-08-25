@@ -10,15 +10,21 @@ bug 7922 fixed - The Automotive Suspension demo did not work.
 
 bug 7945 fixed - The path of the diagram was not displayed in the title bar.
 
+GUI creation:
+=============
+
+* It's now possible to use LaTeX or MathML as label for uimenu or pushbutton
+in uicontrol. See bug #7366.
+
 Bug Fixes:
 ==========
 
-* bug 7943 - On a linux binary version, it was not possible to use
+* bug 7943 fixed - On a linux binary version, it was not possible to use
              the fortran_block block.
 
-* bug 7951 - strcat crashed with row concatenation option on linux.
+* bug 7951 fixed - strcat crashed with row concatenation option on linux.
 
-* bug 7952 -  libraryinfo did not check size of input argument.
+* bug 7952 fixed -  libraryinfo did not check size of input argument.
 
 
          Changes between version 5.3.0-beta-2 and 5.3.0-beta-3 of Scilab
@@ -56,6 +62,11 @@ to fix these issues.
   If a variable is global, a * appears after his type name.
   (Thanks to Samuel Gougeon).
 
+Graphics:
+========
+
+It's now possible to use LaTeX or MathML as label for uimenu or Pushbutton and 
+Text in uicontrols.
 
 SciNotes:
 =========
