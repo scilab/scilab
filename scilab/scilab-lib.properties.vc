@@ -2,7 +2,7 @@
 
 commons-logging.jar=${thirdparty.dir}/commons-logging-1.1.jar
 
-flexdock.jar=${thirdparty.dir}/flexdock-0.5.1.jar
+flexdock.jar=${thirdparty.dir}/flexdock-0.5.2.jar
 
 jgraphx.jar=${thirdparty.dir}/jgraphx.jar
 
