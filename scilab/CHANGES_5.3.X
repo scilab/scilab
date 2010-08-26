@@ -196,6 +196,9 @@ Scilab/LabView Gateway:
 Bug Fixes:
 ==========
 
+* bug 5697 fixed - In Help Browser, external hyperlinks were opened in it rather
+                   than in Web Browser.
+
 * bug 6477 fixed - in some case, schur returned wrong values on Windows.
 
 * bug 6504 fixed - Due to a bug in Java, the <br> tag wasn't copied as a CR
