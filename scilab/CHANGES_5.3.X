@@ -287,6 +287,9 @@ Bug Fixes:
 * bug 7821 fixed - In a messagebox, an exception was thrown when clicking on a
                    mal-formed url.
 
+* bug 7831 fixed - Some reference of the old editvar UI were present in the
+                   source directory tree.
+
 * bug 7840 fixed - big lines were splitted by mgetl.
 
 

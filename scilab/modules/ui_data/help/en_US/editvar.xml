@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Jaime Urzua
+ * Copyright (C) Allan CORNET - DIGITEO - 2010
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -35,7 +36,7 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>editvar</literal> is an embedded Scilab variable editor written in TCL/TK.</para>
+    <para><literal>editvar</literal> is an embedded Scilab variable editor.</para>
     <para><literal>editvar</literal> can edit the following variable type: real or complex constant matrix (type 1), boolean matrix (type 4) an matrix of character strings (type 10). </para>
   </refsection>
   <refsection>
@@ -46,9 +47,5 @@ editvar a;
 b=['hello';'good bye'];
 editvar b;
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Jaime Urzua</para>
   </refsection>
 </refentry>
