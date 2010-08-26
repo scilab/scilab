@@ -20,23 +20,23 @@ package org.scilab.modules.graphic_objects.graphicObject;
 
 public class GraphicObjectProperties {
 
-public static final String __GO_ARC__   =                  "arc";
-public static final String __GO_AXES__   =                 "axes";
-public static final String __GO_AXIS__   =                 "axis";
-public static final String __GO_CHAMP__  =                 "champ";
-public static final String __GO_COMPOUND__ =               "compound";
-public static final String __GO_FAC3D__ =                  "fac3d";
-public static final String __GO_FEC__ =                    "fec";
-public static final String __GO_FIGURE__ =                 "figure";
-public static final String __GO_GRAYPLOT__ =               "grayplot";
-public static final String __GO_LABEL__ =                  "label";
-public static final String __GO_LEGEND__ =                 "legend";
-public static final String __GO_MATPLOT__ =                "matplot";
-public static final String __GO_PLOT3D__ =                 "plot3d";
-public static final String __GO_POLYLINE__ =               "polyline";
-public static final String __GO_RECTANGLE__ =              "rectangle";
-public static final String __GO_SEGS__ =                   "segs";
-public static final String __GO_TEXT__ =                   "text";
+public static final String __GO_ARC__   =                  "Arc";
+public static final String __GO_AXES__   =                 "Axes";
+public static final String __GO_AXIS__   =                 "Axis";
+public static final String __GO_CHAMP__  =                 "Champ";
+public static final String __GO_COMPOUND__ =               "Compound";
+public static final String __GO_FAC3D__ =                  "Fac3d";
+public static final String __GO_FEC__ =                    "Fec";
+public static final String __GO_FIGURE__ =                 "Figure";
+public static final String __GO_GRAYPLOT__ =               "Grayplot";
+public static final String __GO_LABEL__ =                  "Label";
+public static final String __GO_LEGEND__ =                 "Legend";
+public static final String __GO_MATPLOT__ =                "Matplot";
+public static final String __GO_PLOT3D__ =                 "Plot3d";
+public static final String __GO_POLYLINE__ =               "Polyline";
+public static final String __GO_RECTANGLE__ =              "Rectangle";
+public static final String __GO_SEGS__ =                   "Segs";
+public static final String __GO_TEXT__ =                   "Text";
 
 public static final String __GO_CHILDREN__ =               "Children";
 public static final String __GO_CHILDREN_COUNT__ =         "ChildrenCount";
