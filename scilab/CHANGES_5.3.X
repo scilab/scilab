@@ -118,6 +118,8 @@ Compilation:
 
 * Update Lapack to 3.2.2 on Windows (fix bugs 7754, 7485, 6477).
 
+* Update JLaTeXMath to version 0.9.3
+
 Documentation:
 ==============
 
