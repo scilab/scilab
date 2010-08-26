@@ -36,28 +36,12 @@
 int set_font_angle_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status;
-    int* tmp;
-    int autoRotation;
     double fontAngle;
 
     if ( !isParameterDoubleMatrix( valueType ) )
     {
         Scierror(999, _("Wrong type for '%s' property: Real expected.\n"), "font_angle");
         return SET_PROPERTY_ERROR;
-    }
-
-    tmp = (int*) getGraphicObjectProperty(pobj->UID, __GO_AUTO_ROTATION__, jni_bool);
-
-    if (tmp == NULL)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_rotation");
-        return -1;
-    }
-
-    if (*tmp)
-    {
-        autoRotation = 0;
-        setGraphicObjectProperty(pobj->UID, __GO_AUTO_ROTATION__, &autoRotation, jni_bool, 1);
     }
 
     fontAngle = DEG2RAD(getDoubleFromStack(stackPointer));

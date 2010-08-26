@@ -28,7 +28,9 @@ import org.scilab.modules.graphic_objects.contouredObject.Mark;
 import org.scilab.modules.graphic_objects.contouredObject.Mark.*;
 import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty;
 import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty.*;
+import org.scilab.modules.graphic_objects.graphicController.*;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import org.scilab.modules.graphic_objects.label.Label;
 import org.scilab.modules.graphic_objects.textObject.FormattedText;
 
 /**
@@ -126,7 +128,7 @@ public class Axes extends GraphicObject {
 		axes[1] = new AxisProperty();
 		axes[2] = new AxisProperty();
 		gridPosition = GridPosition.FOREGROUND;
-		title = null;
+		title = GraphicController.getController().askObject(Type.LABEL);
 		autoClear = false;
 		filled = false;
 		camera = new Camera();
@@ -142,6 +144,12 @@ public class Axes extends GraphicObject {
 
 	public Axes clone() {
 	    Axes copy = (Axes) super.clone();
+
+	    for (int i = 0; i < axes.length; i++) {
+	        String label = GraphicController.getController().cloneObject(axes[i].getLabel());
+	        copy.axes[i].setLabel(label);
+	    }
+
 	    return copy;
 	}
 	

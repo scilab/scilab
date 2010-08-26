@@ -42,6 +42,12 @@ public class Label extends TextObject {
 		autoPosition = false;
 		position = new double[3];
 		autoRotation = false;
+
+		Integer[] textDimensions = {1, 1};
+		String[] textStrings = {""};
+
+		setTextArrayDimensions(textDimensions);
+		setTextStrings(textStrings);
 	}
 
 	/**
@@ -143,6 +149,10 @@ public class Label extends TextObject {
 	 * @param fontAngle the fontAngle to set
 	 */
 	public void setFontAngle(Double fontAngle) {
+		if (autoRotation == true) {
+			autoRotation = false;
+		}
+
 		this.fontAngle = fontAngle;
 	}
 
@@ -163,6 +173,10 @@ public class Label extends TextObject {
 	 * @param position the position to set
 	 */
 	public void setPosition(Double[] position) {
+		if (autoPosition == true) {
+			autoPosition = false;
+		}
+
 		this.position[0] = position[0];
 		this.position[1] = position[1];
 		this.position[2] = position[2];

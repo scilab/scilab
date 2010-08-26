@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -27,19 +28,35 @@
 #include "Scierror.h"
 #include "localization.h"
 
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int set_auto_position_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-	int b =  (int)FALSE;
-	if ( sciGetEntityType(pobj) != SCI_LABEL )
-	{
-		Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_position");
-		return SET_PROPERTY_ERROR ;
-	}
+    BOOL status;
+    int b =  (int)FALSE;
+#if 0
+    if ( sciGetEntityType(pobj) != SCI_LABEL )
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_position");
+        return SET_PROPERTY_ERROR;
+    }
+#endif
 
-	b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "auto_position");
-	if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
+    b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "auto_position");
+    if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
 
-	return sciSetAutoPosition(pobj, b);
+    status = setGraphicObjectProperty(pobj->UID, __GO_AUTO_POSITION__, &b, jni_bool, 1);
+
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_position");
+        return SET_PROPERTY_ERROR;
+    }
 }
 /*------------------------------------------------------------------------*/

@@ -13,6 +13,11 @@
 package org.scilab.modules.graphic_objects.axes;
 
 import java.util.ArrayList;
+
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
+
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
 import org.scilab.modules.graphic_objects.label.Label;
 import org.scilab.modules.graphic_objects.textObject.FormattedText;
 
@@ -87,7 +92,11 @@ public class AxisProperty {
 		visible = false;
 		reverse = false;
 		gridColor = 0;
-		label = null;
+
+		/* Default label creation */
+		String labelId = GraphicController.getController().askObject(Type.LABEL);
+		label = labelId;
+
 		axisLocation = AxisLocation.ORIGIN;
 		ticks = new TicksProperty();
 		logFlag = false;

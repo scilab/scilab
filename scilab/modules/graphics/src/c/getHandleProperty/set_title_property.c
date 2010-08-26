@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -18,27 +19,40 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
+#include <string.h>
+
 #include "setHandleProperty.h"
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
 #include "Scierror.h"
 #include "localization.h"
 
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int set_title_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
+    char* type;
 
-  if ( sciGetEntityType(pobj) != SCI_SUBWIN )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"title");
-    return SET_PROPERTY_ERROR ;
-  }
-  else
-  {
+#if 0
+    if ( sciGetEntityType(pobj) != SCI_SUBWIN )
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"title");
+        return SET_PROPERTY_ERROR;
+    }
+#endif
+
+    type = (char*) getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string);
+
+    if (strcmp(type, __GO_AXES__) != 0)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"title");
+        return SET_PROPERTY_ERROR;
+    }
+
     Scierror(999, _("Can not set directly a label object.\n"));
-    return SET_PROPERTY_ERROR ;
-  }
-  return SET_PROPERTY_ERROR ;
+    return SET_PROPERTY_ERROR;
 }
 /*------------------------------------------------------------------------*/
 
