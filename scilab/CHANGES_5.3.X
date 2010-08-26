@@ -139,6 +139,9 @@ Graphics:
 Two additionnal Graphics demos about plotyy() and plotyyy() added. See bug #7687
 Thanks to Samuel Gougeon.
 
+* bug 7137 fixed - In Text uicontrol, fontsize was rounded which was problematic when
+                   fontUnits was 'normalized'.
+
 Xcos:
 =====
 
