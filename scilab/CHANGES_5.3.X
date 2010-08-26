@@ -177,6 +177,8 @@ Xcos:
 * bug 7834 fixed - The last argument of xcosPalAddBlock about the block style
                    could not be changed by the user.
 
+* bug 7845 fixed - Code generation was broken.
+
 call_scilab:
 ============
 
