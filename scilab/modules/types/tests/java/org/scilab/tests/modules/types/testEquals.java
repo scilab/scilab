@@ -60,6 +60,11 @@ public class testEquals {
 		assert aMatrix.toString().equals("[21.2 + 210.2 * %i, 22.0 + 220.0 * %i, 42.0 + 420.0 * %i, 39.0 + 390.0 * %i ; 23.2 + 230.2 * %i, 24.0 + 240.0 * %i, 44.0 + 440.0 * %i, 40.0 + 400.0 * %i]") == true;
 		assert cMatrix.toString().equals("[42.0 + 420.0 * %i, 43.0 + 430.0 * %i ; 21.0 + 210.0 * %i, 22.0 + 220.0 * %i]") == true;
 
+        double [] result = new double[]{21.2, 23.2, 22.0, 24.0, 42.0, 44.0, 39.0, 40.0, 210.2, 230.2, 220.0, 240.0, 420.0, 440.0, 390.0, 400.0};
+        assert aMatrix.getSerializedComplexMatrix().length == result.length;
+        assert Arrays.equals(aMatrix.getSerializedComplexMatrix(),result) == true;
+
+
     }
 
 
