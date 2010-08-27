@@ -1358,7 +1358,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		if (getParentDiagram() != null) {
 			isFlipped = flip;
 			final mxIGraphModel model = getParentDiagram().getModel();
-			mxUtils.setCellStyles(model, new Object[] {this},
+			mxUtils.setCellStyles(model, new Object[] { this },
 					ScilabGraphConstants.STYLE_FLIP, Boolean.toString(flip));
 		}
 	}
@@ -1386,7 +1386,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		if (getParentDiagram() != null) {
 			isMirrored = mirror;
 			final mxIGraphModel model = getParentDiagram().getModel();
-			mxUtils.setCellStyles(model, new Object[] {this},
+			mxUtils.setCellStyles(model, new Object[] { this },
 					ScilabGraphConstants.STYLE_MIRROR, Boolean.toString(mirror));
 		}
 	}
