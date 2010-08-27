@@ -52,14 +52,13 @@ public class testReadWrite {
 	public void putAndGetComplexDoubleTest() throws NullPointerException, InitializationException {
         double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};
         double [][]aImg={{212.2, 221.0, 423.0, 393.0},{234.2, 244.0, 441.0, 407.0}};
-        System.out.println("ici");
+
         ScilabDouble aOriginal = new ScilabDouble(a, aImg);
-        System.out.println("ici 2"+aOriginal);
+        System.out.println("aOriginal: "+aOriginal);
         sci.put("a",aOriginal);
-        System.out.println("ici 2.0");
 
         ScilabDouble aFromScilab = (ScilabDouble)sci.get("a");
-        System.out.println("ici 3"+aFromScilab);
+        System.out.println("aFromScilab: "+aFromScilab);
         assert aFromScilab.equals(aOriginal);
     }
 

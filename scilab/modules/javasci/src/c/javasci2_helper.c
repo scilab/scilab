@@ -16,6 +16,12 @@
 #include "BOOL.h"
 typedef unsigned char byte;
 
+BOOL isComplex(char *variableName) {
+    int iComplex = isNamedVarComplex(pvApiCtx, variableName);
+
+    return iComplex != 0; /* 0 = not complex */
+}
+
 sci_int_types getIntegerPrecision(char* variableName) {
     SciErr sciErr;
 
@@ -93,8 +99,71 @@ int putDouble(char* variableName, double *variable, int *nbRow, int *nbCol) {
         return -1;
     }
     return 0;
+}
 
 
+double * getDoubleComplexReal(char* variableName, int *nbRow, int *nbCol) {
+    SciErr sciErr;
+    double * matrixOfDoubleComplexReal = NULL;
+    double * matrixOfDoubleComplexImg = NULL;
+    sciErr = readNamedComplexMatrixOfDouble(pvApiCtx, variableName, nbRow, nbCol , NULL, NULL);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+    }
+
+    /* Alloc the memory */
+    matrixOfDoubleComplexReal=(double*)malloc(((*nbRow)*(*nbCol))*sizeof(double));
+    matrixOfDoubleComplexImg=(double*)malloc(((*nbRow)*(*nbCol))*sizeof(double));
+
+    /* Load the matrix */
+    sciErr = readNamedComplexMatrixOfDouble(pvApiCtx, variableName, nbRow, nbCol, matrixOfDoubleComplexReal, matrixOfDoubleComplexImg);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+    }
+
+    return matrixOfDoubleComplexReal;
+}
+
+double * getDoubleComplexImg(char* variableName, int *nbRow, int *nbCol) {
+    SciErr sciErr;
+    double * matrixOfDoubleComplexReal = NULL;
+    double * matrixOfDoubleComplexImg = NULL;
+    sciErr = readNamedComplexMatrixOfDouble(pvApiCtx, variableName, nbRow, nbCol , NULL, NULL);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+    }
+
+    /* Alloc the memory */
+    matrixOfDoubleComplexReal=(double*)malloc(((*nbRow)*(*nbCol))*sizeof(double));
+    matrixOfDoubleComplexImg=(double*)malloc(((*nbRow)*(*nbCol))*sizeof(double));
+
+    /* Load the matrix */
+    sciErr = readNamedComplexMatrixOfDouble(pvApiCtx, variableName, nbRow, nbCol, matrixOfDoubleComplexReal, matrixOfDoubleComplexImg);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+    }
+
+    return matrixOfDoubleComplexImg;
+
+}
+
+int putDoubleComplex(char* variableName, double *variable, int nbRow, int nbCol) {
+    SciErr sciErr;
+    printf("nbRow / nbCol : %d / %d\n",nbRow, nbCol);fflush(NULL);
+    printf("shift : %d\n",((nbRow)*(nbCol)));fflush(NULL);
+    double *variableImg=variable+((nbRow)*(nbCol));
+    printf("nbRow / nbCol : %d / %d\n",nbRow, nbCol);
+    sciErr = createNamedComplexMatrixOfDouble(pvApiCtx,variableName,nbRow,nbCol, variable, variableImg);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return -1;
+    }
+    return 0;
 }
 
 
@@ -436,3 +505,5 @@ int putUnsignedLong(char* variableName, unsigned long *variable, int *nbRow, int
 
 
 #endif
+
+

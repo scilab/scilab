@@ -849,12 +849,12 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_SendScil
   {
     int i = 0;
     size1 = (*jenv)->GetArrayLength(jenv, jarg1);
-    arg1 = (char **) malloc((size1+1)*sizeof(char *));
+    arg1 = (char **) MALLOC((size1+1)*sizeof(char *));
     /* make a copy of each string */
     for (i = 0; i<size1; i++) {
       jstring j_string = (jstring)(*jenv)->GetObjectArrayElement(jenv, jarg1, i);
       const char * c_string = (*jenv)->GetStringUTFChars(jenv, j_string, 0);
-      arg1[i] = malloc((strlen(c_string)+1)*sizeof(const char *));
+      arg1[i] = MALLOC((strlen(c_string)+1)*sizeof(const char *));
       strcpy(arg1[i], c_string);
       (*jenv)->ReleaseStringUTFChars(jenv, j_string, c_string);
       (*jenv)->DeleteLocalRef(jenv, j_string);
@@ -867,8 +867,8 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_SendScil
   {
     int i;
     for (i=0; i<size1-1; i++)
-    free(arg1[i]);
-    free(arg1);
+    FREE(arg1[i]);
+    FREE(arg1);
   }
   return jresult;
 }
@@ -932,6 +932,56 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_getInteg
   result = (sci_int_types)getIntegerPrecision(arg1);
   jresult = (jint)result; 
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+  return jresult;
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_isComplex(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jboolean jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  BOOL result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return 0;
+  }
+  result = isComplex(arg1);
+  {
+    if (result) jresult = JNI_TRUE   ;
+    else  jresult = JNI_FALSE   ;
+  }
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putDoubleComplex(JNIEnv *jenv, jclass jcls, jstring jarg1, jdoubleArray jarg2, jint jarg3, jint jarg4) {
+  jint jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  double *arg2 ;
+  int arg3 ;
+  int arg4 ;
+  jdouble *jarr2 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return 0;
+  }
+  if (!SWIG_JavaArrayInDouble(jenv, &jarr2, &arg2, jarg2)) return 0; 
+  arg3 = (int)jarg3; 
+  arg4 = (int)jarg4; 
+  result = (int)putDoubleComplex(arg1,arg2,arg3,arg4);
+  jresult = (jint)result; 
+  SWIG_JavaArrayArgoutDouble(jenv, jarr2, arg2, jarg2); 
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+  free(arg2); 
   return jresult;
 }
 
@@ -1134,39 +1184,6 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putBoole
     // Specific target because it was freeing the wrong argument
   }
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-  return jresult;
-}
-
-
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putDoubleComplex(JNIEnv *jenv, jclass jcls, jstring jarg1, jobjectArray jarg2, jobjectArray jarg3, jint jarg4, jint jarg5) {
-  jint jresult = 0 ;
-  char *arg1 = (char *) 0 ;
-  double *arg2 ;
-  double *arg3 ;
-  int arg4 ;
-  int arg5 ;
-  jdouble *jarr2 ;
-  jdouble *jarr3 ;
-  int result;
-  
-  (void)jenv;
-  (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
-  if (!SWIG_JavaArrayInDouble(jenv, &jarr2, &arg2, jarg2)) return 0; 
-  if (!SWIG_JavaArrayInDouble(jenv, &jarr3, &arg3, jarg3)) return 0; 
-  arg4 = (int)jarg4; 
-  arg5 = (int)jarg5; 
-  result = (int)putDoubleComplex(arg1,arg2,arg3,arg4,arg5);
-  jresult = (jint)result; 
-  SWIG_JavaArrayArgoutDouble(jenv, jarr2, arg2, jarg2);// 
-  SWIG_JavaArrayArgoutDouble(jenv, jarr3, arg3, jarg3);// 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-  free(arg2); 
-  free(arg3); 
   return jresult;
 }
 
@@ -1773,6 +1790,118 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putUnsig
     // Specific target because it was freeing the wrong argument
   }
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+  return jresult;
+}
+
+
+SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_getDoubleComplexReal(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jobjectArray jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  int *arg2 = (int *) 0 ;
+  int *arg3 = (int *) 0 ;
+  int nbRow ;
+  int nbCol ;
+  double *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  {
+    arg2 = &nbRow;
+    arg3 = &nbCol;
+    arg1 = 0;
+    if (jarg1) {
+      arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+      if (!arg1) return 0;
+    }
+  }
+  result = (double *)getDoubleComplexReal(arg1,arg2,arg3);
+  {
+    jclass doubleArr = (*jenv)->FindClass(jenv, "[D");
+    int i,j;
+    jresult = (*jenv)->NewObjectArray(jenv, nbRow,doubleArr, NULL);
+    
+    for (i=0; i < nbRow; i++) {
+      jdouble array[nbCol];
+      jdoubleArray jarray = (*jenv)->NewDoubleArray(jenv, nbCol);
+      if (jarray == NULL) {
+        printf("Could not allocate\n");fflush(NULL);
+      }
+      
+      for (j=0; j < nbCol; j++) {
+        /* Scilab is storing matrice cols by cols while Java is doing it
+                       row by row. Therefor, we need to convert it */
+        array[j]=result[nbRow*j+i];
+      }
+      
+      (*jenv)->SetDoubleArrayRegion(jenv, jarray, 0, nbCol, array);
+      
+      (*jenv)->SetObjectArrayElement(jenv, jresult, i, jarray);
+      
+      (*jenv)->DeleteLocalRef(jenv, jarray);
+      
+    }
+    
+    
+    if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+    free(result);
+    
+  }
+  return jresult;
+}
+
+
+SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_getDoubleComplexImg(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jobjectArray jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  int *arg2 = (int *) 0 ;
+  int *arg3 = (int *) 0 ;
+  int nbRow ;
+  int nbCol ;
+  double *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  {
+    arg2 = &nbRow;
+    arg3 = &nbCol;
+    arg1 = 0;
+    if (jarg1) {
+      arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+      if (!arg1) return 0;
+    }
+  }
+  result = (double *)getDoubleComplexImg(arg1,arg2,arg3);
+  {
+    jclass doubleArr = (*jenv)->FindClass(jenv, "[D");
+    int i,j;
+    jresult = (*jenv)->NewObjectArray(jenv, nbRow,doubleArr, NULL);
+    
+    for (i=0; i < nbRow; i++) {
+      jdouble array[nbCol];
+      jdoubleArray jarray = (*jenv)->NewDoubleArray(jenv, nbCol);
+      if (jarray == NULL) {
+        printf("Could not allocate\n");fflush(NULL);
+      }
+      
+      for (j=0; j < nbCol; j++) {
+        /* Scilab is storing matrice cols by cols while Java is doing it
+                       row by row. Therefor, we need to convert it */
+        array[j]=result[nbRow*j+i];
+      }
+      
+      (*jenv)->SetDoubleArrayRegion(jenv, jarray, 0, nbCol, array);
+      
+      (*jenv)->SetObjectArrayElement(jenv, jresult, i, jarray);
+      
+      (*jenv)->DeleteLocalRef(jenv, jarray);
+      
+    }
+    
+    
+    if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+    free(result);
+    
+  }
   return jresult;
 }
 

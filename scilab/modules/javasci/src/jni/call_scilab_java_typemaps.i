@@ -115,14 +115,12 @@ matching in Java */
 
 }
 %enddef
-// je fais mal les regles pour chopper les profiles 
 
-// See swig documentation for the full list:
+// See SWIG documentation for the full list:
 // http://www.swig.org/Doc1.3/Java.html#default_primitive_type_mappings
 
 // Scilab: int8
 JAVASCI_ARRAYS_IMPL(byte, jbyte, Byte, byte, "[B")     /* signed char[] */
-//JAVASCI_ARRAYS_IMPL(char, jshort, Short, unsigned char, "[C") /* unsigned char[] */
 JAVASCI_ARRAYS_IMPL(unsigned char, jshort, Short, jshort, "[C") /* unsigned char */
 
 // Scilab: int16

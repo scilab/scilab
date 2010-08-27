@@ -129,6 +129,26 @@ public class ScilabDouble implements ScilabType {
 		this.imaginaryPart = imaginaryPart;
 	}
 
+
+	/**
+	 * Get complex matrix as a serialized form
+	 * 
+	 * @return the serialized matrix with complex values
+	 */
+	public double[] getSerializedComplexMatrix() {
+        int size = this.getHeight()*this.getWidth();
+        double [] serializedComplexMatrix = new double[size*2];
+        for (int i = 0; i < this.getHeight(); i++) {
+            for (int j = 0; j < this.getWidth(); j++) {
+                serializedComplexMatrix[j * this.getHeight() + i] = realPart[i][j];
+                serializedComplexMatrix[size+j * this.getHeight() + i] = imaginaryPart[i][j];
+            }
+        }
+
+        return serializedComplexMatrix;
+	}
+
+
 	/**
 	 * @return the height of the data matrix
 	 * @see org.scilab.modules.types.scilabTypes.ScilabType#getHeight()

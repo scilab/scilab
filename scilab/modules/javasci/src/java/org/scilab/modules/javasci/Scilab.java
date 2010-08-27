@@ -197,7 +197,6 @@ public class Scilab {
      */
     public boolean close() {
 		boolean res = Call_Scilab.TerminateScilab(null);
-		System.err.println("Call_Scilab.TerminateScilab(null);"+res);
         return res;
     }
 
@@ -246,13 +245,7 @@ public class Scilab {
             System.err.println("Could not find variable type: " + e.getLocalizedMessage());
         }
 
-//        ScilabTypeEnum typeEnum = ScilabTypeEnum.swigToEnum(variableType);
         return variableType;
-        
-//        return typeEnum;
-
-//        int varType = 
-//        System.out.println(ScilabTypeEnum(varType));
 
     }
 
@@ -269,7 +262,11 @@ public class Scilab {
 		ScilabTypeEnum sciType = this.getVariableType(varname);
 		switch (sciType) {
 			case sci_matrix:
-				return new ScilabDouble(Call_Scilab.getDouble(varname));
+                if (!Call_Scilab.isComplex(varname)) {
+                    return new ScilabDouble(Call_Scilab.getDouble(varname));
+                } else {
+                    return new ScilabDouble(Call_Scilab.getDoubleComplexReal(varname), Call_Scilab.getDoubleComplexImg(varname));
+                }
 			case sci_boolean:
 				return new ScilabBoolean(Call_Scilab.getBoolean(varname));
 			case sci_ints:
@@ -290,6 +287,7 @@ public class Scilab {
 						return new ScilabInteger(Call_Scilab.getUnsignedInt(varname), true);
 					case sci_int64:
 					case sci_uint64:
+// 	throw new UnsupportedTypeException();
 						// Unspported operation
 						// will be available in Scilab 6
 						// Type = long
@@ -310,13 +308,16 @@ public class Scilab {
      * @return if the operation is successful
     */
     public boolean put(String varname, ScilabType theVariable) {
-		int err = -1;
+		int err = -999;
         if (theVariable instanceof ScilabDouble) {
             ScilabDouble sciDouble = (ScilabDouble)theVariable;
             if (sciDouble.isReal()) {
 				err = Call_Scilab.putDouble(varname, sciDouble.getRealPart());
             } else {
-				//                Call_Scilab.putDoubleComplex(varname,sciDouble.getRealPart(), sciDouble.getImaginaryPart());
+// Special case. Serialize the matrix from Scilab same way Scilab stores them
+// (columns by columns)
+// plus the complex values at the second part of the array
+                err = Call_Scilab.putDoubleComplex(varname,sciDouble.getSerializedComplexMatrix(), sciDouble.getHeight(), sciDouble.getWidth());
             }
 		}
 		if (theVariable instanceof ScilabInteger) {
@@ -355,11 +356,16 @@ public class Scilab {
         }
 		//TODO: a remplacer par la bonne exception return new UnsupportedTypeException();
 		//		throw new UnsupportedTypeException();
+        if (err == -999) {
+                // Exception a lancer
 
-		if (err != 0) {
-			// Exception a lancer
-			System.err.println("put failed");
-		}
+            System.err.println("Type not managed: " + theVariable.getClass());
+        } else {
+            if (err != 0) {
+                // Exception a lancer
+                System.err.println("put failed");
+            }
+        }
 
 		return true;
     }

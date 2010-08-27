@@ -57,6 +57,14 @@ public class Call_Scilab {
     return ScilabIntegerTypeEnum.swigToEnum(Call_ScilabJNI.getIntegerPrecision(varname));
   }
 
+  public static boolean isComplex(String varname) {
+    return Call_ScilabJNI.isComplex(varname);
+  }
+
+  public static int putDoubleComplex(String variableName, double[] variable, int nbRow, int nbCol) {
+    return Call_ScilabJNI.putDoubleComplex(variableName, variable, nbRow, nbCol);
+  }
+
   public static double[][] getDouble(String variableName) {
     return Call_ScilabJNI.getDouble(variableName);
   }
@@ -71,10 +79,6 @@ public class Call_Scilab {
 
   public static int putBoolean(String variableName, boolean[][] variable) {
     return Call_ScilabJNI.putBoolean(variableName, variable);
-  }
-
-  public static int putDoubleComplex(String variableName, double[][] variable, double[][] variableImg, int nbRow, int nbCol) {
-    return Call_ScilabJNI.putDoubleComplex(variableName, variable, variableImg, nbRow, nbCol);
   }
 
   public static byte[][] getByte(String variableName) {
@@ -123,6 +127,14 @@ public class Call_Scilab {
 
   public static int putUnsignedInt(String variableName, int[][] variable) {
     return Call_ScilabJNI.putUnsignedInt(variableName, variable);
+  }
+
+  public static double[][] getDoubleComplexReal(String variableName) {
+    return Call_ScilabJNI.getDoubleComplexReal(variableName);
+  }
+
+  public static double[][] getDoubleComplexImg(String variableName) {
+    return Call_ScilabJNI.getDoubleComplexImg(variableName);
   }
 
 }

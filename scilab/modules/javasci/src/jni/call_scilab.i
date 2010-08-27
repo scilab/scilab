@@ -92,8 +92,7 @@ public class";
 #endif
 
 
-//BOOL StartScilab(char *SCIpath, char *ScilabStartup, int *Stacksize);
-int Call_ScilabOpen (char* SCIpath, char *ScilabStartup, int *Stacksize);
+int Call_ScilabOpen(char* SCIpath, char *ScilabStartup, int *Stacksize);
 
 BOOL TerminateScilab(char *ScilabQuit);
 
@@ -105,28 +104,28 @@ int ScilabHaveAGraph(void);
 
 int GetLastErrorCode(void);
 
-//int getVariableType(char *varname);
-
 sci_types getVariableType(char *varname);
 
 sci_int_types getIntegerPrecision(char* varname);
 
-//int putInteger(char *varname, int variable[][]);
+BOOL isComplex(char* varname);
 
-//int putInteger(char * variableName, int **variable, int nbRow, int nbCol);
+%include "arrays_java.i"
+int putDoubleComplex(char * variableName, double variable[], int nbRow, int nbCol);
+
 
 // This position matters. It will apply only to the following lines
 %include "call_scilab_java_typemaps.i"
 
-double * getDouble(char *variableName, int *nbRow, int *nbCol);
 
+// double (default Scilab type)
+double * getDouble(char *variableName, int *nbRow, int *nbCol);
 int putDouble(char * variableName, double variable[], int nbRow, int nbCol);
 
+
+// boolean (%t / %f)
 BOOL * getBoolean(char *variableName, int *nbRow, int *nbCol);
-
 int putBoolean(char * variableName, BOOL variable[], int nbRow, int nbCol);
-
-int putDoubleComplex(char * variableName, double variable[], double variableImg[], int nbRow, int nbCol);
 
 %inline %{
 typedef unsigned char byte;
@@ -161,3 +160,8 @@ int putLong(char * variableName, long variable[], int nbRow, int nbCol);
 unsigned long * getUnsignedLong(char *variableName, int *nbRow, int *nbCol);
 int putUnsignedLong(char * variableName, unsigned long variable[], int nbRow, int nbCol);
 #endif
+
+%include "call_scilab_java_typemaps_complex.i"
+// Complex
+double * getDoubleComplexReal(char *variableName, int *nbRow, int *nbCol);
+double * getDoubleComplexImg(char * variableName, int *nbRow, int *nbCol);
