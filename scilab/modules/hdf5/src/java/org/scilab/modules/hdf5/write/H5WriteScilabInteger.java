@@ -62,11 +62,11 @@ public class H5WriteScilabInteger {
 
 	public static Byte[] getDataToWrite8(ScilabInteger data){
 		Byte[] dataToWrite = new Byte[data.getHeight() * data.getWidth()];
-		Long[][] LongData = data.getData();
+		byte[][] byteData = data.getDataAsByte();
 
 		for(int i = 0 ; i < data.getHeight() ; i++) {
 			for(int j = 0 ; j < data.getWidth() ; j++) {
-				dataToWrite[i + data.getHeight() * j] = LongData[i][j].byteValue();
+				dataToWrite[i + data.getHeight() * j] = byteData[i][j];
 			}
 		}
 		return dataToWrite;
@@ -74,11 +74,11 @@ public class H5WriteScilabInteger {
 
 	public static Short[] getDataToWrite16(ScilabInteger data){
 		Short[] dataToWrite = new Short[data.getHeight() * data.getWidth()];
-		Long[][] LongData = data.getData();
+		short[][] shortData = data.getDataAsShort();
 
 		for(int i = 0 ; i < data.getHeight() ; i++) {
 			for(int j = 0 ; j < data.getWidth() ; j++) {
-				dataToWrite[i + data.getHeight() * j] = LongData[i][j].shortValue();
+				dataToWrite[i + data.getHeight() * j] = shortData[i][j];
 			}
 		}
 		return dataToWrite;
@@ -86,11 +86,11 @@ public class H5WriteScilabInteger {
 
 	public static Integer[] getDataToWrite32(ScilabInteger data){
 		Integer[] dataToWrite = new Integer[data.getHeight() * data.getWidth()];
-		Long[][] LongData = data.getData();
+		int[][] intData = data.getDataAsInt();
 
 		for(int i = 0 ; i < data.getHeight() ; i++) {
 			for(int j = 0 ; j < data.getWidth() ; j++) {
-				dataToWrite[i + data.getHeight() * j] = LongData[i][j].intValue();
+				dataToWrite[i + data.getHeight() * j] = intData[i][j];
 			}
 		}
 		return dataToWrite;
@@ -98,11 +98,11 @@ public class H5WriteScilabInteger {
 
 	public static Long[] getDataToWrite64(ScilabInteger data){
 		Long[] dataToWrite = new Long[data.getHeight() * data.getWidth()];
-		Long[][] LongData = data.getData();
+		long[][] longData = data.getDataAsLong();
 
 		for(int i = 0 ; i < data.getHeight() ; i++) {
 			for(int j = 0 ; j < data.getWidth() ; j++) {
-				dataToWrite[i + data.getHeight() * j] = LongData[i][j].longValue();
+				dataToWrite[i + data.getHeight() * j] = longData[i][j];
 			}
 		}
 		return dataToWrite;

@@ -88,7 +88,7 @@ public class testEquals {
 		assert aMatrix.getDataAsByte().length == a.length;
 		assert aMatrix.getDataAsByte()[0].length == a[0].length;
 		byte [][]d = aMatrix.getDataAsByte();
-		Long [][]d2 = aMatrix.getData();
+		long [][]d2 = aMatrix.getData();
 		assert d[0][0] == 32;
 		assert d2[0][0] == 32;
 		assert Arrays.deepEquals(a,d);
@@ -115,7 +115,7 @@ public class testEquals {
 		assert aMatrix.getDataAsShort().length == a.length;
 		assert aMatrix.getDataAsShort()[0].length == a[0].length;
 		short [][]d = aMatrix.getDataAsShort();
-		Long [][]d2 = aMatrix.getData();
+		long [][]d2 = aMatrix.getData();
 		assert d[0][0] == 32;
 		assert d2[0][0] == 32;
 		assert Arrays.deepEquals(a,d);
@@ -141,7 +141,7 @@ public class testEquals {
 		assert aMatrix.getDataAsInt().length == a.length;
 		assert aMatrix.getDataAsInt()[0].length == a[0].length;
 		int [][]d = aMatrix.getDataAsInt();
-		Long [][]d2 = aMatrix.getData();
+		long [][]d2 = aMatrix.getData();
 		assert d[0][0] == 32;
 		assert d2[0][0] == 32;
 		assert Arrays.deepEquals(a,d);
@@ -167,7 +167,7 @@ public class testEquals {
 		assert aMatrix.getDataAsLong().length == a.length;
 		assert aMatrix.getDataAsLong()[0].length == a[0].length;
 		long [][]d = aMatrix.getDataAsLong();
-		Long [][]d2 = aMatrix.getData();
+		long [][]d2 = aMatrix.getData();
 		assert d[0][0] == 32;
 		assert d2[0][0] == 32;
 		assert Arrays.deepEquals(a,d);
