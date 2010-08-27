@@ -61,7 +61,7 @@ public class MathMLObjectGL extends SpecialTextObjectGL {
     public MathMLObjectGL(String content, Color color, float fontSize) throws SpecialTextException {
 	        this.parameters = new LayoutContextImpl(LayoutContextImpl.getDefaultLayoutContext());
 		this.parameters.setParameter(Parameter.MATHCOLOR, color);
-		this.parameters.setParameter(Parameter.MATHSIZE, fontSize + 4);
+		this.parameters.setParameter(Parameter.MATHSIZE, fontSize);
 		this.jev = new JEuclidView((Node) contentToDocument(MMLBEGIN + content + MMLEND), parameters, TEMPGRAPHIC); 
 		this.isColored = false;
 		makeImage();
@@ -112,8 +112,8 @@ public class MathMLObjectGL extends SpecialTextObjectGL {
      * @return true if the font size changed
      */
     public boolean setFontSize(float fontSize) {
-	        if ((Float) parameters.getParameter(Parameter.MATHSIZE) != fontSize + 4) {
-		    parameters.setParameter(Parameter.MATHSIZE, fontSize + 4);
+	        if ((Float) parameters.getParameter(Parameter.MATHSIZE) != fontSize) {
+		    parameters.setParameter(Parameter.MATHSIZE, fontSize);
 		    update();
 		    return true;
 		}

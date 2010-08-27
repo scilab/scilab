@@ -20,7 +20,7 @@ p.foreground = 20;
 
 xtitle("$\textstyle\mbox{Graph of }f:t\in[-2;2]\longmapsto\frac2{\sqrt\pi}\mathrm{e}^{-t^2}\in\mathbb{R}$","$t$")
 
-xstring(-0.95,0.2,"$\fcolorbox{black}{Tan}{\frac2{\sqrt\pi}\int_{-1}^{1}\mathrm{e}^{-t^2}\,\mathrm{d}t\approx"+string(erf(1)-erf(-1))+"}$");
+xstring(-0.55,0.2,"$\fcolorbox{black}{Tan}{\frac2{\sqrt\pi}\int_{-1}^{1}\mathrm{e}^{-t^2}\,\mathrm{d}t\approx"+string(erf(1)-erf(-1))+"}$");
 
 xstring(1.8,0.04,"$\mathscr{C}_f$");
 // DEMO END
