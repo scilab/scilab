@@ -201,6 +201,9 @@ Bug Fixes:
 * bug 6504 fixed - Due to a bug in Java, the <br> tag wasn't copied as a CR
                    in a messagebox.
 
+* bug 6938 fixed - frexp returned a wrong message error with a complex as
+                   input argument.
+
 * bug 7208 fixed - The help for atomsGetLoaded() gave the wrong shape
                    for the loaded matrix.
 
