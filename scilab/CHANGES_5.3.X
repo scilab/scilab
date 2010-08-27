@@ -19,6 +19,9 @@ to fix these issues.
 * bug 5708 fixed - A problem of focus between the console and the editor
                    happened when SciNotes was started from the console.
 
+* bug 7369 fixed - fun2string  produced incorrect code for expressions in 
+                   parentheses exponentiation.
+
 * bug 7625 fixed - Some selection issues were appearing from time to time when
                    Scilab was losing the focus.
 
