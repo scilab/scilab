@@ -32,7 +32,6 @@ import org.scilab.modules.gui.utils.ScilabAlignment;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.utils.ScilabSpecialTextUtilities;
 
 /**
  * Swing implementation for Scilab Menus in GUIs
@@ -57,16 +56,6 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
 	public SwingScilabMenu() {
 		super();
 		this.setFocusable(false);
-	}
-
-        /**
-	 * @param text to use for the menu, if it's enclosed between '$' then it's interpreted as
-	 * a LaTeX string, in this case the setIcon method of this object is used.
-	 */ 
-        public void setText(String text) {
-	    if (!ScilabSpecialTextUtilities.setText(this, text)) {
-		super.setText(text);
-	    }
 	}
 	
 	/**

@@ -2,12 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent Couvert
  * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
- * Copyright (C) 2010 - Calixte DENIZET
- *
+ * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at
+ * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -33,7 +32,6 @@ import org.scilab.modules.gui.utils.ScilabAlignment;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.utils.ScilabSpecialTextUtilities;
 
 /**
  * Swing implementation for Scilab PushButtons in GUIs
@@ -41,9 +39,9 @@ import org.scilab.modules.gui.utils.ScilabSpecialTextUtilities;
  * @author Marouane BEN JELLOUL
  */
 public class SwingScilabPushButton extends JButton implements SimplePushButton {
-
+	
 	private static final long serialVersionUID = 2277539556048935959L;
-
+	
 	private CallBack callback;
 
 	/**
@@ -52,7 +50,7 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	public SwingScilabPushButton() {
 		super();
 		setFocusable(false);
-
+		
 		/* Avoid the L&F to erase user background settings */
 		setContentAreaFilled(false);
 		setOpaque(true);
@@ -61,22 +59,12 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 			public void propertyChange(PropertyChangeEvent evt) {
 				final Icon newIcon = (Icon) evt.getNewValue();
 				final boolean iconEnable = newIcon != null;
-
+				
 				setContentAreaFilled(iconEnable);
 				setOpaque(!iconEnable);
 			}
 		});
 	}
-
-		/**
-		 * @param text to use for the menu, if it's enclosed between '$' then it's interpreted as
-		 * a LaTeX string, in this case the setIcon method of this object is used.
-		 */
-		public void setText(String text) {
-			if (!ScilabSpecialTextUtilities.setText(this, text)) {
-				super.setText(text);
-			}
-		}
 
 	/**
 	 * Draws a swing Scilab PushButton
@@ -107,7 +95,7 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	public Position getPosition() {
 		return PositionConverter.javaToScilab(getLocation(), getSize(), getParent());
 	}
-
+	
 	/**
 	 * Sets the dimensions (width and height) of a swing Scilab PushButton
 	 * @param newSize the dimensions to set to the PushButton
@@ -129,7 +117,7 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 		Position javaPosition = PositionConverter.scilabToJava(newPosition, getDims(), getParent());
 		setLocation(javaPosition.getX(), javaPosition.getY());
 	}
-
+	
 	/**
 	 * Sets the icon of a PushButton
 	 * @param filename the path to the icon image to set to the PushButton
@@ -138,7 +126,7 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	public void setIcon(String filename) {
 		super.setIcon(new ImageIcon(filename));
 	}
-
+	
 	/**
 	 * Add a callback to the pushbutton
 	 * @param callback the callback to set.
@@ -159,7 +147,7 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	@Override
 	public void setEnabled(boolean status) {
 		super.setEnabled(status);
-		/* (Des)Activate the callback */
+		/* (Des)Activate the callback */ 
 		if (callback != null) {
 			if (status) {
 				removeActionListener(callback); /* To be sure the callback is not added two times */
@@ -209,7 +197,7 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 		/* Unimplemented for pushbuttons */
 		throw new UnsupportedOperationException();
 	}
-
+	
 	/**
 	 * Set the horizontal alignment for the PushButton text
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)
@@ -236,7 +224,7 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	public void setRelief(String reliefType) {
 		setBorder(ScilabRelief.getBorderFromRelief(reliefType));
 	}
-
+	
 	/**
 	 * Destroy the PushButton
 	 */
@@ -244,7 +232,7 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	public void destroy() {
 		ScilabSwingUtilities.removeFromParent(this);
 	}
-
+	
 	/**
 	 * Setter for InfoBar
 	 * @param infoBarToAdd the InfoBar associated to the PushButton.
@@ -266,3 +254,4 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	}
 
 }
+
