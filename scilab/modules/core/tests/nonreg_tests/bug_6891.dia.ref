@@ -6,6 +6,10 @@
 // =============================================================================
 // <-- Non-regression test for bug 6891 -->
 //
+// <-- JVM NOT MANDATORY -->
+//
+// <-- ENGLISH IMPOSED -->
+//
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=6891
 //
@@ -14,7 +18,7 @@
 whos -name %modalWarning
 Name                     Type           Size           Bytes        
  
-%modalWarning            *boolean       1 by 1         24           
+%modalWarning            boolean*       1 by 1         24           
 whos -name corel
 Name                     Type           Size           Bytes        
  
@@ -22,6 +26,6 @@ corelib                  library                       688
 whos -type polynomial
 Name                     Type           Size           Bytes        
  
-%z                       polynomial     1 by 1         56           
-%s                       polynomial     1 by 1         56           
 $                        polynomial     1 by 1         56           
+%s                       polynomial     1 by 1         56           
+%z                       polynomial     1 by 1         56           
