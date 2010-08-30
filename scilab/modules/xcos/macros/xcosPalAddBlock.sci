@@ -168,7 +168,7 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
             style = formattedStyle;
         elseif typeof(style) == "string" then
             if isfile(style) then
-                style = fullpath(pathconvert(style));
+                style = fullpath(pathconvert(style, %f));
                 style = "noLabel=1;image=file:" + style + ";";
 //          else
 //              assume a well formatted string, do nothing
