@@ -1,14 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2009 - DIGITEO - Allan CORNET
+// Copyright (C) 2008 - INRIA - Pierre MARECHAL <pierre.marechal@scilab.org>
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- ENGLISH IMPOSED -->
 // <-- NO CHECK ERROR OUTPUT -->
 // <-- NEED JVM -->
-// xmltochm
-if getos() == 'Windows' then 
+// xmltopdf
 // TEST 1 (french help and english help are complete)
 // =============================================================================
 my_module_path = pathconvert(SCI+"/modules/helptools/examples/example_1",%f,%f);
@@ -16,15 +15,15 @@ my_module_path = pathconvert(SCI+"/modules/helptools/examples/example_1",%f,%f);
 setlanguage("fr_FR");
 my_french_help_dir    =  my_module_path+"/help/fr_FR";
 my_french_help_title  =  "TEST 1 [fr_FR]";
-xmltochm(my_french_help_dir,my_french_help_title,"fr_FR");
+xmltopdf(my_french_help_dir,my_french_help_title,"fr_FR");
 
 Construit le document maître:
 	SCI\modules\helptools\examples\example_1\help\fr_FR
 
-Construction du fichier manuel [chm] dans SCI\modules\helptools\examples\example_1\help\fr_FR. (Veuillez patienter ... cela peut prendre un certain temps)
-chm_info =  fileinfo(my_module_path+"/chm/scilab_fr_FR_help.chm");
-if chm_info == [] then bugmes();quit;end       // file existence
-if chm_info(1) < 5000 then bugmes();quit;end   // file size
+Construction du fichier manuel [pdf] dans SCI\modules\helptools\examples\example_1\help\fr_FR. (Veuillez patienter ... cela peut prendre un certain temps)
+pdf_info =  fileinfo(my_module_path+"/pdf/scilab_fr_FR_help.pdf");
+if pdf_info == [] then bugmes();quit;end       // file existence
+if pdf_info(1) < 5000 then bugmes();quit;end   // file size
 clean_help(my_french_help_dir);
 -- Suppression des fichiers d'aide --
 ...
@@ -32,15 +31,15 @@ clean_help(my_french_help_dir);
 setlanguage("en_US");
 my_english_help_dir    =  my_module_path+"/help/en_US";
 my_english_help_title  =  "TEST 1 [en_US]";
-xmltochm(my_english_help_dir,my_english_help_title,'en_US');
+xmltopdf(my_english_help_dir,my_english_help_title,'en_US');
 
 Building the master document:
 	SCI\modules\helptools\examples\example_1\help\en_US
 
-Building the manual file [chm] in SCI\modules\helptools\examples\example_1\help\en_US. (Please wait building ... this can take a while)
-chm_info =  fileinfo(my_module_path+"/chm/scilab_en_US_help.chm");
-if chm_info == [] then bugmes();quit;end       // file existence
-if chm_info(1) < 5000 then bugmes();quit;end   // file size
+Building the manual file [pdf] in SCI\modules\helptools\examples\example_1\help\en_US. (Please wait building ... this can take a while)
+pdf_info =  fileinfo(my_module_path+"/pdf/scilab_en_US_help.pdf");
+if pdf_info == [] then bugmes();quit;end       // file existence
+if pdf_info(1) < 5000 then bugmes();quit;end   // file size
 clean_help(my_english_help_dir);
 -- Deleting help files --
 ...
@@ -52,15 +51,15 @@ my_module_path = pathconvert(SCI+"/modules/helptools/examples/example_2",%f,%f);
 setlanguage("fr_FR");
 my_french_help_dir    =  my_module_path+"/help/fr_FR";
 my_french_help_title  =  "TEST 2 [fr_FR]";
-xmltochm(my_french_help_dir,my_french_help_title,'fr_FR');
+xmltopdf(my_french_help_dir,my_french_help_title,'fr_FR');
 
 Construit le document maître:
 	SCI\modules\helptools\examples\example_2\help\fr_FR
 
-Construction du fichier manuel [chm] dans SCI\modules\helptools\examples\example_2\help\fr_FR. (Veuillez patienter ... cela peut prendre un certain temps)
-chm_info =  fileinfo(my_module_path+"/chm/scilab_fr_FR_help.chm");
-if chm_info == [] then bugmes();quit;end       // file existence
-if chm_info(1) < 5000 then bugmes();quit;end   // file size
+Construction du fichier manuel [pdf] dans SCI\modules\helptools\examples\example_2\help\fr_FR. (Veuillez patienter ... cela peut prendre un certain temps)
+pdf_info =  fileinfo(my_module_path+"/pdf/scilab_fr_FR_help.pdf");
+if pdf_info == [] then bugmes();quit;end       // file existence
+if pdf_info(1) < 5000 then bugmes();quit;end   // file size
 clean_help(my_french_help_dir);
 -- Suppression des fichiers d'aide --
 ...
@@ -68,15 +67,15 @@ clean_help(my_french_help_dir);
 setlanguage("en_US");
 my_english_help_dir    =  my_module_path+"/help/en_US";
 my_english_help_title  =  "TEST 2 [en_US]";
-xmltochm(my_english_help_dir,my_english_help_title,'en_US');
+xmltopdf(my_english_help_dir,my_english_help_title,'en_US');
 
 Building the master document:
 	SCI\modules\helptools\examples\example_2\help\en_US
 
-Building the manual file [chm] in SCI\modules\helptools\examples\example_2\help\en_US. (Please wait building ... this can take a while)
-chm_info =  fileinfo(my_module_path+"/chm/scilab_en_US_help.chm");
-if chm_info == [] then bugmes();quit;end       // file existence
-if chm_info(1) < 5000 then bugmes();quit;end   // file size
+Building the manual file [pdf] in SCI\modules\helptools\examples\example_2\help\en_US. (Please wait building ... this can take a while)
+pdf_info =  fileinfo(my_module_path+"/pdf/scilab_en_US_help.pdf");
+if pdf_info == [] then bugmes();quit;end       // file existence
+if pdf_info(1) < 5000 then bugmes();quit;end   // file size
 clean_help(my_english_help_dir);
 -- Deleting help files --
 ...
@@ -88,15 +87,15 @@ my_module_path = pathconvert(SCI+"/modules/helptools/examples/example_3",%f,%f);
 setlanguage("fr_FR");
 my_french_help_dir    =  my_module_path+"/help/fr_FR";
 my_french_help_title  =  "TEST 3 [fr_FR]";
-xmltochm(my_french_help_dir,my_french_help_title,"fr_FR");
+xmltopdf(my_french_help_dir,my_french_help_title,"fr_FR");
 
 Construit le document maître:
 	SCI\modules\helptools\examples\example_3\help\fr_FR
 
-Construction du fichier manuel [chm] dans SCI\modules\helptools\examples\example_3\help\fr_FR. (Veuillez patienter ... cela peut prendre un certain temps)
-chm_info =  fileinfo(my_module_path+"/chm/scilab_fr_FR_help.chm");
-if chm_info == [] then bugmes();quit;end       // file existence
-if chm_info(1) < 5000 then bugmes();quit;end   // file size
+Construction du fichier manuel [pdf] dans SCI\modules\helptools\examples\example_3\help\fr_FR. (Veuillez patienter ... cela peut prendre un certain temps)
+pdf_info =  fileinfo(my_module_path+"/pdf/scilab_fr_FR_help.pdf");
+if pdf_info == [] then bugmes();quit;end       // file existence
+if pdf_info(1) < 5000 then bugmes();quit;end   // file size
 clean_help(my_french_help_dir);
 -- Suppression des fichiers d'aide --
 ...
@@ -104,16 +103,15 @@ clean_help(my_french_help_dir);
 setlanguage("en_US");
 my_english_help_dir    =  my_module_path+"/help/en_US";
 my_english_help_title  =  "TEST 3 [en_US]";
-xmltochm(my_english_help_dir,my_english_help_title,"en_US","fr_FR");
+xmltopdf(my_english_help_dir,my_english_help_title,"en_US","fr_FR");
 
 Building the master document:
 	SCI\modules\helptools\examples\example_3\help\en_US
 
-Building the manual file [chm] in SCI\modules\helptools\examples\example_3\help\en_US. (Please wait building ... this can take a while)
-chm_info =  fileinfo(my_module_path+"/chm/scilab_en_US_help.chm");
-if chm_info == [] then bugmes();quit;end       // file existence
-if chm_info(1) < 5000 then bugmes();quit;end   // file size
+Building the manual file [pdf] in SCI\modules\helptools\examples\example_3\help\en_US. (Please wait building ... this can take a while)
+pdf_info =  fileinfo(my_module_path+"/pdf/scilab_en_US_help.pdf");
+if pdf_info == [] then bugmes();quit;end       // file existence
+if pdf_info(1) < 5000 then bugmes();quit;end   // file size
 clean_help(my_english_help_dir);
 -- Deleting help files --
 ...
-end // if getos() == 'Windows'
