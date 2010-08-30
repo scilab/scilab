@@ -560,6 +560,8 @@ Bug Fixes:
 
 * bug 6639 fixed - "hypermat"  did not remove the higher dimensions equal to 1.
 
+* bug 6741 fixed - Some source files were useless.
+
 * bug 6849 fixed - add_profiling badly handled "else" which made plotprofile
                    function produced an incorrect report.
 
