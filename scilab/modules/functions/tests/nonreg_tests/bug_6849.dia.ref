@@ -4,7 +4,11 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+//
 // <-- JVM NOT MANDATORY -->
+//
+// <-- ENGLISH IMPOSED -->
+//
 // <-- Non-regression test for bug 6849 -->
 //
 // <-- Bugzilla URL -->
@@ -21,7 +25,7 @@ function t
   end
 endfunction
 add_profiling('t')
-Attention: redéfinition de la fonction: t                       . Utilisez funcprot(0) pour éviter ce message
+Warning : redefining function: t                       . Use funcprot(0) to avoid this message
 
 ref=[0,0,0;0,0,0;0,0,1;0,0,0;0,0,1;0,0,0;0,0,0];
 if or(profile(t)<>ref ) then bugmes();quit;end
@@ -35,7 +39,7 @@ function t1
   end
 endfunction
 add_profiling('t1')
-Attention: redéfinition de la fonction: t1                      . Utilisez funcprot(0) pour éviter ce message
+Warning : redefining function: t1                      . Use funcprot(0) to avoid this message
 
 ref=[0,0,0;0,0,0;0,0,1;0,0,0;0,0,1;0,0,0;0,0,1;0,0,0;0,0,0];
 if or(profile(t1)<>ref) then bugmes();quit;end
@@ -47,7 +51,7 @@ function t2
   end      
 endfunction
 add_profiling('t2')
-Attention: redéfinition de la fonction: t2                      . Utilisez funcprot(0) pour éviter ce message
+Warning : redefining function: t2                      . Use funcprot(0) to avoid this message
 
 ref=[0,0,0;0,0,0;0,0,1;0,0,0;0,0,1;0,0,0;0,0,0]; 
 if or(profile(t2)<>ref ) then bugmes();quit;end
@@ -60,7 +64,7 @@ function t3
   end      
 endfunction
 add_profiling('t3')
-Attention: redéfinition de la fonction: t3                      . Utilisez funcprot(0) pour éviter ce message
+Warning : redefining function: t3                      . Use funcprot(0) to avoid this message
 
 ref=[0,0,0;0,0,1;0,0,0;0,0,1;0,0,0;0,0,1;0,0,0;0,0,0];
 if or(profile(t3)<>ref ) then bugmes();quit;end
@@ -75,7 +79,7 @@ function t4
   end      
 endfunction
 add_profiling('t4')
-Attention: redéfinition de la fonction: t4                      . Utilisez funcprot(0) pour éviter ce message
+Warning : redefining function: t4                      . Use funcprot(0) to avoid this message
 
 ref=[0,0,0;0,0,1;0,0,0;0,0,1;0,0,0;0,0,1;0,0,0;0,0,1;0,0,0;0,0,0];
 if or(profile(t4)<>ref ) then bugmes();quit;end
