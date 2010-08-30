@@ -34,6 +34,7 @@
 #include "loadTextRenderingAPI.h"
 
 #include "setGraphicObjectProperty.h"
+#include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/

@@ -57,7 +57,6 @@ int get_sub_tics_property( sciPointObj * pobj )
   else if (strcmp(type, __GO_AXES__) == 0)
   {
     double sub_ticks[3];
-    int i;
     int* subTicks;
     int* view;
 

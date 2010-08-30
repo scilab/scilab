@@ -26,6 +26,9 @@
 #include "localization.h"
 #include "SetPropertyStatus.h"
 
+// sciGetNumColors prototype
+#include "GetProperty.h"
+
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 

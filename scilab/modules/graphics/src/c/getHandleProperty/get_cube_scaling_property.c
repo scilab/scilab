@@ -25,6 +25,7 @@
 #include "localization.h"
 
 #include "setGraphicObjectProperty.h"
+#include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/

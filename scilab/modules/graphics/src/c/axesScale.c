@@ -35,6 +35,7 @@
 #include "HandleManagement.h"
 
 #include "setGraphicObjectProperty.h"
+#include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------------*/

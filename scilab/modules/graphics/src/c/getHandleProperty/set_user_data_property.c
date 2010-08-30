@@ -29,7 +29,7 @@
 #include "MALLOC.h"
 #include "BasicAlgos.h"
 
-#include "getGraphicObjectProperty.h"
+#include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
