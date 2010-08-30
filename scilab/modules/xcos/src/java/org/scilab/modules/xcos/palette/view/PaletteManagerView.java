@@ -12,6 +12,7 @@
 
 package org.scilab.modules.xcos.palette.view;
 
+import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.RepaintManager;
@@ -56,6 +57,8 @@ public class PaletteManagerView extends ScilabTab {
 	 */
 	public PaletteManagerView(PaletteManager controller) {
 		super(XcosMessages.PALETTE_BROWSER);
+		((SwingScilabTab) getAsSimpleTab()).setWindowIcon(new ImageIcon(System.getenv("SCI")
+										+ "/modules/gui/images/icons/32x32/apps/utilities-system-monitor.png").getImage());
 		this.controller = controller;
 		initComponents();
 	}

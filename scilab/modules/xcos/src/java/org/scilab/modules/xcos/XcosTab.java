@@ -12,11 +12,14 @@
 
 package org.scilab.modules.xcos;
 
+import java.awt.Image;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
+
+import javax.swing.ImageIcon;
 
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabGraph;
@@ -114,6 +117,7 @@ import com.mxgraph.swing.mxGraphOutline;
  * This class implement specific operation of an Xcos Tab.
  */
 public class XcosTab extends ScilabTab {
+    
     static {
         DefaultAction.addIconPath(
             System.getenv("SCI") + "/modules/xcos/images/icons/");
@@ -161,6 +165,9 @@ public class XcosTab extends ScilabTab {
 		diagram.setParentTab(this);
 		
 		initComponents(diagram);
+		
+		((SwingScilabTab) getAsSimpleTab()).setWindowIcon(new ImageIcon(System.getenv("SCI")
+										+ "/modules/gui/images/icons/32x32/apps/utilities-system-monitor.png").getImage());
 		
 		// No SimpleTab.addMember(ScilabComponent ...) so perform a raw association.
 		((SwingScilabTab) getAsSimpleTab()).setContentPane(diagram.getAsComponent());

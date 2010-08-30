@@ -325,7 +325,10 @@ images/icons/undock_default.png \
 images/icons/utilities-system-monitor.png \
 images/icons/window-new.png \
 images/icons/zoom-area-cursor.png \
-images/icons/zoom-area.png
+images/icons/zoom-area.png \
+images/icons/32x32/apps/accessories-text-editor.png \
+images/icons/32x32/apps/utilities-system-monitor.png \
+images/icons/graphic-window.png
 
 if GUI
 USEANT=1

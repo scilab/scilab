@@ -16,6 +16,7 @@ package org.scilab.modules.scinotes;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
@@ -40,6 +41,7 @@ import java.util.Iterator;
 import java.util.UUID;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -161,6 +163,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
      */
     public SciNotes(Window parentWindow) {
         super(SCINOTES);
+	setWindowIcon(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/32x32/apps/accessories-text-editor.png").getImage());
         scinotesList.add(this);
         this.parentWindow = parentWindow;
         this.uuid = UUID.randomUUID();

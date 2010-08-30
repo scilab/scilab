@@ -11,6 +11,10 @@ to fix these issues.
 * bugs 1589, 3994 fixed - On Startup, Scilab console did not have the focus.
                    The user had to click in the main window to gain focus.
 
+* bug 3614 fixed - Sub-applications could not have their own icon. This was
+                   causing some issues with the "Alt-Tab" features under some
+                   operating systems.
+
 * bug 4247 fixed - The command xclick didn't work correctly.
 
 * bug 4423 fixed - It was not possible to navigate in Scilab's menu with arrow
@@ -209,6 +213,8 @@ Scilab/LabView Gateway:
 
 Bug Fixes:
 ==========
+
+* bug 4247 fixed - The command xclick did not work correctly.
 
 * bug 5697 fixed - In Help Browser, external hyperlinks were opened in it rather
                    than in Web Browser.
