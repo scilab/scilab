@@ -44,6 +44,8 @@ Graphics:
 Bug Fixes:
 ==========
 
+* bug 6686 fixed - The automatic sub-ticking gave wrong results.
+
 * bug 7924 fixed - pathconvert failed conversion to cygwin format.
 
 * bug 7943 fixed - On a GNU/Linux binary version, it was not possible to use
@@ -59,7 +61,6 @@ Bug Fixes:
                    information.
 
 * bug 7981 fixed - copyfile failed with localized filenames on linux.
-
 
 
          Changes between version 5.3.0-beta-2 and 5.3.0-beta-3 of Scilab
