@@ -257,7 +257,7 @@ Bug Fixes:
                    or F2C compiler on Windows.
 
 * bug 7611 fixed - The cross to close a subwindow and the little arrow to undock
-                   was not visible even if the subwindow was docked.
+                   were not visible even if the subwindow was docked.
 
 * bug 7615 fixed - When opening a SuperBlock, a non-blocking exception could be
                    thrown.
