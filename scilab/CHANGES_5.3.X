@@ -30,6 +30,9 @@ Removed functions (previously declared as obsolete):
 * 'oldbesseli', 'oldbesselj', 'oldbesselk' and 'oldbessely' removed.
   Please use 'besseli', 'besselj', 'besselk' and 'bessely' instead.
 
+* ilib_for_link, ilib_build will not accept files with ".o" or ".obj" extensions
+  for source files in Scilab 5.4.0.
+
 New functions
 =============
 
@@ -997,6 +1000,9 @@ Bug Fixes:
                    the cross button.
 
 * bug 7897 fixed - configure failed under FreeBSD (bashim)
+
+* bug 7907 fixed -  ilib_build, ilib_for_link, ... did not check 'files' input
+                    argument.
 
 * bug 7908 fixed - The number of values modified by scicos_getvalues could not
                    by more than 20. This value has been updated to 30

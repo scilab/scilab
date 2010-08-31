@@ -60,8 +60,7 @@
         <term>files</term>
 
         <listitem>
-          <para>string matrix giving source (from Scilab 5.0) or object files
-          needed for shared library creation</para>
+          <para>string matrix giving source files needed for shared library creation. Since Scilab 5.3.1, object files are deprecated.</para>
         </listitem>
       </varlistentry>
 
