@@ -7,4 +7,4 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-add_help_chapter("UI Data",SCI+"/modules/atoms/help/pt_BR",%T);
+add_help_chapter("UI Data",SCI+"/modules/ui_data/help/pt_BR",%T);
