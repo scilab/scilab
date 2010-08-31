@@ -47,7 +47,7 @@ static int GREP_NEW(GREPRESULTS *results,char **Inputs_param_one,int mn_one,char
 static int GREP_OLD(GREPRESULTS *results,char **Inputs_param_one,int mn_one,char **Inputs_param_two,int mn_two);
 /*------------------------------------------------------------------------*/
 
-Function::ReturnValue sci_grep(typed_list &in, int _piRetCount, typed_list &out)
+Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
 {
     bool bRegularExpression = false;
 
@@ -152,7 +152,7 @@ Function::ReturnValue sci_grep(typed_list &in, int _piRetCount, typed_list &out)
             
             out.push_back(pD1);
 
-            if (_piRetCount == 2)
+            if (_iRetCount == 2)
             {
                 Double* pD2 = new Double(1, grepresults.currentLength);
                 double* pDbl2 = pD2->real_get();
@@ -193,7 +193,7 @@ Function::ReturnValue sci_grep(typed_list &in, int _piRetCount, typed_list &out)
 
     return Function::OK;
 }
-//Function::ReturnValue sci_grep(typed_list &in, int _piRetCount, typed_list &out)
+//Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
 //{
 //	CheckRhs(2,3);
 //	CheckLhs(1,2);

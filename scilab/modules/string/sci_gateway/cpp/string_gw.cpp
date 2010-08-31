@@ -13,10 +13,11 @@
 #include "string_gw.hxx"
 
 #define MODULE_NAME L"string"
+
 bool StringModule::Load()
 {
-  symbol::Context::getInstance()->AddFunction(Function::createFunction(L"grep", &sci_grep, MODULE_NAME));
-  symbol::Context::getInstance()->AddFunction(Function::createFunction(L"stripblanks", &sci_stripblanks, MODULE_NAME));
-
-  return true;
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"grep", &sci_grep, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"stripblanks", &sci_stripblanks, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"regexp", &sci_regexp, MODULE_NAME));
+    return true;
 }

@@ -41,7 +41,6 @@ STRING_IMPEXP int sci_strrev(char *fname,unsigned long fname_len);
 STRING_IMPEXP int sci_strtok(char *fname,unsigned long fname_len);
 STRING_IMPEXP int sci_strspn(char *fname,unsigned long fname_len);
 STRING_IMPEXP int sci_strtod(char *fname,unsigned long fname_len);
-STRING_IMPEXP int sci_regexp(char *fname,unsigned long fname_len);
 //STRING_IMPEXP int sci_NumTokens(char *fname,unsigned long fname_len);
 
 //YaSp

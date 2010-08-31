@@ -333,6 +333,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_regexp.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_stripblanks.cpp"
 				>
 			</File>

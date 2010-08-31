@@ -58,13 +58,13 @@ sci_gateway/c/sci_strrev.c \
 sci_gateway/c/sci_strspn.c \
 sci_gateway/c/sci_strstr.c \
 sci_gateway/c/sci_strtod.c \
-sci_gateway/c/sci_strtok.c \
-sci_gateway/c/sci_regexp.c
+sci_gateway/c/sci_strtok.c
 
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_stripblanks.cpp \
 	sci_gateway/cpp/sci_grep.cpp \
-	sci_gateway/cpp/string_gw.cpp
+	sci_gateway/cpp/string_gw.cpp \
+	sci_gateway/cpp/sci_regexp.cpp
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_string.f \
 sci_gateway/fortran/strops.f

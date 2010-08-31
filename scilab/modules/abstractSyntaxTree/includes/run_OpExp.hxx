@@ -385,7 +385,11 @@ void visitprivate(const OpExp &e)
             Double *pL			= execMeL.result_get()->getAsDouble();
             Double *pR			= execMeR.result_get()->getAsDouble();
 
-            if(pL->size_get() == 0  && pR->size_get() == 0)
+            if(pR->size_get() == 0 && pL->size_get() == 0)
+            {
+                pResult = new Bool(true);
+            }
+            else if(pL->size_get() == 0  && pR->size_get() == 0)
             {
                 pResult = new Bool(true);
             }
@@ -522,7 +526,11 @@ void visitprivate(const OpExp &e)
             Double *pL			= execMeL.result_get()->getAsDouble();
             Double *pR			= execMeR.result_get()->getAsDouble();
 
-            if(pR->size_get() == 1)
+            if(pR->size_get() == 0 && pL->size_get() == 0)
+            {
+                pResult = new Bool(false);
+            }
+            else if(pR->size_get() == 1)
             {
                 pResult				= new Bool(pL->rows_get(), pL->cols_get());
                 double dblRef	= pR->real_get(0,0);
