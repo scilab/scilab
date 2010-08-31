@@ -229,7 +229,7 @@ if (next.toString().equals(path[categoryCounter])
 				}
 			});
 		} catch (final InvocationTargetException exception) {
-			throw (Exception) exception.getTargetException();
+			throw (Exception) exception.getCause();
 		}
 	}
 
@@ -248,12 +248,11 @@ if (next.toString().equals(path[categoryCounter])
 				@Override
 				public void run() {
 					final PaletteNode node = getPathNode(name, false);
-					PaletteNode.checkRemoving(node);
 					PaletteNode.remove(node);
 				}
 			});
 		} catch (final InvocationTargetException exception) {
-			throw (Exception) exception.getTargetException();
+			throw (Exception) exception.getCause();
 		}
 	}
 
@@ -286,7 +285,7 @@ if (next.toString().equals(path[categoryCounter])
 				}
 			});
 		} catch (final InvocationTargetException exception) {
-			throw (Exception) exception.getTargetException();
+			throw (Exception) exception.getCause();
 		}
 	}
 
@@ -338,7 +337,7 @@ if (next.toString().equals(path[categoryCounter])
 				}
 			});
 		} catch (final InvocationTargetException exception) {
-			throw (Exception) exception.getTargetException();
+			throw (Exception) exception.getCause();
 		}
 	}
 
