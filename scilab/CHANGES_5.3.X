@@ -11,20 +11,20 @@ to fix these issues.
 * bugs 1589, 3994 fixed - On Startup, Scilab console did not have the focus.
                    The user had to click in the main window to gain focus.
 
-* bug 3614 fixed - Sub-applications could not have their own icon. This was
-                   causing some issues with the "Alt-Tab" features under some
-                   operating systems.
+* bug 3614 fixed - Sub-applications could not have their own icons. This
+                   problem was causing some issues with the "Alt-Tab" features
+                   under some operating systems.
 
 * bug 4247 fixed - The command xclick didn't work correctly.
 
 * bug 4423 fixed - It was not possible to navigate in Scilab's menu with arrow
                    keys.
 
-* bug 5708 fixed - A problem of focus between the console and the editor
+* bug 5708 fixed - A focus problem between the console and the editor
                    happened when SciNotes was started from the console.
 
-* bug 7369 fixed - fun2string  produced incorrect code for expressions in 
-                   parentheses exponentiation.
+* bug 7369 fixed - fun2string  produced incorrect code for parenthesis
+                   exponentiation expressions.
 
 * bug 7625 fixed - Some selection issues were appearing from time to time when
                    Scilab was losing the focus.
@@ -40,13 +40,13 @@ SciNotes:
 Anchors can be added in the source code and one can navigate between them with
 the Code Navigator.
 
-* bugs 7276, 7726 fixed - There was a problem of highlighting with default font.
+* bugs 7276, 7726 fixed - There was a highlighting problem with default font.
 
 * bug 7554 fixed - Auto-completion on typing was too general.
 
-* bug 7618 fixed - The change of the background color generated an exception.
+* bug 7618 fixed - The color background change generated an exception.
 
-* bug 7621 fixed - The change of the font generated an exception.
+* bug 7621 fixed - The font change generated an exception.
 
 * bug 7623 fixed - "Evaluate Selection" evaluated the selection with one added char.
 
@@ -54,31 +54,30 @@ the Code Navigator.
 
 * bug 7676 fixed - The SaveAs action did not remove "readonly" mode.
 
-* bug 7677 fixed - User had not the possibilty to open files in his favorite
-                   directories.
+* bug 7677 fixed - User could not open files in his favorite directories.
 
 * bug 7678 fixed - Help action did not give help on selection.
 
 * bug 7682 fixed - The knob of the vertical scrollbar moved badly on resize.
 
-* bug 7719 fixed - There was not the possibility to open several files at the
-                   same time through the file chooser.
-
 * bug 7718 fixed - There was a bad detection of a function when the list of args
                    was broken.
 
-* bug 7719 fixed - There was not the possibility to open several files at the
+* bug 7719 fixed - It was not possible to open several files at the
+                   same time through the file chooser.
+
+* bug 7719 fixed - It was not possible to open several files at the
                    same time.
 
 * bug 7722 fixed - Several FindReplace windows could be opened.
 
 * bug 7731 fixed - In Find/Replace window, buttons were not updated when an
-                   item was choosen in the combobox Find.
+                   item was chosen in the combobox Find.
 
-* bug 7746 fixed - File streams were not closed. This was causing some issues
-                   under Windows.
+* bug 7746 fixed - File streams were not closed. This problem was causing some
+                   issues under Windows.
 
-* bug 7759 fixed - Several instances of the Code Navigator were possible.
+* bug 7759 fixed - Several Code Navigator instances were possible.
 
 * bug 7764 fixed - The CR in comments was removed when executing from SciNotes.
 
@@ -105,7 +104,7 @@ Editvar/Browsevar:
 * bug 7617 fixed - editvar() window did not have any menu bar.
 
 * bug 7627 fixed - When browsevar() window was docked, if browsevar() was called
-                   again an empty window poped up and could not be closed.
+                   again, an empty window poped up and could not be closed.
 
 * bug 7629 fixed - browsevar(): Trying to edit a variable that no more exists
                    generated an error.
@@ -151,7 +150,7 @@ Thanks to Samuel Gougeon.
 * bug 7137 fixed - In Text uicontrol, fontsize was rounded which was problematic when
                    fontUnits was 'normalized'.
 
-* bug 7857 fixed - If an event_handler is previously assigned to a graphic window 
+* bug 7857 fixed - If an event_handler was previously assigned to a graphic window 
                    the datatips toogle tool icon had to be clicked twice to make it active.
 
 
@@ -160,7 +159,7 @@ Xcos:
 
 * A new initialization UI for partial differential equations settings has been added.
 
-* bug 7256 fixed - Saving a diagram with a non-ASCII filename create a
+* bug 7256 fixed - Saving a diagram with a non-ASCII filename created a
                    corrupted file on Windows.
 
 * bug 7498 fixed - SPLIT_f were not always deleted when one of its connection
@@ -204,24 +203,25 @@ call_scilab:
 
 * bug 7601 fixed - call_scilab C functions did not check if engine was started.
 
-* bug 7602 fixed - it was not possible to start/close a Scilab engine at anytime.
+* bug 7602 fixed - It was not possible to start/close a Scilab engine at any
+                   time.
 
 Scilab/LabView Gateway:
 =======================
 
-* bug 7791 fixed - it was no more possible to restart .VI already started.
+* bug 7791 fixed - It was not possible to restart anymore. VI already started.
 
 Bug Fixes:
 ==========
 
 * bug 4247 fixed - The command xclick did not work correctly.
 
-* bug 5697 fixed - In Help Browser, external hyperlinks were opened in it rather
+* bug 5697 fixed - External hyperlinks were opened in Help Browser rather
                    than in Web Browser.
 
 * bug 6477 fixed - in some case, schur returned wrong values on Windows.
 
-* bug 6504 fixed - Due to a bug in Java, the <br> tag wasn't copied as a CR
+* bug 6504 fixed - Due to a bug in Java, the <br> tag was not copied as a CR
                    in a messagebox.
 
 * bug 6938 fixed - frexp returned a wrong error message with a complex as 
@@ -236,7 +236,7 @@ Bug Fixes:
 * bug 7348 fixed - ATOMS: A module was loaded twice if it was installed both in
                    the "user" and the "allusers" section.
 
-* bug 7405 fixed - The toolbar wasn't updated when an undocking occured.
+* bug 7405 fixed - The toolbar was not updated when an undocking occured.
 
 * bug 7452 fixed - demos nmplot from Optimization and Simulation -> fminsearch
                    -> nmplot* did not work.
@@ -257,7 +257,7 @@ Bug Fixes:
                    or F2C compiler on Windows.
 
 * bug 7611 fixed - The cross to close a subwindow and the little arrow to undock
-                   it was not visible even if the subwindow was docked.
+                   was not visible even if the subwindow was docked.
 
 * bug 7615 fixed - When opening a SuperBlock, a non-blocking exception could be
                    thrown.
@@ -279,22 +279,22 @@ Bug Fixes:
 * bug 7688 fixed - set("color_map", hsvcolormap(128)) produced
                    a EXCEPTION_STACK_OVERFLOW.
 
-* bug 7693 fixed - With a corrupted palettes.xml file, the error message is not
+* bug 7693 fixed - With a corrupted palettes.xml file, the error message was not
                    coherent with the recovering action.
 
 * bug 7703 fixed - 'coding_ga_identity' help contained false "See Also".
 
-* bug 7704 fixed - 'init_ga_default' help did not tell the default values of
+* bug 7704 fixed - 'init_ga_default' help did not inform the default values of
                    the optional parameters.
 
-* bug 7706 fixed - example in the help page of 'optim_ga' did not work.
+* bug 7706 fixed - example in the 'optim_ga' help page did not work.
 
 * bug 7733 fixed - strstr crashed scilab if the second input argument was longer
                    than the first one.
 
 * bug 7737 fixed - Part 1 - ATOMS: when installing a module, the archive was
                    automatically downloaded before checking if the archive
-                   already exists in the archive directory.
+                   already existed in the archive directory.
 
 * bug 7740 fixed - edit() with a Scilab macro redefined failed.
 
