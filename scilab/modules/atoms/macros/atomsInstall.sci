@@ -149,6 +149,8 @@ function result = atomsInstall(packages,section)
     // "Archive" installation
     // =========================================================================
 
+    from_localarchive = %F;
+
     for i=1:size(packages(:,1),"*")
 
         this_package = packages(i,1);
@@ -218,8 +220,19 @@ function result = atomsInstall(packages,section)
             // -----------------------------------------------------------------
             packages(i,:) = [ this_package_name this_package_version ];
 
+
+            // Installation from a local archive
+            // -----------------------------------------------------------------
+            from_localarchive = %T;
+
         end
 
+    end
+
+    // Force update the system informations
+    // =========================================================================
+    if from_localarchive then
+        atomsDESCRIPTIONget(%T);
     end
 
     // Get the install list
@@ -241,6 +254,8 @@ function result = atomsInstall(packages,section)
     // =========================================================================
 
     for i=1:size(install_package_list(:,1),"*")
+
+        toarchive = %T;
 
         this_package_name    = install_package_list(i,3);
         this_package_version = install_package_list(i,4);
@@ -303,7 +318,6 @@ function result = atomsInstall(packages,section)
                 // Launch the download
                 // =============================================================
                 atomsDownload(filein,fileout,filemd5);
-                toarchive = %T;
             end
 
             // unarchive it
