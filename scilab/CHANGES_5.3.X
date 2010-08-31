@@ -41,10 +41,12 @@ Graphics:
 
 * The icons has been updated to the Tango Art libre icons and to the Inkscape themable icons.
 
+* bug 6686 fixed - The automatic sub-ticking gave wrong results.
+
 Bug Fixes:
 ==========
 
-* bug 6686 fixed - The automatic sub-ticking gave wrong results.
+* bug 7897 fixed - configure failed under FreeBSD (bashim)
 
 * bug 7924 fixed - pathconvert failed conversion to cygwin format.
 
@@ -61,6 +63,7 @@ Bug Fixes:
                    information.
 
 * bug 7981 fixed - copyfile failed with localized filenames on linux.
+
 
 
          Changes between version 5.3.0-beta-2 and 5.3.0-beta-3 of Scilab
