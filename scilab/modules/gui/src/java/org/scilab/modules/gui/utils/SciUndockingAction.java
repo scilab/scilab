@@ -86,6 +86,7 @@ public class SciUndockingAction extends AbstractAction {
                     ActiveDockableTracker.requestDockableActivation(((Dockable) iter.next()).getComponent());
                 }
                 DockingManager.dock(associatedTab, ((SwingScilabWindow) newWindow.getAsSimpleWindow()).getDockingPort());
+                ActiveDockableTracker.requestDockableActivation(associatedTab);
 
                 /** New Window properties */
                 newWindow.setPosition(new Position(oldWindowPosition.getX() + UNDOCK_OFFSET, oldWindowPosition.getY() + UNDOCK_OFFSET));
