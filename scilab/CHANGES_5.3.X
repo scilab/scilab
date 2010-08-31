@@ -23,6 +23,9 @@ Graphics:
 * bug 7509 fixed - Update of the legend help page regarding some previous
                    changes.
 
+* bug 7836 fixed - The sub_tics property was not correctly tracking the number
+                   of displayed sub-ticks. Thanks to Paul Griffiths.
+
 Quality assurance:
 ==================
 
