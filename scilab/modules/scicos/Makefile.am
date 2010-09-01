@@ -176,7 +176,9 @@ palettes/DemoBlocks.cosf \
 palettes/Events.cosf \
 palettes/Integer.cosf \
 palettes/Linear.cosf \
+palettes/Lookup_Tables.cosf \
 palettes/Matrix.cosf \
+palettes/Modelica.cosf \
 palettes/Non_linear.cosf \
 palettes/OldBlocks.cosf \
 palettes/Others.cosf \

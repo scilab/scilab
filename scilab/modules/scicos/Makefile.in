@@ -970,7 +970,9 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @SCICOS_TRUE@palettes/Events.cosf \
 @SCICOS_TRUE@palettes/Integer.cosf \
 @SCICOS_TRUE@palettes/Linear.cosf \
+@SCICOS_TRUE@palettes/Lookup_Tables.cosf \
 @SCICOS_TRUE@palettes/Matrix.cosf \
+@SCICOS_TRUE@palettes/Modelica.cosf \
 @SCICOS_TRUE@palettes/Non_linear.cosf \
 @SCICOS_TRUE@palettes/OldBlocks.cosf \
 @SCICOS_TRUE@palettes/Others.cosf \
