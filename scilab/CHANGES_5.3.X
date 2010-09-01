@@ -6,6 +6,11 @@ Xcos:
 
 * Include all the old-scicos palettes on the binary version.
 
+Bug Fixes:
+==========
+
+* bug 7943 - On a linux binary version, it was not possible to use
+             the fortran_block block.
 
          Changes between version 5.3.0-beta-2 and 5.3.0-beta-3 of Scilab
          ===============================================================
@@ -159,7 +164,7 @@ Thanks to Samuel Gougeon.
 * bug 7137 fixed - In Text uicontrol, fontsize was rounded which was problematic when
                    fontUnits was 'normalized'.
 
-* bug 7857 fixed - If an event_handler was previously assigned to a graphic window 
+* bug 7857 fixed - If an event_handler was previously assigned to a graphic window
                    the datatips toogle tool icon had to be clicked twice to make it active.
 
 
@@ -233,7 +238,7 @@ Bug Fixes:
 * bug 6504 fixed - Due to a bug in Java, the <br> tag was not copied as a CR
                    in a messagebox.
 
-* bug 6938 fixed - frexp returned a wrong error message with a complex as 
+* bug 6938 fixed - frexp returned a wrong error message with a complex as
                    input argument.
 
 * bug 7125 fixed - fscanfMat() did not read correctly %inf, -%inf and
