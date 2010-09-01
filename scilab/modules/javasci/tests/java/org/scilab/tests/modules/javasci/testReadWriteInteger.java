@@ -45,6 +45,15 @@ public class testReadWriteInteger {
         ScilabInteger aFromScilab = (ScilabInteger)sci.get("b");
 
         assert aFromScilab.equals(aOriginal);
+
+		// Test values
+		byte [][]z={{-1, -128, 0}};
+		ScilabInteger zMatrix = new ScilabInteger(z, true);
+		sci.put("z",zMatrix);
+		sci.exec("sumElements=sum(z);");
+
+        ScilabInteger zFromScilab = (ScilabInteger)sci.get("z");
+        assert zFromScilab.equals(zMatrix);
     }
 
 	@Test(sequential = true)
@@ -55,6 +64,12 @@ public class testReadWriteInteger {
 		//        assert sci.exec("somme = sum(a);") == true;
 
         ScilabInteger aFromScilab = (ScilabInteger)sci.get("b");
+
+		byte [][]z={{-1, -128, 0}};
+		ScilabInteger zMatrix = new ScilabInteger(z, false);
+		sci.put("z",zMatrix);
+        ScilabInteger zFromScilab = (ScilabInteger)sci.get("z");
+        assert zFromScilab.equals(zMatrix);
 
         assert aFromScilab.equals(aOriginal);
 
