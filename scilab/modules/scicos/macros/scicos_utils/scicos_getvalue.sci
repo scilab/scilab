@@ -1,6 +1,7 @@
 //  Scicos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//  Copyright (C) 2010 - DIGITEO - Clément DAVID <clement.david@scilab.org>
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -22,10 +23,12 @@
 function [%ok,%1,%2,%3,%4,%5,...
           %6,%7,%8,%9,%10,...
           %11,%12,%13,%14,%15,...
-          %16,%17,%18,%19,%20]=scicos_getvalue(%desc,%labels,%typ,%ini)
+          %16,%17,%18,%19,%20,...
+          %21,%22,%23,%24,%25,...
+          %26,%27,%28,%29,%30]=scicos_getvalue(%desc,%labels,%typ,%ini)
 //  getvalues - %window dialog for data acquisition 
 //%Synta%
-//  [%ok,%1,..,%11]=getvalue(desc,labels,typ,ini)
+//  [%ok,%1,..,%30]=getvalue(desc,labels,typ,ini)
 //%Parameters
 //  desc    : column vector of strings, dialog general comment 
 //  labels  : n column vector of strings, labels(i) is the label of 
@@ -64,7 +67,9 @@ function [%ok,%1,%2,%3,%4,%5,...
 // 
 //%See also
 // x_mdialog, x_dialog
+
 //!
+// 01/09/10 Clément DAVID: update to %30 rhs parameters
 // 17/01/07 -Alan- This version of getvalue is different of scilab 4.1 :
 //         - %scicos_context behavior reviewed in accordance to context_evstr macro
 //         - (u)int(8/16/32) allowed in field of type vec/mat/row/col (F. Nassif's Work)
@@ -85,6 +90,8 @@ end
 %6=[];%7=[];%8=[];%9=[];%10=[];
 %11=[];%12=[];%13=[];%14=[];%15=[];
 %16=[];%17=[];%18=[];%19=[];%20=[];
+%21=[];%22=[];%23=[];%24=[];%25=[];
+%26=[];%27=[];%28=[];%29=[];%30=[];
 
 if %rhs==3 then  %ini=emptystr(%nn,1),end
 

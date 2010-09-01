@@ -93,6 +93,10 @@ Bug Fixes:
 
 * bug 7897 fixed - configure failed under FreeBSD (bashim)
 
+* bug 7908 fixed - The number of values modified by scicos_getvalues could not
+                   by more than 20. This value has been updated to 30
+                   variables.
+
 * bug 7924 fixed - pathconvert failed conversion to cygwin format.
 
 * bug 7941 fixed - The demonstration CACSD/PID did not work.
