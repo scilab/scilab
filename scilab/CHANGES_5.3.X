@@ -6,9 +6,11 @@ Xcos:
 
 * Include all the old-scicos palettes on the binary version.
 
-bug 7922 fixed - The Automotive Suspension demo did not work.
+* bug 7922 fixed - The Automotive Suspension demo did not work.
 
-bug 7945 fixed - The path of the diagram was not displayed in the title bar.
+* bugs 7931, 7933, 7934 fixed - Some artifacts were visible on diagrams such as wrong links and block names.
+
+* bug 7945 fixed - The path of the diagram was not displayed in the title bar.
 
 SciNotes:
 =========
