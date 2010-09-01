@@ -1,5 +1,6 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2007 - INRIA - Bruno JOFRET
+# Copyright (C) 2010 - DIGITEO - Bruno JOFRET
 #
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
@@ -30,7 +31,8 @@ OUTPUT_STREAM_C_SOURCES = 	src/c/erro.c \
 				src/c/error.c \
 				src/c/error_internal.c \
 				src/c/do_xxprintf.c \
-				src/c/set_xxprintf.c
+				src/c/set_xxprintf.c \
+				src/c/lasterror.c
 
 OUTPUT_STREAM_FORTRAN_SOURCES = src/fortran/wspdsp.f \
 		src/fortran/wmdsp.f \
