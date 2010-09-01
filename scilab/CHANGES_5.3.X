@@ -116,6 +116,9 @@ Dynamic link:
   of TMPDIR instead of doing everything in the same directory. This could have
   lead to unexpected side effects.
 
+* Added 'ilib_include_path' macro to handle includes flag for platform
+  compiler. See SEP 55.
+
 
 Graphics:
 =========
