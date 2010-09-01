@@ -37,7 +37,7 @@
 int set_sub_tics_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
   BOOL status;
-  BOOL result;
+  int result;
   char* type;
   char* axisSubticksPropertiesNames[3] = {__GO_X_AXIS_SUBTICKS__, __GO_Y_AXIS_SUBTICKS__, __GO_Z_AXIS_SUBTICKS__};
 
@@ -49,6 +49,10 @@ int set_sub_tics_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
 
   type = (char*) getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string);
 
+  /*
+   * Type test required as the Axis object stores subticks as a single int
+   * whereas Axes maintain a 3-element int vector.
+   */
   if (strcmp(type, __GO_AXIS__) == 0)
   {
     int nbTicks = (int) getDoubleFromStack(stackPointer);
@@ -57,12 +61,12 @@ int set_sub_tics_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
 
     if (status == TRUE)
     {
-      return SET_PROPERTY_ERROR;
+      return SET_PROPERTY_SUCCEED;
     }
     else
     {
       Scierror(999, _("'%s' property does not exist for this handle.\n"),"sub_tics");
-      return SET_PROPERTY_SUCCEED;
+      return SET_PROPERTY_ERROR;
     }
   }
   else if (strcmp(type, __GO_AXES__) == 0)
@@ -71,7 +75,9 @@ int set_sub_tics_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
     double * values = getDoubleMatrixFromStack( stackPointer );
 
     /* To be deleted, see the flagNax line below */
+#if 0
     sciSubWindow * ppSubWin = pSUBWIN_FEATURE (pobj);
+#endif
 
     result = SET_PROPERTY_SUCCEED;
 
@@ -81,8 +87,10 @@ int set_sub_tics_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
       return  SET_PROPERTY_ERROR ;
     }
 
-    /* To be implemented / modified */
+    /* To be implemented within the MVC framework (sub-tics automatic mode) */
+#if 0
     ppSubWin->flagNax = TRUE;
+#endif
 
     for ( i = 0; i < nbCol ; i++ )
     {
@@ -105,16 +113,16 @@ int set_sub_tics_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
 
     if (result == SET_PROPERTY_ERROR)
     {
-      Scierror(999, _("'%s' property does not exist for this handle.\n"),"sub_ticks") ;
+      Scierror(999, _("'%s' property does not exist for this handle.\n"),"sub_ticks");
     }
 
     return result;
   }
   else
   {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"sub_ticks") ;
-    return SET_PROPERTY_ERROR ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"sub_ticks");
+    return SET_PROPERTY_ERROR;
   }
-  return SET_PROPERTY_SUCCEED ;
+  return SET_PROPERTY_SUCCEED;
 }
 /*------------------------------------------------------------------------*/

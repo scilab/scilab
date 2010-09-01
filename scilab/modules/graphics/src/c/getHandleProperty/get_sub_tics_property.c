@@ -40,6 +40,10 @@ int get_sub_tics_property( sciPointObj * pobj )
 
   type = (char*) getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string);
 
+  /*
+   * Type test required as the Axis object stores subticks as a single int
+   * whereas Axes maintain a 3-element int vector.
+   */
   if (strcmp(type, __GO_AXIS__) == 0)
   {
     int* subTicks;
