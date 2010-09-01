@@ -13,14 +13,15 @@
  -->
 <project name="javasci" default="build-examples">
   <import file="../../build.incl.xml"/>
+  <property name="library-v1.name" value="${library.javasci-v1.name}" />
   <property name="library.name" value="${library.javasci.name}" />
 
   <description>
 	Build the Java/Scilab connecter (javasci) module
   </description>
 
-  <target name="jar" description="Build the jar file" depends="compile">
-	<jar destfile="${build.jar.dir}/${library.name}" basedir="${classes.dir}">
+  <target name="jar-v1" description="Build the jar file" depends="compile">
+	<jar destfile="${build.jar.dir}/${library-v1.name}" basedir="${classes.dir}">
 	  <manifest>
 		<attribute name="SciAbstractDataType" value="javasci.SciAbstractDataType"/>
 		<attribute name="SciBooleanArray" value="javasci.SciBooleanArray"/>
@@ -42,14 +43,14 @@
 
   <property name="examples.classes.dir" location="${build.dir}/examples/" />
 
-  <target name="build-examples" description="Build the examples" depends="jar">
+  <target name="build-examples" description="Build the examples" depends="jar, jar-v1">
         <property name="examples.src.dir"  location="examples/others/" />
         <mkdir dir="${examples.classes.dir}"/>
 
                 <javac
                         srcdir="${examples.src.dir}"
                         destdir="${examples.classes.dir}"
-                        classpath="${library.javasci.dir}/${library.javasci.name}"
+                        classpath="${library.javasci.dir}/${library.javasci-v1.name}"
                         deprecation="on"
                         debug="off"
                         verbose="off"

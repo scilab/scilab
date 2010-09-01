@@ -28,7 +28,7 @@ class Call_ScilabJNI {
   static {
     try {
         System.loadLibrary("scilab");
-        System.loadLibrary("javasci");
+        System.loadLibrary("javasci2");
     } catch (SecurityException e) {
 		System.err.println("A security manager exists and does not allow the loading of the specified dynamic library :");
 		e.printStackTrace(System.err);

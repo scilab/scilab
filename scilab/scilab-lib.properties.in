@@ -76,7 +76,8 @@ library.core.dir=${modules.dir}/core/${build.jar.dir}/
 library.core.name=org.scilab.modules.core.jar
 
 library.javasci.dir=${modules.dir}/javasci/${build.jar.dir}/
-library.javasci.name=javasci.jar
+library.javasci-v1.name=javasci.jar
+library.javasci.name=org.scilab.modules.javasci.jar
 
 library.types.dir=${modules.dir}/types/${build.jar.dir}/
 library.types.name=org.scilab.modules.types.jar
