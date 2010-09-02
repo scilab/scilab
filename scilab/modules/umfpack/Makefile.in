@@ -121,7 +121,6 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 @UMFPACK_TRUE@	$(top_builddir)/modules/mexlib/libmat.la \
 @UMFPACK_TRUE@	$(top_builddir)/modules/sparse/libscisparse.la \
 @UMFPACK_TRUE@	$(top_builddir)/modules/mexlib/libmex.la \
-@UMFPACK_TRUE@	$(top_builddir)/modules/core/libscicore.la \
 @UMFPACK_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__libsciumfpack_la_SOURCES_DIST = src/noumfpack/noumfpack.c \
 	src/c/taucs_scilab.c src/c/common_umfpack.c \
@@ -474,7 +473,6 @@ libsciumfpack_la_etc_DATA = etc/umfpack.quit etc/umfpack.start
 @UMFPACK_TRUE@$(top_builddir)/modules/mexlib/libmat.la \
 @UMFPACK_TRUE@$(top_builddir)/modules/sparse/libscisparse.la \
 @UMFPACK_TRUE@$(top_builddir)/modules/mexlib/libmex.la \
-@UMFPACK_TRUE@$(top_builddir)/modules/core/libscicore.la \
 @UMFPACK_TRUE@$(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 @UMFPACK_FALSE@libsciumfpack_la_CFLAGS = -I$(top_srcdir)/modules/api_scilab/includes \

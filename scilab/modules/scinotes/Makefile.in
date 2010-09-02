@@ -127,7 +127,6 @@ libsciscinotes_disable_la_LINK = $(LIBTOOL) --tag=CC \
 	$(libsciscinotes_disable_la_CFLAGS) $(CFLAGS) \
 	$(libsciscinotes_disable_la_LDFLAGS) $(LDFLAGS) -o $@
 libsciscinotes_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__objects_2 = libsciscinotes_la-ScilabKeywords.lo
@@ -551,7 +550,7 @@ INCLUDE_FLAGS = $(libsciscinotes_la_CFLAGS)
 
 #### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/ScilabKeywords.i 
-libsciscinotes_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
+libsciscinotes_la_LIBADD = \
     $(top_builddir)/libs/MALLOC/libscimalloc.la \
     $(top_builddir)/modules/output_stream/libscioutput_stream.la
 

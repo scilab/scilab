@@ -128,7 +128,6 @@ libsciui_data_disable_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(libsciui_data_disable_la_CFLAGS) $(CFLAGS) \
 	$(libsciui_data_disable_la_LDFLAGS) $(LDFLAGS) -o $@
 libsciui_data_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__objects_2 =
@@ -548,7 +547,7 @@ INCLUDE_FLAGS = $(libsciui_data_la_CFLAGS)
 
 #### SWIG Declaration ####
 SWIG_WRAPPERS = 
-libsciui_data_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
+libsciui_data_la_LIBADD = \
 $(top_builddir)/libs/MALLOC/libscimalloc.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la
 

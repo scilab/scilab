@@ -150,7 +150,6 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 @SCICOS_TRUE@	$(top_builddir)/modules/scicos/libscisundials.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/mexlib/libmex.la \
-@SCICOS_TRUE@	$(top_builddir)/modules/core/libscicore.la \
 @SCICOS_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/arnoldi/libsciarnoldi.la
@@ -932,7 +931,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @SCICOS_TRUE@$(top_builddir)/modules/scicos/libscisundials.la \
 @SCICOS_TRUE@$(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la \
 @SCICOS_TRUE@$(top_builddir)/modules/mexlib/libmex.la \
-@SCICOS_TRUE@$(top_builddir)/modules/core/libscicore.la \
+@SCICOS_TRUE@ \
 @SCICOS_TRUE@$(top_builddir)/libs/MALLOC/libscimalloc.la \
 @SCICOS_TRUE@$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 @SCICOS_TRUE@$(top_builddir)/modules/arnoldi/libsciarnoldi.la 

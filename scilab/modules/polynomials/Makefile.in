@@ -115,7 +115,6 @@ libscipolynomials_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 	$(top_builddir)/modules/linear_algebra/libscilinear_algebra.la \
-	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__objects_1 = residu.lo imptra.lo dmpadj.lo impins.lo dpmul1.lo \
 	wprxc.lo dmpcnc.lo wmpmu.lo mpinsp.lo impext.lo bezout.lo \
@@ -536,7 +535,7 @@ libscipolynomials_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_
 # For the code check (splint)
 CHECK_SRC = ) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscipolynomials_la_CFLAGS)
-libscipolynomials_la_LIBADD = $(top_builddir)/modules/cacsd/libscicacsd.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
+libscipolynomials_la_LIBADD = $(top_builddir)/modules/cacsd/libscicacsd.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la  $(top_builddir)/modules/output_stream/libscioutput_stream.la 
 
 #### Target ######
 modulename = polynomials

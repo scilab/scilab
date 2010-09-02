@@ -113,7 +113,6 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscitime_la_includedir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscitime_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__objects_1 = libscitime_la-realtime.lo libscitime_la-timer.lo \
@@ -419,7 +418,7 @@ libscitime_la_SOURCES = $(TIME_C_SOURCES) $(GATEWAY_C_SOURCES)
 # For the code check (splint)
 CHECK_SRC = $(libscitime_la_SOURCES)
 INCLUDE_FLAGS = $(libscitime_la_CFLAGS)
-libscitime_la_LIBADD = $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscitime_la_LIBADD = $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 #### Target ######
 modulename = time

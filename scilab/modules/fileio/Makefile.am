@@ -131,7 +131,7 @@ CHECK_SRC= $(FILEIO_SOURCES) $(GATEWAY_SOURCES)
 INCLUDE_FLAGS = $(libscifileio_la_CFLAGS)
 
 # pb of order $(top_builddir)/modules/shell/libscishell.la
-libscifileio_la_LIBADD =  	$(top_builddir)/modules/core/libscicore.la \
+libscifileio_la_LIBADD = \
 				$(top_builddir)/modules/string/libscistring.la \
 				$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 				$(top_builddir)/libs/MALLOC/libscimalloc.la \

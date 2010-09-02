@@ -126,7 +126,6 @@ libsciaction_binding_disable_la_LINK = $(LIBTOOL) --tag=CC \
 	$(libsciaction_binding_disable_la_CFLAGS) $(CFLAGS) \
 	$(AM_LDFLAGS) $(LDFLAGS) -o $@
 libsciaction_binding_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__libsciaction_binding_la_SOURCES_DIST =  \
@@ -487,8 +486,7 @@ libsciaction_binding_la_SOURCES = $(ACTION_BINDING_C_SOURCES) $(ACTION_BINDING_C
 # For the code check (splint)
 CHECK_SRC = $(ACTION_BINDING_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciaction_binding_la_CFLAGS)
-libsciaction_binding_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
-									$(top_builddir)/libs/MALLOC/libscimalloc.la \
+libsciaction_binding_la_LIBADD = $(top_builddir)/libs/MALLOC/libscimalloc.la \
 									$(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 

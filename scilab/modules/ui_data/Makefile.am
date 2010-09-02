@@ -97,7 +97,7 @@ if SWIG
 BUILT_SOURCES=swig
 endif
 
-libsciui_data_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
+libsciui_data_la_LIBADD =  \
 $(top_builddir)/libs/MALLOC/libscimalloc.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la
 

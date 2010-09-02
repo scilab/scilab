@@ -118,7 +118,6 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciscicos_blocks_la_includedir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 @SCICOS_TRUE@libsciscicos_blocks_la_DEPENDENCIES =  \
-@SCICOS_TRUE@	$(top_builddir)/modules/core/libscicore.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/cacsd/libscicacsd.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/graphics/libscigraphics.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
@@ -1410,7 +1409,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 
 
 # cyclic deps $(top_builddir)/modules/scicos/libsciscicos.la
-@SCICOS_TRUE@libsciscicos_blocks_la_LIBADD = $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/cacsd/libscicacsd.la  $(top_builddir)/modules/graphics/libscigraphics.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/renderer/libscirenderer.la $(top_builddir)/modules/polynomials/libscipolynomials.la $(top_builddir)/modules/fileio/libscifileio.la  $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+@SCICOS_TRUE@libsciscicos_blocks_la_LIBADD = $(top_builddir)/modules/cacsd/libscicacsd.la  $(top_builddir)/modules/graphics/libscigraphics.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/renderer/libscirenderer.la $(top_builddir)/modules/polynomials/libscipolynomials.la $(top_builddir)/modules/fileio/libscifileio.la  $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 #### scicos_blocks : Conf files ####
 @SCICOS_TRUE@libsciscicos_blocks_la_rootdir = $(mydatadir)

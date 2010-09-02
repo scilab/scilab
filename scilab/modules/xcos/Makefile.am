@@ -114,7 +114,7 @@ INCLUDE_FLAGS = $(libscixcos_la_CFLAGS)
 
 
 
-libscixcos_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
+libscixcos_la_LIBADD =  \
 $(top_builddir)/libs/MALLOC/libscimalloc.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la
 

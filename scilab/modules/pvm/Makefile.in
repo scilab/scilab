@@ -130,8 +130,6 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscipvm_la_rootdir)" \
 	"$(DESTDIR)$(libscipvm_la_sci_gatewaydir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-@PVM_FALSE@libscipvm_la_DEPENDENCIES =  \
-@PVM_FALSE@	$(top_builddir)/modules/core/libscicore.la
 @PVM_TRUE@libscipvm_la_DEPENDENCIES = $(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__libscipvm_la_SOURCES_DIST = src/nopvm/nopvm.c \
 	src/c/pvm_proc_ctrl.c src/c/sci_tools.c src/c/pvm_recv.c \
@@ -539,9 +537,7 @@ top_srcdir = @top_srcdir@
 # For the code check (splint)
 @PVM_TRUE@CHECK_SRC = $(PVM_C_SOURCES) $(GATEWAY_C_SOURCES)
 @PVM_TRUE@INCLUDE_FLAGS = $(libscipvm_la_CFLAGS)
-@PVM_FALSE@libscipvm_la_LIBADD = \
-@PVM_FALSE@	$(top_builddir)/modules/core/libscicore.la
-
+@PVM_FALSE@libscipvm_la_LIBADD = 
 @PVM_TRUE@libscipvm_la_LIBADD = $(top_builddir)/modules/output_stream/libscioutput_stream.la
 @PVM_FALSE@modulename = pvm
 @PVM_TRUE@modulename = pvm

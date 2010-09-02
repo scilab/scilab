@@ -126,7 +126,6 @@ libscigraph_disable_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(libscigraph_disable_la_CFLAGS) $(CFLAGS) \
 	$(libscigraph_disable_la_LDFLAGS) $(LDFLAGS) -o $@
 libscigraph_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am_libscigraph_la_OBJECTS = $(am__objects_1) $(am__objects_1) \
@@ -498,7 +497,7 @@ INCLUDE_FLAGS = $(libscigraph_la_CFLAGS)
 
 #### SWIG Declaration ####
 SWIG_WRAPPERS = 
-libscigraph_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
+libscigraph_la_LIBADD = \
 $(top_builddir)/libs/MALLOC/libscimalloc.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la
 

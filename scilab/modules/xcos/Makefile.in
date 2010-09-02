@@ -128,7 +128,6 @@ libscixcos_disable_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(libscixcos_disable_la_CFLAGS) $(CFLAGS) \
 	$(libscixcos_disable_la_LDFLAGS) $(LDFLAGS) -o $@
 libscixcos_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__objects_2 =
@@ -521,7 +520,7 @@ libscixcos_la_SOURCES = $(XCOS_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOU
 # For the code check (splint)
 CHECK_SRC = $(XCOS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscixcos_la_CFLAGS)
-libscixcos_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
+libscixcos_la_LIBADD = \
 $(top_builddir)/libs/MALLOC/libscimalloc.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
