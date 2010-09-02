@@ -140,6 +140,8 @@ Bug Fixes:
 * bug 7640 fixed - xs2pdf, xs2eps, xs2emf crashed if filename prefix had less
                    of three characters.
 
+* bug 7690 fixed - Long lines removed in the parallel_run help page.
+
 * bug 7862 fixed - "savematfile" only saved the first string in the vector
                    (or matrix) when variable is a vector (or matrix) of strings.
 
@@ -153,6 +155,8 @@ Bug Fixes:
                    variables.
 
 * bug 7924 fixed - pathconvert failed conversion to cygwin format.
+
+* bug 7940 fixed - Typo fixed in the parallel_run documentation.
 
 * bug 7941 fixed - The demonstration CACSD/PID did not work.
 
@@ -516,6 +520,7 @@ Bug Fixes:
                    source directory tree.
 
 * bug 7840 fixed - big lines were splitted by mgetl.
+
 
          Changes between version 5.3.0-beta-1 and 5.3.0-beta-2 of Scilab
          ===============================================================
