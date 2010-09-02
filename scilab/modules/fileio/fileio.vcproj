@@ -709,10 +709,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_pathconvert.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_pathsep.c"
 				>
 			</File>

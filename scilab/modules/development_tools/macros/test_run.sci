@@ -168,8 +168,8 @@ function test_run(varargin)
 	// Stacksize management
 	// =======================================================
 
-	gstacksize(10000000);
-	stacksize(10000000);
+	//gstacksize(10000000);
+	//stacksize(10000000);
 
 	// =======================================================
 	// Gestion des tests à lancer
@@ -218,6 +218,7 @@ function test_run(varargin)
 			// It's a scilab internal module
 			if with_module(module.items(1)) then
 				module = module_set_path(module,pathconvert(SCI+"/modules/"+module.items(1),%F));
+
 
 				// It's an external module
 			elseif isdir(module.items(1)) then
@@ -514,6 +515,7 @@ endfunction
 function directories = get_directories(directory)
 
 	this_directory_type   = directory.type;
+
 
 	directories           = list();
 	directories($+1)      = directory;

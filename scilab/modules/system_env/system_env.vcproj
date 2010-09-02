@@ -323,6 +323,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\cpp\home.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\sci_home.cpp"
 				>
 			</File>
@@ -358,6 +362,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\dynlib_system_env.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\home.h"
 				>
 			</File>
 			<File

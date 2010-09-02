@@ -39,7 +39,7 @@ public :
     static void setSCIPath(wstring& _SCIPath);
     static wstring getSCIPath();
 
-    //HOME
+    //SCIHOME
 private :
     static wstring m_SCIHOME;
 
@@ -103,6 +103,15 @@ private :
 public : 
     static void setWarningMode(bool _bWarningMode);
     static bool getWarningMode(void);
+
+    //HOME
+private :
+    static wstring m_HOME;
+
+public :
+    static void setHOME(wstring& _m_HOME);
+    static wstring getHOME();
+
 };
 
 #endif /* __CONFIGVARIABLE_HXX__ */

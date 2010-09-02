@@ -216,3 +216,22 @@ bool ConfigVariable::getWarningMode(void)
 ** \}
 */
 
+/*
+** HOME
+** \{
+*/
+
+wstring ConfigVariable::m_HOME;
+
+void ConfigVariable::setHOME(wstring& _HOME)
+{
+    m_HOME = _HOME;
+}
+
+wstring ConfigVariable::getHOME()
+{
+    return m_HOME;
+}
+/*
+** \}
+*/

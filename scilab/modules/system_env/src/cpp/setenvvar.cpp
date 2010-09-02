@@ -39,6 +39,7 @@
 #include "context.hxx"
 #include "configvariable.hxx"
 #include "sci_home.h"
+#include "home.h"
 #include "sci_path.h"
 #include "sci_tmpdir.h"
 
@@ -69,7 +70,7 @@ void SetScilabEnvironment(void)
     //create TMPDIR
     defineTMPDIR();
     //create home
-    //TODO: create home
+    defineHOME();
 }
 
 #ifdef _MSC_VER
