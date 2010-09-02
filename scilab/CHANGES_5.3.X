@@ -6,6 +6,9 @@ Xcos:
 
 * Include all the old-scicos palettes on the binary version.
 
+bug 7922 fixed - The Automotive Suspension demo did not work.
+
+
 Bug Fixes:
 ==========
 
