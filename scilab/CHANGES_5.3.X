@@ -12,6 +12,9 @@ Bug Fixes:
 * bug 7943 - On a linux binary version, it was not possible to use
              the fortran_block block.
 
+* bug 7951 - strcat crashed with row concatenation option on linux.
+
+
          Changes between version 5.3.0-beta-2 and 5.3.0-beta-3 of Scilab
          ===============================================================
 
