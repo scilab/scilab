@@ -36,11 +36,11 @@ public class ScilabGraphUtilsTest {
 	
 	private static final String SAMPLE_LATEX = "\frac{a+b}{c-d}";
 	
-	private static final String SAMPLE_SVG = "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"no\"?>" +
-			"<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" width=\"300\" height=\"200\">" +
-			"<title>Exemple simple de figure SVG</title>" +
-			"<rect width=\"100\" height=\"80\" x=\"0\" y=\"70\" fill=\"green\" />" +
-			"</svg>";
+	private static final String SAMPLE_SVG = "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"no\"?>"
+			+ "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" width=\"300\" height=\"200\">"
+			+ "<title>Exemple simple de figure SVG</title>"
+			+ "<rect width=\"100\" height=\"80\" x=\"0\" y=\"70\" fill=\"green\" />"
+			+ "</svg>";
 	
 	/**
 	 * Check the equality with an escaped non-formatted text and itself.

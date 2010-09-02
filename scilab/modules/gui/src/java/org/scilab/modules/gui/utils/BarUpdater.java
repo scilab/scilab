@@ -95,9 +95,9 @@ public final class BarUpdater implements PropertyChangeListener {
          */
         @Override
         public void propertyChange(PropertyChangeEvent evt) {
-                if (evt.getSource() instanceof SwingScilabTab &&
-                                evt.getPropertyName().equals(DockablePropertySet.ACTIVE) &&
-                                evt.getNewValue().equals(Boolean.TRUE)) {
+                if (evt.getSource() instanceof SwingScilabTab
+                        && evt.getPropertyName().equals(DockablePropertySet.ACTIVE)
+                        && evt.getNewValue().equals(Boolean.TRUE)) {
                         SwingScilabTab tab = (SwingScilabTab) evt.getSource();
 
                         BarUpdater.updateBars(tab.getParentWindowId(),
