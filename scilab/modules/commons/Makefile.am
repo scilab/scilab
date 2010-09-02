@@ -28,7 +28,7 @@ include $(top_srcdir)/Makefile.incl.am
 
 COMMONS_JNI_SOURCES = 
 
-COMMONS_C_SOURCES = 
+COMMONS_C_SOURCES =  src/jni/ScilabCommons_wrap.c
 
 COMMONS_CPP_SOURCES =
 
@@ -45,7 +45,7 @@ GATEWAY_C_SOURCES =
 
 GATEWAY_CPP_SOURCES = 
 
-libscicommons_la_CFLAGS= 
+libscicommons_la_CFLAGS= $(JAVA_JNI_INCLUDE)
 
 
 libscicommons_la_CPPFLAGS = 
@@ -79,8 +79,7 @@ if SWIG
 BUILT_SOURCES=swig
 endif
 
-libscicommons_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
-$(top_builddir)/libs/MALLOC/libscimalloc.la \
+libscicommons_la_LIBADD = $(top_builddir)/libs/MALLOC/libscimalloc.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 

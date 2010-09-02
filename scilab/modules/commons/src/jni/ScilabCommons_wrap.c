@@ -187,23 +187,22 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 #define SWIG_contract_assert(nullreturn, expr, msg) if (!(expr)) {SWIG_JavaThrowException(jenv, SWIG_JavaIllegalArgumentException, msg); return nullreturn; } else
 
 
-#include "MALLOC.h"
-#include "../c/GuiManagement.h"
+#include "../../../core/includes/SCIHOME.h"
 
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-SWIGEXPORT void JNICALL Java_org_scilab_modules_console_GuiManagementJNI_setScilabLines(JNIEnv *jenv, jclass jcls, jint jarg1, jint jarg2) {
-  int arg1 ;
-  int arg2 ;
+SWIGEXPORT jstring JNICALL Java_org_scilab_modules_commons_ScilabCommonsJNI_getSCIHOME(JNIEnv *jenv, jclass jcls) {
+  jstring jresult = 0 ;
+  char *result = 0 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = (int)jarg1; 
-  arg2 = (int)jarg2; 
-  setScilabLines(arg1,arg2);
+  result = (char *)getSCIHOME();
+  if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+  return jresult;
 }
 
 

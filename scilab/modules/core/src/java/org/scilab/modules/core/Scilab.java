@@ -14,7 +14,7 @@
  *
  */
 
-package org.scilab.modules.jvm;
+package org.scilab.modules.core;
 
 import javax.swing.JPopupMenu;
 

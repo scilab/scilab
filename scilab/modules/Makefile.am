@@ -14,9 +14,8 @@
 
 # core is the main module of Scilab. All the compilation deps has been removed
 # since it already linked almost the whole world
-SUBDIRS = core
 
-SUBDIRS += \
+SUBDIRS = \
 output_stream \
 arnoldi \
 elementary_functions \
@@ -29,6 +28,7 @@ spreadsheet \
 tclsci \
 localization \
 commons \
+jvm \
 action_binding \
 renderer \
 shell \
@@ -36,7 +36,6 @@ completion \
 console \
 graphic_export \
 gui \
-jvm \
 graphics \
 optimization \
 symbolic \

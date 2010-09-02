@@ -45,7 +45,7 @@ import javax.xml.transform.stream.StreamResult;
 
 import javax.swing.KeyStroke;
 
-import org.scilab.modules.console.GuiManagement;
+import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -139,8 +139,8 @@ public final class ConfigSciNotesManager {
     private static final String SCINOTES_CONFIG_FILE = System.getenv(SCI) + "/modules/scinotes/etc/scinotesConfiguration.xml";
     private static final String SCINOTES_CONFIG_KEYS_FILE = System.getenv(SCI) + "/modules/scinotes/etc/keysConfiguration.xml";
 
-    private static final String USER_SCINOTES_CONFIG_FILE = GuiManagement.getSCIHOME() + "/scinotesConfiguration.xml";
-    private static final String USER_SCINOTES_CONFIG_KEYS_FILE = GuiManagement.getSCIHOME() + "/keysConfiguration.xml";
+    private static final String USER_SCINOTES_CONFIG_FILE = ScilabCommons.getSCIHOME() + "/scinotesConfiguration.xml";
+    private static final String USER_SCINOTES_CONFIG_KEYS_FILE = ScilabCommons.getSCIHOME() + "/keysConfiguration.xml";
 
     private static final int PLAIN = 0;
     private static final int BOLD =  1;

@@ -15,7 +15,7 @@ package org.scilab.modules.jvm.utils;
 
 import java.io.File;
 
-import org.scilab.modules.console.GuiManagement;
+import org.scilab.modules.commons.ScilabCommons;
 
 /**
  * Define all the constants used on a Scilab
@@ -37,7 +37,7 @@ public class ScilabConstants {
     /**
      * The SCI configuration directory (Scilab home directory)
      */
-    public static final File SCIHOME = new File(GuiManagement.getSCIHOME());
+    public static final File SCIHOME = new File(ScilabCommons.getSCIHOME());
     
     /** Escape double quote symbol */
     public static final char QUOTE = '\"';
