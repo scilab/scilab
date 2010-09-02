@@ -65,7 +65,7 @@ library.history_manager.name=org.scilab.modules.history_manager.jar
 library.renderer.dir=${modules.dir}/renderer/${build.jar.dir}/
 library.renderer.name=org.scilab.modules.renderer.jar
 
-library.graphic_export.dir=${modules.dir}/renderer/${build.jar.dir}/
+library.graphic_export.dir=${modules.dir}/graphic_export/${build.jar.dir}/
 library.graphic_export.name=org.scilab.modules.graphic_export.jar
 
 library.core.dir=${modules.dir}/core/${build.jar.dir}/
