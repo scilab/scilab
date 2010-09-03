@@ -10,10 +10,16 @@ bug 7922 fixed - The Automotive Suspension demo did not work.
 
 bug 7945 fixed - The path of the diagram was not displayed in the title bar.
 
+SciNotes:
+=========
+
+* It is now possible to preview a LaTeX formula in comments or in a string on
+mouseover event.
+
 GUI creation:
 =============
 
-* It's now possible to use LaTeX or MathML as label for uimenu or pushbutton
+* It is now possible to use LaTeX or MathML as label for uimenu or pushbutton
 in uicontrol. See bug #7366.
 
 Bug Fixes:

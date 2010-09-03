@@ -219,6 +219,7 @@ public class ScilabLexerConstants {
         TOKENS.put("WhiteInString", WHITE_STRING);
         TOKENS.put("Tabulation", TAB);
         TOKENS.put("TabulationInComment", TAB_COMMENT);
+        TOKENS.put("LaTeXInComment", LATEX);
         TOKENS.put("TabulationInString", TAB_STRING);
         TOKENS.put("OpenClose", OPENCLOSE);
     }
@@ -246,6 +247,15 @@ public class ScilabLexerConstants {
             return "Structure";
         }
         return "Default";
+    }
+
+    /**
+     * Have we a LaTeX string ?
+     * @param type the type of the keyword
+     * @return true if the keyword is a LaTeX string
+     */
+    public static boolean isLaTeX(int type) {
+        return type == LATEX;
     }
 
     /**
