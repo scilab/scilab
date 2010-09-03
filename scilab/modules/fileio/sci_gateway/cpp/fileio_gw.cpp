@@ -32,5 +32,6 @@ bool FileioModule::Load()
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"mputl", &sci_mputl, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"mgetl", &sci_mgetl, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"pathconvert", &sci_pathconvert, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"isdir", &sci_isdir, MODULE_NAME));
     return true;
 }

@@ -66,7 +66,6 @@ sci_gateway/c/sci_filesep.c \
 sci_gateway/c/sci_getshortpathname.c \
 sci_gateway/c/sci_getlongpathname.c \
 sci_gateway/c/sci_fileext.c \
-sci_gateway/c/sci_isdir.c \
 sci_gateway/c/sci_removedir.c \
 sci_gateway/c/sci_createdir.c \
 sci_gateway/c/sci_chdir.c \
@@ -96,7 +95,8 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_mput.cpp \
 	sci_gateway/cpp/sci_mputl.cpp \
 	sci_gateway/cpp/sci_mgetl.cpp \
-	sci_gateway/cpp/sci_pathconvert.cpp
+	sci_gateway/cpp/sci_pathconvert.cpp \
+	sci_gateway/cpp/sci_isdir.cpp
 
 FILEIO_CPP_SOURCES = \
 	src/cpp/expandPathVariable.cpp \
