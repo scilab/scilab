@@ -31,6 +31,7 @@ import java.util.EventObject;
 import java.util.List;
 import java.util.UUID;
 
+import javax.swing.text.Caret;
 import javax.swing.JComponent;
 import javax.swing.JEditorPane;
 import javax.swing.JScrollBar;
@@ -46,6 +47,7 @@ import javax.swing.text.View;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 
+import org.scilab.modules.commons.gui.ScilabCaret;
 import org.scilab.modules.gui.utils.WebBrowser;
 import org.scilab.modules.scinotes.actions.OpenSourceFileOnKeywordAction;
 import org.scilab.modules.scinotes.utils.NavigatorWindow;
@@ -121,6 +123,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         }
         this.editor = editor;
         this.uuid = UUID.randomUUID();
+        updateCaret();
         scroll = new JScrollPane(this);
 
         addCaretListener(this);
@@ -942,6 +945,16 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             enableHighlightedLine(true);
         }
         hasBeenSaved = false;
+    }
+
+    /**
+     * Add a the ScilabCaret
+     */
+    private void updateCaret() {
+        Caret caret = new ScilabCaret(this);
+        caret.setBlinkRate(getCaret().getBlinkRate());
+        setCaretColor(getCaretColor());
+        setCaret(caret);
     }
 
     /**

@@ -63,6 +63,7 @@ public class ScilabCaret extends DefaultCaret {
      */
     public void focusGained(FocusEvent e) {
         editor.setSelectionColor(selectionColor);
+        editor.repaint();
         super.focusGained(e);
     }
 
@@ -71,6 +72,7 @@ public class ScilabCaret extends DefaultCaret {
      */
     public void focusLost(FocusEvent e) {
         editor.setSelectionColor(inactiveSelectionColor);
+        editor.repaint();
         super.focusLost(e);
     }
 
