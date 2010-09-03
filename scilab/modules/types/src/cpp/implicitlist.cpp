@@ -166,7 +166,24 @@ namespace types
                 double dblStep	= m_poStep->getAsDouble()->real_get(0,0);
                 double dblEnd   = m_poEnd->getAsDouble()->real_get(0,0);
 
-                m_iSize = static_cast<long long>(floor(fabs(dblEnd - dblStart) / fabs(dblStep))) + 1;
+                if(dblStep > 0)
+                {
+                    m_iSize = static_cast<long long>(floor((dblEnd - dblStart) / dblStep)) + 1;
+                }
+                else if(dblStep < 0)
+                {
+                    m_iSize = static_cast<long long>(floor((dblStart - dblEnd) / -dblStep)) + 1;
+                }
+                else
+                {
+                    m_iSize = 0;
+                }
+
+                if(m_iSize < 0)
+                {
+                    m_iSize = 0;
+                }
+//                m_iSize = static_cast<long long>(floor(fabs(dblEnd - dblStart) / fabs(dblStep))) + 1;
             }
             else //m_eOutType == RealInt
             {

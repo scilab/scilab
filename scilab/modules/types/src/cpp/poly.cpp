@@ -232,53 +232,72 @@ namespace types
 		double *pCoefR = m_pdblCoef->real_get();
 		double *pCoefI = m_pdblCoef->img_get();
 
-		*_pdblOutR = 0;
-		*_pdblOutI = 0;
+        *_pdblOutR = 0;
+        *_pdblOutI = 0;
+        if(m_iRank == 0)
+        {
+            return true;
+        }
 
-		for(int i = m_iRank - 1 ; i >= 0 ; i--)
-		{
-			//(a1 + ib1)(a2 + ib2)**n = (a1 + ib1) * exp(n * log(a2 + ib2))
-			double dblLogR = 0;
-			double dblLogI = 0;
-			double dblExpR = 0;
-			double dblExpI = 0;
+        for(int i = 0 ; i < m_iRank ; i++)
+        {
+            //real part
+            *_pdblOutR += pCoefR[i] * pow(_dblInR, i);
+            //only if variable is complex
+            if(m_pdblCoef->isComplex())
+            {
+                *_pdblOutR -= pCoefI[i] * pow(_dblInI, i);
+                //img part
+                *_pdblOutI += pCoefI[i] * pow(_dblInR, i);
+            }
+            *_pdblOutI += pCoefR[i] * pow(_dblInI, i);
+        }
 
-			//log(a2 + ib2)
-			if(_dblInI != 0)
-			{
-				wlog(_dblInR, _dblInI, &dblLogR, &dblLogI);
-			}
-			else
-			{
-				dblLogR = dlogs(_dblInR);
-			}
+        //old version, does not work
+		//for(int i = m_iRank - 1 ; i >= 0 ; i--)
+		//{
+		//	//(a1 + ib1)(a2 + ib2)**n = (a1 + ib1) * exp(n * log(a2 + ib2))
+		//	double dblLogR = 0;
+		//	double dblLogI = 0;
+		//	double dblExpR = 0;
+		//	double dblExpI = 0;
 
-			//n * log(a2 + ib2)
-			dblLogR *= i;
-			dblLogI *= i;
+		//	//log(a2 + ib2)
+		//	if(_dblInI != 0)
+		//	{
+		//		wlog(_dblInR, _dblInI, &dblLogR, &dblLogI);
+		//	}
+		//	else
+		//	{
+		//		dblLogR = dlogs(_dblInR);
+		//	}
 
-			//exp(n * log(a2 + ib2))
-			if(dblLogI != 0)
-			{
-				zexps(dblLogR, dblLogI, &dblExpR, &dblExpI);
-			}
-			else
-			{
-				dblExpR = dexps(dblLogR);
-			}
+		//	//n * log(a2 + ib2)
+		//	dblLogR *= i;
+		//	dblLogI *= i;
 
-			//(a1 + ib1) * exp(n * log(a2 + ib2))
-			if(m_pdblCoef->isComplex())
-			{
-				*_pdblOutR += (dblExpR * pCoefR[i] - dblExpI * pCoefI[i]);
-				*_pdblOutI += (dblExpR * pCoefI[i] + dblExpI * pCoefR[i]);
-			}
-			else
-			{
-				*_pdblOutR += (dblExpR * pCoefR[i]);
-				*_pdblOutI += (dblExpI * pCoefR[i]);
-			}
-		}
+		//	//exp(n * log(a2 + ib2))
+		//	if(dblLogI != 0)
+		//	{
+		//		zexps(dblLogR, dblLogI, &dblExpR, &dblExpI);
+		//	}
+		//	else
+		//	{
+		//		dblExpR = dexps(dblLogR);
+		//	}
+
+		//	//(a1 + ib1) * exp(n * log(a2 + ib2))
+		//	if(m_pdblCoef->isComplex())
+		//	{
+		//		*_pdblOutR += (dblExpR * pCoefR[i] - dblExpI * pCoefI[i]);
+		//		*_pdblOutI += (dblExpR * pCoefI[i] + dblExpI * pCoefR[i]);
+		//	}
+		//	else
+		//	{
+		//		*_pdblOutR += (dblExpR * pCoefR[i]);
+		//		*_pdblOutI += (dblExpI * pCoefR[i]);
+		//	}
+		//}
 		return true;
 	}
 
