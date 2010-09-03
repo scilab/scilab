@@ -45,11 +45,6 @@ OUTPUT_STREAM_IMPEXP int C2F(msgstore)(char *str,int *n);
 /**
 * TODO : comment
 */
-OUTPUT_STREAM_IMPEXP void C2F(freemsgtable)(void);
-
-/**
-* TODO : comment
-*/
 OUTPUT_STREAM_IMPEXP int GetLastErrorCode(void);
 
 #endif /* __MSGSTORE_H__ */

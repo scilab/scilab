@@ -223,8 +223,7 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	sci_gateway/c/sci_getscilabmode.c \
 	sci_gateway/c/sci_getvariablesonstack.c \
 	sci_gateway/c/sci_readgateway.c sci_gateway/c/sci_comp.c \
-	sci_gateway/c/sci_exit.c sci_gateway/fortran/sci_errclear.f \
-	sci_gateway/fortran/sci_global.f \
+	sci_gateway/c/sci_exit.c sci_gateway/fortran/sci_global.f \
 	sci_gateway/fortran/sci_mtlb_mode.f \
 	sci_gateway/fortran/sci_resume.f \
 	sci_gateway/fortran/sci_dispbpt.f \
@@ -340,12 +339,12 @@ am__objects_6 = libscicore_la-sci_stacksize.lo \
 	libscicore_la-sci_getvariablesonstack.lo \
 	libscicore_la-sci_readgateway.lo libscicore_la-sci_comp.lo \
 	libscicore_la-sci_exit.lo
-am__objects_7 = sci_errclear.lo sci_global.lo sci_mtlb_mode.lo \
-	sci_resume.lo sci_dispbpt.lo sci_useascommand.lo \
-	sci_intppty.lo sci_ieee.lo sci_macrovar.lo sci_exists.lo \
-	sci_errcatch.lo sci_clear.lo sci_argn.lo sci_setbpt.lo \
-	sci_clearglobal.lo sci_delbpt.lo where.lo sci_iserror.lo \
-	sci_debug.lo sci_comp.lo sci_isglobal.lo
+am__objects_7 = sci_global.lo sci_mtlb_mode.lo sci_resume.lo \
+	sci_dispbpt.lo sci_useascommand.lo sci_intppty.lo sci_ieee.lo \
+	sci_macrovar.lo sci_exists.lo sci_errcatch.lo sci_clear.lo \
+	sci_argn.lo sci_setbpt.lo sci_clearglobal.lo sci_delbpt.lo \
+	where.lo sci_iserror.lo sci_debug.lo sci_comp.lo \
+	sci_isglobal.lo
 am_libscicore_la_OBJECTS = $(am__objects_2) $(am__objects_3) \
 	$(am__objects_5) $(am__objects_6) $(am__objects_7)
 libscicore_la_OBJECTS = $(am_libscicore_la_OBJECTS)
@@ -763,8 +762,7 @@ sci_gateway/c/sci_readgateway.c \
 sci_gateway/c/sci_comp.c \
 sci_gateway/c/sci_exit.c
 
-GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_errclear.f \
-sci_gateway/fortran/sci_global.f \
+GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_global.f \
 sci_gateway/fortran/sci_mtlb_mode.f \
 sci_gateway/fortran/sci_resume.f \
 sci_gateway/fortran/sci_dispbpt.f \
@@ -2462,9 +2460,6 @@ isinstring.lo: src/fortran/isinstring.f
 
 relocstack.lo: src/fortran/relocstack.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o relocstack.lo `test -f 'src/fortran/relocstack.f' || echo '$(srcdir)/'`src/fortran/relocstack.f
-
-sci_errclear.lo: sci_gateway/fortran/sci_errclear.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_errclear.lo `test -f 'sci_gateway/fortran/sci_errclear.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_errclear.f
 
 sci_global.lo: sci_gateway/fortran/sci_global.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_global.lo `test -f 'sci_gateway/fortran/sci_global.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_global.f

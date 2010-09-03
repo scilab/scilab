@@ -254,8 +254,7 @@ sci_gateway/c/sci_readgateway.c \
 sci_gateway/c/sci_comp.c \
 sci_gateway/c/sci_exit.c
 
-GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_errclear.f \
-sci_gateway/fortran/sci_global.f \
+GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_global.f \
 sci_gateway/fortran/sci_mtlb_mode.f \
 sci_gateway/fortran/sci_resume.f \
 sci_gateway/fortran/sci_dispbpt.f \

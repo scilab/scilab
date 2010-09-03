@@ -127,6 +127,8 @@ Bug Fixes:
 
 * bug 7959 fixed - fscanf did not manage file descriptor as input argument.
 
+* bug 7964 - errclear(2) cleared all errors and not only error 2 as written in help.
+
 * bug 7974 fixed - Customized xerbla.f subroutine did not return enough
                    information.
 
