@@ -37,6 +37,7 @@
       <menuitem action="DeleteAction" label="Delete"/>
       <separator/>
       <menuitem action="SelectAllAction" label="Select All"/>
+      <menuitem action="SelectBlockAction" label="Select current block"/>
       <separator/>
       <menuitem action="TabifyAction" label="Shift Right"/>
       <menuitem action="UnTabifyAction" label="Shift Left"/>
@@ -109,6 +110,7 @@
     <menuitem action="SciNotesCompletionAction" label="Complete"/>
     <separator/>
     <menuitem action="SelectAllAction" label="Select All"/>
+    <menuitem action="SelectBlockAction" label="Select current block"/>
     <menuitem action="CopyAction" label="Copy"/>
     <menuitem action="CutAction" label="Cut"/>
     <menuitem action="PasteAction" label="Paste"/>

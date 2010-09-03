@@ -16,6 +16,7 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.event.MouseListener;
@@ -86,6 +87,8 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private String infoBar = "";
     private String shortName = "";
     private String title = "";
+
+    private Point mousePoint;
 
     private long lastModified;
 
@@ -821,6 +824,23 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     }
 
     /**
+     * Get a keyword at the current position in the document.
+     * @param caret if true the position is the current caret position in the doc else
+     * the position is the mouse pointer position projected in the document.
+     * @param strict if true the char just after the caret is ignored
+     * @return the KeywordEvent containing infos about keyword.
+     */
+    public KeywordEvent getKeywordEvent(boolean caret, boolean strict) {
+        int tok;
+        if (caret) {
+            tok = lexer.getKeyword(getCaretPosition(), strict);
+        } else {
+            tok = lexer.getKeyword(viewToModel(mousePoint), strict);
+        }
+        return new KeywordEvent(this, null, tok, lexer.start + lexer.yychar(), lexer.yylength());
+    }
+
+    /**
      * Prevents the different KeywordListener that a MouseEvent occured
      * @param position of the mouse
      * @param ev the event which occured
@@ -880,7 +900,8 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * @param e event
      */
     public void mouseMoved(MouseEvent e) {
-        preventConcernedKeywordListener(viewToModel(e.getPoint()), e, KeywordListener.ONMOUSEOVER);
+        this.mousePoint = e.getPoint();
+        preventConcernedKeywordListener(viewToModel(mousePoint), e, KeywordListener.ONMOUSEOVER);
     }
 
     /**
@@ -894,6 +915,13 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         if (highlightEnable) {
             repaint();
         }
+    }
+
+    /**
+     * @return the current mouse poisition in this pane
+     */
+    public Point getMousePoint() {
+        return mousePoint;
     }
 
     /**

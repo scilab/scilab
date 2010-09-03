@@ -16,6 +16,7 @@
   <entry key="UnCommentAction">control shift D</entry>
   <entry key="RemoveTrailingWhiteAction">control shift W</entry>
   <entry key="SelectAllAction">control A</entry>
+  <entry key="SelectBlockAction">control B</entry>
   <entry key="OpenTabInNewWindowAction">control shift T</entry>
   <entry key="CCloseTabInNewWindowAction">control shift C</entry>
 
