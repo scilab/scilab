@@ -186,7 +186,7 @@ close(f);
 // close the figure
  ]]></programlisting>
 
-    <para>Menus or menuitem can have a LaTeX or a MathML label<para>
+    <para>Menus or menuitem can have a LaTeX or a MathML label</para>
     <programlisting role="example"><![CDATA[ 
 f=figure();
 //LaTeX
