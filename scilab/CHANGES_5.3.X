@@ -69,6 +69,8 @@ Bug Fixes:
 
 * bug 7952 fixed - libraryinfo did not check size of input argument.
 
+* bug 7959 fixed - fscanf did not manage file descriptor as input argument.
+
 * bug 7974 fixed - Customized xerbla.f subroutine did not return enough
                    information.
 
