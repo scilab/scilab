@@ -513,6 +513,76 @@ void visitprivate(const OpExp &e)
             }
             result_set(pResult);
         }
+        else if(TypeL == GenericType::RealBool && TypeR == GenericType::RealBool)
+        {
+            Bool *pL			= execMeL.result_get()->getAsBool();
+            Bool *pR			= execMeR.result_get()->getAsBool();
+
+            if(pL->size_get() == 1)
+            {
+                pResult = new Bool(pR->rows_get(), pR->cols_get());
+
+                int iL = pL->bool_get()[0];
+                for(int i = 0 ; i < pR->rows_get() ; i++)
+                {
+                    for(int j = 0 ; j < pR->cols_get() ; j++)
+                    {
+                        if(iL == pR->bool_get(i,j))
+                        {
+                            pResult->getAsBool()->bool_set(i,j,true);
+                        }
+                        else
+                        {
+                            pResult->getAsBool()->bool_set(i,j,false);
+                        }
+                    }
+                }
+            }
+            else if(pR->size_get() == 1)
+            {
+                pResult = new Bool(pL->rows_get(), pL->cols_get());
+
+                int iR = pR->bool_get()[0];
+                for(int i = 0 ; i < pL->rows_get() ; i++)
+                {
+                    for(int j = 0 ; j < pL->cols_get() ; j++)
+                    {
+                        if(iR == pL->bool_get(i,j))
+                        {
+                            pResult->getAsBool()->bool_set(i,j,true);
+                        }
+                        else
+                        {
+                            pResult->getAsBool()->bool_set(i,j,false);
+                        }
+                    }
+                }
+            }
+            else if(pL->rows_get() == pR->rows_get() && pL->cols_get() == pR->cols_get())
+            {
+                pResult = new Bool(pL->rows_get(), pL->cols_get());
+
+                for(int i = 0 ; i < pL->rows_get() ; i++)
+                {
+                    for(int j = 0 ; j < pL->cols_get() ; j++)
+                    {
+                        if(pL->bool_get(i,j) == pR->bool_get(i,j))
+                        {
+                            pResult->getAsBool()->bool_set(i,j,true);
+                        }
+                        else
+                        {
+                            pResult->getAsBool()->bool_set(i,j,false);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                pResult = new Bool(false);
+            }
+            result_set(pResult);
+        }
         else
         {
             result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
