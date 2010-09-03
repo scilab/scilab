@@ -453,13 +453,13 @@ function my_tests = get_tests_from_module(module,type_filter,skip_mat)
 
 	my_tests = list();
 
-	for i=1:length(my_directories)
+	for i=1:size(my_directories)
 
 		directory = my_directories(i);
 		tests_in  = get_tests_from_directory(directory.path);
 		tests_out = list();
 
-		for j=1:length(tests_in)
+		for j=1:size(tests_in)
 			test = tests_in(j);
 			if or(test.name==skip_mat) then 
 				continue;

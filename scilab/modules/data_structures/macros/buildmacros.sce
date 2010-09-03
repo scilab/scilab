@@ -7,11 +7,4 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
-//------------------------------------
-if (isdef('genlib') == %f) then
-  exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
-end
-//------------------------------------
 genlib('data_structureslib','SCI/modules/data_structures/macros',%f,%t);
-//------------------------------------
