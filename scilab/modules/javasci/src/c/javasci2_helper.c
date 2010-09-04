@@ -10,10 +10,12 @@
  *
  */
 #include <stdlib.h>
+#include <string.h>
 
 #include "api_scilab.h"
 #include "sci_types.h"
 #include "BOOL.h"
+#include "lasterror.h"
 typedef unsigned char byte;
 
 BOOL isComplex(char *variableName) {
@@ -27,14 +29,14 @@ sci_int_types getIntegerPrecision(char* variableName) {
 
 	int *piAddr;
 	int iPrec;
-	
+
 	sciErr = getNamedMatrixOfIntegerPrecision(pvApiCtx, variableName, &iPrec);
 	if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
 			return sciErr.iErr;
 		}
-	
+
 	switch(iPrec)
 		{
 			case SCI_INT8:
@@ -61,9 +63,9 @@ sci_int_types getIntegerPrecision(char* variableName) {
 			case SCI_UINT64:
 				return sci_uint64;
 				break;
-				
+
 		}
-	
+
 }
 
 double * getDouble(char* variableName, int *nbRow, int *nbCol) {
@@ -153,10 +155,7 @@ double * getDoubleComplexImg(char* variableName, int *nbRow, int *nbCol) {
 
 int putDoubleComplex(char* variableName, double *variable, int nbRow, int nbCol) {
     SciErr sciErr;
-    printf("nbRow / nbCol : %d / %d\n",nbRow, nbCol);fflush(NULL);
-    printf("shift : %d\n",((nbRow)*(nbCol)));fflush(NULL);
     double *variableImg=variable+((nbRow)*(nbCol));
-    printf("nbRow / nbCol : %d / %d\n",nbRow, nbCol);
     sciErr = createNamedComplexMatrixOfDouble(pvApiCtx,variableName,nbRow,nbCol, variable, variableImg);
     if(sciErr.iErr)
     {
@@ -507,3 +506,25 @@ int putUnsignedLong(char* variableName, unsigned long *variable, int *nbRow, int
 #endif
 
 
+/**
+ * Call the Scilab function getLastErrorMessage
+ * Take the result (a matrix of string) and concatenate into a single string
+ * This is way easier to manage in swig.
+*/
+char* getLastErrorMessageSingle() {
+    int iNbLines, i, nbChar=0;
+    char **msgs = getLastErrorMessage(&iNbLines);
+    char *concat;
+
+    for (i=0; i<iNbLines; i++)
+    {
+        nbChar += strlen(msgs[i]);
+    }
+    concat = (char*)malloc((nbChar+1)*sizeof(char));
+    strcpy(concat,"");
+    for (i=0; i<iNbLines; i++)
+    {
+        strcat(concat, msgs[i]);
+    }
+    return concat;
+}

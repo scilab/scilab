@@ -216,7 +216,7 @@ public class Scilab {
      * @return the error message itself
      */
     public String getLastErrorMessage() {
-        return "getLastErrorMessage";
+        return Call_Scilab.getLastErrorMessage();
     }
 
 

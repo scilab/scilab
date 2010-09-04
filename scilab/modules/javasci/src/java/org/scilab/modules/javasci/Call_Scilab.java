@@ -49,6 +49,10 @@ public class Call_Scilab {
     return Call_ScilabJNI.GetLastErrorCode();
   }
 
+  public static String getLastErrorMessage() {
+    return Call_ScilabJNI.getLastErrorMessage();
+  }
+
   public static ScilabTypeEnum getVariableType(String varname) {
     return ScilabTypeEnum.swigToEnum(Call_ScilabJNI.getVariableType(varname));
   }

@@ -57,7 +57,7 @@ class%}
   static {
     try {
         System.loadLibrary("scilab");
-        System.loadLibrary("javasci");
+        System.loadLibrary("javasci2");
     } catch (SecurityException e) {
 		System.err.println("A security manager exists and does not allow the loading of the specified dynamic library :");
 		e.printStackTrace(System.err);
@@ -103,6 +103,9 @@ int SendScilabJobs(char **jobs,int numberjobs);
 int ScilabHaveAGraph(void);
 
 int GetLastErrorCode(void);
+
+%rename(getLastErrorMessage) getLastErrorMessageSingle;
+const char* getLastErrorMessageSingle();
 
 sci_types getVariableType(char *varname);
 

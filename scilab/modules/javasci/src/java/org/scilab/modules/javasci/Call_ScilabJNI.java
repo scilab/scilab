@@ -44,6 +44,7 @@ class Call_ScilabJNI {
   public final static native int SendScilabJobs(String[] jarg1, int jarg2);
   public final static native int ScilabHaveAGraph();
   public final static native int GetLastErrorCode();
+  public final static native String getLastErrorMessage();
   public final static native int getVariableType(String jarg1);
   public final static native int getIntegerPrecision(String jarg1);
   public final static native boolean isComplex(String jarg1);
