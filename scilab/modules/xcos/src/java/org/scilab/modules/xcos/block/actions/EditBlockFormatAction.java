@@ -49,7 +49,7 @@ public class EditBlockFormatAction extends DefaultAction {
 	/**
 	 * Icon of the action
 	 */
-	public static final String SMALL_ICON = "";
+	public static final String SMALL_ICON = "select-by-color.png";
 	/**
 	 * Mnemonic key for the action
 	 */

@@ -127,7 +127,7 @@ libscixcos_la_sci_gateway_DATA = sci_gateway/xcos_gateway.xml
 #### xcos : images files ####
 #
 # Generated with:
-#   $ find images/ -type f -printf "%p \\ \n" -name *.svg -or -name *.gif -or -name *.jpg -or -name *.png -not -name *_pal.jpg -not -name gui |sort |awk '{sub(/[ \t]+$/, "")};1' |awk '$0 !~ /gui/{print;}' |awk '$0 !~ /_pal.jpg/{print;}'
+#   $ find images/ -type f -printf "%p \\\\\n" -name *.svg -or -name *.gif -or -name *.jpg -or -name *.png -not -name *_pal.jpg -not -name gui |sort |awk '$0 !~ /gui/{print;}' |awk '$0 !~ /_pal.jpg/{print;}'
 libscixcos_la_imagesdir=$(mydatadir)/
 nobase_libscixcos_la_images_DATA = images/blocks/3DSCOPE.svg \
 images/blocks/ANDBLK.svg \
@@ -174,14 +174,20 @@ images/blocks/SWITCH.svg \
 images/blocks/VanneReglante.svg \
 images/blocks/VariableResistor.svg \
 images/blocks/VoltageSensor.svg \
-images/icons/go-bottom.png \
-images/icons/go-center.png \
-images/icons/go-first.png \
-images/icons/go-last.png \
-images/icons/go-middle.png \
-images/icons/go-top.png \
+images/icons/align-horizontal-center.png \
+images/icons/align-horizontal-left.png \
+images/icons/align-horizontal-right.png \
+images/icons/align-vertical-bottom.png \
+images/icons/align-vertical-center.png \
+images/icons/align-vertical-top.png \
+images/icons/color-fill.png \
+images/icons/draw-brush.png \
+images/icons/object-group.png \
+images/icons/preferences-desktop.png \
 images/icons/process-stop.png \
-images/icons/view-fullscreen.png \
+images/icons/select-by-color.png \
+images/icons/transform-flip.png \
+images/icons/transform-mirror.png \
 images/palettes/ABS_VALUE.png \
 images/palettes/AFFICH_m.png \
 images/palettes/ANDBLK.png \
