@@ -282,6 +282,9 @@ libscigui_la_sci_gateway_DATA = sci_gateway/gui_gateway.xml
 
 
 #### gui : icons files ####
+#
+# Generated with:
+#    $ find images/ -type f -printf "%p \\\\\n" -name *.svg -or -name *.gif -or -name *.jpg -or -name *.png |sort -u
 libscigui_la_iconsdir=$(mydatadir)/
 nobase_libscigui_la_icons_DATA = images/icons/32x32/apps/accessories-text-editor.png \
 images/icons/32x32/apps/utilities-system-monitor.png \
@@ -313,7 +316,6 @@ images/icons/graphic-window.png \
 images/icons/help-browser.png \
 images/icons/media-floppy.png \
 images/icons/media-playback-start.png \
-images/icons/original-view.png \
 images/icons/package-x-generic.png \
 images/icons/printer.png \
 images/icons/process-working.png \
@@ -328,9 +330,10 @@ images/icons/undock_default.png \
 images/icons/utilities-system-monitor.png \
 images/icons/window-new.png \
 images/icons/zoom-area-cursor.png \
-images/icons/zoom-area.png \
 images/icons/zoom-fit-drawing.png \
+images/icons/zoom-fit-selection.png \
 images/icons/zoom-in.png \
+images/icons/zoom-original.png \
 images/icons/zoom-out.png
 
 if GUI

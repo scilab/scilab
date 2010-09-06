@@ -26,6 +26,11 @@ GUI creation:
 * It is now possible to use LaTeX or MathML as label for uimenu or pushbutton
 in uicontrol. See bug #7366.
 
+Graphics:
+=========
+
+* The icons has been updated to the Tango Art libre icons and to the Inkscape themable icons.
+
 Bug Fixes:
 ==========
 
