@@ -62,11 +62,11 @@ import org.scilab.modules.types.scilabTypes.ScilabString;
 import org.scilab.modules.types.scilabTypes.ScilabType;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
+import org.scilab.modules.xcos.actions.EditFormatAction;
 import org.scilab.modules.xcos.actions.ShowHideShadowAction;
 import org.scilab.modules.xcos.block.actions.BlockDocumentationAction;
 import org.scilab.modules.xcos.block.actions.BlockParametersAction;
 import org.scilab.modules.xcos.block.actions.BorderColorAction;
-import org.scilab.modules.xcos.block.actions.EditBlockFormatAction;
 import org.scilab.modules.xcos.block.actions.FilledColorAction;
 import org.scilab.modules.xcos.block.actions.FlipAction;
 import org.scilab.modules.xcos.block.actions.MirrorAction;
@@ -1332,7 +1332,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 			format.add(BorderColorAction.createMenu(graph));
 			format.add(FilledColorAction.createMenu(graph));
 		} else {
-			format.add(EditBlockFormatAction.createMenu(graph));
+			format.add(EditFormatAction.createMenu(graph));
 		}
 		/*--- */
 		menu.getAsSimpleContextMenu().addSeparator();

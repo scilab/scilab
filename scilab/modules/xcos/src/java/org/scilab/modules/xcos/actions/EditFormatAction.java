@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.xcos.block.actions;
+package org.scilab.modules.xcos.actions;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -41,7 +41,7 @@ import com.mxgraph.util.mxUtils;
 /**
  * Customize the block representation.
  */
-public class EditBlockFormatAction extends DefaultAction {
+public class EditFormatAction extends DefaultAction {
 	/**
 	 * Name of the action
 	 */
@@ -62,17 +62,17 @@ public class EditBlockFormatAction extends DefaultAction {
 	/**
 	 * The default color used on non initialized border color.
 	 */
-	private static final Color DEFAULT_BORDERCOLOR = new Color(0, 0, 0, 0);
+	private static final Color DEFAULT_BORDERCOLOR = Color.BLACK;
 	/**
 	 * The default color used on non initialized filled color.
 	 */
-	private static final Color DEFAULT_FILLCOLOR = new Color(255, 255, 255, 0);
+	private static final Color DEFAULT_FILLCOLOR = Color.WHITE;
 	
 	/**
 	 * Default constructor
 	 * @param scilabGraph the current graph
 	 */
-	public EditBlockFormatAction(ScilabGraph scilabGraph) {
+	public EditFormatAction(ScilabGraph scilabGraph) {
 		super(scilabGraph);
 	}
 
@@ -82,7 +82,7 @@ public class EditBlockFormatAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(scilabGraph, EditBlockFormatAction.class);
+		return createMenu(scilabGraph, EditFormatAction.class);
 	}
 	
 	/**
@@ -234,7 +234,7 @@ public class EditBlockFormatAction extends DefaultAction {
 		XcosDiagram graph = (XcosDiagram) getGraph(null);
 		Object[] selectedCells = graph.getSelectionCells();
 		
-		EditBlockFormatAction.showDialog((ScilabComponent) graph
+		EditFormatAction.showDialog((ScilabComponent) graph
 				.getAsComponent(), NAME, (mxCell) selectedCells[0]);
 		
 		graph.getView().clear(selectedCells[0], true, true);
@@ -356,6 +356,15 @@ public class EditBlockFormatAction extends DefaultAction {
 		 */
 		public void setCell(mxCell selectedCell) {
 			cell = selectedCell;
+			
+			// enable/disable the fill color pane
+			if (selectedCell.isVertex()) {
+				mainTab.addTab(XcosMessages.FILL_COLOR, backgroundColorChooser);
+			} else {
+				mainTab.remove(backgroundColorChooser);
+			}
+			
+			pack();
 		}
 		
 		/** 
@@ -408,10 +417,6 @@ public class EditBlockFormatAction extends DefaultAction {
 	        cancelButton = new javax.swing.JButton(XcosMessages.CANCEL);
 	        okButton = new javax.swing.JButton(XcosMessages.OK);
 	        buttonPane = new javax.swing.JPanel();
-
-	        mainTab.addTab(XcosMessages.BORDER_COLOR, borderColorChooser);
-	        mainTab.addTab(XcosMessages.FILL_COLOR, backgroundColorChooser);
-	        mainTab.addTab(XcosMessages.TEXT_COLOR, textColorChooser);
 
 	        textFormat.setLayout(new java.awt.BorderLayout());
 
@@ -482,6 +487,10 @@ public class EditBlockFormatAction extends DefaultAction {
 	        textFormat.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
 	        mainTab.addTab(XcosMessages.TEXT_SETTINGS, textFormat);
+	        mainTab.addTab(XcosMessages.BORDER_COLOR, borderColorChooser);
+	        mainTab.addTab(XcosMessages.TEXT_COLOR, textColorChooser);
+	        // backgroundColorChooser is added on the setCell method only if the cell is a vertex
+	        // mainTab.addTab(XcosMessages.FILL_COLOR, backgroundColorChooser);
 
 	        mainTab.addChangeListener(defaultChangeListener);
 	        
@@ -509,7 +518,7 @@ public class EditBlockFormatAction extends DefaultAction {
 				 */
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					EditBlockFormatAction.updateFromDialog(getDialog(),
+					EditFormatAction.updateFromDialog(getDialog(),
 							borderColorChooser.getColor(),
 							backgroundColorChooser.getColor(),
 							(String) fontNameComboBox.getSelectedItem(),
@@ -534,8 +543,6 @@ public class EditBlockFormatAction extends DefaultAction {
 	        java.awt.Container contentPane = getContentPane();
 	        contentPane.add(mainTab, java.awt.BorderLayout.CENTER);
 	        contentPane.add(buttonPane, java.awt.BorderLayout.PAGE_END);
-	        
-	        pack();
 		}
 		// CSON: JavaNCSS
 		// CSON: LineLength
