@@ -7,18 +7,19 @@ c you should have received as part of this distribution.  The terms
 c are also available at    
 c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
       SUBROUTINE XERBLA( SRNAME, INFO )
+      
       INCLUDE 'stack.h'
 *    XERBLA CUSTOMIZED FOR SCILAB
+*      
 *
-*  -- LAPACK auxiliary routine (version 2.0) --
+*  -- LAPACK auxiliary routine (version 3.0) --
 *     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
 *     Courant Institute, Argonne National Lab, and Rice University
 *     September 30, 1994
 *
 *     .. Scalar Arguments ..
-      CHARACTER*(nlgh)        SRNAME
+      CHARACTER*6        SRNAME
       INTEGER            INFO
 *     ..
 *
@@ -46,13 +47,18 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 *     .. Executable Statements ..
 *
+      character bufstr*(4096)
+*     
+      WRITE(bufstr, FMT = 9999 ) SRNAME(1:lnblnk(SRNAME)), INFO
+      
+*
+ 9999 FORMAT( 'xerbla: On entry to ', A6, ' parameter number ', I2,
+     $ ' had ',
+     $ 'an illegal value (lapack library problem)' )
+     
 
-      WRITE( buf, FMT = 9999 )SRNAME, INFO
-*
+      call basout(io ,wte ,bufstr(1:lnblnk(bufstr)))
       call error(998)
-*
- 9999 FORMAT( ' ** On entry to ', A6, ' parameter number ', I2, ' had ',
-     $      'an illegal value' )
 *
 *     End of XERBLA
 *
