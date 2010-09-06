@@ -193,6 +193,8 @@ Bug Fixes:
 
 * bug 7946 fixed - error(0, "bye") crashed Scilab.
 
+* bug 7950 fixed - spec crashed on Windows.
+
 * bug 7951 fixed - strcat crashed with row concatenation option on linux.
 
 * bug 7952 fixed - libraryinfo did not check size of input argument.
