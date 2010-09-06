@@ -292,9 +292,7 @@ public class ScilabLexerConstants {
     public static boolean isMatchable(int type) {
         return type == OPENCLOSE
             || type == FKEYWORD
-            || type == CKEYWORD
-            || type == OSKEYWORD
-            || type == SKEYWORD;
+            || type == OSKEYWORD;
     }
 
     /**

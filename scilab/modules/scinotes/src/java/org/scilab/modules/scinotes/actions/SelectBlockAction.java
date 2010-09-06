@@ -29,7 +29,9 @@ import org.scilab.modules.scinotes.ScilabLexerConstants;
  * Class to handle the block selection
  * @author Calixte DENIZET
  */
-public final class SelectBlockAction extends DefaultAction {
+public class SelectBlockAction extends DefaultAction {
+
+    protected boolean isPopup;
 
     /**
      * Constructor
@@ -46,7 +48,7 @@ public final class SelectBlockAction extends DefaultAction {
     public void doAction() {
         ScilabEditorPane sep = getEditor().getTextPane();
         MatchingBlockScanner scanner = sep.getMatchingBlockManager(true).getScanner();
-        KeywordEvent event = sep.getKeywordEvent(false, false);
+        KeywordEvent event = sep.getKeywordEvent(!isPopup, false);
         int tok = event.getType();
         int pos;
         MatchingBlockScanner.MatchingPositions mpos = null;
@@ -61,7 +63,7 @@ public final class SelectBlockAction extends DefaultAction {
 
         if (mpos == null) {
             scanner = sep.getMatchingBlockManager(false).getScanner();
-            event = sep.getKeywordEvent(false, true);
+            event = sep.getKeywordEvent(!isPopup, true);
             tok = event.getType();
             if (ScilabLexerConstants.isMatchable(tok)) {
                 pos = event.getStart() + event.getLength();
@@ -82,12 +84,24 @@ public final class SelectBlockAction extends DefaultAction {
      * @return MenuItem
      */
     public static MenuItem createMenu(String label, final SciNotes editor, KeyStroke key) {
-        final MenuItem menuitem = createMenu(label, null, new SelectBlockAction(label, editor), key);
+        return createMenu(label, editor, key, new SelectBlockAction(label, editor));
+    }
+
+    /**
+     * createMenu
+     * @param label label of the menu
+     * @param editor SciNotes
+     * @param key KeyStroke
+     * @param sba the SelectBlock action
+     * @return MenuItem
+     */
+    protected static MenuItem createMenu(String label, final SciNotes editor, KeyStroke key, final SelectBlockAction sba) {
+        final MenuItem menuitem = createMenu(label, null, sba, key);
         ((JMenuItem) menuitem.getAsSimpleMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
                 public void propertyChange(PropertyChangeEvent e) {
                     ScilabEditorPane sep = editor.getTextPane();
-                    boolean block = ScilabLexerConstants.isMatchable(sep.getKeywordEvent(false, false).getType());
-                    block = block || ScilabLexerConstants.isMatchable(sep.getKeywordEvent(false, true).getType());
+                    boolean block = ScilabLexerConstants.isMatchable(sep.getKeywordEvent(!sba.isPopup, false).getType());
+                    block = block || ScilabLexerConstants.isMatchable(sep.getKeywordEvent(!sba.isPopup, true).getType());
                     menuitem.setEnabled(block);
                 }
             });

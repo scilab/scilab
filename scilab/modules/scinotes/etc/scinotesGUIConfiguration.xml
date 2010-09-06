@@ -110,7 +110,7 @@
     <menuitem action="SciNotesCompletionAction" label="Complete"/>
     <separator/>
     <menuitem action="SelectAllAction" label="Select All"/>
-    <menuitem action="SelectBlockAction" label="Select current block"/>
+    <menuitem action="SelectBlockInPopupAction" label="Select current block"/>
     <menuitem action="CopyAction" label="Copy"/>
     <menuitem action="CutAction" label="Cut"/>
     <menuitem action="PasteAction" label="Paste"/>
