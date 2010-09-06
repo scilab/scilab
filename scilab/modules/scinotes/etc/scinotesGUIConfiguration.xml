@@ -115,7 +115,7 @@
     <menuitem action="CutAction" label="Cut"/>
     <menuitem action="PasteAction" label="Paste"/>
     <separator/>
-    <menuitem action="HelpOnKeywordAction" label="Help on ;Help on selection"/>
+    <menuitem action="HelpOnKeywordInPopupAction" label="Help on ;Help on selection"/>
     <menuitem action="OpenSourceFileOnKeywordAction" label="Open function source file"/>
     <menuitem action="OpenURLAction" label="Open URL"/>
   </RightClickMenu>
