@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-09-22 14:07+0100\n"
-"PO-Revision-Date: 2010-01-12 10:00+0000\n"
+"PO-Revision-Date: 2010-06-29 12:11+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
@@ -66,6 +66,10 @@ msgstr "%s: помилкова функція у файлі %s.\n"
 #, c-format
 msgid "%s: Invalid library %s.\n"
 msgstr "%s: некоректна бібліотека %s.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: помилка виділення пам’яті.\n"
 
 #, c-format
 msgid "%s: No files with extension %s found in %s\n"
@@ -249,18 +253,6 @@ msgstr "Цю функцію буде назавжди вилучено у Scilab
 
 msgid "Tools"
 msgstr "Інструменти"
-
-#, c-format
-msgid "WARNING: Function %s is obsolete.\n"
-msgstr "ПОПЕРЕДЖЕННЯ: функція %s вважається застарілою.\n"
-
-#, c-format
-msgid "WARNING: Please use %s instead.\n"
-msgstr "ПОПЕРЕДЖЕННЯ: будь ласка, скористайтеся %s.\n"
-
-#, c-format
-msgid "WARNING: This function will be permanently removed in Scilab %s.\n"
-msgstr "ПОПЕРЕДЖЕННЯ: цю функцію буде назавжди вилучено у Scilab %s.\n"
 
 #, c-format
 msgid "line %s [%s call, %s sec] :: "

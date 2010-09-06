@@ -32,7 +32,10 @@ b=and(A,'c'), b=and(A,2)
     éléments de la matrice booléenne <literal>A</literal>.
     <literal>and(A)</literal> est vrai (<literal>%t</literal>) si tous les
     termes de <literal>A</literal> sont <literal>%t</literal>.</para>
-
+    <para>
+      <literal>and([])</literal> retourne <literal>%T</literal>.
+    </para>
+ 
     <para><literal>y=and(A,'r')</literal> (et <literal>y=and(A,1)</literal>)
     donne la conjonction suivant l'indice de ligne. Chaque élément du vecteur
     ligne <literal>y</literal> contient la conjonction de chaque colonne de

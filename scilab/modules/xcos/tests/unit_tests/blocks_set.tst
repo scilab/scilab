@@ -4,7 +4,9 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
-
+//
+// <-- ENGLISH IMPOSED -->
+//
 // <-- Short Description -->
 // Blocks must have valid dimensions for their settings.
 // Some dimensions were not coherents between theirs "set" and "define" method.
@@ -67,7 +69,7 @@ function [xx, yy, ok, gc] = edit_curv(xx, yy,  axis, args, gc)
     ok = %T;
     if ~exists("gc", 'l') then
         rect=[0 0 1 1];
-        axisdata=[2 10 2 10]; 
+        axisdata=[2 10 2 10];
         gc = list(rect, axisdata);
     end
 endfunction
@@ -79,7 +81,7 @@ endfunction
 
 // Stubbing global scicos flags
 needcompile = 0;
-alreadyran = %f
+alreadyran = %f;
 %scicos_context = struct();
 
 // If the following block display something, the test is failed.
@@ -87,19 +89,19 @@ for i = 1:size(defaultlibs,"*")
     [macros, path] = libraryinfo(defaultlibs(i));
     for j = 1:size(macros,"*")
         interfunction = macros(j);
-        
+
         // Not tested blocks (Xcos customs)
         if or(interfunction == notTested) then
           continue;
         end
-        
+
         // Check for signature
         vars=macrovar(evstr(interfunction));
         if or([size(vars(1)) <> [3 1] , size(vars(2)) <> [3 1]]) then
           mprintf("%s is not a valid block descriptor.\n", interfunction);
           continue;
         end
-        
+
         // New Scilab instance
         cmd = "scs_m=" + interfunction + "(""define"", [], []);";
         if execstr(cmd, "errcatch")<>0 then
@@ -114,12 +116,12 @@ for i = 1:size(defaultlibs,"*")
             mprintf("%s not found.\n", filePath);
             continue;
         end
-        
+
         if import_from_hdf5(filePath) <> %t then
             mprintf("%s not loaded\n", filePath); pause, end
-    	// the saved data is stored as the out variable
-    	scs_m = out;
-    	cmd = "scs_m=" + interfunction + "(""set"", scs_m, []); // loaded block";
+        // the saved data is stored as the out variable
+        scs_m = out;
+        cmd = "scs_m=" + interfunction + "(""set"", scs_m, []); // loaded block";
         if execstr(cmd, "errcatch")<>0 then
             mprintf("%s\n",cmd); pause, end
     end

@@ -77,7 +77,11 @@ computed = optimsimplex_getfv( s1 , 3);
 assert_equal ( computed , 14.0 );
 // Print the simplex
 optimsimplex_print ( s1 );
-WARNING: optimsimplex_print: obsolete use of optimsimplex_print, use directly the variable instead.
+WARNING: Function optimsimplex_print is obsolete.
+WARNING: Please use disp instead.
+WARNING: This function will be permanently removed in Scilab optimsimplex_print
+
+ 
 Optim Simplex Object:
 =====================
 Vertex #1/3 : fv=1.200000e+001, x=0.000000e+000 0.000000e+000

@@ -16,16 +16,6 @@
 #include <wchar.h>
 #include "BOOL.h"
 
-
-/**
-* strip directory and suffix from filenames
-* @param[in] filename
-* @param[in] BOOL flagexpand
-* @return basename
-*/
-char *basename(char *fullfilename, BOOL bExpand);
-
-
 /**
 * strip directory and suffix from filenames (wide string)
 * @param[in] filename

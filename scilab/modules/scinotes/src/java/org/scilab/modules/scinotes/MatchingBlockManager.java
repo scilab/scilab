@@ -17,6 +17,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.Shape;
 
+import javax.swing.SwingUtilities;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Highlighter;
@@ -44,6 +45,8 @@ public class MatchingBlockManager {
     private Object second;
     private boolean insideOc;
     private boolean insideKw;
+    private boolean ocIncluded;
+    private boolean kwIncluded;
     private boolean lr;
     private MouseOverMatcher mouseover;
 
@@ -60,8 +63,6 @@ public class MatchingBlockManager {
         this.scanner = new MatchingBlockScanner(doc);
         this.highlighter = highlighter;
         this.lr = lr;
-        setPainterForOpenClose(true, Color.orange);
-        setPainterForKeywords(true, Color.orange);
     }
 
     /**
@@ -70,10 +71,11 @@ public class MatchingBlockManager {
      * @param filled true if a filled rectangle must be used to highlight
      * @param color the color of the painter
      **/
-    public void setPainterForOpenClose(boolean filled, Color color) {
+    public void setPainterForOpenClose(boolean filled, boolean included, Color color) {
         this.insideOc = true;
+        this.ocIncluded = included;
         update();
-        ocPainter = new InsideLinePainter(filled, color);
+        ocPainter = new InsideLinePainter(filled, false, color);
     }
 
     /**
@@ -99,13 +101,13 @@ public class MatchingBlockManager {
         Parameters param = ConfigSciNotesManager.getDefaultForMatcher("OpenCloseHighlighter");
         if (param.inside) {
             boolean b = param.type == ScilabKeywordsPainter.FILLED;
-            setPainterForOpenClose(b, param.color);
+            setPainterForOpenClose(b, param.included, param.color);
         } else {
             setPainterForOpenClose(param.type, param.color);
         }
-	if (param.onmouseover) {
-	    activateMouseOver();
-	}
+        if (param.onmouseover) {
+            activateMouseOver();
+        }
     }
 
     /**
@@ -114,10 +116,11 @@ public class MatchingBlockManager {
      * @param filled true if a filled rectangle must be used to highlight
      * @param color the color of the painter
      **/
-    public void setPainterForKeywords(boolean filled, Color color) {
+    public void setPainterForKeywords(boolean filled, boolean strict, boolean included, Color color) {
         this.insideKw = true;
+        this.kwIncluded = included;
         update();
-        kwPainter = new InsideLinePainter(filled, color);
+        kwPainter = new InsideLinePainter(filled, strict, color);
     }
 
     /**
@@ -143,21 +146,21 @@ public class MatchingBlockManager {
         Parameters param = ConfigSciNotesManager.getDefaultForMatcher("KeywordsHighlighter");
         if (param.inside) {
             boolean b = param.type == ScilabKeywordsPainter.FILLED;
-            setPainterForKeywords(b, param.color);
+            setPainterForKeywords(b, param.strict, param.included, param.color);
         } else {
             setPainterForKeywords(param.type, param.color);
         }
-	if (param.onmouseover) {
-	    activateMouseOver();
-	}
+        if (param.onmouseover) {
+            activateMouseOver();
+        }
     }
 
-    /** 
+    /**
      * Set the defaults from scinotesConfiguration.xml
      */
     public void setDefaults() {
-	setPainterForKeywords();
-	setPainterForOpenClose();
+        setPainterForKeywords();
+        setPainterForOpenClose();
     }
 
     /**
@@ -213,9 +216,9 @@ public class MatchingBlockManager {
                 }
             }
             if (mpos != null && ScilabLexerConstants.isOpenClose(tok)) {
-                createHighlights(mpos, insideOc, ocPainter);
+                createHighlights(mpos, insideOc, ocIncluded, ocPainter);
             } else if (mpos != null) {
-                createHighlights(mpos, insideKw, kwPainter);
+                createHighlights(mpos, insideKw, kwIncluded, kwPainter);
             }
         }
     }
@@ -227,16 +230,24 @@ public class MatchingBlockManager {
      * @param hp the painter to use
      */
     private void createHighlights(MatchingBlockScanner.MatchingPositions mpos,
-                                  boolean inside, Highlighter.HighlightPainter hp) {
+                                  boolean inside, boolean included, Highlighter.HighlightPainter hp) {
         try {
             if (!inside) {
                 first = highlighter.addHighlight(mpos.firstB, mpos.firstE, hp);
                 second = highlighter.addHighlight(mpos.secondB, mpos.secondE, hp);
             } else {
                 if (lr) {
-                    first = highlighter.addHighlight(mpos.firstE, mpos.secondB + 1, hp);
+                    if (included) {
+                        first = highlighter.addHighlight(mpos.firstB, mpos.secondE, hp);
+                    } else {
+                        first = highlighter.addHighlight(mpos.firstE, mpos.secondB, hp);
+                    }
                 } else {
-                    first = highlighter.addHighlight(mpos.secondE, mpos.firstB + 1, hp);
+                    if (included) {
+                        first = highlighter.addHighlight(mpos.secondB, mpos.firstE, hp);
+                    } else {
+                        first = highlighter.addHighlight(mpos.secondE, mpos.firstB, hp);
+                    }
                 }
             }
         } catch (BadLocationException e) {
@@ -260,6 +271,16 @@ public class MatchingBlockManager {
         public boolean inside;
 
         /**
+         * Strict or not
+         */
+        public boolean strict;
+
+        /**
+         * Included or not
+         */
+        public boolean included;
+
+        /**
          * The type
          */
         public int type;
@@ -274,13 +295,15 @@ public class MatchingBlockManager {
          * @param color the color
          * @param inside inside or not
          * @param type the type
-	 * @param onmouseover a boolean
+         * @param onmouseover a boolean
          */
-        public Parameters(Color color, boolean inside, int type, boolean onmouseover) {
+        public Parameters(Color color, boolean inside, boolean strict, boolean included, int type, boolean onmouseover) {
             this.color = color;
             this.inside = inside;
             this.type = type;
-	    this.onmouseover = onmouseover;
+            this.strict = strict;
+            this.included = included;
+            this.onmouseover = onmouseover;
         }
     }
 
@@ -336,15 +359,13 @@ public class MatchingBlockManager {
                 g.setColor(color);
 
                 switch (type) {
-                case FILLED :
-                    g.fillRect(r.x, r.y, r.width, r.height);
-                    return r;
                 case UNDERLINED :
                     g.drawLine(r.x, r.y + r.height - 1, r.x + r.width - 1, r.y + r.height - 1);
                     return r;
                 case FRAMED :
                     g.drawRect(r.x, r.y, r.width - 1, r.height - 1);
                     return r;
+                case FILLED :
                 default :
                     g.fillRect(r.x, r.y, r.width, r.height);
                     return r;
@@ -362,6 +383,7 @@ public class MatchingBlockManager {
     class InsideLinePainter implements Highlighter.HighlightPainter {
 
         private boolean filled;
+        private boolean strict;
         private Color color;
 
         /**
@@ -369,8 +391,9 @@ public class MatchingBlockManager {
          * @param filled if the highlighted rectangle must be filled
          * @param color the color to paint
          */
-        protected InsideLinePainter(boolean filled, Color color) {
+        protected InsideLinePainter(boolean filled, boolean strict, Color color) {
             this.filled = filled;
+            this.strict = strict;
             this.color = color;
         }
 
@@ -386,8 +409,7 @@ public class MatchingBlockManager {
             try {
                 Rectangle alloc = bounds.getBounds();
                 Rectangle p0 = c.modelToView(pos0);
-                Rectangle p1 = c.modelToView(pos1 - 1);
-
+                Rectangle p1 = c.modelToView(pos1);
                 g.setColor(color);
 
                 if (p0.y == p1.y) {
@@ -401,19 +423,33 @@ public class MatchingBlockManager {
                     Element root = doc.getDefaultRootElement();
                     int line0 = root.getElementIndex(pos0);
                     int line1 = root.getElementIndex(pos1);
-                    int offs0 = pos0;
-                    int offs1 = pos1;
+                    Rectangle r0 = c.modelToView(root.getElement(line0).getEndOffset());
+                    Rectangle r1 = c.modelToView(root.getElement(line1).getStartOffset());
                     if (line0 != line1) {
-                        Element line = root.getElement(line0 + 1);
-                        offs0 = line.getStartOffset();
-                        line = root.getElement(line1 - 1);
-                        offs1 = line.getEndOffset();
-                        p0 = c.modelToView(offs0);
-                        p1 = c.modelToView(offs1);
+                        if (!strict) {
+                            if (filled) {
+                                g.fillRect(p0.x, p0.y, alloc.width, p0.height);
+                                g.fillRect(alloc.x, p0.y + p0.height, alloc.width, r0.y - p0.y - p0.height);
+
+                                if (r1.y != p1.y) {
+                                    g.fillRect(r1.x, r1.y, alloc.width, r1.height);
+                                }
+                                g.fillRect(r1.x, p1.y, p1.x, r1.height);
+                            } else {
+                                g.drawRect(p0.x, p0.y, alloc.width - 1, p0.height - 1);
+                                g.drawRect(alloc.x, p0.y + p0.height, alloc.width - 1, r0.y - p0.y - p0.height - 1);
+
+                                if (r1.y != p1.y) {
+                                    g.drawRect(r1.x, r1.y, alloc.width, r1.height - 1);
+                                }
+                                g.drawRect(r1.x, p1.y, p1.x, r1.height - 1);
+                            }
+                        }
+
                         if (filled) {
-                            g.fillRect(alloc.x, p0.y, alloc.width, p1.y - p0.y);
+                            g.fillRect(alloc.x, r0.y, alloc.width, r1.y - r0.y);
                         } else {
-                            g.drawRect(alloc.x, p0.y, alloc.width - 1, p1.y - p0.y - 1);
+                            g.drawRect(alloc.x, r0.y, alloc.width - 1, r1.y - r0.y - 1);
                         }
                     } else {
                         /* This part of the code has been copied (for the filling) from DefaultHighlighter.java */
@@ -421,15 +457,13 @@ public class MatchingBlockManager {
                         if (filled) {
                             g.fillRect(p0.x, p0.y, w, p0.height);
                             if ((p0.y + p0.height) != p1.y) {
-                                g.fillRect(alloc.x, p0.y + p0.height, alloc.width,
-                                           p1.y - (p0.y + p0.height));
+                                g.fillRect(alloc.x, p0.y + p0.height, alloc.width, p1.y - (p0.y + p0.height));
                             }
                             g.fillRect(alloc.x, p1.y, (p1.x - alloc.x), p1.height);
                         } else {
                             g.drawRect(p0.x, p0.y, w - 1, p0.height - 1);
                             if ((p0.y + p0.height) != p1.y) {
-                                g.drawRect(alloc.x, p0.y + p0.height, alloc.width - 1,
-                                           p1.y - (p0.y + p0.height) - 1);
+                                g.drawRect(alloc.x, p0.y + p0.height, alloc.width - 1, p1.y - (p0.y + p0.height) - 1);
                             }
                             g.drawRect(alloc.x, p1.y, (p1.x - alloc.x) - 1, p1.height - 1);
                         }

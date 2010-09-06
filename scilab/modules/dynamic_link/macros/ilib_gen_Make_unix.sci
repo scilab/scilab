@@ -132,7 +132,7 @@ function ilib_gen_Make_unix(names,   ..
             // We stripped the ending .o and looked for all files
             if filesMatching == [] | fileinfo(x) <> [] then
 
-              pathFrom=fileparts(x); // Retrieve the path of the file
+              [pathFrom, file_name, file_extension]=fileparts(x); // Retrieve the path of the file
                 if length(pathFrom) == 0 then // Empty => it should be PWD
                   pathFrom=pwd();
                 end
@@ -148,7 +148,7 @@ function ilib_gen_Make_unix(names,   ..
                     end
                 end
 
-                filelist = filelist + " " + x ;
+                filelist = filelist + " " + file_name + file_extension;
 
             else
 

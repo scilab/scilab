@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-09-22 14:07+0100\n"
-"PO-Revision-Date: 2010-04-04 16:24+0000\n"
+"PO-Revision-Date: 2010-07-09 14:38+0000\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -63,6 +63,10 @@ msgstr "%s: Função incorreta no arquivo %s.\n"
 #, c-format
 msgid "%s: Invalid library %s.\n"
 msgstr "%s: Biblioteca inválida %s.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Erro de alocação de memória.\n"
 
 #, c-format
 msgid "%s: No files with extension %s found in %s\n"
@@ -243,18 +247,6 @@ msgstr "Esta função será permanentemente removida no Scilab %s"
 
 msgid "Tools"
 msgstr "Ferramentas"
-
-#, c-format
-msgid "WARNING: Function %s is obsolete.\n"
-msgstr "AVISO: A função %s está obsoleta.\n"
-
-#, c-format
-msgid "WARNING: Please use %s instead.\n"
-msgstr "AVISO: Por favor, use %s no lugar.\n"
-
-#, c-format
-msgid "WARNING: This function will be permanently removed in Scilab %s.\n"
-msgstr "AVISO: Esta função será removida permanentemente no Scilab %s.\n"
 
 #, c-format
 msgid "line %s [%s call, %s sec] :: "

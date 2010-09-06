@@ -55,9 +55,6 @@ function  ok=xml2modelica(xmlfile,Flati)
     messagebox([_('-------XML to Modelica error:-------');
 		mgetl(Errfile);], 'error', 'modal');	    
     ok = %f;
-    if %tk then 
-      TCL_EvalStr("Compile_finished nok "+ %_winId);
-    end
     return
   end
 endfunction

@@ -8,17 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-04-10 18:54+0000\n"
+"PO-Revision-Date: 2010-07-29 09:49+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build Unknown)\n"
-
-#, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s : Error d'assignació de memòria.\n"
 
 #, c-format
 msgid "%s: %s format not recognized.\n"
@@ -135,6 +131,10 @@ msgid "%s: Invalid conversion.\n"
 msgstr "%s: La conversió és incorrecta.\n"
 
 #, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Error de memòria.\n"
+
+#, c-format
 msgid "%s: No File opened in Scilab.\n"
 msgstr "%s: No hi ha cap fitxer obert pel Scilab.\n"
 
@@ -169,6 +169,10 @@ msgstr "%s: El fitxer %s no està obert per a l'Scilab.\n"
 #, c-format
 msgid "%s: Too many directives in scanf.\n"
 msgstr "%s: Hi ha massa directives al scanf.\n"
+
+#, c-format
+msgid "%s: Too many files opened!\n"
+msgstr "%s: Hi ha massa fitxers oberts.\n"
 
 #, c-format
 msgid ""
@@ -275,6 +279,11 @@ msgstr ""
 "text.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: Integer expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un enter.\n"
+
+#, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Must be less than %d characters.\n"
 msgstr ""
@@ -291,6 +300,13 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un escalar.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: String or logical unit expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un text o una "
+"unitat lògica.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument: Scalar expected.\n"
@@ -346,6 +362,10 @@ msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Una cadena de text.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr "%s: L'argument #%d és d'un tipus incorrecte: Ha de ser un enter.\n"
+
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Matrix of floating point numbers "
 "expected.\n"
@@ -369,6 +389,13 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un text.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: String or logical unit expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un text o "
+"una unitat lògica.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: A string expected.\n"
@@ -454,6 +481,12 @@ msgstr ""
 "fitxer o de directori vàlid.\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: A valid format expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de tenir un format "
+"vàlid.\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Format not recognized.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: No s'ha reconegut el "
@@ -488,8 +521,16 @@ msgstr ""
 "%s: S'ha arribat al final de l'entrada abans d'acabar la conversió.\n"
 
 #, c-format
+msgid "%s: error.\n"
+msgstr "%s: Error.\n"
+
+#, c-format
 msgid "%s: format is of 0 length.\n"
 msgstr "%s: El format té longitud 0.\n"
+
+#, c-format
+msgid "%s: invalid filename %s.\n"
+msgstr "%s: El nom del fitxer %s és incorrecte.\n"
 
 #, c-format
 msgid "%s: invalid filename.\n"
@@ -512,6 +553,10 @@ msgstr "No s'ha pogut obtenir el directori actual.\n"
 #, c-format
 msgid "Can't go to directory %s.\n"
 msgstr "No s'ha pogut anar al directori %s.\n"
+
+#, c-format
+msgid "Can't go to directory %s: %s\n"
+msgstr "No s'ha pogut anar al directori %s: %s\n"
 
 msgid "Invalid buffer.\n"
 msgstr "Buffer invàlid.\n"

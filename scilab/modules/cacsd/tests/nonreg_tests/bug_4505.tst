@@ -7,6 +7,8 @@
 
 // <-- Non-regression test for bug 4505 -->
 //
+// <-- ENGLISH IMPOSED -->
+//
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=4505
 //

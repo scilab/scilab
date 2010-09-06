@@ -196,9 +196,6 @@ msgstr "Tcl 錯誤: 在 Scilab/TK 重置程中發生錯誤. (Tcl_CreateInterpt).
 msgid "Tcl/TK interface disabled in -nogui mode.\n"
 msgstr "Tcl/Tk 介面在 -nogui  模式下未啟用.\n"
 
-msgid "Tcl/Tk interface not loaded."
-msgstr "Tcl/Tk 介面未載入."
-
 msgid ""
 "The SCI environment variable is not set.\n"
 "TCL initialisation failed !\n"

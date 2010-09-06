@@ -76,8 +76,6 @@ public class DefaultAction extends CallBack {
      */
     protected static PushButton createButton(String title, String icon, ActionListener listener) {
         PushButton button = ScilabPushButton.createPushButton();
-        ((SwingScilabPushButton) button.getAsSimplePushButton()).setContentAreaFilled(true);
-        ((SwingScilabPushButton) button.getAsSimplePushButton()).setOpaque(false);
         ((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(listener);
         button.setToolTipText(title);
         if (icon == null) {
@@ -86,7 +84,6 @@ public class DefaultAction extends CallBack {
             ((SwingScilabPushButton) button.getAsSimplePushButton())
             .setIcon(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/" + icon));
         }
-
         return button;
     }
 
@@ -120,7 +117,8 @@ public class DefaultAction extends CallBack {
     /**
      * Default action
      */
-    public void callBack() {
+    @Override
+	public void callBack() {
         doAction();
     }
 

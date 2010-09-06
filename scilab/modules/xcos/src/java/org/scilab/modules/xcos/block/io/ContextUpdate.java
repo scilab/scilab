@@ -12,8 +12,11 @@
 
 package org.scilab.modules.xcos.block.io;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
@@ -23,6 +26,7 @@ import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.types.scilabTypes.ScilabDouble;
 import org.scilab.modules.types.scilabTypes.ScilabList;
+import org.scilab.modules.types.scilabTypes.ScilabType;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
@@ -35,10 +39,12 @@ import org.scilab.modules.xcos.port.input.ImplicitInputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.utils.FileUtils;
+import org.scilab.modules.xcos.utils.XcosEvent;
 
 import com.mxgraph.model.mxGraphModel;
 import com.mxgraph.model.mxICell;
 import com.mxgraph.model.mxIGraphModel;
+import com.mxgraph.util.mxEventObject;
 
 /**
  * Common class for the SuperBlock I/O blocks (represent ports)
@@ -47,6 +53,63 @@ public abstract class ContextUpdate extends BasicBlock {
 
 	private static final long serialVersionUID = 6076826729067963560L;
 
+	/**
+	 * Implement a listener which update the value and refresh the view when the
+	 * index of the port change.
+	 */
+	private static final class IndexChangeAdapter implements PropertyChangeListener, Serializable {
+		private static IndexChangeAdapter instance;
+		
+		/**
+		 * Default constructor.
+		 */
+		private IndexChangeAdapter() { }
+		
+		/**
+		 * @return the instance
+		 */
+		public static synchronized IndexChangeAdapter getInstance() {
+			if (instance == null) {
+				instance = new IndexChangeAdapter();
+			}
+			return instance;
+		}
+		
+		/**
+		 * Update the value and refresh the graph view.
+		 * 
+		 * @param evt the event
+		 * @see java.beans.PropertyChangeListener#propertyChange(java.beans.PropertyChangeEvent)
+		 */
+		@Override
+		public void propertyChange(PropertyChangeEvent evt) {
+			ScilabType data = (ScilabType) evt.getNewValue();
+			ContextUpdate ioBlock = (ContextUpdate) evt.getSource();
+			
+			if (!data.isEmpty()) {
+				int newIndex = (int) ((ScilabDouble) data).getRealPart()[0][0];
+				
+				int oldIndex;
+				if (evt.getOldValue() instanceof ScilabDouble
+						&& !((ScilabDouble) evt.getOldValue()).isEmpty()) {
+					oldIndex = (int) ((ScilabDouble) evt.getOldValue()).getRealPart()[0][0];
+				} else {
+					oldIndex = -1;
+				}
+				
+				ioBlock.setValue(newIndex);
+				
+				if (ioBlock.getParentDiagram() != null) {
+					ioBlock.getParentDiagram().fireEvent(
+							new mxEventObject(XcosEvent.IO_PORT_VALUE_UPDATED,
+									"block", ioBlock, "oldIndex", oldIndex,
+									"newIndex", newIndex));
+				}
+			}
+		}
+		
+	}
+	
 	/**
 	 * This enum represent all the subclasses of ContextUpdate .
 	 * 
@@ -169,21 +232,15 @@ public abstract class ContextUpdate extends BasicBlock {
 			return port;
 		}
 	}
-
+	
 	/**
-	 * Constructor
+	 * Constructor.
 	 */
 	public ContextUpdate() {
 		super();
-	}
-
-	/**
-	 * @param label
-	 *            block labek
-	 */
-	protected ContextUpdate(String label) {
-		this();
-		setValue(label);
+		
+		getParametersPCS().addPropertyChangeListener("integerParameters",
+				IndexChangeAdapter.getInstance());
 	}
 
 	/**

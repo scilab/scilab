@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - Serge Steer - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
 <refentry version="5.0-subset Scilab" xml:id="prod" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,16 +24,16 @@
   <refnamediv>
     <refname>prod</refname>
 
-    <refpurpose>produit des termes d'une matrice</refpurpose>
+    <refpurpose>produit  des éléments d'un tableau.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
 
     <synopsis>y=prod(x)
-y=prod(x,'r') ou y=prod(x,1)
-y=prod(x,'c') ou y=prod(x,2)
-y=prod(x,'m')</synopsis>
+    y=prod(x,orientation)
+    y=prod(x,outtype)
+    y=prod(x,orientation,outtype)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -33,7 +44,34 @@ y=prod(x,'m')</synopsis>
         <term>x</term>
 
         <listitem>
-          <para>vecteur ou matrice (réelle ou complexe)</para>
+          <para>un tableau de réels, de complexes, de booléens, de
+          polynômes ou de fractions rationnelles. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>orientation</term>
+        <listitem>
+          <para>
+            Cet argument peut être </para>
+            <itemizedlist>
+              <listitem>
+                <para>ou une chaîne de caractères pouvant avoir comme
+                valeurs: <literal>"*"</literal>,
+                <literal>"r"</literal>, <literal>"c"</literal> ou
+                <literal>"m"</literal></para>
+              </listitem>
+              <listitem>
+                <para>ou bien un nombre à valeur positive entière</para>
+              </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>outtype</term>
+        <listitem>
+          <para>
+            une chaîne de caractères pouvant prendre les valeurs <literal>"native"</literal> ou <literal>"double"</literal>. </para>
         </listitem>
       </varlistentry>
 
@@ -41,7 +79,7 @@ y=prod(x,'m')</synopsis>
         <term>y</term>
 
         <listitem>
-          <para>scalaire ou vecteur</para>
+          <para> un scalaire ou un tableau</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -50,34 +88,72 @@ y=prod(x,'m')</synopsis>
   <refsection>
     <title>Description</title>
 
-    <para>Pour un vecteur ou une matrice <literal>x</literal>,
-    <literal>y=prod(x)</literal> renvoie un scalaire <literal>y</literal> égal
-    au produit des termes de <literal>x</literal>.</para>
+    <para>Pour un tableau <literal>x</literal>,
+    <literal>y=prod(x)</literal> renvoie dans <literal>y</literal> la
+    produit de tous les éléments de <literal>x</literal>. </para>
 
-    <para><literal>y=prod(x,'r')</literal> (ou <literal>y=prod(x,1)</literal>)
-    effectue le produit suivant l'indice de ligne. Chaque composante du
-    vecteur ligne <literal>y</literal> contient le produit de la colonne
-    correspondante <literal>x</literal>
-    (<literal>y(j)=prod(x(i,j),i=1,m)</literal>).</para>
 
-    <para><literal>y=prod(x,'c')</literal> (ou <literal>y=prod(x,2)</literal>)
-    effectue le produit suivant l'indice de colonne. Chaque composante du
-    vecteur colonne <literal>y</literal> contient le produit de la ligne
-    correspondante de <literal>x</literal> (<literal>y(i)=
-    prod(x(i,j),j=1,n)</literal>)).</para>
+   <para><literal>y=prod(x,orientation)</literal> retourne dans
+   <literal>y</literal> la produit des éléments de <literal>x</literal>
+   le long de la dimension donnée par le paramêtre
+   <literal>orientation</literal>:</para>
+    <itemizedlist>
+ <listitem>
+        <para>Si <literal>orientation</literal> est égal à  1 ou "r" alors:</para>
+        <para><latex><![CDATA[{ y(\mathbf{1},j) = \prod_{\mathbf{i}} x(\mathbf{i},j)}]]> </latex> </para>
+        <para>ou </para>
+        <para><latex><![CDATA[ y(\mathbf{1},j,k,\ldots) = \prod_{\mathbf{i}} x(\mathbf{i},j,k,\ldots)]]> </latex> </para>
+      </listitem>
+      <listitem>
+        <para>Si <literal>orientation</literal>  est égal à  2 ou "c" alors:</para>
+        <para><latex><![CDATA[ y(i,\mathbf{1}) = \prod_{\mathbf{j}} x(i,\mathbf{j})]]> </latex> </para>
+        <para>ou</para> 
+        <para><latex><![CDATA[ y(i,\mathbf{1},k,\ldots) = \prod_{j} x(i,\mathbf{j},k,\ldots)]]> </latex> </para>
+      </listitem>
+      <listitem>
+        <para>Si <literal>orientation</literal>  est égal à n  alors</para>
+        <para><latex><![CDATA[ y(i_1,\ldots,i_{n-1},\mathbf{1},i_{n+1},\ldots) = \prod_{\mathbf{i_n}} x(i_1,\ldots,i_{n-1},\mathbf{i_n},i_{n+1},\ldots)]]> </latex> </para>
+      </listitem>
 
-    <para><literal>y=prod(x,'m')</literal> effectue le produit suivant la
-    première dimension plus grande que 1 (compatibilité avec Matlab).</para>
+      <listitem>
+        <para><literal>y=prod(x,"*")</literal> est équivalent à <literal>y=prod(x)</literal> </para>
+      </listitem>
+      <listitem>
+        <para><literal>y=prod(x,"m")</literal> est équivalent à
+        <literal>y=prod(x,orientation)</literal> où
+        <literal>orientation</literal> est l'index de la première
+        dimension de <literal>x</literal> qui est plus grande que
+        1. Cette option est utilisé pour la compatibilité avec
+        Matlab.</para>
+      </listitem>
+    </itemizedlist>
   </refsection>
-
+  <refsection>
+    <title>Remarque</title>
+    <para>Cette fonction s'applique avec les mêmes règles aux matrices creuses et aux hypermatrices.</para>
+  </refsection>
   <refsection>
     <title>Exemples</title>
 
     <programlisting role="example"><![CDATA[ 
-A=[1,2;0,100];
+A=[1,2;3,4];
 prod(A)
-prod(A,'c')
-prod(A,'r')
+prod(A,1)
+
+I=uint8([2 95 103;254 9 0])
+prod(I) //native evaluation
+prod(I,"double")
+prod(I,2,"double")
+
+s=poly(0,"s");
+P=[s,%i+s;s^2,1];
+prod(P),
+prod(P,2)
+
+B=[%t %t %f %f];
+prod(B) //evaluation in float
+prod(B,"native") //similar to or(B)
+
  ]]></programlisting>
   </refsection>
 
@@ -86,7 +162,6 @@ prod(A,'r')
 
     <simplelist type="inline">
       <member><link linkend="cumprod">cumprod</link></member>
-
       <member><link linkend="sum">sum</link></member>
     </simplelist>
   </refsection>

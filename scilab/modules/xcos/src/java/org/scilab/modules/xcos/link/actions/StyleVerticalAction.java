@@ -62,6 +62,8 @@ public class StyleVerticalAction extends StyleAction {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		BasicLink[] links = getLinks();
+		
+		getGraph(e).setCellStyles(mxConstants.STYLE_NOEDGESTYLE, "0", links);
 		getGraph(e).setCellStyles(mxConstants.STYLE_EDGE,
 				mxConstants.EDGESTYLE_ELBOW, links);
 		getGraph(e).setCellStyles(mxConstants.STYLE_ELBOW,

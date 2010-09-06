@@ -10,12 +10,48 @@
 //
 //
 
-// Create a new palette
-// 
-// @param[opt] name the palette name
-// @param[opt] scs_m the source scicos palette to import
-// @return pal the palette instance.
 function pal = xcosPal(name, scs_m)
+// Instanciate a new Xcos palette on Scilab.
+//
+// Calling Sequence
+//   pal = xcosPal();
+//   pal = xcosPal(name);
+//   pal = xcosPal(scs_m);
+//   pal = xcosPal([], scs_m);
+//   pal = xcosPal(name, scs_m);
+//
+// Parameters
+//   name: string; the optional palette name
+//   scs_m: diagram mlist; the optional source diagram
+//   pal: palette tlist; the palette instance
+//
+// Description
+// Instanciate a new palette diagram.
+//
+// The optional name argument can be used to set a name to the palette. The optional scs_m argument can be used to import diagrams as palettes.
+// 
+// Examples
+//   loadScicosLibs();
+//   
+//   // from scratch
+//   pal = xcosPal("My sum palette");
+//   pal = xcosPalAddBlock(pal, "SUM_f");
+//   pal = xcosPalAddBlock(pal, "BIGSOM_f");
+//   xcosPalAdd(pal);
+//
+//   // from an old palette
+//   exec(SCI + "/modules/scicos/palettes/Integer.cosf", -1);
+//   pal = xcosPal(scs_m);
+//   xcosPalAdd(pal);
+//
+// See also
+//   xcosPal
+//   xcosPalAddBlock
+//
+// Authors
+//   Clément DAVID
+
+
     [lhs,rhs] = argn(0);
     
     if rhs > 2 then
@@ -23,6 +59,8 @@ function pal = xcosPal(name, scs_m)
     end
     
     if exists("name", 'l') == 0 then
+        name = "New palette";
+    elseif isempty(name) then
         name = "New palette";
     elseif typeof(name) == "diagram" then
         scs_m = name;

@@ -41,11 +41,11 @@ msgid ""
 "%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"
 msgstr "%s：输入参数#%d的值错误：必须位于[%d, %d]区间中。\n"
 
-msgid "Begin Session : "
-msgstr "开始会话： "
+msgid "// Begin Session : "
+msgstr "//开始会话： "
 
-msgid "End Session   : "
-msgstr "结束会话： "
+msgid "// End Session   : "
+msgstr "//结束会话： "
 
 msgid "Apr"
 msgstr "4月"

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-06-29 10:00+0100\n"
+"Revision-Date: 2010-08-17 12:09+0100\n"
 
 # File: sci_gateway/c/sci_gethistoryfile.c, line: 41
 #, c-format
@@ -38,7 +38,7 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_historymanager.c, line: 78
+# File: sci_gateway/c/sci_historymanager.c, line: 79
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be '%s' or '%s'.\n"
 msgstr ""
@@ -49,91 +49,83 @@ msgid ""
 "%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"
 msgstr ""
 #
+# File: src/c/getCommentDateSession.c, line: 126
+msgid "Apr"
+msgstr ""
+#
+# File: src/c/getCommentDateSession.c, line: 130
+msgid "Aug"
+msgstr ""
+#
 # File: src/c/getCommentDateSession.c, line: 26
 msgid "Begin Session : "
 msgstr ""
 #
-# File: src/c/getCommentDateSession.c, line: 27
-msgid "End Session   : "
-msgstr ""
-#
-# File: src/c/getCommentDateSession.c, line: 127
-msgid "Apr"
-msgstr ""
-#
-# File: src/c/getCommentDateSession.c, line: 131
-msgid "Aug"
-msgstr ""
-#
-# File: src/c/getCommentDateSession.c, line: 135
+# File: src/c/getCommentDateSession.c, line: 134
 msgid "Dec"
 msgstr ""
 #
-# File: src/c/getCommentDateSession.c, line: 125
+# File: src/c/getCommentDateSession.c, line: 124
 msgid "Feb"
 msgstr ""
 #
-# File: src/c/getCommentDateSession.c, line: 111
+# File: src/c/getCommentDateSession.c, line: 110
 msgid "Fri"
 msgstr ""
 #
-# File: src/c/getCommentDateSession.c, line: 124
+# File: src/c/getCommentDateSession.c, line: 123
 msgid "Jan"
 msgstr ""
 #
-# File: src/c/getCommentDateSession.c, line: 130
+# File: src/c/getCommentDateSession.c, line: 129
 msgid "Jul"
 msgstr ""
 #
-# File: src/c/getCommentDateSession.c, line: 129
+# File: src/c/getCommentDateSession.c, line: 128
 msgid "Jun"
 msgstr ""
 #
-# File: src/c/getCommentDateSession.c, line: 126
+# File: src/c/getCommentDateSession.c, line: 125
 msgid "Mar"
 msgstr ""
 #
-# File: src/c/getCommentDateSession.c, line: 128
+# File: src/c/getCommentDateSession.c, line: 127
 msgid "May"
 msgstr ""
 #
-# File: src/c/getCommentDateSession.c, line: 107
+# File: src/c/getCommentDateSession.c, line: 106
 msgid "Mon"
 msgstr ""
 #
-# File: src/c/getCommentDateSession.c, line: 134
+# File: src/c/getCommentDateSession.c, line: 133
 msgid "Nov"
 msgstr ""
 #
-# File: src/c/getCommentDateSession.c, line: 133
+# File: src/c/getCommentDateSession.c, line: 132
 msgid "Oct"
 msgstr ""
 #
-# File: src/c/getCommentDateSession.c, line: 112
+# File: src/c/getCommentDateSession.c, line: 111
 msgid "Sat"
 msgstr ""
 #
-# File: src/nohistory_manager/nohistory_manager.c, line: 24
-msgid "Scilab history_manager module not installed.\n"
-msgstr ""
-#
-# File: src/c/getCommentDateSession.c, line: 132
+# File: src/c/getCommentDateSession.c, line: 131
 msgid "Sep"
 msgstr ""
 #
-# File: src/c/getCommentDateSession.c, line: 106
+# File: src/c/getCommentDateSession.c, line: 105
 msgid "Sun"
 msgstr ""
 #
-# File: src/c/getCommentDateSession.c, line: 110
+# File: src/c/getCommentDateSession.c, line: 109
 msgid "Thu"
 msgstr ""
 #
-# File: src/c/getCommentDateSession.c, line: 108
+# File: src/c/getCommentDateSession.c, line: 107
 msgid "Tue"
 msgstr ""
 #
-# File: src/c/getCommentDateSession.c, line: 109
+# File: src/c/getCommentDateSession.c, line: 108
 msgid "Wed"
 msgstr ""
 #

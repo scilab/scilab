@@ -114,7 +114,6 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 		 * Prevent the background RootPane to catch Focus.
 		 * Causes trouble with Scicos use xclick & co.
 		 */
-		sciDockingPort.getRootPane().setFocusable(false);
 		this.setFocusable(false);
 		
 		// let the OS choose the window position if not specified by user.
@@ -275,7 +274,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	 */
 	public void setTitle(String newWindowTitle) {
 		// set only if required
-		if (!newWindowTitle.equals(getTitle())) {
+		if (newWindowTitle != null && !newWindowTitle.equals(getTitle())) {
 			super.setTitle(newWindowTitle);
 		}
 	}

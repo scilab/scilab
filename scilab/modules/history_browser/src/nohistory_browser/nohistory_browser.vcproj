@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="9,00"
 	Name="nohistory_browser"
-	ProjectGUID="{68F65DC6-AF8B-442F-A21A-108E1E501BE6}"
+	ProjectGUID="{6EA99B1F-99B4-4528-8195-7508EF70CFED}"
 	RootNamespace="nohistory_browser"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="0"
@@ -357,7 +357,7 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\nohistory_browser.c"
+				RelativePath=".\CommandHistory_Wrap_Fake.c"
 				>
 			</File>
 		</Filter>

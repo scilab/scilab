@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
+// Copyright (C) 2009-2010 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -76,6 +76,12 @@ function result = atomsLoad(packages)
     loaded = atomsLoadLoad();
     nbAdd  = 0;
 
+    // Remove duplicate packages (name - version)
+    // =========================================================================
+
+    [matout,index] = unique([packages(:,1) packages(:,2)],"r");
+    packages       = packages(gsort(index,"g","i"),:);
+
     // Loop on input parameter
     // =========================================================================
 
@@ -133,6 +139,7 @@ function result = atomsLoad(packages)
             for j=1:size(sections,"*")
                 if atomsIsInstalled([packages(i,1) packages(i,2)],sections(j)) then
                     packages(i,3) = sections(j);
+                    break
                 end
             end
 

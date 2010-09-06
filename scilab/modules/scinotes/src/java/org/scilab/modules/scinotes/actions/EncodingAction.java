@@ -286,6 +286,10 @@ public class EncodingAction extends DefaultCheckAction {
         EditorKit editorKit = getEditor().getEditorKit();
         String fileName = getEditor().getTextPane().getName();
 
+        FileInputStream fis = null;
+        InputStreamReader isr = null;
+        BufferedReader br = null;
+
         try {
             if (fileName != null) {
                 File file = new File(getEditor().getTextPane().getName());
@@ -294,7 +298,12 @@ public class EncodingAction extends DefaultCheckAction {
                         styleDocument.getUndoManager().discardAllEdits();
                         styleDocument.disableUndoManager();
                         styleDocument.remove(0, styleDocument.getLength());
-                        editorKit.read(new BufferedReader(new InputStreamReader(new FileInputStream(file), encoding)), styleDocument, 0);
+
+                        fis = new FileInputStream(file);
+                        isr = new InputStreamReader(fis, encoding);
+                        br = new BufferedReader(isr);
+                        editorKit.read(br, styleDocument, 0);
+
                         styleDocument.enableUndoManager();
                     }
                 }
@@ -308,6 +317,18 @@ public class EncodingAction extends DefaultCheckAction {
             isSuccess = false;
         } catch (BadLocationException e) {
             isSuccess = false;
+        } finally {
+            try {
+                    if (fis != null) {
+                        fis.close();
+                    }
+                    if (isr != null) {
+                        isr.close();
+                    }
+                    if (br != null) {
+                        br.close();
+                    }
+                } catch (IOException e) { }
         }
 
         /* Allow changes to be saved */

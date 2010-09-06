@@ -17,10 +17,6 @@ msgstr ""
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s: Fehler bei der Speicherbelegung.\n"
-
-#, c-format
 msgid "%s : No more memory.\n"
 msgstr "%s: kein weiterer Speicher.\n"
 
@@ -73,6 +69,10 @@ msgstr "%s: übereinstimmende Grenze für DFA Übereinstimmung: ignoriert.\n"
 #, c-format
 msgid "%s: Matched text exceeds buffer limit.\n"
 msgstr "%s: übereinstimmende Texte überschreiten Puffergrenze.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -223,6 +223,10 @@ msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr "%s: falscher Typ für Eingangsargument #%d: ein Skalar erwartet.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: falscher Typ für Eingangsargument '%d: eine Zeichenkette erwartet.\n"
@@ -234,12 +238,6 @@ msgstr "%s: falscher Typ für Eingangsargument #%d: ein Integer erwartet.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Character expected.\n"
 msgstr "%s: falscher Typ für Eingangsargument #%d: ein Zeichen erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of character strings.\n"
-msgstr ""
-"%s: falscher Typ für Eingangsargument #%d: Natrix aus Zeichenketten mit "
-"Buchstaben erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of integers expected.\n"
@@ -408,15 +406,3 @@ msgstr "%s: unmöglich die Dimension dieser Matrix zu ermitteln.\n"
 
 msgid "WARNING : \n"
 msgstr "Warnung: \n"
-
-#, c-format
-msgid "WARNING: Function %s is obsolete.\n"
-msgstr "Warnung: Funktion %s ist obsolet.\n"
-
-#, c-format
-msgid "WARNING: Please use %s instead.\n"
-msgstr "Warnung: bitte verwenden Sie anstattdessen %s.\n"
-
-#, c-format
-msgid "WARNING: This function will be permanently removed in Scilab %s.\n"
-msgstr "Warnung: diese Funktion wird in Scilab dauerhaft entfernt %s.\n"

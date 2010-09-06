@@ -108,9 +108,6 @@ rep = x_mdialog(['System Simulation';'with PI regulator'],...
       <member>
         <link linkend="execstr">execstr</link>
       </member>
-      <member>
-        <link linkend="editvar">editvar</link>
-      </member>
     </simplelist>
   </refsection>
 </refentry>

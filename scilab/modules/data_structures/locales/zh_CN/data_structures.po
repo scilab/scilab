@@ -19,11 +19,8 @@ msgstr ""
 msgid " An hypermatrix extraction must have at least 2 arguments. "
 msgstr " 超矩阵提取必须至少有2个参数。 "
 
-msgid " An hypermatrix insertion must have at least 3 arguments "
-msgstr " 超矩阵插入必须至少有3个参数 "
-
-msgid " Argument is not an hypermatrix "
-msgstr " 参数不是一个超矩阵 "
+msgid " An hypermatrix insertion must have at least 3 arguments. "
+msgstr ""
 
 msgid " Argument is not an hypermatrix. "
 msgstr " 参数不是一个超矩阵。 "

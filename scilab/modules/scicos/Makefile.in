@@ -135,7 +135,6 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(bindir)" \
 	"$(DESTDIR)$(libsciscicos_la_etcdir)" \
 	"$(DESTDIR)$(libsciscicos_la_rootdir)" \
 	"$(DESTDIR)$(libsciscicos_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libsciscicos_la_tcldir)" \
 	"$(DESTDIR)$(libsciscicos_la_cosfdir)" \
 	"$(DESTDIR)$(libsciscicos_la_includedir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
@@ -151,7 +150,6 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 @SCICOS_TRUE@	$(top_builddir)/modules/scicos/libscisundials.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/mexlib/libmex.la \
-@SCICOS_TRUE@	$(top_builddir)/modules/core/libscicore.la \
 @SCICOS_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/arnoldi/libsciarnoldi.la
@@ -388,11 +386,10 @@ DIST_SOURCES = $(am__libsciscicos_la_SOURCES_DIST) \
 	$(am__modelicat_SOURCES_DIST)
 DATA = $(libsciscicos_la_etc_DATA) $(libsciscicos_la_root_DATA) \
 	$(libsciscicos_la_sci_gateway_DATA) \
-	$(libsciscicos_la_tcl_DATA) \
 	$(nobase_libsciscicos_la_cosf_DATA)
 am__libsciscicos_la_include_HEADERS_DIST = includes/scicos.h \
 	includes/scicos-def.h includes/scicos_free.h \
-	includes/scicos_malloc.h
+	includes/scicos_malloc.h includes/scicos_math.h
 HEADERS = $(libsciscicos_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
@@ -934,7 +931,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @SCICOS_TRUE@$(top_builddir)/modules/scicos/libscisundials.la \
 @SCICOS_TRUE@$(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la \
 @SCICOS_TRUE@$(top_builddir)/modules/mexlib/libmex.la \
-@SCICOS_TRUE@$(top_builddir)/modules/core/libscicore.la \
+@SCICOS_TRUE@ \
 @SCICOS_TRUE@$(top_builddir)/libs/MALLOC/libscimalloc.la \
 @SCICOS_TRUE@$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 @SCICOS_TRUE@$(top_builddir)/modules/arnoldi/libsciarnoldi.la 
@@ -952,13 +949,6 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @SCICOS_FALSE@libsciscicos_la_etc_DATA = etc/scicos.quit etc/scicos.start
 @SCICOS_TRUE@libsciscicos_la_etc_DATA = etc/scicos.quit etc/scicos.start
 
-#### scicos : tcl scripts ####
-@SCICOS_TRUE@libsciscicos_la_tcldir = $(mydatadir)/tcl
-@SCICOS_TRUE@libsciscicos_la_tcl_DATA = tcl/MIHM.tcl \
-@SCICOS_TRUE@tcl/scicos.gif \
-@SCICOS_TRUE@tcl/scicos2.gif
-
-
 #### scicos : gateway declaration ####
 @SCICOS_TRUE@libsciscicos_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 @SCICOS_TRUE@libsciscicos_la_sci_gateway_DATA = sci_gateway/scicos_gateway.xml
@@ -968,7 +958,8 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @SCICOS_TRUE@libsciscicos_la_include_HEADERS = includes/scicos.h \
 @SCICOS_TRUE@includes/scicos-def.h \
 @SCICOS_TRUE@includes/scicos_free.h \
-@SCICOS_TRUE@includes/scicos_malloc.h
+@SCICOS_TRUE@includes/scicos_malloc.h \
+@SCICOS_TRUE@includes/scicos_math.h
 
 
 #### scicos : cosf files ####
@@ -978,7 +969,9 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @SCICOS_TRUE@palettes/Events.cosf \
 @SCICOS_TRUE@palettes/Integer.cosf \
 @SCICOS_TRUE@palettes/Linear.cosf \
+@SCICOS_TRUE@palettes/Lookup_Tables.cosf \
 @SCICOS_TRUE@palettes/Matrix.cosf \
+@SCICOS_TRUE@palettes/Modelica.cosf \
 @SCICOS_TRUE@palettes/Non_linear.cosf \
 @SCICOS_TRUE@palettes/OldBlocks.cosf \
 @SCICOS_TRUE@palettes/Others.cosf \
@@ -1864,26 +1857,6 @@ uninstall-libsciscicos_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libsciscicos_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libsciscicos_la_sci_gatewaydir)" && rm -f $$files
-install-libsciscicos_la_tclDATA: $(libsciscicos_la_tcl_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libsciscicos_la_tcldir)" || $(MKDIR_P) "$(DESTDIR)$(libsciscicos_la_tcldir)"
-	@list='$(libsciscicos_la_tcl_DATA)'; test -n "$(libsciscicos_la_tcldir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciscicos_la_tcldir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciscicos_la_tcldir)" || exit $$?; \
-	done
-
-uninstall-libsciscicos_la_tclDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libsciscicos_la_tcl_DATA)'; test -n "$(libsciscicos_la_tcldir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libsciscicos_la_tcldir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libsciscicos_la_tcldir)" && rm -f $$files
 install-nobase_libsciscicos_la_cosfDATA: $(nobase_libsciscicos_la_cosf_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libsciscicos_la_cosfdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciscicos_la_cosfdir)"
@@ -2016,7 +1989,7 @@ check: check-am
 all-am: Makefile $(LTLIBRARIES) $(PROGRAMS) $(DATA) $(HEADERS) \
 		all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(bindir)" "$(DESTDIR)$(libsciscicos_la_etcdir)" "$(DESTDIR)$(libsciscicos_la_rootdir)" "$(DESTDIR)$(libsciscicos_la_sci_gatewaydir)" "$(DESTDIR)$(libsciscicos_la_tcldir)" "$(DESTDIR)$(libsciscicos_la_cosfdir)" "$(DESTDIR)$(libsciscicos_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(bindir)" "$(DESTDIR)$(libsciscicos_la_etcdir)" "$(DESTDIR)$(libsciscicos_la_rootdir)" "$(DESTDIR)$(libsciscicos_la_sci_gatewaydir)" "$(DESTDIR)$(libsciscicos_la_cosfdir)" "$(DESTDIR)$(libsciscicos_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -2072,7 +2045,6 @@ install-data-am: install-data-local install-libsciscicos_la_etcDATA \
 	install-libsciscicos_la_includeHEADERS \
 	install-libsciscicos_la_rootDATA \
 	install-libsciscicos_la_sci_gatewayDATA \
-	install-libsciscicos_la_tclDATA \
 	install-nobase_libsciscicos_la_cosfDATA
 
 install-dvi: install-dvi-am
@@ -2123,7 +2095,6 @@ uninstall-am: uninstall-binPROGRAMS uninstall-libsciscicos_la_etcDATA \
 	uninstall-libsciscicos_la_includeHEADERS \
 	uninstall-libsciscicos_la_rootDATA \
 	uninstall-libsciscicos_la_sci_gatewayDATA \
-	uninstall-libsciscicos_la_tclDATA \
 	uninstall-nobase_libsciscicos_la_cosfDATA \
 	uninstall-pkglibLTLIBRARIES
 
@@ -2141,8 +2112,7 @@ uninstall-am: uninstall-binPROGRAMS uninstall-libsciscicos_la_etcDATA \
 	install-info-am install-libsciscicos_la_etcDATA \
 	install-libsciscicos_la_includeHEADERS \
 	install-libsciscicos_la_rootDATA \
-	install-libsciscicos_la_sci_gatewayDATA \
-	install-libsciscicos_la_tclDATA install-man \
+	install-libsciscicos_la_sci_gatewayDATA install-man \
 	install-nobase_libsciscicos_la_cosfDATA install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
@@ -2154,7 +2124,6 @@ uninstall-am: uninstall-binPROGRAMS uninstall-libsciscicos_la_etcDATA \
 	uninstall-libsciscicos_la_includeHEADERS \
 	uninstall-libsciscicos_la_rootDATA \
 	uninstall-libsciscicos_la_sci_gatewayDATA \
-	uninstall-libsciscicos_la_tclDATA \
 	uninstall-nobase_libsciscicos_la_cosfDATA \
 	uninstall-pkglibLTLIBRARIES
 
@@ -2342,9 +2311,11 @@ install-data-local:
 	fi
 
 ########### CLEAN ###################
-# Clean macros and help (generated automatically by Scilab)
-@NEED_JAVA_TRUE@clean-local: clean-java clean-macros
-@NEED_JAVA_FALSE@clean-local: clean-macros
+# Clean help (generated automatically by Scilab)
+# It used to clean the macro (clean-macros) but this was causing
+# make clean && make to fail Scilab startup
+@NEED_JAVA_TRUE@clean-local: clean-java
+@NEED_JAVA_FALSE@clean-local:
 
 distclean-local:
 	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*

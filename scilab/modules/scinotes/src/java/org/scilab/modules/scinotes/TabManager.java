@@ -122,15 +122,21 @@ public class TabManager {
     public int[] tabifyLines(int start, int end) {
         Element startL = elem.getElement(elem.getElementIndex(start));
         int sstart = startL.getStartOffset();
-        int[] ret = new int[2];
+        int[] ret = new int[]{0, 0};
+        int send = end;
 
         try {
-            String str = doc.getText(sstart, end - sstart + 1);
+            String str = doc.getText(sstart, send - sstart + 1);
+            if (str.charAt(str.length() - 1) == EOL.charAt(0)) {
+                send--;
+                str = str.substring(0, str.length() - 1);
+                ret[1]++;
+            }
             String rep = EOL + tab;
             str = tab + str.replaceAll(EOL, rep);
             ret[0] = start + lengthTab;
-            ret[1] = sstart + str.length();
-            doc.replace(sstart, end - sstart + 1, str, null);
+            ret[1] += sstart + str.length();
+            doc.replace(sstart, send - sstart + 1, str, null);
             return ret;
         } catch (BadLocationException e) {
             e.printStackTrace();

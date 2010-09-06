@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
+// Copyright (C) 2009-2010 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -149,6 +149,8 @@ function result = atomsInstall(packages,section)
     // "Archive" installation
     // =========================================================================
 
+    from_localarchive = %F;
+
     for i=1:size(packages(:,1),"*")
 
         this_package = packages(i,1);
@@ -218,13 +220,20 @@ function result = atomsInstall(packages,section)
             // -----------------------------------------------------------------
             packages(i,:) = [ this_package_name this_package_version ];
 
+
+            // Installation from a local archive
+            // -----------------------------------------------------------------
+            from_localarchive = %T;
+
         end
 
     end
 
     // Force update the system informations
     // =========================================================================
-    atomsDESCRIPTIONget(%T)
+    if from_localarchive then
+        atomsDESCRIPTIONget(%T);
+    end
 
     // Get the install list
     // =========================================================================
@@ -245,6 +254,8 @@ function result = atomsInstall(packages,section)
     // =========================================================================
 
     for i=1:size(install_package_list(:,1),"*")
+
+        toarchive = %T;
 
         this_package_name    = install_package_list(i,3);
         this_package_version = install_package_list(i,4);
@@ -287,13 +298,27 @@ function result = atomsInstall(packages,section)
                 fileprefix = OSNAME;
             end
 
-            fileout = pathconvert(this_package_directory+this_package_details(fileprefix+"Name"),%F);
-            filein  = this_package_details(fileprefix+"Url");
-            filemd5 = this_package_details(fileprefix+"Md5");
+            fileout     = pathconvert(this_package_directory+this_package_details(fileprefix+"Name"),%F);
+            filein      = this_package_details(fileprefix+"Url");
+            filemd5     = this_package_details(fileprefix+"Md5");
+            filearchive = archives_directory + filesep() + this_package_details(fileprefix+"Name");
 
-            // Launch the download
-            // =================================================================
-            atomsDownload(filein,fileout,filemd5);
+            if isfile(filearchive) & getmd5(filearchive)==filemd5 then
+                // Check if the file has already been successfully downloaded
+                // =============================================================
+                if copyfile( filearchive , this_package_directory ) <> 1 then
+                    atomsError("error", ..
+                        msprintf(gettext("%s: Error while copying the file ''%s'' to the directory ''%s''.\n"), ..
+                            "atomsInstall", ..
+                            strsubst(filearchive,"\","\\"), ..
+                            strsubst(this_package_directory,"\","\\") ));
+                end
+                toarchive = %F;
+            else
+                // Launch the download
+                // =============================================================
+                atomsDownload(filein,fileout,filemd5);
+            end
 
             // unarchive it
             // =================================================================
@@ -391,18 +416,20 @@ function result = atomsInstall(packages,section)
         // Move the archive file (.tar.gz or .zip file) to the archive directory
         // =====================================================================
 
-        if this_package_details("fromRepository")=="1" then
-            this_package_archive = fileout;
-        else
-            this_package_archive = this_package_details("archiveFile");
-        end
+        if toarchive then
+            if this_package_details("fromRepository")=="1" then
+                this_package_archive = fileout;
+            else
+                this_package_archive = this_package_details("archiveFile");
+            end
 
-        if copyfile( this_package_archive , archives_directory ) <> 1 then
-            atomsError("error", ..
-                msprintf(gettext("%s: Error while copying the file ''%s'' to the directory ''%s''.\n"), ..
-                    "atomsInstall", ..
-                    strsubst(this_package_archive,"\","\\"), ..
-                    strsubst(archives_directory,"\","\\") ));
+            if copyfile( this_package_archive , archives_directory ) <> 1 then
+                atomsError("error", ..
+                    msprintf(gettext("%s: Error while copying the file ''%s'' to the directory ''%s''.\n"), ..
+                        "atomsInstall", ..
+                        strsubst(this_package_archive,"\","\\"), ..
+                        strsubst(archives_directory,"\","\\") ));
+            end
         end
 
         if this_package_details("fromRepository")=="1" then

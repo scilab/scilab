@@ -13,13 +13,13 @@ c     WARNING : argument of this interface may be passed by reference
       integer id(nsiz)
       logical ref
       integer mtlbsel
-      integer sel,tops
+      integer sel,tops,type
       integer iadr,sadr
 c     
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 c
-      if(rhs.gt.2) then
+      if(rhs.gt.3) then
          call error(42)
          return
       endif
@@ -44,12 +44,9 @@ c
       endif
 
 c     standard matrix case
-      if(rhs.eq.2) then
-         call getorient(top,sel)
-         if(err.gt.0) return
-         top=top-1
-         if(sel.eq.-1) sel=mtlbsel(istk(il0+1),2)
-      endif
+      call  orientandtype(sel,type)
+      if (err.gt.0.or.err1.gt.0) return
+      if(sel.eq.-1) sel=mtlbsel(istk(il0+1),2)
 
       m=istk(il0+1)
       n=istk(il0+2)

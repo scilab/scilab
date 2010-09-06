@@ -29,7 +29,7 @@ public final class SelectAllAction extends OneBlockDependantAction {
 	/** Name of the action */
 	public static final String NAME = ScilabGraphMessages.SELECT_ALL;
 	/** Icon name of the action */
-	public static final String SMALL_ICON = "";
+	public static final String SMALL_ICON = "edit-select-all.png";
 	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = KeyEvent.VK_A;
 	/** Accelerator key for the action */

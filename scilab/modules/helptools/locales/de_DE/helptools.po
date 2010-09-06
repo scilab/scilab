@@ -121,10 +121,6 @@ msgid "%s: Reading from directory %s\n"
 msgstr "%s: lese aus Verzeichnis %s\n"
 
 #, c-format
-msgid "%s: Scilab 5.0 or more is required.\n"
-msgstr "%s: Scilab 5.0 oder höhere Version benötigt.\n"
-
-#, c-format
 msgid "%s: The 2 mlist must not have any field in common .\n"
 msgstr "%s: die 2 m Liste darf in keinem Feld gleich sein.\n"
 
@@ -264,8 +260,8 @@ msgstr ""
 "erwartet.\n"
 
 #, c-format
-msgid "%s: help module is not installed.\n"
-msgstr "%s: Hilfe Modul ist nicht installiert.\n"
+msgid "%s: help file(.jar) is not installed.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: hhc.exe not found.\n"

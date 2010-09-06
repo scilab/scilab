@@ -12,6 +12,7 @@
 
 package org.scilab.modules.xcos.palette.view;
 
+import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.RepaintManager;
@@ -36,6 +37,7 @@ import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
+import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.configuration.ConfigurationManager;
 import org.scilab.modules.xcos.configuration.model.PositionType;
 import org.scilab.modules.xcos.palette.PaletteManager;
@@ -47,15 +49,17 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Implement the default view for the palette
  */
 public class PaletteManagerView extends ScilabTab {
-	private PaletteManager controller;
+	private final PaletteManager controller;
 	private PaletteManagerPanel panel;
 
 	/**
 	 * Default constructor
 	 * @param controller the associated controller
 	 */
-	public PaletteManagerView(PaletteManager controller) {
-		super(XcosMessages.PALETTE_BROWSER);
+	public PaletteManagerView(final PaletteManager controller) {
+		super(XcosMessages.PALETTE_BROWSER + " - " + Xcos.TRADENAME);
+		((SwingScilabTab) getAsSimpleTab()).setWindowIcon(new ImageIcon(System.getenv("SCI")
+										+ "/modules/gui/images/icons/32x32/apps/utilities-system-monitor.png").getImage());
 		this.controller = controller;
 		initComponents();
 	}
@@ -77,13 +81,13 @@ public class PaletteManagerView extends ScilabTab {
 	/**
 	 * @param panel the panel to set
 	 */
-	public void setPanel(PaletteManagerPanel panel) {
+	public void setPanel(final PaletteManagerPanel panel) {
 		this.panel = panel;
 	}
 	
 	/** Instantiate and setup all the components */
 	private void initComponents() {
-		Window window = ScilabWindow.createWindow();
+		final Window window = ScilabWindow.createWindow();
 		
 		final ConfigurationManager manager = ConfigurationManager.getInstance();
 		final PositionType p = manager.getSettings().getWindows().getPalette();
@@ -92,9 +96,9 @@ public class PaletteManagerView extends ScilabTab {
 		window.setPosition(new Position(p.getX(), p.getY()));
 		
 		/* Create the menu bar */
-		MenuBar menuBar = ScilabMenuBar.createMenuBar();
+		final MenuBar menuBar = ScilabMenuBar.createMenuBar();
 
-		Menu menu = ScilabMenu.createMenu();
+		final Menu menu = ScilabMenu.createMenu();
 		menu.setText(XcosMessages.PALETTES);
 		menu.setMnemonic('P');
 		menuBar.add(menu);
@@ -106,7 +110,7 @@ public class PaletteManagerView extends ScilabTab {
 		addMenuBar(menuBar);
 
 		/* Create the toolbar */
-		ToolBar toolbar = ScilabToolBar.createToolBar();
+		final ToolBar toolbar = ScilabToolBar.createToolBar();
 		toolbar.add(LoadAsPalAction.createButton(null));
 		
 		addToolBar(toolbar);
@@ -155,13 +159,13 @@ public class PaletteManagerView extends ScilabTab {
 	public static void updateWholeTree() {
 		final JTree t = PaletteManager.getInstance().getView().getTree();
 		
-		TreePath selectedPath = t.getSelectionPath();
+		final TreePath selectedPath = t.getSelectionPath();
 		((DefaultTreeModel) t.getModel()).reload();
 		t.setSelectionPath(selectedPath);
 	}
 	
 	/** @param info the information to write on the infobar */
-	public void setInfo(String info) {
+	public void setInfo(final String info) {
 		getAsSimpleTab().getInfoBar().setText(info);
 		
 		/*
@@ -180,14 +184,14 @@ public class PaletteManagerView extends ScilabTab {
 	 * @see org.scilab.modules.gui.tab.ScilabTab#setVisible(boolean)
 	 */
 	@Override
-	public void setVisible(boolean newVisibleState) {
+	public void setVisible(final boolean newVisibleState) {
 		super.setVisible(newVisibleState);
 		
 		/*
 		 * Recreate the window if applicable
 		 */
 		if (newVisibleState && getParentWindow() == null) {
-			Window paletteWindow = ScilabWindow.createWindow();
+			final Window paletteWindow = ScilabWindow.createWindow();
 			paletteWindow.setVisible(true);
 			super.setVisible(true);
 			paletteWindow.addTab(this);

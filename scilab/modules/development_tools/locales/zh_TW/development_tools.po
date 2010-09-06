@@ -40,9 +40,6 @@ msgstr "%s: 輸入參數長度錯誤"
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
 msgstr "%s: 第 %d 個輸入參數的資料型態錯誤: 應該是 %s.\n"
 
-msgid "Generating loader.sce...\n"
-msgstr "loader.sce 產生中...\n"
-
 #, c-format
 msgid "No variable %s_ref in reference file"
 msgstr "參考檔 (reference file) 未含變數   %s"

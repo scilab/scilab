@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: io-ru\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-20 18:25+0100\n"
-"PO-Revision-Date: 2009-12-09 20:37+0000\n"
+"PO-Revision-Date: 2010-07-11 10:21+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,11 @@ msgstr ""
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
-msgid "%s : Memory allocation error.\n"
+msgid "\"%s\" directory write access denied.\n"
+msgstr "Каталог «%s» недоступен для записи.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
 msgstr "%s: Ошибка выделения памяти.\n"
 
 #, c-format
@@ -67,13 +71,12 @@ msgid "%s: Wrong type for input argument #%d: A int expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалось целое число.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидался скаляр.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: An int scalar expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидался целочисленный скаляр.\n"
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -89,9 +92,32 @@ msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось целое число.\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалось целое число.\n"
+
+#, c-format
 msgid "%s: error during %s execution"
 msgstr "%s: ошибка во время выполнения %s"
 
 #, c-format
+msgid "File \"%s\" already exists.\n"
+msgstr "Файл «%s» уже существует.\n"
+
+#, c-format
+msgid "File \"%s\" does not exist.\n"
+msgstr "Файл «%s» не существует.\n"
+
+#, c-format
+msgid "File \"%s\" read access denied.\n"
+msgstr "Файл «%s» недоступен для чтения.\n"
+
+msgid "Too many files opened!\n"
+msgstr "Открыто слишком много файлов!\n"
+
+#, c-format
 msgid "Undefined environment variable %s.\n"
 msgstr "Переменная окружения не определена %s.\n"
+
+msgid "unmanaged error by v2cunit.\n"
+msgstr "неуправляемая ошибка при v2cunit.\n"

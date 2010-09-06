@@ -391,6 +391,26 @@ msgstr ""
 
 #, c-format
 msgid ""
+"%s: The restarteps option is expected to be a scalar, but current shape is "
+"%d x %d"
+msgstr ""
+
+#, c-format
+msgid "%s: The restarteps option is expected to be positive"
+msgstr ""
+
+#, c-format
+msgid "%s: The restartstep vector is expected to be positive"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The restartstep vector is expected to have %d x %d shape, but current "
+"shape is %d x %d"
+msgstr ""
+
+#, c-format
+msgid ""
 "%s: The value of the ''OutputFcn'' option is neither a function nor a list."
 msgstr ""
 "%s: La valeur de l''option ''OutputFcn'' n''est ni une fonction ni une liste."

@@ -7,6 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 // <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
 //
 // assert_close --
 //   Returns 1 if the two real matrices computed and expected are close,
@@ -74,45 +75,22 @@ sfn = nmplot_cget ( nm , "-sigmafn" );
 assert_equal ( sfn , "rosenbrock.history.sigma.txt" );
 // Check the display
 nmplot_display(nm);
-Nelder-Mead Plot Object
-ATTENTION : neldermead_display: obsolete use of neldermead_display, use directly the variable instead.
-ATTENTION : optimsimplex_tostring: obsolete use of optimsimplex_tostring, use string instead.
-ATTENTION : optimsimplex_tostring: obsolete use of optimsimplex_tostring, use string instead.
+WARNING: Function nmplot_display is obsolete.
+WARNING: Please use disp instead.
+WARNING: This function will be permanently removed in Scilab nmplot_display
+
+ 
+Nelder-Mead Plot Object:
+======================
+
+Simplex data file : rosenbrock.history.simplex.txt
+Fbar data file : rosenbrock.history.fbar.txt
+Fopt data file : rosenbrock.history.fopt.txt
+Sigma data file : rosenbrock.history.sigma.txt
+
 Nelder-Mead Object:
 ======================
- 
-Optim Base Object:
-==================
-Number of variables : 2
-Initial Guess : [-1.2 1]
-Initial Function Value :
-Number of Inequality Constraints :0
-Bounds Mininimum : []
-Bounds Maxinimum :[]
-Optimum Parameters : [0]
-Optimum Function Value :0.000000e+000
-Number of iterations : 0
-Maximum number of iterations : 10
-Number function evaluations : 0
-Maximum number of function evaluations : 300
-Termination Method on function value : F
-Termination Absolute Tolerance on function value : 0
-Termination Relative Tolerance on function value : 2.220D-15
-Termination Method on x : T
-Termination Absolute Tolerance on x : 0
-Termination Relative Tolerance on x : 2.220D-15
-Optimization Status : 
-Verbose logging : 0
-Verbose Termination : 0
-Verbose Log File : 
-Verbose Log File Startup Up: F
-Store History : F
 
-Simplex0 : 
-Optim Simplex Object:
-=====================
-Empty simplex (zero dimension)
-Simplex Optimum : 
 Simplex0 Method : axes
 Simplex0 Length : 1
 Simplex0, Pfeffer, Delta Usual : 0.05
@@ -163,8 +141,38 @@ Box, Scaling, Method  : tox0
 Box, Scaling, Minimum : 0.00001
 Box, Bounds Parameter: 0.000001
 Box, Reflection Coefficient : 1.3
-Simplex data file : rosenbrock.history.simplex.txt
-Fbar data file : rosenbrock.history.fbar.txt
-Fopt data file : rosenbrock.history.fopt.txt
-Sigma data file : rosenbrock.history.sigma.txt
+
+Optim Base Object:
+==================
+Number of variables : 2
+Initial Guess : [-1.2 1]
+Initial Function Value :
+Number of Inequality Constraints :0
+Bounds Mininimum : []
+Bounds Maxinimum :[]
+Optimum Parameters : [0]
+Optimum Function Value :0.000000e+000
+Number of iterations : 0
+Maximum number of iterations : 10
+Number function evaluations : 0
+Maximum number of function evaluations : 300
+Termination Method on function value : F
+Termination Absolute Tolerance on function value : 0
+Termination Relative Tolerance on function value : 2.220D-15
+Termination Method on x : T
+Termination Absolute Tolerance on x : 0
+Termination Relative Tolerance on x : 2.220D-15
+Optimization Status : 
+Verbose logging : 0
+Verbose Termination : 0
+Verbose Log File : 
+Verbose Log File Startup Up: F
+Store History : F
+
+Simplex0 : 
+Optim Simplex Object:
+=====================
+Empty simplex (zero dimension)
+
+Simplex Optimum : 
 nm = nmplot_destroy(nm);

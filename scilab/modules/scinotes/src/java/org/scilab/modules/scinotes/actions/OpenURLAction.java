@@ -12,17 +12,14 @@
 
 package org.scilab.modules.scinotes.actions;
 
-import java.awt.Desktop;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 import javax.swing.text.BadLocationException;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.utils.WebBrowser;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.ScilabLexerConstants;
@@ -54,7 +51,7 @@ public class OpenURLAction extends DefaultAction {
             try {
                 ScilabDocument doc = (ScilabDocument) sep.getDocument();
                 String url = doc.getText(kwe.getStart(), kwe.getLength());
-                openURL(url);
+                WebBrowser.openUrl(url);
             } catch (BadLocationException e) { }
         }
     }
@@ -73,35 +70,11 @@ public class OpenURLAction extends DefaultAction {
                     String keyword = editor.getTextPane().getSelectedText();
                     if (keyword == null) {
                         KeywordEvent kwe = editor.getTextPane().getKeywordEvent();
-                        menuitem.setEnabled(ScilabLexerConstants.URL == kwe.getType());
+                        menuitem.setEnabled(ScilabLexerConstants.MAIL == kwe.getType() || ScilabLexerConstants.URL == kwe.getType());
                     }
                 }
             });
 
         return menuitem;
-    }
-
-    /**
-     * @param url the url to open
-     */
-    public static void openURL(String url) {
-        if (url == null || url.length() == 0) {
-            return;
-        }
-
-        try {
-            if (url.charAt(0) == 'h') {
-                // We have something like http://...
-                Desktop.getDesktop().browse(new URI(url));
-            } else {
-                // We have <pierre.marechal@scilab.org>
-                String mail = "mailto:" + url.substring(1, url.length() - 1);
-                Desktop.getDesktop().mail(new URI(mail));
-            }
-        } catch (IOException e) {
-            System.err.println(e.toString());
-        } catch (URISyntaxException e) {
-            System.err.println(e.toString());
-        }
     }
 }

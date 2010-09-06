@@ -58,13 +58,10 @@ Source: bin\hashtable.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\doublylinkedlist.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\lapack.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libf2c.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\libjvm.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\LibScilab.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\scilab_windows.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libxml2.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\MALLOC.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\time.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\intersci.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\pcre.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\pcreposix.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
@@ -72,12 +69,12 @@ Source: bin\MALLOC.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libf2c.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\lapack.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\LibScilab.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\intersci.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+
 Source: bin\scilab_windows.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\hashtable.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: bin\Scilex.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\WScilex.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\WScilex.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: bin\Dumpexts.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\f2c.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;

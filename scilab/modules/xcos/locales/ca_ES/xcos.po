@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-05-22 19:03+0000\n"
+"PO-Revision-Date: 2010-07-29 11:02+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,20 +17,94 @@ msgstr ""
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
+msgid "%s is not a valid name, please change the title of the diagram."
+msgstr "%s no és un nom vàlid, canvieu el nom del diagrama."
+
+#, c-format
+msgid "%s: All paths defined by %s variable must exist.\n"
+msgstr "%s: Tots els camins definits per la variable %s han d'existir.\n"
+
+#, c-format
 msgid "%s: File ''%s'' does not exist.\n"
 msgstr "%s: No existeix el fitxer ''%s''.\n"
+
+#, c-format
+msgid "%s: File ''%s'' is not a valid palette file.\n"
+msgstr "%s: El fitxer ''%s'' no és un fitxer de paleta vàlid.\n"
+
+#, c-format
+msgid "%s: Found ''%s'' instead of a block.\n"
+msgstr "%s: S'ha trobat ''%s'' en comptes d'un bloc.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: No hi ha més memòria.\n"
 
 #, c-format
+msgid ""
+"%s: The directory %s cannot been created, please check if you have write "
+"access on this directory.\n"
+msgstr ""
+"%s: No es pot crear el directori %s. Comproveu si hi teniu accés "
+"d'escriptura.\n"
+
+#, c-format
+msgid "%s: Unable to export %s to %s.\n"
+msgstr "%s: No s'ha pogut exportar %s a %s.\n"
+
+#, c-format
+msgid "%s: Unable to export the palette to hdf5.\n"
+msgstr "%s: No s'ha pogut exportar la paleta a hdf5.\n"
+
+#, c-format
+msgid "%s: Unable to generate the image %s.\n"
+msgstr "%s: No s'ha pogut generar la imatge %s.\n"
+
+#, c-format
+msgid "%s: Unable to generate the palette icon : %s already exists.\n"
+msgstr "%s: No s'ha pogut generar la icona de la paleta: Ja existeix %s.\n"
+
+#, c-format
 msgid "%s: Unable to import xcos file %s.\n"
 msgstr "%s: No s'ha pogut importar el fitxer xcos %s.\n"
 
 #, c-format
+msgid "%s: Unable to load block from %s: hdf5 file expected.\n"
+msgstr ""
+"%s: No s'ha pogut carregar el bloc de %s: Ha de ser un fitxer hdf5.\n"
+
+#, c-format
+msgid "%s: Unable to load block from %s: no `scs_m'' variable found.\n"
+msgstr ""
+"%s: No s'ha pogut carregar el bloc de %s: No s'ha trobat la variable "
+"`scs_m''.\n"
+
+#, c-format
+msgid "%s: Wrong input argument %s: svg or gif expected.\n"
+msgstr "%s: L'argument d'entrada %s és incorrecte: Ha de ser svg o gif.\n"
+
+#, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s: Nombre incorrecte d'arguments d'entrada: Han de ser %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Nombre incorrecte d'arguments d'entrada: Hi ha d'haver entre %d i %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s: Nombre incorrecte d'arguments de sortida: Se'n necessiten %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
+"%s: El nombre d'arguments de sortida és incorrecte: Han de ser entre %d i "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
@@ -44,6 +118,11 @@ msgstr ""
 "text.\n"
 
 #, c-format
+msgid "%s: Wrong type for %s variable: A string array expected.\n"
+msgstr ""
+"%s: La variable %s és d'un tipus incorrecte: Ha de ser un vector de text.\n"
+
+#, c-format
 msgid "%s: Wrong type for argument %d: String or diagram structure expected"
 msgstr ""
 "%s: L'argument %d és d'un tipus incorrecte: Ha de ser una cadena de text o "
@@ -54,10 +133,109 @@ msgid "%s: Wrong type for argument %d: diagram structure expected"
 msgstr "%s: L'argument %d és d'un tipus incorrecte: Ha de ser un diagrama"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un booleà.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
 "de caràcters.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
+"de cadenes de text.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: Block type expected.\n"
+msgstr ""
+"%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un bloc.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: File not found.\n"
+msgstr ""
+"%s: L'argument d'entrada %s és d'un tipus incorrecte: No s'ha trobat el "
+"fitxer.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: boolean expected.\n"
+msgstr ""
+"%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un booleà.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: diagram type expected.\n"
+msgstr ""
+"%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un "
+"diagrama.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument %s: directory path string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un camí a un "
+"directori.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: full path string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un camí "
+"absolut.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument %s: function as string or Block type or "
+"full path string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser una funció, "
+"un bloc o un camí absolut.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: handle type expected.\n"
+msgstr ""
+"%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un "
+"tractament.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: palette type expected.\n"
+msgstr ""
+"%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser una paleta.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument %s: palette type or path expected.\n"
+msgstr ""
+"%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser una paleta o "
+"un camí.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: path string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un camí.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un text.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string or struct expected.\n"
+msgstr ""
+"%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un text o "
+"una estructura.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string type expected.\n"
+msgstr ""
+"%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un text.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string vector expected.\n"
+msgstr ""
+"%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un vector de "
+"text.\n"
 
 msgid "?"
 msgstr "?"
@@ -70,6 +248,9 @@ msgstr "Quant al Xcos"
 
 msgid "Add to"
 msgstr "Afegeix"
+
+msgid "Add to a new category"
+msgstr "Afegeix a una nova categoria"
 
 msgid "Add to new diagram"
 msgstr "Afegeix a un diagrama nou"
@@ -89,6 +270,9 @@ msgstr "Ajuda de bloc"
 msgid "Block Parameters"
 msgstr "Paràmetres de bloc"
 
+msgid "Bold"
+msgstr "Negreta"
+
 msgid "Border Color"
 msgstr "Color de les vores"
 
@@ -100,6 +284,9 @@ msgstr "CVODE"
 
 msgid "Cancel"
 msgstr "Cancel·la"
+
+msgid "Category"
+msgstr "Categoria"
 
 msgid "Center"
 msgstr "Centrat"
@@ -132,9 +319,6 @@ msgstr "Compila"
 msgid "Continuous time systems"
 msgstr "Sistemes temporals continus"
 
-msgid "Copy"
-msgstr "Copia"
-
 msgid "Copyright (c) 1989-2009 (INRIA)"
 msgstr "Copyright (c) 1989-2009 (INRIA)"
 
@@ -144,11 +328,11 @@ msgstr "No s'ha pogut desar el diagrama."
 msgid "Create"
 msgstr "Crea"
 
+msgid "Create a category"
+msgstr "Crea una categoria"
+
 msgid "Customize"
 msgstr "Personalitza"
-
-msgid "Cut"
-msgstr "Retalla"
 
 msgid "Debug block calls without trace"
 msgstr "Crides a blocs de depuració sense traces"
@@ -204,6 +388,9 @@ msgstr "Editable"
 msgid "Electrical"
 msgstr "Elèctric"
 
+msgid "Enable"
+msgstr "Activa"
+
 msgid "Event handling"
 msgstr "Tractaments d'esdeveniments"
 
@@ -224,6 +411,9 @@ msgstr ""
 
 msgid "Export"
 msgstr "Exporta"
+
+msgid "Export in progress"
+msgstr "S'està exportant"
 
 msgid "Export to XML"
 msgstr "Exporta a XML"
@@ -250,6 +440,15 @@ msgstr "Ajusta el diagrama a la vista"
 msgid "Flip"
 msgstr "Volteja"
 
+msgid "Font name"
+msgstr "Nom del tipus de lletra"
+
+msgid "Font size"
+msgstr "Mida de lletra"
+
+msgid "Font style"
+msgstr "Estil de lletra"
+
 msgid "Format"
 msgstr "Format"
 
@@ -270,9 +469,6 @@ msgstr "Vés a %s"
 
 msgid "Grid"
 msgstr "Quadrícula"
-
-msgid "Group"
-msgstr "Agrupa"
 
 msgid "Horizontal"
 msgstr "Horitzontal"
@@ -313,8 +509,8 @@ msgstr "Tolerància absoluta de l'integrador"
 msgid "Integrator relative tolerance"
 msgstr "Tolerància relativa de l'integrador"
 
-msgid "Invert selection"
-msgstr "Inverteix la selecció"
+msgid "Italic"
+msgstr "Cursiva"
 
 msgid "Left"
 msgstr "Esquerra"
@@ -358,6 +554,9 @@ msgstr "Centre"
 msgid "Mirror"
 msgstr "Inverteix"
 
+msgid "Modelica initialize"
+msgstr "Inicialitza la modelica"
+
 msgid "Move Down"
 msgstr "Avall"
 
@@ -391,11 +590,11 @@ msgstr "Obre"
 msgid "Palette browser"
 msgstr "Palette browser"
 
+msgid "Palette name"
+msgstr "Nom de la paleta"
+
 msgid "Palettes"
 msgstr "Paletes"
-
-msgid "Paste"
-msgstr "Enganxa"
 
 msgid "Per block execution trace and Debug block calls"
 msgstr "Crides a traces i depuracions per execucions de blocs"
@@ -421,9 +620,6 @@ msgstr "Escalat en temps real"
 msgid "Recent Files"
 msgstr "Fitxers recents"
 
-msgid "Redo"
-msgstr "Refés"
-
 msgid "Region to superblock"
 msgstr "Regió a superbloc"
 
@@ -441,9 +637,6 @@ msgstr "Gira"
 
 msgid "Rows"
 msgstr "Files"
-
-msgid "Same command executed again"
-msgstr "Torneu a executar la mateixa comanda"
 
 msgid "Save"
 msgstr "Desa"
@@ -475,9 +668,6 @@ msgstr "No està instal·lat el mòdul '%s' del Scilab.\n"
 msgid "Scilab file"
 msgstr "Fitxer d'Scilab"
 
-msgid "Select all"
-msgstr "Selecciona-ho tot"
-
 msgid "Set Context"
 msgstr "Contexte"
 
@@ -490,6 +680,9 @@ msgstr "Defineix els paràmetres de bloc"
 msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
 msgstr ""
 "Indiqueu el nivell de depuració (0,1,2,3) <br/> Això executa scicos_debug(n)"
+
+msgid "Setting up Modelica Compiler."
+msgstr "S'està configurant el compilador Modelica."
 
 msgid "Setup"
 msgstr "Configura"
@@ -533,6 +726,12 @@ msgstr "Directe"
 msgid "Superblock mask"
 msgstr "Màscara de superbloc"
 
+msgid "Text Color"
+msgstr "Color del text"
+
+msgid "Text settings"
+msgstr "Configuració del text"
+
 msgid "The Scicos libraries are not loaded"
 msgstr "No s'ha carregat les llibreries de Scicos"
 
@@ -546,6 +745,20 @@ msgstr ""
 "El fitxer %s no existeix\n"
 " El voleu crear?"
 
+msgid ""
+"The user configuration file (xcos.xml) is invalid.<BR> Switching to the "
+"default one."
+msgstr ""
+"El fitxer de configuració d'usuari (xcos.xml) és invàlid.<BR> S'utilitzarà "
+"el predeterminat."
+
+msgid ""
+"The user palette configuration file (palettes.xml) is invalid.<BR> Switching "
+"to the default one."
+msgstr ""
+"El fitxer de configuració de la paleta d'usuari (palettes.xml) és "
+"invàlid.<BR> S'utilitzarà el predeterminat."
+
 msgid "Thermo-Hydraulics"
 msgstr "Termohidràulica"
 
@@ -558,11 +771,35 @@ msgstr "Eines"
 msgid "Top"
 msgstr "Superior"
 
-msgid "UnGroup"
-msgstr "Desagrupa"
+msgid "Unable to delete "
+msgstr "No s'ha pogut eliminar "
 
-msgid "Unable to communicate with the interpreter"
-msgstr "No s'ha pogut comunicar amb l'intèrpret"
+msgid "Unable to import %s .\n"
+msgstr "No s'ha pogut importar %s .\n"
+
+msgid "Unable to load block from %s ."
+msgstr "No s'ha pogut carregar el bloc de %s ."
+
+msgid ""
+"Unable to load the Batik library. \n"
+"Expecting version %s ; Getting version %s ."
+msgstr ""
+"No s'ha pogut carregar la llibreria Batik. \n"
+"Ha de ser la versió %s ; Hi ha la versió %s ."
+
+msgid ""
+"Unable to load the HDF5 library. \n"
+"Expecting version %s ; Getting version %s ."
+msgstr ""
+"No s'ha pogut carregar la llibreria HDF5. \n"
+"Ha de ser la versió %s ; Hi ha la versió %s ."
+
+msgid ""
+"Unable to load the jgraphx library.\n"
+"Expecting version %s ; Getting version %s ."
+msgstr ""
+"No s'ha pogut carregar la llibreria jgraphx. \n"
+"Ha de ser la versió %s ; Hi ha la versió %s ."
 
 #, c-format
 msgid "Unable to open %s"
@@ -571,9 +808,6 @@ msgstr "No s'ha pogut obrir %s"
 #, c-format
 msgid "Unable to simulate %s"
 msgstr "No s'ha pogut fer la simulació %s"
-
-msgid "Undo"
-msgstr "Desfés"
 
 msgid "Unknown Diagram Version : "
 msgstr "Diagrama de versió desconegut: "
@@ -620,6 +854,9 @@ msgstr "WinTitle"
 msgid "Window title"
 msgstr "Títol de la finestra"
 
+msgid "Wrong input argument \"%s\": invalid tree path.\n"
+msgstr "L'argument d'entrada \"%s\" és incorrecte: No és un camí vàlid.\n"
+
 msgid "Xcos"
 msgstr "Xcos"
 
@@ -649,12 +886,6 @@ msgstr ""
 
 msgid "Zero crossing detection"
 msgstr "Detecció d'encreuament pel zero"
-
-msgid "Zoom In"
-msgstr "Apropa"
-
-msgid "Zoom Out"
-msgstr "Allunya"
 
 msgid "control port must be connected to command port"
 msgstr "Un port de control ha d'estar connectat a un port de comanda"

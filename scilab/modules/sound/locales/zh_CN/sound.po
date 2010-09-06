@@ -17,10 +17,6 @@ msgstr ""
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s：内存申请错误。\n"
-
-#, c-format
 msgid "%s: An error occurred: %s\n"
 msgstr "%s：出现错误：%s\n"
 
@@ -44,6 +40,10 @@ msgstr "%s：不具有音频能力。\n"
 #, c-format
 msgid "%s: Cannot open file %s.\n"
 msgstr "%s：无法打开文件%s。\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"

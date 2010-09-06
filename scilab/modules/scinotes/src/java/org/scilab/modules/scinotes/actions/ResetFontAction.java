@@ -48,7 +48,7 @@ public class ResetFontAction extends DefaultAction {
 
         /*we need to loop on every style , if not after the second change, styles will not change anymore
           except default*/
-        int numberOfTab = getEditor().getTabPane().getComponentCount();
+        int numberOfTab = getEditor().getTabPane().getTabCount();
         for (int j = 0; j < numberOfTab; j++) {
 
             ScilabEditorPane textPane = getEditor().getTextPane(j);

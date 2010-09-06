@@ -29,6 +29,7 @@ import java.util.Hashtable;
 import java.util.Properties;
 import java.util.Enumeration;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -44,11 +45,13 @@ import javax.xml.transform.stream.StreamResult;
 
 import javax.swing.KeyStroke;
 
-import org.scilab.modules.console.GuiManagement;
+import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
 import org.scilab.modules.scinotes.ScilabView;
+import org.scilab.modules.scinotes.ScilabEditorPane;
+import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.TabManager;
 import org.scilab.modules.scinotes.MatchingBlockManager;
 
@@ -69,6 +72,7 @@ public final class ConfigSciNotesManager {
     private static final String ERROR_READ = "Could not load file: ";
     private static final String ERROR_WRITE = "Could not save file: ";
     private static final String VALUE = "value";
+    private static final String VERSION = "version";
     private static final String STYLE = "style";
     private static final String UNDERLINE = "underline";
     private static final String DEFAULTUNDERLINE = "defaultUnderline";
@@ -103,30 +107,40 @@ public final class ConfigSciNotesManager {
 
     private static final String PROFILE = "Profile";
 
-    private static String RECENT_SEARCH = "recentSearch";
-    private static String SEARCH = "search";
-    private static String RECENT_REPLACE = "recentReplace";
-    private static String REPLACE = "replace";
-    private static String EXPRESSION = "exp";
-    private static String REGULAR_EXPRESION = "regularExp";
-    private static String WORD_WARP = "wordWarp";
-    private static String WHOLE_WORD = "wholeWord";
-    private static String CASE_SENSITIVE = "caseSensitive";
-    private static String STATE_FLAG = "state";
+    private static final String RECENT_SEARCH = "recentSearch";
+    private static final String SEARCH = "search";
+    private static final String RECENT_REPLACE = "recentReplace";
+    private static final String REPLACE = "replace";
+    private static final String EXPRESSION = "exp";
+    private static final String REGULAR_EXPRESION = "regularExp";
+    private static final String CIRCULAR = "circularSearch";
+    private static final String WORD_WARP = "wordWarp";
+    private static final String WHOLE_WORD = "wholeWord";
+    private static final String CASE_SENSITIVE = "caseSensitive";
+    private static final String STATE_FLAG = "state";
 
-    private static String SETTING = "Setting";
-    private static String SCINOTES = "scinotes";
-    private static String TRUE = "true";
-    private static String FALSE = "false";
-    private static String DOCUMENT = "document";
-    private static String PATH = "path";
-    private static String RECENT_FILES = "recentFiles";
+    private static final String SETTING = "Setting";
+    private static final String SCINOTES = "scinotes";
+    private static final String TRUE = "true";
+    private static final String FALSE = "false";
+    private static final String DOCUMENT = "document";
+    private static final String PATH = "path";
+    private static final String RECENT_FILES = "recentFiles";
+    private static final String OPEN_FILES = "openFiles";
+    private static final String RESTOREFILES = "RestoreFiles";
+    private static final String EDITORINST = "editorInstance";
+    private static final String PANEINST = "paneInstance";
+    private static final String PANEINST_EX = "paneInstanceExtra";
 
-    private static final String SCINOTES_CONFIG_FILE = System.getenv("SCI") + "/modules/scinotes/etc/scinotesConfiguration.xml";
-    private static final String SCINOTES_CONFIG_KEYS_FILE = System.getenv("SCI") + "/modules/scinotes/etc/keysConfiguration.xml";
+    private static final String FAVORITE_DIRS = "favoriteDirectories";
+    private static final String DIRECTORY = "Directory";
 
-    private static final String USER_SCINOTES_CONFIG_FILE = GuiManagement.getSCIHOME() + "/scinotesConfiguration.xml";
-    private static final String USER_SCINOTES_CONFIG_KEYS_FILE = GuiManagement.getSCIHOME() + "/keysConfiguration.xml";
+    private static final String SCI = "SCI";
+    private static final String SCINOTES_CONFIG_FILE = System.getenv(SCI) + "/modules/scinotes/etc/scinotesConfiguration.xml";
+    private static final String SCINOTES_CONFIG_KEYS_FILE = System.getenv(SCI) + "/modules/scinotes/etc/keysConfiguration.xml";
+
+    private static final String USER_SCINOTES_CONFIG_FILE = ScilabCommons.getSCIHOME() + "/scinotesConfiguration.xml";
+    private static final String USER_SCINOTES_CONFIG_KEYS_FILE = ScilabCommons.getSCIHOME() + "/keysConfiguration.xml";
 
     private static final int PLAIN = 0;
     private static final int BOLD =  1;
@@ -143,6 +157,8 @@ public final class ConfigSciNotesManager {
     private static Document document;
     private static Properties keysMap;
 
+    private static boolean updated;
+
     /**
      * Constructor
      */
@@ -154,23 +170,58 @@ public final class ConfigSciNotesManager {
      * Create a copy of Scilab configuration file in the user directory
      */
     public static void createUserCopy() {
-        File fileConfig = new File(USER_SCINOTES_CONFIG_FILE);
-        if (!fileConfig.exists() || (fileConfig.length() == 0)) {
+        if (checkVersion()) {
             /* Create a local copy of the configuration file */
             copyFile(new File(SCINOTES_CONFIG_FILE), new File(USER_SCINOTES_CONFIG_FILE));
-        }
-        fileConfig = new File(USER_SCINOTES_CONFIG_KEYS_FILE);
-        if (!fileConfig.exists() || (fileConfig.length() == 0)) {
-            /* Create a local copy of the configuration file */
             copyFile(new File(SCINOTES_CONFIG_KEYS_FILE), new File(USER_SCINOTES_CONFIG_KEYS_FILE));
+            document = null;
+            keysMap = null;
+            updated = true;
         }
     }
+
     /**
      * Get the name of the user configuration file
      * @return the name of the configuration file
      */
     public static String getUserConfigFile() {
         return USER_SCINOTES_CONFIG_FILE;
+    }
+
+    /**
+     * @return true if scinotesConfiguration.xml in etc has a version greater than the version in home
+     */
+    public static boolean checkVersion() {
+        if (updated) {
+            return false;
+        }
+
+        File fileConfig = new File(USER_SCINOTES_CONFIG_FILE);
+        File keyConfig = new File(USER_SCINOTES_CONFIG_KEYS_FILE);
+        if (!keyConfig.exists()) {
+            return true;
+        }
+        if (fileConfig.exists()) {
+            document = null;
+            readDocument(SCINOTES_CONFIG_FILE, null);
+            Node setting = getNodeChild(null, SETTING);
+            String str = ((Element) setting).getAttribute(VERSION);
+            if (str != null && str.length() != 0) {
+                float versionEtc = Float.parseFloat(str);
+                document = null;
+                readDocument();
+                setting = getNodeChild(null, SETTING);
+                str = ((Element) setting).getAttribute(VERSION);
+                document = null;
+
+                if (str != null && str.length() != 0) {
+                    float versionHome = Float.parseFloat(str);
+                    return versionEtc != versionHome;
+                }
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -235,9 +286,10 @@ public final class ConfigSciNotesManager {
     }
 
     /**
-     * @return true if help on typing is active
+     * @param type "Openers" or "Keywords"
+     * @return true if help on typing for openers is active
      */
-    public static boolean getHelpOnTypingState() {
+    public static boolean getHelpOnTyping(String type) {
         readDocument();
 
         Element root = document.getDocumentElement();
@@ -245,7 +297,7 @@ public final class ConfigSciNotesManager {
         NodeList profiles = root.getElementsByTagName(PROFILE);
         Element scinotesProfile = (Element) profiles.item(0);
 
-        NodeList allSizeElements = scinotesProfile.getElementsByTagName(HELPONTYPING);
+        NodeList allSizeElements = scinotesProfile.getElementsByTagName(HELPONTYPING + type);
         Element helpontyping = (Element) allSizeElements.item(0);
 
         return TRUE.equals(helpontyping.getAttribute(VALUE));
@@ -253,9 +305,10 @@ public final class ConfigSciNotesManager {
 
     /**
      * Save help on typing
+     * @param type "Openers" or "Keywords"
      * @param activated active or not
      */
-    public static void saveHelpOnTypingState(boolean activated) {
+    public static void saveHelpOnTyping(String type, boolean activated) {
         readDocument();
 
         Element root = document.getDocumentElement();
@@ -263,10 +316,10 @@ public final class ConfigSciNotesManager {
         NodeList profiles = root.getElementsByTagName(PROFILE);
         Element scinotesProfile = (Element) profiles.item(0);
 
-        NodeList allSizeElements = scinotesProfile.getElementsByTagName(HELPONTYPING);
+        NodeList allSizeElements = scinotesProfile.getElementsByTagName(HELPONTYPING + type);
         Element helpOnTyping = (Element) allSizeElements.item(0);
         if (helpOnTyping == null) {
-            Element help = document.createElement(HELPONTYPING);
+            Element help = document.createElement(HELPONTYPING + type);
             helpOnTyping.setAttribute(VALUE, new Boolean(activated).toString());
             helpOnTyping.appendChild((Node) help);
         } else {
@@ -578,7 +631,7 @@ public final class ConfigSciNotesManager {
 
         NodeList fontNameElement = scinotesProfile.getElementsByTagName(FONT_NAME);
         Element fontName = (Element) fontNameElement.item(0);
-        fontName.setAttribute(VALUE, font.getFontName());
+        fontName.setAttribute(VALUE, font.getName());
 
         /* Save changes */
         writeDocument();
@@ -591,27 +644,30 @@ public final class ConfigSciNotesManager {
      */
     private static void copyFile(File in, File out) {
         FileInputStream fis = null;
+
+        FileOutputStream fos = null;
+
         try {
             fis = new FileInputStream(in);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        FileOutputStream fos = null;
-        try {
             fos = new FileOutputStream(out);
+            byte[] buf = new byte[BUFSIZE];
+            int i = 0;
+            while ((i = fis.read(buf)) != -1) {
+                fos.write(buf, 0, i);            }
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }
-        byte[] buf = new byte[BUFSIZE];
-        int i = 0;
-        try {
-            while ((i = fis.read(buf)) != -1) {
-                fos.write(buf, 0, i);
-            }
-            fis.close();
-            fos.close();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (fis != null) {
+                    fis.close();
+                }
+                if (fos != null) {
+                    fos.close();
+                }
+            } catch (IOException e) { }
         }
     }
 
@@ -666,7 +722,7 @@ public final class ConfigSciNotesManager {
      * @return an Object containing infos
      */
     public static MatchingBlockManager.Parameters getDefaultForMatcher(String kind) {
-        /* <KeywordsHighlighter color="#fff3d2" inside=TRUE type="filled"/> */
+        /* <KeywordsHighlighter color="#fff3d2" inside="true" strict="false" type="filled"/> */
 
         readDocument();
 
@@ -680,6 +736,8 @@ public final class ConfigSciNotesManager {
 
         Color color = Color.decode(matcher.getAttribute("color"));
         boolean inside = TRUE.equals(matcher.getAttribute("inside"));
+        boolean strict = TRUE.equals(matcher.getAttribute("strict"));
+        boolean included = TRUE.equals(matcher.getAttribute("included"));
         String stype = matcher.getAttribute("type");
         int type = 0;
         if ("filled".equals(stype)) {
@@ -690,7 +748,7 @@ public final class ConfigSciNotesManager {
             type = MatchingBlockManager.ScilabKeywordsPainter.FRAMED;
         }
 
-        return new MatchingBlockManager.Parameters(color, inside, type, onmouseover);
+        return new MatchingBlockManager.Parameters(color, inside, strict, included, type, onmouseover);
     }
 
     /**
@@ -1302,7 +1360,6 @@ public final class ConfigSciNotesManager {
 
         /* Save changes */
         writeDocument();
-
     }
 
     /**
@@ -1328,7 +1385,7 @@ public final class ConfigSciNotesManager {
     }
 
     /**
-     * Get all the  recent opened files
+     * Get all the recent opened files
      * @return a array of uri
      */
     public static List<File> getAllRecentOpenedFiles() {
@@ -1347,12 +1404,74 @@ public final class ConfigSciNotesManager {
                 } else {
                     root.removeChild((Node) style);
                 }
-
-                /* Save changes */
-                writeDocument();
             }
         }
+
+        /* Save changes */
+        writeDocument();
+
         return files;
+    }
+
+    /**
+     * Get all the favorite dirs
+     * @return a list of File
+     */
+    public static List<File> getAllFavoriteDirs() {
+        List<File> dirsList = new ArrayList<File>();
+        readDocument();
+        Element root = (Element) document.getDocumentElement().getElementsByTagName(FAVORITE_DIRS).item(0);
+        if (root != null) {
+            NodeList dirs = root.getElementsByTagName(DIRECTORY);
+            for (int i = 0; i < dirs.getLength(); i++) {
+                Element dir = (Element) dirs.item(i);
+                File temp = new File(dir.getAttribute(PATH));
+
+                if (temp.exists()) {
+                    dirsList.add(temp);
+                } else {
+                    root.removeChild((Node) dir);
+                }
+            }
+        }
+
+        /* Save changes */
+        writeDocument();
+
+        return dirsList;
+    }
+
+    /**
+     * Add a path to a favorite directory
+     * @param path the path of the dir
+     */
+    public static void saveFavoriteDirectory(String path) {
+        readDocument();
+
+        Element root = (Element) document.getDocumentElement().getElementsByTagName(FAVORITE_DIRS).item(0);
+        Element newDir =  document.createElement(DIRECTORY);
+        newDir.setAttribute(PATH, path);
+        root.appendChild((Node) newDir);
+
+        /* Save changes */
+        writeDocument();
+    }
+
+    /**
+     * Remove the last favorite directory
+     */
+    public static void rmLastFavoriteDirectory() {
+        readDocument();
+
+        Element root = (Element) document.getDocumentElement().getElementsByTagName(FAVORITE_DIRS).item(0);
+        NodeList dirs = root.getElementsByTagName(DIRECTORY);
+
+        if (dirs.getLength() != 0) {
+            root.removeChild(dirs.item(dirs.getLength() - 1));
+        }
+
+        /* Save changes */
+        writeDocument();
     }
 
     /**
@@ -1389,9 +1508,334 @@ public final class ConfigSciNotesManager {
     }
 
     /**
+     * @return true if open files should be restored upon restart.
+     */
+    public static boolean getRestoreOpenedFiles() {
+        readDocument();
+
+        Element root = document.getDocumentElement();
+
+        NodeList profiles = root.getElementsByTagName(PROFILE);
+        Element scinotesProfile = (Element) profiles.item(0);
+
+        NodeList allSizeElements = scinotesProfile.getElementsByTagName(RESTOREFILES);
+        Element restorefiles = (Element) allSizeElements.item(0);
+
+        return TRUE.equals(restorefiles.getAttribute(VALUE));
+    }
+
+    /**
+     * Active/deactive restoration of open files upon restart of scinotes
+     * @param activated active or not
+     */
+    public static void saveRestoreOpenedFiles(boolean activated) {
+        readDocument();
+
+        Element root = document.getDocumentElement();
+
+        NodeList profiles = root.getElementsByTagName(PROFILE);
+        Element scinotesProfile = (Element) profiles.item(0);
+
+        NodeList allSizeElements = scinotesProfile.getElementsByTagName(RESTOREFILES);
+        Element restorefiles = (Element) allSizeElements.item(0);
+        if (restorefiles == null) {
+            Element restoreElement = document.createElement(RESTOREFILES);
+            restorefiles.setAttribute(VALUE, new Boolean(activated).toString());
+            restorefiles.appendChild((Node) restoreElement);
+        } else {
+            restorefiles.setAttribute(VALUE, new Boolean(activated).toString());
+        }
+        writeDocument();
+    }
+
+    /**
+     * Return a count of the open files that exist. New files, for instance, do not.
+     * @return count
+     */
+    public static int countExistingOpenFiles() {
+        int count = 0;
+        readDocument();
+        Element root = (Element) document.getDocumentElement().getElementsByTagName(OPEN_FILES).item(0);
+        if (root != null) {
+            NodeList openFiles = root.getElementsByTagName(DOCUMENT);
+
+            for (int i = 0; i < openFiles.getLength(); ++i) {
+                Element style = (Element) openFiles.item(i);
+
+                File temp = new File(style.getAttribute(PATH));
+
+                if (temp.exists()) {
+                    count++;
+                }
+                writeDocument();
+            }
+        }
+        return count;
+    }
+
+    /**
+     * Get the list of open files associated with an editor instance hashcode.
+     * Only files that exist are returned.
+     * @param editorID unique id of an editor instance
+     * @return a array of uri
+     */
+    public static List<File> getOpenFilesByEditor(UUID editorID) {
+        List<File> files = new ArrayList<File>();
+        readDocument();
+        Element root = (Element) document.getDocumentElement().getElementsByTagName(OPEN_FILES).item(0);
+        if (root != null) {
+            NodeList openFiles = root.getElementsByTagName(DOCUMENT);
+
+            /* Loop through the list and return only the files with a matching hash code. */
+            int i = 0;
+            for (; i < openFiles.getLength(); i++) {
+                Element style = (Element) openFiles.item(i);
+
+                if (editorID.equals(UUID.fromString(style.getAttribute(EDITORINST)))) {
+                    File temp = new File(style.getAttribute(PATH));
+
+                    /* Check that the file exists and add to file list or else remove the node. */
+                    if (temp.exists()) {
+                        files.add(temp);
+                    } else {
+                        root.removeChild((Node) style);
+                        i--;  // Adjust index to account for removed item.
+                    }
+                }
+            }
+            /* Save any changes */
+            writeDocument();
+        }
+        return files;
+    }
+
+    /**
+     * Get a list of unique editor instance identifiers in the list of open files.
+     * @return an array of editor instance identifiers
+     */
+    public static List<UUID> getOpenFilesEditorList() {
+        List<UUID> editorIDlist = new ArrayList<UUID>();
+        readDocument();
+        Element root = (Element) document.getDocumentElement().getElementsByTagName(OPEN_FILES).item(0);
+        if (root != null) {
+            NodeList openFiles = root.getElementsByTagName(DOCUMENT);
+
+            /* Loop through the list and return the list of IDs. */
+            for (int i = 0; i < openFiles.getLength(); ++i) {
+                Element style = (Element) openFiles.item(i);
+
+                UUID editorID = UUID.fromString(style.getAttribute(EDITORINST));
+
+                if (!editorIDlist.contains(editorID)) {
+                    editorIDlist.add(editorID);
+                }
+            }
+        }
+        return editorIDlist;
+    }
+
+    /**
+     * Add a file to currently open files
+     * @param filePath the path of the files to add
+     * @param editorInstance instance of the editor to associate with the open file
+     * @param sep the pane
+     */
+    public static void saveToOpenFiles(String filePath, SciNotes editorInstance, ScilabEditorPane sep) {
+        readDocument();
+        UUID nil = new UUID(0, 0);
+
+        // Find the element containing the list of open files
+        Element root = (Element) document.getDocumentElement().getElementsByTagName(OPEN_FILES).item(0);
+        // Get the list of open files
+        NodeList openFiles = root.getElementsByTagName(DOCUMENT);
+        int numberOfFiles = openFiles.getLength();
+
+        Element newFile =  document.createElement(DOCUMENT);
+        newFile.setAttribute(PATH, filePath);
+        // Record the editor instance's hash code
+        newFile.setAttribute(EDITORINST, editorInstance.getUUID().toString());
+        root.appendChild((Node) newFile);
+        // Record the text pane's hash code
+        newFile.setAttribute(PANEINST, sep.getUUID().toString());
+        newFile.setAttribute(PANEINST_EX, nil.toString());
+        root.appendChild((Node) newFile);
+
+        /* Save changes */
+        writeDocument();
+    }
+
+    /**
+     * Remove a tab with an open file from the list of open files
+     * @param editorInstance instance of the editor
+     * @param sep instance of the editor pane.
+     */
+    public static void removeFromOpenFiles(SciNotes editorInstance, ScilabEditorPane sep) {
+        removeFromOpenFiles(editorInstance.getUUID(), sep.getUUID());
+    }
+
+    /**
+     * Remove from the list of open files all files with a matching editor instance identifer
+     * @param editorID editor instance identifer
+     */
+    public static void removeFromOpenFiles(UUID editorID) {
+        removeFromOpenFiles(editorID, new UUID(0, 0) /* nil UUID */);
+    }
+
+    /**
+     * Remove a tab with an open file from the list of open files
+     * @param editorID editor instance identifer
+     * @param sepID editor pane instance identifer. If a nil UUID is passed,
+     * all files with a matching editor instance identifer are removed.
+     */
+    public static void removeFromOpenFiles(UUID editorID, UUID sepID) {
+        readDocument();
+
+        Element root = (Element) document.getDocumentElement().getElementsByTagName(OPEN_FILES).item(0);
+        NodeList openFiles = root.getElementsByTagName(DOCUMENT);
+
+        // Remove item with matching editorID and sepID.
+        UUID nil = new UUID(0, 0);
+        for (int i = openFiles.getLength() - 1; i >= 0; i--) {
+            Element style = (Element) openFiles.item(i);
+            UUID paneID1 = UUID.fromString(style.getAttribute(PANEINST));
+            UUID paneID2 = UUID.fromString(style.getAttribute(PANEINST_EX));
+
+            if (editorID.equals(UUID.fromString(style.getAttribute(EDITORINST)))
+                && (sepID.equals(nil) || sepID.equals(paneID1) || sepID.equals(paneID2))) {
+                root.removeChild((Node) style);
+            }
+        }
+
+        /* Save changes */
+        writeDocument();
+    }
+
+    /**
+     * Change a filename.
+     * @param newfilePath new pathname of the file
+     * @param editorInstance instance of the editor
+     * @param sep instance of the editor pane
+     */
+    public static void renameOpenFilesItem(String newfilePath, SciNotes editorInstance, ScilabEditorPane sep) {
+        readDocument();
+
+        Element root = (Element) document.getDocumentElement().getElementsByTagName(OPEN_FILES).item(0);
+        Element style = findOpenFileItem(root, editorInstance.getUUID(), sep.getUUID());
+
+        if (style != null) {
+            style.setAttribute(PATH, newfilePath);
+        }
+
+        /* Save changes */
+        writeDocument();
+    }
+
+    /**
+     * Replace a single text pane ID with two pane IDs when a tab split occurs
+     * @param editorInstance instance of the editor
+     * @param old1 old instance of the editor pane
+     * @param new1 first new instance of the tabbed editor pane
+     * @param new2 second new instance of the tabbed editor pane
+     */
+    public static void tabSplitOpenFilesItem(SciNotes editorInstance, ScilabEditorPane old1, ScilabEditorPane new1, ScilabEditorPane new2) {
+        readDocument();
+
+        Element root = (Element) document.getDocumentElement().getElementsByTagName(OPEN_FILES).item(0);
+        Element style = findOpenFileItem(root, editorInstance.getUUID(), old1.getUUID());
+
+        if (style != null) {
+            style.setAttribute(PANEINST, new1.getUUID().toString());
+            style.setAttribute(PANEINST_EX, new2.getUUID().toString());
+        }
+
+        /* Save changes */
+        writeDocument();
+    }
+
+    /**
+     * Replace double pane IDs with a single ID when a tabbed pane is replaced by a single pane.
+     * @param editorInstance instance of the editor
+     * @param old1 one of the old tabbed editor pane
+     * @param new1 new editor pane
+     */
+    public static void removeTabSplitInOpenFilesItem(SciNotes editorInstance, ScilabEditorPane old1, ScilabEditorPane new1) {
+        readDocument();
+
+        Element root = (Element) document.getDocumentElement().getElementsByTagName(OPEN_FILES).item(0);
+        Element style = findOpenFileItem(root, editorInstance.getUUID(), old1.getUUID());
+
+        if (style != null) {
+            UUID nil = new UUID(0, 0);
+            style.setAttribute(PANEINST, new1.getUUID().toString());
+            style.setAttribute(PANEINST_EX, nil.toString());
+        }
+
+        /* Save changes */
+        writeDocument();
+    }
+
+    /**
+     * Find the first element with matching editor and pane identifiers
+     * @param root Document root
+     * @param editorID instance of the editor to find
+     * @param sepID instance of the editor pane to find
+     * @return the corresponding element
+     */
+    public static Element findOpenFileItem(Element root, UUID editorID, UUID sepID) {
+        NodeList openFiles = root.getElementsByTagName(DOCUMENT);
+
+        // Find item with matching editor and pane IDs
+        for (int i = 0; i < openFiles.getLength(); i++) {
+            Element style = (Element) openFiles.item(i);
+            UUID paneID1 = UUID.fromString(style.getAttribute(PANEINST));
+            UUID paneID2 = UUID.fromString(style.getAttribute(PANEINST_EX));
+
+            if (editorID.equals(UUID.fromString(style.getAttribute(EDITORINST)))
+                && (sepID.equals(paneID1) || sepID.equals(paneID2))) {
+                return style;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Empty the list of open files. Performed when the editor is opened
+     * and the user opts not to restore the open files.
+     */
+    public static void removeAllOpenFiles() {
+        readDocument();
+
+        Element root = (Element) document.getDocumentElement().getElementsByTagName(OPEN_FILES).item(0);
+        NodeList openFiles = root.getElementsByTagName(DOCUMENT);
+
+        // Remove all
+        for (int i = openFiles.getLength() - 1; i >= 0;  --i) {
+            Element style = (Element) openFiles.item(i);
+            root.removeChild((Node) style);
+        }
+        /* Save changes */
+        writeDocument();
+    }
+
+    /**
+     * Reset the current conf file
+     */
+    public static void resetDocument() {
+        document = null;
+    }
+
+    /**
      * Read the file to modify
      */
     private static void readDocument() {
+        readDocument(USER_SCINOTES_CONFIG_FILE, USER_SCINOTES_CONFIG_KEYS_FILE);
+    }
+
+    /**
+     * Read the file to modify
+     */
+    private static void readDocument(String pathConfSci, String pathConfKeys) {
         File xml = null;
         DocumentBuilder docBuilder = null;
 
@@ -1401,27 +1845,36 @@ public final class ConfigSciNotesManager {
                 docBuilder = factory.newDocumentBuilder();
 
                 // read content of a XML file with DOM
-                xml = new File(USER_SCINOTES_CONFIG_FILE);
+                xml = new File(pathConfSci);
                 document = docBuilder.parse(xml);
             }
         } catch (ParserConfigurationException pce) {
-            System.err.println(ERROR_READ + USER_SCINOTES_CONFIG_FILE);
+            System.err.println(ERROR_READ + pathConfSci);
         } catch (SAXException se) {
-            System.err.println(ERROR_READ + USER_SCINOTES_CONFIG_FILE);
+            System.err.println(ERROR_READ + pathConfSci);
         } catch (IOException ioe) {
-            System.err.println(ERROR_READ + USER_SCINOTES_CONFIG_FILE);
+            System.err.println(ERROR_READ + pathConfSci);
         }
 
+        FileInputStream fis = null;
+
         try {
-            if (keysMap == null) {
-                xml = new File(USER_SCINOTES_CONFIG_KEYS_FILE);
+            if (keysMap == null && pathConfKeys != null) {
+                xml = new File(pathConfKeys);
                 keysMap = new Properties();
-                keysMap.loadFromXML(new FileInputStream(xml));
+                fis = new FileInputStream(xml);
+                keysMap.loadFromXML(fis);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (fis != null) {
+                    fis.close();
+                }
+            } catch (IOException e) { }
         }
     }
 
@@ -1435,7 +1888,6 @@ public final class ConfigSciNotesManager {
             map.put(name, ks);
         }
     }
-
 
     /**
      * Save the modifications
@@ -1459,8 +1911,6 @@ public final class ConfigSciNotesManager {
         } catch (TransformerException e) {
             System.out.println(ERROR_WRITE + USER_SCINOTES_CONFIG_FILE);
         }
-
-
     }
 
     /**
@@ -1661,17 +2111,17 @@ public final class ConfigSciNotesManager {
     }
 
     /**
-     * @return true for a wordWrap search
+     * @return true for a circular search
      */
-    public static boolean getWordWarp() {
-        return getBooleanAttribute(WORD_WARP, STATE_FLAG, true);
+    public static boolean getCircularSearch() {
+        return getBooleanAttribute(CIRCULAR, STATE_FLAG, true);
     }
 
     /**
-     * @param wordWarp for a wordWrap search
+     * @param circular is true for a circular search
      */
-    public static void saveWordWarp(boolean wordWarp) {
-        saveBooleanAttribute(WORD_WARP, STATE_FLAG, wordWarp);
+    public static void saveCircularSearch(boolean circular) {
+        saveBooleanAttribute(CIRCULAR, STATE_FLAG, circular);
     }
 
     /**

@@ -54,9 +54,9 @@ public class MathMLTextShape implements mxITextShape {
 		Rectangle rect = bounds.getRectangle();
 		Graphics2D g = canvas.getGraphics();
 		
-		if (rendererPane != null && 
-				(g.getClipBounds() == null
-						|| g.getClipBounds().intersects(rect))) {
+		if (rendererPane != null
+				&& (g.getClipBounds() == null || g.getClipBounds().intersects(
+						rect))) {
 			double scale = canvas.getScale();
 			int x = rect.x;
 			int y = rect.y;

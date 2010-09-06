@@ -3,15 +3,14 @@
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function ged(k,win)
-  //xset, xget used because ged should handle both old and new style
-  
+
   if ~%tk then
-   warning('TCL/TK interface not installed.');
-   return
+     warning(msprintf(gettext("Tcl/Tk interface not installed.")));
+    return
   end
 
   // Check number of arguments
@@ -20,7 +19,7 @@ function ged(k,win)
   elseif argn(2)<>2 then
     error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "ged", 2));
   end
-  
+
   // Check argument #1
   if typeof(k) <> "constant" then
     error(msprintf(gettext("%s: Wrong type for input argument #%d: A Real expected.\n"), "ged", 1));
@@ -28,7 +27,7 @@ function ged(k,win)
   if size(k, "*") <> 1 then
     error(msprintf(gettext("%s: Wrong size for input argument #%d: A Real expected.\n"), "ged", 1));
   end
-  
+
   // Check argument #2
   if typeof(win) <> "constant" then
     error(msprintf(gettext("%s: Wrong type for input argument #%d: A Real expected.\n"), "ged", 2));
@@ -36,46 +35,45 @@ function ged(k,win)
   if size(win, "*") <> 1 then
     error(msprintf(gettext("%s: Wrong size for input argument #%d: A Real expected.\n"), "ged", 2));
   end
-  
+
   global ged_current_figure
   global ged_cur_fig_handle
-  
-  ged_current_figure=xget('window')
-  xset('window',win) 
-  
-  scf(win);
-  ged_cur_fig_handle=gcf();
-  
+
+  ged_current_figure=gcf(); //Preserve current figure
+
+  ged_cur_fig_handle=scf(win);
+  show_window(ged_cur_fig_handle);
+
   if k>3 then
     TCL_EvalStr("set isgedinterp [interp exists ged]")
-    if ~TCL_ExistInterp( "ged" ) then    
+    if ~TCL_ExistInterp( "ged" ) then
       TCL_CreateSlave( "ged" ) ;
     end
-    
+
   end
 
   select k
-    case 1 then //Select (make it current)
-      return
-    case 2 then //redraw
-      // nothing to do in new graphic mode
-    case 3 then //erase
-      clf()
-    case 4 then //copy
-      ged_copy_entity()
-    case 5 then //past
-      ged_paste_entity()
-    case 6 then //move
-      ged_move_entity()
-    case 7 then //Delete Entity
-      ged_delete_entity()
-      
-    case 8 then //edit current figure properties
-      
-      // hierarchical viewer
+  case 1 then //Select (make it current)
+    return
+  case 2 then //redraw
+              // nothing to do in new graphic mode
+  case 3 then //erase
+    clf()
+  case 4 then //copy
+    ged_copy_entity()
+  case 5 then //past
+    ged_paste_entity()
+  case 6 then //move
+    ged_move_entity()
+  case 7 then //Delete Entity
+    ged_delete_entity()
+
+  case 8 then //edit current figure properties
+
+    // hierarchical viewer
     TK_send_handles_list(ged_cur_fig_handle)
     TCL_SetVar("curgedindex",string(Get_handle_pos_in_list(ged_cur_fig_handle)))
-    
+
     //color_map array for color sample display
     f=ged_cur_fig_handle;
     for i=1:size(f.color_map,1)
@@ -86,18 +84,20 @@ function ged(k,win)
       bluname= "BLUE("+string(i)+")";
       TCL_EvalStr('set '+bluname+" "+string(f.color_map(i,3)));
     end
-    
+
     TCL_SetVar("msdos",string(getos() == 'Windows')) // to know the OS
+
     // get the number of the window associated with ged
     TCL_SetVar("sciGedIsAlive",string(ged_cur_fig_handle.figure_id)) ;
     TCL_SetVar("SCIHOME", SCIHOME) // to know the home directory to put temporary files
-    
+
     ged_figure(ged_cur_fig_handle)
-    case 9 then //edit current axes
-      // hierarchical viewer
+  case 9 then //edit current axes
+
+    // hierarchical viewer
     TK_send_handles_list(ged_cur_fig_handle)
     TCL_SetVar("curgedindex",string(Get_handle_pos_in_list(gca())))
-    
+
     //color_map array for color sample display
     f=ged_cur_fig_handle;
     for i=1:size(f.color_map,1)
@@ -108,47 +108,49 @@ function ged(k,win)
       bluname= "BLUE("+string(i)+")";
       TCL_EvalStr('set '+bluname+" "+string(f.color_map(i,3)));
     end
-    
+
     TCL_SetVar("msdos",string(getos() == 'Windows')) // to know the OS
+
     // get the number of the window associated with ged
     TCL_SetVar("sciGedIsAlive",string(ged_cur_fig_handle.figure_id)) ;
     TCL_SetVar("SCIHOME", SCIHOME) // to know the home directory to put temporary files
-    
+
     ged_axes(gca())
-    case 10 then //start Entity picker
-      seteventhandler("ged_eventhandler")
-    case 11 then //stop Entity picker
-      seteventhandler("")
+  case 10 then //start Entity picker
+    seteventhandler("ged_eventhandler")
+    ged_cur_fig_handle.info_message=_("Left click on a graphic entity to open its property editor");
+  case 11 then //stop Entity picker
+    seteventhandler("")
   end
-  xset('window',ged_current_figure)
+  scf(ged_current_figure)
 endfunction
 
 
 function curgedindex_ = Get_handle_pos_in_list(h)
-global ged_cur_fig_handle
+  global ged_cur_fig_handle
 
-curgedindex_ = [];
+  curgedindex_ = [];
 
-handles = Get_handles_list(ged_cur_fig_handle)
-for i=1:size(handles,1)
-  if (h==handles(i))
-    curgedindex_ = i;
+  handles = Get_handles_list(ged_cur_fig_handle)
+  for i=1:size(handles,1)
+    if (h==handles(i))
+      curgedindex_ = i;
+    end
   end
-end
 
-// Other case :
-// a label has been selected (and for now they are included inside the Axes)
-if (curgedindex_==[])
-  if h.type == "Label"
-    h = h.parent;
-    for i=1:size(handles,1)
-      if (h==handles(i))
-	curgedindex_ = i;
+  // Other case :
+  // a label has been selected (and for now they are included inside the Axes)
+  if (curgedindex_==[])
+    if h.type == "Label"
+      h = h.parent;
+      for i=1:size(handles,1)
+        if (h==handles(i))
+          curgedindex_ = i;
+        end
       end
     end
   end
-end
-  
+
 endfunction
 
 
@@ -156,164 +158,164 @@ endfunction
 // Usefull for new hierarchical graphic tree.
 function ged_levels = Get_levels(handles);
 
-ged_levels = 1; // for Figure, always 1
+  ged_levels = 1; // for Figure, always 1
 
-f = handles(1);
+  f = handles(1);
 
-for i=2:size(handles,1)
-  ged_levels(i) = Get_Depth(f,handles(i));
-end
+  for i=2:size(handles,1)
+    ged_levels(i) = Get_Depth(f,handles(i));
+  end
 
-//disp("les levels sont:")xb
+  //disp("les levels sont:")xb
 
-//disp(ged_levels);
+  //disp(ged_levels);
 
 endfunction
 
 function depth = Get_Depth(f,h)
 
-depth = 2;
+  depth = 2;
 
-while  h.parent <> f
-  h = h.parent;
-  depth = depth + 1;
-end
+  while  h.parent <> f
+    h = h.parent;
+    depth = depth + 1;
+  end
 
 endfunction
 
 
 
 function TK_send_handles_list(h)
-iFig = 0;
-iUim = 0; // uimenu
-iUic = 0; // uicontrol
-iAxe = 0; // <=> subwindow in C code
-iAgr = 0;
-iPol = 0;
-iPl3 = 0;
-iFac = 0;
-iRec = 0;
-iTex = 0;
-iLeg = 0;
-iArc = 0;
-iSeg = 0;
-iCha = 0; // Champ
-iFec = 0;
-iGra = 0;
-iMat = 0; // forgotten object F.Leray 22.10.04
-iAxi = 0; // axis : entity created when using drawaxis method for example
-iLab = 0;
+  iFig = 0;
+  iUim = 0; // uimenu
+  iUic = 0; // uicontrol
+  iAxe = 0; // <=> subwindow in C code
+  iAgr = 0;
+  iPol = 0;
+  iPl3 = 0;
+  iFac = 0;
+  iRec = 0;
+  iTex = 0;
+  iLeg = 0;
+  iArc = 0;
+  iSeg = 0;
+  iCha = 0; // Champ
+  iFec = 0;
+  iGra = 0;
+  iMat = 0; // forgotten object F.Leray 22.10.04
+  iAxi = 0; // axis : entity created when using drawaxis method for example
+  iLab = 0;
 
-f=getparfig(h);
-handles = Get_handles_list(f)
+  f=getparfig(h);
+  handles = Get_handles_list(f)
 
-ged_levels = Get_levels(handles);
+  ged_levels = Get_levels(handles);
 
-TCL_SetVar("ged_handle_list_size",string(size(handles,1)));
+  TCL_SetVar("ged_handle_list_size",string(size(handles,1)));
 
-for i=1:size(handles,1)
-  SelObject="LEVELS("+string(i)+")";
-  TCL_EvalStr('set '+SelObject+" "+string(ged_levels(i)));
-end
-
-
-for i=1:size(handles,1)
- SelObject="SELOBJECT("+string(i)+")";
- hand = handles(i);
- select  hand.type
-   case "Figure"
-    iFig = iFig+1;
-    figname= "Figure("+string(iFig)+")";
-    TCL_EvalStr('set '+SelObject+" "+figname);
-   case "uimenu"
-    iUim = iUim+1;
-    uimname= "Uimenu("+string(iUim)+")";
-    TCL_EvalStr('set '+SelObject+" "+uimname);
-   case "uicontrol"
-    iUic = iUic+1;
-    uicname= "Uicontrol("+string(iUic)+")";
-    TCL_EvalStr('set '+SelObject+" "+uicname);
-   case "Axes"
-    iAxe = iAxe+1;
-    axename= "Axes("+string(iAxe)+")";
-    TCL_EvalStr('set '+SelObject+" "+axename);
-//   case "Label"  // to see later: have labels at the same level than Axes (to have a better visibility)
-//    iLab = iLab+1;
-//    labname= "Label("+string(iLab)+")";
-//    TCL_EvalStr('set '+SelObject+" "+labname);
-   case "Compound"
-    iAgr = iAgr+1;
-    agrname= "Compound("+string(iAgr)+")";
-    TCL_EvalStr('set '+SelObject+" "+agrname);
-   case "Polyline"
-    iPol = iPol+1;
-    polname= "Polyline("+string(iPol)+")";
-    TCL_EvalStr('set '+SelObject+" "+polname);
-   case "Plot3d"
-    iPl3 = iPl3+1;
-    pl3name= "Plot3d("+string(iPl3)+")";
-    TCL_EvalStr('set '+SelObject+" "+pl3name);
-   case "Fac3d"
-    iFac = iFac+1;
-    Facname= "Fac3d("+string(iFac)+")";
-    TCL_EvalStr('set '+SelObject+" "+Facname);
-   case "Rectangle"
-    iRec = iRec+1;
-    Recname= "Rectangle("+string(iRec)+")";
-    TCL_EvalStr('set '+SelObject+" "+Recname);
-   case "Text"
-    iTex = iTex+1;
-    Texname= "Text("+string(iTex)+")";
-    TCL_EvalStr('set '+SelObject+" "+Texname);
-   case "Legend"
-    iLeg = iLeg+1;
-    Legname= "Legend("+string(iLeg)+")";
-    TCL_EvalStr('set '+SelObject+" "+Legname);
-   case "Arc"
-    iArc = iArc+1;
-    Arcname= "Arc("+string(iArc)+")";
-    TCL_EvalStr('set '+SelObject+" "+Arcname);
-   case "Segs"
-    iSeg = iSeg+1;
-    Segname= "Segs("+string(iSeg)+")";
-    TCL_EvalStr('set '+SelObject+" "+Segname);
-   case "Champ"
-    iCha = iCha+1;
-    Chaname= "Champ("+string(iCha)+")";
-    TCL_EvalStr('set '+SelObject+" "+Chaname);
-   case "Fec"
-    iFec = iFec+1;
-    Fecname= "Fec("+string(iFec)+")";
-    TCL_EvalStr('set '+SelObject+" "+Fecname);
-   case "Grayplot"
-    iGra = iGra+1;
-    Graname= "Grayplot("+string(iGra)+")";
-    TCL_EvalStr('set '+SelObject+" "+Graname);
-   case "Matplot"
-    iMat = iMat+1;
-    Matname= "Matplot("+string(iMat)+")";
-    TCL_EvalStr('set '+SelObject+" "+Matname);
-   case "Axis"
-    iAxi = iAxi+1;
-    Axiname= "Axis("+string(iAxi)+")";
-    TCL_EvalStr('set '+SelObject+" "+Axiname);
-  else
-    error( hand.type + " not handled");
+  for i=1:size(handles,1)
+    SelObject="LEVELS("+string(i)+")";
+    TCL_EvalStr('set '+SelObject+" "+string(ged_levels(i)));
   end
-end
+
+
+  for i=1:size(handles,1)
+    SelObject="SELOBJECT("+string(i)+")";
+    hand = handles(i);
+    select  hand.type
+    case "Figure"
+      iFig = iFig+1;
+      figname= "Figure("+string(iFig)+")";
+      TCL_EvalStr('set '+SelObject+" "+figname);
+    case "uimenu"
+      iUim = iUim+1;
+      uimname= "Uimenu("+string(iUim)+")";
+      TCL_EvalStr('set '+SelObject+" "+uimname);
+    case "uicontrol"
+      iUic = iUic+1;
+      uicname= "Uicontrol("+string(iUic)+")";
+      TCL_EvalStr('set '+SelObject+" "+uicname);
+    case "Axes"
+      iAxe = iAxe+1;
+      axename= "Axes("+string(iAxe)+")";
+      TCL_EvalStr('set '+SelObject+" "+axename);
+      //   case "Label"  // to see later: have labels at the same level than Axes (to have a better visibility)
+      //    iLab = iLab+1;
+      //    labname= "Label("+string(iLab)+")";
+      //    TCL_EvalStr('set '+SelObject+" "+labname);
+    case "Compound"
+      iAgr = iAgr+1;
+      agrname= "Compound("+string(iAgr)+")";
+      TCL_EvalStr('set '+SelObject+" "+agrname);
+    case "Polyline"
+      iPol = iPol+1;
+      polname= "Polyline("+string(iPol)+")";
+      TCL_EvalStr('set '+SelObject+" "+polname);
+    case "Plot3d"
+      iPl3 = iPl3+1;
+      pl3name= "Plot3d("+string(iPl3)+")";
+      TCL_EvalStr('set '+SelObject+" "+pl3name);
+    case "Fac3d"
+      iFac = iFac+1;
+      Facname= "Fac3d("+string(iFac)+")";
+      TCL_EvalStr('set '+SelObject+" "+Facname);
+    case "Rectangle"
+      iRec = iRec+1;
+      Recname= "Rectangle("+string(iRec)+")";
+      TCL_EvalStr('set '+SelObject+" "+Recname);
+    case "Text"
+      iTex = iTex+1;
+      Texname= "Text("+string(iTex)+")";
+      TCL_EvalStr('set '+SelObject+" "+Texname);
+    case "Legend"
+      iLeg = iLeg+1;
+      Legname= "Legend("+string(iLeg)+")";
+      TCL_EvalStr('set '+SelObject+" "+Legname);
+    case "Arc"
+      iArc = iArc+1;
+      Arcname= "Arc("+string(iArc)+")";
+      TCL_EvalStr('set '+SelObject+" "+Arcname);
+    case "Segs"
+      iSeg = iSeg+1;
+      Segname= "Segs("+string(iSeg)+")";
+      TCL_EvalStr('set '+SelObject+" "+Segname);
+    case "Champ"
+      iCha = iCha+1;
+      Chaname= "Champ("+string(iCha)+")";
+      TCL_EvalStr('set '+SelObject+" "+Chaname);
+    case "Fec"
+      iFec = iFec+1;
+      Fecname= "Fec("+string(iFec)+")";
+      TCL_EvalStr('set '+SelObject+" "+Fecname);
+    case "Grayplot"
+      iGra = iGra+1;
+      Graname= "Grayplot("+string(iGra)+")";
+      TCL_EvalStr('set '+SelObject+" "+Graname);
+    case "Matplot"
+      iMat = iMat+1;
+      Matname= "Matplot("+string(iMat)+")";
+      TCL_EvalStr('set '+SelObject+" "+Matname);
+    case "Axis"
+      iAxi = iAxi+1;
+      Axiname= "Axis("+string(iAxi)+")";
+      TCL_EvalStr('set '+SelObject+" "+Axiname);
+    else
+      error( hand.type + " not handled");
+    end
+  end
 endfunction
 
 
 //function h=Get_handle_from_index(index)
 function Get_handle_from_index(index)
-   global ged_handle;
-   global ged_cur_fig_handle
+  global ged_handle;
+  global ged_cur_fig_handle
 
-   hl = Get_handles_list(ged_cur_fig_handle);
+  hl = Get_handles_list(ged_cur_fig_handle);
 
-   ged_handle = hl(index);
-//   h=ged_handle;
-   tkged();
+  ged_handle = hl(index);
+  //   h=ged_handle;
+  tkged();
 
 endfunction
 
@@ -321,57 +323,57 @@ endfunction
 ////////////////////////////////////////////
 function  hfig= getparfig( h )
 
-htmp = h;
-hfig= []
+  htmp = h;
+  hfig= []
 
-while htmp.type<>'Figure' do
-  htmp=htmp.parent
-end
+  while htmp.type<>'Figure' do
+    htmp=htmp.parent
+  end
 
-hfig = htmp;
+  hfig = htmp;
 endfunction
 
 
 function h_out_list=Get_handles_list(h);
 
-global ged_handle_out;
+  global ged_handle_out;
 
-f=getparfig(h);
-ged_handle_out=[f];
+  f=getparfig(h);
+  ged_handle_out=[f];
 
-List_handles(f);
+  List_handles(f);
 
-//disp(ged_handle_out);
+  //disp(ged_handle_out);
 
-h_out_list=ged_handle_out;
+  h_out_list=ged_handle_out;
 
 endfunction
 
 
 function List_handles(h)
-global ged_handle_out;
+  global ged_handle_out;
 
-i = 1;
-//if h.type=="Axes" then
-//   ged_handle_out = [ged_handle_out;h.x_label;h.y_label;h.z_label;h.title];
-//end
-psonstmp = h.children;
-if psonstmp <> [] then
-  psonstmp = h.children(1);
-end
-
-while ((psonstmp <>[]) & ((i) <=size(psonstmp.parent.children,1)))
-  i = i+1;
-  ged_handle_out = [ged_handle_out;  psonstmp];
-  List_handles(psonstmp);
-
-  if ((i) <=size(psonstmp.parent.children,1)) then
-    psonstmp = psonstmp.parent.children(i);
-  else
-    psonstmp=[];
+  i = 1;
+  //if h.type=="Axes" then
+  //   ged_handle_out = [ged_handle_out;h.x_label;h.y_label;h.z_label;h.title];
+  //end
+  psonstmp = h.children;
+  if psonstmp <> [] then
+    psonstmp = h.children(1);
   end
 
-end
+  while ((psonstmp <>[]) & ((i) <=size(psonstmp.parent.children,1)))
+    i = i+1;
+    ged_handle_out = [ged_handle_out;  psonstmp];
+    List_handles(psonstmp);
+
+    if ((i) <=size(psonstmp.parent.children,1)) then
+      psonstmp = psonstmp.parent.children(i);
+    else
+      psonstmp=[];
+    end
+
+  end
 
 endfunction
 
@@ -409,20 +411,20 @@ endfunction
 
 function ged_axes(h)
   global ged_handle;ged_handle=h;
-  
+
   LoadTicks2TCL(h);
-  
+
   TCL_SetVar("Xaxes_reverseToggle",h.axes_reverse(1))
   TCL_SetVar("Yaxes_reverseToggle",h.axes_reverse(2))
   TCL_SetVar("Zaxes_reverseToggle",h.axes_reverse(3))
 
-// forgotten axes bounds info.
+  // forgotten axes bounds info.
   TCL_SetVar("axes_boundsL",string(h.axes_bounds(1,1)))
   TCL_SetVar("axes_boundsU",string(h.axes_bounds(1,2)))
   TCL_SetVar("axes_boundsW",string(h.axes_bounds(1,3)))
   TCL_SetVar("axes_boundsH",string(h.axes_bounds(1,4)))
 
- // forgotten visibility info.
+  // forgotten visibility info.
   TCL_SetVar("xlabel_visibility",string(h.x_label.visible))
   TCL_SetVar("ylabel_visibility",string(h.y_label.visible))
   TCL_SetVar("zlabel_visibility",string(h.z_label.visible))
@@ -432,7 +434,7 @@ function ged_axes(h)
   TCL_SetVar("Rmargins",string(h.margins(2)));
   TCL_SetVar("Tmargins",string(h.margins(3)));
   TCL_SetVar("Bmargins",string(h.margins(4)));
-  ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash" "dot" "double dot"]; 
+  ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash" "dot" "double dot"];
   TCL_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
   if (h.clip_box==[])
     TCL_SetVar("old_Xclipbox","")
@@ -443,7 +445,7 @@ function ged_axes(h)
     TCL_SetVar("Yclipbox","")
     TCL_SetVar("Wclipbox","")
     TCL_SetVar("Hclipbox","")
-   else
+  else
     TCL_SetVar("old_Xclipbox",string(h.clip_box(1)))
     TCL_SetVar("old_Yclipbox",string(h.clip_box(2)))
     TCL_SetVar("old_Wclipbox",string(h.clip_box(3)))
@@ -461,8 +463,8 @@ function ged_axes(h)
   TCL_SetVar("curthetarotation",string(h.rotation_angles(2)))
   ged_fontarray = ["Monospaced" "Symbol" "Serif",..
                    "Serif Italic" "Serif Bold" "Serif Bold Italic" ,..
-				   "SansSerif"  "SansSerif Italic" "SansSerif Bold",..
-				   "SansSerif Bold Italic"];
+                   "SansSerif"  "SansSerif Italic" "SansSerif Bold",..
+                   "SansSerif Bold Italic"];
   TCL_SetVar("Xlabelpos",h.x_location)
   TCL_SetVar("Ylabelpos",h.y_location)
   TCL_SetVar("Xlabelfontstyle",ged_fontarray(h.x_label.font_style+1))
@@ -479,7 +481,7 @@ function ged_axes(h)
     txt = "["+strcat(string(size(h.x_label.text)),'x')+" string array]" ;
   end
   TCL_SetVar("xlabel", txt );
-  
+
   if size(h.y_label.text,'*') == 1 then
     txt = """" + h.y_label.text + """" ;
   else
@@ -487,7 +489,7 @@ function ged_axes(h)
     txt = "["+strcat(string(size(h.y_label.text)),'x')+" string array]" ;
   end
   TCL_SetVar("ylabel", txt );
-  
+
   if size(h.z_label.text,'*') == 1 then
     txt = """" + h.z_label.text + """" ;
   else
@@ -495,7 +497,7 @@ function ged_axes(h)
     txt = "["+strcat(string(size(h.z_label.text)),'x')+" string array]" ;
   end
   TCL_SetVar("zlabel", txt );
-  
+
   if size(h.title.text,'*') == 1 then
     txt = """" + h.title.text + """" ;
   else
@@ -503,7 +505,7 @@ function ged_axes(h)
     txt = "["+strcat(string(size(h.title.text)),'x')+" string array]" ;
   end
   TCL_SetVar("tlabel", txt );
-  
+
   TCL_SetVar("xlabel_fontforeground",string(h.x_label.font_foreground))
   TCL_SetVar("ylabel_fontforeground",string(h.y_label.font_foreground))
   TCL_SetVar("zlabel_fontforeground",string(h.z_label.font_foreground))
@@ -553,16 +555,16 @@ function ged_axes(h)
   TCL_SetVar("zToggle",part(h.log_flags,3))
   TCL_SetVar("xGrid",string(h.grid(1)))
   TCL_SetVar("yGrid",string(h.grid(2)))
-  
+
   TCL_SetVar("hiddenAxisColor",h.hidden_axis_color)
   TCL_SetVar("curfontangle_x",string(h.x_label.font_angle))
   TCL_SetVar("curfontangle_y",string(h.y_label.font_angle))
   TCL_SetVar("curfontangle_z",string(h.z_label.font_angle))
   TCL_SetVar("curfontangle_title",string(h.title.font_angle))
 
-  
+
   select h.view
-    case "2d" 
+  case "2d"
     drawlater();
     h.view='3d'
     TCL_SetVar("old_curalpharotation",string(h.rotation_angles(1)))
@@ -577,7 +579,7 @@ function ged_axes(h)
     TCL_SetVar("dbzmax",string(h.data_bounds(2,3)))
     h.view='2d'
     drawnow();
-    case "3d"
+  case "3d"
     TCL_SetVar("zGrid",string(h.grid(3)))
     TCL_SetVar("zGrid_initial",string(h.grid(3))) //to avoid useless redraw (see Axes.tcl)
     TCL_SetVar("dbxmin",string(h.data_bounds(1,1)))
@@ -587,7 +589,7 @@ function ged_axes(h)
     TCL_SetVar("dbymax",string(h.data_bounds(2,2)))
     TCL_SetVar("dbzmax",string(h.data_bounds(2,3)))
   end
- 
+
   TCL_EvalFile(SCI+'/modules/graphics/tcl/ged/Axes.tcl')
 endfunction
 
@@ -602,7 +604,7 @@ function ged_rectangle(h)
     TCL_SetVar("Yclipbox","")
     TCL_SetVar("Wclipbox","")
     TCL_SetVar("Hclipbox","")
-   else
+  else
     TCL_SetVar("old_Xclipbox",string(h.clip_box(1)))
     TCL_SetVar("old_Yclipbox",string(h.clip_box(2)))
     TCL_SetVar("old_Wclipbox",string(h.clip_box(3)))
@@ -621,11 +623,11 @@ function ged_rectangle(h)
   TCL_SetVar("curback",string(h.background))
   TCL_SetVar("curthick",string(h.thickness))
   TCL_SetVar("curvis",h.visible)
-  ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash" "dot" "double dot"]; 
+  ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash" "dot" "double dot"];
   TCL_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
   ged_markstylearray=["dot" "plus" "cross" "star" "filled diamond" ..
-  "diamond" "triangle up" "triangle down" "diamond plus" "circle" ..
-  "asterisk" "square" "triangle right" "triangle left" "pentagram"];
+                      "diamond" "triangle up" "triangle down" "diamond plus" "circle" ..
+                      "asterisk" "square" "triangle right" "triangle left" "pentagram"];
   TCL_SetVar("curmarkstyle",ged_markstylearray(abs(h.mark_style)+1))
   TCL_SetVar("curmarkmode",h.mark_mode)
   TCL_SetVar("curmarksize",string(h.mark_size))
@@ -633,12 +635,12 @@ function ged_rectangle(h)
   TCL_SetVar("curmarkforeground",string(h.mark_foreground))
   TCL_SetVar("curmarkbackground",string(h.mark_background))
 
- 
+
   TCL_SetVar("curlinemode",h.line_mode)
   TCL_SetVar("curfillmode",h.fill_mode)
   // Rectangle data
-   select ax.view
-    case "2d" 
+  select ax.view
+  case "2d"
     drawlater();
     ax.view='3d'
     TCL_SetVar("Xval",string(h.data(1)))
@@ -648,7 +650,7 @@ function ged_rectangle(h)
     TCL_SetVar("Hval",string(h.data(5)))
     ax.view='2d'
     drawnow();
-    case "3d"
+  case "3d"
     TCL_SetVar("Xval",string(h.data(1)))
     TCL_SetVar("Yval",string(h.data(2)))
     TCL_SetVar("Zval",string(h.data(3)))
@@ -659,8 +661,8 @@ function ged_rectangle(h)
 endfunction
 
 function ged_polyline(h)
-    global ged_handle; ged_handle=h
- 
+  global ged_handle; ged_handle=h
+
   if (h.clip_box==[])
     TCL_SetVar("old_Xclipbox","")
     TCL_SetVar("old_Yclipbox","")
@@ -670,7 +672,7 @@ function ged_polyline(h)
     TCL_SetVar("Yclipbox","")
     TCL_SetVar("Wclipbox","")
     TCL_SetVar("Hclipbox","")
-   else
+  else
     TCL_SetVar("old_Xclipbox",string(h.clip_box(1)))
     TCL_SetVar("old_Yclipbox",string(h.clip_box(2)))
     TCL_SetVar("old_Wclipbox",string(h.clip_box(3)))
@@ -682,45 +684,45 @@ function ged_polyline(h)
   end
   TCL_SetVar("curclipstate",h.clip_state);
 
-    f=h;while stripblanks(f.type)<>"Figure" then f=f.parent,end
-    TCL_SetVar("ncolors",string(size(f.color_map,1)))
-    TCL_SetVar("curcolor",string(h.foreground))
-    TCL_SetVar("curback",string(h.background))
-    TCL_SetVar("curthick",string(h.thickness))
-    TCL_SetVar("curarrowsizefactor",string(h.arrow_size_factor))
-    TCL_SetVar("curvis",h.visible)
+  f=h;while stripblanks(f.type)<>"Figure" then f=f.parent,end
+  TCL_SetVar("ncolors",string(size(f.color_map,1)))
+  TCL_SetVar("curcolor",string(h.foreground))
+  TCL_SetVar("curback",string(h.background))
+  TCL_SetVar("curthick",string(h.thickness))
+  TCL_SetVar("curarrowsizefactor",string(h.arrow_size_factor))
+  TCL_SetVar("curvis",h.visible)
 
-    ged_polylinestylearray=["interpolated" "staircase" "barplot" "arrowed" "filled" "bar"];
-    TCL_SetVar("curpolylinestyle",ged_polylinestylearray(max(h.polyline_style,1)))
-    ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash" "dot" "double dot"];
-    TCL_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
-    ged_markstylearray=["dot" "plus" "cross" "star" "filled diamond" ..
-    "diamond" "triangle up" "triangle down" "diamond plus" "circle" ..
-    "asterisk" "square" "triangle right" "triangle left" "pentagram"];
+  ged_polylinestylearray=["interpolated" "staircase" "barplot" "arrowed" "filled" "bar"];
+  TCL_SetVar("curpolylinestyle",ged_polylinestylearray(max(h.polyline_style,1)))
+  ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash" "dot" "double dot"];
+  TCL_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
+  ged_markstylearray=["dot" "plus" "cross" "star" "filled diamond" ..
+                      "diamond" "triangle up" "triangle down" "diamond plus" "circle" ..
+                      "asterisk" "square" "triangle right" "triangle left" "pentagram"];
 
-    TCL_SetVar("curmarkstyle",ged_markstylearray(abs(h.mark_style)+1))
-    TCL_SetVar("curmarkmode",h.mark_mode)
-    TCL_SetVar("curmarksize",string(h.mark_size))
-    TCL_SetVar("curmarksizeunit",h.mark_size_unit);
-    TCL_SetVar("curmarkforeground",string(h.mark_foreground))
-    TCL_SetVar("curmarkbackground",string(h.mark_background))
+  TCL_SetVar("curmarkstyle",ged_markstylearray(abs(h.mark_style)+1))
+  TCL_SetVar("curmarkmode",h.mark_mode)
+  TCL_SetVar("curmarksize",string(h.mark_size))
+  TCL_SetVar("curmarksizeunit",h.mark_size_unit);
+  TCL_SetVar("curmarkforeground",string(h.mark_foreground))
+  TCL_SetVar("curmarkbackground",string(h.mark_background))
 
-    TCL_SetVar("curlinemode",h.line_mode)
-    TCL_SetVar("curclosedmode",h.closed)
-    TCL_SetVar("curfillmode",h.fill_mode)
-    TCL_SetVar("curinterpcolormode",h.interp_color_mode)
-    TCL_SetVar("curinterpcolorvector",sci2exp(h.interp_color_vector,0))
-        
-    d="["+strcat(string(size(h.data)),'x')+" double array]"
-    TCL_SetVar("curdata",d);
+  TCL_SetVar("curlinemode",h.line_mode)
+  TCL_SetVar("curclosedmode",h.closed)
+  TCL_SetVar("curfillmode",h.fill_mode)
+  TCL_SetVar("curinterpcolormode",h.interp_color_mode)
+  TCL_SetVar("curinterpcolorvector",sci2exp(h.interp_color_vector,0))
 
-    select get(getparaxe(h),'view')
-      case "2d"
-      TCL_SetVar("nbcol",string(2));
-      case "3d"
-      TCL_SetVar("nbcol",string(3));
-    end
-    TCL_EvalFile(SCI+'/modules/graphics/tcl/ged/Polyline.tcl')
+  d="["+strcat(string(size(h.data)),'x')+" double array]"
+  TCL_SetVar("curdata",d);
+
+  select get(getparaxe(h),'view')
+  case "2d"
+    TCL_SetVar("nbcol",string(2));
+  case "3d"
+    TCL_SetVar("nbcol",string(3));
+  end
+  TCL_EvalFile(SCI+'/modules/graphics/tcl/ged/Polyline.tcl')
 endfunction
 
 
@@ -728,25 +730,25 @@ function ged_plot3d(h)
   global ged_handle; ged_handle=h
 
   //  if (h.clip_box==[])
-//    TCL_SetVar("old_Xclipbox","")
-//    TCL_SetVar("old_Yclipbox","")
-//    TCL_SetVar("old_Wclipbox","")
-//    TCL_SetVar("old_Hclipbox","")
-//    TCL_SetVar("Xclipbox","")
-//    TCL_SetVar("Yclipbox","")
-//    TCL_SetVar("Wclipbox","")
-//    TCL_SetVar("Hclipbox","")
-//   else
-//    TCL_SetVar("old_Xclipbox",string(h.clip_box(1)))
-//    TCL_SetVar("old_Yclipbox",string(h.clip_box(2)))
-//    TCL_SetVar("old_Wclipbox",string(h.clip_box(3)))
-//    TCL_SetVar("old_Hclipbox",string(h.clip_box(4)))
-//    TCL_SetVar("Xclipbox",string(h.clip_box(1)))
-//    TCL_SetVar("Yclipbox",string(h.clip_box(2)))
-//    TCL_SetVar("Wclipbox",string(h.clip_box(3)))
-//    TCL_SetVar("Hclipbox",string(h.clip_box(4)))
-//  end
-//  TCL_SetVar("curclipstate",h.clip_state);
+  //    TCL_SetVar("old_Xclipbox","")
+  //    TCL_SetVar("old_Yclipbox","")
+  //    TCL_SetVar("old_Wclipbox","")
+  //    TCL_SetVar("old_Hclipbox","")
+  //    TCL_SetVar("Xclipbox","")
+  //    TCL_SetVar("Yclipbox","")
+  //    TCL_SetVar("Wclipbox","")
+  //    TCL_SetVar("Hclipbox","")
+  //   else
+  //    TCL_SetVar("old_Xclipbox",string(h.clip_box(1)))
+  //    TCL_SetVar("old_Yclipbox",string(h.clip_box(2)))
+  //    TCL_SetVar("old_Wclipbox",string(h.clip_box(3)))
+  //    TCL_SetVar("old_Hclipbox",string(h.clip_box(4)))
+  //    TCL_SetVar("Xclipbox",string(h.clip_box(1)))
+  //    TCL_SetVar("Yclipbox",string(h.clip_box(2)))
+  //    TCL_SetVar("Wclipbox",string(h.clip_box(3)))
+  //    TCL_SetVar("Hclipbox",string(h.clip_box(4)))
+  //  end
+  //  TCL_SetVar("curclipstate",h.clip_state);
 
   TCL_SetVar("curvis",h.visible)
   TCL_SetVar("curcolormode",string(h.color_mode))
@@ -756,8 +758,8 @@ function ged_plot3d(h)
   TCL_SetVar("curthick",string(h.thickness))
 
   ged_markstylearray=["dot" "plus" "cross" "star" "filled diamond" ..
-  "diamond" "triangle up" "triangle down" "diamond plus" "circle" ..
-  "asterisk" "square" "triangle right" "triangle left" "pentagram"];
+                      "diamond" "triangle up" "triangle down" "diamond plus" "circle" ..
+                      "asterisk" "square" "triangle right" "triangle left" "pentagram"];
 
   TCL_SetVar("curmarkstyle",ged_markstylearray(abs(h.mark_style)+1))
   TCL_SetVar("curmarkmode",h.mark_mode)
@@ -777,7 +779,7 @@ function ged_plot3d(h)
 
   TCL_EvalStr('set flagCOLOR 0')
   if(h.data(1)==["3d" "x" "y" "z" "color"])
-  TCL_EvalStr('set flagCOLOR 1')
+    TCL_EvalStr('set flagCOLOR 1')
     d="["+strcat(string(size(h.data.color)),'x')+" integer array]"
     TCL_SetVar("curdata_color",d);
   end
@@ -789,25 +791,25 @@ function ged_fac3d(h)
   global ged_handle; ged_handle=h
 
   //  if (h.clip_box==[])
-//    TCL_SetVar("old_Xclipbox","")
-//    TCL_SetVar("old_Yclipbox","")
-//    TCL_SetVar("old_Wclipbox","")
-//    TCL_SetVar("old_Hclipbox","")
-//    TCL_SetVar("Xclipbox","")
-//    TCL_SetVar("Yclipbox","")
-//    TCL_SetVar("Wclipbox","")
-//    TCL_SetVar("Hclipbox","")
-//   else
-//    TCL_SetVar("old_Xclipbox",string(h.clip_box(1)))
-//    TCL_SetVar("old_Yclipbox",string(h.clip_box(2)))
-//    TCL_SetVar("old_Wclipbox",string(h.clip_box(3)))
-//    TCL_SetVar("old_Hclipbox",string(h.clip_box(4)))
-//    TCL_SetVar("Xclipbox",string(h.clip_box(1)))
-//    TCL_SetVar("Yclipbox",string(h.clip_box(2)))
-//    TCL_SetVar("Wclipbox",string(h.clip_box(3)))
-//    TCL_SetVar("Hclipbox",string(h.clip_box(4)))
-//  end
-//  TCL_SetVar("curclipstate",h.clip_state);
+  //    TCL_SetVar("old_Xclipbox","")
+  //    TCL_SetVar("old_Yclipbox","")
+  //    TCL_SetVar("old_Wclipbox","")
+  //    TCL_SetVar("old_Hclipbox","")
+  //    TCL_SetVar("Xclipbox","")
+  //    TCL_SetVar("Yclipbox","")
+  //    TCL_SetVar("Wclipbox","")
+  //    TCL_SetVar("Hclipbox","")
+  //   else
+  //    TCL_SetVar("old_Xclipbox",string(h.clip_box(1)))
+  //    TCL_SetVar("old_Yclipbox",string(h.clip_box(2)))
+  //    TCL_SetVar("old_Wclipbox",string(h.clip_box(3)))
+  //    TCL_SetVar("old_Hclipbox",string(h.clip_box(4)))
+  //    TCL_SetVar("Xclipbox",string(h.clip_box(1)))
+  //    TCL_SetVar("Yclipbox",string(h.clip_box(2)))
+  //    TCL_SetVar("Wclipbox",string(h.clip_box(3)))
+  //    TCL_SetVar("Hclipbox",string(h.clip_box(4)))
+  //  end
+  //  TCL_SetVar("curclipstate",h.clip_state);
 
   TCL_SetVar("curvis",h.visible)
   TCL_SetVar("curcolormode",string(h.color_mode))
@@ -817,8 +819,8 @@ function ged_fac3d(h)
   TCL_SetVar("curthick",string(h.thickness))
 
   ged_markstylearray=["dot" "plus" "cross" "star" "filled diamond" ..
-  "diamond" "triangle up" "triangle down" "diamond plus" "circle" ..
-  "asterisk" "square" "triangle right" "triangle left" "pentagram"];
+                      "diamond" "triangle up" "triangle down" "diamond plus" "circle" ..
+                      "asterisk" "square" "triangle right" "triangle left" "pentagram"];
 
   TCL_SetVar("curmarkstyle",ged_markstylearray(abs(h.mark_style)+1))
   TCL_SetVar("curmarkmode",h.mark_mode)
@@ -833,12 +835,12 @@ function ged_fac3d(h)
   TCL_SetVar("curdata_x",d);
   d="["+strcat(string(size(h.data.y)),'x')+" double array]"
   TCL_SetVar("curdata_y",d);
-   d="["+strcat(string(size(h.data.z)),'x')+" double array]"
+  d="["+strcat(string(size(h.data.z)),'x')+" double array]"
   TCL_SetVar("curdata_z",d);
 
   TCL_EvalStr('set flagCOLOR 0')
   if(h.data(1)==["3d" "x" "y" "z" "color"])
-  TCL_EvalStr('set flagCOLOR 1')
+    TCL_EvalStr('set flagCOLOR 1')
     d="["+strcat(string(size(h.data.color)),'x')+" integer array]"
     TCL_SetVar("curdata_color",d);
   end
@@ -856,8 +858,8 @@ function ged_text(h)
   TCL_SetVar("curfontforeground",string(h.font_foreground))
   ged_fontarray = ["Monospaced" "Symbol" "Serif",..
                    "Serif Italic" "Serif Bold" "Serif Bold Italic" ,..
-				   "SansSerif"  "SansSerif Italic" "SansSerif Bold",..
-				   "SansSerif Bold Italic"];
+                   "SansSerif"  "SansSerif Italic" "SansSerif Bold",..
+                   "SansSerif Bold Italic"];
   TCL_SetVar("curfontstyle",ged_fontarray(h.font_style+1))
   TCL_SetVar("curfontsize",string(h.font_size))
   TCL_SetVar("curfontangle",string(h.font_angle))
@@ -879,7 +881,7 @@ function ged_text(h)
     TCL_SetVar("Yclipbox","")
     TCL_SetVar("Wclipbox","")
     TCL_SetVar("Hclipbox","")
-   else
+  else
     TCL_SetVar("old_Xclipbox",string(h.clip_box(1)))
     TCL_SetVar("old_Yclipbox",string(h.clip_box(2)))
     TCL_SetVar("old_Wclipbox",string(h.clip_box(3)))
@@ -900,7 +902,7 @@ function ged_text(h)
   TCL_SetVar( "textBoxWidth", string( h.text_box(1) ) ) ;
   TCL_SetVar("textBoxHeight", string( h.text_box(2) ) ) ;
   TCL_SetVar("curAlignment",string(h.alignment) ) ;
-  
+
   TCL_EvalFile(SCI+'/modules/graphics/tcl/ged/Text.tcl')
 endfunction
 
@@ -912,8 +914,8 @@ function ged_legend(h)
   TCL_SetVar("curforeground",string(h.foreground))
   ged_fontarray = ["Monospaced" "Symbol" "Serif",..
                    "Serif Italic" "Serif Bold" "Serif Bold Italic" ,..
-				   "SansSerif"  "SansSerif Italic" "SansSerif Bold",..
-				   "SansSerif Bold Italic"];
+                   "SansSerif"  "SansSerif Italic" "SansSerif Bold",..
+                   "SansSerif Bold Italic"];
   TCL_SetVar("curfontstyle",ged_fontarray(h.font_style+1))
   TCL_SetVar("curfontsize",string(h.font_size))
   TCL_SetVar("curtext",h.text)
@@ -934,7 +936,7 @@ function ged_arc(h)
     TCL_SetVar("Yclipbox","")
     TCL_SetVar("Wclipbox","")
     TCL_SetVar("Hclipbox","")
-   else
+  else
     TCL_SetVar("old_Xclipbox",string(h.clip_box(1)))
     TCL_SetVar("old_Yclipbox",string(h.clip_box(2)))
     TCL_SetVar("old_Wclipbox",string(h.clip_box(3)))
@@ -950,7 +952,7 @@ function ged_arc(h)
   TCL_SetVar("nbcol",string(size(h.data,2)))
   for i=1:size(h.data,2)
     val= "arcVAL("+string(i)+")";
-      TCL_EvalStr('set '+val+" "+string(h.data(2)));
+    TCL_EvalStr('set '+val+" "+string(h.data(2)));
   end
   f=h;while stripblanks(f.type)<>"Figure" then f=f.parent,end
   TCL_SetVar("ncolors",string(size(f.color_map,1)))
@@ -964,7 +966,7 @@ function ged_arc(h)
   ax=getparaxe(h);
   // Arc data
   select ax.view
-  case "2d" 
+  case "2d"
     drawlater();
     ax.view='3d'  //strange behavior in 3D... seems to be bugged!!
     TCL_SetVar("Xval",string(h.data(1)))
@@ -974,9 +976,9 @@ function ged_arc(h)
     TCL_SetVar("Hval",string(h.data(5)))
     TCL_SetVar("A1val",string(h.data(6)))
     TCL_SetVar("A2val",string(h.data(7)))
-     ax.view='2d'
-     drawnow();
-    case "3d"
+    ax.view='2d'
+    drawnow();
+  case "3d"
     TCL_SetVar("Xval",string(h.data(1)))
     TCL_SetVar("Yval",string(h.data(2)))
     TCL_SetVar("Zval",string(h.data(3)))
@@ -995,12 +997,12 @@ function ged_segs(h)
   TCL_SetVar("ncolors",string(size(f.color_map,1)))
   TCL_SetVar("curarrowsize",string(h.arrow_size))
   TCL_SetVar("curthick",string(h.thickness))
-  ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash" "dot" "double dot"]; 
+  ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash" "dot" "double dot"];
   TCL_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
 
   ged_markstylearray=["dot" "plus" "cross" "star" "filled diamond" ..
-  "diamond" "triangle up" "triangle down" "diamond plus" "circle" ..
-  "asterisk" "square" "triangle right" "triangle left" "pentagram"];
+                      "diamond" "triangle up" "triangle down" "diamond plus" "circle" ..
+                      "asterisk" "square" "triangle right" "triangle left" "pentagram"];
 
   TCL_SetVar("curmarkstyle",ged_markstylearray(abs(h.mark_style)+1))
   TCL_SetVar("curmarkmode",h.mark_mode)
@@ -1009,12 +1011,12 @@ function ged_segs(h)
   TCL_SetVar("curmarkforeground",string(h.mark_foreground))
   TCL_SetVar("curmarkbackground",string(h.mark_background))
   TCL_SetVar("curlinemode",h.line_mode)
-    
+
   TCL_SetVar("nbrow",string(size(h.data,1)))
-  
-   d="["+strcat(string(size(h.data)),'x')+" double array]"
+
+  d="["+strcat(string(size(h.data)),'x')+" double array]"
   TCL_SetVar("curdata",d);
-  
+
   TCL_SetVar("nbcolsegscolor",string(size(h.segs_color,2)))
   for i=1:size(h.segs_color,2)
     val= "segscolorVAL("+string(i)+")";
@@ -1030,7 +1032,7 @@ function ged_segs(h)
     TCL_SetVar("Yclipbox","")
     TCL_SetVar("Wclipbox","")
     TCL_SetVar("Hclipbox","")
-   else
+  else
     TCL_SetVar("old_Xclipbox",string(h.clip_box(1)))
     TCL_SetVar("old_Yclipbox",string(h.clip_box(2)))
     TCL_SetVar("old_Wclipbox",string(h.clip_box(3)))
@@ -1053,7 +1055,7 @@ function ged_champ(h)
   TCL_SetVar("ncolors",string(size(f.color_map,1)))
   TCL_SetVar("curarrowsize",string(h.arrow_size))
   TCL_SetVar("curthick",string(h.thickness))
-  ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash" "dot" "double dot"]; 
+  ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash" "dot" "double dot"];
   TCL_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
 
   d="["+strcat(string(size(h.data.x)),'x')+" double array]"
@@ -1074,7 +1076,7 @@ function ged_champ(h)
     TCL_SetVar("Yclipbox","")
     TCL_SetVar("Wclipbox","")
     TCL_SetVar("Hclipbox","")
-   else
+  else
     TCL_SetVar("old_Xclipbox",string(h.clip_box(1)))
     TCL_SetVar("old_Yclipbox",string(h.clip_box(2)))
     TCL_SetVar("old_Wclipbox",string(h.clip_box(3)))
@@ -1094,36 +1096,36 @@ function ged_fec(h)
   TCL_SetVar("curvis",h.visible)
   TCL_SetVar("zbmin",string(h.z_bounds(1)))
   TCL_SetVar("zbmax",string(h.z_bounds(2)))
-//  TCL_SetVar("nbrow",string(size(h.data,1)))
-//  TCL_SetVar("nbcol",string(size(h.data,2)))
-//  TCL_SetVar("nbrowTri",string(size(h.triangles,1)))
-//  TCL_SetVar("nbcolTri",string(size(h.triangles,2)))
+  //  TCL_SetVar("nbrow",string(size(h.data,1)))
+  //  TCL_SetVar("nbcol",string(size(h.data,2)))
+  //  TCL_SetVar("nbrowTri",string(size(h.triangles,1)))
+  //  TCL_SetVar("nbcolTri",string(size(h.triangles,2)))
 
   d="["+strcat(string(size(h.data)),'x')+" double array]"
   TCL_SetVar("curdata_data",d);
   d="["+strcat(string(size(h.triangles)),'x')+" double array]"
   TCL_SetVar("curdata_triangles",d);
 
-//  if (h.clip_box==[])
-//    TCL_SetVar("old_Xclipbox","")
-//    TCL_SetVar("old_Yclipbox","")
-//    TCL_SetVar("old_Wclipbox","")
-//    TCL_SetVar("old_Hclipbox","")
-//    TCL_SetVar("Xclipbox","")
-//    TCL_SetVar("Yclipbox","")
-//    TCL_SetVar("Wclipbox","")
-//    TCL_SetVar("Hclipbox","")
-//   else
-//    TCL_SetVar("old_Xclipbox",string(h.clip_box(1)))
-//    TCL_SetVar("old_Yclipbox",string(h.clip_box(2)))
-//    TCL_SetVar("old_Wclipbox",string(h.clip_box(3)))
-//    TCL_SetVar("old_Hclipbox",string(h.clip_box(4)))
-//    TCL_SetVar("Xclipbox",string(h.clip_box(1)))
-//    TCL_SetVar("Yclipbox",string(h.clip_box(2)))
-//    TCL_SetVar("Wclipbox",string(h.clip_box(3)))
-//    TCL_SetVar("Hclipbox",string(h.clip_box(4)))
-//  end
-//  TCL_SetVar("curclipstate",h.clip_state);
+  //  if (h.clip_box==[])
+  //    TCL_SetVar("old_Xclipbox","")
+  //    TCL_SetVar("old_Yclipbox","")
+  //    TCL_SetVar("old_Wclipbox","")
+  //    TCL_SetVar("old_Hclipbox","")
+  //    TCL_SetVar("Xclipbox","")
+  //    TCL_SetVar("Yclipbox","")
+  //    TCL_SetVar("Wclipbox","")
+  //    TCL_SetVar("Hclipbox","")
+  //   else
+  //    TCL_SetVar("old_Xclipbox",string(h.clip_box(1)))
+  //    TCL_SetVar("old_Yclipbox",string(h.clip_box(2)))
+  //    TCL_SetVar("old_Wclipbox",string(h.clip_box(3)))
+  //    TCL_SetVar("old_Hclipbox",string(h.clip_box(4)))
+  //    TCL_SetVar("Xclipbox",string(h.clip_box(1)))
+  //    TCL_SetVar("Yclipbox",string(h.clip_box(2)))
+  //    TCL_SetVar("Wclipbox",string(h.clip_box(3)))
+  //    TCL_SetVar("Hclipbox",string(h.clip_box(4)))
+  //  end
+  //  TCL_SetVar("curclipstate",h.clip_state);
 
   TCL_EvalFile(SCI+'/modules/graphics/tcl/ged/Fec.tcl')
 endfunction
@@ -1133,8 +1135,8 @@ function ged_grayplot(h)
   global ged_handle; ged_handle=h
   TCL_SetVar("curvis",h.visible)
   TCL_SetVar("curdatamapping",h.data_mapping)
-  
-  
+
+
   d="["+strcat(string(size(h.data.x)),'x')+" double array]"
   TCL_SetVar("curdata_x",d);
   d="["+strcat(string(size(h.data.y)),'x')+" double array]"
@@ -1183,7 +1185,7 @@ function ged_axis(h)
     TCL_SetVar("Yclipbox","")
     TCL_SetVar("Wclipbox","")
     TCL_SetVar("Hclipbox","")
-   else
+  else
     TCL_SetVar("old_Xclipbox",string(h.clip_box(1)))
     TCL_SetVar("old_Yclipbox",string(h.clip_box(2)))
     TCL_SetVar("old_Wclipbox",string(h.clip_box(3)))
@@ -1224,72 +1226,72 @@ function h=ged_loop(a,pt)
   h=[]
   minDist    = 0.01 ;
   minPixDist = 3    ;
-  
+
   for ka=1:size(a,'*')
     ck=a(ka) ;
     select ck.type
-      
-      case "Polyline"
-	xy=ck.data;
-	d=Dist2polyline((xy(:,1)-Xmin)/Dx,(xy(:,2)-Ymin)/Dy,pts)
-	if d < minDist then h=ck,return,end
-	
-      case "Rectangle"
-	xy=ck.data;
-	x0=xy(1);y0=xy(2);W=xy(3);H=xy(4);
-	d=Dist2polyline((x0+[0,W,W,0]-Xmin)/Dx,(y0+[0,0,-H,-H]-Ymin)/Dy,pts)
-	if d < minDist then h=ck,return,end
-    
-      case "Arc" 
-	xy=ck.data;
-	[xp,yp]=xchange(pt(1),pt(2),'i2f')
-	//[dist, toto] = dist2Arc( [xp,yp] ./ [Dx,Dy], xy(1:2)./[Dx,Dy], xy(3)/Dx, xy(4)/Dy, xy(5) / 64., xy(6) / 64. ) ;
-	dist = pixDist2Arc( [xp,yp], xy(1:2), xy(3), xy(4), xy(5) / 64., xy(6) / 64. ) ;
-	if dist <= minPixDist then 
-	  h=ck;
-	  return;
-	end
-      
-      case "Segs"
-	xy=ck.data;
-	xv=(matrix(xy(:,1),2,-1)-Xmin)/Dx
-	yv=(matrix(xy(:,2),2,-1)-Ymin)/Dy
-	for ks=1:size(xv,2)
-	  d=Dist2polyline(xv(:,ks),yv(:,ks),pts)
-	  if d < minDist then h=ck,return,end
-	end
-      case "Compound"
-	h=ged_loop(ck.children,pt)
-	if h<>[] then return,end
-	
-      case "Axes"
-	xy=ck.data_bounds;
-	[xp,yp]=xchange(pt(1),pt(2),'i2f')
-	Xmin=xy(1,1);Ymin=xy(1,2),Dx=xy(2,1)-xy(1,1);Dy=xy(2,2)-xy(1,2);
-	pts=[(xp-Xmin)/Dx (yp-Ymin)/Dy]
-	d=Dist2polyline([0,1,1,0],[0,0,1,1],pts)
-	if d < minDist then h=ck,return,end
-	h=ged_loop([a.children(:);ck.x_label;ck.y_label;ck.z_label;ck.title],pt)
-	if h<>[] then return,end
-	
-      case "Text"
-	if is_in_text(ck,[xp;yp]) then
-	  h=ck,
-	  return,
-	end
-	
-      case "Label"
-	if is_in_text(ck,[xp;yp]) then
-	  h=ck
-	  return,
-	end
-	
+
+    case "Polyline"
+      xy=ck.data;
+      d=Dist2polyline((xy(:,1)-Xmin)/Dx,(xy(:,2)-Ymin)/Dy,pts)
+      if d < minDist then h=ck,return,end
+
+    case "Rectangle"
+      xy=ck.data;
+      x0=xy(1);y0=xy(2);W=xy(3);H=xy(4);
+      d=Dist2polyline((x0+[0,W,W,0]-Xmin)/Dx,(y0+[0,0,-H,-H]-Ymin)/Dy,pts)
+      if d < minDist then h=ck,return,end
+
+    case "Arc"
+      xy=ck.data;
+      [xp,yp]=xchange(pt(1),pt(2),'i2f')
+      //[dist, toto] = dist2Arc( [xp,yp] ./ [Dx,Dy], xy(1:2)./[Dx,Dy], xy(3)/Dx, xy(4)/Dy, xy(5) / 64., xy(6) / 64. ) ;
+      dist = pixDist2Arc( [xp,yp], xy(1:2), xy(3), xy(4), xy(5) / 64., xy(6) / 64. ) ;
+      if dist <= minPixDist then
+        h=ck;
+        return;
       end
+
+    case "Segs"
+      xy=ck.data;
+      xv=(matrix(xy(:,1),2,-1)-Xmin)/Dx
+      yv=(matrix(xy(:,2),2,-1)-Ymin)/Dy
+      for ks=1:size(xv,2)
+        d=Dist2polyline(xv(:,ks),yv(:,ks),pts)
+        if d < minDist then h=ck,return,end
+      end
+    case "Compound"
+      h=ged_loop(ck.children,pt)
+      if h<>[] then return,end
+
+    case "Axes"
+      xy=ck.data_bounds;
+      [xp,yp]=xchange(pt(1),pt(2),'i2f')
+      Xmin=xy(1,1);Ymin=xy(1,2),Dx=xy(2,1)-xy(1,1);Dy=xy(2,2)-xy(1,2);
+      pts=[(xp-Xmin)/Dx (yp-Ymin)/Dy]
+      d=Dist2polyline([0,1,1,0],[0,0,1,1],pts)
+      if d < minDist then h=ck,return,end
+      h=ged_loop([a.children(:);ck.x_label;ck.y_label;ck.z_label;ck.title],pt)
+      if h<>[] then return,end
+
+    case "Text"
+      if is_in_text(ck,[xp;yp]) then
+        h=ck,
+        return,
+      end
+
+    case "Label"
+      if is_in_text(ck,[xp;yp]) then
+        h=ck
+        return,
+      end
+
     end
+  end
 endfunction
-  
+
 function r=is_in_text(h,xy)
-    if h.Type == "Text" & h.text_box_mode=='filled' then 
+  if h.Type == "Text" & h.text_box_mode=='filled' then
     r=(xy(1)>h.data(1)&xy(1)<h.data(1)+h.text_box(1))&(xy(2)>h.data(2)&xy(2)<h.data(2)+h.text_box(2))
   else
     r = stringbox(h);
@@ -1298,35 +1300,35 @@ function r=is_in_text(h,xy)
   end
 endfunction
 
-// compute the square of distance between a point and the ellipse 
-// in 2D included in an axis aligned rectangle whose upper left 
+// compute the square of distance between a point and the ellipse
+// in 2D included in an axis aligned rectangle whose upper left
 // corner is upperLeft and its wifth and heigth is defined.
 function [dist] = dist2Ellipse( point, upperLeft, width, heigth )
   width2  = width  / 2. ;
   heigth2 = heigth / 2. ;
   centerC = [ upperLeft(1) + width2, upperLeft(2) - heigth2 ] ; // center of the ellipse
-  
+
   // clicked point in the circle frame
   pointC  = [ (point(1) - centerC(1)) / width2, (point(2) - centerC(2)) / heigth2 ] ;
-  
+
   // get the vector between the point and the closest on the circle
   diffclose = ( 1 - 1 / norm( pointC ) ) * pointC ;
   //closest = pointC / sqrt( pointC(1) * pointC(1) + pointC(2) * pointC(2) ) ;
-  
+
   // get the difference between the two
   //ffclose = pointC - closest ;
-  
+
   // bring it back to the current frame value
   diffclose(1) = diffclose(1) * width2  ;
   diffclose(2) = diffclose(2) * heigth2 ;
-  
+
   // get the distance with the closest point
   dist = norm( diffclose ) ;
-  
+
 endfunction
 
-// compute the distance between a point and the arc 
-// in 2D included in an axis aligned rectangle whose upper left 
+// compute the distance between a point and the arc
+// in 2D included in an axis aligned rectangle whose upper left
 // corner is upperLeft and its wifth and heigth is defined.
 function [dist,diffClose] = dist2Arc( point, upperLeft, width, heigth, sector1, sector2 )
 
@@ -1336,59 +1338,59 @@ function [dist,diffClose] = dist2Arc( point, upperLeft, width, heigth, sector1, 
     diffClose = [%inf,%inf];
     return ;
   end
-  
+
   // convert the sector into radiant angle
   angle1 =  sector1            * %pi / 180. ;
   angle2 = (sector1 + sector2) * %pi / 180. ;
-  
+
   width2  = width  / 2. ;
   heigth2 = heigth / 2. ;
   centerC = [ upperLeft(1) + width2, upperLeft(2) - heigth2 ] ; // center of the ellipse
-  
+
   // clicked point in the circle frame
   pointC  = [ (point(1) - centerC(1)) / width2, (point(2) - centerC(2)) / heigth2 ] ;
-  
+
   // get the projection of the clicked point on the circle
   closest = pointC / norm( pointC ) ;
-  
+
   // now a quite tricky part. The aim is to find
   // if the closest point is in the drawing sector
   // ie if it is between bound1 and bound2 on the circle
   // maybe a eayer solution exists.
-  
+
   // get the boundaries of the displayed angle
   // the closest point is not on the arc it is one of the two
   // boundaries
   bound1 = [cos(angle1),sin(angle1)] ;
   bound2 = [cos(angle2),sin(angle2)] ;
-  
+
   // now get the vector of bissecting line between the two bounds
   // with the orientation toward the arc
   b2b1       = bound1 -  bound2 ;
   bissect(1) = -b2b1(2)         ;
   bissect(2) =  b2b1(1)         ;
-  
+
   // get the position of the point along this axis
   side = closest(1) * bissect(1) + closest(2) * bissect(2) ;
-  
+
   // get the position of one of the bound (same value for both)
   boundPos = bound1(1) * bissect(1) + bound1(2) * bissect(2) ;
-  
+
   if side > boundPos  then
     // the closest point is on the arc
     diffClose = ( pointC - closest ) .* [width2,heigth2] ;
     // bring it back to the current frame value
     //diffclose = diffclose .* [width2,heigth2] ;
-  
+
     // get the distance with the closest point
     dist = norm( diffClose ) ;
-    
+
   else
     // the closest point is one of the bounds
     // return back to the real coordinates
     bound1 = centerC + bound1 .* [width2,heigth2];
     bound2 = centerC + bound2 .* [width2,heigth2];
-    
+
     // get the minimum distance
     dist  = norm( bound1 - point ) ;
     dist2 = norm( bound2 - point ) ;
@@ -1399,13 +1401,13 @@ function [dist,diffClose] = dist2Arc( point, upperLeft, width, heigth, sector1, 
       diffClose = bound2 - point ;
     end
     //dist = min( norm( bound1 - point ), norm( bound2 - point ) ) ;
-  end  
-  
+  end
+
 endfunction
 
 // same as before but return the value in pixels
 function dist = pixDist2Arc( point, upperLeft, width, heigth, sector1, sector2 )
-  
+
   [dist, difference] = dist2Arc( point, upperLeft, width, heigth, sector1, sector2 ) ;
   // convert to pixels
   // get the length of the difference vector
@@ -1420,56 +1422,58 @@ function [d,pt,ind]=Dist2polyline(xp,yp,pt)
 // computes minimum distance from a point to a polyline
 //d    minimum distance to polyline
 //pt   coordinate of the polyline closest point
-//ind  
+//ind
 //     if negative polyline closest point is a polyline corner:pt=[xp(-ind) yp(-ind)]
 //     if positive pt lies on segment [ind ind+1]
 
 // Copyright INRIA
-x=pt(1)
-y=pt(2)
-xp=xp(:);yp=yp(:)
-cr=4*sign((xp(1:$-1)-x).*(xp(1:$-1)-xp(2:$))+..
-          (yp(1:$-1)-y).*(yp(1:$-1)-yp(2:$)))+..
-    sign((xp(2:$)-x).*(xp(2:$)-xp(1:$-1))+..
+  x=pt(1)
+  y=pt(2)
+  xp=xp(:);yp=yp(:)
+  cr=4*sign((xp(1:$-1)-x).*(xp(1:$-1)-xp(2:$))+..
+            (yp(1:$-1)-y).*(yp(1:$-1)-yp(2:$)))+..
+     sign((xp(2:$)-x).*(xp(2:$)-xp(1:$-1))+..
           (yp(2:$)-y).*(yp(2:$)-yp(1:$-1)))
 
-ki=find(cr==5) // index of segments for which projection fall inside
-np=size(xp,'*')
-if ki<>[] then
-  //projection on segments
-  x=[xp(ki) xp(ki+1)]
-  y=[yp(ki) yp(ki+1)]
-  dx=x(:,2)-x(:,1)
-  dy=y(:,2)-y(:,1)
-  d_d=dx.^2+dy.^2
-  d_x=( dy.*(-x(:,2).*y(:,1)+x(:,1).*y(:,2))+dx.*(dx*pt(1)+dy*pt(2)))./d_d
-  d_y=(-dx.*(-x(:,2).*y(:,1)+x(:,1).*y(:,2))+dy.*(dx*pt(1)+dy*pt(2)))./d_d
-  xp=[xp;d_x]
-  yp=[yp;d_y]
-end
-[d,k]=min(((xp-pt(1))).^2+((yp-pt(2))).^2) //distance with all points
-d=sqrt(d)
-pt(1)=xp(k)
-pt(2)=yp(k)
-if k>np then ind=ki(k-np),else ind=-k,end
+  ki=find(cr==5) // index of segments for which projection fall inside
+  np=size(xp,'*')
+  if ki<>[] then
+    //projection on segments
+    x=[xp(ki) xp(ki+1)]
+    y=[yp(ki) yp(ki+1)]
+    dx=x(:,2)-x(:,1)
+    dy=y(:,2)-y(:,1)
+    d_d=dx.^2+dy.^2
+    d_x=( dy.*(-x(:,2).*y(:,1)+x(:,1).*y(:,2))+dx.*(dx*pt(1)+dy*pt(2)))./d_d
+    d_y=(-dx.*(-x(:,2).*y(:,1)+x(:,1).*y(:,2))+dy.*(dx*pt(1)+dy*pt(2)))./d_d
+    xp=[xp;d_x]
+    yp=[yp;d_y]
+  end
+  [d,k]=min(((xp-pt(1))).^2+((yp-pt(2))).^2) //distance with all points
+  d=sqrt(d)
+  pt(1)=xp(k)
+  pt(2)=yp(k)
+  if k>np then ind=ki(k-np),else ind=-k,end
 endfunction
 
 function ged_eventhandler(win,x,y,ibut)
 //Copyright INRIA
 //Author : Serge Steer 2002
   if ibut==-1 then return,end //ignore move
-  if and(win<>winsid())| ibut==-1000 then 
+  if and(win<>winsid())| ibut==-1000 then
     //window has been deleted by the user
     return
-  end 
-  cur=gcf();scf(win) //make the window associated to the event active
+  end
+  cur=gcf(); //preserve current figure
+  fig=scf(win) //make the window associated to the event active
+
   //disable the event handler not to execute new event before finishing this one
-  seteventhandler("")  
+  fig.event_handler_enable = "off";
+
 
   global ged_handle;ged_handle=[]
   ged_handle=ged_getobject([x,y])
-    
-  scf(cur)
+
 
   if ged_handle~=[] then
     if  or(ibut==[0 3 10]) then //left button --> edit properties
@@ -1478,20 +1482,20 @@ function ged_eventhandler(win,x,y,ibut)
       [x,y]=xchange(x,y,'i2f')
       pos=[x,y]
       while %t then
-	rep=xgetmouse(0,[%t %t])
-	if rep(3)>0 then break,end
-	
-	move(ged_handle,rep(1:2)-pos)
-	show_pixmap()
-	pos=rep(1:2)
+        rep=xgetmouse([%t %t])
+        if rep(3)>0 then break,end
+
+        move(ged_handle,rep(1:2)-pos)
+        show_pixmap()
+        pos=rep(1:2)
       end
     end
   end
-  seteventhandler("ged_eventhandler") //enable the handler
+  fig.event_handler_enable = "on";
   scf(cur) //reset current window
 endfunction
 
- 
+
 function [ini,typs]=build_args(labels)
   n=size(labels,'*')
   ini=[]
@@ -1499,10 +1503,10 @@ function [ini,typs]=build_args(labels)
   for k=1:n
     typ=type(h(labels(k)))
     execstr(['if typ==10 then'
-	     '   w=h.'+labels(k)
-	     'else'
-	     '   w=sci2exp(h.'+labels(k)+',0)'
-	     'end'])
+             '   w=h.'+labels(k)
+             'else'
+             '   w=sci2exp(h.'+labels(k)+',0)'
+             'end'])
     ini=[ini;w]
     if typ==10 then
       typs($+1)="str";typs($+1)=-1
@@ -1519,7 +1523,7 @@ function GetSetValue(h)
   if ok then
     for k=1:n
       execstr("if x'+string(k)+'<>h."+labels(k)+' then h.'+..
-	      labels(k)+'=x'+string(k)+',end')
+              labels(k)+'=x'+string(k)+',end')
     end
   end
 endfunction
@@ -1527,129 +1531,130 @@ endfunction
 
 
 function tkged()
-global ged_handle
-global ged_cur_fig_handle
+  global ged_handle
+  global ged_cur_fig_handle
 
-h=ged_handle
+  h=ged_handle
 
-// hierarchical viewer
-TK_send_handles_list(ged_cur_fig_handle)
-TCL_SetVar("curgedindex",string(Get_handle_pos_in_list(h)))
+  // hierarchical viewer
+  TK_send_handles_list(ged_cur_fig_handle)
+  TCL_SetVar("curgedindex",string(Get_handle_pos_in_list(h)))
 
-//color_map array for color sample display
-f=getparfig(h);
-for i=1:size(f.color_map,1)
-  redname= "RED("+string(i)+")";
-  TCL_EvalStr('set '+redname+" "+string(f.color_map(i,1)));
-  grename= "GREEN("+string(i)+")";
-  TCL_EvalStr('set '+grename+" "+string(f.color_map(i,2)));
-  bluname= "BLUE("+string(i)+")";
-  TCL_EvalStr('set '+bluname+" "+string(f.color_map(i,3)));
-end
-
-TCL_SetVar("msdos",string(getos() == 'Windows')) // to know the OS
-// get the number of the window associated with ged
-TCL_SetVar("sciGedIsAlive",string(ged_cur_fig_handle.figure_id)) ;
-TCL_SetVar("SCIHOME", SCIHOME) // to know the home directory to put temporary files
-
-select h.type
-case "Polyline"
-  ged_polyline(h)
-case "Rectangle"
-  ged_rectangle(h)
-case "Axes"
-  ged_axes(h)
-case "Label" // for now the labels are inside the axes (F.Leray 06.12.05)
-  ged_axes(h.parent)
-  if (h == h.parent.x_label)
-    TCL_EvalStr("Notebook:raise $uf.n X");
-  elseif (h == h.parent.y_label)
-    TCL_EvalStr("Notebook:raise $uf.n Y");
-  elseif (h == h.parent.z_label)
-    TCL_EvalStr("Notebook:raise $uf.n Z");
-  elseif (h == h.parent.title)
-    TCL_EvalStr("Notebook:raise $uf.n Title");
+  //color_map array for color sample display
+  f=getparfig(h);
+  for i=1:size(f.color_map,1)
+    redname= "RED("+string(i)+")";
+    TCL_EvalStr('set '+redname+" "+string(f.color_map(i,1)));
+    grename= "GREEN("+string(i)+")";
+    TCL_EvalStr('set '+grename+" "+string(f.color_map(i,2)));
+    bluname= "BLUE("+string(i)+")";
+    TCL_EvalStr('set '+bluname+" "+string(f.color_map(i,3)));
   end
-case "Figure"
-  ged_figure(h)
-case "Compound"
-  ged_Compound(h)
-  
-case "Plot3d"
-  ged_plot3d(h)
-case "Fac3d"
-  ged_fac3d(h)
-case "Text"
-  ged_text(h)
-case "Legend"
-ged_legend(h)
-case "Arc"
-  ged_arc(h)
-case "Segs"
-  ged_segs(h)    
-case "Champ"
-  ged_champ(h)
-case "Fec"
-  ged_fec(h)
-case "Grayplot"
-  ged_grayplot(h)
-case "Matplot"
-  ged_matplot(h)
-case "Axis"
-  ged_axis(h)
-end
+
+  TCL_SetVar("msdos",string(getos() == 'Windows')) // to know the OS
+
+  // get the number of the window associated with ged
+  TCL_SetVar("sciGedIsAlive",string(ged_cur_fig_handle.figure_id)) ;
+  TCL_SetVar("SCIHOME", SCIHOME) // to know the home directory to put temporary files
+
+  select h.type
+  case "Polyline"
+    ged_polyline(h)
+  case "Rectangle"
+    ged_rectangle(h)
+  case "Axes"
+    ged_axes(h)
+  case "Label" // for now the labels are inside the axes (F.Leray 06.12.05)
+    ged_axes(h.parent)
+    if (h == h.parent.x_label)
+      TCL_EvalStr("Notebook:raise $uf.n X");
+    elseif (h == h.parent.y_label)
+      TCL_EvalStr("Notebook:raise $uf.n Y");
+    elseif (h == h.parent.z_label)
+      TCL_EvalStr("Notebook:raise $uf.n Z");
+    elseif (h == h.parent.title)
+      TCL_EvalStr("Notebook:raise $uf.n Title");
+    end
+  case "Figure"
+    ged_figure(h)
+  case "Compound"
+    ged_Compound(h)
+
+  case "Plot3d"
+    ged_plot3d(h)
+  case "Fac3d"
+    ged_fac3d(h)
+  case "Text"
+    ged_text(h)
+  case "Legend"
+    ged_legend(h)
+  case "Arc"
+    ged_arc(h)
+  case "Segs"
+    ged_segs(h)
+  case "Champ"
+    ged_champ(h)
+  case "Fec"
+    ged_fec(h)
+  case "Grayplot"
+    ged_grayplot(h)
+  case "Matplot"
+    ged_matplot(h)
+  case "Axis"
+    ged_axis(h)
+  end
 endfunction
-  
+
 function setStyle(sty)
   global ged_handle; h=ged_handle
   h.polyline_style=find(sty==['interpolated','staircase', ...
-		    'barplot','arrowed','filled' 'bar'])
+                    'barplot','arrowed','filled' 'bar'])
 endfunction
 function setLineStyle(sty)
   global ged_handle; h=ged_handle
   h.line_style=find(sty==[ "solid" "dash" "dash dot" "longdash dot" ..
-		    "bigdash dot" "bigdash longdash" "dot" "double dot"])
-  
+                    "bigdash dot" "bigdash longdash" "dot" "double dot"])
+
 endfunction
 function setMarkStyle(sty)
   global ged_handle; h=ged_handle
   h.mark_style=find(sty==["dot" "plus" "cross" "star" "filled diamond" ..
-  "diamond" "triangle up" "triangle down" "diamond plus" "circle" ..
-  "asterisk" "square" "triangle right" "triangle left" "pentagram"])-1
+                    "diamond" "triangle up" "triangle down" "diamond plus" "circle" ..
+                    "asterisk" "square" "triangle right" "triangle left" "pentagram"])-1
 endfunction
 function setFontStyle(ftn)
   global ged_handle; h=ged_handle
   h.font_style=find(ftn==["Monospaced" "Symbol" "Serif",..
-                          "Serif Italic" "Serif Bold" "Serif Bold Italic" ,..
-						  "SansSerif"  "SansSerif Italic" "SansSerif Bold",..
-						  "SansSerif Bold Italic"])-1;
+                    "Serif Italic" "Serif Bold" "Serif Bold Italic" ,..
+                    "SansSerif"  "SansSerif Italic" "SansSerif Bold",..
+                    "SansSerif Bold Italic"])-1;
 endfunction
 
 function setLabelsFontStyle(label,ftn)
-   global ged_handle; h=ged_handle
-select label
-case "t"
+  global ged_handle; h=ged_handle
+  select label
+  case "t"
     TCL_EvalStr("Notebook:raise $uf.n Z");
-  h.title.font_style=find(ftn==["Monospaced" "Symbol" "Serif",..
-                          "Serif Italic" "Serif Bold" "Serif Bold Italic" ,..
-						  "SansSerif"  "SansSerif Italic" "SansSerif Bold",..
-						  "SansSerif Bold Italic"])-1;
-case "x"
-  h.x_label.font_style=find(ftn==["Monospaced" "Symbol" "Serif",..
-                          "Serif Italic" "Serif Bold" "Serif Bold Italic" ,..
-						  "SansSerif"  "SansSerif Italic" "SansSerif Bold",..
-						  "SansSerif Bold Italic"])-1;
-case "y"
-  h.y_label.font_style=find(ftn==["Monospaced" "Symbol" "Serif",..
-                          "Serif Italic" "Serif Bold" "Serif Bold Italic" ,..
-						  "SansSerif"  "SansSerif Italic" "SansSerif Bold",..
-						  "SansSerif Bold Italic"])-1;
-case "z"
-  h.z_label.font_style=find(ftn==["Monospaced" "Symbol" "Serif",..
-                          "Serif Italic" "Serif Bold" "Serif Bold Italic" ,..
-						  "SansSerif"  "SansSerif Italic" "SansSerif Bold",..
-						  "SansSerif Bold Italic"])-1;
-end;
+    h.title.font_style=find(ftn==["Monospaced" "Symbol" "Serif",..
+                    "Serif Italic" "Serif Bold" "Serif Bold Italic" ,..
+                    "SansSerif"  "SansSerif Italic" "SansSerif Bold",..
+                    "SansSerif Bold Italic"])-1;
+  case "x"
+    h.x_label.font_style=find(ftn==["Monospaced" "Symbol" "Serif",..
+                    "Serif Italic" "Serif Bold" "Serif Bold Italic" ,..
+                    "SansSerif"  "SansSerif Italic" "SansSerif Bold",..
+                    "SansSerif Bold Italic"])-1;
+  case "y"
+    h.y_label.font_style=find(ftn==["Monospaced" "Symbol" "Serif",..
+                    "Serif Italic" "Serif Bold" "Serif Bold Italic" ,..
+                    "SansSerif"  "SansSerif Italic" "SansSerif Bold",..
+                    "SansSerif Bold Italic"])-1;
+  case "z"
+    h.z_label.font_style=find(ftn==["Monospaced" "Symbol" "Serif",..
+                    "Serif Italic" "Serif Bold" "Serif Bold Italic" ,..
+                    "SansSerif"  "SansSerif Italic" "SansSerif Bold",..
+                    "SansSerif Bold Italic"])-1;
+  end;
 endfunction
 
 
@@ -1660,10 +1665,10 @@ function setXdb(xmin, xmax)
   tmp(1,1)=xmin;
   tmp(2,1)=xmax;
   h.data_bounds=tmp;
-//  tst=execstr('h.data_bounds=tmp','errcatch','n');
-//  if tst<>0 then
-//   disp 'Warning: X data_bounds must contain double'
-//  end
+  //  tst=execstr('h.data_bounds=tmp','errcatch','n');
+  //  if tst<>0 then
+  //   disp 'Warning: X data_bounds must contain double'
+  //  end
 endfunction
 
 
@@ -1673,81 +1678,81 @@ function setYdb(ymin, ymax)
   tmp(1,2)=ymin;
   tmp(2,2)=ymax;
   h.data_bounds=tmp;
-//  tst=execstr('h.data_bounds=tmp','errcatch','n');
-//  if tst<>0 then
-//   disp 'Warning: Y data_bounds must contain double'
-//  end
+  //  tst=execstr('h.data_bounds=tmp','errcatch','n');
+  //  if tst<>0 then
+  //   disp 'Warning: Y data_bounds must contain double'
+  //  end
 endfunction
 
 function setZdb(zmin, zmax)
   global ged_handle; h=ged_handle
- select h.view
-     case "2d"
-      drawlater();
-      h.view='3d';
-      tmp=h.data_bounds;
-      tmp(1,3)=zmin;
-      tmp(2,3)=zmax;
-      h.data_bounds=tmp;
-      h.view='2d';
-      drawnow();
-//      tst=execstr('h.data_bounds=tmp','errcatch','n');
-//      h.view='2d';
-//      if tst<>0 then
-//       disp 'Warning: Z data_bounds must contain double'
-//      end
-     case "3d"
-      tmp=h.data_bounds;
-      tmp(1,3)=zmin;
-      tmp(2,3)=zmax;
-      h.data_bounds=tmp;
-//      tst=execstr('h.data_bounds=tmp','errcatch','n');
-//      if tst<>0 then
-//        disp 'Warning: Z data_bounds must contain double'
-//      end
-     end
+  select h.view
+  case "2d"
+    drawlater();
+    h.view='3d';
+    tmp=h.data_bounds;
+    tmp(1,3)=zmin;
+    tmp(2,3)=zmax;
+    h.data_bounds=tmp;
+    h.view='2d';
+    drawnow();
+    //      tst=execstr('h.data_bounds=tmp','errcatch','n');
+    //      h.view='2d';
+    //      if tst<>0 then
+    //       disp 'Warning: Z data_bounds must contain double'
+    //      end
+  case "3d"
+    tmp=h.data_bounds;
+    tmp(1,3)=zmin;
+    tmp(2,3)=zmax;
+    h.data_bounds=tmp;
+    //      tst=execstr('h.data_bounds=tmp','errcatch','n');
+    //      if tst<>0 then
+    //        disp 'Warning: Z data_bounds must contain double'
+    //      end
+  end
 endfunction
 
 
 function LogtoggleX( tog)
- global ged_handle; h=ged_handle
+  global ged_handle; h=ged_handle
 
- h.log_flags=tog+part(h.log_flags,2);
+  h.log_flags=tog+part(h.log_flags,2);
 
 
-//tst=execstr("global h;h.log_flags=tog+part(h.log_flags,2)",'errcatch','n');
+  //tst=execstr("global h;h.log_flags=tog+part(h.log_flags,2)",'errcatch','n');
 
-//if tst<>0 then
-//   disp 'Warning: X bounds must be strictly positive'
-//end
+  //if tst<>0 then
+  //   disp 'Warning: X bounds must be strictly positive'
+  //end
 endfunction
 
 function LogtoggleY( tog)
- global ged_handle; h=ged_handle
+  global ged_handle; h=ged_handle
 
- h.log_flags=part(h.log_flags,1)+tog;
+  h.log_flags=part(h.log_flags,1)+tog;
 
 
-//tst=execstr("global h;h.log_flags=part(h.log_flags,1)+tog",'errcatch','n');
+  //tst=execstr("global h;h.log_flags=part(h.log_flags,1)+tog",'errcatch','n');
 
-//if tst<>0 then
-//   disp 'Warning: Y bounds must be strictly positive'
-//end
+  //if tst<>0 then
+  //   disp 'Warning: Y bounds must be strictly positive'
+  //end
 
 endfunction
 
 
 function LogtoggleZ( tog)
- global ged_handle; h=ged_handle
+  global ged_handle; h=ged_handle
 
- h.log_flags=part(h.log_flags,1)+part(h.log_flags,2)+tog;
+  h.log_flags=part(h.log_flags,1)+part(h.log_flags,2)+tog;
 
 
-//tst=execstr("global h;h.log_flags=part(h.log_flags,1)+tog",'errcatch','n');
+  //tst=execstr("global h;h.log_flags=part(h.log_flags,1)+tog",'errcatch','n');
 
-//if tst<>0 then
-//   disp 'Warning: Z bounds must be strictly positive'
-//end
+  //if tst<>0 then
+  //   disp 'Warning: Z bounds must be strictly positive'
+  //end
 
 endfunction
 
@@ -1755,13 +1760,13 @@ endfunction
 
 function [haxe] = getparaxe( h )
 
-htmp = h;
-haxe = [];
-while htmp.type<>'Axes' do
-  htmp = htmp.parent
-end
+  htmp = h;
+  haxe = [];
+  while htmp.type<>'Axes' do
+    htmp = htmp.parent
+  end
 
-haxe = htmp;
+  haxe = htmp;
 endfunction
 
 
@@ -1774,7 +1779,7 @@ function setXval(val)
   tmp(1)=val;
   tst=execstr('h.data=tmp','errcatch','n');
   if tst<>0 then
-   disp 'Warning: Y data must contain double'
+    disp 'Warning: Y data must contain double'
   end
 endfunction
 
@@ -1784,137 +1789,137 @@ function setYval(val)
   tmp(2)=val;
   tst=execstr('h.data=tmp','errcatch','n');
   if tst<>0 then
-   disp 'Warning: Y data must contain double'
+    disp 'Warning: Y data must contain double'
   end
 endfunction
 
 function setZval(val)
   global ged_handle; h=ged_handle
   ax=getparaxe(h);
- select ax.view
-     case "2d"
-      drawlater();
-      ax.view='3d';
-      tmp=h.data;
-      tmp(3)=val;
-      tst=execstr('h.data=tmp','errcatch','n');
-      ax.view='2d';
-      drawnow();
-      if tst<>0 then
-       disp 'Warning: Z data must contain double'
-      end
-     case "3d"
-      tmp=h.data;
-      tmp(3)=val;
-      tst=execstr('h.data=tmp','errcatch','n');
-      if tst<>0 then
-        disp 'Warning: Z data must contain double'
-      end
-     end
+  select ax.view
+  case "2d"
+    drawlater();
+    ax.view='3d';
+    tmp=h.data;
+    tmp(3)=val;
+    tst=execstr('h.data=tmp','errcatch','n');
+    ax.view='2d';
+    drawnow();
+    if tst<>0 then
+      disp 'Warning: Z data must contain double'
+    end
+  case "3d"
+    tmp=h.data;
+    tmp(3)=val;
+    tst=execstr('h.data=tmp','errcatch','n');
+    if tst<>0 then
+      disp 'Warning: Z data must contain double'
+    end
+  end
 endfunction
 
 
 function setWval(val)
   global ged_handle; h=ged_handle
- ax=getparaxe(h);
- select ax.view
-     case "2d"
-      drawlater();
-      ax.view='3d';
-      tmp=h.data;
-      tmp(4)=val;
-      tst=execstr('h.data=tmp','errcatch','n');
-      ax.view='2d';
-      drawnow();
-      if tst<>0 then
-       disp 'Warning: Width data must contain double'
-      end
-     case "3d"
-      tmp=h.data;
-      tmp(4)=val;
-      tst=execstr('h.data=tmp','errcatch','n');
-      if tst<>0 then
-        disp 'Warning: Width data must contain double'
-      end
-     end
+  ax=getparaxe(h);
+  select ax.view
+  case "2d"
+    drawlater();
+    ax.view='3d';
+    tmp=h.data;
+    tmp(4)=val;
+    tst=execstr('h.data=tmp','errcatch','n');
+    ax.view='2d';
+    drawnow();
+    if tst<>0 then
+      disp 'Warning: Width data must contain double'
+    end
+  case "3d"
+    tmp=h.data;
+    tmp(4)=val;
+    tst=execstr('h.data=tmp','errcatch','n');
+    if tst<>0 then
+      disp 'Warning: Width data must contain double'
+    end
+  end
 endfunction
 
 
 function setHval(val)
   global ged_handle; h=ged_handle
- ax=getparaxe(h);
- select ax.view
-     case "2d"
-      drawlater();
-      ax.view='3d';
-      tmp=h.data;
-      tmp(5)=val;
-      tst=execstr('h.data=tmp','errcatch','n');
-      ax.view='2d';
-      drawnow();
-      if tst<>0 then
-       disp 'Warning: Height data must contain double'
-      end
-     case "3d"
-      tmp=h.data;
-      tmp(5)=val;
-      tst=execstr('h.data=tmp','errcatch','n');
-      if tst<>0 then
-        disp 'Warning: Height data must contain double'
-      end
-     end
+  ax=getparaxe(h);
+  select ax.view
+  case "2d"
+    drawlater();
+    ax.view='3d';
+    tmp=h.data;
+    tmp(5)=val;
+    tst=execstr('h.data=tmp','errcatch','n');
+    ax.view='2d';
+    drawnow();
+    if tst<>0 then
+      disp 'Warning: Height data must contain double'
+    end
+  case "3d"
+    tmp=h.data;
+    tmp(5)=val;
+    tst=execstr('h.data=tmp','errcatch','n');
+    if tst<>0 then
+      disp 'Warning: Height data must contain double'
+    end
+  end
 endfunction
 
 
 // complement for Arc entity
 function setA1val(val)
   global ged_handle; h=ged_handle
- ax=getparaxe(h);
- select ax.view
-     case "2d"
-      drawlater();
-      ax.view='3d';
-      tmp=h.data;
-      tmp(6)=val;
-      tst=execstr('h.data=tmp','errcatch','n');
-      ax.view='2d';
-      drawnow();
-      if tst<>0 then
-       disp 'Warning: Width data must contain double'
-      end
-     case "3d"
-      tmp=h.data;
-      tmp(6)=val;
-      tst=execstr('h.data=tmp','errcatch','n');
-      if tst<>0 then
-        disp 'Warning: a1 data must contain double'
-      end
-     end
+  ax=getparaxe(h);
+  select ax.view
+  case "2d"
+    drawlater();
+    ax.view='3d';
+    tmp=h.data;
+    tmp(6)=val;
+    tst=execstr('h.data=tmp','errcatch','n');
+    ax.view='2d';
+    drawnow();
+    if tst<>0 then
+      disp 'Warning: Width data must contain double'
+    end
+  case "3d"
+    tmp=h.data;
+    tmp(6)=val;
+    tst=execstr('h.data=tmp','errcatch','n');
+    if tst<>0 then
+      disp 'Warning: a1 data must contain double'
+    end
+  end
 endfunction
 
 function setA2val(val)
   global ged_handle; h=ged_handle
- ax=getparaxe(h);
- select ax.view
-     case "2d"
-      drawlater();
-      ax.view='3d';
-      tmp=h.data;
-      tmp(7)=val;
-      tst=execstr('h.data=tmp','errcatch','n');
-      ax.view='2d';
-      drawnow();
-      if tst<>0 then
-       disp 'Warning: Width data must contain double'
-      end
-     case "3d"
-      tmp=h.data;
-      tmp(7)=val;
-      tst=execstr('h.data=tmp','errcatch','n');
-      if tst<>0 then
-        disp 'Warning: a2 data must contain double'
-      end
-     end
+  ax=getparaxe(h);
+  select ax.view
+  case "2d"
+    drawlater();
+    ax.view='3d';
+    tmp=h.data;
+    tmp(7)=val;
+    tst=execstr('h.data=tmp','errcatch','n');
+    ax.view='2d';
+    drawnow();
+    if tst<>0 then
+      disp 'Warning: Width data must contain double'
+    end
+  case "3d"
+    tmp=h.data;
+    tmp(7)=val;
+    tst=execstr('h.data=tmp','errcatch','n');
+    if tst<>0 then
+      disp 'Warning: a2 data must contain double'
+    end
+  end
 endfunction
 
 
@@ -1926,7 +1931,7 @@ function setZb(min, max)
   tmp(1,2)=max;
   tst=execstr('h.z_bounds=tmp','errcatch','n');
   if tst<>0 then
-   disp 'Warning: X data_bounds must contain double'
+    disp 'Warning: X data_bounds must contain double'
   end
 endfunction
 
@@ -1972,18 +1977,18 @@ endfunction
 
 function EditData(TheData,datastring)
 // TheData must be a real scalar or matrix
-global ged_handle; h=ged_handle
+  global ged_handle; h=ged_handle
 
-// I declare ged_tmp ged_tmp_string WINDOW as global
-global ged_tmp;
-global ged_tmp_string;
-global WINDOW;
+  // I declare ged_tmp ged_tmp_string WINDOW as global
+  global ged_tmp;
+  global ged_tmp_string;
+  global WINDOW;
 
-ged_tmp_string = datastring;
+  ged_tmp_string = datastring;
 
-ged_tmp=TheData;
+  ged_tmp=TheData;
 
-WINDOW = GEDeditvar("ged_tmp")
+  WINDOW = GEDeditvar("ged_tmp")
 
 endfunction
 
@@ -1991,19 +1996,19 @@ endfunction
 function CloseEditorSaveData()
 // Called when closing data editor
 
-global ged_handle; // To leave here because used when doing execstr(ged_tmp_string...
-global ged_tmp;
-global ged_tmp_string;
-global WINDOW;
+  global ged_handle; // To leave here because used when doing execstr(ged_tmp_string...
+  global ged_tmp;
+  global ged_tmp_string;
+  global WINDOW;
 
-Nan = %nan // to avoid error message because of special Nan display
+  Nan = %nan // to avoid error message because of special Nan display
 
-ged_tmp=GEDeditvar_get(WINDOW);
+  ged_tmp=GEDeditvar_get(WINDOW);
 
-execstr(ged_tmp_string+"= ged_tmp");
+  execstr(ged_tmp_string+"= ged_tmp");
 
-clearglobal ged_tmp ged_tmp_string WINDOW
-clear ged_tmp ged_tmp_string WINDOW
+  clearglobal ged_tmp ged_tmp_string WINDOW
+  clear ged_tmp ged_tmp_string WINDOW
 
 endfunction
 
@@ -2014,44 +2019,44 @@ function outvar=GEDeditvar_get(winId)
 // Copyright (C) 2004 Jaime Urzua Grez
 // mailto:jaime_urzua@yahoo.com
 // rev. 0.1
-  //
+//
 // This program is free software; you can redistribute it and/or modify
 //it under the terms of the GNU General Public License as published by
 //the Free Software Foundation; either version 2 of the License, or
 //(at your option) any later version.
 
 //disp("Please wait...");
-outvar=[];
-base="sciGUITable(win,"+string(winId)+",data";
-varType=evstr(TCL_GetVar(base+',type)'));
-varni=evstr(TCL_GetVar(base+',ni)'));
-varnj=evstr(TCL_GetVar(base+',nj)'));
-for j=1:varnj,
-	ww=[];
-	for i=1:varni,
-		q=TCL_GetVar(base+','+string(i)+','+string(j)+')');
-		if (varType~=10) then
-			if (varType==4) then
-				if ((q=="T")|(q=="t")) then
-					ww=[ww;%t];
-				else
-					ww=[ww;%f];
-				end
-			else
-				ww=[ww;evstr(q)];
-			end
-		else
-			ww=[ww;q];
-		end
-	end
-	outvar=[outvar ww];
-end
+  outvar=[];
+  base="sciGUITable(win,"+string(winId)+",data";
+  varType=evstr(TCL_GetVar(base+',type)'));
+  varni=evstr(TCL_GetVar(base+',ni)'));
+  varnj=evstr(TCL_GetVar(base+',nj)'));
+  for j=1:varnj,
+    ww=[];
+    for i=1:varni,
+      q=TCL_GetVar(base+','+string(i)+','+string(j)+')');
+      if (varType~=10) then
+        if (varType==4) then
+          if ((q=="T")|(q=="t")) then
+            ww=[ww;%t];
+          else
+            ww=[ww;%f];
+          end
+        else
+          ww=[ww;evstr(q)];
+        end
+      else
+        ww=[ww;q];
+      end
+    end
+    outvar=[outvar ww];
+  end
 endfunction
 
 function [WINID] = GEDeditvar(varargin)
 // Simple Variable Editor
 // This file is part of sciGUI toolbox
-// Copyright (C) 2004 Jaime Urzua Grez 
+// Copyright (C) 2004 Jaime Urzua Grez
 // mailto:jaime_urzua@yahoo.com
 // rev. 0.2 2004/06/24
 //
@@ -2059,9 +2064,9 @@ function [WINID] = GEDeditvar(varargin)
 //it under the terms of the GNU General Public License as published by
 //the Free Software Foundation; either version 2 of the License, or
 //(at your option) any later version.
-  
+
   sciGUI_init()
-  
+
   [%_nams]=who('get');
   %_loc_type=type(varargin(1))
   if (%_loc_type~=10) then error(42), end
@@ -2093,12 +2098,12 @@ function [WINID] = GEDeditvar(varargin)
   // I would like set some tcl variable like varname(pos_i,pos_j)
   //
   Nb_data=(%_loc_nj)*(%_loc_ni)
- // disp("Nb_data=")
- // disp(Nb_data);
- // winWB=waitbar('Loading data...');
- // tmp = 0;
- // waitbar(tmp,winWB);
- 
+  // disp("Nb_data=")
+  // disp(Nb_data);
+  // winWB=waitbar('Loading data...');
+  // tmp = 0;
+  // waitbar(tmp,winWB);
+
 
   for %_j=1:%_loc_nj,
     for %_i=1:%_loc_ni,
@@ -2107,27 +2112,27 @@ function [WINID] = GEDeditvar(varargin)
       TCL_SetVar(%_varname,%_value);
     end
 
-  //tmp = ((%_j)*(%_loc_ni)) / Nb_data;
-  //tmp = tmp *100; tmp = int(tmp); tmp = tmp /100;
-  //disp("tmp dans for=")
-  //disp(tmp)
-  //waitbar(tmp,winWB);
+    //tmp = ((%_j)*(%_loc_ni)) / Nb_data;
+    //tmp = tmp *100; tmp = int(tmp); tmp = tmp /100;
+    //disp("tmp dans for=")
+    //disp(tmp)
+    //waitbar(tmp,winWB);
   end
 
 
- // disp("%_winId=");
- // disp(%_winId);
- // disp("type(%_winId)=");
- // disp(type(%_winId));
- // disp("winWB=");
- // disp(winWB);
- // disp("type(winWB)=");
- // disp(type(winWB));
- // disp("AVANT DrawGrid");
+  // disp("%_winId=");
+  // disp(%_winId);
+  // disp("type(%_winId)=");
+  // disp(type(%_winId));
+  // disp("winWB=");
+  // disp(winWB);
+  // disp("type(winWB)=");
+  // disp(type(winWB));
+  // disp("AVANT DrawGrid");
 
- 
+
   TCL_EvalStr("GEDsciGUIEditVarDrawGrid "+%_winId)
- 
+
   WINID = %_winId;
 
 endfunction
@@ -2137,111 +2142,111 @@ endfunction
 
 function ged_tablo=GetTab(val,index)
 //disp("ICI")
-ged_tablo(index) =val
+  ged_tablo(index) =val
 endfunction
 
 
 function ged_tablo=GetTab2(val,index,ged_tablo)
 //disp("ICI")
-ged_tablo(index) =val
+  ged_tablo(index) =val
 endfunction
 
 function setTicksTList(XYZ,locations,labels)
-global ged_handle;h= ged_handle;
+  global ged_handle;h= ged_handle;
 
-TL=tlist(['ticks','locations','labels'],locations,labels);
+  TL=tlist(['ticks','locations','labels'],locations,labels);
 
-if XYZ=='X'
- h.x_ticks=TL;
-elseif XYZ=='Y'
- h.y_ticks=TL;
-elseif XYZ=='Z'
- h.z_ticks=TL;
-end
+  if XYZ=='X'
+    h.x_ticks=TL;
+  elseif XYZ=='Y'
+    h.y_ticks=TL;
+  elseif XYZ=='Z'
+    h.z_ticks=TL;
+  end
 
 endfunction
 
 
-// Is called by ged_axes 
+// Is called by ged_axes
 
 function LoadTicks2TCL(h)
-global ged_handle;ged_handle=h;
+  global ged_handle;ged_handle=h;
 
-TCL_SetVar("Xaxes_visibleToggle",h.axes_visible(1))
-TCL_SetVar("Yaxes_visibleToggle",h.axes_visible(2))
-TCL_SetVar("Zaxes_visibleToggle",h.axes_visible(3))
+  TCL_SetVar("Xaxes_visibleToggle",h.axes_visible(1))
+  TCL_SetVar("Yaxes_visibleToggle",h.axes_visible(2))
+  TCL_SetVar("Zaxes_visibleToggle",h.axes_visible(3))
 
-TCL_SetVar("SubticksEntryX",string(h.sub_ticks(1)))
-TCL_GetVar("SubticksEntryX")
+  TCL_SetVar("SubticksEntryX",string(h.sub_ticks(1)))
+  TCL_GetVar("SubticksEntryX")
 
-// disp("h.sub_ticks(1) =")
-// disp(h.sub_ticks(1));
+  // disp("h.sub_ticks(1) =")
+  // disp(h.sub_ticks(1));
 
-TCL_SetVar("SubticksEntryY",string(h.sub_ticks(2)))
+  TCL_SetVar("SubticksEntryY",string(h.sub_ticks(2)))
 
-select h.view
-case "2d" 
-  drawlater(); // postpon the drawings due to switching from 2d to 3d mode (for example)
-  // in order to know the complete data set (z data for axes...)
-  h.view='3d'
-  
-  TCL_SetVar("SubticksEntryZ",string(h.sub_ticks(3)))
-  h.view='2d'
-  drawnow();
-case "3d"
-  TCL_SetVar("SubticksEntryZ",string(h.sub_ticks(3)))
-end
+  select h.view
+  case "2d"
+    drawlater(); // postpon the drawings due to switching from 2d to 3d mode (for example)
+                 // in order to know the complete data set (z data for axes...)
+                 h.view='3d'
 
-TCL_SetVar("XautoticksToggle",h.auto_ticks(1))
-TCL_SetVar("YautoticksToggle",h.auto_ticks(2))
-TCL_SetVar("ZautoticksToggle",h.auto_ticks(3))
+                 TCL_SetVar("SubticksEntryZ",string(h.sub_ticks(3)))
+                 h.view='2d'
+                 drawnow();
+  case "3d"
+    TCL_SetVar("SubticksEntryZ",string(h.sub_ticks(3)))
+  end
 
-//ticks value: X axis
-ticks = h.x_ticks;
-sizeticks = size(ticks.locations,1);
-TCL_SetVar("nbticks_x",string(sizeticks));
-for i=1:sizeticks
-  val= "LOCATIONS_X("+string(i)+")";
-  TCL_EvalStr('set '+val+" "+string(ticks.locations(i)));
-  val= "LABELS_X("+string(i)+")";
-  TCL_EvalStr('set '+val+" {"+ticks.labels(i)+"}");
-end
+  TCL_SetVar("XautoticksToggle",h.auto_ticks(1))
+  TCL_SetVar("YautoticksToggle",h.auto_ticks(2))
+  TCL_SetVar("ZautoticksToggle",h.auto_ticks(3))
 
-//ticks value: Y axis
-ticks = h.y_ticks;
-sizeticks = size(ticks.locations,1);
-TCL_SetVar("nbticks_y",string(sizeticks));
-for i=1:sizeticks
-  val= "LOCATIONS_Y("+string(i)+")";
-  TCL_EvalStr('set '+val+" "+string(ticks.locations(i)));
-  val= "LABELS_Y("+string(i)+")";
-  TCL_EvalStr('set '+val+" {"+ticks.labels(i)+"}");
-end
+  //ticks value: X axis
+  ticks = h.x_ticks;
+  sizeticks = size(ticks.locations,1);
+  TCL_SetVar("nbticks_x",string(sizeticks));
+  for i=1:sizeticks
+    val= "LOCATIONS_X("+string(i)+")";
+    TCL_EvalStr('set '+val+" "+string(ticks.locations(i)));
+    val= "LABELS_X("+string(i)+")";
+    TCL_EvalStr('set '+val+" {"+ticks.labels(i)+"}");
+  end
 
-//ticks value: Z axis
-ticks = h.z_ticks;
-sizeticks = size(ticks.locations,1);
-TCL_SetVar("nbticks_z",string(sizeticks));
-for i=1:sizeticks
-  val= "LOCATIONS_Z("+string(i)+")";
-  TCL_EvalStr('set '+val+" "+string(ticks.locations(i)));
-  val= "LABELS_Z("+string(i)+")";
-  TCL_EvalStr('set '+val+" {"+ticks.labels(i)+"}");
-end
+  //ticks value: Y axis
+  ticks = h.y_ticks;
+  sizeticks = size(ticks.locations,1);
+  TCL_SetVar("nbticks_y",string(sizeticks));
+  for i=1:sizeticks
+    val= "LOCATIONS_Y("+string(i)+")";
+    TCL_EvalStr('set '+val+" "+string(ticks.locations(i)));
+    val= "LABELS_Y("+string(i)+")";
+    TCL_EvalStr('set '+val+" {"+ticks.labels(i)+"}");
+  end
+
+  //ticks value: Z axis
+  ticks = h.z_ticks;
+  sizeticks = size(ticks.locations,1);
+  TCL_SetVar("nbticks_z",string(sizeticks));
+  for i=1:sizeticks
+    val= "LOCATIONS_Z("+string(i)+")";
+    TCL_EvalStr('set '+val+" "+string(ticks.locations(i)));
+    val= "LABELS_Z("+string(i)+")";
+    TCL_EvalStr('set '+val+" {"+ticks.labels(i)+"}");
+  end
 
 endfunction
 
 
 
 function Subtickstoggle( tog, index)
- global ged_handle; h=ged_handle
+  global ged_handle; h=ged_handle
 
- subticks=h.sub_ticks;
- subticks(index)=tog;
-//disp("subticks vaut:")
-//disp(subticks)
+  subticks=h.sub_ticks;
+  subticks(index)=tog;
+  //disp("subticks vaut:")
+  //disp(subticks)
 
- h.sub_ticks = subticks;
+  h.sub_ticks = subticks;
 endfunction
 
 
@@ -2257,42 +2262,42 @@ function ReLoadTicks2TCL(h)
   ticks = h.x_ticks;
   sizeticks = size(ticks.locations,1);
   if (sizeticks <> 0)
-   TCL_EvalStr("unset LOCATIONS_X");
-   TCL_EvalStr("unset LABELS_X");
+    TCL_EvalStr("unset LOCATIONS_X");
+    TCL_EvalStr("unset LABELS_X");
   end
-  
+
   ticks = h.y_ticks;
   sizeticks = size(ticks.locations,1);
   if (sizeticks <> 0)
-   TCL_EvalStr("unset LOCATIONS_Y");
-   TCL_EvalStr("unset LABELS_Y");
+    TCL_EvalStr("unset LOCATIONS_Y");
+    TCL_EvalStr("unset LABELS_Y");
   end
-  
+
   ticks = h.z_ticks;
   sizeticks = size(ticks.locations,1);
   if (sizeticks <> 0)
-   TCL_EvalStr("unset LOCATIONS_Z");
-   TCL_EvalStr("unset LABELS_Z");
+    TCL_EvalStr("unset LOCATIONS_Z");
+    TCL_EvalStr("unset LABELS_Z");
   end
-  
+
   TCL_SetVar("SubticksEntryX",string(h.sub_ticks(1)))
-//  TCL_GetVar("SubticksEntryX")
- 
- // disp("h.sub_ticks(1) =")
- // disp(h.sub_ticks(1));
+  //  TCL_GetVar("SubticksEntryX")
+
+  // disp("h.sub_ticks(1) =")
+  // disp(h.sub_ticks(1));
 
   TCL_SetVar("SubticksEntryY",string(h.sub_ticks(2)))
 
   select h.view
-   case "2d" 
+  case "2d"
     drawlater();
     h.view='3d'
     TCL_SetVar("SubticksEntryZ",string(h.sub_ticks(3)))
     h.view='2d'
     drawnow();
-   case "3d"
-     TCL_SetVar("SubticksEntryZ",string(h.sub_ticks(3)))
-   end
+  case "3d"
+    TCL_SetVar("SubticksEntryZ",string(h.sub_ticks(3)))
+  end
 
   TCL_SetVar("XautoticksToggle",h.auto_ticks(1))
   TCL_SetVar("YautoticksToggle",h.auto_ticks(2))
@@ -2304,11 +2309,11 @@ function ReLoadTicks2TCL(h)
   TCL_SetVar("nbticks_x",string(sizeticks));
   for i=1:sizeticks
     val= "LOCATIONS_X("+string(i)+")";
-      TCL_EvalStr('set '+val+" "+string(ticks.locations(i)));
-//      disp("i vaut:");
-//      disp(i);
+    TCL_EvalStr('set '+val+" "+string(ticks.locations(i)));
+    //      disp("i vaut:");
+    //      disp(i);
     val= "LABELS_X("+string(i)+")";
-      TCL_EvalStr('set '+val+" {"+ticks.labels(i)+"}");
+    TCL_EvalStr('set '+val+" {"+ticks.labels(i)+"}");
   end
 
   //ticks value: Y axis
@@ -2317,20 +2322,20 @@ function ReLoadTicks2TCL(h)
   TCL_SetVar("nbticks_y",string(sizeticks));
   for i=1:sizeticks
     val= "LOCATIONS_Y("+string(i)+")";
-      TCL_EvalStr('set '+val+" "+string(ticks.locations(i)));
-     val= "LABELS_Y("+string(i)+")";
-      TCL_EvalStr('set '+val+" {"+ticks.labels(i)+"}");
+    TCL_EvalStr('set '+val+" "+string(ticks.locations(i)));
+    val= "LABELS_Y("+string(i)+")";
+    TCL_EvalStr('set '+val+" {"+ticks.labels(i)+"}");
   end
 
- //ticks value: Z axis
+  //ticks value: Z axis
   ticks = h.z_ticks;
   sizeticks = size(ticks.locations,1);
   TCL_SetVar("nbticks_z",string(sizeticks));
   for i=1:sizeticks
     val= "LOCATIONS_Z("+string(i)+")";
-      TCL_EvalStr('set '+val+" "+string(ticks.locations(i)));
+    TCL_EvalStr('set '+val+" "+string(ticks.locations(i)));
     val= "LABELS_Z("+string(i)+")";
-      TCL_EvalStr('set '+val+" {"+ticks.labels(i)+"}");
+    TCL_EvalStr('set '+val+" {"+ticks.labels(i)+"}");
   end
 
 endfunction
@@ -2338,25 +2343,25 @@ endfunction
 
 
 function DestroyGlobals()
-global ged_current_figure
+  global ged_current_figure
 
-if ~isempty(winsid()) & ~isempty(find(ged_current_figure==winsid())) then
-  xset('window',ged_current_figure)
-end 
+  if ~isempty(winsid()) & ~isempty(find(ged_current_figure==winsid())) then
+    scf(ged_current_figure)
+  end
 
-// ged is closed
-TCL_UnsetVar("sciGedIsAlive");
+  // ged is closed
+  TCL_UnsetVar("sciGedIsAlive");
 
-clearglobal ged_current_figure
-clear ged_current_figure
+  clearglobal ged_current_figure
+  clear ged_current_figure
 
-// disp("PASSE PAR DestroyGlobals Scilab");
+  // disp("PASSE PAR DestroyGlobals Scilab");
 endfunction
 
 
 function ged_delete_entity()
   [btn,xc,yc]=xclick()
-   [xc,yc]=xchange(xc,yc,'f2i')
+  [xc,yc]=xchange(xc,yc,'f2i')
   h=ged_getobject([xc,yc])
   if h<>[] then delete(h),end
 endfunction
@@ -2374,48 +2379,48 @@ function ged_move_entity()
   select r.type
   case 'Rectangle' then
     while rep(3)==-1 do
-      rep=xgetmouse(0,[%t %t])
+      rep=xgetmouse([%t %t])
       r.data(1:2)= r.data(1:2)+(rep(1:2)-pos)
       pos=rep(1:2)
       show_pixmap()
-    end 
+    end
   case 'Segs' then //Segment
     while rep(3)==-1 do
-      rep=xgetmouse(0,[%t %t])
+      rep=xgetmouse([%t %t])
       r.data=r.data+ones(2,1)*(rep(1:2)-pos)
       pos=rep(1:2)
       show_pixmap()
-    end 
+    end
   case 'Polyline' then //Polyline
     while rep(3)==-1 do
-      rep=xgetmouse(0,[%t %t])
+      rep=xgetmouse([%t %t])
       r.data(:,1:2)=r.data(:,1:2)+ones(r.data(:,1))*(rep(1:2)-pos)
       pos=rep(1:2)
       show_pixmap()
-    end 
-   case 'Arc' then //Circle
+    end
+  case 'Arc' then //Circle
     while rep(3)==-1 do
-      rep=xgetmouse(0,[%t %t])
+      rep=xgetmouse([%t %t])
       r.data(1:2)= r.data(1:2)+(rep(1:2)-pos)
       pos=rep(1:2)
       show_pixmap()
-    end 
+    end
   case 'Text' then
     while rep(3)==-1 do
-      rep=xgetmouse(0,[%t %t])
+      rep=xgetmouse([%t %t])
       r.data(1:2)= r.data(1:2)+(rep(1:2)-pos)
       pos=rep(1:2)
       show_pixmap()
-    end 
+    end
   case 'Label' then
     while rep(3)==-1 do
-      rep=xgetmouse(0,[%t %t])
+      rep=xgetmouse([%t %t])
       r.position= r.position+(rep(1:2)-pos)
       r.auto_position = "off"
       pos=rep(1:2)
       show_pixmap()
-    end 
-    
+    end
+
   end
   sca(cur_ax)
   f.pixmap=stripblanks(pix)
@@ -2426,7 +2431,7 @@ function ged_copy_entity()
   [xc,yc]=xchange(xc,yc,'f2i')
   r=ged_getobject([xc,yc])
   if r==[] return,end
-  twinkle(r,1);	
+  twinkle(r,1);    
   save(TMPDIR+'/G_Clipboard',r)
   //make the axes containning the clicked point the current one
   sca(ged_select_axes(xc,yc))
@@ -2434,38 +2439,38 @@ endfunction
 
 
 function ged_paste_entity()
-  
-  // check the file
+
+// check the file
   [info,err] = fileinfo(TMPDIR + '/G_Clipboard' ) ;
-  
+
   if err <> 0 then
     return ;
   end
-  
+
   // create the saved object
   load(TMPDIR+'/G_Clipboard') ;
 
-//  a=gca();b=a.data_bounds;
-//  move(r,[-1 1]*a.data_bounds/20)
+  //  a=gca();b=a.data_bounds;
+  //  move(r,[-1 1]*a.data_bounds/20)
 endfunction
 
 function axes =  ged_select_axes(x,y)
 // x and y are pixel coord.
-f=gcf()
-nb_axes = size(f.children,'*') // for now Iconsider that children of a figure are of type Axes
-axes_size = f.axes_size // given in pixels
-axes_size = [axes_size axes_size];
+  f=gcf()
+  nb_axes = size(f.children,'*') // for now Iconsider that children of a figure are of type Axes
+  axes_size = f.axes_size // given in pixels
+  axes_size = [axes_size axes_size];
 
-for i=1:nb_axes
-  axes = f.children(i);
-  cur_axes_bounds = axes.axes_bounds;
-  rect = cur_axes_bounds.*axes_size; // rectangle in pixels (margins inside)
-  
-  rect(3) = rect(3) + rect(1);
-  rect(4) = rect(4) + rect(2);
-  if (x>rect(1) & x<rect(3) & y>rect(2) & y<rect(4)) then
-     return 
+  for i=1:nb_axes
+    axes = f.children(i);
+    cur_axes_bounds = axes.axes_bounds;
+    rect = cur_axes_bounds.*axes_size; // rectangle in pixels (margins inside)
+
+    rect(3) = rect(3) + rect(1);
+    rect(4) = rect(4) + rect(2);
+    if (x>rect(1) & x<rect(3) & y>rect(2) & y<rect(4)) then
+      return
+    end
   end
-end
-axes=[]
+  axes=[]
 endfunction

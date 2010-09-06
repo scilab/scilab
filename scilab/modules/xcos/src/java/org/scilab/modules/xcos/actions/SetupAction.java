@@ -28,7 +28,7 @@ public class SetupAction extends SimulationNotRunningAction {
 	/** Name of the action */
 	public static final String NAME = XcosMessages.SETUP;
 	/** Icon name of the action */
-	public static final String SMALL_ICON = "";
+	public static final String SMALL_ICON = "preferences-desktop.png";
 	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = 0;
 	/** Accelerator key for the action */

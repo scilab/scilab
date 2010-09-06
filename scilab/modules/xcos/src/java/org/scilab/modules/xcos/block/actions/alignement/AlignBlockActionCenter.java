@@ -24,7 +24,7 @@ public final class AlignBlockActionCenter extends AlignBlockAction {
 	/** Name of the action */
 	public static final String NAME = XcosMessages.ALIGN_CENTER;
 	/** Icon name of the action */
-	public static final String SMALL_ICON = "go-center.png";
+	public static final String SMALL_ICON = "align-horizontal-center.png";
 	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = 0;
 	/** Accelerator key for the action */

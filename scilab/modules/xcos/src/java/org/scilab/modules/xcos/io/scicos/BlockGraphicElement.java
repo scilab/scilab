@@ -87,21 +87,27 @@ class BlockGraphicElement extends BlockPartsElement {
 		if (into == null) {
 			throw new IllegalArgumentException();
 		}
-
+		BasicBlock block = into;
+		
 		data = (ScilabMList) element;
 
 		validate();
 		
+		block = beforeDecode(element, block);
+		
 		/*
 		 * fill the data
 		 */
-		fillDimension(into);
-		fillOrigin(into);
-		fillFlipAndRotation(into);
+		fillDimension(block);
+		fillOrigin(block);
+		fillFlipAndRotation(block);
 		
-		into.setExprs(data.get(EXPRS_INDEX));
+		block.setExprs(data.get(EXPRS_INDEX));
 		
-		return into;
+		
+		block = afterDecode(element, block);
+		
+		return block;
 	}
 
 	/**
@@ -372,6 +378,8 @@ class BlockGraphicElement extends BlockPartsElement {
 			throw new IllegalArgumentException("The element parameter must be null.");
 		}
 		
+		data = (ScilabMList) beforeEncode(from, data);
+		
 		/*
 		 * Fill the geometry data
 		 */
@@ -420,6 +428,8 @@ class BlockGraphicElement extends BlockPartsElement {
 		 */
 		field++; // in_implicit
 		field++; // out_implicit
+		
+		data = (ScilabMList) afterEncode(from, data);
 		
 		return data;
 	}

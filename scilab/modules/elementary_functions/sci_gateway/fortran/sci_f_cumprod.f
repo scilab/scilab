@@ -5,20 +5,21 @@ c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
 c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txtc     -------------------------------
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c     -------------------------------
 c
-			subroutine intcumprod(id)
+      subroutine intcumprod(id)
 c     WARNING : argument of this interface may be passed by reference
       INCLUDE 'stack.h'
       integer id(nsiz)
       integer mtlbsel
-      integer sel,tops
+      integer sel,tops,type
       integer iadr,sadr
 c     
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 c
-      if(rhs.gt.2) then
+      if(rhs.gt.3) then
          call error(42)
          return
       endif
@@ -42,12 +43,9 @@ c
       endif
 c     
 c     standard matrix case
-      if(rhs.eq.2) then
-         call getorient(top,sel)
-         if(err.gt.0) return
-         top=top-1
-         if(sel.eq.-1) sel=mtlbsel(istk(il0+1),2)
-      endif
+      call  orientandtype(sel,type)
+      if (err.gt.0.or.err1.gt.0) return
+      if(sel.eq.-1) sel=mtlbsel(istk(il0+1),2)
 
       m=istk(il0+1)
       n=istk(il0+2)

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-02-21 15:40+0000\n"
+"PO-Revision-Date: 2010-07-10 21:01+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -268,7 +268,7 @@ msgstr "%s: Количество строк в %s не соответствуе�
 
 #, c-format
 msgid "%s: Residual norm = %g\n"
-msgstr "%s: Норма невзяки = %g\n"
+msgstr "%s: Норма невязки = %g\n"
 
 #, c-format
 msgid "%s: Riccati solution inaccurate: equation error = %g.\n"
@@ -756,6 +756,21 @@ msgstr "Частота (Гц)"
 msgid "Gain :"
 msgstr "Приращение :"
 
+msgid "Hall chart"
+msgstr "График Холла"
+
+msgid "Hz"
+msgstr "Гц"
+
+msgid "Im"
+msgstr "Im"
+
+msgid "Im(h(2if))"
+msgstr "Im(h(2if))"
+
+msgid "Im(h(exp(2if*dt)))"
+msgstr "Im(h(exp(2if*dt)))"
+
 msgid "Imaginary axis"
 msgstr "Мнимая ось"
 
@@ -770,7 +785,7 @@ msgstr ""
 "Неразложимые делители собственной частоты и коэффициента затухания "
 "передаточной функции (нажмите левую кнопку мыши ниже)"
 
-msgid "Magnitude (Db)"
+msgid "Magnitude (dB)"
 msgstr "Амплитуда (дБ)"
 
 msgid "Numerator :"
@@ -787,6 +802,15 @@ msgstr "Фаза (градус)"
 
 msgid "Poles"
 msgstr "Полюса"
+
+msgid "Re"
+msgstr "Re"
+
+msgid "Re(h(2if))"
+msgstr "Re(h(2if))"
+
+msgid "Re(h(exp(2if*dt)))"
+msgstr "Re(h(exp(2if*dt)))"
 
 msgid "Real axis"
 msgstr "Вещественная ось"
@@ -809,8 +833,14 @@ msgstr "Нули"
 msgid "asymptotic directions"
 msgstr "асимптотические направления"
 
+msgid "dB"
+msgstr "дБ"
+
 msgid "magnitude(y) (Db)"
 msgstr "амплитуда (у) (дБ)"
+
+msgid "magnitude(y) (dB)"
+msgstr "амплитуда(y) (дБ)"
 
 msgid "open loop poles"
 msgstr "полюса разомкнутой системы"

@@ -5,7 +5,7 @@
   </info>
   <refnamediv>
     <refname>alufunctions</refname>
-    <refpurpose> description des modes de dessin des pixels.  </refpurpose>
+    <refpurpose> description des modes de dessin des pixels. <emphasis role="bold">Fonction obsolète.</emphasis></refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

@@ -60,10 +60,10 @@ MFILECONTENTS=["% i and j do not exist as variables -> Imaginary unit";
 		"      disp(''abcd'')";
 		"    end;";
 		"  end;";
-		"end;"]
+		"end;"];
 
-MFILE=TMPDIR+"/bug857.m"
-SCIFILE=TMPDIR+"/bug857.sci"
+MFILE=TMPDIR+"/bug857.m";
+SCIFILE=TMPDIR+"/bug857.sci";
 
 mputl(MFILECONTENTS,MFILE);
 mfile2sci(MFILE,TMPDIR);
@@ -106,6 +106,6 @@ SCIFILECONTENTSREF=["";
 		"        disp(""abcd"")";
 		"    end;";
 		"  end;";
-		"end;"]
+		"end;"];
 		
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

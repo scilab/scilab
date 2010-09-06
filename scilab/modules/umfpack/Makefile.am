@@ -62,7 +62,6 @@ libsciumfpack_la_LIBADD =  $(top_builddir)/modules/mexlib/libmx.la \
 $(top_builddir)/modules/mexlib/libmat.la \
 $(top_builddir)/modules/sparse/libscisparse.la \
 $(top_builddir)/modules/mexlib/libmex.la \
-$(top_builddir)/modules/core/libscicore.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 

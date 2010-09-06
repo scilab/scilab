@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-06-29 10:00+0100\n"
+"Revision-Date: 2010-08-17 12:09+0100\n"
 
 # File: macros/ilib_gen_Make_unix.sci, line: 263
 #, c-format
@@ -269,7 +269,7 @@ msgstr ""
 msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
 msgstr ""
 #
-# File: macros/windows/dlwGenerateMakefile.sci, line: 22
+# File: macros/windows/dlwGenerateMakefile.sci, line: 23
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
 msgstr ""
@@ -279,7 +279,7 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 #
-# File: macros/windows/dlwGenerateMakefile.sci, line: 64
+# File: macros/windows/dlwGenerateMakefile.sci, line: 65
 # File: macros/ilib_gen_Make.sci, line: 63
 # File: macros/ilib_gen_loader.sci, line: 68
 #, c-format

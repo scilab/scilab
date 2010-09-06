@@ -22,7 +22,7 @@ c
          return
       endif
       if(rhs.ne.1) then
-         if(rhs.eq.2) then
+         if(rhs.ge.2) then
             call funnam(ids(1,pt+1),'sum',iadr(lstk(top-rhs+1)))
             fun=-1
             return

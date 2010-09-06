@@ -5,11 +5,17 @@
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
 
-loadScicosLibs;
+loadScicosLibs();
+
+prot = funcprot();
+funcprot(0);
+
 // Stubbing the x_mdialog method
 function [result]=x_mdialog(dialog_title,labels,default_inputs_vector)
 	result = default_inputs_vector;
 endfunction
+
+funcprot(prot);
 
 // variables
 hdf5FileToLoad = TMPDIR + "/hdf5FileToLoad.h5";

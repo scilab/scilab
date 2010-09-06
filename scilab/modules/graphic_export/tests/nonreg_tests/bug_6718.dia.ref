@@ -16,10 +16,6 @@
 // the export returns an error (eps) or ignore the text (svg)
 scf(0);
 plot(1:10)
- 
- WARNING: Due to your configuration limitations, Scilab switched in a m 
-      ode where mixing uicontrols and graphics is not available. Type " 
-      help usecanvas" for more information.                             
 a=gca();
 a.title.text='a<b';//similar pb with a.x_label.text='a<b'
 filename=TMPDIR+"/nonreg_test_bug4944.eps";

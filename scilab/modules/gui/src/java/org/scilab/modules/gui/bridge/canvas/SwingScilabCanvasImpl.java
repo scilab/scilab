@@ -116,9 +116,9 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 		    // Only OpenGL version newer than 2.1.7873 works
 		    // available through ATI 8.8 installer
 		    // and driver newer than 8.52.3
-		    Debug.DEBUG("SwingScilabCanvasImpl", "majorVersion = "+majorVersion+
-			    " minorVersion = "+minorVersion+
-			    " releaseVersion = "+releaseVersion);
+			Debug.DEBUG("SwingScilabCanvasImpl", "majorVersion = "
+					+ majorVersion + " minorVersion = " + minorVersion
+					+ " releaseVersion = " + releaseVersion);
 		    if (majorVersion > 2
 			    || majorVersion == 2 && minorVersion > 1
 			    || majorVersion == 2 && minorVersion == 1 && releaseVersion >= 7873) {

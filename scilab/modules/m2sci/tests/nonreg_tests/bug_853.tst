@@ -41,10 +41,10 @@ MFILECONTENTS=["dir_name=''path'';";
 "dir_target=dir(dir_name);";
 "for i=1:10";
 "  RC(i)=[dir_name,''\'',dir_target(i).name];";
-"end"]
+"end"];
 
-MFILE=TMPDIR+"/bug853.m"
-SCIFILE=TMPDIR+"/bug853.sci"
+MFILE=TMPDIR+"/bug853.m";
+SCIFILE=TMPDIR+"/bug853.sci";
 
 mputl(MFILECONTENTS,MFILE);
 mfile2sci(MFILE,TMPDIR);
@@ -61,7 +61,7 @@ SCIFILECONTENTSREF=["";
 		"dir_target = mtlb_dir(dir_name);";
 		"for i = 1:10";
 		"  RC(1,i) = dir_name+""\""+dir_target(i).name;";
-		"end;"]
+		"end;"];
 
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

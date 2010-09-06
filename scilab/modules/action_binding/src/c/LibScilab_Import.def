@@ -2,18 +2,14 @@ LIBRARY    LibScilab.dll
 
 
 EXPORTS
- LaunchScilab
- iop_
- com_
- ;core_f
- sigbas_
- StoreCommand
- StoreCommandWithFlag
- ;
- callFunctionFromGateway
- putlhsvar_
- freeArrayOfString
- checklhs_
- checkrhs_
- intersci_
- 
+;core
+com_
+intersci_
+callFunctionFromGateway
+StoreCommand
+StoreCommandWithFlag
+sigbas_
+freeArrayOfString
+checklhs_
+checkrhs_
+putlhsvar_

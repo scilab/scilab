@@ -552,22 +552,6 @@
 		<Filter
 			Name="Libraries Dependencies"
 			>
-			<File
-				RelativePath="..\..\..\..\bin\fileio.lib"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\bin\libjvm.lib"
-				>
-			</File>
-			<File
-				RelativePath=".\libshell.lib"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\bin\MALLOC.lib"
-				>
-			</File>
 			<Filter
 				Name="Imports"
 				>

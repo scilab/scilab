@@ -149,8 +149,8 @@ public final class CommandHistory {
         * @retour true or false
         */
         private static boolean isBeginSessionLine(String lineToAppend) {
-                if (lineToAppend.startsWith(SESSION_BEGINNING) &&
-                    lineToAppend.endsWith(SESSION_ENDING)) {
+                if (lineToAppend.startsWith(SESSION_BEGINNING)
+                        && lineToAppend.endsWith(SESSION_ENDING)) {
                        return true;
                     }
                return false;

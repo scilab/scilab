@@ -130,8 +130,6 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscipvm_la_rootdir)" \
 	"$(DESTDIR)$(libscipvm_la_sci_gatewaydir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-@PVM_FALSE@libscipvm_la_DEPENDENCIES =  \
-@PVM_FALSE@	$(top_builddir)/modules/core/libscicore.la
 @PVM_TRUE@libscipvm_la_DEPENDENCIES = $(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__libscipvm_la_SOURCES_DIST = src/nopvm/nopvm.c \
 	src/c/pvm_proc_ctrl.c src/c/sci_tools.c src/c/pvm_recv.c \
@@ -539,9 +537,7 @@ top_srcdir = @top_srcdir@
 # For the code check (splint)
 @PVM_TRUE@CHECK_SRC = $(PVM_C_SOURCES) $(GATEWAY_C_SOURCES)
 @PVM_TRUE@INCLUDE_FLAGS = $(libscipvm_la_CFLAGS)
-@PVM_FALSE@libscipvm_la_LIBADD = \
-@PVM_FALSE@	$(top_builddir)/modules/core/libscicore.la
-
+@PVM_FALSE@libscipvm_la_LIBADD = 
 @PVM_TRUE@libscipvm_la_LIBADD = $(top_builddir)/modules/output_stream/libscioutput_stream.la
 @PVM_FALSE@modulename = pvm
 @PVM_TRUE@modulename = pvm
@@ -1592,9 +1588,11 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 @PVM_TRUE@	fi
 
 ########### CLEAN ###################
-# Clean macros and help (generated automatically by Scilab)
-@NEED_JAVA_TRUE@@PVM_TRUE@clean-local: clean-java clean-macros
-@NEED_JAVA_FALSE@@PVM_TRUE@clean-local: clean-macros
+# Clean help (generated automatically by Scilab)
+# It used to clean the macro (clean-macros) but this was causing
+# make clean && make to fail Scilab startup
+@NEED_JAVA_TRUE@@PVM_TRUE@clean-local: clean-java
+@NEED_JAVA_FALSE@@PVM_TRUE@clean-local:
 
 @PVM_TRUE@distclean-local:
 @PVM_TRUE@	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*
@@ -1784,9 +1782,11 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 @PVM_FALSE@	fi
 
 ########### CLEAN ###################
-# Clean macros and help (generated automatically by Scilab)
-@NEED_JAVA_TRUE@@PVM_FALSE@clean-local: clean-java clean-macros
-@NEED_JAVA_FALSE@@PVM_FALSE@clean-local: clean-macros
+# Clean help (generated automatically by Scilab)
+# It used to clean the macro (clean-macros) but this was causing
+# make clean && make to fail Scilab startup
+@NEED_JAVA_TRUE@@PVM_FALSE@clean-local: clean-java
+@NEED_JAVA_FALSE@@PVM_FALSE@clean-local:
 
 @PVM_FALSE@distclean-local:
 @PVM_FALSE@	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*

@@ -22,26 +22,27 @@
 #include "PromptToHome.h"
 #include "MALLOC.h"
 #include "GetCharWithoutOutput.h"
+#include "ConsoleIsWaitingForInput.h"
 /*--------------------------------------------------------------------------*/
 char *ConsoleRead(void)
 {
-	return NULL;
+    return NULL;
 }
 /*--------------------------------------------------------------------------*/
 int ConsolePrintf(char *line)
 {
-	int len = 0;
-	return len;
+    int len = 0;
+    return len;
 }
 /*--------------------------------------------------------------------------*/
 BOOL ClearConsolePart(int nbLines)
 {
-	return FALSE;
+    return FALSE;
 }
 /*--------------------------------------------------------------------------*/
 BOOL ClearConsole(void)
 {
-	return FALSE;
+    return FALSE;
 }
 /*--------------------------------------------------------------------------*/
 int GetCharWithoutOutput()
@@ -51,21 +52,21 @@ int GetCharWithoutOutput()
 /*--------------------------------------------------------------------------*/
 BOOL PromptToHome(void)
 {
-	return FALSE;
+    return FALSE;
 }
 /*--------------------------------------------------------------------------*/
 BOOL SetConsolePrompt(char *Sci_prompt)
 {
-	return FALSE;
+    return FALSE;
 }
 /*--------------------------------------------------------------------------*/
 BOOL InitializeConsole(void)
 {
-	return FALSE;
+    return FALSE;
 }
 /*--------------------------------------------------------------------------*/
 BOOL ConsoleIsWaitingForInput(void)
 {
-	return FALSE;
+    return FALSE;
 }
 /*--------------------------------------------------------------------------*/

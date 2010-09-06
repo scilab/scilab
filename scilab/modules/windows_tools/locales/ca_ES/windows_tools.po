@@ -8,17 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-20 16:50+0100\n"
-"PO-Revision-Date: 2009-10-23 10:30+0000\n"
+"PO-Revision-Date: 2010-07-29 10:08+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build Unknown)\n"
-
-#, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s : Error d'assignació de memòria.\n"
 
 #, c-format
 msgid "%s: Cannot open Windows registry.\n"
@@ -33,8 +29,16 @@ msgid "%s: Cannot query value of this type.\n"
 msgstr "%s: No es pot consultar un valor d'aquest tipus.\n"
 
 #, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Error de memòria.\n"
+
+#, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: No hi ha més memòria.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Nombre incorrecte d'arguments d'entrada: Han de ser %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
@@ -94,11 +98,11 @@ msgstr "Només per a Microsoft Windows."
 msgid "Only on Windows Mode, not in Console Mode.\n"
 msgstr "Només en mode Windows, no en mode finestra.\n"
 
-msgid "Powershell not found."
-msgstr "No s'ha trobat el Powershell"
+msgid "Please verify your powershell command without Scilab."
+msgstr "Verifiqueu la vostra ordre de Powershell sense l'Scilab."
 
-msgid "Verify your script without Scilab."
-msgstr "Verifiqueu el vostre script sense l'Scilab."
+msgid "Powershell 1.0 not found."
+msgstr "No s'ha trobat el Powershell 1.0."
 
 msgid "see help"
 msgstr "Veieu l'ajuda"

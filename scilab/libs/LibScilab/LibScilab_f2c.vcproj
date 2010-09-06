@@ -37,9 +37,6 @@
 				ExecutionBucket="2"
 			/>
 			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
 				Name="VCMIDLTool"
 				ExecutionBucket="4"
 				PreprocessorDefinitions="_DEBUG"
@@ -48,6 +45,9 @@
 				TargetEnvironment="1"
 				TypeLibraryName="$(ConfigurationName)/LibScilab.tlb"
 				HeaderFileName=""
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
@@ -64,6 +64,9 @@
 				SuppressStartupBanner="true"
 				DebugInformationFormat="3"
 				CompileAs="0"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -83,6 +86,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
+				AdditionalOptions="/FORCE:MULTIPLE "
 				OutputFile="../../bin/LibScilab.dll"
 				LinkIncremental="0"
 				SuppressStartupBanner="true"
@@ -146,6 +150,9 @@
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
 				Name="VCMIDLTool"
 				PreprocessorDefinitions="_DEBUG"
 				MkTypLibCompatible="true"
@@ -183,6 +190,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalOptions="/FORCE:MULTIPLE "
 				OutputFile="../../bin/LibScilab.dll"
 				LinkIncremental="0"
 				SuppressStartupBanner="true"
@@ -238,9 +246,6 @@
 				ExecutionBucket="2"
 			/>
 			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
 				Name="VCMIDLTool"
 				ExecutionBucket="4"
 				PreprocessorDefinitions="NDEBUG"
@@ -249,6 +254,9 @@
 				TargetEnvironment="1"
 				TypeLibraryName="$(ConfigurationName)/LibScilab.tlb"
 				HeaderFileName=""
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
@@ -272,6 +280,9 @@
 				CompileAs="0"
 			/>
 			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
 				Name="VCManagedResourceCompilerTool"
 				ExecutionBucket="6"
 			/>
@@ -289,6 +300,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
+				AdditionalOptions="/FORCE:MULTIPLE "
 				OutputFile="../../bin/LibScilab.dll"
 				LinkIncremental="0"
 				SuppressStartupBanner="true"
@@ -297,7 +309,6 @@
 				ModuleDefinitionFile="..\LibScilab.def"
 				ProgramDatabaseFile="$(ConfigurationName)/LibScilab.pdb"
 				SubSystem="2"
-
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
 				SupportUnloadOfDelayLoadedDLL="true"
@@ -354,6 +365,9 @@
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
 				Name="VCMIDLTool"
 				PreprocessorDefinitions="NDEBUG"
 				MkTypLibCompatible="true"
@@ -396,6 +410,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalOptions="/FORCE:MULTIPLE "
 				OutputFile="../../bin/LibScilab.dll"
 				LinkIncremental="0"
 				SuppressStartupBanner="true"
@@ -404,7 +419,6 @@
 				ModuleDefinitionFile="..\LibScilab.def"
 				ProgramDatabaseFile="$(ConfigurationName)/LibScilab.pdb"
 				SubSystem="2"
-
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
 				SupportUnloadOfDelayLoadedDLL="true"

@@ -43,9 +43,6 @@ msgid "%s: Wrong type for input argument #%d: %s expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso %s.\n"
 
-msgid "Generating loader.sce...\n"
-msgstr "Generazione di loader.sce in corso...\n"
-
 #, c-format
 msgid "No variable %s_ref in reference file"
 msgstr "Nessuna variabile %s_ref è presente nel file di riferimento"

@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-04-29 18:38+0000\n"
-"Last-Translator: DiegoJ <diegojromerolopez@gmail.com>\n"
+"PO-Revision-Date: 2010-08-02 20:40+0000\n"
+"Last-Translator: Federico Vera <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,20 +17,95 @@ msgstr ""
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
+msgid "%s is not a valid name, please change the title of the diagram."
+msgstr ""
+"%s no es un nombre válido, por favor cambie el nombre del título del "
+"diagrama."
+
+#, c-format
+msgid "%s: All paths defined by %s variable must exist.\n"
+msgstr "%s: Todas las rutas definidas por la variable %s deben existir.\n"
+
+#, c-format
 msgid "%s: File ''%s'' does not exist.\n"
 msgstr "%s: El archivo ''%s'' no existe.\n"
+
+#, c-format
+msgid "%s: File ''%s'' is not a valid palette file.\n"
+msgstr "%s: El archivo ''%s'' no es un archivo de paleta válido.\n"
+
+#, c-format
+msgid "%s: Found ''%s'' instead of a block.\n"
+msgstr "%s: Se encontró ''%s'' en lugar de un bloque.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: No hay más memoria.\n"
 
 #, c-format
+msgid ""
+"%s: The directory %s cannot been created, please check if you have write "
+"access on this directory.\n"
+msgstr ""
+"%s: No puede crearse el directorio %s, por favor revise si tiene acceso de "
+"escritura en este directorio.\n"
+
+#, c-format
+msgid "%s: Unable to export %s to %s.\n"
+msgstr "%s: Imposible exportar %s a %s.\n"
+
+#, c-format
+msgid "%s: Unable to export the palette to hdf5.\n"
+msgstr "%s: imposible exportar la paleta a hdf5.\n"
+
+#, c-format
+msgid "%s: Unable to generate the image %s.\n"
+msgstr "%s: Imposible generar la imagen %s.\n"
+
+#, c-format
+msgid "%s: Unable to generate the palette icon : %s already exists.\n"
+msgstr "%s: Imposible generar el icono de la paleta: %s ya existe.\n"
+
+#, c-format
 msgid "%s: Unable to import xcos file %s.\n"
 msgstr "%s: Imposible importar el archivo %s de xcos.\n"
 
 #, c-format
+msgid "%s: Unable to load block from %s: hdf5 file expected.\n"
+msgstr ""
+"%s: Imposible cargar el bloque desde %s: Se esperaba un archivo hdf5.\n"
+
+#, c-format
+msgid "%s: Unable to load block from %s: no `scs_m'' variable found.\n"
+msgstr ""
+"%s: Imposible cargar el bloque desde %s: no se encontró la variable `scs_m'' "
+".\n"
+
+#, c-format
+msgid "%s: Wrong input argument %s: svg or gif expected.\n"
+msgstr "%s: Argumento de entrada %s inválido: Se esperaba svg o gif.\n"
+
+#, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s: Número incorrecto de argumento(s) de entrada: Se esperaban %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s Número incorrecto de argumentos de entrada: Se esperaban %d\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Número incorrecto de argumentos de entrada: Se esperaban de %d a %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s: Número incorrecto de argumentos de salida: Se esperaban %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Número incorrecto de argumentos de salida: Se esperaban de %d a %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
@@ -42,6 +117,11 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s variable: A string array expected.\n"
+msgstr ""
+"%s: Tipo incorrecto de la variable %s: Se esperaba un arreglo de strings.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: String or diagram structure expected"
@@ -56,9 +136,105 @@ msgstr ""
 "diagrama"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un booleano.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba una vector de "
+"strings.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: Block type expected.\n"
+msgstr ""
+"%s: Tipo del argumento de entrada %s incorrecto: Se esperaba un bloque.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: File not found.\n"
+msgstr ""
+"%s: Tipo del argumento de entrada %s incorrecto: Se esperaba un bloque.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: boolean expected.\n"
+msgstr ""
+"%s: Tipo del argumento de entrada %s incorrecto: se esperaba un booleano.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: diagram type expected.\n"
+msgstr ""
+"%s: Tipo del argumento de entrada %s incorrecto: Se esperaba un diagrama.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument %s: directory path string expected.\n"
+msgstr ""
+"%s: Tipo del argumento de entrada %s incorrecto: se esperaba un string con "
+"la ruta al directorio.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: full path string expected.\n"
+msgstr ""
+"%s: Tipo del argumento de entrada %s incorrecto: Se esperaba un string con "
+"la ruta completa.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument %s: function as string or Block type or "
+"full path string expected.\n"
+msgstr ""
+"%s: Tipo del argumento de entrada %s incorrecto: Se esperaba una función "
+"como string, o una ruta completa, o un bloque.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: handle type expected.\n"
+msgstr ""
+"%s: Tipo del argumento de entrada %s incorrecto: Se esperaba un manejador.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: palette type expected.\n"
+msgstr ""
+"%s: Tipo del argumento de entrada %s incorrecto: Se esperaba una paleta.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument %s: palette type or path expected.\n"
+msgstr ""
+"%s: Tipo del argumento de entrada %s incorrecto: Se esperaba una ruta o una "
+"paleta.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: path string expected.\n"
+msgstr ""
+"%s: Tipo del argumento de entrada %s incorrecto: Se esperaba una ruta.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string expected.\n"
+msgstr ""
+"%s: Tipo del argumento de entrada %s incorrecto: Se esperaba un string.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string or struct expected.\n"
+msgstr ""
+"%s: Tipo del argumento de entrada %s incorrecto: Se esperaba un string o un "
+"struct.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string type expected.\n"
+msgstr ""
+"%s: Tipo del argumento de entrada %s incorrecto: Se esperaba un string.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string vector expected.\n"
+msgstr ""
+"%s: Tipo del argumento de entrada %s incorrecto: Se esperaba un vector de "
+"strings.\n"
 
 msgid "?"
 msgstr "¿?"
@@ -71,6 +247,9 @@ msgstr "Acerca de Xcos"
 
 msgid "Add to"
 msgstr "Añadir a"
+
+msgid "Add to a new category"
+msgstr "Añadir a una nueva categoría"
 
 msgid "Add to new diagram"
 msgstr "Añadir a un nuevo diagrama"
@@ -90,6 +269,9 @@ msgstr "Ayuda de Bloque"
 msgid "Block Parameters"
 msgstr "Parámetros del Bloque"
 
+msgid "Bold"
+msgstr "Negrita"
+
 msgid "Border Color"
 msgstr "Color de Borde"
 
@@ -101,6 +283,9 @@ msgstr "CVODE"
 
 msgid "Cancel"
 msgstr "Cancelar"
+
+msgid "Category"
+msgstr "Categoría"
 
 msgid "Center"
 msgstr "Centrar"
@@ -135,9 +320,6 @@ msgstr "Compilar"
 msgid "Continuous time systems"
 msgstr "Sistemas de tiempo continuo"
 
-msgid "Copy"
-msgstr "Copiar"
-
 msgid "Copyright (c) 1989-2009 (INRIA)"
 msgstr "Copyright (c) 1989-2009 (INRIA)"
 
@@ -147,11 +329,11 @@ msgstr "No se pudo guardar el diagrama."
 msgid "Create"
 msgstr "Crear"
 
+msgid "Create a category"
+msgstr "Crear categoría"
+
 msgid "Customize"
 msgstr "Personalizar"
-
-msgid "Cut"
-msgstr "Cortar"
 
 msgid "Debug block calls without trace"
 msgstr "Depurar llamadas de bloques sin traza"
@@ -206,6 +388,9 @@ msgstr "Editable"
 msgid "Electrical"
 msgstr "Eléctrica"
 
+msgid "Enable"
+msgstr "Activar"
+
 msgid "Event handling"
 msgstr "Gestión de eventos"
 
@@ -226,6 +411,9 @@ msgstr ""
 
 msgid "Export"
 msgstr "Exportar"
+
+msgid "Export in progress"
+msgstr "Realizando exportación"
 
 msgid "Export to XML"
 msgstr "Exportar a XML"
@@ -252,6 +440,15 @@ msgstr "Ajustar el diagrama a la vista"
 msgid "Flip"
 msgstr "Voltear"
 
+msgid "Font name"
+msgstr "Nombre de la tipografía"
+
+msgid "Font size"
+msgstr "Tamaño de letra"
+
+msgid "Font style"
+msgstr "Estilo de la tipografía"
+
 msgid "Format"
 msgstr "Formato"
 
@@ -272,9 +469,6 @@ msgstr "Ir a %s"
 
 msgid "Grid"
 msgstr "Cuadrilla"
-
-msgid "Group"
-msgstr "Agrupar"
 
 msgid "Horizontal"
 msgstr "Horizontal"
@@ -315,8 +509,8 @@ msgstr "Tolerancia absoluta del integrador"
 msgid "Integrator relative tolerance"
 msgstr "Tolerancia relativa del integrador"
 
-msgid "Invert selection"
-msgstr "Invertir selección"
+msgid "Italic"
+msgstr "Itálica"
 
 msgid "Left"
 msgstr "Izquierda"
@@ -360,6 +554,9 @@ msgstr "Medio"
 msgid "Mirror"
 msgstr "Reflejar"
 
+msgid "Modelica initialize"
+msgstr "Inicializar Modelica"
+
 msgid "Move Down"
 msgstr "Bajar"
 
@@ -393,11 +590,11 @@ msgstr "Abrir"
 msgid "Palette browser"
 msgstr "Explorador de paletas"
 
+msgid "Palette name"
+msgstr "Nombre de la paleta"
+
 msgid "Palettes"
 msgstr "Paletas"
-
-msgid "Paste"
-msgstr "Pegar"
 
 msgid "Per block execution trace and Debug block calls"
 msgstr "Ejecución de traza y depuración por bloque"
@@ -423,9 +620,6 @@ msgstr "Escalamiento en tiempo real"
 msgid "Recent Files"
 msgstr "Archivos Recientes"
 
-msgid "Redo"
-msgstr "Rehacer"
-
 msgid "Region to superblock"
 msgstr "Región al superbloque"
 
@@ -443,9 +637,6 @@ msgstr "Rotar"
 
 msgid "Rows"
 msgstr "Filas"
-
-msgid "Same command executed again"
-msgstr "Ejecutar el comando nuevamente"
 
 msgid "Save"
 msgstr "Guardar"
@@ -467,7 +658,7 @@ msgstr "Archivo de Scicos"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr "El módulo «%s» de Scilab está deactivado en modo -nogui o -nwni.\n"
+msgstr "El módulo «%s» de Scilab está desactivado en modo -nogui o -nwni.\n"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
@@ -475,9 +666,6 @@ msgstr "El módulo '%s' de Scilab no está instalado.\n"
 
 msgid "Scilab file"
 msgstr "Archivo de Scilab"
-
-msgid "Select all"
-msgstr "Seleccionar todo"
 
 msgid "Set Context"
 msgstr "Asignar Contexto"
@@ -491,6 +679,9 @@ msgstr "Asignar parámetros de bloque"
 msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
 msgstr ""
 "Seleccionar el nivel de depuración (0,1,2,3) <br/> ejecuta scicos_debug(n)"
+
+msgid "Setting up Modelica Compiler."
+msgstr "Configurando el compilador de Modelica."
 
 msgid "Setup"
 msgstr "Configuración"
@@ -534,6 +725,12 @@ msgstr "Directo"
 msgid "Superblock mask"
 msgstr "Máscara del superbloque"
 
+msgid "Text Color"
+msgstr "Color de Texto"
+
+msgid "Text settings"
+msgstr "Configuración de texto"
+
 msgid "The Scicos libraries are not loaded"
 msgstr "Las bibliotecas Scicos no están cargadas"
 
@@ -547,6 +744,20 @@ msgstr ""
 "El archivo %s no existe\n"
 " ¿Desea crearlo?"
 
+msgid ""
+"The user configuration file (xcos.xml) is invalid.<BR> Switching to the "
+"default one."
+msgstr ""
+"El archivo de configuración de usuario (xcos.xml) es inválido.<BR> Cambiando "
+"al predeterminado."
+
+msgid ""
+"The user palette configuration file (palettes.xml) is invalid.<BR> Switching "
+"to the default one."
+msgstr ""
+"El archivo de configuración de paleta de usuario (palettes.xml) es "
+"inválido.<BR> Cambiando al predeterminado."
+
 msgid "Thermo-Hydraulics"
 msgstr "Termo-Hidráulica"
 
@@ -559,11 +770,35 @@ msgstr "Herramientas"
 msgid "Top"
 msgstr "Superior"
 
-msgid "UnGroup"
-msgstr "Desagrupar"
+msgid "Unable to delete "
+msgstr "Imposible de eliminar "
 
-msgid "Unable to communicate with the interpreter"
-msgstr "Incapaz de comunicar con el interprete"
+msgid "Unable to import %s .\n"
+msgstr "Imposible importar %s .\n"
+
+msgid "Unable to load block from %s ."
+msgstr "Imposible cargar el bloque desde %s ."
+
+msgid ""
+"Unable to load the Batik library. \n"
+"Expecting version %s ; Getting version %s ."
+msgstr ""
+"Imposible cargar la biblioteca Batik. \n"
+"Se esperaba la versión %s ; pero se obtuvo la %s ."
+
+msgid ""
+"Unable to load the HDF5 library. \n"
+"Expecting version %s ; Getting version %s ."
+msgstr ""
+"Imposible cargar la biblioteca HDF5. \n"
+"Se esperaba la versión %s ; pero se obtuvo la %s ."
+
+msgid ""
+"Unable to load the jgraphx library.\n"
+"Expecting version %s ; Getting version %s ."
+msgstr ""
+"Imposible cargar la biblioteca jgraphx. \n"
+"Se esperaba la versión %s ; pero se obtuvo la %s ."
 
 #, c-format
 msgid "Unable to open %s"
@@ -572,9 +807,6 @@ msgstr "No se puede abrir %s"
 #, c-format
 msgid "Unable to simulate %s"
 msgstr "No se puede simular %s"
-
-msgid "Undo"
-msgstr "Deshacer"
 
 msgid "Unknown Diagram Version : "
 msgstr "Versión de diagrama desconocida: "
@@ -621,6 +853,9 @@ msgstr "WinTitle"
 msgid "Window title"
 msgstr "Título de la ventana"
 
+msgid "Wrong input argument \"%s\": invalid tree path.\n"
+msgstr "Argumento de entrada \"%s\" incorrecto: Ruta inválida de árbol.\n"
+
 msgid "Xcos"
 msgstr "Xcos"
 
@@ -649,12 +884,6 @@ msgstr ""
 
 msgid "Zero crossing detection"
 msgstr "Detección de cruce por cero"
-
-msgid "Zoom In"
-msgstr "Acercar"
-
-msgid "Zoom Out"
-msgstr "Alejar"
 
 msgid "control port must be connected to command port"
 msgstr "Un puerto de control debe estar conectado a un puerto de comandos"

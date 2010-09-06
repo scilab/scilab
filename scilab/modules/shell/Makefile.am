@@ -75,7 +75,6 @@ INCLUDE_FLAGS = $(libscishell_la_CFLAGS)
 ## Libraries necessary
 # cyclic dep $(top_builddir)/modules/console/libsciconsole.la
 libscishell_la_LIBADD =   	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
-							$(top_builddir)/modules/core/libscicore.la \
 							$(top_builddir)/libs/MALLOC/libscimalloc.la \
 							$(top_builddir)/modules/output_stream/libscioutput_stream.la 
 # $(top_builddir)/modules/completion/libscicompletion.la

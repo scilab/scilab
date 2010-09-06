@@ -18,7 +18,7 @@
 /* desc : function to retrieve in Scilab the axes_reverse field of        */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
-
+#include <string.h>
 #include "getHandleProperty.h"
 #include "returnProperty.h"
 #include "Scierror.h"

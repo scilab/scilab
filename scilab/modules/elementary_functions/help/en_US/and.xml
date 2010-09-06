@@ -41,9 +41,11 @@ b=and(A,'c'), b=and(A,2)
 
     <para><literal>and(A)</literal> is the logical AND of elements of the
     boolean matrix <literal>A</literal>. <literal>and(A)</literal> returns
-    <literal>%T</literal> ("true") iff all entries of <literal>A</literal> are
+    <literal>%T</literal> ("true") if all entries of <literal>A</literal> are
     <literal>%T</literal>.</para>
-
+    <para>
+      <literal>and([])</literal> returns <literal>%T</literal>.
+    </para>
     <para><literal>y=and(A,'r')</literal> (or, equivalently,
     <literal>y=and(A,1)</literal>) is the rowwise and. It returns in each
     entry of the row vector <literal>y</literal> the and of the rows of

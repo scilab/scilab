@@ -43,18 +43,6 @@ public final class SplitBlock extends BasicBlock {
 	public SplitBlock() {
 		super();
 	}
-
-	/**
-	 * @param label
-	 *            block label
-	 */
-	protected SplitBlock(String label) {
-		// SPLIT_f <-> lsplit
-		// CLKSPLIT_f <-> split
-		// IMPSPLIT_F <-> limpsplit
-		this();
-		setValue(label);
-	}
 	
 	/**
 	 * Connect the splitblock to a source and 2 targets.

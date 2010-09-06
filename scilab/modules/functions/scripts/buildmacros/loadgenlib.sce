@@ -13,7 +13,6 @@
 
 listmacrostoload = ['listfiles','fileio'
   '%c_a_c','overloading';
-  'mputl','fileio';
   'genlib','functions';
   ];
 

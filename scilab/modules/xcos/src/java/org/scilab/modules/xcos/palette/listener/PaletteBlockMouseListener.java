@@ -47,6 +47,7 @@ public final class PaletteBlockMouseListener implements MouseListener {
 	 * Load and perform display update on mouse click
 	 * @param e The associated event 
 	 */
+	@Override
 	public void mouseClicked(MouseEvent e) {
 		if ((e.getClickCount() == 1 && SwingUtilities.isRightMouseButton(e))
 				|| e.isPopupTrigger()
@@ -108,7 +109,7 @@ public final class PaletteBlockMouseListener implements MouseListener {
 				@Override
 				public void callBack() {
 					try {
-						ScilabInterpreterManagement.synchronousScilabExec("help", control.getModel().getName());
+						ScilabInterpreterManagement.asynchronousScilabExec(null, "help", control.getModel().getName());
 					} catch (InterpreterException e) {
 						e.printStackTrace();
 					}
@@ -130,8 +131,17 @@ public final class PaletteBlockMouseListener implements MouseListener {
 	private BasicBlock loadAndSetupBlock(
 			final PaletteBlockCtrl control) {
 		BasicBlock current = control.loadBlock();
+		
 		current.getGeometry().setX(BLOCK_DEFAULT_POSITION);
 		current.getGeometry().setY(BLOCK_DEFAULT_POSITION);
+		
+		PaletteBlockCtrl.INTERNAL_GRAPH.addCell(current);
+		PaletteBlockCtrl.INTERNAL_GRAPH.selectAll();
+		
+		PaletteBlockCtrl.INTERNAL_GRAPH.updateCellSize(current);
+		
+		PaletteBlockCtrl.INTERNAL_GRAPH.removeCells();
+		
 		return current;
 	}
 
@@ -139,18 +149,21 @@ public final class PaletteBlockMouseListener implements MouseListener {
 	 * Not used
 	 * @param e Not used
 	 */
+	@Override
 	public void mouseEntered(MouseEvent e) { }
 
 	/**
 	 * Not used
 	 * @param e Not used
 	 */
+	@Override
 	public void mouseExited(MouseEvent e) { }
 
 	/**
 	 * Select on mouse press
 	 * @param e The associated event
 	 */
+	@Override
 	public void mousePressed(MouseEvent e) {
 		PaletteBlockView view = (PaletteBlockView) e.getSource();
 		view.getController().setSelected(true);
@@ -160,5 +173,6 @@ public final class PaletteBlockMouseListener implements MouseListener {
 	 * Not used
 	 * @param e Not used
 	 */
+	@Override
 	public void mouseReleased(MouseEvent e) { }
 }

@@ -47,8 +47,8 @@ import com.mxgraph.model.mxIGraphModel;
 //CSOFF: ClassFanOutComplexity
 public class DiagramElement extends AbstractElement<XcosDiagram> {
 	private static final List<String> BASE_FIELD_NAMES = asList(
-			"diagram", "props", "objs", "version");
-	private static final String VERSION = "scicos4.2";
+			"diagram", "props", "objs");
+	private static final String VERSION = "scicos4.3";
 	
 	private static final int OBJS_INDEX = 2;
 	private static final int VERSION_INDEX = 3;
@@ -78,7 +78,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 	private static final ScilabTList DIAGRAM_OPTIONS = new ScilabTList(
 			OPTS_FIELDS,
 		Arrays.asList(
-			new ScilabList( // 3D
+			new ScilabList(// 3D
 				Arrays.asList(
 					new ScilabBoolean(true),
 					new ScilabDouble(33)
@@ -86,7 +86,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 			),
 			new ScilabDouble(new double[][] {{8, 1}}), // Background
 			new ScilabDouble(new double[][] {{1, 5}}), // Link
-			new ScilabList( // ID
+			new ScilabList(// ID
 				Arrays.asList(
 					new ScilabDouble(new double[][] {{5, 1}}),
 					new ScilabDouble(new double[][] {{4, 1}})
@@ -148,6 +148,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 			diag = new XcosDiagram();
 		}
 		
+		diag = beforeDecode(element, diag);
 		diag.getModel().beginUpdate();
 		
 		// Validate the base field
@@ -162,6 +163,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 		decodeDiagram(diag);
 		
 		diag.getModel().endUpdate();
+		diag = afterDecode(element, diag);
 		
 		// Rethrow the version exception after a decode. 
 		if (wrongVersion != null) {
@@ -169,6 +171,20 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 		}
 		
 		return diag;
+	}
+	
+	/**
+	 * Reassociate the children with the current diagram.
+	 * 
+	 * @param element the encoded element
+	 * @param into the target instance
+	 * @return the modified target instance
+	 * @see org.scilab.modules.xcos.io.scicos.AbstractElement#afterDecode(org.scilab.modules.types.scilabTypes.ScilabType, java.lang.Object)
+	 */
+	@Override
+	public XcosDiagram afterDecode(ScilabType element, XcosDiagram into) {
+		into.setChildrenParentDiagram();
+		return super.afterDecode(element, into);
 	}
 
 	/**
@@ -257,7 +273,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 		final double minY = -minimalYaxisValue + V_MARGIN;
 		defaultParent.setGeometry(new mxGeometry(H_MARGIN, minY, 0, 0));
 	}
-
+	
 	/**
 	 * Check that the current ScilabType is a valid Diagram.
 	 * 
@@ -321,6 +337,12 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 
 		// the last field must contain the scicos version used
 		field++;
+		
+		// doesn't check version if not present (optional field)
+		if (base.size() <= field) {
+			return;
+		}
+		
 		if (!(base.get(field) instanceof ScilabString)) {
 			throw new WrongTypeException(BASE_FIELD_NAMES, field);
 		}
@@ -379,12 +401,16 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 			base = allocateElement();
 		}
 		
+		base = (ScilabMList) beforeEncode(from, base);
+		
 		field++;
 		fillParams(from, field);
 		
 		field++;
 		fillObjs(from, field);
 
+		base = (ScilabMList) afterEncode(from, base);
+		
 		return base;
 	}
 

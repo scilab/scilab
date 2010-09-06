@@ -78,6 +78,7 @@ public class PaletteView extends JPanel implements Scrollable {
 	 * @return The prefered Scrollable dimension
 	 * @see javax.swing.Scrollable#getPreferredScrollableViewportSize()
 	 */
+	@Override
 	public Dimension getPreferredScrollableViewportSize() {
 		return getPreferredSize();
 	}
@@ -95,6 +96,7 @@ public class PaletteView extends JPanel implements Scrollable {
 	 * @see javax.swing.Scrollable#getScrollableBlockIncrement(java.awt.Rectangle,
 	 *      int, int)
 	 */
+	@Override
 	public int getScrollableBlockIncrement(Rectangle visibleRect,
 			int orientation, int direction) {
 		if (orientation == SwingConstants.VERTICAL) {
@@ -110,6 +112,7 @@ public class PaletteView extends JPanel implements Scrollable {
 	 * @return always false
 	 * @see javax.swing.Scrollable#getScrollableTracksViewportHeight()
 	 */
+	@Override
 	public boolean getScrollableTracksViewportHeight() {
 		return false;
 	}
@@ -118,6 +121,7 @@ public class PaletteView extends JPanel implements Scrollable {
 	 * @return always true
 	 * @see javax.swing.Scrollable#getScrollableTracksViewportWidth()
 	 */
+	@Override
 	public boolean getScrollableTracksViewportWidth() {
 		return true;
 	}
@@ -135,6 +139,7 @@ public class PaletteView extends JPanel implements Scrollable {
 	 * @see javax.swing.Scrollable#getScrollableUnitIncrement(java.awt.Rectangle,
 	 *      int, int)
 	 */
+	@Override
 	public int getScrollableUnitIncrement(Rectangle visibleRect,
 			int orientation, int direction) {
 		if (orientation == SwingConstants.VERTICAL) {

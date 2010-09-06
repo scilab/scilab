@@ -30,8 +30,8 @@ import org.scilab.modules.xcos.palette.model.PaletteBlock;
 import org.scilab.modules.xcos.palette.model.PaletteNode;
 import org.scilab.modules.xcos.palette.model.PreLoaded;
 import org.scilab.modules.xcos.palette.view.PaletteConfiguratorListView;
-import org.scilab.modules.xcos.palette.view.PaletteView;
 import org.scilab.modules.xcos.palette.view.PaletteConfiguratorListView.PaletteListModel;
+import org.scilab.modules.xcos.palette.view.PaletteView;
 
 /**
  * Implement the tree selection listener 
@@ -39,7 +39,7 @@ import org.scilab.modules.xcos.palette.view.PaletteConfiguratorListView.PaletteL
 public class PaletteManagerTreeSelectionListener implements
 		TreeSelectionListener {
 
-	private JScrollPane panel;
+	private final JScrollPane panel;
 	
 	/**
 	 * Default constructor
@@ -54,6 +54,7 @@ public class PaletteManagerTreeSelectionListener implements
 	 * @param tree The source event
 	 * @see javax.swing.event.TreeSelectionListener#valueChanged(javax.swing.event.TreeSelectionEvent)
 	 */
+	@Override
 	public void valueChanged(TreeSelectionEvent tree) {
 		JTree component = (JTree) tree.getSource();
 		JSplitPane splitPanel = (JSplitPane) component.getParent().getParent().getParent();

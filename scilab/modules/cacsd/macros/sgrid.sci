@@ -14,6 +14,10 @@ function [] = sgrid(zeta,wn,col)
 // sgrid(Z,Wn)
 // sgrid('new') 
   [lhs,rhs]=argn(0)
+  fig=gcf();
+  immediate_drawing=fig.immediate_drawing;
+  fig.immediate_drawing="off";
+  
   axes=gca();
   select rhs
   case 0 then 
@@ -75,5 +79,5 @@ function [] = sgrid(zeta,wn,col)
   axes.clip_state = "clipgrf";
   xnumb(re(:,$)',im(:,$)',zeta);
   axes.clip_state = "off";
-  
+   fig.immediate_drawing=immediate_drawing;
 endfunction

@@ -351,6 +351,9 @@
           (Except for Frame and Slider styles). For ListBoxes and PopupMenus,
           the value can be a vector of string or a string where the items are
           separated by a "|". For Text uicontrols, this string can contain HTML code to format the text.</para>
+	  <para>For Pushbutton or Text uicontrols, if the text is enclosed between two $ (dollar sign), then it will be 
+	  considered as a LaTeX expression, and if it is enclosed between &lt; and &gt;, it will be considered
+	  as a MathML one.</para>
         </listitem>
       </varlistentry>
 
@@ -532,6 +535,19 @@ endfunction
 res = uicontrol(mymlist,'property');
  ]]></programlisting>
 
+    <para>Pushbuttons or Text can have LaTeX or MathML label</para>
+    <programlisting role="example"><![CDATA[ 
+// LaTeX
+f=figure();
+h=uicontrol(f,"style","pushbutton","string","$x^2$");
+// MathML
+hh=uicontrol(f,"style","pushbutton","string","<msup><mi>x</mi><mn>2</mn></msup>");
+hh.Position = h.Position + [50, 0, 0, 0];
+// Text
+h=uicontrol(f,"Style","text","string","$\Gamma(s)=\int_0^\infty t^{s-1}\mathrm{e}^{-t}\,\mathrm{d}t$");
+// If it is too little
+h.fontsize=20
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -545,6 +561,8 @@ res = uicontrol(mymlist,'property');
       <member><link linkend="get">get</link></member>
 
       <member><link linkend="uimenu">uimenu</link></member>
+
+      <member><link linkend="math_rendering_features_in_graphic">LaTeX and MathML</link></member>
     </simplelist>
   </refsection>
 

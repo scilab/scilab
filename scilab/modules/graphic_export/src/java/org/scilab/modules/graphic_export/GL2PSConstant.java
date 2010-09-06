@@ -20,7 +20,7 @@ public class GL2PSConstant {
   * Constructor. Should not be called.
   */
  protected GL2PSConstant() {
-	throw new UnsupportedOperationException();
+    throw new UnsupportedOperationException();
  }
   
  /**

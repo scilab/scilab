@@ -29,7 +29,7 @@ The option is "disableUnderMode" and can be:
 
 <!-- Mandatory on startup -->
 
-<path value="$SCILAB/thirdparty/flexdock-0.5.1.jar" load="startup"/>
+<path value="$SCILAB/thirdparty/flexdock-0.5.2.jar" load="startup"/>
 <path value="$SCILAB/thirdparty/jrosetta-API.jar" load="startup" disableUnderMode="NW"/>
 <path value="$SCILAB/thirdparty/jrosetta-engine.jar" load="startup"/>
 <path value="$SCILAB/thirdparty/skinlf.jar" load="startup"/>
@@ -59,12 +59,9 @@ The option is "disableUnderMode" and can be:
 	<load on="HDF5"/>
 </path>
 
-<path value="$SCILAB/thirdparty/jgraphx.jar" load="onUse">
-        <load on="XCos"/>
-</path>
-
 <!-- Temp. loaded at startup -->
 <path value="$SCILAB/modules/types/jar/org.scilab.modules.types.jar"/>
+<path value="$SCILAB/modules/output_stream/jar/org.scilab.modules.output_stream.jar" load="startup"/>
 <path value="$SCILAB/modules/hdf5/jar/org.scilab.modules.hdf5.jar" load="startup"/>
 
 <path value="$SCILAB/modules/xcos/jar/org.scilab.modules.xcos.jar" load="onUse">
@@ -122,14 +119,14 @@ The option is "disableUnderMode" and can be:
 	<load on="pdf_ps_eps_graphic_export"/>
 </path>	
 
-<path value="$SCILAB/thirdparty/jlatexmath-0.9.2.jar" load="onUse">
+<path value="$SCILAB/thirdparty/jlatexmath-0.9.3.jar" load="onUse">
 	<load on="documentationGeneration"/>
 	<load on="graphics_latex_textrendering"/>
 	<load on="pdf_ps_eps_graphic_export"/>
 	<load on="XCos"/>
 </path>	
 
-<path value="$SCILAB/thirdparty/jlatexmath-fop-0.9.2.jar" load="onUse">
+<path value="$SCILAB/thirdparty/jlatexmath-fop-0.9.3.jar" load="onUse">
 	<load on="documentationGeneration"/>
 	<load on="pdf_ps_eps_graphic_export"/>
 </path>	
@@ -141,6 +138,7 @@ The option is "disableUnderMode" and can be:
 
 <!-- Mandatory on startup -->
 <path value="$SCILAB/modules/jvm/jar/org.scilab.modules.jvm.jar"/>
+<path value="$SCILAB/modules/commons/jar/org.scilab.modules.commons.jar"/>
 
 <!-- Console GUI dep -->
 <path value="$SCILAB/modules/shell/jar/org.scilab.modules.shell.jar" disableUnderMode="NW"/>
@@ -159,6 +157,7 @@ The option is "disableUnderMode" and can be:
 <path value="$SCILAB/modules/renderer/jar/org.scilab.modules.renderer.jar"/>
 
 <path value="$SCILAB/modules/graphic_export/jar/org.scilab.modules.graphic_export.jar"/>
+<path value="$SCILAB/modules/core/jar/org.scilab.modules.core.jar"/>
 
 <!-- scinotes module -->
 <path value="$SCILAB/modules/scinotes/jar/org.scilab.modules.scinotes.jar" load="onUse">

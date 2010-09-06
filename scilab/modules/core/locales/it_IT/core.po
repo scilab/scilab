@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-02-27 18:16+0100\n"
-"PO-Revision-Date: 2010-05-05 14:16+0000\n"
+"PO-Revision-Date: 2010-07-19 11:52+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -43,10 +43,6 @@ msgstr " sono in uso %10d elementi al di fuori di %10d.\n"
 #, c-format
 msgid "%f: No more space to store string arguments.\n"
 msgstr "%f: Non c'è più spazio per sistemare gli argomenti della stringa.\n"
-
-#, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s : Errore di allocazione della memoria\n"
 
 #, c-format
 msgid "%s and %s arguments"
@@ -132,24 +128,8 @@ msgstr ""
 "intersiz.\n"
 
 #, c-format
-msgid ""
-"%s: Cannot alloc more memory.\n"
-"Try gstacksize('max').\n"
-msgstr ""
-"%s: Non è possibile allocare più memoria.\n"
-"Provare gstacksize('max').\n"
-
-#, c-format
 msgid "%s: Cannot allocate memory.\n"
 msgstr "%s: Non è possibile allocare della memoria.\n"
-
-#, c-format
-msgid ""
-"%s: Cannot allocate more memory.\n"
-"Try stacksize('max').\n"
-msgstr ""
-"%s: Impossibile allocare altra memoria.\n"
-"Provare con stacksize('max').\n"
 
 #, c-format
 msgid "%s: File doesn''t exist: %s"
@@ -170,6 +150,10 @@ msgstr "%s: il valore ''%s'' non è valido.\n"
 #, c-format
 msgid "%s: Invalid module name : %s.\n"
 msgstr "%s: Nome di modulo non valido: %s.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Errore di allocazione della memoria.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -263,14 +247,8 @@ msgid "%s: Wrong %s value %d instead of %d.\n"
 msgstr "%s: %s è sbagliato ha valore %d invece di %d.\n"
 
 #, c-format
-msgid "%s: Wrong file VERSION %s.\n"
-msgstr ""
-"%s: Il file VERSION %s è sbagliato\n"
-".\n"
-
-#, c-format
-msgid "%s: Wrong file VERSION in %s.\n"
-msgstr "%s: C'è un file VERSION sbagliato un %s.\n"
+msgid "%s: Wrong file version.xml %s.\n"
+msgstr "%s: La versione %s del file .xml è sbagliata.\n"
 
 #, c-format
 msgid "%s: Wrong fromwhat value %s.\n"
@@ -365,14 +343,20 @@ msgstr ""
 "stringa.\n"
 
 #, c-format
-msgid "%s: Wrong size for inputs arguments.\n"
-msgstr "%s: Gli argomenti in ingresso hanno una dimensione sbagliata.\n"
+msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso uno "
+"scalare.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso uno scalare, "
-"\"%s\" o \"%s\".\n"
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"stringa.\n"
+
+#, c-format
+msgid "%s: Wrong size for inputs arguments.\n"
+msgstr "%s: Gli argomenti in ingresso hanno una dimensione sbagliata.\n"
 
 #, c-format
 msgid ""
@@ -623,19 +607,6 @@ msgstr ""
 "compilata.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Named variable expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
-"variabile nominata.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Scalar, '%s' or '%s' expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso uno scalare, "
-"\"%s\" o \"%s\".\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso uno scalare, "
@@ -644,7 +615,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo errato: era attesa una stringa.\n"
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"stringa.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
@@ -770,13 +742,6 @@ msgid ""
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere "
 "nell'intervallo [%d, %d].\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Scalar, '%s' or '%s' expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso uno "
-"scalare, \"%s\" o \"%s\".\n"
 
 #, c-format
 msgid ""
@@ -923,6 +888,17 @@ msgstr "Errore"
 
 msgid "Error returning tlist, memory full.\n"
 msgstr "Errore nel restituire tlist, la memoria è piena.\n"
+
+msgid ""
+"Error(x) is deprecated and will be removed in Scilab 5.4. Please consider "
+"SciError(x).\n"
+msgstr ""
+"Error(x) è deprecata e sarà rimossa in Scilab 5.4. Considerare invece "
+"SciError(x).\n"
+
+#, c-format
+msgid "Error: Could not create %s: %s\n"
+msgstr "Errore: impossibile creare %s: %s\n"
 
 #, c-format
 msgid "Error: Could not parse file %s\n"
@@ -1091,6 +1067,14 @@ msgid "Unexpected opcode, please report into the Scilab bug tracker."
 msgstr ""
 "C'è un opcode non previsto, per favore segnalatelo nel registro dei bug di "
 "Scilab."
+
+#, c-format
+msgid "Unqueuing %s - No option.\n"
+msgstr "Rimozione di %s dalla coda - Nessuna opzione.\n"
+
+#, c-format
+msgid "Unqueuing %s - seq.\n"
+msgstr "Rimozione di %s dalla coda - seq.\n"
 
 msgid "User variables are:"
 msgstr "Le variabili dell'utente sono:"

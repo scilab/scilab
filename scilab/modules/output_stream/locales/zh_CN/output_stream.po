@@ -63,10 +63,6 @@ msgid "%dth argument type must be boolean.\n"
 msgstr "第%d个参数的类型必须为布尔型。\n"
 
 #, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s：内存申请错误。\n"
-
-#, c-format
 msgid "%s and %s must have equal dimensions.\n"
 msgstr "%s和%s必须同样大小。\n"
 
@@ -152,6 +148,10 @@ msgstr "%s：输入参数应该有同样的正式变量名。\n"
 #, c-format
 msgid "%s: Loop on two orders detected.\n"
 msgstr "%s：检测到两阶循环。\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -484,9 +484,6 @@ msgstr "%s：共享的档案（archive）没有载入。\n"
 msgid "%s: window dimensions have been set less than 2^16.\n"
 msgstr "%s：窗口维数已被设置为少于2^16。\n"
 
-msgid "'o' format not allowed."
-msgstr "不允许使用 'o' 格式。"
-
 msgid "A sparse matrix entry is defined with two different values.\n"
 msgstr ""
 
@@ -580,12 +577,9 @@ msgstr "单位阵变量在上下文中没有定义。\n"
 #, c-format
 msgid ""
 "Fatal error!!! Your variables have been saved in the file : %s\n"
-"Bad call to a scilab function ?\n"
-"Otherwise, send a bug report to :\n"
+"                                   Bad call to a scilab function ?\n"
+"                                   Otherwise, send a bug report to :\n"
 msgstr ""
-"严重错误!!!变量已经被报存在文件中：%s\n"
-"调用一个Scilab函数错误？\n"
-"或者，发送一个bug报告到：\n"
 
 #, c-format
 msgid "File \"%s\" already exists or directory write access denied.\n"
@@ -1023,6 +1017,9 @@ msgstr "函数未定义。\n"
 
 msgid "Undefined operation for the given operands.\n"
 msgstr "给定命令的操作未定义。\n"
+
+msgid "Undefined variable.\n"
+msgstr ""
 
 #, c-format
 msgid "Undefined variable: %s\n"

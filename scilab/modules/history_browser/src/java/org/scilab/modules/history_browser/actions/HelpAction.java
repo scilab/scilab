@@ -20,6 +20,7 @@ import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 import org.scilab.modules.history_browser.CommandHistoryMessages;
+import org.scilab.modules.action_binding.InterpreterManagement;
 
 /**
  * Manage Help Actions
@@ -93,6 +94,6 @@ public final class HelpAction extends CallBack {
 	 * @see org.scilab.modules.gui.events.callback.CallBack#callBack()
 	 */
 	public void callBack() {
-		System.out.println(LABEL);
+		InterpreterManagement.putCommandInScilabQueue("help();");
 	}
 }

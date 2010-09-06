@@ -20,6 +20,18 @@
     all errors are cleared (default case)</para>
   </refsection>
   <refsection>
+    <title>Examples</title>
+
+    <programlisting role = "example"><![CDATA[
+a=1;
+b=undefinedvariable+a;
+lasterror()
+b=undefinedvariable+a;
+errclear()
+lasterror()
+]]></programlisting>
+  </refsection>
+  <refsection>
     <title>See Also</title>
     <simplelist type="inline">
       <member>

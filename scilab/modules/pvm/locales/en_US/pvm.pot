@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-06-29 10:00+0100\n"
+"Revision-Date: 2010-08-17 12:09+0100\n"
 
 # File: sci_gateway/c/sci_pvm_config.c, line: 39
 # File: sci_gateway/c/sci_pvm_tasks.c, line: 45
@@ -41,14 +41,10 @@ msgstr ""
 msgid "%s: No such file or directory.\n"
 msgstr ""
 #
+# File: sci_gateway/c/sci_pvm_bcast.c, line: 52
 # File: sci_gateway/c/sci_pvm_send.c, line: 53
 #, c-format
 msgid "%s: Unknown or not yet implemented type.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_pvm_bcast.c, line: 52
-#, c-format
-msgid "%s: Unknown type or not yet implemented.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_pvm_error_mode.c, line: 43
@@ -57,10 +53,6 @@ msgid "%s: Wrong first input argument: '%s' or '%s' expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_pvm_bcast.c, line: 50
-#, c-format
-msgid "%s: work space (stacksize) is too small.\n"
-msgstr ""
-#
 # File: sci_gateway/c/sci_pvm_send.c, line: 51
 #, c-format
 msgid "%s: workspace (stacksize) is too small.\n"

@@ -1,5 +1,6 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
+c Copyright (C) DIGITEO - 2010 - Allan CORNET
 c 
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
@@ -17,15 +18,6 @@ c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 c
-      if (lhs .ne. 2) then
-         call error(41)
-         return
-      endif
-      if(rhs.ne.1) then
-         call error(39)
-         return
-      endif
-      
       il=iadr(lstk(top))
       ilr=il
       if(istk(il).lt.0) then
@@ -37,11 +29,6 @@ c
       m=istk(il+1)
       n=istk(il+2)
       it=istk(il+3)
-      if(it.eq.1) then
-         buf='frexp: real data only'
-         call error(9999)
-         return
-      endif
       if(istk(il).eq.1) then
          mn=m*n
          l=sadr(il+4)

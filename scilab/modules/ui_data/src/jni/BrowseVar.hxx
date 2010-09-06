@@ -110,7 +110,7 @@ static void openVariableBrowser(JavaVM * jvm_);
 
 static void openVariableBrowser(JavaVM * jvm_, char ** columnNames, int columnNamesSize);
 
-static void openVariableBrowser(JavaVM * jvm_, char ** columnNames, int columnNamesSize, char ** variableNames, int variableNamesSize, int* variableBytes, int variableBytesSize, int* variableTypes, int variableTypesSize, char ** variableStandard, int variableStandardSize);
+static void openVariableBrowser(JavaVM * jvm_, char ** columnNames, int columnNamesSize, char ** variableNames, int variableNamesSize, int* variableBytes, int variableBytesSize, int* variableTypes, int variableTypesSize, char ** variableVisibility, int variableVisibilitySize);
 
 static void closeVariableBrowser(JavaVM * jvm_);
 

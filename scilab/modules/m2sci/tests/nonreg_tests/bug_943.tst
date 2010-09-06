@@ -41,10 +41,10 @@ MFILECONTENTS=["a=10;";
 		"if     (a==1), J = [1 ; 2 ; 3] ; G = [4 ; 5 ; 6] ;";
 		"elseif (a==2), J = [1 ; 2 ; 3] ; G = [4 ; 5 ; 6] ;";
 		"elseif (a==3), J = [1 ; 2 ; 3] ; G = [4 ; 5 ; 6] ;";
-		"else, J = [1 ; 2 ; 3] ; G = [4 ; 5 ; 6] ; end,"]
+		"else, J = [1 ; 2 ; 3] ; G = [4 ; 5 ; 6] ; end,"];
 
-MFILE=TMPDIR+"/bug943.m"
-SCIFILE=TMPDIR+"/bug943.sci"
+MFILE=TMPDIR+"/bug943.m";
+SCIFILE=TMPDIR+"/bug943.sci";
 
 mputl(MFILECONTENTS,MFILE);
 mfile2sci(MFILE,TMPDIR);
@@ -61,6 +61,6 @@ SCIFILECONTENTSREF=["";
 		"if a==1 then J = [1;2;3]; G = [4;5;6];";
 		"elseif a==2 then J = [1;2;3]; G = [4;5;6];";
 		"elseif a==3 then J = [1;2;3]; G = [4;5;6];";
-		"else J = [1;2;3]; G = [4;5;6];end;"]
+		"else J = [1;2;3]; G = [4;5;6];end;"];
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

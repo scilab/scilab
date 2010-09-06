@@ -20,5 +20,14 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为字符串。\n"
 
+msgid "A null assignment can have only one non-colon index"
+msgstr ""
+
 msgid "Affection of a string in a matrix of numbers is not implemented."
+msgstr ""
+
+msgid "Incorrect assignment.\n"
+msgstr ""
+
+msgid "Invalid index.\n"
 msgstr ""

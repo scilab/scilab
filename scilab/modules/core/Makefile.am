@@ -375,4 +375,9 @@ includes/getversion.h \
 includes/warningmode.h \
 includes/Thread_Wrapper.h
 
+if GUI
+USEANT=1
+endif
+
+
 include $(top_srcdir)/Makefile.incl.am

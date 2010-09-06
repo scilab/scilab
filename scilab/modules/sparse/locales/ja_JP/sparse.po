@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-11-16 16:23+0000\n"
-"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"PO-Revision-Date: 2010-07-03 01:28+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -185,14 +185,9 @@ msgstr "%1$s: 入力引数で不正な数: %3$d への %2$d を想定します�
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr "%s: 入力引数で不正な数: 最低でも %d を想定します。\n"
 
-#
-# File: macros/qmr.sci, line: 143
-# File: macros/qmr.sci, line: 194
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Must be same size as input argument "
-"#%d"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 入力引数 #%d と同じサイズでなくてはいけません"
+msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
+msgstr "%s: 入力引数  #%d の大きさが間違っています: 列ベクトルを指定してください.\n"
 
 #
 # File: macros/gmres.sci, line: 128
@@ -205,6 +200,10 @@ msgid ""
 "%s: Wrong size for input argument #%d: Same size as input argument #%d "
 "expected.\n"
 msgstr "%s: 入力引数 #%d で不正なサイズ: 入力引数 #%d として同じサイズを想定します。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
+msgstr "%s: 入力引数  #%d の大きさが間違っています: スカラーを指定してください.\n"
 
 #
 # File: macros/gmres.sci, line: 66
@@ -229,23 +228,6 @@ msgstr "%s: 入力引数 #%d で不正な型です。\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 列ベクトルを想定します。\n"
-
-#
-# File: macros/gmres.sci, line: 75
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Same size as input argument #%d "
-"expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 入力引数 #%d として同じサイズを想定します。\n"
-
-#
-# File: macros/gmres.sci, line: 145
-# File: macros/qmr.sci, line: 118
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Same size as the input argument #%d "
-"expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 入力引数 #%d として同じサイズを想定します。\n"
 
 #
 # File: macros/gmres.sci, line: 83
@@ -282,6 +264,12 @@ msgid ""
 "%s: Wrong type for input argument #%d: Transpose of the function %s "
 "expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 関数 %s の置き換えを想定します。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for size argument #%d: Same size as input argument #%d "
+"expected.\n"
+msgstr "%s: 入力引数  #%d の大きさが間違っています: 入力引数 #%d と同じ大きさを指定してください.\n"
 
 #
 # File: macros/pcg.sci, line: 176

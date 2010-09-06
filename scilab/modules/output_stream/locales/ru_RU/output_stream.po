@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: output_stream-ru\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-01-30 18:01+0100\n"
-"PO-Revision-Date: 2010-04-14 21:06+0000\n"
+"PO-Revision-Date: 2010-07-11 21:48+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
@@ -63,10 +63,6 @@ msgstr "%d: логический блок уже используется.\n"
 #, c-format
 msgid "%dth argument type must be boolean.\n"
 msgstr "Тип %d-го параметра должен быть логическим.\n"
-
-#, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s: Ошибка выделения памяти.\n"
 
 #, c-format
 msgid "%s and %s must have equal dimensions.\n"
@@ -159,6 +155,10 @@ msgstr ""
 #, c-format
 msgid "%s: Loop on two orders detected.\n"
 msgstr "%s: Обнаружен цикл между двумя порядками..\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Ошибка выделения памяти.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -526,9 +526,6 @@ msgstr "%s: разделяемый архив не было загружен.\n"
 msgid "%s: window dimensions have been set less than 2^16.\n"
 msgstr "%s: измерения окна были установлены меньшими 2^16.\n"
 
-msgid "'o' format not allowed."
-msgstr "Недопустимый формат «o»."
-
 msgid "A sparse matrix entry is defined with two different values.\n"
 msgstr "Элемент разреженной матрицы был задан двумя разными значениями.\n"
 
@@ -626,12 +623,12 @@ msgstr "Переменная окна (eye variable) не определена �
 #, c-format
 msgid ""
 "Fatal error!!! Your variables have been saved in the file : %s\n"
-"Bad call to a scilab function ?\n"
-"Otherwise, send a bug report to :\n"
+"                                   Bad call to a scilab function ?\n"
+"                                   Otherwise, send a bug report to :\n"
 msgstr ""
-"Критическая ошибка!!! Ваши переменные были сохранены в файл : %s\n"
-"Плохой вызов функции scilab ?\n"
-"В противном случае отправьте информацию об ошибке :\n"
+"Критическая ошибка!!! Ваши переменные были сохранены в следующий файл: %s\n"
+"                                   Неправильный вызов функции Scilab?\n"
+"                                   Иначе, сообщите об ошибке по адресу:\n"
 
 #, c-format
 msgid "File \"%s\" already exists or directory write access denied.\n"
@@ -1081,6 +1078,9 @@ msgstr "Неопределённая функция.\n"
 
 msgid "Undefined operation for the given operands.\n"
 msgstr "Операция для заданных операндов не определена.\n"
+
+msgid "Undefined variable.\n"
+msgstr "Неопределённая переменная.\n"
 
 #, c-format
 msgid "Undefined variable: %s\n"

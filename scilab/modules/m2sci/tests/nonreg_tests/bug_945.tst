@@ -21,10 +21,10 @@
 //    Test.m leads to Test.sci (obviously wrong)
 //    Test2.m leads to Test2.sci
 
-MFILECONTENTS=["x(1) = 0.;";"x(2) = 0.;";"y = zeros (2,1);";"y(1) = 0.;";"y(2) = 0.;"]
+MFILECONTENTS=["x(1) = 0.;";"x(2) = 0.;";"y = zeros (2,1);";"y(1) = 0.;";"y(2) = 0.;"];
 
-MFILE=TMPDIR+"/bug945.m"
-SCIFILE=TMPDIR+"/bug945.sci"
+MFILE=TMPDIR+"/bug945.m";
+SCIFILE=TMPDIR+"/bug945.sci";
 
 mputl(MFILECONTENTS,MFILE);
 mfile2sci(MFILE,TMPDIR);
@@ -41,6 +41,6 @@ SCIFILECONTENTSREF=["";
 		"x(1,2) = 0;";
 		"y = zeros(2,1);";
 		"y(1) = 0;";
-		"y = mtlb_i(y,2,0);"]
+		"y = mtlb_i(y,2,0);"];
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

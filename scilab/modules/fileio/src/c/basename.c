@@ -46,20 +46,3 @@ wchar_t *basenameW(wchar_t *wcfullfilename, BOOL bExpand)
 	}
 	return basename_str;
 }
-/*--------------------------------------------------------------------------*/
-char *basename(char *fullfilename, BOOL bExpand)
-{
-	char *result = NULL;
-	if (fullfilename)
-	{
-		wchar_t *wcresult = NULL;
-		wchar_t *wcfullfilename = to_wide_string(fullfilename);
-
-		wcresult = basenameW(wcfullfilename, bExpand);
-		result = wide_string_to_UTF8(wcresult);
-		if (wcfullfilename) {FREE(wcfullfilename); wcfullfilename = NULL;}
-		if (wcresult) {FREE(wcresult); wcresult = NULL;}
-	}
-	return result;
-}
-/*--------------------------------------------------------------------------*/

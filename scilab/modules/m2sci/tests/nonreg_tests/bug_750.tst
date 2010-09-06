@@ -21,10 +21,10 @@
 //
 //    It does not translate. Too bad...
 
-MFILECONTENTS=["t=[];";"cputime;";"t(10)=cputime;"]
+MFILECONTENTS=["t=[];";"cputime;";"t(10)=cputime;"];
 
-MFILE=TMPDIR+"/bug750.m"
-SCIFILE=TMPDIR+"/bug750.sci"
+MFILE=TMPDIR+"/bug750.m";
+SCIFILE=TMPDIR+"/bug750.sci";
 
 mputl(MFILECONTENTS,MFILE);
 mfile2sci(MFILE,TMPDIR);
@@ -39,7 +39,7 @@ SCIFILECONTENTSREF=["";
 		"";
 		"t = [];";
 		"timer;";
-		"t(1,10) = timer();"]
+		"t(1,10) = timer();"];
 
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

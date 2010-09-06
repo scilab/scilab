@@ -28,6 +28,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
@@ -44,9 +46,15 @@ import javax.swing.KeyStroke;
 import javax.swing.tree.TreePath;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 import javax.swing.text.Element;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.DocumentEvent;
+import javax.swing.event.TreeExpansionListener;
+import javax.swing.event.TreeExpansionEvent;
+
+import org.flexdock.docking.event.DockingEvent;
+import org.flexdock.docking.defaults.DockingSplitPane;
 
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.window.ScilabWindow;
@@ -70,23 +78,32 @@ import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.SciNotesGUI;
+import org.scilab.modules.scinotes.SciNotes;
 
 /**
  *
  * @author Calixte DENIZET
  */
-public class NavigatorWindow extends SwingScilabTab implements Tab, DocumentListener {
+public final class NavigatorWindow extends SwingScilabTab implements Tab, DocumentListener,
+                                                               TreeExpansionListener {
 
     private static final String EMPTY = "";
 
+    private static JTree functionNavigator;
+    private static DefaultTreeModel model;
+    private static ScilabEditorPane pane;
+    private static ScilabDocument doc;
+    private static NavigatorWindow navigator;
+    private static boolean alphaOrder;
+    private static Map<ScilabEditorPane, DefaultMutableTreeNode> mapNode = new HashMap();
+    private static Map<ScilabEditorPane, TreePath> mapFunPath = new HashMap();
+    private static Map<ScilabEditorPane, TreePath> mapAnchorPath = new HashMap();
+
     private Window parentWindow;
-    private ScilabEditorPane pane;
-    private ScilabDocument doc;
     private boolean isAbsolute = true;
     private boolean lineNumberActive = true;
-    private boolean alphaOrder;
+    private boolean locked;
 
-    private JTree functionNavigator;
     private JSeparator jSeparator1;
     private JLabel labelGotoLine;
     private JLabel labelNumerotation;
@@ -96,15 +113,54 @@ public class NavigatorWindow extends SwingScilabTab implements Tab, DocumentList
 
     /**
      * Creates new Navigator Window
-     * @param pane the pane associated with this navigator
      */
-    public NavigatorWindow(ScilabEditorPane pane) {
+    private NavigatorWindow() {
         super(SciNotesMessages.CODE_NAVIGATOR);
-        this.pane = pane;
-        pane.setNavigator(this);
-        doc = (ScilabDocument) pane.getDocument();
-        doc.addDocumentListener(this);
         initComponents();
+        functionNavigator.addTreeExpansionListener(this);
+    }
+
+    /**
+     * @param doc the doc to update
+     */
+    public static void updateNavigator(ScilabDocument doc) {
+        if (navigator != null) {
+            if (NavigatorWindow.doc != null) {
+                NavigatorWindow.doc.removeDocumentListener(navigator);
+            }
+
+            NavigatorWindow.doc = doc;
+            NavigatorWindow.pane = doc.getEditorPane();
+
+            doc.addDocumentListener(navigator);
+
+            if (!mapNode.containsKey(pane)) {
+                initTree();
+            } else {
+                updateTree();
+            }
+        }
+    }
+
+    /**
+     * Update the navigator
+     */
+    public static void updateNavigator() {
+        if (navigator != null) {
+            updateTree();
+        }
+    }
+
+    /**
+     * @param doc to use
+     */
+    public static void activateNavigator(ScilabDocument doc) {
+        initTree();
+        if (navigator == null) {
+            navigator = new NavigatorWindow();
+        }
+
+        updateNavigator(doc);
     }
 
     /**
@@ -143,6 +199,12 @@ public class NavigatorWindow extends SwingScilabTab implements Tab, DocumentList
         setToolBar(toolBarToAdd);
     }
 
+    public static void closeCurrent() {
+        if (navigator != null) {
+            navigator.closeNavigator();
+        }
+    }
+
     /**
      * Close this Navigator.
      */
@@ -151,9 +213,14 @@ public class NavigatorWindow extends SwingScilabTab implements Tab, DocumentList
         win.removeTab(this);
         setVisible(false);
         close();
-        if (pane != null) {
-            pane.setNavigator(null);
-        }
+        mapNode.clear();
+        mapFunPath.clear();
+        mapAnchorPath.clear();
+        navigator = null;
+        functionNavigator = null;
+        model = null;
+        pane = null;
+        doc = null;
     }
 
     /**
@@ -179,6 +246,109 @@ public class NavigatorWindow extends SwingScilabTab implements Tab, DocumentList
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public void dockingComplete(DockingEvent evt) {
+        super.dockingComplete(evt);
+        /* Trick to always have the editor's toolbar when the navigator
+           is docked in the editor */
+        if (evt.getNewDockingPort().getDockedComponent() instanceof DockingSplitPane) {
+            DockingSplitPane dsp = (DockingSplitPane) evt.getNewDockingPort().getDockedComponent();
+            if (dsp.getElderComponent() instanceof SciNotes) {
+                addToolBar(pane.getEditor().getToolBar());
+            }
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void undockingComplete(DockingEvent evt) {
+        super.undockingComplete(evt);
+        addToolBar(null);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void treeCollapsed(TreeExpansionEvent evt) { }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void treeExpanded(TreeExpansionEvent evt) {
+        if (!locked) {
+            TreePath path = evt.getPath();
+            DefaultMutableTreeNode node = (DefaultMutableTreeNode) path.getLastPathComponent();
+            ScilabEditorPane savePane = pane;
+            ScilabDocument saveDoc = doc;
+            boolean update = false;
+            if (node.getUserObject() instanceof String && SciNotesMessages.FUNCTIONS.equals(node.getUserObject())) {
+                pane = (ScilabEditorPane) ((DefaultMutableTreeNode) node.getParent()).getUserObject();
+                doc = (ScilabDocument) pane.getDocument();
+                locked = true;
+                updateFunctions();
+                functionNavigator.expandPath(mapFunPath.get(pane));
+                update = true;
+            } else if (node.getUserObject() instanceof String && SciNotesMessages.ANCHORS.equals(node.getUserObject())) {
+                pane = (ScilabEditorPane) ((DefaultMutableTreeNode) node.getParent()).getUserObject();
+                doc = (ScilabDocument) pane.getDocument();
+                locked = true;
+                updateAnchors();
+                functionNavigator.expandPath(mapAnchorPath.get(pane));
+                update = true;
+            } else if (node.getUserObject() instanceof ScilabEditorPane) {
+                pane = (ScilabEditorPane) node.getUserObject();
+                doc = (ScilabDocument) pane.getDocument();
+                boolean expanded = functionNavigator.isExpanded(mapFunPath.get(pane));
+                updateFunctions();
+                if (expanded) {
+                    locked = true;
+                    functionNavigator.expandPath(mapFunPath.get(pane));
+                }
+                update = true;
+            }
+            if (update) {
+                pane = savePane;
+                doc = saveDoc;
+            }
+        } else {
+            locked = false;
+        }
+    }
+
+    /**
+     * @param pane the pane which has been splitted
+     * @param split the new pane
+     */
+    public static void changePaneOnSplit(ScilabEditorPane pane, ScilabEditorPane split) {
+        if (mapNode.containsKey(pane)) {
+            DefaultMutableTreeNode node = mapNode.get(pane);
+            node.setUserObject(split);
+            mapNode.put(split, mapNode.get(pane));
+            mapNode.remove(pane);
+            mapFunPath.put(split, mapFunPath.get(pane));
+            mapFunPath.remove(pane);
+            mapAnchorPath.put(split, mapAnchorPath.get(pane));
+            mapAnchorPath.remove(pane);
+        }
+    }
+
+    /**
+     * @param pane to remove
+     */
+    public static void removePane(ScilabEditorPane pane) {
+        if (mapNode.containsKey(pane)) {
+            DefaultMutableTreeNode node = mapNode.get(pane);
+            ((DefaultMutableTreeNode) model.getRoot()).remove(node);
+            model.reload();
+            mapNode.remove(pane);
+            mapFunPath.remove(pane);
+            mapAnchorPath.remove(pane);
+        }
+    }
+
+    /**
      * This method is called from within the constructor to
      * initialize the form.
      */
@@ -191,7 +361,6 @@ public class NavigatorWindow extends SwingScilabTab implements Tab, DocumentList
         jSeparator1 = new JSeparator();
         labelGotoLine = new JLabel();
         scrollPane = new JScrollPane();
-        functionNavigator = new JTree();
 
         parentWindow.setTitle(SciNotesMessages.CODE_NAVIGATOR);
         updateUI();
@@ -234,7 +403,6 @@ public class NavigatorWindow extends SwingScilabTab implements Tab, DocumentList
         labelGotoLine.setText(SciNotesMessages.GO_TO_LINE);
         labelGotoLine.setFocusable(false);
 
-        doc.fillTree(functionNavigator, alphaOrder);
         functionNavigator.addMouseListener(new MouseAdapter() {
                 public void mousePressed(MouseEvent e) {
                     int row = functionNavigator.getRowForLocation(e.getX(), e.getY());
@@ -334,8 +502,8 @@ public class NavigatorWindow extends SwingScilabTab implements Tab, DocumentList
         menu = ScilabMenuItem.createMenuItem();
         menu.setCallback(new CallBack(null) {
                 public void callBack() {
-                    alphaOrder = true;
-                    doc.fillTree(functionNavigator, alphaOrder);
+                    doc.setAlphaOrderInTree(true);
+                    updateTree();
                 }
 
                 public void actionPerformed(ActionEvent e) {
@@ -349,8 +517,8 @@ public class NavigatorWindow extends SwingScilabTab implements Tab, DocumentList
         menu = ScilabMenuItem.createMenuItem();
         menu.setCallback(new CallBack(null) {
                 public void callBack() {
-                    alphaOrder = false;
-                    doc.fillTree(functionNavigator, alphaOrder);
+                    doc.setAlphaOrderInTree(false);
+                    updateTree();
                 }
 
                 public void actionPerformed(ActionEvent e) {
@@ -369,6 +537,112 @@ public class NavigatorWindow extends SwingScilabTab implements Tab, DocumentList
     }
 
     /**
+     * Init the tree
+     */
+    private static void initTree() {
+        mapNode.clear();
+        mapFunPath.clear();
+        List<SciNotes> eds = SciNotes.getSciNotesList();
+        if (functionNavigator == null) {
+            functionNavigator = new JTree();
+        }
+        DefaultMutableTreeNode root = new DefaultMutableTreeNode("root");
+        model = new DefaultTreeModel(root);
+
+        for (SciNotes ed : eds) {
+            int count = ed.getTabPane().getTabCount();
+            for (int i = 0; i < count; i++) {
+                ScilabEditorPane sep = (ScilabEditorPane) ed.getTextPane(i);
+                DefaultMutableTreeNode base = new DefaultMutableTreeNode(sep);
+                mapNode.put(sep, base);
+                DefaultMutableTreeNode funs = new DefaultMutableTreeNode(SciNotesMessages.FUNCTIONS);
+                ScilabDocument scidoc = (ScilabDocument) sep.getDocument();
+                scidoc.fillTreeFuns(funs);
+                DefaultMutableTreeNode anchors = new DefaultMutableTreeNode(SciNotesMessages.ANCHORS);
+                scidoc.fillTreeAnchors(anchors);
+                base.add(funs);
+                base.add(anchors);
+                root.add(base);
+                mapFunPath.put(sep, new TreePath(model.getPathToRoot(funs)));
+                mapAnchorPath.put(sep, new TreePath(model.getPathToRoot(anchors)));
+            }
+        }
+
+        functionNavigator.setModel(model);
+        functionNavigator.setRootVisible(false);
+    }
+
+    /**
+     * Update the tree
+     */
+    private static void updateTree() {
+        DefaultMutableTreeNode current = mapNode.get(pane);
+        TreePath funPath = mapFunPath.get(pane);
+        TreePath anchorPath = mapAnchorPath.get(pane);
+        DefaultMutableTreeNode funs = (DefaultMutableTreeNode) current.getFirstChild();
+        DefaultMutableTreeNode anchors = (DefaultMutableTreeNode) current.getChildAt(1);
+        boolean expFuns = false;
+        boolean expAnchors = false;
+
+        if (functionNavigator.isExpanded(funPath) || funs.isLeaf()) {
+            current.removeAllChildren();
+            funs.removeAllChildren();
+            doc.fillTreeFuns(funs);
+            current.add(funs);
+            current.add(anchors);
+            model.reload(current);
+            expFuns = true;
+        }
+
+        if (functionNavigator.isExpanded(anchorPath) || anchors.isLeaf()) {
+            current.removeAllChildren();
+            anchors.removeAllChildren();
+            doc.fillTreeAnchors(anchors);
+            current.add(funs);
+            current.add(anchors);
+            model.reload(current);
+            expAnchors = true;
+        }
+
+        if (expFuns) {
+            functionNavigator.expandPath(funPath);
+        }
+        if (expAnchors) {
+            functionNavigator.expandPath(anchorPath);
+        }
+    }
+
+    /**
+     * Update a branch Functions in the tree
+     */
+    private static void updateFunctions() {
+        DefaultMutableTreeNode current = mapNode.get(pane);
+        DefaultMutableTreeNode funs = (DefaultMutableTreeNode) current.getFirstChild();
+        DefaultMutableTreeNode anchors = (DefaultMutableTreeNode) current.getChildAt(1);
+        current.removeAllChildren();
+        funs.removeAllChildren();
+        doc.fillTreeFuns(funs);
+        current.add(funs);
+        current.add(anchors);
+        model.reload(current);
+    }
+
+    /**
+     * Update a branch Anchors in the tree
+     */
+    private static void updateAnchors() {
+        DefaultMutableTreeNode current = mapNode.get(pane);
+        DefaultMutableTreeNode funs = (DefaultMutableTreeNode) current.getFirstChild();
+        DefaultMutableTreeNode anchors = (DefaultMutableTreeNode) current.getChildAt(1);
+        current.removeAllChildren();
+        anchors.removeAllChildren();
+        doc.fillTreeAnchors(anchors);
+        current.add(funs);
+        current.add(anchors);
+        model.reload(current);
+    }
+
+    /**
      * Creates a popup menu on right click
      */
     private void createPopupMenuOnJTree() {
@@ -379,20 +653,39 @@ public class NavigatorWindow extends SwingScilabTab implements Tab, DocumentList
 
         alpha.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent actionEvent) {
-                    alphaOrder = true;
-                    doc.fillTree(functionNavigator, alphaOrder);
+                    handleOrder(true);
                 }
             });
         popup.add(alpha);
 
         natural.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent actionEvent) {
-                    alphaOrder = false;
-                    doc.fillTree(functionNavigator, alphaOrder);
+                    handleOrder(false);
                 }
             });
         popup.add(natural);
         functionNavigator.setComponentPopupMenu(popup);
+    }
+
+    /**
+     * @param alpha true for alphabetic order
+     */
+    private static void handleOrder(boolean alpha) {
+        int row = functionNavigator.getMinSelectionRow();
+        if (row == -1) {
+            functionNavigator.setSelectionRow(0);
+            row = 0;
+        }
+
+        TreePath path = functionNavigator.getPathForRow(row);
+        ScilabDocument saveDoc = doc;
+        ScilabEditorPane savePane = pane;
+        doc = getDocumentInNode((DefaultMutableTreeNode) path.getLastPathComponent());
+        pane = getPaneInNode((DefaultMutableTreeNode) path.getLastPathComponent());
+        doc.setAlphaOrderInTree(alpha);
+        updateTree();
+        doc = saveDoc;
+        pane = savePane;
     }
 
     /**
@@ -405,7 +698,7 @@ public class NavigatorWindow extends SwingScilabTab implements Tab, DocumentList
         Element line = root.getElement(root.getElementIndex(offset));
         if (line instanceof ScilabDocument.ScilabLeafElement) {
             ((ScilabDocument.ScilabLeafElement) line).resetType();
-            doc.fillTree(functionNavigator, alphaOrder);
+            updateTree();
         }
     }
 
@@ -417,11 +710,13 @@ public class NavigatorWindow extends SwingScilabTab implements Tab, DocumentList
         TreePath path = functionNavigator.getPathForRow(row);
         if (row != -1) {
             DefaultMutableTreeNode node = (DefaultMutableTreeNode) path.getLastPathComponent();
-            if (node.isLeaf()) {
+            if (node.isLeaf() && node.getUserObject() instanceof ScilabDocument.ScilabLeafElement) {
+                ScilabEditorPane sep = (ScilabEditorPane) ((DefaultMutableTreeNode) node.getParent().getParent()).getUserObject();
                 int pos = ((ScilabDocument.ScilabLeafElement) node.getUserObject()).getStart();
                 if (pos != -1) {
-                    pane.scrollTextToPos(pos);
-                    pos = doc.getDefaultRootElement().getElementIndex(pos) + 1;
+                    sep.getEditor().getTabPane().setSelectedComponent(sep.getParentComponent());
+                    sep.scrollTextToPos(pos);
+                    pos = sep.getDocument().getDefaultRootElement().getElementIndex(pos) + 1;
                     numType.setSelectedItem(SciNotesMessages.ABSOLUTE);
                     lineNumber.setText(Integer.toString(pos));
                 }
@@ -435,22 +730,24 @@ public class NavigatorWindow extends SwingScilabTab implements Tab, DocumentList
     private void updateCaretPosition() {
         int line = 0;
         boolean correct = false;
+        TreePath path = functionNavigator.getSelectionPath();
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode) path.getLastPathComponent();
 
         try {
             line = Integer.decode(lineNumber.getText()).intValue() - 1;
             if (isAbsolute) {
                 correct = true;
                 line = correctLineNumber(line);
+                updatePaneDoc(node);
             } else if (functionNavigator.getRowCount() >= 2) {
                 if (functionNavigator.isSelectionEmpty()) {
                     functionNavigator.setSelectionRow(1);
                 }
 
-                TreePath path = functionNavigator.getSelectionPath();
-                DefaultMutableTreeNode node = (DefaultMutableTreeNode) path.getLastPathComponent();
-                if (node.isLeaf()) {
+                if (node.isLeaf() && node.getUserObject() instanceof ScilabDocument.ScilabLeafElement) {
                     int pos = ((ScilabDocument.ScilabLeafElement) node.getUserObject()).getStart();
                     if (pos != -1) {
+                        updatePaneDoc(node);
                         line += doc.getDefaultRootElement().getElementIndex(pos) + 1;
                         correct = true;
                         line = correctLineNumber(line);
@@ -463,10 +760,50 @@ public class NavigatorWindow extends SwingScilabTab implements Tab, DocumentList
 
         setLineNumberColor(correct);
         if (correct) {
-            int start = doc.getDefaultRootElement().getElement(line).getStartOffset();
-            pane.scrollTextToPos(start);
-            pane.setCaretPosition(start);
+            pane.scrollTextToLineNumber(line, false);
         }
+    }
+
+    /**
+     * @param node corresponding to the pane to select
+     */
+    private static void updatePaneDoc(DefaultMutableTreeNode node) {
+        ScilabEditorPane sep = getPaneInNode(node);
+        if (sep != pane) {
+            pane = sep;
+            doc = (ScilabDocument) pane.getDocument();
+            pane.getEditor().getTabPane().setSelectedComponent(pane.getParentComponent());
+        }
+    }
+
+    /**
+     * @param node corresponding to the document to get
+     * @return the doc
+     */
+    private static ScilabDocument getDocumentInNode(DefaultMutableTreeNode node) {
+        return (ScilabDocument) getPaneInNode(node).getDocument();
+    }
+
+    /**
+     * @param node corresponding to the pane to get
+     * @return the pane
+     */
+    private static ScilabEditorPane getPaneInNode(DefaultMutableTreeNode node) {
+        if (node.isLeaf()) {
+            DefaultMutableTreeNode node1 = (DefaultMutableTreeNode) node.getParent();
+            if (node1 != null) {
+                DefaultMutableTreeNode node2 = (DefaultMutableTreeNode) node1.getParent();
+                if (node2 != null && node2.getUserObject() instanceof ScilabEditorPane) {
+                    return (ScilabEditorPane) node2.getUserObject();
+                }
+            }
+        } else if (node.getUserObject() instanceof String && SciNotesMessages.FUNCTIONS.equals(node.getUserObject())) {
+            return (ScilabEditorPane) ((DefaultMutableTreeNode) node.getParent()).getUserObject();
+        } else if (node.getUserObject() instanceof ScilabEditorPane) {
+            return (ScilabEditorPane) node.getUserObject();
+        }
+
+        return pane;
     }
 
     /**

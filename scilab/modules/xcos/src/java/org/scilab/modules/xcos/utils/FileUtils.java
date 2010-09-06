@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.nio.channels.FileChannel;
 
 import org.apache.commons.logging.LogFactory;
-import org.scilab.modules.jvm.utils.ScilabConstants;
+import org.scilab.modules.commons.ScilabConstants;
 import org.w3c.dom.Document;
 
 import com.mxgraph.io.mxCodec;
@@ -30,8 +30,10 @@ import com.mxgraph.view.mxStylesheet;
  * Contains useful method for managing files.
  */
 public final class FileUtils {
-	public static String STYLE_FILENAME = "Xcos-style.xml";
-	
+	/**
+	 * Stylesheet filename.
+	 */
+	public static final String STYLE_FILENAME = "Xcos-style.xml";
 	
 	/**
 	 * Default constructor

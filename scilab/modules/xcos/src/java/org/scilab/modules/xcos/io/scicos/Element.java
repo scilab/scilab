@@ -24,8 +24,12 @@ public interface Element<T> {
 	
 	/**
 	 * Perform element decoding initialization.
+	 * 
+	 * @param element the element
+	 * @param into the target instance
+	 * @return the modified target instance 
 	 */
-	void beforeDecode();
+	T beforeDecode(ScilabType element, T into);
 	
 	/**
 	 * Read the element and write the result into the object.
@@ -42,8 +46,12 @@ public interface Element<T> {
 
 	/**
 	 * Perform element decoding cleanup.
+	 * 
+	 * @param element the element
+	 * @param into the target instance
+	 * @return the modified target instance 
 	 */
-	void afterDecode();
+	T afterDecode(ScilabType element, T into);
 	
 	/**
 	 * Test if the element instance can be decoded.
@@ -61,8 +69,12 @@ public interface Element<T> {
 
 	/**
 	 * Perform element encoding initialization.
+	 * 
+	 * @param from the data
+	 * @param element the target element
+	 * @return the modified target element
 	 */
-	void beforeEncode();
+	ScilabType beforeEncode(T from, ScilabType element);
 	
 	/**
 	 * Write an element from data to a Scilab element.
@@ -86,6 +98,10 @@ public interface Element<T> {
 	
 	/**
 	 * Perform element encoding cleanup.
+	 * 
+	 * @param from the data
+	 * @param element the target element
+	 * @return the modified target element
 	 */
-	void afterEncode();
+	ScilabType afterEncode(T from, ScilabType element);
 }

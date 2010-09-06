@@ -257,7 +257,7 @@ function [scicos_menu,scicos_lhb_list, scicos_short,CmenuTypeOneVector]= set_ini
       'XcosMenuSmartMove',             _("Click object to move, drag and click (left to fix, right to cancel)");
       'XcosMenuMove',                  _("Click object to move, drag and click (left to fix, right to cancel)");
       'XcosMenuDuplicate',             _("Click on the object to duplicate, drag, click (left to copy, right to cancel)");
-      'XcosMenuAlign',                 _("Click on an a port, click on a port of object to be moved");
+      'XcosMenuAlign',                 _("Click on a port, click on a port of object to be moved");
       'XcosMenuLink',                  _("Drag, click left for final or intermediate points or right to cancel");
       'XcosMenuSmartLink',             _("Drag, click left for final or intermediate points or right to cancel");
       'XcosMenuDelete',                _("Delete: Click on the object to delete");

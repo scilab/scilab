@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-20 17:16+0100\n"
-"PO-Revision-Date: 2009-10-09 17:28+0000\n"
-"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"PO-Revision-Date: 2010-08-04 14:50+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,56 +18,41 @@ msgstr ""
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
-#
-# File: sci_gateway/c/sci_legendre.c, line: 75
 #, c-format
 msgid "%s: Only one of arg1 and arg2 may be a vector.\n"
-msgstr "%s: arg１とarg２の唯一のものは、ベクトルかもしれません。\n"
+msgstr "%s: arg1 および arg2 のどちらかのみをベクトルとすることができます.\n"
 
-#
-# File: sci_gateway/c/sci_legendre.c, line: 60
 #, c-format
 msgid "%s: Wrong type for first input argument.\n"
-msgstr "%s: 最初の入力引数で不正な型です。\n"
+msgstr "%s: 最初の入力引数の型が間違っています.\n"
 
-#
-# File: sci_gateway/c/sci_beta.c, line: 53
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d or #%d: No complex input argument "
 "expected.\n"
-msgstr "%s: 入力引数 #%d または #%d で不正な型: 入り組んでない入力引数を想定します。\n"
+msgstr "%s: 入力引数 #%d または #%d の型が間違っています: 複素数ではない入力引数を指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_legendre.c, line: 68
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: 入力引数 #%d で不正な型です。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています.\n"
 
-# File: macros/erfinv.sci, line: 21
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 実が想定されます。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_legendre.c, line: 82
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 実行列を想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数行列を指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_legendre.c, line: 91
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Matrix with elements in (%d,%d) "
 "expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: 行列要素で、(%d,%d) を想定します。\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: (%d,%d) の要素を有する行列を指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_beta.c, line: 61
 #, c-format
 msgid "%s: Wrong value for input arguments: Must be > %d.\n"
-msgstr "%s: 入力引数で不正な値: > %d の必要があります。\n"
+msgstr "%s: 入力引数の値が間違っています: %d より大きい値を指定してください.\n"
 
 #
 # File: sci_gateway/c/sci_legendre.c, line: 129
@@ -75,8 +60,6 @@ msgstr "%s: 入力引数で不正な値: > %d の必要があります。\n"
 msgid "%s: error number %d\n"
 msgstr "%s: エラー番号 %d\n"
 
-#
-# File: sci_gateway/c/sci_legendre.c, line: 127
 #, c-format
 msgid "%s: overflow or underflow of an extended range number\n"
-msgstr "%s: 拡張された範囲番号のオーバーフロー、またはアンダーフロー\n"
+msgstr "%s: 拡張された範囲においてオーバーフローまたはアンダーフローを発生しました\n"

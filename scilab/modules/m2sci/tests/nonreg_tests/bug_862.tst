@@ -26,10 +26,10 @@
 //               !--error     4
 //    undefined variable : a
 
-MFILECONTENTS="a(1)=0;"
+MFILECONTENTS="a(1)=0;";
 
-MFILE=TMPDIR+"/bug862.m"
-SCIFILE=TMPDIR+"/bug862.sci"
+MFILE=TMPDIR+"/bug862.m";
+SCIFILE=TMPDIR+"/bug862.sci";
 
 fd=mopen(MFILE,"w");
 mputl(MFILECONTENTS,fd);
@@ -48,6 +48,6 @@ SCIFILECONTENTSREF=["";
 "// Display warning for floating point exception";
 "ieee(1);";
 "";
-"a(1,1) = 0;"]
+"a(1,1) = 0;"];
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

@@ -14,7 +14,7 @@
 /* file: GetHashTable.c                                                   */
 /* desc : implementation of the scilab hashtable for the get procedure    */
 /*------------------------------------------------------------------------*/
-
+#include <string.h>
 #include "GetHashTable.h"
 #include "getHandleProperty.h"
 #include "Scierror.h"

@@ -13,7 +13,6 @@ package org.scilab.modules.ui_data.datatable;
 
 import javax.swing.table.DefaultTableModel;
 
-
 /**
  * Swing implementation of table model.
  * @param <Type> Type of data to be stored by the model
@@ -28,8 +27,11 @@ public class SwingEditvarTableModel<Type> extends DefaultTableModel {
      * @param data : the data to store.
      */
     public SwingEditvarTableModel(Type[][] data) {
-        scilabMatrixColCount =  data[0].length;
         scilabMatrixRowCount =  data.length;
+        scilabMatrixColCount = 0;
+        if (scilabMatrixRowCount != 0) { // Not an empty matrix
+        	scilabMatrixColCount =  data[0].length;
+        }
         this.setDataVector(data);
         expandTable();
 
@@ -39,17 +41,19 @@ public class SwingEditvarTableModel<Type> extends DefaultTableModel {
      * {@inheritDoc}
      */
     public void setDataVector(Type[][] data) {
-        int cols = data[0].length;
+    	int cols = 0;
+    	if (data.length != 0) { // Not an empty matrix
+    		cols = data[0].length;
+    	}
         Integer[] identifiers = new Integer[cols]; 
         for (int i = 0; i < cols; ++i) {
-            identifiers[i] = i+1;
+            identifiers[i] = i + 1;
         }
         super.setDataVector(data, identifiers);
 
     }
 
-    private Object getDefaultValue(Object value)
-    {
+    private Object getDefaultValue(Object value) {
         if (value instanceof String) {
             return "";
         }
@@ -61,8 +65,7 @@ public class SwingEditvarTableModel<Type> extends DefaultTableModel {
         if (value instanceof Double) {
             return 0.0;
         }
-        if (value instanceof Boolean)
-        {
+        if (value instanceof Boolean) {
             return false;
         }
 
@@ -72,33 +75,29 @@ public class SwingEditvarTableModel<Type> extends DefaultTableModel {
     @Override
     public void setValueAt(Object value, int row, int col) {
 
-        for (int i = scilabMatrixRowCount; i <= Math.max(row, scilabMatrixRowCount-1); i++){
-            for(int j = 0; j <= Math.max(col,scilabMatrixColCount-1); j++) {
+        for (int i = scilabMatrixRowCount; i <= Math.max(row, scilabMatrixRowCount - 1); i++) {
+            for (int j = 0; j <= Math.max(col, scilabMatrixColCount - 1); j++) {
                 super.setValueAt(getDefaultValue(value), i, j);
             }
         }
 
-        for (int i = scilabMatrixColCount; i <= Math.max(col,scilabMatrixColCount-1); i++){
-            for(int j = 0; j <= Math.max(row, scilabMatrixRowCount-1); j++) {
+        for (int i = scilabMatrixColCount; i <= Math.max(col, scilabMatrixColCount - 1); i++) {
+            for (int j = 0; j <= Math.max(row, scilabMatrixRowCount - 1); j++) {
                 super.setValueAt(getDefaultValue(value), j, i);
             }
         }
 
         super.setValueAt(value, row, col);
 
-        if(col > scilabMatrixColCount || row > scilabMatrixRowCount) {
-            if (col > scilabMatrixColCount){
-                scilabMatrixColCount = col+1;
+        if (col > scilabMatrixColCount || row > scilabMatrixRowCount) {
+            if (col > scilabMatrixColCount) {
+                scilabMatrixColCount = col + 1;
             }
             if (row > scilabMatrixRowCount) {
-                scilabMatrixRowCount = row+1;
+                scilabMatrixRowCount = row + 1;
             }
             expandTable();
         }
-
-
-
-
     }
 
     public void expandTable() {
@@ -109,15 +108,15 @@ public class SwingEditvarTableModel<Type> extends DefaultTableModel {
         if (getColumnCount() > 32) {
             newTableColCount = scilabMatrixColCount + 10;
         }
-        for(int i = getColumnCount(); i < newTableColCount; i++) {
-            addColumn(i+1);
+        for (int i = getColumnCount(); i < newTableColCount; i++) {
+            addColumn(i + 1);
         }
 
         // col
         if (getRowCount() > 32) {
             newTableRowCount = scilabMatrixRowCount + 10;
         }
-        for(Integer i = getRowCount(); i < newTableRowCount; i++) {
+        for (Integer i = getRowCount(); i < newTableRowCount; i++) {
             Object[] newCol = new Object[scilabMatrixRowCount];
             addRow(newCol);
         }

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2010-04-15 12:00+0000\n"
+"PO-Revision-Date: 2010-06-29 11:50+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
@@ -203,16 +203,12 @@ msgid "%s: The file %s doesn''t exist or is not read accessible.\n"
 msgstr "%s: файла з назвою %s не існує, або читання цього файла неможливе.\n"
 
 #, c-format
-msgid "%s: The file %s is not well formated at line %d\n"
-msgstr "%s: помилка у файлі %s, рядок %d\n"
-
-#, c-format
 msgid ""
 "%s: The file %s is not well formated, the toolbox %s - %s doesn''t contain "
-"the ScilabVersion field\n"
+"the %s field\n"
 msgstr ""
-"%s: помилка у файлі %s, запис набору інструментів %s — %s не містить поля "
-"ScilabVersion\n"
+"%s: формат файла %s є помилковим, набір інструментів %s — %s не містить поля "
+"%s\n"
 
 #, c-format
 msgid "%s: The file ''%s'' cannot be written.\n"
@@ -227,6 +223,10 @@ msgstr ""
 msgid "%s: The file ''%s'' doesn''t exist or is not read accessible.\n"
 msgstr ""
 "%s: файла з назвою «%s» не існує, або читання цього файла неможливе.\n"
+
+#, c-format
+msgid "%s: The file ''%s'' is not well formated at line %d\n"
+msgstr "%s: помилкове форматування файла «%s», рядок %d\n"
 
 #, c-format
 msgid "%s: The following file hasn''t been copied:\n"
@@ -303,6 +303,11 @@ msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d або %d.\n"
+
+#, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
@@ -326,6 +331,24 @@ msgid "%s: Wrong size for input argument #%d: 1x2 string matrix expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати матрицю з "
 "рядків 1x2.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 1x1 or 1x2 string matrix expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"матрицю з рядків розмірності 1x1 або 1x2.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"булівське значення.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
@@ -374,6 +397,18 @@ msgid "%s: Wrong size for input argument #%d: mx3 string matrix expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати матрицю з "
 "рядків mx або mx3.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«boolean».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
@@ -426,10 +461,23 @@ msgstr ""
 "«mlist».\n"
 
 #, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'' is not a registered category"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: «%s» не є зареєстрованою "
+"категорією"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' is not a valid URL.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: «%s» не є коректною адресою "
 "URL.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''all'' or ''main'' expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: мало бути «all» або «main».\n"
 
 #, c-format
 msgid ""
@@ -446,6 +494,14 @@ msgid ""
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати «all», "
 "«user», «allusers» або «official».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''filter:all'',''filter:main'' or a "
+"valid main category expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: мало бути "
+"«filter:all»,«filter:main» або коректна назва основної категорії.\n"
 
 #, c-format
 msgid ""
@@ -486,6 +542,12 @@ msgstr ""
 "«all» або «allusers».\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: A valid category expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід було вказати коректну "
+"назву категорії.\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати «ASC» "
@@ -497,6 +559,14 @@ msgid ""
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: має бути вказано версію всіх "
 "модулів.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: It should have a field named "
+"''%s''.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: мало бути поле з назвою "
+"«%s».\n"
 
 #, c-format
 msgid ""
@@ -592,6 +662,10 @@ msgid "%s: You haven''t write access on this directory : %s.\n"
 msgstr "%s: у вас немає прав на запис до цього каталогу: %s.\n"
 
 #, c-format
+msgid "%s: name and version are not both defined\n"
+msgstr "%s: одночасно не вказано назву і версію\n"
+
+#, c-format
 msgid "%s: the package ''%s'' doesn''t contain the field ''%s''.\n"
 msgstr "%s: у записі пакунка «%s» не міститься поля «%s».\n"
 
@@ -614,14 +688,21 @@ msgstr "&Інструменти"
 msgid "?"
 msgstr "Довідка"
 
-msgid "Atoms"
-msgstr "Atoms"
+#, c-format
+msgid "A new version (''%s'') of ''%s'' is available"
+msgstr "Випущено нову версію («%s») «%s»"
+
+msgid "ATOMS"
+msgstr "ATOMS"
+
+msgid "ATOMS error"
+msgstr "Помилка ATOMS"
+
+msgid "All modules"
+msgstr "Всі модулі"
 
 msgid "Atoms Help..."
 msgstr "Довідка з Atoms…"
-
-msgid "Atoms error"
-msgstr "Помилка Atoms"
 
 msgid "Author(s)"
 msgstr "Автори"
@@ -653,6 +734,9 @@ msgstr "Установа"
 msgid "File"
 msgstr "Файл"
 
+msgid "Home"
+msgstr "Домівка"
+
 msgid "Install"
 msgstr "Встановити"
 
@@ -668,8 +752,8 @@ msgstr ""
 msgid "Installation failed!"
 msgstr "Невдала спроба встановлення!"
 
-msgid "Installing..."
-msgstr "Встановлення…"
+msgid "Installing"
+msgstr "Встановлення"
 
 msgid "KB"
 msgstr "кБ"
@@ -677,28 +761,33 @@ msgstr "кБ"
 msgid "License"
 msgstr "Ліцензія"
 
+msgid "List of installed modules"
+msgstr "Список встановлених модулів"
+
 msgid "MB"
 msgstr "МБ"
+
+msgid "Main categories"
+msgstr "Основні категорії"
 
 msgid "Maintainer(s)"
 msgstr "Супровідники"
 
-msgid "Modules"
-msgstr "Модулі"
-
-msgid "No Atoms module is available. Please, check your Internet connection."
+msgid "No ATOMS module is available. Please, check your Internet connection."
 msgstr ""
-"Не вдалося отримати доступ до жодного з модулів Atoms. Перевірте, чи "
-"працездатне з’єднання з мережею інтернет."
+"Немає доступу до жодного з модулів ATOMS. Будь ласка, перевірте "
+"працездатність інтернет-з’єднання."
 
-msgid "No Atoms module is available: your repository list is empty."
-msgstr "Не знайдено жодного модуля Atoms: ваш список сховищ порожній."
-
-msgid "No module selected"
-msgstr "Не позначено жодного модуля"
+msgid "No ATOMS module is available: your repository list is empty."
+msgstr ""
+"Немає доступу до жодного з модулів ATOMS: список модулів вашого сховища "
+"порожній."
 
 msgid "Package"
 msgstr "Пакунок"
+
+msgid "Release date"
+msgstr "Дата випуску"
 
 msgid "Remove"
 msgstr "Вилучити"
@@ -711,11 +800,14 @@ msgstr ""
 msgid "Remove failed!"
 msgstr "Невдала спроба вилучення!"
 
-msgid "Removing..."
-msgstr "Вилучення..."
+msgid "Removing"
+msgstr "Вилучення"
 
 msgid "Scilab Version"
 msgstr "Версія Scilab"
+
+msgid "See also"
+msgstr "Див. також"
 
 msgid "Status"
 msgstr "Стан"
@@ -737,8 +829,8 @@ msgstr ""
 msgid "Update failed!"
 msgstr "Помилка оновлення!"
 
-msgid "Updating..."
-msgstr "Оновлення…"
+msgid "Updating"
+msgstr "Оновлення"
 
 msgid "Version"
 msgstr "Версія"

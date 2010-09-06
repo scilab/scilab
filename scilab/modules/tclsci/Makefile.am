@@ -68,7 +68,6 @@ CHECK_SRC= $(libscitclsci_la_SOURCES)
 INCLUDE_FLAGS = $(libscitclsci_la_CFLAGS)
 
 libscitclsci_la_LIBADD = 	$(top_builddir)/modules/fileio/libscifileio.la \
-							$(top_builddir)/modules/core/libscicore.la \
 							$(top_builddir)/libs/MALLOC/libscimalloc.la \
 							$(top_builddir)/modules/output_stream/libscioutput_stream.la
 #### Target ######
@@ -122,8 +121,6 @@ tcl/sciGUI/local_extra/spinbutton.tcl \
 tcl/sciGUI/license.txt \
 tcl/sciGUI/sciGUI.tcl \
 tcl/sciGUI/sciConfig.tcl \
-tcl/sciGUI/sciBrowseVar.tcl \
-tcl/sciGUI/sciEditVar.tcl \
 tcl/BWidget-1.8.0/tests/entry.test \
 tcl/BWidget-1.8.0/BWman/SelectColor.html \
 tcl/BWidget-1.8.0/BWman/SpinBox.html \

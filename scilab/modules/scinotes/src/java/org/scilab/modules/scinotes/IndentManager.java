@@ -183,11 +183,24 @@ public class IndentManager {
                     getNums(lineNumber, ind);
                     if (level[0] > 0 && ind[0] <= ind[1]) {
                         remove = level[0] * num;
-                        int startL = elem.getElement(lineNumber).getStartOffset();
+
+                        if (lineNumber > 0 && ind[0] == ind[1]) {
+                            /* Bug 7550 :
+                               prev and cur line are at the same level
+                               if cur should be indented, then we don't remove tabs */
+                            int posp = elem.getElement(lineNumber - 1).getEndOffset() - 1;
+                            int[] levelp = new int[2];
+                            scanner.getIndentLevel(posp, levelp);
+                            if (levelp[1] != 0) {
+                                remove = 0;
+                            }
+                        }
+
                         if (ind[1] < remove) {
                             remove = ind[1];
                         }
                         if (remove != 0) {
+                            int startL = elem.getElement(lineNumber).getStartOffset();
                             doc.remove(startL, remove);
                         }
                     }

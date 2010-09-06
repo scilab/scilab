@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-01-29 14:56+0100\n"
-"PO-Revision-Date: 2009-11-16 16:24+0000\n"
-"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"PO-Revision-Date: 2010-07-03 00:10+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,12 +17,6 @@ msgstr ""
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
-
-#
-# File: sci_gateway/c/sci_tokens.c, line: 94
-#, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s: メモリの割り当てに失敗しました。\n"
 
 #
 # File: sci_gateway/c/sci_strcmp.c, line: 94
@@ -95,6 +89,10 @@ msgstr "%s: DFA等価の等価限界が適切でありません、無視しま�
 #, c-format
 msgid "%s: Matched text exceeds buffer limit.\n"
 msgstr "%s: 大量のテキストはバッファ限界を超えます。\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: メモリ確保エラー.\n"
 
 #
 # File: sci_gateway/c/sci_code2str.c, line: 59
@@ -326,6 +324,10 @@ msgstr "%s: 入力引数 #%d で不正な型: 文字列、または、単一文�
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: スカラーを想定します。\n"
 
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
+msgstr "%s: 入力引数 #%d の型が正しくありません: 文字列の配列を指定してください.\n"
+
 #
 # File: sci_gateway/c/sci_convstr.c, line: 77
 # File: sci_gateway/c/sci_strcmp.c, line: 64
@@ -351,12 +353,6 @@ msgstr "%s: 入力引数 #%d で不正な型: 整数を想定します。\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Character expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
-
-#
-# File: macros/isnum.sci, line: 20
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of character strings.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 文字列の行列です。\n"
 
 #
 # File: sci_gateway/c/sci_emptystr.c, line: 133
@@ -598,15 +594,3 @@ msgstr "%s:  この行列の次元を得ることは不可能です。\n"
 # File: sci_gateway/c/sci_ascii.c, line: 251
 msgid "WARNING : \n"
 msgstr "警告: \n"
-
-#, c-format
-msgid "WARNING: Function %s is obsolete.\n"
-msgstr "警告: %s 関数はもう使われません。\n"
-
-#, c-format
-msgid "WARNING: Please use %s instead.\n"
-msgstr "警告: どうぞ代わりに %s を使ってください。\n"
-
-#, c-format
-msgid "WARNING: This function will be permanently removed in Scilab %s.\n"
-msgstr "警告: この関数は、Scilab %s で永久に取り去られるでしょう。\n"

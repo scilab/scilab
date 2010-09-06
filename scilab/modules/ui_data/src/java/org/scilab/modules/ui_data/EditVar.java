@@ -40,7 +40,10 @@ public class EditVar {
 	 */
 	public static void openVariableEditorDouble(double[][] data, String variableName) {
 		int rows = data.length;
-		int cols = data[0].length;
+		int cols = 0;
+		if (rows != 0) { // Not an empty matrix
+			cols = data[0].length;
+		}
 
 		// we need to transpose the matrix as the way to store elements is different in scilab
 		// otherwise 
@@ -56,7 +59,6 @@ public class EditVar {
 		}
 
 		VariableEditor editvar = ScilabVariableEditor.getVariableEditor(dataDouble, variableName);
-		editvar.setVisible(true);
 	}
 
 	/**
@@ -82,12 +84,12 @@ public class EditVar {
 		}
 
 		VariableEditor editvar = ScilabVariableEditor.getVariableEditor(dataString, variableName);
-		editvar.setVisible(true);
 	}
 	
 	/**
 	 * Open variable Editor with information given by Scilab
-	 * @param data : scilab double matrix
+	 * @param realData : real part of scilab double matrix
+	 * @param complexData : complex part of scilab double matrix
 	 * @param variableName : name of the variable being edited.
 	 */
 	public static void openVariableEditorComplex(double[][] realData, double[][] complexData, String variableName) {
@@ -109,7 +111,6 @@ public class EditVar {
 		}
 
 		VariableEditor editvar = ScilabVariableEditor.getVariableEditor(dataDoubleComplex, variableName);
-		editvar.setVisible(true);
 	}
 	
 	
@@ -136,7 +137,6 @@ public class EditVar {
 		}
 
 		VariableEditor editvar = ScilabVariableEditor.getVariableEditor(dataBool, variableName);
-		editvar.setVisible(true);
 	}
 	
 	/**
@@ -179,11 +179,7 @@ public class EditVar {
 	 * @param errCode : the errCode given by Scilab, 0 if no error.
 	 */
 	public static void updateVariableEditor(String variableName, int row, int col, Object newValue, int errCode) {
-		if (errCode != 0) {
-			System.err.println("bad instruction");
-		} else {
-			ScilabVariableEditor.getVariableEditor().setValueAt(newValue, row - 1, col - 1);
-		}
+		ScilabVariableEditor.getVariableEditor().setValueAt(newValue, row - 1, col - 1);
 	}
 
 	/**

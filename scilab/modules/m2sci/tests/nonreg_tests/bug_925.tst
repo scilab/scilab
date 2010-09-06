@@ -33,10 +33,10 @@
 //    what is obviously wrong !
 //    4 has become 1 ....
 
-MFILECONTENTS=["function bug925(A,B)";"A(4)=B(3)"]
+MFILECONTENTS=["function bug925(A,B)";"A(4)=B(3)"];
 
-MFILE=TMPDIR+"/bug925.m"
-SCIFILE=TMPDIR+"/bug925.sci"
+MFILE=TMPDIR+"/bug925.m";
+SCIFILE=TMPDIR+"/bug925.sci";
 
 mputl(MFILECONTENTS,MFILE);
 mfile2sci(MFILE,TMPDIR);
@@ -51,7 +51,7 @@ SCIFILECONTENTSREF=["function [] = bug925(A,B)";
 		"ieee(1);";
 		"";
 		"A = mtlb_i(A,4,mtlb_e(B,3));";
-		"endfunction"]
+		"endfunction"];
 
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

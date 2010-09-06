@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: _gui-pt_BR\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-04-19 15:29+0000\n"
+"PO-Revision-Date: 2010-07-01 12:29+0000\n"
 "Last-Translator: Sam Samuels <gemini_sam_samuels@hotmail.co.uk>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar.conectiva.com.br>\n"
 "MIME-Version: 1.0\n"
@@ -31,8 +31,12 @@ msgid "%s: An error occurred: %s.\n"
 msgstr "%s: Ocorreu um erro: %s.\n"
 
 #, c-format
-msgid "%s: An exception occurred: %s"
-msgstr "%s: Ocorreu uma exceção: %s"
+msgid ""
+"%s: An exception occurred: %s\n"
+"%s\n"
+msgstr ""
+"%s: Ocorreu uma exceção: %s\n"
+"%s\n"
 
 #, c-format
 msgid "%s: Could not create 'Uicontrol' handle.\n"
@@ -758,6 +762,9 @@ msgstr "&Selecionar tudo"
 msgid "&Select as current figure"
 msgstr "&Selecionar como figura atual"
 
+msgid "&Start datatip manager"
+msgstr "&Iniciar gerenciador datatip"
+
 msgid "&Start entity picker"
 msgstr "&Iniciar apanhador de entidades"
 
@@ -809,6 +816,9 @@ msgstr "Todos os arquivos Scilab"
 
 msgid "All files"
 msgstr "Todos os arquivos"
+
+msgid "An error occured: "
+msgstr "Ocorreu um erro: "
 
 #, c-format
 msgid ""
@@ -1054,6 +1064,9 @@ msgstr "Não existe a propriedade \"%s\" para uicontrol do estilo: %s.\n"
 msgid "No color selected."
 msgstr "Nenhuma cor está selecionada."
 
+msgid "No print service found."
+msgstr "Nenhum serviço de impressão encontrado."
+
 msgid "No text selected"
 msgstr "Nenhum texto está selecionado"
 
@@ -1232,6 +1245,9 @@ msgid ""
 msgstr ""
 "Alguns módulos do Scilab são lançados sob a licença GPLv2.\n"
 "\n"
+
+msgid "Stop datatip manager"
+msgstr "Parar gerenciador datatip"
 
 msgid "Sub-menu 1"
 msgstr "Submenu 1"
@@ -1500,6 +1516,14 @@ msgstr ""
 "ou \"%s\".\n"
 
 #, c-format
+msgid ""
+"Wrong value for '%s' property: A String containing a numeric value "
+"expected.\n"
+msgstr ""
+"Propriedade de valor errado para '%s' uma string contendo um valor numérico "
+"esperado.\n"
+
+#, c-format
 msgid "Wrong value for '%s' property: A real expected.\n"
 msgstr ""
 "Valor incorreto para a propriedade \"%s\": esperava-se um número real.\n"
@@ -1583,6 +1607,9 @@ msgstr "item1|item2|item3|item4"
 
 msgid "red"
 msgstr "vermelho"
+
+msgid "toggle datatip mode"
+msgstr "modo de alternância datatip"
 
 msgid "unchecked"
 msgstr "desmarcado"

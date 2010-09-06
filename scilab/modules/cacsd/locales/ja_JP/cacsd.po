@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-05-22 09:15+0000\n"
+"PO-Revision-Date: 2010-07-02 23:55+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
@@ -40,7 +40,7 @@ msgstr "%s: %s は虚数のみからなる固有値を有しています。\n"
 
 #, c-format
 msgid "%s: %s has zero(s) near the imaginary axis.\n"
-msgstr "%s: %s は、虚部軸の近くの ゼロ(s) を持っています。\n"
+msgstr "%s: %s は虚軸近傍にゼロを有しています。\n"
 
 #, c-format
 msgid "%s: %s is detectable.\n"
@@ -561,7 +561,7 @@ msgstr "%s: 入力引数 #%d の型が正しくありません: 状態空間形�
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: State-space linear system expected.\n"
-msgstr "%s: 入力引数 #%d の値が正しくありません: 線形状態空間システムを指定してください.\n"
+msgstr "%s: 入力引数 #%d の型が正しくありません: 線形状態空間システムを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
@@ -773,6 +773,21 @@ msgstr "周波数 (Hz)"
 msgid "Gain :"
 msgstr "ゲイン :"
 
+msgid "Hall chart"
+msgstr "ホール図"
+
+msgid "Hz"
+msgstr "Hzhelp hall"
+
+msgid "Im"
+msgstr "Im"
+
+msgid "Im(h(2if))"
+msgstr "Im(h(2if))"
+
+msgid "Im(h(exp(2if*dt)))"
+msgstr "Im(h(exp(2if*dt)))"
+
 msgid "Imaginary axis"
 msgstr "虚部軸"
 
@@ -784,24 +799,16 @@ msgid ""
 "factor (click below)"
 msgstr "伝達関数の既約因子、固有周波数およびダンピング係数(以下をクリック)"
 
-#
-# File: macros/black.sci, line: 185
-# File: macros/bode.sci, line: 101
-# File: macros/gainplot.sci, line: 87
-msgid "Magnitude (Db)"
-msgstr "マグニチュード (Db)"
+msgid "Magnitude (dB)"
+msgstr "振幅 (dB)"
 
 #
 # File: macros/trfmod.sci, line: 97
 msgid "Numerator :"
 msgstr "分子 :"
 
-#
-# File: macros/nyquist.sci, line: 196
-# File: macros/nyquist.sci, line: 198
-# File: macros/nyquist.sci, line: 200
 msgid "Nyquist plot"
-msgstr "ナイキスト・プロット"
+msgstr "ナイキスト線図"
 
 #
 # File: macros/bode.sci, line: 121
@@ -817,6 +824,15 @@ msgstr "位相 (度)"
 # File: macros/plzr.sci, line: 92
 msgid "Poles"
 msgstr "極"
+
+msgid "Re"
+msgstr "Re"
+
+msgid "Re(h(2if))"
+msgstr "Re(h(2if))"
+
+msgid "Re(h(exp(2if*dt)))"
+msgstr "Re(h(exp(2if*dt)))"
 
 #
 # File: macros/evans.sci, line: 179
@@ -855,10 +871,14 @@ msgstr "ゼロ"
 msgid "asymptotic directions"
 msgstr "漸近方向"
 
-#
-# File: macros/chart.sci, line: 78
+msgid "dB"
+msgstr "dB"
+
 msgid "magnitude(y) (Db)"
-msgstr "マグニチュード(y) (Db)"
+msgstr "振幅(y) (dB)"
+
+msgid "magnitude(y) (dB)"
+msgstr "振幅(y) (dB)"
 
 msgid "open loop poles"
 msgstr "開ループの極"

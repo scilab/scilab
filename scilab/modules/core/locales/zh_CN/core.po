@@ -45,10 +45,6 @@ msgid "%f: No more space to store string arguments.\n"
 msgstr "%f：没有更多空间来存储字符串参数。\n"
 
 #, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s：内存分配发生错误。\n"
-
-#, c-format
 msgid "%s and %s arguments"
 msgstr "%s 和 %s 个参数"
 
@@ -130,24 +126,8 @@ msgid ""
 msgstr "%s：（%s）栈中参数太多，请编辑 stack.h 并增大 intersiz。\n"
 
 #, c-format
-msgid ""
-"%s: Cannot alloc more memory.\n"
-"Try gstacksize('max').\n"
-msgstr ""
-"%s：不能分配更多内存。\n"
-"请尝试 gstacksize('max')。\n"
-
-#, c-format
 msgid "%s: Cannot allocate memory.\n"
 msgstr "%s：不能分配内存。\n"
-
-#, c-format
-msgid ""
-"%s: Cannot allocate more memory.\n"
-"Try stacksize('max').\n"
-msgstr ""
-"%s：无法分配更多内存。\n"
-"请尝试 stacksize('max')。\n"
 
 #, c-format
 msgid "%s: File doesn''t exist: %s"
@@ -168,6 +148,10 @@ msgstr "%s：无效的值 “%s”。\n"
 #, c-format
 msgid "%s: Invalid module name : %s.\n"
 msgstr "%s：无效的模块名 %s。\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -258,12 +242,8 @@ msgid "%s: Wrong %s value %d instead of %d.\n"
 msgstr "%s：%s的值 %d 出错，应该为 %d。\n"
 
 #, c-format
-msgid "%s: Wrong file VERSION %s.\n"
-msgstr "%s：错误的文件 VERSION %s。\n"
-
-#, c-format
-msgid "%s: Wrong file VERSION in %s.\n"
-msgstr "%s：在 %s 有错误的文件 VERSION。\n"
+msgid "%s: Wrong file version.xml %s.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong fromwhat value %s.\n"
@@ -335,12 +315,16 @@ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s：输入参数 #%d 的大小错误：应该为一个字符串。\n"
 
 #, c-format
-msgid "%s: Wrong size for inputs arguments.\n"
-msgstr "%s：输入参数的大小出错。\n"
+msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
-msgstr "%s：输入参数 #%d 的类型出错：应该为标量，“%s”或“%s”。\n"
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for inputs arguments.\n"
+msgstr "%s：输入参数的大小出错。\n"
 
 #, c-format
 msgid ""
@@ -519,15 +503,6 @@ msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
 msgstr "%s：输入参数 #%d 的类型出错：应该为已编译的宏。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Named variable expected.\n"
-msgstr "%s：输入参数 #%d 的类型出错：应该为已命名的变量。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Scalar, '%s' or '%s' expected.\n"
-msgstr "%s：输入参数 #%d 的类型出错：应该为标量，“%s”或“%s”。\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
 msgstr "%s：输入参数 #%d 的类型出错：标量，“%s”或“%s”。\n"
 
@@ -626,11 +601,6 @@ msgstr "%s：输入参数 #%d 的值出错：必须为 %s。\n"
 msgid ""
 "%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"
 msgstr "%s：输入参数 #%d 的值出错：必须位于区间［%d，%d］中。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Scalar, '%s' or '%s' expected.\n"
-msgstr "%s：输入参数 #%d 的值出错：应该为标量，“%s”或“%s”。\n"
 
 #, c-format
 msgid ""
@@ -761,6 +731,15 @@ msgstr "出错"
 
 msgid "Error returning tlist, memory full.\n"
 msgstr "返回 tlist 出错，内存已用尽。\n"
+
+msgid ""
+"Error(x) is deprecated and will be removed in Scilab 5.4. Please consider "
+"SciError(x).\n"
+msgstr ""
+
+#, c-format
+msgid "Error: Could not create %s: %s\n"
+msgstr ""
 
 #, c-format
 msgid "Error: Could not parse file %s\n"
@@ -917,6 +896,14 @@ msgstr "未定义的变量 %s。\n"
 
 msgid "Unexpected opcode, please report into the Scilab bug tracker."
 msgstr "意外的操作码，请报告给 Scilab bug tracker。"
+
+#, c-format
+msgid "Unqueuing %s - No option.\n"
+msgstr ""
+
+#, c-format
+msgid "Unqueuing %s - seq.\n"
+msgstr ""
 
 msgid "User variables are:"
 msgstr "用户变量是："

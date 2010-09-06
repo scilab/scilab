@@ -6,6 +6,8 @@
 // =============================================================================
 // <-- Non-regression test for bug 4505 -->
 //
+// <-- ENGLISH IMPOSED -->
+//
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=4505
 //
@@ -29,7 +31,7 @@ if size(modulus_curves,'*')<>1 then bugmes();quit;end
 //check there is  Shannon limit curve for discrete systems
 sys=dscr(sys,0.01);
 clf();bode(sys,0.001,1000)
-ATTENTION : calfrq : Les fréquences supérieures à la fréquence de Nyquist sont ignorées.
+WARNING: calfrq: Frequencies beyond Nyquist frequency are ignored.
 f=gcf();
 a_phase=f.children(1);
 a_modulus=f.children(2);

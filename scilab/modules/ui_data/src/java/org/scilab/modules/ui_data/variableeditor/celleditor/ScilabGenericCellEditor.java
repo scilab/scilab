@@ -14,7 +14,6 @@
 package org.scilab.modules.ui_data.variableeditor.celleditor;
 
 import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.asynchronousScilabExec;
-import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.buildCall;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -68,7 +67,7 @@ public abstract class ScilabGenericCellEditor extends DefaultCellEditor {
          * and return the result back to EditVar
          * @param request the request to be executed by Scilab
          */
-        private void callScilabValidationOfCellContent(String request){
+        private void callScilabValidationOfCellContent(String request) {
             final ActionListener action = new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
@@ -91,33 +90,37 @@ public abstract class ScilabGenericCellEditor extends DefaultCellEditor {
         }
     }
 
-    private String buildScilabRequest(){
+    private String buildScilabRequest() {
 
         final StringBuilder command = new StringBuilder();
         String variableName = ScilabVariableEditor.getVariableEditor().getVariablename();
         String data = getDataAsScilabString();
         
-        String cellInVariable = variableName + "(" + row + "," + col + ")";;
+        String cellInVariable = variableName + "(" + row + "," + col + ")";
         
         // Manage Special transtyping case :
         // a = 1 then a = "plop"
         // only occurs when editing a scalar variable at index (1, 1)
         
         StringBuilder cmdInExecStr = new StringBuilder();
-        cmdInExecStr.append("if (" + row + " == 1 & " + col + " == 1 & size(" + variableName + ",''*'') == 1" + ") ");
+        cmdInExecStr.append("if (" + row + " == 1 & " + col + " == 1 & size(" + variableName + ",\"\"*\"\") == 1" + ") ");
         cmdInExecStr.append("then " + variableName + " = " + data + "; ");
         cmdInExecStr.append("else " + cellInVariable + " = " + data + "; end");
         
-        command.append("temp = " + buildCall("execstr", cmdInExecStr.toString(), "errcatch"));
-        command.append("updateEditvarValue(\"" + variableName + "\"," + row + "," + col + "," + cellInVariable + ",temp);");
+		command.append("if execstr(\"" + cmdInExecStr.toString() + "\", \"errcatch\") <> 0 then ");
+		command.append("messagebox(\"Could not edit variable: \" + lasterror() + \"\"");
+		command.append(",\"Variable editor\", \"error\", \"modal\");");
+		command.append("end ");
+        command.append("updateEditvarValue(\"" + variableName + "\"," + row + "," + col + "," + cellInVariable + ", 0);");
+
         return command.toString();
     }
 
     protected String getDataAsScilabString() {
         String data = String.valueOf(textField.getText());
 
-        data = data.replace("\"","\"\"");
-        data = data.replace("'","''");
+        data = data.replace("\"", "\"\"\"\""); // Change " to """" because added in an execstr command
+        data = data.replace("'", "''''"); // Change ' to '''' because added in an execstr command
 
         return data;
     }

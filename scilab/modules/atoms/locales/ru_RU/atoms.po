@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2010-04-15 23:51+0000\n"
+"PO-Revision-Date: 2010-07-10 20:48+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -200,16 +200,11 @@ msgid "%s: The file %s doesn''t exist or is not read accessible.\n"
 msgstr "%s: Файл «%s» не существует или недоступен для чтения.\n"
 
 #, c-format
-msgid "%s: The file %s is not well formated at line %d\n"
-msgstr "%s: Неправильный формат файла %s в строке %d\n"
-
-#, c-format
 msgid ""
 "%s: The file %s is not well formated, the toolbox %s - %s doesn''t contain "
-"the ScilabVersion field\n"
+"the %s field\n"
 msgstr ""
-"%s: Неправильный формат файла %s, модуль %s - %s не содержит поля "
-"ScilabVersion\n"
+"%s: Неправильный формат файла %s, модуль %s - %s не содержит поля %s\n"
 
 #, c-format
 msgid "%s: The file ''%s'' cannot be written.\n"
@@ -222,6 +217,10 @@ msgstr "%s: Файл «%s» не существует или недоступе�
 #, c-format
 msgid "%s: The file ''%s'' doesn''t exist or is not read accessible.\n"
 msgstr "%s: Файл «%s» не существует или недоступен для чтения.\n"
+
+#, c-format
+msgid "%s: The file ''%s'' is not well formated at line %d\n"
+msgstr "%s: Неправильный формат конфигурационного файла «%s» в строке %d\n"
 
 #, c-format
 msgid "%s: The following file hasn''t been copied:\n"
@@ -292,6 +291,10 @@ msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
 
 #, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось %d или %d.\n"
+
+#, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
 
@@ -304,13 +307,29 @@ msgid ""
 "%s: Wrong size for input argument #%d: 1x1 or 1x2 string matrix expected.\n"
 msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидалась (1 x 1) или (1 x 2)-"
-"матрица строка.\n"
+"матрица строк.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: 1x2 string matrix expected.\n"
 msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидалась (1 x 2)-матрица "
 "строк.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 1x1 or 1x2 string matrix expected.\n"
+msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидалась (1 x 1) или (1 x 2)-"
+"матрица строк.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидалось логическое значение.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
@@ -360,6 +379,15 @@ msgstr ""
 "строк.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалось логическое значение.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалось логическое значение.\n"
@@ -400,10 +428,23 @@ msgid "%s: Wrong type for input argument #%d: mlist expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидался mlist.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'' is not a registered category"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: «%s» не является "
+"зарегистрированной категорией"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' is not a valid URL.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: «%s» не является правильным "
 "URL.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''all'' or ''main'' expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалось «all» или «main».\n"
 
 #, c-format
 msgid ""
@@ -420,6 +461,14 @@ msgid ""
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось «all», «user», "
 "«allusers» или «official».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''filter:all'',''filter:main'' or a "
+"valid main category expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалась "
+"«filter:all»,«filter:main» или допустимая основная категория.\n"
 
 #, c-format
 msgid ""
@@ -460,6 +509,12 @@ msgstr ""
 "или «all».\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: A valid category expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалась допустимая "
+"категория.\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось ASC или DESC.\n"
@@ -470,6 +525,13 @@ msgid ""
 msgstr ""
 "%s: Неверное значение входного параметра №%d: версия всех модулей должна "
 "быть присвоена.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: It should have a field named "
+"''%s''.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалось поле с именем «%s».\n"
 
 #, c-format
 msgid ""
@@ -564,6 +626,10 @@ msgid "%s: You haven''t write access on this directory : %s.\n"
 msgstr "%s: У вас нет доступа для записи в данный каталог: %s.\n"
 
 #, c-format
+msgid "%s: name and version are not both defined\n"
+msgstr "%s: имя и версия не определены\n"
+
+#, c-format
 msgid "%s: the package ''%s'' doesn''t contain the field ''%s''.\n"
 msgstr "%s: пакет «%s» не содержит поля «%s».\n"
 
@@ -586,14 +652,21 @@ msgstr "&Инструменты"
 msgid "?"
 msgstr "Справка"
 
-msgid "Atoms"
-msgstr "Atoms"
+#, c-format
+msgid "A new version (''%s'') of ''%s'' is available"
+msgstr "Доступна новая версия («%s») модуля «%s»"
+
+msgid "ATOMS"
+msgstr "ATOMS"
+
+msgid "ATOMS error"
+msgstr "Ошибка ATOMS"
+
+msgid "All modules"
+msgstr "Все модули"
 
 msgid "Atoms Help..."
 msgstr "Справка по Atoms"
-
-msgid "Atoms error"
-msgstr "Ошибка Atoms"
 
 msgid "Author(s)"
 msgstr "Авторы"
@@ -625,6 +698,9 @@ msgstr "Организация"
 msgid "File"
 msgstr "Файл"
 
+msgid "Home"
+msgstr "Главная"
+
 msgid "Install"
 msgstr "Установить"
 
@@ -638,8 +714,8 @@ msgstr "Установка завершена! Перезапустите Scilab
 msgid "Installation failed!"
 msgstr "Сбой при установке!"
 
-msgid "Installing..."
-msgstr "Идёт установка..."
+msgid "Installing"
+msgstr "Идёт установка"
 
 msgid "KB"
 msgstr "КБ"
@@ -647,26 +723,29 @@ msgstr "КБ"
 msgid "License"
 msgstr "Лицензия"
 
+msgid "List of installed modules"
+msgstr "Список установленных модулей"
+
 msgid "MB"
 msgstr "МБ"
+
+msgid "Main categories"
+msgstr "Основные категории"
 
 msgid "Maintainer(s)"
 msgstr "Сопроводители"
 
-msgid "Modules"
-msgstr "Модули"
+msgid "No ATOMS module is available. Please, check your Internet connection."
+msgstr "Модуль ATOMS недоступен. Проверьте подключение к Интернету."
 
-msgid "No Atoms module is available. Please, check your Internet connection."
-msgstr "Модуль Atoms недоступен. Проверьте соединение с интернетом."
-
-msgid "No Atoms module is available: your repository list is empty."
-msgstr "Модуль Atoms недоступен: ваш список репозиториев пуст."
-
-msgid "No module selected"
-msgstr "Нет выбранного модуля"
+msgid "No ATOMS module is available: your repository list is empty."
+msgstr "Модуль ATOMS недоступен. Список репозиториев пуст."
 
 msgid "Package"
 msgstr "Пакет"
+
+msgid "Release date"
+msgstr "Дата выпуска"
 
 msgid "Remove"
 msgstr "Удалить"
@@ -677,11 +756,14 @@ msgstr "Удаление завершено! Перезапустите Scilab �
 msgid "Remove failed!"
 msgstr "Сбой при удалении!"
 
-msgid "Removing..."
-msgstr "Идёт удаление..."
+msgid "Removing"
+msgstr "Идёт удаление"
 
 msgid "Scilab Version"
 msgstr "Версия Scilab"
+
+msgid "See also"
+msgstr "Смотри также"
 
 msgid "Status"
 msgstr "Состояние"
@@ -701,8 +783,8 @@ msgstr "Обновление завершено! Перезапустите Scil
 msgid "Update failed!"
 msgstr "Сбой при обновлении!"
 
-msgid "Updating..."
-msgstr "Идёт обновление..."
+msgid "Updating"
+msgstr "Идёт обновление"
 
 msgid "Version"
 msgstr "Версия"

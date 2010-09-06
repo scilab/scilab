@@ -31,7 +31,7 @@ public class BlockParametersAction extends VertexSelectionDependantAction {
 	/** Name of the action */
 	public static final String NAME = XcosMessages.BLOCK_PARAMETERS;
 	/** Icon name of the action */
-	public static final String SMALL_ICON = "";
+	public static final String SMALL_ICON = "applications-system.png";
 	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = KeyEvent.VK_B;
 	/** Accelerator key for the action */
@@ -62,7 +62,7 @@ public class BlockParametersAction extends VertexSelectionDependantAction {
 	public void actionPerformed(ActionEvent e) {
 	    if (((XcosDiagram) getGraph(null)).getSelectionCell() != null) {
 		XcosDiagram diagram = (XcosDiagram) getGraph(null); 
-		((BasicBlock) diagram.getSelectionCell()).openBlockSettings(diagram.getScicosParameters().getContext());
+		((BasicBlock) diagram.getSelectionCell()).openBlockSettings(diagram.getContext());
 	    }
 	}
 

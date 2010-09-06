@@ -12,14 +12,12 @@
 
 package org.scilab.modules.scinotes;
 
-import java.awt.Rectangle;
-import java.awt.Shape;
 import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.Graphics;
 import java.awt.Font;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.Shape;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseEvent;
@@ -27,31 +25,34 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.IOException;
 import java.io.File;
-import java.util.List;
 import java.util.ArrayList;
 import java.util.EventObject;
+import java.util.List;
+import java.util.UUID;
 
+import javax.swing.text.Caret;
+import javax.swing.JComponent;
 import javax.swing.JEditorPane;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
-import javax.swing.JScrollBar;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
-import javax.swing.text.JTextComponent;
+import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.Element;
-import javax.swing.text.View;
-import javax.swing.text.BadLocationException;
-import javax.swing.event.CaretListener;
-import javax.swing.event.CaretEvent;
 import javax.swing.text.Highlighter;
+import javax.swing.text.JTextComponent;
+import javax.swing.text.View;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
 
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
+import org.scilab.modules.commons.gui.ScilabCaret;
+import org.scilab.modules.gui.utils.WebBrowser;
+import org.scilab.modules.scinotes.actions.OpenSourceFileOnKeywordAction;
 import org.scilab.modules.scinotes.utils.NavigatorWindow;
-import org.scilab.modules.scinotes.actions.OpenURLAction;
+import org.scilab.modules.scinotes.utils.SciNotesMessages;
+import org.scilab.modules.scinotes.utils.SciNotesLaTeXViewer;
 
 /**
  * Class ScilabEditorPane
@@ -63,6 +64,10 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                                                              MouseMotionListener, Cloneable,
                                                              KeyListener {
 
+    private static final String TIRET = " - ";
+    private static final Cursor HANDCURSOR = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
+    private static final Cursor TEXTCURSOR = Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR);
+
     private static ScilabEditorPane focused;
 
     private Color highlightColor;
@@ -72,7 +77,6 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private boolean matchingEnable;
     private ScilabLexer lexer;
     private SciNotes editor;
-    private NavigatorWindow navigator;
     private IndentManager indent;
     private TabManager tab;
     private CommentManager com;
@@ -80,6 +84,8 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private TrailingWhiteManager trailingWhite;
     private boolean readonly;
     private String infoBar = "";
+    private String shortName = "";
+    private String title = "";
 
     private long lastModified;
 
@@ -93,12 +99,16 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private JScrollPane scroll;
     private JSplitPane split;
     private ScilabEditorPane rightTextPane;
+    private UUID uuid;
 
-    private static final Cursor handCursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
-    private static final Cursor textCursor = Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR);
     private boolean hand;
-    private boolean infoBarChanged = false;
+    private boolean infoBarChanged;
     private boolean ctrlHit;
+
+    private Color saveHighlightContourColor;
+    private Color saveHighlightColor;
+    private boolean hasBeenSaved;
+    private boolean saveHighlightEnable;
 
     private List<KeywordListener> kwListeners = new ArrayList();
 
@@ -112,20 +122,9 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             focused = this;
         }
         this.editor = editor;
+        this.uuid = UUID.randomUUID();
+        updateCaret();
         scroll = new JScrollPane(this);
-        scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scroll.addComponentListener(new ComponentAdapter() {
-                public void componentResized(ComponentEvent e) {
-                    setSize(scroll.getViewport().getSize());
-                    validate();
-                    SwingUtilities.invokeLater(new Runnable() {
-                            public void run() {
-                                scrollTextToPos(getCaretPosition());
-                            }
-                        });
-                }
-            });
 
         addCaretListener(this);
         addMouseMotionListener(this);
@@ -135,6 +134,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         addFocusListener(new FocusListener() {
                 public void focusGained(FocusEvent e) {
                     updateInfosWhenFocused();
+                    NavigatorWindow.updateNavigator((ScilabDocument) getDocument());
                 }
 
                 public void focusLost(FocusEvent e) {
@@ -144,22 +144,59 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
 
         addKeywordListener(new KeywordAdaptater.MouseOverAdaptater() {
                 public void caughtKeyword(KeywordEvent e) {
-                    if (ScilabLexerConstants.URL == e.getType() || ScilabLexerConstants.MAIL == e.getType()) {
+                    if (ScilabLexerConstants.isClickable(e.getType())) {
                         if (ctrlHit) {
-                            setCursor(handCursor);
+                            setCursor(HANDCURSOR);
                             hand = true;
+                            try {
+                                String url = ((ScilabDocument) getDocument()).getText(e.getStart(), e.getLength());
+                                if (ScilabLexerConstants.isClickable(e.getType())) {
+                                    String text;
+                                    switch (e.getType()) {
+                                    case ScilabLexerConstants.URL :
+                                        text = SciNotesMessages.OPENURL;
+                                        break;
+                                    case ScilabLexerConstants.MAIL :
+                                        text = SciNotesMessages.MAILTO;
+                                        break;
+                                    case ScilabLexerConstants.MACROS :
+                                        text = SciNotesMessages.OPENSOURCE;
+                                        break;
+                                    case ScilabLexerConstants.MACROINFILE :
+                                        text = SciNotesMessages.SHOWSOURCE;
+                                        break;
+                                    default :
+                                        text = null;
+                                    }
+
+                                    if (text != null) {
+                                        ScilabEditorPane.this.editor.getInfoBar().setText(text + url);
+                                        infoBarChanged = true;
+                                    }
+                                }
+                            } catch (BadLocationException ex) { }
                         } else {
                             ScilabEditorPane.this.editor.getInfoBar().setText(SciNotesMessages.CLICKABLE_URL);
                             infoBarChanged = true;
                         }
                     } else {
                         if (hand) {
-                            setCursor(textCursor);
+                            setCursor(TEXTCURSOR);
                             hand = false;
                         }
                         if (infoBarChanged) {
                             ScilabEditorPane.this.editor.getInfoBar().setText(infoBar);
                             infoBarChanged = false;
+                        }
+                        if (ScilabLexerConstants.isLaTeX(e.getType())) {
+                            try {
+                                int start = e.getStart();
+                                int end = start + e.getLength();
+                                String exp = ((ScilabDocument) getDocument()).getText(start, e.getLength());
+                                SciNotesLaTeXViewer.displayExpression(ScilabEditorPane.this, exp, start, end);
+                            } catch (BadLocationException ex) { }
+                        } else {
+                            SciNotesLaTeXViewer.removeLaTeXViewer(ScilabEditorPane.this);
                         }
                     }
                 }
@@ -167,21 +204,34 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
 
         addKeywordListener(new KeywordAdaptater.MouseClickedAdaptater() {
                 public void caughtKeyword(KeywordEvent e) {
-                    if (ctrlHit && (ScilabLexerConstants.URL == e.getType() || ScilabLexerConstants.MAIL == e.getType())) {
+                    if (ctrlHit && ScilabLexerConstants.isClickable(e.getType())) {
                         try {
                             hand = false;
                             ctrlHit = false;
                             infoBarChanged = false;
-                            setCursor(textCursor);
+                            setCursor(TEXTCURSOR);
                             ScilabEditorPane.this.editor.getInfoBar().setText(infoBar);
                             String url = ((ScilabDocument) getDocument()).getText(e.getStart(), e.getLength());
-                            OpenURLAction.openURL(url);
+                            if (ScilabLexerConstants.URL == e.getType() || ScilabLexerConstants.MAIL == e.getType()) {
+                                WebBrowser.openUrl(url);
+                            } else if (ScilabLexerConstants.isOpenable(e.getType())) {
+                                OpenSourceFileOnKeywordAction.openSource(ScilabEditorPane.this, url);
+                            }
                         } catch (BadLocationException ex) { }
                     }
                 }
             });
 
         addKeyListener(this);
+    }
+
+    /**
+     * {@inheritDoc}
+     * When no split, this method return true and the consequence is
+     * that there is no horizontal scrollbar.
+     */
+    public boolean getScrollableTracksViewportWidth() {
+        return split == null;
     }
 
     /**
@@ -231,17 +281,43 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     }
 
     /**
-     * @param navigator the NavigatorWindow associated with this pane
+     * {@inheritDoc}
      */
-    public void setNavigator(NavigatorWindow navigator) {
-        this.navigator = navigator;
+    public void setName(String name) {
+        super.setName(name);
+        if (name != null) {
+            File f = new File(name);
+            this.shortName = f.getName();
+            title =  shortName + " (" + f.getAbsolutePath() + ")" + TIRET + SciNotesMessages.SCILAB_EDITOR;
+        }
     }
 
     /**
-     * @return true if this pane has a code navigator
+     * @param title the title
      */
-    public boolean hasNavigator() {
-        return navigator != null;
+    public void setTitle(String title) {
+        this.title = title + TIRET + SciNotesMessages.SCILAB_EDITOR;
+    }
+
+    /**
+     * @return the title
+     */
+    public String getTitle() {
+        return title;
+    }
+
+    /**
+     * @param name the short name
+     */
+    public void setShortName(String name) {
+        this.shortName = name;
+    }
+
+    /**
+     * @return the short name of the file (without the full path)
+     */
+    public String getShortName() {
+        return shortName;
     }
 
     /**
@@ -259,15 +335,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     /**
      * Close this pane
      */
-    public void close() {
-        SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    if (navigator != null) {
-                        navigator.closeNavigator();
-                    }
-                }
-            });
-    }
+    public void close() { }
 
     /**
      * Update infos
@@ -293,8 +361,10 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         String path = getName();
         if (path != null) {
             File f = new File(path);
-            if (f != null) {
+            if (f != null && f.exists()) {
                 return lastModified < f.lastModified();
+            } else {
+                return true;
             }
         }
         return false;
@@ -345,7 +415,17 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         pane.matchingEnable = matchingEnable;
         pane.suppressCom = suppressCom;
         pane.setName(getName());
+        pane.setShortName(getShortName());
+        pane.setTitle(getTitle());
         pane.setEditable(isEditable());
+    }
+
+    /**
+     * Get the UUID associated with the editor pane instance.
+     * @return unique identifier
+     */
+    public UUID getUUID() {
+        return uuid;
     }
 
     /**
@@ -381,6 +461,13 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     }
 
     /**
+     * @param editor to set
+     */
+    public void setEditor(SciNotes editor) {
+        this.editor = editor;
+    }
+
+    /**
      * Disable all
      */
     public void disableAll() {
@@ -403,6 +490,13 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             return scroll;
         }
         return split;
+    }
+
+    /**
+     * @param split the split used
+     */
+    public void setSplitPane(JSplitPane split) {
+        this.split = split;
     }
 
     /**
@@ -431,12 +525,27 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     /**
      * Scroll the pane to have the line lineNumber on the top of the pane
      * @param lineNumber the number of the line
+     * @param highlight true to highlight the line
      */
-    public void scrollTextToLineNumber(int lineNumber) {
+    public void scrollTextToLineNumber(int lineNumber, final boolean highlight) {
         Element root = getDocument().getDefaultRootElement();
         if (lineNumber >= 1 && lineNumber <= root.getElementCount()) {
-            int pos = root.getElement(lineNumber - 1).getStartOffset();
-            setCaretPosition(pos);
+            final int pos = root.getElement(lineNumber - 1).getStartOffset();
+            SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        scrollTextToPos(pos);
+                        if (highlight) {
+                            saveHighlightContourColor = highlightContourColor;
+                            highlightContourColor = null;
+                            saveHighlightColor = highlightColor;
+                            highlightColor = Color.YELLOW;
+                            saveHighlightEnable = highlightEnable;
+                            hasBeenSaved = true;
+                            enableHighlightedLine(false);
+                            enableHighlightedLine(true);
+                        }
+                    }
+                });
         }
     }
 
@@ -505,12 +614,12 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         int end = getSelectionEnd();
         try {
             if (start == end) {
-                selection = getDocument().getText(0, start + 1);
+                selection = getDocument().getText(0, start);
             } else {
-                selection = getDocument().getText(start, end - start + 1);
+                selection = getDocument().getText(start, end - start);
             }
             if (suppressCom) {
-                selection = selection.replaceAll("[ \t]*//[^\n]*\n", "");
+                selection = selection.replaceAll("[ \t]*//[^\n]*", "");
             }
         } catch (BadLocationException e) {
             selection = "";
@@ -564,11 +673,11 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
 
     /**
      * Activate or desactivate the help on typing
-     * @param isActive a boolean, true to activate.
      */
-    public void activateHelpOnTyping(boolean isActive) {
+    public void activateHelpOnTyping() {
+        boolean isActive = HelpOnTypingManager.isActive();
         if (isActive && helpOnTyping == null) {
-            helpOnTyping = new HelpOnTypingManager(this);
+            helpOnTyping = HelpOnTypingManager.getInstance();
             addKeyListener(helpOnTyping);
         } else if (!isActive && helpOnTyping != null) {
             removeKeyListener(helpOnTyping);
@@ -622,6 +731,10 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * @param e event
      */
     public void caretUpdate(CaretEvent e) {
+        if (hasBeenSaved) {
+            removeHighlightForLine();
+        }
+
         if (highlightEnable) {
             repaint();
         }
@@ -748,6 +861,9 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * @param e event
      */
     public void mousePressed(MouseEvent e) {
+        if (hasBeenSaved) {
+            removeHighlightForLine();
+        }
         if (highlightEnable) {
             repaint();
         }
@@ -772,6 +888,9 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * @param e event
      */
     public void mouseDragged(MouseEvent e) {
+        if (hasBeenSaved) {
+            removeHighlightForLine();
+        }
         if (highlightEnable) {
             repaint();
         }
@@ -809,6 +928,36 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public String toString() {
+        return shortName;
+    }
+
+    /**
+     * Remove the highlight putted to show the line (for editor('foo',123))
+     */
+    private void removeHighlightForLine() {
+        highlightContourColor = saveHighlightContourColor;
+        highlightColor = saveHighlightColor;
+        enableHighlightedLine(false);
+        if (saveHighlightEnable) {
+            enableHighlightedLine(true);
+        }
+        hasBeenSaved = false;
+    }
+
+    /**
+     * Add a the ScilabCaret
+     */
+    private void updateCaret() {
+        Caret caret = new ScilabCaret(this);
+        caret.setBlinkRate(getCaret().getBlinkRate());
+        setCaretColor(getCaretColor());
+        setCaret(caret);
+    }
+
+    /**
      * Initialize the pane when the document is loaded
      * @param doc used with this pane
      */
@@ -824,6 +973,13 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         matchRL.setDefaults();
         lexer = doc.createLexer();
         xln = new SciNotesLineNumberPanel(this);
+
+        /* The order of the next two lines is important: the doc
+           as listener will be called before xln so the resetTypeWhenBroken
+           will be called before ! */
+        doc.addDocumentListener(xln);
+        doc.addDocumentListener(doc);
+
         scroll.setRowHeaderView(xln);
         doc.setEditorPane(this);
     }

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-06-29 10:00+0100\n"
+"Revision-Date: 2010-08-17 12:09+0100\n"
 
 # File: src/c/scicos.c, line: 3061
 msgid ""
@@ -40,7 +40,7 @@ msgstr ""
 #, c-format
 msgid ""
 "\n"
-" Warning:an event is reprogrammed at t=%g by removing another"
+" Warning: an event is reprogrammed at t=%g by removing another"
 msgstr ""
 #
 # File: src/c/scicos.c, line: 4734
@@ -301,6 +301,12 @@ msgstr ""
 msgid "%s : Only hypermatrix with 3 dimensions is allowed.\n"
 msgstr ""
 #
+# File: sci_gateway/c/sci_data2sig.c, line: 157
+#, c-format
+msgid "%s : Second argument must be a real.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_data2sig.c, line: 152
 # File: sci_gateway/c/sci_scicosim.c, line: 476
 #, c-format
 msgid "%s : Second argument must be a scalar.\n"
@@ -314,16 +320,6 @@ msgstr ""
 # File: sci_gateway/c/sci_scicosim.c, line: 526
 #, c-format
 msgid "%s : Second element of sim must be a list.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_data2sig.c, line: 157
-#, c-format
-msgid "%s : Secong argument must be a real.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_data2sig.c, line: 152
-#, c-format
-msgid "%s : Secong argument must be a scalar.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_scicosim.c, line: 1286
@@ -700,7 +696,7 @@ msgid "**** SUNDIALS.IDA failed to initialize ->try again *****\n"
 msgstr ""
 #
 # File: src/c/scicos.c, line: 2121
-msgid "**** SUNDIALS.IDA succesfully initialized *****\n"
+msgid "**** SUNDIALS.IDA successfully initialized *****\n"
 msgstr ""
 #
 # File: src/c/scicos.c, line: 2223
@@ -788,7 +784,7 @@ msgstr ""
 # File: macros/scicos_auto/scicos.sci, line: 554
 #, c-format
 msgid ""
-"An unexpected  error occured while executing the menu\n"
+"An unexpected  error occurred while executing the menu\n"
 "%s:\n"
 msgstr ""
 #
@@ -843,7 +839,7 @@ msgstr ""
 # File: sci_gateway/c/sci_scicosim.c, line: 2139
 msgid ""
 "CV_BAD_DKY:  The dky argument was NULL. dky is the output derivative vector "
-"[((d/dy)^k)y](t)."
+"[((d/dt)^k)y](t)."
 msgstr ""
 #
 # File: sci_gateway/c/sci_scicosim.c, line: 2161
@@ -864,7 +860,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_scicosim.c, line: 2167
 msgid ""
-"CV_BAD_ITOL:Illegal value for itol. The legal values are CV_SS, CV_SV, and "
+"CV_BAD_ITOL: Illegal value for itol. The legal values are CV_SS, CV_SV, and "
 "CV_WF."
 msgstr ""
 #
@@ -925,7 +921,7 @@ msgstr ""
 # File: sci_gateway/c/sci_scicosim.c, line: 2117
 msgid ""
 "CV_FIRST_RHSFUNC_ERR: The right-hand side function (user supplied ODE) had a "
-"recoverable error at th efirst call"
+"recoverable error at the first call"
 msgstr ""
 #
 # File: sci_gateway/c/sci_scicosim.c, line: 2131
@@ -1017,7 +1013,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_scicosim.c, line: 2125
 msgid ""
-"CV_RTFUNC_FAIL: The rootfinding routine failed in an unrecoverable manner."
+"CV_RTFUNC_FAIL: The root finding routine failed in an unrecoverable manner."
 msgstr ""
 #
 # File: sci_gateway/c/sci_scicosim.c, line: 2187
@@ -1085,7 +1081,11 @@ msgid ""
 msgstr ""
 #
 # File: macros/scicos_menus/set_initial_xcos_menus.sci, line: 282
-msgid "Click on a block to set or get it''s documentation"
+msgid "Click on a block to set or get its documentation"
+msgstr ""
+#
+# File: macros/scicos_menus/set_initial_xcos_menus.sci, line: 260
+msgid "Click on a port, click on a port of object to be moved"
 msgstr ""
 #
 # File: macros/scicos_menus/set_initial_xcos_menus.sci, line: 283
@@ -1094,10 +1094,6 @@ msgstr ""
 # File: macros/scicos_menus/set_initial_xcos_menus.sci, line: 286
 # File: macros/scicos_menus/set_initial_xcos_menus.sci, line: 287
 msgid "Click on a super block"
-msgstr ""
-#
-# File: macros/scicos_menus/set_initial_xcos_menus.sci, line: 260
-msgid "Click on an a port, click on a port of object to be moved"
 msgstr ""
 #
 # File: macros/scicos_menus/set_initial_xcos_menus.sci, line: 280
@@ -1403,7 +1399,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_scicosim.c, line: 2053
 msgid ""
-"IDA_BAD_ITOL:Illegal value for itol. The legal values are IDA_SS, IDA_SV, "
+"IDA_BAD_ITOL: Illegal value for itol. The legal values are IDA_SS, IDA_SV, "
 "and IDA_WF."
 msgstr ""
 #
@@ -1562,7 +1558,7 @@ msgid ""
 msgstr ""
 #
 # File: sci_gateway/c/sci_scicosim.c, line: 2071
-msgid "IDA_RES_NULL: th returned residual res = NULL is illegal."
+msgid "IDA_RES_NULL: the returned residual res = NULL is illegal."
 msgstr ""
 #
 # File: sci_gateway/c/sci_scicosim.c, line: 2026
@@ -1682,9 +1678,9 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_scicosim.c, line: 2211
 msgid ""
-"KIN_LSOLVE_FAIL: Either the user-supplied routine psolve (used to to solve "
-"the preconditioned linear system) encountered an unrecoverable error, or the "
-"linear solver routine  (lsolve) encountered an error condition."
+"KIN_LSOLVE_FAIL: Either the user-supplied routine psolve (used to solve the "
+"preconditioned linear system) encountered an unrecoverable error, or the "
+"linear solver routine (lsolve) encountered an error condition."
 msgstr ""
 #
 # File: sci_gateway/c/sci_scicosim.c, line: 2199
@@ -1898,7 +1894,7 @@ msgstr ""
 # File: macros/scicos_menus/set_initial_xcos_menus.sci, line: 255
 # File: macros/scicos_menus/set_initial_xcos_menus.sci, line: 256
 msgid ""
-"Press lef mouse button, drag region and release (right button to cancel)"
+"Press left mouse button, drag region and release (right button to cancel)"
 msgstr ""
 #
 # File: macros/scicos_auto/scicos.sci, line: 653
@@ -2239,7 +2235,7 @@ msgid "Zoom out"
 msgstr ""
 #
 # File: sci_gateway/c/sci_scicosim.c, line: 1929
-msgid "algrebraic loop detected"
+msgid "algebraic loop detected"
 msgstr ""
 #
 # File: src/c/scicos.c, line: 2485
@@ -2306,7 +2302,7 @@ msgid "scheduling problem"
 msgstr ""
 #
 # File: sci_gateway/c/sci_scicosim.c, line: 2232
-msgid "scicos unexpected error,please report..."
+msgid "scicos unexpected error, please report..."
 msgstr ""
 #
 # File: macros/scicos_scicos/scs_show.sci, line: 28

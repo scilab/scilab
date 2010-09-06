@@ -19,11 +19,8 @@ msgstr ""
 msgid " An hypermatrix extraction must have at least 2 arguments. "
 msgstr " Una estrazione di ipermatrice deve avere almeno 2 argomenti. "
 
-msgid " An hypermatrix insertion must have at least 3 arguments "
-msgstr " Un inserimento di ipermatrice deve avere almeno 3 argomenti "
-
-msgid " Argument is not an hypermatrix "
-msgstr " L'argomento non è una ipermatrice "
+msgid " An hypermatrix insertion must have at least 3 arguments. "
+msgstr ""
 
 msgid " Argument is not an hypermatrix. "
 msgstr " L'argomento non è una ipermatrice. "

@@ -41,6 +41,7 @@ import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.PrintRequestAttribute;
 import javax.print.attribute.PrintRequestAttributeSet;
 import javax.print.attribute.standard.OrientationRequested;
+import javax.swing.ImageIcon;
 import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
@@ -601,6 +602,8 @@ public class CallScilabBridge {
         graphicTab.addMenuBar(menuBar);
         graphicTab.addToolBar(toolBar);
         graphicTab.addInfoBar(infoBar);
+	((SwingScilabTab) graphicTab.getAsSimpleTab()).setWindowIcon(new ImageIcon(System.getenv("SCI")
+										   + "/modules/gui/images/icons/graphic-window.png").getImage());
         newWindow.addTab(graphicTab);
         
         // link the tab and canvas with their figure
@@ -2235,7 +2238,7 @@ public class CallScilabBridge {
      * Save the help Window size and position
      */
     public static void saveHelpWindowSettings() {
-        if (ScilabHelpBrowser.getHelpBrowserWithoutCreation() !=null )  {
+        if (ScilabHelpBrowser.getHelpBrowserWithoutCreation() != null )  {
             SwingScilabHelpBrowser sciHelpBrowser = ((SwingScilabHelpBrowser) ScilabHelpBrowser.getHelpBrowser().getAsSimpleHelpBrowser());
             if (sciHelpBrowser != null) {
                 SwingScilabTab consoleTab = (SwingScilabTab) sciHelpBrowser.getParent();

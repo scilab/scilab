@@ -641,6 +641,21 @@ msgstr "频率（Hz）"
 msgid "Gain :"
 msgstr "增益："
 
+msgid "Hall chart"
+msgstr ""
+
+msgid "Hz"
+msgstr ""
+
+msgid "Im"
+msgstr ""
+
+msgid "Im(h(2if))"
+msgstr ""
+
+msgid "Im(h(exp(2if*dt)))"
+msgstr ""
+
 msgid "Imaginary axis"
 msgstr "虚轴"
 
@@ -652,8 +667,8 @@ msgid ""
 "factor (click below)"
 msgstr "不可约的传递函数因素的固有频率和阻尼因子（点击下面）"
 
-msgid "Magnitude (Db)"
-msgstr "幅度（Db）"
+msgid "Magnitude (dB)"
+msgstr ""
 
 msgid "Numerator :"
 msgstr "分子："
@@ -669,6 +684,15 @@ msgstr "相位（度）"
 
 msgid "Poles"
 msgstr "极点"
+
+msgid "Re"
+msgstr ""
+
+msgid "Re(h(2if))"
+msgstr ""
+
+msgid "Re(h(exp(2if*dt)))"
+msgstr ""
 
 msgid "Real axis"
 msgstr "实轴"
@@ -691,8 +715,14 @@ msgstr "零"
 msgid "asymptotic directions"
 msgstr "渐近方向"
 
+msgid "dB"
+msgstr ""
+
 msgid "magnitude(y) (Db)"
 msgstr "幅度（y）（Db）"
+
+msgid "magnitude(y) (dB)"
+msgstr ""
 
 msgid "open loop poles"
 msgstr "开环极点"

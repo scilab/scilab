@@ -15,6 +15,8 @@ package org.scilab.modules.scinotes.actions;
 
 import java.awt.Font;
 import java.util.List;
+
+import javax.swing.JFrame;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.bridge.fontchooser.SwingScilabFontChooser;
@@ -43,7 +45,8 @@ public class SetFontAction extends DefaultAction {
      * DoAction
      */
     public void doAction() {
-        SwingScilabFontChooser fontChooser = new SwingScilabFontChooser(ConfigSciNotesManager.getFont(), false);
+        SwingScilabFontChooser fontChooser = new SwingScilabFontChooser((JFrame) getEditor().getParentWindow().getAsSimpleWindow(), ConfigSciNotesManager.getFont(), true);
+        fontChooser.setLocationRelativeTo(getEditor());
         fontChooser.displayAndWait();
 
         Font newFont = fontChooser.getSelectedFont();
@@ -52,7 +55,7 @@ public class SetFontAction extends DefaultAction {
 
             List<String> listStylesName = ConfigSciNotesManager.getAllStyleName();
 
-            int numberOfTab = getEditor().getTabPane().getComponentCount();
+            int numberOfTab = getEditor().getTabPane().getTabCount();
             for (int i = 0; i < numberOfTab; i++) {
                 ScilabEditorPane textPane = getEditor().getTextPane(i);
                 textPane.resetFont(newFont);

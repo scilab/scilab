@@ -140,7 +140,10 @@ function black(varargin)
     end
   end
   kf=1
-  drawlater()
+  fig=gcf();
+  immediate_drawing=fig.immediate_drawing;
+  fig.immediate_drawing="off";
+
   ax=gca();
   if size(ax.children,"*")==0 then
     ax.data_bounds=[xmn ymn;xmx ymx];
@@ -211,8 +214,9 @@ function black(varargin)
     c=[];for k=1:mn,c=[E(k).children(1),c];end
     legend([c e]',["2.3"+_("dB");comments(:)])
   end
-  drawnow()
+  fig.immediate_drawing=immediate_drawing;
 endfunction
+
 function str=formatBlackTip(curve,pt,index)
 //This function is called by the datatip mechanism to format the tip
 //string for black curves.
