@@ -46,7 +46,7 @@ Function::ReturnValue sci_isdir(typed_list &in, int _iRetCount, typed_list &out)
 
     if(in[0]->isString() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Matrix of strings expected.\n"), L"pathconvert", 1);
+        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Matrix of strings expected.\n"), L"isdir", 1);
         return Function::Error;
     }
 

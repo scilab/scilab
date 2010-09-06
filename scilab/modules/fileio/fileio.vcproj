@@ -605,10 +605,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_filesep.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_findfiles.c"
 				>
 			</File>

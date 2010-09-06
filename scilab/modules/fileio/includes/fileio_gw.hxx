@@ -44,5 +44,6 @@ CPP_GATEWAY_PROTOTYPE(sci_mputl);
 CPP_GATEWAY_PROTOTYPE(sci_mgetl);
 CPP_GATEWAY_PROTOTYPE(sci_pathconvert);
 CPP_GATEWAY_PROTOTYPE(sci_isdir);
+CPP_GATEWAY_PROTOTYPE(sci_filesep);
 
 #endif /* !__FILEIO_GW_HXX__ */

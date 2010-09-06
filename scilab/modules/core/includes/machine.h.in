@@ -538,5 +538,10 @@
 #endif
 #define DIR_SEPARATOR "/"
 
+#ifdef DIR_SEPARATORW
+	   #undef DIR_SEPARATORW
+#endif
+#define DIR_SEPARATORW L"/"
+
 #endif /* MACHINE_H  */
 

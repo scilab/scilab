@@ -42,7 +42,7 @@ static gw_generic_table Tab[]={
 	{sci_fullpath,"fullpath"},
 	{sci_deletefile,"deletefile"},
 	{sci_pathsep,"pathsep"},
-	{sci_filesep,"filesep"},
+	{NULL, ""}, //filesep
 	{sci_getlongpathname,"getlongpathname"},
 	{sci_getshortpathname,"getshortpathname"},
 	{sci_fileext,"fileext"},
