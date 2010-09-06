@@ -142,7 +142,13 @@ void visitprivate(const CallExp &e)
         InternalType *pOut = NULL;
         std::vector<InternalType*> ResultList;
 
-        if(pIT->isStruct())
+        //To manage extraction without parameter like SCI()
+        if(iArgDim == 0)
+        {
+            result_set(pIT);
+            return;
+        }
+        else if(pIT->isStruct())
         {
             list<wstring> stFields;
             list<Exp*>::const_iterator it1;
