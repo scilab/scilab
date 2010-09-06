@@ -20,6 +20,8 @@ SciNotes:
 * It is now possible to preview a LaTeX formula in comments or in a string on
 mouseover event.
 
+* bug 7524 fixed - Tabulation representation had a bad size in whitespace mode.
+
 * bug 7546 fixed - It was not possible to select easily a block.
 
 GUI creation:

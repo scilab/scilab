@@ -60,8 +60,8 @@ public class TabManager {
         } else {
             this.tab = "\t";
             lengthTab = 1;
-            doc.putProperty("tabSize", new Integer(Math.max(n, 1)));
         }
+        doc.putProperty("tabSize", new Integer(Math.max(n, 1)));
         if (indent != null) {
             indent.setProperties(tab, n);
         }
