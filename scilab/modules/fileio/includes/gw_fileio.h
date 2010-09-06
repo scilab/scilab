@@ -50,7 +50,6 @@ FILEIO_IMPEXP int sci_get_absolute_file_path(char *fname,unsigned long fname_len
 FILEIO_IMPEXP int sci_pwd(char *fname, int* _piKey);
 FILEIO_IMPEXP int sci_chdir(char *fname, int* _piKey);
 FILEIO_IMPEXP int sci_copyfile(char *fname,int* _piKey);
-FILEIO_IMPEXP int sci_fileparts(char *fname, int* _piKey);
 FILEIO_IMPEXP int sci_movefile(char *fname, int* _piKey);
 FILEIO_IMPEXP int sci_basename(char *fname, int* _piKey);
 FILEIO_IMPEXP int sci_isfile(char *fname, int* _piKey);

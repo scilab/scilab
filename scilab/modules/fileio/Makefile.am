@@ -81,7 +81,6 @@ sci_gateway/c/sci_newest.c \
 sci_gateway/c/sci_get_absolute_file_path.c  \
 sci_gateway/c/sci_getrelativefilename.c \
 sci_gateway/c/sci_copyfile.c \
-sci_gateway/c/sci_fileparts.c \
 sci_gateway/c/sci_movefile.c \
 sci_gateway/c/sci_basename.c \
 sci_gateway/c/sci_isfile.c
@@ -96,7 +95,8 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_mgetl.cpp \
 	sci_gateway/cpp/sci_pathconvert.cpp \
 	sci_gateway/cpp/sci_isdir.cpp \
-	sci_gateway/cpp/sci_filesep.cpp
+	sci_gateway/cpp/sci_filesep.cpp \
+	sci_gateway/cpp/sci_fileparts.cpp
 
 FILEIO_CPP_SOURCES = \
 	src/cpp/expandPathVariable.cpp \
