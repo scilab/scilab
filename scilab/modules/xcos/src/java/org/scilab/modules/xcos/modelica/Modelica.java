@@ -36,7 +36,7 @@ import javax.xml.validation.SchemaFactory;
 
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.utils.ScilabExported;
-import org.scilab.modules.jvm.utils.ScilabConstants;
+import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.xcos.modelica.model.Model;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.xml.sax.SAXException;

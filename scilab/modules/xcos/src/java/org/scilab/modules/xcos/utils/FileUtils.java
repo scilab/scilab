@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.nio.channels.FileChannel;
 
 import org.apache.commons.logging.LogFactory;
-import org.scilab.modules.jvm.utils.ScilabConstants;
+import org.scilab.modules.commons.ScilabConstants;
 import org.w3c.dom.Document;
 
 import com.mxgraph.io.mxCodec;

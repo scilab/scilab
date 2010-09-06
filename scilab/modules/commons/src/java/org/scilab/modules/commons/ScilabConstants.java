@@ -11,7 +11,7 @@
  *
  */
 
-package org.scilab.modules.jvm.utils;
+package org.scilab.modules.commons;
 
 import java.io.File;
 
