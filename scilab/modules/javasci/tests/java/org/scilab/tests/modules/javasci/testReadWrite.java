@@ -54,11 +54,10 @@ public class testReadWrite {
         double [][]aImg={{212.2, 221.0, 423.0, 393.0},{234.2, 244.0, 441.0, 407.0}};
 
         ScilabDouble aOriginal = new ScilabDouble(a, aImg);
-        System.out.println("aOriginal: "+aOriginal);
         sci.put("a",aOriginal);
 
         ScilabDouble aFromScilab = (ScilabDouble)sci.get("a");
-        System.out.println("aFromScilab: "+aFromScilab);
+
         assert aFromScilab.equals(aOriginal);
     }
 
@@ -78,10 +77,14 @@ public class testReadWrite {
 	@Test(sequential = true) 
 	public void putAndGetStringTest() throws NullPointerException, InitializationException {
         String [][]a={{"String1", "String2", "String3", "String4"},
-					  {"String5", "String6", "String7", "String8"}};
+					  {"String5", "String6", "My String 7", "String8"}};
         ScilabString aOriginal = new ScilabString(a);
         sci.put("a",aOriginal);
-        assert sci.exec("somme = sum(a);") == false;
+
+        assert sci.exec("checksize = and(size(a)==[2,4]);") == true;
+
+        ScilabBoolean checksize = (ScilabBoolean)sci.get("checksize");
+        assert checksize.getData()[0][0] == true;
 
         ScilabString aFromScilab = (ScilabString)sci.get("a");
 
