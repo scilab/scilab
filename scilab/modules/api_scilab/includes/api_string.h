@@ -53,7 +53,7 @@ SciErr getMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, int* _
  * @param[in] _pstStrings array of strings ( null terminated )
  * @return if the operation succeeded (0) or not ( !0 )
  */
-SciErr createMatrixOfString(void* _pvCtx, int _iVar, int _iRows, int _iCols, char** _pstStrings);
+SciErr createMatrixOfString(void* _pvCtx, int _iVar, int _iRows, int _iCols, const char* const* _pstStrings);
 
 /**
 * Create wide strings variable data
@@ -63,7 +63,7 @@ SciErr createMatrixOfString(void* _pvCtx, int _iVar, int _iRows, int _iCols, cha
 * @param[in] _pwstStrings array of strings ( null terminated )
 * @return if the operation succeeded (0) or not ( !0 )
 */
-SciErr createMatrixOfWideString(void* _pvCtx, int _iVar, int _iRows, int _iCols, wchar_t** _pwstStrings);
+SciErr createMatrixOfWideString(void* _pvCtx, int _iVar, int _iRows, int _iCols, const wchar_t* const* _pwstStrings);
 
 /**
  * Create strings variable data
@@ -73,7 +73,7 @@ SciErr createMatrixOfWideString(void* _pvCtx, int _iVar, int _iRows, int _iCols,
  * @param[in] _pstStrings array of strings ( null terminated )
  * @return if the operation succeeded (0) or not ( !0 )
  */
-SciErr createNamedMatrixOfString(void* _pvCtx, char* _pstName, int _iRows, int _iCols, char** _pstStrings);
+SciErr createNamedMatrixOfString(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const char* const* _pstStrings);
 
 /**
 * Create wide strings variable data
@@ -83,7 +83,7 @@ SciErr createNamedMatrixOfString(void* _pvCtx, char* _pstName, int _iRows, int _
 * @param[in] _pwstStrings array of wide strings ( null terminated )
 * @return if the operation succeeded (0) or not ( !0 )
 */
-SciErr createNamedMatrixOfWideString(void* _pvCtx, char* _pstName, int _iRows, int _iCols, wchar_t** _pwstStrings);
+SciErr createNamedMatrixOfWideString(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const wchar_t* const* _pwstStrings);
 
 /**
  * Get strings variable data
@@ -202,7 +202,7 @@ int getAllocatedNamedMatrixOfWideString(void* _pvCtx, char* _pstName, int* _piRo
  * @param[in] _pstStrings string ( null terminated )
  * @return if the operation succeeded (0) or not ( !0 )
  */
-int createSingleString(void* _pvCtx, int _iVar, char* _pstStrings);
+int createSingleString(void* _pvCtx, int _iVar, const char* _pstStrings);
 
 /**
  * Create single wide string variable data
@@ -210,7 +210,7 @@ int createSingleString(void* _pvCtx, int _iVar, char* _pstStrings);
  * @param[in] _pwstStrings wide string ( null terminated )
  * @return if the operation succeeded (0) or not ( !0 )
  */
-int createSingleWideString(void* _pvCtx, int _iVar, wchar_t* _pwstStrings);
+int createSingleWideString(void* _pvCtx, int _iVar, const wchar_t* _pwstStrings);
 
 /**
  * Create named single string variable data
@@ -218,7 +218,7 @@ int createSingleWideString(void* _pvCtx, int _iVar, wchar_t* _pwstStrings);
  * @param[in] _pstStrings string ( null terminated )
  * @return if the operation succeeded (0) or not ( !0 )
  */
-int createNamedSingleString(void* _pvCtx, char* _pstName, char* _pstStrings);
+int createNamedSingleString(void* _pvCtx, char* _pstName, const char* _pstStrings);
 
 /**
  * Create named single wide string variable data
@@ -226,7 +226,7 @@ int createNamedSingleString(void* _pvCtx, char* _pstName, char* _pstStrings);
  * @param[in] _pwstStrings wide string ( null terminated )
  * @return if the operation succeeded (0) or not ( !0 )
  */
-int createNamedSingleWideString(void* _pvCtx, char* _pstName, wchar_t* _pwstStrings);
+int createNamedSingleWideString(void* _pvCtx, char* _pstName, const wchar_t* _pwstStrings);
 
 /**
  * free data allocated by shortcut functions ( named or not )

@@ -33,7 +33,7 @@ int wcsicmp_others(const wchar_t* s1, const wchar_t* s2)
 #endif
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
-char *wide_string_to_UTF8(wchar_t *_wide)
+char *wide_string_to_UTF8(const wchar_t *_wide)
 {
 	char *buf = NULL;
 	DWORD size = 0;
@@ -56,7 +56,7 @@ char *wide_string_to_UTF8(wchar_t *_wide)
 	return buf;
 }
 /*--------------------------------------------------------------------------*/
-wchar_t *to_wide_string(char *_UTFStr)
+wchar_t *to_wide_string(const char *_UTFStr)
 {
 	int nwide = 0;
 	wchar_t *_buf = NULL;
@@ -95,7 +95,7 @@ int wcstat(char* filename, struct _stat *st)
 }
 /*--------------------------------------------------------------------------*/
 #else //Linux check for MAC OS X
-char *wide_string_to_UTF8(wchar_t *_wide)
+char *wide_string_to_UTF8(const wchar_t *_wide)
 {
 	size_t iCharLen = 0;
 	wchar_t *pwstr = _wide;
@@ -124,7 +124,7 @@ char *wide_string_to_UTF8(wchar_t *_wide)
 	return pchar;
 }
 /*--------------------------------------------------------------------------*/
-wchar_t *to_wide_string(char *_UTFStr)
+wchar_t *to_wide_string(const char *_UTFStr)
 {
 	wchar_t *_buf = NULL;
 	size_t pszLen = 0;
