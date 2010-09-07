@@ -6,6 +6,9 @@ Xcos:
 
 * Include all the old-scicos palettes on the binary version.
 
+* bug 7770 fixed - It was not possible to compile a diagram with Modelica 
+                   blocks.
+
 * bug 7822 fixed - Xcos menu bar was larger than the Scilab one.
 
 * bug 7922 fixed - The Automotive Suspension demo did not work.

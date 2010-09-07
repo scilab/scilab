@@ -41,18 +41,23 @@ curwin      = 1000;
 tf          = scs_m.props.tf;
 alreadyran  = %f;
 
-show_trace = %t; //** tracing and profiling (probably by Alan L. )
+show_trace = %f; //** tracing and profiling (probably by Alan L. )
 
 if show_trace then 
   disp("c_pass0:"+string(timer())); 
 end
 
-if exists('%scicos_solver')==0 then 
+if ~exists("%scicos_solver") then 
   %scicos_solver = 0 ; 
 end
 
-if ~exists('%scicos_debug_gr') then
+if ~exists("%scicos_debug_gr") then
   %scicos_debug_gr = %f; //** debug mode : default is "%f"
+end
+
+// modelica_libs needed to compile Modelica blocks
+if ~exists("modelica_libs") then
+  modelica_libs = getModelicaPath();
 end
 
 par = scs_m.props;
@@ -66,28 +71,28 @@ timer() ; //** profiling timer
 
 IN=[];OUT=[];
 for i=1:lstsize(scs_m.objs)
-  if typeof(scs_m.objs(i))=='Block' then 
-     if scs_m.objs(i).gui=='IN_f' then
-        scs_m.objs(i).gui='INPUTPORT';
-        scs_m.objs(i).model.sim='bidon'
+  if typeof(scs_m.objs(i))=="Block" then 
+     if scs_m.objs(i).gui=="IN_f" then
+        scs_m.objs(i).gui="INPUTPORT";
+        scs_m.objs(i).model.sim="bidon"
         IN=[IN scs_m.objs(i).model.ipar]
-     elseif scs_m.objs(i).gui=='OUT_f' then
-        scs_m.objs(i).gui='OUTPUTPORT';
-        scs_m.objs(i).model.sim='bidon'
+     elseif scs_m.objs(i).gui=="OUT_f" then
+        scs_m.objs(i).gui="OUTPUTPORT";
+        scs_m.objs(i).model.sim="bidon"
         OUT=[OUT  scs_m.objs(i).model.ipar]
     end
   end
 end
 
 IN=-gsort(-IN);
-if or(IN<>[1:size(IN,'*')]) then 
+if or(IN<>[1:size(IN,"*")]) then 
   ok=%f;%cpr=list()
   message("Input ports are not numbered properly.")
   return
 end
 
 OUT=-gsort(-OUT);
-if or(OUT<>[1:size(OUT,'*')]) then 
+if or(OUT<>[1:size(OUT,"*")]) then 
   ok=%f;%cpr=list()
   message("Output ports are not numbered properly.")
   return
@@ -97,7 +102,7 @@ end
 [bllst,connectmat,clkconnect,cor,corinv,ok] = c_pass1(scs_m);
 
 if show_trace then
-  disp('c_pass1:'+string(timer()))
+  disp("c_pass1:"+string(timer()))
 end
 
 if ~ok then %cpr=list()
