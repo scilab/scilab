@@ -48,6 +48,8 @@ class Call_ScilabJNI {
   public final static native int getVariableType(String jarg1);
   public final static native int getIntegerPrecision(String jarg1);
   public final static native boolean isComplex(String jarg1);
+  public final static native String[][] getString(String jarg1);
+  public final static native int putString(String jarg1, String[][] jarg2);
   public final static native int putDoubleComplex(String jarg1, double[] jarg2, int jarg3, int jarg4);
   public final static native double[][] getDouble(String jarg1);
   public final static native int putDouble(String jarg1, double[][] jarg2);

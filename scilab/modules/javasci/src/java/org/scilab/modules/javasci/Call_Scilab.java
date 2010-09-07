@@ -65,6 +65,14 @@ public class Call_Scilab {
     return Call_ScilabJNI.isComplex(varname);
   }
 
+  public static String[][] getString(String variableName) {
+    return Call_ScilabJNI.getString(variableName);
+  }
+
+  public static int putString(String variableName, String[][] variable) {
+    return Call_ScilabJNI.putString(variableName, variable);
+  }
+
   public static int putDoubleComplex(String variableName, double[] variable, int nbRow, int nbCol) {
     return Call_ScilabJNI.putDoubleComplex(variableName, variable, nbRow, nbCol);
   }

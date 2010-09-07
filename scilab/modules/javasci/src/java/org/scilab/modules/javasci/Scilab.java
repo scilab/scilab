@@ -17,6 +17,7 @@ import org.scilab.modules.types.scilabTypes.ScilabType;
 import org.scilab.modules.types.scilabTypes.ScilabTypeEnum;
 import org.scilab.modules.types.scilabTypes.ScilabIntegerTypeEnum;
 import org.scilab.modules.types.scilabTypes.ScilabDouble;
+import org.scilab.modules.types.scilabTypes.ScilabString;
 import org.scilab.modules.types.scilabTypes.ScilabBoolean;
 import org.scilab.modules.types.scilabTypes.ScilabInteger;
 import org.scilab.modules.javasci.Call_Scilab;
@@ -267,8 +268,13 @@ public class Scilab {
                 } else {
                     return new ScilabDouble(Call_Scilab.getDoubleComplexReal(varname), Call_Scilab.getDoubleComplexImg(varname));
                 }
+
 			case sci_boolean:
 				return new ScilabBoolean(Call_Scilab.getBoolean(varname));
+
+			case sci_strings:
+				return new ScilabString(Call_Scilab.getString(varname));
+
 			case sci_ints:
 				ScilabIntegerTypeEnum typeInt = Call_Scilab.getIntegerPrecision(varname);
 
@@ -309,6 +315,7 @@ public class Scilab {
     */
     public boolean put(String varname, ScilabType theVariable) {
 		int err = -999;
+
         if (theVariable instanceof ScilabDouble) {
             ScilabDouble sciDouble = (ScilabDouble)theVariable;
             if (sciDouble.isReal()) {
@@ -320,6 +327,7 @@ public class Scilab {
                 err = Call_Scilab.putDoubleComplex(varname,sciDouble.getSerializedComplexMatrix(), sciDouble.getHeight(), sciDouble.getWidth());
             }
 		}
+
 		if (theVariable instanceof ScilabInteger) {
             ScilabInteger sciInteger = (ScilabInteger)theVariable;
 			switch (sciInteger.getPrec()) {
@@ -350,10 +358,18 @@ public class Scilab {
 
 			//			Call_Scilab.putLong(varname, sciInteger.getData_());
 		}
+
 		if (theVariable instanceof ScilabBoolean) {
             ScilabBoolean sciBoolean = (ScilabBoolean)theVariable;
             err = Call_Scilab.putBoolean(varname, sciBoolean.getData());
         }
+
+		if (theVariable instanceof ScilabString) {
+            ScilabString sciString = (ScilabString)theVariable;
+            err = Call_Scilab.putString(varname, sciString.getData());
+        }
+
+
 		//TODO: a remplacer par la bonne exception return new UnsupportedTypeException();
 		//		throw new UnsupportedTypeException();
         if (err == -999) {

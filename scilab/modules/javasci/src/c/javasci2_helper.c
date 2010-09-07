@@ -528,3 +528,59 @@ char* getLastErrorMessageSingle() {
     }
     return concat;
 }
+
+
+
+char ** getString(char* variableName, int *nbRow, int *nbCol) {
+    SciErr sciErr;
+    int i = 0;
+
+    int* piLen      = NULL;
+    char** pstData  = NULL;
+
+    //fisrt call to retrieve dimensions
+    sciErr = readNamedMatrixOfString(pvApiCtx,variableName,nbRow, nbCol, NULL, NULL);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+    }
+
+    piLen = (int*)malloc(sizeof(int) * (*nbRow)*(*nbCol));
+
+    //second call to retrieve length of each string
+    sciErr = readNamedMatrixOfString(pvApiCtx,variableName, nbRow, nbCol, piLen, NULL);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+    }
+
+    pstData = (char**)malloc(sizeof(char*) * (*nbRow) * (*nbCol));
+
+    for(i = 0 ; i < (*nbRow) * (*nbCol) ; i++)
+    {
+        pstData[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
+    }
+    //third call to retrieve data
+    sciErr = readNamedMatrixOfString(pvApiCtx, variableName, nbRow, nbCol, piLen, pstData);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+    }
+
+    return pstData;
+
+}
+
+
+int putString(char* variableName, char **variable, int *nbRow, int *nbCol) {
+    SciErr sciErr;
+
+    sciErr = createNamedMatrixOfString(pvApiCtx, variableName, nbRow, nbCol, variable);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return -1;
+    }
+    return 0;
+}
+

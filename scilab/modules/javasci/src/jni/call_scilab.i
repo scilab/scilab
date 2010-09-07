@@ -113,6 +113,12 @@ sci_int_types getIntegerPrecision(char* varname);
 
 BOOL isComplex(char* varname);
 
+%include "call_scilab_java_typemaps_string.i"
+// string
+char ** getString(char* variableName, int *nbRow, int *nbCol);
+int putString(char* variableName, char **variable, int nbRow, int nbCol);
+
+
 %include "arrays_java.i"
 int putDoubleComplex(char * variableName, double variable[], int nbRow, int nbCol);
 
