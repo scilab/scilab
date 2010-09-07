@@ -49,7 +49,7 @@ Bug Fixes:
 
 * bug 7952 fixed - libraryinfo did not check size of input argument.
 
-
+* bug 7981 fixed - copyfile failed with localized filenames on linux.
 
 
          Changes between version 5.3.0-beta-2 and 5.3.0-beta-3 of Scilab
